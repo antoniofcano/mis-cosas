@@ -24,6 +24,8 @@ reproducir el vídeo. Las notas salen del audio y se validan cruzando las dos
 vueltas. La posición sale del vídeo: dibujo 1 (trastes 0–3) hasta 0:09, dibujo 2
 (trastes 3–7, Do–Re–Mi en la 5ª cuerda) hasta 0:15 y vuelta al dibujo 1.
 
-Escala: La frigio (La, Si♭, Do, Re, Mi, Fa, Sol), Do♯ opcional.
+Escalas: Mi frigio (la que se practica en clase; dibujo 1 corregido por el
+alumno: solo notas naturales) y La frigio (la de la falseta: Si♭ en la 5ª,
+medido a 116 Hz). El dibujo 2 de Mi frigio está pendiente.
 Método: cromagrama, detección de ataques y autocorrelación del audio,
 más fotogramas cada 5 s.

@@ -425,28 +425,32 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
   <div class="escala-top">
     <div class="sec-head" style="margin:0">
       <p class="eyebrow">La escala</p>
-      <h2>La frigio, en dos dibujos</h2>
-      <p class="muted">La falseta sube por el dibujo 1, cambia al dibujo 2 y vuelve a bajar. Elige un dibujo para verlo solo y tocarlo. Son las notas blancas del piano empezando en La, con el Si natural cambiado por Si♭. Ese semitono La–Si♭ es lo que suena «flamenco». El Do♯ aparece poco en el audio: es la versión con tercera mayor (frigio dominante) y lo tienes como opcional.</p>
+      <h2 id="escTitulo">Mi frigio</h2>
+      <p class="muted" id="escTexto"></p>
+    </div>
+    <div class="tonos" role="group" aria-label="Escala" style="width:100%;margin:0">
+      <button class="tono esc" type="button" data-esc="mi" aria-pressed="true"><b>Mi frigio</b><span>La que practicas · solo notas naturales</span></button>
+      <button class="tono esc" type="button" data-esc="la" aria-pressed="false"><b>La frigio</b><span>La de la falseta de la clase · con Si♭</span></button>
     </div>
     <div class="controles" style="justify-content:flex-start">
       <button class="btn primary" id="tocarEscala" type="button">▶ Tocar la escala</button>
-      <button class="chip" id="verDoS" type="button" aria-pressed="false">Mostrar Do♯</button>
+      <button class="chip" id="verDoS" type="button" aria-pressed="false">Mostrar Sol♯</button>
       <button class="chip" id="nombres" type="button" aria-pressed="false">Nombres A B C</button>
     </div>
     <div class="controles" style="justify-content:flex-start;width:100%" role="group" aria-label="Qué parte del mástil ver">
       <button class="chip dib" type="button" data-dib="0" aria-pressed="true">Todo el mástil</button>
       <button class="chip dib" type="button" data-dib="1" aria-pressed="false">Dibujo 1 · trastes 0–3</button>
-      <button class="chip dib" type="button" data-dib="2" aria-pressed="false">Dibujo 2 · trastes 3–7</button>
+      <button class="chip dib" type="button" data-dib="2" aria-pressed="false" id="dib2">Dibujo 2 · trastes 3–7</button>
     </div>
   </div>
   <div class="grados" id="grados"></div>
   <div style="height:16px"></div>
-  <div class="mastil-box"><svg class="mastil" id="mastil" viewBox="0 0 900 250" role="img" aria-label="Mástil con las notas de La frigio entre los trastes 0 y 7"></svg></div>
+  <div class="mastil-box"><svg class="mastil" id="mastil" viewBox="0 0 900 250" role="img" aria-label="Mástil con las notas de la escala entre los trastes 0 y 7"></svg></div>
   <div class="leyenda">
-    <span><i style="background:#E7686A"></i>Tónica (La)</span>
-    <span><i style="background:#E9A94A"></i>♭2 característica (Si♭)</span>
+    <span><i style="background:#E7686A"></i>Tónica (<span id="lgTon">Mi</span>)</span>
+    <span><i style="background:#E9A94A"></i>♭2 característica (<span id="lgB2">Fa</span>)</span>
     <span><i style="background:#F6D9A2"></i>Resto de la escala</span>
-    <span><i style="border:1.5px dashed #9C8B78"></i>Opcional (Do♯)</span>
+    <span><i style="border:1.5px dashed #9C8B78"></i>Opcional (<span id="lgOpt">Sol♯</span>)</span>
     <span>Pulsa cualquier nota para oírla.</span>
   </div>
 </section>
@@ -633,6 +637,17 @@ const FALSETA=[{"t1":6.57,"t2":22.78,"k":"n","m":40,"c":6,"f":0,"d":0,"s":"a","b
 const DIBUJOS={
   1:{nombre:'Dibujo 1',desde:0,hasta:3,notas:[[6,0],[6,1],[6,3],[5,0],[5,1],[5,3],[4,0],[4,2],[4,3],[3,0],[3,2],[3,3],[2,1],[2,3],[1,0],[1,1],[1,3]]},
   2:{nombre:'Dibujo 2',desde:3,hasta:7,notas:[[6,3],[6,5],[6,6],[5,3],[5,5],[5,7],[4,3],[4,5],[4,7],[3,3],[3,5],[3,7],[2,3],[2,5],[2,6],[1,3],[1,5],[1,6]]}
+};
+// Escalas de la pestaña Escala. Mi frigio: dibujo 1 tal como se practica en clase.
+const ESCALAS={
+  mi:{nombre:'Mi frigio',opt:'Sol♯',ton:'Mi',b2:'Fa',
+    texto:'La que practicas. Son las notas blancas del piano empezando en Mi: Mi–Fa–Sol–La–Si–Do–Re. El semitono Mi–Fa es el color flamenco, y es la escala del tango por arriba. El dibujo 1 va de la 6ª al aire a la 1ª en el traste 3. El Sol♯ es la versión con tercera mayor (frigio dominante), como opcional.',
+    notas:[{pc:4,g:'1',tipo:'tonica'},{pc:5,g:'♭2',tipo:'caract'},{pc:7,g:'♭3'},{pc:9,g:'4'},{pc:11,g:'5'},{pc:0,g:'♭6'},{pc:2,g:'♭7'}],
+    opcional:{pc:8,g:'3',tipo:'opcional'},
+    dibujos:{1:{nombre:'Dibujo 1',desde:0,hasta:3,notas:[[6,0],[6,1],[6,3],[5,0],[5,2],[5,3],[4,0],[4,2],[4,3],[3,0],[3,2],[2,0],[2,1],[2,3],[1,0],[1,1],[1,3]]}}},
+  la:{nombre:'La frigio',opt:'Do♯',ton:'La',b2:'Si♭',
+    texto:'La que suena en la falseta de la clase: Si♭ en la 5ª cuerda, traste 1 (medido en el audio: 116 Hz; el Si natural daría 123). Es la misma escala que Mi frigio una cuarta más arriba, la del tango por medio: el semitono La–Si♭ hace el papel del Mi–Fa. Los dos dibujos son los que recorre la falseta.',
+    notas:ESCALA, opcional:OPCIONAL, dibujos:DIBUJOS}
 };
 const PASES=[{n:1,ini:6.0,fin:21.9,k:'t1'},{n:2,ini:22.3,fin:38.2,k:'t2'}];
 const DURACION=146;
@@ -1000,8 +1015,22 @@ video.addEventListener('timeupdate',()=>{
 
 /* ================= Escala ================= */
 const grados=document.getElementById('grados'), mastil=document.getElementById('mastil');
-let conDoS=false, dibVer=0;
-function pcsVisibles(){ return conDoS?[...ESCALA,OPCIONAL]:ESCALA; }
+let conDoS=false, dibVer=0, escSel='mi';
+const esc=()=>ESCALAS[escSel];
+function pcsVisibles(){ return conDoS?[...esc().notas,esc().opcional]:esc().notas; }
+function ponerEscala(id){
+  escSel=id; const E=esc();
+  document.querySelectorAll('.esc').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.esc===id)));
+  document.getElementById('escTitulo').textContent=E.nombre;
+  document.getElementById('escTexto').textContent=E.texto;
+  document.getElementById('lgTon').textContent=E.ton; document.getElementById('lgB2').textContent=E.b2; document.getElementById('lgOpt').textContent=E.opt;
+  document.getElementById('verDoS').textContent='Mostrar '+E.opt;
+  const d2=document.getElementById('dib2'), hay2=!!E.dibujos[2];
+  d2.disabled=!hay2; d2.title=hay2?'':'Pendiente: el dibujo 2 de Mi frigio tal como te lo dan en clase';
+  d2.textContent=hay2?'Dibujo 2 · trastes 3–7':'Dibujo 2 · pendiente';
+  if(!hay2&&dibVer===2){ dibVer=1; document.querySelectorAll('.dib').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.dib==='1'))); }
+  repintar();
+}
 function pintarGrados(){
   grados.innerHTML='';
   pcsVisibles().forEach(n=>{
@@ -1025,7 +1054,7 @@ function pintarMastil(){
     const t=el('text',{x:X0-62,y:Y0+SEP*i+4,class:'lbl'},mastil); t.textContent=NOMBRE_CUERDA[i];
   });
   for(let f=1;f<=TRASTES;f++){const t=el('text',{x:xNota(f),y:Y0+SEP*5+32,class:'lbl'},mastil); t.textContent=f;}
-  const D=dibVer?DIBUJOS[dibVer]:null;
+  const D=dibVer?esc().dibujos[dibVer]:null;
   if(D){
     const xa=D.desde===0?X0-50:xTraste(D.desde-1)+3, xb=xTraste(D.hasta)-3;
     el('rect',{x:xa,y:Y0-18,width:xb-xa,height:SEP*5+36,rx:12,class:'caja-dib'},mastil);
@@ -1052,7 +1081,7 @@ function destacar(gs){
   gs.forEach(g=>{g.classList.add('sonando'); setTimeout(()=>g.classList.remove('sonando'),350);});
 }
 function repintar(){pintarGrados(); pintarMastil();}
-repintar();
+document.querySelectorAll('.esc').forEach(b=>b.addEventListener('click',()=>ponerEscala(b.dataset.esc)));
 document.getElementById('verDoS').addEventListener('click',e=>{conDoS=!conDoS; e.currentTarget.setAttribute('aria-pressed',String(conDoS)); repintar();});
 document.getElementById('nombres').addEventListener('click',e=>{usarEN=!usarEN; e.currentTarget.setAttribute('aria-pressed',String(usarEN)); e.currentTarget.textContent=usarEN?'Nombres Do Re Mi':'Nombres A B C'; repintar(); pintarBarras(); seleccionar(tramoSel);});
 document.querySelectorAll('.dib').forEach(b=>b.addEventListener('click',()=>{
@@ -1061,24 +1090,17 @@ document.querySelectorAll('.dib').forEach(b=>b.addEventListener('click',()=>{
   pintarMastil();
 }));
 document.getElementById('tocarEscala').addEventListener('click',()=>{
-  const c=audio(), t0=c.currentTime+.05, paso=.36;
-  if(dibVer){
-    const sube=DIBUJOS[dibVer].notas.map(([cu,f])=>nodosNota.find(x=>x.cuerda===cu-1&&x.f===f)).filter(Boolean);
-    const ruta=[...sube,...sube.slice(0,-1).reverse()];
-    ruta.forEach((n,i)=>{ pulsar(n.m,t0+i*paso*.8,.55); setTimeout(()=>destacar([n.g]),(i*paso*.8+.05)*1000); });
-    return;
-  }
-  // La2 → La3 → La2, en primera posición (5ª, 4ª, 3ª)
-  const sube=[[4,0],[4,1],[4,3],[3,0],[3,2],[3,3],[2,0],[2,2]];
-  if(conDoS) sube.splice(3,0,[4,4]);
+  const c=audio(), t0=c.currentTime+.05, paso=.3;
+  const D=esc().dibujos[dibVer||1];
+  const sube=D.notas.map(([cu,f])=>nodosNota.find(x=>x.cuerda===cu-1&&x.f===f)).filter(Boolean);
   const ruta=[...sube,...sube.slice(0,-1).reverse()];
-  ruta.forEach(([cu,f],i)=>{
-    const n=nodosNota.find(x=>x.cuerda===cu&&x.f===f); if(!n) return;
+  ruta.forEach((n,i)=>{
     pulsar(n.m,t0+i*paso,.55);
-    setTimeout(()=>{destacar([n.g]); grados.querySelectorAll('.grado').forEach(d=>d.classList.toggle('sonando',Number(d.dataset.pc)===n.m%12));},(t0-c.currentTime+i*paso)*1000);
+    setTimeout(()=>{destacar([n.g]); grados.querySelectorAll('.grado').forEach(d=>d.classList.toggle('sonando',Number(d.dataset.pc)===n.m%12));},(i*paso+.05)*1000);
   });
   setTimeout(()=>grados.querySelectorAll('.grado').forEach(d=>d.classList.remove('sonando')),(ruta.length*paso+.5)*1000);
 });
+ponerEscala('mi');
 
 /* ================= Acordes ================= */
 const lista=document.getElementById('listaAcordes');
@@ -1155,7 +1177,7 @@ Object.keys(ACORDES).forEach(nm=>{
   };
   function ponerTono(tn){
     tono=tn;
-    document.querySelectorAll('.tono').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tono===tn)));
+    document.querySelectorAll('[data-tono]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tono===tn)));
     document.querySelectorAll('#equiv [data-col]').forEach(c=>c.classList.toggle('activo',c.dataset.col===tn));
     const T=TONOS[tn];
     sel.innerHTML='';
@@ -1168,7 +1190,7 @@ Object.keys(ACORDES).forEach(nm=>{
     // orden de las tarjetas según la función
     T.acordes.forEach(nm=>lista.appendChild(tarjetas[nm]));
   }
-  document.querySelectorAll('.tono').forEach(b=>b.addEventListener('click',()=>ponerTono(b.dataset.tono)));
+  document.querySelectorAll('[data-tono]').forEach(b=>b.addEventListener('click',()=>ponerTono(b.dataset.tono)));
   btnRueda.addEventListener('click',()=>sonando&&modo==='rueda'?parar():arrancar('rueda'));
   ponerTono('medio');
 }

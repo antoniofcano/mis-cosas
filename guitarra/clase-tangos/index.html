@@ -187,6 +187,35 @@ header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:c
 .paso-alz .num{color:var(--accent);font-size:.8rem}
 .paso-alz.on{background:var(--accent-soft);border-color:var(--accent)}
 @media (max-width:620px){.pasos{grid-template-columns:1fr}}
+.vivo{display:grid;gap:12px;margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.vivo-cab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.vivo-pase{font-size:.8rem;color:var(--ink-2)}
+.vivo-mastil-box{overflow-x:auto;border-radius:12px;background:var(--wood);padding:8px 6px 2px}
+.vivo-mastil{min-width:480px}
+.vivo-mastil .nota{cursor:default;transition:opacity .15s}
+.vivo-mastil .nota.actual circle{fill:#E9A94A;stroke:#FFFFFF;stroke-width:4}
+.vivo-mastil .nota.estela circle{fill:var(--dot-bg)}
+.vivo-mastil .nota.dudosa circle{stroke-dasharray:4 3;stroke:#FFFFFF}
+.vivo-mastil .golpe-t{font-family:var(--mono);font-size:15px;font-weight:600;fill:#E7686A;text-anchor:middle;letter-spacing:.12em}
+.vivo-info{font-size:.95rem;min-height:1.6em}
+.vivo-info b{font-family:var(--display);font-size:1.15rem}
+.tab-box{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--bg);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){.tab-box{scroll-behavior:auto}}
+#tab{display:block;height:auto}
+#tab .linea-t{stroke:var(--ink-2);stroke-width:1;opacity:.55}
+#tab .cuerda-t{font-family:var(--mono);font-size:10px;fill:var(--ink-2)}
+#tab .ev{cursor:pointer}
+#tab .ev rect{fill:var(--bg)}
+#tab .ev text{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#tab .ev.dudosa text{fill:var(--ink-2);font-style:italic}
+#tab .ev.sonada text{fill:var(--accent)}
+#tab .ev.actual rect{fill:var(--accent)}
+#tab .ev.actual text{fill:var(--bg)}
+#tab .ev:focus-visible rect{stroke:var(--accent);stroke-width:2}
+#tab .golpe text{fill:var(--golpe)}
+#tab .compas-l{stroke:var(--ink);stroke-width:1.5;opacity:.35}
+#tab .compas-n{font-family:var(--mono);font-size:10px;fill:var(--ink-2)}
+#tab .cabezal-t{stroke:var(--golpe);stroke-width:2}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -206,7 +235,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
   <div>
     <p class="eyebrow">Mapa de estudio · clase del 23-sep · 2:26</p>
     <h1>Tangos por medio<span>Compás binario en el modo de La</span></h1>
-    <p class="lead">La clase entra con una cuenta «…uno, dos, tres», marca el compás de tangos, pasa a la alzapúa y remata con una falseta, siempre en primera posición. Aquí tienes el compás para marcarlo, la alzapúa paso a paso, la escala sobre el mástil, los acordes y los cinco momentos del vídeo.</p>
+    <p class="lead">La clase va en cuatro partes: compás y tempo, una falseta que se toca dos veces, la rueda de acordes y la explicación de la alzapúa. Todo en primera posición. Aquí tienes la falseta nota a nota sobre el mástil, sincronizada con el vídeo, además del compás, la alzapúa paso a paso, la escala y los acordes.</p>
     <div class="facts">
       <span class="chip">Modo <b>La frigio</b></span>
       <span class="chip">Tónica <b>La</b></span>
@@ -235,9 +264,9 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
 
 <section id="mapa">
   <div class="sec-head">
-    <p class="eyebrow">Los cinco momentos</p>
+    <p class="eyebrow">Las cuatro partes</p>
     <h2>Mapa de la clase</h2>
-    <p class="muted">Pulsa un tramo para ver qué pasa y qué practicar. Si cargas el vídeo, el tramo se reproduce y puedes repetirlo en bucle y a menos velocidad. El vídeo se abre en tu navegador y no sale de él.</p>
+    <p class="muted">Pulsa una parte para ver qué pasa y qué practicar. Si cargas el vídeo, la parte se reproduce, puedes repetirla en bucle y a menos velocidad, y el mástil de debajo marca cada nota de la falseta a la vez que la toca. El vídeo se abre en tu navegador y no sale de él.</p>
   </div>
   <div class="mapa">
     <div>
@@ -249,20 +278,38 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
         <div class="video-box" id="videoBox">
           <div class="video-vacio" id="videoVacio">
             <p style="font-family:var(--display);font-size:1.3rem;color:#EFE3D0">Sin vídeo cargado</p>
-            <p>Elige el archivo de la clase (VIDEO-2026-09-23-18-33-03.mp4) para ver cada tramo sincronizado.</p>
+            <p>Elige el archivo de la clase (VIDEO-2026-09-23-18-33-03.mp4) para ver cada parte y la falseta sincronizadas.</p>
             <label class="btn" for="fichero">Cargar el vídeo</label>
             <input id="fichero" type="file" accept="video/*" hidden>
           </div>
           <video id="video" playsinline hidden></video>
         </div>
         <div class="reproduccion">
-          <button class="btn" id="irA" type="button" disabled>▶ Reproducir tramo</button>
+          <button class="btn" id="irA" type="button" disabled>▶ Reproducir parte</button>
           <button class="chip" id="bucle" type="button" aria-pressed="false" disabled>⟲ En bucle</button>
           <div role="group" aria-label="Velocidad" style="display:flex;gap:6px">
             <button class="chip vel" type="button" data-v="0.5" aria-pressed="false" disabled>0,5×</button>
             <button class="chip vel" type="button" data-v="0.75" aria-pressed="false" disabled>0,75×</button>
             <button class="chip vel" type="button" data-v="1" aria-pressed="true" disabled>1×</button>
           </div>
+        </div>
+        <div class="vivo" id="vivo">
+          <div class="vivo-cab">
+            <p class="eyebrow">La falseta en el mástil</p>
+            <span class="mono vivo-pase" id="vivoPase">Parada</span>
+          </div>
+          <div class="vivo-mastil-box"><svg class="mastil vivo-mastil" id="mastilVivo" viewBox="0 0 640 236" role="img" aria-label="Mástil que marca la nota que suena en cada momento de la falseta"></svg></div>
+          <p class="vivo-info" id="vivoInfo" aria-live="polite">Pulsa «Tocar la falseta» o reproduce el vídeo entre 0:06 y 0:38.</p>
+          <div class="tab-box" id="tabBox"><svg id="tab" aria-label="Tablatura de la falseta"></svg></div>
+          <div class="controles" style="justify-content:flex-start">
+            <button class="btn primary" id="playFal" type="button" aria-pressed="false">▶ Tocar la falseta</button>
+            <div role="group" aria-label="Velocidad de la falseta" style="display:flex;gap:6px">
+              <button class="chip fvel" type="button" data-v="0.5" aria-pressed="true">0,5×</button>
+              <button class="chip fvel" type="button" data-v="0.75" aria-pressed="false">0,75×</button>
+              <button class="chip fvel" type="button" data-v="1" aria-pressed="false">1×</button>
+            </div>
+          </div>
+          <p class="muted" style="font-size:.82rem">Con el vídeo en marcha, el mástil sigue al vídeo en las dos vueltas. Sin vídeo, suena la 1ª vuelta con el sintetizador. Pulsa una nota de la tablatura para ir a ella.</p>
         </div>
       </div>
       <article class="momento" id="momento" aria-live="polite"></article>
@@ -353,7 +400,9 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
         <li><span class="pill alta">Alta</span><span>Palo: tangos por medio, confirmado por quien grabó la clase.</span></li>
         <li><span class="pill alta">Alta</span><span>Compás binario: el ritmo se repite cada 3,98 s, que son 8 tiempos de 0,50 s (unos 120 bpm).</span></li>
         <li><span class="pill alta">Alta</span><span>Bajo descendente Re → Do → Si♭ → La en el compás y en la falseta.</span></li>
-        <li><span class="pill media">Media</span><span>Dónde empieza la alzapúa y dónde la falseta: deducido de la densidad de notas y de la mano derecha en los fotogramas.</span></li>
+        <li><span class="pill alta">Alta</span><span>Las cuatro partes y el final de la falseta en 0:38, indicados por quien grabó la clase. Las dos vueltas de la falseta se repiten cada 16,2 s.</span></li>
+        <li><span class="pill media">Media</span><span>Notas de la falseta: salen del audio y coinciden en las dos vueltas. Cuerda y traste están asignados en primera posición, porque el vídeo no deja ver la cuerda. Las dudosas llevan borde discontinuo.</span></li>
+        <li><span class="pill media">Media</span><span>Paso de la rueda de acordes a la alzapúa en 0:57: deducido del audio.</span></li>
         <li><span class="pill media">Media</span><span>Digitación exacta del La y del Si♭ (deducida de las notas, no del plano).</span></li>
         <li><span class="pill baja">Baja</span><span>Si el Re es menor o lleva Fa♯ de paso (Re7): el audio lo da ambiguo en varios compases.</span></li>
       </ul>
@@ -398,27 +447,27 @@ function notasAcorde(nm){
 
 // Tramos del vídeo (segundos)
 const TRAMOS=[
-  {id:'cuenta',ini:0,fin:6,titulo:'La cuenta',corto:'Cuenta',
-   texto:'Una voz pregunta si se oye y cuenta «…uno, dos, tres» para entrar. Los tangos se cuentan de 8 en 8, en dos bloques de 4.',
-   practica:['Pon la rueda en «Solo palmas» y cuenta en voz alta del 1 al 8.','Nota que las palmas callan en el 1 y el 5: ahí entra la guitarra.'],
+  {id:'compas',ini:0,fin:6,titulo:'Compás y tempo',corto:'Compás',
+   texto:'Cuenta de entrada para fijar el tempo. El tango va a unos 118 bpm y se cuenta de 8 en 8, en dos bloques de 4: cada vuelta de 8 tiempos dura unos 4 segundos.',
+   practica:['Pon la rueda de arriba en «Solo palmas» a 90 bpm y cuenta del 1 al 8.','Sube poco a poco hasta 118, que es el tempo de la clase.'],
    acordes:[]},
-  {id:'compas',ini:6,fin:57,titulo:'Compás de tangos',corto:'Compás',
-   texto:'Rasgueo por medio a unos 120 bpm: cada vuelta de 8 tiempos dura unos 4 segundos. El bajo va de La a Re y baja por Do hasta volver al La; hay un Sol7 que prepara el Do.',
-   practica:['Rueda en «La · Si♭ · La» a 90 bpm, rasgueando en el 1, el 5 y el 7.','Cuando salga limpio, pasa a la cadencia y sube a 110.','Escucha el bajo: Re, Do, Si♭, La.'],
-   acordes:['La','Rem','Do7','Sol7','Si♭']},
-  {id:'alzapua',ini:57,fin:102,titulo:'Alzapúa sobre La',corto:'Alzapúa',
-   texto:'Entra la alzapúa y el tempo baja a unos 105 bpm. El pulgar no suelta el La: La al aire en el bordón y, por encima, Mi, Si♭ y Re, en golpes rápidos y repetidos. El Si♭ del bajo aparece hacia 1:13, 1:32 y 1:41.',
-   practica:['Primero sin mano izquierda: solo el patrón del pulgar sobre cuerdas al aire.','Usa «La alzapúa, paso a paso» más abajo a 70 bpm.','Luego pisa el La de la clase (x02330) y repite el tramo a 0,75×.'],
-   acordes:['La','Si♭']},
-  {id:'falseta',ini:102,fin:140,titulo:'Falseta',corto:'Falseta',
-   texto:'Una falseta que baja por la cadencia andaluza: Re, Do, Si♭ hasta caer en La, con Sol7 y Do7 de paso. Notas sueltas y más rápidas que en el compás, a unos 118 bpm.',
-   practica:['Toca solo los bajos: 4ª al aire, 5ª traste 3, 5ª traste 1, 5ª al aire.','Repite el tramo a 0,5× e identifica cada nota en el mástil de la escala.','Encájala en la rueda: cada bajo en un 1 o un 5.'],
-   acordes:['Rem','Do','Do7','Si♭','Sol7','La']},
-  {id:'cierre',ini:140,fin:146,titulo:'Cierre',corto:'Cierre',
-   texto:'Si♭ que resuelve en La: la cadencia andaluza de siempre, cerrando en la tónica.',
-   practica:['Remata cada ejercicio con Si♭ → La, cayendo el La en un 1.'],
-   acordes:['Si♭','La']}
+  {id:'falseta',ini:6,fin:38,titulo:'Falseta',corto:'Falseta',
+   texto:'La misma falseta dos veces (0:06 y 0:22), unos 16 segundos cada una: cuatro compases de 8. Va casi entera por los bordones (6ª, 5ª y 4ª), con golpes entre frases, y acaba con el acorde del tango. Síguela en el mástil de debajo del vídeo.',
+   practica:['Dale a «Tocar la falseta» a 0,5× y sigue el mástil con la vista.','Aprende la primera frase (Mi–La–Si♭–La–Sol–La–Sol–Do–Re–Mi) antes de seguir.','Con el vídeo, repite la parte en bucle a 0,75×.'],
+   acordes:['La']},
+  {id:'rueda',ini:38,fin:57,titulo:'Rueda de acordes',corto:'Rueda de acordes',
+   texto:'Rasgueo sobre la rueda: La, Rem, Do7, Si♭, Sol7, Do7 y vuelta al La, con el bajo bajando Re–Do–Si♭–La.',
+   practica:['Rueda del compás en «Cadencia Rem·Do·Si♭·La» a 90 bpm.','Cambia de acorde sin parar el rasgueo: primero dos tiempos por acorde, luego uno.'],
+   acordes:['La','Rem','Do7','Si♭','Sol7']},
+  {id:'alzapua',ini:57,fin:146,titulo:'Explicación de la alzapúa',corto:'Alzapúa',
+   texto:'Primero sobre el La, con la 5ª al aire de pedal y Mi, Si♭ y Re por encima (0:57–1:42, a unos 105 bpm). Después la lleva por la cadencia Re–Do–Si♭–La (1:42–2:20) y cierra con Si♭ → La.',
+   practica:['Usa «La alzapúa, paso a paso» a 70 bpm.','Pisa el La de la clase (x02330) y repite 0:57–1:42 a 0,75×.','Cuando salga, pásala por Rem–Do–Si♭–La.'],
+   acordes:['La','Si♭','Rem','Do','Sol7']}
 ];
+// Falseta: t1 = 1ª vuelta, t2 = 2ª vuelta (s de vídeo). k: n nota, g golpe, c acorde final.
+// c = cuerda (1ª aguda … 6ª grave), f = traste, d = dedo; s: a = igual en las dos vueltas, l = ligado, m = dudosa
+const FALSETA=[{"t1":6.57,"t2":22.78,"k":"n","m":52,"c":4,"f":2,"d":2,"s":"a"},{"t1":6.95,"t2":23.13,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a"},{"t1":7.67,"t2":24.0,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a"},{"t1":7.87,"t2":24.16,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"l"},{"t1":8.51,"t2":24.74,"k":"n","m":43,"c":6,"f":3,"d":3,"s":"a"},{"t1":8.95,"t2":25.08,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a"},{"t1":9.34,"t2":25.5,"k":"n","m":43,"c":6,"f":3,"d":3,"s":"a"},{"t1":9.72,"t2":26.07,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"a"},{"t1":10.44,"t2":26.71,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a"},{"t1":10.83,"t2":27.05,"k":"n","m":52,"c":4,"f":2,"d":2,"s":"a"},{"t1":12.31,"t2":28.57,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"m"},{"t1":13.0,"t2":29.37,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a"},{"t1":13.32,"t2":29.55,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a"},{"t1":13.79,"t2":30.07,"k":"n","m":52,"c":4,"f":2,"d":2,"s":"a"},{"t1":14.05,"t2":30.4,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a"},{"t1":14.5,"t2":30.75,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"a"},{"t1":14.81,"t2":31.05,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a"},{"t1":15.16,"t2":31.39,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"a"},{"t1":15.52,"t2":31.77,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a"},{"t1":15.9,"t2":32.15,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"a"},{"t1":16.2,"t2":32.43,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"m"},{"t1":16.57,"t2":32.71,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a"},{"t1":16.86,"t2":33.09,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a"},{"t1":17.11,"t2":33.37,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a"},{"t1":17.27,"t2":33.51,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a"},{"t1":17.95,"t2":34.23,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a"},{"t1":18.98,"t2":35.24,"k":"n","m":41,"c":6,"f":1,"d":1,"s":"a"},{"t1":19.07,"t2":35.38,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"m"},{"t1":19.34,"t2":35.7,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a"},{"t1":19.66,"t2":35.87,"k":"n","m":44,"c":6,"f":4,"d":4,"s":"m"},{"t1":20.67,"t2":36.83,"k":"c","m":null,"c":null,"f":null,"d":null,"s":"a"}];
+const PASES=[{n:1,ini:6.0,fin:21.9,k:'t1'},{n:2,ini:22.3,fin:38.2,k:'t2'}];
 const DURACION=146;
 
 // Energía relativa por nota (cromagrama de toda la clase)
@@ -551,21 +600,21 @@ TRAMOS.forEach((tr,i)=>{
   const b=document.createElement('button');
   b.type='button'; b.setAttribute('role','tab'); b.id='tab-'+tr.id;
   b.style.flex=String(tr.fin-tr.ini);
-  b.innerHTML=`<span class="t">${i+1} · ${mmss(tr.ini)}</span><span class="n">${tr.corto}</span>`;
+  b.innerHTML=`<span class="t">${i} · ${mmss(tr.ini)}</span><span class="n">${tr.corto}</span>`;
   b.addEventListener('click',()=>{ seleccionar(tr); if(!video.hidden) reproducirTramo(); });
   linea.appendChild(b);
 });
 function seleccionar(tr){
   tramoSel=tr;
   linea.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',String(b.id==='tab-'+tr.id)));
-  const n=TRAMOS.indexOf(tr)+1;
+  const n=TRAMOS.indexOf(tr);
   momento.innerHTML=`
-    <p class="tiempo">Tramo ${n} de 5 · ${mmss(tr.ini)} – ${mmss(tr.fin)}</p>
+    <p class="tiempo">Parte ${n} · ${mmss(tr.ini)} – ${mmss(tr.fin)}</p>
     <h3>${tr.titulo}</h3>
     <p>${tr.texto}</p>
     ${tr.acordes.length?`<div><p class="eyebrow" style="margin-bottom:6px">Acordes · pulsa para oír</p><div class="acordes-mini">${tr.acordes.map(a=>`<button type="button" data-ac="${a}">${a}</button>`).join('')}</div></div>`:''}
     <div><p class="eyebrow" style="margin-bottom:6px">Para practicar</p><ul>${tr.practica.map(p=>`<li>${p}</li>`).join('')}</ul></div>
-    <label class="check" for="hecho-${tr.id}"><input type="checkbox" id="hecho-${tr.id}" ${hechos[tr.id]?'checked':''}> Este tramo ya me sale</label>`;
+    <label class="check" for="hecho-${tr.id}"><input type="checkbox" id="hecho-${tr.id}" ${hechos[tr.id]?'checked':''}> Esta parte ya me sale</label>`;
   momento.querySelectorAll('[data-ac]').forEach(b=>b.addEventListener('click',()=>rasguear(b.dataset.ac)));
   momento.querySelector('input').addEventListener('change',e=>{
     hechos[tr.id]=e.target.checked;
@@ -595,6 +644,154 @@ video.addEventListener('timeupdate',()=>{
   const tr=TRAMOS.find(x=>t>=x.ini&&t<x.fin);
   if(!bucle&&tr&&tr!==tramoSel) seleccionar(tr);
 });
+
+/* ================= Falseta en el mástil ================= */
+{
+  const svgM=document.getElementById('mastilVivo'), svgT=document.getElementById('tab'), tabBox=document.getElementById('tabBox');
+  const info=document.getElementById('vivoInfo'), paseEl=document.getElementById('vivoPase'), btnF=document.getElementById('playFal');
+  const EV=FALSETA, T0=EV[0].t1-0.4, T1=EV[EV.length-1].t1+0.8;
+  const ACORDE_FINAL=[{c:5,f:0,m:45},{c:4,f:2,m:52},{c:3,f:3,m:58},{c:2,f:3,m:62},{c:1,f:0,m:64}];
+
+  // --- mástil (trastes 0–5; 1ª cuerda arriba)
+  const FR=5, X0=62, AN=560, Y0=30, SP=34;
+  const xT=f=>X0+(AN/FR)*f, xN=f=>f===0?X0-30:(xT(f-1)+xT(f))/2, yC=c=>Y0+SP*(c-1);
+  el('rect',{x:X0,y:Y0-12,width:AN,height:SP*5+24,rx:4,fill:'#3A261D'},svgM);
+  [3,5].forEach(f=>el('circle',{cx:xN(f),cy:Y0+SP*2.5,r:6,fill:'#5A4235'},svgM));
+  for(let f=0;f<=FR;f++) el('line',{x1:xT(f),y1:Y0-12,x2:xT(f),y2:Y0+SP*5+12,stroke:f===0?'#EFE3D0':'#B9A98F','stroke-width':f===0?7:2.5},svgM);
+  for(let c=1;c<=6;c++){
+    el('line',{x1:X0-48,y1:yC(c),x2:X0+AN,y2:yC(c),stroke:'#D9CDB6','stroke-width':.8+c*.35},svgM);
+    const t=el('text',{x:X0-58,y:yC(c)+4,class:'lbl'},svgM); t.textContent=c+'ª';
+  }
+  for(let f=1;f<=FR;f++){const t=el('text',{x:xN(f),y:Y0+SP*5+30,class:'lbl'},svgM); t.textContent=f;}
+  const capa=el('g',{},svgM);
+  const golpeTxt=el('text',{x:X0+AN/2,y:Y0+SP*2.5+5,class:'golpe-t'},svgM);
+  function punto(c,f,m,clase,op){
+    const g=el('g',{class:'nota '+clase,opacity:op},capa);
+    el('circle',{cx:xN(f),cy:yC(c),r:clase.includes('actual')?17:14},g);
+    const t=el('text',{x:xN(f),y:yC(c)},g); t.textContent=nombre(m%12);
+  }
+
+  // --- tablatura (eje de la 1ª vuelta)
+  const PX=96, TX0=34, W=Math.round(TX0+(T1-T0)*PX+20), TY0=26, TS=18, H=TY0+TS*5+26;
+  svgT.setAttribute('viewBox',`0 0 ${W} ${H}`); svgT.setAttribute('width',W); svgT.setAttribute('height',H);
+  const xt=t=>TX0+(t-T0)*PX;
+  for(let c=1;c<=6;c++){
+    el('line',{x1:TX0-6,y1:TY0+TS*(c-1),x2:W-8,y2:TY0+TS*(c-1),class:'linea-t'},svgT);
+    const t=el('text',{x:4,y:TY0+TS*(c-1)+3,class:'cuerda-t'},svgT); t.textContent=['e','B','G','D','A','E'][c-1];
+  }
+  // compases de 8 tiempos (≈4,05 s) desde la primera nota
+  for(let k=0;k<=4;k++){
+    const t=6.45+k*4.05; if(t>T1) break;
+    el('line',{x1:xt(t),y1:TY0-8,x2:xt(t),y2:TY0+TS*5+8,class:'compas-l'},svgT);
+    if(k<4){const n=el('text',{x:xt(t)+4,y:TY0+TS*5+20,class:'compas-n'},svgT); n.textContent='compás '+(k+1);}
+  }
+  const nodosTab=EV.map((e,i)=>{
+    const g=el('g',{class:'ev'+(e.k==='g'?' golpe':'')+(e.s==='m'?' dudosa':''),tabindex:0,role:'button'},svgT);
+    const x=xt(e.t1);
+    if(e.k==='n'){
+      el('rect',{x:x-8,y:TY0+TS*(e.c-1)-8,width:16,height:16,rx:3},g);
+      const t=el('text',{x,y:TY0+TS*(e.c-1)},g); t.textContent=e.f;
+      g.setAttribute('aria-label',`${nombre(e.m%12)}, cuerda ${e.c}ª, traste ${e.f}`);
+    }else if(e.k==='g'){
+      el('rect',{x:x-10,y:TY0-22,width:20,height:14,rx:3},g);
+      const t=el('text',{x,y:TY0-15},g); t.textContent='↓';
+      g.setAttribute('aria-label','Golpe');
+    }else{
+      ACORDE_FINAL.forEach(a=>{el('rect',{x:x-8,y:TY0+TS*(a.c-1)-8,width:16,height:16,rx:3},g); const t=el('text',{x,y:TY0+TS*(a.c-1)},g); t.textContent=a.f;});
+      g.setAttribute('aria-label','Acorde del tango');
+    }
+    const ir=()=>{
+      if(!video.hidden){ video.currentTime=Math.max(0,e.t1-0.6); video.play().catch(()=>{}); }
+      else sonar(e,audio().currentTime);
+    };
+    g.addEventListener('click',ir);
+    g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();ir();}});
+    return g;
+  });
+  const cab=el('line',{x1:xt(T0),y1:6,x2:xt(T0),y2:H-4,class:'cabezal-t'},svgT);
+
+  // --- sonido
+  function sonar(e,when){
+    if(e.k==='n') pulsar(e.m,when,.6);
+    else if(e.k==='g') palma(when,true);
+    else rasguear('La',when,.34);
+  }
+
+  // --- pintar un instante
+  let ultimo='';
+  function pintar(pase,T){
+    if(!pase){
+      if(ultimo==='fuera') return; ultimo='fuera';
+      capa.innerHTML=''; golpeTxt.textContent=''; paseEl.textContent='Fuera de la falseta';
+      nodosTab.forEach(g=>g.classList.remove('actual','sonada'));
+      info.textContent='La falseta suena entre 0:06 y 0:38. Pulsa «Tocar la falseta» o lleva el vídeo ahí.';
+      return;
+    }
+    const k=pase.k; let i=-1;
+    for(let j=0;j<EV.length;j++){ if(EV[j][k]<=T) i=j; else break; }
+    // cabezal: interpolar sobre el eje de la 1ª vuelta
+    let x;
+    if(i<0) x=xt(EV[0].t1-(EV[0][k]-T));
+    else if(i>=EV.length-1) x=xt(EV[i].t1+(T-EV[i][k]));
+    else{ const a=EV[i],b=EV[i+1],fr=(T-a[k])/Math.max(.01,b[k]-a[k]); x=xt(a.t1+fr*(b.t1-a.t1)); }
+    cab.setAttribute('x1',x); cab.setAttribute('x2',x);
+    const vis=tabBox.clientWidth; if(x<tabBox.scrollLeft+40||x>tabBox.scrollLeft+vis-80) tabBox.scrollLeft=Math.max(0,x-vis*.3);
+    const clave=pase.n+':'+i; if(clave===ultimo) return; ultimo=clave;
+    paseEl.textContent=`${pase.n}ª vuelta · ${Math.max(0,i+1)} de ${EV.length}`;
+    nodosTab.forEach((g,j)=>{g.classList.toggle('actual',j===i); g.classList.toggle('sonada',j<i);});
+    capa.innerHTML=''; golpeTxt.textContent='';
+    // estela: las 3 notas anteriores
+    let n=0;
+    for(let j=i-1;j>=0&&n<3;j--){ const e=EV[j]; if(e.k!=='n') continue; n++; punto(e.c,e.f,e.m,'estela',String(.75-n*.18)); }
+    if(i<0){ info.textContent='Preparado: la primera nota es Mi en la 4ª cuerda, traste 2.'; return; }
+    const e=EV[i];
+    if(e.k==='n'){
+      punto(e.c,e.f,e.m,'actual'+(e.s==='m'?' dudosa':''),'1');
+      const dedo=e.f===0?'al aire':`dedo ${e.d}`;
+      info.innerHTML=`<b>${nombre(e.m%12)}</b> · ${e.c}ª cuerda, traste ${e.f} · ${dedo}${e.s==='l'?' · ligado':''}${e.s==='m'?' · dudosa':''}`;
+    }else if(e.k==='g'){
+      golpeTxt.textContent='GOLPE';
+      info.innerHTML='<b>Golpe</b> · el anular golpea la tapa entre frases';
+    }else{
+      capa.innerHTML=''; ACORDE_FINAL.forEach(a=>punto(a.c,a.f,a.m,'actual','1'));
+      info.innerHTML='<b>La</b> · el acorde del tango (x02330) cierra la vuelta';
+    }
+  }
+
+  // --- sintetizador
+  let sint=null, vel=.5;
+  document.querySelectorAll('.fvel').forEach(b=>b.addEventListener('click',()=>{
+    vel=Number(b.dataset.v); document.querySelectorAll('.fvel').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    if(sint){ pararSint(); arrancarSint(); }
+  }));
+  function arrancarSint(){
+    if(!video.hidden) video.pause();
+    const c=audio(), t0=c.currentTime+.15;
+    EV.forEach(e=>sonar(e,t0+(e.t1-T0)/vel));
+    sint={t0}; btnF.textContent='■ Parar'; btnF.setAttribute('aria-pressed','true');
+  }
+  function pararSint(){
+    sint=null; master.gain.cancelScheduledValues(ctx.currentTime);
+    // cortar lo ya programado: se reconstruye la salida
+    master.disconnect(); const g=ctx.createGain(); g.gain.value=.8; const comp=ctx.createDynamicsCompressor(); g.connect(comp); comp.connect(ctx.destination); master=g;
+    btnF.textContent='▶ Tocar la falseta'; btnF.setAttribute('aria-pressed','false'); ultimo='';
+  }
+  btnF.addEventListener('click',()=>sint?pararSint():arrancarSint());
+  video.addEventListener('play',()=>{ if(sint) pararSint(); });
+
+  // --- bucle de dibujo
+  function tick(){
+    if(sint){
+      const T=T0+(ctx.currentTime-sint.t0)*vel;
+      if(T>T1+.6) pararSint(); else pintar(PASES[0],T);
+    }else if(!video.hidden&&video.readyState>0){
+      const t=video.currentTime, p=PASES.find(q=>t>=q.ini&&t<q.fin);
+      pintar(p||null,t);
+    }else if(ultimo===''){ pintar(PASES[0],T0-1); }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 
 /* ================= Escala ================= */
 const grados=document.getElementById('grados'), mastil=document.getElementById('mastil');

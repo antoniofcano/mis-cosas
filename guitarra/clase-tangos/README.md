@@ -7,13 +7,17 @@ Análisis del vídeo del 23-sep-2026 (2:26). Palo y técnicas (tangos por medio,
 alzapúa, falseta) confirmados por quien grabó la clase; los tiempos, deducidos
 del audio.
 
-| Tramo | Tiempo | Qué pasa |
+| Parte | Tiempo | Qué pasa |
 |---|---|---|
-| 1 | 0:00–0:06 | Cuenta de entrada |
-| 2 | 0:06–0:57 | Compás de tangos por medio, ≈120 bpm, 8 tiempos ≈4 s |
-| 3 | 0:57–1:42 | Alzapúa sobre La (pedal de 5ª al aire), ≈105 bpm |
-| 4 | 1:42–2:20 | Falseta por la cadencia Rem–Do–Si♭–La, ≈118 bpm |
-| 5 | 2:20–2:26 | Cierre Si♭ → La |
+| 0 | 0:00–0:06 | Compás y tempo (cuenta de entrada, ≈118 bpm, 8 tiempos) |
+| 1 | 0:06–0:38 | Falseta, dos vueltas de 16,2 s que acaban en el acorde del tango |
+| 2 | 0:38–0:57 | Rueda de acordes: La, Rem, Do7, Si♭, Sol7 |
+| 3 | 0:57–2:26 | Explicación de la alzapúa: sobre La y luego por la cadencia |
+
+La falseta está transcrita en `FALSETA` (dentro de `index.html`) con el tiempo
+de cada nota en las dos vueltas; el mástil y la tablatura la siguen al
+reproducir el vídeo. Las notas salen del audio y se validan cruzando las dos
+vueltas; cuerda y traste se asignan en primera posición.
 
 Escala: La frigio (La, Si♭, Do, Re, Mi, Fa, Sol), Do♯ opcional.
 Método: cromagrama, detección de ataques y autocorrelación del audio,

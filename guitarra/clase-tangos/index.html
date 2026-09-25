@@ -41,6 +41,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 64px}
 .wrap{max-width:1120px;margin:0 auto}
 h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.08}
@@ -224,6 +225,64 @@ header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:c
 #tab .compas-l{stroke:var(--ink);stroke-width:1.5;opacity:.35}
 #tab .compas-n{font-family:var(--mono);font-size:10px;fill:var(--ink-2)}
 #tab .cabezal-t{stroke:var(--golpe);stroke-width:2}
+/* ---------- Cabecera y pestañas ---------- */
+header.cab{display:grid;gap:10px;padding-block:36px 18px}
+.cab h1{font-size:clamp(2.6rem,6.5vw,4.6rem);font-style:italic;letter-spacing:-.01em}
+.cab h1 span{display:block;font-style:normal;font-size:.36em;font-weight:500;color:var(--ink-2);letter-spacing:.02em;margin-top:.3em}
+.pestanas{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:4px;overflow-x:auto;background:var(--bg);border-bottom:1px solid var(--line);padding-top:8px;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+.pestanas button{flex:0 0 auto;border:0;background:transparent;padding:12px 16px 11px;font-weight:600;font-size:1rem;color:var(--ink-2);border-bottom:3px solid transparent;border-radius:8px 8px 0 0;display:flex;gap:8px;align-items:baseline}
+.pestanas button .mono{font-size:.75rem;color:var(--accent)}
+.pestanas button:hover{color:var(--ink);background:var(--accent-soft)}
+.pestanas button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.panel > section:first-child{padding-top:36px}
+
+/* ---------- Compás ---------- */
+.compas-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.compas-texto{display:grid;gap:22px}
+.compas-texto p{max-width:60ch}
+.tira{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.t-cel{display:grid;justify-items:center;gap:2px;padding:10px 2px;border-radius:10px;border:1.5px solid var(--golpe);background:var(--surface);text-align:center;transition:background .08s}
+.t-cel b{font-family:var(--mono);font-size:1.2rem;color:var(--golpe)}
+.t-cel span{font-size:.68rem;color:var(--ink-2);line-height:1.15}
+.t-cel.fuerte{background:var(--golpe-soft)}
+.t-cel.sil{border-style:dashed;border-color:var(--ink-2)}
+.t-cel.sil b{color:var(--ink)}
+.t-cel.on{background:var(--accent);border-color:var(--accent)}
+.t-cel.on b,.t-cel.on span{color:var(--bg)}
+.lista{margin:0;padding-left:1.1em;display:grid;gap:6px}
+
+/* ---------- Ruedas ---------- */
+.tonos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.tono{display:grid;gap:4px;text-align:left;padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface)}
+.tono b{font-family:var(--display);font-size:1.5rem}
+.tono span{font-size:.85rem;color:var(--ink-2)}
+.tono[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.equiv-box{overflow-x:auto;margin-bottom:22px}
+.equiv{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem}
+.equiv th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-align:left;font-weight:600;padding:6px 10px;border-bottom:1.5px solid var(--ink)}
+.equiv td{padding:8px 10px;border-bottom:1px solid var(--line)}
+.equiv td.ac{font-family:var(--display);font-weight:700;font-size:1.15rem}
+.equiv td.gr{font-family:var(--mono);color:var(--accent)}
+.equiv .activo{background:var(--accent-soft)}
+.ruedas-sel{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.rueda-vista{display:grid;gap:16px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.rueda-cab{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:start}
+.rueda-cab h3{font-size:1.5rem}
+.rueda-cab p{max-width:56ch;margin-top:4px}
+.secuencia{display:grid;gap:10px}
+.compas-fila{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.compas-fila .etq{grid-column:1/-1;font-family:var(--mono);font-size:.7rem;color:var(--ink-2)}
+.bloque{display:grid;gap:4px;padding:10px 8px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);min-width:0;cursor:pointer;text-align:left}
+.bloque b{font-family:var(--display);font-size:1.35rem;line-height:1}
+.bloque .tiempos{display:flex;gap:3px}
+.bloque .tiempos i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.bloque .tiempos i.on{background:var(--golpe)}
+.bloque .fn{font-family:var(--mono);font-size:.68rem;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bloque.tonica{border-color:var(--golpe)}
+.bloque.on{border-color:var(--accent);background:var(--accent-soft)}
+@media (max-width:860px){.compas-grid{grid-template-columns:1fr}}
+@media (max-width:620px){.tonos{grid-template-columns:1fr}.bloque b{font-size:1.05rem}.t-cel span{display:none}}
+
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -239,21 +298,52 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
 
 <div class="wrap">
 
-<header class="hero">
-  <div>
-    <p class="eyebrow">Mapa de estudio · clase del 23-sep · 2:26</p>
-    <h1>Tangos por medio<span>Compás binario en el modo de La</span></h1>
-    <p class="lead">La clase va en cuatro partes: compás y tempo, una falseta que se toca dos veces, la rueda de acordes y la explicación de la alzapúa. Todo en primera posición. Aquí tienes la falseta nota a nota sobre el mástil, sincronizada con el vídeo, además del compás, la alzapúa paso a paso, la escala y los acordes.</p>
-    <div class="facts">
-      <span class="chip">Modo <b>La frigio</b></span>
-      <span class="chip">Tónica <b>La</b></span>
-      <span class="chip">Tempo <b>≈120 bpm</b></span>
-      <span class="chip">Ciclo <b>8 tiempos · ≈4 s</b></span>
-      <span class="chip">Mano izq. <b>dibujos 1 y 2</b></span>
-    </div>
+<header class="cab">
+  <p class="eyebrow">Mapa de estudio · clase del 23-sep · 2:26</p>
+  <h1>Tangos<span>el compás, las ruedas, la escala y la clase</span></h1>
+  <div class="facts">
+    <span class="chip">Palo <b>tangos</b></span>
+    <span class="chip">Clase <b>por medio · La frigio</b></span>
+    <span class="chip">Compás <b>8 tiempos · ≈118 bpm</b></span>
+    <span class="chip">Mano izq. <b>dibujos 1 y 2</b></span>
   </div>
+</header>
 
-  <div class="rueda-card">
+<nav class="pestanas" role="tablist" aria-label="Secciones">
+  <button type="button" role="tab" id="t-compas" aria-controls="panel-compas" aria-selected="true"><span class="mono">1</span> Compás</button>
+  <button type="button" role="tab" id="t-ruedas" aria-controls="panel-ruedas" aria-selected="false"><span class="mono">2</span> Ruedas</button>
+  <button type="button" role="tab" id="t-escala" aria-controls="panel-escala" aria-selected="false"><span class="mono">3</span> Escala</button>
+  <button type="button" role="tab" id="t-clase" aria-controls="panel-clase" aria-selected="false"><span class="mono">4</span> La clase</button>
+</nav>
+<div class="panel" id="panel-compas" role="tabpanel" aria-labelledby="t-compas">
+<section>
+  <div class="compas-grid">
+    <div class="compas-texto">
+      <div class="sec-head" style="margin:0">
+        <p class="eyebrow">El ritmo</p>
+        <h2>El compás del tango</h2>
+        <p>El tango es binario: compases de 4 que se cuentan de 8 en 8. Las palmas suenan en el 2, 3 y 4 y en el 6, 7 y 8, y callan en el 1 y el 5, que es justo donde entra la guitarra. El 4 y el 8 cierran cada mitad y se marcan más fuerte.</p>
+      </div>
+      <div class="tira" id="tira" aria-label="Los 8 tiempos del compás">
+        <div class="t-cel sil" data-n="1"><b>1</b><span>guitarra</span></div>
+        <div class="t-cel" data-n="2"><b>2</b><span>palma</span></div>
+        <div class="t-cel" data-n="3"><b>3</b><span>palma</span></div>
+        <div class="t-cel fuerte" data-n="4"><b>4</b><span>palma fuerte</span></div>
+        <div class="t-cel sil" data-n="5"><b>5</b><span>guitarra</span></div>
+        <div class="t-cel" data-n="6"><b>6</b><span>palma</span></div>
+        <div class="t-cel" data-n="7"><b>7</b><span>palma</span></div>
+        <div class="t-cel fuerte" data-n="8"><b>8</b><span>palma fuerte</span></div>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom:6px">Para practicar</p>
+        <ul class="lista">
+          <li>Con «Solo palmas», cuenta del 1 al 8 en voz alta y da un golpe con el pie en el 1 y el 5.</li>
+          <li>Con guitarra, rasguea en el 1 y el 5 y deja que las palmas rellenen.</li>
+          <li>En la clase va a unos 118 bpm. Cada vuelta de 8 dura unos 4 segundos.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rueda-card">
     <svg class="rueda" id="rueda" viewBox="0 0 400 400" role="img" aria-label="Rueda del compás de tangos: 8 tiempos, el 1 y el 5 en silencio para las palmas"></svg>
     <div class="controles">
       <button class="btn primary" id="play" type="button" aria-pressed="false">▶ Marcar compás</button>
@@ -263,13 +353,105 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     </div>
     <div class="patrones" role="group" aria-label="Qué acompaña a las palmas">
       <button class="chip" type="button" data-pat="palmas" aria-pressed="false">Solo palmas</button>
-      <button class="chip" type="button" data-pat="basico" aria-pressed="true">La · Si♭ · La</button>
-      <button class="chip" type="button" data-pat="cadencia" aria-pressed="false">Cadencia Rem·Do·Si♭·La</button>
+      <button class="chip" type="button" data-pat="basico" aria-pressed="true">Con guitarra: La · Si♭ · La</button>
     </div>
-    <p class="muted" style="font-size:.85rem;text-align:center;max-width:44ch">Las palmas callan en el 1 y el 5, que es donde cae la guitarra. Empieza a 90 y sube de 10 en 10: en el vídeo va a unos 120, y la alzapúa a unos 105.</p>
+    <p class="muted" style="font-size:.85rem;text-align:center;max-width:44ch">Las palmas callan en el 1 y el 5, que es donde cae la guitarra. Empieza a 90 y sube de 10 en 10 hasta los 118 de la clase.</p>
+    </div>
   </div>
-</header>
-
+</section>
+<section id="alzapua">
+  <div class="sec-head">
+    <p class="eyebrow">La técnica</p>
+    <h2>La alzapúa, paso a paso</h2>
+    <p class="muted">Todo lo hace el pulgar, con la muñeca suelta. Tres golpes por tiempo, en tresillo: una nota en el bordón, bajada por las cuerdas agudas y subida por las mismas. En la clase la mano izquierda se queda en el La y el bordón es la 5ª al aire.</p>
+  </div>
+  <div class="pasos" id="pasos">
+    <div class="paso-alz" data-i="0"><span class="num mono">1</span><b>P ↓ bordón</b><span class="muted">El pulgar pulsa la 5ª al aire (La) y se apoya en la 4ª.</span></div>
+    <div class="paso-alz" data-i="1"><span class="num mono">2</span><b>P ↓ acorde</b><span class="muted">Sigue bajando y barre 3ª, 2ª y 1ª con la uña.</span></div>
+    <div class="paso-alz" data-i="2"><span class="num mono">3</span><b>P ↑ acorde</b><span class="muted">Sube con la yema por 1ª, 2ª y 3ª. Ese es el «alza».</span></div>
+  </div>
+  <div class="controles" style="justify-content:flex-start;margin-top:16px">
+    <button class="btn primary" id="playAlz" type="button" aria-pressed="false">▶ Escuchar la alzapúa</button>
+    <label class="tempo" for="bpmAlz"><span class="mono" id="bpmAlzV">70</span> bpm
+      <input id="bpmAlz" type="range" min="40" max="120" step="2" value="70">
+    </label>
+    <button class="chip" id="alzSib" type="button" aria-pressed="false">Alternar con Si♭</button>
+  </div>
+  <p class="muted" style="font-size:.85rem;margin-top:10px">En el vídeo va a unos 105 bpm. Hasta que los tres golpes suenen igual de fuertes, no subas.</p>
+</section>
+</div>
+<div class="panel" id="panel-ruedas" role="tabpanel" aria-labelledby="t-ruedas" hidden>
+<section>
+  <div class="sec-head">
+    <p class="eyebrow">La estructura</p>
+    <h2>Las ruedas de acordes</h2>
+    <p class="muted">El tango se toca en dos tonos. <b>Por arriba</b> descansa en Mi y <b>por medio</b> en La: es la misma música una cuarta más arriba, con las mismas funciones. La clase va por medio.</p>
+  </div>
+  <div class="tonos" role="group" aria-label="Tono">
+    <button class="tono" type="button" data-tono="arriba" aria-pressed="false"><b>Por arriba</b><span>Mi frigio · Mi – Fa – Sol – Lam</span></button>
+    <button class="tono" type="button" data-tono="medio" aria-pressed="true"><b>Por medio</b><span>La frigio · La – Si♭ – Do – Rem · la de la clase</span></button>
+  </div>
+  <div class="equiv-box">
+    <table class="equiv" id="equiv">
+      <thead><tr><th>Función</th><th>Grado</th><th data-col="arriba">Por arriba</th><th data-col="medio">Por medio</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="ruedas-sel" id="ruedasSel" role="group" aria-label="Rueda"></div>
+  <div class="rueda-vista">
+    <div class="rueda-cab">
+      <div><h3 id="ruedaNombre"></h3><p class="muted" id="ruedaDesc"></p></div>
+      <div class="controles" style="justify-content:flex-end">
+        <button class="btn primary" id="playRueda" type="button" aria-pressed="false">▶ Tocar sobre el compás</button>
+        <label class="tempo" for="bpm2"><span class="mono" id="bpm2v">90</span> bpm
+          <input id="bpm2" type="range" min="60" max="160" step="2" value="90">
+        </label>
+      </div>
+    </div>
+    <div class="secuencia" id="secuencia"></div>
+  </div>
+</section>
+<section id="acordes">
+  <div class="sec-head">
+    <p class="eyebrow">Los acordes</p>
+    <h2 id="acordesTitulo">Los acordes por medio</h2>
+    <p class="muted" id="acordesNota">Todos en primera posición. Pulsa uno para oírlo rasgueado.</p>
+  </div>
+  <div class="acordes" id="listaAcordes"></div>
+  </section>
+</div>
+<div class="panel" id="panel-escala" role="tabpanel" aria-labelledby="t-escala" hidden>
+<section id="escala">
+  <div class="escala-top">
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow">La escala</p>
+      <h2>La frigio, en dos dibujos</h2>
+      <p class="muted">La falseta sube por el dibujo 1, cambia al dibujo 2 y vuelve a bajar. Elige un dibujo para verlo solo y tocarlo. Son las notas blancas del piano empezando en La, con el Si natural cambiado por Si♭. Ese semitono La–Si♭ es lo que suena «flamenco». El Do♯ aparece poco en el audio: es la versión con tercera mayor (frigio dominante) y lo tienes como opcional.</p>
+    </div>
+    <div class="controles" style="justify-content:flex-start">
+      <button class="btn primary" id="tocarEscala" type="button">▶ Tocar la escala</button>
+      <button class="chip" id="verDoS" type="button" aria-pressed="false">Mostrar Do♯</button>
+      <button class="chip" id="nombres" type="button" aria-pressed="false">Nombres A B C</button>
+    </div>
+    <div class="controles" style="justify-content:flex-start;width:100%" role="group" aria-label="Qué parte del mástil ver">
+      <button class="chip dib" type="button" data-dib="0" aria-pressed="true">Todo el mástil</button>
+      <button class="chip dib" type="button" data-dib="1" aria-pressed="false">Dibujo 1 · trastes 0–3</button>
+      <button class="chip dib" type="button" data-dib="2" aria-pressed="false">Dibujo 2 · trastes 3–7</button>
+    </div>
+  </div>
+  <div class="grados" id="grados"></div>
+  <div style="height:16px"></div>
+  <div class="mastil-box"><svg class="mastil" id="mastil" viewBox="0 0 900 250" role="img" aria-label="Mástil con las notas de La frigio entre los trastes 0 y 7"></svg></div>
+  <div class="leyenda">
+    <span><i style="background:#E7686A"></i>Tónica (La)</span>
+    <span><i style="background:#E9A94A"></i>♭2 característica (Si♭)</span>
+    <span><i style="background:#F6D9A2"></i>Resto de la escala</span>
+    <span><i style="border:1.5px dashed #9C8B78"></i>Opcional (Do♯)</span>
+    <span>Pulsa cualquier nota para oírla.</span>
+  </div>
+</section>
+</div>
+<div class="panel" id="panel-clase" role="tabpanel" aria-labelledby="t-clase" hidden>
 <section id="mapa">
   <div class="sec-head">
     <p class="eyebrow">Las cuatro partes</p>
@@ -324,75 +506,6 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     </div>
   </div>
 </section>
-
-<section id="escala">
-  <div class="escala-top">
-    <div class="sec-head" style="margin:0">
-      <p class="eyebrow">La escala</p>
-      <h2>La frigio, en dos dibujos</h2>
-      <p class="muted">La falseta sube por el dibujo 1, cambia al dibujo 2 y vuelve a bajar. Elige un dibujo para verlo solo y tocarlo. Son las notas blancas del piano empezando en La, con el Si natural cambiado por Si♭. Ese semitono La–Si♭ es lo que suena «flamenco». El Do♯ aparece poco en el audio: es la versión con tercera mayor (frigio dominante) y lo tienes como opcional.</p>
-    </div>
-    <div class="controles" style="justify-content:flex-start">
-      <button class="btn primary" id="tocarEscala" type="button">▶ Tocar la escala</button>
-      <button class="chip" id="verDoS" type="button" aria-pressed="false">Mostrar Do♯</button>
-      <button class="chip" id="nombres" type="button" aria-pressed="false">Nombres A B C</button>
-    </div>
-    <div class="controles" style="justify-content:flex-start;width:100%" role="group" aria-label="Qué parte del mástil ver">
-      <button class="chip dib" type="button" data-dib="0" aria-pressed="true">Todo el mástil</button>
-      <button class="chip dib" type="button" data-dib="1" aria-pressed="false">Dibujo 1 · trastes 0–3</button>
-      <button class="chip dib" type="button" data-dib="2" aria-pressed="false">Dibujo 2 · trastes 3–7</button>
-    </div>
-  </div>
-  <div class="grados" id="grados"></div>
-  <div style="height:16px"></div>
-  <div class="mastil-box"><svg class="mastil" id="mastil" viewBox="0 0 900 250" role="img" aria-label="Mástil con las notas de La frigio entre los trastes 0 y 7"></svg></div>
-  <div class="leyenda">
-    <span><i style="background:#E7686A"></i>Tónica (La)</span>
-    <span><i style="background:#E9A94A"></i>♭2 característica (Si♭)</span>
-    <span><i style="background:#F6D9A2"></i>Resto de la escala</span>
-    <span><i style="border:1.5px dashed #9C8B78"></i>Opcional (Do♯)</span>
-    <span>Pulsa cualquier nota para oírla.</span>
-  </div>
-</section>
-
-<section id="alzapua">
-  <div class="sec-head">
-    <p class="eyebrow">La técnica</p>
-    <h2>La alzapúa, paso a paso</h2>
-    <p class="muted">Todo lo hace el pulgar, con la muñeca suelta. Tres golpes por tiempo, en tresillo: una nota en el bordón, bajada por las cuerdas agudas y subida por las mismas. En la clase la mano izquierda se queda en el La y el bordón es la 5ª al aire.</p>
-  </div>
-  <div class="pasos" id="pasos">
-    <div class="paso-alz" data-i="0"><span class="num mono">1</span><b>P ↓ bordón</b><span class="muted">El pulgar pulsa la 5ª al aire (La) y se apoya en la 4ª.</span></div>
-    <div class="paso-alz" data-i="1"><span class="num mono">2</span><b>P ↓ acorde</b><span class="muted">Sigue bajando y barre 3ª, 2ª y 1ª con la uña.</span></div>
-    <div class="paso-alz" data-i="2"><span class="num mono">3</span><b>P ↑ acorde</b><span class="muted">Sube con la yema por 1ª, 2ª y 3ª. Ese es el «alza».</span></div>
-  </div>
-  <div class="controles" style="justify-content:flex-start;margin-top:16px">
-    <button class="btn primary" id="playAlz" type="button" aria-pressed="false">▶ Escuchar la alzapúa</button>
-    <label class="tempo" for="bpmAlz"><span class="mono" id="bpmAlzV">70</span> bpm
-      <input id="bpmAlz" type="range" min="40" max="120" step="2" value="70">
-    </label>
-    <button class="chip" id="alzSib" type="button" aria-pressed="false">Alternar con Si♭</button>
-  </div>
-  <p class="muted" style="font-size:.85rem;margin-top:10px">En el vídeo va a unos 105 bpm. Hasta que los tres golpes suenen igual de fuertes, no subas.</p>
-</section>
-
-<section id="acordes">
-  <div class="sec-head">
-    <p class="eyebrow">Los acordes</p>
-    <h2>Lo que pisa la mano izquierda</h2>
-    <p class="muted">Todos en primera posición, como en el vídeo. Pulsa uno para oírlo rasgueado. La digitación del La y del Si♭ está deducida del audio (La · Mi · Si♭ · Re · Mi, con la prima al aire): confírmala mirando el vídeo en el tramo de la alzapúa.</p>
-  </div>
-  <div class="acordes" id="listaAcordes"></div>
-  <div class="cadencia">
-    <span class="eyebrow" style="width:100%">Cadencia andaluza · el camino de la falseta</span>
-    <span class="paso">Rem</span><span class="flecha">→</span>
-    <span class="paso">Do</span><span class="flecha">→</span>
-    <span class="paso">Si♭</span><span class="flecha">→</span>
-    <span class="paso" style="color:var(--golpe)">La</span>
-    <button class="btn" id="tocarCadencia" type="button" style="margin-left:auto">▶ Escuchar</button>
-  </div>
-</section>
-
 <section id="audio">
   <div class="dos-col">
     <div>
@@ -423,6 +536,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     </div>
   </div>
 </section>
+</div>
 
 <footer>
   Análisis automático del audio (cromagrama, detección de ataques y autocorrelación del ritmo) y revisión de fotogramas cada 5 s. La voz solo aparece en la cuenta de entrada. El palo y las técnicas los indicó quien grabó la clase. Las notas suenan con un sintetizador de cuerda pulsada, no con la guitarra del vídeo.
@@ -452,7 +566,41 @@ const ACORDES={
   'Do7':  {t:['x',3,2,3,1,0], d:[0,3,2,4,1,0], rol:'♭III · paso hacia el La'},
   'Rem':  {t:['x','x',0,2,3,1], d:[0,0,0,2,3,1], rol:'iv · arranque de la cadencia'},
   'Sol7': {t:[3,2,0,0,0,1], d:[3,2,0,0,0,1], rol:'♭VII · aparece en los tramos 2 y 4'},
-  'Fa':   {t:['x','x',3,2,1,1], d:[0,0,3,2,1,1], rol:'♭VI · de paso'}
+  'Fa':   {t:['x','x',3,2,1,1], d:[0,0,3,2,1,1], rol:'♭VI · de paso'},
+  'Do':   {t:['x',3,2,0,1,0], d:[0,3,2,0,1,0], rol:''},
+  'Mi':   {t:[0,2,2,1,0,0], d:[0,2,3,1,0,0], rol:''},
+  'Sol':  {t:[3,2,0,0,0,3], d:[2,1,0,0,0,3], rol:''},
+  'Lam':  {t:['x',0,2,2,1,0], d:[0,0,2,3,1,0], rol:''}
+};
+// Los dos tonos del tango. Por medio = por arriba una cuarta más arriba.
+const FUNCIONES=[
+  {fn:'Tónica',gr:'I',arriba:'Mi',medio:'La'},
+  {fn:'Tensión flamenca',gr:'♭II',arriba:'Fa',medio:'Si♭'},
+  {fn:'Paso de la cadencia',gr:'♭III',arriba:'Sol',medio:'Do'},
+  {fn:'Arranque de la cadencia',gr:'iv',arriba:'Lam',medio:'Rem'},
+  {fn:'Prepara la tercera',gr:'♭III7',arriba:'Sol7',medio:'Do7'},
+  {fn:'La tercera (el mayor)',gr:'♭VI',arriba:'Do',medio:'Fa'}
+];
+const TONOS={
+  arriba:{nombre:'por arriba',acordes:['Mi','Fa','Sol','Lam','Sol7','Do'],
+    nota:'Todos en primera posición. Pulsa uno para oírlo rasgueado.',
+    ruedas:[
+      {id:'basica',nombre:'Tónica y ♭II',desc:'El vaivén básico del tango: Mi, sube al Fa y vuelve. Es lo primero que hay que tener limpio.',seq:[['Mi',4],['Fa',2],['Mi',2]]},
+      {id:'cadencia',nombre:'Cadencia andaluza',desc:'Lam, Sol, Fa y Mi: el bajo baja La–Sol–Fa–Mi y cae en la tónica.',seq:[['Lam',2],['Sol',2],['Fa',2],['Mi',2]]},
+      {id:'tercera',nombre:'Salida a la tercera',desc:'Sol7 lleva al Do (la «tercera», el color mayor) y se vuelve a casa por Fa → Mi.',seq:[['Sol7',4],['Do',4],['Fa',4],['Mi',4]]}
+    ]},
+  medio:{nombre:'por medio',acordes:['La','Si♭','Do','Rem','Do7','Fa','Sol7'],
+    nota:'Todos en primera posición. Pulsa uno para oírlo rasgueado. La digitación del La y del Si♭ es la que suena en la clase (con la prima al aire), deducida del audio.',
+    ruedas:[
+      {id:'basica',nombre:'Tónica y ♭II',desc:'El vaivén básico: La, sube al Si♭ y vuelve.',seq:[['La',4],['Si♭',2],['La',2]]},
+      {id:'cadencia',nombre:'Cadencia andaluza',desc:'Rem, Do, Si♭ y La: el bajo baja Re–Do–Si♭–La. Es el camino de la falseta de la clase.',seq:[['Rem',2],['Do',2],['Si♭',2],['La',2]]},
+      {id:'tercera',nombre:'Salida a la tercera',desc:'Do7 lleva al Fa (la «tercera») y se vuelve a casa por Si♭ → La.',seq:[['Do7',4],['Fa',4],['Si♭',4],['La',4]]},
+      {id:'clase',nombre:'La rueda de la clase',desc:'Lo que suena en 0:38–0:57, aproximado desde el audio: La, Rem, Do7, Si♭, Sol7 de paso, Do7 y vuelta.',seq:[['La',8],['Rem',4],['Do7',4],['Si♭',2],['Sol7',2],['Do7',4]]}
+    ]}
+};
+const ROLES={
+  arriba:{Mi:'I · tónica',Fa:'♭II · la tensión flamenca',Sol:'♭III · paso de la cadencia',Lam:'iv · arranque de la cadencia',Sol7:'♭III7 · prepara la tercera',Do:'♭VI · la tercera'},
+  medio:{La:'I · tónica, como suena en la clase','Si♭':'♭II · la tensión flamenca',Do:'♭III · paso de la cadencia',Rem:'iv · arranque de la cadencia',Do7:'♭III7 · prepara la tercera',Fa:'♭VI · la tercera',Sol7:'♭VII · de paso en la clase'}
 };
 function notasAcorde(nm){
   const t=ACORDES[nm].t, base=[40,45,50,55,59,64];
@@ -463,19 +611,19 @@ function notasAcorde(nm){
 const TRAMOS=[
   {id:'compas',ini:0,fin:6,titulo:'Compás y tempo',corto:'Compás',
    texto:'Cuenta de entrada para fijar el tempo. El tango va a unos 118 bpm y se cuenta de 8 en 8, en dos bloques de 4: cada vuelta de 8 tiempos dura unos 4 segundos.',
-   practica:['Pon la rueda de arriba en «Solo palmas» a 90 bpm y cuenta del 1 al 8.','Sube poco a poco hasta 118, que es el tempo de la clase.'],
+   practica:['En la pestaña Compás, pon «Solo palmas» a 90 bpm y cuenta del 1 al 8.','Sube poco a poco hasta 118, que es el tempo de la clase.'],
    acordes:[]},
   {id:'falseta',ini:6,fin:38,titulo:'Falseta',corto:'Falseta',
    texto:'La misma falseta dos veces (0:06 y 0:22), unos 16 segundos cada una: cuatro compases de 8. Arranca en el dibujo 1 (Mi–La–Si♭–La–Sol–La), sube al dibujo 2 con el índice en el traste 3 y hace Do–Re–Mi en la 5ª cuerda (trastes 3-5-7), baja otra vez al dibujo 1 y remata con el acorde del tango. Síguela en el mástil de debajo del vídeo.',
-   practica:['Toca los dos dibujos por separado en la sección de la escala.','Practica solo el cambio: Sol (6ª, traste 3) con el dedo 3 en el dibujo 1 y luego con el índice en el dibujo 2.','Dale a «Tocar la falseta» a 0,5× y sigue el mástil con la vista.','Con el vídeo, repite la parte en bucle a 0,75×.'],
+   practica:['Toca los dos dibujos por separado en la pestaña Escala.','Practica solo el cambio: Sol (6ª, traste 3) con el dedo 3 en el dibujo 1 y luego con el índice en el dibujo 2.','Dale a «Tocar la falseta» a 0,5× y sigue el mástil con la vista.','Con el vídeo, repite la parte en bucle a 0,75×.'],
    acordes:['La']},
   {id:'rueda',ini:38,fin:57,titulo:'Rueda de acordes',corto:'Rueda de acordes',
    texto:'Rasgueo sobre la rueda: La, Rem, Do7, Si♭, Sol7, Do7 y vuelta al La, con el bajo bajando Re–Do–Si♭–La.',
-   practica:['Rueda del compás en «Cadencia Rem·Do·Si♭·La» a 90 bpm.','Cambia de acorde sin parar el rasgueo: primero dos tiempos por acorde, luego uno.'],
+   practica:['En la pestaña Ruedas, toca «La rueda de la clase» a 90 bpm.','Cambia de acorde sin parar el rasgueo: primero dos tiempos por acorde, luego uno.'],
    acordes:['La','Rem','Do7','Si♭','Sol7']},
   {id:'alzapua',ini:57,fin:146,titulo:'Explicación de la alzapúa',corto:'Alzapúa',
    texto:'Primero sobre el La, con la 5ª al aire de pedal y Mi, Si♭ y Re por encima (0:57–1:42, a unos 105 bpm). Después la lleva por la cadencia Re–Do–Si♭–La (1:42–2:20) y cierra con Si♭ → La.',
-   practica:['Usa «La alzapúa, paso a paso» a 70 bpm.','Pisa el La de la clase (x02330) y repite 0:57–1:42 a 0,75×.','Cuando salga, pásala por Rem–Do–Si♭–La.'],
+   practica:['Usa «La alzapúa, paso a paso» (pestaña Compás) a 70 bpm.','Pisa el La de la clase (x02330) y repite 0:57–1:42 a 0,75×.','Cuando salga, pásala por Rem–Do–Si♭–La.'],
    acordes:['La','Si♭','Rem','Do','Sol7']}
 ];
 // Falseta: t1 = 1ª vuelta, t2 = 2ª vuelta (s de vídeo). k: n nota, g golpe, c acorde final.
@@ -563,19 +711,29 @@ ORDEN.forEach((n,i)=>{
 const centro=el('text',{x:200,y:190,class:'centro'},rueda); centro.textContent='1';
 const sub=el('text',{x:200,y:236,class:'sub'},rueda); sub.textContent=LEYENDA;
 
-let patron='basico', sonando=false, siguiente=0, tSiguiente=0, timer=null, cola=[];
+let patron='basico', sonando=false, siguiente=0, tSiguiente=0, timer=null, cola=[], modo='compas', paso=0, pasosRueda=[];
 const bpmIn=document.getElementById('bpm'), bpmV=document.getElementById('bpmv'), btnPlay=document.getElementById('play');
-bpmIn.addEventListener('input',()=>bpmV.textContent=bpmIn.value);
+const bpm2=document.getElementById('bpm2'), bpm2V=document.getElementById('bpm2v'), btnRueda=document.getElementById('playRueda');
+const celdas=[...document.querySelectorAll('.t-cel')];
+function ponerBpm(v){ bpmIn.value=bpm2.value=v; bpmV.textContent=bpm2V.textContent=v; }
+bpmIn.addEventListener('input',()=>ponerBpm(bpmIn.value));
+bpm2.addEventListener('input',()=>ponerBpm(bpm2.value));
+let alPulso=null; // la pestaña de ruedas se engancha aquí
 function programar(){
   const c=audio(), spb=60/Number(bpmIn.value);
   while(tSiguiente<c.currentTime+.12){
     const n=ORDEN[siguiente];
-    if(!SILENCIO.has(n)) palma(tSiguiente,n===4||n===8);
-    else if(patron==='palmas') palma(tSiguiente,false,true);
-    const ac=PATRONES[patron][n];
+    if(!SILENCIO.has(n)) palma(tSiguiente,n===4||n===8,false);
+    else if(modo==='compas'&&patron==='palmas') palma(tSiguiente,false,true);
+    let ac=null, idx=null;
+    if(modo==='compas') ac=PATRONES[patron][n];
+    else{
+      idx=paso%pasosRueda.length; const p=pasosRueda[idx];
+      if(p.ini) ac=p.ac; else if(n===1||n===5) rasguear(p.ac,tSiguiente,.14);
+    }
     if(ac) rasguear(ac,tSiguiente,.3);
-    cola.push({t:tSiguiente,n,ac});
-    tSiguiente+=spb; siguiente=(siguiente+1)%ORDEN.length;
+    cola.push({t:tSiguiente,n,ac,idx});
+    tSiguiente+=spb; siguiente=(siguiente+1)%ORDEN.length; paso++;
   }
 }
 let acordeActual='';
@@ -583,27 +741,34 @@ function dibujar(){
   if(!sonando) return;
   const now=ctx.currentTime;
   while(cola.length&&cola[0].t<=now){
-    const {n,ac}=cola.shift();
+    const {n,ac,idx}=cola.shift();
+    celdas.forEach(c=>c.classList.toggle('on',c.dataset.n==n));
+    if(idx!==null&&alPulso) alPulso(idx);
     Object.values(nodosBeat).forEach(g=>g.classList.remove('on'));
     nodosBeat[n].classList.add('on');
     if(ac) acordeActual=ac;
-    centro.textContent=patron==='palmas'?String(n):acordeActual||String(n);
-    sub.textContent=patron==='palmas'?LEYENDA:'TIEMPO '+n;
+    const soloPalmas=modo==='compas'&&patron==='palmas';
+    centro.textContent=soloPalmas?String(n):acordeActual||String(n);
+    sub.textContent=soloPalmas?LEYENDA:'TIEMPO '+n;
   }
   requestAnimationFrame(dibujar);
 }
-function arrancar(){
-  const c=audio(); sonando=true; siguiente=0; tSiguiente=c.currentTime+.08; cola=[]; acordeActual='';
+function arrancar(m){
+  if(sonando) parar();
+  const c=audio(); modo=m; sonando=true; siguiente=0; paso=0; tSiguiente=c.currentTime+.08; cola=[]; acordeActual='';
   timer=setInterval(programar,25); programar(); requestAnimationFrame(dibujar);
-  btnPlay.textContent='■ Parar'; btnPlay.setAttribute('aria-pressed','true');
+  const b=m==='compas'?btnPlay:btnRueda; b.textContent='■ Parar'; b.setAttribute('aria-pressed','true');
 }
 function parar(){
   sonando=false; clearInterval(timer);
   Object.values(nodosBeat).forEach(g=>g.classList.remove('on'));
+  celdas.forEach(c=>c.classList.remove('on'));
+  if(alPulso) alPulso(null);
   centro.textContent='1'; sub.textContent=LEYENDA;
   btnPlay.textContent='▶ Marcar compás'; btnPlay.setAttribute('aria-pressed','false');
+  btnRueda.textContent='▶ Tocar sobre el compás'; btnRueda.setAttribute('aria-pressed','false');
 }
-btnPlay.addEventListener('click',()=>sonando?parar():arrancar());
+btnPlay.addEventListener('click',()=>sonando&&modo==='compas'?parar():arrancar('compas'));
 document.querySelectorAll('[data-pat]').forEach(b=>b.addEventListener('click',()=>{
   patron=b.dataset.pat;
   document.querySelectorAll('[data-pat]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
@@ -934,26 +1099,79 @@ function diagrama(nm){
   }
   return s;
 }
+const tarjetas={};
 Object.keys(ACORDES).forEach(nm=>{
   const b=document.createElement('button'); b.type='button'; b.className='acorde'; b.dataset.nm=nm;
   const cifra=ACORDES[nm].t.join('');
   b.innerHTML=`<h3>${nm}</h3>`;
   b.appendChild(diagrama(nm));
-  b.insertAdjacentHTML('beforeend',`<span class="dig">${cifra}</span><span class="rol">${ACORDES[nm].rol}</span>`);
+  b.insertAdjacentHTML('beforeend',`<span class="dig">${cifra}</span><span class="rol"></span>`);
   b.setAttribute('aria-label',`${nm}, ${cifra}. Pulsa para oírlo`);
   b.addEventListener('click',()=>{rasguear(nm); b.classList.add('sonando'); setTimeout(()=>b.classList.remove('sonando'),500);});
-  lista.appendChild(b);
+  lista.appendChild(b); tarjetas[nm]=b;
 });
-// «Do» del mapa usa la forma de Do7 sin el Si♭ (x32010)
-ACORDES['Do']={t:['x',3,2,0,1,0],d:[0,3,2,0,1,0],rol:''};
-document.getElementById('tocarCadencia').addEventListener('click',()=>{
-  const c=audio(), t0=c.currentTime+.05;
-  ['Rem','Do','Si♭','La'].forEach((nm,i)=>{
-    rasguear(nm,t0+i*.9,.34); rasguear(nm,t0+i*.9+.3,.2,false);
-    const card=lista.querySelector(`[data-nm="${nm}"]`);
-    if(card) setTimeout(()=>{card.classList.add('sonando'); setTimeout(()=>card.classList.remove('sonando'),800);},i*900);
+
+/* ================= Ruedas ================= */
+{
+  let tono='medio', rueda=null, bloques=[];
+  const sel=document.getElementById('ruedasSel'), secu=document.getElementById('secuencia');
+  const tbody=document.querySelector('#equiv tbody');
+  FUNCIONES.forEach(f=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${f.fn}</td><td class="gr">${f.gr}</td><td class="ac" data-col="arriba"><button type="button" class="chip" data-oir="${f.arriba}">${f.arriba}</button></td><td class="ac" data-col="medio"><button type="button" class="chip" data-oir="${f.medio}">${f.medio}</button></td>`;
+    tbody.appendChild(tr);
   });
-});
+  tbody.querySelectorAll('[data-oir]').forEach(b=>b.addEventListener('click',()=>rasguear(b.dataset.oir)));
+  const funcion=nm=>{const f=FUNCIONES.find(x=>x[tono]===nm); return f?f.gr:'';};
+  function pintarRueda(r){
+    rueda=r; secu.innerHTML=''; bloques=[]; pasosRueda=[];
+    document.getElementById('ruedaNombre').textContent=r.nombre;
+    document.getElementById('ruedaDesc').textContent=r.desc;
+    sel.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.r===r.id)));
+    let t=0, fila=null;
+    r.seq.forEach(([ac,dur],k)=>{
+      for(let q=0;q<dur;q++) pasosRueda.push({ac,ini:q===0,bloque:k,q});
+      let resto=dur, primero=true;
+      while(resto>0){
+        if(t%8===0){ fila=document.createElement('div'); fila.className='compas-fila'; fila.innerHTML=`<span class="etq">compás ${t/8+1}</span>`; secu.appendChild(fila); }
+        const n=Math.min(resto,8-t%8);
+        const b=document.createElement('button'); b.type='button';
+        b.className='bloque'+(funcion(ac)==='I'?' tonica':''); b.style.gridColumn=`span ${n}`; b.dataset.k=k;
+        b.innerHTML=`<b>${primero?ac:'·'}</b><span class="tiempos">${'<i></i>'.repeat(n)}</span><span class="fn">${primero?funcion(ac)+' · '+dur+' t.':''}</span>`;
+        b.setAttribute('aria-label',`${ac}, ${dur} tiempos`);
+        b.addEventListener('click',()=>rasguear(ac));
+        fila.appendChild(b); bloques.push({b,k,desde:dur-resto,n});
+        t+=n; resto-=n; primero=false;
+      }
+    });
+    if(sonando&&modo==='rueda'){ paso=0; }
+  }
+  alPulso=idx=>{
+    bloques.forEach(x=>{x.b.classList.remove('on'); x.b.querySelectorAll('i').forEach(i=>i.classList.remove('on'));});
+    if(idx===null||!pasosRueda[idx]) return;
+    const p=pasosRueda[idx];
+    const x=bloques.find(x=>x.k===p.bloque&&p.q>=x.desde&&p.q<x.desde+x.n);
+    if(x){ x.b.classList.add('on'); x.b.querySelectorAll('i')[p.q-x.desde].classList.add('on'); }
+  };
+  function ponerTono(tn){
+    tono=tn;
+    document.querySelectorAll('.tono').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tono===tn)));
+    document.querySelectorAll('#equiv [data-col]').forEach(c=>c.classList.toggle('activo',c.dataset.col===tn));
+    const T=TONOS[tn];
+    sel.innerHTML='';
+    T.ruedas.forEach(r=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.dataset.r=r.id; b.textContent=r.nombre; b.addEventListener('click',()=>pintarRueda(r)); sel.appendChild(b); });
+    const mismo=T.ruedas.find(r=>rueda&&r.id===rueda.id)||T.ruedas[0];
+    pintarRueda(mismo);
+    document.getElementById('acordesTitulo').textContent='Los acordes '+T.nombre;
+    document.getElementById('acordesNota').textContent=T.nota;
+    Object.entries(tarjetas).forEach(([nm,b])=>{ b.hidden=!T.acordes.includes(nm); b.querySelector('.rol').textContent=ROLES[tn][nm]||''; });
+    // orden de las tarjetas según la función
+    T.acordes.forEach(nm=>lista.appendChild(tarjetas[nm]));
+  }
+  document.querySelectorAll('.tono').forEach(b=>b.addEventListener('click',()=>ponerTono(b.dataset.tono)));
+  btnRueda.addEventListener('click',()=>sonando&&modo==='rueda'?parar():arrancar('rueda'));
+  ponerTono('medio');
+}
 
 /* ================= Barras ================= */
 const barras=document.getElementById('barras');
@@ -967,6 +1185,30 @@ function pintarBarras(){
   });
 }
 pintarBarras();
+/* ================= Pestañas ================= */
+{
+  const tabs=[...document.querySelectorAll('.pestanas [role=tab]')];
+  function abrir(id,guardar){
+    tabs.forEach(t=>{
+      const on=t.id==='t-'+id;
+      t.setAttribute('aria-selected',String(on)); t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(guardar){ try{localStorage.setItem('tangos-pestana',id)}catch(e){} try{history.replaceState(null,'','#'+id)}catch(e){} }
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>{ abrir(t.id.slice(2),true); window.scrollTo({top:Math.min(window.scrollY,document.querySelector('.pestanas').offsetTop)}); });
+    t.addEventListener('keydown',e=>{
+      const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(!d) return;
+      const n=tabs[(i+d+tabs.length)%tabs.length]; n.focus(); n.click();
+    });
+  });
+  const validas=tabs.map(t=>t.id.slice(2));
+  let ini=location.hash.slice(1);
+  if(!validas.includes(ini)){ try{ini=localStorage.getItem('tangos-pestana')}catch(e){ini=null} }
+  abrir(validas.includes(ini)?ini:'compas',false);
+}
+
 /* ================= Alzapúa ================= */
 {
   const btn=document.getElementById('playAlz'), bpmA=document.getElementById('bpmAlz'), bpmAV=document.getElementById('bpmAlzV');

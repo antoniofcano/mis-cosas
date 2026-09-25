@@ -1,0 +1,682 @@
+<title>Bulería por medio</title>
+<meta name="description" content="Mapa de estudio de una clase de guitarra flamenca: compás de 12, escala de La frigio, acordes y los cinco momentos clave del vídeo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500;1,6..96,700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F1EFEA;
+  --surface:#FBFAF7;
+  --ink:#221814;
+  --ink-2:#5B4D45;
+  --line:#DCD5CB;
+  --accent:#A55F07;       /* tapa de abeto, oscurecida para contraste */
+  --accent-soft:#F3E2C4;
+  --golpe:#9E2A2B;        /* acentos del compás */
+  --golpe-soft:#F4DADA;
+  --ok:#2F6B45;
+  --wood:#2A1A14;         /* diapasón: igual en los dos temas, es un objeto */
+  --wood-2:#3A261D;
+  --fret:#B9A98F;
+  --string:#D9CDB6;
+  --dot-bg:#F6D9A2;
+  --dot-ink:#2A1A14;
+  --display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16100D; --surface:#211813; --ink:#F2E9DD; --ink-2:#BFAF9F; --line:#3A2C24;
+    --accent:#E9A94A; --accent-soft:#3B2915; --golpe:#E7686A; --golpe-soft:#3E1C1C; --ok:#7CC496;
+    --wood:#0F0A08; --wood-2:#1E1511;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16100D; --surface:#211813; --ink:#F2E9DD; --ink-2:#BFAF9F; --line:#3A2C24;
+  --accent:#E9A94A; --accent-soft:#3B2915; --golpe:#E7686A; --golpe-soft:#3E1C1C; --ok:#7CC496;
+  --wood:#0F0A08; --wood-2:#1E1511;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.08}
+h2{font-size:clamp(1.7rem,3.2vw,2.3rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--ink-2)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.5em;border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:.5em 1.1em;font-weight:600;font-size:.95rem}
+.btn:hover{background:var(--accent-soft)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:.4em;border:1px solid var(--line);border-radius:999px;padding:.25em .8em;font-size:.85rem;background:var(--surface)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+section{padding-block:56px 8px}
+.sec-head{display:grid;gap:10px;margin-bottom:24px;max-width:66ch}
+
+/* ---------- Cabecera ---------- */
+header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:40px 8px}
+.hero h1{font-size:clamp(2.8rem,7vw,5.4rem);font-style:italic;letter-spacing:-.01em}
+.hero h1 span{display:block;font-style:normal;font-size:.42em;letter-spacing:.02em;font-weight:500;color:var(--ink-2);margin-top:.35em}
+.hero .lead{font-size:1.1rem;max-width:52ch;margin-top:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.facts .chip b{font-family:var(--mono);font-weight:600}
+
+/* Rueda del compás */
+.rueda-card{display:grid;gap:14px;justify-items:center}
+.rueda{width:min(100%,380px);aspect-ratio:1;max-width:100%}
+.rueda .beat circle{fill:var(--surface);stroke:var(--line);stroke-width:2;transition:fill .08s}
+.rueda .beat text{font-family:var(--mono);font-size:22px;fill:var(--ink-2);text-anchor:middle;dominant-baseline:central;font-weight:600}
+.rueda .beat.acc circle{stroke:var(--golpe);stroke-width:3}
+.rueda .beat.acc text{fill:var(--golpe)}
+.rueda .beat.on circle{fill:var(--accent)}
+.rueda .beat.on text{fill:var(--bg)}
+.rueda .beat.acc.on circle{fill:var(--golpe)}
+.rueda .centro{font-family:var(--display);font-size:54px;font-weight:700;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.rueda .sub{font-family:var(--mono);font-size:13px;fill:var(--ink-2);text-anchor:middle;letter-spacing:.1em}
+.rueda .aro{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:3 6}
+.controles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
+.tempo{display:flex;align-items:center;gap:10px;font-size:.9rem}
+.tempo input{width:150px;accent-color:var(--accent)}
+.patrones{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+
+/* ---------- Mapa de la clase ---------- */
+.mapa{display:grid;grid-template-columns:1fr;gap:18px}
+.linea{position:relative;display:flex;height:64px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.linea button{border:0;border-right:1px solid var(--line);background:transparent;padding:6px 8px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.linea button:last-child{border-right:0}
+.linea button .t{font-family:var(--mono);font-size:.72rem;color:var(--ink-2)}
+.linea button .n{font-weight:600;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linea button[aria-selected="true"]{background:var(--accent-soft);box-shadow:inset 0 -4px 0 var(--accent)}
+.linea .cabezal{position:absolute;top:0;bottom:0;width:2px;background:var(--golpe);pointer-events:none;left:0}
+.escala-t{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:var(--ink-2);margin-top:4px}
+.detalle{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+.video-box{background:var(--wood);border-radius:14px;aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;overflow:hidden;position:relative;color:#EFE3D0}
+.video-box video{width:100%;height:100%;object-fit:contain;background:#000}
+.video-vacio{display:grid;gap:12px;justify-items:center;text-align:center;padding:24px;max-width:40ch}
+.video-vacio p{color:#CDBBA3;font-size:.9rem}
+.video-vacio .btn{border-color:#EFE3D0;color:#EFE3D0}
+.video-vacio .btn:hover{background:#3A261D}
+.reproduccion{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.momento{display:grid;gap:14px}
+.momento .tiempo{font-family:var(--mono);color:var(--accent);font-size:.9rem}
+.momento h3{font-size:1.6rem}
+.momento ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+.acordes-mini{display:flex;flex-wrap:wrap;gap:6px}
+.acordes-mini button{font-family:var(--display);font-weight:700;font-size:1.05rem;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:.15em .6em}
+.acordes-mini button:hover{border-color:var(--accent)}
+.check{display:flex;gap:10px;align-items:center;font-weight:600;padding:10px 12px;border:1px dashed var(--line);border-radius:10px}
+.check input{width:20px;height:20px;accent-color:var(--ok)}
+
+/* ---------- Escala ---------- */
+.escala-top{display:flex;flex-wrap:wrap;gap:24px;align-items:end;justify-content:space-between;margin-bottom:18px}
+.grados{display:flex;flex-wrap:wrap;gap:6px}
+.grado{display:grid;justify-items:center;min-width:54px;padding:8px 6px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+.grado b{font-family:var(--display);font-size:1.35rem;line-height:1}
+.grado span{font-family:var(--mono);font-size:.72rem;color:var(--ink-2)}
+.grado.tonica{border-color:var(--golpe);background:var(--golpe-soft)}
+.grado.caract{border-color:var(--accent);background:var(--accent-soft)}
+.grado.opcional{border-style:dashed}
+.grado.sonando{outline:3px solid var(--accent)}
+.mastil-box{overflow-x:auto;border-radius:14px;background:var(--wood);padding:14px 10px 6px}
+.mastil{display:block;min-width:720px;width:100%;height:auto}
+.mastil .nota{cursor:pointer}
+.mastil .nota circle{fill:var(--dot-bg);stroke:var(--wood);stroke-width:2}
+.mastil .nota text{font-family:var(--mono);font-size:12px;font-weight:600;fill:var(--dot-ink);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.mastil .nota.tonica circle{fill:#E7686A}
+.mastil .nota.caract circle{fill:#E9A94A}
+.mastil .nota.opcional circle{fill:transparent;stroke:var(--dot-bg);stroke-dasharray:3 3}
+.mastil .nota.opcional text{fill:var(--dot-bg)}
+.mastil .nota.sonando circle{stroke:#FFFFFF;stroke-width:4}
+.mastil .nota:focus-visible circle{stroke:#FFFFFF;stroke-width:4}
+.mastil .lbl{font-family:var(--mono);font-size:11px;fill:#CDBBA3;text-anchor:middle}
+.leyenda{display:flex;flex-wrap:wrap;gap:16px;font-size:.85rem;color:var(--ink-2);margin-top:12px}
+.leyenda i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* ---------- Acordes ---------- */
+.acordes{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.acorde{display:grid;gap:6px;justify-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 10px 12px;text-align:center}
+.acorde:hover{border-color:var(--accent)}
+.acorde.sonando{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.acorde h3{font-size:1.5rem}
+.acorde .dig{font-family:var(--mono);font-size:.8rem;color:var(--ink-2);letter-spacing:.08em}
+.acorde .rol{font-size:.8rem;color:var(--ink-2)}
+.acorde svg{width:112px;height:auto}
+.acorde svg .cuerda{stroke:var(--ink-2);stroke-width:1.2}
+.acorde svg .traste{stroke:var(--ink-2);stroke-width:1.2}
+.acorde svg .cejuela{stroke:var(--ink);stroke-width:5}
+.acorde svg .dedo{fill:var(--ink)}
+.acorde svg .dedo-t{fill:var(--bg);font-family:var(--mono);font-size:10px;text-anchor:middle;dominant-baseline:central;font-weight:600}
+.acorde svg .marca{fill:var(--ink-2);font-family:var(--mono);font-size:11px;text-anchor:middle}
+.acorde svg .aire{fill:none;stroke:var(--ink-2);stroke-width:1.3}
+.acorde svg .fr{fill:var(--ink-2);font-family:var(--mono);font-size:10px}
+.cadencia{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px;padding:16px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.cadencia .paso{font-family:var(--display);font-size:1.6rem;font-weight:700}
+.cadencia .flecha{color:var(--ink-2)}
+
+/* ---------- Notas del audio ---------- */
+.dos-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.barras{display:grid;gap:6px}
+.barra{display:grid;grid-template-columns:52px 1fr 44px;align-items:center;gap:10px;font-size:.9rem}
+.barra .nm{font-family:var(--display);font-weight:700;font-size:1.05rem}
+.barra .pista{height:14px;border-radius:4px;background:var(--line);overflow:hidden}
+.barra .pista div{height:100%;background:var(--accent);border-radius:4px}
+.barra.fuera .pista div{background:var(--ink-2);opacity:.55}
+.barra .v{font-family:var(--mono);font-size:.8rem;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.fiab{display:grid;gap:10px}
+.fiab li{list-style:none;display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.fiab ul{padding:0;margin:0;display:grid;gap:10px}
+.pill{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.2em .6em;text-align:center}
+.pill.alta{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.pill.media{background:var(--accent-soft);color:var(--accent)}
+.pill.baja{background:var(--golpe-soft);color:var(--golpe)}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
+
+@media (max-width:860px){
+  header.hero,.detalle,.dos-col{grid-template-columns:1fr}
+  .linea button .n{font-size:.75rem}
+}
+@media (max-width:520px){
+  .linea{height:56px}
+  .linea button .n{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <p class="eyebrow">Mapa de estudio · clase del 23-sep · 2:26</p>
+    <h1>Bulería por medio<span>Compás de 12 en el modo de La</span></h1>
+    <p class="lead">La clase entra con la cuenta «doce, uno, dos, tres» y se queda en primera posición todo el rato. Aquí tienes el compás para marcarlo, la escala sobre el mástil, los acordes que suenan y los cinco momentos del vídeo para repasarlos uno a uno.</p>
+    <div class="facts">
+      <span class="chip">Modo <b>La frigio</b></span>
+      <span class="chip">Tónica <b>La</b></span>
+      <span class="chip">Tempo <b>≈180 bpm</b></span>
+      <span class="chip">Ciclo <b>≈4,0 s</b></span>
+      <span class="chip">Mano izq. <b>trastes 0–3</b></span>
+    </div>
+  </div>
+
+  <div class="rueda-card">
+    <svg class="rueda" id="rueda" viewBox="0 0 400 400" role="img" aria-label="Rueda del compás de 12 tiempos con acentos en 3, 6, 8, 10 y 12"></svg>
+    <div class="controles">
+      <button class="btn primary" id="play" type="button" aria-pressed="false">▶ Marcar compás</button>
+      <label class="tempo" for="bpm"><span class="mono" id="bpmv">120</span> bpm
+        <input id="bpm" type="range" min="80" max="240" step="2" value="120">
+      </label>
+    </div>
+    <div class="patrones" role="group" aria-label="Qué acompaña a las palmas">
+      <button class="chip" type="button" data-pat="palmas" aria-pressed="false">Solo palmas</button>
+      <button class="chip" type="button" data-pat="basico" aria-pressed="true">La · Si♭ · La</button>
+      <button class="chip" type="button" data-pat="cadencia" aria-pressed="false">Cadencia Rem·Do·Si♭·La</button>
+    </div>
+    <p class="muted" style="font-size:.85rem;text-align:center;max-width:44ch">Empieza a 120 y sube de 10 en 10. En el vídeo va a unos 180, y baja a unos 158 en la falseta.</p>
+  </div>
+</header>
+
+<section id="mapa">
+  <div class="sec-head">
+    <p class="eyebrow">Los cinco momentos</p>
+    <h2>Mapa de la clase</h2>
+    <p class="muted">Pulsa un tramo para ver qué pasa y qué practicar. Si cargas el vídeo, el tramo se reproduce y puedes repetirlo en bucle y a menos velocidad. El vídeo se abre en tu navegador y no sale de él.</p>
+  </div>
+  <div class="mapa">
+    <div>
+      <div class="linea" id="linea" role="tablist" aria-label="Tramos del vídeo"><div class="cabezal" id="cabezal" hidden></div></div>
+      <div class="escala-t"><span>0:00</span><span>0:30</span><span>1:00</span><span>1:30</span><span>2:00</span><span>2:26</span></div>
+    </div>
+    <div class="detalle">
+      <div>
+        <div class="video-box" id="videoBox">
+          <div class="video-vacio" id="videoVacio">
+            <p style="font-family:var(--display);font-size:1.3rem;color:#EFE3D0">Sin vídeo cargado</p>
+            <p>Elige el archivo de la clase (VIDEO-2026-09-23-18-33-03.mp4) para ver cada tramo sincronizado.</p>
+            <label class="btn" for="fichero">Cargar el vídeo</label>
+            <input id="fichero" type="file" accept="video/*" hidden>
+          </div>
+          <video id="video" playsinline hidden></video>
+        </div>
+        <div class="reproduccion">
+          <button class="btn" id="irA" type="button" disabled>▶ Reproducir tramo</button>
+          <button class="chip" id="bucle" type="button" aria-pressed="false" disabled>⟲ En bucle</button>
+          <div role="group" aria-label="Velocidad" style="display:flex;gap:6px">
+            <button class="chip vel" type="button" data-v="0.5" aria-pressed="false" disabled>0,5×</button>
+            <button class="chip vel" type="button" data-v="0.75" aria-pressed="false" disabled>0,75×</button>
+            <button class="chip vel" type="button" data-v="1" aria-pressed="true" disabled>1×</button>
+          </div>
+        </div>
+      </div>
+      <article class="momento" id="momento" aria-live="polite"></article>
+    </div>
+  </div>
+</section>
+
+<section id="escala">
+  <div class="escala-top">
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow">La escala</p>
+      <h2>La frigio, en primera posición</h2>
+      <p class="muted">Las notas blancas del piano empezando en La, con el Si natural cambiado por Si♭. Ese semitono La–Si♭ es lo que suena «flamenco». El Do♯ aparece poco en el audio: es la versión con tercera mayor (frigio dominante) y lo tienes como opcional.</p>
+    </div>
+    <div class="controles" style="justify-content:flex-start">
+      <button class="btn primary" id="tocarEscala" type="button">▶ Tocar la escala</button>
+      <button class="chip" id="verDoS" type="button" aria-pressed="false">Mostrar Do♯</button>
+      <button class="chip" id="nombres" type="button" aria-pressed="false">Nombres A B C</button>
+    </div>
+  </div>
+  <div class="grados" id="grados"></div>
+  <div style="height:16px"></div>
+  <div class="mastil-box"><svg class="mastil" id="mastil" viewBox="0 0 900 250" role="img" aria-label="Mástil con las notas de La frigio entre los trastes 0 y 7"></svg></div>
+  <div class="leyenda">
+    <span><i style="background:#E7686A"></i>Tónica (La)</span>
+    <span><i style="background:#E9A94A"></i>♭2 característica (Si♭)</span>
+    <span><i style="background:#F6D9A2"></i>Resto de la escala</span>
+    <span><i style="border:1.5px dashed #9C8B78"></i>Opcional (Do♯)</span>
+    <span>Pulsa cualquier nota para oírla.</span>
+  </div>
+</section>
+
+<section id="acordes">
+  <div class="sec-head">
+    <p class="eyebrow">Los acordes</p>
+    <h2>Lo que pisa la mano izquierda</h2>
+    <p class="muted">Todos en primera posición, como en el vídeo. Pulsa uno para oírlo rasgueado. La digitación del La y del Si♭ está deducida del audio (La · Mi · Si♭ · Re · Mi, con la prima al aire): confírmala mirando el vídeo en el tramo 3.</p>
+  </div>
+  <div class="acordes" id="listaAcordes"></div>
+  <div class="cadencia">
+    <span class="eyebrow" style="width:100%">Cadencia andaluza · la columna vertebral de la clase</span>
+    <span class="paso">Rem</span><span class="flecha">→</span>
+    <span class="paso">Do</span><span class="flecha">→</span>
+    <span class="paso">Si♭</span><span class="flecha">→</span>
+    <span class="paso" style="color:var(--golpe)">La</span>
+    <button class="btn" id="tocarCadencia" type="button" style="margin-left:auto">▶ Escuchar</button>
+  </div>
+</section>
+
+<section id="audio">
+  <div class="dos-col">
+    <div>
+      <div class="sec-head">
+        <p class="eyebrow">Lo que dice el audio</p>
+        <h2>Notas más presentes</h2>
+        <p class="muted">Energía de cada nota en toda la clase, sumando octavas, relativa a la más fuerte. En ámbar las de La frigio.</p>
+      </div>
+      <div class="barras" id="barras"></div>
+    </div>
+    <div>
+      <div class="sec-head">
+        <p class="eyebrow">Fiabilidad</p>
+        <h2>Qué es seguro y qué no</h2>
+      </div>
+      <ul class="fiab">
+        <li><span class="pill alta">Alta</span><span>Tónica La y modo frigio: el Si♭ es la cuarta nota más presente y el Si natural casi no suena.</span></li>
+        <li><span class="pill alta">Alta</span><span>Compás de 12: el ritmo se repite cada 3,98 s, que son 12 pulsos de 0,33 s. Encaja con la cuenta «12, 1, 2, 3» del principio.</span></li>
+        <li><span class="pill alta">Alta</span><span>Bajo descendente Re → Do → Si♭ → La en los tramos 2 y 4.</span></li>
+        <li><span class="pill media">Media</span><span>Que sea bulería y no soleá por bulería: el tempo lo sugiere, el vídeo no lo dice.</span></li>
+        <li><span class="pill media">Media</span><span>Digitación exacta del La y del Si♭ (deducida de las notas, no del plano).</span></li>
+        <li><span class="pill baja">Baja</span><span>Si el Re es menor o lleva Fa♯ de paso (Re7): el audio lo da ambiguo en varios compases.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Análisis automático del audio (cromagrama, detección de ataques y autocorrelación del ritmo) y revisión de fotogramas cada 5 s. La voz solo aparece en la cuenta de entrada. Las notas suenan con un sintetizador de cuerda pulsada, no con la guitarra del vídeo.
+</footer>
+</div>
+
+<script>
+(()=>{
+/* ================= Datos ================= */
+const ES=['Do','Do♯','Re','Mi♭','Mi','Fa','Fa♯','Sol','Sol♯','La','Si♭','Si'];
+const EN=['C','C♯','D','E♭','E','F','F♯','G','G♯','A','B♭','B'];
+let usarEN=false;
+const nombre=pc=>(usarEN?EN:ES)[((pc%12)+12)%12];
+
+// La frigio: grado -> clase de altura
+const ESCALA=[{pc:9,g:'1',tipo:'tonica'},{pc:10,g:'♭2',tipo:'caract'},{pc:0,g:'♭3'},{pc:2,g:'4'},{pc:4,g:'5'},{pc:5,g:'♭6'},{pc:7,g:'♭7'}];
+const OPCIONAL={pc:1,g:'3',tipo:'opcional'};
+
+// Afinación, de 1ª (arriba) a 6ª
+const CUERDAS=[64,59,55,50,45,40];
+const NOMBRE_CUERDA=['1ª','2ª','3ª','4ª','5ª','6ª'];
+
+// Acordes: trastes de 6ª a 1ª (x = no suena), dedos 1-4
+const ACORDES={
+  'La':   {t:['x',0,2,3,3,0], d:[0,0,1,2,3,0], rol:'Tónica · como suena en la clase'},
+  'Si♭':  {t:['x',1,3,3,3,0], d:[0,1,3,3,3,0], rol:'♭II · la tensión flamenca'},
+  'Do7':  {t:['x',3,2,3,1,0], d:[0,3,2,4,1,0], rol:'♭III · paso hacia el La'},
+  'Rem':  {t:['x','x',0,2,3,1], d:[0,0,0,2,3,1], rol:'iv · arranque de la cadencia'},
+  'Sol7': {t:[3,2,0,0,0,1], d:[3,2,0,0,0,1], rol:'♭VII · aparece en los tramos 2 y 4'},
+  'Fa':   {t:['x','x',3,2,1,1], d:[0,0,3,2,1,1], rol:'♭VI · de paso'}
+};
+function notasAcorde(nm){
+  const t=ACORDES[nm].t, base=[40,45,50,55,59,64];
+  return t.map((f,i)=>f==='x'?null:base[i]+f).filter(v=>v!==null);
+}
+
+// Tramos del vídeo (segundos)
+const TRAMOS=[
+  {id:'cuenta',ini:0,fin:6,titulo:'La cuenta',corto:'Cuenta',
+   texto:'Una voz pregunta si se oye y cuenta «…doce, uno, dos, tres». En bulería se arranca en el 12: esa cuenta ya te dice el compás.',
+   practica:['Cuenta en voz alta 12, 1, 2 y entra en el 3.','Pon la rueda en «Solo palmas» y marca los acentos con el pie.'],
+   acordes:[]},
+  {id:'compas',ini:6,fin:57,titulo:'Compás por medio',corto:'Compás',
+   texto:'Rasgueo a unos 180 bpm con un ciclo de unos 4 segundos, doce veces. El bajo va de La a Re y baja por Do hasta volver al La; hay un Sol7 que prepara el Do.',
+   practica:['Rueda en «La · Si♭ · La» a 120 bpm, rasgueando en cada acento.','Cuando salga limpio, pasa a la cadencia y sube a 150.','Escucha el bajo: Re, Do, Si♭, La.'],
+   acordes:['La','Rem','Do7','Sol7','Si♭']},
+  {id:'falseta',ini:57,fin:102,titulo:'Falseta sobre La',corto:'Falseta',
+   texto:'El tempo baja a unos 158 bpm y la música se queda en el La: La al aire en el bajo, con Mi, Si♭ y Re por encima, una y otra vez. El Si♭ aparece de golpe hacia 1:13, 1:32 y 1:41.',
+   practica:['Pisa el La de la clase (x02330) y arpegia 5ª–4ª–3ª–2ª.','Repite el tramo a 0,75× y cuenta dónde cae cada nota del bajo.','Alterna La y Si♭ sin mover el 3er dedo de la 2ª cuerda.'],
+   acordes:['La','Si♭']},
+  {id:'vuelta',ini:102,fin:140,titulo:'Vuelta a la cadencia',corto:'Cadencia',
+   texto:'Vuelve el Re y el bajo baja nota a nota: Re, Do, Si♭, con Sol7 y Do7 de paso, hasta caer en La. Es el mismo camino del tramo 2, más apretado.',
+   practica:['Toca solo los bajos: 4ª al aire, 5ª traste 3, 5ª traste 1, 5ª al aire.','Luego los acordes completos con la rueda en «Cadencia».'],
+   acordes:['Rem','Do','Do7','Si♭','Sol7','La']},
+  {id:'cierre',ini:140,fin:146,titulo:'Cierre',corto:'Cierre',
+   texto:'Si♭ que resuelve en La: la cadencia andaluza de siempre, cerrando en la tónica.',
+   practica:['Remata cada ejercicio con Si♭ → La en el 10 del compás.'],
+   acordes:['Si♭','La']}
+];
+const DURACION=146;
+
+// Energía relativa por nota (cromagrama de toda la clase)
+const CROMA=[['Re',2,1.00],['La',9,.71],['Mi',4,.61],['Si♭',10,.46],['Sol',7,.43],['Fa',5,.33],['Do',0,.28],['Fa♯',6,.18],['Si',11,.18],['Sol♯',8,.13],['Mi♭',3,.08],['Do♯',1,.05]];
+
+// Patrones de la rueda. Posición 0 = el 12; luego 1..11.
+const ACENTOS=new Set([12,3,6,8,10]);
+const PATRONES={
+  palmas:{},
+  basico:{12:'La',3:'Si♭',6:'La',8:'Si♭',10:'La'},
+  cadencia:{12:'Rem',3:'Do',6:'Si♭',8:'La',10:'La'}
+};
+const ORDEN=[12,1,2,3,4,5,6,7,8,9,10,11];
+
+/* ================= Audio ================= */
+let ctx=null, master=null;
+function audio(){
+  if(!ctx){
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain(); master.gain.value=.8;
+    const comp=ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
+  }
+  if(ctx.state==='suspended') ctx.resume();
+  return ctx;
+}
+const cache=new Map();
+function bufferCuerda(midi){
+  if(cache.has(midi)) return cache.get(midi);
+  const c=audio(), sr=c.sampleRate, f=440*Math.pow(2,(midi-69)/12);
+  const dur=2.6, len=Math.floor(sr*dur), buf=c.createBuffer(1,len,sr), d=buf.getChannelData(0);
+  const N=Math.max(2,Math.round(sr/f)), ring=new Float32Array(N);
+  for(let i=0;i<N;i++) ring[i]=Math.random()*2-1;
+  for(let p=0;p<2;p++) for(let i=1;i<N;i++) ring[i]=.5*(ring[i]+ring[i-1]); // nylon: ataque blando
+  const decay=midi<50?.9965:.994;
+  let k=0;
+  for(let i=0;i<len;i++){ const a=ring[k], b=ring[(k+1)%N]; d[i]=a; ring[k]=.5*(a+b)*decay; k=(k+1)%N; }
+  cache.set(midi,buf); return buf;
+}
+function pulsar(midi,when,vol=.5){
+  const c=audio(), s=c.createBufferSource(), g=c.createGain();
+  s.buffer=bufferCuerda(midi); g.gain.value=vol; s.connect(g); g.connect(master);
+  s.start(when??c.currentTime);
+}
+function rasguear(nm,when,vol=.32,abajo=true){
+  const c=audio(), t0=when??c.currentTime, ns=notasAcorde(nm);
+  const orden=abajo?ns:[...ns].reverse();
+  orden.forEach((m,i)=>pulsar(m,t0+i*.014,vol));
+}
+let ruido=null;
+function palma(when,fuerte){
+  const c=audio();
+  if(!ruido){ ruido=c.createBuffer(1,Math.floor(c.sampleRate*.12),c.sampleRate); const d=ruido.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; }
+  const s=c.createBufferSource(), bp=c.createBiquadFilter(), g=c.createGain();
+  s.buffer=ruido; bp.type='bandpass'; bp.frequency.value=fuerte?1400:2300; bp.Q.value=1.2;
+  g.gain.setValueAtTime(fuerte?.9:.28,when); g.gain.exponentialRampToValueAtTime(.001,when+(fuerte?.11:.06));
+  s.connect(bp); bp.connect(g); g.connect(master); s.start(when); s.stop(when+.13);
+}
+
+/* ================= Rueda del compás ================= */
+const rueda=document.getElementById('rueda');
+const NS='http://www.w3.org/2000/svg';
+const el=(tag,attrs={},parent)=>{const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); parent&&parent.appendChild(e); return e;};
+el('circle',{cx:200,cy:200,r:150,class:'aro'},rueda);
+const nodosBeat={};
+ORDEN.forEach((n,i)=>{
+  const ang=(i/12)*Math.PI*2-Math.PI/2, x=200+150*Math.cos(ang), y=200+150*Math.sin(ang);
+  const g=el('g',{class:'beat'+(ACENTOS.has(n)?' acc':'')},rueda);
+  el('circle',{cx:x,cy:y,r:ACENTOS.has(n)?27:21},g);
+  const t=el('text',{x,y},g); t.textContent=n;
+  nodosBeat[n]=g;
+});
+const centro=el('text',{x:200,y:190,class:'centro'},rueda); centro.textContent='12';
+const sub=el('text',{x:200,y:236,class:'sub'},rueda); sub.textContent='ACENTOS 3 · 6 · 8 · 10 · 12';
+
+let patron='basico', sonando=false, siguiente=0, tSiguiente=0, timer=null, cola=[];
+const bpmIn=document.getElementById('bpm'), bpmV=document.getElementById('bpmv'), btnPlay=document.getElementById('play');
+bpmIn.addEventListener('input',()=>bpmV.textContent=bpmIn.value);
+function programar(){
+  const c=audio(), spb=60/Number(bpmIn.value);
+  while(tSiguiente<c.currentTime+.12){
+    const n=ORDEN[siguiente], acc=ACENTOS.has(n);
+    palma(tSiguiente,acc);
+    const ac=PATRONES[patron][n];
+    if(ac) rasguear(ac,tSiguiente,.3);
+    cola.push({t:tSiguiente,n,ac});
+    tSiguiente+=spb; siguiente=(siguiente+1)%12;
+  }
+}
+let acordeActual='';
+function dibujar(){
+  if(!sonando) return;
+  const now=ctx.currentTime;
+  while(cola.length&&cola[0].t<=now){
+    const {n,ac}=cola.shift();
+    Object.values(nodosBeat).forEach(g=>g.classList.remove('on'));
+    nodosBeat[n].classList.add('on');
+    if(ac) acordeActual=ac;
+    centro.textContent=patron==='palmas'?String(n):acordeActual||String(n);
+    sub.textContent=patron==='palmas'?'ACENTOS 3 · 6 · 8 · 10 · 12':'TIEMPO '+n;
+  }
+  requestAnimationFrame(dibujar);
+}
+function arrancar(){
+  const c=audio(); sonando=true; siguiente=0; tSiguiente=c.currentTime+.08; cola=[]; acordeActual='';
+  timer=setInterval(programar,25); programar(); requestAnimationFrame(dibujar);
+  btnPlay.textContent='■ Parar'; btnPlay.setAttribute('aria-pressed','true');
+}
+function parar(){
+  sonando=false; clearInterval(timer);
+  Object.values(nodosBeat).forEach(g=>g.classList.remove('on'));
+  centro.textContent='12'; sub.textContent='ACENTOS 3 · 6 · 8 · 10 · 12';
+  btnPlay.textContent='▶ Marcar compás'; btnPlay.setAttribute('aria-pressed','false');
+}
+btnPlay.addEventListener('click',()=>sonando?parar():arrancar());
+document.querySelectorAll('[data-pat]').forEach(b=>b.addEventListener('click',()=>{
+  patron=b.dataset.pat;
+  document.querySelectorAll('[data-pat]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+}));
+
+/* ================= Mapa de la clase ================= */
+const linea=document.getElementById('linea'), momento=document.getElementById('momento');
+const video=document.getElementById('video'), cabezal=document.getElementById('cabezal');
+let tramoSel=TRAMOS[1], bucle=false;
+const mmss=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+let hechos={}; try{hechos=JSON.parse(localStorage.getItem('buleria-hechos')||'{}')}catch(e){}
+TRAMOS.forEach((tr,i)=>{
+  const b=document.createElement('button');
+  b.type='button'; b.setAttribute('role','tab'); b.id='tab-'+tr.id;
+  b.style.flex=String(tr.fin-tr.ini);
+  b.innerHTML=`<span class="t">${i+1} · ${mmss(tr.ini)}</span><span class="n">${tr.corto}</span>`;
+  b.addEventListener('click',()=>{ seleccionar(tr); if(!video.hidden) reproducirTramo(); });
+  linea.appendChild(b);
+});
+function seleccionar(tr){
+  tramoSel=tr;
+  linea.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',String(b.id==='tab-'+tr.id)));
+  const n=TRAMOS.indexOf(tr)+1;
+  momento.innerHTML=`
+    <p class="tiempo">Tramo ${n} de 5 · ${mmss(tr.ini)} – ${mmss(tr.fin)}</p>
+    <h3>${tr.titulo}</h3>
+    <p>${tr.texto}</p>
+    ${tr.acordes.length?`<div><p class="eyebrow" style="margin-bottom:6px">Acordes · pulsa para oír</p><div class="acordes-mini">${tr.acordes.map(a=>`<button type="button" data-ac="${a}">${a}</button>`).join('')}</div></div>`:''}
+    <div><p class="eyebrow" style="margin-bottom:6px">Para practicar</p><ul>${tr.practica.map(p=>`<li>${p}</li>`).join('')}</ul></div>
+    <label class="check" for="hecho-${tr.id}"><input type="checkbox" id="hecho-${tr.id}" ${hechos[tr.id]?'checked':''}> Este tramo ya me sale</label>`;
+  momento.querySelectorAll('[data-ac]').forEach(b=>b.addEventListener('click',()=>rasguear(b.dataset.ac)));
+  momento.querySelector('input').addEventListener('change',e=>{
+    hechos[tr.id]=e.target.checked;
+    try{localStorage.setItem('buleria-hechos',JSON.stringify(hechos))}catch(err){}
+  });
+}
+seleccionar(tramoSel);
+
+const fichero=document.getElementById('fichero'), irA=document.getElementById('irA'), btnBucle=document.getElementById('bucle');
+fichero.addEventListener('change',()=>{
+  const f=fichero.files&&fichero.files[0]; if(!f) return;
+  video.src=URL.createObjectURL(f); video.controls=true; video.hidden=false;
+  document.getElementById('videoVacio').hidden=true; cabezal.hidden=false;
+  [irA,btnBucle,...document.querySelectorAll('.vel')].forEach(b=>b.disabled=false);
+});
+function reproducirTramo(){ video.currentTime=tramoSel.ini; video.play().catch(()=>{}); }
+irA.addEventListener('click',reproducirTramo);
+btnBucle.addEventListener('click',()=>{bucle=!bucle; btnBucle.setAttribute('aria-pressed',String(bucle));});
+document.querySelectorAll('.vel').forEach(b=>b.addEventListener('click',()=>{
+  video.playbackRate=Number(b.dataset.v);
+  document.querySelectorAll('.vel').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+}));
+video.addEventListener('timeupdate',()=>{
+  const t=video.currentTime;
+  cabezal.style.left=(100*t/(video.duration||DURACION))+'%';
+  if(bucle&&t>=tramoSel.fin){ video.currentTime=tramoSel.ini; return; }
+  const tr=TRAMOS.find(x=>t>=x.ini&&t<x.fin);
+  if(!bucle&&tr&&tr!==tramoSel) seleccionar(tr);
+});
+
+/* ================= Escala ================= */
+const grados=document.getElementById('grados'), mastil=document.getElementById('mastil');
+let conDoS=false;
+function pcsVisibles(){ return conDoS?[...ESCALA,OPCIONAL]:ESCALA; }
+function pintarGrados(){
+  grados.innerHTML='';
+  pcsVisibles().forEach(n=>{
+    const d=document.createElement('div');
+    d.className='grado'+(n.tipo?' '+n.tipo:''); d.dataset.pc=n.pc;
+    d.innerHTML=`<b>${nombre(n.pc)}</b><span>${n.g}</span>`;
+    grados.appendChild(d);
+  });
+}
+const TRASTES=7, X0=70, ANCHO=820, Y0=30, SEP=38;
+const xTraste=f=>X0+(ANCHO/TRASTES)*f;
+const xNota=f=>f===0?X0-32:(xTraste(f-1)+xTraste(f))/2;
+const nodosNota=[];
+function pintarMastil(){
+  mastil.innerHTML=''; nodosNota.length=0;
+  el('rect',{x:X0,y:Y0-12,width:ANCHO,height:SEP*5+24,rx:4,fill:'#3A261D'},mastil);
+  [3,5,7].forEach(f=>el('circle',{cx:xNota(f),cy:Y0+SEP*2.5,r:7,fill:'#5A4235'},mastil));
+  for(let f=0;f<=TRASTES;f++) el('line',{x1:xTraste(f),y1:Y0-12,x2:xTraste(f),y2:Y0+SEP*5+12,stroke:f===0?'#EFE3D0':'#B9A98F','stroke-width':f===0?7:2.5},mastil);
+  CUERDAS.forEach((m,i)=>{
+    el('line',{x1:X0-50,y1:Y0+SEP*i,x2:X0+ANCHO,y2:Y0+SEP*i,stroke:'#D9CDB6','stroke-width':1+i*.35},mastil);
+    const t=el('text',{x:X0-62,y:Y0+SEP*i+4,class:'lbl'},mastil); t.textContent=NOMBRE_CUERDA[i];
+  });
+  for(let f=1;f<=TRASTES;f++){const t=el('text',{x:xNota(f),y:Y0+SEP*5+32,class:'lbl'},mastil); t.textContent=f;}
+  const vis=pcsVisibles();
+  CUERDAS.forEach((base,i)=>{
+    for(let f=0;f<=TRASTES;f++){
+      const m=base+f, info=vis.find(n=>n.pc===m%12); if(!info) continue;
+      const g=el('g',{class:'nota'+(info.tipo?' '+info.tipo:''),tabindex:0,role:'button','aria-label':`${nombre(m%12)}, cuerda ${NOMBRE_CUERDA[i]}, traste ${f}`},mastil);
+      el('circle',{cx:xNota(f),cy:Y0+SEP*i,r:15},g);
+      const t=el('text',{x:xNota(f),y:Y0+SEP*i},g); t.textContent=nombre(m%12);
+      g.dataset.midi=m;
+      const tocar=()=>{pulsar(m); destacar([g]);};
+      g.addEventListener('click',tocar);
+      g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tocar();}});
+      nodosNota.push({g,m,cuerda:i,f});
+    }
+  });
+}
+function destacar(gs){
+  gs.forEach(g=>{g.classList.add('sonando'); setTimeout(()=>g.classList.remove('sonando'),350);});
+}
+function repintar(){pintarGrados(); pintarMastil();}
+repintar();
+document.getElementById('verDoS').addEventListener('click',e=>{conDoS=!conDoS; e.currentTarget.setAttribute('aria-pressed',String(conDoS)); repintar();});
+document.getElementById('nombres').addEventListener('click',e=>{usarEN=!usarEN; e.currentTarget.setAttribute('aria-pressed',String(usarEN)); e.currentTarget.textContent=usarEN?'Nombres Do Re Mi':'Nombres A B C'; repintar(); pintarBarras(); seleccionar(tramoSel);});
+document.getElementById('tocarEscala').addEventListener('click',()=>{
+  const c=audio(), t0=c.currentTime+.05, paso=.36;
+  // La2 → La3 → La2, en primera posición (5ª, 4ª, 3ª)
+  const sube=[[4,0],[4,1],[4,3],[3,0],[3,2],[3,3],[2,0],[2,2]];
+  if(conDoS) sube.splice(3,0,[4,4]);
+  const ruta=[...sube,...sube.slice(0,-1).reverse()];
+  ruta.forEach(([cu,f],i)=>{
+    const n=nodosNota.find(x=>x.cuerda===cu&&x.f===f); if(!n) return;
+    pulsar(n.m,t0+i*paso,.55);
+    setTimeout(()=>{destacar([n.g]); grados.querySelectorAll('.grado').forEach(d=>d.classList.toggle('sonando',Number(d.dataset.pc)===n.m%12));},(t0-c.currentTime+i*paso)*1000);
+  });
+  setTimeout(()=>grados.querySelectorAll('.grado').forEach(d=>d.classList.remove('sonando')),(ruta.length*paso+.5)*1000);
+});
+
+/* ================= Acordes ================= */
+const lista=document.getElementById('listaAcordes');
+function diagrama(nm){
+  const {t,d}=ACORDES[nm], W=112, H=132, x0=16, y0=28, dx=16, dy=22;
+  const s=document.createElementNS(NS,'svg'); s.setAttribute('viewBox',`0 0 ${W} ${H}`); s.setAttribute('aria-hidden','true');
+  el('line',{x1:x0,y1:y0,x2:x0+dx*5,y2:y0,class:'cejuela'},s);
+  for(let f=1;f<=4;f++) el('line',{x1:x0,y1:y0+dy*f,x2:x0+dx*5,y2:y0+dy*f,class:'traste'},s);
+  for(let c=0;c<6;c++){
+    el('line',{x1:x0+dx*c,y1:y0,x2:x0+dx*c,y2:y0+dy*4,class:'cuerda'},s);
+    const v=t[c], x=x0+dx*c;
+    if(v==='x'){const m=el('text',{x,y:y0-9,class:'marca'},s); m.textContent='×';}
+    else if(v===0){el('circle',{cx:x,cy:y0-12,r:4.5,class:'aire'},s);}
+    else{
+      el('circle',{cx:x,cy:y0+dy*(v-.5),r:7,class:'dedo'},s);
+      const n=el('text',{x,y:y0+dy*(v-.5)+.5,class:'dedo-t'},s); n.textContent=d[c]||'';
+    }
+  }
+  return s;
+}
+Object.keys(ACORDES).forEach(nm=>{
+  const b=document.createElement('button'); b.type='button'; b.className='acorde'; b.dataset.nm=nm;
+  const cifra=ACORDES[nm].t.join('');
+  b.innerHTML=`<h3>${nm}</h3>`;
+  b.appendChild(diagrama(nm));
+  b.insertAdjacentHTML('beforeend',`<span class="dig">${cifra}</span><span class="rol">${ACORDES[nm].rol}</span>`);
+  b.setAttribute('aria-label',`${nm}, ${cifra}. Pulsa para oírlo`);
+  b.addEventListener('click',()=>{rasguear(nm); b.classList.add('sonando'); setTimeout(()=>b.classList.remove('sonando'),500);});
+  lista.appendChild(b);
+});
+// «Do» del mapa usa la forma de Do7 sin el Si♭ (x32010)
+ACORDES['Do']={t:['x',3,2,0,1,0],d:[0,3,2,0,1,0],rol:''};
+document.getElementById('tocarCadencia').addEventListener('click',()=>{
+  const c=audio(), t0=c.currentTime+.05;
+  ['Rem','Do','Si♭','La'].forEach((nm,i)=>{
+    rasguear(nm,t0+i*.9,.34); rasguear(nm,t0+i*.9+.3,.2,false);
+    const card=lista.querySelector(`[data-nm="${nm}"]`);
+    if(card) setTimeout(()=>{card.classList.add('sonando'); setTimeout(()=>card.classList.remove('sonando'),800);},i*900);
+  });
+});
+
+/* ================= Barras ================= */
+const barras=document.getElementById('barras');
+const enEscala=new Set(ESCALA.map(n=>n.pc));
+function pintarBarras(){
+  barras.innerHTML='';
+  CROMA.forEach(([,pc,v])=>{
+    const r=document.createElement('div'); r.className='barra'+(enEscala.has(pc)?'':' fuera');
+    r.innerHTML=`<span class="nm">${nombre(pc)}</span><div class="pista"><div style="width:${v*100}%"></div></div><span class="v">${Math.round(v*100)}</span>`;
+    barras.appendChild(r);
+  });
+}
+pintarBarras();
+})();
+</script>

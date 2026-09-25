@@ -1,5 +1,5 @@
-<title>Bulería por medio</title>
-<meta name="description" content="Mapa de estudio de una clase de guitarra flamenca: compás de 12, escala de La frigio, acordes y los cinco momentos clave del vídeo.">
+<title>Tangos por medio</title>
+<meta name="description" content="Mapa de estudio de una clase de guitarra flamenca por tangos: compás, alzapúa, falseta, escala de La frigio y acordes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500;1,6..96,700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -76,6 +76,8 @@ header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:c
 .rueda .beat circle{fill:var(--surface);stroke:var(--line);stroke-width:2;transition:fill .08s}
 .rueda .beat text{font-family:var(--mono);font-size:22px;fill:var(--ink-2);text-anchor:middle;dominant-baseline:central;font-weight:600}
 .rueda .beat.acc circle{stroke:var(--golpe);stroke-width:3}
+.rueda .beat.sil circle{stroke-dasharray:4 5;stroke-width:2.5;stroke:var(--ink-2)}
+.rueda .beat.sil.on circle{fill:var(--ink);stroke:var(--ink)}
 .rueda .beat.acc text{fill:var(--golpe)}
 .rueda .beat.on circle{fill:var(--accent)}
 .rueda .beat.on text{fill:var(--bg)}
@@ -179,6 +181,12 @@ header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:c
 .pill.media{background:var(--accent-soft);color:var(--accent)}
 .pill.baja{background:var(--golpe-soft);color:var(--golpe)}
 
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.paso-alz{display:grid;gap:6px;align-content:start;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);transition:background .08s}
+.paso-alz b{font-family:var(--display);font-size:1.35rem}
+.paso-alz .num{color:var(--accent);font-size:.8rem}
+.paso-alz.on{background:var(--accent-soft);border-color:var(--accent)}
+@media (max-width:620px){.pasos{grid-template-columns:1fr}}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -197,23 +205,23 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
 <header class="hero">
   <div>
     <p class="eyebrow">Mapa de estudio · clase del 23-sep · 2:26</p>
-    <h1>Bulería por medio<span>Compás de 12 en el modo de La</span></h1>
-    <p class="lead">La clase entra con la cuenta «doce, uno, dos, tres» y se queda en primera posición todo el rato. Aquí tienes el compás para marcarlo, la escala sobre el mástil, los acordes que suenan y los cinco momentos del vídeo para repasarlos uno a uno.</p>
+    <h1>Tangos por medio<span>Compás binario en el modo de La</span></h1>
+    <p class="lead">La clase entra con una cuenta «…uno, dos, tres», marca el compás de tangos, pasa a la alzapúa y remata con una falseta, siempre en primera posición. Aquí tienes el compás para marcarlo, la alzapúa paso a paso, la escala sobre el mástil, los acordes y los cinco momentos del vídeo.</p>
     <div class="facts">
       <span class="chip">Modo <b>La frigio</b></span>
       <span class="chip">Tónica <b>La</b></span>
-      <span class="chip">Tempo <b>≈180 bpm</b></span>
-      <span class="chip">Ciclo <b>≈4,0 s</b></span>
+      <span class="chip">Tempo <b>≈120 bpm</b></span>
+      <span class="chip">Ciclo <b>8 tiempos · ≈4 s</b></span>
       <span class="chip">Mano izq. <b>trastes 0–3</b></span>
     </div>
   </div>
 
   <div class="rueda-card">
-    <svg class="rueda" id="rueda" viewBox="0 0 400 400" role="img" aria-label="Rueda del compás de 12 tiempos con acentos en 3, 6, 8, 10 y 12"></svg>
+    <svg class="rueda" id="rueda" viewBox="0 0 400 400" role="img" aria-label="Rueda del compás de tangos: 8 tiempos, el 1 y el 5 en silencio para las palmas"></svg>
     <div class="controles">
       <button class="btn primary" id="play" type="button" aria-pressed="false">▶ Marcar compás</button>
-      <label class="tempo" for="bpm"><span class="mono" id="bpmv">120</span> bpm
-        <input id="bpm" type="range" min="80" max="240" step="2" value="120">
+      <label class="tempo" for="bpm"><span class="mono" id="bpmv">90</span> bpm
+        <input id="bpm" type="range" min="60" max="160" step="2" value="90">
       </label>
     </div>
     <div class="patrones" role="group" aria-label="Qué acompaña a las palmas">
@@ -221,7 +229,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
       <button class="chip" type="button" data-pat="basico" aria-pressed="true">La · Si♭ · La</button>
       <button class="chip" type="button" data-pat="cadencia" aria-pressed="false">Cadencia Rem·Do·Si♭·La</button>
     </div>
-    <p class="muted" style="font-size:.85rem;text-align:center;max-width:44ch">Empieza a 120 y sube de 10 en 10. En el vídeo va a unos 180, y baja a unos 158 en la falseta.</p>
+    <p class="muted" style="font-size:.85rem;text-align:center;max-width:44ch">Las palmas callan en el 1 y el 5, que es donde cae la guitarra. Empieza a 90 y sube de 10 en 10: en el vídeo va a unos 120, y la alzapúa a unos 105.</p>
   </div>
 </header>
 
@@ -287,15 +295,36 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
   </div>
 </section>
 
+<section id="alzapua">
+  <div class="sec-head">
+    <p class="eyebrow">La técnica</p>
+    <h2>La alzapúa, paso a paso</h2>
+    <p class="muted">Todo lo hace el pulgar, con la muñeca suelta. Tres golpes por tiempo, en tresillo: una nota en el bordón, bajada por las cuerdas agudas y subida por las mismas. En la clase la mano izquierda se queda en el La y el bordón es la 5ª al aire.</p>
+  </div>
+  <div class="pasos" id="pasos">
+    <div class="paso-alz" data-i="0"><span class="num mono">1</span><b>P ↓ bordón</b><span class="muted">El pulgar pulsa la 5ª al aire (La) y se apoya en la 4ª.</span></div>
+    <div class="paso-alz" data-i="1"><span class="num mono">2</span><b>P ↓ acorde</b><span class="muted">Sigue bajando y barre 3ª, 2ª y 1ª con la uña.</span></div>
+    <div class="paso-alz" data-i="2"><span class="num mono">3</span><b>P ↑ acorde</b><span class="muted">Sube con la yema por 1ª, 2ª y 3ª. Ese es el «alza».</span></div>
+  </div>
+  <div class="controles" style="justify-content:flex-start;margin-top:16px">
+    <button class="btn primary" id="playAlz" type="button" aria-pressed="false">▶ Escuchar la alzapúa</button>
+    <label class="tempo" for="bpmAlz"><span class="mono" id="bpmAlzV">70</span> bpm
+      <input id="bpmAlz" type="range" min="40" max="120" step="2" value="70">
+    </label>
+    <button class="chip" id="alzSib" type="button" aria-pressed="false">Alternar con Si♭</button>
+  </div>
+  <p class="muted" style="font-size:.85rem;margin-top:10px">En el vídeo va a unos 105 bpm. Hasta que los tres golpes suenen igual de fuertes, no subas.</p>
+</section>
+
 <section id="acordes">
   <div class="sec-head">
     <p class="eyebrow">Los acordes</p>
     <h2>Lo que pisa la mano izquierda</h2>
-    <p class="muted">Todos en primera posición, como en el vídeo. Pulsa uno para oírlo rasgueado. La digitación del La y del Si♭ está deducida del audio (La · Mi · Si♭ · Re · Mi, con la prima al aire): confírmala mirando el vídeo en el tramo 3.</p>
+    <p class="muted">Todos en primera posición, como en el vídeo. Pulsa uno para oírlo rasgueado. La digitación del La y del Si♭ está deducida del audio (La · Mi · Si♭ · Re · Mi, con la prima al aire): confírmala mirando el vídeo en el tramo de la alzapúa.</p>
   </div>
   <div class="acordes" id="listaAcordes"></div>
   <div class="cadencia">
-    <span class="eyebrow" style="width:100%">Cadencia andaluza · la columna vertebral de la clase</span>
+    <span class="eyebrow" style="width:100%">Cadencia andaluza · el camino de la falseta</span>
     <span class="paso">Rem</span><span class="flecha">→</span>
     <span class="paso">Do</span><span class="flecha">→</span>
     <span class="paso">Si♭</span><span class="flecha">→</span>
@@ -321,9 +350,10 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
       </div>
       <ul class="fiab">
         <li><span class="pill alta">Alta</span><span>Tónica La y modo frigio: el Si♭ es la cuarta nota más presente y el Si natural casi no suena.</span></li>
-        <li><span class="pill alta">Alta</span><span>Compás de 12: el ritmo se repite cada 3,98 s, que son 12 pulsos de 0,33 s. Encaja con la cuenta «12, 1, 2, 3» del principio.</span></li>
-        <li><span class="pill alta">Alta</span><span>Bajo descendente Re → Do → Si♭ → La en los tramos 2 y 4.</span></li>
-        <li><span class="pill media">Media</span><span>Que sea bulería y no soleá por bulería: el tempo lo sugiere, el vídeo no lo dice.</span></li>
+        <li><span class="pill alta">Alta</span><span>Palo: tangos por medio, confirmado por quien grabó la clase.</span></li>
+        <li><span class="pill alta">Alta</span><span>Compás binario: el ritmo se repite cada 3,98 s, que son 8 tiempos de 0,50 s (unos 120 bpm).</span></li>
+        <li><span class="pill alta">Alta</span><span>Bajo descendente Re → Do → Si♭ → La en el compás y en la falseta.</span></li>
+        <li><span class="pill media">Media</span><span>Dónde empieza la alzapúa y dónde la falseta: deducido de la densidad de notas y de la mano derecha en los fotogramas.</span></li>
         <li><span class="pill media">Media</span><span>Digitación exacta del La y del Si♭ (deducida de las notas, no del plano).</span></li>
         <li><span class="pill baja">Baja</span><span>Si el Re es menor o lleva Fa♯ de paso (Re7): el audio lo da ambiguo en varios compases.</span></li>
       </ul>
@@ -332,7 +362,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
 </section>
 
 <footer>
-  Análisis automático del audio (cromagrama, detección de ataques y autocorrelación del ritmo) y revisión de fotogramas cada 5 s. La voz solo aparece en la cuenta de entrada. Las notas suenan con un sintetizador de cuerda pulsada, no con la guitarra del vídeo.
+  Análisis automático del audio (cromagrama, detección de ataques y autocorrelación del ritmo) y revisión de fotogramas cada 5 s. La voz solo aparece en la cuenta de entrada. El palo y las técnicas los indicó quien grabó la clase. Las notas suenan con un sintetizador de cuerda pulsada, no con la guitarra del vídeo.
 </footer>
 </div>
 
@@ -369,24 +399,24 @@ function notasAcorde(nm){
 // Tramos del vídeo (segundos)
 const TRAMOS=[
   {id:'cuenta',ini:0,fin:6,titulo:'La cuenta',corto:'Cuenta',
-   texto:'Una voz pregunta si se oye y cuenta «…doce, uno, dos, tres». En bulería se arranca en el 12: esa cuenta ya te dice el compás.',
-   practica:['Cuenta en voz alta 12, 1, 2 y entra en el 3.','Pon la rueda en «Solo palmas» y marca los acentos con el pie.'],
+   texto:'Una voz pregunta si se oye y cuenta «…uno, dos, tres» para entrar. Los tangos se cuentan de 8 en 8, en dos bloques de 4.',
+   practica:['Pon la rueda en «Solo palmas» y cuenta en voz alta del 1 al 8.','Nota que las palmas callan en el 1 y el 5: ahí entra la guitarra.'],
    acordes:[]},
-  {id:'compas',ini:6,fin:57,titulo:'Compás por medio',corto:'Compás',
-   texto:'Rasgueo a unos 180 bpm con un ciclo de unos 4 segundos, doce veces. El bajo va de La a Re y baja por Do hasta volver al La; hay un Sol7 que prepara el Do.',
-   practica:['Rueda en «La · Si♭ · La» a 120 bpm, rasgueando en cada acento.','Cuando salga limpio, pasa a la cadencia y sube a 150.','Escucha el bajo: Re, Do, Si♭, La.'],
+  {id:'compas',ini:6,fin:57,titulo:'Compás de tangos',corto:'Compás',
+   texto:'Rasgueo por medio a unos 120 bpm: cada vuelta de 8 tiempos dura unos 4 segundos. El bajo va de La a Re y baja por Do hasta volver al La; hay un Sol7 que prepara el Do.',
+   practica:['Rueda en «La · Si♭ · La» a 90 bpm, rasgueando en el 1, el 5 y el 7.','Cuando salga limpio, pasa a la cadencia y sube a 110.','Escucha el bajo: Re, Do, Si♭, La.'],
    acordes:['La','Rem','Do7','Sol7','Si♭']},
-  {id:'falseta',ini:57,fin:102,titulo:'Falseta sobre La',corto:'Falseta',
-   texto:'El tempo baja a unos 158 bpm y la música se queda en el La: La al aire en el bajo, con Mi, Si♭ y Re por encima, una y otra vez. El Si♭ aparece de golpe hacia 1:13, 1:32 y 1:41.',
-   practica:['Pisa el La de la clase (x02330) y arpegia 5ª–4ª–3ª–2ª.','Repite el tramo a 0,75× y cuenta dónde cae cada nota del bajo.','Alterna La y Si♭ sin mover el 3er dedo de la 2ª cuerda.'],
+  {id:'alzapua',ini:57,fin:102,titulo:'Alzapúa sobre La',corto:'Alzapúa',
+   texto:'Entra la alzapúa y el tempo baja a unos 105 bpm. El pulgar no suelta el La: La al aire en el bordón y, por encima, Mi, Si♭ y Re, en golpes rápidos y repetidos. El Si♭ del bajo aparece hacia 1:13, 1:32 y 1:41.',
+   practica:['Primero sin mano izquierda: solo el patrón del pulgar sobre cuerdas al aire.','Usa «La alzapúa, paso a paso» más abajo a 70 bpm.','Luego pisa el La de la clase (x02330) y repite el tramo a 0,75×.'],
    acordes:['La','Si♭']},
-  {id:'vuelta',ini:102,fin:140,titulo:'Vuelta a la cadencia',corto:'Cadencia',
-   texto:'Vuelve el Re y el bajo baja nota a nota: Re, Do, Si♭, con Sol7 y Do7 de paso, hasta caer en La. Es el mismo camino del tramo 2, más apretado.',
-   practica:['Toca solo los bajos: 4ª al aire, 5ª traste 3, 5ª traste 1, 5ª al aire.','Luego los acordes completos con la rueda en «Cadencia».'],
+  {id:'falseta',ini:102,fin:140,titulo:'Falseta',corto:'Falseta',
+   texto:'Una falseta que baja por la cadencia andaluza: Re, Do, Si♭ hasta caer en La, con Sol7 y Do7 de paso. Notas sueltas y más rápidas que en el compás, a unos 118 bpm.',
+   practica:['Toca solo los bajos: 4ª al aire, 5ª traste 3, 5ª traste 1, 5ª al aire.','Repite el tramo a 0,5× e identifica cada nota en el mástil de la escala.','Encájala en la rueda: cada bajo en un 1 o un 5.'],
    acordes:['Rem','Do','Do7','Si♭','Sol7','La']},
   {id:'cierre',ini:140,fin:146,titulo:'Cierre',corto:'Cierre',
    texto:'Si♭ que resuelve en La: la cadencia andaluza de siempre, cerrando en la tónica.',
-   practica:['Remata cada ejercicio con Si♭ → La en el 10 del compás.'],
+   practica:['Remata cada ejercicio con Si♭ → La, cayendo el La en un 1.'],
    acordes:['Si♭','La']}
 ];
 const DURACION=146;
@@ -395,13 +425,14 @@ const DURACION=146;
 const CROMA=[['Re',2,1.00],['La',9,.71],['Mi',4,.61],['Si♭',10,.46],['Sol',7,.43],['Fa',5,.33],['Do',0,.28],['Fa♯',6,.18],['Si',11,.18],['Sol♯',8,.13],['Mi♭',3,.08],['Do♯',1,.05]];
 
 // Patrones de la rueda. Posición 0 = el 12; luego 1..11.
-const ACENTOS=new Set([12,3,6,8,10]);
+const SILENCIO=new Set([1,5]);
 const PATRONES={
   palmas:{},
-  basico:{12:'La',3:'Si♭',6:'La',8:'Si♭',10:'La'},
-  cadencia:{12:'Rem',3:'Do',6:'Si♭',8:'La',10:'La'}
+  basico:{1:'La',5:'Si♭',7:'La'},
+  cadencia:{1:'Rem',3:'Do',5:'Si♭',7:'La'}
 };
-const ORDEN=[12,1,2,3,4,5,6,7,8,9,10,11];
+const ORDEN=[1,2,3,4,5,6,7,8];
+const LEYENDA='PALMAS 2 · 3 · 4 — 6 · 7 · 8';
 
 /* ================= Audio ================= */
 let ctx=null, master=null;
@@ -438,12 +469,13 @@ function rasguear(nm,when,vol=.32,abajo=true){
   orden.forEach((m,i)=>pulsar(m,t0+i*.014,vol));
 }
 let ruido=null;
-function palma(when,fuerte){
+function palma(when,fuerte,sorda){
   const c=audio();
   if(!ruido){ ruido=c.createBuffer(1,Math.floor(c.sampleRate*.12),c.sampleRate); const d=ruido.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; }
   const s=c.createBufferSource(), bp=c.createBiquadFilter(), g=c.createGain();
   s.buffer=ruido; bp.type='bandpass'; bp.frequency.value=fuerte?1400:2300; bp.Q.value=1.2;
-  g.gain.setValueAtTime(fuerte?.9:.28,when); g.gain.exponentialRampToValueAtTime(.001,when+(fuerte?.11:.06));
+  if(sorda){bp.frequency.value=700; g.gain.setValueAtTime(.18,when); g.gain.exponentialRampToValueAtTime(.001,when+.05); s.connect(bp); bp.connect(g); g.connect(master); s.start(when); s.stop(when+.07); return;}
+  g.gain.setValueAtTime(fuerte?.9:.5,when); g.gain.exponentialRampToValueAtTime(.001,when+(fuerte?.11:.06));
   s.connect(bp); bp.connect(g); g.connect(master); s.start(when); s.stop(when+.13);
 }
 
@@ -454,14 +486,14 @@ const el=(tag,attrs={},parent)=>{const e=document.createElementNS(NS,tag); for(c
 el('circle',{cx:200,cy:200,r:150,class:'aro'},rueda);
 const nodosBeat={};
 ORDEN.forEach((n,i)=>{
-  const ang=(i/12)*Math.PI*2-Math.PI/2, x=200+150*Math.cos(ang), y=200+150*Math.sin(ang);
-  const g=el('g',{class:'beat'+(ACENTOS.has(n)?' acc':'')},rueda);
-  el('circle',{cx:x,cy:y,r:ACENTOS.has(n)?27:21},g);
+  const ang=(i/ORDEN.length)*Math.PI*2-Math.PI/2, x=200+150*Math.cos(ang), y=200+150*Math.sin(ang);
+  const g=el('g',{class:'beat'+(SILENCIO.has(n)?' sil':' acc')},rueda);
+  el('circle',{cx:x,cy:y,r:SILENCIO.has(n)?27:23},g);
   const t=el('text',{x,y},g); t.textContent=n;
   nodosBeat[n]=g;
 });
-const centro=el('text',{x:200,y:190,class:'centro'},rueda); centro.textContent='12';
-const sub=el('text',{x:200,y:236,class:'sub'},rueda); sub.textContent='ACENTOS 3 · 6 · 8 · 10 · 12';
+const centro=el('text',{x:200,y:190,class:'centro'},rueda); centro.textContent='1';
+const sub=el('text',{x:200,y:236,class:'sub'},rueda); sub.textContent=LEYENDA;
 
 let patron='basico', sonando=false, siguiente=0, tSiguiente=0, timer=null, cola=[];
 const bpmIn=document.getElementById('bpm'), bpmV=document.getElementById('bpmv'), btnPlay=document.getElementById('play');
@@ -469,12 +501,13 @@ bpmIn.addEventListener('input',()=>bpmV.textContent=bpmIn.value);
 function programar(){
   const c=audio(), spb=60/Number(bpmIn.value);
   while(tSiguiente<c.currentTime+.12){
-    const n=ORDEN[siguiente], acc=ACENTOS.has(n);
-    palma(tSiguiente,acc);
+    const n=ORDEN[siguiente];
+    if(!SILENCIO.has(n)) palma(tSiguiente,n===4||n===8);
+    else if(patron==='palmas') palma(tSiguiente,false,true);
     const ac=PATRONES[patron][n];
     if(ac) rasguear(ac,tSiguiente,.3);
     cola.push({t:tSiguiente,n,ac});
-    tSiguiente+=spb; siguiente=(siguiente+1)%12;
+    tSiguiente+=spb; siguiente=(siguiente+1)%ORDEN.length;
   }
 }
 let acordeActual='';
@@ -487,7 +520,7 @@ function dibujar(){
     nodosBeat[n].classList.add('on');
     if(ac) acordeActual=ac;
     centro.textContent=patron==='palmas'?String(n):acordeActual||String(n);
-    sub.textContent=patron==='palmas'?'ACENTOS 3 · 6 · 8 · 10 · 12':'TIEMPO '+n;
+    sub.textContent=patron==='palmas'?LEYENDA:'TIEMPO '+n;
   }
   requestAnimationFrame(dibujar);
 }
@@ -499,7 +532,7 @@ function arrancar(){
 function parar(){
   sonando=false; clearInterval(timer);
   Object.values(nodosBeat).forEach(g=>g.classList.remove('on'));
-  centro.textContent='12'; sub.textContent='ACENTOS 3 · 6 · 8 · 10 · 12';
+  centro.textContent='1'; sub.textContent=LEYENDA;
   btnPlay.textContent='▶ Marcar compás'; btnPlay.setAttribute('aria-pressed','false');
 }
 btnPlay.addEventListener('click',()=>sonando?parar():arrancar());
@@ -678,5 +711,33 @@ function pintarBarras(){
   });
 }
 pintarBarras();
+/* ================= Alzapúa ================= */
+{
+  const btn=document.getElementById('playAlz'), bpmA=document.getElementById('bpmAlz'), bpmAV=document.getElementById('bpmAlzV');
+  const pasos=[...document.querySelectorAll('.paso-alz')], sib=document.getElementById('alzSib');
+  let on=false, tm=null, tNext=0, k=0, alternar=false, q=[];
+  bpmA.addEventListener('input',()=>bpmAV.textContent=bpmA.value);
+  sib.addEventListener('click',()=>{alternar=!alternar; sib.setAttribute('aria-pressed',String(alternar));});
+  const agudas=[58,62,64];
+  function golpe(i,when,beat){
+    const bajo=(alternar&&Math.floor(beat/2)%2===1)?46:45;
+    if(i===0) pulsar(bajo,when,.6);
+    else (i===1?agudas:[...agudas].reverse()).forEach((m,j)=>pulsar(m,when+j*.012,.26));
+  }
+  function prog(){
+    const c=audio(), paso=60/Number(bpmA.value)/3;
+    while(tNext<c.currentTime+.12){ const beat=Math.floor(k/3); golpe(k%3,tNext,beat); q.push({t:tNext,i:k%3}); tNext+=paso; k++; }
+  }
+  function pinta(){
+    if(!on) return;
+    while(q.length&&q[0].t<=ctx.currentTime){ const {i}=q.shift(); pasos.forEach((p,n)=>p.classList.toggle('on',n===i)); }
+    requestAnimationFrame(pinta);
+  }
+  btn.addEventListener('click',()=>{
+    if(on){ on=false; clearInterval(tm); pasos.forEach(p=>p.classList.remove('on')); btn.textContent='▶ Escuchar la alzapúa'; btn.setAttribute('aria-pressed','false'); return; }
+    const c=audio(); on=true; k=0; q=[]; tNext=c.currentTime+.08; tm=setInterval(prog,25); prog(); requestAnimationFrame(pinta);
+    btn.textContent='■ Parar'; btn.setAttribute('aria-pressed','true');
+  });
+}
 })();
 </script>

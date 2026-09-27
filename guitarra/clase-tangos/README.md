@@ -35,9 +35,10 @@ más fotogramas cada 5 s.
 Suena una guitarra de nailon grabada: `muestras/*.mp3` (29 notas, de Si1 a
 La♯5) de [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments),
 grabaciones de dominio público editadas, licencia **CC BY 3.0** (se cita en el
-pie de la página). La página las procesa para acercarlas a una flamenca: corte
-de graves, −3 dB a 180 Hz, pegada a 1,1 kHz, presencia a 2,2 kHz, brillo de
-uña por encima de 3,2 kHz, ataque reforzado, cola corta y compresión rápida.
+pie de la página). La página las procesa para acercarlas a una flamenca: corte por debajo de
+95 Hz, −5 dB a 160 Hz, pegada a 1,2 kHz, presencia a 2,5 kHz, brillo de uña
+por encima de 3,5 kHz, roce de uña en el ataque, caída exponencial corta sin
+«soltar» la nota, apagado solo al pisar otra nota en la misma cuerda y poca sala.
 Hay un botón para comparar con la nailon original. Las muestras se cargan con
 `fetch`, así que abriendo `index.html` desde disco (file://) no cargan y suena
 el modelo sintético; sirviendo la carpeta por HTTP, sí.

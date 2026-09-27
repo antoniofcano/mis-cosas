@@ -722,22 +722,27 @@ function crearCuerpo(c){
   brillo.connect(envio); envio.connect(sala); sala.connect(comp);
   // Cadena para las muestras de nailon: la acerca a una flamenca.
   const real=c.createGain();
-  const hp=c.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=80; hp.Q.value=.7;
-  const bum=c.createBiquadFilter(); bum.type='peaking'; bum.frequency.value=180; bum.Q.value=1.1; bum.gain.value=-3;      // menos bola de clásica
-  const pegada=c.createBiquadFilter(); pegada.type='peaking'; pegada.frequency.value=1100; pegada.Q.value=1.2; pegada.gain.value=1.5;
-  const presencia=c.createBiquadFilter(); presencia.type='peaking'; presencia.frequency.value=2200; presencia.Q.value=1; presencia.gain.value=3;
-  const una=c.createBiquadFilter(); una.type='highshelf'; una.frequency.value=3200; una.gain.value=5;                     // brillo de uña
+  const hp=c.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=95; hp.Q.value=.7;
+  const bum=c.createBiquadFilter(); bum.type='peaking'; bum.frequency.value=160; bum.Q.value=.9; bum.gain.value=-5;      // menos bola de clásica
+  const pegada=c.createBiquadFilter(); pegada.type='peaking'; pegada.frequency.value=1200; pegada.Q.value=1.2; pegada.gain.value=2;
+  const presencia=c.createBiquadFilter(); presencia.type='peaking'; presencia.frequency.value=2500; presencia.Q.value=1; presencia.gain.value=4;
+  const una=c.createBiquadFilter(); una.type='highshelf'; una.frequency.value=3500; una.gain.value=6;                     // brillo de uña
   const compR=c.createDynamicsCompressor(); compR.threshold.value=-20; compR.ratio.value=4; compR.attack.value=.002; compR.release.value=.12;
   real.connect(hp); hp.connect(bum); bum.connect(pegada); pegada.connect(presencia); presencia.connect(una); una.connect(compR); compR.connect(comp);
-  const envioR=c.createGain(); envioR.gain.value=.08; una.connect(envioR); envioR.connect(sala);
+  const envioR=c.createGain(); envioR.gain.value=.05; una.connect(envioR); envioR.connect(sala);
   // la nailon tal cual, para comparar
   const clasica=c.createGain(); clasica.connect(comp);
   const envioC=c.createGain(); envioC.gain.value=.12; clasica.connect(envioC); envioC.connect(sala);
   return {sint:entrada,real,clasica};
 }
+let voces={};
 function nuevaSalida(){
-  if(master) master.disconnect(); master=ctx.createGain(); master.gain.value=.9; master.connect(cuerpo.sint);
-  if(masterM) masterM.disconnect(); masterM=ctx.createGain(); masterM.gain.value=1; masterM.connect(flamenca?cuerpo.real:cuerpo.clasica);
+  // la salida vieja se funde en 80 ms en vez de cortarse en seco
+  const t=ctx.currentTime;
+  [master,masterM].forEach(m=>{ if(!m) return; m.gain.cancelScheduledValues(t); m.gain.setValueAtTime(m.gain.value,t); m.gain.linearRampToValueAtTime(0,t+.08); setTimeout(()=>m.disconnect(),200); });
+  master=ctx.createGain(); master.gain.value=.9; master.connect(cuerpo.sint);
+  masterM=ctx.createGain(); masterM.gain.value=1; masterM.connect(flamenca?cuerpo.real:cuerpo.clasica);
+  voces={};
 }
 function ponerTimbre(fl){ flamenca=fl; if(ctx){ masterM.disconnect(); masterM.connect(flamenca?cuerpo.real:cuerpo.clasica); } }
 function audio(){
@@ -789,25 +794,33 @@ function bufferCuerda(midi){
   cache.set(midi,buf); return buf;
 }
 let clic=null;
-function pulsar(midi,when,vol=.5){
+function pulsar(midi,when,vol=.5,{cuerda=null,ligado=false}={}){
   const c=audio(), t=when??c.currentTime, v=vol*(.9+Math.random()*.2);
   if(muestras.size){
     let base=null, dmin=99; for(const m of muestras.keys()){ const dd=Math.abs(m-midi); if(dd<dmin){ dmin=dd; base=m; } }
-    const s=c.createBufferSource(), g=c.createGain();
-    s.buffer=muestras.get(base); s.playbackRate.value=Math.pow(2,(midi-base)/12);
-    const pico=v*1.5;
-    if(flamenca){
-      // ataque con más pegada y cola corta, como la flamenca
-      g.gain.setValueAtTime(pico*1.35,t); g.gain.linearRampToValueAtTime(pico,t+.035);
-      g.gain.setTargetAtTime(pico*.35,t+.08,midi<52?.55:.35);
-      g.gain.setTargetAtTime(0,t+(midi<52?1.6:1.1),.3);
-    }else{ g.gain.setValueAtTime(pico,t); g.gain.setTargetAtTime(0,t+2.6,.5); }
-    s.connect(g); g.connect(masterM); s.start(t); s.stop(t+4.5);
-    if(flamenca){
+    const buf=muestras.get(base), rate=Math.pow(2,(midi-base)/12), fin=t+buf.duration/rate;
+    const s=c.createBufferSource(), env=c.createGain(), apag=c.createGain();
+    s.buffer=buf; s.playbackRate.value=rate;
+    // una sola caída exponencial, como una cuerda real: nada de «soltar» la nota a destiempo
+    const pico=v*1.5, tau=flamenca?(midi<50?.85:midi<60?.65:.5):(midi<50?1.8:1.3);
+    env.gain.setValueAtTime(0,t);
+    env.gain.linearRampToValueAtTime(pico*(ligado?.75:flamenca?1.25:1),t+(ligado?.012:.004));
+    env.gain.linearRampToValueAtTime(pico*(ligado?.75:1),t+.035);
+    env.gain.setTargetAtTime(0,t+.035,tau);
+    // la grabación termina: fundido de 0,25 s en vez de corte
+    apag.gain.setValueAtTime(1,Math.max(t,fin-.25)); apag.gain.linearRampToValueAtTime(0,fin);
+    s.connect(env); env.connect(apag); apag.connect(masterM); s.start(t); s.stop(fin+.02);
+    // una nota nueva en la misma cuerda apaga la anterior, con suavidad (~25 ms)
+    if(cuerda){
+      const prev=voces[cuerda];
+      if(prev&&prev.fin>t){ prev.apag.gain.cancelScheduledValues(t); prev.apag.gain.setTargetAtTime(0,t,.025); }
+      voces[cuerda]={apag,fin};
+    }
+    if(flamenca&&!ligado){
       if(!clic){ clic=c.createBuffer(1,Math.floor(c.sampleRate*.012),c.sampleRate); const d=clic.getChannelData(0); for(let k=0;k<d.length;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/d.length,2); }
-      const u=c.createBufferSource(), hp=c.createBiquadFilter(), gu=c.createGain();
-      u.buffer=clic; hp.type='highpass'; hp.frequency.value=3000; gu.gain.value=v*.07;
-      u.connect(hp); hp.connect(gu); gu.connect(masterM); u.start(t);
+      const u=c.createBufferSource(), bp=c.createBiquadFilter(), gu=c.createGain();
+      u.buffer=clic; bp.type='bandpass'; bp.frequency.value=3800; bp.Q.value=.9; gu.gain.value=v*.1;
+      u.connect(bp); bp.connect(gu); gu.connect(masterM); u.start(t);
     }
     return;
   }
@@ -820,9 +833,10 @@ function pulsar(midi,when,vol=.5){
   u.connect(hp); hp.connect(gu); gu.connect(master); u.start(t);
 }
 function rasguear(nm,when,vol=.32,abajo=true){
-  const c=audio(), t0=when??c.currentTime, ns=notasAcorde(nm);
+  const c=audio(), t0=when??c.currentTime, base=[40,45,50,55,59,64];
+  const ns=ACORDES[nm].t.map((f,i)=>f==='x'?null:{m:base[i]+f,cuerda:6-i}).filter(Boolean);
   const orden=abajo?ns:[...ns].reverse();
-  orden.forEach((m,i)=>pulsar(m,t0+i*.016,vol*(abajo?1+i*.05:1)));
+  orden.forEach((n,i)=>pulsar(n.m,t0+i*.016,vol*(abajo?1+i*.05:1),{cuerda:n.cuerda}));
 }
 // golpe con el anular en el golpeador: madera seca, no palmada
 function golpeTapa(when){
@@ -1092,7 +1106,7 @@ video.addEventListener('timeupdate',()=>{
 
   // --- sonido
   function sonar(e,when){
-    if(e.k==='n') pulsar(e.m,when,.6);
+    if(e.k==='n') pulsar(e.m,when,.6,{cuerda:e.c,ligado:e.s==='l'});
     else if(e.k==='g') golpeTapa(when);
     else rasguear('La',when,.34);
   }
@@ -1298,7 +1312,7 @@ function pintarMastil(){
       el('circle',{cx:xNota(f),cy:Y0+SEP*i,r:15},g);
       const t=el('text',{x:xNota(f),y:Y0+SEP*i},g); t.textContent=nombre(m%12);
       g.dataset.midi=m;
-      const tocar=()=>{pulsar(m); destacar([g]);};
+      const tocar=()=>{pulsar(m,undefined,.5,{cuerda:i+1}); destacar([g]);};
       g.addEventListener('click',tocar);
       g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tocar();}});
       nodosNota.push({g,m,cuerda:i,f});
@@ -1323,7 +1337,7 @@ document.getElementById('tocarEscala').addEventListener('click',()=>{
   const sube=D.notas.map(([cu,f])=>nodosNota.find(x=>x.cuerda===cu-1&&x.f===f)).filter(Boolean);
   const ruta=[...sube,...sube.slice(0,-1).reverse()];
   ruta.forEach((n,i)=>{
-    pulsar(n.m,t0+i*paso,.55);
+    pulsar(n.m,t0+i*paso,.55,{cuerda:n.cuerda+1});
     setTimeout(()=>{destacar([n.g]); grados.querySelectorAll('.grado').forEach(d=>d.classList.toggle('sonando',Number(d.dataset.pc)===n.m%12));},(i*paso+.05)*1000);
   });
   setTimeout(()=>grados.querySelectorAll('.grado').forEach(d=>d.classList.remove('sonando')),(ruta.length*paso+.5)*1000);

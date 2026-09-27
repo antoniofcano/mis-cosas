@@ -321,6 +321,11 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
 .rueda-mastil .mastil{min-width:520px}
 .mastil .ac-rotulo{font-family:var(--display);font-size:18px;font-weight:700;fill:#F6D9A2;text-anchor:end;paint-order:stroke;stroke:#2A1A14;stroke-width:4}
 .mastil .ac-dig{font-family:var(--mono);font-size:12px;font-weight:600;fill:#E9A94A}
+/* Vista «como en el vídeo»: el profe está de frente, así que el mástil se ve girado 180°
+   (cejuela a la derecha, 6ª arriba). Los textos se vuelven a girar para que se lean. */
+body.espejo svg.mastil{transform:scale(-1,-1)}
+body.espejo svg.mastil text{transform-box:fill-box;transform-origin:center;transform:scale(-1,-1)}
+.vista-chip{white-space:nowrap}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -448,6 +453,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     </div>
     <div class="secuencia" id="secuencia"></div>
     <div class="rueda-mastil">
+      <div><button class="chip vista-chip" type="button" data-vista aria-pressed="true">Vista: como en el vídeo</button></div>
       <div class="mastil-box"><svg class="mastil" id="mastilRueda" viewBox="0 0 640 236" role="img" aria-label="Mástil con el acorde de la rueda que suena"></svg></div>
       <p class="vivo-info" id="ruedaAcorde">Pulsa un acorde de la rueda o «Tocar sobre el compás» para verlo en el mástil.</p>
     </div>
@@ -478,6 +484,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
       <button class="btn primary" id="tocarEscala" type="button">▶ Tocar la escala</button>
       <button class="chip" id="verDoS" type="button" aria-pressed="false">Mostrar Sol♯</button>
       <button class="chip" id="nombres" type="button" aria-pressed="false">Nombres A B C</button>
+      <button class="chip vista-chip" type="button" data-vista aria-pressed="true">Vista: como en el vídeo</button>
     </div>
     <div class="controles" style="justify-content:flex-start;width:100%" role="group" aria-label="Qué parte del mástil ver">
       <button class="chip dib" type="button" data-dib="0" aria-pressed="true">Todo el mástil</button>
@@ -536,6 +543,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
         <div class="vivo" id="vivo">
           <div class="vivo-cab">
             <p class="eyebrow">La falseta en el mástil</p>
+            <button class="chip vista-chip" type="button" data-vista aria-pressed="true">Vista: como en el vídeo</button>
             <span class="mono vivo-pase" id="vivoPase">Parada</span>
           </div>
           <p class="muted vivo-aviso" id="vivoAviso" hidden>El mástil está ahora sobre el vídeo.</p>
@@ -1568,6 +1576,19 @@ pintarBarras();
   const fl=document.getElementById('timbreFl'), cl=document.getElementById('timbreCl');
   const poner=v=>{ ponerTimbre(v); fl.setAttribute('aria-pressed',String(v)); cl.setAttribute('aria-pressed',String(!v)); rasguear('La'); };
   fl.addEventListener('click',()=>poner(true)); cl.addEventListener('click',()=>poner(false));
+}
+
+/* ================= Vista del mástil ================= */
+{
+  let espejo=true; try{ espejo=localStorage.getItem('tangos-vista')!=='tab'; }catch(e){}
+  const botones=[...document.querySelectorAll('[data-vista]')];
+  function poner(v){
+    espejo=v; document.body.classList.toggle('espejo',v);
+    botones.forEach(b=>{ b.setAttribute('aria-pressed',String(v)); b.textContent=v?'Vista: como en el vídeo':'Vista: como una tablatura'; });
+    try{ localStorage.setItem('tangos-vista',v?'video':'tab'); }catch(e){}
+  }
+  botones.forEach(b=>b.addEventListener('click',()=>poner(!espejo)));
+  poner(espejo);
 }
 
 /* ================= Pestañas ================= */

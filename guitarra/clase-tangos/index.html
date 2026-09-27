@@ -727,7 +727,7 @@ function crearCuerpo(c){
   const pegada=c.createBiquadFilter(); pegada.type='peaking'; pegada.frequency.value=1200; pegada.Q.value=1.2; pegada.gain.value=2;
   const presencia=c.createBiquadFilter(); presencia.type='peaking'; presencia.frequency.value=2500; presencia.Q.value=1; presencia.gain.value=4;
   const una=c.createBiquadFilter(); una.type='highshelf'; una.frequency.value=3500; una.gain.value=6;                     // brillo de uña
-  const compR=c.createDynamicsCompressor(); compR.threshold.value=-20; compR.ratio.value=4; compR.attack.value=.002; compR.release.value=.12;
+  const compR=c.createDynamicsCompressor(); compR.threshold.value=-18; compR.ratio.value=2.5; compR.attack.value=.012; compR.release.value=.15;
   real.connect(hp); hp.connect(bum); bum.connect(pegada); pegada.connect(presencia); presencia.connect(una); una.connect(compR); compR.connect(comp);
   const envioR=c.createGain(); envioR.gain.value=.05; una.connect(envioR); envioR.connect(sala);
   // la nailon tal cual, para comparar
@@ -798,29 +798,25 @@ function pulsar(midi,when,vol=.5,{cuerda=null,ligado=false}={}){
   const c=audio(), t=when??c.currentTime, v=vol*(.9+Math.random()*.2);
   if(muestras.size){
     let base=null, dmin=99; for(const m of muestras.keys()){ const dd=Math.abs(m-midi); if(dd<dmin){ dmin=dd; base=m; } }
-    const buf=muestras.get(base), rate=Math.pow(2,(midi-base)/12), fin=t+buf.duration/rate;
+    const buf=muestras.get(base), rate=Math.pow(2,(midi-base)/12), fin=t+(buf.duration-.025)/rate;
     const s=c.createBufferSource(), env=c.createGain(), apag=c.createGain();
     s.buffer=buf; s.playbackRate.value=rate;
     // una sola caída exponencial, como una cuerda real: nada de «soltar» la nota a destiempo
     const pico=v*1.5, tau=flamenca?(midi<50?.85:midi<60?.65:.5):(midi<50?1.8:1.3);
+    const ataque=pico*(ligado?.75:flamenca?1.12:1);
     env.gain.setValueAtTime(0,t);
-    env.gain.linearRampToValueAtTime(pico*(ligado?.75:flamenca?1.25:1),t+(ligado?.012:.004));
-    env.gain.linearRampToValueAtTime(pico*(ligado?.75:1),t+.035);
-    env.gain.setTargetAtTime(0,t+.035,tau);
+    env.gain.linearRampToValueAtTime(ataque,t+(ligado?.012:.003));
+    env.gain.setTargetAtTime(pico*(ligado?.75:1),t+.01,.03);
+    env.gain.setTargetAtTime(0,t+.08,tau);
     // la grabación termina: fundido de 0,25 s en vez de corte
     apag.gain.setValueAtTime(1,Math.max(t,fin-.25)); apag.gain.linearRampToValueAtTime(0,fin);
-    s.connect(env); env.connect(apag); apag.connect(masterM); s.start(t); s.stop(fin+.02);
+    // las muestras traen ~27 ms de relleno MP3 al principio: se salta para que el ataque caiga en su sitio
+    s.connect(env); env.connect(apag); apag.connect(masterM); s.start(t,.025); s.stop(fin+.02);
     // una nota nueva en la misma cuerda apaga la anterior, con suavidad (~25 ms)
     if(cuerda){
       const prev=voces[cuerda];
-      if(prev&&prev.fin>t){ prev.apag.gain.cancelScheduledValues(t); prev.apag.gain.setTargetAtTime(0,t,.025); }
+      if(prev&&prev.fin>t){ const g=prev.apag.gain; if(g.cancelAndHoldAtTime) g.cancelAndHoldAtTime(t); else g.cancelScheduledValues(t); g.setTargetAtTime(0,t,.025); }
       voces[cuerda]={apag,fin};
-    }
-    if(flamenca&&!ligado){
-      if(!clic){ clic=c.createBuffer(1,Math.floor(c.sampleRate*.012),c.sampleRate); const d=clic.getChannelData(0); for(let k=0;k<d.length;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/d.length,2); }
-      const u=c.createBufferSource(), bp=c.createBiquadFilter(), gu=c.createGain();
-      u.buffer=clic; bp.type='bandpass'; bp.frequency.value=3800; bp.Q.value=.9; gu.gain.value=v*.1;
-      u.connect(bp); bp.connect(gu); gu.connect(masterM); u.start(t);
     }
     return;
   }

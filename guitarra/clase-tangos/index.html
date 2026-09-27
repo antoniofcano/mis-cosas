@@ -319,6 +319,8 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
 .vivo-aviso{font-size:.85rem}
 .rueda-mastil{display:grid;gap:8px}
 .rueda-mastil .mastil{min-width:520px}
+.mastil .ac-rotulo{font-family:var(--display);font-size:18px;font-weight:700;fill:#F6D9A2;text-anchor:end;paint-order:stroke;stroke:#2A1A14;stroke-width:4}
+.mastil .ac-dig{font-family:var(--mono);font-size:12px;font-weight:600;fill:#E9A94A}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -696,7 +698,7 @@ const TRAMOS=[
    practica:['Monta el La x02330 y escúchalo en el botón de abajo: el Si♭ y el Re le dan la tensión del por medio.','Toca solo los bajos de la rueda: La, Re, Do, Si♭, La.','Luego la alzapúa sobre cada acorde, a 70 bpm (pestaña Compás).'],
    acordes:['La','Si♭','Do','Do7','La7']},
   {id:'alzapua',ini:65,fin:146,titulo:'Explicación de la alzapúa',corto:'Alzapúa',
-   texto:'Desde 1:05, confirmado por quien grabó la clase. Por revisar con más detalle: la alzapúa sigue sobre el La (la 5ª al aire de pedal, con Mi, Si♭ y Re por encima) y después pasa por la cadencia Re–Do–Si♭–La (1:42–2:20), cerrando con Si♭ → La.',
+   texto:'Desde 1:05. Los mismos acordes de la rueda, más despacio: se queda en el La (x02330) con la 5ª al aire de pedal hasta 1:32, alterna La y Si♭ hasta 1:43, recorre la rueda (Si♭/Re, Do7, La) hasta 2:19 y cierra Si♭ → La. El mástil de debajo del vídeo marca cada acorde (tiempos aproximados, sacados del audio).',
    practica:['Usa «La alzapúa, paso a paso» (pestaña Compás) a 70 bpm.','Pisa el La de la clase (x02330) y repite 0:57–1:42 a 0,75×.','Cuando salga, pásala por Rem–Do–Si♭–La.'],
    acordes:['La','Si♭','Rem','Do','Sol7']}
 ];
@@ -720,8 +722,12 @@ const ESCALAS={
     texto:'La que suena en la falseta de la clase: Si♭ en la 5ª cuerda, traste 1 (medido en el audio: 116 Hz; el Si natural daría 123). Es la misma escala que Mi frigio una cuarta más arriba, la del tango por medio: el semitono La–Si♭ hace el papel del Mi–Fa. Los dos dibujos son los que recorre la falseta.',
     notas:ESCALA, opcional:OPCIONAL, dibujos:DIBUJOS}
 };
-// Rueda de la clase (0:40–1:05), acorde a acorde, sacada del audio (aproximada)
-const RUEDA_VIDEO=[[40,'La'],[42,'Si♭/Re'],[44,'Do7'],[47,'Si♭'],[50,'Do7'],[51,'La'],[52,'Si♭/Re'],[54,'Do7'],[57,'Si♭'],[60,'La7'],[64,'La'],[65,null]];
+// Acordes del vídeo fuera de la falseta, sacados del audio (aproximados):
+// la rueda (0:40–1:05) y la explicación de la alzapúa (1:05–2:26), que usa los mismos acordes más despacio
+const RUEDA_VIDEO=[[40,'La'],[42,'Si♭/Re'],[44,'Do7'],[47,'Si♭'],[50,'Do7'],[51,'La'],[52,'Si♭/Re'],[54,'Do7'],[57,'Si♭'],[60,'La7'],[64,'La'],
+  [68,'Do7'],[69,'La'],[92,'Si♭'],[93.5,'La'],[96,'Si♭'],[98,'La'],[101,'Si♭'],[103,'Si♭/Re'],[106.5,'Do7'],[107.5,'Si♭/Re'],[109.5,'La'],
+  [111,'Si♭/Re'],[112,'Do7'],[114,'Si♭'],[115,'La'],[116,'Do7'],[117,'Si♭/Re'],[121.5,'Do7'],[122.5,'Si♭/Re'],[123.5,'Do7'],[125.5,'La'],
+  [129,'Si♭/Re'],[133,'La'],[134,'Do7'],[135.5,'La'],[136.5,'Do7'],[137.5,'Si♭/Re'],[139,'La'],[141,'Si♭'],[142,'La'],[146.5,null]];
 const PASES=[{n:1,ini:6.0,fin:21.9,k:'t1'},{n:2,ini:22.3,fin:39.2,k:'t2'}];
 const DURACION=146;
 
@@ -1059,6 +1065,9 @@ video.addEventListener('timeupdate',()=>{
     D.notas.forEach(([c,f])=>el('circle',{cx:xN(f),cy:yC(c),r:6,class:'fantasma'},caja));
   }
   const golpeTxt=el('text',{x:X0+AN/2,y:Y0+SP*2.5+5,class:'golpe-t'},svgM);
+  const rotulo=el('text',{x:X0+AN,y:16,class:'ac-rotulo'},svgM);
+  const rNom=el('tspan',{},rotulo), rDig=el('tspan',{class:'ac-dig',dx:8},rotulo);
+  function ponNombre(nm){ rNom.textContent=nm?nm.replace(/ \(.*\)/,''):''; rDig.textContent=nm?ACORDES[nm].t.join(''):''; }
   function punto(c,f,m,clase,op){
     const g=el('g',{class:'nota '+clase,opacity:op},capa);
     el('circle',{cx:xN(f),cy:yC(c),r:clase.includes('actual')?17:14},g);
@@ -1158,15 +1167,15 @@ video.addEventListener('timeupdate',()=>{
         const clave='r:'+r[0]; if(clave===ultimo) return; ultimo=clave;
         capa.innerHTML=''; golpeTxt.textContent=''; pintarCaja(0);
         nodosTab.forEach(g=>g.classList.remove('actual','sonada'));
-        formaDe(r[1]).forEach(a=>punto(a.c,a.f,a.m,'actual','1'));
-        paseEl.textContent='Rueda de acordes · aproximada';
+        formaDe(r[1]).forEach(a=>punto(a.c,a.f,a.m,'actual','1')); ponNombre(r[1]);
+        paseEl.textContent=(T<65?'Rueda de acordes':'Explicación de la alzapúa')+' · acordes aproximados';
         info.innerHTML=`<b>${r[1]}</b> · ${(ACORDES[r[1]].rol||'').split(':')[0]} (${ACORDES[r[1]].t.join('')})`;
         return;
       }
       if(ultimo==='fuera') return; ultimo='fuera';
-      capa.innerHTML=''; golpeTxt.textContent=''; pintarCaja(0); paseEl.textContent='Fuera de la falseta';
+      capa.innerHTML=''; golpeTxt.textContent=''; pintarCaja(0); ponNombre(''); paseEl.textContent='Fuera de la falseta';
       nodosTab.forEach(g=>g.classList.remove('actual','sonada'));
-      info.textContent='La falseta suena entre 0:06 y 0:39 y la rueda entre 0:40 y 1:05. Pulsa ▶ o lleva el vídeo ahí.';
+      info.textContent='La falseta suena entre 0:06 y 0:39; desde 0:40, la rueda y la explicación de la alzapúa. Pulsa ▶ o lleva el vídeo ahí.';
       return;
     }
     const k=pase.k; let i=-1;
@@ -1181,7 +1190,7 @@ video.addEventListener('timeupdate',()=>{
     const clave=pase.n+':'+i; if(clave===ultimo) return; ultimo=clave;
     { const IX=INICIOS.map(t=>EV.findIndex(e=>Math.abs(e.t1-t)<.01)); let kk=0; IX.forEach((ix,k)=>{ if(ix<=Math.max(0,i)) kk=k; }); paseEl.textContent=`${pase.n}ª vuelta · compás ${kk+1} · nota ${Math.max(0,i+1)} de ${EV.length}`; }
     nodosTab.forEach((g,j)=>{g.classList.toggle('actual',j===i); g.classList.toggle('sonada',j<i);});
-    capa.innerHTML=''; golpeTxt.textContent='';
+    capa.innerHTML=''; golpeTxt.textContent=''; ponNombre('');
     // recorrido del compás que suena: sus notas en transparencia, unidas y numeradas
     const IIDX=INICIOS.map(t=>EV.findIndex(e=>Math.abs(e.t1-t)<.01));
     let kc=0; IIDX.forEach((ix,k)=>{ if(ix<=Math.max(0,i)) kc=k; });
@@ -1210,7 +1219,7 @@ video.addEventListener('timeupdate',()=>{
       golpeTxt.textContent='GOLPE';
       info.innerHTML='<b>Golpe</b> · el anular golpea la tapa entre frases';
     }else{
-      capa.innerHTML=''; formaDe(e.ac).forEach(a=>punto(a.c,a.f,a.m,'actual','1'));
+      capa.innerHTML=''; formaDe(e.ac).forEach(a=>punto(a.c,a.f,a.m,'actual','1')); ponNombre(e.ac);
       info.innerHTML=`<b>${e.ac.replace(/ \(.*\)/,'')}</b> · ${ACORDES[e.ac].rol} (${ACORDES[e.ac].t.join('')})`;
     }
   }
@@ -1481,10 +1490,11 @@ Object.keys(ACORDES).forEach(nm=>{
   for(let c=1;c<=6;c++){ el('line',{x1:X0r-48,y1:yCr(c),x2:X0r+ANr,y2:yCr(c),stroke:'#D9CDB6','stroke-width':.8+c*.35},svgR); const t=el('text',{x:X0r-58,y:yCr(c)+4,class:'lbl'},svgR); t.textContent=c+'ª'; }
   for(let f=1;f<=FRr;f++){ const t=el('text',{x:xNr(f),y:Y0r+SPr*5+30,class:'lbl'},svgR); t.textContent=f; }
   const capaR=el('g',{},svgR);
+  const rotR=el('text',{x:X0r+ANr,y:16,class:'ac-rotulo'},svgR), rNomR=el('tspan',{},rotR), rDigR=el('tspan',{class:'ac-dig',dx:8},rotR);
   let acR='';
   function verAcorde(nm){
     if(!nm||nm===acR) return; acR=nm; capaR.innerHTML='';
-    const t=ACORDES[nm].t;
+    const t=ACORDES[nm].t; rNomR.textContent=nm; rDigR.textContent=t.join('');
     t.forEach((f,i)=>{ const c=6-i;
       if(f==='x'){ const m=el('text',{x:X0r-30,y:yCr(c)+5,class:'lbl'},capaR); m.textContent='×'; return; }
       const g=el('g',{class:'nota actual'},capaR);

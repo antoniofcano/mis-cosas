@@ -310,12 +310,18 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
 .vivo-mastil .nota.rec.viene text{fill:#F6D9A2}
 .vivo-mastil .nota.rec.hecha circle{fill:rgba(246,217,162,.45);stroke:none}
 .vivo-mastil .ord{font-family:var(--mono);font-size:10px;font-weight:600;fill:#E9A94A;text-anchor:start;paint-order:stroke;stroke:#2A1A14;stroke-width:3}
-.capa-mastil{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:min(74%,720px);pointer-events:none;--op:.35}
+.capa-mastil{position:absolute;right:2%;left:auto;bottom:48px;width:var(--w,56%);max-width:96%;pointer-events:auto;cursor:grab;touch-action:none;--op:.35;border-radius:10px}
+body.video-espejo .capa-mastil:not(.movida){left:2%;right:auto}
+.capa-mastil.arrastrando{cursor:grabbing;outline:2px dashed #E9A94A}
+.capa-mastil .cejuela-l{stroke-width:3;stroke-opacity:.55}
+.capa-mastil .traste-l{stroke-opacity:.45}
+.capa-mastil .cuerda-l{stroke-opacity:.5}
+.capa-asa{position:absolute;top:-10px;right:-10px;width:22px;height:22px;border-radius:50%;background:#E9A94A;color:#2A1A14;font-size:12px;display:grid;place-items:center;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}
 .capa-mastil svg{width:100%;height:auto;display:block;min-width:0}
 .capa-mastil .madera{fill-opacity:var(--op)}
 .capa-mastil .lbl{fill:#FFFFFF;paint-order:stroke;stroke:#000;stroke-width:2}
 .video-box:fullscreen{border-radius:0;aspect-ratio:auto;width:100%;height:100%}
-.video-box:fullscreen .capa-mastil{width:min(60%,1100px)}
+.video-box:fullscreen .capa-mastil{bottom:60px}
 .vivo-aviso{font-size:.85rem}
 .rueda-mastil{display:grid;gap:8px}
 .rueda-mastil .mastil{min-width:520px}
@@ -531,13 +537,14 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
             <input id="fichero" type="file" accept="video/*" hidden>
           </div>
           <video id="video" playsinline hidden></video>
-          <div class="capa-mastil" id="capaMastil" hidden></div>
+          <div class="capa-mastil" id="capaMastil" hidden title="Arrástrala a donde menos moleste"><span class="capa-asa" aria-hidden="true">✥</span></div>
         </div>
         <div class="reproduccion">
           <button class="btn" id="irA" type="button" disabled>▶ Reproducir parte</button>
           <button class="chip" id="bucle" type="button" aria-pressed="false" disabled>⟲ En bucle</button>
           <button class="chip" id="capaBtn" type="button" aria-pressed="false" disabled>Mástil sobre el vídeo</button>
           <label class="tempo" for="capaOp" id="capaOpL" hidden>Madera <input id="capaOp" type="range" min="0" max="100" value="35"></label>
+          <label class="tempo" for="capaTam" id="capaTamL" hidden>Tamaño <input id="capaTam" type="range" min="30" max="95" value="56"></label>
           <button class="chip" id="pantallaBtn" type="button" disabled>⛶ Pantalla completa</button>
           <button class="chip" id="espejoVid" type="button" aria-pressed="false" disabled title="Como verte en un espejo: útil para la mano izquierda; para la alzapúa, mejor sin espejo">⇋ Vídeo en espejo</button>
           <div role="group" aria-label="Velocidad" style="display:flex;gap:6px">
@@ -1062,9 +1069,9 @@ video.addEventListener('timeupdate',()=>{
   el('rect',{x:X0,y:Y0-12,width:AN,height:SP*5+24,rx:4,fill:'#3A261D',class:'madera'},svgM);
   [3,5,7].forEach(f=>el('circle',{cx:xN(f),cy:Y0+SP*2.5,r:6,fill:'#5A4235'},svgM));
   const caja=el('g',{},svgM);
-  for(let f=0;f<=FR;f++) el('line',{x1:xT(f),y1:Y0-12,x2:xT(f),y2:Y0+SP*5+12,stroke:f===0?'#EFE3D0':'#B9A98F','stroke-width':f===0?7:2.5},svgM);
+  for(let f=0;f<=FR;f++) el('line',{x1:xT(f),y1:Y0-12,x2:xT(f),y2:Y0+SP*5+12,stroke:f===0?'#EFE3D0':'#B9A98F','stroke-width':f===0?7:2.5,class:f===0?'cejuela-l':'traste-l'},svgM);
   for(let c=1;c<=6;c++){
-    el('line',{x1:X0-48,y1:yC(c),x2:X0+AN,y2:yC(c),stroke:'#D9CDB6','stroke-width':.8+c*.35},svgM);
+    el('line',{x1:X0-48,y1:yC(c),x2:X0+AN,y2:yC(c),stroke:'#D9CDB6','stroke-width':.8+c*.35,class:'cuerda-l'},svgM);
     const t=el('text',{x:X0-58,y:yC(c)+4,class:'lbl'},svgM); t.textContent=c+'ª';
   }
   for(let f=1;f<=FR;f++){const t=el('text',{x:xN(f),y:Y0+SP*5+30,class:'lbl'},svgM); t.textContent=f;}
@@ -1565,11 +1572,28 @@ pintarBarras();
   const pant=document.getElementById('pantallaBtn'), vbox=document.getElementById('videoBox');
   let encima=false;
   function poner(v){
-    encima=v; btn.setAttribute('aria-pressed',String(v)); opL.hidden=!v; capa.hidden=!v; aviso.hidden=!v; caja.hidden=v;
+    encima=v; btn.setAttribute('aria-pressed',String(v)); opL.hidden=!v; tamL.hidden=!v; capa.hidden=!v; aviso.hidden=!v; caja.hidden=v;
     (v?capa:caja).appendChild(svg);
   }
   btn.addEventListener('click',()=>poner(!encima));
   op.addEventListener('input',()=>capa.style.setProperty('--op',op.value/100));
+  const tam=document.getElementById('capaTam'), tamL=document.getElementById('capaTamL');
+  const guardar=()=>{ try{ localStorage.setItem('tangos-capa',JSON.stringify({w:tam.value,l:capa.style.left,t:capa.style.top})); }catch(e){} };
+  tam.addEventListener('input',()=>{ capa.style.setProperty('--w',tam.value+'%'); guardar(); });
+  try{ const g=JSON.parse(localStorage.getItem('tangos-capa')||'null'); if(g){ tam.value=g.w; capa.style.setProperty('--w',g.w+'%'); if(g.t){ capa.style.left=g.l; capa.style.top=g.t; capa.style.bottom='auto'; capa.style.right='auto'; capa.classList.add('movida'); } } }catch(e){}
+  // arrastrar la capa dentro del vídeo
+  let arr=null;
+  capa.addEventListener('pointerdown',e=>{
+    const r=capa.getBoundingClientRect(), b=vbox.getBoundingClientRect();
+    arr={dx:e.clientX-r.left,dy:e.clientY-r.top,b}; capa.setPointerCapture(e.pointerId); capa.classList.add('arrastrando'); e.preventDefault();
+  });
+  capa.addEventListener('pointermove',e=>{
+    if(!arr) return; const {b}=arr, r=capa.getBoundingClientRect();
+    const x=Math.max(0,Math.min(b.width-r.width,e.clientX-b.left-arr.dx)), y=Math.max(0,Math.min(b.height-r.height,e.clientY-b.top-arr.dy));
+    capa.style.left=(100*x/b.width)+'%'; capa.style.top=(100*y/b.height)+'%'; capa.style.bottom='auto'; capa.style.right='auto'; capa.classList.add('movida');
+  });
+  const soltar=()=>{ if(!arr) return; arr=null; capa.classList.remove('arrastrando'); guardar(); };
+  capa.addEventListener('pointerup',soltar); capa.addEventListener('pointercancel',soltar);
   pant.addEventListener('click',()=>{
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
     else if(vbox.requestFullscreen) vbox.requestFullscreen().catch(()=>{});

@@ -287,6 +287,21 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
 @media (max-width:860px){.compas-grid{grid-template-columns:1fr}}
 @media (max-width:620px){.tonos{grid-template-columns:1fr}.bloque b{font-size:1.05rem}.t-cel span{display:none}}
 
+.transporte{display:grid;gap:10px;padding:12px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.tr-linea{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.tr-t{font-size:.8rem;color:var(--ink-2);min-width:4.5em;text-align:center}
+.tr-pista{position:relative;padding-top:16px}
+.tr-pista input{width:100%;accent-color:var(--accent);margin:0;display:block}
+.tr-marcas{position:absolute;left:8px;right:8px;top:0;height:14px;pointer-events:none}
+.tr-marcas i{position:absolute;top:8px;width:2px;height:6px;background:var(--ink-2);opacity:.5;transform:translateX(-1px)}
+.tr-marcas i.g{background:var(--golpe);opacity:.9;height:8px;top:6px}
+.tr-marcas b{position:absolute;top:0;font-family:var(--mono);font-size:9px;font-weight:600;color:var(--accent);transform:translateX(-50%)}
+.tr-botones{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tr-b{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;font-size:1.1rem;line-height:1;display:grid;place-items:center}
+.tr-b:hover{background:var(--accent-soft)}
+.tr-b.grande{width:48px;height:48px;background:var(--ink);color:var(--bg);font-size:1.2rem}
+.tr-b.grande:hover{background:var(--accent);border-color:var(--accent)}
+.tr-fuente{font-size:.8rem}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -497,17 +512,31 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
             <span class="mono vivo-pase" id="vivoPase">Parada</span>
           </div>
           <div class="vivo-mastil-box"><svg class="mastil vivo-mastil" id="mastilVivo" viewBox="0 0 640 240" role="img" aria-label="Mástil que marca la nota que suena en cada momento de la falseta"></svg></div>
-          <p class="vivo-info" id="vivoInfo" aria-live="polite">Pulsa «Tocar la falseta» o reproduce el vídeo entre 0:06 y 0:38.</p>
+          <p class="vivo-info" id="vivoInfo" aria-live="polite">Pulsa ▶ o arrastra la línea de tiempo.</p>
           <div class="tab-box" id="tabBox"><svg id="tab" aria-label="Tablatura de la falseta"></svg></div>
-          <div class="controles" style="justify-content:flex-start">
-            <button class="btn primary" id="playFal" type="button" aria-pressed="false">▶ Tocar la falseta</button>
-            <div role="group" aria-label="Velocidad de la falseta" style="display:flex;gap:6px">
-              <button class="chip fvel" type="button" data-v="0.5" aria-pressed="true">0,5×</button>
-              <button class="chip fvel" type="button" data-v="0.75" aria-pressed="false">0,75×</button>
-              <button class="chip fvel" type="button" data-v="1" aria-pressed="false">1×</button>
+          <div class="transporte" role="group" aria-label="Línea de tiempo de la falseta">
+            <div class="tr-linea">
+              <span class="mono tr-t" id="trPos">0:06,6</span>
+              <div class="tr-pista">
+                <div class="tr-marcas" id="trMarcas" aria-hidden="true"></div>
+                <input type="range" id="trRango" min="0" max="1000" step="1" value="0" aria-label="Posición en la falseta">
+              </div>
+              <span class="mono tr-t" id="trFin">0:21,5</span>
             </div>
+            <div class="tr-botones">
+              <button class="tr-b" id="trInicio" type="button" aria-label="Volver al principio" title="Al principio">⏮</button>
+              <button class="tr-b" id="trAnt" type="button" aria-label="Nota anterior" title="Nota anterior">‹</button>
+              <button class="tr-b grande" id="playFal" type="button" aria-pressed="false" aria-label="Reproducir" title="Reproducir / pausar">▶</button>
+              <button class="tr-b" id="trSig" type="button" aria-label="Nota siguiente" title="Nota siguiente">›</button>
+              <button class="chip" id="trBucle" type="button" aria-pressed="false">⟲ Repetir</button>
+              <div role="group" aria-label="Velocidad de la falseta" style="display:flex;gap:6px">
+                <button class="chip fvel" type="button" data-v="0.5" aria-pressed="true">0,5×</button>
+                <button class="chip fvel" type="button" data-v="0.75" aria-pressed="false">0,75×</button>
+                <button class="chip fvel" type="button" data-v="1" aria-pressed="false">1×</button>
+              </div>
+            </div>
+            <p class="muted tr-fuente" id="trFuente">Suena el sintetizador (1ª vuelta). Carga el vídeo para que la línea de tiempo lo mueva a él.</p>
           </div>
-          <p class="muted" style="font-size:.82rem">Con el vídeo en marcha, el mástil sigue al vídeo en las dos vueltas. Sin vídeo, suena la 1ª vuelta con el sintetizador. Pulsa una nota de la tablatura para ir a ella.</p>
         </div>
       </div>
       <article class="momento" id="momento" aria-live="polite"></article>
@@ -949,14 +978,12 @@ video.addEventListener('timeupdate',()=>{
       ACORDE_FINAL.forEach(a=>{el('rect',{x:x-8,y:TY0+TS*(a.c-1)-8,width:16,height:16,rx:3},g); const t=el('text',{x,y:TY0+TS*(a.c-1)},g); t.textContent=a.f;});
       g.setAttribute('aria-label','Acorde del tango');
     }
-    const ir=()=>{
-      if(!video.hidden){ video.currentTime=Math.max(0,e.t1-0.6); video.play().catch(()=>{}); }
-      else sonar(e,audio().currentTime);
-    };
+    const ir=()=>irA_(e);
     g.addEventListener('click',ir);
     g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();ir();}});
     return g;
   });
+  let irA_=()=>{};
   const cab=el('line',{x1:xt(EV[0].t1),y1:22,x2:xt(EV[0].t1),y2:H-4,class:'cabezal-t'},svgT);
 
   // --- sonido
@@ -1010,38 +1037,103 @@ video.addEventListener('timeupdate',()=>{
     }
   }
 
-  // --- sintetizador
-  let sint=null, vel=.5;
-  document.querySelectorAll('.fvel').forEach(b=>b.addEventListener('click',()=>{
-    vel=Number(b.dataset.v); document.querySelectorAll('.fvel').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-    if(sint){ pararSint(); arrancarSint(); }
-  }));
-  function arrancarSint(){
-    if(!video.hidden) video.pause();
-    const c=audio(), t0=c.currentTime+.15;
-    EV.forEach(e=>sonar(e,t0+(e.t1-T0)/vel));
-    sint={t0}; btnF.textContent='■ Parar'; btnF.setAttribute('aria-pressed','true');
+  // --- línea de tiempo: mueve el sintetizador o, si hay vídeo, el vídeo
+  const rango=document.getElementById('trRango'), trPos=document.getElementById('trPos'), trFuente=document.getElementById('trFuente');
+  const btnBucleF=document.getElementById('trBucle');
+  const FIN=EV[EV.length-1].t1+0.9;
+  const fmt=t=>{ const m=Math.floor(t/60), r=t-m*60; return m+':'+String(Math.floor(r)).padStart(2,'0')+','+Math.floor((r%1)*10); };
+  document.getElementById('trFin').textContent=fmt(FIN);
+  const aRango=t=>Math.round(1000*(t-T0)/(FIN-T0)), deRango=v=>T0+(FIN-T0)*v/1000;
+  { // marcas: notas, golpes y compases
+    const cont=document.getElementById('trMarcas'), pc=t=>(100*(t-T0)/(FIN-T0))+'%';
+    EV.forEach(e=>{ const i=document.createElement('i'); if(e.k!=='n') i.className='g'; i.style.left=pc(e.t1); cont.appendChild(i); });
+    INICIOS.forEach((t,k)=>{ const b=document.createElement('b'); b.style.left=pc(t); b.textContent='c'+(k+1); cont.appendChild(b); });
   }
-  function pararSint(){
-    sint=null; master.gain.cancelScheduledValues(ctx.currentTime);
-    // cortar lo ya programado: se reconstruye la salida
+  let pos=T0, sonandoF=false, bucleF=false, vel=.5, base=null, prog=0, timerF=null, arrastrando=false;
+  const hayVideo=()=>!video.hidden&&video.readyState>0;
+  // posición de la 2ª vuelta llevada al eje de la 1ª
+  function aPase1(t){
+    if(t<PASES[1].ini) return t;
+    for(let i=0;i<EV.length-1;i++) if(t<EV[i+1].t2) return EV[i].t1+(t-EV[i].t2)/(EV[i+1].t2-EV[i].t2)*(EV[i+1].t1-EV[i].t1);
+    return EV[EV.length-1].t1+(t-EV[EV.length-1].t2);
+  }
+  function posActual(){
+    if(hayVideo()) return video.currentTime;
+    return sonandoF?base.p0+(ctx.currentTime-base.c0)*vel:pos;
+  }
+  function cortarAudio(){
+    if(!ctx) return;
     master.disconnect(); const g=ctx.createGain(); g.gain.value=.8; const comp=ctx.createDynamicsCompressor(); g.connect(comp); comp.connect(ctx.destination); master=g;
-    btnF.textContent='▶ Tocar la falseta'; btnF.setAttribute('aria-pressed','false'); ultimo='';
   }
-  btnF.addEventListener('click',()=>sint?pararSint():arrancarSint());
-  video.addEventListener('play',()=>{ if(sint) pararSint(); });
+  function programarF(){
+    const lim=base.p0+(ctx.currentTime+.15-base.c0)*vel;
+    for(;prog<EV.length&&EV[prog].t1<=lim;prog++) sonar(EV[prog],base.c0+(EV[prog].t1-base.p0)/vel);
+  }
+  function botonPlay(on){ btnF.textContent=on?'❚❚':'▶'; btnF.setAttribute('aria-pressed',String(on)); btnF.setAttribute('aria-label',on?'Pausar':'Reproducir'); }
+  function reproducir(){
+    if(hayVideo()){
+      if(video.currentTime<T0-.5||video.currentTime>FIN) video.currentTime=pos;
+      video.playbackRate=vel; video.play().catch(()=>{}); return;
+    }
+    if(pos>=FIN-.05) pos=T0;
+    const c=audio(); base={p0:pos,c0:c.currentTime+.08};
+    prog=EV.findIndex(e=>e.t1>=pos-.001); if(prog<0) prog=EV.length;
+    sonandoF=true; clearInterval(timerF); timerF=setInterval(programarF,25); programarF(); botonPlay(true);
+  }
+  function pausar(){
+    if(hayVideo()){ video.pause(); return; }
+    if(!sonandoF) return;
+    pos=posActual(); sonandoF=false; clearInterval(timerF); cortarAudio(); botonPlay(false);
+  }
+  function buscar(t,{tocar=false}={}){
+    t=Math.max(T0,Math.min(FIN,t)); ultimo='';
+    if(hayVideo()){ video.currentTime=t; return; }
+    const seguia=sonandoF; if(seguia) pausar();
+    pos=t; if(seguia) reproducir();
+    else if(tocar){ const e=EV.find(x=>Math.abs(x.t1-t)<.02); if(e) sonar(e,audio().currentTime); }
+  }
+  const enReproduccion=()=>hayVideo()?!video.paused:sonandoF;
+  btnF.addEventListener('click',()=>enReproduccion()?pausar():reproducir());
+  document.getElementById('trInicio').addEventListener('click',()=>buscar(T0));
+  document.getElementById('trSig').addEventListener('click',()=>{ const p=hayVideo()?aPase1(video.currentTime):posActual(); const e=EV.find(x=>x.t1>p+.02); if(e) buscar(hayVideo()?e.t1:e.t1,{tocar:true}); });
+  document.getElementById('trAnt').addEventListener('click',()=>{ const p=hayVideo()?aPase1(video.currentTime):posActual(); const prev=EV.filter(x=>x.t1<p-.15); const e=prev[prev.length-1]; buscar(e?e.t1:T0,{tocar:!!e}); });
+  btnBucleF.addEventListener('click',()=>{ bucleF=!bucleF; btnBucleF.setAttribute('aria-pressed',String(bucleF)); });
+  rango.addEventListener('pointerdown',()=>arrastrando=true);
+  rango.addEventListener('input',()=>{ arrastrando=true; buscar(deRango(Number(rango.value))); });
+  rango.addEventListener('change',()=>{ arrastrando=false; });
+  window.addEventListener('pointerup',()=>arrastrando=false);
+  document.querySelectorAll('.fvel').forEach(b=>b.addEventListener('click',()=>{
+    const seguia=sonandoF; if(seguia) pausar();
+    vel=Number(b.dataset.v); document.querySelectorAll('.fvel').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    if(hayVideo()) video.playbackRate=vel;
+    if(seguia) reproducir();
+  }));
+  video.addEventListener('play',()=>{ if(sonandoF){ pos=posActual(); sonandoF=false; clearInterval(timerF); cortarAudio(); } botonPlay(true); });
+  video.addEventListener('pause',()=>botonPlay(false));
+  video.addEventListener('loadedmetadata',()=>{ trFuente.textContent='La línea de tiempo mueve el vídeo (1ª vuelta de la falseta). El mástil sigue también la 2ª vuelta si dejas correr el vídeo.'; if(sonandoF) pausar(); });
 
   // --- bucle de dibujo
+  let fuera=false;
   function tick(){
-    if(sint){
-      const T=T0+(ctx.currentTime-sint.t0)*vel;
-      if(T>T1+.6) pararSint(); else pintar(PASES[0],T);
-    }else if(!video.hidden&&video.readyState>0){
-      const t=video.currentTime, p=PASES.find(q=>t>=q.ini&&t<q.fin);
-      pintar(p||null,t);
-    }else if(ultimo===''){ pintar(PASES[0],T0-1); }
+    const T=posActual();
+    if(hayVideo()){
+      const p=PASES.find(q=>T>=q.ini&&T<q.fin);
+      pintar(p||null,T);
+      if(bucleF&&!video.paused&&T>FIN&&T<PASES[1].ini) video.currentTime=T0;
+      if(!arrastrando) rango.value=aRango(p?aPase1(T):Math.max(T0,Math.min(FIN,T)));
+      trPos.textContent=fmt(T);
+    }else{
+      if(sonandoF&&T>=FIN){
+        if(bucleF){ pausar(); pos=T0; reproducir(); }
+        else{ pausar(); pos=FIN; }
+      }
+      pintar(PASES[0],Math.min(T,FIN));
+      if(!arrastrando) rango.value=aRango(Math.min(T,FIN));
+      trPos.textContent=fmt(Math.min(T,FIN));
+    }
     requestAnimationFrame(tick);
   }
+  irA_=e=>buscar(e.t1,{tocar:true});
   requestAnimationFrame(tick);
 }
 

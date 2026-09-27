@@ -317,6 +317,8 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
 .video-box:fullscreen{border-radius:0;aspect-ratio:auto;width:100%;height:100%}
 .video-box:fullscreen .capa-mastil{width:min(60%,1100px)}
 .vivo-aviso{font-size:.85rem}
+.rueda-mastil{display:grid;gap:8px}
+.rueda-mastil .mastil{min-width:520px}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -443,6 +445,10 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
       </div>
     </div>
     <div class="secuencia" id="secuencia"></div>
+    <div class="rueda-mastil">
+      <div class="mastil-box"><svg class="mastil" id="mastilRueda" viewBox="0 0 640 236" role="img" aria-label="Mástil con el acorde de la rueda que suena"></svg></div>
+      <p class="vivo-info" id="ruedaAcorde">Pulsa un acorde de la rueda o «Tocar sobre el compás» para verlo en el mástil.</p>
+    </div>
   </div>
 </section>
 <section id="acordes">
@@ -633,6 +639,7 @@ const ACORDES={
   // cejillas del final de la falseta
   'Si♭ (cejilla)':  {t:['x',1,3,3,3,1], d:[0,1,3,3,3,1], rol:'cejilla en el 1'},
   'Sol♯m (cejilla)':{t:[4,6,6,4,4,4], d:[1,3,4,1,1,1], rol:'cejilla en el 4'},
+  'Si♭/Re':     {t:['x','x',0,3,3,1], d:[0,0,0,3,4,1], rol:'Si♭ con el Re al aire en el bajo'},
   // cierres medidos en el audio
   'La (cierre)':{t:['x',0,2,2,'x',0], d:[0,0,1,2,0,0], rol:'cierra cada vuelta: La, La y Mi al aire; la 2ª apenas suena'},
   'La7':        {t:['x',0,2,3,2,0], d:[0,0,1,3,2,0], rol:'cierre de la falseta: 2ª en el traste 2 (Re♭/Do♯), 1ª al aire, Si♭ en la 3ª'}
@@ -713,6 +720,8 @@ const ESCALAS={
     texto:'La que suena en la falseta de la clase: Si♭ en la 5ª cuerda, traste 1 (medido en el audio: 116 Hz; el Si natural daría 123). Es la misma escala que Mi frigio una cuarta más arriba, la del tango por medio: el semitono La–Si♭ hace el papel del Mi–Fa. Los dos dibujos son los que recorre la falseta.',
     notas:ESCALA, opcional:OPCIONAL, dibujos:DIBUJOS}
 };
+// Rueda de la clase (0:40–1:05), acorde a acorde, sacada del audio (aproximada)
+const RUEDA_VIDEO=[[40,'La'],[42,'Si♭/Re'],[44,'Do7'],[47,'Si♭'],[50,'Do7'],[51,'La'],[52,'Si♭/Re'],[54,'Do7'],[57,'Si♭'],[60,'La7'],[64,'La'],[65,null]];
 const PASES=[{n:1,ini:6.0,fin:21.9,k:'t1'},{n:2,ini:22.3,fin:39.2,k:'t2'}];
 const DURACION=146;
 
@@ -1141,12 +1150,23 @@ video.addEventListener('timeupdate',()=>{
 
   // --- pintar un instante
   let ultimo='';
+  const hayVideoR=()=>!video.hidden&&video.readyState>0;
   function pintar(pase,T){
     if(!pase){
+      const r=hayVideoR()?RUEDA_VIDEO.findLast?.(([t0])=>T>=t0):null;
+      if(r&&r[1]){
+        const clave='r:'+r[0]; if(clave===ultimo) return; ultimo=clave;
+        capa.innerHTML=''; golpeTxt.textContent=''; pintarCaja(0);
+        nodosTab.forEach(g=>g.classList.remove('actual','sonada'));
+        formaDe(r[1]).forEach(a=>punto(a.c,a.f,a.m,'actual','1'));
+        paseEl.textContent='Rueda de acordes · aproximada';
+        info.innerHTML=`<b>${r[1]}</b> · ${(ACORDES[r[1]].rol||'').split(':')[0]} (${ACORDES[r[1]].t.join('')})`;
+        return;
+      }
       if(ultimo==='fuera') return; ultimo='fuera';
       capa.innerHTML=''; golpeTxt.textContent=''; pintarCaja(0); paseEl.textContent='Fuera de la falseta';
       nodosTab.forEach(g=>g.classList.remove('actual','sonada'));
-      info.textContent='La falseta suena entre 0:06 y 0:39. Pulsa ▶ o lleva el vídeo ahí.';
+      info.textContent='La falseta suena entre 0:06 y 0:39 y la rueda entre 0:40 y 1:05. Pulsa ▶ o lleva el vídeo ahí.';
       return;
     }
     const k=pase.k; let i=-1;
@@ -1441,16 +1461,41 @@ Object.keys(ACORDES).forEach(nm=>{
         const n=Math.min(resto,8-t%8);
         const b=document.createElement('button'); b.type='button';
         b.className='bloque'+(funcion(ac)==='I'?' tonica':''); b.style.gridColumn=`span ${n}`; b.dataset.k=k;
-        b.innerHTML=`<b>${primero?ac:'·'}</b><span class="tiempos">${'<i></i>'.repeat(n)}</span><span class="fn">${primero?funcion(ac)+' · '+dur+' t.':''}</span>`;
+        b.innerHTML=`<b>${primero?ac:'·'}</b><span class="tiempos">${'<i></i>'.repeat(n)}</span><span class="fn">${primero?(funcion(ac)?funcion(ac)+' · ':'')+dur+' t.':''}</span>`;
         b.setAttribute('aria-label',`${ac}, ${dur} tiempos`);
-        b.addEventListener('click',()=>rasguear(ac));
+        b.addEventListener('click',()=>{ rasguear(ac); verAcorde(ac); });
         fila.appendChild(b); bloques.push({b,k,desde:dur-resto,n});
         t+=n; resto-=n; primero=false;
       }
     });
     if(sonando&&modo==='rueda'){ paso=0; }
+    acR=''; verAcorde(r.seq[0][0]);
+  }
+  // mástil de la pestaña: dibuja la forma del acorde
+  const svgR=document.getElementById('mastilRueda'), txtR=document.getElementById('ruedaAcorde');
+  const FRr=5, X0r=62, ANr=566, Y0r=30, SPr=34;
+  const xTr=f=>X0r+(ANr/FRr)*f, xNr=f=>f===0?X0r-30:(xTr(f-1)+xTr(f))/2, yCr=c=>Y0r+SPr*(c-1);
+  el('rect',{x:X0r,y:Y0r-12,width:ANr,height:SPr*5+24,rx:4,fill:'#3A261D'},svgR);
+  [3,5].forEach(f=>el('circle',{cx:xNr(f),cy:Y0r+SPr*2.5,r:6,fill:'#5A4235'},svgR));
+  for(let f=0;f<=FRr;f++) el('line',{x1:xTr(f),y1:Y0r-12,x2:xTr(f),y2:Y0r+SPr*5+12,stroke:f===0?'#EFE3D0':'#B9A98F','stroke-width':f===0?7:2.5},svgR);
+  for(let c=1;c<=6;c++){ el('line',{x1:X0r-48,y1:yCr(c),x2:X0r+ANr,y2:yCr(c),stroke:'#D9CDB6','stroke-width':.8+c*.35},svgR); const t=el('text',{x:X0r-58,y:yCr(c)+4,class:'lbl'},svgR); t.textContent=c+'ª'; }
+  for(let f=1;f<=FRr;f++){ const t=el('text',{x:xNr(f),y:Y0r+SPr*5+30,class:'lbl'},svgR); t.textContent=f; }
+  const capaR=el('g',{},svgR);
+  let acR='';
+  function verAcorde(nm){
+    if(!nm||nm===acR) return; acR=nm; capaR.innerHTML='';
+    const t=ACORDES[nm].t;
+    t.forEach((f,i)=>{ const c=6-i;
+      if(f==='x'){ const m=el('text',{x:X0r-30,y:yCr(c)+5,class:'lbl'},capaR); m.textContent='×'; return; }
+      const g=el('g',{class:'nota actual'},capaR);
+      el('circle',{cx:xNr(f),cy:yCr(c),r:15},g);
+      const tx=el('text',{x:xNr(f),y:yCr(c)},g); tx.textContent=nombre(([40,45,50,55,59,64][i]+f)%12);
+    });
+    const rol=(ROLES[tono]&&ROLES[tono][nm])||ACORDES[nm].rol||'';
+    txtR.innerHTML=`<b>${nm}</b> · ${t.join('')}${rol?' · '+rol:''}`;
   }
   alPulso=idx=>{
+    if(idx!==null&&pasosRueda[idx]) verAcorde(pasosRueda[idx].ac);
     bloques.forEach(x=>{x.b.classList.remove('on'); x.b.querySelectorAll('i').forEach(i=>i.classList.remove('on'));});
     if(idx===null||!pasosRueda[idx]) return;
     const p=pasosRueda[idx];

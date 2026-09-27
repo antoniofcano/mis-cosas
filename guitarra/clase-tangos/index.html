@@ -302,6 +302,19 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
 .tr-b.grande{width:48px;height:48px;background:var(--ink);color:var(--bg);font-size:1.2rem}
 .tr-b.grande:hover{background:var(--accent);border-color:var(--accent)}
 .tr-fuente{font-size:.8rem}
+.vivo-mastil .recorrido{fill:none;stroke:#F6D9A2;stroke-width:2.5;stroke-opacity:.4;stroke-dasharray:6 5;stroke-linejoin:round}
+.vivo-mastil .nota.rec circle{stroke-width:1.5}
+.vivo-mastil .nota.rec.viene circle{fill:rgba(246,217,162,.12);stroke:#F6D9A2;stroke-dasharray:3 3}
+.vivo-mastil .nota.rec.viene text{fill:#F6D9A2}
+.vivo-mastil .nota.rec.hecha circle{fill:rgba(246,217,162,.45);stroke:none}
+.vivo-mastil .ord{font-family:var(--mono);font-size:10px;font-weight:600;fill:#E9A94A;text-anchor:start;paint-order:stroke;stroke:#2A1A14;stroke-width:3}
+.capa-mastil{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:min(74%,720px);pointer-events:none;--op:.35}
+.capa-mastil svg{width:100%;height:auto;display:block;min-width:0}
+.capa-mastil .madera{fill-opacity:var(--op)}
+.capa-mastil .lbl{fill:#FFFFFF;paint-order:stroke;stroke:#000;stroke-width:2}
+.video-box:fullscreen{border-radius:0;aspect-ratio:auto;width:100%;height:100%}
+.video-box:fullscreen .capa-mastil{width:min(60%,1100px)}
+.vivo-aviso{font-size:.85rem}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -496,10 +509,14 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
             <input id="fichero" type="file" accept="video/*" hidden>
           </div>
           <video id="video" playsinline hidden></video>
+          <div class="capa-mastil" id="capaMastil" hidden></div>
         </div>
         <div class="reproduccion">
           <button class="btn" id="irA" type="button" disabled>▶ Reproducir parte</button>
           <button class="chip" id="bucle" type="button" aria-pressed="false" disabled>⟲ En bucle</button>
+          <button class="chip" id="capaBtn" type="button" aria-pressed="false" disabled>Mástil sobre el vídeo</button>
+          <label class="tempo" for="capaOp" id="capaOpL" hidden>Madera <input id="capaOp" type="range" min="0" max="100" value="35"></label>
+          <button class="chip" id="pantallaBtn" type="button" disabled>⛶ Pantalla completa</button>
           <div role="group" aria-label="Velocidad" style="display:flex;gap:6px">
             <button class="chip vel" type="button" data-v="0.5" aria-pressed="false" disabled>0,5×</button>
             <button class="chip vel" type="button" data-v="0.75" aria-pressed="false" disabled>0,75×</button>
@@ -511,7 +528,8 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
             <p class="eyebrow">La falseta en el mástil</p>
             <span class="mono vivo-pase" id="vivoPase">Parada</span>
           </div>
-          <div class="vivo-mastil-box"><svg class="mastil vivo-mastil" id="mastilVivo" viewBox="0 0 640 240" role="img" aria-label="Mástil que marca la nota que suena en cada momento de la falseta"></svg></div>
+          <p class="muted vivo-aviso" id="vivoAviso" hidden>El mástil está ahora sobre el vídeo.</p>
+          <div class="vivo-mastil-box" id="vivoMastilBox"><svg class="mastil vivo-mastil" id="mastilVivo" viewBox="0 0 640 240" role="img" aria-label="Mástil que marca la nota que suena en cada momento de la falseta"></svg></div>
           <p class="vivo-info" id="vivoInfo" aria-live="polite">Pulsa ▶ o arrastra la línea de tiempo.</p>
           <div class="tab-box" id="tabBox"><svg id="tab" aria-label="Tablatura de la falseta"></svg></div>
           <div class="transporte" role="group" aria-label="Línea de tiempo de la falseta">
@@ -1001,7 +1019,7 @@ video.addEventListener('timeupdate',()=>{
   // --- mástil (trastes 0–5; 1ª cuerda arriba)
   const FR=7, X0=62, AN=566, Y0=30, SP=34;
   const xT=f=>X0+(AN/FR)*f, xN=f=>f===0?X0-30:(xT(f-1)+xT(f))/2, yC=c=>Y0+SP*(c-1);
-  el('rect',{x:X0,y:Y0-12,width:AN,height:SP*5+24,rx:4,fill:'#3A261D'},svgM);
+  el('rect',{x:X0,y:Y0-12,width:AN,height:SP*5+24,rx:4,fill:'#3A261D',class:'madera'},svgM);
   [3,5,7].forEach(f=>el('circle',{cx:xN(f),cy:Y0+SP*2.5,r:6,fill:'#5A4235'},svgM));
   const caja=el('g',{},svgM);
   for(let f=0;f<=FR;f++) el('line',{x1:xT(f),y1:Y0-12,x2:xT(f),y2:Y0+SP*5+12,stroke:f===0?'#EFE3D0':'#B9A98F','stroke-width':f===0?7:2.5},svgM);
@@ -1127,12 +1145,24 @@ video.addEventListener('timeupdate',()=>{
     cab.setAttribute('x1',x); cab.setAttribute('x2',x);
     const vis=tabBox.clientWidth; if(x<tabBox.scrollLeft+40||x>tabBox.scrollLeft+vis-80) tabBox.scrollLeft=Math.max(0,x-vis*.3);
     const clave=pase.n+':'+i; if(clave===ultimo) return; ultimo=clave;
-    paseEl.textContent=`${pase.n}ª vuelta · ${Math.max(0,i+1)} de ${EV.length}`;
+    { const IX=INICIOS.map(t=>EV.findIndex(e=>Math.abs(e.t1-t)<.01)); let kk=0; IX.forEach((ix,k)=>{ if(ix<=Math.max(0,i)) kk=k; }); paseEl.textContent=`${pase.n}ª vuelta · compás ${kk+1} · nota ${Math.max(0,i+1)} de ${EV.length}`; }
     nodosTab.forEach((g,j)=>{g.classList.toggle('actual',j===i); g.classList.toggle('sonada',j<i);});
     capa.innerHTML=''; golpeTxt.textContent='';
-    // estela: las 3 notas anteriores
-    let n=0;
-    for(let j=i-1;j>=0&&n<3;j--){ const e=EV[j]; if(e.k!=='n') continue; n++; punto(e.c,e.f,e.m,'estela',String(.75-n*.18)); }
+    // recorrido del compás que suena: sus notas en transparencia, unidas y numeradas
+    const IIDX=INICIOS.map(t=>EV.findIndex(e=>Math.abs(e.t1-t)<.01));
+    let kc=0; IIDX.forEach((ix,k)=>{ if(ix<=Math.max(0,i)) kc=k; });
+    const desde=IIDX[kc], hasta=kc+1<IIDX.length?IIDX[kc+1]:EV.length;
+    const notasC=[]; for(let j=desde;j<hasta;j++) if(EV[j].k==='n') notasC.push(j);
+    if(notasC.length>1) el('polyline',{points:notasC.map(j=>`${xN(EV[j].f)},${yC(EV[j].c)}`).join(' '),class:'recorrido'},capa);
+    const grupos=new Map();
+    notasC.forEach((j,ord)=>{ const e=EV[j], clv=e.c+'-'+e.f; if(!grupos.has(clv)) grupos.set(clv,{e,ords:[],js:[]}); grupos.get(clv).ords.push(ord+1); grupos.get(clv).js.push(j); });
+    grupos.forEach(({e,ords,js})=>{
+      const hecha=js.every(j=>j<i);
+      const g=el('g',{class:'nota rec '+(hecha?'hecha':'viene')},capa);
+      el('circle',{cx:xN(e.f),cy:yC(e.c),r:13},g);
+      const t=el('text',{x:xN(e.f),y:yC(e.c)},g); t.textContent=nombre(e.m%12);
+      const o=el('text',{x:xN(e.f)+12,y:yC(e.c)-12,class:'ord'},capa); o.textContent=ords.join('·');
+    });
     let b=1; for(let j=Math.max(0,i);j>=0;j--){ if(EV[j].b){ b=EV[j].b; break; } }
     pintarCaja(b);
     if(i<0){ info.textContent='Preparado: empieza en el dibujo 1, con Mi en la 6ª cuerda al aire.'; return; }
@@ -1445,6 +1475,25 @@ function pintarBarras(){
   });
 }
 pintarBarras();
+/* ================= Mástil sobre el vídeo ================= */
+{
+  const btn=document.getElementById('capaBtn'), capa=document.getElementById('capaMastil'), op=document.getElementById('capaOp'), opL=document.getElementById('capaOpL');
+  const svg=document.getElementById('mastilVivo'), caja=document.getElementById('vivoMastilBox'), aviso=document.getElementById('vivoAviso');
+  const pant=document.getElementById('pantallaBtn'), vbox=document.getElementById('videoBox');
+  let encima=false;
+  function poner(v){
+    encima=v; btn.setAttribute('aria-pressed',String(v)); opL.hidden=!v; capa.hidden=!v; aviso.hidden=!v; caja.hidden=v;
+    (v?capa:caja).appendChild(svg);
+  }
+  btn.addEventListener('click',()=>poner(!encima));
+  op.addEventListener('input',()=>capa.style.setProperty('--op',op.value/100));
+  pant.addEventListener('click',()=>{
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+    else if(vbox.requestFullscreen) vbox.requestFullscreen().catch(()=>{});
+  });
+  document.getElementById('fichero').addEventListener('change',()=>{ btn.disabled=false; pant.disabled=false; poner(true); });
+}
+
 /* ================= Timbre ================= */
 {
   const fl=document.getElementById('timbreFl'), cl=document.getElementById('timbreCl');

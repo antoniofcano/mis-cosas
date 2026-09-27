@@ -699,13 +699,30 @@ const ORDEN=[1,2,3,4,5,6,7,8];
 const LEYENDA='PALMAS 2 · 3 · 4 — 6 · 7 · 8';
 
 /* ================= Audio ================= */
-let ctx=null, master=null;
+// Guitarra flamenca sintetizada: cuerda por Karplus-Strong con afinación
+// fraccional, pulsación cerca del puente (brillo de uña), sustain corto,
+// caja de resonancia con filtros y un poco de sala.
+let ctx=null, master=null, cuerpo=null;
+function crearCuerpo(c){
+  const entrada=c.createGain();
+  const corte=c.createBiquadFilter(); corte.type='highpass'; corte.frequency.value=70;
+  const aire=c.createBiquadFilter(); aire.type='peaking'; aire.frequency.value=105; aire.Q.value=1.4; aire.gain.value=5;   // resonancia del aire
+  const tapa=c.createBiquadFilter(); tapa.type='peaking'; tapa.frequency.value=215; tapa.Q.value=1.6; tapa.gain.value=3;   // tapa
+  const caja=c.createBiquadFilter(); caja.type='peaking'; caja.frequency.value=650; caja.Q.value=1; caja.gain.value=-3;      // quita el sonido «a caja»
+  const brillo=c.createBiquadFilter(); brillo.type='highshelf'; brillo.frequency.value=2800; brillo.gain.value=4;           // el «rasgo» de la flamenca
+  const comp=c.createDynamicsCompressor(); comp.threshold.value=-16; comp.ratio.value=3; comp.attack.value=.004; comp.release.value=.2;
+  entrada.connect(corte); corte.connect(aire); aire.connect(tapa); tapa.connect(caja); caja.connect(brillo); brillo.connect(comp);
+  comp.connect(c.destination);
+  // sala pequeña: respuesta al impulso sintética de 0,7 s
+  const sala=c.createConvolver(), n=Math.floor(c.sampleRate*.7), ir=c.createBuffer(2,n,c.sampleRate);
+  for(let ch=0;ch<2;ch++){ const d=ir.getChannelData(ch); for(let k=0;k<n;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/n,3.2); }
+  sala.buffer=ir; const envio=c.createGain(); envio.gain.value=.16;
+  brillo.connect(envio); envio.connect(sala); sala.connect(comp);
+  return entrada;
+}
+function nuevaSalida(){ if(master) master.disconnect(); master=ctx.createGain(); master.gain.value=.9; master.connect(cuerpo); }
 function audio(){
-  if(!ctx){
-    ctx=new (window.AudioContext||window.webkitAudioContext)();
-    master=ctx.createGain(); master.gain.value=.8;
-    const comp=ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
-  }
+  if(!ctx){ ctx=new (window.AudioContext||window.webkitAudioContext)(); cuerpo=crearCuerpo(ctx); nuevaSalida(); }
   if(ctx.state==='suspended') ctx.resume();
   return ctx;
 }
@@ -713,24 +730,55 @@ const cache=new Map();
 function bufferCuerda(midi){
   if(cache.has(midi)) return cache.get(midi);
   const c=audio(), sr=c.sampleRate, f=440*Math.pow(2,(midi-69)/12);
-  const dur=2.6, len=Math.floor(sr*dur), buf=c.createBuffer(1,len,sr), d=buf.getChannelData(0);
-  const N=Math.max(2,Math.round(sr/f)), ring=new Float32Array(N);
-  for(let i=0;i<N;i++) ring[i]=Math.random()*2-1;
-  for(let p=0;p<2;p++) for(let i=1;i<N;i++) ring[i]=.5*(ring[i]+ring[i-1]); // nylon: ataque blando
-  const decay=midi<50?.9965:.994;
-  let k=0;
-  for(let i=0;i<len;i++){ const a=ring[k], b=ring[(k+1)%N]; d[i]=a; ring[k]=.5*(a+b)*decay; k=(k+1)%N; }
+  const grave=midi<52, dur=grave?2.6:2.1, len=Math.floor(sr*dur), buf=c.createBuffer(1,len,sr), d=buf.getChannelData(0);
+  // retardo total = sr/f; el promedio de dos puntos aporta 0,5 muestras y el paso-todo el resto fraccional
+  let N=Math.floor(sr/f-.5), frac=sr/f-.5-N; if(frac<.15){N--;frac++;}
+  const C=(1-frac)/(1+frac), dl=new Float32Array(N);
+  // excitación: ruido algo filtrado (yema + uña) y pulsado cerca del puente
+  let z=0; for(let k=0;k<N;k++){ z+=.62*((Math.random()*2-1)-z); dl[k]=z; }
+  const pp=Math.max(1,Math.round(N*.11)), ex=dl.slice();
+  for(let k=0;k<N;k++) dl[k]=ex[k]-.92*(k>=pp?ex[k-pp]:0);
+  let media=0; for(let k=0;k<N;k++) media+=dl[k]; media/=N; for(let k=0;k<N;k++) dl[k]-=media;
+  // pérdida por vuelta para un T60 corto, típico de la flamenca (ciprés, acción baja)
+  const T60=midi<50?3.0:(midi<60?2.8:2.3), g=Math.pow(10,-3/(f*T60));
+  let prev=0, apx=0, apy=0, k=0;
+  for(let n=0;n<len;n++){
+    const x=dl[k]; d[n]=x;
+    const avg=.5*(x+prev); prev=x;
+    const y=C*avg+apx-C*apy; apx=avg; apy=y;
+    dl[k]=y*g; k=(k+1)%N;
+  }
+  let pico=0; for(let n=0;n<Math.min(len,sr*.2);n++) pico=Math.max(pico,Math.abs(d[n]));
+  if(pico>0) for(let n=0;n<len;n++) d[n]/=pico;
   cache.set(midi,buf); return buf;
 }
+let clic=null;
 function pulsar(midi,when,vol=.5){
-  const c=audio(), s=c.createBufferSource(), g=c.createGain();
-  s.buffer=bufferCuerda(midi); g.gain.value=vol; s.connect(g); g.connect(master);
-  s.start(when??c.currentTime);
+  const c=audio(), t=when??c.currentTime, v=vol*(.9+Math.random()*.2);
+  const s=c.createBufferSource(), g=c.createGain();
+  s.buffer=bufferCuerda(midi); g.gain.value=v*.55; s.connect(g); g.connect(master); s.start(t);
+  // el roce de la uña al atacar
+  if(!clic){ clic=c.createBuffer(1,Math.floor(c.sampleRate*.012),c.sampleRate); const d=clic.getChannelData(0); for(let k=0;k<d.length;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/d.length,2); }
+  const u=c.createBufferSource(), hp=c.createBiquadFilter(), gu=c.createGain();
+  u.buffer=clic; hp.type='highpass'; hp.frequency.value=2600; gu.gain.value=v*.12;
+  u.connect(hp); hp.connect(gu); gu.connect(master); u.start(t);
 }
 function rasguear(nm,when,vol=.32,abajo=true){
   const c=audio(), t0=when??c.currentTime, ns=notasAcorde(nm);
   const orden=abajo?ns:[...ns].reverse();
-  orden.forEach((m,i)=>pulsar(m,t0+i*.014,vol));
+  orden.forEach((m,i)=>pulsar(m,t0+i*.016,vol*(abajo?1+i*.05:1)));
+}
+// golpe con el anular en el golpeador: madera seca, no palmada
+function golpeTapa(when){
+  const c=audio(), t=when;
+  const o=c.createOscillator(), go=c.createGain();
+  o.type='sine'; o.frequency.setValueAtTime(140,t); o.frequency.exponentialRampToValueAtTime(70,t+.09);
+  go.gain.setValueAtTime(.55,t); go.gain.exponentialRampToValueAtTime(.001,t+.14);
+  o.connect(go); go.connect(master); o.start(t); o.stop(t+.16);
+  if(!clic) pulsar(64,t,0); // asegura el búfer de roce
+  const u=c.createBufferSource(), bp=c.createBiquadFilter(), gu=c.createGain();
+  u.buffer=clic; bp.type='bandpass'; bp.frequency.value=1800; bp.Q.value=.8; gu.gain.value=.5;
+  u.connect(bp); bp.connect(gu); gu.connect(master); u.start(t);
 }
 let ruido=null;
 function palma(when,fuerte,sorda){
@@ -989,7 +1037,7 @@ video.addEventListener('timeupdate',()=>{
   // --- sonido
   function sonar(e,when){
     if(e.k==='n') pulsar(e.m,when,.6);
-    else if(e.k==='g') palma(when,true);
+    else if(e.k==='g') golpeTapa(when);
     else rasguear('La',when,.34);
   }
 
@@ -1063,7 +1111,7 @@ video.addEventListener('timeupdate',()=>{
   }
   function cortarAudio(){
     if(!ctx) return;
-    master.disconnect(); const g=ctx.createGain(); g.gain.value=.8; const comp=ctx.createDynamicsCompressor(); g.connect(comp); comp.connect(ctx.destination); master=g;
+    nuevaSalida();
   }
   function programarF(){
     const lim=base.p0+(ctx.currentTime+.15-base.c0)*vel;

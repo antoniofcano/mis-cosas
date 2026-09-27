@@ -200,6 +200,10 @@ header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:c
 .vivo-mastil .caja-dib{fill:rgba(233,169,74,.13);stroke:#E9A94A;stroke-width:1.5;stroke-dasharray:5 4}
 .vivo-mastil .caja-t{font-family:var(--mono);font-size:10px;letter-spacing:.14em;fill:#E9A94A;text-anchor:middle}
 .vivo-mastil .fantasma{fill:#F6D9A2;opacity:.28}
+#tab .espera rect{fill:var(--surface);stroke:var(--line)}
+#tab .espera path{fill:none;stroke:var(--golpe);stroke-width:2}
+#tab .espera circle{fill:var(--golpe)}
+#tab .espera text{font-family:var(--mono);font-size:10px;fill:var(--ink-2);text-anchor:middle}
 #tab .franja-dib{fill:var(--accent-soft)}
 #tab .franja-dib.d2{fill:var(--golpe-soft)}
 #tab .franja-t{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;fill:var(--ink-2);text-anchor:middle}
@@ -881,19 +885,47 @@ video.addEventListener('timeupdate',()=>{
   }
 
   // --- tablatura (eje de la 1ª vuelta)
-  const PX=96, TX0=34, W=Math.round(TX0+(T1-T0)*PX+20), TY0=44, TS=18, H=TY0+TS*5+26;
+  // Eje comprimido: las notas van seguidas; una espera larga no ocupa su tiempo
+  // real sino un hueco fijo con un calderón y su duración (para seguir el vídeo).
+  const PX=96, TX0=44, TY0=44, TS=18, H=TY0+TS*5+30, ESPERA=0.9, HUECO=58;
+  const xs=[TX0], pausas=[];
+  for(let i=1;i<EV.length;i++){
+    const dt=EV[i].t1-EV[i-1].t1;
+    if(dt>ESPERA){ xs.push(xs[i-1]+0.45*PX+HUECO); pausas.push({i,dt}); }
+    else xs.push(xs[i-1]+Math.max(dt*PX,26));
+  }
+  const W=Math.round(xs[xs.length-1]+70);
   svgT.setAttribute('viewBox',`0 0 ${W} ${H}`); svgT.setAttribute('width',W); svgT.setAttribute('height',H);
-  const xt=t=>TX0+(t-T0)*PX;
+  const xt=t=>{
+    if(t<=EV[0].t1) return xs[0]-(EV[0].t1-t)*PX;
+    for(let i=0;i<EV.length-1;i++){
+      if(t<EV[i+1].t1) return xs[i]+(t-EV[i].t1)/(EV[i+1].t1-EV[i].t1)*(xs[i+1]-xs[i]);
+    }
+    return Math.min(W-6,xs[EV.length-1]+(t-EV[EV.length-1].t1)*PX);
+  };
   for(let c=1;c<=6;c++){
-    el('line',{x1:TX0-6,y1:TY0+TS*(c-1),x2:W-8,y2:TY0+TS*(c-1),class:'linea-t'},svgT);
+    el('line',{x1:TX0-18,y1:TY0+TS*(c-1),x2:W-8,y2:TY0+TS*(c-1),class:'linea-t'},svgT);
     const t=el('text',{x:4,y:TY0+TS*(c-1)+3,class:'cuerda-t'},svgT); t.textContent=['e','B','G','D','A','E'][c-1];
   }
-  // compases de 8 tiempos (≈4,05 s) desde la primera nota
-  for(let k=0;k<=4;k++){
-    const t=6.45+k*4.05; if(t>T1) break;
-    el('line',{x1:xt(t),y1:TY0-8,x2:xt(t),y2:TY0+TS*5+8,class:'compas-l'},svgT);
-    if(k<4){const n=el('text',{x:xt(t)+4,y:TY0+TS*5+20,class:'compas-n'},svgT); n.textContent='compás '+(k+1);}
-  }
+  // compases: el 1 acaba en el primer Mi (7) y el 2 arranca en el Re (5) siguiente
+  const INICIOS=[EV[0].t1,13.00,16.86,20.67];
+  INICIOS.forEach((t0,k)=>{
+    const i=EV.findIndex(e=>Math.abs(e.t1-t0)<.01);
+    const x=k===0?xs[0]-16:xs[i]-Math.min(16,(xs[i]-xs[i-1])/2);
+    el('line',{x1:x,y1:TY0-8,x2:x,y2:TY0+TS*5+8,class:'compas-l'},svgT);
+    const n=el('text',{x:x+4,y:TY0+TS*5+22,class:'compas-n'},svgT); n.textContent='compás '+(k+1);
+  });
+  // calderones en las esperas
+  pausas.forEach(({i,dt})=>{
+    const x=(xs[i-1]+xs[i])/2+6, y=TY0+TS*2.5;
+    const g=el('g',{class:'espera'},svgT);
+    el('rect',{x:x-26,y:y-22,width:52,height:40,rx:6},g);
+    el('path',{d:`M${x-11} ${y-2} A11 11 0 0 1 ${x+11} ${y-2}`},g);
+    el('circle',{cx:x,cy:y-4,r:2.2},g);
+    const t=el('text',{x,y:y+11},g); t.textContent=dt.toFixed(1).replace('.',',')+' s';
+    const tenida=EV[i-1].k==='n'&&EV[i-1].t1===10.83;
+    const tt=el('title',{},g); tt.textContent=tenida?`Mi tenido ${dt.toFixed(1)} s: el meñique se queda en el traste 7`:`Espera de ${dt.toFixed(1)} s en el vídeo`;
+  });
   {
     const notas=EV.filter(e=>e.k==='n'); let ini=notas[0], prev=notas[0];
     const tramo=(a,b,d)=>{ const xa=xt(a.t1)-10, xb=xt(b.t1)+10;
@@ -925,7 +957,7 @@ video.addEventListener('timeupdate',()=>{
     g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();ir();}});
     return g;
   });
-  const cab=el('line',{x1:xt(T0),y1:22,x2:xt(T0),y2:H-4,class:'cabezal-t'},svgT);
+  const cab=el('line',{x1:xt(EV[0].t1),y1:22,x2:xt(EV[0].t1),y2:H-4,class:'cabezal-t'},svgT);
 
   // --- sonido
   function sonar(e,when){

@@ -226,6 +226,8 @@ header.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:c
 #tab .ev.actual text{fill:var(--bg)}
 #tab .ev:focus-visible rect{stroke:var(--accent);stroke-width:2}
 #tab .golpe text{fill:var(--golpe)}
+#tab .ac-t{font-family:var(--display);font-size:12px;font-weight:700;fill:var(--accent)!important;text-anchor:middle}
+#tab .solo1{font-family:var(--mono);font-size:9px;fill:var(--golpe)!important;text-anchor:middle}
 #tab .compas-l{stroke:var(--ink);stroke-width:1.5;opacity:.35}
 #tab .compas-n{font-family:var(--mono);font-size:10px;fill:var(--ink-2)}
 #tab .cabezal-t{stroke:var(--golpe);stroke-width:2}
@@ -627,8 +629,13 @@ const ACORDES={
   'Do':   {t:['x',3,2,0,1,0], d:[0,3,2,0,1,0], rol:''},
   'Mi':   {t:[0,2,2,1,0,0], d:[0,2,3,1,0,0], rol:''},
   'Sol':  {t:[3,2,0,0,0,3], d:[2,1,0,0,0,3], rol:''},
-  'Lam':  {t:['x',0,2,2,1,0], d:[0,0,2,3,1,0], rol:''}
+  'Lam':  {t:['x',0,2,2,1,0], d:[0,0,2,3,1,0], rol:''},
+  // cejillas del final de la falseta
+  'Si♭ (cejilla)':  {t:['x',1,3,3,3,1], d:[0,1,3,3,3,1], rol:'cejilla en el 1'},
+  'Sol♯m (cejilla)':{t:[4,6,6,4,4,4], d:[1,3,4,1,1,1], rol:'cejilla en el 4'}
 };
+// posiciones [cuerda, traste] de un acorde, para dibujarlo en el mástil y la tablatura
+const formaDe=nm=>ACORDES[nm].t.map((f,i)=>f==='x'?null:{c:6-i,f,m:[40,45,50,55,59,64][i]+f}).filter(Boolean);
 // Los dos tonos del tango. Por medio = por arriba una cuarta más arriba.
 const FUNCIONES=[
   {fn:'Tónica',gr:'I',arriba:'Mi',medio:'La'},
@@ -671,7 +678,7 @@ const TRAMOS=[
    practica:['En la pestaña Compás, pon «Solo palmas» a 90 bpm y cuenta del 1 al 8.','Sube poco a poco hasta 118, que es el tempo de la clase.'],
    acordes:[]},
   {id:'falseta',ini:6,fin:38,titulo:'Falseta',corto:'Falseta',
-   texto:'La misma falseta dos veces (0:06 y 0:22), unos 16 segundos cada una: cuatro compases de 8. Arranca en el dibujo 1 (Mi–La–Si♭–La–Sol–La), sube al dibujo 2 con el índice en el traste 3, hace Do–Re–Mi en la 5ª cuerda y hace el 5-7-5-7-5 en la 5ª cuerda (Re–Mi–Re–Mi–Re, con el meñique sosteniendo el primer Mi casi dos segundos), baja otra vez al dibujo 1 y remata con el acorde del tango. Síguela en el mástil de debajo del vídeo.',
+   texto:'La misma falseta dos veces (0:06 y 0:22), unos 16 segundos cada una: cuatro compases de 8. Arranca en el dibujo 1 (Mi–La–Si♭–La–Sol–La), sube al dibujo 2 con el índice en el traste 3, hace Do–Re–Mi en la 5ª cuerda y hace el 5-7-5-7-5 en la 5ª cuerda (Re–Mi–Re–Mi–Re, con el meñique sosteniendo el primer Mi casi dos segundos), baja otra vez al dibujo 1 y cierra con dos cejillas, Si♭ (traste 1) y Sol♯ (traste 4), antes del acorde del tango. En la 1ª vuelta mete antes un Fa♯ en la 6ª, traste 2. Síguela en el mástil de debajo del vídeo.',
    practica:['Toca los dos dibujos por separado en la pestaña Escala.','Practica solo el cambio: Sol (6ª, traste 3) con el dedo 3 en el dibujo 1 y luego con el índice en el dibujo 2.','Dale a «Tocar la falseta» a 0,5× y sigue el mástil con la vista.','Con el vídeo, repite la parte en bucle a 0,75×.'],
    acordes:['La']},
   {id:'rueda',ini:38,fin:57,titulo:'Rueda de acordes',corto:'Rueda de acordes',
@@ -685,7 +692,8 @@ const TRAMOS=[
 ];
 // Falseta: t1 = 1ª vuelta, t2 = 2ª vuelta (s de vídeo). k: n nota, g golpe, c acorde final.
 // c = cuerda (1ª aguda … 6ª grave), f = traste, d = dedo, b = dibujo de la escala; s: a = igual en las dos vueltas, l = ligado, m = dudosa
-const FALSETA=[{"t1":6.57,"t2":22.78,"k":"n","m":40,"c":6,"f":0,"d":0,"s":"a","b":1},{"t1":6.95,"t2":23.13,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a","b":1},{"t1":7.67,"t2":24.0,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a","b":1},{"t1":7.87,"t2":24.16,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"l","b":1},{"t1":8.51,"t2":24.74,"k":"n","m":43,"c":6,"f":3,"d":3,"s":"a","b":1},{"t1":8.95,"t2":25.08,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a","b":1},{"t1":9.34,"t2":25.5,"k":"n","m":43,"c":6,"f":3,"d":1,"s":"a","b":2},{"t1":9.72,"t2":26.07,"k":"n","m":48,"c":5,"f":3,"d":1,"s":"a","b":2},{"t1":10.44,"t2":26.71,"s":"a","k":"n","m":50,"c":5,"f":5,"d":3,"b":2},{"t1":10.83,"t2":27.05,"s":"l","k":"n","m":52,"c":5,"f":7,"d":4,"b":2},{"t1":12.31,"t2":28.73,"s":"a","k":"g","m":null,"c":null,"f":null,"d":null,"b":null},{"t1":13.0,"t2":29.37,"s":"a","k":"n","m":50,"c":5,"f":5,"d":3,"b":2},{"t1":13.79,"t2":30.07,"s":"a","k":"n","m":52,"c":5,"f":7,"d":4,"b":2},{"t1":14.05,"t2":30.4,"s":"l","k":"n","m":50,"c":5,"f":5,"d":3,"b":2},{"t1":14.5,"t2":30.75,"k":"n","m":48,"c":5,"f":3,"d":1,"s":"a","b":2},{"t1":14.81,"t2":31.05,"k":"n","m":50,"c":5,"f":5,"d":3,"s":"a","b":2},{"t1":15.16,"t2":31.39,"k":"n","m":48,"c":5,"f":3,"d":1,"s":"a","b":2},{"t1":15.52,"t2":31.77,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a","b":1},{"t1":15.9,"t2":32.15,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"a","b":1},{"t1":16.2,"t2":32.43,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"m","b":1},{"t1":16.57,"t2":32.71,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a","b":1},{"t1":16.86,"t2":33.09,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a","b":null},{"t1":17.11,"t2":33.37,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a","b":1},{"t1":17.27,"t2":33.51,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a","b":1},{"t1":17.95,"t2":34.23,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a","b":null},{"t1":18.98,"t2":35.24,"k":"n","m":41,"c":6,"f":1,"d":1,"s":"a","b":1},{"t1":19.07,"t2":35.38,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"m","b":1},{"t1":19.34,"t2":35.7,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a","b":1},{"t1":19.66,"t2":35.87,"k":"n","m":44,"c":6,"f":4,"d":4,"s":"m","b":1},{"t1":20.67,"t2":36.83,"k":"c","m":null,"c":null,"f":null,"d":null,"s":"a","b":null}];
+// k:'c' = acorde (ac = nombre en ACORDES); v:1 = solo suena en la 1ª vuelta
+const FALSETA=[{"t1":6.57,"t2":22.78,"k":"n","m":40,"c":6,"f":0,"d":0,"s":"a","b":1},{"t1":6.95,"t2":23.13,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a","b":1},{"t1":7.67,"t2":24.0,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a","b":1},{"t1":7.87,"t2":24.16,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"l","b":1},{"t1":8.51,"t2":24.74,"k":"n","m":43,"c":6,"f":3,"d":3,"s":"a","b":1},{"t1":8.95,"t2":25.08,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a","b":1},{"t1":9.34,"t2":25.5,"k":"n","m":43,"c":6,"f":3,"d":1,"s":"a","b":2},{"t1":9.72,"t2":26.07,"k":"n","m":48,"c":5,"f":3,"d":1,"s":"a","b":2},{"t1":10.44,"t2":26.71,"s":"a","k":"n","m":50,"c":5,"f":5,"d":3,"b":2},{"t1":10.83,"t2":27.05,"s":"l","k":"n","m":52,"c":5,"f":7,"d":4,"b":2},{"t1":12.31,"t2":28.73,"s":"a","k":"g","m":null,"c":null,"f":null,"d":null,"b":null},{"t1":13.0,"t2":29.37,"s":"a","k":"n","m":50,"c":5,"f":5,"d":3,"b":2},{"t1":13.79,"t2":30.07,"s":"a","k":"n","m":52,"c":5,"f":7,"d":4,"b":2},{"t1":14.05,"t2":30.4,"s":"l","k":"n","m":50,"c":5,"f":5,"d":3,"b":2},{"t1":14.5,"t2":30.75,"k":"n","m":48,"c":5,"f":3,"d":1,"s":"a","b":2},{"t1":14.81,"t2":31.05,"k":"n","m":50,"c":5,"f":5,"d":3,"s":"a","b":2},{"t1":15.16,"t2":31.39,"k":"n","m":48,"c":5,"f":3,"d":1,"s":"a","b":2},{"t1":15.52,"t2":31.77,"k":"n","m":46,"c":5,"f":1,"d":1,"s":"a","b":1},{"t1":15.9,"t2":32.15,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"a","b":1},{"t1":16.2,"t2":32.43,"k":"n","m":48,"c":5,"f":3,"d":3,"s":"m","b":1},{"t1":16.57,"t2":32.71,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a","b":1},{"t1":16.86,"t2":33.09,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a","b":null},{"t1":17.11,"t2":33.37,"k":"n","m":50,"c":4,"f":0,"d":0,"s":"a","b":1},{"t1":17.27,"t2":33.51,"k":"n","m":45,"c":5,"f":0,"d":0,"s":"a","b":1},{"t1":17.95,"t2":34.23,"k":"g","m":null,"c":null,"f":null,"d":null,"s":"a","b":null},{"t1":18.6,"t2":34.68,"k":"n","m":42,"c":6,"f":2,"d":2,"s":"a","b":1,"v":1},{"t1":19.34,"t2":35.38,"k":"c","ac":"Si♭ (cejilla)","s":"a","b":null,"m":null,"c":null,"f":null,"d":null},{"t1":19.66,"t2":35.7,"k":"c","ac":"Sol♯m (cejilla)","s":"a","b":null,"m":null,"c":null,"f":null,"d":null},{"t1":20.67,"t2":36.83,"k":"c","ac":"La","s":"a","b":null,"m":null,"c":null,"f":null,"d":null}];
 // Dibujos de La frigio: [cuerda, traste]
 const DIBUJOS={
   1:{nombre:'Dibujo 1',desde:0,hasta:3,notas:[[6,0],[6,1],[6,3],[5,0],[5,1],[5,3],[4,0],[4,2],[4,3],[3,0],[3,2],[3,3],[2,1],[2,3],[1,0],[1,1],[1,3]]},
@@ -1053,7 +1061,7 @@ video.addEventListener('timeupdate',()=>{
   for(let i=1;i<EV.length;i++){
     const dt=EV[i].t1-EV[i-1].t1;
     if(dt>ESPERA){ xs.push(xs[i-1]+0.45*PX+HUECO); pausas.push({i,dt}); }
-    else xs.push(xs[i-1]+Math.max(dt*PX,26));
+    else xs.push(xs[i-1]+Math.max(dt*PX,(EV[i].k==='c'||EV[i-1].k==='c')?52:26));
   }
   const W=Math.round(xs[xs.length-1]+70);
   svgT.setAttribute('viewBox',`0 0 ${W} ${H}`); svgT.setAttribute('width',W); svgT.setAttribute('height',H);
@@ -1101,14 +1109,16 @@ video.addEventListener('timeupdate',()=>{
     if(e.k==='n'){
       el('rect',{x:x-8,y:TY0+TS*(e.c-1)-8,width:16,height:16,rx:3},g);
       const t=el('text',{x,y:TY0+TS*(e.c-1)},g); t.textContent=e.f;
-      g.setAttribute('aria-label',`${nombre(e.m%12)}, cuerda ${e.c}ª, traste ${e.f}`);
+      g.setAttribute('aria-label',`${nombre(e.m%12)}, cuerda ${e.c}ª, traste ${e.f}`+(e.v===1?', solo en la 1ª vuelta':''));
+      if(e.v===1){ const t1=el('text',{x,y:TY0+TS*5+22,class:'solo1'},g); t1.textContent='solo 1ª'; }
     }else if(e.k==='g'){
       el('rect',{x:x-10,y:TY0-20,width:20,height:14,rx:3},g);
       const t=el('text',{x,y:TY0-13},g); t.textContent='↓';
       g.setAttribute('aria-label','Golpe');
     }else{
-      ACORDE_FINAL.forEach(a=>{el('rect',{x:x-8,y:TY0+TS*(a.c-1)-8,width:16,height:16,rx:3},g); const t=el('text',{x,y:TY0+TS*(a.c-1)},g); t.textContent=a.f;});
-      g.setAttribute('aria-label','Acorde del tango');
+      formaDe(e.ac).forEach(a=>{el('rect',{x:x-8,y:TY0+TS*(a.c-1)-8,width:16,height:16,rx:3},g); const t=el('text',{x,y:TY0+TS*(a.c-1)},g); t.textContent=a.f;});
+      const nmb=el('text',{x,y:TY0-14,class:'ac-t'},g); nmb.textContent=e.ac==='La'?'La':e.ac.replace(' (cejilla)','');
+      g.setAttribute('aria-label',e.ac==='La'?'Acorde del tango':`${e.ac}`);
     }
     const ir=()=>irA_(e);
     g.addEventListener('click',ir);
@@ -1122,7 +1132,7 @@ video.addEventListener('timeupdate',()=>{
   function sonar(e,when){
     if(e.k==='n') pulsar(e.m,when,.6,{cuerda:e.c,ligado:e.s==='l'});
     else if(e.k==='g') golpeTapa(when);
-    else rasguear('La',when,.34);
+    else rasguear(e.ac||'La',when,.34);
   }
 
   // --- pintar un instante
@@ -1136,7 +1146,7 @@ video.addEventListener('timeupdate',()=>{
       return;
     }
     const k=pase.k; let i=-1;
-    for(let j=0;j<EV.length;j++){ if(EV[j][k]<=T) i=j; else break; }
+    for(let j=0;j<EV.length;j++){ if(pase.n===2&&EV[j].v===1) continue; if(EV[j][k]<=T) i=j; else break; }
     // cabezal: interpolar sobre el eje de la 1ª vuelta
     let x;
     if(i<0) x=xt(EV[0].t1-(EV[0][k]-T));
@@ -1176,8 +1186,9 @@ video.addEventListener('timeupdate',()=>{
       golpeTxt.textContent='GOLPE';
       info.innerHTML='<b>Golpe</b> · el anular golpea la tapa entre frases';
     }else{
-      capa.innerHTML=''; ACORDE_FINAL.forEach(a=>punto(a.c,a.f,a.m,'actual','1'));
-      info.innerHTML='<b>La</b> · el acorde del tango (x02330) cierra la vuelta';
+      capa.innerHTML=''; formaDe(e.ac).forEach(a=>punto(a.c,a.f,a.m,'actual','1'));
+      info.innerHTML=e.ac==='La'?'<b>La</b> · el acorde del tango (x02330) cierra la vuelta'
+        :`<b>${e.ac.replace(' (cejilla)','')}</b> · ${ACORDES[e.ac].rol} (${ACORDES[e.ac].t.join('')})`;
     }
   }
 

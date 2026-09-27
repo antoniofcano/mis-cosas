@@ -29,3 +29,15 @@ alumno: solo notas naturales) y La frigio (la de la falseta: Si♭ en la 5ª,
 medido a 116 Hz). El dibujo 2 de Mi frigio está pendiente.
 Método: cromagrama, detección de ataques y autocorrelación del audio,
 más fotogramas cada 5 s.
+
+## Sonido
+
+Suena una guitarra de nailon grabada: `muestras/*.mp3` (29 notas, de Si1 a
+La♯5) de [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments),
+grabaciones de dominio público editadas, licencia **CC BY 3.0** (se cita en el
+pie de la página). La página las procesa para acercarlas a una flamenca: corte
+de graves, −3 dB a 180 Hz, pegada a 1,1 kHz, presencia a 2,2 kHz, brillo de
+uña por encima de 3,2 kHz, ataque reforzado, cola corta y compresión rápida.
+Hay un botón para comparar con la nailon original. Las muestras se cargan con
+`fetch`, así que abriendo `index.html` desde disco (file://) no cargan y suena
+el modelo sintético; sirviendo la carpeta por HTTP, sí.

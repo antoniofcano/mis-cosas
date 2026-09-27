@@ -535,6 +535,8 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
                 <button class="chip fvel" type="button" data-v="1" aria-pressed="false">1×</button>
               </div>
             </div>
+            <div class="tr-botones"><span class="eyebrow">Timbre</span><button class="chip" id="timbreFl" type="button" aria-pressed="true">Flamenca</button><button class="chip" id="timbreCl" type="button" aria-pressed="false">Nailon original</button></div>
+            <p class="muted tr-fuente estado-sonido">Cargando las muestras de guitarra…</p>
             <p class="muted tr-fuente" id="trFuente">Suena el sintetizador (1ª vuelta). Carga el vídeo para que la línea de tiempo lo mueva a él.</p>
           </div>
         </div>
@@ -576,7 +578,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
 </div>
 
 <footer>
-  Análisis automático del audio (cromagrama, detección de ataques y autocorrelación del ritmo) y revisión de fotogramas cada 5 s. La voz solo aparece en la cuenta de entrada. El palo y las técnicas los indicó quien grabó la clase. Las notas suenan con un sintetizador de cuerda pulsada, no con la guitarra del vídeo.
+  Análisis automático del audio (cromagrama, detección de ataques y autocorrelación del ritmo) y revisión de fotogramas cada 5 s. La voz solo aparece en la cuenta de entrada. Sonido: muestras de guitarra de nailon de <a href="https://github.com/nbrosowsky/tonejs-instruments">tonejs-instruments</a> (grabaciones de dominio público editadas, licencia CC BY 3.0), procesadas aquí con filtros para acercarlas a una flamenca. El palo y las técnicas los indicó quien grabó la clase. Las notas suenan con un sintetizador de cuerda pulsada, no con la guitarra del vídeo.
 </footer>
 </div>
 
@@ -702,7 +704,7 @@ const LEYENDA='PALMAS 2 · 3 · 4 — 6 · 7 · 8';
 // Guitarra flamenca sintetizada: cuerda por Karplus-Strong con afinación
 // fraccional, pulsación cerca del puente (brillo de uña), sustain corto,
 // caja de resonancia con filtros y un poco de sala.
-let ctx=null, master=null, cuerpo=null;
+let ctx=null, master=null, masterM=null, cuerpo=null, flamenca=true;
 function crearCuerpo(c){
   const entrada=c.createGain();
   const corte=c.createBiquadFilter(); corte.type='highpass'; corte.frequency.value=70;
@@ -718,13 +720,47 @@ function crearCuerpo(c){
   for(let ch=0;ch<2;ch++){ const d=ir.getChannelData(ch); for(let k=0;k<n;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/n,3.2); }
   sala.buffer=ir; const envio=c.createGain(); envio.gain.value=.16;
   brillo.connect(envio); envio.connect(sala); sala.connect(comp);
-  return entrada;
+  // Cadena para las muestras de nailon: la acerca a una flamenca.
+  const real=c.createGain();
+  const hp=c.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=80; hp.Q.value=.7;
+  const bum=c.createBiquadFilter(); bum.type='peaking'; bum.frequency.value=180; bum.Q.value=1.1; bum.gain.value=-3;      // menos bola de clásica
+  const pegada=c.createBiquadFilter(); pegada.type='peaking'; pegada.frequency.value=1100; pegada.Q.value=1.2; pegada.gain.value=1.5;
+  const presencia=c.createBiquadFilter(); presencia.type='peaking'; presencia.frequency.value=2200; presencia.Q.value=1; presencia.gain.value=3;
+  const una=c.createBiquadFilter(); una.type='highshelf'; una.frequency.value=3200; una.gain.value=5;                     // brillo de uña
+  const compR=c.createDynamicsCompressor(); compR.threshold.value=-20; compR.ratio.value=4; compR.attack.value=.002; compR.release.value=.12;
+  real.connect(hp); hp.connect(bum); bum.connect(pegada); pegada.connect(presencia); presencia.connect(una); una.connect(compR); compR.connect(comp);
+  const envioR=c.createGain(); envioR.gain.value=.08; una.connect(envioR); envioR.connect(sala);
+  // la nailon tal cual, para comparar
+  const clasica=c.createGain(); clasica.connect(comp);
+  const envioC=c.createGain(); envioC.gain.value=.12; clasica.connect(envioC); envioC.connect(sala);
+  return {sint:entrada,real,clasica};
 }
-function nuevaSalida(){ if(master) master.disconnect(); master=ctx.createGain(); master.gain.value=.9; master.connect(cuerpo); }
+function nuevaSalida(){
+  if(master) master.disconnect(); master=ctx.createGain(); master.gain.value=.9; master.connect(cuerpo.sint);
+  if(masterM) masterM.disconnect(); masterM=ctx.createGain(); masterM.gain.value=1; masterM.connect(flamenca?cuerpo.real:cuerpo.clasica);
+}
+function ponerTimbre(fl){ flamenca=fl; if(ctx){ masterM.disconnect(); masterM.connect(flamenca?cuerpo.real:cuerpo.clasica); } }
 function audio(){
-  if(!ctx){ ctx=new (window.AudioContext||window.webkitAudioContext)(); cuerpo=crearCuerpo(ctx); nuevaSalida(); }
+  if(!ctx){ ctx=new (window.AudioContext||window.webkitAudioContext)(); cuerpo=crearCuerpo(ctx); nuevaSalida(); decodificarMuestras(); }
   if(ctx.state==='suspended') ctx.resume();
   return ctx;
+}
+// Muestras grabadas de guitarra de nailon (tonejs-instruments, CC BY 3.0),
+// publicadas junto a la página. Si no cargan, suena el modelo de cuerda.
+const NOMBRES_MUESTRA=['B1','D2','E2','Fs2','Gs2','A2','B2','Cs3','D3','E3','Fs3','G3','A3','B3','Cs4','Ds4','E4','Fs4','Gs4','A4','B4','Cs5','D5','E5','Fs5','G5','Gs5','A5','As5'];
+const midiDe=n=>{ const m=n.match(/^([A-G])(s?)(\d)$/); return 12*(Number(m[3])+1)+{C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]]+(m[2]?1:0); };
+const muestras=new Map(); let estadoMuestras='cargando';
+const descargas=NOMBRES_MUESTRA.map(n=>fetch('muestras/'+n+'.mp3').then(r=>{ if(!r.ok) throw new Error(n); return r.arrayBuffer(); }).then(ab=>({n,ab})));
+Promise.allSettled(descargas).then(r=>{ if(!r.some(x=>x.status==='fulfilled')){ estadoMuestras='sin'; avisarSonido(); } });
+function decodificarMuestras(){
+  Promise.allSettled(descargas.map(p=>p.then(({n,ab})=>new Promise((ok,ko)=>ctx.decodeAudioData(ab.slice(0),ok,ko)).then(b=>muestras.set(midiDe(n),b)))))
+    .then(()=>{ estadoMuestras=muestras.size?'listas':'sin'; avisarSonido(); });
+}
+function avisarSonido(){
+  const t=estadoMuestras==='listas'?'Suena una guitarra de nailon grabada, procesada para acercarla a una flamenca.'
+    :estadoMuestras==='sin'?'No se han podido cargar las muestras grabadas: suena el modelo sintético.'
+    :'Cargando las muestras de guitarra…';
+  document.querySelectorAll('.estado-sonido').forEach(e=>e.textContent=t);
 }
 const cache=new Map();
 function bufferCuerda(midi){
@@ -755,6 +791,26 @@ function bufferCuerda(midi){
 let clic=null;
 function pulsar(midi,when,vol=.5){
   const c=audio(), t=when??c.currentTime, v=vol*(.9+Math.random()*.2);
+  if(muestras.size){
+    let base=null, dmin=99; for(const m of muestras.keys()){ const dd=Math.abs(m-midi); if(dd<dmin){ dmin=dd; base=m; } }
+    const s=c.createBufferSource(), g=c.createGain();
+    s.buffer=muestras.get(base); s.playbackRate.value=Math.pow(2,(midi-base)/12);
+    const pico=v*1.5;
+    if(flamenca){
+      // ataque con más pegada y cola corta, como la flamenca
+      g.gain.setValueAtTime(pico*1.35,t); g.gain.linearRampToValueAtTime(pico,t+.035);
+      g.gain.setTargetAtTime(pico*.35,t+.08,midi<52?.55:.35);
+      g.gain.setTargetAtTime(0,t+(midi<52?1.6:1.1),.3);
+    }else{ g.gain.setValueAtTime(pico,t); g.gain.setTargetAtTime(0,t+2.6,.5); }
+    s.connect(g); g.connect(masterM); s.start(t); s.stop(t+4.5);
+    if(flamenca){
+      if(!clic){ clic=c.createBuffer(1,Math.floor(c.sampleRate*.012),c.sampleRate); const d=clic.getChannelData(0); for(let k=0;k<d.length;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/d.length,2); }
+      const u=c.createBufferSource(), hp=c.createBiquadFilter(), gu=c.createGain();
+      u.buffer=clic; hp.type='highpass'; hp.frequency.value=3000; gu.gain.value=v*.07;
+      u.connect(hp); hp.connect(gu); gu.connect(masterM); u.start(t);
+    }
+    return;
+  }
   const s=c.createBufferSource(), g=c.createGain();
   s.buffer=bufferCuerda(midi); g.gain.value=v*.55; s.connect(g); g.connect(master); s.start(t);
   // el roce de la uña al atacar
@@ -1379,6 +1435,13 @@ function pintarBarras(){
   });
 }
 pintarBarras();
+/* ================= Timbre ================= */
+{
+  const fl=document.getElementById('timbreFl'), cl=document.getElementById('timbreCl');
+  const poner=v=>{ ponerTimbre(v); fl.setAttribute('aria-pressed',String(v)); cl.setAttribute('aria-pressed',String(!v)); rasguear('La'); };
+  fl.addEventListener('click',()=>poner(true)); cl.addEventListener('click',()=>poner(false));
+}
+
 /* ================= Pestañas ================= */
 {
   const tabs=[...document.querySelectorAll('.pestanas [role=tab]')];

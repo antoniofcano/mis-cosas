@@ -341,6 +341,19 @@ body.espejo.video-espejo svg.mastil text{transform:scale(1,-1)}
 .vbarra .tr-b{width:34px;height:34px;border-color:#EFE3D0;color:#EFE3D0;font-size:.9rem}
 .vbarra .tr-t{color:#EFE3D0}
 .vbarra input{width:100%;accent-color:#E9A94A}
+.exportar{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.exportar summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style-position:inside}
+.exp-cuerpo{display:grid;gap:12px;padding:0 16px 16px}
+.exp-nota{font-size:.85rem}
+.exp-rejilla{display:flex;flex-wrap:wrap;gap:10px 16px}
+.exp-rejilla label{display:grid;gap:4px;font-size:.8rem;color:var(--ink-2)}
+.exp-rejilla select,.exp-rejilla input{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.exp-opciones{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.9rem}
+.exp-opciones input{accent-color:var(--accent)}
+.exp-acciones{display:flex;flex-wrap:wrap;gap:8px}
+.exp-progreso{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.exp-progreso div{height:100%;width:0;background:var(--golpe);transition:width .2s linear}
+.exp-estado{font-size:.85rem}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
 @media (max-width:860px){
@@ -562,6 +575,44 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
             <button class="chip vel" type="button" data-v="1" aria-pressed="true" disabled>1×</button>
           </div>
         </div>
+        <details class="exportar" id="exportar">
+          <summary>⤓ Exportar vídeo para llevártelo o compartirlo</summary>
+          <div class="exp-cuerpo">
+            <p class="muted exp-nota">Graba el tramo que elijas tal como lo ves aquí: con o sin espejo, con el mástil encima (en la posición, el tamaño y la transparencia que tengas puestos) y a la velocidad que quieras. Tarda lo que dura el tramo a esa velocidad.</p>
+            <div class="exp-rejilla">
+              <label for="expTramo">Tramo
+                <select id="expTramo">
+                  <option value="todo">Toda la clase (0:00–2:26)</option>
+                  <option value="falseta" selected>Falseta (0:06–0:40)</option>
+                  <option value="falseta1">Falseta, solo la 1ª vuelta (0:06–0:22)</option>
+                  <option value="rueda">Rueda de acordes (0:40–1:05)</option>
+                  <option value="alzapua">Explicación de la alzapúa (1:05–2:26)</option>
+                  <option value="libre">Desde–hasta…</option>
+                </select>
+              </label>
+              <label for="expDesde" class="exp-libre" hidden>Desde <input id="expDesde" type="text" value="0:06" inputmode="numeric" size="5"></label>
+              <label for="expHasta" class="exp-libre" hidden>Hasta <input id="expHasta" type="text" value="0:40" inputmode="numeric" size="5"></label>
+              <label for="expVel">Velocidad
+                <select id="expVel"><option value="0.5">0,5×</option><option value="0.75">0,75×</option><option value="1" selected>1×</option></select>
+              </label>
+              <label for="expCal">Calidad
+                <select id="expCal"><option value="576">Original (1024×576)</option><option value="720">720p (1280×720)</option></select>
+              </label>
+            </div>
+            <div class="exp-opciones">
+              <label for="expEspejo"><input type="checkbox" id="expEspejo"> En espejo</label>
+              <label for="expMastil"><input type="checkbox" id="expMastil" checked> Mástil encima (con nombre de acorde)</label>
+              <label for="expRotulo"><input type="checkbox" id="expRotulo" checked> Rótulo con la parte y el tiempo</label>
+            </div>
+            <div class="exp-acciones">
+              <button class="btn primary" id="expGo" type="button" disabled>● Generar vídeo</button>
+              <button class="btn" id="expCancel" type="button" hidden>Cancelar</button>
+              <button class="btn primary" id="expSave" type="button" hidden>⤓ Guardar vídeo</button>
+            </div>
+            <div class="exp-progreso" id="expProg" hidden><div id="expBarra"></div></div>
+            <p class="muted exp-estado" id="expEstado" aria-live="polite">Carga primero el vídeo de la clase.</p>
+          </div>
+        </details>
         <div class="vivo" id="vivo">
           <div class="vivo-cab">
             <p class="eyebrow">La falseta en el mástil</p>
@@ -1608,6 +1659,140 @@ pintarBarras();
     else if(vbox.requestFullscreen) vbox.requestFullscreen().catch(()=>{});
   });
   document.getElementById('fichero').addEventListener('change',()=>{ btn.disabled=false; pant.disabled=false; poner(true); });
+}
+
+/* ================= Exportar vídeo ================= */
+{
+  const vid=document.getElementById('video'), vbox=document.getElementById('videoBox'), capaDiv=document.getElementById('capaMastil');
+  const svg=document.getElementById('mastilVivo');
+  const $=id=>document.getElementById(id);
+  const tramo=$('expTramo'), desde=$('expDesde'), hasta=$('expHasta'), velS=$('expVel'), cal=$('expCal');
+  const chEsp=$('expEspejo'), chMas=$('expMastil'), chRot=$('expRotulo');
+  const go=$('expGo'), cancel=$('expCancel'), save=$('expSave'), prog=$('expProg'), barra=$('expBarra'), estado=$('expEstado');
+  const TRAMOS_EXP={todo:[0,146.2],falseta:[6,40],falseta1:[6,22.3],rueda:[40,65],alzapua:[65,146.2]};
+  const aSeg=t=>{ const m=String(t).trim().match(/^(\d+):(\d{1,2}(?:[.,]\d+)?)$/); return m?Number(m[1])*60+Number(m[2].replace(',','.')):Number(String(t).replace(',','.')); };
+  const mm=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+  tramo.addEventListener('change',()=>document.querySelectorAll('.exp-libre').forEach(l=>l.hidden=tramo.value!=='libre'));
+  // al abrir el panel, las opciones copian lo que tienes puesto
+  $('exportar').addEventListener('toggle',()=>{ if(!$('exportar').open) return;
+    chEsp.checked=document.body.classList.contains('video-espejo');
+    chMas.checked=!capaDiv.hidden||chMas.checked;
+    velS.value=String(vid.playbackRate||1);
+  });
+  $('fichero').addEventListener('change',()=>{ go.disabled=false; estado.textContent='Listo para generar.'; });
+  // primero H.264 en mp4 (lo abre cualquier móvil y WhatsApp); si no, webm; un mp4 con otro códec, lo último
+  const mime=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4;codecs=avc1.4D401F,mp4a.40.2','video/mp4;codecs=avc1,mp4a','video/mp4;codecs=avc1.42E01E,opus','video/mp4;codecs=avc1','video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm','video/mp4']
+    .find(m=>window.MediaRecorder&&MediaRecorder.isTypeSupported(m));
+  if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream){ go.disabled=true; estado.textContent='Este navegador no puede grabar vídeo. Prueba con Chrome, Edge o Safari recientes.'; }
+
+  // mástil en vivo → imagen, con los estilos de la página y la orientación que toque
+  const hojas=()=>[...document.styleSheets].map(ss=>{ try{ return [...ss.cssRules].map(r=>r.cssText).join('\n'); }catch(e){ return ''; } }).join('\n');
+  async function mastilAImagen(modo,op){
+    const vb=svg.viewBox.baseVal, W=vb.width, H=vb.height;
+    const clon=svg.cloneNode(true); clon.removeAttribute('class'); clon.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    clon.setAttribute('width',W*2); clon.setAttribute('height',H*2); clon.setAttribute('class','mastil vivo-mastil');
+    const cs=getComputedStyle(document.documentElement);
+    const vars=['--dot-bg','--dot-ink','--accent','--golpe','--ink','--ink-2','--bg','--display','--mono'].map(v=>v+':'+cs.getPropertyValue(v)).join(';');
+    const st=document.createElementNS('http://www.w3.org/2000/svg','style'); st.textContent=`svg{${vars}}\n`+hojas().replace(/body\.espejo[^{]*\{[^}]*\}/g,'')+`\nsvg.mastil{width:${W*2}px!important;height:${H*2}px!important;min-width:0!important}`;
+    clon.insertBefore(st,clon.firstChild);
+    clon.querySelectorAll('.madera').forEach(r=>r.setAttribute('fill-opacity',op));
+    clon.querySelectorAll('.cejuela-l').forEach(l=>{l.setAttribute('stroke-width',3); l.setAttribute('stroke-opacity',.55);});
+    if(modo){
+      const vivos=[...svg.querySelectorAll('text')], copias=[...clon.querySelectorAll('text')];
+      copias.forEach((t,i)=>{ let b; try{ b=vivos[i].getBBox(); }catch(e){ return; } const cx=b.x+b.width/2, cy=b.y+b.height/2;
+        t.setAttribute('transform',modo==='giro'?`rotate(180 ${cx} ${cy})`:`translate(0 ${2*cy}) scale(1 -1)`); });
+      const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+      g.setAttribute('transform',modo==='giro'?`translate(${W} ${H}) scale(-1 -1)`:`translate(0 ${H}) scale(1 -1)`);
+      [...clon.childNodes].filter(n=>n!==st).forEach(n=>g.appendChild(n)); clon.appendChild(g);
+    }
+    const url='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(clon));
+    const img=new Image(); img.src=url; await img.decode(); return img;
+  }
+
+  let grabando=null, resultado=null;
+  let fuenteAudio=null, destino=null;
+  function preparaAudio(){
+    const c=audio();
+    if(!fuenteAudio){ fuenteAudio=c.createMediaElementSource(vid); fuenteAudio.connect(c.destination); destino=c.createMediaStreamDestination(); fuenteAudio.connect(destino); }
+    return destino.stream.getAudioTracks();
+  }
+  async function generar(){
+    if(!mime){ estado.textContent='Este navegador no puede grabar vídeo.'; return; }
+    let [ini,fin]=tramo.value==='libre'?[aSeg(desde.value),aSeg(hasta.value)]:TRAMOS_EXP[tramo.value];
+    fin=Math.min(fin,vid.duration||fin); if(!(fin>ini)){ estado.textContent='Revisa el tramo: «hasta» tiene que ser mayor que «desde» (formato m:ss).'; return; }
+    const vel=Number(velS.value), esp=chEsp.checked, conMastil=chMas.checked, conRotulo=chRot.checked;
+    const H=Number(cal.value), W=Math.round(H*16/9);
+    const canvas=document.createElement('canvas'); canvas.width=W; canvas.height=H; const g=canvas.getContext('2d');
+    // capa: posición y tamaño relativos al vídeo, como la tienes; si está oculta, abajo y bajo el mástil
+    let caja={x:esp?.02:.42,y:.55,w:.56};
+    if(!capaDiv.hidden){ const rb=vbox.getBoundingClientRect(), rc=capaDiv.getBoundingClientRect(); caja={x:(rc.left-rb.left)/rb.width,y:(rc.top-rb.top)/rb.height,w:rc.width/rb.width}; }
+    const modo=document.body.classList.contains('espejo')?(esp?'vertical':'giro'):null;
+    const op=getComputedStyle(capaDiv).getPropertyValue('--op')||'.35';
+    let img=null, sucio=true, haciendo=false;
+    const obs=new MutationObserver(()=>{ sucio=true; }); obs.observe(svg,{subtree:true,childList:true,attributes:true,characterData:true});
+    const pistaVideo=canvas.captureStream(30).getVideoTracks();
+    const stream=new MediaStream([...pistaVideo,...preparaAudio()]);
+    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:H>600?5e6:3.5e6});
+    const trozos=[]; rec.ondataavailable=e=>{ if(e.data&&e.data.size) trozos.push(e.data); };
+    grabando={rec,obs,cancelado:false};
+    go.hidden=true; cancel.hidden=false; save.hidden=true; prog.hidden=false; barra.style.width='0';
+    const velAntes=vid.playbackRate;
+    vid.pause(); vid.currentTime=ini; await new Promise(r=>vid.addEventListener('seeked',r,{once:true}));
+    vid.playbackRate=vel;
+    const nombreParte=t=>t<6?'Compás y tempo':t<40?'Falseta':t<65?'Rueda de acordes':'Explicación de la alzapúa';
+    function dibujar(){
+      if(!grabando) return;
+      g.fillStyle='#000'; g.fillRect(0,0,W,H);
+      g.save(); if(esp){ g.translate(W,0); g.scale(-1,1); } g.drawImage(vid,0,0,W,H); g.restore();
+      if(conMastil){
+        if(sucio&&!haciendo){ haciendo=true; sucio=false; mastilAImagen(modo,op).then(i=>{img=i;}).catch(()=>{}).finally(()=>{haciendo=false;}); }
+        if(img){ const ow=caja.w*W, oh=ow*img.height/img.width; g.drawImage(img,caja.x*W,Math.min(caja.y*H,H-oh-4),ow,oh); }
+      }
+      if(conRotulo){
+        const txt=`Tangos por medio · ${nombreParte(vid.currentTime)} · ${mm(vid.currentTime)}${vel!==1?' · '+String(vel).replace('.',',')+'×':''}`;
+        g.font=`600 ${Math.round(H/30)}px system-ui, sans-serif`; const tw=g.measureText(txt).width;
+        g.fillStyle='rgba(0,0,0,.55)'; g.fillRect(12,12,tw+24,H/30+16); g.fillStyle='#F6D9A2'; g.fillText(txt,24,12+H/30+2);
+      }
+      const p=(vid.currentTime-ini)/(fin-ini); barra.style.width=Math.max(0,Math.min(100,p*100))+'%';
+      estado.textContent=`Grabando ${mm(vid.currentTime-ini)} de ${mm(fin-ini)} del tramo${vel!==1?` (a ${String(vel).replace('.',',')}×, tardará ${mm((fin-ini)/vel)})`:''}…`;
+      if(vid.currentTime>=fin||vid.ended){ terminar(); return; }
+      requestAnimationFrame(dibujar);
+    }
+    function terminar(){
+      if(!grabando) return; const {cancelado}=grabando; grabando=null;
+      obs.disconnect(); vid.pause(); vid.playbackRate=velAntes;
+      rec.onstop=()=>{
+        pistaVideo.forEach(t=>t.stop());
+        go.hidden=false; cancel.hidden=true; prog.hidden=true;
+        if(cancelado){ estado.textContent='Cancelado. No se ha guardado nada.'; return; }
+        const ext=mime.includes('mp4')?'mp4':'webm';
+        const blob=new Blob(trozos,{type:mime.split(';')[0]});
+        const nombre=['tangos',tramo.value==='libre'?`${mm(ini).replace(':','m')}-${mm(fin).replace(':','m')}`:tramo.value,esp?'espejo':'',conMastil?'mastil':'',vel!==1?String(vel).replace('.',',')+'x':''].filter(Boolean).join('-')+'.'+ext;
+        resultado={blob,nombre};
+        save.hidden=false; save.textContent=`⤓ Guardar ${nombre} (${(blob.size/1048576).toFixed(1)} MB)`;
+        estado.textContent='Hecho. Pulsa «Guardar» para quedártelo: te pedirá confirmación.'+(ext==='webm'?' Está en formato webm porque este navegador no graba mp4: se abre en Chrome, Firefox y VLC; para el iPhone o WhatsApp, genéralo desde Chrome o Safari.':(!mime.includes('avc1')?' Ojo: este navegador lo graba en mp4 con un códec que algunos iPhone no abren; si te pasa, genéralo desde Safari o Chrome.':''));
+      };
+      rec.stop();
+    }
+    rec.start(1000); vid.play().catch(()=>{}); requestAnimationFrame(dibujar);
+    cancel.onclick=()=>{ if(grabando){ grabando.cancelado=true; terminar(); } };
+  }
+  go.addEventListener('click',()=>{ generar().catch(e=>{ estado.textContent='No se ha podido generar el vídeo: '+(e&&e.message||e); go.hidden=false; cancel.hidden=true; prog.hidden=true; }); });
+  save.addEventListener('click',async()=>{
+    if(!resultado) return;
+    const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;
+    if(!dl){ estado.textContent='Esta vista no permite guardar archivos. Abre la página desde claude.ai para poder guardarlo.'; return; }
+    try{
+      await dl.save({filename:resultado.nombre,data:resultado.blob});
+      estado.textContent='Guardado.';
+    }catch(e){
+      const c=e&&e.code;
+      estado.textContent=c==='declined'?'No se ha guardado (lo has cancelado). Puedes volver a pulsar «Guardar».'
+        :c==='rate_limited'?'Ya hay una confirmación abierta; espera un momento.'
+        :c==='too_large'?'El archivo es demasiado grande para este dispositivo: prueba con un tramo más corto o calidad original.'
+        :'No se ha podido guardar aquí ('+(c||'error')+').';
+    }
+  });
 }
 
 /* ================= Timbre ================= */

@@ -325,6 +325,11 @@ header.cab{display:grid;gap:10px;padding-block:36px 18px}
    (cejuela a la derecha, 6ª arriba). Los textos se vuelven a girar para que se lean. */
 body.espejo svg.mastil{transform:scale(-1,-1)}
 body.espejo svg.mastil text{transform-box:fill-box;transform-origin:center;transform:scale(-1,-1)}
+/* Vídeo en espejo: el profe queda como tu reflejo (mástil a la izquierda, 6ª arriba).
+   El mástil «como en el vídeo» pasa a voltearse solo en vertical para seguir coincidiendo. */
+body.video-espejo #video{transform:scaleX(-1)}
+body.espejo.video-espejo svg.mastil{transform:scale(1,-1)}
+body.espejo.video-espejo svg.mastil text{transform:scale(1,-1)}
 .vista-chip{white-space:nowrap}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
 
@@ -534,6 +539,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
           <button class="chip" id="capaBtn" type="button" aria-pressed="false" disabled>Mástil sobre el vídeo</button>
           <label class="tempo" for="capaOp" id="capaOpL" hidden>Madera <input id="capaOp" type="range" min="0" max="100" value="35"></label>
           <button class="chip" id="pantallaBtn" type="button" disabled>⛶ Pantalla completa</button>
+          <button class="chip" id="espejoVid" type="button" aria-pressed="false" disabled title="Como verte en un espejo: útil para la mano izquierda; para la alzapúa, mejor sin espejo">⇋ Vídeo en espejo</button>
           <div role="group" aria-label="Velocidad" style="display:flex;gap:6px">
             <button class="chip vel" type="button" data-v="0.5" aria-pressed="false" disabled>0,5×</button>
             <button class="chip vel" type="button" data-v="0.75" aria-pressed="false" disabled>0,75×</button>
@@ -1589,6 +1595,9 @@ pintarBarras();
   }
   botones.forEach(b=>b.addEventListener('click',()=>poner(!espejo)));
   poner(espejo);
+  const ev=document.getElementById('espejoVid');
+  ev.addEventListener('click',()=>{ const on=!document.body.classList.contains('video-espejo'); document.body.classList.toggle('video-espejo',on); ev.setAttribute('aria-pressed',String(on)); });
+  document.getElementById('fichero').addEventListener('change',()=>{ ev.disabled=false; });
 }
 
 /* ================= Pestañas ================= */

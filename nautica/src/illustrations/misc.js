@@ -96,11 +96,11 @@ export function meteoIllustration(spec) {
       out.push(`<text x="230" y="200" class="il-lbl" style="fill:#dc2626" font-weight="700">aire cálido</text>`);
       out.push(`<path d="M150,140 q-16,-6 -10,-24 q-6,-24 20,-28 q8,-28 40,-16 q30,-6 32,22 q20,8 6,30Z" fill="#94a3b8" stroke="#475569"/><text x="190" y="128" class="il-lbl" text-anchor="middle">Cb</text>`);
       for (let i = 0; i < 5; i++) out.push(`<line x1="${160 + i * 10}" y1="146" x2="${154 + i * 10}" y2="170" stroke="#2563eb"/>`);
-      out.push(`<line x1="230" y1="240" x2="160" y2="240" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="236" y="244" class="il-lbl">avanza</text>`);
+      out.push(`<line x1="190" y1="240" x2="260" y2="240" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="186" y="244" class="il-lbl" text-anchor="end">avanza</text>`);
     } else {
       out.push(`<path d="M10,230 L310,230 L310,200 Q160,170 10,60Z" fill="#dc2626" opacity=".18"/><text x="30" y="110" class="il-lbl" style="fill:#dc2626" font-weight="700">aire cálido (sube despacio)</text>`);
       out.push(`<path d="M120,230 Q220,200 310,200 L310,230Z" fill="#2563eb" opacity=".3"/><text x="230" y="222" class="il-lbl" style="fill:#2563eb" font-weight="700">aire frío</text>`);
-      out.push(`<text x="70" y="150" class="il-lbl">Ns: lluvia continua</text><text x="170" y="128" class="il-lbl">As</text><text x="250" y="96" class="il-lbl">Ci · Cs (halo)</text>`);
+      out.push(`<text x="130" y="196" class="il-lbl">Ns: lluvia continua</text><text x="200" y="150" class="il-lbl">As</text><text x="226" y="120" class="il-lbl">Ci · Cs (halo)</text>`);
       out.push(`<line x1="60" y1="244" x2="130" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="136" y="248" class="il-lbl">avanza</text>`);
     }
     out.push('</svg>');
@@ -242,8 +242,8 @@ export function roseIllustration(spec) {
 const FLAGS = {
   A: { nombre: 'Bandera «A» (Alfa)', nota: 'Tengo un buzo sumergido: manténgase alejado y a poca velocidad.', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w / 2}" height="${h}" fill="#fff" stroke="#999"/><path d="M${x + w / 2},${y} L${x + w},${y} L${x + w * 0.75},${y + h / 2} L${x + w},${y + h} L${x + w / 2},${y + h}Z" fill="#1d4ed8"/>` },
   buceo: { nombre: 'Bandera de buceo (roja con diagonal blanca)', nota: 'Señala buceadores en inmersión (uso deportivo y recreativo).', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#dc2626"/><path d="M${x},${y} L${x + w * 0.18},${y} L${x + w},${y + h * 0.82} L${x + w},${y + h} L${x + w * 0.82},${y + h} L${x},${y + h * 0.18}Z" fill="#fff"/>` },
-  O: { nombre: 'Bandera «O» (Oscar)', nota: '¡Hombre al agua!', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#facc15"/><path d="M${x},${y} L${x + w},${y} L${x},${y + h}Z" fill="#dc2626"/>` },
-  N: { nombre: 'Bandera «N» (November)', nota: 'No (negativo). Con la «C» encima: señal de socorro (NC).', svg: (x, y, w, h) => [...Array(16)].map((_, i) => `<rect x="${x + (i % 4) * w / 4}" y="${y + Math.floor(i / 4) * h / 4}" width="${w / 4}" height="${h / 4}" fill="${(i + Math.floor(i / 4)) % 2 ? '#1d4ed8' : '#fff'}"/>`).join('') },
+  O: { nombre: 'Bandera «O» (Oscar)', nota: '¡Hombre al agua!', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#facc15"/><path d="M${x},${y} L${x + w},${y} L${x + w},${y + h}Z" fill="#dc2626"/>` },
+  N: { nombre: 'Bandera «N» (November)', nota: 'No (negativo). Con la «C» encima: señal de socorro (NC).', svg: (x, y, w, h) => [...Array(16)].map((_, i) => `<rect x="${x + (i % 4) * w / 4}" y="${y + Math.floor(i / 4) * h / 4}" width="${w / 4}" height="${h / 4}" fill="${(i + Math.floor(i / 4)) % 2 ? '#fff' : '#1d4ed8'}"/>`).join('') },
   C: { nombre: 'Bandera «C» (Charlie)', nota: 'Sí (afirmativo). NC = socorro.', svg: (x, y, w, h) => ['#1d4ed8', '#fff', '#dc2626', '#fff', '#1d4ed8'].map((c, i) => `<rect x="${x}" y="${y + (i * h) / 5}" width="${w}" height="${h / 5}" fill="${c}"/>`).join('') },
   B: { nombre: 'Bandera «B» (Bravo)', nota: 'Estoy cargando, descargando o transportando mercancías peligrosas.', svg: (x, y, w, h) => `<path d="M${x},${y} L${x + w},${y} L${x + w * 0.75},${y + h / 2} L${x + w},${y + h} L${x},${y + h}Z" fill="#dc2626"/>` },
   H: { nombre: 'Bandera «H» (Hotel)', nota: 'Tengo práctico a bordo.', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w / 2}" height="${h}" fill="#fff" stroke="#999"/><rect x="${x + w / 2}" y="${y}" width="${w / 2}" height="${h}" fill="#dc2626"/>` },

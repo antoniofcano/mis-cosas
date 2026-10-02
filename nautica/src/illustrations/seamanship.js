@@ -135,7 +135,8 @@ export function busquedaIllustration(spec) {
   } else {
     const R = 100;
     const P = (deg) => [cx + Math.sin((deg * Math.PI) / 180) * R, cy - Math.cos((deg * Math.PI) / 180) * R];
-    const seq = [0, 120, 240].flatMap((a) => [P(a), P(a + 60)]);
+    // IAMSAR: todos los giros de 120° a estribor → sectores en el orden 0°, 240°, 120°
+    const seq = [0, 240, 120].flatMap((a) => [P(a), P(a + 60)]);
     d = `M${cx},${cy} ${seq.map((p, i) => `L${p[0].toFixed(1)},${p[1].toFixed(1)}${i % 2 ? ` L${cx},${cy}` : ''}`).join(' ')}`;
   }
   out.push(`<path d="${d}" fill="none" stroke="${C.v}" stroke-width="2" stroke-dasharray="900" stroke-dashoffset="900"><animate attributeName="stroke-dashoffset" from="900" to="0" dur="8s" repeatCount="indefinite"/></path>`);

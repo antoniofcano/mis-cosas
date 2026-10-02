@@ -34,7 +34,7 @@ const SITUACIONES = {
     nota: 'Con la misma amura, el de barlovento se aparta del de sotavento.',
     viento: true,
     a: { from: [70, 250], to: [310, 110], turn: [170, 190, 220, 120, 310, 60], label: 'Barlovento: cede', color: '#e11d48' },
-    b: { from: [90, 330], to: [330, 190], label: 'Sotavento: sigue', color: '#2563eb' },
+    b: { from: [130, 340], to: [290, 60], label: 'Sotavento: sigue', color: '#2563eb' },
   },
 };
 
@@ -82,11 +82,11 @@ export const SENALES = {
   '.....': 'Cinco o más cortas y rápidas: no entiendo sus intenciones / duda.',
   '-': 'Una larga: buque que se aproxima a un recodo; también, cada 2 min, buque de motor con arrancada en visibilidad reducida.',
   '--': 'Dos largas cada 2 min: buque de motor en visibilidad reducida, en navegación pero parado (sin arrancada).',
-  '-..': 'Una larga y dos cortas: sin gobierno, restringido, de vela, pesquero, remolcando… en visibilidad reducida.',
+  '-..': 'Una larga y dos cortas cada 2 min en visibilidad reducida: sin gobierno, maniobra restringida, restringido por su calado, de vela, pescando, remolcando o empujando (también el pesquero y el de maniobra restringida cuando están fondeados).',
   '--.': 'Dos largas y una corta: en un canal angosto, pretendo alcanzarle por su estribor.',
   '--..': 'Dos largas y dos cortas: pretendo alcanzarle por su babor.',
   '-.-.': 'Larga, corta, larga, corta: conformidad del buque alcanzado.',
-  '-...': 'Una larga y tres cortas: buque remolcado (si va tripulado) en visibilidad reducida.',
+  '-...': 'Una larga y tres cortas: el buque remolcado (el último del tren de remolque, si va tripulado) en visibilidad reducida, inmediatamente después de la señal del remolcador.',
 };
 
 export function soundIllustration(spec) {
@@ -107,14 +107,14 @@ export function soundIllustration(spec) {
   return { svg, caption: SENALES[pattern] ?? '', sound: pattern };
 }
 
-/** Reproduce una señal con WebAudio (corta 1 s; larga acortada a 2,5 s para no hacerse eterna). */
+/** Reproduce una señal con WebAudio (corta ≈ 1 s; larga 4 s, dentro de los 4–6 s de la Regla 32). */
 export function playSignal(pattern) {
   const Ctx = globalThis.AudioContext ?? globalThis.webkitAudioContext;
   if (!Ctx) return;
   const ctx = new Ctx();
   let t = ctx.currentTime + 0.05;
   for (const c of pattern) {
-    const d = c === '-' ? 2.5 : 0.8;
+    const d = c === '-' ? 4 : 1;
     const o = ctx.createOscillator();
     const g = ctx.createGain();
     o.type = 'sawtooth';

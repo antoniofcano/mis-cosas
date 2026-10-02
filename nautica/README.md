@@ -1,7 +1,31 @@
-# Carta Náutica — preparación de ejercicios prácticos (PER · Patrón de Yate)
+# Patrón · Preparador del examen de PER y Patrón de Yate
 
-Aplicación web estática, gratuita y sin dependencias para practicar los ejercicios de carta náutica
-de los exámenes de **Patrón de Embarcaciones de Recreo (PER)** y, más adelante, **Patrón de Yate (PY)**.
+Aplicación web estática, gratuita y sin dependencias para **aprobar el examen teórico de Patrón de Embarcaciones
+de Recreo (PER) y de Patrón de Yate (PY)** de la Junta de Andalucía. Empezó como simulador de cartas y hoy cubre
+el examen entero: teoría, carta y simulacros.
+
+## Cómo está organizada
+
+Eliges titulación en la portada (o con el selector PER | PY de la cabecera) y todo se adapta a su examen:
+
+| Sección | Qué hay |
+|---|---|
+| **Panel** `#/per` · `#/py` | Cómo vas en cada bloque del temario (practicadas, % de acierto, estado), el siguiente paso recomendado y las reglas del examen. |
+| **Teoría** `#/<tit>/teoria` | Práctica por bloques con las preguntas reales (PER: 810; PY: 720), corrección al momento y **el profe** explicando cada respuesta, con voz, ilustraciones y animaciones. Repaso de solo las falladas. |
+| **Carta** `#/<tit>/carta` | Ejercicios de carta por tipo, generados con datos nuevos cada vez, con pistas, construcción gráfica, tutorial sobre la carta y profe. Preguntas reales de carta. |
+| **Exámenes** `#/<tit>/examenes` | Simulacros con el número de preguntas y el tiempo del examen, y las 18 convocatorias reales completas (2020–2026), corregidos con las reglas oficiales (aciertos mínimos y límites de errores por bloque) y revisión con el profe. |
+
+Comunes a las dos titulaciones: **Mesa de cartas** `#/mesa` (la carta con todos los instrumentos),
+**Láminas animadas** `#/laminas`, **Conceptos de carta** `#/conceptos` y **Progreso** `#/progreso`.
+
+| Titulación | Examen | Banco de preguntas |
+|---|---|---|
+| PER | 45 preguntas · 90 min · apto con 32; máx. 5 errores en RIPA, 2 en Balizamiento y 2 en Carta | 738 de teoría + 72 de carta (18 convocatorias), con explicación del profe y 267 ilustraciones |
+| PY | 40 preguntas en dos módulos (genérico 45 min, navegación 75 min) · apto con 28; máx. 5 errores en Teoría de navegación y 3 en Carta | 720 (18 convocatorias): seguridad, meteorología, teoría de navegación y carta (carta, mareas con tabla y loxodrómica) |
+
+Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`src/theory/blocks.js`) y su banco en `data/exams/`.
+
+## Funciones destacadas
 
 - **Ejercicios por tipo**, generados con datos nuevos cada vez sobre la zona del Estrecho (carta L105).
 - **Corrección automática** con tolerancias de examen y **diagnóstico de errores típicos**

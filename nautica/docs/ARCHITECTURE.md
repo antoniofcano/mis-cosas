@@ -22,10 +22,13 @@ nautica/
 │   │                                        de escaneos (ajuste afín)
 │   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
+│   ├── theory/           MOTOR DE TESTS     estructura de cada titulación (blocks.js: PER, PY, TITULACIONES),
+│   │                                        simulacros, exámenes reales y corrección con las reglas oficiales
+│   ├── illustrations/    ILUSTRACIONES      SVG paramétrico animado (boyas, luces, maniobras, meteo…) por spec
 │   ├── teacher/          MOTOR «PROFE»     lecciones por tipo de paso (intro, truco, error típico), narración
 │   │                                        de soluciones y conversión a lenguaje hablado para la voz
 │   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
-│   └── ui/               INTERFAZ           router por hash, vistas; ui/chart/: carta interactiva (zoom, capas,
+│   └── ui/               INTERFAZ           router por hash (#/<tit>/… por titulación), vistas; ui/chart/: carta interactiva (zoom, capas,
 │                                            herramientas de dibujo) y capa raster de la carta del usuario
 ├── styles/app.css
 └── tests/                node --test
@@ -33,6 +36,16 @@ nautica/
 
 Dependencias permitidas (de abajo arriba): `math` ← `nautical` ← `chart` ← `exercises` ← `analysis`
 ← `graphics` ← `ai` ← `ui`. `store` solo lo usa `ui`.
+
+## Organización por titulación
+
+La titulación (PER, PY) es el eje de la interfaz. `src/theory/blocks.js` define `TITULACIONES`: estructura
+del examen (bloques, nº de preguntas, límites de errores, aciertos mínimos, duración), nivel de los ejercicios
+de carta y ficheros de datos. Las rutas `#/<tit>/{teoria,carta,examenes,test}` y el panel `#/<tit>` las sirve
+`ui/app.js` pasando `tit` a la vista; la mesa de cartas, las láminas, los conceptos y el progreso son comunes.
+Añadir una titulación = una entrada en `TITULACIONES` + su banco `data/exams/<comunidad>-<tit>-teoria.json`
+(mismo formato de pregunta: `id`, `ut`, `enunciado`, `opciones`, `correcta`, `anulada`, `orden?`, `figuras?`)
+y, opcionalmente, sus explicaciones `…-explicaciones.json` (`{ id: { explicacion, clave, trampa?, discrepancia?, ilustraciones? } }`).
 
 ## Flujo de un ejercicio
 

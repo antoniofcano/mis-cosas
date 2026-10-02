@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carta Náutica PER</title>
-  <meta name="description" content="Ejercicios interactivos de carta náutica para PER y Patrón de Yate: generador, corrección, pistas paso a paso y preguntas reales de examen de Andalucía.">
+  <title>Patrón · Preparador PER y PY</title>
+  <meta name="description" content="Preparador gratuito del examen de PER y Patrón de Yate (Andalucía): todas las preguntas reales con la plantilla oficial, simulacros cronometrados, explicaciones del profe con voz y animaciones, y ejercicios de carta interactivos.">
   <!-- Agentes de IA: lee /llms.txt (guía breve) y usa window.nautica.state() o la sección #ai-context. -->
   <link rel="alternate" type="text/plain" href="llms.txt" title="Guía para agentes de IA">
   <link rel="stylesheet" href="styles/app.css">
@@ -12,18 +12,13 @@
 </head>
 <body>
   <header class="top">
-    <a class="brand" href="#/">🧭 Carta Náutica</a>
-    <nav>
-      <a href="#/">Practicar</a>
-      <a href="#/examenes">Exámenes</a>
-      <a href="#/carta">Carta</a>
-      <a href="#/teoria">Teoría</a>
-      <a href="#/progreso">Progreso</a>
-    </nav>
+    <a class="brand" href="#/">🧭 Patrón</a>
+    <div id="tit-switch" class="tit-switch" role="group" aria-label="Titulación"></div>
+    <nav id="nav" aria-label="Secciones"></nav>
   </header>
   <main id="app"><p>Cargando…</p></main>
   <footer>
-    Herramienta de estudio. Los cálculos usan una carta simplificada del Estrecho: practica también el trazado sobre la carta L105 en papel. Costa © OpenStreetMap contributors.
+    Herramienta de estudio gratuita. Preguntas y plantillas: exámenes oficiales publicados por la Junta de Andalucía. La carta vectorial es una simplificación de la del Estrecho: practica también sobre la carta L105 en papel. Costa © OpenStreetMap contributors.
     · <a href="llms.txt">llms.txt</a>
   </footer>
   <noscript>Esta aplicación necesita JavaScript.</noscript>

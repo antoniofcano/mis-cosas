@@ -1,0 +1,1272 @@
+{
+ "meta": {
+  "title": "Reglas nemotécnicas validadas",
+  "description": "Reglas para memorizar usadas por academias y foros náuticos, comprobadas contra el RIPA, IALA y el RD 875/2014, y validadas una a una por el alumno. preguntas: ids de preguntas donde la regla ayuda."
+ },
+ "reglas": [
+  {
+   "id": "r01",
+   "regla": "BAnco de ESpaña: BAbor a la izquierda, EStribor a la derecha (mirando a proa).",
+   "significado": "Al escribir «Banco España» la B (babor) queda a la izquierda y la E (estribor) a la derecha, mirando hacia proa. Correcto: babor = costado izquierdo, estribor = derecho, siempre mirando a proa. Variante habitual: «estribor suena a escribir: mano derecha» (falla con zurdos).",
+   "tema": "UT1 Nomenclatura",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r02",
+   "regla": "Barlovento, por donde Viene el viento; Sotavento, por donde Se va. (Y nunca escupas a barlovento.)",
+   "significado": "Barlovento = lado o zona de donde sopla el viento; sotavento = lado hacia el que se va. Correcto. La coletilla práctica («nunca escupas/mees a barlovento») refuerza el concepto con la experiencia.",
+   "tema": "UT1 Nomenclatura",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=5"
+   ],
+   "preguntas": [
+    "and-2020-c1-t04",
+    "and-2021-c1-t04",
+    "and-2023-c1-t02",
+    "and-2024-c1-t02"
+   ]
+  },
+  {
+   "id": "r03",
+   "regla": "La driza iza, la escota caza.",
+   "significado": "Driza = cabo para izar (subir) una vela; escota = cabo para cazar/amollar (cazar o soltar) la vela una vez izada. Correcto.",
+   "tema": "UT1 Nomenclatura / UT7 Maniobra (vela)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r04",
+   "regla": "Arrufo: el barco sonríe (U). Quebranto: se le quiebra el lomo (∩).",
+   "significado": "Arrufo: el casco se arquea con el centro más bajo que los extremos (forma de U, como una sonrisa). Quebranto: el centro queda más alto que los extremos (forma de ∩): al barco se le «quiebra el lomo». Pasa, por ejemplo, con la ola en el centro (quebranto) o con las crestas en proa y popa (arrufo).",
+   "tema": "UT1 Nomenclatura (casco)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r06",
+   "regla": "Entre veleros, la B pierde (Brigitte Bardot): cede el que recibe el viento por Babor; si ambos por la misma banda, cede el que está más a Barlovento.",
+   "significado": "RIPA regla 12: con el viento por bandas distintas, maniobra el amurado a babor; por la misma banda, maniobra el de barlovento. Amurado = banda por la que entra el viento. Matiz: si el amurado a babor no puede saber por qué banda recibe el viento el otro barco de barlovento, también se aparta (12 a iii). La regla 12 no se aplica si uno alcanza al otro, porque entonces manda la regla 13.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2"
+   ],
+   "preguntas": [
+    "and-2020-c3-t19",
+    "and-2021-c1-t20",
+    "and-2021-c2-t20",
+    "and-2022-c1-t18",
+    "and-2022-c3-t27",
+    "and-2023-c1-t23",
+    "and-2023-c2-t26",
+    "and-2024-c3-t25",
+    "and-2025-c1-t23",
+    "and-2025-c3-t18",
+    "and-2026-c1-t19",
+    "and-2026-c2-t23"
+   ]
+  },
+  {
+   "id": "r07",
+   "regla": "Buque que alcanza, gobernará (maniobrará) sin tardanza.",
+   "significado": "RIPA regla 13: todo buque que alcanza a otro se mantiene apartado, sea cual sea su tipo (un velero que alcanza a un buque de motor también cede). Alcanzar = acercarse desde más de 22,5° a popa del través del otro (de noche solo le ves la luz de alcance). En un paso angosto la regla 9 e) añade las pitadas de consentimiento, pero la obligación sigue siendo del que alcanza.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ],
+   "preguntas": [
+    "and-2020-c1-t19",
+    "and-2020-c3-t24",
+    "and-2020-c3-t25",
+    "and-2021-c1-t21",
+    "and-2022-c2-t20",
+    "and-2022-c3-t18",
+    "and-2022-c3-t23",
+    "and-2023-c2-t21",
+    "and-2023-c3-t23",
+    "and-2024-c1-t18",
+    "and-2024-c1-t21",
+    "and-2024-c2-t22",
+    "and-2025-c1-t18",
+    "and-2025-c2-t26",
+    "and-2026-c1-t18",
+    "and-2026-c2-t22"
+   ]
+  },
+  {
+   "id": "r08",
+   "regla": "Semáforo: si ves la roja del otro, maniobras tú; si ves su verde, sigues (atento).",
+   "significado": "En un cruce entre buques de motor (regla 15), si ves su luz roja (babor) es porque lo tienes por tu estribor y te toca apartarte; si ves su verde, él te tiene por su estribor y le toca apartarse. Matiz (regla 17): quien sigue a rumbo debe vigilar y puede, o debe, maniobrar si el otro no actúa. En ese caso evita caer a babor ante un buque que viene por tu babor.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887"
+   ],
+   "preguntas": [
+    "and-2020-c3-t22",
+    "and-2022-c1-t26",
+    "and-2022-c3-t24",
+    "and-2023-c2-t24",
+    "and-2023-c3-t27",
+    "and-2024-c1-t23",
+    "and-2024-c2-t24",
+    "and-2024-c3-t18",
+    "and-2025-c2-t21",
+    "and-2026-c1-t18",
+    "and-2026-c1-t22",
+    "and-2026-c2-t20"
+   ]
+  },
+  {
+   "id": "r09",
+   "regla": "«Si ambas luces de un vapor por la proa has avistado, debes caer a estribor dejando ver tu encarnado» (+ «Si a estribor ves colorado…», «Si acaso por babor la verde se deja ver, sigue avante, ojo avizor, débese el otro mover»; «Verde con verde, rojo con rojo, siga a rumbo cada cual»).",
+   "significado": "Son los versos clásicos de las reglas de gobierno (de Thomas Gray, traducidos). 1) Si ves las dos luces de costado, vais de vuelta encontrada: ambos caéis a estribor (regla 14). 2) Si ves la roja por tu estribor, te toca maniobrar: cae, para o da atrás (regla 15). 3) Si ves la verde por tu babor, sigues a rumbo, vigilando (reglas 15 y 17). 4) Si ves verde con verde o rojo con rojo, os cruzáis por la misma banda sin riesgo aparente. Matiz: esto último no exime de vigilar ni de comprobar la demora.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://studylib.es/doc/4794543/los-versos-de-thomas-gray-si-ambas-luces-de-un-vapor--por-la",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=5"
+   ],
+   "preguntas": [
+    "and-2022-c1-t25",
+    "and-2022-c1-t26",
+    "and-2022-c3-t24",
+    "and-2023-c1-t24",
+    "and-2023-c3-t24",
+    "and-2024-c2-t24",
+    "and-2025-c1-t24"
+   ]
+  },
+  {
+   "id": "r10",
+   "regla": "Cede quien maniobra mejor: Motor → Vela → Pesca → Calado → Maniobra restringida → Sin gobierno (cada uno se aparta de los que vienen después). Clásico: «Entre un vapor y un velero, gobierna siempre el primero».",
+   "significado": "RIPA regla 18: el de propulsión mecánica se aparta del velero, del pesquero, del de maniobra restringida y del sin gobierno; el velero, del pesquero, del RAM y del NUC; el pesquero, en lo posible, del RAM y del NUC. Al restringido por calado no se le estorba. Excepciones: rige antes el que alcanza (13), en canales angostos y en dispositivos de separación de tráfico el velero o la embarcación menor de 20 m no estorban (9 y 10), y el hidroavión o el WIG tienen sus propias reglas.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://denautica.es/reglas-abordaje-ripa-patron/",
+    "https://arriluzenautica.com/quien-tiene-preferencia-en-la-mar-ripa/"
+   ],
+   "preguntas": [
+    "and-2021-c1-t25",
+    "and-2021-c2-t21",
+    "and-2022-c2-t22",
+    "and-2023-c1-t25",
+    "and-2024-c1-t24",
+    "and-2025-c3-t21",
+    "and-2026-c2-t21"
+   ]
+  },
+  {
+   "id": "r11",
+   "regla": "Rojo sobre blanco, pescador al canto.",
+   "significado": "Dos luces todo horizonte en vertical, roja encima y blanca debajo: buque pescando (no de arrastre), regla 26 c). Si el aparejo se extiende más de 150 m, lleva además una blanca, o de día un cono con el vértice hacia arriba, en la dirección del aparejo. De día: dos conos unidos por los vértices. Con arrancada lleva también costados y alcance.",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887"
+   ],
+   "preguntas": [
+    "and-2021-c2-t25",
+    "and-2022-c3-t26",
+    "and-2025-c3-t27"
+   ]
+  },
+  {
+   "id": "r12",
+   "regla": "Verde sobre blanco, arrastra el barco (los de arrastre son del Betis: verde y blanco).",
+   "significado": "Verde todo horizonte sobre blanca todo horizonte: buque de pesca de arrastre (regla 26 b). Además lleva una luz de tope a popa y más alta que la verde, obligatoria si mide 50 m o más. De día también lleva los dos conos unidos por los vértices.",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887",
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html"
+   ],
+   "preguntas": [
+    "and-2022-c1-t22"
+   ]
+  },
+  {
+   "id": "r13",
+   "regla": "Blanco sobre rojo, práctico a bordo (gorra o pelo blanco, nariz roja).",
+   "significado": "Blanca todo horizonte sobre roja todo horizonte: buque de práctico en servicio (regla 29). Con arrancada añade costados y alcance, y fondeado añade las luces de fondeo. Truco para no confundirlo con el pesquero: el práctico es un señor con la gorra blanca (arriba) y la nariz roja (abajo).",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887",
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html"
+   ],
+   "preguntas": [
+    "and-2021-c2-t25",
+    "and-2022-c3-t26",
+    "and-2025-c3-t27"
+   ]
+  },
+  {
+   "id": "r14",
+   "regla": "Rojo sobre rojo, sin gobierno (dos rojas de noche, dos bolas de día).",
+   "significado": "Buque sin gobierno: dos luces rojas todo horizonte en vertical; de día, dos bolas en vertical (regla 27 a). Con arrancada añade costados y alcance, pero no luz de tope. Variantes coloquiales del foro: «hay que tenerlas bien puestas para ir sin gobierno»; versión inglesa: «red over red, the captain is dead».",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657"
+   ],
+   "preguntas": [
+    "and-2021-c2-t23"
+   ]
+  },
+  {
+   "id": "r15",
+   "regla": "Rojo-blanco-rojo / bola-rombo-bola: maniobra restringida (la «hamburguesa»).",
+   "significado": "Buque con capacidad de maniobra restringida (RAM): tres luces todo horizonte en vertical, roja, blanca y roja; de día, bola, bidoca (rombo) y bola (regla 27 b). Las dos rojas, como en el sin gobierno, indican que no puede apartarse; la blanca del centro indica que es «por su trabajo» y no por avería.",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
+    "https://ialacolreg.com/es/lights-shapes"
+   ],
+   "preguntas": [
+    "and-2020-c1-t23",
+    "and-2024-c2-t26",
+    "and-2026-c1-t21"
+   ]
+  },
+  {
+   "id": "r16",
+   "regla": "Va-ra-do: tres sílabas, tres bolas.",
+   "significado": "Buque varado: de día, tres bolas en vertical; de noche, las luces de fondeado más dos rojas todo horizonte en vertical (regla 30 d). Fondeado: una bola. Correcto.",
+   "tema": "UT6 RIPA (marcas)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r17",
+   "regla": "Señales de maniobra: 1 corta, caigo a estribor; 2 cortas, a babor; 3 cortas, doy atrás; 5 o más, ¡duda!",
+   "significado": "RIPA regla 34 a) y d). Correcto. Truco del foro: «ba-bor, dos sílabas, dos pitadas», y estribor es entonces la de una. Ampliación habitual para canales angostos (34 c): para alcanzar, dos largas y una corta pasan por estribor del otro, y dos largas y dos cortas por su babor; el consentimiento es larga-corta-larga-corta.",
+   "tema": "UT6 RIPA (señales acústicas)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2"
+   ],
+   "preguntas": [
+    "and-2020-c1-t25",
+    "and-2020-c3-t26",
+    "and-2021-c2-t27",
+    "and-2022-c3-t22",
+    "and-2023-c1-t26",
+    "and-2023-c3-t18",
+    "and-2024-c1-t22",
+    "and-2024-c3-t27"
+   ]
+  },
+  {
+   "id": "r18",
+   "regla": "Región A: entrando a puerto, rojo a babor y verde a estribor (cilindro rojo, cono verde). En América (Región B), al revés.",
+   "significado": "IALA región A (Europa, África, la mayor parte de Asia y Oceanía): marcas laterales rojas (tope cilíndrico) a babor y verdes (tope cónico, vértice arriba) a estribor según el sentido convencional del balizamiento, que es entrando desde la mar. Coincide con las luces de costado del barco: la roja a babor. En la región B (América, Japón, Corea y Filipinas) los colores se invierten («red right returning»).",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://sailvoyager.com/blog/balizamiento-iala-per",
+    "https://denautica.es/balizamiento-maritimo-per-guia-completa-examen-2026/",
+    "https://escuelanauticaaltair.com/blog/balizamiento/"
+   ],
+   "preguntas": [
+    "and-2020-c1-t15",
+    "and-2020-c1-t16",
+    "and-2020-c3-t15",
+    "and-2020-c3-t16",
+    "and-2021-c2-t15",
+    "and-2022-c1-t15",
+    "and-2022-c2-t14",
+    "and-2023-c2-t13",
+    "and-2024-c1-t13",
+    "and-2024-c2-t16",
+    "and-2024-c3-t13",
+    "and-2025-c2-t13",
+    "and-2025-c3-t13"
+   ]
+  },
+  {
+   "id": "r19",
+   "regla": "Cardinales de noche, el reloj: Este 3, Sur 6 (+1 largo), Oeste 9, Norte continuo (las 12).",
+   "significado": "Luz blanca centelleante, rápida (Q) o muy rápida (VQ): Norte, Q o VQ continua; Este, Q(3) cada 10 s o VQ(3) cada 5 s; Sur, Q(6)+LFl cada 15 s o VQ(6)+LFl cada 10 s; Oeste, Q(9) cada 15 s o VQ(9) cada 10 s. El destello largo del Sur sirve para no confundir el grupo de 6 con 3 o 9. Correcto según IALA.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
+    "https://sailvoyager.com/blog/balizamiento-iala-per",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ],
+   "preguntas": [
+    "and-2022-c2-t15",
+    "and-2023-c2-t17",
+    "and-2023-c3-t17",
+    "and-2024-c1-t17",
+    "and-2024-c3-t16",
+    "and-2025-c3-t14",
+    "and-2026-c1-t15",
+    "and-2026-c1-t17",
+    "and-2026-c2-t15"
+   ]
+  },
+  {
+   "id": "r20",
+   "regla": "Los conos apuntan al negro.",
+   "significado": "Las puntas del tope de la cardinal señalan dónde está la banda negra de la boya: Norte ▲▲ negro arriba; Sur ▼▼ negro abajo; Este ▼▲ (bases juntas) negro arriba y abajo con amarillo en medio; Oeste ▲▼ (puntas juntas) negro en medio. Dicho de otra forma: el amarillo va con las bases y el negro con los vértices.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
+    "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ],
+   "preguntas": [
+    "and-2022-c3-t13",
+    "and-2023-c1-t17",
+    "and-2023-c2-t16",
+    "and-2024-c2-t17",
+    "and-2025-c1-t15",
+    "and-2026-c1-t14",
+    "and-2026-c2-t15"
+   ]
+  },
+  {
+   "id": "r21",
+   "regla": "Este: bases juntas (forma de huevo, o una «E» inscrita); Oeste: puntas juntas (reloj de arena, una «W» tumbada; en las pelis del Oeste «se pican»).",
+   "significado": "Topes de las cardinales Este (conos unidos por la base) y Oeste (unidos por el vértice). Norte y Sur se deducen solos (arriba y abajo). Correcto.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/balizamiento/",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ],
+   "preguntas": [
+    "and-2022-c3-t13",
+    "and-2023-c1-t17"
+   ]
+  },
+  {
+   "id": "r22",
+   "regla": "La cardinal se pasa por el lado de su nombre.",
+   "significado": "La marca cardinal Norte indica que el agua segura está al norte de la marca (el peligro, al sur), y así con las demás. Correcto. Es la pregunta trampa típica: «¿por dónde dejo una cardinal Este?» Por su este, y luego hay que traducirlo a babor o estribor según el rumbo.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
+    "https://denautica.es/balizamiento-maritimo-per-guia-completa-examen-2026/"
+   ],
+   "preguntas": [
+    "and-2021-c1-t16",
+    "and-2022-c3-t17",
+    "and-2023-c2-t16",
+    "and-2024-c1-t16",
+    "and-2024-c3-t15",
+    "and-2025-c2-t14",
+    "and-2026-c1-t15"
+   ]
+  },
+  {
+   "id": "r23",
+   "regla": "Peligro aislado: dos bolas, dos destellos.",
+   "significado": "Marca de peligro aislado: negra con bandas horizontales rojas, tope de dos esferas negras y luz blanca de grupos de 2 destellos, Fl(2). Señala un peligro de extensión reducida con agua navegable alrededor. Correcto. Para no confundirla, la de aguas navegables lleva una sola esfera roja, bandas verticales rojas y blancas y luz isofase, de ocultaciones, un destello largo cada 10 s o Morse «A».",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/balizamiento/",
+    "https://sailvoyager.com/blog/balizamiento-iala-per"
+   ],
+   "preguntas": [
+    "and-2020-c1-t13",
+    "and-2020-c3-t13",
+    "and-2021-c1-t14",
+    "and-2022-c1-t14",
+    "and-2023-c1-t14",
+    "and-2023-c2-t14",
+    "and-2023-c3-t13",
+    "and-2024-c2-t13",
+    "and-2024-c3-t17",
+    "and-2025-c2-t15",
+    "and-2025-c3-t16",
+    "and-2026-c2-t17"
+   ]
+  },
+  {
+   "id": "r24",
+   "regla": "Ct = dm + Δ; Este positivo (+), Oeste negativo (−). Rv = Ra + Ct.",
+   "significado": "Corrección total = declinación magnética + desvío, ambos con su signo (NE o E +, NW o W −). Rumbo verdadero = rumbo de aguja + Ct. También Ct = Dv − Da, con una enfilación o una demora conocida. Variante de los manuales sudamericanos: «declinación Este, al compás le resta; Oeste, le suma» (es lo mismo visto desde la carta hacia el compás).",
+   "tema": "UT10 Teoría de navegación / UT11 Carta",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/369-la-correccion-total-y-el-desvio",
+    "https://guiarutas.es/glosario/declinacion-magnetica/",
+    "https://www.espacionautico.com.ar/blog/rumbo-verdadero-magnetico-compas-como-convertir/"
+   ],
+   "preguntas": [
+    "and-2023-c2-t39",
+    "and-2026-c1-t37",
+    "and-2026-c2-t38",
+    "and-py-2020-c1-n11",
+    "and-py-2020-c3-n11",
+    "and-py-2021-c1-n03",
+    "and-py-2021-c1-n12",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c2-n10",
+    "and-py-2022-c1-n11",
+    "and-py-2022-c2-n02",
+    "and-py-2022-c2-n11",
+    "and-py-2022-c3-n04",
+    "and-py-2022-c3-n11",
+    "and-py-2023-c1-n11",
+    "and-py-2023-c2-n07",
+    "and-py-2023-c2-n13",
+    "and-py-2023-c3-n12",
+    "and-py-2024-c1-n11",
+    "and-py-2024-c2-n03",
+    "and-py-2024-c2-n11",
+    "and-py-2024-c3-n11",
+    "and-py-2025-c1-n11",
+    "and-py-2025-c2-n12",
+    "and-py-2025-c3-n03",
+    "and-py-2025-c3-n13",
+    "and-py-2026-c1-n13",
+    "and-py-2026-c2-n03",
+    "and-py-2026-c2-n13"
+   ]
+  },
+  {
+   "id": "r25",
+   "regla": "De la carta al timón, al revés la corrección; del timón a la carta, con sumar basta.",
+   "significado": "Para pasar de la carta (Rv) al timón (Ra) se aplica la Ct cambiada de signo: Ra = Rv − Ct. Del timón a la carta se suma con su signo: Rv = Ra + Ct. Correcto.",
+   "tema": "UT11 Carta",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
+    "https://www.espacionautico.com.ar/blog/rumbo-verdadero-magnetico-compas-como-convertir/"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n12",
+    "and-py-2020-c1-n13",
+    "and-py-2020-c1-n16",
+    "and-py-2020-c1-n17",
+    "and-py-2020-c3-n12",
+    "and-py-2020-c3-n14",
+    "and-py-2020-c3-n16",
+    "and-py-2020-c3-n17",
+    "and-py-2021-c1-n13",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c1-n15",
+    "and-py-2021-c2-n14",
+    "and-py-2022-c1-n12",
+    "and-py-2022-c1-n14",
+    "and-py-2022-c1-n16",
+    "and-py-2022-c2-n12",
+    "and-py-2022-c2-n13",
+    "and-py-2022-c2-n14",
+    "and-py-2022-c3-n12",
+    "and-py-2022-c3-n13",
+    "and-py-2022-c3-n14",
+    "and-py-2023-c1-n12",
+    "and-py-2023-c1-n13",
+    "and-py-2023-c2-n11",
+    "and-py-2023-c2-n17",
+    "and-py-2023-c3-n11",
+    "and-py-2023-c3-n13",
+    "and-py-2024-c1-n12",
+    "and-py-2024-c1-n14",
+    "and-py-2024-c1-n15",
+    "and-py-2024-c2-n12",
+    "and-py-2024-c2-n13",
+    "and-py-2024-c2-n16",
+    "and-py-2024-c3-n12",
+    "and-py-2024-c3-n13",
+    "and-py-2024-c3-n16",
+    "and-py-2025-c1-n12",
+    "and-py-2025-c1-n13",
+    "and-py-2025-c1-n16",
+    "and-py-2025-c2-n11",
+    "and-py-2025-c2-n13",
+    "and-py-2025-c2-n17",
+    "and-py-2025-c3-n11",
+    "and-py-2025-c3-n12",
+    "and-py-2025-c3-n17",
+    "and-py-2026-c1-n11",
+    "and-py-2026-c1-n12",
+    "and-py-2026-c1-n15",
+    "and-py-2026-c1-n17",
+    "and-py-2026-c2-n12",
+    "and-py-2026-c2-n15"
+   ]
+  },
+  {
+   "id": "r26",
+   "regla": "El rumbo de aguja nunca se dibuja.",
+   "significado": "En la carta solo se trazan rumbos y demoras verdaderos (o efectivos o de superficie). Todo dato de aguja (Ra, Da) o marcación hay que pasarlo a verdadero antes de trazarlo. Correcto.",
+   "tema": "UT11 Carta",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ],
+   "preguntas": [
+    "and-2021-c1-t38"
+   ]
+  },
+  {
+   "id": "r27",
+   "regla": "Don RaMón: Demora = Rumbo + Marcación (estribor +, babor −).",
+   "significado": "Dv = Rv + M, con la marcación positiva a estribor y negativa a babor (o la marcación circular de 0 a 360° contada desde proa hacia estribor). Correcto; la misma fórmula sirve con aguja: Da = Ra + M.",
+   "tema": "UT10 Teoría de navegación / UT11 Carta",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2",
+    "https://encvirtual.es/interactivas/PYATE/imag_intera/Navegacion/s02/5_rel_demora_mar/2_dv.html"
+   ],
+   "preguntas": [
+    "and-2023-c2-t37",
+    "and-2026-c1-t41",
+    "and-py-2021-c1-n11",
+    "and-py-2022-c1-n13",
+    "and-py-2024-c3-n04",
+    "and-py-2025-c1-n05",
+    "and-py-2026-c1-n16"
+   ]
+  },
+  {
+   "id": "r28",
+   "regla": "Regla de los duodécimos: 1-2-3-3-2-1.",
+   "significado": "En una marea semidiurna de unas 6 h, en cada hora sube o baja 1/12, 2/12, 3/12, 3/12, 2/12 y 1/12 de la amplitud (la mitad en las dos horas centrales). Es una aproximación válida para mareas regulares y semidiurnas; no sirve en sitios con mareas irregulares y el Mediterráneo apenas tiene marea. Para el cálculo oficial se usa el anuario y la interpolación.",
+   "tema": "UT10 / PY (mareas)",
+   "fuentes": [
+    "https://www.salvamentomaritimo.es/sala-de-comunicacion/blog/mareas-la-regla-de-los-doceavos",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r29",
+   "regla": "De espaldas al viento, la borrasca a la izquierda (hemisferio norte). Equivalente: de cara al viento, la baja a la derecha.",
+   "significado": "Ley de Buys-Ballot. Correcta en el hemisferio norte; en el sur se invierte. Con el viento real de superficie, que cruza las isobaras hacia la baja, la baja queda algo adelantada respecto al través izquierdo.",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ],
+   "preguntas": [
+    "and-py-2022-c3-g16"
+   ]
+  },
+  {
+   "id": "r30",
+   "regla": "Borrasca, al revés del reloj; anticiclón, con el reloj (HN). El viento va de la alta a la baja desviado a la derecha.",
+   "significado": "En el hemisferio norte el viento gira en sentido antihorario y convergente alrededor de la borrasca, y horario y divergente alrededor del anticiclón. Por Coriolis, el viento en superficie sale de las altas hacia las bajas desviado a la derecha y cruza las isobaras unos 10-30°. Correcto en el HN; en el sur todo al revés.",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot"
+   ],
+   "preguntas": [
+    "and-2020-c1-t34",
+    "and-2020-c3-t34",
+    "and-2021-c1-t34",
+    "and-2022-c1-t36",
+    "and-2022-c3-t33",
+    "and-2023-c1-t34",
+    "and-2023-c2-t33",
+    "and-2024-c2-t35",
+    "and-2024-c3-t34",
+    "and-2025-c2-t35",
+    "and-py-2021-c2-g17",
+    "and-py-2022-c1-g15"
+   ]
+  },
+  {
+   "id": "r31",
+   "regla": "Beaufort a nudos: (Fuerza − 1) × 5.",
+   "significado": "Aproximación: F3 ≈ 10 kn, F4 ≈ 15, F5 ≈ 20, F6 ≈ 25, F7 ≈ 30, F8 ≈ 35, que caen dentro o en el borde de cada intervalo oficial (F3 7-10, F4 11-16, F5 17-21, F6 22-27, F7 28-33, F8 34-40). A partir de F9 se queda corta (F9 son 41-47 kn).",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r32",
+   "regla": "Cielo aborregado, a los tres días mojado (o «cielo empedrado, suelo mojado»).",
+   "significado": "Los cirrocúmulos y altocúmulos «en borreguitos» suelen ir por delante de un frente cálido o de una perturbación, así que la lluvia es probable en uno o dos días. Tiene base física, pero el plazo es orientativo y no se cumple siempre, sobre todo en el Mediterráneo en verano.",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "http://www.paranauticos.com/notas/meteorologia/refranero-tiempo.htm",
+    "https://www.cervantesvirtual.com/obra-visor/la-meteorologia-en-el-refranero/html/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "r33",
+   "regla": "MAYDAY (m'aidez, «ayudadme») > PAN-PAN (panne, «avería») > SÉCURITÉ (seguridad).",
+   "significado": "Orden de prioridad radio. Socorro (MAYDAY): peligro grave e inminente para el barco o las personas. Urgencia (PAN-PAN): problema serio sin peligro inmediato, como una avería o un herido. Seguridad (SÉCURITÉ): avisos a navegantes y meteorológicos. Cada palabra se repite 3 veces, por el canal 16 de VHF o con alerta DSC por el 70. El origen francés de las palabras ayuda a recordar su gravedad.",
+   "tema": "UT8 Emergencias / Radiocomunicaciones",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/llamada-mayday/",
+    "https://mundobarco.com/mayday"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-g08",
+    "and-py-2022-c1-g10"
+   ]
+  },
+  {
+   "id": "r34",
+   "regla": "Agua fría, regla 1-10-1: 1 minuto para controlar la respiración, 10 minutos de movimiento útil, 1 hora antes de perder la consciencia.",
+   "significado": "Del Dr. G. Giesbrecht, difundida por la Federación Internacional de Salvamento. Explica por qué el chaleco salvavidas es vital (el primer minuto de shock de frío es el que ahoga) y por qué hay que actuar (ponerse el chaleco o subir a la balsa) en los primeros 10 minutos. Las cifras son orientativas y dependen de la temperatura del agua y de la persona.",
+   "tema": "UT3 Seguridad / UT8 Emergencias (hipotermia)",
+   "fuentes": [
+    "https://www.ilsf.org/wp-content/uploads/2019/09/MPS-12-Cold-Water-Immersion-_spanish_rv.pdf"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-01",
+   "regla": "«G sube, GM baja»: GM = KM − KG (M por encima de G = estable)",
+   "significado": "GM (altura metacéntrica) = KM − KG. KM sale de las curvas hidrostáticas (KM = KC + CM); KG depende de cómo esté cargado el barco. Si G está por debajo de M (GM > 0) el barco es estable; si G = M, equilibrio indiferente; si G queda por encima de M, inestable. Todo lo que eleve G (cargar pesos altos, tripulación en la bañera alta, superficies libres) reduce GM. El centro de gravedad se mueve hacia el peso que se carga, se aleja del que se descarga y sigue en paralelo al peso que se traslada (dist. G = p·d/D). Matiz: GZ = GM·sen θ y par adrizante = D·GZ solo valen para escoras pequeñas (estabilidad inicial, hasta unos 10–15°); a grandes escoras manda la curva GZ.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.librosnauticos.com/portal/descargas/fe-erratas/libro-patron-yate/libro-patron-yate-pagina-11.pdf",
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/389-estabilidad-traslado-vertical-de-pesos-a-bordo",
+    "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/"
+   ],
+   "preguntas": [
+    "and-py-2020-c3-g02",
+    "and-py-2020-c3-g03",
+    "and-py-2021-c1-g01",
+    "and-py-2021-c2-g01",
+    "and-py-2021-c2-g02",
+    "and-py-2022-c1-g01",
+    "and-py-2022-c1-g02",
+    "and-py-2022-c2-g01",
+    "and-py-2022-c3-g02",
+    "and-py-2023-c1-g02",
+    "and-py-2023-c2-g02",
+    "and-py-2023-c2-g03",
+    "and-py-2023-c2-g04",
+    "and-py-2023-c3-g02",
+    "and-py-2023-c3-g03",
+    "and-py-2024-c1-g01",
+    "and-py-2024-c1-g03",
+    "and-py-2024-c1-g04",
+    "and-py-2024-c3-g01",
+    "and-py-2025-c1-g02",
+    "and-py-2025-c1-g05",
+    "and-py-2025-c3-g03",
+    "and-py-2025-c3-g05",
+    "and-py-2026-c1-g10",
+    "and-py-2026-c2-g04"
+   ]
+  },
+  {
+   "id": "py-seg-02",
+   "regla": "Buque duro / buque blando (tumbón)",
+   "significado": "GM grande = barco «duro» o rígido: se adriza con fuerza, balances cortos, rápidos y bruscos (incómodos y duros para la estructura y la carga). GM pequeño = barco «blando» o «tumbón»: balances lentos, amplios, se «duerme» escorado. El periodo de balance es aproximadamente inverso a √GM. Matiz: «duro» no quiere decir «mejor» sin más: un GM excesivo también es indeseable.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/",
+    "http://www.fondear.org/infonautic/Saber_Marinero/Titulaciones_Nauticas/Capitan_Yate/CY_Apuntes/Apuntes_Teoria_Buque/Resum_TeoriaBq.htm"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-g03",
+    "and-py-2025-c1-g08"
+   ]
+  },
+  {
+   "id": "py-seg-03",
+   "regla": "«Tanques llenos o vacíos, nunca a medias»",
+   "significado": "Un tanque parcialmente lleno tiene superficie libre: al escorar, el líquido se va a la banda baja y sube virtualmente G (pérdida de GM por superficie libre). Lleno del todo o vacío, el líquido no se mueve y no hay pérdida. Consecuencia práctica: consumir un tanque hasta agotarlo antes que llevar dos a medias, achicar el agua embarcada y compartimentar (un mamparo longitudinal reduce mucho el efecto). La pérdida depende de la manga del tanque (de su inercia), no de la cantidad de líquido.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/",
+    "https://www.fao.org/4/i0625s/i0625s02c.pdf",
+    "https://es.wikipedia.org/wiki/Efecto_de_superficie_libre"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-04",
+   "regla": "Clases de fuego: A deja ascuas (Ash), B es líquido; en España C = gases, no electricidad",
+   "significado": "Norma UNE-EN 2 (Europa): A = sólidos que dejan brasas o cenizas (madera, tejidos); B = líquidos o sólidos licuables (gasoil, gasolina, pinturas); C = gases (butano, propano); D = metales; F = aceites y grasas de cocina. El orden A-B-C coincide con los estados sólido → líquido → gas. En la norma europea no hay clase de fuego eléctrico: es un riesgo añadido (no usar agua con tensión; CO2 o polvo). Matiz importante: la regla norteamericana NFPA (C = «Circuits», eléctrico; K = cocina) no sirve para el examen español.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://serior.com/eficacia-extintores-clases-fuego/",
+    "https://www.aprendemergencias.es/incendios/clases-de-fuego/",
+    "https://eduardovillafuerteblog.wordpress.com/2019/03/25/significado-de-las-iniciales-de-las-clases-de-fuego/"
+   ],
+   "preguntas": [
+    "and-2020-c1-t30",
+    "and-2021-c1-t31",
+    "and-2021-c2-t31",
+    "and-2022-c1-t32",
+    "and-2025-c1-t30",
+    "and-2025-c2-t30",
+    "and-2025-c3-t30",
+    "and-2026-c1-t30"
+   ]
+  },
+  {
+   "id": "py-seg-05",
+   "regla": "Extintor: de espaldas al viento, a la base de la llama y en barrido",
+   "significado": "Colocarse a barlovento del fuego (el humo y el calor se van hacia el otro lado), apuntar a la base de las llamas y no a las llamas, y barrer en abanico o zigzag. En fuegos de líquidos, barrer por la superficie sin proyectar el combustible. A bordo, además: parar el motor y cortar el combustible, poner el barco de modo que el viento aleje el fuego de la tripulación y del resto del barco, y no abrir de golpe un compartimento cerrado (entra aire).",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/images/Archivos/Miscelanea/Misce_Charter/Actuacion%20incendio%20barco.doc",
+    "https://academia.boatmalaga.com/topics/8-5-prevencion-de-incendios-y-explosiones-2-3/"
+   ],
+   "preguntas": [
+    "and-py-2023-c2-g08"
+   ]
+  },
+  {
+   "id": "py-seg-06",
+   "regla": "«No abandones el barco hasta que el barco te abandone a ti»: a la balsa se SUBE (y en el agua, postura HELP)",
+   "significado": "El barco, aunque esté dañado, es más fácil de localizar y protege más que la balsa. Solo se abandona cuando ya no hay más remedio (y después de dar la alerta de socorro: LSD, MAYDAY, radiobaliza). Se pasa a la balsa directamente desde cubierta si se puede, sin meterse en el agua. Al subir a la balsa, entra primero el tripulante más fuerte o pesado para estabilizarla y ayudar a los demás. Se lleva el bolsín o grab bag, agua, VHF portátil y EPIRB. Si se cae al agua con chaleco: postura HELP (posición fetal, brazos cruzados) y, si son varios, en piña o HUDDLE; no nadar sin un objetivo cercano (complementa el 1-10-1).",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/el-abandono-del-barco/",
+    "https://www.sotaventonline.com/abandonamos-barco-no/",
+    "https://www.salvamentomaritimo.es/mejora-tu-seguridad/actuar-en-emergencias/supervivencia-en-el-mar"
+   ],
+   "preguntas": [
+    "and-2022-c2-t31",
+    "and-2022-c3-t32",
+    "and-2023-c2-t31",
+    "and-2024-c1-t32",
+    "and-2024-c3-t31",
+    "and-2025-c2-t32",
+    "and-2026-c1-t31",
+    "and-py-2020-c3-g07",
+    "and-py-2024-c1-g08",
+    "and-py-2025-c2-g09"
+   ]
+  },
+  {
+   "id": "py-seg-08",
+   "regla": "Zonas SMSSM: A1 → A4 de menos a más lejos (VHF → onda media → satélite/HF → polos)",
+   "significado": "A1: cobertura VHF de una estación costera con LSD (unas 20–40 mn; canal 70). A2: onda media (MF), unas 100–150 mn (2187,5 kHz LSD). A3: cobertura de satélite geoestacionario Inmarsat, aproximadamente entre 70°N y 70°S (también HF). A4: zonas polares fuera de A1–A3 (solo HF). Cuanto mayor es el número, mayor la distancia y menor la frecuencia (salvo el satélite).",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://es.wikipedia.org/wiki/Sistema_mundial_de_socorro_y_seguridad_mar%C3%ADtimos",
+    "http://www.patrondeyate.net/apuntes-de-radiocomunicaciones-patron-de-yate/sistema-mundials-de-salvamento-y-seguridad-en-la-mar.html",
+    "https://www.salvamentomaritimo.es/mejora-tu-seguridad/control-y-servicios-en-la-mar/sistema-mundial-de-socorro-y-seguridad-maritima"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-09",
+   "regla": "«16 para hablar, 70 para el botón» · «406 avisa, 121,5 guía» · «SART = 12 puntos»",
+   "significado": "VHF: canal 16 para socorro, urgencia y llamada por voz; canal 70 reservado a LSD (DSC), nunca para voz. La alerta LSD de socorro se lanza manteniendo pulsado el botón rojo unos 5 s. EPIRB/radiobaliza: 406 MHz manda la alerta con la identificación (MMSI) y la posición vía Cospas-Sarsat; 121,5 MHz es la señal de recalada (homing) para que los medios de rescate lleguen hasta ella. SART (respondedor de radar, 9 GHz, banda X): cuando un radar lo interroga aparece en pantalla como una línea de 12 puntos que empieza en la posición del SART, y se convierte en arcos al acercarse.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/sart",
+    "https://www.patrondeyate.net/apuntes-de-radiocomunicaciones-patron-de-yate/radiobaliza-respondedor-de-radar-obligaciones-para-la-zona-de-navegacion-4.html",
+    "https://aulanautica.org/wp-content/uploads/2017/06/RADIO-PNB-Escola-Port-Barcelona.pdf"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-g08",
+    "and-py-2021-c1-g06",
+    "and-py-2021-c2-g08",
+    "and-py-2021-c2-g09",
+    "and-py-2021-c2-g10",
+    "and-py-2022-c1-g08",
+    "and-py-2022-c1-g10",
+    "and-py-2022-c3-g04",
+    "and-py-2022-c3-g09",
+    "and-py-2023-c3-g04",
+    "and-py-2025-c2-g01"
+   ]
+  },
+  {
+   "id": "py-met-01",
+   "regla": "El viento aparente entra siempre más a proa que el real",
+   "significado": "Aparente = real + viento de la velocidad (de proa). Por eso, salvo en la popa cerrada, el aparente se recibe más a proa que el real. Ciñendo, el aparente es más fuerte que el real; en popa, más flojo. Cuanto más rápido va el barco, más se adelanta el aparente. Navegando a motor con viento en calma, el aparente viene justo de proa con la velocidad del barco.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://marinos.es/viento-real-relativo-aparente-per/",
+    "https://escuelanauticaaltair.com/blog/viento-real-viento-aparente/",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=100278"
+   ],
+   "preguntas": [
+    "and-2020-c1-t36",
+    "and-2022-c2-t35"
+   ]
+  },
+  {
+   "id": "py-met-02",
+   "regla": "Semicírculo (HN): «Derecha-Derecha-Derecha»: rola a la derecha → semicírculo derecho (peligroso) → viento por la amura de estribor",
+   "significado": "Hemisferio norte, mirando hacia donde avanza la borrasca o el ciclón: el semicírculo derecho es el peligroso, porque allí el viento del giro se suma a la velocidad de traslación y además tiende a arrastrar al barco hacia la trayectoria. Si estando parado el viento rola a la derecha (dextrógiro, en el sentido del reloj), estás en el semicírculo peligroso. Si rola a la izquierda, en el manejable. Si no cambia de dirección pero arrecia y la presión baja, estás en la trayectoria, delante del centro. Maniobra clásica en el semicírculo peligroso: viento unos 45° por la amura de estribor, alejándose a la mayor velocidad posible. En el manejable: viento por la aleta de estribor, corriendo el temporal. En el hemisferio sur todo es al revés.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/titulos-nauticos/capitan-de-yate/el-baul-del-cy/apuntes-del-capitan-carreno/119-apuntes-de-juan-carreno/515-ciclones-tropicales",
+    "https://www.marineinsight.com/marine-navigation/what-actions-ship-should-take-for-tropical-revolving-storm-trssigns-trs-action/",
+    "https://www.estudiasonavegas.com/foro/forum/titulaciones-n%C3%A1uticas-de-recre0/capit%C3%A1n-de-yate/meteorolog%C3%ADa/559-semicirculo-peligroso-cicl%C3%B3n-siempre"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-03",
+   "regla": "Masas de aire: minúscula = de dónde viene (m húmeda, c seca); mayúscula = temperatura (A, P fría; T cálida)",
+   "significado": "mP = marítima polar (fría y húmeda: chubascos y buena visibilidad tras los frentes fríos); cP = continental polar (fría y seca: olas de frío invernales); mT = marítima tropical (cálida y húmeda: nieblas de advección, estratos y lloviznas en el sector cálido); cT = continental tropical (cálida y seca, sahariana: calima). A = ártica. Matiz: algunos textos añaden k/w (más fría o más cálida que la superficie), que ya es nivel CY.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.rubicon3adventure.com/es/masas-de-aire-guia-completa-para-marinos-y-navegantes/",
+    "http://ojaizmet.blogspot.com/2012/01/la-circulacion-general-de-la-atmosfera_24.html"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-04",
+   "regla": "«El cálido avisa, el frío sorprende»",
+   "significado": "Frente cálido: llega con mucha antelación (12–36 h) y las nubes van bajando por escalones: cirros → cirroestratos (halo) → altoestratos → nimboestratos. Lluvia continua y moderada, la presión baja despacio y el viento rola a la derecha al pasar (HN). Después, el sector cálido, con nubes bajas, llovizna y posible niebla. Frente frío: llega casi sin aviso. Cumulonimbos, chubascos intensos, rachas y turbonadas. Al pasar, la presión sube de golpe, la temperatura y la humedad bajan, el viento rola a la derecha (al NW en nuestras latitudes) y arrecia, y luego el cielo se limpia con buena visibilidad y cúmulos sueltos.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.divulgameteo.es/archivos/articulos/misarticulos/Secuencia-sistema-frontal-50.pdf",
+    "https://www.tiempo.com/noticias/ciencia/el-paso-de-los-frentes.html",
+    "http://www.patrondeyate.net/apuntes-de-meteorologia-patron-de-yate/vientos-y-frentes.html"
+   ],
+   "preguntas": [
+    "and-py-2021-c2-g16",
+    "and-py-2025-c3-g16"
+   ]
+  },
+  {
+   "id": "py-met-05",
+   "regla": "Niebla de advección = aire que viaja (mar); niebla de radiación = noche raso y calma (tierra)",
+   "significado": "Advección: aire cálido y húmedo que se desplaza sobre una superficie más fría (agua fría) y se enfría por debajo de su punto de rocío. Es la típica del mar: puede durar días, aparecer con viento flojo o moderado y no se disipa con el sol. Solo desaparece cuando cambia la masa de aire o el viento. Radiación: noches despejadas, con calma y humedad, en las que el suelo se enfría por radiación. Se forma en tierra, en valles, rías y puertos, y se disipa por la mañana al calentar el sol. Sobre mar abierto apenas se da. Otras: de evaporación o humo de mar (aire muy frío sobre agua templada) y frontal.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.patrondeyate.net/apuntes-de-meteorologia-patron-de-yate/humedad-y-nieblas.html",
+    "https://oceanicanautica.es/cy/la-niebla-mar/",
+    "https://snowy.es/wikimeteo/niebla-de-adveccion"
+   ],
+   "preguntas": [
+    "and-py-2020-c3-g20",
+    "and-py-2021-c2-g19",
+    "and-py-2022-c1-g18",
+    "and-py-2022-c2-g17",
+    "and-py-2022-c3-g11",
+    "and-py-2023-c1-g17",
+    "and-py-2023-c2-g17",
+    "and-py-2023-c3-g16",
+    "and-py-2024-c2-g11",
+    "and-py-2024-c3-g18",
+    "and-py-2025-c1-g17",
+    "and-py-2025-c2-g11",
+    "and-py-2025-c3-g18",
+    "and-py-2026-c1-g20"
+   ]
+  },
+  {
+   "id": "py-met-06",
+   "regla": "Barómetro: más de 1 hPa por hora (o más de 3 hPa en 3 h) bajando = mal tiempo inminente",
+   "significado": "Más que el valor absoluto, lo que cuenta es la tendencia barométrica, que se mide en 3 horas. Un descenso lento y continuado anuncia un cambio general de tiempo, mientras que uno rápido indica que se acerca una borrasca o un frente con viento fuerte. Si cae 4–5 hPa en 3 h, el temporal está casi asegurado. Una subida brusca tras una bajada indica el paso de un frente frío, con rachas. Matiz: hay que combinar el barómetro con el viento, las nubes y la temperatura, porque no basta por sí solo.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.tiempo.com/ram/150/adecuado-uso-del-barometro/",
+    "https://snowy.es/wikimeteo/barometro"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-07",
+   "regla": "«Nubes cola de gato, viento va a darnos un mal rato» · «Luna con cerco, marinero despierto»",
+   "significado": "Las «colas de gato» son cirros uncinus, y el halo solar o lunar de 22° lo producen los cirroestratos. Ambos son los primeros indicios de que se acerca un frente cálido o una borrasca, con empeoramiento en 12–36 h si el cielo sigue cubriéndose. Matiz: no es determinista. Los cirros aislados y estacionarios no anuncian nada; lo que cuenta es la secuencia (que aumenten y espesen) junto con el barómetro bajando.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.2millas.com/refranes-marineros/",
+    "https://www.divulgameteo.es/Colas-de-gato/",
+    "https://snowy.es/wikimeteo/cirroestratos"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-08",
+   "regla": "Escala Douglas por sílabas: «CA-RI-MA-MA-MA-GRU-GRU-AR-MO-E» (balbuceo)",
+   "significado": "Grados 0–9 de la escala Douglas (mar de viento): 0 Calma, 1 Rizada, 2 Marejadilla, 3 Marejada, 4 Fuerte marejada, 5 Gruesa, 6 Muy gruesa, 7 Arbolada, 8 Montañosa, 9 Enorme. Como orientación, las alturas aproximadas son 0 / 0–0,1 / 0,1–0,5 / 0,5–1,25 / 1,25–2,5 / 2,5–4 / 4–6 / 6–9 / 9–14 / >14 m. Leído como balbuceo de bebé («cari, mamamá, gugú, ame») se recuerda el orden. Las tres «MA» y las dos «GRU» van en el orden normal → fuerte / muy.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/forum/foros-n-uticos/foro-n-utico-deportivo/58085-reglas-nemot-cnicas-para-navegar"
+   ],
+   "preguntas": [
+    "and-2021-c2-t35",
+    "and-2022-c2-t33",
+    "and-2023-c2-t34",
+    "and-2024-c1-t35",
+    "and-2024-c3-t35",
+    "and-2025-c2-t34"
+   ]
+  },
+  {
+   "id": "py-nav-01",
+   "regla": "«La corriente va, el viento viene»",
+   "significado": "El viento se nombra por la dirección de la que viene: un viento N sopla del norte hacia el sur. La corriente se nombra por la dirección hacia la que va: una corriente N empuja hacia el norte. Por eso, en la carta, el vector de la corriente se dibuja en el mismo sentido de su rumbo (Rc), mientras que el viento abate al barco hacia el lado contrario de donde viene. Es el error de signo más común en los ejercicios con viento y corriente.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://www.barcosnews.es/noticias/22668/integracion-navegacion-actual",
+    "https://www.boletinpatron.com/el-viento-conceptos-basicos-para-navegantes/",
+    "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/"
+   ],
+   "preguntas": [
+    "and-py-2021-c2-n16",
+    "and-py-2023-c1-n16",
+    "and-py-2023-c3-n15",
+    "and-py-2024-c1-n16",
+    "and-py-2026-c1-n15"
+   ]
+  },
+  {
+   "id": "py-nav-02",
+   "regla": "Abatimiento: «viento por babor, abatimiento +» · Rs = Rv + Abt (siempre hacia sotavento)",
+   "significado": "El viento empuja al barco hacia sotavento. Si el viento entra por babor, el barco abate a estribor y el abatimiento es positivo; si entra por estribor, abate a babor y es negativo. Rumbo de superficie: Rs = Rv + (±Abt). Para hallar el rumbo verdadero que hay que dar sabiendo el Rs deseado: Rv = Rs − Abt, es decir, se corrige hacia barlovento. Comprobación: el Rs siempre queda más a sotavento que el Rv.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://campus.greenwichnautica.es/mod/book/view.php?id=3342&chapterid=3594",
+    "https://www.neptuno.es/formulas-para-el-examen-patron-de-yate",
+    "https://personales.gestion.unican.es/martinji/Archivos/Rumbos.pdf"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n05",
+    "and-py-2020-c1-n12",
+    "and-py-2020-c1-n13",
+    "and-py-2020-c1-n15",
+    "and-py-2020-c3-n12",
+    "and-py-2020-c3-n15",
+    "and-py-2020-c3-n16",
+    "and-py-2021-c1-n11",
+    "and-py-2021-c1-n13",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c1-n15",
+    "and-py-2021-c2-n04",
+    "and-py-2021-c2-n14",
+    "and-py-2022-c1-n12",
+    "and-py-2022-c1-n15",
+    "and-py-2022-c1-n16",
+    "and-py-2022-c2-n12",
+    "and-py-2022-c2-n13",
+    "and-py-2022-c2-n15",
+    "and-py-2022-c2-n16",
+    "and-py-2022-c3-n12",
+    "and-py-2022-c3-n14",
+    "and-py-2022-c3-n15",
+    "and-py-2023-c1-n12",
+    "and-py-2023-c1-n14",
+    "and-py-2023-c1-n15",
+    "and-py-2023-c2-n11",
+    "and-py-2023-c2-n12",
+    "and-py-2023-c2-n15",
+    "and-py-2023-c2-n17",
+    "and-py-2023-c3-n13",
+    "and-py-2023-c3-n14",
+    "and-py-2023-c3-n16",
+    "and-py-2024-c1-n13",
+    "and-py-2024-c1-n14",
+    "and-py-2024-c2-n12",
+    "and-py-2024-c2-n14",
+    "and-py-2024-c2-n16",
+    "and-py-2024-c3-n12",
+    "and-py-2024-c3-n14",
+    "and-py-2024-c3-n16",
+    "and-py-2024-c3-n17",
+    "and-py-2025-c1-n03",
+    "and-py-2025-c1-n12",
+    "and-py-2025-c1-n16",
+    "and-py-2025-c1-n17",
+    "and-py-2025-c2-n11",
+    "and-py-2025-c2-n14",
+    "and-py-2025-c2-n16",
+    "and-py-2025-c3-n01",
+    "and-py-2025-c3-n12",
+    "and-py-2025-c3-n14",
+    "and-py-2026-c1-n12",
+    "and-py-2026-c1-n14",
+    "and-py-2026-c2-n12",
+    "and-py-2026-c2-n14",
+    "and-py-2026-c2-n15"
+   ]
+  },
+  {
+   "id": "py-nav-03",
+   "regla": "«Declinación: dónde y cuándo (carta). Desvío: hacia dónde (tablilla, con rumbo de AGUJA)»",
+   "significado": "La declinación magnética (dm) depende del lugar y del año. Se lee en la rosa de la carta y hay que actualizarla con la variación anual: dm actual = dm de la carta + variación anual × años transcurridos, con su signo. El desvío (Δ) depende del rumbo del propio barco y se saca de la tablilla, en la que se entra con el rumbo de aguja (Ra), no con el verdadero. Si solo se conoce el Rv, primero se pasa a rumbo magnético con la dm y luego se busca en la tablilla el Ra que da ese Rm (iterando si hace falta). Ct = dm + Δ ya está aprobada; esta regla cubre de dónde sale cada sumando.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://navegantesoceanicos.com/manual-del-patron-de-yate-ut-4-1-carta-nautica-correccion-total/",
+    "https://campus.greenwichnautica.es/mod/book/view.php?id=3339&chapterid=3586",
+    "https://www.isndf.com.ar/compas-declinacion-magnetica-y-desvio-del-compas/"
+   ],
+   "preguntas": [
+    "and-2024-c1-t41",
+    "and-2026-c1-t37",
+    "and-2026-c2-t09",
+    "and-2026-c2-t38",
+    "and-py-2020-c1-n13",
+    "and-py-2020-c3-n07",
+    "and-py-2020-c3-n16",
+    "and-py-2021-c1-n03",
+    "and-py-2021-c1-n07",
+    "and-py-2021-c2-n08",
+    "and-py-2021-c2-n13",
+    "and-py-2022-c1-n16",
+    "and-py-2023-c1-n04",
+    "and-py-2023-c1-n12",
+    "and-py-2023-c3-n10",
+    "and-py-2024-c1-n02",
+    "and-py-2024-c1-n15",
+    "and-py-2024-c2-n03",
+    "and-py-2024-c2-n12",
+    "and-py-2024-c3-n02",
+    "and-py-2024-c3-n13",
+    "and-py-2025-c1-n02",
+    "and-py-2025-c1-n13",
+    "and-py-2025-c2-n03",
+    "and-py-2025-c3-n12",
+    "and-py-2026-c2-n15"
+   ]
+  },
+  {
+   "id": "py-nav-04",
+   "regla": "Loxodrómica: «Δl con coseno, A con seno, ΔL = A / cos lm» · Δl se suma alejándose del ecuador, ΔL alejándose de Greenwich",
+   "significado": "Estima directa: Δl = D·cos R; A = D·sen R; lm = (l1 + l2)/2; ΔL = A / cos lm. Estima inversa: A = ΔL·cos lm; tg R = A/Δl; D = Δl / cos R (o √(Δl² + A²)). Δl y A están en millas (1' de latitud = 1 milla); ΔL en minutos de arco. Comprobación rápida: |ΔL| ≥ |A| siempre, porque cos lm ≤ 1. La regla de «se suma alejándose» solo vale sin cruzar el ecuador ni Greenwich; en general conviene usar signos (N y E +, S y W −).",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://www.neptuno.es/formulas-para-el-examen-patron-de-yate",
+    "https://www.estudiasonavegas.com/tests-online/118-apuntes-navegacion-astronomica-capitan-de-yate/452-derrota-loxodromica",
+    "https://www.patrondeyate.net/curso-de-navegacion-loxodromica.html"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n20",
+    "and-py-2020-c3-n20",
+    "and-py-2021-c1-n18",
+    "and-py-2021-c2-n18",
+    "and-py-2021-c2-n19",
+    "and-py-2022-c1-n20",
+    "and-py-2022-c2-n20",
+    "and-py-2022-c3-n20",
+    "and-py-2023-c1-n20",
+    "and-py-2023-c2-n20",
+    "and-py-2023-c3-n20",
+    "and-py-2024-c1-n20",
+    "and-py-2024-c2-n20",
+    "and-py-2024-c3-n20",
+    "and-py-2025-c1-n20",
+    "and-py-2025-c2-n20",
+    "and-py-2026-c1-n20",
+    "and-py-2026-c2-n20"
+   ]
+  },
+  {
+   "id": "py-nav-05",
+   "regla": "«La carta es pesimista»: sonda del momento = sonda de la carta + altura de la marea",
+   "significado": "El cero hidrográfico (en España, aproximadamente la bajamar más baja posible, LAT/BMVE) está tan bajo que casi siempre hay más agua de la que marca la carta. La sonda real en un instante es la sonda de la carta más la altura de la marea en ese instante, medida sobre el cero hidrográfico. Las sondas subrayadas (zonas que se descubren en bajamar) se restan. Amplitud = pleamar − bajamar. Matiz: con altas presiones o viento de tierra puede haber menos agua de la prevista (unos −1 cm por hPa por encima de 1013), así que la carta no garantiza nada.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf",
+    "https://encvirtual.es/cursos/PYATE/c2/seccion_07/49%20Mareas.htm",
+    "https://www.librosnauticos.com/portal/descargas/fe-erratas/libro-per/libro-per-pagina-194.pdf"
+   ],
+   "preguntas": [
+    "and-2020-c1-t39",
+    "and-2022-c2-t41",
+    "and-2023-c1-t37",
+    "and-2023-c3-t38",
+    "and-2024-c2-t39",
+    "and-2024-c3-t41",
+    "and-2025-c1-t38",
+    "and-2026-c2-t37",
+    "and-2026-c2-t39",
+    "and-py-2020-c1-n18",
+    "and-py-2020-c1-n19",
+    "and-py-2020-c3-n18",
+    "and-py-2020-c3-n19",
+    "and-py-2021-c1-n19",
+    "and-py-2021-c1-n20",
+    "and-py-2021-c2-n20",
+    "and-py-2022-c1-n18",
+    "and-py-2022-c1-n19",
+    "and-py-2022-c2-n18",
+    "and-py-2022-c2-n19",
+    "and-py-2022-c3-n18",
+    "and-py-2022-c3-n19",
+    "and-py-2023-c1-n18",
+    "and-py-2023-c1-n19",
+    "and-py-2023-c2-n18",
+    "and-py-2023-c2-n19",
+    "and-py-2023-c3-n18",
+    "and-py-2023-c3-n19",
+    "and-py-2024-c1-n18",
+    "and-py-2024-c1-n19",
+    "and-py-2024-c2-n18",
+    "and-py-2024-c2-n19",
+    "and-py-2024-c3-n18",
+    "and-py-2024-c3-n19",
+    "and-py-2025-c1-n18",
+    "and-py-2025-c1-n19",
+    "and-py-2025-c2-n18",
+    "and-py-2025-c2-n19",
+    "and-py-2025-c3-n18",
+    "and-py-2025-c3-n19",
+    "and-py-2026-c1-n18",
+    "and-py-2026-c1-n19",
+    "and-py-2026-c2-n18",
+    "and-py-2026-c2-n19"
+   ]
+  },
+  {
+   "id": "py-nav-06",
+   "regla": "«El anuario habla en UT»: UT = Hora oficial − adelanto (península +1 en invierno / +2 en verano; Canarias, una menos)",
+   "significado": "El Anuario de Mareas del IHM da las horas en UT (UTC). Para pasar a hora oficial (la del reloj) se suma el adelanto. En la península y Baleares es +1 en invierno y +2 en verano (de último domingo de marzo a último domingo de octubre); en Canarias, 0 en invierno y +1 en verano. Error típico: entrar en el anuario con la hora oficial del enunciado sin restarle el adelanto, o devolver el resultado en UT cuando piden hora oficial.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario",
+    "https://aulanautica.org/foro/debate/anuario-de-mareas-ejercicio-de-mareas/",
+    "https://es.wikipedia.org/wiki/Huso_horario_de_Espa%C3%B1a"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n18",
+    "and-py-2020-c1-n19",
+    "and-py-2020-c3-n18",
+    "and-py-2020-c3-n19",
+    "and-py-2022-c1-n18",
+    "and-py-2022-c1-n19",
+    "and-py-2022-c2-n18",
+    "and-py-2022-c2-n19",
+    "and-py-2022-c3-n18",
+    "and-py-2022-c3-n19",
+    "and-py-2023-c1-n18",
+    "and-py-2023-c1-n19",
+    "and-py-2023-c2-n18",
+    "and-py-2023-c2-n19",
+    "and-py-2023-c3-n18",
+    "and-py-2023-c3-n19",
+    "and-py-2024-c1-n18",
+    "and-py-2024-c1-n19",
+    "and-py-2024-c2-n18",
+    "and-py-2024-c2-n19",
+    "and-py-2024-c3-n18",
+    "and-py-2024-c3-n19",
+    "and-py-2025-c1-n18",
+    "and-py-2025-c1-n19",
+    "and-py-2025-c2-n18",
+    "and-py-2025-c2-n19",
+    "and-py-2025-c3-n18",
+    "and-py-2025-c3-n19",
+    "and-py-2026-c1-n18",
+    "and-py-2026-c1-n19",
+    "and-py-2026-c2-n18",
+    "and-py-2026-c2-n19"
+   ]
+  },
+  {
+   "id": "py-car-01",
+   "regla": "Corriente desconocida: «de la estimada a la observada»",
+   "significado": "El rumbo de la corriente es la dirección que va desde la situación estimada (Se, triángulo) hasta la observada (So, círculo) a la misma hora. La intensidad es la distancia Se–So dividida por las horas transcurridas desde la última situación fiable (si son 30 minutos, se multiplica por 2). Al revés (de So a Se) se obtiene el rumbo opuesto, que es el error típico. Encaja con «la corriente va».",
+   "tema": "PY UT4 Carta",
+   "fuentes": [
+    "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/",
+    "https://gmsailings.com/escuela-nautica/topics/corriente-desconocida-2/",
+    "https://aulanautica.org/unit/4-navegacion-carta/"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n14",
+    "and-py-2022-c1-n17",
+    "and-py-2022-c2-n16",
+    "and-py-2022-c3-n16",
+    "and-py-2024-c1-n17",
+    "and-py-2024-c2-n17",
+    "and-py-2025-c1-n15",
+    "and-py-2025-c3-n16",
+    "and-py-2026-c2-n16"
+   ]
+  },
+  {
+   "id": "py-car-02",
+   "regla": "«Primero el viento, luego la corriente»",
+   "significado": "Con viento y corriente a la vez: primero se aplica el abatimiento al rumbo verdadero para obtener el rumbo de superficie (Rs = Rv + Abt) y luego se compone Rs y la velocidad con el vector de la corriente para sacar el rumbo efectivo y la velocidad efectiva. Problema inverso (rumbo a dar para llegar a un punto con corriente conocida): desde la salida se traza el vector de la corriente, con centro en su extremo se corta la línea del rumbo efectivo deseado con un arco de radio igual a la velocidad del barco, y ese lado es el Rs. Después se quita el abatimiento (Rv = Rs − Abt) y por último la corrección total para obtener el rumbo de aguja.",
+   "tema": "PY UT4 Carta",
+   "fuentes": [
+    "https://personales.gestion.unican.es/martinji/Archivos/Rumbos.pdf",
+    "https://www.estudiasonavegas.com/images/Archivos/PY/PY_Navegacion/corrientes.doc",
+    "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n15",
+    "and-py-2020-c1-n16",
+    "and-py-2020-c1-n17",
+    "and-py-2020-c3-n14",
+    "and-py-2020-c3-n15",
+    "and-py-2020-c3-n17",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c1-n15",
+    "and-py-2022-c1-n14",
+    "and-py-2022-c1-n15",
+    "and-py-2022-c2-n14",
+    "and-py-2022-c2-n15",
+    "and-py-2022-c3-n05",
+    "and-py-2022-c3-n07",
+    "and-py-2022-c3-n13",
+    "and-py-2023-c1-n13",
+    "and-py-2023-c1-n14",
+    "and-py-2023-c2-n14",
+    "and-py-2023-c2-n15",
+    "and-py-2023-c2-n17",
+    "and-py-2024-c1-n12",
+    "and-py-2024-c1-n15",
+    "and-py-2024-c2-n13",
+    "and-py-2024-c2-n14",
+    "and-py-2024-c3-n03",
+    "and-py-2024-c3-n13",
+    "and-py-2024-c3-n14",
+    "and-py-2024-c3-n17",
+    "and-py-2025-c1-n13",
+    "and-py-2025-c1-n17",
+    "and-py-2025-c2-n13",
+    "and-py-2025-c2-n16",
+    "and-py-2025-c2-n17",
+    "and-py-2025-c3-n01",
+    "and-py-2025-c3-n11",
+    "and-py-2025-c3-n17",
+    "and-py-2026-c1-n11",
+    "and-py-2026-c1-n17",
+    "and-py-2026-c2-n14"
+   ]
+  },
+  {
+   "id": "py-car-03",
+   "regla": "Situaciones no simultáneas: «la primera línea viaja con el barco»",
+   "significado": "Cuando dos líneas de posición (demoras, enfilaciones, distancias) se toman en momentos distintos, la primera se traslada paralela a sí misma el rumbo y la distancia navegados entre ambas observaciones, teniendo en cuenta viento y corriente si los hay (rumbo efectivo y velocidad efectiva). La situación es el corte de la línea trasladada con la segunda. Una distancia (círculo) se traslada moviendo su centro. Caso particular de dos marcaciones de 45° y 90° (a través): la distancia navegada entre ambas es la distancia a la que se pasa del faro.",
+   "tema": "PY UT4 Carta",
+   "fuentes": [
+    "https://navegantesoceanicos.com/manual-del-patron-de-yate-ut-4-4-navegacion-carta-lineas-de-posicion-no-simultaneas/",
+    "https://encvirtual.es/cursos/PYATE/c2/seccion_04_01_06/44%20Lineas%20posicion%20no%20simultaneas.htm",
+    "https://www.amigosjabega.org/wp-content/uploads/20040503-Ejercicios-de-Navegacion-Costera.pdf"
+   ],
+   "preguntas": [
+    "and-py-2020-c3-n13",
+    "and-py-2021-c1-n11",
+    "and-py-2021-c2-n15",
+    "and-py-2022-c1-n13",
+    "and-py-2022-c2-n17",
+    "and-py-2022-c3-n17",
+    "and-py-2023-c1-n17",
+    "and-py-2023-c2-n16",
+    "and-py-2023-c3-n17",
+    "and-py-2024-c3-n15",
+    "and-py-2025-c1-n14",
+    "and-py-2025-c2-n15",
+    "and-py-2025-c3-n15",
+    "and-py-2026-c1-n16",
+    "and-py-2026-c2-n11"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,831 @@
+{
+ "meta": {
+  "title": "Curso PER",
+  "description": "Lecciones por bloques del temario oficial, redactadas y revisadas contra la normativa vigente y las plantillas oficiales de examen."
+ },
+ "modulos": [
+  {
+   "ut": 5,
+   "titulo": "Balizamiento",
+   "intro": "Las boyas y balizas son las señales de tráfico del mar: te dicen por dónde va el canal, dónde hay un peligro y por qué lado pasarlo. En este tema aprendes a reconocer cada marca del sistema IALA (región A, la de España) por su color, su forma, su marca de tope y su luz. Es un tema muy agradecido: con cuatro reglas bien aprendidas sacas casi todas las preguntas.",
+   "lecciones": [
+    {
+     "id": "per-5-1",
+     "curso": "per",
+     "ut": 5,
+     "titulo": "El sistema IALA: cómo se reconoce una marca",
+     "minutos": 10,
+     "objetivos": [
+      "Saber qué familias de marcas forman el sistema de balizamiento",
+      "Distinguir la región A de la región B y saber cuál se usa en España",
+      "Reconocer una marca por sus cuatro pistas: color, forma, marca de tope y luz",
+      "Deducir la familia de una marca solo por el color de su luz"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Para qué sirve el balizamiento",
+       "texto": "Las boyas y balizas te indican por dónde navegar y qué evitar. Casi todo el mundo usa el mismo sistema, el de la **IALA** (en español, AISM), el organismo internacional de ayudas a la navegación.\n\nLas familias que tienes que dominar son:\n- **Laterales**: marcan los bordes de un canal (y sus bifurcaciones).\n- **Cardinales**: te dicen por qué lado pasar un peligro.\n- **Peligro aislado**: un peligro pequeño con agua navegable alrededor.\n- **Aguas navegables**: agua segura alrededor (centro del canal, recalada).\n- **Especiales**: zonas particulares que explica la carta.\n- Y la boya de **nuevo peligro** o pecio.\n\nFaros, luces de sector y enfilaciones también aparecen en la norma IALA, pero como «otras marcas»: no pertenecen a ninguna de estas seis familias."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Región A y región B",
+       "texto": "El mundo está dividido en dos regiones de balizamiento, y **solo cambian las marcas laterales**: cardinales, peligro aislado, aguas navegables y especiales son iguales en todas partes.\n\n- **Región A** (Europa y por tanto España, África y la mayor parte de Asia y Oceanía): entrando en puerto, **rojo a babor y verde a estribor**.\n- **Región B** (América, Japón, Corea y Filipinas): justo al revés.\n\nEn el examen siempre se pregunta por la región A, salvo que digan otra cosa."
+      },
+      {
+       "tipo": "regla",
+       "id": "r18"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El sentido convencional del balizamiento",
+       "texto": "Cuando decimos que una marca es «de babor» o «de estribor», lo decimos **mirando en el sentido convencional**: el del barco que **llega desde la mar** y entra en un puerto, un río o un estuario.\n\nEn tramos de costa donde no está claro qué es «entrar», lo fija la autoridad marítima y lo indica la carta (por regla general, rodeando las masas de tierra en el sentido de las agujas del reloj).\n\nConsecuencia directa: **saliendo de puerto todo se invierte**. Lo verás a fondo en la lección siguiente."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las cuatro pistas de una marca",
+       "texto": "Para identificar una marca tienes cuatro pistas, y con una o dos suele bastar:\n- **Color**: de día es la pista más clara.\n- **Forma**: cilíndrica, cónica, esférica, de castillete (estructura en forma de torre) o de espeque (un poste o pértiga).\n- **Marca de tope**: la figura que llevan arriba (cilindro, cono, dos conos, esferas, aspa…). Es muy característica y en el examen sale muchísimo.\n- **Luz**: de noche manda su **color** y su **ritmo**.\n\nNo todas las marcas llevan tope o luz, pero si lo llevan, siempre es el que les corresponde."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "babor"
+       },
+       "texto": "Lateral de babor: roja, tope cilíndrico rojo y luz roja."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "estribor"
+       },
+       "texto": "Lateral de estribor: verde, tope cónico verde (vértice arriba) y luz verde."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El color de la luz te da la familia",
+       "texto": "De noche, antes de contar destellos, fíjate en el color:\n- **Roja**: lateral de babor (o la bifurcación con el canal principal a estribor).\n- **Verde**: lateral de estribor (o la bifurcación con el canal principal a babor).\n- **Blanca**: cardinales, peligro aislado o aguas navegables. Entre ellas las distingue el ritmo.\n- **Amarilla**: marca especial.\n- **Azul y amarilla alternadas**: boya de pecio o nuevo peligro.\n\nUna lateral nunca da luz blanca, y una especial nunca da luz blanca, roja ni verde."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "especial"
+       },
+       "texto": "Especial: amarilla de día y amarilla de noche."
+      },
+      {
+       "tipo": "clave",
+       "texto": "De noche, el color de la luz te dice la familia de la marca y el ritmo te dice cuál es en concreto."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si de noche solo ves una luz amarilla, no necesitas la forma ni el tope: es una marca especial. Y si una opción te ofrece la región B («verde a babor entrando»), es la trampa: en España rige la región A."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué familia de marcas es distinta en la región A y en la región B?",
+       "opciones": {
+        "a": "Las cardinales",
+        "b": "Las laterales",
+        "c": "Las especiales"
+       },
+       "correcta": "b",
+       "explicacion": "Solo las laterales cambian de color entre regiones (en la B el rojo va a estribor entrando). Cardinales, peligro aislado, aguas navegables y especiales son iguales en todo el mundo."
+      }
+     ],
+     "practica": [
+      "and-2021-c2-t13",
+      "and-2024-c2-t16",
+      "and-2025-c2-t13",
+      "and-2025-c3-t13"
+     ],
+     "chuleta": [
+      "Sistema IALA: laterales, cardinales, peligro aislado, aguas navegables, especiales y nuevo peligro.",
+      "España = región A: entrando, rojo a babor y verde a estribor. Región B (América, Japón, Corea, Filipinas): al revés.",
+      "Solo las laterales cambian entre regiones.",
+      "Sentido convencional: entrando desde la mar. Saliendo, se invierte.",
+      "Luz roja/verde = laterales; blanca = cardinal, peligro aislado o aguas navegables; amarilla = especial; azul/amarilla = pecio."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IALA – R1001 The IALA Maritime Buoyage System",
+       "url": "https://www.iala.int/product/r1001/"
+      },
+      {
+       "titulo": "Puertos del Estado – Ayudas a la navegación",
+       "url": "https://www.puertos.es/servicios/ayudas-la-navegacion"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Seis tipos de marca: laterales, cardinales, peligro aislado, aguas navegables, especiales y de pecio (emergencia); faros, enfilaciones y luces de sector son «otras marcas»",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §1.2, §2.1–2.7"
+      },
+      {
+       "dato": "Solo las laterales difieren entre regiones A y B; las otras cinco son comunes",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §1.2 y §2.1.1; pregunta and-2025-c3-t13"
+      },
+      {
+       "dato": "Región A: rojo a babor y verde a estribor en el sentido convencional; región B al revés (América, Japón, Rep. de Corea, Filipinas)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §1.1, §2.1.1, tablas 1–2; preguntas and-2024-c2-t16, and-2025-c2-t13, and-2025-c3-t13"
+      },
+      {
+       "dato": "Sentido convencional: desde la mar hacia puerto/río/estuario, o el que fije la autoridad (en principio, en sentido horario alrededor de las masas de tierra)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.1.1.1"
+      },
+      {
+       "dato": "Luz amarilla = marca especial",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.5.2.2; pregunta and-2021-c2-t13"
+      },
+      {
+       "dato": "Luz azul/amarilla alternada = marca de pecio (emergencia)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.6, tabla 11"
+      }
+     ]
+    },
+    {
+     "id": "per-5-2",
+     "curso": "per",
+     "ut": 5,
+     "titulo": "Marcas laterales y bifurcaciones",
+     "minutos": 15,
+     "objetivos": [
+      "Saber por qué banda dejar las rojas y las verdes entrando y saliendo de puerto",
+      "Conocer color, forma, tope y luz de las laterales de babor y estribor",
+      "Interpretar las marcas de bifurcación (laterales modificadas) y su luz 2+1",
+      "Saber cómo se numeran las marcas de un canal"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Babor y estribor, de un vistazo",
+       "texto": "**Lateral de babor** (entrando, la dejas por tu babor):\n- Color **rojo**.\n- Forma cilíndrica, de castillete o de espeque.\n- Tope: **un cilindro rojo**.\n- Luz **roja**, con cualquier ritmo **excepto el grupo de 2+1 destellos**.\n\n**Lateral de estribor** (entrando, la dejas por tu estribor):\n- Color **verde**.\n- Forma cónica, de castillete o de espeque.\n- Tope: **un cono verde con el vértice hacia arriba**.\n- Luz **verde**, con cualquier ritmo **excepto el grupo de 2+1 destellos**.\n\nEl ritmo 2+1 está reservado a las bifurcaciones."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "canal",
+        "sentido": "entrando"
+       },
+       "texto": "Entrando: rojas a babor, verdes a estribor. Los números suben a medida que entras."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "canal",
+        "sentido": "saliendo"
+       },
+       "texto": "Las mismas boyas, pero saliendo: ahora las rojas quedan a estribor y las verdes a babor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Saliendo, al revés. Y la numeración",
+       "texto": "Las boyas no cambian según hacia dónde vayas tú: están puestas para el que entra. Por eso, **saliendo de puerto**, dejas las **rojas por estribor** y las **verdes por babor**.\n\nSi las laterales de un canal están **numeradas**, la numeración crece en el sentido convencional, es decir, **de la mar hacia tierra**. Las **rojas llevan números pares** y las **verdes, impares**: entrando verás la 1 y la 2, luego la 3 y la 4, y así sucesivamente."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Desconfía de la palabra «siempre»: una roja **no** se deja siempre por babor ni una verde siempre por estribor; depende de si entras o sales. Sobre la numeración: la norma IALA vigente recoge expresamente el criterio «rojas pares, verdes impares», que es también el que da por bueno el examen."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Sales de puerto por un canal balizado y tienes por la proa una boya verde con luz Fl G 3s. ¿Por qué banda la dejas?",
+       "opciones": {
+        "a": "Por babor",
+        "b": "Por estribor",
+        "c": "Por cualquiera, es una lateral"
+       },
+       "correcta": "a",
+       "explicacion": "Entrando, las verdes se dejan por estribor; saliendo se invierte, así que la dejas por babor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Bifurcaciones: las laterales modificadas",
+       "texto": "Donde un canal se divide en dos, se pone una **lateral modificada**: del color de una lateral, pero con **una banda ancha horizontal del otro color** y luz de **grupos de 2+1 destellos**.\n\n- **Babor modificada**: **roja con banda verde**, tope **cilindro rojo**, luz **roja Fl(2+1)**. Indica que el **canal principal está a estribor**.\n- **Estribor modificada**: **verde con banda roja**, tope **cono verde**, luz **verde Fl(2+1)**. Indica que el **canal principal está a babor**.\n\nPara seguir el canal principal la tratas como una lateral normal de su **color de fondo**: entrando, la roja por babor y la verde por estribor."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "canal-principal-estribor"
+       },
+       "texto": "Roja con banda verde: la dejas por babor y el canal principal te queda a estribor."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "canal-principal-babor"
+       },
+       "texto": "Verde con banda roja: la dejas por estribor y el canal principal te queda a babor."
+      },
+      {
+       "tipo": "clave",
+       "texto": "En una bifurcación, el color de fondo (y con él el tope y la luz) dice por qué banda la dejas; el canal principal queda al lado contrario."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los nombres «canal principal a estribor / a babor» están dados en el sentido convencional (entrando). Saliendo, una roja Fl(2+1) la dejas por estribor, como cualquier roja al salir, y sigues por el canal principal. Hubo una pregunta de examen que mezclaba la denominación del canal según se entrara o se saliera y se **anuló** (se dieron todas las respuestas por buenas): no te líes, piensa siempre en el color de fondo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Un **cilindro rojo** lo llevan la lateral de babor y la babor modificada (canal principal a estribor). Un **cono verde** lo llevan la de estribor y la estribor modificada (canal principal a babor). Si entre las opciones solo aparece «lateral de babor» o «lateral de estribor», esa es la buena. En la región A no existen ni el cono rojo ni el cilindro verde (son de la región B), ni topes de cilindro y cono juntos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "De noche ves una luz roja con ritmo Fl(2+1) R 10s. Si fuera de día, ¿qué marca de tope verías (si la tiene)?",
+       "opciones": {
+        "a": "Un cono verde",
+        "b": "Un cilindro rojo",
+        "c": "Un cilindro rojo sobre un cono verde"
+       },
+       "correcta": "b",
+       "explicacion": "Luz roja 2+1 = babor modificada (canal principal a estribor). Lleva el tope de su color de fondo, el de babor: un cilindro rojo."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t15",
+      "and-2020-c1-t16",
+      "and-2020-c3-t15",
+      "and-2020-c3-t16",
+      "and-2021-c1-t13",
+      "and-2021-c2-t14",
+      "and-2021-c2-t15",
+      "and-2022-c1-t15",
+      "and-2022-c1-t17",
+      "and-2022-c2-t14",
+      "and-2022-c2-t17",
+      "and-2022-c3-t14",
+      "and-2023-c1-t13",
+      "and-2023-c2-t13",
+      "and-2023-c2-t15",
+      "and-2023-c3-t15",
+      "and-2024-c1-t13",
+      "and-2024-c2-t15",
+      "and-2024-c3-t13",
+      "and-2024-c3-t14",
+      "and-2025-c1-t13",
+      "and-2025-c1-t17",
+      "and-2025-c2-t16",
+      "and-2025-c3-t15",
+      "and-2025-c3-t17",
+      "and-2026-c1-t16",
+      "and-2026-c2-t13",
+      "and-2026-c2-t14"
+     ],
+     "chuleta": [
+      "Babor: roja, cilindro rojo, luz roja (cualquier ritmo menos 2+1).",
+      "Estribor: verde, cono verde vértice arriba, luz verde (cualquier ritmo menos 2+1).",
+      "Entrando: rojo a babor. Saliendo: rojo a estribor.",
+      "Numeración de la mar hacia tierra: rojas pares, verdes impares.",
+      "Bifurcación = banda del otro color + luz 2+1. Roja con banda verde: principal a estribor. Verde con banda roja: principal a babor.",
+      "Manda el color de fondo: tope, color de la luz y banda por la que la dejas."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IALA – R1001 The IALA Maritime Buoyage System",
+       "url": "https://www.iala.int/product/r1001/"
+      },
+      {
+       "titulo": "Puertos del Estado – Ayudas a la navegación",
+       "url": "https://www.puertos.es/servicios/ayudas-la-navegacion"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Babor: roja; cilíndrica, castillete o espeque; tope un cilindro rojo; luz roja con cualquier ritmo salvo Fl(2+1)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 1; preguntas and-2020-c1-t15, and-2021-c2-t15, and-2026-c2-t13"
+      },
+      {
+       "dato": "Estribor: verde; cónica, castillete o espeque; tope un cono verde vértice arriba; luz verde con cualquier ritmo salvo Fl(2+1)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 1; pregunta and-2022-c2-t14"
+      },
+      {
+       "dato": "Saliendo de puerto, rojas por estribor y verdes por babor",
+       "fuente": "Consecuencia de IALA R1001 ed. 2.0 (2023) §2.1.1.1; preguntas and-2020-c3-t16, and-2023-c2-t13, and-2024-c1-t13, and-2024-c3-t13"
+      },
+      {
+       "dato": "Numeración en el sentido convencional (de la mar a tierra): rojas pares, verdes impares",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.1.1.2; pregunta and-2023-c1-t13"
+      },
+      {
+       "dato": "Canal principal a estribor: roja con una banda ancha horizontal verde, tope cilindro rojo, luz roja Fl(2+1)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 3; preguntas and-2022-c1-t17, and-2022-c2-t17, and-2022-c3-t14, and-2023-c3-t15, and-2024-c2-t15, and-2024-c3-t14, and-2025-c1-t17"
+      },
+      {
+       "dato": "Canal principal a babor: verde con una banda ancha horizontal roja, tope cono verde, luz verde Fl(2+1)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 3; preguntas and-2021-c1-t13, and-2023-c2-t15, and-2025-c1-t13, and-2025-c3-t15, and-2025-c3-t17, and-2026-c1-t16, and-2026-c2-t14"
+      },
+      {
+       "dato": "Entrando, la bifurcación se deja como la lateral de su color de fondo para seguir el canal principal",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.1.5; preguntas and-2020-c1-t16 (b), and-2022-c1-t15 (a)"
+      },
+      {
+       "dato": "Pregunta de 2+1 roja saliendo: anulada, todas las respuestas correctas",
+       "fuente": "pregunta and-2021-c2-t14 (nota informativa 4-ene-2022)"
+      },
+      {
+       "dato": "En región B existen cilindro verde y cono rojo (no en región A)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 2"
+      }
+     ]
+    },
+    {
+     "id": "per-5-3",
+     "curso": "per",
+     "ut": 5,
+     "titulo": "Marcas cardinales",
+     "minutos": 14,
+     "objetivos": [
+      "Saber qué indica una cardinal y por qué lado se pasa",
+      "Reconocer cada cardinal por su marca de tope y sus colores",
+      "Recordar el ritmo de la luz de cada cardinal"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué te dice una cardinal",
+       "texto": "Alrededor de un peligro imagina cuatro cuadrantes (Norte, Este, Sur y Oeste), separados por las demoras verdaderas NW, NE, SE y SW tomadas desde el peligro. La cardinal se coloca en uno de ellos y **toma su nombre**.\n\nSu mensaje es: **las aguas más profundas y seguras están en el lado de mi nombre**. Una cardinal Norte se pasa por su norte; el peligro queda al sur de ella.\n\nTambién se usan para llamar la atención sobre un **recodo, una confluencia, una bifurcación o el extremo de un bajo** en un canal."
+      },
+      {
+       "tipo": "regla",
+       "id": "r22"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cardinales"
+       },
+       "texto": "Cada cardinal está en el cuadrante de su nombre y se pasa por ese lado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Colores y marcas de tope",
+       "texto": "Normalmente son de castillete o de espeque, siempre pintadas de **negro y amarillo**, con un tope de **dos conos negros superpuestos**:\n- **Norte**: conos con los **vértices hacia arriba**. **Negro arriba, amarillo abajo**.\n- **Sur**: conos con los **vértices hacia abajo**. **Amarillo arriba, negro abajo**.\n- **Este**: conos **unidos por las bases** (forma de rombo). **Negra con una ancha banda horizontal amarilla**.\n- **Oeste**: conos **unidos por los vértices** (forma de reloj de arena). **Amarilla con una ancha banda horizontal negra**."
+      },
+      {
+       "tipo": "regla",
+       "id": "r20"
+      },
+      {
+       "tipo": "regla",
+       "id": "r21"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "cardinal-e",
+        "reloj": false
+       },
+       "texto": "Cardinal Este: conos por las bases, negro arriba y abajo, amarillo en medio."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "cardinal-w",
+        "reloj": false
+       },
+       "texto": "Cardinal Oeste: conos por los vértices, negro en medio."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La luz: el reloj",
+       "texto": "La luz de las cardinales es **blanca** y **centelleante**: Ct/Q (60 o 50 centelleos por minuto) o centelleante rápida, CtRp/VQ (120 o 100 por minuto).\n- **Norte**: centelleo **continuo**, Q o VQ.\n- **Este**: grupos de **3**: VQ(3) cada 5 s o Q(3) cada 10 s.\n- **Sur**: grupos de **6 + un destello largo**: VQ(6)+LFl cada 10 s o Q(6)+LFl cada 15 s.\n- **Oeste**: grupos de **9**: VQ(9) cada 10 s o Q(9) cada 15 s.\n\nEl destello largo de la Sur está para que, contando deprisa, no confundas su grupo de 6 con uno de 3 o de 9."
+      },
+      {
+       "tipo": "regla",
+       "id": "r19"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ritmo",
+        "ritmo": "Q(6)+LFl 15s",
+        "texto": "Cardinal Sur: seis centelleos y un destello largo, cada 15 s."
+       }
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los conos **no** apuntan al peligro. En la Norte y la Sur apuntan al lado seguro, y en las cuatro apuntan a la parte negra de la marca. Y si ves dos conos superpuestos aunque no distingas el color, ya sabes que es una cardinal: solo las cardinales llevan dos conos. Dos conos hacia arriba = Norte, con seguridad. Un solo cono es una lateral de estribor."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tienes por la proa una cardinal Este. ¿Por dónde debes pasarla?",
+       "opciones": {
+        "a": "Por su oeste",
+        "b": "Por su este",
+        "c": "Por cualquier lado, dándole resguardo"
+       },
+       "correcta": "b",
+       "explicacion": "La cardinal se pasa por el lado de su nombre: el agua segura está al este de la marca. Luego traduces ese «por su este» a babor o estribor según tu rumbo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una boya es amarilla en su mitad superior y negra en la inferior. ¿Cómo es su marca de tope?",
+       "opciones": {
+        "a": "Dos conos con los vértices hacia abajo",
+        "b": "Dos conos con los vértices hacia arriba",
+        "c": "Dos conos unidos por las bases"
+       },
+       "correcta": "a",
+       "explicacion": "Negro abajo: los conos apuntan al negro, hacia abajo. Es la cardinal Sur."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t17",
+      "and-2021-c1-t16",
+      "and-2022-c3-t13",
+      "and-2022-c3-t17",
+      "and-2023-c1-t17",
+      "and-2023-c2-t16",
+      "and-2023-c2-t17",
+      "and-2023-c3-t16",
+      "and-2023-c3-t17",
+      "and-2024-c1-t16",
+      "and-2024-c2-t17",
+      "and-2024-c3-t15",
+      "and-2025-c1-t15",
+      "and-2025-c2-t14",
+      "and-2025-c3-t14",
+      "and-2026-c1-t14",
+      "and-2026-c1-t15",
+      "and-2026-c1-t17",
+      "and-2026-c2-t15"
+     ],
+     "chuleta": [
+      "La cardinal se pasa por el lado de su nombre (allí está el agua segura).",
+      "Topes: N ▲▲, S ▼▼, E bases unidas (rombo), W vértices unidos (reloj de arena).",
+      "Los conos apuntan al negro: N negro arriba, S negro abajo, E negra con banda amarilla, W amarilla con banda negra.",
+      "Luz blanca centelleante: N continua, E 3, S 6 + destello largo, W 9.",
+      "Periodos: E VQ 5 s / Q 10 s; S y W VQ 10 s / Q 15 s."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IALA – R1001 The IALA Maritime Buoyage System",
+       "url": "https://www.iala.int/product/r1001/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Cuadrantes limitados por las demoras verdaderas NW-NE, NE-SE, SE-SW y SW-NW desde el punto de interés; la marca se pasa por el lado de su nombre",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.2.1.1; preguntas and-2021-c1-t16, and-2024-c1-t16, and-2024-c3-t15"
+      },
+      {
+       "dato": "Indican dónde están las aguas más profundas/seguras; también recodos, confluencias, bifurcaciones o extremos de bajos",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.2.1 y §2.2.3; preguntas and-2020-c3-t17, and-2022-c3-t17, and-2025-c2-t14"
+      },
+      {
+       "dato": "Normalmente castillete o espeque, bandas horizontales negras y amarillas, tope de dos conos negros",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.2.1"
+      },
+      {
+       "dato": "N: conos arriba, negro sobre amarillo. E: bases unidas, negra con banda amarilla. S: conos abajo, amarillo sobre negro. W: vértices unidos, amarilla con banda negra",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tablas 5–6; preguntas and-2022-c3-t13, and-2023-c1-t17, and-2023-c2-t16, and-2024-c2-t17, and-2025-c1-t15, and-2026-c1-t14"
+      },
+      {
+       "dato": "Q = 60 o 50 centelleos/min; VQ = 120 o 100/min; destello largo ≥ 2 s",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.2.2"
+      },
+      {
+       "dato": "Luces: N VQ o Q; E VQ(3) 5 s / Q(3) 10 s; S VQ(6)+LFl 10 s / Q(6)+LFl 15 s; W VQ(9) 10 s / Q(9) 15 s",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tablas 5–6; preguntas and-2023-c3-t17, and-2025-c3-t14, and-2026-c1-t15, and-2026-c1-t17, and-2026-c2-t15"
+      },
+      {
+       "dato": "Dos conos con vértices arriba = cardinal Norte con seguridad",
+       "fuente": "pregunta and-2023-c3-t16"
+      }
+     ]
+    },
+    {
+     "id": "per-5-4",
+     "curso": "per",
+     "ut": 5,
+     "titulo": "Peligro aislado, aguas navegables, especiales y nuevos peligros",
+     "minutos": 14,
+     "objetivos": [
+      "Reconocer la marca de peligro aislado y saber qué señala",
+      "Reconocer la marca de aguas navegables y sus usos",
+      "Saber qué indican las marcas especiales y cómo son",
+      "Saber cómo se balizan los peligros nuevos y los pecios"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Peligro aislado",
+       "texto": "Se coloca **sobre un peligro de dimensiones reducidas que está rodeado de aguas navegables** (una roca, un bajo pequeño). Puedes pasar por cualquier lado, pero **dándole resguardo**.\n- Color: **negro con una o varias bandas anchas horizontales rojas**.\n- Forma: preferiblemente de castillete o de espeque.\n- Tope: **dos esferas negras superpuestas**.\n- Luz: **blanca, grupos de dos destellos**, Fl(2) o GpD(2)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "peligro-aislado"
+       },
+       "texto": "Dos esferas negras, dos destellos blancos."
+      },
+      {
+       "tipo": "regla",
+       "id": "r23"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Aguas navegables",
+       "texto": "Indica que **hay agua navegable a su alrededor**. Por eso se usa para marcar el **eje o centro de un canal**, la **entrada** de un canal, la **aproximación a un puerto o estuario**, un **punto de recalada** y también el **mejor sitio para pasar bajo un puente**.\n- Color: **franjas verticales rojas y blancas**.\n- Forma: **esférica**, o de castillete o espeque con tope esférico.\n- Tope: **una esfera roja**.\n- Luz **blanca**: **isofase**, de **ocultaciones**, **un destello largo cada 10 s** o la **Morse «A»**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "aguas-navegables"
+       },
+       "texto": "Franjas verticales rojas y blancas y una esfera roja."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ritmo",
+        "ritmo": "Iso 4s",
+        "texto": "Isofase: el mismo tiempo de luz que de oscuridad. Es uno de los ritmos de aguas navegables."
+       }
+      },
+      {
+       "tipo": "clave",
+       "texto": "Bordes del canal: laterales. Centro del canal: aguas navegables. Peligro pequeño con agua alrededor: peligro aislado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Marcas especiales",
+       "texto": "No sirven para guiarte por un canal: señalan **zonas o elementos particulares cuya naturaleza explica la carta**, como zonas de baño o recreo, **cables o tuberías submarinas**, zonas de **ejercicios militares**, vertederos o boyas oceanográficas.\n- Color: **amarillo**.\n- Forma: libre, siempre que no se confunda con otras marcas (si está en el lado de babor de un canal puede ser cilíndrica, pero no cónica).\n- Tope: **un aspa amarilla en forma de X**.\n- Luz **amarilla**, con cualquier ritmo salvo los reservados a cardinales, peligro aislado, aguas navegables y marcas móviles (MAtoN)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "especial"
+       },
+       "texto": "Todo amarillo: cuerpo, aspa y luz."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Nuevos peligros y pecios",
+       "texto": "Un **nuevo peligro** es un obstáculo recién descubierto que **aún no figura en las cartas** ni en las publicaciones (un bajo, un naufragio reciente). Se balizan con marcas laterales, cardinales o de peligro aislado, o con la boya de emergencia que verás ahora; si el riesgo es especialmente grave, se **duplica** al menos una de ellas con otra idéntica.\n\nPensada sobre todo para pecios está la **boya de balizamiento de emergencia**: **franjas verticales azules y amarillas** (de 4 a 8), tope **una cruz amarilla vertical (+)** y luz que **alterna destellos azules y amarillos**. Puede llevar un racon que transmite la Morse «D» y AIS. Se retira cuando el peligro ya está difundido o ha desaparecido."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "boya",
+        "clase": "nuevo-peligro"
+       },
+       "texto": "Boya de pecio: azul y amarilla en vertical, cruz amarilla y luz alternativa azul/amarilla."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Parejas que se confunden: **una esfera roja** (aguas navegables) frente a **dos esferas negras** (peligro aislado); **aspa en X** amarilla (especial) frente a **cruz vertical +** amarilla (pecio). Y si te preguntan qué señalan dos esferas negras, la respuesta es un peligro de dimensiones reducidas con agua navegable alrededor, no «un peligro que no figura en las cartas»: eso es la definición de **nuevo peligro**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Ves una boya con franjas verticales azules y amarillas. ¿Qué indica?",
+       "opciones": {
+        "a": "Una zona de baño",
+        "b": "Un pecio o peligro reciente que aún no está en la carta",
+        "c": "El centro de un canal"
+       },
+       "correcta": "b",
+       "explicacion": "Las franjas verticales azules y amarillas son de la boya de balizamiento de emergencia de pecios. Las zonas de baño las señalan las especiales (amarillas) y el centro del canal la de aguas navegables (rojas y blancas)."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t14",
+      "and-2020-c3-t13",
+      "and-2020-c3-t14",
+      "and-2021-c1-t14",
+      "and-2021-c1-t15",
+      "and-2021-c1-t17",
+      "and-2021-c2-t16",
+      "and-2022-c1-t13",
+      "and-2022-c1-t14",
+      "and-2022-c2-t13",
+      "and-2022-c3-t15",
+      "and-2023-c1-t14",
+      "and-2023-c1-t15",
+      "and-2023-c2-t14",
+      "and-2023-c3-t14",
+      "and-2024-c1-t14",
+      "and-2024-c1-t15",
+      "and-2024-c2-t13",
+      "and-2024-c2-t14",
+      "and-2024-c3-t17",
+      "and-2025-c1-t16",
+      "and-2025-c2-t15",
+      "and-2025-c2-t17",
+      "and-2025-c3-t16",
+      "and-2026-c1-t13",
+      "and-2026-c2-t17"
+     ],
+     "chuleta": [
+      "Peligro aislado: negra con bandas rojas horizontales, dos esferas negras, luz blanca Fl(2).",
+      "Aguas navegables: franjas verticales rojas y blancas, una esfera roja, luz blanca Iso, Oc, LFl 10 s o Mo(A).",
+      "Aguas navegables = centro del canal, recalada, entrada a puerto, paso bajo puente.",
+      "Especial: todo amarillo, aspa en X, luz amarilla; zonas que explica la carta.",
+      "Pecio/nuevo peligro: franjas verticales azules y amarillas, cruz +, luz azul/amarilla alternada; marca duplicada si el riesgo es grave."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IALA – R1001 The IALA Maritime Buoyage System",
+       "url": "https://www.iala.int/product/r1001/"
+      },
+      {
+       "titulo": "Puertos del Estado – Ayudas a la navegación",
+       "url": "https://www.puertos.es/servicios/ayudas-la-navegacion"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Peligro aislado: sobre o junto a un peligro con agua navegable alrededor; negra con una o varias bandas horizontales rojas; tope dos esferas negras; luz blanca Fl(2); forma libre sin conflicto con laterales, preferible castillete o espeque",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.3, tabla 7; preguntas and-2021-c1-t14, and-2022-c1-t14, and-2023-c2-t14, and-2023-c3-t14, and-2024-c3-t17, and-2025-c1-t16, and-2026-c2-t17"
+      },
+      {
+       "dato": "Aguas navegables: franjas verticales rojas y blancas; esférica, o castillete/espeque con tope esférico; tope una esfera roja; luz blanca Iso, Oc, LFl cada 10 s o Mo(A)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.4, tabla 8; preguntas and-2021-c1-t15, and-2022-c1-t13, and-2022-c3-t15, and-2024-c1-t14, and-2024-c1-t15, and-2026-c1-t13"
+      },
+      {
+       "dato": "Aguas navegables: eje/centro de canal, entrada de canal, aproximación a puerto o estuario, recalada, mejor paso bajo puentes",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.4.1.1; preguntas and-2020-c1-t14, and-2020-c3-t14, and-2021-c1-t17, and-2022-c2-t13"
+      },
+      {
+       "dato": "Especiales: amarillas, forma libre sin conflicto (en el lado de babor puede ser cilíndrica, no cónica), tope aspa amarilla en X, luz amarilla con ritmo no reservado a cardinales, peligro aislado, MAtoN ni aguas navegables; ejemplos: ODAS, vertederos, ejercicios militares, cables/tuberías, zonas de recreo",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.5.2.2, tabla 9; preguntas and-2023-c1-t15, and-2024-c2-t14, and-2025-c2-t17"
+      },
+      {
+       "dato": "Nuevos peligros: con laterales, cardinales, peligro aislado o boya de pecio; si el riesgo es especialmente alto se duplica al menos una marca, idéntica; racon Morse «D» y AIS opcionales",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §3.2.2"
+      },
+      {
+       "dato": "Boya de pecio: franjas verticales azules y amarillas en igual número (4 a 8), castillete o espeque, tope cruz amarilla vertical, luz alternada 1 s azul y 1 s amarilla con 0,5 s de eclipse, racon «D»",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.6, tabla 11"
+      }
+     ]
+    },
+    {
+     "id": "per-5-5",
+     "curso": "per",
+     "ut": 5,
+     "titulo": "Leer la luz: ritmos y de la luz a la marca",
+     "minutos": 12,
+     "objetivos": [
+      "Entender la característica de una luz: color, ritmo y periodo",
+      "Distinguir destellos, destello largo, ocultaciones, isofase, centelleos y Morse",
+      "Identificar una marca de noche solo por su luz"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La característica de una luz",
+       "texto": "En la carta, cada luz viene con su **característica**: **ritmo**, **color** y **periodo**. Por ejemplo, «Fl(2) 5s» (en notación española «GpD(2) 5s») es un grupo de dos destellos que se repite cada 5 segundos. Si no se indica color, la luz es **blanca**.\n\nEl **periodo** es el tiempo que tarda la secuencia completa en repetirse, contando luces y oscuridades."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Los ritmos que tienes que conocer",
+       "texto": "- **Fija (F)**: luz continua.\n- **Destellos (Fl / D)**: la luz dura **menos** que la oscuridad.\n- **Destello largo (LFl / DL)**: un destello de **2 s o más**.\n- **Ocultaciones (Oc)**: la luz dura **más** que la oscuridad.\n- **Isofase (Iso)**: **igual** tiempo de luz que de oscuridad.\n- **Centelleante (Q / Ct)**: destellos rápidos, 60 o 50 por minuto.\n- **Centelleante rápida (VQ / CtRp)**: aún más rápidos, 120 o 100 por minuto.\n- **Morse (Mo)**: dibuja una letra; Mo(A) es punto-raya.\n- **Alternativa (Al)**: cambia de color.\n\nCualquiera puede ir **en grupos**: Fl(2), Fl(2+1), Q(3)…"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ritmo",
+        "ritmo": "Iso 4s",
+        "texto": "Isofase: 2 s de luz y 2 s de oscuridad."
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ritmo",
+        "ritmo": "Oc 6s",
+        "texto": "Ocultaciones: está más tiempo encendida que apagada."
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ritmo",
+        "ritmo": "Fl(2) 5s",
+        "texto": "Grupo de dos destellos: el ritmo del peligro aislado (en blanco)."
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ritmo",
+        "ritmo": "Mo(A) 6s",
+        "texto": "Morse «A»: un destello corto y uno largo. Blanca, es de aguas navegables."
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De la luz a la marca",
+       "texto": "- Blanca, **centelleo continuo**: cardinal **Norte**.\n- Blanca, grupos de **3 / 6 + largo / 9** centelleos: cardinal **Este / Sur / Oeste**.\n- Blanca, **grupos de 2 destellos**: **peligro aislado**.\n- Blanca, **isofase, ocultaciones, un destello largo cada 10 s o Mo(A)**: **aguas navegables**.\n- Roja o verde **Fl(2+1)**: **bifurcación** (roja: principal a estribor; verde: principal a babor).\n- Roja o verde con otro ritmo: **lateral** de babor o de estribor.\n- **Amarilla**: **especial**.\n- **Azul y amarilla alternadas**: **pecio**."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Luces «largas» y tranquilas (isofase, ocultaciones, destello largo, Morse A) = aguas navegables; luces «nerviosas» (centelleos) = cardinales; dos destellos blancos = peligro aislado."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El destello largo aislado (LFl 10s) es de aguas navegables; en la cardinal Sur el destello largo va **detrás de seis centelleos**. Y el periodo no cambia la marca: un grupo de dos destellos blancos es peligro aislado tenga el periodo que tenga. Ojo también con el RIPA: allí «luz centelleante» (la de algunos buques) se define como 120 o más destellos por minuto; en balizamiento se distinguen centelleante y centelleante rápida. No mezcles las dos definiciones."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Una pregunta decía: «navegando a rumbo norte vemos una luz blanca en grupo de 9 destellos, ¿qué debemos hacer?». Se **anuló** (todas las respuestas se dieron por buenas). La luz sería una cardinal Oeste (aunque en las cardinales son centelleos, no destellos): hay que pasar por el oeste de la marca, pero caer a babor o a estribor depende de dónde esté la marca respecto a ti, cosa que el enunciado no decía."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una luz blanca está 3 s encendida y 1 s apagada, una y otra vez. ¿Qué ritmo es?",
+       "opciones": {
+        "a": "Isofase",
+        "b": "Ocultaciones",
+        "c": "Destellos"
+       },
+       "correcta": "b",
+       "explicacion": "Más tiempo de luz que de oscuridad = ocultaciones. En blanco, es uno de los ritmos de la marca de aguas navegables."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "De noche ves una luz blanca Q(9) 15s. ¿Qué marca es y por dónde la pasas?",
+       "opciones": {
+        "a": "Cardinal Oeste; por su oeste",
+        "b": "Cardinal Este; por su este",
+        "c": "Cardinal Oeste; por su este"
+       },
+       "correcta": "a",
+       "explicacion": "Nueve centelleos = las 9 del reloj = Oeste, y la cardinal se pasa por el lado de su nombre."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t13",
+      "and-2020-c1-t17",
+      "and-2021-c2-t17",
+      "and-2022-c1-t16",
+      "and-2022-c2-t15",
+      "and-2022-c2-t16",
+      "and-2022-c3-t16",
+      "and-2023-c1-t16",
+      "and-2023-c3-t13",
+      "and-2024-c1-t17",
+      "and-2024-c3-t16",
+      "and-2025-c1-t14",
+      "and-2026-c2-t16"
+     ],
+     "chuleta": [
+      "Característica = ritmo + color + periodo; sin color indicado, es blanca.",
+      "Fl: luz < oscuridad. Oc: luz > oscuridad. Iso: luz = oscuridad. LFl: destello de 2 s o más.",
+      "Q 60 (o 50)/min, VQ 120 (o 100)/min: centelleos = cardinales.",
+      "Fl(2) blanca = peligro aislado. Iso, Oc, LFl 10 s, Mo(A) blancas = aguas navegables.",
+      "Fl(2+1) roja o verde = bifurcación. Amarilla = especial."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IALA – R1001 The IALA Maritime Buoyage System",
+       "url": "https://www.iala.int/product/r1001/"
+      },
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Destello largo: luz de al menos 2 s",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.2.2"
+      },
+      {
+       "dato": "Q 60 o 50/min; VQ 120 o 100/min",
+       "fuente": "IALA R1001 ed. 2.0 (2023) §2.2.2"
+      },
+      {
+       "dato": "Fl(2) blanca = peligro aislado (cualquier periodo)",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 7; preguntas and-2020-c1-t13, and-2023-c3-t13, and-2025-c2-t15, and-2025-c3-t16"
+      },
+      {
+       "dato": "Iso, Oc, LFl 10 s y Mo(A) blancas = aguas navegables",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tabla 8; preguntas and-2020-c1-t17, and-2022-c1-t16, and-2022-c2-t16, and-2022-c3-t16, and-2023-c1-t16, and-2025-c1-t14, and-2026-c2-t16"
+      },
+      {
+       "dato": "Q/VQ continua = Norte; grupos de 9 = Oeste; 6+LFl = Sur",
+       "fuente": "IALA R1001 ed. 2.0 (2023) tablas 5–6; preguntas and-2022-c2-t15, and-2024-c1-t17, and-2024-c3-t16"
+      },
+      {
+       "dato": "RIPA: «luz centelleante» = 120 o más destellos por minuto",
+       "fuente": "RIPA/COLREG regla 21 f) (BOE)"
+      },
+      {
+       "dato": "Pregunta de 9 destellos a rumbo norte anulada, todas las respuestas correctas",
+       "fuente": "pregunta and-2021-c2-t17 (nota informativa 22-nov-2021)"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

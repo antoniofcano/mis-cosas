@@ -13,6 +13,7 @@ import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
 import { evolucionIllustration, ciabogaIllustration } from './maniobra.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
+import { LAMINAS_LECCIONES } from './lecciones/index.js';
 import { movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
 function rhythmIllustration(spec) {
@@ -64,6 +65,7 @@ const RENDERERS = {
   regiones: regionesIllustration,
   beaufort: beaufortIllustration,
   demoras: demorasIllustration,
+  ...Object.fromEntries(Object.entries(LAMINAS_LECCIONES).map(([k, l]) => [k, l.fn])),
 };
 
 /** Catálogo documentado (lo usan los editores de contenido y la validación). */
@@ -106,6 +108,7 @@ export const CATALOGO = {
   regiones: { params: {}, ejemplo: { tipo: 'regiones' } },
   beaufort: { params: { fuerza: '0–12 opcional (resalta esa fila)' }, ejemplo: { tipo: 'beaufort' } },
   demoras: { params: { d1: 'Dv al faro A (por defecto 330)', d2: 'Dv al faro B (por defecto 034)' }, ejemplo: { tipo: 'demoras', d1: 330, d2: 34 } },
+  ...Object.fromEntries(Object.entries(LAMINAS_LECCIONES).map(([k, l]) => [k, { params: l.params, ejemplo: l.ejemplo }])),
 };
 
 /** Comprueba que una especificación es dibujable. */

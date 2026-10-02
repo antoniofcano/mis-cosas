@@ -67,7 +67,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   svg.append(gBase, gRaster, gLand, gGrid, gMarks, gItems, gUser, gTool, gRulers);
 
   const readout = h('div.readout', TOOLS[0].help);
-  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, t.icon, h('span', t.label)));
+  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, h('span.tool-icon', t.icon), h('span.tool-name', t.label)));
   const layerSelect = h('select.small', { 'aria-label': 'Capa de la carta', onchange: (ev) => setLayer(ev.target.value) },
     LAYERS.map(([v, t]) => h('option', { value: v }, t)));
   const bearingInput = h('input.bearing', { type: 'number', min: 0, max: 359, step: 1, 'aria-label': 'Rumbo del transportador', onchange: () => { if (state.protractor) { state.protractor.bearing = norm360(Number(bearingInput.value) || 0); render(); } } });
@@ -124,20 +124,20 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     h('button.small.secondary', { type: 'button', onclick: () => guidesFromInputs(false) }, 'Trazar guías'),
     h('button.small', { type: 'button', onclick: () => guidesFromInputs(true) }, 'Guías + punto'),
     h('button.small.secondary', { type: 'button', title: 'Cerrar', onclick: () => { coordBar.hidden = true; } }, '✕'));
-  const coordBtn = h('button.small.secondary', { type: 'button', title: 'Situar por coordenadas: traza las guías de latitud y longitud', onclick: () => { coordBar.hidden = !coordBar.hidden; if (!coordBar.hidden) latIn.focus(); } }, '⌖');
-  const coordsBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, '🏷');
+  const coordBtn = h('button.tool', { type: 'button', title: 'Situar por coordenadas: traza las guías de latitud y longitud', onclick: () => { coordBar.hidden = !coordBar.hidden; if (!coordBar.hidden) latIn.focus(); } }, h('span.tool-icon', '⌖'), h('span.tool-name', 'Situar'));
+  const coordsBtn = h('button.tool', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, h('span.tool-icon', '🏷'), h('span.tool-name', 'Coordenadas'));
 
 
   const el = h('div.ichart',
     h('div.ichart-toolbar',
       h('div.tools', toolButtons),
       h('div.tools',
-        h('button.small.secondary', { type: 'button', title: 'Deshacer', onclick: undo }, '↶'),
+        h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', '↶'), h('span.tool-name', 'Deshacer')),
         coordsBtn, coordBtn,
-        h('button.small.secondary', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, '🗑'),
-        h('button.small.secondary', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, '+'),
-        h('button.small.secondary', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, '−'),
-        h('button.small.secondary', { type: 'button', title: 'Encuadrar', onclick: () => { fit(); render(); } }, '⤢'),
+        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo')),
+        h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', '+'), h('span.tool-name', 'Acercar')),
+        h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', '−'), h('span.tool-name', 'Alejar')),
+        h('button.tool', { type: 'button', title: 'Encuadrar toda la zona de trabajo', onclick: () => { fit(); render(); } }, h('span.tool-icon', '⤢'), h('span.tool-name', 'Encuadrar')),
         layerSelect,
       ),
     ),

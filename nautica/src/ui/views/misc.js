@@ -1,20 +1,22 @@
-// Vistas secundarias: teoría, progreso y carta.
+// Vistas secundarias: conceptos de carta, mi progreso y mesa de cartas.
 
-import { h } from '../dom.js';
+import { h, setChildren } from '../dom.js';
 import { EXERCISES, exercisesByCategory } from '../../exercises/registry.js';
 import { GLOSSARY } from '../../nautical/glossary.js';
-import { chartWidget } from '../chart-widget.js';
+import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
 import { fmtLat, fmtLon } from '../../math/format.js';
 import { link } from '../router.js';
-import { crumbs } from '../titulacion.js';
+import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
-import { voice, spanishVoices } from '../voice.js';
+import { calcularPlan } from '../cierre.js';
+import { avance, estadoTema } from '../../course/plan.js';
+import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
 
 export function theoryView({ tit }) {
   const el = h('div.theory',
-    crumbs(null, 'Conceptos de carta'),
+    volver('Más', '#/mas'),
     h('h1', 'Conceptos y métodos de carta'),
     h('section', h('h2', 'Convención de signos'),
       h('p', 'Este (E) = +, Oeste (W) = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +, babor −). Rs = Rv + Ab.')),
@@ -28,66 +30,57 @@ export function theoryView({ tit }) {
   };
 }
 
-export function progressView({ progress }) {
+export function progressView({ progress, tit }) {
+  const T = TITULACIONES[tit] ?? TITULACIONES.per;
   const s = progress.settings();
-  const rows = EXERCISES.map((e) => ({ e, st: progress.stats(e.id) }));
-  const fileInput = h('input', { type: 'file', accept: 'application/json', hidden: true, onchange: async () => {
-    try { progress.import(await fileInput.files[0].text()); location.reload(); } catch (err) { alert(`No se pudo importar: ${err.message}`); }
-  } });
-  const exams = Object.values(progress.get().exams);
+  const rows = EXERCISES.map((e) => ({ e, st: progress.stats(e.id) })).filter(({ st }) => st.attempts > 0);
+  const temas = h('div', h('p.muted', 'Cargando…'));
+  let resumenTemas = '';
+  calcularPlan(progress, tit).then((d) => {
+    const a = avance(T.estructura, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora);
+    const filas = T.estructura.bloques.map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
+    const racha = progress.racha();
+    resumenTemas = `AVANCE ${T.sigla}: ${a.temasAlDia}/${a.temasTotal} temas al día\n${filas.map(({ b, e }) => `${b.titulo}: ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}`).join('\n')}`;
+    setChildren(temas,
+      h('section.avance',
+        h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
+        h('p', `Llevas ${a.temasAlDia} de ${a.temasTotal} temas al día${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`)),
+      h('h2', `Por temas · ${T.sigla}`),
+      h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
+        h('h3', `${b.icon} ${b.titulo}`),
+        h('p.estado-linea', { class: { bien: 'ok', repasar: 'warn' }[e.estado] ?? '' }, lineaEstado(e)),
+        e.hechas ? h('div.bar', h('span', { style: `width:${Math.round(100 * Math.min(1, e.hechas / e.total))}%` })) : null))));
+  }).catch((e) => setChildren(temas, h('p.warn', `No se pudo calcular tu avance: ${e.message}`)));
+
+  const examenes = Object.values(TITULACIONES).map((X) => {
+    const tests = progress.tests().filter((t) => (t.tit ?? 'per') === X.id).reverse();
+    return tests.length ? h('section', h('h2', `${X.icon} Exámenes ${X.sigla}`),
+      h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
+  });
+
   const el = h('div.progress',
-    crumbs(null, 'Progreso'),
-    h('h1', 'Tu progreso'),
-    h('table.stats', h('thead', h('tr', h('th', 'Ejercicio'), h('th', 'Intentos'), h('th', 'Aciertos'), h('th', '%'), h('th', 'Errores frecuentes'))),
-      h('tbody', rows.map(({ e, st }) => h('tr',
-        h('td', h('a', { href: link(['ej', e.id]) }, e.title)), h('td', st.attempts), h('td', st.correct),
-        h('td', st.rate == null ? '—' : `${Math.round(st.rate * 100)}%`),
-        h('td.small', Object.entries(st.mistakes ?? {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} (${n})`).join(', ') || '—'))))),
-    h('p', `Preguntas de examen respondidas: ${exams.length} · correctas: ${exams.filter((x) => x.ok).length}`),
-    Object.values(TITULACIONES).map((T) => {
-      const tests = progress.tests().filter((t) => (t.tit ?? 'per') === T.id).reverse();
-      return tests.length ? h('section', h('h2', `${T.icon} Exámenes ${T.sigla}`),
-        h('ul.small', tests.slice(0, 20).map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos}/${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
-    }),
-    h('section', h('h2', 'Ajustes'),
-      h('label.field', h('span.lbl', 'Tolerancia de corrección'),
+    volver('Más', '#/mas'),
+    h('h1', 'Mi progreso'),
+    temas,
+    examenes,
+    h('details', h('summary', 'Ejercicios de carta'),
+      rows.length
+        ? h('table.stats', h('thead', h('tr', h('th', 'Ejercicio'), h('th', 'Bien'), h('th', 'Errores frecuentes'))),
+          h('tbody', rows.map(({ e, st }) => h('tr',
+            h('td', h('a', { href: link(['ej', e.id]) }, e.title)), h('td', `${st.correct} de ${st.attempts}`),
+            h('td', Object.entries(st.mistakes ?? {}).sort((x, y) => y[1] - x[1]).map(([k, n]) => `${k} (${n})`).join(', ') || '—')))))
+        : h('p', 'Todavía no has hecho ejercicios de carta.'),
+      h('label.field', h('span.lbl', 'Exigencia al corregir la carta'),
         h('select', { onchange: (ev) => progress.setSetting('toleranceFactor', Number(ev.target.value)) },
-          [[0.5, 'Estricta (½)'], [1, 'Normal (examen)'], [2, 'Amplia (×2)']].map(([v, t]) => h('option', { value: v, selected: s.toleranceFactor === v }, t)))),
-    ),
-    voice.supported ? h('section', h('h2', '👨‍🏫 Voz del profe'),
-      h('p.muted', 'Usa las voces de tu navegador o sistema (gratis). En Chrome y en Android suelen estar las de Google; en iPhone/Mac, las de Apple. Si no oyes nada, revisa que haya una voz en español instalada.'),
-      h('label.field', h('span.lbl', 'Voz activada'), h('input', { type: 'checkbox', checked: voice.enabled, style: 'width:auto', onchange: (ev) => voice.setEnabled(ev.target.checked) })),
-      (() => {
-        const sel = h('select', { onchange: (ev) => voice.setVoiceName(ev.target.value) }, h('option', 'Cargando voces…'));
-        spanishVoices().then((list) => {
-          sel.replaceChildren(...(list.length ? list.map((v) => h('option', { value: v.name, selected: v.name === s.vozNombre }, `${v.name} (${v.lang})`)) : [h('option', 'No hay voces en español en este dispositivo')]));
-        });
-        return h('label.field', h('span.lbl', 'Voz'), sel);
-      })(),
-      h('label.field', h('span.lbl', 'Velocidad'), h('select', { onchange: (ev) => voice.setRate(Number(ev.target.value)) },
-        [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)))),
-      h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, '▶ Probar la voz')),
-    ) : null,
-    h('section', h('h2', 'Copia de seguridad'),
-      h('p.muted', 'El progreso se guarda solo en este navegador. Expórtalo para no perderlo o pasarlo a otro dispositivo.'),
-      h('div.actions',
-        h('button', { type: 'button', onclick: () => download('progreso-nautica.json', progress.export()) }, '⬇️ Exportar'),
-        h('button.secondary', { type: 'button', onclick: () => fileInput.click() }, '⬆️ Importar'), fileInput,
-        h('button.secondary', { type: 'button', onclick: () => { if (confirm('¿Borrar todo el progreso?')) { progress.reset(); location.reload(); } } }, '🗑️ Borrar'))),
+          [[0.5, 'Exigente'], [1, 'Como en el examen'], [2, 'Con margen']].map(([v, t]) => h('option', { value: v, selected: s.toleranceFactor === v }, t))))),
   );
   return {
     el,
-    summary: () => `VISTA progreso\n${rows.map(({ e, st }) => `${e.id}: ${st.correct}/${st.attempts}${st.mistakes ? ` errores=${JSON.stringify(st.mistakes)}` : ''}`).join('\n')}`,
+    summary: () => `VISTA progreso\n${resumenTemas}\nEJERCICIOS DE CARTA:\n${rows.map(({ e, st }) => `${e.id}: ${st.correct}/${st.attempts}${st.mistakes ? ` errores=${JSON.stringify(st.mistakes)}` : ''}`).join('\n') || '(ninguno)'}`,
   };
 }
 
-function download(name, text) {
-  const a = h('a', { href: URL.createObjectURL(new Blob([text], { type: 'application/json' })), download: name });
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-}
-
-export function chartView({ ctx }) {
+export function chartView({ ctx, progress }) {
   const { chart } = ctx;
   const w = chartWidget(chart, { height: 600 });
   const status = h('p.small', 'Comprobando…');
@@ -110,9 +103,19 @@ export function chartView({ ctx }) {
       : 'No has cargado tu carta escaneada. La carta vectorial funciona igualmente.';
   });
   const el = h('div.chart-page',
-    crumbs(null, 'Mesa de cartas'),
+    volver('Más', '#/mas'),
     h('h1', `Mesa de cartas · ${chart.name}`),
-    h('p.muted', 'Herramientas: ✋ mover (la carta, tus puntos, textos, extremos de línea y el transportador, también girar su hilo; toca un punto para ver u ocultar sus coordenadas) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (interruptor: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta; arrastra el centro, gira el hilo dentro del cuadrado, «Trazar») · 📍 punto · 🔤 texto · 🧽 goma · 🏷 coordenadas sí/no · ⌖ situar por coordenadas. Guías: arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba) para sacar un paralelo o un meridiano; tócala para escribir su valor exacto; suéltala sobre la escala para quitarla. El cruce de dos guías es el punto, y las herramientas se ajustan a él. Se ajustan a los faros y al centro del transportador.'),
+    h('details.como-se-usa', h('summary', 'Cómo se usa la mesa de cartas'),
+      h('ul',
+        h('li', '✋ Mover: la carta, tus puntos, textos, extremos de línea y el transportador (también girar su hilo). Toca un punto para ver u ocultar sus coordenadas.'),
+        h('li', '📏 Regla: rumbo verdadero y distancia.'),
+        h('li', '🧭 Compás: millas en la escala de latitudes.'),
+        h('li', '📐 Transportador cuadrado: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta. Arrastra el centro, gira el hilo dentro del cuadrado y pulsa «Trazar».'),
+        h('li', '📍 Punto · 🔤 Texto · 🧽 Goma.'),
+        h('li', '🏷 Coordenadas: muestra u oculta las de los puntos. ⌖ Situar: traza las guías desde unas coordenadas.'),
+        h('li', 'Guías: arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba) para sacar un paralelo o un meridiano; tócala para escribir su valor exacto; suéltala sobre la escala para quitarla.'),
+        h('li', 'El cruce de dos guías es el punto, y las herramientas se ajustan a él, a los faros y al centro del transportador.'))),
+    avisoCartaMovil(progress),
     w.el,
     h('section', h('h2', 'Mi carta escaneada (opcional)'),
       h('p', 'Puedes cargar tu propia copia de la carta L105 Enseñanza (PDF escaneado o imagen) para usarla de fondo con las mismas herramientas. ',

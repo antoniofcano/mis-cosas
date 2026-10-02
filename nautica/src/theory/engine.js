@@ -22,11 +22,19 @@ export function buildReal(banco, convocatoriaKey) {
   return { tipo: 'real', titulo: preguntas[0]?.convocatoria ?? convocatoriaKey, preguntas, faltan: [] };
 }
 
-/** Práctica de un bloque: todas sus preguntas barajadas (opcionalmente solo las falladas). */
-export function buildPractica(banco, ut, rng, { soloFalladas = null } = {}) {
+/**
+ * Práctica de un tema: sus preguntas barajadas (opcionalmente solo las falladas). Con `respuestas`, primero las
+ * no respondidas, después las falladas y al final las acertadas (orden estable; barajadas dentro de cada grupo).
+ * `limite` recorta la tanda; `pendientes` = preguntas sin responder o falladas que quedan fuera de ella.
+ */
+export function buildPractica(banco, ut, rng, { soloFalladas = null, respuestas = {}, limite = Infinity } = {}) {
   let pool = banco.filter((q) => q.ut === ut && !q.anulada && q.correcta);
   if (soloFalladas) pool = pool.filter((q) => soloFalladas.has(q.id));
-  return { tipo: 'practica', ut, preguntas: rng.shuffle(pool) };
+  const prioridad = (q) => (!respuestas[q.id] ? 0 : respuestas[q.id].ok ? 2 : 1);
+  const ordenadas = rng.shuffle(pool).map((q, i) => ({ q, i, p: prioridad(q) })).sort((a, b) => a.p - b.p || a.i - b.i).map((x) => x.q);
+  const preguntas = ordenadas.slice(0, limite);
+  const pendientes = ordenadas.slice(preguntas.length).filter((q) => prioridad(q) < 2).length;
+  return { tipo: 'practica', ut, preguntas, pendientes };
 }
 
 /** "and-2023-c1-t07" / "and-2023-c1-q42" → "and-2023-c1"; PY: "and-py-2023-c1-g07" / "-n15" → "and-py-2023-c1" */

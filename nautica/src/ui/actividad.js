@@ -23,3 +23,11 @@ export function barraActividad({ texto, fraccion = 0, onSalir, derecha = null })
   el.set(texto, fraccion);
   return el;
 }
+
+/** Aviso breve que desaparece solo (p. ej. «Guardado. Puedes seguir cuando quieras.»). */
+export function avisoBreve(texto, ms = 3500) {
+  const el = h('div.aviso-breve', { role: 'status' }, texto);
+  document.body.append(el);
+  setTimeout(() => el.remove(), ms);
+  return el;
+}

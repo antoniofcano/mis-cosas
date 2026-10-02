@@ -2,6 +2,7 @@
 // tema y el avance global. Funciones puras: el progreso entra como datos.
 
 import { estadoLeccion } from './engine.js';
+import { bloquesEnOrden } from '../theory/blocks.js';
 
 export const TANDA = 10; // preguntas por tanda
 export const MIN_TANDA = 8; // minutos estimados de una tanda
@@ -94,15 +95,15 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 
   // 3. Repasos de clases (máximo 2): primero los temas con límite de errores, luego los más atrasados
   const prioridad = new Set(estructura.bloques.filter((b) => b.maxErrores != null).map((b) => b.ut));
-  const repasos = estructura.bloques.flatMap((b) => clasesDe(curso, b.ut))
+  const repasos = bloquesEnOrden(estructura).flatMap((b) => clasesDe(curso, b.ut))
     .map((l) => ({ l, e: estadoLeccion(l, regs[l.id], respuestas, ahora) }))
     .filter((x) => x.e.estado === 'repasar')
     .sort((a, b) => (prioridad.has(b.l.ut) - prioridad.has(a.l.ut)) || ((a.e.proximo ?? 0) - (b.e.proximo ?? 0)))
     .slice(0, 2);
   for (const { l } of repasos) lista.push({ tipo: 'repaso', titulo: l.titulo, verbo: 'Repasar', minutos: MIN_TANDA, ruta: ['curso', l.id], query: { practica: '1' }, ut: l.ut });
 
-  // 4. El primer tema que no está al día
-  const estados = estructura.bloques.map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }));
+  // 4. El primer tema que no está al día, en el orden de estudio recomendado
+  const estados = bloquesEnOrden(estructura).map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }));
   const pendientes = estados.filter((x) => !x.est.alDia);
   if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora));
 
@@ -120,4 +121,38 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   if (lista.length === 1 && pendientes[1]) lista.push(actividadTema(pendientes[1].b, pendientes[1].est, curso, regs, respuestas, ahora));
 
   return lista.slice(0, MAX_ACTIVIDADES);
+}
+
+export const SIMULACROS_RECOMENDADOS = 3;
+const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
+
+/**
+ * ¿Llego a tiempo? Suma lo que le queda al plan (clases sin terminar, las tandas que faltan para tener cada tema al
+ * día y los simulacros recomendados) y lo reparte a `minutosDia`.
+ * @returns {{ minutosPendientes, diasNecesarios, fechaFin: string|null, diasDisponibles: number|null,
+ *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros } }}
+ */
+export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, ahora = Date.now() }) {
+  let clases = 0;
+  let tandas = 0;
+  for (const b of estructura.bloques) {
+    for (const l of clasesDe(curso, b.ut)) {
+      const e = estadoLeccion(l, regs[l.id], respuestas, ahora).estado;
+      if (e === 'nueva' || e === 'empezada') clases += l.minutos ?? 10;
+    }
+    const est = estadoTema(b, curso, preguntas, regs, respuestas, ahora);
+    tandas += Math.ceil(Math.max(0, Math.min(est.total, OBJETIVO_TEMA) - est.hechas) / TANDA);
+  }
+  const hechos = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real').length;
+  const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin };
+  const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros;
+  const md = Math.max(5, minutosDia);
+  const diasNecesarios = Math.ceil(minutosPendientes / md);
+  // contando hoy como primer día de estudio
+  const fechaFin = minutosPendientes ? fechaISO(ahora + Math.max(0, diasNecesarios - 1) * DIA) : null;
+  const dias = fechaExamen ? diasHasta(fechaExamen, ahora) : null;
+  const diasDisponibles = dias == null ? null : Math.max(0, dias); // hasta la víspera del examen
+  const llega = diasDisponibles == null ? null : diasNecesarios <= diasDisponibles;
+  const minutosNecesarios = diasDisponibles ? Math.ceil(minutosPendientes / diasDisponibles / 5) * 5 : null;
+  return { minutosPendientes, diasNecesarios, fechaFin, diasDisponibles, llega, minutosNecesarios, desglose };
 }

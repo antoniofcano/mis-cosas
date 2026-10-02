@@ -5,7 +5,7 @@ import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { estadoLeccion } from '../../course/engine.js';
 import { estadoTema, TANDA } from '../../course/plan.js';
-import { bloque } from '../../theory/blocks.js';
+import { bloque, bloquesEnOrden } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { calcularPlan } from '../cierre.js';
@@ -33,15 +33,16 @@ export function temarioView({ progress, tit }) {
   let summaryText = `VISTA temario ${T.sigla} (cargando)`;
   calcularPlan(progress, tit).then((d) => {
     const hoyUt = d.plan[0]?.ut ?? null;
-    const filas = T.estructura.bloques.map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
+    const filas = bloquesEnOrden(T.estructura).map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
     summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`).join('\n')}` +
       `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${TANDA} preguntas`;
     setChildren(el,
       h('h1', `Temario del ${T.sigla}`),
+      h('p.muted', 'En el orden en que te recomendamos estudiarlo: primero lo que más pesa en el examen y más práctica pide.'),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]) },
         b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null,
         h('h3', `${b.icon} ${b.titulo}`),
-        h('p', `${b.n} preguntas en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
+        h('p', `Tema ${b.ut} del temario oficial · ${b.n} preguntas en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
         h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
         e.hechas ? h('div.bar', h('span', { style: `width:${Math.round(100 * Math.min(1, e.hechas / e.total))}%` })) : null))),
       h('details', h('summary', 'Reglas del examen'), h('ul', T.reglas.map((r) => h('li', r)))),

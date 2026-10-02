@@ -452,3 +452,7 @@ details.como-se-usa li { margin: .3rem 0; }
 select { min-height: 44px; }
 .ichart select, .workspace select, .protractor-bar select { min-height: 0; }
 .method-card h3 a { display: inline-flex; align-items: center; min-height: 44px; }
+/* Hoy: ¿llego a tiempo? */
+.hoy .ritmo { margin: 0 0 .8rem; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
+.hoy .ritmo.warn { background: transparent; border: 2px solid var(--warn); color: var(--text); }
+.hoy .ritmo a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }

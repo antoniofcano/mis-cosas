@@ -70,7 +70,7 @@ export function pestanaDe(parts) {
   const [a, b] = parts;
   if (!a || a === 'bienvenida') return 'hoy';
   if (TITULACIONES[a]) {
-    if (!b) return 'hoy';
+    if (!b || b === 'hoy') return 'hoy';
     if (['temario', 'curso', 'teoria', 'carta'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
     if (b === 'examenes' || b === 'test') return 'examen';

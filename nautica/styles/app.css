@@ -339,7 +339,9 @@ ol.lecciones .estado { margin-left: .4rem; }
 .paso h3 { margin-top: 0; }
 .paso p { max-width: 68ch; line-height: 1.55; }
 .paso.clave p { font-size: 1.1rem; font-weight: 600; color: var(--ok); }
-.paso.ojo p { font-size: 1.05rem; color: var(--warn); }
+/* Tarjeta de trampa: fondo suave de aviso y texto normal; el énfasis queda en las negritas */
+.paso.ojo { background: color-mix(in srgb, var(--close) 12%, var(--surface)); border-left: 4px solid var(--close); border-radius: 8px; padding: .3rem .9rem; }
+.paso.ojo p { font-size: 1.05rem; color: var(--text); }
 .paso.regla .mnemo-big { font-size: 1.2rem; font-weight: 700; }
 .pasos + .actions button:last-child { margin-left: auto; }
 .qdot.current { outline: 2px solid var(--accent); }

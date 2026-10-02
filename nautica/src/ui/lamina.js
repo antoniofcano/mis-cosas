@@ -27,7 +27,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
 
   function pintaDibujo(v) {
     const vistas = v.vistas ?? [{ svg: v.svg }];
-    dibujo.className = `il-svg lam-dibujo${vistas.length > 1 && !v.apiladas ? ' lam-duo' : ''}`;
+    dibujo.className = `il-svg lam-dibujo${v.disposicion === 'primera-ancha' ? ' lam-primera-ancha' : vistas.length > 1 && !v.apiladas ? ' lam-duo' : ''}`;
     setChildren(dibujo, vistas.map((x) => h('figure.lam-vista', h('div', { html: x.svg }), x.pie ? h('figcaption', x.pie) : null)));
     dibujo.classList.toggle('lam-con-parte', !!v.parte);
     for (const el of dibujo.querySelectorAll('[data-parte]')) el.classList.toggle('lam-sel', el.dataset.parte === v.parte);

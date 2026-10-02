@@ -12,12 +12,13 @@ import { desatraque } from './interactivas/desatraque.js';
 import { isobaras } from './interactivas/isobaras.js';
 import { nieblas } from './interactivas/nieblas.js';
 import { marea } from './interactivas/marea.js';
+import { frentes } from './interactivas/frentes.js';
 
 export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente, 'sectores-luces': sectoresLuces, cruce, estabilidad, 'helice-timon': heliceTimon, desatraque,
   // meteo: solo algunas variantes son interactivas; el resto (borrasca, anticiclón, brisas…) sigue fija
   // marea: curva, duodécimos y sonda son la misma lámina interactiva; «fases» (vivas y muertas) sigue fija
   marea: { porVariante: 'modo', porDefecto: 'curva', variantes: { curva: marea, duodecimos: marea, sonda: marea } },
-  meteo: { porVariante: 'sistema', variantes: { isobaras, 'niebla-adveccion': nieblas, 'niebla-radiacion': nieblas } },
+  meteo: { porVariante: 'sistema', variantes: { isobaras, 'niebla-adveccion': nieblas, 'niebla-radiacion': nieblas, frentes } },
 };
 
 /** Definición interactiva que corresponde a una spec, o null. */

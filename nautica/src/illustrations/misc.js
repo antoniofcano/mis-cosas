@@ -61,23 +61,7 @@ export function meteoIllustration(spec) {
     out.push('</svg>');
     return { svg: out.join(''), caption: mar ? 'De día, en superficie, el viento sopla del mar hacia tierra.' : 'De noche, en superficie, el viento sopla de tierra hacia el mar.' };
   }
-  if (sys === 'frentes') {
-    out.push(`<text x="${cx}" y="22" class="il-title">Símbolos de los frentes</text>`);
-    const row = (y, color, kind, txt) => {
-      out.push(`<line x1="30" y1="${y}" x2="290" y2="${y}" stroke="${color}" stroke-width="3"/>`);
-      for (let x = 40; x < 290; x += 34) {
-        if (kind === 'frio') out.push(`<path d="M${x},${y} L${x + 10},${y - 14} L${x + 20},${y}Z" fill="${color}"/>`);
-        if (kind === 'calido') out.push(`<path d="M${x},${y} A10,10 0 0 1 ${x + 20},${y}Z" fill="${color}"/>`);
-        if (kind === 'ocluido') out.push(x % 68 < 34 ? `<path d="M${x},${y} L${x + 10},${y - 14} L${x + 20},${y}Z" fill="${color}"/>` : `<path d="M${x},${y} A10,10 0 0 1 ${x + 20},${y}Z" fill="${color}"/>`);
-      }
-      out.push(`<text x="30" y="${y + 18}" class="il-lbl">${txt}</text>`);
-    };
-    row(70, '#2563eb', 'frio', 'Frente frío: triángulos azules');
-    row(140, '#dc2626', 'calido', 'Frente cálido: semicírculos rojos');
-    row(210, '#7c3aed', 'ocluido', 'Frente ocluido: triángulos y semicírculos (morado)');
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Los símbolos apuntan hacia donde avanza el frente.' };
-  }
+  // frentes: ahora es interactiva y en perspectiva (src/illustrations/interactivas/frentes.js)
   // isobaras: ahora es interactiva (src/illustrations/interactivas/isobaras.js)
   if (sys === 'frente-frio-corte' || sys === 'frente-calido-corte') {
     const frio = sys === 'frente-frio-corte';

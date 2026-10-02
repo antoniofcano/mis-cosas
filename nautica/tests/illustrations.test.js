@@ -122,7 +122,7 @@ test('láminas interactivas: specs válidas, como mucho tres mandos y lectura en
       if (!interactivaDe(spec)) continue;
       for (const modo of ['clase', 'explicacion', 'galeria']) {
         const v = controlador(def, spec, modo).vista();
-        assert.ok(v.mandos.length >= 1 && v.mandos.length <= MAX_MANDOS, `${tipo}: ${v.mandos.length} mandos`);
+        assert.ok(v.mandos.length <= MAX_MANDOS && (v.mandos.length >= 1 || Object.keys(def.partes ?? {}).length), `${tipo}: ${v.mandos.length} mandos`);
         const svg = v.svg ?? v.vistas.map((x) => x.svg).join('');
         assert.ok(svg.startsWith('<svg') && !/NaN|undefined/.test(svg), `${tipo} ${modo} ${JSON.stringify(spec)}`);
         assert.ok(v.lectura && !/NaN|undefined/.test(v.lectura), `${tipo}: lectura`);
@@ -136,6 +136,11 @@ test('láminas interactivas: clase bloquea hasta responder, explicación abre en
     const spec = specsReales(tipo).filter(encaja).find((s) => pidePrediccion(s)) ?? ejemplo ?? CATALOGO[tipo].ejemplo;
     const primer = (c) => c.vista().mandos[0];
 
+    if (!def.prediccion) {
+      // lámina de ver (perspectiva): sin predicción ni bloqueo en ningún modo
+      for (const modo of ['clase', 'explicacion', 'galeria']) assert.ok(!controlador(def, spec, modo).vista().bloqueado);
+      continue;
+    }
     // clase: predicción y mandos bloqueados
     const clase = controlador(def, spec, 'clase');
     assert.ok(pidePrediccion(spec));
@@ -295,6 +300,7 @@ const COMPRUEBA = {
 
 test('la predicción es coherente con el estado en que se abre la lámina (specs reales de las clases)', () => {
   for (const { clave, tipo, def, encaja } of listaInteractivas()) {
+    if (!def.prediccion) continue;
     assert.ok(COMPRUEBA[clave], `falta la comprobación de ${clave}`);
     let n = 0;
     for (const spec of specsDeClase(tipo).filter(encaja)) {
@@ -310,6 +316,7 @@ test('la predicción es coherente con el estado en que se abre la lámina (specs
 test('modo explicación: «Volver al caso de la pregunta» restaura el estado de la spec', () => {
   for (const { tipo, def, encaja } of listaInteractivas()) {
     const spec = specsReales(tipo).filter(encaja).find((s) => interactivaDe(s));
+    if (!spec || !controlador(def, spec, 'explicacion').vista().mandos.length) continue;
     const c = controlador(def, spec, 'explicacion');
     const m = c.vista().mandos[0];
     assert.equal(c.cambiado, false);
@@ -318,5 +325,17 @@ test('modo explicación: «Volver al caso de la pregunta» restaura el estado de
     assert.ok(c.reiniciar());
     assert.deepEqual(c.estado(), def.estado(spec));
     assert.equal(c.cambiado, false);
+  }
+});
+
+test('frentes en perspectiva: cada parte está en las tres vistas y se resalta en todas', () => {
+  const def = interactivaDe({ tipo: 'meteo', sistema: 'frentes' });
+  const c = controlador(def, { tipo: 'meteo', sistema: 'frentes' }, 'galeria');
+  const v = c.vista();
+  assert.equal(v.vistas.length, 3);
+  for (const p of ['ff', 'fc', 'sc', 'af']) {
+    for (const x of v.vistas) assert.ok(x.svg.includes(`data-parte="${p}"`), `${p} en todas las vistas`);
+    assert.equal(c.resaltar(p), p);
+    assert.equal(c.vista().lectura, def.partes[p]);
   }
 });

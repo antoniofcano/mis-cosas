@@ -16,7 +16,7 @@ const TOOLS = [
   { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, textos, extremos de línea y el centro del transportador. Toca un punto para mostrar u ocultar sus coordenadas; toca un texto para editarlo. Rueda o dos dedos: zoom.' },
   { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros.' },
   { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
-  { id: 'protractor', icon: '📐', label: 'Transportador', help: 'Arrastra el agujero central para moverlo (se ajusta a los faros). Arrastra fuera del centro para girar el hilo. Luego «Trazar».' },
+  { id: 'protractor', icon: '📐', label: 'Transportador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
   { id: 'point', icon: '📍', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
   { id: 'text', icon: '🔤', label: 'Texto', help: 'Toca donde quieras escribir una anotación.' },
   { id: 'erase', icon: '🧽', label: 'Goma', help: 'Toca un trazo, punto o texto tuyo para borrarlo.' },
@@ -62,7 +62,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   svg.append(gBase, gRaster, gLand, gGrid, gMarks, gItems, gUser, gTool);
 
   const readout = h('div.readout', TOOLS[0].help);
-  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => setTool(t.id) }, t.icon, h('span', t.label)));
+  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, t.icon, h('span', t.label)));
   const layerSelect = h('select.small', { 'aria-label': 'Capa de la carta', onchange: (ev) => setLayer(ev.target.value) },
     LAYERS.map(([v, t]) => h('option', { value: v }, t)));
   const bearingInput = h('input.bearing', { type: 'number', min: 0, max: 359, step: 1, 'aria-label': 'Rumbo del transportador', onchange: () => { if (state.protractor) { state.protractor.bearing = norm360(Number(bearingInput.value) || 0); render(); } } });
@@ -73,17 +73,16 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     h('button.small.secondary', { type: 'button', onclick: () => rotate(180) }, '↔ Opuesta'),
     h('button.small', { type: 'button', onclick: () => drawProtractorLine('line') }, 'Trazar recta'),
     h('button.small', { type: 'button', onclick: () => drawProtractorLine('ray') }, 'Trazar desde el centro'),
-    h('button.small.secondary', { type: 'button', onclick: () => { state.protractorVisible = false; if (state.tool === 'protractor') setTool('move'); render(); } }, 'Ocultar transportador'),
   );
   const coordsBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, '🏷');
-  const protractorBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar el transportador', 'aria-pressed': 'false', onclick: () => { if (!state.protractor) placeProtractor(); state.protractorVisible = !state.protractorVisible; render(); } }, '📐');
+
 
   const el = h('div.ichart',
     h('div.ichart-toolbar',
       h('div.tools', toolButtons),
       h('div.tools',
         h('button.small.secondary', { type: 'button', title: 'Deshacer', onclick: undo }, '↶'),
-        coordsBtn, protractorBtn,
+        coordsBtn,
         h('button.small.secondary', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, '🗑'),
         h('button.small.secondary', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, '+'),
         h('button.small.secondary', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, '−'),
@@ -142,8 +141,9 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     gUser.innerHTML = state.user.map((it) => drawItem(it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : it, state.z)).join('');
     gTool.innerHTML = (state.protractor && state.protractorVisible ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + state.preview;
     coordsBtn.setAttribute('aria-pressed', String(state.showCoords));
-    protractorBtn.setAttribute('aria-pressed', String(state.protractorVisible));
-    for (const b of toolButtons) b.setAttribute('aria-pressed', String(b === toolButtons[TOOLS.findIndex((t) => t.id === state.tool)]));
+
+    // El transportador es un interruptor: su botón refleja si está puesto, no si es la herramienta activa.
+    TOOLS.forEach((t, i) => toolButtons[i].setAttribute('aria-pressed', String(t.id === 'protractor' ? state.protractorVisible : t.id === state.tool)));
     protractorBar.hidden = !state.protractorVisible;
     if (state.protractor) bearingInput.value = Math.round(state.protractor.bearing) % 360;
     svg.dataset.tool = state.tool;
@@ -184,6 +184,21 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     state.preview = '';
     if (id === 'protractor') { if (!state.protractor) placeProtractor(); state.protractorVisible = true; }
     readout.textContent = TOOLS.find((t) => t.id === id).help;
+    render();
+  }
+
+  function toggleProtractor() {
+    if (state.protractorVisible) {
+      state.protractorVisible = false;
+      if (state.tool === 'protractor') state.tool = 'move';
+      readout.textContent = 'Transportador quitado.';
+    } else {
+      if (!state.protractor) placeProtractor();
+      state.protractorVisible = true;
+      state.tool = 'protractor';
+      state.preview = '';
+      readout.textContent = TOOLS.find((t) => t.id === 'protractor').help;
+    }
     render();
   }
 
@@ -307,7 +322,14 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         if (d < bd) { bd = d; best = { kind: 'item-move', id: it.id, key, dx: q.x - w.x, dy: q.y - w.y, moved: false }; }
       }
     }
-    return best;
+    if (best) return best;
+    // Dentro del cuadrado del transportador (fuera del agujero): girar el hilo.
+    const half = 130 / state.z;
+    if (p && state.protractorVisible && Math.abs(w.x - p.c.x) < half && Math.abs(w.y - p.c.y) < half) {
+      p.bearing = Math.round(bearingWorld(p.c, w)) % 360;
+      return { kind: 'protractor-rotate' };
+    }
+    return null;
   }
 
   svg.addEventListener('pointermove', (ev) => {

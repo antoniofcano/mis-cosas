@@ -177,6 +177,19 @@
        "texto": "- **Lumbreras**: aberturas en cubierta con tapa acristalada. Dan **luz** siempre y, abiertas, también **ventilación**.\n- **Portillos**: aberturas con cristal en el costado o la superestructura, normalmente redondas. Los **fijos** solo dan luz; los **practicables** (los que se abren) dan luz y aire.\n- **Tragaluces**: ventanas cuya función es dar luz.\n- **Manguerotes**: conductos con una boca orientable que, girada hacia el viento o de espaldas a él, mete aire fresco o saca el viciado. **Ventilan, pero no dan luz.**"
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cubierta",
+        "resaltar": [
+         "lumbrera",
+         "portillo",
+         "tragaluz",
+         "manguerote"
+        ]
+       },
+       "texto": "Lumbrera y portillo dan luz; el manguerote, con su boca orientable, solo ventila."
+      },
+      {
        "tipo": "ojo",
        "texto": "Si te preguntan qué usarías para ventilar y dar luz, la respuesta es la **lumbrera** (y el portillo practicable). El manguerote es la trampa: solo ventila. Y la escotilla es para pasar, aunque también esté en cubierta."
       },
@@ -189,6 +202,18 @@
        "tipo": "texto",
        "titulo": "Barandillas: pasamanos, candeleros y guardamancebos",
        "texto": "- **Pasamanos**: barandas o piezas (de metal, madera o cabo) colocadas junto a escalas, superestructuras o en la cubierta para **agarrarse con la mano**.\n- **Candeleros**: postes verticales, normalmente metálicos, fijados cerca de la borda.\n- **Guardamancebos**: cables o cabos que, sujetos por los candeleros, rodean la cubierta de proa a popa por las dos bandas para evitar caídas al agua."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cubierta",
+        "resaltar": [
+         "pasamanos",
+         "candelero",
+         "guardamancebos"
+        ]
+       },
+       "texto": "Los candeleros sostienen los guardamancebos alrededor de la cubierta; el pasamanos es para la mano."
       },
       {
        "tipo": "clave",
@@ -295,6 +320,18 @@
        "texto": "La quilla se prolonga hacia arriba por los dos extremos:\n- **Roda**: pieza recta o curva que continúa la quilla hacia **proa** y forma el «filo» de la proa.\n- **Codaste**: pieza que continúa la quilla hacia **popa**. En él se apoya el timón y por esa zona sale el eje de la hélice.\n\nAsí que roda y amuras son de proa; codaste y aletas, de popa."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estructura",
+        "resaltar": [
+         "quilla",
+         "roda",
+         "codaste"
+        ]
+       },
+       "texto": "La quilla recorre el fondo; la roda la sigue a proa y el codaste a popa."
+      },
+      {
        "tipo": "ojo",
        "texto": "«¿Qué NO pertenece a la proa?» El codaste. Es la pieza de popa: no la confundas con la roda, ni la amura (proa) con la aleta (popa)."
       },
@@ -307,6 +344,19 @@
        "tipo": "texto",
        "titulo": "Trancanil, borda y regala",
        "texto": "- **Trancanil**: la zona de unión de la cubierta con el costado.\n- **Borda**: la parte superior del costado que queda por encima de la cubierta, desde esta hasta la regala.\n- **Regala**: la pieza que remata la borda por arriba y la recorre de proa a popa. Es un refuerzo **longitudinal**, en la parte alta del casco."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estructura",
+        "resaltar": [
+         "trancanil",
+         "borda",
+         "regala",
+         "baos"
+        ]
+       },
+       "texto": "En la sección se ve de abajo arriba: trancanil, borda y regala, con el bao bajo la cubierta."
       },
       {
        "tipo": "texto",
@@ -419,6 +469,13 @@
        "texto": "- **Pala** o **azafrán**: la superficie que, al girar, desvía el agua y hace caer la proa.\n- **Mecha**: el **eje** de la pala, alrededor del cual gira.\n- **Limera**: el **orificio** del casco por el que entra la mecha. Lleva un cierre estanco (prensaestopas o similar) para que no entre agua.\n- **Caña**: la palanca unida a la cabeza de la mecha.\n- **Rueda**: el volante de gobierno. Mueve la mecha mediante **guardines** (cables o cadenas) o mediante un sistema hidráulico."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "timon"
+       },
+       "texto": "Pala, mecha y limera, y la caña o la rueda con sus guardines para moverla."
+      },
+      {
        "tipo": "ojo",
        "texto": "A popa hay dos agujeros en el casco y el examen los cruza: la **limera** es la del timón (por ella pasa la mecha) y la **bocina** es la de la hélice (por ella sale el eje). La bocina no es parte del timón, y la **cruz** tampoco: es del ancla. Y recuerda: la mecha es el eje, no el orificio."
       },
@@ -426,6 +483,15 @@
        "tipo": "texto",
        "titulo": "Caña y rueda giran «al revés»",
        "texto": "Con el barco avanzando:\n- **Caña**: la proa cae hacia la banda **contraria** a la que llevas la caña. Caña a babor → la pala va a estribor → la proa cae a **estribor**.\n- **Rueda**: funciona como el volante de un coche. Rueda a estribor → la proa cae a **estribor**.\n\nEn el examen y en el pantalán, piensa siempre en hacia dónde queda la pala."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "timon",
+        "vista": "cana",
+        "cana": "babor"
+       },
+       "texto": "Caña a babor, pala a estribor, proa a estribor; con rueda, al mismo lado."
       },
       {
        "tipo": "texto",
@@ -6144,6 +6210,13 @@
        "texto": "Antes de amarrar, ponle nombre a cada trozo de cabo:\n- **Chicote**: cada uno de los dos extremos del cabo.\n- **Firme**: la parte que trabaja, la que soporta la tensión.\n- **Seno**: la parte intermedia, cuando forma una curva o un arco.\n\nUna **gaza** es un ojo fijo hecho en un extremo, con una costura o con un nudo (el as de guía es el clásico). En cabos que van a rozar mucho, la gaza se protege con un **guardacabos** metálico o de plástico."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cabo"
+       },
+       "texto": "Gaza en el noray, firme tenso hasta la cornamusa, y el seno y el chicote libres."
+      },
+      {
        "tipo": "texto",
        "titulo": "Encapillar una gaza",
        "texto": "**Encapillar** es meter la gaza de un cabo en un noray, bolardo o bita.\n\nSi en el noray ya hay otra gaza, no pongas la tuya encima sin más: si lo haces, el otro barco no podrá largar su cabo hasta que tú quites el tuyo. Lo correcto es pasar tu gaza **por dentro de la que ya está, de abajo arriba**, y después encapillarla. Así cada barco puede sacar su gaza sin tocar la del vecino.\n\nPara que esto funcione, las gazas tienen que ser holgadas en relación con el noray."
@@ -6161,6 +6234,14 @@
        "tipo": "texto",
        "titulo": "Tomar vueltas y hacer firme",
        "texto": "**Hacer firme** es sujetar un cabo para que no corra, de forma que luego se pueda soltar con facilidad.\n\nEn una cornamusa se hace **tomando vueltas**:\n- una vuelta completa a la base,\n- varias vueltas cruzadas **en ocho** por los cuernos,\n- y la última **mordida** (con un cote que la bloquea).\n\nNo acumules vueltas de más: un cabo bien hecho firme se suelta en segundos, que es justo lo que necesitas en una maniobra."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cabo",
+        "vista": "cornamusa"
+       },
+       "texto": "Vuelta a la base, vueltas en ocho y la última mordida."
       },
       {
        "tipo": "texto",
@@ -7654,6 +7735,14 @@
        "tipo": "texto",
        "titulo": "Los puntos críticos",
        "texto": "El agua entra casi siempre **por donde algo atraviesa el casco**:\n- La **bocina**: el paso del **eje de la hélice**. Su prensaestopas o cierre impide que entre agua.\n- La **limera**: el paso de la **mecha del timón**.\n- Los **grifos de fondo** (válvulas de bola) y pasacascos: refrigeración del motor, aseo, desagües, sondas.\n- El **escape** del motor, que, aunque sale por encima de la flotación, puede agrietarse.\n\nPrevención: **cierra los grifos de fondo que no uses**, revisa abrazaderas y manguitos y lleva **espiches** atados junto a cada pasacascos."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estructura",
+        "vista": "vias-agua"
+       },
+       "texto": "Bocina, limera, grifos de fondo y escape: por donde algo atraviesa el casco."
       },
       {
        "tipo": "ojo",

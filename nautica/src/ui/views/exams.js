@@ -132,6 +132,9 @@ export function examsView({ ctx, progress, params: route }) {
       );
     }
 
+    // Los bancos de teoría del PY no llevan titulación en cada pregunta: se toma del título del banco («PY Andalucía · …»).
+    const titulacion = q.titulacion ?? bank.meta.title.split(' · ')[0];
+
     // Bloque de respuesta: se traslada a la mesa de cartas cuando se abre.
     let ws = null;
     const answerBlock = h('div.answer-block', options,
@@ -145,7 +148,7 @@ export function examsView({ ctx, progress, params: route }) {
     const openTable = (tab) => {
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({
-        chart: ctx.chart, title: `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
+        chart: ctx.chart, title: `${titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
         steps: run.k.steps, items: run.k.items, focus: run.k.focus, answerNodes: [answerBlock], tab, progress,
         result: examOutroText(),
         summary: () => summaryText,
@@ -159,7 +162,7 @@ export function examsView({ ctx, progress, params: route }) {
 
     setChildren(el, 
       volver(bank.meta.title, link(['examenes', bankFile])),
-      h('header', h('h1', `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', q.comunidad))),
+      h('header', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), q.comunidad ? h('div.badges', h('span.badge', q.comunidad)) : null),
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
       h('section.statement', h('p', q.enunciado), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
       answerBlock,

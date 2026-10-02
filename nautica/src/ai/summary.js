@@ -31,7 +31,7 @@ export function exerciseSummary({ exercise, seed, params, solution, inputs = {},
 /** Resumen de una pregunta de examen real. */
 export function examQuestionSummary(q, choice, computed) {
   const lines = [
-    `PREGUNTA EXAMEN ${q.id} · ${q.comunidad} · ${q.titulacion} · ${q.convocatoria}${q.numero ? ` · nº ${q.numero}` : ''}`,
+    `PREGUNTA EXAMEN ${[q.id, q.comunidad, q.titulacion, q.convocatoria].filter(Boolean).join(' · ')}${q.numero ? ` · nº ${q.numero}` : ''}`,
   ];
   if (q.enunciado_comun) lines.push(`ENUNCIADO COMÚN: ${q.enunciado_comun}`);
   lines.push(`ENUNCIADO: ${q.enunciado}`);

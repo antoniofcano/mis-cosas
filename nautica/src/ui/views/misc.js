@@ -9,7 +9,7 @@ import { link } from '../router.js';
 import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
-import { avance, estadoTema } from '../../course/plan.js';
+import { avance, estadoTema, lineaAvance } from '../../course/plan.js';
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
@@ -44,7 +44,7 @@ export function progressView({ progress, tit }) {
     setChildren(temas,
       h('section.avance',
         h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
-        h('p', `Llevas ${a.temasAlDia} de ${a.temasTotal} temas al día${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`)),
+        h('p', lineaAvance(a, racha))),
       h('h2', `Por temas · ${T.sigla}`),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
         h('h3', `${b.icon} ${b.titulo}`),

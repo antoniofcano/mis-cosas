@@ -17,11 +17,14 @@ nautica/
 │   ├── chart/            MOTOR DE CARTA     consultas geográficas: ¿agua?, ¿visible?, punto navegable aleatorio
 │   ├── exercises/        MOTOR DE EJERCICIOS contrato (define.js), registro y un fichero por tipo (types/)
 │   ├── analysis/         MOTOR DE ANÁLISIS  magnitudes (lectura/formato/error), corrección y diagnóstico
-│   ├── graphics/         MOTOR GRÁFICO      carta + construcciones en SVG (primitivas)
+│   ├── graphics/         MOTOR GRÁFICO      carta en coordenadas mundo (Mercator) por capas, construcciones,
+│   │                                        instrumentos (transportador, compás, regla) y georreferenciación
+│   │                                        de escaneos (ajuste afín)
 │   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
 │   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
-│   └── ui/               INTERFAZ           router por hash, vistas, componente de carta interactiva
+│   └── ui/               INTERFAZ           router por hash, vistas; ui/chart/: carta interactiva (zoom, capas,
+│                                            herramientas de dibujo) y capa raster de la carta del usuario
 ├── styles/app.css
 └── tests/                node --test
 ```
@@ -60,7 +63,7 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
 ## Añadir preguntas de examen
 
 Añade un fichero en `data/exams/`, su entrada en `data/exams/index.json` y (opcional) sus soluciones en
-`src/exams/solutions/`. Datos de la carta: `python3 tools/build-chart.py` regenera `data/chart-105.json`. Formato de pregunta:
+`src/exams/solutions/`. Datos de la carta: `node tools/build-chart.mjs` regenera `data/chart-105.json`. Formato de pregunta:
 
 ```json
 { "id": "and-2024-11-a-41", "comunidad": "Andalucía", "titulacion": "PER", "convocatoria": "noviembre 2024",
@@ -68,6 +71,21 @@ Añade un fichero en `data/exams/`, su entrada en `data/exams/index.json` y (opc
   "correcta": "b", "solucion": ["paso 1", "paso 2"], "ejercicio": "situacion-dos-demoras",
   "fuente_examen": "https://…", "fuente_plantilla": "https://…", "notas": "" }
 ```
+
+## Carta interactiva e instrumentos
+
+- Coordenadas mundo: x = longitud (min) × 10, y = −latitud aumentada (min) × 10. Zoom/desplazamiento = viewBox.
+- Capas: mar → escaneo del usuario (opcional) → tierra vectorial → cuadrícula → faros → solución → dibujo del
+  alumno → instrumento activo. Las capas con texto se regeneran a la escala actual (tamaño constante en pantalla).
+- Escaneo: `data/carta-l105-calibracion.json` guarda 18 cruces de la cuadrícula de 10′ (lat/lon ↔ píxel). La
+  imagen la aporta cada usuario (IndexedDB; `store/user-chart.js` extrae el JPEG del PDF sin librerías) y
+  `graphics/georef.js` calcula la matriz afín. La carta tiene © IHM: nunca se sube al repositorio.
+- Instrumentos (`graphics/instruments.js`) son dibujo puro; la interacción está en `ui/chart/interactive-chart.js`.
+
+## Herramientas de desarrollo
+
+Solo Node.js ≥ 20: `npm start` (servidor estático `tools/serve.mjs`), `npm test` (`node --test`),
+`node tools/build-chart.mjs` (datos de la carta). La app en sí es HTML + CSS + módulos ES, sin compilación.
 
 ## Pensado para asistentes de IA
 

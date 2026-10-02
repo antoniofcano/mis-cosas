@@ -94,7 +94,8 @@ export function exerciseView({ ctx, progress, params: route }) {
   // --- Resumen para IA
   const aiPre = h('pre.ai-text');
   const refreshAi = () => { aiPre.textContent = summary(); };
-  const summary = () => exerciseSummary({ exercise, seed, params, solution, inputs: state.inputs, result: state.result, revealed: state.revealed, statement });
+  const summary = () => exerciseSummary({ exercise, seed, params, solution, inputs: state.inputs, result: state.result, revealed: state.revealed, statement })
+    + (widget?.summary() ? `\nDIBUJO ALUMNO: ${widget.summary()}` : '');
 
   const el = h('div.exercise',
     h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › ', exercise.title),

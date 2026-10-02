@@ -6,6 +6,8 @@ import { GLOSSARY } from '../../nautical/glossary.js';
 import { chartWidget } from '../chart-widget.js';
 import { fmtLat, fmtLon } from '../../math/format.js';
 import { link } from '../router.js';
+import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
+import { resetRaster } from '../chart/raster.js';
 
 export function theoryView() {
   const el = h('div.theory',
@@ -65,16 +67,44 @@ function download(name, text) {
 
 export function chartView({ ctx }) {
   const { chart } = ctx;
-  const w = chartWidget(chart, { height: 560 });
+  const w = chartWidget(chart, { height: 600 });
+  const status = h('p.small', 'Comprobando…');
+  const fileInput = h('input', { type: 'file', accept: 'application/pdf,image/*', hidden: true, onchange: async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    status.textContent = 'Procesando la carta…';
+    try {
+      const { width, height } = await saveUserChart(file);
+      resetRaster();
+      status.textContent = `Carta guardada (${width}×${height} px). Recargando…`;
+      location.reload();
+    } catch (e) {
+      status.textContent = `No se pudo cargar: ${e.message}`;
+    }
+  } });
+  loadUserChart().then((rec) => {
+    status.textContent = rec
+      ? `Tienes cargada «${rec.name}» (${rec.width}×${rec.height} px). Elige «Mi carta» o «Ambas» en el selector de capa.`
+      : 'No has cargado tu carta escaneada. La carta vectorial funciona igualmente.';
+  });
   const el = h('div.chart-page',
     h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Carta'),
     h('h1', chart.name),
-    h('p.muted', 'Toca dos puntos para medir rumbo verdadero y distancia (loxodrómica, como con transportador y compás).'),
+    h('p.muted', 'Herramientas: ✋ mover (rueda/dos dedos: zoom) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (arrastra el centro, gira el hilo, «Trazar») · 📍 punto · 🧽 goma. Se ajustan a los faros.'),
     w.el,
+    h('section', h('h2', 'Mi carta escaneada (opcional)'),
+      h('p', 'Puedes cargar tu propia copia de la carta L105 Enseñanza (PDF escaneado o imagen) para usarla de fondo con las mismas herramientas. ',
+        'Se guarda solo en este navegador: no se sube a ningún sitio. La app la georreferencia con la calibración del escaneo A4 de la L105 (7024×5226 px o la misma proporción).'),
+      status,
+      h('div.actions',
+        h('button', { type: 'button', onclick: () => fileInput.click() }, '📂 Cargar mi carta (PDF o imagen)'), fileInput,
+        h('button.secondary', { type: 'button', onclick: async () => { await deleteUserChart(); resetRaster(); location.reload(); } }, 'Quitar'),
+      ),
+    ),
     h('h2', 'Puntos notables'),
     h('table.stats', h('thead', h('tr', h('th', 'Punto'), h('th', 'Latitud'), h('th', 'Longitud'), h('th', 'Luz'))),
       h('tbody', chart.points().map((p) => h('tr', h('td', p.name), h('td', fmtLat(p.lat)), h('td', fmtLon(p.lon)), h('td.small', p.characteristic ?? ''))))),
     chart.source ? h('p.muted.small', `Fuente de datos: ${chart.source}`) : null,
   );
-  return { el, summary: () => `VISTA carta ${chart.id}\n${chart.points().map((p) => `${p.id}: ${p.name} ${fmtLat(p.lat)} ${fmtLon(p.lon)}`).join('\n')}` };
+  return { el, summary: () => `VISTA carta ${chart.id}\nDIBUJO ALUMNO: ${w.summary() || '(nada)'}\n${chart.points().map((p) => `${p.id}: ${p.name} ${fmtLat(p.lat)} ${fmtLon(p.lon)}`).join('\n')}` };
 }

@@ -26,6 +26,9 @@
 - `data/exams/index.json` y `data/exams/<banco>.json` preguntas reales con respuesta oficial.
 - En la vista de una pregunta real, `nautica.state()` incluye la resolución calculada paso a paso (validada contra la plantilla).
 
+## Dibujo del alumno
+En ejercicios y en #/carta, `nautica.state()` incluye `DIBUJO ALUMNO:` (líneas con Rv/distancia, círculos de compás, rectas del transportador, puntos).
+
 ## Convenciones
 E = +, W = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +).
 Corriente: rumbo HACIA donde va. Viento: DE donde viene. Rs = Rv + Ab (viento por babor → Ab +).

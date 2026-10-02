@@ -2693,6 +2693,14 @@
        "texto": "Si caes al agua con chaleco, **no nades** sin un objetivo cercano: el movimiento te enfría antes.\n- Solo: **postura fetal**, piernas encogidas y brazos cruzados sobre el pecho, protegiendo axilas, ingles y cuello.\n- Varios: **en piña**, abrazados, con los más débiles en el centro.\n\nAsí aguantas más tiempo y es más fácil que te encuentren."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hipotermia",
+        "postura": "grupo"
+       },
+       "texto": "Si sois varios, en piña y abrazados, con los más débiles en el centro."
+      },
+      {
        "tipo": "texto",
        "titulo": "Reanimación (RCP) en un ahogado",
        "texto": "Si no responde y **no respira con normalidad** (míralo no más de 10 segundos, con la cabeza inclinada hacia atrás y el mentón elevado):\n1. Pide ayuda: **VHF canal 16** o **112**.\n2. En un ahogado, empieza con **5 insuflaciones** boca a boca.\n3. Sigue con ciclos de **30 compresiones y 2 insuflaciones**.\n4. Compresiones en el **centro del pecho**, brazos rectos, hundiendo **5–6 cm**, a **100–120 por minuto**, dejando que el pecho vuelva arriba.\n5. Si hay **desfibrilador**, úsalo en cuanto llegue.\n\nNo pierdas tiempo intentando sacarle agua de los pulmones. No pares hasta que respire, llegue ayuda o no puedas más."
@@ -8151,6 +8159,14 @@
        "texto": "Lo ideal es pasar a la balsa **directamente desde cubierta**, sin mojarse. Si hay que saltar:\n- Comprueba que **no hay nadie ni nada debajo** y salta desde la **menor altura** posible, lejos de combustible derramado.\n- **Inspira hondo**, tapa nariz y boca con una mano y **sujeta el chaleco** con el otro brazo cruzado sobre el pecho.\n- Salta de pie, con las **piernas juntas y estiradas**, mirando al frente.\n\nEn el agua, si hay que nadar, mejor **de espaldas** y despacio."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hipotermia",
+        "postura": "saltar"
+       },
+       "texto": "Se salta de pie, con las piernas juntas y estiradas, tapando nariz y boca y sujetando el chaleco."
+      },
+      {
        "tipo": "ojo",
        "texto": "La afirmación falsa típica: saltar «con las piernas **plegadas sobre el estómago**». Eso se parece a la postura fetal, que es para **flotar** quieto, no para saltar: se salta con las piernas **juntas y estiradas**."
       },
@@ -8167,6 +8183,14 @@
        "tipo": "texto",
        "titulo": "Cómo conservar el calor",
        "texto": "- **Muévete lo menos posible**. Nadar «para entrar en calor» es un error: pierdes calor mucho más deprisa. Solo nada si hay algo seguro muy cerca.\n- **Con chaleco**: adopta la **postura fetal (HELP)**, con las rodillas al pecho y los brazos cruzados, para proteger las zonas que más calor pierden: **cabeza, cuello, axilas, costados e ingles**.\n- **Sin chaleco**: mantente **vertical**, con **movimientos lentos** de brazos y piernas, lo justo para flotar.\n- **Agrupados** (en piña): conserváis calor, os animáis y se os ve mejor.\n- **Súbete a cualquier objeto flotante**: fuera del agua se pierde menos calor.\n- **Cabeza fuera del agua** y ropa puesta."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hipotermia",
+        "postura": "help"
+       },
+       "texto": "Con chaleco, quieto en postura HELP: así proteges las zonas que más calor pierden."
       },
       {
        "tipo": "clave",

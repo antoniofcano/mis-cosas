@@ -489,6 +489,14 @@
        "texto": "Los requisitos de los chalecos homologados (el Código internacional de dispositivos de salvamento, IDS, para los de tipo SOLAS) que suelen preguntar:\n- Hay que poder ponérselo correctamente, sin ayuda, en **1 minuto** como máximo.\n- Debe **dar la vuelta a una persona inconsciente** y dejarla boca arriba, con la boca fuera del agua; lo hace mejor cuanto mayor es su flotabilidad.\n- Lleva **bandas retrorreflectantes**, **silbato** y **luz**. La luz es **blanca**: es la que más se ve de noche y no se confunde con la pirotecnia roja.\n- Se pone **por encima de la ropa**, que además abriga.\n\nUna radiobaliza personal es un buen añadido, pero **no** es obligatoria en el chaleco."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "arnes",
+        "vista": "chaleco"
+       },
+       "texto": "Luz blanca, silbato y bandas retrorreflectantes, puesto en 1 minuto encima de la ropa."
+      },
+      {
        "tipo": "texto",
        "titulo": "Chalecos hinchables",
        "texto": "Llevan una **botella de CO₂** que los infla al tirar del disparador o, en los **automáticos**, al mojarse una pastilla o un sensor; además se pueden inflar a boca.\n\n- **No** son de un solo uso: tras dispararse se **rearman** con un cartucho (y pastilla) nuevos.\n- Los hay de 150 N y de 275 N, no solo de 100 N.\n- Hay que **revisarlos según el fabricante**: estado y peso del cartucho, caducidad de la pastilla, estanqueidad de la cámara.\n\nSu ventaja es la comodidad: si es cómodo, la gente lo lleva puesto."
@@ -501,6 +509,14 @@
        "tipo": "texto",
        "titulo": "Arnés y línea de vida",
        "texto": "El **arnés** sirve para **no caer al agua**, no para ir remolcado detrás del barco. Muy recomendable en vela, de noche y con mal tiempo, aunque el RD 339/2021 no lo exige.\n\n- Debe **ajustarse a la talla** de cada tripulante.\n- La **línea de amarre** (la que va del arnés al barco) mejor de **cinta** que de cabo: es resistente, no rueda bajo el pie y se ve. Lleva mosquetones de seguridad y mide **2 m como máximo** (norma ISO 12401).\n- El arnés se engancha por el **pecho**: si caes, te arrastran boca arriba.\n- La **línea de vida** se tiende de proa a popa por cubierta, **tensa**, y te enganchas a ella **antes** de salir de la bañera."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "arnes",
+        "vista": "arnes"
+       },
+       "texto": "Enganche en el pecho, línea de amarre de cinta de 2 m como máximo y línea de vida tensa de proa a popa."
       },
       {
        "tipo": "texto",
@@ -644,9 +660,25 @@
        "texto": "La **zafa hidrostática** (o unidad de destrinca hidrostática) es el mecanismo que **sujeta** la balsa (o la radiobaliza) a su soporte y la **suelta automáticamente** si el barco se hunde.\n\n- Actúa por la **presión del agua**, no al mojarse ni con un golpe: debe soltar **antes de llegar a 4 m** de profundidad.\n- Está hecha para **no soltar cuando las olas pasan** por encima.\n- Tiene **desagües** para que no se acumule agua en su cámara.\n- La desechable lleva marcada su **fecha de caducidad**; la mayoría hay que **cambiarla cada 2 años**.\n\nTambién se puede soltar a mano en cualquier momento."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "balsa",
+        "vista": "zafa"
+       },
+       "texto": "Una sola trinca, que pasa por la zafa; la boza une la balsa al barco a través de la unión débil."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cómo se infla sola",
        "texto": "1. El barco se hunde y, antes de 4 m, la zafa corta la trinca.\n2. El contenedor sube a la superficie por su flotabilidad.\n3. El barco sigue bajando y **tensa la boza**, que va unida a él a través de la zafa: el tirón **dispara la botella** y la balsa se infla.\n4. Con la balsa ya inflada, la **unión débil** (un eslabón de la boza) se **rompe** y la balsa queda libre en vez de irse al fondo con el barco.\n\nNo confundas: **zafa** = suelta la balsa; **unión débil** = rompe la boza después; **boza** = el cabo que une balsa y barco."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "balsa",
+        "vista": "inflado"
+       },
+       "texto": "Zafa antes de 4 m, el contenedor sube, la boza se tensa y la dispara, y la unión débil la libera."
       },
       {
        "tipo": "ojo",
@@ -1131,6 +1163,14 @@
        "texto": "1. **Amarra la boza** (el cabo de disparo) a un punto fuerte del barco **antes** de lanzarla.\n2. Suelta las trincas y lanza el contenedor por **sotavento**.\n3. Saca toda la boza y da un **tirón** fuerte: se dispara la botella y la balsa se infla.\n4. Mantén la boza amarrada para que la balsa siga **al costado** mientras embarca la gente.\n5. **Solo cuando todos están dentro**, se suelta o se corta la boza (la balsa lleva un cuchillo junto a la entrada).\n\nSi la sueltas con gente aún en el agua o en cubierta, el viento se lleva la balsa."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "balsa",
+        "vista": "lanzar"
+       },
+       "texto": "Boza amarrada antes de lanzar, contenedor por sotavento y la balsa al costado hasta que estén todos dentro."
+      },
+      {
        "tipo": "texto",
        "titulo": "Embarcar",
        "texto": "Lo ideal es pasar del barco a la balsa **sin mojarse y sin saltar encima**: conservas el calor y no dañas la balsa ni lesionas a quien ya está dentro.\n\nSi no hay más remedio que tirarse al agua: con el chaleco puesto y sujeto, de pie, tapándote nariz y boca, desde la menor altura posible y a un lado de la balsa, nunca encima.\n\nConviene que entre primero alguien **fuerte o de más peso**, que estabiliza la balsa y ayuda a subir a los demás."
@@ -1139,6 +1179,14 @@
        "tipo": "texto",
        "titulo": "Si se infla boca abajo",
        "texto": "A veces la balsa se infla **volcada** («con la quilla al sol»). Está pensada para que una sola persona pueda adrizarla:\n1. Nada hasta el lado donde está la **botella de gas** y colócate a **sotavento** de la balsa.\n2. **Súbete encima de la botella**.\n3. Agarra las **cinchas de adrizamiento** que cruzan la **parte inferior** de la balsa (que ahora queda arriba).\n4. Échate hacia atrás tirando de ellas: el viento ayuda a voltearla hacia ti.\n\nApártate enseguida nadando de debajo de la balsa."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "balsa",
+        "vista": "adrizar"
+       },
+       "texto": "A sotavento, sobre la botella y tirando de las cinchas de la parte inferior."
       },
       {
        "tipo": "ojo",
@@ -1470,6 +1518,14 @@
        "texto": "**Arría las velas y arranca el motor**. Las velas, el palo y la jarcia pueden enganchar el cable de izado, y a motor se mantiene mejor el **rumbo y la velocidad constantes** que suele pedir el helicóptero.\n\nNormalmente te pedirán llevar el **viento unos 30° por la amura de babor**, porque el helicóptero se acerca por tu popa y su grúa está a su derecha. Mantén ese rumbo y no te distraigas mirando sus evoluciones.\n\nNada de velas en el agua ni rumbos a tu aire: sigue sus indicaciones."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helicoptero",
+        "vista": "rumbo"
+       },
+       "texto": "Velas arriadas, motor en marcha y el viento unos 30° por la amura de babor: el helicóptero llega por tu popa."
+      },
+      {
        "tipo": "ojo",
        "texto": "La recomendación de Salvamento Marítimo es **arriar las velas y arrancar el motor**, y todas las plantillas desde 2022 lo dan por bueno. Pero en la 3ª convocatoria de 2020 la plantilla marcó «arriar las velas y **apagar** el motor», aunque en la 1ª de ese mismo año «apagar» era la afirmación incorrecta. La pregunta volvió a salir en la 2ª de 2023 y en la 1ª de 2026 con «arrancar» como respuesta buena: contesta **arrancar el motor**. Solo en aquella pregunta de 2020 (la verás en la práctica) puntuaba «apagar»."
       },
@@ -1477,6 +1533,14 @@
        "tipo": "texto",
        "titulo": "El cable de izado",
        "texto": "El helicóptero puede bajar primero una **línea guía** que tendrás que cobrar cuando te lo indiquen, y luego el **cable** con el rescatador o el arnés de izado.\n\n- El cable acumula **electricidad estática**: deja que **toque el agua** (o el casco) **antes de cogerlo con las manos**.\n- **Nunca lo hagas firme** al barco: un bandazo podría arrastrar al helicóptero. Si te lo indican, déjalo libre.\n- En el arnés de izado, brazos **pegados al cuerpo** o cruzados; no los levantes."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helicoptero",
+        "vista": "cable"
+       },
+       "texto": "Que el cable toque el agua antes de cogerlo, y nunca lo hagas firme al barco."
       },
       {
        "tipo": "texto",

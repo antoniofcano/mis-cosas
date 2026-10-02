@@ -9,6 +9,7 @@ const COL = { W: '#fffbe6', R: '#ef4444', G: '#22c55e', Y: '#facc15' };
 export const SHIPS = {
   motor: { nombre: 'Buque de propulsión mecánica en navegación (< 50 m)', luces: [['tope', 'proa', 0.75]], dia: [] },
   'motor-50': { nombre: 'Buque de propulsión mecánica en navegación (≥ 50 m)', luces: [['tope', 'proa', 0.6], ['tope', 'popa', 0.9]], dia: [] },
+  'motor-menor-12': { nombre: 'Buque de propulsión mecánica < 12 m', luces: [['todo-W', 'centro', 0.7]], sinAlcance: true, dia: [] },
   'motor-menor-7': { nombre: 'Buque de propulsión mecánica < 7 m y ≤ 7 nudos', luces: [['todo-W', 'centro', 0.6]], sinCostados: true, dia: [] },
   vela: { nombre: 'Buque de vela en navegación', luces: [], dia: [] },
   'vela-tope': { nombre: 'Buque de vela con luces opcionales (roja sobre verde en el tope)', luces: [['todo-R', 'centro', 0.95], ['todo-G', 'centro', 0.85]], dia: [] },
@@ -44,7 +45,7 @@ function visibleLights(s, vista, arrancada = true) {
     if (vista === 'proa') { L.push({ t: 'costado', at: 'izq', h: 0.4, color: COL.G }, { t: 'costado', at: 'der', h: 0.4, color: COL.R }); }
     if (vista === 'babor') L.push({ t: 'costado', at: 'centro', h: 0.4, color: COL.R });
     if (vista === 'estribor') L.push({ t: 'costado', at: 'centro', h: 0.4, color: COL.G });
-    if (vista === 'popa') L.push({ t: 'alcance', at: 'centro', h: 0.3, color: COL.W });
+    if (vista === 'popa' && !s.sinAlcance) L.push({ t: 'alcance', at: 'centro', h: 0.3, color: COL.W });
   }
   return L;
 }

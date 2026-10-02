@@ -74,6 +74,56 @@ export function meteoIllustration(spec) {
     out.push('</svg>');
     return { svg: out.join(''), caption: 'Los símbolos apuntan hacia donde avanza el frente.' };
   }
+  if (sys === 'isobaras') {
+    out.push(`<text x="${cx}" y="22" class="il-title">Isobaras juntas = viento fuerte</text>`);
+    for (let i = 0; i < 6; i++) out.push(`<path d="M20,${60 + i * 12} C110,${50 + i * 12} 140,${70 + i * 12} 300,${60 + i * 12}" fill="none" stroke="#64748b"/>`);
+    for (let i = 0; i < 3; i++) out.push(`<path d="M20,${150 + i * 34} C110,${140 + i * 34} 140,${160 + i * 34} 300,${150 + i * 34}" fill="none" stroke="#64748b"/>`);
+    out.push(`<line x1="90" y1="96" x2="170" y2="84" stroke="#dc2626" stroke-width="4" marker-end="url(#mt-a)"/><text x="182" y="88" class="il-lbl" style="fill:#dc2626">fuerte</text>`);
+    out.push(`<line x1="90" y1="186" x2="120" y2="182" stroke="#2563eb" stroke-width="2" marker-end="url(#mt-a)"/><text x="132" y="186" class="il-lbl" style="fill:#2563eb">flojo</text>`);
+    out.push('</svg>');
+    return { svg: out.join(''), caption: 'Las isobaras unen puntos de igual presión. Cuanto más juntas están (más gradiente de presión), más fuerte sopla el viento.' };
+  }
+  if (sys === 'frente-frio-corte' || sys === 'frente-calido-corte') {
+    const frio = sys === 'frente-frio-corte';
+    out.push(`<text x="${cx}" y="22" class="il-title">${frio ? 'Frente frío (en corte)' : 'Frente cálido (en corte)'}</text>`);
+    out.push(`<rect x="0" y="230" width="${W}" height="30" fill="#38bdf8" opacity=".5"/>`);
+    if (frio) {
+      out.push(`<path d="M10,230 L10,90 Q120,100 190,230Z" fill="#2563eb" opacity=".3"/><text x="40" y="200" class="il-lbl" style="fill:#2563eb" font-weight="700">aire frío</text>`);
+      out.push(`<text x="230" y="200" class="il-lbl" style="fill:#dc2626" font-weight="700">aire cálido</text>`);
+      out.push(`<path d="M150,140 q-16,-6 -10,-24 q-6,-24 20,-28 q8,-28 40,-16 q30,-6 32,22 q20,8 6,30Z" fill="#94a3b8" stroke="#475569"/><text x="190" y="128" class="il-lbl" text-anchor="middle">Cb</text>`);
+      for (let i = 0; i < 5; i++) out.push(`<line x1="${160 + i * 10}" y1="146" x2="${154 + i * 10}" y2="170" stroke="#2563eb"/>`);
+      out.push(`<line x1="230" y1="240" x2="160" y2="240" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="236" y="244" class="il-lbl">avanza</text>`);
+    } else {
+      out.push(`<path d="M10,230 L310,230 L310,200 Q160,170 10,60Z" fill="#dc2626" opacity=".18"/><text x="30" y="110" class="il-lbl" style="fill:#dc2626" font-weight="700">aire cálido (sube despacio)</text>`);
+      out.push(`<path d="M120,230 Q220,200 310,200 L310,230Z" fill="#2563eb" opacity=".3"/><text x="230" y="222" class="il-lbl" style="fill:#2563eb" font-weight="700">aire frío</text>`);
+      out.push(`<text x="70" y="150" class="il-lbl">Ns: lluvia continua</text><text x="170" y="128" class="il-lbl">As</text><text x="250" y="96" class="il-lbl">Ci · Cs (halo)</text>`);
+      out.push(`<line x1="60" y1="244" x2="130" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="136" y="248" class="il-lbl">avanza</text>`);
+    }
+    out.push('</svg>');
+    return {
+      svg: out.join(''),
+      caption: frio
+        ? 'El aire frío entra como una cuña bajo el cálido y lo levanta bruscamente: cumulonimbos, chubascos, rachas y tormenta; tras el paso, rola el viento, baja la temperatura, sube la presión y el cielo se limpia.'
+        : 'El aire cálido sube despacio por encima del frío: las nubes se anuncian de lejos (cirros, cirrostratos con halo, altostratos) y llega lluvia continua y débil con nimbostratos; baja la presión antes de su paso.',
+    };
+  }
+  if (sys === 'niebla-adveccion' || sys === 'niebla-radiacion') {
+    const adv = sys === 'niebla-adveccion';
+    out.push(`<text x="${cx}" y="22" class="il-title">${adv ? 'Niebla de advección' : 'Niebla de radiación'}</text>`);
+    out.push(`<rect x="0" y="190" width="${adv ? W : 140}" height="70" fill="#38bdf8" opacity=".5"/>`);
+    if (!adv) out.push(`<rect x="140" y="180" width="180" height="80" fill="#a16207" opacity=".8"/><circle cx="60" cy="56" r="14" fill="#e5e7eb"/><text x="60" y="84" class="il-lbl" text-anchor="middle">noche despejada</text>`);
+    const fog = adv ? 'M0,150 Q80,135 160,150 T320,150 L320,190 L0,190Z' : 'M140,150 Q200,140 260,152 T320,150 L320,180 L140,180Z';
+    out.push(`<path d="${fog}" fill="#cbd5e1" opacity=".85"><animate attributeName="opacity" values=".55;.95;.55" dur="5s" repeatCount="indefinite"/></path>`);
+    if (adv) out.push(`<line x1="20" y1="110" x2="120" y2="110" stroke="#dc2626" stroke-width="3" marker-end="url(#mt-a)"/><text x="20" y="100" class="il-lbl" style="fill:#dc2626">aire templado y húmedo</text><text x="180" y="230" class="il-lbl" style="fill:#1e3a8a" font-weight="700">mar más fría</text>`);
+    else out.push(`<text x="230" y="230" class="il-lbl" text-anchor="middle" style="fill:#fff" font-weight="700">la tierra se enfría</text>`);
+    out.push('</svg>');
+    return {
+      svg: out.join(''),
+      caption: adv
+        ? 'Aire templado y húmedo que se desplaza sobre una superficie más fría (agua fría) y se enfría hasta saturarse. Es la niebla típica de la mar y puede durar días aunque sople el viento.'
+        : 'Se forma en tierra en noches despejadas y con poco viento, cuando el suelo pierde calor por radiación. Suele disiparse por la mañana al calentar el sol y afecta poco a la mar abierta.',
+    };
+  }
   return null;
 }
 

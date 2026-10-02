@@ -24,36 +24,7 @@ function arc(x, y, r, a, b, c) {
 }
 const fmt = (n) => `${n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n)}°`;
 
-// ---------------------------------------------------------------------------
-// Nortes: verdadero, magnético y de aguja. spec: { tipo:'nortes', dm: -4, desvio: +2 }
-
-export function nortesIllustration(spec) {
-  const dm = Number(spec.dm ?? -4);
-  const dv = Number(spec.desvio ?? 2);
-  const ct = dm + dv;
-  const k = 4; // exagera los ángulos para que se vean
-  const W = 320;
-  const H = 270;
-  const cx = 160;
-  const cy = 220;
-  const out = open(W, H, 'Norte verdadero, magnético y de aguja', 'nt');
-  out.push(title(cx, 'Nv, Nm y Na: declinación, desvío y Ct'));
-  const L = 165;
-  const nv = pol(cx, cy, 0, L);
-  const nm = pol(cx, cy, dm * k, L - 10);
-  const na = pol(cx, cy, ct * k, L - 20);
-  out.push(arrow(cx, cy, nv[0], nv[1], 'v', 'nt', 2.6), lbl(nv[0], nv[1] - 6, 'Nv', 'v', 'middle', 'font-weight="700"'));
-  out.push(arrow(cx, cy, nm[0], nm[1], 'm', 'nt', 2.2), lbl(nm[0], nm[1] - 6, 'Nm', 'm', 'middle', 'font-weight="700"'));
-  out.push(arrow(cx, cy, na[0], na[1], 'a', 'nt', 2.2), lbl(na[0], na[1] - 6, 'Na', 'a', 'middle', 'font-weight="700"'));
-  out.push(arc(cx, cy, 120, Math.min(0, dm * k), Math.max(0, dm * k), 'm'), lbl(cx + (dm < 0 ? -12 : 12), cy - 124, `dm ${fmt(dm)}`, 'm', dm < 0 ? 'end' : 'start'));
-  out.push(arc(cx, cy, 95, Math.min(dm * k, ct * k), Math.max(dm * k, ct * k), 'a'));
-  { const [lx, ly] = pol(cx, cy, (dm * k + ct * k) / 2, 106); out.push(lbl(lx, ly, `Δ ${fmt(dv)}`, 'a', 'middle')); }
-  out.push(arc(cx, cy, 60, Math.min(0, ct * k), Math.max(0, ct * k), 'r'), lbl(cx + (ct < 0 ? -10 : 10), cy - 64, `Ct ${fmt(ct)}`, 'r', ct < 0 ? 'end' : 'start', 'font-weight="700"'));
-  out.push(`<circle cx="${cx}" cy="${cy}" r="3" fill="currentColor"/>`);
-  out.push(lbl(14, H - 12, 'Este (E) suma · Oeste (W) resta · ángulos exagerados'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: `Ct = dm + Δ = ${fmt(dm)} ${dv < 0 ? '−' : '+'} ${Math.abs(dv)}° = ${fmt(ct)}. Rv = Ra + Ct y Dv = Da + Ct: de aguja a verdadero se suma la Ct con su signo.` };
-}
+// Nortes (verdadero, magnético y de aguja): ahora es interactiva, en src/illustrations/interactivas/nortes.js.
 
 // ---------------------------------------------------------------------------
 // Enfilación: dos marcas alineadas dan una demora verdadera exacta. spec: { tipo:'enfilacion', dv: 40, da: 44 }

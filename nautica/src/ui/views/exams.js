@@ -7,6 +7,7 @@ import { chooseOption } from '../../exams/options.js';
 import { quantity } from '../../analysis/quantities.js';
 import solutions from '../../exams/solutions/andalucia-per.js';
 import { chartWidget } from '../chart-widget.js';
+import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 
 /** Ejecuta la solución programada de una pregunta (si existe). */
 function runSolution(q, chart) {
@@ -121,19 +122,39 @@ export function examsView({ ctx, progress, params: route }) {
       );
     }
 
+    // Bloque de respuesta: se traslada a la mesa de cartas cuando se abre.
+    let ws = null;
+    const answerBlock = h('div.answer-block', options,
+      h('div.actions',
+        h('button', { type: 'button', onclick: verify }, 'Comprobar'),
+        h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
+      ),
+      result);
+    const openTable = (tab) => {
+      if (ws) { ws.show(tab); return; }
+      ws = openWorkspace({
+        chart: ctx.chart, title: `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
+        steps: run.k.steps, items: run.k.items, focus: run.k.focus, answerNodes: [answerBlock], tab, progress,
+        summary: () => summaryText,
+      });
+    };
+    const tableButtons = run?.k.items.length
+      ? h('div.actions.table-actions',
+        h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
+        h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'))
+      : null;
+
     setChildren(el, 
       h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › ', h('a', { href: '#/examenes' }, 'Exámenes'), ' › ', h('a', { href: link(['examenes', bankFile]) }, bank.meta.title), ' › ', q.numero ? `P${q.numero}` : q.id),
       h('header', h('h1', `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', q.comunidad))),
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
-      h('section.statement', h('p', q.enunciado)),
-      options,
+      h('section.statement', h('p', q.enunciado), tableButtons),
+      answerBlock,
       h('div.actions',
-        h('button', { type: 'button', onclick: verify }, 'Comprobar'),
-        h('button.secondary', { type: 'button', onclick: showSolution }, 'Ver solución'),
         prev ? h('a.btn.secondary', { href: link(['examenes', bankFile, prev.id]) }, '← Anterior') : null,
         next ? h('a.btn.secondary', { href: link(['examenes', bankFile, next.id]) }, 'Siguiente →') : null,
       ),
-      result, solution,
+      solution,
       h('p.muted.small', 'Fuente: ', q.fuente_examen ? h('a', { href: q.fuente_examen, target: '_blank', rel: 'noopener' }, 'examen') : '—',
         q.fuente_plantilla ? [' · ', h('a', { href: q.fuente_plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
         ''),
@@ -144,5 +165,5 @@ export function examsView({ ctx, progress, params: route }) {
     refresh();
   }
 
-  return { el, summary: () => summaryText };
+  return { el, summary: () => (currentWorkspace() ? currentWorkspace().summary() : summaryText) };
 }

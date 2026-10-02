@@ -7,6 +7,7 @@ import { quantity } from '../../analysis/quantities.js';
 import { GLOSSARY } from '../../nautical/glossary.js';
 import { exerciseSummary } from '../../ai/summary.js';
 import { chartWidget } from '../chart-widget.js';
+import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { link, navigate } from '../router.js';
 
 const STATUS_TEXT = {
@@ -57,6 +58,22 @@ export function exerciseView({ ctx, progress, params: route }) {
     ? chartWidget(ctx.chart, { items: solution.drawing.items, focus: solution.drawing.focus, step: 0 })
     : null;
 
+  // --- Mesa de cartas (pantalla completa): resolver sobre la carta o ver el tutorial
+  let ws = null;
+  const openTable = (tab) => {
+    if (ws) { ws.show(tab); return; }
+    ws = openWorkspace({
+      chart: ctx.chart, title: exercise.title, statement, steps: solution.steps,
+      items: solution.drawing.items, focus: solution.drawing.focus,
+      answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(),
+    });
+  };
+  const tableButtons = solution.drawing
+    ? h('div.actions.table-actions',
+      h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
+      h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'))
+    : null;
+
   function reveal(n) {
     state.revealed = Math.min(Math.max(n, state.revealed), solution.steps.length);
     stepsList.replaceChildren(...solution.steps.slice(0, state.revealed).map((s) => h('li', h('strong', s.title), ' — ', s.text)));
@@ -96,6 +113,7 @@ export function exerciseView({ ctx, progress, params: route }) {
   const refreshAi = () => { aiPre.textContent = summary(); };
   const summary = () => exerciseSummary({ exercise, seed, params, solution, inputs: state.inputs, result: state.result, revealed: state.revealed, statement })
     + (widget?.summary() ? `\nDIBUJO ALUMNO: ${widget.summary()}` : '');
+  const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
   const el = h('div.exercise',
     h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › ', exercise.title),
@@ -105,7 +123,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ),
     h('div.layout',
       h('div.col',
-        h('section.statement', h('h2', 'Enunciado'), h('p', statement)),
+        h('section.statement', h('h2', 'Enunciado'), h('p', statement), tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
         h('section', h('h2', 'Resolución paso a paso'), stepsList, h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),
         h('details.method', h('summary', 'Método y conceptos'),
@@ -122,5 +140,5 @@ export function exerciseView({ ctx, progress, params: route }) {
     ),
   );
   refreshAi();
-  return { el, summary };
+  return { el, summary: fullSummary };
 }

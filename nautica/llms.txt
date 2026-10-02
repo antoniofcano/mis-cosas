@@ -29,6 +29,9 @@
 ## Dibujo del alumno
 En ejercicios y en #/carta, `nautica.state()` incluye `DIBUJO ALUMNO:` (líneas con Rv/distancia, círculos de compás, rectas del transportador, puntos, notas de texto y posición/hilo del transportador).
 
+## Mesa de cartas
+Con la mesa abierta (pantalla completa), `nautica.state()` añade `MESA DE CARTAS ABIERTA`, la pestaña, el paso del tutorial y el dibujo del alumno en la mesa.
+
 ## Convenciones
 E = +, W = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +).
 Corriente: rumbo HACIA donde va. Viento: DE donde viene. Rs = Rv + Ab (viento por babor → Ab +).

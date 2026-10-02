@@ -27,7 +27,7 @@
 - En la vista de una pregunta real, `nautica.state()` incluye la resolución calculada paso a paso (validada contra la plantilla).
 
 ## Dibujo del alumno
-En ejercicios y en #/carta, `nautica.state()` incluye `DIBUJO ALUMNO:` (líneas con Rv/distancia, círculos de compás, rectas del transportador, puntos).
+En ejercicios y en #/carta, `nautica.state()` incluye `DIBUJO ALUMNO:` (líneas con Rv/distancia, círculos de compás, rectas del transportador, puntos, notas de texto y posición/hilo del transportador).
 
 ## Convenciones
 E = +, W = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +).

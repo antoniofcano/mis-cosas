@@ -9,8 +9,9 @@ de los exámenes de **Patrón de Embarcaciones de Recreo (PER)** y, más adelant
 - **Pistas paso a paso** y **construcción gráfica** progresiva en la carta (SVG).
 - **Carta interactiva con instrumentos de examen**: zoom y desplazamiento (rueda, botones, dos dedos),
   📏 regla (Rv y distancia), 🧭 compás (radio en millas medido en la escala de latitudes),
-  📐 transportador cuadrado (agujero central, graduación 0–360° en el borde, hilo y «Trazar»), 📍 punto,
-  🧽 goma, deshacer. Todo se ajusta a los faros. Lo dibujado aparece también en el resumen para IA.
+  📐 transportador cuadrado (agujero central, graduación 0–360° en el borde, hilo y «Trazar»; se queda puesto
+  mientras usas las demás herramientas), 📍 punto (movible, coordenadas visibles u ocultas), 🔤 anotaciones de
+  texto, 🧽 goma, deshacer. Todo se ajusta a los faros. Lo dibujado aparece también en el resumen para IA.
 - **Tu carta escaneada como fondo** (opcional): carga tu PDF/imagen de la L105 y la app la georreferencia
   con la calibración incluida (error < 0,1′). Se guarda solo en tu navegador (IndexedDB), nunca en el repo.
 - **72 preguntas reales de examen** (PER Andalucía 2020–2026, preguntas de carta) con la respuesta de la
@@ -44,9 +45,11 @@ Publicación gratuita: GitHub Pages (Settings → Pages → rama y carpeta raíz
 |---|---|
 | Aguja | Conversión de rumbos y Ct · Ct por enfilación u oposición |
 | Estima | Situación de estima · Rumbo de aguja, distancia y HRB de llegada · Rumbo para pasar a X millas de un faro |
-| Situación | Demora y distancia · Dos demoras o marcaciones simultáneas · Oposición/enfilación + demora (distancia a faro) · Demoras no simultáneas |
+| Situación | Demora (o marcación) y distancia, al mismo faro o a otro · Dos demoras o marcaciones simultáneas · Oposición/enfilación + demora (distancia a faro) · Demoras no simultáneas |
+| Estima (PY) | Estima analítica con varios rumbos (Δl, apartamiento, latitud media, rumbo y distancia directos) |
 | Corrientes (PY) | Rumbo/velocidad efectivos · Rumbo a dar · Calcular la corriente |
 | Viento (PY) | Abatimiento (Rs y rumbo a dar) |
+| Mareas (PY) | Altura de marea, sonda y agua bajo la quilla · Hora para pasar un bajo (Anuario UT → hora legal) |
 
 Los enunciados generados imitan los de Andalucía: declinación «4º NW» o «de la carta, 2° 50′ W 2005 (7′ E)»
 (con actualización al año), desvío «+4º (más)», situaciones «a 4 millas al Sur verdadero del faro…», «al Sur

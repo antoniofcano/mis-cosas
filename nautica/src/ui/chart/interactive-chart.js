@@ -13,12 +13,13 @@ import { fmtLat, fmtLon, fmtBearing, fmtMiles, fmtPos } from '../../math/format.
 import { getRaster } from './raster.js';
 
 const TOOLS = [
-  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra para desplazar. Rueda o dos dedos para el zoom.' },
+  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, textos, extremos de línea y el centro del transportador. Toca un punto para mostrar u ocultar sus coordenadas; toca un texto para editarlo. Rueda o dos dedos: zoom.' },
   { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros.' },
   { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
   { id: 'protractor', icon: '📐', label: 'Transportador', help: 'Arrastra el agujero central para moverlo (se ajusta a los faros). Arrastra fuera del centro para girar el hilo. Luego «Trazar».' },
   { id: 'point', icon: '📍', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
-  { id: 'erase', icon: '🧽', label: 'Goma', help: 'Toca un trazo tuyo para borrarlo.' },
+  { id: 'text', icon: '🔤', label: 'Texto', help: 'Toca donde quieras escribir una anotación.' },
+  { id: 'erase', icon: '🧽', label: 'Goma', help: 'Toca un trazo, punto o texto tuyo para borrarlo.' },
 ];
 const LAYERS = [['vectorial', 'Vectorial'], ['escaneada', 'Mi carta'], ['ambas', 'Ambas']];
 const SNAP_PX = 14;
@@ -39,7 +40,7 @@ let nextId = 1;
 export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480 }) {
   const state = {
     tool: 'move', z: 1, cx: 0, cy: 0, w: 640, h: height,
-    user: [], history: [], protractor: null, drag: null, pointers: new Map(), preview: '', raster: null,
+    user: [], history: [], protractor: null, protractorVisible: false, showCoords: true, drag: null, pointers: new Map(), preview: '', raster: null,
     layer: progress?.settings().capa ?? 'vectorial',
   };
 
@@ -72,13 +73,17 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     h('button.small.secondary', { type: 'button', onclick: () => rotate(180) }, '↔ Opuesta'),
     h('button.small', { type: 'button', onclick: () => drawProtractorLine('line') }, 'Trazar recta'),
     h('button.small', { type: 'button', onclick: () => drawProtractorLine('ray') }, 'Trazar desde el centro'),
+    h('button.small.secondary', { type: 'button', onclick: () => { state.protractorVisible = false; if (state.tool === 'protractor') setTool('move'); render(); } }, 'Ocultar transportador'),
   );
+  const coordsBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, '🏷');
+  const protractorBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar el transportador', 'aria-pressed': 'false', onclick: () => { if (!state.protractor) placeProtractor(); state.protractorVisible = !state.protractorVisible; render(); } }, '📐');
 
   const el = h('div.ichart',
     h('div.ichart-toolbar',
       h('div.tools', toolButtons),
       h('div.tools',
         h('button.small.secondary', { type: 'button', title: 'Deshacer', onclick: undo }, '↶'),
+        coordsBtn, protractorBtn,
         h('button.small.secondary', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, '🗑'),
         h('button.small.secondary', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, '+'),
         h('button.small.secondary', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, '−'),
@@ -134,10 +139,12 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     gGrid.innerHTML = gridLayer(chart, state.z, v);
     gMarks.innerHTML = showVector ? marksLayer(chart, state.z) : '';
     gItems.innerHTML = itemsLayer(items, state.z, step);
-    gUser.innerHTML = state.user.map((it) => drawItem(it, state.z)).join('');
-    gTool.innerHTML = (state.protractor && state.tool === 'protractor' ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + state.preview;
+    gUser.innerHTML = state.user.map((it) => drawItem(it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : it, state.z)).join('');
+    gTool.innerHTML = (state.protractor && state.protractorVisible ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + state.preview;
+    coordsBtn.setAttribute('aria-pressed', String(state.showCoords));
+    protractorBtn.setAttribute('aria-pressed', String(state.protractorVisible));
     for (const b of toolButtons) b.setAttribute('aria-pressed', String(b === toolButtons[TOOLS.findIndex((t) => t.id === state.tool)]));
-    protractorBar.hidden = state.tool !== 'protractor';
+    protractorBar.hidden = !state.protractorVisible;
     if (state.protractor) bearingInput.value = Math.round(state.protractor.bearing) % 360;
     svg.dataset.tool = state.tool;
   }
@@ -175,12 +182,20 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   function setTool(id) {
     state.tool = id;
     state.preview = '';
-    if (id === 'protractor' && !state.protractor) state.protractor = { c: { x: state.cx, y: state.cy }, bearing: 0 };
+    if (id === 'protractor') { if (!state.protractor) placeProtractor(); state.protractorVisible = true; }
     readout.textContent = TOOLS.find((t) => t.id === id).help;
     render();
   }
 
+  function placeProtractor() {
+    state.protractor = { c: { x: state.cx, y: state.cy }, bearing: 0 };
+  }
+
   // ---------- Dibujo del alumno
+  /** Sustituye un elemento del alumno (inmutable, para poder deshacer). */
+  function replaceUser(id, fn) {
+    state.user = state.user.map((it) => (it.id === id ? fn(it) : it));
+  }
   function addUser(item) {
     state.history.push(state.user);
     state.user = [...state.user, { ...item, id: nextId++ }];
@@ -212,19 +227,20 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   }
 
   // ---------- Ajuste (snap) a faros y a puntos dibujados
-  function snapCandidates() {
+  function snapCandidates(excludeId) {
     const c = chart.points().filter((m) => m.mark !== false || m.port).map((m) => ({ geo: m, name: m.name }));
-    for (const it of [...state.user, ...items.filter((x) => (x.step ?? 0) <= step)]) {
+    if (state.protractor && state.protractorVisible && state.drag?.kind !== 'protractor-move') c.push({ geo: fromWorld(state.protractor.c), name: 'centro del transportador' });
+    for (const it of [...state.user.filter((u) => u.id !== excludeId), ...items.filter((x) => (x.step ?? 0) <= step)]) {
       if (it.t === 'pos') c.push({ geo: it.at, name: it.label ?? 'punto' });
       if (it.t === 'seg') c.push({ geo: it.from, name: 'extremo' }, { geo: it.to, name: 'extremo' });
       if (it.t === 'circle') c.push({ geo: it.center, name: 'centro' });
     }
     return c;
   }
-  function snap(w) {
+  function snap(w, excludeId) {
     let best = null;
     let bd = SNAP_PX / state.z;
-    for (const cand of snapCandidates()) {
+    for (const cand of snapCandidates(excludeId)) {
       const p = toWorld(cand.geo);
       const d = Math.hypot(p.x - w.x, p.y - w.y);
       if (d < bd) { bd = d; best = { w: p, geo: cand.geo, name: cand.name }; }
@@ -248,10 +264,12 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     const w = toWorldPt(ev);
     const s = snap(w);
     switch (state.tool) {
-      case 'move': state.drag = { kind: 'pan', sx: ev.clientX, sy: ev.clientY, cx: state.cx, cy: state.cy }; break;
+      case 'move': state.drag = grabAt(w) ?? { kind: 'pan', sx: ev.clientX, sy: ev.clientY, cx: state.cx, cy: state.cy }; break;
       case 'ruler': state.drag = { kind: 'ruler', a: s }; break;
       case 'compass': state.drag = { kind: 'compass', c: s }; break;
       case 'protractor': {
+        if (!state.protractor) placeProtractor();
+        state.protractorVisible = true;
         const p = state.protractor;
         const near = p && Math.hypot(w.x - p.c.x, w.y - p.c.y) < 22 / state.z;
         state.drag = near ? { kind: 'protractor-move', dx: p.c.x - w.x, dy: p.c.y - w.y } : { kind: 'protractor-rotate' };
@@ -262,11 +280,35 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         addUser({ t: 'pos', at: s.geo, style: 'user', label: `${fmtLat(s.geo.lat)} ${fmtLon(s.geo.lon)}` });
         readout.textContent = `Punto${s.name ? ` (${s.name})` : ''}: ${fmtPos(s.geo)}`;
         break;
+      case 'text': {
+        const text = prompt('Texto de la anotación:');
+        if (text?.trim()) { addUser({ t: 'text', at: s.geo, text: text.trim(), style: 'user' }); readout.textContent = 'Anotación añadida. Con ✋ Mover puedes arrastrarla o tocarla para editarla.'; }
+        state.pointers.delete(ev.pointerId);
+        break;
+      }
       case 'erase': eraseAt(w); break;
       default:
     }
     render();
   });
+
+  /** Con la herramienta Mover: ¿qué hay bajo el puntero? (centro del transportador, punto, texto o extremo). */
+  function grabAt(w) {
+    const tol = 14 / state.z;
+    const p = state.protractor;
+    if (p && state.protractorVisible && Math.hypot(w.x - p.c.x, w.y - p.c.y) < 22 / state.z) return { kind: 'protractor-move', dx: p.c.x - w.x, dy: p.c.y - w.y };
+    let best = null;
+    let bd = tol;
+    for (const it of state.user) {
+      const handles = it.t === 'pos' ? [['at', it.at]] : it.t === 'text' ? [['at', it.at]] : it.t === 'seg' ? [['from', it.from], ['to', it.to]] : it.t === 'circle' ? [['center', it.center]] : [];
+      for (const [key, geo] of handles) {
+        const q = toWorld(geo);
+        const d = Math.hypot(q.x - w.x, q.y - w.y);
+        if (d < bd) { bd = d; best = { kind: 'item-move', id: it.id, key, dx: q.x - w.x, dy: q.y - w.y, moved: false }; }
+      }
+    }
+    return best;
+  }
 
   svg.addEventListener('pointermove', (ev) => {
     if (state.pointers.has(ev.pointerId)) state.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
@@ -318,6 +360,18 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         readout.textContent = `Transportador ${s.name ? `en ${s.name}` : `en ${fmtPos(s.geo)}`} · hilo ${fmtBearing(state.protractor.bearing)}`;
         break;
       }
+      case 'item-move': {
+        if (!d.moved) { state.history.push(state.user); d.moved = true; }
+        const s = snap({ x: w.x + d.dx, y: w.y + d.dy }, d.id);
+        replaceUser(d.id, (it) => {
+          const n = { ...it, [d.key]: s.geo };
+          if (n.t === 'pos') n.label = `${fmtLat(s.geo.lat)} ${fmtLon(s.geo.lon)}`;
+          if (n.t === 'seg') { const r = rhumbTo(n.from, n.to); n.label = `${fmtBearing(r.bearing)} · ${fmtMiles(r.distance)}`; }
+          return n;
+        });
+        readout.textContent = `${s.name ? `${s.name}: ` : ''}${fmtPos(s.geo)}`;
+        break;
+      }
       case 'protractor-rotate':
         state.protractor.bearing = Math.round(bearingWorld(state.protractor.c, w)) % 360;
         readout.textContent = `Hilo ${fmtBearing(state.protractor.bearing)} · opuesta ${fmtBearing(state.protractor.bearing + 180)}`;
@@ -337,6 +391,21 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       addUser({ t: 'seg', from: d.a.geo, to: d.b.geo, style: 'user', label: `${fmtBearing(bearing)} · ${fmtMiles(distance)}` });
     }
     if (d.kind === 'compass' && d.r > 0.05) addUser({ t: 'circle', center: d.c.geo, radius: d.r, style: 'user', label: fmtMiles(d.r) });
+    if (d.kind === 'item-move' && !d.moved) {
+      const it = state.user.find((u) => u.id === d.id);
+      if (it?.t === 'pos') {
+        state.history.push(state.user);
+        replaceUser(d.id, (u) => ({ ...u, hideLabel: !u.hideLabel }));
+        readout.textContent = `Punto ${fmtPos(it.at)}: coordenadas ${it.hideLabel ? 'visibles' : 'ocultas'}.`;
+      } else if (it?.t === 'text') {
+        const text = prompt('Editar anotación (vacío para borrarla):', it.text);
+        if (text != null) {
+          state.history.push(state.user);
+          if (text.trim()) replaceUser(d.id, (u) => ({ ...u, text: text.trim() }));
+          else state.user = state.user.filter((u) => u.id !== d.id);
+        }
+      }
+    }
     state.drag = null;
     state.preview = '';
     render();
@@ -363,7 +432,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
 
   svg.tabIndex = 0;
   svg.addEventListener('keydown', (ev) => {
-    if (state.tool === 'protractor' && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) { rotate(ev.key === 'ArrowLeft' ? -1 : 1); ev.preventDefault(); }
+    if (state.protractorVisible && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) { rotate(ev.key === 'ArrowLeft' ? -1 : 1); ev.preventDefault(); }
     if (ev.key === '+' || ev.key === '=') zoomBy(1.4);
     if (ev.key === '-') zoomBy(1 / 1.4);
     if ((ev.ctrlKey || ev.metaKey) && ev.key === 'z') { undo(); ev.preventDefault(); }
@@ -411,8 +480,9 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         if (it.t === 'circle') return `círculo centro ${fmtPos(it.center)} radio ${fmtMiles(it.radius)}`;
         if (it.t === 'line' || it.t === 'ray') return `recta ${fmtBearing(it.bearing)} por ${fmtPos(it.through ?? it.from)}`;
         if (it.t === 'pos') return `punto ${fmtPos(it.at)}`;
+        if (it.t === 'text') return `nota "${it.text}" en ${fmtPos(it.at)}`;
         return it.t;
-      }).join(' | ');
+      }).concat(state.protractor && state.protractorVisible ? [`transportador en ${fmtPos(fromWorld(state.protractor.c))} con el hilo a ${fmtBearing(state.protractor.bearing)}`] : []).join(' | ');
     },
   };
 }
@@ -429,7 +499,7 @@ function distanceTo(it, w) {
     return Math.hypot(a.x + t * dx - w.x, a.y + t * dy - w.y);
   };
   switch (it.t) {
-    case 'pos': { const p = toWorld(it.at); return Math.hypot(p.x - w.x, p.y - w.y); }
+    case 'pos': case 'text': { const p = toWorld(it.at); return Math.hypot(p.x - w.x, p.y - w.y); }
     case 'seg': return segDist(toWorld(it.from), toWorld(it.to));
     case 'circle': { const c = toWorld(it.center); return Math.abs(Math.hypot(c.x - w.x, c.y - w.y) - it.radius * worldPerMile(it.center.lat)); }
     case 'line': case 'ray': {

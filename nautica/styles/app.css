@@ -137,3 +137,6 @@ svg.chart .compass-preview text, svg.chart .ruler-preview text { fill: #e11d48; 
 .protractor-bar input.bearing { width: 5rem; padding: .15rem .3rem; }
 .ichart .readout { padding: .35rem .6rem; border-top: 1px solid var(--border); font-size: .85rem; font-variant-numeric: tabular-nums; min-height: 1.8em; }
 .protractor-bar[hidden] { display: none; }
+svg.chart .note text { fill: #be123c; font-weight: 600; paint-order: stroke; stroke: var(--sea); stroke-width: 3px; }
+svg.chart .note circle { fill: #be123c; }
+.ichart-toolbar button[aria-pressed="true"].secondary { background: var(--accent-2); }

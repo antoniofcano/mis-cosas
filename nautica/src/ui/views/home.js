@@ -14,7 +14,7 @@ export function homeView({ progress }) {
         type: 'button', class: l === level ? '' : 'secondary', 'aria-pressed': l === level,
         onclick: () => { progress.setSetting('level', l); dispatchEvent(new HashChangeEvent('hashchange')); },
       }, l))),
-      level !== 'PER' ? h('p.muted.small', 'Patrón de Yate: de momento solo están los ejercicios de corrientes y abatimiento; mareas y estima analítica llegarán después.') : null,
+      level !== 'PER' ? h('p.muted.small', 'Patrón de Yate: además de lo del PER, corrientes, viento y abatimiento, estima analítica y mareas.') : null,
       h('p', h('a.btn', { href: link(['examenes']) }, '📝 Preguntas de examen reales'), ' ', h('a.btn.secondary', { href: link(['carta']) }, '🗺️ Carta y medición')),
     ),
     cats.map((c) => h('section.category',

@@ -90,7 +90,7 @@ export function chartView({ ctx }) {
   const el = h('div.chart-page',
     h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Carta'),
     h('h1', chart.name),
-    h('p.muted', 'Herramientas: ✋ mover (rueda/dos dedos: zoom) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (arrastra el centro, gira el hilo, «Trazar») · 📍 punto · 🧽 goma. Se ajustan a los faros.'),
+    h('p.muted', 'Herramientas: ✋ mover (la carta, tus puntos, textos, extremos de línea y el transportador; toca un punto para ver u ocultar sus coordenadas) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (se queda puesto aunque cambies de herramienta; arrastra el centro, gira el hilo, «Trazar») · 📍 punto · 🔤 texto · 🧽 goma · 🏷 coordenadas sí/no. Se ajustan a los faros y al centro del transportador.'),
     w.el,
     h('section', h('h2', 'Mi carta escaneada (opcional)'),
       h('p', 'Puedes cargar tu propia copia de la carta L105 Enseñanza (PDF escaneado o imagen) para usarla de fondo con las mismas herramientas. ',

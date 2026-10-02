@@ -99,3 +99,10 @@ test('vocabulario: palabra completa, sin distinguir mayúsculas, la primera vez 
   assert.equal(segmentar('Hola', voc).map((x) => x.texto).join(''), 'Hola');
   assert.equal(segmentar('Por la Amura de babor', voc).map((x) => x.texto).join(''), 'Por la Amura de babor');
 });
+
+test('vocabulario: los términos básicos no se subrayan salvo que se pida', () => {
+  const lista = [{ id: 'proa', termino: 'Proa', formas: ['proa'], definicion: 'x', basico: true }, { id: 'amura', termino: 'Amura', formas: ['amura'], definicion: 'y' }];
+  const marcados = (voc) => segmentar('proa y amura', voc).filter((x) => x.tipo === 'termino').map((x) => x.id);
+  assert.deepEqual(marcados(compilarVocabulario(lista)), ['amura']);
+  assert.deepEqual(marcados(compilarVocabulario(lista, { basicos: true })), ['proa', 'amura']);
+});

@@ -4,13 +4,16 @@
 const escapa = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /**
- * @param {{ id, termino, formas: string[], definicion }[]} terminos
+ * @param {{ id, termino, formas: string[], definicion, basico?: boolean }[]} terminos
+ * @param {{ basicos?: boolean }} o  los básicos (proa, babor, rumbo…) no se subrayan salvo que se pida: llenarían
+ *   de marcas casi todas las preguntas y son lo primero que se aprende
  * @returns {{ porId: Map<string, object>, re: RegExp|null, idDeForma: Map<string, string> }}
  */
-export function compilarVocabulario(terminos = []) {
+export function compilarVocabulario(terminos = [], { basicos = false } = {}) {
   const porId = new Map();
   const idDeForma = new Map();
   for (const t of terminos) {
+    if (t.basico && !basicos) continue;
     porId.set(t.id, t);
     for (const f of t.formas ?? []) if (f && !idDeForma.has(f.toLowerCase())) idDeForma.set(f.toLowerCase(), t.id);
   }

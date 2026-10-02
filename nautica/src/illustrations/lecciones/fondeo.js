@@ -625,21 +625,27 @@ function remolqueAbarloado() {
   const out = open(W, H, 'Remolque abarloado', 'ra');
   out.push(clipDef('ra', W, H), `<g clip-path="url(#ra-clip)">${sea(0, 30, W, H - 30)}</g>`);
   out.push(title(160, 'Remolque abarloado (entrar en puerto)'));
-  const L = 120;
+  // Remolcador a estribor; el averiado, más pequeño, queda entre el través y la aleta del remolcador.
+  const Lr = 124;
+  const La = 88;
   const B = 34;
-  const [xa, ya] = [130, 152];
-  const [xr, yr] = [xa + B + 16, 134];
-  for (const y of [112, 186]) out.push(defensa((xa + xr) / 2 - 4, y, 8, 14));
-  out.push(hp(xa, ya, 0, L, B), hp(xr, yr, 0, L, B));
-  const l = xa + B / 2 - 2;
+  const [xr, yr] = [176, 134];
+  const [xa, ya] = [xr - B - 14, yr + 14]; // la popa del remolcador queda más a popa: gobierna él
+  for (const y of [yr - 4, yr + 44]) out.push(defensa((xa + xr) / 2 - 4, y, 8, 14));
+  out.push(hp(xr, yr, 0, Lr, B), hp(xa, ya, 0, La, B - 4));
+  const l = xa + (B - 4) / 2 - 2;
   const r = xr - B / 2 + 2;
-  out.push(amarra([r, yr - L / 2 + 26], [l, ya - L / 2 + 22]), amarra([r, yr + 4], [l, ya - 26]), amarra([r, yr + L / 2 - 12], [l, ya + L / 2 - 14]));
-  out.push(bold(xr + B / 2 + 8, yr - 10, 'remolcador', null, 'start'));
-  out.push(bold(xa - B / 2 - 8, ya + 16, 'averiado,', null, 'end'), lbl(xa - B / 2 - 8, ya + 30, 'un poco más', null, 'end'), lbl(xa - B / 2 - 8, ya + 42, 'a popa', null, 'end'));
-  out.push(arrow(292, 214, 292, 150, 'v', 'ra', 2.4), lbl(292, 230, 'avante', 'v', 'middle'));
+  out.push(amarra([r, yr - 16], [l, ya - La / 2 + 16]), amarra([r, yr + 20], [l, ya - 4]), amarra([r, yr + Lr / 2 - 12], [l, ya + La / 2 - 12]));
+  // través y aleta del remolcador
+  const xt = xr + B / 2 + 4;
+  out.push(`<line x1="${xt}" y1="${yr}" x2="${xt + 14}" y2="${yr}" stroke="currentColor" stroke-width="1.2"/>`, lbl(xt + 18, yr + 4, 'través', null, 'start'));
+  out.push(`<line x1="${xt}" y1="${yr + Lr * 0.36}" x2="${xt + 14}" y2="${yr + Lr * 0.36}" stroke="currentColor" stroke-width="1.2"/>`, lbl(xt + 18, yr + Lr * 0.36 + 4, 'aleta', null, 'start'));
+  out.push(bold(xr + B / 2 + 8, yr - Lr / 2 + 14, 'remolcador', null, 'start'));
+  out.push(bold(xa - B / 2 - 6, ya - 6, 'averiado:', null, 'end'), lbl(xa - B / 2 - 6, ya + 8, 'entre el través', null, 'end'), lbl(xa - B / 2 - 6, ya + 20, 'y la aleta del', null, 'end'), lbl(xa - B / 2 - 6, ya + 32, 'remolcador', null, 'end'));
+  out.push(arrow(300, 230, 300, 190, 'v', 'ra', 2.4), lbl(300, 244, 'avante', 'v', 'middle'));
   out.push(lbl(14, 250, 'aguas abrigadas y espacios reducidos', null, 'start'));
   out.push('</svg>');
-  return { svg: out.join(''), caption: 'En aguas abrigadas y espacios reducidos, como al entrar en puerto, se puede remolcar abarloado: los dos barcos amarrados costado con costado, con el averiado un poco más a popa.' };
+  return { svg: out.join(''), caption: 'En aguas abrigadas y espacios reducidos, como al entrar en puerto, se puede remolcar abarloado: los dos barcos amarrados costado con costado, con el averiado entre el través y la aleta del remolcador, que así gobierna con su hélice y su timón.' };
 }
 
 function remolqueNaufrago() {

@@ -98,3 +98,26 @@ test('estabilidad: subir peso reduce GM; con GM ≤ 0 deja de adrizar; trasladar
   // GG' = w·d / D
   assert.ok(Math.abs(estabilidad({ altura: 1.5, traslado: 2 }).GGt - (BARCO.w * 2) / BARCO.D) < 1e-12);
 });
+
+import { caidaPopa } from '../src/nautical/helice.js';
+test('caída de la popa en las ocho combinaciones de marcha, giro y timón (y con el timón a la vía)', () => {
+  const c = (marcha, sentido, timon) => caidaPopa({ marcha, sentido, timon }).popa;
+  // timón a la vía: solo la hélice (dextrógira avante → Er; atrás → Br; levógira al revés)
+  assert.equal(c('avante', 'dextrogira', 'via'), 'estribor');
+  assert.equal(c('atras', 'dextrogira', 'via'), 'babor');
+  assert.equal(c('avante', 'levogira', 'via'), 'babor');
+  assert.equal(c('atras', 'levogira', 'via'), 'estribor');
+  // avante: manda el timón (timón a Er → popa a Br)
+  assert.equal(c('avante', 'dextrogira', 'er'), 'babor');
+  assert.equal(c('avante', 'dextrogira', 'br'), 'estribor');
+  assert.equal(c('avante', 'levogira', 'er'), 'babor');
+  assert.equal(c('avante', 'levogira', 'br'), 'estribor');
+  // atrás: la popa va a la banda del timón; si se opone, manda la hélice
+  assert.equal(c('atras', 'dextrogira', 'br'), 'babor'); // se suman
+  assert.equal(c('atras', 'dextrogira', 'er'), 'babor'); // se oponen: hélice
+  assert.equal(c('atras', 'levogira', 'er'), 'estribor'); // se suman
+  assert.equal(c('atras', 'levogira', 'br'), 'estribor'); // se oponen: hélice
+  assert.equal(caidaPopa({ marcha: 'atras', sentido: 'dextrogira', timon: 'br' }).dominante, 'ambos');
+  assert.equal(caidaPopa({ marcha: 'avante', sentido: 'dextrogira', timon: 'er' }).dominante, 'timon');
+  assert.equal(caidaPopa({ marcha: 'atras', sentido: 'dextrogira', timon: 'er' }).proa, 'estribor');
+});

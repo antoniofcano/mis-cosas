@@ -7,8 +7,9 @@ import { corriente } from './interactivas/corriente.js';
 import { sectoresLuces } from './interactivas/sectores-luces.js';
 import { cruce } from './interactivas/cruce.js';
 import { estabilidad } from './interactivas/estabilidad.js';
+import { heliceTimon } from './interactivas/helice-timon.js';
 
-export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente, 'sectores-luces': sectoresLuces, cruce, estabilidad };
+export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente, 'sectores-luces': sectoresLuces, cruce, estabilidad, 'helice-timon': heliceTimon };
 
 /** Definición interactiva que corresponde a una spec, o null. */
 export function interactivaDe(spec) {

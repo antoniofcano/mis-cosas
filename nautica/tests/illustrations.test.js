@@ -80,10 +80,9 @@ test('draga: dos rojas en la banda de la obstrucción y dos verdes en la otra (v
 });
 
 test('hélice y timón: dextrógira atrás con timón a babor, la proa cae a estribor y suman', () => {
-  const r = renderIllustration({ tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' });
-  assert.match(r.svg, /La proa cae a <b>estribor<\/b> con rapidez/);
-  const a = renderIllustration({ tipo: 'helice-timon', marcha: 'avante', timon: 'er', sentido: 'dextrogira' });
-  assert.match(a.svg, /La proa cae a <b>estribor<\/b>, algo más despacio/);
+  const lee = (spec) => controlador(INTERACTIVAS['helice-timon'], spec, 'explicacion').vista().lectura;
+  assert.match(lee({ tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' }), /la proa a estribor\. Hélice y timón empujan la popa hacia la misma banda/);
+  assert.match(lee({ tipo: 'helice-timon', marcha: 'avante', timon: 'er', sentido: 'dextrogira' }), /la proa a estribor\. Se oponen: avante/);
 });
 
 test('riesgo de abordaje: con demora constante las demoras sucesivas son iguales', () => {
@@ -98,6 +97,7 @@ import { controlador, MAX_MANDOS } from '../src/ui/lamina-estado.js';
 import { ewTexto, marcacionBanda } from '../src/nautical/compass.js';
 import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
 import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
+import { caidaPopa } from '../src/nautical/helice.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -210,6 +210,11 @@ function specsDeClase(tipo) {
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  'helice-timon'(c, p) {
+    const e = c.estado();
+    assert.deepEqual(e, { marcha: 'atras', sentido: 'dextrogira', timon: 'via' }, 'la clase abre en el caso de la pregunta');
+    assert.equal(p.opciones[p.correcta], `A ${caidaPopa(e).popa}`);
+  },
   estabilidad(c, p) {
     // subir peso: G sube, GM y GZ bajan → adriza peor
     const e = c.estado();

@@ -9,61 +9,7 @@ const otra = (b) => (b === 'er' ? 'br' : 'er');
 const fo = (x, y, w, h, html) => `<foreignObject x="${x}" y="${y}" width="${w}" height="${h}"><div xmlns="http://www.w3.org/1999/xhtml" class="il-fo">${html}</div></foreignObject>`;
 
 // ---------------------------------------------------------------------------
-// Hélice y timón. spec: { tipo:'helice-timon', marcha:'avante'|'atras', timon:'er'|'br', sentido:'dextrogira'|'levogira' }
-
-export function heliceTimonIllustration(spec) {
-  const atras = spec.marcha === 'atras';
-  const timon = spec.timon === 'br' ? 'br' : 'er';
-  const dex = spec.sentido !== 'levogira';
-  // efecto del timón (con arrancada): avante la popa va a la banda contraria al timón; atrás, a la misma banda
-  const popaTimon = atras ? timon : otra(timon);
-  // presión lateral de las palas: dextrógira avante → popa a Er; atrás → popa a Br (levógira, al revés)
-  const popaHelice = (dex !== atras) ? 'er' : 'br';
-  const suma = popaTimon === popaHelice;
-  const proa = otra(popaTimon);
-  const W = 340;
-  const H = 280;
-  const out = open(W, H, 'Hélice y timón', 'ht');
-  out.push(title(W / 2, `${atras ? 'Atrás' : 'Avante'} · timón a ${BANDA[timon]} · hélice ${dex ? 'dextrógira' : 'levógira'}`));
-  const cx = 108;
-  const cy = 150;
-  const L = 160;
-  const sgn = (b) => (b === 'er' ? 1 : -1);
-  // casco girando alrededor de su punto de giro (avante, a ~1/3 de la eslora desde proa; atrás, a ~1/3 desde popa)
-  const piv = atras ? L / 6 : -L / 6;
-  const ang = sgn(proa) * (suma ? 24 : 10);
-  const rud = sgn(timon) * 32;
-  const [rx, ry] = [Math.sin(rad(rud)) * 18, Math.cos(rad(rud)) * 18];
-  const wash = atras ? arrow(0, L / 2 + 6, 0, L / 2 - 26, 'v', 'ht', 2.6, 'opacity=".8"') : arrow(0, L / 2 + 4, 0, L / 2 + 34, 'v', 'ht', 2.6, 'opacity=".8"');
-  out.push(`<g transform="translate(${cx} ${cy})"><g>` +
-    `<animateTransform attributeName="transform" type="translate" values="0,0;0,${atras ? 14 : -14};0,${atras ? 14 : -14}" keyTimes="0;.75;1" dur="5s" repeatCount="indefinite"/>` +
-    `<g><animateTransform attributeName="transform" type="rotate" values="0 0 ${piv};${ang} 0 ${piv};${ang} 0 ${piv}" keyTimes="0;.75;1" dur="5s" repeatCount="indefinite"/>` +
-    hullPlan(L, 50) + `<line x1="0" y1="${L / 2}" x2="${fx(rx)}" y2="${fx(L / 2 + ry)}" stroke="${C.r}" stroke-width="4" stroke-linecap="round"/>` +
-    `<rect x="-9" y="${L / 2 - 8}" width="18" height="4" rx="2" fill="${C.g}"/>` + wash +
-    `<circle cx="0" cy="${piv}" r="3" fill="${C.p}"/></g></g></g>`);
-  out.push(lbl(cx, cy - L / 2 - 8, 'proa', null, 'middle'), lbl(cx - 44, cy - 50, 'Br', null, 'middle', 'font-weight="700"'), lbl(cx + 44, cy - 50, 'Er', null, 'middle', 'font-weight="700"'));
-  out.push(lbl(cx + 8, cy + piv + 4, 'punto de giro', 'p', 'start', 'font-size="8.5"'));
-  // flechas de efecto en la popa
-  const sy = cy + L / 2 - 14;
-  out.push(arrow(cx + sgn(popaTimon) * 30, sy, cx + sgn(popaTimon) * 62, sy, 'r', 'ht', 2.6));
-  out.push(arrow(cx + sgn(popaHelice) * 30, sy + 22, cx + sgn(popaHelice) * (suma ? 62 : 50), sy + 22, 'a', 'ht', 1.8));
-  out.push(lbl(cx + sgn(popaTimon) * 64, sy - 6, 'timón', 'r', popaTimon === 'er' ? 'start' : 'end', 'font-size="9"'));
-  out.push(lbl(cx + sgn(popaHelice) * 64, sy + 30, 'hélice', 'a', popaHelice === 'er' ? 'start' : 'end', 'font-size="9"'));
-  const res = suma
-    ? `La proa cae a <b>${BANDA[proa]}</b> con rapidez: timón y hélice suman.`
-    : atras
-      ? `La proa cae a <b>${BANDA[proa]}</b> solo si lleva arrancada atrás suficiente; con poca arrancada domina la hélice y la popa se va a ${BANDA[popaHelice]}.`
-      : `La proa cae a <b>${BANDA[proa]}</b>, algo más despacio: la hélice resta un poco.`;
-  out.push(fo(212, 40, 124, 230,
-    `<p style="margin:0 0 6px;color:${C.r}"><b>Timón</b> a ${BANDA[timon]} ${atras ? 'con arrancada atrás' : 'avante'}: popa a ${BANDA[popaTimon]}.</p>` +
-    `<p style="margin:0 0 6px;color:${C.a}"><b>Hélice</b> ${dex ? 'dextrógira' : 'levógira'} ${atras ? 'atrás' : 'avante'}: popa a ${BANDA[popaHelice]} (presión lateral de las palas).</p>` +
-    `<p style="margin:0">${res}</p>`));
-  out.push('</svg>');
-  const cap = atras
-    ? `Dando atrás el timón actúa al revés que avante (la popa va hacia el lado del timón) y necesita arrancada; la hélice ${dex ? 'dextrógira' : 'levógira'} lleva la popa a ${BANDA[popaHelice]} con mucha fuerza.`
-    : `Avante, el chorro de la hélice incide en el timón y lo hace eficaz incluso con poca arrancada: la popa va a la banda contraria al timón. La hélice ${dex ? 'dextrógira' : 'levógira'} tiende a llevar la popa a ${BANDA[popaHelice]}, un efecto pequeño avante.`;
-  return { svg: out.join(''), caption: cap };
-}
+// Hélice y timón: ahora es interactiva, en src/illustrations/interactivas/helice-timon.js.
 
 // ---------------------------------------------------------------------------
 // Curva de evolución. spec: { tipo:'evolucion' }

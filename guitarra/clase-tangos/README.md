@@ -1,6 +1,6 @@
 # Clase de guitarra · tangos (maqueta)
 
-Fuera del producto OlivarTrack: es una maqueta aparte, sin build ni tests.
+Maqueta aparte, sin build ni tests.
 `index.html` es una página estática; se abre directamente en el navegador.
 Va en cuatro pestañas: **Compás** (el ritmo de 8 y la alzapúa), **Ruedas**
 (por arriba en Mi y por medio en La, con sus ruedas sobre el compás),

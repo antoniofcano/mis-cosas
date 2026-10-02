@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estrella de Morente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Kalam:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+[hidden]{display:none!important}
+img{max-width:100%}
+:root{
+  --bg:#E7EBE9; --surface:#F6F8F7; --ink:#1C2326; --muted:#58646A; --line:#CBD3D0;
+  --red:#B3302A; --teal:#1F6F64; --wood:#7A4E2D; --hl:#F2C94C; --hl-ink:#3A2C00;
+  --shade:rgba(22,27,30,.60); --board-dim:rgba(22,27,30,.28);
+  --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --hand:"Kalam","Comic Sans MS","Segoe Print",cursive;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#131719; --surface:#1C2225; --ink:#E6EBE9; --muted:#9BA6AA; --line:#2C3538;
+    --red:#EE7A6F; --teal:#5CC0AF; --wood:#C99466; --hl:#F2C94C; --hl-ink:#2B2100;
+    --shade:rgba(6,8,9,.66); --board-dim:rgba(6,8,9,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#131719; --surface:#1C2225; --ink:#E6EBE9; --muted:#9BA6AA; --line:#2C3538;
+  --red:#EE7A6F; --teal:#5CC0AF; --wood:#C99466; --hl:#F2C94C; --hl-ink:#2B2100;
+  --shade:rgba(6,8,9,.66); --board-dim:rgba(6,8,9,.35);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;
+  padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1240px;margin-inline:auto;display:flex;flex-direction:column;gap:18px}
+
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+h1 em{color:var(--red)}
+.sub{color:var(--muted);margin:0;font-size:14px}
+.keys{color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 12px}
+kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--surface);color:var(--ink)}
+
+.stage{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:860px){.stage{grid-template-columns:minmax(0,1fr)}}
+.left{display:flex;flex-direction:column;gap:14px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media (max-width:860px){.left{position:static}}
+
+.video-wrap{position:relative;border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;max-width:100%}
+.video-wrap video{width:100%;height:100%;display:block;object-fit:cover;cursor:pointer}
+.bigplay{position:absolute;inset:0;margin:auto;width:74px;height:74px;border-radius:50%;border:0;
+  background:rgba(255,255,255,.9);color:#1C2326;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.bigplay svg{width:28px;height:28px;margin-left:4px}
+.video-wrap .caption{position:absolute;left:10px;right:10px;bottom:10px;display:flex;justify-content:center;pointer-events:none}
+.caption span{background:rgba(10,12,14,.72);color:#fff;border-radius:6px;padding:4px 10px;font-size:15px;text-align:center;max-width:100%}
+.caption b{font-family:var(--hand);color:#FFB3AB;font-weight:700;margin-right:6px}
+
+.transport{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 11px;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500}
+.btn:hover{border-color:var(--muted)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn svg{width:16px;height:16px}
+.btn.play{background:var(--red);color:#fff;border-color:var(--red);padding-inline:14px}
+:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:7px 9px;font-size:13px;font-family:var(--mono)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.time{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:auto}
+
+.timeline{position:relative;height:34px;border-radius:7px;background:var(--surface);border:1px solid var(--line);overflow:hidden;cursor:pointer;touch-action:none}
+.timeline .tseg{position:absolute;top:0;bottom:0;border-right:1px solid var(--bg);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10.5px;color:var(--muted);overflow:hidden;white-space:nowrap}
+.tseg.verse{background:color-mix(in srgb,var(--teal) 13%,transparent)}
+.tseg.coda{background:repeating-linear-gradient(135deg,transparent 0 5px,color-mix(in srgb,var(--wood) 16%,transparent) 5px 10px)}
+.tseg.on{background:color-mix(in srgb,var(--hl) 55%,transparent);color:var(--hl-ink);font-weight:600}
+.tseg.loop{box-shadow:inset 0 0 0 2px var(--red)}
+.playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--red);pointer-events:none}
+
+.chords{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center;min-width:0}
+.card .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.card .nm{font-family:var(--hand);font-weight:700;line-height:1;color:var(--red)}
+.now .nm{font-size:48px}
+.nxt .nm{font-size:32px;color:var(--ink)}
+.card .en{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.card svg.dg{flex:none}
+.now svg.dg{width:92px;height:112px}
+.nxt svg.dg{width:66px;height:80px;opacity:.85}
+.count{height:4px;border-radius:2px;background:var(--line);margin-top:8px;overflow:hidden;width:100%}
+.count i{display:block;height:100%;width:0;background:var(--teal)}
+.nxt .in{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:480px){.chords{grid-template-columns:1fr}}
+
+details.calib{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+details.calib summary{cursor:pointer;font-weight:600;font-size:14px}
+.calib p{margin:8px 0;color:var(--muted);font-size:13.5px;max-width:62ch}
+.calib .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
+.calib .cur{font-family:var(--mono);font-size:13px}
+.toast{font-size:13px;color:var(--teal);min-height:1.2em}
+
+.right{display:flex;flex-direction:column;gap:12px;min-width:0}
+.viewbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.hint{font-size:12.5px;color:var(--muted)}
+
+.board{position:relative;border-radius:8px;overflow:hidden;border:10px solid var(--wood);box-shadow:0 2px 0 rgba(0,0,0,.08);background:#ddd;aspect-ratio:1512/2016;max-width:100%;
+  user-select:none;-webkit-user-select:none}
+.board img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.board .dim{position:absolute;inset:0;background:var(--board-dim);opacity:0;transition:opacity .4s}
+.board.rest .dim{opacity:1}
+.spot{position:absolute;border-radius:14px;box-shadow:0 0 0 300vmax var(--shade);transition:left .45s cubic-bezier(.3,.7,.2,1),top .45s cubic-bezier(.3,.7,.2,1),width .45s,height .45s,opacity .3s;pointer-events:none}
+.spot::after{content:"";position:absolute;inset:-2px;border-radius:15px;border:2px solid var(--hl);opacity:.9}
+.spot .sweep{position:absolute;left:4%;bottom:10%;height:14%;width:0;border-radius:6px;background:var(--hl);mix-blend-mode:multiply;opacity:.55}
+.board .hit{position:absolute;cursor:pointer;border-radius:10px}
+.board .hit:hover{background:rgba(242,201,76,.16)}
+.ring{position:absolute;width:9%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:3px solid transparent;pointer-events:none;transition:border-color .2s}
+.ring.next{border:2px dashed rgba(31,111,100,.85)}
+.ring.now{border-color:var(--red);box-shadow:0 0 0 6px rgba(179,48,42,.18);animation:pulse 1s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(179,48,42,.45)}100%{box-shadow:0 0 0 18px rgba(179,48,42,0)}}
+.board .banner{position:absolute;left:6%;right:6%;top:5%;background:rgba(10,12,14,.82);color:#fff;border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.35;opacity:0;transition:opacity .3s;pointer-events:none}
+.board .banner.on{opacity:1}
+.banner .bch{font-family:var(--hand);font-weight:700;font-size:20px;color:#FFB3AB;padding:0 5px;border-radius:4px}
+.banner .bch.now{background:#E0645A;color:#fff}
+.banner b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#F2C94C;margin-bottom:2px}
+
+.clean{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0 20px;
+  aspect-ratio:16/9;min-height:240px;max-width:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(transparent 0,#000 16%,#000 84%,transparent 100%)}
+.clean .pad{height:45%}
+.cl{padding:22px 10px 6px;border-radius:8px;font-size:19px;cursor:pointer;color:var(--muted);transition:background .25s,color .25s}
+.cl:hover{background:color-mix(in srgb,var(--hl) 14%,transparent)}
+.cl .w{position:relative;white-space:pre-wrap}
+.cl .ch{position:absolute;left:0;top:-1.25em;font-family:var(--hand);font-weight:700;font-size:16px;color:var(--red);white-space:nowrap}
+.cl .ch.now{background:var(--red);color:#fff;border-radius:4px;padding:0 4px;margin-left:-4px}
+.cl.done{color:var(--ink)}
+.cl.on{background:color-mix(in srgb,var(--hl) 20%,var(--surface));box-shadow:inset 3px 0 0 var(--hl);color:var(--muted);font-weight:600}
+.cl.on .wd.sung{color:var(--ink)}
+.cl.coda{font-style:italic}
+.cl.coda small{display:block;font-style:normal;font-size:12px;color:var(--muted);font-weight:400;margin-bottom:1.5em}
+.cl.sep{padding-top:14px;border-top:1px dashed var(--line);margin-top:8px}
+
+footer{color:var(--muted);font-size:12.5px;max-width:80ch}
+@media (prefers-reduced-motion:reduce){.spot,.dim,.ring{transition:none}.ring.now{animation:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Estrella <em>· Enrique Morente</em></h1>
+      <p class="sub">Tango · guitarra y voz · 1:36 · <strong>cejilla en el 2º traste</strong> · la pizarra se ilumina al ritmo del vídeo</p>
+    </div>
+    <div class="keys"><span><kbd>Espacio</kbd> tocar/parar</span><span><kbd>←</kbd><kbd>→</kbd> verso</span><span><kbd>L</kbd> repetir verso</span><span><kbd>M</kbd> marcar tiempo</span></div>
+  </header>
+
+  <div class="stage">
+    <section class="left" aria-label="Vídeo y controles">
+      <div class="video-wrap">
+        <video id="v" src="tango.mp4" poster="poster.jpg" playsinline preload="metadata"></video>
+        <button class="bigplay" id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l15 8-15 8z"/></svg></button>
+        <div class="caption"><span id="cap"><b>Intro</b>guitarra sola</span></div>
+      </div>
+
+      <div class="transport">
+        <button class="btn play" id="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l15 8-15 8z"/></svg><span>Tocar</span></button>
+        <button class="btn" id="prev" aria-label="Verso anterior"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+        <button class="btn" id="next" aria-label="Verso siguiente"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+        <button class="btn" id="loop" aria-pressed="false" title="Repetir el verso actual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 01-3 3H3"/></svg>Repetir verso</button>
+        <div class="seg" role="group" aria-label="Velocidad">
+          <button data-rate="0.5" aria-pressed="false">0,5×</button>
+          <button data-rate="0.75" aria-pressed="false">0,75×</button>
+          <button data-rate="1" aria-pressed="true">1×</button>
+        </div>
+        <span class="time" id="time">0:00.0 / 1:36</span>
+      </div>
+
+      <div class="timeline" id="timeline" aria-label="Línea de tiempo: pulsa para saltar"><div class="playhead" id="ph"></div></div>
+
+      <div class="chords">
+        <div class="card now">
+          <svg class="dg" id="dgNow" viewBox="0 0 92 112" aria-hidden="true"></svg>
+          <div><div class="lab">Acorde ahora</div><div class="nm" id="nmNow">—</div><div class="en" id="enNow">intro</div></div>
+        </div>
+        <div class="card nxt">
+          <svg class="dg" id="dgNext" viewBox="0 0 92 112" aria-hidden="true"></svg>
+          <div style="flex:1;min-width:0"><div class="lab">Siguiente</div><div class="nm" id="nmNext">lam</div><div class="in" id="inNext"></div><div class="count"><i id="cnt"></i></div></div>
+        </div>
+      </div>
+
+      <details class="calib" id="calib">
+        <summary>Afinar los tiempos</summary>
+        <p>Los tiempos de cada verso se han estimado escuchando el audio y pueden ir un poco adelantados o atrasados. Mientras suena, pulsa <kbd>M</kbd> (o el botón) justo cuando empiece el verso siguiente. Los cambios se guardan en este navegador.</p>
+        <div class="row">
+          <button class="btn" id="mark">Marcar: empieza el siguiente</button>
+          <span class="cur" id="calCur"></span>
+        </div>
+        <div class="row">
+          <button class="btn" id="nudgeM">−0,1 s</button>
+          <button class="btn" id="nudgeP">+0,1 s</button>
+          <span class="hint">mueve el inicio del verso actual</span>
+        </div>
+        <div class="row">
+          <button class="btn" id="copy">Copiar tiempos</button>
+          <button class="btn" id="reset">Volver a la estimación</button>
+        </div>
+        <div class="toast" id="toast" role="status"></div>
+      </details>
+    </section>
+
+    <section class="right" aria-label="Letra con acordes">
+      <div class="viewbar">
+        <div class="seg" role="group" aria-label="Vista">
+          <button id="vBoard" aria-pressed="true" style="font-family:var(--sans)">Pizarra</button>
+          <button id="vClean" aria-pressed="false" style="font-family:var(--sans)">Letra limpia</button>
+        </div>
+        <span class="hint">Pulsa un verso para saltar a él</span>
+      </div>
+
+      <div class="board" id="board">
+        <img src="pizarra.jpg" alt="Pizarra con la letra del tango y los acordes escritos en rojo" draggable="false">
+        <div class="dim"></div>
+        <div class="spot" id="spot"><div class="sweep" id="sweep"></div></div>
+        <div class="banner" id="banner"></div>
+      </div>
+
+      <div class="clean" id="clean" hidden></div>
+    </section>
+  </div>
+
+  <footer>Los cambios de acorde se han sacado del audio comparando las notas que suenan con cada acorde de la pizarra (acierta 19 de 24 en la parte escrita). Todo suena dos semitonos más alto que lo escrito: cejilla en el 2º traste, que se ve en el vídeo. La coda (desde 1:04) es el estribillo de «Estrella», de Enrique Morente, que no está en la pizarra; sus acordes salen del mismo análisis. El audio no distingue bien FA de FΔ, y en los Mi se oye a menudo un Fa (la novena menor flamenca, o la voz). FΔ = Fa con séptima mayor (Fmaj7).</footer>
+</div>
+
+<script>
+(() => {
+"use strict";
+// ---------- Datos de la pizarra ----------
+// Coordenadas en píxeles de la foto (1500×2000), convertidas a % al pintar.
+const LINES = [
+  {t:"Como [lam]relámpago de fuego [Sol]fuiste", box:[160,70,1120,225], pos:[[505,125],[1010,85]]},
+  {t:"Que en mi [FΔ]sentimiento [Mi]entraste", box:[160,205,1110,315], pos:[[605,235],[1000,235]]},
+  {t:"Y que en mi [FA]sentimiento [Mi]entraste   [FΔ]·  [Mi]·", box:[180,335,1390,485], pos:[[610,395],[955,395],[1180,395],[1310,390]]},
+  {t:"[lam]Dejaste encendido [Sol]el fuego", box:[180,520,870,655], pos:[[305,545],[690,555]]},
+  {t:"Y [FΔ]entre llamas me [Mi]dejaste", box:[180,650,850,775], pos:[[480,680],[770,690]]},
+  {t:"[FΔ]Estrella, llévame a un mundo", box:[180,770,980,895], pos:[[370,795]]},
+  {t:"Con más [lam]verdades, con menos [Mi]odios", box:[180,915,1100,1050], pos:[[580,940],[1065,960]]},
+  {t:"Con más [rem]clemencia y más [Mi]piedades", box:[180,1060,1060,1235], pos:[[580,1095],[985,1130]]},
+  {t:"[rem]Romperemos las nubes [lam]negras", box:[170,1215,1000,1390], pos:[[345,1245],[940,1295]]},
+  {t:"Que nos [Sol]engañen", box:[170,1375,620,1485], pos:[[480,1405]]},
+  {t:"Que nos [FΔ]acechan", box:[160,1500,640,1625], pos:[[490,1540]]},
+  {t:"[FA]Abriremos un mundo [FA]nuevo", box:[160,1640,920,1795], pos:[[385,1680],[785,1695]]},
+  {t:"Sin [rem]fusiles ni [Mi]veneno", box:[150,1790,720,1935], pos:[[375,1810],[655,1845]]},
+  // Fuera de la pizarra: el estribillo de «Estrella» (Enrique Morente). Acordes sacados del audio.
+  {t:"[Mi]Si yo encontrara [rem]la estrella [Mi]·    [rem]que me guiara", off:true, tag:"Estribillo"},
+  {t:"[lam]Yo la metería muy dentro [Sol]de mi pecho y la venerara", off:true, tag:"Estribillo"},
+  {t:"Si encontrara la estrella [FA]que en el camino me alumbrara", off:true, tag:"Estribillo"},
+  {t:"(guitarra)  [Mi]·      [FA]·      [Mi]·      [rem]·      [Mi]·", off:true, tag:"Cierre"},
+];
+// Tramos del vídeo. k = índice de línea, o 'intro'. c = cuándo entra cada acorde, en s desde el inicio del tramo.
+// Los cambios de acorde salen del perfil de notas del audio (con la cejilla al 2 descontada).
+const DEFAULT = [
+  {k:"intro",s:0},
+  {k:0,s:6.5,c:[2.1,4.4]},
+  {k:1,s:12.2,c:[1.1,3.3]},
+  {k:2,s:17.0,c:[0.6,2.9,5.4,7.2]},
+  {k:3,s:25.9,c:[0.4,2.5]},
+  {k:4,s:29.9,c:[0.7,2.8]},
+  {k:5,s:33.9,c:[1.1]},
+  {k:6,s:37.4,c:[1.7,3.9]},
+  {k:7,s:41.7,c:[1.7,3.9]},
+  {k:8,s:45.9,c:[1.6,4.1]},
+  {k:9,s:50.9,c:[1.0]},
+  {k:10,s:53.2,c:[1.0]},
+  {k:11,s:55.9,c:[0.4,2.4]},
+  {k:12,s:59.8,c:[0.5,2.9]},
+  {k:13,s:63.8,c:[1.3,2.8,5.2,7.0]},
+  {k:14,s:75.3,c:[0.1,2.1]},
+  {k:15,s:79.7,c:[2.2]},
+  {k:16,s:85.5,c:[0.5,2.6,5.0,6.7,8.1]},
+];
+const CHORDS = { // cuerdas 6ª→1ª; -1 = no suena
+  "lam":{en:"Am",f:[-1,0,2,2,1,0]},
+  "Sol":{en:"G",f:[3,2,0,0,0,3]},
+  "FΔ":{en:"Fmaj7",f:[-1,-1,3,2,1,0]},
+  "FA":{en:"F",f:[1,3,3,2,1,1],barre:1},
+  "Mi":{en:"E",f:[0,2,2,1,0,0]},
+  "rem":{en:"Dm",f:[-1,-1,0,2,3,1]},
+};
+const parse = t => { const out=[]; const re=/\[([^\]]+)\]/g; let last=0,m,pend=null;
+  while((m=re.exec(t))){ const txt=t.slice(last,m.index); if(txt||pend) out.push({ch:pend,txt}); pend=m[1]; last=re.lastIndex; }
+  out.push({ch:pend,txt:t.slice(last)}); return out.filter(p=>p.ch||p.txt); };
+LINES.forEach(l=>{ l.parts=parse(l.t); l.chords=l.parts.filter(p=>p.ch).map(p=>p.ch); l.plain=l.parts.map(p=>p.txt).join("").replace(/\s*·\s*/g," ").trim(); });
+
+// ---------- Estado ----------
+const KEY="tango-relampago-tiempos-v3";
+let SEG = load();
+function load(){ try{ const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(Array.isArray(s)&&s.length===DEFAULT.length) return DEFAULT.map((d,i)=>({...d,s:+s[i]})); }catch(e){} return DEFAULT.map(d=>({...d})); }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(SEG.map(x=>+x.s.toFixed(2)))); }catch(e){} }
+
+const $=id=>document.getElementById(id);
+const v=$("v"); let dur=96.37; let loopIdx=-1;
+const endOf=i=> i+1<SEG.length? SEG[i+1].s : dur;
+const segAt=t=>{ let i=0; for(let j=0;j<SEG.length;j++) if(t>=SEG[j].s) i=j; return i; };
+const chordEvents=()=>{ const ev=[]; SEG.forEach((g,i)=>{ if(typeof g.k!=="number") return; const L=LINES[g.k];
+  (g.c||[]).forEach((o,ci)=>ev.push({t:Math.min(g.s+o,endOf(i)-0.05),ch:L.chords[ci],seg:i,ci})); }); return ev; };
+let EV=chordEvents();
+
+// ---------- Diagramas ----------
+function diagram(svg,name){
+  const c=CHORDS[name]; if(!c){ svg.innerHTML=""; return; }
+  const x0=16,dx=12,y0=22,dy=17,ns="http://www.w3.org/2000/svg"; let h="";
+  h+=`<rect x="${x0}" y="${y0-3}" width="${dx*5}" height="3" fill="currentColor"/>`;
+  for(let s=0;s<6;s++) h+=`<line x1="${x0+s*dx}" y1="${y0}" x2="${x0+s*dx}" y2="${y0+dy*4}" stroke="currentColor" stroke-width="1" opacity=".7"/>`;
+  for(let f=1;f<=4;f++) h+=`<line x1="${x0}" y1="${y0+f*dy}" x2="${x0+dx*5}" y2="${y0+f*dy}" stroke="currentColor" stroke-width="1" opacity=".5"/>`;
+  if(c.barre) h+=`<rect x="${x0-5}" y="${y0+(c.barre-.5)*dy-5}" width="${dx*5+10}" height="10" rx="5" fill="var(--red)"/>`;
+  c.f.forEach((f,s)=>{ const x=x0+s*dx;
+    if(f<0) h+=`<text x="${x}" y="${y0-8}" text-anchor="middle" font-size="10" font-family="var(--mono)" fill="var(--muted)">×</text>`;
+    else if(f===0) h+=`<circle cx="${x}" cy="${y0-11}" r="3.5" fill="none" stroke="var(--muted)" stroke-width="1.3"/>`;
+    else if(!(c.barre&&f===c.barre)) h+=`<circle cx="${x}" cy="${y0+(f-.5)*dy}" r="5" fill="var(--red)"/>`; });
+  h+=`<text x="${x0+dx*2.5}" y="${y0+dy*4+14}" text-anchor="middle" font-size="10" font-family="var(--mono)" fill="var(--muted)">${c.en}</text>`;
+  svg.style.color="var(--ink)"; svg.innerHTML=h;
+}
+
+// ---------- Pizarra ----------
+const board=$("board"), spot=$("spot"), sweep=$("sweep"), banner=$("banner");
+const pct=(x,y)=>[x/15,y/20];
+const rings=[];
+LINES.forEach((L,li)=>{
+  if(L.off){ rings[li]=[]; return; }
+  const [a,b,c,d]=L.box; const hit=document.createElement("div"); hit.className="hit";
+  Object.assign(hit.style,{left:a/15+"%",top:b/20+"%",width:(c-a)/15+"%",height:(d-b)/20+"%"});
+  hit.title=L.plain; hit.addEventListener("click",()=>jumpLine(li)); board.appendChild(hit);
+  rings[li]=L.pos.map(([x,y])=>{ const r=document.createElement("div"); r.className="ring"; const [px,py]=pct(x,y);
+    r.style.left=px+"%"; r.style.top=py+"%"; board.appendChild(r); return r; });
+});
+
+// ---------- Letra limpia ----------
+const clean=$("clean"); const cls=[];
+// Cada palabra en su propio span para ir marcando lo ya cantado (karaoke sin background-clip, que falla con hijos posicionados).
+function addWords(parent,txt){ txt.split(/(\s+)/).forEach(tok=>{ if(!tok) return;
+  if(/^\s+$/.test(tok)) parent.appendChild(document.createTextNode(tok));
+  else { const s=document.createElement("span"); s.className="wd"; s.textContent=tok; parent.appendChild(s); } }); }
+const padTop=document.createElement("div"); padTop.className="pad"; clean.appendChild(padTop);
+LINES.forEach((L,li)=>{ const el=document.createElement("div"); el.className="cl"; el.dataset.i=li;
+  if(L.off){ el.classList.add("coda"); if(!LINES[li-1].off) el.classList.add("sep");
+    const sm=document.createElement("small"); sm.textContent=L.tag+" · no está en la pizarra"; el.appendChild(sm); }
+  L.parts.forEach(p=>{ const w=document.createElement("span"); w.className="w";
+    if(p.ch){ const b=document.createElement("b"); b.className="ch"; b.textContent=p.ch; w.appendChild(b); }
+    addWords(w,p.txt.replace(/·/g," ")); el.appendChild(w); });
+  el.addEventListener("click",()=>jumpLine(li)); clean.appendChild(el); cls[li]=el; });
+const padBot=document.createElement("div"); padBot.className="pad"; clean.appendChild(padBot);
+// Marca las palabras cantadas según el avance del tramo.
+function sing(el,prog){ const ws=[...el.querySelectorAll(".wd")]; const tot=ws.reduce((a,w)=>a+w.textContent.length,0); let acc=0;
+  ws.forEach(w=>{ w.classList.toggle("sung",prog>0&&acc<=prog*tot); acc+=w.textContent.length; }); }
+// Desplaza la ventana de letra por dentro, sin mover la página.
+function centerIn(el,smooth){ const top=el.offsetTop-(clean.clientHeight-el.offsetHeight)/2;
+  clean.scrollTo({top,behavior:smooth&&!matchMedia("(prefers-reduced-motion: reduce)").matches?"smooth":"auto"}); }
+
+// ---------- Línea de tiempo ----------
+const tl=$("timeline"), ph=$("ph"); let tsegs=[];
+function buildTimeline(){ tsegs.forEach(e=>e.remove()); tsegs=SEG.map((g,i)=>{ const e=document.createElement("div");
+  const num=typeof g.k==="number"; e.className="tseg "+(num?"verse":"coda");
+  e.style.left=(g.s/dur*100)+"%"; e.style.width=((endOf(i)-g.s)/dur*100)+"%";
+  const off=num&&LINES[g.k].off; e.className="tseg "+(num&&!off?"verse":"coda");
+  e.textContent= off? LINES[g.k].tag.split(" ")[0].toLowerCase() : num? (g.k+1) : "intro";
+  e.title= num? LINES[g.k].plain : e.textContent; tl.insertBefore(e,ph); return e; }); }
+const tlSeek=e=>{ const r=tl.getBoundingClientRect(); seek(Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*dur); };
+let dragging=false;
+tl.addEventListener("pointerdown",e=>{ dragging=true; tl.setPointerCapture(e.pointerId); tlSeek(e); });
+tl.addEventListener("pointermove",e=>{ if(dragging) tlSeek(e); });
+tl.addEventListener("pointerup",()=>dragging=false);
+
+// ---------- Transporte ----------
+const fmt=t=>{ const m=Math.floor(t/60), s=t-m*60; return m+":"+(s<10?"0":"")+s.toFixed(1); };
+function seek(t){ v.currentTime=Math.max(0,Math.min(dur-0.05,t)); render(); }
+function jumpLine(li){ const t=v.currentTime; const cands=SEG.map((g,i)=>({g,i})).filter(o=>o.g.k===li);
+  const pick=cands.find(o=>o.g.s>t+0.5)||cands[0]; if(loopIdx>=0) setLoop(pick.i); seek(Math.max(0,pick.g.s-0.3)); }
+function step(dir){
+  const target = dir>0? Math.min(SEG.length-1,segAt(v.currentTime)+1) : Math.max(0, (v.currentTime-SEG[segAt(v.currentTime)].s>1.5)? segAt(v.currentTime) : segAt(v.currentTime)-1);
+  if(loopIdx>=0) setLoop(target); seek(SEG[target].s); }
+function toggle(){ if(v.paused) v.play().catch(()=>{}); else v.pause(); }
+function setLoop(i){ loopIdx=i; $("loop").setAttribute("aria-pressed",i>=0); render(); }
+$("play").onclick=toggle; $("bigplay").onclick=toggle; v.addEventListener("click",toggle);
+$("prev").onclick=()=>step(-1); $("next").onclick=()=>step(1);
+$("loop").onclick=()=>setLoop(loopIdx>=0?-1:segAt(v.currentTime));
+document.querySelectorAll("[data-rate]").forEach(b=>b.onclick=()=>{ v.playbackRate=+b.dataset.rate;
+  document.querySelectorAll("[data-rate]").forEach(x=>x.setAttribute("aria-pressed",x===b)); });
+const syncPlay=()=>{ const p=!v.paused; $("bigplay").hidden=p; $("play").querySelector("span").textContent=p?"Parar":"Tocar";
+  $("play").querySelector("svg").innerHTML=p?'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>':'<path d="M6 4l15 8-15 8z"/>'; };
+v.addEventListener("play",syncPlay); v.addEventListener("pause",syncPlay);
+v.addEventListener("loadedmetadata",()=>{ if(isFinite(v.duration)) dur=v.duration; buildTimeline(); render(); });
+
+// ---------- Vista ----------
+function setView(b){ board.hidden=!b; clean.hidden=b; $("vBoard").setAttribute("aria-pressed",b); $("vClean").setAttribute("aria-pressed",!b);
+  needCenter=true; try{ localStorage.setItem(KEY+"-vista",b?"p":"l"); }catch(e){} render(); }
+$("vBoard").onclick=()=>setView(true); $("vClean").onclick=()=>setView(false);
+
+// ---------- Afinar ----------
+const toast=m=>{ $("toast").textContent=m; clearTimeout(toast.t); toast.t=setTimeout(()=>$("toast").textContent="",2600); };
+function changed(){ for(let i=1;i<SEG.length;i++) SEG[i].s=Math.max(SEG[i].s,SEG[i-1].s+0.3); EV=chordEvents(); save(); buildTimeline(); render(); }
+function mark(){ const t=v.currentTime, i=segAt(t);
+  if(i+1>=SEG.length){ toast("Ya estás en el último tramo."); return; }
+  if(t-SEG[i].s<0.3){ toast("Demasiado cerca del inicio del tramo actual."); return; }
+  SEG[i+1].s=t; changed(); toast(`Tramo ${label(i+1)} empieza ahora en ${fmt(t)}.`); }
+function label(i){ const g=SEG[i]; return typeof g.k!=="number"? g.k : LINES[g.k].off? LINES[g.k].tag.split(" ")[0].toLowerCase() : `verso ${g.k+1}`; }
+$("mark").onclick=mark;
+const nudge=d=>{ const i=segAt(v.currentTime); if(i===0) return; SEG[i].s=Math.max(SEG[i-1].s+0.3,Math.min(endOf(i)-0.3,SEG[i].s+d)); changed(); toast(`Inicio de ${label(i)}: ${fmt(SEG[i].s)}`); };
+$("nudgeM").onclick=()=>nudge(-0.1); $("nudgeP").onclick=()=>nudge(0.1);
+$("reset").onclick=()=>{ SEG=DEFAULT.map(d=>({...d})); try{ localStorage.removeItem(KEY); }catch(e){} changed(); toast("Tiempos restaurados a la estimación."); };
+$("copy").onclick=()=>{ const txt=SEG.map(g=>`${fmt(g.s)}  ${typeof g.k==="number"?LINES[g.k].plain:g.k}`).join("\n");
+  navigator.clipboard?.writeText(txt).then(()=>toast("Tiempos copiados."),()=>toast("No se pudo copiar: "+txt.split("\n").length+" líneas.")) ?? toast("Este navegador no deja copiar."); };
+
+// ---------- Teclado ----------
+document.addEventListener("keydown",e=>{ if(e.target.closest("input,textarea,select")||e.metaKey||e.ctrlKey||e.altKey) return;
+  const k=e.key.toLowerCase();
+  if(k===" "){ e.preventDefault(); toggle(); }
+  else if(k==="arrowright"){ e.preventDefault(); step(1); }
+  else if(k==="arrowleft"){ e.preventDefault(); step(-1); }
+  else if(k==="l"){ $("loop").click(); }
+  else if(k==="m"){ mark(); } });
+document.addEventListener("keyup",e=>{ if(e.key===" "&&e.target.tagName==="BUTTON") e.preventDefault(); });
+
+// ---------- Pintado ----------
+let lastSeg=-1,lastCh=null,needCenter=true;
+// La ventana de letra mide lo mismo que el vídeo.
+const vw=document.querySelector(".video-wrap");
+new ResizeObserver(()=>{ clean.style.height=Math.max(240,vw.getBoundingClientRect().height)+"px"; needCenter=true; }).observe(vw);
+function render(){
+  const t=v.currentTime||0; let i=segAt(t);
+  if(loopIdx>=0 && !v.paused && (t>=endOf(loopIdx)-0.02 || t<SEG[loopIdx].s-0.5)){ v.currentTime=SEG[loopIdx].s; i=loopIdx; }
+  const g=SEG[i], end=endOf(i), prog=Math.max(0,Math.min(1,(t-g.s)/(end-g.s)));
+  $("time").textContent=fmt(t)+" / "+fmt(dur).replace(/\.\d$/,"");
+  ph.style.left=(t/dur*100)+"%";
+  tsegs.forEach((e,j)=>{ e.classList.toggle("on",j===i); e.classList.toggle("loop",j===loopIdx); });
+
+  // acorde actual y siguiente
+  let cur=null,nxt=null; for(const e of EV){ if(e.t<=t) cur=e; else { nxt=e; break; } }
+  const verse=typeof g.k==="number", L=verse?LINES[g.k]:null, onBoard=verse&&!L.off;
+  if(!verse) cur=null;
+  const curName = cur? cur.ch : null;
+  if(curName!==lastCh){ lastCh=curName; $("nmNow").textContent=curName||"—"; $("enNow").textContent= curName? CHORDS[curName].en : (g.k==="intro"?"intro":"sin anotar"); diagram($("dgNow"),curName); }
+  if(nxt){ $("nmNext").textContent=nxt.ch; if($("dgNext").dataset.c!==nxt.ch){ diagram($("dgNext"),nxt.ch); $("dgNext").dataset.c=nxt.ch; }
+    const prevT=cur?cur.t:(nxt.t-4); const left=nxt.t-t; $("inNext").textContent="en "+left.toFixed(1)+" s";
+    $("cnt").style.width=Math.max(0,Math.min(100,(1-left/Math.max(0.5,nxt.t-prevT))*100))+"%"; }
+  else { $("nmNext").textContent="—"; $("inNext").textContent="fin"; $("dgNext").innerHTML=""; $("dgNext").dataset.c=""; $("cnt").style.width="0"; }
+
+  // subtítulo del vídeo
+  $("cap").innerHTML = verse? `<b>${curName||""}</b>${L.plain}` : "<b>Intro</b>guitarra sola";
+
+  // pizarra
+  board.classList.toggle("rest",!onBoard);
+  if(onBoard){ const [a,b,c,d]=L.box; spot.style.opacity=1;
+    Object.assign(spot.style,{left:a/15+"%",top:b/20+"%",width:(c-a)/15+"%",height:(d-b)/20+"%"});
+    sweep.style.width=(prog*92)+"%"; }
+  else { spot.style.opacity=0; }
+  banner.classList.toggle("on",!onBoard);
+  const bKey=i+"|"+curName;
+  if(!onBoard && banner.dataset.k!==bKey){ banner.dataset.k=bKey;
+    banner.innerHTML = !verse? "<b>Intro</b>Guitarra sola. El primer verso empieza en "+fmt(SEG[1].s)+"."
+    : `<b>${L.tag} · no está en la pizarra</b>${L.chords.map((c,ci)=>`<span class="bch${cur&&cur.seg===i&&cur.ci===ci?" now":""}">${c}</span>`).join(" ")}<br>${L.plain||""}`; }
+  rings.forEach((rs,li)=>rs.forEach((r,ci)=>{ const on=verse&&cur&&cur.seg===i&&li===g.k&&ci===cur.ci;
+    const nx=nxt&&verse&&SEG[nxt.seg].k===li&&nxt.ci===ci&&nxt.seg<=i+1&&!on;
+    r.className="ring"+(on?" now":nx?" next":""); }));
+
+  // letra limpia
+  if(!clean.hidden){ const maxDone = SEG.slice(0,i).reduce((m,s)=>typeof s.k==="number"?Math.max(m,s.k):m,-1);
+    cls.forEach((el,li)=>{ const on=verse&&li===g.k; el.classList.toggle("on",on); el.classList.toggle("done",!on&&li<=maxDone);
+      sing(el,on?prog:0);
+      el.querySelectorAll(".ch").forEach((b,ci)=>b.classList.toggle("now",on&&cur&&cur.seg===i&&cur.ci===ci)); });
+    if(i!==lastSeg||needCenter){ const tgt= verse? cls[g.k] : cls[0]; centerIn(tgt,!needCenter); needCenter=false; } }
+
+  $("calCur").textContent=`Ahora: ${label(i)} (desde ${fmt(g.s)})`;
+  lastSeg=i;
+}
+(function loop(){ render(); requestAnimationFrame(loop); })();
+buildTimeline();
+try{ if(localStorage.getItem(KEY+"-vista")==="l") setView(false); }catch(e){}
+})();
+</script>
+
+</html>

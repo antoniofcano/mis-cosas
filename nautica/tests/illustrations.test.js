@@ -92,13 +92,14 @@ test('riesgo de abordaje: con demora constante las demoras sucesivas son iguales
 });
 
 // --- Láminas interactivas: mismas specs, tres modos ---------------------------------------------------------------
-import { INTERACTIVAS, interactivaDe, pidePrediccion } from '../src/illustrations/interactivas.js';
+import { INTERACTIVAS, interactivaDe, pidePrediccion, listaInteractivas } from '../src/illustrations/interactivas.js';
 import { controlador, MAX_MANDOS } from '../src/ui/lamina-estado.js';
 import { ewTexto, marcacionBanda } from '../src/nautical/compass.js';
 import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
 import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
 import { caidaPopa } from '../src/nautical/helice.js';
 import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
+import { intensidad } from '../src/nautical/meteo.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -113,8 +114,8 @@ function specsReales(tipo) {
 }
 
 test('láminas interactivas: specs válidas, como mucho tres mandos y lectura en texto', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    const specs = [CATALOGO[tipo].ejemplo, ...specsReales(tipo)];
+  for (const { tipo, def, ejemplo, encaja } of listaInteractivas()) {
+    const specs = [ejemplo ?? CATALOGO[tipo].ejemplo, ...specsReales(tipo).filter(encaja)];
     for (const spec of specs) {
       assert.ok(validSpec(spec), `${tipo} ${JSON.stringify(spec)}`);
       if (!interactivaDe(spec)) continue;
@@ -130,8 +131,8 @@ test('láminas interactivas: specs válidas, como mucho tres mandos y lectura en
 });
 
 test('láminas interactivas: clase bloquea hasta responder, explicación abre en el estado de la pregunta, galería libre', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    const spec = specsReales(tipo).find((s) => pidePrediccion(s)) ?? CATALOGO[tipo].ejemplo;
+  for (const { tipo, def, ejemplo, encaja } of listaInteractivas()) {
+    const spec = specsReales(tipo).filter(encaja).find((s) => pidePrediccion(s)) ?? ejemplo ?? CATALOGO[tipo].ejemplo;
     const primer = (c) => c.vista().mandos[0];
 
     // clase: predicción y mandos bloqueados
@@ -159,7 +160,7 @@ test('láminas interactivas: clase bloquea hasta responder, explicación abre en
     assert.ok(!expl.vista().bloqueado && expl.mover(m.id, otro));
 
     // galería: libre
-    const gal = controlador(def, CATALOGO[tipo].ejemplo, 'galeria');
+    const gal = controlador(def, ejemplo ?? CATALOGO[tipo].ejemplo, 'galeria');
     assert.equal(gal.vista().prediccion, null);
     assert.ok(gal.mover(m.id, otro));
   }
@@ -193,8 +194,8 @@ test('nortes y rosa: lo que se lee coincide con el cálculo', () => {
 });
 
 test('un solo dibujo por lámina: la imagen fija es el dibujo interactivo en su estado inicial', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    for (const spec of [CATALOGO[tipo].ejemplo, ...specsReales(tipo)]) {
+  for (const { tipo, def, ejemplo, encaja } of listaInteractivas()) {
+    for (const spec of [ejemplo ?? CATALOGO[tipo].ejemplo, ...specsReales(tipo).filter(encaja)]) {
       if (!interactivaDe(spec)) continue;
       const fija = renderIllustration(spec).svg;
       assert.equal(fija, controlador(def, spec, 'explicacion').vista().svg ?? controlador(def, spec, 'explicacion').vista().vistas.map((v) => v.svg).join(''), `${tipo} ${JSON.stringify(spec)}`);
@@ -211,6 +212,11 @@ function specsDeClase(tipo) {
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  'meteo:isobaras'(c, p) {
+    const e = c.estado();
+    assert.ok(intensidad(e.separacion - 5).t > intensidad(e.separacion).t || e.separacion - 5 < 14);
+    assert.equal(p.opciones[p.correcta], 'Aumenta');
+  },
   desatraque(c, p) {
     assert.equal(c.estado().viento, 'mar');
     // con viento de la mar solo sale bien abriendo la popa (esprín de proa, avante)
@@ -273,22 +279,22 @@ const COMPRUEBA = {
 };
 
 test('la predicción es coherente con el estado en que se abre la lámina (specs reales de las clases)', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    assert.ok(COMPRUEBA[tipo], `falta la comprobación de ${tipo}`);
+  for (const { clave, tipo, def, encaja } of listaInteractivas()) {
+    assert.ok(COMPRUEBA[clave], `falta la comprobación de ${clave}`);
     let n = 0;
-    for (const spec of specsDeClase(tipo)) {
+    for (const spec of specsDeClase(tipo).filter(encaja)) {
       if (!pidePrediccion(spec)) continue;
       const c = controlador(def, spec, 'clase');
-      COMPRUEBA[tipo](c, c.vista().prediccion);
+      COMPRUEBA[clave](c, c.vista().prediccion);
       n++;
     }
-    assert.ok(n > 0, `${tipo}: ninguna clase con predicción`);
+    assert.ok(n > 0, `${clave}: ninguna clase con predicción`);
   }
 });
 
 test('modo explicación: «Volver al caso de la pregunta» restaura el estado de la spec', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    const spec = specsReales(tipo).find((s) => interactivaDe(s));
+  for (const { tipo, def, encaja } of listaInteractivas()) {
+    const spec = specsReales(tipo).filter(encaja).find((s) => interactivaDe(s));
     const c = controlador(def, spec, 'explicacion');
     const m = c.vista().mandos[0];
     assert.equal(c.cambiado, false);

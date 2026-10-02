@@ -136,3 +136,20 @@ test('desatraque: viento, esprín que trabaja y máquina', () => {
   assert.equal(desatraque({ viento: 'calma', esprin: 'proa', maquina: 'avante' }).helice.popa, 'estribor');
   assert.equal(desatraque({ viento: 'calma', esprin: 'popa', maquina: 'atras' }).helice.popa, 'babor');
 });
+
+import { vientoEnPunto, intensidad, rumboNombre } from '../src/nautical/meteo.js';
+test('viento alrededor de una borrasca y de un anticiclón (HN) y ley de Buys-Ballot', () => {
+  // al norte de una borrasca el viento sopla del este (algo del nordeste): gira antihorario y entra hacia el centro
+  assert.equal(rumboNombre(vientoEnPunto({ centro: 'B', posicion: 0 }).desde), 'nordeste');
+  assert.equal(rumboNombre(vientoEnPunto({ centro: 'B', posicion: 180 }).desde), 'suroeste');
+  // al norte de un anticiclón gira horario y sale hacia fuera: del oeste-suroeste
+  assert.equal(rumboNombre(vientoEnPunto({ centro: 'A', posicion: 0 }).desde), 'suroeste');
+  // de espaldas al viento, la borrasca siempre a la izquierda y el anticiclón a la derecha
+  for (let p = 0; p < 360; p += 15) {
+    assert.equal(vientoEnPunto({ centro: 'B', posicion: p }).lado, 'izquierda', `B ${p}`);
+    assert.equal(vientoEnPunto({ centro: 'A', posicion: p }).lado, 'derecha', `A ${p}`);
+  }
+  // isobaras más juntas, más viento
+  assert.ok(intensidad(14).t > intensidad(26).t && intensidad(26).t > intensidad(34).t);
+  assert.equal(intensidad(14).texto, 'fuerte');
+});

@@ -78,15 +78,7 @@ export function meteoIllustration(spec) {
     out.push('</svg>');
     return { svg: out.join(''), caption: 'Los símbolos apuntan hacia donde avanza el frente.' };
   }
-  if (sys === 'isobaras') {
-    out.push(`<text x="${cx}" y="22" class="il-title">Isobaras juntas = viento fuerte</text>`);
-    for (let i = 0; i < 6; i++) out.push(`<path d="M20,${60 + i * 12} C110,${50 + i * 12} 140,${70 + i * 12} 300,${60 + i * 12}" fill="none" stroke="#64748b"/>`);
-    for (let i = 0; i < 3; i++) out.push(`<path d="M20,${150 + i * 34} C110,${140 + i * 34} 140,${160 + i * 34} 300,${150 + i * 34}" fill="none" stroke="#64748b"/>`);
-    out.push(`<line x1="90" y1="96" x2="170" y2="84" stroke="#dc2626" stroke-width="4" marker-end="url(#mt-a)"/><text x="182" y="88" class="il-lbl" style="fill:#dc2626">fuerte</text>`);
-    out.push(`<line x1="90" y1="186" x2="120" y2="182" stroke="#2563eb" stroke-width="2" marker-end="url(#mt-a)"/><text x="132" y="186" class="il-lbl" style="fill:#2563eb">flojo</text>`);
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Las isobaras unen puntos de igual presión. Cuanto más juntas están (más gradiente de presión), más fuerte sopla el viento.' };
-  }
+  // isobaras: ahora es interactiva (src/illustrations/interactivas/isobaras.js)
   if (sys === 'frente-frio-corte' || sys === 'frente-calido-corte') {
     const frio = sys === 'frente-frio-corte';
     out.push(`<text x="${cx}" y="22" class="il-title">${frio ? 'Frente frío (en corte)' : 'Frente cálido (en corte)'}</text>`);

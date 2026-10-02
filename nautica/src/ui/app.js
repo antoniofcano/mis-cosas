@@ -60,7 +60,7 @@ function legacy(parts, progress) {
   if (parts[0] === 'ilustraciones' || parts[0] === 'laminas') return [tit, 'laminas'];
   if (TITULACIONES[parts[0]]) {
     if (parts[1] === 'curso' && !parts[2]) return [parts[0], 'temario'];
-    if (parts[1] === 'teoria' && parts[2] !== 'ut') return [parts[0], 'temario'];
+    if (parts[1] === 'teoria' && parts[2] !== 'ut' && parts[2] !== 'mezcla') return [parts[0], 'temario'];
   }
   return null;
 }
@@ -85,7 +85,7 @@ function esFoco(parts) {
   if (parts[0] === 'bienvenida') return true;
   if (!TITULACIONES[parts[0]]) return false;
   const [, b, c] = parts;
-  return (b === 'curso' && !!c) || (b === 'teoria' && c === 'ut') || b === 'test';
+  return (b === 'curso' && !!c) || (b === 'teoria' && (c === 'ut' || c === 'mezcla')) || b === 'test';
 }
 
 /** Barra inferior: siempre las mismas 4 pestañas. */

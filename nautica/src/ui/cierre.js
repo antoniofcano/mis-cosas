@@ -14,7 +14,7 @@ export async function calcularPlan(progress, tit, ahora = Date.now()) {
   const o = {
     estructura: T.estructura, curso, preguntas: bank.preguntas, regs: progress.lecciones(), respuestas: progress.get().exams,
     tests: progress.tests().filter((t) => (t.tit ?? 'per') === tit), testEnCurso: tc && tc.tit === tit ? tc : null,
-    fechaExamen: progress.settings()[`examen_${tit}`] || null, ahora,
+    fechaExamen: progress.settings()[`examen_${tit}`] || null, ultimoMezclado: progress.settings()[`mezclado_${tit}`] || null, ahora,
   };
   return { ...o, bank, plan: planHoy(o) };
 }
@@ -27,7 +27,7 @@ export function hrefActividad(tit, a) {
 
 export const TIPO_TXT = {
   clase: ['🎓', 'Clase'], preguntas: ['✏️', 'Preguntas'], repaso: ['🔁', 'Repaso'], fallos: ['🎯', 'Repaso de fallos'],
-  simulacro: ['📝', 'Simulacro de examen'], 'examen-en-curso': ['⏱', 'Examen a medias'],
+  simulacro: ['📝', 'Simulacro de examen'], mezclado: ['🔀', 'Repaso mezclado'], 'examen-en-curso': ['⏱', 'Examen a medias'],
 };
 
 /**

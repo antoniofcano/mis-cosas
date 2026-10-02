@@ -6,12 +6,12 @@
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
 import { loadTheoryBank } from '../../store/datasets.js';
-import { bloque, totalPreguntas } from '../../theory/blocks.js';
+import { bloque, bloquesEnOrden, totalPreguntas } from '../../theory/blocks.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { TANDA, MIN_TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
-import { buildSimulacro, buildReal, buildPractica, convocatorias, grade } from '../../theory/engine.js';
+import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, grade } from '../../theory/engine.js';
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
@@ -182,7 +182,7 @@ export function examenesView({ ctx, progress, tit }) {
  *   onFin: (ok: number, n: number) => void, onSummary?: (texto: string) => void }} o
  * @returns {HTMLElement}
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, onFin, onSummary = () => {} }) {
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
@@ -203,7 +203,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       progress.recordExam(q.id, { choice: k, ok: good });
-      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: false });
+      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta });
       card.replaceWith(nueva);
       card = nueva;
       setChildren(feedback, profePanel(q, explanationFor(q, explicaciones), k));
@@ -215,7 +215,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
-    let card = questionCard(q, { onChoose: responder, tema: false });
+    let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta });
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
@@ -238,9 +238,10 @@ export function cierreTanda(ok, n) {
 export function practiceView({ ctx, progress, params: route, tit }) {
   chartRef = ctx.chart;
   useTit(tit);
+  const seed = Number(route.query.s) || randomSeed();
+  if (route.parts[1] === 'mezcla') return mezclaView({ progress, seed });
   const ut = Number(route.parts[2]);
   const b = bloque(E, ut);
-  const seed = Number(route.query.s) || randomSeed();
   const soloFalladas = route.query.f === '1';
   if (!b) return { el: h('div.practice', h('p', 'Este tema no existe.'), h('a.btn', { href: tlink(T.id, ['temario']) }, 'Ir al temario')), summary: () => 'ERROR tema no encontrado' };
   const tit0 = T.id;
@@ -268,6 +269,40 @@ export function practiceView({ ctx, progress, params: route, tit }) {
         barra.remove();
         pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
         summaryText = `VISTA tanda terminada · ${b.titulo}: ${ok} de ${n} aciertos`;
+        window.scrollTo(0, 0);
+      },
+    }));
+  }).catch((e) => setChildren(cont, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
+  return { el, summary: () => summaryText };
+}
+
+// #/<tit>/teoria/mezcla?s=semilla — repaso mezclado: 10 preguntas de los temas ya empezados, por turnos
+function mezclaView({ progress, seed }) {
+  const tit0 = T.id;
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const cont = h('div', h('p.muted', 'Cargando…'));
+  const el = h('div.practice', barra, cont);
+  let summaryText = 'VISTA repaso mezclado';
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+    reglasDe = rd;
+    const respuestas = progress.get().exams;
+    const empezados = bloquesEnOrden(E).filter((x) => preguntas.some((q) => q.ut === x.ut && respuestas[q.id])).map((x) => x.ut);
+    const conLimite = new Set(E.bloques.filter((x) => x.maxErrores != null).map((x) => x.ut));
+    const sesion = buildMezcla(preguntas, empezados, createRng(seed), { respuestas, conLimite, limite: TANDA });
+    if (empezados.length < 2 || !sesion.preguntas.length) {
+      barra.set('Repaso mezclado', 0);
+      setChildren(cont, h('p.vacio', 'El repaso mezclado empieza cuando hayas hecho preguntas de al menos dos temas.'), h('a.btn.grande', { href: tlink(tit0, ['temario']) }, 'Ir al temario'));
+      return;
+    }
+    setChildren(cont, tandaPreguntas({
+      preguntas: sesion.preguntas, explicaciones, progress, barra, rotulo: `🔀 Repaso mezclado · ${empezados.length} temas`, temaEnCadaPregunta: true,
+      onSummary: (t) => { summaryText = t; },
+      onFin: (ok, n) => {
+        progress.logActividad(MIN_TANDA);
+        progress.setSetting(`mezclado_${tit0}`, new Date().toLocaleDateString('sv-SE'));
+        barra.remove();
+        pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
+        summaryText = `VISTA repaso mezclado terminado: ${ok} de ${n} aciertos`;
         window.scrollTo(0, 0);
       },
     }));

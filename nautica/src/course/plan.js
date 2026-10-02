@@ -75,7 +75,7 @@ function actividadTema(b, est, curso, regs, respuestas, ahora) {
  * @param {object} o  { estructura, curso, preguntas, regs, respuestas, tests, testEnCurso, fechaExamen, ahora }
  * @returns {{ tipo, titulo, verbo, minutos, ruta: string[], query?: object, ut: number|null }[]}
  */
-export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ahora = Date.now() }) {
+export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, ahora = Date.now() }) {
   const lista = [];
   const simulacro = () => ({ tipo: 'simulacro', titulo: 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: undefined, ut: null });
 
@@ -102,9 +102,10 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
     .slice(0, 2);
   for (const { l } of repasos) lista.push({ tipo: 'repaso', titulo: l.titulo, verbo: 'Repasar', minutos: MIN_TANDA, ruta: ['curso', l.id], query: { practica: '1' }, ut: l.ut });
 
-  // 4. El primer tema que no está al día, en el orden de estudio recomendado
   const estados = bloquesEnOrden(estructura).map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }));
   const pendientes = estados.filter((x) => !x.est.alDia);
+
+  // 4. El primer tema que no está al día, en el orden de estudio recomendado
   if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora));
 
   // 5. Sesión de fallos si se acumulan
@@ -116,6 +117,13 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 
   // 6. Todo al día: simulacro
   if (!lista.length) lista.push(simulacro());
+
+  // 6 bis. Repaso mezclado (una vez al día) en cuanto hay dos temas con preguntas hechas: varios temas a la vez.
+  // Va detrás de lo principal (aprender lo nuevo o el simulacro), nunca en su lugar.
+  const empezados = estados.filter((x) => x.est.hechas > 0);
+  if (empezados.length >= 2 && ultimoMezclado !== hoy) {
+    lista.push({ tipo: 'mezclado', titulo: `Repaso mezclado: ${TANDA} preguntas de ${empezados.length} temas`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'mezcla'], query: undefined, ut: null });
+  }
 
   // 7. Con una sola actividad, proponer también el siguiente tema pendiente
   if (lista.length === 1 && pendientes[1]) lista.push(actividadTema(pendientes[1].b, pendientes[1].est, curso, regs, respuestas, ahora));

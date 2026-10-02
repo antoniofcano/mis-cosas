@@ -37,6 +37,35 @@ export function buildPractica(banco, ut, rng, { soloFalladas = null, respuestas 
   return { tipo: 'practica', ut, preguntas, pendientes };
 }
 
+/**
+ * Repaso mezclado: preguntas de varios temas a la vez (los ya empezados), repartidas por turnos entre temas para que
+ * no salgan seguidas las de uno mismo. Dentro de cada tema pesan más las falladas, las que hace más días que no
+ * ves y las de temas con límite de fallos; las no vistas, poco (el repaso es de lo estudiado).
+ * @param {number[]} uts temas que entran
+ * @param {Set<number>} conLimite temas con límite de fallos
+ */
+export function buildMezcla(banco, uts, rng, { respuestas = {}, conLimite = new Set(), limite = 10, ahora = Date.now() } = {}) {
+  const peso = (q) => {
+    const r = respuestas[q.id];
+    const dias = r?.t ? Math.max(0, (ahora - new Date(r.t).getTime()) / 864e5) : 0;
+    const base = !r ? 0.5 : r.ok ? 0.5 + Math.min(dias, 30) / 10 : 4;
+    return base * (conLimite.has(q.ut) ? 1.5 : 1);
+  };
+  const grupos = uts.map((ut) => banco.filter((q) => q.ut === ut && !q.anulada && q.correcta).map((q) => ({ q, w: peso(q) }))).filter((g) => g.length);
+  const elegir = (g) => {
+    const total = g.reduce((s, x) => s + x.w, 0);
+    let r = rng.next() * total;
+    const i = Math.max(0, g.findIndex((x) => (r -= x.w) < 0));
+    return g.splice(i, 1)[0].q;
+  };
+  const orden = rng.shuffle(grupos.map((_, i) => i));
+  const preguntas = [];
+  for (let vuelta = 0; preguntas.length < limite && grupos.some((g) => g.length); vuelta++) {
+    for (const i of orden) if (grupos[i].length && preguntas.length < limite) preguntas.push(elegir(grupos[i]));
+  }
+  return { tipo: 'mezcla', uts, preguntas };
+}
+
 /** "and-2023-c1-t07" / "and-2023-c1-q42" → "and-2023-c1"; PY: "and-py-2023-c1-g07" / "-n15" → "and-py-2023-c1" */
 export const sittingKey = (id) => id.replace(/-[tqgn]\d+$/, '');
 

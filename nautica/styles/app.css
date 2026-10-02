@@ -456,3 +456,9 @@ select { min-height: 44px; }
 .hoy .ritmo { margin: 0 0 .8rem; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
 .hoy .ritmo.warn { background: transparent; border: 2px solid var(--warn); color: var(--text); }
 .hoy .ritmo a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+/* Hoy: ¿estás listo? */
+.hoy .listo { margin: 1rem 0; padding: .7rem .9rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+.hoy .listo h2 { margin: 0 0 .3rem; font-size: 1.1rem; }
+.hoy .listo p { margin: 0; }
+.hoy .listo.listo-listo { border: 2px solid var(--ok); }
+.hoy .listo.listo-aun-no { border: 2px solid var(--warn); }

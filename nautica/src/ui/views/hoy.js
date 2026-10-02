@@ -2,6 +2,7 @@
 
 import { h, setChildren } from '../dom.js';
 import { avance, diasHasta, ritmoEstudio } from '../../course/plan.js';
+import { estoyListo, lineaListo } from '../../course/listo.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
@@ -45,6 +46,7 @@ export function hoyView({ progress, tit }) {
     const racha = progress.racha();
     const principal = plan[0];
     const r = ritmoEstudio({ ...d, minutosDia: objetivo });
+    const listo = estoyListo(T.estructura, d.preguntas, d.respuestas);
     const ritmo = h('p.ritmo', { class: r.llega === false ? 'warn' : '' }, r.llega === false ? '⚠️ ' : '', lineaRitmo(r, objetivo, fecha),
       ' ', h('a', { href: '#/mas' }, 'Cambiar'));
 
@@ -70,6 +72,7 @@ export function hoyView({ progress, tit }) {
     const resto = plan.slice(1);
     summaryText = `VISTA hoy ${T.sigla}\n${plan.map((x, i) => `${i ? 'DESPUÉS' : 'HOY TOCA'}: ${x.tipo} «${x.titulo}» ~${x.minutos} min → ${hrefActividad(tit, x)}`).join('\n')}` +
       `\nRITMO: ${lineaRitmo(r, objetivo, fecha)} (pendiente ${r.minutosPendientes} min: clases ${r.desglose.clases}, preguntas ${r.desglose.preguntas}, simulacros ${r.desglose.simulacros})` +
+      `\nLISTO: ${lineaListo(listo)}${listo.prob != null ? ` (p=${listo.prob.toFixed(2)})` : ''}` +
       `\nAVANCE: ${a.temasAlDia}/${a.temasTotal} temas al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${racha} días`;
 
     setChildren(el,
@@ -79,6 +82,7 @@ export function hoyView({ progress, tit }) {
       h('section.avance',
         h('div.bar', { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', `Llevas ${a.temasAlDia} de ${a.temasTotal} temas al día${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`)),
+      h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo))),
       avisoCopia(progress),
       resto.length ? [h('h2', 'Después'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },
         h('h3', x.titulo), h('p', `${(TIPO_TXT[x.tipo] ?? [''])[0]} unos ${x.minutos} minutos`))))] : null,

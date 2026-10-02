@@ -20,17 +20,7 @@ export function setTit(progress, tit) {
 /** Enlace dentro de una titulación: tlink('py', ['teoria', 'ut', '3']) → #/py/teoria/ut/3 */
 export const tlink = (tit, parts = [], query) => link([tit, ...parts], query);
 
-/**
- * Migas de pan: Inicio › PER › … . Cada elemento es [texto, enlace] o un texto (la página actual).
- * crumbs('py', ['Teoría', tlink('py', ['teoria'])], 'UT3')
- */
-export function crumbs(tit, ...items) {
-  const T = TITULACIONES[tit];
-  const all = [['Inicio', '#/'], T ? [T.sigla, tlink(tit)] : null, ...items].filter(Boolean);
-  const out = [];
-  all.forEach((it, i) => {
-    if (i) out.push(' › ');
-    out.push(Array.isArray(it) ? h('a', { href: it[1] }, it[0]) : it);
-  });
-  return h('nav.crumbs', out);
+/** Enlace para volver a la pantalla anterior (un solo nivel): volver('Temario', tlink('per', ['temario'])). */
+export function volver(texto, href) {
+  return h('nav.crumbs', h('a', { href }, `← ${texto}`));
 }

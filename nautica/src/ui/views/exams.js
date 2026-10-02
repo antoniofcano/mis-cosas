@@ -2,7 +2,7 @@ import { h, copyText, setChildren } from '../dom.js';
 import { loadExamIndex, loadExamBank } from '../../store/datasets.js';
 import { examQuestionSummary } from '../../ai/summary.js';
 import { link } from '../router.js';
-import { tlink, crumbs, currentTit } from '../titulacion.js';
+import { tlink, volver, currentTit } from '../titulacion.js';
 import { createKit } from '../../exams/kit.js';
 import { chooseOption } from '../../exams/options.js';
 import { quantity } from '../../analysis/quantities.js';
@@ -48,11 +48,11 @@ export function examsView({ ctx, progress, params: route }) {
   function renderIndex(index) {
     summaryText = `VISTA exámenes · bancos: ${index.map((b) => `${b.file} (${b.count} preguntas)`).join(', ')}`;
     setChildren(el, 
-      crumbs(currentTit(progress), 'Bancos de preguntas'),
+      volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
       h('h1', 'Preguntas reales de examen'),
       h('p', 'Preguntas de carta de convocatorias oficiales con la respuesta de la plantilla oficial. Fuente: publicaciones de la administración convocante (enlace en cada pregunta).'),
       h('div.cards',
-        h('a.card', { href: tlink(currentTit(progress), ['examenes']) }, h('h3', '📄 Exámenes completos y simulacros'), h('p', 'Las 45 preguntas (teoría + carta) de cada convocatoria, cronometradas y corregidas con las reglas oficiales; y simulacros por bloques.')),
+        h('a.card', { href: tlink(currentTit(progress), ['examenes']) }, h('h3', '📄 Exámenes completos y simulacros'), h('p', 'Las 45 preguntas (teoría + carta) de cada convocatoria, cronometradas y corregidas con las reglas oficiales; y simulacros por temas.')),
         index.map((b) => h('a.card', { href: link(['examenes', b.file]) },
         h('h3', b.title), h('p', b.description ?? ''), h('div.meta', h('span.stat', `${b.count} preguntas`))))),
     );
@@ -68,7 +68,7 @@ export function examsView({ ctx, progress, params: route }) {
     summaryText = `VISTA banco ${bank.meta.title} · ${bank.preguntas.length} preguntas\n` +
       bank.preguntas.map((q) => `${q.id}: ${(answered(q)?.ok ? '✓' : answered(q) ? '✗' : '·')} ${q.enunciado.slice(0, 80)}`).join('\n');
     setChildren(el, 
-      crumbs('per', ['Carta', tlink('per', ['carta'])], bank.meta.title),
+      volver('Ejercicios de carta', tlink('per', ['carta'])),
       h('h1', bank.meta.title),
       bank.meta.description ? h('p', bank.meta.description) : null,
       [...groups].map(([conv, qs]) => h('section',
@@ -155,7 +155,7 @@ export function examsView({ ctx, progress, params: route }) {
       : null;
 
     setChildren(el, 
-      crumbs('per', ['Carta', tlink('per', ['carta'])], [bank.meta.title, link(['examenes', bankFile])], q.numero ? `P${q.numero}` : q.id),
+      volver(bank.meta.title, link(['examenes', bankFile])),
       h('header', h('h1', `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', q.comunidad))),
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
       h('section.statement', h('p', q.enunciado), tableButtons),

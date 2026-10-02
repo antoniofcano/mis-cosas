@@ -1,4 +1,4 @@
-// Portada (#/), panel de una titulación (#/<tit>) y ejercicios de carta de una titulación (#/<tit>/carta).
+// Panel de una titulación (#/<tit>) y ejercicios de carta de una titulación (#/<tit>/carta).
 
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
@@ -7,39 +7,8 @@ import { loadTheoryBank } from '../../store/datasets.js';
 import { convocatorias } from '../../theory/engine.js';
 import { totalPreguntas } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
-import { TITULACIONES, tlink, crumbs, currentTit } from '../titulacion.js';
+import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { blockStats } from './theory.js';
-
-// ---------------------------------------------------------------------------
-// #/ — portada: elige titulación
-
-export function portadaView({ progress }) {
-  const ultima = currentTit(progress);
-  const el = h('div.portada',
-    h('section.hero',
-      h('h1', '🧭 Preparador del examen de Patrón'),
-      h('p.lead', 'PER y Patrón de Yate · Junta de Andalucía. Todas las preguntas reales desde 2020 con la plantilla oficial, simulacros cronometrados con la corrección del tribunal, el profe explicándote cada respuesta (con voz, dibujos y animaciones) y ejercicios de carta interactivos con los instrumentos del examen.'),
-    ),
-    h('div.tit-cards', Object.values(TITULACIONES).map((T) => h('a.tit-card', { href: tlink(T.id), class: T.id === ultima ? 'last' : '' },
-      h('div.tit-icon', T.icon),
-      h('div',
-        h('h2', `${T.sigla}`, h('span.muted', ` · ${T.nombre}`)),
-        h('p', T.resumen),
-        h('ul.small', T.estructura.bloques.map((b) => h('li', `${b.icon} ${b.titulo} (${b.n})`))),
-        h('span.btn', T.id === ultima ? 'Continuar →' : 'Entrar →'))))),
-    h('h2', 'Herramientas'),
-    h('div.cards',
-      h('a.card', { href: link(['mesa']) }, h('h3', '🗺️ Mesa de cartas'), h('p', 'La carta del Estrecho con regla, compás, transportador cuadrado, guías desde las escalas, puntos y notas. Puedes cargar tu propia carta escaneada.')),
-      h('a.card', { href: link(['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Balizamiento, luces y marcas, reglas de rumbo, señales acústicas, meteorología…')),
-      h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Las mnemotecnias que de verdad funcionan, con su explicación.')),
-      h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta'), h('p', 'Signos, glosario y el método de cada ejercicio.')),
-      h('a.card', { href: link(['progreso']) }, h('h3', '📈 Progreso y ajustes'), h('p', 'Tus resultados, la voz del profe y la copia de seguridad.'))),
-  );
-  return {
-    el,
-    summary: () => `VISTA portada · titulaciones: ${Object.values(TITULACIONES).map((T) => `${T.id} (${T.nombre}: ${T.resumen})`).join(' · ')}\nRUTAS: #/<tit> panel · #/<tit>/teoria · #/<tit>/carta · #/<tit>/examenes · #/mesa · #/<tit>/laminas · #/conceptos · #/progreso`,
-  };
-}
 
 // ---------------------------------------------------------------------------
 // #/<tit> — panel de la titulación
@@ -55,7 +24,6 @@ export function dashboardView({ progress, tit }) {
   let summaryText = `VISTA panel ${T.sigla}`;
 
   const el = h('div.dashboard',
-    crumbs(null, T.sigla),
     h('header.tit-head', h('div.tit-icon', T.icon), h('div', h('h1', `${T.sigla} · ${T.nombre}`), h('p.muted', T.resumen))),
     body,
   );
@@ -82,10 +50,10 @@ export function dashboardView({ progress, tit }) {
 
     setChildren(body,
       h('div.paths',
-        h('a.path', { href: tlink(T.id, ['curso']) },
+        h('a.path', { href: tlink(T.id, ['temario']) },
           h('h2', '🎓 Curso'), h('p', 'Clases cortas por bloques: concepto, dibujos, reglas para recordar y práctica con preguntas reales. Se adapta a lo que fallas.'),
           h('p.big', 'Empieza la clase')),
-        h('a.path', { href: tlink(T.id, ['teoria']) },
+        h('a.path', { href: tlink(T.id, ['temario']) },
           h('h2', '📚 Teoría'), h('p', `${E.bloques.length} bloques · ${preguntas.length} preguntas reales con el profe`),
           h('p.big', hechas ? `${oks}/${hechas} ✓` : 'Empieza por aquí'),
           h('div.bar', h('span', { style: `width:${preguntas.length ? Math.round((100 * hechas) / preguntas.length) : 0}%` }))),
@@ -124,7 +92,7 @@ export function cartaView({ progress, tit }) {
     ? h('a.card', { href: link(['examenes', 'andalucia-per.json']) }, h('h3', '📄 Preguntas reales de carta'), h('p', 'Las 72 preguntas de carta (42–45) de los exámenes del PER, resueltas paso a paso sobre la carta.'))
     : h('a.card', { href: tlink(T.id, ['teoria', 'ut', String(T.cartaUt)], { s: randomSeed() }) }, h('h3', '📄 Preguntas reales de carta'), h('p', 'Las preguntas 11–20 del módulo de navegación (carta, mareas y loxodrómica) de los exámenes del PY.'));
   const el = h('div.home',
-    crumbs(T.id, 'Carta'),
+    volver('Tema', tlink(T.id, ['temario', String(T.cartaUt)])),
     h('h1', `🗺️ Carta de navegación · ${T.sigla}`),
     h('p', 'Cada tipo de ejercicio con datos nuevos cada vez sobre la carta del Estrecho (L105). Compruebas tus respuestas, pides pistas, ves la construcción en la carta y el tutorial te lo resuelve como en el examen, con el profe explicándolo.'),
     h('div.cards',
@@ -141,7 +109,7 @@ export function cartaView({ progress, tit }) {
           h('p', e.summary),
           h('div.meta',
             h('span.diff', { title: 'Dificultad' }, '●'.repeat(e.difficulty) + '○'.repeat(3 - e.difficulty)),
-            st.attempts ? h('span.stat', `${st.correct}/${st.attempts} ✓`) : h('span.stat.muted', 'sin intentos')));
+            st.attempts ? h('span.stat', `${st.correct}/${st.attempts} ✓`) : null));
       })))),
   );
   return { el, summary: () => `VISTA carta ${T.sigla}\nTIPOS DE EJERCICIO:\n${lines.join('\n')}\nRUTAS: #/ej/<id>?s=<semilla> · #/mesa` };

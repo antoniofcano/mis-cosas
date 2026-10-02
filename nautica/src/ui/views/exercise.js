@@ -11,7 +11,7 @@ import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { link, navigate } from '../router.js';
-import { tlink, crumbs, currentTit } from '../titulacion.js';
+import { tlink, volver, currentTit } from '../titulacion.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: '✅ Correcto',
@@ -125,7 +125,7 @@ export function exerciseView({ ctx, progress, params: route }) {
   const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
   const el = h('div.exercise',
-    crumbs(currentTit(progress), ['Carta', tlink(currentTit(progress), ['carta'])], exercise.title),
+    volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
     h('header',
       h('h1', exercise.title),
       h('div.badges', exercise.levels.map((l) => h('span.badge', l))),

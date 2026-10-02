@@ -1,11 +1,11 @@
-// Curso: #/<tit>/curso (módulos, lecciones y «Hoy toca») y #/<tit>/curso/<lección> (tarjetas paso a paso,
-// chuleta, práctica con preguntas reales y repaso espaciado).
+// Clase: #/<tit>/curso/<lección> (tarjetas paso a paso, chuleta, práctica con preguntas reales y repaso espaciado).
 
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { estadoLeccion, trasPractica, hoyToca, leccionesDe, APROBADO } from '../../course/engine.js';
-import { TITULACIONES, tlink, crumbs } from '../titulacion.js';
+import { estadoLeccion, trasPractica, leccionesDe, APROBADO } from '../../course/engine.js';
+import { tlink, volver } from '../titulacion.js';
+import { barraActividad } from '../actividad.js';
 import { illustrationEls } from '../illustration.js';
 import { questionCard, profePanel, prepareTheory, explanationFor } from './theory.js';
 import { voice } from '../voice.js';
@@ -27,60 +27,6 @@ function rich(text = '') {
 const plain = (text = '') => text.replace(/\*\*/g, '').replace(/^\s*[-•]\s/gm, '');
 
 // ---------------------------------------------------------------------------
-// #/<tit>/curso
-
-export function cursoView({ progress, tit }) {
-  const T = TITULACIONES[tit];
-  const el = h('div.curso', h('p.muted', 'Cargando el curso…'));
-  let summaryText = `VISTA curso ${T.sigla} (cargando)`;
-  loadCourse(tit).then((curso) => {
-    const resp = progress.get().exams;
-    const regs = progress.lecciones();
-    const fecha = progress.settings()[`examen_${tit}`] ?? '';
-    const prioridad = T.estructura.bloques.filter((b) => b.maxErrores != null).map((b) => b.ut);
-    const plan = curso ? hoyToca(curso, regs, resp, { fechaExamen: fecha || null, prioridad }) : null;
-    const porUt = new Map((curso?.modulos ?? []).map((m) => [m.ut, m]));
-    const leccionLink = (l) => tlink(tit, ['curso', l.id]);
-
-    summaryText = `VISTA curso ${T.sigla}\n` + (curso ? leccionesDe(curso).map((l) => {
-      const e = estadoLeccion(l, regs[l.id], resp);
-      return `${l.id} ${l.titulo}: ${e.estado} · práctica ${e.aciertos}/${e.hechas} de ${e.total}`;
-    }).join('\n') : 'sin lecciones todavía');
-
-    const dateInput = h('input', { type: 'date', id: `fecha-${tit}`, value: fecha, style: 'width:auto', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); dispatchEvent(new HashChangeEvent('hashchange')); } });
-
-    setChildren(el,
-      crumbs(tit, 'Curso'),
-      h('h1', `🎓 Curso ${T.sigla}`),
-      h('p', `Clases cortas por bloques del temario: el concepto explicado con dibujos y animaciones, reglas para recordar, preguntas rápidas y, al final, práctica con preguntas reales de examen. Lo que fallas vuelve a los pocos días para que no se te olvide.`),
-      tit === 'py' ? h('p.muted.small', 'El Patrón de Yate da por sabido el PER. Si algo te suena oxidado, cada lección enlaza las clases del PER que conviene repasar.') : null,
-      plan ? h('section.hoy',
-        h('h2', '📅 Hoy toca'),
-        plan.repasos.length ? h('p', 'Repasar: ', plan.repasos.map((l, i) => [i ? ' · ' : '', h('a', { href: leccionLink(l) }, l.titulo)])) : null,
-        plan.siguiente ? h('p', 'Siguiente clase: ', h('a.btn', { href: leccionLink(plan.siguiente) }, `${plan.siguiente.titulo} →`)) : h('p', '🎉 Has visto todas las lecciones publicadas.'),
-        h('p.small', h('label', 'Fecha de tu examen: ', dateInput),
-          plan.ritmo ? ` · quedan ${plan.ritmo.dias} días: ${plan.ritmo.pendientes ? `unas ${plan.ritmo.porDia} lecciones al día para acabar una semana antes` : 'temario visto'}${plan.ritmo.simulacros ? '. Esta recta final, haz un simulacro cada día.' : ''}` : ''),
-        h('p.muted.small', `${plan.dominadas} de ${plan.total} lecciones dominadas.`)) : null,
-      T.estructura.bloques.map((b) => {
-        const m = porUt.get(b.ut);
-        return h('section.modulo',
-          h('h2', `${b.icon} ${b.titulo}`),
-          m ? [m.intro ? h('p.muted', m.intro) : null,
-            h('ol.lecciones', m.lecciones.map((l) => {
-              const e = estadoLeccion(l, regs[l.id], resp);
-              return h('li', h('a', { href: leccionLink(l) }, l.titulo),
-                h('span.muted.small', ` · ${l.minutos ?? 10} min`),
-                h('span.estado', { class: { dominada: 'ok', repasar: 'warn', empezada: 'close' }[e.estado] ?? '' }, ESTADO_TXT[e.estado]),
-                e.hechas ? h('span.muted.small', ` ${e.aciertos}/${e.hechas}`) : null);
-            }))]
-            : h('p.muted.small', 'Lecciones en preparación. Mientras tanto: ', h('a', { href: tlink(tit, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) }, 'practica el bloque con preguntas reales'), '.'));
-      }),
-    );
-  }).catch((e) => setChildren(el, h('p.warn', `No se pudo cargar el curso: ${e.message}`)));
-  return { el, summary: () => summaryText };
-}
-
-// ---------------------------------------------------------------------------
 // #/<tit>/curso/<id>
 
 export function leccionView({ ctx, progress, params: route, tit }) {
@@ -92,7 +38,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const todas = curso ? leccionesDe(curso) : [];
     const idx = todas.findIndex((l) => l.id === id);
     const L = todas[idx];
-    if (!L) { setChildren(el, crumbs(tit, ['Curso', tlink(tit, ['curso'])], 'No encontrada'), h('p', 'Esta lección no existe (todavía).')); return; }
+    if (!L) { setChildren(el, volver('Temario', tlink(tit, ['temario'])), h('p', 'Esta clase no existe (todavía).')); return; }
     prepareTheory({ tit, chart: ctx.chart, reglas: bank.reglasDe });
     const next = todas[idx + 1];
     const prev = todas[idx - 1];
@@ -168,7 +114,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         L.profundizar?.length ? h('section', h('h2', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
         L.refresco?.length ? h('section', h('h2', '🔁 Repaso del PER'), h('ul', L.refresco.map((rid) => h('li', h('a', { href: tlink('per', ['curso', rid]) }, rid))))) : null,
         h('div.actions', prev ? h('a.btn.secondary', { href: tlink(tit, ['curso', prev.id]) }, `← ${prev.titulo}`) : null,
-          next ? h('a.btn', { href: tlink(tit, ['curso', next.id]) }, `${next.titulo} →`) : h('a.btn', { href: tlink(tit, ['curso']) }, 'Volver al curso')),
+          next ? h('a.btn', { href: tlink(tit, ['curso', next.id]) }, `${next.titulo} →`) : h('a.btn', { href: tlink(tit, ['temario', String(L.ut)]) }, 'Volver al tema')),
       );
     }
 
@@ -189,7 +135,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           progress.saveLeccion(L.id, trasPractica(reg(), acierto));
           setChildren(box, h('p', { class: acierto >= APROBADO ? 'ok' : 'warn' }, acierto >= APROBADO ? `🎉 ${ok}/${ses.length}: lección dominada. Volverá a salir dentro de unos días para afianzarla.` : `${ok}/${ses.length}: casi. Repasa las tarjetas y vuelve a intentarlo; la lección volverá mañana.`),
             h('div.actions', h('button.secondary', { type: 'button', onclick: () => { paso = 0; todo = false; render(); setChildren(final); window.scrollTo(0, 0); } }, 'Repasar las tarjetas'),
-              next ? h('a.btn', { href: tlink(tit, ['curso', next.id]) }, `Siguiente: ${next.titulo} →`) : h('a.btn', { href: tlink(tit, ['curso']) }, 'Volver al curso')));
+              next ? h('a.btn', { href: tlink(tit, ['curso', next.id]) }, `Siguiente: ${next.titulo} →`) : h('a.btn', { href: tlink(tit, ['temario', String(L.ut)]) }, 'Volver al tema')));
           summaryText = `LECCIÓN ${L.id} práctica terminada ${ok}/${ses.length}`;
           return;
         }
@@ -215,7 +161,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
 
     const e = estadoLeccion(L, reg(), progress.get().exams);
     setChildren(el,
-      crumbs(tit, ['Curso', tlink(tit, ['curso'])], L.titulo),
+      barraActividad({ texto: L.titulo, onSalir: () => { location.hash = tlink(tit); } }),
       h('header', h('p.muted.small', `${L.modulo} · lección ${idx + 1} de ${todas.length} · ${L.minutos ?? 10} min`), h('h1', L.titulo),
         h('span.estado', { class: { dominada: 'ok', repasar: 'warn', empezada: 'close' }[e.estado] ?? '' }, ESTADO_TXT[e.estado])),
       L.objetivos?.length ? h('section.objetivos', h('h2', '🎯 Al acabar sabrás'), h('ul', L.objetivos.map((o) => h('li', o)))) : null,

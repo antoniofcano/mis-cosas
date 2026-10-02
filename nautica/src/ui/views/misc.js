@@ -6,7 +6,7 @@ import { GLOSSARY } from '../../nautical/glossary.js';
 import { chartWidget } from '../chart-widget.js';
 import { fmtLat, fmtLon } from '../../math/format.js';
 import { link } from '../router.js';
-import { crumbs } from '../titulacion.js';
+import { volver } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { voice, spanishVoices } from '../voice.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
@@ -14,7 +14,7 @@ import { resetRaster } from '../chart/raster.js';
 
 export function theoryView({ tit }) {
   const el = h('div.theory',
-    crumbs(null, 'Conceptos de carta'),
+    volver('Más', '#/mas'),
     h('h1', 'Conceptos y métodos de carta'),
     h('section', h('h2', 'Convención de signos'),
       h('p', 'Este (E) = +, Oeste (W) = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +, babor −). Rs = Rv + Ab.')),
@@ -36,7 +36,7 @@ export function progressView({ progress }) {
   } });
   const exams = Object.values(progress.get().exams);
   const el = h('div.progress',
-    crumbs(null, 'Progreso'),
+    volver('Más', '#/mas'),
     h('h1', 'Tu progreso'),
     h('table.stats', h('thead', h('tr', h('th', 'Ejercicio'), h('th', 'Intentos'), h('th', 'Aciertos'), h('th', '%'), h('th', 'Errores frecuentes'))),
       h('tbody', rows.map(({ e, st }) => h('tr',
@@ -110,7 +110,7 @@ export function chartView({ ctx }) {
       : 'No has cargado tu carta escaneada. La carta vectorial funciona igualmente.';
   });
   const el = h('div.chart-page',
-    crumbs(null, 'Mesa de cartas'),
+    volver('Más', '#/mas'),
     h('h1', `Mesa de cartas · ${chart.name}`),
     h('p.muted', 'Herramientas: ✋ mover (la carta, tus puntos, textos, extremos de línea y el transportador, también girar su hilo; toca un punto para ver u ocultar sus coordenadas) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (interruptor: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta; arrastra el centro, gira el hilo dentro del cuadrado, «Trazar») · 📍 punto · 🔤 texto · 🧽 goma · 🏷 coordenadas sí/no · ⌖ situar por coordenadas. Guías: arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba) para sacar un paralelo o un meridiano; tócala para escribir su valor exacto; suéltala sobre la escala para quitarla. El cruce de dos guías es el punto, y las herramientas se ajustan a él. Se ajustan a los faros y al centro del transportador.'),
     w.el,

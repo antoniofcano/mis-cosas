@@ -1,5 +1,4 @@
 // Vistas de teoría y exámenes de una titulación (PER, PY…):
-//   #/<tit>/teoria            bloques del temario
 //   #/<tit>/teoria/ut/<n>     práctica por bloque (corrección inmediata + profe)
 //   #/<tit>/examenes          simulacro y exámenes reales completos
 //   #/<tit>/test/simulacro    #/<tit>/test/real/<convocatoria>   cronometrados, corrección oficial y revisión con el profe
@@ -8,7 +7,8 @@ import { h, setChildren, copyText } from '../dom.js';
 import { link } from '../router.js';
 import { loadTheoryBank } from '../../store/datasets.js';
 import { bloque, totalPreguntas } from '../../theory/blocks.js';
-import { TITULACIONES, tlink, crumbs } from '../titulacion.js';
+import { TITULACIONES, tlink } from '../titulacion.js';
+import { barraActividad } from '../actividad.js';
 import { buildSimulacro, buildReal, buildPractica, convocatorias, grade } from '../../theory/engine.js';
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
@@ -110,43 +110,6 @@ export function blockStats(preguntas, progress) {
 const pct = (s) => (s.hechas ? Math.round((100 * s.ok) / s.hechas) : null);
 
 // ---------------------------------------------------------------------------
-// #/<tit>/teoria — temario por bloques
-
-export function teoriaView({ ctx, progress, tit }) {
-  chartRef = ctx.chart;
-  useTit(tit);
-  const el = h('div.theory-hub', h('p.muted', 'Cargando preguntas…'));
-  let summaryText = `VISTA teoría ${T.sigla} (cargando)`;
-  loadTheoryBank(T.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
-    reglasDe = rd;
-    const statsFor = blockStats(preguntas, progress);
-    summaryText = `VISTA teoría ${T.sigla} · ${preguntas.length} preguntas reales · ${Object.keys(explicaciones).length} explicaciones\n` +
-      E.bloques.map((b) => { const s = statsFor(b.ut); return `UT${b.ut} ${b.titulo}: ${s.total} preguntas, hechas ${s.hechas}, acertadas ${s.ok}`; }).join('\n') +
-      `\nRUTAS: #/${T.id}/teoria/ut/<n>?s=<semilla>[&f=1 solo falladas]`;
-    setChildren(el,
-      crumbs(T.id, 'Teoría'),
-      h('h1', `${T.icon} Teoría · ${T.sigla}`),
-      h('p', 'Practica cada bloque del temario con las preguntas reales de examen: corrección al momento y el profe explicándote cada respuesta (con dibujos y animaciones cuando ayudan).'),
-      h('div.cards', E.bloques.map((b) => {
-        const s = statsFor(b.ut);
-        const p = pct(s);
-        return h('a.card', { href: tlink(T.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) },
-          h('h3', `${b.icon} ${b.titulo}`),
-          h('p', `${b.n} preguntas en el examen${b.maxErrores != null ? ` · máximo ${b.maxErrores} errores` : ''}`),
-          s.hechas ? h('div.bar', h('span', { style: `width:${Math.round((100 * s.hechas) / s.total)}%` })) : null,
-          h('div.meta', h('span.stat', `${s.total} preguntas`), s.hechas ? h('span.stat', { class: p >= 70 ? 'ok' : p < 50 ? 'warn' : '' }, `${s.ok}/${s.hechas} ✓ (${p} %)`) : h('span.stat.muted', 'sin empezar')));
-      })),
-      h('h2', 'Material de apoyo'),
-      h('div.cards',
-        h('a.card', { href: tlink(T.id, ['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Boyas con su ritmo de luz, luces y marcas de buques, reglas de rumbo, señales acústicas con sonido, meteorología…')),
-        h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Las mnemotecnias que de verdad funcionan, con su explicación.')),
-        h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta'), h('p', 'Convención de signos, glosario y el método de cada tipo de ejercicio de carta.'))),
-    );
-  }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
-  return { el, summary: () => summaryText };
-}
-
-// ---------------------------------------------------------------------------
 // #/<tit>/examenes — simulacros y exámenes reales completos
 
 export function examenesView({ ctx, progress, tit }) {
@@ -160,7 +123,6 @@ export function examenesView({ ctx, progress, tit }) {
     summaryText = `VISTA exámenes ${T.sigla} · ${convs.length} convocatorias\n${convs.map((c) => `${c.key}: ${c.titulo} (${c.n} preguntas)`).join('\n')}` +
       `\nRUTAS: #/${T.id}/test/simulacro?s=<semilla> · #/${T.id}/test/real/<convocatoria>`;
     setChildren(el,
-      crumbs(T.id, 'Exámenes'),
       h('h1', `📝 Exámenes · ${T.sigla}`),
       h('p', `${T.resumen}. Cronometrados, sin corrección hasta que entregues y corregidos con las reglas oficiales; después, revisión de las falladas con el profe.`),
       h('div.actions',
@@ -212,7 +174,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
         setChildren(body, h('p.ok', `🎉 Bloque terminado: ${ok} aciertos de ${hechas}.`),
           h('div.actions', h('a.btn', { href: tlink(T.id, ['teoria', 'ut', String(ut)], { s: randomSeed() }) }, '🔄 Otra vuelta'),
             h('a.btn.secondary', { href: tlink(T.id, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, 'Solo las falladas'),
-            h('a.btn.secondary', { href: tlink(T.id, ['teoria']) }, 'Volver a Teoría')));
+            h('a.btn.secondary', { href: tlink(T.id, ['temario', String(ut)]) }, 'Volver al tema')));
         summaryText = `VISTA práctica UT${ut} terminada: ${ok}/${hechas}`;
         return;
       }
@@ -239,7 +201,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
       summaryText = practiceSummary(q, explicaciones[q.id], null);
     }
     setChildren(el,
-      crumbs(T.id, ['Teoría', tlink(T.id, ['teoria'])], `UT${ut}`),
+      barraActividad({ texto: b.titulo, onSalir: () => { location.hash = tlink(T.id); } }),
       h('header', h('h1', `${b.icon} ${b.titulo}`), h('div.badges', score, soloFalladas ? h('span.badge.warn', 'Solo falladas') : null)),
       sesion.preguntas.length ? body : h('p.muted', soloFalladas ? 'No tienes preguntas falladas en este bloque. 👏' : 'Aún no hay preguntas de este bloque.'),
     );
@@ -332,7 +294,6 @@ export function testView({ ctx, progress, params: route, tit }) {
         h('option', { value: 'falladas' }, 'Solo las falladas'), h('option', { value: 'todas' }, 'Todas'));
       renderReview();
       setChildren(el,
-        crumbs(T.id, ['Exámenes', tlink(T.id, ['examenes'])], test.titulo),
         h('header', h('h1', g.apto == null ? 'Resultado' : g.apto ? '✅ APTO' : '❌ NO APTO'),
           h('p', `${g.aciertos} aciertos de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
@@ -351,6 +312,7 @@ export function testView({ ctx, progress, params: route, tit }) {
 
     refreshNav();
     setChildren(el,
+      barraActividad({ texto: test.titulo, onSalir: () => { location.hash = tlink(T.id); } }),
       h('div.test-bar', h('strong', `${T.sigla} · ${test.titulo}`), clock, answeredCount,
         h('button', { type: 'button', onclick: () => finish(false) }, 'Terminar y corregir')),
       test.faltan.length ? h('p.warn.small', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E, f.ut)?.titulo ?? f.ut).join(', ')}; el simulacro no está completo.`) : null,

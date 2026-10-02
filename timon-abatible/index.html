@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timón abatible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#e7ecea; --surface:#f6f8f7; --ink:#14212a; --muted:#4f6068; --line:#cbd6d3;
+  --accent:#e2a900; --accent-ink:#7a5800; --btn-bg:#1d3b52; --btn-ink:#f4f7f8;
+  --chip-bg:#dfe7e5; --chip-on:#1d3b52; --chip-on-ink:#f4f7f8;
+  --stage-a:#eef2f1; --stage-b:#c9d4d2; --tag-bg:rgba(246,248,247,.92); --tag-ink:#14212a;
+  --focus:#0b6fb8;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0c1317; --surface:#131d23; --ink:#e2e9ec; --muted:#93a4ab; --line:#25333a;
+    --accent:#f2c230; --accent-ink:#f2c230; --btn-bg:#f2c230; --btn-ink:#14212a;
+    --chip-bg:#1b272e; --chip-on:#f2c230; --chip-on-ink:#14212a;
+    --stage-a:#1c2a31; --stage-b:#0b1215; --tag-bg:rgba(19,29,35,.9); --tag-ink:#e2e9ec;
+    --focus:#7cc4ff;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c1317; --surface:#131d23; --ink:#e2e9ec; --muted:#93a4ab; --line:#25333a;
+  --accent:#f2c230; --accent-ink:#f2c230; --btn-bg:#f2c230; --btn-ink:#14212a;
+  --chip-bg:#1b272e; --chip-on:#f2c230; --chip-on-ink:#14212a;
+  --stage-a:#1c2a31; --stage-b:#0b1215; --tag-bg:rgba(19,29,35,.9); --tag-ink:#e2e9ec;
+  --focus:#7cc4ff;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:18px 28px}
+.wrap{max-width:1280px;margin:0 auto;display:grid;gap:16px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,5vw,52px);line-height:.95;letter-spacing:.01em;margin:4px 0 0;text-wrap:balance;text-transform:uppercase}
+.hint{color:var(--muted);margin:0;max-width:52ch;font-size:14px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:start}
+.stage{position:relative;height:min(80vh,780px);min-height:440px;border-radius:14px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 30%,var(--stage-a),var(--stage-b));border:1px solid var(--line)}
+canvas#c{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+canvas#c:active{cursor:grabbing}
+.tags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.tag{position:absolute;left:0;top:0;will-change:transform}
+.tag .dot{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--tag-bg)}
+.tag .lbl{position:absolute;white-space:nowrap;font-family:var(--f-display);font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;
+  background:var(--tag-bg);color:var(--tag-ink);padding:2px 8px;border-radius:4px;border:1px solid var(--line);transition:background .15s,color .15s}
+.tag[data-side="r"] .lbl{left:12px;top:-12px}
+.tag[data-side="l"] .lbl{right:12px;top:-12px}
+.tag[data-side="u"] .lbl{left:0;bottom:12px;transform:translateX(-50%)}
+.tag[data-side="d"] .lbl{left:0;top:12px;transform:translateX(-50%)}
+.tag.on .lbl{background:var(--accent);color:#14212a;border-color:var(--accent)}
+.tags.off .tag:not(.on){display:none}
+.tip{position:absolute;left:0;top:0;pointer-events:none;font-size:12px;font-family:var(--f-mono);background:var(--tag-bg);color:var(--tag-ink);
+  border:1px solid var(--line);padding:3px 7px;border-radius:4px;white-space:nowrap}
+.compass{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:11px;color:var(--muted);pointer-events:none}
+.fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted)}
+aside{display:grid;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:12px}
+.card h2{font-family:var(--f-display);font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin:0}
+.ctl{display:grid;gap:4px}
+.ctl .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px}
+.ctl output{font-family:var(--f-mono);font-size:12px;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;font-size:14px;border-radius:8px;border:1px solid transparent;cursor:pointer;padding:7px 12px}
+.primary{background:var(--btn-bg);color:var(--btn-ink);font-weight:600}
+.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.chip{background:var(--chip-bg);color:var(--ink);padding:6px 10px;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.toggles{display:grid;gap:6px;font-size:14px}
+.toggles label{display:flex;gap:8px;align-items:center;cursor:pointer}
+.toggles input{accent-color:var(--accent);width:16px;height:16px}
+.parts{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.parts button{width:100%;text-align:left;background:transparent;color:var(--ink);padding:6px 8px;display:grid;gap:0}
+.parts button:hover,.parts button.on{background:var(--chip-bg)}
+.parts b{font-weight:600;font-size:14px}
+.parts span{font-size:12.5px;color:var(--muted);line-height:1.35}
+dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:14px}
+dt{color:var(--muted)} dd{margin:0;font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums;text-align:right}
+.note{font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){
+  .app{grid-template-columns:1fr}
+  .stage{height:62vh;min-height:380px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <p class="eyebrow">Mockup 3D · versión con cajera de inox</p>
+      <h1>Timón abatible</h1>
+    </div>
+    <p class="hint">Dos placas de inox cerradas por proa con un tubo que sujeta las placas, lleva los machos, hace de tope a la pala y guía por dentro los cabos de subida y bajada hasta la caña, que se abate y se saca para estibar. Arrastra para girar, rueda o pellizca para acercar, botón derecho o dos dedos para desplazar.</p>
+  </header>
+
+  <div class="app">
+    <div class="stage" id="stage">
+      <canvas id="c" aria-label="Modelo 3D interactivo del timón"></canvas>
+      <div class="tags" id="tags"></div>
+      <div class="tip" id="tip" hidden></div>
+      <div class="compass" id="compass">proa ←  → popa</div>
+    </div>
+
+    <aside>
+      <section class="card" aria-labelledby="h-man">
+        <h2 id="h-man">Maniobra</h2>
+        <div class="ctl">
+          <div class="row"><label for="s-pala">Pala</label><output id="o-pala">0° · arriada</output></div>
+          <input type="range" id="s-pala" min="0" max="85" step="1" value="0">
+          <p class="note" id="o-cabo" aria-live="polite"></p>
+        </div>
+        <div class="ctl">
+          <div class="row"><label for="s-cana">Caña</label><output id="o-cana">0° · al centro</output></div>
+          <input type="range" id="s-cana" min="-35" max="35" step="1" value="0">
+        </div>
+        <div class="ctl">
+          <div class="row"><label for="s-abat">Caña · abatir</label><output id="o-abat">0° · bloqueada</output></div>
+          <input type="range" id="s-abat" min="0" max="75" step="1" value="0">
+          <input type="range" id="s-ext" min="0" max="100" step="1" value="0" hidden aria-hidden="true" tabindex="-1">
+        </div>
+        <div class="ctl">
+          <div class="row"><label for="s-stick">Stick · elevación</label><output id="o-stick">0° · recogido</output></div>
+          <input type="range" id="s-stick" min="0" max="150" step="1" value="0">
+        </div>
+        <div class="ctl">
+          <div class="row"><label for="s-stickg">Stick · giro lateral</label><output id="o-stickg">0°</output></div>
+          <input type="range" id="s-stickg" min="-70" max="70" step="1" value="0">
+        </div>
+        <div class="btns">
+          <button class="primary" id="b-pala">Izar pala</button>
+          <button class="ghost" id="b-ext">Extraer caña</button>
+          <button class="ghost" id="b-golpe">Simular golpe en el fondo</button>
+          <button class="ghost" id="b-navegar">Posición de navegar</button>
+          <button class="ghost" id="b-reset">Posición inicial</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="h-vista">
+        <h2 id="h-vista">Vista</h2>
+        <div class="btns" id="views">
+          <button class="chip" data-view="persp" aria-pressed="true">3/4</button>
+          <button class="chip" data-view="foto" aria-pressed="false">Lateral (foto)</button>
+          <button class="chip" data-view="popa" aria-pressed="false">Desde popa</button>
+          <button class="chip" data-view="planta" aria-pressed="false">Planta</button>
+        </div>
+        <div class="toggles">
+          <label><input type="checkbox" id="t-tags" checked> Nombres de las piezas</label>
+          <label><input type="checkbox" id="t-xray"> Ver por dentro (inox translúcido)</label>
+          <label><input type="checkbox" id="t-ctx"> Espejo de popa y línea de flotación</label>
+          <label><input type="checkbox" id="t-rot"> Giro automático</label>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="h-piezas">
+        <h2 id="h-piezas">Piezas</h2>
+        <ul class="parts" id="parts"></ul>
+        <p class="note">Pasa por encima de una pieza (aquí o en el modelo) para resaltarla; haz clic para acercarte.</p>
+      </section>
+
+      <section class="card" aria-labelledby="h-med">
+        <h2 id="h-med">Medidas aproximadas</h2>
+        <dl>
+          <dt>Altura total, cabeza a punta</dt><dd>≈ 1,25 m</dd>
+          <dt>Pala visible bajo la cajera</dt><dd>≈ 0,59 m</dd>
+          <dt>Cuerda de la pala (abajo)</dt><dd>≈ 0,33 m</dd>
+          <dt>Cajera, ancho arriba / abajo</dt><dd>≈ 0,20 / 0,27 m</dd>
+          <dt>Placas de inox, espesor</dt><dd>3 mm *</dd>
+          <dt>Tubo de proa, diámetro</dt><dd>Ø 27 mm *</dd>
+          <dt>Caña</dt><dd>≈ 1,21 m</dd>
+          <dt>Stick</dt><dd>≈ 0,74 m</dd>
+        </dl>
+        <p class="note">Estimadas a ojo sobre la foto, usando la rueda del todoterreno como escala. Sirven de orden de magnitud, no de plano. * Valores supuestos para el modelo: el tubo mide lo mismo que el grueso de la pala más las holguras. Si me pasas medidas reales, ajusto el modelo.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const stage = document.getElementById('stage');
+const canvas = document.getElementById('c');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+} catch (e) {
+  stage.insertAdjacentHTML('beforeend', '<div class="fallback">Este navegador no ha podido abrir WebGL, así que el modelo 3D no se puede mostrar.</div>');
+  throw e;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.95;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(32, 1, 0.02, 60);
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 0.4;
+controls.maxDistance = 7;
+controls.autoRotateSpeed = 1.1;
+
+scene.add(new THREE.HemisphereLight(0xf4f7ff, 0x7a6a52, 0.55));
+const sun = new THREE.DirectionalLight(0xfff1dc, 2.1);
+sun.position.set(1.6, 4, 2.6);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -2, right: 2, top: 2.2, bottom: -1, near: 0.5, far: 10 });
+sun.shadow.bias = -0.0004;
+sun.shadow.normalBias = 0.01;
+scene.add(sun);
+
+// ---------- Coordenadas: píxeles de la foto → metros (1000 px ≈ 1 m) ----------
+// x crece hacia popa (derecha de la foto), y hacia arriba; la punta de la pala en y = 0.
+const P = (px, py) => new THREE.Vector2((px - 1330) / 1000, (1400 - py) / 1000);
+
+// ---------- Texturas procedurales ----------
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function canvasTex(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return t;
+}
+function grain(g, w, h, o) {
+  const r = rng(o.seed);
+  g.fillStyle = o.base; g.fillRect(0, 0, w, h);
+  g.save();
+  let L = w, S = h;
+  if (o.vertical) { g.translate(w, 0); g.rotate(Math.PI / 2); L = h; S = w; }
+  (o.bands || []).forEach(([a, b, col, al]) => { g.globalAlpha = al; g.fillStyle = col; g.fillRect(0, a * S, L, (b - a) * S); });
+  for (let i = 0; i < o.lines; i++) {
+    const y = r() * S, amp = r() * o.amp, f = 0.002 + r() * 0.006, ph = r() * 6.28;
+    g.strokeStyle = r() < 0.55 ? o.dark : o.light;
+    g.globalAlpha = 0.06 + r() * 0.2;
+    g.lineWidth = 0.6 + r() * 2.4;
+    g.beginPath();
+    for (let x = 0; x <= L; x += 8) {
+      const yy = y + Math.sin(x * f + ph) * amp + Math.sin(x * f * 3.7 + ph) * amp * 0.25;
+      x ? g.lineTo(x, yy) : g.moveTo(x, yy);
+    }
+    g.stroke();
+  }
+  for (let i = 0; i < (o.flecks || 0); i++) {
+    g.globalAlpha = 0.15 + r() * 0.25; g.fillStyle = o.dark;
+    g.fillRect(r() * L, r() * S, 2 + r() * 14, 1 + r() * 2);
+  }
+  g.restore(); g.globalAlpha = 1;
+}
+
+const texTeak = canvasTex(2048, 256, (g, w, h) => grain(g, w, h, {
+  seed: 7, base: '#7a3d1d', light: '#a65c33', dark: '#3f1d0c', lines: 220, amp: 7, flecks: 90 }));
+texTeak.repeat.set(1 / 1.3, 1 / 0.13); texTeak.offset.set(1.1 / 1.3, 0);
+
+
+// Pala: blanca, con las manchas amarillentas y el desconchón negro de abajo.
+const BX0 = -0.14, BW = 0.37, BY0 = -0.80, BH = 0.92;
+const texBlade = canvasTex(420, 1044, (g, w, h) => {
+  const X = x => (x - BX0) / BW * w, Y = y => (1 - (y - BY0) / BH) * h;
+  g.fillStyle = '#f1eee6'; g.fillRect(0, 0, w, h);
+  const r = rng(11);
+  for (let i = 0; i < 900; i++) { g.globalAlpha = 0.03 + r() * 0.05; g.fillStyle = r() < .5 ? '#d8d2c2' : '#ffffff'; g.fillRect(r() * w, r() * h, 1 + r() * 3, 1 + r() * 3); }
+  const streak = (x, y0, y1, wd, col, a) => {
+    g.globalAlpha = a; g.strokeStyle = col; g.lineCap = 'round';
+    for (let k = 0; k < 5; k++) {
+      g.lineWidth = wd * (0.4 + r() * 0.8); g.beginPath();
+      const dx = (r() - .5) * 6;
+      g.moveTo(X(x) + dx, Y(y0 - r() * .02));
+      g.bezierCurveTo(X(x) + dx + 4, Y(y0 - .05), X(x) + dx - 3, Y(y1 + .05), X(x) + dx + (r() - .5) * 5, Y(y1 + r() * .03));
+      g.stroke();
+    }
+  };
+  streak(-0.105, -0.26, -0.45, 5, '#c8962e', .55);
+  streak(-0.098, -0.46, -0.52, 3, '#c8962e', .35);
+  streak(-0.03, -0.22, -0.40, 4, '#c79a3a', .5);
+  streak(-0.025, -0.43, -0.48, 3, '#c79a3a', .35);
+  streak(0.03, -0.21, -0.26, 4, '#d3b16a', .3);
+  g.globalAlpha = .35; g.strokeStyle = '#a9a292'; g.lineWidth = 1.2;
+  g.beginPath(); g.moveTo(X(-0.012), Y(-0.23)); g.lineTo(X(-0.006), Y(-0.55)); g.lineTo(X(0.004), Y(-0.77)); g.stroke();
+  g.beginPath(); g.moveTo(X(-0.07), Y(-0.29)); g.lineTo(X(-0.015), Y(-0.30)); g.stroke();
+  g.globalAlpha = .9; g.fillStyle = '#1b1b1b';
+  g.fillRect(X(-0.085), Y(-0.763), X(-0.07) - X(-0.085), Y(-0.781) - Y(-0.763));
+  g.globalAlpha = 1;
+});
+texBlade.repeat.set(1 / BW, 1 / BH); texBlade.offset.set(-BX0 / BW, -BY0 / BH);
+
+// ---------- Materiales ----------
+const M = {
+  teak: new THREE.MeshPhysicalMaterial({ map: texTeak, roughness: .38, clearcoat: .7, clearcoatRoughness: .25 }),
+  rope: new THREE.MeshStandardMaterial({ color: 0xd8452a, roughness: .85 }),
+  ropeUp: new THREE.MeshStandardMaterial({ color: 0x2f9a57, roughness: .85 }),
+  shock: new THREE.MeshStandardMaterial({ color: 0x222226, roughness: .7 }),
+  blade: new THREE.MeshStandardMaterial({ map: texBlade, roughness: .55 }),
+  inox: new THREE.MeshStandardMaterial({ color: 0xd4d7da, metalness: .95, roughness: .24 }),
+  alu: new THREE.MeshStandardMaterial({ color: 0xd7d9db, metalness: .85, roughness: .38 }),
+  black: new THREE.MeshStandardMaterial({ color: 0x1a1b1d, roughness: .55 }),
+  hole: new THREE.MeshStandardMaterial({ color: 0x0a0a0a, roughness: .9 }),
+  yellow: new THREE.MeshStandardMaterial({ color: 0xf5d11a, roughness: .45 }),
+};
+
+// ---------- Piezas ----------
+const PARTS = {
+  cana:      { name: 'Caña', desc: 'Palanca de madera barnizada. Se abate hacia arriba y se saca entera para estibarla en puerto.', side: 'd' },
+  bisagra:   { name: 'Bisagra de la caña', desc: 'La caña gira sobre un pasador de liberación rápida en la esquina de proa de las placas. Si lo sacas, la caña sale entera.', side: 'u' },
+  pasador:   { name: 'Pasador de bloqueo', desc: 'Mantiene la caña horizontal. Al quitarlo, la caña se abate. Va atado a la placa con una cadenilla para no perderlo.', side: 'r' },
+  stick:     { name: 'Stick (alargador)', desc: 'Tubo de aluminio con junta cardán: gobiernas sentado en la banda.', side: 'u' },
+  pomo:      { name: 'Pomo', desc: 'Empuñadura amarilla al final del stick.', side: 'u' },
+  placas:    { name: 'Placas de inox', desc: 'Dos chapas de acero inoxidable que forman la cajera. Arriba abrazan la caña; abajo alojan la pala.', side: 'r' },
+  tubo:      { name: 'Tubo de inox', desc: 'Cierra la cajera por proa y hace tres cosas: sujeta las dos placas, lleva soldados los machos y sirve de tope a la pala. Además, el cabo de bajada va por dentro.', side: 'l' },
+  machos:    { name: 'Machos', desc: 'Soldados al tubo. Entran en las hembras del espejo de popa.', side: 'l' },
+  cabo:      { name: 'Cabo de bajada', desc: 'Rojo, por babor. Sale del agujero de la pala bajo el tubo, sube por dentro del tubo y va por debajo de la caña hasta su mordaza. Tirando de él, la pala baja hasta el tope.', side: 'l' },
+  subida:    { name: 'Cabo de subida', desc: 'Verde, por estribor. Va hecho firme al disco de la pala, lo abraza por arriba en una garganta y entra en el tubo por una ranura con roldana. Sube junto al de bajada y va por debajo de la caña hasta su mordaza. Tirando de él, la pala se iza.', side: 'r' },
+  mordaza:   { name: 'Mordazas y guías', desc: 'Dos mordazas de levas en los costados de la caña, a mano desde la bañera: babor para la bajada, estribor para la subida. Los cabos llegan por dos guías bajo la caña.', side: 'd' },
+  elastico:  { name: 'Tramo elástico', desc: 'Unos 30 cm de cabo elástico dentro del tubo, en la línea de bajada. Mantiene la pala abajo, pero si toca fondo se estira y la deja subir aunque la mordaza esté cerrada.', side: null },
+  perno:     { name: 'Perno de pivote', desc: 'Eje sobre el que bascula la pala al izarla o si toca fondo.', side: 'r' },
+  pala:      { name: 'Pala abatible', desc: 'Pala blanca pintada. Su hombro de proa apoya contra el extremo del tubo, así que no puede irse hacia el espejo.', side: 'r' },
+};
+for (const k in PARTS) PARTS[k].meshes = [];
+const pickables = [];
+
+function mk(geo, mat, part, parent, pos, rot) {
+  const m = new THREE.Mesh(geo, mat.clone());
+  m.castShadow = true; m.receiveShadow = true;
+  m.userData.part = part;
+  if (pos) m.position.set(...pos);
+  if (rot) m.rotation.set(...rot);
+  parent.add(m);
+  PARTS[part].meshes.push(m); pickables.push(m);
+  return m;
+}
+function anchor(part, parent, pos) { const a = new THREE.Object3D(); a.position.set(...pos); parent.add(a); PARTS[part].anchor = a; }
+function shapeFrom(pts) { const s = new THREE.Shape(); s.moveTo(pts[0].x, pts[0].y); for (let i = 1; i < pts.length; i++) s.lineTo(pts[i].x, pts[i].y); s.closePath(); return s; }
+function extrude(shape, depth, bevel) {
+  return new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: !!bevel, bevelThickness: bevel || 0, bevelSize: bevel || 0, bevelSegments: 3, curveSegments: 24 });
+}
+
+const root = new THREE.Group(); scene.add(root);
+const PINTLE_X = -0.165;
+const steer = new THREE.Group(); steer.position.x = PINTLE_X; root.add(steer);
+const rud = new THREE.Group(); rud.position.x = -PINTLE_X; steer.add(rud);
+
+// Cajera: dos placas de inox (3 mm) cerradas por proa con un tubo de inox (Ø 27 mm)
+const PL_IN = 0.0135, PL_T = 0.003;              // cara interior de cada placa y espesor
+const plateShape = shapeFrom([P(1245, 155), P(1440, 155), P(1466, 838), P(1198, 838), P(1208, 300), P(1215, 200)]);
+const plateGeo = extrude(plateShape, PL_T - 0.001, 0.0005);
+for (const s of [1, -1]) mk(plateGeo, M.inox, 'placas', rud, [0, 0, s > 0 ? PL_IN + 0.0005 : -PL_IN - PL_T + 0.0005]);
+anchor('placas', rud, [0.125, 0.66, PL_IN + PL_T]);
+
+// Tubo de proa: su eje sigue el canto de proa de las placas
+const TUBE_R = 0.0135;
+const TB = new THREE.Vector3(-0.1315, 0.55, 0), TT = new THREE.Vector3(-0.1195, 1.12, 0);
+const tubeX = y => TB.x + (y - TB.y) * (TT.x - TB.x) / (TT.y - TB.y);
+function between(geoR, a, b, mat, part, parent) {
+  const d = b.clone().sub(a), m = mk(new THREE.CylinderGeometry(geoR, geoR, 1, 20, 1, false), mat, part, parent);
+  m.position.copy(a).add(b).multiplyScalar(0.5);
+  m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.clone().normalize());
+  m.scale.y = d.length();
+  return m;
+}
+between(TUBE_R, TB, TT, M.inox, 'tubo', rud);
+for (const p of [TB, TT]) mk(new THREE.TorusGeometry(TUBE_R - 0.0015, 0.0015, 8, 24), M.inox, 'tubo', rud, [p.x, p.y, 0], [Math.PI / 2, 0, 0]);
+anchor('tubo', rud, [tubeX(1.03) - TUBE_R, 1.03, 0]);
+
+// Machos soldados al tubo
+for (const y of [0.885, 0.59]) {
+  const xf = tubeX(y) - TUBE_R;
+  mk(new THREE.BoxGeometry(xf - PINTLE_X + 0.006, 0.02, 0.012), M.inox, 'machos', rud, [(xf + PINTLE_X) / 2, y, 0]);
+  mk(new THREE.CylinderGeometry(0.009, 0.009, 0.02, 16), M.inox, 'machos', rud, [PINTLE_X, y, 0]);
+  mk(new THREE.CylinderGeometry(0.0055, 0.0055, 0.05, 14), M.inox, 'machos', rud, [PINTLE_X, y - 0.035, 0]);
+}
+anchor('machos', rud, [PINTLE_X, 0.885, 0.01]);
+
+// ---------- Caña abatible y extraíble ----------
+// La caña gira sobre un pasador de liberación rápida (bisagra) en la esquina de proa
+// de las placas. Un segundo pasador, atado con cadenilla, la bloquea horizontal.
+// Sin el de bloqueo se abate; sin la bisagra sale entera para estibarla.
+const PL_OUT = PL_IN + PL_T;
+const H = new THREE.Vector3(-0.098, 1.212, 0);   // eje de la bisagra
+const LOCK = new THREE.Vector3(0.07, 1.212, 0);  // pasador de bloqueo
+const tillerG = new THREE.Group(); tillerG.position.copy(H); rud.add(tillerG);
+const tillerIn = new THREE.Group(); tillerIn.position.set(-H.x, -H.y, 0); tillerG.add(tillerIn);
+const tp = (x, y, z) => { tillerIn.updateMatrix(); tillerG.updateMatrix(); return new THREE.Vector3(x, y, z).applyMatrix4(tillerIn.matrix).applyMatrix4(tillerG.matrix); };
+
+// Pasador de la bisagra (liberación rápida, con anilla)
+const hingePin = new THREE.Group(); rud.add(hingePin);
+mk(new THREE.CylinderGeometry(0.005, 0.005, 0.05, 14), M.inox, 'bisagra', hingePin, [0, 0, 0], [Math.PI / 2, 0, 0]);
+mk(new THREE.CylinderGeometry(0.009, 0.009, 0.006, 18), M.black, 'bisagra', hingePin, [0, 0, 0.026], [Math.PI / 2, 0, 0]);
+mk(new THREE.TorusGeometry(0.011, 0.0018, 8, 24), M.inox, 'bisagra', hingePin, [0, 0.012, 0.03]);
+for (const s of [1, -1]) mk(new THREE.CylinderGeometry(0.011, 0.011, 0.002, 18), M.inox, 'bisagra', rud, [H.x, H.y, s * (PL_OUT + 0.001)], [Math.PI / 2, 0, 0]);
+anchor('bisagra', rud, [H.x, H.y + 0.012, PL_OUT]);
+
+// Pasador de bloqueo con su cadenilla
+const lockPin = new THREE.Group(); rud.add(lockPin);
+mk(new THREE.CylinderGeometry(0.004, 0.004, 0.05, 12), M.inox, 'pasador', lockPin, [0, 0, 0]);
+mk(new THREE.TorusGeometry(0.008, 0.0016, 8, 20), M.inox, 'pasador', lockPin, [0, 0.033, 0]);
+const chain = mk(new THREE.BufferGeometry(), M.inox, 'pasador', rud);
+const CHAIN_A = new THREE.Vector3(0.118, 1.17, PL_OUT + 0.002);
+mk(new THREE.CylinderGeometry(0.003, 0.003, 0.003, 10), M.inox, 'pasador', rud, [CHAIN_A.x, CHAIN_A.y, PL_OUT + 0.0005], [Math.PI / 2, 0, 0]);
+anchor('pasador', rud, [LOCK.x, LOCK.y, PL_OUT]);
+
+// Caña
+{
+  const top = [[1445, 168], [1300, 160], [1100, 150], [900, 146], [700, 147], [500, 152], [350, 158], [242, 166]];
+  const bot = [[242, 195], [350, 195], [500, 192], [700, 190], [900, 190], [1100, 195], [1300, 205], [1445, 212]];
+  const s = new THREE.Shape();
+  s.moveTo(...P(1452, 190).toArray());
+  s.lineTo(...P(...top[0]).toArray());
+  s.splineThru(top.slice(1).map(p => P(...p)));
+  s.quadraticCurveTo(...P(226, 181).toArray(), ...P(...bot[0]).toArray());
+  s.splineThru(bot.slice(1).map(p => P(...p)));
+  s.closePath();
+  mk(extrude(s, 0.015, 0.006), M.teak, 'cana', tillerIn, [0, 0, -0.0075]);
+  const clip = P(770, 128);
+  mk(new THREE.BoxGeometry(0.03, 0.022, 0.03), M.black, 'stick', tillerIn, [clip.x, clip.y, 0]);
+  anchor('cana', tillerIn, [-0.82, 1.2, 0.018]);
+}
+
+// Mordazas de levas en los costados de la caña (babor: bajada, estribor: subida)
+// y dos guías por debajo. Todo va con la caña: gobernar no tira de los cabos.
+const TILLER_BOT = [[1445, 212], [1300, 205], [1100, 195], [900, 190], [700, 190]].map(p => P(...p));
+const tillerBot = x => { for (let i = 1; i < TILLER_BOT.length; i++) { const a = TILLER_BOT[i - 1], b = TILLER_BOT[i]; if (x >= b.x) return a.y + (b.y - a.y) * (x - a.x) / (b.x - a.x); } return TILLER_BOT.at(-1).y; };
+const TL_HALF = 0.0135, CLEAT = new THREE.Vector2(-0.45, 1.232), GUIDES = [-0.2, -0.33];
+for (const s of [1, -1]) {
+  mk(new THREE.BoxGeometry(0.075, 0.018, 0.006), M.black, 'mordaza', tillerIn, [CLEAT.x, CLEAT.y, s * (TL_HALF + 0.003)]);
+  for (const dy of [-0.008, 0.008]) mk(new THREE.CylinderGeometry(0.0065, 0.0065, 0.01, 14), M.black, 'mordaza', tillerIn, [CLEAT.x, CLEAT.y + dy, s * (TL_HALF + 0.009)], [Math.PI / 2, 0, 0]);
+}
+for (const x of GUIDES) {
+  mk(new THREE.BoxGeometry(0.02, 0.003, 0.03), M.inox, 'mordaza', tillerIn, [x, tillerBot(x) - 0.0015, 0]);
+  for (const s of [1, -1]) mk(new THREE.TorusGeometry(0.0055, 0.0016, 8, 18), M.inox, 'mordaza', tillerIn, [x, tillerBot(x) - 0.009, s * 0.007], [0, Math.PI / 2, 0]);
+}
+anchor('mordaza', tillerIn, [CLEAT.x, CLEAT.y - 0.03, TL_HALF + 0.01]);
+
+function setTiller(tilt, ext) {
+  const k1 = THREE.MathUtils.clamp(ext / 0.3, 0, 1), k2 = THREE.MathUtils.clamp((ext - 0.3) / 0.7, 0, 1);
+  const up = THREE.MathUtils.smoothstep(k2, 0, 0.4), away = THREE.MathUtils.smoothstep(k2, 0.4, 1);
+  tillerG.position.set(H.x - 0.28 * away, H.y + 0.13 * up, 0.14 * away);
+  tillerG.rotation.z = -THREE.MathUtils.degToRad(tilt);
+  hingePin.position.set(H.x, H.y, 0.085 * k1);
+  const locked = tilt < 0.5 && ext === 0;
+  if (locked) { lockPin.position.copy(LOCK); lockPin.rotation.set(Math.PI / 2, 0, 0); }
+  else { lockPin.position.set(0.128, 1.1, PL_OUT + 0.008); lockPin.rotation.set(0, 0, 0.25); }
+  lockPin.updateMatrix();
+  const ring = new THREE.Vector3(0, 0.033, 0).applyMatrix4(lockPin.matrix);
+  const mid = CHAIN_A.clone().add(ring).multiplyScalar(0.5); mid.y -= 0.02; mid.z += 0.004;
+  chain.geometry.dispose();
+  chain.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3([CHAIN_A, mid, ring]), 24, 0.0012, 6);
+}
+
+// Perno de pivote
+const PIVOT = P(1323, 620);
+mk(new THREE.CylinderGeometry(0.008, 0.008, 0.042, 16), M.inox, 'perno', rud, [PIVOT.x, PIVOT.y, 0], [Math.PI / 2, 0, 0]);
+for (const s of [1, -1]) mk(new THREE.CylinderGeometry(0.013, 0.013, 0.005, 6), M.inox, 'perno', rud, [PIVOT.x, PIVOT.y, s * (PL_OUT + 0.0025)], [Math.PI / 2, 0, 0]);
+anchor('perno', rud, [PIVOT.x + 0.014, PIVOT.y, PL_OUT + 0.005]);
+
+// Pala abatible. Arriba es un disco centrado en el perno que libra el tubo;
+// bajo el extremo del tubo tiene un hombro que apoya contra él (el tope).
+const bladeG = new THREE.Group(); bladeG.position.set(PIVOT.x, PIVOT.y, 0); rud.add(bladeG);
+const SHOULDER = TB.y - PIVOT.y - 0.004;
+const HOLE = new THREE.Vector2(-0.112, SHOULDER - 0.035);
+{
+  const R = 0.1;
+  const pts = [[-0.1, SHOULDER], [-0.13, SHOULDER - 0.012], [-0.131, -0.38], [-0.128, -0.6], [-0.125, -0.763], [-0.11, -0.78],
+    [0.185, -0.773], [0.21, -0.75], [0.216, -0.705], [0.193, -0.58], [0.167, -0.38], [0.143, -0.195]].map(p => new THREE.Vector2(...p));
+  for (let a = -40; a <= 180; a += 10) pts.push(new THREE.Vector2(Math.cos(a * Math.PI / 180) * R, Math.sin(a * Math.PI / 180) * R));
+  const shape = shapeFrom(pts);
+  const hole = new THREE.Path(); hole.absarc(HOLE.x, HOLE.y, 0.006, 0, Math.PI * 2, true); shape.holes.push(hole);
+  mk(extrude(shape, 0.012, 0.006), M.blade, 'pala', bladeG, [0, 0, -0.006]);
+  anchor('pala', bladeG, [0.12, -0.42, 0.02]);
+}
+
+// ---------- Cabos ----------
+function setBetween(m, a, b) {
+  const d = b.clone().sub(a);
+  m.position.copy(a).add(b).multiplyScalar(0.5);
+  m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.clone().normalize());
+  m.scale.y = Math.max(d.length(), 0.001);
+}
+function setCurve(m, pts, r, seg = 90) { m.geometry.dispose(); m.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), seg, r, 8); }
+// Recorrido común desde la boca del tubo: por la caña a la mordaza, o colgando si la caña está fuera.
+function runToCleat(s, ext) {
+  const z = s * 0.004, zg = s * 0.007, zs = s * (TL_HALF + 0.009), zc = s * (TL_HALF + 0.012);
+  const exit = [new THREE.Vector3(TT.x + 0.001, TT.y - 0.01, z), new THREE.Vector3(TT.x - 0.003, TT.y + 0.03, z)];
+  if (ext > 0) return exit.concat([new THREE.Vector3(TT.x - 0.022, TT.y + 0.045, z * 1.5), new THREE.Vector3(TT.x - 0.036, TT.y + 0.005, z * 2), new THREE.Vector3(TT.x - 0.038, TT.y - 0.035, z * 2)]);
+  return exit.concat([tp(-0.15, tillerBot(-0.15) - 0.01, z), tp(GUIDES[0], tillerBot(GUIDES[0]) - 0.009, zg), tp(GUIDES[1], tillerBot(GUIDES[1]) - 0.009, zg),
+    tp(-0.39, tillerBot(-0.39) + 0.004, zs), tp(CLEAT.x + 0.035, CLEAT.y, zc), tp(CLEAT.x - 0.04, CLEAT.y, zc)]);
+}
+const knots = [1, -1].map(s => { const k = mk(new THREE.SphereGeometry(0.006, 12, 10), s > 0 ? M.rope : M.ropeUp, s > 0 ? 'cabo' : 'subida', rud, [TT.x - 0.038, TT.y - 0.038, s * 0.008]); k.visible = false; return k; });
+
+// Bajada (babor): pala → tubo (con tramo elástico dentro) → caña → mordaza
+const ELASTIC_L = 0.30;
+const ropeLow = mk(new THREE.CylinderGeometry(0.0032, 0.0032, 1, 10), M.rope, 'cabo', rud);
+const ropeIn = mk(new THREE.CylinderGeometry(0.0032, 0.0032, 1, 10), M.rope, 'cabo', rud);
+const elastic = mk(new THREE.CylinderGeometry(0.0045, 0.0045, 1, 12), M.shock, 'elastico', rud);
+const ropeTop = mk(new THREE.BufferGeometry(), M.rope, 'cabo', rud);
+const ropeTail = mk(new THREE.CylinderGeometry(0.0032, 0.0032, 1, 10), M.rope, 'cabo', rud);
+anchor('cabo', rud, [TB.x - 0.012, TB.y - 0.02, 0.01]);
+anchor('elastico', rud, [tubeX(0.95), 0.95, 0]);
+function holeInRud(deg) {
+  const a = THREE.MathUtils.degToRad(deg), c = Math.cos(a), s = Math.sin(a);
+  return new THREE.Vector3(PIVOT.x + HOLE.x * c - HOLE.y * s, PIVOT.y + HOLE.x * s + HOLE.y * c, 0);
+}
+const ROPE_REST = holeInRud(0).distanceTo(TB);
+function updateRope(deg, ext, hit) {
+  const h = holeInRud(deg);
+  setBetween(ropeLow, TB, h);
+  const out = h.distanceTo(TB) - ROPE_REST;          // lo que el cabo ha salido por abajo
+  const stretch = hit ? out : 0;                      // con la mordaza cerrada, lo da el elástico
+  const eTop = new THREE.Vector3(tubeX(TT.y - 0.03) + 0.002, TT.y - 0.03, 0.002);
+  const eBot = new THREE.Vector3(tubeX(eTop.y - ELASTIC_L - stretch) + 0.002, eTop.y - ELASTIC_L - stretch, 0.002);
+  setBetween(elastic, eBot, eTop);
+  setBetween(ropeIn, TB.clone().setX(TB.x + 0.002).setZ(0.002), eBot);
+  const run = runToCleat(1, ext);
+  setCurve(ropeTop, [eTop].concat(run), 0.0032);
+  ropeTail.visible = ext === 0; knots[0].visible = ext > 0;
+  if (ext === 0) {
+    const c = run.at(-1), tail = hit ? 0.26 : Math.max(0.03, 0.26 - out);
+    setBetween(ropeTail, c, tp(CLEAT.x - 0.07, CLEAT.y - tail, TL_HALF + 0.016));
+  }
+  return { out, stretch };
+}
+
+// Subida (estribor). El disco de la pala es un tambor con garganta: el cabo va hecho
+// firme en su costado de popa, lo abraza por arriba, entra en el tubo por una ranura
+// con roldana y sube junto al de bajada. Brazo de palanca constante, R.
+const R_G = 0.108, UP_Y = PIVOT.y + R_G, UP_A0 = -30;
+const SLOT = new THREE.Vector3(tubeX(UP_Y) + TUBE_R, UP_Y, 0);
+mk(new THREE.BoxGeometry(0.004, 0.022, 0.009), M.hole, 'tubo', rud, [SLOT.x - 0.001, SLOT.y, 0]);
+mk(new THREE.CylinderGeometry(0.008, 0.008, 0.007, 16), M.black, 'subida', rud, [SLOT.x - 0.004, SLOT.y, 0], [Math.PI / 2, 0, 0]);
+const upWrap = mk(new THREE.BufferGeometry(), M.ropeUp, 'subida', rud);
+const upTop = mk(new THREE.BufferGeometry(), M.ropeUp, 'subida', rud);
+const upTail = mk(new THREE.CylinderGeometry(0.0032, 0.0032, 1, 10), M.ropeUp, 'subida', rud);
+anchor('subida', rud, [PIVOT.x + 0.02, UP_Y + 0.004, 0]);
+function updateUphaul(deg, ext) {
+  const pts = [];
+  for (let a = UP_A0 + deg; a < 90; a += 6) pts.push(new THREE.Vector3(PIVOT.x + R_G * Math.cos(a * Math.PI / 180), PIVOT.y + R_G * Math.sin(a * Math.PI / 180), 0));
+  pts.push(new THREE.Vector3(PIVOT.x, UP_Y, 0));
+  for (let k = 1; k <= 4; k++) pts.push(new THREE.Vector3(PIVOT.x + (SLOT.x - 0.006 - PIVOT.x) * k / 4, UP_Y, 0));
+  setCurve(upWrap, pts, 0.0032, 48);
+  const run = runToCleat(-1, ext);
+  setCurve(upTop, [new THREE.Vector3(SLOT.x - 0.008, UP_Y + 0.008, -0.003), new THREE.Vector3(tubeX(UP_Y + 0.04) + 0.001, UP_Y + 0.04, -0.004)].concat(run), 0.0032);
+  const pulled = R_G * THREE.MathUtils.degToRad(deg);
+  upTail.visible = ext === 0; knots[1].visible = ext > 0;
+  if (ext === 0) setBetween(upTail, run.at(-1), tp(CLEAT.x - 0.07, CLEAT.y - 0.05 - pulled, -TL_HALF - 0.016));
+  return pulled;
+}
+
+// Stick con junta cardán y pomo (va con la caña)
+const J = P(270, 152);
+const stickYaw = new THREE.Group(); stickYaw.position.set(J.x, J.y, 0); tillerIn.add(stickYaw);
+const stickPitch = new THREE.Group(); stickYaw.add(stickPitch);
+const STICK_BASE = Math.atan2(0.047, 0.70);
+{
+  mk(new THREE.BoxGeometry(0.04, 0.01, 0.028), M.inox, 'stick', tillerIn, [J.x - 0.005, J.y - 0.006, 0]);
+  mk(new THREE.SphereGeometry(0.013, 20, 14), M.black, 'stick', stickPitch, [0, 0, 0]);
+  mk(new THREE.CylinderGeometry(0.0125, 0.0125, 0.05, 20), M.alu, 'stick', stickPitch, [0.035, 0, 0], [0, 0, -Math.PI / 2]);
+  mk(new THREE.CylinderGeometry(0.0105, 0.0105, 0.64, 20), M.alu, 'stick', stickPitch, [0.35, 0, 0], [0, 0, -Math.PI / 2]);
+  mk(new THREE.CylinderGeometry(0.017, 0.012, 0.035, 20), M.yellow, 'pomo', stickPitch, [0.66, 0, 0], [0, 0, -Math.PI / 2]);
+  const ball = mk(new THREE.SphereGeometry(0.034, 32, 24), M.yellow, 'pomo', stickPitch, [0.70, 0, 0]);
+  ball.scale.set(1, 0.97, 0.97);
+  anchor('stick', stickPitch, [0.3, 0.012, 0]);
+  anchor('pomo', stickPitch, [0.70, 0.035, 0]);
+}
+
+// Contexto: espejo de popa y agua
+const ctx = new THREE.Group(); ctx.visible = false; root.add(ctx);
+{
+  const hull = new THREE.MeshStandardMaterial({ color: 0xeef1f3, roughness: .5, transparent: true, opacity: .55 });
+  const t = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.72, 1.3), hull); t.position.set(PINTLE_X - 0.03, 0.8, 0); ctx.add(t);
+  for (const y of [0.87, 0.575]) { const g = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.018, 0.05), M.inox); g.position.set(PINTLE_X - 0.01, y - 0.015, 0); ctx.add(g); }
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 2.2), new THREE.MeshStandardMaterial({ color: 0x2f7fa0, roughness: .15, metalness: .1, transparent: true, opacity: .32, side: THREE.DoubleSide, depthWrite: false }));
+  water.rotation.x = -Math.PI / 2; water.position.set(-0.3, 0.5, 0); ctx.add(water);
+}
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), new THREE.ShadowMaterial({ opacity: 0.2 }));
+ground.rotation.x = -Math.PI / 2; ground.position.y = -0.004; ground.receiveShadow = true; scene.add(ground);
+
+// ---------- Etiquetas y lista de piezas ----------
+const tagsEl = document.getElementById('tags');
+const partsEl = document.getElementById('parts');
+for (const [k, p] of Object.entries(PARTS)) {
+  if (p.side && p.anchor) {
+    const t = document.createElement('div');
+    t.className = 'tag'; t.dataset.side = p.side;
+    t.innerHTML = `<span class="dot"></span><span class="lbl">${p.name}</span>`;
+    tagsEl.appendChild(t); p.tag = t;
+  }
+  const li = document.createElement('li');
+  const b = document.createElement('button');
+  b.innerHTML = `<b>${p.name}</b><span>${p.desc}</span>`;
+  b.addEventListener('mouseenter', () => highlight(k));
+  b.addEventListener('focus', () => highlight(k));
+  b.addEventListener('mouseleave', () => highlight(null));
+  b.addEventListener('blur', () => highlight(null));
+  b.addEventListener('click', () => focusPart(k));
+  li.appendChild(b); partsEl.appendChild(li); p.btn = b;
+}
+let lit = null;
+function highlight(k) {
+  if (k === lit) return;
+  if (lit) {
+    PARTS[lit].meshes.forEach(m => { m.material.emissive.setHex(0); m.material.emissiveIntensity = 1; });
+    PARTS[lit].tag?.classList.remove('on'); PARTS[lit].btn.classList.remove('on');
+  }
+  lit = k;
+  if (k) {
+    PARTS[k].meshes.forEach(m => { m.material.emissive.setHex(0xf2b705); m.material.emissiveIntensity = 0.45; });
+    PARTS[k].tag?.classList.add('on'); PARTS[k].btn.classList.add('on');
+  }
+}
+
+// ---------- Estado y controles ----------
+const $ = id => document.getElementById(id);
+const S = { pala: $('s-pala'), cana: $('s-cana'), abat: $('s-abat'), ext: $('s-ext'), stick: $('s-stick'), stickg: $('s-stickg') };
+let hit = false;
+const side = v => v === 0 ? 'al centro' : v > 0 ? 'a babor' : 'a estribor';
+function apply() {
+  const pala = +S.pala.value, cana = +S.cana.value, st = +S.stick.value, sg = +S.stickg.value;
+  bladeG.rotation.z = THREE.MathUtils.degToRad(pala);
+  const abat = +S.abat.value, ext = +S.ext.value / 100;
+  setTiller(abat, ext);
+  const { out, stretch } = updateRope(pala, ext, hit), up = updateUphaul(pala, ext);
+  $('o-cabo').textContent = hit ? `Golpe: el tramo elástico se estira ${Math.round(stretch * 100)} cm y la pala sube sin romper nada, con la mordaza cerrada. Después vuelve sola al tope.`
+    : ext > 0 ? 'Caña fuera: los cabos quedan colgando de la boca del tubo, con un nudo de ocho para que no se cuelen.'
+    : pala < 1 ? 'Pala abajo, apoyada en el tope. Para izarla: larga la bajada (roja) y tira de la subida (verde).' : `Subida (verde): ${Math.round(up * 100)} cm recogidos · Bajada (roja): ${Math.round(out * 100)} cm largados.`;
+  $('o-abat').textContent = ext > 0 ? 'fuera, estibada' : `${abat}° · ${abat < 1 ? 'bloqueada' : 'abatida'}`;
+  $('b-ext').textContent = ext > 0.5 ? 'Montar caña' : 'Extraer caña';
+  S.abat.disabled = ext > 0;
+  steer.rotation.y = THREE.MathUtils.degToRad(cana);
+  stickPitch.rotation.z = STICK_BASE + THREE.MathUtils.degToRad(st);
+  stickYaw.rotation.y = -THREE.MathUtils.degToRad(sg);
+  $('o-pala').textContent = `${pala}° · ${pala < 3 ? 'arriada' : pala > 80 ? 'izada' : 'a medias'}`;
+  $('o-cana').textContent = `${Math.abs(cana)}° · ${side(cana)}`;
+  $('o-stick').textContent = `${st}° · ${st < 3 ? 'recogido' : 'desplegado'}`;
+  $('o-stickg').textContent = `${Math.abs(sg)}°${sg ? ' · ' + side(sg) : ''}`;
+  $('b-pala').textContent = pala > 40 ? 'Arriar pala' : 'Izar pala';
+}
+Object.values(S).forEach(s => s.addEventListener('input', () => { tweens.delete(s); apply(); }));
+
+const tweens = new Map();
+function tweenTo(slider, to, ms = 1100) {
+  if (reduce) { slider.value = to; apply(); return; }
+  tweens.set(slider, { from: +slider.value, to, t0: performance.now(), ms });
+}
+$('b-pala').addEventListener('click', () => tweenTo(S.pala, +S.pala.value > 40 ? 0 : 82));
+$('b-ext').addEventListener('click', () => {
+  if (+S.ext.value > 50) tweenTo(S.ext, 0, 1800);
+  else { tweenTo(S.abat, 0, 500); tweenTo(S.ext, 100, 1800); }
+});
+$('b-golpe').addEventListener('click', () => {
+  if (hit) return;
+  if (!$('t-xray').checked) $('t-xray').click();
+  hit = true; tweenTo(S.pala, 38, 220);
+  setTimeout(() => tweenTo(S.pala, 0, 1100), reduce ? 1600 : 700);
+  setTimeout(() => { hit = false; apply(); }, reduce ? 1700 : 1900);
+});
+$('b-navegar').addEventListener('click', () => { tweenTo(S.abat, 0); tweenTo(S.ext, 0); tweenTo(S.pala, 0); tweenTo(S.cana, 12); tweenTo(S.stick, 70); tweenTo(S.stickg, 45); });
+$('b-reset').addEventListener('click', () => { Object.values(S).forEach(s => tweenTo(s, 0)); setView('foto'); });
+
+// ---------- Cámara ----------
+const TARGET = new THREE.Vector3(-0.42, 0.64, 0);
+const VIEWS = {
+  persp: [1.2, 0.6, 2.7],
+  foto: [0, 0.05, 2.95],
+  popa: [2.9, 0.25, 0.02],
+  planta: [0.02, 3.1, 0.05],
+};
+let fly = null;
+function viewPos(name, target = TARGET) {
+  const f = Math.max(1, 1.15 / camera.aspect);
+  return target.clone().add(new THREE.Vector3(...VIEWS[name]).multiplyScalar(f));
+}
+function flyTo(pos, target) {
+  if (reduce) { camera.position.copy(pos); controls.target.copy(target); controls.update(); return; }
+  fly = { p0: camera.position.clone(), p1: pos, t0v: controls.target.clone(), t1: target, t0: performance.now() };
+}
+function setView(name) {
+  document.querySelectorAll('#views .chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === name));
+  flyTo(viewPos(name), TARGET.clone());
+}
+document.querySelectorAll('#views .chip').forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
+function focusPart(k) {
+  const a = PARTS[k].anchor || PARTS[k].meshes[0];
+  const t = a.getWorldPosition(new THREE.Vector3());
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  document.querySelectorAll('#views .chip').forEach(b => b.setAttribute('aria-pressed', 'false'));
+  flyTo(t.clone().add(dir.multiplyScalar(0.9)), t);
+}
+
+$('t-tags').addEventListener('change', e => tagsEl.classList.toggle('off', !e.target.checked));
+$('t-ctx').addEventListener('change', e => { ctx.visible = e.target.checked; ground.visible = !e.target.checked; });
+$('t-xray').addEventListener('change', e => {
+  for (const k of ['placas', 'tubo']) PARTS[k].meshes.forEach(m => {
+    m.material.transparent = e.target.checked; m.material.opacity = e.target.checked ? 0.28 : 1;
+    m.material.depthWrite = !e.target.checked; m.castShadow = !e.target.checked; m.material.needsUpdate = true;
+  });
+});
+$('t-rot').addEventListener('change', e => { controls.autoRotate = e.target.checked; });
+
+// ---------- Selección con el puntero ----------
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2(), tip = $('tip');
+let hoverPt = null, downAt = null;
+canvas.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); hoverPt = { x: e.clientX - r.left, y: e.clientY - r.top, w: r.width, h: r.height }; });
+canvas.addEventListener('pointerleave', () => { hoverPt = null; tip.hidden = true; highlight(null); });
+canvas.addEventListener('pointerdown', e => { downAt = [e.clientX, e.clientY]; });
+canvas.addEventListener('pointerup', e => {
+  if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 4) return;
+  const k = pick(); if (k) focusPart(k);
+});
+function pick() {
+  if (!hoverPt) return null;
+  ptr.set(hoverPt.x / hoverPt.w * 2 - 1, -hoverPt.y / hoverPt.h * 2 + 1);
+  ray.setFromCamera(ptr, camera);
+  const hit = ray.intersectObjects(pickables, false)[0];
+  return hit ? hit.object.userData.part : null;
+}
+
+// ---------- Bucle ----------
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(stage);
+resize();
+camera.position.copy(viewPos('persp')); controls.target.copy(TARGET); controls.update();
+apply();
+
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const v = new THREE.Vector3();
+let lastPickFrame = 0, frame = 0;
+function loop(now) {
+  frame++;
+  for (const [s, tw] of tweens) {
+    const k = Math.min(1, (now - tw.t0) / tw.ms);
+    s.value = Math.round(tw.from + (tw.to - tw.from) * ease(k));
+    if (k >= 1) tweens.delete(s);
+  }
+  if (tweens.size) apply();
+  if (fly) {
+    const k = Math.min(1, (now - fly.t0) / 750), e = ease(k);
+    camera.position.lerpVectors(fly.p0, fly.p1, e);
+    controls.target.lerpVectors(fly.t0v, fly.t1, e);
+    if (k >= 1) fly = null;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+
+  const w = stage.clientWidth, h = stage.clientHeight;
+  for (const p of Object.values(PARTS)) {
+    if (!p.tag) continue;
+    p.anchor.getWorldPosition(v).project(camera);
+    const off = v.z > 1 || Math.abs(v.x) > 1.05 || Math.abs(v.y) > 1.05;
+    p.tag.style.visibility = off ? 'hidden' : 'visible';
+    if (!off) p.tag.style.transform = `translate(${((v.x + 1) / 2 * w).toFixed(1)}px,${((1 - v.y) / 2 * h).toFixed(1)}px)`;
+  }
+  if (hoverPt && frame - lastPickFrame > 2) {
+    lastPickFrame = frame;
+    const k = pick();
+    const fromList = document.activeElement && partsEl.contains(document.activeElement);
+    if (!fromList) highlight(k);
+    tip.hidden = !k;
+    if (k) { tip.textContent = PARTS[k].name; tip.style.transform = `translate(${hoverPt.x + 14}px,${hoverPt.y + 14}px)`; }
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

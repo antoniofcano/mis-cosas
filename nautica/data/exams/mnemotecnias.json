@@ -628,6 +628,300 @@
     "https://www.ilsf.org/wp-content/uploads/2019/09/MPS-12-Cold-Water-Immersion-_spanish_rv.pdf"
    ],
    "preguntas": []
+  },
+  {
+   "id": "py-seg-01",
+   "regla": "«G sube, GM baja»: GM = KM − KG (M por encima de G = estable)",
+   "significado": "GM (altura metacéntrica) = KM − KG. KM sale de las curvas hidrostáticas (KM = KC + CM); KG depende de cómo esté cargado el barco. Si G está por debajo de M (GM > 0) el barco es estable; si G = M, equilibrio indiferente; si G queda por encima de M, inestable. Todo lo que eleve G (cargar pesos altos, tripulación en la bañera alta, superficies libres) reduce GM. El centro de gravedad se mueve hacia el peso que se carga, se aleja del que se descarga y sigue en paralelo al peso que se traslada (dist. G = p·d/D). Matiz: GZ = GM·sen θ y par adrizante = D·GZ solo valen para escoras pequeñas (estabilidad inicial, hasta unos 10–15°); a grandes escoras manda la curva GZ.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.librosnauticos.com/portal/descargas/fe-erratas/libro-patron-yate/libro-patron-yate-pagina-11.pdf",
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/389-estabilidad-traslado-vertical-de-pesos-a-bordo",
+    "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-02",
+   "regla": "Buque duro / buque blando (tumbón)",
+   "significado": "GM grande = barco «duro» o rígido: se adriza con fuerza, balances cortos, rápidos y bruscos (incómodos y duros para la estructura y la carga). GM pequeño = barco «blando» o «tumbón»: balances lentos, amplios, se «duerme» escorado. El periodo de balance es aproximadamente inverso a √GM. Matiz: «duro» no quiere decir «mejor» sin más: un GM excesivo también es indeseable.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/",
+    "http://www.fondear.org/infonautic/Saber_Marinero/Titulaciones_Nauticas/Capitan_Yate/CY_Apuntes/Apuntes_Teoria_Buque/Resum_TeoriaBq.htm"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-03",
+   "regla": "«Tanques llenos o vacíos, nunca a medias»",
+   "significado": "Un tanque parcialmente lleno tiene superficie libre: al escorar, el líquido se va a la banda baja y sube virtualmente G (pérdida de GM por superficie libre). Lleno del todo o vacío, el líquido no se mueve y no hay pérdida. Consecuencia práctica: consumir un tanque hasta agotarlo antes que llevar dos a medias, achicar el agua embarcada y compartimentar (un mamparo longitudinal reduce mucho el efecto). La pérdida depende de la manga del tanque (de su inercia), no de la cantidad de líquido.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/",
+    "https://www.fao.org/4/i0625s/i0625s02c.pdf",
+    "https://es.wikipedia.org/wiki/Efecto_de_superficie_libre"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-04",
+   "regla": "Clases de fuego: A deja ascuas (Ash), B es líquido; en España C = gases, no electricidad",
+   "significado": "Norma UNE-EN 2 (Europa): A = sólidos que dejan brasas o cenizas (madera, tejidos); B = líquidos o sólidos licuables (gasoil, gasolina, pinturas); C = gases (butano, propano); D = metales; F = aceites y grasas de cocina. El orden A-B-C coincide con los estados sólido → líquido → gas. En la norma europea no hay clase de fuego eléctrico: es un riesgo añadido (no usar agua con tensión; CO2 o polvo). Matiz importante: la regla norteamericana NFPA (C = «Circuits», eléctrico; K = cocina) no sirve para el examen español.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://serior.com/eficacia-extintores-clases-fuego/",
+    "https://www.aprendemergencias.es/incendios/clases-de-fuego/",
+    "https://eduardovillafuerteblog.wordpress.com/2019/03/25/significado-de-las-iniciales-de-las-clases-de-fuego/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-05",
+   "regla": "Extintor: de espaldas al viento, a la base de la llama y en barrido",
+   "significado": "Colocarse a barlovento del fuego (el humo y el calor se van hacia el otro lado), apuntar a la base de las llamas y no a las llamas, y barrer en abanico o zigzag. En fuegos de líquidos, barrer por la superficie sin proyectar el combustible. A bordo, además: parar el motor y cortar el combustible, poner el barco de modo que el viento aleje el fuego de la tripulación y del resto del barco, y no abrir de golpe un compartimento cerrado (entra aire).",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/images/Archivos/Miscelanea/Misce_Charter/Actuacion%20incendio%20barco.doc",
+    "https://academia.boatmalaga.com/topics/8-5-prevencion-de-incendios-y-explosiones-2-3/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-06",
+   "regla": "«No abandones el barco hasta que el barco te abandone a ti»: a la balsa se SUBE (y en el agua, postura HELP)",
+   "significado": "El barco, aunque esté dañado, es más fácil de localizar y protege más que la balsa. Solo se abandona cuando ya no hay más remedio (y después de dar la alerta de socorro: LSD, MAYDAY, radiobaliza). Se pasa a la balsa directamente desde cubierta si se puede, sin meterse en el agua. Al subir a la balsa, entra primero el tripulante más fuerte o pesado para estabilizarla y ayudar a los demás. Se lleva el bolsín o grab bag, agua, VHF portátil y EPIRB. Si se cae al agua con chaleco: postura HELP (posición fetal, brazos cruzados) y, si son varios, en piña o HUDDLE; no nadar sin un objetivo cercano (complementa el 1-10-1).",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/el-abandono-del-barco/",
+    "https://www.sotaventonline.com/abandonamos-barco-no/",
+    "https://www.salvamentomaritimo.es/mejora-tu-seguridad/actuar-en-emergencias/supervivencia-en-el-mar"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-08",
+   "regla": "Zonas SMSSM: A1 → A4 de menos a más lejos (VHF → onda media → satélite/HF → polos)",
+   "significado": "A1: cobertura VHF de una estación costera con LSD (unas 20–40 mn; canal 70). A2: onda media (MF), unas 100–150 mn (2187,5 kHz LSD). A3: cobertura de satélite geoestacionario Inmarsat, aproximadamente entre 70°N y 70°S (también HF). A4: zonas polares fuera de A1–A3 (solo HF). Cuanto mayor es el número, mayor la distancia y menor la frecuencia (salvo el satélite).",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://es.wikipedia.org/wiki/Sistema_mundial_de_socorro_y_seguridad_mar%C3%ADtimos",
+    "http://www.patrondeyate.net/apuntes-de-radiocomunicaciones-patron-de-yate/sistema-mundials-de-salvamento-y-seguridad-en-la-mar.html",
+    "https://www.salvamentomaritimo.es/mejora-tu-seguridad/control-y-servicios-en-la-mar/sistema-mundial-de-socorro-y-seguridad-maritima"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-seg-09",
+   "regla": "«16 para hablar, 70 para el botón» · «406 avisa, 121,5 guía» · «SART = 12 puntos»",
+   "significado": "VHF: canal 16 para socorro, urgencia y llamada por voz; canal 70 reservado a LSD (DSC), nunca para voz. La alerta LSD de socorro se lanza manteniendo pulsado el botón rojo unos 5 s. EPIRB/radiobaliza: 406 MHz manda la alerta con la identificación (MMSI) y la posición vía Cospas-Sarsat; 121,5 MHz es la señal de recalada (homing) para que los medios de rescate lleguen hasta ella. SART (respondedor de radar, 9 GHz, banda X): cuando un radar lo interroga aparece en pantalla como una línea de 12 puntos que empieza en la posición del SART, y se convierte en arcos al acercarse.",
+   "tema": "PY UT1 Seguridad",
+   "fuentes": [
+    "https://www.boletinpatron.com/sart",
+    "https://www.patrondeyate.net/apuntes-de-radiocomunicaciones-patron-de-yate/radiobaliza-respondedor-de-radar-obligaciones-para-la-zona-de-navegacion-4.html",
+    "https://aulanautica.org/wp-content/uploads/2017/06/RADIO-PNB-Escola-Port-Barcelona.pdf"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-01",
+   "regla": "El viento aparente entra siempre más a proa que el real",
+   "significado": "Aparente = real + viento de la velocidad (de proa). Por eso, salvo en la popa cerrada, el aparente se recibe más a proa que el real. Ciñendo, el aparente es más fuerte que el real; en popa, más flojo. Cuanto más rápido va el barco, más se adelanta el aparente. Navegando a motor con viento en calma, el aparente viene justo de proa con la velocidad del barco.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://marinos.es/viento-real-relativo-aparente-per/",
+    "https://escuelanauticaaltair.com/blog/viento-real-viento-aparente/",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=100278"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-02",
+   "regla": "Semicírculo (HN): «Derecha-Derecha-Derecha»: rola a la derecha → semicírculo derecho (peligroso) → viento por la amura de estribor",
+   "significado": "Hemisferio norte, mirando hacia donde avanza la borrasca o el ciclón: el semicírculo derecho es el peligroso, porque allí el viento del giro se suma a la velocidad de traslación y además tiende a arrastrar al barco hacia la trayectoria. Si estando parado el viento rola a la derecha (dextrógiro, en el sentido del reloj), estás en el semicírculo peligroso. Si rola a la izquierda, en el manejable. Si no cambia de dirección pero arrecia y la presión baja, estás en la trayectoria, delante del centro. Maniobra clásica en el semicírculo peligroso: viento unos 45° por la amura de estribor, alejándose a la mayor velocidad posible. En el manejable: viento por la aleta de estribor, corriendo el temporal. En el hemisferio sur todo es al revés.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/titulos-nauticos/capitan-de-yate/el-baul-del-cy/apuntes-del-capitan-carreno/119-apuntes-de-juan-carreno/515-ciclones-tropicales",
+    "https://www.marineinsight.com/marine-navigation/what-actions-ship-should-take-for-tropical-revolving-storm-trssigns-trs-action/",
+    "https://www.estudiasonavegas.com/foro/forum/titulaciones-n%C3%A1uticas-de-recre0/capit%C3%A1n-de-yate/meteorolog%C3%ADa/559-semicirculo-peligroso-cicl%C3%B3n-siempre"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-03",
+   "regla": "Masas de aire: minúscula = de dónde viene (m húmeda, c seca); mayúscula = temperatura (A, P fría; T cálida)",
+   "significado": "mP = marítima polar (fría y húmeda: chubascos y buena visibilidad tras los frentes fríos); cP = continental polar (fría y seca: olas de frío invernales); mT = marítima tropical (cálida y húmeda: nieblas de advección, estratos y lloviznas en el sector cálido); cT = continental tropical (cálida y seca, sahariana: calima). A = ártica. Matiz: algunos textos añaden k/w (más fría o más cálida que la superficie), que ya es nivel CY.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.rubicon3adventure.com/es/masas-de-aire-guia-completa-para-marinos-y-navegantes/",
+    "http://ojaizmet.blogspot.com/2012/01/la-circulacion-general-de-la-atmosfera_24.html"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-04",
+   "regla": "«El cálido avisa, el frío sorprende»",
+   "significado": "Frente cálido: llega con mucha antelación (12–36 h) y las nubes van bajando por escalones: cirros → cirroestratos (halo) → altoestratos → nimboestratos. Lluvia continua y moderada, la presión baja despacio y el viento rola a la derecha al pasar (HN). Después, el sector cálido, con nubes bajas, llovizna y posible niebla. Frente frío: llega casi sin aviso. Cumulonimbos, chubascos intensos, rachas y turbonadas. Al pasar, la presión sube de golpe, la temperatura y la humedad bajan, el viento rola a la derecha (al NW en nuestras latitudes) y arrecia, y luego el cielo se limpia con buena visibilidad y cúmulos sueltos.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.divulgameteo.es/archivos/articulos/misarticulos/Secuencia-sistema-frontal-50.pdf",
+    "https://www.tiempo.com/noticias/ciencia/el-paso-de-los-frentes.html",
+    "http://www.patrondeyate.net/apuntes-de-meteorologia-patron-de-yate/vientos-y-frentes.html"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-05",
+   "regla": "Niebla de advección = aire que viaja (mar); niebla de radiación = noche raso y calma (tierra)",
+   "significado": "Advección: aire cálido y húmedo que se desplaza sobre una superficie más fría (agua fría) y se enfría por debajo de su punto de rocío. Es la típica del mar: puede durar días, aparecer con viento flojo o moderado y no se disipa con el sol. Solo desaparece cuando cambia la masa de aire o el viento. Radiación: noches despejadas, con calma y humedad, en las que el suelo se enfría por radiación. Se forma en tierra, en valles, rías y puertos, y se disipa por la mañana al calentar el sol. Sobre mar abierto apenas se da. Otras: de evaporación o humo de mar (aire muy frío sobre agua templada) y frontal.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.patrondeyate.net/apuntes-de-meteorologia-patron-de-yate/humedad-y-nieblas.html",
+    "https://oceanicanautica.es/cy/la-niebla-mar/",
+    "https://snowy.es/wikimeteo/niebla-de-adveccion"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-06",
+   "regla": "Barómetro: más de 1 hPa por hora (o más de 3 hPa en 3 h) bajando = mal tiempo inminente",
+   "significado": "Más que el valor absoluto, lo que cuenta es la tendencia barométrica, que se mide en 3 horas. Un descenso lento y continuado anuncia un cambio general de tiempo, mientras que uno rápido indica que se acerca una borrasca o un frente con viento fuerte. Si cae 4–5 hPa en 3 h, el temporal está casi asegurado. Una subida brusca tras una bajada indica el paso de un frente frío, con rachas. Matiz: hay que combinar el barómetro con el viento, las nubes y la temperatura, porque no basta por sí solo.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.tiempo.com/ram/150/adecuado-uso-del-barometro/",
+    "https://snowy.es/wikimeteo/barometro"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-07",
+   "regla": "«Nubes cola de gato, viento va a darnos un mal rato» · «Luna con cerco, marinero despierto»",
+   "significado": "Las «colas de gato» son cirros uncinus, y el halo solar o lunar de 22° lo producen los cirroestratos. Ambos son los primeros indicios de que se acerca un frente cálido o una borrasca, con empeoramiento en 12–36 h si el cielo sigue cubriéndose. Matiz: no es determinista. Los cirros aislados y estacionarios no anuncian nada; lo que cuenta es la secuencia (que aumenten y espesen) junto con el barómetro bajando.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://www.2millas.com/refranes-marineros/",
+    "https://www.divulgameteo.es/Colas-de-gato/",
+    "https://snowy.es/wikimeteo/cirroestratos"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-met-08",
+   "regla": "Escala Douglas por sílabas: «CA-RI-MA-MA-MA-GRU-GRU-AR-MO-E» (balbuceo)",
+   "significado": "Grados 0–9 de la escala Douglas (mar de viento): 0 Calma, 1 Rizada, 2 Marejadilla, 3 Marejada, 4 Fuerte marejada, 5 Gruesa, 6 Muy gruesa, 7 Arbolada, 8 Montañosa, 9 Enorme. Como orientación, las alturas aproximadas son 0 / 0–0,1 / 0,1–0,5 / 0,5–1,25 / 1,25–2,5 / 2,5–4 / 4–6 / 6–9 / 9–14 / >14 m. Leído como balbuceo de bebé («cari, mamamá, gugú, ame») se recuerda el orden. Las tres «MA» y las dos «GRU» van en el orden normal → fuerte / muy.",
+   "tema": "PY UT2 Meteorología",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/forum/foros-n-uticos/foro-n-utico-deportivo/58085-reglas-nemot-cnicas-para-navegar"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-nav-01",
+   "regla": "«La corriente va, el viento viene»",
+   "significado": "El viento se nombra por la dirección de la que viene: un viento N sopla del norte hacia el sur. La corriente se nombra por la dirección hacia la que va: una corriente N empuja hacia el norte. Por eso, en la carta, el vector de la corriente se dibuja en el mismo sentido de su rumbo (Rc), mientras que el viento abate al barco hacia el lado contrario de donde viene. Es el error de signo más común en los ejercicios con viento y corriente.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://www.barcosnews.es/noticias/22668/integracion-navegacion-actual",
+    "https://www.boletinpatron.com/el-viento-conceptos-basicos-para-navegantes/",
+    "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-nav-02",
+   "regla": "Abatimiento: «viento por babor, abatimiento +» · Rs = Rv + Abt (siempre hacia sotavento)",
+   "significado": "El viento empuja al barco hacia sotavento. Si el viento entra por babor, el barco abate a estribor y el abatimiento es positivo; si entra por estribor, abate a babor y es negativo. Rumbo de superficie: Rs = Rv + (±Abt). Para hallar el rumbo verdadero que hay que dar sabiendo el Rs deseado: Rv = Rs − Abt, es decir, se corrige hacia barlovento. Comprobación: el Rs siempre queda más a sotavento que el Rv.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://campus.greenwichnautica.es/mod/book/view.php?id=3342&chapterid=3594",
+    "https://www.neptuno.es/formulas-para-el-examen-patron-de-yate",
+    "https://personales.gestion.unican.es/martinji/Archivos/Rumbos.pdf"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-nav-03",
+   "regla": "«Declinación: dónde y cuándo (carta). Desvío: hacia dónde (tablilla, con rumbo de AGUJA)»",
+   "significado": "La declinación magnética (dm) depende del lugar y del año. Se lee en la rosa de la carta y hay que actualizarla con la variación anual: dm actual = dm de la carta + variación anual × años transcurridos, con su signo. El desvío (Δ) depende del rumbo del propio barco y se saca de la tablilla, en la que se entra con el rumbo de aguja (Ra), no con el verdadero. Si solo se conoce el Rv, primero se pasa a rumbo magnético con la dm y luego se busca en la tablilla el Ra que da ese Rm (iterando si hace falta). Ct = dm + Δ ya está aprobada; esta regla cubre de dónde sale cada sumando.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://navegantesoceanicos.com/manual-del-patron-de-yate-ut-4-1-carta-nautica-correccion-total/",
+    "https://campus.greenwichnautica.es/mod/book/view.php?id=3339&chapterid=3586",
+    "https://www.isndf.com.ar/compas-declinacion-magnetica-y-desvio-del-compas/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-nav-04",
+   "regla": "Loxodrómica: «Δl con coseno, A con seno, ΔL = A / cos lm» · Δl se suma alejándose del ecuador, ΔL alejándose de Greenwich",
+   "significado": "Estima directa: Δl = D·cos R; A = D·sen R; lm = (l1 + l2)/2; ΔL = A / cos lm. Estima inversa: A = ΔL·cos lm; tg R = A/Δl; D = Δl / cos R (o √(Δl² + A²)). Δl y A están en millas (1' de latitud = 1 milla); ΔL en minutos de arco. Comprobación rápida: |ΔL| ≥ |A| siempre, porque cos lm ≤ 1. La regla de «se suma alejándose» solo vale sin cruzar el ecuador ni Greenwich; en general conviene usar signos (N y E +, S y W −).",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://www.neptuno.es/formulas-para-el-examen-patron-de-yate",
+    "https://www.estudiasonavegas.com/tests-online/118-apuntes-navegacion-astronomica-capitan-de-yate/452-derrota-loxodromica",
+    "https://www.patrondeyate.net/curso-de-navegacion-loxodromica.html"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-nav-05",
+   "regla": "«La carta es pesimista»: sonda del momento = sonda de la carta + altura de la marea",
+   "significado": "El cero hidrográfico (en España, aproximadamente la bajamar más baja posible, LAT/BMVE) está tan bajo que casi siempre hay más agua de la que marca la carta. La sonda real en un instante es la sonda de la carta más la altura de la marea en ese instante, medida sobre el cero hidrográfico. Las sondas subrayadas (zonas que se descubren en bajamar) se restan. Amplitud = pleamar − bajamar. Matiz: con altas presiones o viento de tierra puede haber menos agua de la prevista (unos −1 cm por hPa por encima de 1013), así que la carta no garantiza nada.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf",
+    "https://encvirtual.es/cursos/PYATE/c2/seccion_07/49%20Mareas.htm",
+    "https://www.librosnauticos.com/portal/descargas/fe-erratas/libro-per/libro-per-pagina-194.pdf"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-nav-06",
+   "regla": "«El anuario habla en UT»: UT = Hora oficial − adelanto (península +1 en invierno / +2 en verano; Canarias, una menos)",
+   "significado": "El Anuario de Mareas del IHM da las horas en UT (UTC). Para pasar a hora oficial (la del reloj) se suma el adelanto. En la península y Baleares es +1 en invierno y +2 en verano (de último domingo de marzo a último domingo de octubre); en Canarias, 0 en invierno y +1 en verano. Error típico: entrar en el anuario con la hora oficial del enunciado sin restarle el adelanto, o devolver el resultado en UT cuando piden hora oficial.",
+   "tema": "PY UT3 Teoría de navegación",
+   "fuentes": [
+    "https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario",
+    "https://aulanautica.org/foro/debate/anuario-de-mareas-ejercicio-de-mareas/",
+    "https://es.wikipedia.org/wiki/Huso_horario_de_Espa%C3%B1a"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-car-01",
+   "regla": "Corriente desconocida: «de la estimada a la observada»",
+   "significado": "El rumbo de la corriente es la dirección que va desde la situación estimada (Se, triángulo) hasta la observada (So, círculo) a la misma hora. La intensidad es la distancia Se–So dividida por las horas transcurridas desde la última situación fiable (si son 30 minutos, se multiplica por 2). Al revés (de So a Se) se obtiene el rumbo opuesto, que es el error típico. Encaja con «la corriente va».",
+   "tema": "PY UT4 Carta",
+   "fuentes": [
+    "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/",
+    "https://gmsailings.com/escuela-nautica/topics/corriente-desconocida-2/",
+    "https://aulanautica.org/unit/4-navegacion-carta/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-car-02",
+   "regla": "«Primero el viento, luego la corriente»",
+   "significado": "Con viento y corriente a la vez: primero se aplica el abatimiento al rumbo verdadero para obtener el rumbo de superficie (Rs = Rv + Abt) y luego se compone Rs y la velocidad con el vector de la corriente para sacar el rumbo efectivo y la velocidad efectiva. Problema inverso (rumbo a dar para llegar a un punto con corriente conocida): desde la salida se traza el vector de la corriente, con centro en su extremo se corta la línea del rumbo efectivo deseado con un arco de radio igual a la velocidad del barco, y ese lado es el Rs. Después se quita el abatimiento (Rv = Rs − Abt) y por último la corrección total para obtener el rumbo de aguja.",
+   "tema": "PY UT4 Carta",
+   "fuentes": [
+    "https://personales.gestion.unican.es/martinji/Archivos/Rumbos.pdf",
+    "https://www.estudiasonavegas.com/images/Archivos/PY/PY_Navegacion/corrientes.doc",
+    "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/"
+   ],
+   "preguntas": []
+  },
+  {
+   "id": "py-car-03",
+   "regla": "Situaciones no simultáneas: «la primera línea viaja con el barco»",
+   "significado": "Cuando dos líneas de posición (demoras, enfilaciones, distancias) se toman en momentos distintos, la primera se traslada paralela a sí misma el rumbo y la distancia navegados entre ambas observaciones, teniendo en cuenta viento y corriente si los hay (rumbo efectivo y velocidad efectiva). La situación es el corte de la línea trasladada con la segunda. Una distancia (círculo) se traslada moviendo su centro. Caso particular de dos marcaciones de 45° y 90° (a través): la distancia navegada entre ambas es la distancia a la que se pasa del faro.",
+   "tema": "PY UT4 Carta",
+   "fuentes": [
+    "https://navegantesoceanicos.com/manual-del-patron-de-yate-ut-4-4-navegacion-carta-lineas-de-posicion-no-simultaneas/",
+    "https://encvirtual.es/cursos/PYATE/c2/seccion_04_01_06/44%20Lineas%20posicion%20no%20simultaneas.htm",
+    "https://www.amigosjabega.org/wp-content/uploads/20040503-Ejercicios-de-Navegacion-Costera.pdf"
+   ],
+   "preguntas": []
   }
  ]
 }

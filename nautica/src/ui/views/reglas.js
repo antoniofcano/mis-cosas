@@ -5,6 +5,7 @@ import { loadMnemonics } from '../../store/datasets.js';
 import { crumbs } from '../titulacion.js';
 
 const GRUPOS = [
+  [/^PY UT1/, 'Patrón de Yate · Seguridad'], [/^PY UT2/, 'Patrón de Yate · Meteorología'], [/^PY UT3/, 'Patrón de Yate · Teoría de navegación'], [/^PY UT4/, 'Patrón de Yate · Carta'],
   [/UT1\b|Nomenclatura/, 'Nomenclatura'], [/UT5|Balizamiento/, 'Balizamiento'], [/UT6|RIPA/, 'Reglamento (RIPA)'],
   [/UT10|UT11|Carta|navegación/i, 'Navegación y carta'], [/UT9|Meteo/, 'Meteorología'], [/UT3|UT8|Seguridad|Emergencias/, 'Seguridad y emergencias'],
 ];

@@ -37,8 +37,8 @@ const SITUACIONES = {
     titulo: 'Veleros con la misma amura (Regla 12)',
     nota: 'Con la misma amura, el de barlovento se aparta del de sotavento.',
     viento: true,
-    a: { from: [70, 250], to: [310, 110], turn: [170, 190, 220, 120, 310, 60], label: 'Barlovento: cede', color: '#e11d48' },
-    b: { from: [130, 340], to: [290, 60], label: 'Sotavento: sigue', color: '#2563eb' },
+    a: { from: [40, 150], to: [160, 330], turn: [150, 215, 175, 245, 160, 330], label: 'Barlovento: se aparta (pasa por su popa)', color: '#e11d48' },
+    b: { from: [60, 330], to: [330, 200], label: 'Sotavento: sigue', color: '#2563eb' },
   },
 };
 

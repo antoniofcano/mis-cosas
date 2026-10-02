@@ -1720,6 +1720,1079 @@
    ]
   },
   {
+   "ut": 3,
+   "titulo": "Seguridad en la mar",
+   "intro": "Este tema va de volver siempre a puerto: cómo se comporta el barco con la mar, qué revisar antes de salir, qué hacer con mal tiempo, niebla o tormenta, qué equipo de seguridad exige la norma según la zona y cómo actuar si alguien cae al agua. Las preguntas son muy de sentido común marinero, pero tienen sus cifras (chalecos, pirotecnia, grados de las maniobras) que conviene llevar bien atadas.",
+   "lecciones": [
+    {
+     "id": "per-3-1",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Estabilidad y movimientos del barco",
+     "minutos": 12,
+     "objetivos": [
+      "Definir la estabilidad y distinguir la estática de la dinámica y la transversal de la longitudinal",
+      "Situar G, C y M y saber cuándo un barco es estable",
+      "Distinguir balance y cabezada",
+      "Saber qué es el sincronismo y cómo se rompe"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es la estabilidad",
+       "texto": "Un barco está **adrizado** cuando flota derecho, sin inclinarse a ninguna banda. Si el viento, una ola o un peso lo **escoran**, lo que le hace volver a quedar derecho es su **estabilidad**.\n\nCon dos apellidos, como en el examen:\n- **Transversal**: la de las escoras a babor o estribor. **Longitudinal**: la de proa a popa (el asiento). Esta última es mucho mayor y casi nunca da problemas.\n- **Estática**: la que se estudia con el barco flotando en **aguas en reposo**. **Dinámica**: tiene en cuenta el trabajo que hay que hacer para escorarlo, con mar y viento.\n\nRecuperar la posición tras una escora en aguas tranquilas es, por tanto, **estabilidad estática transversal**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Los tres puntos: G, C y M",
+       "texto": "- **G, centro de gravedad**: donde se aplica el **peso** del barco, hacia abajo. Depende de cómo esté cargado.\n- **C, centro de carena** (en muchos dibujos, **B**): el centro del volumen sumergido. Ahí se aplica el **empuje** del agua, hacia arriba.\n- **M, metacentro**: al escorar, C se va hacia la banda que se hunde. La vertical que pasa por el nuevo C corta el plano de crujía en M.\n\nPeso y empuje, separados, forman un par. La distancia horizontal entre ellos es el **brazo adrizante GZ**: cuanto mayor, más fuerza para volver a adrizarse. K es la quilla, el punto de referencia para medir alturas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estabilidad",
+        "caso": "estable"
+       },
+       "texto": "M por encima de G: peso y empuje forman un par que devuelve el barco a la vertical."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Estable, indiferente o inestable",
+       "texto": "Todo depende de dónde quede **M respecto a G** (la distancia GM es la **altura metacéntrica**):\n- **Estable**: M por encima de G (GM positiva). El barco se adriza solo.\n- **Indiferente**: M coincide con G (GM = 0). Se queda escorado donde lo dejes.\n- **Inestable**: M por debajo de G (GM negativa). La escora aumenta y puede zozobrar.\n\nRegla práctica: **los pesos, abajo y bien trincados**. Subir pesos (o cargar la cubierta, o llevar agua suelta en la sentina) sube G y resta estabilidad; bajarlos la aumenta."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estabilidad",
+        "caso": "inestable"
+       },
+       "texto": "Si G sube por encima de M, el par escora todavía más: el barco es inestable."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-seg-01"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Balance y cabezada",
+       "texto": "La mar mueve el barco de dos formas principales:\n- **Balance**: oscilación **transversal**, de **babor a estribor** y vuelta. Lo provoca sobre todo la mar de través.\n- **Cabezada** (o cabeceo): oscilación **longitudinal**, de **proa a popa**: la proa sube y baja. La provoca la mar de proa o de popa.\n\nCon mar fuerte de proa, la cabezada puede hacer que el fondo del casco golpee contra la ola: son los **pantocazos**, que castigan barco y tripulación.\n\nLa **escora** no es un movimiento de vaivén, sino una inclinación mantenida a una banda."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "movimiento",
+        "mov": "balance"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "movimiento",
+        "mov": "cabezada"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Sincronismo: cuando la ola y el barco van al compás",
+       "texto": "Cada barco tiene su propio ritmo de balance y de cabezada (su **periodo**). Si las olas llegan justo con ese mismo ritmo, cada ola empuja en el momento exacto y los movimientos crecen sin parar: es el **sincronismo**, transversal (en el balance) o longitudinal (en la cabezada).\n\nSe rompe **cambiando el rumbo, la velocidad o ambas cosas**, para que las olas te lleguen con otro ritmo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En estas preguntas las opciones cruzan las palabras a propósito: «transversal (proa-popa)» o «longitudinal (babor-estribor)» son falsas por definición. Transversal = babor-estribor = balance. Longitudinal = proa-popa = cabezada. Y la estabilidad tras una escora en aguas en reposo es **estática transversal**: fíjate en la letra, porque cambia de una convocatoria a otra."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un barco escorado por una racha se queda inclinado y no vuelve ni escora más. ¿En qué equilibrio está?",
+       "opciones": {
+        "a": "Estable",
+        "b": "Indiferente",
+        "c": "Inestable"
+       },
+       "correcta": "b",
+       "explicacion": "Si no vuelve a adrizarse ni aumenta la escora, M coincide con G (GM = 0): equilibrio indiferente."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo se llama el movimiento de vaivén de babor a estribor?",
+       "opciones": {
+        "a": "Cabezada",
+        "b": "Guiñada",
+        "c": "Balance"
+       },
+       "correcta": "c",
+       "explicacion": "Balance = transversal, de banda a banda. La cabezada es proa-popa y la guiñada es la proa yéndose a un lado y a otro."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t10",
+      "and-2021-c1-t10",
+      "and-2021-c2-t10",
+      "and-2022-c1-t07",
+      "and-2022-c2-t07",
+      "and-2022-c3-t07",
+      "and-2023-c1-t07",
+      "and-2023-c3-t10",
+      "and-2024-c2-t07",
+      "and-2026-c2-t07"
+     ],
+     "chuleta": [
+      "Estabilidad: capacidad de volver a adrizarse. Tras una escora en aguas en reposo = estática transversal.",
+      "G gravedad (peso, abajo) · C carena (empuje, arriba) · M metacentro · GZ brazo adrizante.",
+      "M sobre G = estable; M en G = indiferente; M bajo G = inestable. Pesos abajo.",
+      "Balance = babor-estribor (transversal). Cabezada = proa-popa (longitudinal).",
+      "Sincronismo: ola y barco al mismo ritmo. Se rompe cambiando rumbo o velocidad."
+     ],
+     "profundizar": [],
+     "verificacion": [
+      {
+       "dato": "Estabilidad estática transversal = recuperar la posición adrizada tras una escora en aguas en reposo; balance transversal (babor-estribor), cabezada longitudinal (proa-popa)",
+       "fuente": "Plantillas oficiales Andalucía: and-2020-c1-t10, and-2022-c2-t07, and-2023-c3-t10, and-2021-c1-t10, and-2021-c2-t10, and-2022-c3-t07, and-2024-c2-t07"
+      },
+      {
+       "dato": "GM = KM − KG; M sobre G estable, M = G indiferente, M bajo G inestable; GZ brazo adrizante",
+       "fuente": "Teoría del buque (definiciones estándar); mnemotecnia validada py-seg-01"
+      },
+      {
+       "dato": "Sincronismo: periodo de la ola igual al del barco; se rompe cambiando rumbo y/o velocidad",
+       "fuente": "Teoría del buque; coherente con and-2024-c2-t07 (opción «sincronismo») y and-2023-c3-t07"
+      }
+     ]
+    },
+    {
+     "id": "per-3-2",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Antes de hacerse a la mar",
+     "minutos": 9,
+     "objetivos": [
+      "Saber qué sistemas del barco hay que revisar antes de salir",
+      "Preparar la salida: meteorología, plan de navegación y tripulación",
+      "Reconocer las opciones trampa de las preguntas de «comprobaciones»"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La mayoría de los problemas empiezan en el pantalán",
+       "texto": "Muchas averías y rescates se habrían evitado con diez minutos de revisión antes de soltar amarras. Antes de salir, el patrón comprueba tres cosas:\n- **El tiempo**: la predicción para toda la travesía y su evolución, no solo el cielo de ahora.\n- **El barco**: motor, gobierno, combustible y equipo de seguridad.\n- **Las personas**: quién va a bordo y si saben qué hacer en una emergencia.\n\nY deja dicho en tierra (a alguien de confianza o en el club) **adónde va, por dónde y cuándo piensa volver**: si no llegas, alguien dará la alarma."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El motor y el combustible",
+       "texto": "- **Aceite**: nivel correcto y sin fugas.\n- **Refrigeración**: grifo de fondo abierto, filtro de agua salada limpio y, al arrancar, comprobar que sale agua por el escape.\n- **Correa del alternador**: tensa y en buen estado (mueve el alternador y, en muchos motores, la bomba de agua).\n- **Combustible**: suficiente para toda la travesía con un buen margen de reserva, y el **filtro decantador** sin agua.\n- **Fugas** de aceite o combustible en la sentina o el motor.\n- **Baterías** cargadas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Gobierno, achique y equipo",
+       "texto": "- **Gobierno**: el timón responde de banda a banda.\n- **Achique**: bombas que funcionan y sentina seca.\n- **Luces de navegación** y **VHF** operativos.\n- **Equipo de seguridad** a bordo, en vigor y accesible: chalecos para todos, aro, pirotecnia, extintores, balsa si toca.\n- **Cartas y publicaciones** de la zona.\n- **Agua dulce** y algo de comida, ancla con su línea de fondeo, cabos, linterna, herramientas y repuestos básicos.\n- **Documentación** del barco y del patrón."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La tripulación también se prepara",
+       "texto": "Antes de salir, explica a todos:\n- Dónde están los **chalecos** y cómo se ponen (y ajusta los de los niños).\n- Dónde están el **aro**, los **extintores** y la **pirotecnia**.\n- Cómo se usa el **VHF** para pedir socorro, por si el patrón es quien cae al agua.\n- Qué hacer si alguien cae al agua.\n\nConviene llevar también ropa de abrigo, protección solar y algo contra el mareo."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Antes de zarpar: meteo, motor (aceite, refrigeración, correa, filtros, fugas), combustible con reserva, gobierno, equipo de seguridad y plan de navegación comunicado a tierra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Dos trampas que se repiten: «un aro salvavidas por cada tripulante» es falso (lo que va por persona son los **chalecos**) y «suficiente agua **salada** en los tanques» también (se lleva agua **dulce**). Si las demás opciones son comprobaciones correctas del motor o los sistemas, la buena suele ser «todas las anteriores»."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estas NO es una comprobación previa a la salida?",
+       "opciones": {
+        "a": "Que el filtro decantador no tenga agua",
+        "b": "Que haya un aro salvavidas por tripulante",
+        "c": "Que la correa del alternador esté tensa"
+       },
+       "correcta": "b",
+       "explicacion": "Por persona se lleva un chaleco, no un aro. El decantador y la correa sí se revisan siempre antes de salir."
+      }
+     ],
+     "practica": [
+      "and-2022-c1-t09",
+      "and-2023-c2-t07",
+      "and-2024-c3-t07",
+      "and-2025-c3-t07"
+     ],
+     "chuleta": [
+      "Antes de salir: tiempo previsto, barco y personas.",
+      "Motor: aceite, refrigeración (sale agua por el escape), correa del alternador, filtro decantador, fugas.",
+      "Combustible para todo el viaje con reserva; gobierno, achique, luces y VHF.",
+      "Chaleco por persona (no aro por persona). Agua dulce.",
+      "Plan de navegación dicho en tierra y tripulación instruida."
+     ],
+     "profundizar": [],
+     "verificacion": [
+      {
+       "dato": "Comprobaciones antes de salir: decantador, refrigeración, correa del alternador, combustible, fugas; aro por tripulante y agua salada son falsos",
+       "fuente": "Plantillas oficiales: and-2022-c1-t09, and-2023-c2-t07, and-2024-c3-t07, and-2025-c3-t07"
+      },
+      {
+       "dato": "Un chaleco por persona a bordo (no un aro)",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), arts. 7.1 y 8"
+      }
+     ]
+    },
+    {
+     "id": "per-3-3",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Mal tiempo: a son de mar, capear y correr",
+     "minutos": 14,
+     "objetivos": [
+      "Preparar el barco «a son de mar» antes y durante el mal tiempo",
+      "Distinguir capear y correr el temporal",
+      "Saber por qué nunca hay que atravesarse a la mar",
+      "Saber dónde conviene dejar la costa con mal tiempo"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "A son de mar",
+       "texto": "Poner el barco **a son de mar** es dejarlo preparado para los movimientos de la mar: todo **estibado** (cada cosa en su sitio) y **trincado** (bien sujeto) a conciencia. Un peso suelto que corre de banda a banda puede herir a alguien, romper algo o aumentar la escora.\n\nCon mal tiempo, además:\n- **Cerrar** escotillas, portillos y tambuchos y revisar todas las aberturas.\n- Cerrar los **grifos de fondo que no hagan falta**, nunca el de refrigeración del motor.\n- Imbornales libres para que el agua de cubierta salga.\n- Cubierta despejada, líneas de vida puestas y tripulación con **chaleco y arnés**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«A son de mar» es estiba y trinca, no el sincronismo ni una maniobra. Y no se cierran **todos** los grifos de fondo: el de la refrigeración del motor tiene que seguir abierto o el motor se calienta y se para justo cuando más lo necesitas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Nunca atravesado a la mar",
+       "texto": "Recibir mar fuerte por el **través** es la situación más peligrosa: los balances se hacen violentos, las olas rompen en cubierta y el barco puede **zozobrar**.\n\nPor eso, con mala mar, ajusta **rumbo y velocidad** para recibir las olas por otro sitio:\n- por la **amura**: es **capear**;\n- por la **aleta** o la **popa**: es **correr el temporal**.\n\nPararte del todo tampoco sirve: sin arrancada no hay gobierno y la mar acaba poniéndote atravesado."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barco",
+        "resaltar": [
+         "amura",
+         "aleta",
+         "traves"
+        ]
+       },
+       "texto": "Amura (capear), aleta (correr) y través: el lado por el que nunca quieres recibir la mar gruesa."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Capear el temporal",
+       "texto": "**Capear** es recibir la mar y el viento por la **amura**, con **poca máquina avante**: justo la necesaria para mantener el gobierno. El barco sube las olas en diagonal, sin clavar la proa ni dar pantocazos.\n\n- **A motor**: mar y viento por la amura, poca velocidad.\n- **A vela**: poco trapo (mayor muy rizada, tormentín o vela de capa) para mantener una ligera arrancada avante.\n- Si no se puede llevar vela ni máquina, se puede capear con un **ancla de capa** (o ancla flotante): un cono de lona que, largado por proa, mantiene la proa a la mar.\n\nCon mala mar, para **evitar cabezadas fuertes**: modera la velocidad y recibe la mar por la amura."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Correr el temporal",
+       "texto": "**Correr el temporal** es navegar con la mar por la **popa** o la **aleta**, en el mismo sentido que las olas. Se hace cuando no se puede o no conviene capear (por ejemplo, si el barco no aguanta la mar de proa y hay mar abierta a sotavento).\n\nEl peligro es que una ola levante la popa, el barco se atraviese y quede de costado a la mar. Para evitarlo, gobierna con cuidado y ajusta la velocidad; un ancla de capa o unos cabos largos remolcados por popa ayudan a frenar y a mantener la popa a la mar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La costa, a barlovento",
+       "texto": "Con mal tiempo, la costa peligrosa es la que tienes **a sotavento**: viento y mar te empujan hacia ella, y cualquier avería te lleva contra las rocas. Aléjate de ella y busca mar abierta.\n\nLo recomendable es **dejar la costa a barlovento**: que el viento venga de tierra hacia ti, de modo que te aleje de ella y la tierra te dé abrigo. Planifica la derrota hacia un puerto de abrigo seguro y no navegues pegado a la costa y a sus peligros."
+      },
+      {
+       "tipo": "regla",
+       "id": "r02"
+      },
+      {
+       "tipo": "clave",
+       "texto": "Mal tiempo: todo trincado y cerrado (menos la refrigeración), capear por la amura con poca máquina o correr por popa o aleta, nunca atravesado, y la costa a barlovento."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En las preguntas de «qué NO es recomendable», busca la opción que va contra la prudencia: **destrincar** pesos, prepararse para un **abandono inminente** (el abandono es el último recurso, no una medida ante el mal tiempo) o recibir la mar por la **proa con la máquina parada**. Y cuidado con «alejarse de la costa a sotavento»: significa alejarse de la costa que tienes a sotavento, y es correcto."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas a motor con temporal y recibes la mar por la amura con poca máquina avante. ¿Qué estás haciendo?",
+       "opciones": {
+        "a": "Correr el temporal",
+        "b": "Capear el temporal",
+        "c": "Ponerte a son de mar"
+       },
+       "correcta": "b",
+       "explicacion": "Capear = amura y poca máquina avante. Correr es con mar por popa o aleta, y «a son de mar» es la estiba y trinca."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Con mal tiempo, ¿qué grifo de fondo debe quedar abierto?",
+       "opciones": {
+        "a": "Ninguno",
+        "b": "El del aseo",
+        "c": "El de refrigeración del motor"
+       },
+       "correcta": "c",
+       "explicacion": "Se cierran los que no sean necesarios, pero el motor necesita su toma de agua de refrigeración."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t07",
+      "and-2020-c3-t08",
+      "and-2020-c3-t09",
+      "and-2022-c2-t08",
+      "and-2022-c3-t09",
+      "and-2023-c1-t09",
+      "and-2023-c2-t09",
+      "and-2023-c3-t07",
+      "and-2024-c2-t10",
+      "and-2024-c3-t10",
+      "and-2025-c1-t07",
+      "and-2025-c1-t08",
+      "and-2025-c1-t10",
+      "and-2025-c3-t09",
+      "and-2026-c1-t07",
+      "and-2026-c1-t09"
+     ],
+     "chuleta": [
+      "A son de mar = todo estibado y trincado.",
+      "Cerrar aberturas y grifos de fondo no necesarios; la refrigeración, abierta.",
+      "Capear: mar por la amura, poca máquina avante (a vela, poco trapo o ancla de capa).",
+      "Correr: mar por popa o aleta. Nunca atravesado (través = máximo riesgo).",
+      "Costa a barlovento; aléjate de la que tienes a sotavento."
+     ],
+     "profundizar": [],
+     "verificacion": [
+      {
+       "dato": "Capear = mar por la amura con poca máquina avante; a vela poco trapo o ancla de capa; correr = mar por popa o aleta",
+       "fuente": "Plantillas oficiales: and-2020-c1-t07, and-2020-c3-t08, and-2022-c2-t08, and-2023-c1-t09, and-2025-c1-t10"
+      },
+      {
+       "dato": "A son de mar = estibado y trincado; se cierran los grifos de fondo no necesarios (no todos)",
+       "fuente": "Plantillas oficiales: and-2020-c3-t09, and-2022-c3-t09, and-2023-c3-t07, and-2025-c3-t09"
+      },
+      {
+       "dato": "Con mal tiempo, dejar la costa a barlovento; destrincar pesos o prepararse para abandono inminente no son medidas recomendables",
+       "fuente": "Plantillas oficiales: and-2026-c1-t09, and-2025-c1-t08, and-2024-c3-t10"
+      }
+     ]
+    },
+    {
+     "id": "per-3-4",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Tormentas, niebla y aguas someras",
+     "minutos": 14,
+     "objetivos": [
+      "Saber cómo protegerse de una tormenta eléctrica y qué le pasa a la aguja",
+      "Conocer las medidas con baja visibilidad y para qué sirve el reflector radar",
+      "Navegar con seguridad en aguas someras"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Tormentas eléctricas",
+       "texto": "Si te pilla una tormenta eléctrica:\n- Baja a la cámara o quédate lo más dentro posible, lejos del palo, los obenques y cualquier parte metálica, y **no los toques**.\n- **Apaga y desconecta** la electrónica que no sea imprescindible.\n- Evita maniobrar con piezas metálicas.\n\nMuchos veleros llevan el palo conectado eléctricamente a la quilla o a una placa en el casco para que la descarga encuentre camino al agua."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El rayo y la aguja",
+       "texto": "Un rayo cercano produce un campo magnético muy intenso que puede alterar el magnetismo de la **aguja** y de los hierros de a bordo. Resultado: **desvíos anómalos**, temporales o permanentes, y **errores en el rumbo de aguja**.\n\nDespués de una tormenta, **comprueba la aguja** (por ejemplo, con una enfilación) y, si ha cambiado, haz una nueva tablilla de desvíos.\n\nLo que **no** cambia es la **declinación magnética**: depende del lugar y del año, no de tu barco."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones falsas suelen decir que la tormenta solo afecta a cascos metálicos o de madera, que no hay riesgo con el motor parado, que «mejora» la precisión de la aguja o que cambia la declinación. Lo correcto: puede producir un **desvío anómalo** de la aguja, temporal o permanente, en cualquier barco."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Niebla y baja visibilidad",
+       "texto": "Con visibilidad reducida, el RIPA y el sentido común piden:\n- **Reducir la velocidad** a una velocidad de seguridad acorde con la visibilidad, con la máquina lista para maniobrar.\n- **Extremar la vigilancia visual y auditiva**: oirás a otros barcos antes de verlos.\n- **Encender las luces de navegación**, también de día.\n- Dar las **señales fónicas** reglamentarias (un barco de menos de 12 m puede sustituirlas por otra señal acústica eficaz cada 2 minutos como máximo).\n- Usar el **radar** si lo hay, sin fiarte solo de él, y llevar izado el **reflector radar**.\n- **Evitar las zonas de tráfico** (accesos a puertos, dispositivos de separación)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "-"
+       },
+       "texto": "Una pitada larga cada 2 minutos como máximo: barco de motor con arrancada en visibilidad reducida."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El reflector radar",
+       "texto": "Los barcos de fibra o de madera devuelven muy poco eco al radar: en la pantalla de un mercante pueden ser casi invisibles. El **reflector radar** es un elemento **pasivo** (no emite nada ni gasta energía) formado por placas metálicas en ángulo recto que **devuelven las ondas de los radares de otros barcos**, para que **te vean**.\n\n- No mejora **tu** radar ni hay que orientarlo a mano.\n- Se iza **lo más alto posible**.\n- El RD 339/2021 lo exige en las embarcaciones de recreo de **casco no metálico**, en todas las zonas.\n\nCon niebla es fundamental."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De noche",
+       "texto": "La noche, por sí sola, no es «visibilidad reducida» en el sentido del RIPA, pero tiene sus riesgos:\n- Comprueba que las luces de navegación funcionan y que la iluminación de cubierta no las tapa ni te deslumbra.\n- Las luces de tierra pueden ocultar las de un barco o una baliza: identifica bien cada faro por su ritmo.\n- Haz los cambios de rumbo **amplios y claros**, para que los demás los vean.\n- Si dudas de tu situación cerca de costa, sepárate hacia mar abierta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Aguas someras",
+       "texto": "**Aguas someras** son aguas de **poca profundidad**, cerca de la costa o sobre bajos, donde hay poca agua bajo la quilla. Exigen **más atención**: tocar fondo puede dañar casco, quilla, hélice o timón.\n\nPrecauciones:\n- **Planifica la derrota según tu calado** e identifica los peligros en la carta.\n- Lleva la **sonda** encendida y vigílala.\n- **Reduce la velocidad**: una varada a poca velocidad es un susto; a mucha, una avería grave.\n- Respeta el balizamiento, sitúate a menudo y ten en cuenta las corrientes en canales y desembocaduras."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Poca visibilidad o poco fondo: menos velocidad y más vigilancia. Y después de una tormenta, comprueba la aguja."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Con niebla, aumentar la velocidad «para salir antes», buscar zonas de tráfico, apagar luces, encender las de fondeo o quitar el reflector radar son siempre opciones falsas. En aguas someras, lo mismo: nunca «aumentar la velocidad para salir cuanto antes». Y no confundas somero (poco profundo) con sondas (los números de la carta) o veriles (líneas de igual profundidad)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Para qué sirve el reflector radar?",
+       "opciones": {
+        "a": "Para que tu radar detecte mejor a los demás",
+        "b": "Para que el radar de otros barcos te detecte",
+        "c": "Para emitir tu posición por satélite"
+       },
+       "correcta": "b",
+       "explicacion": "Es pasivo: refleja las ondas de los radares ajenos para que tu barco aparezca en sus pantallas."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tras una tormenta con rayos cercanos, ¿qué conviene comprobar?",
+       "opciones": {
+        "a": "La declinación magnética de la carta",
+        "b": "Los desvíos de la aguja",
+        "c": "La calibración de la sonda"
+       },
+       "correcta": "b",
+       "explicacion": "El rayo puede alterar el magnetismo de la aguja y producir desvíos anómalos. La declinación no depende del barco."
+      }
+     ],
+     "practica": [
+      "and-2024-c1-t09",
+      "and-2025-c2-t07",
+      "and-2025-c3-t08",
+      "and-2026-c2-t09",
+      "and-2022-c2-t10",
+      "and-2024-c1-t07",
+      "and-2024-c3-t09",
+      "and-2025-c1-t09",
+      "and-2025-c2-t09",
+      "and-2026-c1-t08",
+      "and-2023-c1-t08",
+      "and-2024-c2-t08",
+      "and-2026-c2-t08",
+      "and-2020-c3-t07",
+      "and-2021-c2-t07",
+      "and-2022-c3-t08",
+      "and-2024-c1-t10",
+      "and-2025-c2-t10"
+     ],
+     "chuleta": [
+      "Tormenta: lejos de metales, electrónica desconectada; después, comprobar la aguja (desvío anómalo; la declinación no cambia).",
+      "Niebla: velocidad de seguridad, vigilancia visual y auditiva, luces de navegación, señales fónicas, lejos del tráfico.",
+      "Reflector radar: pasivo, alto, para que te vean; obligatorio en cascos no metálicos.",
+      "Aguas someras = poco fondo: derrota según calado, sonda y poca velocidad."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento internacional para prevenir los abordajes (RIPA/COLREG 1972)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "BOE – Real Decreto 339/2021, equipo de seguridad de las embarcaciones de recreo (texto consolidado)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Visibilidad reducida: velocidad de seguridad, vigilancia visual y auditiva, luces encendidas, señales fónicas",
+       "fuente": "RIPA/COLREG 1972 (BOE-A-1977-15605), Reglas 5, 6, 19 y 35; plantillas and-2024-c1-t07, and-2024-c3-t09, and-2025-c1-t09"
+      },
+      {
+       "dato": "Barco de propulsión mecánica con arrancada: una pitada larga a intervalos ≤ 2 min; < 12 m puede dar otra señal acústica eficaz a intervalos ≤ 2 min",
+       "fuente": "RIPA/COLREG 1972 (BOE-A-1977-15605), Regla 35 a) y apartado para buques de eslora inferior a 12 m"
+      },
+      {
+       "dato": "Reflector de radar obligatorio en todas las zonas (1 a 7) para cascos no metálicos",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 12.1 (tabla) y 12.2.g"
+      },
+      {
+       "dato": "Reflector radar: elemento pasivo para ser detectado por radares ajenos; rayo cercano → desvío anómalo de la aguja",
+       "fuente": "Plantillas oficiales: and-2023-c1-t08, and-2024-c2-t08, and-2026-c2-t08, and-2024-c1-t09, and-2025-c3-t08, and-2026-c2-t09"
+      },
+      {
+       "dato": "Aguas someras = poca profundidad; sonda y poca velocidad",
+       "fuente": "Plantillas oficiales: and-2020-c3-t07, and-2021-c2-t07, and-2022-c3-t08, and-2025-c2-t10"
+      }
+     ]
+    },
+    {
+     "id": "per-3-5",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Equipo de seguridad (I): zonas, chalecos, aros y balsas",
+     "minutos": 13,
+     "objetivos": [
+      "Saber a qué embarcaciones se aplica el RD 339/2021",
+      "Conocer las siete zonas de navegación y su relación con las categorías de diseño",
+      "Saber qué chalecos, aros y balsas exige cada zona"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La norma: el RD 339/2021",
+       "texto": "El equipo de seguridad que deben llevar las embarcaciones de recreo lo fija el **Real Decreto 339/2021**, en vigor desde julio de 2021 (sustituyó a una orden ministerial de 2003).\n\nSe aplica a embarcaciones de recreo de **2,5 a 24 m** de eslora que no lleven más de **12 pasajeros**: las matriculadas en España, las que hacen actividad comercial en aguas españolas y las de cualquier bandera cuyo propietario o usuario resida en España, cuando navegan por aguas españolas.\n\n**No** se aplica, entre otros, a piraguas y kayaks, patines (de pedales o con motor de menos de 3,5 kW), **motos náuticas**, tablas a vela o con motor, ni a las embarcaciones de regatas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las siete zonas de navegación",
+       "texto": "- **Zona 1**: ilimitada.\n- **Zona 2**: hasta **60 millas** de la costa.\n- **Zona 3**: hasta **25 millas** de la costa.\n- **Zona 4**: hasta **12 millas** de la costa.\n- **Zona 5**: sin alejarse más de **5 millas** de un abrigo o playa accesible.\n- **Zona 6**: sin alejarse más de **2 millas** de un abrigo o playa accesible.\n- **Zona 7**: aguas protegidas: puertos, radas, rías, bahías abrigadas.\n\nUn **abrigo** es un lugar donde el barco puede refugiarse con facilidad y sus ocupantes llegar a tierra. Cuanto menor es el número de zona, más lejos puedes ir y más equipo tienes que llevar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Categorías de diseño",
+       "texto": "Los barcos con **marcado CE** tienen una **categoría de diseño** que limita las zonas por las que pueden navegar (siempre que lleven el equipo de la zona):\n- **A**: zonas 1 a 7.\n- **B**: zonas 2 a 7.\n- **C**: zonas 4 a 7.\n- **D**: solo zona 7.\n\nAdemás, ningún barco debe navegar con olas y viento superiores a los de su diseño. El **propietario o el patrón** responden de que el barco y su equipo estén en condiciones y de no llevar a bordo más personas de las autorizadas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Chalecos salvavidas",
+       "texto": "- **Uno por persona** a bordo, cada uno con su **luz**. En zonas 4 a 7, si solo navegas de día, puedes prescindir de la luz.\n- En **zona 1**, un chaleco **adicional**.\n- Chalecos **adecuados** al peso y la talla de **niños y bebés**.\n- Los **hinchables** se revisan según las instrucciones del fabricante, en una estación de servicio autorizada.\n\nFlotabilidad mínima:\n- **Zona 1: 275 N**.\n- **Zonas 2, 3 y 4: 150 N**.\n- **Zonas 5, 6 y 7: 100 N**.\n\nEstíbalos en un sitio accesible y que todos sepan dónde están."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La zona 4 es la que más cae: **150 N**. Recuerda también el último escalón: con la norma vigente, en las zonas 5, 6 y 7 el mínimo es **100 N**. Y la unidad es el newton (N), aunque en alguna opción aparezca escrita «NW»."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Aros salvavidas",
+       "texto": "- En **zonas 1, 2, 3 y 4**: **un aro con luz y rabiza** (el cabo flotante que lo une al barco).\n- En **zona 1**, además, **otro aro** sin necesidad de luz ni rabiza.\n- En zonas 5, 6 y 7 no es obligatorio.\n\nDónde se coloca: en las **bandas, hacia las aletas, o en la popa**, con un **sistema de suelta rápida** para lanzarlo al agua en un segundo. El náufrago siempre se queda atrás con la arrancada del barco, así que un aro en la proa no sirve de mucho."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Balsas salvavidas",
+       "texto": "- Obligatorias en **zonas 1, 2 y 3**, con capacidad para **todas las personas a bordo**.\n- Pueden ser conformes a la norma ISO 9650 u otra equivalente, siempre que estén homologadas por la Dirección General de la Marina Mercante.\n- Se revisan según las instrucciones del fabricante en una estación de servicio autorizada (en barcos de uso comercial, como máximo cada **24 meses**).\n\nSuelen ir en un contenedor sobre cubierta con una **zafa hidrostática**, que la suelta sola si el barco se hunde."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Chalecos: uno por persona en todas las zonas (275 N en zona 1, 150 N en 2 a 4, 100 N en 5 a 7). Aro con luz y rabiza en zonas 1 a 4. Balsa en zonas 1 a 3."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas a navegar a 10 millas de la costa. ¿En qué zona estás como mínimo y qué flotabilidad deben tener los chalecos?",
+       "opciones": {
+        "a": "Zona 4; 150 N",
+        "b": "Zona 5; 100 N",
+        "c": "Zona 3; 275 N"
+       },
+       "correcta": "a",
+       "explicacion": "Hasta 12 millas de la costa es zona 4, y en las zonas 2 a 4 los chalecos son de 150 N."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿En qué zonas es obligatoria la balsa salvavidas?",
+       "opciones": {
+        "a": "En todas",
+        "b": "En las zonas 1, 2 y 3",
+        "c": "Solo en la zona 1"
+       },
+       "correcta": "b",
+       "explicacion": "El RD 339/2021 la exige en zonas 1, 2 y 3, con capacidad para todas las personas a bordo."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t10",
+      "and-2021-c1-t09",
+      "and-2024-c2-t09"
+     ],
+     "chuleta": [
+      "RD 339/2021: recreo de 2,5 a 24 m y hasta 12 pasajeros (no motos náuticas, kayaks ni tablas).",
+      "Zonas: 1 ilimitada · 2: 60 mn · 3: 25 mn · 4: 12 mn · 5: 5 mn de abrigo · 6: 2 mn de abrigo · 7: aguas protegidas.",
+      "Categorías CE: A 1-7 · B 2-7 · C 4-7 · D 7.",
+      "Chalecos: 1 por persona con luz (+1 en zona 1). 275 N / 150 N / 100 N.",
+      "Aro con luz y rabiza en zonas 1-4 (otro más en zona 1), a popa o en las aletas. Balsa en zonas 1-3."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 339/2021, equipo de seguridad de las embarcaciones de recreo (texto consolidado)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Ámbito: recreo de 2,5 a 24 m, hasta 12 pasajeros; excluidos kayaks, patines < 3,5 kW, motos náuticas, tablas, regatas",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), arts. 1.2 y 2"
+      },
+      {
+       "dato": "Zonas 1 ilimitada · 2: 60 mn · 3: 25 mn · 4: 12 mn · 5: 5 mn de abrigo · 6: 2 mn de abrigo · 7: aguas protegidas; categorías A 1-7, B 2-7, C 4-7, D 7",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 3"
+      },
+      {
+       "dato": "Chaleco por persona con luz (sin luz en zonas 4-7 solo de día), uno adicional en zona 1; flotabilidad 275 N (z1), 150 N (z2-4), 100 N (z5-7). No existe escalón de 50 N",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 7 (tabla de flotabilidad). La derogada Orden FOM/1144/2003 (BOE-A-2003-9581) tenía las mismas cifras"
+      },
+      {
+       "dato": "Aro con luz y rabiza en zonas 1-4 y otro sin luz ni rabiza en zona 1",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 8"
+      },
+      {
+       "dato": "Balsas en zonas 1-3 para todas las personas; ISO 9650 u otra equivalente homologada por la DGMM; revisión según el fabricante en estación autorizada (máx. 24 meses en uso comercial)",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 6 (redacción dada por el RD 587/2022)"
+      },
+      {
+       "dato": "Aros en las aletas o en la popa con luz y suelta rápida; zona 4 = 150 N",
+       "fuente": "Plantillas oficiales: and-2020-c3-t10, and-2021-c1-t09, and-2024-c2-t09"
+      },
+      {
+       "dato": "Entrada en vigor 1-7-2021; deroga la Orden FOM/1144/2003",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), disposición derogatoria única y disposición final cuarta"
+      }
+     ]
+    },
+    {
+     "id": "per-3-6",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Equipo de seguridad (II): pirotecnia, extintores y otros",
+     "minutos": 13,
+     "objetivos": [
+      "Conocer las tres señales pirotécnicas, su duración y cuándo se usan",
+      "Saber cuántas lleva el barco según la zona",
+      "Conocer los extintores obligatorios y su mantenimiento",
+      "Distinguir lo obligatorio de lo solo recomendable (arnés, espejo)"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Las tres señales pirotécnicas",
+       "texto": "- **Bengala de mano**: **luz roja** durante **al menos 1 minuto**. Marca tu posición exacta a quien ya está cerca.\n- **Cohete con paracaídas**: sube a **300 m** o más y su **luz roja** cae lentamente durante **al menos 40 segundos**. Avisa a quien está lejos y aún no te ve.\n- **Señal fumígena flotante**: **humo naranja** durante **al menos 3 minutos**. Es **de día** y se ve muy bien desde el aire; se lanza al agua por sotavento.\n\nTodas son señales de socorro del RIPA (anexo IV). Guárdalas en un estuche estanco, en un lugar seco, lejos del calor y a mano, y vigila su fecha de caducidad."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "socorro",
+        "resaltar": "bengala",
+        "solo": true
+       },
+       "texto": "Bengala de mano: luz roja, al menos 1 minuto."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "socorro",
+        "resaltar": "cohete-paracaidas",
+        "solo": true
+       },
+       "texto": "Cohete con paracaídas: luz roja a 300 m o más, durante al menos 40 s."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "socorro",
+        "resaltar": "humo",
+        "solo": true
+       },
+       "texto": "Fumígena flotante: humo naranja, al menos 3 minutos, de día."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo y cuándo usarlas",
+       "texto": "Tienes pocas y duran poco, así que **solo se usan cuando tengas la seguridad de que alguien puede verlas**: un barco o un avión a la vista, o tras pedir ayuda por radio, cuando te digan que se acercan. Lanzarlas sin nadie cerca es desperdiciarlas.\n\n- **Bengala**: se enciende y se sostiene con el **brazo extendido** por la **banda de sotavento**, sin mirarla directamente, para que las gotas y el humo no caigan sobre ti ni sobre el barco.\n- **Cohete**: casi vertical, algo inclinado a sotavento; con nubes bajas, más inclinado para que la luz quede bajo ellas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuántas según la zona",
+       "texto": "El RD 339/2021 exige:\n- **Zona 1**: 6 bengalas, 6 cohetes y 2 fumígenas.\n- **Zonas 2 y 3**: 6 bengalas, 6 cohetes y 1 fumígena.\n- **Zona 4**: 3 bengalas y 3 cohetes.\n- **Zonas 5 y 6**: 3 bengalas.\n- **Zona 7**: ninguna.\n\nOtro equipo obligatorio: **bocina de niebla** (manual o de gas, con membrana y botella de respeto), **campana** de al menos 200 mm si la eslora es de 20 m o más, **linterna estanca**, **reflector radar** si el casco no es metálico y medios de **achique** (bombas y baldes) según la zona."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En el examen se cruzan las duraciones: **bengala 1 minuto, fumígena 3 minutos (humo naranja), cohete al menos 40 segundos**. Y el humo de socorro es **naranja**, nunca verde."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Extintores",
+       "texto": "Un barco con **marcado CE** lleva los extintores que indique el **manual del fabricante**. Los que no tienen marcado CE (y los de uso comercial) siguen unas tablas por eslora y por potencia del motor; el tipo básico es el de eficacia **34B** (capaz de apagar el fuego de ensayo normalizado de clase B «34», una bandeja con 34 litros de líquido: un tercio de agua y dos tercios de combustible), de **al menos 2 kg** de agente.\n\n- Uno de ellos, al alcance desde el **puesto de gobierno**; todos en lugares de fácil acceso.\n- El **polvo polivalente (ABC)** es el habitual a bordo.\n- Mantenimiento según el reglamento de protección contra incendios (RD 513/2017): comprobación **cada 3 meses** por el propietario (en su sitio, accesible, precinto y manómetro en verde), **revisión anual** por empresa mantenedora y **retimbrado** (prueba de presión) cada **5 años**, como máximo tres veces."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fuego",
+        "vista": "clases"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "py-seg-04"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "No todo lo útil es obligatorio. El **arnés** y las líneas de vida son muy recomendables (sobre todo en vela y con mal tiempo), pero el RD 339/2021 **no** los exige, y el **espejo de señales** tampoco figura en él. Hubo una pregunta que pedía cuál de ellos «no era obligatorio» en zona 4 y se **anuló** (se dieron todas las respuestas por buenas): con la norma vigente, ni el arnés ni el espejo lo son."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Es de día, hay un helicóptero buscándote a lo lejos y quieres que te localice. ¿Qué señal es la más adecuada?",
+       "opciones": {
+        "a": "Fumígena flotante",
+        "b": "Bengala de mano",
+        "c": "Ninguna hasta que esté encima"
+       },
+       "correcta": "a",
+       "explicacion": "De día, el humo naranja de la fumígena se ve muy bien desde el aire y dura al menos 3 minutos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuánto dura como mínimo la luz de una bengala de mano?",
+       "opciones": {
+        "a": "40 segundos",
+        "b": "1 minuto",
+        "c": "3 minutos"
+       },
+       "correcta": "b",
+       "explicacion": "Bengala: al menos 1 minuto. Los 40 s son del cohete y los 3 min de la fumígena."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t07",
+      "and-2021-c2-t09",
+      "and-2022-c3-t10",
+      "and-2023-c3-t08",
+      "and-2024-c1-t08"
+     ],
+     "chuleta": [
+      "Bengala: luz roja ≥ 1 min, brazo extendido a sotavento.",
+      "Cohete con paracaídas: luz roja, ≥ 300 m, ≥ 40 s.",
+      "Fumígena flotante: humo naranja ≥ 3 min, de día.",
+      "Solo cuando haya alguien que pueda verlas.",
+      "Pirotecnia: zona 1: 6-6-2 · zonas 2-3: 6-6-1 · zona 4: 3-3 · zonas 5-6: 3 bengalas · zona 7: nada.",
+      "Extintores: CE según el fabricante; sin CE, tablas (34B). Arnés y espejo: recomendables, no obligatorios."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 339/2021, equipo de seguridad de las embarcaciones de recreo (texto consolidado)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+      },
+      {
+       "titulo": "BOE – Reglamento internacional para prevenir los abordajes (RIPA/COLREG 1972)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Pirotecnia: z1 6 bengalas, 6 cohetes, 2 fumígenas; z2-3 6-6-1; z4 3 bengalas y 3 cohetes; z5-6 3 bengalas; z7 ninguna",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 9 (tabla)"
+      },
+      {
+       "dato": "Bengala ≥ 1 min luz roja; cohete ≥ 300 m y ≥ 40 s; fumígena flotante humo naranja ≥ 3 min",
+       "fuente": "Código IDS (LSA) de la OMI, 3.1-3.3, aplicable vía RD 701/2016; RIPA anexo IV 1 i) y j); plantillas and-2021-c1-t07, and-2022-c3-t10, and-2024-c1-t08"
+      },
+      {
+       "dato": "Pirotecnia solo cuando haya seguridad de que te pueden ver",
+       "fuente": "Plantilla oficial and-2023-c3-t08"
+      },
+      {
+       "dato": "Bocina de niebla manual o de gas (con membrana y recipiente de respeto); campana ≥ 200 mm si eslora ≥ 20 m",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 10.4"
+      },
+      {
+       "dato": "Linterna estanca en todas las zonas; achique por zonas",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), arts. 12.1 y 20"
+      },
+      {
+       "dato": "Extintores: CE según el manual del fabricante; sin CE tablas por eslora y potencia, eficacia 34B, ≥ 2 kg, uno accesible desde el puesto de gobierno",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), art. 15"
+      },
+      {
+       "dato": "Mantenimiento de extintores: trimestral por el titular, anual por mantenedora, retimbrado cada 5 años (tres veces)",
+       "fuente": "RD 339/2021 art. 15.9 → RD 513/2017 (RIPCI, BOE-A-2017-6606) art. 21 y anexo II, tablas I y II"
+      },
+      {
+       "dato": "34B = fuego de ensayo de 34 l (1/3 agua, 2/3 heptano)",
+       "fuente": "UNE-EN 3-7 (ensayos de extintores portátiles)"
+      },
+      {
+       "dato": "Arnés y espejo de señales no figuran en el RD 339/2021; and-2021-c2-t09 anulada",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022), caps. II y III; nota informativa 4-ene-2022 (Junta de Andalucía)"
+      }
+     ]
+    },
+    {
+     "id": "per-3-7",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Hombre al agua: prevención, maniobras y búsqueda",
+     "minutos": 15,
+     "objetivos": [
+      "Saber cómo prevenir una caída al agua",
+      "Conocer los primeros pasos cuando alguien cae: timón, aro, MOB",
+      "Distinguir las maniobras de Anderson y Boutakow",
+      "Saber cuándo y cómo se busca en espiral cuadrada y por sectores"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Mejor no caerse",
+       "texto": "La mejor maniobra de hombre al agua es la que no hay que hacer:\n- Muévete por cubierta **con cuidado y agarrado**: «una mano para ti y otra para el barco».\n- Usa los equipos que tengas: **chaleco**, **arnés** enganchado a una **línea de vida**, calzado que no resbale.\n- No te fíes de los **candeleros** y **guardamancebos**: son bajos y pueden ceder.\n- En un velero, ojo con la **botavara** en las trasluchadas.\n- Evita salir a cubierta sin necesidad con mal tiempo o de noche, y mantén la cubierta bien iluminada sin tapar las luces de navegación."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Los primeros segundos",
+       "texto": "Si alguien cae al agua:\n1. Grita **«¡hombre al agua!»** y por qué banda.\n2. **Timón a la banda por la que ha caído**: así la popa, y con ella la **hélice**, se aparta de la persona.\n3. **Lánzale el aro** salvavidas y cualquier cosa que flote (de noche, con luz).\n4. Una persona se dedica solo a **señalarlo con el brazo y no perderlo de vista**.\n5. Pulsa **MOB** en el GPS.\n6. Avisa por **VHF** a Salvamento Marítimo y a los barcos cercanos.\n\nNunca aceleres sin control: te alejas, lo pierdes de vista o lo arrollas. Y nadie se tira al agua a por él sin chaleco y sin estar amarrado al barco."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La tecla MOB",
+       "texto": "Los equipos de navegación por satélite (GNSS, el GPS de a bordo) tienen una tecla **MOB** (*man overboard*, hombre al agua). Al pulsarla, el equipo **memoriza al instante la posición y la hora** de la caída y te da desde ese momento el **rumbo y la distancia para volver** al punto.\n\nEse punto es también el **datum** desde el que empieza la búsqueda si pierdes de vista a la persona.\n\nLa tecla MOB no maneja el piloto automático ni para el motor, ni tiene nada que ver con las bengalas: solo guarda el punto."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "bandera",
+        "codigo": "O"
+       },
+       "texto": "Bandera «O» del Código Internacional de Señales: «¡hombre al agua!»."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Maniobra de Anderson (una vuelta)",
+       "texto": "Es una maniobra **rápida** cuando **ves** al náufrago:\n- **Todo el timón a la banda de la caída** y máquina avante.\n- Mantén la caída hasta haber variado el rumbo unos **250°**.\n- Entonces **timón a la vía y para la máquina**, y llega hasta él con poca arrancada.\n\nRequiere un barco con buena capacidad de giro y que alguien no pierda de vista a la persona."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hombre-al-agua",
+        "maniobra": "anderson"
+       },
+       "texto": "Anderson: un solo giro de unos 250° hacia la banda de la caída."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Maniobra de Boutakow (curva de Williamson)",
+       "texto": "Sirve para **volver al punto de caída siguiendo tu propia estela**, y por eso es la que se usa cuando quieres regresar a la situación de caída, de noche o si has perdido de vista a la persona:\n- **Todo el timón a la banda de la caída**.\n- Cuando el rumbo haya variado **70°** respecto al inicial, **todo el timón a la banda contraria**.\n- Mantenlo hasta quedar al **rumbo opuesto** al primitivo: navegas de vuelta sobre tu estela y el náufrago aparece por la proa."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hombre-al-agua",
+        "maniobra": "boutakow"
+       },
+       "texto": "Boutakow: a la banda de la caída, luego a la contraria hasta el rumbo opuesto."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El ángulo del primer giro de Boutakow: **en el examen de Andalucía es 70°**, y es lo que tienes que marcar. El manual internacional de búsqueda y salvamento (IAMSAR) describe la curva de Williamson con **60°**, que es lo que verás en el dibujo. Para el examen: **Anderson 250°, Boutakow 70°**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si no lo ves: buscar desde el datum",
+       "texto": "Anderson y Boutakow son maniobras para **volver**. Si no sabes con exactitud dónde está la persona, hay que **buscar** de forma sistemática desde el **datum** (la posición más probable):\n- **Espiral cuadrada** (cuadrado expansivo): sales del datum y vas haciendo tramos rectos con giros de 90° que se alargan cada dos tramos, **abriéndote** hacia fuera. La hace **un solo barco** y sirve para **áreas pequeñas**.\n- **Por sectores**: tramos **radiales** que pasan una y otra vez por el datum, con **giros de 120° a estribor**, como los pétalos de una flor. Útil cuando la persona debería estar muy cerca del datum."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "busqueda",
+        "patron": "cuadrado"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "busqueda",
+        "patron": "sectores"
+       }
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Trampas típicas: la espiral cuadrada **empieza** en el datum y se **abre** (no termina en él cerrándose), y la hace **una sola** unidad. Los giros de la búsqueda por sectores son de **120°**, no de 100°. No existe una «exploración de Anderson»: Anderson y Boutakow son maniobras de aproximación, no de búsqueda. Y si te preguntan qué maniobra hacer navegando a motor «para volver rápidamente a la situación de caída», la respuesta oficial es **Boutakow**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Has perdido de vista al náufrago y no sabes bien dónde está. ¿Qué haces?",
+       "opciones": {
+        "a": "Una maniobra de Anderson",
+        "b": "Una búsqueda en espiral cuadrada o por sectores desde el datum",
+        "c": "Esperar al rumbo opuesto"
+       },
+       "correcta": "b",
+       "explicacion": "Sin saber dónde está, no puedes aproximarte: hay que buscar sistemáticamente desde el datum."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t08",
+      "and-2020-c1-t09",
+      "and-2021-c1-t08",
+      "and-2021-c2-t08",
+      "and-2022-c1-t08",
+      "and-2022-c2-t09",
+      "and-2023-c1-t10",
+      "and-2023-c2-t08",
+      "and-2024-c3-t08",
+      "and-2025-c2-t08",
+      "and-2026-c1-t10",
+      "and-2026-c2-t10"
+     ],
+     "chuleta": [
+      "Prevención: agarrado, chaleco y arnés; los candeleros no son fiables.",
+      "Primero: timón a la banda de la caída, aro al agua, alguien señalando, MOB, aviso por VHF.",
+      "MOB = memoriza posición y hora de la caída.",
+      "Anderson: todo a su banda hasta 250°, timón a la vía y parar.",
+      "Boutakow: todo a su banda, a los 70° todo a la contraria hasta el rumbo opuesto.",
+      "Sin verlo: espiral cuadrada (se abre desde el datum) o sectores (giros de 120°)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Salvamento Marítimo – Misión y área de responsabilidad",
+       "url": "https://www.salvamentomaritimo.es/conocenos/nuestra-actividad/mision-y-area-de-responsabilidad"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Primero, timón a la banda de la caída y aro al agua; no aumentar máquina",
+       "fuente": "Plantillas oficiales: and-2021-c1-t08, and-2021-c2-t08"
+      },
+      {
+       "dato": "Anderson (giro único): timón a la banda hasta variar 250°, timón a la vía y parar",
+       "fuente": "IAMSAR vol. III (Single turn/Anderson); plantilla and-2023-c1-t10"
+      },
+      {
+       "dato": "Williamson/Boutakow: IAMSAR cambia de banda a los 60°; las plantillas andaluzas dan 70°",
+       "fuente": "IAMSAR vol. III, maniobras de hombre al agua (Williamson turn); plantillas and-2023-c2-t08 y and-2022-c1-t08"
+      },
+      {
+       "dato": "Espiral cuadrada desde el datum con tramos que crecen cada dos giros de 90°, una sola unidad; sectores con giros de 120° a estribor",
+       "fuente": "IAMSAR vol. III, modelos de búsqueda; plantillas and-2020-c1-t08, and-2022-c2-t09, and-2024-c3-t08, and-2026-c2-t10"
+      },
+      {
+       "dato": "Tecla MOB: memoriza la posición y la hora de la caída",
+       "fuente": "Plantillas oficiales: and-2025-c2-t08, and-2026-c1-t10"
+      },
+      {
+       "dato": "Bandera O = hombre al agua",
+       "fuente": "Código Internacional de Señales, señales de una letra"
+      }
+     ]
+    },
+    {
+     "id": "per-3-8",
+     "curso": "per",
+     "ut": 3,
+     "titulo": "Rescate, primeros auxilios, remolque y Salvamento Marítimo",
+     "minutos": 14,
+     "objetivos": [
+      "Saber subir a bordo a un náufrago y reconocer y tratar la hipotermia",
+      "Conocer la reanimación cardiopulmonar actual en un ahogado",
+      "Conocer lo básico de dar y tomar un remolque",
+      "Saber cómo contactar con Salvamento Marítimo"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Subir al náufrago a bordo",
+       "texto": "- Llega **despacio** y pon la máquina en **punto muerto** antes de tenerlo cerca: la hélice es el mayor peligro.\n- Procura que quede junto a tu costado de **sotavento**, donde el casco le hace socaire, sin derivar encima de él.\n- Pásale un **aro con rabiza** o un cabo y acércalo al costado.\n- Súbelo por la **escala** o la plataforma de baño. Si está agotado o inconsciente, un tripulante **con chaleco y amarrado al barco** puede ayudarle desde el agua.\n- Si ha estado mucho tiempo en agua fría, súbelo **en horizontal** si puedes y manéjalo con suavidad."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Hipotermia",
+       "texto": "Hay **hipotermia** cuando la temperatura del cuerpo baja de **35 °C**. El agua roba calor muchísimo más deprisa que el aire.\n\n**Síntomas**: escalofríos y temblores, torpeza para moverse, confusión, apatía y somnolencia. Si deja de temblar sin haber entrado en calor, es grave.\n\n**Qué hacer**: llevarlo a un sitio **cálido y sin corrientes**, en horizontal; quitarle la **ropa mojada**, secarlo **sin frotar** y abrigarlo con mantas, **cabeza incluida**. Si está consciente, **bebidas calientes y azucaradas**.\n\n**Qué no hacer**: **frotarlo ni sacudirlo** (puede provocar arritmias), darle **alcohol** o calentarlo con calor directo intenso."
+      },
+      {
+       "tipo": "regla",
+       "id": "r34"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "En el agua, conserva el calor",
+       "texto": "Si caes al agua con chaleco, **no nades** sin un objetivo cercano: el movimiento te enfría antes.\n- Solo: **postura fetal**, piernas encogidas y brazos cruzados sobre el pecho, protegiendo axilas, ingles y cuello.\n- Varios: **en piña**, abrazados, con los más débiles en el centro.\n\nAsí aguantas más tiempo y es más fácil que te encuentren."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Reanimación (RCP) en un ahogado",
+       "texto": "Si no responde y **no respira con normalidad** (míralo no más de 10 segundos, con la cabeza inclinada hacia atrás y el mentón elevado):\n1. Pide ayuda: **VHF canal 16** o **112**.\n2. En un ahogado, empieza con **5 insuflaciones** boca a boca.\n3. Sigue con ciclos de **30 compresiones y 2 insuflaciones**.\n4. Compresiones en el **centro del pecho**, brazos rectos, hundiendo **5–6 cm**, a **100–120 por minuto**, dejando que el pecho vuelva arriba.\n5. Si hay **desfibrilador**, úsalo en cuanto llegue.\n\nNo pierdas tiempo intentando sacarle agua de los pulmones. No pares hasta que respire, llegue ayuda o no puedas más."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las pautas de reanimación se actualizan (las europeas, las del ERC, se revisaron en 2025). Si encuentras cifras antiguas como 15 compresiones por cada 2 insuflaciones o 60–80 compresiones por minuto, quédate con las actuales: **30:2, 100–120 por minuto, 5–6 cm**, y en el ahogado, **5 insuflaciones iniciales**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dar y tomar un remolque",
+       "texto": "Remolcar es arrastrar a un barco sin propulsión, sin gobierno o sin ambas cosas. Lo básico:\n- Poneos de acuerdo **por VHF** en un canal de trabajo antes de empezar.\n- Al acercarte, ten en cuenta cuánto deriva cada barco: no te quedes a sotavento del averiado si él deriva más que tú.\n- Pasa una guía (cabo fino) y con ella el **remolque**, que el remolcado afirma a un punto resistente.\n- Arranca a **mínima velocidad**, sin tirones, y haz los cambios de velocidad y de rumbo **suaves**.\n- Con mar, el remolque debe ser **largo**, de modo que los dos barcos estén a la vez en la cresta o en el seno de la ola. Un peso a mitad de cabo amortigua los tirones."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Durante el remolque",
+       "texto": "- El **remolcado** desembraga su motor y, si tiene gobierno, sigue la estela del remolcador.\n- En aguas abrigadas y espacios reducidos (entrar en puerto) se puede remolcar **abarloado**: los dos barcos amarrados costado con costado, con el averiado un poco más a popa.\n- Vigila el remolque en todo momento y ten preparado un cuchillo para largarlo si hay peligro."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Salvamento Marítimo",
+       "texto": "**Salvamento Marítimo** (Sociedad de Salvamento y Seguridad Marítima) coordina en España la búsqueda y el rescate en la mar, la lucha contra la contaminación y el control del tráfico marítimo.\n\n- Tiene un **Centro Nacional de Coordinación** en Madrid y una red de **centros de coordinación de salvamento** repartidos por toda la costa.\n- Su área de responsabilidad son **1,5 millones de km²** (unas tres veces el territorio nacional), dividida en cuatro zonas: Atlántico, Estrecho, Mediterráneo y Canarias.\n\nCómo contactar:\n- **VHF canal 16** (y alerta **LSD** en el canal 70 si tu radio la tiene).\n- Teléfono **900 202 202** o el **112**."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Hipotermia: abrigar sin frotar. RCP en un ahogado: 5 insuflaciones y luego 30:2. Salvamento Marítimo: canal 16, 900 202 202 o 112."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El teléfono es **900 202 202**: el 202 repetido y empezando por 900. Las opciones trampa cambian el 900 por 902 o el 202 por 200. El 091 es la Policía Nacional."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Acabáis de sacar del agua a un tripulante que tiembla y está confuso. ¿Qué NO debes hacer?",
+       "opciones": {
+        "a": "Quitarle la ropa mojada",
+        "b": "Frotarle con energía brazos y piernas",
+        "c": "Abrigarle también la cabeza"
+       },
+       "correcta": "b",
+       "explicacion": "Ante una hipotermia nunca se frota ni se sacude: se abriga, se le quita la ropa mojada y, si está consciente, se le dan bebidas calientes."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál es la proporción de compresiones e insuflaciones en la RCP de un adulto?",
+       "opciones": {
+        "a": "15:2",
+        "b": "30:2",
+        "c": "5:1"
+       },
+       "correcta": "b",
+       "explicacion": "Las guías actuales piden 30 compresiones por cada 2 insuflaciones; en un ahogado se empieza además con 5 insuflaciones."
+      }
+     ],
+     "practica": [
+      "and-2023-c3-t09",
+      "and-2025-c3-t10",
+      "and-2022-c1-t10",
+      "and-2023-c2-t10"
+     ],
+     "chuleta": [
+      "Recogida: despacio, hélice en punto muerto, aro con rabiza, escala; en horizontal si estuvo mucho en agua fría.",
+      "Hipotermia (< 35 °C): temblores, torpeza, confusión. Abrigar, ropa seca, bebida caliente si está consciente. Nunca frotar ni alcohol.",
+      "RCP: 5 insuflaciones iniciales en el ahogado; después 30:2, 100–120/min, 5–6 cm, centro del pecho.",
+      "Remolque: acordar por VHF, arrancar suave, cabo largo con mar.",
+      "Salvamento Marítimo: VHF 16 (LSD 70), 900 202 202 o 112."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Salvamento Marítimo – Misión y área de responsabilidad",
+       "url": "https://www.salvamentomaritimo.es/conocenos/nuestra-actividad/mision-y-area-de-responsabilidad"
+      },
+      {
+       "titulo": "European Resuscitation Council – Guías de reanimación (ERC Guidelines)",
+       "url": "https://cprguidelines.eu/"
+      },
+      {
+       "titulo": "Consejo Español de RCP (representante del ERC en España)",
+       "url": "https://www.cercp.org/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Recogida: poca arrancada, hélice parada cerca del náufrago, hacerle socaire con el casco sin derivar sobre él; izar en horizontal tras inmersión prolongada",
+       "fuente": "OMI MSC.1/Circ.1182/Rev.1 (Guide to recovery techniques); IAMSAR vol. III"
+      },
+      {
+       "dato": "Hipotermia < 35 °C; no frotar ni sacudir; ropa seca, abrigo con cabeza, bebida caliente azucarada si está consciente",
+       "fuente": "Plantillas oficiales: and-2023-c3-t09, and-2025-c3-t10 (umbral de 35 °C: definición clínica estándar de hipotermia)"
+      },
+      {
+       "dato": "RCP: 5 insuflaciones iniciales en el ahogado, luego 30:2, 100–120/min, 5–6 cm, comprobar respiración ≤ 10 s, DEA en cuanto llegue",
+       "fuente": "European Resuscitation Council Guidelines 2025: Adult Basic Life Support y Special Circumstances (ahogamiento)"
+      },
+      {
+       "dato": "Salvamento Marítimo: 900 202 202 o 112; VHF 16 (LSD 70)",
+       "fuente": "Plantillas oficiales: and-2022-c1-t10, and-2023-c2-t10; Salvamento Marítimo"
+      },
+      {
+       "dato": "Zona SAR de 1,5 millones de km² (unas tres veces el territorio nacional), en cuatro zonas: Atlántico, Estrecho, Mediterráneo y Canarias; Centro Nacional en Madrid",
+       "fuente": "Salvamento Marítimo (salvamentomaritimo.es, «Conócenos» y «Misión y área de responsabilidad»)"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "ut": 5,
    "titulo": "Balizamiento",
    "intro": "Las boyas y balizas son las señales de tráfico del mar: te dicen por dónde va el canal, dónde hay un peligro y por qué lado pasarlo. En este tema aprendes a reconocer cada marca del sistema IALA (región A, la de España) por su color, su forma, su marca de tope y su luz. Es un tema muy agradecido: con cuatro reglas bien aprendidas sacas casi todas las preguntas.",
@@ -2537,6 +3610,1567 @@
       {
        "dato": "Pregunta de 9 destellos a rumbo norte anulada, todas las respuestas correctas",
        "fuente": "pregunta and-2021-c2-t17 (nota informativa 22-nov-2021)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ut": 6,
+   "titulo": "Reglamento (RIPA)",
+   "intro": "El reglamento para prevenir abordajes es el código de circulación del mar: quién se aparta de quién, cómo se maniobra, qué luces y marcas lleva cada buque y qué significa cada pitada. Es el bloque más grande del examen y el que menos fallos admite, pero es muy lógico: si entiendes cuatro ideas (el que alcanza se aparta, entre motores cede el que ve al otro por estribor, cuanto peor maniobra un buque más se le respeta y en niebla nadie sigue a rumbo), el resto encaja solo.",
+   "lecciones": [
+    {
+     "id": "per-6-1",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "El reglamento y sus definiciones",
+     "minutos": 15,
+     "objetivos": [
+      "Saber dónde se aplica el RIPA y cómo está organizado",
+      "Entender la regla de la responsabilidad (Regla 2)",
+      "Distinguir buque de vela, de propulsión mecánica, dedicado a la pesca, sin gobierno, con capacidad de maniobra restringida y restringido por su calado",
+      "Saber qué significan «en navegación», «a la vista» y «visibilidad reducida»"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es el RIPA y dónde se aplica",
+       "texto": "El **Reglamento Internacional para Prevenir los Abordajes** (RIPA, 1972; en inglés COLREG) es el «código de circulación» del mar. Se aplica a **todos los buques en alta mar y en todas las aguas que tengan comunicación con ella** y sean navegables por buques de navegación marítima. Las autoridades pueden dictar reglas especiales para puertos, ríos o aguas interiores, pero deben parecerse lo más posible al RIPA.\n\nSe organiza en partes:\n- **A** Generalidades (Reglas 1–3).\n- **B** Rumbo y gobierno: sección I, con cualquier visibilidad (4–10); sección II, buques a la vista (11–18); sección III, visibilidad reducida (19).\n- **C** Luces y marcas (20–31).\n- **D** Señales acústicas y luminosas (32–37).\n- **E** Exenciones (38) y **F** Verificación del cumplimiento (39–41).\n- Cuatro anexos; el **IV** son las señales de peligro."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Regla 2: el sentido común manda",
+       "texto": "Cumplir el reglamento no te exime de responsabilidad si no tomas las precauciones que exige la **práctica marinera** normal.\n\nY al revés: al interpretar y cumplir el RIPA se tendrán en cuenta **todas las circunstancias especiales, incluidas las limitaciones de los buques**, que puedan obligar a **apartarse del reglamento para evitar un peligro inmediato**.\n\nNingún buque está exento de las reglas de rumbo y gobierno, tampoco los de guerra: lo que sí pueden autorizarles los gobiernos son luces, marcas o pitadas adicionales (Regla 1)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si una opción dice que «ningún buque puede apartarse nunca del reglamento, ni siquiera ante un peligro inmediato», es falsa. Y también lo es que los buques de guerra no tengan que cumplir las reglas de rumbo y gobierno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Vela o motor: decide la máquina, no el aparejo",
+       "texto": "- **Buque**: toda embarcación que pueda usarse como medio de transporte en el agua, incluidas las que no desplazan agua, las naves de vuelo rasante (WIG) y los hidroaviones.\n- **Buque de propulsión mecánica**: el que va propulsado por una máquina.\n- **Buque de vela**: el que navega a vela **siempre que su maquinaria propulsora, si la tiene, no se esté utilizando**.\n\nUn velero con las velas izadas y el motor en marcha es, a efectos del RIPA, **buque de propulsión mecánica**, sea cual sea su eslora. De día lo anuncia con un **cono con el vértice hacia abajo** a proa."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "vela-motor",
+        "vista": "proa",
+        "dia": true
+       },
+       "texto": "Velero navegando también a motor: de día, cono con el vértice hacia abajo; de noche, luces de buque de motor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Pesca, sin gobierno y maniobra restringida",
+       "texto": "- **Dedicado a la pesca**: el que pesca con **redes, líneas, aparejos de arrastre u otros artes que restrinjan su maniobrabilidad**. No lo es quien pesca con curricán u otro arte que no le limite, ni el pesquero que vuelve a puerto sin arte largado: ese es un buque de propulsión mecánica.\n- **Sin gobierno**: el que, **por cualquier circunstancia excepcional** (una avería), no puede maniobrar como exige el reglamento.\n- **Con capacidad de maniobra restringida**: el que, **por la naturaleza de su trabajo**, no puede apartarse. Por ejemplo: colocar o recoger boyas, cables o conductos submarinos; dragados, trabajos hidrográficos, oceanográficos u operaciones submarinas; aprovisionamiento en navegación; lanzamiento o recuperación de aeronaves; limpieza de minas; remolques que le restrinjan seriamente la maniobra."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Sin gobierno = por avería (circunstancia excepcional). Maniobra restringida = por su trabajo. Pescar no es «maniobra restringida»: es otra categoría."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Calado, navegación, a la vista y visibilidad",
+       "texto": "- **Restringido por su calado**: buque de propulsión mecánica muy limitado para apartarse por su calado en relación con la profundidad y la anchura del agua navegable.\n- **En navegación**: el que **no está fondeado, ni amarrado a tierra, ni varado**. Una lancha a la deriva con la máquina desembragada está en navegación.\n- **A la vista**: solo cuando uno puede ser **observado visualmente** desde el otro. Verlo en el radar no cuenta.\n- **Visibilidad reducida**: la disminuida por **niebla, bruma, nieve, fuertes aguaceros, tormentas de arena** u otras causas análogas. La noche no es visibilidad reducida."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Pescas con caña a la deriva, con el motor parado. Para el RIPA eres…",
+       "opciones": {
+        "a": "Buque dedicado a la pesca",
+        "b": "Buque sin gobierno",
+        "c": "Buque en navegación"
+       },
+       "correcta": "c",
+       "explicacion": "La caña no restringe tu maniobra, así que no eres «dedicado a la pesca»; y no tienes ninguna avería. Como no estás fondeado, amarrado ni varado, estás en navegación."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estos es un buque con capacidad de maniobra restringida?",
+       "opciones": {
+        "a": "Un buque haciendo trabajos hidrográficos",
+        "b": "Un arrastrero pescando",
+        "c": "Un buque con el timón averiado"
+       },
+       "correcta": "a",
+       "explicacion": "Los trabajos hidrográficos limitan la maniobra por la naturaleza del trabajo. El arrastrero es «dedicado a la pesca» y el del timón averiado, «sin gobierno»."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t22",
+      "and-2021-c2-t18",
+      "and-2022-c1-t21",
+      "and-2022-c2-t25",
+      "and-2022-c3-t21",
+      "and-2023-c3-t20",
+      "and-2024-c2-t21",
+      "and-2024-c3-t21",
+      "and-2025-c1-t22",
+      "and-2025-c2-t18",
+      "and-2025-c2-t24",
+      "and-2025-c3-t20",
+      "and-2025-c3-t25",
+      "and-2025-c3-t26",
+      "and-2026-c1-t23",
+      "and-2026-c2-t24"
+     ],
+     "chuleta": [
+      "RIPA: alta mar y aguas comunicadas con ella. Partes A (1–3), B (4–19), C (20–31), D (32–37), E (38), F (39–41); anexo IV, señales de peligro.",
+      "Regla 2: hay que apartarse del reglamento si hace falta para evitar un peligro inmediato.",
+      "Vela + motor = propulsión mecánica (de día, cono con el vértice abajo).",
+      "Pesca = arte que restringe la maniobra. Sin gobierno = avería. Maniobra restringida = su trabajo.",
+      "En navegación = ni fondeado, ni amarrado, ni varado. A la vista = con los ojos, no con el radar.",
+      "Visibilidad reducida = niebla, bruma, nieve, aguaceros, arena… (no la noche)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Ámbito: alta mar y aguas comunicadas con ella navegables por buques de navegación marítima; reglas especiales locales lo más parecidas posible",
+       "fuente": "Regla 1 a) y b), RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Gobiernos: luces, marcas o pitadas adicionales para buques de guerra, convoyes y pesca en flotilla",
+       "fuente": "Regla 1 c)"
+      },
+      {
+       "dato": "Partes A (1–3), B (4–19: secc. I 4–10, II 11–18, III 19), C (20–31), D (32–37), E (38), F (39–41, A.1085(28), en vigor 1/1/2016); anexos I–IV",
+       "fuente": "Índice del texto consolidado"
+      },
+      {
+       "dato": "Responsabilidad y apartarse del Reglamento para evitar un peligro inmediato",
+       "fuente": "Regla 2 a) y b); and-2025-c3-t26, and-2026-c1-t23"
+      },
+      {
+       "dato": "Definiciones de buque (incl. naves de vuelo rasante e hidroaviones), propulsión mecánica, vela, pesca (excluye curricán), sin gobierno, maniobra restringida (lista i–vi), restringido por calado, en navegación, a la vista, visibilidad reducida",
+       "fuente": "Regla 3 a)–m) (a) y m) según A.910(22))"
+      },
+      {
+       "dato": "Vela + motor: cono vértice abajo a proa, sin límite de eslora",
+       "fuente": "Regla 25 e)"
+      }
+     ]
+    },
+    {
+     "id": "per-6-2",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Vigilancia, velocidad de seguridad, riesgo de abordaje y maniobra",
+     "minutos": 15,
+     "objetivos": [
+      "Saber qué es la velocidad de seguridad y qué factores la determinan",
+      "Reconocer el riesgo de abordaje por la demora y sus excepciones",
+      "Conocer cómo debe ser la maniobra para evitar el abordaje (Regla 8)"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Sección I: con cualquier visibilidad",
+       "texto": "Las Reglas 4 a 10 se aplican **siempre**, se vean o no los buques.\n\n**Vigilancia (Regla 5)**: todos los buques mantendrán en todo momento una eficaz vigilancia **visual y auditiva**, y con **todos los medios disponibles** (radar, AIS, VHF…), para evaluar la situación y el riesgo de abordaje.\n\n**Velocidad de seguridad (Regla 6)**: la que te permite **ejecutar la maniobra adecuada y eficaz para evitar el abordaje y pararte a la distancia apropiada** a las circunstancias. No es un número fijo: depende de las condiciones."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Factores de la velocidad de seguridad",
+       "texto": "Para **todos los buques**:\n- El estado de visibilidad.\n- La densidad del tráfico, incluidas las concentraciones de pesqueros.\n- La maniobrabilidad del buque: distancia de parada y capacidad de giro.\n- De noche, el **resplandor de las luces de tierra** o de las propias.\n- El viento, la mar, las corrientes y los peligros próximos.\n- El **calado en relación con la profundidad disponible**.\n\nCon radar, además: sus limitaciones, la escala en uso, los ecos que pueda no detectar (embarcaciones pequeñas, hielo), el número y movimiento de los ecos…\n\nLa eslora, la obra muerta o el tipo de propulsión no están en la lista."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Riesgo de abordaje (Regla 7)",
+       "texto": "Usa todos los medios para saber si hay riesgo. **Si hay duda, se considera que existe.** Con radar, utilízalo bien (exploración a gran distancia, punteo) y no saques conclusiones de información escasa.\n\nLa clave: **si la demora de un buque que se aproxima no varía de forma apreciable, existe riesgo de abordaje.**\n\nY ojo: aunque la demora **sí** varíe, el riesgo **puede existir** cuando te acercas a un **buque muy grande, a un remolque o a cualquier buque a muy corta distancia**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "riesgo",
+        "caso": "comparar"
+       },
+       "texto": "Izquierda: la demora no cambia y la distancia baja, así que hay riesgo. Derecha: la demora cambia, así que en principio no lo hay."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«Si la demora no varía, seguro que no hay riesgo» es justo al revés: demora constante = riesgo. Y la excepción no consiste en que no haya riesgo con un buque grande o un remolque. Lo que dice es que con ellos puede haberlo aunque la demora cambie."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "riesgo",
+        "caso": "variable"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo maniobrar (Regla 8)",
+       "texto": "Toda maniobra para evitar el abordaje será:\n- **Clara, con la debida antelación** y conforme a las buenas prácticas marineras.\n- **Amplia**: los cambios de rumbo y/o velocidad, lo bastante grandes para que el otro los aprecie a simple vista o en el radar. **Evita una sucesión de pequeños cambios.**\n- Si hay espacio, **un cambio de rumbo solo** suele ser lo más eficaz, siempre que sea a tiempo, considerable y no te meta en otra aproximación excesiva.\n- Tal que pases a una **distancia segura**. Comprueba su eficacia **hasta que el otro esté pasado y en franquía**.\n- Si hace falta, **reduce la velocidad, para o da atrás**."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Maniobra pronta, amplia y clara; vigilada hasta quedar franco. Nunca a base de pequeños retoques."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estos factores tienes que considerar al fijar la velocidad de seguridad?",
+       "opciones": {
+        "a": "La eslora del barco",
+        "b": "El resplandor de las luces de tierra por la noche",
+        "c": "El color del casco"
+       },
+       "correcta": "b",
+       "explicacion": "El resplandor de tierra dificulta ver las luces de los otros buques. La eslora no figura entre los factores de la Regla 6."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un buque se te acerca y su demora cambia claramente. ¿Puedes descartar el riesgo?",
+       "opciones": {
+        "a": "Sí, siempre",
+        "b": "No del todo: si es un buque muy grande, un remolque o está muy cerca, puede haber riesgo",
+        "c": "Solo si es de noche"
+       },
+       "correcta": "b",
+       "explicacion": "Regla 7: el riesgo puede existir aunque la demora varíe cuando te acercas a un buque grande, a un remolque o a muy corta distancia."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t18",
+      "and-2022-c1-t20",
+      "and-2022-c2-t18",
+      "and-2022-c3-t20",
+      "and-2023-c1-t21",
+      "and-2023-c3-t19",
+      "and-2024-c1-t27",
+      "and-2025-c2-t23",
+      "and-2025-c3-t24",
+      "and-2026-c1-t26",
+      "and-2026-c2-t19"
+     ],
+     "chuleta": [
+      "Vigilancia: visual, auditiva y con todos los medios, siempre.",
+      "Velocidad de seguridad: poder maniobrar con eficacia y parar a tiempo.",
+      "Factores: visibilidad, tráfico, maniobrabilidad, luces de tierra, viento/mar/corriente, calado frente a fondo.",
+      "Demora constante y distancia que baja = riesgo. Con un buque grande, un remolque o muy cerca, puede haberlo aunque la demora cambie. Ante la duda, hay riesgo.",
+      "Maniobra: clara, con antelación, amplia, a distancia segura y vigilada hasta quedar franco. Nada de pequeños cambios."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Vigilancia visual, auditiva y con todos los medios disponibles",
+       "fuente": "Regla 5, RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Velocidad de seguridad: definición y factores a) i–vi (incluye resplandor de luces de tierra y calado/profundidad) y b) con radar",
+       "fuente": "Regla 6; and-2021-c1-t18"
+      },
+      {
+       "dato": "Duda ⇒ hay riesgo; demora sin variación apreciable ⇒ riesgo; puede haberlo aun variando con buque grande, remolque o muy corta distancia",
+       "fuente": "Regla 7 a) y d)"
+      },
+      {
+       "dato": "Radar: exploración a gran distancia y punteo; no suponer con información escasa",
+       "fuente": "Regla 7 b) y c)"
+      },
+      {
+       "dato": "Maniobra clara, con antelación, amplia, evitar sucesión de pequeños cambios, solo rumbo si hay espacio, distancia segura, comprobar hasta pasado y en franquía, reducir/parar/dar atrás",
+       "fuente": "Regla 8 a)–e)"
+      }
+     ]
+    },
+    {
+     "id": "per-6-3",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Canales angostos y dispositivos de separación del tráfico",
+     "minutos": 18,
+     "objetivos": [
+      "Saber por dónde navegar en un canal angosto y a quién no estorbar",
+      "Conocer las señales para adelantar en un canal y la del recodo",
+      "Saber cómo se entra, se sale y se cruza un DST y quién usa la zona de navegación costera",
+      "Recordar que en un DST no hay preferencia de paso por ir en la vía"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Canal angosto (Regla 9)",
+       "texto": "- Navega **lo más cerca posible del límite exterior del canal que quede por tu estribor**, si no es peligroso.\n- Los buques de **menos de 20 m** y los **de vela** no estorbarán al buque que **solo puede navegar con seguridad dentro del canal**.\n- Los **pesqueros** no estorbarán el tránsito de **ningún** buque que navegue por el canal.\n- **Cruzar** el canal está permitido, pero **no** si estorbas al que solo puede navegar por él. Si este duda de tus intenciones, puede darte 5 o más pitadas cortas y rápidas.\n- **Evita fondear** en el canal, si las circunstancias lo permiten.\n- El RIPA no fija para el canal ninguna velocidad máxima ni obliga a encender luces de día (otra cosa son las normas locales de cada puerto)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Adelantar y recodos",
+       "texto": "**Adelantar** no está prohibido. Si puedes hacerlo con seguridad **sin que el alcanzado tenga que maniobrar**, adelantas sin más; el que alcanza sigue obligado a apartarse (Regla 13).\n\nSi necesitas que el otro se aparte, se lo pides con el pito:\n- **2 largas + 1 corta**: pretendo alcanzarle por su **estribor**.\n- **2 largas + 2 cortas**: por su **babor**.\n- El alcanzado, si está **conforme**: **larga-corta-larga-corta**, y maniobra. Si duda: 5 o más cortas y rápidas.\n\n**Recodo sin visibilidad**: al acercarte, navega con precaución y da **una pitada larga**. Quien la oiga al otro lado **contesta con otra larga**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "--.",
+        "texto": "Le alcanzo por su estribor"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "--..",
+        "texto": "Le alcanzo por su babor"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "-.-.",
+        "texto": "Conforme"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "-",
+        "texto": "Recodo: una larga"
+       },
+       "texto": "Una pitada larga al llegar a un recodo ciego. Quien la oye responde también con una larga."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En un canal angosto es el **pesquero** el que no estorba a los demás (también al velero), no al revés. Y «fondear en el canal» no está prohibido: se **evita** si se puede."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dispositivos de separación del tráfico (Regla 10)",
+       "texto": "Un DST es una «autovía» marítima, como la de **Finisterre** o la del **Estrecho de Gibraltar**. Dentro de él:\n- Por la **vía de circulación**, en el **sentido general del tráfico**. Te mantienes apartado de la línea o zona de separación.\n- Se entra y se sale normalmente **por los extremos**. Si entras o sales por un **límite lateral**, hazlo con el **menor ángulo posible** respecto a la dirección del tráfico.\n- **Evita cruzarlo**. Si tienes que hacerlo, sigue un rumbo **lo más perpendicular posible** a la dirección general del tráfico.\n- **Evita fondear** dentro o cerca de sus extremos. Si no lo usas, apártate de él con el mayor margen posible."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "dst"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Zona de separación y zona costera",
+       "texto": "En la **zona de separación** no se entra salvo para **cruzar** el dispositivo (o entrar o salir de una vía), en **caso de emergencia** para evitar un peligro inmediato o para **pescar** en ella.\n\nLa **zona de navegación costera** no se usa si puedes ir con seguridad por la vía. Pero sí pueden usarla:\n- Los buques de **menos de 20 m**, los **de vela** y los **pesqueros** (que también pueden ir por la vía).\n- Cualquier buque que vaya **hacia o desde un puerto** u otro lugar situado dentro de la zona costera, o para **evitar un peligro inmediato**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Nadie tiene preferencia por ir en la vía",
+       "texto": "Navegar por la vía **no te da preferencia**: si hay riesgo de abordaje se aplican las reglas de siempre. Si vas por la vía y un buque de motor que cruza aparece por tu estribor, eres tú quien cede el paso (Regla 15).\n\nLo que sí dice la Regla 10:\n- Los de **menos de 20 m** y los **de vela** **no estorbarán** a los buques de **propulsión mecánica** que naveguen por la vía.\n- Los **pesqueros** no estorbarán a **ningún** buque que navegue por la vía.\n\n«No estorbar» significa maniobrar pronto para dejar espacio de sobra; no te convierte en el que cede el paso cuando ya hay riesgo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Cruzar = **perpendicular**. Entrar o salir por un lateral = **menor ángulo**. Las preguntas intercambian las dos fórmulas. Ninguna versión prohíbe cruzar ni obliga a los menores de 20 m a ir por la zona costera."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas a motor por la vía de un DST. Un mercante que cruza el dispositivo se te acerca por tu estribor con riesgo de abordaje. ¿Qué haces?",
+       "opciones": {
+        "a": "Mantengo rumbo y velocidad: voy por la vía",
+        "b": "Me aparto de su derrota: lo tengo por estribor",
+        "c": "Lo denuncio por radio al control de tráfico"
+       },
+       "correcta": "b",
+       "explicacion": "En el DST siguen valiendo las reglas de rumbo y gobierno. Entre dos buques de motor que se cruzan, cede el que ve al otro por estribor."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo debes cruzar una vía de circulación?",
+       "opciones": {
+        "a": "Con el menor ángulo posible",
+        "b": "Lo más perpendicular posible a la dirección del tráfico",
+        "c": "A la máxima velocidad"
+       },
+       "correcta": "b",
+       "explicacion": "Cruzar en perpendicular reduce el tiempo dentro de la vía y deja clara tu intención. El menor ángulo es para incorporarse por un lateral."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t23",
+      "and-2023-c1-t20",
+      "and-2023-c2-t19",
+      "and-2023-c3-t25",
+      "and-2024-c1-t26",
+      "and-2024-c2-t23",
+      "and-2024-c3-t23",
+      "and-2022-c1-t23",
+      "and-2024-c2-t20",
+      "and-2025-c1-t21",
+      "and-2020-c1-t21",
+      "and-2020-c3-t27",
+      "and-2021-c1-t19",
+      "and-2021-c2-t22",
+      "and-2022-c1-t19",
+      "and-2022-c2-t27",
+      "and-2023-c1-t18",
+      "and-2023-c3-t27",
+      "and-2024-c2-t18",
+      "and-2024-c3-t19",
+      "and-2025-c1-t20",
+      "and-2025-c2-t22",
+      "and-2026-c1-t27",
+      "and-2026-c2-t26"
+     ],
+     "chuleta": [
+      "Canal angosto: pegado a tu estribor; < 20 m y vela no estorban al que solo cabe en el canal; el pesquero no estorba a nadie.",
+      "Cruzar el canal: sí, si no estorbas. Fondear: evítalo. Recodo: 1 larga (y se contesta con 1 larga).",
+      "Adelantar en canal: 2L+1C por su estribor, 2L+2C por su babor; conforme: L-C-L-C.",
+      "DST: entrar o salir por un lateral con el menor ángulo; cruzar en perpendicular.",
+      "Zona de separación: solo para cruzar, en emergencia o para pescar. Zona costera: < 20 m, vela, pesca, quien va o viene de ella, o ante un peligro.",
+      "Ir por la vía no da preferencia: con riesgo de abordaje mandan las reglas de siempre."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Canal angosto: límite exterior de estribor; <20 m y vela no estorban al que solo navega en el canal; pesca no estorba a ninguno; cruzar sin estorbar (5 cortas si duda); evitar fondear",
+       "fuente": "Regla 9 a)–d), g), RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Adelantar en canal: 2L+1C por su estribor, 2L+2C por su babor; conformidad L-C-L-C; la regla 13 sigue aplicándose",
+       "fuente": "Reglas 9 e) y 34 c)"
+      },
+      {
+       "dato": "Recodo: una larga, contestada con una larga",
+       "fuente": "Reglas 9 f) y 34 e)"
+      },
+      {
+       "dato": "DST: vía apropiada en el sentido del tráfico; entrar/salir por extremos o por un lateral con el menor ángulo; cruzar lo más perpendicular posible; evitar fondear; apartarse si no se usa",
+       "fuente": "Regla 10 b), c), g), h)"
+      },
+      {
+       "dato": "Zona costera: <20 m, vela y pesca; cualquiera hacia/desde un lugar dentro de ella o para evitar peligro inmediato",
+       "fuente": "Regla 10 d) (A.678(16))"
+      },
+      {
+       "dato": "Zona de separación: solo al cruzar/entrar/salir, emergencia o para pescar en ella",
+       "fuente": "Regla 10 e)"
+      },
+      {
+       "dato": "La regla 10 no exime de las demás; <20 m y vela no estorban a los de motor en la vía; pesca no estorba a ninguno",
+       "fuente": "Regla 10 a), i), j); Regla 8 f)"
+      }
+     ]
+    },
+    {
+     "id": "per-6-4",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Alcance, vuelta encontrada y cruce",
+     "minutos": 18,
+     "objetivos": [
+      "Distinguir alcance, vuelta encontrada y cruce por la marcación y por las luces",
+      "Saber quién cede el paso y quién sigue a rumbo en cada situación",
+      "Conocer qué debe hacer el que cede el paso y cuándo puede (o debe) maniobrar el que sigue a rumbo"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Sección II: solo con buques a la vista",
+       "texto": "Las Reglas 11 a 18 se aplican **solo cuando los buques se ven a simple vista**. Se basan en lo que ves del otro: su aspecto de día y sus luces de noche.\n\nCuando dos buques se acercan con riesgo de abordaje, la situación es una de estas tres:\n- **Alcance** (Regla 13).\n- **Vuelta encontrada** (Regla 14), solo entre buques de propulsión mecánica.\n- **Cruce** (Regla 15): cualquier situación que no sea ni alcance ni vuelta encontrada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Alcance (Regla 13)",
+       "texto": "Alcanza el buque que se acerca a otro **desde una marcación mayor de 22,5° a popa de su través**, es decir, a más de **112,5°** de su proa por cualquier banda. De noche solo le vería la **luz de alcance**, ninguna de costado.\n\n- **El que alcanza se mantiene apartado** del alcanzado. **Siempre**, sea velero, buque de motor o lo que sea. Esta regla manda sobre las de categorías y las de veleros.\n- **Si dudas** de si estás alcanzando, **considera que sí**.\n- Aunque luego cambie la marcación, el que alcanza no pasa a ser «buque que cruza»: sigue obligado hasta quedar **pasado y en franquía**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cruce",
+        "situacion": "alcance"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "r07"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Lo que hace que alcances es la marcación (más de 112,5°), no la velocidad. Ojo con los números: 110° o 107° es cruce; 115°, 130° o «25° a popa del través» es alcance."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Vuelta encontrada (Regla 14)",
+       "texto": "Dos buques de **propulsión mecánica** que navegan a **rumbos opuestos o casi opuestos** con riesgo de abordaje: **los dos caen a estribor** y se pasan **babor con babor**.\n\nCómo se reconoce: ves al otro **justo por la proa o casi**. De noche, sus luces de tope enfiladas o casi, y/o **sus dos luces de costado**. De día, su aspecto.\n\nSi dudas de si es vuelta encontrada, **supón que lo es** y actúa en consecuencia."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cruce",
+        "situacion": "vuelta-encontrada"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cruce (Regla 15)",
+       "texto": "Dos buques de **propulsión mecánica** se cruzan con riesgo de abordaje: **cede el paso el que tiene al otro por su costado de estribor**. Si puede, evitará cortarle la proa: lo normal es caer a estribor y pasarle por la popa.\n\nDe noche lo ves enseguida. Si por tu estribor ves la **luz roja** (su babor), te toca maniobrar a ti. Si por tu babor ves su **luz verde**, sigue a rumbo, pero vigilando.\n\nNo importa el tamaño: entre un mercante y una lancha, ambos a motor, cede el que tiene al otro por estribor."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cruce",
+        "situacion": "cruce"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "r08"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cede el paso y sigue a rumbo (Reglas 16 y 17)",
+       "texto": "**El que cede el paso** maniobra **pronto y de forma decidida** para quedar bien franco.\n\n**El que sigue a rumbo**:\n- En principio **mantiene rumbo y velocidad**.\n- **Puede** maniobrar en cuanto le resulte **evidente que el otro no está actuando** como debe. Si es un buque de motor en cruce, evitará caer a babor hacia un buque que tenga por su babor.\n- **Debe** hacer la maniobra que mejor ayude cuando el abordaje **ya no pueda evitarse solo con la maniobra del otro**.\n\nQuién sigue a rumbo lo decide la situación, no el tonelaje. Y que el otro maniobre no exime de su obligación al que cede el paso."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las preguntas en negativo del tipo «indica la falsa» suelen esconder frases como «el que sigue a rumbo es el de mayor tonelaje» o «el que sigue a rumbo no puede maniobrar nunca». Las dos son falsas."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "De noche, a motor, ves por tu amura de estribor una luz blanca de tope y la roja de costado de otro buque, con demora constante. ¿Qué haces?",
+       "opciones": {
+        "a": "Sigo a rumbo: es un cruce y él me ve por babor",
+        "b": "Me aparto: lo tengo por estribor y estoy cediendo el paso",
+        "c": "Nada: no hay riesgo"
+       },
+       "correcta": "b",
+       "explicacion": "Ves su roja (su babor), así que lo tienes por tu estribor. Con demora constante hay riesgo y, en cruce entre buques de motor, cedes tú."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un buque se te aproxima por la marcación 110° babor sin que varíe. ¿Qué situación es?",
+       "opciones": {
+        "a": "Alcance",
+        "b": "Cruce",
+        "c": "Vuelta encontrada"
+       },
+       "correcta": "b",
+       "explicacion": "El alcance empieza a más de 112,5°. A 110° todavía es cruce, y si los dos vais a motor, como lo tienes por babor, en principio sigues a rumbo."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t18",
+      "and-2020-c3-t22",
+      "and-2020-c3-t24",
+      "and-2021-c1-t21",
+      "and-2021-c2-t19",
+      "and-2022-c1-t25",
+      "and-2022-c1-t26",
+      "and-2022-c3-t23",
+      "and-2022-c3-t24",
+      "and-2023-c1-t24",
+      "and-2023-c1-t27",
+      "and-2023-c2-t21",
+      "and-2023-c2-t24",
+      "and-2023-c3-t24",
+      "and-2024-c1-t18",
+      "and-2024-c1-t23",
+      "and-2024-c2-t24",
+      "and-2024-c3-t18",
+      "and-2025-c1-t18",
+      "and-2025-c1-t24",
+      "and-2025-c2-t21",
+      "and-2025-c3-t22",
+      "and-2026-c1-t18",
+      "and-2026-c1-t22",
+      "and-2026-c1-t24",
+      "and-2026-c2-t20"
+     ],
+     "chuleta": [
+      "Alcance: llegas desde más de 22,5° a popa del través (> 112,5°); de noche solo ves la luz de alcance. El que alcanza se aparta siempre. En caso de duda, alcanzas.",
+      "Vuelta encontrada (motor-motor, de proa): los dos a estribor, babor con babor. En caso de duda, lo es.",
+      "Cruce (motor-motor): cede el que ve al otro por estribor (ve su roja).",
+      "Cede el paso: pronto, decidido y amplio.",
+      "Sigue a rumbo: mantiene rumbo y velocidad; puede maniobrar si el otro no actúa; debe hacerlo si el abordaje ya no se evita solo con la maniobra del otro."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Reglas 11–18 solo con buques a la vista",
+       "fuente": "Regla 11, RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Alcance: más de 22,5° a popa del través (solo ve la luz de alcance); se aparta siempre; en duda, alcanza; no pasa a ser buque que cruza",
+       "fuente": "Regla 13 a)–d); 112,5° = 90° + 22,5° (Regla 21 b)"
+      },
+      {
+       "dato": "Vuelta encontrada: motor-motor, ambos a estribor, babor con babor; luces de tope enfiladas y/o ambos costados; en duda, existe",
+       "fuente": "Regla 14"
+      },
+      {
+       "dato": "Cruce: cede el que tiene al otro por estribor y evita cortarle la proa",
+       "fuente": "Regla 15"
+      },
+      {
+       "dato": "Cede el paso: con anticipación y de forma decidida",
+       "fuente": "Regla 16"
+      },
+      {
+       "dato": "Sigue a rumbo: mantiene; puede maniobrar si el otro no actúa (no a babor por buque a su babor en cruce motor-motor); debe si no basta la maniobra del otro; no exime al que cede",
+       "fuente": "Regla 17 a)–d); and-2026-c1-t24"
+      }
+     ]
+    },
+    {
+     "id": "per-6-5",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Veleros y jerarquía entre buques",
+     "minutos": 18,
+     "objetivos": [
+      "Resolver los encuentros entre dos veleros (Regla 12)",
+      "Aplicar la jerarquía de la Regla 18 (motor, vela, pesca, maniobra restringida, sin gobierno, calado)",
+      "Reconocer de noche un velero por sus luces y saber que el alcance manda sobre todo lo demás"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Dos veleros (Regla 12)",
+       "texto": "Entre dos buques de vela no cuenta por qué banda ves al otro, sino **por dónde recibe el viento cada uno**:\n- **Viento por bandas contrarias**: se aparta **el que lo recibe por babor** (amurado a babor).\n- **Viento por la misma banda**: se aparta **el que está a barlovento** del que está a sotavento.\n- Si vas amurado a babor y ves un velero a barlovento sin poder saber por qué banda recibe el viento, **te apartas tú**.\n\nAunque vayan proa con proa, los veleros **no** aplican la vuelta encontrada: manda el viento."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cruce",
+        "situacion": "vela-amuras"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "r06"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si un velero alcanza a otro, no se mira el viento: **el que alcanza se aparta** (Regla 13). Y «misma banda» puede ser «ambos reciben el viento por babor»: entonces no decide el babor, decide **barlovento**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "¿Quién se aparta de quién? (Regla 18)",
+       "texto": "Cuanto peor maniobra un buque, más «derecho» tiene. Salvo en alcances, canales angostos y DST (Reglas 13, 9 y 10):\n- **Propulsión mecánica** se aparta de: sin gobierno, maniobra restringida, pesca y vela.\n- **Vela** se aparta de: sin gobierno, maniobra restringida y pesca.\n- **Pesca** (en la medida de lo posible) se aparta de: sin gobierno y maniobra restringida.\n- Todos, salvo el sin gobierno y el de maniobra restringida, **evitarán estorbar** al **restringido por su calado** que muestre sus señales.\n\nUn hidroavión amarado, en general, se mantiene alejado de todos. Una nave de vuelo rasante (WIG), al despegar, aterrizar o volar cerca de la superficie, también; pero si navega por la superficie, cumple las reglas como un buque de propulsión mecánica."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "jerarquia"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "r10"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La regla de arriba es una escalera para recordar, pero el RIPA tiene dos matices: entre el **sin gobierno** y el de **maniobra restringida** no dice quién se aparta (están al mismo nivel), y al **restringido por su calado** no se le «cede el paso»: los demás (salvo esos dos) **evitan estorbarle** si las circunstancias lo permiten (Regla 18 d)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Motor frente a vela: también de frente",
+       "texto": "Un buque de motor y un velero a la vista, con riesgo de abordaje, **ya sea en cruce o de vuelta encontrada**: **se aparta el de motor**. No se aplican las Reglas 14 y 15, que son solo entre buques de motor. Igual con un pesquero faenando: se aparta el de motor.\n\n**Excepción que siempre cae**: si el **velero alcanza** al de motor (llega desde más de 112,5° de su proa), **se aparta el velero**. El de motor sigue a rumbo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De noche: el velero no lleva luz de tope",
+       "texto": "Un buque **navegando a vela** lleva luces de costado y de alcance, pero **nunca luz de tope** (blanca a proa). Por eso:\n- Si ves **solo una luz de costado**, o **la roja y la verde** sin ninguna blanca encima, es un **velero** (o un buque remolcado). Yendo tú a motor, **te apartas**, aunque lo veas por babor o justo por la proa.\n- **Roja sobre verde** todo horizonte en el tope del palo (y debajo sus costados) también es un velero: son sus luces opcionales.\n- Si ves **luces de tope blancas** con los costados, es un buque de motor. Si tú vas a vela, se aparta él."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "vela",
+        "vista": "todas"
+       },
+       "texto": "Velero de noche: verde a estribor, roja a babor y blanca a popa. Ninguna blanca a proa."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "vela-tope",
+        "vista": "proa"
+       },
+       "texto": "Las luces opcionales del velero: roja sobre verde en el tope, además de sus costados."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas a vela. Otro velero que lleva el viento por tu misma banda está a tu sotavento, en rumbo de colisión. ¿Quién maniobra?",
+       "opciones": {
+        "a": "Él, porque está a sotavento",
+        "b": "Yo, porque estoy a barlovento",
+        "c": "El que tenga al otro por estribor"
+       },
+       "correcta": "b",
+       "explicacion": "Con la misma amura se aparta el de barlovento. El que está a sotavento sigue a rumbo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "A motor, ves por tu través de babor una sola luz verde que se acerca con demora constante. ¿Qué haces?",
+       "opciones": {
+        "a": "Sigo a rumbo: lo tengo por babor",
+        "b": "Me aparto: es un velero",
+        "c": "Caemos los dos a estribor"
+       },
+       "correcta": "b",
+       "explicacion": "Una luz de costado sin luz de tope es un velero (o un buque remolcado). Frente a un velero, el buque de motor se aparta, lo vea por la banda que lo vea."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t19",
+      "and-2020-c1-t26",
+      "and-2020-c3-t19",
+      "and-2020-c3-t21",
+      "and-2020-c3-t25",
+      "and-2021-c1-t20",
+      "and-2021-c1-t25",
+      "and-2021-c2-t20",
+      "and-2021-c2-t21",
+      "and-2022-c1-t18",
+      "and-2022-c2-t20",
+      "and-2022-c2-t22",
+      "and-2022-c2-t26",
+      "and-2022-c3-t18",
+      "and-2022-c3-t27",
+      "and-2023-c1-t23",
+      "and-2023-c1-t25",
+      "and-2023-c2-t26",
+      "and-2023-c3-t23",
+      "and-2024-c1-t21",
+      "and-2024-c1-t24",
+      "and-2024-c2-t22",
+      "and-2024-c3-t25",
+      "and-2024-c3-t26",
+      "and-2025-c1-t23",
+      "and-2025-c2-t26",
+      "and-2025-c3-t18",
+      "and-2025-c3-t21",
+      "and-2026-c1-t19",
+      "and-2026-c2-t21",
+      "and-2026-c2-t22",
+      "and-2026-c2-t23",
+      "and-2026-c2-t25"
+     ],
+     "chuleta": [
+      "Dos veleros: viento por bandas contrarias, cede el amurado a babor; misma banda, cede el de barlovento.",
+      "Motor < vela < pesca < maniobra restringida / sin gobierno; al restringido por su calado no se le estorba.",
+      "Motor frente a velero o pesquero: se aparta el de motor, también de vuelta encontrada.",
+      "El que alcanza se aparta siempre, aunque sea un velero alcanzando a un buque de motor.",
+      "Costados sin luz de tope (o roja sobre verde en el tope) = velero."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Veleros: amurado a babor cede; misma banda, cede el de barlovento; amurado a babor que no sabe la amura del de barlovento, cede; barlovento = banda contraria a la mayor",
+       "fuente": "Regla 12, RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Jerarquía motor > vela > pesca > NUC/RAM; todos salvo NUC y RAM evitan estorbar al restringido por calado",
+       "fuente": "Regla 18 a)–d)"
+      },
+      {
+       "dato": "Hidroavión amarado se mantiene alejado; nave de vuelo rasante alejada al despegar/aterrizar/volar cerca de la superficie y, en superficie, como buque de propulsión mecánica",
+       "fuente": "Regla 18 e) y f) (A.910(22))"
+      },
+      {
+       "dato": "Las reglas 14 y 15 son solo entre buques de propulsión mecánica; velero que alcanza se aparta",
+       "fuente": "Reglas 13, 14 a), 15; and-2025-c2-t26, and-2026-c2-t21"
+      },
+      {
+       "dato": "Velero: costados y alcance; tricolor si < 20 m; roja sobre verde opcional, no con el tricolor",
+       "fuente": "Regla 25 a)–c); and-2024-c3-t26"
+      }
+     ]
+    },
+    {
+     "id": "per-6-6",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Visibilidad reducida",
+     "minutos": 14,
+     "objetivos": [
+      "Saber qué reglas se aplican y cuáles no cuando los buques no se ven",
+      "Decidir hacia dónde no caer cuando detectas un buque solo por radar",
+      "Saber qué hacer al oír una señal de niebla por la proa"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Regla 19: cuando no os veis",
+       "texto": "Se aplica a los buques que **no están a la vista** uno del otro cuando navegan **en una zona de visibilidad reducida o cerca de ella**.\n\nRigen la sección I (vigilancia, velocidad de seguridad, riesgo, maniobra, canales y DST) y la Regla 19. **No** rige la sección II: no hay alcance, ni vuelta encontrada, ni cruce, ni «sigue a rumbo», ni jerarquía de veleros o pesqueros. **Cada buque evalúa el riesgo y maniobra** con antelación.\n\nAdemás:\n- Navega a **velocidad de seguridad**, adaptada a la visibilidad.\n- Los buques de motor tendrán **las máquinas listas para maniobrar inmediatamente**.\n- Las **luces de navegación**, encendidas también de día, y las **señales acústicas** de la Regla 35, siempre."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si lo detectas solo por radar",
+       "texto": "Si hay riesgo de abordaje o aproximación excesiva, **maniobra con suficiente antelación**. Si cambias de rumbo, evita en lo posible:\n- **Caer a babor** si el otro está **a proa del través** (salvo que lo estés alcanzando).\n- **Caer hacia él** si está **por el través o a popa del través**.\n\nEn la práctica:\n- Por la proa o las amuras, por cualquier banda: **no caigas a babor**.\n- Por el través o la aleta de **estribor**: **no caigas a estribor**.\n- Por el través o la aleta de **babor**: **no caigas a babor**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "riesgo",
+        "caso": "constante"
+       },
+       "texto": "En niebla, la demora del eco en el radar te dice si hay riesgo. Lo que no sabes es quién «sigue a rumbo»: eso no existe sin verse."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones «somos el buque que sigue a rumbo», «al ser velero sigo a rumbo» o «me está alcanzando y debe apartarse él» son falsas en niebla: esas reglas exigen que los buques se vean."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si oyes una señal de niebla por la proa",
+       "texto": "Salvo que hayas comprobado que no hay riesgo, si **oyes, al parecer a proa de tu través, la señal de niebla** de otro buque (o no puedes evitar una aproximación excesiva con uno que está a proa del través):\n- **Reduce la velocidad a la mínima de gobierno.**\n- **Si es necesario, suprime toda la arrancada** (para o da atrás).\n- Navega con extrema precaución hasta que pase el peligro.\n\nNo caigas a una banda «a ciegas»: un sonido en la niebla no dice bien dónde está el otro ni hacia dónde va."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "-",
+        "texto": "Señal de niebla oída por la proa"
+       },
+       "texto": "Una larga cada 2 minutos como máximo: un buque de motor con arrancada, en algún lugar de la niebla. Si la oyes a proa del través, a la mínima de gobierno."
+      },
+      {
+       "tipo": "clave",
+       "texto": "En niebla nadie sigue a rumbo: radar → maniobra pronto (no a babor por proa, nunca hacia él si está por el través o a popa); sirena por la proa → mínima de gobierno."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Con niebla, el radar te muestra un eco en la marcación 140° estribor, con demora constante. Si cambias de rumbo, ¿qué evitas?",
+       "opciones": {
+        "a": "Caer a babor",
+        "b": "Caer a estribor",
+        "c": "Nada: me está alcanzando y se apartará él"
+       },
+       "correcta": "b",
+       "explicacion": "Está a popa del través por estribor. La Regla 19 pide evitar cambiar el rumbo hacia él, es decir, caer a estribor. La regla de alcance no vale sin verse."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Sin radar, en niebla, oyes una pitada larga por tu amura de babor. ¿Qué haces?",
+       "opciones": {
+        "a": "Caigo a estribor con decisión",
+        "b": "Reduzco a la mínima de gobierno y, si hace falta, paro",
+        "c": "Doy cinco pitadas cortas"
+       },
+       "correcta": "b",
+       "explicacion": "Es la Regla 19 e). Las cinco cortas son de duda entre buques que se ven."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t27",
+      "and-2020-c3-t18",
+      "and-2022-c1-t24",
+      "and-2022-c2-t24",
+      "and-2022-c3-t25",
+      "and-2023-c1-t22",
+      "and-2023-c2-t23",
+      "and-2023-c2-t25",
+      "and-2023-c3-t26",
+      "and-2024-c2-t27",
+      "and-2024-c3-t20",
+      "and-2024-c3-t24",
+      "and-2025-c1-t25",
+      "and-2025-c2-t27",
+      "and-2026-c1-t20"
+     ],
+     "chuleta": [
+      "Sin verse: rigen las Reglas 4–10 y 19; no hay cruce, alcance, vuelta encontrada ni «sigue a rumbo».",
+      "Velocidad de seguridad, máquinas listas, luces encendidas (también de día) y señales de la Regla 35.",
+      "Eco a proa del través: no caigas a babor. Por el través o a popa: no caigas hacia él.",
+      "Señal de niebla oída a proa del través: mínima de gobierno y, si es necesario, parar."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Regla 19 para buques que no se ven, en o cerca de visibilidad reducida; velocidad de seguridad y máquinas listas",
+       "fuente": "Regla 19 a)–c), RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Solo radar: evitar caer a babor por buque a proa del través (salvo alcanzado) y hacia buque por el través o a popa",
+       "fuente": "Regla 19 d)"
+      },
+      {
+       "dato": "Señal de niebla oída a proa del través: mínima de gobierno, suprimir arrancada si es necesario, extrema precaución",
+       "fuente": "Regla 19 e)"
+      },
+      {
+       "dato": "Luces también de día con visibilidad reducida; señales de la Regla 35",
+       "fuente": "Reglas 20 c) y 35"
+      }
+     ]
+    },
+    {
+     "id": "per-6-7",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Luces y marcas (I): sectores, buques de motor, vela y remolque",
+     "minutos": 20,
+     "objetivos": [
+      "Saber cuándo se encienden las luces y cuándo se llevan las marcas",
+      "Conocer el color y el sector de las luces de tope, costado, alcance y remolque",
+      "Saber qué luces lleva un buque de motor según su eslora y velocidad",
+      "Saber qué luces lleva un velero (y uno que va también a motor), una embarcación de remo y un remolque"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Cuándo (Regla 20)",
+       "texto": "Las reglas de luces y marcas se cumplen **con cualquier tiempo**.\n- **Luces**: desde la **puesta hasta la salida del sol**, y también **de día con visibilidad reducida** (y siempre que se considere necesario). Entretanto no se muestran otras luces que se puedan confundir con ellas.\n- **Marcas**: de **día**.\n\nEn niebla, las luces se encienden siempre, sea de día o de noche."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las luces y sus sectores (Regla 21)",
+       "texto": "- **Tope**: blanca, en crujía, visible en **225°** hacia proa, hasta 22,5° a popa del través de cada banda.\n- **Costados**: **verde a estribor y roja a babor**, **112,5°** cada una, desde la proa hasta 22,5° a popa del través.\n- **Alcance**: blanca, lo más cerca posible de la popa, visible en **135°** hacia popa (67,5° a cada banda).\n- **Remolque**: **amarilla**, con el mismo sector que la de alcance y encima de ella.\n- **Todo horizonte**: visible en 360°.\n- **Centelleante**: 120 o más destellos por minuto.\n\nTope + alcance = 360°; dos costados + alcance = 360°."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sectores-luces",
+        "luz": "todas"
+       }
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La luz de alcance es **blanca** (la amarilla es la de remolque) y se llama así, «de alcance», no «de popa». Y el sector de cada costado no acaba en el través: llega **22,5° más a popa**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Buque de propulsión mecánica (Regla 23)",
+       "texto": "En navegación lleva:\n- **Luz de tope a proa**.\n- **Segunda luz de tope, a popa y más alta**: obligatoria desde **50 m** de eslora (por debajo, opcional).\n- **Luces de costado** y **luz de alcance**.\n\nVersiones simplificadas:\n- **Menos de 12 m**: puede llevar, en vez de lo anterior, **una blanca todo horizonte y las luces de costado**.\n- **Menos de 7 m y velocidad máxima de 7 nudos o menos**: **una blanca todo horizonte** y, si puede, costados.\n\nUn velero navegando **también a motor** es buque de motor y lleva estas luces, nunca las de vela."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "motor-50",
+        "vista": "todas"
+       },
+       "texto": "Buque de motor de 50 m o más: dos luces de tope (la de popa más alta), costados y alcance."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "motor-menor-12",
+        "vista": "todas"
+       },
+       "texto": "Menos de 12 m: puede llevar una blanca todo horizonte y costados, que sustituyen a la de tope y a la de alcance."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La sola luz blanca todo horizonte exige **las dos condiciones**: menos de 7 m **y** no poder pasar de 7 nudos. Una lancha de 6,5 m que va a 10 nudos necesita, como mínimo, la blanca todo horizonte **y** los costados. Y no sumes la blanca todo horizonte a la de alcance: la todo horizonte ya la sustituye."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Vela y remo (Regla 25)",
+       "texto": "Un **buque de vela en navegación** lleva **costados y alcance**, y **nunca luz de tope**.\n- Si mide **menos de 20 m**, puede llevarlas en un **farol combinado (tricolor)** en el tope del palo.\n- Además, puede llevar en el tope **roja sobre verde** todo horizonte, pero **no junto con el tricolor**.\n- **Menos de 7 m**: si puede, las luces anteriores; si no, una **linterna de luz blanca** a mano, que mostrará con tiempo para evitar el abordaje.\n- **Remo**: puede llevar las luces de los veleros o, si no, la linterna blanca.\n\nDe día, el que navega a vela **y a motor** lleva a proa **un cono con el vértice hacia abajo**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "vela-tricolor",
+        "vista": "todas"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Remolques (Regla 24), lo esencial",
+       "texto": "El **remolcador** lleva **dos luces de tope en vertical** (o **tres** si el remolque, medido desde su popa hasta el final de lo remolcado, pasa de **200 m**), costados, alcance y, **encima de la de alcance, la amarilla de remolque**. Si el remolque pasa de 200 m, de día lleva una **marca bicónica**.\n\nEl **remolcado** lleva costados y alcance, como un velero, y bicónica si el remolque pasa de 200 m.\n\nDos buques rígidamente unidos (empujador y empujado) se iluminan como un solo buque de motor."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "remolque-200",
+        "vista": "todas",
+        "dia": true
+       },
+       "texto": "Remolque de más de 200 m: tres luces de tope en vertical, amarilla de remolque sobre la de alcance y, de día, marca bicónica."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tu velero de 10 m navega con velas y motor a la vez. ¿Qué luces puedes llevar de noche?",
+       "opciones": {
+        "a": "Costados y alcance en un tricolor",
+        "b": "Una blanca todo horizonte y costados (o tope, costados y alcance)",
+        "c": "Costados, alcance y roja sobre verde en el tope"
+       },
+       "correcta": "b",
+       "explicacion": "Con el motor en marcha eres buque de motor. Por tener menos de 12 m puedes usar la blanca todo horizonte con costados. El tricolor y la roja sobre verde son solo para navegar a vela."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué luz es blanca, va a popa y se ve en 135°?",
+       "opciones": {
+        "a": "La de remolque",
+        "b": "La de alcance",
+        "c": "La de tope"
+       },
+       "correcta": "b",
+       "explicacion": "La de alcance es blanca y se ve en 135° hacia popa. La de remolque tiene el mismo sector, pero es amarilla."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t24",
+      "and-2020-c3-t20",
+      "and-2021-c1-t22",
+      "and-2021-c1-t23",
+      "and-2021-c2-t24",
+      "and-2022-c1-t27",
+      "and-2022-c2-t19",
+      "and-2022-c2-t23",
+      "and-2022-c3-t19",
+      "and-2023-c2-t20",
+      "and-2023-c2-t27",
+      "and-2023-c3-t21",
+      "and-2023-c3-t22",
+      "and-2024-c1-t19",
+      "and-2024-c1-t25",
+      "and-2024-c2-t19",
+      "and-2024-c2-t25",
+      "and-2025-c1-t19",
+      "and-2025-c2-t20",
+      "and-2025-c2-t25"
+     ],
+     "chuleta": [
+      "Luces: de la puesta a la salida del sol y siempre con visibilidad reducida. Marcas: de día.",
+      "Tope blanca 225°; costados verde/roja 112,5°; alcance blanca 135°; remolque amarilla 135°.",
+      "Motor: tope, costados y alcance; 2.ª tope (a popa y más alta) desde 50 m.",
+      "< 12 m: blanca todo horizonte + costados. < 7 m y ≤ 7 nudos: blanca todo horizonte (y costados si puede).",
+      "Vela: costados y alcance, nunca tope; < 20 m, tricolor; opcional roja sobre verde (no con el tricolor). Vela + motor: cono con el vértice abajo y luces de motor.",
+      "Remolque: 2 topes (3 si > 200 m) y amarilla sobre la de alcance; bicónica si > 200 m."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Luces de la puesta a la salida del sol y de día con visibilidad reducida; marcas de día",
+       "fuente": "Regla 20 b)–d), RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Tope 225°, costados 112,5° (hasta 22,5° a popa del través), alcance 135° (67,5° por banda), remolque amarilla igual que alcance, centelleante ≥ 120/min",
+       "fuente": "Regla 21 a)–f)"
+      },
+      {
+       "dato": "Motor: tope, 2.ª tope a popa y más alta obligatoria desde 50 m, costados, alcance; <12 m blanca todo horizonte + costados; <7 m y ≤7 nudos blanca todo horizonte y costados si es posible",
+       "fuente": "Regla 23 a) y d) (letra d según A.910(22))"
+      },
+      {
+       "dato": "Vela: costados y alcance; tricolor <20 m; roja sobre verde no con el tricolor; <7 m y remo: linterna blanca; vela+motor: cono vértice abajo",
+       "fuente": "Regla 25 a)–e)"
+      },
+      {
+       "dato": "Remolcador: 2 topes en vertical (3 si remolque > 200 m desde su popa al final del remolque), costados, alcance, amarilla sobre la de alcance, bicónica > 200 m; remolcado costados, alcance y bicónica > 200 m; unidad compuesta = buque de motor",
+       "fuente": "Regla 24 a), b), e)"
+      }
+     ]
+    },
+    {
+     "id": "per-6-8",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Luces y marcas (II): pesca, buques especiales, práctico, fondeados y varados",
+     "minutos": 20,
+     "objetivos": [
+      "Identificar de día y de noche a los pesqueros de arrastre y de otros tipos",
+      "Reconocer al buque sin gobierno, al de maniobra restringida (incluido el buceo) y al restringido por su calado",
+      "Conocer las luces del práctico y las de los buques fondeados y varados"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Pesqueros (Regla 26)",
+       "texto": "De día, **todos los pesqueros** faenando llevan **dos conos unidos por los vértices**, uno sobre otro.\n\nDe noche:\n- **Arrastre**: **verde sobre blanca** todo horizonte. Además, una luz de tope a popa y más alta que la verde, obligatoria desde 50 m.\n- **Otra pesca**: **roja sobre blanca** todo horizonte. Si el aparejo se extiende más de **150 m** en horizontal, añade una **blanca todo horizonte** (de día, un **cono con el vértice hacia arriba**) en la dirección del aparejo.\n- **Con arrancada**, los dos añaden **costados y alcance**.\n\nSi no está faenando, un pesquero lleva las luces normales de su eslora."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "pesquero-arrastre",
+        "vista": "todas",
+        "dia": true
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "pesquero-no-arrastre",
+        "vista": "popa",
+        "dia": true
+       },
+       "texto": "Pesquero de otro tipo visto por la popa: roja sobre blanca y, debajo, su luz de alcance."
+      },
+      {
+       "tipo": "regla",
+       "id": "r12"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Sin gobierno y maniobra restringida (Regla 27)",
+       "texto": "- **Sin gobierno**: **dos rojas** todo horizonte en vertical; de día, **dos bolas**. Con arrancada, además costados y alcance (nunca luz de tope).\n- **Maniobra restringida**: **roja-blanca-roja** en vertical; de día, **bola-bicónica-bola**. Con arrancada, además tope(s), costados y alcance. Un portaaviones lanzando o recuperando aeronaves lleva estas señales.\n- **Dragas y obras submarinas** con obstrucción: además, dos rojas (o dos bolas) en la banda obstruida y dos verdes (o dos bicónicas) en la banda por la que se puede pasar.\n- **Buceo**: si por su tamaño no puede llevar todo eso, **roja-blanca-roja** y una **reproducción rígida de la bandera «A»** de al menos 1 m de altura.\n- **Limpieza de minas**: tres verdes o tres bolas. Peligroso acercarse a menos de 1000 m."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "sin-gobierno",
+        "vista": "proa",
+        "dia": true
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "restringido",
+        "vista": "proa",
+        "dia": true
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "bandera",
+        "codigo": "A"
+       },
+       "texto": "Bandera «A» del Código Internacional de Señales, blanca y azul: tengo un buzo sumergido; manténgase alejado y a poca velocidad."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los buques de **menos de 12 m** no están obligados a las señales de la Regla 27, **salvo los de buceo**. Una embarcación de buceo de 6 m sí lleva roja-blanca-roja de noche. Y la marca **bicónica** (conos unidos por las **bases**) no es de pesca: la llevan el remolque largo y el de maniobra restringida (en el centro)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Calado y práctico (Reglas 28 y 29)",
+       "texto": "- **Restringido por su calado**: además de sus luces de buque de motor, **puede** llevar **tres rojas** todo horizonte en vertical; de día, **un cilindro**.\n- **Práctico en servicio**: **blanca sobre roja** todo horizonte en el tope. En navegación, además costados y alcance (si le das alcance, verás la blanca sobre roja y su luz de alcance). Fondeado, además las de fondeo.\n\nNo confundas al práctico con el pesquero: **blanco sobre rojo**, práctico; **rojo sobre blanco**, pesca."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Fondeados y varados (Regla 30)",
+       "texto": "**Fondeado**:\n- A proa, una **blanca todo horizonte**; a popa, otra **más baja**. De día, **una bola** a proa.\n- **Menos de 50 m**: puede llevar una sola blanca todo horizonte.\n- **100 m o más**: además **debe iluminar sus cubiertas** con las luces de trabajo.\n- **Menos de 7 m**, fondeado **fuera** de canales, pasos, fondeaderos o zonas de navegación frecuente: no está obligado a luces ni a bola. Con 7 m o más, la bola es obligatoria también para un velero o un yate.\n\n**Varado**: las luces de fondeado y **dos rojas** en vertical; de día, **tres bolas**. Por debajo de 12 m no está obligado a las rojas ni a las tres bolas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "fondeado-50",
+        "vista": "estribor",
+        "dia": true
+       },
+       "texto": "Fondeado de 50 m o más: blanca a proa más alta que la de popa; de día, una bola."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "De día ves un buque con dos bolas negras en vertical. ¿Qué es?",
+       "opciones": {
+        "a": "Fondeado",
+        "b": "Sin gobierno",
+        "c": "Restringido por su calado"
+       },
+       "correcta": "b",
+       "explicacion": "Una bola = fondeado; dos bolas = sin gobierno; tres bolas = varado. El restringido por su calado lleva un cilindro."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "De noche ves blanca sobre roja todo horizonte. ¿Qué es?",
+       "opciones": {
+        "a": "Un pesquero que no es de arrastre",
+        "b": "Un práctico en servicio",
+        "c": "Un buque sin gobierno"
+       },
+       "correcta": "b",
+       "explicacion": "Blanco sobre rojo, práctico. Si fuera rojo sobre blanco sería un pesquero que no es de arrastre."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t23",
+      "and-2021-c1-t24",
+      "and-2021-c2-t23",
+      "and-2021-c2-t25",
+      "and-2022-c1-t22",
+      "and-2022-c2-t21",
+      "and-2022-c3-t26",
+      "and-2023-c1-t19",
+      "and-2023-c2-t22",
+      "and-2024-c2-t26",
+      "and-2024-c3-t22",
+      "and-2025-c1-t26",
+      "and-2025-c3-t19",
+      "and-2025-c3-t27",
+      "and-2026-c1-t21",
+      "and-2026-c1-t25",
+      "and-2026-c2-t18",
+      "and-2026-c2-t27"
+     ],
+     "chuleta": [
+      "Pesca de día: dos conos unidos por los vértices. Arrastre: verde sobre blanca. Otra pesca: roja sobre blanca (> 150 m de aparejo: blanca o cono con el vértice arriba hacia el aparejo).",
+      "Sin gobierno: 2 rojas / 2 bolas. Maniobra restringida: roja-blanca-roja / bola-bicónica-bola. Buceo: R-B-R y bandera «A» rígida (aunque mida menos de 12 m).",
+      "Calado: 3 rojas / cilindro. Práctico: blanca sobre roja.",
+      "Fondeado: blanca a proa, otra más baja a popa / 1 bola; ≥ 100 m, cubiertas iluminadas. Varado: + 2 rojas / 3 bolas."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Pesca: dos conos unidos por los vértices; arrastre verde sobre blanca + tope a popa más alta obligatoria ≥ 50 m; otra pesca roja sobre blanca, aparejo > 150 m blanca o cono vértice arriba; con arrancada costados y alcance",
+       "fuente": "Regla 26 b), c), e), RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Sin gobierno: 2 rojas / 2 bolas (+ costados y alcance con arrancada)",
+       "fuente": "Regla 27 a)"
+      },
+      {
+       "dato": "Maniobra restringida: R-B-R / bola-bicónica-bola; con arrancada topes, costados, alcance; dragas: 2 rojas/2 bolas lado obstruido, 2 verdes/2 bicónicas lado libre",
+       "fuente": "Regla 27 b), d)"
+      },
+      {
+       "dato": "Buceo: R-B-R y bandera A rígida ≥ 1 m; < 12 m exentos salvo buceo; minas: 3 verdes o 3 bolas, 1000 m",
+       "fuente": "Regla 27 e), f), g); and-2026-c1-t21"
+      },
+      {
+       "dato": "Calado: puede 3 rojas o cilindro; práctico: blanca sobre roja + costados y alcance en navegación, + fondeo fondeado",
+       "fuente": "Reglas 28 y 29"
+      },
+      {
+       "dato": "Fondeado: blanca a proa / bola, otra más baja a popa; < 50 m una sola; ≥ 100 m luces de cubierta obligatorias; < 7 m fuera de canales exento; varado + 2 rojas / 3 bolas, < 12 m exento de estas",
+       "fuente": "Regla 30 a)–f); and-2023-c2-t22, and-2026-c2-t27"
+      }
+     ]
+    },
+    {
+     "id": "per-6-9",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Señales acústicas y luminosas",
+     "minutos": 18,
+     "objetivos": [
+      "Conocer la duración de las pitadas y el equipo acústico obligatorio según la eslora",
+      "Interpretar las señales de maniobra y advertencia entre buques a la vista",
+      "Reconocer las señales de niebla de la Regla 35"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Pitadas y equipo (Reglas 32 y 33)",
+       "texto": "- **Pitada corta**: de **1 segundo** aproximadamente.\n- **Pitada larga**: de **4 a 6 segundos**.\n\nEquipo obligatorio:\n- **12 m o más**: un **pito**.\n- **20 m o más**: pito y **campana**.\n- **100 m o más**: además un **gong**.\n- **Menos de 12 m**: no están obligados a esos aparatos, pero deben llevar **algún otro medio de hacer señales acústicas eficaces** (una bocina, por ejemplo)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Un barco de 12 m justos ya necesita pito, pero no campana (esa empieza en 20 m). Uno de 11 m solo necesita «cualquier medio capaz de hacer señales acústicas eficaces»."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Maniobra y advertencia, buques a la vista (Regla 34)",
+       "texto": "Un buque de **propulsión mecánica** que maniobra a la vista de otro lo indica con el pito:\n- **1 corta**: caigo a **estribor**.\n- **2 cortas**: caigo a **babor**.\n- **3 cortas**: estoy **dando atrás**.\n\nPuede completarlas con **destellos** de una luz blanca todo horizonte: el mismo número, de 1 s cada uno, separados 1 s y con al menos 10 s entre señales.\n\n**Duda**: si no entiendes las intenciones del otro o dudas de que esté maniobrando bien, da **al menos 5 pitadas cortas y rápidas** (puedes añadir 5 destellos). Las de canal y recodo las viste en la lección de canales angostos."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "."
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "....."
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "r17"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Señales en visibilidad reducida (Regla 35)",
+       "texto": "De día y de noche, en niebla o cerca de ella. Cada **2 minutos como máximo**:\n- **Motor con arrancada**: **1 larga**.\n- **Motor parado, sin arrancada**: **2 largas** separadas unos 2 s.\n- **Sin gobierno, maniobra restringida, calado, vela, pesca, remolcando o empujando**: **1 larga + 2 cortas**. El pesquero y el de maniobra restringida, fondeados, dan esta misma.\n- **Remolcado** (el último, si va tripulado): **1 larga + 3 cortas**, si es posible justo después del remolcador.\n- Práctico: puede añadir 4 cortas.\n\nCada **minuto como máximo**:\n- **Fondeado**: repique rápido de **campana** de unos 5 s a proa (con 100 m o más, además **gong** a popa). Puede añadir **corta-larga-corta**.\n- **Varado**: campana con **3 golpes** claros antes y después del repique."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "--"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "-.."
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": ".-."
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "sonido",
+        "senal": "campana"
+       }
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Corta-larga-corta es del **fondeado**, no del de maniobra restringida (ese da larga-corta-corta). Y dos largas en niebla no son un buque que quiere adelantar: es un buque de motor **parado y sin arrancada**. Los menores de 12 m no están obligados a estas señales, y los de 12 a 20 m no lo están a las de campana (fondeado o varado); si no las dan, emiten otra señal acústica eficaz cada 2 minutos como máximo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Con niebla oyes, cada poco más de un minuto, una pitada larga seguida de dos cortas. ¿Qué puede ser?",
+       "opciones": {
+        "a": "Un buque de motor parado",
+        "b": "Un velero o un pesquero, entre otros",
+        "c": "Un buque fondeado"
+       },
+       "correcta": "b",
+       "explicacion": "Larga + 2 cortas la dan los buques que maniobran con dificultad: vela, pesca, sin gobierno, maniobra restringida, calado y remolcador."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un buque de motor a la vista da tres pitadas cortas. Te dice que…",
+       "opciones": {
+        "a": "Cae a babor",
+        "b": "Está dando atrás",
+        "c": "Duda de tu maniobra"
+       },
+       "correcta": "b",
+       "explicacion": "1 corta, estribor; 2 cortas, babor; 3 cortas, atrás; 5 o más, duda."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t20",
+      "and-2020-c1-t25",
+      "and-2020-c3-t26",
+      "and-2021-c1-t26",
+      "and-2021-c1-t27",
+      "and-2021-c2-t26",
+      "and-2021-c2-t27",
+      "and-2022-c3-t22",
+      "and-2023-c1-t26",
+      "and-2023-c2-t18",
+      "and-2023-c3-t18",
+      "and-2024-c1-t22",
+      "and-2024-c3-t27",
+      "and-2025-c2-t19",
+      "and-2025-c3-t23"
+     ],
+     "chuleta": [
+      "Corta ≈ 1 s; larga 4–6 s.",
+      "Equipo: ≥ 12 m pito; ≥ 20 m + campana; ≥ 100 m + gong; < 12 m, otro medio acústico eficaz.",
+      "A la vista: 1 corta estribor, 2 babor, 3 atrás, 5 o más duda.",
+      "Niebla (cada ≤ 2 min): 1 larga avante; 2 largas parado; L+2C vela, pesca, sin gobierno, restringidos y remolcador; L+3C remolcado.",
+      "Fondeado: campana 5 s cada ≤ 1 min (≥ 100 m + gong), puede añadir C-L-C. Varado: 3 golpes + repique + 3 golpes. De 12 a 20 m, la campana no es obligatoria (otra señal eficaz cada ≤ 2 min)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Pitada corta ≈ 1 s; larga 4–6 s",
+       "fuente": "Regla 32 b) y c), RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Pito ≥ 12 m; campana ≥ 20 m; gong ≥ 100 m; < 12 m otro medio eficaz",
+       "fuente": "Regla 33 (redacción A.910(22), en vigor 29/11/2003); and-2023-c2-t18, and-2025-c2-t19"
+      },
+      {
+       "dato": "1 corta estribor, 2 babor, 3 atrás; destellos 1 s, separados 1 s, ≥ 10 s entre señales; duda ≥ 5 cortas y rápidas",
+       "fuente": "Regla 34 a), b), d)"
+      },
+      {
+       "dato": "Niebla cada ≤ 2 min: 1 larga; 2 largas separadas ~2 s; L+2C (NUC, RAM, calado, vela, pesca, remolcando o empujando; pesca y RAM fondeados); L+3C remolcado tripulado; práctico 4 cortas",
+       "fuente": "Regla 35 a)–f), k)"
+      },
+      {
+       "dato": "Fondeado: campana ~5 s cada ≤ 1 min, ≥ 100 m + gong a popa, puede C-L-C; varado 3 golpes antes y después; 12–20 m sin campana obligatoria; < 12 m otra señal cada ≤ 2 min",
+       "fuente": "Regla 35 g)–j)"
+      }
+     ]
+    },
+    {
+     "id": "per-6-10",
+     "curso": "per",
+     "ut": 6,
+     "titulo": "Llamar la atención y señales de peligro",
+     "minutos": 12,
+     "objetivos": [
+      "Saber cómo se puede llamar la atención de otro buque sin confundir",
+      "Reconocer las señales de peligro del anexo IV del RIPA"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Llamar la atención (Regla 36)",
+       "texto": "Puedes llamar la atención de otro buque con **señales luminosas o acústicas que no se confundan** con las del reglamento, o dirigiendo el haz de un **proyector** hacia el peligro sin deslumbrar.\n\nHay que **evitar** las luces intermitentes o giratorias de alta intensidad, como las **estroboscópicas**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Señales de peligro (Regla 37 y anexo IV)",
+       "texto": "Indican **peligro y necesidad de ayuda**; está **prohibido** usarlas (o imitarlas) para otra cosa. Son:\n- **Cañonazo** u otra detonación, cada minuto más o menos.\n- **Sonido continuo** con cualquier aparato de niebla.\n- Cohetes o granadas de **estrellas rojas**, uno a uno y a intervalos cortos.\n- **SOS** en Morse, por cualquier medio.\n- **«MAYDAY»** por radiotelefonía.\n- Banderas **N sobre C**.\n- Bandera **cuadra con una bola** encima o debajo.\n- **Llamaradas** a bordo.\n- **Cohete con paracaídas** o **bengala de mano** de luz roja.\n- **Humo naranja**.\n- **Subir y bajar lentamente los brazos** extendidos.\n- Alerta **LSD** (canal 70 de VHF o MF/HF), alerta por **satélite**, **radiobaliza** y **respondedor de radar** (SART)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "socorro"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "socorro",
+        "resaltar": "humo",
+        "solo": true
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "socorro",
+        "resaltar": "niebla-continua",
+        "solo": true
+       }
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Un pito que suena **sin parar** es socorro. No es dar atrás (3 cortas) ni duda (5 cortas). El **humo naranja** es socorro, no un aviso de buzos ni de repostaje. Para la identificación desde el aire existen además la lona naranja con un cuadrado y un círculo negros y el colorante en el agua."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Las señales del anexo IV solo significan una cosa: estoy en peligro y necesito ayuda."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "De día ves un bote que suelta una densa humareda naranja. ¿Qué indica?",
+       "opciones": {
+        "a": "Que hay buzos en el agua",
+        "b": "Que está en peligro y necesita ayuda",
+        "c": "Que se está aprovisionando de combustible"
+       },
+       "correcta": "b",
+       "explicacion": "La señal fumígena naranja es una señal de peligro del anexo IV, pensada para usarla de día."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estas NO es una señal de peligro?",
+       "opciones": {
+        "a": "Subir y bajar lentamente los brazos extendidos",
+        "b": "Cinco pitadas cortas y rápidas",
+        "c": "Banderas N sobre C"
+       },
+       "correcta": "b",
+       "explicacion": "Cinco cortas es la señal de duda de la Regla 34 d). Las otras dos están en el anexo IV."
+      }
+     ],
+     "practica": [
+      "and-2024-c1-t20",
+      "and-2025-c1-t27"
+     ],
+     "chuleta": [
+      "Llamar la atención: luces o sonidos que no se confundan; proyector hacia el peligro; nada de estroboscópicas.",
+      "Anexo IV = peligro y necesidad de ayuda; prohibido usarlas para otra cosa.",
+      "Sonido continuo, cañonazo cada minuto, estrellas rojas, SOS, MAYDAY, NC, bandera y bola, llamaradas, bengala o cohete rojo, humo naranja, brazos, LSD, satélite, RLS, SART."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para prevenir los abordajes (RIPA/COLREG 1972), texto consolidado con todas sus enmiendas",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "OMI – COLREG, Convenio sobre el Reglamento internacional para prevenir los abordajes",
+       "url": "https://www.imo.org/en/About/Conventions/Pages/COLREG.aspx"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Llamar la atención sin confundir; proyector sin molestar; evitar luces estroboscópicas",
+       "fuente": "Regla 36, RIPA, texto consolidado BOE-A-1977-15605 (act. 13/01/2017, incluye enmiendas OMI hasta A.1085(28))"
+      },
+      {
+       "dato": "Señales de peligro: lista 1 a)–o); prohibido su uso para otra cosa; lona naranja y colorante",
+       "fuente": "Regla 37 y anexo IV (A.1004(25), BOE-A-2010-4648, en vigor 1/12/2009)"
+      },
+      {
+       "dato": "LSD en canal 70 VHF o 2187,5/4207,5/6312/8414,5/12577/16804,5 kHz",
+       "fuente": "Anexo IV 1 l)"
       }
      ]
     }

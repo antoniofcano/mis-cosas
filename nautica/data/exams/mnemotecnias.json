@@ -151,7 +151,7 @@
   {
    "id": "r10",
    "regla": "Cede quien maniobra mejor: Motor → Vela → Pesca → Calado → Maniobra restringida → Sin gobierno (cada uno se aparta de los que vienen después). Clásico: «Entre un vapor y un velero, gobierna siempre el primero».",
-   "significado": "RIPA regla 18: el de propulsión mecánica se aparta del velero, del pesquero, del de maniobra restringida y del sin gobierno; el velero, del pesquero, del RAM y del NUC; el pesquero, en lo posible, del RAM y del NUC. Al restringido por calado no se le estorba. Excepciones: rige antes el que alcanza (13), en canales angostos y en dispositivos de separación de tráfico el velero o la embarcación menor de 20 m no estorban (9 y 10), y el hidroavión o el WIG tienen sus propias reglas.",
+   "significado": "RIPA regla 18: el de propulsión mecánica se aparta del velero, del pesquero, del de maniobra restringida y del sin gobierno; el velero, del pesquero, del RAM y del NUC; el pesquero, en lo posible, del RAM y del NUC. Al restringido por calado no se le estorba. Excepciones: rige antes el que alcanza (13), en canales angostos y en dispositivos de separación de tráfico el velero o la embarcación menor de 20 m no estorban (9 y 10), y el hidroavión o el WIG tienen sus propias reglas. Dos matices de la Regla 18: no ordena entre sí al sin gobierno y al de maniobra restringida, y al restringido por su calado los demás no «se apartan» sino que evitan estorbarle.",
    "tema": "UT6 RIPA",
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439",

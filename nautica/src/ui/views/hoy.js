@@ -46,7 +46,7 @@ export function hoyView({ progress, tit }) {
     const racha = progress.racha();
     const principal = plan[0];
     const r = ritmoEstudio({ ...d, minutosDia: objetivo });
-    const listo = estoyListo(T.estructura, d.preguntas, d.respuestas);
+    const listo = estoyListo(T.estructura, d.preguntas, d.respuestas, d.tests);
     const ritmo = h('p.ritmo', { class: r.llega === false ? 'warn' : '' }, r.llega === false ? '⚠️ ' : '', lineaRitmo(r, objetivo, fecha),
       ' ', h('a', { href: '#/mas' }, 'Cambiar'));
 

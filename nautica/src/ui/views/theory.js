@@ -496,7 +496,8 @@ export function testView({ ctx, progress, params: route, tit }) {
         const g = grade(E0, test, respuestas);
         for (const d of g.detalle) if (d.respuesta) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
         const minutos = Math.max(1, Math.round(consumido / 60000));
-        progress.recordTest({ tit: T0.id, conv: test.tipo === 'real' ? estado.conv : undefined, tipo: test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, apto: g.apto, minutos });
+        progress.recordTest({ tit: T0.id, conv: test.tipo === 'real' ? estado.conv : undefined, tipo: test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, apto: g.apto, minutos,
+          porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
         progress.saveTestEnCurso(null);
         progress.logActividad(minutos);
         resultados(test, g, porTiempo);

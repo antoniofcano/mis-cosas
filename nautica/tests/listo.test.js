@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PER, PY } from '../src/theory/blocks.js';
-import { fallosBloque, probAprobar, estoyListo, lineaListo } from '../src/course/listo.js';
+import { fallosBloque, probAprobar, estoyListo, lineaListo, aciertoPonderado, PESO_MODELO } from '../src/course/listo.js';
 import { buildMezcla } from '../src/theory/engine.js';
 import { planHoy } from '../src/course/plan.js';
 import { createRng } from '../src/math/rng.js';
@@ -141,4 +141,29 @@ test('vocabulario: no se subraya lo que delataría la respuesta', () => {
   const amura = { id: 'amura', termino: 'Amura', formas: ['amura'], definicion: 'Parte del costado cerca de la proa, a cada banda.' };
   assert.equal(delata(amura, 'La parte delantera del costado, junto a la proa'), true); // comparte «costado»
   assert.equal(delata(amura, 'Hacia popa'), false);
+});
+
+test('¿Estás listo?: una pregunta repetida cuenta mitad el primer intento y mitad el último', () => {
+  assert.equal(aciertoPonderado({ ok: true }), 1); // datos antiguos, sin n: como antes
+  assert.equal(aciertoPonderado({ ok: true, n: 1, ok1: true }), 1);
+  assert.equal(aciertoPonderado({ ok: true, n: 3, ok1: false }), 0.5); // la fallaste y luego la aprendiste
+  assert.equal(aciertoPonderado({ ok: false, n: 2, ok1: false }), 0);
+  // Mismo número de aciertos «últimos», pero acertados tras fallar: la probabilidad baja.
+  const qs = banco(PER);
+  const deEntrada = responder(qs, PER, 30, 0.9);
+  const aprendidas = Object.fromEntries(Object.entries(deEntrada).map(([id, r]) => [id, { ...r, n: 2, ok1: false }]));
+  assert.ok(estoyListo(PER, qs, aprendidas).prob < estoyListo(PER, qs, deEntrada).prob);
+});
+
+test('¿Estás listo?: los simulacros completos recientes corrigen el resultado y lo dice', () => {
+  const qs = banco(PER);
+  const r = responder(qs, PER, 30, 0.95);
+  const sin = estoyListo(PER, qs, r);
+  const suspensos = [1, 2, 3].map(() => ({ tipo: 'simulacro', apto: false, aciertos: 28, total: 45 }));
+  const con = estoyListo(PER, qs, r, [...suspensos, { tipo: 'bloque', apto: null }]);
+  assert.equal(con.simulacros.hechos, 3); // el test de bloque (sin apto) no cuenta
+  assert.ok(Math.abs(con.prob - (PESO_MODELO * sin.probModelo) / (PESO_MODELO + 3)) < 1e-12);
+  assert.ok(con.prob < sin.prob);
+  assert.match(lineaListo(con), /últimos 3 simulacros aprobaste 0/);
+  assert.match(lineaListo(sin), /Haz un simulacro completo/);
 });

@@ -5,6 +5,7 @@ import { norm360 } from '../../math/angles.js';
 import { dibujaCadena, casillasCadena } from './cadena.js';
 import { pad3, num } from './kit.js';
 
+/** Velocidad del barco si la spec no la trae (nudos). */
 const VB = 6;
 const lado = (l) => (l === 'igual' ? 'sobre tu rumbo' : `a ${l}`);
 
@@ -17,16 +18,16 @@ export const corriente = {
   ],
   estado: (spec) => {
     const inversa = spec.caso === 'rumbo-a-dar';
-    return { modo: inversa ? 'inversa' : 'directa', rumbo: Number(spec.rumbo ?? (inversa ? 50 : 40)), rc: Number(spec.rc ?? 120), ic: Number(spec.ic ?? 2.5), ab: Number(spec.ab ?? 0) };
+    return { modo: inversa ? 'inversa' : 'directa', rumbo: Number(spec.rumbo ?? (inversa ? 50 : 40)), rc: Number(spec.rc ?? 120), ic: Number(spec.ic ?? 2.5), ab: Number(spec.ab ?? 0), vb: Number(spec.vb ?? VB) };
   },
   /** Al cambiar de pregunta, el rumbo del mando pasa a ser el otro extremo de la misma cadena: el dibujo no salta. */
   ajustar(e, id) {
     if (id !== 'modo') return e;
-    const r = e.modo === 'inversa' ? cadenaDirecta({ rv: e.rumbo, vb: VB, ab: e.ab, rc: e.rc, ic: e.ic }) : cadenaInversa({ ref: e.rumbo, vb: VB, ab: e.ab, rc: e.rc, ic: e.ic });
+    const r = e.modo === 'inversa' ? cadenaDirecta({ rv: e.rumbo, vb: e.vb, ab: e.ab, rc: e.rc, ic: e.ic }) : cadenaInversa({ ref: e.rumbo, vb: e.vb, ab: e.ab, rc: e.rc, ic: e.ic });
     return { ...e, rumbo: Math.round(norm360(e.modo === 'inversa' ? r.ref : r.rv)) % 360 };
   },
   calcular: (e) => {
-    const p = { vb: VB, ab: e.ab, rc: e.rc, ic: e.ic };
+    const p = { vb: e.vb, ab: e.ab, rc: e.rc, ic: e.ic };
     const r = e.modo === 'inversa' ? cadenaInversa({ ref: e.rumbo, ...p }) : cadenaDirecta({ rv: e.rumbo, ...p });
     return { ...r, ...p, inversa: e.modo === 'inversa' };
   },
@@ -38,16 +39,16 @@ export const corriente = {
     const svg = dibujaCadena(r, { ocultar });
     const cadena = casillasCadena(r, ocultar);
     const corr = r.ic ? `la corriente (hacia el ${pad3(e.rc)}°, ${num(e.ic)} nudos)` : null;
-    if (pendiente) return { svg, cadena, lectura: r.inversa ? `Quieres ir al ${pad3(e.rumbo)}°. Responde la pregunta y verás el rumbo que tienes que dar.` : `Proa al ${pad3(e.rumbo)}° a ${VB} nudos. Responde la pregunta y verás tu rumbo efectivo.` };
+    if (pendiente) return { svg, cadena, lectura: r.inversa ? `Quieres ir al ${pad3(e.rumbo)}°. Responde la pregunta y verás el rumbo que tienes que dar.` : `Proa al ${pad3(e.rumbo)}° a ${num(e.vb)} nudos. Responde la pregunta y verás tu rumbo efectivo.` };
     let lectura;
     if (r.inversa) {
       lectura = corr
-        ? `Para avanzar al ${pad3(r.ref)}° con ${corr}, das rumbo de superficie ${pad3(r.rs)}°, ${lado(ladoDe(r.rs, r.ref))} del destino, para compensarla${r.ab ? ` y, quitando el abatimiento, rumbo verdadero ${pad3(r.rv)}°` : ''}. Llegas a ${num(r.vef)} nudos.`
+        ? `Para avanzar al ${pad3(r.ref)}° con ${corr}, a ${num(r.vb)} nudos das rumbo de superficie ${pad3(r.rs)}°, ${lado(ladoDe(r.rs, r.ref))} del destino, para compensarla${r.ab ? ` y, quitando el abatimiento, rumbo verdadero ${pad3(r.rv)}°` : ''}. Llegas a ${num(r.vef)} nudos.`
         : `Sin corriente, el rumbo a dar es el del destino: ${pad3(r.rv)}°.`;
     } else {
       lectura = corr
-        ? `Proa al ${pad3(r.rv)}° a ${VB} nudos${r.ab ? `, superficie ${pad3(r.rs)}°` : ''}. ${corr[0].toUpperCase()}${corr.slice(1)} te lleva ${lado(ladoDe(r.ref, r.rs))}: rumbo efectivo ${pad3(r.ref)}° a ${num(r.vef)} nudos.`
-        : `Sin corriente, el rumbo efectivo es el de superficie: ${pad3(r.ref)}° a ${VB} nudos.`;
+        ? `Proa al ${pad3(r.rv)}° a ${num(r.vb)} nudos${r.ab ? `, superficie ${pad3(r.rs)}°` : ''}. ${corr[0].toUpperCase()}${corr.slice(1)} te lleva ${lado(ladoDe(r.ref, r.rs))}: rumbo efectivo ${pad3(r.ref)}° a ${num(r.vef)} nudos.`
+        : `Sin corriente, el rumbo efectivo es el de superficie: ${pad3(r.ref)}° a ${num(r.vb)} nudos.`;
     }
     return { svg, cadena, lectura };
   },

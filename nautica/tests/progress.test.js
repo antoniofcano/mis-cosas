@@ -73,3 +73,15 @@ test('recordExam acepta choice null («No la sé») y diasConActividadDesde', ()
   assert.equal(p.diasConActividadDesde(undefined), 8);
   assert.equal(p.diasConActividadDesde(AHORA - 3 * DIA), 3);
 });
+
+test('recordExam guarda cuántas veces y si se acertó a la primera (también con datos antiguos)', () => {
+  const mem = memoria();
+  const p = createProgressStore(mem);
+  p.recordExam('q', { choice: 'b', ok: false });
+  p.recordExam('q', { choice: 'a', ok: true });
+  assert.deepEqual([p.get().exams.q.n, p.get().exams.q.ok1, p.get().exams.q.ok], [2, false, true]);
+  // Un registro de antes de este cambio (sin n ni ok1): su respuesta guardada cuenta como la primera.
+  p.get().exams.viejo = { choice: 'a', ok: true, t: '2026-01-01T00:00:00Z' };
+  p.recordExam('viejo', { choice: 'c', ok: false });
+  assert.deepEqual([p.get().exams.viejo.n, p.get().exams.viejo.ok1], [2, true]);
+});

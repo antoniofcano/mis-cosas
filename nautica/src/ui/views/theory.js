@@ -1,5 +1,5 @@
 // Vistas de teoría y exámenes de una titulación (PER, PY…):
-//   #/<tit>/teoria/ut/<n>     práctica por bloque (corrección inmediata + profe)
+//   #/<tit>/teoria/ut/<n>     tanda de 10 preguntas de un tema (corrección inmediata + profe)
 //   #/<tit>/examenes          simulacro y exámenes reales completos
 //   #/<tit>/test/simulacro    #/<tit>/test/real/<convocatoria>   cronometrados, corrección oficial y revisión con el profe
 
@@ -8,6 +8,8 @@ import { link } from '../router.js';
 import { loadTheoryBank } from '../../store/datasets.js';
 import { bloque, totalPreguntas } from '../../theory/blocks.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
+import { TANDA, MIN_TANDA } from '../../course/plan.js';
+import { pintarCierre } from '../cierre.js';
 import { barraActividad } from '../actividad.js';
 import { buildSimulacro, buildReal, buildPractica, convocatorias, grade } from '../../theory/engine.js';
 import { narrateTheory } from '../../teacher/theory.js';
@@ -60,7 +62,7 @@ export function questionCard(q, o = {}) {
       h('span', h('strong', `${k}) `), v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard',
-    h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
+    h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
     h('p.qtext', q.enunciado),
@@ -145,7 +147,65 @@ export function examenesView({ ctx, progress, tit }) {
 }
 
 // ---------------------------------------------------------------------------
-// #/<tit>/teoria/ut/<n>?s=semilla — práctica por bloque, pregunta a pregunta
+// Componente: una tanda de preguntas, una por pantalla («No la sé», profe y «Siguiente →»)
+
+/**
+ * @param {{ preguntas: object[], explicaciones: object, progress: object, barra: HTMLElement, rotulo?: string,
+ *   onFin: (ok: number, n: number) => void, onSummary?: (texto: string) => void }} o
+ * @returns {HTMLElement}
+ */
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, onFin, onSummary = () => {} }) {
+  const box = h('div.tanda');
+  const n = preguntas.length;
+  let i = 0;
+  let ok = 0;
+  function show() {
+    const q = preguntas[i];
+    barra.set(`Pregunta ${i + 1} de ${n}`, i / n);
+    let respondida = false;
+    const feedback = h('div.feedback-profe', { tabindex: '-1' });
+    const siguiente = h('button.grande', { type: 'button', hidden: true, onclick: () => {
+      voice.stop();
+      i += 1;
+      if (i >= n) { barra.set(null, 1); onFin(ok, n); } else { show(); window.scrollTo(0, 0); }
+    } }, i === n - 1 ? 'Ver resultado' : 'Siguiente →');
+    const responder = (k) => {
+      if (respondida) return;
+      respondida = true;
+      const good = k != null && (q.anulada || k === q.correcta);
+      if (good) ok += 1;
+      progress.recordExam(q.id, { choice: k, ok: good });
+      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: false });
+      card.replaceWith(nueva);
+      card = nueva;
+      setChildren(feedback, profePanel(q, explanationFor(q, explicaciones), k));
+      noLaSe.hidden = true;
+      siguiente.hidden = false;
+      barra.set(null, (i + 1) / n);
+      feedback.focus({ preventScroll: true });
+      feedback.scrollIntoView({ block: 'nearest' });
+      onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
+    };
+    const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
+    let card = questionCard(q, { onChoose: responder, tema: false });
+    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, feedback, h('div.fila-inferior', noLaSe, siguiente));
+    onSummary(practiceSummary(q, explicaciones[q.id], null));
+  }
+  if (n) show();
+  return box;
+}
+
+/** Textos del cierre de una tanda según el porcentaje de aciertos (§5.5). */
+export function cierreTanda(ok, n) {
+  const p = n ? ok / n : 0;
+  const linea = p >= 0.8 ? 'Muy bien. Este tema lo llevas encaminado.'
+    : p >= 0.5 ? 'Bien. Las que has fallado volverán a salir.'
+      : 'Este tema cuesta al principio. Las que has fallado volverán a salir.';
+  return { icono: p >= 0.5 ? '🎉' : '💪', titulo: `${ok} de ${n}`, lineas: [linea] };
+}
+
+// ---------------------------------------------------------------------------
+// #/<tit>/teoria/ut/<n>?s=semilla[&f=1] — tanda de 10 preguntas de un tema
 
 export function practiceView({ ctx, progress, params: route, tit }) {
   chartRef = ctx.chart;
@@ -154,65 +214,42 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const b = bloque(E, ut);
   const seed = Number(route.query.s) || randomSeed();
   const soloFalladas = route.query.f === '1';
-  const el = h('div.practice', h('p.muted', 'Cargando…'));
-  let summaryText = `VISTA práctica UT${ut}`;
-  if (!b) return { el: h('p', 'Bloque no encontrado.'), summary: () => 'ERROR bloque' };
+  if (!b) return { el: h('div.practice', h('p', 'Este tema no existe.'), h('a.btn', { href: tlink(T.id, ['temario']) }, 'Ir al temario')), summary: () => 'ERROR tema no encontrado' };
+  const tit0 = T.id;
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const cont = h('div', h('p.muted', 'Cargando…'));
+  const el = h('div.practice', barra, cont);
+  let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
-  loadTheoryBank(T.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd }) => {
     reglasDe = rd;
-    const fails = new Set(Object.entries(progress.get().exams).filter(([, v]) => !v.ok).map(([k]) => k));
-    const sesion = buildPractica(preguntas, ut, createRng(seed), { soloFalladas: soloFalladas ? fails : null });
-    let i = 0;
-    let ok = 0;
-    let hechas = 0;
-    const body = h('div');
-    const score = h('span.badge');
-    function show() {
-      const q = sesion.preguntas[i];
-      score.textContent = `${ok}/${hechas} ✓ · ${i + 1} de ${sesion.preguntas.length}`;
-      if (!q) {
-        setChildren(body, h('p.ok', `🎉 Bloque terminado: ${ok} aciertos de ${hechas}.`),
-          h('div.actions', h('a.btn', { href: tlink(T.id, ['teoria', 'ut', String(ut)], { s: randomSeed() }) }, '🔄 Otra vuelta'),
-            h('a.btn.secondary', { href: tlink(T.id, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, 'Solo las falladas'),
-            h('a.btn.secondary', { href: tlink(T.id, ['temario', String(ut)]) }, 'Volver al tema')));
-        summaryText = `VISTA práctica UT${ut} terminada: ${ok}/${hechas}`;
-        return;
-      }
-      let answered = false;
-      const feedback = h('div');
-      const next = h('button', { type: 'button', hidden: true, onclick: () => { voice.stop(); i += 1; show(); } }, 'Siguiente →');
-      const card = questionCard(q, {
-        onChoose: (k) => {
-          if (answered) return;
-          answered = true;
-          hechas += 1;
-          const good = q.anulada || k === q.correcta;
-          if (good) ok += 1;
-          progress.recordExam(q.id, { choice: k, ok: good });
-          card.replaceWith(questionCard(q, { chosen: k, reveal: true, lock: true }));
-          setChildren(feedback, profePanel(q, explanationFor(q, explicaciones), k));
-          score.textContent = `${ok}/${hechas} ✓ · ${i + 1} de ${sesion.preguntas.length}`;
-          next.hidden = false;
-          summaryText = practiceSummary(q, explanationFor(q, explicaciones), k);
-        },
-      });
-      setChildren(body, card, feedback, h('div.actions', next,
-        h('button.secondary', { type: 'button', onclick: () => { i += 1; show(); } }, 'No la sé')));
-      summaryText = practiceSummary(q, explicaciones[q.id], null);
+    const respuestas = progress.get().exams;
+    const fails = new Set(Object.entries(respuestas).filter(([, v]) => !v.ok).map(([k]) => k));
+    const sesion = buildPractica(preguntas, ut, createRng(seed), { soloFalladas: soloFalladas ? fails : null, respuestas, limite: TANDA });
+    if (!sesion.preguntas.length) {
+      barra.set(b.titulo, 0);
+      setChildren(cont, h('p.vacio', soloFalladas ? 'No tienes fallos pendientes en este tema.' : 'Aún no hay preguntas de este tema.'),
+        h('a.btn.grande', { href: tlink(tit0, ['temario', String(ut)]) }, 'Volver al tema'));
+      return;
     }
-    setChildren(el,
-      barraActividad({ texto: b.titulo, onSalir: () => { location.hash = tlink(T.id); } }),
-      h('header', h('h1', `${b.icon} ${b.titulo}`), h('div.badges', score, soloFalladas ? h('span.badge.warn', 'Solo falladas') : null)),
-      sesion.preguntas.length ? body : h('p.muted', soloFalladas ? 'No tienes preguntas falladas en este bloque. 👏' : 'Aún no hay preguntas de este bloque.'),
-    );
-    if (sesion.preguntas.length) show();
-  });
+    setChildren(cont, tandaPreguntas({
+      preguntas: sesion.preguntas, explicaciones, progress, barra, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
+      onSummary: (t) => { summaryText = t; },
+      onFin: (ok, n) => {
+        progress.logActividad(MIN_TANDA);
+        barra.remove();
+        pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
+        summaryText = `VISTA tanda terminada · ${b.titulo}: ${ok} de ${n} aciertos`;
+        window.scrollTo(0, 0);
+      },
+    }));
+  }).catch((e) => setChildren(cont, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
   return { el, summary: () => summaryText };
 }
 
 function practiceSummary(q, ex, chosen) {
   return [
-    `PREGUNTA TEORÍA ${q.id} · UT${q.ut} · ${q.convocatoria ?? ''}`,
+    `PREGUNTA TEORÍA ${q.id} · tema ${q.ut} · ${q.convocatoria ?? ''}`,
     `ENUNCIADO: ${q.enunciado}`,
     ...Object.entries(q.opciones ?? {}).map(([k, v]) => `  ${k}) ${v}`),
     `RESPUESTA ALUMNO: ${chosen ?? '(sin responder)'}`,

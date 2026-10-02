@@ -97,6 +97,7 @@ import { INTERACTIVAS, interactivaDe, pidePrediccion } from '../src/illustration
 import { controlador, MAX_MANDOS } from '../src/ui/lamina-estado.js';
 import { ewTexto, marcacionBanda } from '../src/nautical/compass.js';
 import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
+import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -209,6 +210,14 @@ function specsDeClase(tipo) {
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  estabilidad(c, p) {
+    // subir peso: G sube, GM y GZ bajan → adriza peor
+    const e = c.estado();
+    const antes = estabilidadCalc({ altura: e.altura, traslado: e.traslado });
+    const despues = estabilidadCalc({ altura: e.altura + 1, traslado: e.traslado });
+    assert.ok(despues.GZ < antes.GZ);
+    assert.equal(p.opciones[p.correcta], 'Peor');
+  },
   'sectores-luces'(c, p) {
     // «una sola luz blanca»: solo desde el sector de alcance (por la popa)
     const solo = [0, 60, 112.5, 113, 180, 247, 247.5, 300].filter((a) => { const v = lucesVisibles(a); return v.alcance && !v.tope && !v.verde && !v.roja; });

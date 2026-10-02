@@ -79,3 +79,22 @@ test('situación por las luces que ves: quién maniobra', () => {
   assert.deepEqual([s(60).situacion, s(60).maniobra], ['cruce', 'el']); // ves su verde
   assert.deepEqual([s(300).situacion, s(300).maniobra], ['cruce', 'tu']); // ves su roja
 });
+
+import { estabilidad, BARCO } from '../src/nautical/estabilidad.js';
+test('estabilidad: subir peso reduce GM; con GM ≤ 0 deja de adrizar; trasladar a la banda alta ayuda', () => {
+  const bajo = estabilidad({ altura: 0.5 });
+  const alto = estabilidad({ altura: 3 });
+  assert.ok(alto.KG > bajo.KG && alto.GM < bajo.GM && alto.GZ < bajo.GZ);
+  // cambio de adrizar a volcar justo en la altura crítica (GM = 0)
+  const h = estabilidad({ altura: 0 }).alturaCritica;
+  assert.ok(Math.abs(estabilidad({ altura: h }).GM) < 1e-12);
+  assert.equal(estabilidad({ altura: h - 0.01 }).adriza, true);
+  assert.equal(estabilidad({ altura: h + 0.01 }).adriza, false);
+  assert.equal(estabilidad({ altura: h + 0.01 }).estable, false);
+  // escorado a estribor: el peso a babor (banda alta) aumenta el brazo; a estribor lo reduce
+  const centro = estabilidad({ altura: 1.5 });
+  assert.ok(estabilidad({ altura: 1.5, traslado: -2 }).GZ > centro.GZ);
+  assert.ok(estabilidad({ altura: 1.5, traslado: 2 }).GZ < centro.GZ);
+  // GG' = w·d / D
+  assert.ok(Math.abs(estabilidad({ altura: 1.5, traslado: 2 }).GGt - (BARCO.w * 2) / BARCO.D) < 1e-12);
+});

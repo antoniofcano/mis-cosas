@@ -8,48 +8,7 @@ const title = (x, t) => `<text x="${x}" y="22" class="il-title">${t}</text>`;
 const lbl = (x, y, t, c = null, anchor = 'start', extra = '') => `<text x="${(+x).toFixed(1)}" y="${(+y).toFixed(1)}" class="il-lbl" text-anchor="${anchor}" ${c ? `style="fill:${C[c]}"` : ''} ${extra}>${t}</text>`;
 const arrow = (x1, y1, x2, y2, c, id, w = 2.4) => `<line x1="${(+x1).toFixed(1)}" y1="${(+y1).toFixed(1)}" x2="${(+x2).toFixed(1)}" y2="${(+y2).toFixed(1)}" stroke="${C[c]}" stroke-width="${w}" marker-end="url(#${id}-${c})"/>`;
 
-// ---------------------------------------------------------------------------
-// Estabilidad transversal. spec: { tipo:'estabilidad', caso:'estable'|'inestable' }
-
-export function estabilidadIllustration(spec) {
-  const estable = (spec.caso ?? 'estable') !== 'inestable';
-  const W = 320;
-  const H = 280;
-  const cx = 160;
-  const cy = 150; // centro de giro (en la flotación)
-  const th = (18 * Math.PI) / 180; // escora a estribor (la banda derecha baja)
-  const out = open(W, H, 'Estabilidad', 'es');
-  out.push(title(cx, estable ? 'Estable: M por encima de G' : 'Inestable: G por encima de M'));
-  // agua (la flotación queda horizontal)
-  out.push(`<rect x="0" y="${cy}" width="${W}" height="${H - cy}" fill="#38bdf8" opacity=".3"/>`);
-  // puntos del casco en su propio sistema (y hacia arriba negativo) y girados
-  const rot = ([x, y]) => [cx + x * Math.cos(th) - y * Math.sin(th), cy + x * Math.sin(th) + y * Math.cos(th)];
-  const hull = [[-80, -30], [80, -30], [72, 40], [40, 62], [-40, 62], [-72, 40]].map(rot);
-  out.push(`<path d="M${hull.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' L')}Z" fill="${C.g}" opacity=".55" stroke="${C.g}" stroke-width="2"/>`);
-  const K = rot([0, 62]);
-  const G = rot([0, estable ? 8 : -22]);
-  const M = rot([0, estable ? -40 : 0]);
-  // B en el centro del volumen sumergido, desplazado hacia la banda baja: en la vertical de M
-  const B = [M[0], cy + 34];
-  const dot = ([x, y], t, c, dx = 8) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="${C[c]}"/>` + lbl(x + dx, y + 4, t, c, dx < 0 ? 'end' : 'start', 'font-weight="700"');
-  out.push(`<line x1="${K[0]}" y1="${K[1]}" x2="${rot([0, -70])[0]}" y2="${rot([0, -70])[1]}" stroke="currentColor" stroke-dasharray="4 3" opacity=".5"/>`, lbl(rot([0, -70])[0] + 4, rot([0, -70])[1], 'crujía'));
-  out.push(dot(K, 'K', 'g', -8), dot(G, 'G', 'r', -8), dot(M, 'M', 'p', 8), dot(B, 'B', 'v', 8));
-  out.push(arrow(G[0], G[1], G[0], G[1] + 60, 'r', 'es'), lbl(G[0] - 6, G[1] + 64, 'peso', 'r', 'end'));
-  out.push(arrow(B[0], B[1], B[0], B[1] - 60, 'v', 'es'), lbl(B[0] + 6, B[1] - 56, 'empuje', 'v'));
-  out.push(`<line x1="${G[0]}" y1="${G[1]}" x2="${B[0]}" y2="${G[1]}" stroke="${C.a}" stroke-width="2.4"/>`, lbl((G[0] + B[0]) / 2, G[1] - 6, 'GZ', 'a', 'middle', 'font-weight="700"'));
-  const rx = 260;
-  const ry = 70;
-  out.push(`<path d="M${rx},${ry + 30} A30,30 0 0 ${estable ? 0 : 1} ${rx},${ry - 30}" fill="none" stroke="${C[estable ? 'm' : 'r']}" stroke-width="2.4" marker-end="url(#es-${estable ? 'm' : 'r'})"/>`);
-  out.push(lbl(rx, ry + 50, estable ? 'adriza' : 'vuelca', estable ? 'm' : 'r', 'middle', 'font-weight="700"'));
-  out.push(lbl(12, H - 12, 'K quilla · G gravedad · B carena (empuje) · M metacentro'));
-  out.push('</svg>');
-  return {
-    svg: out.join(''),
-    caption: estable
-      ? 'Al escorar, el centro de carena B se va a la banda que se hunde. Si el metacentro M está por encima de G (GM positiva), peso y empuje forman un par que devuelve el barco a la vertical; su brazo es GZ.'
-      : 'Si G sube por encima de M (pesos altos, agua en cubierta, carga suelta…), el par de peso y empuje escora todavía más: el barco es inestable.',
-  };
-}
+// Estabilidad transversal: ahora es interactiva, en src/illustrations/interactivas/estabilidad.js.
 
 // ---------------------------------------------------------------------------
 // Movimientos del barco. spec: { tipo:'movimiento', mov:'balance'|'cabezada'|'guinada' }

@@ -13,7 +13,7 @@ import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
 import { heliceTimonIllustration, evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
-import { estabilidadIllustration, movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
+import { movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
 function rhythmIllustration(spec) {
   const r = parseRhythm(spec.ritmo);
@@ -48,7 +48,7 @@ const RENDERERS = {
   canal: canalIllustration,
   dst: dstIllustration,
   jerarquia: jerarquiaIllustration,
-  estabilidad: estabilidadIllustration,
+  estabilidad: (s) => dibujoFijo(INTERACTIVAS.estabilidad, s),
   movimiento: movimientoIllustration,
   amarras: amarrasIllustration,
   busqueda: busquedaIllustration,

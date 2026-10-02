@@ -269,7 +269,7 @@ a.card[aria-disabled="true"] { opacity: .6; }
 .il-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .8rem; }
 .il-grid.inline { margin-top: .5rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .il-figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .5rem; }
-.il-figure figcaption { font-size: .9rem; color: var(--muted); margin: .35rem .2rem; }
+.il-figure figcaption { font-size: .9rem; color: var(--muted); margin: .35rem .2rem; white-space: pre-line; }
 .il-svg svg.il { display: block; width: 100%; height: auto; color: var(--text); font-family: system-ui, sans-serif; }
 svg.il .il-sky { fill: #e0f2fe; } svg.il .il-sea { fill: #1e3a5f; } svg.il .il-night { fill: #0b1220; } svg.il .il-panel { fill: var(--bg); }
 svg.il .il-title { font-size: 13px; font-weight: 700; text-anchor: middle; fill: currentColor; }

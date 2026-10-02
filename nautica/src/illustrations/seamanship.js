@@ -64,7 +64,16 @@ export function amarrasIllustration(spec) {
   }
   if (!hl) L.forEach(([, , , , name], i) => out.push(lbl(14 + (i % 3) * 100, 44 + Math.floor(i / 3) * 14, name, 'r')));
   out.push('</svg>');
-  return { svg: out.join(''), caption: 'Largos: salen de proa hacia proa y de popa hacia popa. Esprines: cruzados, de proa hacia popa y de popa hacia proa; evitan que el barco avance o retroceda. Traveses: perpendiculares al muelle, lo atracan.' };
+  // Qué movimiento impide cada amarra (una línea por amarra; si se resalta una, solo la suya).
+  const IMPIDE = {
+    'largo-proa': 'Largo de proa: llama hacia proa; impide que el barco retroceda y que la proa se separe del muelle.',
+    'esprin-proa': 'Esprín de proa: llama hacia popa; impide que el barco avance.',
+    traves: 'Través: perpendicular al muelle; impide que el barco se separe de él.',
+    'esprin-popa': 'Esprín de popa: llama hacia proa; impide que el barco retroceda.',
+    'largo-popa': 'Largo de popa: llama hacia popa; impide que el barco avance y que la popa se separe del muelle.',
+  };
+  const lineas = hl ? [IMPIDE[hl]] : Object.values(IMPIDE);
+  return { svg: out.join(''), caption: lineas.join('\n') };
 }
 
 // ---------------------------------------------------------------------------

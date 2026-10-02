@@ -4,5 +4,7 @@ import { LAMINAS as propias } from './propias.js';
 import { LAMINAS as costa } from './costa.js';
 import { LAMINAS as tierra } from './tierra.js';
 import { LAMINAS as seguridad } from './seguridad.js';
+import { LAMINAS as carta } from './carta.js';
+import { LAMINAS as mar } from './mar.js';
 
-export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad };
+export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar };

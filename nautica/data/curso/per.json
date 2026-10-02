@@ -8602,6 +8602,14 @@
        "texto": "- **Rolar**: el viento **cambia de dirección** (y se mantiene en la nueva). Por ejemplo, pasa del SW al W.\n- **Refrescar**: la intensidad **aumenta** y se mantiene.\n- **Caer** (o amainar): la intensidad **disminuye** y se mantiene.\n- **Calmar**: el viento cesa del todo o casi.\n- **Racha**: aumento **brusco y breve** de la intensidad.\n- **Viento racheado**: la intensidad **sube y baja continuamente**, a golpes.\n\nOjo: «refrescar» no tiene nada que ver con la temperatura."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rolar",
+        "vista": "vocabulario"
+       },
+       "texto": "Rolar es cambio de dirección; refrescar, caer, calmar, racha y racheado son cambios de intensidad."
+      },
+      {
        "tipo": "clave",
        "texto": "Rolar es dirección; refrescar, caer, racha y racheado son intensidad."
       },
@@ -8613,6 +8621,14 @@
        "tipo": "texto",
        "titulo": "Instrumentos",
        "texto": "- **Anemómetro**: mide la **velocidad** (intensidad) del viento. El de cazoletas gira más deprisa cuanto más sopla. A bordo, si el barco navega, mide el **viento aparente**; la electrónica puede calcular el real con los datos de la corredera.\n- **Veleta**: indica la **dirección** del viento.\n- **Catavientos**: también indica la **dirección**. Puede ser una manga de tela, una cinta en los obenques o los hilos (cataviento) cosidos en las velas, que te dicen cómo trabaja la vela.\n\nNinguno de ellos mide la presión: eso es el barómetro."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rolar",
+        "vista": "instrumentos"
+       },
+       "texto": "El anemómetro da la velocidad; la veleta y el catavientos, de dónde viene el viento."
       },
       {
        "tipo": "ojo",
@@ -10962,6 +10978,13 @@
        "texto": "1. **Sitúa la salida.**\n2. Calcula **Ct = dm + Δ** (actualiza la declinación si la sacas de la carta).\n3. Pasa el rumbo: **Rv = Ra + Ct**.\n4. **Tiempo navegado** = HRB final − HRB inicial, en horas.\n5. **Distancia**: d = V × t.\n6. Desde la salida, traza el **Rv** y mide **d** con el compás en la escala de latitudes.\n7. Lee la **latitud y la longitud** del punto al que llegas."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estima"
+       },
+       "texto": "Desde la salida se traza el Rv y se mide la distancia navegada (d = V × t): el extremo es la situación de estima."
+      },
+      {
        "tipo": "texto",
        "titulo": "Minutos a horas",
        "texto": "Pasa los minutos a horas dividiendo entre 60:\n- 1 h 30 min = **1,5 h**\n- 1 h 45 min = **1,75 h**\n- 2 h 15 min = **2,25 h**\n- 1 h 42 min = **1,7 h**\n- 2 h 20 min ≈ **2,33 h**\n\nEjemplo: de 18:20 a 20:35 pasan 2 h 15 min. A 6 nudos, d = 6 × 2,25 = **13,5 millas**."
@@ -11431,6 +11454,14 @@
        "texto": "1. Pasa las dos demoras a verdaderas (**Dv = Da + Ct**) y el rumbo a **Rv**.\n2. Calcula la **distancia navegada** entre las dos horas: d = V × t.\n3. Traza la **primera línea** desde su faro (Dv ± 180°).\n4. Desde **cualquier punto** de esa línea, traza el **Rv** y mide **d**.\n5. Por el extremo, traza una **paralela a la primera línea**: es la **línea trasladada**.\n6. Traza la **segunda línea** desde su faro. Su corte con la trasladada es la **situación a la hora de la segunda demora**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "traslado-demora",
+        "caso": "no-simultaneas"
+       },
+       "texto": "La primera línea se traslada paralela a sí misma el rumbo y la distancia navegados (6 nudos × 40 min = 4 millas); su corte con la segunda es la situación."
+      },
+      {
        "tipo": "clave",
        "texto": "La primera línea viaja con el barco: se traslada paralela a sí misma, con el rumbo y la distancia navegados entre las dos observaciones."
       },
@@ -11438,6 +11469,14 @@
        "tipo": "texto",
        "titulo": "¿Simultáneas o no?",
        "texto": "Muchos enunciados de examen empiezan con una situación («a las 12:00 estamos a 4 millas al Sur de Punta Carnero, navegando al Ra 244°») y siguen con «**más tarde** obtenemos marcación al faro A y marcación al faro B».\n\nEsas dos marcaciones se toman **a la vez**: son **simultáneas**. Se cruzan directamente, sin trasladar nada.\n\nLa situación inicial te sirve para dos cosas:\n- Te da el **rumbo**, que necesitas para convertir las marcaciones.\n- Si te lo piden, te permite medir la **distancia navegada**, desde ella hasta el corte."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "traslado-demora",
+        "caso": "simultaneas"
+       },
+       "texto": "Si las dos marcaciones se toman a la vez, se cruzan sin trasladar; la situación anterior solo da el rumbo y la distancia navegada."
       },
       {
        "tipo": "ojo",
@@ -11525,9 +11564,25 @@
        "texto": "1. **Sitúate** (por coordenadas, por dos distancias, por demora y distancia, etc.).\n2. Con centro en el faro, traza una **circunferencia** del radio pedido, medido en la escala de latitudes.\n3. Desde tu situación, traza la **tangente** por el lado correcto.\n4. Mide el **Rv** de esa tangente.\n5. Calcula **Ra = Rv − Ct**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tangente",
+        "banda": "babor"
+       },
+       "texto": "Faro a 10 millas en Dv 004°, pasar a 2,5 millas dejándolo por babor: sen α = 2,5/10, α ≈ 14,5° y Rv ≈ 019°."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cuál de las dos tangentes",
        "texto": "Desde tu situación salen dos tangentes, una a cada lado del faro:\n- **Dejar el faro por estribor**: al pasar, el faro queda a tu **derecha**. Tomas la tangente que queda a la **izquierda** de la visual al faro.\n- **Dejar el faro por babor**: el faro queda a tu **izquierda**. Tomas la tangente de la **derecha**.\n\nPuedes comprobarlo con la calculadora. Si D es la distancia al faro y d la de paso, el ángulo entre la visual y la tangente cumple **sen α = d / D**. Por estribor, Rv = Dv − α; por babor, Rv = Dv + α."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tangente",
+        "banda": "ambas"
+       },
+       "texto": "Faro por estribor, la tangente de la izquierda (Dv − α); por babor, la de la derecha (Dv + α)."
       },
       {
        "tipo": "ojo",

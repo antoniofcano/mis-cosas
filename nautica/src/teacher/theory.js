@@ -26,7 +26,8 @@ export function narrateTheory(q, ex, chosen) {
   if (ex?.explicacion) lines.push(ex.explicacion);
   if (ex?.clave) lines.push(`💡 ${ex.clave}`);
   if (ex?.trampa) lines.push(`⚠️ ${ex.trampa}`);
+  if (ex?.discrepancia) lines.push(`📝 Nota del profe: ${ex.discrepancia}`);
   if (!ex?.explicacion && !q.anulada) lines.push('Todavía no tengo preparada la explicación detallada de esta pregunta.');
-  const speech = lines.map((l) => l.replace(/^💡\s*/, 'Truco: ').replace(/^⚠️\s*/, 'Y ojo: ')).map(toSpeech).join(' ');
+  const speech = lines.map((l) => l.replace(/^💡\s*/, 'Truco: ').replace(/^⚠️\s*/, 'Y ojo: ').replace(/^📝\s*/, '')).map(toSpeech).join(' ');
   return { display: lines, speech };
 }

@@ -9,8 +9,9 @@ de los exámenes de **Patrón de Embarcaciones de Recreo (PER)** y, más adelant
 - **Pistas paso a paso** y **construcción gráfica** progresiva en la carta (SVG).
 - **Carta interactiva con instrumentos de examen**: zoom y desplazamiento (rueda, botones, dos dedos),
   📏 regla (Rv y distancia), 🧭 compás (radio en millas medido en la escala de latitudes),
-  📐 transportador cuadrado (agujero central, graduación 0–360° en el borde, hilo y «Trazar»), 📍 punto,
-  🧽 goma, deshacer. Todo se ajusta a los faros. Lo dibujado aparece también en el resumen para IA.
+  📐 transportador cuadrado (agujero central, graduación 0–360° en el borde, hilo y «Trazar»; se queda puesto
+  mientras usas las demás herramientas), 📍 punto (movible, coordenadas visibles u ocultas), 🔤 anotaciones de
+  texto, 🧽 goma, deshacer. Todo se ajusta a los faros. Lo dibujado aparece también en el resumen para IA.
 - **Tu carta escaneada como fondo** (opcional): carga tu PDF/imagen de la L105 y la app la georreferencia
   con la calibración incluida (error < 0,1′). Se guarda solo en tu navegador (IndexedDB), nunca en el repo.
 - **72 preguntas reales de examen** (PER Andalucía 2020–2026, preguntas de carta) con la respuesta de la

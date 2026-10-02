@@ -14,6 +14,7 @@
 //   { t:'vec',    from, bearing, length, label?, style }        vector con flecha
 //   { t:'arc',    center, radius, around, span, style }         arco de compás (millas, grados)
 //   { t:'circle', center, radius, label?, style }               circunferencia completa (millas)
+//   { t:'text',   at, text, style }                             anotación de texto
 //   Cualquier primitiva puede llevar `step`: solo se dibuja cuando se ha llegado a ese paso.
 //   Estilos: construction, lop, lop2, boat, current, effective, start, fix, estima, user, measure.
 
@@ -166,6 +167,10 @@ export function drawItem(it, z) {
       const pts = [];
       for (let d = -it.span / 2; d <= it.span / 2 + 1e-9; d += 2) pts.push(toWorld(rhumbDestination(it.center, norm360(it.around + d), it.radius)));
       return `<path class="${cls} arc" d="${pathOf(pts)}"${data}/>`;
+    }
+    case 'text': {
+      const p = toWorld(it.at);
+      return `<g class="note"${data}><circle cx="${f(p.x)}" cy="${f(p.y)}" r="${f(2 * k)}"/><text font-size="${f(13 * k)}" x="${f(p.x + 5 * k)}" y="${f(p.y + 4 * k)}">${esc(it.text)}</text></g>`;
     }
     case 'circle': {
       const c = toWorld(it.center);

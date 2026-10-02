@@ -60,7 +60,11 @@ export function createProgressStore(storage = safeStorage()) {
 
     /** Registra la respuesta a una pregunta de examen real (choice null = «No la sé»). */
     recordExam(questionId, { choice = null, ok }) {
-      data.exams[questionId] = { choice, ok, t: new Date().toISOString() };
+      const prev = data.exams[questionId];
+      // n: veces respondida; ok1: si se acertó la primera vez (lo que mejor predice una pregunta que no has memorizado).
+      const n = (prev?.n ?? (prev ? 1 : 0)) + 1;
+      const ok1 = prev ? (prev.ok1 ?? prev.ok) : ok;
+      data.exams[questionId] = { choice, ok, t: new Date().toISOString(), n, ok1 };
       save();
     },
 

@@ -5,10 +5,17 @@
 // la distribución Beta(1 + a, 1 + f) (pocos datos → mucha incertidumbre). Los fallos de un bloque de n preguntas
 // siguen entonces una beta-binomial. Se combinan los bloques (independientes) y se suman las probabilidades de los
 // repartos que aprueban: total de fallos ≤ n_total − mínimo de aciertos y, en cada bloque con límite, fallos ≤ límite.
+//
+// Para no ser optimista con preguntas repetidas: una pregunta respondida una sola vez cuenta entera; si la has
+// respondido varias veces, cuenta mitad tu primer intento y mitad el último (acertarla tras verla no es lo mismo
+// que saberla de entrada). Y los simulacros completos recientes corrigen el resultado: el modelo vale como
+// PESO_MODELO simulacros y cada simulacro reciente suma su apto o no apto.
 
 export const MIN_RESPUESTAS = 10; // preguntas respondidas por tema para opinar
 export const LISTO = 0.8;
 export const CASI = 0.5;
+export const PESO_MODELO = 3; // el modelo cuenta como 3 simulacros
+export const SIMULACROS = 5; // simulacros completos recientes que se tienen en cuenta
 
 /** log Γ(x) (aproximación de Lanczos), suficiente para las combinatorias de un examen. */
 function lgamma(x) {
@@ -56,29 +63,46 @@ export function probAprobar(estructura, distribuciones) {
  * @returns {{ estado: 'faltan-datos'|'listo'|'casi'|'aun-no', prob: number|null, temasSinDatos: object[],
  *   limitante: object|null, temas: { ut, titulo, hechas, aciertos, pct, maxErrores, pFallaLimite }[] }}
  */
-export function estoyListo(estructura, preguntas, respuestas = {}) {
+/** Aciertos que cuenta una respuesta: entera si es la primera vez; si se repitió, mitad primer intento y mitad último. */
+export function aciertoPonderado(r) {
+  if (!r) return 0;
+  const n = r.n ?? 1;
+  if (n <= 1 || r.ok1 == null) return r.ok ? 1 : 0;
+  return 0.5 * (r.ok1 ? 1 : 0) + 0.5 * (r.ok ? 1 : 0);
+}
+
+/** Simulacros completos (con apto/no apto) más recientes de una lista de tests. */
+export function simulacrosRecientes(tests = [], max = SIMULACROS) {
+  return tests.filter((t) => t.apto === true || t.apto === false).slice(-max);
+}
+
+export function estoyListo(estructura, preguntas, respuestas = {}, tests = []) {
   const temas = estructura.bloques.map((b) => {
     const qs = preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta && respuestas[q.id]);
-    const aciertos = qs.filter((q) => respuestas[q.id].ok).length;
     const hechas = qs.length;
+    const aciertosReales = qs.filter((q) => respuestas[q.id].ok).length;
+    const aciertos = qs.reduce((s, q) => s + aciertoPonderado(respuestas[q.id]), 0);
     const total = preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta).length;
     const dist = fallosBloque(b.n, aciertos, hechas - aciertos);
     const pFallaLimite = b.maxErrores == null ? null : dist.slice(b.maxErrores + 1).reduce((x, y) => x + y, 0);
-    return { ut: b.ut, titulo: b.titulo, n: b.n, hechas, aciertos, pct: hechas ? Math.round((100 * aciertos) / hechas) : null, maxErrores: b.maxErrores ?? null, pFallaLimite, suficiente: hechas >= Math.min(MIN_RESPUESTAS, total), dist };
+    return { ut: b.ut, titulo: b.titulo, n: b.n, hechas, aciertos, aciertosReales, pct: hechas ? Math.round((100 * aciertos) / hechas) : null, maxErrores: b.maxErrores ?? null, pFallaLimite, suficiente: hechas >= Math.min(MIN_RESPUESTAS, total), dist };
   });
   const temasSinDatos = temas.filter((t) => !t.suficiente);
-  if (temasSinDatos.length) return { estado: 'faltan-datos', prob: null, temasSinDatos, limitante: null, temas };
-  const prob = probAprobar(estructura, temas.map((t) => t.dist));
+  const sims = simulacrosRecientes(tests);
+  const simulacros = { hechos: sims.length, aprobados: sims.filter((t) => t.apto).length };
+  if (temasSinDatos.length) return { estado: 'faltan-datos', prob: null, probModelo: null, simulacros, temasSinDatos, limitante: null, temas };
+  const probModelo = probAprobar(estructura, temas.map((t) => t.dist));
+  const prob = (PESO_MODELO * probModelo + simulacros.aprobados) / (PESO_MODELO + simulacros.hechos);
   // Lo que más te tumba: el tema que, si lo dominaras (95 % de acierto), más subiría tu probabilidad de aprobar.
   let limitante = null;
   let mejora = 0;
   temas.forEach((t, i) => {
     const d = temas.map((x, j) => (j === i ? fallosBloque(x.n, 95, 5) : x.dist));
-    const delta = probAprobar(estructura, d) - prob;
+    const delta = probAprobar(estructura, d) - probModelo;
     if (delta > mejora + 1e-9) { mejora = delta; limitante = { ...t, mejora: delta }; }
   });
   const estado = prob >= LISTO ? 'listo' : prob >= CASI ? 'casi' : 'aun-no';
-  return { estado, prob, temasSinDatos, limitante: mejora >= 0.02 ? limitante : null, temas };
+  return { estado, prob, probModelo, simulacros, temasSinDatos, limitante: mejora >= 0.02 ? limitante : null, temas };
 }
 
 /** En palabras, para la pantalla Hoy. */
@@ -91,6 +115,9 @@ export function lineaListo(r) {
   const de10 = Math.round(r.prob * 10);
   const base = r.estado === 'listo' ? '✅ Estás listo' : r.estado === 'casi' ? 'Casi' : 'Todavía no';
   let txt = `${base}: con lo que aciertas ahora aprobarías unas ${de10} de cada 10 veces.`;
+  const s = r.simulacros;
+  if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${s.hechos} simulacros`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta.`;
+  else txt += ' Haz un simulacro completo: es la mejor prueba.';
   if (r.limitante) {
     const t = r.limitante;
     txt += ` Lo que más te puede tumbar: ${t.titulo} (aciertas el ${t.pct} %${t.maxErrores != null ? `, y solo se pueden fallar ${t.maxErrores} de ${t.n}` : ''}).`;

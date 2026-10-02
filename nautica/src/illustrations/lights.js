@@ -21,7 +21,9 @@ export function parseRhythm(text) {
   if (/^F\b(?!l)/.test(t)) return { period: 1, steps: [{ on: true, d: 1 }], colors, text: t };
   if (/^Al/.test(t)) {
     const p = period || 2;
-    return { period: p, steps: colors.map((c) => ({ on: true, d: p / colors.length, color: c })), colors, text: t };
+    // alternativa: cada color encendido y una pausa apagada entre colores (Bu 1 s · 0,5 s · Y 1 s · 0,5 s en 3 s)
+    const dOn = p / (colors.length * 1.5);
+    return { period: p, steps: colors.flatMap((c) => [{ on: true, d: dOn, color: c }, { on: false, d: dOn / 2 }]), colors, text: t };
   }
   let m;
   if ((m = t.match(/^(V?Q)\((\d+)\)\s*\+\s*LFl/))) { const v = m[1] === 'VQ'; flashes(Number(m[2]), v ? 0.2 : 0.3, v ? 0.3 : 0.7); off(0.7); on(2); }

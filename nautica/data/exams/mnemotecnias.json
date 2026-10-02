@@ -322,7 +322,7 @@
   {
    "id": "r20",
    "regla": "Los conos apuntan al negro.",
-   "significado": "Las puntas del tope de la cardinal señalan dónde está la banda negra de la boya: Norte ▲▲ negro arriba; Sur ▼▼ negro abajo; Este ▼▲ (bases juntas) negro arriba y abajo con amarillo en medio; Oeste ▲▼ (puntas juntas) negro en medio. Dicho de otra forma: el amarillo va con las bases y el negro con los vértices (Club Elcano).",
+   "significado": "Las puntas del tope de la cardinal señalan dónde está la banda negra de la boya: Norte ▲▲ negro arriba; Sur ▼▼ negro abajo; Este ▼▲ (bases juntas) negro arriba y abajo con amarillo en medio; Oeste ▲▼ (puntas juntas) negro en medio. Dicho de otra forma: el amarillo va con las bases y el negro con los vértices.",
    "tema": "UT5 Balizamiento",
    "fuentes": [
     "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",

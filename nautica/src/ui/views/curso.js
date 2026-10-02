@@ -204,6 +204,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           card = nuevo;
           setChildren(fb, profePanel(q, explanationFor(q, bank.explicaciones), k));
           sig.hidden = false;
+          summaryText = `LECCIÓN ${L.id} práctica · ${q.id}: marcó ${k}, correcta ${q.correcta} · llevas ${ok}/${i + 1}`;
         } });
         setChildren(box, h('p.badge', `${i + 1} de ${ses.length} · ${ok} ✓`), card, fb, h('div.actions', sig));
         summaryText = `LECCIÓN ${L.id} práctica · pregunta ${q.id} (sin responder: no des la respuesta)`;

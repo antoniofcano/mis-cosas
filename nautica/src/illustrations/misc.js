@@ -155,7 +155,7 @@ export function boatIllustration(spec) {
   out.push(`<text x="12" y="205" class="il-lbl strong">Sección</text>`);
   out.push(`<rect x="120" y="230" width="120" height="16" class="il-water-cut"/>`);
   out.push(`<path d="M110,210 L250,210 L240,262 L120,262 Z" class="il-hull-plan"/>`);
-  out.push(`<line x1="100" y1="232" x2="262" y2="232" class="${on('linea-flotacion')}" stroke="#0ea5e9"/><text x="264" y="235" class="${on('linea-flotacion')} t">flotación</text>`);
+  out.push(`<line x1="100" y1="232" x2="262" y2="232" class="${on('linea-flotacion')}" stroke="#0ea5e9"/><text x="200" y="246" class="${on('linea-flotacion')} t">flotación</text>`);
   out.push(`<text x="150" y="226" class="${on('obra-muerta')} t">obra muerta</text><text x="152" y="256" class="${on('obra-viva')} t">obra viva</text>`);
   out.push(`<line x1="96" y1="210" x2="96" y2="262" class="${on('puntal')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="40" y="240" class="${on('puntal')} t">puntal</text>`);
   out.push(`<line x1="300" y1="232" x2="300" y2="262" class="${on('calado')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="306" y="252" class="${on('calado')} t">calado</text>`);

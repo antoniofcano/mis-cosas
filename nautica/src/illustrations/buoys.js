@@ -8,8 +8,8 @@ import { blinkingLight, rhythmTimeline } from './lights.js';
 const C = { R: '#dc2626', G: '#16a34a', Y: '#eab308', K: '#111827', W: '#ffffff', Bu: '#2563eb' };
 
 export const BUOYS = {
-  babor: { nombre: 'Lateral de babor', franjas: ['R'], tope: 'cilindro-R', ritmo: 'Fl R 4s', nota: 'Entrando en puerto se deja por babor. Rojo, cilíndrica.' },
-  estribor: { nombre: 'Lateral de estribor', franjas: ['G'], tope: 'cono-arriba-G', ritmo: 'Fl G 4s', nota: 'Entrando en puerto se deja por estribor. Verde, cónica.' },
+  babor: { nombre: 'Lateral de babor', franjas: ['R'], tope: 'cilindro-R', ritmo: 'Fl R 4s', nota: 'Entrando en puerto se deja por babor. Roja; marca de tope cilíndrica (o boya cilíndrica).' },
+  estribor: { nombre: 'Lateral de estribor', franjas: ['G'], tope: 'cono-arriba-G', ritmo: 'Fl G 4s', nota: 'Entrando en puerto se deja por estribor. Verde; marca de tope cónica con el vértice arriba (o boya cónica).' },
   'canal-principal-estribor': { nombre: 'Bifurcación: canal principal a estribor', franjas: ['R', 'G', 'R'], tope: 'cilindro-R', ritmo: 'Fl(2+1) R 10s', nota: 'Modificada de babor: roja con banda verde. El canal principal queda a estribor.' },
   'canal-principal-babor': { nombre: 'Bifurcación: canal principal a babor', franjas: ['G', 'R', 'G'], tope: 'cono-arriba-G', ritmo: 'Fl(2+1) G 10s', nota: 'Modificada de estribor: verde con banda roja. El canal principal queda a babor.' },
   'cardinal-n': { nombre: 'Cardinal Norte', franjas: ['K', 'Y'], tope: 'conos-arriba', ritmo: 'Q', nota: 'Pasa por el norte. Conos hacia arriba; negro arriba. Centelleo continuo.' },

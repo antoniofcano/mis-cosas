@@ -324,5 +324,5 @@ export function dstIllustration() {
   out.push(arrow(250, 210, 250, 50, 'r', 'ds', 2.6), lbl(256, 56, 'cruzar a 90°', 'r'));
   out.push(`<g><path d="M0,-12 L6,6 L-6,6Z" fill="${C.r}"/><animateMotion dur="7s" repeatCount="indefinite" path="M250,210 L250,50"/></g>`);
   out.push('</svg>');
-  return { svg: out.join(''), caption: 'Se navega por la vía en el sentido de la circulación. Si hay que cruzarlo, lo más perpendicular posible a la corriente de tráfico; para entrar o salir, por los extremos o con el menor ángulo. Las embarcaciones de menos de 20 m y los veleros pueden usar la zona costera.' };
+  return { svg: out.join(''), caption: 'Se navega por la vía en el sentido de la circulación. Si hay que cruzarlo, lo más perpendicular posible a la corriente de tráfico; para entrar o salir, por los extremos o con el menor ángulo. Los buques de menos de 20 m, los de vela y los pesqueros pueden usar la zona de navegación costera.' };
 }

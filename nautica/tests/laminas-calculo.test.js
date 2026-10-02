@@ -166,3 +166,14 @@ test('humedad relativa y punto de rocío: al enfriar sin añadir agua la humedad
   assert.equal(hayNiebla(13, td), false);
   assert.equal(hayNiebla(12, td), true);
 });
+
+import { tideHeight, correccionTabla, aguaBajoQuilla, twelfthsFraction } from '../src/nautical/tides.js';
+test('mareas: la curva coincide con la fórmula de la tabla oficial y con los duodécimos', () => {
+  const bm = { t: 0, h: 0.6 };
+  const pm = { t: 360, h: 3.4 };
+  for (let m = 0; m <= 360; m += 15) assert.ok(Math.abs(tideHeight(bm, pm, m) - (0.6 + correccionTabla(2.8, m, 360))) < 1e-9);
+  assert.ok(Math.abs(correccionTabla(2.8, 180, 360) - 1.4) < 1e-9); // a mitad de la creciente, la mitad de la amplitud
+  for (let hh = 1; hh <= 6; hh++) assert.ok(Math.abs(correccionTabla(1, hh * 60, 360) - twelfthsFraction(hh)) < 0.03, `hora ${hh}`);
+  assert.deepEqual(aguaBajoQuilla({ sondaCarta: 2, altura: 0.6, calado: 1.8 }), { sonda: 2.6, bajoQuilla: 2.6 - 1.8 });
+  assert.ok(aguaBajoQuilla({ sondaCarta: 1, altura: 0.6, calado: 1.8 }).bajoQuilla < 0);
+});

@@ -100,6 +100,7 @@ import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
 import { caidaPopa } from '../src/nautical/helice.js';
 import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
 import { intensidad, humedadRelativa } from '../src/nautical/meteo.js';
+import { correccionTabla } from '../src/nautical/tides.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -210,6 +211,10 @@ function specsDeClase(tipo) {
   return out;
 }
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
+function COMPRUEBA_MAREA(c, p) {
+  assert.ok(Math.abs(correccionTabla(1, 180, 360) - 0.5) < 1e-12);
+  assert.equal(p.opciones[p.correcta], 'La mitad de la amplitud');
+}
 function COMPRUEBA_NIEBLA(c, p) {
   const e = c.estado();
   assert.ok(humedadRelativa(e.t - 3, 12) > humedadRelativa(e.t, 12)); // enfriar sube la humedad relativa
@@ -217,6 +222,9 @@ function COMPRUEBA_NIEBLA(c, p) {
 }
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  'marea:curva'(c, p) { COMPRUEBA_MAREA(c, p); },
+  'marea:duodecimos'(c, p) { COMPRUEBA_MAREA(c, p); },
+  'marea:sonda'(c, p) { COMPRUEBA_MAREA(c, p); },
   'meteo:niebla-adveccion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
   'meteo:niebla-radiacion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
   'meteo:isobaras'(c, p) {

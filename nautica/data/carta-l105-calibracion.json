@@ -1,0 +1,125 @@
+{
+ "id": "L105-escaneo-gris-7024x5226",
+ "description": "Calibración (georreferenciación) del escaneo en gris de la carta IHM L105 Enseñanza (PDF de una página con una imagen JPEG de 7024×5226 px). La imagen NO está en el repositorio: cada usuario carga su propia copia en la app. Los puntos de control son cruces de la cuadrícula de 10′ medidos sobre el escaneo; coordenadas en el datum de la carta (ED50).",
+ "image": {
+  "width": 7024,
+  "height": 5226
+ },
+ "controlPoints": [
+  {
+   "lon": -6.166667,
+   "lat": 36.166667,
+   "px": 1294.5,
+   "py": 1548.0
+  },
+  {
+   "lon": -6.0,
+   "lat": 36.166667,
+   "px": 2185.0,
+   "py": 1546.5
+  },
+  {
+   "lon": -5.833333,
+   "lat": 36.166667,
+   "px": 3077.0,
+   "py": 1545.0
+  },
+  {
+   "lon": -5.666667,
+   "lat": 36.166667,
+   "px": 3961.0,
+   "py": 1543.5
+  },
+  {
+   "lon": -5.5,
+   "lat": 36.166667,
+   "px": 4849.0,
+   "py": 1541.0
+  },
+  {
+   "lon": -5.333333,
+   "lat": 36.166667,
+   "px": 5737.5,
+   "py": 1542.0
+  },
+  {
+   "lon": -6.166667,
+   "lat": 36.0,
+   "px": 1294.5,
+   "py": 2641.0
+  },
+  {
+   "lon": -6.0,
+   "lat": 36.0,
+   "px": 2185.0,
+   "py": 2638.0
+  },
+  {
+   "lon": -5.833333,
+   "lat": 36.0,
+   "px": 3078.5,
+   "py": 2637.0
+  },
+  {
+   "lon": -5.666667,
+   "lat": 36.0,
+   "px": 3956.0,
+   "py": 2635.0
+  },
+  {
+   "lon": -5.5,
+   "lat": 36.0,
+   "px": 4846.5,
+   "py": 2635.5
+  },
+  {
+   "lon": -5.333333,
+   "lat": 36.0,
+   "px": 5735.5,
+   "py": 2636.5
+  },
+  {
+   "lon": -6.166667,
+   "lat": 35.833333,
+   "px": 1294.5,
+   "py": 3731.5
+  },
+  {
+   "lon": -6.0,
+   "lat": 35.833333,
+   "px": 2185.0,
+   "py": 3729.0
+  },
+  {
+   "lon": -5.833333,
+   "lat": 35.833333,
+   "px": 3077.0,
+   "py": 3727.5
+  },
+  {
+   "lon": -5.666667,
+   "lat": 35.833333,
+   "px": 3949.0,
+   "py": 3727.0
+  },
+  {
+   "lon": -5.5,
+   "lat": 35.833333,
+   "px": 4841.5,
+   "py": 3727.0
+  },
+  {
+   "lon": -5.333333,
+   "lat": 35.833333,
+   "px": 5732.0,
+   "py": 3727.5
+  }
+ ],
+ "neatline": {
+  "north": 36.333333333333336,
+  "south": 35.666666666666664,
+  "west": -6.333333333333333,
+  "east": -5.166666666666667
+ },
+ "accuracy": "Ajuste afín en (longitud, latitud aumentada): residuo máx. 8 px ≈ 0,09′ (1′ ≈ 89 px)."
+}

@@ -11,7 +11,7 @@ export const APROBADO = 0.8;
 /**
  * Estado de una lección.
  * @param {object} leccion   { id, practica: [ids] }
- * @param {object} reg       registro guardado { visto, caja, proximo, ultimo } (o undefined)
+ * @param {object} reg       registro guardado { visto, caja, proximo, ultimo, paso } (o undefined)
  * @param {object} respuestas mapa idPregunta → { ok }
  * @param {number} ahora     ms
  * @returns {{ estado: 'nueva'|'empezada'|'repasar'|'dominada', hechas: number, aciertos: number, total: number, pct: number|null, proximo: number|null }}
@@ -22,7 +22,8 @@ export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
   const aciertos = hechas.filter((id) => respuestas[id].ok).length;
   const pct = hechas.length ? aciertos / hechas.length : null;
   const base = { hechas: hechas.length, aciertos, total: ids.length, pct, proximo: reg?.proximo ?? null };
-  if (!reg?.visto && !hechas.length) return { ...base, estado: 'nueva' };
+  // Una clase abierta y dejada a medias (reg.paso > 0) ya está empezada.
+  if (!reg?.visto && !reg?.paso && !hechas.length) return { ...base, estado: 'nueva' };
   if (reg?.caja == null) return { ...base, estado: 'empezada' };
   if (reg.proximo != null && reg.proximo <= ahora) return { ...base, estado: 'repasar' };
   if (pct != null && pct < 0.6) return { ...base, estado: 'repasar' };

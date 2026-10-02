@@ -6,12 +6,12 @@ import { check, STATUS } from '../../analysis/checker.js';
 import { quantity } from '../../analysis/quantities.js';
 import { GLOSSARY } from '../../nautical/glossary.js';
 import { exerciseSummary } from '../../ai/summary.js';
-import { chartWidget } from '../chart-widget.js';
+import { chartWidget, avisoCartaMovil, pantallaPequena } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { link, navigate } from '../router.js';
-import { tlink, crumbs, currentTit } from '../titulacion.js';
+import { tlink, volver, currentTit } from '../titulacion.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: '✅ Correcto',
@@ -47,7 +47,7 @@ export function exerciseView({ ctx, progress, params: route }) {
       h('button', { type: 'submit' }, 'Comprobar'),
       h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, '💡 Pista'),
       h('button.secondary', { type: 'button', onclick: () => { reveal(solution.steps.length); showSolution(); } }, 'Ver solución'),
-      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, '🔄 Otro'),
+      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, '🔄 Otro ejercicio'),
     ),
   );
   const diag = h('div.diagnosis', { 'aria-live': 'polite' });
@@ -79,8 +79,11 @@ export function exerciseView({ ctx, progress, params: route }) {
   };
   const tableButtons = solution.drawing
     ? h('div.actions.table-actions',
-      h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
-      h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'))
+      pantallaPequena()
+        ? [h('button', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'),
+          h('button.secondary', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta')]
+        : [h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
+          h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta')])
     : null;
 
   function reveal(n) {
@@ -112,6 +115,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {
       progress.recordAttempt(exercise.id, { ok: r.allOk, seed, mistakes: r.diagnoses.map((d) => d.id) });
+      if (r.allOk) progress.logActividad(5);
       state.recorded = true;
     }
     refreshAi();
@@ -125,14 +129,14 @@ export function exerciseView({ ctx, progress, params: route }) {
   const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
   const el = h('div.exercise',
-    crumbs(currentTit(progress), ['Carta', tlink(currentTit(progress), ['carta'])], exercise.title),
+    volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
     h('header',
       h('h1', exercise.title),
-      h('div.badges', exercise.levels.map((l) => h('span.badge', l)), h('span.badge.muted', `semilla ${seed}`)),
+      h('div.badges', exercise.levels.map((l) => h('span.badge', l))),
     ),
     h('div.layout',
       h('div.col',
-        h('section.statement', h('h2', 'Enunciado'), h('p', statement), tableButtons),
+        h('section.statement', h('h2', 'Enunciado'), h('p', statement), solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
         h('section', h('h2', 'Resolución paso a paso'), stepsList,
           listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),
@@ -144,7 +148,7 @@ export function exerciseView({ ctx, progress, params: route }) {
       widget ? h('div.col.chart-col', h('section', h('h2', 'Carta'), widget.el)) : null,
     ),
     h('details.ai-context#ai-context',
-      h('summary', '🤖 Resumen para asistentes IA (contiene la solución)'),
+      h('summary', 'Para asistentes de IA'),
       h('p.muted.small', 'Texto compacto pensado para Claude u otros asistentes. ', h('button.small', { type: 'button', onclick: () => copyText(summary()) }, 'Copiar')),
       aiPre,
     ),

@@ -1,5 +1,7 @@
 // Punto de entrada de la interfaz: carga datos, crea el contexto de los motores y enruta vistas.
 // La app se organiza por titulación (#/per, #/py); la mesa de cartas, las láminas y el progreso son comunes.
+// Navegación: barra inferior de 4 pestañas (Hoy, Temario, Examen, Más); durante una clase, una tanda de
+// preguntas o un examen, «modo concentración» (body.focus) con la barra de actividad de la propia vista.
 
 import { h, clear } from './dom.js';
 import { parseHash, navigate } from './router.js';
@@ -12,19 +14,24 @@ import { voice } from './voice.js';
 import { exerciseView } from './views/exercise.js';
 import { examsView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
-import { teoriaView, examenesView, practiceView, testView } from './views/theory.js';
+import { examenesView, practiceView, testView } from './views/theory.js';
 import { galleryView } from './views/gallery.js';
-import { portadaView, dashboardView, cartaView } from './views/titulacion.js';
+import { cartaView } from './views/titulacion.js';
+import { hoyView } from './views/hoy.js';
+import { bienvenidaView } from './views/bienvenida.js';
 import { reglasView } from './views/reglas.js';
-import { cursoView, leccionView } from './views/curso.js';
+import { leccionView } from './views/curso.js';
+import { temarioView, temaView } from './views/temario.js';
+import { masView } from './views/mas.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
 const TIT_ROUTES = {
-  '': dashboardView,
-  curso: (o) => (o.params.parts[1] ? leccionView(o) : cursoView(o)),
+  '': hoyView,
+  temario: (o) => (o.params.parts[1] ? temaView(o) : temarioView(o)),
+  curso: leccionView, // #/<tit>/curso/<id> (sin id redirige al temario)
   laminas: galleryView,
-  teoria: (o) => (o.params.parts[1] === 'ut' ? practiceView(o) : teoriaView(o)),
+  teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
   examenes: (o) => (o.params.parts[1] ? examsView(o) : examenesView(o)),
@@ -32,37 +39,70 @@ const TIT_ROUTES = {
 
 // Rutas comunes a todas las titulaciones
 const ROUTES = {
-  '': portadaView,
+  '': hoyView,
+  bienvenida: bienvenidaView,
   ej: exerciseView,
   examenes: examsView, // #/examenes/<banco>/<pregunta>
   mesa: chartView,
   conceptos: theoryView,
   reglas: reglasView,
   progreso: progressView,
+  mas: masView,
 };
 
 // Direcciones antiguas → nuevas (enlaces guardados)
 function legacy(parts, progress) {
   const tit = currentTit(progress);
+  if (!parts.length && progress.settings().onboarded !== true) return ['bienvenida'];
   if (parts[0] === 'teoria' || parts[0] === 'test') return [tit, ...parts];
   if (parts[0] === 'examenes' && !parts[1]) return [tit, 'examenes'];
   if (parts[0] === 'carta') return ['mesa'];
   if (parts[0] === 'ilustraciones' || parts[0] === 'laminas') return [tit, 'laminas'];
+  if (TITULACIONES[parts[0]]) {
+    if (parts[1] === 'curso' && !parts[2]) return [parts[0], 'temario'];
+    if (parts[1] === 'teoria' && parts[2] !== 'ut') return [parts[0], 'temario'];
+  }
   return null;
 }
 
-/** Cabecera: selector de titulación y menú de la titulación activa. */
-function renderNav(tit, section) {
-  const sw = document.getElementById('tit-switch');
-  const nav = document.getElementById('nav');
-  if (!sw || !nav) return;
-  sw.replaceChildren(...Object.values(TITULACIONES).map((T) => h('a', { href: tlink(T.id), class: T.id === tit ? 'active' : '', title: T.nombre }, T.sigla)));
-  const items = [['', 'Panel'], ['curso', 'Curso'], ['teoria', 'Teoría'], ['carta', 'Carta'], ['examenes', 'Exámenes'], ['laminas', 'Láminas']];
-  nav.replaceChildren(
-    ...items.map(([k, t]) => h('a', { href: tlink(tit, k ? [k] : []), class: section === k ? 'active' : '' }, t)),
-    h('a', { href: '#/mesa', class: section === 'mesa' ? 'active' : '' }, '🗺️ Mesa'),
-    h('a', { href: '#/progreso', class: section === 'progreso' ? 'active' : '' }, 'Progreso'),
-  );
+/** Pestaña activa de la barra inferior según la ruta (§2.3). */
+export function pestanaDe(parts) {
+  const [a, b] = parts;
+  if (!a || a === 'bienvenida') return 'hoy';
+  if (TITULACIONES[a]) {
+    if (!b) return 'hoy';
+    if (['temario', 'curso', 'teoria', 'carta'].includes(b)) return 'temario';
+    if (b === 'examenes' && parts[2]) return 'temario';
+    if (b === 'examenes' || b === 'test') return 'examen';
+    return 'mas'; // laminas
+  }
+  if (a === 'ej' || a === 'examenes') return 'temario';
+  return 'mas'; // mas, progreso, reglas, conceptos, mesa
+}
+
+/** Modo concentración: clase, tanda de preguntas, examen y bienvenida. */
+function esFoco(parts) {
+  if (parts[0] === 'bienvenida') return true;
+  if (!TITULACIONES[parts[0]]) return false;
+  const [, b, c] = parts;
+  return (b === 'curso' && !!c) || (b === 'teoria' && c === 'ut') || b === 'test';
+}
+
+/** Barra inferior: siempre las mismas 4 pestañas. */
+function renderNav(tit, parts) {
+  const bar = document.getElementById('tabbar');
+  const label = document.getElementById('tit-label');
+  if (label) label.textContent = TITULACIONES[tit].sigla;
+  if (!bar) return;
+  const activa = pestanaDe(parts);
+  const tabs = [
+    ['hoy', '🏠', 'Hoy', tlink(tit)],
+    ['temario', '📚', 'Temario', tlink(tit, ['temario'])],
+    ['examen', '📝', 'Examen', tlink(tit, ['examenes'])],
+    ['mas', '☰', 'Más', '#/mas'],
+  ];
+  bar.replaceChildren(...tabs.map(([id, icon, txt, href]) => h('a.tab', { href, class: id === activa ? 'active' : '', 'aria-current': id === activa ? 'page' : null },
+    h('span.tab-icon', { 'aria-hidden': 'true' }, icon), h('span.tab-txt', txt))));
 }
 
 async function main() {
@@ -84,23 +124,20 @@ async function main() {
     let view;
     let params = route;
     let tit;
-    let section;
     if (TITULACIONES[route.parts[0]]) {
       tit = route.parts[0];
       setTit(progress, tit);
       params = { parts: route.parts.slice(1), query: route.query };
-      section = params.parts[0] ?? '';
-      view = TIT_ROUTES[section] ?? dashboardView;
-      if (section === 'test') section = 'examenes';
+      view = TIT_ROUTES[params.parts[0] ?? ''] ?? TIT_ROUTES[''];
     } else {
       tit = currentTit(progress);
-      section = route.parts[0] ?? '';
-      if (section === 'ej') section = 'carta';
-      if (section === 'examenes') section = 'carta';
-      view = ROUTES[route.parts[0] ?? ''] ?? portadaView;
+      view = ROUTES[route.parts[0] ?? ''] ?? ROUTES[''];
     }
     document.body.dataset.tit = tit;
-    renderNav(tit, route.parts.length ? section : null);
+    document.body.classList.toggle('focus', esFoco(route.parts));
+    const footer = document.querySelector('body > footer');
+    if (footer) footer.hidden = route.parts[0] !== 'mas';
+    renderNav(tit, route.parts);
     try {
       current = view({ ctx, progress, params, tit });
     } catch (e) {

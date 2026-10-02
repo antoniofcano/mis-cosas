@@ -9,6 +9,7 @@ nautica/
 ├── llms.txt              Guía para agentes de IA
 ├── data/                 Base de datos estática (JSON)
 │   ├── chart-105.json    Carta: puntos notables, costa (polígonos de tierra), declinación
+│   ├── curso/            Clases por titulación (per.json; módulos por tema con tarjetas, chuleta y práctica)
 │   └── exams/            Bancos de preguntas reales (index.json + un fichero por banco)
 ├── src/
 │   ├── math/             MOTOR MATEMÁTICO   ángulos, vectores, Mercator/loxodrómica, RNG con semilla, formatos
@@ -21,6 +22,7 @@ nautica/
 │   │                                        instrumentos (transportador, compás, regla) y georreferenciación
 │   │                                        de escaneos (ajuste afín)
 │   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
+│   ├── course/           CURSO              estado de las clases y repaso espaciado (engine.js) y recomendador «Hoy» (plan.js)
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
 │   ├── theory/           MOTOR DE TESTS     estructura de cada titulación (blocks.js: PER, PY, TITULACIONES),
 │   │                                        simulacros, exámenes reales y corrección con las reglas oficiales
@@ -28,7 +30,7 @@ nautica/
 │   ├── teacher/          MOTOR «PROFE»     lecciones por tipo de paso (intro, truco, error típico), narración
 │   │                                        de soluciones y conversión a lenguaje hablado para la voz
 │   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
-│   └── ui/               INTERFAZ           router por hash (#/<tit>/… por titulación), vistas; ui/chart/: carta interactiva (zoom, capas,
+│   └── ui/               INTERFAZ           router por hash (#/<tit>/… por titulación), barra inferior, vistas; ui/chart/: carta interactiva (zoom, capas,
 │                                            herramientas de dibujo) y capa raster de la carta del usuario
 ├── styles/app.css
 └── tests/                node --test
@@ -37,15 +39,38 @@ nautica/
 Dependencias permitidas (de abajo arriba): `math` ← `nautical` ← `chart` ← `exercises` ← `analysis`
 ← `graphics` ← `ai` ← `ui`. `store` solo lo usa `ui`.
 
-## Organización por titulación
+## Organización por titulación y navegación
 
 La titulación (PER, PY) es el eje de la interfaz. `src/theory/blocks.js` define `TITULACIONES`: estructura
-del examen (bloques, nº de preguntas, límites de errores, aciertos mínimos, duración), nivel de los ejercicios
-de carta y ficheros de datos. Las rutas `#/<tit>/{teoria,carta,examenes,test}` y el panel `#/<tit>` las sirve
-`ui/app.js` pasando `tit` a la vista; la mesa de cartas, las láminas, los conceptos y el progreso son comunes.
-Añadir una titulación = una entrada en `TITULACIONES` + su banco `data/exams/<comunidad>-<tit>-teoria.json`
-(mismo formato de pregunta: `id`, `ut`, `enunciado`, `opciones`, `correcta`, `anulada`, `orden?`, `figuras?`)
-y, opcionalmente, sus explicaciones `…-explicaciones.json` (`{ id: { explicacion, clave, trampa?, discrepancia?, ilustraciones? } }`).
+del examen (temas, nº de preguntas, límites de errores, aciertos mínimos, duración), nivel de los ejercicios
+de carta y ficheros de datos. Añadir una titulación = una entrada en `TITULACIONES` + su banco
+`data/exams/<comunidad>-<tit>-teoria.json` (mismo formato de pregunta: `id`, `ut`, `enunciado`, `opciones`,
+`correcta`, `anulada`, `orden?`, `figuras?`), opcionalmente sus explicaciones `…-explicaciones.json`
+(`{ id: { explicacion, clave, trampa?, discrepancia?, ilustraciones? } }`) y su curso `data/curso/<tit>.json`
+(si no existe, `loadCourse` devuelve `null` y la app funciona solo con preguntas).
+
+`ui/app.js` enruta por hash y pinta la barra inferior (`#tabbar`: Hoy, Temario, Examen, Más):
+
+| Ruta | Vista |
+|---|---|
+| `#/`, `#/<tit>` | `views/hoy.js` → `hoyView` (sin presentación previa, `#/` lleva a `#/bienvenida`) |
+| `#/bienvenida` | `views/bienvenida.js` |
+| `#/<tit>/temario`, `#/<tit>/temario/<n>` | `views/temario.js` → `temarioView`, `temaView` |
+| `#/<tit>/curso/<id>[?practica=1]` | `views/curso.js` → `leccionView` (clase) |
+| `#/<tit>/teoria/ut/<n>?s=…[&f=1]` | `views/theory.js` → `practiceView` (tanda de 10) |
+| `#/<tit>/examenes`, `#/<tit>/test/simulacro?s=…`, `#/<tit>/test/real/<conv>` | `views/theory.js` → `examenesView`, `testView` |
+| `#/<tit>/carta`, `#/ej/<id>?s=…`, `#/examenes/<banco>/<id>`, `#/mesa` | ejercicios y mesa de cartas |
+| `#/<tit>/laminas`, `#/reglas`, `#/conceptos`, `#/mas`, `#/progreso` | biblioteca, «Más» y mi progreso |
+
+- **Recomendador único** (`course/plan.js`, funciones puras con tests): `planHoy` (lista ordenada de
+  actividades; la primera es la de Hoy), `estadoTema` y `avance`. Lo usan Hoy, Temario, Mi progreso y las
+  pantallas de cierre (`ui/cierre.js`, que recalcula el plan tras guardar el progreso).
+- **Modo concentración**: en clase, tanda o examen, `body.focus` oculta cabecera, barra inferior y pie; la vista
+  coloca `barraActividad()` (`ui/actividad.js`) como primer hijo.
+- **Progreso** (`store/progress.js`, `nautica.progress.v1`, `version: 1`; solo campos opcionales nuevos):
+  `settings.{onboarded, minutosDia, vozAuto, avisoCartaVisto, ultimaCopia, avisoCopiaHasta}`, `lecciones[id].paso`
+  (tarjeta donde se dejó la clase), `dias` (minutos y actividades por día, 60 días) y `testEnCurso` (examen a
+  medias: respuestas, pregunta actual y tiempo consumido solo con la pestaña visible). Copia de seguridad en `ui/copia.js`.
 
 ## Flujo de un ejercicio
 
@@ -119,7 +144,7 @@ Solo Node.js ≥ 20: `npm start` (servidor estático `tools/serve.mjs`), `npm te
 
 ## Pensado para asistentes de IA
 
-- Cada vista expone `summary()`: texto compacto con todo lo relevante. Se muestra en `#ai-context`
-  y se obtiene con `nautica.state()`.
+- Cada vista expone `summary()`: texto compacto con todo lo relevante. Se obtiene con `nautica.state()` y, en
+  ejercicios y preguntas de carta, se muestra plegado al final («Para asistentes de IA», `#ai-context`).
 - La API `window.nautica` permite generar, resolver y corregir sin leer el DOM.
 - El estado del ejercicio vive en la URL (`#/ej/<tipo>?s=<semilla>`), así que es reproducible.

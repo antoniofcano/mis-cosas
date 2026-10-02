@@ -1,9 +1,16 @@
 // Base de datos local del alumno (localStorage): intentos, aciertos y errores típicos por tipo de ejercicio,
-// y respuestas a preguntas de examen. Exportable/importable en JSON para no perder el progreso.
+// respuestas a preguntas de examen, clases, minutos estudiados por día y el examen a medias.
+// Exportable/importable en JSON para no perder el progreso. Los campos nuevos son opcionales: un progreso
+// antiguo (version 1) carga sin migración.
 
 const KEY = 'nautica.progress.v1';
+const DIA = 864e5;
+const DIAS_GUARDADOS = 60;
 
 const empty = () => ({ version: 1, exercises: {}, exams: {}, settings: { level: 'PER', toleranceFactor: 1 } });
+
+/** Fecha local 'YYYY-MM-DD' de un instante. */
+export const diaLocal = (ms = Date.now()) => new Date(ms).toLocaleDateString('sv-SE');
 
 function safeStorage() {
   try {
@@ -17,16 +24,25 @@ function safeStorage() {
   }
 }
 
+/** ¿Hay progreso previo (de antes de la bienvenida)? */
+export const tieneProgreso = (d) => Object.keys(d.exams ?? {}).length > 0 || Object.keys(d.lecciones ?? {}).length > 0;
+
 export function createProgressStore(storage = safeStorage()) {
   let data = empty();
   try {
     const raw = storage?.getItem(KEY);
     if (raw) data = { ...empty(), ...JSON.parse(raw) };
   } catch { /* datos corruptos: empezamos de cero */ }
+  // Usuarios de antes de la bienvenida: no se les muestra.
+  const normaliza = () => {
+    data.settings ??= {};
+    if (data.settings.onboarded == null && tieneProgreso(data)) data.settings.onboarded = true;
+  };
+  normaliza();
 
   const save = () => { try { storage?.setItem(KEY, JSON.stringify(data)); } catch { /* sin espacio o bloqueado */ } };
 
-  return {
+  const store = {
     get: () => data,
     settings: () => data.settings,
     setSetting(k, v) { data.settings[k] = v; save(); },
@@ -42,8 +58,8 @@ export function createProgressStore(storage = safeStorage()) {
       save();
     },
 
-    /** Registra la respuesta a una pregunta de examen real. */
-    recordExam(questionId, { choice, ok }) {
+    /** Registra la respuesta a una pregunta de examen real (choice null = «No la sé»). */
+    recordExam(questionId, { choice = null, ok }) {
       data.exams[questionId] = { choice, ok, t: new Date().toISOString() };
       save();
     },
@@ -55,11 +71,44 @@ export function createProgressStore(storage = safeStorage()) {
     },
     tests: () => data.tests ?? [],
 
-    /** Curso: registro por lección { visto, caja, proximo, ultimo, ultimoAcierto }. */
+    /** Curso: registro por lección { visto, caja, proximo, ultimo, ultimoAcierto, paso }. */
     leccion: (id) => data.lecciones?.[id],
     lecciones: () => data.lecciones ?? {},
     saveLeccion(id, reg) {
       data.lecciones = { ...(data.lecciones ?? {}), [id]: reg };
+      save();
+    },
+
+    /** Suma minutos de estudio al día de hoy (y una actividad); conserva los últimos 60 días. */
+    logActividad(minutos, ahora = Date.now()) {
+      const hoy = diaLocal(ahora);
+      const dias = { ...(data.dias ?? {}) };
+      const d = dias[hoy] ?? { min: 0, act: 0 };
+      dias[hoy] = { min: d.min + Math.max(0, Math.round(minutos || 0)), act: d.act + 1 };
+      const limite = diaLocal(ahora - (DIAS_GUARDADOS - 1) * DIA);
+      data.dias = Object.fromEntries(Object.entries(dias).filter(([k]) => k >= limite));
+      save();
+    },
+    minutosHoy: (ahora = Date.now()) => data.dias?.[diaLocal(ahora)]?.min ?? 0,
+    /** Días seguidos con actividad, contando hoy o ayer como el último. */
+    racha(ahora = Date.now()) {
+      const activo = (ms) => (data.dias?.[diaLocal(ms)]?.act ?? 0) > 0;
+      let t = activo(ahora) ? ahora : activo(ahora - DIA) ? ahora - DIA : null;
+      let n = 0;
+      while (t != null && activo(t)) { n += 1; t -= DIA; }
+      return n;
+    },
+    /** Días con actividad posteriores al día de `ms` (0 o undefined = desde siempre). */
+    diasConActividadDesde(ms) {
+      const desde = ms ? diaLocal(ms) : '';
+      return Object.entries(data.dias ?? {}).filter(([k, v]) => k > desde && v.act > 0).length;
+    },
+
+    /** Examen a medias (solo uno): { tit, tipo, conv, seed, respuestas, i, consumidoMs, guardado }. */
+    testEnCurso: () => data.testEnCurso ?? null,
+    saveTestEnCurso(obj) {
+      if (obj) data.testEnCurso = { ...obj, guardado: Date.now() };
+      else delete data.testEnCurso;
       save();
     },
 
@@ -70,7 +119,8 @@ export function createProgressStore(storage = safeStorage()) {
     },
 
     export: () => JSON.stringify(data, null, 2),
-    import(json) { const d = JSON.parse(json); if (d?.version !== 1) throw new Error('Formato no válido'); data = { ...empty(), ...d }; save(); },
+    import(json) { const d = JSON.parse(json); if (d?.version !== 1) throw new Error('Formato no válido'); data = { ...empty(), ...d }; normaliza(); save(); },
     reset() { data = empty(); save(); },
   };
+  return store;
 }

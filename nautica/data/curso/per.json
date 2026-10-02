@@ -9184,14 +9184,40 @@
        "texto": "- **Ecuador**: el círculo máximo perpendicular al eje. Divide la Tierra en hemisferio **Norte** y hemisferio **Sur**.\n- **Paralelos**: círculos **menores** paralelos al ecuador. Se hacen más pequeños hacia los polos. Los trópicos (unos 23,5°) y los círculos polares (unos 66,5°) son paralelos con nombre propio.\n- **Meridianos**: círculos **máximos** que pasan por los dos polos. Todos se juntan en los polos, así que no son paralelos entre sí.\n\nEl **meridiano del lugar** es el que pasa por donde estás tú (o tu barco). El **meridiano cero** o **de Greenwich** es el que se toma como origen."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "esfera"
+       },
+       "texto": "Ecuador y meridianos son círculos máximos; los paralelos, menores."
+      },
+      {
        "tipo": "texto",
        "titulo": "Latitud",
        "texto": "La **latitud** (l) es el **arco de meridiano** contado desde el **ecuador** hasta el paralelo del lugar.\n- Va de **0° a 90°**, hacia el **N** o hacia el **S**.\n- En el ecuador la latitud es 0°; en los polos, 90°.\n\nConsecuencia directa: **todos los puntos de un mismo paralelo tienen la misma latitud**. Dos barcos con la misma latitud están en el mismo paralelo, aunque uno esté en el Atlántico y otro en el Pacífico."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "latitud"
+       },
+       "texto": "La latitud se cuenta sobre el meridiano, desde el ecuador hasta el paralelo del lugar."
+      },
+      {
        "tipo": "texto",
        "titulo": "Longitud",
        "texto": "La **longitud** (L) es el **arco de ecuador** contado desde el **meridiano de Greenwich** hasta el meridiano del lugar.\n- Va de **0° a 180°**, hacia el **E** o hacia el **W**.\n- El meridiano opuesto a Greenwich es el de 180°.\n\nY su consecuencia: **todos los puntos de un mismo meridiano tienen la misma longitud**. Dos barcos con la misma longitud están en el mismo meridiano, aunque uno esté al norte del ecuador y otro al sur."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "longitud",
+        "lat": 40,
+        "lon": -50
+       },
+       "texto": "La longitud se cuenta sobre el ecuador, desde Greenwich hasta el meridiano del lugar."
       },
       {
        "tipo": "clave",
@@ -9304,6 +9330,14 @@
        "texto": "La **milla náutica** es la longitud de **un minuto de arco de un círculo máximo** de la Tierra (tomada como esfera). Por eso encaja tan bien con la carta: **un minuto de latitud = una milla** (a efectos prácticos).\n\nSu valor está fijado por convenio internacional en **1852 metros** exactos.\n\n- **Cable**: la décima parte de la milla, 185,2 m.\n- **Milla terrestre** (la de las carreteras inglesas): 1609 m. No tiene nada que ver con la náutica.\n- En cartas antiguas inglesas verás profundidades en **brazas** (unos 1,83 m)."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "milla",
+        "vista": "definicion"
+       },
+       "texto": "Un minuto de arco de círculo máximo: 1852 m por convenio."
+      },
+      {
        "tipo": "ojo",
        "texto": "En el examen se dio por buena «la longitud del arco de **ecuador** correspondiente a un ángulo central de un minuto; equivale a 1852 m». Márcala así. En rigor, la Tierra está achatada por los polos: un minuto de ecuador mide unos 1855 m, y uno de meridiano va de unos 1843 m (en el ecuador) a 1862 m (en los polos). Los **1852 m** son un valor de **convenio internacional** (1929), muy próximo al minuto de meridiano en latitudes medias. Las trampas: el **paralelo** de 45° es un círculo menor y no sirve, y la «diezmillonésima parte del cuadrante del meridiano» es la definición histórica del **metro**."
       },
@@ -9311,6 +9345,14 @@
        "tipo": "texto",
        "titulo": "Medir distancias en la carta",
        "texto": "Toma la distancia con el compás de puntas y llévala a la **escala de latitudes**, la de los **márgenes laterales** (derecho o izquierdo) de la carta, a la altura de la zona donde mides. Allí **cada minuto es una milla** (y un grado, 60 millas).\n\nLa **escala de longitudes** (márgenes de arriba y abajo) **no sirve** para distancias: en la carta Mercator un minuto de longitud es más corto que una milla, salvo en el ecuador.\n\nCada minuto suele venir dividido en partes más pequeñas; si son cinco, cada una vale **0,2′**, es decir, 0,2 millas. Una **décima de minuto** son **0,1 millas**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "milla",
+        "vista": "carta"
+       },
+       "texto": "La distancia se lleva con el compás al margen lateral, a la altura de la zona: cada minuto es una milla."
       },
       {
        "tipo": "clave",
@@ -9453,9 +9495,25 @@
        "texto": "Los números pequeños repartidos por el mar son las **sondas**: la profundidad en ese punto. En las cartas españolas van en **metros** y se miden desde el **cero hidrográfico**, un nivel muy bajo de la marea (lo verás en la lección de mareas).\n\nLos **veriles** (o **isobatas**) son las líneas que unen puntos de **igual profundidad**, como las curvas de nivel de un mapa de montaña. Las zonas menos profundas suelen ir en azul, para que salten a la vista.\n\nNo los confundas con las **isobaras**, que unen puntos de igual presión en un mapa del tiempo."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "veriles",
+        "vista": "carta"
+       },
+       "texto": "Cada veril une puntos de igual sonda; en el corte se ve a qué profundidad está cada uno."
+      },
+      {
        "tipo": "texto",
        "titulo": "La naturaleza del fondo",
        "texto": "Junto a muchas sondas aparecen letras que dicen **de qué es el fondo**, útil para fondear. Vienen del inglés:\n- **S** arena · **M** fango · **Cy** arcilla · **Si** limo\n- **St** piedras · **G** cascajo (grava) · **P** guijarros · **R** roca\n- **Sh** conchuela · **Co** coral · **Wd** algas\n\nSi hay varias, se escriben juntas, empezando por la que predomina: **S G** es arena con cascajo; **S Sh**, arena con conchuela."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "veriles",
+        "vista": "fondos"
+       },
+       "texto": "Las letras del fondo vienen del inglés: la primera es la que predomina."
       },
       {
        "tipo": "ojo",

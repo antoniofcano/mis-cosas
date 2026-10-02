@@ -3033,6 +3033,15 @@
        "texto": "- **Eje**: la recta imaginaria que pasa por el **centro** de la Tierra y alrededor de la cual gira (de W a E). Sus extremos son los **polos** Norte y Sur.\n- **Círculo máximo**: el corte de la esfera con un plano que pasa por el centro. Son el **ecuador** y los **meridianos**.\n- **Círculo menor**: el plano no pasa por el centro. Son los **paralelos**.\n\n- **Ecuador**: círculo máximo **perpendicular al eje**; divide la Tierra en hemisferio norte y sur. Es el origen de las latitudes.\n- **Paralelos**: círculos menores **perpendiculares al eje** (paralelos al ecuador).\n- **Meridianos**: círculos máximos que **pasan por los polos**, es decir, **contienen al eje** y son **perpendiculares al ecuador**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "esfera",
+        "resaltar": "maximos"
+       },
+       "texto": "En rojo, los círculos máximos: el ecuador y todos los meridianos."
+      },
+      {
        "tipo": "ojo",
        "texto": "La trampa está en la palabra «perpendicular». Ecuador y paralelos son perpendiculares **al eje**; los meridianos son perpendiculares **al ecuador** (el eje está dentro de ellos). Por eso son falsas «el ecuador es paralelo al eje» y «los meridianos son perpendiculares al eje». Y no todos los círculos máximos pasan por los polos: solo los meridianos (el ecuador también es máximo y no pasa)."
       },
@@ -3040,6 +3049,15 @@
        "tipo": "texto",
        "titulo": "El meridiano del lugar",
        "texto": "Por cada punto de la Tierra pasa un meridiano: **cada observador tiene el suyo**, el **meridiano del lugar**.\n\nEse círculo máximo tiene dos mitades de polo a polo:\n- **Meridiano superior**: la mitad que pasa por el observador.\n- **Meridiano inferior**: la mitad opuesta, a 180° de longitud.\n\nCuando el Sol cruza tu meridiano superior es mediodía; cuando cruza el inferior, medianoche. Lo usarás en la lección de la hora.\n\nEl **meridiano de Greenwich** es el meridiano cero, origen de las longitudes. Con el de 180° divide la Tierra en hemisferios **este y oeste** (el que la divide en norte y sur es el ecuador)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "lugar",
+        "lon": -40
+       },
+       "texto": "Tu meridiano superior pasa por ti; el inferior está a 180° de longitud."
       },
       {
        "tipo": "texto",
@@ -3615,9 +3633,26 @@
        "texto": "La Tierra se divide en **24 husos** de **15°**, cada uno limitado por **dos meridianos que difieren 15°** y centrado en un meridiano múltiplo de 15°. El **huso 0** va de 7° 30′ W a 7° 30′ E.\n\nLa **hora legal (Hz)** es la **hora del huso**: la hora civil de su **meridiano central**, la misma para todo el huso.\n- **Hz = TU ± número de huso** (E suma, W resta).\n- Mismo meridiano → mismo huso → **misma hora legal**, aunque sean países distintos.\n- Hz y HcL coinciden si estás en el meridiano central (longitud múltiplo de 15°)."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "husos",
+        "vista": "husos"
+       },
+       "texto": "Cada huso es 1 h: hacia el E se suma y hacia el W se resta."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cálculo 2: hora legal",
        "texto": "Número de huso = longitud / 15, redondeado al entero más próximo (si el resto pasa de 7° 30′, al siguiente).\n\n- **069° 25′ E**: 69,42 / 15 = 4,63 → **huso 5 E** (en las tablas con signos se escribe −5, porque TU = Hz − 5). TU 10:30 → **Hz = 15:30**.\n- **075° W**: 75 / 15 = 5 → **huso 5 W**. TU 08:00 → **Hz = 03:00**, igual a la HcL porque 075° es el meridiano central.\n\nNavegando hacia el E se **adelanta** el reloj 1 h por huso; hacia el W se **atrasa**. Al cruzar el meridiano de 180° (línea de cambio de fecha) hacia el W se **suma un día**; hacia el E se **resta**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "husos",
+        "vista": "calculo",
+        "ejemplo": "e"
+       },
+       "texto": "El ejemplo de 069° 25′ E: huso 5 E, Hz 15:30 y HcL 15:07,7."
       },
       {
        "tipo": "texto",

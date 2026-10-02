@@ -2984,6 +2984,1475 @@
      ]
     }
    ]
+  },
+  {
+   "ut": 3,
+   "titulo": "Teoría de navegación",
+   "intro": "Esta unidad es la teoría que sostiene todos los ejercicios de carta del Patrón de Yate: coordenadas, corrección total, viento y corriente, la hora a bordo, la estima analítica y las mareas, y además los equipos del puente: radar, GNSS, cartas electrónicas y AIS. En el examen son 10 preguntas y solo puedes fallar 5, así que no basta con aprobar el conjunto: hay que sacar este bloque. Lo que más cae: las siglas del GNSS, los ajustes del radar, el AIS, las cartas raster y vectoriales, la corrección total y las definiciones de abatimiento, deriva y hora civil del lugar. Damos por sabido el PER: cuando una lección se apoya en él, la tienes enlazada en «Repaso del PER».",
+   "lecciones": [
+    {
+     "id": "py-3-1",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "La esfera terrestre: círculos, latitud y longitud",
+     "minutos": 14,
+     "objetivos": [
+      "Distinguir círculos máximos y menores y saber cuáles son perpendiculares al eje",
+      "Definir latitud y longitud en todas las formas que acepta el examen",
+      "Situar ecuador, trópicos y círculos polares por su latitud",
+      "Calcular la diferencia de latitud y de longitud entre dos puntos"
+     ],
+     "refresco": [
+      "per-10-1",
+      "per-11-1"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Lo que el PY añade",
+       "texto": "En el PER aprendiste a situarte con latitud y longitud. En el PY las preguntas son las mismas ideas, pero con definiciones más finas: qué es perpendicular a qué, qué es el meridiano del lugar, qué arco mide cada coordenada.\n\nSon preguntas de puro vocabulario y suelen caer una o dos por examen. Con las definiciones de esta lección bien claras son puntos seguros, y el bloque solo te deja **5 fallos**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Eje, polos y círculos",
+       "texto": "- **Eje**: la recta imaginaria que pasa por el **centro** de la Tierra y alrededor de la cual gira (de W a E). Sus extremos son los **polos** Norte y Sur.\n- **Círculo máximo**: el corte de la esfera con un plano que pasa por el centro. Son el **ecuador** y los **meridianos**.\n- **Círculo menor**: el plano no pasa por el centro. Son los **paralelos**.\n\n- **Ecuador**: círculo máximo **perpendicular al eje**; divide la Tierra en hemisferio norte y sur. Es el origen de las latitudes.\n- **Paralelos**: círculos menores **perpendiculares al eje** (paralelos al ecuador).\n- **Meridianos**: círculos máximos que **pasan por los polos**, es decir, **contienen al eje** y son **perpendiculares al ecuador**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La trampa está en la palabra «perpendicular». Ecuador y paralelos son perpendiculares **al eje**; los meridianos son perpendiculares **al ecuador** (el eje está dentro de ellos). Por eso son falsas «el ecuador es paralelo al eje» y «los meridianos son perpendiculares al eje». Y no todos los círculos máximos pasan por los polos: solo los meridianos (el ecuador también es máximo y no pasa)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El meridiano del lugar",
+       "texto": "Por cada punto de la Tierra pasa un meridiano: **cada observador tiene el suyo**, el **meridiano del lugar**.\n\nEse círculo máximo tiene dos mitades de polo a polo:\n- **Meridiano superior**: la mitad que pasa por el observador.\n- **Meridiano inferior**: la mitad opuesta, a 180° de longitud.\n\nCuando el Sol cruza tu meridiano superior es mediodía; cuando cruza el inferior, medianoche. Lo usarás en la lección de la hora.\n\nEl **meridiano de Greenwich** es el meridiano cero, origen de las longitudes. Con el de 180° divide la Tierra en hemisferios **este y oeste** (el que la divide en norte y sur es el ecuador)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Latitud y longitud, al detalle",
+       "texto": "- **Latitud (l)**: arco de **meridiano** contado desde el **ecuador** hasta el paralelo del lugar, de 0° a 90° N o S. Se mide **sobre los meridianos**.\n- **Longitud (L)**: arco de **ecuador** contado desde el meridiano de **Greenwich** hasta el **meridiano del lugar**, de 0° a 180° E o W.\n\nEn las plantillas del PY también se ha dado por buena la longitud como «**arco de paralelo** medido desde Greenwich hasta el meridiano del observador». Tiene sentido: entre dos meridianos, el arco de cualquier paralelo abarca los **mismos grados** que el de ecuador (aunque menos millas, como verás en la loxodrómica)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En el PER, «arco de paralelo» aparece como opción falsa en preguntas de **latitud** (la latitud nunca es arco de paralelo) o «contado desde el ecuador», que no tiene sentido. En el PY, en cambio, se ha dado por buena para la **longitud** («arco de paralelo medido desde el meridiano 0 hasta el lugar»), incluso junto a la del ecuador («las respuestas a y c son correctas»). Lo que nunca vale: medir la longitud «hasta el **paralelo** del buque» o «desde el meridiano del lugar hasta Greenwich», ni la latitud «desde Greenwich». La longitud siempre termina en el **meridiano** del lugar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Paralelos con nombre propio",
+       "texto": "El eje terrestre está inclinado unos 23° 27′ respecto a la órbita. De ahí salen cuatro paralelos famosos:\n- **Trópico de Cáncer**: **23° 27′ N**.\n- **Trópico de Capricornio**: **23° 27′ S**.\n- **Círculo Polar Ártico**: **66° 33′ N** (90° − 23° 27′).\n- **Círculo Polar Antártico**: **66° 33′ S**.\n\nHay trópicos y círculos polares en **los dos hemisferios**. Son valores aproximados: la inclinación del eje cambia muy despacio y hoy ronda 23° 26′, pero el examen usa 23° 27′ y 66° 33′."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Cáncer al norte y Capricornio al sur, los dos a 23° 27′; los círculos polares a 66° 33′, uno en cada hemisferio."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Mismo paralelo, mismo meridiano",
+       "texto": "- **Misma latitud** = mismo **paralelo**. Nada más: pueden estar a cualquier distancia de Greenwich y tener horas distintas.\n- **Misma longitud** = mismo **meridiano**. Tienen la misma hora civil del lugar y están en el mismo huso horario (lección 5).\n\nEstar en el ecuador solo dice que tu latitud es 0°; estar en Greenwich, que tu longitud es 0°."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo: diferencias de latitud y de longitud",
+       "texto": "**Δl**: si las dos latitudes son del mismo nombre (N y N), se **restan**; si son de distinto nombre, se **suman**. Su sentido es hacia donde vas.\n- De 36° 10,0′ N a 35° 48,8′ N: Δl = **21,2′ S**.\n- De 2° 10′ N a 1° 20′ S: Δl = 2° 10′ + 1° 20′ = **3° 30′ S**.\n\n**ΔL**: igual, restando o sumando, pero si pasa de 180° se toma **360° − ΔL** y se **cambia el sentido** (vas por el camino corto, cruzando el meridiano de 180°).\n- De 100° W a 110° E: 100 + 110 = 210° → 360 − 210 = **150° hacia el W**.\n\nRecuerda: 1′ = 60″ y 36″ = 0,6′."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Dos barcos están en el mismo paralelo. ¿Qué tienen en común con seguridad?",
+       "opciones": {
+        "a": "La misma latitud",
+        "b": "La misma longitud",
+        "c": "La misma distancia al meridiano de Greenwich"
+       },
+       "correcta": "a",
+       "explicacion": "El paralelo une puntos de igual latitud. La longitud (y por tanto la distancia a Greenwich medida sobre el paralelo) puede ser cualquiera."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas de 170° E a 170° W por el camino más corto. ¿Cuál es la diferencia de longitud?",
+       "opciones": {
+        "a": "340° hacia el W",
+        "b": "20° hacia el E",
+        "c": "20° hacia el W"
+       },
+       "correcta": "b",
+       "explicacion": "Son de distinto nombre: 170 + 170 = 340°, que pasa de 180°. Se toma 360 − 340 = 20° y se cambia el sentido: cruzas el meridiano de 180° yendo hacia el E."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n02",
+      "and-py-2020-c1-n04",
+      "and-py-2020-c3-n02",
+      "and-py-2021-c1-n01",
+      "and-py-2021-c2-n02",
+      "and-py-2022-c1-n02",
+      "and-py-2022-c2-n01",
+      "and-py-2022-c2-n04",
+      "and-py-2022-c3-n01",
+      "and-py-2023-c1-n01",
+      "and-py-2023-c2-n01",
+      "and-py-2023-c3-n01",
+      "and-py-2023-c3-n04",
+      "and-py-2024-c1-n01",
+      "and-py-2024-c2-n01",
+      "and-py-2024-c2-n02",
+      "and-py-2024-c3-n01",
+      "and-py-2025-c1-n01",
+      "and-py-2025-c2-n01",
+      "and-py-2025-c2-n02",
+      "and-py-2026-c1-n01",
+      "and-py-2026-c2-n01"
+     ],
+     "chuleta": [
+      "Círculos máximos: ecuador y meridianos. Menores: paralelos.",
+      "Perpendiculares al eje: ecuador y paralelos. Meridianos: pasan por los polos y son perpendiculares al ecuador.",
+      "Latitud: arco de meridiano desde el ecuador (0–90° N/S). Longitud: arco de ecuador (o de paralelo) desde Greenwich hasta el meridiano del lugar (0–180° E/W).",
+      "Trópicos 23° 27′ (Cáncer N, Capricornio S). Círculos polares 66° 33′ N y S.",
+      "Meridiano del lugar: el tuyo; superior (pasa por ti) e inferior (el opuesto).",
+      "Δl y ΔL: mismo nombre restan, distinto suman; ΔL > 180° → 360° − ΔL y cambia el sentido."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina (IHM)",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Definiciones de eje, meridianos (máximos, por los polos, perpendiculares al ecuador), ecuador y paralelos (perpendiculares al eje)",
+       "fuente": "Plantillas PY Andalucía 2020-c1-n02, 2023-c2-n01, 2024-c1-n01, 2024-c3-n01, 2025-c2-n01, 2026-c1-n01"
+      },
+      {
+       "dato": "Longitud como arco de ecuador o de paralelo desde Greenwich hasta el meridiano del lugar (ambas válidas en PY)",
+       "fuente": "Plantillas PY 2021-c2-n02 y 2022-c1-n02 (a y c); PER 2021-c2-t38 y 2022-c1-t37 (el arco de paralelo solo aparece como falsa para latitud o «desde el ecuador»)"
+      },
+      {
+       "dato": "Trópicos 23° 27′ N/S y círculos polares 66° 33′ N/S, en ambos hemisferios",
+       "fuente": "Plantillas PY 2020-c1-n04, 2022-c3-n01, 2024-c2-n01/n02, 2026-c2-n01; oblicuidad actual ≈ 23° 26′ (IAU)"
+      },
+      {
+       "dato": "Δl 36° 10,0′ N → 35° 48,8′ N = 21,2′ S; 2° 10′ N → 1° 20′ S = 3° 30′ S; ΔL 100° W → 110° E = 150° W; 170° E → 170° W = 20° E",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      }
+     ]
+    },
+    {
+     "id": "py-3-2",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "Corrección total: de dónde sale y cómo se calcula",
+     "minutos": 18,
+     "objetivos": [
+      "Saber de qué depende la declinación, el desvío y la corrección total",
+      "Actualizar la declinación de la carta y calcular la Ct paso a paso",
+      "Obtener la Ct con la Polar, con una enfilación o una oposición, y el desvío que de ahí resulta",
+      "Pasar rumbos y demoras de aguja a verdaderos y al revés"
+     ],
+     "refresco": [
+      "per-10-5",
+      "per-10-6",
+      "per-10-7",
+      "per-11-2"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Repaso exprés",
+       "texto": "Tres nortes y tres ángulos que ya conoces del PER:\n- **Declinación magnética (dm)**: de Nv a Nm.\n- **Desvío (Δ)**: de Nm a Na.\n- **Corrección total (Ct)**: de **Nv a Na**.\n\n**Ct = dm + Δ**, cada una con su signo (E o NE +, W o NW −).\n\nY las fórmulas de trabajo:\n- **Rv = Ra + Ct** y **Ra = Rv − Ct**.\n- Despejando: **Ct = Rv − Ra** (o **Ct = Dv − Da** con demoras).\n\nEl **rumbo de aguja** es el ángulo desde el norte de aguja hasta la línea proa-popa: el que gobierna el timonel."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nortes",
+        "dm": 3,
+        "desvio": -5
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De qué depende cada una",
+       "texto": "- **Declinación**: de la **zona geográfica** y del **paso del tiempo** (el polo magnético se mueve). No depende del barco, ni de la aguja, ni del rumbo. Se lee en la rosa de la carta con su año y su variación anual.\n- **Desvío**: del **propio barco** (hierros, motor, equipos electrónicos, dónde está montada la aguja) y del **rumbo de aguja**. Se lee en la tablilla de desvíos.\n- **Corrección total**: de las dos, así que cambia con el lugar, con el año y con el rumbo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si una opción dice que la declinación depende de los materiales ferromagnéticos, de la ubicación de la aguja o de los equipos de a bordo, está describiendo el **desvío**. Y dos falsas clásicas: «Ct = 0 implica desvío 0» (basta con que dm y Δ sean iguales y de signo contrario) y «la Ct siempre es positiva». Si el **desvío es 0**, entonces **Ra = Rm** y **Rv = Rm + dm**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo 1: actualizar la dm y hallar la Ct",
+       "texto": "La carta dice: **dm 1° 40′ W (2016), variación anual 7′ E**. Navegas en **2026** al **Ra 120°** y la tablilla da **Δ = +3°**.\n\n1. Años: 2026 − 2016 = 10. Variación: 10 × 7′ = 70′ = **1° 10′ E** (+).\n2. dm actual: −1° 40′ + 1° 10′ = −0° 30′ → **dm = 0° 30′ W (−0,5°)**.\n3. Ct = dm + Δ = −0,5 + 3 = **+2,5°**.\n4. Rv = Ra + Ct = 120 + 2,5 = **122,5°**.\n\nLa variación se multiplica por los años y se suma **con su signo**: una variación E acerca a cero una dm W."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-03"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuatro formas de conocer la Ct",
+       "texto": "1. **Carta y tablilla**: dm actualizada + Δ del rumbo de aguja.\n2. **Estrella Polar**: está prácticamente en el **norte verdadero** (error menor de 1° en nuestras latitudes). Tomas su demora (o azimut) de aguja y **Ct = 0° − Da**: Da 357° → **+3°**; Da 004° → **−4°**.\n3. **Enfilación u oposición**: su Dv la mides en la carta y **Ct = Dv − Da**.\n4. **Demora a un punto conocido** desde una situación **segura** (por ejemplo, atracado): también **Ct = Dv − Da**. «Con cualquier demora» es falso: sin saber dónde estás no conoces la Dv.\n\nLas tres últimas te dan la Ct; el desvío es **Δ = Ct − dm**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Enfilación y oposición",
+       "texto": "- **Enfilación**: ves dos puntos de la costa alineados, uno detrás del otro.\n- **Oposición**: estás **entre** los dos puntos; sus demoras difieren **180°**.\n\nEn las dos estás sobre la recta que los une, cuya **demora verdadera mides en la carta**.\n\n**Ejemplo** (año 2026, dm 0° 30′ W): navegando al Ra 120° cruzas una enfilación de **Dv 244°** (carta) y la marcas con la aguja a **Da 247°**.\n- Ct = Dv − Da = 244 − 247 = **−3°**.\n- Δ = Ct − dm = −3 − (−0,5) = **−2,5°**, válido **para el Ra 120°**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "enfilacion",
+        "dv": 244,
+        "da": 247
+       }
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El desvío que sacas de una enfilación vale **solo para el rumbo de aguja al que navegabas** cuando la tomaste; si cambias de rumbo, cambia el desvío. Y el orden de la resta es **demora de la carta menos demora de aguja** (Dv − Da), sin restar la declinación: así sale la Ct. Al revés te sale con el signo cambiado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Navegando al Ra 000°: ¿dónde queda el norte?",
+       "texto": "Con **Ra 000°** la proa apunta al norte de aguja y el rumbo verdadero vale justo la Ct (Rv = 0 + Ct).\n- Si la **Ct es positiva** (por ejemplo +4°), la proa está 4° **al este** del norte verdadero: el norte verdadero te queda **por babor**.\n- Si la **Ct es negativa**, la proa está al oeste del norte verdadero: el norte verdadero queda **por estribor**.\n\nLa Ct solo vale 0 si dm y Δ se anulan, no por navegar al norte."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo 2: de la carta al timón",
+       "texto": "Trazas en la carta un **Rv 230°**. dm **2° W**, desvío para ese rumbo **−7°**.\n\n1. Ct = −2 + (−7) = **−9°**.\n2. Ra = Rv − Ct = 230 − (−9) = **239°**.\n3. En cuadrantal: 239 − 180 = 59 → **S59W**.\n\nSi la resta da negativo, suma 360°: Rv 005°, Ct +8° → 005 − 8 = −3 → **357°**. Y si pasa de 360°, réstalos.\n\nRecuerda la conversión cuadrantal: N x E = x; S x E = 180 − x; S x W = 180 + x; N x W = 360 − x."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegando al Ra 080° cruzas una enfilación de Dv 112° (carta) que marcas a Da 115°. La dm es 2° W. ¿Qué desvío tiene la aguja a ese rumbo?",
+       "opciones": {
+        "a": "−3°",
+        "b": "−1°",
+        "c": "+1°"
+       },
+       "correcta": "b",
+       "explicacion": "Ct = Dv − Da = 112 − 115 = −3°. Δ = Ct − dm = −3 − (−2) = −1°, válido solo para el Ra 080°."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n07",
+      "and-py-2020-c3-n04",
+      "and-py-2020-c3-n07",
+      "and-py-2021-c1-n03",
+      "and-py-2021-c1-n06",
+      "and-py-2021-c1-n07",
+      "and-py-2021-c2-n03",
+      "and-py-2021-c2-n08",
+      "and-py-2021-c2-n10",
+      "and-py-2022-c2-n02",
+      "and-py-2022-c3-n02",
+      "and-py-2022-c3-n04",
+      "and-py-2023-c1-n04",
+      "and-py-2023-c2-n07",
+      "and-py-2023-c3-n05",
+      "and-py-2023-c3-n10",
+      "and-py-2024-c1-n02",
+      "and-py-2024-c2-n03",
+      "and-py-2024-c3-n02",
+      "and-py-2025-c1-n02",
+      "and-py-2025-c2-n03",
+      "and-py-2025-c3-n03",
+      "and-py-2026-c1-n02",
+      "and-py-2026-c2-n02",
+      "and-py-2026-c2-n03"
+     ],
+     "carta": [
+      "conversion-rumbos",
+      "ct-enfilacion"
+     ],
+     "chuleta": [
+      "dm: lugar y año (carta). Δ: tu barco y tu rumbo de aguja (tablilla). Ct = dm + Δ (E +, W −).",
+      "dm actual = dm carta + años × variación anual, con signo.",
+      "Ct = Rv − Ra = Dv − Da. Rv = Ra + Ct; Ra = Rv − Ct.",
+      "Polar ≈ norte verdadero: Ct = 0° − Da (Da 357° → +3°).",
+      "Enfilación u oposición (demoras a 180°): Ct = Dv (carta) − Da; Δ = Ct − dm, válido solo para ese Ra.",
+      "Ra 000° con Ct + → el norte verdadero queda por babor."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IGN – Declinación magnética en España",
+       "url": "https://www.ign.es/web/ign/portal/gmt-declinacion-magnetica"
+      },
+      {
+       "titulo": "NOAA – Calculadora del campo magnético terrestre",
+       "url": "https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "dm depende de la zona geográfica y del tiempo; desvío, del barco y del rumbo de aguja; Ct = dm + Δ = Rv − Ra = Dv − Da",
+       "fuente": "Plantillas PY 2021-c1-n03/n07, 2023-c3-n10, 2024-c1-n02, 2026-c1-n02, 2026-c2-n03, 2023-c2-n07"
+      },
+      {
+       "dato": "Polar a menos de 1° del polo (distancia polar ≈ 0,64° en 2026; error de azimut ≤ 0,9° hasta 44° N): Ct = 0° − Da",
+       "fuente": "Coordenadas de Polaris (catálogo Hipparcos, precesión a 2026); plantillas 2022-c3-n02 y 2026-c2-n02; coherente con py-4-1"
+      },
+      {
+       "dato": "«Directamente con cualquier demora» no da la Ct",
+       "fuente": "Plantilla PY 2020-c3-n04 (opción c falsa)"
+      },
+      {
+       "dato": "Actualización dm: 1° 40′ W (2016) + 10 × 7′ E = 0° 30′ W; Ct = +2,5°; Rv 122,5°",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "Enfilación Dv 244° / Da 247° → Ct −3°, Δ −2,5°; check Dv 112°/Da 115°, dm 2° W → Δ −1°",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "Rv 230°, Ct −9° → Ra 239° = S59W; Rv 005°, Ct +8° → Ra 357°",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "Ra 000° con Ct positiva: el norte verdadero queda por babor",
+       "fuente": "Plantilla PY 2023-c3-n05"
+      }
+     ]
+    },
+    {
+     "id": "py-3-3",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "Viento y corriente: abatimiento, deriva y rumbo efectivo",
+     "minutos": 18,
+     "objetivos": [
+      "Reconocer todas las definiciones de abatimiento y deriva que da por buenas el examen",
+      "Distinguir rumbo verdadero, de superficie y efectivo",
+      "Saber a quién afecta por igual la corriente y a quién no el viento",
+      "Calcular el rumbo a gobernar con abatimiento y el rumbo y la velocidad efectivos con corriente"
+     ],
+     "refresco": [
+      "per-10-9",
+      "per-11-4"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Tres rumbos distintos",
+       "texto": "- **Rumbo verdadero (Rv)**: hacia donde apunta la proa, contado desde el norte verdadero.\n- **Rumbo de superficie (Rs)**: el que de verdad sigues **sobre el agua** porque el **viento** te abate.\n- **Rumbo efectivo (Ref)**: el que sigues **sobre el fondo**, porque la **corriente** (sola o junto con el viento) mueve el agua contigo.\n\nY la velocidad: por convenio, el **viento solo cambia la dirección**; la velocidad sigue siendo la del barco. La **corriente cambia rumbo y velocidad**: aparece la **velocidad efectiva (Vef)**, la que mide el GNSS como SOG."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El abatimiento",
+       "texto": "El examen da por buenas estas tres definiciones (y «todas son correctas» cuando aparecen juntas):\n- El ángulo entre la **estela** y el **plano de crujía**.\n- El ángulo entre el **rumbo verdadero** y el **rumbo de superficie**.\n- El ángulo entre la derrota que sigues por el viento y la que seguirías sin él.\n\nSignos: viento por **babor** → caes a estribor → **Ab +**; viento por **estribor** → caes a babor → **Ab −**.\n\n**Rs = Rv + Ab** y, para saber qué rumbo dar, **Rv = Rs − Ab**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "abatimiento",
+        "banda": "babor"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-02"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La deriva",
+       "texto": "La **deriva** es el efecto de la **corriente**. Definiciones de examen:\n- El ángulo entre el **rumbo verdadero** (o el de superficie, si hay viento) y el **rumbo efectivo**.\n- El ángulo entre la dirección del movimiento **respecto a la superficie** del mar y **respecto al fondo**.\n- Con corriente y sin viento: el ángulo entre la **línea de crujía** y la **derrota sobre el fondo**.\n\nLa corriente se nombra por **hacia dónde va** (rumbo de la corriente, Rc) y se mide por su **intensidad horaria** (Ihc), en nudos o millas por hora."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "¿A todos por igual?",
+       "texto": "- **Viento**: empuja la obra muerta, y cada barco tiene la suya, su velocidad y su forma. Para el **mismo viento**, **cada barco abate distinto**.\n- **Corriente**: desplaza **toda la masa de agua**, y el barco va dentro. En la teoría de examen afecta **por igual a todos**, sea cual sea su calado o tamaño.\n\n¿Cómo notas el abatimiento sin corriente? La estela sale torcida respecto a la crujía, y la prolongación de la línea popa-proa sobre la costa se va desplazando aunque mantengas el rumbo de aguja."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Falsas que se repiten: «para un mismo viento todos los buques abaten igual», «a todos les afecta el viento por igual», «el rumbo afectado por el viento se llama efectivo» (es **de superficie**) y «el abatimiento cambia la velocidad». Con **viento y corriente a la vez**, el rumbo resultante es el **efectivo**. Y «a todos los buques, sea cual sea su calado, les afecta la corriente por igual» es **verdadera** en el examen."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo 1: qué rumbo de aguja dar con viento",
+       "texto": "Quieres seguir sobre el agua un **Rs 151°**. Sopla **levante** (del E), que entra **por babor** y te abate **5°**. dm **4° W**, Δ **+1°**.\n\n1. Viento por babor → **Ab = +5°**.\n2. Rv = Rs − Ab = 151 − 5 = **146°** (orzas hacia el viento lo que te abate).\n3. Ct = −4 + 1 = **−3°**.\n4. Ra = Rv − Ct = 146 − (−3) = **149°**.\n\nComprobación: el Rs (151°) queda a **sotavento** del Rv (146°), como debe ser."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo 2: rumbo y velocidad efectivos",
+       "texto": "**Rv 040°** a **6 nudos**, sin viento; corriente **Rc 120°**, **Ihc 2,5 nudos**. Sumas los dos vectores por componentes:\n\n1. Norte: 6 · cos 40° + 2,5 · cos 120° = 4,60 − 1,25 = **3,35**.\n2. Este: 6 · sen 40° + 2,5 · sen 120° = 3,86 + 2,17 = **6,02**.\n3. Ref = arctg (6,02 / 3,35) = **061°**.\n4. Vef = √(3,35² + 6,02²) = **6,9 nudos**.\n5. Deriva = 061 − 040 = **21°** hacia estribor.\n\nEn el examen esto se resuelve dibujando el triángulo en la carta; la cuenta te sirve para comprobarlo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente",
+        "caso": "efectivo"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "py-car-02"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Y al revés: el rumbo a dar con corriente",
+       "texto": "Si sabes adónde quieres ir y conoces la corriente:\n1. Desde la salida traza el vector de la **corriente** de una hora.\n2. Con centro en su extremo y radio la **velocidad del barco**, corta la línea que va al destino.\n3. La dirección extremo-corte es el **rumbo de superficie** a seguir (el Rv, si no hay viento); la línea salida-corte da la **velocidad efectiva**.\n4. Quita el abatimiento (Rv = Rs − Ab) y luego la Ct (Ra = Rv − Ct).\n\nLo practicarás a fondo en el bloque de carta."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 200° con viento del W, que entra por estribor y te abate 8°. ¿Cuál es tu rumbo de superficie?",
+       "opciones": {
+        "a": "208°",
+        "b": "192°",
+        "c": "200°"
+       },
+       "correcta": "b",
+       "explicacion": "Viento por estribor → caes a babor → Ab = −8°. Rs = Rv + Ab = 200 − 8 = 192°."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n05",
+      "and-py-2020-c3-n05",
+      "and-py-2021-c1-n05",
+      "and-py-2021-c2-n04",
+      "and-py-2022-c1-n04",
+      "and-py-2022-c1-n05",
+      "and-py-2022-c1-n06",
+      "and-py-2022-c2-n06",
+      "and-py-2022-c3-n05",
+      "and-py-2022-c3-n07",
+      "and-py-2023-c1-n05",
+      "and-py-2023-c2-n08",
+      "and-py-2023-c3-n07",
+      "and-py-2024-c1-n03",
+      "and-py-2024-c3-n03",
+      "and-py-2025-c1-n03",
+      "and-py-2025-c3-n01",
+      "and-py-2026-c1-n03",
+      "and-py-2026-c2-n04"
+     ],
+     "carta": [
+      "abatimiento",
+      "corriente-efectiva",
+      "corriente-rumbo-a-dar",
+      "corriente-desconocida"
+     ],
+     "chuleta": [
+      "Viento → abatimiento → rumbo de superficie. Corriente → deriva → rumbo efectivo (también con viento y corriente juntos).",
+      "Abatimiento: estela-crujía = Rv-Rs. Viento por babor +, por estribor −. Rs = Rv + Ab; Rv = Rs − Ab.",
+      "Deriva: Rv (o Rs) − Ref; superficie frente a fondo.",
+      "Viento: distinto para cada barco. Corriente: igual para todos.",
+      "El viento no cambia la velocidad (convenio); la corriente sí: Vef = SOG.",
+      "Orden: Rs → quitar Ab → Rv → quitar Ct → Ra."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones de recreo y programas)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Definiciones de abatimiento (estela–crujía; Rv–Rs; derrota con y sin viento) y deriva (superficie–fondo; crujía–derrota sobre el fondo con corriente sin viento)",
+       "fuente": "Plantillas PY 2022-c1-n04, 2022-c1-n05, 2025-c1-n03, 2026-c1-n03, 2026-c2-n04"
+      },
+      {
+       "dato": "Viento y corriente juntos → rumbo efectivo; la corriente afecta a todos por igual; el viento no",
+       "fuente": "Plantillas PY 2022-c3-n05, 2022-c1-n06, 2022-c2-n06, 2020-c3-n05"
+      },
+      {
+       "dato": "Rs 151°, Ab +5° (levante por babor: 090 − 146 = 304° → babor), Ct −3° → Rv 146°, Ra 149°",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "Rv 040° 6 kn + corriente 120° 2,5 kn → N 3,35, E 6,02; Ref 060,9° ≈ 061°; Vef 6,89 kn; deriva 21°",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "Signo del abatimiento y orden Rs → Rv → Ra; construcción del rumbo a dar con corriente",
+       "fuente": "Coherente con py-4-2 y py-4-7 (bloque de carta)"
+      }
+     ]
+    },
+    {
+     "id": "py-3-4",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "Loxodrómica y estima analítica: los conceptos",
+     "minutos": 10,
+     "objetivos": [
+      "Distinguir la derrota loxodrómica de la ortodrómica",
+      "Saber qué es el apartamiento y cómo se relaciona con la diferencia de longitud",
+      "Reconocer las fórmulas de la estima directa e inversa (los problemas se practican en el bloque de carta)"
+     ],
+     "refresco": [
+      "per-10-1",
+      "per-10-2",
+      "per-11-3"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Loxodrómica y ortodrómica",
+       "texto": "- **Loxodrómica**: la línea que corta **todos los meridianos con el mismo ángulo**. Es navegar a **rumbo constante** y en la carta Mercator es una **recta**. No es el camino más corto (salvo siguiendo un meridiano o el ecuador), pero en distancias cortas la diferencia es despreciable.\n- **Ortodrómica**: el arco de **círculo máximo** entre dos puntos. Es la **distancia más corta**, pero el rumbo **cambia** continuamente; en travesías oceánicas se sigue por tramos loxodrómicos.\n\nEn navegación costera y en todos los cálculos del examen se usa la loxodrómica."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las piezas del triángulo",
+       "texto": "- **Δl** (diferencia de latitud): en minutos, que son **millas**.\n- **Apartamiento (A)**: la distancia en **millas** medida **sobre un paralelo** entre los meridianos de salida y llegada; es la «distancia navegada en un paralelo», lo que avanzas hacia el E o el W.\n- **ΔL** (diferencia de longitud): en **minutos de arco**, no en millas.\n- **lm** (latitud media): la media de las latitudes de salida y llegada.\n\nUn minuto de longitud mide **cos l** millas: en el ecuador, una milla; a 60°, media milla. Por eso **A = ΔL · cos lm**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "loxodromica"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las fórmulas",
+       "texto": "Para cada tramo de distancia **D** al rumbo **R** (circular):\n- **Δl = D · cos R** (+ N, − S)\n- **A = D · sen R** (+ E, − W)\n\nCon varios tramos (la corriente es uno más), sumas los Δl y los A con su signo. Después:\n- **lm = l salida + Δl / 2**\n- **ΔL = A / cos lm**\n\n**Estima inversa** (de dos situaciones a rumbo y distancia): **A = ΔL · cos lm**, **tan R = A / Δl**, **D = √(Δl² + A²)**.\n\nLos problemas completos (varios rumbos, corriente, inversa y paso por el meridiano 180°) los resuelves en la lección **«Estima analítica: derrota loxodrómica»** del bloque de carta."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-04"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Un ejemplo breve",
+       "texto": "Salida **36° 10,0′ N · 006° 00,0′ W**; navegas **30 millas al 225°**.\n\n1. Δl = 30 · cos 225° = **−21,2′** (al S) → l = **35° 48,8′ N**.\n2. A = 30 · sen 225° = **−21,2 millas** (al W).\n3. lm = 36° 10,0′ − 10,6′ = **35° 59,4′**.\n4. ΔL = 21,2 / cos 35° 59,4′ = 21,2 / 0,809 = **26,2′ W** → L = **006° 26,2′ W**.\n\nFíjate: con la misma A, la ΔL sale **mayor** (26,2′ frente a 21,2 millas), porque un minuto de longitud aquí mide solo 0,81 millas."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El apartamiento son **millas sobre el paralelo**, no «la distancia sobre el ecuador» ni la diferencia de longitud (que va en **minutos de arco**). En el cálculo, divide por el coseno de la latitud **media**, no la de salida, y pon la calculadora en **grados (DEG)**. Comprobación: el **ΔL nunca es menor que el A**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué es el apartamiento?",
+       "opciones": {
+        "a": "La distancia en millas, medida sobre un paralelo, entre los meridianos de salida y llegada",
+        "b": "La diferencia de longitud medida en minutos",
+        "c": "La distancia más corta entre dos puntos"
+       },
+       "correcta": "a",
+       "explicacion": "El apartamiento son millas sobre el paralelo; la ΔL son minutos de arco (A = ΔL · cos lm). La distancia más corta es la ortodrómica."
+      }
+     ],
+     "practica": [
+      "and-py-2021-c1-n09"
+     ],
+     "carta": [
+      "estima-analitica",
+      "estima-directa"
+     ],
+     "chuleta": [
+      "Loxodrómica: rumbo constante, recta en Mercator. Ortodrómica: círculo máximo, la más corta.",
+      "Apartamiento: millas sobre el paralelo. A = ΔL · cos lm.",
+      "Por tramo: Δl = D · cos R; A = D · sen R (N y E +, S y W −).",
+      "lm = l salida + Δl / 2; ΔL = A / cos lm. Inversa: tan R = A / Δl; D = √(Δl² + A²).",
+      "Problemas completos: lección «Estima analítica: derrota loxodrómica» (bloque de carta)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Apartamiento = distancia navegada en un paralelo (no sobre el ecuador)",
+       "fuente": "Plantilla PY 2021-c1-n09"
+      },
+      {
+       "dato": "Fórmulas Δl = D cos R, A = D sen R, lm = l salida + Δl/2, ΔL = A / cos lm, tan R = A/Δl, D = √(Δl² + A²)",
+       "fuente": "Programa PY (RD 875/2014, anexo: estima analítica); misma notación que py-4-10"
+      },
+      {
+       "dato": "Ejemplo 30 millas al 225° desde 36° 10,0′ N 006° 00,0′ W → Δl −21,2′, A −21,2 M, lm 35° 59,4′, ΔL 26,2′ W, llegada 35° 48,8′ N 006° 26,2′ W",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      }
+     ]
+    },
+    {
+     "id": "py-3-5",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "La hora en la mar: TU, hora civil, legal, oficial y HRB",
+     "minutos": 16,
+     "objetivos": [
+      "Definir tiempo universal y hora civil del lugar sin confundir Sol medio y verdadero ni meridiano superior e inferior",
+      "Distinguir hora legal (del huso), hora oficial (la del Gobierno) y hora reloj de bitácora (la del patrón)",
+      "Pasar de TU a hora civil del lugar, a hora legal y a hora oficial"
+     ],
+     "refresco": [
+      "per-10-2"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Sol verdadero y Sol medio",
+       "texto": "El Sol real (**Sol verdadero**) no avanza a ritmo constante a lo largo del año, por la órbita elíptica y la inclinación del eje: los días solares verdaderos no duran lo mismo. Para tener horas iguales se inventa un **Sol medio**, ficticio, que recorre el ecuador a **velocidad uniforme**. La diferencia entre los dos es la **ecuación del tiempo** (hasta unos 16 minutos).\n\nTodas las horas civiles se cuentan con el **Sol medio** y desde su paso por el **meridiano inferior**, es decir, desde la **medianoche** (00:00). El paso por el meridiano superior es el mediodía."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tiempo universal y hora civil del lugar",
+       "texto": "- **Tiempo Universal (TU)**, también hora civil de Greenwich (HcG o GMT; a efectos prácticos, UTC): el tiempo transcurrido desde el paso del **Sol medio** por el **meridiano inferior de Greenwich**.\n- **Hora Civil del Lugar (HcL)**: el tiempo transcurrido desde el paso del **Sol medio** por el **meridiano inferior del lugar**.\n\nComo cada observador tiene su meridiano, **cada uno tiene su HcL**. Dos lugares en el **mismo meridiano** tienen la misma HcL; si cambias de longitud, cambia tu HcL."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones falsas cambian una sola palabra: «Sol **verdadero**» en vez de medio, o «meridiano **superior**» en vez de inferior. La buena es siempre **Sol medio + meridiano inferior**; si dice «de Greenwich» es el TU y si dice «del lugar», la HcL. «El tiempo desde que el Sol pasó por el huso horario» no es nada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo 1: de TU a hora civil del lugar",
+       "texto": "La Tierra gira 360° en 24 h: **15° = 1 h**, **1° = 4 min**, **15′ = 1 min**. Hacia el **E** la hora va **adelantada**:\n\n**HcL = TU + longitud en tiempo** (longitud E suma, W resta).\n\n- TU 08:00 en **075° W**: 75 / 15 = 5 h → HcL = 08:00 − 5 h = **03:00**.\n- TU 10:30 en **069° 25′ E**: 69,42 / 15 = 4,628 h = 4 h 37,7 min → HcL = **15:07,7**.\n\nSi pasas de 24 h o bajas de 0 h, cambia la fecha."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Husos horarios y hora legal",
+       "texto": "La Tierra se divide en **24 husos** de **15°**, cada uno limitado por **dos meridianos que difieren 15°** y centrado en un meridiano múltiplo de 15°. El **huso 0** va de 7° 30′ W a 7° 30′ E.\n\nLa **hora legal (Hz)** es la **hora del huso**: la hora civil de su **meridiano central**, la misma para todo el huso.\n- **Hz = TU ± número de huso** (E suma, W resta).\n- Mismo meridiano → mismo huso → **misma hora legal**, aunque sean países distintos.\n- Hz y HcL coinciden si estás en el meridiano central (longitud múltiplo de 15°)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo 2: hora legal",
+       "texto": "Número de huso = longitud / 15, redondeado al entero más próximo (si el resto pasa de 7° 30′, al siguiente).\n\n- **069° 25′ E**: 69,42 / 15 = 4,63 → **huso 5 E** (en las tablas con signos se escribe −5, porque TU = Hz − 5). TU 10:30 → **Hz = 15:30**.\n- **075° W**: 75 / 15 = 5 → **huso 5 W**. TU 08:00 → **Hz = 03:00**, igual a la HcL porque 075° es el meridiano central.\n\nNavegando hacia el E se **adelanta** el reloj 1 h por huso; hacia el W se **atrasa**. Al cruzar el meridiano de 180° (línea de cambio de fecha) hacia el W se **suma un día**; hacia el E se **resta**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Hora oficial",
+       "texto": "La **hora oficial (Ho)** es la que el **Gobierno** de cada país fija para su territorio (la del reloj de casa). Suele ser la legal con un adelanto en horas enteras.\n\n- **Península y Baleares**: TU + 1 en invierno y **TU + 2** en verano.\n- **Canarias**: TU en invierno y TU + 1 en verano.\n- El horario de verano empieza el **último domingo de marzo** y acaba el **último domingo de octubre** (el cambio se hace a la 01:00 TU).\n\nCasi toda la península está en el huso 0 (y Canarias en el 1 W), así que la hora oficial española **no coincide** con la legal ni siquiera en invierno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Hora reloj de bitácora (HRB)",
+       "texto": "La **HRB** es la hora que fija el **patrón** y por la que se rige la **vida a bordo**: guardias, comidas, diario.\n\n**Puede** coincidir con la hora legal o con la oficial de un Estado, si el patrón así lo decide, pero **no tiene por qué**: no «es igual» a ninguna por definición. En travesías largas es habitual llevar a bordo un reloj en TU, otro en hora legal y otro en la oficial de casa."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Fíjate en los verbos: «la HRB **puede coincidir** con la legal / oficial si lo decide el patrón» es **verdadero**; «la HRB **es igual** a la hora oficial» o «**coincide siempre** con la legal» es **falso**. Y no cruces nombres: la que fija el **Gobierno** es la **oficial**; la del **huso** (TU ± huso) es la **legal**; la del **patrón**, la HRB. Ojo también: la legal es la hora **civil** del meridiano central, no «la de TU» de ese meridiano."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-06"
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Son las 14:00 TU y estás en longitud 045° W. ¿Qué hora civil del lugar tienes?",
+       "opciones": {
+        "a": "17:00",
+        "b": "11:00",
+        "c": "14:00"
+       },
+       "correcta": "b",
+       "explicacion": "45° / 15 = 3 h. Al W la hora va retrasada: HcL = 14:00 − 3 h = 11:00."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas frente a Cádiz (huso 0) un día de enero. ¿Qué relación hay entre la hora oficial española y el TU?",
+       "opciones": {
+        "a": "Son iguales",
+        "b": "Hora oficial = TU + 1",
+        "c": "Hora oficial = TU + 2"
+       },
+       "correcta": "b",
+       "explicacion": "En invierno la península lleva TU + 1 aunque esté en el huso 0. En verano sería TU + 2."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n01",
+      "and-py-2020-c3-n01",
+      "and-py-2021-c1-n04",
+      "and-py-2021-c2-n05",
+      "and-py-2022-c1-n01",
+      "and-py-2022-c2-n03",
+      "and-py-2022-c3-n03",
+      "and-py-2023-c1-n02",
+      "and-py-2023-c1-n03",
+      "and-py-2023-c2-n04",
+      "and-py-2023-c3-n02",
+      "and-py-2024-c1-n05",
+      "and-py-2024-c2-n05",
+      "and-py-2025-c3-n02",
+      "and-py-2026-c1-n05",
+      "and-py-2026-c2-n06"
+     ],
+     "chuleta": [
+      "Horas civiles: Sol medio + meridiano inferior (medianoche = 00:00).",
+      "TU: desde Greenwich. HcL: desde tu meridiano; cada meridiano, la suya.",
+      "15° = 1 h; 1° = 4 min. HcL = TU + L (E suma, W resta).",
+      "Huso: 15°, limitado por dos meridianos. Hz = hora civil del meridiano central = TU ± huso.",
+      "Ho: la fija el Gobierno (península TU+1 invierno, TU+2 verano). HRB: la fija el patrón; puede coincidir, no tiene por qué.",
+      "Cruzando 180° hacia el W, +1 día; hacia el E, −1 día."
+     ],
+     "profundizar": [
+      {
+       "titulo": "EUR-Lex – Directiva 2000/84/CE (horario de verano)",
+       "url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32000L0084"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "TU y HcL: Sol medio por el meridiano inferior de Greenwich / del lugar",
+       "fuente": "Plantillas PY 2021-c2-n05, 2023-c1-n02, 2024-c2-n05, 2025-c3-n02, 2026-c2-n06"
+      },
+      {
+       "dato": "Huso de 15° limitado por dos meridianos; hora legal = hora del huso = TU ± huso; HcL = Hz en el meridiano central",
+       "fuente": "Plantillas PY 2020-c1-n01, 2022-c3-n03, 2023-c2-n04, 2023-c3-n02"
+      },
+      {
+       "dato": "HRB: la fija el patrón; puede coincidir con la legal u oficial, no tiene por qué",
+       "fuente": "Plantillas PY 2020-c3-n01, 2022-c1-n01, 2022-c2-n03, 2023-c1-n03"
+      },
+      {
+       "dato": "Horario de verano: último domingo de marzo a último domingo de octubre, cambio a la 01:00 TU; península UTC+1/UTC+2, Canarias UTC/UTC+1",
+       "fuente": "Directiva 2000/84/CE, arts. 2–3; IHM, Anuario de Mareas (apartado «Horas»)"
+      },
+      {
+       "dato": "Ecuación del tiempo hasta ≈ 16 min",
+       "fuente": "Valor astronómico conocido (máx. ≈ 16,4 min a primeros de noviembre)"
+      },
+      {
+       "dato": "TU 08:00 en 075° W → HcL 03:00; TU 10:30 en 069° 25′ E → HcL 15:07,7, huso 5 E, Hz 15:30; check TU 14:00 en 045° W → 11:00",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      }
+     ]
+    },
+    {
+     "id": "py-3-6",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "Mareas: el Anuario y la curva de la marea",
+     "minutos": 10,
+     "objetivos": [
+      "Manejar los datos del Anuario de Mareas: horas en TU, alturas sobre el cero hidrográfico",
+      "Conocer la fórmula de la altura de la marea en un instante y la regla de los duodécimos",
+      "Saber cómo afectan la presión y el viento (los problemas se practican en el bloque de carta)"
+     ],
+     "refresco": [
+      "per-10-8"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Lo que añade el PY",
+       "texto": "En el PER viste qué son la pleamar, la bajamar, la amplitud, las mareas vivas y muertas y el cero hidrográfico. En el PY toca **calcular** cuánta agua habrá sobre un bajo a una hora (problema directo) o a qué hora habrá la que necesitas (inverso).\n\nEn el examen son las preguntas de mareas del bloque de **carta**. Aquí tienes el concepto y las fórmulas; los problemas completos, con el paso de hora oficial a TU, la marea vaciante y la corrección por presión, los practicas en la lección **«Mareas: sonda en un momento y hora para tener una sonda»** del bloque de carta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El Anuario de Mareas",
+       "texto": "Lo publica cada año el **Instituto Hidrográfico de la Marina**. Trae:\n- **Puertos patrón**: para cada día, las horas y alturas de las pleamares y bajamares.\n- **Puertos secundarios**: diferencias de hora y altura respecto a un puerto patrón.\n- **Tablas auxiliares**: la altura de la marea en un instante cualquiera y la corrección por presión, entre otras.\n\nDos claves: las **horas vienen en TU** (súmale el adelanto para la hora oficial) y las **alturas se miden desde el cero hidrográfico**, el mismo nivel desde el que se miden las sondas de la carta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La fórmula",
+       "texto": "Toma la bajamar (BM) y la pleamar (PM) consecutivas que encierran tu hora:\n- **Duración D**: tiempo entre la BM y la PM.\n- **Amplitud A** = altura PM − altura BM.\n- **Intervalo I**: tiempo entre tu hora y la **bajamar** del tramo.\n\nLa marea sube despacio cerca de la bajamar, deprisa a media marea y despacio cerca de la pleamar:\n\n**C = A · sen² (90° · I / D)**\n\n- Altura de la marea: **h = altura BM + C**.\n- **Sonda = sonda de la carta + h**.\n- Inverso: **I = D · arcsen (√(C / A)) / 90°**.\n\nLa tabla del Anuario para un instante cualquiera hace esta misma cuenta."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marea",
+        "modo": "sonda"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Un ejemplo breve y su comprobación",
+       "texto": "BM **0,50 m** y PM **2,90 m** seis horas después; bajo con **1,20 m** en la carta. ¿Qué sonda hay **2 h** después de la bajamar?\n\n1. A = **2,40 m**; D = 6 h; I = 2 h.\n2. 90° · 2 / 6 = 30°; sen² 30° = 0,25 → C = **0,60 m**.\n3. h = 0,50 + 0,60 = **1,10 m** → sonda = 1,20 + 1,10 = **2,30 m**.\n\n**Duodécimos**: en cada sexto de la duración la marea sube **1, 2, 3, 3, 2 y 1** doceavos de la amplitud. Tras dos sextos, 3/12 de 2,40 = **0,60 m**: lo mismo. Sirve para comprobar de cabeza; en el examen manda el Anuario."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marea",
+        "modo": "duodecimos"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Presión y viento",
+       "texto": "El Anuario predice la marea **astronómica**, con presión normal (unos 1013 hPa). El tiempo la modifica:\n- **Presión baja**: el nivel sube, aproximadamente **1 cm por cada hPa** por debajo de la normal.\n- **Presión alta**: el nivel baja en la misma proporción: tendrás **menos** agua de la calculada.\n- **Viento** de la mar hacia tierra: más agua; de tierra hacia la mar: menos.\n\nEn el examen usa la tabla de corrección por presión del Anuario cuando te den la presión."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una marea tiene 2,40 m de amplitud y 6 horas de duración. Según la regla de los duodécimos, ¿cuánto sube durante la tercera hora?",
+       "opciones": {
+        "a": "0,20 m",
+        "b": "0,40 m",
+        "c": "0,60 m"
+       },
+       "correcta": "c",
+       "explicacion": "En la tercera sexta parte sube 3/12 de la amplitud: 3/12 × 2,40 = 0,60 m. Las horas centrales son las de más corriente de marea; la primera y la última, las de menos (1/12 = 0,20 m)."
+      }
+     ],
+     "practica": [],
+     "carta": [
+      "marea-sonda"
+     ],
+     "chuleta": [
+      "Anuario (IHM): horas en TU (+ adelanto = oficial), alturas sobre el cero hidrográfico.",
+      "Tramo BM–PM: D (tiempo), A (alturas), I (desde tu hora a la BM del tramo).",
+      "C = A · sen² (90° · I / D); h = altura BM + C; sonda = sonda de la carta + h.",
+      "Inverso: I = D · arcsen √(C / A) / 90°.",
+      "Duodécimos: 1-2-3-3-2-1 por sexto de duración (comprobación).",
+      "≈ 1 cm por hPa: presión alta, menos agua; baja, más."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IHM – Anuario de Mareas: contenido",
+       "url": "https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario"
+      },
+      {
+       "titulo": "IHM – El cero hidrográfico (PDF)",
+       "url": "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf"
+      },
+      {
+       "titulo": "Puertos del Estado – Portus (predicción de mareas y nivel del mar)",
+       "url": "https://portus.puertos.es/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Horas del Anuario en UTC (sumar el adelanto para la oficial); alturas sobre el cero hidrográfico; tablas de marea en un instante y de corrección por presión",
+       "fuente": "IHM, «Contenido del Anuario» (armada.defensa.gob.es, página del Anuario de Mareas)"
+      },
+      {
+       "dato": "C = A · sen²(90° · I / D); h = BM + C; sonda = sonda carta + h; inverso I = D · arcsen √(C/A) / 90°",
+       "fuente": "Misma formulación que py-4-9; reproduce la tabla del Anuario (curva sinusoidal)"
+      },
+      {
+       "dato": "Ejemplo A 2,40 m, D 6 h, I 2 h → 30°, sen² 0,25, C 0,60 m, h 1,10 m, sonda 2,30 m; duodécimos 3/12 × 2,40 = 0,60 m; check 3/12 × 2,40 = 0,60 m",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "≈ 1 cm por hPa respecto a 1013 hPa (barómetro invertido)",
+       "fuente": "Tabla de corrección por presión del Anuario de Mareas (IHM); coherente con py-4-9 y con la regla py-nav-05"
+      }
+     ]
+    },
+    {
+     "id": "py-3-7",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "Publicaciones náuticas: derroteros, Avisos a los Navegantes y radioavisos",
+     "minutos": 12,
+     "objetivos": [
+      "Saber qué publicación describe la costa y cuál corrige cartas y derroteros",
+      "Conocer quién publica los Avisos a los Navegantes, cada cuánto y para qué",
+      "Llevar un aviso a la carta: a lápiz o a tinta",
+      "Distinguir los Avisos a los Navegantes de los radioavisos"
+     ],
+     "refresco": [
+      "per-10-3"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Lo que publica el IHM",
+       "texto": "El **Instituto Hidrográfico de la Marina** (IHM, en Cádiz) es el servicio hidrográfico oficial de España. Edita:\n- Las **cartas náuticas** (de papel y electrónicas).\n- Los **derroteros**.\n- El **Libro de Faros y Señales de Niebla**.\n- El **Anuario de Mareas**.\n- Los **Avisos a los Navegantes**, que mantienen al día todo lo anterior.\n- El **catálogo de cartas y publicaciones**.\n\nEn el examen casi todo gira alrededor de dos de ellas: los derroteros y los Avisos."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Derroteros",
+       "texto": "El **derrotero** es la publicación que **describe con detalle la costa** y sus **peligros**: aspecto de la costa vista desde la mar, puertos y sus entradas, fondeaderos, bajos, corrientes, mareas, clima habitual, enfilaciones útiles y reglamentos locales. Es lo que lees antes de recalar en un sitio que no conoces.\n\nNo lo confundas con:\n- El **Libro de Faros**: características de las luces y señales de niebla.\n- El **Anuario de Mareas**: horas y alturas de la marea.\n- La **carta**: dibuja la costa, pero no la «describe»."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Avisos a los Navegantes",
+       "texto": "- Los publica el **IHM**, **cada semana**, y se descargan **gratis** de su web.\n- Su objetivo principal es **mantener actualizadas las cartas náuticas y las publicaciones** del IHM: cartas, derroteros, Libro de Faros…\n- Informan de **peligros nuevos** (cascos hundidos, bajos), cambios de balizamiento, obras, zonas de ejercicios y novedades editoriales.\n- Se organizan en **secciones**: una con los **avisos relativos a las cartas** (las correcciones), otra con los **radioavisos** en vigor y otras con las correcciones a los libros de faros, derroteros y demás publicaciones."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tipos de aviso y cómo se corrige la carta",
+       "texto": "- **Permanentes**: cambios definitivos. Se pasan a la carta con **tinta indeleble**.\n- **Temporales**: duran un tiempo (una luz apagada, unas obras). Se anotan **a lápiz** y se borran al cancelarse.\n- **Preliminares**: anuncian un cambio que llegará. También **a lápiz**.\n- **Generales**: información general; **no corrigen** cartas.\n\nCada corrección se registra con su número y año en el **margen inferior** de la carta. Si una zona pequeña cambia mucho, el aviso trae un **recorte gráfico** que se pega encima."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Sobre el **objetivo** de los Avisos las plantillas no coinciden. En 2021 se dio por buena «avisar de los peligros inminentes relacionados con la navegación», aunque también estaba la opción de mantener al día las cartas y publicaciones. En 2024 y 2025 la buena fue «**mantener actualizadas las cartas y publicaciones**» (o «las cartas y derroteros») y la de los peligros «a nivel internacional» fue falsa. Lo correcto según el IHM es **mantener al día**: lo urgente va por **radioaviso**. Marca esa, que es la de las plantillas más recientes, sabiendo que en 2021 se puntuó la otra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Más trampas: los Avisos corrigen **cartas y derroteros** (no «solo cartas», ni «solo derroteros», ni los AVURNAVES); los derroteros **sí se corrigen**, y se hace con los **Avisos** (no con el Almanaque ni con el Libro de Faros); los temporales y preliminares **sí se anotan** (a lápiz); los generales no corrigen nada; y no hace falta pagar ninguna suscripción."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Radioavisos",
+       "texto": "Lo **urgente** no puede esperar al boletín semanal: va por radio.\n- **NAVAREA**: el mundo se divide en 21 zonas. España coordina la **NAVAREA III** (Mediterráneo y mar Negro); la costa atlántica está en la **II**, que coordina Francia. Se reciben por satélite.\n- **Costeros**: por **NAVTEX** (518 kHz en inglés, 490 kHz en español); en España los emite Salvamento Marítimo.\n- **Locales**: por VHF, en puertos y sus proximidades.\n\nPor radiotelefonía se anuncian con la palabra **SÉCURITÉ** (seguridad)."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Avisos a los Navegantes: boletín semanal del IHM que corrige cartas y publicaciones. Radioavisos: lo urgente, por radio."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un aviso temporal informa de que una luz estará apagada durante dos meses. ¿Qué haces con tu carta?",
+       "opciones": {
+        "a": "Nada, solo se anotan los permanentes",
+        "b": "Lo anotas a lápiz",
+        "c": "Lo anotas con tinta indeleble"
+       },
+       "correcta": "b",
+       "explicacion": "Temporales y preliminares se anotan a lápiz, para borrarlos cuando se cancelen. Los permanentes, con tinta indeleble."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas a entrar por primera vez en un puerto y quieres saber cómo es la costa, sus peligros y dónde fondear. ¿Qué consultas?",
+       "opciones": {
+        "a": "El derrotero",
+        "b": "El Libro de Faros y Señales de Niebla",
+        "c": "El Anuario de Mareas"
+       },
+       "correcta": "a",
+       "explicacion": "El derrotero describe la costa, sus peligros, puertos y fondeaderos. El Libro de Faros da las características de las luces."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n08",
+      "and-py-2020-c3-n08",
+      "and-py-2021-c1-n02",
+      "and-py-2022-c1-n08",
+      "and-py-2022-c2-n08",
+      "and-py-2023-c2-n03",
+      "and-py-2024-c1-n04",
+      "and-py-2024-c2-n04",
+      "and-py-2024-c3-n05",
+      "and-py-2025-c1-n04",
+      "and-py-2025-c2-n04",
+      "and-py-2025-c3-n04",
+      "and-py-2026-c1-n04",
+      "and-py-2026-c2-n05"
+     ],
+     "chuleta": [
+      "IHM (Cádiz): cartas, derroteros, Libro de Faros, Anuario de Mareas, Avisos a los Navegantes.",
+      "Derrotero: describe la costa y sus peligros, puertos y fondeaderos.",
+      "Avisos: semanales, gratuitos; mantienen al día cartas y derroteros; una sección es la de avisos a las cartas.",
+      "Permanentes: tinta. Temporales y preliminares: lápiz. Generales: no corrigen.",
+      "Urgente = radioaviso: NAVAREA (España coordina la III), NAVTEX (costeros), VHF (locales)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina (IHM)",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Avisos a los Navegantes: publicación semanal del IHM (Cádiz), solo digital y gratuita desde 2023; secciones: avisos generales (no corrigen), avisos relativos a cartas, correcciones a publicaciones (derroteros, faros…), radioavisos NAVAREA III y II",
+       "fuente": "IHM, Grupo semanal de Avisos nº 37/2023 (índice y notas explicativas)"
+      },
+      {
+       "dato": "Preliminares (P) y temporales (T): anotación a lápiz; permanentes: modificación definitiva",
+       "fuente": "IHM, Avisos a los Navegantes, Sección 1 «Notas explicativas»"
+      },
+      {
+       "dato": "Objetivo de los Avisos: 2021 dio por buena «avisar de peligros inminentes»; 2024 y 2025, «mantener actualizadas cartas y publicaciones/derroteros»",
+       "fuente": "Plantillas PY 2021-c1-n02, 2024-c3-n05, 2025-c1-n04"
+      },
+      {
+       "dato": "21 NAVAREAS; España coordina la III; costa atlántica en la II (Francia); NAVTEX 518 kHz (inglés) y 490 kHz (idioma nacional)",
+       "fuente": "OMI, Servicio Mundial de Radioavisos Náuticos (Res. A.706(17) enmendada); IHM, Sección 5 de los Avisos; Salvamento Marítimo (estaciones NAVTEX)"
+      },
+      {
+       "dato": "Derroteros: descripción detallada de la costa; se corrigen con los Avisos",
+       "fuente": "Plantillas PY 2025-c2-n04, 2026-c1-n04, 2024-c1-n04, 2025-c3-n04"
+      }
+     ]
+    },
+    {
+     "id": "py-3-8",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "El radar: ajustes, presentaciones, demoras y distancias",
+     "minutos": 20,
+     "objetivos": [
+      "Explicar en qué principio se basa el radar y qué te da",
+      "Saber qué mando tocar con lluvia, con mar o para una imagen óptima, y qué pasa si te pasas",
+      "Distinguir las presentaciones proa arriba y norte arriba y usar EBL y VRM",
+      "Convertir una marcación radar en demora verdadera"
+     ],
+     "refresco": [
+      "per-10-7",
+      "per-11-5",
+      "per-6-6"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Cómo funciona",
+       "texto": "El **radar** emite pulsos muy cortos de **ondas electromagnéticas** (microondas) que se **reflejan** en los objetos y **vuelven** a la antena.\n- La **distancia** sale del tiempo de ida y vuelta (las ondas viajan a unos 300 000 km/s).\n- La **demora o marcación**, de la dirección a la que apuntaba la antena giratoria, que emite en un haz muy estrecho.\n\nAsí **detecta** costa, barcos, boyas y chubascos y mide su **distancia y posición**; con la función de punteo (ARPA o MARPA) calcula además su rumbo, su velocidad y lo cerca que pasarán. No usa satélites ni muestra cartas: eso es el GNSS y el plotter."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Bandas y alcance",
+       "texto": "- **Banda X** (unos 9,4 GHz, 3 cm de longitud de onda): mejor definición, pero le afectan más la lluvia y la mar. Es la de las embarcaciones de recreo.\n- **Banda S** (unos 3 GHz, 10 cm): ve mejor con mal tiempo y llega más lejos, con menos detalle. La llevan los buques grandes.\n\nEl alcance lo limita la curvatura de la Tierra. **Horizonte radar ≈ 2,2 · (√h + √H) millas**, con h la altura de la antena y H la del blanco, en metros. Ejemplo: antena a 4 m y acantilado de 25 m → 2,2 · (2 + 5) = **15,4 millas**. Ningún ajuste de la imagen amplía ese horizonte."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Los cuatro mandos de la imagen",
+       "texto": "- **Sintonía (TUNE)**: ajusta el receptor a la frecuencia que emite el equipo. Desajustada, los ecos salen débiles o **no salen**, aunque veas el barrido. Mejor en automático.\n- **Ganancia (GAIN)**: la sensibilidad del receptor. Poca: pierdes ecos débiles. Demasiada: la pantalla se llena de **ruido** que **satura** y tapa los ecos.\n- **Perturbación de mar (anti-clutter SEA)**: quita los ecos de las olas cerca del centro. Si te pasas, **borra barcos pequeños cercanos**.\n- **Perturbación de lluvia (anti-clutter RAIN)**: atenúa los ecos de lluvia o granizo. Con moderación."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué tocar en cada caso",
+       "texto": "Según las plantillas del examen:\n- **Lluvia o granizo**: **ganancia + anti-clutter de lluvia**.\n- **Mar** (olas cerca del centro): **ganancia + anti-clutter de mar**.\n- **Visualización óptima** en general: **sintonía + ganancia**; si la opción completa está, **sintonía, ganancia y perturbaciones de mar y lluvia**.\n- **Barrido sin ecos** con los anti-clutter apagados: **la sintonía**.\n- **Ganancia al máximo**: no aporta nada bueno; solo ruido.\n\nY lo que no es un ajuste del radar: el **XTE** (es del GNSS)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La ganancia acompaña siempre al filtro: con lluvia, ganancia y anti-lluvia; con mar, ganancia y anti-mar. Ni la sintonía ni el otro filtro. Si te piden la visualización «óptima» y entre las opciones solo hay pares, la buena es **sintonía y ganancia**. Si hay barrido pero no ecos, la plantilla da la **sintonía** (en la práctica, comprueba también que la ganancia no esté a cero)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Lo que estropea la imagen",
+       "texto": "- **Perturbaciones del mar y de la lluvia**: las causas más habituales.\n- **Interferencias** de otros radares cercanos: espirales o rayos de puntos.\n- **Ecos falsos y múltiples**: rebotes en tu propia estructura o entre tu barco y otro cercano.\n- **Sectores de sombra**: detrás de palos o chimeneas no hay ecos.\n\nLo que **no** la estropea: la **falta de visibilidad**, porque el radar ve igual de noche o con niebla (para eso lo quieres), ni los AIS de las boyas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Presentaciones",
+       "texto": "- **Proa arriba (H-UP)**: la línea de proa va arriba y coincide con la **crujía**; ves la imagen como desde cubierta. Lees **marcaciones**. Al cambiar de rumbo, toda la imagen **gira**.\n- **Norte arriba (N-UP)**: el norte va arriba (necesita un sensor de rumbo). Lees **demoras** y la imagen no gira al cambiar de rumbo; se compara fácil con la carta.\n- **Rumbo arriba (C-UP)**: el rumbo elegido arriba y la imagen estabilizada.\n\nY dos modos de movimiento: **relativo** (tu barco fijo en el centro; un barco a tu mismo rumbo y velocidad parece parado) y **verdadero** (la tierra queda fija y tú te mueves)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "EBL y VRM",
+       "texto": "- **EBL** (*Electronic Bearing Line*, línea electrónica de demora): una línea desde el centro que llevas sobre el eco. Te da su **demora** (norte arriba) o su **marcación** (proa arriba).\n- **VRM** (*Variable Range Marker*, anillo variable de distancia): un círculo que ajustas hasta tocar el eco. Te da su **distancia**.\n- Los **anillos fijos** solo dan distancias de referencia.\n\nPara medir bien: la escala más pequeña que muestre el eco, la distancia al **borde más próximo** del eco y la demora al **centro** de un eco pequeño. Con demora y distancia a un punto ya tienes tu situación."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo: de marcación radar a demora",
+       "texto": "La **marcación radar** es el ángulo desde la **línea de proa** (la línea de fe) hasta el eco; no se cuenta desde ningún meridiano. Para trazarla en la carta necesitas tu **rumbo**:\n\n**Dv = Rv + M** (estribor +, babor −; o marcación circular de 0° a 360°).\n\n- Rv 210°, costa a **90° por estribor** → Dv = 210 + 90 = **300°**.\n- Rv 210°, barco a **40° por babor** (320° circular) → 210 + 320 = 530 − 360 = **170°**.\n\nNo hace falta ir con arrancada ni conocer la distancia; sí el rumbo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rosa",
+        "rumbo": 210,
+        "demora": 170,
+        "marcacion": true,
+        "etiqueta": "eco"
+       },
+       "texto": "Rv 210° y eco a 40° por babor: Dv = 210 − 40 = 170°."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Racon, SART y reflector",
+       "texto": "- **Racon**: baliza respondedora instalada en faros, boyas o puentes. Al recibir tu pulso responde y en pantalla aparece una **letra Morse** en línea radial **detrás de su eco**, que la identifica (la marca de un nuevo peligro o pecio usa la «D»).\n- **SART**: el respondedor de radar de socorro. Interrogado por un radar de banda X, aparece como una línea de **12 puntos** que se aleja del centro desde su posición; de cerca se convierten en arcos.\n- **Reflector de radar**: hace visible en los radares ajenos un barco pequeño que no sea metálico."
+      },
+      {
+       "tipo": "regla",
+       "id": "r27"
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 080° y ves en el radar un eco a 50° por babor. ¿Cuál es su demora verdadera?",
+       "opciones": {
+        "a": "130°",
+        "b": "030°",
+        "c": "050°"
+       },
+       "correcta": "b",
+       "explicacion": "Dv = Rv + M = 80 − 50 = 030°. Por babor la marcación es negativa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Alrededor del centro de la pantalla ves muchos ecos de olas. ¿Qué mando usas y qué riesgo tiene pasarse?",
+       "opciones": {
+        "a": "El anti-clutter de lluvia; que desaparezca la costa",
+        "b": "El anti-clutter de mar; que desaparezcan barcos pequeños cercanos",
+        "c": "La sintonía; que se reduzca el alcance"
+       },
+       "correcta": "b",
+       "explicacion": "El anti-clutter de mar reduce los ecos cercanos de las olas. Si te pasas, también borra los ecos débiles de barcos pequeños próximos."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n06",
+      "and-py-2020-c3-n06",
+      "and-py-2021-c1-n08",
+      "and-py-2022-c1-n07",
+      "and-py-2022-c3-n09",
+      "and-py-2023-c1-n07",
+      "and-py-2023-c1-n08",
+      "and-py-2023-c2-n05",
+      "and-py-2023-c3-n06",
+      "and-py-2024-c1-n06",
+      "and-py-2024-c2-n06",
+      "and-py-2024-c2-n07",
+      "and-py-2024-c3-n04",
+      "and-py-2024-c3-n06",
+      "and-py-2025-c1-n05",
+      "and-py-2025-c1-n06",
+      "and-py-2025-c2-n05",
+      "and-py-2025-c2-n06",
+      "and-py-2025-c3-n05",
+      "and-py-2025-c3-n06",
+      "and-py-2026-c1-n06",
+      "and-py-2026-c2-n07"
+     ],
+     "carta": [
+      "situacion-demora-distancia",
+      "situacion-dos-demoras"
+     ],
+     "chuleta": [
+      "Radar: ondas electromagnéticas que se reflejan y vuelven; distancia por el tiempo, demora por la antena.",
+      "Lluvia: ganancia + anti-lluvia. Mar: ganancia + anti-mar (pasarse borra barcos cercanos). Óptima: sintonía + ganancia (+ filtros).",
+      "Ganancia excesiva = ruido. Barrido sin ecos = sintonía.",
+      "Proa arriba: crujía arriba, marcaciones, la imagen gira. Norte arriba: demoras.",
+      "EBL = demora/marcación. VRM = distancia.",
+      "Dv = Rv + M (Er +, Br −): sin rumbo no hay demora."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IALA – R1001 The IALA Maritime Buoyage System (marca de pecio con racon «D»)",
+       "url": "https://www.iala.int/product/r1001/"
+      },
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Ajustes: lluvia → ganancia + anti-clutter lluvia; mar → ganancia + anti-clutter mar; óptima → sintonía + ganancia (o todos); barrido sin ecos → sintonía; ganancia alta satura",
+       "fuente": "Plantillas PY 2020-c1-n06, 2022-c1-n07, 2022-c3-n09, 2020-c3-n06, 2024-c2-n06, 2023-c3-n06, 2023-c1-n08, 2024-c1-n06"
+      },
+      {
+       "dato": "Bandas X (≈ 9,4 GHz, 3 cm) y S (≈ 3 GHz, 10 cm)",
+       "fuente": "UIT-R M.1313 / OMI MSC.192(79) (radares de navegación en 9 GHz y 3 GHz)"
+      },
+      {
+       "dato": "Horizonte radar ≈ 2,2 (√h + √H) millas (h, H en m; refracción radar k ≈ 4/3); ejemplo 4 m y 25 m → 15,4 millas",
+       "fuente": "Fórmula estándar del horizonte radar (1,22 √h en pies = 2,21 √h en metros); recalculado por el revisor"
+      },
+      {
+       "dato": "Racon de nuevo peligro / pecio: Morse «D»",
+       "fuente": "IALA R1001 (Emergency Wreck Marking Buoy, apdo. 2.6; New Dangers, apdo. 3.2)"
+      },
+      {
+       "dato": "SART: línea de 12 puntos al ser interrogado por radar de banda X; arcos al acercarse",
+       "fuente": "OMI Res. MSC.247(83) / A.802(19), SART 9 GHz"
+      },
+      {
+       "dato": "Dv = Rv + M: 210 + 90 = 300°; 210 + 320 − 360 = 170°; check 080 − 50 = 030°",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "Para pasar marcación radar a demora hace falta el rumbo (no arrancada ni distancia)",
+       "fuente": "Plantillas PY 2024-c3-n04, 2025-c1-n05"
+      }
+     ]
+    },
+    {
+     "id": "py-3-9",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "GNSS: las siglas de la pantalla y el datum",
+     "minutos": 15,
+     "objetivos": [
+      "Explicar qué es un GNSS y qué información da (y cuál no)",
+      "Reconocer al instante WPT, COG, SOG, XTE, ETA, MOB y compañía",
+      "Saber qué es el datum y cuándo puedes pasar la posición a la carta de papel",
+      "Calcular ETA, tiempo restante y error transversal a partir de la pantalla"
+     ],
+     "refresco": [
+      "per-10-1"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es un GNSS",
+       "texto": "**GNSS** (sistema global de navegación por satélite) es el nombre genérico de **GPS** (EE. UU.), **Galileo** (UE), **GLONASS** (Rusia) y **BeiDou** (China). Los receptores modernos usan varios a la vez.\n\nCada satélite emite su posición y la hora exacta. El receptor calcula su **distancia** a cada uno por el **tiempo** que tarda la señal y, con **al menos cuatro**, resuelve latitud, longitud, altura y la hora. Los satélites del GPS orbitan a unos **20 000 km** y dan una vuelta cada **12 horas** aproximadamente.\n\nEl sistema tiene tres partes: los satélites (segmento espacial), las estaciones de tierra que los controlan y tu receptor (segmento de usuario)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué te da y qué no",
+       "texto": "El GNSS te da **tus** datos:\n- Tu **posición geográfica**, que es su función básica.\n- Tu **rumbo y velocidad sobre el fondo** (COG y SOG), calculados con posiciones sucesivas.\n- Con una ruta cargada: demora y distancia al siguiente punto, **hora estimada de llegada**, error transversal…\n\nNo te da: los datos de **otros barcos** (eso es el AIS o el radar), las **mareas** en tiempo real, la **profundidad** (la sonda) ni el rumbo de proa si no tiene un compás conectado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las siglas que más caen (I)",
+       "texto": "- **WPT** (*waypoint*): un **punto de ruta**, de destino o de paso.\n- **COG** (*Course Over Ground*): **rumbo sobre el fondo** = **rumbo efectivo**.\n- **SOG** (*Speed Over Ground*): **velocidad sobre el fondo** = **velocidad efectiva**.\n- **HDG** (*heading*): rumbo **de proa**, hacia donde apunta el barco.\n- **BRG** (*bearing*): **demora** desde tu posición al WPT.\n- **DTG** o **RNG** (*distance to go*, *range*): **distancia** que falta hasta el WPT.\n\nCOG y SOG incluyen el efecto de viento y corriente: por eso son los efectivos, no el verdadero ni la velocidad de máquina."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las siglas que más caen (II)",
+       "texto": "- **XTE** (*cross track error*): **error transversal**, la distancia del barco a la **línea recta que une el WPT de salida y el de llegada**, con la banda hacia la que te has ido.\n- **ETA** (*Estimated Time of Arrival*): **hora estimada de llegada**.\n- **ETD** (*Estimated Time of Departure*): hora estimada de **salida**.\n- **TTG** o **ETE**: **tiempo** que falta para llegar.\n- **VMG** (*velocity made good*): velocidad con la que de verdad te acercas al WPT.\n- **MOB** (*man overboard*): botón que **guarda la posición** de una persona caída al agua y te da rumbo y distancia para volver a ella."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones inventan siglas parecidas: MOG, MOF, MOD o MOP en vez de **MOB**; ETS, ETLL o ETX en vez de **ETA**; CMG o VSG en vez de **SOG**. Ojo con **ETA** (llegada) y **ETD** (salida): en una plantilla se dio por buena «calcular la hora estimada de llegada a puerto (ETD)», con la sigla mal puesta, porque las otras opciones eran claramente falsas. Y el XTE no es la distancia que falta al WPT (eso es el DTG)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cálculo: ETA, tiempo restante, XTE y VMG",
+       "texto": "La pantalla marca **DTG 18,0 millas** y **SOG 6,0 nudos**; son las 10:20 HRB.\n1. TTG = 18,0 / 6,0 = **3 h**.\n2. ETA = 10:20 + 3 h = **13:20**.\n\nMarca también **XTE 0,05 R**: estás 0,05 millas = **medio cable (unos 93 m)** a la **derecha** (estribor) de la línea de la ruta.\n\nSi tu COG se separa **20°** del BRG al WPT a 6 nudos, te acercas a VMG = 6 · cos 20° = **5,6 nudos**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El datum",
+       "texto": "El **datum** es el **sistema de referencia geodésico** (una forma de la Tierra y un origen) respecto al cual se dan las **coordenadas geográficas**.\n\n- El GNSS trabaja en **WGS-84**, y las cartas modernas también.\n- Las cartas antiguas pueden estar en otro datum, como el **ED50** europeo: las mismas coordenadas caen en un punto distinto, unos **150 a 200 metros** en la península.\n\nAntes de pasar la posición del GNSS a una carta de papel, comprueba que el datum **es el mismo** (o configura el receptor con el de la carta, o aplica la corrección que indique la carta). Si no, la posición quedará **mal situada**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El datum es una referencia **horizontal** de coordenadas. No es el **cero hidrográfico** (el plano desde el que se miden las sondas y las alturas que velan en bajamar), ni «la referencia al GPS», ni un protocolo de las estaciones de control, ni sirve para la hora o el XTE. Y una posición en otro datum no hace que el GNSS pierda la señal ni que la SOG sea incorrecta: lo único que falla es dónde cae en la carta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "No te fíes solo de la pantalla",
+       "texto": "El GNSS puede fallar: avería eléctrica, antena, interferencias o pérdida de señal. Por eso:\n- Anota tu posición **periódicamente** en la carta o en el diario.\n- Compárala con demoras, distancias de radar y sondas.\n- Ten siempre a mano cómo volver a navegar por estima.\n\nY recuerda que la SOG y el COG son datos **sobre el fondo**: si no coinciden con tu rumbo y tu corredera, la diferencia es la corriente (y el viento)."
+      },
+      {
+       "tipo": "clave",
+       "texto": "El GNSS te habla de ti (posición, COG, SOG, XTE, ETA); de los demás barcos te informan el AIS y el radar."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La corredera marca 6,0 nudos y el GNSS una SOG de 5,2 nudos. ¿Qué es lo más probable?",
+       "opciones": {
+        "a": "Que tienes corriente en contra",
+        "b": "Que el datum del GNSS es distinto del de la carta",
+        "c": "Que el viento te está abatiendo"
+       },
+       "correcta": "a",
+       "explicacion": "La corredera mide la velocidad respecto al agua y la SOG respecto al fondo: la diferencia la produce la corriente. El datum no afecta a la velocidad y, por convenio, el abatimiento no cambia la velocidad."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La pantalla marca XTE 0,2 L. ¿Qué significa?",
+       "opciones": {
+        "a": "Que te faltan 0,2 millas para el waypoint",
+        "b": "Que estás 0,2 millas a la izquierda (babor) de la línea de la ruta",
+        "c": "Que la posición tiene un error de 0,2 millas por el datum"
+       },
+       "correcta": "b",
+       "explicacion": "XTE es el error transversal: la distancia a la línea entre el WPT de salida y el de llegada, con la banda (L, izquierda; R, derecha)."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n03",
+      "and-py-2020-c3-n03",
+      "and-py-2021-c1-n10",
+      "and-py-2021-c2-n06",
+      "and-py-2022-c1-n03",
+      "and-py-2022-c2-n05",
+      "and-py-2022-c2-n07",
+      "and-py-2022-c3-n08",
+      "and-py-2023-c1-n10",
+      "and-py-2023-c2-n02",
+      "and-py-2023-c2-n06",
+      "and-py-2023-c3-n08",
+      "and-py-2024-c1-n07",
+      "and-py-2024-c1-n08",
+      "and-py-2024-c2-n08",
+      "and-py-2024-c3-n07",
+      "and-py-2024-c3-n08",
+      "and-py-2025-c1-n07",
+      "and-py-2025-c1-n08",
+      "and-py-2025-c2-n07",
+      "and-py-2025-c2-n08",
+      "and-py-2025-c3-n07",
+      "and-py-2025-c3-n08",
+      "and-py-2026-c1-n07",
+      "and-py-2026-c1-n08",
+      "and-py-2026-c2-n08"
+     ],
+     "chuleta": [
+      "GNSS: GPS, Galileo, GLONASS, BeiDou. Distancias a ≥ 4 satélites → posición y hora.",
+      "WPT punto de ruta · COG rumbo efectivo · SOG velocidad efectiva · HDG proa · BRG demora al WPT · DTG distancia.",
+      "XTE: distancia a la línea entre WPT de salida y llegada. ETA llegada; ETD salida; TTG tiempo restante. MOB: hombre al agua.",
+      "TTG = DTG / SOG; ETA = hora + TTG.",
+      "Datum: sistema de referencia de las coordenadas (WGS-84). Misma carta, mismo datum; si no, posición incorrecta.",
+      "El GNSS no da datos de otros barcos (AIS) ni mareas."
+     ],
+     "profundizar": [
+      {
+       "titulo": "GPS.gov – Información oficial del sistema GPS",
+       "url": "https://www.gps.gov/"
+      },
+      {
+       "titulo": "EUSPA – Galileo, el GNSS europeo",
+       "url": "https://www.euspa.europa.eu/eu-space-programme/galileo"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "GNSS: GPS, Galileo, GLONASS, BeiDou; GPS a ≈ 20 200 km, período ≈ 12 h; mínimo 4 satélites para posición y hora",
+       "fuente": "GPS.gov (Space Segment); EUSPA"
+      },
+      {
+       "dato": "Siglas WPT, COG, SOG, XTE, ETA, MOB y datum",
+       "fuente": "Plantillas PY 2020-c1-n03, 2020-c3-n03, 2022-c1-n03, 2023-c2-n06, 2024-c1-n07, 2025-c1-n07, 2026-c1-n07, 2022-c2-n05, 2025-c3-n08"
+      },
+      {
+       "dato": "ETA/ETD: la plantilla 2025-c2-n08 dio por buena «hora estimada de llegada (ETD)»",
+       "fuente": "Plantilla PY 2025-c2-n08 (resto de opciones falsas)"
+      },
+      {
+       "dato": "Desplazamiento ED50 → WGS-84 en la península: ≈ 155–180 m",
+       "fuente": "Transformación Molodensky con parámetros EPSG ED50→WGS84 (−87, −98, −121) y (−84, −107, −120), calculada por el revisor en 4 puntos peninsulares"
+      },
+      {
+       "dato": "TTG 18/6 = 3 h, ETA 13:20; XTE 0,05 M = 92,6 m; VMG 6 · cos 20° = 5,64 kn",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      }
+     ]
+    },
+    {
+     "id": "py-3-10",
+     "curso": "py",
+     "ut": 3,
+     "titulo": "Cartas electrónicas y AIS",
+     "minutos": 18,
+     "objetivos": [
+      "Distinguir cartas raster (RNC) y vectoriales (ENC), y estas de los sistemas que las muestran (ECDIS, ECS, plotter)",
+      "Saber quién produce las ENC oficiales españolas",
+      "Explicar qué es el AIS, en qué banda trabaja, qué datos transmite y para qué sirve",
+      "Reconocer los límites del AIS frente al radar y la vigilancia visual"
+     ],
+     "refresco": [
+      "per-10-3",
+      "per-6-2"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Dos tipos de carta electrónica",
+       "texto": "Solo hay **dos tipos** de carta electrónica:\n- **Raster (RNC)**: una **imagen escaneada**, copia digital exacta de una carta de papel, publicada por o bajo la autoridad de un servicio hidrográfico. Es familiar y barata, pero es solo un dibujo: al ampliar se **pixela**, no puede avisarte de nada y ocupa más memoria.\n- **Vectorial (ENC)**: una **base de datos** construida **objeto a objeto** (cada sonda, boya o veril es un dato), según la norma S-57 de la Organización Hidrográfica Internacional, publicada por un **gobierno** o bajo su autoridad. Permite capas, no se deforma con el zoom y genera **alarmas**: bajos, zonas prohibidas, veril de seguridad.\n\nLas dos se actualizan."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cartas y sistemas: no los mezcles",
+       "texto": "Las cartas son los datos; los **sistemas** son el equipo y el programa que las muestran:\n- **ECDIS**: sistema homologado que cumple las normas de la OMI (convenio SOLAS). Con ENC oficiales actualizadas puede sustituir a las cartas de papel; si trabaja con raster, necesita además cartas de papel al día.\n- **ECS** y **plotters** de recreo: sistemas sin esa homologación.\n\nEn España las **ENC oficiales** las produce el **Instituto Hidrográfico de la Marina**, no empresas privadas ni la Agencia Europea de Seguridad Marítima."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "**ENC = vectorial** y **RNC = raster**: el examen los cruza. ECDIS, ECS, PLOTTER o SENC **no son tipos de carta**, y «tipos de carta: raster y ECDIS» es falso. Ni la RNC es «más fiable porque no necesita actualización», ni la ENC «no puede actualizarse», ni la RNC se «representa por vectores»: si todas las opciones dicen cosas así, la buena es «ninguna»."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Raster = foto de la carta de papel (RNC). Vectorial = base de datos objeto a objeto con alarmas (ENC). ECDIS = el sistema, no la carta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué es el AIS",
+       "texto": "El **AIS** (*Automatic Identification System*, sistema de identificación automática) es un transpondedor que **emite de forma continua y automática** la identidad y los datos de navegación de tu barco y **recibe** los de los demás.\n- Intercambia datos **entre barcos** y **entre barcos y estaciones costeras** (centros de tráfico), y también con **ayudas a la navegación** equipadas con AIS (boyas, faros).\n- Trabaja en la **banda de VHF** marina: 161,975 y 162,025 MHz (canales 87B y 88B). Su alcance es parecido al de la radio VHF, unas 20 o 30 millas.\n- Toma la posición del **GNSS** del barco."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué información transmite",
+       "texto": "- **Estática**: MMSI, nombre, distintivo de llamada, número OMI, tipo de buque y dimensiones.\n- **Dinámica**: posición, rumbo y velocidad sobre el fondo (COG y SOG), rumbo de proa y estado de navegación (fondeado, sin gobierno…).\n- **De viaje**: destino, **ETA**, calado y carga peligrosa.\n- **Mensajes** cortos de seguridad.\n\nLas estaciones costeras y las ayudas a la navegación pueden enviar además **datos meteorológicos e hidrográficos** por AIS.\n\nEn la pantalla del plotter, del ECDIS o del radar, cada barco aparece como un **triángulo** orientado a su rumbo, con su nombre o su indicativo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Para qué sirve y sus límites",
+       "texto": "**Sirve para**:\n- **Prevenir abordajes**: identificas al otro y sabes su rumbo, velocidad y lo cerca que pasará, incluso con **visibilidad reducida** o detrás de un cabo o una isla.\n- La gestión del **tráfico** por las autoridades, el **seguimiento** de buques y la **búsqueda y salvamento**.\n\n**Límites**:\n- Solo ves a quien **lleva AIS y lo tiene encendido**: un velero sin AIS o un tronco no aparecen.\n- Los datos los introduce cada barco y pueden estar mal.\n- Por eso **no sustituye** al radar ni a la vigilancia visual: los **complementa**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Clases y obligatoriedad",
+       "texto": "- **Clase A**: la de los buques obligados por el convenio SOLAS (los de **300 GT o más** en viajes internacionales, los de carga de 500 GT o más en viajes nacionales y **todos los de pasaje**) y, en la UE, los pesqueros de más de 15 m. Emite con 12,5 W y con más frecuencia.\n- **Clase B**: más sencilla y de menos potencia (2 o 5 W); la habitual en **recreo**.\n\nNavegando, el AIS debe ir encendido, pero el capitán o patrón **puede apagarlo** si cree que mantenerlo compromete la **seguridad o protección** del buque (por ejemplo, en zonas de piratería), anotándolo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Sobre la meteo hay dos plantillas que parecen chocar. En una, entre «posición de otros buques para evitar colisiones» y «información meteorológica codificada», la buena fue la **posición**. En otra, con las demás opciones falsas, la buena fue «**permite recibir información hidrográfica y meteorológica**», que también es cierta. Si están las dos, elige la de los **buques y abordajes**, que es su función principal. Y siempre falso: «no ayuda a prevenir abordajes», «sustituye al radar», «solo entre barcos» o que use UHF, radar, telefonía móvil o satélites GPS."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas con niebla y quieres que el equipo te avise si te acercas al veril de 5 metros. ¿Qué carta lo permite?",
+       "opciones": {
+        "a": "Una carta raster (RNC)",
+        "b": "Una carta vectorial (ENC)",
+        "c": "Cualquiera de las dos, si el plotter es un ECDIS"
+       },
+       "correcta": "b",
+       "explicacion": "Solo la ENC «sabe» dónde está cada veril, porque es una base de datos objeto a objeto. La raster es una imagen: el equipo no puede leer sus sondas."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "A 2 millas por tu proa navega un velero pequeño sin AIS. ¿Lo verás en la pantalla del AIS?",
+       "opciones": {
+        "a": "Sí, el AIS detecta todos los barcos por radio",
+        "b": "No; tendrás que detectarlo con el radar o a la vista",
+        "c": "Solo si estás a menos de 1 milla"
+       },
+       "correcta": "b",
+       "explicacion": "El AIS solo muestra a quien transmite. Por eso no sustituye al radar ni a la vigilancia visual."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n09",
+      "and-py-2020-c3-n09",
+      "and-py-2021-c2-n07",
+      "and-py-2022-c1-n09",
+      "and-py-2022-c2-n09",
+      "and-py-2022-c3-n06",
+      "and-py-2023-c1-n06",
+      "and-py-2023-c2-n10",
+      "and-py-2023-c3-n09",
+      "and-py-2024-c1-n09",
+      "and-py-2024-c2-n09",
+      "and-py-2024-c3-n09",
+      "and-py-2025-c1-n09",
+      "and-py-2025-c2-n09",
+      "and-py-2025-c3-n09",
+      "and-py-2026-c1-n09",
+      "and-py-2026-c2-n09",
+      "and-py-2020-c1-n10",
+      "and-py-2020-c3-n10",
+      "and-py-2021-c2-n01",
+      "and-py-2021-c2-n09",
+      "and-py-2022-c1-n10",
+      "and-py-2022-c2-n10",
+      "and-py-2022-c3-n10",
+      "and-py-2023-c1-n09",
+      "and-py-2023-c2-n09",
+      "and-py-2023-c3-n03",
+      "and-py-2024-c1-n10",
+      "and-py-2024-c2-n10",
+      "and-py-2024-c3-n10",
+      "and-py-2025-c1-n10",
+      "and-py-2025-c2-n10",
+      "and-py-2025-c3-n10",
+      "and-py-2026-c1-n10",
+      "and-py-2026-c2-n10"
+     ],
+     "chuleta": [
+      "Dos tipos: raster (RNC, escaneada, copia de la de papel) y vectorial (ENC, objeto a objeto, con alarmas).",
+      "ECDIS, ECS, plotter: sistemas, no cartas. ENC oficiales españolas: IHM.",
+      "AIS: identificación automática por VHF (canales 87B y 88B) entre buques, estaciones costeras y ayudas a la navegación.",
+      "Datos: MMSI, nombre, posición, COG, SOG, destino, ETA… (y mensajes meteo e hidro).",
+      "Ayuda a prevenir abordajes, pero no sustituye al radar: solo ves a quien lo lleva encendido.",
+      "Clase A: SOLAS (≥ 300 GT internacional, pasaje). Clase B: recreo. Puede apagarse por seguridad o protección."
+     ],
+     "profundizar": [
+      {
+       "titulo": "OMI – Sistema de identificación automática (AIS)",
+       "url": "https://www.imo.org/en/OurWork/Safety/Pages/AIS.aspx"
+      },
+      {
+       "titulo": "OHI – Normas y especificaciones (S-57, ENC)",
+       "url": "https://iho.int/en/standards-and-specifications"
+      },
+      {
+       "titulo": "Instituto Hidrográfico de la Marina (IHM)",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Dos tipos de carta electrónica: raster (RNC) y vectorial (ENC, S-57); ECDIS/ECS son sistemas; ENC españolas: IHM",
+       "fuente": "Plantillas PY 2022-c3-n06, 2023-c1-n06, 2025-c2-n09, 2026-c2-n09; OHI S-57; IHM (ENC/ECDIS)"
+      },
+      {
+       "dato": "ECDIS en modo raster (RCDS) requiere cartas de papel actualizadas",
+       "fuente": "OMI Res. MSC.232(82) (normas de funcionamiento ECDIS) y SOLAS V/19.2.1.4"
+      },
+      {
+       "dato": "AIS en VHF: 161,975 y 162,025 MHz (canales 87B y 88B)",
+       "fuente": "UIT-R M.1371; plantillas 2021-c2-n01, 2026-c1-n10"
+      },
+      {
+       "dato": "Obligatoriedad: SOLAS V/19.2.4 (≥ 300 GT internacional, carga ≥ 500 GT no internacional, todos los de pasaje); UE: pesqueros de eslora total > 15 m",
+       "fuente": "SOLAS cap. V regla 19.2.4; Directiva 2002/59/CE, art. 6 bis (añadido por la Directiva 2009/17/CE)"
+      },
+      {
+       "dato": "Potencias: clase A 12,5 W; clase B 2 W (CSTDMA) o 5 W (SOTDMA)",
+       "fuente": "UIT-R M.1371; IEC 62287-1 y 62287-2"
+      },
+      {
+       "dato": "El capitán/patrón puede apagar el AIS si compromete la seguridad o protección, anotándolo",
+       "fuente": "OMI Res. A.1106(29), párr. 22; plantilla PY 2023-c1-n09"
+      },
+      {
+       "dato": "AIS y meteo: 2024-c2-n10 da por buena «posición de otros buques» frente a «meteo codificada»; 2024-c3-n10 da por buena «información hidrográfica y meteorológica»",
+       "fuente": "Plantillas PY 2024-c2-n10 y 2024-c3-n10; OMI SN.1/Circ.289 (mensajes de aplicación: meteo e hidro)"
+      }
+     ]
+    }
+   ]
   }
  ]
 }

@@ -2543,6 +2543,1024 @@
    ]
   },
   {
+   "ut": 7,
+   "titulo": "Maniobra y navegación",
+   "intro": "Este tema es pura práctica de puerto: los cabos y sus nombres, las amarras, cómo responde el barco al timón y a la hélice, y cómo se atraca y se desatraca con viento y corriente. Casi todo sale de entender dos o tres ideas: hacia dónde tira cada amarra, qué hace la hélice al dar atrás y qué cabos trabajan en cada momento. Si las entiendes, las preguntas se responden solas, sin memorizar listas.",
+   "lecciones": [
+    {
+     "id": "per-7-1",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "Cabos: partes, gazas y el vocabulario de la maniobra",
+     "minutos": 12,
+     "objetivos": [
+      "Nombrar las partes de un cabo y saber qué es una gaza",
+      "Saber qué es encapillar, amarrar por seno, tomar vueltas y hacer firme",
+      "No confundir cobrar, virar, tesar, templar, amollar, lascar, arriar, largar y adujar"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Las partes de un cabo",
+       "texto": "Antes de amarrar, ponle nombre a cada trozo de cabo:\n- **Chicote**: cada uno de los dos extremos del cabo.\n- **Firme**: la parte que trabaja, la que soporta la tensión.\n- **Seno**: la parte intermedia, cuando forma una curva o un arco.\n\nUna **gaza** es un ojo fijo hecho en un extremo, con una costura o con un nudo (el as de guía es el clásico). En cabos que van a rozar mucho, la gaza se protege con un **guardacabos** metálico o de plástico."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Encapillar una gaza",
+       "texto": "**Encapillar** es meter la gaza de un cabo en un noray, bolardo o bita.\n\nSi en el noray ya hay otra gaza, no pongas la tuya encima sin más: si lo haces, el otro barco no podrá largar su cabo hasta que tú quites el tuyo. Lo correcto es pasar tu gaza **por dentro de la que ya está, de abajo arriba**, y después encapillarla. Así cada barco puede sacar su gaza sin tocar la del vecino.\n\nPara que esto funcione, las gazas tienen que ser holgadas en relación con el noray."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Amarrar por seno",
+       "texto": "**Amarrar por seno** (o en doble) es pasar el cabo alrededor del noray o por la argolla de tierra y traerlo de vuelta a bordo: **el firme y el chicote quedan los dos a bordo**.\n\nLa gran ventaja es que puedes **largar desde a bordo**, sin nadie en el muelle: sueltas un extremo y cobras del otro hasta que el cabo vuelve entero. Por eso se usa mucho en las amarras que vas a soltar las últimas al desatracar.\n\nOjo con los noráis o argollas con aristas: el cabo roza al correr y se desgasta."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las preguntas de «amarrar por seno» juegan a cambiar de sitio el firme y el chicote. Da igual cómo lo barajen: si algún extremo queda **en tierra**, ya no es por seno. Por seno = **los dos extremos a bordo**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tomar vueltas y hacer firme",
+       "texto": "**Hacer firme** es sujetar un cabo para que no corra, de forma que luego se pueda soltar con facilidad.\n\nEn una cornamusa se hace **tomando vueltas**:\n- una vuelta completa a la base,\n- varias vueltas cruzadas **en ocho** por los cuernos,\n- y la última **mordida** (con un cote que la bloquea).\n\nNo acumules vueltas de más: un cabo bien hecho firme se suelta en segundos, que es justo lo que necesitas en una maniobra."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Recoger y tensar",
+       "texto": "- **Cobrar** (o halar): tirar de un cabo **a mano** para recogerlo.\n- **Virar**: recoger un cabo o una cadena **con una máquina**: molinete, cabrestante, chigre o winche.\n- **Cazar**: tirar de un cabo para tensarlo (se dice mucho de las escotas).\n- **Tesar**: poner tirante un cabo, una cadena o una vela.\n- **Templar**: **dar tensión** a un cabo que está flojo; también, igualar la tensión de varios cabos que trabajan juntos."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Aflojar, soltar y recoger",
+       "texto": "- **Amollar**: aflojar o soltar **poco a poco**; es lo contrario de cazar.\n- **Lascar**: aflojar **un poco** un cabo que está trabajando con tensión, sin soltarlo.\n- **Arriar**: aflojar y **dejar correr** (también, bajar algo izado, como una vela o una bandera).\n- **Largar**: soltar **del todo**, y rápido.\n\nY cuando has terminado: **adujar** es recoger el cabo en vueltas ordenadas (adujas), **claro**, sin cocas, de modo que ocupe poco, no se enrede y esté listo para usarse otra vez."
+      },
+      {
+       "tipo": "clave",
+       "texto": "A mano se cobra y con máquina se vira; para dar tensión se templa; se lasca un poco, se amolla poco a poco y se larga del todo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Virar también tensa un cabo, pero lo que define es el **medio**: con máquina. Si te preguntan cómo se llama «dar tensión a un cabo», la respuesta del examen es **templar**. Y no te dejes engañar por **abozar**: es sujetar un cabo de forma provisional con una boza, no pasarlo por el noray (eso es encapillar)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tu amarra de proa está muy tesa y quieres darle un poco de seno, pero sin soltarla. ¿Qué haces?",
+       "opciones": {
+        "a": "La largas",
+        "b": "La lascas",
+        "c": "La adujas"
+       },
+       "correcta": "b",
+       "explicacion": "Lascar es aflojar un poco un cabo que trabaja con tensión. Largar sería soltarlo del todo y adujar es recogerlo en vueltas."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas a salir de un pantalán sin nadie en tierra que te suelte los cabos. ¿Cómo dejas la última amarra?",
+       "opciones": {
+        "a": "Encapillada con una gaza en el noray",
+        "b": "Por seno, con los dos extremos a bordo",
+        "c": "Hecha firme con vueltas en la cornamusa del muelle"
+       },
+       "correcta": "b",
+       "explicacion": "Amarrada por seno, sueltas un extremo desde a bordo y cobras del otro: no necesitas a nadie en el muelle."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t28",
+      "and-2020-c3-t29",
+      "and-2022-c1-t29",
+      "and-2023-c1-t29",
+      "and-2023-c2-t28",
+      "and-2024-c1-t29",
+      "and-2024-c2-t29",
+      "and-2024-c3-t29",
+      "and-2025-c2-t28"
+     ],
+     "chuleta": [
+      "Chicote: cada extremo. Firme: la parte que trabaja. Seno: la parte intermedia, en curva.",
+      "Encapillar: meter la gaza en el noray; si ya hay otra, la tuya por dentro y de abajo arriba.",
+      "Por seno: firme y chicote a bordo; se larga desde el barco.",
+      "Cobrar a mano, virar con máquina; tesar y templar = dar tensión (en el examen, templar).",
+      "Lascar un poco, amollar poco a poco, arriar dejando correr, largar del todo.",
+      "Adujar: recoger en vueltas, claro y listo para usar."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.1: encapillar, amarrar por seno, tomar vueltas, hacer firme; cobrar, virar, tesar, templar, amollar, lascar, arriar, largar; adujar",
+       "fuente": "RD 875/2014, anexo II, programa PER, UT 7.1 (BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Amarrar por seno = firme y chicote a bordo",
+       "fuente": "Plantillas and-2020-c1-t28 y and-2023-c1-t29 (b)"
+      },
+      {
+       "dato": "Adujar = recoger el cabo en vueltas, claro y estibado",
+       "fuente": "Plantillas and-2020-c3-t29 (c) y and-2025-c2-t28 (c)"
+      },
+      {
+       "dato": "Templar = dar tensión a un cabo",
+       "fuente": "Plantillas and-2022-c1-t29 (d), and-2023-c2-t28 (a), and-2024-c2-t29 (b)"
+      },
+      {
+       "dato": "Cobrar = tirar de un cabo a mano",
+       "fuente": "Plantilla and-2024-c1-t29 (a)"
+      },
+      {
+       "dato": "Encapillar = pasar la gaza por el noray (no abozar ni hacer firme)",
+       "fuente": "Plantilla and-2024-c3-t29 (b)"
+      }
+     ]
+    },
+    {
+     "id": "per-7-2",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "Las amarras: largos, esprines, traveses y codera",
+     "minutos": 12,
+     "objetivos": [
+      "Reconocer cada amarra por hacia dónde trabaja",
+      "Saber qué hace el barco al cobrar cada amarra estando atracado de costado",
+      "Saber qué amarras reforzar según el viento y la corriente"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Cada amarra, por hacia dónde trabaja",
+       "texto": "El nombre de una amarra lo dan **el extremo del barco del que sale** y **hacia dónde tira**:\n- **Largo de proa**: sale por la proa y va **hacia proa**, a un noray por delante del barco. El **largo de popa**, igual pero por la popa y hacia popa.\n- **Esprín** (spring) **de proa**: sale de la proa y va **hacia popa**, en diagonal. El **esprín de popa** sale de la popa y va **hacia proa**.\n- **Través**: trabaja **perpendicular** a la crujía, más o menos recto al muelle. Puede ir a proa, al centro o a popa.\n\nLargos y esprines impiden que el barco avance o retroceda; los traveses solo lo pegan al muelle."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "amarras"
+       },
+       "texto": "Atracado por estribor: los largos se abren hacia fuera y los esprines se cruzan en diagonal."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La codera y el muerto",
+       "texto": "La **codera** es una amarra que se da **por la banda contraria al muelle**: a una boya, a un muerto, a otro muelle o a otro barco. Tira del barco hacia fuera, **lo separa del muelle** para que no se golpee (con viento o mar de fuera) y sirve de ayuda para desatracar.\n\nUn **muerto** es un peso fondeado (un bloque de hormigón, por ejemplo) del que sale un cabo hasta el muelle o hasta una boya. En los atraques de punta es lo que sujeta el extremo del barco que queda hacia fuera."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué pasa al cobrar cada amarra",
+       "texto": "Atracado de costado, si cobras de una sola amarra:\n- **Largo de proa**: la proa se acerca al muelle y el barco va **avante**.\n- **Esprín de proa**: la proa se acerca al muelle y el barco va **atrás** (la popa tiende a abrirse).\n- **Esprín de popa**: la popa se acerca y el barco va **avante**.\n- **Largo de popa**: la popa se acerca y el barco va **atrás**.\n- **Través de proa**: acerca la **amura**; **través de popa**: acerca la **aleta**. Ninguno mueve el barco avante ni atrás."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "amarras",
+        "resaltar": "esprin-proa"
+       },
+       "texto": "El esprín de proa sale de la proa y va a un noray más a popa: al cobrarlo, la proa va al muelle y el barco se mueve atrás."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Al cobrar una amarra, el extremo del barco del que sale se acerca al muelle y el barco se mueve hacia el noray donde está encapillada."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El esprín «de proa» se llama así porque **sale de la proa**, aunque tire **hacia popa**. Es la confusión que buscan las preguntas: si lo viras mientras lascas los demás, el barco va **atrás**, la proa se junta al muelle y la popa se separa."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Los traveses y el viento de tierra",
+       "texto": "Imagina que solo tienes los dos traveses y el viento sopla **desde el muelle** (viento de tierra): te está intentando separar.\n\nSi cobras el través de proa y lascas el de popa, la proa se queda pegada y la **popa se abre a sotavento**, es decir, hacia fuera. Los traveses no producen movimiento avante ni atrás: solo acercan o dejan ir su extremo.\n\nLa idea sirve para cualquier amarra: el extremo que dejas libre es el que el viento se lleva."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Reforzar según el viento y la corriente",
+       "texto": "Pregúntate hacia dónde te empuja y refuerza las amarras que **aguantan ese empuje**:\n- Viento o corriente fuertes **por la popa**: el barco quiere ir avante. Pon otro **largo de popa** y otro **esprín de proa**.\n- Viento o corriente fuertes **por la proa**: el barco quiere ir atrás. Pon otro **largo de proa** y otro **esprín de popa**.\n- Viento o mar **de fuera**: más defensas, y si tienes codera, tésala para separarte.\n\nY en puertos con marea, deja a las amarras el seno suficiente para que no queden tesas en bajamar."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás atracado y empieza a soplar viento fuerte por la popa. ¿Qué amarras refuerzas?",
+       "opciones": {
+        "a": "Largo de proa y esprín de popa",
+        "b": "Largo de popa y esprín de proa",
+        "c": "Solo los traveses"
+       },
+       "correcta": "b",
+       "explicacion": "El viento de popa empuja el barco avante. Lo frenan las amarras que tiran hacia popa: el largo de popa y el esprín de proa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Atracado de costado, cobras solo el esprín de popa. ¿Qué ocurre?",
+       "opciones": {
+        "a": "La popa se acerca al muelle y el barco va avante",
+        "b": "La popa se acerca al muelle y el barco va atrás",
+        "c": "La proa se acerca al muelle y el barco va avante"
+       },
+       "correcta": "a",
+       "explicacion": "El esprín de popa sale de la popa y llama hacia proa: acerca la popa y lleva el barco hacia el noray, que está más a proa."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t28",
+      "and-2021-c2-t28",
+      "and-2023-c3-t28",
+      "and-2025-c3-t28"
+     ],
+     "chuleta": [
+      "Largos: hacia su mismo extremo. Esprines: cruzados, en diagonal hacia el extremo contrario. Traveses: perpendiculares.",
+      "Codera: por la banda contraria al muelle; separa el barco y ayuda a desatracar.",
+      "Cobrar: se acerca el extremo del que sale y el barco va hacia su noray.",
+      "Esprín de proa: proa al muelle y barco atrás. Esprín de popa: popa al muelle y barco avante.",
+      "Viento de popa: refuerza largo de popa y esprín de proa. De proa: largo de proa y esprín de popa."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.1: largo, través, esprín y codera; efectos al cobrar cada amarra atracado de costado; amarras según viento y corriente",
+       "fuente": "RD 875/2014, anexo II, UT 7.1"
+      },
+      {
+       "dato": "Esprín: sale de proa (popa) y llama a popa (proa), en diagonal",
+       "fuente": "Plantilla and-2025-c3-t28 (c)"
+      },
+      {
+       "dato": "Cobrar el esprín de proa: proa al muelle y barco atrás",
+       "fuente": "Plantilla and-2021-c1-t28 (c)"
+      },
+      {
+       "dato": "Virar el esprín de proa lascando el resto: barco atrás, popa separada y proa junta al muelle",
+       "fuente": "Plantilla and-2021-c2-t28 (d)"
+      },
+      {
+       "dato": "Solo traveses, viento de tierra, cobrar el de proa y lascar el de popa: la popa se abre a sotavento",
+       "fuente": "Plantilla and-2023-c3-t28 (c)"
+      },
+      {
+       "dato": "Codera: amarra por la banda contraria al muelle (a boya, muerto, otro muelle o barco) que separa el barco; en sentido clásico, cabo dado por la popa para presentar el costado en una dirección",
+       "fuente": "DLE (RAE), «codera», acepción marítima; uso en el programa PER (RD 875/2014, UT 7.1)"
+      },
+      {
+       "dato": "Refuerzo con viento de popa (largo de popa y esprín de proa) y de proa (largo de proa y esprín de popa)",
+       "fuente": "Geometría de las amarras (cada una resiste el empuje hacia el lado contrario a su noray); coherente con and-2025-c3-t29"
+      }
+     ]
+    },
+    {
+     "id": "per-7-3",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "Gobierno, arrancada y curva de evolución",
+     "minutos": 10,
+     "objetivos": [
+      "Saber hacia dónde cae la proa con caña y con rueda",
+      "Definir velocidad de gobierno y arrancada",
+      "Nombrar las tres fases de la curva de evolución y sus medidas",
+      "Entender por qué importa el rabeo de la popa"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Caña o rueda",
+       "texto": "Con **rueda** es como el volante de un coche: giras a estribor y la proa cae a estribor.\n\nCon **caña** es al revés, porque la caña mueve la pala del timón hacia el lado contrario:\n- **Caña a babor** → pala a estribor → la proa cae a **estribor**.\n- **Caña a estribor** → pala a babor → la proa cae a **babor**.\n\nCuando se habla de «meter el timón a estribor» se habla de la pala (o de la rueda): la proa cae a estribor, navegando avante."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Gobiernas con caña y quieres que la proa caiga a babor. ¿Hacia dónde llevas la caña?",
+       "opciones": {
+        "a": "A babor",
+        "b": "A estribor",
+        "c": "Al centro y das más máquina"
+       },
+       "correcta": "b",
+       "explicacion": "La caña va al lado contrario al que quieres caer: caña a estribor, pala a babor, proa a babor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Velocidad de gobierno y arrancada",
+       "texto": "El timón solo funciona si le pasa agua. De ahí dos conceptos:\n- **Velocidad de gobierno**: la **velocidad mínima** con la que el barco todavía obedece al timón. Depende de cada barco y de cómo sople el viento.\n- **Arrancada**: la velocidad que el barco **conserva por inercia**, avante o atrás, cuando la máquina deja de empujar. «Parado y sin arrancada» quiere decir que no se mueve respecto al agua.\n\nPor debajo de la velocidad de gobierno el barco no responde y queda a merced del viento y la corriente."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La curva de evolución",
+       "texto": "Es la trayectoria que describe el centro de gravedad del barco cuando, navegando avante, metes el timón a una banda y lo mantienes, con la máquina igual. Sus medidas:\n- **Avance**: lo que el barco se adelanta en la dirección del rumbo inicial hasta caer 90°.\n- **Traslado**: lo que se separa lateralmente del rumbo inicial al caer 90°.\n- **Diámetro táctico**: la separación lateral al caer 180°.\n- **Diámetro final**: el del círculo que acaba describiendo.\n\nCuanto más ángulo de timón, más cerrada es la curva."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "evolucion"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las tres fases",
+       "texto": "La curva de evolución en marcha avante tiene **tres fases** (o periodos):\n1. **De maniobra**: desde que das la orden de meter el timón hasta que la pala llega al ángulo pedido.\n2. **Variable**: el barco empieza a girar; el radio de giro y la velocidad van cambiando (el barco pierde velocidad al girar).\n3. **Uniforme**: todo se estabiliza y el barco describe una circunferencia de radio constante."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Fases de la curva de evolución: de maniobra, variable y uniforme. Avance, traslado, diámetros y rabeo no son fases."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El rabeo de la popa",
+       "texto": "Avante, el barco no gira alrededor de su centro: gira alrededor de un **punto de giro** que está aproximadamente a un tercio de la eslora desde la proa. Por eso, al meter el timón, la proa va hacia un lado y **la popa barre hacia el contrario**: eso es el **rabeo**.\n\nSu importancia es práctica: necesitas **espacio libre por la banda contraria al giro**. Si estás pegado a un muelle y metes todo el timón para separarte, la popa se te va contra el muelle."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En las preguntas de fases te pondrán «periodo de avance», «rabeo de la popa», «traslado» o «diámetro táctico» mezclados con la respuesta buena. Son medidas o fenómenos de la curva, no fases: la única terna válida es **maniobra, variable y uniforme**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas despacio a lo largo de un pantalán que tienes por babor, muy cerca, y metes el timón a estribor para separarte. ¿Qué vigilas?",
+       "opciones": {
+        "a": "Que la proa no toque el pantalán",
+        "b": "Que la popa no rabee contra el pantalán",
+        "c": "Nada: el barco se separa entero"
+       },
+       "correcta": "b",
+       "explicacion": "Al caer a estribor, la popa barre hacia babor, justo donde está el pantalán. Hay que separarse con poco timón o dejar más resguardo."
+      }
+     ],
+     "practica": [
+      "and-2022-c2-t28",
+      "and-2023-c3-t29",
+      "and-2025-c1-t29",
+      "and-2025-c2-t29"
+     ],
+     "chuleta": [
+      "Rueda: la proa cae al lado del giro. Caña: al lado contrario de la caña.",
+      "Velocidad de gobierno: la mínima a la que el barco obedece al timón.",
+      "Arrancada: la velocidad que se conserva por inercia sin máquina.",
+      "Curva de evolución: fases de maniobra, variable y uniforme.",
+      "Avance (a 90°, en el rumbo inicial), traslado (a 90°, lateral), diámetro táctico (a 180°) y diámetro final.",
+      "Rabeo: la popa barre hacia la banda contraria al giro; deja espacio por ese lado."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.2: caña o rueda, velocidad de gobierno y arrancada, tres fases de la curva de evolución avante, rabeo de la popa",
+       "fuente": "RD 875/2014, anexo II, UT 7.2"
+      },
+      {
+       "dato": "Fases: de maniobra, variable y uniforme",
+       "fuente": "Plantillas and-2022-c2-t28 (a), and-2023-c3-t29 (d), and-2025-c1-t29 (b)"
+      },
+      {
+       "dato": "Velocidad de gobierno = velocidad mínima a la que el barco gobierna",
+       "fuente": "Plantilla and-2025-c2-t29 (b)"
+      },
+      {
+       "dato": "Avance y traslado medidos al caer 90°; diámetro táctico, separación lateral al caer 180°; diámetro final, el del círculo estabilizado",
+       "fuente": "Definiciones estándar de la curva de evolución (OMI, Res. MSC.137(76) Normas de maniobrabilidad: advance, transfer, tactical diameter); ilustración «evolucion» comprobada"
+      },
+      {
+       "dato": "Caña al lado contrario de la caída de la proa; rueda y pala al mismo lado",
+       "fuente": "Mecánica del timón (la caña es la palanca de la pala, opuesta a ella)"
+      }
+     ]
+    },
+    {
+     "id": "per-7-4",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "La hélice y el timón",
+     "minutos": 14,
+     "objetivos": [
+      "Saber qué son el paso y el sentido de giro de una hélice",
+      "Explicar la presión lateral de las palas y la corriente de expulsión al dar atrás",
+      "Predecir hacia dónde caen la proa y la popa combinando hélice y timón"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Paso, diámetro y sentido de giro",
+       "texto": "- **Paso**: lo que avanzaría la hélice en una vuelta completa si no resbalara en el agua.\n- **Diámetro**: el del círculo que barren las puntas de las palas.\n\nEl **sentido de giro** se define mirando **desde popa hacia proa** con la máquina **avante**:\n- **Dextrógira** (paso a la derecha): gira en el sentido de las agujas del reloj.\n- **Levógira** (paso a la izquierda): gira en sentido contrario.\n\nAl dar atrás, cada hélice gira al revés que avante."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dos efectos que desvían la popa",
+       "texto": "Además de empujar el barco avante o atrás, la hélice lleva la popa hacia un costado:\n- **Presión lateral de las palas** (efecto evolutivo): las palas no empujan igual arriba que abajo, y la popa se va hacia **la banda a la que gira la hélice por arriba**. La dextrógira, avante, gira hacia estribor por arriba: popa a estribor.\n- **Corriente de expulsión**: el chorro que lanza la hélice. Avante va hacia el timón y lo hace muy eficaz. Atrás va hacia proa y golpea el casco más por una banda que por la otra, empujando la popa."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Avante: un efecto pequeño",
+       "texto": "Avante, la dextrógira tiende a llevar la popa a **estribor** (la proa a babor) y la levógira, la popa a **babor**.\n\nEs un efecto **pequeño**: el chorro de la hélice pasa por el timón, el timón gobierna bien y lo corriges con un poco de pala sin darte cuenta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Atrás, desde parado: el efecto grande",
+       "texto": "Barco **parado, sin arrancada, timón a la vía**, y das **máquina atrás**:\n- **Dextrógira**: la presión lateral y la corriente de expulsión llevan **las dos** la popa a **babor** (la proa cae a estribor).\n- **Levógira**: las dos llevan la popa a **estribor** (la proa cae a babor).\n\nY en esos primeros momentos **el timón no hace nada**: no hay arrancada y el chorro de la hélice va hacia proa, así que no pasa agua por la pala. Hasta que el barco coge arrancada atrás, manda la hélice."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helice",
+        "sentido": "dextrogira",
+        "marcha": "atras"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helice",
+        "sentido": "levogira",
+        "marcha": "atras"
+       },
+       "texto": "La levógira es el espejo de la dextrógira: dando atrás, la popa cae a estribor."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Dando atrás desde parado: dextrógira, popa a babor; levógira, popa a estribor. Corriente de expulsión y presión lateral empujan a la misma banda."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Timón y hélice juntos, con arrancada",
+       "texto": "Cuando el barco ya se mueve, el timón actúa:\n- **Avante, timón a estribor**: proa a estribor, popa a babor.\n- **Avante, timón a babor**: proa a babor, popa a estribor.\n- **Atrás, timón a estribor**: popa a estribor, proa a babor.\n- **Atrás, timón a babor**: popa a babor, proa a estribor.\n\nRegla corta: avante, la **proa** va hacia el lado del timón; atrás, es la **popa** la que va hacia el lado del timón. Si el efecto de la hélice empuja hacia el mismo lado, se suman y el barco gira deprisa; si no, se restan."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helice-timon",
+        "marcha": "atras",
+        "timon": "br",
+        "sentido": "dextrogira"
+       },
+       "texto": "Atrás, timón a babor y hélice dextrógira: timón y hélice llevan la popa a babor y la proa cae con fuerza a estribor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con arrancada avante y máquina atrás",
+       "texto": "Es lo que haces cada vez que paras el barco: llevas arrancada avante y das atrás.\n\nDesde el primer momento la hélice empieza a llevar la popa a su banda (dextrógira a babor, levógira a estribor), y el efecto **crece a medida que el barco pierde arrancada**. El timón, en cambio, va perdiendo eficacia, porque el chorro de la hélice ya no le llega y el barco cada vez va más despacio.\n\nSi además, mientras conservas arrancada avante, metes el timón hacia el lado que ayuda (con dextrógira, a estribor), los dos efectos se suman. Lo aprovecharás para atracar."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "No caigas en las opciones de «al principio a una banda y luego a la otra» ni en «la corriente de expulsión la lleva a una banda y la presión lateral a la otra». Con timón a la vía, dando atrás, la popa va a **una sola banda** y los dos efectos **se suman**. Ni se anulan ni el barco va recto."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Barco con hélice levógira, parado y sin arrancada, timón a la vía. Das máquina atrás. ¿Hacia dónde cae la popa?",
+       "opciones": {
+        "a": "A babor",
+        "b": "A estribor",
+        "c": "A ninguna: va recto atrás"
+       },
+       "correcta": "b",
+       "explicacion": "Levógira dando atrás: presión lateral y corriente de expulsión llevan la popa a estribor."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Llevas arrancada atrás y metes el timón a estribor. ¿Hacia dónde va la popa?",
+       "opciones": {
+        "a": "A estribor",
+        "b": "A babor",
+        "c": "A ninguna banda: atrás el timón no actúa"
+       },
+       "correcta": "a",
+       "explicacion": "Con arrancada atrás, la popa va hacia el lado al que metes el timón. Lo que no funciona es el timón sin arrancada."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t28",
+      "and-2021-c1-t29",
+      "and-2021-c2-t29",
+      "and-2022-c1-t28",
+      "and-2022-c2-t29",
+      "and-2023-c1-t28",
+      "and-2023-c2-t29",
+      "and-2026-c1-t28"
+     ],
+     "chuleta": [
+      "Sentido de giro: mirando de popa a proa, avante. Dextrógira = horario; levógira = antihorario.",
+      "Avante el efecto es pequeño: dextrógira, popa a estribor.",
+      "Atrás desde parado: dextrógira, popa a babor; levógira, popa a estribor (expulsión y presión lateral, juntas).",
+      "Sin arrancada el timón no gobierna; dando atrás, al principio manda la hélice.",
+      "Con arrancada: avante, la proa va hacia el timón; atrás, la popa va hacia el timón."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.2: corriente de expulsión y presión lateral parado, timón a la vía, máquina atrás; efecto combinado hélice-timón con arrancada avante y máquina atrás",
+       "fuente": "RD 875/2014, anexo II, UT 7.2"
+      },
+      {
+       "dato": "Dextrógira atrás desde parado: popa a babor por corriente de expulsión y presión lateral",
+       "fuente": "Plantillas and-2021-c1-t29 (a), and-2023-c2-t29 (d), and-2026-c1-t28 (b)"
+      },
+      {
+       "dato": "Levógira atrás desde parado: popa a estribor (presión lateral y corriente de expulsión, misma banda)",
+       "fuente": "Plantillas and-2021-c2-t29 (b), and-2022-c1-t28 (b), and-2022-c2-t29 (b), and-2023-c1-t28 (c)"
+      },
+      {
+       "dato": "Levógira con arrancada avante y máquina atrás, timón a la vía: popa a estribor (sin cambio de banda)",
+       "fuente": "Plantilla and-2020-c3-t28 (b)"
+      },
+      {
+       "dato": "Sentido de giro definido mirando de popa a proa con máquina avante; dextrógira = horario",
+       "fuente": "Convención de hélice de paso a derechas (right-handed propeller); ilustraciones «helice» comprobadas"
+      },
+      {
+       "dato": "Con arrancada atrás la popa va hacia la banda del timón; avante la proa va hacia la banda del timón",
+       "fuente": "Mecánica del timón; ilustración «helice-timon» comprobada"
+      }
+     ]
+    },
+    {
+     "id": "per-7-5",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "La ciaboga, con una y con dos hélices",
+     "minutos": 10,
+     "objetivos": [
+      "Saber qué es una ciaboga y cómo se hace con una hélice",
+      "Saber hacia qué banda conviene ciabogar según el sentido de la hélice",
+      "Conocer las hélices gemelas de giro al exterior y cómo se ciaboga con ellas"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es la ciaboga",
+       "texto": "Ciabogar es **girar el barco en muy poco espacio**, casi sobre sí mismo, alternando máquina **avante y atrás** y cambiando el timón de banda en cada paso. El nombre viene de juntar *ciar* (ir atrás) y *bogar* (ir avante).\n\nEs la maniobra para dar la vuelta en una dársena, un canal estrecho o entre pantalanes, donde no cabe la curva de evolución."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con una hélice dextrógira: a estribor",
+       "texto": "1. **Avante**, con todo el timón a **estribor**: la proa cae a estribor.\n2. Antes de avanzar demasiado, **atrás** con el timón a **babor**: la hélice lleva la popa a babor y, en cuanto el barco coge algo de arrancada atrás, el timón también, así que la proa sigue cayendo a estribor mientras el barco se frena.\n3. Otra vez **avante** con el timón a **estribor**, y así hasta completar el giro.\n\nUsa golpes de máquina cortos y poca velocidad: el truco es girar sin llegar a coger arrancada."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ciaboga"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con una levógira: a babor",
+       "texto": "Es el espejo: **avante con el timón a babor** y **atrás con el timón a estribor**. La proa cae a babor.\n\n¿Se puede ciabogar hacia el otro lado? Se puede intentar, pero cada vez que das atrás la hélice te deshace parte del giro: es más lento y necesitas más espacio. Por eso, sin viento, lo conveniente y más rápido es ciabogar hacia la banda que te da la hélice al dar atrás."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Ciaboga con una hélice: dextrógira, la proa a estribor; levógira, la proa a babor. Manda lo que hace la hélice al dar atrás."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si te preguntan por la **primera acción** de la ciaboga, es **avante** con el timón a la banda del giro (a babor con levógira, a estribor con dextrógira), no dar atrás. Y fondear no tiene nada que ver con ciabogar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dos hélices: giro al exterior y al interior",
+       "texto": "Los barcos con dos motores suelen llevar **una hélice dextrógira y otra levógira**, iguales y a la misma distancia de la crujía, para que sus efectos laterales se compensen:\n- **Giro al exterior** (supradivergentes): **dextrógira a estribor y levógira a babor**. Vistas desde popa, por arriba giran hacia fuera. Es el montaje más habitual.\n- **Giro al interior** (supraconvergentes): levógira a estribor y dextrógira a babor.\n\nCon las dos avante o las dos atrás, los efectos se anulan y el barco va recto."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La ciaboga con dos hélices",
+       "texto": "Das **un motor avante y el otro atrás**: el barco gira casi sobre sí mismo y **la proa cae hacia la banda del motor que va atrás**.\n- A estribor: motor de **estribor atrás** y de babor avante.\n- A babor: motor de **babor atrás** y de estribor avante.\n\nMeter el timón hacia la banda del giro ayuda. Con hélices de **giro al exterior**, la presión lateral de las dos hélices empuja en el mismo sentido que el giro, y por eso ciabogan especialmente bien."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Barco de dos hélices gemelas. Quieres ciabogar a babor. ¿Cómo das las máquinas?",
+       "opciones": {
+        "a": "Babor avante y estribor atrás",
+        "b": "Babor atrás y estribor avante",
+        "c": "Las dos atrás con el timón a babor"
+       },
+       "correcta": "b",
+       "explicacion": "La proa cae hacia la banda del motor que va atrás: para caer a babor, el de babor atrás y el de estribor avante."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Ciabogas a estribor con una dextrógira. En los golpes de máquina atrás, ¿dónde pones el timón?",
+       "opciones": {
+        "a": "A estribor",
+        "b": "A babor",
+        "c": "A la vía"
+       },
+       "correcta": "b",
+       "explicacion": "Atrás, la popa va hacia el lado del timón: con el timón a babor la llevas a babor, igual que la hélice, y la proa sigue cayendo a estribor."
+      }
+     ],
+     "practica": [
+      "and-2022-c3-t29",
+      "and-2025-c1-t28",
+      "and-2026-c2-t29"
+     ],
+     "chuleta": [
+      "Ciaboga: girar en poco espacio alternando avante y atrás, con el timón cambiado de banda.",
+      "Dextrógira: avante con timón a estribor, atrás con timón a babor; la proa cae a estribor.",
+      "Levógira: avante con timón a babor, atrás con timón a estribor; la proa cae a babor.",
+      "Giro al exterior (supradivergentes): dextrógira a estribor y levógira a babor.",
+      "Dos hélices: una avante y otra atrás; la proa cae hacia la que va atrás."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.2: ciaboga con una hélice y con dos hélices gemelas de giro al exterior",
+       "fuente": "RD 875/2014, anexo II, UT 7.2"
+      },
+      {
+       "dato": "Ciaboga sin viento con dextrógira: la proa a estribor",
+       "fuente": "Plantilla and-2022-c3-t29 (c)"
+      },
+      {
+       "dato": "Ciaboga sin viento con levógira: la proa a babor; primera acción, avante con el timón a babor",
+       "fuente": "Plantillas and-2025-c1-t28 (d) y and-2026-c2-t29 (b)"
+      },
+      {
+       "dato": "Ciaboga: de ciar y bogar",
+       "fuente": "DLE (RAE), «ciaboga», etimología"
+      },
+      {
+       "dato": "Giro al exterior (supradivergentes): dextrógira en estribor y levógira en babor, palas altas hacia fuera; con una avante y otra atrás, las dos presiones laterales llevan la popa hacia el lado contrario al giro",
+       "fuente": "Comprobación geométrica a partir del efecto de cada hélice (dextrógira atrás: popa a babor; levógira avante: popa a babor)"
+      }
+     ]
+    },
+    {
+     "id": "per-7-6",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "Viento, corriente y olas: los agentes de la maniobra",
+     "minutos": 10,
+     "objetivos": [
+      "Saber sobre qué parte del barco actúan el viento y la corriente",
+      "Saber con qué viento o corriente es más fácil maniobrar",
+      "Distinguir viento real y aparente, abatimiento y deriva",
+      "Saber qué significa estar libre a sotavento"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Tres agentes que no controlas",
+       "texto": "- **Viento**: actúa sobre la **obra muerta** y la superestructura. Cuanto más alto y voluminoso es el barco por encima del agua, más le afecta. Te empuja a sotavento y además puede hacerte **orzar** (la proa va hacia barlovento) o **arribar** (la proa va hacia sotavento).\n- **Corriente**: actúa sobre la **obra viva** y arrastra el barco entero en su dirección.\n- **Olas**: producen balances, cabezadas y guiñadas, cambian el rumbo y la velocidad y complican mucho acercarse a un muelle.\n\nEn cualquier atraque o desatraque cuentan **los tres**."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Obra muerta, viento; obra viva, corriente. Y las olas también cuentan en toda maniobra."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Por dónde conviene recibirlos",
+       "texto": "Con poca arrancada, el barco se controla mejor con el viento o la corriente **por la proa**: te frenan y puedes ir muy despacio sin perder el gobierno.\n\n**Por la popa** también se puede, pero te empujan: tienes que prever cómo vas a parar.\n\n**De costado** es lo más difícil: un barco casi parado se comporta como una boya y el viento se lo lleva de lado.\n\nPor eso, siempre que puedas, maniobra proa al viento o proa a la corriente (a la que más empuje)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Viento real y aparente",
+       "texto": "- **Viento real**: el que sopla de verdad; el que notarías con el barco parado.\n- **Viento aparente**: el que notas a bordo cuando navegas. Es la combinación del real y del viento que crea tu propio movimiento.\n\nEl que actúa sobre el barco en marcha (y el que marcan la grímpola y el anemómetro de a bordo) es el **aparente**. Navegando, entra más por la proa que el real (salvo que el real te entre justo por la proa o justo por la popa)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "viento-aparente"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Abatimiento y deriva",
+       "texto": "- **Abatimiento**: el desplazamiento hacia sotavento que provoca el **viento**. Se mide como el ángulo entre el rumbo verdadero (hacia donde apunta la proa) y el rumbo de superficie (el que de verdad sigue el barco sobre el agua). **Rs = Rv + Ab**, con el abatimiento **positivo** si el viento entra por **babor** (abates a estribor) y **negativo** si entra por estribor.\n- **Deriva**: el arrastre que provoca la **corriente**. Cambia tu rumbo y tu velocidad sobre el fondo, que pasan a llamarse rumbo efectivo y velocidad efectiva."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "abatimiento",
+        "banda": "babor"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Libre a sotavento",
+       "texto": "Una costa a sotavento es siempre un peligro: el viento te empuja hacia ella y, si algo falla (el motor, una vela, el gobierno), acabas encima.\n\nEstar **libre a sotavento** es tener **mar libre suficiente por sotavento** para maniobrar, capear o esperar sin riesgo. Al planificar una travesía o elegir dónde esperar, deja siempre más resguardo por sotavento que por barlovento."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En la pregunta de «qué agente actúa sobre la obra muerta», la corriente es la trampa: influye mucho en la maniobra, pero sobre la **obra viva**. La escora no es un agente externo, y el tipo de fondo importa para fondear, no para esto."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas con el viento entrando por estribor. ¿Cómo es el abatimiento?",
+       "opciones": {
+        "a": "Positivo: abates a estribor",
+        "b": "Negativo: abates a babor",
+        "c": "Nulo, si mantienes el rumbo"
+       },
+       "correcta": "b",
+       "explicacion": "El viento te empuja a sotavento, que está a babor: abates a babor y el abatimiento es negativo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo se llama el movimiento de la proa hacia barlovento?",
+       "opciones": {
+        "a": "Orzar",
+        "b": "Arribar",
+        "c": "Abatir"
+       },
+       "correcta": "a",
+       "explicacion": "Orzar es llevar la proa hacia barlovento; arribar, hacia sotavento. Abatir es desplazarse a sotavento por el viento."
+      }
+     ],
+     "practica": [
+      "and-2022-c3-t28",
+      "and-2024-c2-t28",
+      "and-2024-c3-t28"
+     ],
+     "chuleta": [
+      "Viento: obra muerta. Corriente: obra viva. Olas: balances y cambios de rumbo y velocidad.",
+      "Maniobra mejor con viento o corriente por la proa; de costado es lo peor.",
+      "Viento aparente = real + el de tu movimiento; es el que notas a bordo.",
+      "Abatimiento (viento): Rs = Rv + Ab; viento por babor +, por estribor −. Deriva: la corriente.",
+      "Libre a sotavento: margen de mar libre por sotavento."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.2: agentes (viento, corriente y olas), abatimiento y deriva, libre a sotavento",
+       "fuente": "RD 875/2014, anexo II, UT 7.2"
+      },
+      {
+       "dato": "El viento actúa sobre la obra muerta",
+       "fuente": "Plantillas and-2022-c3-t28 (d) y and-2024-c2-t28 (b)"
+      },
+      {
+       "dato": "Viento, corriente y olas influyen en atraque y desatraque",
+       "fuente": "Plantilla and-2024-c3-t28 (d)"
+      },
+      {
+       "dato": "Rs = Rv + Ab; abatimiento + con viento por babor, − por estribor",
+       "fuente": "Convenio de signos de la navegación de estima usado en los ejercicios de carta del PER (Rs = Rv + Ab); ilustración «abatimiento» comprobada"
+      },
+      {
+       "dato": "Viento aparente = suma vectorial del real y el de avance (igual y contrario a la velocidad del barco)",
+       "fuente": "Composición de vectores; ilustración «viento-aparente» comprobada"
+      }
+     ]
+    },
+    {
+     "id": "per-7-7",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "Atracar: de costado, de punta, abarloado y a una boya",
+     "minutos": 14,
+     "objetivos": [
+      "Elegir la banda de atraque según la hélice",
+      "Saber qué cabo dar primero según el viento y la corriente",
+      "Atracar de punta con largos y muerto, también con viento de costado",
+      "Abarloarse a otro barco y amarrar a una boya"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Antes de entrar",
+       "texto": "- **Defensas** colgadas por la banda de atraque (si atracas de punta, por las dos bandas, porque tendrás barcos a los lados).\n- **Cabos** preparados: con su gaza, claros, adujados y ya hechos firmes a bordo.\n- Cada tripulante sabe qué cabo da y dónde.\n- Mira el viento y la corriente, y decide por dónde entras y cómo vas a parar.\n\nEntra **despacio**, a la velocidad de gobierno, y ten siempre pensada una salida si la maniobra no sale."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De costado: elige la banda por la hélice",
+       "texto": "Acércate con un ángulo de unos **20–30°** con el muelle, apuntando más o menos a donde quedará la proa. Cerca del atraque das **atrás** para parar.\n\nAl dar atrás, la hélice lleva la popa a su banda. Aprovéchalo:\n- **Dextrógira**: la popa va a babor, así que atraca **por babor**. Al parar, la popa se arrima sola y quedas paralelo al muelle.\n- **Levógira**: atraca **por estribor**.\n\nSi tienes que atracar por la banda «mala», entra más paralelo y más despacio: al dar atrás, la popa se te abrirá."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué cabo das primero",
+       "texto": "Da primero el cabo que **aguanta lo que te aparta del sitio**:\n- **Viento de tierra** (sopla desde el muelle y te separa): entra con más ángulo, acércate más y da primero el **largo de proa**; luego arrimas la popa con máquina y timón y das el resto.\n- **Corriente paralela al muelle**: atraca siempre **proa a la corriente**. Te empuja hacia atrás, así que el primer cabo es el **largo de proa**.\n- **Viento de fuera** (te empuja contra el muelle): para antes, deja que el viento te arrime paralelo y ten muchas defensas por esa banda."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Atracando de costado con viento de tierra o con corriente de proa, el primer cabo a tierra es el largo de proa."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Con corriente de proa, el esprín de proa **no** te sirve como primer cabo: llama hacia popa y no impide que la corriente te lleve atrás. El que aguanta es el **largo de proa**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De punta: proa o popa al muelle",
+       "texto": "Es el atraque típico de los puertos deportivos del Mediterráneo: un extremo al muelle y el otro sujeto hacia fuera.\n- Al muelle das **dos largos** (de popa si atracas de popa, de proa si atracas de proa).\n- El otro extremo se sujeta con el **muerto** (cobras su guía desde el muelle y la llevas a proa o a popa), con una **codera** o con tu ancla.\n\nCon **viento de tierra**, das los largos y el propio viento te separa del muelle; entonces tesas el muerto. Con **viento de mar**, das los largos, te separas con el motor y tesas el muerto."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De punta con viento de costado",
+       "texto": "El viento empuja el extremo libre del barco a sotavento, y los largos tienen que trabajar **contra el viento**.\n\nPor eso conviene encapillar **los dos largos en el noray de barlovento**: así los dos tiran hacia barlovento y sujetan el barco. Un largo dado al noray de sotavento quedaría en banda, sin trabajar, mientras el viento empuja.\n\nEn cuanto puedas, coge y tesa el muerto (si hay dos, primero el de barlovento), para que el viento no atraviese el barco."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Abarloarse a otro barco",
+       "texto": "**Abarloarse** es amarrarse al costado de otro barco: en puerto, para ahorrar sitio; en la mar, para auxiliar o dar remolque.\n- **Avisa** a la tripulación del otro barco y pon defensas de sobra.\n- Entre veleros, que los palos **no queden a la misma altura**, para que no se enganchen al balancear.\n- Si hay marea, deja seno a los cabos.\n- Si el otro está **fondeado o en una boya**, estará proa al viento o a la corriente: acércate por su **popa**.\n- Si está **ardiendo** o desprende gases, acércate por **barlovento**, para no tragarte el humo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Amarrar a una boya",
+       "texto": "Llega **proa al viento o a la corriente** (a lo que más empuje) y muy despacio. Cuando tengas la boya **por la amura**, cógela con el **bichero** y pasa tu cabo, mejor por seno, para poder soltarte desde a bordo.\n\nSi no puedes llegar proa al viento, ponte a **barlovento** de la boya y deja que el viento te arrime a ella por el costado.\n\n**Nunca fondees** junto a una boya de amarre: tu ancla y tu cadena pueden enredarse con el muerto y el cabo de la boya."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tu barco tiene una hélice levógira y puedes atracar de costado por cualquiera de las dos bandas. ¿Cuál es la más cómoda?",
+       "opciones": {
+        "a": "Babor",
+        "b": "Estribor",
+        "c": "Da igual"
+       },
+       "correcta": "b",
+       "explicacion": "Al dar atrás para parar, la levógira lleva la popa a estribor: atracando por estribor, la popa se arrima sola al muelle."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas a atracar con una corriente paralela al muelle que te entra por la proa. ¿Cuál es el primer cabo que das a tierra?",
+       "opciones": {
+        "a": "El esprín de proa",
+        "b": "El largo de proa",
+        "c": "El través de popa"
+       },
+       "correcta": "b",
+       "explicacion": "La corriente te empuja hacia atrás; el cabo que lo impide es el largo de proa, que llama hacia proa."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t29",
+      "and-2024-c1-t28",
+      "and-2026-c2-t28"
+     ],
+     "chuleta": [
+      "Defensas y cabos listos antes de entrar; despacio, a la velocidad de gobierno.",
+      "De costado, con 20–30° y atrás para parar: dextrógira por babor, levógira por estribor.",
+      "Viento de tierra o corriente de proa: el primer cabo es el largo de proa. Atraca proa a la corriente.",
+      "De punta: dos largos al muelle y muerto, codera o ancla por el otro extremo; con viento de costado, los largos al noray de barlovento.",
+      "Boya: proa al viento, cogerla por la amura con el bichero; nunca fondear al lado."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.3: atraque en punta y costado, cabos y orden, abarloarse, amarrar a una boya",
+       "fuente": "RD 875/2014, anexo II, UT 7.3"
+      },
+      {
+       "dato": "Atraque de costado con viento de tierra: primer cabo, largo de proa",
+       "fuente": "Plantilla and-2024-c1-t28 (a)"
+      },
+      {
+       "dato": "Atraque de costado con corriente de proa paralela: primer cabo, largo de proa",
+       "fuente": "Plantilla and-2026-c2-t28 (d)"
+      },
+      {
+       "dato": "De punta con viento de costado: los dos largos al noray de barlovento (B en la figura)",
+       "fuente": "Plantilla and-2020-c1-t29 (c) y su figura (viento desde el lado del noray B)"
+      },
+      {
+       "dato": "Dextrógira atraca mejor por babor y levógira por estribor (la popa cae a esa banda al dar atrás)",
+       "fuente": "Coherente con el efecto atrás de las plantillas de 7.2 (and-2021-c1-t29, and-2021-c2-t29)"
+      }
+     ]
+    },
+    {
+     "id": "per-7-8",
+     "curso": "per",
+     "ut": 7,
+     "titulo": "Desatracar: qué cabos largar y cómo salir",
+     "minutos": 12,
+     "objetivos": [
+      "Saber qué cabos se largan primero según el viento y la corriente",
+      "Desatracar de costado abriendo la popa o la proa con un esprín",
+      "Desatracar de punta en el orden correcto"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La regla de oro",
+       "texto": "Antes de soltar nada, mira **qué cabos trabajan** (los que aguantan el empuje del viento o la corriente) y cuáles están en banda.\n- **Primero** se largan los que **no trabajan**.\n- **Al final**, los que trabajan, cuando la máquina ya controla el barco.\n\nLos que vayas a soltar los últimos, pásalos **por seno**: así los largas desde a bordo, sin depender de nadie en el muelle."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Viento o corriente por la proa",
+       "texto": "Te empujan hacia atrás: trabajan el **largo de proa** y el **esprín de popa**. Por eso lo primero que largas es el **esprín de proa** y el **largo de popa**.\n\nPara salir, **abre la proa**: refuerza las defensas en la aleta, larga también el largo de proa y quédate solo con el **esprín de popa**. Da **atrás** poca: el esprín aguanta la popa contra la defensa y la proa se separa; la corriente o el viento de proa te ayudan. Con la proa abierta unos 30–40°, largas el esprín y sales **avante**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "desatraque",
+        "abrir": "proa"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Viento o corriente por la popa",
+       "texto": "Ahora te empujan avante: trabajan el **largo de popa** y el **esprín de proa**. Lo primero que largas es el **largo de proa** y el **esprín de popa**.\n\nPara salir, **abre la popa**: defensas en la amura, larga todo menos el **esprín de proa** y da **avante** poca con el **timón al muelle**. El esprín impide que el barco avance, la proa se apoya en la defensa y la popa se separa del muelle. Con la popa abierta unos 30–40°, largas el esprín y sales **atrás**, hacia el agua libre."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "desatraque",
+        "abrir": "popa"
+       }
+      },
+      {
+       "tipo": "clave",
+       "texto": "Abrir la popa: esprín de proa, avante y timón al muelle. Abrir la proa: esprín de popa y atrás."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Para **separar la popa** no se aguanta un cabo de popa, sino el **esprín de proa**: es el pivote sobre el que gira el barco. Y al revés: la proa se abre trabajando con el **esprín de popa**. Dando atrás sin arrancada el timón apenas actúa; lo que abre la proa es el esprín, y, si estás atracado por babor, una dextrógira te ayuda porque lleva la popa al muelle."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Viento de fuera: el caso difícil",
+       "texto": "Si el viento te aprieta contra el muelle, no puedes separarte de lado: el viento te devuelve. Lo habitual es **abrir primero la popa**, porque es la parte delicada (hélice y timón) y conviene sacarla al agua libre; la proa, más fina y robusta, aguanta mejor apoyada en las defensas.\n\nPon defensas gordas en la amura, larga todo menos el **esprín de proa** (pasado por seno) y da avante con el timón al muelle. Cuando la popa esté bien abierta, unos 40°, da atrás con decisión y larga el esprín."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Viento de tierra: el caso fácil",
+       "texto": "Si el viento sopla desde el muelle, él mismo te separa. Larga los cabos en orden (primero los que no trabajan) y deja que el barco se abra.\n\nSal con poca máquina y sin meter todo el timón hacia fuera de golpe: recuerda el **rabeo**, la popa se iría contra el muelle."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Desatracar de punta",
+       "texto": "Aplica la regla de oro:\n- **Viento de tierra**: te separa del muelle y trabajan los largos. Larga primero el **muerto** (o la codera) y después los largos, y sales avante si estás de popa al muelle (atrás si estás de proa).\n- **Viento de mar**: te empuja al muelle y trabaja el muerto. Da máquina para separarte, larga primero los **largos** y por último el muerto.\n- **Viento de costado**: larga primero la amarra de **sotavento**, que está en banda. Las que aguantan el viento (el largo de **barlovento**, pasado por seno, y el muerto) se largan al final, cuando la máquina ya controla el barco.\n\nDeja que la guía del muerto se hunda lejos de la hélice."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás atracado de costado y la corriente te entra por la proa. ¿Qué cabos largas primero?",
+       "opciones": {
+        "a": "El largo de proa y el esprín de popa",
+        "b": "El esprín de proa y el largo de popa",
+        "c": "Los traveses"
+       },
+       "correcta": "b",
+       "explicacion": "Con corriente de proa trabajan el largo de proa y el esprín de popa. Los que están en banda, el esprín de proa y el largo de popa, son los primeros en largarse."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Atracado de costado, quieres abrir primero la proa. ¿Qué haces?",
+       "opciones": {
+        "a": "Te quedas con el esprín de popa y das atrás",
+        "b": "Te quedas con el esprín de proa y das avante con el timón al muelle",
+        "c": "Te quedas con el largo de proa y das atrás"
+       },
+       "correcta": "a",
+       "explicacion": "El esprín de popa impide que el barco retroceda y hace de pivote en la aleta: al dar atrás, la proa se separa. Con el esprín de proa y avante se abre la popa."
+      }
+     ],
+     "practica": [
+      "and-2025-c3-t29",
+      "and-2026-c1-t29"
+     ],
+     "chuleta": [
+      "Primero se largan los cabos que no trabajan; los que trabajan, al final y pasados por seno.",
+      "Viento o corriente de proa: trabajan largo de proa y esprín de popa; larga antes el esprín de proa y el largo de popa.",
+      "Abrir la popa: esprín de proa, avante, timón al muelle; sales atrás.",
+      "Abrir la proa: esprín de popa y atrás; sales avante.",
+      "Viento de fuera: normalmente se abre primero la popa. Viento de tierra: el viento te separa."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (anexo II, temario del PER, UT 7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 7.3: orden en que largar los cabos y maniobra para desatracar",
+       "fuente": "RD 875/2014, anexo II, UT 7.3"
+      },
+      {
+       "dato": "Desatraque de costado con corriente por la proa: primero el esprín de proa y el largo de popa",
+       "fuente": "Plantilla and-2025-c3-t29 (b)"
+      },
+      {
+       "dato": "Para separar la popa (avante, timón al muelle) se mantiene firme el esprín de proa",
+       "fuente": "Plantilla and-2026-c1-t29 (c)"
+      },
+      {
+       "dato": "Abrir la proa: esprín de popa y máquina atrás (par entre el empuje atrás y el esprín en la aleta)",
+       "fuente": "Comprobación geométrica; ilustraciones «desatraque» (proa y popa) comprobadas, atracado por babor"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "ut": 9,
    "titulo": "Meteorología",
    "intro": "El tiempo decide si sales, por dónde vas y cuándo vuelves. En este tema aprendes a leer el barómetro y un mapa de isobaras, a reconocer borrascas y anticiclones, a hablar del viento como un marino (rolar, refrescar, caer), a entender el viento aparente que notas a bordo, las brisas de la costa y las escalas Beaufort y Douglas, y a conseguir la previsión oficial antes de salir. Las preguntas se repiten mucho: con unas pocas ideas claras las aciertas casi todas.",
@@ -4714,6 +5732,1098 @@
       {
        "dato": "El programa del PER incluye viento y corriente (conceptos de abatimiento y deriva, efecto según obra viva y muerta); los ejercicios de carta del PER, sin viento ni corriente",
        "fuente": "RD 875/2014, anexo, programa PER UT 10 (BOE-A-2014-10344) §10.13 y UT 11.4–11.5"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ut": 11,
+   "titulo": "Carta de navegación",
+   "intro": "Las cuatro últimas preguntas del examen se resuelven sobre la carta del Estrecho de Gibraltar, con compás y transportador. Son pocos tipos de ejercicio y se repiten mucho: la corrección total, el rumbo hasta un punto y la hora de llegada, la situación de estima, situarse con demoras, marcaciones, distancias, enfilaciones y oposiciones, y el rumbo para pasar a una distancia de un faro. En cada lección tienes el método paso a paso, con sus fórmulas y sus signos, y enlaces a ejercicios interactivos de la carta para practicar hasta que te salgan solos.",
+   "lecciones": [
+    {
+     "id": "per-11-1",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "La carta del Estrecho: coordenadas, distancias y rumbos",
+     "minutos": 15,
+     "objetivos": [
+      "Leer las coordenadas de un punto y situar un punto dado en la carta",
+      "Medir distancias en la escala correcta",
+      "Trazar y medir rumbos y demoras verdaderos con el transportador",
+      "Situar un punto definido respecto a uno o dos faros y reconocer los símbolos básicos de la carta"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La carta del examen",
+       "texto": "En Andalucía, las cuatro últimas preguntas del PER (de la 42 a la 45) se resuelven sobre la **carta de enseñanza del Estrecho de Gibraltar**, una carta en **proyección Mercator**. En ella los meridianos son verticales, los paralelos horizontales y una línea de rumbo constante es una recta.\n\nMaterial básico:\n- **Compás de puntas** para tomar y llevar distancias.\n- **Transportador** (o escuadra y cartabón) para rumbos y demoras.\n- Lápiz blando y goma: vas a trazar y borrar mucho.\n\nTodo lo que dibujas en la carta es **verdadero**: rumbos y demoras referidos al norte geográfico."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Latitud y longitud",
+       "texto": "La **latitud** se lee en los márgenes **izquierdo y derecho**; en esta carta siempre es **N**. La **longitud** se lee en los márgenes **superior e inferior**; aquí siempre es **W**, y crece hacia la izquierda.\n\nCada minuto de la escala está dividido en **cinco partes de 0,2′**.\n\n- **Leer un punto**: lleva su paralelo hasta el margen lateral (latitud) y su meridiano hasta el margen superior o inferior (longitud). Puedes hacerlo con escuadra y cartabón o con el compás desde el paralelo o el meridiano más cercano.\n- **Situar un punto dado**: traza la latitud en horizontal y la longitud en vertical; el punto está en el cruce.\n\nDa las coordenadas en grados, minutos y décimas: 36° 07,3′ N, 005° 58,6′ W."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Medir distancias",
+       "texto": "**Un minuto de latitud es una milla náutica.** Por eso las distancias se miden siempre en la **escala de latitudes** (márgenes laterales):\n1. Abre el compás entre los dos puntos.\n2. Lleva esa abertura al margen lateral, más o menos a la altura de la zona donde mides.\n3. Cuenta los minutos: son millas.\n\nEn una Mercator la escala de latitudes se estira al alejarse del ecuador. En una carta tan pequeña como la del Estrecho la diferencia es mínima, pero acostúmbrate a medir a la misma altura."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Nunca midas millas en la escala de longitudes. Un minuto de longitud es más corto que una milla: en la latitud del Estrecho (unos 36° N) vale solo unas **0,8 millas**. Si llevas la abertura al margen de arriba, la distancia te saldrá bastante mayor de lo que es."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Rumbos y demoras con el transportador",
+       "texto": "Para medir una dirección en la carta:\n1. Centra el transportador en el punto **de origen**.\n2. Pon su norte hacia arriba, bien paralelo a un meridiano.\n3. Lee el ángulo donde la línea corta la graduación, de **000° a 359°** contados desde el norte y en el sentido de las agujas del reloj.\n\n- Un **rumbo** se mide **desde la salida hacia la llegada**.\n- Una **demora** se mide **desde el barco hacia el objeto**.\n\nLo que lees es siempre **verdadero** (Rv, Dv). Si te dan un dato de aguja, lo conviertes antes de trazarlo, como verás en la lección siguiente."
+      },
+      {
+       "tipo": "regla",
+       "id": "r26"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Situarse respecto a un faro",
+       "texto": "Muchos enunciados dan la situación con referencias a faros:\n- **«A 4 millas al Sur verdadero del faro X»**: desde el faro trazas hacia el **180°** y mides 4 millas.\n- **«A 5 millas al NW verdadero del faro X»**: desde el faro, hacia el **315°**.\n- **«Al Sur verdadero del faro A y al Oeste verdadero del faro B»**: el meridiano que pasa por A (vertical) y el paralelo que pasa por B (horizontal). La situación está en el cruce.\n\nPiensa al revés para la demora: si estás **al sur** del faro, ves el faro **al norte**, en demora verdadera **000°**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Lee bien desde dónde se mide. «Estamos en demora 310° **desde** el faro» quiere decir que el barco está hacia el 310° del faro: trazas el 310° desde el faro. En cambio, «tomamos demora 310° **al** faro» quiere decir que desde el barco vemos el faro al 310°, así que el barco está hacia el 130° del faro."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Símbolos que conviene reconocer",
+       "texto": "- **Faros y luces**: un destello de color magenta junto al punto, con su **característica** (por ejemplo, Fl(2) 10s) y su alcance.\n- **Sondas** (en metros, referidas al cero hidrográfico) y **veriles**, que son las líneas que unen puntos de igual profundidad.\n- **Fondeadero**: un ancla. **Fondeo prohibido**: un ancla atravesada por un aspa (a veces con una leyenda), dentro de una zona limitada por una línea de trazos con pequeñas **T**. En la carta del examen hay una frente a Punta de Gracia, junto a un pez tachado (pesca prohibida).\n- **Cables y tuberías submarinos**: líneas onduladas o de trazos.\n\nSi te preguntan dónde está prohibido fondear, sitúa cada opción en la carta y mira qué símbolo cae en ese punto."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Sonda en pleamar y en bajamar",
+       "texto": "El programa incluye también un cálculo de mareas, que se pregunta aparte de los ejercicios de navegación: la sonda que tendrás en la pleamar o en la bajamar.\n\n**Sonda del momento = sonda de la carta + altura de la marea**\n\n- En pleamar: sonda de la carta + altura de la pleamar.\n- En bajamar: sonda de la carta + altura de la bajamar (con su signo, por si es negativa).\n\nLas alturas y las horas se toman del **Anuario de Mareas**, y la hora es siempre la del anuario. Ejemplo: sonda de la carta 3,2 m y pleamar de 2,6 m → **5,8 m**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Dos puntos están en la misma latitud (36° N) y los separan 10′ de longitud. ¿Qué distancia hay entre ellos?",
+       "opciones": {
+        "a": "10 millas",
+        "b": "Unas 8 millas",
+        "c": "Unas 12 millas"
+       },
+       "correcta": "b",
+       "explicacion": "Un minuto de longitud solo vale una milla en el ecuador. A 36° de latitud vale unas 0,8 millas (el coseno de 36°), así que 10′ de longitud son unas 8 millas. Por eso las distancias se miden en la escala de latitudes."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás al Sur verdadero de un faro. ¿En qué demora verdadera ves el faro?",
+       "opciones": {
+        "a": "180°",
+        "b": "000°",
+        "c": "090°"
+       },
+       "correcta": "b",
+       "explicacion": "Si el barco está al sur del faro, el faro queda al norte del barco: demora verdadera 000°. En la carta, desde el faro trazas la línea hacia el 180°."
+      }
+     ],
+     "practica": [
+      "and-2025-c2-q45"
+     ],
+     "chuleta": [
+      "Latitud en los márgenes laterales (N); longitud arriba y abajo (W en esta carta). Cada división vale 0,2′.",
+      "1′ de latitud = 1 milla. Las distancias, siempre en la escala de latitudes.",
+      "El transportador, centrado en el origen y con el norte arriba: los rumbos y las demoras van de 000° a 359°.",
+      "En la carta solo trazas rumbos y demoras verdaderos.",
+      "«Al Sur del faro»: desde el faro trazas el 180°, y ves el faro en Dv 000°.",
+      "Fondeo prohibido: ancla con un aspa, en zona limitada por trazos con T. Fondeadero: ancla.",
+      "Sonda en pleamar o bajamar = sonda de la carta + altura de la marea (Anuario)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      },
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "UT 11 Carta: 4 preguntas (42–45) de 45; programa 11.1–11.7",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Escala de latitudes de la L105: cada minuto dividido en 5 partes (0,2′)",
+       "fuente": "Carta IHM L105 Enseñanza (escaneo georreferenciado, data/chart-105.json), margen W a 36° N"
+      },
+      {
+       "dato": "1′ de longitud a 36° N = cos 36° ≈ 0,81 millas",
+       "fuente": "Cálculo (carta Mercator)"
+      },
+      {
+       "dato": "Fondeo prohibido = ancla con aspa; límite de zona restringida = trazos con T; pesca prohibida = pez tachado",
+       "fuente": "INT 1 / Chart No. 1 sección N (N2.1, N20, N21), NGA; comprobado en la L105 frente a Punta de Gracia"
+      },
+      {
+       "dato": "and-2025-c2-q45: c) 36° 04,6′ N 005° 51,4′ W cae en la zona de fondeo prohibido",
+       "fuente": "Carta IHM L105 Enseñanza (escaneo georreferenciado, data/chart-105.json) + plantilla oficial (c)"
+      },
+      {
+       "dato": "Sonda en pleamar/bajamar = sonda carta + altura de marea (hora del anuario)",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.7; per-10-8"
+      },
+      {
+       "dato": "«Estamos en demora 310° desde el faro»: se traza el 310° desde el faro",
+       "fuente": "and-2026-c1-q43, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (d)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-2",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Corrección total y conversión de rumbos",
+     "minutos": 20,
+     "objetivos": [
+      "Calcular la corrección total a partir de la declinación y el desvío, con sus signos",
+      "Actualizar al año la declinación que trae la carta",
+      "Pasar rumbos y demoras de aguja a verdaderos y al revés",
+      "Calcular la corrección total en una enfilación o una oposición"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Tres nortes",
+       "texto": "En navegación hay tres nortes distintos:\n- **Norte verdadero (Nv)**: el geográfico. Es el de la carta.\n- **Norte magnético (Nm)**: hacia donde apuntaría una aguja sin influencias del barco.\n- **Norte de aguja (Na)**: hacia donde apunta la aguja de **tu** barco.\n\nEntre ellos hay tres ángulos:\n- **Declinación magnética (dm)**, entre Nv y Nm. Depende del **lugar** y del **año**.\n- **Desvío (Δ)**, entre Nm y Na. Depende del **barco** y del **rumbo** que lleva.\n- **Corrección total (Ct)**, entre Nv y Na. Es la suma de las dos anteriores."
+      },
+      {
+       "tipo": "regla",
+       "id": "r24"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nortes",
+        "dm": -1,
+        "desvio": 6
+       },
+       "texto": "Ejemplo: declinación de 1° W (−1°) y desvío de +6°. La corrección total es Ct = −1° + 6° = +5° (5° NE)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Actualizar la declinación de la carta",
+       "texto": "La rosa de la carta trae tres datos, por ejemplo **«2°50′ W 2005 (7′ E)»**: el valor de la declinación, el año al que corresponde y la variación anual.\n\n**dm del año = dm de la carta + variación anual × años transcurridos**, con signos (E +, W −).\n\nEjemplo para 2024: han pasado 19 años, y 19 × 7′ = 133′ = 2°13′ hacia el E. Queda −2°50′ + 2°13′ = −0°37′, que se redondea a **−1° (1° W)**. En 2026 serían 21 × 7′ = 147′ = 2°27′, queda −0°23′ y se redondea a **0°**.\n\nRedondea al **grado más próximo**: lo piden los enunciados recientes y así salen las plantillas."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Cuando la variación anual tiene sentido contrario al de la declinación (W con variación E), la declinación **disminuye** con los años. Si tienen el mismo sentido, **aumenta**. Y si el enunciado ya te da la declinación («dm = 4° NW»), úsala tal cual, sin actualizarla."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "De aguja a verdadero y al revés",
+       "texto": "Las fórmulas que vas a usar en todos los ejercicios:\n- **Rv = Ra + Ct** (del timón a la carta)\n- **Ra = Rv − Ct** (de la carta al timón)\n- **Dv = Da + Ct** (con las demoras es igual)\n\nSi el resultado pasa de 360°, réstale 360°. Si sale negativo, súmale 360°.\n\nAlgunos enunciados dan el rumbo en **cuadrantal**. Para pasarlo a circular:\n- N x E = x\n- S x E = 180° − x\n- S x W = 180° + x (S 76° W = 256°)\n- N x W = 360° − x"
+      },
+      {
+       "tipo": "regla",
+       "id": "r25"
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al rumbo de aguja 140°. La declinación es 3° NW y el desvío +7°. ¿Qué rumbo verdadero trazas en la carta?",
+       "opciones": {
+        "a": "136°",
+        "b": "144°",
+        "c": "150°"
+       },
+       "correcta": "b",
+       "explicacion": "Ct = dm + Δ = (−3°) + (+7°) = +4°. Rv = Ra + Ct = 140° + 4° = 144°."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Corrección total por enfilación u oposición",
+       "texto": "Hay dos situaciones en las que la carta te da una **demora verdadera exacta**:\n- **Enfilación**: ves dos puntos uno detrás del otro. Estás en la **prolongación** de la recta que los une.\n- **Oposición**: tienes un punto a cada lado, en sentidos opuestos. Estás **entre ellos**, sobre la recta que los une.\n\nEn los dos casos, la recta trazada en la carta es la Dv. Si en ese momento tomas la demora de aguja de uno de los puntos:\n\n**Ct = Dv − Da**\n\nY si conoces la declinación, el desvío sale de Δ = Ct − dm."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "enfilacion",
+        "dv": 227,
+        "da": 235
+       },
+       "texto": "Enfilación de dos faros con Dv 227° medida en la carta. La aguja marca 235°, así que Ct = 227° − 235° = −8°."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. **Une los dos faros** con una recta. Si es una enfilación, prolóngala hacia donde estás.\n2. Centra el transportador sobre la recta y lee la **Dv en el sentido del faro que has marcado**. En una oposición, esa es la dirección que va **del otro faro hacia el marcado**. En una enfilación los dos faros tienen la misma demora: la que va **del faro más cercano al más lejano**.\n3. Calcula **Ct = Dv − Da**.\n4. Si sale más de 180° en valor absoluto, suma o resta 360°. Por ejemplo, con Dv 359° y Da 005°: 359° − 5° = 354°, que equivale a **−6°**.\n5. Signo positivo = E (NE); negativo = W (NW). «Ct = 4° NE» y «Ct = +4°» son lo mismo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En estas preguntas el enunciado suele traer un rumbo («navegamos al rumbo de aguja 340°»). **No lo uses**: la Ct sale solo de la enfilación u oposición y de la demora de aguja. Cuidado también con el sentido: en una oposición los dos faros quedan a 180° el uno del otro. Si mides la demora del faro que no has marcado, la Ct te sale disparatada."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "En la oposición de dos faros mides en la carta que la Dv del faro marcado es 128°. La demora de aguja de ese faro es 132°. ¿Cuál es la corrección total?",
+       "opciones": {
+        "a": "+4°",
+        "b": "−4°",
+        "c": "−260°"
+       },
+       "correcta": "b",
+       "explicacion": "Ct = Dv − Da = 128° − 132° = −4° (4° NW). El rumbo que lleves no interviene."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Has calculado una Ct de +3° y la declinación del año es 2° W. ¿Cuánto vale el desvío?",
+       "opciones": {
+        "a": "+1°",
+        "b": "+5°",
+        "c": "−5°"
+       },
+       "correcta": "b",
+       "explicacion": "Δ = Ct − dm = (+3°) − (−2°) = +5°."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-q43",
+      "and-2021-c1-q42",
+      "and-2021-c2-q43",
+      "and-2022-c1-q45",
+      "and-2022-c2-q45",
+      "and-2023-c1-q44",
+      "and-2023-c2-q44",
+      "and-2023-c3-q44",
+      "and-2024-c2-q44",
+      "and-2025-c1-q42",
+      "and-2025-c3-q45",
+      "and-2026-c1-q42",
+      "and-2026-c2-q42"
+     ],
+     "carta": [
+      "conversion-rumbos",
+      "ct-enfilacion"
+     ],
+     "chuleta": [
+      "Ct = dm + Δ. E o NE positivo; W o NW negativo.",
+      "dm del año = dm de la carta + variación anual × años. Redondea al grado más próximo (−0°37′ → −1°; −0°23′ → 0°).",
+      "Rv = Ra + Ct; Ra = Rv − Ct; Dv = Da + Ct.",
+      "Enfilación (uno detrás de otro) u oposición (uno a cada lado): la recta te da la Dv.",
+      "Ct = Dv − Da. Si sale más de 180°, suma o resta 360°. El rumbo no interviene."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IGN – Cálculo de la declinación magnética en la Península y Baleares",
+       "url": "https://www.ign.es/web/gmt-declinacion-magnetica"
+      },
+      {
+       "titulo": "NOAA – Calculadora de declinación magnética",
+       "url": "https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Ct = dm + Δ; E/NE +, W/NW −; Rv = Ra + Ct; Ra = Rv − Ct; Dv = Da + Ct",
+       "fuente": "Kit src/exams/kit.js (ct, rv, ra, dv) y 69 soluciones que cuadran con la plantilla; mnemotecnias r24, r25"
+      },
+      {
+       "dato": "Declinación L105 «2°50′ W 2005 (7′ E)»; 2024 → −0°37′ ≈ −1°; 2026 → −0°23′ ≈ 0°",
+       "fuente": "data/chart-105.json; and-2024-c2-q42 (b, Ra 185°), and-2026-c1-q44 (c), and-2026-c1-q45 (c)"
+      },
+      {
+       "dato": "Redondeo al grado más próximo de la dm actualizada",
+       "fuente": "kit.ct (Math.round); enunciados 2026 lo piden expresamente; todas las preguntas con dm de carta cuadran con la plantilla"
+      },
+      {
+       "dato": "Cuadrantal a circular: S x W = 180° + x (S 76° W = 256°)",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344) (UT 10.8); and-2021-c1-q44 (d)"
+      },
+      {
+       "dato": "Ct = Dv − Da por enfilación/oposición; el rumbo no interviene",
+       "fuente": "13 preguntas Ct: p. ej. and-2024-c2-q44 Dv 226,6° − Da 235° = −8° (d); and-2022-c2-q45 (a)"
+      },
+      {
+       "dato": "Oposición: Dv = dirección del otro faro hacia el marcado; enfilación: del faro cercano al lejano",
+       "fuente": "kit.oposicion / kit.enfilacion; and-2026-c2-q42 (Dv 109,4°, Ct −3°, c)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-3",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Rumbo directo, distancia y hora de llegada",
+     "minutos": 15,
+     "objetivos": [
+      "Hallar el rumbo de aguja para ir de un punto a otro",
+      "Medir la distancia entre dos puntos y calcular la HRB de llegada",
+      "Elegir bien el punto de llegada: la luz exacta o un punto definido respecto a un faro"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El problema tipo",
+       "texto": "Estás en un punto y quieres ir a otro: un faro, la bocana de un puerto o una situación dada por coordenadas. Te piden el **rumbo de aguja** y, a veces, la **distancia** o la **HRB de llegada** (HRB es la hora del reloj de bitácora, es decir, la hora del barco).\n\nEn el PER estos ejercicios son **sin viento ni corriente**: el rumbo que trazas es el que sigues."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. **Sitúa la salida**, sea por coordenadas o respecto a uno o dos faros.\n2. **Sitúa la llegada**, en la luz exacta que dice el enunciado.\n3. **Une los dos puntos** y mide el **Rv** con el transportador centrado en la salida.\n4. **Mide la distancia** con el compás en la escala de latitudes.\n5. Calcula la **Ct** (actualiza la declinación si hace falta) y luego **Ra = Rv − Ct**.\n6. **Tiempo = distancia / velocidad**, y **HRB de llegada = HRB de salida + tiempo**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Pasar el tiempo a horas y minutos",
+       "texto": "La división d / V te da horas con decimales. Para pasarlas a minutos, multiplica la parte decimal por 60.\n\nEjemplo: 12,7 millas a 8 nudos = 1,59 h. Como 0,59 × 60 ≈ 35 min, tardas **1 h 35 min**. Si sales a las 20:00, llegas a las **21:35**. Un minuto arriba o abajo es normal por la medida en la carta: en el examen con estos datos la plantilla da 21:34.\n\nSi la suma pasa de las 24 h, réstale 24: las 25:13 son la 01:13 del día siguiente."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Fíjate en el **punto de llegada exacto**. En Barbate hay un **faro de tierra** y una **luz roja del espigón**. En Ceuta suele pedirse la **luz verde de la bocana**, y en Tánger, la **farola del espigón**. Si te equivocas de luz, el rumbo cambia unos grados y la hora de llegada unos minutos, y puedes acabar marcando la opción de al lado."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "A veces la llegada no es un faro sino un punto **«a 4 millas al Sur verdadero del faro X»** o **«a 5 millas al NE del faro Y»**. Primero sitúa ese punto (desde el faro, hacia el 180° o hacia el 045°, y mides la distancia) y luego traza el rumbo hasta él."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Ejemplo resuelto",
+       "texto": "Salimos de 36° 10,0′ N, 005° 15,0′ W hacia la luz verde de la bocana de Ceuta, en 2024. La carta da «2°50′ W 2005 (7′ E)» y el desvío es +6°.\n1. Unimos los dos puntos y medimos **Rv ≈ 190°**.\n2. Actualizamos la declinación a 2024: −2°50′ + 19 × 7′ = −0°37′ ≈ **−1°**.\n3. Ct = (−1°) + (+6°) = **+5°**.\n4. Ra = Rv − Ct = 190° − 5° = **185°**."
+      },
+      {
+       "tipo": "clave",
+       "texto": "La carta solo entiende de verdaderos y el timón solo de aguja. Mides el Rv en la carta y al timón le das el Ra = Rv − Ct."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "En la carta mides un Rv de 075° hasta el puerto. La corrección total es −3°. ¿Qué rumbo de aguja das?",
+       "opciones": {
+        "a": "072°",
+        "b": "078°",
+        "c": "075°"
+       },
+       "correcta": "b",
+       "explicacion": "Ra = Rv − Ct = 075° − (−3°) = 078°. Con Ct negativa, el rumbo de aguja es mayor que el verdadero."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Te separan 15 millas del puerto, navegas a 6 nudos y son las 10:40. ¿A qué hora llegas?",
+       "opciones": {
+        "a": "13:10",
+        "b": "12:55",
+        "c": "13:30"
+       },
+       "correcta": "a",
+       "explicacion": "Tiempo = 15 / 6 = 2,5 h = 2 h 30 min. Así que 10:40 + 2:30 = 13:10."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-q45",
+      "and-2020-c3-q44",
+      "and-2021-c2-q45",
+      "and-2022-c1-q44",
+      "and-2022-c2-q44",
+      "and-2022-c3-q45",
+      "and-2023-c1-q42",
+      "and-2023-c2-q45",
+      "and-2023-c3-q45",
+      "and-2024-c1-q43",
+      "and-2024-c2-q42",
+      "and-2024-c2-q45",
+      "and-2024-c3-q45",
+      "and-2025-c1-q43",
+      "and-2025-c2-q43",
+      "and-2025-c2-q44",
+      "and-2025-c3-q44",
+      "and-2026-c1-q43",
+      "and-2026-c2-q43",
+      "and-2026-c2-q45"
+     ],
+     "carta": [
+      "rumbo-distancia"
+     ],
+     "chuleta": [
+      "Salida → llegada: mides el Rv con el transportador y la distancia en la escala de latitudes.",
+      "Ra = Rv − Ct.",
+      "Tiempo = d / V. Los decimales de hora, por 60, dan los minutos.",
+      "HRB de llegada = HRB de salida + tiempo. Si pasa de 24 h, resta 24.",
+      "Llega a la luz exacta que pide el enunciado (faro de tierra, espigón, bocana)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Ra = Rv − Ct; t = d/V; HRB llegada = HRB salida + t",
+       "fuente": "kit.ra / kit.eta; 20 preguntas de la lección cuadran con la plantilla"
+      },
+      {
+       "dato": "Ejemplo Ceuta 2024: Rv ≈ 190°, dm −1°, Ct +5°, Ra 185°",
+       "fuente": "and-2024-c2-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (b)"
+      },
+      {
+       "dato": "12,7 millas a 8 nudos desde 20:00 → 21:35 (plantilla 21:34)",
+       "fuente": "and-2020-c1-q45, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (a)"
+      },
+      {
+       "dato": "Puntos de llegada: Barbate faro de tierra / luz roja del espigón; Ceuta luz verde de la bocana; Tánger farola del espigón",
+       "fuente": "Carta IHM L105 Enseñanza (escaneo georreferenciado, data/chart-105.json); enunciados oficiales"
+      },
+      {
+       "dato": "PER: sin viento ni corriente",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.4"
+      }
+     ]
+    },
+    {
+     "id": "per-11-4",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Situación de estima",
+     "minutos": 15,
+     "objetivos": [
+      "Calcular la situación de estima a partir de la salida, el rumbo, la velocidad y el tiempo",
+      "Resolver primero la situación de salida cuando viene dada por faros",
+      "Medir después la distancia o la demora a un faro desde la estima"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es la estima",
+       "texto": "La **situación de estima** es la que calculas sin mirar la costa: sabes de dónde has salido, a qué rumbo y a qué velocidad has ido y cuánto tiempo ha pasado.\n\nEn la carta se dibuja con el **rumbo verdadero** y la **distancia navegada**:\n\n**d = V × t** (millas = nudos × horas)\n\nSin viento ni corriente, que es el caso del PER, el barco sigue exactamente esa línea."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. **Sitúa la salida.**\n2. Calcula **Ct = dm + Δ** (actualiza la declinación si la sacas de la carta).\n3. Pasa el rumbo: **Rv = Ra + Ct**.\n4. **Tiempo navegado** = HRB final − HRB inicial, en horas.\n5. **Distancia**: d = V × t.\n6. Desde la salida, traza el **Rv** y mide **d** con el compás en la escala de latitudes.\n7. Lee la **latitud y la longitud** del punto al que llegas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Minutos a horas",
+       "texto": "Pasa los minutos a horas dividiendo entre 60:\n- 1 h 30 min = **1,5 h**\n- 1 h 45 min = **1,75 h**\n- 2 h 15 min = **2,25 h**\n- 1 h 42 min = **1,7 h**\n- 2 h 20 min ≈ **2,33 h**\n\nEjemplo: de 18:20 a 20:35 pasan 2 h 15 min. A 6 nudos, d = 6 × 2,25 = **13,5 millas**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si el enunciado ya te da el **rumbo verdadero**, no le apliques la corrección total aunque te la den. Por ejemplo, con «Rv = 110°, Ct = +10°» se traza el 110°: la Ct sobra. Solo se corrige lo que es de aguja."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Salidas que no vienen en coordenadas",
+       "texto": "A menudo la salida hay que construirla:\n- «**Al Sur verdadero** de Cabo Trafalgar **y al Oeste verdadero** del faro de Camarinal»: cruzas el meridiano de uno con el paralelo del otro.\n- «**En la oposición** de Punta Carnero y Punta Almina **y al Este verdadero** de Isla de Tarifa»: cruzas la recta entre los dos faros con el paralelo de Tarifa.\n- «**Demora de aguja** al faro 143° y **distancia** 4,5 millas»: Dv = Da + Ct; desde el faro trazas la opuesta (Dv ± 180°) y mides la distancia.\n\nResuelve primero la salida y después haz la estima."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los enunciados hablan del «faro de **Punta Camarinal**». En la carta lo encontrarás entre Cabo Trafalgar y Punta Paloma, junto al rótulo **Punta Camarinal** y con el nombre **PUNTA DE GRACIA** escrito en el mar, un poco al oeste. El faro está sobre la Torre de Gracia (Oc(2) 5s 13M). En algunos enunciados se le llama «Punta Gracia». Es el mismo faro."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Y después de la estima",
+       "texto": "Algunas preguntas siguen después de la estima:\n- **«¿A qué distancia estamos del faro X?»**: mides con el compás desde la estima hasta el faro.\n- **«Demora y distancia desde el faro»**: la demora **desde el faro** va del faro hacia el barco, así que es la opuesta (± 180°) de la que medirías desde el barco. Si desde la estima ves el faro al 073°, la demora desde el faro es el **253°**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas a 7,2 nudos de 08:00 a 10:30. ¿Qué distancia trazas en la carta?",
+       "opciones": {
+        "a": "16,8 millas",
+        "b": "18 millas",
+        "c": "21,6 millas"
+       },
+       "correcta": "b",
+       "explicacion": "Han pasado 2 h 30 min = 2,5 h, y d = 7,2 × 2,5 = 18 millas."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Rumbo de aguja 297°, declinación 0° y desvío −3°. ¿Qué rumbo trazas para la estima?",
+       "opciones": {
+        "a": "300°",
+        "b": "294°",
+        "c": "297°"
+       },
+       "correcta": "b",
+       "explicacion": "Ct = 0° + (−3°) = −3°, y Rv = 297° + (−3°) = 294°."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-q44",
+      "and-2020-c3-q43",
+      "and-2020-c3-q45",
+      "and-2021-c1-q45",
+      "and-2021-c2-q44",
+      "and-2022-c2-q42",
+      "and-2022-c3-q42",
+      "and-2023-c1-q43",
+      "and-2023-c2-q42",
+      "and-2023-c3-q42",
+      "and-2024-c1-q45",
+      "and-2024-c3-q42",
+      "and-2025-c1-q44",
+      "and-2025-c3-q43",
+      "and-2026-c1-q45",
+      "and-2026-c2-q44"
+     ],
+     "carta": [
+      "estima-directa"
+     ],
+     "chuleta": [
+      "Estima: salida + Rv + distancia navegada.",
+      "Rv = Ra + Ct; d = V × t (t en horas: minutos / 60).",
+      "Si el rumbo ya es verdadero, no se corrige.",
+      "Primero construye la salida (cruce de meridiano y paralelo, oposición o demora y distancia).",
+      "Demora «desde el faro» = la que ves desde el barco ± 180°."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Estima: Rv = Ra + Ct; d = V × t; si el rumbo es verdadero no se corrige",
+       "fuente": "and-2020-c3-q43 (Rv 110°, a); kit.run"
+      },
+      {
+       "dato": "18:20 → 20:35 = 2,25 h; 6 × 2,25 = 13,5 millas",
+       "fuente": "and-2023-c3-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (a)"
+      },
+      {
+       "dato": "Rv = 297° − 3° = 294° con dm de carta 2026 ≈ 0°",
+       "fuente": "and-2026-c1-q45, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (c)"
+      },
+      {
+       "dato": "Faro «de Punta Camarinal» = faro de Camarinal, sobre la Torre de Gracia (Cabo/Punta de Gracia), Oc(2) 5s 13M; rótulos «Punta Camarinal» y «PUNTA DE GRACIA» en la L105",
+       "fuente": "Carta IHM L105 Enseñanza (escaneo georreferenciado, data/chart-105.json); https://es.wikipedia.org/wiki/Faro_de_Camarinal; nota en andalucia-per-0.js"
+      },
+      {
+       "dato": "Demora desde el faro = demora al faro ± 180° (073° → 253°)",
+       "fuente": "and-2026-c2-q44, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (c)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-5",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Líneas de posición: demora, marcación y distancia",
+     "minutos": 15,
+     "objetivos": [
+      "Saber qué es una línea de posición y cuáles se usan en la carta",
+      "Pasar una marcación a demora verdadera con su signo",
+      "Situarte con una demora y una distancia, al mismo faro o a faros distintos"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Líneas de posición",
+       "texto": "Una **línea de posición** es una línea sobre la que sabes que está el barco. Las de la carta son:\n- Una **demora**: una recta que pasa por el faro.\n- Una **distancia**: una circunferencia con centro en el faro.\n- Una **enfilación** o una **oposición**: la recta que une dos puntos.\n- Una **línea isobática** (un veril): si la sonda que mides coincide con la de un veril, estás sobre esa línea.\n\nCon **dos líneas que se cortan**, tomadas a la vez, tienes una **situación observada** (verdadera), mucho más fiable que la de estima."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Demora y marcación",
+       "texto": "- La **demora** es el ángulo que va desde el **norte** hasta la visual al objeto, de 000° a 359°.\n- La **marcación** es el ángulo que va desde la **proa** hasta la visual. Se da de 0° a 180° **por estribor o por babor**, o como marcación circular de 0° a 360° contada desde la proa hacia estribor.\n\nPara pasar de una a otra:\n\n**Dv = Rv + M** (estribor +, babor −)\n\nSi te dan el rumbo de aguja, primero pasa a Rv = Ra + Ct. Una marcación de 90° es por el **través**, y una de 0°, por la **proa**."
+      },
+      {
+       "tipo": "regla",
+       "id": "r27"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rosa",
+        "rumbo": 130,
+        "demora": 40,
+        "marcacion": true,
+        "etiqueta": "faro"
+       },
+       "texto": "Rv 130° y el faro 90° por babor: Dv = 130° − 90° = 040°."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo se traza una demora",
+       "texto": "La demora se mide **desde el barco hacia el faro**, pero no sabes dónde está el barco. Por eso en la carta se traza **desde el faro**, con la dirección opuesta:\n\n**dirección a trazar = Dv ± 180°**\n\nEjemplo: ves el faro en Dv 040°. Desde el faro trazas el **220°**, y el barco está en algún punto de esa línea."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Situación por demora y distancia",
+       "texto": "1. Pasa la observación a **Dv** (Dv = Da + Ct o Dv = Rv + M).\n2. Desde el faro, traza **Dv ± 180°**.\n3. Abre el compás la **distancia**, medida en la escala de latitudes.\n4. Con centro en el faro, **corta la línea**. Ahí estás.\n\nSi la distancia es a **otro faro**, traza el arco con centro en ese otro faro. El arco puede cortar la línea en dos puntos: quédate con el que cuadre con el enunciado (más al este, más cerca de la costa, etc.)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Con las marcaciones por **babor**, la marcación se **resta**. Si la suma pasa de 360°, réstale 360°, y si sale negativa, súmale 360°. Por ejemplo, con Rv 070° y el faro 100° por babor, Dv = 070° − 100° = −30° → **330°**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 200° y ves un faro 120° por estribor. ¿Cuál es su demora verdadera?",
+       "opciones": {
+        "a": "080°",
+        "b": "320°",
+        "c": "120°"
+       },
+       "correcta": "b",
+       "explicacion": "Dv = Rv + M = 200° + 120° = 320°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Ves un faro en Dv 154°. ¿Qué dirección trazas en la carta desde el faro?",
+       "opciones": {
+        "a": "154°",
+        "b": "334°",
+        "c": "206°"
+       },
+       "correcta": "b",
+       "explicacion": "Desde el faro trazas la demora opuesta: 154° + 180° = 334°. El barco está sobre esa línea, al NNW del faro."
+      }
+     ],
+     "practica": [
+      "and-2022-c1-q42",
+      "and-2025-c1-q45",
+      "and-2025-c2-q42"
+     ],
+     "carta": [
+      "situacion-demora-distancia"
+     ],
+     "chuleta": [
+      "Línea de posición: demora (recta), distancia (circunferencia), enfilación u oposición (recta).",
+      "Dv = Rv + M, con estribor + y babor −.",
+      "La demora se traza desde el faro con la opuesta: Dv ± 180°.",
+      "Demora y distancia: la línea desde el faro y el arco con centro en el faro."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Líneas de posición: distancias, línea isobática, enfilaciones, oposiciones y demoras",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.6"
+      },
+      {
+       "dato": "Dv = Rv + M (estribor +, babor −)",
+       "fuente": "Mnemotecnia r27; kit.dvM; and-2022-c1-q42 (130° − 90° = 040°, a)"
+      },
+      {
+       "dato": "Rv 070°, 100° Br → Dv 330°",
+       "fuente": "and-2025-c1-q45, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (d)"
+      },
+      {
+       "dato": "Dv 154° a Pta. Almina → desde el faro 334°, 6 millas",
+       "fuente": "and-2025-c2-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (a)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-6",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Situación por dos demoras o marcaciones simultáneas",
+     "minutos": 15,
+     "objetivos": [
+      "Situarte con dos demoras o dos marcaciones tomadas a la vez",
+      "Combinar una demora de aguja y una marcación en el mismo ejercicio",
+      "No aplicar dos veces la corrección total"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. Calcula la **Ct** (si hace falta).\n2. Pasa el rumbo: **Rv = Ra + Ct**.\n3. Pasa cada observación a **Dv**:\n   - una demora de aguja, con **Dv = Da + Ct**;\n   - una marcación, con **Dv = Rv + M** (estribor +, babor −).\n4. Desde cada faro traza la **opuesta (Dv ± 180°)**.\n5. El **corte** de las dos líneas es la situación. Lee su latitud y su longitud."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "demoras",
+        "d1": 320,
+        "d2": 40
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Variantes que salen en el examen",
+       "texto": "- **Dos marcaciones**, una por cada banda. La de babor se resta y la de estribor se suma.\n- **Una demora de aguja y una marcación**: cada una con su fórmula.\n- **Rumbo verdadero y marcaciones**: no necesitas la Ct para nada.\n- **Rumbo en cuadrantal** (Ra = S 76° W): pásalo antes a circular (256°).\n- Una marcación de **más de 90°** queda a popa del través, hacia la aleta. No te extrañe: sigue siendo Dv = Rv + M."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La marcación se suma al **Rv**, que ya lleva la corrección total. **No vuelvas a aplicar la Ct** a la demora que te sale, porque la estarías aplicando dos veces. Si prefieres trabajar con aguja, Da = Ra + M y luego Dv = Da + Ct: el resultado es el mismo."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Si el rumbo ya es verdadero, la corrección total sobra: con las marcaciones sacas directamente las demoras verdaderas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Calidad de la situación",
+       "texto": "La situación es más fiable cuanto más se acerque a **90°** el ángulo entre las dos líneas. Con líneas casi paralelas, un error pequeño al trazar mueve mucho el corte.\n\nComprueba siempre que el punto que te sale está **en el agua** y en el lado del Estrecho que dice el enunciado. Si cae en tierra, revisa los signos de las marcaciones."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 300°. Marcas el faro A 40° por babor y el faro B 70° por estribor. ¿Cuáles son sus demoras verdaderas?",
+       "opciones": {
+        "a": "A 340°, B 230°",
+        "b": "A 260°, B 010°",
+        "c": "A 260°, B 370°"
+       },
+       "correcta": "b",
+       "explicacion": "A: 300° − 40° = 260°. B: 300° + 70° = 370°, y 370° − 360° = 010°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Con qué ángulo entre las dos líneas de posición obtienes la situación más fiable?",
+       "opciones": {
+        "a": "Cerca de 0°",
+        "b": "Cerca de 90°",
+        "c": "Cerca de 180°"
+       },
+       "correcta": "b",
+       "explicacion": "Las líneas que se cortan casi en ángulo recto dan el punto más preciso. Si son casi paralelas (0° o 180°), un error pequeño desplaza mucho el corte."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-q44",
+      "and-2021-c2-q42",
+      "and-2022-c1-q43",
+      "and-2022-c2-q43",
+      "and-2023-c2-q43",
+      "and-2024-c1-q44",
+      "and-2024-c2-q43"
+     ],
+     "carta": [
+      "situacion-dos-demoras"
+     ],
+     "chuleta": [
+      "Ct → Rv → Dv de cada faro → opuestas desde los faros → corte.",
+      "Demora de aguja: Dv = Da + Ct. Marcación: Dv = Rv + M (estribor +, babor −).",
+      "La Ct no se aplica dos veces.",
+      "Mejor situación: líneas cerca de 90°."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Situación por dos demoras/marcaciones simultáneas: opuestas desde los faros y corte",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.6; kit.fix2"
+      },
+      {
+       "dato": "Demora de aguja y marcación en el mismo ejercicio sin aplicar dos veces la Ct",
+       "fuente": "and-2021-c2-q42 (Dv 021° y 148°, d)"
+      },
+      {
+       "dato": "Rumbo verdadero y marcaciones: sin Ct",
+       "fuente": "and-2023-c2-q43 (b), and-2024-c1-q44 (c)"
+      },
+      {
+       "dato": "Ra S 76° W = 256°; marcación 157° Er",
+       "fuente": "and-2021-c1-q44, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (d)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-7",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Oposición o enfilación y demora: situación y distancia a un faro",
+     "minutos": 12,
+     "objetivos": [
+      "Usar una enfilación o una oposición como línea de posición",
+      "Cruzarla con una demora o con un «al Sur verdadero de» para situarte",
+      "Medir después la distancia al faro que pida el enunciado"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Una línea de posición sin correcciones",
+       "texto": "Una **enfilación** o una **oposición** ya es una línea de posición: es la recta que une los dos puntos (prolongada, si es una enfilación). No necesita corrección total porque se traza directamente en la carta.\n\nSi la cruzas con otra línea tomada a la vez, como la demora de un tercer faro o el meridiano o el paralelo de un faro, tienes la **situación**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. Traza la **recta que une los dos faros** de la enfilación u oposición.\n2. Pasa la otra observación a **verdadera**. Si te la dan ya verdadera («demora verdadera 205°»), úsala tal cual.\n3. Desde el tercer faro, traza la **opuesta** (Dv ± 180°).\n4. El **corte** con la recta es tu situación.\n5. Mide con el compás la **distancia al faro que te piden**, en la escala de latitudes."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El faro al que te piden la distancia suele ser **otro distinto** de los que has usado para situarte, a menudo uno lejano (por ejemplo, Punta Europa). Lee la pregunta hasta el final antes de medir."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«Al Sur verdadero de Punta Paloma» significa que ves el faro al **000°**. Desde el faro trazas el meridiano hacia el sur (180°) y lo cruzas con la enfilación. «Al Oeste verdadero de un faro» significa que lo ves al **090°**, y trazas su paralelo hacia el oeste."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Oposición o enfilación",
+       "texto": "- **Oposición**: tienes los dos puntos en sentidos opuestos y estás **entre** ellos, sobre el segmento que los une.\n- **Enfilación**: ves los dos puntos en la misma dirección, uno tapando al otro, y estás **fuera** del segmento, en su prolongación.\n\nEsta distinción te dice **en qué tramo** de la recta buscar el corte."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás en la enfilación de dos faros. ¿Dónde te encuentras respecto a ellos?",
+       "opciones": {
+        "a": "Entre los dos",
+        "b": "En la prolongación de la recta que los une, viéndolos uno detrás del otro",
+        "c": "En la perpendicular por el punto medio"
+       },
+       "correcta": "b",
+       "explicacion": "En la enfilación ves los dos puntos alineados en la misma dirección, así que estás en la prolongación de la recta. Entre los dos estarías en oposición."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás en la oposición de dos faros y ves un tercero en demora verdadera 080°. ¿Qué línea trazas desde ese tercer faro?",
+       "opciones": {
+        "a": "080°",
+        "b": "260°",
+        "c": "170°"
+       },
+       "correcta": "b",
+       "explicacion": "La demora va del barco al faro, así que desde el faro trazas la opuesta: 080° + 180° = 260°. Su corte con la recta de la oposición es tu situación."
+      }
+     ],
+     "practica": [
+      "and-2022-c3-q43",
+      "and-2023-c3-q43",
+      "and-2024-c1-q42",
+      "and-2025-c3-q42"
+     ],
+     "carta": [
+      "distancia-faro"
+     ],
+     "chuleta": [
+      "Enfilación u oposición = recta entre los dos faros, sin Ct.",
+      "Oposición: entre los dos puntos. Enfilación: en la prolongación.",
+      "Se cruza con otra demora (trazada desde su faro con Dv ± 180°) o con un meridiano o paralelo.",
+      "Distancia al faro pedido: con el compás, en la escala de latitudes."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Enfilación/oposición como línea de posición sin Ct",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.6"
+      },
+      {
+       "dato": "Oposición Tarifa–Cires + Dv 205° a Alcázar → 13,5′ a Pta. Europa",
+       "fuente": "and-2022-c3-q43 y and-2025-c3-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (b)"
+      },
+      {
+       "dato": "Enfilación Tarifa–Carnero + al S de Pta. Paloma → 9,2′ a Camarinal",
+       "fuente": "and-2023-c3-q43, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (c)"
+      },
+      {
+       "dato": "Oposición Alcázar–Tarifa + Dv 080° a Cires → 2,9′",
+       "fuente": "and-2024-c1-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (a)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-8",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Demoras no simultáneas (y cuándo no hace falta trasladar)",
+     "minutos": 15,
+     "objetivos": [
+      "Situarte con dos demoras tomadas a horas distintas, trasladando la primera",
+      "Distinguir un enunciado con observaciones simultáneas de uno con observaciones no simultáneas",
+      "Usar la situación anterior para calcular el rumbo y la distancia navegada"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El problema",
+       "texto": "Tomas la demora de un faro a las 10:00, sigues navegando y a las 10:40 tomas la de otro. Esas dos líneas **no son de la misma hora**. Si las cruzas sin más, obtienes un punto en el que no has estado nunca.\n\nLa solución es **llevar la primera línea hasta la hora de la segunda**, moviéndola lo mismo que se ha movido el barco."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El programa oficial del PER solo pide situarse con líneas de posición **simultáneas**. El traslado de líneas no simultáneas es materia del Patrón de Yate. Te lo contamos para que entiendas la diferencia, porque en el examen del PER todas las preguntas de este tipo traen observaciones **tomadas a la vez**, que se cruzan sin trasladar nada."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-car-03"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. Pasa las dos demoras a verdaderas (**Dv = Da + Ct**) y el rumbo a **Rv**.\n2. Calcula la **distancia navegada** entre las dos horas: d = V × t.\n3. Traza la **primera línea** desde su faro (Dv ± 180°).\n4. Desde **cualquier punto** de esa línea, traza el **Rv** y mide **d**.\n5. Por el extremo, traza una **paralela a la primera línea**: es la **línea trasladada**.\n6. Traza la **segunda línea** desde su faro. Su corte con la trasladada es la **situación a la hora de la segunda demora**."
+      },
+      {
+       "tipo": "clave",
+       "texto": "La primera línea viaja con el barco: se traslada paralela a sí misma, con el rumbo y la distancia navegados entre las dos observaciones."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "¿Simultáneas o no?",
+       "texto": "Muchos enunciados de examen empiezan con una situación («a las 12:00 estamos a 4 millas al Sur de Punta Carnero, navegando al Ra 244°») y siguen con «**más tarde** obtenemos marcación al faro A y marcación al faro B».\n\nEsas dos marcaciones se toman **a la vez**: son **simultáneas**. Se cruzan directamente, sin trasladar nada.\n\nLa situación inicial te sirve para dos cosas:\n- Te da el **rumbo**, que necesitas para convertir las marcaciones.\n- Si te lo piden, te permite medir la **distancia navegada**, desde ella hasta el corte."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Solo se traslada cuando las **dos observaciones son de horas distintas**. Si las dos marcaciones se toman a la vez, el tiempo que hayas navegado antes no cambia nada: cruzas y listo. Y fíjate en si te piden la situación «al obtener las marcaciones» o a otra hora."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Entre la primera y la segunda demora pasan 40 minutos y navegas a 6 nudos al Rv 090°. ¿Cómo trasladas la primera línea?",
+       "opciones": {
+        "a": "4 millas hacia el 090°",
+        "b": "6 millas hacia el 090°",
+        "c": "4 millas hacia el 270°"
+       },
+       "correcta": "a",
+       "explicacion": "d = 6 × 40 / 60 = 4 millas, en el sentido en que avanza el barco (Rv 090°)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "A las 12:00 conoces tu situación. Más tarde tomas a la vez la marcación de dos faros. ¿Tienes que trasladar alguna línea?",
+       "opciones": {
+        "a": "Sí, la primera marcación",
+        "b": "No: las dos marcaciones son simultáneas y se cruzan directamente",
+        "c": "Sí, las dos, hasta las 12:00"
+       },
+       "correcta": "b",
+       "explicacion": "Las dos líneas son de la misma hora. La situación de las 12:00 solo sirve para el rumbo y para medir la distancia navegada."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-q42",
+      "and-2020-c3-q42",
+      "and-2024-c3-q43"
+     ],
+     "carta": [
+      "demoras-no-simultaneas"
+     ],
+     "chuleta": [
+      "PER: las dos líneas siempre son simultáneas. El traslado es materia del PY.",
+      "Observaciones a horas distintas: se traslada la primera línea.",
+      "Traslado: desde un punto de la 1.ª línea, Rv y d = V × t, y por ahí una paralela.",
+      "La situación es el corte de la trasladada con la 2.ª línea, a la hora de la 2.ª.",
+      "«Más tarde obtenemos dos marcaciones» a la vez: simultáneas, sin traslado."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "El programa PER solo incluye líneas de posición simultáneas",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.6"
+      },
+      {
+       "dato": "Traslado de la primera línea con Rv y d = V × t",
+       "fuente": "Mnemotecnia py-car-03; ejercicio de la app demoras-no-simultaneas"
+      },
+      {
+       "dato": "«Más tarde obtenemos dos marcaciones»: simultáneas, sin traslado; distancia navegada desde la situación inicial",
+       "fuente": "and-2020-c1-q42 (c), and-2020-c3-q42 (b), and-2024-c3-q43 (12,7′, b)"
+      }
+     ]
+    },
+    {
+     "id": "per-11-9",
+     "curso": "per",
+     "ut": 11,
+     "titulo": "Rumbo para pasar a una distancia de un faro",
+     "minutos": 15,
+     "objetivos": [
+      "Trazar el rumbo tangente para pasar a una distancia dada de un faro",
+      "Elegir la tangente correcta según la banda por la que dejas el faro",
+      "Distinguir «pasar a X millas de un faro» de «ir a un punto a X millas de un faro»"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El problema",
+       "texto": "Quieres pasar a una distancia de seguridad de un faro o de un cabo, por ejemplo a **5 millas de Cabo Espartel, dejándolo por estribor**. Esas 5 millas son la **distancia mínima** a la que pasarás del faro. El rumbo que buscas es la recta que **toca** (es **tangente** a) la circunferencia de 5 millas con centro en el faro."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método paso a paso",
+       "texto": "1. **Sitúate** (por coordenadas, por dos distancias, por demora y distancia, etc.).\n2. Con centro en el faro, traza una **circunferencia** del radio pedido, medido en la escala de latitudes.\n3. Desde tu situación, traza la **tangente** por el lado correcto.\n4. Mide el **Rv** de esa tangente.\n5. Calcula **Ra = Rv − Ct**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuál de las dos tangentes",
+       "texto": "Desde tu situación salen dos tangentes, una a cada lado del faro:\n- **Dejar el faro por estribor**: al pasar, el faro queda a tu **derecha**. Tomas la tangente que queda a la **izquierda** de la visual al faro.\n- **Dejar el faro por babor**: el faro queda a tu **izquierda**. Tomas la tangente de la **derecha**.\n\nPuedes comprobarlo con la calculadora. Si D es la distancia al faro y d la de paso, el ángulo entre la visual y la tangente cumple **sen α = d / D**. Por estribor, Rv = Dv − α; por babor, Rv = Dv + α."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si el enunciado no dice por qué banda dejar el faro, elige la tangente que pasa **por fuera, por el lado del mar**. Por ejemplo, para pasar a 4 millas de Cabo Trafalgar navegando hacia el WNW desde Tarifa, o a 5 millas de Cabo Roche hacia el NW, la buena deja el faro por **estribor**. La otra tangente te metería en tierra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "**«Pasar a 1 milla al Sur verdadero del faro»** no es un problema de tangente: es un **punto concreto**, a 1 milla hacia el 180° del faro, y vas directo a él como en un rumbo normal. Solo trazas la tangente cuando te dicen «pasar a X millas del faro», sin dirección."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Situarte por **dos distancias** (por ejemplo, a 4,2 millas de un punto y a 5,3 millas de otro) te da dos arcos que se cortan en **dos puntos**. El enunciado siempre da una pista para elegir: «al este de la bahía de Algeciras», «más al este que Punta Paloma», «junto a la costa africana»… Busca esa pista antes de seguir."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás a 10 millas de un faro que ves en Dv 004°. Quieres pasar a 2,5 millas dejándolo por babor, y el ángulo de la tangente te sale de unos 14,5°. ¿Qué Rv das?",
+       "opciones": {
+        "a": "350°",
+        "b": "019°",
+        "c": "004°"
+       },
+       "correcta": "b",
+       "explicacion": "Por babor, el faro queda a tu izquierda y la derrota pasa a la derecha de la visual: Rv = Dv + α ≈ 004° + 14,5° ≈ 019°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Te piden el rumbo «para pasar a 1 milla al sur verdadero de un faro». ¿Qué trazas?",
+       "opciones": {
+        "a": "La tangente a una circunferencia de 1 milla",
+        "b": "El rumbo directo a un punto situado a 1 milla al 180° del faro",
+        "c": "El rumbo directo al faro"
+       },
+       "correcta": "b",
+       "explicacion": "La dirección (al sur verdadero) fija un punto concreto. No es un problema de tangente."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-q43",
+      "and-2022-c3-q44",
+      "and-2023-c1-q45",
+      "and-2024-c3-q44",
+      "and-2026-c1-q44"
+     ],
+     "carta": [
+      "rumbo-pasar-distancia"
+     ],
+     "chuleta": [
+      "Pasar a X millas: circunferencia de radio X con centro en el faro y tangente desde tu situación.",
+      "Faro por estribor: tangente a la izquierda de la visual (Rv = Dv − α). Por babor: a la derecha (Rv = Dv + α).",
+      "Sin banda en el enunciado: la tangente que pasa por fuera (lado del mar).",
+      "sen α = distancia de paso / distancia al faro.",
+      "«A X millas al Sur del faro» = un punto concreto; vas directo a él.",
+      "Dos distancias = dos cortes: elige con la pista del enunciado."
+     ],
+     "profundizar": [
+      {
+       "titulo": "Instituto Hidrográfico de la Marina – Cartas náuticas y publicaciones",
+       "url": "https://armada.defensa.gob.es/ihm/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Rumbo para pasar a una distancia de la costa o peligro",
+       "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.4"
+      },
+      {
+       "dato": "sen α = d/D; estribor Rv = Dv − α; babor Rv = Dv + α",
+       "fuente": "kit.tangent; and-2022-c3-q44 (babor, Rv 020°, Ra 027° ≈ 026°, d)"
+      },
+      {
+       "dato": "Sin banda indicada, la tangente por fuera (estribor) en Trafalgar y Cabo Roche",
+       "fuente": "and-2024-c3-q44 (b) y and-2023-c1-q45 (c), Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial"
+      },
+      {
+       "dato": "«Pasar a 1 milla al S verdadero» = punto concreto, rumbo directo",
+       "fuente": "and-2026-c1-q44, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (c)"
       }
      ]
     }

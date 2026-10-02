@@ -7,8 +7,10 @@ import { shipIllustration, SHIPS } from './ships.js';
 import { crossingIllustration, soundIllustration, riesgoIllustration, SENALES } from './situations.js';
 import { meteoIllustration, boatIllustration, propellerIllustration, roseIllustration, flagIllustration } from './misc.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
-import { nortesIllustration, enfilacionIllustration, corrienteIllustration, abatimientoIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration } from './navigation.js';
+import { beaufortIllustration } from './meteo.js';
+import { nortesIllustration, enfilacionIllustration, corrienteIllustration, abatimientoIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
+import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
 import { heliceTimonIllustration, evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
 import { estabilidadIllustration, movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
@@ -57,6 +59,10 @@ const RENDERERS = {
   evolucion: evolucionIllustration,
   ciaboga: ciabogaIllustration,
   desatraque: desatraqueIllustration,
+  bifurcacion: bifurcacionIllustration,
+  regiones: regionesIllustration,
+  beaufort: beaufortIllustration,
+  demoras: demorasIllustration,
 };
 
 /** Catálogo documentado (lo usan los editores de contenido y la validación). */
@@ -76,9 +82,9 @@ export const CATALOGO = {
   enfilacion: { params: { dv: 'demora verdadera de la enfilación', da: 'demora de aguja observada' }, ejemplo: { tipo: 'enfilacion', dv: 40, da: 44 } },
   corriente: { params: { caso: ['efectivo', 'rumbo-a-dar'] }, ejemplo: { tipo: 'corriente', caso: 'efectivo' } },
   abatimiento: { params: { banda: ['babor', 'estribor'] }, ejemplo: { tipo: 'abatimiento', banda: 'babor' } },
-  'viento-aparente': { params: {}, ejemplo: { tipo: 'viento-aparente' } },
+  'viento-aparente': { params: { rumbo: ['cenida', 'traves', 'aleta', 'popa'] }, ejemplo: { tipo: 'viento-aparente', rumbo: 'cenida' } },
   loxodromica: { params: {}, ejemplo: { tipo: 'loxodromica' } },
-  marea: { params: { modo: ['curva', 'duodecimos', 'sonda'] }, ejemplo: { tipo: 'marea', modo: 'sonda' } },
+  marea: { params: { modo: ['curva', 'duodecimos', 'sonda', 'fases'] }, ejemplo: { tipo: 'marea', modo: 'sonda' } },
   'sectores-luces': { params: { luz: ['todas', 'tope', 'costados', 'alcance'] }, ejemplo: { tipo: 'sectores-luces' } },
   canal: { params: { sentido: ['entrando', 'saliendo'] }, ejemplo: { tipo: 'canal', sentido: 'entrando' } },
   dst: { params: {}, ejemplo: { tipo: 'dst' } },
@@ -95,6 +101,10 @@ export const CATALOGO = {
   evolucion: { params: {}, ejemplo: { tipo: 'evolucion' } },
   ciaboga: { params: {}, ejemplo: { tipo: 'ciaboga' } },
   desatraque: { params: { abrir: ['popa', 'proa'] }, ejemplo: { tipo: 'desatraque', abrir: 'popa' } },
+  bifurcacion: { params: { marca: ['canal-principal-estribor', 'canal-principal-babor'], ruta: ['principal', 'secundario'] }, ejemplo: { tipo: 'bifurcacion', marca: 'canal-principal-estribor', ruta: 'principal' } },
+  regiones: { params: {}, ejemplo: { tipo: 'regiones' } },
+  beaufort: { params: { fuerza: '0–12 opcional (resalta esa fila)' }, ejemplo: { tipo: 'beaufort' } },
+  demoras: { params: { d1: 'Dv al faro A (por defecto 330)', d2: 'Dv al faro B (por defecto 034)' }, ejemplo: { tipo: 'demoras', d1: 330, d2: 34 } },
 };
 
 /** Comprueba que una especificación es dibujable. */

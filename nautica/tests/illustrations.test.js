@@ -42,3 +42,52 @@ test('ritmo de la cardinal Sur muy rápida: VQ(6)+LFl conserva el destello largo
   assert.equal(r.steps.filter((s) => s.on).length, 7);
   assert.equal(Math.max(...r.steps.filter((s) => s.on).map((s) => s.d)), 2);
 });
+
+test('láminas nuevas: todas sus variantes se dibujan', async () => {
+  const { SOCORRO } = await import('../src/illustrations/socorro.js');
+  const specs = [
+    { tipo: 'socorro' }, ...Object.keys(SOCORRO).flatMap((resaltar) => [{ tipo: 'socorro', resaltar }, { tipo: 'socorro', resaltar, solo: true }]),
+    ...['comparar', 'constante', 'variable'].map((caso) => ({ tipo: 'riesgo', caso })),
+    ...['avante', 'atras'].flatMap((marcha) => ['er', 'br'].flatMap((timon) => ['dextrogira', 'levogira'].map((sentido) => ({ tipo: 'helice-timon', marcha, timon, sentido })))),
+    { tipo: 'evolucion' }, { tipo: 'ciaboga' }, { tipo: 'desatraque', abrir: 'popa' }, { tipo: 'desatraque', abrir: 'proa' },
+    ...['canal-principal-estribor', 'canal-principal-babor'].flatMap((marca) => ['principal', 'secundario'].map((ruta) => ({ tipo: 'bifurcacion', marca, ruta }))), { tipo: 'regiones' },
+    ...['cenida', 'traves', 'aleta', 'popa'].map((rumbo) => ({ tipo: 'viento-aparente', rumbo })), { tipo: 'viento-aparente' },
+    { tipo: 'beaufort' }, ...Array.from({ length: 13 }, (_, fuerza) => ({ tipo: 'beaufort', fuerza })), { tipo: 'marea', modo: 'fases' }, { tipo: 'demoras' },
+    ...['draga', 'pesquero-aparejo'].flatMap((clase) => ['babor', 'estribor'].map((b) => ({ tipo: 'buque', clase, vista: 'todas', dia: true, obstruccion: b, aparejo: b, arrancada: false }))),
+  ];
+  for (const s of specs) {
+    const r = renderIllustration(s);
+    assert.ok(r?.svg?.startsWith('<svg') && !/NaN|undefined/.test(r.svg) && r.caption, JSON.stringify(s));
+  }
+  assert.equal(validSpec({ tipo: 'socorro', resaltar: 'alarma-radiotelefonica' }), false);
+  assert.equal(validSpec({ tipo: 'viento-aparente', rumbo: 'inventado' }), false);
+});
+
+test('señales de peligro: solo las vigentes del Anexo IV', async () => {
+  const { SOCORRO } = await import('../src/illustrations/socorro.js');
+  const letras = Object.values(SOCORRO).map((s) => s.letra);
+  for (const l of 'abcdefghijklmno') assert.ok(letras.includes(`1 ${l}`), `falta la 1 ${l}`);
+  assert.ok(!Object.values(SOCORRO).some((s) => /alarma radiotele/i.test(s.nota)));
+});
+
+test('draga: dos rojas en la banda de la obstrucción y dos verdes en la otra (visto de proa)', () => {
+  const svg = (obstruccion) => renderIllustration({ tipo: 'buque', clase: 'draga', vista: 'proa', obstruccion, arrancada: false }).svg;
+  // de proa, la banda de babor del buque queda a nuestra derecha: con obstrucción a babor, las rojas a la derecha
+  const xs = (s, color) => [...s.matchAll(new RegExp(`cx="([\\d.]+)" cy="[\\d.]+" r="4.6" fill="${color}"`, 'g'))].map((m) => +m[1]);
+  const centro = 180; // lámina de 360 de ancho con una sola vista centrada
+  assert.ok(xs(svg('babor'), '#22c55e').every((x) => x < centro));
+  assert.ok(xs(svg('estribor'), '#22c55e').every((x) => x > centro));
+});
+
+test('hélice y timón: dextrógira atrás con timón a babor, la proa cae a estribor y suman', () => {
+  const r = renderIllustration({ tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' });
+  assert.match(r.svg, /La proa cae a <b>estribor<\/b> con rapidez/);
+  const a = renderIllustration({ tipo: 'helice-timon', marcha: 'avante', timon: 'er', sentido: 'dextrogira' });
+  assert.match(a.svg, /La proa cae a <b>estribor<\/b>, algo más despacio/);
+});
+
+test('riesgo de abordaje: con demora constante las demoras sucesivas son iguales', () => {
+  const dem = (caso) => renderIllustration({ tipo: 'riesgo', caso }).svg.match(/demoras: ([^<]+)/)[1].split(' · ');
+  assert.equal(new Set(dem('constante')).size, 1);
+  assert.equal(new Set(dem('variable')).size, 4);
+});

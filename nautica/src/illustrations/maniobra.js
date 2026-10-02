@@ -25,7 +25,7 @@ export function heliceTimonIllustration(spec) {
   const H = 280;
   const out = open(W, H, 'Hélice y timón', 'ht');
   out.push(title(W / 2, `${atras ? 'Atrás' : 'Avante'} · timón a ${BANDA[timon]} · hélice ${dex ? 'dextrógira' : 'levógira'}`));
-  const cx = 92;
+  const cx = 108;
   const cy = 150;
   const L = 160;
   const sgn = (b) => (b === 'er' ? 1 : -1);
@@ -54,7 +54,7 @@ export function heliceTimonIllustration(spec) {
     : atras
       ? `La proa cae a <b>${BANDA[proa]}</b> solo si lleva arrancada atrás suficiente; con poca arrancada domina la hélice y la popa se va a ${BANDA[popaHelice]}.`
       : `La proa cae a <b>${BANDA[proa]}</b>, algo más despacio: la hélice resta un poco.`;
-  out.push(fo(204, 40, 132, 230,
+  out.push(fo(212, 40, 124, 230,
     `<p style="margin:0 0 6px;color:${C.r}"><b>Timón</b> a ${BANDA[timon]} ${atras ? 'con arrancada atrás' : 'avante'}: popa a ${BANDA[popaTimon]}.</p>` +
     `<p style="margin:0 0 6px;color:${C.a}"><b>Hélice</b> ${dex ? 'dextrógira' : 'levógira'} ${atras ? 'atrás' : 'avante'}: popa a ${BANDA[popaHelice]} (presión lateral de las palas).</p>` +
     `<p style="margin:0">${res}</p>`));
@@ -70,14 +70,15 @@ export function heliceTimonIllustration(spec) {
 
 function evolucionPath() {
   // integración simple: rumbo que cae cada vez más deprisa hasta una velocidad de giro constante
-  // y un pequeño desplazamiento inicial hacia la banda contraria (la popa abre)
+  // y un pequeño desplazamiento inicial hacia la banda contraria (la popa abre). Proporciones típicas:
+  // avance ≈ 0,9 del diámetro táctico, traslado ≈ la mitad, diámetro final algo menor que el táctico.
   const pts = [];
-  let [x, y, psi] = [72, 300, 0];
-  const r = 1 / 78;
+  let [x, y, psi] = [72, 320, 0];
+  const r = 1 / 71;
   for (let s = 0; s < 40; s++) { y -= 1; pts.push([x, y, 0]); }
   for (let s = 0; psi < rad(300); s++) {
-    psi += r * (1 - Math.exp(-s / 34));
-    const k = 0.35 * Math.exp(-s / 18);
+    psi += r * (1 - Math.exp(-s / 104));
+    const k = 0.35 * Math.exp(-s / 23);
     x += Math.sin(psi) - k * Math.cos(psi);
     y += -Math.cos(psi) - k * Math.sin(psi);
     pts.push([x, y, psi]);
@@ -87,7 +88,7 @@ function evolucionPath() {
 
 export function evolucionIllustration() {
   const W = 320;
-  const H = 330;
+  const H = 340;
   const out = open(W, H, 'Curva de evolución', 'ev');
   out.push(title(W / 2, 'Curva de evolución (todo a estribor)'));
   const { pts, r } = evolucionPath();
@@ -96,7 +97,7 @@ export function evolucionIllustration() {
   const start = pts[39];
   const p90 = pts.find((p) => p[2] >= Math.PI / 2);
   const p180 = pts.find((p) => p[2] >= Math.PI);
-  out.push(`<line x1="${x0}" y1="316" x2="${x0}" y2="40" stroke="${C.g}" stroke-dasharray="5 4"/>`, lbl(x0 - 4, 48, 'rumbo inicial', 'g', 'end', 'font-size="9"'));
+  out.push(`<line x1="${x0}" y1="330" x2="${x0}" y2="40" stroke="${C.g}" stroke-dasharray="5 4"/>`, lbl(x0 - 4, 48, 'rumbo inicial', 'g', 'end', 'font-size="9"'));
   out.push(`<path d="${d}" fill="none" stroke="${C.v}" stroke-width="2.2"/>`);
   // diámetro final (círculo de giro estabilizado)
   const last = pts[pts.length - 1];

@@ -35,8 +35,8 @@ export const SHIPS = {
     nota: 'Regla 24 e): costados y alcance; con un remolque de más de 200 m (desde la popa del remolcador hasta el extremo de popa del remolque), una marca bicónica en el lugar más visible, igual que el remolcador.',
   },
   empujando: {
-    nombre: 'Buque empujando a proa (sin unidad rígida)', luces: [['tope', 'proa', 0.62], ['tope', 'proa', 0.75]], dia: [],
-    nota: 'Regla 24 c): el que empuja a proa sin formar unidad compuesta lleva dos luces de tope en vertical, costados y alcance, pero no la luz amarilla de remolque. El grupo se ilumina como un solo buque: el empujado lleva sus costados en el extremo de proa.',
+    nombre: 'Buque empujando a proa (sin unidad rígida, < 50 m)', luces: [['tope', 'proa', 0.62], ['tope', 'proa', 0.75]], dia: [],
+    nota: 'Regla 24 c): el que empuja a proa sin formar unidad compuesta lleva dos luces de tope en vertical, costados y alcance, pero no la luz amarilla de remolque (con 50 m o más, además la de tope a popa). El grupo se ilumina como un solo buque: el empujado lleva sus costados en el extremo de proa.',
   },
   empujado: {
     nombre: 'Buque empujado a proa (sin unidad rígida)', luces: [], sinAlcance: true, dia: [],
@@ -47,8 +47,8 @@ export const SHIPS = {
     nota: 'Regla 24 b): si empujador y empujado están unidos rígidamente formando una unidad compuesta, son un buque de propulsión mecánica y llevan sus luces (Regla 23): aquí, de 50 m o más, dos de tope. En niebla, pitada larga como un buque de motor.',
   },
   'remolque-costado': {
-    nombre: 'Buque remolcando por el costado', luces: [['tope', 'proa', 0.62], ['tope', 'proa', 0.75]], dia: [],
-    nota: 'Regla 24 c): el que remolca por el costado lleva dos luces de tope en vertical, costados y alcance (sin luz de remolque). El remolcado por el costado lleva luz de alcance y costados en su extremo de proa: el grupo se ilumina como un solo buque.',
+    nombre: 'Buque remolcando por el costado (< 50 m)', luces: [['tope', 'proa', 0.62], ['tope', 'proa', 0.75]], dia: [],
+    nota: 'Regla 24 c): el que remolca por el costado lleva dos luces de tope en vertical, costados y alcance, sin luz de remolque (con 50 m o más, además la de tope a popa). El remolcado por el costado lleva luz de alcance y costados en su extremo de proa: el grupo se ilumina como un solo buque.',
   },
   'pesquero-arrastre': { nombre: 'Buque pesquero de arrastre', luces: [['todo-G', 'centro', 0.85], ['todo-W', 'centro', 0.72]], opcionalCostados: true, dia: ['diabolo'] },
   'pesquero-arrastre-50': {

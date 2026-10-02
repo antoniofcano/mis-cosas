@@ -80,10 +80,9 @@ test('draga: dos rojas en la banda de la obstrucción y dos verdes en la otra (v
 });
 
 test('hélice y timón: dextrógira atrás con timón a babor, la proa cae a estribor y suman', () => {
-  const r = renderIllustration({ tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' });
-  assert.match(r.svg, /La proa cae a <b>estribor<\/b> con rapidez/);
-  const a = renderIllustration({ tipo: 'helice-timon', marcha: 'avante', timon: 'er', sentido: 'dextrogira' });
-  assert.match(a.svg, /La proa cae a <b>estribor<\/b>, algo más despacio/);
+  const lee = (spec) => controlador(INTERACTIVAS['helice-timon'], spec, 'explicacion').vista().lectura;
+  assert.match(lee({ tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' }), /la proa a estribor\. Hélice y timón empujan la popa hacia la misma banda/);
+  assert.match(lee({ tipo: 'helice-timon', marcha: 'avante', timon: 'er', sentido: 'dextrogira' }), /la proa a estribor\. Se oponen: avante/);
 });
 
 test('riesgo de abordaje: con demora constante las demoras sucesivas son iguales', () => {
@@ -93,9 +92,15 @@ test('riesgo de abordaje: con demora constante las demoras sucesivas son iguales
 });
 
 // --- Láminas interactivas: mismas specs, tres modos ---------------------------------------------------------------
-import { INTERACTIVAS, interactivaDe, pidePrediccion } from '../src/illustrations/interactivas.js';
+import { INTERACTIVAS, interactivaDe, pidePrediccion, listaInteractivas } from '../src/illustrations/interactivas.js';
 import { controlador, MAX_MANDOS } from '../src/ui/lamina-estado.js';
 import { ewTexto, marcacionBanda } from '../src/nautical/compass.js';
+import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
+import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
+import { caidaPopa } from '../src/nautical/helice.js';
+import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
+import { intensidad, humedadRelativa } from '../src/nautical/meteo.js';
+import { correccionTabla } from '../src/nautical/tides.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -110,14 +115,14 @@ function specsReales(tipo) {
 }
 
 test('láminas interactivas: specs válidas, como mucho tres mandos y lectura en texto', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    const specs = [CATALOGO[tipo].ejemplo, ...specsReales(tipo)];
+  for (const { tipo, def, ejemplo, encaja } of listaInteractivas()) {
+    const specs = [ejemplo ?? CATALOGO[tipo].ejemplo, ...specsReales(tipo).filter(encaja)];
     for (const spec of specs) {
       assert.ok(validSpec(spec), `${tipo} ${JSON.stringify(spec)}`);
       if (!interactivaDe(spec)) continue;
       for (const modo of ['clase', 'explicacion', 'galeria']) {
         const v = controlador(def, spec, modo).vista();
-        assert.ok(v.mandos.length >= 1 && v.mandos.length <= MAX_MANDOS, `${tipo}: ${v.mandos.length} mandos`);
+        assert.ok(v.mandos.length <= MAX_MANDOS && (v.mandos.length >= 1 || Object.keys(def.partes ?? {}).length), `${tipo}: ${v.mandos.length} mandos`);
         const svg = v.svg ?? v.vistas.map((x) => x.svg).join('');
         assert.ok(svg.startsWith('<svg') && !/NaN|undefined/.test(svg), `${tipo} ${modo} ${JSON.stringify(spec)}`);
         assert.ok(v.lectura && !/NaN|undefined/.test(v.lectura), `${tipo}: lectura`);
@@ -127,10 +132,15 @@ test('láminas interactivas: specs válidas, como mucho tres mandos y lectura en
 });
 
 test('láminas interactivas: clase bloquea hasta responder, explicación abre en el estado de la pregunta, galería libre', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    const spec = specsReales(tipo).find((s) => pidePrediccion(s)) ?? CATALOGO[tipo].ejemplo;
+  for (const { tipo, def, ejemplo, encaja } of listaInteractivas()) {
+    const spec = specsReales(tipo).filter(encaja).find((s) => pidePrediccion(s)) ?? ejemplo ?? CATALOGO[tipo].ejemplo;
     const primer = (c) => c.vista().mandos[0];
 
+    if (!def.prediccion) {
+      // lámina de ver (perspectiva): sin predicción ni bloqueo en ningún modo
+      for (const modo of ['clase', 'explicacion', 'galeria']) assert.ok(!controlador(def, spec, modo).vista().bloqueado);
+      continue;
+    }
     // clase: predicción y mandos bloqueados
     const clase = controlador(def, spec, 'clase');
     assert.ok(pidePrediccion(spec));
@@ -156,7 +166,7 @@ test('láminas interactivas: clase bloquea hasta responder, explicación abre en
     assert.ok(!expl.vista().bloqueado && expl.mover(m.id, otro));
 
     // galería: libre
-    const gal = controlador(def, CATALOGO[tipo].ejemplo, 'galeria');
+    const gal = controlador(def, ejemplo ?? CATALOGO[tipo].ejemplo, 'galeria');
     assert.equal(gal.vista().prediccion, null);
     assert.ok(gal.mover(m.id, otro));
   }
@@ -190,8 +200,8 @@ test('nortes y rosa: lo que se lee coincide con el cálculo', () => {
 });
 
 test('un solo dibujo por lámina: la imagen fija es el dibujo interactivo en su estado inicial', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    for (const spec of [CATALOGO[tipo].ejemplo, ...specsReales(tipo)]) {
+  for (const { tipo, def, ejemplo, encaja } of listaInteractivas()) {
+    for (const spec of [ejemplo ?? CATALOGO[tipo].ejemplo, ...specsReales(tipo).filter(encaja)]) {
       if (!interactivaDe(spec)) continue;
       const fija = renderIllustration(spec).svg;
       assert.equal(fija, controlador(def, spec, 'explicacion').vista().svg ?? controlador(def, spec, 'explicacion').vista().vistas.map((v) => v.svg).join(''), `${tipo} ${JSON.stringify(spec)}`);
@@ -206,8 +216,58 @@ function specsDeClase(tipo) {
   return out;
 }
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
+function COMPRUEBA_MAREA(c, p) {
+  assert.ok(Math.abs(correccionTabla(1, 180, 360) - 0.5) < 1e-12);
+  assert.equal(p.opciones[p.correcta], 'La mitad de la amplitud');
+}
+function COMPRUEBA_NIEBLA(c, p) {
+  const e = c.estado();
+  assert.ok(humedadRelativa(e.t - 3, 12) > humedadRelativa(e.t, 12)); // enfriar sube la humedad relativa
+  assert.equal(p.opciones[p.correcta], 'Sube');
+}
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  'marea:curva'(c, p) { COMPRUEBA_MAREA(c, p); },
+  'marea:duodecimos'(c, p) { COMPRUEBA_MAREA(c, p); },
+  'marea:sonda'(c, p) { COMPRUEBA_MAREA(c, p); },
+  'meteo:niebla-adveccion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
+  'meteo:niebla-radiacion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
+  'meteo:isobaras'(c, p) {
+    const e = c.estado();
+    assert.ok(intensidad(e.separacion - 5).t > intensidad(e.separacion).t || e.separacion - 5 < 14);
+    assert.equal(p.opciones[p.correcta], 'Aumenta');
+  },
+  desatraque(c, p) {
+    assert.equal(c.estado().viento, 'mar');
+    // con viento de la mar solo sale bien abriendo la popa (esprín de proa, avante)
+    const sale = ['proa', 'popa'].flatMap((esprin) => ['avante', 'atras'].map((maquina) => desatraqueCalc({ viento: 'mar', esprin, maquina }).resultado)).filter((x) => x !== 'se-queda');
+    assert.deepEqual(sale, ['abre-popa']);
+    assert.equal(p.opciones[p.correcta], 'Abriendo la popa');
+  },
+  'helice-timon'(c, p) {
+    const e = c.estado();
+    assert.deepEqual(e, { marcha: 'atras', sentido: 'dextrogira', timon: 'via' }, 'la clase abre en el caso de la pregunta');
+    assert.equal(p.opciones[p.correcta], `A ${caidaPopa(e).popa}`);
+  },
+  estabilidad(c, p) {
+    // subir peso: G sube, GM y GZ bajan → adriza peor
+    const e = c.estado();
+    const antes = estabilidadCalc({ altura: e.altura, traslado: e.traslado });
+    const despues = estabilidadCalc({ altura: e.altura + 1, traslado: e.traslado });
+    assert.ok(despues.GZ < antes.GZ);
+    assert.equal(p.opciones[p.correcta], 'Peor');
+  },
+  'sectores-luces'(c, p) {
+    // «una sola luz blanca»: solo desde el sector de alcance (por la popa)
+    const solo = [0, 60, 112.5, 113, 180, 247, 247.5, 300].filter((a) => { const v = lucesVisibles(a); return v.alcance && !v.tope && !v.verde && !v.roja; });
+    assert.ok(solo.length && solo.every((a) => a > 112.5 && a < 247.5));
+    assert.equal(p.opciones[p.correcta], 'Por la popa');
+  },
+  cruce(c, p) {
+    const v = lucesVisibles(c.estado().aspecto);
+    assert.ok(v.alcance && !v.tope, 'la clase abre viendo solo una luz blanca');
+    assert.equal(p.opciones[p.correcta], { tu: 'Tú', el: 'Él', 'los-dos': 'Los dos' }[situacionPorLuces(v).maniobra]);
+  },
   abatimiento(c, p) {
     const e = c.estado();
     assert.ok(p.enunciado.includes(`Viento por ${e.banda}`), p.enunciado);
@@ -239,22 +299,24 @@ const COMPRUEBA = {
 };
 
 test('la predicción es coherente con el estado en que se abre la lámina (specs reales de las clases)', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    assert.ok(COMPRUEBA[tipo], `falta la comprobación de ${tipo}`);
+  for (const { clave, tipo, def, encaja } of listaInteractivas()) {
+    if (!def.prediccion) continue;
+    assert.ok(COMPRUEBA[clave], `falta la comprobación de ${clave}`);
     let n = 0;
-    for (const spec of specsDeClase(tipo)) {
+    for (const spec of specsDeClase(tipo).filter(encaja)) {
       if (!pidePrediccion(spec)) continue;
       const c = controlador(def, spec, 'clase');
-      COMPRUEBA[tipo](c, c.vista().prediccion);
+      COMPRUEBA[clave](c, c.vista().prediccion);
       n++;
     }
-    assert.ok(n > 0, `${tipo}: ninguna clase con predicción`);
+    assert.ok(n > 0, `${clave}: ninguna clase con predicción`);
   }
 });
 
 test('modo explicación: «Volver al caso de la pregunta» restaura el estado de la spec', () => {
-  for (const [tipo, def] of Object.entries(INTERACTIVAS)) {
-    const spec = specsReales(tipo).find((s) => interactivaDe(s));
+  for (const { tipo, def, encaja } of listaInteractivas()) {
+    const spec = specsReales(tipo).filter(encaja).find((s) => interactivaDe(s));
+    if (!spec || !controlador(def, spec, 'explicacion').vista().mandos.length) continue;
     const c = controlador(def, spec, 'explicacion');
     const m = c.vista().mandos[0];
     assert.equal(c.cambiado, false);
@@ -263,5 +325,17 @@ test('modo explicación: «Volver al caso de la pregunta» restaura el estado de
     assert.ok(c.reiniciar());
     assert.deepEqual(c.estado(), def.estado(spec));
     assert.equal(c.cambiado, false);
+  }
+});
+
+test('frentes en perspectiva: cada parte está en las tres vistas y se resalta en todas', () => {
+  const def = interactivaDe({ tipo: 'meteo', sistema: 'frentes' });
+  const c = controlador(def, { tipo: 'meteo', sistema: 'frentes' }, 'galeria');
+  const v = c.vista();
+  assert.equal(v.vistas.length, 3);
+  for (const p of ['ff', 'fc', 'sc', 'af']) {
+    for (const x of v.vistas) assert.ok(x.svg.includes(`data-parte="${p}"`), `${p} en todas las vistas`);
+    assert.equal(c.resaltar(p), p);
+    assert.equal(c.vista().lectura, def.partes[p]);
   }
 });

@@ -42,3 +42,15 @@ export function twelfthsFraction(hours) {
   }
   return acc / 12;
 }
+
+/**
+ * Corrección de la tabla oficial del examen: C = A · sen²(90° · I / D), con A la amplitud, I el intervalo desde la
+ * bajamar y D la duración de la creciente. Es la misma curva que tideHeight.
+ */
+export const correccionTabla = (A, I, D) => A * Math.sin(toRad((90 * Math.min(Math.max(I, 0), D)) / D)) ** 2;
+
+/** Sonda en el momento y agua bajo la quilla (negativa: tocas fondo). */
+export function aguaBajoQuilla({ sondaCarta, altura, calado }) {
+  const sonda = sondaCarta + altura;
+  return { sonda, bajoQuilla: sonda - calado };
+}

@@ -19,6 +19,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
   const lectura = h('p.lam-lectura', { 'aria-live': 'polite', id: `${uid}-lectura` });
   const casillas = h('div.lam-casillas');
   const cadena = h('ol.lam-cadena');
+  const nota = h('p.lam-nota');
   const ctl = h('div.lam-mandos');
   const aviso = h('p.lam-aviso', 'Responde primero para poder mover los mandos.');
   const fig = h('figure.il-figure.lamina', { 'data-modo': modo });
@@ -26,7 +27,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
 
   function pintaDibujo(v) {
     const vistas = v.vistas ?? [{ svg: v.svg }];
-    dibujo.className = `il-svg lam-dibujo${vistas.length > 1 ? ' lam-duo' : ''}`;
+    dibujo.className = `il-svg lam-dibujo${v.disposicion === 'primera-ancha' ? ' lam-primera-ancha' : vistas.length > 1 && !v.apiladas ? ' lam-duo' : ''}`;
     setChildren(dibujo, vistas.map((x) => h('figure.lam-vista', h('div', { html: x.svg }), x.pie ? h('figcaption', x.pie) : null)));
     dibujo.classList.toggle('lam-con-parte', !!v.parte);
     for (const el of dibujo.querySelectorAll('[data-parte]')) el.classList.toggle('lam-sel', el.dataset.parte === v.parte);
@@ -35,6 +36,8 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
   function pinta() {
     const v = c.vista();
     pintaDibujo(v);
+    nota.textContent = v.nota ?? '';
+    nota.hidden = !v.nota;
     lectura.textContent = v.lectura;
     setChildren(casillas, (v.casillas ?? []).map(([k, val]) => h('div', h('b', k), val)));
     casillas.hidden = !v.casillas?.length;
@@ -125,6 +128,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
   fig.append(...[
     predEl,
     dibujo,
+    nota,
     partesBtns.length ? h('div.lam-seg.lam-partes', { role: 'group', 'aria-label': 'Partes del dibujo' }, partesBtns) : null,
     v0.mandos.length ? h('div.lam-ctl', aviso, conmutadorEl, ctl) : null,
     cadena,

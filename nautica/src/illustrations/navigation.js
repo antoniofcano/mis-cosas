@@ -155,97 +155,11 @@ export function loxodromicaIllustration() {
 // Mareas. spec: { tipo:'marea', modo:'curva'|'duodecimos'|'sonda' }
 
 export function mareaIllustration(spec) {
-  const modo = spec.modo ?? 'curva';
-  const W = 320;
-  const H = 250;
-  const out = open(W, H, 'Mareas', 'mr');
-  if (modo === 'sonda') {
-    out.push(title(160, 'Sonda real = sonda de la carta + marea'));
-    const cero = 175;
-    const fondo = 225;
-    const nivel = 95;
-    out.push(`<rect x="10" y="${nivel}" width="300" height="${fondo - nivel}" fill="#38bdf8" opacity=".35"/>`);
-    out.push(`<path d="M10,${fondo} Q160,${fondo - 12} 310,${fondo} L310,${H} L10,${H}Z" fill="#a16207" opacity=".8"/>`);
-    out.push(`<line x1="10" y1="${cero}" x2="310" y2="${cero}" stroke="${C.p}" stroke-dasharray="6 4"/>`, lbl(14, cero - 4, 'cero hidrográfico (bajamar más baja)', 'p'));
-    out.push(`<line x1="10" y1="${nivel}" x2="310" y2="${nivel}" stroke="${C.v}" stroke-width="2"><animate attributeName="y1" values="${nivel};${nivel + 30};${nivel}" dur="6s" repeatCount="indefinite"/><animate attributeName="y2" values="${nivel};${nivel + 30};${nivel}" dur="6s" repeatCount="indefinite"/></line>`, lbl(14, nivel - 4, 'nivel del mar ahora', 'v'));
-    const x1 = 70;
-    out.push(arrow(x1, cero, x1, fondo - 6, 'r', 'mr', 2), lbl(x1 + 6, (cero + fondo) / 2 + 4, 'sonda de la carta', 'r'));
-    out.push(arrow(x1 + 120, cero, x1 + 120, nivel + 4, 'm', 'mr', 2), lbl(x1 + 126, (cero + nivel) / 2, 'altura de marea', 'm'));
-    // barco y calado
-    out.push(`<path d="M220,${nivel} L300,${nivel} L292,${nivel + 34} L228,${nivel + 34}Z" fill="${C.g}"/>`, lbl(258, nivel + 50, 'calado', null, 'middle'));
-    out.push(lbl(14, H - 4, 'bajo la quilla = sonda carta + marea − calado', null, 'start', 'style="fill:#fff" font-weight="700"'));
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Las sondas de la carta se miden desde el cero hidrográfico. El agua que tienes en un momento es esa sonda más la altura de la marea a esa hora; restando tu calado sabes cuánto queda bajo la quilla.' };
-  }
-  if (modo === 'duodecimos') {
-    out.push(title(160, 'Regla de los duodécimos: 1-2-3-3-2-1'));
-    const parts = [1, 2, 3, 3, 2, 1];
-    let acc = 0;
-    parts.forEach((p, i) => {
-      const x = 30 + i * 46;
-      const h = p * 11;
-      out.push(`<rect x="${x}" y="${200 - (acc + p) * 11}" width="36" height="${h}" fill="${C.v}" opacity="${0.45 + p * 0.15}"/>`);
-      out.push(lbl(x + 18, 216, `${i + 1}.ª h`, null, 'middle'), lbl(x + 18, 196 - (acc + p) * 11, `${p}/12`, 'v', 'middle'));
-      acc += p;
-    });
-    out.push(`<line x1="24" y1="200" x2="300" y2="200" stroke="currentColor"/>`);
-    out.push(lbl(14, H - 12, 'De bajamar a pleamar (≈ 6 h); igual al vaciar'));
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Aproximación para una marea semidiurna de unas 6 horas: cada hora sube 1, 2, 3, 3, 2 y 1 doceavos de la amplitud. La mitad de la subida ocurre en las dos horas centrales.' };
-  }
-  if (modo === 'fases') return mareasVivasMuertas();
-  out.push(title(160, 'Pleamar, bajamar, amplitud y duración'));
-  const x0 = 24;
-  const x1 = 300;
-  const mid = 125;
-  const A = 70;
-  const pts = [];
-  for (let i = 0; i <= 60; i++) {
-    const t = i / 60;
-    pts.push(`${(x0 + t * (x1 - x0)).toFixed(1)},${(mid + A * Math.cos(t * 2 * Math.PI)).toFixed(1)}`);
-  }
-  out.push(`<polyline points="${pts.join(' ')}" fill="none" stroke="${C.v}" stroke-width="2.4"/>`);
-  const bmx = x0;
-  const pmx = (x0 + x1) / 2;
-  out.push(lbl(bmx + 4, mid + A + 16, 'BM'), lbl(pmx, mid - A - 8, 'PM', null, 'middle'), lbl(x1 - 4, mid + A + 16, 'BM', null, 'end'));
-  out.push(`<line x1="${pmx + 40}" y1="${mid - A}" x2="${pmx + 40}" y2="${mid + A}" stroke="${C.r}" stroke-width="1.6"/>`, lbl(pmx + 46, mid, 'amplitud = PM − BM', 'r'));
-  out.push(`<line x1="${bmx}" y1="${mid + A + 26}" x2="${pmx}" y2="${mid + A + 26}" stroke="${C.m}" stroke-width="1.6"/>`, lbl((bmx + pmx) / 2, mid + A + 40, 'duración de la creciente', 'm', 'middle'));
-  out.push(`<circle r="5" fill="${C.r}"><animateMotion dur="8s" repeatCount="indefinite" path="M${pts.join(' L')}"/></circle>`);
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Amplitud: diferencia entre pleamar y bajamar. Duración: tiempo entre una y otra (creciente o vaciante). En el anuario las horas vienen en UT: súmale el adelanto para la hora oficial.' };
+  // curva, duodécimos y sonda: ahora son interactivas (src/illustrations/interactivas/marea.js)
+  return spec.modo === 'fases' ? mareasVivasMuertas() : null;
 }
 
-// ---------------------------------------------------------------------------
-// Sectores de visibilidad de las luces (Regla 21). spec: { tipo:'sectores-luces', luz?:'tope'|'costados'|'alcance'|'todas' }
-
-export function sectoresIllustration(spec) {
-  const luz = spec.luz ?? 'todas';
-  const W = 320;
-  const H = 300;
-  const cx = 160;
-  const cy = 160;
-  const out = open(W, H, 'Sectores de las luces', 'sl');
-  out.push(title(cx, 'Sectores de las luces (Regla 21)'));
-  const R = 115;
-  const sector = (a, b, color, r = R, op = 0.28) => {
-    const [x1, y1] = pol(cx, cy, a, r);
-    const [x2, y2] = pol(cx, cy, b, r);
-    const large = (b - a + 360) % 360 > 180 ? 1 : 0;
-    return `<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 ${large} 1 ${x2.toFixed(1)},${y2.toFixed(1)}Z" fill="${color}" opacity="${op}" stroke="${color}"/>`;
-  };
-  if (luz === 'todas' || luz === 'tope') out.push(sector(-112.5, 112.5, '#e5e7eb', R, 0.35));
-  if (luz === 'todas' || luz === 'costados') out.push(sector(0, 112.5, '#16a34a', R - 20, 0.45), sector(-112.5, 0, '#dc2626', R - 20, 0.45));
-  if (luz === 'todas' || luz === 'alcance') out.push(sector(112.5, 247.5, '#fde68a', R - 10, 0.5));
-  out.push(`<path d="M${cx},${cy - 26} L${cx + 10},${cy - 6} L${cx + 9},${cy + 22} L${cx - 9},${cy + 22} L${cx - 10},${cy - 6}Z" fill="${C.g}"/>`);
-  const t1 = pol(cx, cy, 112.5, R + 12);
-  const t2 = pol(cx, cy, -112.5, R + 12);
-  out.push(lbl(t1[0], t1[1] + 4, '22,5° a popa del través', null, 'end'), lbl(t2[0], t2[1] + 4, '', null, 'start'));
-  out.push(lbl(cx, 46, 'tope 225°', null, 'middle'), lbl(cx + 52, cy - 30, 'verde 112,5°', 'm'), lbl(cx - 52, cy - 30, 'roja 112,5°', 'r', 'end'), lbl(cx, cy + 82, 'alcance 135°', null, 'middle'));
-  // un observador que da la vuelta al barco
-  out.push(`<circle r="6" fill="#facc15" stroke="#92400e"><animateMotion dur="12s" repeatCount="indefinite" path="M${cx},${cy - R - 20} A${R + 20},${R + 20} 0 1 1 ${cx - 0.1},${cy - R - 20}"/></circle>`);
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Tope: blanca, 225° hacia proa. Costados: verde a estribor y roja a babor, 112,5° cada una, desde la proa hasta 22,5° a popa del través. Alcance: blanca, 135° hacia popa. Desde el sector de alcance ya no ves los costados: estás alcanzando.' };
-}
+// Sectores de las luces: ahora es interactiva, en src/illustrations/interactivas/sectores-luces.js.
 
 // ---------------------------------------------------------------------------
 // Canal balizado visto desde arriba. spec: { tipo:'canal', sentido:'entrando'|'saliendo' }

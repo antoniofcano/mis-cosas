@@ -106,3 +106,39 @@ test('vocabulario: los términos básicos no se subrayan salvo que se pida', () 
   assert.deepEqual(marcados(compilarVocabulario(lista)), ['amura']);
   assert.deepEqual(marcados(compilarVocabulario(lista, { basicos: true })), ['proa', 'amura']);
 });
+
+import { readFileSync } from 'node:fs';
+test('vocabulario publicado: ids únicos, definiciones breves y cada forma aparece en su banco', () => {
+  const lee = (f) => JSON.parse(readFileSync(new URL(`../data/exams/${f}`, import.meta.url)));
+  const textos = (qs) => qs.map((q) => `${q.enunciado} ${Object.values(q.opciones ?? {}).join(' ')}`);
+  const bancos = {
+    per: textos([...lee('andalucia-per-teoria.json').preguntas, ...lee('andalucia-per.json').preguntas]),
+    py: textos(lee('andalucia-py-teoria.json').preguntas),
+  };
+  for (const tit of ['per', 'py']) {
+    const { terminos } = lee(`vocabulario-${tit}.json`);
+    assert.ok(terminos.length > 100, tit);
+    const ids = new Set();
+    for (const t of terminos) {
+      assert.ok(!ids.has(t.id), `${tit}: id repetido ${t.id}`);
+      ids.add(t.id);
+      const palabras = t.definicion.split(/\s+/).length;
+      assert.ok(t.termino && palabras >= 8 && palabras <= 45, `${tit} ${t.id}: ${palabras} palabras`);
+      const voc = compilarVocabulario([t], { basicos: true });
+      for (const f of t.formas) {
+        const solo = compilarVocabulario([{ ...t, formas: [f] }], { basicos: true });
+        assert.ok(bancos[tit].some((s) => segmentar(s, solo).some((x) => x.tipo === 'termino')), `${tit} ${t.id}: «${f}» no aparece en el banco`);
+      }
+      assert.ok(voc.re, t.id);
+    }
+  }
+});
+
+import { delata } from '../src/theory/vocabulario.js';
+test('vocabulario: no se subraya lo que delataría la respuesta', () => {
+  const imbornal = { id: 'imbornal', termino: 'Imbornal', formas: ['imbornal', 'imbornales'], definicion: 'Orificio en el costado, a la altura de la cubierta, por el que sale al mar el agua que embarca.' };
+  assert.equal(delata(imbornal, 'Imbornales'), true); // es la propia respuesta
+  const amura = { id: 'amura', termino: 'Amura', formas: ['amura'], definicion: 'Parte del costado cerca de la proa, a cada banda.' };
+  assert.equal(delata(amura, 'La parte delantera del costado, junto a la proa'), true); // comparte «costado»
+  assert.equal(delata(amura, 'Hacia popa'), false);
+});

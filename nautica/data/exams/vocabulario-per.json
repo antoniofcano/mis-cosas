@@ -1,0 +1,3213 @@
+{
+ "terminos": [
+  {
+   "id": "babor",
+   "termino": "Babor",
+   "formas": [
+    "babor"
+   ],
+   "definicion": "Costado izquierdo del barco mirando hacia proa. Su luz de costado es roja.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 121,
+   "basico": true
+  },
+  {
+   "id": "estribor",
+   "termino": "Estribor",
+   "formas": [
+    "estribor"
+   ],
+   "definicion": "Costado derecho del barco mirando hacia proa. Su luz de costado es verde.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 116,
+   "basico": true
+  },
+  {
+   "id": "marca",
+   "termino": "Marca",
+   "formas": [
+    "marca",
+    "marcas"
+   ],
+   "definicion": "En balizamiento, boya o baliza que señala algo al navegante (color, forma, tope y luz). En el RIPA, figura (bola, cono, cilindro) que un buque muestra de día.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 94
+  },
+  {
+   "id": "rumbo",
+   "termino": "Rumbo",
+   "formas": [
+    "rumbo",
+    "rumbos"
+   ],
+   "definicion": "Ángulo entre el norte y la línea de crujía hacia proa, contado de 0º a 360º en sentido horario.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 90,
+   "basico": true
+  },
+  {
+   "id": "desvio",
+   "termino": "Desvío",
+   "formas": [
+    "desvío",
+    "desvíos"
+   ],
+   "definicion": "Ángulo entre el norte magnético y el de aguja, causado por los hierros y aparatos del barco. Cambia con el rumbo.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 61
+  },
+  {
+   "id": "popa",
+   "termino": "Popa",
+   "formas": [
+    "popa"
+   ],
+   "definicion": "Parte trasera del barco, donde suelen ir el timón y la hélice.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 57,
+   "basico": true
+  },
+  {
+   "id": "proa",
+   "termino": "Proa",
+   "formas": [
+    "proa"
+   ],
+   "definicion": "Parte delantera del barco, la que va abriendo camino al navegar avante.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 57,
+   "basico": true
+  },
+  {
+   "id": "nudo",
+   "termino": "Nudo",
+   "formas": [
+    "nudos",
+    "nudo"
+   ],
+   "definicion": "Unidad de velocidad en el mar: una milla náutica por hora. (También, lazo hecho con un cabo.)",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 57
+  },
+  {
+   "id": "propulsion-mecanica",
+   "termino": "Buque de propulsión mecánica",
+   "formas": [
+    "propulsión mecánica"
+   ],
+   "definicion": "Todo buque movido por una máquina. Un velero que usa el motor, aunque lleve velas, cuenta como de propulsión mecánica.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 56
+  },
+  {
+   "id": "declinacion",
+   "termino": "Declinación magnética",
+   "formas": [
+    "declinación magnética",
+    "declinación"
+   ],
+   "definicion": "Ángulo entre el norte verdadero y el magnético. Viene en la carta y cambia con el lugar y los años. NE positiva, NW negativa.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 55
+  },
+  {
+   "id": "derrota",
+   "termino": "Derrota",
+   "formas": [
+    "derrota"
+   ],
+   "definicion": "Camino que sigue o va a seguir un barco sobre el mar.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 54
+  },
+  {
+   "id": "rumbo-aguja",
+   "termino": "Rumbo de aguja",
+   "formas": [
+    "rumbo de aguja"
+   ],
+   "definicion": "Rumbo que marca la aguja del barco, contado desde el norte de aguja. Ra + Ct = Rv.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 54
+  },
+  {
+   "id": "riesgo-abordaje",
+   "termino": "Riesgo de abordaje",
+   "formas": [
+    "riesgo de abordaje"
+   ],
+   "definicion": "Peligro de chocar. Existe si la demora del otro buque no cambia apreciablemente mientras la distancia disminuye.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 53
+  },
+  {
+   "id": "mantenerse-apartado",
+   "termino": "Mantenerse apartado",
+   "formas": [
+    "mantendrá apartado",
+    "mantenerse apartado",
+    "mantendrán apartados",
+    "apartado de la derrota",
+    "apartados de la derrota"
+   ],
+   "definicion": "Obligación del buque que cede el paso: maniobrar pronto y con claridad para no estorbar al otro.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 49
+  },
+  {
+   "id": "buque-vela",
+   "termino": "Buque de vela",
+   "formas": [
+    "buque de vela",
+    "buques de vela"
+   ],
+   "definicion": "Buque que navega solo a vela; si además usa el motor deja de serlo y pasa a ser de propulsión mecánica.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 47
+  },
+  {
+   "id": "banda",
+   "termino": "Banda",
+   "formas": [
+    "banda",
+    "bandas"
+   ],
+   "definicion": "Cada uno de los dos lados del barco: babor (izquierda) y estribor (derecha). En una boya o marca, «banda» es una franja ancha de color.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 47
+  },
+  {
+   "id": "milla",
+   "termino": "Milla náutica",
+   "formas": [
+    "milla",
+    "millas"
+   ],
+   "definicion": "Unidad de distancia en el mar: 1852 metros, equivalente a un minuto de latitud.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 45,
+   "basico": true
+  },
+  {
+   "id": "fondear",
+   "termino": "Fondear",
+   "formas": [
+    "fondear",
+    "fondeo",
+    "fondeado",
+    "fondeada",
+    "fondeados",
+    "fondeadas"
+   ],
+   "definicion": "Dejar caer el ancla al fondo para que el barco quede sujeto en un lugar. Un buque fondeado no está «en navegación».",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 42
+  },
+  {
+   "id": "cabo",
+   "termino": "Cabo",
+   "formas": [
+    "cabo",
+    "cabos"
+   ],
+   "definicion": "Cuerda de a bordo: en el barco no se dice «cuerda», se dice cabo. Con nombre propio (cabo Espartel, cabo Trafalgar) es un saliente de la costa.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 42
+  },
+  {
+   "id": "costado",
+   "termino": "Costado",
+   "formas": [
+    "costado",
+    "costados"
+   ],
+   "definicion": "Cada uno de los lados del casco, desde la proa hasta la popa. Se habla del costado de babor y del de estribor.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 41,
+   "basico": true
+  },
+  {
+   "id": "caer",
+   "termino": "Caer",
+   "formas": [
+    "caer",
+    "cae",
+    "caerá",
+    "caerán",
+    "caída a babor",
+    "caída a estribor",
+    "caídas"
+   ],
+   "definicion": "Girar la proa (o la popa) hacia una banda. «Caer a estribor» = girar a la derecha. Del viento, «cae» = pierde fuerza.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 41
+  },
+  {
+   "id": "marcacion",
+   "termino": "Marcación",
+   "formas": [
+    "marcación",
+    "marcaciones"
+   ],
+   "definicion": "Ángulo entre la línea proa-popa y la visual a un objeto, contado desde la proa (por babor o estribor, o de 0º a 360º). Demora = rumbo + marcación.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 38
+  },
+  {
+   "id": "aguja",
+   "termino": "Aguja náutica",
+   "formas": [
+    "aguja"
+   ],
+   "definicion": "Brújula del barco, llamada aguja náutica: indica el rumbo respecto al norte de aguja.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 37
+  },
+  {
+   "id": "lateral",
+   "termino": "Marca lateral",
+   "formas": [
+    "lateral",
+    "laterales"
+   ],
+   "definicion": "Marca que señala los lados de un canal. Región A: babor roja con cilindro; estribor verde con cono punta arriba, entrando en puerto.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 31
+  },
+  {
+   "id": "ancla",
+   "termino": "Ancla",
+   "formas": [
+    "ancla"
+   ],
+   "definicion": "Pieza pesada de hierro que, unida a la cadena, se clava en el fondo y sujeta el barco. Sus partes: caña, cruz, brazos, uñas, arganeo y cepo.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 31,
+   "basico": true
+  },
+  {
+   "id": "eslora",
+   "termino": "Eslora",
+   "formas": [
+    "eslora"
+   ],
+   "definicion": "Longitud del barco de proa a popa. Muchas normas (luces, señales, descargas) cambian según la eslora.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 30
+  },
+  {
+   "id": "aguas-navegables",
+   "termino": "Aguas navegables",
+   "formas": [
+    "aguas navegables",
+    "aguas seguras"
+   ],
+   "definicion": "Aguas por las que se puede navegar sin peligro. Su marca (franjas verticales rojas y blancas, tope una esfera roja, luz blanca isofase, de ocultaciones, destello largo o Morse «A») las señala alrededor.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 30
+  },
+  {
+   "id": "hrb",
+   "termino": "Hora Reloj Bitácora (HRB)",
+   "formas": [
+    "HRB",
+    "hora reloj bitácora"
+   ],
+   "definicion": "Hora que fija el patrón y por la que se rige la vida a bordo; se usa en los ejercicios de carta.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 30
+  },
+  {
+   "id": "marca-tope",
+   "termino": "Marca de tope",
+   "formas": [
+    "marca de tope",
+    "marcas de tope"
+   ],
+   "definicion": "Figura que llevan las marcas en lo alto (cono, cilindro, esfera, aspa) y que ayuda a identificarlas de día.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 29
+  },
+  {
+   "id": "cardinal",
+   "termino": "Marca cardinal",
+   "formas": [
+    "cardinal",
+    "cardinales"
+   ],
+   "definicion": "Marca amarilla y negra que indica en qué punto cardinal (N, S, E, W) están las aguas seguras respecto al peligro. Dos conos negros como tope.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 29
+  },
+  {
+   "id": "destello",
+   "termino": "Destello",
+   "formas": [
+    "destello",
+    "destellos"
+   ],
+   "definicion": "Luz que se enciende menos tiempo del que está apagada. Si dura 2 segundos o más es «destello largo» (LFl).",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 29
+  },
+  {
+   "id": "cruce",
+   "termino": "Situación de cruce",
+   "formas": [
+    "cruce",
+    "cruzan con riesgo",
+    "se cruzan"
+   ],
+   "definicion": "Dos buques de motor cuyos rumbos se cruzan con riesgo: se aparta el que ve al otro por su estribor.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 28
+  },
+  {
+   "id": "peligro-aislado",
+   "termino": "Peligro aislado",
+   "formas": [
+    "peligro aislado"
+   ],
+   "definicion": "Marca negra con bandas rojas sobre un peligro pequeño rodeado de aguas navegables. Tope: dos esferas negras; luz blanca de grupos de 2 destellos.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 27
+  },
+  {
+   "id": "helice",
+   "termino": "Hélice",
+   "formas": [
+    "hélice",
+    "hélices"
+   ],
+   "definicion": "Pieza de palas que gira bajo el agua movida por el motor y empuja el barco. Elementos: núcleo, palas y capacete; su eje sale del casco por la bocina.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 26,
+   "basico": true
+  },
+  {
+   "id": "cono",
+   "termino": "Cono",
+   "formas": [
+    "cono",
+    "conos"
+   ],
+   "definicion": "Figura cónica. En el RIPA: dos unidos por los vértices, pesca; uno con el vértice abajo, velero a motor. En balizamiento: dos negros, cardinal; uno verde, estribor.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 26
+  },
+  {
+   "id": "avante",
+   "termino": "Avante",
+   "formas": [
+    "avante"
+   ],
+   "definicion": "Hacia delante. «Máquina avante» = la hélice empuja el barco hacia proa.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 26
+  },
+  {
+   "id": "sotavento",
+   "termino": "Sotavento",
+   "formas": [
+    "sotavento"
+   ],
+   "definicion": "Lado o dirección hacia donde va el viento, el contrario a barlovento.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 24
+  },
+  {
+   "id": "pesca",
+   "termino": "Buque dedicado a la pesca",
+   "formas": [
+    "dedicado a la pesca",
+    "dedicados a la pesca",
+    "pesquero"
+   ],
+   "definicion": "Buque pescando con redes, palangres o arrastre que le restringen la maniobra. No lo es quien pesca con caña o curricán, ni el pesquero sin artes largados.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 23
+  },
+  {
+   "id": "luz-costado",
+   "termino": "Luces de costado",
+   "formas": [
+    "luces de costado",
+    "luz de costado"
+   ],
+   "definicion": "Verde a estribor y roja a babor; cada una alumbra 112,5º, desde la proa hasta 22,5º a popa del través.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 23
+  },
+  {
+   "id": "esfera",
+   "termino": "Esfera (bola)",
+   "formas": [
+    "esfera",
+    "esferas",
+    "bola",
+    "bolas"
+   ],
+   "definicion": "Bola. En el RIPA: una, fondeado; dos en vertical, sin gobierno; tres, varado. En balizamiento: dos negras, peligro aislado; una roja, aguas navegables.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 23
+  },
+  {
+   "id": "barlovento",
+   "termino": "Barlovento",
+   "formas": [
+    "barlovento"
+   ],
+   "definicion": "Lado o dirección de donde viene el viento. Entre veleros con viento por la misma banda, se aparta el de barlovento.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 22
+  },
+  {
+   "id": "arrancada",
+   "termino": "Arrancada",
+   "formas": [
+    "arrancada"
+   ],
+   "definicion": "Movimiento que lleva el barco por inercia, avante o atrás. «Sin arrancada» = completamente parado respecto al agua.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 21
+  },
+  {
+   "id": "visibilidad-reducida",
+   "termino": "Visibilidad reducida",
+   "formas": [
+    "visibilidad reducida"
+   ],
+   "definicion": "Cuando se ve mal por niebla, lluvia, nieve o humo. Obliga a velocidad de seguridad, señales de niebla y máquinas listas.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 21
+  },
+  {
+   "id": "demora",
+   "termino": "Demora",
+   "formas": [
+    "demora",
+    "demoras"
+   ],
+   "definicion": "Ángulo entre el norte y la visual a un objeto (faro, buque), de 0º a 360º. Demora = rumbo + marcación.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 20
+  },
+  {
+   "id": "alcance-ripa",
+   "termino": "Situación de alcance",
+   "formas": [
+    "situación de alcance",
+    "alcanzando",
+    "alcanzado",
+    "buque que alcanza",
+    "adelantar",
+    "adelantamiento"
+   ],
+   "definicion": "Un buque se acerca a otro desde más de 22,5º a popa de su través; el que alcanza siempre se aparta del alcanzado.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 20
+  },
+  {
+   "id": "pitada-corta",
+   "termino": "Pitada corta",
+   "formas": [
+    "pitada corta",
+    "pitadas cortas"
+   ],
+   "definicion": "Sonido de pito de alrededor de 1 segundo. Una: caigo a estribor; dos: a babor; tres: doy atrás; cinco o más: duda.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 20
+  },
+  {
+   "id": "correccion-total",
+   "termino": "Corrección total",
+   "formas": [
+    "corrección total"
+   ],
+   "definicion": "Suma de la declinación magnética y el desvío. Pasa de rumbo de aguja a verdadero: Rv = Ra + Ct.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 20
+  },
+  {
+   "id": "canal-principal",
+   "termino": "Canal principal",
+   "formas": [
+    "canal principal"
+   ],
+   "definicion": "El más importante de los dos canales en una bifurcación. Marca roja con banda verde: canal principal a estribor; verde con banda roja: a babor.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 19
+  },
+  {
+   "id": "ritmo",
+   "termino": "Ritmo",
+   "formas": [
+    "ritmo",
+    "ritmos"
+   ],
+   "definicion": "Forma en que una luz se enciende y apaga (destellos, ocultaciones, isofase, centelleos…), que permite identificarla.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 19
+  },
+  {
+   "id": "borrasca",
+   "termino": "Borrasca",
+   "formas": [
+    "borrasca",
+    "borrascas"
+   ],
+   "definicion": "Zona de bajas presiones con mal tiempo. En el hemisferio norte el viento gira a su alrededor en sentido antihorario.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 19,
+   "basico": true
+  },
+  {
+   "id": "abordaje",
+   "termino": "Abordaje",
+   "formas": [
+    "abordaje",
+    "abordajes"
+   ],
+   "definicion": "Choque entre dos barcos. Todo el Reglamento de abordajes (RIPA) está pensado para evitarlo.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 18,
+   "basico": true
+  },
+  {
+   "id": "traves",
+   "termino": "Través",
+   "formas": [
+    "través"
+   ],
+   "definicion": "Dirección perpendicular a la línea proa-popa, a 90º de la proa por cada banda. «Por el través» = justo al lado. («A través de» no es término náutico.)",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 18
+  },
+  {
+   "id": "amura",
+   "termino": "Amura",
+   "formas": [
+    "amura",
+    "amuras"
+   ],
+   "definicion": "Parte del costado cerca de la proa, a cada banda. «Por la amura de babor» = delante y a la izquierda, unos 45º de la proa.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 18
+  },
+  {
+   "id": "bifurcacion",
+   "termino": "Bifurcación",
+   "formas": [
+    "bifurcación",
+    "bifurcaciones"
+   ],
+   "definicion": "Punto donde un canal se divide en dos; la marca lateral modificada (con banda ancha de otro color) indica dónde está el canal principal.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 18
+  },
+  {
+   "id": "luz-tope",
+   "termino": "Luz de tope",
+   "formas": [
+    "luz de tope",
+    "luces de tope"
+   ],
+   "definicion": "Luz blanca en la línea de crujía que alumbra 225º hacia proa, hasta 22,5º a popa del través por cada banda.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 17
+  },
+  {
+   "id": "isobara",
+   "termino": "Isobara",
+   "formas": [
+    "isobaras",
+    "isóbaras"
+   ],
+   "definicion": "Línea del mapa del tiempo que une puntos de igual presión. Muy juntas indican viento fuerte.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 17
+  },
+  {
+   "id": "meridiano",
+   "termino": "Meridiano",
+   "formas": [
+    "meridiano",
+    "meridianos"
+   ],
+   "definicion": "Línea imaginaria de polo a polo. El de Greenwich es el meridiano cero para medir la longitud.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 17,
+   "basico": true
+  },
+  {
+   "id": "sonda",
+   "termino": "Sonda",
+   "formas": [
+    "sonda",
+    "sondas"
+   ],
+   "definicion": "Profundidad del agua; también el aparato que la mide. En la carta, las sondas se cuentan desde el cero hidrográfico.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 17
+  },
+  {
+   "id": "cadena",
+   "termino": "Cadena",
+   "formas": [
+    "cadena"
+   ],
+   "definicion": "Línea de eslabones que une el ancla con el barco. Su peso ayuda a que el ancla trabaje horizontal y agarre.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 17,
+   "basico": true
+  },
+  {
+   "id": "timon",
+   "termino": "Timón",
+   "formas": [
+    "timón"
+   ],
+   "definicion": "Pieza móvil en la popa que, al girar, desvía el agua y hace caer la proa a una banda. Sus partes: pala, mecha y caña o rueda.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 16,
+   "basico": true
+  },
+  {
+   "id": "balizamiento",
+   "termino": "Balizamiento",
+   "formas": [
+    "balizamiento",
+    "balizado",
+    "balizada",
+    "balizadas",
+    "balizados",
+    "balizar"
+   ],
+   "definicion": "Sistema de boyas, balizas y luces que señalan peligros y canales. «Zona balizada» = delimitada con boyas.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "casco",
+   "termino": "Casco",
+   "formas": [
+    "casco"
+   ],
+   "definicion": "Cuerpo estanco del barco, el «vaso» que flota. No incluye palos, jarcia, superestructuras, motor ni pertrechos.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 16,
+   "basico": true
+  },
+  {
+   "id": "levogira",
+   "termino": "Hélice levógira",
+   "formas": [
+    "levógira",
+    "levógiras"
+   ],
+   "definicion": "Hélice de paso a la izquierda: avante gira en sentido antihorario mirando de popa a proa. Dando atrás, la popa cae a estribor.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "maniobra-restringida",
+   "termino": "Capacidad de maniobra restringida",
+   "formas": [
+    "maniobra restringida",
+    "capacidad de maniobra"
+   ],
+   "definicion": "Buque que por la naturaleza de su trabajo (cables, dragado, trabajos hidrográficos) no puede apartarse. Marca: bola, bicónica, bola.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "sigue-rumbo",
+   "termino": "Buque que sigue a rumbo",
+   "formas": [
+    "sigue a rumbo"
+   ],
+   "definicion": "El que tiene preferencia: mantiene rumbo y velocidad, aunque debe maniobrar si el otro no lo hace.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "luz-alcance",
+   "termino": "Luz de alcance",
+   "formas": [
+    "luz de alcance"
+   ],
+   "definicion": "Luz blanca en popa que alumbra 135º hacia atrás. Si de un buque solo se ve esta luz, lo estamos alcanzando.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "demora-aguja",
+   "termino": "Demora de aguja",
+   "formas": [
+    "demora de aguja"
+   ],
+   "definicion": "Demora tomada con la aguja del barco; para la carta se le suma la corrección total.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "oposicion",
+   "termino": "Oposición",
+   "formas": [
+    "oposición",
+    "oposicion"
+   ],
+   "definicion": "Cuando dos objetos se ven en direcciones exactamente contrarias, uno a cada lado: el barco está en la línea que los une.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "senal-fonica",
+   "termino": "Señal fónica",
+   "formas": [
+    "señal fónica",
+    "señales fónicas",
+    "señal acústica",
+    "señales acústicas"
+   ],
+   "definicion": "Señal sonora hecha con pito, campana o gong para indicar maniobras o la presencia del buque con niebla.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 15
+  },
+  {
+   "id": "presion-atmosferica",
+   "termino": "Presión atmosférica",
+   "formas": [
+    "presión atmosférica"
+   ],
+   "definicion": "Peso de la columna de aire sobre cada unidad de superficie. Normal a nivel del mar: 1013 milibares (una atmósfera).",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 14,
+   "basico": true
+  },
+  {
+   "id": "dextrogira",
+   "termino": "Hélice dextrógira",
+   "formas": [
+    "dextrógira",
+    "dextrógiras",
+    "dextrógiro"
+   ],
+   "definicion": "Hélice de paso a la derecha: avante gira en sentido horario mirando de popa a proa. Dando atrás, la popa cae a babor.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "ripa",
+   "termino": "Reglamento de abordajes (RIPA)",
+   "formas": [
+    "reglamento de abordajes",
+    "reglamento internacional",
+    "reglamento"
+   ],
+   "definicion": "Reglamento Internacional para Prevenir los Abordajes: reglas de rumbo, luces, marcas y señales que todos los buques deben cumplir.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "dst",
+   "termino": "Dispositivo de separación del tráfico",
+   "formas": [
+    "dispositivo de separación",
+    "dispositivos de separación",
+    "DST"
+   ],
+   "definicion": "Zona con vías de sentido único separadas, como en el Estrecho. Se navega por la vía adecuada y se cruza en ángulo recto.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "todo-horizonte",
+   "termino": "Luz todo horizonte",
+   "formas": [
+    "todo horizonte"
+   ],
+   "definicion": "Luz visible en los 360º alrededor del barco, se mire desde la dirección que se mire.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "carta-nautica",
+   "termino": "Carta náutica",
+   "formas": [
+    "carta náutica",
+    "cartas náuticas"
+   ],
+   "definicion": "Mapa del mar con sondas, costa, faros, peligros y escalas de latitud y longitud para situarse y trazar rumbos.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "escora",
+   "termino": "Escora",
+   "formas": [
+    "escora",
+    "escorado",
+    "escorar",
+    "escorando"
+   ],
+   "definicion": "Inclinación del barco hacia una de sus bandas, por el viento, las olas o un mal reparto de pesos.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "vuelta-encontrada",
+   "termino": "Vuelta encontrada",
+   "formas": [
+    "vuelta encontrada"
+   ],
+   "definicion": "Dos buques de motor que se acercan de frente con rumbos opuestos: ambos caen a estribor para pasar por babor uno del otro.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "minima-gobierno",
+   "termino": "Mínima de gobierno",
+   "formas": [
+    "mínima de gobierno",
+    "velocidad de gobierno"
+   ],
+   "definicion": "Menor velocidad a la que el barco todavía responde al timón. Con niebla, al oír una señal a proa del través, se reduce a ella.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "anticiclon",
+   "termino": "Anticiclón",
+   "formas": [
+    "anticiclón",
+    "anticiclones",
+    "altas presiones"
+   ],
+   "definicion": "Zona de altas presiones con tiempo estable. En el hemisferio norte el viento gira en sentido horario.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 13,
+   "basico": true
+  },
+  {
+   "id": "virazon",
+   "termino": "Virazón",
+   "formas": [
+    "virazón"
+   ],
+   "definicion": "Brisa costera que sopla de día desde el mar hacia tierra, cuando la tierra se calienta más que el mar.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "longitud",
+   "termino": "Longitud",
+   "formas": [
+    "longitud",
+    "longitudes"
+   ],
+   "definicion": "Distancia en grados al este u oeste del meridiano de Greenwich, de 0º a 180º. Fuera de la carta, también es simplemente «largo» (longitud de la cadena).",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 13,
+   "basico": true
+  },
+  {
+   "id": "hombre-agua",
+   "termino": "Hombre al agua",
+   "formas": [
+    "hombre al agua",
+    "MOB",
+    "caer al agua"
+   ],
+   "definicion": "Persona caída al mar desde el barco. Hay que gritarlo, señalarla sin perderla de vista, lanzar el aro y maniobrar para recogerla.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "flotacion",
+   "termino": "Línea de flotación",
+   "formas": [
+    "línea de flotación",
+    "plano de flotación",
+    "superficie de flotación"
+   ],
+   "definicion": "Línea que marca el agua sobre el casco y separa la obra viva (sumergida) de la obra muerta (fuera del agua).",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "cilindro",
+   "termino": "Cilindro",
+   "formas": [
+    "cilindro"
+   ],
+   "definicion": "Marca de forma cilíndrica. En balizamiento, tope de la marca lateral de babor (roja); en el RIPA, buque restringido por su calado.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "rolar",
+   "termino": "Rolar",
+   "formas": [
+    "rolar",
+    "rola",
+    "rolado",
+    "rolando"
+   ],
+   "definicion": "Cambiar el viento de dirección. Rola a la derecha si gira en sentido horario.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "enfilacion",
+   "termino": "Enfilación",
+   "formas": [
+    "enfilación",
+    "enfilaciones",
+    "enfilen"
+   ],
+   "definicion": "Cuando dos objetos se ven uno detrás del otro en la misma visual. Fiable si están lejos de nosotros y separados entre sí.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "pala",
+   "termino": "Pala",
+   "formas": [
+    "pala",
+    "palas"
+   ],
+   "definicion": "Parte plana del timón o cada una de las aspas de la hélice, la que empuja o desvía el agua.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "capear",
+   "termino": "Capear",
+   "formas": [
+    "capear",
+    "capea",
+    "capeamos",
+    "capeando"
+   ],
+   "definicion": "Aguantar el temporal recibiendo la mar por la amura, con la mínima velocidad que permita gobernar.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "en-navegacion",
+   "termino": "En navegación",
+   "formas": [
+    "en navegación"
+   ],
+   "definicion": "Buque que no está fondeado, ni amarrado a tierra, ni varado; aunque esté parado y a la deriva sigue «en navegación».",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "cede-paso",
+   "termino": "Buque que cede el paso",
+   "formas": [
+    "cede el paso"
+   ],
+   "definicion": "El que debe apartarse de la derrota del otro, maniobrando con antelación y de forma clara.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "bandas-contrarias",
+   "termino": "Viento por bandas contrarias",
+   "formas": [
+    "bandas contrarias"
+   ],
+   "definicion": "Dos veleros que reciben el viento uno por babor y otro por estribor: se aparta el que lo recibe por babor.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "refrescar",
+   "termino": "Refrescar",
+   "formas": [
+    "refresca",
+    "refrescado",
+    "refrescando"
+   ],
+   "definicion": "Aumentar la intensidad del viento. «El viento refresca» = sopla más fuerte.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "fetch",
+   "termino": "Fetch",
+   "formas": [
+    "fetch",
+    "fecht"
+   ],
+   "definicion": "Extensión de mar en línea recta sobre la que sopla un viento de dirección y fuerza constantes. Más fetch, olas más grandes.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "bajamar",
+   "termino": "Bajamar",
+   "formas": [
+    "bajamar",
+    "bajamares"
+   ],
+   "definicion": "Momento y nivel más bajo que alcanza el agua en cada ciclo de marea.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "situacion-verdadera",
+   "termino": "Situación verdadera",
+   "formas": [
+    "situación verdadera"
+   ],
+   "definicion": "Posición real del barco, obtenida con líneas de posición (demoras, enfilaciones, distancias).",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "estima",
+   "termino": "Situación de estima",
+   "formas": [
+    "situación de estima"
+   ],
+   "definicion": "Posición calculada a partir del rumbo, la velocidad y el tiempo navegado desde la última situación conocida.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "levar",
+   "termino": "Levar",
+   "formas": [
+    "levar",
+    "levarla",
+    "levando",
+    "levada"
+   ],
+   "definicion": "Subir el ancla desde el fondo hasta su alojamiento para dejar el fondeadero; con molinete, embragado y sin freno.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "centelleante",
+   "termino": "Luz centelleante",
+   "formas": [
+    "centelleante",
+    "centelleos",
+    "centelleo"
+   ],
+   "definicion": "Destellos que se repiten muy rápido: unos 60 por minuto (Q); los rápidos, unos 120 (VQ). Muy usados en marcas cardinales.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "canal-angosto",
+   "termino": "Canal angosto",
+   "formas": [
+    "canal angosto",
+    "canales angostos"
+   ],
+   "definicion": "Paso estrecho. Se navega lo más cerca posible de su orilla de estribor y no se estorba a quien solo puede navegar por él.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "douglas",
+   "termino": "Escala Douglas",
+   "formas": [
+    "douglas"
+   ],
+   "definicion": "Escala de 0 a 9 que clasifica el estado de la mar según la altura de las olas.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "amplitud",
+   "termino": "Amplitud de marea",
+   "formas": [
+    "amplitud"
+   ],
+   "definicion": "En mareas, diferencia de altura entre la pleamar y la bajamar.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "rumbo-verdadero",
+   "termino": "Rumbo verdadero",
+   "formas": [
+    "rumbo verdadero"
+   ],
+   "definicion": "Rumbo contado desde el norte verdadero; es el que se traza en la carta.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "calado",
+   "termino": "Calado",
+   "formas": [
+    "calado",
+    "calados"
+   ],
+   "definicion": "Profundidad a la que llega la parte más baja del casco bajo el agua; distancia vertical desde la flotación hasta la quilla.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "limera",
+   "termino": "Limera",
+   "formas": [
+    "limera"
+   ],
+   "definicion": "Orificio del casco, en la popa, por donde pasa la mecha del timón desde el interior hasta la pala.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "achique",
+   "termino": "Achique",
+   "formas": [
+    "achique",
+    "achicar"
+   ],
+   "definicion": "Sacar el agua que ha entrado en el barco, con bombas o baldes.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "molinete",
+   "termino": "Molinete",
+   "formas": [
+    "molinete"
+   ],
+   "definicion": "Máquina de proa que sube y baja la cadena del ancla. Para levar: embragar y soltar el freno.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "sin-gobierno",
+   "termino": "Buque sin gobierno",
+   "formas": [
+    "sin gobierno"
+   ],
+   "definicion": "Buque que por una circunstancia excepcional (avería) no puede maniobrar. Muestra dos esferas negras o dos luces rojas en vertical.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "via-circulacion",
+   "termino": "Vía de circulación",
+   "formas": [
+    "vía de circulación",
+    "vías de circulación",
+    "límites laterales"
+   ],
+   "definicion": "Cada carril de un dispositivo de separación del tráfico, con un único sentido de marcha.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "navegacion-costera",
+   "termino": "Zona de navegación costera",
+   "formas": [
+    "navegación costera"
+   ],
+   "definicion": "Zona entre el límite de un dispositivo de separación y la costa, que pueden usar barcos de recreo, de vela y pequeños.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "aneroide",
+   "termino": "Barómetro aneroide",
+   "formas": [
+    "aneroide",
+    "aneroides"
+   ],
+   "definicion": "Barómetro de cápsula metálica sin mercurio: equilibra la presión con fuerzas elásticas y es de lectura directa.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "persistencia",
+   "termino": "Persistencia",
+   "formas": [
+    "persistencia"
+   ],
+   "definicion": "Tiempo que lleva soplando un viento con dirección y fuerza constantes; con el fetch, hace crecer la mar.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "latitud",
+   "termino": "Latitud",
+   "formas": [
+    "latitud",
+    "latitudes"
+   ],
+   "definicion": "Distancia en grados al norte o al sur del ecuador, de 0º a 90º. Se lee en la escala vertical de la carta.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 9,
+   "basico": true
+  },
+  {
+   "id": "paralelo",
+   "termino": "Paralelo",
+   "formas": [
+    "paralelo",
+    "paralelos"
+   ],
+   "definicion": "Círculo imaginario paralelo al ecuador que une todos los puntos de igual latitud.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 9,
+   "basico": true
+  },
+  {
+   "id": "obra-muerta",
+   "termino": "Obra muerta",
+   "formas": [
+    "obra muerta"
+   ],
+   "definicion": "Parte del casco que queda fuera del agua, por encima de la línea de flotación. Es donde actúa el viento.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "francobordo",
+   "termino": "Francobordo",
+   "formas": [
+    "francobordo"
+   ],
+   "definicion": "Distancia vertical, medida en el centro del costado, entre la línea de flotación y la cubierta estanca más alta. Es la altura del casco libre sobre el agua.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "quilla",
+   "termino": "Quilla",
+   "formas": [
+    "quilla"
+   ],
+   "definicion": "Pieza longitudinal que va de proa a popa por la parte más baja del casco; es su «columna vertebral».",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "timon-via",
+   "termino": "Timón a la vía",
+   "formas": [
+    "timón a la vía",
+    "a la vía"
+   ],
+   "definicion": "Timón recto, alineado con la línea de crujía, sin meter a ninguna banda.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "mecha",
+   "termino": "Mecha",
+   "formas": [
+    "mecha"
+   ],
+   "definicion": "Eje del timón: gira y mueve la pala; entra en el casco por la limera.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "guardines",
+   "termino": "Guardines",
+   "formas": [
+    "guardines",
+    "guardín"
+   ],
+   "definicion": "Cables o cabos que unen la rueda del timón con la pala para transmitirle el giro.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "bocina",
+   "termino": "Bocina",
+   "formas": [
+    "bocina"
+   ],
+   "definicion": "Tubo por donde el eje de la hélice atraviesa el casco; lleva prensaestopas para que no entre agua. Pertenece al conjunto de la hélice, no al timón.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "grifos-fondo",
+   "termino": "Grifos de fondo",
+   "formas": [
+    "grifos de fondo"
+   ],
+   "definicion": "Válvulas en el casco bajo la flotación por donde entra agua de mar, por ejemplo para refrigerar el motor. Posible vía de agua.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "firme",
+   "termino": "Firme",
+   "formas": [
+    "firme"
+   ],
+   "definicion": "Parte de un cabo que está sujeta; «hacer firme» es amarrarlo o asegurarlo.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "ocultaciones",
+   "termino": "Ocultaciones",
+   "formas": [
+    "ocultaciones",
+    "ocultación"
+   ],
+   "definicion": "Luz que está más tiempo encendida que apagada: se «oculta» brevemente (Oc). Se reconoce por sus apagones.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "periodo",
+   "termino": "Periodo",
+   "formas": [
+    "periodo",
+    "período"
+   ],
+   "definicion": "Intervalo de tiempo. En una luz de faro o boya, lo que tarda en repetir su ritmo completo, en segundos: Fl(2) 10s = periodo de 10 s.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "beaufort",
+   "termino": "Escala Beaufort",
+   "formas": [
+    "beaufort"
+   ],
+   "definicion": "Escala de 0 (calma) a 12 (huracán) que mide la intensidad del viento.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "terral",
+   "termino": "Terral",
+   "formas": [
+    "terral"
+   ],
+   "definicion": "Brisa costera que sopla de noche desde tierra hacia el mar, cuando la tierra se enfría más rápido.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "norte-verdadero",
+   "termino": "Norte verdadero",
+   "formas": [
+    "norte verdadero"
+   ],
+   "definicion": "Dirección del polo norte geográfico; referencia de los rumbos y demoras de la carta.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "crujia",
+   "termino": "Línea de crujía",
+   "formas": [
+    "línea de crujía",
+    "crujía"
+   ],
+   "definicion": "Línea imaginaria que va de proa a popa por el centro del barco y lo divide en dos mitades iguales, babor y estribor.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "obra-viva",
+   "termino": "Obra viva",
+   "formas": [
+    "obra viva"
+   ],
+   "definicion": "Parte del casco que queda sumergida, por debajo de la línea de flotación. También se llama carena.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "lumbrera",
+   "termino": "Lumbrera",
+   "formas": [
+    "lumbreras"
+   ],
+   "definicion": "Abertura en cubierta, con tapa acristalada, que da luz y ventilación a los compartimentos de abajo.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "garreo",
+   "termino": "Garreo",
+   "formas": [
+    "garreo",
+    "garrear",
+    "garrea",
+    "garreando"
+   ],
+   "definicion": "Cuando el ancla no agarra bien y se arrastra por el fondo, y el barco se desplaza.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "pendura",
+   "termino": "A la pendura",
+   "formas": [
+    "pendura"
+   ],
+   "definicion": "Ancla colgando fuera del casco, sobre el freno, cerca del agua y lista para fondear.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "vuelta-rezon",
+   "termino": "Vuelta de rezón",
+   "formas": [
+    "vuelta de rezón",
+    "rezón"
+   ],
+   "definicion": "Nudo para amarrar un cabo a una argolla o arganeo; muy seguro para defensas o amarres que trabajan mucho tiempo.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "esprin",
+   "termino": "Esprín",
+   "formas": [
+    "esprín",
+    "spring"
+   ],
+   "definicion": "Amarra que sale de proa hacia atrás o de popa hacia delante y trabaja en diagonal; impide que el barco avance o retroceda.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "estabilidad",
+   "termino": "Estabilidad",
+   "formas": [
+    "estabilidad"
+   ],
+   "definicion": "Capacidad del barco de volver a quedar derecho (adrizado) cuando algo externo lo ha inclinado.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "son-mar",
+   "termino": "A son de mar",
+   "formas": [
+    "son de mar"
+   ],
+   "definicion": "Con todo estibado y trincado a bordo antes de salir, para que nada se mueva con mal tiempo.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "salvamento",
+   "termino": "Salvamento Marítimo",
+   "formas": [
+    "salvamento"
+   ],
+   "definicion": "Servicio público que coordina la búsqueda y el rescate en la mar. Se le llama por VHF canal 16 o al teléfono 900 202 202.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 7,
+   "basico": true
+  },
+  {
+   "id": "aguas-sucias",
+   "termino": "Aguas sucias",
+   "formas": [
+    "aguas sucias"
+   ],
+   "definicion": "Aguas residuales de los inodoros. Sin tratar solo se descargan a más de 12 millas; trituradas y desinfectadas, a más de 3 y navegando a 4 nudos o más.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "zona-bano",
+   "termino": "Zona de baño",
+   "formas": [
+    "zona de baño",
+    "zonas de baño"
+   ],
+   "definicion": "Franja junto a la playa reservada a los bañistas. Si está balizada no se puede navegar; si no, máximo 3 nudos.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "arrastre",
+   "termino": "Arrastre",
+   "formas": [
+    "arrastre"
+   ],
+   "definicion": "Pesca remolcando una red por el fondo o a media agua. El arrastrero muestra luz verde sobre blanca.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "luces-navegacion",
+   "termino": "Luces de navegación",
+   "formas": [
+    "luces de navegación"
+   ],
+   "definicion": "Luces que todo buque debe encender de la puesta a la salida del sol y con visibilidad reducida para mostrar qué es y hacia dónde va.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "pitada-larga",
+   "termino": "Pitada larga",
+   "formas": [
+    "pitada larga",
+    "pitadas largas"
+   ],
+   "definicion": "Sonido de pito de 4 a 6 segundos. Se usa en niebla y al acercarse a un recodo sin visibilidad.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "bicónica",
+   "termino": "Marca bicónica",
+   "formas": [
+    "bicónica",
+    "bicónicas"
+   ],
+   "definicion": "Marca formada por dos conos unidos por sus bases. En el RIPA, entre dos bolas, indica maniobra restringida.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "varado",
+   "termino": "Varado",
+   "formas": [
+    "varado",
+    "varada",
+    "varados",
+    "varadas",
+    "varar"
+   ],
+   "definicion": "Barco que ha tocado fondo y queda apoyado en él sin poder flotar libremente. Muestra tres bolas negras.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "via-agua",
+   "termino": "Vía de agua",
+   "formas": [
+    "vía de agua",
+    "vías de agua"
+   ],
+   "definicion": "Entrada de agua en el casco por un agujero o grieta. Se tapona (espiches, cuñas) y se achica.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "tendencia",
+   "termino": "Tendencia barométrica",
+   "formas": [
+    "tendencia barométrica"
+   ],
+   "definicion": "Cómo varía la presión en las últimas horas (sube, baja o se mantiene); anticipa el cambio de tiempo.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "corredera",
+   "termino": "Corredera",
+   "formas": [
+    "corredera"
+   ],
+   "definicion": "Instrumento que mide la velocidad y la distancia navegada por el barco respecto al agua.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "cero-hidrografico",
+   "termino": "Cero hidrográfico",
+   "formas": [
+    "cero hidrográfico"
+   ],
+   "definicion": "Plano de referencia desde el que se miden las sondas de la carta y las alturas de lo que vela en bajamar.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "pleamar",
+   "termino": "Pleamar",
+   "formas": [
+    "pleamar",
+    "pleamares"
+   ],
+   "definicion": "Momento y nivel más alto que alcanza el agua en cada ciclo de marea.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "marca-especial",
+   "termino": "Marca especial",
+   "formas": [
+    "marca especial",
+    "marcas especiales",
+    "configuraciones especiales"
+   ],
+   "definicion": "Marca amarilla con aspa amarilla de tope que señala zonas o elementos especiales (baño, cables, regatas). Su luz es amarilla.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "imbornal",
+   "termino": "Imbornal",
+   "formas": [
+    "imbornales"
+   ],
+   "definicion": "Agujero en el costado, a ras de cubierta, por el que sale al mar el agua que embarca en cubierta.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "manguerote",
+   "termino": "Manguerote",
+   "formas": [
+    "manguerote",
+    "manguerotes"
+   ],
+   "definicion": "Tubo de ventilación con boca orientable que lleva aire fresco al interior y saca el aire viciado.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "barboten",
+   "termino": "Barbotén",
+   "formas": [
+    "barbotén",
+    "barboten"
+   ],
+   "definicion": "Rueda del molinete con muescas donde encajan los eslabones de la cadena.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "embrague",
+   "termino": "Embrague",
+   "formas": [
+    "embrague",
+    "embragar",
+    "embragada"
+   ],
+   "definicion": "Mecanismo que acopla el motor (o el molinete) a lo que debe mover; desembragar es soltarlo.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "zarpar",
+   "termino": "Zarpar",
+   "formas": [
+    "zarpar",
+    "zarpado"
+   ],
+   "definicion": "Despegarse el ancla del fondo al levar; también, salir el barco del puerto o fondeadero.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "as-guia",
+   "termino": "As de guía",
+   "formas": [
+    "as de guía"
+   ],
+   "definicion": "Nudo que forma una gaza fija que no se corre ni se aprieta; sirve, por ejemplo, para amarrar a un noray.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "trincar",
+   "termino": "Trincar",
+   "formas": [
+    "trincar",
+    "trincado",
+    "trincaremos",
+    "trinca"
+   ],
+   "definicion": "Sujetar bien con cabos un objeto para que no se mueva con los balances.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "estibar",
+   "termino": "Estibar",
+   "formas": [
+    "estibar",
+    "estibado",
+    "estiba"
+   ],
+   "definicion": "Colocar y repartir la carga y los objetos a bordo de forma ordenada y segura.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "cabezada",
+   "termino": "Cabezada",
+   "formas": [
+    "cabezada",
+    "cabezadas",
+    "cabeceo"
+   ],
+   "definicion": "Movimiento longitudinal del barco en el que la proa sube y baja con las olas.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "boutakow",
+   "termino": "Maniobra de Boutakow",
+   "formas": [
+    "boutakow"
+   ],
+   "definicion": "Maniobra para volver por la estela al punto de caída: caer 70º a la banda de la caída y luego a la contraria hasta quedar al rumbo opuesto al inicial.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "anderson",
+   "termino": "Maniobra de Anderson",
+   "formas": [
+    "anderson",
+    "andersson"
+   ],
+   "definicion": "Maniobra de hombre al agua: todo el timón a la banda de la caída y, al haber variado el rumbo inicial unos 250º, timón a la vía y máquina parada para recoger al náufrago.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "resguardo",
+   "termino": "Resguardo",
+   "formas": [
+    "resguardo"
+   ],
+   "definicion": "Distancia de seguridad que hay que dejar con otro barco, un buzo, la costa o un peligro.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "grupo-destellos",
+   "termino": "Grupo de destellos",
+   "formas": [
+    "grupos de destellos",
+    "grupo de dos"
+   ],
+   "definicion": "Varios destellos (u ocultaciones) seguidos y luego una pausa más larga, como Fl(2) u Oc(2).",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "buceo",
+   "termino": "Operaciones de buceo",
+   "formas": [
+    "buceo",
+    "buceadores",
+    "buzos",
+    "buzo"
+   ],
+   "definicion": "Trabajos con personas sumergidas. Se señalan con la bandera «A»; hay que alejarse y reducir velocidad.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "helices-gemelas",
+   "termino": "Hélices gemelas",
+   "formas": [
+    "hélices gemelas"
+   ],
+   "definicion": "Dos hélices, una a cada banda, que suelen girar en sentido contrario; dando una avante y otra atrás el barco gira casi sobre sí mismo.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "isobarica",
+   "termino": "Superficie isobárica",
+   "formas": [
+    "superficies isobáricas",
+    "isobáricas"
+   ],
+   "definicion": "Superficie imaginaria en la atmósfera donde la presión es la misma; su corte con el nivel del mar da las isobaras.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "racheado",
+   "termino": "Viento racheado",
+   "formas": [
+    "racheado",
+    "racha",
+    "rachea",
+    "racheada"
+   ],
+   "definicion": "Viento que sopla de forma irregular, con golpes bruscos de más fuerza llamados rachas.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "coef-corredera",
+   "termino": "Coeficiente de corredera",
+   "formas": [
+    "coeficiente de corredera"
+   ],
+   "definicion": "Número que corrige el error de la corredera: velocidad o distancia real = coeficiente × lectura de la corredera.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "norte-magnetico",
+   "termino": "Norte magnético",
+   "formas": [
+    "norte magnético"
+   ],
+   "definicion": "Dirección a la que apunta una aguja libre de influencias del barco; difiere del verdadero en la declinación.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "norte-aguja",
+   "termino": "Norte de aguja",
+   "formas": [
+    "norte de aguja"
+   ],
+   "definicion": "Dirección que marca la aguja del barco; difiere del magnético en el desvío.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "demora-verdadera",
+   "termino": "Demora verdadera",
+   "formas": [
+    "demora verdadera"
+   ],
+   "definicion": "Demora contada desde el norte verdadero; la que se traza en la carta.",
+   "temas": [
+    "per-11"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "canal-balizado",
+   "termino": "Canal balizado",
+   "formas": [
+    "canal balizado"
+   ],
+   "definicion": "Canal de entrada o salida de un puerto (o de una playa) con sus lados señalados por marcas laterales: en la región A, rojas a babor y verdes a estribor entrando.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "asiento",
+   "termino": "Asiento",
+   "formas": [
+    "asiento"
+   ],
+   "definicion": "Diferencia entre el calado de popa y el calado de proa. Indica si el barco va más hundido de popa o de proa.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "codaste",
+   "termino": "Codaste",
+   "formas": [
+    "codaste",
+    "codastes"
+   ],
+   "definicion": "Pieza que prolonga la quilla hacia arriba por la popa; en ella se apoya el timón. No pertenece a la proa.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "sentina",
+   "termino": "Sentina",
+   "formas": [
+    "sentina",
+    "sentinas"
+   ],
+   "definicion": "Parte más baja del interior del casco, donde se acumula el agua que entra o se filtra.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "borneo",
+   "termino": "Borneo",
+   "formas": [
+    "borneo",
+    "bornear"
+   ],
+   "definicion": "Giro del barco fondeado alrededor de su ancla al cambiar el viento o la corriente. Hay que dejar espacio para él.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "a-pique",
+   "termino": "A pique",
+   "formas": [
+    "a pique"
+   ],
+   "definicion": "Cadena del ancla vertical, justo debajo de la proa. Paso previo a que el ancla zarpe del fondo.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "ballestrinque",
+   "termino": "Ballestrinque",
+   "formas": [
+    "ballestrinque"
+   ],
+   "definicion": "Nudo de dos vueltas cruzadas para amarrar un cabo a un palo, candelero o noray; se hace y deshace rápido.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "nudo-llano",
+   "termino": "Nudo llano",
+   "formas": [
+    "llano"
+   ],
+   "definicion": "Nudo para unir por sus chicotes dos cabos del mismo grosor y material.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "noray",
+   "termino": "Noray",
+   "formas": [
+    "noray"
+   ],
+   "definicion": "Poste corto de hierro o piedra fijado al muelle donde se hacen firmes las amarras.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "templar",
+   "termino": "Templar",
+   "formas": [
+    "templar"
+   ],
+   "definicion": "Dar tensión a un cabo hasta dejarlo tenso.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "cobrar",
+   "termino": "Cobrar",
+   "formas": [
+    "cobrar"
+   ],
+   "definicion": "Tirar de un cabo y recogerlo, a mano o con un winche.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "largo-amarre",
+   "termino": "Largo (amarra)",
+   "formas": [
+    "largo de proa",
+    "largo de popa",
+    "largos de popa"
+   ],
+   "definicion": "Amarra que sale de la proa hacia delante o de la popa hacia atrás, casi en la dirección de la eslora.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "traves-amarre",
+   "termino": "Través (amarra)",
+   "formas": [
+    "través de proa",
+    "través de popa",
+    "traveses"
+   ],
+   "definicion": "Amarra perpendicular al muelle que sujeta el barco contra él, a proa o a popa.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "adrizar",
+   "termino": "Adrizar",
+   "formas": [
+    "adrizar",
+    "adrizado",
+    "adrizando",
+    "adrizamiento"
+   ],
+   "definicion": "Poner el barco derecho, en posición vertical, corrigiendo la escora que lo inclinaba hacia una banda.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "correr-temporal",
+   "termino": "Correr el temporal",
+   "formas": [
+    "correr el temporal"
+   ],
+   "definicion": "Navegar con la mar y el viento por la popa o la aleta para huir del temporal. Exige espacio libre a sotavento.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "aguas-someras",
+   "termino": "Aguas someras",
+   "formas": [
+    "aguas someras"
+   ],
+   "definicion": "Aguas de poca profundidad donde hay riesgo de tocar fondo; se navega despacio y con atención a la sonda.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "reflector-radar",
+   "termino": "Reflector de radar",
+   "formas": [
+    "reflector"
+   ],
+   "definicion": "Elemento pasivo, sin energía, que hace que el barco se vea mejor en el radar de otros buques.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "espiral-cuadrada",
+   "termino": "Espiral cuadrada",
+   "formas": [
+    "espiral cuadrada"
+   ],
+   "definicion": "Método de búsqueda que sale del último punto conocido y recorre tramos cada vez más largos girando 90º, explorando hacia fuera.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "zepim",
+   "termino": "ZEPIM",
+   "formas": [
+    "ZEPIM"
+   ],
+   "definicion": "Zona Especialmente Protegida de Importancia para el Mediterráneo, como el Cabo de Gata o los acantilados de Maro-Cerro Gordo.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "zona-separacion",
+   "termino": "Zona de separación",
+   "formas": [
+    "zona de separación",
+    "línea de separación"
+   ],
+   "definicion": "Franja entre las dos vías de un dispositivo de separación del tráfico; en principio no se entra en ella.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "presion-lateral",
+   "termino": "Presión lateral de las palas",
+   "formas": [
+    "presión lateral"
+   ],
+   "definicion": "Empuje de lado que crea la hélice al girar. Dando atrás con hélice dextrógira la popa cae a babor; con levógira, a estribor.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "curva-evolucion",
+   "termino": "Curva de evolución",
+   "formas": [
+    "curva de evolución"
+   ],
+   "definicion": "Trayectoria del barco al meter todo el timón. Tiene tres periodos: de maniobra, variable y uniforme.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "deriva",
+   "termino": "Deriva",
+   "formas": [
+    "deriva"
+   ],
+   "definicion": "Desplazamiento del barco por efecto de la corriente. «A la deriva» = sin propulsión, llevado por viento y corriente.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "restringido-calado",
+   "termino": "Restringido por su calado",
+   "formas": [
+    "restringido por su calado",
+    "restringidos por su calado"
+   ],
+   "definicion": "Buque que por su calado y la poca profundidad no puede apartarse de su derrota. Puede mostrar un cilindro negro.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "iala",
+   "termino": "Sistema IALA",
+   "formas": [
+    "IALA"
+   ],
+   "definicion": "Sistema internacional de balizamiento. España está en la región A: rojo a babor y verde a estribor entrando en puerto.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "isofase",
+   "termino": "Isofase",
+   "formas": [
+    "isofase"
+   ],
+   "definicion": "Luz que está encendida y apagada exactamente el mismo tiempo (Iso). La usan, por ejemplo, las marcas de aguas navegables.",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "aleta",
+   "termino": "Aleta",
+   "formas": [
+    "aleta",
+    "aletas"
+   ],
+   "definicion": "Parte del costado cerca de la popa, a cada banda. «Por la aleta de estribor» = detrás y a la derecha.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "escotilla",
+   "termino": "Escotilla",
+   "formas": [
+    "escotillas"
+   ],
+   "definicion": "Abertura en cubierta, normalmente rectangular, para acceder a los compartimentos inferiores; se cierra con tapa estanca.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "portillo",
+   "termino": "Portillo",
+   "formas": [
+    "portillos"
+   ],
+   "definicion": "Ventana pequeña, normalmente redonda, en el costado o la superestructura; da luz y puede cerrarse de forma estanca.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "fondeadero",
+   "termino": "Fondeadero",
+   "formas": [
+    "fondeadero",
+    "fondeaderos"
+   ],
+   "definicion": "Lugar abrigado del viento y la mar, con fondo y profundidad adecuados, donde se puede fondear con seguridad.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "desembragar",
+   "termino": "Desembragar",
+   "formas": [
+    "desembragar",
+    "desembragada"
+   ],
+   "definicion": "Desconectar el motor de la hélice (o del barbotén) para que deje de transmitir el giro.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "chicote",
+   "termino": "Chicote",
+   "formas": [
+    "chicote",
+    "chicotes"
+   ],
+   "definicion": "Extremo libre de un cabo, es decir, la punta con la que se hacen los nudos.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "lascar",
+   "termino": "Lascar",
+   "formas": [
+    "lascar",
+    "lascando",
+    "lascamos"
+   ],
+   "definicion": "Aflojar un cabo poco a poco y de forma controlada, sin llegar a soltarlo del todo.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "largar",
+   "termino": "Largar",
+   "formas": [
+    "largar",
+    "largarlo",
+    "largado"
+   ],
+   "definicion": "Soltar un cabo o una amarra para que quede libre; también, echar al agua cadena o artes de pesca, o desplegar una vela.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "defensa",
+   "termino": "Defensas",
+   "formas": [
+    "defensas",
+    "defensa"
+   ],
+   "definicion": "Piezas blandas que se cuelgan del costado para evitar golpes y roces con el muelle u otros barcos.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "balance",
+   "termino": "Balance",
+   "formas": [
+    "balance",
+    "balances"
+   ],
+   "definicion": "Movimiento de oscilación transversal del barco, inclinándose alternativamente de una banda a otra.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "bengala",
+   "termino": "Bengala",
+   "formas": [
+    "bengala",
+    "bengalas"
+   ],
+   "definicion": "Señal pirotécnica de socorro que da luz roja brillante. Se sostiene a mano y se sujeta a sotavento.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "vhf",
+   "termino": "VHF",
+   "formas": [
+    "VHF"
+   ],
+   "definicion": "Radio marina de corto alcance. El canal 16 es el de socorro, urgencia y llamada.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "gnss",
+   "termino": "GNSS / GPS",
+   "formas": [
+    "GNSS",
+    "GPS"
+   ],
+   "definicion": "Sistemas de posicionamiento por satélite que dan la situación del barco; suelen tener un botón MOB que memoriza el punto de caída.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "pabellon",
+   "termino": "Pabellón",
+   "formas": [
+    "pabellón"
+   ],
+   "definicion": "Bandera de la nación en la que está matriculado el barco; se iza en popa.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "velocidad-seguridad",
+   "termino": "Velocidad de seguridad",
+   "formas": [
+    "velocidad de seguridad"
+   ],
+   "definicion": "Velocidad que permite maniobrar a tiempo y pararse a una distancia adecuada según visibilidad, tráfico, calado y otros factores.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "curvas",
+   "termino": "Recodo",
+   "formas": [
+    "recodo"
+   ],
+   "definicion": "Curva de un canal que impide ver lo que viene. Al acercarse se da una pitada larga.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "orinque",
+   "termino": "Orinque",
+   "formas": [
+    "orinque"
+   ],
+   "definicion": "Cabo que va de la cruz del ancla a una boya o boyarín; señala dónde está el ancla y ayuda a soltarla si se engancha.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "radiobaliza",
+   "termino": "Radiobaliza",
+   "formas": [
+    "radiobaliza"
+   ],
+   "definicion": "Equipo de emergencia que emite una señal por satélite con la posición del barco en peligro. Se activa sola al hundirse o a mano.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "hipotermia",
+   "termino": "Hipotermia",
+   "formas": [
+    "hipotermia"
+   ],
+   "definicion": "Bajada peligrosa de la temperatura del cuerpo por el agua fría: temblores, confusión, torpeza. Se calienta poco a poco, sin frotar.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 3,
+   "basico": true
+  },
+  {
+   "id": "posidonia",
+   "termino": "Posidonia",
+   "formas": [
+    "posidonia"
+   ],
+   "definicion": "Planta marina del Mediterráneo que forma praderas protegidas. Está prohibido fondear sobre ellas.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "ciaboga",
+   "termino": "Ciaboga",
+   "formas": [
+    "ciaboga"
+   ],
+   "definicion": "Giro del barco en poco espacio combinando avante y atrás. Con hélice dextrógira se hace hacia estribor; con levógira, hacia babor.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "abatimiento",
+   "termino": "Abatimiento",
+   "formas": [
+    "abatimiento"
+   ],
+   "definicion": "Desvío del barco hacia sotavento por efecto del viento; ángulo entre el rumbo verdadero y el que se hace realmente.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "tanque-retencion",
+   "termino": "Tanque de retención",
+   "formas": [
+    "retención",
+    "tanques de retención"
+   ],
+   "definicion": "Depósito donde se almacenan las aguas sucias a bordo hasta poder descargarlas en puerto o donde la norma lo permita.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "sector",
+   "termino": "Sector",
+   "formas": [
+    "sector"
+   ],
+   "definicion": "Arco del horizonte en el que se ve una luz o un color determinado de una luz.",
+   "temas": [
+    "per-6"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "tenedero",
+   "termino": "Tenedero",
+   "formas": [
+    "tenederos"
+   ],
+   "definicion": "Fondo marino considerado por su capacidad de agarre del ancla. Fango duro y arena son buenos; fango blando y roca, malos.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "ancla-arado",
+   "termino": "Ancla de arado",
+   "formas": [
+    "arado"
+   ],
+   "definicion": "Ancla con forma de reja de arado, de una sola pieza articulada; agarra bien en arena y fango.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "danforth",
+   "termino": "Ancla Danforth",
+   "formas": [
+    "danforth"
+   ],
+   "definicion": "Ancla de dos uñas planas y anchas que giran sobre la caña; muy usada en recreo, agarra bien en arena y fango.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "filar",
+   "termino": "Filar",
+   "formas": [
+    "filar"
+   ],
+   "definicion": "Dejar salir cabo o cadena poco a poco y de forma controlada, por ejemplo al fondear.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "bita",
+   "termino": "Bita",
+   "formas": [
+    "bita"
+   ],
+   "definicion": "Poste robusto fijado en la cubierta del barco para hacer firmes cabos o cadenas.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "cornamusa",
+   "termino": "Cornamusa",
+   "formas": [
+    "cornamusa"
+   ],
+   "definicion": "Pieza en forma de T o de cuernos, fijada a bordo o al muelle, para amarrar un cabo dándole vueltas.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "adujar",
+   "termino": "Adujar",
+   "formas": [
+    "adujar"
+   ],
+   "definicion": "Recoger un cabo en vueltas ordenadas para que no se enrede y ocupe poco.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "codera",
+   "termino": "Codera",
+   "formas": [
+    "codera"
+   ],
+   "definicion": "Amarra que se da por la banda contraria al muelle (a una boya, un muerto u otro barco). Separa el barco del muelle y ayuda a desatracar.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "desatracar",
+   "termino": "Desatracar",
+   "formas": [
+    "desatracar",
+    "desatraque"
+   ],
+   "definicion": "Separar el barco del muelle o pantalán, soltando las amarras en el orden adecuado según viento y corriente.",
+   "temas": [
+    "per-7"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "morse",
+   "termino": "Señal Morse",
+   "formas": [
+    "morse"
+   ],
+   "definicion": "Código de puntos y rayas; algunas marcas emiten con su luz la letra Morse «A» (punto-raya).",
+   "temas": [
+    "per-5"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "torniquete",
+   "termino": "Torniquete",
+   "formas": [
+    "torniquete"
+   ],
+   "definicion": "Banda apretada sobre un miembro para cortar una hemorragia grave; solo como último recurso.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 2,
+   "basico": true
+  },
+  {
+   "id": "ventosa",
+   "termino": "Efecto ventosa",
+   "formas": [
+    "ventosa"
+   ],
+   "definicion": "Succión del fango o la arena que mantiene pegado el casco varado; se rompe moviendo pesos o líquidos.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "trasegar",
+   "termino": "Trasegar",
+   "formas": [
+    "trasegar",
+    "trasvasar"
+   ],
+   "definicion": "Pasar líquidos (combustible, agua) de un tanque a otro para cambiar el reparto de pesos.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "inhibicion",
+   "termino": "Inhibición",
+   "formas": [
+    "inhibición"
+   ],
+   "definicion": "Apagar el fuego cortando la reacción en cadena, por ejemplo con polvo químico.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "desalimentacion",
+   "termino": "Desalimentación",
+   "formas": [
+    "desalimentación"
+   ],
+   "definicion": "Apagar el fuego quitándole el combustible, por ejemplo cerrando el paso de gasoil o gas.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "milibar",
+   "termino": "Milibar",
+   "formas": [
+    "milibares"
+   ],
+   "definicion": "Unidad de presión atmosférica, igual al hectopascal. La presión normal es de unos 1013 mb.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "gradiente",
+   "termino": "Gradiente",
+   "formas": [
+    "gradiente"
+   ],
+   "definicion": "Diferencia de presión entre dos puntos según la distancia. Cuanto mayor, más fuerte el viento.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "coriolis",
+   "termino": "Fuerza de Coriolis",
+   "formas": [
+    "coriolis"
+   ],
+   "definicion": "Efecto de la rotación de la Tierra que desvía el viento hacia la derecha en el hemisferio norte.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "alisios",
+   "termino": "Alisios",
+   "formas": [
+    "alisios"
+   ],
+   "definicion": "Vientos constantes que soplan desde los anticiclones subtropicales hacia el ecuador; del NE en el hemisferio norte.",
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "derrotero",
+   "termino": "Derrotero",
+   "formas": [
+    "derrotero",
+    "derroteros"
+   ],
+   "definicion": "Libro oficial que describe la costa, puertos, fondeaderos y peligros de una zona para el navegante.",
+   "temas": [
+    "per-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "espiche",
+   "termino": "Espiche",
+   "formas": [
+    "espiche"
+   ],
+   "definicion": "Taco cónico, normalmente de madera, para taponar imbornales, grifos o pequeñas vías de agua.",
+   "temas": [
+    "per-8"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "arganeo",
+   "termino": "Arganeo",
+   "formas": [
+    "arganeo"
+   ],
+   "definicion": "Argolla en el extremo de la caña del ancla a la que se une la cadena.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "cepo",
+   "termino": "Cepo",
+   "formas": [
+    "cepo"
+   ],
+   "definicion": "Barra transversal en la parte alta de algunas anclas que obliga a que se tumben y claven las uñas.",
+   "temas": [
+    "per-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "pantocazo",
+   "termino": "Pantocazo",
+   "formas": [
+    "pantocazo"
+   ],
+   "definicion": "Golpe fuerte del fondo de proa contra el agua al caer tras pasar una ola.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "respondedor",
+   "termino": "Respondedor de radar",
+   "formas": [
+    "respondedor"
+   ],
+   "definicion": "Equipo de supervivencia que, al recibir la señal de un radar, responde y marca su posición en la pantalla de los buques que buscan.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "lsd",
+   "termino": "LSD",
+   "formas": [
+    "LSD"
+   ],
+   "definicion": "Llamada Selectiva Digital: función de la radio que envía con un botón una alerta de socorro con la identidad y la posición del barco.",
+   "temas": [
+    "per-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "marpol",
+   "termino": "MARPOL",
+   "formas": [
+    "MARPOL"
+   ],
+   "definicion": "Convenio internacional para prevenir la contaminación por buques. Su anexo IV trata las aguas sucias y el V, las basuras.",
+   "temas": [
+    "per-4"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "tablilla",
+   "termino": "Tablilla de desvíos",
+   "formas": [
+    "tablilla de desvíos",
+    "tablilla"
+   ],
+   "definicion": "Tablilla de desvíos: tabla que da el desvío de la aguja para cada rumbo del barco.",
+   "temas": [
+    "per-10"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "depresion",
+   "termino": "Depresión (baja presión)",
+   "definicion": "Zona de presión más baja que la de alrededor; es lo mismo que una borrasca. En el hemisferio norte el viento gira a su alrededor en sentido antihorario.",
+   "formas": [
+    "depresión",
+    "baja presión",
+    "bajas presiones"
+   ],
+   "temas": [
+    "per-9"
+   ],
+   "preguntas": 0
+  }
+ ]
+}

@@ -17,7 +17,7 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
-import { segmentar } from '../../theory/vocabulario.js';
+import { segmentar, delata } from '../../theory/vocabulario.js';
 import cartaSolutions from '../../exams/solutions/andalucia-per.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 
@@ -56,7 +56,10 @@ const imgSrc = (p) => new URL(`../../../data/exams/${p}`, import.meta.url).href;
 export function questionCard(q, o = {}) {
   const b = bloque(E, q.ut);
   // Vocabulario (no en exámenes): los términos se pueden tocar y su definición aparece bajo la pregunta.
+  // Antes de responder solo se subraya el enunciado, y nunca un término cuya definición delate la respuesta.
   const usados = new Set();
+  const correctaTxt = q.opciones?.[q.correcta] ?? '';
+  if (o.vocab && !o.reveal) for (const [id, t] of o.vocab.porId) if (delata(t, correctaTxt)) usados.add(id);
   const defBox = h('div.vocab-def', { hidden: true, 'aria-live': 'polite' });
   let abierto = null;
   const conVocab = (texto) => (o.vocab ? segmentar(texto, o.vocab, usados).map((x) => (x.tipo === 'texto' ? x.texto
@@ -76,7 +79,7 @@ export function questionCard(q, o = {}) {
     const fig = q.opciones_figuras?.[k];
     return h('label.option', { class: cls },
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
-      h('span', h('strong', `${k}) `), conVocab(v), fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
+      h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard',
     h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,

@@ -44,3 +44,20 @@ export function segmentar(texto, voc, usados = new Set()) {
   if (ultimo < s.length) out.push({ tipo: 'texto', texto: s.slice(ultimo) });
   return out;
 }
+
+const sinTildes = (s) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+const VACIAS = new Set(['sobre', 'entre', 'hacia', 'desde', 'hasta', 'donde', 'cuando', 'puede', 'pueden', 'tiene', 'tienen', 'siempre', 'nunca', 'todas', 'todos', 'otras', 'otros', 'mismo', 'misma', 'parte', 'forma', 'manera', 'cualquier', 'respuestas', 'anteriores', 'correctas', 'correcta', 'ninguna']);
+const llenas = (s) => new Set(sinTildes(s).split(/[^\p{L}\p{N}]+/u).filter((w) => w.length >= 5 && !VACIAS.has(w)));
+
+/**
+ * ¿La definición de un término delataría la respuesta correcta? (comparten alguna palabra con contenido, o el
+ * término es la propia respuesta). Antes de responder, esos términos no se subrayan.
+ */
+export function delata(termino, textoCorrecta) {
+  if (!termino || !textoCorrecta) return false;
+  const c = llenas(textoCorrecta);
+  if (!c.size) return false;
+  for (const f of termino.formas ?? []) if (sinTildes(textoCorrecta).includes(sinTildes(f))) return true;
+  for (const w of llenas(`${termino.definicion} ${termino.termino}`)) if (c.has(w)) return true;
+  return false;
+}

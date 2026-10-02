@@ -537,3 +537,16 @@ select { min-height: 44px; }
 .hoy .ver-progreso a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
 /* Con cuatro pestañas en 360 px, «Biblioteca» no cabe a 16 px */
 @media (max-width: 380px) { .tabbar a.tab { padding: 0 2px; } .tabbar .tab-txt { font-size: 15px; letter-spacing: -.01em; } }
+
+/* Galería de láminas: rejilla de miniaturas por tema y ficha de cada lámina */
+.filtro-laminas { width: 100%; min-height: 48px; font-size: 1.05rem; padding: .5rem .8rem; margin: .4rem 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
+.rejilla-laminas { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .6rem; }
+a.miniatura { display: flex; flex-direction: column; gap: .3rem; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .4rem; }
+a.miniatura:hover, a.miniatura:focus-visible { border-color: var(--accent); }
+a.miniatura[hidden], section.tema-laminas[hidden] { display: none; }
+.miniatura-dibujo { aspect-ratio: 4 / 3; overflow: hidden; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.miniatura-dibujo svg { width: 100%; height: 100%; color: var(--text); font-family: system-ui, sans-serif; }
+.miniatura-titulo { font-size: 16px; font-weight: 600; line-height: 1.25; }
+.ficha-lamina .il-grid.una { grid-template-columns: minmax(0, 640px); }
+.temas-lamina { display: flex; flex-wrap: wrap; gap: .4rem; }
+ul.clases-lamina { padding-left: 1.2rem; } ul.clases-lamina a { display: inline-flex; min-height: 44px; align-items: center; }

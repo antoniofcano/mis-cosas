@@ -12,7 +12,8 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r02",
@@ -22,6 +23,12 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=5"
+   ],
+   "preguntas": [
+    "and-2020-c1-t04",
+    "and-2021-c1-t04",
+    "and-2023-c1-t02",
+    "and-2024-c1-t02"
    ]
   },
   {
@@ -32,7 +39,8 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r04",
@@ -41,7 +49,8 @@
    "tema": "UT1 Nomenclatura (casco)",
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r06",
@@ -51,6 +60,20 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2"
+   ],
+   "preguntas": [
+    "and-2020-c3-t19",
+    "and-2021-c1-t20",
+    "and-2021-c2-t20",
+    "and-2022-c1-t18",
+    "and-2022-c3-t27",
+    "and-2023-c1-t23",
+    "and-2023-c2-t26",
+    "and-2024-c3-t25",
+    "and-2025-c1-t23",
+    "and-2025-c3-t18",
+    "and-2026-c1-t19",
+    "and-2026-c2-t23"
    ]
   },
   {
@@ -61,6 +84,24 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ],
+   "preguntas": [
+    "and-2020-c1-t19",
+    "and-2020-c3-t24",
+    "and-2020-c3-t25",
+    "and-2021-c1-t21",
+    "and-2022-c2-t20",
+    "and-2022-c3-t18",
+    "and-2022-c3-t23",
+    "and-2023-c2-t21",
+    "and-2023-c3-t23",
+    "and-2024-c1-t18",
+    "and-2024-c1-t21",
+    "and-2024-c2-t22",
+    "and-2025-c1-t18",
+    "and-2025-c2-t26",
+    "and-2026-c1-t18",
+    "and-2026-c2-t22"
    ]
   },
   {
@@ -71,6 +112,20 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3",
     "https://foro.latabernadelpuerto.com/showthread.php?t=71887"
+   ],
+   "preguntas": [
+    "and-2020-c3-t22",
+    "and-2022-c1-t26",
+    "and-2022-c3-t24",
+    "and-2023-c2-t24",
+    "and-2023-c3-t27",
+    "and-2024-c1-t23",
+    "and-2024-c2-t24",
+    "and-2024-c3-t18",
+    "and-2025-c2-t21",
+    "and-2026-c1-t18",
+    "and-2026-c1-t22",
+    "and-2026-c2-t20"
    ]
   },
   {
@@ -82,6 +137,15 @@
     "https://studylib.es/doc/4794543/los-versos-de-thomas-gray-si-ambas-luces-de-un-vapor--por-la",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=5"
+   ],
+   "preguntas": [
+    "and-2022-c1-t25",
+    "and-2022-c1-t26",
+    "and-2022-c3-t24",
+    "and-2023-c1-t24",
+    "and-2023-c3-t24",
+    "and-2024-c2-t24",
+    "and-2025-c1-t24"
    ]
   },
   {
@@ -93,6 +157,15 @@
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
     "https://denautica.es/reglas-abordaje-ripa-patron/",
     "https://arriluzenautica.com/quien-tiene-preferencia-en-la-mar-ripa/"
+   ],
+   "preguntas": [
+    "and-2021-c1-t25",
+    "and-2021-c2-t21",
+    "and-2022-c2-t22",
+    "and-2023-c1-t25",
+    "and-2024-c1-t24",
+    "and-2025-c3-t21",
+    "and-2026-c2-t21"
    ]
   },
   {
@@ -103,6 +176,11 @@
    "fuentes": [
     "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html",
     "https://foro.latabernadelpuerto.com/showthread.php?t=71887"
+   ],
+   "preguntas": [
+    "and-2021-c2-t25",
+    "and-2022-c3-t26",
+    "and-2025-c3-t27"
    ]
   },
   {
@@ -113,6 +191,9 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=71887",
     "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html"
+   ],
+   "preguntas": [
+    "and-2022-c1-t22"
    ]
   },
   {
@@ -124,6 +205,11 @@
     "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
     "https://foro.latabernadelpuerto.com/showthread.php?t=71887",
     "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html"
+   ],
+   "preguntas": [
+    "and-2021-c2-t25",
+    "and-2022-c3-t26",
+    "and-2025-c3-t27"
    ]
   },
   {
@@ -135,6 +221,9 @@
     "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html",
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657"
+   ],
+   "preguntas": [
+    "and-2021-c2-t23"
    ]
   },
   {
@@ -145,6 +234,11 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
     "https://ialacolreg.com/es/lights-shapes"
+   ],
+   "preguntas": [
+    "and-2020-c1-t23",
+    "and-2024-c2-t26",
+    "and-2026-c1-t21"
    ]
   },
   {
@@ -154,7 +248,8 @@
    "tema": "UT6 RIPA (marcas)",
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=66541"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r17",
@@ -164,6 +259,16 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2"
+   ],
+   "preguntas": [
+    "and-2020-c1-t25",
+    "and-2020-c3-t26",
+    "and-2021-c2-t27",
+    "and-2022-c3-t22",
+    "and-2023-c1-t26",
+    "and-2023-c3-t18",
+    "and-2024-c1-t22",
+    "and-2024-c3-t27"
    ]
   },
   {
@@ -175,6 +280,21 @@
     "https://sailvoyager.com/blog/balizamiento-iala-per",
     "https://denautica.es/balizamiento-maritimo-per-guia-completa-examen-2026/",
     "https://escuelanauticaaltair.com/blog/balizamiento/"
+   ],
+   "preguntas": [
+    "and-2020-c1-t15",
+    "and-2020-c1-t16",
+    "and-2020-c3-t15",
+    "and-2020-c3-t16",
+    "and-2021-c2-t15",
+    "and-2022-c1-t15",
+    "and-2022-c2-t14",
+    "and-2023-c2-t13",
+    "and-2024-c1-t13",
+    "and-2024-c2-t16",
+    "and-2024-c3-t13",
+    "and-2025-c2-t13",
+    "and-2025-c3-t13"
    ]
   },
   {
@@ -186,6 +306,17 @@
     "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
     "https://sailvoyager.com/blog/balizamiento-iala-per",
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ],
+   "preguntas": [
+    "and-2022-c2-t15",
+    "and-2023-c2-t17",
+    "and-2023-c3-t17",
+    "and-2024-c1-t17",
+    "and-2024-c3-t16",
+    "and-2025-c3-t14",
+    "and-2026-c1-t15",
+    "and-2026-c1-t17",
+    "and-2026-c2-t15"
    ]
   },
   {
@@ -197,6 +328,15 @@
     "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
     "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ],
+   "preguntas": [
+    "and-2022-c3-t13",
+    "and-2023-c1-t17",
+    "and-2023-c2-t16",
+    "and-2024-c2-t17",
+    "and-2025-c1-t15",
+    "and-2026-c1-t14",
+    "and-2026-c2-t15"
    ]
   },
   {
@@ -208,6 +348,10 @@
     "https://escuelanauticaaltair.com/blog/balizamiento/",
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ],
+   "preguntas": [
+    "and-2022-c3-t13",
+    "and-2023-c1-t17"
    ]
   },
   {
@@ -218,6 +362,15 @@
    "fuentes": [
     "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
     "https://denautica.es/balizamiento-maritimo-per-guia-completa-examen-2026/"
+   ],
+   "preguntas": [
+    "and-2021-c1-t16",
+    "and-2022-c3-t17",
+    "and-2023-c2-t16",
+    "and-2024-c1-t16",
+    "and-2024-c3-t15",
+    "and-2025-c2-t14",
+    "and-2026-c1-t15"
    ]
   },
   {
@@ -228,6 +381,20 @@
    "fuentes": [
     "https://escuelanauticaaltair.com/blog/balizamiento/",
     "https://sailvoyager.com/blog/balizamiento-iala-per"
+   ],
+   "preguntas": [
+    "and-2020-c1-t13",
+    "and-2020-c3-t13",
+    "and-2021-c1-t14",
+    "and-2022-c1-t14",
+    "and-2023-c1-t14",
+    "and-2023-c2-t14",
+    "and-2023-c3-t13",
+    "and-2024-c2-t13",
+    "and-2024-c3-t17",
+    "and-2025-c2-t15",
+    "and-2025-c3-t16",
+    "and-2026-c2-t17"
    ]
   },
   {
@@ -239,6 +406,37 @@
     "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/369-la-correccion-total-y-el-desvio",
     "https://guiarutas.es/glosario/declinacion-magnetica/",
     "https://www.espacionautico.com.ar/blog/rumbo-verdadero-magnetico-compas-como-convertir/"
+   ],
+   "preguntas": [
+    "and-2023-c2-t39",
+    "and-2026-c1-t37",
+    "and-2026-c2-t38",
+    "and-py-2020-c1-n11",
+    "and-py-2020-c3-n11",
+    "and-py-2021-c1-n03",
+    "and-py-2021-c1-n12",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c2-n10",
+    "and-py-2022-c1-n11",
+    "and-py-2022-c2-n02",
+    "and-py-2022-c2-n11",
+    "and-py-2022-c3-n04",
+    "and-py-2022-c3-n11",
+    "and-py-2023-c1-n11",
+    "and-py-2023-c2-n07",
+    "and-py-2023-c2-n13",
+    "and-py-2023-c3-n12",
+    "and-py-2024-c1-n11",
+    "and-py-2024-c2-n03",
+    "and-py-2024-c2-n11",
+    "and-py-2024-c3-n11",
+    "and-py-2025-c1-n11",
+    "and-py-2025-c2-n12",
+    "and-py-2025-c3-n03",
+    "and-py-2025-c3-n13",
+    "and-py-2026-c1-n13",
+    "and-py-2026-c2-n03",
+    "and-py-2026-c2-n13"
    ]
   },
   {
@@ -250,6 +448,59 @@
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
     "https://www.espacionautico.com.ar/blog/rumbo-verdadero-magnetico-compas-como-convertir/"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-n12",
+    "and-py-2020-c1-n13",
+    "and-py-2020-c1-n16",
+    "and-py-2020-c1-n17",
+    "and-py-2020-c3-n12",
+    "and-py-2020-c3-n14",
+    "and-py-2020-c3-n16",
+    "and-py-2020-c3-n17",
+    "and-py-2021-c1-n13",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c1-n15",
+    "and-py-2021-c2-n14",
+    "and-py-2022-c1-n12",
+    "and-py-2022-c1-n14",
+    "and-py-2022-c1-n16",
+    "and-py-2022-c2-n12",
+    "and-py-2022-c2-n13",
+    "and-py-2022-c2-n14",
+    "and-py-2022-c3-n12",
+    "and-py-2022-c3-n13",
+    "and-py-2022-c3-n14",
+    "and-py-2023-c1-n12",
+    "and-py-2023-c1-n13",
+    "and-py-2023-c2-n11",
+    "and-py-2023-c2-n17",
+    "and-py-2023-c3-n11",
+    "and-py-2023-c3-n13",
+    "and-py-2024-c1-n12",
+    "and-py-2024-c1-n14",
+    "and-py-2024-c1-n15",
+    "and-py-2024-c2-n12",
+    "and-py-2024-c2-n13",
+    "and-py-2024-c2-n16",
+    "and-py-2024-c3-n12",
+    "and-py-2024-c3-n13",
+    "and-py-2024-c3-n16",
+    "and-py-2025-c1-n12",
+    "and-py-2025-c1-n13",
+    "and-py-2025-c1-n16",
+    "and-py-2025-c2-n11",
+    "and-py-2025-c2-n13",
+    "and-py-2025-c2-n17",
+    "and-py-2025-c3-n11",
+    "and-py-2025-c3-n12",
+    "and-py-2025-c3-n17",
+    "and-py-2026-c1-n11",
+    "and-py-2026-c1-n12",
+    "and-py-2026-c1-n15",
+    "and-py-2026-c1-n17",
+    "and-py-2026-c2-n12",
+    "and-py-2026-c2-n15"
    ]
   },
   {
@@ -259,6 +510,9 @@
    "tema": "UT11 Carta",
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ],
+   "preguntas": [
+    "and-2021-c1-t38"
    ]
   },
   {
@@ -269,6 +523,15 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2",
     "https://encvirtual.es/interactivas/PYATE/imag_intera/Navegacion/s02/5_rel_demora_mar/2_dv.html"
+   ],
+   "preguntas": [
+    "and-2023-c2-t37",
+    "and-2026-c1-t41",
+    "and-py-2021-c1-n11",
+    "and-py-2022-c1-n13",
+    "and-py-2024-c3-n04",
+    "and-py-2025-c1-n05",
+    "and-py-2026-c1-n16"
    ]
   },
   {
@@ -279,7 +542,8 @@
    "fuentes": [
     "https://www.salvamentomaritimo.es/sala-de-comunicacion/blog/mareas-la-regla-de-los-doceavos",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r29",
@@ -289,6 +553,9 @@
    "fuentes": [
     "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ],
+   "preguntas": [
+    "and-py-2022-c3-g16"
    ]
   },
   {
@@ -300,6 +567,20 @@
     "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
     "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot"
+   ],
+   "preguntas": [
+    "and-2020-c1-t34",
+    "and-2020-c3-t34",
+    "and-2021-c1-t34",
+    "and-2022-c1-t36",
+    "and-2022-c3-t33",
+    "and-2023-c1-t34",
+    "and-2023-c2-t33",
+    "and-2024-c2-t35",
+    "and-2024-c3-t34",
+    "and-2025-c2-t35",
+    "and-py-2021-c2-g17",
+    "and-py-2022-c1-g15"
    ]
   },
   {
@@ -310,7 +591,8 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2",
     "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r32",
@@ -320,7 +602,8 @@
    "fuentes": [
     "http://www.paranauticos.com/notas/meteorologia/refranero-tiempo.htm",
     "https://www.cervantesvirtual.com/obra-visor/la-meteorologia-en-el-refranero/html/"
-   ]
+   ],
+   "preguntas": []
   },
   {
    "id": "r33",
@@ -330,6 +613,10 @@
    "fuentes": [
     "https://escuelanauticaaltair.com/blog/llamada-mayday/",
     "https://mundobarco.com/mayday"
+   ],
+   "preguntas": [
+    "and-py-2020-c1-g08",
+    "and-py-2022-c1-g10"
    ]
   },
   {
@@ -339,7 +626,8 @@
    "tema": "UT3 Seguridad / UT8 Emergencias (hipotermia)",
    "fuentes": [
     "https://www.ilsf.org/wp-content/uploads/2019/09/MPS-12-Cold-Water-Immersion-_spanish_rv.pdf"
-   ]
+   ],
+   "preguntas": []
   }
  ]
 }

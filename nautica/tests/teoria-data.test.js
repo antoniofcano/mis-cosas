@@ -39,3 +39,13 @@ test('las ilustraciones asignadas a las preguntas son dibujables', () => {
     for (const s of e.ilustraciones ?? []) assert.ok(validSpec(s), `${id}: ${JSON.stringify(s)}`);
   }
 });
+
+test('reglas nemotécnicas: asignadas a preguntas que existen', () => {
+  const m = JSON.parse(readFileSync(new URL('mnemotecnias.json', dir)));
+  const py = JSON.parse(readFileSync(new URL('andalucia-py-teoria.json', dir))).preguntas;
+  const ids = new Set([...bank, ...py].map((q) => q.id));
+  for (const r of m.reglas) {
+    assert.ok(r.regla && r.significado, r.id);
+    for (const id of r.preguntas ?? []) assert.ok(ids.has(id), `${r.id}: ${id}`);
+  }
+});

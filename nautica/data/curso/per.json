@@ -754,9 +754,25 @@
        "texto": "- **De arado** (tipo CQR o Delta): una sola reja con forma de arado. Agarra bien en muchos tipos de fondo.\n- **Danforth**: dos **uñas planas y anchas** que basculan sobre la cruz, con una barra transversal en esa zona. Muy usada en recreo; agarra muy bien en arena y fango.\n- **Rezón**: una caña con cuatro o cinco brazos, a veces plegables. Para botes y fondos de roca.\n- **Almirantazgo**: la clásica, con cepo y dos brazos curvos.\n\nEn el examen te pueden enseñar una foto: una reja = arado; dos palas anchas = Danforth."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo",
+        "vista": "ancla"
+       },
+       "texto": "Las cinco partes del ancla sin cepo y cómo reconocer cada tipo en una foto."
+      },
+      {
        "tipo": "texto",
        "titulo": "La línea de fondeo y lo que exige la norma",
        "texto": "La **línea de fondeo** es la cadena (y el cabo o estacha) que une el ancla con el barco. La cadena forma una curva, la **catenaria**, que amortigua los tirones y hace que el ancla trabaje tumbada.\n\nLa norma de equipos de seguridad de recreo (RD 339/2021, art. 11) exige:\n- Línea de fondeo de al menos **5 veces la eslora**.\n- Tramo de **cadena de al menos 1 vez la eslora**. Si la eslora es de 6 m o menos, la línea puede ser toda de estacha.\n- Nada de empalmar cadenas o estachas sin grillete.\n\nCuánta largar en cada fondeo depende de la profundidad y del tiempo: lo verás en maniobra."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo",
+        "vista": "linea"
+       },
+       "texto": "El molinete por dentro y la línea de fondeo con lo mínimo que pide la norma."
       },
       {
        "tipo": "texto",
@@ -1184,6 +1200,13 @@
        "texto": "El examen solo te pide cuatro nudos, pero quiere que sepas **para qué sirve cada uno**:\n- **Llano**: unir dos cabos.\n- **Vuelta de rezón**: hacer firme un cabo a una argolla.\n- **Ballestrinque**: hacer firme un cabo a un palo, candelero o barandilla, rápido.\n- **As de guía**: hacer una gaza fija en el extremo de un cabo.\n\nSi te aprendes esta lista de verbos (unir, argolla, palo, gaza), tienes casi todas las preguntas."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nudos"
+       },
+       "texto": "Unir, argolla, palo y gaza: un nudo para cada verbo."
+      },
+      {
        "tipo": "texto",
        "titulo": "Nudo llano",
        "texto": "Sirve para **unir dos cabos por sus chicotes**, siempre que sean **de la misma mena (grosor) y del mismo material**. Con tensión se aprieta y aguanta bien, y sin tensión se deshace con facilidad.\n\nTambién se llama **nudo de rizo**, porque es el que se usa para atar las tomadoras al tomar rizos en una vela.\n\nSi los cabos son de distinta mena, el llano puede escurrirse: para eso existe otro nudo, la **vuelta de escota**."
@@ -1574,6 +1597,14 @@
        "texto": "Al bornear, la proa puede acabar en cualquier punto alrededor del ancla. Para quedarte del lado seguro, estima el radio del círculo como:\n\n**radio ≈ cadena filada + eslora**\n\nEs una estimación por exceso (la cadena no está nunca totalmente estirada en horizontal), y por eso es buena para planificar. Dentro de ese círculo no puede haber bajos, costa, boyas ni otros barcos, y no debes fondear dentro del círculo de otro."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo",
+        "vista": "borneo"
+       },
+       "texto": "El barco gira alrededor del ancla: deja libre un círculo de radio cadena filada más eslora."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cómo reducir el borneo",
        "texto": "- **Filar menos cadena**, siempre que el tiempo lo permita (con menos cadena, el ancla agarra peor).\n- **Fondear una segunda ancla**: con dos anclas el barco gira mucho menos. Es una maniobra más complicada y con riesgo de que las cadenas se enreden, pero es la herramienta clásica para fondeaderos estrechos."
@@ -1582,6 +1613,14 @@
        "tipo": "texto",
        "titulo": "Garrear",
        "texto": "**Garrear** es que el ancla **no agarra y se arrastra por el fondo**, de modo que el barco va derivando con el viento. Es el gran peligro del fondeo.\n\nCausas habituales:\n- **Mal tenedero**: fango blando, algas, piedra, fondo en pendiente.\n- **Poca cadena**: el tiro va hacia arriba y desclava el ancla.\n- **Mala maniobra**: cadena amontonada sobre el ancla, ancla sin clavar.\n- **Más viento o mar** de lo previsto.\n- Ancla inadecuada o sucia (con algas o fango pegado)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo",
+        "vista": "garreo"
+       },
+       "texto": "Con poca cadena el tiro va hacia arriba, desclava el ancla y el barco garrea."
       },
       {
        "tipo": "clave",
@@ -1691,6 +1730,14 @@
        "texto": "El **orinque** es un cabo que se afirma a la **cruz del ancla** (la parte de abajo, donde se unen los brazos) y que en el otro extremo lleva una **boya o boyarín** (puede valer cualquier flotador visible). Sirve para dos cosas:\n- **Señalar dónde está el ancla**, para que nadie fondee encima de ella ni te la enganche.\n- **Recuperar el ancla si se enroca**: tirando del orinque, el ancla sale «al revés», por la cruz, y se desengancha.\n\nSu longitud tiene que ser algo mayor que la profundidad en **pleamar**, para que el boyarín no quede sumergido."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo",
+        "vista": "orinque"
+       },
+       "texto": "El orinque va a la cruz del ancla y el boyarín marca dónde está."
+      },
+      {
        "tipo": "clave",
        "texto": "Orinque: cabo a la cruz del ancla con un boyarín en la punta."
       },
@@ -1712,6 +1759,20 @@
        "tipo": "texto",
        "titulo": "La maniobra de levar",
        "texto": "1. Arranca el motor y prepara el molinete: **embragado y con el freno libre**.\n2. Vira la cadena mientras das **avante muy suave hacia el ancla**, para que el barco vaya hacia ella y el molinete no tenga que arrastrarlo.\n3. Cuando la cadena queda vertical, estás **a pique**.\n4. Sigue virando: el ancla **zarpa** (se despega).\n5. Súbela comprobando que viene **clara**, estíbala y tríncala.\n6. Quita la señal de fondeado (bola o luz)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo",
+        "vista": "voces",
+        "resaltar": [
+         "virar",
+         "pique",
+         "zarpa",
+         "clara"
+        ]
+       },
+       "texto": "Cada voz de la maniobra, en el orden en que ocurre."
       },
       {
        "tipo": "ojo",
@@ -2745,6 +2806,14 @@
        "texto": "- Llega **despacio** y pon la máquina en **punto muerto** antes de tenerlo cerca: la hélice es el mayor peligro.\n- Procura que quede junto a tu costado de **sotavento**, donde el casco le hace socaire, sin derivar encima de él.\n- Pásale un **aro con rabiza** o un cabo y acércalo al costado.\n- Súbelo por la **escala** o la plataforma de baño. Si está agotado o inconsciente, un tripulante **con chaleco y amarrado al barco** puede ayudarle desde el agua.\n- Si ha estado mucho tiempo en agua fría, súbelo **en horizontal** si puedes y manéjalo con suavidad."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "remolque",
+        "vista": "naufrago"
+       },
+       "texto": "Punto muerto, náufrago a sotavento y aro con rabiza."
+      },
+      {
        "tipo": "texto",
        "titulo": "Hipotermia",
        "texto": "Hay **hipotermia** cuando la temperatura del cuerpo baja de **35 °C**. El agua roba calor muchísimo más deprisa que el aire.\n\n**Síntomas**: escalofríos y temblores, torpeza para moverse, confusión, apatía y somnolencia. Si deja de temblar sin haber entrado en calor, es grave.\n\n**Qué hacer**: llevarlo a un sitio **cálido y sin corrientes**, en horizontal; quitarle la **ropa mojada**, secarlo **sin frotar** y abrigarlo con mantas, **cabeza incluida**. Si está consciente, **bebidas calientes y azucaradas**.\n\n**Qué no hacer**: **frotarlo ni sacudirlo** (puede provocar arritmias), darle **alcohol** o calentarlo con calor directo intenso."
@@ -2779,6 +2848,14 @@
        "tipo": "texto",
        "titulo": "Dar y tomar un remolque",
        "texto": "Remolcar es arrastrar a un barco sin propulsión, sin gobierno o sin ambas cosas. Lo básico:\n- Poneos de acuerdo **por VHF** en un canal de trabajo antes de empezar.\n- Al acercarte, ten en cuenta cuánto deriva cada barco: no te quedes a sotavento del averiado si él deriva más que tú.\n- Pasa una guía (cabo fino) y con ella el **remolque**, que el remolcado afirma a un punto resistente.\n- Arranca a **mínima velocidad**, sin tirones, y haz los cambios de velocidad y de rumbo **suaves**.\n- Con mar, el remolque debe ser **largo**, de modo que los dos barcos estén a la vez en la cresta o en el seno de la ola. Un peso a mitad de cabo amortigua los tirones."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "remolque",
+        "vista": "largo"
+       },
+       "texto": "Con mar, remolque largo: los dos barcos a la vez en la cresta o en el seno de la ola."
       },
       {
        "tipo": "texto",
@@ -6999,6 +7076,15 @@
        "texto": "Acércate con un ángulo de unos **20–30°** con el muelle, apuntando más o menos a donde quedará la proa. Cerca del atraque das **atrás** para parar.\n\nAl dar atrás, la hélice lleva la popa a su banda. Aprovéchalo:\n- **Dextrógira**: la popa va a babor, así que atraca **por babor**. Al parar, la popa se arrima sola y quedas paralelo al muelle.\n- **Levógira**: atraca **por estribor**.\n\nSi tienes que atracar por la banda «mala», entra más paralelo y más despacio: al dar atrás, la popa se te abrirá."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "atraque",
+        "modo": "costado",
+        "helice": "dextrogira"
+       },
+       "texto": "Con dextrógira atracas por babor: al dar atrás la popa se arrima sola, y el primer cabo es el largo de proa."
+      },
+      {
        "tipo": "texto",
        "titulo": "Qué cabo das primero",
        "texto": "Da primero el cabo que **aguanta lo que te aparta del sitio**:\n- **Viento de tierra** (sopla desde el muelle y te separa): entra con más ángulo, acércate más y da primero el **largo de proa**; luego arrimas la popa con máquina y timón y das el resto.\n- **Corriente paralela al muelle**: atraca siempre **proa a la corriente**. Te empuja hacia atrás, así que el primer cabo es el **largo de proa**.\n- **Viento de fuera** (te empuja contra el muelle): para antes, deja que el viento te arrime paralelo y ten muchas defensas por esa banda."
@@ -7020,6 +7106,15 @@
        "tipo": "texto",
        "titulo": "De punta con viento de costado",
        "texto": "El viento empuja el extremo libre del barco a sotavento, y los largos tienen que trabajar **contra el viento**.\n\nPor eso conviene encapillar **los dos largos en el noray de barlovento**: así los dos tiran hacia barlovento y sujetan el barco. Un largo dado al noray de sotavento quedaría en banda, sin trabajar, mientras el viento empuja.\n\nEn cuanto puedas, coge y tesa el muerto (si hay dos, primero el de barlovento), para que el viento no atraviese el barco."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "atraque",
+        "modo": "punta",
+        "viento": "costado"
+       },
+       "texto": "Con viento de costado, los dos largos van al noray de barlovento y se tesa el muerto cuanto antes."
       },
       {
        "tipo": "texto",

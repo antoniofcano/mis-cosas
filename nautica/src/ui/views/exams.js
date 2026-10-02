@@ -50,7 +50,9 @@ export function examsView({ ctx, progress, params: route }) {
       h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Exámenes'),
       h('h1', 'Preguntas reales de examen'),
       h('p', 'Preguntas de carta de convocatorias oficiales con la respuesta de la plantilla oficial. Fuente: publicaciones de la administración convocante (enlace en cada pregunta).'),
-      h('div.cards', index.map((b) => h('a.card', { href: link(['examenes', b.file]) },
+      h('div.cards',
+        h('a.card', { href: '#/teoria' }, h('h3', '📄 Exámenes completos y simulacros'), h('p', 'Las 45 preguntas (teoría + carta) de cada convocatoria, cronometradas y corregidas con las reglas oficiales; y simulacros por bloques.')),
+        index.map((b) => h('a.card', { href: link(['examenes', b.file]) },
         h('h3', b.title), h('p', b.description ?? ''), h('div.meta', h('span.stat', `${b.count} preguntas`))))),
     );
   }

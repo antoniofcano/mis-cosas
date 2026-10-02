@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PER, PY } from '../src/theory/blocks.js';
-import { planHoy, estadoTema, avance, diasHasta, OBJETIVO_TEMA, TANDA } from '../src/course/plan.js';
+import { planHoy, estadoTema, avance, diasHasta, lineaAvance, OBJETIVO_TEMA, TANDA } from '../src/course/plan.js';
 import { buildPractica } from '../src/theory/engine.js';
 import { createRng } from '../src/math/rng.js';
 
@@ -124,6 +124,19 @@ test('12. estadoTema: 20 hechas con 17 aciertos → bien y al día', () => {
 
 test('13. estadoTema: 10 hechas con 5 aciertos → conviene repasar', () => {
   assert.equal(estadoTema(PER.bloques[0], null, banco, {}, responder([1], 10, 5)).estado, 'repasar');
+});
+
+test('avance: la barra solo llega al 100 % con todos los temas al día, y sin clases terminadas no se llena', () => {
+  // Todas las preguntas de todos los temas, pero sin ver las clases del tema 5: la barra no puede llegar al 100 %.
+  const todas = responder(PER.bloques.map((b) => b.ut));
+  const a = avance(PER, curso, banco, {}, todas);
+  assert.equal(a.temasAlDia, a.temasTotal - 1);
+  assert.ok(a.fraccion < 1);
+  // Sin nada hecho, 0 %; y el texto cuenta lo mismo que la barra.
+  const cero = avance(PER, curso, banco, {}, {});
+  assert.equal(cero.fraccion, 0);
+  assert.match(lineaAvance(cero), /0 % del camino: 0 de 11 temas al día/);
+  assert.match(lineaAvance({ fraccion: 1, temasAlDia: 11, temasTotal: 11 }), /100 % del camino: todos los temas al día/);
 });
 
 test('avance: temas al día y fracción', () => {

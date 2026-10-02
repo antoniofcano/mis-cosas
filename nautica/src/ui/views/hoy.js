@@ -1,7 +1,7 @@
 // #/ y #/<tit> — Hoy: saludo, la actividad que toca (una sola acción principal), el avance y lo que viene después.
 
 import { h, setChildren } from '../dom.js';
-import { avance, diasHasta, ritmoEstudio } from '../../course/plan.js';
+import { avance, diasHasta, lineaAvance, ritmoEstudio } from '../../course/plan.js';
 import { estoyListo, lineaListo } from '../../course/listo.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
@@ -81,7 +81,7 @@ export function hoyView({ progress, tit }) {
       hueco,
       h('section.avance',
         h('div.bar', { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
-        h('p', `Llevas ${a.temasAlDia} de ${a.temasTotal} temas al día${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`)),
+        h('p', lineaAvance(a, racha))),
       h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo))),
       avisoCopia(progress),
       resto.length ? [h('h2', 'Después'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },

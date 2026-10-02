@@ -40,8 +40,9 @@ export function estadoTema(bloque, curso, preguntas, regs = {}, respuestas = {},
   const total = qs.length;
   const pct = hechas >= 10 ? Math.round((100 * aciertos) / hechas) : null;
   const estados = clasesDe(curso, bloque.ut).map((l) => estadoLeccion(l, regs[l.id], respuestas, ahora).estado);
-  const clases = { total: estados.length, vistas: estados.filter((e) => e !== 'nueva').length, aprendidas: estados.filter((e) => e === 'dominada').length };
-  const alDia = estados.every((e) => e !== 'nueva' && e !== 'empezada') && hechas >= Math.min(total, OBJETIVO_TEMA);
+  const terminada = (e) => e !== 'nueva' && e !== 'empezada';
+  const clases = { total: estados.length, vistas: estados.filter((e) => e !== 'nueva').length, terminadas: estados.filter(terminada).length, aprendidas: estados.filter((e) => e === 'dominada').length };
+  const alDia = estados.every(terminada) && hechas >= Math.min(total, OBJETIVO_TEMA);
   let estado = 'en-marcha';
   if (!hechas && !clases.vistas) estado = 'sin-empezar';
   else if (pct != null && pct >= 80) estado = 'bien';
@@ -49,10 +50,20 @@ export function estadoTema(bloque, curso, preguntas, regs = {}, respuestas = {},
   return { hechas, total, aciertos, pct, clases, alDia, estado, fallos };
 }
 
-/** Avance global: temas al día y fracción media de preguntas hechas respecto al objetivo de cada tema. */
+/**
+ * Cuánto le falta a un tema para estar al día, de 0 a 1, con el mismo criterio que `alDia`: cada clase terminada y
+ * cada pregunta hecha hasta el objetivo cuentan una unidad. Vale 1 si y solo si el tema está al día.
+ */
+export function parteTema(e) {
+  const obj = Math.min(e.total, OBJETIVO_TEMA);
+  const unidades = e.clases.total + obj;
+  return unidades ? (e.clases.terminadas + Math.min(e.hechas, obj)) / unidades : 1;
+}
+
+/** Avance global: temas al día y fracción media del camino hecho en cada tema (la barra llega al 100 % con todos al día). */
 export function avance(estructura, curso, preguntas, regs = {}, respuestas = {}, ahora = Date.now()) {
   const es = estructura.bloques.map((b) => estadoTema(b, curso, preguntas, regs, respuestas, ahora));
-  const parte = (e) => { const obj = Math.min(e.total, OBJETIVO_TEMA); return obj ? Math.min(1, e.hechas / obj) : 0; };
+  const parte = parteTema;
   return {
     temasAlDia: es.filter((e) => e.alDia).length,
     temasTotal: es.length,
@@ -163,4 +174,11 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
   const llega = diasDisponibles == null ? null : diasNecesarios <= diasDisponibles;
   const minutosNecesarios = diasDisponibles ? Math.ceil(minutosPendientes / diasDisponibles / 5) * 5 : null;
   return { minutosPendientes, diasNecesarios, fechaFin, diasDisponibles, llega, minutosNecesarios, desglose };
+}
+
+/** La barra y el texto de avance dicen lo mismo: el porcentaje del camino y cuántos temas están ya al día. */
+export function lineaAvance(a, racha = 0) {
+  const pct = Math.round(a.fraccion * 100);
+  const temas = a.temasAlDia === a.temasTotal ? `todos los temas al día (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas al día`;
+  return `Llevas el ${pct} % del camino: ${temas}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
 }

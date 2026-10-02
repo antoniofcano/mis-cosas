@@ -1,0 +1,67 @@
+# Arquitectura
+
+JavaScript moderno (módulos ES), sin framework ni paso de compilación. Cada motor es independiente
+y sin DOM salvo `graphics` (que solo produce texto SVG) y `ui`. Todo lo que no es `ui/` se prueba en Node.
+
+```
+nautica/
+├── index.html            Punto de entrada
+├── llms.txt              Guía para agentes de IA
+├── data/                 Base de datos estática (JSON)
+│   ├── chart-102.json    Carta: puntos notables, costa (polígonos de tierra), declinación
+│   └── exams/            Bancos de preguntas reales (index.json + un fichero por banco)
+├── src/
+│   ├── math/             MOTOR MATEMÁTICO   ángulos, vectores, Mercator/loxodrómica, RNG con semilla, formatos
+│   ├── nautical/         MOTOR NÁUTICO      aguja (Ct, dm, Δ), cinemática (corrientes, abatimiento),
+│   │                                        situación (líneas de posición), glosario
+│   ├── chart/            MOTOR DE CARTA     consultas geográficas: ¿agua?, ¿visible?, punto navegable aleatorio
+│   ├── exercises/        MOTOR DE EJERCICIOS contrato (define.js), registro y un fichero por tipo (types/)
+│   ├── analysis/         MOTOR DE ANÁLISIS  magnitudes (lectura/formato/error), corrección y diagnóstico
+│   ├── graphics/         MOTOR GRÁFICO      carta + construcciones en SVG (primitivas)
+│   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
+│   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
+│   └── ui/               INTERFAZ           router por hash, vistas, componente de carta interactiva
+├── styles/app.css
+└── tests/                node --test
+```
+
+Dependencias permitidas (de abajo arriba): `math` ← `nautical` ← `chart` ← `exercises` ← `analysis`
+← `graphics` ← `ai` ← `ui`. `store` solo lo usa `ui`.
+
+## Flujo de un ejercicio
+
+1. `generate(rng, ctx)` produce **datos serializables** (`params`), reproducibles con la semilla de la URL.
+   Usa la carta real: posiciones en agua, faros visibles, trayectorias sin cruzar tierra.
+2. `statement(params, ctx)` redacta el enunciado como en el examen.
+3. `solve(params, ctx)` devuelve `results` (números), `steps` (explicación) y `drawing` (primitivas SVG
+   con el paso en que aparecen).
+4. `analysis/checker` lee las respuestas según su magnitud (`analysis/quantities.js`), compara con la
+   tolerancia y, si hay fallos, ejecuta los `mistakes` del tipo para identificar el error cometido.
+5. La UI muestra pistas = `steps` uno a uno, y la carta dibuja las primitivas hasta ese paso.
+
+## Añadir un tipo de ejercicio nuevo (p.ej. mareas para PY)
+
+1. Si hace falta conocimiento nuevo, añádelo como funciones puras en `src/nautical/` (p.ej. `tides.js`).
+2. Crea `src/exercises/types/mi-tipo.js` con `defineExercise({...})` (ver el contrato en `define.js`).
+3. Regístralo en `src/exercises/registry.js` (y una categoría nueva en `define.js` si procede).
+4. Si necesita una magnitud nueva (p.ej. altura de marea en metros), añádela en `analysis/quantities.js`.
+5. `npm test` ya lo prueba automáticamente: genera 40 casos, comprueba que se resuelven, que el enunciado
+   no tiene huecos y que la solución se autocorrige; y que cada error típico se detecta.
+
+## Añadir preguntas de examen
+
+Añade un fichero en `data/exams/` y su entrada en `data/exams/index.json`. Formato de pregunta:
+
+```json
+{ "id": "and-2024-11-a-41", "comunidad": "Andalucía", "titulacion": "PER", "convocatoria": "noviembre 2024",
+  "numero": 41, "enunciado_comun": "…", "enunciado": "…", "opciones": {"a": "…", "b": "…", "c": "…", "d": "…"},
+  "correcta": "b", "solucion": ["paso 1", "paso 2"], "ejercicio": "situacion-dos-demoras",
+  "fuente_examen": "https://…", "fuente_plantilla": "https://…", "notas": "" }
+```
+
+## Pensado para asistentes de IA
+
+- Cada vista expone `summary()`: texto compacto con todo lo relevante. Se muestra en `#ai-context`
+  y se obtiene con `nautica.state()`.
+- La API `window.nautica` permite generar, resolver y corregir sin leer el DOM.
+- El estado del ejercicio vive en la URL (`#/ej/<tipo>?s=<semilla>`), así que es reproducible.

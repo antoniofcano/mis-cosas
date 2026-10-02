@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carta Náutica PER</title>
+  <meta name="description" content="Ejercicios interactivos de carta náutica para PER y Patrón de Yate: generador, corrección, pistas paso a paso y preguntas reales de examen de Andalucía.">
+  <!-- Agentes de IA: lee /llms.txt (guía breve) y usa window.nautica.state() o la sección #ai-context. -->
+  <link rel="alternate" type="text/plain" href="llms.txt" title="Guía para agentes de IA">
+  <link rel="stylesheet" href="styles/app.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#/">🧭 Carta Náutica</a>
+    <nav>
+      <a href="#/">Practicar</a>
+      <a href="#/examenes">Exámenes</a>
+      <a href="#/carta">Carta</a>
+      <a href="#/teoria">Teoría</a>
+      <a href="#/progreso">Progreso</a>
+    </nav>
+  </header>
+  <main id="app"><p>Cargando…</p></main>
+  <footer>
+    Herramienta de estudio. Los cálculos usan una carta simplificada del Estrecho: practica también el trazado sobre la carta 102 en papel.
+    · <a href="llms.txt">llms.txt</a>
+  </footer>
+  <noscript>Esta aplicación necesita JavaScript.</noscript>
+  <script type="module" src="src/ui/app.js"></script>
+</body>
+</html>

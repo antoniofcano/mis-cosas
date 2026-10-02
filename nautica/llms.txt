@@ -1,0 +1,31 @@
+# Carta Náutica PER — guía para agentes de IA
+
+> App estática para practicar ejercicios de carta náutica (PER / Patrón de Yate, carta 102 Estrecho de Gibraltar).
+> Si ayudas a un alumno, NO leas la página entera: usa una de estas vías baratas (de menos a más tokens).
+
+## 1. Estado actual en texto (recomendado)
+- JavaScript: `nautica.state()` → resumen compacto (enunciado, datos, respuestas del alumno con su corrección,
+  diagnóstico, solución y pasos). Una línea por idea.
+- Sin JavaScript: el mismo texto está en el elemento `#ai-context` (un <details> al final de cada vista).
+
+## 2. API de consola `window.nautica`
+- `nautica.help()` lista de funciones
+- `nautica.types()` tipos de ejercicio
+- `nautica.generate(id, seed)` → {params, statement, answers}
+- `nautica.solve(id, params)` → {results, steps}
+- `nautica.check(id, params, {clave: "texto"})` → corrección + diagnóstico de errores típicos
+- `nautica.points()` marcas de la carta con coordenadas
+- `nautica.lib.{compass,kinematics,positioning,mercator,format}` motores de cálculo puros
+
+## 3. URLs (todo el estado va en el hash)
+- `#/` inicio · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible · `#/examenes` bancos de examen
+- `#/examenes/<banco>/<idPregunta>` pregunta real · `#/carta` · `#/teoria` · `#/progreso`
+
+## 4. Datos en JSON
+- `data/chart-102.json` puntos notables (lat/lon decimales, W negativo), costa, declinación.
+- `data/exams/index.json` y `data/exams/<banco>.json` preguntas reales con respuesta oficial.
+
+## Convenciones
+E = +, W = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +).
+Corriente: rumbo HACIA donde va. Viento: DE donde viene. Rs = Rv + Ab (viento por babor → Ab +).
+Distancias en millas medidas en la escala de latitudes; los cálculos usan loxodrómica en proyección Mercator.

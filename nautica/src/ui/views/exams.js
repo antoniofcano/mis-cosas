@@ -2,9 +2,29 @@ import { h, copyText, setChildren } from '../dom.js';
 import { loadExamIndex, loadExamBank } from '../../store/datasets.js';
 import { examQuestionSummary } from '../../ai/summary.js';
 import { link } from '../router.js';
+import { createKit } from '../../exams/kit.js';
+import { chooseOption } from '../../exams/options.js';
+import { quantity } from '../../analysis/quantities.js';
+import solutions from '../../exams/solutions/andalucia-per.js';
+import { chartWidget } from '../chart-widget.js';
+
+/** Ejecuta la solución programada de una pregunta (si existe). */
+function runSolution(q, chart) {
+  const sol = solutions[q.id];
+  if (!sol) return null;
+  const k = createKit(chart);
+  try {
+    const values = sol.solve(k);
+    const pick = chooseOption(q.opciones, values);
+    return { sol, k, values, pick };
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
 
 /** #/examenes  y  #/examenes/<banco>  y  #/examenes/<banco>/<idPregunta> */
-export function examsView({ progress, params: route }) {
+export function examsView({ ctx, progress, params: route }) {
   const el = h('div.exams', h('p.muted', 'Cargando preguntas…'));
   let summaryText = 'VISTA exámenes (cargando)';
   const [, bankFile, qid] = route.parts;
@@ -63,10 +83,16 @@ export function examsView({ progress, params: route }) {
     const prev = bank.preguntas[idx - 1];
     const next = bank.preguntas[idx + 1];
     let choice = progress.get().exams[q.id]?.choice ?? null;
+    const run = runSolution(q, ctx.chart);
     const result = h('div.diagnosis', { 'aria-live': 'polite' });
     const solution = h('div.solution', { hidden: true });
     const aiPre = h('pre.ai-text');
-    const refresh = () => { summaryText = examQuestionSummary(q, choice); aiPre.textContent = summaryText; };
+    const refresh = () => {
+      summaryText = examQuestionSummary(q, choice, run && {
+        steps: run.k.steps, values: run.values.map((v) => quantity(v.kind).format(v.value)), choice: run.pick.choice,
+      });
+      aiPre.textContent = summaryText;
+    };
 
     const options = h('div.options', Object.entries(q.opciones ?? {}).map(([k, v]) => h('label.option',
       h('input', { type: 'radio', name: 'opt', value: k, checked: choice === k, onchange: () => { choice = k; refresh(); } }),
@@ -82,10 +108,16 @@ export function examsView({ progress, params: route }) {
     }
     function showSolution() {
       solution.hidden = false;
-      setChildren(solution, 
-        h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`),
-        q.solucion?.length ? h('ol.steps', q.solucion.map((s) => h('li', s))) : h('p.muted', 'Aún no hay explicación detallada para esta pregunta.'),
-        q.ejercicio ? h('p', h('a.btn.secondary', { href: link(['ej', q.ejercicio]) }, '🧭 Practicar este tipo de ejercicio')) : null,
+      const computed = run
+        ? h('p', h('strong', 'Resultado calculado: '), run.values.map((v) => quantity(v.kind).format(v.value)).join(' · '),
+          ` → opción más próxima: ${run.pick.choice})`, run.pick.choice === q.correcta ? ' ✔ coincide con la plantilla' : '')
+        : null;
+      setChildren(solution,
+        q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : h('p.warn', 'Pregunta anulada por el tribunal.'),
+        computed,
+        run ? h('ol.steps', run.k.steps.map((s) => h('li', h('strong', s.title), ' — ', s.text))) : h('p.muted', 'Esta pregunta no tiene resolución programada (requiere leer símbolos de la carta).'),
+        run?.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus }).el : null,
+        run?.sol.ejercicio ? h('p', h('a.btn.secondary', { href: link(['ej', run.sol.ejercicio]) }, '🧭 Practicar este tipo de ejercicio')) : null,
       );
     }
 
@@ -104,7 +136,8 @@ export function examsView({ progress, params: route }) {
       result, solution,
       h('p.muted.small', 'Fuente: ', q.fuente_examen ? h('a', { href: q.fuente_examen, target: '_blank', rel: 'noopener' }, 'examen') : '—',
         q.fuente_plantilla ? [' · ', h('a', { href: q.fuente_plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
-        q.notas ? ` · ${q.notas}` : ''),
+        ''),
+      q.notas ? h('details', h('summary', 'Notas sobre la fuente'), h('p.small', q.notas)) : null,
       h('details.ai-context#ai-context', h('summary', '🤖 Resumen para asistentes IA (contiene la solución)'),
         h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
     );

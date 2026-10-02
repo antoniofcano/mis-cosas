@@ -12,7 +12,7 @@ export default defineExercise({
   id: 'corriente-desconocida',
   title: 'Calcular la corriente (rumbo e intensidad)',
   category: 'corrientes',
-  levels: ['PER', 'PY'],
+  levels: ['PY'],
   difficulty: 3,
   concepts: ['corriente', 'estima', 'demora'],
   summary: 'La situación observada no coincide con la de estima: la diferencia es la corriente.',

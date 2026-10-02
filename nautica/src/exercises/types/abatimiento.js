@@ -12,7 +12,7 @@ export default defineExercise({
   id: 'abatimiento',
   title: 'Viento y abatimiento',
   category: 'viento',
-  levels: ['PER', 'PY'],
+  levels: ['PY'],
   difficulty: 2,
   concepts: ['abatimiento', 'Rs', 'Ct', 'viento'],
   summary: 'El viento nos desplaza: rumbo de superficie o rumbo a dar para compensarlo.',

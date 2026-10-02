@@ -99,3 +99,4 @@ table.stats th, table.stats td { text-align: left; padding: .35rem .5rem; border
 ol.qlist li { margin: .3rem 0; }
 .method-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .6rem .9rem; margin: .5rem 0; }
 @media (max-width: 520px) { .answers .field, label.field { grid-template-columns: 1fr; } .field .feedback { grid-column: 1; } }
+.level { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; margin: .5rem 0; }

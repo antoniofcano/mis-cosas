@@ -10,7 +10,7 @@ export default defineExercise({
   id: 'corriente-rumbo-a-dar',
   title: 'Rumbo a dar para contrarrestar la corriente',
   category: 'corrientes',
-  levels: ['PER', 'PY'],
+  levels: ['PY'],
   difficulty: 3,
   concepts: ['corriente', 'Ref', 'Vef', 'Ct', 'ETA'],
   summary: 'Queremos llegar a un punto con corriente: ¿qué rumbo damos y cuándo llegamos?',

@@ -29,7 +29,7 @@ export function exerciseSummary({ exercise, seed, params, solution, inputs = {},
 }
 
 /** Resumen de una pregunta de examen real. */
-export function examQuestionSummary(q, choice) {
+export function examQuestionSummary(q, choice, computed) {
   const lines = [
     `PREGUNTA EXAMEN ${q.id} · ${q.comunidad} · ${q.titulacion} · ${q.convocatoria}${q.numero ? ` · nº ${q.numero}` : ''}`,
   ];
@@ -38,7 +38,10 @@ export function examQuestionSummary(q, choice) {
   for (const [k, v] of Object.entries(q.opciones ?? {})) lines.push(`  ${k}) ${v}`);
   lines.push(`RESPUESTA ALUMNO: ${choice ?? '(ninguna)'}`);
   lines.push(`CORRECTA (plantilla oficial): ${q.correcta ?? '?'}`);
-  if (q.solucion?.length) q.solucion.forEach((s, i) => lines.push(`PASO ${i + 1}: ${s}`));
+  if (computed) {
+    lines.push(`CALCULADO: ${computed.values.join(' · ')} → opción ${computed.choice}`);
+    computed.steps.forEach((s, i) => lines.push(`PASO ${i + 1} ${s.title}: ${s.text}`));
+  }
   if (q.notas) lines.push(`NOTAS: ${q.notas}`);
   if (q.fuente_examen) lines.push(`FUENTE: ${q.fuente_examen}`);
   return lines.join('\n');

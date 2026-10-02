@@ -3,13 +3,18 @@ import { exercisesByCategory } from '../../exercises/registry.js';
 import { link } from '../router.js';
 
 export function homeView({ progress }) {
-  const level = progress.settings().level;
-  const cats = exercisesByCategory(level);
+  const level = progress.settings().level ?? 'PER';
+  const cats = exercisesByCategory(level === 'Todos' ? null : level);
   const lines = [];
   const view = h('div.home',
     h('section.intro',
       h('h1', 'Ejercicios de carta náutica'),
       h('p', 'Practica cada tipo de ejercicio con datos nuevos cada vez, sobre la zona del Estrecho (carta L105). Comprueba tus respuestas, pide pistas paso a paso y mira la construcción gráfica. Después, entrénate con las preguntas reales de examen de Andalucía.'),
+      h('div.level', h('span.muted', 'Titulación: '), ['PER', 'PY', 'Todos'].map((l) => h('button.small', {
+        type: 'button', class: l === level ? '' : 'secondary', 'aria-pressed': l === level,
+        onclick: () => { progress.setSetting('level', l); dispatchEvent(new HashChangeEvent('hashchange')); },
+      }, l))),
+      level !== 'PER' ? h('p.muted.small', 'Patrón de Yate: de momento solo están los ejercicios de corrientes y abatimiento; mareas y estima analítica llegarán después.') : null,
       h('p', h('a.btn', { href: link(['examenes']) }, '📝 Preguntas de examen reales'), ' ', h('a.btn.secondary', { href: link(['carta']) }, '🗺️ Carta y medición')),
     ),
     cats.map((c) => h('section.category',

@@ -11,8 +11,8 @@ export { fmtBearing, fmtSigned, fmtSignedNum, fmtPos, fmtLat, fmtLon, fmtClock, 
 /** Redondea una posición a décimas de minuto (como se lee en la carta). */
 export const roundPos = ({ lat, lon }) => ({ lat: round(lat * 60, 1) / 60, lon: round(lon * 60, 1) / 60 });
 
-/** Ángulo con signo como lo pone el examen: "+2°", "−3°" o "3° W". */
-export const signedText = (v) => fmtSigned(v);
+/** Declinación como la pone el examen: "4º NW". */
+export { fmtDmExam as signedText } from './compass-data.js';
 
 /** Genera dm (año del ejercicio) y desvío plausibles, en grados enteros o medios. */
 export function randomCompass(rng, chart) {

@@ -10,7 +10,7 @@ export default defineExercise({
   id: 'corriente-efectiva',
   title: 'Rumbo y velocidad efectivos con corriente',
   category: 'corrientes',
-  levels: ['PER', 'PY'],
+  levels: ['PY'],
   difficulty: 2,
   concepts: ['corriente', 'Ref', 'Vef', 'Ct'],
   summary: 'Conocida la corriente, ¿por dónde avanzamos realmente y dónde estaremos?',

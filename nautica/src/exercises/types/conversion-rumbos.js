@@ -1,6 +1,9 @@
 import { defineExercise } from '../define.js';
 import { correccionTotal, rvFromRa, raFromRv, ctFrom, desvioFrom } from '../../nautical/compass.js';
-import { fmtBearing, fmtSignedNum, signedText, randomCompass, norm360 } from '../helpers.js';
+import { fmtBearing, fmtSignedNum, randomCompass, norm360 } from '../helpers.js';
+import { fmtDmExam } from '../compass-data.js';
+
+const signedText = fmtDmExam;
 
 const VARIANTS = ['ra-rv', 'rv-ra', 'desvio', 'demora'];
 

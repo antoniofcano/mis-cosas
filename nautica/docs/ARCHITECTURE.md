@@ -19,6 +19,7 @@ nautica/
 │   ├── analysis/         MOTOR DE ANÁLISIS  magnitudes (lectura/formato/error), corrección y diagnóstico
 │   ├── graphics/         MOTOR GRÁFICO      carta + construcciones en SVG (primitivas)
 │   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
+│   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
 │   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
 │   └── ui/               INTERFAZ           router por hash, vistas, componente de carta interactiva
 ├── styles/app.css
@@ -48,9 +49,18 @@ Dependencias permitidas (de abajo arriba): `math` ← `nautical` ← `chart` ←
 5. `npm test` ya lo prueba automáticamente: genera 40 casos, comprueba que se resuelven, que el enunciado
    no tiene huecos y que la solución se autocorrige; y que cada error típico se detecta.
 
+## Exámenes reales: resolución programada y validación
+
+`src/exams/kit.js` ofrece operaciones de alto nivel (`ct`, `oposicion`, `fix2`, `fromMark`, `tangent`, `run`,
+`eta`…) que calculan con los motores, redactan el paso explicado y añaden el dibujo. Cada pregunta tiene en
+`src/exams/solutions/<banco>*.js` una función corta que encadena esas operaciones y devuelve los valores
+pedidos. `src/exams/options.js` lee las opciones del examen y elige la más próxima; `tests/exams.test.js`
+exige que coincida con la plantilla oficial. Si cambias la carta o un motor, este test avisa.
+
 ## Añadir preguntas de examen
 
-Añade un fichero en `data/exams/` y su entrada en `data/exams/index.json`. Formato de pregunta:
+Añade un fichero en `data/exams/`, su entrada en `data/exams/index.json` y (opcional) sus soluciones en
+`src/exams/solutions/`. Datos de la carta: `python3 tools/build-chart.py` regenera `data/chart-105.json`. Formato de pregunta:
 
 ```json
 { "id": "and-2024-11-a-41", "comunidad": "Andalucía", "titulacion": "PER", "convocatoria": "noviembre 2024",

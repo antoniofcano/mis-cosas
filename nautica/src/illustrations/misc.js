@@ -41,7 +41,7 @@ export function meteoIllustration(spec) {
     out.push(`<text x="${cx}" y="22" class="il-title">Ley de Buys-Ballot (hemisferio norte)</text>`);
     out.push(`<circle cx="${cx}" cy="${cy}" r="14" fill="#334155"/><text x="${cx}" y="${cy + 4}" font-size="10" fill="#fff" text-anchor="middle">tú</text>`);
     out.push(`<line x1="${cx}" y1="${cy + 90}" x2="${cx}" y2="${cy + 22}" stroke="#2563eb" stroke-width="4" marker-end="url(#mt-a)"/><text x="${cx + 8}" y="${cy + 80}" font-size="11" fill="#2563eb">viento por la espalda</text>`);
-    out.push(`<text x="${cx - 110}" y="${cy - 6}" font-size="30" font-weight="700" fill="#dc2626">B</text><text x="${cx - 120}" y="${cy + 14}" font-size="10" fill="#dc2626">a tu izquierda</text>`);
+    out.push(`<text x="${cx - 110}" y="${cy - 46}" font-size="30" font-weight="700" fill="#dc2626">B</text><text x="${cx - 122}" y="${cy - 26}" font-size="10" fill="#dc2626">a tu izquierda,</text><text x="${cx - 122}" y="${cy - 14}" font-size="10" fill="#dc2626">algo adelantada</text>`);
     out.push(`<text x="${cx + 92}" y="${cy - 6}" font-size="30" font-weight="700" fill="#2563eb">A</text><text x="${cx + 80}" y="${cy + 14}" font-size="10" fill="#2563eb">a tu derecha</text>`);
     out.push('</svg>');
     return { svg: out.join(''), caption: 'Con el viento de espaldas, en el hemisferio norte la baja presión queda a tu izquierda (algo adelantada) y la alta a tu derecha.' };
@@ -53,7 +53,11 @@ export function meteoIllustration(spec) {
     out.push(`<circle cx="${mar ? 280 : 40}" cy="54" r="16" fill="${mar ? '#facc15' : '#e5e7eb'}"/>`);
     const p = mar ? 'M60,160 L250,160 L250,80 L60,80 Z' : 'M250,150 L60,150 L60,80 L250,80 Z';
     out.push(`<path d="${p}" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 6"><animate attributeName="stroke-dashoffset" from="28" to="0" dur="1.2s" repeatCount="indefinite"/></path>`);
-    out.push(`<text x="160" y="248" class="il-lbl" text-anchor="middle">${mar ? 'La tierra se calienta más: el aire sube y entra el del mar' : 'La tierra se enfría más: el aire baja y sale hacia el mar'}</text>`);
+    // flechas fijas: en superficie el viento va del mar a tierra (virazón) o de tierra al mar (terral)
+    out.push(mar ? `<line x1="90" y1="160" x2="200" y2="160" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/><line x1="250" y1="130" x2="250" y2="100" stroke="#dc2626" stroke-width="3" marker-end="url(#mt-a)"/><line x1="60" y1="100" x2="60" y2="130" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/>`
+      : `<line x1="220" y1="150" x2="110" y2="150" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/><line x1="60" y1="110" x2="60" y2="80" stroke="#dc2626" stroke-width="3" marker-end="url(#mt-a)"/><line x1="250" y1="90" x2="250" y2="120" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/>`);
+    out.push(`<text x="${mar ? 262 : 72}" y="112" class="il-lbl" style="fill:#dc2626">asciende</text><text x="${mar ? 72 : 262}" y="112" class="il-lbl">desciende</text>`);
+    out.push(`<text x="160" y="40" class="il-lbl" text-anchor="middle">${mar ? 'La tierra se calienta más: el aire sube y entra el del mar' : 'La tierra se enfría más: el aire baja y sale hacia el mar'}</text>`);
     out.push('</svg>');
     return { svg: out.join(''), caption: mar ? 'De día, en superficie, el viento sopla del mar hacia tierra.' : 'De noche, en superficie, el viento sopla de tierra hacia el mar.' };
   }

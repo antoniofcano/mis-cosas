@@ -103,7 +103,7 @@ export function amarrasIllustration(spec) {
     out.push(`<line x1="${x}" y1="${y}" x2="${qx}" y2="152" stroke="${on ? C.r : C.g}" stroke-width="${on ? 2.6 : 1.4}" opacity="${on ? 1 : 0.5}"/><circle cx="${qx}" cy="154" r="4" fill="currentColor"/>`);
     if (on) out.push(lbl(Math.min(Math.max((x + qx) / 2, 40), 280), hl ? 70 : 0, hl ? name : '', 'r', 'middle', 'font-weight="700"'));
   }
-  if (!hl) L.forEach(([, x, , qx, name], i) => out.push(lbl(14 + i * 62, 64 - (i % 2) * 12, name, 'r')));
+  if (!hl) L.forEach(([, , , , name], i) => out.push(lbl(14 + (i % 3) * 100, 44 + Math.floor(i / 3) * 14, name, 'r')));
   out.push('</svg>');
   return { svg: out.join(''), caption: 'Largos: salen de proa hacia proa y de popa hacia popa. Esprines: cruzados, de proa hacia popa y de popa hacia proa; evitan que el barco avance o retroceda. Traveses: perpendiculares al muelle, lo atracan.' };
 }

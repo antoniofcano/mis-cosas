@@ -5,6 +5,758 @@
  },
  "modulos": [
   {
+   "ut": 2,
+   "titulo": "Amarre y fondeo",
+   "intro": "Atracar en un muelle o pasar la noche fondeado en una cala son dos de las cosas que más vas a hacer con tu barco. En este tema aprendes los herrajes y las partes de un cabo, los cuatro nudos que pide el examen, cómo elegir un buen fondeadero y cómo fondear, vigilar el ancla y levar sin sustos. Es un tema corto, con mucho vocabulario: si separas bien cada palabra (bornear y garrear, fango duro y blando, embragar y frenar) te lo llevas entero.",
+   "lecciones": [
+    {
+     "id": "per-2-1",
+     "curso": "per",
+     "ut": 2,
+     "titulo": "Elementos de amarre y partes de un cabo",
+     "minutos": 12,
+     "objetivos": [
+      "Distinguir los herrajes del muelle (noray, bolardo) de los de a bordo (bita, cornamusa)",
+      "Saber para qué sirven defensas, bichero, guiacabos, roldana, muerto y boya",
+      "Nombrar las partes de un cabo: chicote, seno, firme y gaza"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "En el muelle o a bordo",
+       "texto": "Para amarrar necesitas un punto fuerte en cada extremo del cabo. La primera pregunta que te tienes que hacer es **dónde está la pieza**:\n- **En el muelle**: el **noray**, una pieza corta y robusta de hierro, con la cabeza más ancha para que la amarra no se salga. El **bolardo** es su hermano mayor, para buques grandes.\n- **A bordo**: la **bita**, una columna (o pareja de columnas) muy sólida en cubierta, y la **cornamusa**, la pieza en forma de T donde das vueltas al cabo para hacerlo firme.\n\nLas dos sirven para «hacer firme» un cabo; lo que cambia es dónde están."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Noray en el muelle; bita y cornamusa a bordo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "amarras"
+       },
+       "texto": "Las amarras van desde el barco hasta los norays del muelle (los puntos negros). Los nombres de cada amarra (largos, esprines, traveses) los trabajarás en el tema de maniobra."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Muerto y boya de amarre",
+       "texto": "Cuando no hay muelle, puedes amarrarte a una **boya**: un flotador sujeto al fondo.\n- El **muerto** es un gran peso (bloque de hormigón o de hierro) que descansa en el fondo y sirve de amarre permanente.\n- Del muerto sube una cadena hasta la **boya**, y a la boya (o a su cabo) te amarras tú.\n\nEn muchas calas y puertos hay campos de boyas: evitan que cada barco fondee su ancla y protegen el fondo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Proteger el casco y alcanzar cabos",
+       "texto": "- **Defensas**: piezas blandas (normalmente cilindros hinchables) que se cuelgan **entre el casco y el muelle u otro barco** para que no haya golpes ni roces. Las hay también fijas en los muelles.\n- **Bichero**: una pértiga con un gancho en la punta. Sirve para coger un cabo o la boya de amarre, recoger algo del agua o separar el barco de otro o del muelle."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Guiacabos y roldana",
+       "texto": "Dos piezas que se confunden mucho:\n- **Guiacabos**: conduce la amarra por el sitio correcto y **evita que roce** con la cubierta, la borda u otros elementos. Puede ser una simple boca o llevar rodillos.\n- **Roldana**: la **rueda que gira** dentro de una polea o motón y sobre la que corre (laborea) el cabo. Reduce el rozamiento y permite cambiar la dirección del tiro.\n\nNinguno de los dos es un punto donde se haga firme un cabo: eso son bitas y cornamusas."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En las preguntas de herrajes fíjate en el matiz: «de a bordo» descarta el noray; «gira» apunta a la roldana; «evita el roce» es el guiacabos. Y si una opción dice que las defensas protegen la hélice o se ponen en el mástil, es de relleno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las partes de un cabo",
+       "texto": "- **Chicote**: cada uno de los **extremos libres** del cabo (todo cabo tiene dos).\n- **Firme**: la parte principal del cabo, la que trabaja o queda sujeta, en contraposición al chicote con el que haces el nudo.\n- **Seno**: la curva o arco que forma el cabo cuando lo doblas.\n- **Gaza**: un lazo u ojo cerrado en el extremo, hecho con un nudo o con una costura. Las gazas largas son las que se «encapillan» (se pasan por encima) en un noray.\n- **Adujar**: recoger el cabo en vueltas ordenadas para que no se enrede."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estas piezas NO está a bordo, sino en el muelle?",
+       "opciones": {
+        "a": "Cornamusa",
+        "b": "Noray",
+        "c": "Bita"
+       },
+       "correcta": "b",
+       "explicacion": "El noray está fijado en el muelle. Bitas y cornamusas son herrajes de cubierta: los tres sirven para hacer firme un cabo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo se llama el extremo libre de un cabo?",
+       "opciones": {
+        "a": "Seno",
+        "b": "Firme",
+        "c": "Chicote"
+       },
+       "correcta": "c",
+       "explicacion": "Chicote es el extremo libre. El seno es la curva del cabo y el firme, la parte principal que trabaja."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t05",
+      "and-2020-c3-t05",
+      "and-2022-c3-t05",
+      "and-2023-c3-t05",
+      "and-2024-c2-t05",
+      "and-2024-c3-t05",
+      "and-2025-c2-t05"
+     ],
+     "chuleta": [
+      "Muelle: noray (y bolardo, más grande). A bordo: bita y cornamusa. Todos sirven para hacer firme.",
+      "Muerto: peso en el fondo; de él sube la cadena a la boya de amarre.",
+      "Defensa: entre el casco y el muelle u otro barco. Bichero: pértiga con gancho.",
+      "Guiacabos: guía y evita roces. Roldana: rueda de la polea por donde corre el cabo.",
+      "Chicote = extremo libre; firme = parte que trabaja; seno = curva; gaza = ojo cerrado."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones náuticas y programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Noray: pieza fijada al muelle para hacer firmes las amarras",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.1; pregunta and-2023-c3-t05"
+      },
+      {
+       "dato": "Bita y cornamusa: elementos de a bordo para hacer firme un cabo (no el noray)",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.1; pregunta and-2020-c1-t05"
+      },
+      {
+       "dato": "Defensas: entre el casco y el muelle o el barco de al lado, contra golpes y roces",
+       "fuente": "Preguntas and-2020-c3-t05, and-2024-c2-t05"
+      },
+      {
+       "dato": "Guiacabos: evita el roce de las amarras; no es la rueda ni el punto de hacer firme",
+       "fuente": "Pregunta and-2022-c3-t05"
+      },
+      {
+       "dato": "Roldana: pieza giratoria por la que laborea el cabo",
+       "fuente": "Pregunta and-2024-c3-t05"
+      },
+      {
+       "dato": "Chicote: extremo libre del cabo (seno, firme y gaza son otras partes)",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.1; pregunta and-2025-c2-t05"
+      },
+      {
+       "dato": "Muerto, boyas, bichero en el programa oficial",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.1"
+      }
+     ]
+    },
+    {
+     "id": "per-2-2",
+     "curso": "per",
+     "ut": 2,
+     "titulo": "Los cuatro nudos del PER",
+     "minutos": 10,
+     "objetivos": [
+      "Saber para qué se usa cada nudo: llano, vuelta de rezón, ballestrinque y as de guía",
+      "Elegir el nudo correcto para una defensa según el tiempo que vaya a estar puesta",
+      "No confundir unir cabos con hacer una gaza o amarrar a una argolla"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Un nudo para cada trabajo",
+       "texto": "El examen solo te pide cuatro nudos, pero quiere que sepas **para qué sirve cada uno**:\n- **Llano**: unir dos cabos.\n- **Vuelta de rezón**: hacer firme un cabo a una argolla.\n- **Ballestrinque**: hacer firme un cabo a un palo, candelero o barandilla, rápido.\n- **As de guía**: hacer una gaza fija en el extremo de un cabo.\n\nSi te aprendes esta lista de verbos (unir, argolla, palo, gaza), tienes casi todas las preguntas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Nudo llano",
+       "texto": "Sirve para **unir dos cabos por sus chicotes**, siempre que sean **de la misma mena (grosor) y del mismo material**. Con tensión se aprieta y aguanta bien, y sin tensión se deshace con facilidad.\n\nTambién se llama **nudo de rizo**, porque es el que se usa para atar las tomadoras al tomar rizos en una vela.\n\nSi los cabos son de distinta mena, el llano puede escurrirse: para eso existe otro nudo, la **vuelta de escota**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Vuelta de rezón",
+       "texto": "Es el nudo para **afirmar un cabo a una argolla** (una anilla, el arganeo de un ancla o de un rezón). Se dan vueltas al aro y se remata con el chicote para que no se suelte.\n\nEs muy segura y no se afloja con los tirones, así que es la indicada para **defensas que van a estar colgadas mucho tiempo** o para cualquier cabo que deba quedar firme a una argolla."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Ballestrinque",
+       "texto": "Dos vueltas cruzadas alrededor de un palo, un candelero o una barandilla. Su gran ventaja es que se hace **muy rápido** y se ajusta fácil de altura.\n\nSu punto débil: aguanta bien con un tiro constante, pero con **tirones laterales o intermitentes puede correrse o aflojarse**. Por eso es el nudo para **colgar una defensa por poco tiempo** (al atracar un rato, al abarloarte), no para dejarla días."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "As de guía",
+       "texto": "Forma una **gaza fija, sin costuras**, que ni corre ni se aprieta aunque tires fuerte, y que luego se deshace con facilidad.\n\nUsos típicos:\n- Hacer la gaza de una amarra para **encapillarla en un noray**.\n- Afirmar escotas o drizas.\n- Rodear a una persona por el pecho para izarla o asegurarla.\n\nPor eso lo llaman «el rey de los nudos»."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Unir cabos iguales: llano. Argolla: rezón. Palo o candelero, rápido: ballestrinque. Gaza: as de guía."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las defensas salen con dos respuestas distintas según el enunciado: **por poco tiempo** (o «rápidamente») es ballestrinque; **mucho tiempo** es vuelta de rezón. Lee el tiempo antes de contestar."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«De rizo» es otro nombre del nudo llano (algunos textos lo llaman también «de envergue»). Si «envergue» sale como opción suelta en una pregunta de defensas o de gazas, descártala igual que el llano: es un nudo de unir cabos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Quieres hacer una gaza en el chicote de la amarra para pasarla por un noray. ¿Qué nudo usas?",
+       "opciones": {
+        "a": "Ballestrinque",
+        "b": "As de guía",
+        "c": "Nudo llano"
+       },
+       "correcta": "b",
+       "explicacion": "El as de guía forma una gaza fija que no corre: es el nudo para encapillar una amarra en un noray."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas a dejar una defensa colgada de una argolla durante toda la temporada. ¿Qué nudo es el más indicado?",
+       "opciones": {
+        "a": "Vuelta de rezón",
+        "b": "Ballestrinque",
+        "c": "Nudo llano"
+       },
+       "correcta": "a",
+       "explicacion": "Para una argolla y mucho tiempo, vuelta de rezón. El ballestrinque es rápido pero puede correrse con los tirones."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t05",
+      "and-2021-c2-t06",
+      "and-2022-c1-t06",
+      "and-2023-c1-t06",
+      "and-2023-c2-t05",
+      "and-2023-c3-t06",
+      "and-2026-c2-t06"
+     ],
+     "chuleta": [
+      "Llano (o de rizo): une dos cabos de igual mena y material.",
+      "Vuelta de rezón: cabo a una argolla; defensas para mucho tiempo.",
+      "Ballestrinque: rápido sobre palo o candelero; defensas para poco tiempo; se corre con tirones.",
+      "As de guía: gaza fija sin costura; para encapillar en un noray y para personas."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones náuticas y programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Los cuatro nudos del programa: llano, vuelta de rezón, ballestrinque y as de guía",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.2"
+      },
+      {
+       "dato": "Llano: unir dos cabos por sus chicotes, de la misma mena y material",
+       "fuente": "Preguntas and-2023-c2-t05, and-2026-c2-t06"
+      },
+      {
+       "dato": "Vuelta de rezón: afirmar un cabo a una argolla; defensas para mucho tiempo",
+       "fuente": "Preguntas and-2021-c1-t05, and-2022-c1-t06"
+      },
+      {
+       "dato": "Ballestrinque: hacer firme rápido una defensa por poco tiempo",
+       "fuente": "Pregunta and-2023-c3-t06"
+      },
+      {
+       "dato": "As de guía: gaza sin costuras para amarrar a un noray",
+       "fuente": "Preguntas and-2021-c2-t06, and-2023-c1-t06"
+      },
+      {
+       "dato": "Vuelta de escota: une cabos de distinta mena (fuera del programa; se cita como contraste)",
+       "fuente": "Terminología marinera común (sheet bend); no figura en el programa del RD 875/2014"
+      }
+     ]
+    },
+    {
+     "id": "per-2-3",
+     "curso": "per",
+     "ut": 2,
+     "titulo": "Elegir el fondeadero y el tenedero",
+     "minutos": 12,
+     "objetivos": [
+      "Enumerar los factores que se valoran al elegir dónde fondear",
+      "Ordenar los tenederos de mejor a peor y no confundir fango duro con fango blando",
+      "Saber por qué no conviene un fondo con mucha pendiente"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Fondeadero y tenedero",
+       "texto": "Dos palabras que tienes que separar:\n- **Fondeadero**: el **lugar** donde fondeas (una cala, una bahía, una zona señalada en la carta).\n- **Tenedero**: la **calidad del fondo** para que el ancla se clave y agarre.\n\nUn buen fondeadero necesita, entre otras cosas, un buen tenedero."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué miras antes de fondear",
+       "texto": "Nunca se decide por un solo factor. Tienes que valorar a la vez:\n- **Abrigo**: protección del viento y de la mar, también si el viento rola. Una cala abierta al viento que entra es una trampa.\n- **Profundidad**: suficiente para tu calado **incluso en bajamar**, sin ser tan grande que te obligue a largar muchísima cadena.\n- **Tipo de fondo** (tenedero).\n- **Corrientes**.\n- **Espacio** para entrar, salir y **bornear** sin tocar a nadie ni la costa.\n- **Información de la zona**: carta y derrotero, sobre todo si no la conoces (zonas de fondeo prohibido, cables submarinos, canales de paso)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marea",
+        "modo": "sonda"
+       },
+       "texto": "La sonda de la carta es la del cero hidrográfico: el agua real es esa sonda más la marea del momento. Al fondear, piensa en lo que habrá en la bajamar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El fondo: mejor llano",
+       "texto": "Busca un fondo **sin gran pendiente**. Si el fondo cae bruscamente de poca a mucha sonda, cuando el ancla trabaja tiende a resbalar cuesta abajo, hacia el agua profunda, y pierde agarre. Además la cadena queda con peor ángulo.\n\nY respeta el entorno: en el Mediterráneo español está prohibido, con carácter general, fondear sobre las praderas de **posidonia** (y de *Cymodocea*), e incluso en la arena de al lado si la cadena las toca o las barre al bornear. Si quieres quedarte sobre ellas, usa una boya autorizada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Los tenederos, de mejor a peor",
+       "texto": "- **Buenos**: **arena** compacta y **fango duro**. El ancla se entierra y agarra.\n- **Regulares**: **arcilla** (agarra, pero dura es resbaladiza y se pega a las uñas del ancla) y **cascajo** (grava, piedrecillas y conchas: el ancla se clava mal).\n- **Malos**: **fango blando** (el ancla se hunde sin encontrar resistencia), **algas** (el ancla no llega al fondo) y **piedra** (no se clava y puede quedar enrocada).\n\nPara saber qué fondo tienes: la carta lo indica con abreviaturas, y antiguamente se usaba el **escandallo**, un plomo con sebo que recoge una muestra."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Arena y fango duro, sí; fango blando, algas y piedra, no."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Fíjate en el adjetivo: **fango duro** es de los mejores tenederos y **fango blando** de los peores. En el examen aparecen juntos en las opciones a propósito."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Desconfía de las opciones con «solo», «únicamente» o «independientemente de»: elegir fondeadero siempre combina viento, profundidad, fondo, corrientes y espacio para bornear."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estos tenederos es el más adecuado para fondear?",
+       "opciones": {
+        "a": "Fango duro",
+        "b": "Fango blando",
+        "c": "Piedra"
+       },
+       "correcta": "a",
+       "explicacion": "El fango duro deja que el ancla se entierre y agarre. El fango blando no da resistencia y en la piedra el ancla no se clava."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Por qué no conviene fondear en un fondo con mucha pendiente?",
+       "opciones": {
+        "a": "Porque la sonda deja de funcionar",
+        "b": "Porque el ancla tiende a garrear hacia el agua profunda",
+        "c": "Porque está prohibido por el RIPA"
+       },
+       "correcta": "b",
+       "explicacion": "En pendiente, el ancla resbala cuesta abajo cuando trabaja y pierde agarre. Por eso se buscan fondos llanos."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t06",
+      "and-2022-c2-t05",
+      "and-2022-c3-t06",
+      "and-2024-c2-t06",
+      "and-2025-c1-t05",
+      "and-2025-c3-t06",
+      "and-2026-c2-t05"
+     ],
+     "chuleta": [
+      "Fondeadero = el lugar; tenedero = la calidad del fondo.",
+      "Valora abrigo, profundidad (en bajamar), fondo, corrientes, espacio para bornear y carta/derrotero.",
+      "Fondo llano: con mucha pendiente el ancla garrea hacia lo profundo.",
+      "Buenos: arena y fango duro. Regulares: arcilla y cascajo. Malos: fango blando, algas y piedra.",
+      "Prohibido fondear sobre posidonia (ni que la cadena la toque al bornear); sobre ella, solo boya autorizada."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones náuticas y programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      },
+      {
+       "titulo": "BOE – Real Decreto 191/2026, conservación de las praderas de fanerógamas marinas del Mediterráneo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-5877"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Elección del lugar de fondeo y del tenedero, contenido oficial",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.3"
+      },
+      {
+       "dato": "Factores: viento, profundidad, tipo de fondo, corrientes y espacio para bornear, entre otros",
+       "fuente": "Preguntas and-2024-c2-t06, and-2026-c2-t05"
+      },
+      {
+       "dato": "No conviene un fondo con gran pendiente ni que pase bruscamente de poca a mucha sonda; consultar derrotero; espacio para entrar y salir",
+       "fuente": "Preguntas and-2022-c3-t06, and-2025-c1-t05"
+      },
+      {
+       "dato": "Fango duro: el mejor de las opciones de examen; fango blando: el menos apropiado (arcilla y cascajo, intermedios)",
+       "fuente": "Preguntas and-2020-c1-t06, and-2022-c2-t05, and-2025-c3-t06 (la clasificación buenos/regulares/malos es convención didáctica, sin norma oficial)"
+      },
+      {
+       "dato": "Prohibido con carácter general fondear sobre praderas de Posidonia oceanica y Cymodocea nodosa en el Mediterráneo español, y en arena próxima si la cadena las toca o les afecta el borneo; solo boyas de bajo impacto autorizadas",
+       "fuente": "RD 191/2026, de 11 de marzo (BOE-A-2026-5877), arts. 1.2 y 5, en vigor desde el 2-4-2026; Ley 42/2007, art. 57.1"
+      },
+      {
+       "dato": "Sonda real = sonda de la carta (cero hidrográfico) + altura de marea",
+       "fuente": "Definición de cero hidrográfico, IHM / cartas náuticas españolas"
+      }
+     ]
+    },
+    {
+     "id": "per-2-4",
+     "curso": "per",
+     "ut": 2,
+     "titulo": "Fondeo a la gira: la maniobra",
+     "minutos": 14,
+     "objetivos": [
+      "Conocer los pasos de la maniobra de fondeo con una sola ancla",
+      "Saber cómo se maneja el molinete (embrague y freno) para fondear y para levar",
+      "Calcular la cadena que hay que filar según la profundidad y el tiempo",
+      "Conocer la señal de buque fondeado"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es fondear a la gira",
+       "texto": "Es la forma normal de fondear: **una sola ancla por la proa**, y el barco queda libre para girar a su alrededor según le empujen el viento y la corriente. Es sencillo y el barco se orienta solo, aproando al viento o a la corriente.\n\nA cambio, necesitas espacio libre alrededor para ese giro (lo verás en la lección siguiente)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El molinete en dos palabras",
+       "texto": "El molinete es la máquina que vira (recoge) la cadena. Tres piezas:\n- **Barbotén**: la rueda con huecos donde encajan los eslabones.\n- **Embrague**: acopla el barbotén al motor. Embragado, el barbotén gira con el motor; desembragado, gira «loco».\n- **Freno**: bloquea el barbotén o deja que gire, con más o menos fuerza.\n\n**Para levar**: embragas y dejas libre el freno, y el motor vira la cadena.\n\n📝 Nota del profe: muchos molinetes eléctricos pequeños no tienen embrague y largan el ancla con el propio motor. El examen pregunta por el molinete con embrague y freno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La maniobra de fondeo, paso a paso",
+       "texto": "1. Prepara: mira la carta y el parte, y deja el ancla **a la pendura** (colgando, lista para largar).\n2. En el molinete, **aprieta el freno y desembraga**: el ancla queda sujeta solo por el freno.\n3. Llega despacio, **proa al viento o a la corriente**, vigilando la sonda.\n4. Con el barco parado, voz de **«¡fondo!»** y aflojas el freno: la cadena sale por su peso y tú **controlas la velocidad con el freno**.\n5. Mientras el barco cae hacia atrás (o das atrás muy suave), sigues **filando** cadena para que se tienda por el fondo y no caiga amontonada sobre el ancla.\n6. Haces firme la cadena y compruebas que el ancla agarra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Antes de fondear: **freno puesto y desembragar**, y luego dosificar con el freno. Soltar freno y desembrague sin control deja la cadena disparada. Y si te preguntan cómo **levar**: **embragar y dejar libre el freno**. No mezcles las dos secuencias."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuánta cadena filar",
+       "texto": "La cadena debe quedar con buena parte tendida en el fondo, para que el tiro sobre el ancla sea casi horizontal y la clave en lugar de arrancarla.\n\nComo regla práctica (no es una norma):\n- **Buen tiempo**: unas **3 veces la profundidad**.\n- **Mal tiempo**, viento fuerte o mar: **5 veces o más**.\n\nSi la línea de fondeo es de cabo en vez de cadena, hace falta más longitud, porque pesa menos y no forma la misma curva. Mide la profundidad con la sonda y cuenta la marea."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Poca cadena = tiro hacia arriba = el ancla se arranca. Más cadena, mejor agarre."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Comprobar que agarra",
+       "texto": "Con la cadena filada, da **atrás suave** con el motor: si la cadena se tensa y el barco se queda quieto, el ancla ha agarrado. Toma enseguida **referencias en tierra** (dos objetos que veas alineados, o demoras) o activa la **alarma de fondeo** del GPS: te servirán para vigilar el fondeo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La señal de buque fondeado",
+       "texto": "El reglamento de abordajes (RIPA, regla 30) pide a un buque fondeado:\n- **De día**: **una bola negra** a proa, en el lugar más visible.\n- **De noche**: una **luz blanca todo horizonte** a proa (y otra más baja a popa). Si mides **menos de 50 m**, basta **una luz blanca todo horizonte** donde mejor se vea.\n\nExcepción: las embarcaciones de **menos de 7 m** no están obligadas si fondean lejos de canales, pasos, fondeaderos y zonas por donde navegan otros barcos."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "fondeado",
+        "vista": "babor",
+        "dia": true
+       },
+       "texto": "Buque fondeado de menos de 50 m: de noche, una luz blanca todo horizonte donde mejor se vea; de día, una bola negra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Una embarcación de recreo de 8, 10 o 12 m fondeada debe mostrar la bola de día **siempre**: la exención solo es para las de menos de 7 m y fuera de zonas de paso o fondeo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás fondeando con buen tiempo en 5 m de agua. ¿Cuánta cadena filas como mínimo, aproximadamente?",
+       "opciones": {
+        "a": "5 m",
+        "b": "15 m",
+        "c": "50 m"
+       },
+       "correcta": "b",
+       "explicacion": "Con buen tiempo, unas 3 veces la profundidad: 3 × 5 = 15 m. Con mal tiempo, 5 veces o más."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo dejas el molinete justo antes de largar el ancla para fondear?",
+       "opciones": {
+        "a": "Embragado y con el freno suelto",
+        "b": "Con el freno puesto y desembragado",
+        "c": "Desembragado y con el freno suelto"
+       },
+       "correcta": "b",
+       "explicacion": "Freno puesto y desembragado: al aflojar el freno, la cadena sale por su peso y tú controlas la velocidad. Embragado y con el freno suelto es la posición de levar."
+      }
+     ],
+     "practica": [
+      "and-2022-c1-t05",
+      "and-2025-c1-t06",
+      "and-2026-c1-t06"
+     ],
+     "chuleta": [
+      "A la gira: una sola ancla por la proa; el barco gira libre.",
+      "Molinete: barbotén (donde encajan los eslabones), embrague y freno.",
+      "Fondear: freno puesto, desembragar, «¡fondo!» y dosificar con el freno. Levar: embragar y freno libre.",
+      "Cadena: unas 3 veces la profundidad con buen tiempo; 5 o más con mal tiempo.",
+      "Fondeado: bola de día; luz blanca todo horizonte de noche. Menores de 7 m exentos fuera de zonas de paso."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento Internacional para Prevenir los Abordajes (RIPA/COLREG 1972)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-15605"
+      },
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones náuticas y programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa: fondeo a la gira con un ancla (maniobra, longitud del fondeo); molinete: barbotén, embrague y freno",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.3; RD 875/2014, anexo II, UT 1 §1.3"
+      },
+      {
+       "dato": "Antes de fondear: aplicar el freno y desembragar para controlar la salida de la cadena",
+       "fuente": "Pregunta and-2026-c1-t06"
+      },
+      {
+       "dato": "Para levar: embragar (el barbotén/molinete) y dejar libre el freno",
+       "fuente": "Preguntas and-2022-c1-t05, and-2025-c1-t06"
+      },
+      {
+       "dato": "Longitud de cadena ≈ 3 veces la profundidad con buen tiempo y 5 o más con mal tiempo",
+       "fuente": "Regla práctica de marinería, sin norma oficial; ninguna pregunta del banco da cifra"
+      },
+      {
+       "dato": "Fondeado: a proa luz blanca todo horizonte o una bola; a popa, más baja, otra luz blanca; < 50 m puede llevar una sola luz blanca todo horizonte",
+       "fuente": "RIPA (BOE-A-1977-15605) regla 30 a) y b); anexo I (marcas negras)"
+      },
+      {
+       "dato": "Exención para < 7 m fondeadas fuera de canal angosto, paso, fondeadero o zona de navegación frecuente",
+       "fuente": "RIPA regla 30 e)"
+      }
+     ]
+    },
+    {
+     "id": "per-2-5",
+     "curso": "per",
+     "ut": 2,
+     "titulo": "Borneo, garreo y vigilancia del fondeo",
+     "minutos": 12,
+     "objetivos": [
+      "Distinguir bornear de garrear (y de rolar o escorar)",
+      "Estimar el círculo de borneo y saber cómo se reduce",
+      "Conocer las causas del garreo y cómo vigilar el fondeo: marcas en tierra y alarma de sonda"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Bornear",
+       "texto": "**Bornear** es el giro del barco **alrededor de su ancla** cuando cambian el viento o la corriente. Es normal y no es ningún problema: el barco simplemente se reorienta.\n\nLo que sí tienes que prever es el espacio que necesita para hacerlo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El círculo de borneo",
+       "texto": "Al bornear, la proa puede acabar en cualquier punto alrededor del ancla. Para quedarte del lado seguro, estima el radio del círculo como:\n\n**radio ≈ cadena filada + eslora**\n\nEs una estimación por exceso (la cadena no está nunca totalmente estirada en horizontal), y por eso es buena para planificar. Dentro de ese círculo no puede haber bajos, costa, boyas ni otros barcos, y no debes fondear dentro del círculo de otro."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo reducir el borneo",
+       "texto": "- **Filar menos cadena**, siempre que el tiempo lo permita (con menos cadena, el ancla agarra peor).\n- **Fondear una segunda ancla**: con dos anclas el barco gira mucho menos. Es una maniobra más complicada y con riesgo de que las cadenas se enreden, pero es la herramienta clásica para fondeaderos estrechos."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Garrear",
+       "texto": "**Garrear** es que el ancla **no agarra y se arrastra por el fondo**, de modo que el barco va derivando con el viento. Es el gran peligro del fondeo.\n\nCausas habituales:\n- **Mal tenedero**: fango blando, algas, piedra, fondo en pendiente.\n- **Poca cadena**: el tiro va hacia arriba y desclava el ancla.\n- **Mala maniobra**: cadena amontonada sobre el ancla, ancla sin clavar.\n- **Más viento o mar** de lo previsto.\n- Ancla inadecuada o sucia (con algas o fango pegado)."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Bornear = el barco gira alrededor del ancla. Garrear = el ancla se arrastra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los distractores de siempre: **rolar** es el cambio de dirección del **viento**, **escorar** es inclinarse a una banda, y **enrocarse** es que el ancla quede atrapada en las piedras. Ninguno es garrear ni bornear."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Vigilar el fondeo",
+       "texto": "- **Marcas en tierra**: dos objetos que veas alineados (una enfilación) o la demora a un punto fijo. Si la enfilación se abre o la demora cambia más de lo que explica el borneo, estás garreando.\n- **Alarma de sonda**: si el barco se mueve, la profundidad cambia; ajusta los límites teniendo en cuenta la marea.\n- **Alarma de fondeo del GPS o el plotter**: salta si sales de un radio que tú fijas.\n- **La cadena**: los tirones bruscos o una vibración rara suelen indicar que el ancla está arando el fondo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si garreas",
+       "texto": "Actúa enseguida:\n- Arranca el motor y da **avante suave** para aliviar la cadena.\n- Si hay sitio y el fondo es bueno, **fila más cadena**.\n- Si no agarra, **leva y fondea de nuevo** en otro punto o con mejor tenedero; con mal tiempo, valora una segunda ancla o cambiar de fondeadero."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Una pregunta anulada preguntaba cómo reducir el radio de borneo. Quédate con la idea: se reduce **acortando la cadena** o **fondeando una segunda ancla**; dar máquina no cambia el círculo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás fondeado y el viento cambia de dirección: el barco gira lentamente alrededor de su ancla. ¿Qué está haciendo?",
+       "opciones": {
+        "a": "Garrear",
+        "b": "Bornear",
+        "c": "Rolar"
+       },
+       "correcta": "b",
+       "explicacion": "Girar alrededor del ancla es bornear. Rolar lo hace el viento y garrear es arrastrar el ancla."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Fondeas con 20 m de cadena filada en un barco de 10 m de eslora. ¿Qué radio de borneo deberías prever, aproximadamente?",
+       "opciones": {
+        "a": "10 m",
+        "b": "20 m",
+        "c": "30 m"
+       },
+       "correcta": "c",
+       "explicacion": "Radio ≈ cadena filada + eslora = 20 + 10 = 30 m. Es una estimación por exceso que te deja margen."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t06",
+      "and-2022-c2-t06",
+      "and-2023-c2-t06",
+      "and-2024-c1-t05",
+      "and-2024-c3-t06",
+      "and-2025-c2-t06",
+      "and-2025-c3-t05"
+     ],
+     "chuleta": [
+      "Bornear: el barco gira alrededor del ancla. Garrear: el ancla se arrastra.",
+      "Radio de borneo ≈ cadena filada + eslora. Se reduce con menos cadena o una segunda ancla.",
+      "Garreo: mal tenedero, poca cadena, mala maniobra o más viento del previsto.",
+      "Vigilancia: enfilaciones o demoras en tierra, alarma de sonda y alarma de fondeo del GPS.",
+      "Rolar = el viento cambia; escorar = inclinarse; enrocarse = ancla atrapada."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones náuticas y programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa: círculo de borneo, garreo y vigilancia (marcas, alarma de sonda)",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.3"
+      },
+      {
+       "dato": "Bornear: girar alrededor del ancla (no rolar ni escorar)",
+       "fuente": "Preguntas and-2024-c1-t05, and-2024-c3-t06"
+      },
+      {
+       "dato": "Garrear: el ancla no agarra y se desplaza por el fondo (no es enrocarse ni separarse de la cadena)",
+       "fuente": "Preguntas and-2022-c2-t06, and-2023-c2-t06, and-2025-c2-t06, and-2025-c3-t05"
+      },
+      {
+       "dato": "Pregunta del radio de borneo anulada (todas por buenas); se reduce con menos cadena o segunda ancla",
+       "fuente": "Pregunta and-2021-c1-t06 y nota informativa del Tribunal (1ª conv. 2021)"
+      },
+      {
+       "dato": "Radio de borneo ≈ cadena filada + eslora",
+       "fuente": "Estimación geométrica por exceso (didáctica, sin norma)"
+      }
+     ]
+    },
+    {
+     "id": "per-2-6",
+     "curso": "per",
+     "ut": 2,
+     "titulo": "El orinque y la maniobra de levar",
+     "minutos": 12,
+     "objetivos": [
+      "Saber qué es el orinque, dónde se afirma y para qué sirve",
+      "Conocer los pasos y los términos de la maniobra de levar: virar, a pique, zarpar, levar, clara",
+      "Saber qué hacer si al levar la cadena tira por largo con mucha fuerza"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El orinque",
+       "texto": "El **orinque** es un cabo que se afirma a la **cruz del ancla** (la parte de abajo, donde se unen los brazos) y que en el otro extremo lleva una **boya o boyarín** (puede valer cualquier flotador visible). Sirve para dos cosas:\n- **Señalar dónde está el ancla**, para que nadie fondee encima de ella ni te la enganche.\n- **Recuperar el ancla si se enroca**: tirando del orinque, el ancla sale «al revés», por la cruz, y se desengancha.\n\nSu longitud tiene que ser algo mayor que la profundidad en **pleamar**, para que el boyarín no quede sumergido."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Orinque: cabo a la cruz del ancla con un boyarín en la punta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuándo usarlo",
+       "texto": "Sobre todo en **fondos de piedra** o con restos donde el ancla se puede enrocar, y en fondeaderos concurridos donde conviene que los demás vean dónde está tu ancla.\n\nAl largarlo, cuida de que no se enrede con la cadena ni con la hélice. Mirar el boyarín te da una idea de dónde está el ancla, pero para vigilar si garreas son mucho más fiables las marcas en tierra y el GPS."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La pregunta del orinque con la opción «nos ayuda a conocer si la embarcación está garreando» fue anulada y se dieron todas por buenas. Lo seguro es: señala la posición del ancla, va a su cruz y lleva un boyarín o cualquier flotador. Y «guardín de fondeo» no existe: los guardines son del timón."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las palabras del fondeo",
+       "texto": "- **Filar**: soltar cadena de forma controlada.\n- **Virar** (o cobrar): recoger cadena con el molinete.\n- **A la pendura**: el ancla cuelga junto a la proa, sin tocar el fondo, lista para fondear.\n- **A pique**: la cadena está **vertical**, con el ancla aún en el fondo justo debajo de la proa.\n- **Zarpar**: el momento en que el ancla **se despega del fondo**.\n- **Levar**: subir el ancla hasta su sitio.\n- **Clara**: el ancla sale a la vista limpia, sin cadena ni nada enredado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La maniobra de levar",
+       "texto": "1. Arranca el motor y prepara el molinete: **embragado y con el freno libre**.\n2. Vira la cadena mientras das **avante muy suave hacia el ancla**, para que el barco vaya hacia ella y el molinete no tenga que arrastrarlo.\n3. Cuando la cadena queda vertical, estás **a pique**.\n4. Sigue virando: el ancla **zarpa** (se despega).\n5. Súbela comprobando que viene **clara**, estíbala y tríncala.\n6. Quita la señal de fondeado (bola o luz)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si al levar la cadena **tira por largo con mucha fuerza** (tensa y hacia proa), el barco está lejos del ancla: da **unas paladas avante** para acercarte y quitarle tensión. Dar atrás o forzar el molinete lo empeora y puedes averiarlo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Al levar, la cadena queda vertical bajo la proa con el ancla todavía en el fondo. ¿Cómo se dice?",
+       "opciones": {
+        "a": "A la pendura",
+        "b": "A pique",
+        "c": "Clara"
+       },
+       "correcta": "b",
+       "explicacion": "A pique es la cadena vertical con el ancla aún en el fondo. A la pendura es el ancla colgando sin tocar fondo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Dónde se afirma el orinque?",
+       "opciones": {
+        "a": "En la cruz del ancla",
+        "b": "En el barbotén del molinete",
+        "c": "En la bita de proa"
+       },
+       "correcta": "a",
+       "explicacion": "El orinque va a la cruz del ancla y lleva un boyarín en el otro extremo: así marca la posición y permite zarparla tirando por la cruz."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t06",
+      "and-2021-c2-t05",
+      "and-2023-c1-t05",
+      "and-2024-c1-t06",
+      "and-2026-c1-t05"
+     ],
+     "chuleta": [
+      "Orinque: cabo a la cruz del ancla con boyarín; señala el ancla y la desenroca.",
+      "Longitud del orinque: algo más que la profundidad en pleamar.",
+      "Levar: molinete embragado y freno libre; avante suave hacia el ancla.",
+      "Orden: virar → a pique → zarpa → levar → clara → estibar y quitar la señal.",
+      "Tira por largo con fuerza: paladas avante, nunca forzar el molinete."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (titulaciones náuticas y programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa: orinque y maniobra de levar; términos virar, filar, a la pendura, a pique, levar, zarpar, clara",
+       "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.3; UT 1 §1.3"
+      },
+      {
+       "dato": "Orinque con boya o boyarín amarrado a la cruz del ancla para señalar su posición (no «guardín de fondeo»)",
+       "fuente": "Pregunta and-2026-c1-t05"
+      },
+      {
+       "dato": "Pregunta del orinque con «ayuda a saber si garreamos» anulada (todas por buenas)",
+       "fuente": "Pregunta and-2021-c2-t05 y nota informativa de 25-11-2021"
+      },
+      {
+       "dato": "Si al levar tira por largo con mucha fuerza: dar unas paladas avante (no atrás ni forzar el molinete)",
+       "fuente": "Preguntas and-2020-c3-t06, and-2023-c1-t05, and-2024-c1-t06"
+      },
+      {
+       "dato": "Guardines: cabos o cadenas del timón",
+       "fuente": "RD 875/2014, anexo II, UT 1 §1.4"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "ut": 5,
    "titulo": "Balizamiento",
    "intro": "Las boyas y balizas son las señales de tráfico del mar: te dicen por dónde va el canal, dónde hay un peligro y por qué lado pasarlo. En este tema aprendes a reconocer cada marca del sistema IALA (región A, la de España) por su color, su forma, su marca de tope y su luz. Es un tema muy agradecido: con cuatro reglas bien aprendidas sacas casi todas las preguntas.",

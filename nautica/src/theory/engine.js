@@ -16,9 +16,9 @@ export function buildSimulacro(estructura, banco, rng) {
   return { tipo: 'simulacro', titulo: 'Simulacro de examen', preguntas, faltan };
 }
 
-/** Examen real: las 45 preguntas de una convocatoria en su orden. */
+/** Examen real: todas las preguntas de una convocatoria en su orden (PY: genérico y luego navegación). */
 export function buildReal(banco, convocatoriaKey) {
-  const preguntas = banco.filter((q) => sittingKey(q.id) === convocatoriaKey).sort((a, b) => a.numero - b.numero);
+  const preguntas = banco.filter((q) => sittingKey(q.id) === convocatoriaKey).sort((a, b) => (a.orden ?? a.numero) - (b.orden ?? b.numero));
   return { tipo: 'real', titulo: preguntas[0]?.convocatoria ?? convocatoriaKey, preguntas, faltan: [] };
 }
 
@@ -29,8 +29,8 @@ export function buildPractica(banco, ut, rng, { soloFalladas = null } = {}) {
   return { tipo: 'practica', ut, preguntas: rng.shuffle(pool) };
 }
 
-/** "and-2023-c1-t07" / "and-2023-c1-q42" → "and-2023-c1" */
-export const sittingKey = (id) => id.replace(/-[tq]\d+$/, '');
+/** "and-2023-c1-t07" / "and-2023-c1-q42" → "and-2023-c1"; PY: "and-py-2023-c1-g07" / "-n15" → "and-py-2023-c1" */
+export const sittingKey = (id) => id.replace(/-[tqgn]\d+$/, '');
 
 /** Convocatorias disponibles en el banco (completas: con las preguntas de todos los bloques). */
 export function convocatorias(estructura, banco) {

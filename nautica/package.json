@@ -2,7 +2,7 @@
   "name": "nautica-per",
   "version": "0.1.0",
   "private": true,
-  "description": "Preparación interactiva de ejercicios de carta náutica (PER, Patrón de Yate)",
+  "description": "Preparador del examen de PER y Patrón de Yate: teoría, carta y simulacros",
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.js",

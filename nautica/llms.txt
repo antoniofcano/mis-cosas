@@ -1,6 +1,7 @@
-# Carta Náutica PER — guía para agentes de IA
+# Patrón · Preparador PER y PY — guía para agentes de IA
 
-> App estática para practicar ejercicios de carta náutica (PER / Patrón de Yate, carta IHM L105 Enseñanza, Estrecho de Gibraltar).
+> App estática para preparar el examen teórico de PER y Patrón de Yate (Andalucía): preguntas reales por bloques con explicación,
+> simulacros y exámenes reales corregidos con las reglas oficiales, y ejercicios de carta (carta IHM L105 Enseñanza, Estrecho de Gibraltar).
 > Si ayudas a un alumno, NO leas la página entera: usa una de estas vías baratas (de menos a más tokens).
 
 ## 1. Estado actual en texto (recomendado)
@@ -17,13 +18,18 @@
 - `nautica.points()` marcas de la carta con coordenadas
 - `nautica.lib.{compass,kinematics,positioning,mercator,format}` motores de cálculo puros
 
-## 3. URLs (todo el estado va en el hash)
-- `#/` inicio · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible · `#/examenes` bancos de examen
-- `#/examenes/<banco>/<idPregunta>` pregunta real · `#/carta` · `#/teoria` · `#/progreso`
+## 3. URLs (todo el estado va en el hash; tit = per | py)
+- `#/` portada · `#/<tit>` panel de la titulación (progreso por bloque)
+- `#/<tit>/teoria` bloques · `#/<tit>/teoria/ut/<n>?s=<semilla>[&f=1]` práctica de un bloque (f=1: solo falladas)
+- `#/<tit>/examenes` simulacros y convocatorias · `#/<tit>/test/simulacro?s=<semilla>` · `#/<tit>/test/real/<convocatoria>`
+- `#/<tit>/carta` ejercicios de carta · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible
+- `#/examenes/<banco>/<idPregunta>` pregunta real de carta resuelta · `#/mesa` mesa de cartas · `#/laminas` · `#/conceptos` · `#/progreso`
+- Durante un examen en curso, `nautica.state()` NO muestra soluciones: no las des hasta que el alumno entregue.
 
 ## 4. Datos en JSON
 - `data/chart-105.json` puntos notables (lat/lon decimales, W negativo), costa, declinación.
 - `data/exams/index.json` y `data/exams/<banco>.json` preguntas reales con respuesta oficial.
+- Teoría: `data/exams/andalucia-per-teoria.json` (+ `-explicaciones.json`) y `data/exams/andalucia-py-teoria.json`; estructura de cada examen en `src/theory/blocks.js` (`TITULACIONES`).
 - En la vista de una pregunta real, `nautica.state()` incluye la resolución calculada paso a paso (validada contra la plantilla).
 
 ## Dibujo del alumno

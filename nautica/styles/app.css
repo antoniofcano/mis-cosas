@@ -247,3 +247,44 @@ svg.il .il-water-cut { fill: #7dd3fc; opacity: .5; }
 svg.il .il-part { stroke: #94a3b8; fill: #94a3b8; font-size: 10px; } svg.il line.il-part { stroke-width: 1.2; }
 svg.il .il-part.on { stroke: #e11d48; fill: #e11d48; font-weight: 700; } svg.il text.il-part { stroke: none; }
 .il-fo { font: 11px/1.35 system-ui, sans-serif; color: var(--text); }
+
+/* --- Organización por titulación: cabecera, portada y panel --- */
+header.top .tit-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+header.top .tit-switch a { padding: .2rem .7rem; text-decoration: none; color: var(--muted); font-weight: 600; font-size: .9rem; }
+header.top .tit-switch a.active { background: var(--accent); color: #fff; }
+.portada .hero { padding: 1rem 0 .5rem; }
+.portada .hero h1 { margin-bottom: .3rem; }
+.portada .lead { font-size: 1.05rem; max-width: 60rem; }
+.tit-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+.tit-card { display: flex; gap: 1rem; padding: 1rem; background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); }
+.tit-card:hover, .tit-card.last { border-color: var(--accent); }
+.tit-card h2 { margin: 0 0 .3rem; }
+.tit-card ul { margin: .4rem 0 .8rem; padding-left: 1.1rem; color: var(--muted); }
+.tit-icon { font-size: 2.6rem; line-height: 1; }
+.tit-head { display: flex; gap: .8rem; align-items: center; }
+.tit-head h1 { margin: 0; }
+.tit-head p { margin: .2rem 0 0; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .8rem; margin: 1rem 0; }
+.path { display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); }
+.path:hover { border-color: var(--accent); }
+.path h2 { margin: 0 0 .3rem; font-size: 1.2rem; }
+.path p { margin: .2rem 0; color: var(--muted); font-size: .92rem; }
+.path p.big { color: var(--text); font-size: 1.15rem; font-weight: 700; margin-top: .6rem; }
+.bar { height: 6px; background: var(--accent-2); border-radius: 3px; overflow: hidden; margin: .4rem 0; }
+.bar span { display: block; height: 100%; background: var(--accent); }
+p.next { background: var(--accent-2); padding: .6rem .8rem; border-radius: var(--radius); }
+.stat.ok { color: var(--ok); }
+.stat.warn { color: var(--warn); }
+pre.qcontext { white-space: pre-wrap; background: var(--accent-2); padding: .5rem .7rem; border-radius: 6px; font-size: .85rem; }
+details.qtable { margin: .4rem 0; }
+img.qfig.wide { max-width: 100%; width: 100%; height: auto; }
+@media (max-width: 640px) { header.top nav a { padding: .2rem .45rem; font-size: .9rem; } .tit-card { flex-direction: column; gap: .4rem; } }
+.estado { font-size: .8rem; padding: .1rem .5rem; border-radius: 999px; color: var(--muted); border: 1px solid var(--border); }
+.estado.ok { color: var(--ok); border-color: var(--ok); }
+.estado.close { color: var(--close); border-color: var(--close); }
+.estado.warn { color: var(--warn); border-color: var(--warn); }
+@media (max-width: 640px) {
+  table.stats { display: block; overflow-x: auto; }
+  header.top nav { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+  header.top nav a { white-space: nowrap; }
+}

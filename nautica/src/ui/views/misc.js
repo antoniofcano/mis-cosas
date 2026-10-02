@@ -6,13 +6,15 @@ import { GLOSSARY } from '../../nautical/glossary.js';
 import { chartWidget } from '../chart-widget.js';
 import { fmtLat, fmtLon } from '../../math/format.js';
 import { link } from '../router.js';
+import { crumbs } from '../titulacion.js';
+import { TITULACIONES } from '../../theory/blocks.js';
 import { voice, spanishVoices } from '../voice.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
 
-export function theoryView() {
+export function theoryView({ tit }) {
   const el = h('div.theory',
-    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Conceptos'),
+    crumbs(null, 'Conceptos de carta'),
     h('h1', 'Conceptos y métodos de carta'),
     h('section', h('h2', 'Convención de signos'),
       h('p', 'Este (E) = +, Oeste (W) = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +, babor −). Rs = Rv + Ab.')),
@@ -34,7 +36,7 @@ export function progressView({ progress }) {
   } });
   const exams = Object.values(progress.get().exams);
   const el = h('div.progress',
-    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Progreso'),
+    crumbs(null, 'Progreso'),
     h('h1', 'Tu progreso'),
     h('table.stats', h('thead', h('tr', h('th', 'Ejercicio'), h('th', 'Intentos'), h('th', 'Aciertos'), h('th', '%'), h('th', 'Errores frecuentes'))),
       h('tbody', rows.map(({ e, st }) => h('tr',
@@ -42,6 +44,11 @@ export function progressView({ progress }) {
         h('td', st.rate == null ? '—' : `${Math.round(st.rate * 100)}%`),
         h('td.small', Object.entries(st.mistakes ?? {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} (${n})`).join(', ') || '—'))))),
     h('p', `Preguntas de examen respondidas: ${exams.length} · correctas: ${exams.filter((x) => x.ok).length}`),
+    Object.values(TITULACIONES).map((T) => {
+      const tests = progress.tests().filter((t) => (t.tit ?? 'per') === T.id).reverse();
+      return tests.length ? h('section', h('h2', `${T.icon} Exámenes ${T.sigla}`),
+        h('ul.small', tests.slice(0, 20).map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos}/${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
+    }),
     h('section', h('h2', 'Ajustes'),
       h('label.field', h('span.lbl', 'Tolerancia de corrección'),
         h('select', { onchange: (ev) => progress.setSetting('toleranceFactor', Number(ev.target.value)) },
@@ -103,8 +110,8 @@ export function chartView({ ctx }) {
       : 'No has cargado tu carta escaneada. La carta vectorial funciona igualmente.';
   });
   const el = h('div.chart-page',
-    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Carta'),
-    h('h1', chart.name),
+    crumbs(null, 'Mesa de cartas'),
+    h('h1', `Mesa de cartas · ${chart.name}`),
     h('p.muted', 'Herramientas: ✋ mover (la carta, tus puntos, textos, extremos de línea y el transportador, también girar su hilo; toca un punto para ver u ocultar sus coordenadas) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (interruptor: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta; arrastra el centro, gira el hilo dentro del cuadrado, «Trazar») · 📍 punto · 🔤 texto · 🧽 goma · 🏷 coordenadas sí/no · ⌖ situar por coordenadas. Guías: arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba) para sacar un paralelo o un meridiano; tócala para escribir su valor exacto; suéltala sobre la escala para quitarla. El cruce de dos guías es el punto, y las herramientas se ajustan a él. Se ajustan a los faros y al centro del transportador.'),
     w.el,
     h('section', h('h2', 'Mi carta escaneada (opcional)'),
@@ -121,5 +128,5 @@ export function chartView({ ctx }) {
       h('tbody', chart.points().map((p) => h('tr', h('td', p.name), h('td', fmtLat(p.lat)), h('td', fmtLon(p.lon)), h('td.small', p.characteristic ?? ''))))),
     chart.source ? h('p.muted.small', `Fuente de datos: ${chart.source}`) : null,
   );
-  return { el, summary: () => `VISTA carta ${chart.id}\nDIBUJO ALUMNO: ${w.summary() || '(nada)'}\n${chart.points().map((p) => `${p.id}: ${p.name} ${fmtLat(p.lat)} ${fmtLon(p.lon)}`).join('\n')}` };
+  return { el, summary: () => `VISTA mesa de cartas ${chart.id}\nDIBUJO ALUMNO: ${w.summary() || '(nada)'}\n${chart.points().map((p) => `${p.id}: ${p.name} ${fmtLat(p.lat)} ${fmtLon(p.lon)}`).join('\n')}` };
 }

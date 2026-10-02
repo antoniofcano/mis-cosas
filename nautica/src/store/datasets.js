@@ -1,6 +1,8 @@
 // Acceso a los datos estáticos (carta, exámenes). En el navegador se cargan con fetch y se cachean.
 // Los datos viven en /data como JSON: legibles por personas, por la app y por agentes de IA.
 
+import { TITULACIONES } from '../theory/blocks.js';
+
 const cache = new Map();
 
 async function loadJSON(path) {
@@ -20,16 +22,14 @@ export const loadExamIndex = () => loadJSON('data/exams/index.json');
 export const loadExamBank = (file) => loadJSON(`data/exams/${file}`);
 
 /**
- * Banco completo de teoría PER: preguntas 1–41 (teoría) + 42–45 (carta, UT 11) + explicaciones del profe.
+ * Banco completo de teoría de una titulación (preguntas + explicaciones del profe).
+ * PER: preguntas 1–41 (teoría) + 42–45 (carta, UT 11). PY: las 40 de los dos módulos.
  * Si algún fichero no existe todavía, se devuelve lo que haya.
  */
-export async function loadTheoryBank() {
-  const opt = (p) => loadJSON(p).catch(() => null);
-  const [teoria, carta, expl] = await Promise.all([
-    opt('data/exams/andalucia-per-teoria.json'),
-    opt('data/exams/andalucia-per.json'),
-    opt('data/exams/andalucia-per-teoria-explicaciones.json'),
-  ]);
+export async function loadTheoryBank(tit = 'per') {
+  const d = TITULACIONES[tit]?.datos ?? TITULACIONES.per.datos;
+  const opt = (f) => (f ? loadJSON(`data/exams/${f}`).catch(() => null) : null);
+  const [teoria, carta, expl] = await Promise.all([opt(d.teoria), opt(d.carta), opt(d.explicaciones)]);
   const preguntas = [...(teoria?.preguntas ?? []), ...(carta?.preguntas ?? []).map((q) => ({ ...q, ut: 11, ut_titulo: 'Carta de navegación' }))];
   return { preguntas, explicaciones: expl ?? {} };
 }

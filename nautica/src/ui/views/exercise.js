@@ -11,6 +11,7 @@ import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { link, navigate } from '../router.js';
+import { tlink, crumbs, currentTit } from '../titulacion.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: '✅ Correcto',
@@ -22,7 +23,7 @@ const STATUS_TEXT = {
 
 export function exerciseView({ ctx, progress, params: route }) {
   const exercise = getExercise(route.parts[1]);
-  if (!exercise) return { el: h('p', 'Tipo de ejercicio no encontrado. ', h('a', { href: '#/' }, 'Volver')), summary: () => 'ERROR tipo no encontrado' };
+  if (!exercise) return { el: h('p', 'Tipo de ejercicio no encontrado. ', h('a', { href: tlink(currentTit(progress), ['carta']) }, 'Volver')), summary: () => 'ERROR tipo no encontrado' };
 
   const seed = Number(route.query.s) || randomSeed();
   if (!route.query.s) navigate(['ej', exercise.id], { s: seed }, { replace: true });
@@ -124,7 +125,7 @@ export function exerciseView({ ctx, progress, params: route }) {
   const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
   const el = h('div.exercise',
-    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › ', exercise.title),
+    crumbs(currentTit(progress), ['Carta', tlink(currentTit(progress), ['carta'])], exercise.title),
     h('header',
       h('h1', exercise.title),
       h('div.badges', exercise.levels.map((l) => h('span.badge', l)), h('span.badge.muted', `semilla ${seed}`)),

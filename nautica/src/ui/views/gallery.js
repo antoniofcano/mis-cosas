@@ -6,11 +6,12 @@ import { BUOYS } from '../../illustrations/buoys.js';
 import { SHIPS } from '../../illustrations/ships.js';
 import { SENALES } from '../../illustrations/situations.js';
 import { illustrationEls } from '../illustration.js';
+import { crumbs } from '../titulacion.js';
 
 export function galleryView() {
   const section = (title, specs) => h('section', h('h2', title), h('div.il-grid', illustrationEls(specs)));
   const el = h('div.gallery',
-    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › ', h('a', { href: '#/teoria' }, 'Teoría'), ' › Ilustraciones'),
+    crumbs(null, 'Láminas animadas'),
     h('h1', 'Láminas animadas'),
     h('p.muted', 'Las mismas ilustraciones que usa el profe en las explicaciones. Las luces parpadean con su ritmo real.'),
     section('🚩 Balizamiento (IALA región A)', [{ tipo: 'cardinales' }, ...Object.keys(BUOYS).filter((k) => !k.startsWith('cardinal')).map((clase) => ({ tipo: 'boya', clase }))]),

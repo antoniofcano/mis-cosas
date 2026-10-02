@@ -2793,6 +2793,881 @@
    ]
   },
   {
+   "ut": 4,
+   "titulo": "Legislación",
+   "intro": "Este tema no va de maniobrar, sino de las normas que tienes que respetar cuando navegas: cómo comportarte en un puerto, hasta dónde puedes acercarte a una playa, qué hacer cuando ves la bandera de buceo, dónde se pueden descargar las aguas sucias y la basura, qué bandera izar y dónde, cuándo tienes que acudir en auxilio de alguien y cómo proteger espacios como las praderas de posidonia. Son pocas cifras (200 m, 50 m, 3 nudos, 3 y 12 millas, 4 nudos, un tercio) y casi todas las preguntas giran en torno a ellas.",
+   "lecciones": [
+    {
+     "id": "per-4-1",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "En regla y dentro del puerto",
+     "minutos": 10,
+     "objetivos": [
+      "Saber qué necesita una embarcación de recreo para navegar en regla",
+      "Conocer a quién debes dejar paso en un puerto comercial",
+      "Recordar las normas de conducta habituales dentro de un puerto",
+      "Saber qué cubre el seguro obligatorio de responsabilidad civil"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Navegar en regla",
+       "texto": "Antes de soltar amarras, tu barco y tú tenéis que estar en regla:\n- Embarcación **registrada**, con su documentación y su **certificado de navegabilidad** en vigor.\n- **Seguro obligatorio** de responsabilidad civil.\n- El **equipo de seguridad** que corresponde a su zona de navegación.\n- Sin pasarte de la **zona de navegación** autorizada ni del **número máximo de personas**.\n- Gobernada por alguien con el **título** que corresponde a esa eslora, potencia y zona.\n\nAdemás, la Capitanía Marítima puede limitar la navegación o impedir la salida de puerto si las condiciones no son seguras, y sus instrucciones se cumplen."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El puerto comercial no es tu terreno",
+       "texto": "En las aguas de un puerto comercial rige el **RIPA**, pero con un matiz importante: el Reglamento de Ordenación de la Navegación Marítima (RD 186/2023) dice que las **embarcaciones de recreo de menos de 20 m** de eslora y los artefactos flotantes de recreo **no estorbarán** el tránsito de los demás buques.\n\nEn la práctica, **los barcos comerciales de todo tipo** (mercantes, pasaje, remolcadores, prácticos, pesqueros…) tienen preferencia. Ellos maniobran en espacios estrechos y con poca capacidad de reacción; tú, no. Da igual que vayas a vela: dentro del puerto la vela no te da ningún privilegio."
+      },
+      {
+       "tipo": "clave",
+       "texto": "En un puerto comercial, la embarcación de recreo se aparta: no estorba el tránsito de los buques, vaya a vela o a motor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Normas de conducta en puerto",
+       "texto": "Cada puerto tiene su reglamento y sus ordenanzas, y las reglas que se repiten en casi todos son:\n- Velocidad reducida, la que fije el puerto, y sin levantar ola.\n- Por regla general, **el que sale tiene preferencia sobre el que entra**, salvo que la autoridad portuaria o el control de tráfico indiquen otra cosa.\n- **Prohibido fondear** en canales de acceso, bocanas y zonas de maniobra (también para las embarcaciones de recreo), salvo emergencia.\n- No bañarse ni pescar donde se estorbe la navegación.\n- **Ningún vertido**: ni basuras, ni sentinas, ni aguas sucias.\n- Pabellón nacional izado al entrar y salir, defensas listas al atracar y amarras reforzadas si hay temporal.\n- Atender siempre las instrucciones de la autoridad portuaria y de Capitanía."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Trampa clásica: «los que entran tienen preferencia sobre los que salen» es **falso**; la regla general es la contraria. Y otra: las embarcaciones de recreo **no** están exentas de la prohibición de fondear en los canales de acceso."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El seguro obligatorio",
+       "texto": "Lo exige el RD 607/1999 a las embarcaciones de recreo **a motor (incluidas las motos náuticas)** y a las **sin motor de más de 6 m** de eslora.\n\nCubre la responsabilidad civil frente a **terceros**: muerte o lesiones, daños materiales y daños a otros buques por colisión o sin contacto. Los límites son 120.202,42 € por víctima (240.404,84 € por siniestro) en daños personales y 96.161,94 € por siniestro en daños materiales.\n\n**No cubre** los daños de tu propio barco, ni los que sufran el propietario, el tomador o el patrón. Para regatas y competiciones hace falta un seguro especial."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas a vela en un velero de 9 m por la dársena de un puerto comercial y se te acerca un remolcador que va a maniobrar. ¿Quién debe apartarse?",
+       "opciones": {
+        "a": "El remolcador, porque un velero tiene preferencia sobre un buque de motor",
+        "b": "Tú: la embarcación de recreo no debe estorbar el tránsito de los buques en el puerto",
+        "c": "El que llegara primero al puerto"
+       },
+       "correcta": "b",
+       "explicacion": "En las aguas de servicio de los puertos comerciales, las embarcaciones de recreo de menos de 20 m no estorban el tránsito de los demás buques. La preferencia de la vela del RIPA no te sirve aquí para obligar a un buque comercial a maniobrar por ti."
+      }
+     ],
+     "practica": [
+      "and-2024-c1-t12",
+      "and-2025-c3-t12",
+      "and-2026-c2-t11"
+     ],
+     "chuleta": [
+      "En regla: registro y certificado en vigor, seguro, equipo de seguridad, zona y personas autorizadas y titulación adecuada.",
+      "Puerto comercial: la embarcación de recreo de menos de 20 m no estorba a los buques (RD 186/2023).",
+      "Preferencia: los comerciales de todo tipo. Regla general: el que sale antes que el que entra.",
+      "Prohibido fondear en canales de acceso y bocanas, también al recreo.",
+      "Seguro obligatorio: motor (y motos) y sin motor de más de 6 m. Solo cubre a terceros."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – RD 186/2023, Reglamento de Ordenación de la Navegación Marítima",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+      },
+      {
+       "titulo": "BOE – RD 607/1999, seguro obligatorio de embarcaciones de recreo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1999-9655"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Las embarcaciones de recreo de eslora total inferior a 20 m y los artefactos flotantes de recreo no estorbarán el tránsito del resto de buques en las aguas de servicio de los puertos comerciales; en ellas rige el RIPA",
+       "fuente": "RD 186/2023 (BOE-A-2023-7410), art. 46.1 y 46.2, vigente (consolidado a 30-12-2025)"
+      },
+      {
+       "dato": "Preferencia de los barcos comerciales de todo tipo en puerto si la autoridad no indica otra cosa",
+       "fuente": "Plantilla and-2025-c3-t12 (c); coherente con RD 186/2023, art. 46.2"
+      },
+      {
+       "dato": "Regla general: la maniobra de salida tiene preferencia sobre la de entrada; prohibido fondear en canales de acceso y fuera de las zonas autorizadas, también al recreo",
+       "fuente": "Ordenanzas portuarias (p. ej., Ordenanza de tráfico marítimo del Puerto de Ceuta, BOE-A-2021-8930: «tendrá prioridad la maniobra de salida sobre la de entrada»); RIPA regla 9 g); plantillas and-2023-c1-t12 (a falsa) y and-2026-c2-t12 (b falsa)"
+      },
+      {
+       "dato": "Seguro obligatorio: embarcaciones a motor (incluidas motos náuticas) y sin motor de eslora superior a 6 m",
+       "fuente": "RD 607/1999 (BOE-A-1999-9655), art. 2, vigente"
+      },
+      {
+       "dato": "Cubre muerte o lesiones, daños materiales y pérdidas económicas de terceros y daños a buques por colisión o sin contacto; límites 20 M pta (120.202,42 €) por víctima, 40 M pta (240.404,84 €) por siniestro, 16 M pta (96.161,94 €) por siniestro en daños materiales",
+       "fuente": "RD 607/1999, arts. 6 y 8"
+      },
+      {
+       "dato": "No cubre los daños de la propia embarcación, del tomador, naviero o propietario, ni la muerte o lesiones del patrón; seguro especial para regatas",
+       "fuente": "RD 607/1999, arts. 3.2 y 7"
+      },
+      {
+       "dato": "Bandera nacional al entrar y salir de puerto",
+       "fuente": "RD 2335/1980, art. 4"
+      }
+     ]
+    },
+    {
+     "id": "per-4-2",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Playas, zonas de baño y reservas marinas",
+     "minutos": 10,
+     "objetivos": [
+      "Saber qué se puede y qué no se puede hacer en una zona de baño balizada",
+      "Conocer la anchura de la zona de baño cuando la costa no está balizada (200 m y 50 m)",
+      "Recordar la velocidad máxima cerca de la costa (3 nudos)",
+      "Saber qué limitaciones pueden encontrarse en una reserva marina"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Dos situaciones distintas",
+       "texto": "Cerca de la costa te vas a encontrar dos casos, y el examen juega a confundirlos:\n- **Zona de baño balizada**: hay una línea de boyas esféricas **amarillas** (con señales de prohibido el paso entre ellas) que delimita el espacio reservado a los bañistas.\n- **Costa no balizada**: no hay boyas, pero la ley **presume** que existe una zona de baño junto a la orilla.\n\nLas dos están reguladas en el Reglamento General de Costas (artículo 73), y las reglas son muy diferentes en cada caso."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Zona de baño balizada: no se entra",
+       "texto": "Dentro de una zona de baño **debidamente balizada** está **prohibida la navegación deportiva y de recreo** y el uso de cualquier embarcación o artefacto flotante a vela o a motor. No hay excepción para motos náuticas, ni velocidad mínima que lo permita, ni «resguardo» a los bañistas que valga: simplemente, no se navega.\n\nPara llegar a la playa o salir de ella (lanzamiento y varada) se usan los **canales de acceso** señalizados: pasillos de 25 a 50 m de ancho, perpendiculares a la orilla, con la entrada marcada por una boya cónica verde (estribor, entrando) y otra cilíndrica roja (babor), y los lados con boyas amarillas. Se usan despacio, y son para embarcaciones y artefactos, no para bañarse."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Costa no balizada: 200 m y 50 m",
+       "texto": "Si el tramo de costa **no está balizado**, la zona de baño se entiende que ocupa una franja contigua a la orilla de:\n- **200 m en las playas**.\n- **50 m en el resto de la costa** (acantilados, rocas…).\n\nDentro de esa franja **sí puedes navegar**, pero **a 3 nudos como máximo** y tomando las precauciones necesarias para no poner en peligro a nadie. Además está **prohibido cualquier vertido** desde la embarcación.\n\nSi vas a acercarte a la playa, hazlo por los extremos, lo más perpendicular posible a la orilla y vigilando a los bañistas."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Balizada: prohibido navegar (solo por los canales). No balizada: se navega, pero a 3 nudos como máximo dentro de los 200 m (playas) o 50 m (resto de costa)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El examen mezcla las dos cifras: los 200 m son de las **playas** y los 50 m del **resto de la costa**; no son 200 m «en toda la costa». Y si te dicen «si el tramo no está balizado, no existe zona de baño», es falso: existe, aunque no se vea."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Una pregunta antigua decía: «ante una playa **balizada**, ¿a qué distancia de la orilla está prohibida la navegación de recreo?», y el examen dio por buena **200 m**. En rigor, en una playa balizada el límite es la **línea de boyas**, que la fija Costas o Capitanía en cada sitio; los 200 m son la anchura que la norma **presume** en las playas **sin** balizar. Si te sale esa pregunta, marca 200 m; en el agua, manda la línea de boyas."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una moto náutica quiere cruzar una zona de baño balizada a 2 nudos para llegar antes a la orilla. ¿Puede hacerlo?",
+       "opciones": {
+        "a": "Sí, porque va a menos de 3 nudos",
+        "b": "Sí, si deja 25 m de resguardo a los bañistas",
+        "c": "No: debe entrar y salir por el canal de acceso balizado"
+       },
+       "correcta": "c",
+       "explicacion": "En la zona de baño balizada no puede navegar ninguna embarcación de recreo, tampoco una moto náutica, vaya a la velocidad que vaya. Los 3 nudos son el límite de la franja de costa no balizada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Reservas marinas",
+       "texto": "Una **reserva marina** es un espacio protegido para que se recuperen los recursos pesqueros y el ecosistema. Cada una tiene su propia norma, y en ellas se suele regular la pesca (también la recreativa), el buceo, el fondeo y a veces la navegación, que pueden requerir autorización o hacerse solo en zonas y boyas habilitadas.\n\nDentro de la reserva puede haber una **reserva integral**, la parte más protegida: allí se prohíbe cualquier actividad extractiva y la navegación y el fondeo pueden estar prohibidos o muy limitados.\n\nAntes de navegar por una reserva, consulta su normativa y su balizamiento en la carta."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t11",
+      "and-2021-c2-t12",
+      "and-2022-c3-t11",
+      "and-2023-c2-t12",
+      "and-2023-c3-t12",
+      "and-2025-c1-t11"
+     ],
+     "chuleta": [
+      "Zona de baño balizada: prohibida la navegación de recreo, motos incluidas. Se entra y sale por los canales.",
+      "Costa no balizada: zona de baño de 200 m en playas y 50 m en el resto de la costa.",
+      "Dentro de esa franja: máximo 3 nudos, con precaución y sin ningún vertido.",
+      "A la playa: por los extremos o los canales, perpendicular y despacio.",
+      "Reserva marina: normas propias; en la integral, casi todo prohibido."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Reglamento General de Costas (RD 876/2014), art. 73",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345"
+      },
+      {
+       "titulo": "Ministerio de Agricultura, Pesca y Alimentación – Reservas marinas de España",
+       "url": "https://www.mapa.gob.es/es/pesca/temas/proteccion-recursos-pesqueros/reservas-marinas-de-espana/"
+      },
+      {
+       "titulo": "Puertos del Estado – Resolución 29.00.00 (enero de 2026), balizamiento de las zonas de baño en la costa",
+       "url": "https://www.puertos.es/system/files/2026-02/report_29.00.00%20Resoluci%C3%B3n%20balizamiento%20playas%20y%20otras%20zonas%20no%20SBM-ene%202026.pdf"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "En las zonas de baño debidamente balizadas está prohibida la navegación deportiva y de recreo y el uso de cualquier embarcación o medio flotante a vela o motor; lanzamiento y varada por canales señalizados",
+       "fuente": "Reglamento General de Costas, RD 876/2014 (BOE-A-2014-10345), art. 73.1, vigente (consolidado a 20-04-2024)"
+      },
+      {
+       "dato": "Costa no balizada: zona de baño de 200 m en playas y 50 m en el resto de la costa; máximo 3 nudos, precauciones y prohibido cualquier vertido",
+       "fuente": "RD 876/2014, art. 73.2"
+      },
+      {
+       "dato": "Balizamiento: borde exterior con boyas esféricas amarillas (≥ 60 cm, cada ≤ 200 m) y señales de prohibición; canales de paso de 25–50 m, perpendiculares a la orilla, entrada con cónica verde a estribor y cilíndrica roja a babor, lados con boyas amarillas",
+       "fuente": "Puertos del Estado, Resolución de balizamiento 29.00.00 de 29-01-2026, apdos. 1.2.1 y 1.2.2"
+      },
+      {
+       "dato": "«Playa balizada: prohibida la navegación a 200 m» (respuesta oficial), frente a la norma (límite = línea de boyas; 200 m se presume sin balizar)",
+       "fuente": "Plantilla and-2021-c2-t12 (c); RD 876/2014, art. 73; explicado en el «ojo»"
+      },
+      {
+       "dato": "Las motos náuticas no tienen excepción en la zona balizada",
+       "fuente": "Plantillas and-2023-c2-t12 y and-2023-c3-t12; RD 876/2014, art. 73.1"
+      },
+      {
+       "dato": "Reservas marinas: cada una con su norma, con reservas integrales más restrictivas",
+       "fuente": "Ministerio de Agricultura, Pesca y Alimentación, página de Reservas marinas de España"
+      }
+     ]
+    },
+    {
+     "id": "per-4-3",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Buzos y bañistas: banderas y resguardos",
+     "minutos": 8,
+     "objetivos": [
+      "Reconocer la bandera «A» (Alfa) y la de buceo roja con franja blanca",
+      "Saber la distancia mínima que hay que dejar a una zona de buceo (50 m)",
+      "Tomar las precauciones correctas cerca de bañistas"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Cómo se señala que hay buzos",
+       "texto": "Cuando hay buceadores en el agua, la embarcación de apoyo iza la **bandera «A» (Alfa)** del Código Internacional de Señales, que significa «tengo un buzo sumergido: manténgase alejado y a poca velocidad». Si los buceadores van sin embarcación, llevan una **boya de señalización** de color muy visible con esa misma bandera.\n\nEn el buceo deportivo también se ve mucho la **bandera roja con una franja diagonal blanca**, que indica igualmente buceadores en inmersión. No forma parte del Código Internacional de Señales (la oficial en el mar es la «A»), pero el examen la da por buena como señal de buceo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "bandera",
+        "codigo": "A"
+       },
+       "texto": "Bandera «A» (Alfa): blanca y azul, con la parte azul en cola de golondrina. Buzo sumergido."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "bandera",
+        "codigo": "buceo"
+       },
+       "texto": "Bandera de buceo deportivo: roja con franja diagonal blanca. También indica buceadores en inmersión."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "buque",
+        "clase": "buceo",
+        "vista": "proa",
+        "dia": true
+       },
+       "texto": "Embarcación pequeña en operaciones de buceo: de noche, roja-blanca-roja todo horizonte; de día, réplica rígida de la bandera «A»."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El resguardo: 50 metros",
+       "texto": "Según el RD 550/2020 sobre seguridad en el buceo, **todos los buques y embarcaciones, salvo la de apoyo, deben mantenerse al menos a 50 m de la zona de buceo**, y actuar según el RIPA teniendo en cuenta su tipo y su velocidad.\n\nEn la práctica: si ves una «A» o una boya de buceo, aléjate al menos 50 m, reduce mucho la velocidad y vigila la superficie, porque un buceador puede subir en cualquier momento justo delante de tu proa. Reducir la velocidad no basta: hay que mantener la distancia."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En una pregunta la opción buena decía «50 metros por una de sus bandas o costados» (la plantilla publicada marcaba otra opción y el tribunal la corrigió a esta). La norma no habla de bandas: dice 50 m como mínimo **de la zona de buceo**. Tú quédate con la cifra de **50 m**, que es la que puntúa. Y no confundas la roja con franja blanca (buceo) con la «B» (Bravo), que es roja en cola de golondrina y significa mercancías peligrosas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con bañistas",
+       "texto": "Los bañistas apenas se ven desde un barco, sobre todo con ola o con el sol de cara. Por eso:\n- Respeta la zona de baño balizada (no se entra) y la franja de 200 m o 50 m en la costa no balizada (3 nudos como máximo).\n- Si tienes que acercarte a la orilla, hazlo por los extremos de la playa o por los canales, perpendicular y muy despacio.\n- Lleva a alguien de vigía a proa y no navegues entre bañistas o personas que practiquen deportes."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Ves una embarcación fondeada con la bandera blanca y azul en cola de golondrina izada. ¿Qué haces?",
+       "opciones": {
+        "a": "Paso cerca, pero a poca velocidad, porque el buzo está sumergido",
+        "b": "Me mantengo al menos a 50 m y reduzco la velocidad",
+        "c": "Nada: solo afecta a los buques de pesca"
+       },
+       "correcta": "b",
+       "explicacion": "Es la bandera «A»: hay buzos en el agua. Debes dejar como mínimo 50 m a la zona de buceo y navegar despacio; ir despacio sin apartarte no es suficiente."
+      }
+     ],
+     "practica": [
+      "and-2023-c1-t12",
+      "and-2023-c3-t11",
+      "and-2025-c3-t11"
+     ],
+     "chuleta": [
+      "Bandera «A» (Alfa, blanca y azul): buzo sumergido.",
+      "Roja con franja diagonal blanca: buceo deportivo, buceadores en inmersión.",
+      "Resguardo mínimo a la zona de buceo: 50 m (salvo la embarcación de apoyo), y despacio.",
+      "«B» (Bravo, roja): mercancías peligrosas, no buceo.",
+      "Bañistas: por los extremos o los canales, perpendicular, despacio y con vigía."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – RD 550/2020, condiciones de seguridad de las actividades de buceo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-6745"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Bandera «A»: «Tengo un buzo sumergido; manténgase alejado de mí y a poca velocidad»",
+       "fuente": "Código Internacional de Señales, señales de una letra"
+      },
+      {
+       "dato": "Sin embarcación o en zona no balizada, el buceador se señala con una boya muy visible con la bandera «Alfa»",
+       "fuente": "RD 550/2020 (BOE-A-2020-6745), arts. 2.r) y 14.1, vigente (consolidado a 30-12-2025)"
+      },
+      {
+       "dato": "Todos los buques, salvo la embarcación de apoyo, a 50 m como mínimo de la zona de buceo, y actuar según el RIPA según tipo y velocidad",
+       "fuente": "RD 550/2020, art. 14.2"
+      },
+      {
+       "dato": "Plantilla and-2025-c3-t11: la plantilla publicada marcaba b; el Tribunal la corrigió a c (50 m)",
+       "fuente": "Nota del Tribunal Calificador (3.ª conv. 2025), recogida en el banco de preguntas"
+      },
+      {
+       "dato": "Roja con franja diagonal blanca = buceadores en inmersión (no es del CIS)",
+       "fuente": "Plantilla and-2023-c3-t11 (a)"
+      },
+      {
+       "dato": "«B»: cargando, descargando o transportando mercancías peligrosas",
+       "fuente": "Código Internacional de Señales"
+      },
+      {
+       "dato": "Buque de buceo que no puede exhibir las marcas completas: roja-blanca-roja todo horizonte y réplica rígida de la «A» (≥ 1 m)",
+       "fuente": "RIPA, regla 27 e); ilustración comprobada"
+      }
+     ]
+    },
+    {
+     "id": "per-4-4",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Aguas sucias: qué llevar y dónde descargar",
+     "minutos": 12,
+     "objetivos": [
+      "Saber qué equipo exige la norma a una embarcación de recreo con inodoro",
+      "Conocer las distancias de descarga: 3 millas tratadas y 12 millas sin tratar",
+      "Recordar cómo se vacía un tanque de retención (régimen moderado, a 4 nudos o más)",
+      "Conocer las excepciones a la prohibición de descarga"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué son y qué norma se aplica",
+       "texto": "Las **aguas sucias** son las que salen de los inodoros (aguas negras). En las embarcaciones de recreo las regula el **RD 339/2021**, que se aplica en todas las aguas donde España ejerce soberanía o jurisdicción.\n\nLa regla de partida es sencilla: **la descarga está prohibida**, salvo que se cumplan unas condiciones concretas de distancia y tratamiento. Y la embarcación debe estar construida de forma que se eviten las descargas accidentales."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El equipo obligatorio si llevas inodoro",
+       "texto": "Una embarcación de recreo con inodoro debe llevar **uno** de estos tres equipos (las que tienen **marcado CE** cumplen este punto por su propia normativa de construcción, que también exige tanque o tratamiento):\n- Un **sistema de retención** (tanque), con capacidad suficiente según la duración de la navegación y las personas a bordo. Vale también un depósito portátil. Si cumple la norma ISO 8099-1, se presume conforme.\n- Una **instalación de tratamiento** certificada u homologada.\n- Un **sistema para desmenuzar y desinfectar** homologado, con medios para almacenar temporalmente las aguas.\n\nSi el tanque es fijo, debe tener **conexión universal a tierra** para vaciarlo en puerto, y los pasacascos de descarga al mar, **válvulas que puedan cerrarse y precintarse**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dónde se puede descargar",
+       "texto": "Las distancias se cuentan desde la **tierra más próxima**, es decir, desde la **línea de base** del mar territorial:\n- **Más de 3 millas**: si las aguas están **desmenuzadas y desinfectadas** con un sistema homologado.\n- **Más de 12 millas**: si **no** están desmenuzadas ni desinfectadas.\n- Con una **instalación de tratamiento** homologada, cuyo efluente no deje sólidos flotantes visibles ni coloree el agua, se puede descargar **fuera de la zona 7** (puertos, rías, bahías y aguas protegidas).\n\nEn puertos, dársenas y aguas protegidas, por tanto, nada de descargas: se usa el tanque y se vacía en la instalación del puerto."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo se vacía el tanque",
+       "texto": "Las aguas que han estado almacenadas en el tanque de retención **no se descargan de golpe**:\n- A un **régimen moderado** (poco a poco).\n- Con la embarcación **en ruta**.\n- Navegando a **4 nudos como mínimo**.\n\nLa velocidad y el caudal pequeño hacen que la descarga se diluya en la estela. Nunca con el barco parado ni fondeado."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Desmenuzadas y desinfectadas: más de 3 millas. Sin tratar: más de 12 millas. El tanque, siempre poco a poco, en ruta y a 4 nudos o más."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Excepciones",
+       "texto": "La prohibición no se aplica:\n- Cuando la descarga es necesaria para la **seguridad de la embarcación** y de las personas a bordo, o para **salvar vidas** en el mar.\n- Cuando la descarga se debe a una **avería** de la embarcación o de su equipo, siempre que **antes y después** de la avería se hayan tomado todas las precauciones razonables para evitarla o reducirla.\n\nY si las aguas sucias van mezcladas con otros residuos que tienen sus propias normas de descarga, hay que cumplir **también** esas normas."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Trampas que se repiten: «entre 3 y 12 millas sin tratar» (falso, sin tratar es más de 12), «a más de 6 millas» (no existe esa cifra), «a menos de 3 millas si están desmenuzadas» (es **más** de 3), «aunque el buque esté parado» (falso, en ruta a 4 nudos o más) y «prohibida en todo el Mediterráneo» (falso: rigen las mismas distancias)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Llevas el tanque lleno de aguas sin tratar y estás a 8 millas de la costa. ¿Qué haces?",
+       "opciones": {
+        "a": "Lo vacío ya, despacio y navegando a más de 4 nudos",
+        "b": "Espero a estar a más de 12 millas y lo vacío poco a poco, en ruta y a 4 nudos o más (o lo vacío en puerto)",
+        "c": "Lo vacío de golpe parando el barco para no ensuciar la estela"
+       },
+       "correcta": "b",
+       "explicacion": "Las aguas sin desmenuzar ni desinfectar solo se descargan a más de 12 millas de la línea de base, a régimen moderado y en ruta a no menos de 4 nudos. A 8 millas todavía no puedes."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t11",
+      "and-2022-c1-t12",
+      "and-2023-c2-t11",
+      "and-2024-c2-t12",
+      "and-2025-c1-t12",
+      "and-2026-c2-t12"
+     ],
+     "chuleta": [
+      "Con inodoro: tanque de retención, instalación de tratamiento o sistema de desmenuzar y desinfectar con almacenamiento.",
+      "Tanque fijo: conexión universal a tierra; pasacascos con válvulas precintables.",
+      "Desmenuzadas y desinfectadas: más de 3 millas. Sin tratar: más de 12 millas (desde la línea de base).",
+      "Vaciado: régimen moderado, en ruta y a 4 nudos como mínimo.",
+      "En puertos y aguas protegidas, ninguna descarga.",
+      "Excepciones: seguridad o salvar vidas, y avería con precauciones razonables."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – RD 339/2021, equipo de seguridad y prevención de la contaminación de las embarcaciones de recreo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Prohibida la descarga de aguas sucias por embarcaciones de recreo en aguas de soberanía, derechos soberanos o jurisdicción españoles, salvo condiciones",
+       "fuente": "RD 339/2021 (BOE-A-2021-8268), art. 23.1, vigente (consolidado a 20-07-2022)"
+      },
+      {
+       "dato": "Con inodoro: retención (ISO 8099-1 presume conformidad), instalación de tratamiento certificada/homologada, o sistema de desmenuzar y desinfectar con almacenamiento; no aplicable a embarcaciones con marcado CE",
+       "fuente": "RD 339/2021, art. 22.1 y 22.3"
+      },
+      {
+       "dato": "Depósito fijo: conexión universal a tierra; pasacascos con válvulas que se cierren herméticamente (precintos o dispositivos mecánicos)",
+       "fuente": "RD 339/2021, art. 22.4"
+      },
+      {
+       "dato": "Más de 3 millas desmenuzadas y desinfectadas; más de 12 sin tratar; desde la línea de base; lo almacenado, a régimen moderado, en ruta y a ≥ 4 nudos",
+       "fuente": "RD 339/2021, art. 23.1.a)"
+      },
+      {
+       "dato": "Instalación de tratamiento conforme al Reglamento (UE) 2020/1170, efluente sin sólidos ni coloración: descarga fuera de zona 7 (aguas costeras protegidas, puertos, radas, rías, bahías abrigadas)",
+       "fuente": "RD 339/2021, arts. 23.1.b) y 3 g)"
+      },
+      {
+       "dato": "Mezcladas con otros residuos: se cumplen también sus normas",
+       "fuente": "RD 339/2021, art. 23.2"
+      },
+      {
+       "dato": "Excepciones: seguridad de la embarcación y personas o salvar vidas; avería con precauciones razonables antes y después",
+       "fuente": "RD 339/2021, art. 23.3; plantilla and-2025-c1-t12 (b)"
+      }
+     ]
+    },
+    {
+     "id": "per-4-5",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Basuras: MARPOL anexo V y entrega en puerto",
+     "minutos": 12,
+     "objetivos": [
+      "Saber qué basuras no se pueden echar nunca al mar",
+      "Conocer las distancias para los restos de comida, fuera y dentro de zonas especiales",
+      "Saber que el Mediterráneo es zona especial y dónde empieza",
+      "Conocer la obligación de entregar los desechos en el puerto"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La regla general: nada al mar",
+       "texto": "El **anexo V del Convenio MARPOL** regula las basuras y se aplica a **todos los buques**, también a las embarcaciones de recreo (regla 2).\n\nSu punto de partida es una **prohibición general** de descargar basuras en el mar (regla 3). Solo se permiten unas pocas excepciones, y la que te interesa como patrón de recreo es casi únicamente una: los **restos de comida**.\n\nTodo lo demás (papel, vidrio, latas, envases, trapos, loza, cabos…) se guarda a bordo y se entrega en puerto."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Prohibido siempre y en todas partes",
+       "texto": "Hay basuras que no se pueden echar al mar **nunca**, a ninguna distancia ni velocidad:\n- **Plásticos** de cualquier tipo: bolsas de basura, envoltorios, cabos y redes sintéticos, y las cenizas de quemar plásticos.\n- **Aceite de cocina**.\n\nY, aunque no son basuras del anexo V, tampoco van al mar los **aceites, combustibles ni el agua de sentina con restos de hidrocarburos**: a la instalación del puerto.\n\nSi la basura está **mezclada** con otras sustancias que tienen normas distintas, se aplica la **más rigurosa**. Por ejemplo, comida mezclada con plástico no se puede tirar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Restos de comida fuera de zonas especiales",
+       "texto": "Fuera de las zonas especiales (por ejemplo, en el Atlántico o en Canarias), los restos de comida se pueden echar con el barco **en ruta** y lo más lejos posible de tierra:\n- **Triturados o desmenuzados** (que pasen por una criba de **25 mm**): a **más de 3 millas**.\n- **Sin triturar**: a **más de 12 millas**.\n\nSiempre sin envoltorios ni bolsas, y nunca con el barco parado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "En zonas especiales: el Mediterráneo",
+       "texto": "Las zonas especiales del anexo V son el **Mediterráneo**, el Báltico, el mar Negro, el mar Rojo, la zona de los Golfos, el mar del Norte, la zona antártica y el Gran Caribe.\n\nEn ellas, los restos de comida solo se pueden echar:\n- **Triturados** (criba de 25 mm),\n- a **más de 12 millas** de tierra,\n- con el barco **en ruta**,\n- y sin mezclar con ninguna otra basura.\n\n(Salvedad: en el Gran Caribe, la triturada vale a más de 3 millas.)\n\nEl Mediterráneo termina al oeste en el **meridiano 5° 36' W**, en el estrecho de Gibraltar. Málaga, Almería o Baleares están dentro; Cádiz, el cabo Trafalgar o Huelva, fuera."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Plásticos y aceite de cocina: nunca. Comida fuera de zona especial: triturada a más de 3 millas, sin triturar a más de 12. En el Mediterráneo: solo triturada y a más de 12 millas. Siempre en ruta."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En los problemas «de ruta» fíjate primero en **dónde** estás: entre Málaga y Almería estás en el Mediterráneo (comida solo triturada y a más de 12 millas); frente a Trafalgar, en el Atlántico (sin triturar a más de 12 y triturada a más de 3). Hace años se permitía tirar papel, vidrio o metal lejos de la costa; hoy está **prohibido** en todas partes."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Entregar los desechos en puerto",
+       "texto": "El **RD 128/2022**, sobre instalaciones portuarias receptoras, obliga a **entregar todos los desechos** que lleves a bordo en una instalación del puerto **antes de abandonarlo** (solo puedes conservarlos si tienes sitio suficiente para guardarlos hasta el siguiente puerto). Se aplica también a las embarcaciones de recreo, y los puertos deportivos suelen tener puntos de recogida (contenedores, puntos limpios, bombeo de aguas sucias y de sentinas).\n\nLas embarcaciones de recreo no tienen que hacer la notificación previa de desechos que se exige a los buques grandes, pero sí entregarlos. La Capitanía puede inspeccionar el cumplimiento."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas a 15 millas de Almería y quieres deshacerte de unos restos de fruta sin triturar. ¿Qué dice la norma?",
+       "opciones": {
+        "a": "Puedes tirarlos, porque estás a más de 12 millas",
+        "b": "No puedes tirarlos sin triturar: en el Mediterráneo solo se admiten triturados, a más de 12 millas y en ruta",
+        "c": "Puedes tirarlos a cualquier distancia si están fuera de la bolsa"
+       },
+       "correcta": "b",
+       "explicacion": "El Mediterráneo es zona especial: los restos de comida solo se echan triturados (criba de 25 mm), a más de 12 millas y en ruta. Sin triturar, a guardar y al puerto."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t12",
+      "and-2020-c3-t12",
+      "and-2022-c1-t11",
+      "and-2022-c3-t12",
+      "and-2024-c1-t11",
+      "and-2026-c1-t12"
+     ],
+     "chuleta": [
+      "MARPOL V: prohibición general de echar basuras al mar; se aplica también al recreo.",
+      "Nunca: plásticos (bolsas, cabos, redes…) y aceite de cocina. Mezclas: la norma más rigurosa.",
+      "Comida fuera de zona especial: triturada (25 mm) a más de 3 millas; sin triturar a más de 12.",
+      "Mediterráneo (zona especial, hasta 5° 36' W): comida solo triturada y a más de 12 millas.",
+      "Siempre en ruta. Todo lo demás, al puerto antes de salir (RD 128/2022)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "OMI – Prevención de la contaminación por las basuras de los buques",
+       "url": "https://www.imo.org/es/OurWork/Environment/Paginas/Garbage-Default.aspx"
+      },
+      {
+       "titulo": "BOE – RD 128/2022, instalaciones portuarias receptoras de desechos de buques",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-2465"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Anexo V se aplica a todos los buques; prohibición general de descargar basuras; prohibidos plásticos (cabos y redes sintéticos, bolsas, cenizas de plásticos) y aceite de cocina",
+       "fuente": "MARPOL, anexo V revisado (Res. MEPC.201(62), BOE-A-2012-14852, en vigor desde 1-1-2013), reglas 2 y 3; OMI, página de basuras"
+      },
+      {
+       "dato": "Fuera de zona especial: comida triturada (criba ≤ 25 mm) a más de 3 millas, sin triturar a más de 12, en ruta",
+       "fuente": "MARPOL V, regla 4.1.1"
+      },
+      {
+       "dato": "Mezclas: se aplican las prescripciones más rigurosas",
+       "fuente": "MARPOL V, regla 4.4; plantilla and-2022-c1-t11 (d)"
+      },
+      {
+       "dato": "Zonas especiales: Mediterráneo, Báltico, mar Negro, mar Rojo, Golfos, mar del Norte, Antártico y Gran Caribe; comida solo triturada, a más de 12 millas, en ruta, sin mezclar (en el Gran Caribe, triturada a más de 3)",
+       "fuente": "MARPOL V, reglas 1.14 y 6.1"
+      },
+      {
+       "dato": "Límite occidental del Mediterráneo: meridiano 5° 36' W (Gibraltar); Trafalgar (≈ 6° 02' W) queda fuera",
+       "fuente": "MARPOL V, regla 1.14.1; plantillas and-2022-c3-t12 y and-2024-c1-t11"
+      },
+      {
+       "dato": "Embarcaciones de recreo dentro del ámbito; entrega obligatoria de todos los desechos antes de abandonar el puerto, salvo capacidad de almacenamiento suficiente hasta el siguiente",
+       "fuente": "RD 128/2022 (BOE-A-2022-2465), arts. 3.1, 17.1 y 17.5.b), vigente"
+      },
+      {
+       "dato": "Las embarcaciones de recreo quedan fuera de la notificación previa de desechos; inspecciones selectivas de la Capitanía",
+       "fuente": "RD 128/2022, arts. 16.1 y 22.4"
+      }
+     ]
+    },
+    {
+     "id": "per-4-6",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Responsabilidad, aviso de contaminación y deber de auxilio",
+     "minutos": 9,
+     "objetivos": [
+      "Saber quién responde de una infracción por contaminación desde una embarcación",
+      "Saber qué hacer si ves una mancha de contaminación",
+      "Conocer la obligación de auxiliar a personas en peligro y qué hacer si no puedes acudir"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Quién responde por contaminar",
+       "texto": "Según la Ley de Puertos del Estado y de la Marina Mercante (texto refundido de 2011), de las infracciones por contaminación del medio marino producidas desde buques son **solidariamente responsables**:\n- el **naviero**,\n- el **propietario**,\n- el **asegurador** de la responsabilidad civil,\n- y el **capitán** (en tu caso, el **patrón**).\n\n«Solidariamente» significa que la Administración puede exigir la responsabilidad entera a cualquiera de ellos. Por eso es falso que responda «únicamente» el patrón, «solo» el propietario o «solo» el asegurador."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Contaminación desde una embarcación: responden solidariamente naviero, propietario, asegurador y patrón."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si ves contaminación",
+       "texto": "Si durante la navegación ves una mancha de hidrocarburos, una sustancia sospechosa o un vertido, **tienes que informar sin demora** a la autoridad marítima (la Ley de Navegación Marítima obliga a los capitanes a comunicar todo episodio de contaminación que observen).\n\nLo práctico es avisar a **Salvamento Marítimo** por VHF (canal 16) o por teléfono (**900 202 202** o **112**) y dar:\n- tu **posición** y la hora,\n- el aspecto y la extensión de la mancha,\n- y, si lo sabes, el **nombre** o la descripción del buque que la ha causado."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El deber de auxilio (SOLAS V/33.1)",
+       "texto": "El capitán de un buque que esté en condiciones de ayudar y reciba, **por cualquier medio**, la noticia de que hay personas en peligro en el mar, está obligado a **acudir a toda velocidad** en su auxilio, informando si puede a las víctimas o al servicio de salvamento.\n\nLa obligación existe **sea cual sea la nacionalidad o la condición** de esas personas y las circunstancias en que se encuentren. No depende de que te lo pida un centro de salvamento ni de que el otro barco sea de tu bandera.\n\nLa Ley de Navegación Marítima lo recoge también: acudir siempre que se pueda **sin grave peligro** para el propio barco y su gente, dejando constancia en el diario de navegación."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si no puedes acudir",
+       "texto": "Puede ocurrir que no estés en condiciones de ayudar o que, por las circunstancias concretas, acudir no sea razonable o necesario (por ejemplo, otro barco más cercano y mejor preparado ya está allí).\n\nEn ese caso **no basta con seguir tu rumbo**: debes **anotar en el diario de navegación** el motivo por el que no acudiste e **informar** al servicio de búsqueda y salvamento correspondiente."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones falsas típicas: «solo si lo pide un Centro de Salvamento», «solo si es de su misma bandera» y «si lo estima innecesario, no acude y no tiene que explicar nada». Las tres son falsas: si no acudes, lo anotas en el diario y avisas a salvamento."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Recibes por VHF un MAYDAY de un velero extranjero a 5 millas. Nadie te ha pedido nada desde el centro de salvamento. ¿Qué haces?",
+       "opciones": {
+        "a": "Nada hasta que me lo pida el centro de salvamento",
+        "b": "Solo acudo si el velero es español",
+        "c": "Acudo en su auxilio si puedo hacerlo sin grave peligro y lo comunico a salvamento"
+       },
+       "correcta": "c",
+       "explicacion": "La obligación nace en cuanto sabes que hay personas en peligro, sean de la nacionalidad que sean y aunque nadie te lo pida. Si de verdad no pudieras ir, tendrías que anotar el motivo en el diario e informar a salvamento."
+      }
+     ],
+     "practica": [
+      "and-2022-c2-t12",
+      "and-2024-c3-t12",
+      "and-2025-c2-t12",
+      "and-2026-c1-t11"
+     ],
+     "chuleta": [
+      "Contaminación: responsables solidarios naviero, propietario, asegurador de RC y patrón.",
+      "Si ves contaminación: aviso inmediato a la autoridad marítima o Salvamento (VHF 16, 900 202 202, 112) con posición, aspecto y buque.",
+      "SOLAS V/33.1: acudir a toda velocidad a auxiliar a personas en peligro, sin importar su nacionalidad.",
+      "No hace falta que lo pida un centro de salvamento.",
+      "Si no acudes: motivo al diario de navegación y aviso al servicio de salvamento."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Ley 14/2014, de Navegación Marítima (arts. 33, 183 y 186)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-7877"
+      },
+      {
+       "titulo": "BOE – Texto refundido de la Ley de Puertos del Estado y de la Marina Mercante (art. 310)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2011-16467"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "De las infracciones por contaminación desde buques son solidariamente responsables naviero, propietario, asegurador de la RC y capitán",
+       "fuente": "RDL 2/2011, TR Ley de Puertos y Marina Mercante (BOE-A-2011-16467), art. 310.2.d), vigente (consolidado a 29-01-2025)"
+      },
+      {
+       "dato": "Obligación de notificar sin demora los episodios de contaminación conocidos durante la navegación",
+       "fuente": "Ley 14/2014, de Navegación Marítima (BOE-A-2014-7877), arts. 33 y 186.1, vigente"
+      },
+      {
+       "dato": "Deber de acudir en auxilio de vidas en peligro si puede hacerse sin grave peligro, con constancia en el Diario de Navegación",
+       "fuente": "Ley 14/2014, art. 183.3"
+      },
+      {
+       "dato": "Acudir a toda velocidad sea cual sea la nacionalidad o condición; si no se acude, anotar el motivo en el diario e informar al servicio SAR",
+       "fuente": "SOLAS, cap. V, regla 33.1"
+      },
+      {
+       "dato": "Salvamento Marítimo: VHF canal 16, teléfono de emergencias 900 202 202 y 112",
+       "fuente": "Sociedad de Salvamento y Seguridad Marítima"
+      },
+      {
+       "dato": "Respuestas oficiales coherentes",
+       "fuente": "Plantillas and-2022-c2-t12 (d), and-2024-c3-t12 (d), and-2025-c2-t12 (d), and-2026-c1-t11 (d)"
+      }
+     ]
+    },
+    {
+     "id": "per-4-7",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Pabellón nacional y bandera autonómica",
+     "minutos": 7,
+     "objetivos": [
+      "Saber dónde se iza la bandera de España a bordo",
+      "Conocer las condiciones para izar la bandera de la comunidad autónoma",
+      "Recordar cuándo es obligatorio izar el pabellón nacional"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Un solo pabellón: el de España",
+       "texto": "Todo buque o embarcación español, sea mercante, pesquero, deportivo o de recreo, enarbola **como único pabellón la bandera de España** (RD 2335/1980).\n\nA bordo hay dos lugares de honor y los dos están **reservados a la bandera de España**:\n- el **asta de popa**,\n- y el **pico del palo mayor** (en los veleros que lo tienen)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las demás banderas",
+       "texto": "Cualquier otra bandera o enseña (la autonómica, la del club, una de cortesía…) tiene dos condiciones:\n- **No puede estar izada si no lo está el pabellón nacional**.\n- Su tamaño **nunca puede superar un tercio del área** de la bandera de España.\n\nLa **bandera de la comunidad autónoma** puede izarse en **puertos nacionales y aguas interiores**, siempre a la vez que el pabellón nacional y con ese tamaño máximo. Nunca en el asta de popa ni en el pico del palo mayor: va en otro lugar, por ejemplo en una driza de las crucetas."
+      },
+      {
+       "tipo": "clave",
+       "texto": "La bandera autonómica acompaña, nunca sustituye: solo con la de España izada, en otro lugar y como mucho con un tercio de su área."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuándo es obligatorio izarla",
+       "texto": "El pabellón nacional debe izarse:\n- a la vista de un **buque de guerra** o de una fortaleza,\n- al **entrar y salir** de puerto,\n- en puerto, **de sol a sol** en los días festivos,\n- cuando lo disponga la autoridad competente,\n- y cuando lo exijan la costumbre internacional o las normas de aguas extranjeras."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Opciones falsas típicas: la autonómica «del mismo tamaño», «en el asta de popa si la de España va en otro sitio», «en el pico del palo mayor», «aunque no esté izada la de España» o «sustituyendo a la nacional si la comunidad tiene competencias». La única fórmula correcta: solo con la de España izada y con un tercio de su área como máximo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Quieres izar la bandera de Andalucía en tu velero mientras estás en el puerto de Málaga. ¿Cómo lo haces correctamente?",
+       "opciones": {
+        "a": "En el asta de popa, y la de España en las crucetas",
+        "b": "En una driza de las crucetas, con la de España izada en popa y sin superar un tercio de su área",
+        "c": "Sola, porque estás en un puerto de Andalucía"
+       },
+       "correcta": "b",
+       "explicacion": "El asta de popa y el pico del palo mayor están reservados a la bandera de España. La autonómica puede ir en otro lugar, siempre con la nacional izada y con un tamaño de un tercio de su área como máximo."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t11",
+      "and-2024-c2-t11",
+      "and-2025-c2-t11"
+     ],
+     "chuleta": [
+      "Único pabellón: la bandera de España.",
+      "Asta de popa y pico del palo mayor: reservados a la bandera de España.",
+      "Otras banderas: solo con la nacional izada y como máximo un tercio de su área.",
+      "Autonómica: en puertos nacionales y aguas interiores, junto a la de España.",
+      "Obligatorio izarla: buque de guerra a la vista, entradas y salidas, festivos en puerto, por orden de la autoridad."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – RD 2335/1980, uso de la bandera de España a bordo de buques nacionales",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1980-23701"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Todo buque o embarcación nacional enarbola como único pabellón la bandera de España",
+       "fuente": "RD 2335/1980 (BOE-A-1980-23701), art. 1, vigente"
+      },
+      {
+       "dato": "Asta de popa y pico del palo mayor reservados a la bandera de España; ninguna otra izada sin el pabellón nacional y nunca mayor de un tercio de su área",
+       "fuente": "RD 2335/1980, art. 2"
+      },
+      {
+       "dato": "Bandera autonómica: en puertos nacionales y aguas interiores, a la vez que la nacional y con ese tamaño",
+       "fuente": "RD 2335/1980, art. 3"
+      },
+      {
+       "dato": "Obligatorio izar: a la vista de buque de guerra o fortaleza, entradas y salidas, en puerto de sol a sol en festivos, por orden de la autoridad, costumbre internacional o normas extranjeras",
+       "fuente": "RD 2335/1980, art. 4"
+      },
+      {
+       "dato": "Respuestas oficiales coherentes",
+       "fuente": "Plantillas and-2021-c1-t11 (c), and-2024-c2-t11 (c), and-2025-c2-t11 (c)"
+      }
+     ]
+    },
+    {
+     "id": "per-4-8",
+     "curso": "per",
+     "ut": 4,
+     "titulo": "Espacios protegidos: ZEPIM y posidonia",
+     "minutos": 10,
+     "objetivos": [
+      "Saber qué significa ZEPIM y de qué convenio proceden",
+      "Reconocer las ZEPIM españolas, en especial las de Andalucía",
+      "Conocer la posidonia oceánica y las normas de fondeo sobre ella"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es una ZEPIM",
+       "texto": "**ZEPIM** significa **Zona Especialmente Protegida de Importancia para el Mediterráneo**. Es una figura del **Convenio de Barcelona** (1976, revisado en 1995) para la protección del medio marino y de la región costera del Mediterráneo, y de su protocolo sobre zonas especialmente protegidas y diversidad biológica.\n\nSe declaran ZEPIM los espacios que tienen ecosistemas típicos del Mediterráneo o hábitats de especies amenazadas, o un interés científico, estético, cultural o educativo especial."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué se puede regular en ellas",
+       "texto": "En una ZEPIM los Estados pueden adoptar medidas como:\n- prohibir los vertidos y la contaminación,\n- **regular el paso de buques, su parada y su fondeo**,\n- regular la pesca, la caza, la recogida de especies y la explotación del fondo,\n- controlar la introducción de especies no autóctonas.\n\nAsí que, como navegante, en una ZEPIM puedes encontrarte limitaciones de navegación y de fondeo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las ZEPIM de España",
+       "texto": "España es uno de los países con más ZEPIM:\n- **Andalucía**: **Isla de Alborán**, **Cabo de Gata-Níjar**, **Fondos marinos del Levante almeriense** y **Acantilados de Maro-Cerro Gordo** (Málaga-Granada).\n- **Murcia**: Mar Menor y zona oriental mediterránea de la costa murciana.\n- **Comunidad Valenciana**: **Islas Columbretes**.\n- **Baleares**: Archipiélago de Cabrera.\n- **Cataluña**: Islas Medas y Cabo de Creus.\n- Desde 2019, también el **Corredor de migración de cetáceos del Mediterráneo**, entre la Península y Baleares.\n\nFuera de España, por ejemplo, el Santuario Pelagos (Francia, Italia y Mónaco) o Port-Cros (Francia)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Tabarca es **reserva marina**, pero **no** es ZEPIM. Ibiza y Formentera tampoco figuran como ZEPIM, y la costa de Cádiz está fuera del Mediterráneo. Y fíjate en las siglas: es «**especialmente** protegida» (no «exclusiva») y «para el **Mediterráneo**» (no «medio marino»)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La posidonia oceánica",
+       "texto": "La posidonia oceánica no es un alga: es una **planta con flores**, con raíces, tallo (rizoma) y hojas en forma de cinta, **endémica del Mediterráneo**. Forma grandes praderas sobre fondos de arena, desde muy poca profundidad hasta unos 40 m en aguas claras; florece en otoño y sus frutos flotantes se conocen como «olivas de mar».\n\nEs probablemente el ecosistema más valioso del Mediterráneo: produce oxígeno, da refugio y alimento a cientos de especies, indica buena calidad del agua, frena el oleaje y sus hojas muertas protegen las playas de la erosión. Crece **muy despacio**, así que el daño de un ancla tarda décadas en repararse."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Fondear y posidonia",
+       "texto": "En el **Mediterráneo español**, el Real Decreto 191/2026 lo deja claro:\n- **con carácter general, queda prohibido fondear sobre las praderas de posidonia** (y de *Cymodocea*);\n- también en la **arena próxima** si la **cadena** u otros elementos del fondeo quedan sobre ellas o las barren al **bornear**;\n- sobre la pradera solo se puede usar una **boya autorizada** (boya suelta o campo de boyas);\n- se exceptúan los casos de **fuerza mayor** o **peligro** para la vida humana en el mar o la navegación.\n\nEn los **campos de boyas** se amarra a la boya precisamente para **no fondear** sobre la pradera. Fondea siempre en arena (la ves como manchas claras) y no en las manchas oscuras."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Sobre posidonia no se fondea, ni con el ancla ni con la cadena, salvo fuerza mayor o peligro. Sobre la pradera, solo boya autorizada."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estas zonas es ZEPIM?",
+       "opciones": {
+        "a": "Isla de Tabarca",
+        "b": "Isla de Alborán",
+        "c": "Bahía de Cádiz"
+       },
+       "correcta": "b",
+       "explicacion": "Alborán es una de las cuatro ZEPIM andaluzas (con Cabo de Gata-Níjar, Fondos marinos del Levante almeriense y Maro-Cerro Gordo). Tabarca es reserva marina, pero no ZEPIM, y Cádiz no está en el Mediterráneo."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t12",
+      "and-2021-c2-t11",
+      "and-2022-c2-t11",
+      "and-2023-c1-t11",
+      "and-2024-c3-t11"
+     ],
+     "chuleta": [
+      "ZEPIM = Zona Especialmente Protegida de Importancia para el Mediterráneo (Convenio de Barcelona).",
+      "En ellas se puede regular el paso, la parada y el fondeo de buques.",
+      "Andalucía: Alborán, Cabo de Gata-Níjar, Levante almeriense y Maro-Cerro Gordo. Valencia: Columbretes (Tabarca no).",
+      "Posidonia: planta (no alga) endémica del Mediterráneo, de crecimiento muy lento.",
+      "Mediterráneo (RD 191/2026): prohibido fondear sobre posidonia y que la cadena la toque al bornear, salvo fuerza mayor o peligro. Sobre ella, solo boya autorizada."
+     ],
+     "profundizar": [
+      {
+       "titulo": "MITECO – Zonas Especialmente Protegidas de Importancia para el Mediterráneo",
+       "url": "https://www.miteco.gob.es/en/biodiversidad/temas/espacios-protegidos/espacios-protegidos-por-instrumentos-internacionales/en_ap_zepim.html"
+      },
+      {
+       "titulo": "MITECO – Convenio de Barcelona",
+       "url": "https://www.miteco.gob.es/es/costas/temas/proteccion-medio-marino/proteccion-internacional-mar/convenios-internacionales/convenio_de_barcelona.html"
+      },
+      {
+       "titulo": "BOE – Real Decreto 191/2026, conservación de las praderas de fanerógamas marinas del Mediterráneo",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-5877"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "ZEPIM = Zona Especialmente Protegida de Importancia para el Mediterráneo; Convenio de Barcelona (1976, enmendado en 1995) y Protocolo ZEP/DB de 1995",
+       "fuente": "MITECO, páginas de ZEPIM y del Convenio de Barcelona; plantilla and-2021-c2-t11"
+      },
+      {
+       "dato": "Medidas posibles: regular el paso, la parada y el fondeo de buques, vertidos, pesca, especies introducidas",
+       "fuente": "Protocolo sobre zonas especialmente protegidas y diversidad biológica en el Mediterráneo, art. 6; plantilla and-2024-c3-t11 (a falsa)"
+      },
+      {
+       "dato": "ZEPIM españolas: Alborán, Levante almeriense, Cabo de Gata-Níjar, Maro-Cerro Gordo, Medes, Cap de Creus, Columbretes, Mar Menor y zona oriental de Murcia, Cabrera; Tabarca no",
+       "fuente": "MITECO, ZEPIM (lista de nueve); plantillas and-2021-c1-t12, and-2023-c1-t11, and-2026-c2-t11"
+      },
+      {
+       "dato": "Corredor de migración de cetáceos del Mediterráneo incluido en la lista ZEPIM en 2019",
+       "fuente": "Convenio de Barcelona, COP21 (Nápoles, diciembre de 2019), a propuesta de España; la página de MITECO enlazada aún cita nueve"
+      },
+      {
+       "dato": "Prohibido con carácter general el fondeo sobre praderas de Posidonia oceanica y Cymodocea nodosa, y en arena próxima si la cadena las toca o les afecta el borneo; sobre ellas, solo sistemas de bajo impacto autorizados; excepciones: fuerza mayor o peligro para la vida humana o la navegación",
+       "fuente": "RD 191/2026, de 11 de marzo (BOE-A-2026-5877), arts. 1.2, 5.1, 5.2 y 5.3.a), en vigor desde el 2-4-2026, ámbito Mediterráneo; coherente con per-2-3"
+      },
+      {
+       "dato": "Respuestas oficiales coherentes con el RD 191/2026",
+       "fuente": "Plantillas and-2022-c2-t11 (d), and-2024-c3-t11 (c), and-2026-c1-t11 (b falsa)"
+      },
+      {
+       "dato": "Posidonia: planta con flores endémica del Mediterráneo, de crecimiento muy lento",
+       "fuente": "MITECO, fanerógamas marinas"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "ut": 5,
    "titulo": "Balizamiento",
    "intro": "Las boyas y balizas son las señales de tráfico del mar: te dicen por dónde va el canal, dónde hay un peligro y por qué lado pasarlo. En este tema aprendes a reconocer cada marca del sistema IALA (región A, la de España) por su color, su forma, su marca de tope y su luz. Es un tema muy agradecido: con cuatro reglas bien aprendidas sacas casi todas las preguntas.",

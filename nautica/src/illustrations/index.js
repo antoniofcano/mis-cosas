@@ -8,6 +8,7 @@ import { crossingIllustration, soundIllustration, SENALES } from './situations.j
 import { meteoIllustration, boatIllustration, propellerIllustration, roseIllustration, flagIllustration } from './misc.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { nortesIllustration, enfilacionIllustration, corrienteIllustration, abatimientoIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration } from './navigation.js';
+import { socorroIllustration, SOCORRO } from './socorro.js';
 import { estabilidadIllustration, movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
 function rhythmIllustration(spec) {
@@ -49,6 +50,7 @@ const RENDERERS = {
   busqueda: busquedaIllustration,
   'hombre-al-agua': hombreAlAguaIllustration,
   fuego: fuegoIllustration,
+  socorro: socorroIllustration,
 };
 
 /** Catálogo documentado (lo usan los editores de contenido y la validación). */
@@ -81,6 +83,7 @@ export const CATALOGO = {
   busqueda: { params: { patron: ['cuadrado', 'sectores'] }, ejemplo: { tipo: 'busqueda', patron: 'cuadrado' } },
   'hombre-al-agua': { params: { maniobra: ['boutakow', 'anderson'] }, ejemplo: { tipo: 'hombre-al-agua', maniobra: 'boutakow' } },
   fuego: { params: { vista: ['tetraedro', 'clases'] }, ejemplo: { tipo: 'fuego', vista: 'tetraedro' } },
+  socorro: { params: { resaltar: Object.keys(SOCORRO), solo: 'bool: dibuja solo la resaltada, en grande' }, ejemplo: { tipo: 'socorro', resaltar: 'cohete-paracaidas' } },
 };
 
 /** Comprueba que una especificación es dibujable. */

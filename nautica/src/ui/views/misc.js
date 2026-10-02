@@ -12,8 +12,8 @@ import { resetRaster } from '../chart/raster.js';
 
 export function theoryView() {
   const el = h('div.theory',
-    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Teoría'),
-    h('h1', 'Conceptos y métodos'),
+    h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Conceptos'),
+    h('h1', 'Conceptos y métodos de carta'),
     h('section', h('h2', 'Convención de signos'),
       h('p', 'Este (E) = +, Oeste (W) = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +, babor −). Rs = Rv + Ab.')),
     h('section', h('h2', 'Glosario'), h('dl', Object.values(GLOSSARY).map((g) => [h('dt', g.term), h('dd', g.text)]))),

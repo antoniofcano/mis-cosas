@@ -205,3 +205,24 @@ svg.chart .guide-tag.sel rect { fill: #0e7490; }
 svg.chart .guide-tag text { fill: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
 .guide-bar input, .coord-bar input { flex: 1 1 8rem; width: auto; padding: .25rem .4rem; }
 .coord-bar[hidden], .guide-bar[hidden] { display: none; }
+/* Tests de teoría */
+.qcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .7rem .9rem; margin: .8rem 0 .4rem; }
+.qmeta { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+.qtext { font-weight: 600; margin: .5rem 0; }
+img.qfig { display: block; max-width: min(100%, 420px); margin: .4rem 0; border-radius: 6px; background: #fff; }
+img.qfig.opt { max-width: 180px; }
+.option.correct { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent); }
+.option.wrong { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, transparent); }
+.badge.warn { background: color-mix(in srgb, var(--warn) 15%, transparent); color: var(--warn); }
+.profe.ok-border { border-left-color: var(--ok); }
+.profe.bad-border { border-left-color: var(--warn); }
+.test-bar { position: sticky; top: 3.2rem; z-index: 4; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .4rem .7rem; }
+.test-bar .clock { font-variant-numeric: tabular-nums; font-weight: 700; }
+.test-bar .clock.warn { color: var(--warn); }
+.test-bar button { margin-left: auto; }
+.qnav { display: flex; flex-wrap: wrap; gap: .25rem; margin: .6rem 0; }
+a.qdot { width: 2rem; text-align: center; padding: .15rem 0; border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--muted); font-size: .8rem; }
+a.qdot.done { background: var(--accent); color: #fff; border-color: var(--accent); }
+.qholder { scroll-margin-top: 7rem; }
+tr.bad td { color: var(--warn); font-weight: 600; }
+a.card[aria-disabled="true"] { opacity: .6; }

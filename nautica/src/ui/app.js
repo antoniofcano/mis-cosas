@@ -12,12 +12,15 @@ import { homeView } from './views/home.js';
 import { exerciseView } from './views/exercise.js';
 import { examsView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
+import { theoryHubView, practiceView, testView } from './views/theory.js';
 
 const ROUTES = {
   '': homeView,
   ej: exerciseView,
   examenes: examsView,
-  teoria: theoryView,
+  teoria: (o) => (o.params.parts[1] === 'ut' ? practiceView(o) : theoryHubView(o)),
+  test: testView,
+  conceptos: theoryView,
   progreso: progressView,
   carta: chartView,
 };

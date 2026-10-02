@@ -44,7 +44,8 @@ for (const tit of ['per', 'py']) {
   test(`curso ${tit}: lecciones válidas (pasos, ilustraciones, reglas y preguntas reales existentes)`, { skip: !existsSync(f) }, () => {
     const curso = JSON.parse(readFileSync(f));
     const banco = JSON.parse(readFileSync(new URL(`../data/exams/andalucia-${tit}-teoria.json`, import.meta.url))).preguntas;
-    const ids = new Set(banco.map((q) => q.id));
+    const carta = tit === 'per' ? JSON.parse(readFileSync(new URL('../data/exams/andalucia-per.json', import.meta.url))).preguntas : [];
+    const ids = new Set([...banco, ...carta].map((q) => q.id));
     const reglas = new Set(JSON.parse(readFileSync(new URL('../data/exams/mnemotecnias.json', import.meta.url))).reglas.map((r) => r.id));
     const vistos = new Set();
     for (const m of curso.modulos) for (const l of m.lecciones) {

@@ -2148,6 +2148,14 @@
        "texto": "En el Mediterráneo cada rumbo tiene su nombre tradicional (recuerda: el viento se nombra por **de dónde viene**):\n\n- **N**: tramontana.\n- **NE**: gregal.\n- **E**: levante.\n- **SE**: siroco o xaloc.\n- **S**: mediodía, migjorn u ostro.\n- **SW**: lebeche, llebeig o garbí.\n- **W**: poniente.\n- **NW**: mistral o mestral.\n\nEn el Atlántico ibérico los nombres más usados son el **vendaval** y el ábrego (SW), el **nordeste** de Galicia y los **alisios** (NE) de Canarias, y en el Cantábrico, la **galerna**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "vientos-regionales",
+        "vista": "rosa"
+       },
+       "texto": "Cada rumbo tiene su viento, y se nombra por el lado del que viene."
+      },
+      {
        "tipo": "texto",
        "titulo": "Los fríos del norte: mistral y tramontana",
        "texto": "**Mistral**: viento del **NW** (a veces N) que baja por el valle del Ródano y sopla con fuerza en el norte del Mediterráneo occidental, sobre todo en el **golfo de León**. Es **frío y seco**, con **cielos muy limpios** y **rachas intensas**; puede durar varios días y levanta mucha mar.\n\n**Tramontana**: viento del **N**, **frío y seco**, muy fuerte en el Ampurdán, el cabo de Creus y el norte de Baleares; a menudo sopla a la vez que el mistral. Además, en todo el Mediterráneo se llama tramontana, en general, a los **vientos fríos y secos de la parte posterior (retaguardia) de las borrascas**.\n\nNo confundas con el **cierzo**, el NW del valle del Ebro."
@@ -2171,6 +2179,14 @@
        "tipo": "texto",
        "titulo": "Vendaval y alisios",
        "texto": "**Vendaval**: así se conoce en el **golfo de Cádiz** y Andalucía occidental al viento fuerte del **SW**, ligado a las **borrascas** atlánticas (sobre todo en invierno), con **lluvia, temporal y mala visibilidad**.\n\n**Alisios**: vientos regulares de la zona tropical que en el hemisferio norte soplan del **NE**. Son los que reinan en **Canarias** buena parte del año.\n\nPara el examen, quédate con la dirección de cada uno: vendaval **SW**, alisios **NE**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "vientos-regionales",
+        "vista": "mapa"
+       },
+       "texto": "Dónde sopla cada viento regional: fríos del norte, cálidos del sur, el Estrecho, el Cantábrico y Canarias."
       },
       {
        "tipo": "clave",
@@ -2459,6 +2475,13 @@
        "tipo": "texto",
        "titulo": "Los cuatro pisos",
        "texto": "Las nubes se agrupan en diez géneros según la altura de su base (valores aproximados para latitudes medias):\n\n- **Altas**, por encima de unos **6000 m**, de cristales de hielo: **cirros (Ci)**, **cirrocúmulos (Cc)** y **cirrostratos (Cs)**.\n- **Medias**, entre unos **2000 y 6000 m**: **altocúmulos (Ac)** y **altostratos (As)**.\n- **Bajas**, por debajo de unos **2000 m**: **estratos (St)**, **estratocúmulos (Sc)** y **nimbostratos (Ns)**.\n- **De desarrollo vertical**, con la base baja y la cima muy alta: **cúmulos (Cu)** y **cumulonimbos (Cb)**.\n\nSon las cifras del examen, que también da por buena «las nubes altas rara vez sobrepasan los 10 000 m». La OMM usa otros márgenes (nota de más abajo)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nubes"
+       },
+       "texto": "El prefijo te dice el piso: cirro- alta, alto- media, sin prefijo baja; Cu y Cb, desarrollo vertical."
       },
       {
        "tipo": "clave",
@@ -2763,6 +2786,14 @@
        "texto": "- **Cresta**: la parte más alta. **Seno** (o valle): la más baja.\n- **Longitud de onda**: distancia **horizontal** entre **dos crestas** (o dos senos) **consecutivos**. En metros.\n- **Altura**: distancia **vertical** entre el fondo del **seno** y lo alto de la **cresta**.\n- **Amplitud**: distancia vertical entre el nivel del mar en calma y la cresta, es decir, la **mitad de la altura**.\n- **Periodo**: **tiempo**, en segundos, entre el paso de **dos crestas** (o dos senos) **consecutivos** por un mismo punto fijo."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ola",
+        "vista": "partes"
+       },
+       "texto": "Longitud y periodo van de cresta a cresta; la altura, del seno a la cresta, es el doble de la amplitud."
+      },
+      {
        "tipo": "clave",
        "texto": "Longitud = distancia cresta–cresta. Periodo = tiempo cresta–cresta. Altura = seno–cresta, y vale el doble de la amplitud."
       },
@@ -2790,6 +2821,14 @@
        "tipo": "texto",
        "titulo": "Mar de viento y mar de fondo",
        "texto": "**Mar de viento**: las olas que levanta el viento que **sopla en ese momento encima** de ellas.\n- Crestas **agudas**, a menudo **rotas** (borreguillos).\n- Longitud de onda **corta**.\n- Altura **irregular**, mar desordenada.\n- Dirección **igual a la del viento reinante**.\n\n**Mar de fondo** (o de leva, mar tendida): olas generadas por un temporal **lejano** que han viajado fuera de su zona de origen.\n- Crestas **suaves y redondeadas**, que **no rompen en alta mar**.\n- Longitud de onda **larga**, **muy superior a su altura**.\n- Olas más **regulares**.\n- Dirección que **no tiene por qué coincidir** con la del viento local."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ola",
+        "vista": "mar-de-fondo"
+       },
+       "texto": "Crestas agudas y rotas con el viento encima: mar de viento; olas largas y redondeadas de un temporal lejano: mar de fondo."
       },
       {
        "tipo": "ojo",
@@ -2919,6 +2958,14 @@
        "texto": "- **De gradiente**: se deben a un **gradiente de presión** que **desnivela o inclina** la superficie del mar. Ese desnivel puede venir de diferencias de presión entre dos zonas, del agua que el viento amontona contra una costa o de cambios de densidad.\n- **De marea**: las originan las subidas y bajadas periódicas del nivel del mar por la **atracción de la Luna y el Sol**. Mueven toda la masa de agua, no solo la superficie, y son más fuertes en estrechos, canales y desembocaduras."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente-estrecho",
+        "vista": "tipos"
+       },
+       "texto": "Cada tipo de corriente por su causa: densidad, viento, desnivel o Luna y Sol."
+      },
+      {
        "tipo": "clave",
        "texto": "Densidad (termohalina) = temperatura y salinidad. Arrastre = viento. Gradiente = desnivel por diferencias de presión. Marea = Luna y Sol."
       },
@@ -2946,6 +2993,14 @@
        "tipo": "texto",
        "titulo": "El Estrecho de Gibraltar: dos capas",
        "texto": "El Mediterráneo pierde por evaporación más agua de la que recibe, y su agua es **más salada y densa** que la atlántica. Por eso el Estrecho funciona en **dos capas**:\n\n- En **superficie**, el agua **atlántica**, menos densa, **entra hacia el E** en el Mediterráneo.\n- En **profundidad**, el agua **mediterránea**, más densa, **sale hacia el W** al Atlántico (es la corriente de retorno).\n\nLa corriente general va al E por el centro del Estrecho (junto a las costas sigue su dirección), es más intensa a la altura de Tarifa, donde puede rondar los 2 nudos, y se refuerza o debilita con los vientos de poniente o levante. Encima se suman unas **corrientes de marea** fuertes."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente-estrecho",
+        "vista": "corte"
+       },
+       "texto": "Atlántico arriba hacia el E, Mediterráneo abajo hacia el W."
       },
       {
        "tipo": "texto",
@@ -4283,6 +4338,13 @@
        "tipo": "texto",
        "titulo": "Cálculo: ETA, tiempo restante, XTE y VMG",
        "texto": "La pantalla marca **DTG 18,0 millas** y **SOG 6,0 nudos**; son las 10:20 HRB.\n1. TTG = 18,0 / 6,0 = **3 h**.\n2. ETA = 10:20 + 3 h = **13:20**.\n\nMarca también **XTE 0,05 R**: estás 0,05 millas = **medio cable (unos 93 m)** a la **derecha** (estribor) de la línea de la ruta.\n\nSi tu COG se separa **20°** del BRG al WPT a 6 nudos, te acercas a VMG = 6 · cos 20° = **5,6 nudos**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "gnss"
+       },
+       "texto": "En una ruta entre dos waypoints: XTE respecto a la línea, BRG y DTG al WPT, COG/SOG sobre el fondo y VMG hacia el WPT, con los cálculos de la lección."
       },
       {
        "tipo": "texto",
@@ -5632,6 +5694,13 @@
        "tipo": "texto",
        "titulo": "Resolución paso a paso",
        "texto": "1. **Tiempo**: 1 h 30 min = 1,5 h → 6 × 1,5 = **9 millas** al 100°.\n2. **Estima 11:30**: **35°54,4′ N 005°44,1′ W**.\n3. **Observada 11:30**: desde Paloma trazas el 170° y desde Cires el 281°; se cortan en **35°56,6′ N 005°41,5′ W**.\n4. **Vector estimada → observada**: **≈ 044°**, **3,0 millas**.\n5. **Ihc** = 3,0 / 1,5 = **2,0 millas por hora**.\n\nResultado: **Rc ≈ 044°, Ihc = 2 nudos**. En la carta las décimas bailan; quédate con la opción más próxima."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente-desconocida"
+       },
+       "texto": "El problema modelo dibujado: el vector de la estima a la observada da Rc ≈ 044° y 3,0 millas en 1,5 h, Ihc 2 nudos."
       },
       {
        "tipo": "ojo",

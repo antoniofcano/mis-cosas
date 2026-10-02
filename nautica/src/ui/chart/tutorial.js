@@ -51,35 +51,48 @@ const wait = (ms, signal) => new Promise((res) => {
  * @param {object} chart  API de la carta interactiva
  * @param {{ title, text }[]} steps  pasos de la solución (1..n)
  * @param {object[]} items  primitivas con `step`
- * @param {{ onStep?: (n, info) => void, speed?: number }} opts
+ * @param {{ onStep?: (n, info) => void, speed?: number, narration?: { intro, steps, outro }, voice?: object }} opts
+ *   narration: explicación del profe (teacher/narrate.js); voice: voz (ui/voice.js). Si la voz está activa,
+ *   cada paso espera a que el profe termine de hablar.
  */
-export function createTutorial(chart, steps, items, { onStep, speed = 1 } = {}) {
+export function createTutorial(chart, steps, items, { onStep, speed = 1, narration, voice } = {}) {
   let n = 0;
   let ctrl = null;
   let auto = false;
 
   const visibleUpTo = (k) => items.filter((it) => (it.step ?? 0) <= k);
+  const narrFor = (k) => {
+    if (!narration) return null;
+    if (k === 0) return narration.intro;
+    const st = narration.steps[k - 1];
+    if (k !== steps.length || !narration.outro) return st;
+    return { display: `${st.display}\n${narration.outro.display}`, speech: `${st.speech} ${narration.outro.speech}` };
+  };
 
-  async function goTo(k, { animate = true } = {}) {
+  async function goTo(k, { animate = true, speak = animate } = {}) {
     ctrl?.abort();
+    voice?.stop();
     ctrl = new AbortController();
     const { signal } = ctrl;
     n = Math.max(0, Math.min(steps.length, k));
+    const narr = narrFor(n);
+    const talk = speak && voice?.enabled && narr ? voice.speak(narr.speech) : Promise.resolve();
     const before = visibleUpTo(n - 1);
     const mine = items.filter((it) => (it.step ?? 0) === n && n > 0);
     chart.showInstrument(null);
     chart.hideProtractor();
     chart.setItems(before);
-    onStep?.(n, { step: steps[n - 1], drawing: '' });
-    const focus = [...mine, ...before.filter((it) => it.t === 'pos' || it.t === 'ray')].flatMap(pointsOf);
-    if (!animate) { chart.setItems(visibleUpTo(n)); if (focus.length) chart.focusPoints(focus); return; }
+    onStep?.(n, { step: steps[n - 1], drawing: '', narration: narr });
+    // Encuadre: lo que se dibuja en este paso (y las situaciones ya obtenidas); si no se dibuja nada, toda la construcción.
+    const focus = (mine.length ? [...mine, ...before.filter((it) => it.t === 'pos' || it.t === 'ray')] : visibleUpTo(n)).flatMap(pointsOf);
+    if (!animate) { chart.setItems(visibleUpTo(n)); if (focus.length) chart.focusPoints(focus); await talk; return; }
     if (focus.length) await chart.flyTo(focus, 700 / speed);
     const shown = [...before];
     for (const it of mine) {
       if (signal.aborted) return;
       const ins = instrumentFor(it);
       if (ins) {
-        onStep?.(n, { step: steps[n - 1], drawing: ins.say });
+        onStep?.(n, { step: steps[n - 1], drawing: ins.say, narration: narr });
         chart.showInstrument(ins.spec);
         await wait(1100 / speed, signal);
         if (ins.then) { chart.showInstrument(ins.then); await wait(900 / speed, signal); }
@@ -91,14 +104,16 @@ export function createTutorial(chart, steps, items, { onStep, speed = 1 } = {}) 
     }
     chart.showInstrument(null);
     chart.hideProtractor();
+    await talk;
   }
 
   async function play() {
     auto = true;
+    if (n === 0 && narration && voice?.enabled) await goTo(0, { animate: false, speak: true }); // presentación del profe
     while (auto && n < steps.length) {
       await goTo(n + 1);
       if (!auto) break;
-      await wait(2200 / speed);
+      await wait((voice?.enabled ? 700 : 2200) / speed);
     }
     auto = false;
   }
@@ -112,7 +127,7 @@ export function createTutorial(chart, steps, items, { onStep, speed = 1 } = {}) 
     last: () => { auto = false; return goTo(steps.length, { animate: false }); },
     goTo,
     play,
-    stop: () => { auto = false; ctrl?.abort(); },
+    stop: () => { auto = false; ctrl?.abort(); voice?.stop(); },
     get playing() { return auto; },
   };
 }

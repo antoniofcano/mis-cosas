@@ -22,6 +22,8 @@ nautica/
 │   │                                        de escaneos (ajuste afín)
 │   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
+│   ├── teacher/          MOTOR «PROFE»     lecciones por tipo de paso (intro, truco, error típico), narración
+│   │                                        de soluciones y conversión a lenguaje hablado para la voz
 │   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
 │   └── ui/               INTERFAZ           router por hash, vistas; ui/chart/: carta interactiva (zoom, capas,
 │                                            herramientas de dibujo) y capa raster de la carta del usuario
@@ -87,6 +89,15 @@ Añade un fichero en `data/exams/`, su entrada en `data/exams/index.json` y (opc
   instrumento de cada trazo (`ray`/`line` → transportador, `arc`/`circle` → compás, `seg` → regla, `vec` →
   transportador + compás) y lo reproduce con encuadre automático. Cualquier tipo de ejercicio nuevo que dibuje
   su solución tiene tutorial sin escribir nada más.
+
+## El profe y la voz
+
+- `teacher/lessons.js`: conocimiento pedagógico. Cada lección reconoce un tipo de paso por su título (y, si hace
+  falta, por su texto) y aporta introducción (con variantes), truco y error típico. Añadir conocimiento = editar
+  este fichero; sirve para todos los ejercicios y preguntas de examen a la vez.
+- `teacher/narrate.js`: compone la explicación (lección + cálculo real del paso), con presentación y cierre.
+- `teacher/speech.js`: pasa el texto técnico a lenguaje hablado («Rv = 036°» → «rumbo verdadero igual a cero 36 grados»).
+- `ui/voice.js`: Web Speech API (voz española del sistema), lectura por frases y salvaguarda de tiempo para no bloquear.
 
 ## Herramientas de desarrollo
 

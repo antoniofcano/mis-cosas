@@ -5,6 +5,969 @@
  },
  "modulos": [
   {
+   "ut": 1,
+   "titulo": "Nomenclatura náutica",
+   "intro": "Antes de navegar hay que hablar el idioma del barco. En este tema aprendes a nombrar cada parte del casco y su estructura, lo que hay en cubierta, el timón, la hélice y el equipo de fondeo, además de las medidas que definen un barco y las voces de la maniobra. Son preguntas de vocabulario: si sabes qué es cada cosa y para qué sirve, son puntos seguros.",
+   "lecciones": [
+    {
+     "id": "per-1-1",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "El casco y las referencias del barco",
+     "minutos": 12,
+     "objetivos": [
+      "Saber qué es el casco y qué no forma parte de él",
+      "Situar proa, popa, crujía, bandas, amuras, través y aletas",
+      "Distinguir barlovento y sotavento de babor y estribor"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El casco",
+       "texto": "El **casco** es el cuerpo estanco del barco, el «vaso» que flota. No incluye la arboladura (palos), la jarcia, las superestructuras, el motor ni los pertrechos.\n\nPuede construirse en madera, acero, aluminio, hormigón o **fibra de vidrio** (poliéster reforzado con fibra de vidrio, PRFV), que es lo más habitual en recreo.\n\nSi el barco tiene un solo casco es un **monocasco**; con dos es un **catamarán** y con tres, un **trimarán**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Proa, popa y línea de crujía",
+       "texto": "- **Proa**: la parte delantera, la que va abriendo camino.\n- **Popa**: la parte trasera, donde suelen ir el timón y la hélice.\n- **Línea de crujía**: línea imaginaria que va de proa a popa por el centro del barco. El plano vertical que pasa por ella (**plano de crujía** o diametral) divide el barco en dos mitades simétricas: las **bandas**.\n\nMirando hacia proa, la banda de la derecha es **estribor** y la de la izquierda, **babor**. Estas dos referencias son fijas: no cambian nunca, vayas como vayas."
+      },
+      {
+       "tipo": "regla",
+       "id": "r01"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barco",
+        "resaltar": [
+         "proa",
+         "popa",
+         "crujia",
+         "babor",
+         "estribor"
+        ]
+       },
+       "texto": "Vista en planta: la crujía divide el barco en las bandas de babor y estribor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Costados, amuras, través y aletas",
+       "texto": "Los **costados** son las caras laterales exteriores del casco. Cada costado se divide en zonas que usarás para decir dónde está algo:\n- **Amura**: la parte delantera del costado, la que se va cerrando hacia la proa.\n- **Través**: la dirección perpendicular a la crujía, a la altura de la mitad del barco.\n- **Aleta**: la parte trasera del costado, la que se curva para cerrar la popa.\n\nHay una de cada por banda: «un barco por la amura de estribor», «una boya por el través de babor», «viento por la aleta de estribor»."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barco",
+        "resaltar": [
+         "amura",
+         "traves",
+         "aleta"
+        ]
+       },
+       "texto": "Amura delante, través en el centro y aleta detrás, en cada banda."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Barlovento y sotavento",
+       "texto": "Babor y estribor dependen del barco; **barlovento y sotavento dependen del viento**:\n- **Barlovento**: la banda o el lado por el que **viene o entra** el viento.\n- **Sotavento**: la banda contraria, por la que el viento **sale** o hacia donde se va.\n\nSi el viento te entra por estribor, estribor es tu banda de barlovento y babor la de sotavento. Si cambias de rumbo o rola el viento, se pueden intercambiar.\n\nCon mal tiempo, una **costa a sotavento** es peligrosa: si te falla el motor, el viento te empuja hacia ella."
+      },
+      {
+       "tipo": "regla",
+       "id": "r02"
+      },
+      {
+       "tipo": "clave",
+       "texto": "Babor y estribor no cambian nunca; barlovento y sotavento cambian cada vez que cambia el viento o tu rumbo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En las preguntas de sotavento suele aparecer «las respuestas b) y c) son correctas»: «la banda contraria a la de barlovento» y «la banda por donde sale el viento» dicen lo mismo. La opción «la banda por donde entra el viento» es barlovento, puesta para que piques. Y ni barlovento ni sotavento son una banda fija (babor o estribor) en ningún tipo de barco."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas con el viento entrando por tu costado de babor. ¿Cuál es tu banda de sotavento?",
+       "opciones": {
+        "a": "Babor",
+        "b": "Estribor",
+        "c": "Depende de si vas a vela o a motor"
+       },
+       "correcta": "b",
+       "explicacion": "El viento entra por babor (barlovento) y sale por la banda contraria, estribor, que es la de sotavento. Da igual cómo te propulses."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La línea de crujía…",
+       "opciones": {
+        "a": "Divide el barco en una mitad de proa y otra de popa",
+        "b": "Va de proa a popa y divide el barco en dos bandas simétricas",
+        "c": "Es paralela a la línea de través"
+       },
+       "correcta": "b",
+       "explicacion": "La crujía es longitudinal, de proa a popa, y separa babor de estribor. El través es perpendicular a ella."
+      }
+     ],
+     "practica": [
+      "and-2022-c1-t04",
+      "and-2021-c2-t01",
+      "and-2020-c1-t04",
+      "and-2021-c1-t04",
+      "and-2023-c1-t02",
+      "and-2024-c1-t02"
+     ],
+     "chuleta": [
+      "Casco = cuerpo estanco, sin palos, jarcia, superestructura ni motor.",
+      "Crujía: de proa a popa por el centro; separa las bandas.",
+      "Mirando a proa: estribor a la derecha, babor a la izquierda.",
+      "Amura (delante), través (en medio), aleta (detrás), una de cada por banda.",
+      "Barlovento: por donde entra el viento. Sotavento: por donde sale."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 1.1: casco y cubierta, proa y popa, crujía (estribor y babor), costados, amura, través y aleta",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025)"
+      },
+      {
+       "dato": "Casco = «vaso» sin arboladura, jarcia ni superestructuras",
+       "fuente": "Plantilla oficial de Andalucía and-2022-c1-t04 (c)"
+      },
+      {
+       "dato": "La crujía divide el barco en dos mitades simétricas llamadas bandas",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c2-t01 (c)"
+      },
+      {
+       "dato": "Barlovento = costado por donde entra el viento; no es una banda fija",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c1-t04 (b) y and-2024-c1-t02 (d)"
+      },
+      {
+       "dato": "Sotavento = banda contraria a barlovento / por donde sale el viento («b y c correctas»)",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c1-t04 (d) y and-2023-c1-t02 (b)"
+      },
+      {
+       "dato": "Ilustración barco: babor arriba con proa a la derecha; amura, través y aleta bien situados (renderizada)",
+       "fuente": "src/illustrations (tipo barco), comprobación visual"
+      }
+     ]
+    },
+    {
+     "id": "per-1-2",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "En cubierta: aberturas, desagües y barandillas",
+     "minutos": 10,
+     "objetivos": [
+      "Distinguir escotillas, lumbreras, portillos, tragaluces y manguerotes",
+      "Saber qué son los imbornales y para qué sirven",
+      "No confundir pasamanos, candeleros y guardamancebos"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Bañera y escotillas",
+       "texto": "La **bañera** es la zona abierta y más baja de la cubierta, normalmente a popa, desde donde se gobierna y se maneja la maniobra.\n\nLas **escotillas** son aberturas en la cubierta, normalmente rectangulares, para **pasar** (o meter carga) a los compartimentos de abajo. Llevan tapa estanca y toman el nombre de su posición: escotilla de proa, de popa… La mayor es la **escotilla principal**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Luz y aire: lumbreras, portillos, tragaluces y manguerotes",
+       "texto": "- **Lumbreras**: aberturas en cubierta con tapa acristalada. Dan **luz** siempre y, abiertas, también **ventilación**.\n- **Portillos**: aberturas con cristal en el costado o la superestructura, normalmente redondas. Los **fijos** solo dan luz; los **practicables** (los que se abren) dan luz y aire.\n- **Tragaluces**: ventanas cuya función es dar luz.\n- **Manguerotes**: conductos con una boca orientable que, girada hacia el viento o de espaldas a él, mete aire fresco o saca el viciado. **Ventilan, pero no dan luz.**"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si te preguntan qué usarías para ventilar y dar luz, la respuesta es la **lumbrera** (y el portillo practicable). El manguerote es la trampa: solo ventila. Y la escotilla es para pasar, aunque también esté en cubierta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Imbornales: el desagüe de la cubierta",
+       "texto": "Los **imbornales** son orificios abiertos en el costado, a la altura del **trancanil** (la unión de la cubierta con el costado), por los que sale al mar el agua que cae en cubierta: golpes de mar, lluvia, baldeo.\n\nHay que mantenerlos libres: el agua que se queda en cubierta es un peso alto y resta estabilidad. Al repostar conviene taparlos, para que un derrame de combustible no acabe en el mar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Barandillas: pasamanos, candeleros y guardamancebos",
+       "texto": "- **Pasamanos**: barandas o piezas (de metal, madera o cabo) colocadas junto a escalas, superestructuras o en la cubierta para **agarrarse con la mano**.\n- **Candeleros**: postes verticales, normalmente metálicos, fijados cerca de la borda.\n- **Guardamancebos**: cables o cabos que, sujetos por los candeleros, rodean la cubierta de proa a popa por las dos bandas para evitar caídas al agua."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Imbornales: el agua de cubierta sale al mar. Lumbreras: luz y aire. Manguerotes: solo aire."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«Aliviaderos» o «desagües» suenan lógicos, pero el nombre náutico es **imbornales**. Y no confundas el guardamancebos (la «barandilla» perimetral que sostienen los candeleros) con el pasamanos, que es para apoyar la mano en escalas y superestructuras."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cuál de estos elementos ventila pero no da luz?",
+       "opciones": {
+        "a": "La lumbrera",
+        "b": "El manguerote",
+        "c": "El portillo practicable"
+       },
+       "correcta": "b",
+       "explicacion": "El manguerote es un conducto de aire con boca orientable: no tiene cristal. Lumbreras y portillos practicables dan luz y ventilación."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Los imbornales están…",
+       "opciones": {
+        "a": "Por debajo de la línea de flotación",
+        "b": "En el costado, a la altura del trancanil",
+        "c": "En el fondo de la sentina"
+       },
+       "correcta": "b",
+       "explicacion": "Están a ras de cubierta, en la unión con el costado, para que el agua salga de la cubierta al mar. Lo que está bajo la flotación son los grifos de fondo."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t01",
+      "and-2022-c3-t03",
+      "and-2023-c2-t03",
+      "and-2022-c1-t02",
+      "and-2023-c1-t04",
+      "and-2024-c2-t04",
+      "and-2026-c1-t01",
+      "and-2025-c2-t01",
+      "and-2022-c2-t03"
+     ],
+     "chuleta": [
+      "Escotilla: abertura en cubierta para pasar.",
+      "Lumbrera: en cubierta, luz y ventilación. Portillo: en el costado; practicable = luz y aire.",
+      "Manguerote: solo ventila, con boca orientable.",
+      "Imbornales: a la altura del trancanil, desaguan la cubierta.",
+      "Candeleros sostienen guardamancebos; pasamanos, para la mano."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 1.1: bañera, imbornales, escotillas (escotilla principal), lumbreras, manguerotes, portillos, tragaluces, pasamanos, candeleros y guardamancebos",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025)"
+      },
+      {
+       "dato": "Imbornales: orificios en el forro a la altura del trancanil que desaguan la cubierta (no «aliviaderos» ni «desagües»)",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c3-t01 (d), and-2022-c3-t03 (b), and-2023-c2-t03 (b)"
+      },
+      {
+       "dato": "Ventilar y dar luz: lumbreras y portillos; manguerote solo ventila; tragaluz no es la respuesta",
+       "fuente": "Plantilla oficial de Andalucía and-2022-c1-t02 (d), and-2023-c1-t04 (c)"
+      },
+      {
+       "dato": "Manguerote: entrada de aire fresco y salida de viciado, orientable",
+       "fuente": "Plantilla oficial de Andalucía and-2024-c2-t04 (b), and-2026-c1-t01 (c)"
+      },
+      {
+       "dato": "Escotillas: aberturas rectangulares en cubierta para acceder abajo",
+       "fuente": "Plantilla oficial de Andalucía and-2025-c2-t01 (b)"
+      },
+      {
+       "dato": "Pasamanos: piezas o barandas para apoyo junto a escalas, toldilla, castillo…",
+       "fuente": "Plantilla oficial de Andalucía and-2022-c2-t03 (c)"
+      }
+     ]
+    },
+    {
+     "id": "per-1-3",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "La estructura del casco",
+     "minutos": 13,
+     "objetivos": [
+      "Reconocer quilla, roda, codaste, cuadernas y baos",
+      "Distinguir borda, regala y trancanil",
+      "Saber qué son mamparos, plan, sentina y grifos de fondo"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La quilla, columna vertebral",
+       "texto": "La **quilla** es la pieza longitudinal que recorre el casco de proa a popa por su parte más baja. Es la «columna vertebral»: sobre ella se montan las cuadernas.\n\n- Por dentro puede llevar un refuerzo, la **sobrequilla**.\n- Las **quillas de balance** son aletas longitudinales en los pantoques (la curva entre fondo y costado) que amortiguan los balances.\n- En los veleros, la **orza** es el apéndice bajo el casco, fijo o abatible, que reduce el abatimiento (que el viento te desplace de lado)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Roda y codaste",
+       "texto": "La quilla se prolonga hacia arriba por los dos extremos:\n- **Roda**: pieza recta o curva que continúa la quilla hacia **proa** y forma el «filo» de la proa.\n- **Codaste**: pieza que continúa la quilla hacia **popa**. En él se apoya el timón y por esa zona sale el eje de la hélice.\n\nAsí que roda y amuras son de proa; codaste y aletas, de popa."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«¿Qué NO pertenece a la proa?» El codaste. Es la pieza de popa: no la confundas con la roda, ni la amura (proa) con la aleta (popa)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cuadernas y baos",
+       "texto": "- **Cuadernas**: las «costillas» del barco. Son piezas transversales que salen de la quilla y dan forma al casco. La de la parte más ancha, en el centro, es la **cuaderna maestra**.\n- **Baos**: vigas transversales que van de banda a banda, perpendiculares a la crujía, unidas por sus extremos a las cuadernas. **Sostienen la cubierta**, atirantan las cuadernas y mantienen su separación. Tienen una ligera curva hacia arriba para que el agua corra hacia los costados.\n\nTodo este esqueleto va cubierto por fuera por el **forro**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Trancanil, borda y regala",
+       "texto": "- **Trancanil**: la zona de unión de la cubierta con el costado.\n- **Borda**: la parte superior del costado que queda por encima de la cubierta, desde esta hasta la regala.\n- **Regala**: la pieza que remata la borda por arriba y la recorre de proa a popa. Es un refuerzo **longitudinal**, en la parte alta del casco."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Mamparos, plan y sentina",
+       "texto": "- **Mamparos**: tabiques, transversales o longitudinales, que dividen el interior. Si son estancos, limitan una inundación a un solo compartimento. El primero de proa es el **mamparo de colisión**.\n- **Plan**: el piso más bajo del interior.\n- **Sentina**: debajo del plan, la parte más baja del casco, donde se acumulan el agua que entra y los goteos. Se vacía con las **bombas de achique** (manuales o eléctricas; algunas arrancan solas con un flotador). El agua de sentina con restos de aceite o combustible no debe ir al mar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Grifos de fondo",
+       "texto": "Los **grifos de fondo** son válvulas situadas **por debajo de la flotación** que dejan pasar agua de mar hacia dentro (refrigeración del motor, aseos, cocina) o hacia fuera (descargas). Van montados sobre un **pasacascos** y conectados a una manguera; la mayoría se abren y cierran girando su palanca un cuarto de vuelta.\n\nEl de refrigeración tiene que estar abierto para arrancar el motor. Si vas a dejar el barco, ciérralos: un grifo o una manguera que falla bajo la flotación es una vía de agua."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Quilla: longitudinal, abajo. Baos: transversales, sostienen la cubierta. Regala: longitudinal, arriba, remata la borda."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Grifos de fondo e imbornales no tienen nada que ver: los grifos toman (o sueltan) agua de mar bajo la flotación; los imbornales desaguan la cubierta. Y las bombas de achique sacan agua de la sentina, no la toman del mar."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué pieza prolonga la quilla hacia popa?",
+       "opciones": {
+        "a": "La roda",
+        "b": "El codaste",
+        "c": "El bao"
+       },
+       "correcta": "b",
+       "explicacion": "El codaste continúa la quilla hacia popa; la roda lo hace hacia proa. Los baos son transversales y sostienen la cubierta."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Los grifos de fondo sirven para…",
+       "opciones": {
+        "a": "Desaguar la cubierta",
+        "b": "Tomar agua de mar para servicios como la refrigeración del motor",
+        "c": "Ventilar la sentina"
+       },
+       "correcta": "b",
+       "explicacion": "Son válvulas bajo la flotación que dan paso al agua de mar para los servicios de a bordo. La cubierta la desaguan los imbornales."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t01",
+      "and-2023-c3-t03",
+      "and-2024-c1-t03",
+      "and-2024-c2-t01",
+      "and-2024-c3-t01",
+      "and-2024-c3-t04",
+      "and-2021-c2-t03",
+      "and-2025-c2-t04",
+      "and-2020-c3-t04",
+      "and-2025-c1-t02"
+     ],
+     "chuleta": [
+      "Quilla: de proa a popa por abajo; roda la continúa a proa y codaste a popa.",
+      "Cuadernas: costillas transversales. Baos: de banda a banda, sostienen la cubierta.",
+      "Trancanil (unión cubierta-costado) → borda → regala (remate longitudinal).",
+      "Mamparo de colisión: el de proa. Sentina: bajo el plan; se achica con bombas.",
+      "Grifos de fondo: válvulas bajo la flotación; ciérralos al dejar el barco."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 1.2: quilla, roda, codaste, cuadernas, baos, borda, regala, mamparos, plan, sentina, grifos de fondo y bombas de achique",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025)"
+      },
+      {
+       "dato": "Baos: perpendiculares a crujía, sostienen cubierta, afirmados a cuadernas, atirantan y mantienen su distancia",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c1-t01 (d), and-2023-c3-t03 (a), and-2024-c1-t03 (d)"
+      },
+      {
+       "dato": "Quilla: pieza longitudinal de proa a popa en la parte inferior",
+       "fuente": "Plantilla oficial de Andalucía and-2024-c2-t01 (a)"
+      },
+      {
+       "dato": "Roda prolonga la quilla a proa; el codaste no pertenece a la proa",
+       "fuente": "Plantilla oficial de Andalucía and-2024-c3-t01 (c), and-2024-c3-t04 (b)"
+      },
+      {
+       "dato": "Regala: refuerzo longitudinal y externo al casco; borda entre cubierta y regala",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c2-t03 (b), and-2025-c2-t04 (d)"
+      },
+      {
+       "dato": "Grifos de fondo: válvulas bajo la flotación que toman agua de mar (p. ej., refrigeración del motor)",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c3-t04 (b), and-2025-c1-t02 (a)"
+      }
+     ]
+    },
+    {
+     "id": "per-1-4",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "El timón",
+     "minutos": 9,
+     "objetivos": [
+      "Nombrar las partes del timón: pala, mecha, limera, caña o rueda y guardines",
+      "Saber hacia dónde cae la proa con caña y con rueda",
+      "Distinguir los tipos de timón"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Partes del timón",
+       "texto": "- **Pala** o **azafrán**: la superficie que, al girar, desvía el agua y hace caer la proa.\n- **Mecha**: el **eje** de la pala, alrededor del cual gira.\n- **Limera**: el **orificio** del casco por el que entra la mecha. Lleva un cierre estanco (prensaestopas o similar) para que no entre agua.\n- **Caña**: la palanca unida a la cabeza de la mecha.\n- **Rueda**: el volante de gobierno. Mueve la mecha mediante **guardines** (cables o cadenas) o mediante un sistema hidráulico."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "A popa hay dos agujeros en el casco y el examen los cruza: la **limera** es la del timón (por ella pasa la mecha) y la **bocina** es la de la hélice (por ella sale el eje). La bocina no es parte del timón, y la **cruz** tampoco: es del ancla. Y recuerda: la mecha es el eje, no el orificio."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Caña y rueda giran «al revés»",
+       "texto": "Con el barco avanzando:\n- **Caña**: la proa cae hacia la banda **contraria** a la que llevas la caña. Caña a babor → la pala va a estribor → la proa cae a **estribor**.\n- **Rueda**: funciona como el volante de un coche. Rueda a estribor → la proa cae a **estribor**.\n\nEn el examen y en el pantalán, piensa siempre en hacia dónde queda la pala."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tipos de timón",
+       "texto": "Según dónde quede la pala respecto a la mecha:\n- **Ordinario**: toda la pala queda a popa de la mecha.\n- **Compensado**: una parte de la pala queda a proa de la mecha. El agua ayuda a girarla y cuesta mucho menos esfuerzo.\n- **Semicompensado**: solo la parte baja está compensada.\n- **Suspendido**: la pala cuelga solo de la mecha, sin apoyo por abajo. Es muy habitual en los veleros modernos."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Pala que desvía el agua, mecha que es su eje, limera por donde la mecha atraviesa el casco y guardines que la unen a la rueda."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo se llama el eje alrededor del cual gira la pala del timón?",
+       "opciones": {
+        "a": "Limera",
+        "b": "Mecha",
+        "c": "Guardín"
+       },
+       "correcta": "b",
+       "explicacion": "La mecha es el eje; la limera, el orificio por el que pasa al casco; los guardines, los cables que la mueven desde la rueda."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Vas avante gobernando con caña y la llevas a babor. ¿Hacia dónde cae la proa?",
+       "opciones": {
+        "a": "A babor",
+        "b": "A estribor",
+        "c": "No cae: la caña solo funciona dando atrás"
+       },
+       "correcta": "b",
+       "explicacion": "La caña mueve la pala al lado contrario: caña a babor, pala a estribor, proa a estribor."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t03",
+      "and-2022-c3-t02",
+      "and-2023-c1-t03",
+      "and-2023-c3-t04",
+      "and-2025-c1-t01",
+      "and-2026-c1-t03",
+      "and-2026-c2-t02"
+     ],
+     "chuleta": [
+      "Pala (azafrán) + mecha (eje) + limera (orificio en el casco).",
+      "Caña o rueda; de la rueda a la mecha, los guardines.",
+      "Limera = timón; bocina = eje de la hélice.",
+      "Caña: la proa cae al lado contrario. Rueda: al mismo lado.",
+      "Ordinario, compensado, semicompensado y suspendido."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 1.4: partes del timón: caña o rueda, mecha, limera, guardines y pala",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025)"
+      },
+      {
+       "dato": "Limera: orificio por el que la mecha atraviesa el casco (no la bocina)",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c3-t03 (c), and-2022-c3-t02 (d), and-2023-c1-t03 (d)"
+      },
+      {
+       "dato": "Mecha: eje de giro de la pala",
+       "fuente": "Plantilla oficial de Andalucía and-2026-c1-t03 (c)"
+      },
+      {
+       "dato": "Guardines: cables entre rueda y pala/mecha",
+       "fuente": "Plantilla oficial de Andalucía and-2023-c3-t04 (b)"
+      },
+      {
+       "dato": "Cruz y bocina no son partes del timón",
+       "fuente": "Plantilla oficial de Andalucía and-2025-c1-t01 (c), and-2026-c2-t02 (d)"
+      }
+     ]
+    },
+    {
+     "id": "per-1-5",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "La hélice",
+     "minutos": 14,
+     "objetivos": [
+      "Nombrar las partes de la hélice y saber qué es la bocina",
+      "Definir paso, retroceso y cavitación",
+      "Distinguir hélice dextrógira y levógira, avante y atrás",
+      "Saber cómo giran las hélices gemelas al exterior y al interior"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Partes de la hélice",
+       "texto": "- **Eje**: transmite el giro del motor. Sale del casco por la **bocina**, un tubo con cierre estanco.\n- **Núcleo**: la pieza central, encajada en el eje, de la que salen las palas.\n- **Palas**: tienen una **cara activa** (la de popa, que empuja el agua) y una **cara inactiva** (la de proa).\n- **Capacete**: la pieza en forma de cúpula que **cierra el extremo exterior del eje**, tapa la tuerca que sujeta la hélice y reduce las turbulencias."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La bocina es el tubo del casco por el que sale el eje, pero el programa oficial del PER la incluye entre las **partes de la hélice** (eje, bocina, núcleo, palas y capacete). Por eso en el examen «bocina, núcleo y capacete» es la respuesta correcta: no hay trampa. Lo que nunca será es parte del timón: el orificio del timón es la **limera**. Y caña, brazos o cruz son del ancla."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Paso, retroceso y cavitación",
+       "texto": "- **Paso**: lo que avanzaría la hélice en una vuelta completa si girase en un medio sólido, como un tornillo en la madera.\n- **Retroceso**: la diferencia entre ese avance teórico y lo que avanza de verdad en el agua.\n- **Diámetro**: el del círculo que barren las puntas de las palas.\n- **Cavitación**: con demasiadas revoluciones se forman burbujas de vapor en las palas. La hélice pierde empuje, vibra y las palas se erosionan.\n\nLas de **velocidad** tienen mucho paso y poco diámetro; las de **arrastre** (remolcadores), poco paso y mucho diámetro. Hay también hélices de **paso variable** y de **palas abatibles**, que en los veleros se pliegan al navegar a vela."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dextrógira y levógira",
+       "texto": "El sentido de giro se define siempre **mirando desde popa hacia proa** y con **máquina avante**:\n- **Dextrógira**: gira en el sentido de las agujas del reloj.\n- **Levógira**: gira en sentido contrario a las agujas del reloj.\n\nAl dar **atrás**, el giro se invierte: una dextrógira dando atrás gira en sentido antihorario y una levógira, en sentido horario. Pero sigue llamándose igual, porque el nombre lo da su giro avante."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helice",
+        "sentido": "dextrogira",
+        "marcha": "avante"
+       },
+       "texto": "Dextrógira avante: gira a la derecha vista desde popa. Además tiende a llevar la popa hacia estribor (lo verás en maniobra)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helice",
+        "sentido": "levogira",
+        "marcha": "avante"
+       },
+       "texto": "Levógira avante: gira a la izquierda vista desde popa."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Hélices gemelas",
+       "texto": "Con dos motores se montan una hélice dextrógira y otra levógira. Así sus efectos laterales se compensan, el barco mantiene mejor el rumbo y maniobra mejor.\n\n- **Giro al exterior**: vistas desde popa en avante, las palas de arriba se alejan de la crujía. La de **estribor es dextrógira** y la de **babor, levógira**.\n- **Giro al interior**: al revés. Estribor levógira y babor dextrógira.\n\nTruco: en el giro al exterior, cada hélice gira hacia su lado. Estribor, que está a la derecha, gira a la derecha: dextrógira."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Dextrógira = horario visto desde popa y avante. Gemelas al exterior: estribor dextrógira, babor levógira."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones «depende del sentido de marcha» son falsas: el nombre se define siempre en avante. Y en las gemelas nunca giran las dos igual: descarta cualquier opción con «ambas dextrógiras», «ambas levógiras» o «la de estribor también será levógira»."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una hélice levógira, vista desde popa y dando atrás, gira…",
+       "opciones": {
+        "a": "En el sentido de las agujas del reloj",
+        "b": "En sentido contrario a las agujas del reloj",
+        "c": "Depende de su paso"
+       },
+       "correcta": "a",
+       "explicacion": "Avante, la levógira gira en sentido antihorario; al dar atrás se invierte y gira en sentido horario."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un barco tiene hélices gemelas de giro al interior. La de estribor es…",
+       "opciones": {
+        "a": "Dextrógira",
+        "b": "Levógira",
+        "c": "Igual que la de babor"
+       },
+       "correcta": "b",
+       "explicacion": "Al interior es lo contrario que al exterior: estribor levógira y babor dextrógira."
+      }
+     ],
+     "practica": [
+      "and-2021-c2-t04",
+      "and-2025-c1-t04",
+      "and-2026-c1-t04",
+      "and-2020-c1-t02",
+      "and-2021-c1-t03",
+      "and-2022-c2-t04",
+      "and-2023-c2-t01",
+      "and-2024-c2-t02",
+      "and-2025-c3-t04",
+      "and-2022-c1-t03",
+      "and-2022-c3-t04",
+      "and-2024-c3-t03",
+      "and-2025-c2-t03",
+      "and-2026-c1-t02"
+     ],
+     "chuleta": [
+      "Partes: eje, bocina (por donde sale el eje), núcleo, palas y capacete (cierra el extremo del eje).",
+      "Paso: avance teórico por vuelta. Retroceso: lo que se pierde. Cavitación: exceso de vueltas.",
+      "Dextrógira: horario, vista desde popa y avante. Levógira: antihorario.",
+      "Dando atrás, el giro se invierte (el nombre no).",
+      "Gemelas al exterior: estribor dextrógira, babor levógira. Al interior, al revés."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Partes de la hélice: eje, bocina, núcleo, palas y capacete; dextrógira y levógira; gemelas de giro al exterior; palas abatibles",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025), UT 1.5"
+      },
+      {
+       "dato": "«Bocina, núcleo y capacete» son elementos de la hélice",
+       "fuente": "Plantilla oficial de Andalucía and-2025-c1-t04 (b), coherente con el programa oficial"
+      },
+      {
+       "dato": "Bocina: orificio que atraviesa el eje del motor-hélice",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c2-t04 (b)"
+      },
+      {
+       "dato": "Capacete: cierra el extremo exterior del eje",
+       "fuente": "Plantilla oficial de Andalucía and-2026-c1-t04 (c)"
+      },
+      {
+       "dato": "Dextrógira: horario en avante, vista desde popa; levógira: antihorario en avante y horario en atrás",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c1-t03, and-2023-c2-t01, and-2024-c2-t02, and-2025-c3-t04, and-2020-c1-t02 (c), and-2022-c2-t04 (b)"
+      },
+      {
+       "dato": "Gemelas al exterior: estribor dextrógira, babor levógira",
+       "fuente": "Plantilla oficial de Andalucía and-2022-c1-t03, and-2022-c3-t04, and-2024-c3-t03, and-2025-c2-t03, and-2026-c1-t02"
+      },
+      {
+       "dato": "Dextrógira avante: la popa cae a estribor (efecto de la presión lateral de las palas); la ilustración dibuja la flecha a estribor",
+       "fuente": "Teoría de maniobra del programa del PER (RD 875/2014, UT 3/maniobra); comprobación visual de la ilustración tipo helice"
+      }
+     ]
+    },
+    {
+     "id": "per-1-6",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "El equipo de fondeo",
+     "minutos": 14,
+     "objetivos": [
+      "Conocer las partes del molinete: barbotén, cabirón, embrague y freno",
+      "Nombrar las partes del ancla y reconocer los tipos más usados",
+      "Saber qué exige la norma para la línea de fondeo",
+      "Dominar las voces de la maniobra: filar, virar, a la pendura, a pique, zarpar, clara, levar"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El molinete",
+       "texto": "El **molinete** es la máquina que vira (recoge) y fila (larga) la cadena. Puede ser de eje horizontal o vertical (este último se suele llamar cabrestante) y manual, eléctrico o hidráulico.\n- **Barbotén**: la rueda con **muescas** en las que encajan los eslabones de la cadena.\n- **Cabirón**: tambor liso para cobrar cabos.\n- **Embrague**: acopla o desacopla el barbotén del motor del molinete.\n- **Freno**: sujeta el barbotén para retener la cadena o dejarla salir controlada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dos formas de dar fondo",
+       "texto": "- **Desembragado**: el barbotén gira loco, la cadena cae por su propio peso y tú controlas la salida con el freno, que aprietas cuando el ancla toca fondo.\n- **Embragado**: bajas el ancla con el motor del molinete, a la velocidad que quieras."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El barbotén gira loco cuando está **desembragado**, no embragado. Y el arganeo y el cepo son piezas del ancla, no del molinete: si aparecen en una pregunta sobre el molinete, son de relleno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Partes del ancla",
+       "texto": "El programa del PER pide las partes del **ancla sin cepo**, la habitual hoy:\n- **Arganeo**: la argolla del extremo de la caña donde se une la cadena, con un grillete.\n- **Caña**: el cuerpo principal.\n- **Cruz**: la unión de la caña con los brazos.\n- **Brazos**: salen de la cruz.\n- **Uñas**: las puntas de los brazos, que se clavan en el fondo.\n\nLa clásica de almirantazgo añade el **cepo**: una barra transversal junto al arganeo que obliga al ancla a tumbarse para que clave."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tipos de ancla",
+       "texto": "- **De arado** (tipo CQR o Delta): una sola reja con forma de arado. Agarra bien en muchos tipos de fondo.\n- **Danforth**: dos **uñas planas y anchas** que basculan sobre la cruz, con una barra transversal en esa zona. Muy usada en recreo; agarra muy bien en arena y fango.\n- **Rezón**: una caña con cuatro o cinco brazos, a veces plegables. Para botes y fondos de roca.\n- **Almirantazgo**: la clásica, con cepo y dos brazos curvos.\n\nEn el examen te pueden enseñar una foto: una reja = arado; dos palas anchas = Danforth."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La línea de fondeo y lo que exige la norma",
+       "texto": "La **línea de fondeo** es la cadena (y el cabo o estacha) que une el ancla con el barco. La cadena forma una curva, la **catenaria**, que amortigua los tirones y hace que el ancla trabaje tumbada.\n\nLa norma de equipos de seguridad de recreo (RD 339/2021, art. 11) exige:\n- Línea de fondeo de al menos **5 veces la eslora**.\n- Tramo de **cadena de al menos 1 vez la eslora**. Si la eslora es de 6 m o menos, la línea puede ser toda de estacha.\n- Nada de empalmar cadenas o estachas sin grillete.\n\nCuánta largar en cada fondeo depende de la profundidad y del tiempo: lo verás en maniobra."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las voces de la maniobra",
+       "texto": "- **Filar**: largar cadena poco a poco. **Virar**: recogerla.\n- **A la pendura**: el ancla cuelga fuera del escobén, sujeta por el freno y **sin tocar fondo**, lista para fondear.\n- **A pique**: estando fondeado, al virar, la cadena queda **vertical** sobre el ancla.\n- **Zarpar**: el ancla **se despega del fondo**.\n- **Clara** (y libre): el ancla asoma limpia en la superficie.\n- **Levar**: recoger el ancla del todo, hasta dejarla en su sitio."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Al levar, el orden es: virar, a pique, zarpa, clara y levada. Al fondear: a la pendura, dar fondo y filar."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "No confundas **a la pendura** (cuelga antes de fondear, sin tocar fondo) con **a pique** (cadena vertical estando fondeado). Y en este tema «zarpar» es el momento en que el ancla se desprende del fondo, aunque en el habla corriente también se use para salir a navegar."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El ancla cuelga sujeta por el freno, cerca del agua y lista para dejarla caer. Está…",
+       "opciones": {
+        "a": "A pique",
+        "b": "A la pendura",
+        "c": "Zarpada"
+       },
+       "correcta": "b",
+       "explicacion": "A la pendura: colgando, sin tocar fondo, lista para fondear. A pique es con la cadena vertical estando ya fondeado."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tu barco mide 9 m de eslora. ¿Qué longitud mínima de cadena debe tener su línea de fondeo?",
+       "opciones": {
+        "a": "9 m",
+        "b": "18 m",
+        "c": "45 m"
+       },
+       "correcta": "a",
+       "explicacion": "El tramo de cadena debe medir como mínimo la eslora (9 m). Los 45 m son el mínimo de la línea completa: 5 veces la eslora."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t03",
+      "and-2026-c2-t03",
+      "and-2020-c3-t02",
+      "and-2024-c1-t01",
+      "and-2022-c1-t01",
+      "and-2023-c3-t02",
+      "and-2025-c1-t03",
+      "and-2022-c2-t01",
+      "and-2025-c2-t02",
+      "and-2022-c3-t01",
+      "and-2023-c1-t01",
+      "and-2023-c3-t01",
+      "and-2024-c2-t03",
+      "and-2025-c3-t02"
+     ],
+     "chuleta": [
+      "Molinete: barbotén (muescas para la cadena), cabirón (cabos), embrague y freno.",
+      "Ancla sin cepo: arganeo, caña, cruz, brazos y uñas (el cepo, solo en la de almirantazgo).",
+      "Arado = una reja; Danforth = dos uñas anchas; rezón = varios brazos.",
+      "Línea de fondeo ≥ 5 esloras; cadena ≥ 1 eslora (≤ 6 m: puede ser toda estacha).",
+      "Filar = largar; virar = recoger. Pendura → a pique → zarpa → clara → levada."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 339/2021, equipo de seguridad de las embarcaciones de recreo (art. 11, líneas de fondeo)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+      },
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 1.3: molinete (barbotén, embrague, freno), línea de fondeo, grillete de unión, partes del ancla sin cepo, arado/Danforth/rezón, virar, filar, a la pendura, a pique, levar, zarpar, clara y libre",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025)"
+      },
+      {
+       "dato": "Línea de fondeo ≥ 5 esloras; cadena ≥ 1 eslora salvo L ≤ 6 m (puede ser toda estacha); prohibido empalmar sin grillete",
+       "fuente": "RD 339/2021, art. 11 «Líneas de fondeo» (BOE-A-2021-8268, últ. act. 20/07/2022)"
+      },
+      {
+       "dato": "Más de 6 m: cadena mínima = eslora",
+       "fuente": "Plantilla oficial de Andalucía and-2023-c1-t01 (a)"
+      },
+      {
+       "dato": "Barbotén: pieza con muescas para los eslabones; embrague acopla/desacopla el motor",
+       "fuente": "Plantilla oficial de Andalucía and-2023-c3-t01 (c), and-2024-c2-t03 (b), and-2025-c3-t02 (b)"
+      },
+      {
+       "dato": "Filar = arriar/largar cadena progresivamente",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c1-t03 (b), and-2026-c2-t03 (b)"
+      },
+      {
+       "dato": "A la pendura: colgando sin tocar fondo, lista para fondear; a pique: cadena vertical estando fondeado; zarpar: el ancla se despega del fondo",
+       "fuente": "Plantilla oficial de Andalucía and-2022-c1-t01, and-2023-c3-t02, and-2025-c1-t03, and-2022-c2-t01, and-2025-c2-t02, and-2022-c3-t01"
+      },
+      {
+       "dato": "Fotos: ancla de arado (tipo Delta) y Danforth",
+       "fuente": "Plantilla oficial de Andalucía and-2020-c3-t02 (d), and-2024-c1-t01 (a)"
+      }
+     ]
+    },
+    {
+     "id": "per-1-7",
+     "curso": "per",
+     "ut": 1,
+     "titulo": "Flotación, dimensiones y asiento",
+     "minutos": 14,
+     "objetivos": [
+      "Distinguir obra viva y obra muerta",
+      "Definir eslora, manga, puntal, calado y francobordo",
+      "Calcular el asiento y saber si el barco va aproado o apopado",
+      "Saber qué es escorar y adrizar, desplazamiento y arqueo"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Flotación: obra viva y obra muerta",
+       "texto": "La **línea de flotación** es la línea que dibuja el agua sobre el casco. Separa dos partes:\n- **Obra viva** o **carena**: la parte **sumergida**. Su volumen es el **volumen de carena**, y cambia con la carga.\n- **Obra muerta**: la parte que queda **por encima** del agua. Es la que recibe el empuje del viento.\n\n«Obra semiviva» u «obra semimuerta» no existen."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barco",
+        "resaltar": [
+         "obra-viva",
+         "obra-muerta",
+         "linea-flotacion"
+        ]
+       },
+       "texto": "La flotación separa la obra viva (sumergida) de la obra muerta (emergida)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Eslora, manga y puntal",
+       "texto": "- **Eslora**: la longitud. La **eslora total** va de lo más saliente de proa a lo más saliente de popa; la **eslora en la flotación** se mide en la línea de flotación.\n- **Manga**: la anchura, medida en la parte más ancha del barco. La **manga máxima** cuenta además todo lo fijo que sobresale del casco (cintones, extensiones, barandillas).\n- **Puntal**: la altura del casco, medida en el centro de la eslora y en el costado, desde la quilla hasta la cubierta principal."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Calado y francobordo",
+       "texto": "- **Calado**: la distancia vertical desde la flotación hasta lo más bajo de la quilla. Se lee en las escalas de calados de proa y de popa: en decímetros, con números arábigos, o en pies, con números romanos.\n- **Francobordo**: la distancia vertical, medida en el **centro de la eslora**, entre la **flotación** y la **cubierta estanca** más alta (la que tiene medios permanentes de cierre). Es la reserva de flotabilidad del barco: cuanto más cargado va, menos francobordo tiene."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barco",
+        "resaltar": [
+         "calado",
+         "francobordo",
+         "puntal",
+         "linea-flotacion"
+        ]
+       },
+       "texto": "Calado, de la flotación hacia abajo; francobordo, de la flotación hacia arriba; puntal, de la quilla a la cubierta."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Obra viva y obra muerta son **partes** del casco; calado y francobordo son **distancias**. Si una opción define el francobordo como «la parte del casco que emerge», está describiendo la obra muerta. Y si la distancia se mide desde la quilla hasta la cubierta, es el puntal."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Asiento: aproado o apopado",
+       "texto": "El **asiento** es la **diferencia entre el calado de popa y el de proa**: asiento = Cpp − Cpr. Indica la inclinación longitudinal:\n- Positivo (más calado a popa): **apopado**.\n- Negativo (más calado a proa): **aproado**.\n- Cero: en **aguas iguales**.\n\nEl **calado medio** es la media de los dos: (Cpr + Cpp) / 2. Con 1,2 m a proa y 1,6 m a popa: asiento +0,4 m (apopado) y calado medio 1,4 m.\n\nSi el casco se deforma a lo largo, hay **arrufo** (el centro se hunde, en forma de U) o **quebranto** (el centro se levanta)."
+      },
+      {
+       "tipo": "regla",
+       "id": "r04"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Escorar y adrizar",
+       "texto": "- **Escorar**: inclinarse hacia una banda por el viento, la mar o un mal reparto de pesos. Esa inclinación transversal es la **escora**.\n- **Adrizar**: corregir la escora, poner el barco derecho. También se llama así a la capacidad del barco de volver a su posición.\n\nNo los mezcles con el asiento: el asiento es la inclinación de proa a popa; la escora, de banda a banda."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Desplazamiento y arqueo",
+       "texto": "- **Desplazamiento**: el **peso** del barco, igual al peso del agua que desaloja. Se da en toneladas. **En rosca** es el barco vacío (sin combustible, agua, víveres ni tripulación); el **máximo** es a plena carga.\n- **Arqueo**: el **volumen** interior del barco, no su peso. Hoy se da como arqueo bruto (**GT**), un número sin unidades que se calcula a partir del volumen de los espacios cerrados. Antes se daba en toneladas de registro bruto (**TRB**), con la tonelada Moorsom (100 pies cúbicos, unos 2,83 m³). No hay una equivalencia fija entre TRB y GT."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Asiento = calado de popa − calado de proa. Más a popa: apopado. Más a proa: aproado."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Escora y asiento no son lo mismo: si una opción dice que el asiento es «el ángulo de inclinación transversal», está describiendo la escora. «Eliminar el asiento» tampoco es adrizar: adrizar es quitar la escora."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Calado de proa 1,2 m y calado de popa 1,6 m. ¿Cuál es el asiento?",
+       "opciones": {
+        "a": "0,4 m, aproado",
+        "b": "0,4 m, apopado",
+        "c": "1,4 m"
+       },
+       "correcta": "b",
+       "explicacion": "Asiento = Cpp − Cpr = 1,6 − 1,2 = +0,4 m. Al ser positivo, el barco va apopado. Los 1,4 m son el calado medio."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El francobordo es la distancia vertical, en el centro de la eslora…",
+       "opciones": {
+        "a": "De la flotación a lo más bajo de la quilla",
+        "b": "De la flotación a la cubierta estanca más alta",
+        "c": "De la quilla a la cubierta principal"
+       },
+       "correcta": "b",
+       "explicacion": "La a) es el calado y la c), el puntal."
+      }
+     ],
+     "practica": [
+      "and-2021-c1-t02",
+      "and-2021-c2-t02",
+      "and-2023-c2-t02",
+      "and-2024-c1-t04",
+      "and-2024-c3-t02",
+      "and-2026-c2-t01",
+      "and-2021-c1-t01",
+      "and-2025-c3-t03",
+      "and-2025-c3-t01",
+      "and-2026-c2-t04",
+      "and-2022-c2-t02",
+      "and-2023-c2-t04"
+     ],
+     "chuleta": [
+      "Obra viva (carena) = sumergida; obra muerta = emergida, la que empuja el viento.",
+      "Calado: flotación → quilla. Francobordo: flotación → cubierta estanca. Puntal: quilla → cubierta.",
+      "Asiento = Cpp − Cpr: + apopado, − aproado, 0 aguas iguales.",
+      "Escorar = inclinarse de banda; adrizar = enderezar.",
+      "Desplazamiento = peso; arqueo = volumen (GT)."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014, titulaciones náuticas de recreo (programa del PER)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa UT 1.6-1.7: eslora, manga y manga máxima, puntal, francobordo, calados, calado medio, asiento, desplazamiento máximo, escorar/adrizar",
+       "fuente": "RD 875/2014, anexo III, programa del PER, UT 1 (BOE-A-2014-10344, versión consolidada, últ. act. 30/12/2025)"
+      },
+      {
+       "dato": "Obra viva = parte/volumen sumergido = carena; obra muerta = por encima de la flotación",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c1-t02, and-2021-c2-t02 (d), and-2023-c2-t02, and-2024-c1-t04, and-2024-c3-t02, and-2026-c2-t01"
+      },
+      {
+       "dato": "Francobordo: distancia vertical en la medianía entre flotación y cubierta completa más alta con cierres estancos",
+       "fuente": "Plantilla oficial de Andalucía and-2025-c3-t01 (b), and-2026-c2-t04 (c); definición de cubierta superior en Convenio Internacional sobre Arqueo de Buques, 1969, regla 2 y 3 (BOE núm. 221, 15/09/1982, pp. 24882-24891)"
+      },
+      {
+       "dato": "Asiento = calado de popa − calado de proa",
+       "fuente": "Plantilla oficial de Andalucía and-2021-c1-t01 (b), and-2025-c3-t03 (a)"
+      },
+      {
+       "dato": "Adrizar = corregir la escora (no «eliminar el asiento»)",
+       "fuente": "Plantilla oficial de Andalucía and-2022-c2-t02 (c), and-2023-c2-t04 (a)"
+      },
+      {
+       "dato": "Puntal: de la quilla a la cubierta superior, en el costado; manga medida en el centro",
+       "fuente": "Convenio Internacional sobre Arqueo de Buques, 1969, regla 2 y 3 (BOE núm. 221, 15/09/1982, pp. 24882-24891), regla 2.2 y 2.3"
+      },
+      {
+       "dato": "Manga máxima: incluye las partes estructurales e integrales que sobresalen",
+       "fuente": "UNE-EN ISO 8666 (datos principales de embarcaciones pequeñas), def. Bmax"
+      },
+      {
+       "dato": "GT = K1·V (adimensional, K1 = 0,2 + 0,02 log10 V); sin equivalencia fija con TRB; tonelada Moorsom = 100 ft³ ≈ 2,83 m³",
+       "fuente": "Convenio Internacional sobre Arqueo de Buques, 1969, regla 2 y 3 (BOE núm. 221, 15/09/1982, pp. 24882-24891), regla 3; 100 × 0,3048³ = 2,832 m³"
+      },
+      {
+       "dato": "Escalas de calado: decímetros en números arábigos, pies en números romanos",
+       "fuente": "Prefectura Naval Argentina, Ordenanza Marítima 29/71 (escalas de calado); práctica naval estándar"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "ut": 2,
    "titulo": "Amarre y fondeo",
    "intro": "Atracar en un muelle o pasar la noche fondeado en una cala son dos de las cosas que más vas a hacer con tu barco. En este tema aprendes los herrajes y las partes de un cabo, los cuatro nudos que pide el examen, cómo elegir un buen fondeadero y cómo fondear, vigilar el ancla y levar sin sustos. Es un tema corto, con mucho vocabulario: si separas bien cada palabra (bornear y garrear, fango duro y blando, embragar y frenar) te lo llevas entero.",
@@ -722,7 +1685,7 @@
       "Orinque: cabo a la cruz del ancla con boyarín; señala el ancla y la desenroca.",
       "Longitud del orinque: algo más que la profundidad en pleamar.",
       "Levar: molinete embragado y freno libre; avante suave hacia el ancla.",
-      "Orden: virar → a pique → zarpa → levar → clara → estibar y quitar la señal.",
+      "Orden: virar → a pique → zarpa → clara → levada (ancla arriba) → estibar y quitar la señal.",
       "Tira por largo con fuerza: paladas avante, nunca forzar el molinete."
      ],
      "profundizar": [

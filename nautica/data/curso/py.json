@@ -1548,6 +1548,14 @@
        "texto": "Con el helicóptero cerca, **nunca lances un cohete con paracaídas**: puede alcanzarlo o deslumbrar a los pilotos. Señala tu posición de otra forma: **humo** de día, **espejo** de señales, la bengala de mano con cuidado o el **VHF portátil**.\n\nPara guiarlo por radio se usa la **técnica de las horas del reloj**, **desde el punto de vista del helicóptero**: su proa son las 12. «Estamos a sus 3» quiere decir a su derecha.\n\nEn la balsa no desconectes el SART: no interfiere con la radio y ayuda a localizarte."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "helicoptero",
+        "vista": "senales"
+       },
+       "texto": "Las horas del reloj, desde el punto de vista del helicóptero."
+      },
+      {
        "tipo": "clave",
        "texto": "Helicóptero: canal 16, chalecos puestos, cubierta despejada, velas arriadas y motor en marcha, cable al agua antes de tocarlo y nunca firme, nada de cohetes, reloj desde su punto de vista."
       },
@@ -3193,6 +3201,15 @@
        "texto": "El eje terrestre está inclinado unos 23° 27′ respecto a la órbita. De ahí salen cuatro paralelos famosos:\n- **Trópico de Cáncer**: **23° 27′ N**.\n- **Trópico de Capricornio**: **23° 27′ S**.\n- **Círculo Polar Ártico**: **66° 33′ N** (90° − 23° 27′).\n- **Círculo Polar Antártico**: **66° 33′ S**.\n\nHay trópicos y círculos polares en **los dos hemisferios**. Son valores aproximados: la inclinación del eje cambia muy despacio y hoy ronda 23° 26′, pero el examen usa 23° 27′ y 66° 33′."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "esfera",
+        "resaltar": "tropicos"
+       },
+       "texto": "Trópicos a 23° 27′ y círculos polares a 66° 33′."
+      },
+      {
        "tipo": "clave",
        "texto": "Cáncer al norte y Capricornio al sur, los dos a 23° 27′; los círculos polares a 66° 33′, uno en cada hemisferio."
       },
@@ -3205,6 +3222,14 @@
        "tipo": "texto",
        "titulo": "Cálculo: diferencias de latitud y de longitud",
        "texto": "**Δl**: si las dos latitudes son del mismo nombre (N y N), se **restan**; si son de distinto nombre, se **suman**. Su sentido es hacia donde vas.\n- De 36° 10,0′ N a 35° 48,8′ N: Δl = **21,2′ S**.\n- De 2° 10′ N a 1° 20′ S: Δl = 2° 10′ + 1° 20′ = **3° 30′ S**.\n\n**ΔL**: igual, restando o sumando, pero si pasa de 180° se toma **360° − ΔL** y se **cambia el sentido** (vas por el camino corto, cruzando el meridiano de 180°).\n- De 100° W a 110° E: 100 + 110 = 210° → 360 − 210 = **150° hacia el W**.\n\nRecuerda: 1′ = 60″ y 36″ = 0,6′."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "coordenadas",
+        "vista": "diferencias"
+       },
+       "texto": "Mismo nombre, se restan; distinto, se suman. Si la ΔL pasa de 180°, se toma 360° − ΔL."
       },
       {
        "tipo": "check",
@@ -3774,9 +3799,26 @@
        "texto": "El ejemplo de 069° 25′ E: huso 5 E, Hz 15:30 y HcL 15:07,7."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "husos",
+        "vista": "calculo",
+        "ejemplo": "w"
+       },
+       "texto": "Hacia el W se resta: en 075° W, huso 5 W."
+      },
+      {
        "tipo": "texto",
        "titulo": "Hora oficial",
        "texto": "La **hora oficial (Ho)** es la que el **Gobierno** de cada país fija para su territorio (la del reloj de casa). Suele ser la legal con un adelanto en horas enteras.\n\n- **Península y Baleares**: TU + 1 en invierno y **TU + 2** en verano.\n- **Canarias**: TU en invierno y TU + 1 en verano.\n- El horario de verano empieza el **último domingo de marzo** y acaba el **último domingo de octubre** (el cambio se hace a la 01:00 TU).\n\nCasi toda la península está en el huso 0 (y Canarias en el 1 W), así que la hora oficial española **no coincide** con la legal ni siquiera en invierno."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "husos",
+        "vista": "oficial"
+       },
+       "texto": "La hora oficial la fija el Gobierno: no coincide con la legal."
       },
       {
        "tipo": "texto",

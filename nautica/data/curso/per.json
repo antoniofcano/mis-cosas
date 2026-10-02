@@ -1212,9 +1212,25 @@
        "texto": "Sirve para **unir dos cabos por sus chicotes**, siempre que sean **de la misma mena (grosor) y del mismo material**. Con tensión se aprieta y aguanta bien, y sin tensión se deshace con facilidad.\n\nTambién se llama **nudo de rizo**, porque es el que se usa para atar las tomadoras al tomar rizos en una vela.\n\nSi los cabos son de distinta mena, el llano puede escurrirse: para eso existe otro nudo, la **vuelta de escota**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nudos",
+        "nudo": "llano"
+       },
+       "texto": "Dos senos enlazados: une dos cabos iguales."
+      },
+      {
        "tipo": "texto",
        "titulo": "Vuelta de rezón",
        "texto": "Es el nudo para **afirmar un cabo a una argolla** (una anilla, el arganeo de un ancla o de un rezón). Se dan vueltas al aro y se remata con el chicote para que no se suelte.\n\nEs muy segura y no se afloja con los tirones, así que es la indicada para **defensas que van a estar colgadas mucho tiempo** o para cualquier cabo que deba quedar firme a una argolla."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nudos",
+        "nudo": "rezon"
+       },
+       "texto": "Vueltas a la argolla, rematadas con el chicote."
       },
       {
        "tipo": "texto",
@@ -1222,9 +1238,25 @@
        "texto": "Dos vueltas cruzadas alrededor de un palo, un candelero o una barandilla. Su gran ventaja es que se hace **muy rápido** y se ajusta fácil de altura.\n\nSu punto débil: aguanta bien con un tiro constante, pero con **tirones laterales o intermitentes puede correrse o aflojarse**. Por eso es el nudo para **colgar una defensa por poco tiempo** (al atracar un rato, al abarloarte), no para dejarla días."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nudos",
+        "nudo": "ballestrinque"
+       },
+       "texto": "Dos vueltas cruzadas a un palo o candelero."
+      },
+      {
        "tipo": "texto",
        "titulo": "As de guía",
        "texto": "Forma una **gaza fija, sin costuras**, que ni corre ni se aprieta aunque tires fuerte, y que luego se deshace con facilidad.\n\nUsos típicos:\n- Hacer la gaza de una amarra para **encapillarla en un noray**.\n- Afirmar escotas o drizas.\n- Rodear a una persona por el pecho para izarla o asegurarla.\n\nPor eso lo llaman «el rey de los nudos»."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nudos",
+        "nudo": "as-de-guia"
+       },
+       "texto": "Una gaza fija que ni corre ni se aprieta."
       },
       {
        "tipo": "clave",
@@ -2861,6 +2893,14 @@
        "tipo": "texto",
        "titulo": "Durante el remolque",
        "texto": "- El **remolcado** desembraga su motor y, si tiene gobierno, sigue la estela del remolcador.\n- En aguas abrigadas y espacios reducidos (entrar en puerto) se puede remolcar **abarloado**: los dos barcos amarrados costado con costado, con el averiado un poco más a popa.\n- Vigila el remolque en todo momento y ten preparado un cuchillo para largarlo si hay peligro."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "remolque",
+        "vista": "abarloado"
+       },
+       "texto": "Para entrar en puerto, costado con costado."
       },
       {
        "tipo": "texto",
@@ -6299,9 +6339,25 @@
        "texto": "**Encapillar** es meter la gaza de un cabo en un noray, bolardo o bita.\n\nSi en el noray ya hay otra gaza, no pongas la tuya encima sin más: si lo haces, el otro barco no podrá largar su cabo hasta que tú quites el tuyo. Lo correcto es pasar tu gaza **por dentro de la que ya está, de abajo arriba**, y después encapillarla. Así cada barco puede sacar su gaza sin tocar la del vecino.\n\nPara que esto funcione, las gazas tienen que ser holgadas en relación con el noray."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cabo",
+        "vista": "encapillar"
+       },
+       "texto": "Tu gaza por dentro de la otra, de abajo arriba: cada uno saca la suya sin tocar la del vecino."
+      },
+      {
        "tipo": "texto",
        "titulo": "Amarrar por seno",
        "texto": "**Amarrar por seno** (o en doble) es pasar el cabo alrededor del noray o por la argolla de tierra y traerlo de vuelta a bordo: **el firme y el chicote quedan los dos a bordo**.\n\nLa gran ventaja es que puedes **largar desde a bordo**, sin nadie en el muelle: sueltas un extremo y cobras del otro hasta que el cabo vuelve entero. Por eso se usa mucho en las amarras que vas a soltar las últimas al desatracar.\n\nOjo con los noráis o argollas con aristas: el cabo roza al correr y se desgasta."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cabo",
+        "vista": "por-seno"
+       },
+       "texto": "Los dos extremos a bordo: para largar, sueltas uno y cobras del otro."
       },
       {
        "tipo": "ojo",
@@ -7103,6 +7159,14 @@
        "texto": "Es el atraque típico de los puertos deportivos del Mediterráneo: un extremo al muelle y el otro sujeto hacia fuera.\n- Al muelle das **dos largos** (de popa si atracas de popa, de proa si atracas de proa).\n- El otro extremo se sujeta con el **muerto** (cobras su guía desde el muelle y la llevas a proa o a popa), con una **codera** o con tu ancla.\n\nCon **viento de tierra**, das los largos y el propio viento te separa del muelle; entonces tesas el muerto. Con **viento de mar**, das los largos, te separas con el motor y tesas el muerto."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "atraque",
+        "modo": "punta"
+       },
+       "texto": "Dos largos al muelle y el otro extremo sujeto con el muerto, una codera o el ancla."
+      },
+      {
        "tipo": "texto",
        "titulo": "De punta con viento de costado",
        "texto": "El viento empuja el extremo libre del barco a sotavento, y los largos tienen que trabajar **contra el viento**.\n\nPor eso conviene encapillar **los dos largos en el noray de barlovento**: así los dos tiran hacia barlovento y sujetan el barco. Un largo dado al noray de sotavento quedaría en banda, sin trabajar, mientras el viento empuja.\n\nEn cuanto puedas, coge y tesa el muerto (si hay dos, primero el de barlovento), para que el viento no atraviese el barco."
@@ -7122,9 +7186,25 @@
        "texto": "**Abarloarse** es amarrarse al costado de otro barco: en puerto, para ahorrar sitio; en la mar, para auxiliar o dar remolque.\n- **Avisa** a la tripulación del otro barco y pon defensas de sobra.\n- Entre veleros, que los palos **no queden a la misma altura**, para que no se enganchen al balancear.\n- Si hay marea, deja seno a los cabos.\n- Si el otro está **fondeado o en una boya**, estará proa al viento o a la corriente: acércate por su **popa**.\n- Si está **ardiendo** o desprende gases, acércate por **barlovento**, para no tragarte el humo."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "atraque",
+        "modo": "abarloado"
+       },
+       "texto": "Defensas de sobra, avisa al otro barco y que los palos no queden a la misma altura."
+      },
+      {
        "tipo": "texto",
        "titulo": "Amarrar a una boya",
        "texto": "Llega **proa al viento o a la corriente** (a lo que más empuje) y muy despacio. Cuando tengas la boya **por la amura**, cógela con el **bichero** y pasa tu cabo, mejor por seno, para poder soltarte desde a bordo.\n\nSi no puedes llegar proa al viento, ponte a **barlovento** de la boya y deja que el viento te arrime a ella por el costado.\n\n**Nunca fondees** junto a una boya de amarre: tu ancla y tu cadena pueden enredarse con el muerto y el cabo de la boya."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "atraque",
+        "modo": "boya"
+       },
+       "texto": "Proa a lo que más empuje, despacio, y el cabo por seno para soltarte desde a bordo."
       },
       {
        "tipo": "check",
@@ -9577,6 +9657,14 @@
         "vista": "carta"
        },
        "texto": "La distancia se lleva con el compás al margen lateral, a la altura de la zona: cada minuto es una milla."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "milla",
+        "vista": "minuto"
+       },
+       "texto": "Cada minuto de la escala de latitudes es una milla; cada quinto, 0,2."
       },
       {
        "tipo": "clave",

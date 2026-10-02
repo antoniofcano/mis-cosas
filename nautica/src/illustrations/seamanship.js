@@ -88,7 +88,7 @@ export function amarrasIllustration(spec) {
   const out = open(W, H, 'Amarras', 'am');
   out.push(title(160, 'Amarras (vista desde arriba)'));
   out.push(`<rect x="0" y="150" width="${W}" height="60" fill="#a16207" opacity=".75"/>`, lbl(160, 192, 'MUELLE', null, 'middle', 'style="fill:#fff" font-weight="700"'));
-  // barco con la proa a la derecha, costado de babor al muelle
+  // barco con la proa a la derecha, costado de estribor al muelle
   out.push(`<path d="M70,80 L220,80 Q275,80 290,108 Q275,136 220,136 L70,136Z" fill="${C.g}" opacity=".65" stroke="${C.g}"/>`, lbl(270, 112, 'proa', null, 'end'));
   const bol = { a: 30, b: 120, c: 170, d: 210, e: 300 };
   const L = [
@@ -135,7 +135,8 @@ export function busquedaIllustration(spec) {
   } else {
     const R = 100;
     const P = (deg) => [cx + Math.sin((deg * Math.PI) / 180) * R, cy - Math.cos((deg * Math.PI) / 180) * R];
-    const seq = [0, 120, 240].flatMap((a) => [P(a), P(a + 60)]);
+    // IAMSAR: todos los giros de 120° a estribor → sectores en el orden 0°, 240°, 120°
+    const seq = [0, 240, 120].flatMap((a) => [P(a), P(a + 60)]);
     d = `M${cx},${cy} ${seq.map((p, i) => `L${p[0].toFixed(1)},${p[1].toFixed(1)}${i % 2 ? ` L${cx},${cy}` : ''}`).join(' ')}`;
   }
   out.push(`<path d="${d}" fill="none" stroke="${C.v}" stroke-width="2" stroke-dasharray="900" stroke-dashoffset="900"><animate attributeName="stroke-dashoffset" from="900" to="0" dur="8s" repeatCount="indefinite"/></path>`);
@@ -191,7 +192,7 @@ export function fuegoIllustration(spec) {
       out.push(`<rect x="24" y="${y - 18}" width="30" height="26" rx="5" fill="${c}"/><text x="39" y="${y}" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">${k}</text>`, lbl(66, y - 2, t, null, 'start', 'font-size="12"'));
     });
     out.push('</svg>');
-    return { svg: out.join(''), caption: 'Cada clase pide su agente: el agua sirve para los sólidos (A) pero nunca para líquidos inflamables ni equipos eléctricos. El polvo polivalente ABC es el extintor habitual a bordo.' };
+    return { svg: out.join(''), caption: 'Cada clase pide su agente. El agua a chorro sirve para sólidos (A), pero no para líquidos inflamables (los esparce) ni con tensión eléctrica; el polvo polivalente ABC es el extintor habitual a bordo. Algunos temarios antiguos hablan de clase E (eléctricos): hoy no es una clase, sino un riesgo a tener en cuenta al elegir el agente.' };
   }
   out.push(title(160, 'Tetraedro del fuego'));
   const P = { t: [160, 46], l: [70, 200], r: [250, 200], c: [175, 150] };

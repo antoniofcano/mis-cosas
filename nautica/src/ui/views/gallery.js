@@ -17,7 +17,15 @@ const sonidos = Object.keys(SENALES).map((senal) => ({ tipo: 'sonido', senal }))
 const meteo = (...s) => s.map((sistema) => ({ tipo: 'meteo', sistema }));
 const movimientos = ['balance', 'cabezada', 'guinada'].map((mov) => ({ tipo: 'movimiento', mov }));
 const banderas = CATALOGO.bandera.params.codigo.map((codigo) => ({ tipo: 'bandera', codigo }));
-const mareas = ['curva', 'duodecimos', 'sonda'].map((modo) => ({ tipo: 'marea', modo }));
+const mareas = ['curva', 'duodecimos', 'sonda', 'fases'].map((modo) => ({ tipo: 'marea', modo }));
+const vientos = [{ tipo: 'viento-aparente' }, ...['cenida', 'traves', 'aleta', 'popa'].map((rumbo) => ({ tipo: 'viento-aparente', rumbo }))];
+const heliceTimon = ['avante', 'atras'].flatMap((marcha) => ['er', 'br'].map((timon) => ({ tipo: 'helice-timon', marcha, timon, sentido: 'dextrogira' })));
+const bifurcaciones = [
+  { tipo: 'bifurcacion', marca: 'canal-principal-estribor', ruta: 'principal' },
+  { tipo: 'bifurcacion', marca: 'canal-principal-estribor', ruta: 'secundario' },
+  { tipo: 'bifurcacion', marca: 'canal-principal-babor', ruta: 'principal' },
+];
+const pirotecnia = ['bengala', 'cohete-paracaidas', 'humo'].map((resaltar) => ({ tipo: 'socorro', resaltar, solo: true }));
 
 /** Qué láminas van en cada tema. Las claves son las UT de la estructura oficial de cada titulación. */
 export const LAMINAS = {
@@ -26,20 +34,21 @@ export const LAMINAS = {
     2: [{ tipo: 'amarras' }],
     3: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }],
     4: banderas,
-    5: [...boyas, { tipo: 'canal', sentido: 'entrando' }, { tipo: 'canal', sentido: 'saliendo' }, ...ritmos],
-    6: [...cruces, { tipo: 'jerarquia' }, { tipo: 'sectores-luces' }, { tipo: 'dst' }, ...buques, ...sonidos],
-    7: [{ tipo: 'helice', sentido: 'dextrogira', marcha: 'atras' }, { tipo: 'helice', sentido: 'levogira', marcha: 'atras' }],
-    8: [{ tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }],
-    9: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'brisa-mar', 'brisa-tierra', 'frentes'), { tipo: 'viento-aparente' }],
-    10: [CATALOGO.rosa.ejemplo, { tipo: 'nortes', dm: -4, desvio: 2 }],
-    11: [{ tipo: 'enfilacion' }, { tipo: 'nortes', dm: 3, desvio: -5 }],
+    5: [...boyas, { tipo: 'canal', sentido: 'entrando' }, { tipo: 'canal', sentido: 'saliendo' }, ...bifurcaciones, { tipo: 'regiones' }, ...ritmos],
+    6: [...cruces, { tipo: 'riesgo', caso: 'comparar' }, { tipo: 'jerarquia' }, { tipo: 'sectores-luces' }, { tipo: 'dst' }, ...buques, ...sonidos, { tipo: 'socorro' }],
+    7: [{ tipo: 'helice', sentido: 'dextrogira', marcha: 'atras' }, { tipo: 'helice', sentido: 'levogira', marcha: 'atras' }, ...heliceTimon, { tipo: 'evolucion' }, { tipo: 'ciaboga' },
+      { tipo: 'desatraque', abrir: 'popa' }, { tipo: 'desatraque', abrir: 'proa' }],
+    8: [{ tipo: 'socorro' }, ...pirotecnia, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }],
+    9: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'brisa-mar', 'brisa-tierra', 'frentes'), ...vientos, { tipo: 'beaufort' }],
+    10: [CATALOGO.rosa.ejemplo, { tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'marea', modo: 'fases' }],
+    11: [{ tipo: 'enfilacion' }, { tipo: 'nortes', dm: 3, desvio: -5 }, { tipo: 'demoras' }],
   },
   py: {
     1: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'estabilidad', caso: 'inestable' }, ...movimientos, { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
-      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }],
-    2: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'brisa-mar', 'brisa-tierra'), { tipo: 'viento-aparente' }],
+      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }, { tipo: 'socorro' }, ...pirotecnia],
+    2: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'brisa-mar', 'brisa-tierra'), ...vientos, { tipo: 'beaufort' }],
     3: [{ tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'loxodromica' }, ...mareas],
-    4: [{ tipo: 'corriente', caso: 'efectivo' }, { tipo: 'corriente', caso: 'rumbo-a-dar' }, { tipo: 'abatimiento', banda: 'babor' }, { tipo: 'abatimiento', banda: 'estribor' }, { tipo: 'enfilacion' }, { tipo: 'marea', modo: 'sonda' }],
+    4: [{ tipo: 'corriente', caso: 'efectivo' }, { tipo: 'corriente', caso: 'rumbo-a-dar' }, { tipo: 'abatimiento', banda: 'babor' }, { tipo: 'abatimiento', banda: 'estribor' }, { tipo: 'enfilacion' }, { tipo: 'demoras' }, { tipo: 'marea', modo: 'sonda' }],
   },
 };
 
@@ -56,5 +65,5 @@ export function galleryView({ tit }) {
       otro ? h('a.chip.secondary', { href: tlink(otro.id, ['laminas']) }, `Láminas del ${otro.sigla} →`) : null),
     temas.map(({ b, specs }) => h('section', { id: `ut${b.ut}` }, h('h2', `${b.icon} UT${b.ut} · ${b.titulo}`), h('div.il-grid', illustrationEls(specs)))),
   );
-  return { el, summary: () => `VISTA láminas ${T.sigla}\n${temas.map(({ b, specs }) => `UT${b.ut} ${b.titulo}: ${specs.map((s) => s.tipo + (s.clase || s.sistema || s.caso || s.situacion || s.modo || '' ? `:${s.clase ?? s.sistema ?? s.caso ?? s.situacion ?? s.modo}` : '')).join(', ')}`).join('\n')}` };
+  return { el, summary: () => `VISTA láminas ${T.sigla}\n${temas.map(({ b, specs }) => `UT${b.ut} ${b.titulo}: ${specs.map((s) => { const v = s.clase ?? s.sistema ?? s.caso ?? s.situacion ?? s.modo ?? s.rumbo ?? s.marca ?? s.abrir ?? s.resaltar ?? (s.marcha && `${s.marcha}-${s.timon ?? ''}`); return s.tipo + (v ? `:${v}` : ''); }).join(', ')}`).join('\n')}` };
 }

@@ -51,3 +51,20 @@ export function signedAnnualChange(dmBase, minutesPerYear, trend /* 'aumenta' | 
   const towardsEast = dmBase < 0 ? trend === 'disminuye' : trend === 'aumenta';
   return towardsEast ? mag : -mag;
 }
+
+/** Corrección total en palabras: 'positiva' (se suma), 'negativa' (se resta) o 'cero'. */
+export const signoCt = (ct) => (ct > 0 ? 'positiva' : ct < 0 ? 'negativa' : 'cero');
+
+/** Ángulo con su letra de la convención del examen: −4 → «4° W», 2 → «2° E», 0 → «0°». */
+export const ewTexto = (d) => (d === 0 ? '0°' : `${Math.abs(d)}° ${d > 0 ? 'E' : 'W'}`);
+
+/**
+ * Marcación por banda, como se dice a bordo, a partir de la demora y el rumbo verdaderos.
+ * @returns {{ grados: number, banda: 'proa'|'estribor'|'babor'|'popa' }} grados de 0 a 180 contados desde la proa
+ */
+export function marcacionBanda(dv, rv) {
+  const m = marcacionFrom(dv, rv);
+  if (m === 0) return { grados: 0, banda: 'proa' };
+  if (Math.abs(m) === 180) return { grados: 180, banda: 'popa' };
+  return { grados: Math.abs(m), banda: m > 0 ? 'estribor' : 'babor' };
+}

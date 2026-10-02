@@ -10,6 +10,7 @@ import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
+import { pidePrediccion } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas } from './theory.js';
 import { voice } from '../voice.js';
 import { createRng, randomSeed } from '../../math/rng.js';
@@ -66,7 +67,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           L.objetivos?.length ? h('ul', L.objetivos.map((o) => h('li', o))) : null,
           h('p.muted', `Unos ${L.minutos ?? 10} minutos.`));
         case 'texto': return h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto));
-        case 'ilustracion': return h('div.paso.ilu', h('div.il-grid.inline', illustrationEls(p.spec)), p.texto ? h('p.muted', p.texto) : null);
+        case 'ilustracion': {
+          // Con predicción, el pie de la clase (que suele dar la respuesta) aparece al responder.
+          const pie = p.texto ? h('p.muted', { hidden: pidePrediccion(p.spec) }, p.texto) : null;
+          const onRespuesta = () => { if (pie) pie.hidden = false; checkOk.add(i); if (i === paso) refrescaBotones(); };
+          return h('div.paso.ilu', h('div.il-grid.inline', illustrationEls(p.spec, { modo: 'clase', onRespuesta })), pie);
+        }
         case 'regla': {
           const r = reglas.get(p.id);
           return r ? h('div.paso.regla', h('p.mnemo-big', `🧠 ${r.regla}`), h('p', r.significado)) : null;
@@ -107,12 +113,14 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     function refrescaBotones() {
       anterior.disabled = paso === 0;
       siguiente.textContent = paso === n - 1 ? 'Terminar la clase ✓' : 'Siguiente →';
-      siguiente.disabled = tarjetas[paso].tipo === 'check' && !checkOk.has(paso);
+      const t = tarjetas[paso];
+      // Un «¿Lo pillas?» o la predicción de una lámina interactiva se responden antes de seguir.
+      siguiente.disabled = (t.tipo === 'check' || (t.tipo === 'ilustracion' && pidePrediccion(t.spec))) && !checkOk.has(paso);
     }
 
     function tarjeta() {
       const p = tarjetas[paso];
-      checkOk.delete(paso); // una pregunta rápida se vuelve a responder al volver a ella
+      checkOk.delete(paso); // una pregunta rápida (o una predicción) se vuelve a responder al volver a ella
       barra.set(`Tarjeta ${paso + 1} de ${n}`, (paso + 1) / n);
       const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', onclick: () => voice.speak(speechOf(p)) }, '🔊 Escuchar') : null;
       setChildren(cont,

@@ -7,7 +7,7 @@
 ## 1. Estado actual en texto (recomendado)
 - JavaScript: `nautica.state()` → resumen compacto (enunciado, datos, respuestas del alumno con su corrección,
   diagnóstico, solución y pasos). Una línea por idea.
-- Sin JavaScript: el mismo texto está en el elemento `#ai-context` (un <details> al final de cada vista).
+- Sin JavaScript: en ejercicios y preguntas de carta el mismo texto está en `#ai-context` (un <details> plegado al final, «Para asistentes de IA»).
 
 ## 2. API de consola `window.nautica`
 - `nautica.help()` lista de funciones
@@ -19,12 +19,16 @@
 - `nautica.lib.{compass,kinematics,positioning,mercator,format}` motores de cálculo puros
 
 ## 3. URLs (todo el estado va en el hash; tit = per | py)
-- `#/` portada · `#/<tit>` panel de la titulación (progreso por bloque)
-- `#/<tit>/teoria` bloques · `#/<tit>/teoria/ut/<n>?s=<semilla>[&f=1]` práctica de un bloque (f=1: solo falladas)
-- `#/<tit>/examenes` simulacros y convocatorias · `#/<tit>/test/simulacro?s=<semilla>` · `#/<tit>/test/real/<convocatoria>`
+- `#/` y `#/<tit>` Hoy: lo que toca (recomendador único, `src/course/plan.js`), avance y lo siguiente · `#/bienvenida` primera vez
+- `#/<tit>/temario` temas con su estado · `#/<tit>/temario/<n>` un tema (clases, preguntas, carta)
+- `#/<tit>/curso/<clase>[?practica=1]` clase en tarjetas (se retoma en la tarjeta donde se dejó) y su práctica
+- `#/<tit>/teoria/ut/<n>?s=<semilla>[&f=1]` tanda de 10 preguntas de un tema (f=1: solo falladas)
+- `#/<tit>/examenes` examen a medias, simulacro y convocatorias · `#/<tit>/test/simulacro?s=<semilla>` · `#/<tit>/test/real/<convocatoria>`
 - `#/<tit>/carta` ejercicios de carta · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible
-- `#/examenes/<banco>/<idPregunta>` pregunta real de carta resuelta · `#/mesa` mesa de cartas · `#/laminas` · `#/conceptos` · `#/progreso`
-- Durante un examen en curso, `nautica.state()` NO muestra soluciones: no las des hasta que el alumno entregue.
+- `#/examenes/<banco>/<idPregunta>` pregunta real de carta resuelta · `#/mesa` mesa de cartas
+- `#/<tit>/laminas` · `#/reglas` · `#/conceptos` · `#/mas` (ajustes, voz, copia) · `#/progreso`
+- Redirecciones: `#/<tit>/curso` y `#/<tit>/teoria` → `#/<tit>/temario`; `#/teoria`, `#/test` → con la titulación activa; `#/carta` → `#/mesa`; `#/laminas` → `#/<tit>/laminas`.
+- Durante un examen en curso, `nautica.state()` NO muestra soluciones: no las des hasta que el alumno corrija. El examen a medias se guarda en el progreso (`testEnCurso`).
 
 ## 4. Datos en JSON
 - `data/chart-105.json` puntos notables (lat/lon decimales, W negativo), costa, declinación.
@@ -33,7 +37,7 @@
 - En la vista de una pregunta real, `nautica.state()` incluye la resolución calculada paso a paso (validada contra la plantilla).
 
 ## Dibujo del alumno
-En ejercicios y en #/carta, `nautica.state()` incluye `DIBUJO ALUMNO:` (líneas con Rv/distancia, círculos de compás, rectas del transportador, puntos, notas de texto y posición/hilo del transportador).
+En ejercicios y en #/mesa, `nautica.state()` incluye `DIBUJO ALUMNO:` (líneas con Rv/distancia, círculos de compás, rectas del transportador, puntos, notas de texto y posición/hilo del transportador).
 
 ## Mesa de cartas
 Con la mesa abierta (pantalla completa), `nautica.state()` añade `MESA DE CARTAS ABIERTA`, la pestaña, el paso del tutorial y el dibujo del alumno en la mesa.

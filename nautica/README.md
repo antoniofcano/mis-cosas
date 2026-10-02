@@ -6,17 +6,22 @@ el examen entero: teoría, carta y simulacros.
 
 ## Cómo está organizada
 
-Eliges titulación en la portada (o con el selector PER | PY de la cabecera) y todo se adapta a su examen:
+Pensada para estudiar en el móvil, en sesiones cortas y sin tener que explorar: cada pantalla tiene una sola
+acción principal, toda actividad termina en una pantalla de cierre y todo se retoma donde se dejó.
+La primera vez, una bienvenida de tres pasos pregunta la titulación, la fecha del examen y los minutos al día.
 
-| Sección | Qué hay |
-|---|---|
-| **Panel** `#/per` · `#/py` | Cómo vas en cada bloque del temario (practicadas, % de acierto, estado), el siguiente paso recomendado y las reglas del examen. |
-| **Teoría** `#/<tit>/teoria` | Práctica por bloques con las preguntas reales (PER: 810; PY: 720), corrección al momento y **el profe** explicando cada respuesta, con voz, ilustraciones y animaciones. Repaso de solo las falladas. |
-| **Carta** `#/<tit>/carta` | Ejercicios de carta por tipo, generados con datos nuevos cada vez, con pistas, construcción gráfica, tutorial sobre la carta y profe. Preguntas reales de carta. |
-| **Exámenes** `#/<tit>/examenes` | Simulacros con el número de preguntas y el tiempo del examen, y las 18 convocatorias reales completas (2020–2026), corregidos con las reglas oficiales (aciertos mínimos y límites de errores por bloque) y revisión con el profe. |
+Barra inferior con cuatro pestañas (en pantallas anchas, una fila bajo la cabecera):
 
-Comunes a las dos titulaciones: **Mesa de cartas** `#/mesa` (la carta con todos los instrumentos),
-**Láminas animadas** `#/laminas`, **Conceptos de carta** `#/conceptos` y **Progreso** `#/progreso`.
+| Pestaña | Ruta | Qué hay |
+|---|---|---|
+| 🏠 **Hoy** | `#/` · `#/per` · `#/py` | Lo que toca hoy (una tarjeta, un botón), el avance («temas al día») y lo que viene después. Lo decide un único recomendador (`src/course/plan.js`): examen a medias, simulacro en la recta final, repasos de clases, la siguiente clase o tanda de preguntas del primer tema que no está al día y, si se acumulan, una sesión de fallos. |
+| 📚 **Temario** | `#/<tit>/temario` · `#/<tit>/temario/<n>` | Los temas del examen con su estado. Cada tema tiene sus clases (tarjetas paso a paso, chuleta y práctica con preguntas reales y repaso espaciado), sus preguntas de examen en tandas de 10 con **el profe** explicando cada respuesta (con voz, ilustraciones y animaciones) y, en el tema de carta, los ejercicios de carta. |
+| 📝 **Examen** | `#/<tit>/examenes` | Simulacros con el número de preguntas y el tiempo del examen y las convocatorias reales completas (2020–2026). Pantalla de inicio, una pregunta por pantalla, guardado continuo (se puede salir y seguir: el reloj se para) y corrección con las reglas oficiales y revisión con el profe. |
+| ☰ **Más** | `#/mas` | Biblioteca (láminas animadas, reglas para recordar, conceptos de carta, mesa de cartas), mi progreso, fecha del examen y minutos al día, titulación, voz del profe y copia de seguridad. |
+
+Durante una clase, una tanda de preguntas o un examen la app entra en «modo concentración»: sin barra inferior,
+con una barra de actividad (✕ Salir, «Pregunta 4 de 10», barra de avance). Las direcciones antiguas
+(`#/per/curso`, `#/per/teoria`, `#/teoria`, `#/carta`, `#/laminas`…) redirigen a las nuevas.
 
 | Titulación | Examen | Banco de preguntas |
 |---|---|---|
@@ -43,7 +48,7 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   en el examen y después se traza— con la explicación de cada paso (anterior/siguiente/reproducir).
 - **👨‍🏫 El profe**: cada paso de la solución (pistas, tutorial y preguntas de examen) viene explicado como en
   una academia —qué hacemos y por qué, el cálculo con los números del ejercicio, un truco y el error típico de
-  examen— y **con voz** (síntesis del navegador, gratis, en español; voz y velocidad en Progreso → Ajustes).
+  examen— y **con voz** (síntesis del navegador, gratis, en español; voz y velocidad en Más → Voz del profe).
   En el tutorial la carta avanza al ritmo de la explicación.
 - **Escalas en los márgenes y guías**: arrastra desde la escala de latitudes o de longitudes para sacar un
   paralelo o un meridiano (se ajusta a la décima de minuto y admite el valor exacto); el cruce de dos guías
@@ -55,7 +60,7 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   plantilla oficial y **resolución paso a paso calculada por la app** (con dibujo en la carta).
   La app resuelve 71 de ellas y en las 68 no anuladas elige la opción oficial: es la validación de los motores
   y de la carta (`tests/exams.test.js`).
-- **Progreso** guardado en el navegador, exportable.
+- **Progreso** guardado en el navegador (también los minutos de estudio por día y el examen a medias), con copia de seguridad y recordatorio para guardarla.
 - **Preparada para asistentes IA** (Claude en Chrome / Cowork): resumen compacto `#ai-context`,
   API `window.nautica` y `llms.txt`.
 

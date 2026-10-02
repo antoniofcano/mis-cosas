@@ -153,3 +153,16 @@ test('viento alrededor de una borrasca y de un anticiclón (HN) y ley de Buys-Ba
   assert.ok(intensidad(14).t > intensidad(26).t && intensidad(26).t > intensidad(34).t);
   assert.equal(intensidad(14).texto, 'fuerte');
 });
+
+import { humedadRelativa, hayNiebla } from '../src/nautical/meteo.js';
+test('humedad relativa y punto de rocío: al enfriar sin añadir agua la humedad sube hasta saturar', () => {
+  const td = 12;
+  assert.ok(humedadRelativa(18, td) < humedadRelativa(15, td));
+  assert.ok(humedadRelativa(15, td) < humedadRelativa(13, td));
+  assert.equal(humedadRelativa(12, td), 100);
+  assert.equal(humedadRelativa(10, td), 100);
+  // valor conocido: 20 °C con rocío a 12 °C ≈ 60 %
+  assert.ok(Math.abs(humedadRelativa(20, 12) - 60) < 1.5, String(humedadRelativa(20, 12)));
+  assert.equal(hayNiebla(13, td), false);
+  assert.equal(hayNiebla(12, td), true);
+});

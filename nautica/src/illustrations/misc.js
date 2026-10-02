@@ -103,23 +103,7 @@ export function meteoIllustration(spec) {
         : 'El aire cálido sube despacio por encima del frío: las nubes se anuncian de lejos (cirros, cirrostratos con halo, altostratos) y llega lluvia continua y débil con nimbostratos; baja la presión antes de su paso.',
     };
   }
-  if (sys === 'niebla-adveccion' || sys === 'niebla-radiacion') {
-    const adv = sys === 'niebla-adveccion';
-    out.push(`<text x="${cx}" y="22" class="il-title">${adv ? 'Niebla de advección' : 'Niebla de radiación'}</text>`);
-    out.push(`<rect x="0" y="190" width="${adv ? W : 140}" height="70" fill="#38bdf8" opacity=".5"/>`);
-    if (!adv) out.push(`<rect x="140" y="180" width="180" height="80" fill="#a16207" opacity=".8"/><circle cx="60" cy="56" r="14" fill="#e5e7eb"/><text x="60" y="84" class="il-lbl" text-anchor="middle">noche despejada</text>`);
-    const fog = adv ? 'M0,150 Q80,135 160,150 T320,150 L320,190 L0,190Z' : 'M140,150 Q200,140 260,152 T320,150 L320,180 L140,180Z';
-    out.push(`<path d="${fog}" fill="#cbd5e1" opacity=".85"><animate attributeName="opacity" values=".55;.95;.55" dur="5s" repeatCount="indefinite"/></path>`);
-    if (adv) out.push(`<line x1="20" y1="110" x2="120" y2="110" stroke="#dc2626" stroke-width="3" marker-end="url(#mt-a)"/><text x="20" y="100" class="il-lbl" style="fill:#dc2626">aire templado y húmedo</text><text x="180" y="230" class="il-lbl" style="fill:#1e3a8a" font-weight="700">mar más fría</text>`);
-    else out.push(`<text x="230" y="230" class="il-lbl" text-anchor="middle" style="fill:#fff" font-weight="700">la tierra se enfría</text>`);
-    out.push('</svg>');
-    return {
-      svg: out.join(''),
-      caption: adv
-        ? 'Aire templado y húmedo que se desplaza sobre una superficie más fría (agua fría) y se enfría hasta saturarse. Es la niebla típica de la mar y puede durar días aunque sople el viento.'
-        : 'Se forma en tierra en noches despejadas y con poco viento, cuando el suelo pierde calor por radiación. Suele disiparse por la mañana al calentar el sol y afecta poco a la mar abierta.',
-    };
-  }
+  // nieblas: ahora son interactivas (src/illustrations/interactivas/nieblas.js)
   return null;
 }
 

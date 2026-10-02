@@ -9,6 +9,7 @@
   --l-faro: #f2b21b; --l-casco: #c9d3de;
   --l-mar: #dcebf8; --l-verde: #1d9a4a; --l-roja: #d43a2f; --l-alcance: #8a6d00; --l-tope: #46525e;
   --l-noche: #0b1420; --l-mar-noche: #081019; --l-casco-noche: #22364b; --l-luz-blanca: #ffffff; --l-luz-verde: #33d17a; --l-luz-roja: #ff4d3d;
+  --l-cielo: #cfe6fb; --l-niebla: #b8c2cc;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -21,6 +22,7 @@
     --l-faro: #f2b21b; --l-casco: #3b4b5c;
     --l-mar: #12304a; --l-verde: #4ade80; --l-roja: #ff7b6e; --l-alcance: #f0c46e; --l-tope: #e6edf3;
     --l-noche: #050a10; --l-mar-noche: #03070c; --l-casco-noche: #22364b; --l-luz-blanca: #ffffff; --l-luz-verde: #33d17a; --l-luz-roja: #ff4d3d;
+    --l-cielo: #1d3550; --l-niebla: #8a97a5;
     color-scheme: dark;
   }
 }

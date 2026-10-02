@@ -26,3 +26,16 @@ export function intensidad(separacion, { min = 14, max = 34 } = {}) {
   const t = Math.min(1, Math.max(0, (max - separacion) / (max - min)));
   return { t, texto: t < 0.25 ? 'flojo' : t < 0.5 ? 'moderado' : t < 0.75 ? 'fresco' : 'fuerte' };
 }
+
+/** Tensión de vapor de saturación (hPa) a T °C (fórmula de Magnus). */
+export const tensionSaturacion = (t) => 6.112 * Math.exp((17.62 * t) / (243.12 + t));
+
+/**
+ * Humedad relativa (%) del aire a temperatura `t` con punto de rocío `td` (la cantidad de vapor no cambia al
+ * enfriarse: solo cambia lo que el aire podría contener). Al llegar al punto de rocío se satura (100 %) y condensa.
+ */
+export function humedadRelativa(t, td) {
+  if (t <= td) return 100;
+  return (100 * tensionSaturacion(td)) / tensionSaturacion(t);
+}
+export const hayNiebla = (t, td) => t <= td;

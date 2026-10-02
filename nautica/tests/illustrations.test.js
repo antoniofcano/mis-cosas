@@ -99,7 +99,7 @@ import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
 import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
 import { caidaPopa } from '../src/nautical/helice.js';
 import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
-import { intensidad } from '../src/nautical/meteo.js';
+import { intensidad, humedadRelativa } from '../src/nautical/meteo.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -210,8 +210,15 @@ function specsDeClase(tipo) {
   return out;
 }
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
+function COMPRUEBA_NIEBLA(c, p) {
+  const e = c.estado();
+  assert.ok(humedadRelativa(e.t - 3, 12) > humedadRelativa(e.t, 12)); // enfriar sube la humedad relativa
+  assert.equal(p.opciones[p.correcta], 'Sube');
+}
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  'meteo:niebla-adveccion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
+  'meteo:niebla-radiacion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
   'meteo:isobaras'(c, p) {
     const e = c.estado();
     assert.ok(intensidad(e.separacion - 5).t > intensidad(e.separacion).t || e.separacion - 5 < 14);

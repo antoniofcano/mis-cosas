@@ -10,10 +10,11 @@ import { estabilidad } from './interactivas/estabilidad.js';
 import { heliceTimon } from './interactivas/helice-timon.js';
 import { desatraque } from './interactivas/desatraque.js';
 import { isobaras } from './interactivas/isobaras.js';
+import { nieblas } from './interactivas/nieblas.js';
 
 export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente, 'sectores-luces': sectoresLuces, cruce, estabilidad, 'helice-timon': heliceTimon, desatraque,
   // meteo: solo algunas variantes son interactivas; el resto (borrasca, anticiclón, brisas…) sigue fija
-  meteo: { porVariante: 'sistema', variantes: { isobaras } },
+  meteo: { porVariante: 'sistema', variantes: { isobaras, 'niebla-adveccion': nieblas, 'niebla-radiacion': nieblas } },
 };
 
 /** Definición interactiva que corresponde a una spec, o null. */

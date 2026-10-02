@@ -74,12 +74,20 @@ cd nautica
 npm start            # servidor local (tools/serve.mjs) → http://localhost:8080
 npm test             # pruebas (node --test)
 node tools/build-chart.mjs   # regenera data/chart-105.json desde tools/source/
+npm run precache     # regenera sw-lista.js (lista y versión del modo sin conexión)
 ```
 
 Necesita servirse por HTTP (los módulos ES no funcionan abriendo el fichero con doble clic).
 
 Publicación gratuita: GitHub Pages (Settings → Pages → rama y carpeta raíz). La app quedará en
 `https://<usuario>.github.io/mis-cosas/nautica/`.
+
+**App instalable y sin conexión (PWA).** `manifest.webmanifest` e `icons/` la hacen instalable; `sw.js` la guarda
+en el móvil (la app al instalar, los datos justo después) y sirve primero lo guardado. La lista de archivos y la
+versión están en `sw-lista.js`, generado con `npm run precache`: **después de cambiar cualquier archivo de la app
+hay que regenerarlo** (un test lo comprueba). Cuando se publica una versión nueva, la app muestra «Hay una versión
+nueva → Actualizar» y no cambia sola. En `localhost` el worker no se registra salvo que se añada `?sw` a la
+dirección, para ver siempre lo último al desarrollar.
 
 ## Tipos de ejercicio (PER)
 

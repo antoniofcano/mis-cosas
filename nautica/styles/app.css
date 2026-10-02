@@ -519,3 +519,9 @@ select { min-height: 44px; }
 .lam-botones button { min-height: 44px; }
 .lamina figcaption { font-size: 1rem; }
 @media (prefers-reduced-motion: reduce) { .lam-dibujo [data-parte] { transition: none; } }
+
+/* Aviso de versión nueva (service worker): encima de la barra de pestañas en el móvil */
+.aviso-version { position: fixed; left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: .75rem 1rem; background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0, 0, 0, .18); }
+.aviso-version p { flex: 1 1 100%; margin: 0; font-size: 1.05rem; }
+.aviso-version button { min-height: 44px; }
+@media (min-width: 900px) { .aviso-version { bottom: 16px; left: auto; max-width: 420px; } }

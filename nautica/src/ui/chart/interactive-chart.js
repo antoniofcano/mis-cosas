@@ -13,14 +13,15 @@ import { fmtLat, fmtLon, fmtBearing, fmtMiles, fmtPos } from '../../math/format.
 import { getRaster } from './raster.js';
 
 const TOOLS = [
-  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, textos, extremos de línea y el centro del transportador. Toca un punto para mostrar u ocultar sus coordenadas; toca un texto para editarlo. Rueda o dos dedos: zoom.' },
+  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, extremos de línea y el transportador. Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
   { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros.' },
   { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
   { id: 'protractor', icon: '📐', label: 'Transportador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
   { id: 'point', icon: '📍', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
-  { id: 'text', icon: '🔤', label: 'Texto', help: 'Toca donde quieras escribir una anotación.' },
+  { id: 'text', icon: '🔤', label: 'Texto', help: 'Toca donde quieras poner una nota y escríbela en la barra de abajo (también su tamaño). Con ✋ Mover se arrastra.' },
   { id: 'erase', icon: '🧽', label: 'Goma', help: 'Toca un trazo, punto o texto tuyo para borrarlo.' },
 ];
+const NOTE_SIZES = [[11, 'S'], [14, 'M'], [18, 'L'], [24, 'XL'], [32, 'XXL']];
 const LAYERS = [['vectorial', 'Vectorial'], ['escaneada', 'Mi carta'], ['ambas', 'Ambas']];
 const SNAP_PX = 14;
 const ZMIN = 0.3;
@@ -37,11 +38,12 @@ let nextId = 1;
  * @param {object} [opts.progress] almacén de ajustes (capa preferida)
  * @param {number} [opts.height]
  */
-export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480 }) {
+export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480, fill = false }) {
   const state = {
     tool: 'move', z: 1, cx: 0, cy: 0, w: 640, h: height,
     user: [], history: [], protractor: null, protractorVisible: false, showCoords: true, drag: null, pointers: new Map(), preview: '', raster: null,
     layer: progress?.settings().capa ?? 'vectorial',
+    selectedNote: null, noteSize: 14, highlights: [], anim: null,
   };
 
   // ---------- DOM
@@ -49,7 +51,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   svg.setAttribute('class', 'chart interactive');
   svg.setAttribute('role', 'application');
   svg.setAttribute('aria-label', `Carta náutica ${chart.name} con herramientas de dibujo`);
-  svg.style.height = `${height}px`;
+  if (fill) svg.classList.add('fill'); else svg.style.height = `${height}px`;
   const gBase = ns('g');
   const gRaster = ns('g');
   const gLand = ns('g');
@@ -74,6 +76,26 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     h('button.small', { type: 'button', onclick: () => drawProtractorLine('line') }, 'Trazar recta'),
     h('button.small', { type: 'button', onclick: () => drawProtractorLine('ray') }, 'Trazar desde el centro'),
   );
+  // Barra de edición de notas de texto
+  const noteInput = h('input.note-text', { type: 'text', 'aria-label': 'Texto de la nota', placeholder: 'Escribe tu nota…' });
+  let noteEditPushed = false;
+  let pendingFocus = false;
+  const flushFocus = () => { if (pendingFocus) { pendingFocus = false; noteInput.focus(); noteInput.select(); } };
+  noteInput.addEventListener('input', () => {
+    if (!state.selectedNote) return;
+    if (!noteEditPushed) { state.history.push(state.user); noteEditPushed = true; }
+    replaceUser(state.selectedNote, (u) => ({ ...u, text: noteInput.value }));
+    render();
+  });
+  noteInput.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); selectNote(null); } });
+  const sizeButtons = NOTE_SIZES.map(([px, lbl]) => h('button.small.secondary.size', { type: 'button', 'data-size': px, title: `Tamaño ${lbl}`, onclick: () => setNoteSize(px) }, lbl));
+  const noteBar = h('div.note-bar', { hidden: true },
+    h('span.muted', '🔤'), noteInput,
+    h('span.sizes', h('button.small.secondary', { type: 'button', title: 'Letra más pequeña', onclick: () => stepNoteSize(-1) }, 'A−'), sizeButtons,
+      h('button.small.secondary', { type: 'button', title: 'Letra más grande', onclick: () => stepNoteSize(1) }, 'A+')),
+    h('button.small.secondary', { type: 'button', title: 'Borrar la nota', onclick: () => { const id = state.selectedNote; selectNote(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, '🗑'),
+    h('button.small', { type: 'button', onclick: () => selectNote(null) }, 'Listo'),
+  );
   const coordsBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, '🏷');
 
 
@@ -91,9 +113,11 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       ),
     ),
     svg,
+    noteBar,
     protractorBar,
     readout,
   );
+  if (fill) el.classList.add('fill');
 
   // ---------- Vista
   function fit(geoPoints = focus) {
@@ -136,16 +160,27 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     }
     gLand.style.opacity = state.layer === 'ambas' && state.raster ? '0.35' : '';
     gGrid.innerHTML = gridLayer(chart, state.z, v);
-    gMarks.innerHTML = showVector ? marksLayer(chart, state.z) : '';
+    gMarks.innerHTML = (showVector ? marksLayer(chart, state.z) : '') + state.highlights.map((id) => {
+      const q = toWorld(chart.point(id));
+      return `<circle class="highlight" cx="${q.x}" cy="${q.y}" r="${14 / state.z}"/>`;
+    }).join('');
     gItems.innerHTML = itemsLayer(items, state.z, step);
-    gUser.innerHTML = state.user.map((it) => drawItem(it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : it, state.z)).join('');
-    gTool.innerHTML = (state.protractor && state.protractorVisible ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + state.preview;
+    gUser.innerHTML = state.user.map((it) => drawItem(
+      it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : it.t === 'text' && it.id === state.selectedNote ? { ...it, selected: true } : it,
+      state.z,
+    )).join('');
+    const ins = state.instrument;
+    const insSvg = !ins ? '' : ins.type === 'compass' ? compassPreview(ins.center, ins.edge, state.z).svg : rulerPreview(ins.a, ins.b, state.z).svg;
+    gTool.innerHTML = (state.protractor && state.protractorVisible ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + insSvg + state.preview;
     coordsBtn.setAttribute('aria-pressed', String(state.showCoords));
 
     // El transportador es un interruptor: su botón refleja si está puesto, no si es la herramienta activa.
     TOOLS.forEach((t, i) => toolButtons[i].setAttribute('aria-pressed', String(t.id === 'protractor' ? state.protractorVisible : t.id === state.tool)));
     protractorBar.hidden = !state.protractorVisible;
     if (state.protractor) bearingInput.value = Math.round(state.protractor.bearing) % 360;
+    noteBar.hidden = !state.selectedNote;
+    const sel = state.user.find((u) => u.id === state.selectedNote);
+    for (const b of sizeButtons) b.setAttribute('aria-pressed', String(Number(b.dataset.size) === (sel?.size ?? state.noteSize)));
     svg.dataset.tool = state.tool;
   }
 
@@ -200,6 +235,32 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       readout.textContent = TOOLS.find((t) => t.id === 'protractor').help;
     }
     render();
+  }
+
+  // ---------- Notas
+  function selectNote(id, { focus: doFocus = false } = {}) {
+    state.selectedNote = id;
+    noteEditPushed = false;
+    const it = state.user.find((u) => u.id === id);
+    if (it) {
+      noteInput.value = it.text;
+      if (doFocus) pendingFocus = true; // se enfoca al soltar el dedo (si no, la carta le roba el foco)
+    } else {
+      // una nota vacía no tiene sentido: se elimina al deseleccionar
+      state.user = state.user.filter((u) => !(u.t === 'text' && !u.text.trim()));
+    }
+    render();
+  }
+  function setNoteSize(px) {
+    state.noteSize = px;
+    if (state.selectedNote) { state.history.push(state.user); replaceUser(state.selectedNote, (u) => ({ ...u, size: px })); }
+    render();
+  }
+  function stepNoteSize(d) {
+    const cur = state.user.find((u) => u.id === state.selectedNote)?.size ?? state.noteSize;
+    const i = NOTE_SIZES.findIndex(([px]) => px >= cur);
+    const j = Math.min(NOTE_SIZES.length - 1, Math.max(0, (i < 0 ? NOTE_SIZES.length - 1 : i) + d));
+    setNoteSize(NOTE_SIZES[j][0]);
   }
 
   function placeProtractor() {
@@ -279,7 +340,11 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     const w = toWorldPt(ev);
     const s = snap(w);
     switch (state.tool) {
-      case 'move': state.drag = grabAt(w) ?? { kind: 'pan', sx: ev.clientX, sy: ev.clientY, cx: state.cx, cy: state.cy }; break;
+      case 'move': {
+        state.drag = grabAt(w) ?? { kind: 'pan', sx: ev.clientX, sy: ev.clientY, cx: state.cx, cy: state.cy };
+        if (state.drag.kind === 'pan' && state.selectedNote) selectNote(null);
+        break;
+      }
       case 'ruler': state.drag = { kind: 'ruler', a: s }; break;
       case 'compass': state.drag = { kind: 'compass', c: s }; break;
       case 'protractor': {
@@ -296,9 +361,11 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         readout.textContent = `Punto${s.name ? ` (${s.name})` : ''}: ${fmtPos(s.geo)}`;
         break;
       case 'text': {
-        const text = prompt('Texto de la anotación:');
-        if (text?.trim()) { addUser({ t: 'text', at: s.geo, text: text.trim(), style: 'user' }); readout.textContent = 'Anotación añadida. Con ✋ Mover puedes arrastrarla o tocarla para editarla.'; }
-        state.pointers.delete(ev.pointerId);
+        const g = grabAt(w);
+        if (g?.kind === 'item-move' && state.user.find((u) => u.id === g.id)?.t === 'text') { state.drag = g; break; }
+        addUser({ t: 'text', at: s.geo, text: '', size: state.noteSize, style: 'user' });
+        selectNote(state.user[state.user.length - 1].id, { focus: true });
+        readout.textContent = 'Escribe la nota en la barra; elige el tamaño con S/M/L/XL. Con ✋ Mover la arrastras.';
         break;
       }
       case 'erase': eraseAt(w); break;
@@ -315,6 +382,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     let best = null;
     let bd = tol;
     for (const it of state.user) {
+      if (it.t === 'text' && hitText(it, w)) return { kind: 'item-move', id: it.id, key: 'at', dx: toWorld(it.at).x - w.x, dy: toWorld(it.at).y - w.y, moved: false };
       const handles = it.t === 'pos' ? [['at', it.at]] : it.t === 'text' ? [['at', it.at]] : it.t === 'seg' ? [['from', it.from], ['to', it.to]] : it.t === 'circle' ? [['center', it.center]] : [];
       for (const [key, geo] of handles) {
         const q = toWorld(geo);
@@ -405,6 +473,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
 
   const endPointer = (ev) => {
     state.pointers.delete(ev.pointerId);
+    setTimeout(flushFocus, 0);
     const d = state.drag;
     if (!d) return;
     if (d.kind === 'pinch') { if (state.pointers.size < 2) state.drag = null; return; }
@@ -420,12 +489,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         replaceUser(d.id, (u) => ({ ...u, hideLabel: !u.hideLabel }));
         readout.textContent = `Punto ${fmtPos(it.at)}: coordenadas ${it.hideLabel ? 'visibles' : 'ocultas'}.`;
       } else if (it?.t === 'text') {
-        const text = prompt('Editar anotación (vacío para borrarla):', it.text);
-        if (text != null) {
-          state.history.push(state.user);
-          if (text.trim()) replaceUser(d.id, (u) => ({ ...u, text: text.trim() }));
-          else state.user = state.user.filter((u) => u.id !== d.id);
-        }
+        selectNote(it.id, { focus: true });
       }
     }
     state.drag = null;
@@ -460,7 +524,18 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     if ((ev.ctrlKey || ev.metaKey) && ev.key === 'z') { undo(); ev.preventDefault(); }
   });
 
+  /** ¿Está el punto mundo w sobre el texto de una nota? (caja aproximada en píxeles de pantalla) */
+  function hitText(it, w) {
+    const p = toWorld(it.at);
+    const fs = it.size ?? 14;
+    const dx = (w.x - p.x) * state.z;
+    const dy = (w.y - p.y) * state.z;
+    return dx > -8 && dx < 8 + Math.max(1, (it.text || '…').length) * fs * 0.6 && Math.abs(dy) < fs * 0.8;
+  }
+
   function eraseAt(w) {
+    const note = [...state.user].reverse().find((u) => u.t === 'text' && hitText(u, w));
+    if (note) { state.history.push(state.user); state.user = state.user.filter((x) => x !== note); readout.textContent = 'Nota borrada.'; return; }
     let best = null;
     let bd = 12 / state.z;
     for (const it of state.user) {
@@ -490,8 +565,60 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   loadRaster();
   render();
 
+  // ---------- API para la mesa de cartas y el tutorial
+  /** Anima el encuadre hasta que se vean los puntos dados. */
+  function flyTo(geoPoints, ms = 600) {
+    if (!geoPoints?.length) return Promise.resolve();
+    const from = { cx: state.cx, cy: state.cy, z: state.z };
+    fit(geoPoints);
+    const to = { cx: state.cx, cy: state.cy, z: state.z };
+    Object.assign(state, from);
+    if (state.anim) cancelAnimationFrame(state.anim);
+    return new Promise((resolve) => {
+      const t0 = performance.now();
+      const tick = (t) => {
+        const k = Math.min(1, (t - t0) / ms);
+        const e = k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
+        state.cx = from.cx + (to.cx - from.cx) * e;
+        state.cy = from.cy + (to.cy - from.cy) * e;
+        state.z = Math.exp(Math.log(from.z) + (Math.log(to.z) - Math.log(from.z)) * e);
+        draw();
+        if (k < 1) state.anim = requestAnimationFrame(tick); else { state.anim = null; resolve(); }
+      };
+      state.anim = requestAnimationFrame(tick);
+    });
+  }
+
+  /** Coloca un instrumento para enseñar un trazo: {type:'protractor', at, bearing} | {type:'compass', center, edge} | {type:'ruler', a, b} | null */
+  function showInstrument(spec) {
+    state.preview = '';
+    state.instrument = null;
+    if (!spec) { render(); return; }
+    if (spec.type === 'protractor') {
+      state.protractor = { c: toWorld(spec.at), bearing: norm360(spec.bearing) };
+      state.protractorVisible = true;
+    } else {
+      state.instrument = spec; // compás o regla: se redibuja a la escala actual en draw()
+    }
+    render();
+  }
+
+  let noteOffset = 0;
   return {
     el,
+    flyTo,
+    showInstrument,
+    hideProtractor() { state.protractorVisible = false; render(); },
+    setReadout(text) { readout.textContent = text; },
+    setHighlights(ids) { state.highlights = ids; render(); },
+    /** Añade una nota de texto cerca del centro de la vista (para «enviar a la carta»). */
+    addNote(text, size = 12) {
+      const v = viewRect();
+      const at = fromWorld({ x: v.x + v.w * 0.05, y: v.y + v.h * 0.1 + ((noteOffset++ % 12) * 30) / state.z });
+      addUser({ t: 'text', at, text, size, style: 'user' });
+      readout.textContent = 'Nota añadida a la carta. Con ✋ Mover la colocas donde quieras.';
+    },
+    focusPoints: (pts) => { fit(pts); render(); },
     setStep(s) { step = s; render(); },
     setItems(newItems, newFocus) { items = newItems; if (newFocus) { focus = newFocus; fit(); } render(); },
     getUserItems: () => state.user,

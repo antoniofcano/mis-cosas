@@ -14,7 +14,7 @@
 //   { t:'vec',    from, bearing, length, label?, style }        vector con flecha
 //   { t:'arc',    center, radius, around, span, style }         arco de compás (millas, grados)
 //   { t:'circle', center, radius, label?, style }               circunferencia completa (millas)
-//   { t:'text',   at, text, style }                             anotación de texto
+//   { t:'text',   at, text, size?, style }                      anotación de texto (size en px de pantalla)
 //   Cualquier primitiva puede llevar `step`: solo se dibuja cuando se ha llegado a ese paso.
 //   Estilos: construction, lop, lop2, boat, current, effective, start, fix, estima, user, measure.
 
@@ -170,7 +170,8 @@ export function drawItem(it, z) {
     }
     case 'text': {
       const p = toWorld(it.at);
-      return `<g class="note"${data}><circle cx="${f(p.x)}" cy="${f(p.y)}" r="${f(2 * k)}"/><text font-size="${f(13 * k)}" x="${f(p.x + 5 * k)}" y="${f(p.y + 4 * k)}">${esc(it.text)}</text></g>`;
+      const fs = (it.size ?? 14) * k;
+      return `<g class="note${it.selected ? ' sel' : ''}"${data}><circle cx="${f(p.x)}" cy="${f(p.y)}" r="${f(2.5 * k)}"/><text font-size="${f(fs)}" x="${f(p.x + 5 * k)}" y="${f(p.y + fs * 0.35)}">${esc(it.text || '…')}</text></g>`;
     }
     case 'circle': {
       const c = toWorld(it.center);

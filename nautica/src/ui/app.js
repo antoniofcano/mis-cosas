@@ -23,6 +23,7 @@ import { reglasView } from './views/reglas.js';
 import { leccionView } from './views/curso.js';
 import { temarioView, temaView } from './views/temario.js';
 import { masView } from './views/mas.js';
+import { bibliotecaView } from './views/biblioteca.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
@@ -32,6 +33,7 @@ const TIT_ROUTES = {
   temario: (o) => (o.params.parts[1] ? temaView(o) : temarioView(o)),
   curso: leccionView, // #/<tit>/curso/<id> (sin id redirige al temario)
   laminas: galleryView,
+  biblioteca: bibliotecaView,
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
@@ -48,7 +50,7 @@ const ROUTES = {
   conceptos: theoryView,
   reglas: reglasView,
   progreso: progressView,
-  mas: masView,
+  ajustes: masView,
 };
 
 // Direcciones antiguas → nuevas (enlaces guardados)
@@ -58,6 +60,7 @@ function legacy(parts, progress) {
   if (parts[0] === 'teoria' || parts[0] === 'test') return [tit, ...parts];
   if (parts[0] === 'examenes' && !parts[1]) return [tit, 'examenes'];
   if (parts[0] === 'carta') return ['mesa'];
+  if (parts[0] === 'mas') return ['ajustes'];
   if (parts[0] === 'ilustraciones' || parts[0] === 'laminas') return [tit, 'laminas'];
   if (TITULACIONES[parts[0]]) {
     if (parts[1] === 'curso' && !parts[2]) return [parts[0], 'temario'];
@@ -66,19 +69,20 @@ function legacy(parts, progress) {
   return null;
 }
 
-/** Pestaña activa de la barra inferior según la ruta (§2.3). */
+/** Pestaña activa de la barra inferior según la ruta (§2.3). Ajustes no tiene pestaña (va en la cabecera). */
 export function pestanaDe(parts) {
   const [a, b] = parts;
-  if (!a || a === 'bienvenida') return 'hoy';
+  if (!a || a === 'bienvenida' || a === 'progreso') return 'hoy';
   if (TITULACIONES[a]) {
     if (!b || b === 'hoy') return 'hoy';
-    if (['temario', 'curso', 'teoria', 'carta'].includes(b)) return 'temario';
+    if (['temario', 'curso', 'teoria'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
     if (b === 'examenes' || b === 'test') return 'examen';
-    return 'mas'; // laminas
+    return 'biblioteca'; // biblioteca, laminas, carta
   }
   if (a === 'ej' || a === 'examenes') return 'temario';
-  return 'mas'; // mas, progreso, reglas, conceptos, mesa
+  if (a === 'ajustes') return null;
+  return 'biblioteca'; // reglas, conceptos, mesa
 }
 
 /** Modo concentración: clase, tanda de preguntas, examen y bienvenida. */
@@ -100,7 +104,7 @@ function renderNav(tit, parts) {
     ['hoy', '🏠', 'Hoy', tlink(tit)],
     ['temario', '📚', 'Temario', tlink(tit, ['temario'])],
     ['examen', '📝', 'Examen', tlink(tit, ['examenes'])],
-    ['mas', '☰', 'Más', '#/mas'],
+    ['biblioteca', '📖', 'Biblioteca', tlink(tit, ['biblioteca'])],
   ];
   bar.replaceChildren(...tabs.map(([id, icon, txt, href]) => h('a.tab', { href, class: id === activa ? 'active' : '', 'aria-current': id === activa ? 'page' : null },
     h('span.tab-icon', { 'aria-hidden': 'true' }, icon), h('span.tab-txt', txt))));
@@ -137,7 +141,7 @@ async function main() {
     document.body.dataset.tit = tit;
     document.body.classList.toggle('focus', esFoco(route.parts));
     const footer = document.querySelector('body > footer');
-    if (footer) footer.hidden = route.parts[0] !== 'mas';
+    if (footer) footer.hidden = route.parts[0] !== 'ajustes';
     renderNav(tit, route.parts);
     try {
       current = view({ ctx, progress, params, tit });

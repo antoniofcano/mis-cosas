@@ -34,6 +34,9 @@ a { color: var(--accent); }
 header.top { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 1rem; height: 56px; padding: 0 1rem; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
 header.top .brand { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--text); display: inline-flex; align-items: center; min-height: 48px; }
 header.top .tit-label { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 56px; padding: 0 .9rem; border: 1px solid var(--accent); border-radius: 999px; color: var(--accent); font-weight: 700; text-decoration: none; }
+header.top .cabecera-derecha { display: flex; align-items: center; gap: .4rem; }
+header.top a.ajustes { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-size: 1.4rem; text-decoration: none; border-radius: 999px; }
+header.top a.ajustes:focus-visible, header.top a.ajustes:hover { background: var(--accent-2); }
 main { max-width: 1200px; margin: 0 auto; padding: 1rem 1rem 96px; }
 /* Barra inferior de pestañas */
 .tabbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; display: flex; background: var(--surface); border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom); }
@@ -529,3 +532,8 @@ select { min-height: 44px; }
 .aviso-version p { flex: 1 1 100%; margin: 0; font-size: 1.05rem; }
 .aviso-version button { min-height: 44px; }
 @media (min-width: 900px) { .aviso-version { bottom: 16px; left: auto; max-width: 420px; } }
+
+.hoy .ver-progreso { margin: .4rem 0 0; }
+.hoy .ver-progreso a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+/* Con cuatro pestañas en 360 px, «Biblioteca» no cabe a 16 px */
+@media (max-width: 380px) { .tabbar a.tab { padding: 0 2px; } .tabbar .tab-txt { font-size: 15px; letter-spacing: -.01em; } }

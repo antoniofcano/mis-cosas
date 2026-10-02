@@ -2232,6 +2232,13 @@
        "texto": "- **Zona 1**: ilimitada.\n- **Zona 2**: hasta **60 millas** de la costa.\n- **Zona 3**: hasta **25 millas** de la costa.\n- **Zona 4**: hasta **12 millas** de la costa.\n- **Zona 5**: sin alejarse más de **5 millas** de un abrigo o playa accesible.\n- **Zona 6**: sin alejarse más de **2 millas** de un abrigo o playa accesible.\n- **Zona 7**: aguas protegidas: puertos, radas, rías, bahías abrigadas.\n\nUn **abrigo** es un lugar donde el barco puede refugiarse con facilidad y sus ocupantes llegar a tierra. Cuanto menor es el número de zona, más lejos puedes ir y más equipo tienes que llevar."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "zonas"
+       },
+       "texto": "Las zonas 2 a 4 se miden desde la costa; la 5 y la 6, desde un abrigo o playa accesible."
+      },
+      {
        "tipo": "texto",
        "titulo": "Categorías de diseño",
        "texto": "Los barcos con **marcado CE** tienen una **categoría de diseño** que limita las zonas por las que pueden navegar (siempre que lleven el equipo de la zona):\n- **A**: zonas 1 a 7.\n- **B**: zonas 2 a 7.\n- **C**: zonas 4 a 7.\n- **D**: solo zona 7.\n\nAdemás, ningún barco debe navegar con olas y viento superiores a los de su diseño. El **propietario o el patrón** responden de que el barco y su equipo estén en condiciones y de no llevar a bordo más personas de las autorizadas."
@@ -2927,9 +2934,25 @@
        "texto": "Dentro de una zona de baño **debidamente balizada** está **prohibida la navegación deportiva y de recreo** y el uso de cualquier embarcación o artefacto flotante a vela o a motor. No hay excepción para motos náuticas, ni velocidad mínima que lo permita, ni «resguardo» a los bañistas que valga: simplemente, no se navega.\n\nPara llegar a la playa o salir de ella (lanzamiento y varada) se usan los **canales de acceso** señalizados: pasillos de 25 a 50 m de ancho, perpendiculares a la orilla, con la entrada marcada por una boya cónica verde (estribor, entrando) y otra cilíndrica roja (babor), y los lados con boyas amarillas. Se usan despacio, y son para embarcaciones y artefactos, no para bañarse."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "playa",
+        "caso": "balizada"
+       },
+       "texto": "Con boyas amarillas no se entra: a la playa solo por el canal de acceso."
+      },
+      {
        "tipo": "texto",
        "titulo": "Costa no balizada: 200 m y 50 m",
        "texto": "Si el tramo de costa **no está balizado**, la zona de baño se entiende que ocupa una franja contigua a la orilla de:\n- **200 m en las playas**.\n- **50 m en el resto de la costa** (acantilados, rocas…).\n\nDentro de esa franja **sí puedes navegar**, pero **a 3 nudos como máximo** y tomando las precauciones necesarias para no poner en peligro a nadie. Además está **prohibido cualquier vertido** desde la embarcación.\n\nSi vas a acercarte a la playa, hazlo por los extremos, lo más perpendicular posible a la orilla y vigilando a los bañistas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "playa",
+        "caso": "no-balizada"
+       },
+       "texto": "Sin boyas, la zona de baño son 200 m en playas y 50 m en el resto de la costa: se navega a 3 nudos como máximo."
       },
       {
        "tipo": "clave",
@@ -3163,6 +3186,14 @@
        "texto": "Las distancias se cuentan desde la **tierra más próxima**, es decir, desde la **línea de base** del mar territorial:\n- **Más de 3 millas**: si las aguas están **desmenuzadas y desinfectadas** con un sistema homologado.\n- **Más de 12 millas**: si **no** están desmenuzadas ni desinfectadas.\n- Con una **instalación de tratamiento** homologada, cuyo efluente no deje sólidos flotantes visibles ni coloree el agua, se puede descargar **fuera de la zona 7** (puertos, rías, bahías y aguas protegidas).\n\nEn puertos, dársenas y aguas protegidas, por tanto, nada de descargas: se usa el tanque y se vacía en la instalación del puerto."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "vertidos",
+        "tema": "aguas-sucias"
+       },
+       "texto": "Cuanto menos tratadas, más lejos: desmenuzadas y desinfectadas, a más de 3 millas; sin tratar, a más de 12."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cómo se vacía el tanque",
        "texto": "Las aguas que han estado almacenadas en el tanque de retención **no se descargan de golpe**:\n- A un **régimen moderado** (poco a poco).\n- Con la embarcación **en ruta**.\n- Navegando a **4 nudos como mínimo**.\n\nLa velocidad y el caudal pequeño hacen que la descarga se diluya en la estela. Nunca con el barco parado ni fondeado."
@@ -3277,6 +3308,14 @@
        "tipo": "texto",
        "titulo": "En zonas especiales: el Mediterráneo",
        "texto": "Las zonas especiales del anexo V son el **Mediterráneo**, el Báltico, el mar Negro, el mar Rojo, la zona de los Golfos, el mar del Norte, la zona antártica y el Gran Caribe.\n\nEn ellas, los restos de comida solo se pueden echar:\n- **Triturados** (criba de 25 mm),\n- a **más de 12 millas** de tierra,\n- con el barco **en ruta**,\n- y sin mezclar con ninguna otra basura.\n\n(Salvedad: en el Gran Caribe, la triturada vale a más de 3 millas.)\n\nEl Mediterráneo termina al oeste en el **meridiano 5° 36' W**, en el estrecho de Gibraltar. Málaga, Almería o Baleares están dentro; Cádiz, el cabo Trafalgar o Huelva, fuera."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "vertidos",
+        "tema": "basuras"
+       },
+       "texto": "Mira primero dónde estás: en el Mediterráneo la comida solo se echa triturada y a más de 12 millas."
       },
       {
        "tipo": "clave",
@@ -3484,6 +3523,13 @@
        "texto": "Cualquier otra bandera o enseña (la autonómica, la del club, una de cortesía…) tiene dos condiciones:\n- **No puede estar izada si no lo está el pabellón nacional**.\n- Su tamaño **nunca puede superar un tercio del área** de la bandera de España.\n\nLa **bandera de la comunidad autónoma** puede izarse en **puertos nacionales y aguas interiores**, siempre a la vez que el pabellón nacional y con ese tamaño máximo. Nunca en el asta de popa ni en el pico del palo mayor: va en otro lugar, por ejemplo en una driza de las crucetas."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "banderas-a-bordo"
+       },
+       "texto": "Popa y pico son de la bandera de España; la autonómica va en otro sitio y más pequeña."
+      },
+      {
        "tipo": "clave",
        "texto": "La bandera autonómica acompaña, nunca sustituye: solo con la de España izada, en otro lugar y como mucho con un tercio de su área."
       },
@@ -3586,9 +3632,25 @@
        "texto": "La posidonia oceánica no es un alga: es una **planta con flores**, con raíces, tallo (rizoma) y hojas en forma de cinta, **endémica del Mediterráneo**. Forma grandes praderas sobre fondos de arena, desde muy poca profundidad hasta unos 40 m en aguas claras; florece en otoño y sus frutos flotantes se conocen como «olivas de mar».\n\nEs probablemente el ecosistema más valioso del Mediterráneo: produce oxígeno, da refugio y alimento a cientos de especies, indica buena calidad del agua, frena el oleaje y sus hojas muertas protegen las playas de la erosión. Crece **muy despacio**, así que el daño de un ancla tarda décadas en repararse."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "posidonia",
+        "vista": "planta"
+       },
+       "texto": "Tiene raíces, rizoma, hojas y flores: es una planta, no un alga."
+      },
+      {
        "tipo": "texto",
        "titulo": "Fondear y posidonia",
        "texto": "En el **Mediterráneo español**, el Real Decreto 191/2026 lo deja claro:\n- **con carácter general, queda prohibido fondear sobre las praderas de posidonia** (y de *Cymodocea*);\n- también en la **arena próxima** si la **cadena** u otros elementos del fondeo quedan sobre ellas o las barren al **bornear**;\n- sobre la pradera solo se puede usar una **boya autorizada** (boya suelta o campo de boyas);\n- se exceptúan los casos de **fuerza mayor** o **peligro** para la vida humana en el mar o la navegación.\n\nEn los **campos de boyas** se amarra a la boya precisamente para **no fondear** sobre la pradera. Fondea siempre en arena (la ves como manchas claras) y no en las manchas oscuras."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "posidonia",
+        "vista": "fondeo"
+       },
+       "texto": "Ni el ancla ni la cadena al bornear pueden tocar la pradera; sobre ella, solo boya autorizada."
       },
       {
        "tipo": "clave",

@@ -1,0 +1,345 @@
+{
+ "meta": {
+  "title": "Reglas nemotécnicas validadas",
+  "description": "Reglas para memorizar usadas por academias y foros náuticos, comprobadas contra el RIPA, IALA y el RD 875/2014, y validadas una a una por el alumno. preguntas: ids de preguntas donde la regla ayuda."
+ },
+ "reglas": [
+  {
+   "id": "r01",
+   "regla": "BAnco de ESpaña: BAbor a la izquierda, EStribor a la derecha (mirando a proa).",
+   "significado": "Al escribir «Banco España» la B (babor) queda a la izquierda y la E (estribor) a la derecha, mirando hacia proa. Correcto: babor = costado izquierdo, estribor = derecho, siempre mirando a proa. Variante habitual: «estribor suena a escribir: mano derecha» (falla con zurdos).",
+   "tema": "UT1 Nomenclatura",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ]
+  },
+  {
+   "id": "r02",
+   "regla": "Barlovento, por donde Viene el viento; Sotavento, por donde Se va. (Y nunca escupas a barlovento.)",
+   "significado": "Barlovento = lado o zona de donde sopla el viento; sotavento = lado hacia el que se va. Correcto. La coletilla práctica («nunca escupas/mees a barlovento») refuerza el concepto con la experiencia.",
+   "tema": "UT1 Nomenclatura",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=5"
+   ]
+  },
+  {
+   "id": "r03",
+   "regla": "La driza iza, la escota caza.",
+   "significado": "Driza = cabo para izar (subir) una vela; escota = cabo para cazar/amollar (cazar o soltar) la vela una vez izada. Correcto.",
+   "tema": "UT1 Nomenclatura / UT7 Maniobra (vela)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ]
+  },
+  {
+   "id": "r04",
+   "regla": "Arrufo: el barco sonríe (U). Quebranto: se le quiebra el lomo (∩).",
+   "significado": "Arrufo: el casco se arquea con el centro más bajo que los extremos (forma de U, como una sonrisa). Quebranto: el centro queda más alto que los extremos (forma de ∩): al barco se le «quiebra el lomo». Pasa, por ejemplo, con la ola en el centro (quebranto) o con las crestas en proa y popa (arrufo).",
+   "tema": "UT1 Nomenclatura (casco)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ]
+  },
+  {
+   "id": "r06",
+   "regla": "Entre veleros, la B pierde (Brigitte Bardot): cede el que recibe el viento por Babor; si ambos por la misma banda, cede el que está más a Barlovento.",
+   "significado": "RIPA regla 12: con el viento por bandas distintas, maniobra el amurado a babor; por la misma banda, maniobra el de barlovento. Amurado = banda por la que entra el viento. Matiz: si el amurado a babor no puede saber por qué banda recibe el viento el otro barco de barlovento, también se aparta (12 a iii). La regla 12 no se aplica si uno alcanza al otro, porque entonces manda la regla 13.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2"
+   ]
+  },
+  {
+   "id": "r07",
+   "regla": "Buque que alcanza, gobernará (maniobrará) sin tardanza.",
+   "significado": "RIPA regla 13: todo buque que alcanza a otro se mantiene apartado, sea cual sea su tipo (un velero que alcanza a un buque de motor también cede). Alcanzar = acercarse desde más de 22,5° a popa del través del otro (de noche solo le ves la luz de alcance). En un paso angosto la regla 9 e) añade las pitadas de consentimiento, pero la obligación sigue siendo del que alcanza.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ]
+  },
+  {
+   "id": "r08",
+   "regla": "Semáforo: si ves la roja del otro, maniobras tú; si ves su verde, sigues (atento).",
+   "significado": "En un cruce entre buques de motor (regla 15), si ves su luz roja (babor) es porque lo tienes por tu estribor y te toca apartarte; si ves su verde, él te tiene por su estribor y le toca apartarse. Matiz (regla 17): quien sigue a rumbo debe vigilar y puede, o debe, maniobrar si el otro no actúa. En ese caso evita caer a babor ante un buque que viene por tu babor.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887"
+   ]
+  },
+  {
+   "id": "r09",
+   "regla": "«Si ambas luces de un vapor por la proa has avistado, debes caer a estribor dejando ver tu encarnado» (+ «Si a estribor ves colorado…», «Si acaso por babor la verde se deja ver, sigue avante, ojo avizor, débese el otro mover»; «Verde con verde, rojo con rojo, siga a rumbo cada cual»).",
+   "significado": "Son los versos clásicos de las reglas de gobierno (de Thomas Gray, traducidos). 1) Si ves las dos luces de costado, vais de vuelta encontrada: ambos caéis a estribor (regla 14). 2) Si ves la roja por tu estribor, te toca maniobrar: cae, para o da atrás (regla 15). 3) Si ves la verde por tu babor, sigues a rumbo, vigilando (reglas 15 y 17). 4) Si ves verde con verde o rojo con rojo, os cruzáis por la misma banda sin riesgo aparente. Matiz: esto último no exime de vigilar ni de comprobar la demora.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://studylib.es/doc/4794543/los-versos-de-thomas-gray-si-ambas-luces-de-un-vapor--por-la",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=5"
+   ]
+  },
+  {
+   "id": "r10",
+   "regla": "Cede quien maniobra mejor: Motor → Vela → Pesca → Calado → Maniobra restringida → Sin gobierno (cada uno se aparta de los que vienen después). Clásico: «Entre un vapor y un velero, gobierna siempre el primero».",
+   "significado": "RIPA regla 18: el de propulsión mecánica se aparta del velero, del pesquero, del de maniobra restringida y del sin gobierno; el velero, del pesquero, del RAM y del NUC; el pesquero, en lo posible, del RAM y del NUC. Al restringido por calado no se le estorba. Excepciones: rige antes el que alcanza (13), en canales angostos y en dispositivos de separación de tráfico el velero o la embarcación menor de 20 m no estorban (9 y 10), y el hidroavión o el WIG tienen sus propias reglas.",
+   "tema": "UT6 RIPA",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://denautica.es/reglas-abordaje-ripa-patron/",
+    "https://arriluzenautica.com/quien-tiene-preferencia-en-la-mar-ripa/"
+   ]
+  },
+  {
+   "id": "r11",
+   "regla": "Rojo sobre blanco, pescador al canto.",
+   "significado": "Dos luces todo horizonte en vertical, roja encima y blanca debajo: buque pescando (no de arrastre), regla 26 c). Si el aparejo se extiende más de 150 m, lleva además una blanca, o de día un cono con el vértice hacia arriba, en la dirección del aparejo. De día: dos conos unidos por los vértices. Con arrancada lleva también costados y alcance.",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887"
+   ]
+  },
+  {
+   "id": "r12",
+   "regla": "Verde sobre blanco, arrastra el barco (los de arrastre son del Betis: verde y blanco).",
+   "significado": "Verde todo horizonte sobre blanca todo horizonte: buque de pesca de arrastre (regla 26 b). Además lleva una luz de tope a popa y más alta que la verde, obligatoria si mide 50 m o más. De día también lleva los dos conos unidos por los vértices.",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887",
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html"
+   ]
+  },
+  {
+   "id": "r13",
+   "regla": "Blanco sobre rojo, práctico a bordo (gorra o pelo blanco, nariz roja).",
+   "significado": "Blanca todo horizonte sobre roja todo horizonte: buque de práctico en servicio (regla 29). Con arrancada añade costados y alcance, y fondeado añade las luces de fondeo. Truco para no confundirlo con el pesquero: el práctico es un señor con la gorra blanca (arriba) y la nariz roja (abajo).",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=71887",
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html"
+   ]
+  },
+  {
+   "id": "r14",
+   "regla": "Rojo sobre rojo, sin gobierno (dos rojas de noche, dos bolas de día).",
+   "significado": "Buque sin gobierno: dos luces rojas todo horizonte en vertical; de día, dos bolas en vertical (regla 27 a). Con arrancada añade costados y alcance, pero no luz de tope. Variantes coloquiales del foro: «hay que tenerlas bien puestas para ir sin gobierno»; versión inglesa: «red over red, the captain is dead».",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://yachtmate.fr/blog/es/reconocer-luces-navegacion-noche.html",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657"
+   ]
+  },
+  {
+   "id": "r15",
+   "regla": "Rojo-blanco-rojo / bola-rombo-bola: maniobra restringida (la «hamburguesa»).",
+   "significado": "Buque con capacidad de maniobra restringida (RAM): tres luces todo horizonte en vertical, roja, blanca y roja; de día, bola, bidoca (rombo) y bola (regla 27 b). Las dos rojas, como en el sin gobierno, indican que no puede apartarse; la blanca del centro indica que es «por su trabajo» y no por avería.",
+   "tema": "UT6 RIPA (luces)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
+    "https://ialacolreg.com/es/lights-shapes"
+   ]
+  },
+  {
+   "id": "r16",
+   "regla": "Va-ra-do: tres sílabas, tres bolas.",
+   "significado": "Buque varado: de día, tres bolas en vertical; de noche, las luces de fondeado más dos rojas todo horizonte en vertical (regla 30 d). Fondeado: una bola. Correcto.",
+   "tema": "UT6 RIPA (marcas)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541"
+   ]
+  },
+  {
+   "id": "r17",
+   "regla": "Señales de maniobra: 1 corta, caigo a estribor; 2 cortas, a babor; 3 cortas, doy atrás; 5 o más, ¡duda!",
+   "significado": "RIPA regla 34 a) y d). Correcto. Truco del foro: «ba-bor, dos sílabas, dos pitadas», y estribor es entonces la de una. Ampliación habitual para canales angostos (34 c): para alcanzar, dos largas y una corta pasan por estribor del otro, y dos largas y dos cortas por su babor; el consentimiento es larga-corta-larga-corta.",
+   "tema": "UT6 RIPA (señales acústicas)",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=66541",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2"
+   ]
+  },
+  {
+   "id": "r18",
+   "regla": "Región A: entrando a puerto, rojo a babor y verde a estribor (cilindro rojo, cono verde). En América (Región B), al revés.",
+   "significado": "IALA región A (Europa, África, la mayor parte de Asia y Oceanía): marcas laterales rojas (tope cilíndrico) a babor y verdes (tope cónico, vértice arriba) a estribor según el sentido convencional del balizamiento, que es entrando desde la mar. Coincide con las luces de costado del barco: la roja a babor. En la región B (América, Japón, Corea y Filipinas) los colores se invierten («red right returning»).",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://sailvoyager.com/blog/balizamiento-iala-per",
+    "https://denautica.es/balizamiento-maritimo-per-guia-completa-examen-2026/",
+    "https://escuelanauticaaltair.com/blog/balizamiento/"
+   ]
+  },
+  {
+   "id": "r19",
+   "regla": "Cardinales de noche, el reloj: Este 3, Sur 6 (+1 largo), Oeste 9, Norte continuo (las 12).",
+   "significado": "Luz blanca centelleante, rápida (Q) o muy rápida (VQ): Norte, Q o VQ continua; Este, Q(3) cada 10 s o VQ(3) cada 5 s; Sur, Q(6)+LFl cada 15 s o VQ(6)+LFl cada 10 s; Oeste, Q(9) cada 15 s o VQ(9) cada 10 s. El destello largo del Sur sirve para no confundir el grupo de 6 con 3 o 9. Correcto según IALA.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
+    "https://sailvoyager.com/blog/balizamiento-iala-per",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ]
+  },
+  {
+   "id": "r20",
+   "regla": "Los conos apuntan al negro.",
+   "significado": "Las puntas del tope de la cardinal señalan dónde está la banda negra de la boya: Norte ▲▲ negro arriba; Sur ▼▼ negro abajo; Este ▼▲ (bases juntas) negro arriba y abajo con amarillo en medio; Oeste ▲▼ (puntas juntas) negro en medio. Dicho de otra forma: el amarillo va con las bases y el negro con los vértices (Club Elcano).",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
+    "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
+   ]
+  },
+  {
+   "id": "r21",
+   "regla": "Este: bases juntas (forma de huevo, o una «E» inscrita); Oeste: puntas juntas (reloj de arena, una «W» tumbada; en las pelis del Oeste «se pican»).",
+   "significado": "Topes de las cardinales Este (conos unidos por la base) y Oeste (unidos por el vértice). Norte y Sur se deducen solos (arriba y abajo). Correcto.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/balizamiento/",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=46439",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ]
+  },
+  {
+   "id": "r22",
+   "regla": "La cardinal se pasa por el lado de su nombre.",
+   "significado": "La marca cardinal Norte indica que el agua segura está al norte de la marca (el peligro, al sur), y así con las demás. Correcto. Es la pregunta trampa típica: «¿por dónde dejo una cardinal Este?» Por su este, y luego hay que traducirlo a babor o estribor según el rumbo.",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
+    "https://denautica.es/balizamiento-maritimo-per-guia-completa-examen-2026/"
+   ]
+  },
+  {
+   "id": "r23",
+   "regla": "Peligro aislado: dos bolas, dos destellos.",
+   "significado": "Marca de peligro aislado: negra con bandas horizontales rojas, tope de dos esferas negras y luz blanca de grupos de 2 destellos, Fl(2). Señala un peligro de extensión reducida con agua navegable alrededor. Correcto. Para no confundirla, la de aguas navegables lleva una sola esfera roja, bandas verticales rojas y blancas y luz isofase, de ocultaciones, un destello largo cada 10 s o Morse «A».",
+   "tema": "UT5 Balizamiento",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/balizamiento/",
+    "https://sailvoyager.com/blog/balizamiento-iala-per"
+   ]
+  },
+  {
+   "id": "r24",
+   "regla": "Ct = dm + Δ; Este positivo (+), Oeste negativo (−). Rv = Ra + Ct.",
+   "significado": "Corrección total = declinación magnética + desvío, ambos con su signo (NE o E +, NW o W −). Rumbo verdadero = rumbo de aguja + Ct. También Ct = Dv − Da, con una enfilación o una demora conocida. Variante de los manuales sudamericanos: «declinación Este, al compás le resta; Oeste, le suma» (es lo mismo visto desde la carta hacia el compás).",
+   "tema": "UT10 Teoría de navegación / UT11 Carta",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/369-la-correccion-total-y-el-desvio",
+    "https://guiarutas.es/glosario/declinacion-magnetica/",
+    "https://www.espacionautico.com.ar/blog/rumbo-verdadero-magnetico-compas-como-convertir/"
+   ]
+  },
+  {
+   "id": "r25",
+   "regla": "De la carta al timón, al revés la corrección; del timón a la carta, con sumar basta.",
+   "significado": "Para pasar de la carta (Rv) al timón (Ra) se aplica la Ct cambiada de signo: Ra = Rv − Ct. Del timón a la carta se suma con su signo: Rv = Ra + Ct. Correcto.",
+   "tema": "UT11 Carta",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
+    "https://www.espacionautico.com.ar/blog/rumbo-verdadero-magnetico-compas-como-convertir/"
+   ]
+  },
+  {
+   "id": "r26",
+   "regla": "El rumbo de aguja nunca se dibuja.",
+   "significado": "En la carta solo se trazan rumbos y demoras verdaderos (o efectivos o de superficie). Todo dato de aguja (Ra, Da) o marcación hay que pasarlo a verdadero antes de trazarlo. Correcto.",
+   "tema": "UT11 Carta",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ]
+  },
+  {
+   "id": "r27",
+   "regla": "Don RaMón: Demora = Rumbo + Marcación (estribor +, babor −).",
+   "significado": "Dv = Rv + M, con la marcación positiva a estribor y negativa a babor (o la marcación circular de 0 a 360° contada desde proa hacia estribor). Correcto; la misma fórmula sirve con aguja: Da = Ra + M.",
+   "tema": "UT10 Teoría de navegación / UT11 Carta",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2",
+    "https://encvirtual.es/interactivas/PYATE/imag_intera/Navegacion/s02/5_rel_demora_mar/2_dv.html"
+   ]
+  },
+  {
+   "id": "r28",
+   "regla": "Regla de los duodécimos: 1-2-3-3-2-1.",
+   "significado": "En una marea semidiurna de unas 6 h, en cada hora sube o baja 1/12, 2/12, 3/12, 3/12, 2/12 y 1/12 de la amplitud (la mitad en las dos horas centrales). Es una aproximación válida para mareas regulares y semidiurnas; no sirve en sitios con mareas irregulares y el Mediterráneo apenas tiene marea. Para el cálculo oficial se usa el anuario y la interpolación.",
+   "tema": "UT10 / PY (mareas)",
+   "fuentes": [
+    "https://www.salvamentomaritimo.es/sala-de-comunicacion/blog/mareas-la-regla-de-los-doceavos",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ]
+  },
+  {
+   "id": "r29",
+   "regla": "De espaldas al viento, la borrasca a la izquierda (hemisferio norte). Equivalente: de cara al viento, la baja a la derecha.",
+   "significado": "Ley de Buys-Ballot. Correcta en el hemisferio norte; en el sur se invierte. Con el viento real de superficie, que cruza las isobaras hacia la baja, la baja queda algo adelantada respecto al través izquierdo.",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+   ]
+  },
+  {
+   "id": "r30",
+   "regla": "Borrasca, al revés del reloj; anticiclón, con el reloj (HN). El viento va de la alta a la baja desviado a la derecha.",
+   "significado": "En el hemisferio norte el viento gira en sentido antihorario y convergente alrededor de la borrasca, y horario y divergente alrededor del anticiclón. Por Coriolis, el viento en superficie sale de las altas hacia las bajas desviado a la derecha y cruza las isobaras unos 10-30°. Correcto en el HN; en el sur todo al revés.",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
+    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot"
+   ]
+  },
+  {
+   "id": "r31",
+   "regla": "Beaufort a nudos: (Fuerza − 1) × 5.",
+   "significado": "Aproximación: F3 ≈ 10 kn, F4 ≈ 15, F5 ≈ 20, F6 ≈ 25, F7 ≈ 30, F8 ≈ 35, que caen dentro o en el borde de cada intervalo oficial (F3 7-10, F4 11-16, F5 17-21, F6 22-27, F7 28-33, F8 34-40). A partir de F9 se queda corta (F9 son 41-47 kn).",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=2",
+    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=3"
+   ]
+  },
+  {
+   "id": "r32",
+   "regla": "Cielo aborregado, a los tres días mojado (o «cielo empedrado, suelo mojado»).",
+   "significado": "Los cirrocúmulos y altocúmulos «en borreguitos» suelen ir por delante de un frente cálido o de una perturbación, así que la lluvia es probable en uno o dos días. Tiene base física, pero el plazo es orientativo y no se cumple siempre, sobre todo en el Mediterráneo en verano.",
+   "tema": "UT9 Meteorología",
+   "fuentes": [
+    "http://www.paranauticos.com/notas/meteorologia/refranero-tiempo.htm",
+    "https://www.cervantesvirtual.com/obra-visor/la-meteorologia-en-el-refranero/html/"
+   ]
+  },
+  {
+   "id": "r33",
+   "regla": "MAYDAY (m'aidez, «ayudadme») > PAN-PAN (panne, «avería») > SÉCURITÉ (seguridad).",
+   "significado": "Orden de prioridad radio. Socorro (MAYDAY): peligro grave e inminente para el barco o las personas. Urgencia (PAN-PAN): problema serio sin peligro inmediato, como una avería o un herido. Seguridad (SÉCURITÉ): avisos a navegantes y meteorológicos. Cada palabra se repite 3 veces, por el canal 16 de VHF o con alerta DSC por el 70. El origen francés de las palabras ayuda a recordar su gravedad.",
+   "tema": "UT8 Emergencias / Radiocomunicaciones",
+   "fuentes": [
+    "https://escuelanauticaaltair.com/blog/llamada-mayday/",
+    "https://mundobarco.com/mayday"
+   ]
+  },
+  {
+   "id": "r34",
+   "regla": "Agua fría, regla 1-10-1: 1 minuto para controlar la respiración, 10 minutos de movimiento útil, 1 hora antes de perder la consciencia.",
+   "significado": "Del Dr. G. Giesbrecht, difundida por la Federación Internacional de Salvamento. Explica por qué el chaleco salvavidas es vital (el primer minuto de shock de frío es el que ahoga) y por qué hay que actuar (ponerse el chaleco o subir a la balsa) en los primeros 10 minutos. Las cifras son orientativas y dependen de la temperatura del agua y de la persona.",
+   "tema": "UT3 Seguridad / UT8 Emergencias (hipotermia)",
+   "fuentes": [
+    "https://www.ilsf.org/wp-content/uploads/2019/09/MPS-12-Cold-Water-Immersion-_spanish_rv.pdf"
+   ]
+  }
+ ]
+}

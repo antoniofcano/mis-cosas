@@ -29,7 +29,15 @@ export const loadExamBank = (file) => loadJSON(`data/exams/${file}`);
 export async function loadTheoryBank(tit = 'per') {
   const d = TITULACIONES[tit]?.datos ?? TITULACIONES.per.datos;
   const opt = (f) => (f ? loadJSON(`data/exams/${f}`).catch(() => null) : null);
-  const [teoria, carta, expl] = await Promise.all([opt(d.teoria), opt(d.carta), opt(d.explicaciones)]);
+  const [teoria, carta, expl, mnemo] = await Promise.all([opt(d.teoria), opt(d.carta), opt(d.explicaciones), loadMnemonics()]);
   const preguntas = [...(teoria?.preguntas ?? []), ...(carta?.preguntas ?? []).map((q) => ({ ...q, ut: 11, ut_titulo: 'Carta de navegación' }))];
-  return { preguntas, explicaciones: expl ?? {} };
+  return { preguntas, explicaciones: expl ?? {}, reglasDe: mnemo.reglasDe };
+}
+
+/** Reglas nemotécnicas validadas y, para cada pregunta, las que le ayudan. */
+export async function loadMnemonics() {
+  const d = await loadJSON('data/exams/mnemotecnias.json').catch(() => ({ reglas: [] }));
+  const byQ = new Map();
+  for (const r of d.reglas) for (const id of r.preguntas ?? []) byQ.set(id, [...(byQ.get(id) ?? []), r]);
+  return { reglas: d.reglas, reglasDe: (id) => byQ.get(id) ?? [] };
 }

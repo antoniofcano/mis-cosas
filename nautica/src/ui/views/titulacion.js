@@ -31,6 +31,7 @@ export function portadaView({ progress }) {
     h('div.cards',
       h('a.card', { href: link(['mesa']) }, h('h3', '🗺️ Mesa de cartas'), h('p', 'La carta del Estrecho con regla, compás, transportador cuadrado, guías desde las escalas, puntos y notas. Puedes cargar tu propia carta escaneada.')),
       h('a.card', { href: link(['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Balizamiento, luces y marcas, reglas de rumbo, señales acústicas, meteorología…')),
+      h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Las mnemotecnias que de verdad funcionan, con su explicación.')),
       h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta'), h('p', 'Signos, glosario y el método de cada ejercicio.')),
       h('a.card', { href: link(['progreso']) }, h('h3', '📈 Progreso y ajustes'), h('p', 'Tus resultados, la voz del profe y la copia de seguridad.'))),
   );

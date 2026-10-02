@@ -15,6 +15,7 @@ import { theoryView, progressView, chartView } from './views/misc.js';
 import { teoriaView, examenesView, practiceView, testView } from './views/theory.js';
 import { galleryView } from './views/gallery.js';
 import { portadaView, dashboardView, cartaView } from './views/titulacion.js';
+import { reglasView } from './views/reglas.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
@@ -34,6 +35,7 @@ const ROUTES = {
   mesa: chartView,
   laminas: galleryView,
   conceptos: theoryView,
+  reglas: reglasView,
   progreso: progressView,
 };
 

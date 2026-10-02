@@ -71,14 +71,16 @@ function questionCard(q, o = {}) {
   );
 }
 
+let reglasDe = () => [];
+
 /** Panel del profe para una pregunta respondida. */
 function profePanel(q, expl, chosen) {
-  const n = narrateTheory(q, expl, chosen);
+  const n = narrateTheory(q, expl, chosen, reglasDe(q.id));
   const ok = q.anulada || chosen === q.correcta;
   return h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
     h('span.profe-badge', '👨‍🏫 El profe'),
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, '🔊') : null,
-    n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : '' }, line)),
+    n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
     expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones)) : null,
     T.id === 'per' && q.ut === 11 ? h('p', h('a.btn.secondary', { href: link(['examenes', 'andalucia-per.json', q.id]) }, '🗺️ Ver la resolución en la carta')) : null,
   );
@@ -106,7 +108,8 @@ export function teoriaView({ ctx, progress, tit }) {
   useTit(tit);
   const el = h('div.theory-hub', h('p.muted', 'Cargando preguntas…'));
   let summaryText = `VISTA teoría ${T.sigla} (cargando)`;
-  loadTheoryBank(T.id).then(({ preguntas, explicaciones }) => {
+  loadTheoryBank(T.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+    reglasDe = rd;
     const statsFor = blockStats(preguntas, progress);
     summaryText = `VISTA teoría ${T.sigla} · ${preguntas.length} preguntas reales · ${Object.keys(explicaciones).length} explicaciones\n` +
       E.bloques.map((b) => { const s = statsFor(b.ut); return `UT${b.ut} ${b.titulo}: ${s.total} preguntas, hechas ${s.hechas}, acertadas ${s.ok}`; }).join('\n') +
@@ -127,6 +130,7 @@ export function teoriaView({ ctx, progress, tit }) {
       h('h2', 'Material de apoyo'),
       h('div.cards',
         h('a.card', { href: link(['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Boyas con su ritmo de luz, luces y marcas de buques, reglas de rumbo, señales acústicas con sonido, meteorología…')),
+        h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Las mnemotecnias que de verdad funcionan, con su explicación.')),
         h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta'), h('p', 'Convención de signos, glosario y el método de cada tipo de ejercicio de carta.'))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
@@ -183,7 +187,8 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   let summaryText = `VISTA práctica UT${ut}`;
   if (!b) return { el: h('p', 'Bloque no encontrado.'), summary: () => 'ERROR bloque' };
 
-  loadTheoryBank(T.id).then(({ preguntas, explicaciones }) => {
+  loadTheoryBank(T.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+    reglasDe = rd;
     const fails = new Set(Object.entries(progress.get().exams).filter(([, v]) => !v.ok).map(([k]) => k));
     const sesion = buildPractica(preguntas, ut, createRng(seed), { soloFalladas: soloFalladas ? fails : null });
     let i = 0;
@@ -257,7 +262,8 @@ export function testView({ ctx, progress, params: route, tit }) {
   let summaryText = 'VISTA test (cargando)';
   let timer = 0;
 
-  loadTheoryBank(T.id).then(({ preguntas, explicaciones }) => {
+  loadTheoryBank(T.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+    reglasDe = rd;
     const seed = Number(route.query.s) || randomSeed();
     const test = tipo === 'real' ? buildReal(preguntas, route.parts[2]) : buildSimulacro(E, preguntas, createRng(seed));
     if (!test.preguntas.length) { setChildren(el, h('p.warn', 'No hay preguntas para este examen.')); return; }

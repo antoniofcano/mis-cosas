@@ -288,3 +288,6 @@ img.qfig.wide { max-width: 100%; width: 100%; height: auto; }
   header.top nav { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
   header.top nav a { white-space: nowrap; }
 }
+.profe p.mnemo { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 6px; padding: .35rem .55rem; font-weight: 600; }
+details.mnemo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .55rem .8rem; margin: .4rem 0; }
+details.mnemo-card summary { font-weight: 600; cursor: pointer; }

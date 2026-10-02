@@ -11,9 +11,10 @@ const pick = (arr, key) => arr[[...String(key)].reduce((h, c) => (h * 31 + c.cha
  * @param {object} q        pregunta { id, opciones, correcta, anulada }
  * @param {object} [ex]     explicación { explicacion, clave?, trampa? }
  * @param {string} [chosen] letra elegida por el alumno (si respondió)
+ * @param {{ regla: string }[]} [reglas] reglas nemotécnicas que ayudan con esta pregunta
  * @returns {{ display: string[], speech: string }}
  */
-export function narrateTheory(q, ex, chosen) {
+export function narrateTheory(q, ex, chosen, reglas = []) {
   const lines = [];
   if (q.anulada) {
     lines.push('Esta pregunta la anuló el tribunal: en el examen se dio por buena cualquier respuesta.');
@@ -26,8 +27,9 @@ export function narrateTheory(q, ex, chosen) {
   if (ex?.explicacion) lines.push(ex.explicacion);
   if (ex?.clave) lines.push(`💡 ${ex.clave}`);
   if (ex?.trampa) lines.push(`⚠️ ${ex.trampa}`);
+  for (const r of reglas) lines.push(`🧠 ${r.regla}`);
   if (ex?.discrepancia) lines.push(`📝 Nota del profe: ${ex.discrepancia}`);
   if (!ex?.explicacion && !q.anulada) lines.push('Todavía no tengo preparada la explicación detallada de esta pregunta.');
-  const speech = lines.map((l) => l.replace(/^💡\s*/, 'Truco: ').replace(/^⚠️\s*/, 'Y ojo: ').replace(/^📝\s*/, '')).map(toSpeech).join(' ');
+  const speech = lines.map((l) => l.replace(/^💡\s*/, 'Truco: ').replace(/^⚠️\s*/, 'Y ojo: ').replace(/^🧠\s*/, 'Para recordarlo: ').replace(/^📝\s*/, '')).map(toSpeech).join(' ');
   return { display: lines, speech };
 }

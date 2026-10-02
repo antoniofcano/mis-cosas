@@ -50,6 +50,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 1rem 1rem 96px; }
 /* Modo concentración */
 body.focus .tabbar, body.focus > footer, body.focus .crumbs, body.focus > header.top { display: none; }
 body.focus main { padding-bottom: 1rem; }
+body.focus main:has(.fila-inferior) { padding-bottom: calc(108px + env(safe-area-inset-bottom)); }
 .barra-actividad { position: sticky; top: 0; z-index: 6; background: var(--bg); margin: -1rem -1rem .8rem; padding: .4rem 1rem 0; }
 .ba-fila { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .6rem; min-height: 56px; }
 .ba-salir { min-width: 48px; min-height: 48px; padding: .4rem .7rem; }
@@ -403,7 +404,8 @@ button.tarjeta-opcion:hover, button.tarjeta-opcion:focus-visible { border-color:
 p.centrado { text-align: center; }
 p.centrado a { display: inline-flex; align-items: center; min-height: 48px; font-weight: 600; }
 /* Clase y tandas de preguntas */
-.fila-inferior { position: sticky; bottom: 0; z-index: 4; display: flex; gap: .5rem; align-items: stretch; background: var(--bg); padding: .6rem 0 calc(.6rem + env(safe-area-inset-bottom)); margin-top: .8rem; }
+/* Pie fijo con ← y Siguiente: barra propia (con borde) y el contenido puede desplazarse entero por encima de ella. */
+.fila-inferior { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; gap: .5rem; align-items: stretch; background: var(--bg); border-top: 1px solid var(--border); box-shadow: 0 -4px 12px rgba(0, 0, 0, .06); padding: .6rem max(1rem, calc((100vw - 720px) / 2)) calc(.6rem + env(safe-area-inset-bottom)); }
 .fila-inferior > .grande { flex: 1; width: auto; }
 .fila-inferior > button.secondary:not(.grande) { min-height: 60px; }
 button.boton-anterior { flex: none; width: 60px; min-width: 56px; min-height: 60px; padding: 0; font-size: 1.4rem; }

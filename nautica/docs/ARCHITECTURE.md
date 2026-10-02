@@ -8,7 +8,7 @@ nautica/
 ├── index.html            Punto de entrada
 ├── llms.txt              Guía para agentes de IA
 ├── data/                 Base de datos estática (JSON)
-│   ├── chart-102.json    Carta: puntos notables, costa (polígonos de tierra), declinación
+│   ├── chart-105.json    Carta: puntos notables, costa (polígonos de tierra), declinación
 │   └── exams/            Bancos de preguntas reales (index.json + un fichero por banco)
 ├── src/
 │   ├── math/             MOTOR MATEMÁTICO   ángulos, vectores, Mercator/loxodrómica, RNG con semilla, formatos

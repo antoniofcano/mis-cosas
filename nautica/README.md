@@ -3,7 +3,7 @@
 Aplicación web estática, gratuita y sin dependencias para practicar los ejercicios de carta náutica
 de los exámenes de **Patrón de Embarcaciones de Recreo (PER)** y, más adelante, **Patrón de Yate (PY)**.
 
-- **Ejercicios por tipo**, generados con datos nuevos cada vez sobre la zona del Estrecho (carta 102).
+- **Ejercicios por tipo**, generados con datos nuevos cada vez sobre la zona del Estrecho (carta L105).
 - **Corrección automática** con tolerancias de examen y **diagnóstico de errores típicos**
   (signo de la Ct, demora sin invertir, corriente al revés, olvidar el traslado…).
 - **Pistas paso a paso** y **construcción gráfica** progresiva en la carta (SVG).
@@ -43,4 +43,4 @@ Ver [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) para la arquitectura y cómo a�
 
 Es una herramienta de estudio. La carta es una representación simplificada de la zona; las
 coordenadas de los puntos proceden de fuentes públicas (ver `data/`). Practica también el trazado
-con transportador y compás sobre la carta 102 en papel.
+con transportador y compás sobre la carta L105 en papel.

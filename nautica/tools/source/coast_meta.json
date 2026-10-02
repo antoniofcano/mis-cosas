@@ -1,0 +1,19 @@
+{
+  "files": {
+    "coast_es.json": "Spain mainland incl. Gibraltar peninsula and Isla de Tarifa (joined by causeway), west->east, 58 pts, Douglas-Peucker tol 0.006 deg (max deviation ~0.36')",
+    "coast_ma.json": "Morocco Atlantic coast (from 35.6N) -> Cabo Espartel -> Tanger -> Malabata -> Cires -> Ceuta (Almina peninsula spliced in at the Foso de San Felipe canal) -> Cabo Negro -> south edge 35.6N, west->east, 46 pts, tol 0.006 deg",
+    "coast_es_detail.json": "same as coast_es, tol 0.002 deg (179 pts)",
+    "coast_ma_detail.json": "same as coast_ma, tol 0.002 deg (139 pts)",
+    "coast_islands.json": "Isla del Perejil outline (tol 0.0005 deg)"
+  },
+  "format": "arrays of [lon, lat] decimal degrees",
+  "datum": "Shifted to the L105 chart datum (ED50 'Datum Europeo (Potsdam)'): OSM WGS84 + 0.08' N and + 0.07' E, as printed on the chart ('situaciones WGS-84 deberan ser desplazadas 0,08 minutos al Norte y 0,07 minutos al Este'). Subtract to get WGS84.",
+  "clip_bbox": {"lat": [35.6, 36.4], "lon": [-6.36, -5.0]},
+  "chart_bbox_L105": {"lat": [35.6667, 36.3333], "lon": [-6.3333, -5.1667]},
+  "source": "OpenStreetMap natural=coastline ways, fetched 2026-10-02 via Overpass API (maps.mail.ru mirror), merged with shapely linemerge, clipped, simplified (Douglas-Peucker).",
+  "licence": "ODbL 1.0 — attribution required: '© OpenStreetMap contributors' (https://www.openstreetmap.org/copyright). Derived database must remain ODbL if redistributed as a database.",
+  "caveats": [
+    "OSM reflects the present coast: Algeciras port (Isla Verde / Campamento extensions), Tanger-Med and Ksar es Srhir ports and Tanger city port differ from the 2007 L105 chart drawing. Visually verified overlay on the chart: open coast matches within the line width.",
+    "Simplified lines cut across small harbours and coves."
+  ]
+}

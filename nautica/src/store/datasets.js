@@ -13,7 +13,7 @@ async function loadJSON(path) {
   return cache.get(path);
 }
 
-export const loadChartData = () => loadJSON('data/chart-102.json');
+export const loadChartData = () => loadJSON('data/chart-105.json');
 
 /** Índice de bancos de preguntas de examen. */
 export const loadExamIndex = () => loadJSON('data/exams/index.json');

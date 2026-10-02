@@ -9,7 +9,7 @@ export function homeView({ progress }) {
   const view = h('div.home',
     h('section.intro',
       h('h1', 'Ejercicios de carta náutica'),
-      h('p', 'Practica cada tipo de ejercicio con datos nuevos cada vez, sobre la zona del Estrecho (carta 102). Comprueba tus respuestas, pide pistas paso a paso y mira la construcción gráfica. Después, entrénate con las preguntas reales de examen de Andalucía.'),
+      h('p', 'Practica cada tipo de ejercicio con datos nuevos cada vez, sobre la zona del Estrecho (carta L105). Comprueba tus respuestas, pide pistas paso a paso y mira la construcción gráfica. Después, entrénate con las preguntas reales de examen de Andalucía.'),
       h('p', h('a.btn', { href: link(['examenes']) }, '📝 Preguntas de examen reales'), ' ', h('a.btn.secondary', { href: link(['carta']) }, '🗺️ Carta y medición')),
     ),
     cats.map((c) => h('section.category',

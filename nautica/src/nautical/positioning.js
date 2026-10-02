@@ -1,7 +1,7 @@
 // Motor de conocimiento náutico: obtención de la situación (líneas de posición).
 //
 // Todos los cálculos se hacen en el plano de la carta Mercator (ver math/mercator.js), que es
-// exactamente lo que se hace con transportador, regla y compás sobre la carta 102.
+// exactamente lo que se hace con transportador, regla y compás sobre la carta L105.
 
 import { toPlane, fromPlane, unitsPerMile, rhumbDestination, rhumbTo } from '../math/mercator.js';
 import { intersectLines, intersectLineCircle, fromPolar, add, sub, scale, toPolar, dot } from '../math/vector.js';

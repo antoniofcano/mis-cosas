@@ -89,4 +89,4 @@ export function quantity(kind) {
   return q;
 }
 
-/** Nota sobre la longitud: si el usuario no pone E/W se asume W (toda la carta 102 está al W de Greenwich). */
+/** Nota sobre la longitud: si el usuario no pone E/W se asume W (toda la carta L105 está al W de Greenwich). */

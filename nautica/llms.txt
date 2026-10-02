@@ -1,6 +1,6 @@
 # Carta Náutica PER — guía para agentes de IA
 
-> App estática para practicar ejercicios de carta náutica (PER / Patrón de Yate, carta 102 Estrecho de Gibraltar).
+> App estática para practicar ejercicios de carta náutica (PER / Patrón de Yate, carta L105 Estrecho de Gibraltar).
 > Si ayudas a un alumno, NO leas la página entera: usa una de estas vías baratas (de menos a más tokens).
 
 ## 1. Estado actual en texto (recomendado)
@@ -22,7 +22,7 @@
 - `#/examenes/<banco>/<idPregunta>` pregunta real · `#/carta` · `#/teoria` · `#/progreso`
 
 ## 4. Datos en JSON
-- `data/chart-102.json` puntos notables (lat/lon decimales, W negativo), costa, declinación.
+- `data/chart-105.json` puntos notables (lat/lon decimales, W negativo), costa, declinación.
 - `data/exams/index.json` y `data/exams/<banco>.json` preguntas reales con respuesta oficial.
 
 ## Convenciones

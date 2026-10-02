@@ -1,6 +1,6 @@
 // Motor matemático: proyección Mercator y navegación loxodrómica.
 //
-// La carta de examen (102, Estrecho de Gibraltar) es una carta Mercator: en ella las líneas de rumbo
+// La carta de examen (L105 Enseñanza, Estrecho de Gibraltar) es una carta Mercator: en ella las líneas de rumbo
 // constante (loxodrómicas) son rectas. Por eso trabajamos en un "plano carta":
 //   x = longitud en minutos de arco (Este +)
 //   y = latitud aumentada (partes meridionales) en minutos de arco (Norte +)

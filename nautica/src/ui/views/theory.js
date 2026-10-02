@@ -6,17 +6,18 @@
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
 import { loadTheoryBank } from '../../store/datasets.js';
-import { bloque, totalPreguntas } from '../../theory/blocks.js';
+import { bloque, bloquesEnOrden, totalPreguntas } from '../../theory/blocks.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { TANDA, MIN_TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
-import { buildSimulacro, buildReal, buildPractica, convocatorias, grade } from '../../theory/engine.js';
+import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, grade } from '../../theory/engine.js';
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
+import { segmentar, delata } from '../../theory/vocabulario.js';
 import cartaSolutions from '../../exams/solutions/andalucia-per.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 
@@ -54,21 +55,41 @@ const imgSrc = (p) => new URL(`../../../data/exams/${p}`, import.meta.url).href;
  */
 export function questionCard(q, o = {}) {
   const b = bloque(E, q.ut);
+  // Vocabulario (no en exámenes): los términos se pueden tocar y su definición aparece bajo la pregunta.
+  // Antes de responder solo se subraya el enunciado, y nunca un término cuya definición delate la respuesta.
+  const usados = new Set();
+  const correctaTxt = q.opciones?.[q.correcta] ?? '';
+  if (o.vocab && !o.reveal) for (const [id, t] of o.vocab.porId) if (delata(t, correctaTxt)) usados.add(id);
+  const defBox = h('div.vocab-def', { hidden: true, 'aria-live': 'polite' });
+  let abierto = null;
+  const conVocab = (texto) => (o.vocab ? segmentar(texto, o.vocab, usados).map((x) => (x.tipo === 'texto' ? x.texto
+    : h('button.vocab-term', { type: 'button', 'aria-expanded': 'false', onclick: (ev) => {
+      ev.preventDefault(); // dentro de una opción, no la marques
+      ev.stopPropagation();
+      const t = o.vocab.porId.get(x.id);
+      const mismo = abierto === ev.currentTarget;
+      if (abierto) abierto.setAttribute('aria-expanded', 'false');
+      abierto = mismo ? null : ev.currentTarget;
+      defBox.hidden = mismo;
+      if (!mismo) { ev.currentTarget.setAttribute('aria-expanded', 'true'); setChildren(defBox, h('p', h('strong', `${t.termino}: `), t.definicion), h('button.small.secondary', { type: 'button', onclick: () => { defBox.hidden = true; abierto?.setAttribute('aria-expanded', 'false'); abierto = null; } }, 'Cerrar')); }
+    } }, x.texto))) : texto);
+  const enunciado = conVocab(q.enunciado);
   const opts = Object.entries(q.opciones ?? {}).map(([k, v]) => {
     const cls = !o.reveal ? '' : k === q.correcta ? 'correct' : k === o.chosen ? 'wrong' : '';
     const fig = q.opciones_figuras?.[k];
     return h('label.option', { class: cls },
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
-      h('span', h('strong', `${k}) `), v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
+      h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard',
     h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
-    h('p.qtext', q.enunciado),
+    h('p.qtext', enunciado),
     (q.figuras ?? []).map((f) => (/tabla-mareas/.test(f)
       ? h('details.qtable', h('summary', '📊 Tabla para calcular la altura de la marea'), h('img.qfig.wide', { src: imgSrc(f), alt: 'Tabla de corrección de la altura de la marea', loading: 'lazy' }))
       : h('img.qfig', { src: imgSrc(f), alt: 'Figura de la pregunta', loading: 'lazy' }))),
+    defBox,
     h('div.options', opts),
   );
 }
@@ -92,7 +113,7 @@ export function profePanel(q, expl, chosen) {
     h('span.profe-badge', '👨‍🏫 El profe'),
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, '🔊') : null,
     n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
-    expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones)) : null,
+    expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null,
     T.id === 'per' && q.ut === 11 ? h('p', h('a.btn.secondary', { href: link(['examenes', 'andalucia-per.json', q.id]) }, '🗺️ Ver la resolución en la carta')) : null,
   );
 }
@@ -182,7 +203,7 @@ export function examenesView({ ctx, progress, tit }) {
  *   onFin: (ok: number, n: number) => void, onSummary?: (texto: string) => void }} o
  * @returns {HTMLElement}
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, onFin, onSummary = () => {} }) {
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
@@ -203,7 +224,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       progress.recordExam(q.id, { choice: k, ok: good });
-      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: false });
+      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab });
       card.replaceWith(nueva);
       card = nueva;
       setChildren(feedback, profePanel(q, explanationFor(q, explicaciones), k));
@@ -215,7 +236,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
-    let card = questionCard(q, { onChoose: responder, tema: false });
+    let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta, vocab });
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
@@ -238,9 +259,10 @@ export function cierreTanda(ok, n) {
 export function practiceView({ ctx, progress, params: route, tit }) {
   chartRef = ctx.chart;
   useTit(tit);
+  const seed = Number(route.query.s) || randomSeed();
+  if (route.parts[1] === 'mezcla') return mezclaView({ progress, seed });
   const ut = Number(route.parts[2]);
   const b = bloque(E, ut);
-  const seed = Number(route.query.s) || randomSeed();
   const soloFalladas = route.query.f === '1';
   if (!b) return { el: h('div.practice', h('p', 'Este tema no existe.'), h('a.btn', { href: tlink(T.id, ['temario']) }, 'Ir al temario')), summary: () => 'ERROR tema no encontrado' };
   const tit0 = T.id;
@@ -249,7 +271,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const el = h('div.practice', barra, cont);
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     const fails = new Set(Object.entries(respuestas).filter(([, v]) => !v.ok).map(([k]) => k));
@@ -261,13 +283,47 @@ export function practiceView({ ctx, progress, params: route, tit }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n) => {
         progress.logActividad(MIN_TANDA);
         barra.remove();
         pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
         summaryText = `VISTA tanda terminada · ${b.titulo}: ${ok} de ${n} aciertos`;
+        window.scrollTo(0, 0);
+      },
+    }));
+  }).catch((e) => setChildren(cont, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
+  return { el, summary: () => summaryText };
+}
+
+// #/<tit>/teoria/mezcla?s=semilla — repaso mezclado: 10 preguntas de los temas ya empezados, por turnos
+function mezclaView({ progress, seed }) {
+  const tit0 = T.id;
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const cont = h('div', h('p.muted', 'Cargando…'));
+  const el = h('div.practice', barra, cont);
+  let summaryText = 'VISTA repaso mezclado';
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+    reglasDe = rd;
+    const respuestas = progress.get().exams;
+    const empezados = bloquesEnOrden(E).filter((x) => preguntas.some((q) => q.ut === x.ut && respuestas[q.id])).map((x) => x.ut);
+    const conLimite = new Set(E.bloques.filter((x) => x.maxErrores != null).map((x) => x.ut));
+    const sesion = buildMezcla(preguntas, empezados, createRng(seed), { respuestas, conLimite, limite: TANDA });
+    if (empezados.length < 2 || !sesion.preguntas.length) {
+      barra.set('Repaso mezclado', 0);
+      setChildren(cont, h('p.vacio', 'El repaso mezclado empieza cuando hayas hecho preguntas de al menos dos temas.'), h('a.btn.grande', { href: tlink(tit0, ['temario']) }, 'Ir al temario'));
+      return;
+    }
+    setChildren(cont, tandaPreguntas({
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${empezados.length} temas`, temaEnCadaPregunta: true,
+      onSummary: (t) => { summaryText = t; },
+      onFin: (ok, n) => {
+        progress.logActividad(MIN_TANDA);
+        progress.setSetting(`mezclado_${tit0}`, new Date().toLocaleDateString('sv-SE'));
+        barra.remove();
+        pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
+        summaryText = `VISTA repaso mezclado terminado: ${ok} de ${n} aciertos`;
         window.scrollTo(0, 0);
       },
     }));
@@ -305,7 +361,7 @@ export function testView({ ctx, progress, params: route, tit }) {
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
   let summaryText = 'VISTA examen (cargando)';
 
-  loadTheoryBank(T0.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+  loadTheoryBank(T0.id).then(({ preguntas, explicaciones, reglasDe: rd, vocab: vocabBanco }) => {
     reglasDe = rd;
     const tc = progress.testEnCurso();
     const mismo = tc && tc.tit === T0.id && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : seedQ != null && tc.seed === seedQ);
@@ -462,7 +518,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       const renderReview = () => setChildren(review, test.preguntas.map((q, j) => {
         const d = g.detalle[j];
         if (filtro.value === 'falladas' && d.ok) return null;
-        return h('div.qholder', questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
+        return h('div.qholder', questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
       }));
       const filterSel = h('select', { onchange: (ev) => { filtro.value = ev.target.value; renderReview(); } },
         h('option', { value: 'falladas' }, 'Solo las falladas'), h('option', { value: 'todas' }, 'Todas'));

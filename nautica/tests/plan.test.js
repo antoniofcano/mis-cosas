@@ -102,10 +102,10 @@ test('10. la lista nunca está vacía ni pasa de 3', () => {
     const p = planHoy(c);
     assert.ok(p.length >= 1 && p.length <= 3, JSON.stringify(p));
   }
-  // con una sola actividad se añade el siguiente tema pendiente
+  // con una sola actividad se añade el siguiente tema pendiente, en el orden de estudio (PER: 1, 5, 6…)
   const p1 = planHoy(base);
   assert.equal(p1.length, 2);
-  assert.equal(p1[1].ut, 2);
+  assert.equal(p1[1].ut, 5);
 });
 
 test('11. estadoTema: con menos de 10 hechas no hay porcentaje', () => {
@@ -151,4 +151,41 @@ test('15. buildPractica sin límite: todas las del tema, barajadas y reproducibl
   assert.deepEqual(a.preguntas.map((q) => q.id), buildPractica(banco, 2, createRng(5)).preguntas.map((q) => q.id));
   const solo = buildPractica(banco, 2, createRng(5), { soloFalladas: new Set(['q2-1', 'q2-4']) });
   assert.deepEqual(solo.preguntas.map((q) => q.id).sort(), ['q2-1', 'q2-4']);
+});
+
+// --- Orden de estudio y ritmo ----------------------------------------------------------------------------------
+import { bloquesEnOrden, PER as PER_E, PY as PY_E } from '../src/theory/blocks.js';
+import { ritmoEstudio, planHoy as planHoy2 } from '../src/course/plan.js';
+
+test('orden de estudio: lo que más pesa primero', () => {
+  assert.deepEqual(bloquesEnOrden(PER_E).map((b) => b.ut), [1, 5, 6, 10, 11, 2, 3, 4, 7, 8, 9]);
+  assert.deepEqual(bloquesEnOrden(PY_E).map((b) => b.ut), [3, 4, 1, 2]);
+  assert.deepEqual(bloquesEnOrden({ bloques: [{ ut: 2 }, { ut: 1 }] }).map((b) => b.ut), [1, 2]); // sin orden: el oficial
+  // alumno nuevo de Yate: la primera clase que toca es de Teoría de navegación
+  const curso = { modulos: PY_E.bloques.map((b) => ({ ut: b.ut, titulo: b.titulo, lecciones: [{ id: `py-${b.ut}-1`, titulo: `c${b.ut}`, minutos: 10, practica: [] }] })) };
+  assert.equal(planHoy2({ estructura: PY_E, curso, preguntas: [] })[0].ut, 3);
+});
+
+test('ritmo: cuándo terminas y si llegas al examen', () => {
+  const ahora = new Date(2026, 9, 2, 10).getTime(); // 2 de octubre
+  const curso = { modulos: [{ ut: 1, titulo: 'A', lecciones: [{ id: 'a1', minutos: 60, practica: [] }, { id: 'a2', minutos: 60, practica: [] }] }] };
+  const estructura = { duracionMin: 90, bloques: [{ ut: 1, titulo: 'A', n: 4 }] };
+  const preguntas = Array.from({ length: 30 }, (_, i) => ({ id: `q${i}`, ut: 1, correcta: 'a' }));
+  // 120 min de clases + 2 tandas (20 preguntas) × 8 + 3 simulacros × 90 = 406 min; a 20 min/día, 21 días
+  const r = ritmoEstudio({ estructura, curso, preguntas, ahora, minutosDia: 20, fechaExamen: '2026-10-12' });
+  assert.deepEqual(r.desglose, { clases: 120, preguntas: 16, simulacros: 270 });
+  assert.equal(r.diasNecesarios, 21);
+  assert.equal(r.fechaFin, '2026-10-22');
+  assert.equal(r.diasDisponibles, 10);
+  assert.equal(r.llega, false);
+  assert.equal(r.minutosNecesarios, 45); // 406 / 10 = 40,6 → 45 (de 5 en 5)
+  // con clases hechas, preguntas al día y simulacros hechos no queda nada
+  const regs = { a1: { visto: true, paso: 0 }, a2: { visto: true, paso: 0 } };
+  const respuestas = Object.fromEntries(preguntas.slice(0, 20).map((q) => [q.id, { ok: true }]));
+  const tests = [{ tipo: 'simulacro' }, { tipo: 'real' }, { tipo: 'simulacro' }];
+  const fin = ritmoEstudio({ estructura, curso, preguntas, regs, respuestas, tests, ahora, fechaExamen: '2026-10-12' });
+  assert.equal(fin.minutosPendientes, 0);
+  assert.equal(fin.llega, true);
+  // sin fecha de examen no se sabe si llegas
+  assert.equal(ritmoEstudio({ estructura, curso, preguntas, ahora }).llega, null);
 });

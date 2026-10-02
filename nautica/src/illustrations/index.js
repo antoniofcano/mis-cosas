@@ -5,13 +5,14 @@
 import { buoyIllustration, cardinalClock, BUOYS } from './buoys.js';
 import { shipIllustration, SHIPS } from './ships.js';
 import { crossingIllustration, soundIllustration, riesgoIllustration, SENALES } from './situations.js';
-import { meteoIllustration, boatIllustration, propellerIllustration, roseIllustration, flagIllustration } from './misc.js';
+import { meteoIllustration, boatIllustration, propellerIllustration, flagIllustration } from './misc.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
-import { nortesIllustration, enfilacionIllustration, corrienteIllustration, abatimientoIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
+import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
 import { heliceTimonIllustration, evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
+import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { estabilidadIllustration, movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
 function rhythmIllustration(spec) {
@@ -34,12 +35,12 @@ const RENDERERS = {
   meteo: meteoIllustration,
   barco: boatIllustration,
   helice: propellerIllustration,
-  rosa: roseIllustration,
+  rosa: (s) => dibujoFijo(INTERACTIVAS.rosa, s),
   bandera: flagIllustration,
-  nortes: nortesIllustration,
+  nortes: (s) => dibujoFijo(INTERACTIVAS.nortes, s),
   enfilacion: enfilacionIllustration,
-  corriente: corrienteIllustration,
-  abatimiento: abatimientoIllustration,
+  corriente: (s) => dibujoFijo(INTERACTIVAS.corriente, s),
+  abatimiento: (s) => dibujoFijo(INTERACTIVAS.abatimiento, s),
   'viento-aparente': vientoAparenteIllustration,
   loxodromica: loxodromicaIllustration,
   marea: mareaIllustration,
@@ -109,13 +110,21 @@ export const CATALOGO = {
 
 /** Comprueba que una especificación es dibujable. */
 export function validSpec(spec) {
-  if (!spec || !RENDERERS[spec.tipo]) return false;
-  try { return !!RENDERERS[spec.tipo](spec); } catch { return false; }
+  const fn = dibujoDe(spec);
+  if (!fn) return false;
+  try { return !!fn(spec); } catch { return false; }
+}
+
+/** Función que dibuja una spec: la de su lámina interactiva si la tiene (es el mismo dibujo en su estado inicial) o la fija. */
+function dibujoDe(spec) {
+  if (!spec || !RENDERERS[spec.tipo]) return null;
+  const def = interactivaDe(spec);
+  return def ? (s) => dibujoFijo(def, s) : RENDERERS[spec.tipo];
 }
 
 /** @returns {{ svg: string, caption: string, sound?: string } | null} */
 export function renderIllustration(spec) {
-  const fn = RENDERERS[spec?.tipo];
+  const fn = dibujoDe(spec);
   if (!fn) return null;
   try { return fn(spec); } catch (e) { console.error('Ilustración', spec, e); return null; }
 }

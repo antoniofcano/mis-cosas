@@ -194,46 +194,7 @@ export function propellerIllustration(spec) {
   return { svg: out.join(''), caption: `Con hélice ${dex ? 'dextrógira' : 'levógira'}, dando ${atras ? 'atrás' : 'avante'} la popa tiende a caer a ${caida}${atras ? ' (efecto muy marcado al dar atrás)' : ''}.` };
 }
 
-// ---------------------------------------------------------------------------
-// Rosa: rumbo, demora y marcación
-// spec: { tipo:'rosa', rumbo, demora?, marcacion?: bool, etiqueta? }
-
-export function roseIllustration(spec) {
-  const W = 300;
-  const H = 300;
-  const c = 150;
-  const R = 110;
-  const pol = (deg, r) => [c + Math.sin((deg * Math.PI) / 180) * r, c - Math.cos((deg * Math.PI) / 180) * r];
-  const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Rumbo y demora">`, `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>`, arrowDefs('rs-a', '#2563eb'), arrowDefs('rs-b', '#7c3aed')];
-  out.push(`<circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="#94a3b8"/>`);
-  for (let d = 0; d < 360; d += 10) {
-    const [x1, y1] = pol(d, R);
-    const [x2, y2] = pol(d, d % 90 ? R - 6 : R - 12);
-    out.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#94a3b8"/>`);
-  }
-  [['N', 0], ['E', 90], ['S', 180], ['W', 270]].forEach(([t, d]) => { const [x, y] = pol(d, R + 14); out.push(`<text x="${x}" y="${y + 4}" font-size="12" font-weight="700" text-anchor="middle" fill="currentColor">${t}</text>`); });
-  if (spec.rumbo != null) {
-    const [x, y] = pol(spec.rumbo, R - 16);
-    out.push(`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#2563eb" stroke-width="3" marker-end="url(#rs-a)"/><text x="${x}" y="${y - 6}" font-size="11" fill="#2563eb" text-anchor="middle">rumbo ${String(spec.rumbo).padStart(3, '0')}°</text>`);
-  }
-  if (spec.demora != null) {
-    const [x, y] = pol(spec.demora, R - 10);
-    out.push(`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#rs-b)"/><circle cx="${x}" cy="${y}" r="6" fill="#facc15" stroke="#a16207"/><text x="${x}" y="${y + 18}" font-size="11" fill="#7c3aed" text-anchor="middle">${spec.etiqueta ?? 'objeto'}: demora ${String(spec.demora).padStart(3, '0')}°</text>`);
-    if (spec.marcacion && spec.rumbo != null) {
-      const m = (((spec.demora - spec.rumbo) % 360) + 360) % 360;
-      const sb = m <= 180;
-      const a0 = spec.rumbo;
-      const a1 = spec.demora;
-      const [sx, sy] = pol(a0, 40);
-      const [ex, ey] = pol(a1, 40);
-      out.push(`<path d="M${sx},${sy} A40,40 0 0 ${sb ? 1 : 0} ${ex},${ey}" fill="none" stroke="#e11d48" stroke-width="2"/>`);
-      out.push(`<text x="${c}" y="${H - 12}" font-size="11" fill="#e11d48" text-anchor="middle">marcación ${sb ? m : 360 - m}° por ${sb ? 'estribor' : 'babor'} (desde la proa)</text>`);
-    }
-  }
-  out.push(`<circle cx="${c}" cy="${c}" r="4" fill="currentColor"/>`);
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Rumbo y demora se miden desde el norte, en el sentido de las agujas del reloj; la marcación se mide desde la proa.' };
-}
+// Rosa (rumbo, demora y marcación): ahora es interactiva, en src/illustrations/interactivas/rosa.js.
 
 // ---------------------------------------------------------------------------
 // Banderas

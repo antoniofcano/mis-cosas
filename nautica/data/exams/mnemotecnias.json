@@ -325,7 +325,6 @@
    "significado": "Las puntas del tope de la cardinal señalan dónde está la banda negra de la boya: Norte ▲▲ negro arriba; Sur ▼▼ negro abajo; Este ▼▲ (bases juntas) negro arriba y abajo con amarillo en medio; Oeste ▲▼ (puntas juntas) negro en medio. Dicho de otra forma: el amarillo va con las bases y el negro con los vértices.",
    "tema": "UT5 Balizamiento",
    "fuentes": [
-    "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
     "https://escuelanauticaaltair.com/blog/marcas-cardinales/",
     "https://foro.latabernadelpuerto.com/showthread.php?t=46439"
    ],
@@ -551,8 +550,7 @@
    "significado": "Ley de Buys-Ballot. Correcta en el hemisferio norte; en el sur se invierte. Con el viento real de superficie, que cruza las isobaras hacia la baja, la baja queda algo adelantada respecto al través izquierdo.",
    "tema": "UT9 Meteorología",
    "fuentes": [
-    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot",
-    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4"
+    "https://www.aemet.es/es/conocermas/maritima/detalles/guiamaritima"
    ],
    "preguntas": [
     "and-py-2022-c3-g16"
@@ -564,9 +562,7 @@
    "significado": "En el hemisferio norte el viento gira en sentido antihorario y convergente alrededor de la borrasca, y horario y divergente alrededor del anticiclón. Por Coriolis, el viento en superficie sale de las altas hacia las bajas desviado a la derecha y cruza las isobaras unos 10-30°. Correcto en el HN; en el sur todo al revés.",
    "tema": "UT9 Meteorología",
    "fuentes": [
-    "https://clubelcano.com/documentos/PER/Apuntes%20PER.pdf",
-    "https://foro.latabernadelpuerto.com/showthread.php?t=70657&page=4",
-    "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/412-borrascas-ley-de-buys-ballot"
+    "https://www.aemet.es/es/conocermas/maritima/detalles/guiamaritima"
    ],
    "preguntas": [
     "and-2020-c1-t34",

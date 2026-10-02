@@ -1,0 +1,3264 @@
+{
+ "terminos": [
+  {
+   "id": "abatimiento",
+   "termino": "Abatimiento",
+   "formas": [
+    "abatimiento",
+    "abate",
+    "abatido"
+   ],
+   "definicion": "Desplazamiento hacia sotavento que causa el viento, también a una balsa. En navegación, ángulo entre la línea de crujía y la estela: diferencia entre rumbo verdadero y de superficie. Cada barco abate distinto.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 71,
+   "titulacion": "py"
+  },
+  {
+   "id": "intensidad-horaria",
+   "termino": "Intensidad horaria de la corriente (Ihc)",
+   "formas": [
+    "intensidad horaria",
+    "Ihc",
+    "Ih"
+   ],
+   "definicion": "Velocidad de la corriente, en millas por hora (nudos). Con su rumbo forma el vector que se suma al del barco.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 58
+  },
+  {
+   "id": "rumbo-de-corriente",
+   "termino": "Rumbo de la corriente (Rc)",
+   "formas": [
+    "rumbo de la corriente",
+    "rumbo de corriente",
+    "Rc"
+   ],
+   "definicion": "Dirección hacia la que va la corriente, al contrario que el viento, que se nombra por de dónde viene.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 56
+  },
+  {
+   "id": "balsa",
+   "termino": "Balsa salvavidas",
+   "formas": [
+    "balsa salvavidas",
+    "balsas salvavidas",
+    "balsa hinchable salvavidas",
+    "balsa",
+    "balsas"
+   ],
+   "definicion": "Embarcación hinchable de supervivencia que va plegada en un contenedor. Debe aguantar 30 días a flote, poder remolcarse a 3 nudos y llevar toldo y anclas flotantes.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 47,
+   "titulacion": "py"
+  },
+  {
+   "id": "radar",
+   "termino": "Radar",
+   "formas": [
+    "radar",
+    "radares"
+   ],
+   "definicion": "Equipo que emite ondas electromagnéticas y recibe su eco al reflejarse en los objetos: da su distancia, demora o marcación y movimiento.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 43,
+   "basico": true
+  },
+  {
+   "id": "hora-oficial",
+   "termino": "Hora oficial (Ho)",
+   "formas": [
+    "hora oficial",
+    "Ho"
+   ],
+   "definicion": "Hora que fija el Gobierno para su territorio, la del reloj de casa. En la Península es el TU más 1 hora en invierno y más 2 en verano.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 40
+  },
+  {
+   "id": "masa-de-aire",
+   "termino": "Masa de aire",
+   "formas": [
+    "masa de aire",
+    "masas de aire"
+   ],
+   "definicion": "Gran volumen de aire con temperatura y humedad parecidas en toda su extensión. Donde chocan dos masas distintas se forma un frente.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 35
+  },
+  {
+   "id": "centro-de-gravedad",
+   "termino": "Centro de gravedad (G)",
+   "formas": [
+    "centro de gravedad",
+    "centros de gravedad"
+   ],
+   "definicion": "Punto donde se considera concentrado todo el peso del barco, que actúa hacia abajo. Solo se mueve si se cargan, consumen o trasladan pesos; no con los balances.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 34
+  },
+  {
+   "id": "bajo",
+   "termino": "Bajo",
+   "formas": [
+    "un bajo"
+   ],
+   "definicion": "Elevación del fondo con poca profundidad, peligrosa para la navegación, señalada en la carta con su sonda.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 33
+  },
+  {
+   "id": "adelanto",
+   "termino": "Adelanto",
+   "formas": [
+    "adelanto",
+    "adelanto vigente"
+   ],
+   "definicion": "Horas que hay que sumar al Tiempo Universal para obtener la hora oficial: en la Península, +1 en invierno y +2 en verano.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 32
+  },
+  {
+   "id": "velocidad-del-buque",
+   "termino": "Velocidad del buque (Vb, Vm)",
+   "formas": [
+    "velocidad del buque",
+    "velocidad de la máquina",
+    "Vb",
+    "Vm"
+   ],
+   "definicion": "Velocidad del barco sobre el agua, la que da su máquina o corredera, sin contar la corriente.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 32
+  },
+  {
+   "id": "niebla",
+   "termino": "Niebla",
+   "formas": [
+    "niebla",
+    "nieblas"
+   ],
+   "definicion": "Nube pegada a la superficie que reduce la visibilidad a menos de 1 kilómetro. Se forma al saturarse el aire por enfriamiento, evaporación o mezcla.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 29,
+   "basico": true
+  },
+  {
+   "id": "gradiente",
+   "termino": "Gradiente horizontal de presión",
+   "formas": [
+    "gradiente horizontal de presión",
+    "gradiente horizontal",
+    "gradiente de presión",
+    "gradiente"
+   ],
+   "definicion": "Cuánto cambia algo (presión, temperatura) por unidad de distancia. El horizontal de presión se mide perpendicular a las isobaras: si es mayor, isobaras más juntas y viento más intenso.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 27,
+   "titulacion": "py"
+  },
+  {
+   "id": "paralelo",
+   "termino": "Paralelo",
+   "formas": [
+    "paralelo",
+    "paralelos"
+   ],
+   "definicion": "Círculo menor paralelo al ecuador, perpendicular al eje terrestre, que une los puntos de igual latitud. «Paralelo a las isobaras» significa en su misma dirección, sin cortarlas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 25,
+   "titulacion": "py"
+  },
+  {
+   "id": "centro-de-carena",
+   "termino": "Centro de carena (C)",
+   "formas": [
+    "centro de carena"
+   ],
+   "definicion": "Centro de gravedad del volumen sumergido del barco. Ahí se aplica el empuje del agua, hacia arriba. Se desplaza con los balances y cabezadas porque cambia la forma sumergida.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 21
+  },
+  {
+   "id": "punto-de-rocio",
+   "termino": "Punto de rocío",
+   "formas": [
+    "punto de rocío",
+    "rocío"
+   ],
+   "definicion": "Temperatura a la que hay que enfriar el aire, sin cambiar presión ni vapor, para que se sature y el vapor empiece a condensarse.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 21
+  },
+  {
+   "id": "cresta",
+   "termino": "Cresta",
+   "formas": [
+    "cresta",
+    "crestas"
+   ],
+   "definicion": "Parte más alta de una ola. La distancia horizontal entre dos crestas seguidas es la longitud de onda; el tiempo entre su paso, el periodo.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 21
+  },
+  {
+   "id": "rumbo-efectivo",
+   "termino": "Rumbo efectivo (Ref)",
+   "formas": [
+    "rumbo efectivo"
+   ],
+   "definicion": "Rumbo real respecto al fondo: el que resulta de la corriente y, si lo hay, también del viento. El GNSS lo muestra como COG.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 20
+  },
+  {
+   "id": "ais",
+   "termino": "AIS",
+   "formas": [
+    "AIS",
+    "A.I.S."
+   ],
+   "definicion": "Sistema de identificación automática que, por VHF, intercambia con otros barcos y estaciones costeras nombre, MMSI, posición, rumbo y velocidad. Ayuda a evitar abordajes.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 20
+  },
+  {
+   "id": "frente-frio",
+   "termino": "Frente frío",
+   "formas": [
+    "frente frío"
+   ],
+   "definicion": "El aire frío avanza y empuja al cálido, obligándolo a subir deprisa. Trae cumulonimbos, chubascos fuertes y rachas; pasa rápido.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 19
+  },
+  {
+   "id": "carta-electronica",
+   "termino": "Carta electrónica",
+   "formas": [
+    "cartas electrónicas",
+    "carta electrónica",
+    "cartas náuticas electrónicas"
+   ],
+   "definicion": "Carta náutica en formato digital para ver en un equipo. Hay dos tipos: raster (RNC) y vectorial (ENC).",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 19
+  },
+  {
+   "id": "radiobaliza",
+   "termino": "Radiobaliza (EPIRB)",
+   "formas": [
+    "radiobaliza",
+    "radiobalizas",
+    "EPIRB",
+    "radiobaliza de localización de siniestros"
+   ],
+   "definicion": "Equipo de emergencia que envía por satélite, en 406 MHz, una alerta con la identidad del barco. Se activa a mano o sola al hundirse; debe registrarse y dura al menos 48 horas.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 18,
+   "titulacion": "py"
+  },
+  {
+   "id": "vapor-de-agua",
+   "termino": "Vapor de agua",
+   "formas": [
+    "vapor de agua"
+   ],
+   "definicion": "Agua en forma de gas invisible mezclada en el aire. Al enfriarse se condensa y forma nubes y nieblas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 18,
+   "basico": true
+  },
+  {
+   "id": "al-verdadero",
+   "termino": "Al norte (sur, este…) verdadero",
+   "formas": [
+    "sur verdadero",
+    "este verdadero",
+    "oeste verdadero",
+    "s/v",
+    "e/v",
+    "nv",
+    "n/v",
+    "w/v"
+   ],
+   "definicion": "Estar al sur verdadero de un faro significa que el faro nos demora al norte verdadero (000°): la demora es la opuesta.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 18
+  },
+  {
+   "id": "altura-metacentrica",
+   "termino": "Altura metacéntrica (GM)",
+   "formas": [
+    "altura metacéntrica",
+    "GM"
+   ],
+   "definicion": "Distancia entre el centro de gravedad y el metacentro. Positiva: barco estable; grande: balances rápidos y bruscos; pequeña: lentos y suaves; cero: equilibrio indiferente.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 17
+  },
+  {
+   "id": "zafa-hidrostatica",
+   "termino": "Zafa hidrostática",
+   "formas": [
+    "zafa hidrostática",
+    "zafa hidroestática",
+    "zafa",
+    "zafada",
+    "zafaremos"
+   ],
+   "definicion": "Mecanismo que sujeta la balsa o la radiobaliza y la suelta sola por la presión del agua si el barco se hunde, a 4 metros como máximo. Caduca a los 2 años.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 17
+  },
+  {
+   "id": "helicoptero-rescate",
+   "termino": "Rescate con helicóptero",
+   "formas": [
+    "helicóptero"
+   ],
+   "definicion": "Con el helicóptero cerca: chalecos puestos, cubierta despejada, velas arriadas, escucha en el canal 16, nada de cohetes y dejar que el cable toque el agua antes de cogerlo.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "frente-calido",
+   "termino": "Frente cálido",
+   "formas": [
+    "frente cálido"
+   ],
+   "definicion": "El aire cálido avanza y sube despacio por encima de una cuña de aire frío. Trae nubes en capas y lluvia continua y moderada.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "humedad-relativa",
+   "termino": "Humedad relativa",
+   "formas": [
+    "humedad relativa"
+   ],
+   "definicion": "Porcentaje de vapor que tiene el aire respecto al máximo que podría tener a esa temperatura. Al 100 % el aire está saturado y aparecen nubes o niebla.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "nubes-altas",
+   "termino": "Nubes altas, medias y bajas",
+   "formas": [
+    "nubes altas",
+    "nubes medias",
+    "nubes bajas"
+   ],
+   "definicion": "Clasificación por altura: altas, con prefijo cirro- (rara vez pasan de 10.000 m); medias, con prefijo alto-; bajas: estratos, estratocúmulos y nimbostratos.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "longitud-de-onda",
+   "termino": "Longitud de onda",
+   "formas": [
+    "longitud de onda",
+    "longitud de la ola",
+    "longitudes de ondas"
+   ],
+   "definicion": "Distancia horizontal entre dos crestas, o dos senos, consecutivos. En la mar de fondo es mucho mayor que la altura de la ola.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "carta-raster",
+   "termino": "Carta raster (RNC)",
+   "formas": [
+    "raster",
+    "RNC",
+    "rasterizada"
+   ],
+   "definicion": "Carta electrónica que es una copia escaneada de la carta de papel, como una foto: no tiene información por objetos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "carta-vectorial",
+   "termino": "Carta vectorial (ENC)",
+   "formas": [
+    "vectoriales",
+    "vectorial",
+    "ENC",
+    "ENCs"
+   ],
+   "definicion": "Carta electrónica construida como base de datos, objeto a objeto, publicada por un servicio hidrográfico oficial. Permite alarmas y consultar cada elemento.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 16
+  },
+  {
+   "id": "latitud",
+   "termino": "Latitud",
+   "formas": [
+    "latitud",
+    "latitudes"
+   ],
+   "definicion": "Arco de meridiano desde el ecuador hasta el lugar, de 0° a 90° hacia el norte o el sur. Todos los puntos de un mismo paralelo tienen la misma latitud.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 16,
+   "titulacion": "py"
+  },
+  {
+   "id": "marea",
+   "termino": "Marea",
+   "formas": [
+    "marea",
+    "mareas"
+   ],
+   "definicion": "Subida y bajada periódica del nivel del mar causada por la atracción de la Luna y el Sol, unas dos veces al día.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 15,
+   "basico": true
+  },
+  {
+   "id": "frente-ocluido",
+   "termino": "Frente ocluido u oclusión",
+   "formas": [
+    "frente ocluido",
+    "oclusión",
+    "ocluido",
+    "ocluido frío",
+    "ocluido cálido"
+   ],
+   "definicion": "Se forma cuando el frente frío alcanza al cálido y el aire cálido queda en altura, sin tocar el suelo. Es de tipo frío si el aire de retaguardia es el más frío.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 15
+  },
+  {
+   "id": "viento-geostrofico",
+   "termino": "Viento geostrófico",
+   "formas": [
+    "viento geostrófico",
+    "geostrófico"
+   ],
+   "definicion": "Viento teórico en que el gradiente de presión se equilibra con la fuerza de Coriolis. Sopla paralelo a isobaras rectas, con las altas a la derecha en el hemisferio norte.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 15
+  },
+  {
+   "id": "niebla-de-adveccion",
+   "termino": "Niebla de advección",
+   "formas": [
+    "niebla de advección",
+    "nieblas de advección",
+    "advección"
+   ],
+   "definicion": "Niebla de enfriamiento: aire cálido y húmedo que se desplaza sobre agua más fría. Es la más frecuente en el mar y se aclara al pasar a aguas más templadas. Advección = transporte horizontal.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 15
+  },
+  {
+   "id": "meridiano",
+   "termino": "Meridiano",
+   "formas": [
+    "meridiano",
+    "meridianos"
+   ],
+   "definicion": "Círculo máximo que pasa por los dos polos, perpendicular al ecuador. Cada observador tiene el suyo; el de Greenwich (0°) es el origen de las longitudes. La latitud se mide sobre ellos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 15,
+   "titulacion": "py"
+  },
+  {
+   "id": "bengala",
+   "termino": "Bengala de mano",
+   "formas": [
+    "bengala de mano",
+    "bengalas de mano",
+    "bengala",
+    "bengalas"
+   ],
+   "definicion": "Señal pirotécnica que se sostiene con la mano y arde en rojo brillante al menos 60 segundos, con 15.000 candelas. Se muestra por sotavento.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 14,
+   "titulacion": "py"
+  },
+  {
+   "id": "saturacion",
+   "termino": "Saturación",
+   "formas": [
+    "saturación",
+    "saturado",
+    "saturada",
+    "punto de saturación",
+    "saturante"
+   ],
+   "definicion": "Estado del aire que ya no admite más vapor de agua (humedad relativa del 100 %). Si se enfría más, el vapor se condensa en gotitas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "metacentro",
+   "termino": "Metacentro (M)",
+   "formas": [
+    "metacentro"
+   ],
+   "definicion": "Punto donde la vertical del centro de carena, con el barco escorado pocos grados, corta el plano de crujía. Si queda por encima de G, el barco es estable.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "chaleco",
+   "termino": "Chaleco salvavidas",
+   "formas": [
+    "chaleco salvavidas",
+    "chalecos salvavidas",
+    "chaleco",
+    "chalecos"
+   ],
+   "definicion": "Prenda que mantiene a flote a una persona, boca arriba aunque esté inconsciente. Uno por persona y uno adecuado por cada niño; con bandas reflectantes y, salvo excepciones de navegación diurna, luz blanca.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 14,
+   "titulacion": "py"
+  },
+  {
+   "id": "viento-de-euler",
+   "termino": "Viento de Euler",
+   "formas": [
+    "viento de euler",
+    "euler"
+   ],
+   "definicion": "Viento ideal en el que solo actúa el gradiente horizontal de presión: iría en línea recta de las altas a las bajas presiones, perpendicular a las isobaras.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "viento-antitriptico",
+   "termino": "Viento antitríptico",
+   "formas": [
+    "viento antitríptico",
+    "antitríptico",
+    "antitripico"
+   ],
+   "definicion": "Modelo de viento que incluye en su ecuación la fuerza de rozamiento con la superficie: por eso corta las isobaras hacia las bajas presiones.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "humedad-absoluta",
+   "termino": "Humedad absoluta",
+   "formas": [
+    "humedad absoluta"
+   ],
+   "definicion": "Cantidad de vapor de agua que hay en el aire, expresada en gramos por metro cúbico: la densidad del vapor.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "avisos-a-los-navegantes",
+   "termino": "Avisos a los Navegantes",
+   "formas": [
+    "avisos a los navegantes",
+    "aviso a los navegantes"
+   ],
+   "definicion": "Publicación semanal del Instituto Hidrográfico de la Marina que avisa de peligros y novedades para la navegación y trae las correcciones de las cartas náuticas y los derroteros.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "bocana",
+   "termino": "Bocana",
+   "formas": [
+    "bocana"
+   ],
+   "definicion": "Entrada de un puerto, entre los extremos de sus diques o espigones.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 14
+  },
+  {
+   "id": "ecuador",
+   "termino": "Ecuador",
+   "formas": [
+    "ecuador"
+   ],
+   "definicion": "Círculo máximo perpendicular al eje de la Tierra que la divide en hemisferio norte y sur. Es el origen de las latitudes.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 13,
+   "basico": true
+  },
+  {
+   "id": "cohete-con-paracaidas",
+   "termino": "Cohete lanzabengalas con paracaídas",
+   "formas": [
+    "cohete lanzabengalas con paracaídas",
+    "cohete con paracaídas",
+    "cohetes con paracaídas",
+    "bengala con paracaídas",
+    "lanzabengalas",
+    "cohete",
+    "cohetes",
+    "paracaídas"
+   ],
+   "definicion": "Cohete que sube y suelta una bengala roja colgada de un paracaídas: arde al menos 40 segundos con 30.000 candelas. Nunca se lanza con un helicóptero cerca.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "altura-de-la-ola",
+   "termino": "Altura de la ola",
+   "formas": [
+    "altura de la ola",
+    "altura de ola",
+    "altura de las olas"
+   ],
+   "definicion": "Distancia vertical entre el fondo del seno y lo alto de la cresta. Vale el doble de la amplitud.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 13
+  },
+  {
+   "id": "deriva",
+   "termino": "Deriva",
+   "formas": [
+    "deriva"
+   ],
+   "definicion": "Desplazamiento que causa la corriente («a la deriva»: llevado sin propulsión). En navegación, ángulo entre el rumbo sobre el agua y el efectivo sobre el fondo. La corriente afecta a todos los barcos por igual.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 13,
+   "titulacion": "py"
+  },
+  {
+   "id": "longitud",
+   "termino": "Longitud",
+   "formas": [
+    "longitud",
+    "longitudes"
+   ],
+   "definicion": "Coordenada: arco de ecuador o de paralelo desde Greenwich hasta el meridiano del lugar, de 0° a 180° E o W. Fuera de la carta es el largo: de una ola, de un cabo.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 13,
+   "titulacion": "py"
+  },
+  {
+   "id": "niebla-de-mezcla",
+   "termino": "Niebla de mezcla",
+   "formas": [
+    "nieblas de mezcla",
+    "mezcla"
+   ],
+   "definicion": "Niebla que se forma al mezclarse dos corrientes de aire de naturaleza distinta, una fría y otra templada y húmeda, y saturarse la mezcla.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "abandono",
+   "termino": "Abandono del buque",
+   "formas": [
+    "abandono",
+    "abandonar"
+   ],
+   "definicion": "Dejar el barco para pasar a la balsa cuando ya no es seguro quedarse. Antes se pide socorro y se activa la radiobaliza; se embarca sin mojarse si es posible.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 12,
+   "basico": true
+  },
+  {
+   "id": "respondedor",
+   "termino": "Respondedor de radar (SART o RESAR)",
+   "formas": [
+    "respondedor radar",
+    "respondedor de radar",
+    "respondedor",
+    "SART",
+    "RESAR"
+   ],
+   "definicion": "Aparato que, al recibir el impulso de un radar de 9 GHz, responde con una señal que aparece en esa pantalla marcando su posición. Se activa a mano y se coloca alto.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 12,
+   "titulacion": "py"
+  },
+  {
+   "id": "corriente-de-gradiente",
+   "termino": "Corriente de gradiente",
+   "formas": [
+    "corriente de gradiente",
+    "corrientes de gradiente"
+   ],
+   "definicion": "Corriente causada por un desnivel de la superficie del mar, que crea diferencias de presión entre dos zonas del agua. El desnivel puede venir de la presión atmosférica o del agua que acumula el viento.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "corriente-termohalina",
+   "termino": "Corriente termohalina o de densidad",
+   "formas": [
+    "corrientes termohalinas",
+    "termohalinas",
+    "corriente de densidad",
+    "corrientes de densidad"
+   ],
+   "definicion": "Corriente causada por diferencias de densidad entre aguas vecinas, debidas a la temperatura y la salinidad. Explica la mayor parte de las corrientes profundas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "mistral",
+   "termino": "Mistral",
+   "formas": [
+    "mistral"
+   ],
+   "definicion": "Viento frío y seco del NW en el Mediterráneo norte occidental, sobre todo en el golfo de León: cielos muy claros y rachas intensas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 12
+  },
+  {
+   "id": "meridiano-de-greenwich",
+   "termino": "Meridiano de Greenwich",
+   "formas": [
+    "meridiano de greenwich",
+    "meridiano cero",
+    "greenwich",
+    "meridiano 0"
+   ],
+   "definicion": "Meridiano origen de las longitudes (0°), que pasa por Greenwich, cerca de Londres. Divide la Tierra en hemisferio este y oeste.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "hemisferio",
+   "termino": "Hemisferio norte y sur",
+   "formas": [
+    "hemisferio norte",
+    "hemisferio sur",
+    "hemisferio",
+    "HN"
+   ],
+   "definicion": "Cada mitad de la Tierra separada por el ecuador. En el norte (HN) el viento gira al revés que en el sur alrededor de borrascas y anticiclones.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "seno",
+   "termino": "Seno de la ola",
+   "formas": [
+    "seno",
+    "senos"
+   ],
+   "definicion": "En las olas, la parte más baja, el valle entre dos crestas: la altura va del fondo del seno a lo alto de la cresta. «En el seno del agua» significa en su interior.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 11,
+   "titulacion": "py"
+  },
+  {
+   "id": "oleaje",
+   "termino": "Oleaje",
+   "formas": [
+    "oleaje"
+   ],
+   "definicion": "Movimiento periódico de la superficie del mar formado por olas, resultado de la energía que el viento transfiere al agua.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "corriente-de-arrastre",
+   "termino": "Corriente de arrastre",
+   "formas": [
+    "corriente de arrastre",
+    "corrientes de arrastre"
+   ],
+   "definicion": "Corriente superficial causada por la acción del viento que sopla con persistencia sobre la superficie del mar.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 11,
+   "titulacion": "py"
+  },
+  {
+   "id": "galerna",
+   "termino": "Galerna",
+   "formas": [
+    "galerna"
+   ],
+   "definicion": "Viento súbito, muy fuerte y racheado del Cantábrico, con o sin lluvia, que rompe bruscamente un tiempo apacible y caluroso.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 11
+  },
+  {
+   "id": "demora",
+   "termino": "Demora",
+   "formas": [
+    "demora",
+    "demoras"
+   ],
+   "definicion": "Ángulo entre el norte y la visual a un objeto (faro, buque), de 0º a 360º. Demora = rumbo + marcación. «Sin demora» significa sin retraso.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 11,
+   "titulacion": "py"
+  },
+  {
+   "id": "instituto-hidrografico",
+   "termino": "Instituto Hidrográfico de la Marina (IHM)",
+   "formas": [
+    "instituto hidrográfico de la marina",
+    "servicio hidrográfico"
+   ],
+   "definicion": "Organismo de la Armada, con sede en Cádiz, que edita las cartas náuticas españolas, en papel y electrónicas, y sus publicaciones.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "equilibrio-indiferente",
+   "termino": "Equilibrio indiferente",
+   "formas": [
+    "equilibrio indiferente"
+   ],
+   "definicion": "El barco escorado se queda con la escora adquirida, sin recuperarse ni escorar más. El metacentro coincide con el centro de gravedad: altura metacéntrica cero.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "fumigena",
+   "termino": "Señal fumígena flotante",
+   "formas": [
+    "señal fumígena",
+    "señales fumígenas",
+    "fumígena",
+    "fumígenas",
+    "bote de humo"
+   ],
+   "definicion": "Bote que flota y suelta humo naranja muy visible al menos 3 minutos en aguas tranquilas. Es de uso diurno, sin llama.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 10,
+   "titulacion": "py"
+  },
+  {
+   "id": "pirotecnicas",
+   "termino": "Señales pirotécnicas",
+   "formas": [
+    "señal pirotécnica",
+    "señales pirotécnicas",
+    "pirotécnica",
+    "pirotécnico",
+    "pirotecnia"
+   ],
+   "definicion": "Señales de socorro que arden o explotan: bengalas de mano, cohetes con paracaídas y botes de humo. Se manejan con guantes, por sotavento y siguiendo las instrucciones.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 10,
+   "titulacion": "py"
+  },
+  {
+   "id": "rozamiento",
+   "termino": "Rozamiento o fricción",
+   "formas": [
+    "rozamiento",
+    "fricción"
+   ],
+   "definicion": "Resistencia entre dos cosas que se frotan. En meteorología, frenado del aire al rozar con el mar o la tierra, sobre todo en los primeros mil metros: hace que el viento real corte las isobaras.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "niebla-de-radiacion",
+   "termino": "Niebla de radiación",
+   "formas": [
+    "niebla de radiación",
+    "nieblas de radiación",
+    "radiación"
+   ],
+   "definicion": "Niebla de enfriamiento que se forma sobre tierra en noches despejadas y sin viento, al enfriarse el suelo. Típica de otoño-invierno; rara en alta mar.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "niebla-de-vapor",
+   "termino": "Niebla de vapor",
+   "formas": [
+    "niebla de vapor",
+    "nieblas de vapor"
+   ],
+   "definicion": "Niebla de evaporación: aire muy frío que pasa sobre agua mucho más templada, que parece humear. Típica de lagos y ríos en otoño o principio de invierno.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "amplitud-de-la-ola",
+   "termino": "Amplitud de la ola",
+   "formas": [
+    "amplitud de la ola",
+    "amplitud del movimiento ondulatorio"
+   ],
+   "definicion": "Distancia vertical entre el nivel del mar en calma y la cresta: la mitad de la altura de la ola. En mareas, amplitud es otra cosa: pleamar menos bajamar.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 10,
+   "titulacion": "py"
+  },
+  {
+   "id": "corriente-de-marea",
+   "termino": "Corriente de marea",
+   "formas": [
+    "corriente de marea",
+    "corrientes de marea",
+    "corrientes de mareas"
+   ],
+   "definicion": "Movimiento horizontal del agua que acompaña a la subida y bajada de la marea, causada por la atracción de la Luna y el Sol.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "siroco",
+   "termino": "Siroco",
+   "formas": [
+    "siroco"
+   ],
+   "definicion": "Viento del SE en el Mediterráneo occidental, extremadamente cálido en verano y de temperatura moderada en invierno.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "rumbo-de-superficie",
+   "termino": "Rumbo de superficie (Rs)",
+   "formas": [
+    "rumbo de superficie"
+   ],
+   "definicion": "Rumbo que sigue el barco sobre el agua cuando el viento lo abate: rumbo verdadero más o menos el abatimiento.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "estrella-polar",
+   "termino": "Estrella Polar",
+   "formas": [
+    "estrella polar"
+   ],
+   "definicion": "Estrella que está casi en el norte verdadero: su demora verdadera es prácticamente 0°. Comparándola con su demora de aguja se obtiene la corrección total.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "ecdis",
+   "termino": "ECDIS",
+   "formas": [
+    "ECDIS"
+   ],
+   "definicion": "Sistema oficial de presentación de cartas electrónicas e información náutica; es el equipo, no un tipo de carta.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "eco",
+   "termino": "Eco",
+   "formas": [
+    "eco",
+    "ecos"
+   ],
+   "definicion": "Mancha que aparece en la pantalla del radar al reflejarse sus ondas en un barco, la costa, las olas o la lluvia.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "ganancia",
+   "termino": "Ganancia",
+   "formas": [
+    "ganancia"
+   ],
+   "definicion": "Control del radar que amplifica la señal recibida. Muy alta, llena la pantalla de ruido; se ajusta con la sintonía para una buena imagen.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "sintonia",
+   "termino": "Sintonía",
+   "formas": [
+    "sintonía"
+   ],
+   "definicion": "Control del radar que ajusta el receptor a la frecuencia emitida. Si está mal, hay barrido pero no aparecen ecos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "espigon",
+   "termino": "Espigón",
+   "formas": [
+    "espigón"
+   ],
+   "definicion": "Dique o muelle que se adentra en el mar; en su extremo suele haber una luz roja o verde de entrada al puerto.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 10
+  },
+  {
+   "id": "periodo-de-combustion",
+   "termino": "Periodo de combustión",
+   "formas": [
+    "periodo de combustión",
+    "período de combustión"
+   ],
+   "definicion": "Tiempo que arde una señal pirotécnica: al menos 60 segundos la bengala de mano y 40 segundos la del cohete con paracaídas.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "vanguardia",
+   "termino": "Vanguardia",
+   "formas": [
+    "vanguardia"
+   ],
+   "definicion": "Parte delantera de un frente o de una borrasca, la que llega primero al lugar donde estamos.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "cirros",
+   "termino": "Cirros (Ci)",
+   "formas": [
+    "cirros"
+   ],
+   "definicion": "Nubes altas, blancas y aisladas, de estructura fibrosa o en forma de pluma. Generalmente no producen precipitación.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "estratos",
+   "termino": "Estratos (St)",
+   "formas": [
+    "estratos"
+   ],
+   "definicion": "Nubes bajas en capa gris uniforme, como una niebla que no toca el suelo. Pueden dar llovizna.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "nieblas-por-enfriamiento",
+   "termino": "Nieblas de enfriamiento",
+   "formas": [
+    "nieblas por enfriamiento",
+    "nieblas de enfriamiento",
+    "enfriamiento"
+   ],
+   "definicion": "Enfriamiento: bajada de temperatura del aire. Las nieblas de enfriamiento se forman porque el aire se enfría hasta su punto de rocío: de radiación, de advección y orográficas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 9,
+   "titulacion": "py"
+  },
+  {
+   "id": "mar-viento",
+   "termino": "Mar de viento",
+   "formas": [
+    "mar de viento"
+   ],
+   "definicion": "Olas levantadas por el viento que sopla en ese momento en la zona: misma dirección que el viento, crestas agudas y a menudo rotas, altura irregular.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 9,
+   "titulacion": "py"
+  },
+  {
+   "id": "meridiano-del-lugar",
+   "termino": "Meridiano del lugar",
+   "formas": [
+    "meridiano del lugar",
+    "meridiano superior",
+    "meridiano inferior"
+   ],
+   "definicion": "Meridiano que pasa por el observador. El superior es la mitad donde está él; el inferior, la mitad opuesta, al otro lado del polo.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "hora-civil-del-lugar",
+   "termino": "Hora civil del lugar (HcL)",
+   "formas": [
+    "hora civil del lugar",
+    "HcL",
+    "hora civil"
+   ],
+   "definicion": "Tiempo transcurrido desde que el Sol medio pasó por el meridiano inferior del lugar. Cada meridiano tiene la suya.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "tiempo-universal",
+   "termino": "Tiempo Universal (TU, UTC)",
+   "formas": [
+    "tiempo universal",
+    "TU",
+    "UTC",
+    "UT"
+   ],
+   "definicion": "Hora civil del meridiano de Greenwich, la misma para todo el mundo. El anuario de mareas da sus horas en TU.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 9
+  },
+  {
+   "id": "desplazamiento",
+   "termino": "Desplazamiento",
+   "formas": [
+    "desplazamiento"
+   ],
+   "definicion": "En estabilidad, peso total del barco, igual al del agua que desaloja: cambia al consumir o cargar, no al mover pesos a bordo. Fuera de ahí es simplemente movimiento: «desplazamiento lateral», el de un frente.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "aro",
+   "termino": "Aro salvavidas",
+   "formas": [
+    "aro salvavidas",
+    "aros salvavidas",
+    "aro"
+   ],
+   "definicion": "Flotador en forma de anillo que se lanza a quien cae al agua. Es de material con flotabilidad propia, de color visible, con luz automática y guirnalda.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 8,
+   "titulacion": "py"
+  },
+  {
+   "id": "flotabilidad",
+   "termino": "Flotabilidad",
+   "formas": [
+    "flotabilidad",
+    "flotabilidad intrínseca"
+   ],
+   "definicion": "Capacidad de flotar. Intrínseca: la que tiene el propio material, sin cámara de aire que inflar. En los chalecos se mide en newtons (N).",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "extintor",
+   "termino": "Extintor",
+   "formas": [
+    "extintor",
+    "extintores",
+    "extintores portátiles"
+   ],
+   "definicion": "Aparato portátil para apagar fuegos. Se estiba a mano y visible, y se dirige a la base de las llamas. En fuego eléctrico, el de CO2; el de polvo, según lo marcado en él.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 8,
+   "titulacion": "py"
+  },
+  {
+   "id": "retaguardia",
+   "termino": "Retaguardia",
+   "formas": [
+    "retaguardia"
+   ],
+   "definicion": "Parte trasera de un frente o de una borrasca, la que llega al final, cuando ya ha pasado lo demás.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "isobarica",
+   "termino": "Superficie isobárica",
+   "formas": [
+    "superficies isobáricas"
+   ],
+   "definicion": "Superficie en el aire donde la presión es la misma. Cuanto más inclinada, mayor gradiente, isobaras más juntas y viento más fuerte.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 8,
+   "titulacion": "py"
+  },
+  {
+   "id": "desarrollo-vertical",
+   "termino": "Nubes de desarrollo vertical",
+   "formas": [
+    "desarrollo vertical"
+   ],
+   "definicion": "Nubes que crecen hacia arriba en forma de torre, desde bajo hasta gran altura: cúmulos y cumulonimbos.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "altocumulos",
+   "termino": "Altocúmulos (Ac)",
+   "formas": [
+    "altocúmulos"
+   ],
+   "definicion": "Nubes medias formadas por una capa o grupo de nubecillas globulares o aplanadas, blancas o grises.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "salinidad",
+   "termino": "Salinidad",
+   "formas": [
+    "salinidad"
+   ],
+   "definicion": "Cantidad de sal disuelta en el agua de mar. Junto con la temperatura determina su densidad.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "tramontana",
+   "termino": "Tramontana",
+   "formas": [
+    "tramontana"
+   ],
+   "definicion": "Viento del norte, frío y seco, de Cataluña y Baleares. En general, en el Mediterráneo, nombre de los vientos fríos y secos que soplan detrás de las borrascas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "circulo-maximo",
+   "termino": "Círculo máximo",
+   "formas": [
+    "círculo máximo",
+    "círculos máximos"
+   ],
+   "definicion": "Círculo de la esfera terrestre cuyo plano pasa por el centro de la Tierra, como el ecuador y los meridianos. Los paralelos son círculos menores.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "hora-legal",
+   "termino": "Hora legal",
+   "formas": [
+    "hora legal"
+   ],
+   "definicion": "Hora del huso horario en que se está: el Tiempo Universal más o menos el número del huso. Todos los puntos de un huso tienen la misma.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "xte",
+   "termino": "XTE",
+   "formas": [
+    "XTE"
+   ],
+   "definicion": "Error transversal: distancia del barco a la línea recta que une el waypoint de salida con el de llegada.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 8
+  },
+  {
+   "id": "frente",
+   "termino": "Frente",
+   "formas": [
+    "frentes",
+    "frente tipo",
+    "tipo de frente"
+   ],
+   "definicion": "Zona de contacto entre dos masas de aire de distinta temperatura y humedad. Su paso trae nubes, cambios de viento y precipitaciones.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "rumbo-directo",
+   "termino": "Rumbo directo (Rd)",
+   "formas": [
+    "rumbo directo",
+    "Rd"
+   ],
+   "definicion": "Rumbo verdadero constante que lleva de un punto a otro por loxodrómica, calculado con las coordenadas de salida y llegada.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "mareo",
+   "termino": "Pastillas contra el mareo",
+   "formas": [
+    "mareo",
+    "vómitos"
+   ],
+   "definicion": "Malestar con náuseas y vómitos por el movimiento del barco. En la balsa se toman pastillas contra el mareo cuanto antes, porque el vómito deshidrata.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 7,
+   "basico": true
+  },
+  {
+   "id": "cirrostratos",
+   "termino": "Cirrostratos (Cs)",
+   "formas": [
+    "cirrostratos",
+    "cirrostrato",
+    "cirroestratos"
+   ],
+   "definicion": "Nubes altas en forma de velo blanquecino y fino que cubre el cielo y produce halos alrededor del sol o la luna. Suelen anunciar un frente cálido.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "periodo-de-la-ola",
+   "termino": "Periodo de la ola",
+   "formas": [
+    "periodo de la ola",
+    "periodo de una ola",
+    "periodo de onda"
+   ],
+   "definicion": "Tiempo, en segundos, que pasa entre el paso de dos crestas, o dos senos, consecutivos por un mismo punto fijo.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 7,
+   "titulacion": "py"
+  },
+  {
+   "id": "corriente-de-portugal",
+   "termino": "Corriente de Portugal",
+   "formas": [
+    "corriente de portugal"
+   ],
+   "definicion": "Corriente que fluye hacia el sur frente a las costas atlánticas de Portugal y España. Una rama entra en el Mediterráneo por el Estrecho y sigue por la costa africana.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "polos",
+   "termino": "Polos",
+   "formas": [
+    "polos",
+    "polo norte",
+    "polo sur",
+    "polares"
+   ],
+   "definicion": "Extremos del eje de la Tierra. Todos los meridianos pasan por ellos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 7,
+   "basico": true
+  },
+  {
+   "id": "datum",
+   "termino": "Datum",
+   "formas": [
+    "datum"
+   ],
+   "definicion": "Sistema de referencia geodésico al que se refieren las coordenadas. Si el del GNSS (WGS84) no es el de la carta, la posición trasladada sin corregir es errónea.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "estaciones-costeras",
+   "termino": "Estación costera",
+   "formas": [
+    "estaciones costeras",
+    "estación costera"
+   ],
+   "definicion": "Estación de radio en tierra que comunica con los barcos y recibe y emite datos AIS.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "anti-clutter-sea",
+   "termino": "Anti-clutter de mar",
+   "formas": [
+    "anti-clutter sea",
+    "perturbación de mar"
+   ],
+   "definicion": "Control del radar que atenúa los ecos de las olas cerca del centro de la pantalla. Usado en exceso borra ecos de barcos pequeños cercanos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 7
+  },
+  {
+   "id": "banda",
+   "termino": "Banda",
+   "formas": [
+    "banda",
+    "bandas"
+   ],
+   "definicion": "Cada uno de los dos lados del barco: babor (izquierda) y estribor (derecha). En radio, banda es un margen de frecuencias, como la de VHF, por la que trabaja el AIS.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 7,
+   "titulacion": "py"
+  },
+  {
+   "id": "carena",
+   "termino": "Carena",
+   "formas": [
+    "carena",
+    "volumen de carena"
+   ],
+   "definicion": "Parte del casco que queda sumergida, la obra viva vista como volumen. Su volumen por la densidad del agua da el desplazamiento.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "perturbaciones",
+   "termino": "Perturbaciones del radar",
+   "formas": [
+    "perturbaciones",
+    "perturbación"
+   ],
+   "definicion": "Ecos indeseados de las olas o la lluvia que ensucian la pantalla del radar y pueden ocultar ecos reales.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "empuje",
+   "termino": "Empuje",
+   "formas": [
+    "empuje",
+    "empujes"
+   ],
+   "definicion": "Fuerza vertical hacia arriba del agua sobre la carena: vale el peso del agua desalojada y se aplica en el centro de carena. El «empuje del viento» es su fuerza sobre el mar.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "boza",
+   "termino": "Boza",
+   "formas": [
+    "boza",
+    "boza hidrostática",
+    "boza débil"
+   ],
+   "definicion": "Cabo que une la balsa salvavidas con el barco. Al tensarlo con un tirón se dispara la botella y la balsa se infla; se suelta cuando todos están dentro.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "ancla-de-capa",
+   "termino": "Ancla de capa o flotante",
+   "formas": [
+    "ancla de capa",
+    "ancla flotante",
+    "anclas flotantes",
+    "ancla de arrastre"
+   ],
+   "definicion": "Cono o saco de lona que se larga al agua sujeto a la balsa para frenar la deriva y mantenerla orientada al viento. No sujeta al fondo.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "nimbostratos",
+   "termino": "Nimbostratos (Ns)",
+   "formas": [
+    "nimbostratos",
+    "nimbostrato",
+    "nimboestrato"
+   ],
+   "definicion": "Nubes bajas en capa gris oscura, amorfa y densa, de la que cae lluvia o nieve continua.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "flujo-de-retorno",
+   "termino": "Corrientes del Estrecho",
+   "formas": [
+    "flujo de retorno",
+    "corriente de retorno"
+   ],
+   "definicion": "En el Estrecho de Gibraltar el agua atlántica entra al Mediterráneo por la superficie, hacia el este, y la mediterránea sale en profundidad hacia el oeste.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "levante",
+   "termino": "Levante",
+   "formas": [
+    "levante"
+   ],
+   "definicion": "Viento del este. En el Estrecho de Gibraltar es más frecuente de mayo a octubre, puede ser muy fuerte y deja tiempo seco en una cara del Peñón.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "eje-terrestre",
+   "termino": "Eje terrestre",
+   "formas": [
+    "eje terrestre",
+    "eje de la tierra"
+   ],
+   "definicion": "Línea imaginaria alrededor de la cual gira la Tierra; sus extremos son los polos norte y sur.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6,
+   "basico": true
+  },
+  {
+   "id": "sol-medio",
+   "termino": "Sol medio",
+   "formas": [
+    "sol medio"
+   ],
+   "definicion": "Sol imaginario que recorre el ecuador a velocidad uniforme; sirve para medir un tiempo regular, ya que el Sol verdadero no avanza igual todo el año.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "huso-horario",
+   "termino": "Huso horario",
+   "formas": [
+    "huso horario",
+    "husos horarios",
+    "huso"
+   ],
+   "definicion": "Cada una de las 24 franjas de 15° de longitud, entre dos meridianos, en que se divide la Tierra para la hora legal.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "waypoint",
+   "termino": "Waypoint (WPT)",
+   "formas": [
+    "WPT",
+    "way point"
+   ],
+   "definicion": "Punto de paso o destino que se introduce en el GNSS para trazar una ruta.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "eta",
+   "termino": "ETA",
+   "formas": [
+    "ETA"
+   ],
+   "definicion": "Hora estimada de llegada al destino o al siguiente waypoint, calculada por el GNSS.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "cog",
+   "termino": "COG",
+   "formas": [
+    "COG"
+   ],
+   "definicion": "Siglas inglesas de rumbo sobre el fondo que muestra el GNSS: es el rumbo efectivo, con viento y corriente incluidos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "sog",
+   "termino": "SOG",
+   "formas": [
+    "SOG"
+   ],
+   "definicion": "Siglas inglesas de velocidad sobre el fondo que muestra el GNSS: es la velocidad efectiva, con la corriente incluida.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "anti-clutter-rain",
+   "termino": "Anti-clutter de lluvia",
+   "formas": [
+    "anti-clutter rain",
+    "perturbación de lluvia",
+    "perturbación de la lluvia"
+   ],
+   "definicion": "Control del radar que atenúa los ecos de la lluvia o el granizo. Se ajusta junto con la ganancia.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "corriente-desconocida",
+   "termino": "Corriente desconocida",
+   "formas": [
+    "corriente desconocida"
+   ],
+   "definicion": "Corriente cuyos rumbo e intensidad se calculan uniendo la situación de estima con la situación observada a la misma hora.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "velocidad-efectiva",
+   "termino": "Velocidad efectiva",
+   "formas": [
+    "velocidad efectiva"
+   ],
+   "definicion": "Velocidad real sobre el fondo, sumando la del barco y la de la corriente. El GNSS la da como SOG.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 6
+  },
+  {
+   "id": "rumbo-magnetico",
+   "termino": "Rumbo magnético (Rm)",
+   "formas": [
+    "rumbo magnético",
+    "Rm"
+   ],
+   "definicion": "Ángulo entre el norte magnético y la línea proa-popa: el rumbo de aguja corregido del desvío. Si el desvío es cero, coincide con el de aguja.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "estabilidad-transversal",
+   "termino": "Estabilidad transversal",
+   "formas": [
+    "estabilidad transversal",
+    "estabilidad estática transversal"
+   ],
+   "definicion": "Capacidad del barco de recuperar su posición de equilibrio cuando lo escora un balance, de banda a banda. La estática se estudia con el barco en aguas tranquilas.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "deshidratacion",
+   "termino": "Deshidratación",
+   "formas": [
+    "deshidratación"
+   ],
+   "definicion": "Pérdida de agua del cuerpo. En la balsa se evita sudando poco, a la sombra, y tomando pastillas contra el mareo; nunca bebiendo agua de mar.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5,
+   "basico": true
+  },
+  {
+   "id": "candela",
+   "termino": "Candela",
+   "formas": [
+    "candelas"
+   ],
+   "definicion": "Unidad de intensidad luminosa. Mide cuánto brilla una bengala: 15.000 candelas la de mano y 30.000 la del cohete con paracaídas.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "polvo-seco",
+   "termino": "Extintor de polvo",
+   "formas": [
+    "polvo seco",
+    "polvo químico",
+    "polvo",
+    "ABC"
+   ],
+   "definicion": "Extintor que lanza un polvo que apaga el fuego. El polivalente ABC vale para sólidos, líquidos y gases; su uso con tensión eléctrica lo indica la etiqueta.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "canal-16",
+   "termino": "Canal 16 de VHF",
+   "formas": [
+    "canal 16"
+   ],
+   "definicion": "Canal de socorro, urgencia, seguridad y llamada en VHF. Por él se habla con el helicóptero de salvamento y se da el MAYDAY por voz.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "canal-70",
+   "termino": "Canal 70 de VHF",
+   "formas": [
+    "canal 70"
+   ],
+   "definicion": "Canal reservado a las llamadas digitales LSD: el aparato envía la alerta automáticamente. Por él no se habla.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "cuna",
+   "termino": "Cuña de aire frío",
+   "formas": [
+    "cuña"
+   ],
+   "definicion": "Forma de rampa que toma el aire frío bajo el cálido en un frente: el aire cálido sube por encima de ella.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "viento-ciclostrofico",
+   "termino": "Viento ciclostrófico",
+   "formas": [
+    "viento ciclostrófico",
+    "ciclostrófico",
+    "ciclostrófica",
+    "ciclostropico"
+   ],
+   "definicion": "Modelo de viento en giros muy cerrados y rápidos, como tornados o trombas, en que el gradiente se equilibra con la fuerza centrífuga y Coriolis no cuenta.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "estratocumulos",
+   "termino": "Estratocúmulos (Sc)",
+   "formas": [
+    "estratocúmulos"
+   ],
+   "definicion": "Nubes bajas en capa gris, con masas redondeadas y huecos más claros entre ellas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "cumulos",
+   "termino": "Cúmulos (Cu)",
+   "formas": [
+    "cúmulos"
+   ],
+   "definicion": "Nubes de desarrollo vertical, con base plana y cima abombada, formadas por convección. Aisladas, en verano indican buen tiempo.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "cumulonimbos",
+   "termino": "Cumulonimbos (Cb)",
+   "formas": [
+    "cumulonimbos"
+   ],
+   "definicion": "Enorme nube de gran desarrollo vertical, en forma de yunque, que trae tormentas, chubascos fuertes, granizo y rachas. Típica del frente frío.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "evaporacion",
+   "termino": "Evaporación",
+   "formas": [
+    "evaporación"
+   ],
+   "definicion": "Paso del agua líquida a vapor. Las nieblas de evaporación (de vapor y frontales) se forman al añadir vapor al aire frío.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5,
+   "basico": true
+  },
+  {
+   "id": "mar-fondo",
+   "termino": "Mar de fondo o de leva",
+   "formas": [
+    "mar de fondo",
+    "mar de leva"
+   ],
+   "definicion": "Olas que llegan de otra zona donde sopló el viento: crestas redondeadas que no rompen en alta mar y longitud de onda muy superior a su altura.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5,
+   "titulacion": "py"
+  },
+  {
+   "id": "poniente",
+   "termino": "Poniente",
+   "formas": [
+    "poniente"
+   ],
+   "definicion": "Viento del oeste. En el Estrecho de Gibraltar es, con el levante, el viento dominante; allí es más fresco y húmedo que el levante.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "lebeche",
+   "termino": "Lebeche",
+   "formas": [
+    "lebeche",
+    "leveche"
+   ],
+   "definicion": "Nombre que recibe en el Mediterráneo el viento del sudoeste (SW), también llamado llebeig o garbí.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "tropico-de-cancer",
+   "termino": "Trópico de Cáncer",
+   "formas": [
+    "trópico de cáncer"
+   ],
+   "definicion": "Paralelo de latitud 23° 27′ N, el límite norte de la zona tropical, en el hemisferio norte.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "tropico-de-capricornio",
+   "termino": "Trópico de Capricornio",
+   "formas": [
+    "trópico de capricornio"
+   ],
+   "definicion": "Paralelo de latitud 23° 27′ S, el límite sur de la zona tropical, en el hemisferio sur.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "circulo-polar",
+   "termino": "Círculo polar",
+   "formas": [
+    "círculo polar ártico",
+    "círculos polares",
+    "círculo polar"
+   ],
+   "definicion": "Paralelos de latitud 66° 33′, uno en cada hemisferio: el ártico al norte y el antártico al sur.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "estela",
+   "termino": "Estela",
+   "formas": [
+    "estela"
+   ],
+   "definicion": "Rastro de agua removida que deja el barco al avanzar. El ángulo entre la estela y la crujía es el abatimiento.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "cartografia",
+   "termino": "Cartografía náutica",
+   "formas": [
+    "cartografía",
+    "cartografía náutica"
+   ],
+   "definicion": "Conjunto de cartas náuticas de una zona. La oficial la publica un servicio hidrográfico del Estado.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 5
+  },
+  {
+   "id": "hombre-agua",
+   "termino": "Hombre al agua (MOB)",
+   "formas": [
+    "hombre al agua",
+    "MOB",
+    "caer al agua"
+   ],
+   "definicion": "Persona caída al mar desde el barco: hay que gritarlo, no perderla de vista y lanzarle el aro. En el GNSS, el botón MOB guarda al instante la posición donde cayó para volver a ella.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 5,
+   "titulacion": "py"
+  },
+  {
+   "id": "periodo",
+   "termino": "Periodo",
+   "formas": [
+    "periodo",
+    "período"
+   ],
+   "definicion": "Intervalo de tiempo. En una ola, el que pasa entre dos crestas (o dos senos) seguidas por un punto fijo; en una luz de faro, lo que tarda en repetir su ritmo completo.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 5,
+   "titulacion": "py"
+  },
+  {
+   "id": "libro-de-faros",
+   "termino": "Libro de faros y señales de niebla",
+   "formas": [
+    "libro de faros y señales de niebla",
+    "libros de faros y señales",
+    "libro de faros"
+   ],
+   "definicion": "Publicación con las características de todos los faros, balizas y señales de niebla de una zona: color, ritmo, periodo y alcance.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "centro-de-empuje",
+   "termino": "Centro de empuje",
+   "formas": [
+    "centro de empuje"
+   ],
+   "definicion": "Otro nombre del punto donde se aplica el empuje del agua; coincide con el centro de carena, el centro del volumen sumergido.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "equilibrio-estable",
+   "termino": "Equilibrio estable",
+   "formas": [
+    "equilibrio estable"
+   ],
+   "definicion": "El barco escorado por una fuerza externa vuelve solo a su posición inicial. Ocurre cuando el metacentro está por encima del centro de gravedad.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "equilibrio-inestable",
+   "termino": "Equilibrio inestable",
+   "formas": [
+    "equilibrio inestable"
+   ],
+   "definicion": "El barco escorado no se recupera y tiende a escorar más, hasta poder volcar. Ocurre cuando el metacentro queda por debajo del centro de gravedad.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "estanqueidad",
+   "termino": "Estanqueidad",
+   "formas": [
+    "estanqueidad",
+    "estanca",
+    "estanco"
+   ],
+   "definicion": "Cualidad de no dejar pasar el agua. Un compartimento o contenedor estanco está cerrado al agua.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "envoltura",
+   "termino": "Envoltura o contenedor de la balsa",
+   "formas": [
+    "envoltura",
+    "contenedor"
+   ],
+   "definicion": "Estuche rígido o bolsa donde va plegada la balsa. Tiene flotabilidad propia para poder sacar la boza y disparar el inflado, y lleva marcadas sus instrucciones.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "co2",
+   "termino": "Extintor de CO2",
+   "formas": [
+    "CO2"
+   ],
+   "definicion": "Extintor de dióxido de carbono: apaga ahogando el fuego sin dejar residuos ni conducir la electricidad. Es el recomendado en cuadros eléctricos; boquilla ancha, sin manómetro.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "cable-guia",
+   "termino": "Cable o línea guía del helicóptero",
+   "formas": [
+    "línea guía",
+    "cable guía",
+    "cable"
+   ],
+   "definicion": "Cabo que baja el helicóptero para guiar el izado. Se deja tocar el agua para descargar la electricidad estática y nunca se hace firme al barco.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "mayday",
+   "termino": "MAYDAY (Medé)",
+   "formas": [
+    "Mayday",
+    "MEDÉ",
+    "Medé"
+   ],
+   "definicion": "Palabra de socorro por radio, dicha tres veces, para un peligro grave e inminente. Luego se da nombre del barco, posición y número de personas.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "tension-de-vapor",
+   "termino": "Tensión de vapor",
+   "formas": [
+    "tensión de vapor",
+    "tensión efectiva",
+    "tensión saturante"
+   ],
+   "definicion": "Presión que ejerce el vapor de agua del aire. Saturante es la máxima posible a esa temperatura; la humedad relativa compara ambas.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "condensacion",
+   "termino": "Condensación",
+   "formas": [
+    "condensación",
+    "nivel de condensación"
+   ],
+   "definicion": "Paso del vapor de agua a gotitas líquidas al enfriarse el aire hasta su punto de rocío. El nivel de condensación es la altura donde empieza la nube.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "adiabatico",
+   "termino": "Adiabático",
+   "formas": [
+    "adiabático",
+    "adiabáticamente",
+    "gradiente adiabático húmedo"
+   ],
+   "definicion": "Cambio de temperatura del aire al subir o bajar sin intercambiar calor con el entorno: al subir se expande y se enfría.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "inestabilidad-atmosferica",
+   "termino": "Estabilidad e inestabilidad atmosférica",
+   "formas": [
+    "inestabilidad atmosférica",
+    "estabilidad atmosférica",
+    "inestabilidad"
+   ],
+   "definicion": "Atmósfera inestable: el aire que sube sigue subiendo y forma nubes de desarrollo vertical y chubascos. Estable: el aire no sube y el tiempo se mantiene.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "nubes-frontales",
+   "termino": "Nubes frontales",
+   "formas": [
+    "nubes frontales"
+   ],
+   "definicion": "Nubes que se forman cuando dos masas de aire de distinta temperatura chocan y la cálida sube sobre la fría.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "cirrocumulos",
+   "termino": "Cirrocúmulos (Cc)",
+   "formas": [
+    "cirrocúmulos"
+   ],
+   "definicion": "Nubes altas formadas por pequeños copos o granos blancos en capa fina. No suelen dar lluvia.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "niebla-frontal",
+   "termino": "Niebla frontal",
+   "formas": [
+    "nieblas frontales"
+   ],
+   "definicion": "Niebla de evaporación: la lluvia templada de un frente se evapora al caer a través de aire frío pegado al suelo.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "componente",
+   "termino": "Componente del viento",
+   "formas": [
+    "componente"
+   ],
+   "definicion": "Del viento: dirección aproximada de donde viene; «de componente norte» abarca N, NNE, NNW… En física, cada una de las partes en que se descompone una fuerza («componente ciclostrófica»).",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "linea-de-fe",
+   "termino": "Línea de fe",
+   "formas": [
+    "línea de fe",
+    "línea de proa"
+   ],
+   "definicion": "Marca de la aguja o del radar que señala la dirección de la proa del barco.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "kg",
+   "termino": "KG",
+   "formas": [
+    "KG"
+   ],
+   "definicion": "En estabilidad, altura del centro de gravedad medida desde la quilla (K); si KG es mayor que KM, equilibrio inestable. En «g/kg», kg es kilogramo.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 4
+  },
+  {
+   "id": "marca",
+   "termino": "Marca",
+   "formas": [
+    "marca",
+    "marcas"
+   ],
+   "definicion": "En balizamiento, boya o baliza que señala algo al navegante; en el RIPA, figura que muestra un buque de día. «Marca comercial» es el nombre comercial del fabricante.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 4,
+   "titulacion": "py"
+  },
+  {
+   "id": "km",
+   "termino": "KM",
+   "formas": [
+    "KM"
+   ],
+   "definicion": "Altura del metacentro medida desde la quilla (K). KM mayor que KG: estable; iguales: indiferente; menor: inestable.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "estabilidad-longitudinal",
+   "termino": "Estabilidad longitudinal",
+   "formas": [
+    "longitudinal"
+   ],
+   "definicion": "Capacidad del barco de recuperarse de las inclinaciones de proa a popa, las cabezadas. En los barcos es mucho mayor que la transversal.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "estabilidad-estatica",
+   "termino": "Estabilidad estática",
+   "formas": [
+    "estabilidad estática"
+   ],
+   "definicion": "La que se estudia con el barco flotando en aguas en reposo, sin olas ni viento; por ejemplo, al trasladar pesos en puerto.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "toldo",
+   "termino": "Toldo de la balsa",
+   "formas": [
+    "toldo"
+   ],
+   "definicion": "Cubierta que protege a los náufragos en la balsa. Debe tener medios para recoger agua de lluvia y para montar el respondedor de radar a 1 metro de altura.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "destilador",
+   "termino": "Destilador",
+   "formas": [
+    "destilador",
+    "destilar"
+   ],
+   "definicion": "Aparato que obtiene agua dulce a partir de agua de mar evaporándola y condensando el vapor.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "supervivencia",
+   "termino": "Embarcación de supervivencia",
+   "formas": [
+    "supervivencia"
+   ],
+   "definicion": "Balsa o bote que usan los náufragos tras abandonar el barco. El respondedor de radar se monta en ella a un metro de altura como mínimo.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3,
+   "basico": true
+  },
+  {
+   "id": "estuche-hidrorresistente",
+   "termino": "Estuche hidrorresistente",
+   "formas": [
+    "estuche hidrorresistente",
+    "estuche"
+   ],
+   "definicion": "Envase de las señales pirotécnicas que las protege del agua; lleva impresas las instrucciones de uso.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "arnes",
+   "termino": "Arnés de seguridad",
+   "formas": [
+    "arnés",
+    "arnés de seguridad",
+    "línea de vida"
+   ],
+   "definicion": "Correaje que se engancha a la línea de vida, un cabo o cinta tendido en cubierta, para no caer al agua. Se adapta a la talla y la sujeción preferible es de cinta.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "espuma",
+   "termino": "Extintor de espuma",
+   "formas": [
+    "espuma"
+   ],
+   "definicion": "Extintor que cubre el fuego con espuma; útil en líquidos inflamables, pero no adecuado con tensión eléctrica porque contiene agua.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "viento-de-gradiente",
+   "termino": "Viento de gradiente",
+   "formas": [
+    "viento de gradiente"
+   ],
+   "definicion": "Viento teórico, sin rozamiento, que sopla paralelo a isobaras curvas: equilibran el gradiente de presión, Coriolis y la fuerza centrífuga.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "sentido-horario",
+   "termino": "Sentido horario y antihorario",
+   "formas": [
+    "sentido horario",
+    "sentido antihorario"
+   ],
+   "definicion": "Horario: como las agujas del reloj, giro de los anticiclones en el hemisferio norte. Antihorario: al revés, giro de las borrascas en el hemisferio norte.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "convectivo",
+   "termino": "Convección",
+   "formas": [
+    "convectivos",
+    "corriente ascendente"
+   ],
+   "definicion": "Subida de aire caliente desde la superficie. Forma cúmulos y, si es intensa, cumulonimbos.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "nubes-orograficas",
+   "termino": "Nubes orográficas",
+   "formas": [
+    "nubes orográficas",
+    "orográficas"
+   ],
+   "definicion": "Nubes que se forman cuando el aire húmedo sube por la ladera de una montaña y se enfría hasta condensarse. Si envuelve la ladera a ras de suelo, es niebla orográfica, de enfriamiento.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "altostratos",
+   "termino": "Altostratos (As)",
+   "formas": [
+    "altostratos",
+    "altoestratos"
+   ],
+   "definicion": "Nubes medias en capa gris o azulada, más o menos uniforme, a través de la cual el sol se ve como tras un cristal esmerilado.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "variacion-anual",
+   "termino": "Variación anual",
+   "formas": [
+    "variación anua",
+    "variación local",
+    "decremento anual",
+    "variación secular"
+   ],
+   "definicion": "Cambio por año de la declinación magnética que figura en la rosa de la carta, por ejemplo «4° W 2012 (6′ E)». Se multiplica por los años transcurridos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "materiales-ferromagneticos",
+   "termino": "Materiales ferromagnéticos",
+   "formas": [
+    "ferromagnéticos"
+   ],
+   "definicion": "Hierros y metales que atraen la aguja magnética. Los de a bordo causan el desvío, no la declinación.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "ebl",
+   "termino": "EBL",
+   "formas": [
+    "EBL"
+   ],
+   "definicion": "Línea electrónica de demora del radar: se lleva sobre un eco para medir su demora o marcación.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "sonda-del-momento",
+   "termino": "Sonda del momento (Sm)",
+   "formas": [
+    "sonda del momento",
+    "Sm"
+   ],
+   "definicion": "Profundidad real en un instante: sonda de la carta más la altura de la marea en ese momento.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 3
+  },
+  {
+   "id": "persistencia",
+   "termino": "Persistencia",
+   "formas": [
+    "persistencia"
+   ],
+   "definicion": "Tiempo que algo dura sin cambiar. La del viento, el que lleva soplando con dirección y fuerza constantes: con el fetch, hace crecer la mar.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 3,
+   "titulacion": "py"
+  },
+  {
+   "id": "en-navegacion",
+   "termino": "En navegación",
+   "formas": [
+    "en navegación"
+   ],
+   "definicion": "En general, mientras se navega. En el reglamento, buque que no está fondeado, ni amarrado a tierra, ni varado; aunque esté parado y a la deriva sigue «en navegación».",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 3,
+   "titulacion": "py"
+  },
+  {
+   "id": "bandazo",
+   "termino": "Bandazo",
+   "formas": [
+    "bandazo"
+   ],
+   "definicion": "Balance brusco y fuerte hacia una banda, por un golpe de mar o un cambio repentino.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "pertrechos",
+   "termino": "Pertrechos",
+   "formas": [
+    "pertrechos"
+   ],
+   "definicion": "Material y provisiones de a bordo: cabos, repuestos, víveres. Al consumirlos cambia el desplazamiento y la estabilidad.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "destrinca-hidrostatica",
+   "termino": "Unidad de destrinca hidrostática",
+   "formas": [
+    "destrinca hidrostática",
+    "destrinca"
+   ],
+   "definicion": "Nombre técnico de la zafa hidrostática: el dispositivo que libera la balsa por la presión del agua al hundirse el barco.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "union-debil",
+   "termino": "Unión débil",
+   "formas": [
+    "unión débil"
+   ],
+   "definicion": "Eslabón de la boza que se rompe cuando la balsa ya está inflada y el barco sigue hundiéndose, para que la balsa no se vaya al fondo con él.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "botella-de-aire-comprimido",
+   "termino": "Botella de gas de la balsa",
+   "formas": [
+    "botella de aire comprimido",
+    "botella"
+   ],
+   "definicion": "Botella de gas a presión que infla la balsa al tirar de la boza. Si la balsa queda volteada, se sube sobre ella para darle la vuelta.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "quilla-al-sol",
+   "termino": "Quilla al sol",
+   "formas": [
+    "quilla al sol"
+   ],
+   "definicion": "Expresión para una embarcación o balsa volcada, con el fondo hacia arriba.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "cinchas",
+   "termino": "Cinchas",
+   "formas": [
+    "cinchas"
+   ],
+   "definicion": "Cintas fuertes cosidas al fondo de la balsa. Se tira de ellas para adrizarla si se ha inflado boca abajo, colocándose a sotavento.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "heliografo",
+   "termino": "Heliógrafo",
+   "formas": [
+    "heliógrafo",
+    "espejo de señales",
+    "espejo"
+   ],
+   "definicion": "Espejo de señales que refleja la luz del sol hacia un barco o una aeronave para llamar su atención.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "guirnalda",
+   "termino": "Guirnalda",
+   "formas": [
+    "guirnalda",
+    "guirnalda salvavidas"
+   ],
+   "definicion": "Cabo que rodea el aro salvavidas por fuera, sujeto en varios puntos, para poder agarrarse a él.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "newton",
+   "termino": "Newton (N)",
+   "formas": [
+    "100 N",
+    "150 N",
+    "200 N",
+    "275 N",
+    "newtons"
+   ],
+   "definicion": "Unidad de fuerza con que se mide la flotabilidad de un chaleco: 275 N en zona 1, 150 N en zonas 2, 3 y 4 y 100 N en zonas 5 a 7.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "balde",
+   "termino": "Balde contra incendios",
+   "formas": [
+    "balde",
+    "baldes",
+    "baldes contra incendios"
+   ],
+   "definicion": "Cubo reservado para apagar fuegos; se puede usar también para achicar agua, pero no para trasvasar líquidos inflamables.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "banera",
+   "termino": "Bañera",
+   "formas": [
+    "bañera"
+   ],
+   "definicion": "Hueco abierto en cubierta, normalmente a popa, desde donde se gobierna un velero o lancha.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "pan-pan",
+   "termino": "PAN PAN",
+   "formas": [
+    "PAN"
+   ],
+   "definicion": "Señal de urgencia por radio, dicha tres veces: hay un problema serio pero sin peligro inmediato para la vida.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "fuerza-centrifuga",
+   "termino": "Fuerza centrífuga",
+   "formas": [
+    "fuerza centrífuga"
+   ],
+   "definicion": "Fuerza hacia fuera que aparece cuando el aire gira siguiendo isobaras curvas, alrededor de borrascas y anticiclones.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "psicrometro",
+   "termino": "Psicrómetro",
+   "formas": [
+    "psicrómetro",
+    "psicrométricas"
+   ],
+   "definicion": "Instrumento con dos termómetros, uno seco y otro húmedo, que con sus tablas da la humedad relativa y el punto de rocío. Sirve para prever la niebla.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "frecuencia-de-la-ola",
+   "termino": "Frecuencia de la ola",
+   "formas": [
+    "frecuencia de la ola"
+   ],
+   "definicion": "Número de olas que pasan por un punto en un tiempo dado; es la inversa del periodo, no una distancia.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "vendaval",
+   "termino": "Vendaval",
+   "formas": [
+    "vendaval",
+    "vendavales"
+   ],
+   "definicion": "Viento fuerte del SW en el golfo de Cádiz y el Atlántico ibérico, ligado a las borrascas de invierno: lluvia, temporal y mala visibilidad.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "circulo-menor",
+   "termino": "Círculo menor",
+   "formas": [
+    "círculos menores"
+   ],
+   "definicion": "Círculo de la esfera terrestre cuyo plano no pasa por el centro de la Tierra, como los paralelos.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "hora-civil-greenwich",
+   "termino": "Hora civil de Greenwich (HcG)",
+   "formas": [
+    "hora civil de greenwich",
+    "HcG"
+   ],
+   "definicion": "Hora civil del meridiano de Greenwich: tiempo desde el paso del Sol medio por el meridiano inferior de Greenwich. Es el Tiempo Universal.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "acimut",
+   "termino": "Acimut o azimut",
+   "formas": [
+    "acimut",
+    "azimut"
+   ],
+   "definicion": "Demora de un astro, como la estrella Polar: ángulo desde el norte hasta él.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "almanaque-nautico",
+   "termino": "Almanaque náutico",
+   "formas": [
+    "almanaque náutico"
+   ],
+   "definicion": "Publicación anual con la posición de los astros para la navegación astronómica.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "radioavisos",
+   "termino": "Radioavisos y AVURNAVES",
+   "formas": [
+    "radioavisos",
+    "AVURNAVES"
+   ],
+   "definicion": "Avisos urgentes de peligros para la navegación que se difunden por radio. El boletín de Avisos a los Navegantes también los recoge y es el que trae las correcciones de cartas y derroteros.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "plotter",
+   "termino": "Plotter",
+   "formas": [
+    "PLOTTER",
+    "plotter"
+   ],
+   "definicion": "Aparato que muestra la carta electrónica y la posición del barco; no es un tipo de carta.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "hdg",
+   "termino": "HDG",
+   "formas": [
+    "HDG"
+   ],
+   "definicion": "Rumbo de proa, hacia dónde apunta el barco, distinto del COG cuando hay viento o corriente.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "mmsi",
+   "termino": "MMSI",
+   "formas": [
+    "MMSI",
+    "MSSI"
+   ],
+   "definicion": "Número de nueve cifras que identifica a un barco en las comunicaciones digitales, el AIS y la radiobaliza.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "vrm",
+   "termino": "VRM",
+   "formas": [
+    "VRM"
+   ],
+   "definicion": "Anillo variable de distancias del radar: se ajusta sobre un eco para medir su distancia.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "barrido",
+   "termino": "Barrido",
+   "formas": [
+    "barrido"
+   ],
+   "definicion": "Giro de la línea que recorre la pantalla del radar al rotar la antena. La señal del SART aparece como una ráfaga de puntos en él.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "proa-arriba",
+   "termino": "Presentación proa arriba y norte arriba",
+   "formas": [
+    "proa arriba",
+    "norte arriba"
+   ],
+   "definicion": "Modos de pantalla del radar: con proa arriba la línea de proa va hacia arriba y se leen marcaciones; con norte arriba, demoras.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "farola",
+   "termino": "Farola",
+   "formas": [
+    "farola"
+   ],
+   "definicion": "Luz que señala la punta de un espigón o dique de un puerto.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "en-demanda",
+   "termino": "En demanda de",
+   "formas": [
+    "en demanda"
+   ],
+   "definicion": "Expresión náutica que significa navegar hacia un lugar, con rumbo a él: «en demanda del Estrecho».",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 2
+  },
+  {
+   "id": "bocina",
+   "termino": "Bocina",
+   "formas": [
+    "bocina de niebla",
+    "bocina"
+   ],
+   "definicion": "Aparato de señales acústicas, por ejemplo para la niebla; en recreo vale manual o accionada por gas a presión. En el casco, bocina es también el tubo por donde sale el eje de la hélice.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 2,
+   "titulacion": "py"
+  },
+  {
+   "id": "arrastre",
+   "termino": "Arrastre",
+   "formas": [
+    "arrastre"
+   ],
+   "definicion": "Acción de arrastrar. Las corrientes de arrastre las produce el viento al empujar la superficie del mar. En pesca, faenar remolcando una red (el arrastrero lleva luz verde sobre blanca).",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 2,
+   "titulacion": "py"
+  },
+  {
+   "id": "regala",
+   "termino": "Regala",
+   "formas": [
+    "regala"
+   ],
+   "definicion": "Borde superior del costado del barco, donde termina la cubierta. En un rescate el cable del helicóptero no se hace firme a ella.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "estabilidad-dinamica",
+   "termino": "Estabilidad dinámica",
+   "formas": [
+    "estabilidad dinámica"
+   ],
+   "definicion": "La que tiene en cuenta el trabajo necesario para escorar el barco con mar y viento, en movimiento. Se opone a la estática, estudiada en aguas tranquilas.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "estabilidad-inicial",
+   "termino": "Estabilidad inicial",
+   "formas": [
+    "estabilidad inicial"
+   ],
+   "definicion": "Estabilidad del barco para escoras pequeñas, de pocos grados, que es la que se mide con la altura metacéntrica.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "bolsas-de-lastre",
+   "termino": "Bolsas de lastre",
+   "formas": [
+    "bolsas de lastre"
+   ],
+   "definicion": "Bolsas bajo la balsa que se llenan de agua para darle peso y estabilidad; no sirven para frenar la deriva.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "rabiza",
+   "termino": "Rabiza",
+   "formas": [
+    "rabiza"
+   ],
+   "definicion": "Cabo, normalmente naranja, que une el aro salvavidas al barco para recuperarlo después de lanzarlo.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "manometro",
+   "termino": "Manómetro",
+   "formas": [
+    "manómetro"
+   ],
+   "definicion": "Reloj que indica la presión de un recipiente. Lo llevan los extintores presurizados, pero no los de CO2, que se controlan pesándolos.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "fueraborda",
+   "termino": "Fueraborda",
+   "formas": [
+    "fueraborda"
+   ],
+   "definicion": "Motor que se monta por fuera del casco, colgado en el espejo de popa.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "gregal",
+   "termino": "Gregal",
+   "formas": [
+    "gregal"
+   ],
+   "definicion": "Nombre que recibe en el Mediterráneo el viento del nordeste (NE). Puede levantar mala mar en Baleares.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "ostro",
+   "termino": "Ostro",
+   "formas": [
+    "ostro"
+   ],
+   "definicion": "Nombre que recibe en el Mediterráneo el viento del sur (S), también llamado mediodía o migjorn.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "apartamiento",
+   "termino": "Apartamiento",
+   "formas": [
+    "apartamiento"
+   ],
+   "definicion": "Distancia en millas navegada en dirección este-oeste, medida sobre un paralelo. Es menor que la diferencia de longitud salvo en el ecuador.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "loxodromica",
+   "termino": "Loxodrómica",
+   "formas": [
+    "loxodrómica"
+   ],
+   "definicion": "Línea que corta todos los meridianos con el mismo ángulo: la derrota a rumbo constante, que en la carta de Mercator es una recta.",
+   "temas": [
+    "py-4"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "wgs84",
+   "termino": "WGS84",
+   "formas": [
+    "WGS84"
+   ],
+   "definicion": "Datum mundial al que refieren su posición los receptores GNSS. Si la carta usa otro datum, la posición hay que corregirla.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "arco-capaz",
+   "termino": "Arco capaz",
+   "formas": [
+    "arco capaz"
+   ],
+   "definicion": "Arco de circunferencia desde cuyos puntos se ven dos objetos bajo el mismo ángulo; sirve para situarse midiendo ese ángulo.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "transpondedor",
+   "termino": "Transpondedor",
+   "formas": [
+    "transpondedor"
+   ],
+   "definicion": "Equipo que responde automáticamente a una señal recibida, como el AIS o el respondedor radar.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "anuario-de-mareas",
+   "termino": "Anuario de mareas",
+   "formas": [
+    "anuario de mareas"
+   ],
+   "definicion": "Publicación anual del IHM con las horas, en TU, y las alturas de pleamares y bajamares de los puertos principales, día a día.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "lateral",
+   "termino": "Lateral",
+   "formas": [
+    "lateral"
+   ],
+   "definicion": "Hacia un costado: «desplazamiento lateral». En balizamiento, la marca lateral señala los lados de un canal: en la región A, babor roja con cilindro y estribor verde con cono, entrando en puerto.",
+   "temas": [
+    "py-3"
+   ],
+   "preguntas": 1,
+   "titulacion": "py"
+  },
+  {
+   "id": "cruce",
+   "termino": "Cruce",
+   "formas": [
+    "se cruzan"
+   ],
+   "definicion": "Cruzarse dos líneas es cortarse. En el reglamento, situación de cruce: dos buques de motor cuyos rumbos se cruzan con riesgo; se aparta el que ve al otro por su estribor.",
+   "temas": [
+    "py-1"
+   ],
+   "preguntas": 1,
+   "titulacion": "py"
+  },
+  {
+   "id": "relacion-de-mezcla",
+   "termino": "Relación de mezcla",
+   "formas": [
+    "relación de mezcla"
+   ],
+   "definicion": "Gramos de vapor de agua que hay por cada kilogramo de aire seco (g/kg). No es la humedad absoluta, que se mide en gramos por metro cúbico.",
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 1
+  },
+  {
+   "id": "depresion",
+   "termino": "Depresión (baja presión)",
+   "definicion": "Zona de presión más baja que la de alrededor; es lo mismo que una borrasca. En el hemisferio norte el viento gira a su alrededor en sentido antihorario.",
+   "formas": [
+    "depresión",
+    "bajas presiones"
+   ],
+   "temas": [
+    "py-2"
+   ],
+   "preguntas": 0,
+   "titulacion": "py"
+  }
+ ]
+}

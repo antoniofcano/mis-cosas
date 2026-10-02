@@ -58,3 +58,32 @@ export function windSide(windFrom, heading) {
 }
 
 export { length };
+
+/**
+ * Cadena del examen, siempre en este orden: rumbo verdadero (proa) → rumbo de superficie (el viento abate)
+ * → rumbo efectivo (la corriente arrastra).
+ * @param {{ rv:number, vb:number, ab?:number, rc?:number, ic?:number }} p  ab con signo (+ viento por babor)
+ * @returns {{ rv:number, rs:number, ref:number, vef:number }}
+ */
+export function cadenaDirecta({ rv, vb, ab = 0, rc = 0, ic = 0 }) {
+  const rs = rsFromRv(rv, ab);
+  const { ref, vef } = ic ? effectiveCourse(rs, vb, rc, ic) : { ref: rs, vef: vb };
+  return { rv: norm360(rv), rs, ref, vef };
+}
+
+/**
+ * La misma cadena al revés («qué rumbo doy para llegar»): del rumbo efectivo que lleva al destino se saca
+ * primero el de superficie (corriente) y después el verdadero (viento).
+ * @returns {{ rv:number, rs:number, ref:number, vef:number } | null} null si la corriente es más fuerte que el barco
+ */
+export function cadenaInversa({ ref, vb, ab = 0, rc = 0, ic = 0 }) {
+  const s = ic ? courseToSteer(ref, vb, rc, ic) : { rs: norm360(ref), vef: vb };
+  if (!s) return null;
+  return { rv: rvFromRs(s.rs, ab), rs: s.rs, ref: norm360(ref), vef: s.vef };
+}
+
+/** Lado hacia el que cae un rumbo respecto a otro de referencia: 'estribor' (mayor), 'babor' (menor) o 'igual'. */
+export function ladoDe(rumbo, referencia) {
+  const d = norm180(rumbo - referencia);
+  return Math.abs(d) < 0.05 ? 'igual' : d > 0 ? 'estribor' : 'babor';
+}

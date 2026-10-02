@@ -20,10 +20,20 @@ export const PER = {
     { ut: 10, titulo: 'Teoría de navegación', n: 5, icon: '🧭' },
     { ut: 11, titulo: 'Carta de navegación', n: 4, maxErrores: 2, icon: '🗺️' },
   ],
+  // Orden en que se recomienda estudiar: el vocabulario primero y después lo que más pesa y más práctica pide
+  // (los temas con límite de fallos y la navegación); el resto al final.
+  ordenEstudio: [1, 5, 6, 10, 11, 2, 3, 4, 7, 8, 9],
 };
 
 export const totalPreguntas = (estructura) => estructura.bloques.reduce((s, b) => s + b.n, 0);
 export const bloque = (estructura, ut) => estructura.bloques.find((b) => b.ut === ut);
+
+/** Bloques en el orden de estudio recomendado (o en el oficial si la estructura no lo fija). */
+export function bloquesEnOrden(estructura) {
+  const orden = estructura.ordenEstudio ?? [];
+  const pos = (b) => { const i = orden.indexOf(b.ut); return i < 0 ? orden.length + b.ut : i; };
+  return [...estructura.bloques].sort((a, b) => pos(a) - pos(b));
+}
 
 // Patrón de Yate (RD 875/2014, anexo II, ap. 4): 40 preguntas en dos módulos. En Andalucía cada módulo es un
 // cuadernillo de 20 preguntas (genérico: 1–10 Seguridad, 11–20 Meteorología; navegación: 1–10 Teoría,
@@ -43,6 +53,8 @@ export const PY = {
     { ut: 3, titulo: 'Teoría de navegación', n: 10, maxErrores: 5, icon: '🧭' },
     { ut: 4, titulo: 'Carta de navegación', n: 10, maxErrores: 3, icon: '🗺️' },
   ],
+  // Primero el módulo de navegación (límites de fallos y más práctica); después el genérico.
+  ordenEstudio: [3, 4, 1, 2],
 };
 
 /**

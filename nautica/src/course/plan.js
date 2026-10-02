@@ -2,6 +2,7 @@
 // tema y el avance global. Funciones puras: el progreso entra como datos.
 
 import { estadoLeccion } from './engine.js';
+import { bloquesEnOrden } from '../theory/blocks.js';
 
 export const TANDA = 10; // preguntas por tanda
 export const MIN_TANDA = 8; // minutos estimados de una tanda
@@ -74,7 +75,7 @@ function actividadTema(b, est, curso, regs, respuestas, ahora) {
  * @param {object} o  { estructura, curso, preguntas, regs, respuestas, tests, testEnCurso, fechaExamen, ahora }
  * @returns {{ tipo, titulo, verbo, minutos, ruta: string[], query?: object, ut: number|null }[]}
  */
-export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ahora = Date.now() }) {
+export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, ahora = Date.now() }) {
   const lista = [];
   const simulacro = () => ({ tipo: 'simulacro', titulo: 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: undefined, ut: null });
 
@@ -94,16 +95,17 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 
   // 3. Repasos de clases (máximo 2): primero los temas con límite de errores, luego los más atrasados
   const prioridad = new Set(estructura.bloques.filter((b) => b.maxErrores != null).map((b) => b.ut));
-  const repasos = estructura.bloques.flatMap((b) => clasesDe(curso, b.ut))
+  const repasos = bloquesEnOrden(estructura).flatMap((b) => clasesDe(curso, b.ut))
     .map((l) => ({ l, e: estadoLeccion(l, regs[l.id], respuestas, ahora) }))
     .filter((x) => x.e.estado === 'repasar')
     .sort((a, b) => (prioridad.has(b.l.ut) - prioridad.has(a.l.ut)) || ((a.e.proximo ?? 0) - (b.e.proximo ?? 0)))
     .slice(0, 2);
   for (const { l } of repasos) lista.push({ tipo: 'repaso', titulo: l.titulo, verbo: 'Repasar', minutos: MIN_TANDA, ruta: ['curso', l.id], query: { practica: '1' }, ut: l.ut });
 
-  // 4. El primer tema que no está al día
-  const estados = estructura.bloques.map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }));
+  const estados = bloquesEnOrden(estructura).map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }));
   const pendientes = estados.filter((x) => !x.est.alDia);
+
+  // 4. El primer tema que no está al día, en el orden de estudio recomendado
   if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora));
 
   // 5. Sesión de fallos si se acumulan
@@ -116,8 +118,49 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   // 6. Todo al día: simulacro
   if (!lista.length) lista.push(simulacro());
 
+  // 6 bis. Repaso mezclado (una vez al día) en cuanto hay dos temas con preguntas hechas: varios temas a la vez.
+  // Va detrás de lo principal (aprender lo nuevo o el simulacro), nunca en su lugar.
+  const empezados = estados.filter((x) => x.est.hechas > 0);
+  if (empezados.length >= 2 && ultimoMezclado !== hoy) {
+    lista.push({ tipo: 'mezclado', titulo: `Repaso mezclado: ${TANDA} preguntas de ${empezados.length} temas`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'mezcla'], query: undefined, ut: null });
+  }
+
   // 7. Con una sola actividad, proponer también el siguiente tema pendiente
   if (lista.length === 1 && pendientes[1]) lista.push(actividadTema(pendientes[1].b, pendientes[1].est, curso, regs, respuestas, ahora));
 
   return lista.slice(0, MAX_ACTIVIDADES);
+}
+
+export const SIMULACROS_RECOMENDADOS = 3;
+const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
+
+/**
+ * ¿Llego a tiempo? Suma lo que le queda al plan (clases sin terminar, las tandas que faltan para tener cada tema al
+ * día y los simulacros recomendados) y lo reparte a `minutosDia`.
+ * @returns {{ minutosPendientes, diasNecesarios, fechaFin: string|null, diasDisponibles: number|null,
+ *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros } }}
+ */
+export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, ahora = Date.now() }) {
+  let clases = 0;
+  let tandas = 0;
+  for (const b of estructura.bloques) {
+    for (const l of clasesDe(curso, b.ut)) {
+      const e = estadoLeccion(l, regs[l.id], respuestas, ahora).estado;
+      if (e === 'nueva' || e === 'empezada') clases += l.minutos ?? 10;
+    }
+    const est = estadoTema(b, curso, preguntas, regs, respuestas, ahora);
+    tandas += Math.ceil(Math.max(0, Math.min(est.total, OBJETIVO_TEMA) - est.hechas) / TANDA);
+  }
+  const hechos = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real').length;
+  const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin };
+  const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros;
+  const md = Math.max(5, minutosDia);
+  const diasNecesarios = Math.ceil(minutosPendientes / md);
+  // contando hoy como primer día de estudio
+  const fechaFin = minutosPendientes ? fechaISO(ahora + Math.max(0, diasNecesarios - 1) * DIA) : null;
+  const dias = fechaExamen ? diasHasta(fechaExamen, ahora) : null;
+  const diasDisponibles = dias == null ? null : Math.max(0, dias); // hasta la víspera del examen
+  const llega = diasDisponibles == null ? null : diasNecesarios <= diasDisponibles;
+  const minutosNecesarios = diasDisponibles ? Math.ceil(minutosPendientes / diasDisponibles / 5) * 5 : null;
+  return { minutosPendientes, diasNecesarios, fechaFin, diasDisponibles, llega, minutosNecesarios, desglose };
 }

@@ -9,6 +9,7 @@ import { meteoIllustration, boatIllustration, propellerIllustration, roseIllustr
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { nortesIllustration, enfilacionIllustration, corrienteIllustration, abatimientoIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
+import { heliceTimonIllustration, evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
 import { estabilidadIllustration, movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
 function rhythmIllustration(spec) {
@@ -52,6 +53,10 @@ const RENDERERS = {
   fuego: fuegoIllustration,
   socorro: socorroIllustration,
   riesgo: riesgoIllustration,
+  'helice-timon': heliceTimonIllustration,
+  evolucion: evolucionIllustration,
+  ciaboga: ciabogaIllustration,
+  desatraque: desatraqueIllustration,
 };
 
 /** Catálogo documentado (lo usan los editores de contenido y la validación). */
@@ -86,6 +91,10 @@ export const CATALOGO = {
   fuego: { params: { vista: ['tetraedro', 'clases'] }, ejemplo: { tipo: 'fuego', vista: 'tetraedro' } },
   socorro: { params: { resaltar: Object.keys(SOCORRO), solo: 'bool: dibuja solo la resaltada, en grande' }, ejemplo: { tipo: 'socorro', resaltar: 'cohete-paracaidas' } },
   riesgo: { params: { caso: ['comparar', 'constante', 'variable'] }, ejemplo: { tipo: 'riesgo', caso: 'comparar' } },
+  'helice-timon': { params: { marcha: ['avante', 'atras'], timon: ['er', 'br'], sentido: ['dextrogira', 'levogira'] }, ejemplo: { tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' } },
+  evolucion: { params: {}, ejemplo: { tipo: 'evolucion' } },
+  ciaboga: { params: {}, ejemplo: { tipo: 'ciaboga' } },
+  desatraque: { params: { abrir: ['popa', 'proa'] }, ejemplo: { tipo: 'desatraque', abrir: 'popa' } },
 };
 
 /** Comprueba que una especificación es dibujable. */

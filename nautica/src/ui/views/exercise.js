@@ -6,7 +6,7 @@ import { check, STATUS } from '../../analysis/checker.js';
 import { quantity } from '../../analysis/quantities.js';
 import { GLOSSARY } from '../../nautical/glossary.js';
 import { exerciseSummary } from '../../ai/summary.js';
-import { chartWidget } from '../chart-widget.js';
+import { chartWidget, avisoCartaMovil, pantallaPequena } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
@@ -79,8 +79,11 @@ export function exerciseView({ ctx, progress, params: route }) {
   };
   const tableButtons = solution.drawing
     ? h('div.actions.table-actions',
-      h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
-      h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'))
+      pantallaPequena()
+        ? [h('button', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'),
+          h('button.secondary', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta')]
+        : [h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
+          h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta')])
     : null;
 
   function reveal(n) {
@@ -112,6 +115,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {
       progress.recordAttempt(exercise.id, { ok: r.allOk, seed, mistakes: r.diagnoses.map((d) => d.id) });
+      if (r.allOk) progress.logActividad(5);
       state.recorded = true;
     }
     refreshAi();
@@ -132,7 +136,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ),
     h('div.layout',
       h('div.col',
-        h('section.statement', h('h2', 'Enunciado'), h('p', statement), tableButtons),
+        h('section.statement', h('h2', 'Enunciado'), h('p', statement), solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
         h('section', h('h2', 'Resolución paso a paso'), stepsList,
           listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),

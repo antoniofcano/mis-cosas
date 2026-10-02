@@ -129,13 +129,14 @@ ol.qlist li { margin: .3rem 0; }
 .level { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; margin: .5rem 0; }
 /* Carta interactiva */
 .ichart { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-.ichart-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem; padding: .35rem; border-bottom: 1px solid var(--border); }
-.ichart-toolbar .tools { display: flex; flex-wrap: wrap; gap: .25rem; align-items: center; }
+.ichart-toolbar { display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: space-between; gap: .3rem; padding: .35rem; border-bottom: 1px solid var(--border);
+  background: linear-gradient(to right, var(--surface) 30%, transparent), linear-gradient(to left, var(--surface) 30%, transparent) 100% 0, radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.25), transparent) 100% 0;
+  background-size: 24px 100%, 24px 100%, 12px 100%; background-repeat: no-repeat; background-attachment: local, local, scroll; background-color: var(--surface); }
+.ichart-toolbar .tools { display: flex; flex-wrap: nowrap; gap: .25rem; align-items: center; }
 .ichart-toolbar select { width: auto; padding: .15rem .3rem; font-size: .9rem; }
-button.tool { padding: .2rem .45rem; font-size: .9rem; background: transparent; color: var(--text); border-color: var(--border); }
-button.tool span { margin-left: .25rem; }
+button.tool { min-width: 56px; min-height: 56px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: .2rem .4rem; font-size: .9rem; font-weight: 600; line-height: 1.15; white-space: nowrap; background: transparent; color: var(--text); border-color: var(--border); flex: none; }
+button.tool .tool-icon { font-size: 1.2rem; line-height: 1; }
 button.tool[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
-@media (max-width: 600px) { button.tool span { display: none; } }
 svg.chart.interactive { display: block; width: 100%; touch-action: none; user-select: none; background: var(--sea); }
 svg.chart.interactive[data-tool="move"] { cursor: grab; }
 svg.chart.interactive:not([data-tool="move"]) { cursor: crosshair; }
@@ -435,3 +436,19 @@ table.fallos-tema .suspenso { color: var(--warn); font-weight: 600; font-size: .
 label.filtro-revision { display: inline-flex; align-items: center; gap: .5rem; }
 label.filtro-revision select { width: auto; min-height: 44px; }
 .test .review { max-width: 720px; }
+/* Más, progreso y carta en el móvil */
+.mas h3.ajuste { margin: 1.2rem 0 .4rem; }
+.mas input[type="date"] { min-height: 52px; max-width: 20rem; }
+label.check { display: flex; align-items: center; gap: .7rem; min-height: 48px; cursor: pointer; }
+label.check input { width: 24px; height: 24px; margin: 0; flex: none; }
+button.peligro { background: var(--warn); border-color: var(--warn); color: #fff; }
+details.empezar-de-cero { margin-top: 1.5rem; }
+.aviso-carta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; background: var(--accent-2); border-radius: var(--radius); padding: .6rem .8rem; margin: .6rem 0; }
+.aviso-carta p { margin: 0; flex: 1 1 14rem; }
+details.como-se-usa ul { padding-left: 1.2rem; }
+details.como-se-usa li { margin: .3rem 0; }
+.progress .lista-temas { margin-bottom: 1rem; }
+@media (max-width: 640px) { .progress table.stats { display: table; } .progress table.stats td, .progress table.stats th { word-break: break-word; } }
+select { min-height: 44px; }
+.ichart select, .workspace select, .protractor-bar select { min-height: 0; }
+.method-card h3 a { display: inline-flex; align-items: center; min-height: 44px; }

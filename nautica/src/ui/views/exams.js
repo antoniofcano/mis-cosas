@@ -7,10 +7,13 @@ import { createKit } from '../../exams/kit.js';
 import { chooseOption } from '../../exams/options.js';
 import { quantity } from '../../analysis/quantities.js';
 import solutions from '../../exams/solutions/andalucia-per.js';
-import { chartWidget } from '../chart-widget.js';
+import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
+
+/** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
+const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
 
 /** Ejecuta la solución programada de una pregunta (si existe). */
 function runSolution(q, chart) {
@@ -54,7 +57,7 @@ export function examsView({ ctx, progress, params: route }) {
       h('div.cards',
         h('a.card', { href: tlink(currentTit(progress), ['examenes']) }, h('h3', '📄 Exámenes completos y simulacros'), h('p', 'Las 45 preguntas (teoría + carta) de cada convocatoria, cronometradas y corregidas con las reglas oficiales; y simulacros por temas.')),
         index.map((b) => h('a.card', { href: link(['examenes', b.file]) },
-        h('h3', b.title), h('p', b.description ?? ''), h('div.meta', h('span.stat', `${b.count} preguntas`))))),
+        h('h3', b.title), h('p', sinJerga(b.description ?? '')), h('div.meta', h('span.stat', `${b.count} preguntas`))))),
     );
   }
 
@@ -70,7 +73,7 @@ export function examsView({ ctx, progress, params: route }) {
     setChildren(el, 
       volver('Ejercicios de carta', tlink('per', ['carta'])),
       h('h1', bank.meta.title),
-      bank.meta.description ? h('p', bank.meta.description) : null,
+      bank.meta.description ? h('p', sinJerga(bank.meta.description)) : null,
       [...groups].map(([conv, qs]) => h('section',
         h('h2', conv),
         h('ol.qlist', qs.map((q) => {
@@ -158,7 +161,7 @@ export function examsView({ ctx, progress, params: route }) {
       volver(bank.meta.title, link(['examenes', bankFile])),
       h('header', h('h1', `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', q.comunidad))),
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
-      h('section.statement', h('p', q.enunciado), tableButtons),
+      h('section.statement', h('p', q.enunciado), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
       answerBlock,
       h('div.actions',
         prev ? h('a.btn.secondary', { href: link(['examenes', bankFile, prev.id]) }, '← Anterior') : null,

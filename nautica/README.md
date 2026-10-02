@@ -44,9 +44,11 @@ Publicación gratuita: GitHub Pages (Settings → Pages → rama y carpeta raíz
 |---|---|
 | Aguja | Conversión de rumbos y Ct · Ct por enfilación u oposición |
 | Estima | Situación de estima · Rumbo de aguja, distancia y HRB de llegada · Rumbo para pasar a X millas de un faro |
-| Situación | Demora y distancia · Dos demoras o marcaciones simultáneas · Oposición/enfilación + demora (distancia a faro) · Demoras no simultáneas |
+| Situación | Demora (o marcación) y distancia, al mismo faro o a otro · Dos demoras o marcaciones simultáneas · Oposición/enfilación + demora (distancia a faro) · Demoras no simultáneas |
+| Estima (PY) | Estima analítica con varios rumbos (Δl, apartamiento, latitud media, rumbo y distancia directos) |
 | Corrientes (PY) | Rumbo/velocidad efectivos · Rumbo a dar · Calcular la corriente |
 | Viento (PY) | Abatimiento (Rs y rumbo a dar) |
+| Mareas (PY) | Altura de marea, sonda y agua bajo la quilla · Hora para pasar un bajo (Anuario UT → hora legal) |
 
 Los enunciados generados imitan los de Andalucía: declinación «4º NW» o «de la carta, 2° 50′ W 2005 (7′ E)»
 (con actualización al año), desvío «+4º (más)», situaciones «a 4 millas al Sur verdadero del faro…», «al Sur

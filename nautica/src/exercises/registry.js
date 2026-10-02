@@ -14,6 +14,8 @@ import corrienteDesconocida from './types/corriente-desconocida.js';
 import abatimiento from './types/abatimiento.js';
 import rumboPasarDistancia from './types/rumbo-pasar-distancia.js';
 import distanciaFaro from './types/distancia-faro.js';
+import estimaAnalitica from './types/estima-analitica.js';
+import mareaSonda from './types/marea-sonda.js';
 
 export const EXERCISES = [
   conversionRumbos,
@@ -29,6 +31,8 @@ export const EXERCISES = [
   corrienteRumboADar,
   corrienteDesconocida,
   abatimiento,
+  estimaAnalitica,
+  mareaSonda,
 ];
 
 const byId = new Map(EXERCISES.map((e) => [e.id, e]));

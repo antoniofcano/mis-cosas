@@ -36,6 +36,7 @@ export const CATEGORIES = [
   { id: 'situacion', title: 'Situación', icon: '📍', blurb: 'Demoras, distancias y enfilaciones.' },
   { id: 'corrientes', title: 'Corrientes', icon: '🌊', blurb: 'Rumbo efectivo, rumbo a dar y corriente desconocida.' },
   { id: 'viento', title: 'Viento y abatimiento', icon: '💨', blurb: 'Rumbo de superficie y abatimiento.' },
+  { id: 'mareas', title: 'Mareas', icon: '🌙', blurb: 'Altura de la marea, sonda y hora para pasar por un bajo.' },
 ];
 
 /** Las respuestas pueden depender de la variante del ejercicio: `answers` puede ser lista o función(params). */

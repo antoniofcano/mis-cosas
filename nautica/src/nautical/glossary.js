@@ -22,6 +22,8 @@ export const GLOSSARY = {
   Vef: { term: 'Velocidad efectiva (Vef)', text: 'Velocidad real sobre el fondo con corriente: módulo de la suma vector barco + vector corriente.' },
   abatimiento: { term: 'Abatimiento (Ab)', text: 'Ángulo entre el rumbo verdadero y el de superficie debido al viento. El barco cae a sotavento: viento por babor → + ; viento por estribor → −.' },
   Rs: { term: 'Rumbo de superficie (Rs)', text: 'Rumbo que sigue el barco respecto al agua teniendo en cuenta el abatimiento. Rs = Rv + Ab.' },
+  marea: { term: 'Marea', text: 'Subida y bajada periódica del nivel del mar. El Anuario da la hora (UT) y altura de pleamares (PM) y bajamares (BM). Entre ambas la altura sigue una curva cosenoidal (regla de los doceavos: 1, 2, 3, 3, 2, 1).' },
+  sonda: { term: 'Sonda', text: 'Profundidad del agua. La carta da la sonda referida a la bajamar escorada; la sonda real en un momento es sonda de la carta + altura de la marea.' },
   viento: { term: 'Viento', text: 'Se nombra por la dirección DE DONDE viene (viento del N sopla hacia el S), al contrario que la corriente.' },
 };
 

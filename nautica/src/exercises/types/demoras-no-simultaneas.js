@@ -1,5 +1,6 @@
 import { defineExercise } from '../define.js';
-import { correccionTotal, rvFromRa, raFromRv } from '../../nautical/compass.js';
+import { rvFromRa, raFromRv } from '../../nautical/compass.js';
+import { ctOf, compassText, compassSteps, randomCompassData, flipCt } from '../compass-data.js';
 import { fixRunning } from '../../nautical/positioning.js';
 import { angleDist } from '../../math/angles.js';
 import {
@@ -26,8 +27,8 @@ export default defineExercise({
     const { chart } = ctx;
     return retry(() => {
       const p1 = chart.randomSeaPoint(rng, chart.bounds, 1.5);
-      const { dm, desvio } = randomCompass(rng, chart);
-      const ct = correccionTotal(dm, desvio);
+      const aguja = randomCompassData(rng);
+      const ct = ctOf(aguja);
       const rv = rng.int(0, 359);
       const vb = rng.step(4, 9, 0.5);
       const minutes = rng.step(30, 90, 5);
@@ -42,7 +43,7 @@ export default defineExercise({
       if (angleDist(a.bearing, b.bearing) < 35 || angleDist(a.bearing, b.bearing) > 145) return null;
       const t0 = randomClock(rng);
       return {
-        dm, desvio, ra: raFromRv(rv, ct), vb, t0, t1: t0 + minutes,
+        aguja, ra: Math.round(raFromRv(rv, ct)) % 360, vb, t0, t1: t0 + minutes,
         obs: [
           { markId: a.mark.id, da: Math.round(norm360(a.bearing - ct)) },
           { markId: b.mark.id, da: Math.round(norm360(b.bearing - ct)) },
@@ -53,9 +54,9 @@ export default defineExercise({
 
   statement(p, { chart }) {
     const [A, B] = p.obs.map((o) => chart.point(o.markId));
-    return `Navegamos al Ra = ${fmtBearing(p.ra)} con velocidad ${fmtKnots(p.vb)}; dm = ${signedText(p.dm)}, Δ = ${fmtSignedNum(p.desvio)}. ` +
-      `A las ${fmtClock(p.t0)} tomamos demora de aguja del ${A.name} Da = ${fmtBearing(p.obs[0].da)}. ` +
-      `Continuamos navegando y a las ${fmtClock(p.t1)} tomamos demora de aguja del ${B.name} Da = ${fmtBearing(p.obs[1].da)}. Calcula la situación a las ${fmtClock(p.t1)}.`;
+    return `Navegamos al rumbo de aguja ${fmtBearing(p.ra)} con velocidad ${fmtKnots(p.vb)}, en ausencia de viento y corriente; ${compassText(p.aguja)}. ` +
+      `A HRB = ${fmtClock(p.t0)} tomamos demora de aguja del ${A.name.replace(/^Faro de /, 'faro de ')} ${fmtBearing(p.obs[0].da)}. ` +
+      `Continuamos navegando y a HRB = ${fmtClock(p.t1)} tomamos demora de aguja del ${B.name.replace(/^Faro de /, 'faro de ')} ${fmtBearing(p.obs[1].da)}. Calcula la situación a HRB = ${fmtClock(p.t1)}.`;
   },
 
   answers: [
@@ -64,8 +65,9 @@ export default defineExercise({
   ],
 
   solve(p, { chart }) {
-    const ct = correccionTotal(p.dm, p.desvio);
+    const ct = ctOf(p.aguja);
     const rv = rvFromRa(p.ra, ct);
+    const cs = compassSteps(p.aguja);
     const [A, B] = p.obs.map((o) => chart.point(o.markId));
     const [dv1, dv2] = p.obs.map((o) => norm360(o.da + ct));
     const minutes = p.t1 - p.t0;
@@ -77,7 +79,8 @@ export default defineExercise({
     return {
       results: { lat: fix.lat, lon: fix.lon },
       steps: [
-        { title: 'Ct y Rv', text: `Ct = (${fmtSignedNum(p.dm)}) + (${fmtSignedNum(p.desvio)}) = ${fmtSignedNum(ct)}; Rv = ${fmtBearing(p.ra)} + (${fmtSignedNum(ct)}) = ${fmtBearing(rv)}.` },
+        ...cs,
+        { title: 'Rumbo verdadero', text: `Rv = Ra + Ct = ${fmtBearing(p.ra)} + (${fmtSignedNum(ct)}) = ${fmtBearing(rv)}.` },
         { title: 'Demoras verdaderas', text: `Dv ${A.name} = ${fmtBearing(p.obs[0].da)} + (${fmtSignedNum(ct)}) = ${fmtBearing(dv1)}. Dv ${B.name} = ${fmtBearing(p.obs[1].da)} + (${fmtSignedNum(ct)}) = ${fmtBearing(dv2)}.` },
         { title: 'Distancia navegada', text: `Entre ${fmtClock(p.t0)} y ${fmtClock(p.t1)} hay ${minutes} min: d = ${fmtKnots(p.vb)} × ${round(minutes / 60, 3).toString().replace('.', ',')} h = ${fmtMiles(run, 2)}.` },
         { title: 'Traslado de la 1ª línea', text: `Trazamos desde ${A.name} la línea ${fmtBearing(dv1 + 180)}. Desde un punto cualquiera de ella llevamos el Rv ${fmtBearing(rv)} y ${fmtMiles(run, 2)}, y por ahí trazamos una paralela a la primera línea.` },
@@ -86,18 +89,18 @@ export default defineExercise({
       drawing: {
         focus: [fix, first, A, B],
         items: [
-          { t: 'ray', from: A, bearing: norm360(dv1 + 180), length: rhumbTo(A, first).distance + 2, label: `1ª Dv ${fmtBearing(dv1)}`, style: 'lop', step: 4 },
-          { t: 'vec', from: first, bearing: rv, length: run, label: `${fmtMiles(run, 1)}`, style: 'boat', step: 4 },
-          { t: 'line', through: fix, bearing: dv1, length: 6, label: 'trasladada', style: 'lop2', step: 4 },
-          { t: 'ray', from: B, bearing: norm360(dv2 + 180), length: rhumbTo(B, fix).distance + 2, label: `2ª Dv ${fmtBearing(dv2)}`, style: 'lop', step: 5 },
-          { t: 'pos', at: fix, label: `So ${fmtClock(p.t1)}`, style: 'fix', step: 5 },
+          { t: 'ray', from: A, bearing: norm360(dv1 + 180), length: rhumbTo(A, first).distance + 2, label: `1ª Dv ${fmtBearing(dv1)}`, style: 'lop', step: cs.length + 4 },
+          { t: 'vec', from: first, bearing: rv, length: run, label: `${fmtMiles(run, 1)}`, style: 'boat', step: cs.length + 4 },
+          { t: 'line', through: fix, bearing: dv1, length: 6, label: 'trasladada', style: 'lop2', step: cs.length + 4 },
+          { t: 'ray', from: B, bearing: norm360(dv2 + 180), length: rhumbTo(B, fix).distance + 2, label: `2ª Dv ${fmtBearing(dv2)}`, style: 'lop', step: cs.length + 5 },
+          { t: 'pos', at: fix, label: `So ${fmtClock(p.t1)}`, style: 'fix', step: cs.length + 5 },
         ],
       },
     };
   },
 
   mistakes: [
-    { id: 'signo-ct', explain: 'La Ct está aplicada al revés en las demoras o en el rumbo.', mutate: (p) => ({ ...p, dm: -p.dm, desvio: -p.desvio }) },
+    { id: 'signo-ct', explain: 'La Ct está aplicada al revés en las demoras o en el rumbo.', mutate: (p) => ({ ...p, aguja: flipCt(p.aguja) }) },
     { id: 'sin-traslado', explain: 'Has cruzado las dos demoras como si fueran simultáneas. La primera línea debe trasladarse lo navegado entre ambas horas.', mutate: (p) => ({ ...p, vb: 0.0001 }) },
   ],
 });

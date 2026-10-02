@@ -63,6 +63,15 @@ export const QUANTITIES = {
     errorUnit: ' kn',
     tolerance: 0.3,
   },
+  meters: {
+    label: 'metros',
+    placeholder: 'p.ej. 2,35',
+    parse: (t) => parseNumber(String(t).replace(/\s*m(etros)?$/i, '')),
+    format: (v) => `${v.toFixed(2).replace('.', ',')} m`,
+    error: (a, b) => Math.abs(a - b),
+    errorUnit: ' m',
+    tolerance: 0.1,
+  },
   duration: {
     label: 'duración',
     placeholder: 'p.ej. 1h25 o 85 min',

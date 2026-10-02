@@ -46,3 +46,11 @@ Isla/Faro de Tarifa, Cabo Espartel, Punta Cires, Punta Europa, Punta Carnero, **
 - The `confidence` field means: high = NGA plus visual chart agreement; medium = single source or approximate symbol reading; low = approximate (Getares buoy).
 - **Not found / not included:** "Punta Santa Catalina" (Ceuta) is not labelled on L105 and has no OSM node, so I left it out. If needed, the N tip of the Almina peninsula is about 35°54,5'N 005°17,2'W (chart datum, low confidence, from the OSM coastline). I found no Libro de Faros (IHM) PDF; its download failed with 503/connection resets, so NGA was used.
 - Coastline: see coast_meta.json. It is OSM (ODbL, attribution "© OpenStreetMap contributors") and shows today's ports, not the 2007 ones.
+
+## Verificación de la costa con el escaneo de la L105 (2026-10)
+La app usa la versión detallada de la costa OSM (coast_*_detail.json, Douglas-Peucker 0,002°, ±0,12′).
+Proyectados sobre un escaneo de la L105 con la calibración de `data/carta-l105-calibracion.json`, sus
+vértices caen sobre la tinta de la costa: distancia mediana 0,02′, percentil 90 0,07′, máximo 0,21′
+(España 163 vértices, Marruecos 137). No se ha digitalizado la costa de la carta del IHM para no
+redistribuir un derivado de una obra con derechos en un repositorio público; las diferencias son las
+obras portuarias posteriores a 2007 (Algeciras, Tánger).

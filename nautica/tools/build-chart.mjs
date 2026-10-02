@@ -36,8 +36,8 @@ const points = src('points.json').map((p) => {
 });
 
 const line = (l) => l.map(([x, y]) => [r5(x), r5(y)]);
-const es = line(src('coast_es.json'));
-const ma = line(src('coast_ma.json'));
+const es = line(src('coast_es_detail.json'));
+const ma = line(src('coast_ma_detail.json'));
 const islands = Object.values(src('coast_islands.json')).map(line);
 
 const data = {

@@ -8,6 +8,8 @@ import { GLOSSARY } from '../../nautical/glossary.js';
 import { exerciseSummary } from '../../ai/summary.js';
 import { chartWidget } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
+import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
+import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { link, navigate } from '../router.js';
 
 const STATUS_TEXT = {
@@ -49,6 +51,12 @@ export function exerciseView({ ctx, progress, params: route }) {
   );
   const diag = h('div.diagnosis', { 'aria-live': 'polite' });
 
+  // --- Explicación del profe
+  const resultText = answers.map((a) => `${a.label} ${quantity(a.kind).format(solution.results[a.key])}`).join(', ');
+  const narration = narrateSteps(solution.steps, { seed });
+  const intro = narrateIntro(statement, { title: exercise.title });
+  const outro = narrateOutro(resultText);
+
   // --- Pasos (pistas progresivas)
   const stepsList = h('ol.steps');
   const solutionBox = h('div.solution', { hidden: true });
@@ -64,7 +72,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     if (ws) { ws.show(tab); return; }
     ws = openWorkspace({
       chart: ctx.chart, title: exercise.title, statement, steps: solution.steps,
-      items: solution.drawing.items, focus: solution.drawing.focus,
+      items: solution.drawing.items, focus: solution.drawing.focus, kind: exercise.title, result: resultText,
       answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(),
     });
   };
@@ -76,7 +84,7 @@ export function exerciseView({ ctx, progress, params: route }) {
 
   function reveal(n) {
     state.revealed = Math.min(Math.max(n, state.revealed), solution.steps.length);
-    stepsList.replaceChildren(...solution.steps.slice(0, state.revealed).map((s) => h('li', h('strong', s.title), ' — ', s.text)));
+    stepsList.replaceChildren(...profeStepItems(solution.steps.slice(0, state.revealed), narration));
     widget?.setStep(state.revealed);
     if (state.revealed >= solution.steps.length) showSolution();
     refreshAi();
@@ -125,7 +133,8 @@ export function exerciseView({ ctx, progress, params: route }) {
       h('div.col',
         h('section.statement', h('h2', 'Enunciado'), h('p', statement), tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
-        h('section', h('h2', 'Resolución paso a paso'), stepsList, h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),
+        h('section', h('h2', 'Resolución paso a paso'), stepsList,
+          listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),
         h('details.method', h('summary', 'Método y conceptos'),
           h('ol', exercise.method.map((m) => h('li', m))),
           h('dl', exercise.concepts.filter((c) => GLOSSARY[c]).map((c) => [h('dt', GLOSSARY[c].term), h('dd', GLOSSARY[c].text)])),

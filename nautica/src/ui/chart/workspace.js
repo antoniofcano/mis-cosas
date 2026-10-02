@@ -7,6 +7,8 @@
 import { h, setChildren } from '../dom.js';
 import { interactiveChart } from './interactive-chart.js';
 import { createTutorial } from './tutorial.js';
+import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
+import { voice } from '../voice.js';
 
 const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -75,17 +77,32 @@ export function openWorkspace(o) {
   );
 
   // --- Panel: tutorial
+  const narration = {
+    intro: narrateIntro(o.statement, { title: o.kind, onChart: true }),
+    steps: narrateSteps(o.steps ?? [], { seed: o.title }),
+    outro: o.result ? narrateOutro(o.result) : null,
+  };
   const caption = h('div.ws-caption', h('p.muted', 'Pulsa ▶ para ver la resolución trazada sobre la carta, paso a paso.'));
+  const voiceBtn = h('button.small.secondary', { type: 'button', title: 'Voz del profe', onclick: () => { voice.setEnabled(!voice.enabled); syncVoice(); } });
+  const rateSel = h('select.small', { 'aria-label': 'Velocidad de la voz', onchange: (ev) => voice.setRate(Number(ev.target.value)) },
+    [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)));
+  const syncVoice = () => { voiceBtn.textContent = voice.enabled ? '🔊 Voz' : '🔇 Voz'; voiceBtn.setAttribute('aria-pressed', String(voice.enabled)); rateSel.hidden = !voice.enabled; };
+  syncVoice();
+  if (!voice.supported) { voiceBtn.hidden = true; rateSel.hidden = true; }
+  const profeText = (txt) => txt.split('\n').map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : '' }, line));
   const stepList = h('ol.ws-steps', (o.steps ?? []).map((s, i) => h('li', h('button.linklike', { type: 'button', onclick: () => tutorial.goTo(i + 1) }, s.title))));
   const counter = h('span.ws-counter', `0 / ${o.steps?.length ?? 0}`);
   const playBtn = h('button.small', { type: 'button', onclick: () => togglePlay() }, '▶ Reproducir');
   const tutorial = createTutorial(chartApi, o.steps ?? [], o.items ?? [], {
+    narration,
+    voice,
     onStep: (n, info) => {
       counter.textContent = `${n} / ${o.steps.length}`;
       [...stepList.children].forEach((li, i) => li.classList.toggle('current', i === n - 1));
       setChildren(caption,
-        n ? [h('h3', `Paso ${n}. ${info.step.title}`), h('p', info.step.text), info.drawing ? h('p.ws-instrument', '✍️ ', info.drawing) : null]
-          : h('p.muted', 'Situación inicial: la carta con los faros del enunciado resaltados.'),
+        n ? [h('h3', `Paso ${n}. ${info.step.title}`), h('div.profe', h('span.profe-badge', '👨‍🏫 El profe'), profeText(info.narration?.display ?? info.step.text)),
+          info.drawing ? h('p.ws-instrument', '✍️ ', info.drawing) : null]
+          : h('div.profe', h('span.profe-badge', '👨‍🏫 El profe'), profeText(narration.intro.display)),
       );
       chartApi.setReadout(n ? `Paso ${n}: ${info.step.title}` : 'Tutorial al principio.');
     },
@@ -106,6 +123,9 @@ export function openWorkspace(o) {
       h('button.small.secondary', { type: 'button', title: 'Solución completa', onclick: () => tutorial.last() }, '⏭'),
       counter,
     ),
+    h('div.ws-controls', voiceBtn, rateSel,
+      h('button.small.secondary', { type: 'button', title: 'Repetir la explicación de este paso', onclick: () => voice.speak(tutorial.step ? narration.steps[tutorial.step - 1].speech : narration.intro.speech) }, '🔁 Repetir'),
+      h('button.small.secondary', { type: 'button', title: 'Callar', onclick: () => voice.stop() }, '⏹')),
     caption,
     h('h3', 'Pasos'), stepList,
     h('p.muted.small', 'Tus trazos y notas no se borran: el tutorial se dibuja aparte. Pulsa ⏮ para quitarlo.'),

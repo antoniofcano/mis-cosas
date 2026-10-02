@@ -17,6 +17,13 @@ de los exámenes de **Patrón de Embarcaciones de Recreo (PER)** y, más adelant
   resaltados y la respuesta/corrección en el propio panel, sin cambiar de pantalla. 🎓 *Tutorial*: la
   resolución reproducida sobre la carta paso a paso —se coloca el transportador, el compás o la regla como
   en el examen y después se traza— con la explicación de cada paso (anterior/siguiente/reproducir).
+- **👨‍🏫 El profe**: cada paso de la solución (pistas, tutorial y preguntas de examen) viene explicado como en
+  una academia —qué hacemos y por qué, el cálculo con los números del ejercicio, un truco y el error típico de
+  examen— y **con voz** (síntesis del navegador, gratis, en español; voz y velocidad en Progreso → Ajustes).
+  En el tutorial la carta avanza al ritmo de la explicación.
+- **Escalas en los márgenes y guías**: arrastra desde la escala de latitudes o de longitudes para sacar un
+  paralelo o un meridiano (se ajusta a la décima de minuto y admite el valor exacto); el cruce de dos guías
+  sitúa el punto y todas las herramientas se ajustan a él. Atajo ⌖ para trazar guías (y punto) desde unas coordenadas.
 - **Notas de texto** en la carta con tamaño de letra (S–XXL), editables y movibles.
 - **Tu carta escaneada como fondo** (opcional): carga tu PDF/imagen de la L105 y la app la georreferencia
   con la calibración incluida (error < 0,1′). Se guarda solo en tu navegador (IndexedDB), nunca en el repo.

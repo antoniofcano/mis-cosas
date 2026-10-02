@@ -6,6 +6,7 @@ import { GLOSSARY } from '../../nautical/glossary.js';
 import { chartWidget } from '../chart-widget.js';
 import { fmtLat, fmtLon } from '../../math/format.js';
 import { link } from '../router.js';
+import { voice, spanishVoices } from '../voice.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
 
@@ -46,6 +47,20 @@ export function progressView({ progress }) {
         h('select', { onchange: (ev) => progress.setSetting('toleranceFactor', Number(ev.target.value)) },
           [[0.5, 'Estricta (½)'], [1, 'Normal (examen)'], [2, 'Amplia (×2)']].map(([v, t]) => h('option', { value: v, selected: s.toleranceFactor === v }, t)))),
     ),
+    voice.supported ? h('section', h('h2', '👨‍🏫 Voz del profe'),
+      h('p.muted', 'Usa las voces de tu navegador o sistema (gratis). En Chrome y en Android suelen estar las de Google; en iPhone/Mac, las de Apple. Si no oyes nada, revisa que haya una voz en español instalada.'),
+      h('label.field', h('span.lbl', 'Voz activada'), h('input', { type: 'checkbox', checked: voice.enabled, style: 'width:auto', onchange: (ev) => voice.setEnabled(ev.target.checked) })),
+      (() => {
+        const sel = h('select', { onchange: (ev) => voice.setVoiceName(ev.target.value) }, h('option', 'Cargando voces…'));
+        spanishVoices().then((list) => {
+          sel.replaceChildren(...(list.length ? list.map((v) => h('option', { value: v.name, selected: v.name === s.vozNombre }, `${v.name} (${v.lang})`)) : [h('option', 'No hay voces en español en este dispositivo')]));
+        });
+        return h('label.field', h('span.lbl', 'Voz'), sel);
+      })(),
+      h('label.field', h('span.lbl', 'Velocidad'), h('select', { onchange: (ev) => voice.setRate(Number(ev.target.value)) },
+        [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)))),
+      h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, '▶ Probar la voz')),
+    ) : null,
     h('section', h('h2', 'Copia de seguridad'),
       h('p.muted', 'El progreso se guarda solo en este navegador. Expórtalo para no perderlo o pasarlo a otro dispositivo.'),
       h('div.actions',
@@ -90,7 +105,7 @@ export function chartView({ ctx }) {
   const el = h('div.chart-page',
     h('nav.crumbs', h('a', { href: '#/' }, 'Inicio'), ' › Carta'),
     h('h1', chart.name),
-    h('p.muted', 'Herramientas: ✋ mover (la carta, tus puntos, textos, extremos de línea y el transportador, también girar su hilo; toca un punto para ver u ocultar sus coordenadas) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (interruptor: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta; arrastra el centro, gira el hilo dentro del cuadrado, «Trazar») · 📍 punto · 🔤 texto · 🧽 goma · 🏷 coordenadas sí/no. Se ajustan a los faros y al centro del transportador.'),
+    h('p.muted', 'Herramientas: ✋ mover (la carta, tus puntos, textos, extremos de línea y el transportador, también girar su hilo; toca un punto para ver u ocultar sus coordenadas) · 📏 regla (Rv y distancia) · 🧭 compás (millas en la escala de latitudes) · 📐 transportador cuadrado (interruptor: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta; arrastra el centro, gira el hilo dentro del cuadrado, «Trazar») · 📍 punto · 🔤 texto · 🧽 goma · 🏷 coordenadas sí/no · ⌖ situar por coordenadas. Guías: arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba) para sacar un paralelo o un meridiano; tócala para escribir su valor exacto; suéltala sobre la escala para quitarla. El cruce de dos guías es el punto, y las herramientas se ajustan a él. Se ajustan a los faros y al centro del transportador.'),
     w.el,
     h('section', h('h2', 'Mi carta escaneada (opcional)'),
       h('p', 'Puedes cargar tu propia copia de la carta L105 Enseñanza (PDF escaneado o imagen) para usarla de fondo con las mismas herramientas. ',

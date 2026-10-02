@@ -8,6 +8,8 @@ import { quantity } from '../../analysis/quantities.js';
 import solutions from '../../exams/solutions/andalucia-per.js';
 import { chartWidget } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
+import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
+import { profeStepItems, listenAllButton } from '../profe-steps.js';
 
 /** Ejecuta la solución programada de una pregunta (si existe). */
 function runSolution(q, chart) {
@@ -116,7 +118,9 @@ export function examsView({ ctx, progress, params: route }) {
       setChildren(solution,
         q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : h('p.warn', 'Pregunta anulada por el tribunal.'),
         computed,
-        run ? h('ol.steps', run.k.steps.map((s) => h('li', h('strong', s.title), ' — ', s.text))) : h('p.muted', 'Esta pregunta no tiene resolución programada (requiere leer símbolos de la carta).'),
+        run ? [h('ol.steps', profeStepItems(run.k.steps, narrateSteps(run.k.steps, { seed: q.id }))),
+          listenAllButton(() => [narrateIntro(q.enunciado).speech, ...narrateSteps(run.k.steps, { seed: q.id }).map((n) => n.speech), examOutro().speech])]
+          : h('p.muted', 'Esta pregunta no tiene resolución programada (requiere leer símbolos de la carta).'),
         run?.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus }).el : null,
         run?.sol.ejercicio ? h('p', h('a.btn.secondary', { href: link(['ej', run.sol.ejercicio]) }, '🧭 Practicar este tipo de ejercicio')) : null,
       );
@@ -130,11 +134,14 @@ export function examsView({ ctx, progress, params: route }) {
         h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
       ),
       result);
+    const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}, que corresponde a la opción ${run.pick.choice}`;
+    const examOutro = () => narrateOutro(`${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}, que corresponde a la opción ${run.pick.choice}`);
     const openTable = (tab) => {
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({
         chart: ctx.chart, title: `${q.titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
         steps: run.k.steps, items: run.k.items, focus: run.k.focus, answerNodes: [answerBlock], tab, progress,
+        result: examOutroText(),
         summary: () => summaryText,
       });
     };

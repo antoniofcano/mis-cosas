@@ -7,6 +7,7 @@ import { loadChartData } from '../store/datasets.js';
 import { createProgressStore } from '../store/progress.js';
 import { installApi } from '../ai/api.js';
 import { setSharedProgress } from './chart-widget.js';
+import { voice } from './voice.js';
 import { homeView } from './views/home.js';
 import { exerciseView } from './views/exercise.js';
 import { examsView } from './views/exams.js';
@@ -27,6 +28,7 @@ async function main() {
   const ctx = { chart };
   const progress = createProgressStore();
   setSharedProgress(progress);
+  voice.bind(progress);
   let current = null;
 
   const session = { summary: () => current?.summary?.() ?? '' };
@@ -41,6 +43,7 @@ async function main() {
       console.error(e);
       current = { el: h('div', h('h1', 'Algo ha fallado'), h('pre', String(e.stack ?? e))), summary: () => `ERROR ${e.message}` };
     }
+    voice.stop();
     clear(root).append(current.el);
     document.querySelectorAll('header.top nav a').forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#/${route.parts[0] ?? ''}`));
     window.scrollTo(0, 0);

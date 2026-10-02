@@ -11,9 +11,11 @@ import { rhumbTo } from '../../math/mercator.js';
 import { norm360 } from '../../math/angles.js';
 import { fmtLat, fmtLon, fmtBearing, fmtMiles, fmtPos } from '../../math/format.js';
 import { getRaster } from './raster.js';
+import { rulersLayer, RULER_LEFT, RULER_TOP } from '../../graphics/rulers.js';
+import { parseAngle } from '../../math/format.js';
 
 const TOOLS = [
-  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, extremos de línea y el transportador. Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
+  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías, extremos de línea y el transportador. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
   { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros.' },
   { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
   { id: 'protractor', icon: '📐', label: 'Transportador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
@@ -43,7 +45,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     tool: 'move', z: 1, cx: 0, cy: 0, w: 640, h: height,
     user: [], history: [], protractor: null, protractorVisible: false, showCoords: true, drag: null, pointers: new Map(), preview: '', raster: null,
     layer: progress?.settings().capa ?? 'vectorial',
-    selectedNote: null, noteSize: 14, highlights: [], anim: null,
+    selectedNote: null, noteSize: 14, highlights: [], anim: null, selectedGuide: null,
   };
 
   // ---------- DOM
@@ -60,8 +62,9 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   const gItems = ns('g');
   const gUser = ns('g');
   const gTool = ns('g');
+  const gRulers = ns('g');
   svg.innerHTML = DEFS;
-  svg.append(gBase, gRaster, gLand, gGrid, gMarks, gItems, gUser, gTool);
+  svg.append(gBase, gRaster, gLand, gGrid, gMarks, gItems, gUser, gTool, gRulers);
 
   const readout = h('div.readout', TOOLS[0].help);
   const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, t.icon, h('span', t.label)));
@@ -96,6 +99,32 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     h('button.small.secondary', { type: 'button', title: 'Borrar la nota', onclick: () => { const id = state.selectedNote; selectNote(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, '🗑'),
     h('button.small', { type: 'button', onclick: () => selectNote(null) }, 'Listo'),
   );
+  // Barra de la guía seleccionada (valor exacto) y barra «ir a coordenadas»
+  const guideInput = h('input.guide-value', { type: 'text', 'aria-label': 'Valor de la guía' });
+  const applyGuide = () => {
+    const g = state.user.find((u) => u.id === state.selectedGuide);
+    if (!g) return;
+    const v = parseCoord(guideInput.value, g.axis);
+    if (Number.isNaN(v)) { readout.textContent = 'No entiendo ese valor. Ejemplo: 36 05,2 N o 5 36,4 W'; return; }
+    state.history.push(state.user);
+    replaceUser(g.id, (u) => ({ ...u, value: v }));
+    readout.textContent = `Guía en ${g.axis === 'lat' ? fmtLat(v) : fmtLon(v)}.`;
+    render();
+  };
+  guideInput.addEventListener('change', applyGuide);
+  guideInput.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); applyGuide(); selectGuide(null); } });
+  const guideLbl = h('span.muted');
+  const guideBar = h('div.note-bar.guide-bar', { hidden: true }, guideLbl, guideInput,
+    h('button.small.secondary', { type: 'button', title: 'Borrar la guía', onclick: () => { const id = state.selectedGuide; selectGuide(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, '🗑'),
+    h('button.small', { type: 'button', onclick: () => { applyGuide(); selectGuide(null); } }, 'Listo'));
+  const latIn = h('input', { type: 'text', placeholder: '36 05,2 N', 'aria-label': 'Latitud' });
+  const lonIn = h('input', { type: 'text', placeholder: '5 36,4 W', 'aria-label': 'Longitud' });
+  const coordBar = h('div.note-bar.coord-bar', { hidden: true },
+    h('span.muted', '⌖'), latIn, lonIn,
+    h('button.small.secondary', { type: 'button', onclick: () => guidesFromInputs(false) }, 'Trazar guías'),
+    h('button.small', { type: 'button', onclick: () => guidesFromInputs(true) }, 'Guías + punto'),
+    h('button.small.secondary', { type: 'button', title: 'Cerrar', onclick: () => { coordBar.hidden = true; } }, '✕'));
+  const coordBtn = h('button.small.secondary', { type: 'button', title: 'Situar por coordenadas: traza las guías de latitud y longitud', onclick: () => { coordBar.hidden = !coordBar.hidden; if (!coordBar.hidden) latIn.focus(); } }, '⌖');
   const coordsBtn = h('button.small.secondary', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, '🏷');
 
 
@@ -104,7 +133,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       h('div.tools', toolButtons),
       h('div.tools',
         h('button.small.secondary', { type: 'button', title: 'Deshacer', onclick: undo }, '↶'),
-        coordsBtn,
+        coordsBtn, coordBtn,
         h('button.small.secondary', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, '🗑'),
         h('button.small.secondary', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, '+'),
         h('button.small.secondary', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, '−'),
@@ -113,6 +142,8 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       ),
     ),
     svg,
+    coordBar,
+    guideBar,
     noteBar,
     protractorBar,
     readout,
@@ -159,20 +190,22 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       gLand.innerHTML = showVector ? baseLayer(chart).replace(/^<rect[^>]*>/, '') : '';
     }
     gLand.style.opacity = state.layer === 'ambas' && state.raster ? '0.35' : '';
-    gGrid.innerHTML = gridLayer(chart, state.z, v);
+    gGrid.innerHTML = gridLayer(chart, state.z, v, { labels: false }); // las escalas de los márgenes ya rotulan
     gMarks.innerHTML = (showVector ? marksLayer(chart, state.z) : '') + state.highlights.map((id) => {
       const q = toWorld(chart.point(id));
       return `<circle class="highlight" cx="${q.x}" cy="${q.y}" r="${14 / state.z}"/>`;
     }).join('');
     gItems.innerHTML = itemsLayer(items, state.z, step);
     gUser.innerHTML = state.user.map((it) => drawItem(
-      it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : it.t === 'text' && it.id === state.selectedNote ? { ...it, selected: true } : it,
+      it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : (it.t === 'text' && it.id === state.selectedNote) || (it.t === 'guide' && it.id === state.selectedGuide) ? { ...it, selected: true } : it,
       state.z,
     )).join('');
     const ins = state.instrument;
     const insSvg = !ins ? '' : ins.type === 'compass' ? compassPreview(ins.center, ins.edge, state.z).svg : rulerPreview(ins.a, ins.b, state.z).svg;
     gTool.innerHTML = (state.protractor && state.protractorVisible ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + insSvg + state.preview;
     coordsBtn.setAttribute('aria-pressed', String(state.showCoords));
+    gRulers.innerHTML = rulersLayer(v, state.z, state.user.filter((u) => u.t === 'guide').map((g) => ({ ...g, selected: g.id === state.selectedGuide })), fromWorld);
+    guideBar.hidden = !state.selectedGuide;
 
     // El transportador es un interruptor: su botón refleja si está puesto, no si es la herramienta activa.
     TOOLS.forEach((t, i) => toolButtons[i].setAttribute('aria-pressed', String(t.id === 'protractor' ? state.protractorVisible : t.id === state.tool)));
@@ -263,6 +296,46 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     setNoteSize(NOTE_SIZES[j][0]);
   }
 
+  // ---------- Guías
+  function parseCoord(text, axis) {
+    const v = parseAngle(text);
+    if (Number.isNaN(v)) return NaN;
+    return axis === 'lon' && !/[EWO]/i.test(text) ? -Math.abs(v) : v; // sin E/W se asume W (toda la carta)
+  }
+  function selectGuide(id) {
+    state.selectedGuide = id;
+    const g = state.user.find((u) => u.id === id);
+    if (g) {
+      guideLbl.textContent = g.axis === 'lat' ? 'Guía de latitud' : 'Guía de longitud';
+      guideInput.value = (g.axis === 'lat' ? fmtLat(g.value) : fmtLon(g.value)).replace(/° /, ' ').replace(/'/, '');
+    }
+    render();
+  }
+  function guidesFromInputs(withPoint) {
+    const lat = parseCoord(latIn.value, 'lat');
+    const lon = parseCoord(lonIn.value, 'lon');
+    if (Number.isNaN(lat) || Number.isNaN(lon)) { readout.textContent = 'Escribe latitud y longitud, por ejemplo 36 05,2 N y 5 36,4 W.'; return; }
+    state.history.push(state.user);
+    state.user = [...state.user, { t: 'guide', axis: 'lat', value: lat, id: nextId++ }, { t: 'guide', axis: 'lon', value: lon, id: nextId++ }];
+    if (withPoint) state.user = [...state.user, { t: 'pos', at: { lat, lon }, style: 'user', label: `${fmtLat(lat)} ${fmtLon(lon)}`, id: nextId++ }];
+    readout.textContent = `Guías en ${fmtLat(lat)} y ${fmtLon(lon)}${withPoint ? ', con el punto en el cruce' : ''}.`;
+    fit([{ lat, lon }]);
+    state.z = clampZ(state.z * 0.25);
+    render();
+  }
+  const round01 = (deg) => Math.round(deg * 600) / 600; // a la décima de minuto
+  const guideValueAt = (axis, w) => round01(axis === 'lat' ? fromWorld(w).lat : fromWorld(w).lon);
+  function inRuler(ev) {
+    const r = svg.getBoundingClientRect();
+    const lx = ev.clientX - r.left;
+    const ly = ev.clientY - r.top;
+    if (lx < RULER_LEFT && ly > RULER_TOP) return 'lat';
+    if (ly < RULER_TOP && lx > RULER_LEFT) return 'lon';
+    if (lx < RULER_LEFT && ly < RULER_TOP) return 'corner';
+    return null;
+  }
+  const guidePreview = (axis, value) => drawItem({ t: 'guide', axis, value, selected: true }, state.z);
+
   function placeProtractor() {
     state.protractor = { c: { x: state.cx, y: state.cy }, bearing: 0 };
   }
@@ -311,6 +384,10 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       if (it.t === 'seg') c.push({ geo: it.from, name: 'extremo' }, { geo: it.to, name: 'extremo' });
       if (it.t === 'circle') c.push({ geo: it.center, name: 'centro' });
     }
+    const gl = state.user.filter((u) => u.t === 'guide' && u.id !== excludeId);
+    for (const a of gl.filter((g) => g.axis === 'lat')) {
+      for (const b of gl.filter((g) => g.axis === 'lon')) c.push({ geo: { lat: a.value, lon: b.value }, name: `cruce de guías ${fmtLat(a.value)} ${fmtLon(b.value)}` });
+    }
     return c;
   }
   function snap(w, excludeId) {
@@ -321,7 +398,20 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       const d = Math.hypot(p.x - w.x, p.y - w.y);
       if (d < bd) { bd = d; best = { w: p, geo: cand.geo, name: cand.name }; }
     }
-    return best ?? { w, geo: fromWorld(w), name: null };
+    if (best) return best;
+    // Si no hay punto cerca, se ajusta a la guía más próxima (se desliza a lo largo de ella).
+    let bg = null;
+    let gd = SNAP_PX / state.z;
+    for (const g of state.user.filter((u) => u.t === 'guide' && u.id !== excludeId)) {
+      const d = distanceTo(g, w);
+      if (d < gd) { gd = d; bg = g; }
+    }
+    if (bg) {
+      const geo = fromWorld(w);
+      const p = bg.axis === 'lat' ? { lat: bg.value, lon: geo.lon } : { lat: geo.lat, lon: bg.value };
+      return { w: toWorld(p), geo: p, name: bg.axis === 'lat' ? `guía ${fmtLat(bg.value)}` : `guía ${fmtLon(bg.value)}` };
+    }
+    return { w, geo: fromWorld(w), name: null };
   }
 
   // ---------- Punteros
@@ -338,6 +428,15 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     state.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
     if (state.pointers.size === 2) { state.drag = { kind: 'pinch', ...pinchInfo() }; state.preview = ''; return; }
     const w = toWorldPt(ev);
+    const band = inRuler(ev);
+    if (band === 'lat' || band === 'lon') {
+      state.drag = { kind: 'guide-new', axis: band };
+      state.preview = guidePreview(band, guideValueAt(band, w));
+      readout.textContent = band === 'lat' ? 'Guía de latitud: arrástrala hasta el valor y suelta.' : 'Guía de longitud: arrástrala hasta el valor y suelta.';
+      render();
+      return;
+    }
+    if (band === 'corner') return;
     const s = snap(w);
     switch (state.tool) {
       case 'move': {
@@ -391,6 +490,9 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       }
     }
     if (best) return best;
+    for (const g of state.user.filter((u) => u.t === 'guide')) {
+      if (distanceTo(g, w) < 8 / state.z) return { kind: 'guide-move', id: g.id, moved: false };
+    }
     // Dentro del cuadrado del transportador (fuera del agujero): girar el hilo.
     const half = 130 / state.z;
     if (p && state.protractorVisible && Math.abs(w.x - p.c.x) < half && Math.abs(w.y - p.c.y) < half) {
@@ -450,6 +552,22 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         readout.textContent = `Transportador ${s.name ? `en ${s.name}` : `en ${fmtPos(s.geo)}`} · hilo ${fmtBearing(state.protractor.bearing)}`;
         break;
       }
+      case 'guide-new': {
+        const val = guideValueAt(d.axis, w);
+        d.value = val;
+        d.left = d.left || !inRuler(ev);
+        state.preview = guidePreview(d.axis, val);
+        readout.textContent = `Guía de ${d.axis === 'lat' ? `latitud ${fmtLat(val)}` : `longitud ${fmtLon(val)}`}`;
+        break;
+      }
+      case 'guide-move': {
+        const g = state.user.find((u) => u.id === d.id);
+        if (!d.moved) { state.history.push(state.user); d.moved = true; }
+        const val = guideValueAt(g.axis, w);
+        replaceUser(d.id, (u) => ({ ...u, value: val }));
+        readout.textContent = `Guía de ${g.axis === 'lat' ? `latitud ${fmtLat(val)}` : `longitud ${fmtLon(val)}`} · suéltala sobre la escala para quitarla`;
+        break;
+      }
       case 'item-move': {
         if (!d.moved) { state.history.push(state.user); d.moved = true; }
         const s = snap({ x: w.x + d.dx, y: w.y + d.dy }, d.id);
@@ -482,6 +600,21 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       addUser({ t: 'seg', from: d.a.geo, to: d.b.geo, style: 'user', label: `${fmtBearing(bearing)} · ${fmtMiles(distance)}` });
     }
     if (d.kind === 'compass' && d.r > 0.05) addUser({ t: 'circle', center: d.c.geo, radius: d.r, style: 'user', label: fmtMiles(d.r) });
+    if (d.kind === 'guide-new') {
+      if (d.left && d.value != null) {
+        addUser({ t: 'guide', axis: d.axis, value: d.value });
+        selectGuide(state.user[state.user.length - 1].id);
+        readout.textContent = `Guía en ${d.axis === 'lat' ? fmtLat(d.value) : fmtLon(d.value)}. Escribe el valor exacto en la barra o arrástrala con ✋.`;
+      }
+    }
+    if (d.kind === 'guide-move') {
+      const band = inRuler(ev);
+      if (d.moved && (band === 'lat' || band === 'lon')) {
+        state.user = state.user.filter((u) => u.id !== d.id);
+        if (state.selectedGuide === d.id) state.selectedGuide = null;
+        readout.textContent = 'Guía quitada.';
+      } else if (!d.moved) selectGuide(d.id);
+    }
     if (d.kind === 'item-move' && !d.moved) {
       const it = state.user.find((u) => u.id === d.id);
       if (it?.t === 'pos') {
@@ -630,6 +763,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         if (it.t === 'line' || it.t === 'ray') return `recta ${fmtBearing(it.bearing)} por ${fmtPos(it.through ?? it.from)}`;
         if (it.t === 'pos') return `punto ${fmtPos(it.at)}`;
         if (it.t === 'text') return `nota "${it.text}" en ${fmtPos(it.at)}`;
+        if (it.t === 'guide') return `guía de ${it.axis === 'lat' ? `latitud ${fmtLat(it.value)}` : `longitud ${fmtLon(it.value)}`}`;
         return it.t;
       }).concat(state.protractor && state.protractorVisible ? [`transportador en ${fmtPos(fromWorld(state.protractor.c))} con el hilo a ${fmtBearing(state.protractor.bearing)}`] : []).join(' | ');
     },
@@ -649,6 +783,7 @@ function distanceTo(it, w) {
   };
   switch (it.t) {
     case 'pos': case 'text': { const p = toWorld(it.at); return Math.hypot(p.x - w.x, p.y - w.y); }
+    case 'guide': return it.axis === 'lat' ? Math.abs(toWorld({ lat: it.value, lon: 0 }).y - w.y) : Math.abs(toWorld({ lat: 0, lon: it.value }).x - w.x);
     case 'seg': return segDist(toWorld(it.from), toWorld(it.to));
     case 'circle': { const c = toWorld(it.center); return Math.abs(Math.hypot(c.x - w.x, c.y - w.y) - it.radius * worldPerMile(it.center.lat)); }
     case 'line': case 'ray': {

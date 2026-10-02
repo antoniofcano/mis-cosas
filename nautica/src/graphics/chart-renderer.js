@@ -14,6 +14,7 @@
 //   { t:'vec',    from, bearing, length, label?, style }        vector con flecha
 //   { t:'arc',    center, radius, around, span, style }         arco de compás (millas, grados)
 //   { t:'circle', center, radius, label?, style }               circunferencia completa (millas)
+//   { t:'guide',  axis:'lat'|'lon', value }                    guía (paralelo/meridiano) sacada de la escala
 //   { t:'text',   at, text, size?, style }                      anotación de texto (size en px de pantalla)
 //   Cualquier primitiva puede llevar `step`: solo se dibuja cuando se ha llegado a ese paso.
 //   Estilos: construction, lop, lop2, boat, current, effective, start, fix, estima, user, measure.
@@ -65,7 +66,7 @@ export function baseLayer(chart, { land = true } = {}) {
 }
 
 /** Cuadrícula de meridianos y paralelos (paso según el zoom) con rótulos de tamaño constante. */
-export function gridLayer(chart, z, view) {
+export function gridLayer(chart, z, view, { labels = true } = {}) {
   const { south, north, west, east } = chart.bounds;
   const steps = [1, 2, 5, 10, 20, 30];
   const step = steps.find((s) => s * z * S >= 70) ?? 60;
@@ -78,14 +79,14 @@ export function gridLayer(chart, z, view) {
     const a = toWorld({ lat, lon: west });
     const b = toWorld({ lat, lon: east });
     out.push(`<line class="grid${m % 10 ? ' minor' : ''}" x1="${f(a.x)}" y1="${f(a.y)}" x2="${f(b.x)}" y2="${f(b.y)}"/>`);
-    out.push(`<text class="tick" font-size="${f(fs)}" x="${f(Math.max(a.x, vx) + 3 / z)}" y="${f(a.y - 2 / z)}">${tick(lat, true)}</text>`);
+    if (labels) out.push(`<text class="tick" font-size="${f(fs)}" x="${f(Math.max(a.x, vx) + 34 / z)}" y="${f(a.y - 2 / z)}">${tick(lat, true)}</text>`);
   }
   for (let m = Math.ceil(Math.round(west * 600) / 10 / step) * step; m <= east * 60 + 1e-6; m += step) {
     const lon = m / 60;
     const a = toWorld({ lat: north, lon });
     const b = toWorld({ lat: south, lon });
     out.push(`<line class="grid${m % 10 ? ' minor' : ''}" x1="${f(a.x)}" y1="${f(a.y)}" x2="${f(b.x)}" y2="${f(b.y)}"/>`);
-    out.push(`<text class="tick" font-size="${f(fs)}" x="${f(a.x + 2 / z)}" y="${f(Math.max(a.y, vy) + 12 / z)}">${tick(lon, false)}</text>`);
+    if (labels) out.push(`<text class="tick" font-size="${f(fs)}" x="${f(a.x + 2 / z)}" y="${f(Math.max(a.y, vy) + 34 / z)}">${tick(lon, false)}</text>`);
   }
   const fr = worldRect(chart.bounds);
   out.push(`<rect class="neatline" x="${f(fr.x)}" y="${f(fr.y)}" width="${f(fr.w)}" height="${f(fr.h)}"/>`);
@@ -167,6 +168,12 @@ export function drawItem(it, z) {
       const pts = [];
       for (let d = -it.span / 2; d <= it.span / 2 + 1e-9; d += 2) pts.push(toWorld(rhumbDestination(it.center, norm360(it.around + d), it.radius)));
       return `<path class="${cls} arc" d="${pathOf(pts)}"${data}/>`;
+    }
+    case 'guide': {
+      // Guía de la escala del margen: paralelo (axis 'lat') o meridiano (axis 'lon') de lado a lado.
+      const a = toWorld(it.axis === 'lat' ? { lat: it.value, lon: -30 } : { lat: 60, lon: it.value });
+      const b = toWorld(it.axis === 'lat' ? { lat: it.value, lon: 20 } : { lat: 0, lon: it.value });
+      return `<line class="guide${it.selected ? ' sel' : ''}" x1="${f(a.x)}" y1="${f(a.y)}" x2="${f(b.x)}" y2="${f(b.y)}"${data}/>`;
     }
     case 'text': {
       const p = toWorld(it.at);

@@ -193,3 +193,15 @@ button.speak { margin-left: .4rem; padding: 0 .35rem; }
   :root:not([data-theme="light"]) .profe .trap { color: #fdba74; }
 }
 .ws-controls select { width: auto; padding: .15rem .3rem; }
+/* Escalas de los márgenes y guías */
+svg.chart .ruler-band { fill: var(--surface); fill-opacity: .92; stroke: var(--border); cursor: copy; }
+svg.chart .ruler-corner { fill: var(--surface); stroke: var(--border); }
+svg.chart .ruler-tick { stroke: var(--text); stroke-width: .9; }
+svg.chart .ruler-lbl { fill: var(--text); font-variant-numeric: tabular-nums; pointer-events: none; }
+svg.chart line.guide { stroke: #0891b2; stroke-width: 1.3; stroke-dasharray: 8 4; }
+svg.chart line.guide.sel { stroke: #0e7490; stroke-width: 2.2; }
+svg.chart .guide-tag rect { fill: #0891b2; }
+svg.chart .guide-tag.sel rect { fill: #0e7490; }
+svg.chart .guide-tag text { fill: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+.guide-bar input, .coord-bar input { flex: 1 1 8rem; width: auto; padding: .25rem .4rem; }
+.coord-bar[hidden], .guide-bar[hidden] { display: none; }

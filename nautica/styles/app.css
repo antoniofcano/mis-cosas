@@ -369,3 +369,24 @@ a.clase .clase-meta { display: inline-flex; gap: .6rem; align-items: center; }
 .tema > .btn.grande { margin: 1rem 0; }
 .titulaciones { display: grid; gap: .75rem; }
 a.btn.grande[aria-current] { box-shadow: 0 0 0 3px var(--accent-2); }
+/* Hoy y bienvenida */
+.hoy > h1 { margin-top: .8rem; }
+.hoy > p.muted { margin-top: 0; }
+.tarjeta-hoy.hecho { text-align: center; }
+.icono-grande { font-size: 3rem; line-height: 1.2; }
+.despues { display: grid; gap: .6rem; }
+.card.compacta h3 { margin: 0; }
+.card.compacta p { margin: .2rem 0 0; }
+.ver-todo { margin: 1.5rem 0; }
+.ver-todo a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+.aviso-copia { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .6rem .8rem; }
+.bienvenida { padding-top: 1rem; }
+.bienvenida .paso { color: var(--muted); font-weight: 600; margin: 0; }
+.bienvenida h1 { margin: .4rem 0 1.2rem; }
+.opciones-grandes { display: grid; gap: .8rem; }
+button.tarjeta-opcion { display: flex; align-items: center; gap: 1rem; width: 100%; min-height: 88px; text-align: left; font-size: 1.15rem; background: var(--surface); color: var(--text); border: 2px solid var(--border); border-radius: 14px; padding: 1rem; }
+button.tarjeta-opcion:hover, button.tarjeta-opcion:focus-visible { border-color: var(--accent); }
+.op-icono { font-size: 2.4rem; line-height: 1; }
+.campo-fecha input { font-size: 1.15rem; min-height: 56px; margin-bottom: 1rem; }
+p.centrado { text-align: center; }
+p.centrado a { display: inline-flex; align-items: center; min-height: 48px; font-weight: 600; }

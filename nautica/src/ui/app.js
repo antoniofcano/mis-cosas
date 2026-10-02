@@ -16,7 +16,9 @@ import { examsView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
 import { examenesView, practiceView, testView } from './views/theory.js';
 import { galleryView } from './views/gallery.js';
-import { dashboardView, cartaView } from './views/titulacion.js';
+import { cartaView } from './views/titulacion.js';
+import { hoyView } from './views/hoy.js';
+import { bienvenidaView } from './views/bienvenida.js';
 import { reglasView } from './views/reglas.js';
 import { leccionView } from './views/curso.js';
 import { temarioView, temaView } from './views/temario.js';
@@ -25,7 +27,7 @@ import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
 const TIT_ROUTES = {
-  '': dashboardView,
+  '': hoyView,
   temario: (o) => (o.params.parts[1] ? temaView(o) : temarioView(o)),
   curso: leccionView, // #/<tit>/curso/<id> (sin id redirige al temario)
   laminas: galleryView,
@@ -37,7 +39,8 @@ const TIT_ROUTES = {
 
 // Rutas comunes a todas las titulaciones
 const ROUTES = {
-  '': dashboardView,
+  '': hoyView,
+  bienvenida: bienvenidaView,
   ej: exerciseView,
   examenes: examsView, // #/examenes/<banco>/<pregunta>
   mesa: chartView,
@@ -50,6 +53,7 @@ const ROUTES = {
 // Direcciones antiguas → nuevas (enlaces guardados)
 function legacy(parts, progress) {
   const tit = currentTit(progress);
+  if (!parts.length && progress.settings().onboarded !== true) return ['bienvenida'];
   if (parts[0] === 'teoria' || parts[0] === 'test') return [tit, ...parts];
   if (parts[0] === 'examenes' && !parts[1]) return [tit, 'examenes'];
   if (parts[0] === 'carta') return ['mesa'];

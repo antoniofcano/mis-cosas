@@ -639,7 +639,33 @@
     "https://www.estudiasonavegas.com/116-acad-tropico-capricornio/389-estabilidad-traslado-vertical-de-pesos-a-bordo",
     "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c3-g02",
+    "and-py-2020-c3-g03",
+    "and-py-2021-c1-g01",
+    "and-py-2021-c2-g01",
+    "and-py-2021-c2-g02",
+    "and-py-2022-c1-g01",
+    "and-py-2022-c1-g02",
+    "and-py-2022-c2-g01",
+    "and-py-2022-c3-g02",
+    "and-py-2023-c1-g02",
+    "and-py-2023-c2-g02",
+    "and-py-2023-c2-g03",
+    "and-py-2023-c2-g04",
+    "and-py-2023-c3-g02",
+    "and-py-2023-c3-g03",
+    "and-py-2024-c1-g01",
+    "and-py-2024-c1-g03",
+    "and-py-2024-c1-g04",
+    "and-py-2024-c3-g01",
+    "and-py-2025-c1-g02",
+    "and-py-2025-c1-g05",
+    "and-py-2025-c3-g03",
+    "and-py-2025-c3-g05",
+    "and-py-2026-c1-g10",
+    "and-py-2026-c2-g04"
+   ]
   },
   {
    "id": "py-seg-02",
@@ -650,7 +676,10 @@
     "https://www.boletinpatron.com/es/la-estabilidad-de-la-embarcacion/blox/11525/",
     "http://www.fondear.org/infonautic/Saber_Marinero/Titulaciones_Nauticas/Capitan_Yate/CY_Apuntes/Apuntes_Teoria_Buque/Resum_TeoriaBq.htm"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-g03",
+    "and-py-2025-c1-g08"
+   ]
   },
   {
    "id": "py-seg-03",
@@ -674,7 +703,16 @@
     "https://www.aprendemergencias.es/incendios/clases-de-fuego/",
     "https://eduardovillafuerteblog.wordpress.com/2019/03/25/significado-de-las-iniciales-de-las-clases-de-fuego/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-2020-c1-t30",
+    "and-2021-c1-t31",
+    "and-2021-c2-t31",
+    "and-2022-c1-t32",
+    "and-2025-c1-t30",
+    "and-2025-c2-t30",
+    "and-2025-c3-t30",
+    "and-2026-c1-t30"
+   ]
   },
   {
    "id": "py-seg-05",
@@ -685,7 +723,9 @@
     "https://www.estudiasonavegas.com/images/Archivos/Miscelanea/Misce_Charter/Actuacion%20incendio%20barco.doc",
     "https://academia.boatmalaga.com/topics/8-5-prevencion-de-incendios-y-explosiones-2-3/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2023-c2-g08"
+   ]
   },
   {
    "id": "py-seg-06",
@@ -697,7 +737,18 @@
     "https://www.sotaventonline.com/abandonamos-barco-no/",
     "https://www.salvamentomaritimo.es/mejora-tu-seguridad/actuar-en-emergencias/supervivencia-en-el-mar"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-2022-c2-t31",
+    "and-2022-c3-t32",
+    "and-2023-c2-t31",
+    "and-2024-c1-t32",
+    "and-2024-c3-t31",
+    "and-2025-c2-t32",
+    "and-2026-c1-t31",
+    "and-py-2020-c3-g07",
+    "and-py-2024-c1-g08",
+    "and-py-2025-c2-g09"
+   ]
   },
   {
    "id": "py-seg-08",
@@ -721,7 +772,19 @@
     "https://www.patrondeyate.net/apuntes-de-radiocomunicaciones-patron-de-yate/radiobaliza-respondedor-de-radar-obligaciones-para-la-zona-de-navegacion-4.html",
     "https://aulanautica.org/wp-content/uploads/2017/06/RADIO-PNB-Escola-Port-Barcelona.pdf"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-g08",
+    "and-py-2021-c1-g06",
+    "and-py-2021-c2-g08",
+    "and-py-2021-c2-g09",
+    "and-py-2021-c2-g10",
+    "and-py-2022-c1-g08",
+    "and-py-2022-c1-g10",
+    "and-py-2022-c3-g04",
+    "and-py-2022-c3-g09",
+    "and-py-2023-c3-g04",
+    "and-py-2025-c2-g01"
+   ]
   },
   {
    "id": "py-met-01",
@@ -733,7 +796,10 @@
     "https://escuelanauticaaltair.com/blog/viento-real-viento-aparente/",
     "https://foro.latabernadelpuerto.com/showthread.php?t=100278"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-2020-c1-t36",
+    "and-2022-c2-t35"
+   ]
   },
   {
    "id": "py-met-02",
@@ -768,7 +834,10 @@
     "https://www.tiempo.com/noticias/ciencia/el-paso-de-los-frentes.html",
     "http://www.patrondeyate.net/apuntes-de-meteorologia-patron-de-yate/vientos-y-frentes.html"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2021-c2-g16",
+    "and-py-2025-c3-g16"
+   ]
   },
   {
    "id": "py-met-05",
@@ -780,7 +849,22 @@
     "https://oceanicanautica.es/cy/la-niebla-mar/",
     "https://snowy.es/wikimeteo/niebla-de-adveccion"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c3-g20",
+    "and-py-2021-c2-g19",
+    "and-py-2022-c1-g18",
+    "and-py-2022-c2-g17",
+    "and-py-2022-c3-g11",
+    "and-py-2023-c1-g17",
+    "and-py-2023-c2-g17",
+    "and-py-2023-c3-g16",
+    "and-py-2024-c2-g11",
+    "and-py-2024-c3-g18",
+    "and-py-2025-c1-g17",
+    "and-py-2025-c2-g11",
+    "and-py-2025-c3-g18",
+    "and-py-2026-c1-g20"
+   ]
   },
   {
    "id": "py-met-06",
@@ -813,7 +897,14 @@
    "fuentes": [
     "https://foro.latabernadelpuerto.com/forum/foros-n-uticos/foro-n-utico-deportivo/58085-reglas-nemot-cnicas-para-navegar"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-2021-c2-t35",
+    "and-2022-c2-t33",
+    "and-2023-c2-t34",
+    "and-2024-c1-t35",
+    "and-2024-c3-t35",
+    "and-2025-c2-t34"
+   ]
   },
   {
    "id": "py-nav-01",
@@ -825,7 +916,13 @@
     "https://www.boletinpatron.com/el-viento-conceptos-basicos-para-navegantes/",
     "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2021-c2-n16",
+    "and-py-2023-c1-n16",
+    "and-py-2023-c3-n15",
+    "and-py-2024-c1-n16",
+    "and-py-2026-c1-n15"
+   ]
   },
   {
    "id": "py-nav-02",
@@ -837,7 +934,65 @@
     "https://www.neptuno.es/formulas-para-el-examen-patron-de-yate",
     "https://personales.gestion.unican.es/martinji/Archivos/Rumbos.pdf"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-n05",
+    "and-py-2020-c1-n12",
+    "and-py-2020-c1-n13",
+    "and-py-2020-c1-n15",
+    "and-py-2020-c3-n12",
+    "and-py-2020-c3-n15",
+    "and-py-2020-c3-n16",
+    "and-py-2021-c1-n11",
+    "and-py-2021-c1-n13",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c1-n15",
+    "and-py-2021-c2-n04",
+    "and-py-2021-c2-n14",
+    "and-py-2022-c1-n12",
+    "and-py-2022-c1-n15",
+    "and-py-2022-c1-n16",
+    "and-py-2022-c2-n12",
+    "and-py-2022-c2-n13",
+    "and-py-2022-c2-n15",
+    "and-py-2022-c2-n16",
+    "and-py-2022-c3-n12",
+    "and-py-2022-c3-n14",
+    "and-py-2022-c3-n15",
+    "and-py-2023-c1-n12",
+    "and-py-2023-c1-n14",
+    "and-py-2023-c1-n15",
+    "and-py-2023-c2-n11",
+    "and-py-2023-c2-n12",
+    "and-py-2023-c2-n15",
+    "and-py-2023-c2-n17",
+    "and-py-2023-c3-n13",
+    "and-py-2023-c3-n14",
+    "and-py-2023-c3-n16",
+    "and-py-2024-c1-n13",
+    "and-py-2024-c1-n14",
+    "and-py-2024-c2-n12",
+    "and-py-2024-c2-n14",
+    "and-py-2024-c2-n16",
+    "and-py-2024-c3-n12",
+    "and-py-2024-c3-n14",
+    "and-py-2024-c3-n16",
+    "and-py-2024-c3-n17",
+    "and-py-2025-c1-n03",
+    "and-py-2025-c1-n12",
+    "and-py-2025-c1-n16",
+    "and-py-2025-c1-n17",
+    "and-py-2025-c2-n11",
+    "and-py-2025-c2-n14",
+    "and-py-2025-c2-n16",
+    "and-py-2025-c3-n01",
+    "and-py-2025-c3-n12",
+    "and-py-2025-c3-n14",
+    "and-py-2026-c1-n12",
+    "and-py-2026-c1-n14",
+    "and-py-2026-c2-n12",
+    "and-py-2026-c2-n14",
+    "and-py-2026-c2-n15"
+   ]
   },
   {
    "id": "py-nav-03",
@@ -849,7 +1004,34 @@
     "https://campus.greenwichnautica.es/mod/book/view.php?id=3339&chapterid=3586",
     "https://www.isndf.com.ar/compas-declinacion-magnetica-y-desvio-del-compas/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-2024-c1-t41",
+    "and-2026-c1-t37",
+    "and-2026-c2-t09",
+    "and-2026-c2-t38",
+    "and-py-2020-c1-n13",
+    "and-py-2020-c3-n07",
+    "and-py-2020-c3-n16",
+    "and-py-2021-c1-n03",
+    "and-py-2021-c1-n07",
+    "and-py-2021-c2-n08",
+    "and-py-2021-c2-n13",
+    "and-py-2022-c1-n16",
+    "and-py-2023-c1-n04",
+    "and-py-2023-c1-n12",
+    "and-py-2023-c3-n10",
+    "and-py-2024-c1-n02",
+    "and-py-2024-c1-n15",
+    "and-py-2024-c2-n03",
+    "and-py-2024-c2-n12",
+    "and-py-2024-c3-n02",
+    "and-py-2024-c3-n13",
+    "and-py-2025-c1-n02",
+    "and-py-2025-c1-n13",
+    "and-py-2025-c2-n03",
+    "and-py-2025-c3-n12",
+    "and-py-2026-c2-n15"
+   ]
   },
   {
    "id": "py-nav-04",
@@ -861,7 +1043,26 @@
     "https://www.estudiasonavegas.com/tests-online/118-apuntes-navegacion-astronomica-capitan-de-yate/452-derrota-loxodromica",
     "https://www.patrondeyate.net/curso-de-navegacion-loxodromica.html"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-n20",
+    "and-py-2020-c3-n20",
+    "and-py-2021-c1-n18",
+    "and-py-2021-c2-n18",
+    "and-py-2021-c2-n19",
+    "and-py-2022-c1-n20",
+    "and-py-2022-c2-n20",
+    "and-py-2022-c3-n20",
+    "and-py-2023-c1-n20",
+    "and-py-2023-c2-n20",
+    "and-py-2023-c3-n20",
+    "and-py-2024-c1-n20",
+    "and-py-2024-c2-n20",
+    "and-py-2024-c3-n20",
+    "and-py-2025-c1-n20",
+    "and-py-2025-c2-n20",
+    "and-py-2026-c1-n20",
+    "and-py-2026-c2-n20"
+   ]
   },
   {
    "id": "py-nav-05",
@@ -873,7 +1074,52 @@
     "https://encvirtual.es/cursos/PYATE/c2/seccion_07/49%20Mareas.htm",
     "https://www.librosnauticos.com/portal/descargas/fe-erratas/libro-per/libro-per-pagina-194.pdf"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-2020-c1-t39",
+    "and-2022-c2-t41",
+    "and-2023-c1-t37",
+    "and-2023-c3-t38",
+    "and-2024-c2-t39",
+    "and-2024-c3-t41",
+    "and-2025-c1-t38",
+    "and-2026-c2-t37",
+    "and-2026-c2-t39",
+    "and-py-2020-c1-n18",
+    "and-py-2020-c1-n19",
+    "and-py-2020-c3-n18",
+    "and-py-2020-c3-n19",
+    "and-py-2021-c1-n19",
+    "and-py-2021-c1-n20",
+    "and-py-2021-c2-n20",
+    "and-py-2022-c1-n18",
+    "and-py-2022-c1-n19",
+    "and-py-2022-c2-n18",
+    "and-py-2022-c2-n19",
+    "and-py-2022-c3-n18",
+    "and-py-2022-c3-n19",
+    "and-py-2023-c1-n18",
+    "and-py-2023-c1-n19",
+    "and-py-2023-c2-n18",
+    "and-py-2023-c2-n19",
+    "and-py-2023-c3-n18",
+    "and-py-2023-c3-n19",
+    "and-py-2024-c1-n18",
+    "and-py-2024-c1-n19",
+    "and-py-2024-c2-n18",
+    "and-py-2024-c2-n19",
+    "and-py-2024-c3-n18",
+    "and-py-2024-c3-n19",
+    "and-py-2025-c1-n18",
+    "and-py-2025-c1-n19",
+    "and-py-2025-c2-n18",
+    "and-py-2025-c2-n19",
+    "and-py-2025-c3-n18",
+    "and-py-2025-c3-n19",
+    "and-py-2026-c1-n18",
+    "and-py-2026-c1-n19",
+    "and-py-2026-c2-n18",
+    "and-py-2026-c2-n19"
+   ]
   },
   {
    "id": "py-nav-06",
@@ -885,7 +1131,40 @@
     "https://aulanautica.org/foro/debate/anuario-de-mareas-ejercicio-de-mareas/",
     "https://es.wikipedia.org/wiki/Huso_horario_de_Espa%C3%B1a"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-n18",
+    "and-py-2020-c1-n19",
+    "and-py-2020-c3-n18",
+    "and-py-2020-c3-n19",
+    "and-py-2022-c1-n18",
+    "and-py-2022-c1-n19",
+    "and-py-2022-c2-n18",
+    "and-py-2022-c2-n19",
+    "and-py-2022-c3-n18",
+    "and-py-2022-c3-n19",
+    "and-py-2023-c1-n18",
+    "and-py-2023-c1-n19",
+    "and-py-2023-c2-n18",
+    "and-py-2023-c2-n19",
+    "and-py-2023-c3-n18",
+    "and-py-2023-c3-n19",
+    "and-py-2024-c1-n18",
+    "and-py-2024-c1-n19",
+    "and-py-2024-c2-n18",
+    "and-py-2024-c2-n19",
+    "and-py-2024-c3-n18",
+    "and-py-2024-c3-n19",
+    "and-py-2025-c1-n18",
+    "and-py-2025-c1-n19",
+    "and-py-2025-c2-n18",
+    "and-py-2025-c2-n19",
+    "and-py-2025-c3-n18",
+    "and-py-2025-c3-n19",
+    "and-py-2026-c1-n18",
+    "and-py-2026-c1-n19",
+    "and-py-2026-c2-n18",
+    "and-py-2026-c2-n19"
+   ]
   },
   {
    "id": "py-car-01",
@@ -897,7 +1176,17 @@
     "https://gmsailings.com/escuela-nautica/topics/corriente-desconocida-2/",
     "https://aulanautica.org/unit/4-navegacion-carta/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-n14",
+    "and-py-2022-c1-n17",
+    "and-py-2022-c2-n16",
+    "and-py-2022-c3-n16",
+    "and-py-2024-c1-n17",
+    "and-py-2024-c2-n17",
+    "and-py-2025-c1-n15",
+    "and-py-2025-c3-n16",
+    "and-py-2026-c2-n16"
+   ]
   },
   {
    "id": "py-car-02",
@@ -909,7 +1198,47 @@
     "https://www.estudiasonavegas.com/images/Archivos/PY/PY_Navegacion/corrientes.doc",
     "https://navegantesoceanicos.com/patron-de-yate-corriente-conocida/"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c1-n15",
+    "and-py-2020-c1-n16",
+    "and-py-2020-c1-n17",
+    "and-py-2020-c3-n14",
+    "and-py-2020-c3-n15",
+    "and-py-2020-c3-n17",
+    "and-py-2021-c1-n14",
+    "and-py-2021-c1-n15",
+    "and-py-2022-c1-n14",
+    "and-py-2022-c1-n15",
+    "and-py-2022-c2-n14",
+    "and-py-2022-c2-n15",
+    "and-py-2022-c3-n05",
+    "and-py-2022-c3-n07",
+    "and-py-2022-c3-n13",
+    "and-py-2023-c1-n13",
+    "and-py-2023-c1-n14",
+    "and-py-2023-c2-n14",
+    "and-py-2023-c2-n15",
+    "and-py-2023-c2-n17",
+    "and-py-2024-c1-n12",
+    "and-py-2024-c1-n15",
+    "and-py-2024-c2-n13",
+    "and-py-2024-c2-n14",
+    "and-py-2024-c3-n03",
+    "and-py-2024-c3-n13",
+    "and-py-2024-c3-n14",
+    "and-py-2024-c3-n17",
+    "and-py-2025-c1-n13",
+    "and-py-2025-c1-n17",
+    "and-py-2025-c2-n13",
+    "and-py-2025-c2-n16",
+    "and-py-2025-c2-n17",
+    "and-py-2025-c3-n01",
+    "and-py-2025-c3-n11",
+    "and-py-2025-c3-n17",
+    "and-py-2026-c1-n11",
+    "and-py-2026-c1-n17",
+    "and-py-2026-c2-n14"
+   ]
   },
   {
    "id": "py-car-03",
@@ -921,7 +1250,23 @@
     "https://encvirtual.es/cursos/PYATE/c2/seccion_04_01_06/44%20Lineas%20posicion%20no%20simultaneas.htm",
     "https://www.amigosjabega.org/wp-content/uploads/20040503-Ejercicios-de-Navegacion-Costera.pdf"
    ],
-   "preguntas": []
+   "preguntas": [
+    "and-py-2020-c3-n13",
+    "and-py-2021-c1-n11",
+    "and-py-2021-c2-n15",
+    "and-py-2022-c1-n13",
+    "and-py-2022-c2-n17",
+    "and-py-2022-c3-n17",
+    "and-py-2023-c1-n17",
+    "and-py-2023-c2-n16",
+    "and-py-2023-c3-n17",
+    "and-py-2024-c3-n15",
+    "and-py-2025-c1-n14",
+    "and-py-2025-c2-n15",
+    "and-py-2025-c3-n15",
+    "and-py-2026-c1-n16",
+    "and-py-2026-c2-n11"
+   ]
   }
  ]
 }

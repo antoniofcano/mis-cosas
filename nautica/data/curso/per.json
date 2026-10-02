@@ -1578,6 +1578,926 @@
      ]
     }
    ]
+  },
+  {
+   "ut": 9,
+   "titulo": "Meteorología",
+   "intro": "El tiempo decide si sales, por dónde vas y cuándo vuelves. En este tema aprendes a leer el barómetro y un mapa de isobaras, a reconocer borrascas y anticiclones, a hablar del viento como un marino (rolar, refrescar, caer), a entender el viento aparente que notas a bordo, las brisas de la costa y las escalas Beaufort y Douglas, y a conseguir la previsión oficial antes de salir. Las preguntas se repiten mucho: con unas pocas ideas claras las aciertas casi todas.",
+   "lecciones": [
+    {
+     "id": "per-9-1",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "La presión atmosférica: barómetros e isobaras",
+     "minutos": 14,
+     "objetivos": [
+      "Definir la presión atmosférica y dar su valor normal en hPa, mb, mmHg y atmósferas",
+      "Distinguir el barómetro de mercurio del aneroide y saber cómo funciona este último",
+      "Saber qué son las isobaras y no confundirlas con isalobaras, isobatas o isotermas",
+      "Entender por qué importa más la tendencia del barómetro que su valor"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué es la presión atmosférica",
+       "texto": "Encima de ti hay una columna de aire que llega hasta el límite de la atmósfera, y ese aire pesa. La **presión atmosférica** en un lugar es el **peso por unidad de superficie** de la columna de aire que gravita sobre él.\n\nFíjate en las tres palabras: es un **peso**, se reparte **por unidad de superficie** (no de volumen) y es el de la **columna** que tienes encima.\n\nLa presión cambia de un sitio a otro y de una hora a otra, y esas diferencias son las que mueven el aire: **el viento sopla de las altas presiones hacia las bajas**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El valor normal y sus unidades",
+       "texto": "Al nivel del mar, el valor medio normal es el que equilibra una columna de **760 mm de mercurio** a 0 °C y 45° de latitud. Ese valor es **una atmósfera**, y equivale a:\n- **1013,25 hPa** (hectopascales)\n- **1013,25 mb** (milibares): 1 hPa = 1 mb\n- **760 mmHg** (milímetros de mercurio)\n\nEn los mapas y partes se usa el hPa. Por debajo de unos 1013 hablamos de presión «baja» y por encima de «alta», pero lo que define una borrasca o un anticiclón es compararla con la de alrededor, no un número fijo."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Dos trampas numéricas: **760 son milímetros de mercurio, no hPa** (la presión normal no es 760 hPa), y **760 mmHg no equivalen a 1000 mb**, sino a 1013,25 mb. Si una opción dice «1000 mb = 760 mm», es falsa."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Barómetro de mercurio y aneroide",
+       "texto": "La presión se mide con el **barómetro** (el manómetro mide presiones de fluidos en circuitos, no la atmosférica).\n- **De mercurio**: una columna de mercurio que sube o baja con la presión. Es el más **exacto**, pero frágil. El modelo marino lleva un **estrechamiento capilar** en el tubo para amortiguar las oscilaciones que provocan los balances.\n- **Aneroide** («sin líquido»): una **cápsula metálica estanca con vacío** en su interior que se deforma con la presión; un muelle la equilibra con **fuerzas elásticas**; una aguja marca el valor en una esfera. Es de **lectura directa**, robusto y el habitual a bordo, aunque **menos exacto** que el de mercurio.\n\nEl **barógrafo** es un aneroide que dibuja la presión de forma continua en un papel."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En el aneroide las fuerzas son **elásticas**, nunca magnéticas ni eléctricas; no lleva mercurio; es de lectura **directa**; y es **menos** exacto que el de mercurio. El estrechamiento capilar es cosa del barómetro de mercurio, no del aneroide."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Lo que importa: la tendencia",
+       "texto": "Una lectura suelta dice poco. Lo útil es ver **cómo cambia** la presión con el tiempo: la **tendencia barométrica**. Por eso el aneroide tiene una segunda aguja que dejas sobre la lectura anterior.\n- **Subida lenta y continuada**: tiempo que mejora o se mantiene bueno.\n- **Bajada lenta**: empeoramiento general.\n- **Bajada rápida**: se acerca una borrasca o un frente, con viento fuerte.\n- **Estable**: el tiempo seguirá como está, sea bueno o malo.\n\nAnota la presión al salir y cada pocas horas."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-met-06"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las isobaras",
+       "texto": "Las **isobaras** son las líneas que unen puntos de **igual presión atmosférica**. Dicho de forma técnica, son la **intersección de las superficies isobáricas** (superficies de igual presión) en un momento dado **con una superficie de nivel**, que en los mapas de superficie es el **nivel del mar** (en el examen también aparece «con la superficie terrestre», y se da por buena). Las dos definiciones son correctas.\n\nEn los mapas se suelen trazar cada 4 hPa. Cuanto **más juntas** están, mayor es el **gradiente de presión** y **más fuerte sopla el viento**; separadas, viento flojo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "isobaras"
+       },
+       "texto": "Isobaras juntas = mucho gradiente = viento fuerte."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "No te dejes liar con los nombres: **isobara** = igual presión; **isalobara** = igual tendencia barométrica; **isoterma** = igual temperatura; **isobata** = igual profundidad (en la carta náutica). Si una opción dice que las isobaras unen puntos de igual tendencia o de igual temperatura, es falsa. Y trazarlas cada 4 hPa es solo una costumbre de dibujo, no su definición: «puntos de corte… con intervalos de 4 milibares» no es la respuesta buena."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Y la temperatura, en breve",
+       "texto": "La **temperatura** mide el grado de agitación de las partículas del aire (su energía cinética media). No es la suma de toda su energía: eso es otra magnitud, la energía interna.\n\nEscalas: **Celsius** (el agua congela a 0 °C y hierve a 100 °C), **Fahrenheit** (32 °F y 212 °F) y **Kelvin** (la absoluta: K = °C + 273,15). Para pasar de una a otra: **°F = °C × 9/5 + 32**.\n\nSe mide con el termómetro y se registra con el termógrafo. El aire caliente es menos denso y tiende a subir: de ahí nacen las brisas que verás más adelante."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Presión = peso por unidad de superficie de la columna de aire; normal = 1 atm = 1013,25 hPa = 760 mmHg; se mide con barómetro, y el aneroide es elástico y de lectura directa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué afirmación sobre el barómetro aneroide es correcta?",
+       "opciones": {
+        "a": "Contiene una cápsula de mercurio",
+        "b": "Equilibra la presión con fuerzas elásticas",
+        "c": "Es más exacto que el de mercurio"
+       },
+       "correcta": "b",
+       "explicacion": "El aneroide tiene una cápsula metálica con vacío que un muelle equilibra con fuerzas elásticas. No lleva mercurio y es menos exacto que el barómetro de mercurio, aunque más práctico a bordo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "En un mapa, las isobaras aparecen muy juntas sobre tu zona. ¿Qué esperas?",
+       "opciones": {
+        "a": "Viento flojo",
+        "b": "Viento fuerte",
+        "c": "Niebla"
+       },
+       "correcta": "b",
+       "explicacion": "Isobaras juntas significan un gradiente de presión grande, y cuanto mayor es el gradiente, más fuerte sopla el viento."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t36",
+      "and-2021-c1-t33",
+      "and-2021-c2-t36",
+      "and-2022-c1-t35",
+      "and-2022-c2-t34",
+      "and-2023-c1-t36",
+      "and-2023-c2-t36",
+      "and-2023-c3-t36",
+      "and-2024-c1-t33",
+      "and-2024-c2-t36",
+      "and-2025-c1-t35",
+      "and-2025-c2-t33",
+      "and-2025-c3-t33",
+      "and-2026-c2-t35",
+      "and-2026-c2-t36"
+     ],
+     "chuleta": [
+      "Presión = peso por unidad de superficie de la columna de aire. Se mide con barómetro (no manómetro).",
+      "Normal: 1 atm = 1013,25 hPa = 1013,25 mb = 760 mmHg (760 NO son hPa).",
+      "Aneroide: cápsula con vacío, fuerzas elásticas, lectura directa, menos exacto que el de mercurio.",
+      "Isobara = igual presión (corte de superficies isobáricas con el nivel del mar). Isalobara = igual tendencia.",
+      "Isobaras juntas = viento fuerte. La tendencia del barómetro vale más que la lectura."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – MeteoGlosario",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Glosario_de_terminos"
+      },
+      {
+       "titulo": "AEMET – Conocer más: marítima",
+       "url": "https://www.aemet.es/es/conocermas/maritima"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Presión atmosférica = peso por unidad de superficie de la columna de aire; isobaras = intersección de superficies isobáricas con el nivel del mar (o superficie de nivel)",
+       "fuente": "Plantillas Andalucía PER: and-2023-c2-t36 (c), and-2022-c2-t34 (c), and-2025-c1-t35 (b), and-2020-c3-t36 (d)"
+      },
+      {
+       "dato": "Valor medio normal: columna de 760 mm Hg a 0 °C, nivel del mar y 45° de latitud = 1 atm = 1013,25 hPa; 1 hPa = 1 mb; 1000 mb ≠ 760 mm",
+       "fuente": "Atmósfera estándar (OACI/OMM); plantillas and-2026-c2-t35 (falsa c), and-2025-c3-t33 (c), and-2025-c2-t33"
+      },
+      {
+       "dato": "Aneroide: cápsula estanca con vacío, fuerzas elásticas, lectura directa, menos exacto que el de mercurio; estrechamiento capilar = barómetro de mercurio marino",
+       "fuente": "Plantillas and-2023-c3-t36, and-2024-c2-t36, and-2026-c2-t36, and-2022-c1-t35"
+      },
+      {
+       "dato": "Isalobara = igual tendencia barométrica; isoterma = igual temperatura; isobata = igual profundidad",
+       "fuente": "AEMET MeteoGlosario; plantillas and-2021-c2-t36, and-2022-c2-t34"
+      },
+      {
+       "dato": "Temperatura = medida de la energía cinética media de las partículas (no la suma de cinética y potencial); K = °C + 273,15; °F = °C·9/5 + 32",
+       "fuente": "SI (BIPM); plantilla and-2025-c3-t33 (b falsa)"
+      },
+      {
+       "dato": "Tendencia: >3 hPa en 3 h bajando ≈ «falling quickly» (3,6–6 hPa/3 h), asociado a viento fuerte (regla py-met-06)",
+       "fuente": "Met Office, términos de tendencia barométrica del Shipping Forecast"
+      }
+     ]
+    },
+    {
+     "id": "per-9-2",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "Borrascas y anticiclones",
+     "minutos": 14,
+     "objetivos": [
+      "Describir una borrasca y un anticiclón: presión en el centro, giro del viento y tiempo asociado",
+      "Saber hacia dónde se desplazan las borrascas en nuestras latitudes",
+      "Situar la borrasca respecto a ti a partir del viento"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Dos tipos de centro de presión",
+       "texto": "En un mapa de isobaras verás zonas cerradas de dos tipos:\n- **Borrasca** (también depresión, baja o ciclón; **B** en los mapas españoles, **L** en los ingleses): región donde la presión es **más baja que la del aire que la rodea**; la presión **disminuye hacia el centro**.\n- **Anticiclón** (alta; **A** o **H**): la presión es **más alta que alrededor** y **aumenta de la periferia hacia el centro**.\n\nNo hay un número mágico: una borrasca de 1015 hPa rodeada de 1025 sigue siendo una borrasca."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo gira el viento (hemisferio norte)",
+       "texto": "El aire quiere ir de la alta a la baja, pero la rotación de la Tierra lo desvía (**fuerza de Coriolis**): en el hemisferio norte, **hacia la derecha**. El resultado es que el viento acaba soplando **casi paralelo a las isobaras**, girando:\n- En la **borrasca**: en **sentido contrario a las agujas del reloj** (sentido ciclónico) y algo **hacia dentro**.\n- En el **anticiclón**: en el **sentido de las agujas del reloj** (sentido anticiclónico) y algo **hacia fuera**.\n\nEl rozamiento con la superficie hace que el viento corte las isobaras con un ángulo pequeño, nunca perpendicular. En el hemisferio sur, todo al revés."
+      },
+      {
+       "tipo": "regla",
+       "id": "r30"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "borrasca"
+       },
+       "texto": "Borrasca (HN): presión baja en el centro, giro antihorario y aire que converge hacia dentro."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "anticiclon"
+       },
+       "texto": "Anticiclón (HN): presión alta en el centro, giro horario y aire que sale hacia fuera."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué tiempo trae cada uno",
+       "texto": "**Borrasca**: el aire converge en superficie y **asciende**; al subir se enfría y forma nubes. Trae **tiempo inestable**: nubosidad, lluvia o chubascos y viento fuerte (isobaras juntas). Son más pequeñas y se mueven deprisa.\n\n**Anticiclón**: el aire **desciende** desde arriba (subsidencia), se comprime, se calienta y se seca, y las nubes se deshacen. Trae **tiempo estable**: poca nube, sin lluvia y viento flojo (isobaras separadas), aunque con calma pueden aparecer **nieblas** o calimas. Son extensos y se mueven poco: pueden durar semanas."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Hacia dónde viajan las borrascas",
+       "texto": "En latitudes medias del hemisferio norte las borrascas se desplazan **en general de oeste a este** (hacia el este), arrastradas por los vientos del oeste dominantes, aunque a menudo **cambian de latitud** por el camino.\n\nEl **anticiclón de las Azores** hace de muro: en verano suele proteger la Península y desviar las borrascas hacia el norte; cuando se retira, las borrascas atlánticas entran con más facilidad."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dónde está la borrasca: Buys-Ballot",
+       "texto": "Con el giro antihorario en la cabeza puedes situar la borrasca sin mapa. **Ponte de espaldas al viento**: en el hemisferio norte la **baja presión queda a tu izquierda** (algo adelantada) y la alta a tu derecha.\n\nY si la borrasca viene del oeste, lo normal es que **antes de su llegada sople viento de componente sur**, que rola hacia el oeste o noroeste cuando pasa el frente frío. Depende de por dónde pase el centro respecto a ti."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "buys-ballot"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "r29"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En estas preguntas hay que comprobar **dos datos en cada opción**: el giro y la presión del centro. Borrasca (HN) = **antihoraria + centro bajo**; anticiclón (HN) = **horario + centro alto**. Cuidado con «la presión aumenta del interior hacia la periferia» (eso es una borrasca: el centro es lo más bajo). Una pregunta sobre el viento antes de la llegada de una borrasca se anuló y el tribunal dio por buenas todas las respuestas; la idea general que debes saber es viento de componente sur."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Borrasca: baja en el centro, antihoraria, tiempo malo y viaja hacia el este. Anticiclón: alta en el centro, horario, tiempo estable."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "En el hemisferio norte, la presión aumenta desde el centro hacia fuera y el viento gira al revés que las agujas del reloj. ¿Qué es?",
+       "opciones": {
+        "a": "Un anticiclón",
+        "b": "Una borrasca",
+        "c": "Una borrasca del hemisferio sur"
+       },
+       "correcta": "b",
+       "explicacion": "Si la presión crece hacia fuera, el centro es lo más bajo: es una borrasca, y en el hemisferio norte gira en sentido antihorario."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás de espaldas al viento en el Mediterráneo. ¿Dónde queda la baja presión?",
+       "opciones": {
+        "a": "A tu derecha",
+        "b": "A tu izquierda",
+        "c": "Justo detrás de ti"
+       },
+       "correcta": "b",
+       "explicacion": "Ley de Buys-Ballot: en el hemisferio norte, con el viento en la espalda, la baja queda a la izquierda (algo adelantada)."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t34",
+      "and-2020-c3-t34",
+      "and-2021-c1-t34",
+      "and-2021-c2-t33",
+      "and-2022-c1-t36",
+      "and-2022-c3-t33",
+      "and-2022-c3-t34",
+      "and-2023-c1-t34",
+      "and-2023-c2-t33",
+      "and-2024-c2-t35",
+      "and-2024-c3-t34",
+      "and-2025-c1-t33",
+      "and-2025-c2-t35",
+      "and-2026-c1-t34",
+      "and-2026-c2-t34"
+     ],
+     "chuleta": [
+      "Borrasca (B/L): presión más baja que alrededor, baja hacia el centro; HN antihoraria y convergente; mal tiempo.",
+      "Anticiclón (A/H): presión más alta, sube hacia el centro; HN horario y divergente; tiempo estable (posibles nieblas).",
+      "Coriolis desvía a la derecha en el HN; el viento casi paralelo a las isobaras, nunca perpendicular.",
+      "Borrascas: en general de W a E, cambiando a menudo de latitud.",
+      "Buys-Ballot (HN): de espaldas al viento, la baja a la izquierda."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – MeteoGlosario",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Glosario_de_terminos"
+      },
+      {
+       "titulo": "AEMET – Mapas con frentes (análisis y previsión)",
+       "url": "https://www.aemet.es/es/eltiempo/prediccion/mapa_frentes"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Borrasca: presión menor que la circundante, disminuye hacia el centro, giro antihorario (HN), tiempo inestable",
+       "fuente": "Plantillas and-2025-c1-t33 (c), and-2025-c2-t35 (c), and-2022-c1-t36 (d), and-2026-c2-t34 (d)"
+      },
+      {
+       "dato": "Anticiclón: presión aumenta de la periferia al centro, giro horario (HN)",
+       "fuente": "Plantillas and-2022-c3-t33 (d), and-2020-c3-t34 (a), and-2023-c1-t34 (d), and-2024-c3-t34 (c)"
+      },
+      {
+       "dato": "El viento de superficie no es perpendicular a las isobaras (corta con ángulo pequeño por rozamiento)",
+       "fuente": "Plantillas and-2023-c2-t33, and-2025-c1-t33 (a falsa); AEMET MeteoGlosario"
+      },
+      {
+       "dato": "Borrascas en el HN: en general de W a E, con cambios de latitud",
+       "fuente": "Plantillas and-2022-c3-t34 (b), and-2026-c1-t34 (a)"
+      },
+      {
+       "dato": "Buys-Ballot: de espaldas al viento (HN), la baja a la izquierda y algo adelantada",
+       "fuente": "OMM/Bowditch (American Practical Navigator), ley de Buys-Ballot; regla r29"
+      },
+      {
+       "dato": "and-2021-c2-t33 anulada: todas las respuestas dadas por correctas",
+       "fuente": "Nota informativa del tribunal, 21-ene-2022 (2ª conv. 2021)"
+      }
+     ]
+    },
+    {
+     "id": "per-9-3",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "El viento: vocabulario e instrumentos",
+     "minutos": 10,
+     "objetivos": [
+      "Usar bien rolar, refrescar, caer, calmar, racha y viento racheado",
+      "Saber qué mide el anemómetro y qué indican la veleta y el catavientos",
+      "Nombrar el viento por la dirección de la que viene"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Dirección e intensidad",
+       "texto": "De un viento te interesan dos cosas:\n- **Dirección**: se nombra por **de dónde viene**. Un viento norte sopla del norte hacia el sur; un poniente viene del oeste.\n- **Intensidad** (o fuerza): la fuerza que ejerce el viento, ligada a su velocidad. A bordo se da en **nudos** o en **grados Beaufort**.\n\nCasi todo el vocabulario del examen consiste en saber si una palabra habla de **dirección** o de **intensidad**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las palabras del marino",
+       "texto": "- **Rolar**: el viento **cambia de dirección** (y se mantiene en la nueva). Por ejemplo, pasa del SW al W.\n- **Refrescar**: la intensidad **aumenta** y se mantiene.\n- **Caer** (o amainar): la intensidad **disminuye** y se mantiene.\n- **Calmar**: el viento cesa del todo o casi.\n- **Racha**: aumento **brusco y breve** de la intensidad.\n- **Viento racheado**: la intensidad **sube y baja continuamente**, a golpes.\n\nOjo: «refrescar» no tiene nada que ver con la temperatura."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Rolar es dirección; refrescar, caer, racha y racheado son intensidad."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Muchas preguntas mezclan una palabra real con la definición de otra: «refresca cuando disminuye» (falso, eso es caer), «cae cuando cambia de dirección» (falso, eso es rolar), «racha es un cambio suave y estable» (falso, es brusco y breve). Si las tres primeras opciones solo hablan de intensidad y te preguntan por rolar, la correcta es «ninguna de las anteriores»."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Instrumentos",
+       "texto": "- **Anemómetro**: mide la **velocidad** (intensidad) del viento. El de cazoletas gira más deprisa cuanto más sopla. A bordo, si el barco navega, mide el **viento aparente**; la electrónica puede calcular el real con los datos de la corredera.\n- **Veleta**: indica la **dirección** del viento.\n- **Catavientos**: también indica la **dirección**. Puede ser una manga de tela, una cinta en los obenques o los hilos (cataviento) cosidos en las velas, que te dicen cómo trabaja la vela.\n\nNinguno de ellos mide la presión: eso es el barómetro."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La veleta y el catavientos te dicen **de dónde** viene el viento, **no su fuerza**. La fuerza la da el anemómetro, que a su vez no indica la dirección."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Llevas media hora con viento del S y ahora entra del SW con la misma fuerza. ¿Qué ha hecho el viento?",
+       "opciones": {
+        "a": "Ha refrescado",
+        "b": "Ha rolado",
+        "c": "Ha caído"
+       },
+       "correcta": "b",
+       "explicacion": "Ha cambiado de dirección y se ha quedado en la nueva: ha rolado. Refrescar y caer son cambios de intensidad."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué instrumento usarías para saber cuántos nudos sopla?",
+       "opciones": {
+        "a": "La veleta",
+        "b": "El anemómetro",
+        "c": "El barómetro"
+       },
+       "correcta": "b",
+       "explicacion": "El anemómetro mide la velocidad del viento. La veleta da la dirección y el barómetro, la presión."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t33",
+      "and-2020-c3-t33",
+      "and-2022-c1-t33",
+      "and-2022-c3-t36",
+      "and-2023-c1-t33",
+      "and-2023-c3-t35",
+      "and-2024-c1-t36",
+      "and-2024-c2-t33",
+      "and-2024-c3-t36",
+      "and-2025-c2-t36",
+      "and-2025-c3-t34",
+      "and-2026-c1-t35"
+     ],
+     "chuleta": [
+      "El viento se nombra por de dónde viene.",
+      "Rola = cambia de dirección. Refresca = sube. Cae = baja. Calma = cesa.",
+      "Racha = subida brusca y breve. Racheado = sube y baja continuamente.",
+      "Anemómetro = velocidad. Veleta y catavientos = dirección."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – MeteoGlosario",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Glosario_de_terminos"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Rolar = cambiar de dirección (y mantenerse); refrescar = aumenta la intensidad; caer = disminuye y se mantiene",
+       "fuente": "Plantillas and-2020-c1-t33, and-2020-c3-t33, and-2024-c2-t33, and-2024-c3-t36, and-2026-c1-t35"
+      },
+      {
+       "dato": "Viento racheado = la intensidad varía continuamente a más y a menos; racha = aumento brusco y breve",
+       "fuente": "Plantillas and-2022-c3-t36 (d), and-2025-c3-t34 (a falsa)"
+      },
+      {
+       "dato": "Rolar sin opción correcta entre intensidades → «ninguna»",
+       "fuente": "Plantillas and-2024-c1-t36 (d), and-2025-c3-t34 (d)"
+      },
+      {
+       "dato": "Anemómetro = velocidad; veleta y catavientos = dirección",
+       "fuente": "Plantillas and-2025-c2-t34 (b, c ciertas), and-2026-c2-t36 (b falsa), and-2025-c3-t35"
+      },
+      {
+       "dato": "El viento se nombra por la dirección de la que viene",
+       "fuente": "AEMET, Glosario de términos marítimos"
+      }
+     ]
+    },
+    {
+     "id": "per-9-4",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "Viento real, de avance y aparente",
+     "minutos": 12,
+     "objetivos": [
+      "Distinguir el viento real, el de avance (relativo) y el aparente",
+      "Saber cuándo el aparente es mayor o menor que el real y hacia dónde se desplaza",
+      "Resolver el caso del viento por popa a la misma velocidad que el barco"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Tres vientos",
+       "texto": "- **Viento real** (o verdadero): el que sopla de verdad; el que notarías con el barco parado.\n- **Viento de avance** (o relativo): el que produce tu propio movimiento. Siempre viene **de proa** y tiene la misma intensidad que tu velocidad. Si vas a motor a 6 nudos en plena calma, notas 6 nudos de viento de proa.\n- **Viento aparente**: el que notas a bordo, la **suma vectorial** del real y el de avance. Es el que marcan el anemómetro y la veleta del barco y el que **mueve las velas**.\n\nCon el barco parado, aparente y real coinciden."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "viento-aparente"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El aparente se va a proa",
+       "texto": "Como el viento de avance siempre entra de proa, al sumarlo el aparente **entra más a proa que el real** (salvo con el real justo de proa o justo de popa, donde sigue en la línea proa-popa). Y cuanto más rápido vas, más se adelanta.\n\nEn intensidad depende de por dónde entre el real:\n- Real **de proa, de ceñida o de través**: los vientos se suman y el aparente es **más fuerte** que el real.\n- Real **por la aleta o la popa**: el de avance le resta y el aparente suele ser **más flojo** (justo en popa, real menos tu velocidad).\n\nPor eso ciñendo parece que sopla más de lo que sopla, y navegando en popa parece que hace menos viento."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-met-01"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "viento-aparente",
+        "rumbo": "cenida"
+       }
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "viento-aparente",
+        "rumbo": "popa"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El caso del aparente nulo",
+       "texto": "Imagina que el viento real te entra justo **por popa** y tú navegas **a la misma velocidad** que él. El viento de avance es igual y de proa: anula exactamente al real y el **aparente es cero**. A bordo no notas viento, y la vela cuelga.\n\nDicho al revés: si navegas y no sientes nada de viento, es que el real sopla **en el mismo sentido de tu rumbo** (te viene por popa) y a tu velocidad. Si soplara de proa lo notarías con más fuerza, no con menos."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El aparente depende de la velocidad del barco, no solo del viento real y del rumbo. Y nunca es «siempre» mayor ni «siempre» menor que el real: depende del ángulo. Una pregunta que planteaba esto sin matices fue anulada (el tribunal dio por buenas todas las respuestas); la idea segura es que, con arrancada avante, el aparente se recibe **más a proa** que el real."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Aparente = real + viento de avance. Entra más a proa que el real; ciñendo es más fuerte y en popa más flojo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas a motor a 5 nudos y no hay nada de viento real. ¿Qué viento aparente marca el anemómetro?",
+       "opciones": {
+        "a": "Cero",
+        "b": "5 nudos de proa",
+        "c": "5 nudos de popa"
+       },
+       "correcta": "b",
+       "explicacion": "Sin viento real, el aparente es solo el de avance: igual a tu velocidad y de proa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Con viento real de 12 nudos por popa, navegas a 12 nudos. ¿Cómo es el aparente?",
+       "opciones": {
+        "a": "24 nudos de proa",
+        "b": "Nulo",
+        "c": "12 nudos de popa"
+       },
+       "correcta": "b",
+       "explicacion": "Por popa los vientos se restan: 12 − 12 = 0. El aparente es nulo."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t36",
+      "and-2021-c2-t34",
+      "and-2022-c2-t35"
+     ],
+     "chuleta": [
+      "Real = el que sopla; de avance = el de tu marcha (de proa, igual a tu velocidad); aparente = suma de los dos.",
+      "El aparente es el que notas a bordo, el que mide el anemómetro y el que mueve las velas.",
+      "El aparente entra más a proa que el real; más fuerte ciñendo o de través, más flojo en aleta o popa.",
+      "Real por popa a tu misma velocidad = aparente nulo."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – MeteoGlosario",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Glosario_de_terminos"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Aparente = suma vectorial de real y viento de avance (de proa, igual a la velocidad del barco)",
+       "fuente": "Cálculo vectorial; regla py-met-01"
+      },
+      {
+       "dato": "Real por popa con velocidad del barco igual a la del viento → aparente nulo; sin viento sentido, el real sopla en el sentido del rumbo",
+       "fuente": "Plantillas and-2022-c2-t35 (d), and-2020-c1-t36 (a)"
+      },
+      {
+       "dato": "Ceñida 45°, real 12 kn y avance 6 kn → aparente 16,8 kn a 30°; popa 12 − 6 = 6 kn (ilustraciones)",
+       "fuente": "Cálculo: |A|² = R² + B² + 2RB·cos θ"
+      },
+      {
+       "dato": "El aparente es mayor que el real de proa a través; por aleta/popa suele ser menor (no «siempre» mayor ni menor)",
+       "fuente": "Cálculo vectorial (A > R si B + 2R·cos θ > 0)"
+      },
+      {
+       "dato": "and-2021-c2-t34 anulada: todas las respuestas dadas por correctas",
+       "fuente": "Nota informativa del tribunal, 4-ene-2022 (2ª conv. 2021)"
+      }
+     ]
+    },
+    {
+     "id": "per-9-5",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "Brisas costeras: virazón y terral",
+     "minutos": 10,
+     "objetivos": [
+      "Explicar por qué se forman las brisas costeras",
+      "Saber cuándo y hacia dónde soplan la virazón y el terral"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Por qué hay brisas",
+       "texto": "La tierra se **calienta y se enfría mucho más deprisa** que el mar. Esa diferencia crea, cerca de la costa y con tiempo estable, una circulación local que cambia de sentido entre el día y la noche: las **brisas costeras**.\n\nSi tierra y mar se calentaran por igual, no habría brisas. Son más marcadas en verano, con cielos despejados y sin un viento general fuerte que las tape."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La virazón: de día, del mar",
+       "texto": "Por la mañana el sol calienta la tierra antes que el agua. El aire sobre tierra se calienta, se hace más ligero y **sube**, y en superficie queda una presión relativamente más baja sobre la costa. El aire del mar entra a ocupar su sitio.\n\nEso es la **virazón** (en el Mediterráneo también la llaman marinada): sopla **de día, del mar hacia tierra**. Empieza a media mañana, alcanza su máximo a primera hora de la tarde y puede ser moderada, con suficiente fuerza para levantar marejadilla."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "brisa-mar"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El terral: de noche, de tierra",
+       "texto": "Por la noche ocurre lo contrario: la tierra **pierde el calor más rápido** que el mar. Sobre tierra queda aire más frío y una presión relativamente más alta, y sobre el mar una presión relativamente más baja. El aire fluye **de tierra hacia el mar**.\n\nEso es el **terral**: sopla **de noche y a primeras horas de la mañana**, desde la costa hacia el mar. Suele ser más flojo que la virazón y se nota sobre todo cerca de la costa."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "brisa-tierra"
+       }
+      },
+      {
+       "tipo": "clave",
+       "texto": "Terral viene de tierra: de noche, de tierra al mar. Virazón: de día, del mar a tierra."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las preguntas suelen cruzar los datos: «el terral sopla de día», «la virazón sopla de tierra al mar» o «la virazón es nocturna» son falsas. Si todas las opciones están cruzadas, la buena es «ninguna» o «todas son falsas». Y no te despiste el artículo: el examen dice a veces «el virazón», aunque lo correcto es «la virazón»; es la misma brisa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Son las 15:00 de un día de verano despejado. ¿Qué brisa esperas en la costa?",
+       "opciones": {
+        "a": "Terral, de tierra al mar",
+        "b": "Virazón, del mar a tierra",
+        "c": "Ninguna: las brisas solo soplan de noche"
+       },
+       "correcta": "b",
+       "explicacion": "De día la tierra está más caliente que el mar, así que entra la virazón desde el mar hacia la costa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué afirmación es falsa?",
+       "opciones": {
+        "a": "El terral se produce de noche",
+        "b": "La virazón sopla del mar a tierra",
+        "c": "Las brisas se deben a que tierra y mar se calientan por igual"
+       },
+       "correcta": "c",
+       "explicacion": "Las brisas existen justamente porque tierra y mar NO se calientan ni se enfrían al mismo ritmo."
+      }
+     ],
+     "practica": [
+      "and-2020-c3-t35",
+      "and-2021-c1-t35",
+      "and-2022-c1-t34",
+      "and-2022-c3-t35",
+      "and-2023-c2-t35",
+      "and-2023-c3-t34",
+      "and-2024-c3-t33",
+      "and-2025-c1-t34",
+      "and-2025-c3-t36"
+     ],
+     "chuleta": [
+      "Causa: la tierra se calienta y se enfría más deprisa que el mar.",
+      "Virazón (marinada): de día, del mar hacia tierra; más fuerte por la tarde.",
+      "Terral: de noche y al amanecer, de tierra hacia el mar; más flojo.",
+      "Con presión relativa baja sobre el lado caliente, el aire entra desde el lado frío."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – MeteoGlosario",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Glosario_de_terminos"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Virazón: de día, del mar a tierra; terral: de noche, de tierra al mar",
+       "fuente": "RAE, DLE («virazón», «terral»); plantillas and-2023-c2-t35 (a), and-2023-c3-t34 (b), and-2025-c1-t34 (a)"
+      },
+      {
+       "dato": "Causa: la tierra se calienta y se enfría más deprisa que el mar (no por igual)",
+       "fuente": "Plantillas and-2021-c1-t35 (d), and-2022-c1-t34 (d)"
+      },
+      {
+       "dato": "Respuestas «todas falsas/ninguna» cuando todas están cruzadas",
+       "fuente": "Plantillas and-2024-c3-t33 (d), and-2022-c1-t34 (d)"
+      },
+      {
+       "dato": "«Virazón» es femenino («la virazón»)",
+       "fuente": "RAE, Diccionario de la lengua española"
+      }
+     ]
+    },
+    {
+     "id": "per-9-6",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "Beaufort, la mar y la escala Douglas",
+     "minutos": 14,
+     "objetivos": [
+      "Saber qué mide la escala Beaufort y cuántos grados tiene",
+      "Definir intensidad, persistencia y fetch",
+      "Distinguir mar de viento y mar de fondo",
+      "Saber qué mide la escala Douglas y cuántos grados tiene"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La escala Beaufort: el viento",
+       "texto": "La **escala Beaufort** sirve para estimar la **intensidad del viento**. Tiene **13 grados, de 0 (calma) a 12 (temporal huracanado)**, y cada grado corresponde a un intervalo de velocidad en nudos y a un aspecto de la mar. Es la que usan los partes marítimos de AEMET: «fuerza 5», «fuerza 7»…\n\nNo hace falta saberla entera, pero sí ubicarte: fuerza 3–4 es una brisa agradable; a partir de **fuerza 6 (fresco)**, con crestas blancas por todas partes, la navegación ya es exigente para una embarcación pequeña; y **fuerza 8 es temporal**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "beaufort",
+        "fuerza": 6
+       },
+       "texto": "La tabla completa: Beaufort (viento) a la izquierda y Douglas (mar) a la derecha."
+      },
+      {
+       "tipo": "regla",
+       "id": "r31"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué hace crecer la mar",
+       "texto": "La altura de las olas que levanta el viento depende de tres factores:\n- **Intensidad**: la fuerza del viento sobre la superficie del mar.\n- **Persistencia**: el **tiempo** que lleva soplando con la misma dirección e intensidad.\n- **Fetch**: la **extensión** (distancia rectilínea) de mar sobre la que sopla con la misma dirección e intensidad.\n\nCuanto mayores son los tres, más alta la ola, hasta un límite: la **mar totalmente desarrollada**, en la que por mucho que siga soplando la ola ya no crece. Un viento de tierra levanta poca mar cerca de la costa porque apenas tiene fetch."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "**Fetch = espacio** (extensión de mar), **persistencia = tiempo**, **intensidad = fuerza**. No es la altura de la ola ni la profundidad a la que rompe, y «permanencia» o «potencia» son palabras de relleno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Mar de viento y mar de fondo",
+       "texto": "- **Mar de viento**: la que levanta el viento que sopla **en ese momento y en ese lugar**. Olas cortas, irregulares, de cresta puntiaguda que rompen con facilidad.\n- **Mar de fondo** (o mar de leva): olas que se formaron **lejos** y han viajado hasta ti. Son **largas, regulares y de cresta redondeada**, y pueden llegar con calma o con un viento local de otra dirección.\n\nCuando se juntan mares de distinta dirección, o mar contra corriente, la mar se vuelve **confusa** y más incómoda de lo que dicen los números."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La escala Douglas: la mar",
+       "texto": "La **escala Douglas** clasifica el **estado de la mar** según la **altura de las olas** (no su velocidad). Tiene **10 grados, del 0 al 9**:\n0 calma o llana · 1 rizada · 2 marejadilla · 3 marejada · 4 fuerte marejada · 5 gruesa · 6 muy gruesa · 7 arbolada · 8 montañosa · 9 enorme.\n\nComo referencia: marejadilla, olas de hasta 0,5 m; marejada, hasta 1,25 m; fuerte marejada, hasta 2,5 m; y a partir de gruesa, más de 2,5 m. Esta es la escala de la mar de viento; la mar de fondo se describe aparte."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-met-08"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El clásico del examen es intercambiarlas: **Beaufort = viento** (13 grados, 0–12) y **Douglas = mar** (10 grados, 0–9, por altura de ola). Si una opción dice que Douglas mide el viento, la velocidad de las olas o la salinidad, o que Beaufort clasifica el oleaje, es falsa. Y no existen las «escalas» de Coriolis ni de persistencia."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Beaufort mide el viento (0–12); Douglas, la mar por la altura de las olas (0–9). La mar crece con intensidad, persistencia y fetch."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Cómo se llama el tiempo que lleva soplando un viento con la misma dirección y fuerza?",
+       "opciones": {
+        "a": "Fetch",
+        "b": "Persistencia",
+        "c": "Intensidad"
+       },
+       "correcta": "b",
+       "explicacion": "Persistencia es el tiempo. El fetch es la extensión de mar y la intensidad, la fuerza."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El parte dice «mar gruesa». ¿A qué escala pertenece ese término?",
+       "opciones": {
+        "a": "Beaufort",
+        "b": "Douglas",
+        "c": "Ninguna: es un término popular"
+       },
+       "correcta": "b",
+       "explicacion": "Gruesa es el grado 5 de la escala Douglas, que describe el estado de la mar por la altura de las olas."
+      }
+     ],
+     "practica": [
+      "and-2020-c1-t35",
+      "and-2021-c1-t36",
+      "and-2021-c2-t35",
+      "and-2022-c2-t33",
+      "and-2022-c2-t36",
+      "and-2023-c1-t35",
+      "and-2023-c2-t34",
+      "and-2023-c3-t33",
+      "and-2024-c1-t34",
+      "and-2024-c1-t35",
+      "and-2024-c2-t34",
+      "and-2024-c3-t35",
+      "and-2025-c1-t36",
+      "and-2025-c2-t34",
+      "and-2025-c3-t35",
+      "and-2026-c1-t36",
+      "and-2026-c2-t33"
+     ],
+     "chuleta": [
+      "Beaufort = intensidad del viento, 13 grados (0 calma … 12 temporal huracanado). F8 = temporal.",
+      "Douglas = estado de la mar por altura de ola, 10 grados (0 calma … 9 enorme).",
+      "La mar crece con intensidad (fuerza), persistencia (tiempo) y fetch (extensión).",
+      "Mar de viento: local, corta e irregular. Mar de fondo: viene de lejos, larga y regular."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – Escalas de viento y oleaje (Beaufort y Douglas)",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Escalas_de_viento_y_oleaje"
+      },
+      {
+       "titulo": "AEMET – MeteoGlosario",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Glosario_de_terminos"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Beaufort: 13 grados (0 calma – 12 temporal huracanado); F6 fresco 22–27 kn, F7 frescachón 28–33, F8 temporal 34–40",
+       "fuente": "AEMET, Escalas de viento y oleaje (escala anemométrica Beaufort)"
+      },
+      {
+       "dato": "Douglas (mar de viento): 0–9, calma 0 m, rizada 0–0,1, marejadilla 0,1–0,5, marejada 0,5–1,25, fuerte marejada 1,25–2,5, gruesa 2,5–4, muy gruesa 4–6, arbolada 6–9, montañosa 9–14, enorme >14",
+       "fuente": "AEMET, Escalas de viento y oleaje (escala Douglas)"
+      },
+      {
+       "dato": "Fetch = extensión rectilínea con viento de dirección y fuerza constantes; persistencia = tiempo; intensidad = fuerza",
+       "fuente": "Plantillas and-2023-c3-t33, and-2023-c1-t35, and-2024-c1-t34, and-2025-c1-t36"
+      },
+      {
+       "dato": "Douglas clasifica la mar por altura de ola (no velocidad); Beaufort el viento",
+       "fuente": "Plantillas and-2023-c2-t34, and-2025-c2-t34 (d falsa), and-2022-c2-t33, and-2025-c3-t35"
+      },
+      {
+       "dato": "Douglas se usa para la mar de viento; la mar de fondo se da aparte",
+       "fuente": "AEMET, Escalas de viento y oleaje; Guía de meteorología marítima"
+      }
+     ]
+    },
+    {
+     "id": "per-9-7",
+     "curso": "per",
+     "ut": 9,
+     "titulo": "Antes de zarpar: la previsión y la decisión",
+     "minutos": 10,
+     "objetivos": [
+      "Saber dónde conseguir la previsión meteorológica oficial para navegar",
+      "Interpretar lo básico de un parte marítimo",
+      "Decidir con criterio si salir, cambiar de plan o volver"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La previsión es tu primera maniobra",
+       "texto": "Consultar el tiempo antes de salir no es opcional: es parte de la responsabilidad del patrón. Con la previsión decides si sales o no, qué ruta haces, cuándo vuelves y cómo preparas el barco y a la tripulación.\n\nLa fuente oficial en España es la **Agencia Estatal de Meteorología (AEMET)**, que elabora las predicciones y los **avisos** para la navegación marítima. Esos boletines te llegan por varios caminos."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dónde conseguirla",
+       "texto": "- **AEMET**: web y aplicación, con predicciones para **aguas costeras** (la franja que va **hasta las 20 millas** de la costa) y para alta mar, y los **avisos de fenómenos adversos**.\n- **Salvamento Marítimo**: sus centros de coordinación emiten por VHF los boletines y avisos costeros. Se anuncian por el **canal 16** y se leen en el **canal de trabajo** de cada centro (por ejemplo, el 10 o el 74).\n- **NAVTEX**: receptor que imprime o muestra automáticamente avisos meteorológicos y de seguridad; usa **518 kHz** (en inglés) y **490 kHz** (en el idioma nacional).\n- Radio, televisión y prensa, para hacerte una idea general.\n\nLas aplicaciones de modelos meteorológicos son útiles, pero **contrástalas siempre** con la predicción y los avisos oficiales."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué mirar en el parte",
+       "texto": "Un parte marítimo te da, zona por zona:\n- **Viento**: dirección (de dónde viene) y fuerza en **Beaufort**, y si va a **rolar**, **refrescar** o **caer**.\n- **Mar de viento**: en términos **Douglas** (marejadilla, marejada…), y aparte la **mar de fondo** con su dirección y altura.\n- **Visibilidad**, nubosidad, lluvia o chubascos, y posibles **nieblas** o tormentas.\n- **Avisos** en vigor.\n\nCompleta el parte con lo que ves: el **barómetro** (¿baja deprisa?), el cielo y el viento real en el puerto."
+      },
+      {
+       "tipo": "clave",
+       "texto": "Sal con la previsión oficial de AEMET consultada y contrastada, y con un plan B: puerto de refugio y hora límite para volver."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Decidir",
+       "texto": "Antes de soltar amarras pregúntate:\n- ¿El viento y la mar previstos están dentro de lo que **tu barco y tu tripulación** pueden llevar con comodidad?\n- ¿Hay **avisos** en vigor o un empeoramiento previsto para la hora de vuelta?\n- ¿Qué harás si el tiempo cambia: **puerto de refugio**, rumbo alternativo, hora límite?\n\nY durante la navegación, sigue escuchando los boletines. Si el barómetro cae deprisa, el viento refresca más de lo previsto o el cielo se cierra, **vuelve antes**: rara vez te arrepentirás."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Una pregunta mezcla la previsión con lo visto en las otras lecciones: es cierto que la previsión se obtiene de los boletines de AEMET y de Salvamento Marítimo, que la presión se mide con el aneroide y que Douglas clasifica la mar. Lo falso es que «el terral se produce en horas diurnas»: el terral es nocturno."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Qué organismo elabora en España las predicciones meteorológicas oficiales para la navegación?",
+       "opciones": {
+        "a": "AEMET",
+        "b": "La capitanía marítima",
+        "c": "El Instituto Hidrográfico de la Marina"
+       },
+       "correcta": "a",
+       "explicacion": "AEMET elabora las predicciones y avisos marítimos; Salvamento Marítimo, entre otros, los difunde por radio."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El parte da fuerza 7 para la tarde y tu barco es una lancha de 6 m. ¿Qué haces?",
+       "opciones": {
+        "a": "Salgo temprano y vuelvo antes de que entre",
+        "b": "Me quedo en puerto o cambio el plan",
+        "c": "Salgo: el parte suele exagerar"
+       },
+       "correcta": "b",
+       "explicacion": "Fuerza 7 (frescachón) es demasiado para una embarcación pequeña, y una previsión para la tarde puede adelantarse. Lo prudente es no salir o cambiar de plan."
+      }
+     ],
+     "practica": [
+      "and-2026-c1-t33"
+     ],
+     "chuleta": [
+      "Fuente oficial: AEMET (predicción costera hasta 20 millas, alta mar y avisos).",
+      "Difusión: Salvamento Marítimo por VHF (anuncio en canal 16), NAVTEX (518 y 490 kHz), radio y TV.",
+      "Apps: útiles, pero siempre contrastadas con lo oficial.",
+      "Parte: viento (Beaufort), mar (Douglas), mar de fondo, visibilidad y avisos.",
+      "Plan B siempre: refugio y hora límite."
+     ],
+     "profundizar": [
+      {
+       "titulo": "AEMET – Predicción marítima",
+       "url": "https://www.aemet.es/es/eltiempo/prediccion/maritima"
+      },
+      {
+       "titulo": "AEMET – Guía de meteorología marítima",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/guiamaritima"
+      },
+      {
+       "titulo": "AEMET – Escalas de viento y oleaje (Beaufort y Douglas)",
+       "url": "https://www.aemet.es/es/conocermas/maritima/detalles/Escalas_de_viento_y_oleaje"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "AEMET elabora boletines de alta mar y costeros (Centros de A Coruña y Palma); los costeros llegan hasta las 20 millas",
+       "fuente": "AEMET, Guía de meteorología marítima (págs. 3 y 10)"
+      },
+      {
+       "dato": "Boletines difundidos por SASEMAR: por VHF, anuncio en canal 16 y emisión en canal de trabajo de cada centro (p. ej. Huelva 16-10, Cádiz y Algeciras 16-74)",
+       "fuente": "AEMET, Guía de meteorología marítima (pág. 12); tabla de canales y horarios de Salvamento Marítimo"
+      },
+      {
+       "dato": "NAVTEX: 518 kHz en inglés (internacional), 490 kHz en español; alcance ≈ 400 millas; 4 centros de SASEMAR",
+       "fuente": "AEMET, Guía de meteorología marítima (pág. 8); OMI SMSSM"
+      },
+      {
+       "dato": "Beaufort F7 = frescachón",
+       "fuente": "AEMET, Escalas de viento y oleaje"
+      },
+      {
+       "dato": "La previsión se obtiene de boletines de AEMET y Centros de Salvamento Marítimo; terral = nocturno",
+       "fuente": "Plantilla and-2026-c1-t33 (b falsa)"
+      }
+     ]
+    }
+   ]
   }
  ]
 }

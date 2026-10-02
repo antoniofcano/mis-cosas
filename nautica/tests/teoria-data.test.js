@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { PER } from '../src/theory/blocks.js';
 import { narrateTheory } from '../src/teacher/theory.js';
+import { validSpec } from '../src/illustrations/index.js';
 
 const dir = new URL('../data/exams/', import.meta.url);
 const bank = JSON.parse(readFileSync(new URL('andalucia-per-teoria.json', dir))).preguntas;
@@ -30,5 +31,11 @@ test('el profe tiene explicación para todas las preguntas', () => {
     assert.ok(expl[q.id]?.explicacion, `sin explicación: ${q.id}`);
     const n = narrateTheory(q, expl[q.id], 'a');
     assert.ok(n.speech.length > 40 && !/undefined/.test(n.speech), q.id);
+  }
+});
+
+test('las ilustraciones asignadas a las preguntas son dibujables', () => {
+  for (const [id, e] of Object.entries(expl)) {
+    for (const s of e.ilustraciones ?? []) assert.ok(validSpec(s), `${id}: ${JSON.stringify(s)}`);
   }
 });

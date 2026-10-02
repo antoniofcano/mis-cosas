@@ -226,3 +226,24 @@ a.qdot.done { background: var(--accent); color: #fff; border-color: var(--accent
 .qholder { scroll-margin-top: 7rem; }
 tr.bad td { color: var(--warn); font-weight: 600; }
 a.card[aria-disabled="true"] { opacity: .6; }
+/* Ilustraciones de teoría */
+.il-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .8rem; }
+.il-grid.inline { margin-top: .5rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.il-figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .5rem; }
+.il-figure figcaption { font-size: .85rem; color: var(--muted); margin: .35rem .2rem; }
+.il-svg svg.il { display: block; width: 100%; height: auto; color: var(--text); font-family: system-ui, sans-serif; }
+svg.il .il-sky { fill: #e0f2fe; } svg.il .il-sea { fill: #1e3a5f; } svg.il .il-night { fill: #0b1220; } svg.il .il-panel { fill: var(--bg); }
+svg.il .il-title { font-size: 13px; font-weight: 700; text-anchor: middle; fill: currentColor; }
+svg.il .on-light { fill: #0f172a; }
+svg.il .il-title.left { text-anchor: start; } svg.il .on-dark, svg.il .il-title.night { fill: #f8fafc; }
+svg.il .il-sub { font-size: 11px; fill: #334155; }
+svg.il .il-lbl { font-size: 10px; fill: currentColor; } svg.il .il-lbl.strong { font-weight: 700; }
+svg.il .il-lbl.on-dark { fill: #e2e8f0; }
+svg.il .il-hull { fill: #1f2937; stroke: #475569; } svg.il .il-hull.day { fill: #9ca3af; stroke: #4b5563; }
+svg.il .il-mast { stroke: #475569; stroke-width: 2; }
+svg.il .il-daybox { fill: #dbeafe; }
+svg.il .il-hull-plan { fill: #e5e7eb; stroke: #475569; stroke-width: 1.5; }
+svg.il .il-water-cut { fill: #7dd3fc; opacity: .5; }
+svg.il .il-part { stroke: #94a3b8; fill: #94a3b8; font-size: 10px; } svg.il line.il-part { stroke-width: 1.2; }
+svg.il .il-part.on { stroke: #e11d48; fill: #e11d48; font-weight: 700; } svg.il text.il-part { stroke: none; }
+.il-fo { font: 11px/1.35 system-ui, sans-serif; color: var(--text); }

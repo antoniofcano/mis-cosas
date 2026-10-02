@@ -13,6 +13,7 @@ import { exerciseView } from './views/exercise.js';
 import { examsView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
 import { theoryHubView, practiceView, testView } from './views/theory.js';
+import { galleryView } from './views/gallery.js';
 
 const ROUTES = {
   '': homeView,
@@ -21,6 +22,7 @@ const ROUTES = {
   teoria: (o) => (o.params.parts[1] === 'ut' ? practiceView(o) : theoryHubView(o)),
   test: testView,
   conceptos: theoryView,
+  ilustraciones: galleryView,
   progreso: progressView,
   carta: chartView,
 };

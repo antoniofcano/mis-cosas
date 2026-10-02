@@ -9,6 +9,7 @@ import { buildSimulacro, buildReal, buildPractica, convocatorias, grade } from '
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
+import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
 import cartaSolutions from '../../exams/solutions/andalucia-per.js';
 import { narrateSteps } from '../../teacher/narrate.js';
@@ -65,6 +66,7 @@ function profePanel(q, expl, chosen) {
     h('span.profe-badge', '👨‍🏫 El profe'),
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, '🔊') : null,
     n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : '' }, line)),
+    expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones)) : null,
     q.ut === 11 ? h('p', h('a.btn.secondary', { href: link(['examenes', 'andalucia-per.json', q.id]) }, '🗺️ Ver la resolución en la carta')) : null,
   );
 }
@@ -95,6 +97,7 @@ export function theoryHubView({ ctx, progress }) {
       h('div.actions',
         h('a.btn', { href: link(['test', 'simulacro'], { s: randomSeed() }) }, '🎯 Simulacro de examen (45 preguntas, 90 min)'),
         h('a.btn.secondary', { href: '#reales' }, '📄 Exámenes reales completos'),
+        h('a.btn.secondary', { href: link(['ilustraciones']) }, '🎞️ Láminas animadas'),
         h('a.btn.secondary', { href: link(['conceptos']) }, '📘 Conceptos de carta')),
       tests.length ? h('section', h('h2', 'Tus últimos tests'), h('ul.small', tests.map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos}/${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
       h('h2', 'Practicar por bloques'),

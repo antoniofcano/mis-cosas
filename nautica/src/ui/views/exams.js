@@ -169,7 +169,7 @@ export function examsView({ ctx, progress, params: route }) {
         q.fuente_plantilla ? [' · ', h('a', { href: q.fuente_plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
         ''),
       q.notas ? h('details', h('summary', 'Notas sobre la fuente'), h('p.small', q.notas)) : null,
-      h('details.ai-context#ai-context', h('summary', '🤖 Resumen para asistentes IA (contiene la solución)'),
+      h('details.ai-context#ai-context', h('summary', 'Para asistentes de IA'),
         h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
     );
     refresh();

@@ -50,9 +50,9 @@ export function progressView({ progress }) {
         h('ul.small', tests.slice(0, 20).map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos}/${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
     }),
     h('section', h('h2', 'Ajustes'),
-      h('label.field', h('span.lbl', 'Tolerancia de corrección'),
+      h('label.field', h('span.lbl', 'Exigencia al corregir la carta'),
         h('select', { onchange: (ev) => progress.setSetting('toleranceFactor', Number(ev.target.value)) },
-          [[0.5, 'Estricta (½)'], [1, 'Normal (examen)'], [2, 'Amplia (×2)']].map(([v, t]) => h('option', { value: v, selected: s.toleranceFactor === v }, t)))),
+          [[0.5, 'Exigente'], [1, 'Como en el examen'], [2, 'Con margen']].map(([v, t]) => h('option', { value: v, selected: s.toleranceFactor === v }, t)))),
     ),
     voice.supported ? h('section', h('h2', '👨‍🏫 Voz del profe'),
       h('p.muted', 'Usa las voces de tu navegador o sistema (gratis). En Chrome y en Android suelen estar las de Google; en iPhone/Mac, las de Apple. Si no oyes nada, revisa que haya una voz en español instalada.'),

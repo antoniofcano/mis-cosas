@@ -47,7 +47,7 @@ export function exerciseView({ ctx, progress, params: route }) {
       h('button', { type: 'submit' }, 'Comprobar'),
       h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, '💡 Pista'),
       h('button.secondary', { type: 'button', onclick: () => { reveal(solution.steps.length); showSolution(); } }, 'Ver solución'),
-      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, '🔄 Otro'),
+      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, '🔄 Otro ejercicio'),
     ),
   );
   const diag = h('div.diagnosis', { 'aria-live': 'polite' });
@@ -128,7 +128,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     crumbs(currentTit(progress), ['Carta', tlink(currentTit(progress), ['carta'])], exercise.title),
     h('header',
       h('h1', exercise.title),
-      h('div.badges', exercise.levels.map((l) => h('span.badge', l)), h('span.badge.muted', `semilla ${seed}`)),
+      h('div.badges', exercise.levels.map((l) => h('span.badge', l))),
     ),
     h('div.layout',
       h('div.col',
@@ -144,7 +144,7 @@ export function exerciseView({ ctx, progress, params: route }) {
       widget ? h('div.col.chart-col', h('section', h('h2', 'Carta'), widget.el)) : null,
     ),
     h('details.ai-context#ai-context',
-      h('summary', '🤖 Resumen para asistentes IA (contiene la solución)'),
+      h('summary', 'Para asistentes de IA'),
       h('p.muted.small', 'Texto compacto pensado para Claude u otros asistentes. ', h('button.small', { type: 'button', onclick: () => copyText(summary()) }, 'Copiar')),
       aiPre,
     ),

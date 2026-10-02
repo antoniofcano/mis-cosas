@@ -60,7 +60,7 @@ export function questionCard(q, o = {}) {
       h('span', h('strong', `${k}) `), v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard',
-    h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b ? h('span.badge.muted', `${b.icon} UT${b.ut} ${b.titulo}`) : null,
+    h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
     h('p.qtext', q.enunciado),
@@ -131,7 +131,7 @@ export function teoriaView({ ctx, progress, tit }) {
         const s = statsFor(b.ut);
         const p = pct(s);
         return h('a.card', { href: tlink(T.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) },
-          h('h3', `${b.icon} UT${b.ut} · ${b.titulo}`),
+          h('h3', `${b.icon} ${b.titulo}`),
           h('p', `${b.n} preguntas en el examen${b.maxErrores != null ? ` · máximo ${b.maxErrores} errores` : ''}`),
           s.hechas ? h('div.bar', h('span', { style: `width:${Math.round((100 * s.hechas) / s.total)}%` })) : null,
           h('div.meta', h('span.stat', `${s.total} preguntas`), s.hechas ? h('span.stat', { class: p >= 70 ? 'ok' : p < 50 ? 'warn' : '' }, `${s.ok}/${s.hechas} ✓ (${p} %)`) : h('span.stat.muted', 'sin empezar')));
@@ -235,7 +235,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
         },
       });
       setChildren(body, card, feedback, h('div.actions', next,
-        h('button.secondary', { type: 'button', onclick: () => { i += 1; show(); } }, 'Saltar')));
+        h('button.secondary', { type: 'button', onclick: () => { i += 1; show(); } }, 'No la sé')));
       summaryText = practiceSummary(q, explicaciones[q.id], null);
     }
     setChildren(el,
@@ -352,11 +352,11 @@ export function testView({ ctx, progress, params: route, tit }) {
     refreshNav();
     setChildren(el,
       h('div.test-bar', h('strong', `${T.sigla} · ${test.titulo}`), clock, answeredCount,
-        h('button', { type: 'button', onclick: () => finish(false) }, 'Entregar')),
-      test.faltan.length ? h('p.warn.small', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => `UT${f.ut}`).join(', ')}; el simulacro no está completo.`) : null,
+        h('button', { type: 'button', onclick: () => finish(false) }, 'Terminar y corregir')),
+      test.faltan.length ? h('p.warn.small', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E, f.ut)?.titulo ?? f.ut).join(', ')}; el simulacro no está completo.`) : null,
       nav,
       cards,
-      h('div.actions', h('button', { type: 'button', onclick: () => finish(false) }, 'Entregar el examen')),
+      h('div.actions', h('button', { type: 'button', onclick: () => finish(false) }, 'Terminar y corregir')),
       h('p.muted.small', 'Sin corrección hasta que entregues, como en el examen. En blanco cuenta como fallo.'),
     );
   });

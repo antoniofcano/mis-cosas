@@ -12,7 +12,7 @@ import { voice } from '../voice.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { getExercise } from '../../exercises/registry.js';
 
-const ESTADO_TXT = { nueva: 'nueva', empezada: 'empezada', repasar: 'toca repasar', dominada: 'dominada' };
+const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', repasar: 'toca repasar', dominada: 'aprendida' };
 const PRACTICA_MAX = 10;
 
 /** Texto con **negrita** y listas «- » → nodos (sin HTML del contenido). */

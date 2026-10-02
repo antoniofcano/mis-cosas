@@ -63,7 +63,7 @@ export function galleryView({ tit }) {
     h('p.muted', `${total} láminas organizadas por los temas del examen. Son las mismas que usa el profe en las explicaciones: las luces parpadean con su ritmo real, los barcos maniobran y las señales acústicas suenan.`),
     h('nav.temas', temas.map(({ b, specs }) => h('a.chip', { href: `#ut${b.ut}`, onclick: (ev) => { ev.preventDefault(); document.getElementById(`ut${b.ut}`)?.scrollIntoView({ behavior: 'smooth' }); } }, `${b.icon} ${b.titulo} (${specs.length})`)),
       otro ? h('a.chip.secondary', { href: tlink(otro.id, ['laminas']) }, `Láminas del ${otro.sigla} →`) : null),
-    temas.map(({ b, specs }) => h('section', { id: `ut${b.ut}` }, h('h2', `${b.icon} UT${b.ut} · ${b.titulo}`), h('div.il-grid', illustrationEls(specs)))),
+    temas.map(({ b, specs }) => h('section', { id: `ut${b.ut}` }, h('h2', `${b.icon} ${b.titulo}`), h('div.il-grid', illustrationEls(specs)))),
   );
   return { el, summary: () => `VISTA láminas ${T.sigla}\n${temas.map(({ b, specs }) => `UT${b.ut} ${b.titulo}: ${specs.map((s) => { const v = s.clase ?? s.sistema ?? s.caso ?? s.situacion ?? s.modo ?? s.rumbo ?? s.marca ?? s.abrir ?? s.resaltar ?? (s.marcha && `${s.marcha}-${s.timon ?? ''}`); return s.tipo + (v ? `:${v}` : ''); }).join(', ')}`).join('\n')}` };
 }

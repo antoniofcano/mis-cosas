@@ -44,7 +44,8 @@ export function nortesIllustration(spec) {
   out.push(arrow(cx, cy, nm[0], nm[1], 'm', 'nt', 2.2), lbl(nm[0], nm[1] - 6, 'Nm', 'm', 'middle', 'font-weight="700"'));
   out.push(arrow(cx, cy, na[0], na[1], 'a', 'nt', 2.2), lbl(na[0], na[1] - 6, 'Na', 'a', 'middle', 'font-weight="700"'));
   out.push(arc(cx, cy, 120, Math.min(0, dm * k), Math.max(0, dm * k), 'm'), lbl(cx + (dm < 0 ? -12 : 12), cy - 124, `dm ${fmt(dm)}`, 'm', dm < 0 ? 'end' : 'start'));
-  out.push(arc(cx, cy, 95, Math.min(dm * k, ct * k), Math.max(dm * k, ct * k), 'a'), lbl(cx + (ct * k < dm * k ? -40 : 40), cy - 92, `Δ ${fmt(dv)}`, 'a', 'middle'));
+  out.push(arc(cx, cy, 95, Math.min(dm * k, ct * k), Math.max(dm * k, ct * k), 'a'));
+  { const [lx, ly] = pol(cx, cy, (dm * k + ct * k) / 2, 106); out.push(lbl(lx, ly, `Δ ${fmt(dv)}`, 'a', 'middle')); }
   out.push(arc(cx, cy, 60, Math.min(0, ct * k), Math.max(0, ct * k), 'r'), lbl(cx + (ct < 0 ? -10 : 10), cy - 64, `Ct ${fmt(ct)}`, 'r', ct < 0 ? 'end' : 'start', 'font-weight="700"'));
   out.push(`<circle cx="${cx}" cy="${cy}" r="3" fill="currentColor"/>`);
   out.push(lbl(14, H - 12, 'Este (E) suma · Oeste (W) resta · ángulos exagerados'));
@@ -70,9 +71,11 @@ export function enfilacionIllustration(spec) {
   for (const [x, y, t] of [[...f1, 'A'], [...f2, 'B']]) out.push(`<circle cx="${x}" cy="${y}" r="7" fill="#facc15" stroke="#92400e"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>`, lbl(x + 10, y + 4, `faro ${t}`));
   out.push(`<path d="M${b[0]},${b[1] - 10} l6,16 l-12,0z" fill="${C.g}"/>`);
   const n = pol(b[0], b[1], 0, 70);
-  out.push(arrow(b[0], b[1], n[0], n[1], 'v', 'en'), lbl(n[0], n[1] - 5, 'Nv', 'v', 'middle'));
-  const na = pol(b[0], b[1], -ct * 3, 60);
-  out.push(arrow(b[0], b[1], na[0], na[1], 'a', 'en', 1.8), lbl(na[0] - 4, na[1] - 5, 'Na', 'a', 'end'));
+  out.push(arrow(b[0], b[1], n[0], n[1], 'v', 'en'), lbl(n[0] + (ct < 0 ? 6 : -6), n[1] - 5, 'Nv', 'v', ct < 0 ? 'start' : 'end'));
+  // Ct = Dv − Da: con Ct negativa el norte de aguja queda al W (izquierda) del verdadero (ángulo exagerado ×3)
+  const na = pol(b[0], b[1], ct * 3, 60);
+  out.push(arrow(b[0], b[1], na[0], na[1], 'a', 'en', 1.8), lbl(na[0] + (ct < 0 ? -4 : 4), na[1] - 5, 'Na', 'a', ct < 0 ? 'end' : 'start'));
+  out.push(arc(b[0], b[1], 30, Math.min(ct * 3, dvv), Math.max(ct * 3, dvv), 'a'));
   out.push(arc(b[0], b[1], 40, 0, dvv, 'v'), lbl(b[0] + 26, b[1] - 46, `Dv ${dvv}° (carta)`, 'v'));
   out.push(lbl(150, 200, `Da ${da}° (aguja)`, 'a'), lbl(150, 216, `Ct = ${dvv}° − ${da}° = ${fmt(ct)}`, 'r', 'start', 'font-weight="700"'));
   out.push('</svg>');
@@ -177,7 +180,7 @@ export function loxodromicaIllustration() {
   out.push(title(160, 'Estima: Δl, apartamiento y rumbo'));
   const a = [70, 220];
   const b = [250, 70];
-  out.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${a[0]}" y2="${b[1]}" stroke="${C.v}" stroke-width="2"/>`, lbl(a[0] - 6, (a[1] + b[1]) / 2, 'Δl = D · cos R', 'v', 'end'));
+  out.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${a[0]}" y2="${b[1]}" stroke="${C.v}" stroke-width="2"/>`, lbl(a[0] + 6, (a[1] + b[1]) / 2 - 20, 'Δl = D · cos R', 'v', 'start'));
   out.push(`<line x1="${a[0]}" y1="${b[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${C.m}" stroke-width="2"/>`, lbl((a[0] + b[0]) / 2, b[1] - 8, 'A = D · sen R', 'm', 'middle'));
   out.push(arrow(a[0], a[1], b[0], b[1], 'r', 'lx', 2.8), lbl((a[0] + b[0]) / 2 + 10, (a[1] + b[1]) / 2 + 18, 'D (millas)', 'r'));
   out.push(arc(a[0], a[1], 40, 0, Math.atan2(b[0] - a[0], a[1] - b[1]) * (180 / Math.PI), 'a'), lbl(a[0] + 16, a[1] - 46, 'R', 'a', 'start', 'font-weight="700"'));

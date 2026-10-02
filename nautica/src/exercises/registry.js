@@ -12,14 +12,18 @@ import corrienteEfectiva from './types/corriente-efectiva.js';
 import corrienteRumboADar from './types/corriente-rumbo-a-dar.js';
 import corrienteDesconocida from './types/corriente-desconocida.js';
 import abatimiento from './types/abatimiento.js';
+import rumboPasarDistancia from './types/rumbo-pasar-distancia.js';
+import distanciaFaro from './types/distancia-faro.js';
 
 export const EXERCISES = [
   conversionRumbos,
   ctEnfilacion,
   estimaDirecta,
   rumboDistancia,
+  rumboPasarDistancia,
   situacionDemoraDistancia,
   situacionDosDemoras,
+  distanciaFaro,
   demorasNoSimultaneas,
   corrienteEfectiva,
   corrienteRumboADar,

@@ -32,7 +32,7 @@ export function resolvePosition(chart, d) {
 export function positionText(chart, d) {
   switch (d.modo) {
     case 'coords': return `en situación ${fmtLat(d.lat)}, ${fmtLon(d.lon)}`;
-    case 'demora': return `en la demora verdadera ${fmtBearing(d.dv)} del ${nameOf(chart, d.markId)}, a ${fmtMiles(d.dist)}`;
+    case 'demora': return `observando el ${nameOf(chart, d.markId)} en demora verdadera ${fmtBearing(d.dv)} y a ${fmtMiles(d.dist)} de distancia`;
     case 'rumbo-desde': return `a ${fmtMiles(d.dist)} al ${DIR_NAME[d.dir]} verdadero del ${nameOf(chart, d.markId)}`;
     case 'dos-rumbos': return `al ${DIR_NAME[d.a.dir]} verdadero del ${nameOf(chart, d.a.markId)} y al ${DIR_NAME[d.b.dir]} verdadero del ${nameOf(chart, d.b.markId)}`;
     default: throw new Error(d.modo);

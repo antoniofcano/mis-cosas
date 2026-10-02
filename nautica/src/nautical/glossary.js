@@ -11,6 +11,7 @@ export const GLOSSARY = {
   demora: { term: 'Demora', text: 'Ángulo desde el norte hasta la visual a un objeto, medido desde el barco. Demora verdadera Dv = Da + Ct. En la carta se traza desde el objeto la demora opuesta (Dv ± 180°).' },
   marcacion: { term: 'Marcación (M)', text: 'Ángulo entre la proa y la visual a un objeto. Por estribor (+) o por babor (−). Dv = Rv + M.' },
   'linea-posicion': { term: 'Línea de posición', text: 'Lugar geométrico donde está el barco según una observación (una demora da una recta, una distancia da un círculo). Dos líneas que se cortan dan la situación.' },
+  oposicion: { term: 'Oposición', text: 'Situación del barco entre dos puntos, en la recta que los une. La demora a uno de ellos es la dirección de la recta desde el otro hacia él; sirve para calcular la Ct: Ct = Dv − Da.' },
   enfilacion: { term: 'Enfilación', text: 'Dos puntos vistos uno detrás del otro. Su demora verdadera se mide en la carta sin error, por eso sirve para calcular la Ct: Ct = Dv − Da.' },
   traslado: { term: 'Traslado de una línea de posición', text: 'Una línea de posición tomada antes se desplaza paralela a sí misma según el rumbo y la distancia navegados hasta la hora de la segunda observación.' },
   estima: { term: 'Navegación de estima', text: 'Calcular la situación a partir de la de salida, el rumbo y la distancia navegada (d = V · t), sin observaciones externas.' },

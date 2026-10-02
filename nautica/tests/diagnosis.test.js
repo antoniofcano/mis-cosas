@@ -20,6 +20,7 @@ for (const ex of EXERCISES) {
         try {
           alt = m.mutate ? ex.solve(m.mutate(structuredClone(params), ctx), ctx).results : m.results(params, ctx, sol.results);
         } catch { continue; }
+        if (!alt) continue;
         const answers = answersFor(ex, params);
         const inputs = Object.fromEntries(answers.map((a) => [a.key, quantity(a.kind).format(alt[a.key] ?? sol.results[a.key])]));
         const r = check(ex, params, sol, inputs, ctx);

@@ -17,6 +17,7 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
+import { segmentar } from '../../theory/vocabulario.js';
 import cartaSolutions from '../../exams/solutions/andalucia-per.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 
@@ -54,21 +55,38 @@ const imgSrc = (p) => new URL(`../../../data/exams/${p}`, import.meta.url).href;
  */
 export function questionCard(q, o = {}) {
   const b = bloque(E, q.ut);
+  // Vocabulario (no en exámenes): los términos se pueden tocar y su definición aparece bajo la pregunta.
+  const usados = new Set();
+  const defBox = h('div.vocab-def', { hidden: true, 'aria-live': 'polite' });
+  let abierto = null;
+  const conVocab = (texto) => (o.vocab ? segmentar(texto, o.vocab, usados).map((x) => (x.tipo === 'texto' ? x.texto
+    : h('button.vocab-term', { type: 'button', 'aria-expanded': 'false', onclick: (ev) => {
+      ev.preventDefault(); // dentro de una opción, no la marques
+      ev.stopPropagation();
+      const t = o.vocab.porId.get(x.id);
+      const mismo = abierto === ev.currentTarget;
+      if (abierto) abierto.setAttribute('aria-expanded', 'false');
+      abierto = mismo ? null : ev.currentTarget;
+      defBox.hidden = mismo;
+      if (!mismo) { ev.currentTarget.setAttribute('aria-expanded', 'true'); setChildren(defBox, h('p', h('strong', `${t.termino}: `), t.definicion), h('button.small.secondary', { type: 'button', onclick: () => { defBox.hidden = true; abierto?.setAttribute('aria-expanded', 'false'); abierto = null; } }, 'Cerrar')); }
+    } }, x.texto))) : texto);
+  const enunciado = conVocab(q.enunciado);
   const opts = Object.entries(q.opciones ?? {}).map(([k, v]) => {
     const cls = !o.reveal ? '' : k === q.correcta ? 'correct' : k === o.chosen ? 'wrong' : '';
     const fig = q.opciones_figuras?.[k];
     return h('label.option', { class: cls },
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
-      h('span', h('strong', `${k}) `), v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
+      h('span', h('strong', `${k}) `), conVocab(v), fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard',
     h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
-    h('p.qtext', q.enunciado),
+    h('p.qtext', enunciado),
     (q.figuras ?? []).map((f) => (/tabla-mareas/.test(f)
       ? h('details.qtable', h('summary', '📊 Tabla para calcular la altura de la marea'), h('img.qfig.wide', { src: imgSrc(f), alt: 'Tabla de corrección de la altura de la marea', loading: 'lazy' }))
       : h('img.qfig', { src: imgSrc(f), alt: 'Figura de la pregunta', loading: 'lazy' }))),
+    defBox,
     h('div.options', opts),
   );
 }
@@ -182,7 +200,7 @@ export function examenesView({ ctx, progress, tit }) {
  *   onFin: (ok: number, n: number) => void, onSummary?: (texto: string) => void }} o
  * @returns {HTMLElement}
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, onFin, onSummary = () => {} }) {
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
@@ -203,7 +221,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       progress.recordExam(q.id, { choice: k, ok: good });
-      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta });
+      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab });
       card.replaceWith(nueva);
       card = nueva;
       setChildren(feedback, profePanel(q, explanationFor(q, explicaciones), k));
@@ -215,7 +233,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
-    let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta });
+    let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta, vocab });
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
@@ -250,7 +268,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const el = h('div.practice', barra, cont);
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     const fails = new Set(Object.entries(respuestas).filter(([, v]) => !v.ok).map(([k]) => k));
@@ -262,7 +280,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n) => {
         progress.logActividad(MIN_TANDA);
@@ -283,7 +301,7 @@ function mezclaView({ progress, seed }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, cont);
   let summaryText = 'VISTA repaso mezclado';
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     const empezados = bloquesEnOrden(E).filter((x) => preguntas.some((q) => q.ut === x.ut && respuestas[q.id])).map((x) => x.ut);
@@ -295,7 +313,7 @@ function mezclaView({ progress, seed }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, rotulo: `🔀 Repaso mezclado · ${empezados.length} temas`, temaEnCadaPregunta: true,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${empezados.length} temas`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n) => {
         progress.logActividad(MIN_TANDA);
@@ -340,7 +358,7 @@ export function testView({ ctx, progress, params: route, tit }) {
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
   let summaryText = 'VISTA examen (cargando)';
 
-  loadTheoryBank(T0.id).then(({ preguntas, explicaciones, reglasDe: rd }) => {
+  loadTheoryBank(T0.id).then(({ preguntas, explicaciones, reglasDe: rd, vocab: vocabBanco }) => {
     reglasDe = rd;
     const tc = progress.testEnCurso();
     const mismo = tc && tc.tit === T0.id && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : seedQ != null && tc.seed === seedQ);
@@ -497,7 +515,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       const renderReview = () => setChildren(review, test.preguntas.map((q, j) => {
         const d = g.detalle[j];
         if (filtro.value === 'falladas' && d.ok) return null;
-        return h('div.qholder', questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
+        return h('div.qholder', questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
       }));
       const filterSel = h('select', { onchange: (ev) => { filtro.value = ev.target.value; renderReview(); } },
         h('option', { value: 'falladas' }, 'Solo las falladas'), h('option', { value: 'todas' }, 'Todas'));

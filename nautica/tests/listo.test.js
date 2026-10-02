@@ -79,3 +79,23 @@ test('plan: el repaso mezclado aparece detrás de lo principal y una vez al día
   const hecho = planHoy({ estructura: PER, preguntas: qs, respuestas, ahora, ultimoMezclado: new Date(ahora).toLocaleDateString('sv-SE') });
   assert.ok(!hecho.some((x) => x.tipo === 'mezclado'));
 });
+
+import { compilarVocabulario, segmentar } from '../src/theory/vocabulario.js';
+test('vocabulario: palabra completa, sin distinguir mayúsculas, la primera vez y la forma más larga', () => {
+  const voc = compilarVocabulario([
+    { id: 'amura', termino: 'Amura', formas: ['amura', 'amuras'], definicion: 'x' },
+    { id: 'marea-viva', termino: 'Marea viva', formas: ['marea viva', 'mareas vivas'], definicion: 'y' },
+    { id: 'marea', termino: 'Marea', formas: ['marea'], definicion: 'z' },
+    { id: 'lsd', termino: 'LSD', formas: ['LSD'], definicion: 'w' },
+  ]);
+  const t = (s, u) => segmentar(s, voc, u).filter((x) => x.tipo === 'termino').map((x) => `${x.id}:${x.texto}`);
+  assert.deepEqual(t('Por la Amura de babor y la otra amura'), ['amura:Amura']);
+  assert.deepEqual(t('En mareas vivas la marea sube más'), ['marea-viva:mareas vivas', 'marea:marea']);
+  assert.deepEqual(t('amurado no es amura'), ['amura:amura']); // «amurado» no
+  assert.deepEqual(t('equipo con LSD.'), ['lsd:LSD']);
+  const usados = new Set();
+  assert.deepEqual(t('la amura', usados), ['amura:amura']);
+  assert.deepEqual(t('otra amura', usados), []); // ya marcada en el enunciado
+  assert.equal(segmentar('Hola', voc).map((x) => x.texto).join(''), 'Hola');
+  assert.equal(segmentar('Por la Amura de babor', voc).map((x) => x.texto).join(''), 'Por la Amura de babor');
+});

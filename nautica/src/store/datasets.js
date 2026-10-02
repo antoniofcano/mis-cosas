@@ -2,6 +2,7 @@
 // Los datos viven en /data como JSON: legibles por personas, por la app y por agentes de IA.
 
 import { TITULACIONES } from '../theory/blocks.js';
+import { compilarVocabulario } from '../theory/vocabulario.js';
 
 const cache = new Map();
 
@@ -29,9 +30,17 @@ export const loadExamBank = (file) => loadJSON(`data/exams/${file}`);
 export async function loadTheoryBank(tit = 'per') {
   const d = TITULACIONES[tit]?.datos ?? TITULACIONES.per.datos;
   const opt = (f) => (f ? loadJSON(`data/exams/${f}`).catch(() => null) : null);
-  const [teoria, carta, expl, mnemo] = await Promise.all([opt(d.teoria), opt(d.carta), opt(d.explicaciones), loadMnemonics()]);
+  const [teoria, carta, expl, mnemo, vocab] = await Promise.all([opt(d.teoria), opt(d.carta), opt(d.explicaciones), loadMnemonics(), loadVocabulario(tit)]);
   const preguntas = [...(teoria?.preguntas ?? []), ...(carta?.preguntas ?? []).map((q) => ({ ...q, ut: 11, ut_titulo: 'Carta de navegación' }))];
-  return { preguntas, explicaciones: expl ?? {}, reglasDe: mnemo.reglasDe };
+  return { preguntas, explicaciones: expl ?? {}, reglasDe: mnemo.reglasDe, vocab };
+}
+
+/** Vocabulario para tocar en las preguntas. El de Yate incluye el del PER (se da por sabido); su matiz manda. */
+export async function loadVocabulario(tit = 'per') {
+  const listas = await Promise.all((tit === 'py' ? ['per', 'py'] : ['per']).map((t) => loadJSON(`data/exams/vocabulario-${t}.json`).then((d) => d.terminos ?? []).catch(() => [])));
+  const porId = new Map();
+  for (const t of listas.flat()) porId.set(t.id, t);
+  return compilarVocabulario([...porId.values()]);
 }
 
 /** Curso de una titulación (módulos y lecciones); null si aún no existe. */

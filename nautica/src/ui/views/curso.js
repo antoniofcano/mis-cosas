@@ -169,7 +169,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       const rng = createRng(randomSeed());
       const ses = rng.shuffle(disponibles).sort((a, b) => orden(a) - orden(b)).slice(0, PRACTICA_MAX);
       setChildren(cont, tandaPreguntas({
-        preguntas: ses, explicaciones: bank.explicaciones, progress, barra, rotulo: `🎓 ${L.titulo}`,
+        preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, rotulo: `🎓 ${L.titulo}`,
         onSummary: (t) => { summaryText = `CLASE ${L.id} práctica\n${t}`; },
         onFin: (ok, total) => {
           const acierto = ok / total;

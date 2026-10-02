@@ -462,3 +462,9 @@ select { min-height: 44px; }
 .hoy .listo p { margin: 0; }
 .hoy .listo.listo-listo { border: 2px solid var(--ok); }
 .hoy .listo.listo-aun-no { border: 2px solid var(--warn); }
+/* Vocabulario dentro de las preguntas */
+.vocab-term { display: inline; min-height: 0; padding: .35em 0; margin: -.35em 0; border: 0; border-radius: 0; background: none; color: inherit; font: inherit; font-weight: inherit; text-decoration: underline dotted var(--accent) 2px; text-underline-offset: 4px; cursor: help; }
+.vocab-term[aria-expanded="true"] { background: var(--accent-2); color: var(--accent); }
+.vocab-term:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.vocab-def { margin: .4rem 0 .8rem; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); display: flex; flex-direction: column; gap: .4rem; align-items: flex-start; }
+.vocab-def p { margin: 0; }

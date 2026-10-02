@@ -7,6 +7,7 @@ import { TITULACIONES, tlink } from '../titulacion.js';
 import { voice, spanishVoices } from '../voice.js';
 import { botonesMinutos } from './bienvenida.js';
 import { guardarCopia, botonRecuperar } from '../copia.js';
+import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
 
 export function masView({ progress, tit }) {
   const T = TITULACIONES[tit];
@@ -18,6 +19,12 @@ export function masView({ progress, tit }) {
   const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => progress.setSetting(`examen_${tit}`, ev.target.value) });
 
   const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${new Date(s.ultimaCopia).toLocaleDateString('es-ES')}.` : '');
+
+  // Instalar la app (Android/Chrome): solo aparece si el navegador lo ofrece y no está ya instalada.
+  const instalarEl = h('section.instalar', { hidden: !puedeInstalar() }, h('h2', '📲 Instalar la app'),
+    h('p', 'Ponla en la pantalla de inicio: abre como una app y funciona sin conexión.'),
+    h('button.grande', { type: 'button', onclick: () => instalar() }, 'Instalar la app'));
+  alCambiarInstalable((si) => { instalarEl.hidden = !si; });
 
   const el = h('div.mas',
     h('h1', 'Más'),
@@ -51,6 +58,7 @@ export function masView({ progress, tit }) {
         [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)))),
       h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, '▶ Probar la voz')),
     ) : null,
+    instalarEl,
     h('section', h('h2', '💾 Copia de seguridad'),
       h('p', 'Lo que has estudiado se guarda solo en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
       copiaHecha,

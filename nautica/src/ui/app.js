@@ -23,6 +23,7 @@ import { reglasView } from './views/reglas.js';
 import { leccionView } from './views/curso.js';
 import { temarioView, temaView } from './views/temario.js';
 import { masView } from './views/mas.js';
+import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
@@ -152,6 +153,8 @@ async function main() {
   window.addEventListener('hashchange', render);
   render();
 }
+
+iniciarPwa();
 
 main().catch((e) => {
   document.getElementById('app').textContent = `Error al iniciar: ${e.message}`;

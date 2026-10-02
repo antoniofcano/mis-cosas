@@ -63,3 +63,22 @@ for (const tit of ['per', 'py']) {
     }
   });
 }
+
+test('una clase sin práctica queda aprendida al terminarla y no bloquea su tema', async () => {
+  const { estadoLeccion } = await import('../src/course/engine.js');
+  const { planHoy } = await import('../src/course/plan.js');
+  const { TITULACIONES } = await import('../src/theory/blocks.js');
+  const fs = await import('node:fs');
+  const l = { id: 'x', practica: [] };
+  assert.equal(estadoLeccion(l, undefined, {}).estado, 'nueva');
+  assert.equal(estadoLeccion(l, { paso: 3 }, {}).estado, 'empezada');
+  assert.equal(estadoLeccion(l, { visto: true, paso: 0 }, {}).estado, 'dominada');
+  // Yate: todo hecho y la clase de mareas (sin práctica) terminada → Hoy ya no la propone
+  const curso = JSON.parse(fs.readFileSync(new URL('../data/curso/py.json', import.meta.url)));
+  const preguntas = JSON.parse(fs.readFileSync(new URL('../data/exams/andalucia-py-teoria.json', import.meta.url))).preguntas;
+  const regs = {};
+  for (const m of curso.modulos) for (const c of m.lecciones) regs[c.id] = c.practica?.length ? { visto: true, caja: 2, proximo: Date.now() + 9e8 } : { visto: true, paso: 0 };
+  const respuestas = Object.fromEntries(preguntas.map((q) => [q.id, { ok: true }]));
+  const plan = planHoy({ estructura: TITULACIONES.py.estructura, curso, preguntas, regs, respuestas });
+  assert.equal(plan[0].tipo, 'simulacro', JSON.stringify(plan));
+});

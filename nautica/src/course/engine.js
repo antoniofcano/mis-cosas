@@ -24,6 +24,9 @@ export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
   const base = { hechas: hechas.length, aciertos, total: ids.length, pct, proximo: reg?.proximo ?? null };
   // Una clase abierta y dejada a medias (reg.paso > 0) ya está empezada.
   if (!reg?.visto && !reg?.paso && !hechas.length) return { ...base, estado: 'nueva' };
+  // Una clase sin preguntas de práctica (de concepto; su práctica está en otro tema) queda aprendida al terminarla.
+  // Si no, se quedaría «empezada» para siempre y su tema nunca estaría al día.
+  if (!ids.length && reg?.caja == null) return { ...base, estado: reg?.visto && !reg?.paso ? 'dominada' : 'empezada' };
   if (reg?.caja == null) return { ...base, estado: 'empezada' };
   if (reg.proximo != null && reg.proximo <= ahora) return { ...base, estado: 'repasar' };
   if (pct != null && pct < 0.6) return { ...base, estado: 'repasar' };

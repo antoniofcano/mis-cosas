@@ -12,6 +12,8 @@
 //   dibujar(estado, resultado, { pendiente }) → { svg | vistas: [{ svg, pie }], lectura, casillas?: [[etiqueta, valor]] }
 //   prediccion(estado, spec) → { enunciado, opciones: { a, b, … }, correcta, tras, estado? }
 //   partes?: { id: texto } para el resaltado entre vistas
+//   conmutador?: { id, etiqueta, opciones } cambia la pregunta que responde la lámina (no es un mando de la física)
+//   ajustar?(estado, id) → estado: normaliza el estado después de mover un mando o el conmutador
 
 export const MODOS = ['clase', 'explicacion', 'galeria'];
 export const MAX_MANDOS = 3;
@@ -50,6 +52,7 @@ export function controlador(def, spec, modo = 'galeria') {
         lectura: parte && def.partes?.[parte] ? def.partes[parte] : d.lectura,
         resultado: r,
         mandos,
+        conmutador: def.conmutador ? { ...def.conmutador, valor: estado[def.conmutador.id] } : null,
         bloqueado: bloqueado(),
         parte,
         prediccion: pred && { ...pred, respuesta, acierto: respuesta == null ? null : respuesta === pred.correcta },
@@ -64,9 +67,10 @@ export function controlador(def, spec, modo = 'galeria') {
     /** Mueve un mando. Devuelve false si está bloqueado o no existe. */
     mover(id, v) {
       if (bloqueado()) return false;
-      const m = listaMandos().find((x) => x.id === id);
+      const m = listaMandos().find((x) => x.id === id) ?? (def.conmutador?.id === id ? { tipo: 'opciones', ...def.conmutador } : null);
       if (!m) return false;
       estado = { ...estado, [id]: ajusta(m, v) };
+      if (def.ajustar) estado = def.ajustar(estado, id);
       parte = null; // al mover un mando vuelve la lectura del estado
       return true;
     },

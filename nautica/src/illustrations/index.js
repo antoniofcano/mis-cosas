@@ -8,7 +8,7 @@ import { crossingIllustration, soundIllustration, riesgoIllustration, SENALES } 
 import { meteoIllustration, boatIllustration, propellerIllustration, flagIllustration } from './misc.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
-import { enfilacionIllustration, corrienteIllustration, abatimientoIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
+import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
 import { heliceTimonIllustration, evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
@@ -39,8 +39,8 @@ const RENDERERS = {
   bandera: flagIllustration,
   nortes: (s) => dibujoFijo(INTERACTIVAS.nortes, s),
   enfilacion: enfilacionIllustration,
-  corriente: corrienteIllustration,
-  abatimiento: abatimientoIllustration,
+  corriente: (s) => dibujoFijo(INTERACTIVAS.corriente, s),
+  abatimiento: (s) => dibujoFijo(INTERACTIVAS.abatimiento, s),
   'viento-aparente': vientoAparenteIllustration,
   loxodromica: loxodromicaIllustration,
   marea: mareaIllustration,

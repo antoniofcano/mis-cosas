@@ -2,8 +2,10 @@
 // las specs no cambian y validSpec las sigue aceptando. Si la spec no encaja (aplica() falso), se dibuja la lámina fija.
 import { rosa } from './interactivas/rosa.js';
 import { nortes } from './interactivas/nortes.js';
+import { abatimiento } from './interactivas/abatimiento.js';
+import { corriente } from './interactivas/corriente.js';
 
-export const INTERACTIVAS = { rosa, nortes };
+export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente };
 
 /** Definición interactiva que corresponde a una spec, o null. */
 export function interactivaDe(spec) {

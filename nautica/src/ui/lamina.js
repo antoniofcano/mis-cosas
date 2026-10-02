@@ -18,6 +18,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
   const dibujo = h('div.il-svg.lam-dibujo');
   const lectura = h('p.lam-lectura', { 'aria-live': 'polite', id: `${uid}-lectura` });
   const casillas = h('div.lam-casillas');
+  const cadena = h('ol.lam-cadena');
   const ctl = h('div.lam-mandos');
   const aviso = h('p.lam-aviso', 'Responde primero para poder mover los mandos.');
   const fig = h('figure.il-figure.lamina', { 'data-modo': modo });
@@ -37,8 +38,11 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
     lectura.textContent = v.lectura;
     setChildren(casillas, (v.casillas ?? []).map(([k, val]) => h('div', h('b', k), val)));
     casillas.hidden = !v.casillas?.length;
+    setChildren(cadena, (v.cadena ?? []).map(([k, val]) => h('li', h('b', k), val)));
+    cadena.hidden = !v.cadena?.length;
     ctl.classList.toggle('lam-bloqueado', v.bloqueado);
     aviso.hidden = !v.bloqueado;
+    if (conmutadorEl) for (const b of conmutadorEl.querySelectorAll('button')) { b.setAttribute('aria-pressed', String(b.dataset.valor === String(v.conmutador.valor))); b.disabled = v.bloqueado; }
     for (const m of v.mandos) {
       const e = entradas.get(m.id);
       if (!e) continue;
@@ -92,6 +96,14 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
   }
 
   for (const m of v0.mandos) ctl.append(mandoEl(m));
+  // Conmutador: cambia lo que se pregunta (p. ej. «adónde voy» / «qué rumbo doy»). Al cambiar, los mandos se rehacen.
+  const conmutadorEl = v0.conmutador ? h('div.lam-mando.lam-conmutador', h('p.lam-etiqueta', { id: `${uid}-conm` }, v0.conmutador.etiqueta),
+    h('div.lam-seg', { role: 'group', 'aria-labelledby': `${uid}-conm` }, v0.conmutador.opciones.map(([val, txt]) => h('button.secondary', { type: 'button', 'data-valor': String(val), 'aria-pressed': 'false', onclick: () => {
+      if (!c.mover(v0.conmutador.id, val)) return;
+      entradas.clear();
+      setChildren(ctl, c.vista().mandos.map(mandoEl));
+      pinta();
+    } }, txt)))) : null;
   const partesBtns = Object.keys(def.partes ?? {}).length && def.botonesPartes
     ? def.botonesPartes.map(([p, t]) => h('button.secondary', { type: 'button', 'data-parte': p, 'aria-pressed': 'false', onclick: () => { c.resaltar(p); pinta(); } }, t))
     : [];
@@ -114,7 +126,8 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
     predEl,
     dibujo,
     partesBtns.length ? h('div.lam-seg.lam-partes', { role: 'group', 'aria-label': 'Partes del dibujo' }, partesBtns) : null,
-    v0.mandos.length ? h('div.lam-ctl', aviso, ctl) : null,
+    v0.mandos.length ? h('div.lam-ctl', aviso, conmutadorEl, ctl) : null,
+    cadena,
     lectura,
     casillas,
     volver || escuchar ? h('div.lam-botones', volver, escuchar) : null,

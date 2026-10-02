@@ -487,6 +487,9 @@ select { min-height: 44px; }
 .lam-casillas { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .5rem; }
 .lam-casillas div { background: var(--accent-2); border-radius: var(--radius); padding: .5rem .7rem; min-width: 0; }
 .lam-casillas b { display: block; font-size: 1rem; color: var(--muted); font-weight: 600; }
+.lam-cadena { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .3rem; }
+.lam-cadena li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem .8rem; background: var(--accent-2); border-radius: var(--radius); padding: .45rem .7rem; font-variant-numeric: tabular-nums; }
+.lam-cadena b { font-weight: 600; color: var(--muted); }
 .lam-botones { display: flex; flex-wrap: wrap; gap: .5rem; }
 .lam-botones button { min-height: 44px; }
 .lamina figcaption { font-size: 1rem; }

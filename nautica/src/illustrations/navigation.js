@@ -55,71 +55,7 @@ export function enfilacionIllustration(spec) {
   return { svg: out.join(''), caption: 'Cuando dos marcas se ven una detrás de otra estás sobre su enfilación: la demora verdadera la mides en la carta y la de aguja con la aguja. La diferencia es la corrección total.' };
 }
 
-// ---------------------------------------------------------------------------
-// Triángulo de velocidades con corriente. spec: { tipo:'corriente', caso:'efectivo'|'rumbo-a-dar' }
-
-export function corrienteIllustration(spec) {
-  const W = 320;
-  const H = 260;
-  const out = open(W, H, 'Triángulo de corriente', 'co');
-  const dar = spec.caso === 'rumbo-a-dar';
-  out.push(title(160, dar ? 'Rumbo a dar con corriente' : 'Rumbo y velocidad efectivos'));
-  const o = dar ? [50, 200] : [60, 220];
-  const s = dar ? 18 : 22; // px por nudo
-  const vb = [40, 6]; // rumbo, nudos
-  const vc = [120, 2.5];
-  const p1 = pol(o[0], o[1], vb[0], vb[1] * s);
-  const p2 = pol(p1[0], p1[1], vc[0], vc[1] * s);
-  if (dar) {
-    // el efectivo es la línea hacia el destino; el rumbo a dar sale del extremo de la corriente
-    const c1 = pol(o[0], o[1], vc[0], vc[1] * s);
-    out.push(`<line x1="${o[0]}" y1="${o[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="${C.g}" stroke-dasharray="5 4"/>`, lbl(p2[0] + 6, p2[1], 'destino'));
-    out.push(arrow(o[0], o[1], c1[0], c1[1], 'p', 'co'), lbl(c1[0] + 6, c1[1] + 4, '1 · corriente', 'p'));
-    out.push(arrow(c1[0], c1[1], p2[0], p2[1], 'v', 'co'), lbl((c1[0] + p2[0]) / 2 + 8, (c1[1] + p2[1]) / 2 + 10, '2 · Rv a dar (radio Vb)', 'v'));
-    out.push(arrow(o[0], o[1], p2[0], p2[1], 'r', 'co', 2.8), lbl((o[0] + p2[0]) / 2 - 10, (o[1] + p2[1]) / 2 - 6, '3 · Ref y Vef', 'r', 'end'));
-  } else {
-    out.push(arrow(o[0], o[1], p1[0], p1[1], 'v', 'co'), lbl((o[0] + p1[0]) / 2 - 8, (o[1] + p1[1]) / 2, 'Rv y Vb', 'v', 'end'));
-    out.push(arrow(p1[0], p1[1], p2[0], p2[1], 'p', 'co'), lbl((p1[0] + p2[0]) / 2 + 4, (p1[1] + p2[1]) / 2 - 8, 'Rc e Ihc', 'p'));
-    out.push(arrow(o[0], o[1], p2[0], p2[1], 'r', 'co', 2.8), lbl((o[0] + p2[0]) / 2 + 8, (o[1] + p2[1]) / 2 + 16, 'Ref y Vef', 'r'));
-    out.push(`<circle r="5" fill="${C.r}"><animateMotion dur="5s" repeatCount="indefinite" path="M${o[0]},${o[1]} L${p2[0].toFixed(1)},${p2[1].toFixed(1)}"/></circle>`);
-  }
-  out.push(lbl(14, H - 10, 'Escala: 1 hora de navegación'));
-  out.push('</svg>');
-  return {
-    svg: out.join(''),
-    caption: dar
-      ? 'Primero la corriente desde la salida; con centro en su extremo y radio la velocidad del barco cortas la línea al destino: esa dirección es el Rv a dar. La salida-corte es el efectivo.'
-      : 'El barco avanza con su rumbo y velocidad y la corriente lo arrastra: la suma de los dos vectores es el rumbo y la velocidad efectivos (sobre el fondo).',
-  };
-}
-
-// ---------------------------------------------------------------------------
-// Abatimiento por el viento. spec: { tipo:'abatimiento', banda:'babor'|'estribor' }
-
-export function abatimientoIllustration(spec) {
-  const W = 320;
-  const H = 250;
-  const babor = (spec.banda ?? 'babor') === 'babor';
-  const out = open(W, H, 'Abatimiento', 'ab');
-  out.push(title(160, `Viento por ${babor ? 'babor' : 'estribor'}: abatimiento ${babor ? '+' : '−'}`));
-  const o = [160, 220];
-  const rv = 0;
-  const ab = babor ? 14 : -14;
-  const p = pol(o[0], o[1], rv, 170);
-  const q = pol(o[0], o[1], rv + ab, 170);
-  out.push(arrow(o[0], o[1], p[0], p[1], 'v', 'ab'), lbl(p[0] - 6, p[1] + 4, 'Rv (proa)', 'v', 'end'));
-  out.push(arrow(o[0], o[1], q[0], q[1], 'r', 'ab', 2.8), lbl(q[0] + 6, q[1] + 4, 'Rs (superficie)', 'r', babor ? 'start' : 'end'));
-  out.push(arc(o[0], o[1], 100, Math.min(rv, ab), Math.max(rv, ab), 'a'), lbl(o[0] + ab * 3, o[1] - 108, `Ab ${babor ? '+' : '−'}`, 'a', 'middle'));
-  // barco sobre el Rv, desplazándose de lado hacia sotavento
-  out.push(`<g><path d="M0,-18 L7,4 L5,14 L-5,14 L-7,4Z" fill="${C.g}"/><animateMotion dur="6s" repeatCount="indefinite" path="M${o[0]},${o[1] - 20} L${q[0].toFixed(1)},${(q[1] + 30).toFixed(1)}"/></g>`);
-  for (let i = 0; i < 3; i++) {
-    const y = 80 + i * 40;
-    out.push(babor ? arrow(20, y, 60, y, 'g', 'ab', 2) : arrow(300, y, 260, y, 'g', 'ab', 2));
-  }
-  out.push(lbl(babor ? 20 : 300, 68, 'viento', 'g', babor ? 'start' : 'end'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: `El viento empuja el barco a sotavento: el rumbo de superficie se separa del de proa. Rs = Rv + Ab, con el abatimiento positivo si el viento entra por babor y negativo si entra por estribor.` };
-}
+// Corriente y abatimiento: ahora son interactivas, en src/illustrations/interactivas/ (cadena.js, corriente.js, abatimiento.js).
 
 // ---------------------------------------------------------------------------
 // Viento real, de avance y aparente. spec: { tipo:'viento-aparente' }

@@ -206,7 +206,20 @@ function specsDeClase(tipo) {
   return out;
 }
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
+const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  abatimiento(c, p) {
+    const e = c.estado();
+    assert.ok(p.enunciado.includes(`Viento por ${e.banda}`), p.enunciado);
+    assert.equal(p.opciones[p.correcta], e.ang === 0 ? 'Igual' : e.banda === 'babor' ? 'Mayor' : 'Menor');
+  },
+  corriente(c, p) {
+    const e = c.estado();
+    // Independiente del cálculo: el efectivo cae hacia donde va el agua; el rumbo a dar, hacia el lado contrario.
+    const l = ladoDeCorriente(e.rc, e.rumbo);
+    const esperado = e.modo === 'inversa' ? { estribor: 'A babor', babor: 'A estribor', igual: 'Igual que el del destino' }[l] : { estribor: 'A estribor', babor: 'A babor', igual: 'Igual que la proa' }[l];
+    assert.equal(p.opciones[p.correcta], esperado, p.enunciado);
+  },
   nortes(c, p) {
     const e = c.estado();
     const ct = e.dm + e.desvio;

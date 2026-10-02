@@ -28,3 +28,31 @@ test('marcación por banda', () => {
   assert.deepEqual(marcacionBanda(30, 30), { grados: 0, banda: 'proa' });
   assert.deepEqual(marcacionBanda(210, 30), { grados: 180, banda: 'popa' });
 });
+
+import { cadenaDirecta, cadenaInversa, ladoDe } from '../src/nautical/kinematics.js';
+
+test('cadena verdadero → superficie → efectivo y su inversa', () => {
+  // solo viento: Rs = Rv + Ab (babor +, estribor −)
+  assert.deepEqual(cadenaDirecta({ rv: 40, vb: 6, ab: 10 }), { rv: 40, rs: 50, ref: 50, vef: 6 });
+  assert.equal(cadenaDirecta({ rv: 40, vb: 6, ab: -10 }).rs, 30);
+  assert.equal(cadenaDirecta({ rv: 355, vb: 6, ab: 10 }).rs, 5); // cruza el norte
+  // corriente de proa a popa: no cambia el rumbo, resta velocidad
+  const contra = cadenaDirecta({ rv: 90, vb: 6, rc: 270, ic: 2 });
+  assert.ok(Math.abs(contra.ref - 90) < 1e-9 && Math.abs(contra.vef - 4) < 1e-9);
+  // corriente por el través de estribor: el efectivo cae a estribor
+  const traves = cadenaDirecta({ rv: 0, vb: 6, rc: 90, ic: 2 });
+  assert.ok(Math.abs(traves.ref - (Math.atan2(2, 6) * 180) / Math.PI) < 1e-9);
+  assert.equal(ladoDe(traves.ref, traves.rs), 'estribor');
+  // viento y corriente a la vez, ida y vuelta: la inversa devuelve el Rv de partida
+  for (const p of [{ rv: 40, ab: 10, rc: 120, ic: 2.5 }, { rv: 200, ab: -7, rc: 10, ic: 3 }, { rv: 359, ab: 5, rc: 270, ic: 1.5 }]) {
+    const d = cadenaDirecta({ ...p, vb: 6 });
+    const i = cadenaInversa({ ref: d.ref, vb: 6, ab: p.ab, rc: p.rc, ic: p.ic });
+    assert.ok(Math.abs(((i.rv - p.rv + 540) % 360) - 180) < 1e-6, JSON.stringify(p));
+    assert.ok(Math.abs(i.vef - d.vef) < 1e-6);
+  }
+  // inversa sin corriente: el rumbo a dar es el del destino menos el abatimiento
+  assert.deepEqual(cadenaInversa({ ref: 50, vb: 6, ab: 10 }), { rv: 40, rs: 50, ref: 50, vef: 6 });
+  // corriente más fuerte que el barco y en contra: imposible
+  assert.equal(cadenaInversa({ ref: 0, vb: 3, rc: 180, ic: 5 }), null);
+  assert.equal(ladoDe(10, 10), 'igual');
+});

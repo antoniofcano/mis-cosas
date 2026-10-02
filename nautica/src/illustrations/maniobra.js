@@ -24,8 +24,8 @@ export function heliceTimonIllustration(spec) {
   const W = 340;
   const H = 280;
   const out = open(W, H, 'Hélice y timón', 'ht');
-  out.push(title(W / 2, `${atras ? 'Atrás' : 'Avante'} con timón a ${BANDA[timon]} · hélice ${dex ? 'dextrógira' : 'levógira'}`));
-  const cx = 100;
+  out.push(title(W / 2, `${atras ? 'Atrás' : 'Avante'} · timón a ${BANDA[timon]} · hélice ${dex ? 'dextrógira' : 'levógira'}`));
+  const cx = 92;
   const cy = 150;
   const L = 160;
   const sgn = (b) => (b === 'er' ? 1 : -1);
@@ -54,7 +54,7 @@ export function heliceTimonIllustration(spec) {
     : atras
       ? `La proa cae a <b>${BANDA[proa]}</b> solo si lleva arrancada atrás suficiente; con poca arrancada domina la hélice y la popa se va a ${BANDA[popaHelice]}.`
       : `La proa cae a <b>${BANDA[proa]}</b>, algo más despacio: la hélice resta un poco.`;
-  out.push(fo(196, 40, 138, 230,
+  out.push(fo(204, 40, 132, 230,
     `<p style="margin:0 0 6px;color:${C.r}"><b>Timón</b> a ${BANDA[timon]} ${atras ? 'con arrancada atrás' : 'avante'}: popa a ${BANDA[popaTimon]}.</p>` +
     `<p style="margin:0 0 6px;color:${C.a}"><b>Hélice</b> ${dex ? 'dextrógira' : 'levógira'} ${atras ? 'atrás' : 'avante'}: popa a ${BANDA[popaHelice]} (presión lateral de las palas).</p>` +
     `<p style="margin:0">${res}</p>`));
@@ -72,8 +72,8 @@ function evolucionPath() {
   // integración simple: rumbo que cae cada vez más deprisa hasta una velocidad de giro constante
   // y un pequeño desplazamiento inicial hacia la banda contraria (la popa abre)
   const pts = [];
-  let [x, y, psi] = [80, 296, 0];
-  const r = 1 / 56;
+  let [x, y, psi] = [72, 300, 0];
+  const r = 1 / 78;
   for (let s = 0; s < 40; s++) { y -= 1; pts.push([x, y, 0]); }
   for (let s = 0; psi < rad(300); s++) {
     psi += r * (1 - Math.exp(-s / 34));
@@ -92,11 +92,10 @@ export function evolucionIllustration() {
   out.push(title(W / 2, 'Curva de evolución (todo a estribor)'));
   const { pts, r } = evolucionPath();
   const d = `M${pts.map((p) => `${fx(p[0])},${fx(p[1])}`).join(' L')}`;
-  const x0 = 80;
+  const x0 = 72;
   const start = pts[39];
   const p90 = pts.find((p) => p[2] >= Math.PI / 2);
   const p180 = pts.find((p) => p[2] >= Math.PI);
-  const xmin = Math.min(...pts.map((p) => p[0]));
   out.push(`<line x1="${x0}" y1="316" x2="${x0}" y2="40" stroke="${C.g}" stroke-dasharray="5 4"/>`, lbl(x0 - 4, 48, 'rumbo inicial', 'g', 'end', 'font-size="9"'));
   out.push(`<path d="${d}" fill="none" stroke="${C.v}" stroke-width="2.2"/>`);
   // diámetro final (círculo de giro estabilizado)
@@ -105,20 +104,19 @@ export function evolucionIllustration() {
   const ccx = last[0] + Math.cos(last[2]) * R;
   const ccy = last[1] + Math.sin(last[2]) * R;
   out.push(`<circle cx="${fx(ccx)}" cy="${fx(ccy)}" r="${fx(R)}" fill="none" stroke="${C.p}" stroke-dasharray="2 4" opacity=".7"/>`);
-  out.push(`<line x1="${fx(ccx - R)}" y1="${fx(ccy)}" x2="${fx(ccx + R)}" y2="${fx(ccy)}" stroke="${C.p}" stroke-width="1.2" marker-start="url(#ev-p)" marker-end="url(#ev-p)"/>`, lbl(ccx, ccy - 5, 'diámetro final', 'p', 'middle', 'font-size="9"'));
+  out.push(`<line x1="${fx(ccx + 20)}" y1="${fx(ccy - R)}" x2="${fx(ccx + 20)}" y2="${fx(ccy + R)}" stroke="${C.p}" stroke-width="1.2" marker-start="url(#ev-p)" marker-end="url(#ev-p)"/>`, lbl(ccx + 24, ccy + R * 0.55, 'diámetro', 'p', 'start', 'font-size="9"'), lbl(ccx + 24, ccy + R * 0.55 + 10, 'final', 'p', 'start', 'font-size="9"'));
   out.push(`<circle cx="${fx(start[0])}" cy="${fx(start[1])}" r="4" fill="${C.r}"/>`, lbl(start[0] + 8, start[1] + 4, 'timón a la banda', 'r', 'start', 'font-size="9"'));
   // avance: en la dirección del rumbo inicial hasta caer 90°
   out.push(`<line x1="${x0 - 22}" y1="${fx(start[1])}" x2="${x0 - 22}" y2="${fx(p90[1])}" stroke="${C.a}" stroke-width="1.6" marker-start="url(#ev-a)" marker-end="url(#ev-a)"/>`);
   out.push(`<line x1="${x0 - 28}" y1="${fx(p90[1])}" x2="${fx(p90[0])}" y2="${fx(p90[1])}" stroke="${C.a}" stroke-dasharray="2 3" opacity=".6"/>`);
   out.push(lbl(x0 - 26, (start[1] + p90[1]) / 2, 'avance', 'a', 'end', 'font-weight="700"'), lbl(x0 - 26, (start[1] + p90[1]) / 2 + 11, '(a 90°)', 'a', 'end', 'font-size="8.5"'));
   // traslado: perpendicular al rumbo inicial, a los 90°
-  out.push(`<line x1="${x0}" y1="${fx(p90[1] + 14)}" x2="${fx(p90[0])}" y2="${fx(p90[1] + 14)}" stroke="${C.m}" stroke-width="1.6" marker-start="url(#ev-m)" marker-end="url(#ev-m)"/>`);
-  out.push(lbl((x0 + p90[0]) / 2, p90[1] + 26, 'traslado (a 90°)', 'm', 'middle', 'font-weight="700"'));
+  out.push(`<line x1="${x0}" y1="${fx(p90[1] - 12)}" x2="${fx(p90[0])}" y2="${fx(p90[1] - 12)}" stroke="${C.m}" stroke-width="1.6" marker-start="url(#ev-m)" marker-end="url(#ev-m)"/>`);
+  out.push(lbl((x0 + p90[0]) / 2, p90[1] - 17, 'traslado (a 90°)', 'm', 'middle', 'font-weight="700"'));
   // diámetro táctico: perpendicular al rumbo inicial, a los 180°
   out.push(`<line x1="${x0}" y1="${fx(p180[1])}" x2="${fx(p180[0])}" y2="${fx(p180[1])}" stroke="${C.r}" stroke-width="1.6" marker-start="url(#ev-r)" marker-end="url(#ev-r)"/>`);
-  out.push(lbl((x0 + p180[0]) / 2, p180[1] - 6, 'diámetro táctico (a 180°)', 'r', 'middle', 'font-weight="700"'));
+  out.push(lbl((x0 + p180[0]) / 2 + 6, p180[1] + 14, 'diámetro táctico', 'r', 'middle', 'font-weight="700"'), lbl((x0 + p180[0]) / 2 + 6, p180[1] + 25, '(a 180°)', 'r', 'middle', 'font-size="8.5"'));
   for (const [p, t] of [[p90, '90°'], [p180, '180°']]) out.push(`<circle cx="${fx(p[0])}" cy="${fx(p[1])}" r="3" fill="${C.v}"/>`, lbl(p[0] + 6, p[1] - 4, t, 'v', 'start', 'font-size="9"'));
-  out.push(lbl(xmin - 2, start[1] - 26, 'la popa abre', 'g', 'end', 'font-size="8.5"'));
   out.push(`<g><path d="M10,0 L-7,6 L-7,-6Z" fill="${C.v}" stroke="#fff"/><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="${d}"/></g>`);
   out.push('</svg>');
   return { svg: out.join(''), caption: 'Trayectoria del centro de gravedad con el timón a una banda. Avance: lo que se adelanta en la dirección del rumbo inicial hasta caer 90°. Traslado: lo que se separa de ese rumbo al caer 90°. Diámetro táctico: la separación al caer 180°. Al principio la popa abre hacia la banda contraria y el barco se desplaza un poco hacia ella.' };
@@ -132,16 +130,16 @@ export function ciabogaIllustration() {
   const H = 290;
   const out = open(W, H, 'Ciaboga', 'cb');
   out.push(title(W / 2, 'Ciaboga con una hélice dextrógira'));
-  const P = [[100, 220, 0], [124, 140, 70], [104, 150, 125], [118, 196, 180]];
-  const L = 70;
-  const ghost = ([x, y, a], n, c) => `<g transform="translate(${x} ${y}) rotate(${a})" opacity=".35">${hullPlan(L, 22, `style="fill:none;stroke:${c};stroke-dasharray:3 3"`)}</g>` +
+  const P = [[96, 236, 0], [132, 126, 70], [104, 146, 125], [124, 208, 180]];
+  const L = 92;
+  const ghost = ([x, y, a], n, c) => `<g transform="translate(${x} ${y}) rotate(${a})" opacity=".35">${hullPlan(L, 28, `style="fill:none;stroke:${c};stroke-dasharray:3 3"`)}</g>` +
     `<circle cx="${fx(pol(x, y, a, L / 2 + 10)[0])}" cy="${fx(pol(x, y, a, L / 2 + 10)[1])}" r="8" fill="${c}"/><text x="${fx(pol(x, y, a, L / 2 + 10)[0])}" y="${fx(pol(x, y, a, L / 2 + 10)[1] + 3.5)}" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">${n}</text>`;
   P.forEach((p, i) => out.push(ghost(p, i === 0 ? 'S' : i, i === 0 ? C.g : [C.v, C.r, C.v][i - 1])));
   const kt = '0;.27;.54;.81;1';
   const tr = [...P, P[3]].map((p) => `${p[0]},${p[1]}`).join(';');
   const ro = [...P, P[3]].map((p) => p[2]).join(';');
   out.push(`<g><animateTransform attributeName="transform" type="translate" values="${tr}" keyTimes="${kt}" dur="9s" repeatCount="indefinite"/>` +
-    `<g><animateTransform attributeName="transform" type="rotate" values="${ro}" keyTimes="${kt}" dur="9s" repeatCount="indefinite"/>${hullPlan(L, 22)}</g></g>`);
+    `<g><animateTransform attributeName="transform" type="rotate" values="${ro}" keyTimes="${kt}" dur="9s" repeatCount="indefinite"/>${hullPlan(L, 28)}</g></g>`);
   out.push(fo(200, 40, 136, 246,
     `<p style="margin:0 0 6px;color:${C.v}"><b>1</b> Avante, todo el timón a estribor: la proa cae a Er.</p>` +
     `<p style="margin:0 0 6px;color:${C.r}"><b>2</b> Atrás, todo el timón a babor: la hélice dextrógira lleva la popa a Br y la proa sigue cayendo a Er, casi sin avanzar.</p>` +
@@ -187,8 +185,8 @@ export function desatraqueIllustration(spec) {
     `<animate attributeName="x1" values="${sp.map((p) => fx(p[0])).join(';')}" keyTimes="${kt}" dur="7s" repeatCount="indefinite"/>` +
     `<animate attributeName="y1" values="${sp.map((p) => fx(p[1])).join(';')}" keyTimes="${kt}" dur="7s" repeatCount="indefinite"/></line>`);
   out.push(`<circle cx="${bol[0]}" cy="${bol[1]}" r="4.5" fill="#334155"/>`, `<circle cx="${piv[0]}" cy="${piv[1]}" r="5" fill="#f97316" stroke="#7c2d12"/>`);
-  out.push(lbl(bowX - 4, cy + 4, 'proa', null, 'end'), lbl(bol[0] + 8, bol[1] + 16, popa ? 'esprín de proa' : 'esprín de popa', 'a', 'middle', 'font-weight="700" style="fill:#fff"'));
-  out.push(lbl(piv[0] + (popa ? -2 : 2), piv[1] - 10, popa ? 'defensa en la amura' : 'defensa en la aleta', 'n', popa ? 'start' : 'end', 'font-size="9"'));
+  out.push(lbl(bowX - 4, cy + 4, 'proa', null, 'end'), lbl(bol[0], qy + 36, popa ? 'esprín de proa' : 'esprín de popa', null, 'middle', 'font-weight="700" style="fill:#fff"'));
+  out.push(lbl(piv[0] + (popa ? -8 : 8), qy + 20, popa ? 'defensa en la amura' : 'defensa en la aleta', null, popa ? 'start' : 'end', 'font-size="9" style="fill:#fff"'));
   out.push(fo(12, 32, 316, 96, popa
     ? `<p style="margin:0 0 4px">1. Se larga todo menos el <b style="color:${C.a}">esprín de proa</b>.</p><p style="margin:0 0 4px">2. Avante poca, con el <b style="color:${C.r}">timón al muelle</b> (a babor): la proa se apoya en la defensa y <b>la popa se abre</b>.</p><p style="margin:0">3. Con 30–40° abierta, se larga el esprín y se sale <b>atrás</b>.</p>`
     : `<p style="margin:0 0 4px">1. Se larga todo menos el <b style="color:${C.a}">esprín de popa</b>.</p><p style="margin:0 0 4px">2. Atrás poca: la popa se apoya en la defensa y <b>la proa se abre</b>. Atracado por babor, la dextrógira dando atrás ayuda.</p><p style="margin:0">3. Con la proa abierta, se larga el esprín y se sale <b>avante</b>.</p>`));

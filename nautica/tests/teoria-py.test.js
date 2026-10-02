@@ -54,3 +54,16 @@ test('simulacro PY: 10 preguntas de cada bloque', () => {
   assert.equal(s.preguntas.length, 40);
   assert.equal(s.faltan.length, 0);
 });
+
+test('el profe tiene explicación para las 720 preguntas del PY, con ilustraciones dibujables', async () => {
+  const { narrateTheory } = await import('../src/teacher/theory.js');
+  const { validSpec } = await import('../src/illustrations/index.js');
+  const expl = JSON.parse(readFileSync(new URL('andalucia-py-teoria-explicaciones.json', dir)));
+  for (const q of bank) {
+    const e = expl[q.id];
+    assert.ok(e?.explicacion && e.clave, `sin explicación: ${q.id}`);
+    for (const s of e.ilustraciones ?? []) assert.ok(validSpec(s), `${q.id}: ${JSON.stringify(s)}`);
+    const n = narrateTheory(q, e, 'a');
+    assert.ok(n.speech.length > 40 && !/undefined/.test(n.speech), q.id);
+  }
+});

@@ -56,3 +56,26 @@ test('cadena verdadero → superficie → efectivo y su inversa', () => {
   assert.equal(cadenaInversa({ ref: 0, vb: 3, rc: 180, ic: 5 }), null);
   assert.equal(ladoDe(10, 10), 'igual');
 });
+
+import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
+test('sectores de las luces (Regla 21), con los límites a 112,5° y 247,5°', () => {
+  const v = (a) => Object.entries(lucesVisibles(a)).filter(([, x]) => x).map(([k]) => k).join('+');
+  assert.equal(v(0), 'tope+verde+roja'); // de proa: las dos de costado
+  assert.equal(v(2), 'tope+verde+roja'); // solape práctico de hasta 3° (Anexo I)
+  assert.equal(v(10), 'tope+verde');
+  assert.equal(v(112.5), 'tope+verde'); // aún no alcanza: Regla 13 b) pide más de 22,5° a popa del través
+  assert.equal(v(112.6), 'alcance');
+  assert.equal(v(180), 'alcance');
+  assert.equal(v(247.4), 'alcance');
+  assert.equal(v(247.5), 'tope+roja');
+  assert.equal(v(350), 'tope+roja');
+  assert.equal(v(-10), 'tope+roja'); // −10 = 350
+});
+
+test('situación por las luces que ves: quién maniobra', () => {
+  const s = (a) => situacionPorLuces(lucesVisibles(a));
+  assert.deepEqual([s(0).situacion, s(0).maniobra], ['vuelta-encontrada', 'los-dos']);
+  assert.deepEqual([s(180).situacion, s(180).maniobra], ['alcance', 'tu']);
+  assert.deepEqual([s(60).situacion, s(60).maniobra], ['cruce', 'el']); // ves su verde
+  assert.deepEqual([s(300).situacion, s(300).maniobra], ['cruce', 'tu']); // ves su roja
+});

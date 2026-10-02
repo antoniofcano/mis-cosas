@@ -8,7 +8,7 @@ import { crossingIllustration, soundIllustration, riesgoIllustration, SENALES } 
 import { meteoIllustration, boatIllustration, propellerIllustration, flagIllustration } from './misc.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
-import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, sectoresIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
+import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
 import { heliceTimonIllustration, evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
@@ -44,7 +44,7 @@ const RENDERERS = {
   'viento-aparente': vientoAparenteIllustration,
   loxodromica: loxodromicaIllustration,
   marea: mareaIllustration,
-  'sectores-luces': sectoresIllustration,
+  'sectores-luces': (s) => dibujoFijo(INTERACTIVAS['sectores-luces'], s),
   canal: canalIllustration,
   dst: dstIllustration,
   jerarquia: jerarquiaIllustration,
@@ -72,7 +72,7 @@ export const CATALOGO = {
   cardinales: { params: { resaltar: ['cardinal-n', 'cardinal-e', 'cardinal-s', 'cardinal-w'] }, ejemplo: { tipo: 'cardinales', resaltar: 'cardinal-s' } },
   ritmo: { params: { ritmo: 'característica: Fl, Fl(2) 5s, Q, VQ(3) 5s, Q(6)+LFl 15s, Iso 4s, Oc 6s, LFl 10s, Mo(A) 6s, Al.Bu/Y 3s', texto: 'opcional' }, ejemplo: { tipo: 'ritmo', ritmo: 'Fl(2) 5s' } },
   buque: { params: { clase: Object.keys(SHIPS), vista: ['proa', 'babor', 'estribor', 'popa', 'todas'], dia: 'bool: añade sus marcas de día', arrancada: 'bool (por defecto true)', obstruccion: ['estribor', 'babor'], aparejo: ['estribor', 'babor'] }, ejemplo: { tipo: 'buque', clase: 'pesquero-arrastre', vista: 'proa', dia: true } },
-  cruce: { params: { situacion: ['cruce', 'vuelta-encontrada', 'alcance', 'vela-amuras', 'vela-barlovento'] }, ejemplo: { tipo: 'cruce', situacion: 'cruce' } },
+  cruce: { params: { situacion: ['cruce', 'vuelta-encontrada', 'alcance', 'vela-amuras', 'vela-barlovento'], aspecto: 'opcional, 0–355 (motor)' }, ejemplo: { tipo: 'cruce', situacion: 'cruce' } },
   sonido: { params: { senal: Object.keys(SENALES), texto: 'opcional' }, ejemplo: { tipo: 'sonido', senal: '..' } },
   meteo: { params: { sistema: ['borrasca', 'anticiclon', 'buys-ballot', 'brisa-mar', 'brisa-tierra', 'frentes', 'isobaras', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion'] }, ejemplo: { tipo: 'meteo', sistema: 'borrasca' } },
   barco: { params: { resaltar: ['proa', 'popa', 'babor', 'estribor', 'crujia', 'eslora', 'manga', 'puntal', 'calado', 'obra-viva', 'obra-muerta', 'francobordo', 'amura', 'aleta', 'traves', 'linea-flotacion'] }, ejemplo: { tipo: 'barco', resaltar: ['manga'] } },
@@ -86,7 +86,7 @@ export const CATALOGO = {
   'viento-aparente': { params: { rumbo: ['cenida', 'traves', 'aleta', 'popa'] }, ejemplo: { tipo: 'viento-aparente', rumbo: 'cenida' } },
   loxodromica: { params: {}, ejemplo: { tipo: 'loxodromica' } },
   marea: { params: { modo: ['curva', 'duodecimos', 'sonda', 'fases'] }, ejemplo: { tipo: 'marea', modo: 'sonda' } },
-  'sectores-luces': { params: { luz: ['todas', 'tope', 'costados', 'alcance'] }, ejemplo: { tipo: 'sectores-luces' } },
+  'sectores-luces': { params: { aspecto: 'desde dónde se mira, 0–355 desde su proa (por defecto 60)', luz: ['todas'] }, ejemplo: { tipo: 'sectores-luces' } },
   canal: { params: { sentido: ['entrando', 'saliendo'] }, ejemplo: { tipo: 'canal', sentido: 'entrando' } },
   dst: { params: {}, ejemplo: { tipo: 'dst' } },
   jerarquia: { params: {}, ejemplo: { tipo: 'jerarquia' } },

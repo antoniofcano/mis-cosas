@@ -215,37 +215,7 @@ export function mareaIllustration(spec) {
   return { svg: out.join(''), caption: 'Amplitud: diferencia entre pleamar y bajamar. Duración: tiempo entre una y otra (creciente o vaciante). En el anuario las horas vienen en UT: súmale el adelanto para la hora oficial.' };
 }
 
-// ---------------------------------------------------------------------------
-// Sectores de visibilidad de las luces (Regla 21). spec: { tipo:'sectores-luces', luz?:'tope'|'costados'|'alcance'|'todas' }
-
-export function sectoresIllustration(spec) {
-  const luz = spec.luz ?? 'todas';
-  const W = 320;
-  const H = 300;
-  const cx = 160;
-  const cy = 160;
-  const out = open(W, H, 'Sectores de las luces', 'sl');
-  out.push(title(cx, 'Sectores de las luces (Regla 21)'));
-  const R = 115;
-  const sector = (a, b, color, r = R, op = 0.28) => {
-    const [x1, y1] = pol(cx, cy, a, r);
-    const [x2, y2] = pol(cx, cy, b, r);
-    const large = (b - a + 360) % 360 > 180 ? 1 : 0;
-    return `<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 ${large} 1 ${x2.toFixed(1)},${y2.toFixed(1)}Z" fill="${color}" opacity="${op}" stroke="${color}"/>`;
-  };
-  if (luz === 'todas' || luz === 'tope') out.push(sector(-112.5, 112.5, '#e5e7eb', R, 0.35));
-  if (luz === 'todas' || luz === 'costados') out.push(sector(0, 112.5, '#16a34a', R - 20, 0.45), sector(-112.5, 0, '#dc2626', R - 20, 0.45));
-  if (luz === 'todas' || luz === 'alcance') out.push(sector(112.5, 247.5, '#fde68a', R - 10, 0.5));
-  out.push(`<path d="M${cx},${cy - 26} L${cx + 10},${cy - 6} L${cx + 9},${cy + 22} L${cx - 9},${cy + 22} L${cx - 10},${cy - 6}Z" fill="${C.g}"/>`);
-  const t1 = pol(cx, cy, 112.5, R + 12);
-  const t2 = pol(cx, cy, -112.5, R + 12);
-  out.push(lbl(t1[0], t1[1] + 4, '22,5° a popa del través', null, 'end'), lbl(t2[0], t2[1] + 4, '', null, 'start'));
-  out.push(lbl(cx, 46, 'tope 225°', null, 'middle'), lbl(cx + 52, cy - 30, 'verde 112,5°', 'm'), lbl(cx - 52, cy - 30, 'roja 112,5°', 'r', 'end'), lbl(cx, cy + 82, 'alcance 135°', null, 'middle'));
-  // un observador que da la vuelta al barco
-  out.push(`<circle r="6" fill="#facc15" stroke="#92400e"><animateMotion dur="12s" repeatCount="indefinite" path="M${cx},${cy - R - 20} A${R + 20},${R + 20} 0 1 1 ${cx - 0.1},${cy - R - 20}"/></circle>`);
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Tope: blanca, 225° hacia proa. Costados: verde a estribor y roja a babor, 112,5° cada una, desde la proa hasta 22,5° a popa del través. Alcance: blanca, 135° hacia popa. Desde el sector de alcance ya no ves los costados: estás alcanzando.' };
-}
+// Sectores de las luces: ahora es interactiva, en src/illustrations/interactivas/sectores-luces.js.
 
 // ---------------------------------------------------------------------------
 // Canal balizado visto desde arriba. spec: { tipo:'canal', sentido:'entrando'|'saliendo' }

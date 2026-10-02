@@ -96,6 +96,7 @@ test('riesgo de abordaje: con demora constante las demoras sucesivas son iguales
 import { INTERACTIVAS, interactivaDe, pidePrediccion } from '../src/illustrations/interactivas.js';
 import { controlador, MAX_MANDOS } from '../src/ui/lamina-estado.js';
 import { ewTexto, marcacionBanda } from '../src/nautical/compass.js';
+import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -208,6 +209,17 @@ function specsDeClase(tipo) {
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  'sectores-luces'(c, p) {
+    // «una sola luz blanca»: solo desde el sector de alcance (por la popa)
+    const solo = [0, 60, 112.5, 113, 180, 247, 247.5, 300].filter((a) => { const v = lucesVisibles(a); return v.alcance && !v.tope && !v.verde && !v.roja; });
+    assert.ok(solo.length && solo.every((a) => a > 112.5 && a < 247.5));
+    assert.equal(p.opciones[p.correcta], 'Por la popa');
+  },
+  cruce(c, p) {
+    const v = lucesVisibles(c.estado().aspecto);
+    assert.ok(v.alcance && !v.tope, 'la clase abre viendo solo una luz blanca');
+    assert.equal(p.opciones[p.correcta], { tu: 'Tú', el: 'Él', 'los-dos': 'Los dos' }[situacionPorLuces(v).maniobra]);
+  },
   abatimiento(c, p) {
     const e = c.estado();
     assert.ok(p.enunciado.includes(`Viento por ${e.banda}`), p.enunciado);

@@ -4,6 +4,7 @@ import { cadenaDirecta, abatimientoSigned, ladoDe } from '../../nautical/kinemat
 import { dibujaCadena, casillasCadena } from './cadena.js';
 import { pad3 } from './kit.js';
 
+/** Velocidad del barco si la spec no la trae (nudos). */
 const VB = 6;
 
 export const abatimiento = {
@@ -11,10 +12,10 @@ export const abatimiento = {
     { id: 'banda', tipo: 'opciones', etiqueta: 'El viento entra por', opciones: [['babor', 'Babor'], ['estribor', 'Estribor']] },
     { id: 'ang', tipo: 'rango', etiqueta: 'Abatimiento', min: 0, max: 20, paso: 1, texto: (v) => `${v}°`, extremos: ['0°', '20°'] },
   ],
-  estado: (spec) => ({ banda: spec.banda === 'estribor' ? 'estribor' : 'babor', ang: Math.abs(Number(spec.ab ?? 10)), rv: Number(spec.rv ?? 40) }),
+  estado: (spec) => ({ banda: spec.banda === 'estribor' ? 'estribor' : 'babor', ang: Math.abs(Number(spec.ab ?? 10)), rv: Number(spec.rv ?? 40), vb: Number(spec.vb ?? VB) }),
   calcular: (e) => {
     const ab = abatimientoSigned(e.ang, e.banda);
-    return { ...cadenaDirecta({ rv: e.rv, vb: VB, ab }), ab, vb: VB, ic: 0, rc: 0 };
+    return { ...cadenaDirecta({ rv: e.rv, vb: e.vb, ab }), ab, vb: e.vb, ic: 0, rc: 0 };
   },
   pie: () => 'El viento empuja el barco a sotavento: el rumbo de superficie se separa del de proa. Rs = Rv + Ab, con el abatimiento positivo si el viento entra por babor y negativo si entra por estribor.',
   dibujar(e, r, { pendiente = false } = {}) {

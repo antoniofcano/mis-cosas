@@ -4453,6 +4453,1471 @@
      ]
     }
    ]
+  },
+  {
+   "ut": 4,
+   "titulo": "Navegación carta",
+   "intro": "Las preguntas 11 a 20 del módulo de navegación son la parte práctica del Patrón de Yate. En la mayoría de convocatorias han sido siete problemas sobre la carta del Estrecho de Gibraltar, dos cálculos de mareas y una estima analítica, aunque el reparto y el orden no son fijos. Es el bloque más exigente del examen: de sus 10 preguntas solo puedes fallar 3. La buena noticia es que los enunciados repiten una y otra vez los mismos tipos de problema. Partes de lo que ya sabes del PER (corrección total, rumbos, demoras y situación) y le sumas el viento, la corriente, las mareas y la loxodrómica. Cada lección trae un problema modelo resuelto paso a paso y ejercicios en la mesa de cartas para practicar.",
+   "lecciones": [
+    {
+     "id": "py-4-1",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Corrección total: declinación, enfilaciones, oposiciones y la Polar",
+     "minutos": 20,
+     "objetivos": [
+      "Actualizar al año la declinación de la carta y calcular la corrección total con el desvío",
+      "Calcular la corrección total en una enfilación o una oposición de dos faros de la carta del Estrecho",
+      "Calcular la corrección total con el azimut de aguja de la Polar",
+      "Separar los datos que sirven de los que sobran en el enunciado"
+     ],
+     "refresco": [
+      "per-10-5",
+      "per-11-2"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Punto de partida",
+       "texto": "Del PER ya traes lo esencial:\n- **Ct = dm + Δ**, con E o NE positivo y W o NW negativo.\n- **Rv = Ra + Ct** y **Dv = Da + Ct**; de la carta al timón, **Ra = Rv − Ct**.\n- En una enfilación u oposición, **Ct = Dv − Da**.\n\nEn muchas convocatorias la primera pregunta de carta (la 11) ha sido una corrección total por enfilación u oposición, aunque el orden no es fijo; y en las demás preguntas de carta la Ct es el primer paso. El programa añade una tercera vía: el **azimut de aguja de la Polar**. Si fallas aquí, arrastras el error a todo el problema."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Actualizar la declinación",
+       "texto": "La rosa de la carta trae algo como **«4° W 2014 (6′ E)»**: valor, año y variación anual.\n\n1. Años transcurridos × variación anual.\n2. Si la variación tiene **el mismo sentido** que la declinación, la aumenta; si es **contraria**, la disminuye.\n3. Redondea al grado (o al medio grado, si el enunciado lo pide).\n\nEjemplo: «3°20′ W 2016 (5′ E)» en 2026 → 10 × 5′ = 50′ hacia el E → 3°20′ − 0°50′ = **2°30′ W (−2,5°)**.\n\nSi el enunciado no da la declinación ni la rosa, usa la de la carta del Estrecho: **2°50′ W 2005 (7′ E)**. Y si te la da ya calculada («dm = 4° NW»), úsala tal cual."
+      },
+      {
+       "tipo": "regla",
+       "id": "r24"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nortes",
+        "dm": -3,
+        "desvio": -2
+       },
+       "texto": "Declinación 3° W y desvío −2°: Ct = −3° − 2° = −5° (5° NW)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Enfilación u oposición: qué demora mides",
+       "texto": "Une los dos faros con una recta en la carta y mide su dirección **en el sentido del faro que has marcado**:\n- **Oposición** (un faro a cada lado, estás entre ellos): la Dv del faro marcado es la de la recta que va **del otro faro hacia el marcado**.\n- **Enfilación** (los ves uno detrás de otro): los dos tienen la misma Dv, la que va **del faro más cercano al más lejano**.\n\nLuego **Ct = Dv − Da**. Comprobación rápida: la Ct del examen rara vez pasa de 15°. Si te sale cerca de 180°, has medido el sentido contrario."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "enfilacion",
+        "dv": 147,
+        "da": 152
+       },
+       "texto": "La recta de los faros da Dv 147°; la aguja marca 152°: Ct = 147° − 152° = −5°."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "Navegas al rumbo de aguja 095°. Al cruzar la **oposición** de los faros de **Punta Carnero** y **Punta Almina**, marcas el faro de **Punta Almina** en **Da = 152°**. La rosa de la carta dice «3°20′ W 2016 (5′ E)» y estamos en 2026. Calcula la corrección total y el desvío."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Dv de la oposición**: unes Carnero y Almina. Marcas Almina, así que mides la recta **de Carnero hacia Almina**: Dv ≈ **146,5°**.\n2. **Ct = Dv − Da** = 146,5° − 152° = **−5,5°** (5,5° NW).\n3. **Declinación 2026**: 10 años × 5′ = 50′ E → 3°20′ W − 0°50′ = 2°30′ W → **dm = −2,5°**.\n4. **Desvío**: Δ = Ct − dm = −5,5° − (−2,5°) = **−3°**.\n\nEl rumbo de aguja (095°) no interviene en la Ct: solo te serviría después, para pasarlo a verdadero (Rv = 095° − 5,5° = 089,5°)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Corrección total por la Polar",
+       "texto": "La estrella Polar está a **menos de 1° del polo norte celeste** (hoy, unos 0,6°), así que su azimut verdadero se toma como **Zv = 000°**. Si la marcas con la aguja:\n\n**Ct = Zv − Za = 000° − Za**\n\n- Za = 356° → Ct = 360° − 356° = **+4°**.\n- Za = 006° → Ct = **−6°**.\n- En cuadrantal, Za = N 3° W = 357° → Ct = **+3°**.\n\nEl error de suponerla en el polo es menor de 1° en nuestras latitudes (como mucho, unos 0,8° en el Estrecho), y el examen lo desprecia. Una vez tienes la Ct, el problema sigue como cualquier otro."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Casi todos los enunciados traen datos que sobran: el rumbo, la velocidad y, cuando solo piden la Ct, también la declinación. La Ct de una enfilación u oposición sale **solo** de la Dv de la carta y la Da. Y no confundas el sentido de la oposición: si mides la recta hacia el faro que **no** has marcado, te sale una Ct de casi 180°."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Nombres de la carta del Estrecho que confunden: el **«faro de Punta Camarinal»** de los enunciados es el faro de **Punta de Gracia (Camarinal)**, en 36°05,5′ N 005°48,5′ W. «Farola del espigón», «luz del espigón» y «luz de la bocana» de Tánger son la misma luz. Y en Ceuta distingue la **luz verde** (dique de poniente) de la **roja** (dique de levante)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Cruzas una enfilación cuya Dv en la carta es 275° y la aguja marca el faro más cercano en 281°. ¿Corrección total?",
+       "opciones": {
+        "a": "+6°",
+        "b": "−6°",
+        "c": "−174°"
+       },
+       "correcta": "b",
+       "explicacion": "Ct = Dv − Da = 275° − 281° = −6° (6° NW)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Marcas la Polar en azimut de aguja 003°. ¿Cuánto vale la corrección total?",
+       "opciones": {
+        "a": "+3°",
+        "b": "−3°",
+        "c": "0°, la Polar no sirve"
+       },
+       "correcta": "b",
+       "explicacion": "Zv ≈ 000°, así que Ct = 000° − 003° = −3°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La rosa dice «5°10′ W 2014 (6′ E)». ¿Qué declinación usas en 2026?",
+       "opciones": {
+        "a": "Unos 6° W",
+        "b": "Unos 4° W",
+        "c": "Unos 2° E"
+       },
+       "correcta": "b",
+       "explicacion": "12 años × 6′ = 72′ = 1°12′ hacia el E. 5°10′ W − 1°12′ = 3°58′ W ≈ 4° W (−4°)."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n11",
+      "and-py-2020-c3-n11",
+      "and-py-2021-c1-n12",
+      "and-py-2021-c2-n12",
+      "and-py-2021-c2-n13",
+      "and-py-2022-c1-n11",
+      "and-py-2022-c2-n11",
+      "and-py-2022-c3-n11",
+      "and-py-2023-c1-n11",
+      "and-py-2023-c2-n13",
+      "and-py-2023-c3-n12",
+      "and-py-2024-c1-n11",
+      "and-py-2024-c2-n11",
+      "and-py-2024-c3-n11",
+      "and-py-2025-c1-n11",
+      "and-py-2025-c2-n12",
+      "and-py-2025-c3-n13",
+      "and-py-2026-c1-n13",
+      "and-py-2026-c2-n13"
+     ],
+     "carta": [
+      "ct-enfilacion",
+      "conversion-rumbos"
+     ],
+     "chuleta": [
+      "Ct = dm + Δ (E +, W −). Rv = Ra + Ct; Ra = Rv − Ct.",
+      "dm del año = dm de la rosa ± variación × años; redondea al grado. Sin datos: 2°50′ W 2005 (7′ E).",
+      "Oposición: Dv = recta del otro faro hacia el marcado. Enfilación: del cercano al lejano.",
+      "Ct = Dv − Da. Polar: Ct = 000° − Za.",
+      "Δ = Ct − dm. El rumbo y la velocidad no intervienen en la Ct."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      },
+      {
+       "titulo": "IGN – Cálculo de la declinación magnética en España",
+       "url": "https://www.ign.es/web/gmt-declinacion-magnetica"
+      },
+      {
+       "titulo": "NOAA – Calculadora de declinación magnética",
+       "url": "https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Navegación carta: 10 preguntas, máximo 3 errores (mínimo 7 aciertos)",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Programa 4.1: Ct por desvío y declinación, por demora de aguja a una enfilación y por azimut de aguja de la Polar",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Ct = dm + Δ; Rv = Ra + Ct; Ct = Dv − Da (signos E +, W −)",
+       "fuente": "Regla validada r24 (data/exams/mnemotecnias.json) y plantillas oficiales de enfilación/oposición (and-py-2022-c1-n11, 2024-c1-n11…)"
+      },
+      {
+       "dato": "Declinación de la carta del Estrecho: 2°50′ W 2005 (7′ E)",
+       "fuente": "Coordenadas de la carta L105 (data/chart-105.json) (campo declination)"
+      },
+      {
+       "dato": "Faro de Punta de Gracia (Camarinal) en 36°05,5′ N 005°48,5′ W; Ceuta: luz verde en dique de poniente y roja en dique de levante",
+       "fuente": "Coordenadas de la carta L105 (data/chart-105.json)"
+      },
+      {
+       "dato": "Oposición Carnero–Almina: Dv de Carnero hacia Almina 146,4°–146,6° → Ct = 146,5° − 152° = −5,5°, dm 2026 = −2,5°, Δ = −3°",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      },
+      {
+       "dato": "Distancia polar de la Polar ≈ 0,6° (37′) en 2026; error de azimut máximo ≈ p / cos φ ≈ 0,8° a 36° N",
+       "fuente": "Cálculo del revisor (Polaris J2000 δ = +89°15,9′, precesión ≈ +16″/año); el examen toma Zv = 000° (and-py-2021-c2-n11, Za 358° → Ct +2°)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-2",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Viento y abatimiento: rumbo de superficie y rumbo a dar",
+     "minutos": 18,
+     "objetivos": [
+      "Saber por qué banda entra el viento y el signo del abatimiento",
+      "Calcular el rumbo de superficie que hace el barco a partir del rumbo de aguja",
+      "Calcular el rumbo de aguja para ir a un puerto con viento, y la hora de llegada"
+     ],
+     "refresco": [
+      "per-10-9",
+      "per-11-3"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El viento en la carta",
+       "texto": "Con viento, la proa apunta al **rumbo verdadero (Rv)**, pero el barco avanza sobre el agua por el **rumbo de superficie (Rs)**, desviado hacia sotavento. Esa diferencia es el **abatimiento (Ab)**:\n\n**Rs = Rv + Ab**\n\n- Viento por **babor** → caes a estribor → Ab **positivo**.\n- Viento por **estribor** → caes a babor → Ab **negativo**.\n\nEn la carta, la línea que trazas (o la que sigues) es el **Rs**. El viento se nombra por **de dónde viene**: levante es del E y poniente del W."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "abatimiento",
+        "banda": "estribor"
+       },
+       "texto": "Viento por estribor: el barco cae a babor y el Rs queda a la izquierda del Rv (Ab negativo)."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-02"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Por qué banda entra el viento",
+       "texto": "Calcula **dirección del viento − Rv** y llévalo a 0°–360°:\n- Entre **0° y 180°** → entra por **estribor**.\n- Entre **180° y 360°** → entra por **babor**.\n\nEjemplos:\n- Viento NE (045°) con Rv 142°: 045 − 142 = −97 → 263° → **babor** → Ab +.\n- Viento W (270°) con Rv 208°: 270 − 208 = 62° → **estribor** → Ab −.\n\nSi el viento entra justo por la proa o por la popa, no hay abatimiento. Cuando buscas el rumbo a dar aún no conoces el Rv: decide la banda con el Rs, que en los problemas de examen da la misma banda."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dos preguntas, dos sentidos",
+       "texto": "**a) ¿Qué Rs hace el barco?** Vas del timón a la carta:\nRa → **Rv = Ra + Ct** → **Rs = Rv + Ab**.\n\n**b) ¿Qué Ra hay que dar para ir a un punto?** Vas de la carta al timón:\nRs (la línea trazada al destino) → **Rv = Rs − Ab** → **Ra = Rv − Ct**.\n\nEn el caso b) estás **orzando**: metes la proa hacia el viento tantos grados como abates, para que el viento te devuelva a la derrota. Con solo viento, la distancia se recorre a la velocidad del barco: **t = d / Vb**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "A HRB 10:30 estás en **36°02,0′ N 005°15,0′ W** y das rumbo a **Ceuta (luz verde de la bocana)** a **6 nudos**. Sopla **poniente** que te abate **8°**. Declinación 2° W, desvío −4°. Calcula el rumbo de aguja y la hora de llegada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Traza** desde la situación hasta la luz verde de Ceuta: **Rs ≈ 200°**, distancia **8,7 millas**.\n2. **Banda del viento**: poniente = 270°. Con la proa hacia el SSW: 270 − 208 = 62° → **estribor** → abates a babor, Ab = **−8°**.\n3. **Rv = Rs − Ab** = 200° − (−8°) = **208°**. Orzas hacia el viento.\n4. **Ct** = −2° − 4° = **−6°**.\n5. **Ra = Rv − Ct** = 208° + 6° = **214°**.\n6. **Tiempo**: 8,7 / 6 = 1,45 h = **1 h 27 min** → llegada a las **11:57**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Ejemplo del caso a)",
+       "texto": "Navegas al **Ra 200°** con declinación 3° W, desvío +7° y **viento del W** que abate 12°. ¿Qué Rs haces?\n\n1. Ct = −3° + 7° = **+4°** → Rv = 200° + 4° = **204°**.\n2. Banda: 270 − 204 = 66° → **estribor** → Ab = **−12°**.\n3. **Rs = 204° − 12° = 192°**.\n\nComprobación: el Rs siempre queda **a sotavento** del Rv. El viento viene del W, te empuja hacia el E… y 192° está a la izquierda de 204°, es decir, más al este en un rumbo hacia el sur."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los errores típicos: decidir la banda por el nombre del viento sin mirar el rumbo, sumar el abatimiento cuando hay que restarlo en el caso b), y olvidar la Ct al final. Repasa el orden: **del timón a la carta, Ct y luego Ab; de la carta al timón, Ab y luego Ct**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Muchos enunciados te obligan antes a **situarte**: por dos demoras simultáneas, por «al S verdadero de un faro y al W verdadero de otro» o por coordenadas. Y si dan la rosa con su año, **actualiza la declinación**. Si alguna vez no hay viento, el Rv es directamente la línea trazada."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 300° con viento del NE que te abate 15°. ¿Cuál es el rumbo de superficie?",
+       "opciones": {
+        "a": "315°",
+        "b": "285°",
+        "c": "300°"
+       },
+       "correcta": "b",
+       "explicacion": "045 − 300 = −255 → 105° → entra por estribor → Ab −15° → Rs = 300° − 15° = 285°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Quieres seguir un Rs de 090° con viento del N que te abate 10°. ¿Qué Rv das?",
+       "opciones": {
+        "a": "080°",
+        "b": "100°",
+        "c": "090°"
+       },
+       "correcta": "a",
+       "explicacion": "Con proa al E, el N entra por babor (000 − 090 = 270°): Ab +10°. Rv = Rs − Ab = 090° − 10° = 080°: orzas hacia el norte, de donde viene el viento."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c3-n16",
+      "and-py-2022-c1-n16",
+      "and-py-2024-c3-n16",
+      "and-py-2025-c1-n16",
+      "and-py-2026-c2-n15",
+      "and-py-2021-c1-n13",
+      "and-py-2022-c2-n13",
+      "and-py-2022-c3-n14",
+      "and-py-2023-c3-n11",
+      "and-py-2024-c2-n16",
+      "and-py-2025-c2-n11",
+      "and-py-2025-c3-n12"
+     ],
+     "carta": [
+      "abatimiento",
+      "rumbo-distancia"
+     ],
+     "chuleta": [
+      "Rs = Rv + Ab. Viento por babor Ab +; por estribor Ab −.",
+      "Banda: viento − Rv; de 0° a 180° estribor, de 180° a 360° babor.",
+      "Del timón a la carta: Rv = Ra + Ct, Rs = Rv + Ab.",
+      "De la carta al timón: Rv = Rs − Ab, Ra = Rv − Ct.",
+      "El Rs queda siempre a sotavento del Rv. Con solo viento: t = d / Vb."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.2: rumbo y distancia entre dos puntos y rumbo para pasar a distancia, con y sin viento, hasta el rumbo de aguja",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Rs = Rv + Ab; viento por babor Ab +, por estribor Ab −",
+       "fuente": "Regla validada py-nav-02; plantillas and-py-2022-c1-n16, 2025-c1-n16"
+      },
+      {
+       "dato": "Problema modelo: de 36°02,0′ N 005°15,0′ W a la luz verde de Ceuta Rs 199,8°, 8,67 M → Rv 208°, Ra 214°, llegada 11:57",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-3",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Rumbo para pasar a una distancia de un faro, con viento",
+     "minutos": 18,
+     "objetivos": [
+      "Trazar la tangente para pasar a una distancia dada de un faro y elegir la buena",
+      "Comprobar el rumbo con sen α = d / D",
+      "Pasar de la tangente (rumbo de superficie) al rumbo de aguja con abatimiento y corrección total"
+     ],
+     "refresco": [
+      "per-11-9",
+      "per-10-9"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El problema",
+       "texto": "Sale en casi todos los exámenes (en varias convocatorias, como pregunta 12): «desde tal situación, damos rumbo para pasar a 5 millas del faro X, con viento que nos abate…».\n\nEl método del PER sigue igual: circunferencia del radio pedido con centro en el faro y **tangente** desde tu situación. La novedad es que, con viento, esa tangente es la derrota que quieres seguir sobre el agua, es decir, el **rumbo de superficie (Rs)**. Después quitas el abatimiento y la corrección total para llegar al rumbo de aguja."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Qué tangente",
+       "texto": "Desde tu situación mides la **Dv** y la **distancia D** al faro. El ángulo entre la visual y la tangente cumple **sen α = d / D** (d, distancia de paso).\n- **Dejar el faro por estribor** (queda a tu derecha): **Rs = Dv − α**.\n- **Dejar el faro por babor** (queda a tu izquierda): **Rs = Dv + α**.\n\nSi el enunciado no dice la banda, escoge la tangente que pasa **por fuera, por el lado del mar**. Pistas como «en demanda del Estrecho» o «hacia la costa de Málaga» te dicen hacia dónde vas y, con ello, cuál es."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rosa",
+        "rumbo": 111,
+        "demora": 89,
+        "etiqueta": "faro"
+       },
+       "texto": "Faro en Dv 089° y rumbo 111°: la derrota pasa a la derecha de la visual y el faro queda por babor."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "Estás en **36°00,0′ N 005°50,0′ W** y das rumbo para pasar a **4 millas** del faro de **Isla de Tarifa**, dejándolo **por babor**. Sopla viento del **S** que te abate **10°**. Declinación 1° W y desvío +6°. Calcula el rumbo de aguja."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Visual al faro**: Dv ≈ **089,5°**, D ≈ **10,9 millas**.\n2. **Ángulo**: sen α = 4 / 10,9 → α ≈ **21,5°**.\n3. **Tangente por babor**: Rs = 089,5° + 21,5° ≈ **111°** (pasas al sur de la isla).\n4. **Banda del viento**: 180 − 121 = 59° → **estribor** → Ab = **−10°**.\n5. **Rv = Rs − Ab** = 111° + 10° = **121°**.\n6. **Ct** = −1° + 6° = **+5°** → **Ra = Rv − Ct** = 121° − 5° = **116°**.\n\nEn la carta lo haces con compás y transportador; la cuenta de α solo sirve para comprobar."
+      },
+      {
+       "tipo": "regla",
+       "id": "r25"
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La tangente es el **Rs**, no el Rv. Si aplicas la Ct directamente a la tangente sin quitar antes el abatimiento, te sale una de las opciones trampa (suelen estar a ±Ab del resultado). Orden fijo: **tangente → Rv = Rs − Ab → Ra = Rv − Ct**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Lee bien la salida: «salimos de Tánger (luz de la bocana)» significa que trazas desde esa luz; «a 5 millas al SW verdadero de Punta Paloma», que antes te sitúas a 5 millas hacia el 225° del faro. Y si además hay **corriente**, la tangente ya no es el Rs sino el **rumbo efectivo**: lo verás en la lección de rumbo a dar con corriente."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Ves un faro en Dv 250° a 10 millas y quieres pasar a 5 millas dejándolo por babor. ¿Qué Rs trazas?",
+       "opciones": {
+        "a": "220°",
+        "b": "280°",
+        "c": "250°"
+       },
+       "correcta": "b",
+       "explicacion": "sen α = 5/10 → α = 30°. Por babor, Rs = Dv + α = 250° + 30° = 280°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La tangente te da Rs 060° y sopla viento del NW que abate 12°. ¿Qué Rv das?",
+       "opciones": {
+        "a": "072°",
+        "b": "048°",
+        "c": "060°"
+       },
+       "correcta": "b",
+       "explicacion": "Con proa al NE, el NW (315°) entra por babor: 315 − 048 = 267° → Ab +12°. Rv = Rs − Ab = 060° − 12° = 048°."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n12",
+      "and-py-2020-c1-n13",
+      "and-py-2020-c3-n12",
+      "and-py-2021-c2-n14",
+      "and-py-2022-c1-n12",
+      "and-py-2022-c2-n12",
+      "and-py-2022-c3-n12",
+      "and-py-2023-c1-n12",
+      "and-py-2023-c2-n11",
+      "and-py-2023-c3-n13",
+      "and-py-2024-c1-n14",
+      "and-py-2024-c2-n12",
+      "and-py-2024-c3-n12",
+      "and-py-2025-c1-n12",
+      "and-py-2026-c1-n12",
+      "and-py-2026-c2-n12"
+     ],
+     "carta": [
+      "rumbo-pasar-distancia",
+      "abatimiento"
+     ],
+     "chuleta": [
+      "Pasar a d millas: circunferencia de radio d en el faro y tangente desde tu situación.",
+      "sen α = d / D. Faro por estribor: Rs = Dv − α. Por babor: Rs = Dv + α.",
+      "Sin banda: la tangente que pasa por fuera (lado del mar).",
+      "Con viento la tangente es el Rs: Rv = Rs − Ab y Ra = Rv − Ct."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.2)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.2: rumbo para pasar a una distancia de un punto de la costa, con y sin viento",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "sen α = d / D; faro por estribor Rs = Dv − α, por babor Rs = Dv + α",
+       "fuente": "Geometría de la tangente; regla r25 para Ra = Rv − Ct"
+      },
+      {
+       "dato": "Problema modelo: Isla de Tarifa Dv 089,4°, D 10,96 M, α 21,4°, Rs 110,8° ≈ 111° → Rv 121°, Ra 116°",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-4",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Situación por líneas de posición simultáneas y no simultáneas",
+     "minutos": 22,
+     "objetivos": [
+      "Convertir marcaciones y demoras de aguja en demoras verdaderas para trazarlas",
+      "Situarte con dos líneas de posición simultáneas (demoras, enfilaciones, oposiciones, distancias)",
+      "Situarte con líneas no simultáneas trasladando la primera con el rumbo y la distancia navegados",
+      "Elegir el corte bueno cuando una distancia da dos soluciones"
+     ],
+     "refresco": [
+      "per-10-7",
+      "per-11-6",
+      "per-11-7",
+      "per-11-8"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Las líneas de posición del examen",
+       "texto": "Cada observación te coloca sobre una línea de la carta:\n- **Demora**: recta que pasa por el faro. Trázala desde el faro con **Dv + 180°**.\n- **Enfilación u oposición**: la recta que une los dos faros.\n- **Distancia** (radar): circunferencia con centro en el faro.\n- **«Al N/S verdadero de un faro»**: su meridiano; **«al E/W verdadero»**: su paralelo.\n\nCon dos líneas **a la vez** (simultáneas), estás en su corte. Antes de trazar, todo a verdadero: **Dv = Da + Ct** o **Dv = Rv + M**."
+      },
+      {
+       "tipo": "regla",
+       "id": "r27"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "demoras",
+        "d1": 320,
+        "d2": 20
+       },
+       "texto": "Dos demoras verdaderas tomadas a la vez (320° y 020°), trazadas desde cada faro: el barco está en el corte."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "No simultáneas: la primera línea viaja contigo",
+       "texto": "Si las dos observaciones se toman a horas distintas, entre una y otra has navegado. Entonces:\n1. Traza la **primera** línea de posición.\n2. **Trasládala paralela a sí misma** el rumbo y la distancia navegados en el intervalo (d = V × t).\n3. Córtala con la **segunda**: esa es tu situación a la hora de la segunda.\n\nUna recta se traslada desplazando cualquiera de sus puntos; una **circunferencia**, desplazando su **centro**. El rumbo del traslado es el que de verdad has seguido: el **Rv** sin viento, el **Rs** con viento y el **rumbo efectivo** con corriente."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-car-03"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "Navegas al **Ra 080°** a **10 nudos**, con declinación 1° W y desvío −4°.\n- A HRB **10:00** marcas el faro de **Punta Paloma** a **45° por babor**.\n- A HRB **10:45** marcas el faro de **Punta Cires** a **43° por estribor**.\n\nCalcula la situación a las 10:45 y la que tenías a las 10:00."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Ct** = −1° − 4° = −5° → **Rv** = 080° − 5° = **075°**.\n2. **Demoras**: Paloma, Dv = 075° − 45° = **030°**; Cires, Dv = 075° + 43° = **118°**.\n3. **Distancia navegada**: 10 nudos × 0,75 h = **7,5 millas** al 075°.\n4. **Traslado**: trazas la línea de Paloma (desde el faro, al 210°) y la desplazas 7,5 millas al 075°.\n5. **Corte** con la demora a Cires (desde el faro, al 298°): **35°59,0′ N 005°39,0′ W** a las 10:45.\n6. **A las 10:00**: desde ese punto vuelves 7,5 millas al 255° → **35°57,1′ N 005°48,0′ W**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las trampas más repetidas:\n- Trazar la demora **desde el barco** en lugar de desde el faro, o usar la recíproca.\n- Olvidar la Ct antes de convertir las marcaciones (**Dv = Rv + M**, nunca con el Ra).\n- Trasladar la **segunda** línea o trasladar al revés.\n- Con viento, trasladar por el Rv en lugar de por el **Rs**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Una distancia y otra línea suelen cortarse en **dos puntos**. El enunciado da la pista: «ya en aguas del Estrecho», «el corte en la mar», «al norte de…». Uno de los dos cortes suele caer en tierra o en una zona absurda. Y alguna plantilla da una situación a 1 o 2 minutos de un trazado preciso: elige la opción más próxima a tu corte. Si te piden la situación de la **primera** observación, sitúate en la segunda y retrocede el rumbo y la distancia navegados."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 225° y marcas un faro a 072° por babor. ¿Qué Dv trazas?",
+       "opciones": {
+        "a": "297°",
+        "b": "153°",
+        "c": "072°"
+       },
+       "correcta": "b",
+       "explicacion": "Dv = Rv + M, con la marcación de babor negativa: 225° − 72° = 153°."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Entre dos distancias radar al mismo faro has navegado 6 millas al 080°. ¿Cómo trasladas la primera circunferencia?",
+       "opciones": {
+        "a": "Moviendo su centro 6 millas al 080°",
+        "b": "Aumentando su radio 6 millas",
+        "c": "Moviendo su centro 6 millas al 260°"
+       },
+       "correcta": "a",
+       "explicacion": "Una circunferencia se traslada moviendo su centro el rumbo y la distancia navegados, sin cambiar el radio."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c3-n13",
+      "and-py-2021-c1-n11",
+      "and-py-2021-c1-n17",
+      "and-py-2021-c2-n15",
+      "and-py-2022-c1-n13",
+      "and-py-2022-c2-n17",
+      "and-py-2022-c3-n17",
+      "and-py-2023-c1-n17",
+      "and-py-2023-c2-n16",
+      "and-py-2023-c3-n17",
+      "and-py-2024-c2-n15",
+      "and-py-2024-c3-n15",
+      "and-py-2025-c1-n14",
+      "and-py-2025-c2-n15",
+      "and-py-2025-c3-n15",
+      "and-py-2026-c1-n16",
+      "and-py-2026-c2-n11"
+     ],
+     "carta": [
+      "situacion-dos-demoras",
+      "situacion-demora-distancia",
+      "distancia-faro",
+      "demoras-no-simultaneas"
+     ],
+     "chuleta": [
+      "Todo a verdadero antes de trazar: Dv = Da + Ct; Dv = Rv + M (Er +, Br −).",
+      "Las demoras se trazan desde el faro con Dv + 180°.",
+      "No simultáneas: la primera línea se traslada el rumbo y la distancia navegados; corte con la segunda.",
+      "Rectas: paralelas. Circunferencias: se mueve el centro.",
+      "Traslado por Rv (sin viento), Rs (con viento) o Ref (con corriente).",
+      "Dos cortes: elige con la pista del enunciado."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.3 y 4.4)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.3 y 4.4: situación simultánea y no simultánea con distancia radar, enfilación, oposición y demora",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Dv = Rv + M (estribor +, babor −)",
+       "fuente": "Regla validada r27"
+      },
+      {
+       "dato": "Traslado de la primera línea con rumbo y distancia navegados",
+       "fuente": "Regla validada py-car-03; plantilla and-py-2023-c3-n17"
+      },
+      {
+       "dato": "Problema modelo: situación 10:45 35°59,0′ N 005°39,0′ W; 10:00 35°57,1′ N 005°48,0′ W (comprobado: Paloma Dv 029,9°, Cires Dv 118,0°)",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      },
+      {
+       "dato": "Plantilla and-py-2021-c2-n15: el corte riguroso sale 36°00,1′ N 005°25,0′ W; la oficial (d) 36°02′ N 005°25′ W es la más próxima",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); examen 2021 2ª conv. (Junta de Andalucía)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-5",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Estima con viento y corriente: situación y rumbo efectivo",
+     "minutos": 20,
+     "objetivos": [
+      "Calcular gráficamente la situación de estima con viento y corriente",
+      "Obtener el rumbo y la velocidad efectivos (sobre el fondo)",
+      "Responder a lo que se pregunta después: demora o distancia a un faro, hora"
+     ],
+     "refresco": [
+      "per-11-4",
+      "per-10-2",
+      "per-10-9"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La estima gráfica",
+       "texto": "Partes de una situación conocida y una hora. Para saber dónde estarás:\n1. **Ra → Rv = Ra + Ct**.\n2. **Rv → Rs = Rv + Ab**, si hay viento.\n3. Desde la salida, traza el **Rs** y mide **Vb × t** millas.\n4. Desde ese punto, traza el **rumbo de la corriente (Rc)** y mide **Ihc × t** millas.\n5. El extremo es la **situación de estima**.\n\nLa **Ihc** (intensidad horaria de la corriente) son las millas que te arrastra cada hora: «Ihc = 3′» y «3 nudos» es lo mismo. El tiempo, en horas con decimales: 1 h 12 min = 1,2 h."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-car-02"
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-01"
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente",
+        "caso": "efectivo"
+       },
+       "texto": "Vector del barco más vector de la corriente: el resultado es el rumbo y la velocidad efectivos."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Rumbo y velocidad efectivos",
+       "texto": "La recta que une la salida con la situación de estima es el **rumbo efectivo (Ref)**, el que haces sobre el fondo. Su longitud dividida por el tiempo es la **velocidad efectiva (Vef)**.\n\nSi solo te piden el Ref, no hace falta la situación: dibuja el triángulo para **1 hora** desde cualquier punto (Vb millas al Rs y, a continuación, Ihc millas al Rc) y mide el resultado.\n\nOjo con la redacción: «rumbo que hace el barco como consecuencia de la corriente» es el Ref, y algún enunciado lo llama incluso «Rc». En cambio, «rumbo que hace por el viento» es el Rs."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "A HRB **09:00** estás en **36°05,0′ N 006°05,0′ W**. Navegas al **Ra 140°** a **7 nudos**, con viento del **NE** que te abate **10°** y una corriente de **Rc = E**, **Ihc = 2 millas**. Declinación 1° W, desvío +3°. Calcula la situación de estima a las **10:30**, el rumbo y la velocidad efectivos y la demora y distancia al faro de Cabo Espartel en ese momento."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Ct** = −1° + 3° = +2° → **Rv** = 142°.\n2. **Viento**: 045 − 142 = −97 → 263° → **babor** → Ab +10° → **Rs = 152°**.\n3. **Tiempo**: 1 h 30 min = 1,5 h → 7 × 1,5 = **10,5 millas** al 152°.\n4. **Corriente**: 2 × 1,5 = **3 millas** al 090°.\n5. **Estima 10:30**: **35°55,7′ N 005°55,2′ W**.\n6. **Ref**: de la salida a la estima, **≈ 139,5°**, 12,2 millas → **Vef ≈ 8,1 nudos**.\n7. **Cabo Espartel**: desde la estima, Dv ≈ **181°** a **8,2 millas**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La corriente se traza **hacia donde va** su rumbo: una corriente SW te lleva hacia el 225°. El viento se nombra al revés, por de dónde viene. Y si la corriente empieza a mitad de la navegación («a partir de las 22:00 entramos en zona de corriente»), solo cuenta el tiempo que estás dentro de ella."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "El orden importa: **primero el viento, luego la corriente**. El abatimiento se aplica al rumbo (es un ángulo) y la corriente se suma como vector (rumbo y distancia). Nunca sumes los grados de la corriente al rumbo ni conviertas la Ihc en un ángulo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 000° a 6 nudos con una corriente E de 2 nudos y sin viento. ¿Qué rumbo efectivo haces?",
+       "opciones": {
+        "a": "Unos 018°",
+        "b": "Unos 342°",
+        "c": "000°"
+       },
+       "correcta": "a",
+       "explicacion": "En 1 hora: 6 millas al N y 2 al E. El efectivo apunta al NNE: tan Ref = 2/6 → Ref ≈ 018°, con Vef ≈ 6,3 nudos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Estás 2 h 15 min en una corriente de Ihc 2 millas. ¿Cuánto te desplaza?",
+       "opciones": {
+        "a": "4,3 millas",
+        "b": "4,5 millas",
+        "c": "2,15 millas"
+       },
+       "correcta": "b",
+       "explicacion": "2 h 15 min = 2,25 h; 2 × 2,25 = 4,5 millas en la dirección de la corriente."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n15",
+      "and-py-2020-c3-n15",
+      "and-py-2021-c1-n16",
+      "and-py-2021-c2-n11",
+      "and-py-2021-c2-n16",
+      "and-py-2022-c1-n15",
+      "and-py-2022-c2-n15",
+      "and-py-2023-c1-n14",
+      "and-py-2023-c1-n16",
+      "and-py-2023-c2-n15",
+      "and-py-2023-c2-n17",
+      "and-py-2023-c3-n15",
+      "and-py-2024-c1-n16",
+      "and-py-2024-c3-n17",
+      "and-py-2025-c1-n17",
+      "and-py-2025-c2-n16",
+      "and-py-2026-c1-n15"
+     ],
+     "carta": [
+      "estima-directa",
+      "corriente-efectiva"
+     ],
+     "chuleta": [
+      "Estima: Ra → Rv (+Ct) → Rs (+Ab) → Vb·t millas al Rs → Ihc·t millas al Rc.",
+      "Primero el viento, luego la corriente. La corriente va; el viento viene.",
+      "Ref y Vef: de la salida a la estima, dividido por el tiempo.",
+      "Solo el Ref: triángulo de 1 hora (Vb al Rs + Ihc al Rc).",
+      "Tiempo en horas decimales: 1 h 40 min = 1,67 h."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.5 y 4.7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.5 y 4.7: rumbo y velocidad efectivos; estima gráfica con viento y corriente",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Primero el viento, luego la corriente; la corriente va, el viento viene",
+       "fuente": "Reglas validadas py-car-02 y py-nav-01"
+      },
+      {
+       "dato": "Un enunciado llama «Rc» al rumbo efectivo («rumbo que hará el barco como consecuencia de la corriente»)",
+       "fuente": "Plantilla and-py-2023-c1-n16 (respuesta 101°)"
+      },
+      {
+       "dato": "Problema modelo: estima 10:30 35°55,7′ N 005°55,2′ W; Ref 139,4°, 12,2 M, Vef 8,1 kn; Espartel Dv 181°, 8,2 M",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-6",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Faro por el través y otros cortes con la derrota",
+     "minutos": 16,
+     "objetivos": [
+      "Calcular la demora de un faro que está por el través a partir del rumbo verdadero",
+      "Situarte cortando la derrota (con viento o corriente) con la línea del través",
+      "Resolver variantes: hora de avistar un faro por su alcance y situación por través y distancia"
+     ],
+     "refresco": [
+      "per-11-4",
+      "per-10-7"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El través se mide desde la proa",
+       "texto": "Tener un faro **por el través** es verlo a **90°** de la proa: marcación 90° por estribor o por babor. Como la marcación se cuenta desde la **proa**, la demora sale del **rumbo verdadero**, aunque abatas o te lleve la corriente:\n- Través de **estribor**: **Dv = Rv + 90°**.\n- Través de **babor**: **Dv = Rv − 90°**.\n\nSi el enunciado no dice la banda, mírala en la carta: el faro estará a un lado concreto de tu derrota."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rosa",
+        "rumbo": 170,
+        "demora": 80,
+        "marcacion": true,
+        "etiqueta": "faro"
+       },
+       "texto": "Proa al 170° y faro en Dv 080°: marcación de 90° por babor, el faro está por el través."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método",
+       "texto": "1. **Situación de salida** y rumbos: Ra → Rv → Rs (y Ref si hay corriente).\n2. Desde la salida, traza la **derrota** que de verdad sigues: el **Rs** con viento o el **Ref** con corriente.\n3. Calcula la **Dv del través** con el **Rv** y trázala desde el faro (Dv + 180°).\n4. El **corte** de las dos líneas es la situación.\n5. Si piden la hora, mide la distancia recorrida sobre la derrota y divide por la velocidad (Vb, o Vef con corriente)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "A HRB **10:00** estás en **35°55,0′ N 006°02,0′ W**, navegando al **Rv 170°** a **8 nudos**, con viento del **W** que te abate **10°**. Calcula la situación y la hora al tener el faro de **Cabo Espartel por el través de babor**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Viento**: 270 − 170 = 100° → **estribor** → Ab −10° → **Rs = 160°**.\n2. **Través de babor**: Dv = 170° − 90° = **080°** (con el Rv, no con el Rs). Desde el faro trazas el **260°**.\n3. **Corte** con el Rs 160° que sale de la situación: **35°47,1′ N 005°58,5′ W**, a unas 2,5 millas del faro.\n4. **Distancia navegada**: 8,4 millas → 8,4 / 8 = 1,05 h ≈ **1 h 03 min** → HRB **11:03**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La trampa clásica es calcular el través con el **Rs** (aquí, Dv 070°). Saldría 35°46,7′ N 005°58,3′ W: tan cerca de la buena que el examen suele poner las dos entre las opciones. El través siempre con el **Rv**; la derrota, con el **Rs** o el **Ref**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Otros cortes con la derrota",
+       "texto": "El mismo esquema (derrota desde la salida cortada con una línea de posición) resuelve más preguntas:\n- **Avistar un faro por su alcance**: corta la derrota con la circunferencia del alcance (centro en el faro). El primer corte es cuando empiezas a verlo.\n- **«Al N verdadero de un faro»**: corta la derrota con el meridiano del faro.\n- **Través y distancia radar a la vez**: no hay derrota que cortar. Con la Dv del través y la distancia te sitúas directamente desde el faro."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Con **corriente**, la derrota es el **rumbo efectivo**: primero construyes el triángulo (Rs y Vb + corriente) y trazas el Ref desde la salida. El través sigue calculándose con el Rv. La hora se saca con la **velocidad efectiva**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas al Rv 205° con viento del W que te abate 12°. ¿En qué Dv verás un faro por el través de estribor?",
+       "opciones": {
+        "a": "295°",
+        "b": "283°",
+        "c": "115°"
+       },
+       "correcta": "a",
+       "explicacion": "Través de estribor: Dv = Rv + 90° = 205° + 90° = 295°. El abatimiento cambia la derrota (Rs 193°), pero no la marcación, que se mide desde la proa."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Quieres saber cuándo empezarás a ver un faro de 9 millas de alcance. ¿Qué cortas con tu derrota?",
+       "opciones": {
+        "a": "La demora del faro por el través",
+        "b": "Una circunferencia de 9 millas con centro en el faro",
+        "c": "El meridiano del faro"
+       },
+       "correcta": "b",
+       "explicacion": "El faro empieza a verse cuando entras en su alcance: el primer corte de la derrota con la circunferencia de 9 millas."
+      }
+     ],
+     "practica": [
+      "and-py-2022-c3-n15",
+      "and-py-2023-c1-n15",
+      "and-py-2023-c2-n12",
+      "and-py-2023-c3-n14",
+      "and-py-2023-c3-n16",
+      "and-py-2024-c1-n13",
+      "and-py-2024-c2-n14",
+      "and-py-2024-c3-n14",
+      "and-py-2025-c2-n14",
+      "and-py-2025-c3-n14",
+      "and-py-2026-c1-n14",
+      "and-py-2026-c2-n14"
+     ],
+     "carta": [
+      "estima-directa",
+      "abatimiento"
+     ],
+     "chuleta": [
+      "Través de estribor: Dv = Rv + 90°. De babor: Dv = Rv − 90°. Siempre con el Rv.",
+      "La derrota que cortas: Rs con viento, Ref con corriente.",
+      "Corte de la derrota con la línea del faro (Dv + 180° desde el faro) = situación.",
+      "Hora: distancia sobre la derrota / velocidad (Vb o Vef).",
+      "Alcance: corta la derrota con la circunferencia del alcance."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.3 y 4.7)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "La marcación se mide desde la proa: través de estribor Dv = Rv + 90°, de babor Dv = Rv − 90°",
+       "fuente": "Regla validada r27 (Dv = Rv + M)"
+      },
+      {
+       "dato": "Problema modelo: corte del Rs 160° con la línea 260° desde Cabo Espartel en 35°47,1′ N 005°58,5′ W, 8,42 M → 11:03; con el Rs (trampa) 35°46,7′ N 005°58,3′ W",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-7",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Corriente conocida: rumbo a dar, velocidad y hora de llegada",
+     "minutos": 24,
+     "objetivos": [
+      "Construir el triángulo de velocidades para hallar el rumbo a dar contra una corriente",
+      "Calcular la velocidad efectiva y la hora de llegada",
+      "Calcular el rumbo y la velocidad del barco para llegar a una hora fijada",
+      "Combinar corriente, viento, tangente y corrección total en el orden correcto"
+     ],
+     "refresco": [
+      "per-11-3",
+      "per-10-9"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "El problema inverso",
+       "texto": "Ahora sabes **adónde** quieres ir y la corriente que hay, y buscas **qué rumbo dar** para que la suma de tu avance y la corriente te lleve justo allí.\n\nLa línea de la salida al destino es el **rumbo efectivo (Ref)** que necesitas. Si das la proa directamente al destino, la corriente te saca de esa línea. Hay que **aproar hacia el lado del que viene la corriente** lo justo para compensarla.\n\nEl programa pide dos variantes: con la **velocidad del barco** conocida (sale la hora de llegada) y con la **hora de llegada** fijada (sale la velocidad que necesitas)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente",
+        "caso": "rumbo-a-dar"
+       },
+       "texto": "1, la corriente desde la salida; 2, un arco con radio la velocidad del barco; 3, el efectivo hacia el destino."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El triángulo, con la velocidad del barco",
+       "texto": "Todo a escala de **1 hora**:\n1. Traza el **Ref**: de la salida al destino. Mide la distancia total.\n2. Desde la salida, dibuja el **vector corriente**: Ihc millas al Rc.\n3. Con centro en su extremo y radio **Vb**, corta la línea del Ref.\n4. Del extremo de la corriente a ese corte: el **rumbo a dar** (Rs, o Rv si no hay viento).\n5. De la salida al corte: la **Vef**.\n6. Después: **Rv = Rs − Ab**, **Ra = Rv − Ct** y **t = distancia / Vef**."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-car-02"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo (a): con la velocidad",
+       "texto": "A HRB **09:00** estás en **36°03,0′ N 005°58,0′ W** y das rumbo a **Tánger (farola del espigón)** a **7 nudos**. Hay una corriente de **Rc = E**, **Ihc = 2,5 millas**. Declinación 2° W, desvío +5°, sin viento. Calcula el rumbo de aguja y la hora de llegada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución (a)",
+       "texto": "1. **Ref** a la farola: **≈ 151°**, **17,7 millas**.\n2. **Corriente**: desde la salida, 2,5 millas al 090°.\n3. **Arco de 7 millas** desde el extremo de la corriente, cortando el Ref.\n4. **Rumbo a dar**: Rv ≈ **169,5°**. Aproas al sur para compensar la corriente, que te empuja al este.\n5. **Vef** ≈ **7,85 nudos** → t = 17,7 / 7,85 ≈ 2,25 h = **2 h 15 min** → llegada **11:15**.\n6. **Ct** = −2° + 5° = +3° → **Ra = 169,5° − 3° ≈ 166,5°**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si te fijan la hora de llegada",
+       "texto": "Entonces conoces la **Vef** que necesitas: **Vef = distancia / tiempo disponible**. El barco tiene que poner lo que falte:\n\n**vector barco = vector efectivo − vector corriente**\n\n1. Desde la salida, traza el Ref con longitud **Vef** (las millas de 1 hora).\n2. Desde la salida, traza la **corriente** (Ihc al Rc).\n3. Une el **extremo de la corriente** con el **extremo del efectivo**: esa dirección es el rumbo a dar y su longitud, la **Vb** necesaria."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución (b): llegar a las 11:30",
+       "texto": "Mismo punto de salida, mismo destino y misma corriente, pero quieres llegar a las **11:30**.\n1. Tiempo: 2,5 h → **Vef = 17,7 / 2,5 ≈ 7,1 nudos** al 151°.\n2. Vector efectivo de 1 hora: 7,1 millas al 151°. Vector corriente: 2,5 millas al 090°.\n3. Del extremo de la corriente al del efectivo: **Rv ≈ 171,5°** y **Vb ≈ 6,3 nudos**.\n4. **Ra** = 171,5° − 3° ≈ **168,5°**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Errores típicos:\n- Restar la Ihc a la velocidad «a ojo» en vez de construir el triángulo.\n- Medir el rumbo a dar desde la **salida** hasta el corte: eso es el Ref, no el rumbo a dar.\n- Calcular la hora con la **Vb**: con corriente se usa la **Vef**.\n- Aproar hacia el lado equivocado: compruébalo, el rumbo a dar queda **del lado contrario** al que empuja la corriente."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Variantes que también salen:\n- **Pasar a X millas de un faro con corriente**: la tangente es el **Ref**; después, el triángulo.\n- **Corriente y viento a la vez**: el triángulo te da el **Rs**; luego Rv = Rs − Ab y Ra = Rv − Ct.\n- **Solo la velocidad efectiva**: la distancia de la salida al corte del arco."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Quieres ir hacia el N (Ref 000°) a 6 nudos con una corriente E de 3 nudos. ¿Qué rumbo das?",
+       "opciones": {
+        "a": "030°",
+        "b": "330°",
+        "c": "000°"
+       },
+       "correcta": "b",
+       "explicacion": "Hay que compensar hacia el W: sen α = 3/6 → α = 30°, rumbo 330°. La Vef queda en 6·cos 30° ≈ 5,2 nudos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Con la hora de llegada fijada, ¿qué dos puntos unes para obtener el rumbo a dar y la Vb?",
+       "opciones": {
+        "a": "La salida y el extremo del efectivo",
+        "b": "El extremo de la corriente y el extremo del efectivo",
+        "c": "La salida y el extremo de la corriente"
+       },
+       "correcta": "b",
+       "explicacion": "Vector barco = efectivo − corriente: va del extremo de la corriente al extremo del efectivo."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n16",
+      "and-py-2020-c1-n17",
+      "and-py-2020-c3-n14",
+      "and-py-2020-c3-n17",
+      "and-py-2021-c1-n14",
+      "and-py-2021-c1-n15",
+      "and-py-2022-c1-n14",
+      "and-py-2022-c2-n14",
+      "and-py-2022-c3-n13",
+      "and-py-2023-c1-n13",
+      "and-py-2023-c2-n14",
+      "and-py-2024-c1-n12",
+      "and-py-2024-c1-n15",
+      "and-py-2024-c2-n13",
+      "and-py-2024-c3-n13",
+      "and-py-2025-c1-n13",
+      "and-py-2025-c2-n13",
+      "and-py-2025-c2-n17",
+      "and-py-2025-c3-n11",
+      "and-py-2025-c3-n17",
+      "and-py-2026-c1-n11",
+      "and-py-2026-c1-n17",
+      "and-py-2026-c2-n17"
+     ],
+     "carta": [
+      "corriente-rumbo-a-dar",
+      "corriente-efectiva"
+     ],
+     "chuleta": [
+      "Ref = línea de la salida al destino (o la tangente si hay que pasar a distancia).",
+      "Con Vb: corriente desde la salida, arco de radio Vb desde su extremo; extremo corriente → corte = rumbo a dar; salida → corte = Vef.",
+      "Con hora fijada: Vef = d / t; extremo corriente → extremo efectivo = rumbo a dar y Vb.",
+      "Hora de llegada con la Vef, nunca con la Vb.",
+      "Luego: Rv = Rs − Ab y Ra = Rv − Ct."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.5)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.5: rumbo de aguja y Vef con situación de llegada o paso a distancia; rumbo de aguja y Vb con situación y hora de llegada",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Problema (a): Ref 151,1°, 17,7 M a la farola de Tánger; Rv 169,3° (≈169,5°), Vef 7,86 kn, 2 h 15 min",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      },
+      {
+       "dato": "Problema (b): Vef 7,09 kn; Rv 171,5°, Vb 6,28 kn",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-8",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Corriente desconocida: rumbo e intensidad",
+     "minutos": 15,
+     "objetivos": [
+      "Calcular la situación de estima sin corriente y compararla con la observada",
+      "Obtener el rumbo de la corriente y su intensidad horaria",
+      "Evitar las trampas del sentido del vector y del intervalo de tiempo"
+     ],
+     "refresco": [
+      "per-11-4",
+      "per-11-6"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "La idea",
+       "texto": "Sales de una situación fiable y navegas por estima sin saber que hay corriente. Al cabo de un rato te sitúas de verdad (con demoras, distancias o referencias a faros) y **no estás donde decía la estima**. La diferencia es obra de la corriente:\n- **Rumbo de la corriente (Rc)**: la dirección que va **de la situación estimada a la observada**.\n- **Intensidad horaria (Ihc)**: la distancia entre ambas **dividida por las horas** transcurridas desde la situación fiable."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-car-01"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Método",
+       "texto": "1. **Situación de salida** a la hora inicial.\n2. **Estima** a la hora de la observación, **sin corriente**: Ra → Rv → Rs (si hay viento) y Vb × t millas.\n3. **Situación observada** a esa misma hora, con las líneas de posición que te den.\n4. Une **estimada → observada**: mide el rumbo (**Rc**) y la distancia.\n5. **Ihc = distancia / tiempo** en horas.\n\nSi el intervalo es de 30 minutos, la Ihc es el doble de la distancia; si es de 2 h 30 min, la distancia entre 2,5."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo",
+       "texto": "A HRB **10:00** estás en **35°56,0′ N 005°55,0′ W** y navegas al **Rv 100°** a **6 nudos**. A HRB **11:30** tomas simultáneamente **Dv del faro de Punta Paloma = 350°** y **Dv del faro de Punta Cires = 101°**. Calcula el rumbo y la intensidad horaria de la corriente."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución paso a paso",
+       "texto": "1. **Tiempo**: 1 h 30 min = 1,5 h → 6 × 1,5 = **9 millas** al 100°.\n2. **Estima 11:30**: **35°54,4′ N 005°44,1′ W**.\n3. **Observada 11:30**: desde Paloma trazas el 170° y desde Cires el 281°; se cortan en **35°56,6′ N 005°41,5′ W**.\n4. **Vector estimada → observada**: **≈ 044°**, **3,0 millas**.\n5. **Ihc** = 3,0 / 1,5 = **2,0 millas por hora**.\n\nResultado: **Rc ≈ 044°, Ihc = 2 nudos**. En la carta las décimas bailan; quédate con la opción más próxima."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones del examen suelen traer el **rumbo opuesto** (±180°) y la **intensidad doble o mitad**. Para no caer:\n- El vector va **de la estimada a la observada**, nunca al revés.\n- Divide por el tiempo **desde la última situación fiable**, no por una hora.\n- En la estima mete el **viento** (Rs), pero **no** la corriente: es justo lo que buscas."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "La situación observada puede venir de cualquier línea de posición: dos demoras, demora y distancia, una marcación, o «al N verdadero de un faro y al E verdadero de otro» (meridiano de uno y paralelo del otro). Si la observación de partida es una marcación, conviértela antes: **Dv = Rv + M**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La estima de las 12:00 está 4 millas al W de la situación observada. Saliste de una situación fiable a las 10:00. ¿Qué corriente hay?",
+       "opciones": {
+        "a": "Rc 270°, Ihc 2 nudos",
+        "b": "Rc 090°, Ihc 2 nudos",
+        "c": "Rc 090°, Ihc 4 nudos"
+       },
+       "correcta": "b",
+       "explicacion": "De la estimada a la observada se va hacia el E (090°). Son 4 millas en 2 horas: Ihc = 2 nudos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Para calcular la estima en un problema de corriente desconocida con viento, ¿qué rumbo trazas?",
+       "opciones": {
+        "a": "El Rv",
+        "b": "El Rs",
+        "c": "El rumbo efectivo"
+       },
+       "correcta": "b",
+       "explicacion": "La estima incluye el abatimiento (Rs), pero no la corriente, que es la incógnita. El efectivo no lo conoces todavía."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n14",
+      "and-py-2021-c2-n17",
+      "and-py-2022-c1-n17",
+      "and-py-2022-c2-n16",
+      "and-py-2022-c3-n16",
+      "and-py-2024-c1-n17",
+      "and-py-2024-c2-n17",
+      "and-py-2025-c1-n15",
+      "and-py-2025-c3-n16",
+      "and-py-2026-c2-n16"
+     ],
+     "carta": [
+      "corriente-desconocida"
+     ],
+     "chuleta": [
+      "Estima sin corriente (con viento si lo hay) a la hora de la observación.",
+      "Situación observada a esa misma hora.",
+      "Rc = dirección de la estimada a la observada.",
+      "Ihc = distancia estimada–observada / horas desde la situación fiable.",
+      "Trampas: rumbo opuesto e intensidad doble o mitad."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.6)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.6: corriente desconocida con situación verdadera y estimada a la misma hora",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Rc de la estimada a la observada; Ihc = distancia / tiempo",
+       "fuente": "Regla validada py-car-01"
+      },
+      {
+       "dato": "Problema modelo: estima 35°54,4′ N 005°44,1′ W; observada 35°56,6′ N 005°41,5′ W; Rc 044,4°, 3,04 M, Ihc 2,0 kn",
+       "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
+      }
+     ]
+    },
+    {
+     "id": "py-4-9",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Mareas: sonda en un momento y hora para tener una sonda",
+     "minutos": 24,
+     "objetivos": [
+      "Pasar de hora oficial a UT y escoger el tramo de marea correcto del Anuario",
+      "Calcular la sonda en un instante (problema directo)",
+      "Calcular a qué hora habrá una sonda dada (problema inverso)",
+      "Aplicar la corrección por presión atmosférica"
+     ],
+     "refresco": [
+      "per-10-8"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué te da el examen",
+       "texto": "Las mareas suelen ser las preguntas **18 y 19** (en 2021 aparecieron en otra posición) y no dependen de la carta. Te dan un extracto del **Anuario de Mareas** del Instituto Hidrográfico de la Marina para un puerto y un día: horas y alturas de pleamares y bajamares. Además, la **sonda de la carta** de un bajo y el **adelanto** de la hora oficial.\n\nHay dos tipos:\n- **Directo**: qué sonda habrá a una hora.\n- **Inverso**: a qué hora habrá una sonda.\n\nLas alturas del Anuario se miden desde el mismo **cero hidrográfico** que las sondas de la carta, así que se suman sin más."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-06"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La fórmula",
+       "texto": "Toma la bajamar (BM) y la pleamar (PM) **consecutivas** que encierran la hora que buscas:\n- **Duración** D: tiempo entre la BM y la PM.\n- **Amplitud** A: altura de la PM − altura de la BM.\n- **Intervalo** I: tiempo entre tu hora y la **bajamar** del tramo.\n\n**C = A · sen²(90° · I / D)**\n\nC es lo que la marea ha subido sobre la bajamar. Entonces:\n- Altura de la marea: **h = altura de la BM + C**\n- **Sonda = sonda de la carta + h**\n\nLa tabla de mareas del examen está hecha con esta misma fórmula, así que entre tabla y fórmula puede haber 1 o 2 cm de diferencia."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marea",
+        "modo": "curva"
+       },
+       "texto": "Entre una bajamar y la pleamar siguiente, el agua sube despacio al principio, rápido en el centro y despacio al final."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo: directo",
+       "texto": "Datos del Anuario (horas en UT) para un puerto y día de ejemplo:\n- BM 06:10 → 0,80 m\n- PM 12:25 → 3,10 m\n- BM 18:40 → 0,90 m\n\nAdelanto vigente: **+2 horas**. ¿Qué sonda habrá a la hora oficial **11:40** en un bajo con **1,50 m** de sonda en la carta?"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución: directo",
+       "texto": "1. **A UT**: 11:40 − 2 h = **09:40 UT**.\n2. **Tramo**: entre la BM de 06:10 y la PM de 12:25 (marea subiendo).\n3. **D** = 6 h 15 min = **375 min**; **A** = 3,10 − 0,80 = **2,30 m**.\n4. **I** desde la BM: 09:40 − 06:10 = 3 h 30 min = **210 min**.\n5. **C** = 2,30 · sen²(90° · 210 / 375) = 2,30 · sen²(50,4°) = 2,30 · 0,594 ≈ **1,37 m**.\n6. **h** = 0,80 + 1,37 = **2,17 m**.\n7. **Sonda** = 1,50 + 2,17 = **3,67 m**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Si la marea está bajando",
+       "texto": "Si tu hora cae entre una pleamar y la bajamar siguiente, el intervalo se cuenta **desde tu hora hasta esa bajamar**.\n\nCon los mismos datos, a la hora oficial **19:10** (17:10 UT): tramo PM 12:25 – BM 18:40, D = 375 min, A = 3,10 − 0,90 = **2,20 m**, I = 18:40 − 17:10 = **90 min**.\n\nC = 2,20 · sen²(90° · 90 / 375) = 2,20 · sen²(21,6°) ≈ **0,30 m** → h = 0,90 + 0,30 = **1,20 m**.\n\nLa fórmula siempre mide desde la **bajamar** y suma sobre su altura."
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-05"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo: inverso",
+       "texto": "Con los mismos datos, ¿a partir de qué hora oficial, entre la **primera bajamar y la primera pleamar**, tendrás al menos **4,00 m** de sonda en ese bajo de 1,50 m?\n\n1. **Altura necesaria**: h = 4,00 − 1,50 = **2,50 m**.\n2. **C** = 2,50 − 0,80 = **1,70 m**.\n3. **sen²(90° · I / D) = C / A** = 1,70 / 2,30 = 0,739 → sen = 0,860 → ángulo = 59,3°.\n4. **I** = 375 · 59,3 / 90 ≈ **247 min = 4 h 07 min** después de la BM.\n5. 06:10 + 4:07 = **10:17 UT** → **12:17** hora oficial."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Presión atmosférica",
+       "texto": "Las alturas del Anuario suponen una presión normal de unos **1013 hPa**. Si el enunciado da otra presión, aplica la corrección de la tabla del Anuario. Viene a ser **1 cm por cada hPa** de diferencia:\n- **Presión alta**: **menos** agua (con 1020 hPa, unos −0,07 m).\n- **Presión baja**: **más** agua (con 1003 hPa, unos +0,10 m).\n\nLa corrección se suma a la sonda calculada. Si el enunciado dice que no la tengas en cuenta, no la apliques."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Los fallos que cuestan esta pregunta:\n- No pasar a **UT** antes de entrar en el Anuario, o no volver a **hora oficial** al final (salvo que pidan la hora en UT o TU).\n- Elegir mal el tramo: «entre la primera pleamar y la primera bajamar» fija cuál es. Con marea bajando, la hora es **BM − I**; con marea subiendo, **BM + I**.\n- Olvidar sumar la altura de la bajamar a C.\n- Tener la calculadora en radianes: ponla en grados (DEG)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Las opciones del examen salen de las tablas del Anuario, que redondean: tu resultado con la fórmula puede diferir en 1 o 2 cm o en algunos minutos (en alguna plantilla, hasta un cuarto de hora). Elige siempre la opción más próxima y no rehagas el cálculo por esa diferencia."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una bajamar de 0,60 m y la pleamar siguiente de 2,60 m. Justo a mitad del tramo, ¿cuánto ha subido la marea sobre la bajamar?",
+       "opciones": {
+        "a": "1,00 m",
+        "b": "0,50 m",
+        "c": "2,00 m"
+       },
+       "correcta": "a",
+       "explicacion": "A mitad del tramo, 90° · I / D = 45° y sen² 45° = 0,5: C = 2,00 × 0,5 = 1,00 m. La altura de la marea es 0,60 + 1,00 = 1,60 m."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El enunciado dice «hora oficial 17:30, adelanto +1 hora». ¿Con qué hora entras en el Anuario?",
+       "opciones": {
+        "a": "18:30 UT",
+        "b": "16:30 UT",
+        "c": "17:30 UT"
+       },
+       "correcta": "b",
+       "explicacion": "El Anuario da las horas en UT: UT = hora oficial − adelanto = 17:30 − 1 h = 16:30."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n18",
+      "and-py-2020-c1-n19",
+      "and-py-2020-c3-n18",
+      "and-py-2020-c3-n19",
+      "and-py-2021-c1-n19",
+      "and-py-2021-c1-n20",
+      "and-py-2021-c2-n20",
+      "and-py-2022-c1-n18",
+      "and-py-2022-c1-n19",
+      "and-py-2022-c2-n18",
+      "and-py-2022-c2-n19",
+      "and-py-2022-c3-n18",
+      "and-py-2022-c3-n19",
+      "and-py-2023-c1-n18",
+      "and-py-2023-c1-n19",
+      "and-py-2023-c2-n18",
+      "and-py-2023-c2-n19",
+      "and-py-2023-c3-n18",
+      "and-py-2023-c3-n19",
+      "and-py-2024-c1-n18",
+      "and-py-2024-c1-n19",
+      "and-py-2024-c2-n18",
+      "and-py-2024-c2-n19",
+      "and-py-2024-c3-n18",
+      "and-py-2024-c3-n19",
+      "and-py-2025-c1-n18",
+      "and-py-2025-c1-n19",
+      "and-py-2025-c2-n18",
+      "and-py-2025-c2-n19",
+      "and-py-2025-c3-n18",
+      "and-py-2025-c3-n19",
+      "and-py-2026-c1-n18",
+      "and-py-2026-c1-n19",
+      "and-py-2026-c2-n18",
+      "and-py-2026-c2-n19"
+     ],
+     "carta": [
+      "marea-sonda"
+     ],
+     "chuleta": [
+      "UT = hora oficial − adelanto. Al final, vuelve a hora oficial.",
+      "Tramo BM–PM: D (tiempo), A (alturas), I (desde tu hora a la BM del tramo).",
+      "C = A · sen²(90° · I / D); h = altura BM + C; sonda = sonda de la carta + h.",
+      "Inverso: C = h necesaria − altura BM; I = D · arcsen(√(C/A)) / 90.",
+      "Hora: BM + I si sube, BM − I si baja.",
+      "Presión: unos −1 cm por hPa por encima de 1013 y +1 cm por debajo."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IHM – Información del Anuario de Mareas",
+       "url": "https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario"
+      },
+      {
+       "titulo": "IHM – El cero hidrográfico (PDF)",
+       "url": "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf"
+      },
+      {
+       "titulo": "Puertos del Estado – Portus (predicción de mareas y nivel del mar)",
+       "url": "https://portus.puertos.es/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.9: sonda en un momento cualquiera, problema directo e inverso, como cuestión independiente",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Horas del Anuario en UTC (sumar el adelanto para hora oficial); cero hidrográfico = LAT; presión normal 1013 hPa, con presión mayor el nivel baja",
+       "fuente": "IHM, Contenido del Anuario de Mareas (https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario)"
+      },
+      {
+       "dato": "Tabla del examen: C = A · sen²(90° · I / D), con I desde/hasta la bajamar más próxima",
+       "fuente": "Tabla de mareas que acompaña al examen (data/exams/img/py-tabla-mareas.png)"
+      },
+      {
+       "dato": "≈ 1 cm por hPa: 1020 hPa → −0,07 m",
+       "fuente": "Plantilla and-py-2023-c3-n18 (respuesta 3,65 m)"
+      },
+      {
+       "dato": "Modelos: C 1,37 m, sonda 3,67 m; bajando 0,30 m, h 1,20 m; inverso I 247 min → 12:17 hora oficial",
+       "fuente": "Recalculado por el revisor"
+      },
+      {
+       "dato": "Plantilla and-py-2021-c1-n20: con A = 0,81 m sale 16:42 UTC; la oficial 16:56 sale de la tabla con la columna A = 1,00",
+       "fuente": "Examen PY 2021 1ª conv. (Algeciras 23-06-2021: BM 06:24 0,14; PM 13:03 1,00; BM 18:35 0,19) y recálculo del revisor"
+      }
+     ]
+    },
+    {
+     "id": "py-4-10",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Estima analítica: derrota loxodrómica",
+     "minutos": 22,
+     "objetivos": [
+      "Calcular la situación de llegada tras uno o varios rumbos, con corriente incluida (estima directa)",
+      "Calcular el rumbo directo y la distancia entre dos situaciones (estima inversa)",
+      "Manejar los signos, los cuadrantes del rumbo y el paso por el meridiano 180°"
+     ],
+     "refresco": [
+      "per-10-1",
+      "per-10-2"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Qué se pide",
+       "texto": "La estima analítica (casi siempre la **pregunta 20**) se resuelve con calculadora, sin carta. La **loxodrómica** es la derrota de rumbo constante: corta todos los meridianos con el mismo ángulo y en la carta Mercator es una recta.\n\nDos variantes:\n- **Directa**: conoces la salida y los rumbos y distancias navegados (a veces con corriente). Buscas la **situación de llegada**.\n- **Inversa**: conoces salida y llegada. Buscas el **rumbo directo** y la **distancia**.\n\nUsa el **triángulo de estima**: diferencia de latitud (Δl), apartamiento (A) y distancia (D)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "loxodromica"
+       }
+      },
+      {
+       "tipo": "regla",
+       "id": "py-nav-04"
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Fórmulas y signos",
+       "texto": "Para cada tramo de distancia D al rumbo R (circular):\n- **Δl = D · cos R** (en minutos = millas; **+ N, − S**).\n- **A = D · sen R** (en millas; **+ E, − W**).\n\nSuma todos los Δl y todos los A, con su signo. La **corriente es un tramo más**: rumbo Rc y distancia Ihc × horas.\n\nLuego:\n- **lm = l salida + Δl / 2** (latitud media).\n- **ΔL = A / cos lm** (minutos de longitud).\n- Inversa: **A = ΔL · cos lm**, **tan R = A / Δl**, **D = √(Δl² + A²)**.\n\nCon R circular la calculadora pone sola los signos de seno y coseno."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo: directa",
+       "texto": "Sales de **20°10,0′ N 179°30,0′ E** a **10 nudos** y navegas:\n- Rumbo **060°** durante 4 horas.\n- Rumbo **110°** durante 3 horas.\n\nDurante las 7 horas te afecta una corriente **Rc = S**, **Ihc = 2 millas**. Calcula la situación de llegada."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución (1): la tabla",
+       "texto": "Distancias: 40 millas al 060°, 30 al 110° y la corriente, 2 × 7 = **14 millas al 180°**.\n\n- 060° · 40: Δl = +20,0; A = +34,6\n- 110° · 30: Δl = −10,3; A = +28,2\n- 180° · 14: Δl = −14,0; A = 0\n\n**Δl = −4,3′** (al S) y **A = +62,8 millas** (al E).\n\nLatitud de llegada: 20°10,0′ − 4,3′ = **20°05,7′ N**.\nLatitud media: 20°10,0′ − 2,15′ ≈ **20°07,9′** (20,13°)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Resolución (2): la longitud",
+       "texto": "**ΔL = A / cos lm** = 62,8 / cos 20,13° ≈ **66,9′ E** = 1°06,9′ E.\n\nLongitud: 179°30,0′ E + 1°06,9′ = **180°36,9′ E**. Una longitud no pasa de 180°: has **cruzado el antimeridiano** y estás en longitud oeste.\n\n**L = 360° − 180°36,9′ = 179°23,1′ W**.\n\nLlegada: **20°05,7′ N 179°23,1′ W**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El meridiano 180° en la inversa",
+       "texto": "Muchas preguntas cruzan el antimeridiano a propósito. Si sales de 178°50′ E y vas a 177°40′ W, **no restes 178 − 177**: el camino corto pasa por el 180°.\n\n**ΔL = (180° − 178°50′) + (180° − 177°40′) = 70′ + 140′ = 210′ hacia el E**.\n\nRegla general: si la ΔL que te sale pasa de 180°, réstala de 360° y cambia su sentido."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Problema modelo: inversa",
+       "texto": "Rumbo directo y distancia de **38°40,0′ N 009°20,0′ W** a **33°35,0′ N 016°55,0′ W**.\n1. **Δl** = 33°35′ − 38°40′ = **305′ S**.\n2. **ΔL** = 16°55′ − 9°20′ = 7°35′ = **455′ W**.\n3. **lm** = (38°40′ + 33°35′) / 2 = 36°07,5′ (36,125°).\n4. **A** = 455 · cos 36,125° ≈ **367,5 millas W**.\n5. **tan R = 367,5 / 305** → R = **S 50,3° W** → **230,3°**.\n6. **D** = √(305² + 367,5²) ≈ **477,6 millas**."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Con la arcotangente obtienes un ángulo **cuadrantal**: decide el cuadrante por los signos. Con Δl S y A W, es **S x W = 180° + x**. Con Δl N y A W, **360° − x**. Fíjate también en el hemisferio: en el sur, ir hacia el sur hace **crecer** la latitud. Y si te piden «aproximar al medio grado», hazlo solo al final."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tras varios tramos te sale A = 30 millas E con una latitud media de 60°. ¿Cuánto cambia tu longitud?",
+       "opciones": {
+        "a": "15′ E",
+        "b": "60′ E",
+        "c": "30′ E"
+       },
+       "correcta": "b",
+       "explicacion": "ΔL = A / cos lm = 30 / cos 60° = 30 / 0,5 = 60′ E. La ΔL siempre es mayor o igual que el apartamiento."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Calculando la llegada te sale una longitud de 181°10′ E. ¿Cómo la escribes?",
+       "opciones": {
+        "a": "178°50′ W",
+        "b": "001°10′ W",
+        "c": "181°10′ E"
+       },
+       "correcta": "a",
+       "explicacion": "Has cruzado el antimeridiano: 360° − 181°10′ = 178°50′ W."
+      }
+     ],
+     "practica": [
+      "and-py-2020-c1-n20",
+      "and-py-2020-c3-n20",
+      "and-py-2021-c1-n18",
+      "and-py-2021-c2-n18",
+      "and-py-2021-c2-n19",
+      "and-py-2022-c1-n20",
+      "and-py-2022-c2-n20",
+      "and-py-2022-c3-n20",
+      "and-py-2023-c1-n20",
+      "and-py-2023-c2-n20",
+      "and-py-2023-c3-n20",
+      "and-py-2024-c1-n20",
+      "and-py-2024-c2-n20",
+      "and-py-2024-c3-n20",
+      "and-py-2025-c1-n20",
+      "and-py-2025-c2-n20",
+      "and-py-2025-c3-n20",
+      "and-py-2026-c1-n20",
+      "and-py-2026-c2-n20"
+     ],
+     "carta": [
+      "estima-analitica"
+     ],
+     "chuleta": [
+      "Por tramo: Δl = D · cos R; A = D · sen R (N y E +, S y W −). La corriente, un tramo más.",
+      "lm = l salida + Δl / 2; ΔL = A / cos lm.",
+      "Inversa: A = ΔL · cos lm; tan R = A / Δl; D = √(Δl² + A²).",
+      "Cuadrante por los signos: N x E, S x E = 180° − x, S x W = 180° + x, N x W = 360° − x.",
+      "Longitud > 180°: 360° − L y cambia E por W. ΔL > 180°: 360° − ΔL y cambia el sentido."
+     ],
+     "profundizar": [
+      {
+       "titulo": "BOE – Real Decreto 875/2014 (programa del Patrón de Yate, UT 4.8)",
+       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Programa 4.8: resolución analítica de la loxodrómica, directa e inversa",
+       "fuente": "BOE RD 875/2014, anexo II, Patrón de Yate: UT 4 «Navegación carta» y criterios del examen teórico (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344)"
+      },
+      {
+       "dato": "Δl = D cos R, A = D sen R, ΔL = A / cos lm; inversa A = ΔL cos lm, tan R = A / Δl",
+       "fuente": "Regla validada py-nav-04; plantilla and-py-2023-c3-n20"
+      },
+      {
+       "dato": "Directa: Δl −4,26′, A +62,83 M, lm 20,13°, ΔL 66,9′ → 20°05,7′ N 179°23,1′ W",
+       "fuente": "Recalculado por el revisor"
+      },
+      {
+       "dato": "Inversa: R 230,3°, D 477,6 M (con partes meridianas 230,3° y 477,4 M)",
+       "fuente": "Recalculado por el revisor"
+      }
+     ]
+    }
+   ]
   }
  ]
 }

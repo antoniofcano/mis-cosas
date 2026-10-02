@@ -346,6 +346,14 @@
        "texto": "Como **GM = KM − KG** y KM apenas cambia, todo lo que mueva G en vertical cambia la estabilidad:\n- **Bajar pesos** (de cubiertas superiores a inferiores, por debajo de G): G baja, **GM aumenta**, más estabilidad.\n- **Subir pesos** (por encima de G): G sube, **GM disminuye**, menos estabilidad.\n\nCuidado con los **consumos**: si gastas agua o combustible de un tanque situado **por debajo de G**, quitas peso de abajo y **G sube**: GM disminuye. Que el tanque esté a proa o a popa solo cambia además el asiento."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "estabilidad",
+        "caso": "estable"
+       },
+       "texto": "Sube, baja o traslada el peso y mira qué pasa con G y con GM."
+      },
+      {
        "tipo": "ojo",
        "texto": "El consumo de agua o combustible **bajo G** **disminuye** la estabilidad: no es «solo un líquido», ni hay que esperar a que se vacíe el tanque. Y en un barco con **equilibrio indiferente**, subir un peso por encima de G deja GM negativa: el barco puede escorar, no recuperarse y dar la vuelta."
       },
@@ -2227,6 +2235,13 @@
        "tipo": "texto",
        "titulo": "Punto de rocío",
        "texto": "El **punto de rocío** es la **temperatura** a la que hay que **enfriar** el aire, **sin cambiar su presión ni su cantidad de vapor**, para que se **sature** y empiece a condensarse.\n\n- Es una temperatura (°C), no una humedad ni una presión.\n- Si la temperatura del aire baja hasta el punto de rocío, la HR llega al **100 %**.\n- Cuanto más cerca están la temperatura del aire y su punto de rocío, más húmedo está el aire y más fácil es que se formen nubes bajas o niebla.\n\nEste dato es la base para prever la niebla a bordo, como verás en la lección de nieblas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "humedad"
+       },
+       "texto": "Mismo vapor, aire más frío: la humedad relativa sube hasta el 100 % en el punto de rocío."
       },
       {
        "tipo": "clave",
@@ -4329,6 +4344,13 @@
        "tipo": "texto",
        "titulo": "Para qué sirve y sus límites",
        "texto": "**Sirve para**:\n- **Prevenir abordajes**: identificas al otro y sabes su rumbo, velocidad y lo cerca que pasará, incluso con **visibilidad reducida** o detrás de un cabo o una isla.\n- La gestión del **tráfico** por las autoridades, el **seguimiento** de buques y la **búsqueda y salvamento**.\n\n**Límites**:\n- Solo ves a quien **lleva AIS y lo tiene encendido**: un velero sin AIS o un tronco no aparecen.\n- Los datos los introduce cada barco y pueden estar mal.\n- Por eso **no sustituye** al radar ni a la vigilancia visual: los **complementa**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ais"
+       },
+       "texto": "Lo que enseña el AIS y lo que no."
       },
       {
        "tipo": "texto",

@@ -7819,6 +7819,14 @@
        "texto": "Se apaga quitando **un elemento del tetraedro**:\n- **Enfriamiento**: quitar **calor**. El agente rey es el **agua**.\n- **Sofocación**: quitar el **comburente** (oxígeno). Una manta ignífuga, una tapa, la espuma o el CO₂.\n- **Desalimentación**: quitar el **combustible** (cerrar la llave del gas o del combustible, retirar lo que pueda arder). Es el método más directo, pero no siempre posible.\n- **Inhibición**: cortar la **reacción en cadena**. Es como actúa sobre todo el **polvo químico**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fuego",
+        "vista": "tetraedro"
+       },
+       "texto": "Cada forma de apagar quita un lado del tetraedro."
+      },
+      {
        "tipo": "clave",
        "texto": "Enfriar = calor. Sofocar = oxígeno. Desalimentar = combustible. Inhibir = reacción en cadena."
       },
@@ -7826,6 +7834,14 @@
        "tipo": "texto",
        "titulo": "Los agentes extintores",
        "texto": "- **Agua**: enfría como ninguno, ideal en **clase A**. En forma de **niebla** (pulverizada) es el agente **más eficaz para enfriar**. A chorro, **nunca** en líquidos inflamables (los esparce), aceite de cocina, metales ni con tensión eléctrica.\n- **Espuma**: sofoca (y algo enfría). Para **A y B**. Conduce la electricidad.\n- **CO₂** (anhídrido carbónico): sofoca desplazando el oxígeno; sirve en **B** y con **electricidad**, y no deja residuos. En un local cerrado es asfixiante.\n- **Polvo polivalente ABC**: el extintor habitual a bordo. Sirve para **A, B y C** y con tensión eléctrica.\n- **Clase D**: polvo especial para metales. **Clase F**: extintor específico o, en la sartén, **tapar** con tapa o manta ignífuga."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fuego",
+        "vista": "clases"
+       },
+       "texto": "Cada clase de fuego pide su agente."
       },
       {
        "tipo": "ojo",
@@ -10667,6 +10683,13 @@
        "texto": "1. **Sitúa la salida**, sea por coordenadas o respecto a uno o dos faros.\n2. **Sitúa la llegada**, en la luz exacta que dice el enunciado.\n3. **Une los dos puntos** y mide el **Rv** con el transportador centrado en la salida.\n4. **Mide la distancia** con el compás en la escala de latitudes.\n5. Calcula la **Ct** (actualiza la declinación si hace falta) y luego **Ra = Rv − Ct**.\n6. **Tiempo = distancia / velocidad**, y **HRB de llegada = HRB de salida + tiempo**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rumbo-directo"
+       },
+       "texto": "Rv medido en la carta y Ra = Rv − Ct, con las cifras del ejemplo resuelto."
+      },
+      {
        "tipo": "texto",
        "titulo": "Pasar el tiempo a horas y minutos",
        "texto": "La división d / V te da horas con decimales. Para pasarlas a minutos, multiplica la parte decimal por 60.\n\nEjemplo: 12,7 millas a 8 nudos = 1,59 h. Como 0,59 × 60 ≈ 35 min, tardas **1 h 35 min**. Si sales a las 20:00, llegas a las **21:35**. Un minuto arriba o abajo es normal por la medida en la carta: en el examen con estos datos la plantilla da 21:34.\n\nSi la suma pasa de las 24 h, réstale 24: las 25:13 son la 01:13 del día siguiente."
@@ -11153,6 +11176,22 @@
        "tipo": "texto",
        "titulo": "Oposición o enfilación",
        "texto": "- **Oposición**: tienes los dos puntos en sentidos opuestos y estás **entre** ellos, sobre el segmento que los une.\n- **Enfilación**: ves los dos puntos en la misma dirección, uno tapando al otro, y estás **fuera** del segmento, en su prolongación.\n\nEsta distinción te dice **en qué tramo** de la recta buscar el corte."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "oposicion",
+        "caso": "oposicion"
+       },
+       "texto": "Oposición: el corte está entre los dos faros."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "oposicion",
+        "caso": "enfilacion"
+       },
+       "texto": "Enfilación: el corte está en la prolongación de la recta."
       },
       {
        "tipo": "check",

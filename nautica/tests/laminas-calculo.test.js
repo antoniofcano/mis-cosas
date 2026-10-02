@@ -121,3 +121,18 @@ test('caída de la popa en las ocho combinaciones de marcha, giro y timón (y co
   assert.equal(caidaPopa({ marcha: 'avante', sentido: 'dextrogira', timon: 'er' }).dominante, 'timon');
   assert.equal(caidaPopa({ marcha: 'atras', sentido: 'dextrogira', timon: 'er' }).proa, 'estribor');
 });
+
+import { desatraque } from '../src/nautical/desatraque.js';
+test('desatraque: viento, esprín que trabaja y máquina', () => {
+  const r = (viento, esprin, maquina) => desatraque({ viento, esprin, maquina }).resultado;
+  for (const v of ['calma', 'tierra', 'mar']) assert.equal(r(v, 'proa', 'avante'), 'abre-popa');
+  assert.equal(r('calma', 'popa', 'atras'), 'abre-proa');
+  assert.equal(r('tierra', 'popa', 'atras'), 'abre-proa');
+  assert.equal(r('mar', 'popa', 'atras'), 'se-queda'); // con viento de fuera se abre la popa
+  assert.equal(r('calma', 'proa', 'atras'), 'se-queda'); // el esprín no trabaja
+  assert.equal(r('mar', 'popa', 'avante'), 'se-queda');
+  assert.equal(r('tierra', 'popa', 'avante'), 'se-separa');
+  // reutiliza la hélice: avante con timón al muelle (babor) la popa va a estribor, fuera del muelle
+  assert.equal(desatraque({ viento: 'calma', esprin: 'proa', maquina: 'avante' }).helice.popa, 'estribor');
+  assert.equal(desatraque({ viento: 'calma', esprin: 'popa', maquina: 'atras' }).helice.popa, 'babor');
+});

@@ -11,7 +11,7 @@ import { beaufortIllustration } from './meteo.js';
 import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
-import { evolucionIllustration, ciabogaIllustration, desatraqueIllustration } from './maniobra.js';
+import { evolucionIllustration, ciabogaIllustration } from './maniobra.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
@@ -59,7 +59,7 @@ const RENDERERS = {
   'helice-timon': (s) => dibujoFijo(INTERACTIVAS['helice-timon'], s),
   evolucion: evolucionIllustration,
   ciaboga: ciabogaIllustration,
-  desatraque: desatraqueIllustration,
+  desatraque: (s) => dibujoFijo(INTERACTIVAS.desatraque, s),
   bifurcacion: bifurcacionIllustration,
   regiones: regionesIllustration,
   beaufort: beaufortIllustration,

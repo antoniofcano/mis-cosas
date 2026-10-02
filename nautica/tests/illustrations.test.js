@@ -98,6 +98,7 @@ import { ewTexto, marcacionBanda } from '../src/nautical/compass.js';
 import { lucesVisibles, situacionPorLuces } from '../src/nautical/luces.js';
 import { estabilidad as estabilidadCalc } from '../src/nautical/estabilidad.js';
 import { caidaPopa } from '../src/nautical/helice.js';
+import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -210,6 +211,13 @@ function specsDeClase(tipo) {
 /** Para cada lámina: la respuesta que da por buena la predicción, deducida del estado con que se abre y de lo que pasa al mover. */
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  desatraque(c, p) {
+    assert.equal(c.estado().viento, 'mar');
+    // con viento de la mar solo sale bien abriendo la popa (esprín de proa, avante)
+    const sale = ['proa', 'popa'].flatMap((esprin) => ['avante', 'atras'].map((maquina) => desatraqueCalc({ viento: 'mar', esprin, maquina }).resultado)).filter((x) => x !== 'se-queda');
+    assert.deepEqual(sale, ['abre-popa']);
+    assert.equal(p.opciones[p.correcta], 'Abriendo la popa');
+  },
   'helice-timon'(c, p) {
     const e = c.estado();
     assert.deepEqual(e, { marcha: 'atras', sentido: 'dextrogira', timon: 'via' }, 'la clase abre en el caso de la pregunta');

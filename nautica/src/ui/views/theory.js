@@ -50,7 +50,7 @@ const imgSrc = (p) => new URL(`../../../data/exams/${p}`, import.meta.url).href;
  * @param {object} q
  * @param {{ chosen?: string, reveal?: boolean, onChoose?: (letter) => void, expl?: object, number?: number }} o
  */
-function questionCard(q, o = {}) {
+export function questionCard(q, o = {}) {
   const b = bloque(E, q.ut);
   const opts = Object.entries(q.opciones ?? {}).map(([k, v]) => {
     const cls = !o.reveal ? '' : k === q.correcta ? 'correct' : k === o.chosen ? 'wrong' : '';
@@ -73,8 +73,17 @@ function questionCard(q, o = {}) {
 
 let reglasDe = () => [];
 
+/** Prepara el contexto compartido (titulación, carta y reglas) para usar las tarjetas fuera de estas vistas. */
+export function prepareTheory({ tit, chart, reglas }) {
+  useTit(tit);
+  if (chart) chartRef = chart;
+  if (reglas) reglasDe = reglas;
+}
+
+export { explanationFor };
+
 /** Panel del profe para una pregunta respondida. */
-function profePanel(q, expl, chosen) {
+export function profePanel(q, expl, chosen) {
   const n = narrateTheory(q, expl, chosen, reglasDe(q.id));
   const ok = q.anulada || chosen === q.correcta;
   return h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },

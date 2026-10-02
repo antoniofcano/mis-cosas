@@ -34,6 +34,9 @@ export async function loadTheoryBank(tit = 'per') {
   return { preguntas, explicaciones: expl ?? {}, reglasDe: mnemo.reglasDe };
 }
 
+/** Curso de una titulación (módulos y lecciones); null si aún no existe. */
+export const loadCourse = (tit) => loadJSON(`data/curso/${tit}.json`).catch(() => null);
+
 /** Reglas nemotécnicas validadas y, para cada pregunta, las que le ayudan. */
 export async function loadMnemonics() {
   const d = await loadJSON('data/exams/mnemotecnias.json').catch(() => ({ reglas: [] }));

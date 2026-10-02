@@ -55,6 +55,14 @@ export function createProgressStore(storage = safeStorage()) {
     },
     tests: () => data.tests ?? [],
 
+    /** Curso: registro por lección { visto, caja, proximo, ultimo, ultimoAcierto }. */
+    leccion: (id) => data.lecciones?.[id],
+    lecciones: () => data.lecciones ?? {},
+    saveLeccion(id, reg) {
+      data.lecciones = { ...(data.lecciones ?? {}), [id]: reg };
+      save();
+    },
+
     stats(typeId) {
       const e = data.exercises[typeId];
       if (!e) return { attempts: 0, correct: 0, rate: null, streak: 0 };

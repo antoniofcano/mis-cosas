@@ -291,3 +291,23 @@ img.qfig.wide { max-width: 100%; width: 100%; height: auto; }
 .profe p.mnemo { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 6px; padding: .35rem .55rem; font-weight: 600; }
 details.mnemo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .55rem .8rem; margin: .4rem 0; }
 details.mnemo-card summary { font-weight: 600; cursor: pointer; }
+
+/* --- Curso --- */
+.curso section.hoy { background: var(--accent-2); border-radius: var(--radius); padding: .7rem 1rem; }
+.curso section.hoy h2 { margin-top: 0; }
+ol.lecciones { padding-left: 1.4rem; display: grid; gap: .35rem; }
+ol.lecciones li a { font-weight: 600; }
+ol.lecciones .estado { margin-left: .4rem; }
+.leccion header h1 { margin: .2rem 0 .3rem; }
+.leccion section.objetivos { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .5rem 1rem; margin: .8rem 0; }
+.leccion section.objetivos h2 { font-size: 1rem; margin: .3rem 0; }
+.pasos { min-height: 12rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.2rem; margin: .5rem 0; }
+.paso h3 { margin-top: 0; }
+.paso p { max-width: 68ch; line-height: 1.55; }
+.paso.clave p { font-size: 1.1rem; font-weight: 600; color: var(--ok); }
+.paso.ojo p { font-size: 1.05rem; color: var(--warn); }
+.paso.regla .mnemo-big { font-size: 1.2rem; font-weight: 700; }
+.pasos + .actions button:last-child { margin-left: auto; }
+.qdot.current { outline: 2px solid var(--accent); }
+.leccion section.chuleta { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border-radius: var(--radius); padding: .5rem 1rem; }
+.leccion .pasos + .actions + .final:empty { display: none; }

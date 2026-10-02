@@ -82,6 +82,9 @@ export function dashboardView({ progress, tit }) {
 
     setChildren(body,
       h('div.paths',
+        h('a.path', { href: tlink(T.id, ['curso']) },
+          h('h2', '🎓 Curso'), h('p', 'Clases cortas por bloques: concepto, dibujos, reglas para recordar y práctica con preguntas reales. Se adapta a lo que fallas.'),
+          h('p.big', 'Empieza la clase')),
         h('a.path', { href: tlink(T.id, ['teoria']) },
           h('h2', '📚 Teoría'), h('p', `${E.bloques.length} bloques · ${preguntas.length} preguntas reales con el profe`),
           h('p.big', hechas ? `${oks}/${hechas} ✓` : 'Empieza por aquí'),

@@ -138,7 +138,7 @@ export function teoriaView({ ctx, progress, tit }) {
       })),
       h('h2', 'Material de apoyo'),
       h('div.cards',
-        h('a.card', { href: link(['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Boyas con su ritmo de luz, luces y marcas de buques, reglas de rumbo, señales acústicas con sonido, meteorología…')),
+        h('a.card', { href: tlink(T.id, ['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Boyas con su ritmo de luz, luces y marcas de buques, reglas de rumbo, señales acústicas con sonido, meteorología…')),
         h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Las mnemotecnias que de verdad funcionan, con su explicación.')),
         h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta'), h('p', 'Convención de signos, glosario y el método de cada tipo de ejercicio de carta.'))),
     );

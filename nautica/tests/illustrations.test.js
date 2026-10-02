@@ -34,3 +34,11 @@ test('todo el catálogo se dibuja', () => {
   }
   assert.equal(validSpec({ tipo: 'boya', clase: 'inventada' }), false);
 });
+
+test('ritmo de la cardinal Sur muy rápida: VQ(6)+LFl conserva el destello largo', async () => {
+  const { parseRhythm } = await import('../src/illustrations/lights.js');
+  const r = parseRhythm('VQ(6)+LFl 10s');
+  assert.equal(r.period, 10);
+  assert.equal(r.steps.filter((s) => s.on).length, 7);
+  assert.equal(Math.max(...r.steps.filter((s) => s.on).map((s) => s.d)), 2);
+});

@@ -23,6 +23,7 @@ import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 const TIT_ROUTES = {
   '': dashboardView,
   curso: (o) => (o.params.parts[1] ? leccionView(o) : cursoView(o)),
+  laminas: galleryView,
   teoria: (o) => (o.params.parts[1] === 'ut' ? practiceView(o) : teoriaView(o)),
   test: testView,
   carta: cartaView,
@@ -35,7 +36,6 @@ const ROUTES = {
   ej: exerciseView,
   examenes: examsView, // #/examenes/<banco>/<pregunta>
   mesa: chartView,
-  laminas: galleryView,
   conceptos: theoryView,
   reglas: reglasView,
   progreso: progressView,
@@ -47,7 +47,7 @@ function legacy(parts, progress) {
   if (parts[0] === 'teoria' || parts[0] === 'test') return [tit, ...parts];
   if (parts[0] === 'examenes' && !parts[1]) return [tit, 'examenes'];
   if (parts[0] === 'carta') return ['mesa'];
-  if (parts[0] === 'ilustraciones') return ['laminas'];
+  if (parts[0] === 'ilustraciones' || parts[0] === 'laminas') return [tit, 'laminas'];
   return null;
 }
 
@@ -57,7 +57,7 @@ function renderNav(tit, section) {
   const nav = document.getElementById('nav');
   if (!sw || !nav) return;
   sw.replaceChildren(...Object.values(TITULACIONES).map((T) => h('a', { href: tlink(T.id), class: T.id === tit ? 'active' : '', title: T.nombre }, T.sigla)));
-  const items = [['', 'Panel'], ['curso', 'Curso'], ['teoria', 'Teoría'], ['carta', 'Carta'], ['examenes', 'Exámenes']];
+  const items = [['', 'Panel'], ['curso', 'Curso'], ['teoria', 'Teoría'], ['carta', 'Carta'], ['examenes', 'Exámenes'], ['laminas', 'Láminas']];
   nav.replaceChildren(
     ...items.map(([k, t]) => h('a', { href: tlink(tit, k ? [k] : []), class: section === k ? 'active' : '' }, t)),
     h('a', { href: '#/mesa', class: section === 'mesa' ? 'active' : '' }, '🗺️ Mesa'),

@@ -24,7 +24,7 @@ export function parseRhythm(text) {
     return { period: p, steps: colors.map((c) => ({ on: true, d: p / colors.length, color: c })), colors, text: t };
   }
   let m;
-  if ((m = t.match(/^Q\((\d+)\)\s*\+\s*LFl/))) { flashes(Number(m[1]), 0.3, 0.7); off(0.7); on(2); }
+  if ((m = t.match(/^(V?Q)\((\d+)\)\s*\+\s*LFl/))) { const v = m[1] === 'VQ'; flashes(Number(m[2]), v ? 0.2 : 0.3, v ? 0.3 : 0.7); off(0.7); on(2); }
   else if ((m = t.match(/^(V?Q)\((\d+)\)/))) { const v = m[1] === 'VQ'; flashes(Number(m[2]), v ? 0.2 : 0.3, v ? 0.3 : 0.7); }
   else if ((m = t.match(/^(V?Q)\b/))) { const v = m[1] === 'VQ'; period = v ? 0.5 : 1; on(v ? 0.2 : 0.3); }
   else if ((m = t.match(/^Fl\((\d+)\+(\d+)\)/))) { flashes(Number(m[1]), 0.5, 1); off(2); flashes(Number(m[2]), 0.5, 1); }

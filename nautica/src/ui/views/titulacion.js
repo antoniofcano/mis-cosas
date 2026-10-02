@@ -37,7 +37,7 @@ export function portadaView({ progress }) {
   );
   return {
     el,
-    summary: () => `VISTA portada · titulaciones: ${Object.values(TITULACIONES).map((T) => `${T.id} (${T.nombre}: ${T.resumen})`).join(' · ')}\nRUTAS: #/<tit> panel · #/<tit>/teoria · #/<tit>/carta · #/<tit>/examenes · #/mesa · #/laminas · #/conceptos · #/progreso`,
+    summary: () => `VISTA portada · titulaciones: ${Object.values(TITULACIONES).map((T) => `${T.id} (${T.nombre}: ${T.resumen})`).join(' · ')}\nRUTAS: #/<tit> panel · #/<tit>/teoria · #/<tit>/carta · #/<tit>/examenes · #/mesa · #/<tit>/laminas · #/conceptos · #/progreso`,
   };
 }
 

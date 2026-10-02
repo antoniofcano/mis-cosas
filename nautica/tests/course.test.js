@@ -56,7 +56,7 @@ for (const tit of ['per', 'py']) {
         if (p.tipo === 'ilustracion') assert.ok(validSpec(p.spec), `${l.id}: ${JSON.stringify(p.spec)}`);
         if (p.tipo === 'regla') assert.ok(reglas.has(p.id), `${l.id}: regla ${p.id}`);
         if (p.tipo === 'check') assert.ok(p.opciones?.[p.correcta], `${l.id}: check sin respuesta válida`);
-        if (p.tipo === 'texto') assert.ok(!/apuntes|siroco/i.test(p.texto), `${l.id}: referencia a apuntes`);
+        if (p.tipo === 'texto') assert.ok(!/apuntes|sirocodiez|siroco ?10/i.test(p.texto), `${l.id}: referencia a apuntes`);
       }
       for (const q of l.practica ?? []) assert.ok(ids.has(q), `${l.id}: pregunta ${q}`);
       for (const r of l.profundizar ?? []) assert.match(r.url, /^https:\/\//, l.id);

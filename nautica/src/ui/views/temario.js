@@ -1,6 +1,7 @@
 // Temario: #/<tit>/temario (lista de temas) y #/<tit>/temario/<ut> (página de un tema: clases,
 // preguntas de examen y material de apoyo). Une lo que antes eran «Curso» y «Teoría».
 
+import { chuletaView } from './chuleta.js';
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { estadoLeccion } from '../../course/engine.js';
@@ -55,6 +56,7 @@ export function temarioView({ progress, tit }) {
 // #/<tit>/temario/<ut>
 
 export function temaView({ progress, params: route, tit }) {
+  if (route.parts[2] === 'chuleta') return chuletaView({ tit, params: route });
   const T = TITULACIONES[tit];
   const ut = Number(route.parts[1]);
   const b = bloque(T.estructura, ut);
@@ -86,6 +88,7 @@ export function temaView({ progress, params: route, tit }) {
         h('div.actions',
           h('a.btn.secondary', { href: tanda }, `Hacer ${TANDA} preguntas`),
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
+      h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, '🖨️ Chuleta del tema para imprimir')),
       ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', '🗺️ Ejercicios de carta'), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
       h('section', h('h2', 'Para ayudarte'),
         h('div.cards',

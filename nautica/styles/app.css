@@ -597,3 +597,28 @@ ul.clases-flojas { list-style: none; padding: 0; display: grid; gap: .4rem; }
 ul.clases-flojas a { display: flex; flex-direction: column; gap: .15rem; min-height: 52px; justify-content: center; padding: .5rem .8rem; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--warn); border-radius: var(--radius); text-decoration: none; color: var(--text); }
 .clase-floja-titulo { font-weight: 600; }
 .clase-floja-dato { color: var(--muted); font-size: .95rem; }
+
+/* Chuleta del tema (B6): en pantalla, compacta; al imprimir, solo el contenido en blanco y negro */
+.chuleta-tema { max-width: 760px; margin: 0 auto; }
+.chuleta-tema .no-imprimir { display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.chuleta-clase { break-inside: avoid; border-top: 1px solid var(--border); padding: .4rem 0 .2rem; }
+.chuleta-clase h2 { font-size: 1.1rem; margin: .3rem 0; }
+.chuleta-clase ul { margin: .2rem 0 .4rem; padding-left: 1.2rem; }
+.chuleta-clase li > p, .chuleta-trampa p { margin: 0; display: inline; }
+.chuleta-regla { margin: .2rem 0; }
+.chuleta-trampa { margin: .2rem 0; padding: .2rem .5rem; border-left: 3px solid var(--close); background: color-mix(in srgb, var(--close) 10%, transparent); }
+@media print {
+  header.top, .tabbar, body > footer, .no-imprimir, .aviso-version { display: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+  main { padding: 0 !important; max-width: none !important; }
+  @page { size: A4; margin: 9mm; }
+  .chuleta-tema { max-width: none; font-size: 8.5pt; line-height: 1.25; }
+  .chuleta-tema h1 { font-size: 11pt; margin: 0 0 .2rem; }
+  .chuleta-tema > div:last-child { column-count: 2; column-gap: 6mm; }
+  .chuleta-clase { padding: .15rem 0 0; }
+  .chuleta-clase h2 { font-size: 9.5pt; margin: .1rem 0; }
+  .chuleta-clase ul { margin: 0 0 .1rem; padding-left: .9rem; }
+  .chuleta-regla, .chuleta-trampa { margin: .05rem 0; padding: 0 .3rem; }
+  .chuleta-trampa { background: none; border-left-color: #000; }
+}
+.chuleta-tema.sin-trampas .chuleta-trampa { display: none; }

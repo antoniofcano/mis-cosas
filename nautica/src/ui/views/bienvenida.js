@@ -6,7 +6,9 @@ import { TITULACIONES } from '../titulacion.js';
 
 /** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
-  return h('div.opciones-grandes', [10, 20, 30].map((m) => h('button.grande', { type: 'button', class: actual === m ? '' : 'secondary', 'aria-pressed': actual === m ? 'true' : 'false', onclick: () => onElegir(m) }, `${m} minutos`)));
+  // Si se subió a otros minutos (p. ej. desde el plan: «Subir a 45»), también aparecen marcados.
+  const opciones = [...new Set([10, 20, 30, ...(actual ? [actual] : [])])].sort((x, y) => x - y);
+  return h('div.opciones-grandes', opciones.map((m) => h('button.grande', { type: 'button', class: actual === m ? '' : 'secondary', 'aria-pressed': actual === m ? 'true' : 'false', onclick: () => onElegir(m) }, `${m} minutos`)));
 }
 
 export function bienvenidaView({ progress }) {

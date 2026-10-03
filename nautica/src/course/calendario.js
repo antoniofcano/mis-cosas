@@ -67,11 +67,12 @@ function llenar(us, cap) {
  * estira el día por su cuenta) y `minutosNecesarios` dice con cuántos minutos al día cabría todo (múltiplo de 5).
  * @returns {{ dias: { fecha, unidades, minutos }[], fuera: object[], llega: boolean, minutosNecesarios: number }}
  */
-export function repartir(pendientes, { desde, dias, minutosDia }) {
+export function repartir(pendientes, { desde, dias, minutosDia, fechas = null }) {
   const md = Math.max(5, minutosDia);
+  if (fechas && !fechas.length) return { dias: [], fuera: [...pendientes], llega: !pendientes.length, minutosNecesarios: md };
   const sim = pendientes.filter((u) => u.tipo === 'simulacro');
   const resto = pendientes.filter((u) => u.tipo !== 'simulacro');
-  const n = Math.max(1, dias);
+  const n = fechas ? fechas.length : Math.max(1, dias);
   const posSim = diasDeSimulacro(sim.length, n, resto.length > 0);
   const nResto = n - posSim.length;
   // Minutos al día con los que cabría todo.
@@ -93,7 +94,7 @@ export function repartir(pendientes, { desde, dias, minutosDia }) {
     else todos.push(contenido[c++] ?? { unidades: [], minutos: 0 });
   }
   fuera.push(...sim.slice(posSim.length));
-  return { dias: todos.map((d, i) => ({ fecha: sumaDiasISO(desde, i), ...d })), fuera, llega: !fuera.length, minutosNecesarios: necesarios };
+  return { dias: todos.map((d, i) => ({ fecha: fechas ? fechas[i] : sumaDiasISO(desde, i), ...d })), fuera, llega: !fuera.length, minutosNecesarios: necesarios };
 }
 
 /**
@@ -135,20 +136,34 @@ export function diasDeEstudio(fechaExamen, ahora = Date.now()) {
   return d == null || d < 1 ? null : d;
 }
 
+/** Días que se estudia: 'todos' o 'lv' (de lunes a viernes). */
+export const DIAS_ESTUDIO = { todos: 'todos los días', lv: 'de lunes a viernes' };
+const estudia = (iso, diasEstudio) => {
+  if (diasEstudio !== 'lv') return true;
+  const [y, m, d] = iso.split('-').map(Number);
+  const dow = new Date(y, m - 1, d, 12).getDay();
+  return dow !== 0 && dow !== 6;
+};
+/** Fechas de estudio de los `n` días que empiezan en `desde`, quitando los de descanso. */
+export function fechasDeEstudio(desde, n, diasEstudio = 'todos') {
+  return Array.from({ length: n }, (_, i) => sumaDiasISO(desde, i)).filter((f) => estudia(f, diasEstudio));
+}
+
 /** Plan base que se guarda en el progreso: qué unidades tocan cada día (con título y minutos, para pintarlo luego). */
-export function crearPlan(datos, { fechaExamen, minutosDia, ahora = Date.now() }) {
+export function crearPlan(datos, { fechaExamen, minutosDia, diasEstudio = 'todos', ahora = Date.now() }) {
   const n = diasDeEstudio(fechaExamen, ahora);
   if (!n) return null;
   const hoy = diaLocal(ahora);
-  const r = repartir(unidades({ ...datos, ahora }).filter((u) => !u.hecha), { desde: hoy, dias: n, minutosDia });
+  const r = repartir(unidades({ ...datos, ahora }).filter((u) => !u.hecha), { desde: hoy, dias: n, minutosDia, fechas: fechasDeEstudio(hoy, n, diasEstudio) });
   return {
-    creado: hoy, fechaExamen, minutosDia,
+    creado: hoy, fechaExamen, minutosDia, diasEstudio,
     dias: Object.fromEntries(r.dias.filter((d) => d.unidades.length).map((d) => [d.fecha, d.unidades.map(({ id, titulo, minutos }) => ({ id, titulo, minutos }))])),
   };
 }
 
-/** ¿Hay que (re)hacer el plan base? Sin plan, o si cambió la fecha del examen o los minutos al día. */
-export const planCaducado = (plan, fechaExamen, minutosDia) => !plan || plan.fechaExamen !== fechaExamen || plan.minutosDia !== minutosDia;
+/** ¿Hay que (re)hacer el plan base? Sin plan, o si cambió la fecha del examen, los minutos o los días que se estudia. */
+export const planCaducado = (plan, fechaExamen, minutosDia, diasEstudio = 'todos') => !plan || plan.fechaExamen !== fechaExamen
+  || plan.minutosDia !== minutosDia || (plan.diasEstudio ?? 'todos') !== diasEstudio;
 
 /**
  * Seguimiento: lo atrasado según el plan base, lo de hoy y el reparto actualizado de aquí al examen.
@@ -167,12 +182,13 @@ export function seguimiento(plan, datos, { ahora = Date.now() } = {}) {
   const ids = new Set(atrasadas.map((u) => u.id));
   const orden = [...atrasadas.map((u) => porId.get(u.id)), ...pendientes.filter((u) => !ids.has(u.id))];
   const n = diasDeEstudio(plan.fechaExamen, ahora);
-  const futuro = n ? repartir(orden, { desde: hoy, dias: n, minutosDia: plan.minutosDia }) : { dias: [], fuera: pendientes, llega: !pendientes.length, minutosNecesarios: plan.minutosDia };
+  const futuro = n ? repartir(orden, { desde: hoy, dias: n, minutosDia: plan.minutosDia, fechas: fechasDeEstudio(hoy, n, plan.diasEstudio) }) : { dias: [], fuera: pendientes, llega: !pendientes.length, minutosNecesarios: plan.minutosDia };
   const estado = !pendientes.length ? 'terminado' : !futuro.llega ? 'no-llega' : atrasadas.length ? 'atrasado' : 'al-dia';
   return {
     atrasadas,
     minutosAtraso: atrasadas.reduce((t, u) => t + u.minutos, 0),
     hoy: futuro.dias[0]?.fecha === hoy ? futuro.dias[0].unidades : [],
+    descansoHoy: !estudia(hoy, plan.diasEstudio),
     futuro,
     hechasDelPlan: delPlan.filter((x) => hecha(x.id)).length,
     totalDelPlan: delPlan.length,
@@ -193,5 +209,5 @@ export function lineaSeguimiento(s, minutosDia) {
     return `Con ${minutosDia} minutos al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}). Para llegar, unos ${s.futuro.minutosNecesarios} minutos al día.`;
   }
   if (s.estado === 'atrasado') return `Vas ${duracion(s.minutosAtraso)} por detrás (${describir(s.atrasadas)}): hoy empieza por recuperarlo y llegas a tiempo.${deHoy}`;
-  return `Vas al día con tu plan.${deHoy}`;
+  return `Vas al día con tu plan.${s.descansoHoy ? ' Hoy es día de descanso.' : deHoy}`;
 }

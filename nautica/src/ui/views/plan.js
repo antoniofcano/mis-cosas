@@ -4,7 +4,7 @@ import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad } from '../cierre.js';
 import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
-import { lineaSeguimiento, sumaDiasISO, describir, duracion } from '../../course/calendario.js';
+import { lineaSeguimiento, sumaDiasISO, describir, duracion, DIAS_ESTUDIO } from '../../course/calendario.js';
 import { diaLocal } from '../../store/progress.js';
 
 const fecha = (iso, o = { weekday: 'long', day: 'numeric', month: 'long' }) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-ES', o); };
@@ -48,7 +48,7 @@ export function planView({ progress, tit }) {
 
     setChildren(el,
       h('h1', 'Mi plan hasta el examen'),
-      h('p.muted', `Examen: ${fecha(plan.fechaExamen)} · ${plan.minutosDia} minutos al día · `, h('a', { href: '#/ajustes' }, 'cambiar')),
+      h('p.muted', `Examen: ${fecha(plan.fechaExamen)} · ${plan.minutosDia} minutos al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes' }, 'cambiar')),
       h('div.ritmo', { class: marcaEstado(seg.estado)[1] }, h('p', marcaEstado(seg.estado)[0], lineaSeguimiento(seg, plan.minutosDia)),
         botonSubirMinutos(progress, seg, () => pinta())),
       h('div.bar', { role: 'progressbar', 'aria-label': 'Plan hecho', 'aria-valuemin': 0, 'aria-valuemax': seg.totalDelPlan, 'aria-valuenow': seg.hechasDelPlan },

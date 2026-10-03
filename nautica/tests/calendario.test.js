@@ -97,3 +97,23 @@ test('simulacros repartidos por las dos últimas semanas, el último dos días a
   assert.deepEqual(diasDeSimulacro(1, 1, false), [0]);
   assert.deepEqual(diasDeSimulacro(0, 30), []);
 });
+
+test('días de descanso: de lunes a viernes no se planifica el fin de semana', async () => {
+  const { fechasDeEstudio, crearPlan, seguimiento, planCaducado, lineaSeguimiento } = await import('../src/course/calendario.js');
+  // Del lunes 5 al domingo 11: 7 días, 5 laborables.
+  assert.deepEqual(fechasDeEstudio('2026-10-05', 7, 'lv'), ['2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08', '2026-10-09']);
+  assert.equal(fechasDeEstudio('2026-10-05', 7, 'todos').length, 7);
+  const plan = crearPlan(datos, { fechaExamen: '2026-10-19', minutosDia: 20, diasEstudio: 'lv', ahora: T0 });
+  const fechas = Object.keys(plan.dias);
+  assert.ok(fechas.every((f) => ![0, 6].includes(new Date(`${f}T12:00`).getDay())), fechas.join(' '));
+  assert.equal(planCaducado(plan, '2026-10-19', 20, 'lv'), false);
+  assert.equal(planCaducado(plan, '2026-10-19', 20, 'todos'), true);
+  // El sábado 10, con todo lo de la semana hecho (las clases y el primer simulacro): descansa.
+  const sab = T0 + 5 * DIA;
+  const todo = Object.fromEntries(['a1', 'a2', 'a3', 'b1', 'b2'].map((id) => [id, visto]));
+  const s = seguimiento(plan, { ...datos, regs: todo, tests: [{ tipo: 'simulacro' }] }, { ahora: sab });
+  assert.equal(s.estado, 'al-dia');
+  assert.equal(s.descansoHoy, true);
+  assert.deepEqual(s.hoy, []);
+  assert.match(lineaSeguimiento(s, 20), /Hoy es día de descanso/);
+});

@@ -10,7 +10,7 @@ import { guardarCopia, botonRecuperar } from '../copia.js';
 import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
 import { calcularPlan } from '../cierre.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
-import { lineaSeguimiento } from '../../course/calendario.js';
+import { lineaSeguimiento, DIAS_ESTUDIO } from '../../course/calendario.js';
 
 export function masView({ progress, tit }) {
   const T = TITULACIONES[tit];
@@ -28,8 +28,17 @@ export function masView({ progress, tit }) {
     setChildren(avisoPlan, h('p', icono, lineaSeguimiento(ps.seg, ps.plan.minutosDia)),
       botonSubirMinutos(progress, ps.seg, () => { pintaMinutos(); }));
   }).catch(() => { avisoPlan.hidden = true; });
+  const diasEl = h('div');
+  const pintaDias = () => {
+    const actual = progress.settings().diasEstudio ?? 'todos';
+    setChildren(diasEl, h('div.opciones-grandes', Object.entries(DIAS_ESTUDIO).map(([k, txt]) => h('button.grande', {
+      type: 'button', class: actual === k ? '' : 'secondary', 'aria-pressed': actual === k ? 'true' : 'false',
+      onclick: () => { progress.setSetting('diasEstudio', k); pintaDias(); pintaAviso(); },
+    }, txt[0].toUpperCase() + txt.slice(1)))));
+  };
   const pintaMinutos = () => { setChildren(minutos, botonesMinutos(progress.settings().minutosDia ?? 20, (m) => { progress.setSetting('minutosDia', m); pintaMinutos(); })); pintaAviso(); };
   pintaMinutos();
+  pintaDias();
   const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); pintaAviso(); } });
 
   const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${new Date(s.ultimaCopia).toLocaleDateString('es-ES')}.` : '');
@@ -47,6 +56,8 @@ export function masView({ progress, tit }) {
       fecha,
       h('h3.ajuste', '⏱ Minutos al día'),
       minutos,
+      h('h3.ajuste', '🗓 Días que estudias'),
+      diasEl,
       avisoPlan,
       h('p', h('a', { href: tlink(tit, ['plan']) }, '🗓 Ver mi plan día a día hasta el examen →'))),
     h('section', h('h2', 'Titulación'),

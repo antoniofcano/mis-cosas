@@ -26,7 +26,7 @@ export function hrefActividad(tit, a) {
 }
 
 export const TIPO_TXT = {
-  clase: ['🎓', 'Clase'], preguntas: ['✏️', 'Preguntas'], repaso: ['🔁', 'Repaso'], fallos: ['🎯', 'Repaso de fallos'],
+  clase: ['🎓', 'Clase'], chuleta: ['📌', 'Chuleta del tema'], preguntas: ['✏️', 'Preguntas'], repaso: ['🔁', 'Repaso'], fallos: ['🎯', 'Repaso de fallos'],
   simulacro: ['📝', 'Simulacro de examen'], mezclado: ['🔀', 'Repaso mezclado'], 'examen-en-curso': ['⏱', 'Examen a medias'],
 };
 

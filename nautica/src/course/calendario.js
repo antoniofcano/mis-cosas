@@ -23,14 +23,31 @@ export function sumaDiasISO(iso, n) {
 const clasesDe = (curso, ut) => (curso?.modulos ?? []).filter((m) => m.ut === ut).flatMap((m) => m.lecciones.map((l) => ({ ...l, ut: l.ut ?? m.ut })));
 const sinTerminar = (e) => e === 'nueva' || e === 'empezada';
 
+/** Minutos estimados para leer la chuleta de una clase. */
+export const MIN_CHULETA = 3;
+
 /**
- * Todas las unidades del camino (hechas o no), cada una con una función `hecha()` según el progreso actual.
- * @returns {{ id, tipo: 'clase'|'tanda'|'simulacro', titulo, minutos, ut: number|null, ruta: string[], hecha: boolean }[]}
+ * Temas de poco peso: valen 3 preguntas o menos y no tienen límite de fallos. En el plan esencial sus clases se
+ * cambian por la chuleta del tema (y sus preguntas de examen). En el PY no hay ninguno: todos valen 10.
  */
-export function unidades({ estructura, curso, preguntas = [], regs = {}, respuestas = {}, tests = [], ahora = Date.now() }) {
+export const temasDePocoPeso = (estructura) => estructura.bloques.filter((b) => b.maxErrores == null && b.n <= 3).map((b) => b.ut);
+
+/**
+ * Todas las unidades del camino (hechas o no), cada una marcada `hecha` según el progreso actual.
+ * Con `esencial`, las clases de los temas de poco peso se cambian por una unidad «chuleta del tema», hecha cuando se
+ * marca como leída (`chuletasLeidas`: UTs) o cuando ya están terminadas todas sus clases.
+ * @returns {{ id, tipo: 'clase'|'chuleta'|'tanda'|'simulacro', titulo, minutos, ut: number|null, ruta: string[], hecha: boolean }[]}
+ */
+export function unidades({ estructura, curso, preguntas = [], regs = {}, respuestas = {}, tests = [], esencial = false, chuletasLeidas = [], ahora = Date.now() }) {
   const out = [];
+  const pocoPeso = new Set(esencial ? temasDePocoPeso(estructura) : []);
   for (const b of bloquesEnOrden(estructura)) {
-    for (const l of clasesDe(curso, b.ut)) {
+    if (pocoPeso.has(b.ut)) {
+      const cls = clasesDe(curso, b.ut);
+      const terminadas = cls.every((l) => !sinTerminar(estadoLeccion(l, regs[l.id], respuestas, ahora).estado));
+      out.push({ id: `chuleta:${b.ut}`, tipo: 'chuleta', titulo: `Chuleta de ${b.titulo}`, minutos: MIN_CHULETA * cls.length, ut: b.ut, ruta: ['temario', String(b.ut), 'chuleta'],
+        hecha: terminadas || chuletasLeidas.includes(b.ut) });
+    } else for (const l of clasesDe(curso, b.ut)) {
       out.push({ id: `clase:${l.id}`, tipo: 'clase', titulo: l.titulo, minutos: l.minutos ?? 10, ut: b.ut, ruta: ['curso', l.id],
         hecha: !sinTerminar(estadoLeccion(l, regs[l.id], respuestas, ahora).estado) });
     }
@@ -119,7 +136,7 @@ export function diasDeSimulacro(s, n, hayResto = true) {
 /** «3 clases y 2 tandas de preguntas»: qué hay en una lista de unidades, en palabras. */
 export function describir(us) {
   const n = (t) => us.filter((u) => u.tipo === t).length;
-  const partes = [[n('clase'), 'clase', 'clases'], [n('tanda'), 'tanda de preguntas', 'tandas de preguntas'], [n('simulacro'), 'simulacro', 'simulacros']]
+  const partes = [[n('clase'), 'clase', 'clases'], [n('chuleta'), 'chuleta', 'chuletas'], [n('tanda'), 'tanda de preguntas', 'tandas de preguntas'], [n('simulacro'), 'simulacro', 'simulacros']]
     .filter(([k]) => k).map(([k, uno, varios]) => `${k} ${k === 1 ? uno : varios}`);
   return partes.length > 1 ? `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}` : (partes[0] ?? 'nada');
 }
@@ -151,19 +168,37 @@ export function fechasDeEstudio(desde, n, diasEstudio = 'todos') {
 
 /** Plan base que se guarda en el progreso: qué unidades tocan cada día (con título y minutos, para pintarlo luego). */
 export function crearPlan(datos, { fechaExamen, minutosDia, diasEstudio = 'todos', ahora = Date.now() }) {
+  // datos.esencial: plan esencial (se guarda en el plan para saber si hay que rehacerlo)
   const n = diasDeEstudio(fechaExamen, ahora);
   if (!n) return null;
   const hoy = diaLocal(ahora);
   const r = repartir(unidades({ ...datos, ahora }).filter((u) => !u.hecha), { desde: hoy, dias: n, minutosDia, fechas: fechasDeEstudio(hoy, n, diasEstudio) });
   return {
-    creado: hoy, fechaExamen, minutosDia, diasEstudio,
+    creado: hoy, fechaExamen, minutosDia, diasEstudio, esencial: !!datos.esencial,
     dias: Object.fromEntries(r.dias.filter((d) => d.unidades.length).map((d) => [d.fecha, d.unidades.map(({ id, titulo, minutos }) => ({ id, titulo, minutos }))])),
   };
 }
 
 /** ¿Hay que (re)hacer el plan base? Sin plan, o si cambió la fecha del examen, los minutos o los días que se estudia. */
-export const planCaducado = (plan, fechaExamen, minutosDia, diasEstudio = 'todos') => !plan || plan.fechaExamen !== fechaExamen
-  || plan.minutosDia !== minutosDia || (plan.diasEstudio ?? 'todos') !== diasEstudio;
+export const planCaducado = (plan, fechaExamen, minutosDia, diasEstudio = 'todos', esencial = false) => !plan || plan.fechaExamen !== fechaExamen
+  || plan.minutosDia !== minutosDia || (plan.diasEstudio ?? 'todos') !== diasEstudio || !!plan.esencial !== !!esencial;
+
+/**
+ * ¿Con el plan esencial se llegaría? Para ofrecerlo cuando el completo no cabe.
+ * @returns {{ llega: boolean, minutosNecesarios: number, ahorro: number } | null} null si la titulación no tiene temas de poco peso
+ */
+export function alternativaEsencial(datos, { fechaExamen, minutosDia, diasEstudio = 'todos', ahora = Date.now() }) {
+  if (!temasDePocoPeso(datos.estructura).length) return null;
+  const n = diasDeEstudio(fechaExamen, ahora);
+  if (!n) return null;
+  const hoy = diaLocal(ahora);
+  const pend = (esencial) => unidades({ ...datos, esencial, ahora }).filter((u) => !u.hecha);
+  const completo = pend(false);
+  const esencialU = pend(true);
+  const r = repartir(esencialU, { desde: hoy, dias: n, minutosDia, fechas: fechasDeEstudio(hoy, n, diasEstudio) });
+  const total = (us) => us.reduce((t, u) => t + u.minutos, 0);
+  return { llega: r.llega, minutosNecesarios: r.minutosNecesarios, ahorro: total(completo) - total(esencialU) };
+}
 
 /**
  * Seguimiento: lo atrasado según el plan base, lo de hoy y el reparto actualizado de aquí al examen.
@@ -172,7 +207,7 @@ export const planCaducado = (plan, fechaExamen, minutosDia, diasEstudio = 'todos
  */
 export function seguimiento(plan, datos, { ahora = Date.now() } = {}) {
   const hoy = diaLocal(ahora);
-  const us = unidades({ ...datos, ahora });
+  const us = unidades({ ...datos, esencial: !!plan.esencial, ahora });
   const porId = new Map(us.map((u) => [u.id, u]));
   const hecha = (id) => porId.get(id)?.hecha ?? true; // una unidad que ya no existe no se reclama
   const delPlan = Object.entries(plan.dias).flatMap(([fecha, xs]) => xs.map((x) => ({ ...x, fecha })));

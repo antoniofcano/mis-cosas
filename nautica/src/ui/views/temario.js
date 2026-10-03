@@ -56,7 +56,7 @@ export function temarioView({ progress, tit }) {
 // #/<tit>/temario/<ut>
 
 export function temaView({ progress, params: route, tit }) {
-  if (route.parts[2] === 'chuleta') return chuletaView({ tit, params: route });
+  if (route.parts[2] === 'chuleta') return chuletaView({ tit, params: route, progress });
   const T = TITULACIONES[tit];
   const ut = Number(route.parts[1]);
   const b = bloque(T.estructura, ut);

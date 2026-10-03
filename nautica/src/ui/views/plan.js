@@ -3,12 +3,12 @@
 import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad } from '../cierre.js';
-import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
+import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
 import { lineaSeguimiento, sumaDiasISO, describir, duracion, DIAS_ESTUDIO } from '../../course/calendario.js';
 import { diaLocal } from '../../store/progress.js';
 
 const fecha = (iso, o = { weekday: 'long', day: 'numeric', month: 'long' }) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-ES', o); };
-const ICONO = { clase: '🎓', tanda: '✏️', simulacro: '📝' };
+const ICONO = { clase: '🎓', chuleta: '📌', tanda: '✏️', simulacro: '📝' };
 const lunes = (iso) => { const [y, m, d] = iso.split('-').map(Number); const dow = (new Date(y, m - 1, d).getDay() + 6) % 7; return sumaDiasISO(iso, -dow); };
 
 export function planView({ progress, tit }) {
@@ -50,7 +50,8 @@ export function planView({ progress, tit }) {
       h('h1', 'Mi plan hasta el examen'),
       h('p.muted', `Examen: ${fecha(plan.fechaExamen)} · ${plan.minutosDia} minutos al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes' }, 'cambiar')),
       h('div.ritmo', { class: marcaEstado(seg.estado)[1] }, h('p', marcaEstado(seg.estado)[0], lineaSeguimiento(seg, plan.minutosDia)),
-        botonSubirMinutos(progress, seg, () => pinta())),
+        botonSubirMinutos(progress, ps, () => pinta(), tit)),
+      avisoEsencial(progress, tit, T.estructura, () => pinta()),
       h('div.bar', { role: 'progressbar', 'aria-label': 'Plan hecho', 'aria-valuemin': 0, 'aria-valuemax': seg.totalDelPlan, 'aria-valuenow': seg.hechasDelPlan },
         h('span', { style: `width:${seg.totalDelPlan ? Math.round((100 * seg.hechasDelPlan) / seg.totalDelPlan) : 100}%` })),
       h('p.muted.small', `Llevas hecho ${seg.hechasDelPlan} de ${seg.totalDelPlan} pasos del plan.`),

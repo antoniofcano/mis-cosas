@@ -117,3 +117,28 @@ test('días de descanso: de lunes a viernes no se planifica el fin de semana', a
   assert.deepEqual(s.hoy, []);
   assert.match(lineaSeguimiento(s, 20), /Hoy es día de descanso/);
 });
+
+test('plan esencial: los temas de poco peso van por chuleta y el plan lo recuerda', async () => {
+  const { temasDePocoPeso, unidades: us, crearPlan, planCaducado, alternativaEsencial, seguimiento } = await import('../src/course/calendario.js');
+  const { PER, PY } = await import('../src/theory/blocks.js');
+  assert.deepEqual(temasDePocoPeso(PER), [2, 4, 7, 8]);
+  assert.deepEqual(temasDePocoPeso(PY), []);
+  // Tema B de poco peso (2 preguntas, sin límite): sus dos clases se cambian por una chuleta de 6 minutos.
+  const est = { ...estructura, bloques: [{ ut: 1, titulo: 'Tema A', n: 5, maxErrores: 2 }, { ut: 2, titulo: 'Tema B', n: 2 }] };
+  const d = { ...datos, estructura: est };
+  const e = us({ ...d, esencial: true });
+  assert.deepEqual(e.map((u) => u.id).slice(0, 4), ['clase:a1', 'clase:a2', 'clase:a3', 'chuleta:2']);
+  assert.equal(e[3].minutos, 6);
+  assert.equal(us({ ...d, esencial: true, chuletasLeidas: [2] })[3].hecha, true);
+  const plan = crearPlan({ ...d, esencial: true }, { fechaExamen: '2026-10-13', minutosDia: 20, ahora: T0 });
+  assert.equal(plan.esencial, true);
+  assert.equal(planCaducado(plan, '2026-10-13', 20, 'todos', true), false);
+  assert.equal(planCaducado(plan, '2026-10-13', 20, 'todos', false), true);
+  // La chuleta leída cuenta en el seguimiento.
+  const s = seguimiento(plan, { ...d, chuletasLeidas: [2] }, { ahora: T0 });
+  assert.ok(!s.futuro.dias.flatMap((x) => x.unidades).some((u) => u.id === 'chuleta:2'));
+  // Alternativa: con 10 minutos y 4 días el completo no cabe; el esencial ahorra los 14 minutos de las dos clases de B.
+  const alt = alternativaEsencial(d, { fechaExamen: '2026-10-09', minutosDia: 10, ahora: T0 });
+  assert.equal(alt.ahorro, 14);
+  assert.equal(alternativaEsencial({ ...d, estructura: { ...est, bloques: [est.bloques[0]] } }, { fechaExamen: '2026-10-09', minutosDia: 10, ahora: T0 }), null);
+});

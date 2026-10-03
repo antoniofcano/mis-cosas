@@ -1531,7 +1531,7 @@
       {
        "tipo": "texto",
        "titulo": "El molinete en dos palabras",
-       "texto": "El molinete es la máquina que vira (recoge) la cadena. Tres piezas:\n- **Barbotén**: la rueda con huecos donde encajan los eslabones.\n- **Embrague**: acopla el barbotén al motor. Embragado, el barbotén gira con el motor; desembragado, gira «loco».\n- **Freno**: bloquea el barbotén o deja que gire, con más o menos fuerza.\n\n**Para levar**: embragas y dejas libre el freno, y el motor vira la cadena.\n\n📝 Nota del profe: muchos molinetes eléctricos pequeños no tienen embrague y largan el ancla con el propio motor. El examen pregunta por el molinete con embrague y freno."
+       "texto": "El molinete es la máquina que vira (recoge) y fila (larga) la cadena. Tres piezas:\n- **Barbotén**: la rueda con huecos donde encajan los eslabones.\n- **Embrague**: acopla el barbotén al motor. Embragado, el barbotén gira con el motor; desembragado, gira «loco».\n- **Freno**: bloquea el barbotén o deja que gire, con más o menos fuerza.\n\n**Para levar**: embragas y dejas libre el freno, y el motor vira la cadena.\n\n📝 Nota del profe: muchos molinetes eléctricos pequeños no tienen embrague y largan el ancla con el propio motor. El examen pregunta por el molinete con embrague y freno."
       },
       {
        "tipo": "texto",

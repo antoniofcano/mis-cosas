@@ -2715,7 +2715,7 @@
       {
        "tipo": "texto",
        "titulo": "Previsión a bordo y disipación",
-       "texto": "**Previsión**: con el **psicrómetro** obtienes la humedad relativa y el **punto de rocío** del aire. Compáralo con la **temperatura del agua del mar**: cuando ambas temperaturas están **próximas**, el aire que pasa sobre el agua se saturará y la niebla es muy probable.\n\n**Disipación**: la niebla se va cuando la temperatura del aire vuelve a quedar **por encima del punto de rocío**:\n- el sol calienta el suelo (radiación);\n- entra un viento **más cálido y seco** o cambia el viento;\n- la niebla pasa sobre **aguas más templadas**;\n- el viento arrecia a **fuerza 4 o más** y la turbulencia mezcla aire seco de arriba."
+       "texto": "**Previsión**: con el **psicrómetro** obtienes la humedad relativa y el **punto de rocío** del aire. Compáralo con la **temperatura del agua del mar**: cuando ambas temperaturas están **próximas**, el aire que pasa sobre el agua se saturará y la niebla es muy probable.\n\n**Disipación**: la niebla se va cuando la temperatura del aire vuelve a quedar **por encima del punto de rocío**:\n- el sol calienta el suelo (radiación);\n- entra un viento **más cálido y seco** o cambia el viento;\n- la niebla pasa sobre **aguas más templadas**;\n- el viento arrecia a **fuerza 4 o más** y la turbulencia mezcla aire seco de arriba (así se deshace la de **radiación**; la de **advección** aguanta vientos flojos y moderados, y con viento ya fuerte no se disipa sino que se **levanta** en estratos bajos)."
       },
       {
        "tipo": "ojo",
@@ -2770,7 +2770,7 @@
       "Enfriamiento: radiación (tierra, noche raso y calma, otoño-invierno), advección (aire cálido y húmedo sobre agua fría, la del mar), orográfica.",
       "Evaporación: vapor (aire frío sobre agua templada; lagos y ríos en otoño) y frontal. Mezcla: dos aires distintos.",
       "Previsión: punto de rocío (psicrómetro) próximo a la temperatura del mar = niebla.",
-      "Se disipa si T > punto de rocío: sol, viento más cálido y seco, aguas más templadas, viento fuerza 4 o más."
+      "Se disipa si T > punto de rocío: sol, viento más cálido y seco, aguas más templadas, viento fuerza 4 o más (la de radiación; la de advección aguanta con viento moderado)."
      ],
      "profundizar": [
       {
@@ -2804,7 +2804,7 @@
        "fuente": "Plantilla 2023-c3-g16 (a cierta)"
       },
       {
-       "dato": "Disipación: T > Td, aguas más templadas, viento fuerza 4 o más; niebla de mar se aclara sobre aguas más templadas",
+       "dato": "Disipación: T > Td, aguas más templadas, viento fuerza 4 o más (la de radiación; la de advección resiste vientos de 5–15 kn y con más viento se levanta en estratos); niebla de mar se aclara sobre aguas más templadas",
        "fuente": "Plantillas 2023-c3-g16 (c falsa), 2024-c1-g16 (a), 2024-c2-g11 (d falsa)"
       },
       {

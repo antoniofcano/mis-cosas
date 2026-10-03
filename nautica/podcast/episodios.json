@@ -1018,7 +1018,8 @@
         "and-py-2022-c1-n17",
         "and-py-2021-c2-n18"
       ],
-      "peso": "Carta de navegación son 10 preguntas, de la 11 a la 20 del módulo de navegación: 7 ejercicios sobre la carta del Estrecho, 2 de mareas con Anuario y tabla y 1 de loxodrómica. Es eliminatorio: con más de 3 errores en carta se suspende aunque se llegue a los 28 aciertos del total."
+      "peso": "Carta de navegación son 10 preguntas, de la 11 a la 20 del módulo de navegación: 7 ejercicios sobre la carta del Estrecho, 2 de mareas con Anuario y tabla y 1 de loxodrómica. Es eliminatorio: con más de 3 errores en carta se suspende aunque se llegue a los 28 aciertos del total.",
+      "archivo": "py/4-0-el-examen-de-carta.md"
     },
     {
       "n": "4.1",
@@ -1056,7 +1057,8 @@
         "4.0",
         "4.2",
         "4.3"
-      ]
+      ],
+      "archivo": "py/4-1-correccion-total-en-la-carta.md"
     },
     {
       "n": "4.2",
@@ -1095,7 +1097,8 @@
         "4.1",
         "4.4",
         "4.5"
-      ]
+      ],
+      "archivo": "py/4-2-el-viento-en-la-carta.md"
     },
     {
       "n": "4.3",
@@ -1134,7 +1137,8 @@
         "4.2",
         "4.4",
         "4.5"
-      ]
+      ],
+      "archivo": "py/4-3-situarse.md"
     },
     {
       "n": "4.4",
@@ -1172,7 +1176,8 @@
         "4.2",
         "4.3",
         "4.5"
-      ]
+      ],
+      "archivo": "py/4-4-estima-con-viento-y-corriente.md"
     },
     {
       "n": "4.5",
@@ -1211,7 +1216,8 @@
         "4.2",
         "4.3",
         "4.4"
-      ]
+      ],
+      "archivo": "py/4-5-corriente-conocida-y-desconocida.md"
     },
     {
       "n": "4.6",
@@ -1249,7 +1255,8 @@
         "3.4",
         "4.0"
       ],
-      "nota": "Todas las preguntas reales de mareas traen la tabla del Anuario. Para el minijuego, Elena lee en voz alta los datos que hacen falta (las horas y alturas de la pleamar y la bajamar del día) y Andrés hace la cuenta. También valen los «check» de las clases: la mitad de la amplitud a mitad del tramo, pasar de hora oficial a tiempo universal o la regla de los duodécimos."
+      "nota": "Todas las preguntas reales de mareas traen la tabla del Anuario. Para el minijuego, Elena lee en voz alta los datos que hacen falta (las horas y alturas de la pleamar y la bajamar del día) y Andrés hace la cuenta. También valen los «check» de las clases: la mitad de la amplitud a mitad del tramo, pasar de hora oficial a tiempo universal o la regla de los duodécimos.",
+      "archivo": "py/4-6-mareas.md"
     },
     {
       "n": "4.7",
@@ -1287,7 +1294,8 @@
         "3.1",
         "4.4",
         "4.0"
-      ]
+      ],
+      "archivo": "py/4-7-estima-analitica.md"
     }
   ],
   "per": [

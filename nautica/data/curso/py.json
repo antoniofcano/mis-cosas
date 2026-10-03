@@ -2709,6 +2709,15 @@
        "texto": "- **Niebla de vapor** (humo de mar): **aire frío** que pasa sobre **agua mucho más templada**; el agua «humea» y el vapor se condensa en el aire frío. Necesita mucho contraste de temperatura y es de poco espesor. Típica de **lagos y ríos en otoño o principios de invierno**.\n- **Niebla frontal**: la lluvia templada de un frente cae a través de aire frío pegado al suelo y se evapora. Es pasajera y se mueve con el frente.\n- **Niebla de mezcla**: se encuentran dos corrientes de aire de **naturaleza distinta** (una fría y otra templada y húmeda) y la mezcla se satura."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "meteo",
+        "sistema": "niebla-vapor",
+        "t": 4
+       },
+       "texto": "Niebla de vapor: aire muy frío sobre agua templada. El agua evapora y satura el aire de encima; el agua «humea»."
+      },
+      {
        "tipo": "clave",
        "texto": "Enfriamiento: radiación, advección y orográfica. Evaporación: vapor y frontal. Mezcla: dos aires distintos. Advección = aire cálido y húmedo sobre agua fría; vapor = aire frío sobre agua templada."
       },
@@ -3755,7 +3764,26 @@
       }
      ],
      "practica": [
-      "and-py-2021-c1-n09"
+      "and-py-2021-c1-n09",
+      "and-py-2020-c1-n20",
+      "and-py-2020-c3-n20",
+      "and-py-2021-c1-n18",
+      "and-py-2021-c2-n18",
+      "and-py-2021-c2-n19",
+      "and-py-2022-c1-n20",
+      "and-py-2022-c2-n20",
+      "and-py-2022-c3-n20",
+      "and-py-2023-c1-n20",
+      "and-py-2023-c2-n20",
+      "and-py-2023-c3-n20",
+      "and-py-2024-c1-n20",
+      "and-py-2024-c2-n20",
+      "and-py-2024-c3-n20",
+      "and-py-2025-c1-n20",
+      "and-py-2025-c2-n20",
+      "and-py-2025-c3-n20",
+      "and-py-2026-c1-n20",
+      "and-py-2026-c2-n20"
      ],
      "carta": [
       "estima-analitica",
@@ -4037,7 +4065,25 @@
        "explicacion": "En la tercera sexta parte sube 3/12 de la amplitud: 3/12 × 2,40 = 0,60 m. Las horas centrales son las de más corriente de marea; la primera y la última, las de menos (1/12 = 0,20 m)."
       }
      ],
-     "practica": [],
+     "practica": [
+      "and-py-2020-c1-n19",
+      "and-py-2020-c3-n19",
+      "and-py-2021-c2-n20",
+      "and-py-2022-c1-n19",
+      "and-py-2022-c2-n19",
+      "and-py-2022-c3-n19",
+      "and-py-2023-c1-n19",
+      "and-py-2023-c2-n19",
+      "and-py-2023-c3-n18",
+      "and-py-2024-c1-n19",
+      "and-py-2024-c2-n19",
+      "and-py-2024-c3-n19",
+      "and-py-2025-c1-n19",
+      "and-py-2025-c2-n18",
+      "and-py-2025-c3-n18",
+      "and-py-2026-c1-n18",
+      "and-py-2026-c2-n18"
+     ],
      "carta": [
       "marea-sonda"
      ],

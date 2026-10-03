@@ -1,4 +1,5 @@
 import { test } from 'node:test';
+import { nieblas as nieblasDef } from '../src/illustrations/interactivas/nieblas.js';
 import assert from 'node:assert/strict';
 import { CATALOGO, renderIllustration, validSpec } from '../src/illustrations/index.js';
 import { BUOYS } from '../src/illustrations/buoys.js';
@@ -232,6 +233,11 @@ const COMPRUEBA = {
   'marea:sonda'(c, p) { COMPRUEBA_MAREA(c, p); },
   'meteo:niebla-adveccion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
   'meteo:niebla-radiacion'(c, p) { COMPRUEBA_NIEBLA(c, p); },
+  'meteo:niebla-vapor'(c, p) {
+    assert.equal(p.opciones[p.correcta], 'Sube');
+    const e = c.estado();
+    assert.ok(nieblasDef.calcular({ ...e, t: e.t - 3 }).hr >= nieblasDef.calcular(e).hr); // en la de vapor, enfriar el aire también la acerca a saturarse
+  },
   'meteo:isobaras'(c, p) {
     const e = c.estado();
     assert.ok(intensidad(e.separacion - 5).t > intensidad(e.separacion).t || e.separacion - 5 < 14);

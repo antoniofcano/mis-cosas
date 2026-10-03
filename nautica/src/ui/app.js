@@ -4,7 +4,7 @@
 // preguntas o un examen, «modo concentración» (body.focus) con la barra de actividad de la propia vista.
 
 import { h, clear } from './dom.js';
-import { parseHash, navigate } from './router.js';
+import { parseHash, navigate, link } from './router.js';
 import { createChart } from '../chart/chart.js';
 import { loadChartData } from '../store/datasets.js';
 import { createProgressStore } from '../store/progress.js';
@@ -93,11 +93,36 @@ function esFoco(parts) {
   return (b === 'curso' && !!c) || (b === 'teoria' && (c === 'ut' || c === 'mezcla')) || b === 'test';
 }
 
+/** Misma sección en la otra titulación (una clase o un tema concreto no existen en la otra: se va a su apartado). */
+export function rutaEnTit(parts, id) {
+  if (!TITULACIONES[parts[0]]) return null; // rutas comunes (reglas, mesa…): se queda en la misma página
+  const b = parts[1];
+  if (b === 'curso' || b === 'temario') return [id, 'temario'];
+  if (['examenes', 'laminas', 'biblioteca', 'carta'].includes(b)) return [id, b];
+  return [id];
+}
+
+/** Selector de titulación de la cabecera: «PY ▾» abre un menú con las dos y cambia ahí mismo. */
+function renderSelectorTit(tit, parts, cambiarTit) {
+  const det = document.getElementById('selector-tit');
+  const menu = document.getElementById('menu-tit');
+  if (!det || !menu) return;
+  det.open = false;
+  menu.replaceChildren(...Object.values(TITULACIONES).map((X) => {
+    const actual = X.id === tit;
+    const destino = rutaEnTit(parts, X.id);
+    return h('a.opcion-tit', { href: destino ? link(destino) : location.hash || '#/', 'aria-current': actual ? 'true' : null,
+      onclick: (ev) => { det.open = false; if (actual) { ev.preventDefault(); return; } if (!destino) { ev.preventDefault(); cambiarTit(X.id); } } },
+    h('span.opcion-tit-sigla', `${X.icon} ${X.sigla}`), h('span.opcion-tit-nombre', X.nombre), actual ? h('span.opcion-tit-marca', { 'aria-hidden': 'true' }, '✓') : null);
+  }));
+}
+
 /** Barra inferior: siempre las mismas 4 pestañas. */
-function renderNav(tit, parts) {
+function renderNav(tit, parts, cambiarTit) {
   const bar = document.getElementById('tabbar');
   const label = document.getElementById('tit-label');
-  if (label) label.textContent = TITULACIONES[tit].sigla;
+  if (label) label.textContent = `${TITULACIONES[tit].sigla} ▾`;
+  renderSelectorTit(tit, parts, cambiarTit);
   if (!bar) return;
   const activa = pestanaDe(parts);
   const tabs = [
@@ -142,7 +167,7 @@ async function main() {
     document.body.classList.toggle('focus', esFoco(route.parts));
     const footer = document.querySelector('body > footer');
     if (footer) footer.hidden = route.parts[0] !== 'ajustes';
-    renderNav(tit, route.parts);
+    renderNav(tit, route.parts, (id) => { setTit(progress, id); render(); });
     try {
       current = view({ ctx, progress, params, tit });
     } catch (e) {
@@ -155,6 +180,9 @@ async function main() {
   }
 
   window.addEventListener('hashchange', render);
+  // El menú de titulación se cierra al tocar fuera o con Escape.
+  document.addEventListener('click', (ev) => { const d = document.getElementById('selector-tit'); if (d?.open && !d.contains(ev.target)) d.open = false; });
+  document.addEventListener('keydown', (ev) => { const d = document.getElementById('selector-tit'); if (ev.key === 'Escape' && d?.open) { d.open = false; d.querySelector('summary')?.focus(); } });
   render();
 }
 

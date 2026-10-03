@@ -558,3 +558,16 @@ a.test-tema-enlace { flex: 1; display: flex; flex-wrap: wrap; align-items: cente
 a.test-tema-enlace:hover, a.test-tema-enlace:focus-visible { border-color: var(--accent); }
 a.fallos-tema { display: flex; align-items: center; min-height: 52px; padding: 0 .7rem; border: 1px solid var(--warn); border-radius: var(--radius); color: var(--warn); text-decoration: none; font-weight: 600; white-space: nowrap; }
 a.test-tema-enlace .limite-tema { flex-basis: 100%; font-weight: 400; font-size: .95rem; color: var(--muted); }
+
+/* Selector de titulación de la cabecera («PY ▾») */
+.selector-tit { position: relative; }
+.selector-tit > summary { list-style: none; cursor: pointer; user-select: none; }
+.selector-tit > summary::-webkit-details-marker { display: none; }
+.selector-tit[open] > summary { background: var(--accent); color: #fff; }
+.menu-tit { position: absolute; right: 0; top: calc(100% + 6px); z-index: 40; min-width: 260px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 6px 20px rgba(0, 0, 0, .18); padding: .3rem; display: grid; gap: .2rem; }
+a.opcion-tit { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: .5rem; min-height: 52px; padding: .4rem .7rem; border-radius: 8px; text-decoration: none; color: var(--text); }
+a.opcion-tit:hover, a.opcion-tit:focus-visible { background: var(--accent-2); }
+a.opcion-tit[aria-current] { background: var(--accent-2); }
+.opcion-tit-sigla { font-weight: 700; }
+.opcion-tit-nombre { grid-column: 1; font-size: .95rem; color: var(--muted); }
+.opcion-tit-marca { grid-column: 2; grid-row: 1 / span 2; color: var(--accent); font-weight: 700; font-size: 1.2rem; }

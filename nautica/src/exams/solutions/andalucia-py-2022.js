@@ -1,74 +1,9 @@
 // Soluciones programadas PY Andalucía, convocatorias de 2022. Ver andalucia-py.js para el formato.
 import { hrb } from '../kit.js';
-import { rhumbTo, rhumbDestination, toPlane, fromPlane, unitsPerMile } from '../../math/mercator.js';
-import { norm360, norm180 } from '../../math/angles.js';
-import { fmtBearing, fmtPos, fmtMiles } from '../../math/format.js';
+import { fmtBearing } from '../../math/format.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const NE = 45; const E = 90; const SE = 135; const SW = 225; const W = 270; const NW = 315;
-const coma = (x, dec = 1) => x.toFixed(dec).replace('.', ',');
-const min2 = (m) => coma(m).padStart(4, '0');
-const nm = (p) => p.name.replace(/^Faro de /, 'faro de ');
-
-// ---- Operaciones locales (candidatas al kit)
-
-/** Cortes de la circunferencia (centro c, radio en millas) con la recta que pasa por p con dirección dv. */
-function cortesRectaArco(p, dv, c, radio) {
-  const u = unitsPerMile((p.lat + c.lat) / 2);
-  const P0 = toPlane(p); const C = toPlane(c);
-  const dx = Math.sin(dv * Math.PI / 180); const dy = Math.cos(dv * Math.PI / 180);
-  const fx = P0.x - C.x; const fy = P0.y - C.y; const R = radio * u;
-  const b = fx * dx + fy * dy; const disc = b * b - (fx * fx + fy * fy - R * R);
-  if (disc < 0) return [];
-  return [-b - Math.sqrt(disc), -b + Math.sqrt(disc)].map((t) => fromPlane({ x: P0.x + t * dx, y: P0.y + t * dy }));
-}
-
-/** Cortes de dos circunferencias (centros a y b como puntos, radios en millas). */
-function cortesDosArcos(a, ra, b, rb) {
-  const u = unitsPerMile((a.lat + b.lat) / 2);
-  const pa = toPlane(a); const pb = toPlane(b); const RA = ra * u; const RB = rb * u;
-  const dx = pb.x - pa.x; const dy = pb.y - pa.y; const d = Math.hypot(dx, dy);
-  const x = (RA * RA - RB * RB + d * d) / (2 * d); const h = Math.sqrt(Math.max(0, RA * RA - x * x));
-  const m = { x: pa.x + (dx * x) / d, y: pa.y + (dy * x) / d };
-  return [{ x: m.x - (dy * h) / d, y: m.y + (dx * h) / d }, { x: m.x + (dy * h) / d, y: m.y - (dx * h) / d }].map(fromPlane);
-}
-
-/**
- * Demora y distancia no simultáneas: la demora `dvA` del faro `a` se traslada lo navegado (rumbo, millas)
- * y se corta con el arco de `dist` millas del faro `b`. `elegir` decide entre los dos cortes.
- */
-function trasladoDemoraArco(k, a, dvA, b, dist, rumbo, millas, elegir, label) {
-  const A = k.P(a); const B = k.P(b);
-  const A2 = rhumbDestination(A, rumbo, millas);
-  const cortes = cortesRectaArco(A2, dvA, B, dist);
-  const p = elegir(cortes);
-  k.note('Traslado de la 1ª línea', `Desde ${nm(A)} llevamos el rumbo ${fmtBearing(rumbo)} y ${fmtMiles(millas)} navegadas: por ese punto trazamos una paralela a la 1ª demora (${fmtBearing(dvA + 180)} desde el faro).`);
-  k.items.push({ t: 'ray', from: A, bearing: norm360(dvA + 180), length: rhumbTo(A, p).distance + 2, style: 'lop', step: k.steps.length },
-    { t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: k.steps.length },
-    { t: 'line', through: p, bearing: dvA, length: 8, label: 'trasladada', style: 'lop2', step: k.steps.length });
-  k.note(label, `Con centro en ${nm(B)} trazamos el arco de ${fmtMiles(dist)}: corta a la línea trasladada en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar y coherente con la derrota.`);
-  k.items.push({ t: 'arc', center: B, radius: dist, around: rhumbTo(B, p).bearing, span: 40, style: 'lop', step: k.steps.length },
-    { t: 'pos', at: p, label, style: 'fix', step: k.steps.length });
-  k.focus.push(A, B, p);
-  return p;
-}
-
-/** Distancias no simultáneas: el centro del 1er arco se traslada lo navegado y se corta con el 2º arco. */
-function trasladoDosArcos(k, a, da, b, db, rumbo, millas, elegir, label) {
-  const A = k.P(a); const B = k.P(b);
-  const A2 = rhumbDestination(A, rumbo, millas);
-  const cortes = cortesDosArcos(A2, da, B, db);
-  const p = elegir(cortes);
-  k.note('Traslado de la 1ª línea', `La 1ª línea de posición es el arco de ${fmtMiles(da)} con centro en ${nm(A)}. Trasladamos su centro lo navegado entre las dos observaciones, ${fmtBearing(rumbo)} y ${fmtMiles(millas)}: nuevo centro en ${fmtPos(A2)}, y desde él trazamos de nuevo el arco de ${fmtMiles(da)}.`);
-  k.items.push({ t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: k.steps.length },
-    { t: 'arc', center: A2, radius: da, around: rhumbTo(A2, p).bearing, span: 40, label: 'trasladada', style: 'lop2', step: k.steps.length });
-  k.note(label, `Con centro en ${nm(B)} trazamos el arco de ${fmtMiles(db)}: los dos arcos se cortan en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar.`);
-  k.items.push({ t: 'arc', center: B, radius: db, around: rhumbTo(B, p).bearing, span: 40, style: 'lop', step: k.steps.length },
-    { t: 'pos', at: p, label, style: 'fix', step: k.steps.length });
-  k.focus.push(A, B, p);
-  return p;
-}
-
 
 export default {
   // ---- 1ª Convocatoria 2022
@@ -232,7 +167,7 @@ export default {
     solve(k) {
       const d = k.distFor(8, hrb(11) - hrb(10));
       // De los dos cortes, el del N cae en tierra (zona de Barbate–Zahara): nos quedamos con el del S.
-      const p = trasladoDemoraArco(k, 'cabo-trafalgar', 30, 'punta-gracia', 9, 130, d,
+      const p = k.trasladoArco('cabo-trafalgar', 30, 'punta-gracia', 9, 130, d,
         (c) => c.sort((u, v) => u.lat - v.lat)[0], 'Situación 11:00');
       return latlon(p);
     },
@@ -332,7 +267,7 @@ export default {
     solve(k) {
       const d = k.distFor(6, hrb(9) - hrb(8));
       // El otro corte cae en tierra, al S (costa de Tánger): nos quedamos con el del N.
-      const p = trasladoDosArcos(k, 'cabo-espartel', 4, 'punta-malabata', 5, 70, d,
+      const p = k.trasladoDosArcos('cabo-espartel', 4, 'punta-malabata', 5, 70, d,
         (c) => c.sort((u, v) => v.lat - u.lat)[0], 'Situación 09:00');
       return latlon(p);
     },

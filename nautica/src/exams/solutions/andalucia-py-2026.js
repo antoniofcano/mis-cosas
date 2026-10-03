@@ -1,42 +1,10 @@
 // Soluciones programadas PY Andalucía, convocatorias de 2026. Ver andalucia-py.js para el formato.
 import { hrb } from '../kit.js';
-import { rhumbTo, rhumbDestination, toPlane, fromPlane, unitsPerMile } from '../../math/mercator.js';
 import { norm360 } from '../../math/angles.js';
-import { fmtBearing, fmtPos, fmtMiles } from '../../math/format.js';
+import { fmtBearing } from '../../math/format.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const N = 0; const NE = 45; const E = 90; const SE = 135; const S = 180; const SW = 225; const W = 270; const NW = 315;
-const nm = (p) => p.name.replace(/^Faro de /, 'faro de ');
-
-// ---- Operaciones locales (copiadas de 2022/2023, candidatas al kit)
-
-/** Cortes de la circunferencia (centro c, radio en millas) con la recta que pasa por p con dirección dv. */
-function cortesRectaArco(p, dv, c, radio) {
-  const u = unitsPerMile((p.lat + c.lat) / 2);
-  const P0 = toPlane(p); const C = toPlane(c);
-  const dx = Math.sin(dv * Math.PI / 180); const dy = Math.cos(dv * Math.PI / 180);
-  const fx = P0.x - C.x; const fy = P0.y - C.y; const R = radio * u;
-  const b = fx * dx + fy * dy; const disc = b * b - (fx * fx + fy * fy - R * R);
-  if (disc < 0) return [];
-  return [-b - Math.sqrt(disc), -b + Math.sqrt(disc)].map((t) => fromPlane({ x: P0.x + t * dx, y: P0.y + t * dy }));
-}
-
-/** Demora y distancia no simultáneas: la 1ª demora se traslada lo navegado y se corta con el arco de distancia. */
-function trasladoDemoraArco(k, a, dvA, b, dist, rumbo, millas, elegir, label) {
-  const A = k.P(a); const B = k.P(b);
-  const A2 = rhumbDestination(A, rumbo, millas);
-  const cortes = cortesRectaArco(A2, dvA, B, dist);
-  const p = elegir(cortes);
-  k.note('Traslado de la 1ª línea', `Desde ${nm(A)} llevamos el rumbo ${fmtBearing(rumbo)} y ${fmtMiles(millas)} navegadas: por ese punto trazamos una paralela a la 1ª demora (${fmtBearing(dvA + 180)} desde el faro).`);
-  k.items.push({ t: 'ray', from: A, bearing: norm360(dvA + 180), length: rhumbTo(A, p).distance + 2, style: 'lop', step: k.steps.length },
-    { t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: k.steps.length },
-    { t: 'line', through: p, bearing: dvA, length: 8, label: 'trasladada', style: 'lop2', step: k.steps.length });
-  k.note(label, `Con centro en ${nm(B)} trazamos el arco de ${fmtMiles(dist)}: corta a la línea trasladada en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar y coherente con la derrota.`);
-  k.items.push({ t: 'arc', center: B, radius: dist, around: rhumbTo(B, p).bearing, span: 40, style: 'lop', step: k.steps.length },
-    { t: 'pos', at: p, label, style: 'fix', step: k.steps.length });
-  k.focus.push(A, B, p);
-  return p;
-}
 
 export default {
   // ---- 1ª Convocatoria 2026
@@ -150,7 +118,7 @@ export default {
     solve(k) {
       const d = k.distFor(7, hrb(14, 55) - hrb(13, 30));
       // De los dos cortes nos quedamos con el del N, en el mar (el otro cae junto a la costa de Marruecos).
-      return latlon(trasladoDemoraArco(k, 'punta-malabata', 160, 'cabo-espartel', 9.8, 300, d,
+      return latlon(k.trasladoArco('punta-malabata', 160, 'cabo-espartel', 9.8, 300, d,
         (c) => c.slice().sort((u, v) => v.lat - u.lat)[0], 'Situación 14:55'));
     },
   },

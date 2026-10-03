@@ -4,8 +4,6 @@ import { hrb } from '../kit.js';
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const E = 90; const SE = 135; const SW = 225; const W = 270; const NW = 315; const NE = 45; const S = 180;
 
-// ---- Operaciones locales (candidatas al kit)
-
 export default {
   // ---- 1ª Convocatoria 2020
   'and-py-2020-c1-n11': {

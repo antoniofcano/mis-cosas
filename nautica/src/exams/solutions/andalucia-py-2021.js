@@ -9,8 +9,6 @@ const N = 0; const E = 90; const S = 180; const W = 270; const NE = 45;
 const CARTA = [-(2 + 50 / 60), 2005, 7];
 const rad = (d) => (d * Math.PI) / 180;
 
-// ---- Operaciones locales (candidatas al kit)
-
 export default {
   // ---- 1ª Convocatoria 2021
   'and-py-2021-c1-n11': {

@@ -300,6 +300,41 @@ export function createKit(chart) {
       mark(P(a)); mark(P(b));
       return mark(p);
     },
+    /**
+     * Demora y distancia no simultáneas: la demora `dvA` del faro `a` se traslada lo navegado (rumbo, millas)
+     * y se corta con el arco de `dist` millas del faro `b`. `elegir(cortes)` decide entre los dos cortes.
+     */
+    trasladoArco(a, dvA, b, dist, rumbo, millas, elegir, label = 'Situación') {
+      const A = P(a); const B = P(b);
+      const cortes = cortesRectaArco(rhumbDestination(A, rumbo, millas), dvA, B, dist);
+      const p = elegir(cortes);
+      if (!p) throw new Error('Sin corte');
+      step('Traslado de la 1ª línea', `Desde ${nm(a)} llevamos el rumbo ${fmtBearing(rumbo)} y ${fmtMiles(millas)} navegadas: por ese punto trazamos una paralela a la 1ª demora (${fmtBearing(dvA + 180)} desde el faro).`);
+      items.push({ t: 'ray', from: A, bearing: norm360(dvA + 180), length: rhumbTo(A, p).distance + 2, style: 'lop', step: n },
+        { t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: n },
+        { t: 'line', through: p, bearing: dvA, length: 8, label: 'trasladada', style: 'lop2', step: n });
+      step(label, `Con centro en ${nm(b)} trazamos el arco de ${fmtMiles(dist)}: corta a la línea trasladada en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar y coherente con la derrota.`);
+      items.push({ t: 'arc', center: B, radius: dist, around: rhumbTo(B, p).bearing, span: 40, style: 'lop', step: n },
+        { t: 'pos', at: p, label, style: 'fix', step: n });
+      mark(A); mark(B);
+      return mark(p);
+    },
+    /** Distancias no simultáneas: el centro del 1er arco se traslada lo navegado y se corta con el 2º arco. */
+    trasladoDosArcos(a, da, b, db, rumbo, millas, elegir, label = 'Situación') {
+      const A = P(a); const B = P(b);
+      const A2 = rhumbDestination(A, rumbo, millas);
+      const cortes = cortesDosArcos(A2, da, B, db);
+      const p = elegir(cortes);
+      if (!p) throw new Error('Sin corte');
+      step('Traslado de la 1ª línea', `La 1ª línea de posición es el arco de ${fmtMiles(da)} con centro en ${nm(a)}. Trasladamos su centro lo navegado entre las dos observaciones, ${fmtBearing(rumbo)} y ${fmtMiles(millas)}: nuevo centro en ${fmtPos(A2)}, y desde él trazamos de nuevo el arco de ${fmtMiles(da)}.`);
+      items.push({ t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: n },
+        { t: 'arc', center: A2, radius: da, around: rhumbTo(A2, p).bearing, span: 40, label: 'trasladada', style: 'lop2', step: n });
+      step(label, `Con centro en ${nm(b)} trazamos el arco de ${fmtMiles(db)}: los dos arcos se cortan en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar.`);
+      items.push({ t: 'arc', center: B, radius: db, around: rhumbTo(B, p).bearing, span: 40, style: 'lop', step: n },
+        { t: 'pos', at: p, label, style: 'fix', step: n });
+      mark(A); mark(B);
+      return mark(p);
+    },
     /** Estima por varios tramos {rumbo, millas, nombre?} sumando Δl y apartamiento (sin carta si se sale). */
     tramos(from, lista, label = 'Situación de estima') {
       let dl = 0; let ap = 0;
@@ -418,6 +453,27 @@ export function createKit(chart) {
     },
   };
   return k;
+}
+
+/** Cortes de la circunferencia (centro c, radio en millas) con la recta que pasa por p con dirección dv. */
+export function cortesRectaArco(p, dv, c, radio) {
+  const u = unitsPerMile((p.lat + c.lat) / 2);
+  const P0 = toPlane(p); const C = toPlane(c);
+  const dx = Math.sin(dv * Math.PI / 180); const dy = Math.cos(dv * Math.PI / 180);
+  const fx = P0.x - C.x; const fy = P0.y - C.y; const R = radio * u;
+  const b = fx * dx + fy * dy; const disc = b * b - (fx * fx + fy * fy - R * R);
+  if (disc < 0) return [];
+  return [-b - Math.sqrt(disc), -b + Math.sqrt(disc)].map((t) => fromPlane({ x: P0.x + t * dx, y: P0.y + t * dy }));
+}
+
+/** Cortes de dos circunferencias (centros a y b, radios en millas). */
+export function cortesDosArcos(a, ra, b, rb) {
+  const u = unitsPerMile((a.lat + b.lat) / 2);
+  const pa = toPlane(a); const pb = toPlane(b); const RA = ra * u; const RB = rb * u;
+  const dx = pb.x - pa.x; const dy = pb.y - pa.y; const d = Math.hypot(dx, dy);
+  const x = (RA * RA - RB * RB + d * d) / (2 * d); const h = Math.sqrt(Math.max(0, RA * RA - x * x));
+  const m = { x: pa.x + (dx * x) / d, y: pa.y + (dy * x) / d };
+  return [{ x: m.x - (dy * h) / d, y: m.y + (dx * h) / d }, { x: m.x + (dy * h) / d, y: m.y - (dx * h) / d }].map(fromPlane);
 }
 
 /** Corte de dos rectas infinitas (sin exigir el sentido de las demoras). */

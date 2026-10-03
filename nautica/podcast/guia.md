@@ -12,6 +12,8 @@ Esta guía la siguen todos los episodios de «Patrón en voz alta», los escriba
 - Todo sale de las clases de la app (`data/curso/*.json`) y de las preguntas reales (`data/exams/*-teoria.json`). Si la clase no lo dice, el guion tampoco.
 - Ni academias ni marcas.
 - Las trampas se cuentan cuando aparecen en la conversación, no en una lista al final.
+- Cuando el examen da por buena una respuesta que la clase marca como anticuada o discutible (primeros auxilios, alguna plantilla corregida), Elena dice la que puntúa en el examen y cuenta el matiz, igual que la clase.
+- En los minijuegos de carta, Elena le da a Andrés el dato medido en la carta, y él razona el resto: qué tangente coger, la Ct, la demora opuesta.
 
 ## Estructura
 

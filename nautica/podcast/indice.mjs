@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 const raiz = new URL('..', import.meta.url);
 const leer = (p) => JSON.parse(readFileSync(new URL(p, raiz)));
 const E = leer('podcast/episodios.json');
-const banco = new Map(['per', 'py'].flatMap((t) => leer(`data/exams/andalucia-${t}-teoria.json`).preguntas).map((q) => [q.id, q]));
+const banco = new Map(['andalucia-per-teoria', 'andalucia-py-teoria', 'andalucia-per'].flatMap((f) => leer(`data/exams/${f}.json`).preguntas).map((q) => [q.id, q]));
 const lecciones = new Map(['per', 'py'].flatMap((t) => leer(`data/curso/${t}.json`).modulos.flatMap((m) => m.lecciones)).map((l) => [l.id, l]));
 
 const TIT = { py: 'Patrón de Yate (PY)', per: 'Patrón de Embarcaciones de Recreo (PER)' };

@@ -9,7 +9,7 @@ import { link } from '../router.js';
 import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
-import { avance, estadoTema, lineaAvance } from '../../course/plan.js';
+import { avance, estadoTema, lineaAvance, clasesFlojas, MIN_DIAGNOSTICO } from '../../course/plan.js';
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
@@ -45,6 +45,17 @@ export function progressView({ progress, tit }) {
       h('section.avance',
         h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),
+      (() => {
+        // Diagnóstico por clase (B5): dónde se falla, con enlace a la clase para repasarla.
+        const flojas = clasesFlojas(d.curso, d.respuestas);
+        resumenTemas += `\nCLASES FLOJAS: ${flojas.map((c) => `${c.id} ${c.titulo} ${c.aciertos}/${c.hechas}`).join(' · ') || '—'}`;
+        return h('section.diagnostico', h('h2', 'Dónde fallas más'),
+          flojas.length
+            ? h('ul.clases-flojas', flojas.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) },
+              h('span.clase-floja-titulo', `🎓 ${c.titulo}`),
+              h('span.clase-floja-dato', `aciertas ${c.aciertos} de ${c.hechas} · repasar la clase →`)))))
+            : h('p.muted', `Cuando respondas al menos ${MIN_DIAGNOSTICO} preguntas de una clase, aquí verás las que más te cuestan.`));
+      })(),
       h('h2', `Por temas · ${T.sigla}`),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
         h('h3', `${b.icon} ${b.titulo}`),

@@ -3,6 +3,7 @@
 // Exportable/importable en JSON para no perder el progreso. Los campos nuevos son opcionales: un progreso
 // antiguo (version 1) carga sin migración.
 
+import { siguienteRepaso } from '../course/repaso.js';
 const KEY = 'nautica.progress.v1';
 const DIA = 864e5;
 const DIAS_GUARDADOS = 60;
@@ -64,7 +65,9 @@ export function createProgressStore(storage = safeStorage()) {
       // n: veces respondida; ok1: si se acertó la primera vez (lo que mejor predice una pregunta que no has memorizado).
       const n = (prev?.n ?? (prev ? 1 : 0)) + 1;
       const ok1 = prev ? (prev.ok1 ?? prev.ok) : ok;
-      data.exams[questionId] = { choice, ok, t: new Date().toISOString(), n, ok1 };
+      // rep: repaso espaciado de fallos (src/course/repaso.js); null = fuera de la cola.
+      const rep = siguienteRepaso(prev, ok, diaLocal());
+      data.exams[questionId] = { choice, ok, t: new Date().toISOString(), n, ok1, rep };
       save();
     },
 

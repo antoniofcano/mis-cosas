@@ -3,6 +3,7 @@
 
 import { estadoLeccion } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
+import { colaRepaso } from './repaso.js';
 
 export const TANDA = 10; // preguntas por tanda
 export const MIN_TANDA = 8; // minutos estimados de una tanda
@@ -119,11 +120,10 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   // 4. El primer tema que no está al día, en el orden de estudio recomendado
   if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora));
 
-  // 5. Sesión de fallos si se acumulan
-  const totalFallos = estados.reduce((s, x) => s + x.est.fallos, 0);
-  if (totalFallos >= UMBRAL_FALLOS) {
-    const peor = [...estados].sort((a, b) => b.est.fallos - a.est.fallos)[0];
-    lista.push({ tipo: 'fallos', titulo: `Repasar mis fallos de ${peor.b.titulo}`, verbo: 'Repasar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(peor.b.ut)], query: { f: '1' }, ut: peor.b.ut });
+  // 5. Repaso de fallos (B1) si se acumulan muchos para hoy; con pocos basta la línea de Hoy bajo la actividad.
+  const cola = colaRepaso(preguntas, respuestas, hoy);
+  if (cola.hoy.length >= UMBRAL_FALLOS) {
+    lista.push({ tipo: 'fallos', titulo: `Repasar ${cola.hoy.length} preguntas falladas`, verbo: 'Repasar', minutos: Math.min(MIN_TANDA, cola.minutosHoy), ruta: ['teoria', 'repaso'], query: undefined, ut: null });
   }
 
   // 6. Todo al día: simulacro
@@ -149,7 +149,7 @@ const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
  * ¿Llego a tiempo? Suma lo que le queda al plan (clases sin terminar, las tandas que faltan para tener cada tema al
  * día y los simulacros recomendados) y lo reparte a `minutosDia`.
  * @returns {{ minutosPendientes, diasNecesarios, fechaFin: string|null, diasDisponibles: number|null,
- *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros } }}
+ *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros, repaso } }}
  */
 export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, ahora = Date.now() }) {
   let clases = 0;
@@ -163,8 +163,10 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
     tandas += Math.ceil(Math.max(0, Math.min(est.total, OBJETIVO_TEMA) - est.hechas) / TANDA);
   }
   const hechos = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real').length;
-  const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin };
-  const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros;
+  // El repaso de fallos también ocupa tiempo: cada pregunta de la cola, las veces que le faltan para salir.
+  const repaso = colaRepaso(preguntas, respuestas, diaLocal(ahora)).minutosPendientes;
+  const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin, repaso };
+  const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros + desglose.repaso;
   const md = Math.max(5, minutosDia);
   const diasNecesarios = Math.ceil(minutosPendientes / md);
   // contando hoy como primer día de estudio
@@ -181,4 +183,26 @@ export function lineaAvance(a, racha = 0) {
   const pct = Math.round(a.fraccion * 100);
   const temas = a.temasAlDia === a.temasTotal ? `todos los temas al día (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas al día`;
   return `Llevas el ${pct} % del camino: ${temas}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
+}
+
+export const MIN_DIAGNOSTICO = 3; // respuestas de una clase para opinar sobre ella
+
+/**
+ * Diagnóstico por clase (B5): de cada clase, sus preguntas de práctica (lección.practica) respondidas y acertadas
+ * (última respuesta). Devuelve las clases flojas, las peores primero: acierto < 70 % con al menos MIN_DIAGNOSTICO
+ * respondidas.
+ * @returns {{ id, titulo, ut, hechas, aciertos, pct }[]}
+ */
+export function clasesFlojas(curso, respuestas = {}, { max = 6 } = {}) {
+  const out = [];
+  for (const m of curso?.modulos ?? []) {
+    for (const l of m.lecciones) {
+      const ids = (l.practica ?? []).filter((id) => respuestas[id]);
+      if (ids.length < MIN_DIAGNOSTICO) continue;
+      const aciertos = ids.filter((id) => respuestas[id].ok).length;
+      const pct = Math.round((100 * aciertos) / ids.length);
+      if (pct < 70) out.push({ id: l.id, titulo: l.titulo, ut: l.ut ?? m.ut, hechas: ids.length, aciertos, pct });
+    }
+  }
+  return out.sort((a, b) => a.pct - b.pct || (b.hechas - b.aciertos) - (a.hechas - a.aciertos)).slice(0, max);
 }

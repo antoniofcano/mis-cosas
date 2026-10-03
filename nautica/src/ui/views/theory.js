@@ -17,6 +17,7 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
+import { colaRepaso, tandaRapida } from '../../course/repaso.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import cartaSolutions from '../../exams/solutions/andalucia-per.js';
 import { narrateSteps } from '../../teacher/narrate.js';
@@ -171,13 +172,19 @@ export function examenesView({ ctx, progress, tit }) {
         } }, 'Descartarlo')));
     }
     summaryText = `VISTA exámenes ${T0.sigla} · ${convs.length} convocatorias${aMedias ? ` · EXAMEN A MEDIAS (${Object.keys(aMedias.respuestas ?? {}).length} respondidas) → ${rutaTest(aMedias)}` : ''}\n${convs.map((c) => `${c.key}: ${c.titulo} (${c.n} preguntas)`).join('\n')}` +
-      `\nRUTAS: #/${T0.id}/test/simulacro?s=<semilla> · #/${T0.id}/test/real/<convocatoria> · #/${T0.id}/teoria/ut/<n>?s=<semilla> (test por tema; f=1 solo fallos) · #/${T0.id}/teoria/mezcla`;
+      `\nRUTAS: #/${T0.id}/test/simulacro?s=<semilla> · #/${T0.id}/test/real/<convocatoria> · #/${T0.id}/teoria/ut/<n>?s=<semilla> (test por tema; f=1 solo fallos) · #/${T0.id}/teoria/mezcla · #/${T0.id}/teoria/repaso (repaso espaciado) · #/${T0.id}/teoria/rapido (5 minutos)`;
     setChildren(el,
       h('h1', 'Examen'),
       aviso,
       h('section.simulacro',
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${totalPreguntas(E0)} preguntas · ${E0.duracionMin} minutos · como el de verdad`)),
+      (() => {
+        const cola = colaRepaso(preguntas, progress.get().exams);
+        return h('section.repaso-examen',
+          cola.hoy.length ? h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'repaso']) }, `🔁 Repasar mis fallos (${cola.hoy.length} para hoy)`) : null,
+          h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
+      })(),
       h('section.test-tema', h('h2', 'Test por tema'),
         h('p.muted', `${TANDA} preguntas de un tema, con la explicación del profe en cada una.`),
         h('ul.lista-tests', bloquesEnOrden(E0).map((b) => {
@@ -270,6 +277,8 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   useTit(tit);
   const seed = Number(route.query.s) || randomSeed();
   if (route.parts[1] === 'mezcla') return mezclaView({ progress, seed });
+  if (route.parts[1] === 'repaso') return repasoView({ progress });
+  if (route.parts[1] === 'rapido') return rapidoView({ progress, seed });
   const ut = Number(route.parts[2]);
   const b = bloque(E, ut);
   const soloFalladas = route.query.f === '1';
@@ -333,6 +342,67 @@ function mezclaView({ progress, seed }) {
         barra.remove();
         pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
         summaryText = `VISTA repaso mezclado terminado: ${ok} de ${n} aciertos`;
+        window.scrollTo(0, 0);
+      },
+    }));
+  }).catch((e) => setChildren(cont, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
+  return { el, summary: () => summaryText };
+}
+
+// #/<tit>/teoria/repaso — repaso espaciado de fallos (B1): las preguntas que tocan hoy, de 10 en 10
+function repasoView({ progress }) {
+  const tit0 = T.id;
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const cont = h('div', h('p.muted', 'Cargando…'));
+  const el = h('div.practice', barra, cont);
+  let summaryText = 'VISTA repaso de fallos';
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+    reglasDe = rd;
+    const cola = colaRepaso(preguntas, progress.get().exams);
+    if (!cola.hoy.length) {
+      barra.set('Repaso de fallos', 0);
+      setChildren(cont, h('p.vacio', cola.total ? `Hoy no te toca repasar nada. Tienes ${cola.total} ${cola.total === 1 ? 'pregunta' : 'preguntas'} en la cola para los próximos días.` : 'No tienes fallos por repasar. Las preguntas que falles volverán aquí al día siguiente.'),
+        h('a.btn.grande', { href: tlink(tit0) }, 'Volver a Hoy'));
+      return;
+    }
+    const tanda = cola.hoy.slice(0, TANDA);
+    setChildren(cont, tandaPreguntas({
+      preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
+      onSummary: (t) => { summaryText = t; },
+      onFin: (ok, n) => {
+        progress.logActividad(Math.max(1, Math.round(n * 0.8)));
+        barra.remove();
+        const quedan = colaRepaso(preguntas, progress.get().exams).hoy.length;
+        pintarCierre(cont, progress, tit0, { icono: ok === n ? '🎉' : '💪', titulo: `${ok} de ${n}`,
+          lineas: [ok === n ? 'Todas bien: volverán más adelante para afianzarlas.' : 'Las que has fallado vuelven mañana; las acertadas, dentro de unos días.',
+            quedan ? `Te quedan ${quedan} por repasar hoy.` : 'Repaso de hoy terminado.'] });
+        summaryText = `VISTA repaso terminado: ${ok} de ${n} · quedan ${quedan} hoy`;
+        window.scrollTo(0, 0);
+      },
+    }));
+    summaryText = `VISTA repaso de fallos · ${cola.hoy.length} tocan hoy · ${cola.total} en la cola`;
+  }).catch((e) => setChildren(cont, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
+  return { el, summary: () => summaryText };
+}
+
+// #/<tit>/teoria/rapido?s=semilla — «5 minutos» (B8): 5 preguntas, primero las del repaso
+function rapidoView({ progress, seed }) {
+  const tit0 = T.id;
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const cont = h('div', h('p.muted', 'Cargando…'));
+  const el = h('div.practice', barra, cont);
+  let summaryText = 'VISTA 5 minutos';
+  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+    reglasDe = rd;
+    const tanda = tandaRapida(preguntas, progress.get().exams, createRng(seed));
+    setChildren(cont, tandaPreguntas({
+      preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
+      onSummary: (t) => { summaryText = t; },
+      onFin: (ok, n) => {
+        progress.logActividad(5);
+        barra.remove();
+        pintarCierre(cont, progress, tit0, { icono: ok >= n - 1 ? '🎉' : '💪', titulo: `${ok} de ${n}`, lineas: ['Cinco minutos bien aprovechados. Las que has fallado vuelven mañana al repaso.'] });
+        summaryText = `VISTA 5 minutos terminado: ${ok} de ${n}`;
         window.scrollTo(0, 0);
       },
     }));

@@ -20,7 +20,7 @@ const PRACTICA_MAX = 10;
 
 /** Texto con **negrita** y listas «- » → nodos (sin HTML del contenido). */
 const inline = (s) => s.split(/(\*\*[^*]+\*\*)/g).map((p) => (/^\*\*.+\*\*$/.test(p) ? h('strong', p.slice(2, -2)) : p));
-function rich(text = '') {
+export function rich(text = '') {
   return text.split(/\n\s*\n/).map((block) => {
     const lines = block.split('\n');
     if (lines.every((l) => /^\s*[-•]\s/.test(l))) return h('ul', lines.map((l) => h('li', inline(l.replace(/^\s*[-•]\s/, '')))));

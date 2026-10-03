@@ -3,6 +3,8 @@
 import { h, setChildren } from '../dom.js';
 import { avance, diasHasta, lineaAvance, ritmoEstudio } from '../../course/plan.js';
 import { estoyListo, lineaListo } from '../../course/listo.js';
+import { colaRepaso } from '../../course/repaso.js';
+import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
@@ -70,15 +72,23 @@ export function hoyView({ progress, tit }) {
     }
 
     const resto = plan.slice(1);
+    const cola = colaRepaso(d.preguntas, d.respuestas);
     summaryText = `VISTA hoy ${T.sigla}\n${plan.map((x, i) => `${i ? 'DESPUÉS' : 'HOY TOCA'}: ${x.tipo} «${x.titulo}» ~${x.minutos} min → ${hrefActividad(tit, x)}`).join('\n')}` +
       `\nRITMO: ${lineaRitmo(r, objetivo, fecha)} (pendiente ${r.minutosPendientes} min: clases ${r.desglose.clases}, preguntas ${r.desglose.preguntas}, simulacros ${r.desglose.simulacros})` +
       `\nLISTO: ${lineaListo(listo)}${listo.prob != null ? ` (p=${listo.prob.toFixed(2)})` : ''}` +
+      `\nREPASO: ${cola.hoy.length} preguntas tocan hoy (${cola.total} en la cola) → ${tlink(tit, ['teoria', 'repaso'])} · 5 minutos → ${tlink(tit, ['teoria', 'rapido'])}` +
       `\nAVANCE: ${a.temasAlDia}/${a.temasTotal} temas al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${racha} días`;
 
+    // Repaso de fallos y «5 minutos»: una línea discreta bajo la actividad del día, sin competir con «Empezar».
+    const enPlan = plan.some((x) => x.tipo === 'fallos');
+    const lineaRepaso = h('p.linea-repaso',
+      cola.hoy.length && !enPlan ? [h('a', { href: tlink(tit, ['teoria', 'repaso']) }, `🔁 Tienes ${cola.hoy.length} ${cola.hoy.length === 1 ? 'pregunta' : 'preguntas'} por repasar`), ' · '] : null,
+      h('a', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
     setChildren(el,
       cabecera,
       ritmo,
       hueco,
+      lineaRepaso,
       h('section.avance',
         h('div.bar', { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),

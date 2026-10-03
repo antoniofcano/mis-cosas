@@ -48,6 +48,7 @@ export function cierre({ icono, titulo, lineas = [], siguiente = null, tit }) {
 
 /** Coloca el cierre en `cont` cuando el plan recalculado esté listo (primero se pinta sin «Seguir»). */
 export function pintarCierre(cont, progress, tit, o) {
-  cont.replaceChildren(cierre({ ...o, tit }));
-  calcularPlan(progress, tit).then(({ plan }) => { if (cont.isConnected || cont.parentNode) cont.replaceChildren(cierre({ ...o, tit, siguiente: plan[0] })); }).catch(() => {});
+  const extra = o.extra ? [o.extra] : []; // lo que va debajo del cierre (se conserva al repintar)
+  cont.replaceChildren(cierre({ ...o, tit }), ...extra);
+  calcularPlan(progress, tit).then(({ plan }) => { if (cont.isConnected || cont.parentNode) cont.replaceChildren(cierre({ ...o, tit, siguiente: plan[0] }), ...extra); }).catch(() => {});
 }

@@ -47,7 +47,7 @@ export function podcastView({ tit, params: route }) {
   const vista = { el, summary: () => summaryText };
 
   loadPodcast(tit).then((pod) => {
-    if (id) { summaryText = episodioView(el, tit, pod, id) ?? summaryText; return; }
+    if (id) { summaryText = episodioView(el, tit, pod, id, route.query?.de) ?? summaryText; return; }
     summaryText = travesia(el, tit, pod);
   }).catch((e) => setChildren(el, h('p.warn', `No se pudo cargar la radio: ${e.message}`)));
   if (!id) enVistaEpisodio(false);
@@ -129,11 +129,21 @@ function boya(tit, ep) {
 // ---------------------------------------------------------------------------------------------------------------
 // El episodio
 
-function episodioView(el, tit, pod, id) {
+/** Adónde vuelve la flecha: a la clase o al tema desde los que se abrió el episodio (?de=…), o a la radio. */
+function vuelta(tit, de) {
+  const m = /^(curso\/[a-z0-9-]+|temario\/\d+)$/.exec(de ?? '');
+  if (!m) return volver('Radio de a bordo', tlink(tit, ['podcast']));
+  return volver(de.startsWith('curso/') ? 'Volver a la clase' : 'Volver al tema', tlink(tit, de.split('/')));
+}
+
+/** Enlace a un episodio recordando desde dónde se abre (para que la flecha vuelva allí). */
+export const enlaceEpisodio = (tit, ep, de) => tlink(tit, ['podcast', ep.id], de ? { de } : undefined);
+
+function episodioView(el, tit, pod, id, de) {
   const T = TITULACIONES[tit];
   const eps = episodiosDe(pod);
   const ep = eps.find((e) => e.id === id);
-  if (!ep) { setChildren(el, volver('Radio de a bordo', tlink(tit, ['podcast'])), h('p', 'Este episodio no existe.')); return 'ERROR episodio no encontrado'; }
+  if (!ep) { setChildren(el, vuelta(tit, de), h('p', 'Este episodio no existe.')); return 'ERROR episodio no encontrado'; }
   const i = eps.indexOf(ep);
   const anterior = eps.slice(0, i).reverse().find((e) => e.audio);
   const posterior = eps.slice(i + 1).find((e) => e.audio);
@@ -150,7 +160,7 @@ function episodioView(el, tit, pod, id) {
     })) : null);
 
   const cabecera = [
-    volver('Radio de a bordo', tlink(tit, ['podcast'])),
+    vuelta(tit, de),
     h('p.radio-rotulo', `${MARCA[ep.tipo]} ${TIPO[ep.tipo]}${b ? ` · ${b.icon} Tema ${ep.tema} · ${b.titulo}` : ''}`),
     h('h1', `${ep.n} · ${ep.titulo}`),
     ep.sinopsis ? h('p', ep.sinopsis) : null,
@@ -249,8 +259,8 @@ function episodioView(el, tit, pod, id) {
       guion),
     ficha,
     h('nav.radio-vecinos',
-      anterior ? h('a.btn.secondary', { href: tlink(tit, ['podcast', anterior.id]) }, `← ${anterior.n}`) : h('span'),
-      posterior ? h('a.btn.secondary', { href: tlink(tit, ['podcast', posterior.id]) }, `${posterior.n} →`) : h('span')));
+      anterior ? h('a.btn.secondary', { href: enlaceEpisodio(tit, anterior, de) }, `← ${anterior.n}`) : h('span'),
+      posterior ? h('a.btn.secondary', { href: enlaceEpisodio(tit, posterior, de) }, `${posterior.n} →`) : h('span')));
   pinta();
   return `VISTA episodio ${ep.n} «${ep.titulo}» (${minutos(ep.duracion)}) · ${suena() ? 'sonando' : 'parado'}\nSINOPSIS: ${ep.sinopsis ?? ''}\nCLASES: ${(ep.lecciones ?? []).join(', ')}`;
 }

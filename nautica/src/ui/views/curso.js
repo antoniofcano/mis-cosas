@@ -17,7 +17,7 @@ import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theor
 import { voice } from '../voice.js';
 import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
-import { episodiosDeClase } from './podcast.js';
+import { episodiosDeClase, enlaceEpisodio } from './podcast.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { getExercise } from '../../exercises/registry.js';
 
@@ -46,7 +46,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
 
   // Clase del PER abierta desde una del PY (?desde=<id>): se ofrece volver a ella.
   const desde = route.query?.desde || null;
-  Promise.all([loadCourse(tit), loadTheoryBank(tit), loadMnemonics(), tit === 'py' ? loadCourse('per') : null, desde ? loadCourse('py') : null]).then(([curso, bank, mnemo, cursoPer, cursoPy]) => {
+  Promise.all([loadCourse(tit), loadTheoryBank(tit), loadMnemonics(), tit === 'py' ? loadCourse('per') : null, desde ? loadCourse('py') : null,
+    episodiosDeClase(tit, id).catch(() => [])]).then(([curso, bank, mnemo, cursoPer, cursoPy, episodios]) => {
     const todas = curso ? leccionesDe(curso) : [];
     const L = todas.find((l) => l.id === id);
     if (!L) {
@@ -74,6 +75,11 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const origen = desde && cursoPy ? leccionesDe(cursoPy).find((l) => l.id === desde) : null;
     const volverOrigen = (cls = 'a.volver-origen') => (origen ? h(cls, { href: tlink('py', ['curso', origen.id]) }, `← Volver a tu clase del PY: ${origen.titulo}`) : null);
 
+    // El podcast de esta clase (si ya tiene audio): en la primera tarjeta, a mano en todas y al terminar.
+    const episodio = episodios.find((e) => e.audio) ?? null;
+    const enlacePodcast = episodio ? enlaceEpisodio(tit, episodio, `curso/${L.id}`) : null;
+    const minPodcast = episodio ? Math.round(episodio.duracion / 60) : 0;
+
     // --- tarjetas: la 0 es «En esta clase» (objetivos y tiempo); después, los pasos de la clase
     // La pregunta del final cambia cada vez: una real de examen de esta clase.
     const tarjetas = [{ tipo: 'intro' }, ...conPreguntaFinal(conResuelto(L.pasos, resueltasDe(L.id).filter((id) => preguntas.has(id))), disponibles, createRng(randomSeed()))];
@@ -90,7 +96,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             listaBase()) : null,
           h('h3', 'En esta clase'),
           L.objetivos?.length ? h('ul', L.objetivos.map((o) => h('li', o))) : null,
-          h('p.muted', `Unos ${L.minutos ?? 10} minutos.`));
+          h('p.muted', `Unos ${L.minutos ?? 10} minutos.`),
+          episodio ? h('p.radio-clase', h('a.btn.secondary', { href: enlacePodcast }, `🎧 Escucha el podcast de esta clase (${minPodcast} min)`),
+            h('span.muted.small', ' Antes o después de la clase: Elena y Andrés lo cuentan en voz alta.')) : null);
         case 'texto': return h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto));
         case 'ilustracion': {
           // Con predicción, el pie de la clase (que suele dar la respuesta) aparece al responder.
@@ -179,7 +187,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', onclick: () => voice.speak(speechOf(p)) }, '🔊 Escuchar') : null;
       setChildren(cont,
         volverOrigen(),
-        h('div.pasos', h('div.paso-cabecera', paso ? h('p.rotulo-tema', L.titulo) : h('span'), escuchar), pasoEl(p, paso)),
+        h('div.pasos', h('div.paso-cabecera', paso ? h('p.rotulo-tema', L.titulo) : h('span'),
+          h('span.paso-botones', episodio && paso ? h('a.btn.secondary.small.escuchar', { href: enlacePodcast, title: 'Escuchar el podcast de esta clase', 'aria-label': 'Podcast de esta clase' }, '🎧') : null, escuchar)),
+          pasoEl(p, paso)),
         // A mano durante toda la clase (salvo en la primera tarjeta, que ya la enseña): la base del PER.
         paso && base.length ? h('details.base-per-chip', h('summary', `🔁 Base del PER (${base.length})`), listaBase()) : null,
         h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); voice.stop(); verTodas(); } }, 'Ver todas las tarjetas seguidas')),
@@ -209,13 +219,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       progress.logActividad(L.minutos ?? 10);
       barra.set('Clase terminada', 1);
       // El podcast que trata esta clase, si ya tiene audio.
-      const escucha = h('p.radio-clase', { hidden: true });
-      episodiosDeClase(tit, L.id).then((eps) => {
-        const e = eps.find((x) => x.audio);
-        if (!e) return;
-        setChildren(escucha, h('a.btn.secondary', { href: tlink(tit, ['podcast', e.id]) }, `🎧 Escúchalo: «${e.titulo}» (${Math.round(e.duracion / 60)} min)`));
-        escucha.hidden = false;
-      }).catch(() => {});
+      const escucha = episodio ? h('p.radio-clase', h('a.btn.secondary', { href: enlacePodcast }, `🎧 Escúchalo: «${episodio.titulo}» (${minPodcast} min)`)) : null;
       const extra = [
         escucha,
         dondeEncaja(tit, L.id),

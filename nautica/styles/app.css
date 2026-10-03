@@ -808,3 +808,9 @@ body.con-radio main { padding-bottom: calc(96px + 60px); }
 .radio-tema-ep { display: grid; grid-template-columns: 32px 1fr; gap: .4rem; align-items: center; min-height: 52px; padding: .3rem .5rem; border: 1px solid var(--border); border-radius: var(--radius); margin: .35rem 0; text-decoration: none; color: var(--text); background: var(--surface); }
 .radio-tema-ep:hover { border-color: var(--accent); }
 .radio-clase { margin: .8rem 0; }
+.paso-botones { display: flex; gap: .4rem; align-items: center; }
+.clase-podcast { font-size: 1rem; }
+.paso-cabecera { flex-wrap: wrap; }
+.paso-cabecera .rotulo-tema { flex: 1 1 170px; }
+.paso-botones { margin-left: auto; }
+.paso-botones a.escuchar { min-width: 48px; padding: .3rem .6rem; text-align: center; font-size: 1.2rem; }

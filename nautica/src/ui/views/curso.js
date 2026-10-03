@@ -5,6 +5,8 @@ import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
 import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal } from '../../course/engine.js';
+import { resueltasDe, conResuelto } from '../../course/resueltos.js';
+import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
 import { MIN_TANDA } from '../../course/plan.js';
 import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
@@ -57,7 +59,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
 
     // --- tarjetas: la 0 es «En esta clase» (objetivos y tiempo); después, los pasos de la clase
     // La pregunta del final cambia cada vez: una real de examen de esta clase.
-    const tarjetas = [{ tipo: 'intro' }, ...conPreguntaFinal(L.pasos, disponibles, createRng(randomSeed()))];
+    const tarjetas = [{ tipo: 'intro' }, ...conPreguntaFinal(conResuelto(L.pasos, resueltasDe(L.id).filter((id) => preguntas.has(id))), disponibles, createRng(randomSeed()))];
     const n = tarjetas.length;
     let paso = Math.min(Math.max(0, Number(reg().paso) || 0), n - 1);
     let checkOk = new Set();
@@ -80,6 +82,21 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         }
         case 'clave': return h('div.paso.clave', h('p', '💡 ', rich(p.texto)));
         case 'ojo': return h('div.paso.ojo', h('p', '⚠️ ', rich(p.texto)));
+        case 'resuelto': {
+          // Una pregunta real del mismo tipo, resuelta por la app (dibujada en la carta o paso a paso); «Otra» cambia.
+          const box = h('div');
+          let k = Math.floor(Math.random() * p.ids.length);
+          const pinta = () => {
+            const q = preguntas.get(p.ids[k]);
+            const sinCarta = SOLUCIONES[q.id]?.sinCarta;
+            setChildren(box, h('p.muted.small', q.convocatoria ?? ''), h('p', q.enunciado.length > 220 ? `${q.enunciado.slice(0, 220)}…` : q.enunciado),
+              h('div.actions',
+                h('a.btn', { href: link(['examenes', bancoResolucion(q), q.id]) }, sinCarta ? '🧮 Verla resuelta paso a paso' : '🗺️ Verla resuelta en la carta'),
+                p.ids.length > 1 ? h('button.secondary', { type: 'button', onclick: () => { k = (k + 1) % p.ids.length; pinta(); } }, 'Otra pregunta') : null));
+          };
+          pinta();
+          return h('div.paso.resuelto', h('p.badge', `Míralo resuelto: ${p.ids.length} preguntas reales de este tipo`), box);
+        }
         case 'check': {
           const fb = h('div');
           if (p.real) {
@@ -112,6 +129,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const speechOf = (p) => ({
       intro: `${L.titulo}. En esta clase: ${(L.objetivos ?? []).join('. ')}`,
       texto: `${p.titulo ? `${p.titulo}. ` : ''}${plain(p.texto)}`, clave: plain(p.texto), ojo: `Ojo: ${plain(p.texto)}`, ilustracion: p.texto ?? '',
+      resuelto: 'Míralo resuelto con una pregunta real de examen.',
       regla: reglas.get(p.id) ? `Para recordarlo: ${reglas.get(p.id).regla}. ${reglas.get(p.id).significado}` : '', check: p.enunciado,
     }[p.tipo] ?? '');
 

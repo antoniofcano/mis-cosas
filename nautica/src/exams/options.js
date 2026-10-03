@@ -10,7 +10,7 @@ const MIN = `\\s*${NUM}\\s*['′’´]?`;
 const num = (s) => Number(String(s).replace(',', '.'));
 
 const PATTERNS = {
-  lat: { re: new RegExp(`(\\d{1,2})\\s*[º°o]${MIN}\\s*([NS])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/s/i.test(m[3]) ? -1 : 1) },
+  lat: { re: new RegExp(`(\\d{1,2})\\s*[º°o]${MIN}\\s*,?\\s*([NS])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/s/i.test(m[3]) ? -1 : 1) },
   lon: { re: new RegExp(`(\\d{1,3})\\s*[º°o]${MIN}\\s*([EW])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/w/i.test(m[3]) ? -1 : 1) },
   bearing: [
     // Cuadrantal: «S46,6ºW», «N46W» → circular.

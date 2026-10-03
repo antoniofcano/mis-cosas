@@ -27,6 +27,8 @@ export function createKit(chart) {
   const P = (id) => (typeof id === 'string' ? chart.point(id) : id);
   const nm = (id) => (P(id).name ?? 'el punto').replace(/^Faro de /, 'faro de ');
   const mark = (p) => { focus.push(p); return p; };
+  // Dentro de la carta, contando el propio borde (hay enunciados que parten justo de él).
+  const dentro = (p) => chart.inBounds(p, -0.001);
 
   const k = {
     steps, items, focus,
@@ -35,7 +37,7 @@ export function createKit(chart) {
     pos(lat, lon, label = 'Situación') {
       const p = { lat: parseAngle(lat), lon: -Math.abs(parseAngle(lon)) * (/E/i.test(lon) ? -1 : 1) };
       // Fuera de la carta L105 se resuelve analíticamente (sin dibujo).
-      if (!chart.inBounds(p)) { step(label, `${fmtPos(p)}, fuera de esta carta: lo resolvemos con números.`); return p; }
+      if (!dentro(p)) { step(label, `${fmtPos(p)}, fuera de esta carta: lo resolvemos con números.`); return p; }
       step(label, `Situamos el punto en la carta: ${fmtPos(p)}.`);
       items.push({ t: 'pos', at: p, label, style: 'start', step: n });
       return mark(p);
@@ -236,7 +238,7 @@ export function createKit(chart) {
     efectivo(rs, vb, rc, ic, from) {
       const { ref, vef } = effectiveCourse(rs, vb, rc, ic);
       step('Rumbo y velocidad efectivos', `Triángulo de velocidades: vector barco ${fmtBearing(rs)} y ${fmtKnots(vb)}; a continuación, vector corriente ${fmtBearing(rc)} y ${fmtKnots(ic)}. La resultante es Ref = ${fmtBearing(ref)} y Vef = ${fmtKnots(vef)}.`);
-      if (from && chart.inBounds(from)) {
+      if (from && dentro(from)) {
         const tip = rhumbDestination(from, rs, vb);
         items.push({ t: 'vec', from, bearing: rs, length: vb, label: `Rs ${fmtBearing(rs)}`, style: 'boat', step: n },
           { t: 'vec', from: tip, bearing: rc, length: ic, label: 'Corriente', style: 'current', step: n },
@@ -320,7 +322,7 @@ export function createKit(chart) {
         step('Longitud de llegada', `Sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${fmtPos(p).split('  ')[1]}.`);
       }
       step(label, `${fmtPos(p)}.`);
-      if (chart.inBounds(from) && chart.inBounds(p)) items.push({ t: 'pos', at: p, label, style: 'estima', step: n });
+      if (dentro(from) && dentro(p)) items.push({ t: 'pos', at: p, label, style: 'estima', step: n });
       return p;
     },
 

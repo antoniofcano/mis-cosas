@@ -15,6 +15,7 @@ import { illustrationEls } from '../illustration.js';
 import { pidePrediccion } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
 import { voice } from '../voice.js';
+import { avisoError } from '../aviso-error.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { getExercise } from '../../exercises/registry.js';
 
@@ -180,7 +181,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         // A mano durante toda la clase (salvo en la primera tarjeta, que ya la enseña): la base del PER.
         paso && base.length ? h('details.base-per-chip', h('summary', `🔁 Base del PER (${base.length})`), listaBase()) : null,
         h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); voice.stop(); verTodas(); } }, 'Ver todas las tarjetas seguidas')),
-        h('div.fila-inferior', anterior, siguiente));
+        h('div.fila-inferior', anterior, siguiente),
+        h('p.pie-aviso', avisoError(`Clase ${L.id} «${L.titulo}», tarjeta ${paso + 1} de ${n}`, p.titulo ?? p.tipo)));
       refrescaBotones();
       if (voice.supported && progress.settings().vozAuto === true) voice.speak(speechOf(p));
       summaryText = `CLASE ${L.id} «${L.titulo}» · tarjeta ${paso + 1}/${n}: ${speechOf(p)}`;

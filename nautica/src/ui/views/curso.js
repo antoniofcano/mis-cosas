@@ -4,7 +4,7 @@
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal } from '../../course/engine.js';
+import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, estadoLeccion } from '../../course/engine.js';
 import { resueltasDe, conResuelto } from '../../course/resueltos.js';
 import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
 import { MIN_TANDA } from '../../course/plan.js';
@@ -41,7 +41,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
   const el = h('div.leccion', barra, cont);
   let summaryText = `VISTA clase ${id} (cargando)`;
 
-  Promise.all([loadCourse(tit), loadTheoryBank(tit), loadMnemonics()]).then(([curso, bank, mnemo]) => {
+  // Clase del PER abierta desde una del PY (?desde=<id>): se ofrece volver a ella.
+  const desde = route.query?.desde || null;
+  Promise.all([loadCourse(tit), loadTheoryBank(tit), loadMnemonics(), tit === 'py' ? loadCourse('per') : null, desde ? loadCourse('py') : null]).then(([curso, bank, mnemo, cursoPer, cursoPy]) => {
     const todas = curso ? leccionesDe(curso) : [];
     const L = todas.find((l) => l.id === id);
     if (!L) {
@@ -57,6 +59,18 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const disponibles = (L.practica ?? []).map((q) => preguntas.get(q)).filter((q) => q && !q.anulada && q.correcta);
     const nPractica = Math.min(PRACTICA_MAX, disponibles.length);
 
+    // Base del PER de una clase del PY (L.refresco): título, si ya se vio y enlace que permite volver aquí.
+    const clasesPer = cursoPer ? new Map(leccionesDe(cursoPer).map((l) => [l.id, l])) : new Map();
+    const base = (L.refresco ?? []).map((rid) => clasesPer.get(rid)).filter(Boolean).map((l) => {
+      const e = estadoLeccion(l, progress.leccion(l.id), progress.get().exams).estado;
+      return { l, vista: e !== 'nueva' && e !== 'empezada' };
+    });
+    const enlaceBase = ({ l, vista }) => h('li', h('a', { href: tlink('per', ['curso', l.id], { desde: L.id }) }, l.titulo), vista ? ' ✓' : h('span.muted.small', ' · sin ver'));
+    const listaBase = () => h('ul.base-per', base.map(enlaceBase));
+    // Volver a la clase del PY desde la que se abrió esta del PER.
+    const origen = desde && cursoPy ? leccionesDe(cursoPy).find((l) => l.id === desde) : null;
+    const volverOrigen = (cls = 'a.volver-origen') => (origen ? h(cls, { href: tlink('py', ['curso', origen.id]) }, `← Volver a tu clase del PY: ${origen.titulo}`) : null);
+
     // --- tarjetas: la 0 es «En esta clase» (objetivos y tiempo); después, los pasos de la clase
     // La pregunta del final cambia cada vez: una real de examen de esta clase.
     const tarjetas = [{ tipo: 'intro' }, ...conPreguntaFinal(conResuelto(L.pasos, resueltasDe(L.id).filter((id) => preguntas.has(id))), disponibles, createRng(randomSeed()))];
@@ -66,7 +80,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
 
     function pasoEl(p, i) {
       switch (p.tipo) {
-        case 'intro': return h('div.paso.intro', h('h2', L.titulo), h('h3', 'En esta clase'),
+        case 'intro': return h('div.paso.intro', h('h2', L.titulo),
+          // Lo primero, antes de empezar: lo que esta clase del PY da por sabido del PER.
+          base.length ? h('section.viene-per', h('h3', '🔁 Viene del PER'),
+            h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo antes (luego vuelves aquí):'),
+            listaBase()) : null,
+          h('h3', 'En esta clase'),
           L.objetivos?.length ? h('ul', L.objetivos.map((o) => h('li', o))) : null,
           h('p.muted', `Unos ${L.minutos ?? 10} minutos.`));
         case 'texto': return h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto));
@@ -156,7 +175,10 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       barra.set(`Tarjeta ${paso + 1} de ${n}`, (paso + 1) / n);
       const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', onclick: () => voice.speak(speechOf(p)) }, '🔊 Escuchar') : null;
       setChildren(cont,
+        volverOrigen(),
         h('div.pasos', h('div.paso-cabecera', paso ? h('p.rotulo-tema', L.titulo) : h('span'), escuchar), pasoEl(p, paso)),
+        // A mano durante toda la clase (salvo en la primera tarjeta, que ya la enseña): la base del PER.
+        paso && base.length ? h('details.base-per-chip', h('summary', `🔁 Base del PER (${base.length})`), listaBase()) : null,
         h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); voice.stop(); verTodas(); } }, 'Ver todas las tarjetas seguidas')),
         h('div.fila-inferior', anterior, siguiente));
       refrescaBotones();
@@ -185,17 +207,18 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       const extra = [
         L.carta?.length ? h('details', h('summary', '🗺️ En la carta'), h('ul', L.carta.map((x) => (getExercise(x) ? h('li', h('a', { href: link(['ej', x]) }, getExercise(x).title)) : null)))) : null,
         L.profundizar?.length ? h('details', h('summary', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
-        L.refresco?.length ? h('details', h('summary', '🔁 Repaso del PER'), h('ul', L.refresco.map((rid) => h('li', h('a', { href: tlink('per', ['curso', rid]) }, rid))))) : null,
+        base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,
       ];
       const chuleta = L.chuleta?.length ? h('section.chuleta', h('h2', '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
         voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null) : null;
+      const vuelta = origen ? h('p', volverOrigen('a.btn.grande')) : null;
       if (nPractica) {
-        setChildren(cont, chuleta,
+        setChildren(cont, vuelta, chuleta,
           h('button.grande.practicar', { type: 'button', onclick: () => practicar() }, `Practicar con ${nPractica} preguntas de examen`),
           extra);
       } else {
         const hueco = h('div');
-        setChildren(cont, hueco, chuleta, extra);
+        setChildren(cont, vuelta, hueco, chuleta, extra);
         pintarCierre(hueco, progress, tit, { icono: '🎉', titulo: 'Clase terminada' });
       }
       summaryText = `CLASE ${L.id} «${L.titulo}» terminada · chuleta: ${(L.chuleta ?? []).map(plain).join(' | ')}`;

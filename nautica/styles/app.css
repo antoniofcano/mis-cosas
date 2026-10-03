@@ -680,3 +680,12 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .minutos-ajuste .atajos { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
 .minutos-ajuste .atajos button { flex: 1 1 0; min-width: 0; min-height: 44px; padding: 0 .2rem; }
 .minutos-ajuste .atajos button.activo { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Clases del PY: la base del PER y la vuelta desde una clase del PER */
+.viene-per { margin: .6rem 0 1rem; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
+.viene-per h3 { margin: 0 0 .3rem; }
+.base-per { margin: .3rem 0 0; padding-left: 1.1rem; }
+.base-per li a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+.base-per-chip { margin: .4rem 0; }
+.base-per-chip summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--accent); cursor: pointer; }
+.volver-origen { display: flex; align-items: center; min-height: 44px; font-weight: 600; margin-bottom: .4rem; }

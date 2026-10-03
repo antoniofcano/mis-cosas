@@ -10,7 +10,7 @@ export function bibliotecaView({ tit }) {
   const recursos = [
     [tlink(tit, ['laminas']), '🎞️ Láminas', 'Boyas con su luz, luces y marcas de buques, maniobra, meteorología… muchas se mueven y se tocan.'],
     [tlink(tit, ['carta']), '🗺️ Ejercicios de carta y cálculo', 'Problemas de carta, mareas, hora y viento aparente con datos nuevos cada vez: lo resuelves, se corrige y el profe te lo explica paso a paso.'],
-    [tlink(tit, ['mapas']), '🕸️ Mapas de conceptos', 'Cómo se relacionan las ideas que más se confunden (rumbos y correcciones, presión y viento…), con sus láminas y un juego para repasarlas.'],
+    [tlink(tit, ['mapas']), '🕸️ Mapas de conceptos', tit === 'per' ? 'Cómo se relacionan las ideas que más se confunden: los tres nortes, la corrección total, rumbos, demoras y marcaciones, con sus láminas y un juego.' : 'Cómo se relacionan presión, isobaras, viento, borrascas, anticiclones y frentes, con sus láminas y un juego.'],
     [tlink(tit, ['tarjetas']), '🃏 Tarjetas de memoria', 'Luces, boyas, señales, banderas, escalas… Para lo que solo se aprende repitiendo.'],
     [link(['reglas']), '🧠 Reglas para recordar', 'Las que de verdad funcionan, con su explicación.'],
     [link(['conceptos']), '📘 Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],

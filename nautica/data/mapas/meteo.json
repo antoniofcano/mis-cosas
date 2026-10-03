@@ -2,10 +2,9 @@
  "id": "meteo",
  "titulo": "Presión, viento y frentes",
  "tits": [
-  "per",
   "py"
  ],
- "intro": "Cómo la presión explica el viento: las isobaras, las borrascas y los anticiclones, dónde está la borrasca, qué anuncia el barómetro y los frentes (PY).",
+ "intro": "Cómo la presión explica el viento: isobaras y gradiente, borrascas y anticiclones, los modelos de viento, qué anuncia el barómetro y los frentes.",
  "nodos": [
   {
    "id": "presion",
@@ -17,7 +16,8 @@
    },
    "clase": "per-9-1",
    "x": 0,
-   "y": 0
+   "y": 0,
+   "tit": "per"
   },
   {
    "id": "barometro",
@@ -29,7 +29,8 @@
    },
    "clase": "per-9-1",
    "x": 0,
-   "y": 2.4
+   "y": 2.4,
+   "tit": "per"
   },
   {
    "id": "isobaras",
@@ -39,7 +40,7 @@
     "tipo": "meteo",
     "sistema": "isobaras"
    },
-   "clase": "per-9-1",
+   "clase": "py-2-1",
    "x": 2,
    "y": 0
   },
@@ -50,7 +51,7 @@
    "spec": {
     "tipo": "modelos-viento"
    },
-   "clase": "per-9-2",
+   "clase": "py-2-3",
    "x": 4,
    "y": 0
   },
@@ -62,7 +63,7 @@
     "tipo": "meteo",
     "sistema": "borrasca"
    },
-   "clase": "per-9-2",
+   "clase": "py-2-1",
    "x": 2,
    "y": 2.4
   },
@@ -74,7 +75,7 @@
     "tipo": "meteo",
     "sistema": "anticiclon"
    },
-   "clase": "per-9-2",
+   "clase": "py-2-1",
    "x": 4,
    "y": 2.4
   },
@@ -88,7 +89,8 @@
    },
    "clase": "per-9-2",
    "x": 0.8,
-   "y": 3.6
+   "y": 3.6,
+   "tit": "per"
   },
   {
    "id": "frentes",
@@ -99,7 +101,6 @@
     "sistema": "frentes"
    },
    "clase": "py-2-2",
-   "tit": "py",
    "x": 2,
    "y": 4.8
   },
@@ -112,7 +113,6 @@
     "sistema": "frente-frio-corte"
    },
    "clase": "py-2-2",
-   "tit": "py",
    "x": 1,
    "y": 6
   },
@@ -125,7 +125,6 @@
     "sistema": "frente-calido-corte"
    },
    "clase": "py-2-2",
-   "tit": "py",
    "x": 3,
    "y": 6
   },
@@ -139,7 +138,8 @@
    },
    "clase": "per-9-6",
    "x": 4.2,
-   "y": 3.6
+   "y": 3.6,
+   "tit": "per"
   },
   {
    "id": "mar",
@@ -151,7 +151,8 @@
    },
    "clase": "per-9-6",
    "x": 4.2,
-   "y": 4.8
+   "y": 4.8,
+   "tit": "per"
   }
  ],
  "aristas": [

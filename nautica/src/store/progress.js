@@ -81,6 +81,9 @@ export function createProgressStore(storage = safeStorage()) {
     /** Curso: registro por lección { visto, caja, proximo, ultimo, ultimoAcierto, paso }. */
     leccion: (id) => data.lecciones?.[id],
     lecciones: () => data.lecciones ?? {},
+    /** Plan de estudio con fecha (calendario base de src/course/calendario.js), por titulación. Opcional. */
+    planEstudio: (tit) => data.planes?.[tit] ?? null,
+    setPlanEstudio(tit, plan) { data.planes = { ...(data.planes ?? {}), [tit]: plan }; save(); },
     saveLeccion(id, reg) {
       data.lecciones = { ...(data.lecciones ?? {}), [id]: reg };
       save();

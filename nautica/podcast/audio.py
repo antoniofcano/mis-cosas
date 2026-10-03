@@ -8,6 +8,7 @@ Uso:  ELEVENLABS_API_KEY=... python3 podcast/audio.py podcast/py/1-1-....md sali
   es un silencio de 3 s; [ríe] y cualquier otra acotación no se leen.
 - Entre intervenciones hay SILENCIO segundos.
 - Las piezas se guardan en una caché (por voz y texto) para no volver a pagar lo que no ha cambiado.
+- Sintonía (podcast/jingle.mp3) al principio, que se apaga bajo las primeras palabras, y al final.
 """
 import hashlib, json, os, re, subprocess, sys, tempfile, urllib.request, urllib.error
 
@@ -19,6 +20,9 @@ MODELO = 'eleven_multilingual_v2'
 AJUSTES = {'stability': 0.45, 'similarity_boost': 0.8, 'style': 0.25, 'use_speaker_boost': True}
 SILENCIO = 0.5
 PAUSA_LARGA = 3.0
+JINGLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'jingle.mp3')
+JINGLE_DB = -5      # la sintonía, un poco por debajo de las voces
+ENTRA_VOZ = 6.0     # segundo de la sintonía en que empieza a hablar Elena (la música se apaga debajo)
 
 def piezas(md):
     """[(voz, texto) | ('SILENCIO', segundos)] en orden."""
@@ -76,8 +80,26 @@ def main():
         lista.append(sf)
     with tempfile.NamedTemporaryFile('w', suffix='.txt', delete=False) as t:
         t.write(''.join(f"file '{f}'\n" for f in lista))
+    voz = salida + '.voz.wav'
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', t.name,
-                    '-ac', '1', '-ar', '44100', '-c:a', 'libmp3lame', '-b:a', '128k', salida], check=True)
+                    '-ac', '1', '-ar', '44100', voz], check=True)
+    if os.path.exists(JINGLE):
+        dv = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', voz],
+                                  capture_output=True, text=True).stdout)
+        dj = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', JINGLE],
+                                  capture_output=True, text=True).stdout)
+        fin = ENTRA_VOZ + dv + 0.3  # la sintonía de salida, tras la última palabra
+        filtro = (f'[0:a]aformat=sample_rates=44100:channel_layouts=mono,volume={JINGLE_DB}dB,'
+                  f'afade=t=out:st={ENTRA_VOZ - 0.5}:d=2.5[ji];'
+                  f'[1:a]aformat=sample_rates=44100:channel_layouts=mono,adelay={int(ENTRA_VOZ * 1000)}[vo];'
+                  f'[0:a]aformat=sample_rates=44100:channel_layouts=mono,volume={JINGLE_DB}dB,'
+                  f'afade=t=in:d=0.4,afade=t=out:st={dj - 1.5}:d=1.5,adelay={int(fin * 1000)}[js];'
+                  '[ji][vo][js]amix=inputs=3:duration=longest:normalize=0[m]')
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', JINGLE, '-i', voz, '-filter_complex', filtro,
+                        '-map', '[m]', '-ac', '1', '-ar', '44100', '-c:a', 'libmp3lame', '-b:a', '128k', salida], check=True)
+    else:
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', voz, '-c:a', 'libmp3lame', '-b:a', '128k', salida], check=True)
+    os.remove(voz)
     dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', salida],
                                capture_output=True, text=True).stdout)
     print(f'{salida}: {dur / 60:.1f} min · {caracteres} caracteres ({nuevos} generados ahora)')

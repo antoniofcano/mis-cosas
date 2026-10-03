@@ -2,7 +2,7 @@
 
 import { h, setChildren } from '../dom.js';
 import { loadMnemonics } from '../../store/datasets.js';
-import { volver } from '../titulacion.js';
+import { volver, tlink } from '../titulacion.js';
 
 const GRUPOS = [
   [/^PY UT1/, 'Patrón de Yate · Seguridad'], [/^PY UT2/, 'Patrón de Yate · Meteorología'], [/^PY UT3/, 'Patrón de Yate · Teoría de navegación'], [/^PY UT4/, 'Patrón de Yate · Carta'],
@@ -11,7 +11,7 @@ const GRUPOS = [
 ];
 const grupo = (tema) => GRUPOS.find(([re]) => re.test(tema))?.[1] ?? 'Otras';
 
-export function reglasView() {
+export function reglasView({ tit }) {
   const el = h('div.reglas', h('p.muted', 'Cargando…'));
   let summaryText = 'VISTA reglas nemotécnicas (cargando)';
   loadMnemonics().then(({ reglas }) => {
@@ -23,7 +23,7 @@ export function reglasView() {
     }
     summaryText = `VISTA reglas nemotécnicas (${reglas.length})\n${reglas.map((r) => `${r.id}: ${r.regla}`).join('\n')}`;
     setChildren(el,
-      volver('Más', '#/mas'),
+      volver('Biblioteca', tlink(tit, ['biblioteca'])),
       h('h1', '🧠 Reglas para recordar'),
       h('p', 'Las que usan academias y foros, comprobadas contra el reglamento y elegidas por ser útiles y fáciles de memorizar. El profe te las recuerda en las preguntas donde ayudan.'),
       [...groups].map(([g, rs]) => h('section', h('h2', g), rs.map((r) => h('details.mnemo-card',

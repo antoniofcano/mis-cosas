@@ -26,7 +26,7 @@
 - `#/<tit>/examenes` examen a medias, simulacro y convocatorias · `#/<tit>/test/simulacro?s=<semilla>` · `#/<tit>/test/real/<convocatoria>`
 - `#/<tit>/carta` ejercicios de carta · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible
 - `#/examenes/<banco>/<idPregunta>` pregunta real de carta resuelta · `#/mesa` mesa de cartas
-- `#/<tit>/laminas` · `#/reglas` · `#/conceptos` · `#/mas` (ajustes, voz, copia) · `#/progreso`
+- `#/<tit>/biblioteca` (láminas, ejercicios de carta, reglas, conceptos, mesa) · `#/<tit>/laminas` · `#/reglas` · `#/conceptos` · `#/ajustes` (fecha, voz, instalar, copia; antes `#/mas`) · `#/progreso`
 - Redirecciones: `#/<tit>/curso` y `#/<tit>/teoria` → `#/<tit>/temario`; `#/teoria`, `#/test` → con la titulación activa; `#/carta` → `#/mesa`; `#/laminas` → `#/<tit>/laminas`.
 - Durante un examen en curso, `nautica.state()` NO muestra soluciones: no las des hasta que el alumno corrija. El examen a medias se guarda en el progreso (`testEnCurso`).
 

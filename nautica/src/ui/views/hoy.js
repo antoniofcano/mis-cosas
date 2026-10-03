@@ -25,7 +25,7 @@ const fechaLarga = (iso) => { const [y, m, d] = iso.split('-').map(Number); retu
 export function lineaRitmo(r, minutosDia, fechaExamen) {
   if (!r.minutosPendientes) return 'Has hecho todo el plan: ahora, simulacros y repasar tus fallos.';
   const base = `A ${minutosDia} minutos al día terminas el plan el ${fechaLarga(r.fechaFin)}`;
-  if (!fechaExamen || r.llega == null) return `${base}. Pon la fecha de tu examen en «Más» y te digo si llegas.`;
+  if (!fechaExamen || r.llega == null) return `${base}. Pon la fecha de tu examen en Ajustes (⚙️) y te digo si llegas.`;
   if (r.llega) return `${base}, antes de tu examen (${fechaLarga(fechaExamen)}).`;
   return `${base}, pero tu examen es el ${fechaLarga(fechaExamen)}. Para llegar necesitas unos ${r.minutosNecesarios} minutos al día.`;
 }
@@ -48,7 +48,7 @@ export function hoyView({ progress, tit }) {
     const r = ritmoEstudio({ ...d, minutosDia: objetivo });
     const listo = estoyListo(T.estructura, d.preguntas, d.respuestas, d.tests);
     const ritmo = h('p.ritmo', { class: r.llega === false ? 'warn' : '' }, r.llega === false ? '⚠️ ' : '', lineaRitmo(r, objetivo, fecha),
-      ' ', h('a', { href: '#/mas' }, 'Cambiar'));
+      ' ', h('a', { href: '#/ajustes' }, 'Cambiar'));
 
     const tarjeta = () => {
       const [icono, tipo] = TIPO_TXT[principal.tipo] ?? ['', ''];
@@ -82,7 +82,8 @@ export function hoyView({ progress, tit }) {
       h('section.avance',
         h('div.bar', { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),
-      h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo))),
+      h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo)),
+        h('p.ver-progreso', h('a', { href: '#/progreso' }, '📈 Ver mi progreso por temas →'))),
       avisoCopia(progress),
       resto.length ? [h('h2', 'Después'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },
         h('h3', x.titulo), h('p', `${(TIPO_TXT[x.tipo] ?? [''])[0]} unos ${x.minutos} minutos`))))] : null,

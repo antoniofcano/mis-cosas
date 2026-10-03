@@ -16,7 +16,7 @@ import { resetRaster } from '../chart/raster.js';
 
 export function theoryView({ tit }) {
   const el = h('div.theory',
-    volver('Más', '#/mas'),
+    volver('Biblioteca', tlink(tit, ['biblioteca'])),
     h('h1', 'Conceptos y métodos de carta'),
     h('section', h('h2', 'Convención de signos'),
       h('p', 'Este (E) = +, Oeste (W) = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +, babor −). Rs = Rv + Ab.')),
@@ -59,7 +59,7 @@ export function progressView({ progress, tit }) {
   });
 
   const el = h('div.progress',
-    volver('Más', '#/mas'),
+    volver('Hoy', tlink(tit)),
     h('h1', 'Mi progreso'),
     temas,
     examenes,
@@ -80,7 +80,7 @@ export function progressView({ progress, tit }) {
   };
 }
 
-export function chartView({ ctx, progress }) {
+export function chartView({ ctx, progress, tit }) {
   const { chart } = ctx;
   const w = chartWidget(chart, { height: 600 });
   const status = h('p.small', 'Comprobando…');
@@ -103,7 +103,7 @@ export function chartView({ ctx, progress }) {
       : 'No has cargado tu carta escaneada. La carta vectorial funciona igualmente.';
   });
   const el = h('div.chart-page',
-    volver('Más', '#/mas'),
+    volver('Biblioteca', tlink(tit, ['biblioteca'])),
     h('h1', `Mesa de cartas · ${chart.name}`),
     h('details.como-se-usa', h('summary', 'Cómo se usa la mesa de cartas'),
       h('ul',

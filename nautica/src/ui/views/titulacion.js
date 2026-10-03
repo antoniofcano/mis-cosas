@@ -17,7 +17,7 @@ export function cartaView({ progress, tit }) {
     ? h('a.card', { href: link(['examenes', 'andalucia-per.json']) }, h('h3', '📄 Preguntas reales de carta'), h('p', 'Las 72 preguntas de carta (42–45) de los exámenes del PER, resueltas paso a paso sobre la carta.'))
     : h('a.card', { href: tlink(T.id, ['teoria', 'ut', String(T.cartaUt)], { s: randomSeed() }) }, h('h3', '📄 Preguntas reales de carta'), h('p', 'Las preguntas 11–20 del módulo de navegación (carta, mareas y loxodrómica) de los exámenes del PY.'));
   const el = h('div.home',
-    volver('Tema', tlink(T.id, ['temario', String(T.cartaUt)])),
+    volver('Biblioteca', tlink(T.id, ['biblioteca'])),
     h('h1', `🗺️ Carta de navegación · ${T.sigla}`),
     h('p', 'Cada tipo de ejercicio con datos nuevos cada vez sobre la carta del Estrecho (L105). Compruebas tus respuestas, pides pistas, ves la construcción en la carta y el tutorial te lo resuelve como en el examen, con el profe explicándolo.'),
     h('div.cards',

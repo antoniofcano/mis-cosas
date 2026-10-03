@@ -4,7 +4,7 @@ import { h, setChildren } from '../dom.js';
 import { navigate } from '../router.js';
 import { TITULACIONES } from '../titulacion.js';
 
-/** Control de minutos al día (también se usa en «Más»). */
+/** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
   return h('div.opciones-grandes', [10, 20, 30].map((m) => h('button.grande', { type: 'button', class: actual === m ? '' : 'secondary', 'aria-pressed': actual === m ? 'true' : 'false', onclick: () => onElegir(m) }, `${m} minutos`)));
 }

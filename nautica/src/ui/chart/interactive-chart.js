@@ -18,7 +18,7 @@ const TOOLS = [
   { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías, extremos de línea y el transportador. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
   { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros.' },
   { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
-  { id: 'protractor', icon: '📐', label: 'Transportador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
+  { id: 'protractor', icon: '📐', label: 'Transportador', corto: 'Transpor\u00ADtador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
   { id: 'point', icon: '📍', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
   { id: 'text', icon: '🔤', label: 'Texto', help: 'Toca donde quieras poner una nota y escríbela en la barra de abajo (también su tamaño). Con ✋ Mover se arrastra.' },
   { id: 'erase', icon: '🧽', label: 'Goma', help: 'Toca un trazo, punto o texto tuyo para borrarlo.' },
@@ -67,7 +67,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   svg.append(gBase, gRaster, gLand, gGrid, gMarks, gItems, gUser, gTool, gRulers);
 
   const readout = h('div.readout', TOOLS[0].help);
-  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, h('span.tool-icon', t.icon), h('span.tool-name', t.label)));
+  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, h('span.tool-icon', t.icon), h('span.tool-name', t.corto ?? t.label)));
   const layerSelect = h('select.small', { 'aria-label': 'Capa de la carta', onchange: (ev) => setLayer(ev.target.value) },
     LAYERS.map(([v, t]) => h('option', { value: v }, t)));
   const bearingInput = h('input.bearing', { type: 'number', min: 0, max: 359, step: 1, 'aria-label': 'Rumbo del transportador', onchange: () => { if (state.protractor) { state.protractor.bearing = norm360(Number(bearingInput.value) || 0); render(); } } });
@@ -125,16 +125,24 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     h('button.small', { type: 'button', onclick: () => guidesFromInputs(true) }, 'Guías + punto'),
     h('button.small.secondary', { type: 'button', title: 'Cerrar', onclick: () => { coordBar.hidden = true; } }, '✕'));
   const coordBtn = h('button.tool', { type: 'button', title: 'Situar por coordenadas: traza las guías de latitud y longitud', onclick: () => { coordBar.hidden = !coordBar.hidden; if (!coordBar.hidden) latIn.focus(); } }, h('span.tool-icon', '⌖'), h('span.tool-name', 'Situar'));
-  const coordsBtn = h('button.tool', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, h('span.tool-icon', '🏷'), h('span.tool-name', 'Coordenadas'));
+  const coordsBtn = h('button.tool', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, h('span.tool-icon', '🏷'), h('span.tool-name', 'Coorde\u00ADnadas'));
 
 
   const el = h('div.ichart',
+    // Tres grupos: las herramientas de dibujo (siempre enteras, también en el móvil), las de edición y las de vista.
     h('div.ichart-toolbar',
-      h('div.tools', toolButtons),
-      h('div.tools',
+      h('div.tools.dibujo', { role: 'group', 'aria-label': 'Herramientas de dibujo' }, toolButtons,
+        // Solo en pantallas estrechas: muestra u oculta edición y vista para que la carta conserve su alto.
+        h('button.tool.mas-herramientas', { type: 'button', 'aria-expanded': 'false', title: 'Más herramientas: deshacer, coordenadas, zoom…', onclick: (ev) => {
+          const bar = ev.currentTarget.closest('.ichart-toolbar');
+          const abierta = bar.classList.toggle('abierta');
+          ev.currentTarget.setAttribute('aria-expanded', String(abierta));
+        } }, h('span.tool-icon', '⋯'), h('span.tool-name', 'Más'))),
+      h('div.tools.edicion', { role: 'group', 'aria-label': 'Edición' },
         h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', '↶'), h('span.tool-name', 'Deshacer')),
         coordsBtn, coordBtn,
-        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo')),
+        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo'))),
+      h('div.tools.vista', { role: 'group', 'aria-label': 'Vista' },
         h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', '+'), h('span.tool-name', 'Acercar')),
         h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', '−'), h('span.tool-name', 'Alejar')),
         h('button.tool', { type: 'button', title: 'Encuadrar toda la zona de trabajo', onclick: () => { fit(); render(); } }, h('span.tool-icon', '⤢'), h('span.tool-name', 'Encuadrar')),

@@ -1,8 +1,8 @@
-// #/mas — Más: biblioteca de apoyo, tu estudio (fecha del examen y minutos al día), titulación,
-// voz del profe y copia de seguridad. Es la única pantalla con el pie de página.
+// #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, instalar,
+// voz del profe y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
+// Biblioteca (#/<tit>/biblioteca).
 
 import { h, setChildren } from '../dom.js';
-import { link } from '../router.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { voice, spanishVoices } from '../voice.js';
 import { botonesMinutos } from './bienvenida.js';
@@ -27,15 +27,8 @@ export function masView({ progress, tit }) {
   alCambiarInstalable((si) => { instalarEl.hidden = !si; });
 
   const el = h('div.mas',
-    h('h1', 'Más'),
-    h('section', h('h2', 'Biblioteca'),
-      h('div.cards',
-        h('a.card', { href: tlink(tit, ['laminas']) }, h('h3', '🎞️ Láminas animadas'), h('p', 'Boyas con su luz, luces y marcas de buques, reglas de rumbo, señales acústicas, meteorología…')),
-        h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Las que de verdad funcionan, con su explicación.')),
-        h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta'), h('p', 'Signos, glosario y el método de cada ejercicio.')),
-        h('a.card', { href: link(['mesa']) }, h('h3', '🗺️ Mesa de cartas'), h('p', 'La carta del Estrecho con regla, compás y transportador.')))),
+    h('h1', 'Ajustes'),
     h('section', h('h2', 'Tu estudio'),
-      h('div.cards', h('a.card', { href: link(['progreso']) }, h('h3', '📈 Mi progreso'), h('p', 'Cómo vas en cada tema y tus exámenes.'))),
       h('h3.ajuste', h('label', { for: 'fecha-examen' }, `📅 Fecha del examen de ${T.sigla}`)),
       fecha,
       h('h3.ajuste', '⏱ Minutos al día'),
@@ -71,6 +64,6 @@ export function masView({ progress, tit }) {
   );
   return {
     el,
-    summary: () => `VISTA más · titulación activa ${T.sigla} · examen ${progress.settings()[`examen_${tit}`] || 'sin fecha'} · ${progress.settings().minutosDia ?? 20} min al día\nRUTAS: #/${tit}/laminas · #/reglas · #/conceptos · #/mesa · #/progreso`,
+    summary: () => `VISTA ajustes · titulación activa ${T.sigla} · examen ${progress.settings()[`examen_${tit}`] || 'sin fecha'} · ${progress.settings().minutosDia ?? 20} min al día\nRUTAS: #/${tit}/biblioteca · #/progreso`,
   };
 }

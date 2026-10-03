@@ -1,69 +1,102 @@
-// #/<tit>/laminas — láminas animadas organizadas por curso (PER, PY) y tema del temario oficial.
-// Una lámina puede estar en varios temas o cursos (p. ej. la meteorología del PER y del PY).
+// #/<tit>/laminas — rejilla de miniaturas por tema, con filtro por texto. Cada miniatura abre su ficha
+// (#/<tit>/laminas/<id>), donde la lámina se ve entera y funciona (animaciones, láminas interactivas).
+// Las láminas salen de src/illustrations/catalogo-laminas.js: las de la galería y las que usan las clases.
 
-import { h } from '../dom.js';
-import { BUOYS } from '../../illustrations/buoys.js';
-import { SHIPS } from '../../illustrations/ships.js';
-import { SENALES } from '../../illustrations/situations.js';
-import { CATALOGO } from '../../illustrations/index.js';
+import { h, setChildren } from '../dom.js';
+import { renderIllustration } from '../../illustrations/index.js';
+import { catalogoLaminas } from '../../illustrations/catalogo-laminas.js';
+import { loadCourse } from '../../store/datasets.js';
 import { illustrationEls } from '../illustration.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 
-const boyas = [{ tipo: 'cardinales' }, ...Object.keys(BUOYS).filter((k) => !k.startsWith('cardinal')).map((clase) => ({ tipo: 'boya', clase }))];
-const ritmos = ['Fl(2) 5s', 'Q', 'Iso 4s', 'Oc 6s', 'LFl 10s', 'Mo(A) 6s'].map((ritmo) => ({ tipo: 'ritmo', ritmo }));
-const buques = Object.keys(SHIPS).map((clase) => ({ tipo: 'buque', clase, vista: 'todas', dia: true }));
-const cruces = ['cruce', 'vuelta-encontrada', 'alcance', 'vela-amuras', 'vela-barlovento'].map((situacion) => ({ tipo: 'cruce', situacion }));
-const sonidos = Object.keys(SENALES).map((senal) => ({ tipo: 'sonido', senal }));
-const meteo = (...s) => s.map((sistema) => ({ tipo: 'meteo', sistema }));
-const movimientos = ['balance', 'cabezada', 'guinada'].map((mov) => ({ tipo: 'movimiento', mov }));
-const banderas = CATALOGO.bandera.params.codigo.map((codigo) => ({ tipo: 'bandera', codigo }));
-const mareas = ['curva', 'duodecimos', 'sonda', 'fases'].map((modo) => ({ tipo: 'marea', modo }));
-const vientos = [{ tipo: 'viento-aparente' }, ...['cenida', 'traves', 'aleta', 'popa'].map((rumbo) => ({ tipo: 'viento-aparente', rumbo }))];
-const heliceTimon = ['avante', 'atras'].flatMap((marcha) => ['er', 'br'].map((timon) => ({ tipo: 'helice-timon', marcha, timon, sentido: 'dextrogira' })));
-const bifurcaciones = [
-  { tipo: 'bifurcacion', marca: 'canal-principal-estribor', ruta: 'principal' },
-  { tipo: 'bifurcacion', marca: 'canal-principal-estribor', ruta: 'secundario' },
-  { tipo: 'bifurcacion', marca: 'canal-principal-babor', ruta: 'principal' },
-];
-const pirotecnia = ['bengala', 'cohete-paracaidas', 'humo'].map((resaltar) => ({ tipo: 'socorro', resaltar, solo: true }));
+export { LAMINAS } from '../../illustrations/catalogo-laminas.js';
 
-/** Qué láminas van en cada tema. Las claves son las UT de la estructura oficial de cada titulación. */
-export const LAMINAS = {
-  per: {
-    1: [{ tipo: 'barco' }, ...movimientos],
-    2: [{ tipo: 'amarras' }],
-    3: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }],
-    4: banderas,
-    5: [...boyas, { tipo: 'canal', sentido: 'entrando' }, { tipo: 'canal', sentido: 'saliendo' }, ...bifurcaciones, { tipo: 'regiones' }, ...ritmos],
-    6: [...cruces, { tipo: 'riesgo', caso: 'comparar' }, { tipo: 'jerarquia' }, { tipo: 'sectores-luces' }, { tipo: 'dst' }, ...buques, ...sonidos, { tipo: 'socorro' }],
-    7: [{ tipo: 'helice', sentido: 'dextrogira', marcha: 'atras' }, { tipo: 'helice', sentido: 'levogira', marcha: 'atras' }, ...heliceTimon, { tipo: 'evolucion' }, { tipo: 'ciaboga' },
-      { tipo: 'desatraque', abrir: 'popa' }, { tipo: 'desatraque', abrir: 'proa' }],
-    8: [{ tipo: 'socorro' }, ...pirotecnia, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }],
-    9: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'brisa-mar', 'brisa-tierra', 'frentes'), ...vientos, { tipo: 'beaufort' }],
-    10: [CATALOGO.rosa.ejemplo, { tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'marea', modo: 'fases' }],
-    11: [{ tipo: 'enfilacion' }, { tipo: 'nortes', dm: 3, desvio: -5 }, { tipo: 'demoras' }],
-  },
-  py: {
-    1: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'estabilidad', caso: 'inestable' }, ...movimientos, { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
-      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }, { tipo: 'socorro' }, ...pirotecnia],
-    2: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'brisa-mar', 'brisa-tierra'), ...vientos, { tipo: 'beaufort' }],
-    3: [{ tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'loxodromica' }, ...mareas],
-    4: [{ tipo: 'corriente', caso: 'efectivo' }, { tipo: 'corriente', caso: 'rumbo-a-dar' }, { tipo: 'abatimiento', banda: 'babor' }, { tipo: 'abatimiento', banda: 'estribor' }, { tipo: 'enfilacion' }, { tipo: 'demoras' }, { tipo: 'marea', modo: 'sonda' }],
-  },
-};
-
-export function galleryView({ tit }) {
-  const T = TITULACIONES[tit] ?? TITULACIONES.per;
-  const temas = T.estructura.bloques.map((b) => ({ b, specs: LAMINAS[T.id]?.[b.ut] ?? [] })).filter((x) => x.specs.length);
-  const total = temas.reduce((n, x) => n + x.specs.length, 0);
-  const otro = Object.values(TITULACIONES).find((x) => x.id !== T.id);
-  const el = h('div.gallery',
-    volver('Más', '#/mas'),
-    h('h1', `🎞️ Láminas animadas · ${T.sigla}`),
-    h('p.muted', `${total} láminas organizadas por los temas del examen. Son las mismas que usa el profe en las explicaciones: las luces parpadean con su ritmo real, los barcos maniobran y las señales acústicas suenan.`),
-    h('nav.temas', temas.map(({ b, specs }) => h('a.chip', { href: `#ut${b.ut}`, onclick: (ev) => { ev.preventDefault(); document.getElementById(`ut${b.ut}`)?.scrollIntoView({ behavior: 'smooth' }); } }, `${b.icon} ${b.titulo} (${specs.length})`)),
-      otro ? h('a.chip.secondary', { href: tlink(otro.id, ['laminas']) }, `Láminas del ${otro.sigla} →`) : null),
-    temas.map(({ b, specs }) => h('section', { id: `ut${b.ut}` }, h('h2', `${b.icon} ${b.titulo}`), h('div.il-grid', illustrationEls(specs)))),
-  );
-  return { el, summary: () => `VISTA láminas ${T.sigla}\n${temas.map(({ b, specs }) => `UT${b.ut} ${b.titulo}: ${specs.map((s) => { const v = s.clase ?? s.sistema ?? s.caso ?? s.situacion ?? s.modo ?? s.rumbo ?? s.marca ?? s.abrir ?? s.resaltar ?? (s.marcha && `${s.marcha}-${s.timon ?? ''}`); return s.tipo + (v ? `:${v}` : ''); }).join(', ')}`).join('\n')}` };
+const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const cache = new Map();
+async function catalogo(T) {
+  if (!cache.has(T.id)) cache.set(T.id, loadCourse(T.id).then((curso) => catalogoLaminas(T.id, T.estructura, curso)));
+  return cache.get(T.id);
 }
+
+/** Miniatura: se dibuja al acercarse a la pantalla, sin animaciones (se ven al abrirla). */
+function miniatura(l, href) {
+  const dibujo = h('div.miniatura-dibujo', { 'aria-hidden': 'true' });
+  dibujo.pintar = () => {
+    if (dibujo.dataset.hecho) return;
+    dibujo.dataset.hecho = '1';
+    dibujo.innerHTML = renderIllustration(l.spec)?.svg ?? '';
+    dibujo.querySelector('svg')?.pauseAnimations?.();
+  };
+  return h('a.miniatura', { href, 'data-texto': norm(`${l.titulo} ${l.buscar}`) }, dibujo, h('span.miniatura-titulo', l.titulo));
+}
+
+export function galleryView(o) {
+  if (o.params.parts[1]) return laminaView(o);
+  const T = TITULACIONES[o.tit] ?? TITULACIONES.per;
+  const otro = Object.values(TITULACIONES).find((x) => x.id !== T.id);
+  const cuerpo = h('div', h('p.muted', 'Cargando…'));
+  const cuenta = h('p.muted.cuenta-laminas');
+  const filtro = h('input.filtro-laminas', { type: 'search', placeholder: 'Buscar: boya, marea, niebla…', 'aria-label': 'Buscar lámina' });
+  let summaryText = `VISTA láminas ${T.sigla}`;
+  const el = h('div.gallery',
+    volver('Biblioteca', tlink(T.id, ['biblioteca'])),
+    h('h1', `🎞️ Láminas · ${T.sigla}`),
+    filtro, cuenta, cuerpo,
+    otro ? h('p', h('a', { href: tlink(otro.id, ['laminas']) }, `Láminas del ${otro.sigla} →`)) : null);
+
+  catalogo(T).then(({ temas, porId }) => {
+    const bloque = new Map(T.estructura.bloques.map((b) => [b.ut, b]));
+    const secciones = temas.map(({ ut, ids }) => {
+      const b = bloque.get(ut);
+      return h('section.tema-laminas', { id: `ut${ut}` }, h('h2', `${b.icon} ${b.titulo}`),
+        h('div.rejilla-laminas', ids.map((id) => miniatura(porId.get(id), tlink(T.id, ['laminas', id])))));
+    });
+    setChildren(cuerpo,
+      h('nav.temas', temas.map(({ ut, ids }) => { const b = bloque.get(ut); return h('a.chip', { href: `#ut${ut}`, onclick: (ev) => { ev.preventDefault(); document.getElementById(`ut${ut}`)?.scrollIntoView({ behavior: 'smooth' }); } }, `${b.icon} ${b.titulo} (${ids.length})`); })),
+      secciones,
+      h('p.vacio', { hidden: true }, 'Ninguna lámina con ese título.'));
+    // Dibujo perezoso: solo las miniaturas que se ven (con 200 láminas, dibujarlas todas de golpe pesa).
+    const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) { e.target.pintar(); io.unobserve(e.target); } }, { rootMargin: '300px' }) : null;
+    for (const d of cuerpo.querySelectorAll('.miniatura-dibujo')) (io ? io.observe(d) : d.pintar());
+    const aplicar = () => {
+      const q = norm(filtro.value.trim());
+      const vistas = new Set(); // una lámina en dos temas cuenta una vez
+      for (const s of cuerpo.querySelectorAll('section.tema-laminas')) {
+        let n = 0;
+        for (const a of s.querySelectorAll('a.miniatura')) { const ok = !q || a.dataset.texto.includes(q); a.hidden = !ok; if (ok) { n += 1; vistas.add(a.getAttribute('href')); } }
+        s.hidden = n === 0;
+      }
+      cuerpo.querySelector('nav.temas').hidden = !!q;
+      cuerpo.querySelector('p.vacio').hidden = vistas.size > 0;
+      cuenta.textContent = q ? `${vistas.size} ${vistas.size === 1 ? 'lámina' : 'láminas'} con «${filtro.value.trim()}».` : `${porId.size} láminas, por temas del examen. Toca una para verla entera.`;
+    };
+    filtro.addEventListener('input', aplicar);
+    aplicar();
+    summaryText = `VISTA láminas ${T.sigla} · ${porId.size} láminas\n${temas.map(({ ut, ids }) => `UT${ut} ${bloque.get(ut).titulo}: ${ids.map((id) => `${porId.get(id).titulo} → ${tlink(T.id, ['laminas', id])}`).join(' · ')}`).join('\n')}`;
+  });
+  return { el, summary: () => summaryText };
+}
+
+/** Ficha de una lámina: entera, con su pie, los temas y las clases donde aparece. */
+function laminaView({ tit, params }) {
+  const T = TITULACIONES[tit] ?? TITULACIONES.per;
+  const id = params.parts[1];
+  const cuerpo = h('div', h('p.muted', 'Cargando…'));
+  let summaryText = `VISTA lámina ${id}`;
+  const el = h('div.gallery.ficha-lamina', volver('Láminas', tlink(T.id, ['laminas'])), cuerpo);
+  catalogo(T).then(({ porId }) => {
+    const l = porId.get(id);
+    if (!l) { setChildren(cuerpo, h('h1', 'Lámina no encontrada'), h('p', h('a', { href: tlink(T.id, ['laminas']) }, 'Ver todas las láminas'))); return; }
+    const bloque = new Map(T.estructura.bloques.map((b) => [b.ut, b]));
+    setChildren(cuerpo,
+      h('h1', l.titulo),
+      h('div.il-grid.una', illustrationEls(l.spec)),
+      h('section', h('h2', 'Dónde aparece'),
+        h('div.temas-lamina', l.temas.map((ut) => h('a.chip', { href: tlink(T.id, ['temario', String(ut)]) }, `${bloque.get(ut).icon} ${bloque.get(ut).titulo}`))),
+        l.clases.length ? h('ul.clases-lamina', l.clases.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) }, `🎓 ${c.titulo}`)))) : null));
+    summaryText = `VISTA lámina «${l.titulo}» (${claveTexto(l.spec)}) · temas ${l.temas.join(', ')} · clases ${l.clases.map((c) => c.id).join(', ') || '—'}\n${l.resumen}`;
+  });
+  return { el, summary: () => summaryText };
+}
+
+const claveTexto = (s) => Object.entries(s).map(([k, v]) => `${k}=${typeof v === 'object' ? JSON.stringify(v) : v}`).join(' ');

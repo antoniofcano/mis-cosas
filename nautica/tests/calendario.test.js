@@ -18,12 +18,13 @@ test('unidades: clases de cada tema en orden y los simulacros al final', () => {
   assert.equal(unidades({ ...datos, regs: { a1: visto } })[0].hecha, true);
 });
 
-test('repartir: llena los días con los minutos al día y deja los simulacros para el final', () => {
+test('repartir: llena los días con los minutos al día y reparte los simulacros al final', () => {
   const us = unidades(datos);
   const r = repartir(us, { desde: '2026-10-05', dias: 6, minutosDia: 20 });
   assert.equal(r.llega, true);
+  // 6 días: simulacros los días 2, 4 y 5 (la víspera, el 6.º, libre); el resto, en orden en los demás.
   assert.deepEqual(r.dias.map((d) => d.unidades.map((u) => u.id)), [
-    ['clase:a1', 'clase:a2'], ['clase:a3', 'clase:b1'], ['clase:b2'], ['simulacro:1'], ['simulacro:2'], ['simulacro:3']]);
+    ['clase:a1', 'clase:a2'], ['simulacro:1'], ['clase:a3', 'clase:b1'], ['simulacro:2'], ['simulacro:3'], ['clase:b2']]);
   assert.equal(r.dias[5].fecha, '2026-10-10');
 });
 
@@ -86,4 +87,13 @@ test('describir y duracion: en palabras, sin «cosas»', async () => {
   assert.equal(describir([{ tipo: 'simulacro' }]), '1 simulacro');
   assert.equal(duracion(80), 'unos 80 minutos');
   assert.equal(duracion(290), 'unas 4,8 horas');
+});
+
+test('simulacros repartidos por las dos últimas semanas, el último dos días antes del examen', async () => {
+  const { diasDeSimulacro } = await import('../src/course/calendario.js');
+  assert.deepEqual(diasDeSimulacro(3, 40), [29, 34, 38]); // examen el día 40: víspera (39) libre
+  assert.deepEqual(diasDeSimulacro(3, 14), [4, 8, 12]);
+  assert.deepEqual(diasDeSimulacro(3, 2), [1]); // con 2 días, uno para lo demás
+  assert.deepEqual(diasDeSimulacro(1, 1, false), [0]);
+  assert.deepEqual(diasDeSimulacro(0, 30), []);
 });

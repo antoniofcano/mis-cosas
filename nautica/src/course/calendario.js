@@ -72,25 +72,47 @@ export function repartir(pendientes, { desde, dias, minutosDia }) {
   const sim = pendientes.filter((u) => u.tipo === 'simulacro');
   const resto = pendientes.filter((u) => u.tipo !== 'simulacro');
   const n = Math.max(1, dias);
-  // Días para los simulacros al final, dejando al menos uno para el resto si hay resto.
-  const nSim = Math.min(sim.length, resto.length ? n - 1 : n);
-  const nResto = n - nSim;
+  const posSim = diasDeSimulacro(sim.length, n, resto.length > 0);
+  const nResto = n - posSim.length;
   // Minutos al día con los que cabría todo.
   let necesarios = md;
   if (resto.length && llenar(resto, necesarios).length > nResto) {
     const total = resto.reduce((s, u) => s + u.minutos, 0);
-    necesarios = Math.ceil(total / nResto / 5) * 5;
+    necesarios = Math.ceil(total / Math.max(1, nResto) / 5) * 5;
     while (llenar(resto, necesarios).length > nResto) necesarios += 5;
   }
   const llenos = llenar(resto, md);
-  const bloques = llenos.slice(0, nResto);
+  const contenido = llenos.slice(0, nResto);
   const fuera = llenos.slice(nResto).flatMap((d) => d.unidades);
-  while (bloques.length < nResto) bloques.push({ unidades: [], minutos: 0 });
-  // Simulacros: uno por día; los que no tienen día se quedan fuera.
-  const simDias = Array.from({ length: nSim }, () => ({ unidades: [], minutos: 0 }));
-  sim.forEach((u, i) => { if (i < nSim) { simDias[i].unidades.push(u); simDias[i].minutos += u.minutos; } else fuera.push(u); });
-  const todos = [...bloques, ...simDias];
+  // Los días de simulacro son solo para el simulacro; el resto de días, en orden, para lo demás.
+  const todos = [];
+  let c = 0;
+  for (let i = 0; i < n; i++) {
+    const k = posSim.indexOf(i);
+    if (k >= 0) todos.push({ unidades: [sim[k]], minutos: sim[k].minutos });
+    else todos.push(contenido[c++] ?? { unidades: [], minutos: 0 });
+  }
+  fuera.push(...sim.slice(posSim.length));
   return { dias: todos.map((d, i) => ({ fecha: sumaDiasISO(desde, i), ...d })), fuera, llega: !fuera.length, minutosNecesarios: necesarios };
+}
+
+/**
+ * Días (índices desde hoy) para los simulacros: repartidos por las dos últimas semanas, el último dos días antes del
+ * examen (la víspera, descanso) y separados para que dé tiempo a repasar lo que salga flojo. Con pocos días, lo que
+ * quepa, dejando al menos uno para lo demás si hay algo más.
+ */
+export function diasDeSimulacro(s, n, hayResto = true) {
+  const libres = hayResto ? n - 1 : n;
+  const k = Math.max(0, Math.min(s, libres));
+  if (!k) return [];
+  const ultimo = n >= 3 ? n - 2 : n - 1; // la víspera (n − 1) queda libre si se puede
+  const ventana = Math.min(14, ultimo + 1); // de ultimo − ventana + 1 a ultimo
+  const primero = ultimo - ventana + 1;
+  const pos = k === 1 ? [ultimo] : Array.from({ length: k }, (_, i) => Math.round(primero + ((ventana - 1) * (i + 1)) / k));
+  // Sin repetir día y sin pasarse de `ultimo`.
+  const out = [];
+  for (const p of pos) { let q = Math.min(p, ultimo); while (out.includes(q) && q > 0) q -= 1; out.push(q); }
+  return out.sort((a, b) => a - b);
 }
 
 /** «3 clases y 2 tandas de preguntas»: qué hay en una lista de unidades, en palabras. */

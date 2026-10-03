@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'f37897ad5127';
+self.VERSION = 'e85b6962b053';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -39,11 +39,13 @@ self.APP = [
  "src/exercises/types/distancia-faro.js",
  "src/exercises/types/estima-analitica.js",
  "src/exercises/types/estima-directa.js",
+ "src/exercises/types/hora.js",
  "src/exercises/types/marea-sonda.js",
  "src/exercises/types/rumbo-distancia.js",
  "src/exercises/types/rumbo-pasar-distancia.js",
  "src/exercises/types/situacion-demora-distancia.js",
  "src/exercises/types/situacion-dos-demoras.js",
+ "src/exercises/types/viento-aparente.js",
  "src/graphics/chart-renderer.js",
  "src/graphics/georef.js",
  "src/graphics/instruments.js",
@@ -98,12 +100,14 @@ self.APP = [
  "src/nautical/estabilidad.js",
  "src/nautical/glossary.js",
  "src/nautical/helice.js",
+ "src/nautical/hora.js",
  "src/nautical/kinematics.js",
  "src/nautical/luces.js",
  "src/nautical/meteo.js",
  "src/nautical/positioning.js",
  "src/nautical/sailing.js",
  "src/nautical/tides.js",
+ "src/nautical/viento.js",
  "src/store/datasets.js",
  "src/store/progress.js",
  "src/store/user-chart.js",

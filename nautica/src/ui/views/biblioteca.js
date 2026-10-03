@@ -9,7 +9,7 @@ export function bibliotecaView({ tit }) {
   const T = TITULACIONES[tit];
   const recursos = [
     [tlink(tit, ['laminas']), '🎞️ Láminas', 'Boyas con su luz, luces y marcas de buques, maniobra, meteorología… muchas se mueven y se tocan.'],
-    [tlink(tit, ['carta']), '🗺️ Ejercicios de carta', 'Cada tipo de problema de carta con datos nuevos: lo resuelves, se corrige y el profe te enseña el trazado.'],
+    [tlink(tit, ['carta']), '🗺️ Ejercicios de carta y cálculo', 'Problemas de carta, mareas, hora y viento aparente con datos nuevos cada vez: lo resuelves, se corrige y el profe te lo explica paso a paso.'],
     [link(['reglas']), '🧠 Reglas para recordar', 'Las que de verdad funcionan, con su explicación.'],
     [link(['conceptos']), '📘 Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],
     [link(['mesa']), '🧰 Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador, para trazar a tu aire.'],

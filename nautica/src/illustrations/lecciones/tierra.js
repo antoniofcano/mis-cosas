@@ -2,6 +2,7 @@
 // la milla en la escala de latitudes, sondas y veriles con su corte del fondo, y los husos horarios.
 // Funciones puras spec → { svg, caption }. Colores con las variables --l-* para que se lean en claro y en oscuro.
 
+import { husoDe, horaLegal, horaCivilLugar } from '../../nautical/hora.js';
 import { open, title, lbl, rad, fx } from '../kit.js';
 
 // Colores que se adaptan al tema (las variables están en styles/app.css).
@@ -593,8 +594,8 @@ export function husosIllustration(spec = {}) {
   const tuMin = aMin(tu);
   const txt = spec.lon != null ? lonTxt(lon) : ej.txt;
   const q = Math.abs(lon) / 15;
-  const huso = Math.sign(lon) * Math.round(q);
-  const lonMin = lon * 4; // 1° = 4 min
+  const huso = husoDe(lon);
+  const lonMin = horaCivilLugar(0, lon); // 1° = 4 min
   const H = 270;
   const out = open(W, H, 'Hora legal y hora civil del lugar', id);
   out.push(marks(id), title(160, `TU ${tu} en ${txt}`));
@@ -602,7 +603,7 @@ export function husosIllustration(spec = {}) {
   franja(out, id, y, tuMin, { lon, huso });
   const sg = lon >= 0 ? '+' : '−';
   const hus = huso === 0 ? 'huso 0' : `huso ${Math.abs(huso)} ${huso > 0 ? 'E' : 'W'}`;
-  const hz = tuMin + huso * 60;
+  const hz = horaLegal(tuMin, lon);
   const hcl = tuMin + lonMin;
   const lt = Math.abs(lonMin);
   const ltTxt = `${Math.floor(lt / 60)} h${lt % 60 > 0.05 ? ` ${coma(lt % 60)} min` : ''}`.replace(',0 min', ' min');

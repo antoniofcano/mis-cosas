@@ -144,10 +144,24 @@ ol.qlist li { margin: .3rem 0; }
 .level { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; margin: .5rem 0; }
 /* Carta interactiva */
 .ichart { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-.ichart-toolbar { display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: space-between; gap: .3rem; padding: .35rem; border-bottom: 1px solid var(--border);
-  background: linear-gradient(to right, var(--surface) 30%, transparent), linear-gradient(to left, var(--surface) 30%, transparent) 100% 0, radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.25), transparent) 100% 0;
-  background-size: 24px 100%, 24px 100%, 12px 100%; background-repeat: no-repeat; background-attachment: local, local, scroll; background-color: var(--surface); }
+/* Barra de la carta: dibujo en una rejilla que siempre se ve entera; edición y vista debajo (o al lado, si caben) */
+.ichart-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .6rem; padding: .35rem; border-bottom: 1px solid var(--border); background: var(--surface); }
 .ichart-toolbar .tools { display: flex; flex-wrap: nowrap; gap: .25rem; align-items: center; }
+.ichart-toolbar .tools.dibujo { flex: 1 1 100%; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.ichart-toolbar .tools.dibujo button.tool { min-width: 0; width: 100%; white-space: normal; hyphens: manual; text-align: center; }
+.ichart-toolbar .tools.edicion, .ichart-toolbar .tools.vista { overflow-x: auto; max-width: 100%; }
+.ichart-toolbar .tools.vista { margin-left: auto; padding-left: .6rem; border-left: 1px solid var(--border); }
+.ichart-toolbar button.mas-herramientas { display: none; }
+@media (max-width: 600px) { .ichart-toolbar button.mas-herramientas { display: inline-flex; } }
+@media (max-width: 600px) {
+  .ichart-toolbar .tools.dibujo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  /* En el móvil: dibujo en 4 + 3 con «⋯ Más», que despliega edición y vista (también en rejilla de 4). */
+  .ichart-toolbar .tools.edicion, .ichart-toolbar .tools.vista { flex: 1 1 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; }
+  .ichart-toolbar:not(.abierta) .tools.edicion, .ichart-toolbar:not(.abierta) .tools.vista { display: none; }
+  .ichart-toolbar .tools button.tool { min-width: 0; min-height: 50px; width: 100%; white-space: normal; hyphens: manual; text-align: center; padding: .15rem .1rem; font-size: .76rem; }
+  .ichart-toolbar.abierta button.mas-herramientas { background: var(--accent-2); }
+  .ichart-toolbar .tools.vista { margin-left: 0; padding-left: 0; border-left: 0; }
+}
 .ichart-toolbar select { width: auto; padding: .15rem .3rem; font-size: .9rem; }
 button.tool { min-width: 56px; min-height: 56px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: .2rem .4rem; font-size: .9rem; font-weight: 600; line-height: 1.15; white-space: nowrap; background: transparent; color: var(--text); border-color: var(--border); flex: none; }
 button.tool .tool-icon { font-size: 1.2rem; line-height: 1; }

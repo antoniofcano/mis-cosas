@@ -1240,7 +1240,11 @@
         "Falso que la presión alta dé más agua: da menos, unos 7 cm menos con 1020 hPa. Si el enunciado dice que no se tenga en cuenta, no se aplica.",
         "Con la calculadora en radianes, la cuenta sale mal: hay que ponerla en grados. Y si el resultado difiere de las opciones en 1 o 2 cm o en unos minutos, se elige la más próxima, porque las tablas del Anuario redondean."
       ],
-      "preguntas": [],
+      "preguntas": [
+        "and-py-2023-c3-n18",
+        "and-py-2022-c1-n19",
+        "and-py-2022-c1-n18"
+      ],
       "relacionados": [
         "3.4",
         "4.0"

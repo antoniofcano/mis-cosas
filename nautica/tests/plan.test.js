@@ -70,12 +70,20 @@ test('6. examen en 10 días y sin tests hoy → simulacro; con un test hoy, no',
   assert.notEqual(planHoy({ ...base, fechaExamen, tests })[0].tipo, 'simulacro');
 });
 
-test('7. 12 preguntas falladas → sesión de fallos', () => {
+test('7. 12 preguntas falladas → repaso de fallos (cola espaciada)', () => {
   const p = planHoy({ ...base, respuestas: responder([3], 12, 0) });
   const f = p.find((a) => a.tipo === 'fallos');
   assert.ok(f);
-  assert.equal(f.ut, 3);
-  assert.deepEqual(f.query, { f: '1' });
+  assert.deepEqual(f.ruta, ['teoria', 'repaso']);
+  assert.match(f.titulo, /12 preguntas falladas/);
+});
+
+test('7 bis. el ritmo cuenta el tiempo del repaso de fallos', () => {
+  const sin = ritmoEstudio({ ...base, respuestas: responder([3], 12, 12) });
+  const con = ritmoEstudio({ ...base, respuestas: responder([3], 12, 0) });
+  assert.equal(sin.desglose.repaso, 0);
+  assert.ok(con.desglose.repaso > 0);
+  assert.equal(con.minutosPendientes - sin.minutosPendientes, con.desglose.repaso);
 });
 
 test('8. todos los temas al día → simulacro', () => {
@@ -186,7 +194,7 @@ test('ritmo: cuándo terminas y si llegas al examen', () => {
   const preguntas = Array.from({ length: 30 }, (_, i) => ({ id: `q${i}`, ut: 1, correcta: 'a' }));
   // 120 min de clases + 2 tandas (20 preguntas) × 8 + 3 simulacros × 90 = 406 min; a 20 min/día, 21 días
   const r = ritmoEstudio({ estructura, curso, preguntas, ahora, minutosDia: 20, fechaExamen: '2026-10-12' });
-  assert.deepEqual(r.desglose, { clases: 120, preguntas: 16, simulacros: 270 });
+  assert.deepEqual(r.desglose, { clases: 120, preguntas: 16, simulacros: 270, repaso: 0 });
   assert.equal(r.diasNecesarios, 21);
   assert.equal(r.fechaFin, '2026-10-22');
   assert.equal(r.diasDisponibles, 10);

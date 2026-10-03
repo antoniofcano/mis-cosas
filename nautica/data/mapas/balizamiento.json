@@ -1,0 +1,324 @@
+{
+ "id": "balizamiento",
+ "titulo": "Balizamiento IALA",
+ "tits": [
+  "per"
+ ],
+ "intro": "Del color, la forma, la marca de tope y la luz a la marca concreta: qué te dice cada una y por dónde la pasas. En España, región A.",
+ "nodos": [
+  {
+   "id": "region-a",
+   "nombre": "Región A (España)",
+   "corto": "En España rige la región A: entrando, rojo a babor y verde a estribor. En la región B (América, Japón, Corea, Filipinas), al revés; solo cambian las laterales.",
+   "spec": {
+    "tipo": "regiones"
+   },
+   "clase": "per-5-1",
+   "x": 2.2,
+   "y": 0
+  },
+  {
+   "id": "babor",
+   "nombre": "Lateral de babor",
+   "corto": "Roja, cilíndrica, tope un cilindro rojo y luz roja (cualquier ritmo menos 2+1). Entrando, la dejas por babor.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "babor"
+   },
+   "clase": "per-5-2",
+   "x": 0.4,
+   "y": 1.2
+  },
+  {
+   "id": "sentido",
+   "nombre": "Saliendo de puerto",
+   "corto": "Babor y estribor se dicen en el sentido convencional: entrando desde la mar. Saliendo se invierte: rojas por estribor, verdes por babor.",
+   "spec": {
+    "tipo": "canal",
+    "sentido": "saliendo"
+   },
+   "clase": "per-5-2",
+   "x": 2.2,
+   "y": 1.2
+  },
+  {
+   "id": "estribor",
+   "nombre": "Lateral de estribor",
+   "corto": "Verde, cónica, tope un cono verde con el vértice arriba y luz verde (cualquier ritmo menos 2+1). Entrando, la dejas por estribor.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "estribor"
+   },
+   "clase": "per-5-2",
+   "x": 4,
+   "y": 1.2
+  },
+  {
+   "id": "bif-er",
+   "nombre": "Bifurcación roja (principal a estribor)",
+   "corto": "Roja con banda verde, cilindro rojo y luz roja Fl(2+1). Entrando la dejas por babor, y el canal principal te queda a estribor.",
+   "spec": {
+    "tipo": "bifurcacion",
+    "marca": "canal-principal-estribor",
+    "ruta": "principal"
+   },
+   "clase": "per-5-2",
+   "x": 0.4,
+   "y": 2.4
+  },
+  {
+   "id": "bif-br",
+   "nombre": "Bifurcación verde (principal a babor)",
+   "corto": "Verde con banda roja, cono verde y luz verde Fl(2+1). Entrando la dejas por estribor, y el canal principal te queda a babor.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   },
+   "clase": "per-5-2",
+   "x": 4,
+   "y": 2.4
+  },
+  {
+   "id": "luz",
+   "nombre": "Color de la luz",
+   "corto": "De noche el color te da la familia y el ritmo, la marca concreta. Roja o verde: laterales; blanca: cardinal, peligro aislado o aguas navegables; amarilla: especial.",
+   "spec": {
+    "tipo": "ritmo",
+    "ritmo": "Fl(2) 5s",
+    "texto": "Grupo de dos destellos: el ritmo del peligro aislado (en blanco)."
+   },
+   "clase": "per-5-5",
+   "x": 0,
+   "y": 6.6
+  },
+  {
+   "id": "cardinales",
+   "nombre": "Marcas cardinales",
+   "corto": "Negras y amarillas, con tope de dos conos negros. Se pasan por el lado de su nombre: allí está el agua más profunda y segura.",
+   "spec": {
+    "tipo": "cardinales"
+   },
+   "clase": "per-5-3",
+   "x": 2,
+   "y": 3.6
+  },
+  {
+   "id": "card-n",
+   "nombre": "Cardinal Norte",
+   "corto": "Conos con los vértices hacia arriba; negro arriba, amarillo abajo. Luz blanca de centelleo continuo (Q o VQ). Se pasa por su norte.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "cardinal-n",
+    "reloj": false
+   },
+   "clase": "per-5-3",
+   "x": 4.2,
+   "y": 3.6
+  },
+  {
+   "id": "card-e",
+   "nombre": "Cardinal Este",
+   "corto": "Conos unidos por las bases (rombo); negra con banda amarilla. Luz: grupos de 3 centelleos, VQ(3) cada 5 s o Q(3) cada 10 s.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "cardinal-e",
+    "reloj": false
+   },
+   "clase": "per-5-3",
+   "x": 4.2,
+   "y": 4.8
+  },
+  {
+   "id": "card-w",
+   "nombre": "Cardinal Oeste",
+   "corto": "Conos unidos por los vértices (reloj de arena); amarilla con banda negra. Luz: grupos de 9 centelleos, VQ(9) cada 10 s o Q(9) cada 15 s.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "cardinal-w",
+    "reloj": false
+   },
+   "clase": "per-5-3",
+   "x": 4.2,
+   "y": 6
+  },
+  {
+   "id": "card-s",
+   "nombre": "Cardinal Sur",
+   "corto": "Conos con los vértices hacia abajo; amarillo arriba, negro abajo. Luz: 6 centelleos y un destello largo, VQ(6)+LFl cada 10 s o Q(6)+LFl cada 15 s.",
+   "spec": {
+    "tipo": "ritmo",
+    "ritmo": "Q(6)+LFl 15s",
+    "texto": "Cardinal Sur: seis centelleos y un destello largo, cada 15 s."
+   },
+   "clase": "per-5-3",
+   "x": 4.2,
+   "y": 7.2
+  },
+  {
+   "id": "especial",
+   "nombre": "Marca especial",
+   "corto": "Amarilla, tope un aspa amarilla en X y luz amarilla. Señala zonas que explica la carta: baño, cables o tuberías, ejercicios militares…",
+   "spec": {
+    "tipo": "boya",
+    "clase": "especial"
+   },
+   "clase": "per-5-4",
+   "x": 2,
+   "y": 4.8
+  },
+  {
+   "id": "nuevo",
+   "nombre": "Nuevo peligro (pecio)",
+   "corto": "Un peligro que aún no figura en las cartas. Su boya de emergencia: franjas verticales azules y amarillas, cruz amarilla (+) y luz azul y amarilla alternadas.",
+   "spec": {
+    "tipo": "boya",
+    "clase": "nuevo-peligro"
+   },
+   "clase": "per-5-4",
+   "x": 2,
+   "y": 6
+  },
+  {
+   "id": "peligro",
+   "nombre": "Peligro aislado",
+   "corto": "Sobre un peligro pequeño rodeado de agua navegable: se pasa por cualquier lado, con resguardo. Negra con bandas rojas, dos esferas negras y luz blanca Fl(2).",
+   "spec": {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   },
+   "clase": "per-5-4",
+   "x": 2,
+   "y": 7.2
+  },
+  {
+   "id": "aguas",
+   "nombre": "Aguas navegables",
+   "corto": "Agua navegable alrededor: centro o entrada del canal, recalada, paso bajo un puente. Franjas verticales rojas y blancas, una esfera roja y luz blanca Iso, Oc, LFl 10 s o Mo(A).",
+   "spec": {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   },
+   "clase": "per-5-4",
+   "x": 2,
+   "y": 8.4
+  }
+ ],
+ "aristas": [
+  {
+   "de": "region-a",
+   "a": "babor",
+   "rel": "entrando, rojo a babor"
+  },
+  {
+   "de": "region-a",
+   "a": "estribor",
+   "rel": "entrando, verde a estribor"
+  },
+  {
+   "de": "sentido",
+   "a": "babor",
+   "rel": "saliendo, por estribor"
+  },
+  {
+   "de": "sentido",
+   "a": "estribor",
+   "rel": "saliendo, por babor"
+  },
+  {
+   "de": "babor",
+   "a": "bif-er",
+   "rel": "+ banda verde y luz 2+1"
+  },
+  {
+   "de": "estribor",
+   "a": "bif-br",
+   "rel": "+ banda roja y luz 2+1"
+  },
+  {
+   "de": "luz",
+   "a": "cardinales",
+   "rel": "blanca centelleante"
+  },
+  {
+   "de": "luz",
+   "a": "especial",
+   "rel": "amarilla"
+  },
+  {
+   "de": "luz",
+   "a": "nuevo",
+   "rel": "azul y amarilla alternadas"
+  },
+  {
+   "de": "luz",
+   "a": "peligro",
+   "rel": "blanca, grupos de 2"
+  },
+  {
+   "de": "luz",
+   "a": "aguas",
+   "rel": "blanca Iso, Oc, LFl o Mo(A)"
+  },
+  {
+   "de": "cardinales",
+   "a": "card-n",
+   "rel": "conos arriba, continua"
+  },
+  {
+   "de": "cardinales",
+   "a": "card-e",
+   "rel": "conos por las bases, 3"
+  },
+  {
+   "de": "cardinales",
+   "a": "card-w",
+   "rel": "conos por los vértices, 9"
+  },
+  {
+   "de": "cardinales",
+   "a": "card-s",
+   "rel": "conos abajo, 6 + largo"
+  },
+  {
+   "de": "nuevo",
+   "a": "peligro",
+   "rel": "se puede balizar con"
+  },
+  {
+   "de": "region-a",
+   "a": "babor",
+   "rel": "La región B pone verde a babor entrando: es la trampa. En España rige la A, rojo a babor.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "card-e",
+   "a": "card-w",
+   "rel": "Este: conos por las bases y 3 centelleos. Oeste: por los vértices y 9. Como en el reloj: las 3 y las 9.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "peligro",
+   "a": "aguas",
+   "rel": "Dos esferas negras y Fl(2): peligro aislado. Una esfera roja y luz larga (Iso, Oc, LFl, Mo(A)): aguas navegables.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "especial",
+   "a": "nuevo",
+   "rel": "Aspa en X amarilla: especial. Cruz + amarilla con franjas verticales azules y amarillas: pecio.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "peligro",
+   "a": "nuevo",
+   "rel": "Dos esferas negras señalan un peligro pequeño con agua alrededor; «aún no figura en las cartas» es el nuevo peligro.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "aguas",
+   "a": "card-s",
+   "rel": "Un destello largo solo (LFl 10 s) es aguas navegables; en la Sur va detrás de seis centelleos.",
+   "tipo": "confunde"
+  }
+ ]
+}

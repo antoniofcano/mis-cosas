@@ -1021,7 +1021,7 @@
       {
        "tipo": "texto",
        "titulo": "Cuántos exige la norma",
-       "texto": "Si el manual del fabricante no dice otra cosa, el RD 339/2021 pide extintores de eficacia **34B** con **al menos 2 kg** de agente:\n- Por **eslora**: < 10 m, uno si hay espacio habitable cerrado; de 10 a < 15 m, uno; de 15 a < 20 m, dos; de 20 a 24 m, tres.\n- Por **potencia**: hasta 220 kW, uno (no se exige para un fueraborda de 25 kW o menos); más de 220 kW, capacidad total de **P × 0,3** unidades B.\n\nUno de ellos debe alcanzarse **sin dificultad desde el puesto de gobierno**."
+       "texto": "Los barcos con **marcado CE** llevan los extintores que diga el **manual del fabricante**; solo si el manual no dice nada se aplican las tablas. Los barcos **sin marcado CE** (y todos los de uso comercial) siguen las tablas del **RD 339/2021, art. 15**, con extintores de eficacia **34B** y **al menos 2 kg** de agente:\n- Por **eslora**: < 10 m, uno si hay espacio habitable cerrado; de 10 a < 15 m, uno; de 15 a < 20 m, dos; de 20 a 24 m, tres.\n- Por **motor** (por cada compartimento si es intraborda): hasta 25 kW, uno (no se exige con fueraborda); de 25 a 220 kW, uno; más de 220 kW, una capacidad total de **P × 0,3** unidades B (250 kW → 75 B → tres de 34B).\n- Las dos cuentas **se suman**, salvo con **menos de 10 m** de eslora: ahí los del motor valen también para la eslora.\n\nUno de ellos debe alcanzarse **sin dificultad desde el puesto de gobierno**. Con instalación eléctrica de más de 50 V, uno debe valer para fuegos con tensión; con motor de gas (GLP), uno para fuegos de gases."
       },
       {
        "tipo": "texto",
@@ -2715,7 +2715,7 @@
       {
        "tipo": "texto",
        "titulo": "Previsión a bordo y disipación",
-       "texto": "**Previsión**: con el **psicrómetro** obtienes la humedad relativa y el **punto de rocío** del aire. Compáralo con la **temperatura del agua del mar**: cuando ambas temperaturas están **próximas**, el aire que pasa sobre el agua se saturará y la niebla es muy probable.\n\n**Disipación**: la niebla se va cuando la temperatura del aire vuelve a quedar **por encima del punto de rocío**:\n- el sol calienta el suelo (radiación);\n- entra un viento **más cálido y seco** o cambia el viento;\n- la niebla pasa sobre **aguas más templadas**;\n- el viento arrecia a **fuerza 4 o más** y la turbulencia mezcla aire seco de arriba."
+       "texto": "**Previsión**: con el **psicrómetro** obtienes la humedad relativa y el **punto de rocío** del aire. Compáralo con la **temperatura del agua del mar**: cuando ambas temperaturas están **próximas**, el aire que pasa sobre el agua se saturará y la niebla es muy probable.\n\n**Disipación**: la niebla se va cuando la temperatura del aire vuelve a quedar **por encima del punto de rocío**:\n- el sol calienta el suelo (radiación);\n- entra un viento **más cálido y seco** o cambia el viento;\n- la niebla pasa sobre **aguas más templadas**;\n- el viento arrecia a **fuerza 4 o más** y la turbulencia mezcla aire seco de arriba (así se deshace la de **radiación**; la de **advección** aguanta vientos flojos y moderados, y con viento ya fuerte no se disipa sino que se **levanta** en estratos bajos)."
       },
       {
        "tipo": "ojo",
@@ -2770,7 +2770,7 @@
       "Enfriamiento: radiación (tierra, noche raso y calma, otoño-invierno), advección (aire cálido y húmedo sobre agua fría, la del mar), orográfica.",
       "Evaporación: vapor (aire frío sobre agua templada; lagos y ríos en otoño) y frontal. Mezcla: dos aires distintos.",
       "Previsión: punto de rocío (psicrómetro) próximo a la temperatura del mar = niebla.",
-      "Se disipa si T > punto de rocío: sol, viento más cálido y seco, aguas más templadas, viento fuerza 4 o más."
+      "Se disipa si T > punto de rocío: sol, viento más cálido y seco, aguas más templadas, viento fuerza 4 o más (la de radiación; la de advección aguanta con viento moderado)."
      ],
      "profundizar": [
       {
@@ -2804,7 +2804,7 @@
        "fuente": "Plantilla 2023-c3-g16 (a cierta)"
       },
       {
-       "dato": "Disipación: T > Td, aguas más templadas, viento fuerza 4 o más; niebla de mar se aclara sobre aguas más templadas",
+       "dato": "Disipación: T > Td, aguas más templadas, viento fuerza 4 o más (la de radiación; la de advección resiste vientos de 5–15 kn y con más viento se levanta en estratos); niebla de mar se aclara sobre aguas más templadas",
        "fuente": "Plantillas 2023-c3-g16 (c falsa), 2024-c1-g16 (a), 2024-c2-g11 (d falsa)"
       },
       {
@@ -3400,7 +3400,7 @@
       {
        "tipo": "texto",
        "titulo": "Cálculo 1: actualizar la dm y hallar la Ct",
-       "texto": "La carta dice: **dm 1° 40′ W (2016), variación anual 7′ E**. Navegas en **2026** al **Ra 120°** y la tablilla da **Δ = +3°**.\n\n1. Años: 2026 − 2016 = 10. Variación: 10 × 7′ = 70′ = **1° 10′ E** (+).\n2. dm actual: −1° 40′ + 1° 10′ = −0° 30′ → **dm = 0° 30′ W (−0,5°)**.\n3. Ct = dm + Δ = −0,5 + 3 = **+2,5°**.\n4. Rv = Ra + Ct = 120 + 2,5 = **122,5°**.\n\nLa variación se multiplica por los años y se suma **con su signo**: una variación E acerca a cero una dm W."
+       "texto": "La carta dice: **dm 1° 40′ W (2016), variación anual 7′ E**. Navegas en **2026** al **Ra 045°** y la tablilla da **Δ = +3°**.\n\n1. Años: 2026 − 2016 = 10. Variación: 10 × 7′ = 70′ = **1° 10′ E** (+).\n2. dm actual: −1° 40′ + 1° 10′ = −0° 30′ → **dm = 0° 30′ W (−0,5°)**.\n3. Ct = dm + Δ = −0,5 + 3 = **+2,5°**.\n4. Rv = Ra + Ct = 045 + 2,5 = **047,5°**.\n\nLa variación se multiplica por los años y se suma **con su signo**: una variación E acerca a cero una dm W."
       },
       {
        "tipo": "regla",
@@ -3414,7 +3414,7 @@
       {
        "tipo": "texto",
        "titulo": "Enfilación y oposición",
-       "texto": "- **Enfilación**: ves dos puntos de la costa alineados, uno detrás del otro.\n- **Oposición**: estás **entre** los dos puntos; sus demoras difieren **180°**.\n\nEn las dos estás sobre la recta que los une, cuya **demora verdadera mides en la carta**.\n\n**Ejemplo** (año 2026, dm 0° 30′ W): navegando al Ra 120° cruzas una enfilación de **Dv 244°** (carta) y la marcas con la aguja a **Da 247°**.\n- Ct = Dv − Da = 244 − 247 = **−3°**.\n- Δ = Ct − dm = −3 − (−0,5) = **−2,5°**, válido **para el Ra 120°**."
+       "texto": "- **Enfilación**: ves dos puntos de la costa alineados, uno detrás del otro.\n- **Oposición**: estás **entre** los dos puntos; sus demoras difieren **180°**.\n\nEn las dos estás sobre la recta que los une, cuya **demora verdadera mides en la carta**.\n\n**Ejemplo** (año 2026, dm 0° 30′ W): navegando al Ra 120° cruzas una enfilación de **Dv 244°** (carta) y la marcas con la aguja a **Da 247°**.\n- Ct = Dv − Da = 244 − 247 = **−3°**.\n- Δ = Ct − dm = −3 − (−0,5) = **−2,5°**, válido **para el Ra 120°** (el desvío cambia con el rumbo de aguja: al Ra 045° la tablilla daba +3°)."
       },
       {
        "tipo": "ilustracion",
@@ -3513,7 +3513,7 @@
        "fuente": "Plantilla PY 2020-c3-n04 (opción c falsa)"
       },
       {
-       "dato": "Actualización dm: 1° 40′ W (2016) + 10 × 7′ E = 0° 30′ W; Ct = +2,5°; Rv 122,5°",
+       "dato": "Actualización dm: 1° 40′ W (2016) + 10 × 7′ E = 0° 30′ W; Ct = +2,5°; Ra 045° → Rv 047,5° (otro rumbo que el de la enfilación, porque el desvío depende del Ra)",
        "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
       },
       {
@@ -3827,6 +3827,10 @@
        "tipo": "texto",
        "titulo": "Husos horarios y hora legal",
        "texto": "La Tierra se divide en **24 husos** de **15°**, cada uno limitado por **dos meridianos que difieren 15°** y centrado en un meridiano múltiplo de 15°. El **huso 0** va de 7° 30′ W a 7° 30′ E.\n\nLa **hora legal (Hz)** es la **hora del huso**: la hora civil de su **meridiano central**, la misma para todo el huso.\n- **Hz = TU ± número de huso** (E suma, W resta).\n- Mismo meridiano → mismo huso → **misma hora legal**, aunque sean países distintos.\n- Hz y HcL coinciden si estás en el meridiano central (longitud múltiplo de 15°)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«Dos lugares con la **misma longitud** en distintos países tendrán siempre la misma hora…»: con las cuentas en la mano, en el mismo meridiano coinciden **dos** horas, la **civil del lugar** (mismo meridiano) y la **legal** (mismo huso); la oficial no, porque la fija cada Gobierno. El tribunal publicó una rectificación y dio por buena la **legal**: en el examen, marca **legal**."
       },
       {
        "tipo": "ilustracion",

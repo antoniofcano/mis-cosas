@@ -48,8 +48,8 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   resaltados y la respuesta/corrección en el propio panel, sin cambiar de pantalla. 🎓 *Tutorial*: la
   resolución reproducida sobre la carta paso a paso —se coloca el transportador, el compás o la regla como
   en el examen y después se traza— con la explicación de cada paso (anterior/siguiente/reproducir).
-- **👨‍🏫 El profe**: cada paso de la solución (pistas, tutorial y preguntas de examen) viene explicado como en
-  una academia —qué hacemos y por qué, el cálculo con los números del ejercicio, un truco y el error típico de
+- **👨‍🏫 El profe**: cada paso de la solución (pistas, tutorial y preguntas de examen) viene explicado como lo
+  haría un profesor —qué hacemos y por qué, el cálculo con los números del ejercicio, un truco y el error típico de
   examen— y **con voz** (síntesis del navegador, gratis, en español; voz y velocidad en Más → Voz del profe).
   En el tutorial la carta avanza al ritmo de la explicación.
 - **Escalas en los márgenes y guías**: arrastra desde la escala de latitudes o de longitudes para sacar un

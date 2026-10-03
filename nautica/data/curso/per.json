@@ -1531,7 +1531,7 @@
       {
        "tipo": "texto",
        "titulo": "El molinete en dos palabras",
-       "texto": "El molinete es la máquina que vira (recoge) la cadena. Tres piezas:\n- **Barbotén**: la rueda con huecos donde encajan los eslabones.\n- **Embrague**: acopla el barbotén al motor. Embragado, el barbotén gira con el motor; desembragado, gira «loco».\n- **Freno**: bloquea el barbotén o deja que gire, con más o menos fuerza.\n\n**Para levar**: embragas y dejas libre el freno, y el motor vira la cadena.\n\n📝 Nota del profe: muchos molinetes eléctricos pequeños no tienen embrague y largan el ancla con el propio motor. El examen pregunta por el molinete con embrague y freno."
+       "texto": "El molinete es la máquina que vira (recoge) y fila (larga) la cadena. Tres piezas:\n- **Barbotén**: la rueda con huecos donde encajan los eslabones.\n- **Embrague**: acopla el barbotén al motor. Embragado, el barbotén gira con el motor; desembragado, gira «loco».\n- **Freno**: bloquea el barbotén o deja que gire, con más o menos fuerza.\n\n**Para levar**: embragas y dejas libre el freno, y el motor vira la cadena.\n\n📝 Nota del profe: muchos molinetes eléctricos pequeños no tienen embrague y largan el ancla con el propio motor. El examen pregunta por el molinete con embrague y freno."
       },
       {
        "tipo": "texto",
@@ -5592,7 +5592,7 @@
       {
        "tipo": "texto",
        "titulo": "Motor frente a vela: también de frente",
-       "texto": "Un buque de motor y un velero a la vista, con riesgo de abordaje, **ya sea en cruce o de vuelta encontrada**: **se aparta el de motor**. No se aplican las Reglas 14 y 15, que son solo entre buques de motor. Igual con un pesquero faenando: se aparta el de motor.\n\n**Excepción que siempre cae**: si el **velero alcanza** al de motor (llega desde más de 112,5° de su proa), **se aparta el velero**. El de motor sigue a rumbo."
+       "texto": "Un buque de motor y un velero a la vista, con riesgo de abordaje, **ya sea en cruce o de vuelta encontrada**: **se aparta el de motor**. No se aplican las Reglas 14 y 15, que son solo entre buques de motor: manda la Regla 18. Por la misma regla, frente a un pesquero faenando (en cruce, de frente o como sea) también se aparta el de motor.\n\n**Excepción que siempre cae**: si el **velero alcanza** al de motor (llega desde más de 112,5° de su proa), **se aparta el velero**. El de motor sigue a rumbo."
       },
       {
        "tipo": "texto",
@@ -8433,7 +8433,7 @@
       {
        "tipo": "texto",
        "titulo": "Los extintores que exige la norma",
-       "texto": "Según el RD 339/2021, si el fabricante no indica otra cosa en el manual, las embarcaciones llevan extintores portátiles de eficacia mínima **34B**; cuántos depende de la **eslora** y de la **potencia del motor** (un barco de recreo pequeño con cabina o motor intraborda suele necesitar **uno**).\n\nCondiciones:\n- Al menos **2 kg** de agente (polvo seco o equivalente).\n- En lugares de **fácil acceso**, y **uno alcanzable desde el puesto de gobierno**.\n- **Revisados** según el reglamento de protección contra incendios: mira la etiqueta y que el manómetro esté en verde."
+       "texto": "Según el RD 339/2021, un barco con **marcado CE** lleva los extintores que diga el **manual del fabricante**; sin marcado CE (o si el manual no dice nada), los de unas tablas por **eslora** y por **motor**, de eficacia mínima **34B**. En un barco de menos de 10 m, el extintor que se exige por el motor sirve también para la eslora, así que uno pequeño con cabina o motor intraborda suele necesitar **uno**; a partir de 10 m, las dos cuentas se suman.\n\nCondiciones:\n- Al menos **2 kg** de agente (polvo seco o equivalente).\n- En lugares de **fácil acceso**, y **uno alcanzable desde el puesto de gobierno**.\n- **Revisados** según el reglamento de protección contra incendios: mira la etiqueta y que el manómetro esté en verde."
       },
       {
        "tipo": "texto",

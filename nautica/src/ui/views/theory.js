@@ -16,6 +16,8 @@ import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { avisoError } from '../aviso-error.js';
+import { enlaceTrampa } from '../mapa-trampa.js';
+import { remateMapas } from '../remate-mapas.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
 import { colaRepaso, tandaRapida } from '../../course/repaso.js';
@@ -117,6 +119,7 @@ export function profePanel(q, expl, chosen) {
     n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
     expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null,
     enlaceResolucion(q),
+    ok ? null : enlaceTrampa(q, chosen),
     h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
 }
@@ -350,7 +353,7 @@ function mezclaView({ progress, seed }) {
         progress.logActividad(MIN_TANDA);
         progress.setSetting(`mezclado_${tit0}`, new Date().toLocaleDateString('sv-SE'));
         barra.remove();
-        pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
+        pintarCierre(cont, progress, tit0, { ...cierreTanda(ok, n), extra: remateMapas(tit0, empezados) });
         summaryText = `VISTA repaso mezclado terminado: ${ok} de ${n} aciertos`;
         window.scrollTo(0, 0);
       },
@@ -385,7 +388,8 @@ function repasoView({ progress }) {
         const quedan = colaRepaso(preguntas, progress.get().exams).hoy.length;
         pintarCierre(cont, progress, tit0, { icono: ok === n ? '🎉' : '💪', titulo: `${ok} de ${n}`,
           lineas: [ok === n ? 'Todas bien: volverán más adelante para afianzarlas.' : 'Las que has fallado vuelven mañana; las acertadas, dentro de unos días.',
-            quedan ? `Te quedan ${quedan} por repasar hoy.` : 'Repaso de hoy terminado.'] });
+            quedan ? `Te quedan ${quedan} por repasar hoy.` : 'Repaso de hoy terminado.'],
+          extra: remateMapas(tit0, [...new Set(tanda.map((q) => q.ut))]) });
         summaryText = `VISTA repaso terminado: ${ok} de ${n} · quedan ${quedan} hoy`;
         window.scrollTo(0, 0);
       },

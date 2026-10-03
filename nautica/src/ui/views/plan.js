@@ -6,6 +6,26 @@ import { calcularPlan, hrefActividad } from '../cierre.js';
 import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
 import { lineaSeguimiento, sumaDiasISO, describir, duracion, DIAS_ESTUDIO } from '../../course/calendario.js';
 import { diaLocal } from '../../store/progress.js';
+import { cargarMapas } from './mapas.js';
+import { mapasEliminatorios } from '../../course/mapas.js';
+
+const DIAS_MAPAS = 14; // en la recta final, repaso de los temas eliminatorios con los mapas
+
+/** «🕸️ Repaso con los mapas»: en las dos últimas semanas, una ronda del juego de los mapas de los temas eliminatorios. */
+function repasoMapas(tit, estructura, quedan) {
+  const el = h('section.plan-mapas', { hidden: true });
+  cargarMapas().then((mapas) => {
+    const xs = mapasEliminatorios(mapas, tit, estructura);
+    if (!xs.length) return;
+    const temas = [...new Map(xs.flatMap((x) => x.temas).map((b) => [b.ut, b])).values()].sort((a, b) => a.ut - b.ut);
+    setChildren(el, h('h2', '🕸️ Repaso con los mapas'),
+      h('p', `${quedan === 1 ? 'Queda 1 día' : `Quedan ${quedan} días`}. En los temas eliminatorios (${temas.map((b) => b.titulo).join(', ')}) se suspende por confundir conceptos: haz cada día una ronda del juego de uno de estos mapas.`),
+      h('div.cards', xs.map(({ mapa, temas: ts }) => h('a.card', { href: tlink(tit, ['mapas', mapa.id], { v: 'jugar' }) },
+        h('h3', `🎯 ${mapa.titulo}`), h('p.muted.small', ts.map((b) => b.titulo).join(' · '))))));
+    el.hidden = false;
+  }).catch(() => {});
+  return el;
+}
 
 const fecha = (iso, o = { weekday: 'long', day: 'numeric', month: 'long' }) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-ES', o); };
 const ICONO = { clase: '🎓', chuleta: '📌', tanda: '✏️', simulacro: '📝' };
@@ -52,6 +72,7 @@ export function planView({ progress, tit }) {
       h('div.ritmo', { class: marcaEstado(seg.estado)[1] }, h('p', marcaEstado(seg.estado)[0], lineaSeguimiento(seg, plan.minutosDia)),
         botonSubirMinutos(progress, ps, () => pinta(), tit)),
       avisoEsencial(progress, tit, T.estructura, () => pinta()),
+      (() => { const quedan = Math.round((new Date(`${plan.fechaExamen}T12:00`) - new Date(`${hoy}T12:00`)) / 864e5); return quedan > 0 && quedan <= DIAS_MAPAS ? repasoMapas(tit, T.estructura, quedan) : null; })(),
       h('div.bar', { role: 'progressbar', 'aria-label': 'Plan hecho', 'aria-valuemin': 0, 'aria-valuemax': seg.totalDelPlan, 'aria-valuenow': seg.hechasDelPlan },
         h('span', { style: `width:${seg.totalDelPlan ? Math.round((100 * seg.hechasDelPlan) / seg.totalDelPlan) : 100}%` })),
       h('p.muted.small', `Llevas hecho ${seg.hechasDelPlan} de ${seg.totalDelPlan} pasos del plan.`),

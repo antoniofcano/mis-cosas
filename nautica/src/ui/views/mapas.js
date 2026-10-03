@@ -54,7 +54,7 @@ export function mapasView({ tit, params: route }) {
     const cabecera = [volver('Mapas de conceptos', tlink(tit, ['mapas'])), h('h1', mapa.titulo), pestañas];
 
     if (vista === 'mapa') { setChildren(el, cabecera, mapaEntero(mapa, nodos, (n) => ir(n))); summaryText = `VISTA mapa ${mapa.titulo} entero`; return; }
-    if (vista === 'jugar') { setChildren(el, cabecera, juego(mapa, nodos)); summaryText = `VISTA mapa ${mapa.titulo}: juego`; return; }
+    if (vista === 'jugar') { setChildren(el, cabecera, juego(mapa)); summaryText = `VISTA mapa ${mapa.titulo}: juego`; return; }
 
     // --- Explorar
     const v = vecinos(mapa, actual.id);
@@ -121,19 +121,32 @@ function mapaEntero(mapa, nodos, onNodo) {
 }
 
 /** Juego: ¿qué los une? / ¿qué falta? Una ronda de 8 preguntas. */
-function juego(mapa, nodos) {
+function juego(mapa) {
+  return juegoMapa(() => preguntasMapa(mapa, createRng(randomSeed()), 8).map((p) => ({ ...p, mapa })), {
+    fin: (ok, n) => [h('div.icono', ok >= 6 ? '🎉' : '💪'), h('h2', `${ok} de ${n}`),
+      h('p', ok >= 6 ? 'Tienes claras las relaciones de este mapa.' : 'Repasa en «Explorar» las que han fallado y vuelve a intentarlo.')],
+    otraRonda: true,
+  });
+}
+
+/**
+ * El juego de «¿qué los une?» / «¿qué falta?» con preguntas de uno o varios mapas (cada pregunta lleva su mapa).
+ * @param {() => object[]} hacer  genera las preguntas de una ronda
+ * @param {{ fin: (ok, n) => Node[], otraRonda?: boolean, alTerminar?: (ok, n) => void }} o
+ */
+export function juegoMapa(hacer, { fin, otraRonda = false, alTerminar } = {}) {
   const box = h('div.mapa-juego');
   const ronda = () => {
-    const qs = preguntasMapa(mapa, createRng(randomSeed()), 8);
+    const qs = hacer();
     let i = 0; let ok = 0;
     const pinta = () => {
       if (i >= qs.length) {
-        setChildren(box, h('section.cierre', h('div.icono', ok >= 6 ? '🎉' : '💪'), h('h2', `${ok} de ${qs.length}`),
-          h('p', ok >= 6 ? 'Tienes claras las relaciones de este mapa.' : 'Repasa en «Explorar» las que han fallado y vuelve a intentarlo.'),
-          h('button.grande', { type: 'button', onclick: ronda }, 'Otra ronda')));
+        alTerminar?.(ok, qs.length);
+        setChildren(box, h('section.cierre', fin(ok, qs.length), otraRonda ? h('button.grande', { type: 'button', onclick: ronda }, 'Otra ronda') : null));
         return;
       }
       const p = qs[i];
+      const nodos = new Map(p.mapa.nodos.map((n) => [n.id, n]));
       const fb = h('div', { 'aria-live': 'polite' });
       const botones = p.opciones.map((o, k) => h('button.secondary.mapa-opcion', { type: 'button', onclick: () => {
         botones.forEach((b, j) => { b.disabled = true; if (j === p.correcta) b.classList.add('correcta'); else if (j === k) b.classList.add('fallada'); });

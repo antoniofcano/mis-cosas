@@ -49,3 +49,39 @@ test('nodosDeClase y mapasDeClases: solo los mapas y las clases de la titulació
   assert.deepEqual(mapasDeClases(mapas, [r.clase], 'per').map((x) => x.mapa.id), ['rumbos']);
   assert.deepEqual(mapasDeClases(mapas, [r.clase], 'py'), []);
 });
+
+test('trampaDePregunta: reconoce la trampa del mapa en la respuesta fallada', async () => {
+  const { trampaDePregunta } = await import('../src/course/mapas.js');
+  const fs = await import('node:fs');
+  const mapas = MAPAS.map((id) => JSON.parse(fs.readFileSync(new URL(`../data/mapas/${id}.json`, import.meta.url))));
+  const banco = JSON.parse(fs.readFileSync(new URL('../data/exams/andalucia-per-teoria.json', import.meta.url))).preguntas;
+  // Velero con el motor en marcha: quien contesta «Buque de vela» cae en la trampa vela/motor.
+  const q = banco.find((x) => x.id === 'and-2022-c2-t25');
+  const t = trampaDePregunta(mapas, 'per', q, 'a');
+  assert.equal(t.mapa.id, 'ripa-maniobras');
+  assert.deepEqual([t.elegido.nombre, t.correcto.nombre], ['Buque de vela', 'Propulsión mecánica']);
+  assert.equal(trampaDePregunta(mapas, 'per', q, q.correcta), null); // acertada: nada
+  assert.equal(trampaDePregunta(mapas, 'py', q, 'a'), null); // los mapas del PER no salen en el PY
+  // Un concepto que ya sale en el enunciado no es la confusión.
+  const q2 = banco.find((x) => x.id === 'and-2020-c3-t25');
+  assert.equal(trampaDePregunta(mapas, 'per', q2, 'b'), null);
+});
+
+test('preguntasRepaso y mapasEliminatorios: los mapas de los temas repasados y de los eliminatorios', async () => {
+  const { preguntasRepaso, mapasEliminatorios, utDeClase } = await import('../src/course/mapas.js');
+  const { PER } = await import('../src/theory/blocks.js');
+  const { createRng } = await import('../src/math/rng.js');
+  const fs = await import('node:fs');
+  const mapas = MAPAS.map((id) => JSON.parse(fs.readFileSync(new URL(`../data/mapas/${id}.json`, import.meta.url))));
+  const qs = preguntasRepaso(mapas, 'per', [5], createRng(7), 3);
+  assert.equal(qs.length, 3);
+  for (const p of qs) {
+    const n = new Map(p.mapa.nodos.map((x) => [x.id, x]));
+    assert.ok([p.de, p.a].some((id) => utDeClase(n.get(id).clase) === 5));
+    assert.equal(new Set(p.opciones).size, 4);
+  }
+  assert.deepEqual(preguntasRepaso(mapas, 'per', [8], createRng(7), 3).filter((p) => p.mapa.tits.includes('py')), []);
+  const elim = mapasEliminatorios(mapas, 'per', PER).map((x) => x.mapa.id);
+  assert.ok(elim.includes('balizamiento') && elim.includes('ripa-maniobras'));
+  assert.ok(!elim.includes('meteo'));
+});

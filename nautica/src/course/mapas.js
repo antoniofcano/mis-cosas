@@ -83,3 +83,65 @@ export function mapasDeClases(mapas, claseIds, tit) {
     .map((mapa) => ({ mapa, nodos: mapa.nodos.filter((n) => ids.has(n.clase) && (n.tit ?? tit) === tit) }))
     .filter((x) => x.nodos.length);
 }
+
+const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+/** Cómo se reconoce un concepto en un texto: su nombre sin el paréntesis y, si lo hay, la sigla del paréntesis (Nm, Rs…). */
+function claves(nodo) {
+  const m = nodo.nombre.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+  const nombre = norm((m ? m[1] : nodo.nombre).trim());
+  const siglas = m ? m[2].split(/,\s*/).filter((s) => /^[A-Za-zΔ]{1,4}$/.test(s) && /[A-Z]/.test(s)) : [];
+  return { nombre, siglas };
+}
+function menciona(texto, nodo) {
+  const { nombre, siglas } = claves(nodo);
+  const t = norm(texto);
+  return (nombre.length >= 5 && t.includes(nombre)) || siglas.some((s) => new RegExp(`(^|[^\\p{L}])${s}([^\\p{L}]|$)`, 'u').test(texto));
+}
+
+/**
+ * La trampa de un mapa en la que ha caído quien falla una pregunta: una arista «confunde» cuyo un extremo
+ * sale solo en la opción elegida y el otro solo en la correcta o en el enunciado. null si no hay ninguna.
+ * @returns {{ mapa, arista, elegido, correcto } | null}
+ */
+export function trampaDePregunta(mapas, tit, q, elegida) {
+  if (elegida == null || elegida === q.correcta || !q.opciones?.[elegida]) return null;
+  const mala = q.opciones[elegida];
+  const buena = `${q.opciones[q.correcta] ?? ''} ${q.enunciado ?? ''}`;
+  for (const mapa of mapas.filter((m) => m.tits.includes(tit))) {
+    const n = porId(mapa);
+    for (const a of mapa.aristas.filter((x) => x.tipo === 'confunde')) {
+      for (const [x, y] of [[a.de, a.a], [a.a, a.de]]) {
+        if (menciona(mala, n.get(x)) && !menciona(buena, n.get(x)) && !menciona(mala, n.get(y)) && menciona(buena, n.get(y))) return { mapa, arista: a, elegido: n.get(x), correcto: n.get(y) };
+      }
+    }
+  }
+  return null;
+}
+
+/** Tema (ut) de una clase por su id: «per-5-3» → 5. */
+export const utDeClase = (id) => Number(String(id).split('-')[1]);
+
+/**
+ * Preguntas de mapa para rematar un repaso: relaciones que tocan los temas repasados, de todos los mapas
+ * de la titulación, mezcladas. Cada pregunta lleva su mapa.
+ * @returns {{ mapa, tipo, de, a, rel, enunciado, opciones, correcta }[]}
+ */
+export function preguntasRepaso(mapas, tit, uts, rng, n = 3) {
+  const temas = new Set(uts);
+  const toca = (nodo) => (nodo.tit ?? tit) === tit && temas.has(utDeClase(nodo.clase));
+  const out = [];
+  for (const mapa of mapas.filter((m) => m.tits.includes(tit))) {
+    const nodos = porId(mapa);
+    const qs = preguntasMapa(mapa, rng, mapa.aristas.length).filter((p) => toca(nodos.get(p.de)) || toca(nodos.get(p.a)));
+    out.push(...qs.map((p) => ({ ...p, mapa })));
+  }
+  return rng.shuffle(out).slice(0, n);
+}
+
+/** Los mapas que tocan los temas eliminatorios (los que tienen máximo de fallos) de una titulación. */
+export function mapasEliminatorios(mapas, tit, estructura) {
+  const elim = new Map(estructura.bloques.filter((b) => b.maxErrores != null).map((b) => [b.ut, b]));
+  return mapas.filter((m) => m.tits.includes(tit))
+    .map((mapa) => ({ mapa, temas: [...new Set(mapa.nodos.filter((n) => (n.tit ?? tit) === tit).map((n) => utDeClase(n.clase)).filter((ut) => elim.has(ut)))].map((ut) => elim.get(ut)) }))
+    .filter((x) => x.temas.length);
+}

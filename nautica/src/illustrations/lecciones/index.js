@@ -14,5 +14,6 @@ import { LAMINAS as publicaciones } from './publicaciones.js';
 import { LAMINAS as pyNavegacion } from './py-navegacion.js';
 import { LAMINAS as pySegundaA } from './py-segunda-a.js';
 import { LAMINAS as pySegundaB } from './py-segunda-b.js';
+import { LAMINAS as perPropias } from './per-propias.js';
 
-export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones, ...pyNavegacion, ...pySegundaA, ...pySegundaB };
+export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones, ...pyNavegacion, ...pySegundaA, ...pySegundaB, ...perPropias };

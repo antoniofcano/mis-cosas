@@ -485,6 +485,8 @@ select { min-height: 44px; }
 .ichart select, .workspace select, .protractor-bar select { min-height: 0; }
 .method-card h3 a { display: inline-flex; align-items: center; min-height: 44px; }
 /* Hoy: ¿llego a tiempo? */
+.hoy .ritmo p { margin: 0; }
+.ritmo .subir-minutos { margin-top: .5rem; }
 .hoy .ritmo { margin: 0 0 .8rem; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
 .hoy .ritmo.warn { background: transparent; border: 2px solid var(--warn); color: var(--text); }
 .hoy .ritmo a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
@@ -635,3 +637,33 @@ ul.clases-flojas a { display: flex; flex-direction: column; gap: .15rem; min-hei
 svg.chart circle.asa { fill: #fff; stroke: #e11d48; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .tomar-carta { margin: .2rem 0 .6rem; }
 .tomar-carta .aviso-punto { margin: .3rem 0 0; }
+
+/* Mi plan hasta el examen */
+.plan-estudio .ritmo { margin: .6rem 0; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
+.plan-estudio .ritmo.warn { background: transparent; border: 2px solid var(--warn); }
+.plan-estudio .bar { margin: .4rem 0 .2rem; }
+.plan-semana h2 { margin: 1.4rem 0 .4rem; font-size: 1.15rem; }
+details.plan-semana { margin: .6rem 0; }
+details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap; align-items: center; font-weight: 700; font-size: 1.05rem; cursor: pointer; }
+.plan-dia { border: 1px solid var(--border); border-radius: var(--radius); padding: .5rem .8rem; margin: .4rem 0; background: var(--surface); }
+.plan-dia h3 { margin: 0 0 .2rem; font-size: 1rem; }
+.plan-dia h3::first-letter { text-transform: uppercase; }
+.plan-dia.hoy { border: 2px solid var(--accent); }
+.plan-dia.examen { border-style: dashed; }
+.plan-unidades { list-style: none; margin: 0; padding: 0; }
+.plan-unidades li { padding: .2rem 0; }
+.plan-unidades li a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+.plan-unidades li.hecha { color: var(--muted); }
+.plan-unidades li.saltada { color: var(--warn); font-weight: 600; }
+.plan-recuperar { border: 2px solid var(--warn); border-radius: var(--radius); padding: .4rem .8rem; margin: .8rem 0; }
+.plan-recuperar h2 { margin: .2rem 0; font-size: 1.1rem; }
+.plan-pasados { margin: 1rem 0; }
+.plan-estudio .ritmo p { margin: 0; }
+.plan-fuera { border: 2px dashed var(--warn); border-radius: var(--radius); padding: .4rem .8rem; margin: .6rem 0; }
+.plan-fuera summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; cursor: pointer; }
+.plan-pasados summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; cursor: pointer; }
+.plan-acciones { margin: 1.4rem 0; }
+
+.mas .ritmo { margin: .8rem 0; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
+.mas .ritmo.warn { background: transparent; border: 2px solid var(--warn); }
+.mas .ritmo p { margin: 0; }

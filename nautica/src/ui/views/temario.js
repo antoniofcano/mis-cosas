@@ -12,6 +12,8 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { calcularPlan } from '../cierre.js';
 import { cargarMapas } from './mapas.js';
 import { mapasDeClases } from '../../course/mapas.js';
+import { episodiosDeTema } from './podcast.js';
+import { estadoEpisodio } from '../radio.js';
 
 const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', repasar: 'toca repasar', dominada: 'aprendida' };
 const ESTADO_CLS = { dominada: 'ok', repasar: 'warn', empezada: 'close' };
@@ -89,6 +91,23 @@ export function temaView({ progress, params: route, tit }) {
       mapasTema.hidden = false;
       summaryText += `\nMAPAS: ${xs.map((x) => x.mapa.titulo).join('; ')}`;
     }).catch(() => {});
+    // Los podcasts del tema: el panorama primero y los que profundizan (los que ya tienen audio).
+    const radioTema = h('section.radio-tema', { hidden: true });
+    episodiosDeTema(tit, ut).then((eps) => {
+      const conAudio = eps.filter((e) => e.audio);
+      if (!conAudio.length) return;
+      const pan = conAudio.find((e) => e.tipo === 'panorama');
+      const resto = conAudio.filter((e) => e !== pan);
+      const fila = (e) => h('a.radio-tema-ep', { href: tlink(tit, ['podcast', e.id]) },
+        h('span', { 'aria-hidden': 'true' }, estadoEpisodio(e.id).oido ? '✓' : e.tipo === 'panorama' ? '🗼' : '🛟'),
+        h('span', h('strong', `${e.n} · ${e.titulo}`), h('span.muted.small', ` · ${Math.round(e.duracion / 60)} min`)));
+      setChildren(radioTema, h('h2', '🎧 Escúchalo'),
+        h('p.muted.small', pan ? 'Empieza por el panorama para situarte; luego, cada episodio va con sus clases.' : 'Cada episodio va con sus clases.'),
+        pan ? fila(pan) : null, resto.map(fila),
+        conAudio.length < eps.length ? h('p.muted.small', `${eps.length - conAudio.length} episodios más de este tema en el astillero.`) : null);
+      radioTema.hidden = false;
+      summaryText += `\nPODCASTS: ${conAudio.map((e) => `${e.n} ${e.titulo}`).join('; ')}`;
+    }).catch(() => {});
     setChildren(el,
       volver('Temario', tlink(tit, ['temario'])),
       h('h1', `${b.icon} ${b.titulo}`),
@@ -102,6 +121,7 @@ export function temaView({ progress, params: route, tit }) {
         h('div.actions',
           h('a.btn.secondary', { href: tanda }, `Hacer ${TANDA} preguntas`),
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
+      radioTema,
       h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, '🖨️ Chuleta del tema para imprimir')),
       mapasTema,
       ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', '🗺️ Ejercicios de carta'), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,

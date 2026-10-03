@@ -727,3 +727,84 @@ a.mapa-vecino { text-decoration: none; }
 .mapa-opcion:disabled { opacity: 1; }
 .mapa-opcion.correcta { border: 2px solid var(--ok); color: var(--ok); font-weight: 700; }
 .mapa-opcion.fallada { border: 2px solid var(--warn); color: var(--warn); }
+
+/* Radio de a bordo (podcasts) */
+.radio-barra { position: fixed; left: 0; right: 0; bottom: calc(64px + env(safe-area-inset-bottom)); z-index: 19; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .3rem;
+  background: var(--surface); border-top: 1px solid var(--border); box-shadow: 0 -2px 10px rgba(0,0,0,.08); padding: 0 .4rem; min-height: 60px; }
+body.focus .radio-barra { bottom: env(safe-area-inset-bottom); }
+body.con-radio main { padding-bottom: calc(96px + 60px); }
+@media (min-width: 900px) { .radio-barra { bottom: 0; max-width: 720px; margin: 0 auto; border: 1px solid var(--border); border-radius: 12px 12px 0 0; } }
+.radio-barra-progreso { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent-2); }
+.radio-barra-progreso span { display: block; height: 100%; background: var(--accent); }
+.radio-barra-play { min-width: 48px; min-height: 48px; padding: 0; border-radius: 999px; font-size: 1.2rem; }
+.radio-barra-txt { display: flex; flex-direction: column; min-width: 0; text-decoration: none; color: var(--text); padding: .3rem .2rem; }
+.radio-barra-titulo { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.radio-barra-tiempo { font-size: .85rem; color: var(--muted); }
+.radio-barra-cerrar { min-width: 48px; min-height: 48px; padding: 0; background: transparent; border: 0; color: var(--muted); font-size: 1.1rem; }
+
+.radio-cab h1 { margin-bottom: .2rem; }
+.radio-rotulo { margin: 0; font-size: .85rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--accent); }
+.radio-gancho { font-style: italic; color: var(--muted); }
+.radio-destacado { border: 2px solid var(--accent); border-radius: var(--radius); padding: .8rem 1rem; margin: 1rem 0 1.4rem; background: linear-gradient(160deg, var(--accent-2), var(--surface) 70%); }
+.radio-destacado h2 { margin: .2rem 0 .3rem; }
+
+/* La travesía: cada tema un puerto; los episodios, boyas sobre una ruta a trazos */
+.puerto { margin: 1.4rem 0 .4rem; }
+.puerto-cab { display: flex; gap: .7rem; align-items: center; }
+.puerto-cab h2 { margin: 0; font-size: 1.15rem; }
+.puerto-cab p { margin: 0; }
+.puerto-icono { display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 52px; border-radius: 14px; background: var(--l-mar); font-size: 1.6rem; }
+.ruta { list-style: none; margin: .3rem 0 0; padding: 0 0 0 18px; position: relative; }
+.ruta::before { content: ""; position: absolute; left: 17px; top: 0; bottom: 14px; border-left: 3px dashed var(--accent); opacity: .45; }
+.boya { position: relative; padding: .25rem 0 .25rem 26px; }
+.boya-marca { position: absolute; left: -14px; top: .55rem; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; font-size: 1rem;
+  background: var(--surface); border: 2px solid var(--accent); z-index: 1; }
+.boya.panorama .boya-marca { width: 40px; height: 40px; left: -17px; top: .4rem; font-size: 1.2rem; }
+.boya.oido .boya-marca { background: var(--ok); border-color: var(--ok); color: #fff; font-weight: 700; }
+.boya.medias .boya-marca { background: conic-gradient(var(--accent) calc(var(--pct) * 1%), var(--surface) 0); }
+.boya.astillero .boya-marca { border-style: dashed; border-color: var(--muted); opacity: .7; }
+.boya.astillero .boya-titulo { color: var(--muted); }
+.boya-ficha { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.boya-ficha[open] { border-color: var(--accent); }
+.boya-ficha > summary { display: grid; grid-template-columns: auto 1fr; gap: .1rem .5rem; align-items: baseline; min-height: 56px; padding: .4rem .7rem; cursor: pointer; list-style: none; }
+.boya-ficha > summary::-webkit-details-marker { display: none; }
+.boya-ficha > :not(summary) { margin-left: .8rem; margin-right: .8rem; }
+.boya-ficha > :last-child { margin-bottom: .8rem; }
+.boya-n { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.boya-titulo { font-weight: 600; }
+.boya-meta { grid-column: 2; font-size: .85rem; color: var(--muted); }
+.radio-pie { margin-top: 1.2rem; }
+
+/* El episodio */
+.aviso-astillero { border: 2px dashed var(--muted); border-radius: var(--radius); padding: .7rem .9rem; }
+.radio-reproductor { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: .8rem 1rem; margin: 1rem 0; position: sticky; top: 56px; z-index: 4; }
+.radio-fila { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+.radio-play { width: 72px; height: 72px; min-height: 72px; padding: 0; border-radius: 999px; font-size: 1.8rem; }
+.radio-salto { min-width: 64px; }
+.radio-slider { width: 100%; margin: .6rem 0 .2rem; accent-color: var(--accent); height: 32px; }
+.radio-pie-rep { justify-content: space-between; }
+.radio-tiempo { font-variant-numeric: tabular-nums; color: var(--muted); }
+.radio-vel { min-width: 72px; }
+.radio-guion-cab { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; }
+.radio-guion-cab h2 { margin: .4rem auto .4rem 0; font-size: 1.15rem; }
+.radio-guion-cab label { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; }
+.guion { list-style: none; padding: 0; margin: .4rem 0 1rem; display: flex; flex-direction: column; gap: .45rem; }
+.guion-linea { max-width: 88%; padding: .5rem .75rem; border-radius: 14px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); transition: background .2s, border-color .2s; }
+.guion-linea.elena { align-self: flex-start; border-bottom-left-radius: 4px; }
+.guion-linea.andres { align-self: flex-end; border-bottom-right-radius: 4px; background: var(--l-mar); }
+.guion-linea.activa { border: 2px solid var(--accent); box-shadow: 0 0 0 3px var(--accent-2); }
+.guion-quien { display: block; font-size: .78rem; font-weight: 700; color: var(--accent); }
+.guion-linea.andres .guion-quien { text-align: right; }
+.guion-pausa { align-self: center; color: var(--muted); letter-spacing: .3em; }
+.guion-pregunta { align-self: stretch; }
+.radio-pregunta { border: 2px solid var(--close); border-radius: var(--radius); padding: .7rem .9rem; background: var(--surface); }
+.radio-opciones { display: flex; flex-direction: column; gap: .4rem; margin: .5rem 0; }
+.radio-opcion { text-align: left; }
+.radio-opcion.correcta { border-color: var(--ok); color: var(--ok); }
+.radio-opcion.fallada { border-color: var(--warn); color: var(--warn); }
+.radio-ficha details { margin: .5rem 0; }
+.radio-ficha summary { font-weight: 700; min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.radio-vecinos { display: flex; justify-content: space-between; gap: 1rem; margin: 1.2rem 0; }
+.radio-tema-ep { display: grid; grid-template-columns: 32px 1fr; gap: .4rem; align-items: center; min-height: 52px; padding: .3rem .5rem; border: 1px solid var(--border); border-radius: var(--radius); margin: .35rem 0; text-decoration: none; color: var(--text); background: var(--surface); }
+.radio-tema-ep:hover { border-color: var(--accent); }
+.radio-clase { margin: .8rem 0; }

@@ -17,6 +17,7 @@ import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theor
 import { voice } from '../voice.js';
 import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
+import { episodiosDeClase } from './podcast.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { getExercise } from '../../exercises/registry.js';
 
@@ -207,7 +208,16 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       progress.saveLeccion(L.id, { ...reg(), visto: true, paso: 0 });
       progress.logActividad(L.minutos ?? 10);
       barra.set('Clase terminada', 1);
+      // El podcast que trata esta clase, si ya tiene audio.
+      const escucha = h('p.radio-clase', { hidden: true });
+      episodiosDeClase(tit, L.id).then((eps) => {
+        const e = eps.find((x) => x.audio);
+        if (!e) return;
+        setChildren(escucha, h('a.btn.secondary', { href: tlink(tit, ['podcast', e.id]) }, `🎧 Escúchalo: «${e.titulo}» (${Math.round(e.duracion / 60)} min)`));
+        escucha.hidden = false;
+      }).catch(() => {});
       const extra = [
+        escucha,
         dondeEncaja(tit, L.id),
         L.carta?.length ? h('details', h('summary', '🗺️ En la carta'), h('ul', L.carta.map((x) => (getExercise(x) ? h('li', h('a', { href: link(['ej', x]) }, getExercise(x).title)) : null)))) : null,
         L.profundizar?.length ? h('details', h('summary', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,

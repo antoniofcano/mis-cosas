@@ -1,4 +1,4 @@
-// versión: da425f7ed800
+// versión: 053d7f11b194
 // Service worker: guarda la app en el móvil para que abra sin conexión y rápido.
 // La lista de archivos y la versión salen de sw-lista.js (npm run precache).
 //   - Al instalar se guarda la app (código, estilos, iconos); los datos (exámenes, carta, cursos) se guardan
@@ -42,6 +42,7 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const r = ruta(req.url);
   if (r == null) return; // otro origen o fuera de la app: lo gestiona el navegador
+  if (r.startsWith('podcast/')) return; // audio de los podcasts: lo pide el navegador (por trozos, al saltar), sin guardarlo
   if (req.mode === 'navigate' && (r === '' || r === 'index.html')) {
     e.respondWith(responder(new Request('index.html'), 'index.html'));
     return;

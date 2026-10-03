@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'da425f7ed800';
+self.VERSION = '053d7f11b194';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -160,6 +160,7 @@ self.APP = [
  "src/ui/plan-estudio.js",
  "src/ui/profe-steps.js",
  "src/ui/pwa.js",
+ "src/ui/radio.js",
  "src/ui/remate-mapas.js",
  "src/ui/router.js",
  "src/ui/titulacion.js",
@@ -175,6 +176,7 @@ self.APP = [
  "src/ui/views/mas.js",
  "src/ui/views/misc.js",
  "src/ui/views/plan.js",
+ "src/ui/views/podcast.js",
  "src/ui/views/reglas.js",
  "src/ui/views/tarjetas.js",
  "src/ui/views/temario.js",
@@ -216,5 +218,15 @@ self.DATOS = [
  "data/mapas/nieblas.json",
  "data/mapas/ripa-luces.json",
  "data/mapas/ripa-maniobras.json",
- "data/mapas/rumbos.json"
+ "data/mapas/rumbos.json",
+ "data/podcast-per.json",
+ "data/podcast-py.json",
+ "data/podcast/py-0.json",
+ "data/podcast/py-1-0.json",
+ "data/podcast/py-1-1.json",
+ "data/podcast/py-1-2.json",
+ "data/podcast/py-1-3.json",
+ "data/podcast/py-1-4.json",
+ "data/podcast/py-1-5.json",
+ "data/podcast/py-1-6.json"
 ];

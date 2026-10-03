@@ -27,6 +27,8 @@ import { bibliotecaView } from './views/biblioteca.js';
 import { tarjetasView } from './views/tarjetas.js';
 import { planView } from './views/plan.js';
 import { mapasView } from './views/mapas.js';
+import { podcastView } from './views/podcast.js';
+import { iniciarRadio, enVistaEpisodio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
@@ -40,6 +42,7 @@ const TIT_ROUTES = {
   tarjetas: tarjetasView,
   plan: planView, // #/<tit>/plan: calendario hasta el examen
   mapas: mapasView, // #/<tit>/mapas[/<id>]: mapas de conceptos
+  podcast: podcastView, // #/<tit>/podcast[/<id>]: la radio de a bordo (podcasts)
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
@@ -150,6 +153,7 @@ async function main() {
   iniciarPwa({ puedeActualizarSolo: () => !progress.testEnCurso() });
   setSharedProgress(progress);
   voice.bind(progress);
+  iniciarRadio(progress);
   let current = null;
 
   const session = { summary: () => current?.summary?.() ?? '' };
@@ -176,6 +180,7 @@ async function main() {
     const footer = document.querySelector('body > footer');
     if (footer) footer.hidden = route.parts[0] !== 'ajustes';
     renderNav(tit, route.parts, (id) => { setTit(progress, id); render(); });
+    enVistaEpisodio(false); // la vista del episodio lo vuelve a poner
     try {
       current = view({ ctx, progress, params, tit });
     } catch (e) {

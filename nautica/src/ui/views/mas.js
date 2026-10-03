@@ -8,15 +8,29 @@ import { voice, spanishVoices } from '../voice.js';
 import { botonesMinutos } from './bienvenida.js';
 import { guardarCopia, botonRecuperar } from '../copia.js';
 import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
+import { calcularPlan } from '../cierre.js';
+import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
+import { lineaSeguimiento } from '../../course/calendario.js';
 
 export function masView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const s = progress.settings();
 
   const minutos = h('div');
-  const pintaMinutos = () => setChildren(minutos, botonesMinutos(progress.settings().minutosDia ?? 20, (m) => { progress.setSetting('minutosDia', m); pintaMinutos(); }));
+  // Al elegir fecha o minutos se dice enseguida si da tiempo (y, si no, se ofrece subir los minutos de un toque).
+  const avisoPlan = h('div.ritmo', { hidden: true, 'aria-live': 'polite' });
+  const pintaAviso = () => calcularPlan(progress, tit).then((d) => {
+    const ps = planConSeguimiento(progress, tit, d);
+    avisoPlan.hidden = !ps;
+    if (!ps) return;
+    const [icono, clase] = marcaEstado(ps.seg.estado);
+    avisoPlan.className = `ritmo ${clase}`;
+    setChildren(avisoPlan, h('p', icono, lineaSeguimiento(ps.seg, ps.plan.minutosDia)),
+      botonSubirMinutos(progress, ps.seg, () => { pintaMinutos(); }));
+  }).catch(() => { avisoPlan.hidden = true; });
+  const pintaMinutos = () => { setChildren(minutos, botonesMinutos(progress.settings().minutosDia ?? 20, (m) => { progress.setSetting('minutosDia', m); pintaMinutos(); })); pintaAviso(); };
   pintaMinutos();
-  const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => progress.setSetting(`examen_${tit}`, ev.target.value) });
+  const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); pintaAviso(); } });
 
   const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${new Date(s.ultimaCopia).toLocaleDateString('es-ES')}.` : '');
 
@@ -33,6 +47,7 @@ export function masView({ progress, tit }) {
       fecha,
       h('h3.ajuste', '⏱ Minutos al día'),
       minutos,
+      avisoPlan,
       h('p', h('a', { href: tlink(tit, ['plan']) }, '🗓 Ver mi plan día a día hasta el examen →'))),
     h('section', h('h2', 'Titulación'),
       h('div.titulaciones', Object.values(TITULACIONES).map((X) => h('a.btn.grande', { href: tlink(X.id), class: X.id === tit ? '' : 'secondary', 'aria-current': X.id === tit ? 'true' : null },

@@ -3,8 +3,8 @@
 import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad } from '../cierre.js';
-import { planConSeguimiento, rehacerPlan } from '../plan-estudio.js';
-import { lineaSeguimiento, sumaDiasISO } from '../../course/calendario.js';
+import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
+import { lineaSeguimiento, sumaDiasISO, describir, duracion } from '../../course/calendario.js';
 import { diaLocal } from '../../store/progress.js';
 
 const fecha = (iso, o = { weekday: 'long', day: 'numeric', month: 'long' }) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-ES', o); };
@@ -42,17 +42,18 @@ export function planView({ progress, tit }) {
     const atrasadas = new Set(seg.atrasadas.map((u) => u.id));
     const pasados = Object.entries(plan.dias).filter(([f]) => f < hoy);
 
-    summaryText = `VISTA plan ${T.sigla} · examen ${plan.fechaExamen} · ${plan.minutosDia} min/día\nESTADO: ${lineaSeguimiento(seg)}\n` +
+    summaryText = `VISTA plan ${T.sigla} · examen ${plan.fechaExamen} · ${plan.minutosDia} min/día\nESTADO: ${lineaSeguimiento(seg, plan.minutosDia)}\n` +
       `RECUPERAR: ${seg.atrasadas.map((u) => u.titulo).join('; ') || '—'}\n` +
       seg.futuro.dias.map((dia) => `${dia.fecha}: ${dia.unidades.map((u) => u.titulo).join('; ') || 'libre'}`).join('\n');
 
     setChildren(el,
       h('h1', 'Mi plan hasta el examen'),
       h('p.muted', `Examen: ${fecha(plan.fechaExamen)} · ${plan.minutosDia} minutos al día · `, h('a', { href: '#/ajustes' }, 'cambiar')),
-      h('p.ritmo', { class: seg.estado === 'al-dia' || seg.estado === 'terminado' ? '' : 'warn' }, lineaSeguimiento(seg)),
+      h('div.ritmo', { class: marcaEstado(seg.estado)[1] }, h('p', marcaEstado(seg.estado)[0], lineaSeguimiento(seg, plan.minutosDia)),
+        botonSubirMinutos(progress, seg, () => pinta())),
       h('div.bar', { role: 'progressbar', 'aria-label': 'Plan hecho', 'aria-valuemin': 0, 'aria-valuemax': seg.totalDelPlan, 'aria-valuenow': seg.hechasDelPlan },
         h('span', { style: `width:${seg.totalDelPlan ? Math.round((100 * seg.hechasDelPlan) / seg.totalDelPlan) : 100}%` })),
-      h('p.muted.small', `Llevas ${seg.hechasDelPlan} de ${seg.totalDelPlan} cosas del plan.`),
+      h('p.muted.small', `Llevas hecho ${seg.hechasDelPlan} de ${seg.totalDelPlan} pasos del plan.`),
       seg.atrasadas.length ? h('section.plan-recuperar', h('h2', 'Para recuperar'),
         h('ul.plan-unidades', seg.atrasadas.map((u) => h('li', h('a', { href: hrefActividad(tit, u) }, `${ICONO[u.tipo] ?? ''} ${u.titulo}`),
           h('span.muted.small', ` · tocaba el ${fecha(u.fecha, { weekday: 'long', day: 'numeric' })}`)))),
@@ -65,10 +66,11 @@ export function planView({ progress, tit }) {
           dia.unidades.length ? h('ul.plan-unidades', dia.unidades.map((u) => unidad(u, dia.fecha === hoy))) : h('p.muted.small', 'Libre: repasa tus fallos o descansa.')));
         // Las dos primeras semanas, abiertas; las demás, plegadas con su resumen.
         if (i < 2) return h('section.plan-semana', h('h2', titulo), diasEl);
-        const n = dias.reduce((t, d) => t + d.unidades.length, 0);
         const min = dias.reduce((t, d) => t + d.minutos, 0);
-        return h('details.plan-semana', h('summary', h('span', titulo), h('span.muted.small', ` · ${n} cosas, unos ${String(Math.round(min / 6) / 10).replace('.', ',')} h`)), diasEl);
+        return h('details.plan-semana', h('summary', h('span', titulo), h('span.muted.small', ` · ${describir(dias.flatMap((d) => d.unidades))}, ${duracion(min)}`)), diasEl);
       }),
+      seg.futuro.fuera.length ? h('details.plan-fuera', h('summary', `Sin hueco antes del examen: ${describir(seg.futuro.fuera)}`),
+        h('ul.plan-unidades', seg.futuro.fuera.map((u) => h('li', `${ICONO[u.tipo] ?? ''} ${u.titulo}`, h('span.muted.small', ` · ${u.minutos} min`))))) : null,
       h('div.plan-dia.examen', h('h3', `🏁 Examen: ${fecha(plan.fechaExamen)}`)),
       pasados.length ? h('details.plan-pasados', h('summary', `Días pasados (${pasados.length})`),
         pasados.map(([f, xs]) => h('div.plan-dia', h('h3', fecha(f)),

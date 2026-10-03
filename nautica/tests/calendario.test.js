@@ -32,6 +32,9 @@ test('repartir: si no cabe, dice cuántos minutos al día hacen falta', () => {
   assert.equal(r.llega, false);
   assert.equal(r.minutosNecesarios, 50); // 5 clases en 1 día (los otros 3 son de simulacros)
   assert.equal(r.dias.length, 4);
+  // Respeta los 10 minutos: cabe una clase y las otras 4 se quedan fuera, sin estirar el día.
+  assert.ok(r.dias.every((d) => d.unidades.every((u) => u.tipo === 'simulacro') || d.minutos <= 10));
+  assert.deepEqual(r.fuera.map((u) => u.id), ['clase:a2', 'clase:a3', 'clase:b1', 'clase:b2']);
 });
 
 test('plan base y seguimiento: al día, atrasado y recuperado', () => {
@@ -51,7 +54,8 @@ test('plan base y seguimiento: al día, atrasado y recuperado', () => {
   assert.equal(s.estado, 'atrasado');
   assert.deepEqual(s.atrasadas.map((u) => u.id), ['clase:a1', 'clase:a2']);
   assert.deepEqual(s.hoy.map((u) => u.id), ['clase:a1', 'clase:a2']);
-  assert.match(lineaSeguimiento(s), /Te has saltado 2 clases del plan: hoy toca recuperarlas/);
+  assert.equal(s.minutosAtraso, 20);
+  assert.match(lineaSeguimiento(s, 20), /^Vas unos 20 minutos por detrás \(2 clases\): hoy empieza por recuperarlo/);
 
   // Recuperadas: vuelve a estar al día y hoy le toca lo del martes.
   s = seguimiento(plan, { ...datos, regs: { a1: visto, a2: visto } }, { ahora: T0 + DIA });
@@ -65,11 +69,21 @@ test('seguimiento: si ya no cabe, dice los minutos que hacen falta', () => {
   const s = seguimiento(plan, datos, { ahora: T0 + 2 * DIA }); // miércoles: quedan 4 días y no ha hecho nada
   assert.equal(s.estado, 'no-llega');
   assert.ok(s.futuro.minutosNecesarios > 20);
-  assert.match(lineaSeguimiento(s), /necesitas unos \d+ minutos al día/);
+  const txt = lineaSeguimiento(s, 20);
+  assert.match(txt, /^Con 20 minutos al día no te da tiempo: se quedarían fuera .*Para llegar, unos \d+ minutos al día\.$/);
+  assert.doesNotMatch(txt, /saltado/);
 });
 
 test('sin fecha o con el examen pasado no hay calendario', () => {
   assert.equal(crearPlan(datos, { fechaExamen: null, minutosDia: 20, ahora: T0 }), null);
   assert.equal(crearPlan(datos, { fechaExamen: '2026-10-05', minutosDia: 20, ahora: T0 }), null);
   assert.equal(sumaDiasISO('2026-10-24', 2), '2026-10-26'); // cruza el cambio de hora
+});
+
+test('describir y duracion: en palabras, sin «cosas»', async () => {
+  const { describir, duracion } = await import('../src/course/calendario.js');
+  assert.equal(describir([{ tipo: 'clase' }, { tipo: 'clase' }, { tipo: 'tanda' }]), '2 clases y 1 tanda de preguntas');
+  assert.equal(describir([{ tipo: 'simulacro' }]), '1 simulacro');
+  assert.equal(duracion(80), 'unos 80 minutos');
+  assert.equal(duracion(290), 'unas 4,8 horas');
 });

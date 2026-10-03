@@ -9,7 +9,7 @@ import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
-import { planConSeguimiento } from '../plan-estudio.js';
+import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
 import { lineaSeguimiento } from '../../course/calendario.js';
 
 export function saludo(fecha = new Date()) {
@@ -55,8 +55,9 @@ export function hoyView({ progress, tit }) {
     // Con fecha de examen manda el calendario (¿vas al día con tu plan?); sin ella, el ritmo general.
     const ps = planConSeguimiento(progress, tit, d);
     const ritmo = ps
-      ? h('p.ritmo', { class: ps.seg.estado === 'al-dia' || ps.seg.estado === 'terminado' ? '' : 'warn' },
-        ps.seg.estado === 'al-dia' ? '📅 ' : ps.seg.estado === 'terminado' ? '🏁 ' : '⚠️ ', lineaSeguimiento(ps.seg), ' ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan'))
+      ? h('div.ritmo', { class: marcaEstado(ps.seg.estado)[1] },
+        h('p', marcaEstado(ps.seg.estado)[0], lineaSeguimiento(ps.seg, ps.plan.minutosDia), ' ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan')),
+        botonSubirMinutos(progress, ps.seg, () => window.dispatchEvent(new HashChangeEvent('hashchange'))))
       : h('p.ritmo', { class: r.llega === false ? 'warn' : '' }, r.llega === false ? '⚠️ ' : '', lineaRitmo(r, objetivo, fecha),
         ' ', h('a', { href: '#/ajustes' }, 'Cambiar'));
 
@@ -84,7 +85,7 @@ export function hoyView({ progress, tit }) {
     const tarjetasHoy = tarjetasPorRepasar(mazos(tit), d.respuestas).length;
     summaryText = `VISTA hoy ${T.sigla}\n${plan.map((x, i) => `${i ? 'DESPUÉS' : 'HOY TOCA'}: ${x.tipo} «${x.titulo}» ~${x.minutos} min → ${hrefActividad(tit, x)}`).join('\n')}` +
       `\nRITMO: ${lineaRitmo(r, objetivo, fecha)} (pendiente ${r.minutosPendientes} min: clases ${r.desglose.clases}, preguntas ${r.desglose.preguntas}, simulacros ${r.desglose.simulacros})` +
-      (ps ? `\nPLAN: ${lineaSeguimiento(ps.seg)} → ${tlink(tit, ['plan'])}` : '') +
+      (ps ? `\nPLAN: ${lineaSeguimiento(ps.seg, ps.plan.minutosDia)} → ${tlink(tit, ['plan'])}` : '') +
       `\nLISTO: ${lineaListo(listo)}${listo.prob != null ? ` (p=${listo.prob.toFixed(2)})` : ''}` +
       `\nREPASO: ${cola.hoy.length} preguntas tocan hoy (${cola.total} en la cola) → ${tlink(tit, ['teoria', 'repaso'])} · 5 minutos → ${tlink(tit, ['teoria', 'rapido'])}` +
       `\nAVANCE: ${a.temasAlDia}/${a.temasTotal} temas al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${racha} días`;

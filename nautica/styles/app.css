@@ -485,6 +485,8 @@ select { min-height: 44px; }
 .ichart select, .workspace select, .protractor-bar select { min-height: 0; }
 .method-card h3 a { display: inline-flex; align-items: center; min-height: 44px; }
 /* Hoy: ¿llego a tiempo? */
+.hoy .ritmo p { margin: 0; }
+.ritmo .subir-minutos { margin-top: .5rem; }
 .hoy .ritmo { margin: 0 0 .8rem; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
 .hoy .ritmo.warn { background: transparent; border: 2px solid var(--warn); color: var(--text); }
 .hoy .ritmo a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
@@ -656,5 +658,12 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .plan-recuperar { border: 2px solid var(--warn); border-radius: var(--radius); padding: .4rem .8rem; margin: .8rem 0; }
 .plan-recuperar h2 { margin: .2rem 0; font-size: 1.1rem; }
 .plan-pasados { margin: 1rem 0; }
+.plan-estudio .ritmo p { margin: 0; }
+.plan-fuera { border: 2px dashed var(--warn); border-radius: var(--radius); padding: .4rem .8rem; margin: .6rem 0; }
+.plan-fuera summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; cursor: pointer; }
 .plan-pasados summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; cursor: pointer; }
 .plan-acciones { margin: 1.4rem 0; }
+
+.mas .ritmo { margin: .8rem 0; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
+.mas .ritmo.warn { background: transparent; border: 2px solid var(--warn); }
+.mas .ritmo p { margin: 0; }

@@ -62,10 +62,10 @@ function llenar(us, cap) {
 }
 
 /**
- * Reparte las unidades pendientes entre `desde` y la víspera del examen (`dias` días). Los simulacros van uno por día
- * al final; el resto, en orden, con `minutosDia` al día. Si no cabe, se calcula el mínimo al día que hace falta
- * (múltiplo de 5) y se reparte con él.
- * @returns {{ dias: { fecha, unidades, minutos }[], llega: boolean, minutosNecesarios: number }}
+ * Reparte las unidades pendientes entre `desde` y la víspera del examen (`dias` días), siempre con `minutosDia` al
+ * día. Los simulacros van uno por día al final; el resto, en orden. Lo que no cabe se devuelve en `fuera` (no se
+ * estira el día por su cuenta) y `minutosNecesarios` dice con cuántos minutos al día cabría todo (múltiplo de 5).
+ * @returns {{ dias: { fecha, unidades, minutos }[], fuera: object[], llega: boolean, minutosNecesarios: number }}
  */
 export function repartir(pendientes, { desde, dias, minutosDia }) {
   const md = Math.max(5, minutosDia);
@@ -75,20 +75,36 @@ export function repartir(pendientes, { desde, dias, minutosDia }) {
   // Días para los simulacros al final, dejando al menos uno para el resto si hay resto.
   const nSim = Math.min(sim.length, resto.length ? n - 1 : n);
   const nResto = n - nSim;
-  let cap = md;
-  if (resto.length && llenar(resto, cap).length > nResto) {
+  // Minutos al día con los que cabría todo.
+  let necesarios = md;
+  if (resto.length && llenar(resto, necesarios).length > nResto) {
     const total = resto.reduce((s, u) => s + u.minutos, 0);
-    cap = Math.ceil(total / nResto / 5) * 5;
-    while (llenar(resto, cap).length > nResto) cap += 5;
+    necesarios = Math.ceil(total / nResto / 5) * 5;
+    while (llenar(resto, necesarios).length > nResto) necesarios += 5;
   }
-  const llega = cap === md && sim.length <= nSim;
-  const bloques = [...llenar(resto, cap)];
+  const llenos = llenar(resto, md);
+  const bloques = llenos.slice(0, nResto);
+  const fuera = llenos.slice(nResto).flatMap((d) => d.unidades);
   while (bloques.length < nResto) bloques.push({ unidades: [], minutos: 0 });
-  // Simulacros: uno por día; si hay más simulacros que días, los que sobran se juntan en el último.
+  // Simulacros: uno por día; los que no tienen día se quedan fuera.
   const simDias = Array.from({ length: nSim }, () => ({ unidades: [], minutos: 0 }));
-  sim.forEach((u, i) => { const d = simDias[Math.min(i, nSim - 1)] ?? bloques[bloques.length - 1]; d.unidades.push(u); d.minutos += u.minutos; });
+  sim.forEach((u, i) => { if (i < nSim) { simDias[i].unidades.push(u); simDias[i].minutos += u.minutos; } else fuera.push(u); });
   const todos = [...bloques, ...simDias];
-  return { dias: todos.map((d, i) => ({ fecha: sumaDiasISO(desde, i), ...d })), llega, minutosNecesarios: cap };
+  return { dias: todos.map((d, i) => ({ fecha: sumaDiasISO(desde, i), ...d })), fuera, llega: !fuera.length, minutosNecesarios: necesarios };
+}
+
+/** «3 clases y 2 tandas de preguntas»: qué hay en una lista de unidades, en palabras. */
+export function describir(us) {
+  const n = (t) => us.filter((u) => u.tipo === t).length;
+  const partes = [[n('clase'), 'clase', 'clases'], [n('tanda'), 'tanda de preguntas', 'tandas de preguntas'], [n('simulacro'), 'simulacro', 'simulacros']]
+    .filter(([k]) => k).map(([k, uno, varios]) => `${k} ${k === 1 ? uno : varios}`);
+  return partes.length > 1 ? `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}` : (partes[0] ?? 'nada');
+}
+
+/** Minutos → «unos 80 minutos» o «unas 4,5 horas». */
+export function duracion(min) {
+  if (min < 90) return `unos ${Math.round(min / 5) * 5} minutos`;
+  return `unas ${String(Math.round(min / 6) / 10).replace('.', ',')} horas`;
 }
 
 /** Días de estudio que quedan: de hoy a la víspera del examen (null sin fecha o con el examen pasado). */
@@ -129,10 +145,11 @@ export function seguimiento(plan, datos, { ahora = Date.now() } = {}) {
   const ids = new Set(atrasadas.map((u) => u.id));
   const orden = [...atrasadas.map((u) => porId.get(u.id)), ...pendientes.filter((u) => !ids.has(u.id))];
   const n = diasDeEstudio(plan.fechaExamen, ahora);
-  const futuro = n ? repartir(orden, { desde: hoy, dias: n, minutosDia: plan.minutosDia }) : { dias: [], llega: !pendientes.length, minutosNecesarios: plan.minutosDia };
+  const futuro = n ? repartir(orden, { desde: hoy, dias: n, minutosDia: plan.minutosDia }) : { dias: [], fuera: pendientes, llega: !pendientes.length, minutosNecesarios: plan.minutosDia };
   const estado = !pendientes.length ? 'terminado' : !futuro.llega ? 'no-llega' : atrasadas.length ? 'atrasado' : 'al-dia';
   return {
     atrasadas,
+    minutosAtraso: atrasadas.reduce((t, u) => t + u.minutos, 0),
     hoy: futuro.dias[0]?.fecha === hoy ? futuro.dias[0].unidades : [],
     futuro,
     hechasDelPlan: delPlan.filter((x) => hecha(x.id)).length,
@@ -141,15 +158,18 @@ export function seguimiento(plan, datos, { ahora = Date.now() } = {}) {
   };
 }
 
-/** El seguimiento en una frase, para «Hoy». */
-export function lineaSeguimiento(s) {
-  const n = s.atrasadas.length;
-  const clases = s.atrasadas.filter((u) => u.tipo === 'clase').length;
-  const que = clases === n ? (n === 1 ? '1 clase' : `${n} clases`) : (n === 1 ? '1 cosa' : `${n} cosas`);
+/**
+ * El seguimiento en una frase, para «Hoy». Si no da tiempo no se habla de culpas («te has saltado»): se dice cuánto
+ * falta y con cuántos minutos al día se llega; el retraso se cuenta en tiempo, no en «cosas».
+ */
+export function lineaSeguimiento(s, minutosDia) {
   const hoyMin = s.hoy.reduce((t, u) => t + u.minutos, 0);
-  const deHoy = s.hoy.length ? ` Hoy te tocan ${s.hoy.length} (unos ${hoyMin} minutos).` : '';
+  const deHoy = s.hoy.length ? ` Hoy te tocan ${describir(s.hoy)} (${duracion(hoyMin)}).` : '';
   if (s.estado === 'terminado') return 'Has terminado tu plan: ahora, simulacros y repasar tus fallos.';
-  if (s.estado === 'no-llega') return `${n ? `Te has saltado ${que} del plan y` : 'Con lo que te queda'} no llegas con tus minutos: para llegar al examen necesitas unos ${s.futuro.minutosNecesarios} minutos al día.`;
-  if (s.estado === 'atrasado') return `Te has saltado ${que} del plan: hoy toca recuperar${n === 1 ? 'la' : 'las'} para que te dé tiempo.${deHoy}`;
+  if (s.estado === 'no-llega') {
+    const falta = s.futuro.fuera.reduce((t, u) => t + u.minutos, 0);
+    return `Con ${minutosDia} minutos al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}). Para llegar, unos ${s.futuro.minutosNecesarios} minutos al día.`;
+  }
+  if (s.estado === 'atrasado') return `Vas ${duracion(s.minutosAtraso)} por detrás (${describir(s.atrasadas)}): hoy empieza por recuperarlo y llegas a tiempo.${deHoy}`;
   return `Vas al día con tu plan.${deHoy}`;
 }

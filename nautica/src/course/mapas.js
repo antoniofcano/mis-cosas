@@ -2,7 +2,7 @@
 // («se calcula con», «+ Ct»…) y las de tipo «confunde» avisan de las trampas del examen. Funciones puras.
 // Los mapas están en data/mapas/<id>.json; MAPAS dice cuáles hay.
 
-export const MAPAS = ['rumbos', 'meteo'];
+export const MAPAS = ['rumbos', 'balizamiento', 'ripa-maniobras', 'meteo', 'corriente-abatimiento'];
 
 const porId = (mapa) => new Map(mapa.nodos.map((n) => [n.id, n]));
 const relaciones = (mapa) => mapa.aristas.filter((a) => a.tipo !== 'confunde');

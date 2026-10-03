@@ -1,0 +1,293 @@
+{
+ "id": "ripa-maniobras",
+ "titulo": "RIPA: quién se aparta",
+ "tits": [
+  "per"
+ ],
+ "intro": "Los tipos de buque y su escalera de la Regla 18, el riesgo de abordaje, las tres situaciones (alcance, vuelta encontrada y cruce), qué hace el que cede el paso y el que sigue a rumbo, y qué cambia cuando no os veis.",
+ "nodos": [
+  {
+   "id": "motor",
+   "nombre": "Propulsión mecánica",
+   "corto": "El que va propulsado por una máquina. Se aparta del sin gobierno, del de maniobra restringida, del pesquero y del velero.",
+   "spec": {
+    "tipo": "ripa-definiciones",
+    "vista": "vela-motor",
+    "resaltar": "motor"
+   },
+   "clase": "per-6-1",
+   "x": 1,
+   "y": 0
+  },
+  {
+   "id": "vela",
+   "nombre": "Buque de vela",
+   "corto": "El que navega a vela sin usar su motor. Se aparta del sin gobierno, del de maniobra restringida y del pesquero.",
+   "spec": {
+    "tipo": "ripa-definiciones",
+    "vista": "vela-motor",
+    "resaltar": "vela"
+   },
+   "clase": "per-6-1",
+   "x": 1.6,
+   "y": 1.8
+  },
+  {
+   "id": "pesca",
+   "nombre": "Dedicado a la pesca",
+   "corto": "Pesca con redes, líneas o arrastre que le restringen la maniobra (no con curricán). En lo posible, se aparta del sin gobierno y del de maniobra restringida.",
+   "spec": {
+    "tipo": "ripa-definiciones",
+    "vista": "categorias",
+    "resaltar": "pesca"
+   },
+   "clase": "per-6-1",
+   "x": 1.6,
+   "y": 3
+  },
+  {
+   "id": "nuc",
+   "nombre": "Sin gobierno",
+   "corto": "No puede maniobrar por una circunstancia excepcional (una avería). Está arriba de la escalera.",
+   "spec": {
+    "tipo": "ripa-definiciones",
+    "vista": "categorias",
+    "resaltar": "sin-gobierno"
+   },
+   "clase": "per-6-1",
+   "x": 0.2,
+   "y": 4.2
+  },
+  {
+   "id": "ram",
+   "nombre": "Maniobra restringida",
+   "corto": "No puede apartarse por la naturaleza de su trabajo: dragados, boyas o cables, trabajos hidrográficos, aprovisionamiento en navegación…",
+   "spec": {
+    "tipo": "ripa-definiciones",
+    "vista": "categorias",
+    "resaltar": "maniobra-restringida"
+   },
+   "clase": "per-6-1",
+   "x": 1.6,
+   "y": 4.6
+  },
+  {
+   "id": "calado",
+   "nombre": "Restringido por su calado",
+   "corto": "De propulsión mecánica, muy limitado por su calado frente al agua navegable. No se le «cede el paso»: los demás (salvo sin gobierno y maniobra restringida) evitan estorbarle.",
+   "spec": {
+    "tipo": "ripa-definiciones",
+    "vista": "categorias",
+    "resaltar": "calado"
+   },
+   "clase": "per-6-1",
+   "x": 3,
+   "y": 4.2
+  },
+  {
+   "id": "veleros",
+   "nombre": "Dos veleros",
+   "corto": "Manda el viento: por bandas contrarias, cede el amurado a babor; por la misma banda, cede el de barlovento.",
+   "spec": {
+    "tipo": "cruce",
+    "situacion": "vela-amuras"
+   },
+   "clase": "per-6-5",
+   "x": 0.2,
+   "y": 2.6
+  },
+  {
+   "id": "riesgo",
+   "nombre": "Riesgo de abordaje",
+   "corto": "Si la demora no varía de forma apreciable, hay riesgo. Con un buque grande, un remolque o muy cerca, puede haberlo aunque cambie. Ante la duda, existe.",
+   "spec": {
+    "tipo": "riesgo",
+    "caso": "comparar"
+   },
+   "clase": "per-6-2",
+   "x": 3,
+   "y": 0
+  },
+  {
+   "id": "vuelta",
+   "nombre": "Vuelta encontrada",
+   "corto": "Dos buques de motor a rumbos opuestos o casi: los dos caen a estribor y se pasan babor con babor. En caso de duda, lo es.",
+   "spec": {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   },
+   "clase": "per-6-4",
+   "x": 0,
+   "y": 1.2
+  },
+  {
+   "id": "alcance",
+   "nombre": "Alcance",
+   "corto": "Llegas desde más de 22,5° a popa de su través (más de 112,5° de su proa): de noche solo le ves la luz de alcance. En caso de duda, alcanzas.",
+   "spec": {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   },
+   "clase": "per-6-4",
+   "x": 2.6,
+   "y": 1.4
+  },
+  {
+   "id": "cruce",
+   "nombre": "Cruce",
+   "corto": "Dos buques de motor que se cruzan: cede el que tiene al otro por su estribor (le ve la roja) y evita cortarle la proa.",
+   "spec": {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   },
+   "clase": "per-6-4",
+   "x": 3.7,
+   "y": 1.8
+  },
+  {
+   "id": "cede",
+   "nombre": "Cede el paso",
+   "corto": "Maniobra pronto y de forma decidida para quedar bien franco: un cambio amplio, nunca una sucesión de pequeños retoques.",
+   "spec": {
+    "tipo": "jerarquia"
+   },
+   "clase": "per-6-4",
+   "x": 2.8,
+   "y": 2.8
+  },
+  {
+   "id": "sigue",
+   "nombre": "Sigue a rumbo",
+   "corto": "Mantiene rumbo y velocidad. Puede maniobrar si el otro no actúa; debe hacerlo si el abordaje ya no se evita solo con la maniobra del otro. No lo decide el tonelaje.",
+   "spec": {
+    "tipo": "cruce",
+    "situacion": "cruce",
+    "aspecto": 60
+   },
+   "clase": "per-6-4",
+   "x": 4.2,
+   "y": 3.6
+  },
+  {
+   "id": "niebla",
+   "nombre": "Visibilidad reducida",
+   "corto": "Sin veros, rigen las Reglas 4 a 10 y la 19. Eco a proa del través: no caigas a babor. Señal de niebla oída a proa del través: mínima de gobierno.",
+   "spec": {
+    "tipo": "sonido",
+    "senal": "-",
+    "texto": "Señal de niebla oída por la proa"
+   },
+   "clase": "per-6-6",
+   "x": 4.5,
+   "y": 0.6
+  }
+ ],
+ "aristas": [
+  {
+   "de": "motor",
+   "a": "vela",
+   "rel": "le cede, aun de proa"
+  },
+  {
+   "de": "motor",
+   "a": "vuelta",
+   "rel": "de proa con otro de motor"
+  },
+  {
+   "de": "vela",
+   "a": "pesca",
+   "rel": "cede al que faena"
+  },
+  {
+   "de": "vela",
+   "a": "veleros",
+   "rel": "frente a otro velero"
+  },
+  {
+   "de": "pesca",
+   "a": "nuc",
+   "rel": "cede al averiado"
+  },
+  {
+   "de": "pesca",
+   "a": "ram",
+   "rel": "cede al que trabaja"
+  },
+  {
+   "de": "pesca",
+   "a": "calado",
+   "rel": "evita estorbarle"
+  },
+  {
+   "de": "riesgo",
+   "a": "alcance",
+   "rel": "llega por popa"
+  },
+  {
+   "de": "riesgo",
+   "a": "cruce",
+   "rel": "ni por popa ni de proa"
+  },
+  {
+   "de": "riesgo",
+   "a": "niebla",
+   "rel": "sin verse: radar"
+  },
+  {
+   "de": "alcance",
+   "a": "cede",
+   "rel": "el que alcanza"
+  },
+  {
+   "de": "cruce",
+   "a": "cede",
+   "rel": "lo ve por estribor"
+  },
+  {
+   "de": "cruce",
+   "a": "sigue",
+   "rel": "lo ve por babor"
+  },
+  {
+   "de": "cede",
+   "a": "sigue",
+   "rel": "si no actúa, maniobra"
+  },
+  {
+   "de": "motor",
+   "a": "vela",
+   "rel": "Velero con las velas izadas y el motor en marcha = propulsión mecánica (de día, cono con el vértice abajo). Decide la máquina, no el aparejo.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "alcance",
+   "a": "vela",
+   "rel": "El alcance manda sobre la escalera: si un velero alcanza a un buque de motor, se aparta el velero.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "nuc",
+   "a": "ram",
+   "rel": "Sin gobierno = por avería; maniobra restringida = por su trabajo. Entre ellos el RIPA no dice quién se aparta: mismo nivel.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "pesca",
+   "a": "ram",
+   "rel": "Pescar no es «maniobra restringida»: es otra categoría, y el pesquero se aparta (en lo posible) del de maniobra restringida.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "veleros",
+   "a": "vuelta",
+   "rel": "Dos veleros proa con proa no hacen vuelta encontrada (solo es entre buques de motor): manda el viento.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "niebla",
+   "a": "sigue",
+   "rel": "En niebla, sin verse, nadie sigue a rumbo: no hay alcance, cruce ni vuelta encontrada; cada buque maniobra.",
+   "tipo": "confunde"
+  }
+ ]
+}

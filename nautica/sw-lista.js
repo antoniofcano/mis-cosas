@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'a7a5f4d5c0f1';
+self.VERSION = '0cca1ec6ca5f';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -202,6 +202,9 @@ self.DATOS = [
  "data/exams/mnemotecnias.json",
  "data/exams/vocabulario-per.json",
  "data/exams/vocabulario-py.json",
+ "data/mapas/balizamiento.json",
+ "data/mapas/corriente-abatimiento.json",
  "data/mapas/meteo.json",
+ "data/mapas/ripa-maniobras.json",
  "data/mapas/rumbos.json"
 ];

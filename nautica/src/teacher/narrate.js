@@ -1,4 +1,4 @@
-// Motor «profe»: compone la explicación de academia de una solución completa.
+// Motor «profe»: compone la explicación del profe de una solución completa.
 // Une el paso calculado (los números exactos del ejercicio) con la lección del tipo de paso
 // (qué hacemos, por qué, truco y error típico) y produce dos versiones: para leer y para la voz.
 

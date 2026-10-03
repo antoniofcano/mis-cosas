@@ -148,13 +148,16 @@ export function hombreAlAguaIllustration(spec) {
 // ---------------------------------------------------------------------------
 // Fuego. spec: { tipo:'fuego', vista:'tetraedro'|'clases' }
 
+/** Clases de fuego: letra, qué arde y color de la lámina. Lo usan la lámina y las tarjetas de memoria. */
+export const CLASES_FUEGO = [['A', 'Sólidos (madera, tela, papel)', '#16a34a'], ['B', 'Líquidos (combustible, pintura)', '#dc2626'], ['C', 'Gases (butano, propano)', '#2563eb'], ['D', 'Metales', '#d97706'], ['F', 'Aceites de cocina', '#7c3aed']];
+
 export function fuegoIllustration(spec) {
   const W = 320;
   const H = 240;
   const out = open(W, H, 'Fuego', 'fu');
   if ((spec.vista ?? 'tetraedro') === 'clases') {
     out.push(title(160, 'Clases de fuego'));
-    const rows = [['A', 'Sólidos (madera, tela, papel)', '#16a34a'], ['B', 'Líquidos (combustible, pintura)', '#dc2626'], ['C', 'Gases (butano, propano)', '#2563eb'], ['D', 'Metales', '#d97706'], ['F', 'Aceites de cocina', '#7c3aed']];
+    const rows = CLASES_FUEGO;
     rows.forEach(([k, t, c], i) => {
       const y = 50 + i * 36;
       out.push(`<rect x="24" y="${y - 18}" width="30" height="26" rx="5" fill="${c}"/><text x="39" y="${y}" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">${k}</text>`, lbl(66, y - 2, t, null, 'start', 'font-size="12"'));

@@ -10,6 +10,7 @@ export function bibliotecaView({ tit }) {
   const recursos = [
     [tlink(tit, ['laminas']), '🎞️ Láminas', 'Boyas con su luz, luces y marcas de buques, maniobra, meteorología… muchas se mueven y se tocan.'],
     [tlink(tit, ['carta']), '🗺️ Ejercicios de carta y cálculo', 'Problemas de carta, mareas, hora y viento aparente con datos nuevos cada vez: lo resuelves, se corrige y el profe te lo explica paso a paso.'],
+    [tlink(tit, ['tarjetas']), '🃏 Tarjetas de memoria', 'Luces, boyas, señales, banderas, escalas… Para lo que solo se aprende repitiendo.'],
     [link(['reglas']), '🧠 Reglas para recordar', 'Las que de verdad funcionan, con su explicación.'],
     [link(['conceptos']), '📘 Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],
     [link(['mesa']), '🧰 Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador, para trazar a tu aire.'],

@@ -4,6 +4,7 @@ import { h, setChildren } from '../dom.js';
 import { avance, diasHasta, lineaAvance, ritmoEstudio } from '../../course/plan.js';
 import { estoyListo, lineaListo } from '../../course/listo.js';
 import { colaRepaso } from '../../course/repaso.js';
+import { mazos, tarjetasPorRepasar } from '../../course/tarjetas.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
@@ -73,6 +74,7 @@ export function hoyView({ progress, tit }) {
 
     const resto = plan.slice(1);
     const cola = colaRepaso(d.preguntas, d.respuestas);
+    const tarjetasHoy = tarjetasPorRepasar(mazos(tit), d.respuestas).length;
     summaryText = `VISTA hoy ${T.sigla}\n${plan.map((x, i) => `${i ? 'DESPUÉS' : 'HOY TOCA'}: ${x.tipo} «${x.titulo}» ~${x.minutos} min → ${hrefActividad(tit, x)}`).join('\n')}` +
       `\nRITMO: ${lineaRitmo(r, objetivo, fecha)} (pendiente ${r.minutosPendientes} min: clases ${r.desglose.clases}, preguntas ${r.desglose.preguntas}, simulacros ${r.desglose.simulacros})` +
       `\nLISTO: ${lineaListo(listo)}${listo.prob != null ? ` (p=${listo.prob.toFixed(2)})` : ''}` +
@@ -83,6 +85,7 @@ export function hoyView({ progress, tit }) {
     const enPlan = plan.some((x) => x.tipo === 'fallos');
     const lineaRepaso = h('p.linea-repaso',
       cola.hoy.length && !enPlan ? [h('a', { href: tlink(tit, ['teoria', 'repaso']) }, `🔁 Tienes ${cola.hoy.length} ${cola.hoy.length === 1 ? 'pregunta' : 'preguntas'} por repasar`), ' · '] : null,
+      tarjetasHoy ? [h('a', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🃏 ${tarjetasHoy} ${tarjetasHoy === 1 ? 'tarjeta' : 'tarjetas'}`), ' · '] : null,
       h('a', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
     setChildren(el,
       cabecera,

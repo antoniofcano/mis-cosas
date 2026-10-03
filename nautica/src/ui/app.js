@@ -24,6 +24,7 @@ import { leccionView } from './views/curso.js';
 import { temarioView, temaView } from './views/temario.js';
 import { masView } from './views/mas.js';
 import { bibliotecaView } from './views/biblioteca.js';
+import { tarjetasView } from './views/tarjetas.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
@@ -34,6 +35,7 @@ const TIT_ROUTES = {
   curso: leccionView, // #/<tit>/curso/<id> (sin id redirige al temario)
   laminas: galleryView,
   biblioteca: bibliotecaView,
+  tarjetas: tarjetasView,
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
@@ -90,7 +92,7 @@ function esFoco(parts) {
   if (parts[0] === 'bienvenida') return true;
   if (!TITULACIONES[parts[0]]) return false;
   const [, b, c] = parts;
-  return (b === 'curso' && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test';
+  return (b === 'curso' && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c);
 }
 
 /** Misma sección en la otra titulación (una clase o un tema concreto no existen en la otra: se va a su apartado). */

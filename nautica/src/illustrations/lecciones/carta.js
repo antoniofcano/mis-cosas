@@ -313,7 +313,7 @@ function tangente(spec = {}) {
 // 4. GNSS: las siglas de una ruta entre dos waypoints (py-3-9). spec: { tipo:'gnss', resaltar? }
 // Cifras de la lección: DTG 18,0 M, SOG 6,0 kn a las 10:20 → TTG 3 h, ETA 13:20; XTE 0,05 R; COG a 20° del BRG → VMG 5,6 kn.
 
-const SIGLAS_GNSS = {
+export const SIGLAS_GNSS = {
   wpt: 'WPT: punto de ruta, de destino o de paso.',
   xte: 'XTE: error transversal, la distancia a la línea recta entre el WPT de salida y el de llegada, con su banda.',
   brg: 'BRG: demora desde tu posición al WPT.',

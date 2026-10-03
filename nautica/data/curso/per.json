@@ -1372,6 +1372,14 @@
        "texto": "La sonda de la carta es la del cero hidrográfico: el agua real es esa sonda más la marea del momento. Al fondear, piensa en lo que habrá en la bajamar."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tenedero",
+        "vista": "elegir"
+       },
+       "texto": "Los seis factores que se valoran a la vez antes de fondear: ninguno decide solo."
+      },
+      {
        "tipo": "texto",
        "titulo": "El fondo: mejor llano",
        "texto": "Busca un fondo **sin gran pendiente**. Si el fondo cae bruscamente de poca a mucha sonda, cuando el ancla trabaja tiende a resbalar cuesta abajo, hacia el agua profunda, y pierde agarre. Además la cadena queda con peor ángulo.\n\nY respeta el entorno: en el Mediterráneo español está prohibido, con carácter general, fondear sobre las praderas de **posidonia** (y de *Cymodocea*), e incluso en la arena de al lado si la cadena las toca o las barre al bornear. Si quieres quedarte sobre ellas, usa una boya autorizada."
@@ -1380,6 +1388,14 @@
        "tipo": "texto",
        "titulo": "Los tenederos, de mejor a peor",
        "texto": "- **Buenos**: **arena** compacta y **fango duro**. El ancla se entierra y agarra.\n- **Regulares**: **arcilla** (agarra, pero dura es resbaladiza y se pega a las uñas del ancla) y **cascajo** (grava, piedrecillas y conchas: el ancla se clava mal).\n- **Malos**: **fango blando** (el ancla se hunde sin encontrar resistencia), **algas** (el ancla no llega al fondo) y **piedra** (no se clava y puede quedar enrocada).\n\nPara saber qué fondo tienes: la carta lo indica con abreviaturas, y antiguamente se usaba el **escandallo**, un plomo con sebo que recoge una muestra."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tenedero",
+        "vista": "fondos"
+       },
+       "texto": "Arena y fango duro, sí; fango blando, algas y piedra, no."
       },
       {
        "tipo": "clave",
@@ -1498,6 +1514,14 @@
        "texto": "1. Prepara: mira la carta y el parte, y deja el ancla **a la pendura** (colgando, lista para largar).\n2. En el molinete, **aprieta el freno y desembraga**: el ancla queda sujeta solo por el freno.\n3. Llega despacio, **proa al viento o a la corriente**, vigilando la sonda.\n4. Con el barco parado, voz de **«¡fondo!»** y aflojas el freno: la cadena sale por su peso y tú **controlas la velocidad con el freno**.\n5. Mientras el barco cae hacia atrás (o das atrás muy suave), sigues **filando** cadena para que se tienda por el fondo y no caiga amontonada sobre el ancla.\n6. Haces firme la cadena y compruebas que el ancla agarra."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo-gira",
+        "vista": "maniobra"
+       },
+       "texto": "Los seis pasos de la maniobra, con el molinete frenado y desembragado antes de largar."
+      },
+      {
        "tipo": "ojo",
        "texto": "Antes de fondear: **freno puesto y desembragar**, y luego dosificar con el freno. Soltar freno y desembrague sin control deja la cadena disparada. Y si te preguntan cómo **levar**: **embragar y dejar libre el freno**. No mezcles las dos secuencias."
       },
@@ -1514,6 +1538,14 @@
        "tipo": "texto",
        "titulo": "Comprobar que agarra",
        "texto": "Con la cadena filada, da **atrás suave** con el motor: si la cadena se tensa y el barco se queda quieto, el ancla ha agarrado. Toma enseguida **referencias en tierra** (dos objetos que veas alineados, o demoras) o activa la **alarma de fondeo** del GPS: te servirán para vigilar el fondeo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "fondeo-gira",
+        "vista": "cadena"
+       },
+       "texto": "3 veces la profundidad con buen tiempo, 5 o más con malo; y atrás suave para ver si agarra."
       },
       {
        "tipo": "texto",
@@ -2140,14 +2172,10 @@
       {
        "tipo": "ilustracion",
        "spec": {
-        "tipo": "barco",
-        "resaltar": [
-         "amura",
-         "aleta",
-         "traves"
-        ]
+        "tipo": "capear-correr",
+        "vista": "rumbos"
        },
-       "texto": "Amura (capear), aleta (correr) y través: el lado por el que nunca quieres recibir la mar gruesa."
+       "texto": "Capear por la amura con poca máquina, correr por la aleta o la popa, y nunca recibir la mar por el través."
       },
       {
        "tipo": "texto",
@@ -2163,6 +2191,14 @@
        "tipo": "texto",
        "titulo": "La costa, a barlovento",
        "texto": "Con mal tiempo, la costa peligrosa es la que tienes **a sotavento**: viento y mar te empujan hacia ella, y cualquier avería te lleva contra las rocas. Aléjate de ella y busca mar abierta.\n\nLo recomendable es **dejar la costa a barlovento**: que el viento venga de tierra hacia ti, de modo que te aleje de ella y la tierra te dé abrigo. Planifica la derrota hacia un puerto de abrigo seguro y no navegues pegado a la costa y a sus peligros."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "capear-correr",
+        "vista": "costa"
+       },
+       "texto": "La costa peligrosa es la de sotavento; la de barlovento te aleja y te da abrigo."
       },
       {
        "tipo": "regla",
@@ -4828,12 +4864,10 @@
       {
        "tipo": "ilustracion",
        "spec": {
-        "tipo": "buque",
-        "clase": "vela-motor",
-        "vista": "proa",
-        "dia": true
+        "tipo": "ripa-definiciones",
+        "vista": "vela-motor"
        },
-       "texto": "Velero navegando también a motor: de día, cono con el vértice hacia abajo; de noche, luces de buque de motor."
+       "texto": "El mismo velero con las velas izadas es buque de vela o de propulsión mecánica según lleve el motor parado o en marcha."
       },
       {
        "tipo": "texto",
@@ -4848,6 +4882,14 @@
        "tipo": "texto",
        "titulo": "Calado, navegación, a la vista y visibilidad",
        "texto": "- **Restringido por su calado**: buque de propulsión mecánica muy limitado para apartarse por su calado en relación con la profundidad y la anchura del agua navegable.\n- **En navegación**: el que **no está fondeado, ni amarrado a tierra, ni varado**. Una lancha a la deriva con la máquina desembragada está en navegación.\n- **A la vista**: solo cuando uno puede ser **observado visualmente** desde el otro. Verlo en el radar no cuenta.\n- **Visibilidad reducida**: la disminuida por **niebla, bruma, nieve, fuertes aguaceros, tormentas de arena** u otras causas análogas. La noche no es visibilidad reducida."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ripa-definiciones",
+        "vista": "categorias"
+       },
+       "texto": "Sin gobierno por avería, maniobra restringida por su trabajo, pesca por sus artes y restringido por su calado."
       },
       {
        "tipo": "check",
@@ -7888,19 +7930,16 @@
        "texto": "- **Aprovecha la pleamar**. Si varas con la marea bajando, prepara la maniobra para la siguiente subida (esperar a la bajamar te deja con aún menos agua).\n- **Aligera y cambia el asiento**: traslada pesos y **trasvasa líquidos** (agua, combustible) lejos de la zona apoyada. En **fondo blando** el casco queda pegado por **efecto ventosa**, y cambiar el asiento rompe esa succión.\n- **Lleva un ancla hacia aguas profundas** (con el auxiliar), normalmente por donde llegaste, y cobra de ella con el molinete.\n- En un **velero de quilla**, **escorarlo** reduce el calado y ayuda a despegarlo.\n- Usa el motor **con suavidad** y solo cuando tengas claro por dónde salir.\n- Si no sales, pide **remolque**."
       },
       {
-       "tipo": "ojo",
-       "texto": "En las preguntas de varada en fondo blando la buena es «**trasladar pesos y trasvasar líquidos para cambiar el asiento y anular el efecto ventosa**». Las opciones de escorar hacia una banda concreta («por barlovento», «por sotavento»), fondear por la proa o dar atrás toda **no** se han dado por buenas.\n\n📝 Nota del profe: escorar sí es una técnica real para reflotar un velero, pero en el examen la respuesta que puntúa es la de trasladar pesos y trasvasar líquidos. Si te ponen escorar «por barlovento» o «por sotavento» como alternativa, no la marques."
-      },
-      {
        "tipo": "ilustracion",
        "spec": {
-        "tipo": "barco",
-        "resaltar": [
-         "linea-flotacion",
-         "obra-viva"
-        ]
+        "tipo": "varada-abordaje",
+        "vista": "varada"
        },
-       "texto": "Tras una varada o un abordaje, los daños que importan son los de la obra viva, bajo la línea de flotación."
+       "texto": "Tras varar, primero heridos, vías de agua, sonda y marea; después, las formas de reflotar."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En las preguntas de varada en fondo blando la buena es «**trasladar pesos y trasvasar líquidos para cambiar el asiento y anular el efecto ventosa**». Las opciones de escorar hacia una banda concreta («por barlovento», «por sotavento»), fondear por la proa o dar atrás toda **no** se han dado por buenas.\n\n📝 Nota del profe: escorar sí es una técnica real para reflotar un velero, pero en el examen la respuesta que puntúa es la de trasladar pesos y trasvasar líquidos. Si te ponen escorar «por barlovento» o «por sotavento» como alternativa, no la marques."
       },
       {
        "tipo": "texto",
@@ -7911,6 +7950,14 @@
        "tipo": "texto",
        "titulo": "¿Separar los barcos?",
        "texto": "Antes de separarlos:\n- Toma las **medidas de estanqueidad** (cierra puertas y compartimentos, prepara tapones).\n- Prepara **apuntalamientos y achique**.\n- **Acuerda la separación** con el patrón del otro barco.\n\nCon **buen tiempo**, no hay prisa: sepáralos cuando tengas controladas las vías de agua. Con **mala mar**, los golpes entre cascos agravan los daños y conviene separarse cuanto antes.\n\nDespués: **ayúdense mutuamente**, intercambien datos (nombres, matrícula, seguro), avisa a **Salvamento Marítimo** si hay peligro y anota todo en el diario de navegación."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "varada-abordaje",
+        "vista": "abordaje"
+       },
+       "texto": "Tras un abordaje, no separes los barcos sin preparar la estanqueidad: la proa puede estar taponando la brecha."
       },
       {
        "tipo": "texto",

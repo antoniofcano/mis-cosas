@@ -392,6 +392,14 @@
        "texto": "Un tanque **a medio llenar** (o agua suelta en la sentina) tiene **superficie libre**: al escorar, el líquido corre hacia la banda baja y traslada peso justo hacia donde no conviene. El efecto equivale a **subir G**: se pierde GM y brazo adrizante.\n\nUn tanque **lleno del todo o vacío** no tiene ese problema, porque el líquido no puede moverse. La pérdida depende de lo **ancho** que sea el tanque, no de cuánto líquido tenga; por eso los mamparos longitudinales la reducen mucho."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "superficies-libres",
+        "resaltar": "medias"
+       },
+       "texto": "Un tanque a medias deja correr el líquido a la banda baja: es como subir G. Lleno o vacío no pasa."
+      },
+      {
        "tipo": "regla",
        "id": "py-seg-03"
       },
@@ -1035,9 +1043,25 @@
        "texto": "- El CO₂ va a muy alta presión, licuado: su carga se controla **pesándolo**, así que **no lleva manómetro** (los de polvo, sí).\n- Tiene una **boquilla difusora ancha**, en forma de trompa. No la agarres al dispararlo: se enfría muchísimo.\n- Como todos, lleva **etiqueta con instrucciones** y **precinto** de seguridad.\n- En un espacio cerrado desplaza el oxígeno: ventila antes de volver a entrar."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "extintor",
+        "vista": "co2"
+       },
+       "texto": "El de CO₂ no lleva manómetro y tiene la boquilla en trompa."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cómo se usa",
        "texto": "1. Da la alarma, para el motor y **corta combustible y electricidad**.\n2. Comprueba el manómetro (si lo tiene), quita el precinto y el pasador, y haz un **disparo de prueba**.\n3. Colócate **de espaldas al viento**, atacando de **barlovento a sotavento**, con una salida libre detrás.\n4. Apunta a la **base de las llamas**, no a las llamas.\n5. **Barre** desde el borde más cercano hacia el fondo, avanzando a medida que el fuego retrocede.\n6. Vigila que no se reavive.\n\nUn extintor portátil se vacía en pocos segundos: no lo malgastes."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "extintor",
+        "vista": "uso"
+       },
+       "texto": "Con el viento a la espalda, a la base de las llamas y barriendo, sin cortarte la salida."
       },
       {
        "tipo": "regla",
@@ -2024,6 +2048,13 @@
        "texto": "Cerca de la superficie el aire roza con el mar o con la tierra y se **frena**. El modelo que lleva en su ecuación la **fuerza de rozamiento** es el **viento antitríptico**. Con el rozamiento, el viento **deja de ser paralelo a las isobaras** y las **corta hacia las bajas presiones**.\n\nEl viento real de superficie suma las tres fuerzas (gradiente, Coriolis y rozamiento):\n- Sobre el mar corta las isobaras unos **10–20°** y la velocidad baja algo.\n- Sobre tierra, más rugosa, se desvía más (30° o más) y pierde mucha más velocidad.\n\nPor eso en superficie el viento entra en espiral hacia el centro de las borrascas y sale en espiral de los anticiclones."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "modelos-viento"
+       },
+       "texto": "Geostrófico y de gradiente van paralelos a las isobaras; con rozamiento, el antitríptico las corta hacia las bajas."
+      },
+      {
        "tipo": "ojo",
        "texto": "📝 Nota del profe. En meteorología teórica estricta, el antitríptico es el equilibrio entre gradiente y rozamiento **despreciando Coriolis**. Se aplica a vientos locales pequeños, como las brisas, y en ese modelo el aire va directo de las altas a las bajas, cruzando las isobaras. El examen, en cambio, lo trata como «el viento que considera el rozamiento» y corta las isobaras con un ángulo. Por eso las plantillas no dieron por buenas ni «no se ve afectado por Coriolis» (2023) ni «siempre sopla perpendicular a las isobaras» (2025), aunque en teoría estricta serían ciertas. Marca siempre la del **rozamiento**."
       },
@@ -2356,6 +2387,13 @@
        "texto": "El **psicrómetro** sirve para **calcular la humedad relativa** y el punto de rocío. Tiene dos termómetros:\n\n- **Seco**: mide la temperatura del aire.\n- **Húmedo**: su bulbo va envuelto en una muselina siempre mojada. El agua se evapora, le roba calor y marca menos.\n\nCuanto **más seco** está el aire, más evaporación y **más diferencia** entre ambos. Si la diferencia es **pequeña**, el aire está cerca de la saturación (**HR alta**). Con el seco y la diferencia se entra en las **tablas psicrométricas**. Por ejemplo, seco 18 °C y húmedo 15 °C dan algo más de un 70 % de HR y un punto de rocío de unos 13 °C.\n\nDebe estar a la sombra y con aire circulando junto al bulbo húmedo."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "psicrometro"
+       },
+       "texto": "Seco 18 °C y húmedo 15 °C: con la diferencia, las tablas dan algo más del 70 % de HR y un punto de rocío de unos 13 °C."
+      },
+      {
        "tipo": "check",
        "enunciado": "En el psicrómetro, el termómetro seco y el húmedo marcan casi lo mismo. ¿Qué indica?",
        "opciones": {
@@ -2504,6 +2542,13 @@
        "tipo": "texto",
        "titulo": "Bajas y de desarrollo vertical",
        "texto": "- **Estratos**: capa gris y continua a poca altura, parecida a la **niebla pero sin tocar el suelo**. Como mucho, llovizna.\n- **Estratocúmulos**: capa nubosa **gris, sombría, con huecos o intersticios más claros**. Es de las nubes más comunes.\n- **Nimbostratos**: capa baja, gris oscura, **amorfa y densa**, de la que cae **lluvia o nieve continua**; tapa el sol por completo.\n- **Cúmulos**: nubes de **desarrollo vertical**, de base plana y cima en coliflor. Los pequeños de una tarde de verano son de buen tiempo.\n- **Cumulonimbos**: enorme masa de **gran desarrollo vertical**, con cima en forma de **yunque**: chubascos fuertes, **tormentas eléctricas** y granizo."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "nubes-pisos"
+       },
+       "texto": "Cada piso con sus nubes y cómo reconocerlas: cirro- alta, alto- media, sin prefijo baja; Cu y Cb, desarrollo vertical."
       },
       {
        "tipo": "ojo",
@@ -3662,6 +3707,13 @@
        "texto": "- **Loxodrómica**: la línea que corta **todos los meridianos con el mismo ángulo**. Es navegar a **rumbo constante** y en la carta Mercator es una **recta**. No es el camino más corto (salvo siguiendo un meridiano o el ecuador), pero en distancias cortas la diferencia es despreciable.\n- **Ortodrómica**: el arco de **círculo máximo** entre dos puntos. Es la **distancia más corta**, pero el rumbo **cambia** continuamente; en travesías oceánicas se sigue por tramos loxodrómicos.\n\nEn navegación costera y en todos los cálculos del examen se usa la loxodrómica."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "loxo-orto"
+       },
+       "texto": "La misma travesía en el globo y en la Mercator: la loxodrómica corta todos los meridianos con el mismo ángulo y es recta en la carta; la ortodrómica es la más corta."
+      },
+      {
        "tipo": "texto",
        "titulo": "Las piezas del triángulo",
        "texto": "- **Δl** (diferencia de latitud): en minutos, que son **millas**.\n- **Apartamiento (A)**: la distancia en **millas** medida **sobre un paralelo** entre los meridianos de salida y llegada; es la «distancia navegada en un paralelo», lo que avanzas hacia el E o el W.\n- **ΔL** (diferencia de longitud): en **minutos de arco**, no en millas.\n- **lm** (latitud media): la media de las latitudes de salida y llegada.\n\nUn minuto de longitud mide **cos l** millas: en el ecuador, una milla; a 60°, media milla. Por eso **A = ΔL · cos lm**."
@@ -4409,6 +4461,13 @@
        "texto": "En una ruta entre dos waypoints: XTE respecto a la línea, BRG y DTG al WPT, COG/SOG sobre el fondo y VMG hacia el WPT, con los cálculos de la lección."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "gnss-calculos"
+       },
+       "texto": "Los tres cálculos de la pantalla, uno a uno: XTE 0,05 R a estribor de la derrota, VMG = 6 · cos 20° ≈ 5,6 nudos y ETA 10:20 + 3 h = 13:20."
+      },
+      {
        "tipo": "texto",
        "titulo": "El datum",
        "texto": "El **datum** es el **sistema de referencia geodésico** (una forma de la Tierra y un origen) respecto al cual se dan las **coordenadas geográficas**.\n\n- El GNSS trabaja en **WGS-84**, y las cartas modernas también.\n- Las cartas antiguas pueden estar en otro datum, como el **ED50** europeo: las mismas coordenadas caen en un punto distinto, unos **150 a 200 metros** en la península.\n\nAntes de pasar la posición del GNSS a una carta de papel, comprueba que el datum **es el mismo** (o configura el receptor con el de la carta, o aplica la corrección que indique la carta). Si no, la posición quedará **mal situada**."
@@ -4539,6 +4598,13 @@
        "tipo": "texto",
        "titulo": "Dos tipos de carta electrónica",
        "texto": "Solo hay **dos tipos** de carta electrónica:\n- **Raster (RNC)**: una **imagen escaneada**, copia digital exacta de una carta de papel, publicada por o bajo la autoridad de un servicio hidrográfico. Es familiar y barata, pero es solo un dibujo: al ampliar se **pixela**, no puede avisarte de nada y ocupa más memoria.\n- **Vectorial (ENC)**: una **base de datos** construida **objeto a objeto** (cada sonda, boya o veril es un dato), según la norma S-57 de la Organización Hidrográfica Internacional, publicada por un **gobierno** o bajo su autoridad. Permite capas, no se deforma con el zoom y genera **alarmas**: bajos, zonas prohibidas, veril de seguridad.\n\nLas dos se actualizan."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "carta-raster-vectorial"
+       },
+       "texto": "La raster es una foto de la carta de papel; la vectorial, una base de datos por capas que puede avisarte. ECDIS, ECS y plotter son los sistemas que las muestran."
       },
       {
        "tipo": "texto",

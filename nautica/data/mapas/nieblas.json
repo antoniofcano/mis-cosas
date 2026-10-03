@@ -1,0 +1,326 @@
+{
+ "id": "nieblas",
+ "titulo": "Humedad, nubes y nieblas",
+ "tits": [
+  "py"
+ ],
+ "intro": "Del vapor a la niebla: humedad absoluta y relativa, punto de rocío y psicrómetro, cómo nacen y se clasifican las nubes, y los tipos de niebla y cuándo se disipan.",
+ "nodos": [
+  {
+   "id": "absoluta",
+   "nombre": "Humedad absoluta",
+   "corto": "Masa de vapor de agua en un volumen de aire (la densidad del vapor). Se mide en gramos por metro cúbico (g/m³).",
+   "spec": {
+    "tipo": "humedad",
+    "t": 25,
+    "td": 12
+   },
+   "clase": "py-2-5",
+   "x": 0.3,
+   "y": 0
+  },
+  {
+   "id": "psicrometro",
+   "nombre": "Psicrómetro",
+   "corto": "Termómetro seco y termómetro húmedo (muselina mojada) más las tablas. Poca diferencia entre los dos = humedad relativa alta.",
+   "spec": {
+    "tipo": "psicrometro"
+   },
+   "clase": "py-2-5",
+   "x": 3.6,
+   "y": 0
+  },
+  {
+   "id": "relativa",
+   "nombre": "Humedad relativa (HR)",
+   "corto": "En %: el vapor que tiene el aire respecto al que tendría saturado a esa temperatura. 100 % = saturado. Al calentar el aire baja; al enfriarlo sube.",
+   "spec": {
+    "tipo": "humedad"
+   },
+   "clase": "py-2-5",
+   "x": 1,
+   "y": 1.2
+  },
+  {
+   "id": "rocio",
+   "nombre": "Punto de rocío",
+   "corto": "Temperatura a la que hay que enfriar el aire, sin cambiar su presión ni su vapor, para que se sature (HR 100 %) y condense. Es una temperatura, en °C.",
+   "spec": {
+    "tipo": "humedad",
+    "t": 15,
+    "td": 14
+   },
+   "clase": "py-2-5",
+   "x": 2.9,
+   "y": 1.2
+  },
+  {
+   "id": "nube",
+   "nombre": "Cómo nace una nube",
+   "corto": "El aire sube, se expande y se enfría (enfriamiento adiabático) hasta su punto de rocío y condensa. Esa altura, el nivel de condensación, es la base de la nube.",
+   "spec": {
+    "tipo": "nubes"
+   },
+   "clase": "py-2-6",
+   "x": 0.6,
+   "y": 2.4
+  },
+  {
+   "id": "niebla",
+   "nombre": "Niebla",
+   "corto": "Una nube en contacto con la superficie: visibilidad de menos de 1 km. Con más visibilidad, por humedad, es neblina o bruma; por partículas secas, calima.",
+   "spec": {
+    "tipo": "humedad",
+    "t": 12,
+    "td": 12
+   },
+   "clase": "py-2-7",
+   "x": 3,
+   "y": 2.4
+  },
+  {
+   "id": "altas",
+   "nombre": "Nubes altas (cirro-)",
+   "corto": "Por encima de unos 6000 m, de cristales de hielo: cirros (Ci), cirrocúmulos (Cc) y cirrostratos (Cs), el del halo.",
+   "spec": {
+    "tipo": "nubes-pisos",
+    "resaltar": "altas"
+   },
+   "clase": "py-2-6",
+   "x": 0.2,
+   "y": 3.6
+  },
+  {
+   "id": "medias",
+   "nombre": "Nubes medias (alto-)",
+   "corto": "Entre unos 2000 y 6000 m: altocúmulos (Ac) y altostratos (As), el velo gris que deja ver el sol como tras un cristal esmerilado.",
+   "spec": {
+    "tipo": "nubes-pisos",
+    "resaltar": "medias"
+   },
+   "clase": "py-2-6",
+   "x": 1.6,
+   "y": 4.8
+  },
+  {
+   "id": "bajas",
+   "nombre": "Nubes bajas",
+   "corto": "Por debajo de unos 2000 m: estratos (St), estratocúmulos (Sc) y nimbostratos (Ns), los de lluvia o nieve continua.",
+   "spec": {
+    "tipo": "nubes-pisos",
+    "resaltar": "bajas"
+   },
+   "clase": "py-2-6",
+   "x": 2,
+   "y": 3.6
+  },
+  {
+   "id": "radiacion",
+   "nombre": "Niebla de radiación",
+   "corto": "De enfriamiento. En tierra, con noche despejada, poco viento y aire húmedo: el suelo se enfría y enfría el aire. Valles y rías, de otoño a invierno.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "niebla-radiacion"
+   },
+   "clase": "py-2-7",
+   "x": 2.9,
+   "y": 3.9
+  },
+  {
+   "id": "adveccion",
+   "nombre": "Niebla de advección",
+   "corto": "De enfriamiento: aire cálido y húmedo sobre agua más fría que su punto de rocío. La más frecuente en el mar; con vientos de 5 a 15 nudos puede durar días.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   },
+   "clase": "py-2-7",
+   "x": 4.4,
+   "y": 3.6
+  },
+  {
+   "id": "vertical",
+   "nombre": "Desarrollo vertical (Cu, Cb)",
+   "corto": "Base baja y cima muy alta. Nacen por convección (inestabilidad). El cumulonimbo, con yunque, trae chubascos, tormenta y granizo.",
+   "spec": {
+    "tipo": "nubes",
+    "resaltar": "vertical"
+   },
+   "clase": "py-2-6",
+   "x": 2.05,
+   "y": 2.4
+  },
+  {
+   "id": "disipa",
+   "nombre": "Disipación de la niebla",
+   "corto": "Se va cuando el aire vuelve a estar por encima del punto de rocío: sol, viento más cálido y seco, aguas más templadas o viento de fuerza 4 o más.",
+   "spec": {
+    "tipo": "humedad",
+    "t": 20,
+    "td": 12
+   },
+   "clase": "py-2-7",
+   "x": 4.2,
+   "y": 5.2
+  },
+  {
+   "id": "frontales",
+   "nombre": "Nubes frontales",
+   "corto": "El aire cálido sube por encima del frío y se enfría. Pueden ocupar extensiones enormes.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   },
+   "clase": "py-2-6",
+   "x": 0.2,
+   "y": 5.8
+  },
+  {
+   "id": "nfrontal",
+   "nombre": "Niebla frontal",
+   "corto": "La lluvia templada de un frente se evapora al caer en el aire frío del suelo. De evaporación, pasajera: se mueve con el frente.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   },
+   "clase": "py-2-7",
+   "x": 2.2,
+   "y": 5.8
+  },
+  {
+   "id": "vapor",
+   "nombre": "Niebla de vapor",
+   "corto": "Aire muy frío sobre agua mucho más templada: el agua «humea». De evaporación y poco espesor; típica de lagos y ríos en otoño.",
+   "spec": {
+    "tipo": "psicrometro",
+    "caso": "seco"
+   },
+   "clase": "py-2-7",
+   "x": 4.6,
+   "y": 1.4
+  }
+ ],
+ "aristas": [
+  {
+   "de": "absoluta",
+   "a": "relativa",
+   "rel": "en % de la saturación"
+  },
+  {
+   "de": "psicrometro",
+   "a": "relativa",
+   "rel": "seco, húmedo y tablas dan la"
+  },
+  {
+   "de": "psicrometro",
+   "a": "rocio",
+   "rel": "también da el"
+  },
+  {
+   "de": "relativa",
+   "a": "rocio",
+   "rel": "llega al 100 % en el"
+  },
+  {
+   "de": "rocio",
+   "a": "nube",
+   "rel": "alcanzado al subir el aire"
+  },
+  {
+   "de": "rocio",
+   "a": "niebla",
+   "rel": "próximo a la T del mar:"
+  },
+  {
+   "de": "nube",
+   "a": "altas",
+   "rel": "base > 6000 m"
+  },
+  {
+   "de": "nube",
+   "a": "medias",
+   "rel": "base 2000–6000 m"
+  },
+  {
+   "de": "nube",
+   "a": "bajas",
+   "rel": "base < 2000 m"
+  },
+  {
+   "de": "nube",
+   "a": "vertical",
+   "rel": "por convección"
+  },
+  {
+   "de": "altas",
+   "a": "frontales",
+   "rel": "Cs: anuncia frente cálido"
+  },
+  {
+   "de": "niebla",
+   "a": "radiacion",
+   "rel": "suelo frío de noche"
+  },
+  {
+   "de": "niebla",
+   "a": "adveccion",
+   "rel": "aire cálido sobre agua fría"
+  },
+  {
+   "de": "niebla",
+   "a": "vapor",
+   "rel": "evapora agua templada"
+  },
+  {
+   "de": "frontales",
+   "a": "nfrontal",
+   "rel": "su lluvia templada da la"
+  },
+  {
+   "de": "radiacion",
+   "a": "disipa",
+   "rel": "el sol calienta el suelo"
+  },
+  {
+   "de": "adveccion",
+   "a": "disipa",
+   "rel": "aguas más templadas"
+  },
+  {
+   "de": "absoluta",
+   "a": "relativa",
+   "rel": "Absoluta: gramos por m³ (densidad del vapor). Relativa: % respecto a la saturación a esa temperatura.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "relativa",
+   "a": "rocio",
+   "rel": "La HR es un porcentaje; el punto de rocío es una temperatura (°C), no una humedad ni una presión.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "altas",
+   "a": "medias",
+   "rel": "«Cirro-» es alta; «alto-» es media aunque suene a alta: Ac y As nunca son altas.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "bajas",
+   "a": "niebla",
+   "rel": "El estrato es como una niebla que no toca el suelo; la niebla es una nube en contacto con la superficie.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "radiacion",
+   "a": "adveccion",
+   "rel": "Radiación: en tierra, noche despejada y calma; se levanta con el sol. Advección: en la mar, aire cálido y húmedo sobre agua fría; dura días.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "adveccion",
+   "a": "vapor",
+   "rel": "Advección: aire cálido sobre agua fría (enfriamiento). Vapor: aire frío sobre agua templada (evaporación).",
+   "tipo": "confunde"
+  }
+ ]
+}

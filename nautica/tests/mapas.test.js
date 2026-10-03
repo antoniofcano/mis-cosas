@@ -34,3 +34,18 @@ test('vecinos: lo que sale, lo que entra y con qué se confunde', () => {
   assert.deepEqual(v.entran.map((x) => x.nodo.id).sort(), ['cuadrantal', 'ra']);
   assert.deepEqual(v.confunde.map((x) => x.nodo.id), ['ra']);
 });
+
+test('nodosDeClase y mapasDeClases: solo los mapas y las clases de la titulación', async () => {
+  const { nodosDeClase, mapasDeClases } = await import('../src/course/mapas.js');
+  const fs = await import('node:fs');
+  const mapas = ['rumbos', 'meteo'].map((id) => JSON.parse(fs.readFileSync(new URL(`../data/mapas/${id}.json`, import.meta.url))));
+  const perEnPy = mapas[1].nodos.find((n) => n.tit === 'per');
+  assert.ok(perEnPy, 'el mapa de meteo tiene un nodo de una clase del PER');
+  // Un nodo PER dentro de un mapa del PY no sale ni en la clase del PER (el mapa no es del PER) ni en la del PY.
+  assert.deepEqual(nodosDeClase(mapas, perEnPy.clase, 'py'), []);
+  assert.ok(nodosDeClase(mapas, perEnPy.clase, 'per').every((x) => x.mapa.tits.includes('per')));
+  const r = mapas[0].nodos[0];
+  assert.ok(nodosDeClase(mapas, r.clase, 'per').some((x) => x.nodo.id === r.id));
+  assert.deepEqual(mapasDeClases(mapas, [r.clase], 'per').map((x) => x.mapa.id), ['rumbos']);
+  assert.deepEqual(mapasDeClases(mapas, [r.clase], 'py'), []);
+});

@@ -64,3 +64,17 @@ export function erroresMapa(mapa, { renderIllustration, clases = null } = {}) {
   for (const n of mapa.nodos) if (!mapa.aristas.some((a) => a.tipo !== 'confunde' && (a.de === n.id || a.a === n.id))) out.push(`${n.id}: nodo suelto`);
   return out;
 }
+
+/** Los nodos de una clase en los mapas de una titulación: [{ mapa, nodo }]. Solo cuentan los nodos cuya clase es de esa titulación. */
+export function nodosDeClase(mapas, claseId, tit) {
+  return mapas.filter((m) => m.tits.includes(tit))
+    .flatMap((m) => m.nodos.filter((n) => n.clase === claseId && (n.tit ?? tit) === tit).map((nodo) => ({ mapa: m, nodo })));
+}
+
+/** Los mapas de una titulación con algún nodo en esas clases (p. ej. las de un tema), con cuántos nodos tiene cada uno. */
+export function mapasDeClases(mapas, claseIds, tit) {
+  const ids = new Set(claseIds);
+  return mapas.filter((m) => m.tits.includes(tit))
+    .map((mapa) => ({ mapa, nodos: mapa.nodos.filter((n) => ids.has(n.clase) && (n.tit ?? tit) === tit) }))
+    .filter((x) => x.nodos.length);
+}

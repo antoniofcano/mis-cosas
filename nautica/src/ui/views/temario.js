@@ -10,6 +10,8 @@ import { bloque, bloquesEnOrden } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { calcularPlan } from '../cierre.js';
+import { cargarMapas } from './mapas.js';
+import { mapasDeClases } from '../../course/mapas.js';
 
 const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', repasar: 'toca repasar', dominada: 'aprendida' };
 const ESTADO_CLS = { dominada: 'ok', repasar: 'warn', empezada: 'close' };
@@ -55,6 +57,8 @@ export function temarioView({ progress, tit }) {
 // ---------------------------------------------------------------------------
 // #/<tit>/temario/<ut>
 
+const lista = (xs) => (xs.length > 4 ? `${xs.slice(0, 3).join(', ')} y ${xs.length - 3} conceptos más` : xs.length === 1 ? xs[0] : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`);
+
 export function temaView({ progress, params: route, tit }) {
   if (route.parts[2] === 'chuleta') return chuletaView({ tit, params: route, progress });
   const T = TITULACIONES[tit];
@@ -75,6 +79,16 @@ export function temaView({ progress, params: route, tit }) {
         : h('a.btn.grande', { href: tanda }, `Hacer ${TANDA} preguntas`);
     summaryText = `VISTA tema ${T.sigla} ${b.titulo} · examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · fallos pendientes ${e.fallos}\n` +
       clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado} → #/${tit}/curso/${l.id}`).join('\n');
+    // Los mapas de conceptos con nodos en las clases del tema (llegan cuando cargan).
+    const mapasTema = h('div.cards', { hidden: true });
+    cargarMapas().then((mapas) => {
+      const xs = mapasDeClases(mapas, clases.map((c) => c.l.id), tit);
+      if (!xs.length) return;
+      setChildren(mapasTema, xs.map(({ mapa, nodos }) => h('a.card', { href: tlink(tit, ['mapas', mapa.id], { v: 'mapa', n: nodos[0].id }) },
+        h('h3', `🕸️ Mapa del tema: ${mapa.titulo}`), h('p', `Cómo se relacionan ${lista(nodos.map((n) => n.nombre))} con lo demás.`))));
+      mapasTema.hidden = false;
+      summaryText += `\nMAPAS: ${xs.map((x) => x.mapa.titulo).join('; ')}`;
+    }).catch(() => {});
     setChildren(el,
       volver('Temario', tlink(tit, ['temario'])),
       h('h1', `${b.icon} ${b.titulo}`),
@@ -89,6 +103,7 @@ export function temaView({ progress, params: route, tit }) {
           h('a.btn.secondary', { href: tanda }, `Hacer ${TANDA} preguntas`),
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
       h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, '🖨️ Chuleta del tema para imprimir')),
+      mapasTema,
       ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', '🗺️ Ejercicios de carta'), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
       h('section', h('h2', 'Para ayudarte'),
         h('div.cards',

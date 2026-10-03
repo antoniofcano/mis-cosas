@@ -5,6 +5,7 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { check, STATUS } from '../../analysis/checker.js';
 import { quantity } from '../../analysis/quantities.js';
 import { GLOSSARY } from '../../nautical/glossary.js';
+import { fmtLat, fmtLon } from '../../math/format.js';
 import { exerciseSummary } from '../../ai/summary.js';
 import { chartWidget, avisoCartaMovil, pantallaPequena } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
@@ -33,6 +34,8 @@ export function exerciseView({ ctx, progress, params: route }) {
   const solution = exercise.solve(params, ctx);
   const answers = answersFor(exercise, params);
   const state = { inputs: {}, revealed: 0, result: null, recorded: false };
+  let ws = null; // mesa de cartas a pantalla completa (se abre al resolver en la carta)
+  let widget = null;
 
   // --- Respuestas
   const inputs = answers.map((a) => {
@@ -41,8 +44,21 @@ export function exerciseView({ ctx, progress, params: route }) {
     input.addEventListener('input', () => { state.inputs[a.key] = input.value; });
     return { a, input, fb: h('div.feedback', { id: `fb-${a.key}` }) };
   });
+  // Situación tomada de la carta: rellena latitud y longitud con el último punto que marcaste (📍 Punto).
+  const inLat = inputs.find((x) => x.a.kind === 'lat');
+  const inLon = inputs.find((x) => x.a.kind === 'lon');
+  const avisoPunto = h('p.muted.aviso-punto', { 'aria-live': 'polite' });
+  const tomarDeCarta = inLat && inLon ? h('div.tomar-carta',
+    h('button.secondary', { type: 'button', onclick: () => {
+      const api = ws?.chart ?? widget;
+      const punto = api?.getUserItems().filter((u) => u.t === 'pos').at(-1);
+      if (!punto) { avisoPunto.textContent = 'Marca antes tu situación en la carta con la herramienta 📍 Punto.'; return; }
+      for (const [x, v] of [[inLat, fmtLat(punto.at.lat)], [inLon, fmtLon(punto.at.lon)]]) { x.input.value = v; state.inputs[x.a.key] = v; }
+      avisoPunto.textContent = `Tomada de tu último punto: ${fmtLat(punto.at.lat)}, ${fmtLon(punto.at.lon)}. Pulsa «Comprobar».`;
+    } }, '📍 Tomar la situación de la carta'), avisoPunto) : null;
   const form = h('form.answers', { onsubmit: (ev) => { ev.preventDefault(); doCheck(); } },
     inputs.map(({ a, input, fb }) => h('label.field', h('span.lbl', a.label), input, fb)),
+    tomarDeCarta,
     h('div.actions',
       h('button', { type: 'submit' }, 'Comprobar'),
       h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, '💡 Pista'),
@@ -63,12 +79,11 @@ export function exerciseView({ ctx, progress, params: route }) {
   const solutionBox = h('div.solution', { hidden: true });
 
   // --- Carta
-  const widget = solution.drawing
+  widget = solution.drawing
     ? chartWidget(ctx.chart, { items: solution.drawing.items, focus: solution.drawing.focus, step: 0 })
     : null;
 
   // --- Mesa de cartas (pantalla completa): resolver sobre la carta o ver el tutorial
-  let ws = null;
   const openTable = (tab) => {
     if (ws) { ws.show(tab); return; }
     ws = openWorkspace({

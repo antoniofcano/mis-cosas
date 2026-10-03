@@ -15,8 +15,8 @@ import { rulersLayer, RULER_LEFT, RULER_TOP } from '../../graphics/rulers.js';
 import { parseAngle } from '../../math/format.js';
 
 const TOOLS = [
-  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías, extremos de línea y el transportador. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
-  { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros.' },
+  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías y el transportador. Un trazo: por un extremo (asa redonda) lo alargas o giras; por el medio lo trasladas paralelo; un círculo, por el centro lo mueves y por el borde cambias el radio. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
+  { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros. Si empiezas sobre el extremo (asa) de un trazo tuyo, lo mueves.' },
   { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
   { id: 'protractor', icon: '📐', label: 'Transportador', corto: 'Transpor\u00ADtador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
   { id: 'point', icon: '📍', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
@@ -182,6 +182,14 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
 
   // ---------- Dibujo
   let raf = 0;
+  /** Con Mover o Regla, los extremos de tus trazos y los centros de tus círculos se ven como asas que se pueden coger. */
+  function asas() {
+    if (state.tool !== 'move' && state.tool !== 'ruler') return '';
+    const r = 6 / state.z;
+    const pts = state.user.flatMap((it) => (it.t === 'seg' ? [it.from, it.to] : it.t === 'circle' && state.tool === 'move' ? [it.center] : []));
+    return pts.map((g) => { const q = toWorld(g); return `<circle class="asa" cx="${q.x}" cy="${q.y}" r="${r}"/>`; }).join('');
+  }
+
   function render() {
     if (raf) return;
     raf = requestAnimationFrame(() => { raf = 0; draw(); });
@@ -207,7 +215,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     gUser.innerHTML = state.user.map((it) => drawItem(
       it.t === 'pos' && (!state.showCoords || it.hideLabel) ? { ...it, label: undefined } : (it.t === 'text' && it.id === state.selectedNote) || (it.t === 'guide' && it.id === state.selectedGuide) ? { ...it, selected: true } : it,
       state.z,
-    )).join('');
+    )).join('') + asas();
     const ins = state.instrument;
     const insSvg = !ins ? '' : ins.type === 'compass' ? compassPreview(ins.center, ins.edge, state.z).svg : rulerPreview(ins.a, ins.b, state.z).svg;
     gTool.innerHTML = (state.protractor && state.protractorVisible ? squareProtractor(state.protractor.c, state.protractor.bearing, state.z) : '') + insSvg + state.preview;
@@ -452,7 +460,13 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         if (state.drag.kind === 'pan' && state.selectedNote) selectNote(null);
         break;
       }
-      case 'ruler': state.drag = { kind: 'ruler', a: s }; break;
+      case 'ruler': {
+        // Si empiezas sobre el extremo de un trazo tuyo, lo mueves; si no, trazas uno nuevo.
+        const g = grabAt(w);
+        const extremo = g?.kind === 'item-move' && state.user.find((u) => u.id === g.id)?.t === 'seg';
+        state.drag = extremo ? g : { kind: 'ruler', a: s };
+        break;
+      }
       case 'compass': state.drag = { kind: 'compass', c: s }; break;
       case 'protractor': {
         if (!state.protractor) placeProtractor();
@@ -498,6 +512,12 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       }
     }
     if (best) return best;
+    // El cuerpo de un trazo se arrastra entero, paralelo a sí mismo (trasladar una línea de posición); el borde de
+    // un círculo cambia su radio. Gana el trazo dibujado más tarde.
+    for (const it of [...state.user].reverse()) {
+      if (!['seg', 'line', 'ray', 'circle'].includes(it.t) || distanceTo(it, w) >= tol) continue;
+      return it.t === 'circle' ? { kind: 'item-radius', id: it.id, moved: false } : { kind: 'item-shift', id: it.id, w0: w, orig: it, moved: false };
+    }
     for (const g of state.user.filter((u) => u.t === 'guide')) {
       if (distanceTo(g, w) < 8 / state.z) return { kind: 'guide-move', id: g.id, moved: false };
     }
@@ -586,6 +606,24 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
           return n;
         });
         readout.textContent = `${s.name ? `${s.name}: ` : ''}${fmtPos(s.geo)}`;
+        break;
+      }
+      case 'item-shift': {
+        if (!d.moved) { state.history.push(state.user); d.moved = true; }
+        const mueve = (geo) => { const q = toWorld(geo); return fromWorld({ x: q.x + w.x - d.w0.x, y: q.y + w.y - d.w0.y }); };
+        const o = d.orig;
+        replaceUser(d.id, (it) => (it.t === 'seg' ? { ...it, from: mueve(o.from), to: mueve(o.to) } : it.through ? { ...it, through: mueve(o.through) } : { ...it, from: mueve(o.from) }));
+        const n = state.user.find((u) => u.id === d.id);
+        readout.textContent = n.t === 'seg' ? `Trazo ${fmtBearing(rhumbTo(n.from, n.to).bearing)} trasladado: ${fmtPos(n.from)} → ${fmtPos(n.to)}` : `Recta ${fmtBearing(n.bearing)} por ${fmtPos(n.through ?? n.from)}`;
+        break;
+      }
+      case 'item-radius': {
+        if (!d.moved) { state.history.push(state.user); d.moved = true; }
+        const it = state.user.find((u) => u.id === d.id);
+        const e = snap(w, d.id);
+        const r = rhumbTo(it.center, e.geo).distance;
+        replaceUser(d.id, (u) => ({ ...u, radius: r, label: fmtMiles(r) }));
+        readout.textContent = `Radio ${fmtMiles(r)}${e.name ? ` (hasta ${e.name})` : ''}`;
         break;
       }
       case 'protractor-rotate':

@@ -7,6 +7,7 @@ import { SOLUCIONES } from '../exams/solutions/index.js';
 const porEjercicio = (...tipos) => (id, s) => tipos.includes(s.ejercicio);
 const lista = (ids) => (id) => ids.includes(id);
 const delPY = (f) => (id, s) => id.startsWith('and-py') && f(id, s);
+const delPER = (f) => (id, s) => /^and-\d/.test(id) && f(id, s);
 
 // Faro por el través (corte del rumbo con la demora del través) y tangente con viento: listas exactas.
 const TRAVES = ['and-py-2022-c3-n15', 'and-py-2023-c1-n15', 'and-py-2023-c2-n12', 'and-py-2024-c1-n13', 'and-py-2024-c2-n14', 'and-py-2024-c3-n14',
@@ -25,6 +26,14 @@ export const RESUELTOS = {
   'py-4-8': delPY(porEjercicio('corriente-desconocida')),
   'py-4-9': delPY(porEjercicio('marea-sonda')),
   'py-4-10': delPY(porEjercicio('estima-analitica')),
+  // PER: preguntas de carta del banco andalucia-per.json
+  'per-11-2': delPER(porEjercicio('ct-enfilacion')),
+  'per-11-3': delPER(porEjercicio('rumbo-distancia')),
+  'per-11-4': delPER(porEjercicio('estima-directa')),
+  'per-11-5': delPER(porEjercicio('situacion-demora-distancia', 'distancia-faro')),
+  'per-11-6': delPER(porEjercicio('situacion-dos-demoras')),
+  'per-11-7': delPER(porEjercicio('distancia-faro', 'ct-enfilacion')),
+  'per-11-9': delPER(porEjercicio('rumbo-pasar-distancia')),
 };
 
 /** Ids de las preguntas resueltas que ilustran una clase (vacío si la clase no tiene). */

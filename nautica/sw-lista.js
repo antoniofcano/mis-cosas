@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '89f2cc5c46af';
+self.VERSION = '3e285f6bd059';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -16,6 +16,7 @@ self.APP = [
  "src/course/calendario.js",
  "src/course/engine.js",
  "src/course/listo.js",
+ "src/course/mapas.js",
  "src/course/plan.js",
  "src/course/repaso.js",
  "src/course/resueltos.js",
@@ -142,6 +143,7 @@ self.APP = [
  "src/theory/vocabulario.js",
  "src/ui/actividad.js",
  "src/ui/app.js",
+ "src/ui/aviso-error.js",
  "src/ui/chart-widget.js",
  "src/ui/chart/interactive-chart.js",
  "src/ui/chart/raster.js",
@@ -166,6 +168,7 @@ self.APP = [
  "src/ui/views/exercise.js",
  "src/ui/views/gallery.js",
  "src/ui/views/hoy.js",
+ "src/ui/views/mapas.js",
  "src/ui/views/mas.js",
  "src/ui/views/misc.js",
  "src/ui/views/plan.js",
@@ -197,5 +200,7 @@ self.DATOS = [
  "data/exams/index.json",
  "data/exams/mnemotecnias.json",
  "data/exams/vocabulario-per.json",
- "data/exams/vocabulario-py.json"
+ "data/exams/vocabulario-py.json",
+ "data/mapas/meteo.json",
+ "data/mapas/rumbos.json"
 ];

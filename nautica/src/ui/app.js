@@ -26,6 +26,7 @@ import { masView } from './views/mas.js';
 import { bibliotecaView } from './views/biblioteca.js';
 import { tarjetasView } from './views/tarjetas.js';
 import { planView } from './views/plan.js';
+import { mapasView } from './views/mapas.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 
@@ -38,6 +39,7 @@ const TIT_ROUTES = {
   biblioteca: bibliotecaView,
   tarjetas: tarjetasView,
   plan: planView, // #/<tit>/plan: calendario hasta el examen
+  mapas: mapasView, // #/<tit>/mapas[/<id>]: mapas de conceptos
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,

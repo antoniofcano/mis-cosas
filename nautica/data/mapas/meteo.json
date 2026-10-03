@@ -1,0 +1,238 @@
+{
+ "id": "meteo",
+ "titulo": "Presión, viento y frentes",
+ "tits": [
+  "py"
+ ],
+ "intro": "Cómo la presión explica el viento: isobaras y gradiente, borrascas y anticiclones, los modelos de viento, qué anuncia el barómetro y los frentes.",
+ "nodos": [
+  {
+   "id": "presion",
+   "nombre": "Presión atmosférica",
+   "corto": "Peso de la columna de aire por unidad de superficie. Normal: 1013,25 hPa = 760 mmHg.",
+   "spec": {
+    "tipo": "barometro-tendencia",
+    "vista": "instrumentos"
+   },
+   "clase": "per-9-1",
+   "x": 0,
+   "y": 0,
+   "tit": "per"
+  },
+  {
+   "id": "barometro",
+   "nombre": "Tendencia barométrica",
+   "corto": "Lo que importa es cómo cambia: bajada rápida, se acerca una borrasca o un frente con viento fuerte.",
+   "spec": {
+    "tipo": "barometro-tendencia",
+    "vista": "tendencia"
+   },
+   "clase": "per-9-1",
+   "x": 0,
+   "y": 2.4,
+   "tit": "per"
+  },
+  {
+   "id": "isobaras",
+   "nombre": "Isobaras y gradiente",
+   "corto": "Líneas de igual presión. Más gradiente = isobaras más juntas = viento más fuerte.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   },
+   "clase": "py-2-1",
+   "x": 2,
+   "y": 0
+  },
+  {
+   "id": "viento",
+   "nombre": "El viento",
+   "corto": "Va de la alta a la baja, desviado a la derecha por Coriolis (HN): sopla casi paralelo a las isobaras.",
+   "spec": {
+    "tipo": "modelos-viento"
+   },
+   "clase": "py-2-3",
+   "x": 4,
+   "y": 0
+  },
+  {
+   "id": "borrasca",
+   "nombre": "Borrasca (B)",
+   "corto": "Presión baja en el centro; en el HN gira al contrario que las agujas del reloj. Aire que sube: tiempo inestable. Viaja hacia el E.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   },
+   "clase": "py-2-1",
+   "x": 2,
+   "y": 2.4
+  },
+  {
+   "id": "anticiclon",
+   "nombre": "Anticiclón (A)",
+   "corto": "Presión alta en el centro; en el HN gira como las agujas del reloj. Aire que baja: tiempo estable.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   },
+   "clase": "py-2-1",
+   "x": 4,
+   "y": 2.4
+  },
+  {
+   "id": "buys",
+   "nombre": "Ley de Buys-Ballot",
+   "corto": "De espaldas al viento, en el HN la baja presión queda a tu izquierda (algo adelantada).",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "buys-ballot"
+   },
+   "clase": "per-9-2",
+   "x": 0.8,
+   "y": 3.6,
+   "tit": "per"
+  },
+  {
+   "id": "frentes",
+   "nombre": "Frentes",
+   "corto": "Frontera entre dos masas de aire distintas; el aire frío, más denso, queda siempre debajo.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   },
+   "clase": "py-2-2",
+   "x": 2,
+   "y": 4.8
+  },
+  {
+   "id": "frio",
+   "nombre": "Frente frío",
+   "corto": "El aire frío empuja y obliga al cálido a subir de golpe: cumulonimbos, chubascos y rachas; al pasar, el viento rola a la derecha.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   },
+   "clase": "py-2-2",
+   "x": 1,
+   "y": 6
+  },
+  {
+   "id": "calido",
+   "nombre": "Frente cálido",
+   "corto": "El aire cálido sube solo y despacio sobre la cuña fría: nubes estratiformes, cirros → altostratos → nimbostratos, lluvia continua.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   },
+   "clase": "py-2-2",
+   "x": 3,
+   "y": 6
+  },
+  {
+   "id": "beaufort",
+   "nombre": "Escala Beaufort",
+   "corto": "La fuerza del viento, de 0 (calma) a 12 (temporal huracanado).",
+   "spec": {
+    "tipo": "beaufort",
+    "fuerza": 6
+   },
+   "clase": "per-9-6",
+   "x": 4.2,
+   "y": 3.6,
+   "tit": "per"
+  },
+  {
+   "id": "mar",
+   "nombre": "La mar (Douglas)",
+   "corto": "El viento la levanta según intensidad, persistencia y fetch. Douglas mide su altura, de 0 a 9.",
+   "spec": {
+    "tipo": "mar-crece",
+    "vista": "factores"
+   },
+   "clase": "per-9-6",
+   "x": 4.2,
+   "y": 4.8,
+   "tit": "per"
+  }
+ ],
+ "aristas": [
+  {
+   "de": "presion",
+   "a": "isobaras",
+   "rel": "se dibuja con"
+  },
+  {
+   "de": "presion",
+   "a": "barometro",
+   "rel": "se mide con el barómetro"
+  },
+  {
+   "de": "isobaras",
+   "a": "viento",
+   "rel": "juntas = viento fuerte"
+  },
+  {
+   "de": "viento",
+   "a": "borrasca",
+   "rel": "gira antihorario (HN)"
+  },
+  {
+   "de": "viento",
+   "a": "anticiclon",
+   "rel": "gira horario (HN)"
+  },
+  {
+   "de": "buys",
+   "a": "borrasca",
+   "rel": "la sitúa a tu izquierda"
+  },
+  {
+   "de": "barometro",
+   "a": "borrasca",
+   "rel": "bajada rápida: se acerca"
+  },
+  {
+   "de": "borrasca",
+   "a": "frentes",
+   "rel": "lleva asociados"
+  },
+  {
+   "de": "frentes",
+   "a": "frio",
+   "rel": "el frío empuja"
+  },
+  {
+   "de": "frentes",
+   "a": "calido",
+   "rel": "el cálido sube solo"
+  },
+  {
+   "de": "viento",
+   "a": "beaufort",
+   "rel": "su fuerza se mide con"
+  },
+  {
+   "de": "viento",
+   "a": "mar",
+   "rel": "levanta la"
+  },
+  {
+   "de": "borrasca",
+   "a": "anticiclon",
+   "rel": "Borrasca: centro bajo, antihoraria e inestable. Anticiclón: centro alto, horario y estable (HN).",
+   "tipo": "confunde"
+  },
+  {
+   "de": "frio",
+   "a": "calido",
+   "rel": "En el frío empuja el frío (cumulonimbos, chubascos); en el cálido, el cálido sube solo (estratos, lluvia continua). Nunca «baja».",
+   "tipo": "confunde"
+  },
+  {
+   "de": "beaufort",
+   "a": "mar",
+   "rel": "Beaufort mide el viento (0 a 12); Douglas, la mar (0 a 9).",
+   "tipo": "confunde"
+  }
+ ]
+}

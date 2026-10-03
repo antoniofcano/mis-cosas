@@ -184,3 +184,25 @@ export function lineaAvance(a, racha = 0) {
   const temas = a.temasAlDia === a.temasTotal ? `todos los temas al día (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas al día`;
   return `Llevas el ${pct} % del camino: ${temas}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
 }
+
+export const MIN_DIAGNOSTICO = 3; // respuestas de una clase para opinar sobre ella
+
+/**
+ * Diagnóstico por clase (B5): de cada clase, sus preguntas de práctica (lección.practica) respondidas y acertadas
+ * (última respuesta). Devuelve las clases flojas, las peores primero: acierto < 70 % con al menos MIN_DIAGNOSTICO
+ * respondidas.
+ * @returns {{ id, titulo, ut, hechas, aciertos, pct }[]}
+ */
+export function clasesFlojas(curso, respuestas = {}, { max = 6 } = {}) {
+  const out = [];
+  for (const m of curso?.modulos ?? []) {
+    for (const l of m.lecciones) {
+      const ids = (l.practica ?? []).filter((id) => respuestas[id]);
+      if (ids.length < MIN_DIAGNOSTICO) continue;
+      const aciertos = ids.filter((id) => respuestas[id].ok).length;
+      const pct = Math.round((100 * aciertos) / ids.length);
+      if (pct < 70) out.push({ id: l.id, titulo: l.titulo, ut: l.ut ?? m.ut, hechas: ids.length, aciertos, pct });
+    }
+  }
+  return out.sort((a, b) => a.pct - b.pct || (b.hechas - b.aciertos) - (a.hechas - a.aciertos)).slice(0, max);
+}

@@ -210,3 +210,17 @@ test('ritmo: cuándo terminas y si llegas al examen', () => {
   // sin fecha de examen no se sabe si llegas
   assert.equal(ritmoEstudio({ estructura, curso, preguntas, ahora }).llega, null);
 });
+
+test('B5. clases flojas: por sus preguntas de práctica, las peores primero y solo con datos suficientes', async () => {
+  const { clasesFlojas } = await import('../src/course/plan.js');
+  const curso = { modulos: [{ ut: 1, lecciones: [
+    { id: 'radar', titulo: 'Radar', practica: ['a', 'b', 'c', 'd'] },
+    { id: 'hora', titulo: 'Hora civil', practica: ['e', 'f', 'g'] },
+    { id: 'bien', titulo: 'Bien', practica: ['h', 'i', 'j'] },
+    { id: 'pocas', titulo: 'Pocas', practica: ['k', 'l'] },
+  ] }] };
+  const r = { a: { ok: false }, b: { ok: false }, c: { ok: true }, d: { ok: false }, e: { ok: false }, f: { ok: true }, g: { ok: true }, h: { ok: true }, i: { ok: true }, j: { ok: true }, k: { ok: false }, l: { ok: false } };
+  const f = clasesFlojas(curso, r);
+  assert.deepEqual(f.map((c) => c.id), ['radar', 'hora']);
+  assert.deepEqual([f[0].aciertos, f[0].hechas, f[0].pct], [1, 4, 25]);
+});

@@ -689,3 +689,7 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .base-per-chip { margin: .4rem 0; }
 .base-per-chip summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--accent); cursor: pointer; }
 .volver-origen { display: flex; align-items: center; min-height: 44px; font-weight: 600; margin-bottom: .4rem; }
+
+/* Avisar de un error */
+.pie-aviso { margin: .6rem 0 0; text-align: right; }
+.aviso-error { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; color: var(--muted); }

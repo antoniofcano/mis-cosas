@@ -15,6 +15,7 @@ import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, g
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
+import { avisoError } from '../aviso-error.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
 import { colaRepaso, tandaRapida } from '../../course/repaso.js';
@@ -116,6 +117,7 @@ export function profePanel(q, expl, chosen) {
     n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
     expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null,
     enlaceResolucion(q),
+    h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
 }
 

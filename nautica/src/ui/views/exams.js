@@ -11,6 +11,7 @@ import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
+import { avisoError } from '../aviso-error.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -175,6 +176,7 @@ export function examsView({ ctx, progress, params: route }) {
         q.fuente_plantilla ? [' · ', h('a', { href: q.fuente_plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
         ''),
       q.notas ? h('details', h('summary', 'Notas sobre la fuente'), h('p.small', q.notas)) : null,
+      h('p.pie-aviso', avisoError(`Pregunta ${q.id} (${q.convocatoria ?? bank.meta.title})`, q.enunciado.slice(0, 120))),
       h('details.ai-context#ai-context', h('summary', 'Para asistentes de IA'),
         h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
     );

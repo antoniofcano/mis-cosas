@@ -4235,18 +4235,22 @@
       {
        "tipo": "ilustracion",
        "spec": {
-        "tipo": "rosa",
-        "rumbo": 210,
-        "demora": 170,
-        "marcacion": true,
-        "etiqueta": "eco"
+        "tipo": "radar-pantalla",
+        "presentacion": "ambas"
        },
-       "texto": "Rv 210° y eco a 40° por babor: Dv = 210 − 40 = 170°."
+       "texto": "El mismo eco en proa arriba (EBL 320°, marcación) y en norte arriba (EBL 170°, demora): Dv = Rv + M."
       },
       {
        "tipo": "texto",
        "titulo": "Racon, SART y reflector",
        "texto": "- **Racon**: baliza respondedora instalada en faros, boyas o puentes. Al recibir tu pulso responde y en pantalla aparece una **letra Morse** en línea radial **detrás de su eco**, que la identifica (la marca de un nuevo peligro o pecio usa la «D»).\n- **SART**: el respondedor de radar de socorro. Interrogado por un radar de banda X, aparece como una línea de **12 puntos** que se aleja del centro desde su posición; de cerca se convierten en arcos.\n- **Reflector de radar**: hace visible en los radares ajenos un barco pequeño que no sea metálico."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "radar-respondedores"
+       },
+       "texto": "El racon pone su letra Morse detrás del eco; el SART, 12 puntos que se alejan del centro."
       },
       {
        "tipo": "regla",
@@ -5050,16 +5054,6 @@
        "texto": "Desde tu situación mides la **Dv** y la **distancia D** al faro. El ángulo entre la visual y la tangente cumple **sen α = d / D** (d, distancia de paso).\n- **Dejar el faro por estribor** (queda a tu derecha): **Rs = Dv − α**.\n- **Dejar el faro por babor** (queda a tu izquierda): **Rs = Dv + α**.\n\nSi el enunciado no dice la banda, escoge la tangente que pasa **por fuera, por el lado del mar**. Pistas como «en demanda del Estrecho» o «hacia la costa de Málaga» te dicen hacia dónde vas y, con ello, cuál es."
       },
       {
-       "tipo": "ilustracion",
-       "spec": {
-        "tipo": "rosa",
-        "rumbo": 111,
-        "demora": 89,
-        "etiqueta": "faro"
-       },
-       "texto": "Faro en Dv 089° y rumbo 111°: la derrota pasa a la derecha de la visual y el faro queda por babor."
-      },
-      {
        "tipo": "texto",
        "titulo": "Problema modelo",
        "texto": "Estás en **36°00,0′ N 005°50,0′ W** y das rumbo para pasar a **4 millas** del faro de **Isla de Tarifa**, dejándolo **por babor**. Sopla viento del **S** que te abate **10°**. Declinación 1° W y desvío +6°. Calcula el rumbo de aguja."
@@ -5068,6 +5062,13 @@
        "tipo": "texto",
        "titulo": "Resolución paso a paso",
        "texto": "1. **Visual al faro**: Dv ≈ **089,5°**, D ≈ **10,9 millas**.\n2. **Ángulo**: sen α = 4 / 10,9 → α ≈ **21,5°**.\n3. **Tangente por babor**: Rs = 089,5° + 21,5° ≈ **111°** (pasas al sur de la isla).\n4. **Banda del viento**: 180 − 121 = 59° → **estribor** → Ab = **−10°**.\n5. **Rv = Rs − Ab** = 111° + 10° = **121°**.\n6. **Ct** = −1° + 6° = **+5°** → **Ra = Rv − Ct** = 121° − 5° = **116°**.\n\nEn la carta lo haces con compás y transportador; la cuenta de α solo sirve para comprobar."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tangente-viento"
+       },
+       "texto": "La tangente es el Rs 111°; con el viento del S la proa va al Rv 121° y el Ra sale 116°."
       },
       {
        "tipo": "regla",
@@ -5487,6 +5488,13 @@
        "tipo": "texto",
        "titulo": "Resolución paso a paso",
        "texto": "1. **Viento**: 270 − 170 = 100° → **estribor** → Ab −10° → **Rs = 160°**.\n2. **Través de babor**: Dv = 170° − 90° = **080°** (con el Rv, no con el Rs). Desde el faro trazas el **260°**.\n3. **Corte** con el Rs 160° que sale de la situación: **35°47,1′ N 005°58,5′ W**, a unas 2,5 millas del faro.\n4. **Distancia navegada**: 8,4 millas → 8,4 / 8 = 1,05 h ≈ **1 h 03 min** → HRB **11:03**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "traves-derrota"
+       },
+       "texto": "El través con el Rv (Dv 080°, desde el faro 260°) cortado con el Rs 160°: situación a las 11:03."
       },
       {
        "tipo": "ojo",

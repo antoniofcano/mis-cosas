@@ -16,6 +16,7 @@ import { pidePrediccion } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
 import { voice } from '../voice.js';
 import { avisoError } from '../aviso-error.js';
+import { dondeEncaja } from '../encaja.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { getExercise } from '../../exercises/registry.js';
 
@@ -207,6 +208,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       progress.logActividad(L.minutos ?? 10);
       barra.set('Clase terminada', 1);
       const extra = [
+        dondeEncaja(tit, L.id),
         L.carta?.length ? h('details', h('summary', '🗺️ En la carta'), h('ul', L.carta.map((x) => (getExercise(x) ? h('li', h('a', { href: link(['ej', x]) }, getExercise(x).title)) : null)))) : null,
         L.profundizar?.length ? h('details', h('summary', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
         base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,

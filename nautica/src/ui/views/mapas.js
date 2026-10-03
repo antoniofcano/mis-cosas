@@ -11,8 +11,15 @@ import { renderIllustration } from '../../illustrations/index.js';
 import { MAPAS, vecinos, preguntasMapa } from '../../course/mapas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 
-const cargar = (id) => fetch(new URL(`../../../data/mapas/${id}.json`, import.meta.url)).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
-const mini = (spec) => h('div.mapa-mini', { 'aria-hidden': 'true', html: renderIllustration(spec)?.svg ?? '' });
+const cache = new Map();
+/** Carga un mapa (una sola vez por sesión). */
+export const cargar = (id) => {
+  if (!cache.has(id)) cache.set(id, fetch(new URL(`../../../data/mapas/${id}.json`, import.meta.url)).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch((e) => { cache.delete(id); throw e; }));
+  return cache.get(id);
+};
+/** Todos los mapas registrados. */
+export const cargarMapas = () => Promise.all(MAPAS.map(cargar));
+export const mini = (spec) => h('div.mapa-mini', { 'aria-hidden': 'true', html: renderIllustration(spec)?.svg ?? '' });
 
 export function mapasView({ tit, params: route }) {
   const T = TITULACIONES[tit];
@@ -21,7 +28,7 @@ export function mapasView({ tit, params: route }) {
   let summaryText = `VISTA mapas ${T.sigla}`;
 
   if (!id) {
-    Promise.all(MAPAS.map(cargar)).then((mapas) => {
+    cargarMapas().then((mapas) => {
       const mios = mapas.filter((m) => m.tits.includes(tit));
       summaryText = `VISTA mapas de conceptos ${T.sigla}\n${mios.map((m) => `${m.titulo} → ${tlink(tit, ['mapas', m.id])}`).join('\n')}`;
       setChildren(el,

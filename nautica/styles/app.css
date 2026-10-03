@@ -707,6 +707,9 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .mapa-grupo.confunde .mapa-vecino { border: 2px dashed var(--close); }
 .mapa-vecino-txt { display: flex; flex-direction: column; gap: .15rem; }
 .mapa-rel { color: var(--muted); font-size: .92rem; }
+.encaja { margin: 1.2rem 0; }
+.encaja-nodo + .encaja-nodo { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: .6rem; }
+a.mapa-vecino { text-decoration: none; }
 .mapa-mini { flex: 0 0 64px; width: 64px; height: 48px; overflow: hidden; border-radius: 6px; background: var(--l-fondo); }
 .mapa-mini svg { width: 100%; height: 100%; }
 .mapa-entero { overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); max-height: 70vh; -webkit-overflow-scrolling: touch; }

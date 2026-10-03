@@ -4,14 +4,14 @@
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { trasPractica, leccionesDe, APROBADO } from '../../course/engine.js';
+import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal } from '../../course/engine.js';
 import { MIN_TANDA } from '../../course/plan.js';
 import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
 import { pidePrediccion } from '../../illustrations/interactivas.js';
-import { questionCard, prepareTheory, tandaPreguntas } from './theory.js';
+import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
 import { voice } from '../voice.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { getExercise } from '../../exercises/registry.js';
@@ -56,7 +56,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const nPractica = Math.min(PRACTICA_MAX, disponibles.length);
 
     // --- tarjetas: la 0 es «En esta clase» (objetivos y tiempo); después, los pasos de la clase
-    const tarjetas = [{ tipo: 'intro' }, ...L.pasos];
+    // La pregunta del final cambia cada vez: una real de examen de esta clase.
+    const tarjetas = [{ tipo: 'intro' }, ...conPreguntaFinal(L.pasos, disponibles, createRng(randomSeed()))];
     const n = tarjetas.length;
     let paso = Math.min(Math.max(0, Number(reg().paso) || 0), n - 1);
     let checkOk = new Set();
@@ -81,6 +82,19 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         case 'ojo': return h('div.paso.ojo', h('p', '⚠️ ', rich(p.texto)));
         case 'check': {
           const fb = h('div');
+          if (p.real) {
+            const q = p.real;
+            let card = questionCard(q, { tema: false, onChoose: (k) => {
+              progress.recordExam(q.id, { choice: k, ok: k === q.correcta });
+              const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false });
+              card.replaceWith(nuevo);
+              card = nuevo;
+              setChildren(fb, profePanel(q, bank.explicaciones[q.id], k));
+              checkOk.add(i);
+              if (i === paso) refrescaBotones();
+            } });
+            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, fb);
+          }
           const q = { id: `${L.id}-chk-${i}-${p.enunciado.length}`, enunciado: p.enunciado, opciones: p.opciones, correcta: p.correcta };
           let card = questionCard(q, { tema: false, onChoose: (k) => {
             const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false });

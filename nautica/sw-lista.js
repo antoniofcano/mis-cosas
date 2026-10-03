@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '1d71f9028f19';
+self.VERSION = '053d7f11b194';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -218,5 +218,15 @@ self.DATOS = [
  "data/mapas/nieblas.json",
  "data/mapas/ripa-luces.json",
  "data/mapas/ripa-maniobras.json",
- "data/mapas/rumbos.json"
+ "data/mapas/rumbos.json",
+ "data/podcast-per.json",
+ "data/podcast-py.json",
+ "data/podcast/py-0.json",
+ "data/podcast/py-1-0.json",
+ "data/podcast/py-1-1.json",
+ "data/podcast/py-1-2.json",
+ "data/podcast/py-1-3.json",
+ "data/podcast/py-1-4.json",
+ "data/podcast/py-1-5.json",
+ "data/podcast/py-1-6.json"
 ];

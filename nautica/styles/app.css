@@ -631,3 +631,7 @@ ul.clases-flojas a { display: flex; flex-direction: column; gap: .15rem; min-hei
 .tarjeta-reverso { width: 100%; border-top: 2px dashed var(--border); padding-top: .8rem; }
 .tarjeta-respuesta { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin: 0 0 .3rem; }
 .fila-inferior > .grande + .grande { flex: 1; }
+/* Asas de los trazos del alumno (Mover y Regla): se pueden coger */
+svg.chart circle.asa { fill: #fff; stroke: #e11d48; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.tomar-carta { margin: .2rem 0 .6rem; }
+.tomar-carta .aviso-punto { margin: .3rem 0 0; }

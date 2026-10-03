@@ -15,5 +15,8 @@ import { LAMINAS as pyNavegacion } from './py-navegacion.js';
 import { LAMINAS as pySegundaA } from './py-segunda-a.js';
 import { LAMINAS as pySegundaB } from './py-segunda-b.js';
 import { LAMINAS as perPropias } from './per-propias.js';
+import { LAMINAS as perSegundaA } from './per-segunda-a.js';
+import { LAMINAS as perSegundaB } from './per-segunda-b.js';
+import { LAMINAS as perSegundaC } from './per-segunda-c.js';
 
-export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones, ...pyNavegacion, ...pySegundaA, ...pySegundaB, ...perPropias };
+export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones, ...pyNavegacion, ...pySegundaA, ...pySegundaB, ...perPropias, ...perSegundaA, ...perSegundaB, ...perSegundaC };

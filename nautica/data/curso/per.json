@@ -1088,6 +1088,18 @@
        "texto": "Cuando no hay muelle, puedes amarrarte a una **boya**: un flotador sujeto al fondo.\n- El **muerto** es un gran peso (bloque de hormigón o de hierro) que descansa en el fondo y sirve de amarre permanente.\n- Del muerto sube una cadena hasta la **boya**, y a la boya (o a su cabo) te amarras tú.\n\nEn muchas calas y puertos hay campos de boyas: evitan que cada barco fondee su ancla y protegen el fondo."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "muerto-boya",
+        "resaltar": [
+         "muerto",
+         "cadena",
+         "boya"
+        ]
+       },
+       "texto": "El muerto descansa en el fondo, la cadena sube hasta la boya y a la boya te amarras tú."
+      },
+      {
        "tipo": "texto",
        "titulo": "Proteger el casco y alcanzar cabos",
        "texto": "- **Defensas**: piezas blandas (normalmente cilindros hinchables) que se cuelgan **entre el casco y el muelle u otro barco** para que no haya golpes ni roces. Las hay también fijas en los muelles.\n- **Bichero**: una pértiga con un gancho en la punta. Sirve para coger un cabo o la boya de amarre, recoger algo del agua o separar el barco de otro o del muelle."
@@ -1105,6 +1117,19 @@
        "tipo": "texto",
        "titulo": "Las partes de un cabo",
        "texto": "- **Chicote**: cada uno de los **extremos libres** del cabo (todo cabo tiene dos).\n- **Firme**: la parte principal del cabo, la que trabaja o queda sujeta, en contraposición al chicote con el que haces el nudo.\n- **Seno**: la curva o arco que forma el cabo cuando lo doblas.\n- **Gaza**: un lazo u ojo cerrado en el extremo, hecho con un nudo o con una costura. Las gazas largas son las que se «encapillan» (se pasan por encima) en un noray.\n- **Adujar**: recoger el cabo en vueltas ordenadas para que no se enrede."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "muerto-boya",
+        "resaltar": [
+         "chicote",
+         "firme",
+         "seno",
+         "gaza"
+        ]
+       },
+       "texto": "En el cabo con que te amarras a la boya: la gaza en la argolla, el firme que trabaja, el seno del sobrante y el chicote libre."
       },
       {
        "tipo": "check",
@@ -2299,6 +2324,14 @@
        "texto": "Un rayo cercano produce un campo magnético muy intenso que puede alterar el magnetismo de la **aguja** y de los hierros de a bordo. Resultado: **desvíos anómalos**, temporales o permanentes, y **errores en el rumbo de aguja**.\n\nDespués de una tormenta, **comprueba la aguja** (por ejemplo, con una enfilación) y, si ha cambiado, haz una nueva tablilla de desvíos.\n\nLo que **no** cambia es la **declinación magnética**: depende del lugar y del año, no de tu barco."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "reflector-tormenta",
+        "vista": "tormenta"
+       },
+       "texto": "Dentro y lejos del palo y los obenques; después de la tormenta, comprueba la aguja."
+      },
+      {
        "tipo": "ojo",
        "texto": "Las opciones falsas suelen decir que la tormenta solo afecta a cascos metálicos o de madera, que no hay riesgo con el motor parado, que «mejora» la precisión de la aguja o que cambia la declinación. Lo correcto: puede producir un **desvío anómalo** de la aguja, temporal o permanente, en cualquier barco."
       },
@@ -2319,6 +2352,14 @@
        "tipo": "texto",
        "titulo": "El reflector radar",
        "texto": "Los barcos de fibra o de madera devuelven muy poco eco al radar: en la pantalla de un mercante pueden ser casi invisibles. El **reflector radar** es un elemento **pasivo** (no emite nada ni gasta energía) formado por placas metálicas en ángulo recto que **devuelven las ondas de los radares de otros barcos**, para que **te vean**.\n\n- No mejora **tu** radar ni hay que orientarlo a mano.\n- Se iza **lo más alto posible**.\n- El RD 339/2021 lo exige en las embarcaciones de recreo de **casco no metálico**, en todas las zonas.\n\nCon niebla es fundamental."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "reflector-tormenta",
+        "vista": "reflector"
+       },
+       "texto": "El reflector no emite: devuelve las ondas del radar de los demás para que te vean."
       },
       {
        "tipo": "texto",
@@ -2472,6 +2513,13 @@
        "tipo": "texto",
        "titulo": "Balsas salvavidas",
        "texto": "- Obligatorias en **zonas 1, 2 y 3**, con capacidad para **todas las personas a bordo**.\n- Pueden ser conformes a la norma ISO 9650 u otra equivalente, siempre que estén homologadas por la Dirección General de la Marina Mercante.\n- Se revisan según las instrucciones del fabricante en una estación de servicio autorizada (en barcos de uso comercial, como máximo cada **24 meses**).\n\nSuelen ir en un contenedor sobre cubierta con una **zafa hidrostática**, que la suelta sola si el barco se hunde."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "dotacion-zonas"
+       },
+       "texto": "Chalecos, aros y balsas de un vistazo: cuanto menor es el número de zona, más equipo."
       },
       {
        "tipo": "clave",
@@ -3438,6 +3486,14 @@
        "texto": "Una embarcación de recreo con inodoro debe llevar **uno** de estos tres equipos (las que tienen **marcado CE** cumplen este punto por su propia normativa de construcción, que también exige tanque o tratamiento):\n- Un **sistema de retención** (tanque), con capacidad suficiente según la duración de la navegación y las personas a bordo. Vale también un depósito portátil. Si cumple la norma ISO 8099-1, se presume conforme.\n- Una **instalación de tratamiento** certificada u homologada.\n- Un **sistema para desmenuzar y desinfectar** homologado, con medios para almacenar temporalmente las aguas.\n\nSi el tanque es fijo, debe tener **conexión universal a tierra** para vaciarlo en puerto, y los pasacascos de descarga al mar, **válvulas que puedan cerrarse y precintarse**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tanque-retencion",
+        "vista": "puerto"
+       },
+       "texto": "El tanque fijo se vacía en puerto por la conexión universal; la válvula al mar, cerrada y precintada."
+      },
+      {
        "tipo": "texto",
        "titulo": "Dónde se puede descargar",
        "texto": "Las distancias se cuentan desde la **tierra más próxima**, es decir, desde la **línea de base** del mar territorial:\n- **Más de 3 millas**: si las aguas están **desmenuzadas y desinfectadas** con un sistema homologado.\n- **Más de 12 millas**: si **no** están desmenuzadas ni desinfectadas.\n- Con una **instalación de tratamiento** homologada, cuyo efluente no deje sólidos flotantes visibles ni coloree el agua, se puede descargar **fuera de la zona 7** (puertos, rías, bahías y aguas protegidas).\n\nEn puertos, dársenas y aguas protegidas, por tanto, nada de descargas: se usa el tanque y se vacía en la instalación del puerto."
@@ -3454,6 +3510,14 @@
        "tipo": "texto",
        "titulo": "Cómo se vacía el tanque",
        "texto": "Las aguas que han estado almacenadas en el tanque de retención **no se descargan de golpe**:\n- A un **régimen moderado** (poco a poco).\n- Con la embarcación **en ruta**.\n- Navegando a **4 nudos como mínimo**.\n\nLa velocidad y el caudal pequeño hacen que la descarga se diluya en la estela. Nunca con el barco parado ni fondeado."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "tanque-retencion",
+        "vista": "mar"
+       },
+       "texto": "En la mar, poco a poco, en ruta y a 4 nudos o más, y solo a la distancia que toca."
       },
       {
        "tipo": "clave",
@@ -3573,6 +3637,13 @@
         "tema": "basuras"
        },
        "texto": "Mira primero dónde estás: en el Mediterráneo la comida solo se echa triturada y a más de 12 millas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marpol-basuras"
+       },
+       "texto": "Mira primero a qué lado del meridiano 5° 36' W estás: eso cambia lo que puedes hacer con la comida."
       },
       {
        "tipo": "clave",
@@ -3809,6 +3880,13 @@
        "tipo": "texto",
        "titulo": "Cuándo es obligatorio izarla",
        "texto": "El pabellón nacional debe izarse:\n- a la vista de un **buque de guerra** o de una fortaleza,\n- al **entrar y salir** de puerto,\n- en puerto, **de sol a sol** en los días festivos,\n- cuando lo disponga la autoridad competente,\n- y cuando lo exijan la costumbre internacional o las normas de aguas extranjeras."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "pabellon-obligatorio"
+       },
+       "texto": "Buque de guerra a la vista, entradas y salidas, festivos de sol a sol, orden de la autoridad y costumbre internacional."
       },
       {
        "tipo": "ojo",
@@ -6724,6 +6802,14 @@
        "texto": "El timón solo funciona si le pasa agua. De ahí dos conceptos:\n- **Velocidad de gobierno**: la **velocidad mínima** con la que el barco todavía obedece al timón. Depende de cada barco y de cómo sople el viento.\n- **Arrancada**: la velocidad que el barco **conserva por inercia**, avante o atrás, cuando la máquina deja de empujar. «Parado y sin arrancada» quiere decir que no se mueve respecto al agua.\n\nPor debajo de la velocidad de gobierno el barco no responde y queda a merced del viento y la corriente."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "gobierno-rabeo",
+        "vista": "gobierno"
+       },
+       "texto": "Sin máquina el barco sigue por arrancada, pero por debajo de la velocidad de gobierno ya no obedece al timón."
+      },
+      {
        "tipo": "texto",
        "titulo": "La curva de evolución",
        "texto": "Es la trayectoria que describe el centro de gravedad del barco cuando, navegando avante, metes el timón a una banda y lo mantienes, con la máquina igual. Sus medidas:\n- **Avance**: lo que el barco se adelanta en la dirección del rumbo inicial hasta caer 90°.\n- **Traslado**: lo que se separa lateralmente del rumbo inicial al caer 90°.\n- **Diámetro táctico**: la separación lateral al caer 180°.\n- **Diámetro final**: el del círculo que acaba describiendo.\n\nCuanto más ángulo de timón, más cerrada es la curva."
@@ -6747,6 +6833,14 @@
        "tipo": "texto",
        "titulo": "El rabeo de la popa",
        "texto": "Avante, el barco no gira alrededor de su centro: gira alrededor de un **punto de giro** que está aproximadamente a un tercio de la eslora desde la proa. Por eso, al meter el timón, la proa va hacia un lado y **la popa barre hacia el contrario**: eso es el **rabeo**.\n\nSu importancia es práctica: necesitas **espacio libre por la banda contraria al giro**. Si estás pegado a un muelle y metes todo el timón para separarte, la popa se te va contra el muelle."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "gobierno-rabeo",
+        "vista": "rabeo"
+       },
+       "texto": "Gira sobre un punto a 1/3 de la eslora desde proa: la proa cae a un lado y la popa barre hacia el otro."
       },
       {
        "tipo": "ojo",
@@ -7007,6 +7101,14 @@
        "tipo": "texto",
        "titulo": "La ciaboga con dos hélices",
        "texto": "Das **un motor avante y el otro atrás**: el barco gira casi sobre sí mismo y **la proa cae hacia la banda del motor que va atrás**.\n- A estribor: motor de **estribor atrás** y de babor avante.\n- A babor: motor de **babor atrás** y de estribor avante.\n\nMeter el timón hacia la banda del giro ayuda. Con hélices de **giro al exterior**, la presión lateral de las dos hélices empuja en el mismo sentido que el giro, y por eso ciabogan especialmente bien."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "ciaboga-dos-helices",
+        "banda": "er"
+       },
+       "texto": "Una avante y otra atrás: la proa cae hacia la banda del motor que va atrás."
       },
       {
        "tipo": "check",
@@ -8083,6 +8185,13 @@
        "texto": "El RD 339/2021 fija el mínimo según la zona de navegación:\n- **Zonas 1, 2 y 3**: una bomba accionada por el motor (u otra fuente de energía), una **bomba manual** y **dos baldes** de al menos 5 litros.\n- **Zonas 4, 5 y 6**: una **bomba manual o eléctrica** y **un balde** de al menos 5 litros.\n- **Zona 7**: una bomba manual o eléctrica (o un achicador si es una embarcación pequeña con cámaras de flotabilidad).\n\nLas **bombas eléctricas automáticas** arrancan solas cuando sube el nivel de la sentina: muy útiles, pero comprueba de vez en cuando que funcionan."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "achique-sentina"
+       },
+       "texto": "Todo el achique en marcha y el motor encendido; el mínimo obligatorio depende de la zona."
+      },
+      {
        "tipo": "clave",
        "texto": "Vía de agua: achicar con todo, motor en marcha, taponar y vigilar el nivel."
       },
@@ -8701,6 +8810,14 @@
        "texto": "La presión se mide con el **barómetro** (el manómetro mide presiones de fluidos en circuitos, no la atmosférica).\n- **De mercurio**: una columna de mercurio que sube o baja con la presión. Es el más **exacto**, pero frágil. El modelo marino lleva un **estrechamiento capilar** en el tubo para amortiguar las oscilaciones que provocan los balances.\n- **Aneroide** («sin líquido»): una **cápsula metálica estanca con vacío** en su interior que se deforma con la presión; un muelle la equilibra con **fuerzas elásticas**; una aguja marca el valor en una esfera. Es de **lectura directa**, robusto y el habitual a bordo, aunque **menos exacto** que el de mercurio.\n\nEl **barógrafo** es un aneroide que dibuja la presión de forma continua en un papel."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barometro-tendencia",
+        "vista": "instrumentos"
+       },
+       "texto": "El de mercurio es más exacto pero frágil; el aneroide, con cápsula de vacío y muelle, es de lectura directa."
+      },
+      {
        "tipo": "ojo",
        "texto": "En el aneroide las fuerzas son **elásticas**, nunca magnéticas ni eléctricas; no lleva mercurio; es de lectura **directa**; y es **menos** exacto que el de mercurio. El estrechamiento capilar es cosa del barómetro de mercurio, no del aneroide."
       },
@@ -8708,6 +8825,14 @@
        "tipo": "texto",
        "titulo": "Lo que importa: la tendencia",
        "texto": "Una lectura suelta dice poco. Lo útil es ver **cómo cambia** la presión con el tiempo: la **tendencia barométrica**. Por eso el aneroide tiene una segunda aguja que dejas sobre la lectura anterior.\n- **Subida lenta y continuada**: tiempo que mejora o se mantiene bueno.\n- **Bajada lenta**: empeoramiento general.\n- **Bajada rápida**: se acerca una borrasca o un frente, con viento fuerte.\n- **Estable**: el tiempo seguirá como está, sea bueno o malo.\n\nAnota la presión al salir y cada pocas horas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barometro-tendencia",
+        "vista": "tendencia"
+       },
+       "texto": "Más que la lectura, cuenta cómo cambia: bajada rápida, borrasca o frente con viento fuerte."
       },
       {
        "tipo": "regla",
@@ -9381,6 +9506,14 @@
        "texto": "La altura de las olas que levanta el viento depende de tres factores:\n- **Intensidad**: la fuerza del viento sobre la superficie del mar.\n- **Persistencia**: el **tiempo** que lleva soplando con la misma dirección e intensidad.\n- **Fetch**: la **extensión** (distancia rectilínea) de mar sobre la que sopla con la misma dirección e intensidad.\n\nCuanto mayores son los tres, más alta la ola, hasta un límite: la **mar totalmente desarrollada**, en la que por mucho que siga soplando la ola ya no crece. Un viento de tierra levanta poca mar cerca de la costa porque apenas tiene fetch."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "mar-crece",
+        "vista": "factores"
+       },
+       "texto": "Intensidad es fuerza, persistencia es tiempo y fetch es extensión: con poco fetch, junto a la costa, hay poca mar."
+      },
+      {
        "tipo": "ojo",
        "texto": "**Fetch = espacio** (extensión de mar), **persistencia = tiempo**, **intensidad = fuerza**. No es la altura de la ola ni la profundidad a la que rompe, y «permanencia» o «potencia» son palabras de relleno."
       },
@@ -9388,6 +9521,14 @@
        "tipo": "texto",
        "titulo": "Mar de viento y mar de fondo",
        "texto": "- **Mar de viento**: la que levanta el viento que sopla **en ese momento y en ese lugar**. Olas cortas, irregulares, de cresta puntiaguda que rompen con facilidad.\n- **Mar de fondo** (o mar de leva): olas que se formaron **lejos** y han viajado hasta ti. Son **largas, regulares y de cresta redondeada**, y pueden llegar con calma o con un viento local de otra dirección.\n\nCuando se juntan mares de distinta dirección, o mar contra corriente, la mar se vuelve **confusa** y más incómoda de lo que dicen los números."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "mar-crece",
+        "vista": "viento-fondo"
+       },
+       "texto": "La mar de viento nace donde sopla; la de fondo llega de lejos, larga y regular, aunque aquí haya calma."
       },
       {
        "tipo": "texto",
@@ -10265,6 +10406,17 @@
        "texto": "Como cambia cada año, hay que llevarla al año en que navegas:\n1. Cuenta los **años** transcurridos desde el de la carta.\n2. Multiplica por la **variación anual**.\n3. Suma el resultado a la dm de la carta **con su signo** (E +, W −).\n\nEjemplo: la carta dice **2° 30′ W en 2016**, variación anual **9′ E**. En 2026: 10 años × 9′ = 90′ = **1° 30′ E**. Entonces −2° 30′ + 1° 30′ = **−1°**, es decir, **1° W**.\n\nSi la variación tiene el signo contrario a la dm, la declinación se va haciendo más pequeña; si tiene el mismo, crece."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "declinacion-anual",
+        "dm": -150,
+        "anio": 2016,
+        "variacion": 9,
+        "actual": 2026
+       },
+       "texto": "El ejemplo de la lección: 2° 30′ W en 2016 con 9′ E al año da 1° W en 2026."
+      },
+      {
        "tipo": "texto",
        "titulo": "La aguja náutica",
        "texto": "La **aguja** (el compás magnético de a bordo) tiene:\n- La **rosa**, graduada de 0° a 360°, con los **imanes** debajo.\n- El **chapitel**, un hueco cónico en el centro de la rosa, que apoya sobre la punta del **estilo**.\n- El **mortero**, la caja con tapa de cristal, normalmente llena de líquido para amortiguar.\n- La **línea de fe**, la marca que señala la proa; debe estar en la **línea de crujía** o paralela a ella.\n- La **suspensión cardán**, que la mantiene horizontal con los balances.\n\nVa montada sobre la **bitácora**. Funciona sin electricidad."
@@ -10423,6 +10575,14 @@
         "rumbo": 225
        },
        "texto": "S45W: desde el sur, 45° hacia el oeste. En circular, 180° + 45° = 225°."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "rumbo-cuadrantal",
+        "rumbo": "N64W"
+       },
+       "texto": "N64W: desde el norte, 64° hacia el oeste; en circular, 360° − 64° = 296°."
       },
       {
        "tipo": "ojo",
@@ -11569,6 +11729,15 @@
        "texto": "- La **demora** es el ángulo que va desde el **norte** hasta la visual al objeto, de 000° a 359°.\n- La **marcación** es el ángulo que va desde la **proa** hasta la visual. Se da de 0° a 180° **por estribor o por babor**, o como marcación circular de 0° a 360° contada desde la proa hacia estribor.\n\nPara pasar de una a otra:\n\n**Dv = Rv + M** (estribor +, babor −)\n\nSi te dan el rumbo de aguja, primero pasa a Rv = Ra + Ct. Una marcación de 90° es por el **través**, y una de 0°, por la **proa**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "demora-marcacion",
+        "rumbo": 70,
+        "marcacion": -100
+       },
+       "texto": "La demora se cuenta desde el norte y la marcación desde la proa: con Rv 070° y el faro 100° por babor, Dv = 330°."
+      },
+      {
        "tipo": "regla",
        "id": "r27"
       },
@@ -11701,6 +11870,13 @@
        "tipo": "texto",
        "titulo": "Calidad de la situación",
        "texto": "La situación es más fiable cuanto más se acerque a **90°** el ángulo entre las dos líneas. Con líneas casi paralelas, un error pequeño al trazar mueve mucho el corte.\n\nComprueba siempre que el punto que te sale está **en el agua** y en el lado del Estrecho que dice el enunciado. Si cae en tierra, revisa los signos de las marcaciones."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "calidad-corte"
+       },
+       "texto": "Con el mismo error pequeño al trazar, un corte cerca de 90° deja una zona pequeña; uno muy agudo, una zona larga."
       },
       {
        "tipo": "check",

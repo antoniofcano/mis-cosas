@@ -82,3 +82,18 @@ test('una clase sin práctica queda aprendida al terminarla y no bloquea su tema
   const plan = planHoy({ estructura: TITULACIONES.py.estructura, curso, preguntas, regs, respuestas });
   assert.equal(plan[0].tipo, 'simulacro', JSON.stringify(plan));
 });
+
+test('ninguna clase sin lámina, y todas las láminas de las clases se dibujan', async () => {
+  const { renderIllustration } = await import('../src/illustrations/index.js');
+  for (const tit of ['per', 'py']) {
+    const curso = JSON.parse(readFileSync(new URL(`../data/curso/${tit}.json`, import.meta.url)));
+    for (const m of curso.modulos) for (const l of m.lecciones) {
+      const ilus = l.pasos.filter((p) => p.tipo === 'ilustracion');
+      assert.ok(ilus.length > 0, `${l.id} «${l.titulo}» no tiene ninguna lámina`);
+      for (const p of ilus) {
+        const r = renderIllustration(p.spec);
+        assert.ok(r?.svg?.startsWith('<svg') && r.svg.trim().endsWith('</svg>'), `${l.id}: no se dibuja ${JSON.stringify(p.spec)}`);
+      }
+    }
+  }
+});

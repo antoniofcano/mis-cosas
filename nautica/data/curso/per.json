@@ -2035,9 +2035,25 @@
        "texto": "Muchas averías y rescates se habrían evitado con diez minutos de revisión antes de soltar amarras. Antes de salir, el patrón comprueba tres cosas:\n- **El tiempo**: la predicción para toda la travesía y su evolución, no solo el cielo de ahora.\n- **El barco**: motor, gobierno, combustible y equipo de seguridad.\n- **Las personas**: quién va a bordo y si saben qué hacer en una emergencia.\n\nY deja dicho en tierra (a alguien de confianza o en el club) **adónde va, por dónde y cuándo piensa volver**: si no llegas, alguien dará la alarma."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "revision-salida",
+        "vista": "resumen"
+       },
+       "texto": "Tres cosas antes de soltar amarras, y una cuarta que se queda en tierra: tu plan de navegación."
+      },
+      {
        "tipo": "texto",
        "titulo": "El motor y el combustible",
        "texto": "- **Aceite**: nivel correcto y sin fugas.\n- **Refrigeración**: grifo de fondo abierto, filtro de agua salada limpio y, al arrancar, comprobar que sale agua por el escape.\n- **Correa del alternador**: tensa y en buen estado (mueve el alternador y, en muchos motores, la bomba de agua).\n- **Combustible**: suficiente para toda la travesía con un buen margen de reserva, y el **filtro decantador** sin agua.\n- **Fugas** de aceite o combustible en la sentina o el motor.\n- **Baterías** cargadas."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "revision-salida",
+        "vista": "motor"
+       },
+       "texto": "Los siete puntos del motor y el combustible que se revisan en el pantalán."
       },
       {
        "tipo": "texto",
@@ -3028,6 +3044,13 @@
        "texto": "Cada puerto tiene su reglamento y sus ordenanzas, y las reglas que se repiten en casi todos son:\n- Velocidad reducida, la que fije el puerto, y sin levantar ola.\n- Por regla general, **el que sale tiene preferencia sobre el que entra**, salvo que la autoridad portuaria o el control de tráfico indiquen otra cosa.\n- **Prohibido fondear** en canales de acceso, bocanas y zonas de maniobra (también para las embarcaciones de recreo), salvo emergencia.\n- No bañarse ni pescar donde se estorbe la navegación.\n- **Ningún vertido**: ni basuras, ni sentinas, ni aguas sucias.\n- Pabellón nacional izado al entrar y salir, defensas listas al atracar y amarras reforzadas si hay temporal.\n- Atender siempre las instrucciones de la autoridad portuaria y de Capitanía."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "puerto-comercial"
+       },
+       "texto": "En el puerto comercial el recreo se aparta, el que sale pasa primero y en el canal no se fondea."
+      },
+      {
        "tipo": "ojo",
        "texto": "Trampa clásica: «los que entran tienen preferencia sobre los que salen» es **falso**; la regla general es la contraria. Y otra: las embarcaciones de recreo **no** están exentas de la prohibición de fondear en los canales de acceso."
       },
@@ -3035,6 +3058,13 @@
        "tipo": "texto",
        "titulo": "El seguro obligatorio",
        "texto": "Lo exige el RD 607/1999 a las embarcaciones de recreo **a motor (incluidas las motos náuticas)** y a las **sin motor de más de 6 m** de eslora.\n\nCubre la responsabilidad civil frente a **terceros**: muerte o lesiones, daños materiales y daños a otros buques por colisión o sin contacto. Los límites son 120.202,42 € por víctima (240.404,84 € por siniestro) en daños personales y 96.161,94 € por siniestro en daños materiales.\n\n**No cubre** los daños de tu propio barco, ni los que sufran el propietario, el tomador o el patrón. Para regatas y competiciones hace falta un seguro especial."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "seguro-rc"
+       },
+       "texto": "El seguro obligatorio paga a los terceros, nunca los daños de tu propio barco ni los del patrón."
       },
       {
        "tipo": "check",
@@ -3607,6 +3637,14 @@
        "texto": "Según la Ley de Puertos del Estado y de la Marina Mercante (texto refundido de 2011), de las infracciones por contaminación del medio marino producidas desde buques son **solidariamente responsables**:\n- el **naviero**,\n- el **propietario**,\n- el **asegurador** de la responsabilidad civil,\n- y el **capitán** (en tu caso, el **patrón**).\n\n«Solidariamente» significa que la Administración puede exigir la responsabilidad entera a cualquiera de ellos. Por eso es falso que responda «únicamente» el patrón, «solo» el propietario o «solo» el asegurador."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "contaminacion",
+        "vista": "responsables"
+       },
+       "texto": "Los cuatro responden a la vez: la Administración puede reclamar a cualquiera de ellos."
+      },
+      {
        "tipo": "clave",
        "texto": "Contaminación desde una embarcación: responden solidariamente naviero, propietario, asegurador y patrón."
       },
@@ -3624,6 +3662,13 @@
        "tipo": "texto",
        "titulo": "Si no puedes acudir",
        "texto": "Puede ocurrir que no estés en condiciones de ayudar o que, por las circunstancias concretas, acudir no sea razonable o necesario (por ejemplo, otro barco más cercano y mejor preparado ya está allí).\n\nEn ese caso **no basta con seguir tu rumbo**: debes **anotar en el diario de navegación** el motivo por el que no acudiste e **informar** al servicio de búsqueda y salvamento correspondiente."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "deber-auxilio"
+       },
+       "texto": "Acudas o no, siempre queda constancia en el diario y salvamento queda informado."
       },
       {
        "tipo": "ojo",
@@ -7438,6 +7483,14 @@
        "texto": "No todas las hemorragias son iguales:\n- **Arterial**: sangre **rojo vivo**, sale **a borbotones**, al ritmo del pulso y con fuerza. Es la más peligrosa.\n- **Venosa**: sangre **rojo oscuro**, sale de forma **continua** y con poca presión.\n- **Capilar**: rezuma en sábana (un rasguño); para sola en poco tiempo.\n\nEl color se explica fácil: la sangre de las arterias va cargada de oxígeno (roja brillante) y la de las venas ya lo ha cedido (más oscura)."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hemorragia",
+        "vista": "tipos"
+       },
+       "texto": "Rojo vivo y a borbotones es arterial, la más peligrosa; rojo oscuro y continua, venosa."
+      },
+      {
        "tipo": "clave",
        "texto": "Vena: oscura y continua. Arteria: viva y a borbotones."
       },
@@ -7445,6 +7498,15 @@
        "tipo": "texto",
        "titulo": "Cómo parar una hemorragia externa",
        "texto": "1. **Presión directa** y firme sobre la herida con gasas estériles o, si no hay, un paño limpio. Si se empapa, pon más encima sin quitar las primeras.\n2. Si es un brazo o una pierna, **eleva el miembro** por encima del corazón mientras presionas (si no hay fractura). **Nunca lo bajes**: sangraría más.\n3. Cuando ceda, mantén un **vendaje compresivo**.\n\nEl **torniquete** no es lo primero: solo si la hemorragia de un miembro **amenaza la vida** y la presión directa **no la controla**; entonces, **sin demora**. Va **5–7 cm por encima** de la herida (nunca sobre una articulación), con material ancho; se **anota la hora** y **no se afloja**: lo retira el personal sanitario."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hemorragia",
+        "vista": "parar",
+        "resaltar": "presion"
+       },
+       "texto": "Primero presión directa; el torniquete solo si la presión no controla una hemorragia que amenaza la vida."
       },
       {
        "tipo": "ojo",
@@ -7564,6 +7626,14 @@
        "texto": "Según su **profundidad**:\n- **1.er grado**: solo la capa superficial. Piel **roja** y dolorosa, **sin ampollas** (la quemadura solar típica).\n- **2.º grado**: más profunda, con **ampollas** y mucho dolor. El gran riesgo es la **infección**.\n- **3.er grado**: destruye todas las capas. Piel **blanquecina, amarillenta o negruzca**, y puede **no doler** porque los nervios están dañados. Es grave siempre.\n\nLa gravedad también depende de la **extensión** (qué porcentaje del cuerpo abarca) y de la zona: cara, manos, genitales o articulaciones son siempre motivo de consulta."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "quemadura",
+        "vista": "grados"
+       },
+       "texto": "Cuanto más hondo llega la quemadura, más grave: la de 3.er grado puede no doler y es grave siempre."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cómo tratar una quemadura térmica",
        "texto": "1. Aleja la causa y **retira ropa, anillos y relojes** de la zona antes de que se hinche (lo que esté pegado a la piel, no lo arranques).\n2. **Enfría con agua fresca**, mejor corriente, **no helada ni con hielo**. Las guías actuales piden **al menos 10 minutos y, mejor, 20**.\n3. Si la quemadura es **extensa**, o el herido es un niño, enfría solo la zona quemada y **abrígalo**: puede entrar en **hipotermia**.\n4. **No revientes las ampollas** ni pongas remedios caseros. Cubre con un apósito estéril húmedo o vaselinado.\n\nEn quemaduras graves, **controla periódicamente las constantes vitales** (respiración, pulso) y el **nivel de conciencia**, y pide Radio-Médico."
@@ -7576,6 +7646,14 @@
        "tipo": "texto",
        "titulo": "Quemaduras químicas",
        "texto": "Las producen productos corrosivos: el **electrolito de las baterías**, algunos limpiadores, desatascadores o productos de antiincrustante.\n\n- **Lava con agua abundante** durante **un mínimo de 15 minutos**, retirando la ropa manchada (con guantes).\n- En el **ojo**: lava con agua limpia abundante, también **15 minutos como mínimo**, con el párpado abierto y dejando correr el agua desde el lado de la nariz hacia fuera.\n- **No tapes primero** la quemadura química ni intentes «neutralizarla» con otro producto. **Nunca agua oxigenada** en el ojo.\n\nDespués, Radio-Médico."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "quemadura",
+        "vista": "enfriar"
+       },
+       "texto": "Térmica: agua fresca 10 minutos como mínimo y mejor 20; química: agua abundante 15 minutos como mínimo."
       },
       {
        "tipo": "ojo",
@@ -7673,6 +7751,13 @@
        "texto": "Es un servicio del **Instituto Social de la Marina (ISM)**, con sede en Madrid, en el que médicos atienden consultas desde la mar **las 24 horas, todos los días del año**, de forma **gratuita**. Está coordinado con Salvamento Marítimo por si hay que evacuar al paciente.\n\nPuedes contactar de dos formas, y las dos valen:\n- **Por radio**, a través de una **estación costera** (en VHF, llamada por el canal 16), indicando que es para **«consulta médica»**; la costera te pasa con el centro.\n- **Por teléfono**, directamente al CRME: **91 310 34 75**."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "radio-medico"
+       },
+       "texto": "Por radio a través de una costera o por teléfono al 91 310 34 75: las dos vías valen."
+      },
+      {
        "tipo": "ojo",
        "texto": "Si una opción dice «**solo** podemos usar la telefonía móvil», es falsa: también se puede por radio a través de las costeras (y en la mar el móvil suele quedarse sin cobertura)."
       },
@@ -7690,6 +7775,14 @@
        "tipo": "texto",
        "titulo": "El botiquín de una embarcación de recreo",
        "texto": "Lo regula el **Real Decreto 339/2021** sobre equipo de seguridad:\n- Embarcaciones de recreo **sin tripulación profesional** que naveguen en **zonas 1, 2, 3 o 4** (desde navegación ilimitada hasta 12 millas de la costa): botiquín con el contenido del tipo **«Balsas de Salvamento»** del RD 258/1999.\n- Las que llevan **tripulación profesional** siguen la norma de los trabajadores del mar (RD 258/1999).\n- En **zonas 5, 6 y 7** no es obligatorio, pero es muy recomendable llevar uno.\n\nRevisa caducidades cada temporada y guárdalo en un lugar seco y conocido por todos."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "botiquin",
+        "resaltar": "zonas-1-4"
+       },
+       "texto": "En zonas 1 a 4, sin tripulación profesional, el botiquín es obligatorio y del tipo «Balsas de Salvamento», y con él va la Guía Sanitaria."
       },
       {
        "tipo": "clave",
@@ -9370,6 +9463,14 @@
        "texto": "- **AEMET**: web y aplicación, con predicciones para **aguas costeras** (la franja que va **hasta las 20 millas** de la costa) y para alta mar, y los **avisos de fenómenos adversos**.\n- **Salvamento Marítimo**: sus centros de coordinación emiten por VHF los boletines y avisos costeros. Se anuncian por el **canal 16** y se leen en el **canal de trabajo** de cada centro (por ejemplo, el 10 o el 74).\n- **NAVTEX**: receptor que imprime o muestra automáticamente avisos meteorológicos y de seguridad; usa **518 kHz** (en inglés) y **490 kHz** (en el idioma nacional).\n- Radio, televisión y prensa, para hacerte una idea general.\n\nLas aplicaciones de modelos meteorológicos son útiles, pero **contrástalas siempre** con la predicción y los avisos oficiales."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "prevision-salida",
+        "vista": "fuentes"
+       },
+       "texto": "AEMET elabora la previsión; la web, Salvamento Marítimo por VHF y el NAVTEX te la hacen llegar."
+      },
+      {
        "tipo": "texto",
        "titulo": "Qué mirar en el parte",
        "texto": "Un parte marítimo te da, zona por zona:\n- **Viento**: dirección (de dónde viene) y fuerza en **Beaufort**, y si va a **rolar**, **refrescar** o **caer**.\n- **Mar de viento**: en términos **Douglas** (marejadilla, marejada…), y aparte la **mar de fondo** con su dirección y altura.\n- **Visibilidad**, nubosidad, lluvia o chubascos, y posibles **nieblas** o tormentas.\n- **Avisos** en vigor.\n\nCompleta el parte con lo que ves: el **barómetro** (¿baja deprisa?), el cielo y el viento real en el puerto."
@@ -9382,6 +9483,14 @@
        "tipo": "texto",
        "titulo": "Decidir",
        "texto": "Antes de soltar amarras pregúntate:\n- ¿El viento y la mar previstos están dentro de lo que **tu barco y tu tripulación** pueden llevar con comodidad?\n- ¿Hay **avisos** en vigor o un empeoramiento previsto para la hora de vuelta?\n- ¿Qué harás si el tiempo cambia: **puerto de refugio**, rumbo alternativo, hora límite?\n\nY durante la navegación, sigue escuchando los boletines. Si el barómetro cae deprisa, el viento refresca más de lo previsto o el cielo se cierra, **vuelve antes**: rara vez te arrepentirás."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "prevision-salida",
+        "vista": "decidir"
+       },
+       "texto": "Con el parte y lo que ves decides: salir con plan B, quedarte o cambiar el plan."
       },
       {
        "tipo": "ojo",
@@ -10811,9 +10920,24 @@
        "texto": "La **latitud** se lee en los márgenes **izquierdo y derecho**; en esta carta siempre es **N**. La **longitud** se lee en los márgenes **superior e inferior**; aquí siempre es **W**, y crece hacia la izquierda.\n\nCada minuto de la escala está dividido en **cinco partes de 0,2′**.\n\n- **Leer un punto**: lleva su paralelo hasta el margen lateral (latitud) y su meridiano hasta el margen superior o inferior (longitud). Puedes hacerlo con escuadra y cartabón o con el compás desde el paralelo o el meridiano más cercano.\n- **Situar un punto dado**: traza la latitud en horizontal y la longitud en vertical; el punto está en el cruce.\n\nDa las coordenadas en grados, minutos y décimas: 36° 07,3′ N, 005° 58,6′ W."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "carta-margenes"
+       },
+       "texto": "El paralelo del punto da la latitud en el margen lateral; su meridiano, la longitud arriba o abajo."
+      },
+      {
        "tipo": "texto",
        "titulo": "Medir distancias",
        "texto": "**Un minuto de latitud es una milla náutica.** Por eso las distancias se miden siempre en la **escala de latitudes** (márgenes laterales):\n1. Abre el compás entre los dos puntos.\n2. Lleva esa abertura al margen lateral, más o menos a la altura de la zona donde mides.\n3. Cuenta los minutos: son millas.\n\nEn una Mercator la escala de latitudes se estira al alejarse del ecuador. En una carta tan pequeña como la del Estrecho la diferencia es mínima, pero acostúmbrate a medir a la misma altura."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "milla",
+        "vista": "carta"
+       },
+       "texto": "La abertura del compás se lleva a la escala de latitudes, a la altura donde mides: cada minuto, una milla."
       },
       {
        "tipo": "ojo",
@@ -10825,6 +10949,14 @@
        "texto": "Para medir una dirección en la carta:\n1. Centra el transportador en el punto **de origen**.\n2. Pon su norte hacia arriba, bien paralelo a un meridiano.\n3. Lee el ángulo donde la línea corta la graduación, de **000° a 359°** contados desde el norte y en el sentido de las agujas del reloj.\n\n- Un **rumbo** se mide **desde la salida hacia la llegada**.\n- Una **demora** se mide **desde el barco hacia el objeto**.\n\nLo que lees es siempre **verdadero** (Rv, Dv). Si te dan un dato de aguja, lo conviertes antes de trazarlo, como verás en la lección siguiente."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "transportador",
+        "caso": "rumbo"
+       },
+       "texto": "Centro en el origen, norte paralelo al meridiano, y lees donde la línea corta la graduación."
+      },
+      {
        "tipo": "regla",
        "id": "r26"
       },
@@ -10832,6 +10964,14 @@
        "tipo": "texto",
        "titulo": "Situarse respecto a un faro",
        "texto": "Muchos enunciados dan la situación con referencias a faros:\n- **«A 4 millas al Sur verdadero del faro X»**: desde el faro trazas hacia el **180°** y mides 4 millas.\n- **«A 5 millas al NW verdadero del faro X»**: desde el faro, hacia el **315°**.\n- **«Al Sur verdadero del faro A y al Oeste verdadero del faro B»**: el meridiano que pasa por A (vertical) y el paralelo que pasa por B (horizontal). La situación está en el cruce.\n\nPiensa al revés para la demora: si estás **al sur** del faro, ves el faro **al norte**, en demora verdadera **000°**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "transportador",
+        "caso": "faro"
+       },
+       "texto": "«Desde el faro» trazas la demora desde el faro; «al faro», el barco está en la opuesta."
       },
       {
        "tipo": "ojo",

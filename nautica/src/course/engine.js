@@ -70,3 +70,15 @@ export function hoyToca(curso, regs, respuestas, { ahora = Date.now(), fechaExam
   const dominadas = ls.filter((x) => x.e.estado === 'dominada').length;
   return { repasos: repasos.slice(0, 3).map((x) => x.l), siguiente: siguiente?.l ?? null, ritmo, total: ls.length, dominadas };
 }
+
+/**
+ * La pregunta del final de la clase sale cada vez al azar entre las preguntas reales de examen de la clase
+ * (`disponibles`). Si la clase ya acaba en una pregunta fija, esta se sustituye; si no, se añade al final.
+ * Sin preguntas reales, la clase queda como está.
+ */
+export function conPreguntaFinal(pasos, disponibles, rng) {
+  if (!disponibles.length) return pasos;
+  const q = rng.pick(disponibles);
+  const final = { tipo: 'check', real: q, enunciado: q.enunciado, opciones: q.opciones, correcta: q.correcta };
+  return pasos.at(-1)?.tipo === 'check' ? [...pasos.slice(0, -1), final] : [...pasos, final];
+}

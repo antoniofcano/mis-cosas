@@ -17,7 +17,7 @@ El formato de los guiones está en [`guia.md`](guia.md); este índice se genera 
 
 ## Patrón de Yate (PY)
 
-34 episodios · 17 escritos.
+34 episodios · 26 escritos.
 
 #### 0 · Cómo es el examen del Patrón de Yate y cómo usar estos podcasts
 
@@ -595,7 +595,7 @@ Qué es una corriente marina y cómo se nombra, sus cuatro tipos por su causa (d
 
 #### 3.0 · La teoría de navegación de un vistazo
 
-🧭 Panorama · ⏳ pendiente · clases py-3-1, py-3-2, py-3-3, py-3-4, py-3-5, py-3-6, py-3-7, py-3-8, py-3-9, py-3-10
+🧭 Panorama · ✅ [guion](py/3-0-teoria-de-navegacion.md) · clases py-3-1, py-3-2, py-3-3, py-3-4, py-3-5, py-3-6, py-3-7, py-3-8, py-3-9, py-3-10
 
 Recorrido por todo el tema de teoría de navegación: coordenadas, corrección total, viento y corriente, la hora, la estima analítica y las mareas, y los equipos del puente (radar, GNSS, cartas electrónicas y AIS). Es la teoría que sostiene los ejercicios de carta y además es un bloque eliminatorio: no basta con aprobar el examen, hay que sacar este bloque.
 
@@ -626,7 +626,7 @@ Recorrido por todo el tema de teoría de navegación: coordenadas, corrección t
 
 #### 3.1 · La esfera terrestre: círculos, latitud y longitud
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-1
+🔎 Profundiza · ✅ [guion](py/3-1-la-esfera-terrestre.md) · clase py-3-1
 
 Las definiciones finas de la esfera terrestre: eje, polos, círculos máximos y menores, meridiano del lugar, latitud, longitud, trópicos y círculos polares, y cómo se calculan las diferencias de latitud y de longitud. Son preguntas de puro vocabulario que caen una o dos por examen y, con las definiciones claras, son puntos seguros en un bloque que solo deja 5 fallos.
 
@@ -661,7 +661,7 @@ Las definiciones finas de la esfera terrestre: eje, polos, círculos máximos y 
 
 #### 3.2 · La corrección total: de dónde sale y cómo se calcula
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-2
+🔎 Profundiza · ✅ [guion](py/3-2-la-correccion-total.md) · clase py-3-2
 
 De qué depende la declinación magnética, el desvío y la corrección total, cómo se actualiza la declinación de la carta y cómo se obtiene la Ct con la Polar, una enfilación o una oposición. Es una de las preguntas fijas del examen y la base de todos los ejercicios de carta.
 
@@ -696,7 +696,7 @@ De qué depende la declinación magnética, el desvío y la corrección total, c
 
 #### 3.3 · Viento y corriente: abatimiento, deriva y rumbo efectivo
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-3
+🔎 Profundiza · ✅ [guion](py/3-3-viento-y-corriente.md) · clase py-3-3
 
 Qué hacen el viento y la corriente con el rumbo del barco: abatimiento y rumbo de superficie, deriva y rumbo efectivo, y por qué al viento cada barco responde distinto y a la corriente todos igual. Las definiciones de abatimiento y deriva caen casi en cada convocatoria, con opciones que cambian una sola palabra.
 
@@ -731,7 +731,7 @@ Qué hacen el viento y la corriente con el rumbo del barco: abatimiento y rumbo 
 
 #### 3.4 · La hora en la mar: universal, civil, legal, oficial y la del reloj de bitácora
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-5
+🔎 Profundiza · ✅ [guion](py/3-4-la-hora-en-la-mar.md) · clase py-3-5
 
 Las horas de la mar: Sol verdadero y Sol medio, tiempo universal, hora civil del lugar, husos y hora legal, hora oficial y hora reloj de bitácora, y cómo se pasa de una a otra. Caen varias preguntas por examen con opciones que se diferencian en una palabra, y además el Anuario de Mareas trabaja en TU.
 
@@ -766,7 +766,7 @@ Las horas de la mar: Sol verdadero y Sol medio, tiempo universal, hora civil del
 
 #### 3.5 · Publicaciones náuticas y avisos
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-7
+🔎 Profundiza · ✅ [guion](py/3-5-publicaciones-y-avisos.md) · clase py-3-7
 
 Qué publica el Instituto Hidrográfico de la Marina, qué es un derrotero, para qué sirven los Avisos a los Navegantes, cómo se lleva un aviso a la carta y en qué se diferencian de los radioavisos. Cae una pregunta casi fija por examen y tiene trampas de «solo» y de objetivo.
 
@@ -800,7 +800,7 @@ Qué publica el Instituto Hidrográfico de la Marina, qué es un derrotero, para
 
 #### 3.6 · El radar
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-8
+🔎 Profundiza · ✅ [guion](py/3-6-el-radar.md) · clase py-3-8
 
 Cómo funciona el radar, qué mandos se tocan con lluvia, con mar o para una imagen óptima, las presentaciones proa arriba y norte arriba, EBL y VRM, y cómo se pasa una marcación radar a demora. Caen una o dos preguntas por examen, casi siempre sobre los ajustes.
 
@@ -835,7 +835,7 @@ Cómo funciona el radar, qué mandos se tocan con lluvia, con mar o para una ima
 
 #### 3.7 · El GPS y las siglas de la pantalla
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-9
+🔎 Profundiza · ✅ [guion](py/3-7-el-gps.md) · clase py-3-9
 
 Qué es un GNSS, qué te da y qué no, las siglas de la pantalla (WPT, COG, SOG, HDG, XTE, ETA, MOB…) y qué es el datum. Es de lo que más cae en teoría de navegación, a veces dos preguntas por examen, y las opciones inventan siglas parecidas.
 
@@ -870,7 +870,7 @@ Qué es un GNSS, qué te da y qué no, las siglas de la pantalla (WPT, COG, SOG,
 
 #### 3.8 · Cartas electrónicas y AIS
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-10
+🔎 Profundiza · ✅ [guion](py/3-8-cartas-electronicas-y-ais.md) · clase py-3-10
 
 Los dos tipos de carta electrónica, raster y vectorial, y la diferencia entre las cartas y los sistemas que las muestran; después, qué es el AIS, en qué banda trabaja, qué datos transmite y por qué no sustituye al radar. Entre las dos cosas suelen caer dos preguntas por examen.
 

@@ -675,7 +675,8 @@
         "and-py-2021-c2-n04",
         "and-py-2024-c1-n07"
       ],
-      "peso": "Son 10 de las 40 preguntas del Patrón de Yate y es eliminatorio: como máximo se pueden fallar 5 en este bloque, aunque el resto del examen salga bien. Va en el módulo de navegación, junto con la carta."
+      "peso": "Son 10 de las 40 preguntas del Patrón de Yate y es eliminatorio: como máximo se pueden fallar 5 en este bloque, aunque el resto del examen salga bien. Va en el módulo de navegación, junto con la carta.",
+      "archivo": "py/3-0-teoria-de-navegacion.md"
     },
     {
       "n": "3.1",
@@ -711,7 +712,8 @@
       "relacionados": [
         "3.4",
         "4.7"
-      ]
+      ],
+      "archivo": "py/3-1-la-esfera-terrestre.md"
     },
     {
       "n": "3.2",
@@ -747,7 +749,8 @@
       "relacionados": [
         "3.3",
         "4.1"
-      ]
+      ],
+      "archivo": "py/3-2-la-correccion-total.md"
     },
     {
       "n": "3.3",
@@ -785,7 +788,8 @@
         "3.7",
         "4.4",
         "4.5"
-      ]
+      ],
+      "archivo": "py/3-3-viento-y-corriente.md"
     },
     {
       "n": "3.4",
@@ -821,7 +825,8 @@
       "relacionados": [
         "3.1",
         "4.6"
-      ]
+      ],
+      "archivo": "py/3-4-la-hora-en-la-mar.md"
     },
     {
       "n": "3.5",
@@ -856,7 +861,8 @@
       "relacionados": [
         "3.8",
         "4.6"
-      ]
+      ],
+      "archivo": "py/3-5-publicaciones-y-avisos.md"
     },
     {
       "n": "3.6",
@@ -894,7 +900,8 @@
         "3.8",
         "1.6",
         "4.3"
-      ]
+      ],
+      "archivo": "py/3-6-el-radar.md"
     },
     {
       "n": "3.7",
@@ -931,7 +938,8 @@
         "3.3",
         "3.6",
         "3.8"
-      ]
+      ],
+      "archivo": "py/3-7-el-gps.md"
     },
     {
       "n": "3.8",
@@ -968,7 +976,8 @@
         "3.7",
         "3.6",
         "3.5"
-      ]
+      ],
+      "archivo": "py/3-8-cartas-electronicas-y-ais.md"
     },
     {
       "tema": 4,

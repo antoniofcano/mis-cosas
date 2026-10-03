@@ -143,7 +143,7 @@ voces:
 
 **ELENA:** Impecable. ¿Y la del sábado?
 
-**ANDRÉS:** La del sábado era aire templado y húmedo viajando sobre agua fría, más fría que su punto de rocío. Niebla de advección, de enfriamiento, la típica del mar. Y esa el sol no la quita, porque no la hizo el suelo de noche, la hizo el agua. Se queda mientras siga entrando ese aire con viento flojo o moderado. Para librarme, tendría que haber ido a buscar aguas más templadas, o esperar un viento más seco, o uno de fuerza cuatro o más.
+**ANDRÉS:** La del sábado era aire templado y húmedo viajando sobre agua fría, más fría que su punto de rocío. Niebla de advección, de enfriamiento, la típica del mar. Y esa el sol no la quita, porque no la hizo el suelo de noche, la hizo el agua. Se queda mientras siga entrando ese aire con viento flojo o moderado. Para librarme, tendría que haber ido a buscar aguas más templadas, o esperar un viento más seco. Y si el viento hubiera arreciado de verdad, más que irse, se habría levantado en nubes bajas.
 
 **ELENA:** Y si hubieras llevado el psicrómetro…
 

@@ -9,7 +9,7 @@ import { botonesMinutos } from './bienvenida.js';
 import { guardarCopia, botonRecuperar } from '../copia.js';
 import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
 import { calcularPlan } from '../cierre.js';
-import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
+import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
 import { lineaSeguimiento, DIAS_ESTUDIO } from '../../course/calendario.js';
 
 export function masView({ progress, tit }) {
@@ -26,7 +26,8 @@ export function masView({ progress, tit }) {
     const [icono, clase] = marcaEstado(ps.seg.estado);
     avisoPlan.className = `ritmo ${clase}`;
     setChildren(avisoPlan, h('p', icono, lineaSeguimiento(ps.seg, ps.plan.minutosDia)),
-      botonSubirMinutos(progress, ps.seg, () => { pintaMinutos(); }));
+      botonSubirMinutos(progress, ps, () => { pintaMinutos(); }, tit),
+      avisoEsencial(progress, tit, T.estructura, () => { pintaMinutos(); }));
   }).catch(() => { avisoPlan.hidden = true; });
   const diasEl = h('div');
   const pintaDias = () => {

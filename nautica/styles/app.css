@@ -667,3 +667,8 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .mas .ritmo { margin: .8rem 0; padding: .6rem .8rem; border-radius: var(--radius); background: var(--accent-2); }
 .mas .ritmo.warn { background: transparent; border: 2px solid var(--warn); }
 .mas .ritmo p { margin: 0; }
+
+.alternativas { display: flex; flex-direction: column; gap: .5rem; margin-top: .5rem; }
+.alternativas p { margin: 0; }
+.aviso-esencial { margin: .4rem 0; }
+.chuleta-leida { margin: 1.4rem 0; }

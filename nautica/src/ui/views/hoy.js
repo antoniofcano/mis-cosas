@@ -10,7 +10,7 @@ import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
-import { lineaSeguimiento } from '../../course/calendario.js';
+import { lineaSeguimiento, temasDePocoPeso, unidades } from '../../course/calendario.js';
 
 export function saludo(fecha = new Date()) {
   const hora = fecha.getHours();
@@ -49,15 +49,20 @@ export function hoyView({ progress, tit }) {
     const minutos = progress.minutosHoy();
     const objetivo = s.minutosDia ?? 20;
     const racha = progress.racha();
-    const principal = plan[0];
+    let principal = plan[0];
     const r = ritmoEstudio({ ...d, minutosDia: objetivo });
     const listo = estoyListo(T.estructura, d.preguntas, d.respuestas, d.tests);
     // Con fecha de examen manda el calendario (¿vas al día con tu plan?); sin ella, el ritmo general.
     const ps = planConSeguimiento(progress, tit, d);
+    // Plan esencial: en los temas de poco peso, en vez de la clase toca su chuleta (la unidad del plan).
+    if (ps?.plan.esencial && principal.tipo === 'clase' && temasDePocoPeso(T.estructura).includes(principal.ut)) {
+      const u = unidades({ ...d, esencial: true, chuletasLeidas: s[`chuletasLeidas_${tit}`] ?? [] }).find((x) => x.id === `chuleta:${principal.ut}`);
+      if (u && !u.hecha) principal = { tipo: 'chuleta', titulo: u.titulo, verbo: 'Leer', minutos: u.minutos, ruta: u.ruta, query: undefined, ut: u.ut };
+    }
     const ritmo = ps
       ? h('div.ritmo', { class: marcaEstado(ps.seg.estado)[1] },
         h('p', marcaEstado(ps.seg.estado)[0], lineaSeguimiento(ps.seg, ps.plan.minutosDia), ' ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan')),
-        botonSubirMinutos(progress, ps.seg, () => window.dispatchEvent(new HashChangeEvent('hashchange'))))
+        botonSubirMinutos(progress, ps, () => window.dispatchEvent(new HashChangeEvent('hashchange')), tit))
       : h('p.ritmo', { class: r.llega === false ? 'warn' : '' }, r.llega === false ? '⚠️ ' : '', lineaRitmo(r, objetivo, fecha),
         ' ', h('a', { href: '#/ajustes' }, 'Cambiar'));
 

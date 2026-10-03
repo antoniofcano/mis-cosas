@@ -17,7 +17,7 @@ El formato de los guiones está en [`guia.md`](guia.md); este índice se genera 
 
 ## Patrón de Yate (PY)
 
-34 episodios · 26 escritos.
+34 episodios · 34 escritos.
 
 #### 0 · Cómo es el examen del Patrón de Yate y cómo usar estos podcasts
 
@@ -618,7 +618,7 @@ Recorrido por todo el tema de teoría de navegación: coordenadas, corrección t
 - El GNSS: COG es el rumbo efectivo, SOG la velocidad efectiva, XTE el error transversal, ETA la hora estimada de llegada y MOB el hombre al agua; antes de pasar la posición a la carta, mismo datum.
 - Cartas electrónicas y AIS: solo hay dos tipos de carta, raster (RNC) y vectorial (ENC); el AIS trabaja en VHF, ayuda a prevenir abordajes pero no sustituye al radar ni a la vigilancia visual.
 
-**Minijuego** (180 preguntas reales de examen en estas clases):
+**Minijuego** (216 preguntas reales de examen en estas clases):
 
 - ¿El Angulo que separa el Norte Verdadero del Norte de Aguja se conoce cómo? *(and-py-2021-c2-n10)*
 - ¿El rumbo que describe una embarcación cuando ha sido abatido por el viento se denomina? *(and-py-2021-c2-n04)*
@@ -907,7 +907,7 @@ Los dos tipos de carta electrónica, raster y vectorial, y la diferencia entre l
 
 #### 4.0 · El examen de carta, paso a paso
 
-🧭 Panorama · ⏳ pendiente · clases py-4-1, py-4-2, py-4-3, py-4-4, py-4-5, py-4-6, py-4-7, py-4-8, py-4-9, py-4-10
+🧭 Panorama · ✅ [guion](py/4-0-el-examen-de-carta.md) · clases py-4-1, py-4-2, py-4-3, py-4-4, py-4-5, py-4-6, py-4-7, py-4-8, py-4-9, py-4-10
 
 Recorrido por las diez preguntas de carta del Patrón de Yate: corrección total, viento, pasar a distancia de un faro, líneas de posición, estima con viento y corriente, través, corriente conocida y desconocida, mareas y estima analítica. Es un bloque eliminatorio en el que cada paso arrastra el error del anterior, así que importa tanto el orden de las operaciones como las fórmulas.
 
@@ -938,7 +938,7 @@ Recorrido por las diez preguntas de carta del Patrón de Yate: corrección total
 
 #### 4.1 · La corrección total en la carta: enfilaciones, oposiciones y la Polar
 
-🔎 Profundiza · ⏳ pendiente · clase py-4-1
+🔎 Profundiza · ✅ [guion](py/4-1-correccion-total-en-la-carta.md) · clase py-4-1
 
 La corrección total con las tres vías del programa: desvío y declinación actualizada al año, una enfilación u oposición de dos faros de la carta del Estrecho y el azimut de aguja de la Polar. Suele ser la primera pregunta de carta y el primer paso de todas las demás, así que un error aquí se arrastra a todo el problema.
 
@@ -973,7 +973,7 @@ La corrección total con las tres vías del programa: desvío y declinación act
 
 #### 4.2 · El viento en la carta y pasar a distancia de un faro
 
-🔎 Profundiza · ⏳ pendiente · clases py-4-2, py-4-3
+🔎 Profundiza · ✅ [guion](py/4-2-el-viento-en-la-carta.md) · clases py-4-2, py-4-3
 
 Cómo entra el viento en los problemas de carta: el abatimiento, la banda por la que entra el viento, el rumbo de superficie que hace el barco y el rumbo de aguja que hay que dar para llegar a un puerto o pasar a una distancia de un faro. Sale en casi todos los exámenes, y las opciones trampa son las de quien aplica el abatimiento con el signo cambiado o en el orden equivocado.
 
@@ -1008,7 +1008,7 @@ Cómo entra el viento en los problemas de carta: el abatimiento, la banda por la
 
 #### 4.3 · Situarse: líneas de posición y faro por el través
 
-🔎 Profundiza · ⏳ pendiente · clases py-4-4, py-4-6
+🔎 Profundiza · ✅ [guion](py/4-3-situarse.md) · clases py-4-4, py-4-6
 
 Cómo situarse en la carta con líneas de posición, simultáneas o tomadas a horas distintas, y cómo calcular la situación al tener un faro por el través. Son preguntas de casi todas las convocatorias, y en ellas el orden de los pasos decide: primero todo a verdadero, después trasladar la línea que toca y por último cortar.
 
@@ -1043,7 +1043,7 @@ Cómo situarse en la carta con líneas de posición, simultáneas o tomadas a ho
 
 #### 4.4 · Estima con viento y corriente
 
-🔎 Profundiza · ⏳ pendiente · clase py-4-5
+🔎 Profundiza · ✅ [guion](py/4-4-estima-con-viento-y-corriente.md) · clase py-4-5
 
 La estima gráfica con viento y corriente: dónde estarás a una hora, qué rumbo y velocidad efectivos haces sobre el fondo y, a partir de ahí, la demora o la distancia a un faro. Sale casi en cada convocatoria, y el examen pone a prueba sobre todo el orden (primero el viento, luego la corriente) y el sentido en que se traza cada uno.
 
@@ -1078,7 +1078,7 @@ La estima gráfica con viento y corriente: dónde estarás a una hora, qué rumb
 
 #### 4.5 · Corriente conocida y corriente desconocida
 
-🔎 Profundiza · ⏳ pendiente · clases py-4-7, py-4-8
+🔎 Profundiza · ✅ [guion](py/4-5-corriente-conocida-y-desconocida.md) · clases py-4-7, py-4-8
 
 Los dos problemas de corriente que faltan. Con la corriente conocida, qué rumbo dar para llegar a un punto y a qué hora se llega, o qué velocidad hace falta para llegar a una hora fijada. Con la corriente desconocida, cuál es su rumbo y su intensidad a partir de la diferencia entre la estima y la situación observada. Las opciones del examen están hechas con los errores típicos de sentido, de velocidad y de tiempo.
 
@@ -1113,7 +1113,7 @@ Los dos problemas de corriente que faltan. Con la corriente conocida, qué rumbo
 
 #### 4.6 · Mareas de cabo a rabo: el Anuario, la curva, la sonda y la hora
 
-🔎 Profundiza · ⏳ pendiente · clases py-3-6, py-4-9
+🔎 Profundiza · ✅ [guion](py/4-6-mareas.md) · clases py-3-6, py-4-9
 
 Las mareas completas: qué trae el Anuario de Mareas y cómo sube la marea, y después los dos problemas del examen, la sonda que habrá a una hora y la hora a la que habrá una sonda, con la corrección por presión. Son las preguntas 18 y 19 del examen y no dependen de la carta. Se pierden sobre todo por el paso entre hora oficial y UT y por elegir mal el tramo.
 
@@ -1138,7 +1138,11 @@ Las mareas completas: qué trae el Anuario de Mareas y cómo sube la marea, y de
 - Falso que la presión alta dé más agua: da menos, unos 7 cm menos con 1020 hPa. Si el enunciado dice que no se tenga en cuenta, no se aplica.
 - Con la calculadora en radianes, la cuenta sale mal: hay que ponerla en grados. Y si el resultado difiere de las opciones en 1 o 2 cm o en unos minutos, se elige la más próxima, porque las tablas del Anuario redondean.
 
-*35 preguntas reales de examen en estas clases.*
+**Minijuego** (35 preguntas reales de examen en estas clases):
+
+- Calcular la sonda en metros que tendremos a la hora oficial 12:51 del 27 de agosto de 2023 en un bajo de Chipiona señalado en la carta con una sonda de 0,9 metros. Presión atmosférica = 1020 hPa. Adelanto vigente: +2 horas. *(and-py-2023-c3-n18)*
+- Calcular la sonda que tendremos a la hora oficial 17:30 del 17 de marzo de 2022, en un bajo señalado en la carta con 2,10 metros. Adelanto vigente: +1 hora. *(and-py-2022-c1-n19)*
+- Calcular la hora oficial entre la primera bajamar y la segunda pleamar del 17 de marzo de 2022, a la que tendremos como mínimo una sonda de 4,15 metros en un bajo marcado en la carta con una sonda de 1,85 metros. Adelanto vigente: +1 hora. *(and-py-2022-c1-n18)*
 
 **Nota para el guion:** Todas las preguntas reales de mareas traen la tabla del Anuario. Para el minijuego, Elena lee en voz alta los datos que hacen falta (las horas y alturas de la pleamar y la bajamar del día) y Andrés hace la cuenta. También valen los «check» de las clases: la mitad de la amplitud a mitad del tramo, pasar de hora oficial a tiempo universal o la regla de los duodécimos.
 
@@ -1146,7 +1150,7 @@ Las mareas completas: qué trae el Anuario de Mareas y cómo sube la marea, y de
 
 #### 4.7 · Estima analítica: loxodrómica y derrota
 
-🔎 Profundiza · ⏳ pendiente · clases py-3-4, py-4-10
+🔎 Profundiza · ✅ [guion](py/4-7-estima-analitica.md) · clases py-3-4, py-4-10
 
 La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, el apartamiento y la latitud media, y cómo se calculan con la calculadora la situación de llegada tras varios rumbos con corriente y el rumbo directo y la distancia entre dos puntos. Es casi siempre la pregunta 20, y los enunciados cruzan a propósito el meridiano 180° y obligan a decidir el cuadrante del rumbo.
 

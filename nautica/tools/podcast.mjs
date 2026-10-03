@@ -9,7 +9,8 @@ import { RAIZ } from './precache.mjs';
 
 const leer = (p) => JSON.parse(readFileSync(join(RAIZ, p), 'utf8'));
 export const idEpisodio = (tit, n) => `${tit}-${String(n).replace('.', '-')}`;
-const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9ñ ]/g, ' ').split(/\s+/).filter((w) => w.length > 3);
+// Palabras de más de tres letras, sin cifras (en el guion las cifras van en letra).
+const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-zñ ]/g, ' ').split(/\s+/).filter((w) => w.length > 3);
 
 /** Asigna a cada pausa larga la pregunta del minijuego cuyo enunciado se acaba de leer (o ninguna). */
 export function preguntasEnPausas(tramos, preguntas, banco) {
@@ -23,7 +24,7 @@ export function preguntasEnPausas(tramos, preguntas, banco) {
     const dicho = new Set(norm(antes.join(' ')));
     for (let q = i; q < preguntas.length; q += 1) {
       const pal = norm(banco.get(preguntas[q])?.enunciado ?? '');
-      if (pal.length && pal.filter((w) => dicho.has(w)).length / pal.length >= 0.6) { i = q + 1; return { ...resto, p: preguntas[q] }; }
+      if (pal.length && pal.filter((w) => dicho.has(w)).length / pal.length >= 0.4) { i = q + 1; return { ...resto, p: preguntas[q] }; }
     }
     return resto;
   });

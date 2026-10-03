@@ -191,10 +191,7 @@
    "id": "vapor",
    "nombre": "Niebla de vapor",
    "corto": "Aire muy frío sobre agua mucho más templada: el agua «humea». De evaporación y poco espesor; típica de lagos y ríos en otoño.",
-   "spec": {
-    "tipo": "psicrometro",
-    "caso": "seco"
-   },
+   "spec": { "tipo": "meteo", "sistema": "niebla-vapor", "t": 4 },
    "clase": "py-2-7",
    "x": 4.6,
    "y": 1.4

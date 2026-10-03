@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'ee7a3cef50a1';
+self.VERSION = '517a6f01bec9';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -25,6 +25,13 @@ self.APP = [
  "src/exams/solutions/andalucia-per-2.js",
  "src/exams/solutions/andalucia-per-3.js",
  "src/exams/solutions/andalucia-per.js",
+ "src/exams/solutions/andalucia-py-2020.js",
+ "src/exams/solutions/andalucia-py-2021.js",
+ "src/exams/solutions/andalucia-py-2022.js",
+ "src/exams/solutions/andalucia-py-2023.js",
+ "src/exams/solutions/andalucia-py-2024.js",
+ "src/exams/solutions/andalucia-py-2025.js",
+ "src/exams/solutions/andalucia-py-2026.js",
  "src/exams/solutions/andalucia-py.js",
  "src/exams/solutions/index.js",
  "src/exercises/compass-data.js",

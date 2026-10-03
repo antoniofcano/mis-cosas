@@ -97,3 +97,19 @@ test('ninguna clase sin lámina, y todas las láminas de las clases se dibujan',
     }
   }
 });
+
+test('clases de carta del PY: «míralo resuelto» con preguntas reales del mismo tipo', async () => {
+  const { RESUELTOS, resueltasDe, conResuelto } = await import('../src/course/resueltos.js');
+  const { SOLUCIONES } = await import('../src/exams/solutions/index.js');
+  for (const id of Object.keys(RESUELTOS)) {
+    const ids = resueltasDe(id);
+    assert.ok(ids.length >= 5, `${id}: solo ${ids.length}`);
+    assert.ok(ids.every((q) => SOLUCIONES[q]), id);
+  }
+  const pasos = [{ tipo: 'texto', titulo: 'Problema modelo' }, { tipo: 'texto', titulo: 'Resolución paso a paso' }, { tipo: 'texto', titulo: 'Otro' }, { tipo: 'check' }];
+  assert.deepEqual(conResuelto(pasos, ['x']).map((p) => p.tipo), ['texto', 'texto', 'resuelto', 'texto', 'check']);
+  assert.deepEqual(conResuelto(pasos.slice(2), ['x']).map((p) => p.tipo), ['texto', 'resuelto', 'check']);
+  assert.equal(conResuelto(pasos, []), pasos);
+  const conLamina = [pasos[1], { tipo: 'ilustracion' }, pasos[2]];
+  assert.deepEqual(conResuelto(conLamina, ['x']).map((p) => p.tipo), ['texto', 'ilustracion', 'resuelto', 'texto']);
+});

@@ -32,3 +32,8 @@ test('manifiesto: nombre, inicio, pantalla completa e iconos que existen', () =>
   assert.match(html, /<link rel="manifest" href="manifest.webmanifest">/);
   assert.match(html, /apple-touch-icon/);
 });
+
+test('sw.js lleva la versión en su primera línea (Safari solo mira si cambia sw.js)', () => {
+  const sw = readFileSync(join(RAIZ, 'sw.js'), 'utf8');
+  assert.equal(sw.split('\n')[0], `// versión: ${listaPrecache().version}`);
+});

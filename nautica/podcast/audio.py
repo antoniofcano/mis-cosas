@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Convierte un guion de podcast (formato de podcast/guia.md) en un MP3 con ElevenLabs.
 
-Uso:  ELEVENLABS_API_KEY=... python3 podcast/audio.py podcast/py/1-1-....md salida.mp3
+Uso:  ELEVENLABS_API_KEY=... python3 podcast/audio.py podcast/py/1-1-....md podcast/audio/py-1-1.mp3 [data/podcast/py-1-1.json]
+
+Si se da el tercer argumento, escribe ahí la línea de tiempo: cuándo empieza cada intervención (para el guion
+sincronizado de la app) y cada pausa larga (donde la app enseña la pregunta del minijuego).
 
 - Cada bloque «**NOMBRE:** texto» se pide a la voz de ese personaje (VOCES).
 - [pausa] dentro de una intervención se lee como una pausa breve («…»); [pausa larga] en su propia línea
@@ -20,6 +23,7 @@ MODELO = 'eleven_multilingual_v2'
 AJUSTES = {'stability': 0.45, 'similarity_boost': 0.8, 'style': 0.25, 'use_speaker_boost': True}
 SILENCIO = 0.5
 PAUSA_LARGA = 3.0
+BITRATE = '48k'      # voz en mono: unos 5 MB por episodio de 15 minutos
 JINGLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'jingle.mp3')
 JINGLE_DB = -5      # la sintonía, un poco por debajo de las voces
 ENTRA_VOZ = 6.0     # segundo de la sintonía en que empieza a hablar Elena (la música se apaga debajo)
@@ -56,17 +60,25 @@ def silencio(seg, destino):
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono',
                     '-t', str(seg), '-c:a', 'libmp3lame', '-b:a', '128k', destino], check=True)
 
+def duracion(f):
+    return float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f],
+                                capture_output=True, text=True).stdout)
+
 def main():
     guion, salida = sys.argv[1], sys.argv[2]
+    linea_tiempo = sys.argv[3] if len(sys.argv) > 3 else None
     clave = os.environ.get('ELEVENLABS_API_KEY') or sys.exit('Falta ELEVENLABS_API_KEY')
     cache = os.environ.get('PODCAST_CACHE', os.path.join(tempfile.gettempdir(), 'podcast-cache'))
     os.makedirs(cache, exist_ok=True)
     lista, caracteres, nuevos = [], 0, 0
+    tramos, t = [], ENTRA_VOZ if os.path.exists(JINGLE) else 0.0
     for p in piezas(open(guion, encoding='utf-8').read()):
         if p[0] == 'SILENCIO':
             f = os.path.join(cache, f'sil-{p[1]}.mp3')
             if not os.path.exists(f): silencio(p[1], f)
-            lista.append(f); continue
+            lista.append(f)
+            tramos.append({'t': round(t, 2), 'pausa': True}); t += duracion(f)
+            continue
         quien, texto = p
         voz = VOCES[quien]
         h = hashlib.sha1(f'{voz}|{MODELO}|{json.dumps(AJUSTES)}|{texto}'.encode()).hexdigest()[:16]
@@ -75,9 +87,10 @@ def main():
         if not os.path.exists(f):
             tts(clave, voz, texto, f); nuevos += len(texto)
         lista.append(f)
+        tramos.append({'t': round(t, 2), 'q': quien[0], 'x': texto}); t += duracion(f)
         sf = os.path.join(cache, f'sil-{SILENCIO}.mp3')
         if not os.path.exists(sf): silencio(SILENCIO, sf)
-        lista.append(sf)
+        lista.append(sf); t += duracion(sf)
     with tempfile.NamedTemporaryFile('w', suffix='.txt', delete=False) as t:
         t.write(''.join(f"file '{f}'\n" for f in lista))
     voz = salida + '.voz.wav'
@@ -96,12 +109,15 @@ def main():
                   f'afade=t=in:d=0.4,afade=t=out:st={dj - 1.5}:d=1.5,adelay={int(fin * 1000)}[js];'
                   '[ji][vo][js]amix=inputs=3:duration=longest:normalize=0[m]')
         subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', JINGLE, '-i', voz, '-filter_complex', filtro,
-                        '-map', '[m]', '-ac', '1', '-ar', '44100', '-c:a', 'libmp3lame', '-b:a', '128k', salida], check=True)
+                        '-map', '[m]', '-ac', '1', '-ar', '44100', '-c:a', 'libmp3lame', '-b:a', BITRATE, salida], check=True)
     else:
-        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', voz, '-c:a', 'libmp3lame', '-b:a', '128k', salida], check=True)
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', voz, '-c:a', 'libmp3lame', '-b:a', BITRATE, salida], check=True)
     os.remove(voz)
-    dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', salida],
-                               capture_output=True, text=True).stdout)
+    dur = duracion(salida)
+    if linea_tiempo:
+        os.makedirs(os.path.dirname(linea_tiempo) or '.', exist_ok=True)
+        with open(linea_tiempo, 'w', encoding='utf-8') as fo:
+            json.dump({'duracion': round(dur, 1), 'tramos': tramos}, fo, ensure_ascii=False, separators=(',', ':'))
     print(f'{salida}: {dur / 60:.1f} min · {caracteres} caracteres ({nuevos} generados ahora)')
 
 if __name__ == '__main__':

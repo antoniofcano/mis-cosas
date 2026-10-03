@@ -32,6 +32,8 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
 
 ## Funciones destacadas
 
+- **🎧 Radio de a bordo** (`#/<tit>/podcast`): podcasts de diez a quince minutos por tema, con un panorama de cada tema y episodios que profundizan. El reproductor sigue sonando mientras navegas; el guion se ilumina al hilo y se toca para saltar; en el minijuego contestas tú antes que Andrés. Los guiones están en `podcast/` (guía, índice y fichas) y el audio se genera con `podcast/audio.py` (ElevenLabs).
+
 - **Ejercicios por tipo**, generados con datos nuevos cada vez sobre la zona del Estrecho (carta L105).
 - **Corrección automática** con tolerancias de examen y **diagnóstico de errores típicos**
   (signo de la Ct, demora sin invertir, corriente al revés, olvidar el traslado…).

@@ -42,6 +42,7 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const r = ruta(req.url);
   if (r == null) return; // otro origen o fuera de la app: lo gestiona el navegador
+  if (r.startsWith('podcast/')) return; // audio de los podcasts: lo pide el navegador (por trozos, al saltar), sin guardarlo
   if (req.mode === 'navigate' && (r === '' || r === 'index.html')) {
     e.respondWith(responder(new Request('index.html'), 'index.html'));
     return;

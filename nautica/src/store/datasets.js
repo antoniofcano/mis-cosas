@@ -53,3 +53,8 @@ export async function loadMnemonics() {
   for (const r of d.reglas) for (const id of r.preguntas ?? []) byQ.set(id, [...(byQ.get(id) ?? []), r]);
   return { reglas: d.reglas, reglasDe: (id) => byQ.get(id) ?? [] };
 }
+
+/** Podcasts de una titulación: temas, episodios con su ficha y si ya tienen audio (sale de tools/podcast.mjs). */
+export const loadPodcast = (tit) => loadJSON(`data/podcast-${tit}.json`);
+/** Línea de tiempo de un episodio: cuándo empieza cada intervención y las pausas del minijuego. */
+export const loadPodcastLinea = (id) => loadJSON(`data/podcast/${id}.json`);

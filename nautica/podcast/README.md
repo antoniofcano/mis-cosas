@@ -17,11 +17,11 @@ El formato de los guiones está en [`guia.md`](guia.md); este índice se genera 
 
 ## Patrón de Yate (PY)
 
-34 episodios · 1 escrito.
+34 episodios · 8 escritos.
 
 #### 0 · Cómo es el examen del Patrón de Yate y cómo usar estos podcasts
 
-👋 Bienvenida · ⏳ pendiente
+👋 Bienvenida · ✅ [guion](py/0-bienvenida.md)
 
 Episodio de bienvenida: cómo es el examen teórico del Patrón de Yate en Andalucía (módulos, temas, número de preguntas, aprobado y límites de fallos) y cómo sacar partido a esta serie. Sirve para que el oyente sepa desde el principio dónde están los puntos que más pesan y qué temas pueden suspenderle por sí solos.
 
@@ -41,7 +41,7 @@ Episodio de bienvenida: cómo es el examen teórico del Patrón de Yate en Andal
 
 #### 1.0 · Seguridad en la mar: estabilidad, equipo y emergencias
 
-🧭 Panorama · ⏳ pendiente · clases py-1-1, py-1-2, py-1-3, py-1-4, py-1-5, py-1-6, py-1-7, py-1-8, py-1-9, py-1-10
+🧭 Panorama · ✅ [guion](py/1-0-seguridad-en-la-mar.md) · clases py-1-1, py-1-2, py-1-3, py-1-4, py-1-5, py-1-6, py-1-7, py-1-8, py-1-9, py-1-10
 
 Panorama del tema de Seguridad en la mar: por qué flota y se adriza un barco, cómo le afecta mover o consumir pesos, los requisitos técnicos del material de salvamento (chalecos, aros, balsa, pirotecnia, extintores, radiobaliza, respondedor y VHF) y cómo actuar en un abandono y en un rescate con helicóptero. Son diez preguntas del módulo genérico que se repiten mucho: dominando cifras y trampas, son puntos seguros.
 
@@ -107,7 +107,7 @@ Por qué flota un barco y cuándo vuelve a su sitio tras una escora: desplazamie
 
 #### 1.2 · Mover pesos sin volcar: traslados, consumos, superficies libres, duro y blando
 
-🔎 Profundiza · ⏳ pendiente · clase py-1-3
+🔎 Profundiza · ✅ [guion](py/1-2-mover-pesos-sin-volcar.md) · clase py-1-3
 
 Qué le pasa a la estabilidad cuando se cargan, consumen o trasladan pesos: hacia dónde va G, cómo cambia GM, cómo se corrige una escora, qué es un buque duro o blando y por qué un tanque a medias resta estabilidad. En el examen salen sobre todo preguntas de «adónde llevo el peso» y de consumos bajo G, con opciones que se diferencian en una sola palabra.
 
@@ -141,7 +141,7 @@ Qué le pasa a la estabilidad cuando se cargan, consumen o trasladan pesos: haci
 
 #### 1.3 · Chalecos, aros y la balsa salvavidas
 
-🔎 Profundiza · ⏳ pendiente · clases py-1-4, py-1-5
+🔎 Profundiza · ✅ [guion](py/1-3-chalecos-aros-y-balsa.md) · clases py-1-4, py-1-5
 
 Los requisitos técnicos y de estiba del material de flotación: chalecos, arnés y línea de vida, aro salvavidas, balsa, su contenedor y la zafa hidrostática. Es material que el oyente ya conoce del PER, pero en el Patrón de Yate le preguntan cifras exactas (newtons, minutos, metros, destellos, días, nudos) que se cruzan en las opciones.
 
@@ -176,7 +176,7 @@ Los requisitos técnicos y de estiba del material de flotación: chalecos, arné
 
 #### 1.4 · Hacerse ver y apagar fuegos: pirotecnia, señales y extintores
 
-🔎 Profundiza · ⏳ pendiente · clases py-1-6, py-1-7
+🔎 Profundiza · ✅ [guion](py/1-4-hacerse-ver-y-apagar-fuegos.md) · clases py-1-6, py-1-7
 
 Las señales para hacerse ver (bengala de mano, cohete con paracaídas, fumígena, espejo, bocina y reflector de radar) y la lucha contra incendios a bordo (cuántos extintores, dónde van, cuál usar con tensión eléctrica y cómo atacar el fuego). Las preguntas juegan a cruzar las cifras de cada señal y a colar «barlovento» donde va «sotavento».
 
@@ -211,7 +211,7 @@ Las señales para hacerse ver (bengala de mano, cohete con paracaídas, fumígen
 
 #### 1.5 · Abandonar el barco y vivir en la balsa
 
-🔎 Profundiza · ⏳ pendiente · clase py-1-8
+🔎 Profundiza · ✅ [guion](py/1-5-abandonar-el-barco.md) · clase py-1-8
 
 Cuándo y cómo se abandona el barco, cómo se lanza la balsa, se embarca y se adriza si sale volcada, y las reglas para sobrevivir en ella: ancla flotante, guardias, no alejarse y cómo administrar el agua. En el examen son preguntas de sentido común con opciones muy parecidas, en las que una sola palabra («barlovento», «al agua», «remar») hace falsa la respuesta.
 
@@ -246,7 +246,7 @@ Cuándo y cómo se abandona el barco, cómo se lanza la balsa, se embarca y se a
 
 #### 1.6 · Pedir ayuda: radiobaliza, respondedor, VHF de socorro y helicóptero
 
-🔎 Profundiza · ⏳ pendiente · clases py-1-9, py-1-10
+🔎 Profundiza · ✅ [guion](py/1-6-pedir-ayuda.md) · clases py-1-9, py-1-10
 
 Cómo se pide y se recibe ayuda: la radiobaliza y el camino de su alerta, el respondedor de radar, la llamada de socorro por VHF, Salvamento Marítimo y cómo preparar el barco o la balsa para un rescate con helicóptero. Es una de las partes más preguntadas del tema, con combinaciones falsas de canal y palabra, de frecuencia y equipo, y de «qué NO hacer» con el helicóptero.
 

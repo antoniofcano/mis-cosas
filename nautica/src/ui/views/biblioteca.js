@@ -8,6 +8,7 @@ import { TITULACIONES, tlink } from '../titulacion.js';
 export function bibliotecaView({ tit }) {
   const T = TITULACIONES[tit];
   const recursos = [
+    [tlink(tit, ['podcast']), '🎧 Radio de a bordo', 'Podcasts de diez a quince minutos: Elena, patrona y profesora, y Andrés, que pregunta lo que preguntarías tú. Con el guion al hilo y un minijuego de preguntas reales.'],
     [tlink(tit, ['laminas']), '🎞️ Láminas', 'Boyas con su luz, luces y marcas de buques, maniobra, meteorología… muchas se mueven y se tocan.'],
     [tlink(tit, ['carta']), '🗺️ Ejercicios de carta y cálculo', 'Problemas de carta, mareas, hora y viento aparente con datos nuevos cada vez: lo resuelves, se corrige y el profe te lo explica paso a paso.'],
     [tlink(tit, ['mapas']), '🕸️ Mapas de conceptos', tit === 'per' ? 'Cómo se relacionan las ideas que más se confunden (rumbos, balizamiento, RIPA…), con sus láminas y un juego.' : 'Cómo se relacionan las ideas que más se confunden (meteorología, viento y corriente…), con sus láminas y un juego.'],

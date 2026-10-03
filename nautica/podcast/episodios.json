@@ -26,7 +26,8 @@
         "Los episodios Profundiza bajan al detalle de una o dos clases del curso de la app, con las cifras y las trampas que más se repiten en el examen.",
         "Cada episodio acaba con un minijuego de dos o tres preguntas de exámenes reales de Andalucía (convocatorias de 2020 a 2026), para pensar la respuesta antes de oírla, y con un resumen de cinco puntos.",
         "Los episodios no sustituyen a las clases ni a la práctica de la app: sirven para repasar en el coche, paseando o en el barco y para llegar a las clases con las ideas ya oídas."
-      ]
+      ],
+      "archivo": "py/0-bienvenida.md"
     },
     {
       "tema": 1,
@@ -67,7 +68,8 @@
         "and-py-2024-c1-g05",
         "and-py-2021-c2-g07"
       ],
-      "peso": "Seguridad en la mar son las preguntas 1 a 10 del cuadernillo del módulo genérico: 10 de las 40 del examen. No tiene límite propio de fallos (no es eliminatorio), pero cuenta para los 28 aciertos del aprobado."
+      "peso": "Seguridad en la mar son las preguntas 1 a 10 del cuadernillo del módulo genérico: 10 de las 40 del examen. No tiene límite propio de fallos (no es eliminatorio), pero cuenta para los 28 aciertos del aprobado.",
+      "archivo": "py/1-0-seguridad-en-la-mar.md"
     },
     {
       "n": "1.1",
@@ -139,7 +141,8 @@
       ],
       "relacionados": [
         "1.1"
-      ]
+      ],
+      "archivo": "py/1-2-mover-pesos-sin-volcar.md"
     },
     {
       "n": "1.3",
@@ -176,7 +179,8 @@
       "relacionados": [
         "1.5",
         "1.6"
-      ]
+      ],
+      "archivo": "py/1-3-chalecos-aros-y-balsa.md"
     },
     {
       "n": "1.4",
@@ -213,7 +217,8 @@
       "relacionados": [
         "1.5",
         "1.6"
-      ]
+      ],
+      "archivo": "py/1-4-hacerse-ver-y-apagar-fuegos.md"
     },
     {
       "n": "1.5",
@@ -249,7 +254,8 @@
       "relacionados": [
         "1.3",
         "1.6"
-      ]
+      ],
+      "archivo": "py/1-5-abandonar-el-barco.md"
     },
     {
       "n": "1.6",
@@ -286,7 +292,8 @@
       "relacionados": [
         "1.4",
         "1.5"
-      ]
+      ],
+      "archivo": "py/1-6-pedir-ayuda.md"
     },
     {
       "tema": 2,

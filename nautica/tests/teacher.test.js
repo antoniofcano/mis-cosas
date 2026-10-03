@@ -5,7 +5,11 @@ import { narrateSteps } from '../src/teacher/narrate.js';
 import { EXERCISES } from '../src/exercises/registry.js';
 import { createRng } from '../src/math/rng.js';
 import { createKit } from '../src/exams/kit.js';
-import solutions from '../src/exams/solutions/andalucia-per.js';
+import { SOLUCIONES as solutions } from '../src/exams/solutions/index.js';
+import { readFileSync } from 'node:fs';
+
+const bancos = ['andalucia-per.json', 'andalucia-py-teoria.json'].flatMap((f) => JSON.parse(readFileSync(new URL(`../data/exams/${f}`, import.meta.url))).preguntas);
+const preguntaDe = new Map(bancos.map((q) => [q.id, q]));
 import { ctx, chart } from './helpers.js';
 
 test('voz: símbolos náuticos a lenguaje hablado', () => {
@@ -23,7 +27,7 @@ const LEFTOVER = /[°º′=Δ×·√²→≈()]|\b(Rv|Ra|Dv|Da|Ct|HRB)\b/;
 test('el profe explica todos los pasos de ejercicios y exámenes, y la voz queda limpia', () => {
   const all = [];
   for (const ex of EXERCISES) for (let s = 1; s <= 10; s++) all.push(...narrateSteps(ex.solve(ex.generate(createRng(s), ctx), ctx).steps, { seed: s }));
-  for (const sol of Object.values(solutions)) { const k = createKit(chart); sol.solve(k); all.push(...narrateSteps(k.steps)); }
+  for (const [id, sol] of Object.entries(solutions)) { const k = createKit(chart); sol.solve(k, preguntaDe.get(id)); all.push(...narrateSteps(k.steps)); }
   const withLesson = all.filter((n) => n.lesson).length / all.length;
   assert.ok(withLesson > 0.97, `pasos con lección: ${(withLesson * 100).toFixed(1)}%`);
   for (const n of all) assert.ok(!LEFTOVER.test(n.speech), n.speech);

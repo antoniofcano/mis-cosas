@@ -6,7 +6,7 @@ import { tlink, volver, currentTit } from '../titulacion.js';
 import { createKit } from '../../exams/kit.js';
 import { chooseOption } from '../../exams/options.js';
 import { quantity } from '../../analysis/quantities.js';
-import solutions from '../../exams/solutions/andalucia-per.js';
+import { SOLUCIONES as solutions } from '../../exams/solutions/index.js';
 import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
@@ -21,7 +21,7 @@ function runSolution(q, chart) {
   if (!sol) return null;
   const k = createKit(chart);
   try {
-    const values = sol.solve(k);
+    const values = sol.solve(k, q);
     const pick = chooseOption(q.opciones, values);
     return { sol, k, values, pick };
   } catch (e) {
@@ -71,7 +71,7 @@ export function examsView({ ctx, progress, params: route }) {
     summaryText = `VISTA banco ${bank.meta.title} · ${bank.preguntas.length} preguntas\n` +
       bank.preguntas.map((q) => `${q.id}: ${(answered(q)?.ok ? '✓' : answered(q) ? '✗' : '·')} ${q.enunciado.slice(0, 80)}`).join('\n');
     setChildren(el, 
-      volver('Ejercicios de carta', tlink('per', ['carta'])),
+      volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
       h('h1', bank.meta.title),
       bank.meta.description ? h('p', sinJerga(bank.meta.description)) : null,
       [...groups].map(([conv, qs]) => h('section',

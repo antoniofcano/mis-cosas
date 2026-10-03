@@ -236,8 +236,8 @@ export const LESSONS = [
   },
   {
     id: 'marea',
-    match: /marea|sonda|quilla|altura|horas legales|duraci[oó]n|^hora$/i,
-    intro: ['Vamos con la marea.'],
+    match: /marea|sonda|quilla|altura|horas legales|duraci[oó]n|bajamar|^hora( oficial)?$/i,
+    intro: ['Vamos con la marea.', 'Seguimos con la tabla de mareas.', 'Ahora la cuenta de la marea, paso a paso.', 'Otro paso de la marea: despacio, que aquí se cuelan los errores.'],
     tip: 'El anuario da las horas en tiempo universal: súmale el adelanto para tener la hora legal. Y la marea no sube a ritmo constante: sube despacio al principio y al final, y rápido en medio, como dice la regla de los doceavos.',
     trap: 'No interpoles en línea recta: te equivocarás por varios centímetros justo en el tramo central.',
   },

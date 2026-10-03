@@ -19,18 +19,18 @@ import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
 import { colaRepaso, tandaRapida } from '../../course/repaso.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
-import cartaSolutions from '../../exams/solutions/andalucia-per.js';
+import { SOLUCIONES as cartaSolutions, bancoResolucion } from '../../exams/solutions/index.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
 function explanationFor(q, explicaciones) {
   if (explicaciones[q.id]) return explicaciones[q.id];
-  const sol = T.id === 'per' && q.ut === 11 && chartRef && cartaSolutions[q.id];
+  const sol = chartRef && cartaSolutions[q.id];
   if (!sol) return null;
   try {
     const k = createKit(chartRef);
-    sol.solve(k);
+    sol.solve(k, q);
     const n = narrateSteps(k.steps, { seed: q.id });
     return { explicacion: k.steps.map((st, i) => `${i + 1}. ${n[i].intro} ${st.text}`).join(' '), clave: n.find((x) => x.tip)?.tip };
   } catch {
@@ -115,8 +115,16 @@ export function profePanel(q, expl, chosen) {
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, '🔊') : null,
     n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
     expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null,
-    T.id === 'per' && q.ut === 11 ? h('p', h('a.btn.secondary', { href: link(['examenes', 'andalucia-per.json', q.id]) }, '🗺️ Ver la resolución en la carta')) : null,
+    enlaceResolucion(q),
   );
+}
+
+/** «Ver la resolución»: en la carta, o paso a paso si la pregunta se resuelve sin ella (mareas, estima analítica). */
+function enlaceResolucion(q) {
+  const banco = bancoResolucion(q);
+  if (!banco) return null;
+  const sinCarta = cartaSolutions[q.id]?.sinCarta;
+  return h('p', h('a.btn.secondary', { href: link(['examenes', banco, q.id]) }, sinCarta ? '🧮 Ver la resolución paso a paso' : '🗺️ Ver la resolución en la carta'));
 }
 
 // ---------------------------------------------------------------------------

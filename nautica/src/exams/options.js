@@ -24,6 +24,7 @@ const PATTERNS = {
   },
   clock: { re: /(\d{1,2})\s*(?:h|:)\s*(\d{2})/, val: (m) => Number(m[1]) * 60 + Number(m[2]) },
   distance: { re: new RegExp(`${NUM}\\s*(?:millas|′|'|M\\b)?`), val: (m) => num(m[1]) },
+  meters: { re: new RegExp(`${NUM}\\s*(?:m\\b|metros)?`), val: (m) => num(m[1]) },
   speed: { re: new RegExp(`${NUM}\\s*(?:nudos|kn)?`), val: (m) => num(m[1]) },
 };
 

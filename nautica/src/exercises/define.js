@@ -35,8 +35,9 @@ export const CATEGORIES = [
   { id: 'estima', title: 'Navegación de estima', icon: '📐', blurb: 'Rumbo, distancia, velocidad y tiempo entre puntos.' },
   { id: 'situacion', title: 'Situación', icon: '📍', blurb: 'Demoras, distancias y enfilaciones.' },
   { id: 'corrientes', title: 'Corrientes', icon: '🌊', blurb: 'Rumbo efectivo, rumbo a dar y corriente desconocida.' },
-  { id: 'viento', title: 'Viento y abatimiento', icon: '💨', blurb: 'Rumbo de superficie y abatimiento.' },
+  { id: 'viento', title: 'Viento y abatimiento', icon: '💨', blurb: 'Viento aparente, rumbo de superficie y abatimiento.' },
   { id: 'mareas', title: 'Mareas', icon: '🌙', blurb: 'Altura de la marea, sonda y hora para pasar por un bajo.' },
+  { id: 'hora', title: 'La hora a bordo', icon: '🕰️', blurb: 'TU, huso, hora legal, civil del lugar y oficial.' },
 ];
 
 /** Las respuestas pueden depender de la variante del ejercicio: `answers` puede ser lista o función(params). */

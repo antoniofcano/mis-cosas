@@ -2,6 +2,7 @@
 // viento aparente (también según el rumbo), loxodrómica, mareas (y vivas/muertas), situación por dos demoras, sectores de las luces, canal balizado y dispositivo de separación del tráfico.
 // Los colores son de saturación media para leerse en los temas claro y oscuro (el fondo es il-panel).
 
+import { vientoAparente } from '../nautical/viento.js';
 import { deg3 } from './kit.js';
 
 const C = { v: '#2563eb', m: '#16a34a', a: '#d97706', r: '#dc2626', p: '#7c3aed', g: '#64748b' };
@@ -72,8 +73,9 @@ function vientoAparenteRumbo(rumbo) {
   const real = [-Math.sin(rad(ang)) * vr, Math.cos(rad(ang)) * vr];
   const avance = [0, vb];
   const ap = [real[0] + avance[0], real[1] + avance[1]];
-  const vap = Math.hypot(...ap);
-  const angAp = Math.round((Math.atan2(-ap[0], ap[1]) * 180) / Math.PI);
+  const ap0 = vientoAparente({ angReal: ang, vr, vb });
+  const vap = ap0.va;
+  const angAp = Math.round(ap0.ang);
   const W = 320;
   const H = 256;
   const out = open(W, H, 'Viento aparente', 'vr');

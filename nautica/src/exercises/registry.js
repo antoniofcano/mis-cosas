@@ -16,6 +16,8 @@ import rumboPasarDistancia from './types/rumbo-pasar-distancia.js';
 import distanciaFaro from './types/distancia-faro.js';
 import estimaAnalitica from './types/estima-analitica.js';
 import mareaSonda from './types/marea-sonda.js';
+import hora from './types/hora.js';
+import vientoAparente from './types/viento-aparente.js';
 
 export const EXERCISES = [
   conversionRumbos,
@@ -33,6 +35,8 @@ export const EXERCISES = [
   abatimiento,
   estimaAnalitica,
   mareaSonda,
+  vientoAparente,
+  hora,
 ];
 
 const byId = new Map(EXERCISES.map((e) => [e.id, e]));

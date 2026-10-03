@@ -6,6 +6,54 @@
 // Para añadir conocimiento: añade o amplía una lección. El orden importa (gana la primera que encaja).
 
 export const LESSONS = [
+  // --- La hora a bordo
+  {
+    id: 'huso',
+    match: /^huso$/i,
+    intro: ['Primero el huso: cada quince grados de longitud son una hora.', 'Buscamos en qué huso estamos: dividimos la longitud entre 15 y redondeamos.'],
+    tip: 'Quince grados son una hora. Al este los husos son positivos y al oeste negativos.',
+    trap: 'No confundas el huso, que es un número entero, con la longitud en tiempo, que lleva minutos.',
+  },
+  {
+    id: 'hora-legal',
+    match: /^hora legal$/i,
+    intro: ['Ahora la hora legal, la del huso: el TU más o menos las horas del huso.', 'Con el huso, la hora legal sale sola: TU más el huso.'],
+    tip: 'Al este se suma y al oeste se resta: al este amanece antes.',
+    trap: 'El error típico es restar al este. Piensa en Japón: va por delante de nosotros.',
+  },
+  {
+    id: 'hora-civil-lugar',
+    match: /^hora civil del lugar$/i,
+    intro: ['Y la hora civil del lugar: la que marca el Sol en nuestra longitud exacta.', 'Para la hora civil del lugar usamos la longitud tal cual, pasada a tiempo.'],
+    tip: 'Un grado son cuatro minutos y un minuto de arco, cuatro segundos.',
+    trap: 'Solo coincide con la hora legal si la longitud es múltiplo de quince grados.',
+  },
+  {
+    id: 'tu-desde-oficial',
+    match: /^tu$/i,
+    intro: ['Pasamos la hora oficial a tiempo universal quitando el adelanto.', 'Primero el TU: a la hora oficial le restamos el adelanto vigente.'],
+    tip: 'En la península el adelanto es de una hora en invierno y dos en verano.',
+    trap: 'Para ir de oficial a TU se resta; para ir de TU a oficial se suma.',
+  },
+  // --- Viento aparente
+  {
+    id: 'viento-componentes',
+    match: /^componentes del real$/i,
+    intro: ['Descomponemos el viento real en lo que nos llega de proa y lo que nos llega de costado.'],
+    tip: 'De proa, el coseno del ángulo; de costado, el seno.',
+  },
+  {
+    id: 'viento-avance',
+    match: /^más el avance$/i,
+    intro: ['Ahora el viento de avance: al movernos, notamos viento de proa igual a nuestra velocidad.'],
+    trap: 'El avance se suma a la componente de proa, nunca se resta.',
+  },
+  {
+    id: 'viento-aparente',
+    match: /^aparente$|^comprobación$/i,
+    intro: ['Juntamos las dos componentes: el ángulo con la arcotangente y la intensidad con Pitágoras.', 'Y comprobamos que tenga sentido.'],
+    tip: 'Con arrancada avante el aparente siempre entra más a proa que el real.',
+  },
   {
     id: 'declinacion',
     match: /declinaci[oó]n actualizada/i,

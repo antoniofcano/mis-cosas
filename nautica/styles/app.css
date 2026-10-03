@@ -622,3 +622,12 @@ ul.clases-flojas a { display: flex; flex-direction: column; gap: .15rem; min-hei
   .chuleta-trampa { background: none; border-left-color: #000; }
 }
 .chuleta-tema.sin-trampas .chuleta-trampa { display: none; }
+
+/* Tarjetas de memoria (B4) */
+.tarjeta { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; min-height: 16rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; text-align: center; }
+.tarjeta-dibujo { width: 100%; max-width: 420px; }
+.tarjeta-texto { font-size: 2rem; font-weight: 700; margin: .3rem 0; letter-spacing: .02em; }
+.tarjeta-pregunta { color: var(--muted); margin: 0; }
+.tarjeta-reverso { width: 100%; border-top: 2px dashed var(--border); padding-top: .8rem; }
+.tarjeta-respuesta { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin: 0 0 .3rem; }
+.fila-inferior > .grande + .grande { flex: 1; }

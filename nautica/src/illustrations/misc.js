@@ -160,7 +160,7 @@ export function propellerIllustration(spec) {
 // Banderas
 // spec: { tipo:'bandera', codigo:'A'|'buceo'|'O'|'N'|'C'|'B'|'H'|'U'|'V'|'W' }
 
-const FLAGS = {
+export const FLAGS = {
   A: { nombre: 'Bandera «A» (Alfa)', nota: 'Tengo un buzo sumergido: manténgase alejado y a poca velocidad.', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w / 2}" height="${h}" fill="#fff" stroke="#999"/><path d="M${x + w / 2},${y} L${x + w},${y} L${x + w * 0.75},${y + h / 2} L${x + w},${y + h} L${x + w / 2},${y + h}Z" fill="#1d4ed8"/>` },
   buceo: { nombre: 'Bandera de buceo (roja con diagonal blanca)', nota: 'Señala buceadores en inmersión (uso deportivo y recreativo).', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#dc2626"/><path d="M${x},${y} L${x + w * 0.18},${y} L${x + w},${y + h * 0.82} L${x + w},${y + h} L${x + w * 0.82},${y + h} L${x},${y + h * 0.18}Z" fill="#fff"/>` },
   O: { nombre: 'Bandera «O» (Oscar)', nota: '¡Hombre al agua!', svg: (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#facc15"/><path d="M${x},${y} L${x + w},${y} L${x + w},${y + h}Z" fill="#dc2626"/>` },

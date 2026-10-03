@@ -1,66 +1,10 @@
 // Soluciones programadas PY Andalucía, convocatorias de 2020. Ver andalucia-py.js para el formato.
 import { hrb } from '../kit.js';
-import { rhumbTo, rhumbDestination } from '../../math/mercator.js';
-import { norm360 } from '../../math/angles.js';
-import { fmtBearing, fmtPos, fmtMiles, fmtKnots, fmtLon } from '../../math/format.js';
-import { courseToSteer } from '../../nautical/kinematics.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const E = 90; const SE = 135; const SW = 225; const W = 270; const NW = 315; const NE = 45; const S = 180;
-const coma = (x, dec = 1) => x.toFixed(dec).replace('.', ',');
 
 // ---- Operaciones locales (candidatas al kit)
-
-/** Corriente desconocida: une la situación de estima con la observada; rumbo = Rc, distancia / horas = Ihc. */
-function corrienteDesconocida(k, estima, observada, minutos) {
-  const r = rhumbTo(estima, observada);
-  const ic = r.distance / (minutos / 60);
-  k.note('Rumbo e intensidad de la corriente', `La corriente es lo que nos ha llevado de la situación de estima a la observada. Uniéndolas: Rc = ${fmtBearing(r.bearing)} y ${fmtMiles(r.distance)} en ${coma(minutos / 60, 1)} h → Ihc = ${fmtMiles(r.distance)} / ${coma(minutos / 60, 1)} h = ${fmtKnots(ic)}.`);
-  k.items.push({ t: 'seg', from: estima, to: observada, style: 'current', arrow: true, step: k.steps.length });
-  return { rc: r.bearing, ic };
-}
-
-/**
- * Rumbo a dar con corriente conocida y velocidad del barco dada: el vector barco (radio Vb) con centro
- * en el extremo del vector corriente corta la línea del rumbo efectivo hacia el destino.
- */
-function rumboConCorriente(k, from, to, vb, rc, ic) {
-  const r = rhumbTo(k.P(from), k.P(to));
-  k.note('Rumbo efectivo', `Uniendo la salida con el destino: Ref = ${fmtBearing(r.bearing)}, distancia = ${fmtMiles(r.distance)}.`);
-  k.items.push({ t: 'seg', from: k.P(from), to: k.P(to), style: 'effective', arrow: true, step: k.steps.length });
-  const sol = courseToSteer(r.bearing, vb, rc, ic);
-  if (!sol) throw new Error('El barco no puede vencer la corriente');
-  k.note('Triángulo de velocidades', `Desde la salida trazamos el vector corriente ${fmtBearing(rc)} y ${fmtKnots(ic)}. Con centro en su extremo y radio ${fmtKnots(vb)} (lo que anda el barco en una hora) cortamos la línea del Ref: el vector barco da Rs = ${fmtBearing(sol.rs)}, y la velocidad efectiva sobre el fondo es Vef = ${fmtKnots(sol.vef)}.`);
-  const pc = rhumbDestination(k.P(from), rc, ic);
-  k.items.push({ t: 'vec', from: k.P(from), bearing: rc, length: ic, label: 'Corriente', style: 'current', step: k.steps.length },
-    { t: 'vec', from: pc, bearing: sol.rs, length: vb, label: `Rs ${fmtBearing(sol.rs)}`, style: 'boat', step: k.steps.length });
-  return { rs: sol.rs, vef: sol.vef, ref: r.bearing, dist: r.distance };
-}
-
-/** Longitud > 180° E (o < 180° W) al cruzar el antimeridiano → se pasa al otro hemisferio. */
-function antimeridiano(k, p) {
-  if (p.lon <= 180 && p.lon >= -180) return p;
-  const lon = p.lon > 180 ? p.lon - 360 : p.lon + 360;
-  const grados = Math.abs(p.lon);
-  k.note('Longitud de llegada', `Hemos pasado el meridiano 180°: ${Math.floor(grados)}° ${coma((grados % 1) * 60)}′ ${p.lon > 0 ? 'E' : 'W'} equivale a 360° − ${Math.floor(grados)}° ${coma((grados % 1) * 60)}′ = ${fmtLon(lon)}. Situación de llegada: ${fmtPos({ lat: p.lat, lon })}.`);
-  return { lat: p.lat, lon };
-}
-
-/** Rumbo directo (loxodrómico por estima) entre dos situaciones, aunque crucen el antimeridiano. lon: + E. */
-function rumboDirecto(k, a, b) {
-  const dl = (b.lat - a.lat) * 60;
-  let dL = (b.lon - a.lon) * 60;
-  if (dL > 180 * 60) dL -= 360 * 60;
-  if (dL < -180 * 60) dL += 360 * 60;
-  const lm = (a.lat + b.lat) / 2;
-  const ap = dL * Math.cos(lm * Math.PI / 180);
-  k.note('Diferencia de latitud y de longitud', `Δl = ${coma(Math.abs(dl))}′ ${dl < 0 ? 'S' : 'N'}. ΔL = ${coma(Math.abs(dL))}′ ${dL < 0 ? 'W' : 'E'}${Math.abs(b.lon - a.lon) > 180 ? ' (por el meridiano 180°, el camino corto)' : ''}.`);
-  const angulo = Math.atan2(Math.abs(ap), Math.abs(dl)) * 180 / Math.PI;
-  const r = norm360(Math.atan2(ap, dl) * 180 / Math.PI);
-  const d = Math.hypot(ap, dl);
-  k.note('Rumbo y distancia', `Latitud media ${coma(lm)}°: apartamiento A = ΔL · cos lm = ${coma(Math.abs(dL))}′ × ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${coma(Math.abs(ap))}′. tg R = A / Δl = ${coma(Math.abs(ap))} / ${coma(Math.abs(dl))} → R = ${dl < 0 ? 'S' : 'N'} ${coma(angulo)}° ${ap < 0 ? 'W' : 'E'} = ${coma(r)}°. Distancia = ${coma(d)} millas.`);
-  return { rumbo: r, dist: d };
-}
 
 export default {
   // ---- 1ª Convocatoria 2020
@@ -101,7 +45,7 @@ export default {
       const t = hrb(22, 30) - hrb(20);
       const est = k.run(s, 80, k.distFor(7.2, t), 'Situación de estima 22:30');
       const obs = k.fix2('cabo-espartel', 191, 'punta-malabata', 100, 'Situación observada 22:30');
-      const { rc, ic } = corrienteDesconocida(k, est, obs, t);
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
       return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
@@ -120,7 +64,7 @@ export default {
     ejercicio: 'corriente-rumbo-a-dar',
     solve(k) {
       const s = k.pos('36 00,0 N', '5 15,0 W', 'Salida');
-      const { rs } = rumboConCorriente(k, s, 'algeciras-espigon', 6, E, 3);
+      const { rs } = k.rumboConCorriente(s, 'algeciras-espigon', 6, E, 3);
       k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
       const ct = k.ct({ dm: -2, desvio: -6 });
       return [{ kind: 'bearing', value: k.ra(rs, ct) }];
@@ -162,7 +106,7 @@ export default {
       const s = k.pos('15 00,0 N', '179 15,0 E', 'Salida');
       k.note('Distancia navegada', 'A 10 nudos: 120° durante 3 h (30 millas), 090° durante 4 h (40 millas) y 150° durante 6 h (60 millas).');
       const p = k.tramos(s, [{ rumbo: 120, millas: 30 }, { rumbo: 90, millas: 40 }, { rumbo: 150, millas: 60 }], 'Situación de llegada');
-      return latlon(antimeridiano(k, p));
+      return latlon(p);
     },
   },
 
@@ -230,7 +174,7 @@ export default {
     solve(k) {
       // «Faro de Pta. Camarinal» = faro de Punta Gracia; al S verdadero → la línea N–S que pasa por él.
       const s = k.lineAndBearing('punta-gracia', S, 'isla-tarifa', 70, 'Salida');
-      const { rs } = rumboConCorriente(k, s, 'barbate-faro', 7, SW, 3);
+      const { rs } = k.rumboConCorriente(s, 'barbate-faro', 7, SW, 3);
       k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
       const ct = k.ct({ dm: 4, desvio: 8 });
       return [{ kind: 'bearing', value: k.ra(rs, ct) }];
@@ -260,7 +204,7 @@ export default {
     solve(k) {
       const a = k.pos('38 20,0 N', '179 05,0 E', 'Salida');
       const b = k.pos('35 42,0 N', '178 38,0 W', 'Llegada');
-      return [{ kind: 'bearing', value: rumboDirecto(k, a, b).rumbo }];
+      return [{ kind: 'bearing', value: k.rumboDirecto(a, b).rumbo }];
     },
   },
 };

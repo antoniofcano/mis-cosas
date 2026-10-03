@@ -8,11 +8,13 @@ import { parseAngle, fmtBearing, fmtSignedNum, fmtPos, fmtMiles, fmtKnots, fmtCl
 import { fixTwoBearings, fixBearingDistance, fixBearingAndRange, closestApproach } from '../nautical/positioning.js';
 import { toPlane, fromPlane, unitsPerMile } from '../math/mercator.js';
 import { intersectLines } from '../math/vector.js';
-import { effectiveCourse, windSide, abatimientoSigned } from '../nautical/kinematics.js';
+import { effectiveCourse, courseToSteer, windSide, abatimientoSigned } from '../nautical/kinematics.js';
 import { timeForHeight, correccionTabla } from '../nautical/tides.js';
 
 const DIR_NAME = { 0: 'N', 45: 'NE', 90: 'E', 135: 'SE', 180: 'S', 225: 'SW', 270: 'W', 315: 'NW' };
 const coma = (x, dec = 2) => x.toFixed(dec).replace('.', ',');
+/** Con signo tipográfico: +12,3 / −4,5. */
+const sg = (x, dec = 1) => `${x < 0 ? '−' : '+'}${coma(Math.abs(x), dec)}`;
 /** Duración en minutos → "4h 30m". */
 const hm = (m) => { const r = Math.round(Math.abs(m)); return `${Math.floor(r / 60)}h ${String(r % 60).padStart(2, '0')}m`; };
 
@@ -23,7 +25,7 @@ export function createKit(chart) {
   let n = 0;
   const step = (title, text) => { steps.push({ title, text }); n = steps.length; };
   const P = (id) => (typeof id === 'string' ? chart.point(id) : id);
-  const nm = (id) => P(id).name.replace(/^Faro de /, 'faro de ');
+  const nm = (id) => (P(id).name ?? 'el punto').replace(/^Faro de /, 'faro de ');
   const mark = (p) => { focus.push(p); return p; };
 
   const k = {
@@ -32,8 +34,9 @@ export function createKit(chart) {
     /** Coordenadas escritas como en el examen: k.pos("35 50,0 N", "6 10,0 W"). */
     pos(lat, lon, label = 'Situación') {
       const p = { lat: parseAngle(lat), lon: -Math.abs(parseAngle(lon)) * (/E/i.test(lon) ? -1 : 1) };
+      // Fuera de la carta L105 se resuelve analíticamente (sin dibujo).
+      if (!chart.inBounds(p)) { step(label, `${fmtPos(p)}, fuera de esta carta: lo resolvemos con números.`); return p; }
       step(label, `Situamos el punto en la carta: ${fmtPos(p)}.`);
-      if (!chart.inBounds(p)) return p; // fuera de la carta L105: se resuelve analíticamente
       items.push({ t: 'pos', at: p, label, style: 'start', step: n });
       return mark(p);
     },
@@ -190,7 +193,7 @@ export function createKit(chart) {
       const alpha = toDeg(Math.asin(Math.min(1, d / r.distance)));
       const rv = norm360(side === 'estribor' ? r.bearing - alpha : r.bearing + alpha);
       step('Rumbo para pasar a distancia', `Con centro en ${nm(id)} trazamos un arco de ${fmtMiles(d)}. Desde la situación (a ${fmtMiles(r.distance)} del faro, demora ${fmtBearing(r.bearing)}) trazamos la tangente dejando el faro por ${side}: ` +
-        `ángulo = arcsen(${String(d).replace('.', ',')} / ${r.distance.toFixed(1).replace('.', ',')}) = ${alpha.toFixed(1).replace('.', ',')}°, Rv = ${fmtBearing(rv)}.`);
+        `ángulo = arcsen(${String(d).replace('.', ',')} / ${r.distance.toFixed(1).replace('.', ',')}) = ${alpha.toFixed(1).replace('.', ',')}°, rumbo a seguir = ${fmtBearing(rv)}.`);
       const ca = closestApproach(P(from), rv, P(id));
       items.push({ t: 'arc', center: P(id), radius: d, around: rhumbTo(P(id), ca.point).bearing, span: 70, style: 'construction', step: n },
         { t: 'vec', from: P(from), bearing: rv, length: Math.max(ca.along * 1.3, 3), style: 'boat', step: n });
@@ -302,17 +305,74 @@ export function createKit(chart) {
         const r = t.rumbo * Math.PI / 180;
         const a = t.millas * Math.cos(r); const b = t.millas * Math.sin(r);
         dl += a; ap += b;
-        return `${t.nombre ?? fmtBearing(t.rumbo)} ${fmtMiles(t.millas, 1)}: Δl ${coma(a, 1)}′, A ${coma(b, 1)}′`;
+        return `${t.nombre ?? fmtBearing(t.rumbo)} ${fmtMiles(t.millas, 1)}: Δl ${sg(a)}′, A ${sg(b)}′`;
       });
-      step('Tramos', `Descomponemos cada tramo en diferencia de latitud (+N) y apartamiento (+E): ${filas.join('; ')}. Totales: Δl = ${coma(dl, 1)}′, A = ${coma(ap, 1)}′.`);
+      step('Tramos', `Descomponemos cada tramo en diferencia de latitud (+N) y apartamiento (+E): ${filas.join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`);
       const lat = from.lat + dl / 60;
       const lm = (from.lat + lat) / 2;
       const dL = ap / Math.cos(lm * Math.PI / 180);
-      const p = { lat, lon: from.lon + dL / 60 };
+      let p = { lat, lon: from.lon + dL / 60 };
       step('Latitud de llegada', `l = ${fmtPos(from).split('  ')[0]} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${fmtPos(p).split('  ')[0]}.`);
-      step('Diferencia de longitud', `Latitud media ${coma(lm, 1)}°: ΔL = A / cos lm = ${coma(ap, 1)}′ / ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${coma(dL, 1)}′. ${label}: ${fmtPos(p)}.`);
+      step('Diferencia de longitud', `Latitud media ${coma(Math.abs(lm), 1)}°: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${sg(dL)}′.`);
+      if (Math.abs(p.lon) > 180) {
+        const a = Math.abs(p.lon);
+        p = { lat: p.lat, lon: norm180(p.lon) };
+        step('Longitud de llegada', `Sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${fmtPos(p).split('  ')[1]}.`);
+      }
+      step(label, `${fmtPos(p)}.`);
       if (chart.inBounds(from) && chart.inBounds(p)) items.push({ t: 'pos', at: p, label, style: 'estima', step: n });
       return p;
+    },
+
+    /** Corriente desconocida: lo que nos lleva de la situación de estima a la observada en `minutes`. */
+    corrienteDesconocida(estima, observada, minutes) {
+      const r = rhumbTo(estima, observada);
+      const ic = r.distance / (minutes / 60);
+      step('Rumbo e intensidad de la corriente', `La corriente es lo que nos ha llevado de la situación de estima a la observada. Uniéndolas: Rc = ${fmtBearing(r.bearing)}, ${fmtMiles(r.distance, 2)} en ${coma(minutes / 60, 2)} h → Ihc = ${fmtKnots(ic)}.`);
+      items.push({ t: 'seg', from: estima, to: observada, label: 'Corriente', style: 'current', arrow: true, step: n });
+      return { rc: r.bearing, ic };
+    },
+    /**
+     * Rumbo de superficie con corriente conociendo la velocidad del barco (no la hora de llegada).
+     * `to` es el destino (id o punto) o directamente el Ref deseado (número). Dibuja el triángulo en `from`.
+     */
+    rumboConCorriente(from, to, vb, rc, ic) {
+      let ref = to; let dist = null;
+      if (typeof to !== 'number') {
+        const r = rhumbTo(P(from), P(to));
+        ref = r.bearing; dist = r.distance;
+        step('Rumbo efectivo', `Uniendo la salida con ${typeof to === 'string' ? nm(to) : 'el destino'}: Ref = ${fmtBearing(ref)}, distancia = ${fmtMiles(dist)}.`);
+        items.push({ t: 'seg', from: P(from), to: P(to), style: 'effective', arrow: true, step: n });
+        if (typeof to === 'string') mark(P(to));
+      }
+      const sol = courseToSteer(ref, vb, rc, ic);
+      if (!sol) throw new Error('El barco no puede vencer la corriente');
+      step('Triángulo de velocidades', `Desde la salida trazamos el vector corriente ${fmtBearing(rc)} y ${fmtKnots(ic)}. Con centro en su extremo y radio ${fmtKnots(vb)} (lo que anda el barco en una hora) cortamos la línea del Ref ${fmtBearing(ref)}: el vector barco da Rs = ${fmtBearing(sol.rs)}, y la velocidad efectiva es Vef = ${fmtKnots(sol.vef)}.`);
+      const pc = rhumbDestination(P(from), rc, ic);
+      items.push({ t: 'vec', from: P(from), bearing: rc, length: ic, label: 'Corriente', style: 'current', step: n },
+        { t: 'vec', from: pc, bearing: sol.rs, length: vb, label: `Rs ${fmtBearing(sol.rs)}`, style: 'boat', step: n });
+      if (dist == null) items.push({ t: 'vec', from: P(from), bearing: ref, length: sol.vef, label: `Ref ${fmtBearing(ref)}`, style: 'effective', step: n });
+      return { rs: sol.rs, vef: sol.vef, ref, dist };
+    },
+    /** Ct por la Polar: su azimut verdadero es prácticamente 000°, así que Ct = 0° − Za. */
+    ctPolar(za) {
+      const ct = norm180(-za);
+      step('Corrección total', `La Polar marca el norte verdadero (Zv ≈ 000°). Ct = Zv − Za = 000° − ${fmtBearing(za)} = ${fmtSignedNum(ct, 0)}.`);
+      return ct;
+    },
+    /** Rumbo directo y distancia entre dos situaciones por latitud media (ΔL por el camino corto, aunque se cruce el meridiano 180°). */
+    rumboDirecto(a, b) {
+      const dl = (b.lat - a.lat) * 60;
+      const dL = norm180(b.lon - a.lon) * 60;
+      const cruza = Math.abs((b.lon - a.lon) * 60 - dL) > 1e-6;
+      step('Diferencia de latitud y de longitud', `De ${fmtPos(a)} a ${fmtPos(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}; ΔL = ${coma(Math.abs(dL), 1)}′ ${dL < 0 ? 'W' : 'E'}${cruza ? ' (por el camino corto, cruzando el meridiano 180°)' : ''}.`);
+      const lm = (a.lat + b.lat) / 2;
+      const A = dL * Math.cos(lm * Math.PI / 180);
+      const r = norm360(toDeg(Math.atan2(A, dl)));
+      const ang = toDeg(Math.atan(Math.abs(A) / Math.abs(dl)));
+      const d = Math.hypot(A, dl);
+      step('Rumbo y distancia', `Latitud media ${coma(Math.abs(lm), 1)}°: apartamiento A = ΔL · cos lm = ${coma(Math.abs(dL), 1)}′ × ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${coma(Math.abs(A), 1)}′ ${A < 0 ? 'W' : 'E'}. tg R = A / Δl = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} → R = ${dl < 0 ? 'S' : 'N'} ${coma(ang, 1)}° ${A < 0 ? 'W' : 'E'} = ${fmtBearing(r, 1)}. Distancia = √(Δl² + A²) = ${fmtMiles(d)}.`);
+      return { rumbo: r, dist: d };
     },
 
     // ---- Mareas (Anuario: horas en UT; la corrección C = A · sen²(90° · I / D) desde la bajamar)

@@ -25,12 +25,12 @@ export function reglasView({ tit }) {
     setChildren(el,
       volver('Biblioteca', tlink(tit, ['biblioteca'])),
       h('h1', '🧠 Reglas para recordar'),
-      h('p', 'Las que usan academias y foros, comprobadas contra el reglamento y elegidas por ser útiles y fáciles de memorizar. El profe te las recuerda en las preguntas donde ayudan.'),
+      h('p', 'Comprobadas contra el reglamento y elegidas por ser útiles y fáciles de memorizar. El profe te las recuerda en las preguntas donde ayudan.'),
       [...groups].map(([g, rs]) => h('section', h('h2', g), rs.map((r) => h('details.mnemo-card',
         h('summary', r.regla),
         h('p', r.significado),
         r.preguntas?.length ? h('p.muted.small', `Te ayuda en ${r.preguntas.length} preguntas de examen.`) : null,
-        h('p.small', 'Fuentes: ', (r.fuentes ?? []).map((u, i) => [i ? ' · ' : '', h('a', { href: u, target: '_blank', rel: 'noopener' }, new URL(u).hostname.replace(/^www\./, ''))])))))),
+        r.fuentes?.length ? h('p.small', 'Fuentes: ', r.fuentes.map((u, i) => [i ? ' · ' : '', h('a', { href: u, target: '_blank', rel: 'noopener' }, new URL(u).hostname.replace(/^www\./, ''))])) : null)))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las reglas: ${e.message}`)));
   return { el, summary: () => summaryText };

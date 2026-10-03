@@ -1,0 +1,277 @@
+{
+ "id": "fuego",
+ "titulo": "El fuego a bordo",
+ "tits": [
+  "per"
+ ],
+ "intro": "Qué necesita el fuego para arder, cómo se apaga quitándole cada elemento, qué clase de fuego pide cada agente y cómo se maniobra y se previene a bordo.",
+ "nodos": [
+  {
+   "id": "tetraedro",
+   "nombre": "Tetraedro del fuego",
+   "corto": "Combustible, comburente (el oxígeno del aire), calor y reacción en cadena. Cuatro elementos: la reacción en cadena explica que el fuego se mantenga solo.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   },
+   "clase": "per-8-6",
+   "x": 1.6,
+   "y": 0.0
+  },
+  {
+   "id": "socairear",
+   "nombre": "Socairear el fuego",
+   "corto": "Maniobrar para dejar el fuego a sotavento del barco y con el mínimo viento aparente: si está a proa, viento por popa; si está a popa, por proa.",
+   "spec": {
+    "tipo": "viento-aparente",
+    "rumbo": "popa"
+   },
+   "clase": "per-8-7",
+   "x": 4.5,
+   "y": 0.0
+  },
+  {
+   "id": "extintor",
+   "nombre": "Extintor portátil (34B)",
+   "corto": "Si el fabricante no indica otra cosa, eficacia mínima 34B y al menos 2 kg de agente; uno al alcance del puesto de gobierno. Se usa de espaldas al viento, a la base de las llamas y barriendo.",
+   "spec": {
+    "tipo": "extintor",
+    "vista": "uso"
+   },
+   "clase": "per-3-6",
+   "x": 3.4,
+   "y": 1.08
+  },
+  {
+   "id": "ventilar",
+   "nombre": "Ventilar (prevención)",
+   "corto": "Cámara de motores (gasolina: 4 minutos antes de arrancar), baterías (desprenden hidrógeno) y pañol de pinturas, ventilados; nunca cerrados herméticamente.",
+   "spec": {
+    "tipo": "revision-salida",
+    "vista": "motor",
+    "resaltar": "baterias"
+   },
+   "clase": "per-8-6",
+   "x": 4.5,
+   "y": 1.62
+  },
+  {
+   "id": "agua",
+   "nombre": "Agua (enfriamiento)",
+   "corto": "Quita el calor: es el agente rey para enfriar, y en niebla el más eficaz. A chorro, nunca en líquidos inflamables, aceite de cocina, metales ni con tensión.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-7",
+   "x": 0,
+   "y": 2.16
+  },
+  {
+   "id": "sofocacion",
+   "nombre": "Sofocación",
+   "corto": "Quita el comburente (oxígeno): manta ignífuga, tapa, espuma o CO₂. Al confinar (cerrar escotillas y ventilaciones) también se le quita aire.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   },
+   "clase": "per-8-7",
+   "x": 3.0,
+   "y": 3.24
+  },
+  {
+   "id": "desalimentacion",
+   "nombre": "Desalimentación",
+   "corto": "Quita el combustible: cerrar la llave del gas o del combustible y retirar lo que pueda arder. El método más directo, pero no siempre posible.",
+   "spec": {
+    "tipo": "revision-salida",
+    "vista": "motor",
+    "resaltar": "combustible"
+   },
+   "clase": "per-8-7",
+   "x": 1.2,
+   "y": 3.24
+  },
+  {
+   "id": "polvo",
+   "nombre": "Polvo polivalente (ABC)",
+   "corto": "El extintor habitual a bordo. Actúa sobre todo por inhibición (corta la reacción en cadena) y sirve para A, B y C y con tensión eléctrica.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-7",
+   "x": 3.4,
+   "y": 2.16
+  },
+  {
+   "id": "claseA",
+   "nombre": "Clase A (sólidos)",
+   "corto": "Sólidos que arden formando brasas: madera, papel, tela, cabos.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-6",
+   "x": 0,
+   "y": 4.32
+  },
+  {
+   "id": "co2",
+   "nombre": "CO₂ (anhídrido carbónico)",
+   "corto": "Sofoca desplazando el oxígeno. Para clase B y con electricidad; no deja residuos. En un local cerrado es asfixiante.",
+   "spec": {
+    "tipo": "extintor",
+    "vista": "co2"
+   },
+   "clase": "per-8-7",
+   "x": 4.2,
+   "y": 5.4
+  },
+  {
+   "id": "claseF",
+   "nombre": "Clase F (cocina)",
+   "corto": "Aceites y grasas de cocina (la sartén, la freidora). Extintor específico o tapar con tapa o manta ignífuga.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-6",
+   "x": 2.7,
+   "y": 4.32
+  },
+  {
+   "id": "claseB",
+   "nombre": "Clase B (líquidos)",
+   "corto": "Líquidos o sólidos que se licúan: gasolina, gasoil, pinturas, disolventes, ceras.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-6",
+   "x": 1.4,
+   "y": 4.32
+  },
+  {
+   "id": "claseC",
+   "nombre": "Clase C (gases)",
+   "corto": "Gases como el butano y el propano. El butano pesa más que el aire y se acumula en la sentina.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-6",
+   "x": 4.5,
+   "y": 4.32
+  },
+  {
+   "id": "electrico",
+   "nombre": "Riesgo eléctrico (no hay clase E)",
+   "corto": "La norma UNE-EN 2 no tiene clase E: la electricidad es un riesgo añadido. Con tensión, ni agua ni espuma; corta la corriente.",
+   "spec": {
+    "tipo": "fuego",
+    "vista": "clases"
+   },
+   "clase": "per-8-6",
+   "x": 1.2,
+   "y": 5.4
+  }
+ ],
+ "aristas": [
+  {
+   "de": "tetraedro",
+   "a": "agua",
+   "rel": "quita el calor"
+  },
+  {
+   "de": "tetraedro",
+   "a": "sofocacion",
+   "rel": "quita el oxígeno"
+  },
+  {
+   "de": "tetraedro",
+   "a": "desalimentacion",
+   "rel": "quita el combustible"
+  },
+  {
+   "de": "tetraedro",
+   "a": "polvo",
+   "rel": "inhibe la reacción"
+  },
+  {
+   "de": "socairear",
+   "a": "extintor",
+   "rel": "atacar con viento a la espalda"
+  },
+  {
+   "de": "extintor",
+   "a": "polvo",
+   "rel": "el habitual a bordo es de"
+  },
+  {
+   "de": "agua",
+   "a": "claseA",
+   "rel": "ideal para"
+  },
+  {
+   "de": "sofocacion",
+   "a": "co2",
+   "rel": "también la hace el"
+  },
+  {
+   "de": "sofocacion",
+   "a": "claseF",
+   "rel": "tapa o manta en la sartén"
+  },
+  {
+   "de": "desalimentacion",
+   "a": "claseB",
+   "rel": "cerrar el combustible"
+  },
+  {
+   "de": "polvo",
+   "a": "claseC",
+   "rel": "apaga también gases"
+  },
+  {
+   "de": "ventilar",
+   "a": "claseC",
+   "rel": "evita que se acumulen"
+  },
+  {
+   "de": "co2",
+   "a": "electrico",
+   "rel": "vale con tensión, sin residuos"
+  },
+  {
+   "de": "claseB",
+   "a": "claseF",
+   "rel": "El aceite de cocina es líquido, pero es clase F, no B. B es gasolina, gasoil, pinturas y disolventes.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "agua",
+   "a": "claseB",
+   "rel": "El agua a chorro, nunca en líquidos inflamables: los esparce. El agua es para sólidos (A).",
+   "tipo": "confunde"
+  },
+  {
+   "de": "agua",
+   "a": "electrico",
+   "rel": "Con tensión eléctrica, ni agua ni espuma (conducen): corta la corriente y usa CO₂ o polvo.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "co2",
+   "a": "polvo",
+   "rel": "El CO₂ sofoca (quita el oxígeno); el polvo inhibe (corta la reacción en cadena).",
+   "tipo": "confunde"
+  },
+  {
+   "de": "ventilar",
+   "a": "sofocacion",
+   "rel": "Para prevenir, se ventila (motor, baterías, pinturas); con fuego, se cierra todo para quitarle aire.",
+   "tipo": "confunde"
+  }
+ ]
+}

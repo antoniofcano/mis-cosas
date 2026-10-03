@@ -1,0 +1,321 @@
+{
+ "id": "corriente-abatimiento",
+ "titulo": "Viento, corriente y rumbos",
+ "tits": [
+  "py"
+ ],
+ "intro": "Del timón a la carta: la Ct da el Rv, el viento te abate al Rs y la corriente te lleva al rumbo efectivo. El problema directo (la estima), el inverso (el rumbo a dar) y la corriente desconocida.",
+ "nodos": [
+  {
+   "id": "ct",
+   "nombre": "Corrección total (Ct)",
+   "corto": "Ct = dm + Δ, cada una con su signo. Del timón a la carta se suma (Rv = Ra + Ct); de la carta al timón se resta (Ra = Rv − Ct).",
+   "spec": {
+    "tipo": "nortes",
+    "dm": -3,
+    "desvio": -2
+   },
+   "clase": "py-4-1",
+   "x": 0,
+   "y": 1.2
+  },
+  {
+   "id": "ra",
+   "nombre": "Rumbo de aguja (Ra)",
+   "corto": "El que lleva el timonel. Es el primer dato de la estima y el último resultado cuando buscas el rumbo a dar.",
+   "spec": {
+    "tipo": "rosa",
+    "rumbo": 214
+   },
+   "clase": "py-4-2",
+   "x": 1.6,
+   "y": 0
+  },
+  {
+   "id": "viento",
+   "nombre": "El viento (de dónde viene)",
+   "corto": "Se nombra por de dónde viene: levante del E, poniente del W. Banda: viento − Rv; de 0° a 180° entra por estribor, de 180° a 360° por babor.",
+   "spec": {
+    "tipo": "vientos-regionales",
+    "vista": "rosa",
+    "resaltar": [
+     "levante",
+     "poniente"
+    ]
+   },
+   "clase": "py-4-2",
+   "x": 3.1,
+   "y": 0
+  },
+  {
+   "id": "corriente",
+   "nombre": "La corriente (Rc, Ihc)",
+   "corto": "Se nombra por hacia dónde va (Rc). La Ihc son las millas que te arrastra cada hora: «Ihc = 3′» y «3 nudos» es lo mismo.",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "efectivo",
+    "rc": 225,
+    "ic": 2
+   },
+   "clase": "py-4-5",
+   "x": 4.5,
+   "y": 0
+  },
+  {
+   "id": "rv",
+   "nombre": "Rumbo verdadero (Rv)",
+   "corto": "Hacia donde apunta la proa: Rv = Ra + Ct. Con viento no es la línea que sigues sobre el agua.",
+   "spec": {
+    "tipo": "tangente-viento",
+    "resaltar": "rv"
+   },
+   "clase": "py-4-2",
+   "x": 1.6,
+   "y": 1.2
+  },
+  {
+   "id": "ab",
+   "nombre": "Abatimiento (Ab)",
+   "corto": "Ángulo del Rv al Rs, hacia sotavento. Viento por babor, Ab +; por estribor, Ab −. Es el ángulo de la estela con la crujía.",
+   "spec": {
+    "tipo": "abatimiento",
+    "banda": "babor"
+   },
+   "clase": "py-4-2",
+   "x": 3.1,
+   "y": 1.2
+  },
+  {
+   "id": "deriva",
+   "nombre": "Deriva",
+   "corto": "El efecto de la corriente: mueve toda la masa de agua y arrastra por igual a cualquier barco, sea cual sea su tamaño.",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   },
+   "clase": "per-10-9",
+   "tit": "per",
+   "x": 4.5,
+   "y": 1.2
+  },
+  {
+   "id": "traves",
+   "nombre": "Faro por el través",
+   "corto": "Faro a 90° de la proa: por estribor Dv = Rv + 90°; por babor Dv = Rv − 90°. Esa línea se corta con la derrota (Rs o Ref).",
+   "spec": {
+    "tipo": "traves-derrota"
+   },
+   "clase": "py-4-6",
+   "x": 0,
+   "y": 2.4
+  },
+  {
+   "id": "rs",
+   "nombre": "Rumbo de superficie (Rs)",
+   "corto": "El que sigues sobre el agua con viento: Rs = Rv + Ab. Para dar rumbo, al revés: Rv = Rs − Ab (orzas lo que abates).",
+   "spec": {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   },
+   "clase": "py-4-2",
+   "x": 1.6,
+   "y": 2.4
+  },
+  {
+   "id": "tangente",
+   "nombre": "Pasar a distancia de un faro",
+   "corto": "Tangente a la circunferencia del radio pedido (sen α = d / D). Con viento, la tangente es el Rs; con corriente, el Ref.",
+   "spec": {
+    "tipo": "tangente-viento"
+   },
+   "clase": "py-4-3",
+   "x": 3.6,
+   "y": 2.4
+  },
+  {
+   "id": "estima",
+   "nombre": "Estima con viento y corriente",
+   "corto": "Problema directo: Ra → Rv (+ Ct) → Rs (+ Ab); Vb × t millas al Rs y luego Ihc × t millas al Rc. Primero el viento, luego la corriente.",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "efectivo",
+    "rumbo": 142,
+    "ab": 10,
+    "rc": 90,
+    "ic": 2,
+    "vb": 7
+   },
+   "clase": "py-4-5",
+   "x": 0.8,
+   "y": 3.6
+  },
+  {
+   "id": "ref",
+   "nombre": "Rumbo efectivo (Ref, Vef)",
+   "corto": "Lo que haces sobre el fondo: de la salida a la situación de estima. Vef = esa distancia / tiempo. Si solo piden el Ref, basta el triángulo de 1 hora.",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "efectivo",
+    "rumbo": 0,
+    "rc": 90,
+    "ic": 2,
+    "vb": 6
+   },
+   "clase": "py-4-5",
+   "x": 2.6,
+   "y": 3.6
+  },
+  {
+   "id": "desconocida",
+   "nombre": "Corriente desconocida",
+   "corto": "Estima sin corriente (con viento) y situación observada a la misma hora. Rc: de la estimada a la observada. Ihc = distancia / horas desde la situación fiable.",
+   "spec": {
+    "tipo": "corriente-desconocida"
+   },
+   "clase": "py-4-8",
+   "x": 0,
+   "y": 4.8
+  },
+  {
+   "id": "rumboadar",
+   "nombre": "Rumbo a dar con corriente",
+   "corto": "Problema inverso con la Vb: la corriente desde la salida y un arco de radio Vb que corta el Ref. Del extremo de la corriente al corte, el rumbo a dar. Hora: d / Vef.",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "rumbo-a-dar"
+   },
+   "clase": "py-4-7",
+   "x": 1.6,
+   "y": 4.8
+  },
+  {
+   "id": "hora",
+   "nombre": "Llegar a una hora fijada",
+   "corto": "Vef = distancia / tiempo. Barco = efectivo − corriente: del extremo de la corriente al del efectivo salen el rumbo a dar y la Vb necesaria.",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "rumbo-a-dar",
+    "rumbo": 151,
+    "rc": 90,
+    "ic": 2.5,
+    "vb": 6.3
+   },
+   "clase": "py-4-7",
+   "x": 3.8,
+   "y": 4.8
+  }
+ ],
+ "aristas": [
+  {
+   "de": "ct",
+   "a": "rv",
+   "rel": "Rv = Ra + Ct"
+  },
+  {
+   "de": "ra",
+   "a": "rv",
+   "rel": "del timón a la carta"
+  },
+  {
+   "de": "viento",
+   "a": "ab",
+   "rel": "por babor +, por estribor −"
+  },
+  {
+   "de": "rv",
+   "a": "rs",
+   "rel": "+ Ab (el viento)"
+  },
+  {
+   "de": "ab",
+   "a": "rs",
+   "rel": "lo desvía a sotavento"
+  },
+  {
+   "de": "rv",
+   "a": "traves",
+   "rel": "Dv = Rv ± 90°"
+  },
+  {
+   "de": "tangente",
+   "a": "rs",
+   "rel": "con viento, es el Rs"
+  },
+  {
+   "de": "tangente",
+   "a": "ref",
+   "rel": "con corriente, es el Ref"
+  },
+  {
+   "de": "corriente",
+   "a": "deriva",
+   "rel": "su efecto es la"
+  },
+  {
+   "de": "rs",
+   "a": "estima",
+   "rel": "Vb × t millas al Rs"
+  },
+  {
+   "de": "rs",
+   "a": "ref",
+   "rel": "+ la corriente"
+  },
+  {
+   "de": "estima",
+   "a": "ref",
+   "rel": "de la salida a la estima"
+  },
+  {
+   "de": "estima",
+   "a": "desconocida",
+   "rel": "sin corriente, frente a la observada"
+  },
+  {
+   "de": "ref",
+   "a": "rumboadar",
+   "rel": "inverso, dada la Vb"
+  },
+  {
+   "de": "ref",
+   "a": "hora",
+   "rel": "Vef = d / t"
+  },
+  {
+   "de": "viento",
+   "a": "corriente",
+   "rel": "El viento se nombra por de dónde viene; la corriente, por hacia dónde va: una corriente SW te lleva hacia el 225°.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "ab",
+   "a": "deriva",
+   "rel": "Viento → abatimiento; corriente → deriva. El ángulo de la estela con la crujía es abatimiento, no deriva.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "tangente",
+   "a": "rv",
+   "rel": "La tangente es el Rs, no el Rv: quita antes el abatimiento (Rv = Rs − Ab) y después la Ct.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "traves",
+   "a": "rs",
+   "rel": "El través se calcula con el Rv (se mide desde la proa), no con el Rs: con el Rs sale un punto cercano pero erróneo.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "rs",
+   "a": "ref",
+   "rel": "Rs: lo que haces por el viento, sobre el agua. Ref: lo que haces por la corriente, sobre el fondo.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "rumboadar",
+   "a": "ref",
+   "rel": "De la salida al corte es el Ref (y la Vef); el rumbo a dar va del extremo de la corriente al corte. La hora, con la Vef, no con la Vb.",
+   "tipo": "confunde"
+  }
+ ]
+}

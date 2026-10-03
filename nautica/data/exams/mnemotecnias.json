@@ -1063,7 +1063,7 @@
   {
    "id": "py-nav-05",
    "regla": "«La carta es pesimista»: sonda del momento = sonda de la carta + altura de la marea",
-   "significado": "El cero hidrográfico (en España, aproximadamente la bajamar más baja posible, LAT/BMVE) está tan bajo que casi siempre hay más agua de la que marca la carta. La sonda real en un instante es la sonda de la carta más la altura de la marea en ese instante, medida sobre el cero hidrográfico. Las sondas subrayadas (zonas que se descubren en bajamar) se restan. Amplitud = pleamar − bajamar. Matiz: con altas presiones o viento de tierra puede haber menos agua de la prevista (unos −1 cm por hPa por encima de 1013), así que la carta no garantiza nada.",
+   "significado": "El cero hidrográfico (en España, la marea astronómica más baja, LAT, que el examen llama «Mayor Bajamar Astronómica») está tan bajo que casi siempre hay más agua de la que marca la carta. La sonda real en un instante es la sonda de la carta más la altura de la marea en ese instante, medida sobre el cero hidrográfico. Las sondas subrayadas (zonas que se descubren en bajamar) se restan. Amplitud = pleamar − bajamar. Matiz: con altas presiones o viento de tierra puede haber menos agua de la prevista (unos −1 cm por hPa por encima de 1013), así que la carta no garantiza nada.",
    "tema": "PY UT3 Teoría de navegación",
    "fuentes": [
     "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf",

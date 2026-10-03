@@ -1021,7 +1021,7 @@
       {
        "tipo": "texto",
        "titulo": "Cuántos exige la norma",
-       "texto": "Si el manual del fabricante no dice otra cosa, el RD 339/2021 pide extintores de eficacia **34B** con **al menos 2 kg** de agente:\n- Por **eslora**: < 10 m, uno si hay espacio habitable cerrado; de 10 a < 15 m, uno; de 15 a < 20 m, dos; de 20 a 24 m, tres.\n- Por **potencia**: hasta 220 kW, uno (no se exige para un fueraborda de 25 kW o menos); más de 220 kW, capacidad total de **P × 0,3** unidades B.\n\nUno de ellos debe alcanzarse **sin dificultad desde el puesto de gobierno**."
+       "texto": "Los barcos con **marcado CE** llevan los extintores que diga el **manual del fabricante**; solo si el manual no dice nada se aplican las tablas. Los barcos **sin marcado CE** (y todos los de uso comercial) siguen las tablas del **RD 339/2021, art. 15**, con extintores de eficacia **34B** y **al menos 2 kg** de agente:\n- Por **eslora**: < 10 m, uno si hay espacio habitable cerrado; de 10 a < 15 m, uno; de 15 a < 20 m, dos; de 20 a 24 m, tres.\n- Por **motor** (por cada compartimento si es intraborda): hasta 25 kW, uno (no se exige con fueraborda); de 25 a 220 kW, uno; más de 220 kW, una capacidad total de **P × 0,3** unidades B (250 kW → 75 B → tres de 34B).\n- Las dos cuentas **se suman**, salvo con **menos de 10 m** de eslora: ahí los del motor valen también para la eslora.\n\nUno de ellos debe alcanzarse **sin dificultad desde el puesto de gobierno**. Con instalación eléctrica de más de 50 V, uno debe valer para fuegos con tensión; con motor de gas (GLP), uno para fuegos de gases."
       },
       {
        "tipo": "texto",

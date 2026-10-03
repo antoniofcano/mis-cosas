@@ -3400,7 +3400,7 @@
       {
        "tipo": "texto",
        "titulo": "Cálculo 1: actualizar la dm y hallar la Ct",
-       "texto": "La carta dice: **dm 1° 40′ W (2016), variación anual 7′ E**. Navegas en **2026** al **Ra 120°** y la tablilla da **Δ = +3°**.\n\n1. Años: 2026 − 2016 = 10. Variación: 10 × 7′ = 70′ = **1° 10′ E** (+).\n2. dm actual: −1° 40′ + 1° 10′ = −0° 30′ → **dm = 0° 30′ W (−0,5°)**.\n3. Ct = dm + Δ = −0,5 + 3 = **+2,5°**.\n4. Rv = Ra + Ct = 120 + 2,5 = **122,5°**.\n\nLa variación se multiplica por los años y se suma **con su signo**: una variación E acerca a cero una dm W."
+       "texto": "La carta dice: **dm 1° 40′ W (2016), variación anual 7′ E**. Navegas en **2026** al **Ra 045°** y la tablilla da **Δ = +3°**.\n\n1. Años: 2026 − 2016 = 10. Variación: 10 × 7′ = 70′ = **1° 10′ E** (+).\n2. dm actual: −1° 40′ + 1° 10′ = −0° 30′ → **dm = 0° 30′ W (−0,5°)**.\n3. Ct = dm + Δ = −0,5 + 3 = **+2,5°**.\n4. Rv = Ra + Ct = 045 + 2,5 = **047,5°**.\n\nLa variación se multiplica por los años y se suma **con su signo**: una variación E acerca a cero una dm W."
       },
       {
        "tipo": "regla",
@@ -3414,7 +3414,7 @@
       {
        "tipo": "texto",
        "titulo": "Enfilación y oposición",
-       "texto": "- **Enfilación**: ves dos puntos de la costa alineados, uno detrás del otro.\n- **Oposición**: estás **entre** los dos puntos; sus demoras difieren **180°**.\n\nEn las dos estás sobre la recta que los une, cuya **demora verdadera mides en la carta**.\n\n**Ejemplo** (año 2026, dm 0° 30′ W): navegando al Ra 120° cruzas una enfilación de **Dv 244°** (carta) y la marcas con la aguja a **Da 247°**.\n- Ct = Dv − Da = 244 − 247 = **−3°**.\n- Δ = Ct − dm = −3 − (−0,5) = **−2,5°**, válido **para el Ra 120°**."
+       "texto": "- **Enfilación**: ves dos puntos de la costa alineados, uno detrás del otro.\n- **Oposición**: estás **entre** los dos puntos; sus demoras difieren **180°**.\n\nEn las dos estás sobre la recta que los une, cuya **demora verdadera mides en la carta**.\n\n**Ejemplo** (año 2026, dm 0° 30′ W): navegando al Ra 120° cruzas una enfilación de **Dv 244°** (carta) y la marcas con la aguja a **Da 247°**.\n- Ct = Dv − Da = 244 − 247 = **−3°**.\n- Δ = Ct − dm = −3 − (−0,5) = **−2,5°**, válido **para el Ra 120°** (el desvío cambia con el rumbo de aguja: al Ra 045° la tablilla daba +3°)."
       },
       {
        "tipo": "ilustracion",
@@ -3513,7 +3513,7 @@
        "fuente": "Plantilla PY 2020-c3-n04 (opción c falsa)"
       },
       {
-       "dato": "Actualización dm: 1° 40′ W (2016) + 10 × 7′ E = 0° 30′ W; Ct = +2,5°; Rv 122,5°",
+       "dato": "Actualización dm: 1° 40′ W (2016) + 10 × 7′ E = 0° 30′ W; Ct = +2,5°; Ra 045° → Rv 047,5° (otro rumbo que el de la enfilación, porque el desvío depende del Ra)",
        "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
       },
       {
@@ -3827,6 +3827,10 @@
        "tipo": "texto",
        "titulo": "Husos horarios y hora legal",
        "texto": "La Tierra se divide en **24 husos** de **15°**, cada uno limitado por **dos meridianos que difieren 15°** y centrado en un meridiano múltiplo de 15°. El **huso 0** va de 7° 30′ W a 7° 30′ E.\n\nLa **hora legal (Hz)** es la **hora del huso**: la hora civil de su **meridiano central**, la misma para todo el huso.\n- **Hz = TU ± número de huso** (E suma, W resta).\n- Mismo meridiano → mismo huso → **misma hora legal**, aunque sean países distintos.\n- Hz y HcL coinciden si estás en el meridiano central (longitud múltiplo de 15°)."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "«Dos lugares con la **misma longitud** en distintos países tendrán siempre la misma hora…»: con las cuentas en la mano, en el mismo meridiano coinciden **dos** horas, la **civil del lugar** (mismo meridiano) y la **legal** (mismo huso); la oficial no, porque la fija cada Gobierno. El tribunal publicó una rectificación y dio por buena la **legal**: en el examen, marca **legal**."
       },
       {
        "tipo": "ilustracion",

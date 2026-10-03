@@ -171,13 +171,22 @@ export function examenesView({ ctx, progress, tit }) {
         } }, 'Descartarlo')));
     }
     summaryText = `VISTA exámenes ${T0.sigla} · ${convs.length} convocatorias${aMedias ? ` · EXAMEN A MEDIAS (${Object.keys(aMedias.respuestas ?? {}).length} respondidas) → ${rutaTest(aMedias)}` : ''}\n${convs.map((c) => `${c.key}: ${c.titulo} (${c.n} preguntas)`).join('\n')}` +
-      `\nRUTAS: #/${T0.id}/test/simulacro?s=<semilla> · #/${T0.id}/test/real/<convocatoria>`;
+      `\nRUTAS: #/${T0.id}/test/simulacro?s=<semilla> · #/${T0.id}/test/real/<convocatoria> · #/${T0.id}/teoria/ut/<n>?s=<semilla> (test por tema; f=1 solo fallos) · #/${T0.id}/teoria/mezcla`;
     setChildren(el,
       h('h1', 'Examen'),
       aviso,
       h('section.simulacro',
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${totalPreguntas(E0)} preguntas · ${E0.duracionMin} minutos · como el de verdad`)),
+      h('section.test-tema', h('h2', 'Test por tema'),
+        h('p.muted', `${TANDA} preguntas de un tema, con la explicación del profe en cada una.`),
+        h('ul.lista-tests', bloquesEnOrden(E0).map((b) => {
+          const fallos = preguntas.filter((q) => q.ut === b.ut && progress.get().exams[q.id]?.ok === false).length;
+          return h('li',
+            h('a.test-tema-enlace', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) }, h('span', `${b.icon} ${b.titulo}`), b.maxErrores != null ? h('span.limite-tema', `eliminatorio: máximo ${b.maxErrores} fallos`) : null),
+            fallos ? h('a.fallos-tema', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed(), f: '1' }) }, `Mis fallos (${fallos})`) : null);
+        })),
+        h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'mezcla'], { s: randomSeed() }) }, 'Repaso mezclado de varios temas')),
       tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
       h('details', h('summary', 'Exámenes de convocatorias anteriores'),
         h('p.muted', 'Las preguntas de una convocatoria oficial de Andalucía, en su orden, con el tiempo y las reglas del examen.'),

@@ -550,3 +550,11 @@ a.miniatura[hidden], section.tema-laminas[hidden] { display: none; }
 .ficha-lamina .il-grid.una { grid-template-columns: minmax(0, 640px); }
 .temas-lamina { display: flex; flex-wrap: wrap; gap: .4rem; }
 ul.clases-lamina { padding-left: 1.2rem; } ul.clases-lamina a { display: inline-flex; min-height: 44px; align-items: center; }
+
+/* Examen: test por tema */
+ul.lista-tests { list-style: none; padding: 0; margin: .4rem 0 .8rem; display: grid; gap: .4rem; }
+ul.lista-tests li { display: flex; align-items: stretch; gap: .4rem; }
+a.test-tema-enlace { flex: 1; display: flex; flex-wrap: wrap; align-items: center; min-height: 52px; padding: .4rem .8rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); font-weight: 600; }
+a.test-tema-enlace:hover, a.test-tema-enlace:focus-visible { border-color: var(--accent); }
+a.fallos-tema { display: flex; align-items: center; min-height: 52px; padding: 0 .7rem; border: 1px solid var(--warn); border-radius: var(--radius); color: var(--warn); text-decoration: none; font-weight: 600; white-space: nowrap; }
+a.test-tema-enlace .limite-tema { flex-basis: 100%; font-weight: 400; font-size: .95rem; color: var(--muted); }

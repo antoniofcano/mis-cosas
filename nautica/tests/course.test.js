@@ -110,4 +110,6 @@ test('clases de carta del PY: «míralo resuelto» con preguntas reales del mism
   assert.deepEqual(conResuelto(pasos, ['x']).map((p) => p.tipo), ['texto', 'texto', 'resuelto', 'texto', 'check']);
   assert.deepEqual(conResuelto(pasos.slice(2), ['x']).map((p) => p.tipo), ['texto', 'resuelto', 'check']);
   assert.equal(conResuelto(pasos, []), pasos);
+  const conLamina = [pasos[1], { tipo: 'ilustracion' }, pasos[2]];
+  assert.deepEqual(conResuelto(conLamina, ['x']).map((p) => p.tipo), ['texto', 'ilustracion', 'resuelto', 'texto']);
 });

@@ -35,12 +35,13 @@ export function resueltasDe(leccionId) {
 
 /**
  * Inserta el paso «resuelto» tras el primer paso de resolución de la clase («Resolución…», «Ejemplo resuelto»,
- * «Método paso a paso»); si no lo hay, antes de la pregunta final. Sin preguntas resueltas, la clase queda igual.
+ * «Método paso a paso») y sus láminas; si no lo hay, antes de la pregunta final. Sin preguntas resueltas, la clase queda igual.
  */
 export function conResuelto(pasos, ids) {
   if (!ids.length) return pasos;
   const paso = { tipo: 'resuelto', ids };
   let i = pasos.findIndex((p) => /^(Resolución|Ejemplo resuelto|Método paso a paso)/i.test(p.titulo ?? ''));
   if (i < 0) i = pasos.at(-1)?.tipo === 'check' ? pasos.length - 2 : pasos.length - 1;
+  else while (pasos[i + 1]?.tipo === 'ilustracion') i += 1; // detrás de la lámina de la resolución
   return [...pasos.slice(0, i + 1), paso, ...pasos.slice(i + 1)];
 }

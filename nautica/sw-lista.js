@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '2d0bda79e215';
+self.VERSION = '578078e17868';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -18,6 +18,7 @@ self.APP = [
  "src/course/listo.js",
  "src/course/plan.js",
  "src/course/repaso.js",
+ "src/course/resueltos.js",
  "src/course/tarjetas.js",
  "src/exams/kit.js",
  "src/exams/options.js",

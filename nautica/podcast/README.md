@@ -17,7 +17,7 @@ El formato de los guiones está en [`guia.md`](guia.md); este índice se genera 
 
 ## Patrón de Yate (PY)
 
-31 episodios · 1 escrito.
+34 episodios · 1 escrito.
 
 #### 0 · Cómo es el examen del Patrón de Yate y cómo usar estos podcasts
 
@@ -29,13 +29,13 @@ El formato de los guiones está en [`guia.md`](guia.md); este índice se genera 
 
 🧭 Panorama · ⏳ pendiente · clases py-1-1, py-1-2, py-1-3, py-1-4, py-1-5, py-1-6, py-1-7, py-1-8, py-1-9, py-1-10
 
-Recorre: Por qué flota un barco: desplazamiento, gravedad y carena · Metacentro, altura metacéntrica y tipos de equilibrio · Mover pesos: traslados, consumos, superficies libres y buque duro o blando · Chalecos, arneses y aros salvavidas · La balsa salvavidas y la zafa hidrostática · Hacerse ver: pirotecnia, espejo, bocina y reflector de radar · Extintores y lucha contra incendios a bordo · Abandono del barco y vida en la balsa · Radiobaliza, respondedor de radar y VHF de socorro · Rescate con helicóptero y Salvamento Marítimo.
+**Recorre:** Por qué flota un barco: desplazamiento, gravedad y carena · Metacentro, altura metacéntrica y tipos de equilibrio · Mover pesos: traslados, consumos, superficies libres y buque duro o blando · Chalecos, arneses y aros salvavidas · La balsa salvavidas y la zafa hidrostática · Hacerse ver: pirotecnia, espejo, bocina y reflector de radar · Extintores y lucha contra incendios a bordo · Abandono del barco y vida en la balsa · Radiobaliza, respondedor de radar y VHF de socorro · Rescate con helicóptero y Salvamento Marítimo.
 
 #### 1.1 · Por qué flota un barco y por qué vuelca
 
 🔎 Profundiza · ✅ [guion](py/1-1-por-que-flota-y-por-que-vuelca.md) · clases py-1-1, py-1-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Definir desplazamiento y saber cuándo cambia durante la navegación
 - Distinguir el centro de gravedad (G) del centro de carena (C) y saber qué fuerza se aplica en cada uno
@@ -44,22 +44,26 @@ Qué se aprende:
 - Definir el metacentro y la altura metacéntrica GM, y no confundirla con KM ni con CM
 - Reconocer el equilibrio estable, indiferente e inestable por la posición de G y M o por KG y KM
 
+*39 preguntas reales de examen en estas clases.*
+
 #### 1.2 · Mover pesos sin volcar: traslados, consumos, superficies libres, duro y blando
 
 🔎 Profundiza · ⏳ pendiente · clase py-1-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber hacia dónde se mueve G al cargar, descargar, consumir o trasladar un peso
 - Elegir el traslado que corrige una escora y aumenta (o disminuye) la altura metacéntrica
 - Relacionar GM con el tipo de balance: buque duro o blando
 - Entender por qué un tanque a medias resta estabilidad
 
+*12 preguntas reales de examen en estas clases.*
+
 #### 1.3 · Chalecos, aros y la balsa salvavidas
 
 🔎 Profundiza · ⏳ pendiente · clases py-1-4, py-1-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Recordar cuántos chalecos y de qué flotabilidad exige cada zona
 - Conocer los requisitos técnicos del chaleco: tiempo para ponérselo, luz, silbato, bandas
@@ -69,11 +73,13 @@ Qué se aprende:
 - Saber cómo funciona la zafa hidrostática, a qué profundidad suelta y cuándo caduca
 - Saber qué pasa si el barco se hunde en poco fondo y cómo se estiba y trinca la balsa
 
+*40 preguntas reales de examen en estas clases.*
+
 #### 1.4 · Hacerse ver y apagar fuegos: pirotecnia, señales y extintores
 
 🔎 Profundiza · ⏳ pendiente · clases py-1-6, py-1-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Memorizar las cifras técnicas de la bengala, el cohete con paracaídas y la señal fumígena
 - Saber cómo y cuándo se usa cada señal pirotécnica
@@ -83,15 +89,26 @@ Qué se aprende:
 - Distinguir un extintor de CO₂ de uno de polvo y usarlos correctamente
 - Saber para qué sirve (y para qué no) el balde contra incendios
 
-#### 1.5 · Cuando todo falla: abandono, radiobaliza y helicóptero
+*36 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clases py-1-8, py-1-9, py-1-10
+#### 1.5 · Abandonar el barco y vivir en la balsa
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clase py-1-8
+
+**Qué se aprende:**
 
 - Saber qué hacer antes de abandonar y qué llevarse
 - Lanzar la balsa, embarcar sin mojarse y adrizarla si se infla volcada
 - Conocer las reglas de supervivencia en la balsa: agua, comida, mareo, guardias y no alejarse
+
+*20 preguntas reales de examen en estas clases.*
+
+#### 1.6 · Pedir ayuda: radiobaliza, respondedor, VHF de socorro y helicóptero
+
+🔎 Profundiza · ⏳ pendiente · clases py-1-9, py-1-10
+
+**Qué se aprende:**
+
 - Saber cómo funciona la radiobaliza (EPIRB), cómo se activa, cuánto dura y por qué hay que registrarla
 - Saber qué hacer si la radiobaliza se dispara por error
 - Conocer el respondedor de radar (SART): cómo responde, dónde se ve y cuándo encenderlo
@@ -100,62 +117,72 @@ Qué se aprende:
 - Preparar el barco (o la balsa) para un rescate con helicóptero siguiendo sus recomendaciones
 - Manejar el cable de izado y guiar al helicóptero con la técnica del reloj
 
+*33 preguntas reales de examen en estas clases.*
+
 ### Tema 2 · Meteorología
 
 #### 2.0 · El tiempo que hace en la mar
 
 🧭 Panorama · ⏳ pendiente · clases py-2-1, py-2-2, py-2-3, py-2-4, py-2-5, py-2-6, py-2-7, py-2-8, py-2-9
 
-Recorre: Isobaras, gradiente de presión, borrascas y anticiclones · Masas de aire y frentes · Los modelos de viento: Euler, geostrófico, de gradiente, ciclostrófico y antitríptico · Vientos regionales del Mediterráneo y del Atlántico · Humedad, punto de rocío y psicrómetro · Las nubes: cómo se forman y cómo se clasifican · Nieblas: tipos, previsión y disipación · Las olas: partes, formación, mar de viento y mar de fondo · Corrientes marinas: tipos y corrientes de nuestras costas.
+**Recorre:** Isobaras, gradiente de presión, borrascas y anticiclones · Masas de aire y frentes · Los modelos de viento: Euler, geostrófico, de gradiente, ciclostrófico y antitríptico · Vientos regionales del Mediterráneo y del Atlántico · Humedad, punto de rocío y psicrómetro · Las nubes: cómo se forman y cómo se clasifican · Nieblas: tipos, previsión y disipación · Las olas: partes, formación, mar de viento y mar de fondo · Corrientes marinas: tipos y corrientes de nuestras costas.
 
 #### 2.1 · Isobaras, borrascas y anticiclones
 
 🔎 Profundiza · ⏳ pendiente · clase py-2-1
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Definir isobara y saber por qué las presiones se reducen al nivel del mar
 - Relacionar la inclinación de las superficies isobáricas, la separación de las isobaras y la fuerza del viento
 - Calcular un gradiente horizontal de presión sencillo
 - Describir a nivel PY borrascas, anticiclones, dorsales y vaguadas
 
+*19 preguntas reales de examen en estas clases.*
+
 #### 2.2 · Masas de aire y frentes
 
 🔎 Profundiza · ⏳ pendiente · clase py-2-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Clasificar las masas de aire por su temperatura y su humedad
 - Distinguir frente frío, cálido, estacionario y ocluido por cómo se mueve el aire y por su símbolo
 - Saber qué nubes y qué tiempo trae cada frente antes, durante y después de su paso
 - Distinguir una oclusión de tipo frío de una de tipo cálido
 
+*19 preguntas reales de examen en estas clases.*
+
 #### 2.3 · Los modelos de viento: Euler, geostrófico, de gradiente, ciclostrófico y antitríptico
 
 🔎 Profundiza · ⏳ pendiente · clase py-2-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué fuerzas intervienen en cada modelo de viento
 - Distinguir qué modelos soplan paralelos a las isobaras y cuáles las cortan
 - Aplicar la ley de Buys-Ballot a partir del viento geostrófico
 - Reconocer el viento antitríptico como el que incluye el rozamiento
 
+*18 preguntas reales de examen en estas clases.*
+
 #### 2.4 · Vientos regionales del Mediterráneo y del Atlántico
 
 🔎 Profundiza · ⏳ pendiente · clase py-2-4
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Asociar cada viento regional con su dirección y su zona
 - Saber cómo es cada uno: frío o cálido, seco o húmedo, súbito o persistente
 - Reconocer la galerna, el mistral, la tramontana, el siroco, el levante y el vendaval por su descripción
 
-#### 2.5 · Humedad, nubes y nieblas
+*18 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clases py-2-5, py-2-6, py-2-7
+#### 2.5 · Humedad y nubes
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clases py-2-5, py-2-6
+
+**Qué se aprende:**
 
 - Distinguir humedad absoluta, humedad relativa y punto de rocío sin confundir sus unidades
 - Entender cómo cambia la humedad relativa al calentar o enfriar el aire
@@ -163,24 +190,46 @@ Qué se aprende:
 - Distinguir nubes convectivas, orográficas y frontales por su mecanismo de formación
 - Clasificar los diez géneros de nubes en altas, medias, bajas y de desarrollo vertical
 - Reconocer cada género por su descripción y el tiempo que suele traer
+
+*38 preguntas reales de examen en estas clases.*
+
+#### 2.6 · Nieblas
+
+🔎 Profundiza · ⏳ pendiente · clase py-2-7
+
+**Qué se aprende:**
+
 - Clasificar las nieblas en de enfriamiento, de evaporación y de mezcla
 - Explicar cómo se forman la niebla de radiación, la de advección y la de vapor
 - Prever la niebla a bordo comparando el punto de rocío con la temperatura del mar
 - Saber qué hace que una niebla se disipe
 
-#### 2.6 · Olas y corrientes marinas
+*19 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clases py-2-8, py-2-9
+#### 2.7 · Las olas
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clase py-2-8
+
+**Qué se aprende:**
 
 - Definir cresta, seno, longitud de onda, altura, amplitud y periodo sin confundirlos
 - Saber de qué depende la altura de las olas
 - Distinguir la mar de viento de la mar de fondo por la forma, la longitud y la dirección de sus olas
+
+*22 preguntas reales de examen en estas clases.*
+
+#### 2.8 · Corrientes marinas
+
+🔎 Profundiza · ⏳ pendiente · clase py-2-9
+
+**Qué se aprende:**
+
 - Clasificar las corrientes por su causa: densidad, arrastre, gradiente y marea
 - Conocer las corrientes del Cantábrico, Galicia, Portugal y Canarias
 - Saber cómo circula el agua en el Estrecho de Gibraltar, en dos capas
 - Recordar el sentido general de la corriente en el Mediterráneo occidental
+
+*27 preguntas reales de examen en estas clases.*
 
 ### Tema 3 · Teoría de navegación (eliminatorio)
 
@@ -188,100 +237,110 @@ Qué se aprende:
 
 🧭 Panorama · ⏳ pendiente · clases py-3-1, py-3-2, py-3-3, py-3-4, py-3-5, py-3-6, py-3-7, py-3-8, py-3-9, py-3-10
 
-Recorre: La esfera terrestre: círculos, latitud y longitud · Corrección total: de dónde sale y cómo se calcula · Viento y corriente: abatimiento, deriva y rumbo efectivo · Loxodrómica y estima analítica: los conceptos · La hora en la mar: TU, hora civil, legal, oficial y HRB · Mareas: el Anuario y la curva de la marea · Publicaciones náuticas: derroteros, Avisos a los Navegantes y radioavisos · El radar: ajustes, presentaciones, demoras y distancias · GNSS: las siglas de la pantalla y el datum · Cartas electrónicas y AIS.
+**Recorre:** La esfera terrestre: círculos, latitud y longitud · Corrección total: de dónde sale y cómo se calcula · Viento y corriente: abatimiento, deriva y rumbo efectivo · Loxodrómica y estima analítica: los conceptos · La hora en la mar: TU, hora civil, legal, oficial y HRB · Mareas: el Anuario y la curva de la marea · Publicaciones náuticas: derroteros, Avisos a los Navegantes y radioavisos · El radar: ajustes, presentaciones, demoras y distancias · GNSS: las siglas de la pantalla y el datum · Cartas electrónicas y AIS.
 
-#### 3.1 · La esfera terrestre y la corrección total
+#### 3.1 · La esfera terrestre: círculos, latitud y longitud
 
-🔎 Profundiza · ⏳ pendiente · clases py-3-1, py-3-2
+🔎 Profundiza · ⏳ pendiente · clase py-3-1
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Distinguir círculos máximos y menores y saber cuáles son perpendiculares al eje
 - Definir latitud y longitud en todas las formas que acepta el examen
 - Situar ecuador, trópicos y círculos polares por su latitud
 - Calcular la diferencia de latitud y de longitud entre dos puntos
+
+*22 preguntas reales de examen en estas clases.*
+
+#### 3.2 · La corrección total: de dónde sale y cómo se calcula
+
+🔎 Profundiza · ⏳ pendiente · clase py-3-2
+
+**Qué se aprende:**
+
 - Saber de qué depende la declinación, el desvío y la corrección total
 - Actualizar la declinación de la carta y calcular la Ct paso a paso
 - Obtener la Ct con la Polar, con una enfilación o una oposición, y el desvío que de ahí resulta
 - Pasar rumbos y demoras de aguja a verdaderos y al revés
 
-#### 3.2 · Viento y corriente: abatimiento, deriva y rumbo efectivo
+*25 preguntas reales de examen en estas clases.*
+
+#### 3.3 · Viento y corriente: abatimiento, deriva y rumbo efectivo
 
 🔎 Profundiza · ⏳ pendiente · clase py-3-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Reconocer todas las definiciones de abatimiento y deriva que da por buenas el examen
 - Distinguir rumbo verdadero, de superficie y efectivo
 - Saber a quién afecta por igual la corriente y a quién no el viento
 - Calcular el rumbo a gobernar con abatimiento y el rumbo y la velocidad efectivos con corriente
 
-#### 3.3 · Loxodrómica y estima analítica
-
-🔎 Profundiza · ⏳ pendiente · clase py-3-4
-
-Qué se aprende:
-
-- Distinguir la derrota loxodrómica de la ortodrómica
-- Saber qué es el apartamiento y cómo se relaciona con la diferencia de longitud
-- Reconocer las fórmulas de la estima directa e inversa (los problemas se practican en el bloque de carta)
+*19 preguntas reales de examen en estas clases.*
 
 #### 3.4 · La hora en la mar: universal, civil, legal, oficial y la del reloj de bitácora
 
 🔎 Profundiza · ⏳ pendiente · clase py-3-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Definir tiempo universal y hora civil del lugar sin confundir Sol medio y verdadero ni meridiano superior e inferior
 - Distinguir hora legal (del huso), hora oficial (la del Gobierno) y hora reloj de bitácora (la del patrón)
 - Pasar de TU a hora civil del lugar, a hora legal y a hora oficial
 
-#### 3.5 · Mareas: el Anuario y la curva
+*16 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clase py-3-6
-
-Qué se aprende:
-
-- Manejar los datos del Anuario de Mareas: horas en TU, alturas sobre el cero hidrográfico
-- Conocer la fórmula de la altura de la marea en un instante y la regla de los duodécimos
-- Saber cómo afectan la presión y el viento (los problemas se practican en el bloque de carta)
-
-#### 3.6 · Publicaciones náuticas y avisos
+#### 3.5 · Publicaciones náuticas y avisos
 
 🔎 Profundiza · ⏳ pendiente · clase py-3-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué publicación describe la costa y cuál corrige cartas y derroteros
 - Conocer quién publica los Avisos a los Navegantes, cada cuánto y para qué
 - Llevar un aviso a la carta: a lápiz o a tinta
 - Distinguir los Avisos a los Navegantes de los radioavisos
 
-#### 3.7 · El radar
+*14 preguntas reales de examen en estas clases.*
+
+#### 3.6 · El radar
 
 🔎 Profundiza · ⏳ pendiente · clase py-3-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Explicar en qué principio se basa el radar y qué te da
 - Saber qué mando tocar con lluvia, con mar o para una imagen óptima, y qué pasa si te pasas
 - Distinguir las presentaciones proa arriba y norte arriba y usar EBL y VRM
 - Convertir una marcación radar en demora verdadera
 
-#### 3.8 · GPS, cartas electrónicas y AIS
+*22 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clases py-3-9, py-3-10
+#### 3.7 · El GPS y las siglas de la pantalla
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clase py-3-9
+
+**Qué se aprende:**
 
 - Explicar qué es un GNSS y qué información da (y cuál no)
 - Reconocer al instante WPT, COG, SOG, XTE, ETA, MOB y compañía
 - Saber qué es el datum y cuándo puedes pasar la posición a la carta de papel
 - Calcular ETA, tiempo restante y error transversal a partir de la pantalla
+
+*26 preguntas reales de examen en estas clases.*
+
+#### 3.8 · Cartas electrónicas y AIS
+
+🔎 Profundiza · ⏳ pendiente · clase py-3-10
+
+**Qué se aprende:**
+
 - Distinguir cartas raster (RNC) y vectoriales (ENC), y estas de los sistemas que las muestran (ECDIS, ECS, plotter)
 - Saber quién produce las ENC oficiales españolas
 - Explicar qué es el AIS, en qué banda trabaja, qué datos transmite y para qué sirve
 - Reconocer los límites del AIS frente al radar y la vigilancia visual
+
+*35 preguntas reales de examen en estas clases.*
 
 ### Tema 4 · Carta de navegación (eliminatorio)
 
@@ -289,24 +348,26 @@ Qué se aprende:
 
 🧭 Panorama · ⏳ pendiente · clases py-4-1, py-4-2, py-4-3, py-4-4, py-4-5, py-4-6, py-4-7, py-4-8, py-4-9, py-4-10
 
-Recorre: Corrección total: declinación, enfilaciones, oposiciones y la Polar · Viento y abatimiento: rumbo de superficie y rumbo a dar · Rumbo para pasar a una distancia de un faro, con viento · Situación por líneas de posición simultáneas y no simultáneas · Estima con viento y corriente: situación y rumbo efectivo · Faro por el través y otros cortes con la derrota · Corriente conocida: rumbo a dar, velocidad y hora de llegada · Corriente desconocida: rumbo e intensidad · Mareas: sonda en un momento y hora para tener una sonda · Estima analítica: derrota loxodrómica.
+**Recorre:** Corrección total: declinación, enfilaciones, oposiciones y la Polar · Viento y abatimiento: rumbo de superficie y rumbo a dar · Rumbo para pasar a una distancia de un faro, con viento · Situación por líneas de posición simultáneas y no simultáneas · Estima con viento y corriente: situación y rumbo efectivo · Faro por el través y otros cortes con la derrota · Corriente conocida: rumbo a dar, velocidad y hora de llegada · Corriente desconocida: rumbo e intensidad · Mareas: sonda en un momento y hora para tener una sonda · Estima analítica: derrota loxodrómica.
 
 #### 4.1 · La corrección total en la carta: enfilaciones, oposiciones y la Polar
 
 🔎 Profundiza · ⏳ pendiente · clase py-4-1
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Actualizar al año la declinación de la carta y calcular la corrección total con el desvío
 - Calcular la corrección total en una enfilación o una oposición de dos faros de la carta del Estrecho
 - Calcular la corrección total con el azimut de aguja de la Polar
 - Separar los datos que sirven de los que sobran en el enunciado
 
+*19 preguntas reales de examen en estas clases.*
+
 #### 4.2 · El viento en la carta y pasar a distancia de un faro
 
 🔎 Profundiza · ⏳ pendiente · clases py-4-2, py-4-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber por qué banda entra el viento y el signo del abatimiento
 - Calcular el rumbo de superficie que hace el barco a partir del rumbo de aguja
@@ -315,11 +376,13 @@ Qué se aprende:
 - Comprobar el rumbo con sen α = d / D
 - Pasar de la tangente (rumbo de superficie) al rumbo de aguja con abatimiento y corrección total
 
+*28 preguntas reales de examen en estas clases.*
+
 #### 4.3 · Situarse: líneas de posición y faro por el través
 
 🔎 Profundiza · ⏳ pendiente · clases py-4-4, py-4-6
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Convertir marcaciones y demoras de aguja en demoras verdaderas para trazarlas
 - Situarte con dos líneas de posición simultáneas (demoras, enfilaciones, oposiciones, distancias)
@@ -329,21 +392,25 @@ Qué se aprende:
 - Situarte cortando la derrota (con viento o corriente) con la línea del través
 - Resolver variantes: hora de avistar un faro por su alcance y situación por través y distancia
 
+*29 preguntas reales de examen en estas clases.*
+
 #### 4.4 · Estima con viento y corriente
 
 🔎 Profundiza · ⏳ pendiente · clase py-4-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Calcular gráficamente la situación de estima con viento y corriente
 - Obtener el rumbo y la velocidad efectivos (sobre el fondo)
 - Responder a lo que se pregunta después: demora o distancia a un faro, hora
 
+*17 preguntas reales de examen en estas clases.*
+
 #### 4.5 · Corriente conocida y corriente desconocida
 
 🔎 Profundiza · ⏳ pendiente · clases py-4-7, py-4-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Construir el triángulo de velocidades para hallar el rumbo a dar contra una corriente
 - Calcular la velocidad efectiva y la hora de llegada
@@ -353,30 +420,42 @@ Qué se aprende:
 - Obtener el rumbo de la corriente y su intensidad horaria
 - Evitar las trampas del sentido del vector y del intervalo de tiempo
 
-#### 4.6 · Mareas con números: sonda y hora
+*33 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clase py-4-9
+#### 4.6 · Mareas de cabo a rabo: el Anuario, la curva, la sonda y la hora
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clases py-3-6, py-4-9
 
+**Qué se aprende:**
+
+- Manejar los datos del Anuario de Mareas: horas en TU, alturas sobre el cero hidrográfico
+- Conocer la fórmula de la altura de la marea en un instante y la regla de los duodécimos
+- Saber cómo afectan la presión y el viento (los problemas se practican en el bloque de carta)
 - Pasar de hora oficial a UT y escoger el tramo de marea correcto del Anuario
 - Calcular la sonda en un instante (problema directo)
 - Calcular a qué hora habrá una sonda dada (problema inverso)
 - Aplicar la corrección por presión atmosférica
 
-#### 4.7 · Estima analítica: la derrota loxodrómica
+*35 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clase py-4-10
+#### 4.7 · Estima analítica: loxodrómica y derrota
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clases py-3-4, py-4-10
 
+**Qué se aprende:**
+
+- Distinguir la derrota loxodrómica de la ortodrómica
+- Saber qué es el apartamiento y cómo se relaciona con la diferencia de longitud
+- Reconocer las fórmulas de la estima directa e inversa (los problemas se practican en el bloque de carta)
 - Calcular la situación de llegada tras uno o varios rumbos, con corriente incluida (estima directa)
 - Calcular el rumbo directo y la distancia entre dos situaciones (estima inversa)
 - Manejar los signos, los cuadrantes del rumbo y el paso por el meridiano 180°
 
+*20 preguntas reales de examen en estas clases.*
+
 ## Patrón de Embarcaciones de Recreo (PER)
 
-51 episodios · 0 escritos.
+55 episodios · 0 escritos.
 
 #### 0 · Cómo es el examen del PER y cómo usar estos podcasts
 
@@ -388,13 +467,13 @@ Qué se aprende:
 
 🧭 Panorama · ⏳ pendiente · clases per-1-1, per-1-2, per-1-3, per-1-4, per-1-5, per-1-6, per-1-7
 
-Recorre: El casco y las referencias del barco · En cubierta: aberturas, desagües y barandillas · La estructura del casco · El timón · La hélice · El equipo de fondeo · Flotación, dimensiones y asiento.
+**Recorre:** El casco y las referencias del barco · En cubierta: aberturas, desagües y barandillas · La estructura del casco · El timón · La hélice · El equipo de fondeo · Flotación, dimensiones y asiento.
 
 #### 1.1 · El casco, la cubierta y la estructura
 
 🔎 Profundiza · ⏳ pendiente · clases per-1-1, per-1-2, per-1-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué es el casco y qué no forma parte de él
 - Situar proa, popa, crujía, bandas, amuras, través y aletas
@@ -406,11 +485,13 @@ Qué se aprende:
 - Distinguir borda, regala y trancanil
 - Saber qué son mamparos, plan, sentina y grifos de fondo
 
+*25 preguntas reales de examen en estas clases.*
+
 #### 1.2 · El timón y la hélice
 
 🔎 Profundiza · ⏳ pendiente · clases per-1-4, per-1-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Nombrar las partes del timón: pala, mecha, limera, caña o rueda y guardines
 - Saber hacia dónde cae la proa con caña y con rueda
@@ -420,11 +501,13 @@ Qué se aprende:
 - Distinguir hélice dextrógira y levógira, avante y atrás
 - Saber cómo giran las hélices gemelas al exterior y al interior
 
+*21 preguntas reales de examen en estas clases.*
+
 #### 1.3 · El equipo de fondeo y las dimensiones del barco
 
 🔎 Profundiza · ⏳ pendiente · clases per-1-6, per-1-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Conocer las partes del molinete: barbotén, cabirón, embrague y freno
 - Nombrar las partes del ancla y reconocer los tipos más usados
@@ -435,19 +518,21 @@ Qué se aprende:
 - Calcular el asiento y saber si el barco va aproado o apopado
 - Saber qué es escorar y adrizar, desplazamiento y arqueo
 
+*26 preguntas reales de examen en estas clases.*
+
 ### Tema 2 · Amarre y fondeo
 
 #### 2.0 · Amarrar y fondear
 
 🧭 Panorama · ⏳ pendiente · clases per-2-1, per-2-2, per-2-3, per-2-4, per-2-5, per-2-6
 
-Recorre: Elementos de amarre y partes de un cabo · Los cuatro nudos del PER · Elegir el fondeadero y el tenedero · Fondeo a la gira: la maniobra · Borneo, garreo y vigilancia del fondeo · El orinque y la maniobra de levar.
+**Recorre:** Elementos de amarre y partes de un cabo · Los cuatro nudos del PER · Elegir el fondeadero y el tenedero · Fondeo a la gira: la maniobra · Borneo, garreo y vigilancia del fondeo · El orinque y la maniobra de levar.
 
 #### 2.1 · Cabos, amarres y los cuatro nudos
 
 🔎 Profundiza · ⏳ pendiente · clases per-2-1, per-2-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Distinguir los herrajes del muelle (noray, bolardo) de los de a bordo (bita, cornamusa)
 - Saber para qué sirven defensas, bichero, guiacabos, roldana, muerto y boya
@@ -456,11 +541,13 @@ Qué se aprende:
 - Elegir el nudo correcto para una defensa según el tiempo que vaya a estar puesta
 - No confundir unir cabos con hacer una gaza o amarrar a una argolla
 
+*14 preguntas reales de examen en estas clases.*
+
 #### 2.2 · Fondear bien: tenedero, maniobra, garreo y levar
 
 🔎 Profundiza · ⏳ pendiente · clases per-2-3, per-2-4, per-2-5, per-2-6
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Enumerar los factores que se valoran al elegir dónde fondear
 - Ordenar los tenederos de mejor a peor y no confundir fango duro con fango blando
@@ -476,19 +563,21 @@ Qué se aprende:
 - Conocer los pasos y los términos de la maniobra de levar: virar, a pique, zarpar, levar, clara
 - Saber qué hacer si al levar la cadena tira por largo con mucha fuerza
 
+*22 preguntas reales de examen en estas clases.*
+
 ### Tema 3 · Seguridad en la mar
 
 #### 3.0 · Seguridad en la mar
 
 🧭 Panorama · ⏳ pendiente · clases per-3-1, per-3-2, per-3-3, per-3-4, per-3-5, per-3-6, per-3-7, per-3-8
 
-Recorre: Estabilidad y movimientos del barco · Antes de hacerse a la mar · Mal tiempo: a son de mar, capear y correr · Tormentas, niebla y aguas someras · Equipo de seguridad (I): zonas, chalecos, aros y balsas · Equipo de seguridad (II): pirotecnia, extintores y otros · Hombre al agua: prevención, maniobras y búsqueda · Rescate, primeros auxilios, remolque y Salvamento Marítimo.
+**Recorre:** Estabilidad y movimientos del barco · Antes de hacerse a la mar · Mal tiempo: a son de mar, capear y correr · Tormentas, niebla y aguas someras · Equipo de seguridad (I): zonas, chalecos, aros y balsas · Equipo de seguridad (II): pirotecnia, extintores y otros · Hombre al agua: prevención, maniobras y búsqueda · Rescate, primeros auxilios, remolque y Salvamento Marítimo.
 
 #### 3.1 · Estabilidad y antes de salir
 
 🔎 Profundiza · ⏳ pendiente · clases per-3-1, per-3-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Definir la estabilidad y distinguir la estática de la dinámica y la transversal de la longitudinal
 - Situar G, C y M y saber cuándo un barco es estable
@@ -498,11 +587,13 @@ Qué se aprende:
 - Preparar la salida: meteorología, plan de navegación y tripulación
 - Reconocer las opciones trampa de las preguntas de «comprobaciones»
 
+*14 preguntas reales de examen en estas clases.*
+
 #### 3.2 · Mal tiempo, tormentas y niebla
 
 🔎 Profundiza · ⏳ pendiente · clases per-3-3, per-3-4
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Preparar el barco «a son de mar» antes y durante el mal tiempo
 - Distinguir capear y correr el temporal
@@ -512,11 +603,13 @@ Qué se aprende:
 - Conocer las medidas con baja visibilidad y para qué sirve el reflector radar
 - Navegar con seguridad en aguas someras
 
+*34 preguntas reales de examen en estas clases.*
+
 #### 3.3 · El equipo de seguridad
 
 🔎 Profundiza · ⏳ pendiente · clases per-3-5, per-3-6
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber a qué embarcaciones se aplica el RD 339/2021
 - Conocer las siete zonas de navegación y su relación con las categorías de diseño
@@ -526,11 +619,13 @@ Qué se aprende:
 - Conocer los extintores obligatorios y su mantenimiento
 - Distinguir lo obligatorio de lo solo recomendable (arnés, espejo)
 
+*8 preguntas reales de examen en estas clases.*
+
 #### 3.4 · Hombre al agua, rescate y remolque
 
 🔎 Profundiza · ⏳ pendiente · clases per-3-7, per-3-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber cómo prevenir una caída al agua
 - Conocer los primeros pasos cuando alguien cae: timón, aro, MOB
@@ -541,19 +636,21 @@ Qué se aprende:
 - Conocer lo básico de dar y tomar un remolque
 - Saber cómo contactar con Salvamento Marítimo
 
+*16 preguntas reales de examen en estas clases.*
+
 ### Tema 4 · Legislación
 
 #### 4.0 · Las normas que hay que conocer
 
 🧭 Panorama · ⏳ pendiente · clases per-4-1, per-4-2, per-4-3, per-4-4, per-4-5, per-4-6, per-4-7, per-4-8
 
-Recorre: En regla y dentro del puerto · Playas, zonas de baño y reservas marinas · Buzos y bañistas: banderas y resguardos · Aguas sucias: qué llevar y dónde descargar · Basuras: MARPOL anexo V y entrega en puerto · Responsabilidad, aviso de contaminación y deber de auxilio · Pabellón nacional y bandera autonómica · Espacios protegidos: ZEPIM y posidonia.
+**Recorre:** En regla y dentro del puerto · Playas, zonas de baño y reservas marinas · Buzos y bañistas: banderas y resguardos · Aguas sucias: qué llevar y dónde descargar · Basuras: MARPOL anexo V y entrega en puerto · Responsabilidad, aviso de contaminación y deber de auxilio · Pabellón nacional y bandera autonómica · Espacios protegidos: ZEPIM y posidonia.
 
 #### 4.1 · En regla: puerto, playas, buzos y bañistas
 
 🔎 Profundiza · ⏳ pendiente · clases per-4-1, per-4-2, per-4-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué necesita una embarcación de recreo para navegar en regla
 - Conocer a quién debes dejar paso en un puerto comercial
@@ -567,11 +664,13 @@ Qué se aprende:
 - Saber la distancia mínima que hay que dejar a una zona de buceo (50 m)
 - Tomar las precauciones correctas cerca de bañistas
 
+*12 preguntas reales de examen en estas clases.*
+
 #### 4.2 · Contaminación: aguas sucias, basuras y responsabilidad
 
 🔎 Profundiza · ⏳ pendiente · clases per-4-4, per-4-5, per-4-6
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué equipo exige la norma a una embarcación de recreo con inodoro
 - Conocer las distancias de descarga: 3 millas tratadas y 12 millas sin tratar
@@ -585,11 +684,13 @@ Qué se aprende:
 - Saber qué hacer si ves una mancha de contaminación
 - Conocer la obligación de auxiliar a personas en peligro y qué hacer si no puedes acudir
 
+*16 preguntas reales de examen en estas clases.*
+
 #### 4.3 · Banderas y espacios protegidos
 
 🔎 Profundiza · ⏳ pendiente · clases per-4-7, per-4-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber dónde se iza la bandera de España a bordo
 - Conocer las condiciones para izar la bandera de la comunidad autónoma
@@ -598,19 +699,21 @@ Qué se aprende:
 - Reconocer las ZEPIM españolas, en especial las de Andalucía
 - Conocer la posidonia oceánica y las normas de fondeo sobre ella
 
+*8 preguntas reales de examen en estas clases.*
+
 ### Tema 5 · Balizamiento (eliminatorio)
 
 #### 5.0 · El balizamiento sin líos
 
 🧭 Panorama · ⏳ pendiente · clases per-5-1, per-5-2, per-5-3, per-5-4, per-5-5
 
-Recorre: El sistema IALA: cómo se reconoce una marca · Marcas laterales y bifurcaciones · Marcas cardinales · Peligro aislado, aguas navegables, especiales y nuevos peligros · Leer la luz: ritmos y de la luz a la marca.
+**Recorre:** El sistema IALA: cómo se reconoce una marca · Marcas laterales y bifurcaciones · Marcas cardinales · Peligro aislado, aguas navegables, especiales y nuevos peligros · Leer la luz: ritmos y de la luz a la marca.
 
 #### 5.1 · El sistema IALA, laterales y bifurcaciones
 
 🔎 Profundiza · ⏳ pendiente · clases per-5-1, per-5-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué familias de marcas forman el sistema de balizamiento
 - Distinguir la región A de la región B y saber cuál se usa en España
@@ -621,29 +724,44 @@ Qué se aprende:
 - Interpretar las marcas de bifurcación (laterales modificadas) y su luz 2+1
 - Saber cómo se numeran las marcas de un canal
 
+*32 preguntas reales de examen en estas clases.*
+
 #### 5.2 · Las cardinales
 
 🔎 Profundiza · ⏳ pendiente · clase per-5-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué indica una cardinal y por qué lado se pasa
 - Reconocer cada cardinal por su marca de tope y sus colores
 - Recordar el ritmo de la luz de cada cardinal
 
-#### 5.3 · Las demás marcas y cómo leer una luz
+*19 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clases per-5-4, per-5-5
+#### 5.3 · Peligro aislado, aguas navegables, especiales y nuevos peligros
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clase per-5-4
+
+**Qué se aprende:**
 
 - Reconocer la marca de peligro aislado y saber qué señala
 - Reconocer la marca de aguas navegables y sus usos
 - Saber qué indican las marcas especiales y cómo son
 - Saber cómo se balizan los peligros nuevos y los pecios
+
+*26 preguntas reales de examen en estas clases.*
+
+#### 5.4 · Leer la luz: ritmos y de la luz a la marca
+
+🔎 Profundiza · ⏳ pendiente · clase per-5-5
+
+**Qué se aprende:**
+
 - Entender la característica de una luz: color, ritmo y periodo
 - Distinguir destellos, destello largo, ocultaciones, isofase, centelleos y Morse
 - Identificar una marca de noche solo por su luz
+
+*13 preguntas reales de examen en estas clases.*
 
 ### Tema 6 · Reglamento de abordajes (eliminatorio)
 
@@ -651,13 +769,13 @@ Qué se aprende:
 
 🧭 Panorama · ⏳ pendiente · clases per-6-1, per-6-2, per-6-3, per-6-4, per-6-5, per-6-6, per-6-7, per-6-8, per-6-9, per-6-10
 
-Recorre: El reglamento y sus definiciones · Vigilancia, velocidad de seguridad, riesgo de abordaje y maniobra · Canales angostos y dispositivos de separación del tráfico · Alcance, vuelta encontrada y cruce · Veleros y jerarquía entre buques · Visibilidad reducida · Luces y marcas (I): sectores, buques de motor, vela y remolque · Luces y marcas (II): pesca, buques especiales, práctico, fondeados y varados · Señales acústicas y luminosas · Llamar la atención y señales de peligro.
+**Recorre:** El reglamento y sus definiciones · Vigilancia, velocidad de seguridad, riesgo de abordaje y maniobra · Canales angostos y dispositivos de separación del tráfico · Alcance, vuelta encontrada y cruce · Veleros y jerarquía entre buques · Visibilidad reducida · Luces y marcas (I): sectores, buques de motor, vela y remolque · Luces y marcas (II): pesca, buques especiales, práctico, fondeados y varados · Señales acústicas y luminosas · Llamar la atención y señales de peligro.
 
-#### 6.1 · Definiciones, vigilancia, riesgo de abordaje y canales
+#### 6.1 · Definiciones, vigilancia y riesgo de abordaje
 
-🔎 Profundiza · ⏳ pendiente · clases per-6-1, per-6-2, per-6-3
+🔎 Profundiza · ⏳ pendiente · clases per-6-1, per-6-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber dónde se aplica el RIPA y cómo está organizado
 - Entender la regla de la responsabilidad (Regla 2)
@@ -666,53 +784,88 @@ Qué se aprende:
 - Saber qué es la velocidad de seguridad y qué factores la determinan
 - Reconocer el riesgo de abordaje por la demora y sus excepciones
 - Conocer cómo debe ser la maniobra para evitar el abordaje (Regla 8)
+
+*27 preguntas reales de examen en estas clases.*
+
+#### 6.2 · Canales angostos y dispositivos de separación del tráfico
+
+🔎 Profundiza · ⏳ pendiente · clase per-6-3
+
+**Qué se aprende:**
+
 - Saber por dónde navegar en un canal angosto y a quién no estorbar
 - Conocer las señales para adelantar en un canal y la del recodo
 - Saber cómo se entra, se sale y se cruza un DST y quién usa la zona de navegación costera
 - Recordar que en un DST no hay preferencia de paso por ir en la vía
 
-#### 6.2 · Quién se aparta: alcance, vuelta encontrada, cruce, veleros y niebla
+*24 preguntas reales de examen en estas clases.*
 
-🔎 Profundiza · ⏳ pendiente · clases per-6-4, per-6-5, per-6-6
+#### 6.3 · Alcance, vuelta encontrada y cruce
 
-Qué se aprende:
+🔎 Profundiza · ⏳ pendiente · clase per-6-4
+
+**Qué se aprende:**
 
 - Distinguir alcance, vuelta encontrada y cruce por la marcación y por las luces
 - Saber quién cede el paso y quién sigue a rumbo en cada situación
 - Conocer qué debe hacer el que cede el paso y cuándo puede (o debe) maniobrar el que sigue a rumbo
+
+*26 preguntas reales de examen en estas clases.*
+
+#### 6.4 · Veleros y la jerarquía entre buques
+
+🔎 Profundiza · ⏳ pendiente · clase per-6-5
+
+**Qué se aprende:**
+
 - Resolver los encuentros entre dos veleros (Regla 12)
 - Aplicar la jerarquía de la Regla 18 (motor, vela, pesca, maniobra restringida, sin gobierno, calado)
 - Reconocer de noche un velero por sus luces y saber que el alcance manda sobre todo lo demás
+
+*33 preguntas reales de examen en estas clases.*
+
+#### 6.5 · Visibilidad reducida
+
+🔎 Profundiza · ⏳ pendiente · clase per-6-6
+
+**Qué se aprende:**
+
 - Saber qué reglas se aplican y cuáles no cuando los buques no se ven
 - Decidir hacia dónde no caer cuando detectas un buque solo por radar
 - Saber qué hacer al oír una señal de niebla por la proa
 
-#### 6.3 · Luces y marcas (I): motor, vela y remolque
+*15 preguntas reales de examen en estas clases.*
+
+#### 6.6 · Luces y marcas (I): motor, vela y remolque
 
 🔎 Profundiza · ⏳ pendiente · clase per-6-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber cuándo se encienden las luces y cuándo se llevan las marcas
 - Conocer el color y el sector de las luces de tope, costado, alcance y remolque
 - Saber qué luces lleva un buque de motor según su eslora y velocidad
 - Saber qué luces lleva un velero (y uno que va también a motor), una embarcación de remo y un remolque
 
-#### 6.4 · Luces y marcas (II): pesca, buques especiales, fondeados y varados
+*20 preguntas reales de examen en estas clases.*
+
+#### 6.7 · Luces y marcas (II): pesca, buques especiales, fondeados y varados
 
 🔎 Profundiza · ⏳ pendiente · clase per-6-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Identificar de día y de noche a los pesqueros de arrastre y de otros tipos
 - Reconocer al buque sin gobierno, al de maniobra restringida (incluido el buceo) y al restringido por su calado
 - Conocer las luces del práctico y las de los buques fondeados y varados
 
-#### 6.5 · Señales acústicas, luminosas y de peligro
+*18 preguntas reales de examen en estas clases.*
+
+#### 6.8 · Señales acústicas, luminosas y de peligro
 
 🔎 Profundiza · ⏳ pendiente · clases per-6-9, per-6-10
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Conocer la duración de las pitadas y el equipo acústico obligatorio según la eslora
 - Interpretar las señales de maniobra y advertencia entre buques a la vista
@@ -720,19 +873,21 @@ Qué se aprende:
 - Saber cómo se puede llamar la atención de otro buque sin confundir
 - Reconocer las señales de peligro del anexo IV del RIPA
 
+*17 preguntas reales de examen en estas clases.*
+
 ### Tema 7 · Maniobra
 
 #### 7.0 · Maniobrar el barco
 
 🧭 Panorama · ⏳ pendiente · clases per-7-1, per-7-2, per-7-3, per-7-4, per-7-5, per-7-6, per-7-7, per-7-8
 
-Recorre: Cabos: partes, gazas y el vocabulario de la maniobra · Las amarras: largos, esprines, traveses y codera · Gobierno, arrancada y curva de evolución · La hélice y el timón · La ciaboga, con una y con dos hélices · Viento, corriente y olas: los agentes de la maniobra · Atracar: de costado, de punta, abarloado y a una boya · Desatracar: qué cabos largar y cómo salir.
+**Recorre:** Cabos: partes, gazas y el vocabulario de la maniobra · Las amarras: largos, esprines, traveses y codera · Gobierno, arrancada y curva de evolución · La hélice y el timón · La ciaboga, con una y con dos hélices · Viento, corriente y olas: los agentes de la maniobra · Atracar: de costado, de punta, abarloado y a una boya · Desatracar: qué cabos largar y cómo salir.
 
 #### 7.1 · Cabos y amarras
 
 🔎 Profundiza · ⏳ pendiente · clases per-7-1, per-7-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Nombrar las partes de un cabo y saber qué es una gaza
 - Saber qué es encapillar, amarrar por seno, tomar vueltas y hacer firme
@@ -741,11 +896,13 @@ Qué se aprende:
 - Saber qué hace el barco al cobrar cada amarra estando atracado de costado
 - Saber qué amarras reforzar según el viento y la corriente
 
+*13 preguntas reales de examen en estas clases.*
+
 #### 7.2 · Gobierno, hélice, timón y ciaboga
 
 🔎 Profundiza · ⏳ pendiente · clases per-7-3, per-7-4, per-7-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber hacia dónde cae la proa con caña y con rueda
 - Definir velocidad de gobierno y arrancada
@@ -758,11 +915,13 @@ Qué se aprende:
 - Saber hacia qué banda conviene ciabogar según el sentido de la hélice
 - Conocer las hélices gemelas de giro al exterior y cómo se ciaboga con ellas
 
+*15 preguntas reales de examen en estas clases.*
+
 #### 7.3 · Atracar y desatracar con viento y corriente
 
 🔎 Profundiza · ⏳ pendiente · clases per-7-6, per-7-7, per-7-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber sobre qué parte del barco actúan el viento y la corriente
 - Saber con qué viento o corriente es más fácil maniobrar
@@ -776,19 +935,21 @@ Qué se aprende:
 - Desatracar de costado abriendo la popa o la proa con un esprín
 - Desatracar de punta en el orden correcto
 
+*8 preguntas reales de examen en estas clases.*
+
 ### Tema 8 · Emergencias en la mar
 
 #### 8.0 · Emergencias a bordo
 
 🧭 Panorama · ⏳ pendiente · clases per-8-1, per-8-2, per-8-3, per-8-4, per-8-5, per-8-6, per-8-7, per-8-8, per-8-9
 
-Recorre: Primeros auxilios I: heridas, contusiones y hemorragias · Primeros auxilios II: quemaduras, calor y mareo · Ayuda médica a distancia: Radio-Médico, Guía Sanitaria y botiquín · Varada y abordaje · Vías de agua e inundación · El fuego: tetraedro, clases y prevención · Apagar un incendio a bordo · Abandono de la embarcación y señales pirotécnicas · Supervivencia en el agua: hipotermia.
+**Recorre:** Primeros auxilios I: heridas, contusiones y hemorragias · Primeros auxilios II: quemaduras, calor y mareo · Ayuda médica a distancia: Radio-Médico, Guía Sanitaria y botiquín · Varada y abordaje · Vías de agua e inundación · El fuego: tetraedro, clases y prevención · Apagar un incendio a bordo · Abandono de la embarcación y señales pirotécnicas · Supervivencia en el agua: hipotermia.
 
 #### 8.1 · Primeros auxilios y ayuda médica a distancia
 
 🔎 Profundiza · ⏳ pendiente · clases per-8-1, per-8-2, per-8-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Tratar una contusión leve sin cometer el error típico del examen
 - Distinguir una hemorragia arterial de una venosa
@@ -803,11 +964,13 @@ Qué se aprende:
 - Saber qué es la Guía Sanitaria a Bordo y cómo conseguirla
 - Conocer qué botiquín exige la norma a una embarcación de recreo
 
+*14 preguntas reales de examen en estas clases.*
+
 #### 8.2 · Varada, abordaje y vías de agua
 
 🔎 Profundiza · ⏳ pendiente · clases per-8-4, per-8-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué hacer primero tras una embarrancada
 - Elegir la maniobra adecuada para reflotar en fondo blando
@@ -817,11 +980,13 @@ Qué se aprende:
 - Saber qué hacer al descubrir agua en la sentina
 - Conocer los medios de achique y de taponamiento
 
+*14 preguntas reales de examen en estas clases.*
+
 #### 8.3 · El fuego a bordo
 
 🔎 Profundiza · ⏳ pendiente · clases per-8-6, per-8-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Nombrar los cuatro elementos del tetraedro del fuego
 - Clasificar un fuego según la norma UNE-EN 2 (A, B, C, D y F)
@@ -831,11 +996,13 @@ Qué se aprende:
 - Usar correctamente un extintor portátil
 - Saber maniobrar el barco ante un incendio (socairear el fuego)
 
+*17 preguntas reales de examen en estas clases.*
+
 #### 8.4 · Abandono e hipotermia
 
 🔎 Profundiza · ⏳ pendiente · clases per-8-8, per-8-9
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber cuándo se abandona el barco y quién lo decide
 - Ordenar los preparativos antes de abandonar
@@ -844,19 +1011,21 @@ Qué se aprende:
 - Conservar el calor en el agua con o sin chaleco
 - Reconocer la hipotermia y saber cómo atender a un rescatado
 
+*9 preguntas reales de examen en estas clases.*
+
 ### Tema 9 · Meteorología
 
 #### 9.0 · El tiempo para salir a navegar
 
 🧭 Panorama · ⏳ pendiente · clases per-9-1, per-9-2, per-9-3, per-9-4, per-9-5, per-9-6, per-9-7
 
-Recorre: La presión atmosférica: barómetros e isobaras · Borrascas y anticiclones · El viento: vocabulario e instrumentos · Viento real, de avance y aparente · Brisas costeras: virazón y terral · Beaufort, la mar y la escala Douglas · Antes de zarpar: la previsión y la decisión.
+**Recorre:** La presión atmosférica: barómetros e isobaras · Borrascas y anticiclones · El viento: vocabulario e instrumentos · Viento real, de avance y aparente · Brisas costeras: virazón y terral · Beaufort, la mar y la escala Douglas · Antes de zarpar: la previsión y la decisión.
 
 #### 9.1 · Presión, borrascas y anticiclones
 
 🔎 Profundiza · ⏳ pendiente · clases per-9-1, per-9-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Definir la presión atmosférica y dar su valor normal en hPa, mb, mmHg y atmósferas
 - Distinguir el barómetro de mercurio del aneroide y saber cómo funciona este último
@@ -866,11 +1035,13 @@ Qué se aprende:
 - Saber hacia dónde se desplazan las borrascas en nuestras latitudes
 - Situar la borrasca respecto a ti a partir del viento
 
+*30 preguntas reales de examen en estas clases.*
+
 #### 9.2 · El viento: real, aparente y las brisas
 
 🔎 Profundiza · ⏳ pendiente · clases per-9-3, per-9-4, per-9-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Usar bien rolar, refrescar, caer, calmar, racha y viento racheado
 - Saber qué mide el anemómetro y qué indican la veleta y el catavientos
@@ -881,11 +1052,13 @@ Qué se aprende:
 - Explicar por qué se forman las brisas costeras
 - Saber cuándo y hacia dónde soplan la virazón y el terral
 
+*24 preguntas reales de examen en estas clases.*
+
 #### 9.3 · Beaufort, Douglas y la decisión de salir
 
 🔎 Profundiza · ⏳ pendiente · clases per-9-6, per-9-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué mide la escala Beaufort y cuántos grados tiene
 - Definir intensidad, persistencia y fetch
@@ -895,19 +1068,21 @@ Qué se aprende:
 - Interpretar lo básico de un parte marítimo
 - Decidir con criterio si salir, cambiar de plan o volver
 
+*18 preguntas reales de examen en estas clases.*
+
 ### Tema 10 · Teoría de navegación
 
 #### 10.0 · Navegar con la carta: la teoría
 
 🧭 Panorama · ⏳ pendiente · clases per-10-1, per-10-2, per-10-3, per-10-4, per-10-5, per-10-6, per-10-7, per-10-8, per-10-9
 
-Recorre: La Tierra y las coordenadas · Distancia, velocidad y tiempo a bordo · La carta náutica y las publicaciones · Faros y luces en la carta · Los tres nortes: declinación, desvío y corrección total · Rumbos: verdadero, magnético y de aguja · Demora, marcación y líneas de posición · Mareas · Viento y corriente: abatimiento y deriva.
+**Recorre:** La Tierra y las coordenadas · Distancia, velocidad y tiempo a bordo · La carta náutica y las publicaciones · Faros y luces en la carta · Los tres nortes: declinación, desvío y corrección total · Rumbos: verdadero, magnético y de aguja · Demora, marcación y líneas de posición · Mareas · Viento y corriente: abatimiento y deriva.
 
 #### 10.1 · La Tierra, las coordenadas y la milla
 
 🔎 Profundiza · ⏳ pendiente · clases per-10-1, per-10-2
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Distinguir círculos máximos y menores: ecuador, meridianos y paralelos
 - Definir latitud y longitud, y desde dónde se cuenta cada una
@@ -918,11 +1093,13 @@ Qué se aprende:
 - Corregir la corredera con su coeficiente
 - Saber para qué sirve la sonda y qué es la hora de a bordo (HRB)
 
+*24 preguntas reales de examen en estas clases.*
+
 #### 10.2 · La carta náutica, los faros y las publicaciones
 
 🔎 Profundiza · ⏳ pendiente · clases per-10-3, per-10-4
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber cómo es una carta Mercator y qué tipos de carta hay según su escala
 - Distinguir portulano, carta de recalada y cartucho
@@ -932,11 +1109,13 @@ Qué se aprende:
 - Distinguir destellos, ocultaciones, isofase, centelleos y luz fija
 - Saber cómo se identifica un faro de noche
 
+*19 preguntas reales de examen en estas clases.*
+
 #### 10.3 · Los tres nortes y los rumbos
 
 🔎 Profundiza · ⏳ pendiente · clases per-10-5, per-10-6
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Distinguir norte verdadero, magnético y de aguja
 - Definir declinación magnética y desvío, y saber de qué depende cada uno
@@ -946,22 +1125,26 @@ Qué se aprende:
 - Pasar de rumbo de aguja a verdadero y al revés con la corrección total
 - Convertir un rumbo cuadrantal en circular (el programa no pide el paso inverso)
 
+*18 preguntas reales de examen en estas clases.*
+
 #### 10.4 · Demora, marcación y líneas de posición
 
 🔎 Profundiza · ⏳ pendiente · clase per-10-7
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Distinguir demora, marcación y rumbo
 - Pasar una marcación a demora (D = R + M) y una demora de aguja a verdadera
 - Saber qué es una línea de posición y cuáles lo son
 - Conocer enfilaciones y oposiciones, y cuándo una enfilación es fiable
 
+*13 preguntas reales de examen en estas clases.*
+
 #### 10.5 · Mareas, viento y corriente
 
 🔎 Profundiza · ⏳ pendiente · clases per-10-8, per-10-9
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Saber qué produce las mareas y qué son pleamar, bajamar, amplitud y duración
 - Distinguir mareas vivas y muertas
@@ -971,19 +1154,21 @@ Qué se aprende:
 - Saber el signo del abatimiento y la relación entre rumbo verdadero y de superficie
 - Saber cómo afecta una corriente a un barco
 
+*16 preguntas reales de examen en estas clases.*
+
 ### Tema 11 · Carta de navegación (eliminatorio)
 
 #### 11.0 · El examen de carta del PER, paso a paso
 
 🧭 Panorama · ⏳ pendiente · clases per-11-1, per-11-2, per-11-3, per-11-4, per-11-5, per-11-6, per-11-7, per-11-8, per-11-9
 
-Recorre: La carta del Estrecho: coordenadas, distancias y rumbos · Corrección total y conversión de rumbos · Rumbo directo, distancia y hora de llegada · Situación de estima · Líneas de posición: demora, marcación y distancia · Situación por dos demoras o marcaciones simultáneas · Oposición o enfilación y demora: situación y distancia a un faro · Demoras no simultáneas (y cuándo no hace falta trasladar) · Rumbo para pasar a una distancia de un faro.
+**Recorre:** La carta del Estrecho: coordenadas, distancias y rumbos · Corrección total y conversión de rumbos · Rumbo directo, distancia y hora de llegada · Situación de estima · Líneas de posición: demora, marcación y distancia · Situación por dos demoras o marcaciones simultáneas · Oposición o enfilación y demora: situación y distancia a un faro · Demoras no simultáneas (y cuándo no hace falta trasladar) · Rumbo para pasar a una distancia de un faro.
 
 #### 11.1 · La carta del Estrecho, la corrección total y el rumbo directo
 
 🔎 Profundiza · ⏳ pendiente · clases per-11-1, per-11-2, per-11-3
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Leer las coordenadas de un punto y situar un punto dado en la carta
 - Medir distancias en la escala correcta
@@ -997,11 +1182,13 @@ Qué se aprende:
 - Medir la distancia entre dos puntos y calcular la HRB de llegada
 - Elegir bien el punto de llegada: la luz exacta o un punto definido respecto a un faro
 
+*34 preguntas reales de examen en estas clases.*
+
 #### 11.2 · Estima y líneas de posición
 
 🔎 Profundiza · ⏳ pendiente · clases per-11-4, per-11-5
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Calcular la situación de estima a partir de la salida, el rumbo, la velocidad y el tiempo
 - Resolver primero la situación de salida cuando viene dada por faros
@@ -1010,11 +1197,13 @@ Qué se aprende:
 - Pasar una marcación a demora verdadera con su signo
 - Situarte con una demora y una distancia, al mismo faro o a faros distintos
 
+*19 preguntas reales de examen en estas clases.*
+
 #### 11.3 · Situarse: dos demoras, enfilaciones y demoras no simultáneas
 
 🔎 Profundiza · ⏳ pendiente · clases per-11-6, per-11-7, per-11-8
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Situarte con dos demoras o dos marcaciones tomadas a la vez
 - Combinar una demora de aguja y una marcación en el mismo ejercicio
@@ -1026,12 +1215,16 @@ Qué se aprende:
 - Distinguir un enunciado con observaciones simultáneas de uno con observaciones no simultáneas
 - Usar la situación anterior para calcular el rumbo y la distancia navegada
 
+*14 preguntas reales de examen en estas clases.*
+
 #### 11.4 · Pasar a una distancia de un faro
 
 🔎 Profundiza · ⏳ pendiente · clase per-11-9
 
-Qué se aprende:
+**Qué se aprende:**
 
 - Trazar el rumbo tangente para pasar a una distancia dada de un faro
 - Elegir la tangente correcta según la banda por la que dejas el faro
 - Distinguir «pasar a X millas de un faro» de «ir a un punto a X millas de un faro»
+
+*5 preguntas reales de examen en estas clases.*

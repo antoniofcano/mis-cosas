@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 const raiz = new URL('..', import.meta.url);
 const leer = (p) => JSON.parse(readFileSync(new URL(p, raiz)));
 const E = leer('podcast/episodios.json');
+const banco = new Map(['per', 'py'].flatMap((t) => leer(`data/exams/andalucia-${t}-teoria.json`).preguntas).map((q) => [q.id, q]));
 const lecciones = new Map(['per', 'py'].flatMap((t) => leer(`data/curso/${t}.json`).modulos.flatMap((m) => m.lecciones)).map((l) => [l.id, l]));
 
 const TIT = { py: 'Patrón de Yate (PY)', per: 'Patrón de Embarcaciones de Recreo (PER)' };
@@ -29,12 +30,17 @@ for (const tit of ['py', 'per']) {
     const hecho = x.archivo && existsSync(new URL(`podcast/${x.archivo}`, raiz));
     out.push(`#### ${x.n} · ${x.titulo}`, '',
       `${TIPO[x.tipo]} · ${hecho ? `✅ [guion](${x.archivo})` : '⏳ pendiente'}${x.lecciones.length ? ` · ${x.lecciones.length === 1 ? 'clase' : 'clases'} ${x.lecciones.join(', ')}` : ''}`, '');
-    if (x.tipo === 'profundiza') {
-      const obj = x.lecciones.flatMap((id) => lecciones.get(id)?.objetivos ?? []);
-      if (obj.length) out.push('Qué se aprende:', '', ...obj.map((o) => `- ${o}`), '');
-    } else if (x.tipo === 'panorama') {
-      out.push(`Recorre: ${x.lecciones.map((id) => lecciones.get(id)?.titulo).join(' · ')}.`, '');
-    }
+    const reales = new Set(x.lecciones.flatMap((id) => lecciones.get(id)?.practica ?? [])).size;
+    if (x.sinopsis) out.push(x.sinopsis, '');
+    if (x.gancho) out.push(`**Gancho:** ${x.gancho}`, '');
+    if (x.peso) out.push(`**En el examen:** ${x.peso}`, '');
+    if (x.tipo === 'panorama') out.push(`**Recorre:** ${x.lecciones.map((id) => lecciones.get(id)?.titulo).join(' · ')}.`, '');
+    const claves = x.claves ?? (x.tipo === 'profundiza' ? x.lecciones.flatMap((id) => lecciones.get(id)?.objetivos ?? []) : []);
+    if (claves.length) out.push(x.claves ? '**Para llevarse:**' : '**Qué se aprende:**', '', ...claves.map((o) => `- ${o}`), '');
+    if (x.trampas?.length) out.push('**Trampas del examen:**', '', ...x.trampas.map((o) => `- ${o}`), '');
+    if (x.preguntas?.length) out.push(`**Minijuego** (${reales} preguntas reales de examen en estas clases):`, '', ...x.preguntas.map((id) => `- ${banco.get(id)?.enunciado ?? id} *(${id})*`), '');
+    else if (x.tipo === 'profundiza' && reales) out.push(`*${reales} preguntas reales de examen en estas clases.*`, '');
+    if (x.relacionados?.length) out.push(`**Relacionados:** ${x.relacionados.join(', ')}.`, '');
   }
 }
 writeFileSync(new URL('podcast/README.md', raiz), out.join('\n'));

@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '0cca1ec6ca5f';
+self.VERSION = '3c888a836892';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -204,7 +204,15 @@ self.DATOS = [
  "data/exams/vocabulario-py.json",
  "data/mapas/balizamiento.json",
  "data/mapas/corriente-abatimiento.json",
+ "data/mapas/electronica.json",
+ "data/mapas/estabilidad.json",
+ "data/mapas/fuego.json",
+ "data/mapas/lineas-posicion.json",
+ "data/mapas/mareas-py.json",
+ "data/mapas/mareas.json",
  "data/mapas/meteo.json",
+ "data/mapas/nieblas.json",
+ "data/mapas/ripa-luces.json",
  "data/mapas/ripa-maniobras.json",
  "data/mapas/rumbos.json"
 ];

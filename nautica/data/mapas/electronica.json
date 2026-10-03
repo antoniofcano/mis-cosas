@@ -1,0 +1,327 @@
+{
+ "id": "electronica",
+ "titulo": "Radar, GPS y AIS",
+ "tits": [
+  "py"
+ ],
+ "intro": "Los equipos electrónicos del puente: cómo se ajusta y se lee el radar, qué significan las siglas del GNSS y su relación con los rumbos, el datum, las cartas electrónicas y el AIS.",
+ "nodos": [
+  {
+   "id": "radar",
+   "nombre": "Radar",
+   "corto": "Emite pulsos que se reflejan y vuelven: la distancia sale del tiempo de ida y vuelta y la demora, de hacia dónde apuntaba la antena. Ve igual de noche o con niebla.",
+   "spec": {
+    "tipo": "radar-respondedores"
+   },
+   "clase": "py-3-8",
+   "x": 1.3,
+   "y": 0
+  },
+  {
+   "id": "ais",
+   "nombre": "AIS",
+   "corto": "Emite y recibe por VHF (canales 87B y 88B) la identidad, la posición, el COG, la SOG y el destino de los barcos. Solo ves a quien lo lleva encendido.",
+   "spec": {
+    "tipo": "ais"
+   },
+   "clase": "py-3-10",
+   "x": 3.6,
+   "y": 0
+  },
+  {
+   "id": "ganancia",
+   "nombre": "Ganancia (GAIN)",
+   "corto": "La sensibilidad del receptor. Poca: pierdes ecos débiles; demasiada: ruido que satura y tapa los ecos. Va siempre con el filtro que toque.",
+   "spec": {
+    "tipo": "radar-pantalla",
+    "presentacion": "proa-arriba"
+   },
+   "clase": "py-3-8",
+   "x": 0.2,
+   "y": 1.2
+  },
+  {
+   "id": "proa",
+   "nombre": "Proa arriba (H-UP)",
+   "corto": "La línea de proa va arriba, sobre la crujía: lees marcaciones y, al cambiar de rumbo, toda la imagen gira.",
+   "spec": {
+    "tipo": "radar-pantalla",
+    "presentacion": "proa-arriba",
+    "resaltar": "proa"
+   },
+   "clase": "py-3-8",
+   "x": 1.5,
+   "y": 2
+  },
+  {
+   "id": "norte",
+   "nombre": "Norte arriba (N-UP)",
+   "corto": "El norte va arriba (necesita un sensor de rumbo): lees demoras, la imagen no gira al cambiar de rumbo y se compara fácil con la carta.",
+   "spec": {
+    "tipo": "radar-pantalla",
+    "presentacion": "norte-arriba"
+   },
+   "clase": "py-3-8",
+   "x": 2.4,
+   "y": 1.2
+  },
+  {
+   "id": "gnss",
+   "nombre": "GNSS (GPS, Galileo…)",
+   "corto": "Con al menos cuatro satélites calcula tu posición. Te habla de ti: posición, COG, SOG y los datos de la ruta.",
+   "spec": {
+    "tipo": "gnss"
+   },
+   "clase": "py-3-9",
+   "x": 3.4,
+   "y": 1.6
+  },
+  {
+   "id": "mar",
+   "nombre": "Anti-clutter de mar (SEA)",
+   "corto": "Quita los ecos de las olas cerca del centro de la pantalla. Si te pasas, borra barcos pequeños cercanos.",
+   "spec": {
+    "tipo": "ola",
+    "vista": "partes"
+   },
+   "clase": "py-3-8",
+   "x": 0,
+   "y": 2.6
+  },
+  {
+   "id": "lluvia",
+   "nombre": "Anti-clutter de lluvia (RAIN)",
+   "corto": "Atenúa los ecos de lluvia o granizo. Con moderación.",
+   "spec": {
+    "tipo": "nubes",
+    "resaltar": "cumulonimbos"
+   },
+   "clase": "py-3-8",
+   "x": 1,
+   "y": 3.2
+  },
+  {
+   "id": "ebl",
+   "nombre": "EBL (línea de demora)",
+   "corto": "Línea desde el centro que llevas sobre el eco: da su demora (norte arriba) o su marcación (proa arriba). Se toma al centro de un eco pequeño.",
+   "spec": {
+    "tipo": "radar-pantalla",
+    "presentacion": "ambas",
+    "resaltar": "ebl"
+   },
+   "clase": "py-3-8",
+   "x": 2.4,
+   "y": 3.2
+  },
+  {
+   "id": "datum",
+   "nombre": "Datum (WGS-84)",
+   "corto": "El sistema de referencia de las coordenadas. El GNSS y las cartas modernas usan WGS-84; en una carta en ED50 la misma posición cae unos 150 a 200 m más allá.",
+   "spec": {
+    "tipo": "carta-margenes"
+   },
+   "clase": "py-3-9",
+   "x": 4.5,
+   "y": 2.8
+  },
+  {
+   "id": "vrm",
+   "nombre": "VRM (anillo de distancia)",
+   "corto": "Círculo que ajustas hasta tocar el borde más próximo del eco: da su distancia. Los anillos fijos solo son de referencia.",
+   "spec": {
+    "tipo": "radar-pantalla",
+    "presentacion": "norte-arriba",
+    "resaltar": "vrm"
+   },
+   "clase": "py-3-8",
+   "x": 0.8,
+   "y": 4.4
+  },
+  {
+   "id": "corredera",
+   "nombre": "Proa (HDG) y corredera",
+   "corto": "Lo que mide tu barco respecto al agua: hacia dónde apunta la proa (HDG) y la velocidad en el agua (corredera).",
+   "spec": {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   },
+   "clase": "py-3-9",
+   "x": 2,
+   "y": 4.8
+  },
+  {
+   "id": "cartas",
+   "nombre": "Carta electrónica (ENC/RNC)",
+   "corto": "RNC (raster): imagen escaneada de la carta de papel. ENC (vectorial): base de datos objeto a objeto que da alarmas. El ECDIS es el sistema que las muestra, no una carta.",
+   "spec": {
+    "tipo": "carta-raster-vectorial"
+   },
+   "clase": "py-3-10",
+   "x": 4.5,
+   "y": 4
+  },
+  {
+   "id": "sog",
+   "nombre": "SOG (velocidad sobre el fondo)",
+   "corto": "Speed Over Ground: la velocidad efectiva, con el efecto de la corriente. La calcula el GNSS con posiciones sucesivas.",
+   "spec": {
+    "tipo": "gnss",
+    "resaltar": "sog"
+   },
+   "clase": "py-3-9",
+   "x": 2.6,
+   "y": 6.2
+  },
+  {
+   "id": "cog",
+   "nombre": "COG (rumbo sobre el fondo)",
+   "corto": "Course Over Ground: el rumbo efectivo, con el efecto del viento y la corriente. Lo calcula el GNSS con posiciones sucesivas.",
+   "spec": {
+    "tipo": "gnss",
+    "resaltar": "cog"
+   },
+   "clase": "py-3-9",
+   "x": 4,
+   "y": 6.6
+  },
+  {
+   "id": "ruta",
+   "nombre": "Ruta al WPT (BRG, DTG, XTE)",
+   "corto": "BRG: demora al WPT. DTG: distancia que falta. XTE: lo que te has separado de la línea entre los dos WPT, con su banda. ETA = hora + DTG / SOG.",
+   "spec": {
+    "tipo": "gnss-calculos"
+   },
+   "clase": "py-3-9",
+   "x": 3.2,
+   "y": 7.8
+  }
+ ],
+ "aristas": [
+  {
+   "de": "radar",
+   "a": "ganancia",
+   "rel": "se ajusta con la"
+  },
+  {
+   "de": "ganancia",
+   "a": "mar",
+   "rel": "con olas: + anti-mar"
+  },
+  {
+   "de": "ganancia",
+   "a": "lluvia",
+   "rel": "con lluvia: + anti-lluvia"
+  },
+  {
+   "de": "radar",
+   "a": "proa",
+   "rel": "como desde cubierta"
+  },
+  {
+   "de": "radar",
+   "a": "norte",
+   "rel": "con sensor de rumbo"
+  },
+  {
+   "de": "proa",
+   "a": "ebl",
+   "rel": "la EBL da marcación"
+  },
+  {
+   "de": "norte",
+   "a": "ebl",
+   "rel": "la EBL da demora"
+  },
+  {
+   "de": "ebl",
+   "a": "vrm",
+   "rel": "+ distancia = tu situación"
+  },
+  {
+   "de": "ais",
+   "a": "radar",
+   "rel": "lo complementa, no lo sustituye"
+  },
+  {
+   "de": "ais",
+   "a": "gnss",
+   "rel": "toma su posición del"
+  },
+  {
+   "de": "gnss",
+   "a": "datum",
+   "rel": "trabaja en WGS-84"
+  },
+  {
+   "de": "datum",
+   "a": "cartas",
+   "rel": "también en WGS-84"
+  },
+  {
+   "de": "gnss",
+   "a": "cog",
+   "rel": "rumbo efectivo"
+  },
+  {
+   "de": "gnss",
+   "a": "sog",
+   "rel": "velocidad efectiva"
+  },
+  {
+   "de": "corredera",
+   "a": "cog",
+   "rel": "HDG + viento y corriente"
+  },
+  {
+   "de": "corredera",
+   "a": "sog",
+   "rel": "la diferencia es la corriente"
+  },
+  {
+   "de": "sog",
+   "a": "ruta",
+   "rel": "ETA = hora + DTG / SOG"
+  },
+  {
+   "de": "cog",
+   "a": "ruta",
+   "rel": "su ángulo con el BRG da la VMG"
+  },
+  {
+   "de": "mar",
+   "a": "lluvia",
+   "rel": "Anti-mar: ecos de olas cerca del centro (si te pasas, borra barcos pequeños). Anti-lluvia: lluvia o granizo. Los dos van con la ganancia, no con la sintonía.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "proa",
+   "a": "norte",
+   "rel": "Proa arriba: lees marcaciones y la imagen gira al cambiar de rumbo. Norte arriba: lees demoras y la imagen no gira.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "ebl",
+   "a": "vrm",
+   "rel": "La EBL es una línea y da la demora (o la marcación); el VRM es un anillo y da la distancia.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "cog",
+   "a": "corredera",
+   "rel": "COG es el rumbo sobre el fondo (el efectivo); HDG es hacia donde apunta la proa.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "sog",
+   "a": "corredera",
+   "rel": "SOG es la velocidad sobre el fondo; la corredera mide la velocidad respecto al agua.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "gnss",
+   "a": "ais",
+   "rel": "El GNSS te da tus datos (posición, COG, SOG, XTE, ETA); los de los otros barcos, el AIS y el radar.",
+   "tipo": "confunde"
+  }
+ ]
+}

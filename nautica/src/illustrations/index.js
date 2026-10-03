@@ -92,7 +92,7 @@ export const CATALOGO = {
   canal: { params: { sentido: ['entrando', 'saliendo'] }, ejemplo: { tipo: 'canal', sentido: 'entrando' } },
   dst: { params: {}, ejemplo: { tipo: 'dst' } },
   jerarquia: { params: {}, ejemplo: { tipo: 'jerarquia' } },
-  estabilidad: { params: { caso: ['estable', 'inestable'] }, ejemplo: { tipo: 'estabilidad', caso: 'estable' } },
+  estabilidad: { params: { caso: ['estable', 'indiferente', 'inestable'] }, ejemplo: { tipo: 'estabilidad', caso: 'estable' } },
   movimiento: { params: { mov: ['balance', 'cabezada', 'guinada'] }, ejemplo: { tipo: 'movimiento', mov: 'balance' } },
   amarras: { params: { resaltar: ['largo-proa', 'esprin-proa', 'traves', 'esprin-popa', 'largo-popa'] }, ejemplo: { tipo: 'amarras' } },
   busqueda: { params: { patron: ['cuadrado', 'sectores'] }, ejemplo: { tipo: 'busqueda', patron: 'cuadrado' } },

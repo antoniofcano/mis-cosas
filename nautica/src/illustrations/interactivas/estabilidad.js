@@ -23,9 +23,10 @@ export const estabilidad = {
     { id: 'altura', tipo: 'rango', etiqueta: 'Altura del peso', min: 0, max: 6, paso: 0.5, texto: (v) => `${num(v)} m, ${lugar(v)}`, extremos: ['sentina', 'cubierta', 'palo'] },
     { id: 'traslado', tipo: 'rango', etiqueta: 'Traslado del peso', min: -2, max: 2, paso: 0.5, texto: (v) => banda(v), extremos: ['babor (banda alta)', 'crujía', 'estribor (banda baja)'] },
   ],
-  estado: (spec) => ({ altura: Number(spec.altura ?? (spec.caso === 'inestable' ? 5 : 1.5)), traslado: Number(spec.traslado ?? 0) }),
-  calcular: (e) => calc({ altura: e.altura, traslado: e.traslado, escora: ESCORA }),
-  pie: () => 'Estable: M por encima de G, el par adriza. Inestable: G por encima de M, el par vuelca. Subir pesos sube G; bajarlos lo baja.',
+  estado: (spec) => ({ altura: Number(spec.altura ?? ({ inestable: 5, indiferente: 3.9 }[spec.caso] ?? 1.5)), traslado: Number(spec.traslado ?? 0) }),
+  // Indiferente: G sobre M (GM ≈ 0) y el peso en crujía: no hay par y el barco se queda con la escora.
+  calcular: (e) => { const r = calc({ altura: e.altura, traslado: e.traslado, escora: ESCORA }); return { ...r, indiferente: e.traslado === 0 && Math.abs(r.GM) < 0.005 }; },
+  pie: () => 'Estable: M por encima de G, el par adriza. Indiferente: G en M, se queda escorado. Inestable: G por encima de M, el par vuelca. Subir pesos sube G; bajarlos lo baja.',
   dibujar(e, r) {
     const signo = (n) => num(n, 2).replace('-', '−');
     // --- vista 1: el barco escorado con el peso
@@ -39,7 +40,7 @@ export const estabilidad = {
     out.push(`<rect data-parte="peso" x="${f1(p[0] - 10)}" y="${f1(p[1] - 10)}" width="20" height="20" rx="3" fill="var(--l-a)" stroke="var(--text)"/>`);
     const G0 = pant([r.GGt, r.KG]);
     out.push(`<circle data-parte="g" cx="${f1(G0[0])}" cy="${f1(G0[1])}" r="6" fill="var(--l-r)" stroke="var(--surface)" stroke-width="1.5"/>`);
-    out.push(texto(W - 12, 26, r.adriza ? 'adriza ↺' : r.estable ? 'escora más ↻' : 'vuelca ↻', { anchor: 'end', size: 22, weight: 700, color: r.adriza ? 'var(--l-m)' : 'var(--l-r)', p: 'gz' }));
+    out.push(texto(W - 12, 26, r.indiferente ? 'se queda así' : r.adriza ? 'adriza ↺' : r.estable ? 'escora más ↻' : 'vuelca ↻', { anchor: 'end', size: 22, weight: 700, color: r.indiferente ? 'var(--l-a)' : r.adriza ? 'var(--l-m)' : 'var(--l-r)', p: 'gz' }));
     out.push(texto(12, H - 10, `visto desde popa · una ola lo escora ${ESCORA}°`, { anchor: 'start', size: 15, weight: 400, color: 'var(--muted)' }));
     out.push('</svg>');
 
@@ -76,7 +77,9 @@ export const estabilidad = {
     d.push(texto(12, DH - 10, 'ampliado ×6', { anchor: 'start', size: 13, weight: 400, color: 'var(--muted)' }));
     d.push('</svg>');
 
-    const estado = r.adriza
+    const estado = r.indiferente
+      ? 'G coincide con M (GM 0): no hay par que lo adrice ni que lo vuelque, y el barco se queda con la escora. Es el equilibrio indiferente.'
+      : r.adriza
       ? `M queda por encima de G (GM ${signo(r.GM)} m): el empuje y el peso forman un par que adriza el barco.`
       : r.estable
         ? 'G aún está por debajo de M, pero el peso trasladado a la banda baja vence al par: el barco no se recupera y escora más.'

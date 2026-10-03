@@ -1,0 +1,301 @@
+{
+ "id": "lineas-posicion",
+ "titulo": "Líneas de posición y situación",
+ "tits": [
+  "per"
+ ],
+ "intro": "De la visual a un faro a tu punto en la carta: demoras y marcaciones, las líneas de posición que se trazan con ellas y cómo se cruzan dos para situarte.",
+ "nodos": [
+  {
+   "id": "da",
+   "nombre": "Demora de aguja (Da)",
+   "corto": "La demora tomada con la aguja o con un compás de demoras. No se traza tal cual: Dv = Da + Ct.",
+   "spec": {
+    "tipo": "rosa",
+    "rumbo": 110,
+    "demora": 50,
+    "marcacion": true,
+    "etiqueta": "faro"
+   },
+   "clase": "per-10-7",
+   "x": 0.9,
+   "y": 1.2
+  },
+  {
+   "id": "ct",
+   "nombre": "Corrección total (Ct)",
+   "corto": "Ct = dm + Δ, cada una con su signo. Pasa lo de aguja a verdadero: Rv = Ra + Ct y Dv = Da + Ct.",
+   "spec": {
+    "tipo": "nortes",
+    "dm": -1,
+    "desvio": 6
+   },
+   "clase": "per-11-2",
+   "x": 0,
+   "y": 0
+  },
+  {
+   "id": "rv",
+   "nombre": "Rumbo verdadero (Rv)",
+   "corto": "Hacia dónde va la proa, contado desde el norte verdadero. No es una línea de posición: dice hacia dónde vas, no dónde estás.",
+   "spec": {
+    "tipo": "transportador",
+    "caso": "rumbo"
+   },
+   "clase": "per-10-7",
+   "x": 2.1,
+   "y": 0
+  },
+  {
+   "id": "marc",
+   "nombre": "Marcación (M)",
+   "corto": "Ángulo desde la proa a la visual: de 0° a 180° por estribor (+) o por babor (−). Por la proa 0°, por el través 90°.",
+   "spec": {
+    "tipo": "demora-marcacion",
+    "rumbo": 70,
+    "marcacion": -100
+   },
+   "clase": "per-10-7",
+   "x": 4.3,
+   "y": 0
+  },
+  {
+   "id": "dv",
+   "nombre": "Demora verdadera (Dv)",
+   "corto": "Ángulo del norte verdadero a la visual al objeto, de 000° a 359°. En la carta solo se trazan demoras verdaderas.",
+   "spec": {
+    "tipo": "rosa",
+    "rumbo": 300,
+    "demora": 30,
+    "marcacion": true,
+    "etiqueta": "faro"
+   },
+   "clase": "per-10-7",
+   "x": 2.5,
+   "y": 1.2
+  },
+  {
+   "id": "enf",
+   "nombre": "Enfilación",
+   "corto": "Ves dos objetos alineados, uno detrás del otro: estás en la prolongación de la recta que los une. Fiable si están lejos, bien separados y el posterior es igual o más alto.",
+   "spec": {
+    "tipo": "enfilacion",
+    "dv": 40,
+    "da": 44
+   },
+   "clase": "per-10-7",
+   "x": 0,
+   "y": 2.4
+  },
+  {
+   "id": "opos",
+   "nombre": "Oposición",
+   "corto": "Estás entre los dos objetos, viendo uno a cada lado en direcciones opuestas: sobre el segmento que los une.",
+   "spec": {
+    "tipo": "oposicion",
+    "caso": "oposicion"
+   },
+   "clase": "per-11-7",
+   "x": 0,
+   "y": 3.6
+  },
+  {
+   "id": "inversa",
+   "nombre": "Demora inversa",
+   "corto": "La demora ± 180°. La demora va del barco al faro, así que en la carta se traza desde el faro la inversa: ves el faro al 040° → desde él trazas el 220°.",
+   "spec": {
+    "tipo": "transportador",
+    "caso": "faro"
+   },
+   "clase": "per-11-5",
+   "x": 2.5,
+   "y": 2.4
+  },
+  {
+   "id": "dist",
+   "nombre": "Distancia a un faro",
+   "corto": "Una circunferencia con centro en el faro. Se abre el compás la distancia, medida en la escala de latitudes.",
+   "spec": {
+    "tipo": "tangente",
+    "banda": "babor",
+    "resaltar": [
+     "circulo"
+    ]
+   },
+   "clase": "per-11-5",
+   "x": 4.6,
+   "y": 1
+  },
+  {
+   "id": "veril",
+   "nombre": "Veril (línea isobática)",
+   "corto": "La línea que une puntos de igual profundidad. Si la sonda que mides coincide con la de un veril, estás sobre él.",
+   "spec": {
+    "tipo": "veriles",
+    "vista": "carta",
+    "resaltar": [
+     "veriles"
+    ]
+   },
+   "clase": "per-11-5",
+   "x": 4.4,
+   "y": 3.6
+  },
+  {
+   "id": "lp",
+   "nombre": "Línea de posición",
+   "corto": "Una línea de la carta sobre la que sabes que está el barco: una demora, una distancia, una enfilación u oposición o un veril.",
+   "spec": {
+    "tipo": "demoras",
+    "d1": 330,
+    "d2": 34
+   },
+   "clase": "per-11-5",
+   "x": 2.5,
+   "y": 3.6
+  },
+  {
+   "id": "sit",
+   "nombre": "Situación observada",
+   "corto": "El corte de dos líneas de posición tomadas a la vez; con tres, mejor. Más fiable cuanto más se acerque a 90° el ángulo entre ellas.",
+   "spec": {
+    "tipo": "calidad-corte"
+   },
+   "clase": "per-11-6",
+   "x": 2.5,
+   "y": 4.8
+  },
+  {
+   "id": "simul",
+   "nombre": "Observaciones simultáneas",
+   "corto": "Tomadas a la vez: se cruzan directamente, sin trasladar nada. Una situación anterior solo te da el rumbo y la distancia navegada.",
+   "spec": {
+    "tipo": "traslado-demora",
+    "caso": "simultaneas"
+   },
+   "clase": "per-11-8",
+   "x": 1.3,
+   "y": 6
+  },
+  {
+   "id": "nosim",
+   "nombre": "Demoras no simultáneas",
+   "corto": "Tomadas a horas distintas: la primera línea se traslada paralela a sí misma con el Rv y la distancia navegada (d = V × t) hasta la hora de la segunda. En el PER no entra: es del Patrón de Yate.",
+   "spec": {
+    "tipo": "traslado-demora",
+    "caso": "no-simultaneas"
+   },
+   "clase": "per-11-8",
+   "x": 3.7,
+   "y": 6
+  }
+ ],
+ "aristas": [
+  {
+   "de": "ct",
+   "a": "rv",
+   "rel": "Rv = Ra + Ct"
+  },
+  {
+   "de": "rv",
+   "a": "marc",
+   "rel": "la M se cuenta desde su proa"
+  },
+  {
+   "de": "da",
+   "a": "dv",
+   "rel": "Dv = Da + Ct"
+  },
+  {
+   "de": "marc",
+   "a": "dv",
+   "rel": "Dv = Rv + M"
+  },
+  {
+   "de": "enf",
+   "a": "ct",
+   "rel": "Ct = Dv − Da"
+  },
+  {
+   "de": "dv",
+   "a": "inversa",
+   "rel": "± 180° para trazarla"
+  },
+  {
+   "de": "inversa",
+   "a": "lp",
+   "rel": "trazada desde el faro"
+  },
+  {
+   "de": "enf",
+   "a": "lp",
+   "rel": "la recta prolongada, por fuera"
+  },
+  {
+   "de": "opos",
+   "a": "lp",
+   "rel": "el segmento entre los dos"
+  },
+  {
+   "de": "dist",
+   "a": "lp",
+   "rel": "arco con centro en el faro"
+  },
+  {
+   "de": "veril",
+   "a": "lp",
+   "rel": "sonda = la del veril"
+  },
+  {
+   "de": "lp",
+   "a": "sit",
+   "rel": "dos que se cortan"
+  },
+  {
+   "de": "simul",
+   "a": "sit",
+   "rel": "se cruzan sin trasladar"
+  },
+  {
+   "de": "nosim",
+   "a": "sit",
+   "rel": "la trasladada corta la segunda"
+  },
+  {
+   "de": "da",
+   "a": "dv",
+   "rel": "En la carta solo va la Dv: la Da se corrige antes con la Ct. Con dos Da sin el desvío no puedes situarte.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "marc",
+   "a": "dv",
+   "rel": "La marcación se cuenta desde la proa (por babor, −); la demora, desde el norte. Rv 070°, faro 100° por babor → Dv 330°.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "ct",
+   "a": "dv",
+   "rel": "Si sacas la Dv con Rv + M, ya lleva la Ct: no se la vuelvas a aplicar.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "dv",
+   "a": "inversa",
+   "rel": "La Dv va del barco al faro; desde el faro se traza la opuesta. Faro en Dv 154° → trazas el 334°.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "enf",
+   "a": "opos",
+   "rel": "Enfilación: los ves uno tras otro y estás fuera del segmento; oposición: estás entre los dos.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "simul",
+   "a": "nosim",
+   "rel": "Solo se traslada si las dos observaciones son de horas distintas; tomadas a la vez, se cruzan sin más.",
+   "tipo": "confunde"
+  }
+ ]
+}

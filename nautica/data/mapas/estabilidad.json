@@ -1,0 +1,353 @@
+{
+ "id": "estabilidad",
+ "titulo": "Estabilidad",
+ "tits": [
+  "py"
+ ],
+ "intro": "Por qué un barco vuelve a adrizarse: dónde se aplican el peso (G) y el empuje (C), el metacentro y la altura metacéntrica GM, y cómo la cambian los pesos que subes, bajas, trasladas o consumes.",
+ "nodos": [
+  {
+   "id": "desplazamiento",
+   "nombre": "Desplazamiento (D)",
+   "corto": "Peso total del barco con todo lo que lleva, igual al peso del agua desalojada. Cambia al consumir o cargar; al bajar, el barco cala menos.",
+   "spec": {
+    "tipo": "barco",
+    "resaltar": [
+     "calado"
+    ]
+   },
+   "clase": "py-1-1",
+   "x": 3.0,
+   "y": 0
+  },
+  {
+   "id": "consumos",
+   "nombre": "Consumos",
+   "corto": "Gastar combustible, agua o víveres baja D y aleja G del tanque: si el tanque está por debajo de G, G sube y GM disminuye.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 0.5
+   },
+   "clase": "py-1-3",
+   "x": 1.6,
+   "y": 0
+  },
+  {
+   "id": "traslado",
+   "nombre": "Traslado de banda (escora)",
+   "corto": "Pasar un peso de banda a banda lleva G hacia ese lado (GG′ = p·d/D) y deja una escora permanente. Se corrige llevando peso a la banda contraria.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "traslado": 2
+   },
+   "clase": "py-1-3",
+   "x": 0,
+   "y": 2.4
+  },
+  {
+   "id": "superficies",
+   "nombre": "Superficies libres",
+   "corto": "Un tanque a medias deja correr el líquido a la banda baja: es como subir G (G virtual) y se pierde GM. Lleno o vacío no pasa.",
+   "spec": {
+    "tipo": "superficies-libres",
+    "resaltar": "medias"
+   },
+   "clase": "py-1-3",
+   "x": 0,
+   "y": 1.2
+  },
+  {
+   "id": "carena",
+   "nombre": "Centro de carena (C o B)",
+   "corto": "Centro del volumen sumergido, donde se aplica el empuje, hacia arriba. Con un balance o una cabezada se va a la banda que se hunde.",
+   "spec": {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   },
+   "clase": "py-1-1",
+   "x": 4.0,
+   "y": 1.2
+  },
+  {
+   "id": "pesos",
+   "nombre": "Subir o bajar pesos",
+   "corto": "Bajar pesos baja G y aumenta GM (más estabilidad); subirlos sube G y disminuye GM. Los pesos, abajo y bien trincados.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "inestable",
+    "altura": 4.5
+   },
+   "clase": "py-1-3",
+   "x": 0,
+   "y": 0
+  },
+  {
+   "id": "g",
+   "nombre": "Centro de gravedad (G)",
+   "corto": "Donde se aplica el peso, hacia abajo. Solo se mueve si se cargan, descargan, consumen o trasladan pesos; no con las olas. Su altura es KG.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   },
+   "clase": "py-1-1",
+   "x": 1.8,
+   "y": 2.4
+  },
+  {
+   "id": "m",
+   "nombre": "Metacentro (M)",
+   "corto": "Al escorar poco, la vertical del nuevo centro de carena corta la crujía en M. Su altura sobre la quilla es KM (KM = KC + CM).",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 2
+   },
+   "clase": "py-1-2",
+   "x": 4.0,
+   "y": 2.4
+  },
+  {
+   "id": "gm",
+   "nombre": "Altura metacéntrica (GM)",
+   "corto": "Distancia de G a M: GM = KM − KG. Positiva si M está por encima de G. Mide la estabilidad inicial.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 1
+   },
+   "clase": "py-1-2",
+   "x": 2.8,
+   "y": 3.6
+  },
+  {
+   "id": "gz",
+   "nombre": "Par adrizante (GZ)",
+   "corto": "Brazo GZ: distancia horizontal entre la vertical del peso y la del empuje. GZ = GM · sen θ; momento adrizante = D · GZ.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 2.5
+   },
+   "clase": "py-1-2",
+   "x": 4.5,
+   "y": 3.6
+  },
+  {
+   "id": "estable",
+   "nombre": "Equilibrio estable",
+   "corto": "M por encima de G (GM > 0, KM > KG): al escorar aparece un par adrizante y el barco recobra su posición.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 1.5,
+    "traslado": 0
+   },
+   "clase": "py-1-2",
+   "x": 4.5,
+   "y": 4.8
+  },
+  {
+   "id": "indiferente",
+   "nombre": "Equilibrio indiferente",
+   "corto": "M coincide con G (GM = 0, KM = KG): no hay par y el barco se queda con la escora que le hayan dado.",
+   "spec": { "tipo": "estabilidad", "caso": "indiferente" },
+   "clase": "py-1-2",
+   "x": 2.7,
+   "y": 4.8
+  },
+  {
+   "id": "inestable",
+   "nombre": "Equilibrio inestable",
+   "corto": "M por debajo de G (GM < 0, KG > KM): el par es escorante, la escora aumenta y puede dar la vuelta.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   },
+   "clase": "py-1-2",
+   "x": 4.5,
+   "y": 7.2
+  },
+  {
+   "id": "duro",
+   "nombre": "Buque duro",
+   "corto": "GM muy grande: vuelve a la vertical de golpe. Balances rápidos y bruscos que castigan estructura, jarcia y estiba.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 0
+   },
+   "clase": "py-1-3",
+   "x": 0,
+   "y": 4.8
+  },
+  {
+   "id": "blando",
+   "nombre": "Buque blando",
+   "corto": "GM pequeña pero positiva: balances lentos y suaves, cómodos, pero con poca reserva de estabilidad. Se corrige bajando pesos.",
+   "spec": {
+    "tipo": "estabilidad",
+    "caso": "estable",
+    "altura": 3
+   },
+   "clase": "py-1-3",
+   "x": 1.3,
+   "y": 4.8
+  },
+  {
+   "id": "balance",
+   "nombre": "Balance",
+   "corto": "Oscilación transversal, de babor a estribor y vuelta. Lo provoca sobre todo la mar de través.",
+   "spec": {
+    "tipo": "movimiento",
+    "mov": "balance"
+   },
+   "clase": "per-3-1",
+   "x": 0.8,
+   "y": 6,
+   "tit": "per"
+  }
+ ],
+ "aristas": [
+  {
+   "de": "desplazamiento",
+   "a": "g",
+   "rel": "se aplica en"
+  },
+  {
+   "de": "desplazamiento",
+   "a": "carena",
+   "rel": "empuje igual al peso"
+  },
+  {
+   "de": "consumos",
+   "a": "desplazamiento",
+   "rel": "lo disminuye"
+  },
+  {
+   "de": "consumos",
+   "a": "g",
+   "rel": "del fondo: G sube"
+  },
+  {
+   "de": "traslado",
+   "a": "g",
+   "rel": "G va paralelo al peso"
+  },
+  {
+   "de": "superficies",
+   "a": "g",
+   "rel": "sube G (G virtual)"
+  },
+  {
+   "de": "pesos",
+   "a": "g",
+   "rel": "G sube o baja"
+  },
+  {
+   "de": "carena",
+   "a": "m",
+   "rel": "su vertical corta la crujía en"
+  },
+  {
+   "de": "g",
+   "a": "gm",
+   "rel": "KG se resta"
+  },
+  {
+   "de": "m",
+   "a": "gm",
+   "rel": "KM − KG da la"
+  },
+  {
+   "de": "gm",
+   "a": "gz",
+   "rel": "GZ = GM · sen θ"
+  },
+  {
+   "de": "gz",
+   "a": "estable",
+   "rel": "par que adriza"
+  },
+  {
+   "de": "gm",
+   "a": "estable",
+   "rel": "positiva: M sobre G"
+  },
+  {
+   "de": "gm",
+   "a": "indiferente",
+   "rel": "cero: M = G"
+  },
+  {
+   "de": "gm",
+   "a": "inestable",
+   "rel": "negativa: M bajo G"
+  },
+  {
+   "de": "indiferente",
+   "a": "inestable",
+   "rel": "un peso arriba la vuelve"
+  },
+  {
+   "de": "gm",
+   "a": "duro",
+   "rel": "muy grande"
+  },
+  {
+   "de": "gm",
+   "a": "blando",
+   "rel": "pequeña (positiva)"
+  },
+  {
+   "de": "duro",
+   "a": "balance",
+   "rel": "rápidos y bruscos"
+  },
+  {
+   "de": "blando",
+   "a": "balance",
+   "rel": "lentos y suaves"
+  },
+  {
+   "de": "g",
+   "a": "carena",
+   "rel": "G: el peso, hacia abajo; no se mueve con las olas. C: centro del volumen sumergido, el empuje hacia arriba; se va a la banda que se hunde.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "m",
+   "a": "gm",
+   "rel": "M es un punto (su altura es KM). GM es la distancia de G a M; la de C a M (CM) es el radio metacéntrico.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "indiferente",
+   "a": "inestable",
+   "rel": "Indiferente (M = G, GM = 0): se queda escorado. Inestable (M bajo G): la escora aumenta y puede volcar.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "duro",
+   "a": "blando",
+   "rel": "Duro: GM grande, balances rápidos y bruscos. Blando: GM pequeña, balances lentos y suaves.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "traslado",
+   "a": "balance",
+   "rel": "Escora: inclinación mantenida a una banda (un peso trasladado). Balance: vaivén de babor a estribor.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "pesos",
+   "a": "consumos",
+   "rel": "Bajar un peso aumenta GM. Consumir de un tanque bajo G es quitar peso de abajo: G sube y GM disminuye.",
+   "tipo": "confunde"
+  }
+ ]
+}

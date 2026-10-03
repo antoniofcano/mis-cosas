@@ -1,0 +1,322 @@
+{
+ "id": "ripa-luces",
+ "titulo": "RIPA: qué buque es por sus luces",
+ "tits": [
+  "per"
+ ],
+ "intro": "Los sectores de la luz de tope, las de costado y la de alcance, y cómo sus luces y marcas te dicen qué buque tienes delante: de motor, de vela, remolcando, pescando, sin gobierno, restringido, práctico, fondeado o varado.",
+ "nodos": [
+  {
+   "id": "tope",
+   "nombre": "Luz de tope",
+   "corto": "Blanca, en crujía, visible en 225° hacia proa: hasta 22,5° a popa del través de cada banda.",
+   "spec": {
+    "tipo": "sectores-luces",
+    "aspecto": 0
+   },
+   "clase": "per-6-7",
+   "x": 1.2,
+   "y": 0
+  },
+  {
+   "id": "costados",
+   "nombre": "Luces de costado",
+   "corto": "Verde a estribor y roja a babor, 112,5° cada una: desde la proa hasta 22,5° a popa del través.",
+   "spec": {
+    "tipo": "sectores-luces",
+    "aspecto": 60
+   },
+   "clase": "per-6-7",
+   "x": 3.4,
+   "y": 0
+  },
+  {
+   "id": "motor",
+   "nombre": "Propulsión mecánica",
+   "corto": "Tope a proa, costados y alcance. Desde 50 m, una segunda luz de tope a popa y más alta.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "motor-50",
+    "vista": "todas"
+   },
+   "clase": "per-6-7",
+   "x": 0.2,
+   "y": 1.2
+  },
+  {
+   "id": "alcance",
+   "nombre": "Luz de alcance",
+   "corto": "Blanca, lo más cerca posible de la popa, visible en 135° hacia popa (67,5° a cada banda).",
+   "spec": {
+    "tipo": "sectores-luces",
+    "aspecto": 180
+   },
+   "clase": "per-6-7",
+   "x": 2.3,
+   "y": 1.2
+  },
+  {
+   "id": "vela",
+   "nombre": "Buque de vela",
+   "corto": "Costados y alcance, nunca luz de tope. Menos de 20 m: puede llevarlas en un tricolor en el tope del palo.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "vela-tricolor",
+    "vista": "todas"
+   },
+   "clase": "per-6-7",
+   "x": 4.4,
+   "y": 1.2
+  },
+  {
+   "id": "menor12",
+   "nombre": "Motor < 12 m",
+   "corto": "Puede llevar una blanca todo horizonte y costados. Menos de 7 m y 7 nudos o menos: solo la blanca todo horizonte (y costados si puede).",
+   "spec": {
+    "tipo": "buque",
+    "clase": "motor-menor-12",
+    "vista": "todas"
+   },
+   "clase": "per-6-7",
+   "x": 0,
+   "y": 2.4
+  },
+  {
+   "id": "remolque",
+   "nombre": "Remolcador",
+   "corto": "Dos luces de tope en vertical (tres si el remolque pasa de 200 m), costados, alcance y, encima de la de alcance, la amarilla de remolque. Más de 200 m: de día, bicónica.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "remolque-200",
+    "vista": "todas",
+    "dia": true
+   },
+   "clase": "per-6-7",
+   "x": 2.3,
+   "y": 2.4
+  },
+  {
+   "id": "velamotor",
+   "nombre": "Vela y motor a la vez",
+   "corto": "Es buque de motor: lleva sus luces, nunca las de vela. De día, a proa, un cono con el vértice hacia abajo.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   },
+   "clase": "per-6-7",
+   "x": 4.4,
+   "y": 2.4
+  },
+  {
+   "id": "calado",
+   "nombre": "Restringido por su calado",
+   "corto": "Sus luces de buque de motor y, si quiere, tres rojas todo horizonte en vertical. De día, un cilindro.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "calado",
+    "vista": "proa",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 1.2,
+   "y": 2.4
+  },
+  {
+   "id": "arrastre",
+   "nombre": "Pesca de arrastre",
+   "corto": "Verde sobre blanca todo horizonte. De día, como todo pesquero, dos conos unidos por los vértices.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "pesquero-arrastre",
+    "vista": "proa",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 3.4,
+   "y": 3.6
+  },
+  {
+   "id": "pesca",
+   "nombre": "Otra pesca",
+   "corto": "Roja sobre blanca todo horizonte. Aparejo de más de 150 m: otra blanca (de día, cono con el vértice arriba) hacia el aparejo.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "pesquero-aparejo",
+    "vista": "proa",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 3.4,
+   "y": 4.8
+  },
+  {
+   "id": "ram",
+   "nombre": "Maniobra restringida",
+   "corto": "Roja-blanca-roja en vertical; de día, bola-bicónica-bola. El buceo, además, bandera «A» rígida, aunque mida menos de 12 m.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "restringido",
+    "vista": "proa",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 1.2,
+   "y": 4.8
+  },
+  {
+   "id": "nuc",
+   "nombre": "Sin gobierno",
+   "corto": "Dos rojas todo horizonte en vertical; de día, dos bolas. Con arrancada, costados y alcance, nunca tope.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "sin-gobierno",
+    "vista": "proa",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 1.2,
+   "y": 3.6
+  },
+  {
+   "id": "practico",
+   "nombre": "Práctico en servicio",
+   "corto": "Blanca sobre roja todo horizonte en el tope. En navegación, además costados y alcance.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "proa"
+   },
+   "clase": "per-6-8",
+   "x": 4.5,
+   "y": 4.8
+  },
+  {
+   "id": "varado",
+   "nombre": "Varado",
+   "corto": "Las luces de fondeado y dos rojas en vertical; de día, tres bolas. Menos de 12 m: no está obligado a las rojas ni a las bolas.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "varado",
+    "vista": "estribor",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 2.6,
+   "y": 6
+  },
+  {
+   "id": "fondeado",
+   "nombre": "Fondeado",
+   "corto": "Blanca todo horizonte a proa y otra más baja a popa (menos de 50 m, puede una sola). De día, una bola a proa.",
+   "spec": {
+    "tipo": "buque",
+    "clase": "fondeado-50",
+    "vista": "estribor",
+    "dia": true
+   },
+   "clase": "per-6-8",
+   "x": 4.5,
+   "y": 6
+  }
+ ],
+ "aristas": [
+  {
+   "de": "tope",
+   "a": "alcance",
+   "rel": "suman 360°"
+  },
+  {
+   "de": "tope",
+   "a": "motor",
+   "rel": "a proa; 2 desde 50 m"
+  },
+  {
+   "de": "costados",
+   "a": "vela",
+   "rel": "+ alcance, sin tope"
+  },
+  {
+   "de": "motor",
+   "a": "menor12",
+   "rel": "< 12 m"
+  },
+  {
+   "de": "motor",
+   "a": "calado",
+   "rel": "+ 3 rojas"
+  },
+  {
+   "de": "alcance",
+   "a": "remolque",
+   "rel": "amarilla encima"
+  },
+  {
+   "de": "vela",
+   "a": "velamotor",
+   "rel": "con el motor en marcha"
+  },
+  {
+   "de": "costados",
+   "a": "arrastre",
+   "rel": "con arrancada, se añaden"
+  },
+  {
+   "de": "arrastre",
+   "a": "pesca",
+   "rel": "de día, los mismos conos"
+  },
+  {
+   "de": "nuc",
+   "a": "ram",
+   "rel": "niebla: larga + 2 cortas"
+  },
+  {
+   "de": "practico",
+   "a": "fondeado",
+   "rel": "fondeado, suma sus luces"
+  },
+  {
+   "de": "fondeado",
+   "a": "varado",
+   "rel": "+ 2 rojas (3 bolas)"
+  },
+  {
+   "de": "arrastre",
+   "a": "pesca",
+   "rel": "Arrastre: verde sobre blanca. Otra pesca: roja sobre blanca.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "nuc",
+   "a": "ram",
+   "rel": "Sin gobierno: dos rojas (dos bolas). Maniobra restringida: roja-blanca-roja (bola-bicónica-bola).",
+   "tipo": "confunde"
+  },
+  {
+   "de": "nuc",
+   "a": "varado",
+   "rel": "Las dos rojas también las lleva el varado, pero con las blancas de fondeado; de día, tres bolas y no dos.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "practico",
+   "a": "pesca",
+   "rel": "Blanco sobre rojo, práctico; rojo sobre blanco, pesca.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "alcance",
+   "a": "remolque",
+   "rel": "La de alcance es blanca; la amarilla, con el mismo sector, es la de remolque.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "calado",
+   "a": "nuc",
+   "rel": "Tres rojas (cilindro), calado; dos rojas (dos bolas), sin gobierno.",
+   "tipo": "confunde"
+  }
+ ]
+}

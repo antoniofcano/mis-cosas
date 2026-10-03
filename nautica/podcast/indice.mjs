@@ -40,6 +40,7 @@ for (const tit of ['py', 'per']) {
     if (x.trampas?.length) out.push('**Trampas del examen:**', '', ...x.trampas.map((o) => `- ${o}`), '');
     if (x.preguntas?.length) out.push(`**Minijuego** (${reales} preguntas reales de examen en estas clases):`, '', ...x.preguntas.map((id) => `- ${banco.get(id)?.enunciado ?? id} *(${id})*`), '');
     else if (x.tipo === 'profundiza' && reales) out.push(`*${reales} preguntas reales de examen en estas clases.*`, '');
+    if (x.nota) out.push(`**Nota para el guion:** ${x.nota}`, '');
     if (x.relacionados?.length) out.push(`**Relacionados:** ${x.relacionados.join(', ')}.`, '');
   }
 }

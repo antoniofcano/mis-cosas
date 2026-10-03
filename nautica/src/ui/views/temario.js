@@ -12,7 +12,7 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { calcularPlan } from '../cierre.js';
 import { cargarMapas } from './mapas.js';
 import { mapasDeClases } from '../../course/mapas.js';
-import { episodiosDeTema } from './podcast.js';
+import { episodiosDeTema, enlaceEpisodio } from './podcast.js';
 import { estadoEpisodio } from '../radio.js';
 
 const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', repasar: 'toca repasar', dominada: 'aprendida' };
@@ -98,9 +98,13 @@ export function temaView({ progress, params: route, tit }) {
       if (!conAudio.length) return;
       const pan = conAudio.find((e) => e.tipo === 'panorama');
       const resto = conAudio.filter((e) => e !== pan);
-      const fila = (e) => h('a.radio-tema-ep', { href: tlink(tit, ['podcast', e.id]) },
+      const fila = (e) => h('a.radio-tema-ep', { href: enlaceEpisodio(tit, e, `temario/${ut}`) },
         h('span', { 'aria-hidden': 'true' }, estadoEpisodio(e.id).oido ? '✓' : e.tipo === 'panorama' ? '🗼' : '🛟'),
         h('span', h('strong', `${e.n} · ${e.titulo}`), h('span.muted.small', ` · ${Math.round(e.duracion / 60)} min`)));
+      // En la lista de clases, unos auriculares en las que tienen su episodio.
+      for (const e of conAudio.filter((x) => x.tipo === 'profundiza')) {
+        for (const lid of e.lecciones) { const m = el.querySelector(`.clase-podcast[data-clase="${lid}"]`); if (m) m.hidden = false; }
+      }
       setChildren(radioTema, h('h2', '🎧 Escúchalo'),
         h('p.muted.small', pan ? 'Empieza por el panorama para situarte; luego, cada episodio va con sus clases.' : 'Cada episodio va con sus clases.'),
         pan ? fila(pan) : null, resto.map(fila),
@@ -115,7 +119,8 @@ export function temaView({ progress, params: route, tit }) {
       principal,
       clases.length ? h('section', h('h2', 'Clases'), h('ol.clases', clases.map(({ l, e: x }) => h('li', h('a.clase', { href: tlink(tit, ['curso', l.id]) },
         h('span.clase-titulo', l.titulo),
-        h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado]))))))) : null,
+        h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, '🎧'),
+          h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado]))))))) : null,
       h('section', h('h2', 'Preguntas de examen'),
         e.hechas ? h('p', `${e.hechas} de ${e.total} hechas`) : null,
         h('div.actions',

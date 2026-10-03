@@ -672,3 +672,11 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .alternativas p { margin: 0; }
 .aviso-esencial { margin: .4rem 0; }
 .chuleta-leida { margin: 1.4rem 0; }
+
+/* Minutos al día en Ajustes: − valor + y atajos */
+.minutos-ajuste .stepper { display: grid; grid-template-columns: 64px 1fr 64px; align-items: center; gap: .6rem; }
+.minutos-ajuste .stepper button { font-size: 1.6rem; padding: 0; min-height: 56px; }
+.minutos-ajuste output { text-align: center; font-size: 1.3rem; font-weight: 700; }
+.minutos-ajuste .atajos { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+.minutos-ajuste .atajos button { flex: 1 1 0; min-width: 0; min-height: 44px; padding: 0 .2rem; }
+.minutos-ajuste .atajos button.activo { background: var(--accent); color: #fff; border-color: var(--accent); }

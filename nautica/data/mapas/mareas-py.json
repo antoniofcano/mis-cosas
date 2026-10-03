@@ -1,0 +1,307 @@
+{
+ "id": "mareas-py",
+ "titulo": "Mareas y la hora",
+ "tits": [
+  "py"
+ ],
+ "intro": "Del Anuario (horas en TU) a la sonda que tendrás a una hora, y al revés: amplitud, duración e intervalo, la altura de la marea en un momento y el paso entre TU y hora oficial.",
+ "nodos": [
+  {
+   "id": "tu",
+   "nombre": "Tiempo Universal (TU)",
+   "corto": "Tiempo desde el paso del Sol medio por el meridiano inferior de Greenwich. Es la hora en que viene el Anuario de Mareas.",
+   "spec": {
+    "tipo": "coordenadas",
+    "vista": "lugar"
+   },
+   "clase": "py-3-5",
+   "x": 0.3,
+   "y": 0
+  },
+  {
+   "id": "hcl",
+   "nombre": "Hora civil del lugar (HcL)",
+   "corto": "Desde el paso del Sol medio por el meridiano inferior del lugar. HcL = TU + longitud en tiempo (15° = 1 h; E suma, W resta).",
+   "spec": {
+    "tipo": "husos",
+    "vista": "calculo",
+    "ejemplo": "e"
+   },
+   "clase": "py-3-5",
+   "x": 0,
+   "y": 2
+  },
+  {
+   "id": "hz",
+   "nombre": "Hora legal (Hz)",
+   "corto": "La hora del huso (24 husos de 15°): la civil de su meridiano central, la misma en todo el huso. Hz = TU ± número de huso.",
+   "spec": {
+    "tipo": "husos",
+    "vista": "husos"
+   },
+   "clase": "py-3-5",
+   "x": 1.1,
+   "y": 1.2
+  },
+  {
+   "id": "ho",
+   "nombre": "Hora oficial (Ho)",
+   "corto": "La fija el Gobierno. Península y Baleares: TU + 1 en invierno y TU + 2 en verano; Canarias: TU y TU + 1.",
+   "spec": {
+    "tipo": "husos",
+    "vista": "oficial"
+   },
+   "clase": "py-3-5",
+   "x": 1.9,
+   "y": 0
+  },
+  {
+   "id": "hrb",
+   "nombre": "Hora reloj de bitácora (HRB)",
+   "corto": "La fija el patrón y rige la vida a bordo. Puede coincidir con la legal o con la oficial, pero no tiene por qué.",
+   "spec": {
+    "tipo": "husos",
+    "vista": "oficial"
+   },
+   "clase": "py-3-5",
+   "x": 1.3,
+   "y": 2.4
+  },
+  {
+   "id": "anuario",
+   "nombre": "El Anuario de Mareas",
+   "corto": "Lo publica el Instituto Hidrográfico de la Marina: horas y alturas de pleamares y bajamares de cada día. Horas en TU; alturas desde el cero hidrográfico.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva"
+   },
+   "clase": "py-3-6",
+   "x": 3.6,
+   "y": 0
+  },
+  {
+   "id": "amplitud",
+   "nombre": "Amplitud (A)",
+   "corto": "Diferencia de alturas: A = altura PM − altura BM, en metros. Mayor en mareas vivas, menor en muertas.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "fases"
+   },
+   "clase": "per-10-8",
+   "tit": "per",
+   "x": 1.5,
+   "y": 3.4
+  },
+  {
+   "id": "duracion",
+   "nombre": "Duración (D)",
+   "corto": "Tiempo entre una bajamar y la pleamar siguiente (o al revés). Ronda las 6 h y cuarto, pero no es siempre igual.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva"
+   },
+   "clase": "per-10-8",
+   "tit": "per",
+   "x": 3,
+   "y": 3.4
+  },
+  {
+   "id": "intervalo",
+   "nombre": "Intervalo (I)",
+   "corto": "Tiempo entre tu hora y la bajamar del tramo, también con la marea bajando (entonces la hora es BM − I).",
+   "spec": {
+    "tipo": "marea",
+    "modo": "duodecimos"
+   },
+   "clase": "py-3-6",
+   "x": 4.5,
+   "y": 3.4
+  },
+  {
+   "id": "altura",
+   "nombre": "Altura en un momento (C, h)",
+   "corto": "C = A · sen²(90° · I / D) es lo que ha subido sobre la bajamar; la altura de la marea es h = altura BM + C. La tabla del Anuario hace la misma cuenta.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva"
+   },
+   "clase": "py-3-6",
+   "x": 2.6,
+   "y": 4.5
+  },
+  {
+   "id": "duodecimos",
+   "nombre": "Regla de los duodécimos",
+   "corto": "En cada sexto de la duración la marea sube 1, 2, 3, 3, 2 y 1 doceavos de la amplitud. Sirve para comprobar de cabeza; manda el Anuario.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "duodecimos"
+   },
+   "clase": "py-3-6",
+   "x": 0.8,
+   "y": 4.5
+  },
+  {
+   "id": "sonda-carta",
+   "nombre": "Sonda de la carta",
+   "corto": "Del fondo al cero hidrográfico, la Mayor Bajamar Astronómica (LAT): casi siempre tendrás más agua.",
+   "spec": {
+    "tipo": "veriles",
+    "vista": "carta"
+   },
+   "clase": "per-10-8",
+   "tit": "per",
+   "x": 0.8,
+   "y": 5.6
+  },
+  {
+   "id": "sonda-momento",
+   "nombre": "Sonda en un momento",
+   "corto": "Sonda = sonda de la carta + h. Se suman sin más: las dos se miden desde el cero hidrográfico.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "sonda"
+   },
+   "clase": "py-4-9",
+   "x": 2.6,
+   "y": 5.6
+  },
+  {
+   "id": "presion",
+   "nombre": "Corrección por presión",
+   "corto": "El Anuario supone unos 1013 hPa. Cerca de 1 cm por hPa de diferencia: presión alta, menos agua; presión baja, más.",
+   "spec": {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   },
+   "clase": "py-4-9",
+   "x": 4.2,
+   "y": 5.6
+  },
+  {
+   "id": "inverso",
+   "nombre": "Hora para tener una sonda",
+   "corto": "h = sonda que necesitas − sonda de la carta; C = h − altura BM; I = D · arcsen √(C / A) / 90°. La hora (BM ± I) sale en TU: súmale el adelanto.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "sonda"
+   },
+   "clase": "py-4-9",
+   "x": 2.6,
+   "y": 6.7
+  }
+ ],
+ "aristas": [
+  {
+   "de": "tu",
+   "a": "hcl",
+   "rel": "+ longitud en tiempo"
+  },
+  {
+   "de": "tu",
+   "a": "hz",
+   "rel": "± número de huso"
+  },
+  {
+   "de": "hz",
+   "a": "hrb",
+   "rel": "puede coincidir con"
+  },
+  {
+   "de": "ho",
+   "a": "anuario",
+   "rel": "− adelanto (a TU)"
+  },
+  {
+   "de": "anuario",
+   "a": "amplitud",
+   "rel": "sus alturas dan la"
+  },
+  {
+   "de": "anuario",
+   "a": "duracion",
+   "rel": "sus horas dan la"
+  },
+  {
+   "de": "anuario",
+   "a": "intervalo",
+   "rel": "hora de la BM"
+  },
+  {
+   "de": "amplitud",
+   "a": "altura",
+   "rel": "C = A · sen²(…)"
+  },
+  {
+   "de": "duracion",
+   "a": "altura",
+   "rel": "D: el tramo entero"
+  },
+  {
+   "de": "intervalo",
+   "a": "altura",
+   "rel": "I: desde la BM"
+  },
+  {
+   "de": "duodecimos",
+   "a": "altura",
+   "rel": "la comprueba de cabeza"
+  },
+  {
+   "de": "altura",
+   "a": "sonda-momento",
+   "rel": "h + sonda de la carta"
+  },
+  {
+   "de": "sonda-carta",
+   "a": "sonda-momento",
+   "rel": "se suma (mismo cero)"
+  },
+  {
+   "de": "presion",
+   "a": "sonda-momento",
+   "rel": "≈ 1 cm por hPa"
+  },
+  {
+   "de": "sonda-momento",
+   "a": "inverso",
+   "rel": "al revés: ¿a qué hora?"
+  },
+  {
+   "de": "tu",
+   "a": "ho",
+   "rel": "El Anuario va en TU: resta el adelanto a la hora oficial antes de entrar y súmaselo al resultado si te piden hora oficial.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "hz",
+   "a": "ho",
+   "rel": "La legal es la del huso (TU ± huso); la oficial la fija el Gobierno. En España no coinciden ni en invierno.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "ho",
+   "a": "hrb",
+   "rel": "La oficial la fija el Gobierno; la HRB, el patrón: puede coincidir con ella, pero no «es igual» por definición.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "amplitud",
+   "a": "duracion",
+   "rel": "Amplitud son alturas (metros); duración, tiempos (horas), y no siempre 6 horas.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "duracion",
+   "a": "intervalo",
+   "rel": "D es el tramo entero entre la BM y la PM; I va de tu hora a la bajamar del tramo, nunca a la pleamar.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "sonda-carta",
+   "a": "altura",
+   "rel": "La sonda de la carta va del fondo al cero; la altura de la marea, del cero hacia arriba (y es BM + C, no solo C). La sonda del momento las suma.",
+   "tipo": "confunde"
+  }
+ ]
+}

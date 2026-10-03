@@ -17,7 +17,7 @@ El formato de los guiones está en [`guia.md`](guia.md); este índice se genera 
 
 ## Patrón de Yate (PY)
 
-34 episodios · 8 escritos.
+34 episodios · 17 escritos.
 
 #### 0 · Cómo es el examen del Patrón de Yate y cómo usar estos podcasts
 
@@ -283,7 +283,7 @@ Cómo se pide y se recibe ayuda: la radiobaliza y el camino de su alerta, el res
 
 #### 2.0 · El tiempo que hace en la mar
 
-🧭 Panorama · ⏳ pendiente · clases py-2-1, py-2-2, py-2-3, py-2-4, py-2-5, py-2-6, py-2-7, py-2-8, py-2-9
+🧭 Panorama · ✅ [guion](py/2-0-el-tiempo-en-la-mar.md) · clases py-2-1, py-2-2, py-2-3, py-2-4, py-2-5, py-2-6, py-2-7, py-2-8, py-2-9
 
 Recorrido por todo el tema de Meteorología del Patrón de Yate: presión e isobaras, frentes, modelos de viento, vientos regionales, humedad y nubes, nieblas, olas y corrientes. Es la mitad del módulo genérico y casi todas sus preguntas se repiten convocatoria tras convocatoria con las mismas trampas, así que es un tema muy agradecido para sumar aciertos.
 
@@ -313,7 +313,7 @@ Recorrido por todo el tema de Meteorología del Patrón de Yate: presión e isob
 
 #### 2.1 · Isobaras, borrascas y anticiclones
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-1
+🔎 Profundiza · ✅ [guion](py/2-1-isobaras-borrascas-anticiclones.md) · clase py-2-1
 
 Qué es una isobara, qué es el gradiente horizontal de presión y cómo se relaciona con la separación de las isobaras y la fuerza del viento, y cómo son borrascas, anticiclones, dorsales y vaguadas. La relación entre inclinación de las superficies isobáricas, gradiente, separación de isobaras y viento es la pregunta más repetida del tema, redactada de mil maneras.
 
@@ -348,7 +348,7 @@ Qué es una isobara, qué es el gradiente horizontal de presión y cómo se rela
 
 #### 2.2 · Masas de aire y frentes
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-2
+🔎 Profundiza · ✅ [guion](py/2-2-masas-de-aire-y-frentes.md) · clase py-2-2
 
 Masas de aire y frentes: cómo se clasifican las masas, cómo se dibuja cada frente, qué aire se mueve en el frío y en el cálido, qué nubes y tiempo traen, y cómo distinguir una oclusión de tipo frío de una de tipo cálido. El examen repite casi literal la pregunta de la oclusión cambiando solo «vanguardia» y «retaguardia», y la de quién empuja a quién en cada frente.
 
@@ -383,7 +383,7 @@ Masas de aire y frentes: cómo se clasifican las masas, cómo se dibuja cada fre
 
 #### 2.3 · Los modelos de viento: Euler, geostrófico, de gradiente, ciclostrófico y antitríptico
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-3
+🔎 Profundiza · ✅ [guion](py/2-3-modelos-de-viento.md) · clase py-2-3
 
 Los cinco modelos de viento del temario, construidos añadiendo fuerzas: Euler, geostrófico, de gradiente, ciclostrófico y antitríptico, y la ley de Buys-Ballot que sale del geostrófico. Cada convocatoria trae al menos una pregunta que mezcla qué fuerzas tiene cada modelo y si va paralelo o corta las isobaras.
 
@@ -418,7 +418,7 @@ Los cinco modelos de viento del temario, construidos añadiendo fuerzas: Euler, 
 
 #### 2.4 · Vientos regionales del Mediterráneo y del Atlántico
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-4
+🔎 Profundiza · ✅ [guion](py/2-4-vientos-regionales.md) · clase py-2-4
 
 Los vientos con nombre propio de nuestras costas: la rosa mediterránea, los fríos del norte (mistral y tramontana), los del Estrecho (levante y poniente), los cálidos del sur (siroco y lebeche), la galerna del Cantábrico, el vendaval y los alisios. El examen los pregunta casi siempre por su descripción, con opciones cortas de nombres.
 
@@ -453,7 +453,7 @@ Los vientos con nombre propio de nuestras costas: la rosa mediterránea, los fr�
 
 #### 2.5 · Humedad y nubes
 
-🔎 Profundiza · ⏳ pendiente · clases py-2-5, py-2-6
+🔎 Profundiza · ✅ [guion](py/2-5-humedad-y-nubes.md) · clases py-2-5, py-2-6
 
 Humedad absoluta, humedad relativa, punto de rocío y psicrómetro, y después las nubes: cómo se forman (convectivas, orográficas y frontales) y en qué piso va cada uno de los diez géneros. Las preguntas cambian unidades y magnitudes en las definiciones de humedad, y alturas y nombres en las de nubes.
 
@@ -488,7 +488,7 @@ Humedad absoluta, humedad relativa, punto de rocío y psicrómetro, y después l
 
 #### 2.6 · Nieblas
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-7
+🔎 Profundiza · ✅ [guion](py/2-6-nieblas.md) · clase py-2-7
 
 Qué es la niebla, cómo se clasifica por su formación (enfriamiento, evaporación y mezcla), cómo se forman la de radiación, la de advección y la de vapor, cómo se prevé a bordo con el psicrómetro y qué la disipa. El examen pregunta sobre todo en qué grupo va cada niebla y cambia frío por cálido y húmedo por seco.
 
@@ -523,7 +523,7 @@ Qué es la niebla, cómo se clasifica por su formación (enfriamiento, evaporaci
 
 #### 2.7 · Las olas
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-8
+🔎 Profundiza · ✅ [guion](py/2-7-las-olas.md) · clase py-2-8
 
 Qué es una ola, sus partes (cresta, seno, longitud de onda, altura, amplitud y periodo), de qué depende su altura y cómo distinguir la mar de viento de la mar de fondo. Son preguntas de definición en las que el examen intercambia distancia y tiempo, cresta y seno, doble y mitad, y las características de los dos tipos de mar.
 
@@ -558,7 +558,7 @@ Qué es una ola, sus partes (cresta, seno, longitud de onda, altura, amplitud y 
 
 #### 2.8 · Corrientes marinas
 
-🔎 Profundiza · ⏳ pendiente · clase py-2-9
+🔎 Profundiza · ✅ [guion](py/2-8-corrientes-marinas.md) · clase py-2-9
 
 Qué es una corriente marina y cómo se nombra, sus cuatro tipos por su causa (densidad, arrastre, gradiente y marea) y las corrientes de nuestras costas: Vizcaya, Portugal, Canarias, el Estrecho en dos capas y el Mediterráneo occidental. El examen cruza las causas de cada tipo y da la vuelta a las direcciones de las corrientes regionales.
 

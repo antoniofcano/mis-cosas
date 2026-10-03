@@ -144,6 +144,8 @@ async function main() {
   const chart = createChart(await loadChartData());
   const ctx = { chart };
   const progress = createProgressStore();
+  // Una versión nueva se aplica sola al abrir la app, salvo con un examen a medias (entonces se pregunta).
+  iniciarPwa({ puedeActualizarSolo: () => !progress.testEnCurso() });
   setSharedProgress(progress);
   voice.bind(progress);
   let current = null;
@@ -190,7 +192,6 @@ async function main() {
   render();
 }
 
-iniciarPwa();
 
 main().catch((e) => {
   document.getElementById('app').textContent = `Error al iniciar: ${e.message}`;

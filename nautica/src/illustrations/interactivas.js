@@ -18,7 +18,7 @@ export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente, 'sectores-lu
   // meteo: solo algunas variantes son interactivas; el resto (borrasca, anticiclón, brisas…) sigue fija
   // marea: curva, duodécimos y sonda son la misma lámina interactiva; «fases» (vivas y muertas) sigue fija
   marea: { porVariante: 'modo', porDefecto: 'curva', variantes: { curva: marea, duodecimos: marea, sonda: marea } },
-  meteo: { porVariante: 'sistema', variantes: { isobaras, 'niebla-adveccion': nieblas, 'niebla-radiacion': nieblas, frentes } },
+  meteo: { porVariante: 'sistema', variantes: { isobaras, 'niebla-adveccion': nieblas, 'niebla-radiacion': nieblas, 'niebla-vapor': nieblas, frentes } },
 };
 
 /** Definición interactiva que corresponde a una spec, o null. */

@@ -28,7 +28,8 @@ test('resaltar admite una lista', () => {
 
 test('los tipos no chocan con los ya existentes', () => {
   for (const tipo of Object.keys(LAMINAS)) {
-    assert.ok(!(tipo in CATALOGO), tipo);
-    assert.ok(!(tipo in LAMINAS_LECCIONES), tipo);
+    assert.ok(!(tipo in CATALOGO) || CATALOGO[tipo].ejemplo === LAMINAS[tipo].ejemplo, tipo);
+    // Una vez registrado, el tipo de LAMINAS_LECCIONES tiene que ser este mismo (no otro con el mismo nombre).
+    assert.ok(!(tipo in LAMINAS_LECCIONES) || LAMINAS_LECCIONES[tipo] === LAMINAS[tipo], tipo);
   }
 });

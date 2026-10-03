@@ -4063,6 +4063,14 @@
        "texto": "- **Permanentes**: cambios definitivos. Se pasan a la carta con **tinta indeleble**.\n- **Temporales**: duran un tiempo (una luz apagada, unas obras). Se anotan **a lápiz** y se borran al cancelarse.\n- **Preliminares**: anuncian un cambio que llegará. También **a lápiz**.\n- **Generales**: información general; **no corrigen** cartas.\n\nCada corrección se registra con su número y año en el **margen inferior** de la carta. Si una zona pequeña cambia mucho, el aviso trae un **recorte gráfico** que se pega encima."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "avisos-navegantes",
+        "vista": "correccion"
+       },
+       "texto": "Permanentes a tinta, temporales y preliminares a lápiz, generales no corrigen; cada corrección, al margen inferior."
+      },
+      {
        "tipo": "ojo",
        "texto": "Sobre el **objetivo** de los Avisos las plantillas no coinciden. En 2021 se dio por buena «avisar de los peligros inminentes relacionados con la navegación», aunque también estaba la opción de mantener al día las cartas y publicaciones. En 2024 y 2025 la buena fue «**mantener actualizadas las cartas y publicaciones**» (o «las cartas y derroteros») y la de los peligros «a nivel internacional» fue falsa. Lo correcto según el IHM es **mantener al día**: lo urgente va por **radioaviso**. Marca esa, que es la de las plantillas más recientes, sabiendo que en 2021 se puntuó la otra."
       },
@@ -4074,6 +4082,14 @@
        "tipo": "texto",
        "titulo": "Radioavisos",
        "texto": "Lo **urgente** no puede esperar al boletín semanal: va por radio.\n- **NAVAREA**: el mundo se divide en 21 zonas. España coordina la **NAVAREA III** (Mediterráneo y mar Negro); la costa atlántica está en la **II**, que coordina Francia. Se reciben por satélite.\n- **Costeros**: por **NAVTEX** (518 kHz en inglés, 490 kHz en español); en España los emite Salvamento Marítimo.\n- **Locales**: por VHF, en puertos y sus proximidades.\n\nPor radiotelefonía se anuncian con la palabra **SÉCURITÉ** (seguridad)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "avisos-navegantes",
+        "vista": "radioavisos"
+       },
+       "texto": "Lo que puede esperar va en el boletín semanal; lo urgente, por radioaviso: NAVAREA, NAVTEX o VHF."
       },
       {
        "tipo": "clave",

@@ -8,5 +8,8 @@ import { LAMINAS as carta } from './carta.js';
 import { LAMINAS as mar } from './mar.js';
 import { LAMINAS as casco } from './casco.js';
 import { LAMINAS as fondeo } from './fondeo.js';
+import { LAMINAS as normativa } from './normativa.js';
+import { LAMINAS as sanidad } from './sanidad.js';
+import { LAMINAS as publicaciones } from './publicaciones.js';
 
-export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo };
+export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones };

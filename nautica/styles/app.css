@@ -693,3 +693,34 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 /* Avisar de un error */
 .pie-aviso { margin: .6rem 0 0; text-align: right; }
 .aviso-error { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; color: var(--muted); }
+
+/* Mapas de conceptos */
+.mapa-pestanas { display: flex; gap: .4rem; flex-wrap: wrap; margin: .4rem 0 1rem; }
+.mapa-pestanas button { flex: 1 1 0; min-height: 44px; padding: 0 .4rem; }
+.mapa-rastro { font-size: .95rem; }
+.mapa-rastro a { display: inline-flex; align-items: center; min-height: 44px; }
+.mapa-centro { border: 2px solid var(--accent); border-radius: var(--radius); padding: .6rem .8rem; background: var(--surface); }
+.mapa-centro h2 { margin: .2rem 0; }
+.mapa-grupo h3 { margin: 1.2rem 0 .4rem; font-size: 1.05rem; }
+.mapa-vecino { display: flex; align-items: center; gap: .6rem; width: 100%; text-align: left; padding: .4rem .6rem; margin: .35rem 0; min-height: 64px;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font: inherit; cursor: pointer; }
+.mapa-grupo.confunde .mapa-vecino { border: 2px dashed var(--close); }
+.mapa-vecino-txt { display: flex; flex-direction: column; gap: .15rem; }
+.mapa-rel { color: var(--muted); font-size: .92rem; }
+.mapa-mini { flex: 0 0 64px; width: 64px; height: 48px; overflow: hidden; border-radius: 6px; background: var(--l-fondo); }
+.mapa-mini svg { width: 100%; height: 100%; }
+.mapa-entero { overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); max-height: 70vh; -webkit-overflow-scrolling: touch; }
+.mapa-entero svg { display: block; color: var(--text); }
+.mapa-linea { stroke: currentColor; stroke-width: 1.5; opacity: .7; }
+.mapa-linea.confunde { stroke: var(--close); stroke-dasharray: 6 5; opacity: .9; }
+.mapa-etiqueta { font-size: 11px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+.mapa-nodo rect { fill: var(--accent-2); stroke: var(--accent); stroke-width: 1.5; }
+.mapa-nodo text { font-size: 13px; font-weight: 700; fill: var(--text); }
+.mapa-nodo { cursor: pointer; }
+.mapa-nodo:focus rect, .mapa-nodo:hover rect { stroke-width: 3; }
+.mapa-pregunta { display: flex; gap: .6rem; align-items: center; }
+.mapa-opciones { display: grid; gap: .5rem; margin: .8rem 0; }
+.mapa-opcion { min-height: 52px; text-align: left; }
+.mapa-opcion:disabled { opacity: 1; }
+.mapa-opcion.correcta { border: 2px solid var(--ok); color: var(--ok); font-weight: 700; }
+.mapa-opcion.fallada { border: 2px solid var(--warn); color: var(--warn); }

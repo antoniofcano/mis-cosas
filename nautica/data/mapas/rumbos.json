@@ -1,0 +1,42 @@
+{
+ "id": "rumbos",
+ "titulo": "Rumbos y correcciones",
+ "tits": ["per", "py"],
+ "intro": "De la aguja a la carta: los tres nortes, la corrección total, las demoras y marcaciones, y lo que te saca del rumbo (el viento y la corriente).",
+ "nodos": [
+  { "id": "nv", "nombre": "Norte verdadero (Nv)", "corto": "El geográfico, hacia el polo Norte. Es el de la carta.", "spec": { "tipo": "nortes", "dm": -3, "desvio": 5 }, "clase": "per-10-5", "x": 0, "y": 0 },
+  { "id": "nm", "nombre": "Norte magnético (Nm)", "corto": "Hacia donde apuntaría una brújula sin nada que la perturbe.", "spec": { "tipo": "nortes", "dm": -3, "desvio": 5 }, "clase": "per-10-5", "x": 2, "y": 0 },
+  { "id": "na", "nombre": "Norte de aguja (Na)", "corto": "Hacia donde apunta tu aguja, a bordo de tu barco.", "spec": { "tipo": "nortes", "dm": -3, "desvio": 5 }, "clase": "per-10-5", "x": 4, "y": 0 },
+  { "id": "dm", "nombre": "Declinación (dm)", "corto": "Ángulo de Nv a Nm. Depende del lugar y del año: la trae la rosa de la carta y hay que actualizarla.", "spec": { "tipo": "declinacion-anual", "dm": -150, "anio": 2016, "variacion": 9, "actual": 2026 }, "clase": "per-10-5", "x": 1, "y": 1.2 },
+  { "id": "desvio", "nombre": "Desvío (Δ)", "corto": "Ángulo de Nm a Na. Lo causan los hierros de tu barco y cambia con el rumbo (tablilla de desvíos).", "spec": { "tipo": "nortes", "dm": -1, "desvio": 6 }, "clase": "per-10-5", "x": 3, "y": 1.2 },
+  { "id": "ct", "nombre": "Corrección total (Ct)", "corto": "Ct = dm + Δ, cada una con su signo (E +, W −). Es el ángulo de Nv a Na.", "spec": { "tipo": "nortes", "dm": -1, "desvio": 6 }, "clase": "per-11-2", "x": 2, "y": 2.4 },
+  { "id": "ra", "nombre": "Rumbo de aguja (Ra)", "corto": "Contado desde el Na: el que lleva el timonel.", "spec": { "tipo": "rosa", "rumbo": 225 }, "clase": "per-10-6", "x": 1, "y": 3.6 },
+  { "id": "rv", "nombre": "Rumbo verdadero (Rv)", "corto": "Contado desde el Nv: el que se traza en la carta. Rv = Ra + Ct.", "spec": { "tipo": "rosa", "rumbo": 225 }, "clase": "per-10-6", "x": 3, "y": 3.6 },
+  { "id": "cuadrantal", "nombre": "Rumbo cuadrantal", "corto": "De 0° a 90° desde el N o el S hacia el E o el W: S45W = 225°, N64W = 296°.", "spec": { "tipo": "rumbo-cuadrantal", "rumbo": "N64W" }, "clase": "per-10-6", "x": 4.2, "y": 2.4 },
+  { "id": "da", "nombre": "Demora de aguja (Da)", "corto": "La visual a un faro tomada con la aguja, desde el Na.", "spec": { "tipo": "rosa", "rumbo": 110, "demora": 50, "marcacion": true, "etiqueta": "faro" }, "clase": "per-10-7", "x": 1, "y": 4.8 },
+  { "id": "dv", "nombre": "Demora verdadera (Dv)", "corto": "Ángulo del Nv a la visual de un objeto. Es la única que se traza en la carta. Dv = Da + Ct.", "spec": { "tipo": "rosa", "rumbo": 110, "demora": 50, "marcacion": true, "etiqueta": "faro" }, "clase": "per-10-7", "x": 3, "y": 4.8 },
+  { "id": "marc", "nombre": "Marcación (M)", "corto": "Ángulo desde la proa a la visual: + por estribor, − por babor.", "spec": { "tipo": "demora-marcacion", "rumbo": 70, "marcacion": -100 }, "clase": "per-10-7", "x": 4.2, "y": 6 },
+  { "id": "enf", "nombre": "Enfilación u oposición", "corto": "Dos faros alineados (o tú entre ellos): la carta te da la Dv exacta, y con ella la Ct.", "spec": { "tipo": "enfilacion", "dv": 227, "da": 235 }, "clase": "per-11-2", "x": 0, "y": 3 },
+  { "id": "rs", "nombre": "Rumbo de superficie (Rs)", "corto": "El que sigues sobre el agua cuando el viento te abate: Rs = Rv + Ab (viento por babor, Ab +).", "spec": { "tipo": "abatimiento", "banda": "babor" }, "clase": "per-10-9", "x": 2, "y": 6 },
+  { "id": "ref", "nombre": "Rumbo efectivo (Ref)", "corto": "El que llevas respecto al fondo: el barco más la corriente (deriva).", "spec": { "tipo": "corriente", "caso": "efectivo" }, "clase": "per-10-9", "x": 2, "y": 7.2 }
+ ],
+ "aristas": [
+  { "de": "nv", "a": "nm", "rel": "declinación (dm)" },
+  { "de": "nm", "a": "na", "rel": "desvío (Δ)" },
+  { "de": "dm", "a": "ct", "rel": "se suma con su signo" },
+  { "de": "desvio", "a": "ct", "rel": "se suma con su signo" },
+  { "de": "ra", "a": "rv", "rel": "+ Ct" },
+  { "de": "da", "a": "dv", "rel": "+ Ct" },
+  { "de": "cuadrantal", "a": "rv", "rel": "se pasa a circular" },
+  { "de": "enf", "a": "dv", "rel": "da la Dv en la carta" },
+  { "de": "enf", "a": "ct", "rel": "Ct = Dv − Da" },
+  { "de": "marc", "a": "dv", "rel": "Dv = Rv + M" },
+  { "de": "rv", "a": "rs", "rel": "+ Ab (el viento)" },
+  { "de": "rs", "a": "ref", "rel": "+ corriente" },
+  { "de": "dm", "a": "desvio", "rel": "No los confundas: la dm depende del lugar y del año; el desvío, de tu barco y del rumbo.", "tipo": "confunde" },
+  { "de": "ct", "a": "desvio", "rel": "Una enfilación te da la Ct, no el desvío: Δ = Ct − dm.", "tipo": "confunde" },
+  { "de": "marc", "a": "dv", "rel": "La marcación se cuenta desde la proa; la demora, desde el norte.", "tipo": "confunde" },
+  { "de": "ra", "a": "rv", "rel": "Rv en la carta, Ra en el timón: de la carta al timón, Ra = Rv − Ct.", "tipo": "confunde" },
+  { "de": "rs", "a": "ref", "rel": "Viento → abatimiento (Rs); corriente → deriva (Ref). El ángulo de la estela es el abatimiento.", "tipo": "confunde" }
+ ]
+}

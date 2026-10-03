@@ -12,5 +12,7 @@ import { LAMINAS as normativa } from './normativa.js';
 import { LAMINAS as sanidad } from './sanidad.js';
 import { LAMINAS as publicaciones } from './publicaciones.js';
 import { LAMINAS as pyNavegacion } from './py-navegacion.js';
+import { LAMINAS as pySegundaA } from './py-segunda-a.js';
+import { LAMINAS as pySegundaB } from './py-segunda-b.js';
 
-export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones, ...pyNavegacion };
+export const LAMINAS_LECCIONES = { ...propias, ...costa, ...tierra, ...seguridad, ...carta, ...mar, ...casco, ...fondeo, ...normativa, ...sanidad, ...publicaciones, ...pyNavegacion, ...pySegundaA, ...pySegundaB };

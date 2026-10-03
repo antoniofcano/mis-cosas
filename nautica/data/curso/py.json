@@ -4994,7 +4994,7 @@
       {
        "tipo": "texto",
        "titulo": "Por qué banda entra el viento",
-       "texto": "Calcula **dirección del viento − Rv** y llévalo a 0°–360°:\n- Entre **0° y 180°** → entra por **estribor**.\n- Entre **180° y 360°** → entra por **babor**.\n\nEjemplos:\n- Viento NE (045°) con Rv 142°: 045 − 142 = −97 → 263° → **babor** → Ab +.\n- Viento W (270°) con Rv 208°: 270 − 208 = 62° → **estribor** → Ab −.\n\nSi el viento entra justo por la proa o por la popa, no hay abatimiento. Cuando buscas el rumbo a dar aún no conoces el Rv: decide la banda con el Rs, que en los problemas de examen da la misma banda."
+       "texto": "Calcula **dirección del viento − Rv** y llévalo a 0°–360°:\n- Entre **0° y 180°** → entra por **estribor**.\n- Entre **180° y 360°** → entra por **babor**.\n\nEjemplos:\n- Viento NE (045°) con Rv 142°: 045 − 142 = −97 → 263° → **babor** → Ab +.\n- Viento W (270°) buscando el rumbo a dar para un Rs 200°: 270 − 200 = 70° → **estribor** → Ab −.\n\nSi el viento entra justo por la proa o por la popa, no hay abatimiento. Cuando buscas el rumbo a dar aún no conoces el Rv: decide la banda con el Rs, que en los problemas de examen da la misma banda."
       },
       {
        "tipo": "texto",
@@ -5009,7 +5009,7 @@
       {
        "tipo": "texto",
        "titulo": "Resolución paso a paso",
-       "texto": "1. **Traza** desde la situación hasta la luz verde de Ceuta: **Rs ≈ 200°**, distancia **8,7 millas**.\n2. **Banda del viento**: poniente = 270°. Con la proa hacia el SSW: 270 − 208 = 62° → **estribor** → abates a babor, Ab = **−8°**.\n3. **Rv = Rs − Ab** = 200° − (−8°) = **208°**. Orzas hacia el viento.\n4. **Ct** = −2° − 4° = **−6°**.\n5. **Ra = Rv − Ct** = 208° + 6° = **214°**.\n6. **Tiempo**: 8,7 / 6 = 1,45 h = **1 h 27 min** → llegada a las **11:57**."
+       "texto": "1. **Traza** desde la situación hasta la luz verde de Ceuta: **Rs ≈ 200°**, distancia **8,7 millas**.\n2. **Banda del viento** (con el Rs, porque el Rv aún no lo sabes): poniente = 270°. 270 − 200 = 70° → **estribor** → abates a babor, Ab = **−8°**.\n3. **Rv = Rs − Ab** = 200° − (−8°) = **208°**. Orzas hacia el viento.\n4. **Ct** = −2° − 4° = **−6°**.\n5. **Ra = Rv − Ct** = 208° + 6° = **214°**.\n6. **Tiempo**: 8,7 / 6 = 1,45 h = **1 h 27 min** → llegada a las **11:57**."
       },
       {
        "tipo": "texto",
@@ -5127,7 +5127,7 @@
       {
        "tipo": "texto",
        "titulo": "Resolución paso a paso",
-       "texto": "1. **Visual al faro**: Dv ≈ **089,5°**, D ≈ **10,9 millas**.\n2. **Ángulo**: sen α = 4 / 10,9 → α ≈ **21,5°**.\n3. **Tangente por babor**: Rs = 089,5° + 21,5° ≈ **111°** (pasas al sur de la isla).\n4. **Banda del viento**: 180 − 121 = 59° → **estribor** → Ab = **−10°**.\n5. **Rv = Rs − Ab** = 111° + 10° = **121°**.\n6. **Ct** = −1° + 6° = **+5°** → **Ra = Rv − Ct** = 121° − 5° = **116°**.\n\nEn la carta lo haces con compás y transportador; la cuenta de α solo sirve para comprobar."
+       "texto": "1. **Visual al faro**: Dv ≈ **089,5°**, D ≈ **10,9 millas**.\n2. **Ángulo**: sen α = 4 / 10,9 → α ≈ **21,5°**.\n3. **Tangente por babor**: Rs = 089,5° + 21,5° ≈ **111°** (pasas al sur de la isla).\n4. **Banda del viento** (con el Rs): 180 − 111 = 69° → **estribor** → Ab = **−10°**.\n5. **Rv = Rs − Ab** = 111° + 10° = **121°**.\n6. **Ct** = −1° + 6° = **+5°** → **Ra = Rv − Ct** = 121° − 5° = **116°**.\n\nEn la carta lo haces con compás y transportador; la cuenta de α solo sirve para comprobar."
       },
       {
        "tipo": "ilustracion",
@@ -5168,7 +5168,7 @@
         "c": "060°"
        },
        "correcta": "b",
-       "explicacion": "Con proa al NE, el NW (315°) entra por babor: 315 − 048 = 267° → Ab +12°. Rv = Rs − Ab = 060° − 12° = 048°."
+       "explicacion": "Con proa al NE, el NW (315°) entra por babor: 315 − 060 = 255° → Ab +12°. Rv = Rs − Ab = 060° − 12° = 048°."
       }
      ],
      "practica": [

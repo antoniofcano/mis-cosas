@@ -1,0 +1,298 @@
+{
+ "id": "mareas",
+ "titulo": "Mareas",
+ "tits": [
+  "per"
+ ],
+ "intro": "Cómo sube y baja el mar con la Luna y el Sol, qué son pleamar, bajamar, amplitud y duración, y cuánta agua tienes de verdad: la sonda de la carta más la altura de la marea.",
+ "nodos": [
+  {
+   "id": "marea",
+   "nombre": "Marea",
+   "corto": "Subida y bajada periódica del mar por la atracción de la Luna y del Sol (la Luna, más, porque está más cerca). En nuestras costas, semidiurna: dos pleamares y dos bajamares en algo menos de 25 h.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva"
+   },
+   "clase": "per-10-8",
+   "x": 1.4,
+   "y": 0
+  },
+  {
+   "id": "anuario",
+   "nombre": "Anuario de Mareas",
+   "corto": "Del IHM. Da la predicción completa de la marea astronómica en los puertos patrón; los secundarios se calculan desde un puerto patrón con correcciones.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva",
+    "hora": 780
+   },
+   "clase": "per-10-8",
+   "x": 4.5,
+   "y": 0
+  },
+  {
+   "id": "vivas",
+   "nombre": "Mareas vivas",
+   "corto": "Con luna nueva y luna llena: Sol, Luna y Tierra alineados (sicigias). Las atracciones se suman: pleamares más altas, bajamares más bajas, más amplitud.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "fases"
+   },
+   "clase": "per-10-8",
+   "x": 0,
+   "y": 1.2
+  },
+  {
+   "id": "muertas",
+   "nombre": "Mareas muertas",
+   "corto": "En cuarto creciente y cuarto menguante: Sol y Luna tiran en ángulo recto (cuadraturas). Menos amplitud.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "fases"
+   },
+   "clase": "per-10-8",
+   "x": 1.1,
+   "y": 1.2
+  },
+  {
+   "id": "pleamar",
+   "nombre": "Pleamar (PM)",
+   "corto": "El nivel más alto que alcanza el mar en cada marea.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva",
+    "hora": 840
+   },
+   "clase": "per-10-8",
+   "x": 2.2,
+   "y": 1.2
+  },
+  {
+   "id": "bajamar",
+   "nombre": "Bajamar (BM)",
+   "corto": "El nivel más bajo que alcanza el mar en cada marea.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva",
+    "hora": 480
+   },
+   "clase": "per-10-8",
+   "x": 3.3,
+   "y": 1.2
+  },
+  {
+   "id": "presion",
+   "nombre": "Presión y viento",
+   "corto": "Cambian la marea prevista. Baja presión: más agua, unos 1 cm por cada hPa por debajo de 1013; alta presión, menos. Viento de la mar hacia tierra: más alta; de tierra: más baja.",
+   "spec": {
+    "tipo": "barometro-tendencia",
+    "vista": "instrumentos"
+   },
+   "clase": "per-10-8",
+   "x": 4.5,
+   "y": 1.2
+  },
+  {
+   "id": "amplitud",
+   "nombre": "Amplitud",
+   "corto": "Diferencia de alturas entre la pleamar y la bajamar, en metros. Ejemplo: PM 3,1 m y BM 0,7 m dan 2,4 m.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva",
+    "hora": 600
+   },
+   "clase": "per-10-8",
+   "x": 1,
+   "y": 2.6
+  },
+  {
+   "id": "creciente",
+   "nombre": "Creciente y vaciante",
+   "corto": "Creciente (flujo): el rato en que el mar sube, de la bajamar a la pleamar. Vaciante (reflujo): cuando baja, de la pleamar a la bajamar.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "curva",
+    "hora": 660
+   },
+   "clase": "per-10-8",
+   "x": 2.6,
+   "y": 2.6
+  },
+  {
+   "id": "cero",
+   "nombre": "Cero hidrográfico (LAT)",
+   "corto": "Plano de referencia desde el que se miden las sondas de la carta y lo que vela en bajamar. El IHM usa la Mayor Bajamar Astronómica (LAT): la bajamar más baja esperable por causas astronómicas.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "sonda",
+    "hora": 480
+   },
+   "clase": "per-10-8",
+   "x": 3.7,
+   "y": 2.6
+  },
+  {
+   "id": "duracion",
+   "nombre": "Duración",
+   "corto": "Horas entre una bajamar y la pleamar siguiente (creciente) o entre una pleamar y la bajamar siguiente (vaciante). Ronda las 6 h 15 min, pero no siempre es igual. Un ciclo completo, unas 12 h 25 min.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "duodecimos"
+   },
+   "clase": "per-10-8",
+   "x": 1.8,
+   "y": 3.8
+  },
+  {
+   "id": "sondacarta",
+   "nombre": "Sonda de la carta",
+   "corto": "Los números pequeños del mar en la carta: la profundidad en ese punto, en metros, del fondo al cero hidrográfico.",
+   "spec": {
+    "tipo": "veriles",
+    "vista": "carta",
+    "resaltar": "sondas"
+   },
+   "clase": "per-10-3",
+   "x": 2.9,
+   "y": 3.8
+  },
+  {
+   "id": "altura",
+   "nombre": "Altura de la marea",
+   "corto": "Lo que el agua está, a una hora dada, por encima del cero hidrográfico. Sube en la creciente y baja en la vaciante.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "sonda",
+    "hora": 720
+   },
+   "clase": "per-10-8",
+   "x": 4.5,
+   "y": 3.8
+  },
+  {
+   "id": "sondamomento",
+   "nombre": "Sonda del momento",
+   "corto": "El agua que tienes de verdad: sonda de la carta + altura de la marea. «La carta es pesimista»: casi siempre hay más agua de la que marca.",
+   "spec": {
+    "tipo": "marea",
+    "modo": "sonda"
+   },
+   "clase": "per-10-8",
+   "x": 3.7,
+   "y": 5
+  }
+ ],
+ "aristas": [
+  {
+   "de": "marea",
+   "a": "vivas",
+   "rel": "alineados"
+  },
+  {
+   "de": "marea",
+   "a": "muertas",
+   "rel": "a 90°"
+  },
+  {
+   "de": "marea",
+   "a": "pleamar",
+   "rel": "lo más alto"
+  },
+  {
+   "de": "marea",
+   "a": "bajamar",
+   "rel": "lo más bajo"
+  },
+  {
+   "de": "anuario",
+   "a": "bajamar",
+   "rel": "predice PM y BM"
+  },
+  {
+   "de": "anuario",
+   "a": "presion",
+   "rel": "se corrige con"
+  },
+  {
+   "de": "vivas",
+   "a": "amplitud",
+   "rel": "+ amplitud"
+  },
+  {
+   "de": "muertas",
+   "a": "amplitud",
+   "rel": "− amplitud"
+  },
+  {
+   "de": "pleamar",
+   "a": "amplitud",
+   "rel": "PM − BM"
+  },
+  {
+   "de": "bajamar",
+   "a": "creciente",
+   "rel": "sube hasta la PM"
+  },
+  {
+   "de": "creciente",
+   "a": "duracion",
+   "rel": "≈ 6 h 15 min"
+  },
+  {
+   "de": "cero",
+   "a": "sondacarta",
+   "rel": "fondo → cero"
+  },
+  {
+   "de": "cero",
+   "a": "altura",
+   "rel": "cero → superficie"
+  },
+  {
+   "de": "presion",
+   "a": "altura",
+   "rel": "−1 hPa: +1 cm"
+  },
+  {
+   "de": "sondacarta",
+   "a": "sondamomento",
+   "rel": "+ altura de marea"
+  },
+  {
+   "de": "altura",
+   "a": "sondamomento",
+   "rel": "+ sonda carta"
+  },
+  {
+   "de": "amplitud",
+   "a": "duracion",
+   "rel": "Amplitud = alturas (metros, PM − BM); duración = tiempos (horas de BM a PM). Y la duración no es «siempre 6 horas».",
+   "tipo": "confunde"
+  },
+  {
+   "de": "vivas",
+   "a": "muertas",
+   "rel": "Vivas: luna nueva y llena, astros alineados, más amplitud. Muertas: cuartos creciente y menguante, a 90°, menos amplitud.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "pleamar",
+   "a": "creciente",
+   "rel": "La pleamar es un momento, el nivel más alto; la creciente es el rato en que el mar sube hasta ella.",
+   "tipo": "confunde"
+  },
+  {
+   "de": "bajamar",
+   "a": "cero",
+   "rel": "El cero es la bajamar más baja esperable (LAT), no la bajamar del día ni el nivel medio. «Mayor bajamar» = la más extrema, no «la mayor marea».",
+   "tipo": "confunde"
+  },
+  {
+   "de": "sondacarta",
+   "a": "altura",
+   "rel": "La sonda va del cero hacia abajo, hasta el fondo, y es fija; la altura de la marea va del cero hacia arriba y cambia con la hora. Sumadas, el agua que tienes.",
+   "tipo": "confunde"
+  }
+ ]
+}

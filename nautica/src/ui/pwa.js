@@ -37,7 +37,8 @@ function avisoVersion(onActualizar) {
  *   versión nueva encontrada al abrir la app se aplica sola: recargar basta para tener lo último.
  */
 export function iniciarPwa({ puedeActualizarSolo = () => false } = {}) {
-  const inicio = Date.now();
+  // «Al abrir» cuenta también volver a la app desde otra (en el iPhone no se recarga): ahí también se actualiza sola.
+  let inicio = Date.now();
   window.addEventListener('beforeinstallprompt', (ev) => { ev.preventDefault(); invitacion = ev; notificar(); });
   window.addEventListener('appinstalled', () => { invitacion = null; notificar(); });
 
@@ -51,7 +52,8 @@ export function iniciarPwa({ puedeActualizarSolo = () => false } = {}) {
   navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then((reg) => {
     const aplicar = (w) => { pedida = true; w.postMessage('actualizar'); };
     // Al abrir (primeros segundos) y sin nada a medias se actualiza sola; si no, se pregunta.
-    const ofrecer = (w) => (Date.now() - inicio < 15000 && puedeActualizarSolo() ? aplicar(w) : avisoVersion(() => aplicar(w)));
+    // Un minuto de margen: en el móvil, descargar la versión nueva puede tardar.
+    const ofrecer = (w) => (Date.now() - inicio < 60000 && puedeActualizarSolo() ? aplicar(w) : avisoVersion(() => aplicar(w)));
     if (reg.waiting && navigator.serviceWorker.controller) ofrecer(reg.waiting);
     reg.addEventListener('updatefound', () => {
       const w = reg.installing;
@@ -59,6 +61,6 @@ export function iniciarPwa({ puedeActualizarSolo = () => false } = {}) {
     });
     reg.update().catch(() => {});
     // Al volver a la app (estaba en segundo plano), mira si hay versión nueva.
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { inicio = Date.now(); if (reg.waiting && navigator.serviceWorker.controller) ofrecer(reg.waiting); else reg.update().catch(() => {}); } });
   }).catch((e) => console.warn('Sin modo sin conexión:', e.message));
 }

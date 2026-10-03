@@ -7,7 +7,7 @@
   {
    "ut": 1,
    "titulo": "Seguridad en la mar",
-   "intro": "Con el PER aprendiste qué equipo de seguridad lleva el barco y qué hacer en una emergencia. En el Patrón de Yate vas un paso más allá: por qué flota y se adriza un barco (centro de gravedad, carena, metacentro y altura metacéntrica), cómo le afecta mover o consumir pesos, y los detalles técnicos que el tribunal pregunta del material de salvamento: chalecos, aros, balsa y zafa hidrostática, pirotecnia, extintores, radiobaliza, SART y VHF. Terminas con el abandono, la vida en la balsa y el rescate con helicóptero. Es el tema con más preguntas del módulo genérico, y casi todas se repiten: domina las cifras y las trampas y son puntos seguros.",
+   "intro": "Con el PER aprendiste qué equipo de seguridad lleva el barco y qué hacer en una emergencia. En el Patrón de Yate vas un paso más allá: por qué flota y se adriza un barco (centro de gravedad, carena, metacentro y altura metacéntrica), cómo le afecta mover o consumir pesos, y los detalles técnicos que el tribunal pregunta del material de salvamento: chalecos, aros, balsa y zafa hidrostática, pirotecnia, extintores, radiobaliza, SART y VHF. Terminas con el abandono, la vida en la balsa y el rescate con helicóptero. Son diez preguntas del módulo genérico y casi todas se repiten: domina las cifras y las trampas y son puntos seguros.",
    "lecciones": [
     {
      "id": "py-1-1",
@@ -1668,7 +1668,7 @@
   {
    "ut": 2,
    "titulo": "Meteorología",
-   "intro": "En el PER aprendiste a leer un mapa del tiempo por encima: borrascas, anticiclones, Beaufort y brisas. En el PY bajamos un escalón: por qué sopla el viento como sopla (los modelos de Euler, geostrófico y antitríptico), cómo son y cómo pasan los frentes, cómo se forman las nubes y las nieblas, qué vientos regionales te vas a encontrar en nuestras costas, cómo se describen las olas y qué corrientes mueven el agua en el Atlántico ibérico, el Estrecho y el Mediterráneo. Es el tema con más preguntas del módulo genérico, pero se repiten mucho: con las ideas clave de cada lección bien fijadas, sacas casi todas.",
+   "intro": "En el PER aprendiste a leer un mapa del tiempo por encima: borrascas, anticiclones, Beaufort y brisas. En el PY bajamos un escalón: por qué sopla el viento como sopla (los modelos de Euler, geostrófico y antitríptico), cómo son y cómo pasan los frentes, cómo se forman las nubes y las nieblas, qué vientos regionales te vas a encontrar en nuestras costas, cómo se describen las olas y qué corrientes mueven el agua en el Atlántico ibérico, el Estrecho y el Mediterráneo. Son diez preguntas del módulo genérico y se repiten mucho: con las ideas clave de cada lección bien fijadas, sacas casi todas.",
    "lecciones": [
     {
      "id": "py-2-1",

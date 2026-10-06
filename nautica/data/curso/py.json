@@ -6578,6 +6578,18 @@
        "texto": "Una recta se traslada desplazando cualquiera de sus puntos; una **circunferencia**, desplazando su **centro**. El rumbo del traslado es el que de verdad has seguido: el **Rv** sin viento, el **Rs** con viento y el **rumbo efectivo** con corriente. Con corriente, la distancia también es la efectiva: d = **Vef** × t, no la velocidad del barco."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "demoras",
+        "modo": "traslado",
+        "d1": 30,
+        "d2": 118,
+        "rumbo": 75,
+        "millas": 7.5
+       },
+       "texto": "Las demoras del problema modelo (030° y 118°, con 7,5 millas al 075° entre las dos). Cambia qué línea trasladas, el rumbo y la distancia, y mira dónde cae el corte."
+      },
+      {
        "tipo": "regla",
        "id": "py-car-03"
       },
@@ -7622,6 +7634,17 @@
        "tipo": "texto",
        "titulo": "Latitud media y longitud",
        "texto": "Luego:\n- **lm = l salida + Δl / 2** (latitud media).\n- **ΔL = A / cos lm** (minutos de longitud).\n- Inversa: **A = ΔL · cos lm**, **tan R = A / Δl**, **D = √(Δl² + A²)**."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "loxodromica",
+        "modo": "triangulo",
+        "rumbo": 60,
+        "dist": 100,
+        "lm": 20
+       },
+       "texto": "Mueve el rumbo y la distancia y mira el triángulo Δl, A, D; luego sube la latitud media: el mismo apartamiento son cada vez más minutos de longitud."
       },
       {
        "tipo": "texto",

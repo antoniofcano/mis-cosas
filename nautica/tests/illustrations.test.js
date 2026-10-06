@@ -103,6 +103,7 @@ import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
 import { intensidad, humedadRelativa } from '../src/nautical/meteo.js';
 import { correccionTabla } from '../src/nautical/tides.js';
 import { bandas, ladoCardinal, zonaBano, apagado } from '../src/illustrations/interactivas/per-basicas.js';
+import { casoDemoras, trasladoDemoras, estimaLoxo, corte } from '../src/illustrations/interactivas/py-carta.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -233,6 +234,22 @@ const COMPRUEBA = {
   barco(c, p) { assert.equal(p.opciones[p.correcta], bandas(c.estado().viento).barlovento === 'estribor' ? 'Estribor' : 'Babor'); },
   cardinales(c, p) { assert.equal(p.opciones[p.correcta].toLowerCase(), `por ${ladoCardinal(c.estado().marca)}`); },
   playa(c, p) { const z = zonaBano(c.estado().costa, c.estado().dist); assert.ok(z.dentro && z.maxNudos === 3); assert.equal(p.opciones[p.correcta], 'Sí, a 3 nudos como máximo'); },
+  demoras(c, p) {
+    // Trasladar la primera con el viaje real da la situación real a la 2.ª hora; la segunda hacia atrás, la de la 1.ª.
+    const e = c.estado(); const caso = casoDemoras(e);
+    const t1 = trasladoDemoras(caso, { ...e, rumbo: e.rumboReal, millas: e.millasReal, linea: 'primera' });
+    const t2 = trasladoDemoras(caso, { ...e, rumbo: e.rumboReal, millas: e.millasReal, linea: 'segunda' });
+    assert.ok(Math.hypot(t1.corte[0] - caso.S2[0], t1.corte[1] - caso.S2[1]) < 1e-9);
+    assert.ok(Math.hypot(t2.corte[0] - caso.S1[0], t2.corte[1] - caso.S1[1]) < 1e-9);
+    assert.equal(corte([0, 0], 0, [1, 0], 0), null);
+    assert.match(p.opciones[p.correcta], /^Trasladar la primera/);
+  },
+  loxodromica(c, p) {
+    const e = c.estado();
+    assert.ok(Math.abs(estimaLoxo({ ...e, lm: e.lm + 30 }).dL) > Math.abs(estimaLoxo(e).dL));
+    assert.ok(Math.abs(estimaLoxo({ rumbo: 90, dist: 30, lm: 60 }).dL - 60) < 1e-9); // el «check» de la clase: 30 M E a lm 60° → 60′
+    assert.equal(p.opciones[p.correcta], 'Aumenta');
+  },
   fuego(c, p) { assert.ok(apagado('nada').arde && apagado('comburente').metodo === 'sofocación'); assert.equal(p.opciones[p.correcta], 'El comburente (oxígeno)'); },
   'marea:curva'(c, p) { COMPRUEBA_MAREA(c, p); },
   'marea:duodecimos'(c, p) { COMPRUEBA_MAREA(c, p); },

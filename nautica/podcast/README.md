@@ -1185,7 +1185,7 @@ La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, 
 
 ## Patrón de Embarcaciones de Recreo (PER)
 
-55 episodios · 22 escritos.
+55 episodios · 25 escritos.
 
 #### 0 · Cómo es el examen del PER y cómo usar estos podcasts
 
@@ -2758,7 +2758,7 @@ Qué cuenta la carta náutica: tipos de carta según su escala, sondas y veriles
 
 #### 10.3 · Los tres nortes y los rumbos
 
-🔎 Profundiza · ⏳ pendiente · clases per-10-5, per-10-6
+🔎 Profundiza · ✅ [guion](per/10-3-los-tres-nortes-y-los-rumbos.md) · clases per-10-5, per-10-6
 
 Los tres nortes (verdadero, magnético y de aguja), los dos ángulos que los separan (declinación y desvío), la corrección total y los rumbos verdadero, magnético y de aguja, incluido el paso de cuadrantal a circular. Es la llave de todos los ejercicios de carta y un clásico de las preguntas de teoría.
 
@@ -2793,7 +2793,7 @@ Los tres nortes (verdadero, magnético y de aguja), los dos ángulos que los sep
 
 #### 10.4 · Demora, marcación y líneas de posición
 
-🔎 Profundiza · ⏳ pendiente · clase per-10-7
+🔎 Profundiza · ✅ [guion](per/10-4-demora-marcacion-lineas-de-posicion.md) · clase per-10-7
 
 La diferencia entre rumbo, demora y marcación, la fórmula que las une y qué es una línea de posición: demora, enfilación, oposición, distancia o veril. Sale casi en cada convocatoria y es justo lo que luego se usa para situarse en la carta.
 
@@ -2828,7 +2828,7 @@ La diferencia entre rumbo, demora y marcación, la fórmula que las une y qué e
 
 #### 10.5 · Mareas, viento y corriente
 
-🔎 Profundiza · ⏳ pendiente · clases per-10-8, per-10-9
+🔎 Profundiza · ✅ [guion](per/10-5-mareas-viento-y-corriente.md) · clases per-10-8, per-10-9
 
 Por qué sube y baja el mar, qué son amplitud y duración, mareas vivas y muertas, el cero hidrográfico y qué le hacen a la marea la presión y el viento; y después, qué te saca del rumbo: el viento (abatimiento) y la corriente (deriva). Preguntas de definiciones muy cruzadas entre sí.
 

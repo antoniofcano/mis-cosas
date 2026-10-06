@@ -42,3 +42,16 @@ test('preguntas intercaladas: nunca más de 3 tarjetas seguidas sin responder (s
   const conLamina = [t(1), t(2), { tipo: 'ilustracion', prediccion: true }, t(3), t(4), final];
   assert.equal(conPreguntasIntercaladas(conLamina, reales, createRng(1)).length, conLamina.length);
 });
+
+test('tramos de clase: unos 5 minutos cada uno, seguidos, sin tramos vacíos', async () => {
+  const { numTramos, enTramos } = await import('../src/course/engine.js');
+  assert.equal(numTramos(14, 20), 3);
+  assert.equal(numTramos(4, 20), 1);
+  assert.equal(numTramos(30, 2), 2, 'nunca más tramos que pasos');
+  const pasos = Array.from({ length: 11 }, (_, i) => ({ tipo: 'texto', texto: 'x'.repeat(100 + 40 * (i % 4)) }));
+  for (const k of [1, 2, 3, 5, 11]) {
+    const t = enTramos(pasos, k).map((p) => p.tramo);
+    assert.deepEqual([...new Set(t)], Array.from({ length: k }, (_, i) => i), `k=${k}: ${t}`);
+    assert.ok(t.every((x, i) => i === 0 || x >= t[i - 1]), 'seguidos');
+  }
+});

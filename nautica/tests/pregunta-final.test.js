@@ -97,3 +97,15 @@ test('«Empareja»: cada clase declara 3 o 4 términos que existen y no se delat
     }
   }
 });
+
+test('preguntas intercaladas: nunca antes de que la clase haya contado lo que preguntan (A3)', async () => {
+  const { conPreguntasIntercaladas, cubierta } = await import('../src/course/engine.js');
+  const sotavento = { id: 's', enunciado: 'Banda de sotavento es:', opciones: { a: 'La contraria a barlovento', b: 'Babor' }, correcta: 'a' };
+  assert.equal(cubierta(sotavento, 'El casco. Proa, popa y crujía. Babor y estribor.'), false);
+  assert.equal(cubierta(sotavento, 'Barlovento es la banda por donde viene el viento; sotavento, la contraria.'), true);
+  const t = (texto) => ({ tipo: 'texto', texto });
+  const pasos = [t('El casco'), t('Proa y popa'), t('Babor y estribor'), t('Más casco'), t('Barlovento y sotavento: la banda contraria'), t('Fin'), t('Más')];
+  const r = conPreguntasIntercaladas(pasos, [sotavento], createRng(1));
+  const i = r.findIndex((p) => p.real?.id === 's');
+  assert.ok(i > r.findIndex((p) => /Barlovento/.test(p.texto ?? '')), 'sale después de explicar barlovento y sotavento');
+});

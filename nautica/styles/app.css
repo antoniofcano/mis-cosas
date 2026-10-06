@@ -987,3 +987,4 @@ button.speak .ico { width: 20px; height: 20px; }
 .hoy-toca .btn { width: 100%; }
 @media (prefers-reduced-motion: reduce) { .anillo .valor { transition: none; } }
 .anillo .valor.vacio { stroke-opacity: 0; }
+.abrir-carta { width: 100%; margin: .6rem 0; }

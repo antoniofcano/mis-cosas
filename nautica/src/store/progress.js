@@ -42,6 +42,12 @@ export function createProgressStore(storage = safeStorage()) {
   normaliza();
 
   const save = () => { try { storage?.setItem(KEY, JSON.stringify(data)); } catch { /* sin espacio o bloqueado */ } };
+  // Con la app abierta en dos pestañas, cada una guardaba su copia entera y la última pisaba las respuestas de la
+  // otra. Ahora, cuando otra pestaña guarda, esta se pone al día antes de su próximo cambio.
+  const alDia = (raw) => { try { if (raw) { data = { ...empty(), ...JSON.parse(raw) }; normaliza(); } } catch { /* ignorar */ } };
+  if (storage && typeof globalThis.addEventListener === 'function') {
+    globalThis.addEventListener('storage', (ev) => { if (ev.key === KEY && ev.newValue) alDia(ev.newValue); });
+  }
 
   const store = {
     get: () => data,

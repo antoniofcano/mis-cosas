@@ -7,7 +7,6 @@ import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.
 import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
 import { resueltasDe, conResuelto } from '../../course/resueltos.js';
 import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
-import { MIN_TANDA } from '../../course/plan.js';
 import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre, cierre, cifrasCierre } from '../cierre.js';
@@ -22,6 +21,7 @@ import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
 import { episodiosDeClase, enlaceEpisodio } from './podcast.js';
 import { createRng, randomSeed } from '../../math/rng.js';
+import { cronometro } from '../../course/cronometro.js';
 import { getExercise } from '../../exercises/registry.js';
 
 const PRACTICA_MAX = 10;
@@ -107,14 +107,15 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     // Duración de cada tramo al ritmo real del alumno (se mide al cerrar cada tramo) y hora de empiece del actual.
     const ritmo = () => progress.settings().segTarjeta ?? SEG_TARJETA;
     const tarjetasEn = (t) => tarjetas.filter((x) => x.tramo === t).length;
-    let inicioTramo = Date.now();
-    // Al cerrar un tramo: los minutos reales (con tope, por si se dejó la pantalla abierta) y el ritmo actualizado.
+    // Tiempo real del tramo: cada cambio de tarjeta cierra una pantalla (con tope de 2 min por pantalla).
+    const crono = cronometro();
+    // Al cerrar un tramo: los minutos reales a la meta del día y el ritmo (segundos por tarjeta) actualizado.
     const apuntaTramo = (t) => {
-      const ms = Date.now() - inicioTramo;
       const n = tarjetasEn(t);
-      progress.logActividad(Math.max(1, Math.round(Math.min(ms, n * 120000) / 60000)));
+      const ms = crono.ms();
+      progress.logActividad(Math.round(ms / 60000));
       progress.setSetting('segTarjeta', nuevoRitmo(ritmo(), n, ms));
-      inicioTramo = Date.now();
+      crono.reinicia();
     };
     const finTramo = (i) => i < n - 1 && tarjetas[i + 1].tramo > tarjetas[i].tramo;
     const enTramo = (i) => { const t = tarjetas[i].tramo; const del = tarjetas.filter((x) => x.tramo === t); return { t, j: del.indexOf(tarjetas[i]) + 1, m: del.length }; };
@@ -282,9 +283,10 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     }[p.tipo] ?? '');
 
     const guardaPaso = () => progress.saveLeccion(L.id, { ...reg(), paso, tramo: tarjetas[paso].tramo, tramos: k });
-    const irAnterior = () => { if (paso === 0) return; voice.stop(); paso -= 1; guardaPaso(); transicion(tarjeta, 'atras'); };
+    const irAnterior = () => { if (paso === 0) return; voice.stop(); crono.marca(); paso -= 1; guardaPaso(); transicion(tarjeta, 'atras'); };
     const irSiguiente = () => {
       voice.stop();
+      crono.marca();
       if (paso === n - 1) { transicion(terminar, 'adelante'); return; }
       const cierra = finTramo(paso);
       paso += 1;
@@ -403,10 +405,10 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       setChildren(cont, tandaPreguntas({
         preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, rotulo: L.titulo,
         onSummary: (t) => { summaryText = `CLASE ${L.id} práctica\n${t}`; },
-        onFin: (ok, total) => {
+        onFin: (ok, total, min) => {
           const acierto = ok / total;
           progress.saveLeccion(L.id, { ...trasPractica(reg(), acierto), paso: 0 });
-          progress.logActividad(MIN_TANDA);
+          progress.logActividad(min);
           barra.remove();
           const logros = [`${ok} de ${total} preguntas de examen bien`, acierto >= APROBADO ? `Clase aprendida: ${L.titulo}` : null].filter(Boolean);
           pintarCierre(cont, progress, tit, acierto >= APROBADO

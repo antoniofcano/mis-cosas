@@ -676,7 +676,18 @@ export function testView({ ctx, progress, params: route, tit }) {
       const renderReview = () => setChildren(review, test.preguntas.map((q, j) => {
         const d = g.detalle[j];
         if (filtro.value === 'falladas' && d.ok) return null;
-        return h('div.qholder', questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
+        // Una línea por pregunta (se ve todo el examen de un vistazo); al tocarla, la pregunta y el profe (se pintan al abrir).
+        const b = bloque(E0, q.ut);
+        const cuerpo = h('div.revision-cuerpo');
+        const det = h('details.revision-pregunta', { class: d.ok ? 'ok' : 'bad', ontoggle: () => {
+          if (det.open && !cuerpo.childElementCount) cuerpo.append(questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
+        } },
+        h('summary',
+          h('span.revision-num', String(j + 1)),
+          h('span.revision-texto', h('span.revision-tema', b ? `${b.icon} ${b.titulo}` : ''), h('span.revision-enunciado', (q.enunciado ?? '').slice(0, 90) + ((q.enunciado ?? '').length > 90 ? '…' : '')),
+            h('span.revision-dato', d.ok ? `Bien: la ${d.correcta})` : d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`))),
+        cuerpo);
+        return det;
       }));
       const filterSel = h('select', { onchange: (ev) => { filtro.value = ev.target.value; renderReview(); } },
         h('option', { value: 'falladas' }, 'Solo las falladas'), h('option', { value: 'todas' }, 'Todas'));

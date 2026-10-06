@@ -89,9 +89,11 @@ function travesia(el, tit, pod) {
         h('div',
           h('h2', t.tema ? `Tema ${t.tema} · ${t.titulo}` : 'Zarpamos'),
           h('p.muted.small', listos
-            ? `${hechos} de ${listos} escuchados · ${minutos(dur)}${listos < t.episodios.length ? ` · ${t.episodios.length - listos} en el astillero` : ''}`
-            : `${cuenta(t.episodios.length, 'episodio')} en el astillero`))),
-      h('ol.ruta', t.episodios.map((ep) => boya(tit, ep))));
+            ? `${hechos} de ${listos} escuchados · ${minutos(dur)}${listos < t.episodios.length ? ` · ${t.episodios.length - listos} en preparación` : ''}`
+            : `${cuenta(t.episodios.length, 'episodio')} en preparación`))),
+      // Un tema sin ningún episodio grabado se queda en una línea plegada: la lista no se llena de lo que aún no se oye.
+      listos ? h('ol.ruta', t.episodios.map((ep) => boya(tit, ep)))
+        : h('details.puerto-astillero', h('summary', `Próximamente: ver sus ${cuenta(t.episodios.length, 'episodio')}`), h('ol.ruta', t.episodios.map((ep) => boya(tit, ep)))));
   });
 
   setChildren(el,
@@ -102,7 +104,7 @@ function travesia(el, tit, pod) {
       conAudio.length ? h('p.muted.small', `${oidos.length} de ${cuenta(conAudio.length, 'episodio escuchado', 'episodios escuchados')}`) : null),
     seguir ? destacado(seguir, 'Sigue escuchando') : sig ? destacado(sig, oidos.length ? 'Siguiente parada' : 'Para empezar') : null,
     h('div.travesia', puertos),
-    h('p.muted.small.radio-pie', '🗼 Panorama: el tema entero, para situarte antes de estudiarlo y para repasarlo. 🛟 Profundiza: un epígrafe, con sus trampas. 🛠 En el astillero: aún se está grabando.'));
+    h('p.muted.small.radio-pie', '🗼 Panorama: el tema entero, para situarte antes de estudiarlo y para repasarlo. 🛟 Profundiza: un epígrafe, con sus trampas. Próximamente: episodios que aún se están grabando.'));
 
   return `VISTA podcast ${T.sigla}: ${cuenta(conAudio.length, 'episodio')} con audio de ${eps.length}, ${oidos.length} escuchados\n` +
     eps.map((e) => `${e.n} ${e.titulo} [${estado(e).clase}]${e.audio ? ` → ${tlink(tit, ['podcast', e.id])}` : ''}`).join('\n');
@@ -114,14 +116,14 @@ function boya(tit, ep) {
     h('summary',
       h('span.boya-n', ep.n),
       h('span.boya-titulo', ep.titulo),
-      h('span.boya-meta', ep.audio ? (est.clase === 'medias' ? `${est.pct} % · ${minutos(ep.duracion)}` : minutos(ep.duracion)) : '🛠')),
+      h('span.boya-meta', ep.audio ? (est.clase === 'medias' ? `${est.pct} % · ${minutos(ep.duracion)}` : minutos(ep.duracion)) : 'Próximamente')),
     ep.sinopsis ? h('p', ep.sinopsis) : null,
     ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
     ep.audio
       ? h('div.actions',
         h('button', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } }, est.clase === 'medias' ? '▶ Seguir escuchando' : '▶ Escuchar el episodio'),
         h('a.btn.secondary', { href: tlink(tit, ['podcast', ep.id]) }, '📜 Ver el guion'))
-      : h('p.muted.small', '🛠 En el astillero: este episodio aún se está grabando. Mientras, tienes su ficha.', h('br'), h('a', { href: tlink(tit, ['podcast', ep.id]) }, 'Ver la ficha →')));
+      : h('p.muted.small', 'Próximamente: este episodio aún se está grabando. Mientras, tienes su ficha.', h('br'), h('a', { href: tlink(tit, ['podcast', ep.id]) }, 'Ver la ficha →')));
   return h('li.boya', { class: `${est.clase} ${ep.tipo}`, style: est.clase === 'medias' ? `--pct:${est.pct}` : null },
     h('span.boya-marca', { 'aria-hidden': 'true' }, est.clase === 'oido' ? '✓' : MARCA[ep.tipo]),
     abierto);
@@ -164,12 +166,12 @@ function episodioView(el, tit, pod, id, de) {
     vuelta(tit, de),
     h('p.radio-rotulo', `${MARCA[ep.tipo]} ${TIPO[ep.tipo]}${b ? ` · ${b.icon} Tema ${ep.tema} · ${b.titulo}` : ''}`),
     h('h1', `${ep.n} · ${ep.titulo}`),
-    ep.sinopsis ? h('p', ep.sinopsis) : null,
   ];
+  const sinopsis = ep.sinopsis ? h('p.radio-sinopsis', ep.sinopsis) : null;
 
   if (!ep.audio) {
     enVistaEpisodio(false);
-    setChildren(el, cabecera, h('p.aviso-astillero', '🛠 En el astillero: este episodio aún se está grabando. Aquí tienes su ficha.'), ficha);
+    setChildren(el, cabecera, sinopsis, h('p.aviso-astillero', 'Próximamente: este episodio aún se está grabando. Aquí tienes su ficha.'), ficha);
     return `VISTA episodio ${ep.n} ${ep.titulo} (sin audio)`;
   }
 
@@ -252,6 +254,8 @@ function episodioView(el, tit, pod, id, de) {
         h('button.secondary.radio-salto', { type: 'button', 'aria-label': 'Adelante 15 segundos', onclick: () => saltar(15) }, '15 ↻')),
       slider,
       h('div.radio-fila.radio-pie-rep', tiempo, btnVel)),
+    // El reproductor va justo bajo el título (el botón ▶ se ve sin desplazar); de qué va, debajo.
+    sinopsis,
     h('section.radio-guion',
       h('div.radio-guion-cab', h('h2', '📜 El guion, al hilo'),
         h('label.small', seguirGuion, ' Seguir lo que suena'),

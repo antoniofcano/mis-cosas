@@ -988,3 +988,28 @@ button.speak .ico { width: 20px; height: 20px; }
 @media (prefers-reduced-motion: reduce) { .anillo .valor { transition: none; } }
 .anillo .valor.vacio { stroke-opacity: 0; }
 .abrir-carta { width: 100%; margin: .6rem 0; }
+.radio-clase { margin: .8rem 0; }
+.radio-clase .btn { width: 100%; }
+.radio-clase p { margin: .4rem 0 0; }
+.cierre ul.logros li.neutro .ico { color: var(--muted); }
+.ritmo .botones-ritmo { display: grid; gap: .5rem; margin-top: .6rem; }
+.ritmo .botones-ritmo .btn { width: 100%; }
+/* Pantallas bajas (móvil apaisado, tableta pequeña): «Hoy toca» con su botón entra en el primer vistazo */
+@media (max-height: 700px) {
+  .hoy > h1 { font-size: 1.4rem; margin: .4rem 0 0; }
+  .hoy-toca .pic { max-height: 110px; padding: .3rem; }
+  .hoy-toca .pic svg { max-height: 100px; }
+  .hoy-toca .tx { padding: .7rem 1rem; }
+  .hoy-toca .linea { margin-bottom: .6rem; }
+}
+/* M7: el panel de corrección puede ocupar casi toda la pantalla y es lo único que se desplaza; «Continuar», fijo abajo */
+.hoja { max-height: 92vh; max-height: 92dvh; }
+html:has(body.con-hoja), body.con-hoja { overflow: hidden; }
+.hoja-cuerpo { overscroll-behavior: contain; }
+/* B6: al cambiar de pantalla, la vieja se va antes de que entre la nueva (sin textos superpuestos) */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-vt="pantalla"]::view-transition-old(contenido) { animation: .08s ease-in both vt-fuera; }
+  html[data-vt="pantalla"]::view-transition-new(contenido) { animation: .16s .08s ease-out both vt-dentro; }
+}
+.hoja-cuerpo .profe > button.speak { float: right; margin: 0 0 .3rem .6rem; }
+.hoja:not(.ok):not(.bad) .hoja-titulo { color: var(--accent); }

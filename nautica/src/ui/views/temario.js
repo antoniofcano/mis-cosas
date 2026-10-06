@@ -24,9 +24,9 @@ export function lineaEstado(e) {
   const juntar = (...xs) => xs.filter(Boolean).join(' · ');
   switch (e.estado) {
     case 'sin-empezar': return 'Sin empezar';
-    case 'bien': return juntar('Vas bien', clases, `aciertas el ${e.pct} %`);
-    case 'repasar': return juntar('Conviene repasar', clases, `aciertas el ${e.pct} %`);
-    default: return juntar('En marcha', clases, e.hechas ? `${e.hechas} preguntas hechas` : null);
+    case 'bien': return juntar('Vas bien', clases, `${e.hechas} preguntas hechas`, `aciertas el ${e.pct} %`);
+    case 'repasar': return juntar('Conviene repasar', clases, `${e.hechas} preguntas hechas`, `aciertas el ${e.pct} %`);
+    default: return juntar('En marcha', clases, e.hechas ? `${e.hechas} ${e.hechas === 1 ? 'pregunta hecha' : 'preguntas hechas'}` : null);
   }
 }
 const ESTADO_TEMA_CLS = { bien: 'ok', repasar: 'warn' };
@@ -49,7 +49,7 @@ export function temarioView({ progress, tit }) {
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]) },
         b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null,
         h('h3', `${b.icon} ${b.titulo}`),
-        h('p', `Tema ${b.ut} del temario oficial · ${b.n} preguntas en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
+        h('p', `${b.n} preguntas en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
         h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
         e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))),
       h('details', h('summary', 'Reglas del examen'), h('ul', T.reglas.map((r) => h('li', r)))),

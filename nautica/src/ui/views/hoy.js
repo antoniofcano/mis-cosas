@@ -66,7 +66,7 @@ const fechaLarga = (iso) => { const [y, m, d] = iso.split('-').map(Number); retu
 export function lineaRitmo(r, minutosDia, fechaExamen) {
   if (!r.minutosPendientes) return 'Has hecho todo el plan: ahora, simulacros y repasar tus fallos.';
   const base = `A ${minutosDia} minutos al día terminas el plan el ${fechaLarga(r.fechaFin)}`;
-  if (!fechaExamen || r.llega == null) return `${base}. Pon la fecha de tu examen en Ajustes y te digo si llegas.`;
+  if (!fechaExamen || r.llega == null) return `${base}. ¿Cuándo es tu examen? Pon la fecha y te digo si llegas.`;
   if (r.llega) return `${base}, antes de tu examen (${fechaLarga(fechaExamen)}).`;
   return `${base}, pero tu examen es el ${fechaLarga(fechaExamen)}. Para llegar necesitas unos ${r.minutosNecesarios} minutos al día.`;
 }
@@ -86,7 +86,7 @@ export function hoyView({ progress, tit }) {
     const objetivo = s.minutosDia ?? 20;
     const racha = progress.racha();
     let principal = plan[0];
-    const r = ritmoEstudio({ ...d, minutosDia: objetivo });
+    const r = ritmoEstudio({ ...d, minutosDia: objetivo, minutosHoy: minutos });
     const listo = estoyListo(T.estructura, d.preguntas, d.respuestas, d.tests);
     // Con fecha de examen manda el calendario (¿vas al día con tu plan?); sin ella, el ritmo general.
     const ps = planConSeguimiento(progress, tit, d);
@@ -99,8 +99,12 @@ export function hoyView({ progress, tit }) {
       ? h('div.ritmo', { class: marcaEstado(ps.seg.estado)[1] },
         h('p', marcaEstado(ps.seg.estado)[0], lineaSeguimiento(ps.seg, ps.plan.minutosDia), ' ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan')),
         botonSubirMinutos(progress, ps, () => window.dispatchEvent(new HashChangeEvent('hashchange')), tit))
-      : h('p.ritmo', { class: r.llega === false ? 'warn' : '' }, r.llega === false ? '⚠️ ' : '', lineaRitmo(r, objetivo, fecha),
-        ' ', h('a', { href: '#/ajustes' }, 'Cambiar'));
+      : h('div.ritmo', { class: r.llega === false ? 'warn' : '' },
+        h('p', lineaRitmo(r, objetivo, fecha), r.desglose.repaso ? ' (Incluye repasar tus fallos.)' : ''),
+        // Un paso: cada botón lleva directo a su campo de Ajustes.
+        h('div.botones-ritmo',
+          fecha ? null : h('a.btn.boton-icono', { href: '#/ajustes?campo=fecha' }, icono('reloj'), 'Poner fecha de examen'),
+          h('a.btn.secondary', { href: '#/ajustes?campo=minutos' }, 'Cambiar minutos al día')));
 
     const tarjeta = () => {
       const [ico, tipo] = TIPO_TXT[principal.tipo] ?? ['', ''];
@@ -125,7 +129,9 @@ export function hoyView({ progress, tit }) {
     if (minutos >= objetivo) {
       setChildren(hueco, h('section.hoy-toca.hecho', h('div.tx',
         h('p.eti', 'Hecho por hoy'),
-        h('h2', `Mañana toca: ${principal.titulo}`),
+        h('h2', principal.tipo === 'clase' && principal.verbo === 'Continuar'
+          ? `Mañana sigues con: ${principal.titulo}${principal.tramo ? ` (tramo ${principal.tramo.i} de ${principal.tramo.de})` : ''}`
+          : `Mañana toca: ${principal.titulo}`),
         h('button.secondary.grande', { type: 'button', onclick: () => setChildren(hueco, tarjeta()) }, 'Seguir un poco más'))));
     } else {
       setChildren(hueco, tarjeta());
@@ -149,8 +155,8 @@ export function hoyView({ progress, tit }) {
       h('a.btn.secondary.boton-icono', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, icono('reloj'), 'Tengo 5 minutos'));
     setChildren(el,
       cabecera,
-      meta,
       hueco,
+      meta,
       ritmo,
       lineaRepaso,
       h('section.avance',

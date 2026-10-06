@@ -40,9 +40,12 @@ export function estadoTema(bloque, curso, preguntas, regs = {}, respuestas = {},
   const hechas = hechasQ.length;
   const total = qs.length;
   const pct = hechas >= 10 ? Math.round((100 * aciertos) / hechas) : null;
-  const estados = clasesDe(curso, bloque.ut).map((l) => estadoLeccion(l, regs[l.id], respuestas, ahora).estado);
+  const ls = clasesDe(curso, bloque.ut);
+  const estados = ls.map((l) => estadoLeccion(l, regs[l.id], respuestas, ahora).estado);
   const terminada = (e) => e !== 'nueva' && e !== 'empezada';
-  const clases = { total: estados.length, vistas: estados.filter((e) => e !== 'nueva').length, terminadas: estados.filter(terminada).length, aprendidas: estados.filter((e) => e === 'dominada').length };
+  // Lo hecho de las clases a medias (tramos terminados / tramos), para que el avance se mueva al estudiar un tramo.
+  const parcial = ls.reduce((s, l, i) => s + (estados[i] === 'empezada' && regs[l.id]?.tramos > 1 ? Math.min(1, (regs[l.id].tramo ?? 0) / regs[l.id].tramos) : 0), 0);
+  const clases = { total: estados.length, vistas: estados.filter((e) => e !== 'nueva').length, terminadas: estados.filter(terminada).length, aprendidas: estados.filter((e) => e === 'dominada').length, parcial };
   const alDia = estados.every(terminada) && hechas >= Math.min(total, OBJETIVO_TEMA);
   let estado = 'en-marcha';
   if (!hechas && !clases.vistas) estado = 'sin-empezar';
@@ -59,7 +62,7 @@ export function estadoTema(bloque, curso, preguntas, regs = {}, respuestas = {},
 export function parteTema(e) {
   const obj = Math.min(e.total, OBJETIVO_TEMA);
   const unidades = e.clases.total + (obj ? 1 : 0);
-  return unidades ? (e.clases.terminadas + (obj ? Math.min(e.hechas, obj) / obj : 0)) / unidades : 1;
+  return unidades ? (e.clases.terminadas + (e.clases.parcial ?? 0) + (obj ? Math.min(e.hechas, obj) / obj : 0)) / unidades : 1;
 }
 
 /** Avance global: temas al día y fracción media del camino hecho en cada tema (la barra llega al 100 % con todos al día). */
@@ -159,7 +162,7 @@ const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
  * @returns {{ minutosPendientes, diasNecesarios, fechaFin: string|null, diasDisponibles: number|null,
  *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros, repaso } }}
  */
-export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, ahora = Date.now() }) {
+export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, minutosHoy = 0, ahora = Date.now() }) {
   let clases = 0;
   let tandas = 0;
   for (const b of estructura.bloques) {
@@ -176,7 +179,9 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
   const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin, repaso };
   const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros + desglose.repaso;
   const md = Math.max(5, minutosDia);
-  const diasNecesarios = Math.ceil(minutosPendientes / md);
+  // Hoy cuenta con lo que aún cabe hoy (la meta menos lo ya estudiado): así estudiar no aleja la fecha el mismo día.
+  const caben = Math.max(0, md - minutosHoy);
+  const diasNecesarios = minutosPendientes <= caben ? 1 : 1 + Math.ceil((minutosPendientes - caben) / md);
   // contando hoy como primer día de estudio
   const fechaFin = minutosPendientes ? fechaISO(ahora + Math.max(0, diasNecesarios - 1) * DIA) : null;
   const dias = fechaExamen ? diasHasta(fechaExamen, ahora) : null;
@@ -189,7 +194,7 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
 /** La barra y el texto de avance dicen lo mismo: el porcentaje del camino y cuántos temas están ya al día. */
 export function lineaAvance(a, racha = 0) {
   const pct = Math.round(a.fraccion * 100);
-  const temas = a.temasAlDia === a.temasTotal ? `todos los temas al día (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas al día`;
+  const temas = a.temasAlDia === a.temasTotal ? `todos los temas listos (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas listos`;
   return `Llevas el ${pct} % del camino: ${temas}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
 }
 

@@ -121,7 +121,8 @@ export function boatIllustration(spec) {
   out.push(`<line x1="300" y1="232" x2="300" y2="262" class="${on('calado')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="306" y="252" class="${on('calado')} t">calado</text>`);
   out.push(`<line x1="282" y1="210" x2="282" y2="232" class="${on('francobordo')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="288" y="222" class="${on('francobordo')} t">francobordo</text>`);
   out.push('</svg>');
-  return { svg: out.join(''), caption: hl.size ? `Fíjate en: ${[...hl].join(', ').replace(/-/g, ' ')}.` : 'Partes principales del barco.' };
+  const NOMBRE = { crujia: 'crujía', 'obra-viva': 'obra viva', 'obra-muerta': 'obra muerta' };
+  return { svg: out.join(''), caption: hl.size ? `Fíjate en: ${[...hl].map((x) => NOMBRE[x] ?? x.replace(/-/g, ' ')).join(', ')}.` : 'Partes principales del barco.' };
 }
 
 // ---------------------------------------------------------------------------

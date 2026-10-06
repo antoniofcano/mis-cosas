@@ -65,7 +65,7 @@ export function cierre({ icono, titulo, lineas = [], siguiente = null, tit, logr
     lineas.length ? h('div.lineas', lineas.map((l) => h('p', l))) : null,
     stats?.length ? cifras(stats, animar) : meta,
     // Lo ganado en esta sesión (clase vista, aciertos, avance del tema).
-    logros.length ? h('ul.logros', logros.map((l) => h('li', icono_('ok'), h('span', l)))) : null,
+    logros.length ? h('ul.logros', logros.map((l) => h('li', { class: /^0 de /.test(l) ? 'neutro' : '' }, icono_(/^0 de /.test(l) ? 'lapiz' : 'ok'), h('span', l)))) : null,
     h('div.botones', botones ?? [
       siguiente ? h('a.btn.grande', { href: hrefActividad(tit, siguiente) }, `Seguir: ${siguiente.titulo} (${siguiente.minutos} min)`) : null,
       h('a.btn.secondary.grande', { href: tlink(tit) }, 'Terminar por hoy')]),

@@ -148,8 +148,8 @@ test('avance: la barra solo llega al 100 % con todos los temas al día, y sin cl
   // Sin nada hecho, 0 %; y el texto cuenta lo mismo que la barra.
   const cero = avance(PER, curso, banco, {}, {});
   assert.equal(cero.fraccion, 0);
-  assert.match(lineaAvance(cero), /0 % del camino: 0 de 11 temas al día/);
-  assert.match(lineaAvance({ fraccion: 1, temasAlDia: 11, temasTotal: 11 }), /100 % del camino: todos los temas al día/);
+  assert.match(lineaAvance(cero), /0 % del camino: 0 de 11 temas listos/);
+  assert.match(lineaAvance({ fraccion: 1, temasAlDia: 11, temasTotal: 11 }), /100 % del camino: todos los temas listos/);
 });
 
 test('avance: temas al día y fracción', () => {

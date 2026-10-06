@@ -17,7 +17,7 @@ export function hojaRespuesta(donde, { ok, titulo, contenido, onContinuar, boton
     onclick: () => { const p = el.classList.toggle('plegada'); plegar.setAttribute('aria-expanded', String(!p)); } });
   const el = h('section.hoja', { class: ok ? 'ok' : ok === false ? 'bad' : '', role: 'region', 'aria-label': tit },
     plegar,
-    h('h3.hoja-titulo', icono(ok === false ? 'no' : 'ok'), tit),
+    h('h3.hoja-titulo', icono(ok ? 'ok' : ok === false ? 'no' : 'bombilla'), tit),
     h('div.hoja-cuerpo', contenido),
     h('button.grande.hoja-continuar', { type: 'button', onclick: () => { el.remove(); onContinuar(); } }, boton));
   donde.append(el);

@@ -13,6 +13,7 @@ import { avance, estadoTema, parteTema, lineaAvance, clasesFlojas, MIN_DIAGNOSTI
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
+import { bloquesEnOrden } from '../../theory/blocks.js';
 
 export function theoryView({ tit }) {
   const el = h('div.theory',
@@ -38,7 +39,8 @@ export function progressView({ progress, tit }) {
   let resumenTemas = '';
   calcularPlan(progress, tit).then((d) => {
     const a = avance(T.estructura, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora);
-    const filas = T.estructura.bloques.map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
+    // En el mismo orden que el Temario y Examen: el de estudio recomendado.
+    const filas = bloquesEnOrden(T.estructura).map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
     const racha = progress.racha();
     resumenTemas = `AVANCE ${T.sigla}: ${a.temasAlDia}/${a.temasTotal} temas al día\n${filas.map(({ b, e }) => `${b.titulo}: ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}`).join('\n')}`;
     setChildren(temas,

@@ -71,7 +71,7 @@ export function hoyView({ progress, tit }) {
       return h('section.tarjeta-hoy',
         h('p.rotulo', 'Hoy toca'),
         h('h2', principal.titulo),
-        h('p.linea', `${icono} ${tipo} · unos ${principal.minutos} minutos`),
+        h('p.linea', `${icono} ${tipo}${principal.tramo ? ` · tramo ${principal.tramo.i} de ${principal.tramo.de}` : ''} · unos ${principal.minutos} minutos`),
         h('a.btn.grande', { href: hrefActividad(tit, principal) }, `${principal.verbo} →`));
     };
     const hueco = h('div');

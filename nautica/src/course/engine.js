@@ -114,3 +114,26 @@ export function conPreguntasIntercaladas(pasos, disponibles, rng, cada = CADA) {
   });
   return out;
 }
+
+/** Minutos de un tramo de clase: sesiones cortas que se cierran solas. */
+export const TRAMO_MIN = 5;
+
+/** Cuántos tramos tiene una clase de `minutos` con `nPasos` pasos: uno cada unos 5 minutos (al menos 1). */
+export function numTramos(minutos = 10, nPasos = 1) {
+  return Math.max(1, Math.min(nPasos, Math.round(minutos / TRAMO_MIN)));
+}
+
+/**
+ * Reparte los pasos de una clase en `k` tramos seguidos (`p.tramo` = 0…k−1), equilibrando la longitud del texto
+ * (una tarjeta corta pesa menos que una larga). Un tramo nunca queda vacío.
+ */
+export function enTramos(pasos, k) {
+  const peso = (p) => 120 + (p.texto?.length ?? 0) + (p.enunciado?.length ?? 0);
+  const total = pasos.reduce((s, p) => s + peso(p), 0);
+  let acum = 0;
+  return pasos.map((p, i) => {
+    const t = Math.min(k - 1, Math.floor((k * acum) / total), i);
+    acum += peso(p);
+    return { ...p, tramo: Math.max(t, k - (pasos.length - i) > 0 ? k - (pasos.length - i) : 0) };
+  });
+}

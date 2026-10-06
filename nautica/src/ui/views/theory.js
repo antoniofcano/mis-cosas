@@ -5,7 +5,7 @@
 
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
-import { loadTheoryBank } from '../../store/datasets.js';
+import { loadTheoryBank, loadCourse } from '../../store/datasets.js';
 import { bloque, bloquesEnOrden, totalPreguntas } from '../../theory/blocks.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { TANDA } from '../../course/plan.js';
@@ -118,6 +118,18 @@ export { explanationFor };
 export function necesitaCarta(q) {
   const sol = cartaSolutions[q.id];
   return /-q\d+$/.test(q.id) || (!!sol && !sol.sinCarta) || (q.bloque === 'carta' && !sol?.sinCarta);
+}
+
+/**
+ * Botón «Abrir la carta» para una pregunta que se resuelve sobre ella (en tandas, tests y clases): la carta se abre a
+ * pantalla completa con el enunciado y, al cerrarla, sigues en la pregunta. null si la pregunta no la necesita.
+ */
+export function botonCarta(q, progress) {
+  if (!necesitaCarta(q) || !chartRef) return null;
+  return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
+    chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
+    result: '', summary: () => `CARTA abierta para ${q.id}`,
+  }) }, icono('mapa'), 'Abrir la carta');
 }
 
 /** Panel del profe para una pregunta respondida. */
@@ -293,10 +305,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta, vocab });
     // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
     // citados resaltados, y al cerrarla sigues en la pregunta.
-    const carta = necesitaCarta(q) && chartRef ? h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
-      chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
-      result: '', summary: () => `CARTA abierta para ${q.id}`,
-    }) }, icono('mapa'), 'Abrir la carta') : null;
+    const carta = botonCarta(q, progress);
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
@@ -333,9 +342,23 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const el = h('div.practice', barra, cont);
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  Promise.all([loadTheoryBank(tit0), loadCourse(tit0)]).then(([{ preguntas, explicaciones, reglasDe: rd, vocab }, curso]) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
+    // Tema sin empezar (ni clases ni preguntas): se avisa antes de preguntar lo que aún no se ha explicado.
+    const clases = (curso?.modulos ?? []).filter((m) => m.ut === ut).flatMap((m) => m.lecciones);
+    const regs = progress.lecciones();
+    const empezado = clases.some((l) => regs[l.id]) || preguntas.some((q) => q.ut === ut && respuestas[q.id]);
+    if (!soloFalladas && !empezado && clases.length && route.query.ya !== '1') {
+      barra.set(b.titulo, 0);
+      summaryText = `VISTA tanda · ${b.titulo}: AVISO tema sin empezar`;
+      setChildren(cont, h('section.tema-sin-empezar',
+        h('h2', 'Aún no has visto este tema'),
+        h('p', 'Las preguntas serán de cosas que todavía no te hemos explicado. Lo normal es empezar por su primera clase.'),
+        h('a.btn.grande', { href: tlink(tit0, ['curso', clases[0].id]) }, `Empezar: ${clases[0].titulo}`),
+        h('a.btn.secondary.grande', { href: tlink(tit0, ['teoria', 'ut', String(ut)], { s: seed, ya: '1' }) }, 'Probar el test igualmente')));
+      return;
+    }
     const fails = new Set(Object.entries(respuestas).filter(([, v]) => !v.ok).map(([k]) => k));
     const sesion = buildPractica(preguntas, ut, createRng(seed), { soloFalladas: soloFalladas ? fails : null, respuestas, limite: TANDA });
     if (!sesion.preguntas.length) {
@@ -589,6 +612,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         const ultima = i === n - 1;
         setChildren(cuerpo,
           questionCard(q, { number: i + 1, chosen: respuestas[q.id], onChoose: (k) => { respuestas[q.id] = k; guardar(); resumen(); } }),
+          botonCarta(q, progress),
           h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); abrirPanel(); } }, 'Ver todas las preguntas')),
           h('div.fila-inferior',
             h('button.secondary.boton-anterior', { type: 'button', 'aria-label': 'Anterior', disabled: i === 0, onclick: () => ir(i - 1) }, '←'),

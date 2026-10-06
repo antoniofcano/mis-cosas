@@ -79,10 +79,16 @@ export function hoyToca(curso, regs, respuestas, { ahora = Date.now(), fechaExam
  */
 export function conPreguntaFinal(pasos, disponibles, rng) {
   if (!disponibles.length) return pasos;
-  const q = rng.pick(disponibles);
+  // Se prefiere una que la clase explica (sus palabras clave han salido) y que no sea de «trampa».
+  const visto = pasos.map(textoDePaso).join(' ');
+  const buenas = disponibles.filter((q) => !esTrampa(q));
+  const q = rng.pick([buenas.filter((x) => cubierta(x, visto)), disponibles.filter((x) => cubierta(x, visto)), buenas, disponibles].find((l) => l.length));
   const final = { tipo: 'check', real: q, enunciado: q.enunciado, opciones: q.opciones, correcta: q.correcta };
   return pasos.at(-1)?.tipo === 'check' ? [...pasos.slice(0, -1), final] : [...pasos, final];
 }
+
+/** ¿La respuesta correcta es de las de combinar opciones («Todas las anteriores», «b y c son correctas», «Ninguna…»)? */
+export const esTrampa = (q) => /\b(respuestas?|todas|ninguna)\b.*\b(correctas?|anteriores)\b/i.test(q.opciones?.[q.correcta] ?? '');
 
 const VACIAS = new Set('para como cual cuál esta este estos estas desde hasta entre sobre segun según donde dónde cuando cuándo tiene tienen será serán puede pueden debe deben cuales cuáles siguientes siguiente respuesta respuestas correcta correctas correcto incorrecta afirmacion afirmación anteriores ninguna todas todos otra otro otras otros mismo misma también tambien buque buques barco barcos embarcación embarcacion'.split(' '));
 const sinTildes = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -115,7 +121,8 @@ const respondeAlumno = (p) => p.tipo === 'check' || p.tipo === 'toca' || p.tipo 
  */
 export function conPreguntasIntercaladas(pasos, disponibles, rng, cada = CADA) {
   const usadas = new Set(pasos.filter((p) => p.real).map((p) => p.real.id));
-  const bolsa = rng.shuffle(disponibles.filter((q) => !usadas.has(q.id)));
+  // Las de «trampa» («b y c son correctas»…) se reservan para el test del tema: en la clase, preguntas limpias.
+  const bolsa = rng.shuffle(disponibles.filter((q) => !usadas.has(q.id) && !esTrampa(q)));
   const out = [];
   let seguidas = 0;
   let visto = ''; // texto de la clase mostrado hasta aquí: solo se pregunta lo que ya se ha contado

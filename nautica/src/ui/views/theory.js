@@ -609,8 +609,16 @@ export function testView({ ctx, progress, params: route, tit }) {
       }
       function dejar() { if (!activo) return; contar(); guardar(); limpiar(); }
       function salir() {
+        // Empezado sin querer (sin ninguna respuesta): se cancela, no se queda «a medias» en Hoy.
+        if (!Object.keys(respuestas).length) {
+          limpiar();
+          progress.saveTestEnCurso(null);
+          avisoBreve('Examen cancelado: no habías respondido ninguna pregunta.');
+          location.hash = tlink(T0.id);
+          return;
+        }
         dejar();
-        avisoBreve('Guardado. Puedes seguir cuando quieras.');
+        avisoBreve('Guardado. Puedes seguir cuando quieras (o descartarlo desde Hoy).');
         location.hash = tlink(T0.id);
       }
 

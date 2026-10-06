@@ -96,7 +96,11 @@ export function hoyView({ progress, tit }) {
           h('p.eti', 'Hoy toca'),
           h('h2', principal.titulo),
           h('p.linea', ico ? icono(ico) : null, ` ${tipo}${principal.tramo ? ` · tramo ${principal.tramo.i} de ${principal.tramo.de}` : ''} · unos ${cuenta(principal.minutos, 'minuto')}`),
-          h('a.btn.grande', { href: hrefActividad(tit, principal) }, principal.verbo)));
+          h('a.btn.grande', { href: hrefActividad(tit, principal) }, principal.verbo),
+          // Un examen empezado por error no puede quedarse anclado en Hoy: se descarta de un toque (con confirmación).
+          principal.tipo === 'examen-en-curso' ? h('button.secondary.descartar-examen', { type: 'button', onclick: () => {
+            if (confirm('¿Descartar el examen que tienes a medias? Se perderán sus respuestas.')) { progress.saveTestEnCurso(null); dispatchEvent(new HashChangeEvent('hashchange')); }
+          } }, 'Descartar este examen') : null));
     };
     // La meta del día, con su anillo: cuánto llevas y cuánto te queda (los mismos minutos que suma el motor).
     const meta = h('section.meta-hoy', { class: cumplida ? 'hecho' : '' },

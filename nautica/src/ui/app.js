@@ -11,6 +11,7 @@ import { createProgressStore } from '../store/progress.js';
 import { installApi } from '../ai/api.js';
 import { setSharedProgress } from './chart-widget.js';
 import { transicion } from './movimiento.js';
+import { icono } from './iconos.js';
 import { voice } from './voice.js';
 import { exerciseView } from './views/exercise.js';
 import { examsView } from './views/exams.js';
@@ -136,13 +137,13 @@ function renderNav(tit, parts, cambiarTit) {
   if (!bar) return;
   const activa = pestanaDe(parts);
   const tabs = [
-    ['hoy', '🏠', 'Hoy', tlink(tit)],
-    ['temario', '📚', 'Temario', tlink(tit, ['temario'])],
-    ['examen', '📝', 'Examen', tlink(tit, ['examenes'])],
-    ['biblioteca', '📖', 'Biblioteca', tlink(tit, ['biblioteca'])],
+    ['hoy', 'hoy', 'Hoy', tlink(tit)],
+    ['temario', 'temario', 'Temario', tlink(tit, ['temario'])],
+    ['examen', 'examen', 'Examen', tlink(tit, ['examenes'])],
+    ['biblioteca', 'biblioteca', 'Biblioteca', tlink(tit, ['biblioteca'])],
   ];
   bar.replaceChildren(...tabs.map(([id, icon, txt, href]) => h('a.tab', { href, class: id === activa ? 'active' : '', 'aria-current': id === activa ? 'page' : null },
-    h('span.tab-icon', { 'aria-hidden': 'true' }, icon), h('span.tab-txt', txt))));
+    h('span.tab-icon', icono(icon)), h('span.tab-txt', txt))));
 }
 
 async function main() {
@@ -159,6 +160,13 @@ async function main() {
 
   const session = { summary: () => current?.summary?.() ?? '' };
   installApi({ ctx, session });
+
+  // Tamaño de letra elegido en Ajustes (normal, grande, muy grande) e icono de ajustes de la cabecera.
+  const aplicaLetra = () => { document.documentElement.dataset.letra = progress.settings().letra ?? 'normal'; };
+  aplicaLetra();
+  window.addEventListener('ajustes-letra', aplicaLetra);
+  document.querySelector('header.top a.ajustes')?.replaceChildren(icono('ajustes'));
+  document.querySelector('header.top a.brand')?.replaceChildren(icono('brujula'), ' Patrón');
 
   function render() {
     const route = parseHash();

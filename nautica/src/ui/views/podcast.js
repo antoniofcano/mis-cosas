@@ -119,7 +119,7 @@ function boya(tit, ep) {
     ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
     ep.audio
       ? h('div.actions',
-        h('button', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } }, est.clase === 'medias' ? '▶ Seguir' : '▶ Escuchar'),
+        h('button', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } }, est.clase === 'medias' ? '▶ Seguir escuchando' : '▶ Escuchar el episodio'),
         h('a.btn.secondary', { href: tlink(tit, ['podcast', ep.id]) }, '📜 Ver el guion'))
       : h('p.muted.small', '🛠 En el astillero: este episodio aún se está grabando. Mientras, tienes su ficha.', h('br'), h('a', { href: tlink(tit, ['podcast', ep.id]) }, 'Ver la ficha →')));
   return h('li.boya', { class: `${est.clase} ${ep.tipo}`, style: est.clase === 'medias' ? `--pct:${est.pct}` : null },

@@ -1,9 +1,11 @@
-// #/bienvenida — tres preguntas, una por pantalla: titulación, fecha del examen y minutos al día.
+// #/bienvenida — dos pantallas: la titulación, y la fecha del examen con los minutos al día; luego, la primera clase.
 
 import { h, setChildren } from '../dom.js';
 import { navigate } from '../router.js';
 import { TITULACIONES } from '../titulacion.js';
-import { cuenta } from '../../texto.js';
+import { cuenta, diaISO } from '../../texto.js';
+import { loadCourse } from '../../store/datasets.js';
+import { bloquesEnOrden } from '../../theory/blocks.js';
 
 /** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
@@ -26,34 +28,48 @@ export function bienvenidaView({ progress }) {
   let paso = 1;
   let tit = 'per';
 
-  const fin = (min) => {
+  // Al terminar, directo a la primera clase del orden de estudio (si el curso no carga, a Hoy).
+  const empezar = (fecha, orientativa, min) => {
+    progress.setSetting(`examen_${tit}`, fecha);
+    progress.setSetting(`examenOrientativo_${tit}`, orientativa);
     progress.setSetting('minutosDia', min);
     progress.setSetting('onboarded', true);
-    navigate([tit]);
+    const T = TITULACIONES[tit];
+    loadCourse(tit).then((curso) => {
+      const ut = bloquesEnOrden(T.estructura).find((b) => curso?.modulos.some((m) => m.ut === b.ut && m.lecciones.length))?.ut;
+      const primera = curso?.modulos.find((m) => m.ut === ut)?.lecciones[0];
+      navigate(primera ? [tit, 'curso', primera.id] : [tit]);
+    }).catch(() => navigate([tit]));
   };
 
   function render() {
-    const cab = h('p.paso', `Paso ${paso} de 3`);
+    const cab = h('p.paso', `Paso ${paso} de 2`);
     if (paso === 1) {
       setChildren(el, cab, h('h1', '¿Qué título vas a sacarte?'),
         h('div.opciones-grandes',
           Object.values(TITULACIONES).map((T) => h('button.tarjeta-opcion', { type: 'button', onclick: () => { tit = T.id; progress.setSetting('level', T.nivel); paso = 2; render(); } },
             h('span.op-icono', { 'aria-hidden': 'true' }, T.icon), h('span.op-texto', T.id === 'per' ? `PER — ${T.nombre}` : T.nombre)))));
-    } else if (paso === 2) {
-      const input = h('input', { type: 'date', 'aria-label': 'Fecha del examen', value: progress.settings()[`examen_${tit}`] ?? '' });
-      setChildren(el, cab, h('h1', '¿Cuándo es tu examen?'),
-        h('div.campo-fecha', input),
-        h('button.grande', { type: 'button', onclick: () => { if (input.value) { progress.setSetting(`examen_${tit}`, input.value); progress.setSetting(`examenOrientativo_${tit}`, false); } paso = 3; render(); } }, 'Continuar'),
-        // Sin fecha no hay plan ni cuenta atrás: se pone una orientativa (dentro de 3 meses) que se cambia cuando se sepa.
-        h('button.secondary.grande', { type: 'button', onclick: () => {
-          const f = new Date(Date.now() + 91 * 864e5).toLocaleDateString('sv-SE');
-          progress.setSetting(`examen_${tit}`, f); progress.setSetting(`examenOrientativo_${tit}`, true); paso = 3; render();
-        } }, 'Todavía no lo sé (pon una orientativa)'));
     } else {
-      setChildren(el, cab, h('h1', '¿Cuánto tiempo tienes al día?'), botonesMinutos(null, fin));
+      // Una sola pantalla: fecha del examen y minutos al día, y a la primera clase.
+      let orientativa = false;
+      let min = 20;
+      const input = h('input#fecha-examen', { type: 'date', value: progress.settings()[`examen_${tit}`] ?? '', oninput: () => { orientativa = false; nota.hidden = true; } });
+      const nota = h('p.muted.small', { hidden: true }, 'Fecha orientativa, dentro de tres meses: la cambias en Ajustes cuando la sepas.');
+      const noSe = h('button.secondary', { type: 'button', onclick: () => { input.value = diaISO(Date.now() + 91 * 864e5); orientativa = true; nota.hidden = false; } }, 'Todavía no lo sé');
+      const opciones = [10, 20, 30].map((m) => h('button.grande.secondary', { type: 'button', 'aria-pressed': String(m === min), onclick: () => {
+        min = m; for (const b of opciones) b.setAttribute('aria-pressed', String(b === opciones[[10, 20, 30].indexOf(m)]));
+      } }, cuenta(m, 'minuto')));
+      const aviso = h('p.warn', { hidden: true, role: 'alert' }, 'Pon la fecha del examen o pulsa «Todavía no lo sé».');
+      setChildren(el, cab, h('h1', 'Tu examen y tu tiempo'),
+        h('label.pregunta-bienvenida', { for: 'fecha-examen' }, '¿Cuándo es tu examen?'),
+        h('div.campo-fecha', input, noSe), nota,
+        h('p.pregunta-bienvenida', '¿Cuántos minutos al día puedes estudiar?'),
+        h('div.opciones-grandes.minutos-bienvenida', { role: 'group', 'aria-label': 'Minutos al día' }, opciones),
+        aviso,
+        h('button.grande', { type: 'button', onclick: () => { if (!input.value) { aviso.hidden = false; return; } empezar(input.value, orientativa, min); } }, 'Empezar la primera clase'));
     }
     window.scrollTo(0, 0);
   }
   render();
-  return { el, summary: () => `VISTA bienvenida · paso ${paso} de 3 (titulación, fecha del examen, minutos al día)` };
+  return { el, summary: () => `VISTA bienvenida · paso ${paso} de 2 (titulación; fecha del examen y minutos al día)` };
 }

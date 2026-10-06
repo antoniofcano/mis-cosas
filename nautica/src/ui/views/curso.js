@@ -321,6 +321,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       const t = tarjetas[paso];
       // Un «¿Lo pillas?» o la predicción de una lámina interactiva se responden antes de seguir.
       siguiente.disabled = (t.tipo === 'check' || t.tipo === 'toca' || t.tipo === 'emparejar' || (t.tipo === 'ilustracion' && pidePrediccion(t.spec))) && !checkOk.has(paso);
+      // Desactivado, el botón dice qué falta (en gris), en vez de no hacer nada sin explicar por qué.
+      if (siguiente.disabled) siguiente.textContent = { check: 'Elige una respuesta', toca: 'Toca las partes', emparejar: 'Empareja los términos' }[t.tipo] ?? 'Elige qué crees que pasará';
+      siguiente.classList.toggle('esperando', siguiente.disabled);
     }
 
     function tarjeta() {

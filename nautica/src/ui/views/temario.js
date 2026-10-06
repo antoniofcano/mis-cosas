@@ -135,8 +135,8 @@ export function temaView({ progress, params: route, tit }) {
       ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', '🗺️ Ejercicios de carta'), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
       h('section', h('h2', 'Para ayudarte'),
         h('div.cards',
-          h('a.card', { href: tlink(tit, ['laminas']) }, h('h3', '🎞️ Láminas')),
-          h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar')),
+          h('a.card', { href: tlink(tit, ['laminas']) }, h('h3', '🎞️ Láminas'), h('p', 'Todas las láminas, ordenadas por temas.')),
+          h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Trucos que funcionan, con su explicación.')),
           ut === T.cartaUt ? h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta')) : null)),
     );
   }).catch((err) => setChildren(el, h('p.warn', `No se pudo cargar el tema: ${err.message}`)));

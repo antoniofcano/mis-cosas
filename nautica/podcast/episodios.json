@@ -2149,7 +2149,8 @@
         "and-2025-c1-t18",
         "and-2025-c1-t27"
       ],
-      "peso": "El Reglamento (RIPA) da 10 de las 45 preguntas, el bloque más grande del examen, y es eliminatorio: con más de 5 fallos en este tema se suspende."
+      "peso": "El Reglamento (RIPA) da 10 de las 45 preguntas, el bloque más grande del examen, y es eliminatorio: con más de 5 fallos en este tema se suspende.",
+      "archivo": "per/6-0-el-ripa-de-un-vistazo.md"
     },
     {
       "n": "6.1",
@@ -2187,7 +2188,8 @@
         "6.0",
         "6.3",
         "6.5"
-      ]
+      ],
+      "archivo": "per/6-1-definiciones-vigilancia-riesgo.md"
     },
     {
       "n": "6.2",
@@ -2224,7 +2226,8 @@
         "6.1",
         "6.3",
         "6.8"
-      ]
+      ],
+      "archivo": "per/6-2-canales-angostos-y-dst.md"
     },
     {
       "n": "6.3",
@@ -2259,7 +2262,8 @@
         "6.1",
         "6.4",
         "6.6"
-      ]
+      ],
+      "archivo": "per/6-3-alcance-vuelta-encontrada-cruce.md"
     },
     {
       "n": "6.4",
@@ -2296,7 +2300,8 @@
         "6.3",
         "6.6",
         "6.7"
-      ]
+      ],
+      "archivo": "per/6-4-veleros-y-jerarquia.md"
     },
     {
       "n": "6.5",
@@ -2331,7 +2336,8 @@
         "6.1",
         "6.3",
         "6.8"
-      ]
+      ],
+      "archivo": "per/6-5-visibilidad-reducida.md"
     },
     {
       "n": "6.6",
@@ -2368,7 +2374,8 @@
         "6.4",
         "6.7",
         "6.1"
-      ]
+      ],
+      "archivo": "per/6-6-luces-motor-vela-remolque.md"
     },
     {
       "n": "6.7",
@@ -2404,7 +2411,8 @@
         "6.6",
         "6.1",
         "4.1"
-      ]
+      ],
+      "archivo": "per/6-7-luces-pesca-especiales-fondeados.md"
     },
     {
       "n": "6.8",
@@ -2442,7 +2450,8 @@
         "6.2",
         "6.5",
         "6.3"
-      ]
+      ],
+      "archivo": "per/6-8-senales-acusticas-luminosas-peligro.md"
     },
     {
       "tema": 7,
@@ -2971,7 +2980,8 @@
         "and-2022-c1-t38",
         "and-2021-c2-t39"
       ],
-      "peso": "El tema 10 da 5 preguntas de las 45 del examen y no tiene límite propio de fallos: cuentan para los 32 aciertos del apto. Pero es la base del tema 11 (4 preguntas de carta con un máximo de 2 fallos), que sí es eliminatorio."
+      "peso": "El tema 10 da 5 preguntas de las 45 del examen y no tiene límite propio de fallos: cuentan para los 32 aciertos del apto. Pero es la base del tema 11 (4 preguntas de carta con un máximo de 2 fallos), que sí es eliminatorio.",
+      "archivo": "per/10-0-navegar-con-la-carta-la-teoria.md"
     },
     {
       "n": "10.1",
@@ -3008,7 +3018,8 @@
       "relacionados": [
         "10.2",
         "11.1"
-      ]
+      ],
+      "archivo": "per/10-1-la-tierra-coordenadas-y-milla.md"
     },
     {
       "n": "10.2",
@@ -3046,7 +3057,8 @@
         "10.1",
         "5.4",
         "11.1"
-      ]
+      ],
+      "archivo": "per/10-2-carta-faros-y-publicaciones.md"
     },
     {
       "n": "10.3",

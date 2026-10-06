@@ -86,7 +86,7 @@ export function conPreguntaFinal(pasos, disponibles, rng) {
 
 /** Tarjetas de contenido seguidas como máximo antes de pedir una respuesta al alumno. */
 export const CADA = 3;
-const respondeAlumno = (p) => p.tipo === 'check' || (p.tipo === 'ilustracion' && p.prediccion);
+const respondeAlumno = (p) => p.tipo === 'check' || p.tipo === 'toca' || p.tipo === 'emparejar' || (p.tipo === 'ilustracion' && p.prediccion);
 
 /**
  * Intercala preguntas reales de la clase para que el alumno responda cada `cada` tarjetas como mucho (no se espera al
@@ -136,4 +136,55 @@ export function enTramos(pasos, k) {
     acum += peso(p);
     return { ...p, tramo: Math.max(t, k - (pasos.length - i) > 0 ? k - (pasos.length - i) : 0) };
   });
+}
+
+/**
+ * Pista de una parte de lámina sin decir su nombre (para «Toca en el dibujo»): lo que va tras «Nombre:» o tras la
+ * primera frase, hasta el primer punto. «G, centro de gravedad: donde se concentra el peso…» → «donde se concentra el peso…».
+ */
+export function pistaParte(desc = '', max = 110) {
+  const s = String(desc);
+  const dos = s.indexOf(':');
+  const resto = dos > -1 && dos < 45 ? s.slice(dos + 1) : s.includes('. ') ? s.slice(s.indexOf('. ') + 2) : s;
+  return definicionCorta(resto.trim(), max);
+}
+
+/** Primera frase de una definición, recortada para caber en un botón de «Empareja». */
+export function definicionCorta(def = '', max = 95) {
+  const f = def.split(/(?<=\.)\s/)[0].replace(/\.$/, '');
+  return f.length > max ? `${f.slice(0, f.lastIndexOf(' ', max - 1))}…` : f;
+}
+
+/**
+ * Términos del vocabulario que salen en el texto de la clase, en el orden en que aparecen (sin repetir).
+ * @param {string} texto  texto de la clase
+ * @param {{ re: RegExp|null, idDeForma: Map<string,string>, porId: Map<string,object> }} vocab
+ */
+export function terminosDeClase(texto, vocab, max = 4) {
+  if (!vocab?.re) return [];
+  const ids = [];
+  for (const m of texto.matchAll(new RegExp(vocab.re.source, vocab.re.flags))) {
+    const id = vocab.idDeForma.get(m[0].toLowerCase());
+    if (id && !ids.includes(id)) ids.push(id);
+  }
+  return ids.map((id) => vocab.porId.get(id)).filter((t) => t?.definicion).slice(0, max);
+}
+
+/**
+ * Añade ejercicios que no son de elegir opción: tras cada lámina con partes con nombre, «Toca en el dibujo»; y antes de
+ * la pregunta final, «Empareja» con los términos de la clase (si hay al menos 3). `partesDe(spec)` da las partes de
+ * una lámina ([[parte, nombre]…]) o null.
+ */
+export function conEjercicios(pasos, { terminos = [], partesDe = () => null } = {}) {
+  const out = [];
+  for (const p of pasos) {
+    out.push(p);
+    const partes = p.tipo === 'ilustracion' ? partesDe(p.spec) : null;
+    if (partes?.length >= 3) out.push({ tipo: 'toca', spec: p.spec, partes });
+  }
+  if (terminos.length >= 3) {
+    const i = out.at(-1)?.tipo === 'check' ? out.length - 1 : out.length;
+    out.splice(i, 0, { tipo: 'emparejar', pares: terminos.map((t) => [t.termino, definicionCorta(t.definicion)]) });
+  }
+  return out;
 }

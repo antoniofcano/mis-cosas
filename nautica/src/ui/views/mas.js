@@ -29,6 +29,17 @@ export function masView({ progress, tit }) {
       botonSubirMinutos(progress, ps, () => { pintaMinutos(); }, tit),
       avisoEsencial(progress, tit, T.estructura, () => { pintaMinutos(); }));
   }).catch(() => { avisoPlan.hidden = true; });
+  // Tamaño de letra: se aplica al momento a toda la app.
+  const letraEl = h('div');
+  const LETRAS = [['normal', 'Normal'], ['grande', 'Grande'], ['muy-grande', 'Muy grande']];
+  const pintaLetra = () => {
+    const actual = progress.settings().letra ?? 'normal';
+    setChildren(letraEl, h('div.opciones-grandes', LETRAS.map(([k, txt]) => h('button.grande', {
+      type: 'button', class: actual === k ? '' : 'secondary', 'aria-pressed': actual === k ? 'true' : 'false',
+      onclick: () => { progress.setSetting('letra', k); window.dispatchEvent(new Event('ajustes-letra')); pintaLetra(); },
+    }, txt))));
+  };
+  pintaLetra();
   const diasEl = h('div');
   const pintaDias = () => {
     const actual = progress.settings().diasEstudio ?? 'todos';
@@ -61,6 +72,8 @@ export function masView({ progress, tit }) {
       diasEl,
       avisoPlan,
       h('p', h('a', { href: tlink(tit, ['plan']) }, '🗓 Ver mi plan día a día hasta el examen →'))),
+    h('section', h('h2', 'Tamaño de letra'),
+      letraEl),
     h('section', h('h2', 'Titulación'),
       h('div.titulaciones', Object.values(TITULACIONES).map((X) => h('a.btn.grande', { href: tlink(X.id), class: X.id === tit ? '' : 'secondary', 'aria-current': X.id === tit ? 'true' : null },
         `${X.id === tit ? '✓ ' : ''}${X.id === 'per' ? 'PER' : X.nombre}`)))),

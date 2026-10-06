@@ -881,3 +881,18 @@ details.saber-mas .pasos.todas { margin-top: .6rem; }
   .option { min-height: 52px; padding: .55rem .8rem; }
   .paso.ilu .il-grid.inline { margin: 0 -16px; }
 }
+/* Tamaño de letra elegido en Ajustes */
+html[data-letra="grande"] { font-size: 20px; }
+html[data-letra="muy-grande"] { font-size: 22px; }
+/* Iconos de línea */
+.ico { display: inline-flex; width: 1.4em; height: 1.4em; flex: none; }
+.ico svg { width: 100%; height: 100%; }
+.tab-icon .ico { width: 26px; height: 26px; }
+header.top a.ajustes .ico { width: 28px; height: 28px; }
+.paso-botones .ico { width: 24px; height: 24px; }
+a.btn.boton-icono { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 52px; }
+.linea-repaso a.btn.boton-icono { width: 100%; margin-top: .4rem; }
+p.ver-progreso a.btn { width: 100%; }
+/* Títulos: en móvil, el de la clase no ocupa tres líneas */
+@media (max-width: 600px) { .paso.intro h2, .tarjeta-hoy h2 { font-size: 1.3rem; line-height: 1.25; } }
+.ba-texto { font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }

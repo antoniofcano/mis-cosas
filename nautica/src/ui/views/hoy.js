@@ -7,6 +7,7 @@ import { colaRepaso } from '../../course/repaso.js';
 import { mazos, tarjetasPorRepasar } from '../../course/tarjetas.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
+import { icono } from '../iconos.js';
 import { calcularPlan, hrefActividad, TIPO_TXT, metaDiaria } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
@@ -100,7 +101,7 @@ export function hoyView({ progress, tit }) {
     const lineaRepaso = h('p.linea-repaso',
       cola.hoy.length && !enPlan ? [h('a', { href: tlink(tit, ['teoria', 'repaso']) }, `🔁 Tienes ${cola.hoy.length} ${cola.hoy.length === 1 ? 'pregunta' : 'preguntas'} por repasar`), ' · '] : null,
       tarjetasHoy ? [h('a', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🃏 ${tarjetasHoy} ${tarjetasHoy === 1 ? 'tarjeta' : 'tarjetas'}`), ' · '] : null,
-      h('a', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
+      h('a.btn.secondary.boton-icono', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, icono('reloj'), 'Tengo 5 minutos'));
     setChildren(el,
       cabecera,
       metaDiaria(progress),
@@ -111,7 +112,7 @@ export function hoyView({ progress, tit }) {
         h('div.bar', { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),
       h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo)),
-        h('p.ver-progreso', h('a', { href: '#/progreso' }, '📈 Ver mi progreso por temas →'))),
+        h('p.ver-progreso', h('a.btn.secondary.boton-icono', { href: '#/progreso' }, icono('progreso'), 'Ver mi progreso por temas'))),
       avisoCopia(progress),
       resto.length ? [h('h2', 'Después'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },
         h('h3', x.titulo), h('p', `${(TIPO_TXT[x.tipo] ?? [''])[0]} unos ${x.minutos} minutos`))))] : null,

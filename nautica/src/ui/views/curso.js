@@ -16,6 +16,7 @@ import { pidePrediccion } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
 import { voice } from '../voice.js';
 import { transicion, deslizar } from '../movimiento.js';
+import { icono } from '../iconos.js';
 import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
 import { episodiosDeClase, enlaceEpisodio } from './podcast.js';
@@ -228,11 +229,11 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       checkOk.delete(paso); // una pregunta rápida (o una predicción) se vuelve a responder al volver a ella
       const et = enTramo(paso);
       barra.set(k > 1 ? `Tramo ${et.t + 1} de ${k} · ${et.j}/${et.m}` : `Tarjeta ${paso + 1} de ${n}`, (paso + 1) / n);
-      const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', 'aria-label': 'Escuchar esta tarjeta', title: 'Escuchar', onclick: () => voice.speak(speechOf(p)) }, '🔊') : null;
+      const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', 'aria-label': 'Escuchar esta tarjeta', title: 'Escuchar', onclick: () => voice.speak(speechOf(p)) }, icono('escuchar')) : null;
       setChildren(cont,
         volverOrigen(),
         h('div.pasos', h('div.paso-cabecera', paso ? h('p.rotulo-tema', L.titulo) : h('span'),
-          h('span.paso-botones', episodio && paso ? h('a.btn.secondary.small.escuchar', { href: enlacePodcast, title: 'Escuchar el podcast de esta clase', 'aria-label': 'Podcast de esta clase' }, '🎧') : null, escuchar)),
+          h('span.paso-botones', episodio && paso ? h('a.btn.secondary.small.escuchar', { href: enlacePodcast, title: 'Escuchar el podcast de esta clase', 'aria-label': 'Podcast de esta clase' }, icono('podcast')) : null, escuchar)),
           pasoEl(p, paso)),
         // A mano durante toda la clase (salvo en la primera tarjeta, que ya la enseña): la base del PER.
         paso && base.length ? h('details.base-per-chip', h('summary', `🔁 Base del PER (${base.length})`), listaBase()) : null,

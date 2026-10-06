@@ -192,7 +192,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           pasoEl(p, paso)),
         // A mano durante toda la clase (salvo en la primera tarjeta, que ya la enseña): la base del PER.
         paso && base.length ? h('details.base-per-chip', h('summary', `🔁 Base del PER (${base.length})`), listaBase()) : null,
-        h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); voice.stop(); verTodas(); } }, 'Ver todas las tarjetas seguidas')),
+        h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); voice.stop(); verTodas(); } }, 'Ver todas las tarjetas seguidas'),
+          paso < n - 1 ? [' · ', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); voice.stop(); terminar(); } }, 'Terminar ya la clase ✓')] : null),
         h('div.fila-inferior', anterior, siguiente),
         h('p.pie-aviso', avisoError(`Clase ${L.id} «${L.titulo}», tarjeta ${paso + 1} de ${n}`, p.titulo ?? p.tipo)));
       refrescaBotones();
@@ -231,9 +232,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null) : null;
       const vuelta = origen ? h('p', volverOrigen('a.btn.grande')) : null;
       if (nPractica) {
+        // Practicar la afianza; si no, la clase ya cuenta como vista y se puede cerrar o pasar a lo siguiente.
+        const hueco = h('div');
         setChildren(cont, vuelta, chuleta,
           h('button.grande.practicar', { type: 'button', onclick: () => practicar() }, `Practicar con ${nPractica} preguntas de examen`),
-          extra);
+          hueco, extra);
+        pintarCierre(hueco, progress, tit, { icono: '✅', titulo: 'Clase terminada', lineas: ['Cuando la practiques quedará aprendida.'] });
       } else {
         const hueco = h('div');
         setChildren(cont, vuelta, hueco, chuleta, extra);

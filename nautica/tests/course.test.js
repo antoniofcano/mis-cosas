@@ -8,14 +8,24 @@ import { validSpec } from '../src/illustrations/index.js';
 const DIA = 864e5;
 const L = { id: 'per-5-1', practica: ['a', 'b', 'c', 'd', 'e'] };
 
-test('estado de una lección: nueva → empezada → dominada → repasar', () => {
+test('estado de una lección: nueva → empezada → vista → dominada → repasar', () => {
   const t0 = Date.UTC(2026, 0, 1);
   assert.equal(estadoLeccion(L, undefined, {}, t0).estado, 'nueva');
-  assert.equal(estadoLeccion(L, { visto: true }, {}, t0).estado, 'empezada');
+  assert.equal(estadoLeccion(L, { paso: 3 }, {}, t0).estado, 'empezada');
+  // Terminada sin practicar: ya cuenta como hecha (no se vuelve a proponer), pero no aprendida.
+  assert.equal(estadoLeccion(L, { visto: true, paso: 0 }, {}, t0).estado, 'vista');
+  // Reabrirla no la deshace.
+  assert.equal(estadoLeccion(L, { visto: true, paso: 4 }, {}, t0).estado, 'vista');
+  // Contestar sus preguntas en otro sitio no la empieza.
+  assert.equal(estadoLeccion(L, undefined, { a: { ok: true } }, t0).estado, 'nueva');
   const r1 = trasPractica({ visto: true }, 0.8, t0);
-  assert.equal(r1.caja, 0); // primera práctica aprobada: entra en la caja 0 (repaso mañana)
+  assert.equal(r1.caja, 1); // primera práctica aprobada: aprendida, vuelve en unos días
+  assert.equal(estadoLeccion(L, r1, {}, t0 + DIA).estado, 'dominada');
+  const r0 = trasPractica({ visto: true }, 0.4, t0);
+  assert.equal(estadoLeccion(L, r0, {}, t0 + 3600e3).estado, 'vista'); // suspendida: hoy no se repite
+  assert.equal(estadoLeccion(L, r0, {}, t0 + DIA).estado, 'repasar'); // mañana sí
   const r2 = trasPractica(r1, 1, t0 + DIA);
-  assert.equal(r2.caja, 1);
+  assert.equal(r2.caja, 2);
   const ok = { a: { ok: true }, b: { ok: true }, c: { ok: true }, d: { ok: true }, e: { ok: false } };
   assert.equal(estadoLeccion(L, r2, ok, t0 + 2 * DIA).estado, 'dominada');
   assert.equal(estadoLeccion(L, r2, ok, r2.proximo + 1).estado, 'repasar');

@@ -52,13 +52,14 @@ export function estadoTema(bloque, curso, preguntas, regs = {}, respuestas = {},
 }
 
 /**
- * Cuánto le falta a un tema para estar al día, de 0 a 1, con el mismo criterio que `alDia`: cada clase terminada y
- * cada pregunta hecha hasta el objetivo cuentan una unidad. Vale 1 si y solo si el tema está al día.
+ * Cuánto lleva hecho un tema camino de estar al día, de 0 a 1, con el mismo criterio que `alDia`: cada clase terminada
+ * es una unidad y las preguntas hasta el objetivo, una más (una tanda de preguntas no pesa como varias clases).
+ * Vale 1 si y solo si el tema está al día.
  */
 export function parteTema(e) {
   const obj = Math.min(e.total, OBJETIVO_TEMA);
-  const unidades = e.clases.total + obj;
-  return unidades ? (e.clases.terminadas + Math.min(e.hechas, obj)) / unidades : 1;
+  const unidades = e.clases.total + (obj ? 1 : 0);
+  return unidades ? (e.clases.terminadas + (obj ? Math.min(e.hechas, obj) / obj : 0)) / unidades : 1;
 }
 
 /** Avance global: temas al día y fracción media del camino hecho en cada tema (la barra llega al 100 % con todos al día). */

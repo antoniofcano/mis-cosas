@@ -9,7 +9,7 @@ import { link } from '../router.js';
 import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
-import { avance, estadoTema, lineaAvance, clasesFlojas, MIN_DIAGNOSTICO } from '../../course/plan.js';
+import { avance, estadoTema, parteTema, lineaAvance, clasesFlojas, MIN_DIAGNOSTICO } from '../../course/plan.js';
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
@@ -60,7 +60,7 @@ export function progressView({ progress, tit }) {
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
         h('h3', `${b.icon} ${b.titulo}`),
         h('p.estado-linea', { class: { bien: 'ok', repasar: 'warn' }[e.estado] ?? '' }, lineaEstado(e)),
-        e.hechas ? h('div.bar', h('span', { style: `width:${Math.round(100 * Math.min(1, e.hechas / e.total))}%` })) : null))));
+        e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))));
   }).catch((e) => setChildren(temas, h('p.warn', `No se pudo calcular tu avance: ${e.message}`)));
 
   const examenes = Object.values(TITULACIONES).map((X) => {

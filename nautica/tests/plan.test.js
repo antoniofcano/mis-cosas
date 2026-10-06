@@ -2,7 +2,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PER, PY } from '../src/theory/blocks.js';
-import { planHoy, estadoTema, avance, diasHasta, lineaAvance, OBJETIVO_TEMA, TANDA } from '../src/course/plan.js';
+import { planHoy, estadoTema, avance, diasHasta, lineaAvance, parteTema, OBJETIVO_TEMA, TANDA } from '../src/course/plan.js';
+import { trasPractica } from '../src/course/engine.js';
 import { buildPractica } from '../src/theory/engine.js';
 import { createRng } from '../src/math/rng.js';
 
@@ -40,11 +41,15 @@ test('2. temas 1–4 al día → clase del tema 5, «Empezar»', () => {
   assert.deepEqual(p[0].ruta, ['curso', 'per-5-1']);
 });
 
-test('3. clase vista sin caja → «Continuar»', () => {
-  const p = planHoy({ ...base, respuestas: responder([1, 2, 3, 4]), regs: { 'per-5-1': { visto: true } } });
+test('3. clase a medias → «Continuar»; terminada (aunque sin practicar) → la siguiente', () => {
+  const p = planHoy({ ...base, respuestas: responder([1, 2, 3, 4]), regs: { 'per-5-1': { paso: 2 } } });
   assert.equal(p[0].tipo, 'clase');
   assert.equal(p[0].verbo, 'Continuar');
   assert.deepEqual(p[0].ruta, ['curso', 'per-5-1']);
+  for (const reg of [{ visto: true, paso: 0 }, trasPractica({ visto: true }, 1, AHORA), trasPractica({ visto: true }, 0.3, AHORA)]) {
+    const q = planHoy({ ...base, regs: { 'per-5-1': reg } });
+    assert.ok(!q.some((a) => a.ruta[1] === 'per-5-1'), `no vuelve a proponer la clase recién terminada (${JSON.stringify(reg)})`);
+  }
 });
 
 test('4. clase con repaso vencido → repaso con práctica directa', () => {
@@ -223,4 +228,12 @@ test('B5. clases flojas: por sus preguntas de práctica, las peores primero y so
   const f = clasesFlojas(curso, r);
   assert.deepEqual(f.map((c) => c.id), ['radar', 'hora']);
   assert.deepEqual([f[0].aciertos, f[0].hechas, f[0].pct], [1, 4, 25]);
+});
+
+test('avance de un tema: una tanda de preguntas pesa como una clase, no como el tema entero', () => {
+  // 2 de 5 clases y el objetivo de preguntas cumplido: 3 de 6 unidades, no el 88 % de antes
+  const e = { total: 50, hechas: 20, clases: { total: 5, terminadas: 2 } };
+  assert.equal(Math.round(100 * parteTema(e)), 50);
+  assert.equal(parteTema({ total: 50, hechas: 20, clases: { total: 5, terminadas: 5 } }), 1);
+  assert.equal(parteTema({ total: 0, hechas: 0, clases: { total: 2, terminadas: 1 } }), 0.5);
 });

@@ -33,22 +33,6 @@ export const TIPO_TXT = {
   simulacro: ['examen', 'Simulacro de examen'], mezclado: ['repaso', 'Repaso mezclado'], 'examen-en-curso': ['reloj', 'Examen a medias'],
 };
 
-/**
- * Meta del día, siempre a la vista: minutos de hoy frente al objetivo, con barra gruesa y la cifra. La racha va al lado,
- * en positivo (nunca castiga: no hay vidas ni nada que se pierda).
- */
-export function metaDiaria(progress) {
-  const minutos = progress.minutosHoy();
-  const objetivo = progress.settings().minutosDia ?? 20;
-  const racha = progress.racha();
-  const pct = Math.min(100, Math.round((100 * minutos) / Math.max(1, objetivo)));
-  const hecho = minutos >= objetivo;
-  return h('section.meta-diaria', { class: hecho ? 'hecho' : '' },
-    h('p.meta-texto', h('strong', hecho ? '✅ Meta de hoy cumplida' : 'Meta de hoy'), ` · ${minutos} de ${objetivo} min`,
-      racha >= 2 ? h('span.racha', ` · ${racha} días seguidos`) : null),
-    h('div.bar.gruesa', { role: 'progressbar', 'aria-label': 'Meta de hoy', 'aria-valuemin': 0, 'aria-valuemax': objetivo, 'aria-valuenow': minutos }, h('span', { style: `width:${pct}%` })));
-}
-
 /** Marca de «hecho» que se dibuja (círculo verde con el visto). */
 function marcaHecho() {
   const d = document.createElement('div');

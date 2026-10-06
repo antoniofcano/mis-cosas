@@ -41,6 +41,8 @@ function dibujoDe(principal, curso) {
   let svg = null;
   if (spec) {
     try { const def = interactivaDe(spec); svg = def ? dibujoFijo(def, spec).svg : renderIllustration(spec)?.svg; } catch { svg = null; }
+    // Una lámina con varias vistas (planta y perfil…) trae varios <svg>: en la tarjeta va solo la primera.
+    if (svg) svg = svg.match(/<svg[\s\S]*?<\/svg>/)?.[0] ?? svg;
   }
   if (svg) return h('div.pic', { 'aria-hidden': 'true', html: svg });
   return h('div.pic.pic-icono', icono((TIPO_TXT[principal.tipo] ?? ['brujula'])[0]));
@@ -117,15 +119,14 @@ export function hoyView({ progress, tit }) {
       anilloMeta(minutos, objetivo),
       h('p', h('strong', minutos >= objetivo ? 'Meta de hoy cumplida' : minutos ? `Llevas ${minutos} de ${objetivo} minutos` : `Hoy: ${objetivo} minutos`),
         minutos >= objetivo ? `Has estudiado ${minutos} minutos.` : nTramos ? `${nTramos === 1 ? 'Te queda un tramo' : `Te quedan unos ${nTramos} tramos`} como el de hoy.`
-          : 'Una actividad y listo.',
+          : `Te quedan ${quedan} minutos.`,
         racha >= 2 ? h('span.racha', icono('racha'), ` ${racha} días seguidos`) : null));
     const hueco = h('div');
     if (minutos >= objetivo) {
-      setChildren(hueco, h('section.tarjeta-hoy.hecho',
-        h('div.icono-grande', icono('ok')),
-        h('h2', 'Hecho por hoy'),
-        h('p', `Has estudiado ${minutos} minutos. Mañana toca: ${principal.titulo}.`),
-        h('button.secondary.grande', { type: 'button', onclick: () => setChildren(hueco, tarjeta()) }, 'Seguir un poco más')));
+      setChildren(hueco, h('section.hoy-toca.hecho', h('div.tx',
+        h('p.eti', 'Hecho por hoy'),
+        h('h2', `Mañana toca: ${principal.titulo}`),
+        h('button.secondary.grande', { type: 'button', onclick: () => setChildren(hueco, tarjeta()) }, 'Seguir un poco más'))));
     } else {
       setChildren(hueco, tarjeta());
     }

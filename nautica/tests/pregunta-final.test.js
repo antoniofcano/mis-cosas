@@ -55,3 +55,22 @@ test('tramos de clase: unos 5 minutos cada uno, seguidos, sin tramos vacíos', a
     assert.ok(t.every((x, i) => i === 0 || x >= t[i - 1]), 'seguidos');
   }
 });
+
+test('ejercicios: «Toca» tras láminas con partes y «Empareja» con los términos de la clase', async () => {
+  const { conEjercicios, terminosDeClase, definicionCorta, pistaParte } = await import('../src/course/engine.js');
+  const { compilarVocabulario } = await import('../src/theory/vocabulario.js');
+  const vocab = compilarVocabulario([
+    { id: 'escora', termino: 'Escora', formas: ['escora'], definicion: 'Inclinación del barco hacia una banda. Más texto.' },
+    { id: 'balance', termino: 'Balance', formas: ['balance'], definicion: 'Oscilación de banda a banda.' },
+    { id: 'asiento', termino: 'Asiento', formas: ['asiento'], definicion: 'Diferencia de calados.' },
+  ]);
+  const t = terminosDeClase('El balance y la escora cambian; el asiento no. Otra escora.', vocab);
+  assert.deepEqual(t.map((x) => x.id), ['balance', 'escora', 'asiento'], 'en orden de aparición y sin repetir');
+  assert.equal(definicionCorta('Inclinación del barco hacia una banda. Más texto.'), 'Inclinación del barco hacia una banda');
+  assert.equal(pistaParte('G, centro de gravedad: donde se concentra el peso del barco. Sube si…'), 'donde se concentra el peso del barco');
+  const final = { tipo: 'check', enunciado: '?', opciones: {}, correcta: 'a' };
+  const pasos = [{ tipo: 'texto', texto: 'x' }, { tipo: 'ilustracion', spec: { tipo: 'estabilidad' } }, final];
+  const r = conEjercicios(pasos, { terminos: t, partesDe: () => [['g', 'G', 'peso'], ['b', 'B', 'empuje'], ['m', 'M', 'metacentro']] });
+  assert.deepEqual(r.map((p) => p.tipo), ['texto', 'ilustracion', 'toca', 'emparejar', 'check']);
+  assert.deepEqual(conEjercicios(pasos, { terminos: t.slice(0, 2) }).map((p) => p.tipo), ['texto', 'ilustracion', 'check'], 'con menos de 3 términos o sin partes, nada');
+});

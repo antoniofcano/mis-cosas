@@ -896,3 +896,18 @@ p.ver-progreso a.btn { width: 100%; }
 /* Títulos: en móvil, el de la clase no ocupa tres líneas */
 @media (max-width: 600px) { .paso.intro h2, .tarjeta-hoy h2 { font-size: 1.3rem; line-height: 1.25; } }
 .ba-texto { font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+/* Ejercicios: tocar en el dibujo y emparejar */
+.toca-pregunta { font-weight: 700; font-size: 1.1rem; margin: .4rem 0; }
+.toca-dibujo [data-parte] { cursor: pointer; }
+.toca-dibujo .toca-ok { filter: drop-shadow(0 0 3px var(--ok)); }
+.toca-dibujo .toca-ok, .toca-dibujo .toca-ok * { stroke: var(--ok) !important; }
+.toca-dibujo .toca-pista { animation: 1s ease-in-out 2 pista; }
+@keyframes pista { 50% { opacity: .35; } }
+.toca-fb { min-height: 1.6em; margin: .4rem 0; }
+.emp-terminos { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 .8rem; }
+.emp-terminos button { min-height: 48px; padding: .4rem .9rem; border-radius: 999px; background: var(--surface); color: var(--text); border: 2px solid var(--border); font-weight: 700; }
+.emp-terminos button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-2); }
+.emp-defs { display: grid; gap: .5rem; }
+.emp-defs button { text-align: left; min-height: 52px; padding: .5rem .8rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-weight: 400; }
+button.emp-ok { border-color: var(--ok) !important; background: color-mix(in srgb, var(--ok) 14%, var(--surface)) !important; opacity: .85; }
+@media (prefers-reduced-motion: no-preference) { button.emp-mal { animation: .3s ease-out sacudida; } }

@@ -4,7 +4,7 @@
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, estadoLeccion, numTramos, enTramos } from '../../course/engine.js';
+import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, terminosDeClase, pistaParte, estadoLeccion, numTramos, enTramos } from '../../course/engine.js';
 import { resueltasDe, conResuelto } from '../../course/resueltos.js';
 import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
 import { MIN_TANDA } from '../../course/plan.js';
@@ -12,10 +12,10 @@ import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre, metaDiaria } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
-import { pidePrediccion } from '../../illustrations/interactivas.js';
+import { pidePrediccion, interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
 import { voice } from '../voice.js';
-import { transicion, deslizar } from '../movimiento.js';
+import { transicion, deslizar, vibrar } from '../movimiento.js';
 import { icono } from '../iconos.js';
 import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
@@ -93,7 +93,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const k = numTramos(L.minutos ?? 10, sinExtra.length);
     const pasosBase = enTramos(conResuelto(sinExtra, resueltasDe(L.id).filter((id) => preguntas.has(id))), k)
       .map((p) => (p.tipo === 'ilustracion' ? { ...p, prediccion: pidePrediccion(p.spec) } : p));
-    const tarjetas = [{ tipo: 'intro', tramo: 0 }, ...conPreguntasIntercaladas(conPreguntaFinal(pasosBase, disponibles, rngClase), disponibles, rngClase)];
+    // Ejercicios que no son de elegir opción: tocar las partes de una lámina y emparejar los términos de la clase.
+    const terminos = terminosDeClase(sinExtra.map((p) => `${p.titulo ?? ''} ${p.texto ?? ''}`).join('\n'), bank.vocab);
+    // Partes con nombre y una pista de qué es cada una: se pide por lo que hace, no por la letra que se ve escrita.
+    const partesDe = (spec) => { const d = interactivaDe(spec); return d?.botonesPartes?.map(([k, nombre]) => [k, nombre, d.partes?.[k] ? pistaParte(d.partes[k]) : nombre]) ?? null; };
+    const conTodo = conEjercicios(conPreguntaFinal(pasosBase, disponibles, rngClase), { terminos, partesDe });
+    const tarjetas = [{ tipo: 'intro', tramo: 0 }, ...conPreguntasIntercaladas(conTodo, disponibles, rngClase)];
     // Las preguntas añadidas (la final, las intercaladas) van en el tramo de la tarjeta que tienen delante.
     tarjetas.forEach((t, i) => { if (t.tramo == null) t.tramo = tarjetas[i - 1].tramo; });
     const n = tarjetas.length;
@@ -144,6 +149,79 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           pinta();
           return h('div.paso.resuelto', h('p.badge', `Míralo resuelto: ${p.ids.length} preguntas reales de este tipo`), box);
         }
+        case 'toca': {
+          // «Toca en el dibujo»: se piden tres partes de la lámina, una a una. Con dos fallos en la misma, se resalta.
+          const { svg } = dibujoFijo(interactivaDe(p.spec), p.spec);
+          const orden = rngClase.shuffle([...p.partes]).slice(0, 3);
+          let k = 0;
+          let fallos = 0;
+          const pregunta = h('p.toca-pregunta');
+          const fb = h('p.toca-fb', { 'aria-live': 'polite' });
+          const dib = h('div.il-svg.toca-dibujo', { html: svg });
+          const marca = (parte, cls) => { for (const el of dib.querySelectorAll(`[data-parte="${parte}"]`)) el.classList.add(cls); };
+          const pinta = () => { pregunta.textContent = k < orden.length ? `Toca: ${orden[k][2]}` : '¡Hecho!'; };
+          dib.addEventListener('click', (ev) => {
+            if (k >= orden.length) return;
+            // Margen de toque: las partes pequeñas o pegadas (G, B, M) cuentan si el dedo cae a ~22 px de la pedida.
+            const cerca = [...dib.querySelectorAll(`[data-parte="${orden[k][0]}"]`)].some((el) => {
+              const r = el.getBoundingClientRect();
+              return Math.hypot(Math.max(r.left - ev.clientX, 0, ev.clientX - r.right), Math.max(r.top - ev.clientY, 0, ev.clientY - r.bottom)) <= 22;
+            });
+            const parte = cerca ? orden[k][0] : ev.target.closest?.('[data-parte]')?.dataset.parte;
+            if (!parte) return;
+            const nombre = p.partes.find((x) => x[0] === parte)?.[1];
+            if (parte === orden[k][0]) {
+              vibrar(true);
+              marca(parte, 'toca-ok');
+              k += 1;
+              fallos = 0;
+              fb.textContent = k < orden.length ? `✅ Bien: es ${nombre}.` : `✅ Bien: es ${nombre}. Las has encontrado todas.`;
+              pinta();
+              if (k >= orden.length) { checkOk.add(i); if (i === paso) refrescaBotones(); }
+            } else {
+              vibrar(false);
+              fallos += 1;
+              if (fallos >= 2) marca(orden[k][0], 'toca-pista');
+              fb.textContent = `${nombre ? `Eso es ${nombre}.` : 'Ahí no está.'} ${fallos >= 2 ? `Es ${orden[k][1]}: te lo resalto, tócalo.` : 'Prueba otra vez.'}`;
+            }
+          });
+          pinta();
+          return h('div.paso.toca', h('p.badge', '👆 Toca en el dibujo'), pregunta, dib, fb);
+        }
+        case 'emparejar': {
+          // «Empareja»: toca un término y después su definición.
+          const defs = rngClase.shuffle(p.pares.map(([, d], j) => ({ d, j })));
+          let sel = null;
+          let hechos = 0;
+          const fb = h('p.toca-fb', { 'aria-live': 'polite' });
+          const bTer = p.pares.map(([t], j) => h('button.emp-termino', { type: 'button', 'aria-pressed': 'false', onclick: () => {
+            if (bTer[j].disabled) return;
+            sel = j;
+            bTer.forEach((b, x) => b.setAttribute('aria-pressed', String(x === j)));
+            fb.textContent = `Ahora toca la definición de «${t}».`;
+          } }, t));
+          const bDef = defs.map(({ d, j }) => {
+            const b = h('button.emp-def', { type: 'button', onclick: () => {
+              if (b.disabled) return;
+              if (sel == null) { fb.textContent = 'Primero toca un término de arriba.'; return; }
+              if (sel === j) {
+                vibrar(true);
+                b.disabled = true; b.classList.add('emp-ok');
+                bTer[j].disabled = true; bTer[j].classList.add('emp-ok'); bTer[j].setAttribute('aria-pressed', 'false');
+                sel = null;
+                hechos += 1;
+                fb.textContent = hechos === p.pares.length ? '✅ Todas emparejadas.' : '✅ Bien.';
+                if (hechos === p.pares.length) { checkOk.add(i); if (i === paso) refrescaBotones(); }
+              } else {
+                vibrar(false);
+                b.classList.remove('emp-mal'); void b.offsetWidth; b.classList.add('emp-mal');
+                fb.textContent = 'Esa no es. Prueba con otra.';
+              }
+            } }, d);
+            return b;
+          });
+          return h('div.paso.emparejar', h('p.badge', '🔗 Empareja cada término con su definición'), h('div.emp-terminos', bTer), h('div.emp-defs', bDef), fb);
+        }
         case 'check': {
           const fb = h('div');
           if (p.real) {
@@ -179,6 +257,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       intro: `${L.titulo}. En esta clase: ${(L.objetivos ?? []).join('. ')}`,
       texto: `${p.titulo ? `${p.titulo}. ` : ''}${plain(p.texto)}`, clave: plain(p.texto), ojo: `Ojo: ${plain(p.texto)}`, ilustracion: p.texto ?? '',
       resuelto: 'Míralo resuelto con una pregunta real de examen.',
+      toca: 'Toca en el dibujo las partes que te pido.', emparejar: `Empareja cada término con su definición: ${(p.pares ?? []).map(([t]) => t).join(', ')}.`,
       regla: reglas.get(p.id) ? `Para recordarlo: ${reglas.get(p.id).regla}. ${reglas.get(p.id).significado}` : '', check: p.enunciado,
     }[p.tipo] ?? '');
 
@@ -221,7 +300,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       siguiente.textContent = paso === n - 1 ? 'Terminar la clase ✓' : 'Siguiente →';
       const t = tarjetas[paso];
       // Un «¿Lo pillas?» o la predicción de una lámina interactiva se responden antes de seguir.
-      siguiente.disabled = (t.tipo === 'check' || (t.tipo === 'ilustracion' && pidePrediccion(t.spec))) && !checkOk.has(paso);
+      siguiente.disabled = (t.tipo === 'check' || t.tipo === 'toca' || t.tipo === 'emparejar' || (t.tipo === 'ilustracion' && pidePrediccion(t.spec))) && !checkOk.has(paso);
     }
 
     function tarjeta() {

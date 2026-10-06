@@ -1508,7 +1508,8 @@
         "and-2020-c1-t06",
         "and-2024-c1-t05"
       ],
-      "peso": "Amarre y fondeo aporta 2 de las 45 preguntas del examen y no tiene límite propio de fallos: pocas preguntas, pero de vocabulario muy repetido entre convocatorias."
+      "peso": "Amarre y fondeo aporta 2 de las 45 preguntas del examen y no tiene límite propio de fallos: pocas preguntas, pero de vocabulario muy repetido entre convocatorias.",
+      "archivo": "per/2-0-amarrar-y-fondear.md"
     },
     {
       "n": "2.1",
@@ -1546,7 +1547,8 @@
         "2.0",
         "2.2",
         "7.1"
-      ]
+      ],
+      "archivo": "per/2-1-cabos-amarres-y-nudos.md"
     },
     {
       "n": "2.2",
@@ -1586,7 +1588,8 @@
         "2.0",
         "1.3",
         "6.7"
-      ]
+      ],
+      "archivo": "per/2-2-fondear-bien-tenedero-maniobra-garreo-levar.md"
     },
     {
       "tema": 3,
@@ -1623,7 +1626,8 @@
         "and-2025-c1-t10",
         "and-2023-c1-t10"
       ],
-      "peso": "Seguridad aporta 4 de las 45 preguntas del examen y no tiene límite propio de fallos; son preguntas de sentido común, pero con cifras (chalecos, pirotecnia, grados de las maniobras) que conviene saberse exactas."
+      "peso": "Seguridad aporta 4 de las 45 preguntas del examen y no tiene límite propio de fallos; son preguntas de sentido común, pero con cifras (chalecos, pirotecnia, grados de las maniobras) que conviene saberse exactas.",
+      "archivo": "per/3-0-seguridad-en-la-mar.md"
     },
     {
       "n": "3.1",
@@ -1660,7 +1664,8 @@
         "3.0",
         "3.2",
         "1.3"
-      ]
+      ],
+      "archivo": "per/3-1-estabilidad-y-antes-de-salir.md"
     },
     {
       "n": "3.2",
@@ -1699,7 +1704,8 @@
         "3.1",
         "6.5",
         "10.3"
-      ]
+      ],
+      "archivo": "per/3-2-mal-tiempo-tormentas-y-niebla.md"
     },
     {
       "n": "3.3",
@@ -1737,7 +1743,8 @@
         "3.0",
         "3.4",
         "8.4"
-      ]
+      ],
+      "archivo": "per/3-3-el-equipo-de-seguridad.md"
     },
     {
       "n": "3.4",
@@ -1775,7 +1782,8 @@
         "3.0",
         "3.3",
         "8.4"
-      ]
+      ],
+      "archivo": "per/3-4-hombre-al-agua-rescate-y-remolque.md"
     },
     {
       "tema": 4,
@@ -1812,7 +1820,8 @@
         "and-2023-c2-t11",
         "and-2021-c1-t12"
       ],
-      "peso": "Legislación es el tema 4 del examen y da 2 de las 45 preguntas. No es eliminatorio, pero son dos puntos de pura memoria que conviene no regalar."
+      "peso": "Legislación es el tema 4 del examen y da 2 de las 45 preguntas. No es eliminatorio, pero son dos puntos de pura memoria que conviene no regalar.",
+      "archivo": "per/4-0-las-normas-que-hay-que-conocer.md"
     },
     {
       "n": "4.1",
@@ -1851,7 +1860,8 @@
         "4.0",
         "4.3",
         "6.7"
-      ]
+      ],
+      "archivo": "per/4-1-en-regla-puerto-playas-buzos.md"
     },
     {
       "n": "4.2",
@@ -1877,7 +1887,7 @@
         "Falso: «aguas sin tratar entre 3 y 12 millas» o «a más de 6 millas». Cierto: sin tratar, a más de 12; la cifra de 6 millas no existe.",
         "Falso: «el tanque se puede vaciar aunque el buque esté parado» o «de forma instantánea». Cierto: poco a poco, en ruta y a 4 nudos o más.",
         "Falso: «la descarga de aguas sucias está prohibida en todo el Mediterráneo». Cierto: rigen las mismas distancias; lo especial del Mediterráneo es para la comida (MARPOL V).",
-        "Falso: frente a Trafalgar rigen las normas del Mediterráneo. Cierto: Trafalgar y Cádiz están fuera (al oeste de 5° 36' W); allí la comida sin triturar se puede echar a más de 12 millas.",
+        "Falso: frente a Trafalgar rigen las normas del Mediterráneo. Cierto: Trafalgar y la bahía de Cádiz están fuera (al oeste de 5° 36' W; la costa de levante de Cádiz, en cambio, queda dentro); allí la comida sin triturar se puede echar a más de 12 millas.",
         "Falso: «responde únicamente el patrón», «solo el propietario» o «solo el asegurador». Cierto: responden los cuatro a la vez, de forma solidaria.",
         "Falso: «solo se acude si lo pide un centro de salvamento», «solo si es de mi bandera» o «si no voy, no tengo que explicar nada». Cierto: se acude siempre que se pueda sin grave peligro, y si no, diario y aviso a salvamento."
       ],
@@ -1890,7 +1900,8 @@
         "4.0",
         "4.1",
         "4.3"
-      ]
+      ],
+      "archivo": "per/4-2-contaminacion-aguas-sucias-basuras.md"
     },
     {
       "n": "4.3",
@@ -1915,7 +1926,7 @@
         "Falso: la autonómica puede ser «del mismo tamaño» que la de España. Cierto: un tercio de su área como máximo.",
         "Falso: la autonómica puede ir en el asta de popa o en el pico «si la de España va en otro sitio», o izarse sola si la comunidad tiene competencias. Cierto: popa y pico son de la de España, y la autonómica nunca va sin ella.",
         "Falso: ZEPIM es zona «exclusiva» protegida o de importancia para el «medio marino». Cierto: «especialmente» protegida y para el «Mediterráneo».",
-        "Falso: Tabarca, Ibiza y Formentera o la costa de Cádiz son ZEPIM. Cierto: Tabarca es reserva marina, pero no ZEPIM; Ibiza y Formentera no figuran, y Cádiz está fuera del Mediterráneo.",
+        "Falso: Tabarca, Ibiza y Formentera o la costa de Cádiz son ZEPIM. Cierto: Tabarca es reserva marina, pero no ZEPIM; Ibiza y Formentera no figuran, y los fondos de la costa de levante de Cádiz, aunque están en el Mediterráneo, tampoco están en la lista.",
         "Falso: «en las ZEPIM el paso y el fondeo no están reglamentados». Cierto: se pueden regular el paso, la parada y el fondeo.",
         "Falso: en un campo de boyas se puede fondear directamente sobre la posidonia. Cierto: se amarra a la boya precisamente para no fondear sobre la pradera."
       ],
@@ -1928,7 +1939,8 @@
         "4.0",
         "4.2",
         "2.2"
-      ]
+      ],
+      "archivo": "per/4-3-banderas-y-espacios-protegidos.md"
     },
     {
       "tema": 5,
@@ -2488,7 +2500,8 @@
         "and-2021-c1-t29",
         "and-2024-c1-t28"
       ],
-      "peso": "El tema 7 aporta 2 de las 45 preguntas del examen y no tiene límite propio de fallos, así que no es eliminatorio; son dos aciertos fáciles si se tienen claras las reglas de la hélice y de las amarras."
+      "peso": "El tema 7 aporta 2 de las 45 preguntas del examen y no tiene límite propio de fallos, así que no es eliminatorio; son dos aciertos fáciles si se tienen claras las reglas de la hélice y de las amarras.",
+      "archivo": "per/7-0-maniobrar-el-barco.md"
     },
     {
       "n": "7.1",
@@ -2524,7 +2537,8 @@
       "relacionados": [
         "2.1",
         "7.3"
-      ]
+      ],
+      "archivo": "per/7-1-cabos-y-amarras.md"
     },
     {
       "n": "7.2",
@@ -2563,7 +2577,8 @@
         "1.2",
         "7.1",
         "7.3"
-      ]
+      ],
+      "archivo": "per/7-2-gobierno-helice-timon-y-ciaboga.md"
     },
     {
       "n": "7.3",
@@ -2603,7 +2618,8 @@
         "7.2",
         "9.2",
         "10.5"
-      ]
+      ],
+      "archivo": "per/7-3-atracar-y-desatracar-con-viento-y-corriente.md"
     },
     {
       "tema": 8,
@@ -2642,7 +2658,8 @@
         "and-2026-c1-t32",
         "and-2022-c3-t31"
       ],
-      "peso": "El tema 8 aporta 3 de las 45 preguntas del examen y no tiene límite propio de fallos, así que no es eliminatorio."
+      "peso": "El tema 8 aporta 3 de las 45 preguntas del examen y no tiene límite propio de fallos, así que no es eliminatorio.",
+      "archivo": "per/8-0-emergencias-a-bordo.md"
     },
     {
       "n": "8.1",
@@ -2680,7 +2697,8 @@
       "relacionados": [
         "3.4",
         "8.4"
-      ]
+      ],
+      "archivo": "per/8-1-primeros-auxilios-y-radio-medico.md"
     },
     {
       "n": "8.2",
@@ -2718,7 +2736,8 @@
         "3.3",
         "4.2",
         "8.4"
-      ]
+      ],
+      "archivo": "per/8-2-varada-abordaje-y-vias-de-agua.md"
     },
     {
       "n": "8.3",
@@ -2755,7 +2774,8 @@
       "relacionados": [
         "3.3",
         "9.2"
-      ]
+      ],
+      "archivo": "per/8-3-el-fuego-a-bordo.md"
     },
     {
       "n": "8.4",
@@ -2794,7 +2814,8 @@
         "3.4",
         "6.8",
         "8.1"
-      ]
+      ],
+      "archivo": "per/8-4-abandono-e-hipotermia.md"
     },
     {
       "tema": 9,
@@ -2829,7 +2850,8 @@
         "and-2024-c3-t36",
         "and-2023-c2-t34"
       ],
-      "peso": "El tema 9 aporta 4 de las 45 preguntas del examen y no tiene límite propio de fallos, así que no es eliminatorio; pero sus preguntas son muy repetitivas y son aciertos casi seguros."
+      "peso": "El tema 9 aporta 4 de las 45 preguntas del examen y no tiene límite propio de fallos, así que no es eliminatorio; pero sus preguntas son muy repetitivas y son aciertos casi seguros.",
+      "archivo": "per/9-0-el-tiempo-para-salir-a-navegar.md"
     },
     {
       "n": "9.1",
@@ -2866,7 +2888,8 @@
       "relacionados": [
         "9.2",
         "9.3"
-      ]
+      ],
+      "archivo": "per/9-1-presion-borrascas-y-anticiclones.md"
     },
     {
       "n": "9.2",
@@ -2904,7 +2927,8 @@
         "9.1",
         "7.3",
         "10.5"
-      ]
+      ],
+      "archivo": "per/9-2-el-viento-real-aparente-y-las-brisas.md"
     },
     {
       "n": "9.3",
@@ -2941,7 +2965,8 @@
         "9.1",
         "9.2",
         "3.2"
-      ]
+      ],
+      "archivo": "per/9-3-beaufort-douglas-y-la-decision-de-salir.md"
     },
     {
       "tema": 10,
@@ -3212,7 +3237,8 @@
         "and-2025-c3-q42",
         "and-2023-c1-q45"
       ],
-      "peso": "El tema 11 son 4 preguntas (de la 42 a la 45) con un máximo de 2 fallos: es eliminatorio, y fallar 3 suspende el examen aunque el resto salga bien. Se resuelven sobre la carta con la teoría del tema 10."
+      "peso": "El tema 11 son 4 preguntas (de la 42 a la 45) con un máximo de 2 fallos: es eliminatorio, y fallar 3 suspende el examen aunque el resto salga bien. Se resuelven sobre la carta con la teoría del tema 10.",
+      "archivo": "per/11-0-el-examen-de-carta-paso-a-paso.md"
     },
     {
       "n": "11.1",
@@ -3251,7 +3277,8 @@
         "10.1",
         "10.3",
         "11.2"
-      ]
+      ],
+      "archivo": "per/11-1-carta-correccion-total-rumbo-directo.md"
     },
     {
       "n": "11.2",
@@ -3289,7 +3316,8 @@
         "11.1",
         "10.4",
         "11.3"
-      ]
+      ],
+      "archivo": "per/11-2-estima-y-lineas-de-posicion.md"
     },
     {
       "n": "11.3",
@@ -3309,11 +3337,11 @@
         "Si el rumbo viene en cuadrantal (S 76° W), se pasa antes a circular (256°); una marcación de más de 90° cae hacia la aleta y sigue siendo Dv = Rv + M.",
         "La enfilación o la oposición ya es una línea de posición sin correcciones; cruzada con la demora de un tercer faro da la situación: en la oposición el corte está entre los dos faros, en la enfilación en la prolongación.",
         "«Al Sur verdadero de un faro» es ver ese faro al 000°: su meridiano hacia el sur; «al Oeste verdadero» es verlo al 090°: su paralelo hacia el oeste.",
-        "Si las dos observaciones son de horas distintas, la primera línea viaja con el barco (se traslada con el rumbo y la distancia navegados); si son a la vez, se cruzan directamente y la situación anterior solo da el rumbo y la distancia navegada."
+        "Si las dos observaciones son de horas distintas, la primera línea viaja con el barco (se traslada con el rumbo y la distancia navegados); si son a la vez, se cruzan directamente. El rumbo lo da el enunciado; la situación anterior solo sirve para medir la distancia navegada."
       ],
       "trampas": [
         "Falso: a la demora que sale de Rv + M hay que aplicarle la corrección total. Cierto: el Rv ya la lleva; se estaría aplicando dos veces.",
-        "Falso: «más tarde obtenemos marcación a dos faros» obliga a trasladar líneas desde la situación anterior. Cierto: las dos marcaciones son simultáneas y se cruzan sin trasladar; el traslado es materia del Patrón de Yate.",
+        "Falso: «más tarde obtenemos marcación a dos faros» obliga a trasladar líneas desde la situación anterior. Cierto: las dos marcaciones son simultáneas y se cruzan sin trasladar, que es lo que pide el programa del PER.",
         "Falso: la distancia que piden es a uno de los faros que has usado para situarte. Cierto: suele ser a otro faro, a menudo lejano; lee la pregunta hasta el final.",
         "Falso: dos líneas casi paralelas dan una buena situación. Cierto: la mejor es con un corte cercano a 90°; si salen casi paralelas, un error pequeño mueve mucho el punto."
       ],
@@ -3326,7 +3354,8 @@
         "10.4",
         "11.2",
         "11.4"
-      ]
+      ],
+      "archivo": "per/11-3-situarse-dos-demoras-enfilaciones.md"
     },
     {
       "n": "11.4",
@@ -3361,7 +3390,8 @@
         "11.1",
         "11.2",
         "11.3"
-      ]
+      ],
+      "archivo": "per/11-4-pasar-a-una-distancia-de-un-faro.md"
     }
   ]
 }

@@ -12,7 +12,7 @@ import { TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
 import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, grade } from '../../theory/engine.js';
-import { narrateTheory } from '../../teacher/theory.js';
+import { narrateTheory, esDefendible } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { hojaRespuesta } from '../hoja.js';
@@ -154,7 +154,8 @@ export function profePanel(q, expl, chosen) {
         return { tipo, el: h('p', { class: tipo }, ico ? [icono(ico), ' ', line.replace(/^(💡|⚠️|🧠)\uFE0F?\s*/u, '')] : line) };
       });
       const resto = [expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null, enlaceResolucion(q)];
-      if (!(chosen != null && ok && !q.anulada)) return [lineas.map((x) => x.el), resto];
+      // Con plantilla discutible (nota del profe), todo a la vista: la versión corta podría parecer contradictoria.
+      if (!(chosen != null && ok && !q.anulada) || expl?.discrepancia) return [lineas.map((x) => x.el), resto];
       const corto = lineas.filter((x, i) => i === 0 || x.tipo === 'tip' || x.tipo === 'mnemo');
       const largo = lineas.filter((x) => !corto.includes(x));
       return [corto.map((x) => x.el), largo.length || resto.some(Boolean) ? h('details.ver-por-que', h('summary', 'Ver por qué'), largo.map((x) => x.el), resto) : null];
@@ -304,7 +305,9 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       siguiente.hidden = false;
       barra.set(null, (i + 1) / n);
       // La corrección sube en un panel desde abajo, con «Continuar» (que es el mismo «Siguiente»).
-      hojaRespuesta(box, { ok: k == null ? null : good, titulo: k == null ? `Era la ${q.correcta})` : undefined,
+      // Opción defendible frente a una plantilla discutible: cuenta como fallo, pero el panel no la pinta de error.
+      const defendible = esDefendible(q, explanationFor(q, explicaciones), k);
+      hojaRespuesta(box, { ok: k == null || defendible ? null : good, titulo: k == null ? `Era la ${q.correcta})` : defendible ? 'Discutible' : undefined,
         contenido: profePanel(q, explanationFor(q, explicaciones), k), onContinuar: () => siguiente.click(), boton: i === n - 1 ? 'Ver resultado' : 'Continuar' });
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };

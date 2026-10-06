@@ -58,3 +58,19 @@ test('PY: cada clase de carta (tema 4) tiene su lámina interactiva', async () =
   const m = leer('data/curso/py.json').modulos.find((x) => x.ut === 4);
   for (const l of m.lecciones) assert.ok(l.pasos.some((p) => p.tipo === 'ilustracion' && interactivaDe(p.spec)), `${l.id} ${l.titulo}: sin lámina interactiva`);
 });
+
+test('plantillas discutibles: la opción que defiende la nota no se llama «trampa» y la nota va arriba', async () => {
+  const { narrateTheory, esDefendible } = await import('../src/teacher/theory.js');
+  for (const t of ['per', 'py']) {
+    const B = leer(`data/exams/andalucia-${t}-teoria.json`).preguntas;
+    const E0 = leer(`data/exams/andalucia-${t}-teoria-explicaciones.json`); const E = E0.explicaciones ?? E0;
+    for (const [id, e] of Object.entries(E)) {
+      if (!e.defendible) continue;
+      const q = B.find((x) => x.id === id);
+      assert.ok(q && e.discrepancia && e.defendible !== q.correcta && q.opciones[e.defendible], `${id}: defendible mal puesta`);
+      assert.ok(esDefendible(q, e, e.defendible));
+      const d = narrateTheory(q, e, e.defendible).display;
+      assert.match(d[0], /defendible/); assert.doesNotMatch(d[0], /trampa/); assert.match(d[1], /^📝/);
+    }
+  }
+});

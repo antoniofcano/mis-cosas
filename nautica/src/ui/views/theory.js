@@ -145,14 +145,20 @@ export function profePanel(q, expl, chosen) {
   const panel = h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
     h('span.profe-badge', '👨‍🏫 El profe'),
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', 'aria-label': 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, icono('escuchar')) : null,
-    // Clave, trampa y regla con su icono de línea (no con emoji).
-    n.display.map((line) => {
-      const tipo = /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '';
-      const ico = { tip: 'bombilla', trap: 'aviso', mnemo: 'temario' }[tipo];
-      return h('p', { class: tipo }, ico ? [icono(ico), ' ', line.replace(/^(💡|⚠️|🧠)\uFE0F?\s*/u, '')] : line);
-    }),
-    expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null,
-    enlaceResolucion(q),
+    // Al acertar, solo el truco (o la idea clave) y el resto bajo «Ver por qué»; al fallar, todo a la vista.
+    (() => {
+      const lineas = n.display.map((line) => {
+        const tipo = /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '';
+        const ico = { tip: 'bombilla', trap: 'aviso', mnemo: 'temario' }[tipo];
+        // Clave, trampa y regla con su icono de línea (no con emoji).
+        return { tipo, el: h('p', { class: tipo }, ico ? [icono(ico), ' ', line.replace(/^(💡|⚠️|🧠)\uFE0F?\s*/u, '')] : line) };
+      });
+      const resto = [expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null, enlaceResolucion(q)];
+      if (!(chosen != null && ok && !q.anulada)) return [lineas.map((x) => x.el), resto];
+      const corto = lineas.filter((x, i) => i === 0 || x.tipo === 'tip' || x.tipo === 'mnemo');
+      const largo = lineas.filter((x) => !corto.includes(x));
+      return [corto.map((x) => x.el), largo.length || resto.some(Boolean) ? h('details.ver-por-que', h('summary', 'Ver por qué'), largo.map((x) => x.el), resto) : null];
+    })(),
     ok ? null : enlaceTrampa(q, chosen),
     h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
@@ -429,7 +435,7 @@ function repasoView({ progress }) {
     const cola = colaRepaso(preguntas, progress.get().exams);
     if (!cola.hoy.length) {
       barra.set('Repaso de fallos', 0);
-      setChildren(cont, h('p.vacio', cola.total ? `Hoy no te toca repasar nada. Tienes ${cola.total} ${cola.total === 1 ? 'pregunta' : 'preguntas'} en la cola para los próximos días.` : 'No tienes fallos por repasar. Las preguntas que falles volverán aquí al día siguiente.'),
+      setChildren(cont, h('p.vacio', cola.total ? `Hoy no te toca repasar nada. Tienes ${cuenta(cola.total, 'pregunta', 'preguntas')} en la cola para los próximos días.` : 'No tienes fallos por repasar. Las preguntas que falles volverán aquí al día siguiente.'),
         h('a.btn.grande', { href: tlink(tit0) }, 'Volver a Hoy'));
       return;
     }

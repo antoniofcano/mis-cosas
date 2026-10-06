@@ -104,6 +104,15 @@
        "texto": "Si el viento te entra por estribor, estribor es tu banda de barlovento y babor la de sotavento. Si cambias de rumbo o rola el viento, se pueden intercambiar.\n\nCon mal tiempo, una **costa a sotavento** es peligrosa: si te falla el motor, el viento te empuja hacia ella."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "barco",
+        "modo": "viento",
+        "viento": "amura-er"
+       },
+       "texto": "Mueve el viento alrededor del barco: babor y estribor no cambian; barlovento y sotavento, sí."
+      },
+      {
        "tipo": "regla",
        "id": "r02"
       },
@@ -3829,9 +3838,12 @@
        "tipo": "ilustracion",
        "spec": {
         "tipo": "playa",
-        "caso": "no-balizada"
+        "caso": "no-balizada",
+        "modo": "distancia",
+        "costa": "playa",
+        "dist": 120
        },
-       "texto": "Sin boyas, la zona de baño son 200 m en playas y 50 m en el resto de la costa: se navega a 3 nudos como máximo."
+       "texto": "Mueve el barco y cambia de playa a costa: sin boyas, la franja es de 200 m en playas y 50 m en el resto; dentro, 3 nudos como máximo."
       },
       {
        "tipo": "clave",
@@ -5228,6 +5240,14 @@
        "tipo": "texto",
        "titulo": "Sur y Oeste",
        "texto": "- **Sur**: grupos de **6 + un destello largo**: VQ(6)+LFl cada 10 s o Q(6)+LFl cada 15 s.\n- **Oeste**: grupos de **9**: VQ(9) cada 10 s o Q(9) cada 15 s.\n\nEl destello largo de la Sur está para que, contando deprisa, no confundas su grupo de 6 con uno de 3 o de 9."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "cardinales",
+        "marca": "w"
+       },
+       "texto": "Elige la marca: mira dónde está respecto al peligro, cómo son sus conos y su luz, y por dónde se pasa."
       },
       {
        "tipo": "regla",
@@ -9892,9 +9912,10 @@
        "tipo": "ilustracion",
        "spec": {
         "tipo": "fuego",
-        "vista": "tetraedro"
+        "vista": "tetraedro",
+        "modo": "apagar"
        },
-       "texto": "Cada forma de apagar quita un lado del tetraedro."
+       "texto": "Cada forma de apagar quita un elemento del tetraedro: pruébalo."
       },
       {
        "tipo": "clave",

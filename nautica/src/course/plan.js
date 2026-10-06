@@ -211,6 +211,20 @@ export function lineaAvance(a, racha = 0) {
 }
 
 export const MIN_DIAGNOSTICO = 3; // respuestas de una clase para opinar sobre ella
+export const MIN_DIAGNOSTICO_TEMA = 5; // respuestas de un tema para opinar sobre él (sale antes que el de clase)
+
+/** Temas flojos: acierto < 70 % con al menos MIN_DIAGNOSTICO_TEMA preguntas del tema respondidas (última respuesta). */
+export function temasFlojos(estructura, preguntas, respuestas = {}) {
+  const out = [];
+  for (const b of estructura.bloques) {
+    const hechas = preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta && respuestas[q.id]);
+    if (hechas.length < MIN_DIAGNOSTICO_TEMA) continue;
+    const aciertos = hechas.filter((q) => respuestas[q.id].ok).length;
+    const pct = Math.round((100 * aciertos) / hechas.length);
+    if (pct < 70) out.push({ ut: b.ut, titulo: b.titulo, icon: b.icon, hechas: hechas.length, aciertos, fallos: hechas.length - aciertos, pct });
+  }
+  return out.sort((a, b) => a.pct - b.pct);
+}
 
 /**
  * Diagnóstico por clase (B5): de cada clase, sus preguntas de práctica (lección.practica) respondidas y acertadas

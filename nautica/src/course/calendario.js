@@ -155,7 +155,7 @@ export function diasDeSimulacro(s, n, hayResto = true) {
 export function describir(us) {
   const n = (t) => us.filter((u) => u.tipo === t).length;
   const partes = [[n('clase'), 'clase', 'clases'], [n('chuleta'), 'chuleta', 'chuletas'], [n('tanda'), 'tanda de preguntas', 'tandas de preguntas'], [n('simulacro'), 'simulacro', 'simulacros']]
-    .filter(([k]) => k).map(([k, uno, varios]) => `${k} ${k === 1 ? uno : varios}`);
+    .filter(([k]) => k).map(([k, uno, varios]) => cuenta(k, uno, varios));
   return partes.length > 1 ? `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}` : (partes[0] ?? 'nada');
 }
 

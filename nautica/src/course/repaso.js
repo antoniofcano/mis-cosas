@@ -39,6 +39,16 @@ export function siguienteRepaso(anterior, ok, hoy) {
   return racha >= ACIERTOS_PARA_SALIR ? null : { racha, prox: sumaDias(hoy, INTERVALOS[racha]) };
 }
 
+/** Cuántas preguntas de la cola tocan exactamente el día `fecha` (p. ej. mañana: las falladas hoy y las que vuelven). */
+export function repasoDelDia(preguntas, respuestas = {}, fecha, hoy = diaLocal()) {
+  let n = 0;
+  for (const q of preguntas) {
+    if (q.anulada || !q.correcta) continue;
+    if (repasoDe(respuestas[q.id], hoy)?.prox === fecha) n += 1;
+  }
+  return n;
+}
+
 /**
  * Cola de una titulación: las preguntas del banco que están en repaso.
  * @returns {{ hoy: object[], total: number, minutosHoy: number, minutosPendientes: number }}

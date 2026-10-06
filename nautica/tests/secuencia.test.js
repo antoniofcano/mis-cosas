@@ -44,3 +44,11 @@ test('la lámina de la clase 1 solo nombra lo que la clase ya ha explicado', asy
     for (const no of ['eslora', 'manga', 'obra viva', 'calado', 'francobordo', 'puntal']) assert.ok(!svg.includes(`>${no}<`), `${no} en la lámina de ${l.id}`);
   }
 });
+
+test('PER: al menos una lámina interactiva en cada tema (predice, manipula, explica)', async () => {
+  const { interactivaDe } = await import('../src/illustrations/interactivas.js');
+  for (const m of leer('data/curso/per.json').modulos) {
+    const n = m.lecciones.flatMap((l) => l.pasos).filter((p) => p.tipo === 'ilustracion' && interactivaDe(p.spec)).length;
+    assert.ok(n >= 1, `UT${m.ut} ${m.titulo}: ninguna lámina interactiva`);
+  }
+});

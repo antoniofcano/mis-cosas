@@ -6,10 +6,11 @@ import { GLOSSARY } from '../../nautical/glossary.js';
 import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
 import { fmtLat, fmtLon } from '../../math/format.js';
 import { link } from '../router.js';
+import { randomSeed } from '../../math/rng.js';
 import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
-import { avance, estadoTema, parteTema, lineaAvance, clasesFlojas, MIN_DIAGNOSTICO } from '../../course/plan.js';
+import { parteTema, lineaAvance, MIN_DIAGNOSTICO_TEMA } from '../../course/plan.js';
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
 import { resetRaster } from '../chart/raster.js';
@@ -51,15 +52,18 @@ export function progressView({ progress, tit }) {
         h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),
       (() => {
-        // Diagnóstico por clase (B5): dónde se falla, con enlace a la clase para repasarla.
-        const flojas = clasesFlojas(d.curso, d.respuestas);
-        resumenTemas += `\nCLASES FLOJAS: ${flojas.map((c) => `${c.id} ${c.titulo} ${c.aciertos}/${c.hechas}`).join(' · ') || '—'}`;
+        // Dónde fallas más (del motor): por tema en cuanto hay 5 respuestas, y las clases flojas cuando las hay.
+        const { temas: tf, clases: flojas } = d.st.flojos;
+        resumenTemas += `\nTEMAS FLOJOS: ${tf.map((t) => `${t.titulo} ${t.aciertos}/${t.hechas}`).join(' · ') || '—'}\nCLASES FLOJAS: ${flojas.map((c) => `${c.id} ${c.titulo} ${c.aciertos}/${c.hechas}`).join(' · ') || '—'}`;
         return h('section.diagnostico', h('h2', 'Dónde fallas más'),
-          flojas.length
-            ? h('ul.clases-flojas', flojas.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) },
+          tf.length || flojas.length ? [
+            tf.length ? h('ul.clases-flojas', tf.map((t) => h('li', h('a', { href: tlink(T.id, ['teoria', 'ut', String(t.ut)], { s: randomSeed(), f: '1' }) },
+              h('span.clase-floja-titulo', `${t.icon} ${t.titulo}`),
+              h('span.clase-floja-dato', `aciertas ${t.aciertos} de ${t.hechas} · repasar mis fallos →`))))) : null,
+            flojas.length ? h('ul.clases-flojas', flojas.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) },
               h('span.clase-floja-titulo', `🎓 ${c.titulo}`),
-              h('span.clase-floja-dato', `aciertas ${c.aciertos} de ${c.hechas} · repasar la clase →`)))))
-            : h('p.muted', `Cuando respondas al menos ${cuenta(MIN_DIAGNOSTICO, 'pregunta')} de una clase, aquí verás las que más te cuestan.`));
+              h('span.clase-floja-dato', `aciertas ${c.aciertos} de ${c.hechas} · repasar la clase →`))))) : null]
+            : h('p.muted', `Cuando respondas ${cuenta(MIN_DIAGNOSTICO_TEMA, 'pregunta')} de un tema, aquí verás dónde te cuesta más.`));
       })(),
       h('h2', `Por temas · ${T.sigla}`),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },

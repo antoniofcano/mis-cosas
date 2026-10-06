@@ -3,7 +3,6 @@
 import { h, setChildren } from '../dom.js';
 import { diasHasta, lineaAvance } from '../../course/plan.js';
 import { lineaListo } from '../../course/listo.js';
-import { colaRepaso } from '../../course/repaso.js';
 import { mazos, tarjetasPorRepasar } from '../../course/tarjetas.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
@@ -118,19 +117,19 @@ export function hoyView({ progress, tit }) {
     }
 
     const resto = plan.slice(1);
-    const cola = colaRepaso(d.preguntas, d.respuestas);
+    const cola = st.repaso; // del motor
     const tarjetasHoy = tarjetasPorRepasar(mazos(tit), d.respuestas).length;
     summaryText = `VISTA hoy ${T.sigla}\n${plan.map((x, i) => `${i ? 'DESPUÉS' : 'HOY TOCA'}: ${x.tipo} «${x.titulo}» ~${x.minutos} min → ${hrefActividad(tit, x)}`).join('\n')}` +
       `\nDÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''} (pendiente ${r.minutosPendientes} min: clases ${r.desglose.clases}, preguntas ${r.desglose.preguntas}, simulacros ${r.desglose.simulacros})` +
       `\nLISTO: ${lineaListo(listo)}${listo.prob != null ? ` (p=${listo.prob.toFixed(2)})` : ''}` +
-      `\nREPASO: ${cuenta(cola.hoy.length, 'pregunta toca', 'preguntas tocan')} hoy (${cola.total} en la cola) → ${tlink(tit, ['teoria', 'repaso'])} · 5 minutos → ${tlink(tit, ['teoria', 'rapido'])}` +
+      `\nREPASO: ${cuenta(cola.hoy, 'pregunta toca', 'preguntas tocan')} hoy (${cola.total} en la cola) → ${tlink(tit, ['teoria', 'repaso'])} · 5 minutos → ${tlink(tit, ['teoria', 'rapido'])}` +
       `\nAVANCE: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${cuenta(racha, 'día')}`;
 
     // Repaso de fallos y «5 minutos»: una línea discreta bajo la actividad del día, sin competir con «Empezar».
     const enPlan = plan.some((x) => x.tipo === 'fallos');
     const lineaRepaso = h('p.linea-repaso',
-      cola.hoy.length && !enPlan ? [h('a', { href: tlink(tit, ['teoria', 'repaso']) }, `🔁 Tienes ${cola.hoy.length} ${cola.hoy.length === 1 ? 'pregunta' : 'preguntas'} por repasar`), ' · '] : null,
-      tarjetasHoy ? [h('a', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🃏 ${tarjetasHoy} ${tarjetasHoy === 1 ? 'tarjeta' : 'tarjetas'}`), ' · '] : null,
+      cola.hoy && !enPlan ? [h('a', { href: tlink(tit, ['teoria', 'repaso']) }, `🔁 Tienes ${cuenta(cola.hoy, 'pregunta')} por repasar`), ' · '] : null,
+      tarjetasHoy ? [h('a', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🃏 ${cuenta(tarjetasHoy, 'tarjeta', 'tarjetas')}`), ' · '] : null,
       h('a.btn.secondary.boton-icono', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, icono('reloj'), 'Tengo 5 minutos'));
     setChildren(el,
       cabecera,

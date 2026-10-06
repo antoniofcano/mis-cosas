@@ -27,7 +27,7 @@ export function lineaEstado(e) {
     case 'sin-empezar': return 'Sin empezar';
     case 'bien': return juntar('Vas bien', clases, `${cuenta(e.hechas, 'pregunta hecha', 'preguntas hechas')}`, `aciertas el ${e.pct} %`);
     case 'repasar': return juntar('Conviene repasar', clases, `${cuenta(e.hechas, 'pregunta hecha', 'preguntas hechas')}`, `aciertas el ${e.pct} %`);
-    default: return juntar('En marcha', clases, e.hechas ? `${e.hechas} ${e.hechas === 1 ? 'pregunta hecha' : 'preguntas hechas'}` : null);
+    default: return juntar('En marcha', clases, e.hechas ? `${cuenta(e.hechas, 'pregunta hecha', 'preguntas hechas')}` : null);
   }
 }
 const ESTADO_TEMA_CLS = { bien: 'ok', repasar: 'warn' };

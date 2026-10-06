@@ -27,7 +27,7 @@ function listaView({ progress, tit }) {
     volver('Biblioteca', tlink(tit, ['biblioteca'])),
     h('h1', `🃏 Tarjetas de memoria · ${T.sigla}`),
     h('p.muted', 'Para lo que solo se aprende repitiendo. Mira la tarjeta, piensa la respuesta y dale la vuelta. Las que no sepas volverán mañana.'),
-    tocan.length ? h('a.btn.grande', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🔁 Repasar ${tocan.length} ${tocan.length === 1 ? 'tarjeta' : 'tarjetas'} de hoy`) : null,
+    tocan.length ? h('a.btn.grande', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🔁 Repasar ${cuenta(tocan.length, 'tarjeta', 'tarjetas')} de hoy`) : null,
     h('div.cards', ms.map((m) => {
       const vistas = m.cartas.filter((c) => resp[c.clave]).length;
       const hoy = tarjetasPorRepasar([m], resp).length;

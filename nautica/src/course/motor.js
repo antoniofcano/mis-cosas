@@ -7,11 +7,12 @@
 // tests/motor.test.js con sesiones de estudio simuladas.
 
 import { bloquesEnOrden } from '../theory/blocks.js';
-import { estadoTema, avance, planHoy, ritmoEstudio, diasHasta } from './plan.js';
+import { estadoTema, avance, planHoy, ritmoEstudio, diasHasta, temasFlojos, clasesFlojas } from './plan.js';
 import { avanceCamino, unidades, temasDePocoPeso, crearPlan, planCaducado, seguimiento, alternativaEsencial, describir, duracion } from './calendario.js';
 import { estoyListo } from './listo.js';
 import { SEG_TARJETA } from './engine.js';
-import { cuenta, fechaLarga } from '../texto.js';
+import { cuenta, fechaLarga, diaISO } from '../texto.js';
+import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
 
 /**
  * @typedef {object} Entrada
@@ -75,12 +76,20 @@ export function estadoAlumno(e) {
     if (u && !u.hecha) principal = { tipo: 'chuleta', titulo: u.titulo, verbo: 'Leer', minutos: u.minutos, ruta: u.ruta, query: undefined, ut: u.ut };
   }
 
+  // Repaso espaciado visible: cuántas falladas vuelven hoy y cuántas mañana.
+  const hoyISO = diaISO(d.ahora);
+  const cola = colaRepaso(d.preguntas, d.respuestas, hoyISO);
+  const repaso = { hoy: cola.hoy.length, manana: repasoDelDia(d.preguntas, d.respuestas, sumaDias(hoyISO, 1), hoyISO), total: cola.total };
+
+  // Dónde fallas más: por tema en cuanto hay 5 respuestas; por clase, con 3 de la misma clase.
+  const flojos = { temas: temasFlojos(d.estructura, d.preguntas, d.respuestas), clases: clasesFlojas(d.curso, d.respuestas) };
+
   const ritmo = ritmoEstudio(d);
   const listo = estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
   const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
 
-  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ritmo, listo, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ritmo, listo, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**

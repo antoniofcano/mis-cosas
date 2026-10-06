@@ -1083,3 +1083,19 @@ details.revision-pregunta[open] > summary { border-bottom: 1px solid var(--borde
 .revision-cuerpo { padding: .4rem .6rem .8rem; }
 /* Radio: tema sin episodios grabados, en una línea. */
 details.puerto-astillero > summary { min-height: 48px; display: flex; align-items: center; color: var(--muted); font-weight: 600; cursor: pointer; padding-left: 3.4rem; }
+
+/* Guía de bienvenida: como una clase corta, una pantalla por idea. */
+.guia-cuerpo { padding: .5rem 0 1rem; }
+.guia-pagina { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.1rem 1.3rem; margin-bottom: 1rem; }
+.guia-titulo { display: flex; gap: .6rem; align-items: center; font-size: 1.35rem; margin: 0 0 .8rem; }
+.guia-titulo .guia-ico { color: var(--accent); flex: none; }
+.guia-titulo .guia-ico svg { width: 1.6em; height: 1.6em; }
+.guia-pagina p { font-size: 1.08rem; line-height: 1.55; }
+.guia-puntos { padding-left: 1.2rem; font-size: 1.05rem; line-height: 1.5; }
+.guia-puntos li { margin: .45rem 0; }
+.guia-final { display: grid; gap: .6rem; justify-items: start; }
+.guia-oferta { border: 2px solid var(--accent); background: var(--accent-2); border-radius: var(--radius); padding: .9rem 1rem; margin: 1rem 0; }
+.guia-oferta p { margin: 0 0 .7rem; }
+.guia-oferta-botones { display: flex; flex-wrap: wrap; gap: .6rem; }
+.guia-oferta-botones > * { min-height: 48px; }
+@media print { .guia-todo .guia-pagina { break-inside: avoid; border: 0; padding: 0; } }

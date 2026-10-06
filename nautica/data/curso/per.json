@@ -4905,7 +4905,7 @@
   {
    "ut": 6,
    "titulo": "Reglamento (RIPA)",
-   "intro": "El reglamento para prevenir abordajes es el código de circulación del mar: quién se aparta de quién, cómo se maniobra, qué luces y marcas lleva cada buque y qué significa cada pitada. Es el bloque más grande del examen y el que menos fallos admite, pero es muy lógico: si entiendes cuatro ideas (el que alcanza se aparta, entre motores cede el que ve al otro por estribor, cuanto peor maniobra un buque más se le respeta y en niebla nadie sigue a rumbo), el resto encaja solo.",
+   "intro": "El reglamento para prevenir abordajes es el código de circulación del mar: quién se aparta de quién, cómo se maniobra, qué luces y marcas lleva cada buque y qué significa cada pitada. Es el bloque más grande del examen y tiene límite propio (más de 5 fallos de 10 suspende), pero es muy lógico: si entiendes cuatro ideas (el que alcanza se aparta, entre motores cede el que ve al otro por estribor, cuanto peor maniobra un buque más se le respeta y en niebla nadie sigue a rumbo), el resto encaja solo.",
    "lecciones": [
     {
      "id": "per-6-1",

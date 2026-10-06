@@ -1185,7 +1185,7 @@ La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, 
 
 ## Patrón de Embarcaciones de Recreo (PER)
 
-55 episodios · 10 escritos.
+55 episodios · 25 escritos.
 
 #### 0 · Cómo es el examen del PER y cómo usar estos podcasts
 
@@ -1910,7 +1910,7 @@ Cómo se lee la característica de una luz (ritmo, color y periodo) y cómo pasa
 
 #### 6.0 · El RIPA de un vistazo
 
-🧭 Panorama · ⏳ pendiente · clases per-6-1, per-6-2, per-6-3, per-6-4, per-6-5, per-6-6, per-6-7, per-6-8, per-6-9, per-6-10
+🧭 Panorama · ✅ [guion](per/6-0-el-ripa-de-un-vistazo.md) · clases per-6-1, per-6-2, per-6-3, per-6-4, per-6-5, per-6-6, per-6-7, per-6-8, per-6-9, per-6-10
 
 El Reglamento Internacional para Prevenir los Abordajes de un vistazo: definiciones, conducta con cualquier visibilidad, buques a la vista, niebla, luces y marcas y señales. Es el tema que más preguntas da y es eliminatorio.
 
@@ -1941,7 +1941,7 @@ El Reglamento Internacional para Prevenir los Abordajes de un vistazo: definicio
 
 #### 6.1 · Definiciones, vigilancia y riesgo de abordaje
 
-🔎 Profundiza · ⏳ pendiente · clases per-6-1, per-6-2
+🔎 Profundiza · ✅ [guion](per/6-1-definiciones-vigilancia-riesgo.md) · clases per-6-1, per-6-2
 
 Dónde se aplica el RIPA, la regla de la responsabilidad y las definiciones que deciden quién es quién (vela, motor, pesca, sin gobierno, maniobra restringida, calado), y después la vigilancia, la velocidad de seguridad, el riesgo de abordaje y cómo maniobrar. Casi todo lo demás del reglamento se apoya en estas palabras.
 
@@ -1976,7 +1976,7 @@ Dónde se aplica el RIPA, la regla de la responsabilidad y las definiciones que 
 
 #### 6.2 · Canales angostos y dispositivos de separación del tráfico
 
-🔎 Profundiza · ⏳ pendiente · clase per-6-3
+🔎 Profundiza · ✅ [guion](per/6-2-canales-angostos-y-dst.md) · clase per-6-3
 
 Cómo se navega por un canal angosto y por un dispositivo de separación del tráfico: por dónde ir, a quién no estorbar, cómo cruzar, cómo incorporarse y qué señales se dan para adelantar y en los recodos. Las preguntas cambian «perpendicular» por «menor ángulo» y dan preferencias que no existen.
 
@@ -2011,7 +2011,7 @@ Cómo se navega por un canal angosto y por un dispositivo de separación del tr�
 
 #### 6.3 · Alcance, vuelta encontrada y cruce
 
-🔎 Profundiza · ⏳ pendiente · clase per-6-4
+🔎 Profundiza · ✅ [guion](per/6-3-alcance-vuelta-encontrada-cruce.md) · clase per-6-4
 
 Las tres situaciones entre buques que se ven: alcance, vuelta encontrada y cruce, y qué hacen el que cede el paso y el que sigue a rumbo. Son preguntas de marcaciones y de luces que se resuelven con una cifra, 112,5°, y una regla: el que tiene al otro por estribor, cede.
 
@@ -2044,7 +2044,7 @@ Las tres situaciones entre buques que se ven: alcance, vuelta encontrada y cruce
 
 #### 6.4 · Veleros y la jerarquía entre buques
 
-🔎 Profundiza · ⏳ pendiente · clase per-6-5
+🔎 Profundiza · ✅ [guion](per/6-4-veleros-y-jerarquia.md) · clase per-6-5
 
 Cómo se resuelven los encuentros entre dos veleros, la escalera de quién se aparta de quién (Regla 18) y cómo reconocer un velero de noche. Es la parte del RIPA que más afecta a Andrés y la que más trampas tiene con el alcance y el viento.
 
@@ -2079,7 +2079,7 @@ Cómo se resuelven los encuentros entre dos veleros, la escalera de quién se ap
 
 #### 6.5 · Visibilidad reducida
 
-🔎 Profundiza · ⏳ pendiente · clase per-6-6
+🔎 Profundiza · ✅ [guion](per/6-5-visibilidad-reducida.md) · clase per-6-6
 
 Qué cambia cuando los buques no se ven: qué reglas siguen valiendo, hacia dónde no caer si solo detectas al otro por radar y qué hacer al oír una señal de niebla por la proa. Las trampas resucitan reglas que solo valen a la vista, como el «sigue a rumbo» o la preferencia del velero.
 
@@ -2112,7 +2112,7 @@ Qué cambia cuando los buques no se ven: qué reglas siguen valiendo, hacia dón
 
 #### 6.6 · Luces y marcas (I): motor, vela y remolque
 
-🔎 Profundiza · ⏳ pendiente · clase per-6-7
+🔎 Profundiza · ✅ [guion](per/6-6-luces-motor-vela-remolque.md) · clase per-6-7
 
 Cuándo se encienden las luces y cuándo se llevan las marcas, los sectores de cada luz y qué lleva un buque de motor según su eslora y velocidad, un velero, uno que va a vela y motor, una embarcación de remo y un remolque. Es un tema de cifras exactas (225°, 112,5°, 135°, 7 m, 12 m, 50 m, 200 m).
 
@@ -2147,7 +2147,7 @@ Cuándo se encienden las luces y cuándo se llevan las marcas, los sectores de c
 
 #### 6.7 · Luces y marcas (II): pesca, buques especiales, fondeados y varados
 
-🔎 Profundiza · ⏳ pendiente · clase per-6-8
+🔎 Profundiza · ✅ [guion](per/6-7-luces-pesca-especiales-fondeados.md) · clase per-6-8
 
 Las luces y marcas de pesqueros, buques sin gobierno, con maniobra restringida (buceo incluido), restringidos por su calado, prácticos, fondeados y varados. Se aprende con parejas de colores y con bolas, conos y cilindros que el examen cambia de dueño.
 
@@ -2181,7 +2181,7 @@ Las luces y marcas de pesqueros, buques sin gobierno, con maniobra restringida (
 
 #### 6.8 · Señales acústicas, luminosas y de peligro
 
-🔎 Profundiza · ⏳ pendiente · clases per-6-9, per-6-10
+🔎 Profundiza · ✅ [guion](per/6-8-senales-acusticas-luminosas-peligro.md) · clases per-6-9, per-6-10
 
 Las pitadas y el equipo acústico según la eslora, las señales de maniobra y de duda entre buques que se ven, las señales de niebla, cómo llamar la atención y las señales de peligro del anexo IV. Son preguntas de contar pitadas en las que se confunden las de maniobra, las de niebla y las de socorro.
 
@@ -2239,7 +2239,7 @@ Recorrido por todo el tema de maniobra: el vocabulario de los cabos, las amarras
 - Atracar: con dextrógira se atraca por babor y con levógira por estribor; con viento de tierra o corriente de proa el primer cabo es el largo de proa.
 - Desatracar: primero se largan los cabos que no trabajan; para abrir la popa te quedas con el esprín de proa y das avante con el timón al muelle, y para abrir la proa, con el esprín de popa y das atrás.
 
-**Minijuego** (36 preguntas reales de examen en estas clases):
+**Minijuego** (39 preguntas reales de examen en estas clases):
 
 - ¿Qué nombre recibe la acción de dar tensión a los cabos?: *(and-2023-c2-t28)*
 - Una embarcación con hélice dextrógira, en marcha atrás, hacia donde tendera a caer la popa. *(and-2021-c1-t29)*
@@ -2341,7 +2341,7 @@ Los agentes que no controlas, viento, corriente y olas, y cómo usarlos para atr
 - Falso: atracando de punta con viento de costado conviene encapillar los largos en el noray de sotavento, o uno en cada noray. Cierto: los dos al noray de barlovento, para que tiren contra el viento.
 - Falso: la escora o el tipo de fondo son agentes de la maniobra. Cierto: los agentes son viento, corriente y olas; el fondo importa para fondear.
 
-**Minijuego** (8 preguntas reales de examen en estas clases):
+**Minijuego** (11 preguntas reales de examen en estas clases):
 
 - El agente externo que influye en la maniobra, al incidir en la obra muerta del barco, es: *(and-2022-c3-t28)*
 - Si queremos atracar de costado con corriente de proa paralela al muelle, el primer cabo que daremos a tierra será: *(and-2026-c2-t28)*
@@ -2375,7 +2375,7 @@ Panorama de las emergencias a bordo: primeros auxilios, ayuda médica a distanci
 - Abandono: solo cuando el barco protege menos que la balsa y por orden del patrón, tras el socorro y con la radiobaliza; las bengalas, por sotavento y cuando alguien pueda verlas.
 - Hipotermia: por debajo de 35 grados de temperatura interna; en el agua, quieto, en postura fetal si llevas chaleco, agrupados y subidos a lo que flote, y nunca nadar para entrar en calor.
 
-**Minijuego** (54 preguntas reales de examen en estas clases):
+**Minijuego** (56 preguntas reales de examen en estas clases):
 
 - ¿Cuál de las siguientes opciones NO es un síntoma característico de la insolación?: *(and-2025-c3-t31)*
 - ¿Cuál de las siguientes opciones NO es un punto de posible inundación de la embarcación?: *(and-2026-c1-t32)*
@@ -2513,7 +2513,7 @@ Cuándo y cómo se abandona el barco, qué se prepara antes, cómo se usan benga
 - Falso: se salta al agua con las piernas plegadas sobre el estómago. Cierto: se salta con las piernas juntas y estiradas; la postura fetal es para flotar quieto.
 - Falso: sin chaleco hay que nadar para entrar en calor. Cierto: nadar acelera la hipotermia; vertical, movimientos lentos y agrupados.
 
-**Minijuego** (9 preguntas reales de examen en estas clases):
+**Minijuego** (11 preguntas reales de examen en estas clases):
 
 - ¿Cuál de las siguientes medidas a tomar antes de abandonar la embarcación es correcta?: *(and-2023-c2-t31)*
 - Indique la opción INCORRECTA respecto al uso de las bengalas de mano: *(and-2025-c3-t32)*
@@ -2658,7 +2658,7 @@ La escala Beaufort para el viento y la Douglas para la mar, los tres factores qu
 
 #### 10.0 · Navegar con la carta: la teoría
 
-🧭 Panorama · ⏳ pendiente · clases per-10-1, per-10-2, per-10-3, per-10-4, per-10-5, per-10-6, per-10-7, per-10-8, per-10-9
+🧭 Panorama · ✅ [guion](per/10-0-navegar-con-la-carta-la-teoria.md) · clases per-10-1, per-10-2, per-10-3, per-10-4, per-10-5, per-10-6, per-10-7, per-10-8, per-10-9
 
 Recorrido por todo lo que hay que saber antes de poner el lápiz en la carta: coordenadas, milla y corredera, la carta y sus símbolos, los faros, los tres nortes, rumbos, demoras y marcaciones, mareas, viento y corriente. Es la teoría que se pregunta sin carta y, a la vez, la base de las cuatro preguntas de carta, que sí son eliminatorias.
 
@@ -2688,7 +2688,7 @@ Recorrido por todo lo que hay que saber antes de poner el lápiz en la carta: co
 
 #### 10.1 · La Tierra, las coordenadas y la milla
 
-🔎 Profundiza · ⏳ pendiente · clases per-10-1, per-10-2
+🔎 Profundiza · ✅ [guion](per/10-1-la-tierra-coordenadas-y-milla.md) · clases per-10-1, per-10-2
 
 Cómo se dice dónde está un barco (latitud y longitud) y cómo se miden la distancia, la velocidad y el tiempo a bordo: milla, cable, nudo, corredera con su coeficiente, sonda y hora de a bordo. Caen cada año preguntas de definición casi idénticas, con las palabras cruzadas a propósito.
 
@@ -2723,7 +2723,7 @@ Cómo se dice dónde está un barco (latitud y longitud) y cómo se miden la dis
 
 #### 10.2 · La carta náutica, los faros y las publicaciones
 
-🔎 Profundiza · ⏳ pendiente · clases per-10-3, per-10-4
+🔎 Profundiza · ✅ [guion](per/10-2-carta-faros-y-publicaciones.md) · clases per-10-3, per-10-4
 
 Qué cuenta la carta náutica: tipos de carta según su escala, sondas y veriles, las letras del tipo de fondo, los faros y su característica, y las publicaciones del Instituto Hidrográfico de la Marina. Son preguntas de memoria con letras y nombres que el examen cruza a propósito.
 
@@ -2758,7 +2758,7 @@ Qué cuenta la carta náutica: tipos de carta según su escala, sondas y veriles
 
 #### 10.3 · Los tres nortes y los rumbos
 
-🔎 Profundiza · ⏳ pendiente · clases per-10-5, per-10-6
+🔎 Profundiza · ✅ [guion](per/10-3-los-tres-nortes-y-los-rumbos.md) · clases per-10-5, per-10-6
 
 Los tres nortes (verdadero, magnético y de aguja), los dos ángulos que los separan (declinación y desvío), la corrección total y los rumbos verdadero, magnético y de aguja, incluido el paso de cuadrantal a circular. Es la llave de todos los ejercicios de carta y un clásico de las preguntas de teoría.
 
@@ -2793,7 +2793,7 @@ Los tres nortes (verdadero, magnético y de aguja), los dos ángulos que los sep
 
 #### 10.4 · Demora, marcación y líneas de posición
 
-🔎 Profundiza · ⏳ pendiente · clase per-10-7
+🔎 Profundiza · ✅ [guion](per/10-4-demora-marcacion-lineas-de-posicion.md) · clase per-10-7
 
 La diferencia entre rumbo, demora y marcación, la fórmula que las une y qué es una línea de posición: demora, enfilación, oposición, distancia o veril. Sale casi en cada convocatoria y es justo lo que luego se usa para situarse en la carta.
 
@@ -2828,7 +2828,7 @@ La diferencia entre rumbo, demora y marcación, la fórmula que las une y qué e
 
 #### 10.5 · Mareas, viento y corriente
 
-🔎 Profundiza · ⏳ pendiente · clases per-10-8, per-10-9
+🔎 Profundiza · ✅ [guion](per/10-5-mareas-viento-y-corriente.md) · clases per-10-8, per-10-9
 
 Por qué sube y baja el mar, qué son amplitud y duración, mareas vivas y muertas, el cero hidrográfico y qué le hacen a la marea la presión y el viento; y después, qué te saca del rumbo: el viento (abatimiento) y la corriente (deriva). Preguntas de definiciones muy cruzadas entre sí.
 
@@ -2873,7 +2873,7 @@ El mapa del examen de carta: las cuatro últimas preguntas (de la 42 a la 45) se
 
 **En el examen:** El tema 11 son 4 preguntas (de la 42 a la 45) con un máximo de 2 fallos: es eliminatorio, y fallar 3 suspende el examen aunque el resto salga bien. Se resuelven sobre la carta con la teoría del tema 10.
 
-**Recorre:** La carta del Estrecho: coordenadas, distancias y rumbos · Corrección total y conversión de rumbos · Rumbo directo, distancia y hora de llegada · Situación de estima · Líneas de posición: demora, marcación y distancia · Situación por dos demoras o marcaciones simultáneas · Oposición o enfilación y demora: situación y distancia a un faro · Demoras no simultáneas (y cuándo no hace falta trasladar) · Rumbo para pasar a una distancia de un faro.
+**Recorre:** La carta del Estrecho: coordenadas, distancias y rumbos · Corrección total y conversión de rumbos · Rumbo directo, distancia y hora de llegada · Situación de estima · Líneas de posición: demora, marcación y distancia · Situación por dos demoras o marcaciones simultáneas · Oposición o enfilación y demora: situación y distancia a un faro · Marcaciones «más tarde»: cuándo hay que trasladar y cuándo no · Rumbo para pasar a una distancia de un faro.
 
 **Para llevarse:**
 
@@ -2920,7 +2920,7 @@ Lo primero del examen de carta: leer y situar coordenadas, medir distancias, rum
 - Falso: cualquier luz del puerto vale como llegada. Cierto: en Barbate hay faro de tierra y luz roja del espigón, en Ceuta se pide la luz verde de la bocana y en Tánger la farola del espigón; equivocarse de luz te lleva a la opción de al lado.
 - Falso: «demora 310° desde el faro» y «demora 310° al faro» son lo mismo. Cierto: la primera se traza hacia el 310° desde el faro; en la segunda el barco está hacia el 130° del faro.
 
-**Minijuego** (34 preguntas reales de examen en estas clases):
+**Minijuego** (36 preguntas reales de examen en estas clases):
 
 - Navegamos al rumbo de aguja = 340º. Al encontrarnos en la oposición de los faros de Punta Almina y Punta Carnero, marcamos el faro de Punta Carnero en demora de aguja 332º. Calcular la corrección total. *(and-2025-c3-q45)*
 - Nos encontramos en la situación 35º 53,0′ N, 006º 02,5′ W y queremos navegar hasta la situación 35º 52,0′ N, 005º 36,7′ W. ¿Qué rumbo de aguja tendremos que poner y qué distancia recorremos, teniendo en cuenta que el desvío es +2º y la declinación magnética = 4º NW? *(and-2025-c2-q43)*

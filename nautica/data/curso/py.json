@@ -192,6 +192,12 @@
        "dato": "Centro de flotación = centro del área del plano de flotación",
        "fuente": "Definición de teoría del buque (programa PY, RD 875/2014, anexo)"
       }
+     ],
+     "terminos": [
+      "desplazamiento",
+      "centro-de-gravedad",
+      "empuje",
+      "obra-viva"
      ]
     },
     {
@@ -377,6 +383,12 @@
        "dato": "GZ = GM·sen θ y momento adrizante = D·GZ (estabilidad inicial)",
        "fuente": "Teoría del buque, estabilidad inicial (fórmulas estándar)"
       }
+     ],
+     "terminos": [
+      "altura-metacentrica",
+      "estabilidad-estatica",
+      "estabilidad-longitudinal",
+      "equilibrio-inestable"
      ]
     },
     {
@@ -554,6 +566,11 @@
        "dato": "Traslado: GG′ = p·d/D; superficie libre depende de la manga (inercia) del tanque, no del volumen de líquido",
        "fuente": "Teoría del buque (fórmulas estándar de traslado de pesos y corrección por superficies libres)"
       }
+     ],
+     "terminos": [
+      "altura-metacentrica",
+      "asiento",
+      "escora"
      ]
     },
     {
@@ -746,6 +763,12 @@
        "dato": "Línea de amarre del arnés ≤ 2 m; enganche en el pecho (por encima del esternón)",
        "fuente": "Norma EN ISO 12401:2009 (resumen público de RYA, https://www.rya.org.uk/water-safety/safety-lines). La plantilla 2023-c1-g05 da por correcta la sujeción a la espalda: ojo añadido"
       }
+     ],
+     "terminos": [
+      "chaleco",
+      "arnes",
+      "rabiza",
+      "guirnalda"
      ]
     },
     {
@@ -956,6 +979,12 @@
        "dato": "Zafa típica: actúa entre 1,5 y 4 m y se sustituye cada 2 años",
        "fuente": "Fabricante Hammar, ficha H20 (https://www.cmhammar.com/h20-release-units/); RD 1185/2006, art. 22.1.h (dispositivo de liberación de radiobalizas ≤ 2 años). La plantilla 2021-c2-g05 da «1,5–4,5 m»: ojo"
       }
+     ],
+     "terminos": [
+      "zafa-hidrostatica",
+      "union-debil",
+      "toldo",
+      "ancla-de-capa"
      ]
     },
     {
@@ -1173,6 +1202,12 @@
        "dato": "Uso: sotavento, de espaldas al viento, guantes; nunca cohete con el helicóptero cerca",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2021-c1-g09, 2023-c3-g10, 2025-c2-g08, 2025-c1-g03"
       }
+     ],
+     "terminos": [
+      "bengala",
+      "fumigena",
+      "heliografo",
+      "reflector-radar"
      ]
     },
     {
@@ -1378,6 +1413,12 @@
        "dato": "Balde: también para achique; nunca para inflamables",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2022-c1-g06, 2025-c1-g09"
       }
+     ],
+     "terminos": [
+      "co2",
+      "polvo-seco",
+      "espuma",
+      "balde"
      ]
     },
     {
@@ -1571,6 +1612,12 @@
        "dato": "Sin agua ni comida las primeras 24 h; nunca agua de mar; quedarse en la zona; turnos de guardia",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2021-c1-g10, 2020-c1-g06, 2022-c1-g09, 2024-c3-g07, 2026-c1-g07, 2026-c2-g10"
       }
+     ],
+     "terminos": [
+      "abandono",
+      "cinchas",
+      "ancla-de-capa",
+      "mareo"
      ]
     },
     {
@@ -1797,6 +1844,12 @@
        "dato": "Disparo por error: avisar a Salvamento Marítimo",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2020-c1-g09"
       }
+     ],
+     "terminos": [
+      "radiobaliza",
+      "respondedor",
+      "canal-70",
+      "mayday"
      ]
     },
     {
@@ -2163,6 +2216,12 @@
        "dato": "Pregunta FALSA de 2020 con dos opciones falsas (gradiente y niebla de radiación «primavera-verano»); puntuó la b",
        "fuente": "Plantilla and-py-2020-c3-g13 (b); 2022-c1-g12 confirma «otoño-invierno»"
       }
+     ],
+     "terminos": [
+      "gradiente",
+      "borrasca",
+      "anticiclon",
+      "presion-atmosferica"
      ]
     },
     {
@@ -2358,6 +2417,12 @@
        "dato": "Oclusión tipo cálido: vanguardia más fría; tipo frío: retaguardia más fría",
        "fuente": "Plantillas 2020-c1-g16, 2023-c2-g12, 2024-c3-g12, 2026-c1-g12"
       }
+     ],
+     "terminos": [
+      "masa-de-aire",
+      "frente-frio",
+      "frente-calido",
+      "vanguardia"
      ]
     },
     {
@@ -2563,6 +2628,12 @@
        "dato": "Ciclostrófico: gradiente equilibrado por la centrífuga, Coriolis despreciable",
        "fuente": "Plantilla 2026-c1-g18 (b); R. Stull, Practical Meteorology, cap. 10 «Atmospheric forces and winds» (Univ. British Columbia, https://www.eoas.ubc.ca/books/Practical_Meteorology/prmet/Ch10-Forces_Winds.pdf)"
       }
+     ],
+     "terminos": [
+      "viento-de-euler",
+      "viento-geostrofico",
+      "viento-de-gradiente",
+      "viento-antitriptico"
      ]
     },
     {
@@ -2750,6 +2821,12 @@
        "dato": "Vendaval: SW fuerte del golfo de Cádiz, borrascas invernales; alisios del NE en el HN",
        "fuente": "Plantillas 2020-c3-g14 (b), 2025-c1-g13 (c), 2022-c1-g13 (a)"
       }
+     ],
+     "terminos": [
+      "mistral",
+      "galerna",
+      "siroco",
+      "levante"
      ]
     },
     {
@@ -2933,6 +3010,11 @@
        "dato": "El psicrómetro necesita ventilación del bulbo húmedo (no «protegido del viento»)",
        "fuente": "OMM, WMO-No. 8, cap. 4 (psicrómetros ventilados, ≈ 2–4 m/s)"
       }
+     ],
+     "terminos": [
+      "humedad-absoluta",
+      "humedad-relativa",
+      "punto-de-rocio"
      ]
     },
     {
@@ -3152,6 +3234,12 @@
        "dato": "Estratocúmulo: capa gris con intersticios claros; cumulonimbo: gran desarrollo vertical, tormenta",
        "fuente": "Plantillas 2025-c3-g17 (b), 2025-c2-g12 (b); OMM"
       }
+     ],
+     "terminos": [
+      "cirrostratos",
+      "altocumulos",
+      "nimbostratos",
+      "cumulonimbos"
      ]
     },
     {
@@ -3368,6 +3456,12 @@
        "dato": "Previsión: punto de rocío próximo a la temperatura del mar (check Td 16 / mar 15,5 °C)",
        "fuente": "Plantilla 2021-c2-g20 (c)"
       }
+     ],
+     "terminos": [
+      "niebla-de-radiacion",
+      "niebla-de-adveccion",
+      "niebla-de-vapor",
+      "niebla-de-mezcla"
      ]
     },
     {
@@ -3565,6 +3659,12 @@
        "dato": "La altura de la mar depende de intensidad, persistencia y fetch",
        "fuente": "AEMET, Escalas de viento y oleaje; plantilla 2025-c3-g14 (a falsa: salinidad)"
       }
+     ],
+     "terminos": [
+      "altura-de-la-ola",
+      "periodo-de-la-ola",
+      "mar-viento",
+      "mar-fondo"
      ]
     },
     {
@@ -3822,6 +3922,12 @@
        "dato": "Corriente de Canarias: fría, hacia el S-SW",
        "fuente": "Plantilla 2025-c2-g14 (d)"
       }
+     ],
+     "terminos": [
+      "corriente-termohalina",
+      "corriente-de-arrastre",
+      "corriente-de-gradiente",
+      "corriente-de-marea"
      ]
     }
    ]
@@ -4037,6 +4143,12 @@
        "dato": "Δl 36° 10,0′ N → 35° 48,8′ N = 21,2′ S; 2° 10′ N → 1° 20′ S = 3° 30′ S; ΔL 100° W → 110° E = 150° W; 170° E → 170° W = 20° E",
        "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
       }
+     ],
+     "terminos": [
+      "latitud",
+      "longitud",
+      "circulo-maximo",
+      "eje-terrestre"
      ]
     },
     {
@@ -4241,6 +4353,12 @@
        "dato": "Ra 000° con Ct positiva: el norte verdadero queda por babor",
        "fuente": "Plantilla PY 2023-c3-n05"
       }
+     ],
+     "terminos": [
+      "declinacion",
+      "desvio",
+      "estrella-polar",
+      "enfilacion"
      ]
     },
     {
@@ -4425,6 +4543,12 @@
        "dato": "Signo del abatimiento y orden Rs → Rv → Ra; construcción del rumbo a dar con corriente",
        "fuente": "Coherente con py-4-2 y py-4-7 (bloque de carta)"
       }
+     ],
+     "terminos": [
+      "abatimiento",
+      "deriva",
+      "rumbo-efectivo",
+      "velocidad-efectiva"
      ]
     },
     {
@@ -4569,6 +4693,12 @@
        "dato": "Ejemplo 30 millas al 225° desde 36° 10,0′ N 006° 00,0′ W → Δl −21,2′, A −21,2 M, lm 35° 59,4′, ΔL 26,2′ W, llegada 35° 48,8′ N 006° 26,2′ W",
        "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
       }
+     ],
+     "terminos": [
+      "loxodromica",
+      "apartamiento",
+      "estima",
+      "circulo-maximo"
      ]
     },
     {
@@ -4776,6 +4906,12 @@
        "dato": "TU 08:00 en 075° W → HcL 03:00; TU 10:30 en 069° 25′ E → HcL 15:07,7, huso 5 E, Hz 15:30; check TU 14:00 en 045° W → 11:00",
        "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
       }
+     ],
+     "terminos": [
+      "hora-civil-del-lugar",
+      "hora-legal",
+      "hora-oficial",
+      "hrb"
      ]
     },
     {
@@ -4940,6 +5076,12 @@
        "dato": "≈ 1 cm por hPa respecto a 1013 hPa (barómetro invertido)",
        "fuente": "Tabla de corrección por presión del Anuario de Mareas (IHM); coherente con py-4-9 y con la regla py-nav-05"
       }
+     ],
+     "terminos": [
+      "anuario-de-mareas",
+      "cero-hidrografico",
+      "amplitud",
+      "sonda-del-momento"
      ]
     },
     {
@@ -5113,6 +5255,11 @@
        "dato": "Derroteros: descripción detallada de la costa; se corrigen con los Avisos",
        "fuente": "Plantillas PY 2025-c2-n04, 2026-c1-n04, 2024-c1-n04, 2025-c3-n04"
       }
+     ],
+     "terminos": [
+      "avisos-a-los-navegantes",
+      "libro-de-faros",
+      "anuario-de-mareas"
      ]
     },
     {
@@ -5381,6 +5528,12 @@
        "dato": "Para pasar marcación radar a demora hace falta el rumbo (no arrancada ni distancia)",
        "fuente": "Plantillas PY 2024-c3-n04, 2025-c1-n05"
       }
+     ],
+     "terminos": [
+      "sintonia",
+      "anti-clutter-sea",
+      "ebl",
+      "vrm"
      ]
     },
     {
@@ -5586,6 +5739,12 @@
        "dato": "TTG 18/6 = 3 h, ETA 13:20; XTE 0,05 M = 92,6 m; VMG 6 · cos 20° = 5,64 kn",
        "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
       }
+     ],
+     "terminos": [
+      "cog",
+      "sog",
+      "xte",
+      "datum"
      ]
     },
     {
@@ -5807,6 +5966,12 @@
        "dato": "AIS y meteo: 2024-c2-n10 da por buena «posición de otros buques» frente a «meteo codificada»; 2024-c3-n10 da por buena «información hidrográfica y meteorológica»",
        "fuente": "Plantillas PY 2024-c2-n10 y 2024-c3-n10; OMI SN.1/Circ.289 (mensajes de aplicación: meteo e hidro)"
       }
+     ],
+     "terminos": [
+      "carta-raster",
+      "carta-vectorial",
+      "ecdis",
+      "ais"
      ]
     }
    ]
@@ -6027,6 +6192,12 @@
        "dato": "Distancia polar de la Polar ≈ 0,6° (37′) en 2026; error de azimut máximo ≈ p / cos φ ≈ 0,8° a 36° N",
        "fuente": "Cálculo del revisor (Polaris J2000 δ = +89°15,9′, precesión ≈ +16″/año); el examen toma Zv = 000° (and-py-2021-c2-n11, Za 358° → Ct +2°)"
       }
+     ],
+     "terminos": [
+      "correccion-total",
+      "variacion-anual",
+      "oposicion",
+      "acimut"
      ]
     },
     {
@@ -6187,6 +6358,11 @@
        "dato": "Problema modelo: de 36°02,0′ N 005°15,0′ W a la luz verde de Ceuta Rs 199,8°, 8,67 M → Rv 208°, Ra 214°, llegada 11:57",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
       }
+     ],
+     "terminos": [
+      "rumbo-de-superficie",
+      "rumbo-aguja",
+      "sotavento"
      ]
     },
     {
@@ -6329,6 +6505,11 @@
        "dato": "Problema modelo: Isla de Tarifa Dv 089,4°, D 10,96 M, α 21,4°, Rs 110,8° ≈ 111° → Rv 121°, Ra 116°",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
       }
+     ],
+     "terminos": [
+      "rumbo-de-superficie",
+      "correccion-total",
+      "en-demanda"
      ]
     },
     {
@@ -6497,6 +6678,12 @@
        "dato": "Plantilla and-py-2021-c2-n15: el corte riguroso sale 36°00,1′ N 005°25,0′ W; la oficial (d) 36°02′ N 005°25′ W es la más próxima",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); examen 2021 2ª conv. (Junta de Andalucía)"
       }
+     ],
+     "terminos": [
+      "marcacion",
+      "demora-verdadera",
+      "enfilacion",
+      "oposicion"
      ]
     },
     {
@@ -6651,6 +6838,12 @@
        "dato": "Problema modelo: estima 10:30 35°55,7′ N 005°55,2′ W; Ref 139,4°, 12,2 M, Vef 8,1 kn; Espartel Dv 181°, 8,2 M",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
       }
+     ],
+     "terminos": [
+      "estima",
+      "rumbo-efectivo",
+      "intensidad-horaria",
+      "rumbo-de-corriente"
      ]
     },
     {
@@ -6788,6 +6981,12 @@
        "dato": "Problema modelo: corte del Rs 160° con la línea 260° desde Cabo Espartel en 35°47,1′ N 005°58,5′ W, 8,42 M → 11:03; con el Rs (trampa) 35°46,7′ N 005°58,3′ W",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
       }
+     ],
+     "terminos": [
+      "traves",
+      "derrota",
+      "marcacion",
+      "rumbo-de-superficie"
      ]
     },
     {
@@ -6955,6 +7154,12 @@
        "dato": "Problema (b): Vef 7,09 kn; Rv 171,5°, Vb 6,28 kn",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator)"
       }
+     ],
+     "terminos": [
+      "rumbo-efectivo",
+      "velocidad-efectiva",
+      "velocidad-del-buque",
+      "rumbo-de-corriente"
      ]
     },
     {
@@ -7091,6 +7296,11 @@
        "dato": "Problema modelo: estima 35°54,4′ N 005°44,1′ W; observada 35°56,6′ N 005°41,5′ W; Rc 044,4°, 3,04 M, Ihc 2,0 kn",
        "fuente": "Recalculado de forma independiente por el revisor (loxodrómica con partes meridianas, cortes en proyección Mercator); Coordenadas de la carta L105 (data/chart-105.json)"
       }
+     ],
+     "terminos": [
+      "corriente-desconocida",
+      "rumbo-de-corriente",
+      "intensidad-horaria"
      ]
     },
     {
@@ -7334,6 +7544,12 @@
        "dato": "Plantilla and-py-2021-c1-n20: con A = 0,81 m sale 16:42 UTC; la oficial 16:56 sale de la tabla con la columna A = 1,00",
        "fuente": "Examen PY 2021 1ª conv. (Algeciras 23-06-2021: BM 06:24 0,14; PM 13:03 1,00; BM 18:35 0,19) y recálculo del revisor"
       }
+     ],
+     "terminos": [
+      "anuario-de-mareas",
+      "adelanto",
+      "amplitud",
+      "sonda-del-momento"
      ]
     },
     {
@@ -7488,6 +7704,12 @@
        "dato": "Inversa: R 230,3°, D 477,6 M (con partes meridianas 230,3° y 477,4 M)",
        "fuente": "Recalculado por el revisor"
       }
+     ],
+     "terminos": [
+      "apartamiento",
+      "rumbo-directo",
+      "latitud",
+      "estima"
      ]
     }
    ]

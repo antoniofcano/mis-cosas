@@ -63,9 +63,13 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   La app resuelve 71 de ellas y en las 68 no anuladas elige la opción oficial: es la validación de los motores
   y de la carta (`tests/exams.test.js`).
 - **180 preguntas de carta del PY Andalucía** (2020–2026: situación, viento, corriente, mareas, estima analítica):
-  la app resuelve 174 y en todas las no anuladas llega a la opción oficial con margen; las 6 restantes
-  (4 anuladas, 1 con errata en la plantilla y 1 por la medida de una enfilación) quedan explicadas en el bloque
-  `DISCREPANCIAS` de `src/exams/solutions/andalucia-py-<año>.js`. En las tandas de teoría del PY sale
+  la app resuelve 173 paso a paso. Cada resolución está escrita a mano para su pregunta (datos del enunciado →
+  motores de cálculo), y un test comprueba que la opción oficial es la más próxima al resultado, dentro de dos
+  veces la tolerancia: valida a la vez los motores y la transcripción de cada pregunta, no el texto de las
+  explicaciones. Las 7 restantes (5 anuladas, 1 con errata en la plantilla y 1 por la medida de una enfilación)
+  quedan explicadas en el bloque `DISCREPANCIAS` de `src/exams/solutions/andalucia-py-<año>.js`.
+  Las mareas se calculan con la fórmula exacta; el examen usa la tabla del Anuario, y pueden diferir 1–2 cm o
+  1 minuto. En las tandas de teoría del PY sale
   «Ver la resolución en la carta» (o «paso a paso» cuando no hay nada que dibujar).
 - **Progreso** guardado en el navegador (también los minutos de estudio por día y el examen a medias), con copia de seguridad y recordatorio para guardarla.
 - **Preparada para asistentes IA** (Claude en Chrome / Cowork): resumen compacto `#ai-context`,

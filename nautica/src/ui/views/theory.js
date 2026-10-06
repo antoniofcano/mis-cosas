@@ -15,6 +15,7 @@ import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, g
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
+import { vibrar, quieto, transicion } from '../movimiento.js';
 import { avisoError } from '../aviso-error.js';
 import { enlaceTrampa } from '../mapa-trampa.js';
 import { remateMapas } from '../remate-mapas.js';
@@ -79,7 +80,7 @@ export function questionCard(q, o = {}) {
     } }, x.texto))) : texto);
   const enunciado = conVocab(q.enunciado);
   const opts = Object.entries(q.opciones ?? {}).map(([k, v]) => {
-    const cls = !o.reveal ? '' : k === q.correcta ? 'correct' : k === o.chosen ? 'wrong' : '';
+    const cls = (!o.reveal ? '' : k === q.correcta ? 'correct' : k === o.chosen ? 'wrong' : '') + (o.reveal && k === o.chosen ? ' elegida' : '');
     const fig = q.opciones_figuras?.[k];
     return h('label.option', { class: cls },
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
@@ -113,7 +114,12 @@ export { explanationFor };
 export function profePanel(q, expl, chosen) {
   const n = narrateTheory(q, expl, chosen, reglasDe(q.id));
   const ok = q.anulada || chosen === q.correcta;
-  return h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
+  // Al corregir: vibración breve y la explicación sube a la vista (el panel entra desde abajo, ver CSS).
+  if (chosen != null) {
+    vibrar(ok);
+    if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => panel.isConnected && panel.scrollIntoView({ block: 'nearest', behavior: quieto() ? 'auto' : 'smooth' }));
+  }
+  const panel = h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
     h('span.profe-badge', '👨‍🏫 El profe'),
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, '🔊') : null,
     n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
@@ -122,6 +128,7 @@ export function profePanel(q, expl, chosen) {
     ok ? null : enlaceTrampa(q, chosen),
     h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
+  return panel;
 }
 
 /** «Ver la resolución»: en la carta, o paso a paso si la pregunta se resuelve sin ella (mareas, estima analítica). */
@@ -245,7 +252,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     const siguiente = h('button.grande', { type: 'button', hidden: true, onclick: () => {
       voice.stop();
       i += 1;
-      if (i >= n) { barra.set(null, 1); onFin(ok, n); } else { show(); window.scrollTo(0, 0); }
+      if (i >= n) { barra.set(null, 1); transicion(() => onFin(ok, n), 'adelante'); } else { transicion(() => { show(); window.scrollTo(0, 0); }, 'adelante'); }
     } }, i === n - 1 ? 'Ver resultado' : 'Siguiente →');
     const responder = (k) => {
       if (respondida) return;

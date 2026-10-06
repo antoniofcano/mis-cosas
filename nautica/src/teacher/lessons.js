@@ -1,4 +1,4 @@
-// Motor «profe»: conocimiento pedagógico por tipo de paso, en el tono de un profesor de academia.
+// Motor «profe»: conocimiento pedagógico por tipo de paso, en el tono de un profesor.
 // Cada lección reconoce un tipo de paso por su título y aporta:
 //   intro  → qué vamos a hacer y por qué (varias formas, para no repetir siempre la misma frase)
 //   tip    → truco o regla para recordarlo

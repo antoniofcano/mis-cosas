@@ -8,7 +8,7 @@ import { link, navigate } from '../router.js';
 import { loadTheoryBank } from '../../store/datasets.js';
 import { bloque, bloquesEnOrden, totalPreguntas } from '../../theory/blocks.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
-import { TANDA, MIN_TANDA } from '../../course/plan.js';
+import { TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
 import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, grade } from '../../theory/engine.js';
@@ -23,7 +23,9 @@ import { enlaceTrampa } from '../mapa-trampa.js';
 import { remateMapas } from '../remate-mapas.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
+import { openWorkspace } from '../chart/workspace.js';
 import { colaRepaso, tandaRapida } from '../../course/repaso.js';
+import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { SOLUCIONES as cartaSolutions, bancoResolucion } from '../../exams/solutions/index.js';
 import { narrateSteps } from '../../teacher/narrate.js';
@@ -111,6 +113,12 @@ export function prepareTheory({ tit, chart, reglas }) {
 }
 
 export { explanationFor };
+
+/** ¿Esta pregunta se resuelve sobre la carta? (las de carta del PER y las del PY que no son solo cálculo) */
+export function necesitaCarta(q) {
+  const sol = cartaSolutions[q.id];
+  return /-q\d+$/.test(q.id) || (!!sol && !sol.sinCarta) || (q.bloque === 'carta' && !sol?.sinCarta);
+}
 
 /** Panel del profe para una pregunta respondida. */
 export function profePanel(q, expl, chosen) {
@@ -250,6 +258,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
+  const crono = cronometro(); // minutos reales (con tope por pantalla), no estimados
   let ok = 0;
   function show() {
     const q = preguntas[i];
@@ -259,11 +268,13 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     const siguiente = h('button.grande', { type: 'button', hidden: true, onclick: () => {
       voice.stop();
       i += 1;
-      if (i >= n) { barra.set(null, 1); transicion(() => onFin(ok, n), 'adelante'); } else { transicion(() => { show(); window.scrollTo(0, 0); }, 'adelante'); }
+      crono.marca();
+      if (i >= n) { barra.set(null, 1); const min = crono.minutos(); transicion(() => onFin(ok, n, min), 'adelante'); } else { transicion(() => { show(); window.scrollTo(0, 0); }, 'adelante'); }
     } }, i === n - 1 ? 'Ver resultado' : 'Siguiente →');
     const responder = (k) => {
       if (respondida) return;
       respondida = true;
+      crono.marca();
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       progress.recordExam(q.id, { choice: k, ok: good });
@@ -280,7 +291,13 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
     let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta, vocab });
-    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, feedback, h('div.fila-inferior', noLaSe, siguiente));
+    // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
+    // citados resaltados, y al cerrarla sigues en la pregunta.
+    const carta = necesitaCarta(q) && chartRef ? h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
+      chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
+      result: '', summary: () => `CARTA abierta para ${q.id}`,
+    }) }, icono('mapa'), 'Abrir la carta') : null;
+    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
   if (n) show();
@@ -330,8 +347,8 @@ export function practiceView({ ctx, progress, params: route, tit }) {
     setChildren(cont, tandaPreguntas({
       preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
       onSummary: (t) => { summaryText = t; },
-      onFin: (ok, n) => {
-        progress.logActividad(MIN_TANDA);
+      onFin: (ok, n, min) => {
+        progress.logActividad(min);
         barra.remove();
         pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
         summaryText = `VISTA tanda terminada · ${b.titulo}: ${ok} de ${n} aciertos`;
@@ -363,8 +380,8 @@ function mezclaView({ progress, seed }) {
     setChildren(cont, tandaPreguntas({
       preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${empezados.length} temas`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
-      onFin: (ok, n) => {
-        progress.logActividad(MIN_TANDA);
+      onFin: (ok, n, min) => {
+        progress.logActividad(min);
         progress.setSetting(`mezclado_${tit0}`, new Date().toLocaleDateString('sv-SE'));
         barra.remove();
         pintarCierre(cont, progress, tit0, { ...cierreTanda(ok, n), extra: remateMapas(tit0, empezados) });
@@ -396,8 +413,8 @@ function repasoView({ progress }) {
     setChildren(cont, tandaPreguntas({
       preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
-      onFin: (ok, n) => {
-        progress.logActividad(Math.max(1, Math.round(n * 0.8)));
+      onFin: (ok, n, min) => {
+        progress.logActividad(min);
         barra.remove();
         const quedan = colaRepaso(preguntas, progress.get().exams).hoy.length;
         pintarCierre(cont, progress, tit0, { icono: ok === n ? '🎉' : '💪', titulo: `${ok} de ${n}`,
@@ -426,8 +443,8 @@ function rapidoView({ progress, seed }) {
     setChildren(cont, tandaPreguntas({
       preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
-      onFin: (ok, n) => {
-        progress.logActividad(5);
+      onFin: (ok, n, min) => {
+        progress.logActividad(min);
         barra.remove();
         pintarCierre(cont, progress, tit0, { icono: ok >= n - 1 ? '🎉' : '💪', titulo: `${ok} de ${n}`, lineas: ['Cinco minutos bien aprovechados. Las que has fallado vuelven mañana al repaso.'] });
         summaryText = `VISTA 5 minutos terminado: ${ok} de ${n}`;

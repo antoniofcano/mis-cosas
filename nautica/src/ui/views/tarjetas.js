@@ -11,6 +11,7 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre } from '../cierre.js';
+import { cronometro } from '../../course/cronometro.js';
 
 export function tarjetasView(o) {
   return o.params.parts[1] ? sesionView(o) : listaView(o);
@@ -71,16 +72,18 @@ function sesionView({ progress, tit, params }) {
   }
   let i = 0;
   let bien = 0;
+  const crono = cronometro(); // minutos reales, con tope por tarjeta
   const mostrar = (vuelta = false) => {
     const c = cartas[i];
     barra.set(`${titulo} · ${i + 1} de ${cartas.length}`, i / cartas.length);
     const reverso = vuelta ? h('div.tarjeta-reverso', h('p.tarjeta-respuesta', c.reverso.titulo), c.reverso.texto ? h('p', c.reverso.texto) : null) : null;
     const responder = (ok) => {
       progress.recordExam(c.clave, { choice: null, ok });
+      crono.marca();
       if (ok) bien += 1;
       i += 1;
       if (i < cartas.length) { mostrar(false); return; }
-      progress.logActividad(Math.max(1, Math.round(cartas.length / 3)));
+      progress.logActividad(crono.minutos());
       barra.remove();
       pintarCierre(cont, progress, tit, { icono: bien === cartas.length ? '🎉' : '💪', titulo: `${bien} de ${cartas.length}`,
         lineas: [bien === cartas.length ? 'Todas sabidas: volverán más adelante para afianzarlas.' : 'Las que no sabías vuelven mañana al repaso.'] });

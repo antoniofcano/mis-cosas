@@ -84,6 +84,24 @@ export function conPreguntaFinal(pasos, disponibles, rng) {
   return pasos.at(-1)?.tipo === 'check' ? [...pasos.slice(0, -1), final] : [...pasos, final];
 }
 
+const VACIAS = new Set('para como cual cuál esta este estos estas desde hasta entre sobre segun según donde dónde cuando cuándo tiene tienen será serán puede pueden debe deben cuales cuáles siguientes siguiente respuesta respuestas correcta correctas correcto incorrecta afirmacion afirmación anteriores ninguna todas todos otra otro otras otros mismo misma también tambien buque buques barco barcos embarcación embarcacion'.split(' '));
+const sinTildes = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const raiz = (w) => w.slice(0, 6);
+/** Palabras con contenido de un texto (sin tildes, de 5 letras o más, sin las vacías), reducidas a su raíz. */
+export const palabrasClave = (s = '') => [...new Set(sinTildes(s).match(/[a-zñ]{5,}/g)?.filter((w) => !VACIAS.has(w)).map(raiz) ?? [])];
+/** Texto visible de un paso de clase (para saber qué se ha contado ya). */
+export const textoDePaso = (p) => [p.titulo, p.texto, p.enunciado, p.explicacion, ...(p.pares ?? []).flat()].filter(Boolean).join(' ');
+/**
+ * ¿Se puede contestar la pregunta con lo visto? Las palabras clave del enunciado y de la respuesta correcta tienen que
+ * haber salido ya en la clase (casi todas las de la respuesta; la mayoría de las del enunciado).
+ */
+export function cubierta(q, visto) {
+  const v = new Set(palabrasClave(visto));
+  const dentro = (ws) => (ws.length ? ws.filter((w) => v.has(w)).length / ws.length : 1);
+  const resp = palabrasClave(q.opciones?.[q.correcta] ?? '');
+  return dentro(resp) >= 0.75 && dentro(palabrasClave(q.enunciado)) >= 0.6;
+}
+
 /** Tarjetas de contenido seguidas como máximo antes de pedir una respuesta al alumno. */
 export const CADA = 3;
 const respondeAlumno = (p) => p.tipo === 'check' || p.tipo === 'toca' || p.tipo === 'emparejar' || (p.tipo === 'ilustracion' && p.prediccion);
@@ -100,14 +118,17 @@ export function conPreguntasIntercaladas(pasos, disponibles, rng, cada = CADA) {
   const bolsa = rng.shuffle(disponibles.filter((q) => !usadas.has(q.id)));
   const out = [];
   let seguidas = 0;
+  let visto = ''; // texto de la clase mostrado hasta aquí: solo se pregunta lo que ya se ha contado
   pasos.forEach((p, i) => {
     out.push(p);
+    visto += ` ${textoDePaso(p)}`;
     if (respondeAlumno(p)) { seguidas = 0; return; }
     seguidas += 1;
     const quedan = pasos.slice(i + 1);
     const siguienteResponde = quedan[0] && respondeAlumno(quedan[0]);
-    if (seguidas >= cada && bolsa.length && quedan.length >= 2 && !siguienteResponde) {
-      const q = bolsa.pop();
+    const lista = bolsa.findIndex((q) => cubierta(q, visto));
+    if (seguidas >= cada && lista > -1 && quedan.length >= 2 && !siguienteResponde) {
+      const [q] = bolsa.splice(lista, 1);
       out.push({ tipo: 'check', real: q, enunciado: q.enunciado, opciones: q.opciones, correcta: q.correcta, intercalada: true });
       seguidas = 0;
     }

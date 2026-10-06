@@ -148,8 +148,8 @@ test('avance: la barra solo llega al 100 % con todos los temas al día, y sin cl
   // Sin nada hecho, 0 %; y el texto cuenta lo mismo que la barra.
   const cero = avance(PER, curso, banco, {}, {});
   assert.equal(cero.fraccion, 0);
-  assert.match(lineaAvance(cero), /0 % del camino: 0 de 11 temas al día/);
-  assert.match(lineaAvance({ fraccion: 1, temasAlDia: 11, temasTotal: 11 }), /100 % del camino: todos los temas al día/);
+  assert.match(lineaAvance(cero), /0 % del camino: 0 de 11 temas listos/);
+  assert.match(lineaAvance({ fraccion: 1, temasAlDia: 11, temasTotal: 11 }), /100 % del camino: todos los temas listos/);
 });
 
 test('avance: temas al día y fracción', () => {
@@ -236,4 +236,45 @@ test('avance de un tema: una tanda de preguntas pesa como una clase, no como el 
   assert.equal(Math.round(100 * parteTema(e)), 50);
   assert.equal(parteTema({ total: 50, hechas: 20, clases: { total: 5, terminadas: 5 } }), 1);
   assert.equal(parteTema({ total: 0, hechas: 0, clases: { total: 2, terminadas: 1 } }), 0.5);
+});
+
+test('cronómetro de estudio: tiempo real con tope de 2 min por pantalla; 10 preguntas en 30 s no suman más de 1 min', async () => {
+  const { cronometro } = await import('../src/course/cronometro.js');
+  let t = 0;
+  const c = cronometro(() => t);
+  for (let i = 0; i < 10; i++) { t += 3000; c.marca(); }
+  assert.ok(c.minutos() <= 1, 'clics rápidos');
+  const d = cronometro(() => t);
+  t += 60 * 60000; // una hora con la pantalla abierta
+  assert.equal(d.minutos(), 2, 'tope por pantalla');
+  const e = cronometro(() => t);
+  for (let i = 0; i < 10; i++) { t += 45000; e.marca(); }
+  assert.equal(e.minutos(), 8, '10 pantallas de 45 s');
+});
+
+test('progreso: con dos pestañas, una no pisa las respuestas de la otra', async () => {
+  const { createProgressStore } = await import('../src/store/progress.js');
+  const mem = new Map();
+  const storage = { getItem: (k) => mem.get(k) ?? null, setItem: (k, v) => { mem.set(k, v); oyentes.forEach((f) => f({ key: k, newValue: v })); }, removeItem: (k) => mem.delete(k) };
+  const oyentes = [];
+  const prev = globalThis.addEventListener;
+  globalThis.addEventListener = (tipo, f) => { if (tipo === 'storage') oyentes.push(f); };
+  try {
+    const a = createProgressStore(storage);
+    const b = createProgressStore(storage);
+    for (let i = 0; i < 10; i++) a.recordExam(`q${i}`, { choice: null, ok: false }); // pestaña A: test de 10
+    b.setSetting('minutosDia', 30); // pestaña B (Hoy abierto) guarda algo después
+    const final = JSON.parse(mem.get('nautica.progress.v1'));
+    assert.equal(Object.keys(final.exams).length, 10, 'las 10 respuestas siguen ahí');
+    assert.equal(final.settings.minutosDia, 30);
+  } finally { globalThis.addEventListener = prev; }
+});
+
+test('ritmo: estudiar hoy no aleja la fecha de fin (M6)', async () => {
+  const { diasPara } = await import('../src/course/plan.js');
+  // 600 min pendientes a 30 al día: 20 días. Tras estudiar 20 min hoy quedan 580 y siguen siendo 20 días.
+  assert.equal(diasPara(600, 30, 0), 20);
+  assert.equal(diasPara(580, 30, 20), 20);
+  assert.equal(diasPara(570, 30, 30), 20, 'meta cumplida: lo que queda empieza mañana');
+  assert.equal(diasPara(10, 30, 0), 1);
 });

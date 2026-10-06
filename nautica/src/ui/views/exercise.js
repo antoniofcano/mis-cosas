@@ -13,6 +13,7 @@ import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { link, navigate } from '../router.js';
 import { tlink, volver, currentTit } from '../titulacion.js';
+import { cronometro } from '../../course/cronometro.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: '✅ Correcto',
@@ -34,6 +35,7 @@ export function exerciseView({ ctx, progress, params: route }) {
   const solution = exercise.solve(params, ctx);
   const answers = answersFor(exercise, params);
   const state = { inputs: {}, revealed: 0, result: null, recorded: false };
+  const crono = cronometro(() => Date.now(), 20 * 60000); // un ejercicio de carta: tiempo real, como mucho 20 min
   let ws = null; // mesa de cartas a pantalla completa (se abre al resolver en la carta)
   let widget = null;
 
@@ -130,7 +132,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {
       progress.recordAttempt(exercise.id, { ok: r.allOk, seed, mistakes: r.diagnoses.map((d) => d.id) });
-      if (r.allOk) progress.logActividad(5);
+      if (r.allOk) progress.logActividad(crono.minutos());
       state.recorded = true;
     }
     refreshAi();

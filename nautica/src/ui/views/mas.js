@@ -12,7 +12,7 @@ import { calcularPlan } from '../cierre.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
 import { lineaSeguimiento, DIAS_ESTUDIO } from '../../course/calendario.js';
 
-export function masView({ progress, tit }) {
+export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
   const s = progress.settings();
 
@@ -103,6 +103,17 @@ export function masView({ progress, tit }) {
         h('p', 'Se borrará todo lo que has estudiado. No se puede deshacer.'),
         h('button.peligro', { type: 'button', onclick: () => { if (confirm('¿Borrar todo lo que has estudiado? No se puede deshacer.')) { progress.reset(); location.hash = '#/'; location.reload(); } } }, 'Borrar todo'))),
   );
+  // Desde Hoy, «Poner fecha de examen» o «Cambiar minutos al día» llevan directo a su campo.
+  const campo = params?.query?.campo;
+  // Se espera a que la pantalla esté puesta (la transición la monta un poco después).
+  let intentos = 0;
+  const lleva = () => {
+    const destino = campo === 'fecha' ? fecha : minutos;
+    if (!destino.isConnected) { if (intentos++ < 60) setTimeout(lleva, 30); return; }
+    destino.scrollIntoView({ block: 'center' });
+    if (campo === 'fecha') { fecha.focus(); try { fecha.showPicker?.(); } catch { /* sin gesto del usuario */ } }
+  };
+  if (campo) setTimeout(lleva, 30);
   return {
     el,
     summary: () => `VISTA ajustes · titulación activa ${T.sigla} · examen ${progress.settings()[`examen_${tit}`] || 'sin fecha'} · ${progress.settings().minutosDia ?? 20} min al día\nRUTAS: #/${tit}/biblioteca · #/progreso`,

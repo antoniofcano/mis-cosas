@@ -1185,11 +1185,11 @@ La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, 
 
 ## Patrón de Embarcaciones de Recreo (PER)
 
-55 episodios · 0 escritos.
+55 episodios · 10 escritos.
 
 #### 0 · Cómo es el examen del PER y cómo usar estos podcasts
 
-👋 Bienvenida · ⏳ pendiente
+👋 Bienvenida · ✅ [guion](per/0-bienvenida.md)
 
 Episodio de bienvenida a «PER en voz alta»: cómo es el examen teórico del Patrón de Embarcaciones de Recreo en Andalucía, qué temas entran, cuántas preguntas tiene cada uno y qué temas son eliminatorios. Y cómo sacarle partido a la serie para estudiar por tu cuenta.
 
@@ -1208,7 +1208,7 @@ Episodio de bienvenida a «PER en voz alta»: cómo es el examen teórico del Pa
 
 #### 1.0 · Las partes del barco
 
-🧭 Panorama · ⏳ pendiente · clases per-1-1, per-1-2, per-1-3, per-1-4, per-1-5, per-1-6, per-1-7
+🧭 Panorama · ✅ [guion](per/1-0-las-partes-del-barco.md) · clases per-1-1, per-1-2, per-1-3, per-1-4, per-1-5, per-1-6, per-1-7
 
 Panorama del tema de nomenclatura náutica: el casco y sus referencias, la cubierta, la estructura, el timón, la hélice, el equipo de fondeo y las dimensiones del barco. Son preguntas de vocabulario: si sabes qué es cada cosa y para qué sirve, son puntos seguros.
 
@@ -1236,7 +1236,7 @@ Panorama del tema de nomenclatura náutica: el casco y sus referencias, la cubie
 
 #### 1.1 · El casco, la cubierta y la estructura
 
-🔎 Profundiza · ⏳ pendiente · clases per-1-1, per-1-2, per-1-3
+🔎 Profundiza · ✅ [guion](per/1-1-casco-cubierta-estructura.md) · clases per-1-1, per-1-2, per-1-3
 
 El casco y sus referencias (proa, popa, crujía, bandas, amuras, través, aletas, barlovento y sotavento), las aberturas, desagües y barandillas de la cubierta, y las piezas de la estructura del casco. Mucho vocabulario que cae en casi todas las convocatorias y que se confunde por parejas.
 
@@ -1271,7 +1271,7 @@ El casco y sus referencias (proa, popa, crujía, bandas, amuras, través, aletas
 
 #### 1.2 · El timón y la hélice
 
-🔎 Profundiza · ⏳ pendiente · clases per-1-4, per-1-5
+🔎 Profundiza · ✅ [guion](per/1-2-timon-y-helice.md) · clases per-1-4, per-1-5
 
 Las partes del timón y de la hélice, hacia dónde cae la proa con caña y con rueda, el paso, la cavitación y el sentido de giro de las hélices (dextrógira, levógira y gemelas). Las preguntas mezclan a propósito las piezas de uno y de otra.
 
@@ -1306,7 +1306,7 @@ Las partes del timón y de la hélice, hacia dónde cae la proa con caña y con 
 
 #### 1.3 · El equipo de fondeo y las dimensiones del barco
 
-🔎 Profundiza · ⏳ pendiente · clases per-1-6, per-1-7
+🔎 Profundiza · ✅ [guion](per/1-3-fondeo-y-dimensiones.md) · clases per-1-6, per-1-7
 
 El equipo de fondeo (molinete, ancla, línea de fondeo y las voces de la maniobra) y las medidas del barco: obra viva y obra muerta, eslora, manga, puntal, calado, francobordo, asiento, escora, desplazamiento y arqueo. Preguntas de definición donde las opciones intercambian partes por distancias.
 
@@ -1748,7 +1748,7 @@ Dónde va la bandera de España y en qué condiciones se puede izar la autonómi
 
 #### 5.0 · El balizamiento sin líos
 
-🧭 Panorama · ⏳ pendiente · clases per-5-1, per-5-2, per-5-3, per-5-4, per-5-5
+🧭 Panorama · ✅ [guion](per/5-0-balizamiento.md) · clases per-5-1, per-5-2, per-5-3, per-5-4, per-5-5
 
 El mapa del balizamiento IALA: laterales y bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecios, y cómo leer sus luces. Es un tema eliminatorio y muy agradecido: con pocas reglas se responde casi todo.
 
@@ -1774,7 +1774,7 @@ El mapa del balizamiento IALA: laterales y bifurcaciones, cardinales, peligro ai
 
 #### 5.1 · El sistema IALA, laterales y bifurcaciones
 
-🔎 Profundiza · ⏳ pendiente · clases per-5-1, per-5-2
+🔎 Profundiza · ✅ [guion](per/5-1-iala-laterales-bifurcaciones.md) · clases per-5-1, per-5-2
 
 Cómo funciona el sistema IALA, qué cambia entre la región A y la B, y todo sobre las marcas laterales: color, forma, tope, luz, numeración y bifurcaciones. Es la parte del balizamiento con más preguntas, y casi todas giran sobre entrar o salir y sobre el color de fondo.
 
@@ -1809,7 +1809,7 @@ Cómo funciona el sistema IALA, qué cambia entre la región A y la B, y todo so
 
 #### 5.2 · Las cardinales
 
-🔎 Profundiza · ⏳ pendiente · clase per-5-3
+🔎 Profundiza · ✅ [guion](per/5-2-las-cardinales.md) · clase per-5-3
 
 Las cuatro cardinales: qué dicen, por dónde se pasan, cómo son sus colores y topes y qué ritmo tiene su luz. Son preguntas casi seguras si se entienden tres trucos: el lado del nombre, los conos apuntando al negro y el reloj.
 
@@ -1842,7 +1842,7 @@ Las cuatro cardinales: qué dicen, por dónde se pasan, cómo son sus colores y 
 
 #### 5.3 · Peligro aislado, aguas navegables, especiales y nuevos peligros
 
-🔎 Profundiza · ⏳ pendiente · clase per-5-4
+🔎 Profundiza · ✅ [guion](per/5-3-otras-marcas.md) · clase per-5-4
 
 Las marcas que no son laterales ni cardinales: peligro aislado, aguas navegables, especiales y la boya de pecio o nuevo peligro. El examen las mezcla por parejas que se parecen: una esfera roja frente a dos negras, el aspa frente a la cruz.
 
@@ -1875,7 +1875,7 @@ Las marcas que no son laterales ni cardinales: peligro aislado, aguas navegables
 
 #### 5.4 · Leer la luz: ritmos y de la luz a la marca
 
-🔎 Profundiza · ⏳ pendiente · clase per-5-5
+🔎 Profundiza · ✅ [guion](per/5-4-leer-la-luz.md) · clase per-5-5
 
 Cómo se lee la característica de una luz (ritmo, color y periodo) y cómo pasar de la luz a la marca de noche. Son preguntas que se resuelven contando segundos y destellos, y en las que el periodo casi nunca importa.
 

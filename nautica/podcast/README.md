@@ -1185,7 +1185,7 @@ La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, 
 
 ## Patrón de Embarcaciones de Recreo (PER)
 
-55 episodios · 25 escritos.
+55 episodios · 30 escritos.
 
 #### 0 · Cómo es el examen del PER y cómo usar estos podcasts
 
@@ -2865,7 +2865,7 @@ Por qué sube y baja el mar, qué son amplitud y duración, mareas vivas y muert
 
 #### 11.0 · El examen de carta del PER, paso a paso
 
-🧭 Panorama · ⏳ pendiente · clases per-11-1, per-11-2, per-11-3, per-11-4, per-11-5, per-11-6, per-11-7, per-11-8, per-11-9
+🧭 Panorama · ✅ [guion](per/11-0-el-examen-de-carta-paso-a-paso.md) · clases per-11-1, per-11-2, per-11-3, per-11-4, per-11-5, per-11-6, per-11-7, per-11-8, per-11-9
 
 El mapa del examen de carta: las cuatro últimas preguntas (de la 42 a la 45) se resuelven sobre la carta del Estrecho, siempre sin viento ni corriente, y casi todas siguen el mismo orden: corrección total, pasar a verdadero, trazar, medir y volver a aguja. Como el audio no puede dibujar, el episodio enseña a razonar el orden de los pasos y a reconocer el tipo de problema por el enunciado.
 
@@ -2895,7 +2895,7 @@ El mapa del examen de carta: las cuatro últimas preguntas (de la 42 a la 45) se
 
 #### 11.1 · La carta del Estrecho, la corrección total y el rumbo directo
 
-🔎 Profundiza · ⏳ pendiente · clases per-11-1, per-11-2, per-11-3
+🔎 Profundiza · ✅ [guion](per/11-1-carta-correccion-total-rumbo-directo.md) · clases per-11-1, per-11-2, per-11-3
 
 Lo primero del examen de carta: leer y situar coordenadas, medir distancias, rumbos y demoras, calcular la corrección total (con la rosa de la carta o con una enfilación u oposición) y el problema estrella, el rumbo directo con su hora de llegada. Un error de signo en la corrección total arrastra todos los ejercicios.
 
@@ -2930,7 +2930,7 @@ Lo primero del examen de carta: leer y situar coordenadas, medir distancias, rum
 
 #### 11.2 · Estima y líneas de posición
 
-🔎 Profundiza · ⏳ pendiente · clases per-11-4, per-11-5
+🔎 Profundiza · ✅ [guion](per/11-2-estima-y-lineas-de-posicion.md) · clases per-11-4, per-11-5
 
 Dos maneras de saber dónde estás: por estima (de dónde saliste, a qué rumbo, a qué velocidad y cuánto tiempo) y por líneas de posición (una demora o marcación y una distancia). En el examen el truco está en el orden: primero construir la salida, luego pasar a verdadero, y solo después trazar.
 
@@ -2965,7 +2965,7 @@ Dos maneras de saber dónde estás: por estima (de dónde saliste, a qué rumbo,
 
 #### 11.3 · Situarse: dos demoras, enfilaciones y demoras no simultáneas
 
-🔎 Profundiza · ⏳ pendiente · clases per-11-6, per-11-7, per-11-8
+🔎 Profundiza · ✅ [guion](per/11-3-situarse-dos-demoras-enfilaciones.md) · clases per-11-6, per-11-7, per-11-8
 
 Situarse cruzando dos líneas de posición: dos marcaciones o demoras tomadas a la vez, una enfilación u oposición con la demora de un tercer faro, y la diferencia entre observaciones simultáneas y no simultáneas. En el PER todas se cruzan sin trasladar; el error típico es aplicar la corrección total dos veces o equivocar el signo de babor.
 
@@ -2979,12 +2979,12 @@ Situarse cruzando dos líneas de posición: dos marcaciones o demoras tomadas a 
 - Si el rumbo viene en cuadrantal (S 76° W), se pasa antes a circular (256°); una marcación de más de 90° cae hacia la aleta y sigue siendo Dv = Rv + M.
 - La enfilación o la oposición ya es una línea de posición sin correcciones; cruzada con la demora de un tercer faro da la situación: en la oposición el corte está entre los dos faros, en la enfilación en la prolongación.
 - «Al Sur verdadero de un faro» es ver ese faro al 000°: su meridiano hacia el sur; «al Oeste verdadero» es verlo al 090°: su paralelo hacia el oeste.
-- Si las dos observaciones son de horas distintas, la primera línea viaja con el barco (se traslada con el rumbo y la distancia navegados); si son a la vez, se cruzan directamente y la situación anterior solo da el rumbo y la distancia navegada.
+- Si las dos observaciones son de horas distintas, la primera línea viaja con el barco (se traslada con el rumbo y la distancia navegados); si son a la vez, se cruzan directamente. El rumbo lo da el enunciado; la situación anterior solo sirve para medir la distancia navegada.
 
 **Trampas del examen:**
 
 - Falso: a la demora que sale de Rv + M hay que aplicarle la corrección total. Cierto: el Rv ya la lleva; se estaría aplicando dos veces.
-- Falso: «más tarde obtenemos marcación a dos faros» obliga a trasladar líneas desde la situación anterior. Cierto: las dos marcaciones son simultáneas y se cruzan sin trasladar; el traslado es materia del Patrón de Yate.
+- Falso: «más tarde obtenemos marcación a dos faros» obliga a trasladar líneas desde la situación anterior. Cierto: las dos marcaciones son simultáneas y se cruzan sin trasladar, que es lo que pide el programa del PER.
 - Falso: la distancia que piden es a uno de los faros que has usado para situarte. Cierto: suele ser a otro faro, a menudo lejano; lee la pregunta hasta el final.
 - Falso: dos líneas casi paralelas dan una buena situación. Cierto: la mejor es con un corte cercano a 90°; si salen casi paralelas, un error pequeño mueve mucho el punto.
 
@@ -2998,7 +2998,7 @@ Situarse cruzando dos líneas de posición: dos marcaciones o demoras tomadas a 
 
 #### 11.4 · Pasar a una distancia de un faro
 
-🔎 Profundiza · ⏳ pendiente · clase per-11-9
+🔎 Profundiza · ✅ [guion](per/11-4-pasar-a-una-distancia-de-un-faro.md) · clase per-11-9
 
 El rumbo para pasar a una distancia de seguridad de un faro o un cabo: la tangente a una circunferencia con centro en el faro. Lo difícil no es trazarla, sino elegir cuál de las dos tangentes y no confundir «pasar a X millas del faro» con «ir a un punto a X millas al Sur del faro».
 

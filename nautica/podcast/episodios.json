@@ -3212,7 +3212,8 @@
         "and-2025-c3-q42",
         "and-2023-c1-q45"
       ],
-      "peso": "El tema 11 son 4 preguntas (de la 42 a la 45) con un máximo de 2 fallos: es eliminatorio, y fallar 3 suspende el examen aunque el resto salga bien. Se resuelven sobre la carta con la teoría del tema 10."
+      "peso": "El tema 11 son 4 preguntas (de la 42 a la 45) con un máximo de 2 fallos: es eliminatorio, y fallar 3 suspende el examen aunque el resto salga bien. Se resuelven sobre la carta con la teoría del tema 10.",
+      "archivo": "per/11-0-el-examen-de-carta-paso-a-paso.md"
     },
     {
       "n": "11.1",
@@ -3251,7 +3252,8 @@
         "10.1",
         "10.3",
         "11.2"
-      ]
+      ],
+      "archivo": "per/11-1-carta-correccion-total-rumbo-directo.md"
     },
     {
       "n": "11.2",
@@ -3289,7 +3291,8 @@
         "11.1",
         "10.4",
         "11.3"
-      ]
+      ],
+      "archivo": "per/11-2-estima-y-lineas-de-posicion.md"
     },
     {
       "n": "11.3",
@@ -3309,11 +3312,11 @@
         "Si el rumbo viene en cuadrantal (S 76° W), se pasa antes a circular (256°); una marcación de más de 90° cae hacia la aleta y sigue siendo Dv = Rv + M.",
         "La enfilación o la oposición ya es una línea de posición sin correcciones; cruzada con la demora de un tercer faro da la situación: en la oposición el corte está entre los dos faros, en la enfilación en la prolongación.",
         "«Al Sur verdadero de un faro» es ver ese faro al 000°: su meridiano hacia el sur; «al Oeste verdadero» es verlo al 090°: su paralelo hacia el oeste.",
-        "Si las dos observaciones son de horas distintas, la primera línea viaja con el barco (se traslada con el rumbo y la distancia navegados); si son a la vez, se cruzan directamente y la situación anterior solo da el rumbo y la distancia navegada."
+        "Si las dos observaciones son de horas distintas, la primera línea viaja con el barco (se traslada con el rumbo y la distancia navegados); si son a la vez, se cruzan directamente. El rumbo lo da el enunciado; la situación anterior solo sirve para medir la distancia navegada."
       ],
       "trampas": [
         "Falso: a la demora que sale de Rv + M hay que aplicarle la corrección total. Cierto: el Rv ya la lleva; se estaría aplicando dos veces.",
-        "Falso: «más tarde obtenemos marcación a dos faros» obliga a trasladar líneas desde la situación anterior. Cierto: las dos marcaciones son simultáneas y se cruzan sin trasladar; el traslado es materia del Patrón de Yate.",
+        "Falso: «más tarde obtenemos marcación a dos faros» obliga a trasladar líneas desde la situación anterior. Cierto: las dos marcaciones son simultáneas y se cruzan sin trasladar, que es lo que pide el programa del PER.",
         "Falso: la distancia que piden es a uno de los faros que has usado para situarte. Cierto: suele ser a otro faro, a menudo lejano; lee la pregunta hasta el final.",
         "Falso: dos líneas casi paralelas dan una buena situación. Cierto: la mejor es con un corte cercano a 90°; si salen casi paralelas, un error pequeño mueve mucho el punto."
       ],
@@ -3326,7 +3329,8 @@
         "10.4",
         "11.2",
         "11.4"
-      ]
+      ],
+      "archivo": "per/11-3-situarse-dos-demoras-enfilaciones.md"
     },
     {
       "n": "11.4",
@@ -3361,7 +3365,8 @@
         "11.1",
         "11.2",
         "11.3"
-      ]
+      ],
+      "archivo": "per/11-4-pasar-a-una-distancia-de-un-faro.md"
     }
   ]
 }

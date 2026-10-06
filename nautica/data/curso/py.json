@@ -3010,6 +3010,22 @@
       },
       {
        "tipo": "texto",
+       "titulo": "Iridiscencia",
+       "texto": "**Iridiscencia** (irisación): colores suaves, sobre todo **verdes y rosados**, en manchas o en bandas casi paralelas al borde de una nube **fina** cercana al sol o a la luna.\nLa produce la **difracción** de la luz en gotitas muy pequeñas y de tamaño parecido. Se ve sobre todo en **altocúmulos y cirrocúmulos** y en las nubes lenticulares."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "«Los estratocúmulos son nubes altas que pueden presentar coloración iridiscente». ¿Por qué es falsa?",
+       "opciones": {
+        "a": "Porque los estratocúmulos son nubes bajas",
+        "b": "Porque la iridiscencia solo se ve en los cumulonimbos",
+        "c": "Porque los estratocúmulos son de desarrollo vertical"
+       },
+       "correcta": "a",
+       "explicacion": "Los estratocúmulos son del piso bajo. La iridiscencia se ve sobre todo en nubes finas medias y altas, como altocúmulos y cirrocúmulos, y no es exclusiva del cumulonimbo."
+      },
+      {
+       "tipo": "texto",
        "titulo": "Nubes bajas, una a una",
        "texto": "- **Estratos**: capa gris y continua a poca altura, parecida a la **niebla pero sin tocar el suelo**. Como mucho, llovizna.\n- **Estratocúmulos**: capa nubosa **gris, sombría, con huecos o intersticios más claros**. Es de las nubes más comunes.\n- **Nimbostratos**: capa baja, gris oscura, **amorfa y densa**, de la que cae **lluvia o nieve continua**; tapa el sol por completo."
       },
@@ -3386,6 +3402,22 @@
        "texto": "- **Amplitud**: distancia vertical entre el nivel del mar en calma y la cresta, es decir, la **mitad de la altura**.\n- **Periodo**: **tiempo**, en segundos, entre el paso de **dos crestas** (o dos senos) **consecutivos** por un mismo punto fijo."
       },
       {
+       "tipo": "texto",
+       "titulo": "Frecuencia",
+       "texto": "- **Frecuencia**: número de olas (crestas) que pasan por un punto fijo **en cada segundo**. Es la **inversa del periodo**: **f = 1 / T**.\nCon un periodo de 8 s, f = 1/8 = **0,125 olas por segundo** (hercios), unas 7,5 por minuto.\nNo es una distancia ni un tiempo: la distancia entre crestas es la longitud de onda y el tiempo, el periodo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Por la boya pasa una cresta cada 5 segundos. ¿Qué es cierto?",
+       "opciones": {
+        "a": "El periodo es 5 s y la frecuencia, 0,2 olas por segundo",
+        "b": "La frecuencia es 5 s",
+        "c": "La longitud de onda es 5 m"
+       },
+       "correcta": "a",
+       "explicacion": "El periodo es el tiempo entre crestas (5 s) y la frecuencia, su inversa: 1/5 = 0,2 olas por segundo. Con un tiempo no se puede saber la longitud de onda en metros."
+      },
+      {
        "tipo": "ilustracion",
        "spec": {
         "tipo": "ola",
@@ -3645,6 +3677,22 @@
        "tipo": "texto",
        "titulo": "Mediterráneo occidental",
        "texto": "La corriente general la marca el agua atlántica que entra por el Estrecho:\n\n- Frente a **Ceuta** y entre **Málaga y el cabo de Gata**: hacia el **E**.\n- Una rama sigue al **E** pegada a la costa africana y pasa al **E** por el **canal entre Túnez y Sicilia**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Canal de Malta",
+       "texto": "El **canal de Malta** separa **Sicilia de Malta**; es la continuación hacia el E del **canal de Sicilia** (entre Túnez y Sicilia).\nPor él sigue el agua atlántica que entró por el Estrecho, camino del Mediterráneo oriental: la corriente va en general **hacia el E**.\nSale como distractora: «en el canal de Malta la corriente se dirige hacia el N» es **falsa**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Hacia dónde va en general la corriente en el canal de Malta, entre Sicilia y Malta?",
+       "opciones": {
+        "a": "Hacia el N",
+        "b": "Hacia el E",
+        "c": "Hacia el W"
+       },
+       "correcta": "b",
+       "explicacion": "Es el agua atlántica que entró por el Estrecho y sigue hacia el Mediterráneo oriental: va al E. «Hacia el N» fue la opción falsa del examen de 2025."
       },
       {
        "tipo": "texto",
@@ -4772,6 +4820,16 @@
        "texto": "**C = A · sen² (90° · I / D)**\n\n- Altura de la marea: **h = altura BM + C**.\n- **Sonda = sonda de la carta + h**.\n- Inverso: **I = D · arcsen (√(C / A)) / 90°**.\n\nLa tabla del Anuario para un instante cualquiera hace esta misma cuenta."
       },
       {
+       "tipo": "texto",
+       "titulo": "Cómo se lee la tabla",
+       "texto": "En el examen te dan la **tabla para calcular la altura de la marea en un instante cualquiera**:\n1. A la izquierda, busca la columna de **duración D** más próxima (de 4 h a 8 h, cada 15 min).\n2. Baja por ella hasta tu **intervalo I** desde la bajamar.\n3. En esa fila, bajo tu **amplitud A** (de 0,50 a 12 m), lees la **corrección C**, que sumas a la altura de la bajamar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla y fórmula",
+       "texto": "La tabla es la **misma fórmula** ya calculada: cada fila avanza **1/30 de la duración** y C viene redondeada al centímetro.\nSi D, I o A caen entre dos columnas o filas, **interpola**. Así, tabla y fórmula coinciden en **1–2 cm** o **1 minuto**.\nLa app resuelve con la fórmula; tú, en el examen, con la tabla. El ejemplo completo está en la lección de mareas del bloque de carta."
+      },
+      {
        "tipo": "ilustracion",
        "spec": {
         "tipo": "marea",
@@ -5104,6 +5162,22 @@
       },
       {
        "tipo": "texto",
+       "titulo": "STC y FTC",
+       "texto": "En los mandos y en el examen verás las siglas inglesas:\n- **STC** (*Sensitivity Time Control*) = **anti-clutter de mar (SEA)**: baja la ganancia **cerca del centro** y la recupera con la distancia, porque los ecos de las olas están cerca.\n- **FTC** (*Fast Time Constant*) = **anti-clutter de lluvia (RAIN)**: acorta los ecos grandes y difusos de la lluvia y deja ver los barcos y la costa que hay dentro."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un chubasco llena de manchas difusas un sector de la pantalla. Además de la ganancia, ¿qué mando tocas?",
+       "opciones": {
+        "a": "El STC",
+        "b": "El FTC",
+        "c": "La sintonía (TUNE)"
+       },
+       "correcta": "b",
+       "explicacion": "El FTC es el anti-clutter de lluvia: acorta los ecos difusos del chubasco. El STC es el anti-clutter de mar y la sintonía no quita perturbaciones."
+      },
+      {
+       "tipo": "texto",
        "titulo": "Qué tocar en cada caso",
        "texto": "Según las plantillas del examen:\n- **Lluvia o granizo**: **ganancia + anti-clutter de lluvia**.\n- **Mar** (olas cerca del centro): **ganancia + anti-clutter de mar**.\n- **Visualización óptima** en general: **sintonía + ganancia**; si la opción completa está, **sintonía, ganancia y perturbaciones de mar y lluvia**."
       },
@@ -5136,6 +5210,22 @@
        "titulo": "Movimiento relativo y verdadero",
        "texto": "Y dos modos de movimiento: **relativo** (tu barco fijo en el centro; un barco a tu mismo rumbo y velocidad parece parado) y **verdadero** (la tierra queda fija y tú te mueves).",
        "extra": true
+      },
+      {
+       "tipo": "texto",
+       "titulo": "CPA y TCPA",
+       "texto": "El **ARPA** del radar (o el plotter con AIS) sigue cada blanco y te da:\n- **CPA** (*Closest Point of Approach*): la **distancia mínima** a la que pasará de ti si nadie cambia rumbo ni velocidad.\n- **TCPA** (*Time to CPA*): **cuánto falta** para ese momento.\nCPA pequeño con TCPA corto = **riesgo de abordaje**: maniobra pronto y con claridad."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El ARPA muestra de un mercante «CPA 0,2 M · TCPA 6 min». ¿Qué significa?",
+       "opciones": {
+        "a": "Que pasará a 0,2 millas de ti dentro de 6 minutos si nadie maniobra",
+        "b": "Que está ahora a 0,2 millas y llegará a tu posición en 6 minutos",
+        "c": "Que navega a 0,2 nudos y te verá en 6 minutos"
+       },
+       "correcta": "a",
+       "explicacion": "El CPA es la distancia mínima a la que pasará y el TCPA, el tiempo que falta para ese momento, si nadie cambia rumbo ni velocidad. 0,2 millas es muy poco: hay riesgo de abordaje."
       },
       {
        "tipo": "texto",
@@ -7080,6 +7170,37 @@
        "tipo": "texto",
        "titulo": "Resolución: inverso",
        "texto": "3. **sen²(90° · I / D) = C / A** = 1,70 / 2,30 = 0,739 → sen = 0,860 → ángulo = 59,3°.\n4. **I** = 375 · 59,3 / 90 ≈ **247 min = 4 h 07 min** después de la BM.\n5. 06:10 + 4:07 = **10:17 UT** → **12:17** hora oficial."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con la tabla: sonda en un momento",
+       "texto": "Examen de 2021: Algeciras, 23 de junio, a las **07:45 UT**, con **3,00 m** en la carta. Anuario: BM 06:24 → 0,14 m; PM 13:03 → 1,00 m.\n1. Ya está en UT. **D** = 6 h 39 min; **A** = 1,00 − 0,14 = **0,86 m**; **I** = 07:45 − 06:24 = **1 h 21 min**.\n2. Columna de duración más próxima: **6 h 45 min**. Bajando por ella, **1 h 21 min** sale justo en una fila."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla: la corrección y la sonda",
+       "texto": "3. En esa fila, la columna de amplitud 0,50 da **0,05** y la de 1,00 da **0,10**. Para 0,86 interpolas: 0,05 + 0,72 × 0,05 = 0,086 ≈ **0,09 m**.\n4. Altura = 0,14 + 0,09 = **0,23 m**; sonda = 3,00 + 0,23 = **3,23 m**.\nOpciones: 3,24 / 3,19 / 2,24 / 3,14. Marca **3,24**, la más próxima y la oficial. Con la fórmula salen 3,22 m."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con la tabla: hora para una sonda",
+       "texto": "Examen de 2022: 12 de junio, adelanto **+2 h**. ¿A qué hora oficial, entre la primera BM y la segunda PM, habrá **4,35 m** en un bajo de **2,15 m**? Anuario: BM 06:14 → 0,70 m; PM 12:29 → 3,20 m.\n1. h = 4,35 − 2,15 = 2,20 m → **C** = 2,20 − 0,70 = **1,50 m**.\n2. **D** = 6 h 15 min y **A** = 2,50 m: las dos caen justo en una columna."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla: el intervalo y la hora",
+       "texto": "3. Bajo la amplitud 2,50 buscas 1,50: la fila de **3 h 20 min** da 1,38 y la de **3 h 32 min** da 1,51.\n4. Interpolas: 3 h 20 min + 12 min × (1,50 − 1,38) / (1,51 − 1,38) = 3 h 20 min + 11 min = **3 h 31 min**.\n5. 06:14 + 3:31 = **09:45 UT** → **11:45** oficial. Marca **11:46**, la oficial. Con la fórmula, I = 3 h 31,5 min → 11:46."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tu tramo dura 6 h 39 min. ¿Qué columna de duración usas en la tabla?",
+       "opciones": {
+        "a": "6 h 30 min",
+        "b": "6 h 45 min",
+        "c": "7 h 00 min"
+       },
+       "correcta": "b",
+       "explicacion": "La más próxima: 6 h 45 min está a 6 minutos y 6 h 30 min, a 9. Si el intervalo cae entre dos filas, interpola entre ellas."
       },
       {
        "tipo": "texto",

@@ -8,10 +8,43 @@ import { mazos, tarjetasPorRepasar } from '../../course/tarjetas.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { icono } from '../iconos.js';
-import { calcularPlan, hrefActividad, TIPO_TXT, metaDiaria } from '../cierre.js';
+import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
 import { lineaSeguimiento, temasDePocoPeso, unidades } from '../../course/calendario.js';
+import { renderIllustration } from '../../illustrations/index.js';
+import { interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
+import { quieto } from '../movimiento.js';
+
+const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
+
+/** Anillo de la meta del día (como en la maqueta): se rellena hasta los minutos de hoy, con la cifra en el centro. */
+export function anilloMeta(minutos, objetivo) {
+  const f = Math.min(1, minutos / Math.max(1, objetivo));
+  const d = document.createElement('div');
+  d.className = 'anillo';
+  d.setAttribute('role', 'img');
+  d.setAttribute('aria-label', `${minutos} de ${objetivo} minutos hoy`);
+  d.innerHTML = `<svg width="76" height="76" viewBox="0 0 76 76"><circle class="fondo" cx="38" cy="38" r="32"/>`
+    + `<circle class="valor${f > 0 ? '' : ' vacio'}" cx="38" cy="38" r="32" stroke-dasharray="${CIRC.toFixed(1)}" stroke-dashoffset="${CIRC.toFixed(1)}"/></svg><b>${minutos}′</b>`;
+  const v = d.querySelector('.valor');
+  const pon = () => { v.style.strokeDashoffset = String(CIRC * (1 - f)); };
+  if (quieto() || typeof requestAnimationFrame !== 'function') pon(); else requestAnimationFrame(() => requestAnimationFrame(pon));
+  return d;
+}
+
+/** Dibujo de la actividad de hoy: la primera lámina de la clase (fija), o el icono del tipo de actividad. */
+function dibujoDe(principal, curso) {
+  const id = principal.tipo === 'clase' || principal.tipo === 'repaso' ? principal.ruta?.[1] : null;
+  const L = id ? curso?.modulos?.flatMap((m) => m.lecciones).find((l) => l.id === id) : null;
+  const spec = L?.pasos.find((p) => p.tipo === 'ilustracion' && !p.extra)?.spec;
+  let svg = null;
+  if (spec) {
+    try { const def = interactivaDe(spec); svg = def ? dibujoFijo(def, spec).svg : renderIllustration(spec)?.svg; } catch { svg = null; }
+  }
+  if (svg) return h('div.pic', { 'aria-hidden': 'true', html: svg });
+  return h('div.pic.pic-icono', icono((TIPO_TXT[principal.tipo] ?? ['brujula'])[0]));
+}
 
 export function saludo(fecha = new Date()) {
   const hora = fecha.getHours();
@@ -31,7 +64,7 @@ const fechaLarga = (iso) => { const [y, m, d] = iso.split('-').map(Number); retu
 export function lineaRitmo(r, minutosDia, fechaExamen) {
   if (!r.minutosPendientes) return 'Has hecho todo el plan: ahora, simulacros y repasar tus fallos.';
   const base = `A ${minutosDia} minutos al día terminas el plan el ${fechaLarga(r.fechaFin)}`;
-  if (!fechaExamen || r.llega == null) return `${base}. Pon la fecha de tu examen en Ajustes (⚙️) y te digo si llegas.`;
+  if (!fechaExamen || r.llega == null) return `${base}. Pon la fecha de tu examen en Ajustes y te digo si llegas.`;
   if (r.llega) return `${base}, antes de tu examen (${fechaLarga(fechaExamen)}).`;
   return `${base}, pero tu examen es el ${fechaLarga(fechaExamen)}. Para llegar necesitas unos ${r.minutosNecesarios} minutos al día.`;
 }
@@ -69,12 +102,23 @@ export function hoyView({ progress, tit }) {
 
     const tarjeta = () => {
       const [ico, tipo] = TIPO_TXT[principal.tipo] ?? ['', ''];
-      return h('section.tarjeta-hoy',
-        h('p.rotulo', 'Hoy toca'),
-        h('h2', principal.titulo),
-        h('p.linea', ico ? icono(ico) : null, ` ${tipo}${principal.tramo ? ` · tramo ${principal.tramo.i} de ${principal.tramo.de}` : ''} · unos ${principal.minutos} minutos`),
-        h('a.btn.grande', { href: hrefActividad(tit, principal) }, `${principal.verbo} →`));
+      return h('section.hoy-toca',
+        dibujoDe(principal, d.curso),
+        h('div.tx',
+          h('p.eti', 'Hoy toca'),
+          h('h2', principal.titulo),
+          h('p.linea', ico ? icono(ico) : null, ` ${tipo}${principal.tramo ? ` · tramo ${principal.tramo.i} de ${principal.tramo.de}` : ''} · unos ${principal.minutos} minutos`),
+          h('a.btn.grande', { href: hrefActividad(tit, principal) }, principal.verbo)));
     };
+    // La meta del día, con su anillo: cuánto llevas y qué te queda (en tramos como el de hoy, si es una clase).
+    const quedan = Math.max(0, objetivo - minutos);
+    const nTramos = principal.tipo === 'clase' && principal.minutos ? Math.ceil(quedan / principal.minutos) : null;
+    const meta = h('section.meta-hoy', { class: minutos >= objetivo ? 'hecho' : '' },
+      anilloMeta(minutos, objetivo),
+      h('p', h('strong', minutos >= objetivo ? 'Meta de hoy cumplida' : minutos ? `Llevas ${minutos} de ${objetivo} minutos` : `Hoy: ${objetivo} minutos`),
+        minutos >= objetivo ? `Has estudiado ${minutos} minutos.` : nTramos ? `${nTramos === 1 ? 'Te queda un tramo' : `Te quedan unos ${nTramos} tramos`} como el de hoy.`
+          : 'Una actividad y listo.',
+        racha >= 2 ? h('span.racha', icono('racha'), ` ${racha} días seguidos`) : null));
     const hueco = h('div');
     if (minutos >= objetivo) {
       setChildren(hueco, h('section.tarjeta-hoy.hecho',
@@ -104,9 +148,9 @@ export function hoyView({ progress, tit }) {
       h('a.btn.secondary.boton-icono', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, icono('reloj'), 'Tengo 5 minutos'));
     setChildren(el,
       cabecera,
-      metaDiaria(progress),
-      ritmo,
+      meta,
       hueco,
+      ritmo,
       lineaRepaso,
       h('section.avance',
         h('div.bar', { role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),

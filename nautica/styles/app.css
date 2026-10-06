@@ -961,3 +961,29 @@ button.speak .ico { width: 20px; height: 20px; }
 .ba-salir:active { background: var(--accent-2); }
 .ba-progreso { height: 10px !important; border-radius: 99px; overflow: hidden; }
 .ba-progreso > span { border-radius: 99px; }
+/* ---- Hoy como en la maqueta ---- */
+.meta-hoy { display: flex; align-items: center; gap: 1rem; margin: 1.1rem 0; padding: 1rem; border-radius: 18px; background: var(--accent-2); }
+.meta-hoy p { margin: 0; font-size: .92rem; color: var(--muted); }
+.meta-hoy p strong { display: block; color: var(--text); font-size: 1.02rem; }
+.meta-hoy .racha { display: block; margin-top: .2rem; }
+.meta-hoy .racha .ico { width: 1.1em; height: 1.1em; vertical-align: -.2em; color: var(--close); }
+.anillo { position: relative; width: 76px; height: 76px; flex: none; }
+.anillo svg { transform: rotate(-90deg); }
+.anillo circle { fill: none; stroke-width: 9; stroke-linecap: round; }
+.anillo .fondo { stroke: var(--surface); }
+.anillo .valor { stroke: var(--accent); transition: stroke-dashoffset 1s cubic-bezier(.2, .8, .2, 1); }
+.meta-hoy.hecho .anillo .valor { stroke: var(--ok); }
+.anillo b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.05rem; }
+.hoy-toca { border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); margin: 0 0 1rem; }
+.hoy-toca .pic { background: color-mix(in srgb, var(--accent) 10%, var(--surface)); display: grid; place-items: center; padding: .6rem; max-height: 190px; overflow: hidden; }
+.hoy-toca .pic svg { width: 100%; max-width: 320px; height: auto; max-height: 170px; }
+.hoy-toca .pic.pic-icono { padding: 1.4rem; color: var(--accent); }
+.hoy-toca .pic.pic-icono .ico { width: 64px; height: 64px; }
+.hoy-toca .tx { padding: 1rem; }
+.hoy-toca .eti { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.hoy-toca h2 { margin: .25rem 0 .2rem; font-size: 1.25rem; line-height: 1.25; }
+.hoy-toca .linea { margin: 0 0 1rem; color: var(--muted); }
+.hoy-toca .linea .ico { width: 1.2em; height: 1.2em; vertical-align: -.2em; color: var(--accent); }
+.hoy-toca .btn { width: 100%; }
+@media (prefers-reduced-motion: reduce) { .anillo .valor { transition: none; } }
+.anillo .valor.vacio { stroke-opacity: 0; }

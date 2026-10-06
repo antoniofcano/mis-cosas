@@ -270,11 +270,25 @@ test('progreso: con dos pestañas, una no pisa las respuestas de la otra', async
   } finally { globalThis.addEventListener = prev; }
 });
 
-test('ritmo: estudiar hoy no aleja la fecha de fin (M6)', async () => {
+test('ritmo: la fecha de fin solo depende de lo que queda (M6)', async () => {
   const { diasPara } = await import('../src/course/plan.js');
-  // 600 min pendientes a 30 al día: 20 días. Tras estudiar 20 min hoy quedan 580 y siguen siendo 20 días.
-  assert.equal(diasPara(600, 30, 0), 20);
-  assert.equal(diasPara(580, 30, 20), 20);
-  assert.equal(diasPara(570, 30, 30), 20, 'meta cumplida: lo que queda empieza mañana');
-  assert.equal(diasPara(10, 30, 0), 1);
+  assert.equal(diasPara(600, 30), 20);
+  assert.equal(diasPara(580, 30), 20, 'estudiar (menos pendiente) no la aleja');
+  assert.equal(diasPara(10, 30), 1);
+});
+
+test('coherencia: el % del camino sale de un solo cálculo en Hoy, Progreso y Plan, y se mueve con un tramo', async () => {
+  const { avanceCamino } = await import('../src/course/calendario.js');
+  const datos = { estructura: PER, curso, preguntas: banco, regs: {}, respuestas: {}, tests: [], ahora: AHORA };
+  const antes = avanceCamino(datos).fraccion;
+  const despues = avanceCamino({ ...datos, regs: { 'per-5-1': { paso: 5, tramo: 1, tramos: 2 } } }).fraccion;
+  assert.ok(despues > antes, 'un tramo hecho mueve el avance');
+});
+
+test('guardado: 10 respuestas seguidas en un instante quedan las 10 registradas', async () => {
+  const { createProgressStore } = await import('../src/store/progress.js');
+  const mem = new Map();
+  const st = createProgressStore({ getItem: (k) => mem.get(k) ?? null, setItem: (k, v) => mem.set(k, v), removeItem: (k) => mem.delete(k) });
+  for (let i = 0; i < 10; i++) st.recordExam(`r${i}`, { choice: null, ok: false });
+  assert.equal(Object.keys(JSON.parse(mem.get('nautica.progress.v1')).exams).length, 10);
 });

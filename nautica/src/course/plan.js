@@ -1,7 +1,7 @@
 // Recomendador único: decide qué toca hoy (pantalla Hoy, cierres de sesión y Temario), el estado de cada
 // tema y el avance global. Funciones puras: el progreso entra como datos.
 
-import { estadoLeccion, numTramos, tarjetasDe, minutosTramo, SEG_TARJETA } from './engine.js';
+import { estadoLeccion, numTramos, minutosClase, minutosDeTramo, SEG_TARJETA } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { colaRepaso } from './repaso.js';
 
@@ -87,7 +87,7 @@ function actividadTema(b, est, curso, regs, respuestas, ahora, segTarjeta = SEG_
     const nPasos = (c.l.pasos ?? []).filter((p) => !p.extra).length || 1;
     const k = numTramos(nPasos);
     const t = empezada ? Math.min(k - 1, regs[c.l.id]?.tramo ?? 0) : 0;
-    return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: minutosTramo(Math.round(tarjetasDe(nPasos) / k), segTarjeta),
+    return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: minutosDeTramo(c.l, segTarjeta),
       tramo: k > 1 ? { i: t + 1, de: k } : null, ruta: ['curso', c.l.id], query: undefined, ut: b.ut };
   }
   return { tipo: 'preguntas', titulo: `${est.hechas ? `${TANDA} preguntas más` : `${TANDA} preguntas`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut };
@@ -156,12 +156,12 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 export const SIMULACROS_RECOMENDADOS = 3;
 
 /**
- * Días de estudio (contando hoy) para `pendientes` minutos a `md` al día. Hoy cuenta con lo que aún cabe hoy (la meta
- * menos lo ya estudiado), así que estudiar no aleja la fecha el mismo día.
+ * Días de estudio (contando hoy) para `pendientes` minutos a `md` al día. Solo depende de lo que queda: estudiar
+ * nunca lo aumenta, así que la fecha nunca se aleja por estudiar (solo si se suman fallos al repaso, y entonces se
+ * dice). Contar «lo que cabe hoy» la hacía bailar: no todo minuto estudiado reduce lo pendiente.
  */
-export function diasPara(pendientes, md, minutosHoy = 0) {
-  const caben = Math.max(0, md - minutosHoy);
-  return pendientes <= caben ? 1 : 1 + Math.ceil((pendientes - caben) / md);
+export function diasPara(pendientes, md) {
+  return Math.max(1, Math.ceil(pendientes / md));
 }
 const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
 
@@ -171,13 +171,13 @@ const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
  * @returns {{ minutosPendientes, diasNecesarios, fechaFin: string|null, diasDisponibles: number|null,
  *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros, repaso } }}
  */
-export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, minutosHoy = 0, ahora = Date.now() }) {
+export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, minutosHoy = 0, segTarjeta = SEG_TARJETA, ahora = Date.now() }) {
   let clases = 0;
   let tandas = 0;
   for (const b of estructura.bloques) {
     for (const l of clasesDe(curso, b.ut)) {
       const e = estadoLeccion(l, regs[l.id], respuestas, ahora).estado;
-      if (e === 'nueva' || e === 'empezada') clases += l.minutos ?? 10;
+      if (e === 'nueva' || e === 'empezada') clases += minutosClase(l, segTarjeta);
     }
     const est = estadoTema(b, curso, preguntas, regs, respuestas, ahora);
     tandas += Math.ceil(Math.max(0, Math.min(est.total, OBJETIVO_TEMA) - est.hechas) / TANDA);
@@ -188,7 +188,7 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
   const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin, repaso };
   const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros + desglose.repaso;
   const md = Math.max(5, minutosDia);
-  const diasNecesarios = diasPara(minutosPendientes, md, minutosHoy);
+  const diasNecesarios = diasPara(minutosPendientes, md);
   // contando hoy como primer día de estudio
   const fechaFin = minutosPendientes ? fechaISO(ahora + Math.max(0, diasNecesarios - 1) * DIA) : null;
   const dias = fechaExamen ? diasHasta(fechaExamen, ahora) : null;
@@ -198,11 +198,15 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
   return { minutosPendientes, diasNecesarios, fechaFin, diasDisponibles, llega, minutosNecesarios, desglose };
 }
 
-/** La barra y el texto de avance dicen lo mismo: el porcentaje del camino y cuántos temas están ya al día. */
+/**
+ * La barra y el texto de avance dicen lo mismo: el porcentaje del camino (avanceCamino) y los pasos hechos. Con
+ * `temasAlDia` (de `avance`) se añaden los temas listos.
+ */
 export function lineaAvance(a, racha = 0) {
   const pct = Math.round(a.fraccion * 100);
-  const temas = a.temasAlDia === a.temasTotal ? `todos los temas listos (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas listos`;
-  return `Llevas el ${pct} % del camino: ${temas}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
+  const pasos = a.total != null ? `${a.hechos} de ${a.total} pasos` : null;
+  const temas = a.temasTotal == null ? null : a.temasAlDia === a.temasTotal ? `todos los temas listos (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas listos`;
+  return `Llevas el ${pct} % del camino: ${[pasos, temas].filter(Boolean).join(' · ')}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
 }
 
 export const MIN_DIAGNOSTICO = 3; // respuestas de una clase para opinar sobre ella

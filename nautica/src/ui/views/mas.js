@@ -10,7 +10,7 @@ import { guardarCopia, botonRecuperar } from '../copia.js';
 import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
 import { calcularPlan } from '../cierre.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
-import { lineaSeguimiento, DIAS_ESTUDIO } from '../../course/calendario.js';
+import { DIAS_ESTUDIO } from '../../course/calendario.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -23,10 +23,10 @@ export function masView({ progress, tit, params }) {
     const ps = planConSeguimiento(progress, tit, d);
     avisoPlan.hidden = !ps;
     if (!ps) return;
-    const [icono, clase] = marcaEstado(ps.seg.estado);
-    avisoPlan.className = `ritmo ${clase}`;
-    setChildren(avisoPlan, h('p', icono, lineaSeguimiento(ps.seg, ps.plan.minutosDia)),
-      botonSubirMinutos(progress, ps, () => { pintaMinutos(); }, tit),
+    const [icono] = marcaEstado(d.st.mensaje.tipo === 'toca' ? ps.seg.estado : 'al-dia');
+    avisoPlan.className = `ritmo ${d.st.mensaje.aviso ? 'warn' : ''}`;
+    setChildren(avisoPlan, h('p', icono, d.st.mensaje.texto), d.st.mensaje.detalle ? h('p.muted.small', d.st.mensaje.detalle) : null,
+      d.st.mensaje.aviso ? botonSubirMinutos(progress, ps, () => { pintaMinutos(); }, tit) : null,
       avisoEsencial(progress, tit, T.estructura, () => { pintaMinutos(); }));
   }).catch(() => { avisoPlan.hidden = true; });
   // Tamaño de letra: se aplica al momento a toda la app.
@@ -51,7 +51,7 @@ export function masView({ progress, tit, params }) {
   const pintaMinutos = () => { setChildren(minutos, botonesMinutos(progress.settings().minutosDia ?? 20, (m) => { progress.setSetting('minutosDia', m); pintaMinutos(); })); pintaAviso(); };
   pintaMinutos();
   pintaDias();
-  const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); pintaAviso(); } });
+  const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); progress.setSetting(`examenOrientativo_${tit}`, false); pintaAviso(); } });
 
   const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${new Date(s.ultimaCopia).toLocaleDateString('es-ES')}.` : '');
 

@@ -152,6 +152,17 @@ export function numTramos(nPasos = 1) {
 /** Minutos que lleva un tramo de `n` tarjetas al ritmo `seg` (segundos por tarjeta). */
 export const minutosTramo = (n, seg = SEG_TARJETA) => Math.max(1, Math.round((n * seg) / 60));
 
+/**
+ * Minutos que dura una clase entera al ritmo `seg` (segundos por tarjeta). Es el ÚNICO modelo de duración de una
+ * clase: lo usan el plan, Hoy, los tramos, el ritmo y la fecha de fin (antes cada uno usaba el suyo).
+ */
+export const minutosClase = (l, seg = SEG_TARJETA) => (l.pasos?.length
+  ? minutosTramo(tarjetasDe(l.pasos.filter((p) => !p.extra).length || 1), seg)
+  : l.minutos ?? 10); // sin pasos (clase aún sin escribir): su duración declarada
+
+/** Minutos de un tramo de la clase: la clase entera entre sus tramos (lo mismo en Hoy y dentro de la clase). */
+export const minutosDeTramo = (l, seg = SEG_TARJETA) => Math.max(1, Math.round(minutosClase(l, seg) / numTramos((l.pasos ?? []).filter((p) => !p.extra).length || 1)));
+
 /** Ritmo nuevo (media móvil) tras un tramo de `n` tarjetas hecho en `ms`; cada tarjeta cuenta entre 10 y 120 s. */
 export function nuevoRitmo(seg = SEG_TARJETA, n = 1, ms = 0) {
   const muestra = Math.min(120, Math.max(10, ms / 1000 / Math.max(1, n)));

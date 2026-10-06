@@ -3,22 +3,28 @@
 import { h } from './dom.js';
 import { TITULACIONES, tlink } from './titulacion.js';
 import { loadCourse, loadTheoryBank } from '../store/datasets.js';
-import { planHoy, estadoTema } from '../course/plan.js';
+import { estadoTema } from '../course/plan.js';
+import { estadoAlumno } from '../course/motor.js';
 import { randomSeed } from '../math/rng.js';
 import { contar } from './movimiento.js';
 import { icono as icono_ } from './iconos.js';
 
-/** Datos del recomendador para una titulación y su plan de hoy (recalculado con el progreso actual). */
+/**
+ * El estado del alumno para una titulación (motor de seguimiento, src/course/motor.js): carga los datos, llama al
+ * motor y guarda el plan base si el motor ha hecho uno nuevo. Las pantallas leen `st` y nada más.
+ * Devuelve también los datos compartidos (para compatibilidad) y `plan` = las actividades del día.
+ */
 export async function calcularPlan(progress, tit, ahora = Date.now()) {
   const T = TITULACIONES[tit];
   const [curso, bank] = await Promise.all([loadCourse(tit), loadTheoryBank(tit)]);
   const tc = progress.testEnCurso();
-  const o = {
-    estructura: T.estructura, curso, preguntas: bank.preguntas, regs: progress.lecciones(), respuestas: progress.get().exams,
+  const st = estadoAlumno({
+    tit, estructura: T.estructura, curso, preguntas: bank.preguntas, regs: progress.lecciones(), respuestas: progress.get().exams,
     tests: progress.tests().filter((t) => (t.tit ?? 'per') === tit), testEnCurso: tc && tc.tit === tit ? tc : null,
-    fechaExamen: progress.settings()[`examen_${tit}`] || null, ultimoMezclado: progress.settings()[`mezclado_${tit}`] || null, segTarjeta: progress.settings().segTarjeta, ahora,
-  };
-  return { ...o, bank, plan: planHoy(o) };
+    settings: progress.settings(), minutosHoy: progress.minutosHoy(ahora), racha: progress.racha(ahora), planGuardado: progress.planEstudio(tit), ahora,
+  });
+  if (st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base);
+  return { ...st.datos, bank, plan: st.actividades, st };
 }
 
 /** Enlace a una actividad del plan (las tandas de preguntas llevan su semilla para poder recargarlas). */
@@ -91,7 +97,7 @@ export function pintarCierre(cont, progress, tit, o) {
     // El avance del tema de la actividad, si se sabe.
     const b = o.ut != null ? d.estructura.bloques.find((x) => x.ut === o.ut) : null;
     if (b) {
-      const e = estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora);
+      const e = d.st.temas.find((x) => x.b.ut === b.ut).e; // del motor
       if (e.clases.total) logros.push(`${b.titulo}: llevas ${e.clases.terminadas} de ${e.clases.total} clases`);
     }
     if (cont.isConnected || cont.parentNode) cont.replaceChildren(cierre({ ...o, tit, siguiente: d.plan[0], stats, logros, animar: false }), ...extra);

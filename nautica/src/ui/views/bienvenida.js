@@ -42,8 +42,12 @@ export function bienvenidaView({ progress }) {
       const input = h('input', { type: 'date', 'aria-label': 'Fecha del examen', value: progress.settings()[`examen_${tit}`] ?? '' });
       setChildren(el, cab, h('h1', '¿Cuándo es tu examen?'),
         h('div.campo-fecha', input),
-        h('button.grande', { type: 'button', onclick: () => { if (input.value) progress.setSetting(`examen_${tit}`, input.value); paso = 3; render(); } }, 'Continuar'),
-        h('p.centrado', h('a', { href: '#/bienvenida', onclick: (ev) => { ev.preventDefault(); paso = 3; render(); } }, 'Todavía no lo sé')));
+        h('button.grande', { type: 'button', onclick: () => { if (input.value) { progress.setSetting(`examen_${tit}`, input.value); progress.setSetting(`examenOrientativo_${tit}`, false); } paso = 3; render(); } }, 'Continuar'),
+        // Sin fecha no hay plan ni cuenta atrás: se pone una orientativa (dentro de 3 meses) que se cambia cuando se sepa.
+        h('button.secondary.grande', { type: 'button', onclick: () => {
+          const f = new Date(Date.now() + 91 * 864e5).toLocaleDateString('sv-SE');
+          progress.setSetting(`examen_${tit}`, f); progress.setSetting(`examenOrientativo_${tit}`, true); paso = 3; render();
+        } }, 'Todavía no lo sé (pon una orientativa)'));
     } else {
       setChildren(el, cab, h('h1', '¿Cuánto tiempo tienes al día?'), botonesMinutos(null, fin));
     }

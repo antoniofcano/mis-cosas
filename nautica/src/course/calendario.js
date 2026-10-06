@@ -8,7 +8,7 @@
 // - Lo que queda (de hoy al examen) se recalcula siempre con lo hecho de verdad: primero lo atrasado, y si no cabe
 //   en los minutos al día se dice cuántos hacen falta.
 
-import { estadoLeccion } from './engine.js';
+import { estadoLeccion, minutosClase, SEG_TARJETA } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { diasHasta, estadoTema, OBJETIVO_TEMA, TANDA, MIN_TANDA, SIMULACROS_RECOMENDADOS } from './plan.js';
 
@@ -38,7 +38,7 @@ export const temasDePocoPeso = (estructura) => estructura.bloques.filter((b) => 
  * marca como leída (`chuletasLeidas`: UTs) o cuando ya están terminadas todas sus clases.
  * @returns {{ id, tipo: 'clase'|'chuleta'|'tanda'|'simulacro', titulo, minutos, ut: number|null, ruta: string[], hecha: boolean }[]}
  */
-export function unidades({ estructura, curso, preguntas = [], regs = {}, respuestas = {}, tests = [], esencial = false, chuletasLeidas = [], ahora = Date.now() }) {
+export function unidades({ estructura, curso, preguntas = [], regs = {}, respuestas = {}, tests = [], esencial = false, chuletasLeidas = [], segTarjeta = SEG_TARJETA, ahora = Date.now() }) {
   const out = [];
   const pocoPeso = new Set(esencial ? temasDePocoPeso(estructura) : []);
   for (const b of bloquesEnOrden(estructura)) {
@@ -48,7 +48,7 @@ export function unidades({ estructura, curso, preguntas = [], regs = {}, respues
       out.push({ id: `chuleta:${b.ut}`, tipo: 'chuleta', titulo: `Chuleta de ${b.titulo}`, minutos: MIN_CHULETA * cls.length, ut: b.ut, ruta: ['temario', String(b.ut), 'chuleta'],
         hecha: terminadas || chuletasLeidas.includes(b.ut) });
     } else for (const l of clasesDe(curso, b.ut)) {
-      out.push({ id: `clase:${l.id}`, tipo: 'clase', titulo: l.titulo, minutos: l.minutos ?? 10, ut: b.ut, ruta: ['curso', l.id],
+      out.push({ id: `clase:${l.id}`, tipo: 'clase', titulo: l.titulo, minutos: minutosClase(l, segTarjeta), ut: b.ut, ruta: ['curso', l.id],
         hecha: !sinTerminar(estadoLeccion(l, regs[l.id], respuestas, ahora).estado) });
     }
     const est = estadoTema(b, curso, preguntas, regs, respuestas, ahora);
@@ -64,6 +64,23 @@ export function unidades({ estructura, curso, preguntas = [], regs = {}, respues
     out.push({ id: `simulacro:${k}`, tipo: 'simulacro', titulo: `Simulacro de examen ${k}`, minutos: estructura.duracionMin, ut: null, ruta: ['test', 'simulacro'], hecha: simulacros >= k });
   }
   return out;
+}
+
+/**
+ * El avance del camino (el mismo número en Hoy, Progreso y Plan): los pasos del camino ponderados por sus minutos,
+ * con lo hecho de las clases a medias (tramos terminados / tramos). Se mueve con cada tramo o tanda.
+ * @returns {{ fraccion: number, hechos: number, total: number }}  hechos/total = pasos enteros terminados
+ */
+export function avanceCamino(datos) {
+  const us = unidades(datos);
+  const regs = datos.regs ?? {};
+  const parte = (u) => {
+    if (u.hecha) return 1;
+    const r = u.tipo === 'clase' ? regs[u.ruta[1]] : null;
+    return r?.tramos > 1 ? Math.min(1, (r.tramo ?? 0) / r.tramos) : 0;
+  };
+  const total = us.reduce((s, u) => s + u.minutos, 0);
+  return { fraccion: total ? us.reduce((s, u) => s + u.minutos * parte(u), 0) / total : 0, hechos: us.filter((u) => u.hecha).length, total: us.length };
 }
 
 /** Reparto voraz en orden: cada día hasta `cap` minutos (una unidad más larga que `cap` ocupa un día ella sola). */
@@ -237,12 +254,12 @@ export function seguimiento(plan, datos, { ahora = Date.now() } = {}) {
  */
 export function lineaSeguimiento(s, minutosDia) {
   const hoyMin = s.hoy.reduce((t, u) => t + u.minutos, 0);
-  const deHoy = s.hoy.length ? ` Hoy te tocan ${describir(s.hoy)} (${duracion(hoyMin)}).` : '';
+  const deHoy = s.hoy.length ? ` Hoy toca: ${describir(s.hoy)} (${duracion(hoyMin)}).` : '';
   if (s.estado === 'terminado') return 'Has terminado tu plan: ahora, simulacros y repasar tus fallos.';
   if (s.estado === 'no-llega') {
     const falta = s.futuro.fuera.reduce((t, u) => t + u.minutos, 0);
     return `Con ${minutosDia} minutos al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}). Para llegar, unos ${s.futuro.minutosNecesarios} minutos al día.`;
   }
-  if (s.estado === 'atrasado') return `Vas ${duracion(s.minutosAtraso)} por detrás (${describir(s.atrasadas)}): hoy empieza por recuperarlo y llegas a tiempo.${deHoy}`;
+  if (s.estado === 'atrasado') return `Tienes ${describir(s.atrasadas)} por recuperar (${duracion(s.minutosAtraso)}): empieza por ahí y llegas a tiempo.${deHoy}`;
   return `Vas al día con tu plan.${s.descansoHoy ? ' Hoy es día de descanso.' : deHoy}`;
 }

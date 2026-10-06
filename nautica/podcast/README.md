@@ -1185,7 +1185,7 @@ La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, 
 
 ## Patrón de Embarcaciones de Recreo (PER)
 
-55 episodios · 30 escritos.
+55 episodios · 55 escritos.
 
 #### 0 · Cómo es el examen del PER y cómo usar estos podcasts
 
@@ -1343,7 +1343,7 @@ El equipo de fondeo (molinete, ancla, línea de fondeo y las voces de la maniobr
 
 #### 2.0 · Amarrar y fondear
 
-🧭 Panorama · ⏳ pendiente · clases per-2-1, per-2-2, per-2-3, per-2-4, per-2-5, per-2-6
+🧭 Panorama · ✅ [guion](per/2-0-amarrar-y-fondear.md) · clases per-2-1, per-2-2, per-2-3, per-2-4, per-2-5, per-2-6
 
 Panorama del tema de amarre y fondeo: herrajes y partes de un cabo, los cuatro nudos del examen, elegir fondeadero y tenedero, la maniobra de fondeo, el borneo y el garreo, y el orinque y la maniobra de levar. Es un tema corto y de vocabulario: si separas bien cada palabra, te lo llevas entero.
 
@@ -1370,7 +1370,7 @@ Panorama del tema de amarre y fondeo: herrajes y partes de un cabo, los cuatro n
 
 #### 2.1 · Cabos, amarres y los cuatro nudos
 
-🔎 Profundiza · ⏳ pendiente · clases per-2-1, per-2-2
+🔎 Profundiza · ✅ [guion](per/2-1-cabos-amarres-y-nudos.md) · clases per-2-1, per-2-2
 
 Los herrajes del muelle y de a bordo, las defensas, el bichero, el guiacabos y la roldana, las partes de un cabo y los cuatro nudos que pide el examen. El examen pregunta para qué sirve cada nudo y dónde está cada pieza.
 
@@ -1405,7 +1405,7 @@ Los herrajes del muelle y de a bordo, las defensas, el bichero, el guiacabos y l
 
 #### 2.2 · Fondear bien: tenedero, maniobra, garreo y levar
 
-🔎 Profundiza · ⏳ pendiente · clases per-2-3, per-2-4, per-2-5, per-2-6
+🔎 Profundiza · ✅ [guion](per/2-2-fondear-bien-tenedero-maniobra-garreo-levar.md) · clases per-2-3, per-2-4, per-2-5, per-2-6
 
 Elegir fondeadero y tenedero, la maniobra de fondeo a la gira con el molinete, cuánta cadena filar, la señal de fondeado, el borneo y el garreo, cómo vigilar el fondeo, el orinque y la maniobra de levar. El examen se juega en matices: fango duro frente a blando, embragar frente a frenar, bornear frente a garrear.
 
@@ -1442,7 +1442,7 @@ Elegir fondeadero y tenedero, la maniobra de fondeo a la gira con el molinete, c
 
 #### 3.0 · Seguridad en la mar
 
-🧭 Panorama · ⏳ pendiente · clases per-3-1, per-3-2, per-3-3, per-3-4, per-3-5, per-3-6, per-3-7, per-3-8
+🧭 Panorama · ✅ [guion](per/3-0-seguridad-en-la-mar.md) · clases per-3-1, per-3-2, per-3-3, per-3-4, per-3-5, per-3-6, per-3-7, per-3-8
 
 Panorama del tema de seguridad en la mar: estabilidad y movimientos del barco, revisiones antes de salir, mal tiempo, tormentas, niebla y aguas someras, el equipo de seguridad obligatorio según la zona, el hombre al agua y el rescate, la hipotermia, el remolque y Salvamento Marítimo. Mucho sentido común marinero, pero con cifras que hay que llevar bien atadas.
 
@@ -1471,7 +1471,7 @@ Panorama del tema de seguridad en la mar: estabilidad y movimientos del barco, r
 
 #### 3.1 · Estabilidad y antes de salir
 
-🔎 Profundiza · ⏳ pendiente · clases per-3-1, per-3-2
+🔎 Profundiza · ✅ [guion](per/3-1-estabilidad-y-antes-de-salir.md) · clases per-3-1, per-3-2
 
 Qué es la estabilidad y sus apellidos (estática o dinámica, transversal o longitudinal), los puntos G, C y M, los tipos de equilibrio, el balance, la cabezada y el sincronismo, y las comprobaciones antes de hacerse a la mar. El examen cruza las palabras transversal y longitudinal y mete opciones absurdas en las comprobaciones.
 
@@ -1505,7 +1505,7 @@ Qué es la estabilidad y sus apellidos (estática o dinámica, transversal o lon
 
 #### 3.2 · Mal tiempo, tormentas y niebla
 
-🔎 Profundiza · ⏳ pendiente · clases per-3-3, per-3-4
+🔎 Profundiza · ✅ [guion](per/3-2-mal-tiempo-tormentas-y-niebla.md) · clases per-3-3, per-3-4
 
 Preparar el barco «a son de mar», capear y correr el temporal, por qué no hay que atravesarse a la mar, dónde dejar la costa, qué hacer en una tormenta eléctrica, con niebla, de noche y en aguas someras, y para qué sirve el reflector radar. Las preguntas suelen pedir la opción imprudente.
 
@@ -1540,7 +1540,7 @@ Preparar el barco «a son de mar», capear y correr el temporal, por qué no hay
 
 #### 3.3 · El equipo de seguridad
 
-🔎 Profundiza · ⏳ pendiente · clases per-3-5, per-3-6
+🔎 Profundiza · ✅ [guion](per/3-3-el-equipo-de-seguridad.md) · clases per-3-5, per-3-6
 
 El equipo de seguridad obligatorio según el RD 339/2021: a qué barcos se aplica, las siete zonas de navegación y las categorías de diseño, chalecos, aros, balsas, pirotecnia, extintores y otro equipo. Es el epígrafe de las cifras: newtons, millas, minutos y cantidades por zona.
 
@@ -1575,7 +1575,7 @@ El equipo de seguridad obligatorio según el RD 339/2021: a qué barcos se aplic
 
 #### 3.4 · Hombre al agua, rescate y remolque
 
-🔎 Profundiza · ⏳ pendiente · clases per-3-7, per-3-8
+🔎 Profundiza · ✅ [guion](per/3-4-hombre-al-agua-rescate-y-remolque.md) · clases per-3-7, per-3-8
 
 Hombre al agua de principio a fin: prevenir la caída, los primeros segundos, la tecla MOB, las maniobras de Anderson y Boutakow, la búsqueda en espiral cuadrada y por sectores, subir al náufrago, la hipotermia, la reanimación en un ahogado, el remolque y cómo contactar con Salvamento Marítimo. El examen pregunta grados, orden de actuación y números de teléfono.
 
@@ -1612,7 +1612,7 @@ Hombre al agua de principio a fin: prevenir la caída, los primeros segundos, la
 
 #### 4.0 · Las normas que hay que conocer
 
-🧭 Panorama · ⏳ pendiente · clases per-4-1, per-4-2, per-4-3, per-4-4, per-4-5, per-4-6, per-4-7, per-4-8
+🧭 Panorama · ✅ [guion](per/4-0-las-normas-que-hay-que-conocer.md) · clases per-4-1, per-4-2, per-4-3, per-4-4, per-4-5, per-4-6, per-4-7, per-4-8
 
 Recorrido por la legislación que pide el PER: estar en regla, el puerto comercial, playas y buzos, aguas sucias, basuras, responsabilidad y auxilio, banderas y espacios protegidos. Es un tema de poco peso pero de cifras muy concretas (3 nudos, 50 m, 3 y 12 millas, un tercio) que el examen cambia de sitio para pillarte.
 
@@ -1641,7 +1641,7 @@ Recorrido por la legislación que pide el PER: estar en regla, el puerto comerci
 
 #### 4.1 · En regla: puerto, playas, buzos y bañistas
 
-🔎 Profundiza · ⏳ pendiente · clases per-4-1, per-4-2, per-4-3
+🔎 Profundiza · ✅ [guion](per/4-1-en-regla-puerto-playas-buzos.md) · clases per-4-1, per-4-2, per-4-3
 
 Qué necesita el barco para navegar en regla, quién manda dentro de un puerto comercial, qué se puede hacer cerca de una playa y cómo comportarse si hay buzos o bañistas. El examen confunde a propósito la zona balizada con la no balizada y los 200 m con los 50 m.
 
@@ -1676,7 +1676,7 @@ Qué necesita el barco para navegar en regla, quién manda dentro de un puerto c
 
 #### 4.2 · Contaminación: aguas sucias, basuras y responsabilidad
 
-🔎 Profundiza · ⏳ pendiente · clases per-4-4, per-4-5, per-4-6
+🔎 Profundiza · ✅ [guion](per/4-2-contaminacion-aguas-sucias-basuras.md) · clases per-4-4, per-4-5, per-4-6
 
 Qué se puede echar al mar, dónde y cómo: aguas sucias, basuras según MARPOL V y el Mediterráneo como zona especial. Además, quién paga si se contamina y qué obliga el deber de auxilio. Son preguntas llenas de cifras (3, 12, 4 nudos, 25 mm, 5° 36' W) y de opciones con «únicamente» o «solo».
 
@@ -1697,7 +1697,7 @@ Qué se puede echar al mar, dónde y cómo: aguas sucias, basuras según MARPOL 
 - Falso: «aguas sin tratar entre 3 y 12 millas» o «a más de 6 millas». Cierto: sin tratar, a más de 12; la cifra de 6 millas no existe.
 - Falso: «el tanque se puede vaciar aunque el buque esté parado» o «de forma instantánea». Cierto: poco a poco, en ruta y a 4 nudos o más.
 - Falso: «la descarga de aguas sucias está prohibida en todo el Mediterráneo». Cierto: rigen las mismas distancias; lo especial del Mediterráneo es para la comida (MARPOL V).
-- Falso: frente a Trafalgar rigen las normas del Mediterráneo. Cierto: Trafalgar y Cádiz están fuera (al oeste de 5° 36' W); allí la comida sin triturar se puede echar a más de 12 millas.
+- Falso: frente a Trafalgar rigen las normas del Mediterráneo. Cierto: Trafalgar y la bahía de Cádiz están fuera (al oeste de 5° 36' W; la costa de levante de Cádiz, en cambio, queda dentro); allí la comida sin triturar se puede echar a más de 12 millas.
 - Falso: «responde únicamente el patrón», «solo el propietario» o «solo el asegurador». Cierto: responden los cuatro a la vez, de forma solidaria.
 - Falso: «solo se acude si lo pide un centro de salvamento», «solo si es de mi bandera» o «si no voy, no tengo que explicar nada». Cierto: se acude siempre que se pueda sin grave peligro, y si no, diario y aviso a salvamento.
 
@@ -1711,7 +1711,7 @@ Qué se puede echar al mar, dónde y cómo: aguas sucias, basuras según MARPOL 
 
 #### 4.3 · Banderas y espacios protegidos
 
-🔎 Profundiza · ⏳ pendiente · clases per-4-7, per-4-8
+🔎 Profundiza · ✅ [guion](per/4-3-banderas-y-espacios-protegidos.md) · clases per-4-7, per-4-8
 
 Dónde va la bandera de España y en qué condiciones se puede izar la autonómica, y qué son las ZEPIM y por qué no se fondea sobre posidonia. Preguntas de memoria pura en las que fallan los detalles: el tamaño, el sitio, el significado exacto de las siglas y qué zonas son ZEPIM y cuáles no.
 
@@ -1732,7 +1732,7 @@ Dónde va la bandera de España y en qué condiciones se puede izar la autonómi
 - Falso: la autonómica puede ser «del mismo tamaño» que la de España. Cierto: un tercio de su área como máximo.
 - Falso: la autonómica puede ir en el asta de popa o en el pico «si la de España va en otro sitio», o izarse sola si la comunidad tiene competencias. Cierto: popa y pico son de la de España, y la autonómica nunca va sin ella.
 - Falso: ZEPIM es zona «exclusiva» protegida o de importancia para el «medio marino». Cierto: «especialmente» protegida y para el «Mediterráneo».
-- Falso: Tabarca, Ibiza y Formentera o la costa de Cádiz son ZEPIM. Cierto: Tabarca es reserva marina, pero no ZEPIM; Ibiza y Formentera no figuran, y Cádiz está fuera del Mediterráneo.
+- Falso: Tabarca, Ibiza y Formentera o la costa de Cádiz son ZEPIM. Cierto: Tabarca es reserva marina, pero no ZEPIM; Ibiza y Formentera no figuran, y los fondos de la costa de levante de Cádiz, aunque están en el Mediterráneo, tampoco están en la lista.
 - Falso: «en las ZEPIM el paso y el fondeo no están reglamentados». Cierto: se pueden regular el paso, la parada y el fondeo.
 - Falso: en un campo de boyas se puede fondear directamente sobre la posidonia. Cierto: se amarra a la boya precisamente para no fondear sobre la pradera.
 
@@ -2218,7 +2218,7 @@ Las pitadas y el equipo acústico según la eslora, las señales de maniobra y d
 
 #### 7.0 · Maniobrar el barco
 
-🧭 Panorama · ⏳ pendiente · clases per-7-1, per-7-2, per-7-3, per-7-4, per-7-5, per-7-6, per-7-7, per-7-8
+🧭 Panorama · ✅ [guion](per/7-0-maniobrar-el-barco.md) · clases per-7-1, per-7-2, per-7-3, per-7-4, per-7-5, per-7-6, per-7-7, per-7-8
 
 Recorrido por todo el tema de maniobra: el vocabulario de los cabos, las amarras, el gobierno con caña o rueda, los efectos de la hélice, la ciaboga y cómo atracar y desatracar según el viento y la corriente. Es un tema de poco peso pero muy de sentido común, y sus preguntas se repiten casi idénticas convocatoria tras convocatoria.
 
@@ -2247,7 +2247,7 @@ Recorrido por todo el tema de maniobra: el vocabulario de los cabos, las amarras
 
 #### 7.1 · Cabos y amarras
 
-🔎 Profundiza · ⏳ pendiente · clases per-7-1, per-7-2
+🔎 Profundiza · ✅ [guion](per/7-1-cabos-y-amarras.md) · clases per-7-1, per-7-2
 
 El vocabulario de los cabos y las amarras: partes de un cabo, encapillar, amarrar por seno, hacer firme, y las palabras de cobrar, virar, templar, lascar, amollar, arriar, largar y adujar; después, cada amarra por hacia dónde trabaja y qué hace el barco al cobrarla. En el examen casi todo son preguntas de definición con opciones cruzadas.
 
@@ -2281,7 +2281,7 @@ El vocabulario de los cabos y las amarras: partes de un cabo, encapillar, amarra
 
 #### 7.2 · Gobierno, hélice, timón y ciaboga
 
-🔎 Profundiza · ⏳ pendiente · clases per-7-3, per-7-4, per-7-5
+🔎 Profundiza · ✅ [guion](per/7-2-gobierno-helice-timon-y-ciaboga.md) · clases per-7-3, per-7-4, per-7-5
 
 Cómo responde el barco al timón y a la hélice: caña o rueda, velocidad de gobierno y arrancada, la curva de evolución y el rabeo, el efecto de la hélice dextrógira y levógira al dar atrás, y la ciaboga con una y con dos hélices. Es la parte del tema que más preguntas da, y casi siempre con la hélice dando atrás desde parado.
 
@@ -2316,7 +2316,7 @@ Cómo responde el barco al timón y a la hélice: caña o rueda, velocidad de go
 
 #### 7.3 · Atracar y desatracar con viento y corriente
 
-🔎 Profundiza · ⏳ pendiente · clases per-7-6, per-7-7, per-7-8
+🔎 Profundiza · ✅ [guion](per/7-3-atracar-y-desatracar-con-viento-y-corriente.md) · clases per-7-6, per-7-7, per-7-8
 
 Los agentes que no controlas, viento, corriente y olas, y cómo usarlos para atracar de costado, de punta, abarloado o a una boya, y para desatracar largando los cabos en el orden correcto. El examen pregunta sobre todo qué cabo se da primero, cuáles se largan primero y qué esprín abre la popa o la proa.
 
@@ -2353,7 +2353,7 @@ Los agentes que no controlas, viento, corriente y olas, y cómo usarlos para atr
 
 #### 8.0 · Emergencias a bordo
 
-🧭 Panorama · ⏳ pendiente · clases per-8-1, per-8-2, per-8-3, per-8-4, per-8-5, per-8-6, per-8-7, per-8-8, per-8-9
+🧭 Panorama · ✅ [guion](per/8-0-emergencias-a-bordo.md) · clases per-8-1, per-8-2, per-8-3, per-8-4, per-8-5, per-8-6, per-8-7, per-8-8, per-8-9
 
 Panorama de las emergencias a bordo: primeros auxilios, ayuda médica a distancia, varada y abordaje, vías de agua, el fuego y cómo apagarlo, el abandono del barco y la hipotermia. Son preguntas de sentido común, pero llenas de opciones que suenan prudentes y son falsas.
 
@@ -2383,7 +2383,7 @@ Panorama de las emergencias a bordo: primeros auxilios, ayuda médica a distanci
 
 #### 8.1 · Primeros auxilios y ayuda médica a distancia
 
-🔎 Profundiza · ⏳ pendiente · clases per-8-1, per-8-2, per-8-3
+🔎 Profundiza · ✅ [guion](per/8-1-primeros-auxilios-y-radio-medico.md) · clases per-8-1, per-8-2, per-8-3
 
 Primeros auxilios a bordo: contusiones, heridas, hemorragias externas e internas, quemaduras, insolación y mareo, y cómo pedir ayuda al Centro Radio-Médico Español. El examen repite cada año las mismas trampas: calor en vez de frío, bajar el brazo, el torniquete siempre y el agua oxigenada.
 
@@ -2418,7 +2418,7 @@ Primeros auxilios a bordo: contusiones, heridas, hemorragias externas e internas
 
 #### 8.2 · Varada, abordaje y vías de agua
 
-🔎 Profundiza · ⏳ pendiente · clases per-8-4, per-8-5
+🔎 Profundiza · ✅ [guion](per/8-2-varada-abordaje-y-vias-de-agua.md) · clases per-8-4, per-8-5
 
 Qué hacer cuando el barco toca fondo, choca con otro o le entra agua: evaluar daños, reflotar en fondo blando, cuándo separar dos barcos tras un abordaje, los puntos por donde entra el agua y cómo achicar y taponar. El examen castiga los reflejos: dar atrás toda, separar los barcos de inmediato y apagar el motor.
 
@@ -2453,7 +2453,7 @@ Qué hacer cuando el barco toca fondo, choca con otro o le entra agua: evaluar d
 
 #### 8.3 · El fuego a bordo
 
-🔎 Profundiza · ⏳ pendiente · clases per-8-6, per-8-7
+🔎 Profundiza · ✅ [guion](per/8-3-el-fuego-a-bordo.md) · clases per-8-6, per-8-7
 
 El fuego a bordo: el tetraedro, las clases de fuego de la norma UNE-EN 2, los lugares de riesgo y cómo prevenirlos, y después cómo apagarlo: mecanismos de extinción, agentes, uso del extintor y la maniobra de socairear el fuego. Es de los apartados con más preguntas del tema, casi todas de definición.
 
@@ -2488,7 +2488,7 @@ El fuego a bordo: el tetraedro, las clases de fuego de la norma UNE-EN 2, los lu
 
 #### 8.4 · Abandono e hipotermia
 
-🔎 Profundiza · ⏳ pendiente · clases per-8-8, per-8-9
+🔎 Profundiza · ✅ [guion](per/8-4-abandono-e-hipotermia.md) · clases per-8-8, per-8-9
 
 Cuándo y cómo se abandona el barco, qué se prepara antes, cómo se usan bengalas, cohetes y señales de humo, cómo se salta al agua y cómo se sobrevive en agua fría. Las preguntas buscan la opción que suena valiente y es un error: nadar para entrar en calor, quitarse la ropa o trincar lo que flota.
 
@@ -2525,7 +2525,7 @@ Cuándo y cómo se abandona el barco, qué se prepara antes, cómo se usan benga
 
 #### 9.0 · El tiempo para salir a navegar
 
-🧭 Panorama · ⏳ pendiente · clases per-9-1, per-9-2, per-9-3, per-9-4, per-9-5, per-9-6, per-9-7
+🧭 Panorama · ✅ [guion](per/9-0-el-tiempo-para-salir-a-navegar.md) · clases per-9-1, per-9-2, per-9-3, per-9-4, per-9-5, per-9-6, per-9-7
 
 Panorama de la meteorología del PER: presión y barómetros, borrascas y anticiclones, el vocabulario del viento, viento real y aparente, las brisas, las escalas Beaufort y Douglas y cómo decidir si se sale. Con cuatro preguntas, está entre los temas no eliminatorios que más pesan, y sus preguntas se repiten mucho.
 
@@ -2553,7 +2553,7 @@ Panorama de la meteorología del PER: presión y barómetros, borrascas y antici
 
 #### 9.1 · Presión, borrascas y anticiclones
 
-🔎 Profundiza · ⏳ pendiente · clases per-9-1, per-9-2
+🔎 Profundiza · ✅ [guion](per/9-1-presion-borrascas-y-anticiclones.md) · clases per-9-1, per-9-2
 
 La presión atmosférica, su valor normal y sus unidades, el barómetro de mercurio y el aneroide, las isobaras y la tendencia barométrica; después, borrascas y anticiclones: presión en el centro, giro del viento, tiempo que traen y hacia dónde viajan. El examen mezcla en una misma pregunta aneroides, isobaras y giros, y hay que comprobar cada dato.
 
@@ -2588,7 +2588,7 @@ La presión atmosférica, su valor normal y sus unidades, el barómetro de mercu
 
 #### 9.2 · El viento: real, aparente y las brisas
 
-🔎 Profundiza · ⏳ pendiente · clases per-9-3, per-9-4, per-9-5
+🔎 Profundiza · ✅ [guion](per/9-2-el-viento-real-aparente-y-las-brisas.md) · clases per-9-3, per-9-4, per-9-5
 
 Las palabras del viento (rolar, refrescar, caer, calmar, racha y racheado) y sus instrumentos; la diferencia entre viento real, de avance y aparente; y las brisas costeras, virazón y terral. Son preguntas cortas de vocabulario donde el examen cruza una palabra con la definición de otra.
 
@@ -2622,7 +2622,7 @@ Las palabras del viento (rolar, refrescar, caer, calmar, racha y racheado) y sus
 
 #### 9.3 · Beaufort, Douglas y la decisión de salir
 
-🔎 Profundiza · ⏳ pendiente · clases per-9-6, per-9-7
+🔎 Profundiza · ✅ [guion](per/9-3-beaufort-douglas-y-la-decision-de-salir.md) · clases per-9-6, per-9-7
 
 La escala Beaufort para el viento y la Douglas para la mar, los tres factores que hacen crecer las olas (intensidad, persistencia y fetch), la mar de viento y la de fondo, y cómo usar la previsión oficial para decidir si se sale. El examen se limita casi siempre a definir el fetch y a no confundir las dos escalas.
 

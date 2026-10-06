@@ -52,3 +52,9 @@ test('PER: al menos una lámina interactiva en cada tema (predice, manipula, exp
     assert.ok(n >= 1, `UT${m.ut} ${m.titulo}: ninguna lámina interactiva`);
   }
 });
+
+test('PY: cada clase de carta (tema 4) tiene su lámina interactiva', async () => {
+  const { interactivaDe } = await import('../src/illustrations/interactivas.js');
+  const m = leer('data/curso/py.json').modulos.find((x) => x.ut === 4);
+  for (const l of m.lecciones) assert.ok(l.pasos.some((p) => p.tipo === 'ilustracion' && interactivaDe(p.spec)), `${l.id} ${l.titulo}: sin lámina interactiva`);
+});

@@ -14,10 +14,13 @@ import { nieblas } from './interactivas/nieblas.js';
 import { marea } from './interactivas/marea.js';
 import { frentes } from './interactivas/frentes.js';
 import { barcoViento, cardinales, playaDistancia, fuegoApagar } from './interactivas/per-basicas.js';
+import { demorasTraslado, loxoTriangulo } from './interactivas/py-carta.js';
 
 export const INTERACTIVAS = { rosa, nortes, abatimiento, corriente, 'sectores-luces': sectoresLuces, cruce, estabilidad, 'helice-timon': heliceTimon, desatraque,
   // PER: solo las specs que lo piden (modo/marca) son interactivas; las demás de esos tipos siguen fijas (tarjetas, fichas…)
   barco: barcoViento, cardinales, playa: playaDistancia, fuego: fuegoApagar,
+  // PY carta: traslado de demoras no simultáneas y triángulo de estima (solo las specs con modo)
+  demoras: demorasTraslado, loxodromica: loxoTriangulo,
   // meteo: solo algunas variantes son interactivas; el resto (borrasca, anticiclón, brisas…) sigue fija
   // marea: curva, duodécimos y sonda son la misma lámina interactiva; «fases» (vivas y muertas) sigue fija
   marea: { porVariante: 'modo', porDefecto: 'curva', variantes: { curva: marea, duodecimos: marea, sonda: marea } },

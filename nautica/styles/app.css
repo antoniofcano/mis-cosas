@@ -1042,3 +1042,15 @@ html:has(body.con-hoja), body.con-hoja { overflow: hidden; }
 .il-svg svg, .lamina-interactiva svg { max-height: 58vh; max-height: 58dvh; }
 .il-svg, .lamina-interactiva { text-align: center; }
 @media (max-height: 600px) { .il-svg svg, .lamina-interactiva svg { max-height: 42vh; max-height: 42dvh; } }
+
+/* «Siguiente» mientras falta responder: gris y con lo que hay que hacer escrito. */
+.fila-inferior button.esperando:disabled { background: var(--surface); color: var(--muted); border: 2px dashed var(--border); opacity: 1; }
+
+/* Bienvenida en una pantalla: fecha y minutos. */
+.pregunta-bienvenida { display: block; font-weight: 700; font-size: 1.1rem; margin: 1.2rem 0 .5rem; }
+.bienvenida .campo-fecha { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.bienvenida .campo-fecha input { min-height: 48px; font-size: 1.1rem; }
+.minutos-bienvenida { grid-template-columns: repeat(3, 1fr); }
+.minutos-bienvenida button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.bienvenida > button.grande:last-child { margin-top: 1.4rem; }
+.minutos-bienvenida { display: grid; gap: .5rem; } .minutos-bienvenida button { min-width: 0; width: auto; padding: .5rem .2rem; }

@@ -70,7 +70,7 @@ export function planView({ progress, tit }) {
 
     setChildren(el,
       h('h1', 'Mi plan hasta el examen'),
-      h('p.muted', `Examen: ${fechaLarga(plan.fechaExamen)} · ${cuenta(plan.minutosDia, 'minuto')} al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes' }, 'cambiar')),
+      h('p.muted', `Examen: ${fechaLarga(plan.fechaExamen)} · ${cuenta(plan.minutosDia, 'minuto')} al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes?campo=fecha' }, 'Cambiar fecha o minutos')),
       // El mismo mensaje del día que en Hoy (motor): con la meta cumplida, no pide más.
       h('div.ritmo', { class: d.st.mensaje.aviso ? 'warn' : '' }, h('p', marcaEstado(d.st.mensaje.tipo === 'toca' ? seg.estado : 'al-dia')[0], d.st.mensaje.texto),
         d.st.mensaje.detalle ? h('p.muted.small', d.st.mensaje.detalle) : null,

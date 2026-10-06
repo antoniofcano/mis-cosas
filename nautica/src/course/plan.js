@@ -1,7 +1,7 @@
 // Recomendador único: decide qué toca hoy (pantalla Hoy, cierres de sesión y Temario), el estado de cada
 // tema y el avance global. Funciones puras: el progreso entra como datos.
 
-import { estadoLeccion } from './engine.js';
+import { estadoLeccion, numTramos } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { colaRepaso } from './repaso.js';
 
@@ -79,7 +79,13 @@ function actividadTema(b, est, curso, regs, respuestas, ahora) {
   const empezada = clases.find((c) => c.e === 'empezada');
   const nueva = clases.find((c) => c.e === 'nueva');
   const c = empezada ?? nueva;
-  if (c) return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: c.l.minutos ?? 10, ruta: ['curso', c.l.id], query: undefined, ut: b.ut };
+  if (c) {
+    // Se propone un tramo de la clase (unos 5 minutos), no la clase entera.
+    const k = numTramos(c.l.minutos ?? 10, (c.l.pasos ?? []).filter((p) => !p.extra).length || 1);
+    const t = empezada ? Math.min(k - 1, regs[c.l.id]?.tramo ?? 0) : 0;
+    return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: Math.max(1, Math.round((c.l.minutos ?? 10) / k)),
+      tramo: k > 1 ? { i: t + 1, de: k } : null, ruta: ['curso', c.l.id], query: undefined, ut: b.ut };
+  }
   return { tipo: 'preguntas', titulo: `${est.hechas ? `${TANDA} preguntas más` : `${TANDA} preguntas`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut };
 }
 

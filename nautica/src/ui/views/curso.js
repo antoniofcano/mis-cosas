@@ -4,13 +4,13 @@
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, estadoLeccion } from '../../course/engine.js';
+import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, estadoLeccion, numTramos, enTramos } from '../../course/engine.js';
 import { resueltasDe, conResuelto } from '../../course/resueltos.js';
 import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
 import { MIN_TANDA } from '../../course/plan.js';
 import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
-import { pintarCierre } from '../cierre.js';
+import { pintarCierre, metaDiaria } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
 import { pidePrediccion } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
@@ -85,9 +85,20 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     // La pregunta del final cambia cada vez: una real de examen de esta clase.
     // y, por el camino, una pregunta real cada pocas tarjetas para no leer mucho seguido sin responder.
     const rngClase = createRng(randomSeed());
-    const pasosBase = conResuelto(L.pasos, resueltasDe(L.id).filter((id) => preguntas.has(id))).map((p) => (p.tipo === 'ilustracion' ? { ...p, prediccion: pidePrediccion(p.spec) } : p));
-    const tarjetas = [{ tipo: 'intro' }, ...conPreguntasIntercaladas(conPreguntaFinal(pasosBase, disponibles, rngClase), disponibles, rngClase)];
+    // Lo que no cae en el examen (`extra`) sale del camino y se ofrece al final, plegado, como «Para saber más».
+    const pasosExtra = L.pasos.filter((p) => p.extra);
+    const sinExtra = L.pasos.filter((p) => !p.extra);
+    // La clase va en tramos de unos 5 minutos, cada uno con su cierre: se puede dejar al acabar cualquiera.
+    const k = numTramos(L.minutos ?? 10, sinExtra.length);
+    const pasosBase = enTramos(conResuelto(sinExtra, resueltasDe(L.id).filter((id) => preguntas.has(id))), k)
+      .map((p) => (p.tipo === 'ilustracion' ? { ...p, prediccion: pidePrediccion(p.spec) } : p));
+    const tarjetas = [{ tipo: 'intro', tramo: 0 }, ...conPreguntasIntercaladas(conPreguntaFinal(pasosBase, disponibles, rngClase), disponibles, rngClase)];
+    // Las preguntas añadidas (la final, las intercaladas) van en el tramo de la tarjeta que tienen delante.
+    tarjetas.forEach((t, i) => { if (t.tramo == null) t.tramo = tarjetas[i - 1].tramo; });
     const n = tarjetas.length;
+    const minTramo = Math.max(1, Math.round((L.minutos ?? 10) / k));
+    const finTramo = (i) => i < n - 1 && tarjetas[i + 1].tramo > tarjetas[i].tramo;
+    const enTramo = (i) => { const t = tarjetas[i].tramo; const del = tarjetas.filter((x) => x.tramo === t); return { t, j: del.indexOf(tarjetas[i]) + 1, m: del.length }; };
     let paso = Math.min(Math.max(0, Number(reg().paso) || 0), n - 1);
     let checkOk = new Set();
     const enClase = { respondidas: 0, aciertos: 0 }; // preguntas de examen respondidas durante la clase
@@ -170,15 +181,33 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       regla: reglas.get(p.id) ? `Para recordarlo: ${reglas.get(p.id).regla}. ${reglas.get(p.id).significado}` : '', check: p.enunciado,
     }[p.tipo] ?? '');
 
-    const guardaPaso = () => progress.saveLeccion(L.id, { ...reg(), paso });
+    const guardaPaso = () => progress.saveLeccion(L.id, { ...reg(), paso, tramo: tarjetas[paso].tramo, tramos: k });
     const irAnterior = () => { if (paso === 0) return; voice.stop(); paso -= 1; guardaPaso(); transicion(tarjeta, 'atras'); };
     const irSiguiente = () => {
       voice.stop();
       if (paso === n - 1) { transicion(terminar, 'adelante'); return; }
+      const cierra = finTramo(paso);
       paso += 1;
       guardaPaso();
-      transicion(tarjeta, 'adelante');
+      transicion(cierra ? cierreTramo : tarjeta, 'adelante');
     };
+
+    // Fin de un tramo: lo hecho, la meta del día y elegir entre seguir o dejarlo aquí (se retoma en el siguiente tramo).
+    function cierreTramo() {
+      const hecho = tarjetas[paso - 1].tramo;
+      progress.logActividad(minTramo);
+      barra.set(`Tramo ${hecho + 1} de ${k} hecho`, paso / n);
+      setChildren(cont, h('section.cierre.cierre-tramo',
+        h('div.icono', { 'aria-hidden': 'true' }, '✅'),
+        h('h1', `Tramo ${hecho + 1} de ${k} hecho`),
+        h('ul.logros', logrosClase().slice(1).map((l) => h('li', l))),
+        metaDiaria(progress),
+        h('div.botones',
+          h('button.grande', { type: 'button', onclick: () => transicion(tarjeta, 'adelante') }, `Seguir: tramo ${hecho + 2} de ${k} (unos ${minTramo} min)`),
+          h('a.btn.secondary.grande', { href: tlink(tit) }, 'Lo dejo aquí por hoy'))));
+      summaryText = `CLASE ${L.id} · tramo ${hecho + 1}/${k} hecho`;
+      window.scrollTo(0, 0);
+    }
     const anterior = h('button.secondary.boton-anterior', { type: 'button', 'aria-label': 'Anterior', onclick: irAnterior }, '←');
     const siguiente = h('button.grande', { type: 'button', onclick: irSiguiente });
     // Pasar tarjeta deslizando el dedo (solo en el modo tarjeta a tarjeta y si «Siguiente» está disponible).
@@ -197,8 +226,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     function tarjeta() {
       const p = tarjetas[paso];
       checkOk.delete(paso); // una pregunta rápida (o una predicción) se vuelve a responder al volver a ella
-      barra.set(`Tarjeta ${paso + 1} de ${n}`, (paso + 1) / n);
-      const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', onclick: () => voice.speak(speechOf(p)) }, '🔊 Escuchar') : null;
+      const et = enTramo(paso);
+      barra.set(k > 1 ? `Tramo ${et.t + 1} de ${k} · ${et.j}/${et.m}` : `Tarjeta ${paso + 1} de ${n}`, (paso + 1) / n);
+      const escuchar = voice.supported ? h('button.secondary.small.escuchar', { type: 'button', 'aria-label': 'Escuchar esta tarjeta', title: 'Escuchar', onclick: () => voice.speak(speechOf(p)) }, '🔊') : null;
       setChildren(cont,
         volverOrigen(),
         h('div.pasos', h('div.paso-cabecera', paso ? h('p.rotulo-tema', L.titulo) : h('span'),
@@ -236,8 +266,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     // --- final: chuleta, práctica y material para profundizar
     function terminar() {
       paso = 0;
-      progress.saveLeccion(L.id, { ...reg(), visto: true, paso: 0 });
-      progress.logActividad(L.minutos ?? 10);
+      progress.saveLeccion(L.id, { ...reg(), visto: true, paso: 0, tramo: 0 });
+      progress.logActividad(minTramo); // el último tramo (los anteriores se apuntaron al cerrarlos)
       barra.set('Clase terminada', 1);
       // El podcast que trata esta clase, si ya tiene audio.
       const escucha = episodio ? h('p.radio-clase', h('a.btn.secondary', { href: enlacePodcast }, `🎧 Escúchalo: «${episodio.titulo}» (${minPodcast} min)`)) : null;
@@ -245,6 +275,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         escucha,
         dondeEncaja(tit, L.id),
         L.carta?.length ? h('details', h('summary', '🗺️ En la carta'), h('ul', L.carta.map((x) => (getExercise(x) ? h('li', h('a', { href: link(['ej', x]) }, getExercise(x).title)) : null)))) : null,
+        pasosExtra.length ? h('details.saber-mas', h('summary', `📚 Para saber más (${pasosExtra.length}) · no cae en el examen`), h('div.pasos.todas', pasosExtra.map((p) => pasoEl(p, -1)))) : null,
         L.profundizar?.length ? h('details', h('summary', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
         base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,
       ];

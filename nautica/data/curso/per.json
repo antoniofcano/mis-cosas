@@ -2102,7 +2102,7 @@
       {
        "tipo": "texto",
        "titulo": "El motor y el combustible",
-       "texto": "- **Aceite**: nivel correcto y sin fugas.\n- **Refrigeración**: grifo de fondo abierto, filtro de agua salada limpio y, al arrancar, comprobar que sale agua por el escape.\n- **Correa del alternador**: tensa y en buen estado (mueve el alternador y, en muchos motores, la bomba de agua).\n- **Combustible**: suficiente para toda la travesía con un buen margen de reserva, y el **filtro decantador** sin agua.\n- **Fugas** de aceite o combustible en la sentina o el motor.\n- **Baterías** cargadas."
+       "texto": "- **Aceite**: nivel correcto y sin fugas.\n- **Refrigeración**: **líquido refrigerante** en su nivel (si el motor lo lleva), grifo de fondo abierto, filtro de agua salada limpio y, al arrancar, comprobar que sale agua por el escape.\n- **Correa del alternador**: tensa y en buen estado (mueve el alternador y, en muchos motores, la bomba de agua).\n- **Combustible**: suficiente para toda la travesía con un buen margen de reserva, y el **filtro decantador** sin agua.\n- **Fugas** de aceite o combustible en la sentina o el motor.\n- **Ausencia de gases explosivos**: antes de arrancar, ventila la cámara del motor y la sentina y comprueba que no huele a combustible ni a gas. Con motor de **gasolina**, ventila **4 minutos** antes de arrancar.\n- **Baterías** cargadas."
       },
       {
        "tipo": "ilustracion",
@@ -2115,7 +2115,7 @@
       {
        "tipo": "texto",
        "titulo": "Gobierno, achique y equipo",
-       "texto": "- **Gobierno**: el timón responde de banda a banda.\n- **Achique**: bombas que funcionan y sentina seca.\n- **Luces de navegación** y **VHF** operativos.\n- **Equipo de seguridad** a bordo, en vigor y accesible: chalecos para todos, aro, pirotecnia, extintores, balsa si toca.\n- **Cartas y publicaciones** de la zona.\n- **Agua dulce** y algo de comida, ancla con su línea de fondeo, cabos, linterna, herramientas y repuestos básicos.\n- **Documentación** del barco y del patrón."
+       "texto": "- **Gobierno y propulsión**: el timón responde de banda a banda y la marcha avante y atrás entra bien.\n- **Estanqueidad**: grifos de fondo, manguitos y pasacascos sin pérdidas, y escotillas y portillos que cierran bien.\n- **Achique**: bombas que funcionan y sentina seca.\n- **Luces de navegación** y **VHF** operativos.\n- **Equipo de seguridad** a bordo, en vigor y accesible: chalecos para todos, aro, pirotecnia, extintores, balsa si toca.\n- **Cartas y publicaciones** de la zona.\n- **Agua dulce** y algo de comida, ancla con su línea de fondeo, cabos, linterna, herramientas y repuestos básicos.\n- **Documentación** del barco y del patrón."
       },
       {
        "tipo": "texto",
@@ -2124,7 +2124,7 @@
       },
       {
        "tipo": "clave",
-       "texto": "Antes de zarpar: meteo, motor (aceite, refrigeración, correa, filtros, fugas), combustible con reserva, gobierno, equipo de seguridad y plan de navegación comunicado a tierra."
+       "texto": "Antes de zarpar: meteo, motor (aceite, refrigeración, correa, filtros, fugas, sin gases), combustible con reserva, gobierno y propulsión, estanqueidad, equipo de seguridad y plan de navegación comunicado a tierra."
       },
       {
        "tipo": "ojo",
@@ -2150,7 +2150,7 @@
      ],
      "chuleta": [
       "Antes de salir: tiempo previsto, barco y personas.",
-      "Motor: aceite, refrigeración (sale agua por el escape), correa del alternador, filtro decantador, fugas.",
+      "Motor: aceite, refrigerante y refrigeración (sale agua por el escape), correa del alternador, filtro decantador, fugas y sin gases (ventilar antes de arrancar).",
       "Combustible para todo el viaje con reserva; gobierno, achique, luces y VHF.",
       "Chaleco por persona (no aro por persona). Agua dulce.",
       "Plan de navegación dicho en tierra y tripulación instruida."
@@ -2779,7 +2779,7 @@
       {
        "tipo": "texto",
        "titulo": "Mejor no caerse",
-       "texto": "La mejor maniobra de hombre al agua es la que no hay que hacer:\n- Muévete por cubierta **con cuidado y agarrado**: «una mano para ti y otra para el barco».\n- Usa los equipos que tengas: **chaleco**, **arnés** enganchado a una **línea de vida**, calzado que no resbale.\n- No te fíes de los **candeleros** y **guardamancebos**: son bajos y pueden ceder.\n- En un velero, ojo con la **botavara** en las trasluchadas.\n- Evita salir a cubierta sin necesidad con mal tiempo o de noche, y mantén la cubierta bien iluminada sin tapar las luces de navegación."
+       "texto": "La mejor maniobra de hombre al agua es la que no hay que hacer:\n- Muévete por cubierta **con cuidado y agarrado**: «una mano para ti y otra para el barco».\n- Usa los equipos que tengas: **chaleco**, **arnés** enganchado a una **línea de vida**, calzado que no resbale.\n- Lleva el chaleco con su **luz** (y su silbato): es tu **balizamiento individual**, lo que hará que te encuentren en el agua, sobre todo de noche. Una radiobaliza personal o un AIS de hombre al agua ayudan aún más.\n- No te fíes de los **candeleros** y **guardamancebos**: son bajos y pueden ceder.\n- En un velero, ojo con la **botavara** en las trasluchadas.\n- Evita salir a cubierta sin necesidad con mal tiempo o de noche, y mantén la cubierta bien iluminada sin tapar las luces de navegación."
       },
       {
        "tipo": "texto",
@@ -2992,7 +2992,7 @@
       {
        "tipo": "texto",
        "titulo": "Durante el remolque",
-       "texto": "- El **remolcado** desembraga su motor y, si tiene gobierno, sigue la estela del remolcador.\n- En aguas abrigadas y espacios reducidos (entrar en puerto) se puede remolcar **abarloado**: los dos barcos amarrados costado con costado, con el averiado entre el través y la aleta del remolcador.\n- Vigila el remolque en todo momento y ten preparado un cuchillo para largarlo si hay peligro."
+       "texto": "- El **remolcado** desembraga su motor y, si tiene gobierno, sigue la estela del remolcador.\n- En aguas abrigadas y espacios reducidos (entrar en puerto) se puede remolcar **abarloado**: los dos barcos amarrados costado con costado, con largos y esprines, y la **popa del remolcador más a popa** que la del averiado, para que su hélice y su timón trabajen libres y gobierne bien.\n- Vigila el remolque en todo momento y ten preparado un cuchillo para largarlo si hay peligro."
       },
       {
        "tipo": "ilustracion",
@@ -3285,7 +3285,18 @@
       {
        "tipo": "texto",
        "titulo": "Reservas marinas",
-       "texto": "Una **reserva marina** es un espacio protegido para que se recuperen los recursos pesqueros y el ecosistema. Cada una tiene su propia norma, y en ellas se suele regular la pesca (también la recreativa), el buceo, el fondeo y a veces la navegación, que pueden requerir autorización o hacerse solo en zonas y boyas habilitadas.\n\nDentro de la reserva puede haber una **reserva integral**, la parte más protegida: allí se prohíbe cualquier actividad extractiva y la navegación y el fondeo pueden estar prohibidos o muy limitados.\n\nAntes de navegar por una reserva, consulta su normativa y su balizamiento en la carta."
+       "texto": "Una **reserva marina de interés pesquero** es un espacio protegido para que se regeneren los recursos pesqueros y el ecosistema. Cada una tiene su propia orden, que puede **limitar o prohibir** la pesca (también la recreativa), el buceo, el fondeo e incluso **la navegación** o el uso de ciertas embarcaciones. En las reservas del Estado, la pesca recreativa y el buceo necesitan **autorización** previa, y se fondea solo donde está permitido (a menudo, en boyas habilitadas).\n\nToda reserva tiene al menos una **reserva integral**, la parte más protegida: allí se prohíben **todas las actividades humanas**, pesca incluida, salvo la investigación científica autorizada. Mantente fuera y no fondees.\n\nEn Andalucía son reservas marinas, por ejemplo, **Cabo de Gata-Níjar** y la **Isla de Alborán**. Antes de navegar por una reserva, consulta su normativa y su balizamiento en la carta."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Navegas por una reserva marina y en la carta ves una zona señalada como **reserva integral**. ¿Qué puedes hacer allí?",
+       "opciones": {
+        "a": "Pescar con caña, porque la pesca recreativa desde embarcación siempre está permitida",
+        "b": "Fondear un rato sobre arena, si no hay posidonia",
+        "c": "Nada: en la reserva integral se prohíben todas las actividades humanas, salvo la investigación científica autorizada"
+       },
+       "correcta": "c",
+       "explicacion": "La reserva integral es la parte más protegida de la reserva marina: allí no se pesca, no se bucea y no se fondea. Fuera de ella, la pesca recreativa y el buceo necesitan autorización y se fondea solo donde está permitido."
       }
      ],
      "practica": [
@@ -3301,7 +3312,7 @@
       "Costa no balizada: zona de baño de 200 m en playas y 50 m en el resto de la costa.",
       "Dentro de esa franja: máximo 3 nudos, con precaución y sin ningún vertido.",
       "A la playa: por los extremos o los canales, perpendicular y despacio.",
-      "Reserva marina: normas propias; en la integral, casi todo prohibido."
+      "Reserva marina: normas propias (pesca, buceo, fondeo y hasta la navegación). En la reserva integral, prohibida toda actividad salvo la ciencia autorizada."
      ],
      "profundizar": [
       {
@@ -3339,7 +3350,7 @@
        "fuente": "Plantillas and-2023-c2-t12 y and-2023-c3-t12; RD 876/2014, art. 73.1"
       },
       {
-       "dato": "Reservas marinas: cada una con su norma, con reservas integrales más restrictivas",
+       "dato": "Reservas marinas de interés pesquero: cada una con su orden, que puede limitar la pesca, el buceo, el fondeo y la navegación; todas con al menos una reserva integral donde se prohíben todas las actividades humanas salvo la investigación científica",
        "fuente": "Ministerio de Agricultura, Pesca y Alimentación, página de Reservas marinas de España"
       }
      ]
@@ -3628,7 +3639,7 @@
       {
        "tipo": "texto",
        "titulo": "En zonas especiales: el Mediterráneo",
-       "texto": "Las zonas especiales del anexo V son el **Mediterráneo**, el Báltico, el mar Negro, el mar Rojo, la zona de los Golfos, el mar del Norte, la zona antártica y el Gran Caribe.\n\nEn ellas, los restos de comida solo se pueden echar:\n- **Triturados** (criba de 25 mm),\n- a **más de 12 millas** de tierra,\n- con el barco **en ruta**,\n- y sin mezclar con ninguna otra basura.\n\n(Salvedad: en el Gran Caribe, la triturada vale a más de 3 millas.)\n\nEl Mediterráneo termina al oeste en el **meridiano 5° 36' W**, en el estrecho de Gibraltar. Málaga, Almería o Baleares están dentro; Cádiz, el cabo Trafalgar o Huelva, fuera."
+       "texto": "Las zonas especiales del anexo V son el **Mediterráneo**, el Báltico, el mar Negro, el mar Rojo, la zona de los Golfos, el mar del Norte, la zona antártica y el Gran Caribe.\n\nEn ellas, los restos de comida solo se pueden echar:\n- **Triturados** (criba de 25 mm),\n- a **más de 12 millas** de tierra,\n- con el barco **en ruta**,\n- y sin mezclar con ninguna otra basura.\n\n(Salvedad: en el Gran Caribe, la triturada vale a más de 3 millas.)\n\nEl Mediterráneo termina al oeste en el **meridiano 5° 36' W**, en el estrecho de Gibraltar. Málaga, Almería, Baleares o la bahía de Algeciras están dentro; la bahía de Cádiz, el cabo Trafalgar o Huelva, fuera."
       },
       {
        "tipo": "ilustracion",
@@ -3974,7 +3985,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Tabarca es **reserva marina**, pero **no** es ZEPIM. Ibiza y Formentera tampoco figuran como ZEPIM, y la costa de Cádiz está fuera del Mediterráneo. Y fíjate en las siglas: es «**especialmente** protegida» (no «exclusiva») y «para el **Mediterráneo**» (no «medio marino»)."
+       "texto": "Tabarca es **reserva marina**, pero **no** es ZEPIM. Ibiza y Formentera tampoco figuran como ZEPIM, ni los fondos de la costa de levante de Cádiz (el Estrecho tiene otras figuras de protección, pero no esa). Y fíjate en las siglas: es «**especialmente** protegida» (no «exclusiva») y «para el **Mediterráneo**» (no «medio marino»)."
       },
       {
        "tipo": "texto",
@@ -4015,7 +4026,7 @@
         "c": "Bahía de Cádiz"
        },
        "correcta": "b",
-       "explicacion": "Alborán es una de las cuatro ZEPIM andaluzas (con Cabo de Gata-Níjar, Fondos marinos del Levante almeriense y Maro-Cerro Gordo). Tabarca es reserva marina, pero no ZEPIM, y Cádiz no está en el Mediterráneo."
+       "explicacion": "Alborán es una de las cuatro ZEPIM andaluzas (con Cabo de Gata-Níjar, Fondos marinos del Levante almeriense y Maro-Cerro Gordo). Tabarca es reserva marina, pero no ZEPIM, y la bahía de Cádiz está en el Atlántico, fuera del Mediterráneo."
       }
      ],
      "practica": [
@@ -4905,7 +4916,7 @@
   {
    "ut": 6,
    "titulo": "Reglamento (RIPA)",
-   "intro": "El reglamento para prevenir abordajes es el código de circulación del mar: quién se aparta de quién, cómo se maniobra, qué luces y marcas lleva cada buque y qué significa cada pitada. Es el bloque más grande del examen y el que menos fallos admite, pero es muy lógico: si entiendes cuatro ideas (el que alcanza se aparta, entre motores cede el que ve al otro por estribor, cuanto peor maniobra un buque más se le respeta y en niebla nadie sigue a rumbo), el resto encaja solo.",
+   "intro": "El reglamento para prevenir abordajes es el código de circulación del mar: quién se aparta de quién, cómo se maniobra, qué luces y marcas lleva cada buque y qué significa cada pitada. Es el bloque más grande del examen y tiene límite propio (más de 5 fallos de 10 suspende), pero es muy lógico: si entiendes cuatro ideas (el que alcanza se aparta, entre motores cede el que ve al otro por estribor, cuanto peor maniobra un buque más se le respeta y en niebla nadie sigue a rumbo), el resto encaja solo.",
    "lecciones": [
     {
      "id": "per-6-1",
@@ -5901,7 +5912,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "La sola luz blanca todo horizonte exige **las dos condiciones**: menos de 7 m **y** no poder pasar de 7 nudos. Una lancha de 6,5 m que va a 10 nudos necesita, como mínimo, la blanca todo horizonte **y** los costados. Y no sumes la blanca todo horizonte a la de alcance: la todo horizonte ya la sustituye."
+       "texto": "La sola luz blanca todo horizonte exige **las dos condiciones**: menos de 7 m **y** no poder pasar de 7 nudos. Una lancha de 6,5 m que va a 10 nudos necesita, como mínimo, la blanca todo horizonte **y** los costados. Y no sumes la blanca todo horizonte a la de alcance: la todo horizonte ya la sustituye. Sobre la segunda luz de tope, el examen da por buena «los de propulsión mecánica de **más de 50 m**»: márcala, pero la regla dice **50 m o más** (solo los de menos de 50 m quedan exentos)."
       },
       {
        "tipo": "texto",
@@ -6277,7 +6288,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Corta-larga-corta es del **fondeado**, no del de maniobra restringida (ese da larga-corta-corta). Y dos largas en niebla no son un buque que quiere adelantar: es un buque de motor **parado y sin arrancada**. Los menores de 12 m no están obligados a estas señales, y los de 12 a 20 m no lo están a las de campana (fondeado o varado); si no las dan, emiten otra señal acústica eficaz cada 2 minutos como máximo."
+       "texto": "Corta-larga-corta es del **fondeado**, no del de maniobra restringida (ese da larga-corta-corta). Y dos largas en niebla no son un buque que quiere adelantar: es un buque de motor **parado y sin arrancada**. Una pregunta da por buena «dos pitadas largas que no excedan de dos minutos de duración»: márcala, pero lo que no pasa de 2 minutos es el **intervalo** entre señales; cada larga dura de 4 a 6 s y entre las dos hay unos 2 s. Los menores de 12 m no están obligados a estas señales, y los de 12 a 20 m no lo están a las de campana (fondeado o varado); si no las dan, emiten otra señal acústica eficaz cada 2 minutos como máximo."
       },
       {
        "tipo": "check",
@@ -6435,7 +6446,9 @@
      ],
      "practica": [
       "and-2024-c1-t20",
-      "and-2025-c1-t27"
+      "and-2025-c1-t27",
+      "and-2024-c1-t22",
+      "and-2023-c3-t18"
      ],
      "chuleta": [
       "Llamar la atención: luces o sonidos que no se confundan; proyector hacia el peligro; nada de estroboscópicas.",
@@ -7259,7 +7272,10 @@
      "practica": [
       "and-2022-c3-t28",
       "and-2024-c2-t28",
-      "and-2024-c3-t28"
+      "and-2024-c3-t28",
+      "and-2021-c2-t40",
+      "and-2025-c1-t37",
+      "and-2024-c3-t39"
      ],
      "chuleta": [
       "Viento: obra muerta. Corriente: obra viva. Olas: balances y cambios de rumbo y velocidad.",
@@ -8182,7 +8198,7 @@
       {
        "tipo": "texto",
        "titulo": "Los medios de achique obligatorios",
-       "texto": "El RD 339/2021 fija el mínimo según la zona de navegación:\n- **Zonas 1, 2 y 3**: una bomba accionada por el motor (u otra fuente de energía), una **bomba manual** y **dos baldes** de al menos 5 litros.\n- **Zonas 4, 5 y 6**: una **bomba manual o eléctrica** y **un balde** de al menos 5 litros.\n- **Zona 7**: una bomba manual o eléctrica (o un achicador si es una embarcación pequeña con cámaras de flotabilidad).\n\nLas **bombas eléctricas automáticas** arrancan solas cuando sube el nivel de la sentina: muy útiles, pero comprueba de vez en cuando que funcionan."
+       "texto": "El RD 339/2021 fija el mínimo según la zona de navegación:\n- **Zonas 1, 2 y 3**: una bomba accionada por el motor (u otra fuente de energía), una **bomba manual** y **dos baldes** de al menos 5 litros.\n- **Zonas 4, 5 y 6**: una **bomba manual o eléctrica** y **un balde** de al menos 5 litros.\n- **Zona 7**: una bomba manual o eléctrica (o un **achicador de 2 litros** si mide **6 m o menos** y tiene cámaras de flotabilidad).\n- **Veleros** en zonas 1 a 6: al menos una bomba **manual y fija**, que se pueda accionar **desde la bañera** con todas las escotillas cerradas.\n\nLas **bombas eléctricas automáticas** arrancan solas cuando sube el nivel de la sentina: muy útiles, pero comprueba de vez en cuando que funcionan."
       },
       {
        "tipo": "ilustracion",
@@ -8221,7 +8237,7 @@
       "Grifos de fondo que no uses: cerrados.",
       "Agua en la sentina: todo el achique en marcha, motor ENCENDIDO, taponar, vigilar el nivel, rumbo a puerto.",
       "Espiche: tapón cónico de madera para vías de agua e imbornales.",
-      "Achique (RD 339/2021): zonas 1-3 bomba de motor + manual + 2 baldes; zonas 4-6 bomba + 1 balde; zona 7 bomba."
+      "Achique (RD 339/2021): zonas 1-3 bomba de motor + manual + 2 baldes; zonas 4-6 bomba + 1 balde; zona 7 bomba. Veleros (zonas 1-6): una bomba manual fija, accionable desde la bañera."
      ],
      "profundizar": [
       {
@@ -8729,7 +8745,9 @@
      "practica": [
       "and-2022-c2-t31",
       "and-2022-c3-t32",
-      "and-2024-c3-t31"
+      "and-2024-c3-t31",
+      "and-2023-c3-t09",
+      "and-2025-c3-t10"
      ],
      "chuleta": [
       "Saltar: mirar abajo, poca altura, tapar nariz y boca, sujetar el chaleco, piernas juntas y estiradas.",
@@ -9708,7 +9726,10 @@
       }
      ],
      "practica": [
-      "and-2026-c1-t33"
+      "and-2026-c1-t33",
+      "and-2025-c3-t35",
+      "and-2024-c1-t35",
+      "and-2026-c2-t33"
      ],
      "chuleta": [
       "Fuente oficial: AEMET (predicción costera hasta 20 millas, alta mar y avisos).",
@@ -10719,7 +10740,16 @@
       {
        "tipo": "texto",
        "titulo": "Enfilaciones y oposiciones",
-       "texto": "- **Enfilación**: ves **dos objetos alineados**, uno detrás de otro. Estás sobre la recta que los une, por fuera de ellos.\n- **Oposición**: estás **entre** los dos objetos, viendo uno por cada lado en direcciones opuestas.\n\nSu demora verdadera la mides en la propia carta, así que se trazan directamente y además sirven para hallar la **corrección total**: **Ct = Dv − Da**.\n\nUna enfilación es **fiable** si los objetos están **lejos de ti** y **bien separados entre sí**, y el **posterior** (el más lejano) es **igual o más alto** que el anterior."
+       "texto": "- **Enfilación**: ves **dos objetos alineados**, uno detrás de otro. Estás sobre la recta que los une, por fuera de ellos.\n- **Oposición**: estás **entre** los dos objetos, viendo uno por cada lado en direcciones opuestas.\n\nSu demora verdadera la mides en la propia carta, así que se trazan directamente y además sirven para hallar la **corrección total**: **Ct = Dv − Da**.\n\nUna enfilación es más **precisa** cuanto más **separados entre sí** estén los dos objetos y más **cerca** estés tú del anterior, comparado con esa separación: en cuanto te sales un poco de la recta, los ves «abrirse». Además, el **posterior** (el más lejano) debe ser **igual o más alto** que el anterior, para verlo por encima."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "En el examen, la plantilla da por buena «que los dos objetos estén **lejos de nuestro buque y separados entre sí**», sola o junto con la del **posterior igual o más alto**. Márcala así. Lo que de verdad hace buena una enfilación es la **separación entre los objetos**: estar lejos de ellos la hace menos precisa, no más."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Líneas de seguridad",
+       "texto": "Una línea de posición también sirve para **no meterte en un peligro**, aunque no sepas exactamente dónde estás:\n- **Enfilación de seguridad**: mientras veas los dos objetos enfilados, vas por agua limpia, por ejemplo en la entrada de un canal. Si se «abren», te has salido.\n- **Demora de seguridad** (o demora límite): en la carta trazas desde un faro la demora que pasa libre del bajo. Mientras la demora del faro no pase de ese valor, estás en el lado seguro.\n- **Sonda o veril de seguridad**: eliges un veril con agua de sobra para tu calado y vigilas la sonda. Si baja de ese valor, te estás acercando al peligro.\n\nEn todos los casos la línea no te da tu situación: te dice de qué lado de ella estás."
       },
       {
        "tipo": "ilustracion",
@@ -10780,7 +10810,7 @@
       "D = R + M (estribor +, babor −). M = D − R. Demora inversa = D ± 180°.",
       "Dv = Da + Ct. En la carta, solo demoras verdaderas.",
       "Líneas de posición: demora, enfilación, oposición, distancia, veril. El rumbo no lo es.",
-      "Enfilación: Ct = Dv − Da. Fiable: objetos lejanos, separados y el posterior más alto."
+      "Enfilación: Ct = Dv − Da. Precisa: objetos muy separados y el posterior más alto (en el examen: «lejos del buque y separados»)."
      ],
      "profundizar": [
       {
@@ -10810,7 +10840,7 @@
        "fuente": "RD 875/2014, anexo, programa PER UT 10 (BOE-A-2014-10344) §10.9; pregunta and-2021-c2-t37"
       },
       {
-       "dato": "Enfilación fiable: objetos lejanos, separados y posterior igual o más alto; Ct = Dv − Da",
+       "dato": "Enfilación: más precisa cuanto mayor es la separación entre los objetos frente a la distancia al anterior (ángulo ≈ x·s/(d1·(d1+s))); posterior igual o más alto; la plantilla marca «lejos y separados»; Ct = Dv − Da",
        "fuente": "Preguntas and-2023-c3-t37, and-2025-c2-t41; RD 875/2014, anexo, programa PER UT 10 (BOE-A-2014-10344) UT 11.3"
       },
       {
@@ -10929,7 +10959,7 @@
      ],
      "chuleta": [
       "Mareas: atracción de la Luna y el Sol (la Luna, más).",
-      "Amplitud = altura PM − altura BM. Duración = horas entre BM y PM (≈ 6 h, variable).",
+      "Amplitud = altura PM − altura BM. Duración = horas entre BM y PM (≈ 6 h 12 min, variable).",
       "Vivas: luna nueva y llena (alineados). Muertas: cuartos (90°).",
       "Cero hidrográfico = Mayor Bajamar Astronómica (LAT). Sonda real = sonda carta + marea.",
       "Baja presión o viento hacia tierra: más agua. Alta presión o viento de tierra: menos (≈ 1 cm/hPa)."
@@ -11113,7 +11143,7 @@
       "Leer las coordenadas de un punto y situar un punto dado en la carta",
       "Medir distancias en la escala correcta",
       "Trazar y medir rumbos y demoras verdaderos con el transportador",
-      "Situar un punto definido respecto a uno o dos faros y reconocer los símbolos básicos de la carta"
+      "Situar un punto definido respecto a uno o dos faros, reconocer los símbolos básicos de la carta y calcular la sonda en pleamar y en bajamar"
      ],
      "pasos": [
       {
@@ -11192,7 +11222,18 @@
       {
        "tipo": "texto",
        "titulo": "Sonda en pleamar y en bajamar",
-       "texto": "El programa incluye también un cálculo de mareas, que se pregunta aparte de los ejercicios de navegación: la sonda que tendrás en la pleamar o en la bajamar.\n\n**Sonda del momento = sonda de la carta + altura de la marea**\n\n- En pleamar: sonda de la carta + altura de la pleamar.\n- En bajamar: sonda de la carta + altura de la bajamar (con su signo, por si es negativa).\n\nLas alturas y las horas se toman del **Anuario de Mareas**, y la hora es siempre la del anuario. Ejemplo: sonda de la carta 3,2 m y pleamar de 2,6 m → **5,8 m**."
+       "texto": "El programa incluye también un cálculo de mareas, que se pregunta aparte de los ejercicios de navegación: la sonda que tendrás en la pleamar o en la bajamar.\n\n**Sonda del momento = sonda de la carta + altura de la marea**\n\n- En pleamar: sonda de la carta + altura de la pleamar.\n- En bajamar: sonda de la carta + altura de la bajamar (con su signo, por si es negativa).\n\nLas alturas y las horas se toman del **Anuario de Mareas**, y la hora es siempre la del anuario. Ejemplo: sonda de la carta 3,2 m y pleamar de 2,6 m → **5,8 m**.\n\nEn los exámenes de Andalucía de 2020 a 2026 no ha salido ninguna pregunta de este cálculo, pero está en el programa: si sale, es una suma."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "La carta da una sonda de 2,4 m y el Anuario, una bajamar de 0,6 m. ¿Qué sonda tendrás en la bajamar?",
+       "opciones": {
+        "a": "1,8 m",
+        "b": "3,0 m",
+        "c": "2,4 m"
+       },
+       "correcta": "b",
+       "explicacion": "Sonda del momento = sonda de la carta + altura de la marea = 2,4 + 0,6 = 3,0 m. La sonda de la carta va referida al cero hidrográfico, que está por debajo de casi todas las bajamares: la marea se suma, no se resta."
       },
       {
        "tipo": "check",
@@ -11218,7 +11259,10 @@
       }
      ],
      "practica": [
-      "and-2025-c2-q45"
+      "and-2025-c2-q45",
+      "and-2025-c2-q43",
+      "and-2025-c2-q42",
+      "and-2021-c2-q44"
      ],
      "chuleta": [
       "Latitud en los márgenes laterales (N); longitud arriba y abajo (W en esta carta). Cada división vale 0,2′.",
@@ -12062,12 +12106,12 @@
      "id": "per-11-8",
      "curso": "per",
      "ut": 11,
-     "titulo": "Demoras no simultáneas (y cuándo no hace falta trasladar)",
+     "titulo": "Marcaciones «más tarde»: cuándo hay que trasladar y cuándo no",
      "minutos": 15,
      "objetivos": [
-      "Situarte con dos demoras tomadas a horas distintas, trasladando la primera",
+      "Entender, como ampliación del Patrón de Yate, cómo se traslada una demora tomada a otra hora",
       "Distinguir un enunciado con observaciones simultáneas de uno con observaciones no simultáneas",
-      "Usar la situación anterior para calcular el rumbo y la distancia navegada"
+      "Medir la distancia navegada desde la situación anterior hasta el corte de las marcaciones"
      ],
      "pasos": [
       {
@@ -12103,7 +12147,7 @@
       {
        "tipo": "texto",
        "titulo": "¿Simultáneas o no?",
-       "texto": "Muchos enunciados de examen empiezan con una situación («a las 12:00 estamos a 4 millas al Sur de Punta Carnero, navegando al Ra 244°») y siguen con «**más tarde** obtenemos marcación al faro A y marcación al faro B».\n\nEsas dos marcaciones se toman **a la vez**: son **simultáneas**. Se cruzan directamente, sin trasladar nada.\n\nLa situación inicial te sirve para dos cosas:\n- Te da el **rumbo**, que necesitas para convertir las marcaciones.\n- Si te lo piden, te permite medir la **distancia navegada**, desde ella hasta el corte."
+       "texto": "Muchos enunciados de examen empiezan con una situación («a las 12:00 estamos a 4 millas al Sur de Punta Carnero, navegando al Ra 244°») y siguen con «**más tarde** obtenemos marcación al faro A y marcación al faro B».\n\nEsas dos marcaciones se toman **a la vez**: son **simultáneas**, aunque el enunciado no diga «simultáneamente». Se cruzan directamente, sin trasladar nada, y así salen las plantillas.\n\nDel principio del enunciado sacas dos cosas:\n- El **rumbo**, que necesitas para convertir las marcaciones.\n- La **situación inicial**, desde la que mides, si te lo piden, la **distancia navegada** hasta el corte.\n\nPara situarte no te hace falta esa situación: el corte de las dos marcaciones ya es tu situación."
       },
       {
        "tipo": "ilustracion",
@@ -12111,7 +12155,7 @@
         "tipo": "traslado-demora",
         "caso": "simultaneas"
        },
-       "texto": "Si las dos marcaciones se toman a la vez, se cruzan sin trasladar; la situación anterior solo da el rumbo y la distancia navegada."
+       "texto": "Si las dos marcaciones se toman a la vez, se cruzan sin trasladar; la situación anterior solo sirve para medir la distancia navegada."
       },
       {
        "tipo": "ojo",
@@ -12137,7 +12181,7 @@
         "c": "Sí, las dos, hasta las 12:00"
        },
        "correcta": "b",
-       "explicacion": "Las dos líneas son de la misma hora. La situación de las 12:00 solo sirve para el rumbo y para medir la distancia navegada."
+       "explicacion": "Las dos líneas son de la misma hora. La situación de las 12:00 no hace falta para situarte: solo sirve para medir la distancia navegada. El rumbo te lo da el enunciado."
       }
      ],
      "practica": [

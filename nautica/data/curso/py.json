@@ -232,7 +232,7 @@
       {
        "tipo": "texto",
        "titulo": "Estabilidad inicial",
-       "texto": "Para escoras pequeñas (hasta unos 10–15°, la **estabilidad inicial**) M es prácticamente un punto fijo. Su altura sobre la quilla es **KM**, que se lee en las curvas hidrostáticas del barco."
+       "texto": "Para escoras pequeñas (hasta unos 10–15°, la **estabilidad inicial**) M es prácticamente un punto fijo. Su altura sobre la quilla es **KM**, que se lee en las **curvas hidrostáticas** del barco (gráficas del constructor que dan KM, KB y otros datos para cada calado)."
       },
       {
        "tipo": "texto",
@@ -457,7 +457,7 @@
       {
        "tipo": "texto",
        "titulo": "Buque duro",
-       "texto": "GM no solo dice si el barco es estable; también cómo se mueve:\n- **GM muy grande → buque duro**: el par adrizante es enorme y el barco vuelve a la vertical de golpe. **Balances rápidos y bruscos**, incómodos, que castigan la estructura, la jarcia y la estiba."
+       "texto": "GM no solo dice si el barco es estable; también cómo se mueve:\n- **GM muy grande → buque duro**: el par adrizante es enorme y el barco vuelve a la vertical de golpe. **Balances rápidos y bruscos**, incómodos, que castigan la estructura, la jarcia (cables y cabos que sujetan y manejan palos y velas) y la estiba."
       },
       {
        "tipo": "texto",
@@ -476,7 +476,7 @@
       {
        "tipo": "texto",
        "titulo": "Lleno, vacío o ancho",
-       "texto": "Un tanque **lleno del todo o vacío** no tiene ese problema, porque el líquido no puede moverse. La pérdida depende de lo **ancho** que sea el tanque, no de cuánto líquido tenga; por eso los mamparos longitudinales la reducen mucho."
+       "texto": "Un tanque **lleno del todo o vacío** no tiene ese problema, porque el líquido no puede moverse. La pérdida depende de lo **ancho** que sea el tanque, no de cuánto líquido tenga; por eso los mamparos longitudinales (tabiques de proa a popa que dividen el tanque) la reducen mucho."
       },
       {
        "tipo": "ilustracion",
@@ -584,6 +584,10 @@
        "texto": "- Flotabilidad mínima: **275 N** en zona 1; **150 N** en zonas **2, 3 y 4**; **100 N** en zonas 5, 6 y 7.\n- Cada chaleco con su **luz**; en zonas 4 a 7, si solo navegas de día, puedes prescindir de ella.\n- Los **hinchables** se revisan **según las instrucciones del fabricante**, en una estación de servicio autorizada."
       },
       {
+       "tipo": "clave",
+       "texto": "**SOLAS** es el Convenio internacional para la seguridad de la vida humana en el mar, de la **OMI** (Organización Marítima Internacional, la agencia de la ONU para el transporte marítimo). Un equipo «tipo SOLAS» cumple el **Código IDS** (Código internacional de dispositivos de salvamento), que desarrolla ese convenio."
+      },
+      {
        "tipo": "texto",
        "titulo": "Cómo es un buen chaleco",
        "texto": "Los requisitos de los chalecos homologados (el Código internacional de dispositivos de salvamento, IDS, para los de tipo SOLAS) que suelen preguntar:\n- Hay que poder ponérselo correctamente, sin ayuda, en **1 minuto** como máximo.\n- Debe **dar la vuelta a una persona inconsciente** y dejarla boca arriba, con la boca fuera del agua; lo hace mejor cuanto mayor es su flotabilidad."
@@ -623,7 +627,7 @@
       {
        "tipo": "texto",
        "titulo": "Línea de amarre y línea de vida",
-       "texto": "- La **línea de amarre** (la que va del arnés al barco) mejor de **cinta** que de cabo: es resistente, no rueda bajo el pie y se ve. Lleva mosquetones de seguridad y mide **2 m como máximo** (norma ISO 12401).\n- La **línea de vida** se tiende de proa a popa por cubierta, **tensa**, y te enganchas a ella **antes** de salir de la bañera."
+       "texto": "- La **línea de amarre** (la que va del arnés al barco) mejor de **cinta** que de cabo: es resistente, no rueda bajo el pie y se ve. Lleva mosquetones de seguridad y mide **2 m como máximo** (norma ISO 12401).\n- La **línea de vida** se tiende de proa a popa por cubierta, **tensa**, y te enganchas a ella **antes** de salir de la bañera (el hueco abierto de la cubierta desde donde se gobierna)."
       },
       {
        "tipo": "ilustracion",
@@ -641,7 +645,7 @@
       {
        "tipo": "texto",
        "titulo": "El aro salvavidas",
-       "texto": "En zonas 1 a 4, **un aro con luz y rabiza** (y en zona 1 otro más, sin necesidad de luz ni rabiza). Requisitos del Código IDS:\n- De **material con flotabilidad intrínseca**: no depende de una cámara que haya que inflar.\n- Diámetro **exterior de 800 mm como máximo** e interior de 400 mm como mínimo."
+       "texto": "En zonas 1 a 4, **un aro con luz y rabiza** (cabo flotante que lo une al barco) (y en zona 1 otro más, sin necesidad de luz ni rabiza). Requisitos del Código IDS:\n- De **material con flotabilidad intrínseca**: no depende de una cámara que haya que inflar.\n- Diámetro **exterior de 800 mm como máximo** e interior de 400 mm como mínimo."
       },
       {
        "tipo": "texto",
@@ -792,7 +796,7 @@
       {
        "tipo": "texto",
        "titulo": "El contenedor",
-       "texto": "La balsa va plegada en una **envoltura o contenedor** que:\n- Es **robusto** frente al desgaste de la mar.\n- Tiene **flotabilidad intrínseca**: con la balsa dentro flota, para poder sacar la boza y disparar el inflado si el barco se hunde.\n- Es **estanco en lo posible**, pero **no del todo**: lleva **orificios de desagüe** en el fondo."
+       "texto": "La balsa va plegada en una **envoltura o contenedor** que:\n- Es **robusto** frente al desgaste de la mar.\n- Tiene **flotabilidad intrínseca**: con la balsa dentro flota, para poder sacar la boza (el cabo que une la balsa al barco) y disparar el inflado si el barco se hunde.\n- Es **estanco en lo posible**, pero **no del todo**: lleva **orificios de desagüe** en el fondo."
       },
       {
        "tipo": "texto",
@@ -1213,7 +1217,7 @@
       {
        "tipo": "texto",
        "titulo": "Cuántos exige la norma",
-       "texto": "Los barcos con **marcado CE** llevan los extintores que diga el **manual del fabricante**; solo si el manual no dice nada se aplican las tablas. Los barcos **sin marcado CE** (y todos los de uso comercial) siguen las tablas del **RD 339/2021, art. 15**, con extintores de eficacia **34B** y **al menos 2 kg** de agente.",
+       "texto": "Los barcos con **marcado CE** (certifica que cumplen la norma europea de recreo) llevan los extintores que diga el **manual del fabricante**; solo si el manual no dice nada se aplican las tablas. Los barcos **sin marcado CE** (y todos los de uso comercial) siguen las tablas del **RD 339/2021, art. 15**, con extintores de eficacia **34B** (apagan un fuego de prueba de 34 litros de líquido) y **al menos 2 kg** de agente.",
        "extra": true
       },
       {
@@ -1225,7 +1229,7 @@
       {
        "tipo": "texto",
        "titulo": "Suma y ubicación",
-       "texto": "- Las dos cuentas **se suman**, salvo con **menos de 10 m** de eslora: ahí los del motor valen también para la eslora.\n\nUno de ellos debe alcanzarse **sin dificultad desde el puesto de gobierno**. Con instalación eléctrica de más de 50 V, uno debe valer para fuegos con tensión; con motor de gas (GLP), uno para fuegos de gases.",
+       "texto": "- Las dos cuentas **se suman**, salvo con **menos de 10 m** de eslora: ahí los del motor valen también para la eslora.\n\nUno de ellos debe alcanzarse **sin dificultad desde el puesto de gobierno**. Con instalación eléctrica de más de 50 V, uno debe valer para fuegos con tensión; con motor de gas (GLP, gas licuado del petróleo: butano o propano), uno para fuegos de gases.",
        "extra": true
       },
       {
@@ -1589,7 +1593,7 @@
       {
        "tipo": "texto",
        "titulo": "La radiobaliza (RLS o EPIRB)",
-       "texto": "La **radiobaliza de localización de siniestros** transmite una alerta de socorro en **406 MHz** hacia los satélites del sistema **Cospas-Sarsat**. La señal lleva codificada la **identidad del barco** (su **MMSI**) y, si tiene receptor GNSS (GPS, Galileo), su posición exacta; si no, los satélites la calculan por efecto Doppler con un error de unos pocos kilómetros."
+       "texto": "La **radiobaliza de localización de siniestros** transmite una alerta de socorro en **406 MHz** hacia los satélites del sistema **Cospas-Sarsat**. La señal lleva codificada la **identidad del barco** (su **MMSI**, número de 9 cifras que identifica su radio) y, si tiene receptor GNSS (GPS, Galileo), su posición exacta; si no, los satélites la calculan por efecto Doppler con un error de unos pocos kilómetros."
       },
       {
        "tipo": "texto",
@@ -1824,7 +1828,7 @@
       {
        "tipo": "texto",
        "titulo": "Antes de que llegue el helicóptero",
-       "texto": "- **Contacta** con él por el **canal 16** de VHF y estate atento a sus instrucciones; puede pasarte a otro canal.\n- **Todos con el chaleco salvavidas** puesto (el chaleco, no el aro).\n- **Despeja la cubierta** de objetos sueltos que el rebufo del rotor pueda levantar."
+       "texto": "- **Contacta** con él por el **canal 16** de VHF y estate atento a sus instrucciones; puede pasarte a otro canal.\n- **Todos con el chaleco salvavidas** puesto (el chaleco, no el aro).\n- **Despeja la cubierta** de objetos sueltos que el rebufo (el chorro de aire) del rotor pueda levantar."
       },
       {
        "tipo": "texto",
@@ -2056,7 +2060,7 @@
       {
        "tipo": "texto",
        "titulo": "Anticiclones",
-       "texto": "**Anticiclón** (A o H): presión que **aumenta hacia el centro**. En superficie el aire **diverge** y en su vertical **desciende** (subsidencia), se calienta y seca: pocas nubes, viento flojo y variable, tiempo estable. Es más extenso, con isobaras separadas, y casi estacionario. En invierno puede traer **nieblas e inversiones térmicas**."
+       "texto": "**Anticiclón** (A o H): presión que **aumenta hacia el centro**. En superficie el aire **diverge** y en su vertical **desciende** despacio (**subsidencia**), se calienta al comprimirse y se seca: pocas nubes, viento flojo y variable, tiempo estable. Es más extenso, con isobaras separadas, y casi estacionario. En invierno puede traer **nieblas e inversiones térmicas** (capas en las que la temperatura sube con la altura)."
       },
       {
        "tipo": "ilustracion",
@@ -2078,7 +2082,7 @@
       {
        "tipo": "texto",
        "titulo": "Vaguadas",
-       "texto": "- **Vaguada**: lengua de **bajas presiones** que se mete entre dos altas, con isobaras en forma de V. Va asociada a **inestabilidad**: nubes, chubascos y posibles tormentas."
+       "texto": "- **Vaguada**: lengua de **bajas presiones** que se mete entre dos altas, con isobaras en forma de V. Va asociada a **inestabilidad** (el aire que empieza a subir sigue subiendo solo): nubes, chubascos y posibles tormentas."
       },
       {
        "tipo": "check",
@@ -2185,7 +2189,7 @@
       {
        "tipo": "texto",
        "titulo": "Ejemplos y estabilidad",
-       "texto": "Así, mP es aire polar marítimo (frío y húmedo: chubascos y buena visibilidad) y cT es tropical continental (cálido y seco, el del Sáhara: calima). Una masa más fría que el suelo que pisa se calienta por abajo y se vuelve **inestable**; una más cálida que el suelo se enfría por abajo y se vuelve **estable** (nubes en capa, lloviznas, nieblas)."
+       "texto": "Así, mP es aire polar marítimo (frío y húmedo: chubascos y buena visibilidad) y cT es tropical continental (cálido y seco, el del Sáhara: calima, polvo en suspensión que enturbia el aire). Una masa más fría que el suelo que pisa se calienta por abajo y se vuelve **inestable**; una más cálida que el suelo se enfría por abajo y se vuelve **estable** (nubes en capa, lloviznas, nieblas)."
       },
       {
        "tipo": "texto",
@@ -2208,7 +2212,7 @@
       {
        "tipo": "texto",
        "titulo": "Frente frío: el frío empuja",
-       "texto": "En el frente frío es el **aire frío el que avanza**: entra como una cuña por debajo del cálido y lo **obliga a subir** de forma brusca, casi en vertical. El resultado son nubes de **desarrollo vertical**, **cumulonimbos**, con **chubascos** fuertes, rachas, tormenta y a veces granizo. La franja nubosa es estrecha y llega casi sin avisar."
+       "texto": "En el frente frío es el **aire frío el que avanza**: entra como una cuña por debajo del cálido y lo **obliga a subir** de forma brusca, casi en vertical. El resultado son nubes de **desarrollo vertical**, **cumulonimbos** (grandes nubes de tormenta con cima en yunque), con **chubascos** fuertes, rachas, tormenta y a veces granizo. La franja nubosa es estrecha y llega casi sin avisar."
       },
       {
        "tipo": "texto",
@@ -2423,7 +2427,7 @@
       {
        "tipo": "texto",
        "titulo": "Viento ciclostrófico",
-       "texto": "- **Viento ciclostrófico**: cuando el giro es tan cerrado y rápido que Coriolis resulta despreciable, el gradiente queda equilibrado por la fuerza centrífuga. Vale para sistemas pequeños e intensos de baja presión, como **tornados y trombas**, o para latitudes muy bajas, donde Coriolis es casi nula. Este modelo admite giro en cualquiera de los dos sentidos."
+       "texto": "- **Viento ciclostrófico**: cuando el giro es tan cerrado y rápido que Coriolis resulta despreciable, el gradiente queda equilibrado por la fuerza centrífuga. Vale para sistemas pequeños e intensos de baja presión, como **tornados y trombas** (tornados sobre el mar), o para latitudes muy bajas, donde Coriolis es casi nula. Este modelo admite giro en cualquiera de los dos sentidos."
       },
       {
        "tipo": "texto",
@@ -2779,7 +2783,7 @@
       {
        "tipo": "texto",
        "titulo": "Tensión de vapor y saturación",
-       "texto": "Dicho con las palabras técnicas que a veces usa el examen: la HR es la razón entre la **tensión de vapor** que tiene el aire y la **tensión saturante** a esa temperatura.\n\nCon 100 % el aire está saturado. Si calientas el aire sin añadir vapor, la HR **baja**; si lo enfrías, la HR **sube**."
+       "texto": "Dicho con las palabras técnicas que a veces usa el examen: la HR es la razón entre la **tensión de vapor** que tiene el aire (la presión de su vapor) y la **tensión saturante** (la máxima posible) a esa temperatura.\n\nCon 100 % el aire está saturado. Si calientas el aire sin añadir vapor, la HR **baja**; si lo enfrías, la HR **sube**."
       },
       {
        "tipo": "texto",
@@ -2863,7 +2867,7 @@
         "c": "Gradiente adiabático húmedo"
        },
        "correcta": "b",
-       "explicacion": "Es la definición de punto de rocío. La HR es un porcentaje y el gradiente adiabático describe cómo se enfría el aire al subir."
+       "explicacion": "Es la definición de punto de rocío. La HR es un porcentaje y el gradiente adiabático describe cómo se enfría el aire al subir (adiabático: sin intercambiar calor con el aire de alrededor; se enfría solo por expandirse)."
       }
      ],
      "practica": [
@@ -2949,7 +2953,7 @@
       {
        "tipo": "texto",
        "titulo": "Por qué se forma una nube",
-       "texto": "Cuando el aire **sube**, encuentra menos presión, se **expande** y se **enfría** (enfriamiento adiabático). Si sigue subiendo hasta llegar a su **punto de rocío**, el vapor se condensa sobre partículas microscópicas (núcleos de condensación) y aparece la nube. La altura a la que eso ocurre, el **nivel de condensación**, es la base de la nube, normalmente plana."
+       "texto": "Cuando el aire **sube**, encuentra menos presión, se **expande** y se **enfría** (enfriamiento **adiabático**: sin ganar ni perder calor con el aire de alrededor). Si sigue subiendo hasta llegar a su **punto de rocío**, el vapor se condensa sobre partículas microscópicas (núcleos de condensación) y aparece la nube. La altura a la que eso ocurre, el **nivel de condensación**, es la base de la nube, normalmente plana."
       },
       {
        "tipo": "texto",
@@ -3007,6 +3011,22 @@
        "tipo": "texto",
        "titulo": "Nubes medias, una a una",
        "texto": "- **Altocúmulos**: capa o grupo de nubecillas **globulares o aplanadas**, blancas o grises, más gordas que los cirrocúmulos.\n- **Altostratos**: velo **grisáceo o azulado**, estriado, fibroso o uniforme, a través del cual el sol se ve como tras un cristal esmerilado, sin halo."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Iridiscencia",
+       "texto": "**Iridiscencia** (irisación): colores suaves, sobre todo **verdes y rosados**, en manchas o en bandas casi paralelas al borde de una nube **fina** cercana al sol o a la luna.\nLa produce la **difracción** de la luz (se curva al rozar las gotitas y se separa en colores) en gotitas muy pequeñas y de tamaño parecido. Se ve sobre todo en **altocúmulos y cirrocúmulos** y en las nubes lenticulares (en forma de lente)."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "«Los estratocúmulos son nubes altas que pueden presentar coloración iridiscente». ¿Por qué es falsa?",
+       "opciones": {
+        "a": "Porque los estratocúmulos son nubes bajas",
+        "b": "Porque la iridiscencia solo se ve en los cumulonimbos",
+        "c": "Porque los estratocúmulos son de desarrollo vertical"
+       },
+       "correcta": "a",
+       "explicacion": "Los estratocúmulos son del piso bajo. La iridiscencia se ve sobre todo en nubes finas medias y altas, como altocúmulos y cirrocúmulos, y no es exclusiva del cumulonimbo."
       },
       {
        "tipo": "texto",
@@ -3159,13 +3179,13 @@
       {
        "tipo": "texto",
        "titulo": "Neblina, calima y visibilidad",
-       "texto": "Si la visibilidad es mayor y la causa es la humedad, se habla de **neblina** o bruma; si la causa son partículas secas (polvo, arena, humo), es **calima**. En los partes de AEMET: niebla, menos de 1 km; mala, 1–4 km; regular, 4–10 km; buena, más de 10 km.",
+       "texto": "Si la visibilidad es mayor y la causa es la humedad, se habla de **neblina** o bruma; si la causa son partículas secas (polvo, arena, humo), es **calima**. En los partes de AEMET (Agencia Estatal de Meteorología): niebla, menos de 1 km; mala, 1–4 km; regular, 4–10 km; buena, más de 10 km.",
        "extra": true
       },
       {
        "tipo": "texto",
        "titulo": "Nieblas de enfriamiento",
-       "texto": "- **De enfriamiento**: el aire se enfría hasta saturarse.\n  - **Radiación**: el suelo pierde calor de noche y enfría el aire que toca.\n  - **Advección**: aire templado y húmedo que se desplaza sobre una superficie más fría.\n  - **Orográfica**: aire que se enfría al subir por una ladera."
+       "texto": "- **De enfriamiento**: el aire se enfría hasta saturarse.\n  - **Radiación**: el suelo pierde calor de noche y enfría el aire que toca.\n  - **Advección** (transporte horizontal de aire por el viento): aire templado y húmedo que se desplaza sobre una superficie más fría.\n  - **Orográfica**: aire que se enfría al subir por una ladera."
       },
       {
        "tipo": "texto",
@@ -3386,6 +3406,22 @@
        "texto": "- **Amplitud**: distancia vertical entre el nivel del mar en calma y la cresta, es decir, la **mitad de la altura**.\n- **Periodo**: **tiempo**, en segundos, entre el paso de **dos crestas** (o dos senos) **consecutivos** por un mismo punto fijo."
       },
       {
+       "tipo": "texto",
+       "titulo": "Frecuencia",
+       "texto": "- **Frecuencia**: número de olas (crestas) que pasan por un punto fijo **en cada segundo**. Es la **inversa del periodo**: **f = 1 / T**.\nCon un periodo de 8 s, f = 1/8 = **0,125 olas por segundo** (hercios), unas 7,5 por minuto.\nNo es una distancia ni un tiempo: la distancia entre crestas es la longitud de onda y el tiempo, el periodo."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Por la boya pasa una cresta cada 5 segundos. ¿Qué es cierto?",
+       "opciones": {
+        "a": "El periodo es 5 s y la frecuencia, 0,2 olas por segundo",
+        "b": "La frecuencia es 5 s",
+        "c": "La longitud de onda es 5 m"
+       },
+       "correcta": "a",
+       "explicacion": "El periodo es el tiempo entre crestas (5 s) y la frecuencia, su inversa: 1/5 = 0,2 olas por segundo. Con un tiempo no se puede saber la longitud de onda en metros."
+      },
+      {
        "tipo": "ilustracion",
        "spec": {
         "tipo": "ola",
@@ -3464,7 +3500,7 @@
         "c": "Las diferencias de temperatura y salinidad"
        },
        "correcta": "b",
-       "explicacion": "La Luna y el Sol causan las mareas, y la temperatura y la salinidad las corrientes termohalinas. Las olas son energía del viento."
+       "explicacion": "La Luna y el Sol causan las mareas, y la temperatura y la salinidad las corrientes termohalinas (las debidas a diferencias de densidad del agua). Las olas son energía del viento."
       }
      ],
      "practica": [
@@ -3645,6 +3681,22 @@
        "tipo": "texto",
        "titulo": "Mediterráneo occidental",
        "texto": "La corriente general la marca el agua atlántica que entra por el Estrecho:\n\n- Frente a **Ceuta** y entre **Málaga y el cabo de Gata**: hacia el **E**.\n- Una rama sigue al **E** pegada a la costa africana y pasa al **E** por el **canal entre Túnez y Sicilia**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Canal de Malta",
+       "texto": "El **canal de Malta** separa **Sicilia de Malta**; es la continuación hacia el E del **canal de Sicilia** (entre Túnez y Sicilia).\nPor él sigue el agua atlántica que entró por el Estrecho, camino del Mediterráneo oriental: la corriente va en general **hacia el E**.\nSale como distractora: «en el canal de Malta la corriente se dirige hacia el N» es **falsa**."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "¿Hacia dónde va en general la corriente en el canal de Malta, entre Sicilia y Malta?",
+       "opciones": {
+        "a": "Hacia el N",
+        "b": "Hacia el E",
+        "c": "Hacia el W"
+       },
+       "correcta": "b",
+       "explicacion": "Es el agua atlántica que entró por el Estrecho y sigue hacia el Mediterráneo oriental: va al E. «Hacia el N» fue la opción falsa del examen de 2025."
       },
       {
        "tipo": "texto",
@@ -3851,7 +3903,7 @@
       {
        "tipo": "texto",
        "titulo": "Longitud como arco de paralelo",
-       "texto": "En las plantillas del PY también se ha dado por buena la longitud como «**arco de paralelo** medido desde Greenwich hasta el meridiano del observador». Tiene sentido: entre dos meridianos, el arco de cualquier paralelo abarca los **mismos grados** que el de ecuador (aunque menos millas, como verás en la loxodrómica)."
+       "texto": "En las plantillas del PY también se ha dado por buena la longitud como «**arco de paralelo** medido desde Greenwich hasta el meridiano del observador». Tiene sentido: entre dos meridianos, el arco de cualquier paralelo abarca los **mismos grados** que el de ecuador (aunque menos millas, como verás en la loxodrómica, la derrota a rumbo constante)."
       },
       {
        "tipo": "ojo",
@@ -3864,7 +3916,7 @@
       {
        "tipo": "texto",
        "titulo": "La inclinación del eje",
-       "texto": "El eje terrestre está inclinado unos 23° 27′ respecto a la perpendicular al plano de la órbita (el ecuador forma ese mismo ángulo con la eclíptica). De ahí salen cuatro paralelos famosos.\n\nSon valores aproximados: la inclinación del eje cambia muy despacio y hoy ronda 23° 26′, pero el examen usa 23° 27′ y 66° 33′."
+       "texto": "El eje terrestre está inclinado unos 23° 27′ respecto a la perpendicular al plano de la órbita (el ecuador forma ese mismo ángulo con la eclíptica, que es ese plano de la órbita). De ahí salen cuatro paralelos famosos.\n\nSon valores aproximados: la inclinación del eje cambia muy despacio y hoy ronda 23° 26′, pero el examen usa 23° 27′ y 66° 33′."
       },
       {
        "tipo": "texto",
@@ -4216,7 +4268,7 @@
       {
        "tipo": "texto",
        "titulo": "Y la velocidad",
-       "texto": "Por convenio, el **viento solo cambia la dirección**; la velocidad sigue siendo la del barco.\n\nLa **corriente cambia rumbo y velocidad**: aparece la **velocidad efectiva (Vef)**, la que mide el GNSS como SOG."
+       "texto": "Por convenio, el **viento solo cambia la dirección**; la velocidad sigue siendo la del barco.\n\nLa **corriente cambia rumbo y velocidad**: aparece la **velocidad efectiva (Vef)**, la que mide el GNSS como SOG (velocidad sobre el fondo)."
       },
       {
        "tipo": "texto",
@@ -4395,7 +4447,7 @@
       {
        "tipo": "texto",
        "titulo": "Loxodrómica",
-       "texto": "- **Loxodrómica**: la línea que corta **todos los meridianos con el mismo ángulo**. Es navegar a **rumbo constante** y en la carta Mercator es una **recta**. No es el camino más corto (salvo siguiendo un meridiano o el ecuador), pero en distancias cortas la diferencia es despreciable.\n\nEn navegación costera y en todos los cálculos del examen se usa la loxodrómica."
+       "texto": "- **Loxodrómica**: la línea que corta **todos los meridianos con el mismo ángulo**. Es navegar a **rumbo constante** y en la carta Mercator (con meridianos y paralelos rectos y perpendiculares) es una **recta**. No es el camino más corto (salvo siguiendo un meridiano o el ecuador), pero en distancias cortas la diferencia es despreciable.\n\nEn navegación costera y en todos los cálculos del examen se usa la loxodrómica."
       },
       {
        "tipo": "texto",
@@ -4547,7 +4599,7 @@
       {
        "tipo": "texto",
        "titulo": "Tiempo universal y hora civil del lugar",
-       "texto": "- **Tiempo Universal (TU)**, también hora civil de Greenwich (HcG o GMT; a efectos prácticos, UTC): el tiempo transcurrido desde el paso del **Sol medio** por el **meridiano inferior de Greenwich**.\n- **Hora Civil del Lugar (HcL)**: el tiempo transcurrido desde el paso del **Sol medio** por el **meridiano inferior del lugar**."
+       "texto": "- **Tiempo Universal (TU)**, también hora civil de Greenwich (HcG o GMT; a efectos prácticos, UTC, el tiempo universal coordinado de los relojes atómicos): el tiempo transcurrido desde el paso del **Sol medio** por el **meridiano inferior de Greenwich**.\n- **Hora Civil del Lugar (HcL)**: el tiempo transcurrido desde el paso del **Sol medio** por el **meridiano inferior del lugar**."
       },
       {
        "tipo": "texto",
@@ -4749,7 +4801,7 @@
       {
        "tipo": "texto",
        "titulo": "Dónde caen en el examen",
-       "texto": "En el examen son las preguntas de mareas del bloque de **carta**. Aquí tienes el concepto y las fórmulas; los problemas completos, con el paso de hora oficial a TU, la marea vaciante y la corrección por presión, los practicas en la lección **«Mareas: sonda en un momento y hora para tener una sonda»** del bloque de carta."
+       "texto": "En el examen son las preguntas de mareas del bloque de **carta**. Aquí tienes el concepto y las fórmulas; los problemas completos, con el paso de hora oficial a TU, la marea vaciante (la que está bajando) y la corrección por presión, los practicas en la lección **«Mareas: sonda en un momento y hora para tener una sonda»** del bloque de carta."
       },
       {
        "tipo": "texto",
@@ -4770,6 +4822,16 @@
        "tipo": "texto",
        "titulo": "La fórmula",
        "texto": "**C = A · sen² (90° · I / D)**\n\n- Altura de la marea: **h = altura BM + C**.\n- **Sonda = sonda de la carta + h**.\n- Inverso: **I = D · arcsen (√(C / A)) / 90°**.\n\nLa tabla del Anuario para un instante cualquiera hace esta misma cuenta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo se lee la tabla",
+       "texto": "En el examen te dan la **tabla para calcular la altura de la marea en un instante cualquiera**:\n1. A la izquierda, busca la columna de **duración D** más próxima (de 4 h a 8 h, cada 15 min).\n2. Baja por ella hasta tu **intervalo I** desde la bajamar.\n3. En esa fila, bajo tu **amplitud A** (de 0,50 a 12 m), lees la **corrección C**, que sumas a la altura de la bajamar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla y fórmula",
+       "texto": "La tabla es la **misma fórmula** ya calculada: cada fila avanza **1/30 de la duración** y C viene redondeada al centímetro.\nSi D, I o A caen entre dos columnas o filas, **interpola**. Así, tabla y fórmula coinciden en **1–2 cm** o **1 minuto**.\nLa app resuelve con la fórmula; tú, en el examen, con la tabla. El ejemplo completo está en la lección de mareas del bloque de carta."
       },
       {
        "tipo": "ilustracion",
@@ -4798,7 +4860,7 @@
       {
        "tipo": "texto",
        "titulo": "Presión",
-       "texto": "El Anuario predice la marea **astronómica**, con presión normal (unos 1013 hPa). El tiempo la modifica:\n- **Presión baja**: el nivel sube, aproximadamente **1 cm por cada hPa** por debajo de la normal.\n- **Presión alta**: el nivel baja en la misma proporción: tendrás **menos** agua de la calculada.\n\nEn el examen usa la tabla de corrección por presión del Anuario cuando te den la presión."
+       "texto": "El Anuario predice la marea **astronómica** (la que producen la Luna y el Sol), con presión normal (unos 1013 hPa). El tiempo la modifica:\n- **Presión baja**: el nivel sube, aproximadamente **1 cm por cada hPa** por debajo de la normal.\n- **Presión alta**: el nivel baja en la misma proporción: tendrás **menos** agua de la calculada.\n\nEn el examen usa la tabla de corrección por presión del Anuario cuando te den la presión."
       },
       {
        "tipo": "texto",
@@ -4954,7 +5016,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Más trampas: los Avisos corrigen **cartas y derroteros** (no «solo cartas», ni «solo derroteros», ni los AVURNAVES); los derroteros **sí se corrigen**, y se hace con los **Avisos** (no con el Almanaque ni con el Libro de Faros); los temporales y preliminares **sí se anotan** (a lápiz); los generales no corrigen nada; y no hace falta pagar ninguna suscripción."
+       "texto": "Más trampas: los Avisos corrigen **cartas y derroteros** (no «solo cartas», ni «solo derroteros», ni los AVURNAVES, los avisos urgentes que van por radio); los derroteros **sí se corrigen**, y se hace con los **Avisos** (no con el Almanaque Náutico, de datos astronómicos, ni con el Libro de Faros); los temporales y preliminares **sí se anotan** (a lápiz); los generales no corrigen nada; y no hace falta pagar ninguna suscripción."
       },
       {
        "tipo": "texto",
@@ -4964,7 +5026,7 @@
       {
        "tipo": "texto",
        "titulo": "Radioavisos costeros y locales",
-       "texto": "- **Costeros**: por **NAVTEX** (518 kHz en inglés, 490 kHz en español); en España los emite Salvamento Marítimo.\n- **Locales**: por VHF, en puertos y sus proximidades."
+       "texto": "- **Costeros**: por **NAVTEX**, un receptor que recibe y muestra solo los avisos náuticos y meteorológicos (518 kHz en inglés, 490 kHz en español); en España los emite Salvamento Marítimo.\n- **Locales**: por VHF, en puertos y sus proximidades."
       },
       {
        "tipo": "ilustracion",
@@ -5079,7 +5141,7 @@
       {
        "tipo": "texto",
        "titulo": "Para qué sirve",
-       "texto": "Así el radar **detecta** costa, barcos, boyas y chubascos y mide su **distancia y posición**; con la función de punteo (ARPA o MARPA) calcula además su rumbo, su velocidad y lo cerca que pasarán. No usa satélites ni muestra cartas: eso es el GNSS y el plotter."
+       "texto": "Así el radar **detecta** costa, barcos, boyas y chubascos y mide su **distancia y posición**; con la función de punteo (ARPA, ayuda de punteo radar automática, o su versión reducida, MARPA) calcula además su rumbo, su velocidad y lo cerca que pasarán. No usa satélites ni muestra cartas: eso es el GNSS y el plotter."
       },
       {
        "tipo": "texto",
@@ -5104,13 +5166,29 @@
       },
       {
        "tipo": "texto",
+       "titulo": "STC y FTC",
+       "texto": "En los mandos y en el examen verás las siglas inglesas:\n- **STC** (*Sensitivity Time Control*) = **anti-clutter de mar (SEA)**: baja la ganancia **cerca del centro** y la recupera con la distancia, porque los ecos de las olas están cerca.\n- **FTC** (*Fast Time Constant*) = **anti-clutter de lluvia (RAIN)**: acorta los ecos grandes y difusos de la lluvia y deja ver los barcos y la costa que hay dentro."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Un chubasco llena de manchas difusas un sector de la pantalla. Además de la ganancia, ¿qué mando tocas?",
+       "opciones": {
+        "a": "El STC",
+        "b": "El FTC",
+        "c": "La sintonía (TUNE)"
+       },
+       "correcta": "b",
+       "explicacion": "El FTC es el anti-clutter de lluvia: acorta los ecos difusos del chubasco. El STC es el anti-clutter de mar y la sintonía no quita perturbaciones."
+      },
+      {
+       "tipo": "texto",
        "titulo": "Qué tocar en cada caso",
        "texto": "Según las plantillas del examen:\n- **Lluvia o granizo**: **ganancia + anti-clutter de lluvia**.\n- **Mar** (olas cerca del centro): **ganancia + anti-clutter de mar**.\n- **Visualización óptima** en general: **sintonía + ganancia**; si la opción completa está, **sintonía, ganancia y perturbaciones de mar y lluvia**."
       },
       {
        "tipo": "texto",
        "titulo": "Barrido sin ecos y otros casos",
-       "texto": "- **Barrido sin ecos** con los anti-clutter apagados: **la sintonía**.\n- **Ganancia al máximo**: no aporta nada bueno; solo ruido.\n\nY lo que no es un ajuste del radar: el **XTE** (es del GNSS)."
+       "texto": "- **Barrido sin ecos** con los anti-clutter apagados: **la sintonía**.\n- **Ganancia al máximo**: no aporta nada bueno; solo ruido.\n\nY lo que no es un ajuste del radar: el **XTE** (error transversal a la ruta, que da el GNSS)."
       },
       {
        "tipo": "ojo",
@@ -5124,7 +5202,7 @@
       {
        "tipo": "texto",
        "titulo": "Lo que no la estropea",
-       "texto": "Lo que **no** estropea la imagen: la **falta de visibilidad**, porque el radar ve igual de noche o con niebla (para eso lo quieres), ni los AIS de las boyas."
+       "texto": "Lo que **no** estropea la imagen: la **falta de visibilidad**, porque el radar ve igual de noche o con niebla (para eso lo quieres), ni los AIS de las boyas (el sistema de identificación automática por VHF; lo verás en la lección 10)."
       },
       {
        "tipo": "texto",
@@ -5136,6 +5214,22 @@
        "titulo": "Movimiento relativo y verdadero",
        "texto": "Y dos modos de movimiento: **relativo** (tu barco fijo en el centro; un barco a tu mismo rumbo y velocidad parece parado) y **verdadero** (la tierra queda fija y tú te mueves).",
        "extra": true
+      },
+      {
+       "tipo": "texto",
+       "titulo": "CPA y TCPA",
+       "texto": "El **ARPA** del radar (o el plotter con AIS) sigue cada blanco y te da:\n- **CPA** (*Closest Point of Approach*): la **distancia mínima** a la que pasará de ti si nadie cambia rumbo ni velocidad.\n- **TCPA** (*Time to CPA*): **cuánto falta** para ese momento.\nCPA pequeño con TCPA corto = **riesgo de abordaje**: maniobra pronto y con claridad."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "El ARPA muestra de un mercante «CPA 0,2 M · TCPA 6 min». ¿Qué significa?",
+       "opciones": {
+        "a": "Que pasará a 0,2 millas de ti dentro de 6 minutos si nadie maniobra",
+        "b": "Que está ahora a 0,2 millas y llegará a tu posición en 6 minutos",
+        "c": "Que navega a 0,2 nudos y te verá en 6 minutos"
+       },
+       "correcta": "a",
+       "explicacion": "El CPA es la distancia mínima a la que pasará y el TCPA, el tiempo que falta para ese momento, si nadie cambia rumbo ni velocidad. 0,2 millas es muy poco: hay riesgo de abordaje."
       },
       {
        "tipo": "texto",
@@ -5168,7 +5262,7 @@
       {
        "tipo": "texto",
        "titulo": "Racon",
-       "texto": "- **Racon**: baliza respondedora instalada en faros, boyas o puentes. Al recibir tu pulso responde y en pantalla aparece una **letra Morse** en línea radial **detrás de su eco**, que la identifica (la marca de un nuevo peligro o pecio usa la «D»).",
+       "texto": "- **Racon**: baliza respondedora instalada en faros, boyas o puentes. Al recibir tu pulso responde y en pantalla aparece una **letra Morse** en línea radial **detrás de su eco**, que la identifica (la marca de un nuevo peligro o pecio (restos de un naufragio) usa la «D»).",
        "extra": true
       },
       {
@@ -5519,7 +5613,7 @@
       {
        "tipo": "texto",
        "titulo": "Carta vectorial",
-       "texto": "- **Vectorial (ENC)**: una **base de datos** construida **objeto a objeto** (cada sonda, boya o veril es un dato), según la norma S-57 de la Organización Hidrográfica Internacional, publicada por un **gobierno** o bajo su autoridad. Permite capas, no se deforma con el zoom y genera **alarmas**: bajos, zonas prohibidas, veril de seguridad.\n\nLas dos se actualizan."
+       "texto": "- **Vectorial (ENC)**: una **base de datos** construida **objeto a objeto** (cada sonda, boya o veril, la línea de igual profundidad, es un dato), según la norma S-57 de la Organización Hidrográfica Internacional, publicada por un **gobierno** o bajo su autoridad. Permite capas, no se deforma con el zoom y genera **alarmas**: bajos, zonas prohibidas, veril de seguridad.\n\nLas dos se actualizan."
       },
       {
        "tipo": "ilustracion",
@@ -5586,7 +5680,7 @@
       {
        "tipo": "texto",
        "titulo": "Clases A y B",
-       "texto": "- **Clase A**: la de los buques obligados por el convenio SOLAS (los de **300 GT o más** en viajes internacionales, los de carga de 500 GT o más en viajes nacionales y **todos los de pasaje**) y, en la UE, los pesqueros de más de 15 m. Emite con 12,5 W y con más frecuencia.\n- **Clase B**: más sencilla y de menos potencia (2 o 5 W); la habitual en **recreo**.",
+       "texto": "- **Clase A**: la de los buques obligados por el convenio SOLAS (los de **300 GT o más** (GT: arqueo bruto, el volumen interior del buque) en viajes internacionales, los de carga de 500 GT o más en viajes nacionales y **todos los de pasaje**) y, en la UE, los pesqueros de más de 15 m. Emite con 12,5 W y con más frecuencia.\n- **Clase B**: más sencilla y de menos potencia (2 o 5 W); la habitual en **recreo**.",
        "extra": true
       },
       {
@@ -5809,7 +5903,7 @@
       {
        "tipo": "texto",
        "titulo": "Corrección total por la Polar",
-       "texto": "La estrella Polar está a **menos de 1° del polo norte celeste** (hoy, unos 0,6°), así que su azimut verdadero se toma como **Zv = 000°**. Si la marcas con la aguja:\n\n**Ct = Zv − Za = 000° − Za**\n\nEl error de suponerla en el polo es menor de 1° en nuestras latitudes (como mucho, unos 0,8° en el Estrecho), y el examen lo desprecia."
+       "texto": "La estrella Polar está a **menos de 1° del polo norte celeste (el punto del cielo al que apunta el eje de la Tierra)** (hoy, unos 0,6°), así que su azimut verdadero se toma como **Zv = 000°**. Si la marcas con la aguja:\n\n**Ct = Zv − Za = 000° − Za**\n\nEl error de suponerla en el polo es menor de 1° en nuestras latitudes (como mucho, unos 0,8° en el Estrecho), y el examen lo desprecia."
       },
       {
        "tipo": "texto",
@@ -7050,7 +7144,7 @@
       {
        "tipo": "texto",
        "titulo": "Problema modelo: directo",
-       "texto": "Datos del Anuario (horas en UT) para un puerto y día de ejemplo:\n- BM 06:10 → 0,80 m\n- PM 12:25 → 3,10 m\n- BM 18:40 → 0,90 m\n\nAdelanto vigente: **+2 horas**. ¿Qué sonda habrá a la hora oficial **11:40** en un bajo con **1,50 m** de sonda en la carta?"
+       "texto": "Datos del Anuario (horas en UT, es decir, TU) para un puerto y día de ejemplo:\n- BM 06:10 → 0,80 m\n- PM 12:25 → 3,10 m\n- BM 18:40 → 0,90 m\n\nAdelanto vigente: **+2 horas**. ¿Qué sonda habrá a la hora oficial **11:40** en un bajo con **1,50 m** de sonda en la carta?"
       },
       {
        "tipo": "texto",
@@ -7080,6 +7174,37 @@
        "tipo": "texto",
        "titulo": "Resolución: inverso",
        "texto": "3. **sen²(90° · I / D) = C / A** = 1,70 / 2,30 = 0,739 → sen = 0,860 → ángulo = 59,3°.\n4. **I** = 375 · 59,3 / 90 ≈ **247 min = 4 h 07 min** después de la BM.\n5. 06:10 + 4:07 = **10:17 UT** → **12:17** hora oficial."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con la tabla: sonda en un momento",
+       "texto": "Examen de 2021: Algeciras, 23 de junio, a las **07:45 UT**, con **3,00 m** en la carta. Anuario: BM 06:24 → 0,14 m; PM 13:03 → 1,00 m.\n1. Ya está en UT. **D** = 6 h 39 min; **A** = 1,00 − 0,14 = **0,86 m**; **I** = 07:45 − 06:24 = **1 h 21 min**.\n2. Columna de duración más próxima: **6 h 45 min**. Bajando por ella, **1 h 21 min** sale justo en una fila."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla: la corrección y la sonda",
+       "texto": "3. En esa fila, la columna de amplitud 0,50 da **0,05** y la de 1,00 da **0,10**. Para 0,86 interpolas: 0,05 + 0,72 × 0,05 = 0,086 ≈ **0,09 m**.\n4. Altura = 0,14 + 0,09 = **0,23 m**; sonda = 3,00 + 0,23 = **3,23 m**.\nOpciones: 3,24 / 3,19 / 2,24 / 3,14. Marca **3,24**, la más próxima y la oficial. Con la fórmula salen 3,22 m."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Con la tabla: hora para una sonda",
+       "texto": "Examen de 2022: 12 de junio, adelanto **+2 h**. ¿A qué hora oficial, entre la primera BM y la segunda PM, habrá **4,35 m** en un bajo de **2,15 m**? Anuario: BM 06:14 → 0,70 m; PM 12:29 → 3,20 m.\n1. h = 4,35 − 2,15 = 2,20 m → **C** = 2,20 − 0,70 = **1,50 m**.\n2. **D** = 6 h 15 min y **A** = 2,50 m: las dos caen justo en una columna."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla: el intervalo y la hora",
+       "texto": "3. Bajo la amplitud 2,50 buscas 1,50: la fila de **3 h 20 min** da 1,38 y la de **3 h 32 min** da 1,51.\n4. Interpolas: 3 h 20 min + 12 min × (1,50 − 1,38) / (1,51 − 1,38) = 3 h 20 min + 11 min = **3 h 31 min**.\n5. 06:14 + 3:31 = **09:45 UT** → **11:45** oficial. Marca **11:46**, la oficial. Con la fórmula, I = 3 h 31,5 min → 11:46."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Tu tramo dura 6 h 39 min. ¿Qué columna de duración usas en la tabla?",
+       "opciones": {
+        "a": "6 h 30 min",
+        "b": "6 h 45 min",
+        "c": "7 h 00 min"
+       },
+       "correcta": "b",
+       "explicacion": "La más próxima: 6 h 45 min está a 6 minutos y 6 h 30 min, a 9. Si el intervalo cae entre dos filas, interpola entre ellas."
       },
       {
        "tipo": "texto",
@@ -7270,7 +7395,7 @@
       {
        "tipo": "texto",
        "titulo": "Resolución (2): la longitud",
-       "texto": "**ΔL = A / cos lm** = 62,8 / cos 20,13° ≈ **66,9′ E** = 1°06,9′ E.\n\nLongitud: 179°30,0′ E + 1°06,9′ = **180°36,9′ E**. Una longitud no pasa de 180°: has **cruzado el antimeridiano** y estás en longitud oeste.\n\n**L = 360° − 180°36,9′ = 179°23,1′ W**.\n\nLlegada: **20°05,7′ N 179°23,1′ W**."
+       "texto": "**ΔL = A / cos lm** = 62,8 / cos 20,13° ≈ **66,9′ E** = 1°06,9′ E.\n\nLongitud: 179°30,0′ E + 1°06,9′ = **180°36,9′ E**. Una longitud no pasa de 180°: has **cruzado el antimeridiano** (el meridiano de 180°) y estás en longitud oeste.\n\n**L = 360° − 180°36,9′ = 179°23,1′ W**.\n\nLlegada: **20°05,7′ N 179°23,1′ W**."
       },
       {
        "tipo": "texto",

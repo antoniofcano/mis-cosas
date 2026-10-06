@@ -15,6 +15,8 @@ import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, g
 import { narrateTheory } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
+import { hojaRespuesta } from '../hoja.js';
+import { icono } from '../iconos.js';
 import { vibrar, quieto, transicion } from '../movimiento.js';
 import { avisoError } from '../aviso-error.js';
 import { enlaceTrampa } from '../mapa-trampa.js';
@@ -86,7 +88,7 @@ export function questionCard(q, o = {}) {
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
       h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
-  return h('article.qcard',
+  return h('article.qcard', { class: o.reveal ? 'revelada' : '' },
     h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
@@ -121,8 +123,13 @@ export function profePanel(q, expl, chosen) {
   }
   const panel = h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
     h('span.profe-badge', '👨‍🏫 El profe'),
-    voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, '🔊') : null,
-    n.display.map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '' }, line)),
+    voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', 'aria-label': 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, icono('escuchar')) : null,
+    // Clave, trampa y regla con su icono de línea (no con emoji).
+    n.display.map((line) => {
+      const tipo = /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '';
+      const ico = { tip: 'bombilla', trap: 'aviso', mnemo: 'temario' }[tipo];
+      return h('p', { class: tipo }, ico ? [icono(ico), ' ', line.replace(/^(💡|⚠️|🧠)\uFE0F?\s*/u, '')] : line);
+    }),
     expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null,
     enlaceResolucion(q),
     ok ? null : enlaceTrampa(q, chosen),
@@ -263,12 +270,12 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab });
       card.replaceWith(nueva);
       card = nueva;
-      setChildren(feedback, profePanel(q, explanationFor(q, explicaciones), k));
       noLaSe.hidden = true;
       siguiente.hidden = false;
       barra.set(null, (i + 1) / n);
-      feedback.focus({ preventScroll: true });
-      feedback.scrollIntoView({ block: 'nearest' });
+      // La corrección sube en un panel desde abajo, con «Continuar» (que es el mismo «Siguiente»).
+      hojaRespuesta(box, { ok: k == null ? null : good, titulo: k == null ? `Era la ${q.correcta})` : undefined,
+        contenido: profePanel(q, explanationFor(q, explicaciones), k), onContinuar: () => siguiente.click(), boton: i === n - 1 ? 'Ver resultado' : 'Continuar' });
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');

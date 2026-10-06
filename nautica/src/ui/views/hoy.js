@@ -68,17 +68,17 @@ export function hoyView({ progress, tit }) {
         ' ', h('a', { href: '#/ajustes' }, 'Cambiar'));
 
     const tarjeta = () => {
-      const [icono, tipo] = TIPO_TXT[principal.tipo] ?? ['', ''];
+      const [ico, tipo] = TIPO_TXT[principal.tipo] ?? ['', ''];
       return h('section.tarjeta-hoy',
         h('p.rotulo', 'Hoy toca'),
         h('h2', principal.titulo),
-        h('p.linea', `${icono} ${tipo}${principal.tramo ? ` · tramo ${principal.tramo.i} de ${principal.tramo.de}` : ''} · unos ${principal.minutos} minutos`),
+        h('p.linea', ico ? icono(ico) : null, ` ${tipo}${principal.tramo ? ` · tramo ${principal.tramo.i} de ${principal.tramo.de}` : ''} · unos ${principal.minutos} minutos`),
         h('a.btn.grande', { href: hrefActividad(tit, principal) }, `${principal.verbo} →`));
     };
     const hueco = h('div');
     if (minutos >= objetivo) {
       setChildren(hueco, h('section.tarjeta-hoy.hecho',
-        h('div.icono-grande', { 'aria-hidden': 'true' }, '✅'),
+        h('div.icono-grande', icono('ok')),
         h('h2', 'Hecho por hoy'),
         h('p', `Has estudiado ${minutos} minutos. Mañana toca: ${principal.titulo}.`),
         h('button.secondary.grande', { type: 'button', onclick: () => setChildren(hueco, tarjeta()) }, 'Seguir un poco más')));
@@ -115,7 +115,7 @@ export function hoyView({ progress, tit }) {
         h('p.ver-progreso', h('a.btn.secondary.boton-icono', { href: '#/progreso' }, icono('progreso'), 'Ver mi progreso por temas'))),
       avisoCopia(progress),
       resto.length ? [h('h2', 'Después'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },
-        h('h3', x.titulo), h('p', `${(TIPO_TXT[x.tipo] ?? [''])[0]} unos ${x.minutos} minutos`))))] : null,
+        h('h3', x.titulo), h('p', TIPO_TXT[x.tipo] ? icono(TIPO_TXT[x.tipo][0]) : null, ` unos ${x.minutos} minutos`))))] : null,
       h('p.ver-todo', h('a', { href: tlink(tit, ['temario']) }, 'Ver todo el temario →')),
     );
   }).catch((e) => setChildren(el, cabecera, h('p.warn', `No se pudo preparar el plan: ${e.message}`)));

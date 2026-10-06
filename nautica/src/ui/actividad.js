@@ -2,6 +2,7 @@
 // texto de avance en el centro, un hueco opcional a la derecha (reloj) y barra de progreso.
 
 import { h } from './dom.js';
+import { icono } from './iconos.js';
 
 /**
  * @param {{ texto: string, fraccion?: number, onSalir?: () => void, derecha?: Node }} o
@@ -12,7 +13,7 @@ export function barraActividad({ texto, fraccion = 0, onSalir, derecha = null })
   const fill = h('span');
   const el = h('div.barra-actividad',
     h('div.ba-fila',
-      h('button.ba-salir.secondary', { type: 'button', onclick: () => (onSalir ? onSalir() : (location.hash = '#/')) }, '✕ Salir'),
+      h('button.ba-salir', { type: 'button', 'aria-label': 'Salir', title: 'Salir', onclick: () => (onSalir ? onSalir() : (location.hash = '#/')) }, icono('salir')),
       label,
       h('span.ba-derecha', derecha)),
     h('div.ba-progreso', fill));

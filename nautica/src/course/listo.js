@@ -1,3 +1,4 @@
+import { cuenta } from '../texto.js';
 // ¿Estoy listo? Probabilidad de aprobar el examen con las reglas reales (aciertos mínimos y fallos máximos por
 // bloque), a partir de lo que el alumno acierta en cada tema. Funciones puras.
 //
@@ -110,13 +111,13 @@ export function lineaListo(r) {
   if (r.estado === 'faltan-datos') {
     const nombres = r.temasSinDatos.map((t) => t.titulo);
     const lista = nombres.length > 3 ? `${nombres.slice(0, 3).join(', ')} y ${nombres.length - 3} más` : nombres.join(', ').replace(/, ([^,]*)$/, ' y $1');
-    return `Para saber si estás listo necesito que respondas al menos ${MIN_RESPUESTAS} preguntas de cada tema. Te faltan: ${lista}.`;
+    return `Para saber si estás listo necesito que respondas al menos ${cuenta(MIN_RESPUESTAS, 'pregunta')} de cada tema. Te faltan: ${lista}.`;
   }
   const de10 = Math.round(r.prob * 10);
   const base = r.estado === 'listo' ? '✅ Estás listo' : r.estado === 'casi' ? 'Casi' : 'Todavía no';
   let txt = `${base}: con lo que aciertas ahora aprobarías unas ${de10} de cada 10 veces.`;
   const s = r.simulacros;
-  if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${s.hechos} simulacros`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta.`;
+  if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${cuenta(s.hechos, 'simulacro')}`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta.`;
   else txt += ' Haz un simulacro completo: es la mejor prueba.';
   if (r.limitante) {
     const t = r.limitante;

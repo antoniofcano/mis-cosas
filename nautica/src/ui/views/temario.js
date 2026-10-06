@@ -14,18 +14,19 @@ import { cargarMapas } from './mapas.js';
 import { mapasDeClases } from '../../course/mapas.js';
 import { episodiosDeTema, enlaceEpisodio } from './podcast.js';
 import { estadoEpisodio } from '../radio.js';
+import { cuenta } from '../../texto.js';
 
 const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', vista: 'vista · falta practicarla', repasar: 'toca repasar', dominada: 'aprendida' };
 const ESTADO_CLS = { dominada: 'ok', vista: 'ok', repasar: 'warn', empezada: 'close' };
 
 /** Línea de estado de un tema (§4.2): cuántas clases lleva y, con datos suficientes, cuánto acierta (no es el avance). */
 export function lineaEstado(e) {
-  const clases = e.clases.total ? `${e.clases.terminadas} de ${e.clases.total} clases` : null;
+  const clases = e.clases.total ? `${e.clases.terminadas} de ${cuenta(e.clases.total, 'clase')}` : null;
   const juntar = (...xs) => xs.filter(Boolean).join(' · ');
   switch (e.estado) {
     case 'sin-empezar': return 'Sin empezar';
-    case 'bien': return juntar('Vas bien', clases, `${e.hechas} preguntas hechas`, `aciertas el ${e.pct} %`);
-    case 'repasar': return juntar('Conviene repasar', clases, `${e.hechas} preguntas hechas`, `aciertas el ${e.pct} %`);
+    case 'bien': return juntar('Vas bien', clases, `${cuenta(e.hechas, 'pregunta hecha', 'preguntas hechas')}`, `aciertas el ${e.pct} %`);
+    case 'repasar': return juntar('Conviene repasar', clases, `${cuenta(e.hechas, 'pregunta hecha', 'preguntas hechas')}`, `aciertas el ${e.pct} %`);
     default: return juntar('En marcha', clases, e.hechas ? `${e.hechas} ${e.hechas === 1 ? 'pregunta hecha' : 'preguntas hechas'}` : null);
   }
 }
@@ -42,14 +43,14 @@ export function temarioView({ progress, tit }) {
     const hoyUt = d.plan[0]?.ut ?? null;
     const filas = d.st.temas; // del motor
     summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`).join('\n')}` +
-      `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${TANDA} preguntas`;
+      `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${cuenta(TANDA, 'pregunta')}`;
     setChildren(el,
       h('h1', `Temario del ${T.sigla}`),
-      h('p.muted', 'En el orden en que te recomendamos estudiarlo: primero lo que más pesa en el examen y más práctica pide.'),
+      h('p.muted', 'En el orden en que te recomendamos estudiarlo: primero la base y los temas en los que se suspende por fallos; el resto, al final.'),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]) },
         b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null,
         h('h3', `${b.icon} ${b.titulo}`),
-        h('p', `${b.n} preguntas en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
+        h('p', `${cuenta(b.n, 'pregunta')} en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
         h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
         e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))),
       h('details', h('summary', 'Reglas del examen'), h('ul', T.reglas.map((r) => h('li', r)))),
@@ -61,7 +62,7 @@ export function temarioView({ progress, tit }) {
 // ---------------------------------------------------------------------------
 // #/<tit>/temario/<ut>
 
-const lista = (xs) => (xs.length > 4 ? `${xs.slice(0, 3).join(', ')} y ${xs.length - 3} conceptos más` : xs.length === 1 ? xs[0] : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`);
+const lista = (xs) => (xs.length > 4 ? `${xs.slice(0, 3).join(', ')} y ${cuenta(xs.length - 3, 'concepto')} más` : xs.length === 1 ? xs[0] : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`);
 
 export function temaView({ progress, params: route, tit }) {
   if (route.parts[2] === 'chuleta') return chuletaView({ tit, params: route, progress });
@@ -80,7 +81,7 @@ export function temaView({ progress, params: route, tit }) {
     const tanda = tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed() });
     const principal = aMedias ? h('a.btn.grande', { href: tlink(tit, ['curso', aMedias.l.id]) }, `Continuar: ${aMedias.l.titulo}`)
       : nueva ? h('a.btn.grande', { href: tlink(tit, ['curso', nueva.l.id]) }, `Empezar: ${nueva.l.titulo}`)
-        : h('a.btn.grande', { href: tanda }, `Hacer ${TANDA} preguntas`);
+        : h('a.btn.grande', { href: tanda }, `Hacer ${cuenta(TANDA, 'pregunta')}`);
     summaryText = `VISTA tema ${T.sigla} ${b.titulo} · examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · fallos pendientes ${e.fallos}\n` +
       clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado} → #/${tit}/curso/${l.id}`).join('\n');
     // Los mapas de conceptos con nodos en las clases del tema (llegan cuando cargan).
@@ -110,7 +111,7 @@ export function temaView({ progress, params: route, tit }) {
       setChildren(radioTema, h('h2', '🎧 Escúchalo'),
         h('p.muted.small', pan ? 'Empieza por el panorama para situarte; luego, cada episodio va con sus clases.' : 'Cada episodio va con sus clases.'),
         pan ? fila(pan) : null, resto.map(fila),
-        conAudio.length < eps.length ? h('p.muted.small', `${eps.length - conAudio.length} episodios más de este tema en el astillero.`) : null);
+        conAudio.length < eps.length ? h('p.muted.small', `${cuenta(eps.length - conAudio.length, 'episodio')} más de este tema en el astillero.`) : null);
       radioTema.hidden = false;
       summaryText += `\nPODCASTS: ${conAudio.map((e) => `${e.n} ${e.titulo}`).join('; ')}`;
     }).catch(() => {});
@@ -126,7 +127,7 @@ export function temaView({ progress, params: route, tit }) {
       h('section', h('h2', 'Preguntas de examen'),
         e.hechas ? h('p', `${e.hechas} de ${e.total} hechas`) : null,
         h('div.actions',
-          h('a.btn.secondary', { href: tanda }, `Hacer ${TANDA} preguntas`),
+          h('a.btn.secondary', { href: tanda }, `Hacer ${cuenta(TANDA, 'pregunta')}`),
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
       radioTema,
       h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, '🖨️ Chuleta del tema para imprimir')),

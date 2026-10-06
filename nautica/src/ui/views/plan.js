@@ -10,6 +10,7 @@ import { lineaAvance } from '../../course/plan.js';
 import { diaLocal } from '../../store/progress.js';
 import { cargarMapas } from './mapas.js';
 import { mapasEliminatorios } from '../../course/mapas.js';
+import { cuenta, fechaLarga } from '../../texto.js';
 
 const DIAS_MAPAS = 14; // en la recta final, repaso de los temas eliminatorios con los mapas
 
@@ -21,7 +22,7 @@ function repasoMapas(tit, estructura, quedan) {
     if (!xs.length) return;
     const temas = [...new Map(xs.flatMap((x) => x.temas).map((b) => [b.ut, b])).values()].sort((a, b) => a.ut - b.ut);
     setChildren(el, h('h2', '🕸️ Repaso con los mapas'),
-      h('p', `${quedan === 1 ? 'Queda 1 día' : `Quedan ${quedan} días`}. En los temas eliminatorios (${temas.map((b) => b.titulo).join(', ')}) se suspende por confundir conceptos: haz cada día una ronda del juego de uno de estos mapas.`),
+      h('p', `${quedan === 1 ? 'Queda 1 día' : `Quedan ${cuenta(quedan, 'día')}`}. En los temas eliminatorios (${temas.map((b) => b.titulo).join(', ')}) se suspende por confundir conceptos: haz cada día una ronda del juego de uno de estos mapas.`),
       h('div.cards', xs.map(({ mapa, temas: ts }) => h('a.card', { href: tlink(tit, ['mapas', mapa.id], { v: 'jugar' }) },
         h('h3', `🎯 ${mapa.titulo}`), h('p.muted.small', ts.map((b) => b.titulo).join(' · '))))));
     el.hidden = false;
@@ -29,7 +30,6 @@ function repasoMapas(tit, estructura, quedan) {
   return el;
 }
 
-const fecha = (iso, o = { weekday: 'long', day: 'numeric', month: 'long' }) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-ES', o); };
 const ICONO = { clase: '🎓', chuleta: '📌', tanda: '✏️', simulacro: '📝' };
 const lunes = (iso) => { const [y, m, d] = iso.split('-').map(Number); const dow = (new Date(y, m - 1, d).getDay() + 6) % 7; return sumaDiasISO(iso, -dow); };
 
@@ -70,7 +70,7 @@ export function planView({ progress, tit }) {
 
     setChildren(el,
       h('h1', 'Mi plan hasta el examen'),
-      h('p.muted', `Examen: ${fecha(plan.fechaExamen)} · ${plan.minutosDia} minutos al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes' }, 'cambiar')),
+      h('p.muted', `Examen: ${fechaLarga(plan.fechaExamen)} · ${cuenta(plan.minutosDia, 'minuto')} al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes' }, 'cambiar')),
       // El mismo mensaje del día que en Hoy (motor): con la meta cumplida, no pide más.
       h('div.ritmo', { class: d.st.mensaje.aviso ? 'warn' : '' }, h('p', marcaEstado(d.st.mensaje.tipo === 'toca' ? seg.estado : 'al-dia')[0], d.st.mensaje.texto),
         d.st.mensaje.detalle ? h('p.muted.small', d.st.mensaje.detalle) : null,
@@ -78,7 +78,7 @@ export function planView({ progress, tit }) {
       avisoEsencial(progress, tit, T.estructura, () => pinta()),
       // Los días de simulacro pasan del tope diario: se avisa al principio para reservarlos.
       (() => { const sims = seg.futuro.dias.filter((dia) => dia.unidades.some((u) => u.tipo === 'simulacro') && dia.minutos > plan.minutosDia);
-        return sims.length ? h('p.aviso-simulacros', icono('reloj'), ` ${sims.length === 1 ? 'Un día' : `${sims.length} días`} del final ${sims.length === 1 ? 'es' : 'son'} de simulacro (${duracion(T.estructura.duracionMin)} cada uno, más que tus ${plan.minutosDia} minutos): resérvalos. Son ${sims.map((dia) => fecha(dia.fecha)).join(', ')}.`) : null; })(),
+        return sims.length ? h('p.aviso-simulacros', icono('reloj'), ` ${sims.length === 1 ? 'Un día' : `${cuenta(sims.length, 'día')}`} del final ${sims.length === 1 ? 'es' : 'son'} de simulacro (${duracion(T.estructura.duracionMin)} cada uno, más que tus ${cuenta(plan.minutosDia, 'minuto')}): resérvalos. Son ${sims.map((dia) => fechaLarga(dia.fecha)).join(', ')}.`) : null; })(),
       (() => { const quedan = Math.round((new Date(`${plan.fechaExamen}T12:00`) - new Date(`${hoy}T12:00`)) / 864e5); return quedan > 0 && quedan <= DIAS_MAPAS ? repasoMapas(tit, T.estructura, quedan) : null; })(),
       // El mismo avance que en Hoy y Progreso.
       (() => { const c = d.st.camino; return [
@@ -87,12 +87,12 @@ export function planView({ progress, tit }) {
         h('p.muted.small', lineaAvance(c))]; })(),
       seg.atrasadas.length ? h('section.plan-recuperar', h('h2', 'Para recuperar'),
         h('ul.plan-unidades', seg.atrasadas.map((u) => h('li', h('a', { href: hrefActividad(tit, u) }, `${ICONO[u.tipo] ?? ''} ${u.titulo}`),
-          h('span.muted.small', ` · tocaba el ${fecha(u.fecha, { weekday: 'long', day: 'numeric' })}`)))),
+          h('span.muted.small', ` · tocaba el ${fechaLarga(u.fecha)}`)))),
         h('p.muted.small', 'Ya están puestas al principio de los próximos días.')) : null,
       [...semanas].map(([k, dias], i) => {
-        const titulo = k <= hoy ? 'Esta semana' : `Semana del ${fecha(k, { day: 'numeric', month: 'long' })}`;
+        const titulo = k <= hoy ? 'Esta semana' : `Semana del ${fechaLarga(k)}`;
         const diasEl = dias.map((dia) => h('div.plan-dia', { class: dia.fecha === hoy ? 'hoy' : '' },
-          h('h3', dia.fecha === hoy ? `Hoy, ${fecha(dia.fecha, { day: 'numeric', month: 'long' })}` : fecha(dia.fecha),
+          h('h3', dia.fecha === hoy ? `Hoy · ${fechaLarga(dia.fecha)}` : fechaLarga(dia.fecha),
             dia.minutos ? h('span.muted.small', ` · ${dia.minutos} min`) : null),
           dia.unidades.length ? h('ul.plan-unidades', dia.unidades.map((u) => unidad(u, dia.fecha === hoy))) : h('p.muted.small', 'Libre: repasa tus fallos o descansa.')));
         // Las dos primeras semanas, abiertas; las demás, plegadas con su resumen.
@@ -102,9 +102,9 @@ export function planView({ progress, tit }) {
       }),
       seg.futuro.fuera.length ? h('details.plan-fuera', h('summary', `Sin hueco antes del examen: ${describir(seg.futuro.fuera)}`),
         h('ul.plan-unidades', seg.futuro.fuera.map((u) => h('li', `${ICONO[u.tipo] ?? ''} ${u.titulo}`, h('span.muted.small', ` · ${u.minutos} min`))))) : null,
-      h('div.plan-dia.examen', h('h3', `🏁 Examen: ${fecha(plan.fechaExamen)}`)),
+      h('div.plan-dia.examen', h('h3', `🏁 Examen: ${fechaLarga(plan.fechaExamen)}`)),
       pasados.length ? h('details.plan-pasados', h('summary', `Días pasados (${pasados.length})`),
-        pasados.map(([f, xs]) => h('div.plan-dia', h('h3', fecha(f)),
+        pasados.map(([f, xs]) => h('div.plan-dia', h('h3', fechaLarga(f)),
           h('ul.plan-unidades', xs.map((x) => h('li', { class: atrasadas.has(x.id) ? 'saltada' : 'hecha' }, `${x.titulo}${atrasadas.has(x.id) ? ' — sin hacer' : ' ✓'}`)))))) : null,
       h('section.plan-acciones',
         h('p.muted.small', 'El plan se recalcula solo: lo que adelantas sale del calendario y lo que se queda atrás pasa a los días siguientes. Si prefieres empezar de cero desde hoy:'),

@@ -5,6 +5,7 @@ import { BUOYS } from './buoys.js';
 import { SHIPS } from './ships.js';
 import { SENALES } from './situations.js';
 import { CATALOGO, renderIllustration } from './index.js';
+import { bloquesEnOrden } from '../theory/blocks.js';
 
 const boyas = [{ tipo: 'cardinales' }, ...Object.keys(BUOYS).filter((k) => !k.startsWith('cardinal')).map((clase) => ({ tipo: 'boya', clase }))];
 const ritmos = ['Fl(2) 5s', 'Q', 'Iso 4s', 'Oc 6s', 'LFl 10s', 'Mo(A) 6s'].map((ritmo) => ({ tipo: 'ritmo', ritmo }));
@@ -88,14 +89,15 @@ export function fichaLamina(spec) {
 }
 
 /**
- * Catálogo de una titulación: temas (en el orden de la estructura) con los ids de sus láminas, y cada lámina una
+ * Catálogo de una titulación: temas (en el orden de estudio) con los ids de sus láminas, y cada lámina una
  * sola vez con su spec, título, resumen, temas y clases en que sale.
  * @param {{ bloques: { ut: number }[] }} estructura
  * @param {object|null} curso  data/curso/<tit>.json
  */
 export function catalogoLaminas(tit, estructura, curso) {
   const porId = new Map();
-  const temas = new Map(estructura.bloques.map((b) => [b.ut, []]));
+  // En el orden de estudio, el mismo de Temario, Examen y Progreso.
+  const temas = new Map(bloquesEnOrden(estructura).map((b) => [b.ut, []]));
   const anota = (spec, ut, clase) => {
     if (!temas.has(ut)) return;
     const id = idLamina(spec);

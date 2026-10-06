@@ -79,7 +79,7 @@ button.small { min-height: 44px; padding: .4rem .8rem; font-size: .9rem; }
 a.btn.grande { display: flex; align-items: center; justify-content: center; }
 button:disabled { opacity: .45; cursor: default; }
 .actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; align-items: center; }
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .75rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: .75rem; }
 .card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; text-decoration: none; color: var(--text); }
 .card:hover { border-color: var(--accent); }
 .card p { margin: .2rem 0 .5rem; color: var(--muted); font-size: 1rem; }
@@ -284,8 +284,8 @@ a.qdot.done { background: var(--accent); color: #fff; border-color: var(--accent
 tr.bad td { color: var(--warn); font-weight: 600; }
 a.card[aria-disabled="true"] { opacity: .6; }
 /* Ilustraciones de teoría */
-.il-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .8rem; }
-.il-grid.inline { margin-top: .5rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.il-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: .8rem; }
+.il-grid.inline { margin-top: .5rem; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); }
 .il-figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .5rem; }
 .il-figure figcaption { font-size: .9rem; color: var(--muted); margin: .35rem .2rem; white-space: pre-line; }
 .il-svg svg.il { display: block; width: 100%; height: auto; color: var(--text); font-family: system-ui, sans-serif; }
@@ -309,7 +309,7 @@ svg.il .il-part.on { stroke: #e11d48; fill: #e11d48; font-weight: 700; } svg.il 
 .portada .hero { padding: 1rem 0 .5rem; }
 .portada .hero h1 { margin-bottom: .3rem; }
 .portada .lead { font-size: 1.05rem; max-width: 60rem; }
-.tit-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+.tit-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
 .tit-card { display: flex; gap: 1rem; padding: 1rem; background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); }
 .tit-card:hover, .tit-card.last { border-color: var(--accent); }
 .tit-card h2 { margin: 0 0 .3rem; }
@@ -318,7 +318,7 @@ svg.il .il-part.on { stroke: #e11d48; fill: #e11d48; font-weight: 700; } svg.il 
 .tit-head { display: flex; gap: .8rem; align-items: center; }
 .tit-head h1 { margin: 0; }
 .tit-head p { margin: .2rem 0 0; }
-.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .8rem; margin: 1rem 0; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: .8rem; margin: 1rem 0; }
 .path { display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); }
 .path:hover { border-color: var(--accent); }
 .path h2 { margin: 0 0 .3rem; font-size: 1.2rem; }
@@ -532,7 +532,7 @@ select { min-height: 44px; }
 .lam-mando input[type="range"] { width: 100%; height: 44px; margin: 0; accent-color: var(--accent); }
 .lam-extremos { display: flex; justify-content: space-between; gap: .5rem; font-size: 1rem; color: var(--muted); }
 .lam-lectura { margin: 0; background: var(--accent-2); border-radius: var(--radius); padding: .7rem .8rem; }
-.lam-casillas { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .5rem; }
+.lam-casillas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: .5rem; }
 .lam-casillas div { background: var(--accent-2); border-radius: var(--radius); padding: .5rem .7rem; min-width: 0; }
 .lam-casillas b { display: block; font-size: 1rem; color: var(--muted); font-weight: 600; }
 .lam-cadena { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .3rem; }
@@ -556,7 +556,7 @@ select { min-height: 44px; }
 
 /* Galería de láminas: rejilla de miniaturas por tema y ficha de cada lámina */
 .filtro-laminas { width: 100%; min-height: 48px; font-size: 1.05rem; padding: .5rem .8rem; margin: .4rem 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
-.rejilla-laminas { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .6rem; }
+.rejilla-laminas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: .6rem; }
 a.miniatura { display: flex; flex-direction: column; gap: .3rem; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .4rem; }
 a.miniatura:hover, a.miniatura:focus-visible { border-color: var(--accent); }
 a.miniatura[hidden], section.tema-laminas[hidden] { display: none; }
@@ -1013,3 +1013,32 @@ html:has(body.con-hoja), body.con-hoja { overflow: hidden; }
 }
 .hoja-cuerpo .profe > button.speak { float: right; margin: 0 0 .3rem .6rem; }
 .hoja:not(.ok):not(.bad) .hoja-titulo { color: var(--accent); }
+
+/* Pantallas muy estrechas: móvil pequeño o zoom del navegador al 200 % (≈ 195 px de ancho útil). Nada se sale
+   por los lados y toda zona pulsable sigue midiendo al menos 48 px. */
+@media (max-width: 340px) {
+  header.top { gap: .3rem; padding: 0 .5rem; }
+  header.top .brand { font-size: 1rem; min-width: 0; overflow: hidden; }
+  header.top .tit-label { padding: 0 .55rem; min-width: 48px; min-height: 48px; }
+  header.top a.ajustes { min-width: 48px; min-height: 48px; }
+  .menu-tit { position: fixed; left: 8px; right: 8px; top: 60px; min-width: 0; }
+  .tabbar a.tab { flex: 1 1 0; min-width: 0; padding: 0; }
+  .tabbar .tab-txt { font-size: 11px; letter-spacing: -.02em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fila-inferior > * { min-width: 0; }
+  .fila-inferior .grande { padding-left: .4rem; padding-right: .4rem; font-size: 1rem; }
+  .minutos-ajuste .atajos button { flex: 1 1 40%; min-height: 48px; }
+  .minutos-ajuste .stepper { grid-template-columns: 48px minmax(0, 1fr) 48px; gap: .3rem; }
+  .meta-hoy { flex-wrap: wrap; padding: .8rem; }
+  .meta-hoy p { min-width: 0; }
+  a.opcion-tit { grid-template-columns: minmax(0, 1fr) auto; }
+  .card, main { min-width: 0; overflow-wrap: anywhere; }
+}
+
+/* El panel de respuesta recibe el foco al abrirse: sin marco con el dedo, con marco visible con teclado. */
+.hoja:focus { outline: none; }
+.hoja:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+/* Láminas y diagramas con tope de altura: caben en pantalla con sus mandos (el dibujo se reduce, no se corta). */
+.il-svg svg, .lamina-interactiva svg { max-height: 58vh; max-height: 58dvh; }
+.il-svg, .lamina-interactiva { text-align: center; }
+@media (max-height: 600px) { .il-svg svg, .lamina-interactiva svg { max-height: 42vh; max-height: 42dvh; } }

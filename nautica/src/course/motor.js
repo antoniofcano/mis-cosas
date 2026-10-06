@@ -11,6 +11,7 @@ import { estadoTema, avance, planHoy, ritmoEstudio, diasHasta } from './plan.js'
 import { avanceCamino, unidades, temasDePocoPeso, crearPlan, planCaducado, seguimiento, alternativaEsencial, describir, duracion } from './calendario.js';
 import { estoyListo } from './listo.js';
 import { SEG_TARJETA } from './engine.js';
+import { cuenta, fechaLarga } from '../texto.js';
 
 /**
  * @typedef {object} Entrada
@@ -76,7 +77,7 @@ export function estadoAlumno(e) {
 
   const ritmo = ritmoEstudio(d);
   const listo = estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
-  const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal });
+  const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
   const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
 
   return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ritmo, listo, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
@@ -90,14 +91,14 @@ export function estadoAlumno(e) {
  * - toca: lo normal; el texto dice cómo vas (la actividad la pinta la tarjeta, no se repite aquí).
  * @returns {{ tipo: 'terminado'|'hecho'|'hecho-atraso'|'descanso'|'toca', texto: string, detalle: string|null, aviso: boolean }}
  */
-export function mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal }) {
+export function mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora = Date.now() }) {
   const seg = plan?.seg ?? null;
   if (principal?.tipo === 'examen-en-curso') return { tipo: 'toca', texto: 'Tienes un examen a medias: termínalo.', detalle: null, aviso: false };
   if (seg ? seg.estado === 'terminado' : !ritmo.minutosPendientes) return { tipo: 'terminado', texto: 'Has hecho todo el plan: ahora, simulacros y repasar tus fallos.', detalle: null, aviso: false };
   if (dia.cumplida) {
     // Hoy no se pide más; pero si con estos minutos no se llega al examen, se dice (es una decisión que tomar).
     const noLlega = seg?.estado === 'no-llega';
-    const detalle = noLlega ? `Pero con ${objetivo} minutos al día no llegas al examen: hacen falta unos ${seg.futuro.minutosNecesarios}.` : null;
+    const detalle = noLlega ? `Pero con ${cuenta(objetivo, 'minuto')} al día no llegas al examen: hacen falta unos ${seg.futuro.minutosNecesarios}.` : null;
     const atraso = seg && (seg.estado === 'atrasado' || noLlega) && seg.atrasadas.length;
     if (atraso) return { tipo: 'hecho-atraso', texto: `Hoy has cumplido. Queda por recuperar ${describir(seg.atrasadas)} (${duracion(seg.minutosAtraso)}), repartido en los próximos días.`, detalle, aviso: noLlega };
     return { tipo: 'hecho', texto: 'Hoy has cumplido.', detalle, aviso: noLlega };
@@ -106,18 +107,18 @@ export function mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, princip
   if (seg) {
     if (seg.estado === 'no-llega') {
       const falta = seg.futuro.fuera.reduce((t, u) => t + u.minutos, 0);
-      return { tipo: 'toca', texto: `Con ${objetivo} minutos al día no te da tiempo: se quedarían fuera ${describir(seg.futuro.fuera)} (${duracion(falta)}).`,
-        detalle: `Para llegar, unos ${seg.futuro.minutosNecesarios} minutos al día.`, aviso: true };
+      return { tipo: 'toca', texto: `Con ${cuenta(objetivo, 'minuto')} al día no te da tiempo: se quedarían fuera ${describir(seg.futuro.fuera)} (${duracion(falta)}).`,
+        detalle: `Para llegar, unos ${cuenta(seg.futuro.minutosNecesarios, 'minuto')} al día.`, aviso: true };
     }
     if (seg.estado === 'atrasado') return { tipo: 'toca', texto: `Tienes ${describir(seg.atrasadas)} por recuperar (${duracion(seg.minutosAtraso)}): empieza por ahí y llegas a tiempo.`, detalle: null, aviso: false };
     return { tipo: 'toca', texto: 'Vas al día con tu plan.', detalle: null, aviso: false };
   }
   // Sin fecha: el ritmo general.
-  const fin = ritmo.fechaFin ? new Date(`${ritmo.fechaFin}T12:00`).toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }) : null;
-  const base = fin ? `A ${objetivo} minutos al día terminas el plan el ${fin}` : `A ${objetivo} minutos al día`;
+  const fin = ritmo.fechaFin ? fechaLarga(ritmo.fechaFin, { ahora }) : null;
+  const base = fin ? `A ${cuenta(objetivo, 'minuto')} al día terminas el plan el ${fin}` : `A ${cuenta(objetivo, 'minuto')} al día`;
   if (!fechaExamen || ritmo.llega == null) return { tipo: 'toca', texto: `${base}.`, detalle: ritmo.desglose.repaso ? 'Incluye repasar tus fallos.' : null, aviso: false };
   return ritmo.llega ? { tipo: 'toca', texto: `${base}, antes de tu examen.`, detalle: null, aviso: false }
-    : { tipo: 'toca', texto: `${base}, después de tu examen.`, detalle: `Para llegar, unos ${ritmo.minutosNecesarios} minutos al día.`, aviso: true };
+    : { tipo: 'toca', texto: `${base}, después de tu examen.`, detalle: `Para llegar, unos ${cuenta(ritmo.minutosNecesarios, 'minuto')} al día.`, aviso: true };
 }
 
 /** Reglas que el estado cumple siempre (para los tests): lista de incumplimientos, vacía si todo cuadra. */
@@ -131,7 +132,7 @@ export function invariantes(st) {
   for (const { b, e } of temas) {
     const validas = d.preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta);
     const hechas = validas.filter((q) => d.respuestas[q.id]).length;
-    if (e.hechas !== hechas) mal.push(`${b.titulo}: ${e.hechas} preguntas hechas y hay ${hechas} respuestas`);
+    if (e.hechas !== hechas) mal.push(`${b.titulo}: ${cuenta(e.hechas, 'pregunta hecha', 'preguntas hechas')} y hay ${hechas} respuestas`);
   }
   // Si con estos minutos no se llega, el mensaje lo dice (salvo examen a medias o día de descanso).
   if (st.plan?.seg.estado === 'no-llega' && ['toca', 'hecho', 'hecho-atraso'].includes(mensaje.tipo) && !mensaje.aviso && st.principal?.tipo !== 'examen-en-curso') mal.push('no llega y el mensaje no avisa');

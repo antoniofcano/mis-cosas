@@ -4,6 +4,7 @@
 import { estadoLeccion, numTramos, minutosClase, minutosDeTramo, SEG_TARJETA } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { colaRepaso } from './repaso.js';
+import { cuenta, diaISO } from '../texto.js';
 
 export const TANDA = 10; // preguntas por tanda
 export const MIN_TANDA = 8; // minutos estimados de una tanda
@@ -13,7 +14,7 @@ export const MAX_ACTIVIDADES = 3;
 
 const DIA = 864e5;
 const valida = (q) => !q.anulada && q.correcta;
-const diaLocal = (ms) => new Date(ms).toLocaleDateString('sv-SE');
+const diaLocal = diaISO;
 
 /** Días (naturales, hora local) desde `ahora` hasta la fecha 'YYYY-MM-DD'. Negativo si ya pasó. */
 export function diasHasta(fecha, ahora = Date.now()) {
@@ -90,7 +91,7 @@ function actividadTema(b, est, curso, regs, respuestas, ahora, segTarjeta = SEG_
     return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: minutosDeTramo(c.l, segTarjeta),
       tramo: k > 1 ? { i: t + 1, de: k } : null, ruta: ['curso', c.l.id], query: undefined, ut: b.ut };
   }
-  return { tipo: 'preguntas', titulo: `${est.hechas ? `${TANDA} preguntas más` : `${TANDA} preguntas`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut };
+  return { tipo: 'preguntas', titulo: `${est.hechas ? `${cuenta(TANDA, 'pregunta')} más` : `${cuenta(TANDA, 'pregunta')}`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut };
 }
 
 /**
@@ -134,7 +135,7 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   // 5. Repaso de fallos (B1) si se acumulan muchos para hoy; con pocos basta la línea de Hoy bajo la actividad.
   const cola = colaRepaso(preguntas, respuestas, hoy);
   if (cola.hoy.length >= UMBRAL_FALLOS) {
-    lista.push({ tipo: 'fallos', titulo: `Repasar ${cola.hoy.length} preguntas falladas`, verbo: 'Repasar', minutos: Math.min(MIN_TANDA, cola.minutosHoy), ruta: ['teoria', 'repaso'], query: undefined, ut: null });
+    lista.push({ tipo: 'fallos', titulo: `Repasar ${cuenta(cola.hoy.length, 'pregunta fallada', 'preguntas falladas')}`, verbo: 'Repasar', minutos: Math.min(MIN_TANDA, cola.minutosHoy), ruta: ['teoria', 'repaso'], query: undefined, ut: null });
   }
 
   // 6. Todo al día: simulacro
@@ -144,7 +145,7 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   // Va detrás de lo principal (aprender lo nuevo o el simulacro), nunca en su lugar.
   const empezados = estados.filter((x) => x.est.hechas > 0);
   if (empezados.length >= 2 && ultimoMezclado !== hoy) {
-    lista.push({ tipo: 'mezclado', titulo: `Repaso mezclado: ${TANDA} preguntas de ${empezados.length} temas`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'mezcla'], query: undefined, ut: null });
+    lista.push({ tipo: 'mezclado', titulo: `Repaso mezclado: ${cuenta(TANDA, 'pregunta')} de ${cuenta(empezados.length, 'tema')}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'mezcla'], query: undefined, ut: null });
   }
 
   // 7. Con una sola actividad, proponer también el siguiente tema pendiente
@@ -163,7 +164,7 @@ export const SIMULACROS_RECOMENDADOS = 3;
 export function diasPara(pendientes, md) {
   return Math.max(1, Math.ceil(pendientes / md));
 }
-const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
+const fechaISO = diaISO;
 
 /**
  * ¿Llego a tiempo? Suma lo que le queda al plan (clases sin terminar, las tandas que faltan para tener cada tema al
@@ -204,9 +205,9 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
  */
 export function lineaAvance(a, racha = 0) {
   const pct = Math.round(a.fraccion * 100);
-  const pasos = a.total != null ? `${a.hechos} de ${a.total} pasos` : null;
-  const temas = a.temasTotal == null ? null : a.temasAlDia === a.temasTotal ? `todos los temas listos (${a.temasTotal})` : `${a.temasAlDia} de ${a.temasTotal} temas listos`;
-  return `Llevas el ${pct} % del camino: ${[pasos, temas].filter(Boolean).join(' · ')}${racha >= 2 ? ` · ${racha} días seguidos estudiando` : ''}`;
+  const pasos = a.total != null ? `${a.hechos} de ${cuenta(a.total, 'paso')}` : null;
+  const temas = a.temasTotal == null ? null : a.temasAlDia === a.temasTotal ? `todos los temas listos (${a.temasTotal})` : `${a.temasAlDia} de ${cuenta(a.temasTotal, 'tema listo', 'temas listos')}`;
+  return `Llevas el ${pct} % del camino: ${[pasos, temas].filter(Boolean).join(' · ')}${racha >= 2 ? ` · ${cuenta(racha, 'día seguido', 'días seguidos')} estudiando` : ''}`;
 }
 
 export const MIN_DIAGNOSTICO = 3; // respuestas de una clase para opinar sobre ella

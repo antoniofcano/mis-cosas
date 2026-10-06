@@ -6,7 +6,7 @@
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
 import { loadTheoryBank, loadCourse } from '../../store/datasets.js';
-import { bloque, bloquesEnOrden, totalPreguntas } from '../../theory/blocks.js';
+import { bloque, bloquesEnOrden, totalPreguntas, posEstudio } from '../../theory/blocks.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
@@ -29,6 +29,7 @@ import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { SOLUCIONES as cartaSolutions, bancoResolucion } from '../../exams/solutions/index.js';
 import { narrateSteps } from '../../teacher/narrate.js';
+import { cuenta, fechaLarga } from '../../texto.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -212,20 +213,20 @@ export function examenesView({ ctx, progress, tit }) {
       const quedan = Math.max(1, Math.round(E0.duracionMin - (aMedias.consumidoMs ?? 0) / 60000));
       aviso = h('section.tarjeta-hoy.examen-medias',
         h('h2', 'Tienes un examen a medias'),
-        h('p.linea', `${resp} de ${total} respondidas · quedan ${quedan} min`),
+        h('p.linea', `${resp} de ${cuenta(total, 'respondida')} · quedan ${quedan} min`),
         h('a.btn.grande', { href: rutaTest(aMedias) }, 'Continuar →'),
         h('p.centrado', h('button.linklike.descartar', { type: 'button', onclick: () => {
           if (confirm('¿Descartar el examen que tienes a medias? Se perderán sus respuestas.')) { progress.saveTestEnCurso(null); dispatchEvent(new HashChangeEvent('hashchange')); }
         } }, 'Descartarlo')));
     }
-    summaryText = `VISTA exámenes ${T0.sigla} · ${convs.length} convocatorias${aMedias ? ` · EXAMEN A MEDIAS (${Object.keys(aMedias.respuestas ?? {}).length} respondidas) → ${rutaTest(aMedias)}` : ''}\n${convs.map((c) => `${c.key}: ${c.titulo} (${c.n} preguntas)`).join('\n')}` +
+    summaryText = `VISTA exámenes ${T0.sigla} · ${convs.length} convocatorias${aMedias ? ` · EXAMEN A MEDIAS (${Object.keys(aMedias.respuestas ?? {}).length} respondidas) → ${rutaTest(aMedias)}` : ''}\n${convs.map((c) => `${c.key}: ${c.titulo} (${cuenta(c.n, 'pregunta')})`).join('\n')}` +
       `\nRUTAS: #/${T0.id}/test/simulacro?s=<semilla> · #/${T0.id}/test/real/<convocatoria> · #/${T0.id}/teoria/ut/<n>?s=<semilla> (test por tema; f=1 solo fallos) · #/${T0.id}/teoria/mezcla · #/${T0.id}/teoria/repaso (repaso espaciado) · #/${T0.id}/teoria/rapido (5 minutos)`;
     setChildren(el,
       h('h1', 'Examen'),
       aviso,
       h('section.simulacro',
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias ? 'secondary' : '' }, 'Hacer un simulacro'),
-        h('p.centrado.muted', `${totalPreguntas(E0)} preguntas · ${E0.duracionMin} minutos · como el de verdad`)),
+        h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`)),
       (() => {
         const cola = colaRepaso(preguntas, progress.get().exams);
         return h('section.repaso-examen',
@@ -233,22 +234,22 @@ export function examenesView({ ctx, progress, tit }) {
           h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
       })(),
       h('section.test-tema', h('h2', 'Test por tema'),
-        h('p.muted', `${TANDA} preguntas de un tema, con la explicación del profe en cada una.`),
+        h('p.muted', `${cuenta(TANDA, 'pregunta')} de un tema, con la explicación del profe en cada una.`),
         h('ul.lista-tests', bloquesEnOrden(E0).map((b) => {
           const fallos = preguntas.filter((q) => q.ut === b.ut && progress.get().exams[q.id]?.ok === false).length;
           return h('li',
-            h('a.test-tema-enlace', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) }, h('span', `${b.icon} ${b.titulo}`), b.maxErrores != null ? h('span.limite-tema', `eliminatorio: máximo ${b.maxErrores} fallos`) : null),
+            h('a.test-tema-enlace', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) }, h('span', `${b.icon} ${b.titulo}`), b.maxErrores != null ? h('span.limite-tema', `eliminatorio: máximo ${cuenta(b.maxErrores, 'fallo')}`) : null),
             fallos ? h('a.fallos-tema', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed(), f: '1' }) }, `Mis fallos (${fallos})`) : null);
         })),
         h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'mezcla'], { s: randomSeed() }) }, 'Repaso mezclado de varios temas')),
-      tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
+      tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
       h('details', h('summary', 'Exámenes de convocatorias anteriores'),
         h('p.muted', 'Las preguntas de una convocatoria oficial de Andalucía, en su orden, con el tiempo y las reglas del examen.'),
         h('div.cards', convs.map((c) => {
           const hecho = progress.tests().filter((t) => t.conv === c.key).at(-1);
           return h('a.card', { href: tlink(T0.id, ['test', 'real', c.key]) },
             h('h3', c.titulo ?? c.key),
-            h('div.meta', h('span.stat', `${c.n} preguntas`), c.completa ? null : h('span.stat.warn', 'incompleto'),
+            h('div.meta', h('span.stat', `${cuenta(c.n, 'pregunta')}`), c.completa ? null : h('span.stat.warn', 'incompleto'),
               hecho ? h('span.stat', { class: hecho.apto ? 'ok' : 'warn' }, `${hecho.aciertos} de ${hecho.total} ${hecho.apto ? '✅' : '❌'}`) : null));
         }))),
       h('details', h('summary', 'Reglas del examen'),
@@ -374,7 +375,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
         progress.logActividad(min);
         barra.remove();
         pintarCierre(cont, progress, tit0, cierreTanda(ok, n));
-        summaryText = `VISTA tanda terminada · ${b.titulo}: ${ok} de ${n} aciertos`;
+        summaryText = `VISTA tanda terminada · ${b.titulo}: ${ok} de ${cuenta(n, 'acierto')}`;
         window.scrollTo(0, 0);
       },
     }));
@@ -401,14 +402,14 @@ function mezclaView({ progress, seed }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${empezados.length} temas`, temaEnCadaPregunta: true,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${cuenta(empezados.length, 'tema')}`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
         progress.setSetting(`mezclado_${tit0}`, new Date().toLocaleDateString('sv-SE'));
         barra.remove();
         pintarCierre(cont, progress, tit0, { ...cierreTanda(ok, n), extra: remateMapas(tit0, empezados) });
-        summaryText = `VISTA repaso mezclado terminado: ${ok} de ${n} aciertos`;
+        summaryText = `VISTA repaso mezclado terminado: ${ok} de ${cuenta(n, 'acierto')}`;
         window.scrollTo(0, 0);
       },
     }));
@@ -527,15 +528,15 @@ export function testView({ ctx, progress, params: route, tit }) {
         correr(progress.testEnCurso());
       };
       const limites = E0.bloques.filter((b) => b.maxErrores != null);
-      summaryText = `VISTA inicio del examen «${test.titulo}» ${T0.sigla} · ${test.preguntas.length} preguntas · ${E0.duracionMin} min (aún no ha empezado)${otro ? ` · hay otro examen a medias → ${rutaTest(otro)}` : ''}`;
+      summaryText = `VISTA inicio del examen «${test.titulo}» ${T0.sigla} · ${cuenta(test.preguntas.length, 'pregunta')} · ${E0.duracionMin} min (aún no ha empezado)${otro ? ` · hay otro examen a medias → ${rutaTest(otro)}` : ''}`;
       setChildren(el,
         h('div.inicio-examen',
           h('h1', test.titulo),
           h('ul.datos-examen',
-            h('li', `${test.preguntas.length} preguntas`),
-            h('li', `${E0.duracionMin} minutos`),
-            h('li', `Apruebas con ${E0.minAciertos} aciertos`),
-            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${b.maxErrores} fallos`))),
+            h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
+            h('li', `${cuenta(E0.duracionMin, 'minuto')}`),
+            h('li', `Apruebas con ${cuenta(E0.minAciertos, 'acierto')}`),
+            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E0, f.ut)?.titulo ?? f.ut).join(', ')}; el simulacro no está completo.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
           otro
@@ -624,20 +625,20 @@ export function testView({ ctx, progress, params: route, tit }) {
       function abrirPanel() {
         setChildren(panel,
           h('div.panel-cabecera', h('h2', 'Todas las preguntas'), h('button.secondary', { type: 'button', onclick: () => { panel.hidden = true; } }, '✕ Cerrar')),
-          h('p.muted', `${n - sinResponder()} de ${n} respondidas`),
+          h('p.muted', `${n - sinResponder()} de ${cuenta(n, 'respondida')}`),
           h('div.rejilla', test.preguntas.map((q, j) => h('button.celda', { type: 'button', class: [respuestas[q.id] ? 'hecha' : '', j === i ? 'actual' : ''].join(' '), 'aria-label': `Pregunta ${j + 1}${respuestas[q.id] ? ', respondida' : ''}`,
             onclick: () => { panel.hidden = true; ir(j); } }, String(j + 1)))),
           h('button.grande', { type: 'button', onclick: () => { panel.hidden = true; finish(false); } }, 'Terminar y corregir'));
         panel.hidden = false;
       }
       function resumen() {
-        summaryText = `EXAMEN EN CURSO · ${test.titulo} · pregunta ${i + 1} de ${n} · ${n - sinResponder()}/${n} respondidas (sin corregir: el alumno está haciendo el examen; no des respuestas)`;
+        summaryText = `EXAMEN EN CURSO · ${test.titulo} · pregunta ${i + 1} de ${n} · ${n - sinResponder()}/${cuenta(n, 'respondida')} (sin corregir: el alumno está haciendo el examen; no des respuestas)`;
       }
 
       function finish(porTiempo = false) {
         if (terminado) return;
         const quedan = sinResponder();
-        if (!porTiempo && quedan && !confirm(`Te quedan ${quedan} preguntas sin responder y contarán como fallo. ¿Terminar de todos modos?`)) return;
+        if (!porTiempo && quedan && !confirm(`Te quedan ${cuenta(quedan, 'pregunta')} sin responder y contarán como fallo. ¿Terminar de todos modos?`)) return;
         contar();
         limpiar();
         terminado = true;
@@ -659,6 +660,8 @@ export function testView({ ctx, progress, params: route, tit }) {
     // --- resultado
     function resultados(test, g, porTiempo) {
       document.body.classList.remove('focus');
+      // Los temas, en el mismo orden que en Temario y Progreso.
+      g = { ...g, bloques: [...g.bloques].sort((a, b) => posEstudio(E0, a.ut) - posEstudio(E0, b.ut)) };
       summaryText = `RESULTADO ${test.titulo}: ${g.aciertos}/${g.total} ${g.apto == null ? '' : g.apto ? 'APTO' : 'NO APTO'}\n` +
         g.bloques.map((b) => `${b.titulo}: ${b.aciertos}/${b.total}${b.maxErrores != null ? ` (máx. errores ${b.maxErrores})` : ''}`).join('\n') +
         `\nFALLADAS: ${g.detalle.filter((d) => !d.ok).map((d) => `${d.id} (marcó ${d.respuesta ?? '—'}, correcta ${d.correcta})`).join(', ')}`;
@@ -676,14 +679,14 @@ export function testView({ ctx, progress, params: route, tit }) {
       const tituloRevision = h('h2#revision', 'Repasa tus fallos con el profe');
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : g.apto ? '✅ APTO' : '❌ NO APTO'),
-          h('p', `${g.aciertos} aciertos de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
+          h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
         conFallos.length
           ? h('table.stats.fallos-tema', h('thead', h('tr', h('th', 'Tema'), h('th', 'Fallos'))),
             h('tbody', conFallos.map((b) => {
               const suspenso = b.maxErrores != null && b.errores > b.maxErrores;
               return h('tr', { class: suspenso ? 'bad' : '' },
-                h('td', `${b.icon} ${b.titulo}`, suspenso ? h('div.suspenso', `Aquí está el suspenso: máximo ${b.maxErrores} fallos`) : null),
+                h('td', `${b.icon} ${b.titulo}`, suspenso ? h('div.suspenso', `Aquí está el suspenso: máximo ${cuenta(b.maxErrores, 'fallo')}`) : null),
                 h('td', String(b.errores)));
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),

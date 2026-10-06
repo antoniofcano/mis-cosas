@@ -12,6 +12,7 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre } from '../cierre.js';
 import { cronometro } from '../../course/cronometro.js';
+import { cuenta } from '../../texto.js';
 
 export function tarjetasView(o) {
   return o.params.parts[1] ? sesionView(o) : listaView(o);
@@ -32,7 +33,7 @@ function listaView({ progress, tit }) {
       const hoy = tarjetasPorRepasar([m], resp).length;
       return h('a.card', { href: tlink(tit, ['tarjetas', m.id], { s: randomSeed() }) },
         h('h3', `${m.icon} ${m.titulo}`),
-        h('div.meta', h('span.stat', `${m.cartas.length} tarjetas`), vistas ? h('span.stat', `${vistas} vistas`) : null, hoy ? h('span.stat.warn', `${hoy} por repasar`) : null));
+        h('div.meta', h('span.stat', `${cuenta(m.cartas.length, 'tarjeta')}`), vistas ? h('span.stat', `${vistas} vistas`) : null, hoy ? h('span.stat.warn', `${hoy} por repasar`) : null));
     })));
   return { el, summary: () => `VISTA tarjetas ${T.sigla} · ${tocan.length} por repasar hoy\n${ms.map((m) => `${m.id}: ${m.titulo} (${m.cartas.length}) → ${tlink(tit, ['tarjetas', m.id])}`).join('\n')}` };
 }

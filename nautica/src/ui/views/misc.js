@@ -15,6 +15,7 @@ import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-
 import { resetRaster } from '../chart/raster.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { avanceCamino } from '../../course/calendario.js';
+import { cuenta, fechaLarga } from '../../texto.js';
 
 export function theoryView({ tit }) {
   const el = h('div.theory',
@@ -44,7 +45,7 @@ export function progressView({ progress, tit }) {
     // Del motor, en el orden de estudio (el mismo que Temario y Examen).
     const filas = d.st.temas;
     const racha = progress.racha();
-    resumenTemas = `AVANCE ${T.sigla}: ${a.temasAlDia}/${a.temasTotal} temas al día\n${filas.map(({ b, e }) => `${b.titulo}: ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}`).join('\n')}`;
+    resumenTemas = `AVANCE ${T.sigla}: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día\n${filas.map(({ b, e }) => `${b.titulo}: ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}`).join('\n')}`;
     setChildren(temas,
       h('section.avance',
         h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
@@ -58,7 +59,7 @@ export function progressView({ progress, tit }) {
             ? h('ul.clases-flojas', flojas.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) },
               h('span.clase-floja-titulo', `🎓 ${c.titulo}`),
               h('span.clase-floja-dato', `aciertas ${c.aciertos} de ${c.hechas} · repasar la clase →`)))))
-            : h('p.muted', `Cuando respondas al menos ${MIN_DIAGNOSTICO} preguntas de una clase, aquí verás las que más te cuestan.`));
+            : h('p.muted', `Cuando respondas al menos ${cuenta(MIN_DIAGNOSTICO, 'pregunta')} de una clase, aquí verás las que más te cuestan.`));
       })(),
       h('h2', `Por temas · ${T.sigla}`),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
@@ -70,7 +71,7 @@ export function progressView({ progress, tit }) {
   const examenes = Object.values(TITULACIONES).map((X) => {
     const tests = progress.tests().filter((t) => (t.tit ?? 'per') === X.id).reverse();
     return tests.length ? h('section', h('h2', `${X.icon} Exámenes ${X.sigla}`),
-      h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${new Date(t.t).toLocaleDateString('es-ES')} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
+      h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
   });
 
   const el = h('div.progress',

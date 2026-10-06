@@ -4,6 +4,7 @@ import { h, setChildren } from './dom.js';
 import { cargarMapas, juegoMapa } from './views/mapas.js';
 import { preguntasRepaso } from '../course/mapas.js';
 import { createRng, randomSeed } from '../math/rng.js';
+import { cuenta } from '../texto.js';
 
 const N = 3;
 
@@ -16,7 +17,7 @@ export function remateMapas(tit, uts) {
     setChildren(el, h('h2', '🕸️ Remate con los mapas'),
       h('p', 'Tres preguntas rápidas sobre cómo se relacionan las ideas de lo que acabas de repasar.'),
       h('button.grande.secondary', { type: 'button', onclick: () => setChildren(el, h('h2', '🕸️ Remate con los mapas'),
-        juegoMapa(hacer, { fin: (ok, n) => [h('h2', `${ok} de ${n}`), h('p', ok === n ? 'Relaciones claras.' : 'Las que han fallado están en Biblioteca → Mapas de conceptos.')] })) }, `Hacer las ${N} preguntas`));
+        juegoMapa(hacer, { fin: (ok, n) => [h('h2', `${ok} de ${n}`), h('p', ok === n ? 'Relaciones claras.' : 'Las que han fallado están en Biblioteca → Mapas de conceptos.')] })) }, `Hacer las ${cuenta(N, 'pregunta')}`));
     el.hidden = false;
   }).catch(() => {});
   return el;

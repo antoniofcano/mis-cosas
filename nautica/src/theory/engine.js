@@ -2,6 +2,7 @@
 // Las preguntas de todos los bancos comparten formato: { id, ut, enunciado, opciones, correcta, anulada, ... }.
 
 import { totalPreguntas } from './blocks.js';
+import { cuenta } from '../texto.js';
 
 /** Simulacro: tantas preguntas de cada bloque como en el examen, al azar (semilla reproducible). */
 export function buildSimulacro(estructura, banco, rng) {
@@ -105,10 +106,10 @@ export function grade(estructura, test, respuestas) {
   const bloques = [...porBloque.values()].filter((b) => b.total);
   const motivos = [];
   if (test.preguntas.length === totalPreguntas(estructura) && aciertos < estructura.minAciertos) {
-    motivos.push(`Necesitas ${estructura.minAciertos} aciertos y tienes ${aciertos}.`);
+    motivos.push(`Necesitas ${cuenta(estructura.minAciertos, 'acierto')} y tienes ${aciertos}.`);
   }
   for (const b of bloques) {
-    if (b.maxErrores != null && b.errores > b.maxErrores) motivos.push(`${b.titulo}: ${b.errores} errores (máximo ${b.maxErrores}).`);
+    if (b.maxErrores != null && b.errores > b.maxErrores) motivos.push(`${b.titulo}: ${cuenta(b.errores, 'error')} (máximo ${b.maxErrores}).`);
   }
   const completo = test.preguntas.length === totalPreguntas(estructura);
   return { aciertos, errores: detalle.length - aciertos, total: detalle.length, bloques, detalle, apto: completo ? motivos.length === 0 : null, motivos };

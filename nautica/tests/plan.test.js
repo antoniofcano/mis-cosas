@@ -292,3 +292,18 @@ test('guardado: 10 respuestas seguidas en un instante quedan las 10 registradas'
   for (let i = 0; i < 10; i++) st.recordExam(`r${i}`, { choice: null, ok: false });
   assert.equal(Object.keys(JSON.parse(mem.get('nautica.progress.v1')).exams).length, 10);
 });
+
+test('clase: las preguntas de «trampa» no salen intercaladas, y la final prefiere una que la clase explica', async () => {
+  const { esTrampa, conPreguntasIntercaladas, conPreguntaFinal } = await import('../src/course/engine.js');
+  const { createRng } = await import('../src/math/rng.js');
+  const trampa = { id: 't', enunciado: 'Babor es', opciones: { a: 'izquierda', b: 'derecha', c: 'Las respuestas a) y b) son correctas' }, correcta: 'c' };
+  const limpia = { id: 'l', enunciado: 'Mirando a proa, babor está a la', opciones: { a: 'izquierda', b: 'derecha' }, correcta: 'a' };
+  const fuera = { id: 'f', enunciado: 'El francobordo se mide desde', opciones: { a: 'cubierta principal hasta flotación' }, correcta: 'a' };
+  assert.ok(esTrampa(trampa) && !esTrampa(limpia));
+  const pasos = Array.from({ length: 8 }, (_, i) => ({ tipo: 'texto', texto: `Mirando hacia proa, babor queda a la izquierda y estribor a la derecha (${i}).` }));
+  for (let s = 1; s < 30; s++) {
+    const out = conPreguntasIntercaladas(pasos, [trampa, limpia], createRng(s));
+    assert.ok(!out.some((p) => p.real?.id === 't'));
+    assert.equal(conPreguntaFinal(pasos, [trampa, fuera, limpia], createRng(s)).at(-1).real.id, 'l');
+  }
+});

@@ -98,28 +98,41 @@ export function meteoIllustration(spec) {
 
 export function boatIllustration(spec) {
   const hl = new Set(spec.resaltar ?? []);
+  // `solo`: dibuja solo esas partes (para no enseñar nombres que la clase aún no ha explicado).
+  const solo = spec.solo ? new Set(spec.solo) : null;
+  const ver = (...ks) => !solo || ks.some((k) => solo.has(k));
+  const SECCION = ['linea-flotacion', 'obra-muerta', 'obra-viva', 'puntal', 'calado', 'francobordo'];
+  const conSeccion = ver(...SECCION);
   const W = 360;
-  const H = 300;
+  const H = conSeccion ? 300 : 195;
   const on = (k) => (hl.size === 0 || hl.has(k) ? 'il-part on' : 'il-part');
   const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Partes del barco">`, `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>`, arrowDefs('bt-a', '#475569')];
+  const si = (k, txt) => { if (ver(k)) out.push(txt); };
   // Planta
   out.push(`<text x="12" y="20" class="il-lbl strong">Planta</text>`);
   out.push(`<path d="M40,80 L250,80 Q320,95 320,105 Q320,115 250,130 L40,130 Z" class="il-hull-plan"/>`);
-  out.push(`<line x1="30" y1="105" x2="335" y2="105" class="${on('crujia')}" stroke-dasharray="6 4"/><text x="150" y="101" class="${on('crujia')} t">crujía</text>`);
-  out.push(`<text x="322" y="78" class="${on('proa')} t">proa</text><text x="10" y="110" class="${on('popa')} t">popa</text>`);
-  out.push(`<text x="140" y="70" class="${on('babor')} t">babor (rojo)</text><text x="140" y="148" class="${on('estribor')} t">estribor (verde)</text>`);
-  out.push(`<text x="262" y="70" class="${on('amura')} t">amura</text><text x="44" y="70" class="${on('aleta')} t">aleta</text><text x="196" y="160" class="${on('traves')} t">través ↓</text>`);
-  out.push(`<line x1="40" y1="168" x2="320" y2="168" class="${on('eslora')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="180" y="182" class="${on('eslora')} t">eslora</text>`);
-  out.push(`<line x1="225" y1="80" x2="225" y2="130" class="${on('manga')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="230" y="120" class="${on('manga')} t">manga</text>`);
-  // Perfil
-  out.push(`<text x="12" y="205" class="il-lbl strong">Sección</text>`);
-  out.push(`<rect x="120" y="230" width="120" height="16" class="il-water-cut"/>`);
-  out.push(`<path d="M110,210 L250,210 L240,262 L120,262 Z" class="il-hull-plan"/>`);
-  out.push(`<line x1="100" y1="232" x2="262" y2="232" class="${on('linea-flotacion')}" stroke="#0ea5e9"/><text x="104" y="244" class="${on('linea-flotacion')} t">flotación</text>`);
-  out.push(`<text x="150" y="226" class="${on('obra-muerta')} t">obra muerta</text><text x="152" y="256" class="${on('obra-viva')} t">obra viva</text>`);
-  out.push(`<line x1="96" y1="210" x2="96" y2="262" class="${on('puntal')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="40" y="240" class="${on('puntal')} t">puntal</text>`);
-  out.push(`<line x1="300" y1="232" x2="300" y2="262" class="${on('calado')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="306" y="252" class="${on('calado')} t">calado</text>`);
-  out.push(`<line x1="282" y1="210" x2="282" y2="232" class="${on('francobordo')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="288" y="222" class="${on('francobordo')} t">francobordo</text>`);
+  si('crujia', `<line x1="30" y1="105" x2="335" y2="105" class="${on('crujia')}" stroke-dasharray="6 4"/><text x="150" y="101" class="${on('crujia')} t">crujía</text>`);
+  si('proa', `<text x="322" y="78" class="${on('proa')} t">proa</text>`);
+  si('popa', `<text x="10" y="110" class="${on('popa')} t">popa</text>`);
+  si('babor', `<text x="140" y="70" class="${on('babor')} t">babor (rojo)</text>`);
+  si('estribor', `<text x="140" y="148" class="${on('estribor')} t">estribor (verde)</text>`);
+  si('amura', `<text x="262" y="70" class="${on('amura')} t">amura</text>`);
+  si('aleta', `<text x="44" y="70" class="${on('aleta')} t">aleta</text>`);
+  si('traves', `<text x="196" y="160" class="${on('traves')} t">través ↓</text>`);
+  si('eslora', `<line x1="40" y1="168" x2="320" y2="168" class="${on('eslora')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="180" y="182" class="${on('eslora')} t">eslora</text>`);
+  si('manga', `<line x1="225" y1="80" x2="225" y2="130" class="${on('manga')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="230" y="120" class="${on('manga')} t">manga</text>`);
+  if (conSeccion) {
+    // Sección
+    out.push(`<text x="12" y="205" class="il-lbl strong">Sección</text>`);
+    out.push(`<rect x="120" y="230" width="120" height="16" class="il-water-cut"/>`);
+    out.push(`<path d="M110,210 L250,210 L240,262 L120,262 Z" class="il-hull-plan"/>`);
+    si('linea-flotacion', `<line x1="100" y1="232" x2="262" y2="232" class="${on('linea-flotacion')}" stroke="#0ea5e9"/><text x="104" y="244" class="${on('linea-flotacion')} t">flotación</text>`);
+    si('obra-muerta', `<text x="150" y="226" class="${on('obra-muerta')} t">obra muerta</text>`);
+    si('obra-viva', `<text x="152" y="256" class="${on('obra-viva')} t">obra viva</text>`);
+    si('puntal', `<line x1="96" y1="210" x2="96" y2="262" class="${on('puntal')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="40" y="240" class="${on('puntal')} t">puntal</text>`);
+    si('calado', `<line x1="300" y1="232" x2="300" y2="262" class="${on('calado')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="306" y="252" class="${on('calado')} t">calado</text>`);
+    si('francobordo', `<line x1="282" y1="210" x2="282" y2="232" class="${on('francobordo')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="288" y="222" class="${on('francobordo')} t">francobordo</text>`);
+  }
   out.push('</svg>');
   const NOMBRE = { crujia: 'crujía', 'obra-viva': 'obra viva', 'obra-muerta': 'obra muerta' };
   return { svg: out.join(''), caption: hl.size ? `Fíjate en: ${[...hl].map((x) => NOMBRE[x] ?? x.replace(/-/g, ' ')).join(', ')}.` : 'Partes principales del barco.' };

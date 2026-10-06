@@ -12,7 +12,7 @@ import { barraActividad } from '../actividad.js';
 import { pintarCierre, cierre, cifrasCierre } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
 import { pidePrediccion, interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
-import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
+import { questionCard, prepareTheory, tandaPreguntas, profePanel, botonCarta } from './theory.js';
 import { voice } from '../voice.js';
 import { transicion, deslizar, vibrar } from '../movimiento.js';
 import { icono } from '../iconos.js';
@@ -259,7 +259,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               if (i === paso) refrescaBotones();
               corrige(fb, k === q.correcta, profePanel(q, bank.explicaciones[q.id], k));
             } });
-            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, fb);
+            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, botonCarta(q, progress), fb);
           }
           const q = { id: `${L.id}-chk-${i}-${p.enunciado.length}`, enunciado: p.enunciado, opciones: p.opciones, correcta: p.correcta };
           let card = questionCard(q, { tema: false, onChoose: (k) => {

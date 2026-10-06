@@ -2840,7 +2840,10 @@
       "Entender cómo cambia la humedad relativa al calentar o enfriar el aire",
       "Saber cómo funciona un psicrómetro y para qué se usa a bordo"
      ],
-     "refresco": [],
+     "refresco": [
+      "per-9-1",
+      "per-3-4"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5643,7 +5646,7 @@
       {
        "tipo": "texto",
        "titulo": "No te fíes solo de la pantalla",
-       "texto": "El GNSS puede fallar: avería eléctrica, antena, interferencias o pérdida de señal. Por eso:\n- Anota tu posición **periódicamente** en la carta o en el diario.\n- Compárala con demoras, distancias de radar y sondas.\n- Ten siempre a mano cómo volver a navegar por estima.\n\nY recuerda que la SOG y el COG son datos **sobre el fondo**: si no coinciden con tu rumbo y tu corredera, la diferencia es la corriente (y el viento)."
+       "texto": "El GNSS puede fallar: avería eléctrica, antena, interferencias o pérdida de señal. Por eso:\n- Anota tu posición **periódicamente** en la carta o en el diario.\n- Compárala con demoras, distancias de radar y sondas.\n- Ten siempre a mano cómo volver a navegar por estima.\n\nY recuerda que la SOG y el COG son datos **sobre el fondo**, y la corredera mide la velocidad **respecto al agua**: si las velocidades no coinciden, la diferencia es la corriente. El viento te abate (te cambia el rumbo), pero por convenio no cambia la velocidad."
       },
       {
        "tipo": "clave",

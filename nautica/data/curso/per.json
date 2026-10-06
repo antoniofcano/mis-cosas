@@ -50,6 +50,13 @@
          "crujia",
          "babor",
          "estribor"
+        ],
+        "solo": [
+         "proa",
+         "popa",
+         "crujia",
+         "babor",
+         "estribor"
         ]
        },
        "texto": "Vista en planta: la crujía divide el barco en las bandas de babor y estribor."
@@ -69,6 +76,16 @@
        "spec": {
         "tipo": "barco",
         "resaltar": [
+         "amura",
+         "traves",
+         "aleta"
+        ],
+        "solo": [
+         "proa",
+         "popa",
+         "crujia",
+         "babor",
+         "estribor",
          "amura",
          "traves",
          "aleta"
@@ -6270,7 +6287,7 @@
       {
        "tipo": "texto",
        "titulo": "Tres situaciones",
-       "texto": "Cuando dos buques se acercan con riesgo de abordaje, la situación es una de estas tres:\n- **Alcance** (Regla 13).\n- **Vuelta encontrada** (Regla 14), solo entre buques de propulsión mecánica.\n- **Cruce** (Regla 15): cualquier situación que no sea ni alcance ni vuelta encontrada."
+       "texto": "Cuando dos buques se acercan con riesgo de abordaje, la situación es una de estas tres:\n- **Alcance** (Regla 13).\n- **Vuelta encontrada** (Regla 14), solo entre buques de propulsión mecánica.\n- **Cruce** (Regla 15): cualquier situación que no sea ni alcance ni vuelta encontrada.\n\n¿Cómo sabes que hay riesgo? Si la **demora** del otro buque **no cambia** de forma apreciable mientras se acerca, hay riesgo de abordaje (Regla 7): toca aplicar estas reglas."
       },
       {
        "tipo": "texto",

@@ -239,15 +239,15 @@ button.linklike { background: none; border: 0; padding: 0; color: var(--accent);
 /* El profe */
 .profe { background: #fff7ed; border-left: 4px solid #f59e0b; border-radius: 6px; padding: .4rem .7rem; margin: .3rem 0; color: #3b2a12; }
 .profe p { margin: .35rem 0; }
-.profe .tip { color: #065f46; }
-.profe .trap { color: #9a3412; }
+.profe .tip { color: var(--text); border-left: 4px solid var(--ok); padding-left: .6rem; }
+.profe .trap { color: var(--text); border-left: 4px solid var(--warn); padding-left: .6rem; }
 .profe-badge { font-weight: 700; font-size: .9rem; color: #b45309; }
 .profe.inline { font-size: .9rem; }
 button.speak { margin-left: .4rem; padding: 0 .35rem; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .profe { background: #2a2113; color: #f5e9d6; }
-  :root:not([data-theme="light"]) .profe .tip { color: #6ee7b7; }
-  :root:not([data-theme="light"]) .profe .trap { color: #fdba74; }
+  :root:not([data-theme="light"]) .profe .tip { color: var(--text); }
+  :root:not([data-theme="light"]) .profe .trap { color: var(--text); }
 }
 .ws-controls select { width: auto; padding: .15rem .3rem; }
 /* Escalas de los márgenes y guías */
@@ -324,7 +324,7 @@ svg.il .il-part.on { stroke: #e11d48; fill: #e11d48; font-weight: 700; } svg.il 
 .path h2 { margin: 0 0 .3rem; font-size: 1.2rem; }
 .path p { margin: .2rem 0; color: var(--muted); font-size: 1rem; }
 .path p.big { color: var(--text); font-size: 1.15rem; font-weight: 700; margin-top: .6rem; }
-.bar { height: 6px; background: var(--accent-2); border-radius: 3px; overflow: hidden; margin: .4rem 0; }
+.bar { height: 10px; background: var(--accent-2); border-radius: 5px; overflow: hidden; margin: .4rem 0; }
 .bar span { display: block; height: 100%; background: var(--accent); }
 p.next { background: var(--accent-2); padding: .6rem .8rem; border-radius: var(--radius); }
 .stat.ok { color: var(--ok); }
@@ -576,7 +576,7 @@ a.fallos-tema { display: flex; align-items: center; min-height: 52px; padding: 0
 a.test-tema-enlace .limite-tema { flex-basis: 100%; font-weight: 400; font-size: .95rem; color: var(--muted); }
 
 /* Selector de titulación de la cabecera («PY ▾») */
-.selector-tit { position: relative; }
+.selector-tit { position: relative; background: none; border: 0; padding: 0; margin: 0; box-shadow: none; }
 .selector-tit > summary { list-style: none; cursor: pointer; user-select: none; }
 .selector-tit > summary::-webkit-details-marker { display: none; }
 .selector-tit[open] > summary { background: var(--accent); color: #fff; }
@@ -814,3 +814,58 @@ body.con-radio main { padding-bottom: calc(96px + 60px); }
 .paso-cabecera .rotulo-tema { flex: 1 1 170px; }
 .paso-botones { margin-left: auto; }
 .paso-botones a.escuchar { min-width: 48px; padding: .3rem .6rem; text-align: center; font-size: 1.2rem; }
+/* Clase: opciones secundarias plegadas bajo la tarjeta */
+details.mas-opciones { margin: .6rem 0; }
+details.mas-opciones > summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; color: var(--muted); }
+details.mas-opciones ul { list-style: none; padding: 0; margin: .2rem 0 0; }
+details.mas-opciones li a { display: inline-flex; align-items: center; min-height: 44px; }
+details.viene-per > summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+/* Meta del día (Hoy y cierres) */
+.meta-diaria { margin: .6rem 0 1rem; }
+.meta-diaria .meta-texto { margin: 0 0 .35rem; }
+.meta-diaria .racha { color: var(--muted); }
+.bar.gruesa { height: 14px; border-radius: 7px; }
+.bar.gruesa > span { border-radius: 7px; }
+.cierre ul.logros { list-style: none; padding: 0; margin: .8rem auto; text-align: left; max-width: 28rem; }
+.cierre ul.logros li { padding: .35rem 0; border-bottom: 1px solid var(--border); }
+.cierre .meta-diaria { max-width: 28rem; margin-left: auto; margin-right: auto; text-align: left; }
+
+/* ---- Aire de app: movimiento corto que confirma, nunca en bucle; nada con «reducir movimiento» ---- */
+main#app { view-transition-name: contenido; }
+.fila-inferior { view-transition-name: botonera; }
+.barra-actividad { view-transition-name: barra; }
+.tabbar { view-transition-name: pestanas; }
+.ba-progreso > span { transition: width .3s ease-out; }
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(*) { animation-duration: .2s; }
+  html[data-vt="adelante"]::view-transition-old(contenido) { animation: .2s ease-in both vt-sale-izq; }
+  html[data-vt="adelante"]::view-transition-new(contenido) { animation: .2s ease-out both vt-entra-der; }
+  html[data-vt="atras"]::view-transition-old(contenido) { animation: .2s ease-in both vt-sale-der; }
+  html[data-vt="atras"]::view-transition-new(contenido) { animation: .2s ease-out both vt-entra-izq; }
+  html[data-vt="pantalla"]::view-transition-old(contenido) { animation: .12s ease-in both vt-fuera; }
+  html[data-vt="pantalla"]::view-transition-new(contenido) { animation: .18s ease-out both vt-dentro; }
+  /* La opción pulsada reacciona: rebote si acierta, sacudida corta si falla. */
+  label.option.elegida.correct { animation: .32s ease-out rebote; }
+  label.option.elegida.wrong { animation: .32s ease-out sacudida; }
+  /* La explicación del profe sube desde abajo. */
+  .profe { animation: .26s ease-out both subir; }
+  /* Las barras de avance se rellenan al aparecer. */
+  .bar > span { transform-origin: left center; animation: .7s cubic-bezier(.2, .8, .2, 1) both crecer; }
+}
+@keyframes vt-sale-izq { to { transform: translateX(-24%); opacity: 0; } }
+@keyframes vt-entra-der { from { transform: translateX(24%); opacity: 0; } }
+@keyframes vt-sale-der { to { transform: translateX(24%); opacity: 0; } }
+@keyframes vt-entra-izq { from { transform: translateX(-24%); opacity: 0; } }
+@keyframes vt-fuera { to { opacity: 0; } }
+@keyframes vt-dentro { from { opacity: 0; transform: translateY(8px); } }
+@keyframes rebote { 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes sacudida { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+@keyframes subir { from { transform: translateY(28px); opacity: 0; } }
+@keyframes crecer { from { transform: scaleX(0); } }
+/* La explicación del profe, como un panel que sube: esquinas superiores redondeadas y sombra hacia arriba. */
+.profe { border-radius: 18px 18px var(--radius) var(--radius); box-shadow: 0 -6px 18px rgba(0, 0, 0, .08); }
+/* Ilustración de una clase: a todo el ancho y sin caja; el pie, debajo. */
+.paso.ilu .il-grid.inline { display: block; margin: 0 -1rem; }
+.paso.ilu .il-figure { background: none; border: 0; border-radius: 0; padding: 0; }
+.paso.ilu .il-figure svg, .paso.ilu .il-figure img { width: 100%; height: auto; display: block; }
+.paso.ilu .il-figure figcaption, .paso.ilu > p.muted { margin: .6rem 0 0; }

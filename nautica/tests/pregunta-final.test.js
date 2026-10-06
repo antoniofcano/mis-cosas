@@ -24,3 +24,21 @@ test('sin pregunta fija al final se añade; sin preguntas reales la clase queda 
   assert.equal(conPreguntaFinal(pasos, reales, createRng(1)).length, 2);
   assert.equal(conPreguntaFinal([fija], [], createRng(1))[0], fija);
 });
+
+test('preguntas intercaladas: nunca más de 3 tarjetas seguidas sin responder (si hay preguntas), sin repetir', async () => {
+  const { conPreguntasIntercaladas, CADA } = await import('../src/course/engine.js');
+  const t = (i) => ({ tipo: 'texto', texto: `t${i}` });
+  const reales = Array.from({ length: 6 }, (_, i) => ({ id: `q${i}`, enunciado: `¿${i}?`, opciones: { a: 'x', b: 'y' }, correcta: 'a' }));
+  const final = { tipo: 'check', real: reales[0], enunciado: '¿0?', opciones: {}, correcta: 'a' };
+  const pasos = [...Array.from({ length: 10 }, (_, i) => t(i)), final];
+  const r = conPreguntasIntercaladas(pasos, reales, createRng(3));
+  let seguidas = 0;
+  for (const p of r) { seguidas = p.tipo === 'check' ? 0 : seguidas + 1; assert.ok(seguidas <= CADA); }
+  const ids = r.filter((p) => p.real).map((p) => p.real.id);
+  assert.equal(new Set(ids).size, ids.length, 'no repite preguntas');
+  assert.equal(r.at(-1), final, 'la final sigue al final');
+  assert.deepEqual(conPreguntasIntercaladas(pasos, [], createRng(1)), pasos, 'sin preguntas, igual');
+  // una lámina que pide predicción ya cuenta como respuesta
+  const conLamina = [t(1), t(2), { tipo: 'ilustracion', prediccion: true }, t(3), t(4), final];
+  assert.equal(conPreguntasIntercaladas(conLamina, reales, createRng(1)).length, conLamina.length);
+});

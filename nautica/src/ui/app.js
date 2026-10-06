@@ -10,6 +10,7 @@ import { loadChartData } from '../store/datasets.js';
 import { createProgressStore } from '../store/progress.js';
 import { installApi } from '../ai/api.js';
 import { setSharedProgress } from './chart-widget.js';
+import { transicion } from './movimiento.js';
 import { voice } from './voice.js';
 import { exerciseView } from './views/exercise.js';
 import { examsView } from './views/exams.js';
@@ -188,8 +189,8 @@ async function main() {
       current = { el: h('div', h('h1', 'Algo ha fallado'), h('pre', String(e.stack ?? e))), summary: () => `ERROR ${e.message}` };
     }
     voice.stop();
-    clear(root).append(current.el);
-    window.scrollTo(0, 0);
+    const el = current.el;
+    transicion(() => { clear(root).append(el); window.scrollTo(0, 0); }, 'pantalla');
   }
 
   window.addEventListener('hashchange', render);

@@ -1,4 +1,4 @@
-// versión: 33718d4a2efd
+// versión: 0668184b3839
 // Service worker: guarda la app en el móvil para que abra sin conexión y rápido.
 // La lista de archivos y la versión salen de sw-lista.js (npm run precache).
 //   - Al instalar se guarda la app (código, estilos, iconos); los datos (exámenes, carta, cursos) se guardan

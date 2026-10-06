@@ -7,7 +7,7 @@ import { colaRepaso } from '../../course/repaso.js';
 import { mazos, tarjetasPorRepasar } from '../../course/tarjetas.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
-import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
+import { calcularPlan, hrefActividad, TIPO_TXT, metaDiaria } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
 import { lineaSeguimiento, temasDePocoPeso, unidades } from '../../course/calendario.js';
@@ -103,6 +103,7 @@ export function hoyView({ progress, tit }) {
       h('a', { href: tlink(tit, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
     setChildren(el,
       cabecera,
+      metaDiaria(progress),
       ritmo,
       hueco,
       lineaRepaso,

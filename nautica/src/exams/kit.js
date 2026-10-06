@@ -52,8 +52,10 @@ export function createKit(chart) {
       if (carta) {
         const [base, year, varMin] = carta; // varMin con signo: + E, − W
         const exact = base + (varMin / 60) * (anyo - year);
-        d = Math.round(exact);
-        step('Declinación actualizada', `dm ${anyo} = ${fmtSignedNum(base, 2)} + (${anyo - year} años × ${varMin}′) = ${fmtSignedNum(exact, 2)} ≈ ${fmtSignedNum(d)}.`);
+        // Se trabaja con la declinación exacta, al minuto: redondearla al grado (y con Math.round, siempre hacia el E en
+        // los valores negativos) movía la Ct medio grado en casos como 3,5° o −2,5°.
+        d = Math.round(exact * 60) / 60;
+        step('Declinación actualizada', `dm ${anyo} = ${fmtSignedNum(base, 2)} + (${anyo - year} años × ${varMin}′) = ${fmtSignedNum(d, 2)}.`);
       }
       const r = d + (desvio ?? 0);
       step('Corrección total', `Ct = dm + Δ = (${fmtSignedNum(d)}) + (${fmtSignedNum(desvio ?? 0)}) = ${fmtSignedNum(r)}.`);

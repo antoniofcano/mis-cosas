@@ -83,3 +83,34 @@ export function conPreguntaFinal(pasos, disponibles, rng) {
   const final = { tipo: 'check', real: q, enunciado: q.enunciado, opciones: q.opciones, correcta: q.correcta };
   return pasos.at(-1)?.tipo === 'check' ? [...pasos.slice(0, -1), final] : [...pasos, final];
 }
+
+/** Tarjetas de contenido seguidas como máximo antes de pedir una respuesta al alumno. */
+export const CADA = 3;
+const respondeAlumno = (p) => p.tipo === 'check' || (p.tipo === 'ilustracion' && p.prediccion);
+
+/**
+ * Intercala preguntas reales de la clase para que el alumno responda cada `cada` tarjetas como mucho (no se espera al
+ * final). Cuenta como respuesta un «¿Lo pillas?» que ya hubiera o una lámina que pide predicción (`p.prediccion`).
+ * No repite preguntas ni mete una justo antes de la pregunta final. Sin preguntas disponibles, deja la clase igual.
+ * @param {object[]} pasos  pasos de la clase (con su pregunta final ya puesta)
+ * @param {object[]} disponibles  preguntas reales de la clase que se pueden usar
+ */
+export function conPreguntasIntercaladas(pasos, disponibles, rng, cada = CADA) {
+  const usadas = new Set(pasos.filter((p) => p.real).map((p) => p.real.id));
+  const bolsa = rng.shuffle(disponibles.filter((q) => !usadas.has(q.id)));
+  const out = [];
+  let seguidas = 0;
+  pasos.forEach((p, i) => {
+    out.push(p);
+    if (respondeAlumno(p)) { seguidas = 0; return; }
+    seguidas += 1;
+    const quedan = pasos.slice(i + 1);
+    const siguienteResponde = quedan[0] && respondeAlumno(quedan[0]);
+    if (seguidas >= cada && bolsa.length && quedan.length >= 2 && !siguienteResponde) {
+      const q = bolsa.pop();
+      out.push({ tipo: 'check', real: q, enunciado: q.enunciado, opciones: q.opciones, correcta: q.correcta, intercalada: true });
+      seguidas = 0;
+    }
+  });
+  return out;
+}

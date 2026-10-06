@@ -101,7 +101,7 @@
   {
    "id": "m",
    "nombre": "Metacentro (M)",
-   "corto": "Al escorar poco, la vertical del nuevo centro de carena corta la crujía en M. Su altura sobre la quilla es KM (KM = KC + CM).",
+   "corto": "Al escorar poco, la vertical del nuevo centro de carena corta la crujía en M. Su altura sobre la quilla es KM (KM = KB + BM).",
    "spec": {
     "tipo": "estabilidad",
     "caso": "estable",
@@ -322,7 +322,7 @@
   {
    "de": "m",
    "a": "gm",
-   "rel": "M es un punto (su altura es KM). GM es la distancia de G a M; la de C a M (CM) es el radio metacéntrico.",
+   "rel": "M es un punto (su altura es KM). GM es la distancia de G a M; la de B a M (BM) es el radio metacéntrico.",
    "tipo": "confunde"
   },
   {

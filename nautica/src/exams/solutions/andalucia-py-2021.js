@@ -125,16 +125,7 @@ export default {
       return latlon(k.run(s, rv, d, 'Situación 05:20'));
     },
   },
-  'and-py-2021-c2-n12': {
-    // ANULADA. Con la Da de 351° a Punta Alcázar saldría una Ct absurda (≈ 180°): en la oposición
-    // Punta Alcázar queda al S y la Isla de Tarifa al N. Lo natural es que esa Da sea la de Tarifa.
-    ejercicio: 'ct-enfilacion',
-    solve(k) {
-      const dv = k.oposicion('punta-alcazar', 'isla-tarifa');
-      k.note('Oposición', `Ojo: el enunciado dice que la Da 351° es de Punta Alcázar, pero estando entre los dos faros Punta Alcázar queda al sur (≈ ${fmtBearing(dv + 180)}) y daría una corrección de casi 180°. Una Da de 351° solo encaja con la Isla de Tarifa, al norte: la tomamos así. Por esta incoherencia la pregunta se anuló.`);
-      return [{ kind: 'signed', value: k.ctFrom(dv, 351) }];
-    },
-  },
+  // c2-n12 (anulada): ver DISCREPANCIAS al final.
   'and-py-2021-c2-n13': {
     sinCarta: true,
     ejercicio: 'ct-enfilacion',
@@ -214,6 +205,9 @@ export default {
 };
 
 /* DISCREPANCIAS
+ * 'and-py-2021-c2-n12' (ANULADA, dato incoherente): en la oposición de Isla de Tarifa y Punta Alcázar, Punta Alcázar
+ *   queda al S, y una Da de 351° a ella daría una Ct de casi 180°. Solo encaja si la Da es de la Isla de Tarifa (al N);
+ *   resolverla así sería cambiar el enunciado, de modo que no se cuenta como resuelta.
  * 'and-py-2021-c2-n17' (ANULADA, corriente desconocida): con la estima (Rv 085°, 7,5 nudos, 11:15–13:30) y la
  *   observada por las demoras a Malabata (099°) y Espartel (242°) sale una corriente de ≈ 200° y < 1 nudo, que no se
  *   parece a ninguna opción. Coherente con que el tribunal la anulara.

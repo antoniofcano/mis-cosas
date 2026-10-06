@@ -4,7 +4,7 @@
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
+import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosClase, minutosDeTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
 import { resueltasDe, conResuelto } from '../../course/resueltos.js';
 import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
 import { tlink, volver } from '../titulacion.js';
@@ -135,8 +135,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         case 'intro': return h('div.paso.intro', h('h2', L.titulo),
           h('h3', 'En esta clase'),
           L.objetivos?.length ? h('ul', L.objetivos.map((o) => h('li', o))) : null,
-          h('p.muted', k > 1 ? `Este tramo: unos ${minutosTramo(tarjetasEn(tarjetas[paso]?.tramo ?? 0), ritmo())} min · Clase completa (${k} tramos): unos ${minutosTramo(n, ritmo())} min.`
-            : `Unos ${minutosTramo(n, ritmo())} minutos.`),
+          h('p.muted', k > 1 ? `Este tramo: unos ${minutosDeTramo(L, ritmo())} min · Clase completa (${k} tramos): unos ${minutosClase(L, ritmo())} min.`
+            : `Unos ${minutosClase(L, ritmo())} minutos.`),
           // Lo que esta clase del PY da por sabido del PER, plegado: no saca de la clase salvo que el alumno lo pida.
           base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${base.length} ${base.length === 1 ? 'clase' : 'clases'})`),
             h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo (luego vuelves aquí):'),
@@ -302,7 +302,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       barra.set(`Tramo ${hecho + 1} de ${k} hecho`, paso / n);
       const titulo = `Tramo ${hecho + 1} de ${k} hecho`;
       setChildren(cont, cierre({ icono: '✅', titulo, tit, lineas: [L.titulo], logros: logrosClase().slice(1), stats: cifrasCierre(progress),
-        botones: [h('button.grande', { type: 'button', onclick: () => transicion(tarjeta, 'adelante') }, `Seguir con el tramo ${hecho + 2} (unos ${minutosTramo(tarjetasEn(hecho + 1), ritmo())} min)`),
+        botones: [h('button.grande', { type: 'button', onclick: () => transicion(tarjeta, 'adelante') }, `Seguir con el tramo ${hecho + 2} (unos ${minutosDeTramo(L, ritmo())} min)`),
           h('a.btn.secondary.grande', { href: tlink(tit) }, 'Terminar por hoy')] }));
       summaryText = `CLASE ${L.id} · tramo ${hecho + 1}/${k} hecho`;
       window.scrollTo(0, 0);

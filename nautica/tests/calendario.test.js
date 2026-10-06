@@ -56,7 +56,7 @@ test('plan base y seguimiento: al día, atrasado y recuperado', () => {
   assert.deepEqual(s.atrasadas.map((u) => u.id), ['clase:a1', 'clase:a2']);
   assert.deepEqual(s.hoy.map((u) => u.id), ['clase:a1', 'clase:a2']);
   assert.equal(s.minutosAtraso, 20);
-  assert.match(lineaSeguimiento(s, 20), /^Vas unos 20 minutos por detrás \(2 clases\): hoy empieza por recuperarlo/);
+  assert.match(lineaSeguimiento(s, 20), /^Tienes 2 clases por recuperar \(unos 20 minutos\): empieza por ahí/);
 
   // Recuperadas: vuelve a estar al día y hoy le toca lo del martes.
   s = seguimiento(plan, { ...datos, regs: { a1: visto, a2: visto } }, { ahora: T0 + DIA });

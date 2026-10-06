@@ -2,26 +2,16 @@
 // Ajustes y devuelve su seguimiento.
 
 import { h } from './dom.js';
-import { crearPlan, planCaducado, seguimiento, alternativaEsencial, temasDePocoPeso } from '../course/calendario.js';
+import { icono } from './iconos.js';
+import { crearPlan, temasDePocoPeso } from '../course/calendario.js';
 
-/** @returns {{ plan, seg } | null} null si no hay fecha de examen (o ya pasó). */
+/**
+ * El plan con fecha y su seguimiento, tal como lo calcula el motor (calcularPlan → st.plan).
+ * @returns {{ plan, seg, alt } | null} null si no hay fecha de examen (o ya pasó).
+ */
 export function planConSeguimiento(progress, tit, datos) {
-  const s = progress.settings();
-  const fechaExamen = s[`examen_${tit}`] || null;
-  const minutosDia = s.minutosDia ?? 20;
-  const diasEstudio = s.diasEstudio ?? 'todos';
-  const esencial = !!s[`planEsencial_${tit}`];
-  datos = { ...datos, esencial, chuletasLeidas: s[`chuletasLeidas_${tit}`] ?? [] };
-  let plan = progress.planEstudio(tit);
-  if (planCaducado(plan, fechaExamen, minutosDia, diasEstudio, esencial)) {
-    plan = crearPlan(datos, { fechaExamen, minutosDia, diasEstudio, ahora: datos.ahora });
-    progress.setPlanEstudio(tit, plan);
-  }
-  if (!plan) return null;
-  const seg = seguimiento(plan, datos, { ahora: datos.ahora });
-  // Si no da tiempo con el plan completo, ¿y con el esencial?
-  const alt = seg.estado === 'no-llega' && !esencial ? alternativaEsencial(datos, { fechaExamen, minutosDia, diasEstudio, ahora: datos.ahora }) : null;
-  return { plan, seg, alt };
+  const p = datos.st?.plan;
+  return p ? { plan: p.base, seg: p.seg, alt: p.alt } : null;
 }
 
 /** Rehace el plan base desde hoy (acepta lo que se haya quedado atrás y lo vuelve a repartir). */
@@ -55,5 +45,8 @@ export function avisoEsencial(progress, tit, estructura, alCambiar) {
     h('button.linklike.descartar', { type: 'button', onclick: () => { progress.setSetting(`planEsencial_${tit}`, false); alCambiar(); } }, 'Volver al plan completo'));
 }
 
-/** Icono y clase de la línea del plan según su estado. */
-export const marcaEstado = (estado) => (estado === 'al-dia' ? ['📅 ', ''] : estado === 'terminado' ? ['🏁 ', ''] : ['⚠️ ', 'warn']);
+/**
+ * Icono y clase de la línea del plan según su estado. Tono neutro: ir por detrás no es una alarma (se recupera en
+ * los próximos días); solo «no llegas» se marca, porque pide decidir algo.
+ */
+export const marcaEstado = (estado) => [h('span.marca-estado', icono(estado === 'al-dia' || estado === 'terminado' ? 'ok' : 'reloj'), ' '), estado === 'no-llega' ? 'warn' : ''];

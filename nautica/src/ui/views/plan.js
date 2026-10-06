@@ -1,10 +1,12 @@
 // #/<tit>/plan — Mi plan hasta el examen: qué toca cada día, lo que hay que recuperar y si llegas.
 
 import { h, setChildren } from '../dom.js';
+import { icono } from '../iconos.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad } from '../cierre.js';
 import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
-import { lineaSeguimiento, sumaDiasISO, describir, duracion, DIAS_ESTUDIO } from '../../course/calendario.js';
+import { sumaDiasISO, describir, duracion, DIAS_ESTUDIO, avanceCamino } from '../../course/calendario.js';
+import { lineaAvance } from '../../course/plan.js';
 import { diaLocal } from '../../store/progress.js';
 import { cargarMapas } from './mapas.js';
 import { mapasEliminatorios } from '../../course/mapas.js';
@@ -62,20 +64,27 @@ export function planView({ progress, tit }) {
     const atrasadas = new Set(seg.atrasadas.map((u) => u.id));
     const pasados = Object.entries(plan.dias).filter(([f]) => f < hoy);
 
-    summaryText = `VISTA plan ${T.sigla} · examen ${plan.fechaExamen} · ${plan.minutosDia} min/día\nESTADO: ${lineaSeguimiento(seg, plan.minutosDia)}\n` +
+    summaryText = `VISTA plan ${T.sigla} · examen ${plan.fechaExamen} · ${plan.minutosDia} min/día\nESTADO: ${d.st.mensaje.texto}\n` +
       `RECUPERAR: ${seg.atrasadas.map((u) => u.titulo).join('; ') || '—'}\n` +
       seg.futuro.dias.map((dia) => `${dia.fecha}: ${dia.unidades.map((u) => u.titulo).join('; ') || 'libre'}`).join('\n');
 
     setChildren(el,
       h('h1', 'Mi plan hasta el examen'),
       h('p.muted', `Examen: ${fecha(plan.fechaExamen)} · ${plan.minutosDia} minutos al día, ${DIAS_ESTUDIO[plan.diasEstudio ?? 'todos']} · `, h('a', { href: '#/ajustes' }, 'cambiar')),
-      h('div.ritmo', { class: marcaEstado(seg.estado)[1] }, h('p', marcaEstado(seg.estado)[0], lineaSeguimiento(seg, plan.minutosDia)),
-        botonSubirMinutos(progress, ps, () => pinta(), tit)),
+      // El mismo mensaje del día que en Hoy (motor): con la meta cumplida, no pide más.
+      h('div.ritmo', { class: d.st.mensaje.aviso ? 'warn' : '' }, h('p', marcaEstado(d.st.mensaje.tipo === 'toca' ? seg.estado : 'al-dia')[0], d.st.mensaje.texto),
+        d.st.mensaje.detalle ? h('p.muted.small', d.st.mensaje.detalle) : null,
+        d.st.mensaje.aviso ? botonSubirMinutos(progress, ps, () => pinta(), tit) : null),
       avisoEsencial(progress, tit, T.estructura, () => pinta()),
+      // Los días de simulacro pasan del tope diario: se avisa al principio para reservarlos.
+      (() => { const sims = seg.futuro.dias.filter((dia) => dia.unidades.some((u) => u.tipo === 'simulacro') && dia.minutos > plan.minutosDia);
+        return sims.length ? h('p.aviso-simulacros', icono('reloj'), ` ${sims.length === 1 ? 'Un día' : `${sims.length} días`} del final ${sims.length === 1 ? 'es' : 'son'} de simulacro (${duracion(T.estructura.duracionMin)} cada uno, más que tus ${plan.minutosDia} minutos): resérvalos. Son ${sims.map((dia) => fecha(dia.fecha)).join(', ')}.`) : null; })(),
       (() => { const quedan = Math.round((new Date(`${plan.fechaExamen}T12:00`) - new Date(`${hoy}T12:00`)) / 864e5); return quedan > 0 && quedan <= DIAS_MAPAS ? repasoMapas(tit, T.estructura, quedan) : null; })(),
-      h('div.bar', { role: 'progressbar', 'aria-label': 'Plan hecho', 'aria-valuemin': 0, 'aria-valuemax': seg.totalDelPlan, 'aria-valuenow': seg.hechasDelPlan },
-        h('span', { style: `width:${seg.totalDelPlan ? Math.round((100 * seg.hechasDelPlan) / seg.totalDelPlan) : 100}%` })),
-      h('p.muted.small', `Llevas hecho ${seg.hechasDelPlan} de ${seg.totalDelPlan} pasos del plan.`),
+      // El mismo avance que en Hoy y Progreso.
+      (() => { const c = d.st.camino; return [
+        h('div.bar', { role: 'progressbar', 'aria-label': 'Camino hecho', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(c.fraccion * 100) },
+          h('span', { style: `width:${Math.round(c.fraccion * 100)}%` })),
+        h('p.muted.small', lineaAvance(c))]; })(),
       seg.atrasadas.length ? h('section.plan-recuperar', h('h2', 'Para recuperar'),
         h('ul.plan-unidades', seg.atrasadas.map((u) => h('li', h('a', { href: hrefActividad(tit, u) }, `${ICONO[u.tipo] ?? ''} ${u.titulo}`),
           h('span.muted.small', ` · tocaba el ${fecha(u.fecha, { weekday: 'long', day: 'numeric' })}`)))),

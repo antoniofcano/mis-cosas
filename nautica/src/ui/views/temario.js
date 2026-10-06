@@ -40,7 +40,7 @@ export function temarioView({ progress, tit }) {
   let summaryText = `VISTA temario ${T.sigla} (cargando)`;
   calcularPlan(progress, tit).then((d) => {
     const hoyUt = d.plan[0]?.ut ?? null;
-    const filas = bloquesEnOrden(T.estructura).map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
+    const filas = d.st.temas; // del motor
     summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`).join('\n')}` +
       `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${TANDA} preguntas`;
     setChildren(el,
@@ -74,7 +74,7 @@ export function temaView({ progress, params: route, tit }) {
   calcularPlan(progress, tit).then((d) => {
     const m = d.curso?.modulos?.find((x) => x.ut === ut);
     const clases = (m?.lecciones ?? []).map((l) => ({ l, e: estadoLeccion(l, d.regs[l.id], d.respuestas, d.ahora) }));
-    const e = estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora);
+    const e = d.st.temas.find((x) => x.b.ut === b.ut).e; // del motor
     const aMedias = clases.find((c) => c.e.estado === 'empezada');
     const nueva = clases.find((c) => c.e.estado === 'nueva');
     const tanda = tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed() });

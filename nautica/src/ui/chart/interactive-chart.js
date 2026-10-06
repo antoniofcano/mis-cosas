@@ -66,7 +66,8 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   svg.innerHTML = DEFS;
   svg.append(gBase, gRaster, gLand, gGrid, gMarks, gItems, gUser, gTool, gRulers);
 
-  const readout = h('div.readout', TOOLS[0].help);
+  // En móvil la ayuda va en dos líneas (CSS); tocándola se despliega entera y se vuelve a plegar.
+  const readout = h('div.readout', { onclick: () => readout.classList.toggle('abierta') }, TOOLS[0].help);
   const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, h('span.tool-icon', t.icon), h('span.tool-name', t.corto ?? t.label)));
   const layerSelect = h('select.small', { 'aria-label': 'Capa de la carta', onchange: (ev) => setLayer(ev.target.value) },
     LAYERS.map(([v, t]) => h('option', { value: v }, t)));

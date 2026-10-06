@@ -4,6 +4,7 @@
 import { h } from './dom.js';
 import { icono } from './iconos.js';
 import { crearPlan, temasDePocoPeso } from '../course/calendario.js';
+import { cuenta } from '../texto.js';
 
 /**
  * El plan con fecha y su seguimiento, tal como lo calcula el motor (calcularPlan → st.plan).
@@ -31,10 +32,10 @@ export function botonSubirMinutos(progress, ps, alCambiar, tit) {
   const m = seg.futuro.minutosNecesarios;
   const md = ps.plan.minutosDia;
   return h('div.alternativas',
-    h('button.secondary.subir-minutos', { type: 'button', onclick: () => { progress.setSetting('minutosDia', m); alCambiar(); } }, `Subir a ${m} minutos al día`),
+    h('button.secondary.subir-minutos', { type: 'button', onclick: () => { progress.setSetting('minutosDia', m); alCambiar(); } }, `Subir a ${cuenta(m, 'minuto')} al día`),
     alt ? h('button.secondary.plan-esencial', { type: 'button', onclick: () => { progress.setSetting(`planEsencial_${tit}`, true); alCambiar(); } },
-      `Plan esencial: ${alt.llega ? `llegas con tus ${md} minutos` : `llegas con ${alt.minutosNecesarios} minutos`}`) : null,
-    alt ? h('p.muted.small', `El plan esencial estudia enteros los temas que más pesan en el examen; en los de poco peso cambia las clases por la chuleta del tema y sus preguntas (ahorras unas ${Math.round(alt.ahorro / 60)} horas).`) : null);
+      `Plan esencial: ${alt.llega ? `llegas con tus ${cuenta(md, 'minuto')}` : `llegas con ${cuenta(alt.minutosNecesarios, 'minuto')}`}`) : null,
+    alt ? h('p.muted.small', `El plan esencial estudia enteros los temas que más pesan en el examen; en los de poco peso cambia las clases por la chuleta del tema y sus preguntas (ahorras unas ${cuenta(Math.round(alt.ahorro / 60), 'hora')}).`) : null);
 }
 
 /** Aviso del plan esencial activo, con la vuelta al completo. */

@@ -11,6 +11,7 @@ import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
 import { calcularPlan } from '../cierre.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
 import { DIAS_ESTUDIO } from '../../course/calendario.js';
+import { fechaLarga } from '../../texto.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -53,7 +54,7 @@ export function masView({ progress, tit, params }) {
   pintaDias();
   const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); progress.setSetting(`examenOrientativo_${tit}`, false); pintaAviso(); } });
 
-  const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${new Date(s.ultimaCopia).toLocaleDateString('es-ES')}.` : '');
+  const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${fechaLarga(s.ultimaCopia)}.` : '');
 
   // Instalar la app (Android/Chrome): solo aparece si el navegador lo ofrece y no está ya instalada.
   const instalarEl = h('section.instalar', { hidden: !puedeInstalar() }, h('h2', '📲 Instalar la app'),
@@ -97,7 +98,7 @@ export function masView({ progress, tit, params }) {
       h('p', 'Lo que has estudiado se guarda solo en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
       copiaHecha,
       h('div.actions',
-        h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${new Date().toLocaleDateString('es-ES')}.`; } }, 'Guardar una copia'),
+        h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
         botonRecuperar(progress)),
       h('details.empezar-de-cero', h('summary', 'Empezar de cero'),
         h('p', 'Se borrará todo lo que has estudiado. No se puede deshacer.'),

@@ -12,6 +12,7 @@ import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { avisoError } from '../aviso-error.js';
+import { cuenta } from '../../texto.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -50,7 +51,7 @@ export function examsView({ ctx, progress, params: route }) {
   })();
 
   function renderIndex(index) {
-    summaryText = `VISTA exámenes · bancos: ${index.map((b) => `${b.file} (${b.count} preguntas)`).join(', ')}`;
+    summaryText = `VISTA exámenes · bancos: ${index.map((b) => `${b.file} (${cuenta(b.count, 'pregunta')})`).join(', ')}`;
     setChildren(el, 
       volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
       h('h1', 'Preguntas reales de examen'),
@@ -58,7 +59,7 @@ export function examsView({ ctx, progress, params: route }) {
       h('div.cards',
         h('a.card', { href: tlink(currentTit(progress), ['examenes']) }, h('h3', '📄 Exámenes completos y simulacros'), h('p', 'Las 45 preguntas (teoría + carta) de cada convocatoria, cronometradas y corregidas con las reglas oficiales; y simulacros por temas.')),
         index.map((b) => h('a.card', { href: link(['examenes', b.file]) },
-        h('h3', b.title), h('p', sinJerga(b.description ?? '')), h('div.meta', h('span.stat', `${b.count} preguntas`))))),
+        h('h3', b.title), h('p', sinJerga(b.description ?? '')), h('div.meta', h('span.stat', `${cuenta(b.count, 'pregunta')}`))))),
     );
   }
 
@@ -69,7 +70,7 @@ export function examsView({ ctx, progress, params: route }) {
       groups.get(q.convocatoria).push(q);
     }
     const answered = (q) => progress.get().exams[q.id];
-    summaryText = `VISTA banco ${bank.meta.title} · ${bank.preguntas.length} preguntas\n` +
+    summaryText = `VISTA banco ${bank.meta.title} · ${cuenta(bank.preguntas.length, 'pregunta')}\n` +
       bank.preguntas.map((q) => `${q.id}: ${(answered(q)?.ok ? '✓' : answered(q) ? '✗' : '·')} ${q.enunciado.slice(0, 80)}`).join('\n');
     setChildren(el, 
       volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),

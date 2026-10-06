@@ -1,3 +1,4 @@
+import { diaISO } from '../texto.js';
 // Repaso espaciado de fallos (B1). Funciones puras: el estado de cada pregunta va en su registro de respuesta
 // (progress.exams[id].rep = { racha, prox } o null) y la fecha es la local 'YYYY-MM-DD'.
 //
@@ -12,7 +13,7 @@ export const INTERVALOS = [1, 3, 7]; // días hasta el siguiente repaso con 0, 1
 export const ACIERTOS_PARA_SALIR = 3;
 export const MIN_POR_PREGUNTA = 0.8; // minutos estimados por pregunta de repaso (con su explicación)
 
-export const diaLocal = (ms = Date.now()) => new Date(ms).toLocaleDateString('sv-SE');
+export const diaLocal = diaISO;
 
 /** 'YYYY-MM-DD' + n días. */
 export function sumaDias(fecha, n) {

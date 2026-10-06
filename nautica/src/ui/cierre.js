@@ -8,6 +8,7 @@ import { estadoAlumno } from '../course/motor.js';
 import { randomSeed } from '../math/rng.js';
 import { contar } from './movimiento.js';
 import { icono as icono_ } from './iconos.js';
+import { cuenta } from '../texto.js';
 
 /**
  * El estado del alumno para una titulación (motor de seguimiento, src/course/motor.js): carga los datos, llama al
@@ -82,7 +83,7 @@ export function cierre({ icono, titulo, lineas = [], siguiente = null, tit, logr
 export function cifrasCierre(progress, titulo = '') {
   const m = /^(\d+) de (\d+)$/.exec(titulo);
   const racha = progress.racha();
-  return [m ? { n: Number(m[1]), txt: `de ${m[2]} aciertos` } : null,
+  return [m ? { n: Number(m[1]), txt: `de ${cuenta(m[2], 'acierto')}` } : null,
     { n: progress.minutosHoy(), txt: 'minutos hoy' },
     { n: racha, txt: racha === 1 ? 'día seguido' : 'días seguidos' }].filter(Boolean);
 }
@@ -98,7 +99,7 @@ export function pintarCierre(cont, progress, tit, o) {
     const b = o.ut != null ? d.estructura.bloques.find((x) => x.ut === o.ut) : null;
     if (b) {
       const e = d.st.temas.find((x) => x.b.ut === b.ut).e; // del motor
-      if (e.clases.total) logros.push(`${b.titulo}: llevas ${e.clases.terminadas} de ${e.clases.total} clases`);
+      if (e.clases.total) logros.push(`${b.titulo}: llevas ${e.clases.terminadas} de ${cuenta(e.clases.total, 'clase')}`);
     }
     if (cont.isConnected || cont.parentNode) cont.replaceChildren(cierre({ ...o, tit, siguiente: d.plan[0], stats, logros, animar: false }), ...extra);
   }).catch(() => {});

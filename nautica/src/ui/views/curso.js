@@ -23,6 +23,7 @@ import { episodiosDeClase, enlaceEpisodio } from './podcast.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { cronometro } from '../../course/cronometro.js';
 import { getExercise } from '../../exercises/registry.js';
+import { cuenta } from '../../texto.js';
 
 const PRACTICA_MAX = 10;
 
@@ -135,8 +136,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         case 'intro': return h('div.paso.intro', h('h2', L.titulo),
           h('h3', 'En esta clase'),
           L.objetivos?.length ? h('ul', L.objetivos.map((o) => h('li', o))) : null,
-          h('p.muted', k > 1 ? `Este tramo: unos ${minutosDeTramo(L, ritmo())} min · Clase completa (${k} tramos): unos ${minutosClase(L, ritmo())} min.`
-            : `Unos ${minutosClase(L, ritmo())} minutos.`),
+          h('p.muted', k > 1 ? `Este tramo: unos ${minutosDeTramo(L, ritmo())} min · Clase completa (${cuenta(k, 'tramo')}): unos ${minutosClase(L, ritmo())} min.`
+            : `Unos ${cuenta(minutosClase(L, ritmo()), 'minuto')}.`),
           // Lo que esta clase del PY da por sabido del PER, plegado: no saca de la clase salvo que el alumno lo pida.
           base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${base.length} ${base.length === 1 ? 'clase' : 'clases'})`),
             h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo (luego vuelves aquí):'),
@@ -169,7 +170,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
                 p.ids.length > 1 ? h('button.secondary', { type: 'button', onclick: () => { k = (k + 1) % p.ids.length; pinta(); } }, 'Otra pregunta') : null));
           };
           pinta();
-          return h('div.paso.resuelto', h('p.badge', `Míralo resuelto: ${p.ids.length} preguntas reales de este tipo`), box);
+          return h('div.paso.resuelto', h('p.badge', `Míralo resuelto: ${cuenta(p.ids.length, 'pregunta real', 'preguntas reales')} de este tipo`), box);
         }
         case 'toca': {
           // «Toca en el dibujo»: se piden tres partes de la lámina, una a una. Con dos fallos en la misma, se resalta.
@@ -386,7 +387,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         // Practicar la afianza; si no, la clase ya cuenta como vista y se puede cerrar o pasar a lo siguiente.
         const hueco = h('div');
         setChildren(cont, vuelta, chuleta,
-          h('button.grande.practicar', { type: 'button', onclick: () => practicar() }, `Practicar con ${nPractica} preguntas de examen`),
+          h('button.grande.practicar', { type: 'button', onclick: () => practicar() }, `Practicar con ${cuenta(nPractica, 'pregunta')} de examen`),
           hueco, extra);
         pintarCierre(hueco, progress, tit, { icono: '✅', titulo: 'Clase terminada', lineas: ['Cuando la practiques quedará aprendida.'], ut: L.ut, logros: logrosClase() });
       } else {

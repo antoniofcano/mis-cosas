@@ -4,6 +4,7 @@
 // antiguo (version 1) carga sin migración.
 
 import { siguienteRepaso } from '../course/repaso.js';
+import { diaISO } from '../texto.js';
 const KEY = 'nautica.progress.v1';
 const DIA = 864e5;
 const DIAS_GUARDADOS = 60;
@@ -11,7 +12,7 @@ const DIAS_GUARDADOS = 60;
 const empty = () => ({ version: 1, exercises: {}, exams: {}, settings: { level: 'PER', toleranceFactor: 1 } });
 
 /** Fecha local 'YYYY-MM-DD' de un instante. */
-export const diaLocal = (ms = Date.now()) => new Date(ms).toLocaleDateString('sv-SE');
+export const diaLocal = diaISO;
 
 function safeStorage() {
   try {

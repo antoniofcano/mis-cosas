@@ -10,6 +10,7 @@ import { navigate } from '../router.js';
 import { renderIllustration } from '../../illustrations/index.js';
 import { MAPAS, vecinos, preguntasMapa } from '../../course/mapas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
+import { cuenta } from '../../texto.js';
 
 const cache = new Map();
 /** Carga un mapa (una sola vez por sesión). */
@@ -36,7 +37,7 @@ export function mapasView({ tit, params: route }) {
         h('h1', '🕸️ Mapas de conceptos'),
         h('p', 'Cómo se relacionan las ideas que más se confunden. Explora concepto a concepto, mira el mapa entero o juega a encontrar qué falta.'),
         h('div.cards', mios.map((m) => h('a.card', { href: tlink(tit, ['mapas', m.id]) }, h('h3', m.titulo), h('p', m.intro),
-          h('div.meta', h('span.stat', `${m.nodos.length} conceptos`))))));
+          h('div.meta', h('span.stat', `${cuenta(m.nodos.length, 'concepto')}`))))));
     }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los mapas: ${e.message}`)));
     return { el, summary: () => summaryText };
   }

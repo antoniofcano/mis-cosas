@@ -11,6 +11,7 @@ import {
   poner, alternar, saltar, ir, cambiarVelocidad, velocidad, suscribir, radio, fmt, estadoEpisodio, ultimoEpisodio,
   enVistaEpisodio, pararEnPreguntas, setPararEnPreguntas, marcarRespondida,
 } from '../radio.js';
+import { cuenta } from '../../texto.js';
 
 const MARCA = { bienvenida: '⚓', panorama: '🗼', profundiza: '🛟' };
 const TIPO = { bienvenida: 'Bienvenida', panorama: 'Panorama del tema', profundiza: 'Profundiza' };
@@ -89,7 +90,7 @@ function travesia(el, tit, pod) {
           h('h2', t.tema ? `Tema ${t.tema} · ${t.titulo}` : 'Zarpamos'),
           h('p.muted.small', listos
             ? `${hechos} de ${listos} escuchados · ${minutos(dur)}${listos < t.episodios.length ? ` · ${t.episodios.length - listos} en el astillero` : ''}`
-            : `${t.episodios.length} episodios en el astillero`))),
+            : `${cuenta(t.episodios.length, 'episodio')} en el astillero`))),
       h('ol.ruta', t.episodios.map((ep) => boya(tit, ep))));
   });
 
@@ -98,12 +99,12 @@ function travesia(el, tit, pod) {
     h('header.radio-cab',
       h('h1', '🎧 Radio de a bordo'),
       h('p', `${T.sigla === 'PY' ? 'Patrón de Yate' : 'PER'} en voz alta: Elena, patrona y profesora, y Andrés, que tiene un velero y una duda para cada cosa. Episodios de diez a quince minutos para escuchar donde quieras.`),
-      conAudio.length ? h('p.muted.small', `${oidos.length} de ${conAudio.length} episodios escuchados`) : null),
+      conAudio.length ? h('p.muted.small', `${oidos.length} de ${cuenta(conAudio.length, 'episodio escuchado', 'episodios escuchados')}`) : null),
     seguir ? destacado(seguir, 'Sigue escuchando') : sig ? destacado(sig, oidos.length ? 'Siguiente parada' : 'Para empezar') : null,
     h('div.travesia', puertos),
     h('p.muted.small.radio-pie', '🗼 Panorama: el tema entero, para situarte antes de estudiarlo y para repasarlo. 🛟 Profundiza: un epígrafe, con sus trampas. 🛠 En el astillero: aún se está grabando.'));
 
-  return `VISTA podcast ${T.sigla}: ${conAudio.length} episodios con audio de ${eps.length}, ${oidos.length} escuchados\n` +
+  return `VISTA podcast ${T.sigla}: ${cuenta(conAudio.length, 'episodio')} con audio de ${eps.length}, ${oidos.length} escuchados\n` +
     eps.map((e) => `${e.n} ${e.titulo} [${estado(e).clase}]${e.audio ? ` → ${tlink(tit, ['podcast', e.id])}` : ''}`).join('\n');
 }
 

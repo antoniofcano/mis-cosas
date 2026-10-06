@@ -15,7 +15,7 @@ export function hojaRespuesta(donde, { ok, titulo, contenido, onContinuar, boton
   const tit = titulo ?? (ok ? 'Correcto' : ok === false ? 'No es esa' : 'La respuesta');
   const plegar = h('button.hoja-plegar', { type: 'button', 'aria-expanded': 'true', 'aria-label': 'Plegar la explicación para ver la pregunta',
     onclick: () => { const p = el.classList.toggle('plegada'); plegar.setAttribute('aria-expanded', String(!p)); } });
-  const el = h('section.hoja', { class: ok ? 'ok' : ok === false ? 'bad' : '', role: 'region', 'aria-label': tit },
+  const el = h('section.hoja', { class: ok ? 'ok' : ok === false ? 'bad' : '', role: 'region', 'aria-label': tit, tabindex: '-1' },
     plegar,
     h('h3.hoja-titulo', icono(ok ? 'ok' : ok === false ? 'no' : 'bombilla'), tit),
     h('div.hoja-cuerpo', contenido),
@@ -27,6 +27,9 @@ export function hojaRespuesta(donde, { ok, titulo, contenido, onContinuar, boton
   if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => requestAnimationFrame(sube)); else sube();
   const quita = () => { if (!document.querySelector('.hoja')) document.body.classList.remove('con-hoja'); };
   new MutationObserver((_, obs) => { if (!el.isConnected) { quita(); obs.disconnect(); } }).observe(document.body, { childList: true, subtree: true });
-  el.querySelector('.hoja-continuar').focus({ preventScroll: true });
+  // El foco va al panel (el lector de pantalla lee el resultado y la explicación); con Tab se llega a «Continuar».
+  el.focus({ preventScroll: true });
+  // Intro con el foco en el panel = «Continuar» (como antes, sin tener que tabular).
+  el.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && ev.target === el) { ev.preventDefault(); el.querySelector('.hoja-continuar').click(); } });
   return el;
 }

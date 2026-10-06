@@ -28,11 +28,16 @@ export const PER = {
 export const totalPreguntas = (estructura) => estructura.bloques.reduce((s, b) => s + b.n, 0);
 export const bloque = (estructura, ut) => estructura.bloques.find((b) => b.ut === ut);
 
+/** Posición de un tema (por su ut) en el orden de estudio: para ordenar cualquier lista por temas igual en todas partes. */
+export function posEstudio(estructura, ut) {
+  const orden = estructura.ordenEstudio ?? [];
+  const i = orden.indexOf(ut);
+  return i < 0 ? orden.length + ut : i;
+}
+
 /** Bloques en el orden de estudio recomendado (o en el oficial si la estructura no lo fija). */
 export function bloquesEnOrden(estructura) {
-  const orden = estructura.ordenEstudio ?? [];
-  const pos = (b) => { const i = orden.indexOf(b.ut); return i < 0 ? orden.length + b.ut : i; };
-  return [...estructura.bloques].sort((a, b) => pos(a) - pos(b));
+  return [...estructura.bloques].sort((a, b) => posEstudio(estructura, a.ut) - posEstudio(estructura, b.ut));
 }
 
 // Patrón de Yate (RD 875/2014, anexo II, ap. 4): 40 preguntas en dos módulos. En Andalucía cada módulo es un

@@ -11,9 +11,10 @@
 import { estadoLeccion, minutosClase, SEG_TARJETA } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { diasHasta, estadoTema, OBJETIVO_TEMA, TANDA, MIN_TANDA, SIMULACROS_RECOMENDADOS } from './plan.js';
+import { cuenta, diaISO } from '../texto.js';
 
 const DIA = 864e5;
-const diaLocal = (ms) => new Date(ms).toLocaleDateString('sv-SE');
+const diaLocal = diaISO;
 /** 'YYYY-MM-DD' + n días (sin líos de horario de verano: se trabaja a mediodía). */
 export function sumaDiasISO(iso, n) {
   const [y, m, d] = iso.split('-').map(Number);
@@ -55,7 +56,7 @@ export function unidades({ estructura, curso, preguntas = [], regs = {}, respues
     const obj = Math.min(est.total, OBJETIVO_TEMA);
     const n = Math.ceil(obj / TANDA);
     for (let k = 1; k <= n; k++) {
-      out.push({ id: `tanda:${b.ut}:${k}`, tipo: 'tanda', titulo: `${TANDA} preguntas de ${b.titulo}${n > 1 ? ` (${k} de ${n})` : ''}`, minutos: MIN_TANDA, ut: b.ut, ruta: ['teoria', 'ut', String(b.ut)],
+      out.push({ id: `tanda:${b.ut}:${k}`, tipo: 'tanda', titulo: `${cuenta(TANDA, 'pregunta')} de ${b.titulo}${n > 1 ? ` (${k} de ${n})` : ''}`, minutos: MIN_TANDA, ut: b.ut, ruta: ['teoria', 'ut', String(b.ut)],
         hecha: est.hechas >= Math.min(obj, k * TANDA) });
     }
   }
@@ -160,8 +161,8 @@ export function describir(us) {
 
 /** Minutos → «unos 80 minutos» o «unas 4,5 horas». */
 export function duracion(min) {
-  if (min < 90) return `unos ${Math.round(min / 5) * 5} minutos`;
-  return `unas ${String(Math.round(min / 6) / 10).replace('.', ',')} horas`;
+  if (min < 90) return `unos ${cuenta(Math.round(min / 5) * 5, 'minuto')}`;
+  return `unas ${cuenta(Math.round(min / 6) / 10, 'hora')}`;
 }
 
 /** Días de estudio que quedan: de hoy a la víspera del examen (null sin fecha o con el examen pasado). */
@@ -258,7 +259,7 @@ export function lineaSeguimiento(s, minutosDia) {
   if (s.estado === 'terminado') return 'Has terminado tu plan: ahora, simulacros y repasar tus fallos.';
   if (s.estado === 'no-llega') {
     const falta = s.futuro.fuera.reduce((t, u) => t + u.minutos, 0);
-    return `Con ${minutosDia} minutos al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}). Para llegar, unos ${s.futuro.minutosNecesarios} minutos al día.`;
+    return `Con ${cuenta(minutosDia, 'minuto')} al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}). Para llegar, unos ${cuenta(s.futuro.minutosNecesarios, 'minuto')} al día.`;
   }
   if (s.estado === 'atrasado') return `Tienes ${describir(s.atrasadas)} por recuperar (${duracion(s.minutosAtraso)}): empieza por ahí y llegas a tiempo.${deHoy}`;
   return `Vas al día con tu plan.${s.descansoHoy ? ' Hoy es día de descanso.' : deHoy}`;

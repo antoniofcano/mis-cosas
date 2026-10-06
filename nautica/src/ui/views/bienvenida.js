@@ -3,19 +3,20 @@
 import { h, setChildren } from '../dom.js';
 import { navigate } from '../router.js';
 import { TITULACIONES } from '../titulacion.js';
+import { cuenta } from '../../texto.js';
 
 /** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
   // En la bienvenida (sin valor aún): tres botones grandes. En Ajustes: − / + de 5 en 5 (de 5 a 180) y atajos, para
   // poder poner justo los minutos que pide el plan (35, 40, 45…).
   if (actual == null) {
-    return h('div.opciones-grandes', [10, 20, 30].map((m) => h('button.grande.secondary', { type: 'button', 'aria-pressed': 'false', onclick: () => onElegir(m) }, `${m} minutos`)));
+    return h('div.opciones-grandes', [10, 20, 30].map((m) => h('button.grande.secondary', { type: 'button', 'aria-pressed': 'false', onclick: () => onElegir(m) }, `${cuenta(m, 'minuto')}`)));
   }
   const paso = (d) => Math.min(180, Math.max(5, actual + d));
   return h('div.minutos-ajuste',
     h('div.stepper', { role: 'group', 'aria-label': 'Minutos al día' },
       h('button.grande.secondary', { type: 'button', 'aria-label': 'Cinco minutos menos', disabled: actual <= 5, onclick: () => onElegir(paso(-5)) }, '−'),
-      h('output', { 'aria-live': 'polite' }, `${actual} minutos`),
+      h('output', { 'aria-live': 'polite' }, `${cuenta(actual, 'minuto')}`),
       h('button.grande.secondary', { type: 'button', 'aria-label': 'Cinco minutos más', disabled: actual >= 180, onclick: () => onElegir(paso(5)) }, '+')),
     h('div.atajos', [15, 20, 30, 45, 60].map((m) => h('button.secondary', { type: 'button', 'aria-pressed': actual === m ? 'true' : 'false', class: actual === m ? 'activo' : '', onclick: () => onElegir(m) }, `${m}`))));
 }

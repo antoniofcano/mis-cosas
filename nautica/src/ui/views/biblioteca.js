@@ -7,19 +7,29 @@ import { TITULACIONES, tlink } from '../titulacion.js';
 
 export function bibliotecaView({ tit }) {
   const T = TITULACIONES[tit];
-  const recursos = [
-    [tlink(tit, ['podcast']), '🎧 Radio de a bordo', 'Podcasts de diez a quince minutos: Elena, patrona y profesora, y Andrés, que pregunta lo que preguntarías tú. Con el guion al hilo y un minijuego de preguntas reales.'],
-    [tlink(tit, ['laminas']), '🎞️ Láminas', 'Boyas con su luz, luces y marcas de buques, maniobra, meteorología… muchas se mueven y se tocan.'],
-    [tlink(tit, ['carta']), '🗺️ Ejercicios de carta y cálculo', 'Problemas de carta, mareas, hora y viento aparente con datos nuevos cada vez: lo resuelves, se corrige y el profe te lo explica paso a paso.'],
-    [tlink(tit, ['mapas']), '🕸️ Mapas de conceptos', tit === 'per' ? 'Cómo se relacionan las ideas que más se confunden (rumbos, balizamiento, RIPA…), con sus láminas y un juego.' : 'Cómo se relacionan las ideas que más se confunden (meteorología, viento y corriente…), con sus láminas y un juego.'],
-    [tlink(tit, ['tarjetas']), '🃏 Tarjetas de memoria', 'Luces, boyas, señales, banderas, escalas… Para lo que solo se aprende repitiendo.'],
-    [link(['reglas']), '🧠 Reglas para recordar', 'Las que de verdad funcionan, con su explicación.'],
-    [link(['conceptos']), '📘 Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],
-    [link(['mesa']), '🧰 Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador, para trazar a tu aire.'],
+  const per = tit === 'per';
+  // Tres grupos, una línea por recurso: lo que se escucha, lo que se ve y se practica, y la carta.
+  const grupos = [
+    ['Escuchar', [
+      [tlink(tit, ['podcast']), '🎧 Radio de a bordo', 'Episodios cortos del temario, con el guion y preguntas reales.'],
+    ]],
+    ['Ver y practicar', [
+      [tlink(tit, ['laminas']), '🎞️ Láminas', per ? 'Boyas, luces de buques, maniobra y meteorología; muchas se tocan.' : 'Estabilidad, frentes y nubes, mareas, radar y navegación; muchas se tocan.'],
+      [tlink(tit, ['tarjetas']), '🃏 Tarjetas de memoria', per ? 'Luces, boyas, sonidos, banderas y escalas, para repetir.' : 'Señales de peligro, escalas, clases de fuego y siglas del GNSS, para repetir.'],
+      [tlink(tit, ['mapas']), '🕸️ Mapas de conceptos', per ? 'Las ideas que más se confunden (rumbos, balizamiento, RIPA), con un juego.' : 'Las ideas que más se confunden (meteorología, viento y corriente), con un juego.'],
+      [link(['reglas']), '🧠 Reglas para recordar', 'Trucos que funcionan, con su explicación.'],
+    ]],
+    ['Carta', [
+      [tlink(tit, ['carta']), '🗺️ Ejercicios de carta', 'Problemas con datos nuevos cada vez, corregidos paso a paso.'],
+      [link(['conceptos']), '📘 Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],
+      [link(['mesa']), '🧰 Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador.'],
+    ]],
   ];
-  const el = h('div.mas',
+  const recursos = grupos.flatMap(([, rs]) => rs);
+  const el = h('div.mas.biblioteca',
     h('h1', `Biblioteca · ${T.sigla}`),
-    h('div.cards', recursos.map(([href, titulo, texto]) => h('a.card', { href }, h('h3', titulo), h('p', texto)))));
+    grupos.map(([nombre, rs]) => h('section.grupo-biblioteca', h('h2', nombre),
+      h('div.cards', rs.map(([href, titulo, texto]) => h('a.card', { href }, h('h3', titulo), h('p', texto)))))));
   return {
     el,
     summary: () => `VISTA biblioteca ${T.sigla}\n${recursos.map(([href, t]) => `${t} → ${href}`).join('\n')}`,

@@ -8,6 +8,7 @@ import { catalogoLaminas } from '../../illustrations/catalogo-laminas.js';
 import { loadCourse } from '../../store/datasets.js';
 import { illustrationEls } from '../illustration.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
+import { cuenta } from '../../texto.js';
 
 export { LAMINAS } from '../../illustrations/catalogo-laminas.js';
 
@@ -35,13 +36,13 @@ export function galleryView(o) {
   const T = TITULACIONES[o.tit] ?? TITULACIONES.per;
   const otro = Object.values(TITULACIONES).find((x) => x.id !== T.id);
   const cuerpo = h('div', h('p.muted', 'Cargando…'));
-  const cuenta = h('p.muted.cuenta-laminas');
+  const contador = h('p.muted.contador-laminas');
   const filtro = h('input.filtro-laminas', { type: 'search', placeholder: 'Buscar: boya, marea, niebla…', 'aria-label': 'Buscar lámina' });
   let summaryText = `VISTA láminas ${T.sigla}`;
   const el = h('div.gallery',
     volver('Biblioteca', tlink(T.id, ['biblioteca'])),
     h('h1', `🎞️ Láminas · ${T.sigla}`),
-    filtro, cuenta, cuerpo,
+    filtro, contador, cuerpo,
     otro ? h('p', h('a', { href: tlink(otro.id, ['laminas']) }, `Láminas del ${otro.sigla} →`)) : null);
 
   catalogo(T).then(({ temas, porId }) => {
@@ -60,7 +61,7 @@ export function galleryView(o) {
     for (const d of cuerpo.querySelectorAll('.miniatura-dibujo')) (io ? io.observe(d) : d.pintar());
     const aplicar = () => {
       const q = norm(filtro.value.trim());
-      const vistas = new Set(); // una lámina en dos temas cuenta una vez
+      const vistas = new Set(); // una lámina en dos temas contador una vez
       for (const s of cuerpo.querySelectorAll('section.tema-laminas')) {
         let n = 0;
         for (const a of s.querySelectorAll('a.miniatura')) { const ok = !q || a.dataset.texto.includes(q); a.hidden = !ok; if (ok) { n += 1; vistas.add(a.getAttribute('href')); } }
@@ -68,11 +69,11 @@ export function galleryView(o) {
       }
       cuerpo.querySelector('nav.temas').hidden = !!q;
       cuerpo.querySelector('p.vacio').hidden = vistas.size > 0;
-      cuenta.textContent = q ? `${vistas.size} ${vistas.size === 1 ? 'lámina' : 'láminas'} con «${filtro.value.trim()}».` : `${porId.size} láminas, por temas del examen. Toca una para verla entera.`;
+      contador.textContent = q ? `${cuenta(vistas.size, 'lámina')} con «${filtro.value.trim()}».` : `${cuenta(porId.size, 'lámina')}, por temas del examen. Toca una para verla entera.`;
     };
     filtro.addEventListener('input', aplicar);
     aplicar();
-    summaryText = `VISTA láminas ${T.sigla} · ${porId.size} láminas\n${temas.map(({ ut, ids }) => `UT${ut} ${bloque.get(ut).titulo}: ${ids.map((id) => `${porId.get(id).titulo} → ${tlink(T.id, ['laminas', id])}`).join(' · ')}`).join('\n')}`;
+    summaryText = `VISTA láminas ${T.sigla} · ${cuenta(porId.size, 'lámina')}\n${temas.map(({ ut, ids }) => `UT${ut} ${bloque.get(ut).titulo}: ${ids.map((id) => `${porId.get(id).titulo} → ${tlink(T.id, ['laminas', id])}`).join(' · ')}`).join('\n')}`;
   });
   return { el, summary: () => summaryText };
 }

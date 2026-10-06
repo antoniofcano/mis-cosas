@@ -5,7 +5,7 @@ import { chuletaView } from './chuleta.js';
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { estadoLeccion } from '../../course/engine.js';
-import { estadoTema, TANDA } from '../../course/plan.js';
+import { estadoTema, parteTema, TANDA } from '../../course/plan.js';
 import { bloque, bloquesEnOrden } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
@@ -15,16 +15,18 @@ import { mapasDeClases } from '../../course/mapas.js';
 import { episodiosDeTema, enlaceEpisodio } from './podcast.js';
 import { estadoEpisodio } from '../radio.js';
 
-const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', repasar: 'toca repasar', dominada: 'aprendida' };
-const ESTADO_CLS = { dominada: 'ok', repasar: 'warn', empezada: 'close' };
+const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', vista: 'vista · falta practicarla', repasar: 'toca repasar', dominada: 'aprendida' };
+const ESTADO_CLS = { dominada: 'ok', vista: 'ok', repasar: 'warn', empezada: 'close' };
 
-/** Línea de estado de un tema (§4.2): nunca «0 %» ni porcentajes con pocos datos. */
+/** Línea de estado de un tema (§4.2): cuántas clases lleva y, con datos suficientes, cuánto acierta (no es el avance). */
 export function lineaEstado(e) {
+  const clases = e.clases.total ? `${e.clases.terminadas} de ${e.clases.total} clases` : null;
+  const juntar = (...xs) => xs.filter(Boolean).join(' · ');
   switch (e.estado) {
     case 'sin-empezar': return 'Sin empezar';
-    case 'bien': return `Vas bien · ${e.pct} %`;
-    case 'repasar': return `Conviene repasar · ${e.pct} %`;
-    default: return e.hechas ? `En marcha · ${e.hechas} preguntas hechas` : 'En marcha';
+    case 'bien': return juntar('Vas bien', clases, `aciertas el ${e.pct} %`);
+    case 'repasar': return juntar('Conviene repasar', clases, `aciertas el ${e.pct} %`);
+    default: return juntar('En marcha', clases, e.hechas ? `${e.hechas} preguntas hechas` : null);
   }
 }
 const ESTADO_TEMA_CLS = { bien: 'ok', repasar: 'warn' };
@@ -49,7 +51,7 @@ export function temarioView({ progress, tit }) {
         h('h3', `${b.icon} ${b.titulo}`),
         h('p', `Tema ${b.ut} del temario oficial · ${b.n} preguntas en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
         h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
-        e.hechas ? h('div.bar', h('span', { style: `width:${Math.round(100 * Math.min(1, e.hechas / e.total))}%` })) : null))),
+        e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))),
       h('details', h('summary', 'Reglas del examen'), h('ul', T.reglas.map((r) => h('li', r)))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));

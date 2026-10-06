@@ -14,7 +14,8 @@ export const APROBADO = 0.8;
  * @param {object} reg       registro guardado { visto, caja, proximo, ultimo, paso } (o undefined)
  * @param {object} respuestas mapa idPregunta → { ok }
  * @param {number} ahora     ms
- * @returns {{ estado: 'nueva'|'empezada'|'repasar'|'dominada', hechas: number, aciertos: number, total: number, pct: number|null, proximo: number|null }}
+ * @returns {{ estado: 'nueva'|'empezada'|'vista'|'repasar'|'dominada', hechas: number, aciertos: number, total: number, pct: number|null, proximo: number|null }}
+ *   'vista': terminada (cuenta como hecha para avanzar), pero aún sin afianzar con su práctica.
  */
 export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
   const ids = leccion.practica ?? [];
@@ -22,15 +23,14 @@ export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
   const aciertos = hechas.filter((id) => respuestas[id].ok).length;
   const pct = hechas.length ? aciertos / hechas.length : null;
   const base = { hechas: hechas.length, aciertos, total: ids.length, pct, proximo: reg?.proximo ?? null };
-  // Una clase abierta y dejada a medias (reg.paso > 0) ya está empezada.
-  if (!reg?.visto && !reg?.paso && !hechas.length) return { ...base, estado: 'nueva' };
-  // Una clase sin preguntas de práctica (de concepto; su práctica está en otro tema) queda aprendida al terminarla.
-  // Si no, se quedaría «empezada» para siempre y su tema nunca estaría al día.
-  if (!ids.length && reg?.caja == null) return { ...base, estado: reg?.visto && !reg?.paso ? 'dominada' : 'empezada' };
-  if (reg?.caja == null) return { ...base, estado: 'empezada' };
+  // Terminar la clase (o practicarla) es lo que la da por hecha; abrirla y dejarla a medias, no.
+  if (!reg?.visto && reg?.caja == null) return { ...base, estado: reg?.paso ? 'empezada' : 'nueva' };
+  // Sin práctica: una clase sin preguntas propias (de concepto; su práctica está en otro tema) queda aprendida al
+  // terminarla; con preguntas, queda vista hasta practicarla.
+  if (reg.caja == null) return { ...base, estado: ids.length ? 'vista' : 'dominada' };
+  // Con práctica, el repaso espaciado decide: vuelve cuando toca (mañana si se falló; días después si se acertó).
   if (reg.proximo != null && reg.proximo <= ahora) return { ...base, estado: 'repasar' };
-  if (pct != null && pct < 0.6) return { ...base, estado: 'repasar' };
-  return { ...base, estado: reg.caja >= 1 ? 'dominada' : 'empezada' };
+  return { ...base, estado: reg.caja >= 1 ? 'dominada' : 'vista' };
 }
 
 /**
@@ -39,7 +39,8 @@ export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
  * @param {number} acierto  fracción 0..1 de la práctica que acaba de hacer
  */
 export function trasPractica(reg = {}, acierto, ahora = Date.now()) {
-  const caja = acierto >= APROBADO ? Math.min((reg.caja ?? -1) + 1, INTERVALOS.length - 1) : 0;
+  // La primera práctica aprobada ya pasa a la caja 1 (vuelve en unos días); una suspendida, a la 0 (mañana).
+  const caja = acierto >= APROBADO ? Math.min((reg.caja ?? 0) + 1, INTERVALOS.length - 1) : 0;
   return { ...reg, visto: true, caja, ultimo: ahora, proximo: ahora + INTERVALOS[caja] * DIA, ultimoAcierto: acierto };
 }
 

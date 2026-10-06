@@ -269,3 +269,12 @@ test('progreso: con dos pestañas, una no pisa las respuestas de la otra', async
     assert.equal(final.settings.minutosDia, 30);
   } finally { globalThis.addEventListener = prev; }
 });
+
+test('ritmo: estudiar hoy no aleja la fecha de fin (M6)', async () => {
+  const { diasPara } = await import('../src/course/plan.js');
+  // 600 min pendientes a 30 al día: 20 días. Tras estudiar 20 min hoy quedan 580 y siguen siendo 20 días.
+  assert.equal(diasPara(600, 30, 0), 20);
+  assert.equal(diasPara(580, 30, 20), 20);
+  assert.equal(diasPara(570, 30, 30), 20, 'meta cumplida: lo que queda empieza mañana');
+  assert.equal(diasPara(10, 30, 0), 1);
+});

@@ -154,6 +154,15 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 }
 
 export const SIMULACROS_RECOMENDADOS = 3;
+
+/**
+ * Días de estudio (contando hoy) para `pendientes` minutos a `md` al día. Hoy cuenta con lo que aún cabe hoy (la meta
+ * menos lo ya estudiado), así que estudiar no aleja la fecha el mismo día.
+ */
+export function diasPara(pendientes, md, minutosHoy = 0) {
+  const caben = Math.max(0, md - minutosHoy);
+  return pendientes <= caben ? 1 : 1 + Math.ceil((pendientes - caben) / md);
+}
 const fechaISO = (ms) => new Date(ms).toLocaleDateString('sv-SE');
 
 /**
@@ -179,9 +188,7 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
   const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin, repaso };
   const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros + desglose.repaso;
   const md = Math.max(5, minutosDia);
-  // Hoy cuenta con lo que aún cabe hoy (la meta menos lo ya estudiado): así estudiar no aleja la fecha el mismo día.
-  const caben = Math.max(0, md - minutosHoy);
-  const diasNecesarios = minutosPendientes <= caben ? 1 : 1 + Math.ceil((minutosPendientes - caben) / md);
+  const diasNecesarios = diasPara(minutosPendientes, md, minutosHoy);
   // contando hoy como primer día de estudio
   const fechaFin = minutosPendientes ? fechaISO(ahora + Math.max(0, diasNecesarios - 1) * DIA) : null;
   const dias = fechaExamen ? diasHasta(fechaExamen, ahora) : null;

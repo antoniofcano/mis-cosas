@@ -1054,3 +1054,7 @@ html:has(body.con-hoja), body.con-hoja { overflow: hidden; }
 .minutos-bienvenida button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
 .bienvenida > button.grande:last-child { margin-top: 1.4rem; }
 .minutos-bienvenida { display: grid; gap: .5rem; } .minutos-bienvenida button { min-width: 0; width: auto; padding: .5rem .2rem; }
+
+/* Al acertar: el razonamiento completo, plegado. */
+details.ver-por-que { margin: .4rem 0; }
+details.ver-por-que > summary { min-height: 48px; display: flex; align-items: center; font-weight: 600; color: var(--accent); cursor: pointer; }

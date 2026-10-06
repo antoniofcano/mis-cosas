@@ -6422,6 +6422,16 @@
       {
        "tipo": "ilustracion",
        "spec": {
+        "tipo": "abatimiento",
+        "banda": "estribor",
+        "rv": 121,
+        "ab": 10
+       },
+       "texto": "El caso del problema: proa al 121° con el viento por estribor. Mueve el abatimiento y la banda: la tangente que trazas es el Rs, y la proa (Rv) va hacia barlovento de ella."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
         "tipo": "tangente-viento"
        },
        "texto": "La tangente es el Rs 111°; con el viento del S la proa va al Rv 121° y el Ra sale 116°."
@@ -7219,6 +7229,18 @@
        "tipo": "texto",
        "titulo": "Resolución: la corriente",
        "texto": "4. **Vector estimada → observada**: **≈ 044°**, **3,0 millas**.\n5. **Ihc** = 3,0 / 1,5 = **2,0 millas por hora**.\n\nResultado: **Rc ≈ 044°, Ihc = 2 nudos**. En la carta las décimas bailan; quédate con la opción más próxima."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "corriente",
+        "caso": "efectivo",
+        "rumbo": 100,
+        "rc": 44,
+        "ic": 2,
+        "vb": 6
+       },
+       "texto": "El problema modelo al revés: con proa al 100° a 6 nudos y una corriente hacia el 044° de 2 nudos, mira dónde acabas. Esa separación entre la estima y la situación real es la que mides para sacar Rc e Ihc."
       },
       {
        "tipo": "ilustracion",

@@ -139,7 +139,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           h('p.muted', k > 1 ? `Este tramo: unos ${minutosDeTramo(L, ritmo())} min · Clase completa (${cuenta(k, 'tramo')}): unos ${minutosClase(L, ritmo())} min.`
             : `Unos ${cuenta(minutosClase(L, ritmo()), 'minuto')}.`),
           // Lo que esta clase del PY da por sabido del PER, plegado: no saca de la clase salvo que el alumno lo pida.
-          base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${base.length} ${base.length === 1 ? 'clase' : 'clases'})`),
+          base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${cuenta(base.length, 'clase', 'clases')})`),
             h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo (luego vuelves aquí):'),
             listaBase()) : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
@@ -365,7 +365,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     }
 
     const logrosClase = () => [`Clase vista: ${L.titulo}`,
-      enClase.respondidas ? `${enClase.aciertos} de ${enClase.respondidas} ${enClase.respondidas === 1 ? 'pregunta' : 'preguntas'} de examen bien por el camino` : null].filter(Boolean);
+      enClase.respondidas ? `${enClase.aciertos} de ${cuenta(enClase.respondidas, 'pregunta', 'preguntas')} de examen bien por el camino` : null].filter(Boolean);
 
     // --- final: chuleta, práctica y material para profundizar
     function terminar() {
@@ -416,7 +416,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           progress.saveLeccion(L.id, { ...trasPractica(reg(), acierto), paso: 0 });
           progress.logActividad(min);
           barra.remove();
-          const logros = [`${ok} de ${total} ${total === 1 ? 'pregunta' : 'preguntas'} de examen bien`, acierto >= APROBADO ? `Clase aprendida: ${L.titulo}` : null].filter(Boolean);
+          const logros = [`${ok} de ${cuenta(total, 'pregunta', 'preguntas')} de examen bien`, acierto >= APROBADO ? `Clase aprendida: ${L.titulo}` : null].filter(Boolean);
           pintarCierre(cont, progress, tit, acierto >= APROBADO
             ? { icono: '🎉', titulo: 'Clase aprendida', lineas: ['Volverá dentro de unos días para afianzarla.'], ut: L.ut, logros }
             : { icono: '💪', titulo: `${ok} de ${total}`, lineas: ['Casi. Mañana la repasamos.'], ut: L.ut, logros });

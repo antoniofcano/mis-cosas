@@ -101,6 +101,8 @@ export function pintarCierre(cont, progress, tit, o) {
       const e = d.st.temas.find((x) => x.b.ut === b.ut).e; // del motor
       if (e.clases.total) logros.push(`${b.titulo}: llevas ${e.clases.terminadas} de ${cuenta(e.clases.total, 'clase')}`);
     }
+    // Lo fallado vuelve, y se dice cuándo (repaso espaciado).
+    if (d.st.repaso.manana) logros.push(`Mañana repasas ${cuenta(d.st.repaso.manana, 'pregunta que has fallado', 'preguntas que has fallado')}: vuelven para que se te queden.`);
     if (cont.isConnected || cont.parentNode) cont.replaceChildren(cierre({ ...o, tit, siguiente: d.plan[0], stats, logros, animar: false }), ...extra);
   }).catch(() => {});
 }

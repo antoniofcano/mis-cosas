@@ -26,7 +26,8 @@ test('fechas: siempre día de la semana, día y mes', () => {
 
 test('ningún texto con número hecho a mano: todos pasan por cuenta()', () => {
   const NOMBRES = 'preguntas?|clases?|minutos?|tramos?|d[ií]as|tarjetas|temas|pasos|horas|fallos|aciertos|respondidas|episodios|conceptos|errores|simulacros|l[aá]minas|tandas|semanas';
-  const re = new RegExp(`\\$\\{[^{}\`]+\\} (${NOMBRES})\\b`);
+  // «${n} preguntas» o «${n} ${n === 1 ? 'pregunta' : 'preguntas'}»: los dos se hacen con cuenta().
+  const re = new RegExp(`\\$\\{[^{}\`]+\\} (${NOMBRES})\\b|\\$\\{([^{}\`]+)\\} \\$\\{\\2 === 1 \\?`);
   const mal = codigo.filter((f) => !/views\/(titulacion|chuleta)\.js$/.test(f))
     .flatMap((f) => readFileSync(join(raiz, f), 'utf8').split('\n').map((l, i) => [f, i + 1, l]).filter(([, , l]) => re.test(l)))
     .map(([f, n, l]) => `${f}:${n} ${l.trim().slice(0, 90)}`);

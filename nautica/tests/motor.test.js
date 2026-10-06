@@ -12,7 +12,7 @@ const leer = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url),
 const DIA = 864e5;
 
 test('ninguna pantalla calcula números por su cuenta: todo sale del motor', () => {
-  const calculos = /\b(estadoTema|avanceCamino|avance|ritmoEstudio|estoyListo|planHoy|seguimiento|crearPlan|lineaSeguimiento|lineaRitmo)\(/;
+  const calculos = /\b(estadoTema|avanceCamino|avance|ritmoEstudio|estoyListo|planHoy|seguimiento|crearPlan|lineaSeguimiento|lineaRitmo|clasesFlojas|temasFlojos)\(/;
   for (const f of readdirSync(new URL('../src/ui/views/', import.meta.url))) {
     const src = readFileSync(new URL(`../src/ui/views/${f}`, import.meta.url), 'utf8');
     assert.ok(!calculos.test(src), `${f} calcula por su cuenta: ${src.match(calculos)?.[0]}`);

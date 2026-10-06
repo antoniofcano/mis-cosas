@@ -102,6 +102,7 @@ import { caidaPopa } from '../src/nautical/helice.js';
 import { desatraque as desatraqueCalc } from '../src/nautical/desatraque.js';
 import { intensidad, humedadRelativa } from '../src/nautical/meteo.js';
 import { correccionTabla } from '../src/nautical/tides.js';
+import { bandas, ladoCardinal, zonaBano, apagado } from '../src/illustrations/interactivas/per-basicas.js';
 import { readFileSync } from 'node:fs';
 
 const leeJson = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
@@ -228,6 +229,11 @@ function COMPRUEBA_NIEBLA(c, p) {
 }
 const ladoDeCorriente = (rc, rumbo) => { const d = ((rc - rumbo) % 360 + 540) % 360 - 180; return d === 0 || Math.abs(d) === 180 ? 'igual' : d > 0 ? 'estribor' : 'babor'; };
 const COMPRUEBA = {
+  // PER: lo que da por bueno la predicción sale de la regla, con el estado en que se abre la lámina.
+  barco(c, p) { assert.equal(p.opciones[p.correcta], bandas(c.estado().viento).barlovento === 'estribor' ? 'Estribor' : 'Babor'); },
+  cardinales(c, p) { assert.equal(p.opciones[p.correcta].toLowerCase(), `por ${ladoCardinal(c.estado().marca)}`); },
+  playa(c, p) { const z = zonaBano(c.estado().costa, c.estado().dist); assert.ok(z.dentro && z.maxNudos === 3); assert.equal(p.opciones[p.correcta], 'Sí, a 3 nudos como máximo'); },
+  fuego(c, p) { assert.ok(apagado('nada').arde && apagado('comburente').metodo === 'sofocación'); assert.equal(p.opciones[p.correcta], 'El comburente (oxígeno)'); },
   'marea:curva'(c, p) { COMPRUEBA_MAREA(c, p); },
   'marea:duodecimos'(c, p) { COMPRUEBA_MAREA(c, p); },
   'marea:sonda'(c, p) { COMPRUEBA_MAREA(c, p); },

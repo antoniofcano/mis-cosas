@@ -17,7 +17,7 @@
      "minutos": 12,
      "objetivos": [
       "Definir desplazamiento y saber cuándo cambia durante la navegación",
-      "Distinguir el centro de gravedad (G) del centro de carena (C) y saber qué fuerza se aplica en cada uno",
+      "Distinguir el centro de gravedad (G) del centro de carena (B) y saber qué fuerza se aplica en cada uno",
       "Saber cuál de los dos puntos se mueve con los balances y cabezadas y cuál no"
      ],
      "refresco": [
@@ -51,8 +51,8 @@
       },
       {
        "tipo": "texto",
-       "titulo": "C, el centro de carena",
-       "texto": "La **carena** es la parte sumergida del casco, la obra viva. El **centro de carena** es el **centro de gravedad del volumen sumergido**: el centro geométrico de ese volumen de agua desalojado.\n\nAhí se aplica el **empuje**, vertical y **hacia arriba**. Por eso el centro de carena es también el **centro de empuje**: son el mismo punto con dos nombres.\n\nLo verás escrito como **C** o como **B** (del inglés *buoyancy*). Su altura sobre la quilla es **KC**."
+       "titulo": "B, el centro de carena",
+       "texto": "La **carena** es la parte sumergida del casco, la obra viva. El **centro de carena** es el **centro de gravedad del volumen sumergido**: el centro geométrico de ese volumen de agua desalojado.\n\nAhí se aplica el **empuje**, vertical y **hacia arriba**. Por eso el centro de carena es también el **centro de empuje**: son el mismo punto con dos nombres.\n\nSe escribe **B** (del inglés *buoyancy*); algunos textos usan **C**. Su altura sobre la quilla es **KB**."
       },
       {
        "tipo": "ilustracion",
@@ -67,12 +67,12 @@
       },
       {
        "tipo": "clave",
-       "texto": "G = donde se aplica el peso (hacia abajo). C (o B) = centro del volumen sumergido, donde se aplica el empuje (hacia arriba)."
+       "texto": "G = donde se aplica el peso (hacia abajo). B = centro del volumen sumergido, donde se aplica el empuje (hacia arriba)."
       },
       {
        "tipo": "texto",
        "titulo": "Cuando la mar mueve el barco",
-       "texto": "Con un **balance** o una **cabezada**, el barco se inclina y cambia la **forma** de la parte sumergida: entra más casco en el agua por la banda (o el extremo) que se hunde y sale por la contraria.\n\nResultado:\n- El **centro de carena se desplaza** hacia la zona que se sumerge.\n- El **centro de gravedad no se mueve**, porque nadie ha cambiado los pesos de sitio.\n\nEse desplazamiento de C, con G quieto, es lo que separa las verticales del peso y del empuje y crea el par que adriza el barco (lo verás en la lección siguiente)."
+       "texto": "Con un **balance** o una **cabezada**, el barco se inclina y cambia la **forma** de la parte sumergida: entra más casco en el agua por la banda (o el extremo) que se hunde y sale por la contraria.\n\nResultado:\n- El **centro de carena se desplaza** hacia la zona que se sumerge.\n- El **centro de gravedad no se mueve**, porque nadie ha cambiado los pesos de sitio.\n\nEse desplazamiento de B, con G quieto, es lo que separa las verticales del peso y del empuje y crea el par que adriza el barco (lo verás en la lección siguiente)."
       },
       {
        "tipo": "ilustracion",
@@ -84,7 +84,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Trampas que se repiten:\n- «Centro de carena = punto de aplicación del peso»: no, ese es **G**.\n- «Centro de gravedad del volumen **total** del buque» o «de la obra muerta»: no, es del volumen **sumergido**.\n- «La línea que separa obra viva y obra muerta»: eso es la **flotación**.\n- El **centro de flotación** es otra cosa: el centro del **área** del plano de flotación, no del volumen.\n- Si una embarcación navega gastando combustible, **cambian** D, G y C: ninguno queda inalterable."
+       "texto": "Trampas que se repiten:\n- «Centro de carena = punto de aplicación del peso»: no, ese es **G**.\n- «Centro de gravedad del volumen **total** del buque» o «de la obra muerta»: no, es del volumen **sumergido**.\n- «La línea que separa obra viva y obra muerta»: eso es la **flotación**.\n- El **centro de flotación** es otra cosa: el centro del **área** del plano de flotación, no del volumen.\n- Si una embarcación navega gastando combustible, **cambian** D, G y B: ninguno queda inalterable."
       },
       {
        "tipo": "check",
@@ -132,7 +132,7 @@
       "Flota en equilibrio si empuje = peso y los dos en la misma vertical.",
       "Desplazamiento = peso total = peso del agua desalojada. Cambia con consumos y cargas, no al mover pesos a bordo.",
       "G = peso, hacia abajo. Solo se mueve si se mueven, cargan o consumen pesos.",
-      "C (o B) = centro del volumen sumergido = centro de empuje, hacia arriba. Se mueve con balances y cabezadas.",
+      "B = centro del volumen sumergido = centro de empuje, hacia arriba. Se mueve con balances y cabezadas.",
       "Agua dulce: el barco cala más. Agua salada (1,025): flota más."
      ],
      "profundizar": [
@@ -143,15 +143,15 @@
      ],
      "verificacion": [
       {
-       "dato": "G = punto de aplicación del peso; C = centro de gravedad del volumen sumergido, punto de aplicación del empuje",
+       "dato": "G = punto de aplicación del peso; B = centro de gravedad del volumen sumergido, punto de aplicación del empuje",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico (2020-c1-g01/g02, 2022-c1-g03, 2023-c3-g01, 2024-c1-g02) y principio de Arquímedes"
       },
       {
-       "dato": "Con balance y cabezada se mueve C y no G",
+       "dato": "Con balance y cabezada se mueve B y no G",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2022-c2-g03, 2024-c2-g01, 2024-c3-g05"
       },
       {
-       "dato": "El desplazamiento cambia con consumos y cargas; con consumo cambian D, G y C",
+       "dato": "El desplazamiento cambia con consumos y cargas; con consumo cambian D, G y B",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2025-c2-g05, 2026-c1-g01, 2026-c2-g04"
       },
       {
@@ -172,7 +172,7 @@
      "minutos": 14,
      "objetivos": [
       "Distinguir estabilidad estática y dinámica, transversal y longitudinal",
-      "Definir el metacentro y la altura metacéntrica GM, y no confundirla con KM ni con CM",
+      "Definir el metacentro y la altura metacéntrica GM, y no confundirla con KM ni con BM",
       "Reconocer el equilibrio estable, indiferente e inestable por la posición de G y M o por KG y KM"
      ],
      "refresco": [
@@ -192,7 +192,7 @@
       {
        "tipo": "texto",
        "titulo": "La altura metacéntrica (GM)",
-       "texto": "La **altura metacéntrica** es la **distancia entre G y M**:\n\n**GM = KM − KG**\n\nEs positiva si M está por encima de G. Mide la estabilidad inicial: cuanto mayor es GM, mayor es el **brazo adrizante GZ** (la distancia horizontal entre la vertical del peso y la del empuje):\n\n- GZ = GM × sen θ (θ, la escora).\n- Momento adrizante = D × GZ.\n\nOtras distancias que no hay que confundir:\n- **KM** = altura del metacentro sobre la quilla (KM = KC + CM).\n- **CM** = **radio metacéntrico**, del centro de carena al metacentro.\n- **KG** = altura del centro de gravedad sobre la quilla."
+       "texto": "La **altura metacéntrica** es la **distancia entre G y M**:\n\n**GM = KM − KG**\n\nEs positiva si M está por encima de G. Mide la estabilidad inicial: cuanto mayor es GM, mayor es el **brazo adrizante GZ** (la distancia horizontal entre la vertical del peso y la del empuje):\n\n- GZ = GM × sen θ (θ, la escora).\n- Momento adrizante = D × GZ.\n\nOtras distancias que no hay que confundir:\n- **KM** = altura del metacentro sobre la quilla (KM = KB + BM).\n- **BM** = **radio metacéntrico**, del centro de carena al metacentro.\n- **KG** = altura del centro de gravedad sobre la quilla."
       },
       {
        "tipo": "ojo",
@@ -229,7 +229,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "En el equilibrio indiferente coinciden **M y G**, no G y C ni M y C (C siempre queda por debajo de M). Si una pregunta da «M coincide con G» y «GM es cero» por separado, suele haber una opción «a y b son correctas»: dicen lo mismo. Y ojo con las descripciones: «se escora más» es **inestable con M por debajo de G**; si la opción dice «inestable, G por debajo de M», está mal porque eso describe un barco estable."
+       "texto": "En el equilibrio indiferente coinciden **M y G**, no G y B ni M y B (B siempre queda por debajo de M). Si una pregunta da «M coincide con G» y «GM es cero» por separado, suele haber una opción «a y b son correctas»: dicen lo mismo. Y ojo con las descripciones: «se escora más» es **inestable con M por debajo de G**; si la opción dice «inestable, G por debajo de M», está mal porque eso describe un barco estable."
       },
       {
        "tipo": "check",
@@ -281,7 +281,7 @@
      "chuleta": [
       "Estática = aguas en reposo. Transversal = tras un balance; longitudinal = cabeceo.",
       "M: donde la vertical del nuevo centro de carena corta la crujía (escoras pequeñas).",
-      "GM = KM − KG = distancia de G a M. CM = radio metacéntrico. KM = KC + CM.",
+      "GM = KM − KG = distancia de G a M. BM = radio metacéntrico. KM = KB + BM.",
       "GZ = GM · sen θ; momento adrizante = D · GZ.",
       "Estable KM > KG · Indiferente KM = KG (se queda escorado) · Inestable KG > KM (escora más)."
      ],
@@ -293,7 +293,7 @@
      ],
      "verificacion": [
       {
-       "dato": "GM = distancia G–M = KM − KG; CM = radio metacéntrico",
+       "dato": "GM = distancia G–M = KM − KG; BM = radio metacéntrico",
        "fuente": "Plantillas oficiales PY Andalucía, módulo genérico 2021-c2-g01, 2022-c1-g01, 2024-c1-g04"
       },
       {
@@ -703,7 +703,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "«Todas las balsas llevan un ancla flotante estibada en el paquete SOLAS» es falso: las anclas forman parte de la propia balsa (una ya sujeta y otra de respeto), y no todas las balsas de recreo llevan paquete SOLAS. Y «contenedor completamente estanco, sin desagües» también es falso."
+       "texto": "«Todas las balsas llevan un ancla flotante estibada en el paquete SOLAS» es falso: no todas las balsas de recreo llevan paquete SOLAS, y de las dos anclas solo la de respeto va con el equipo; la otra va sujeta a la balsa. Y «contenedor completamente estanco, sin desagües» también es falso."
       },
       {
        "tipo": "check",
@@ -2536,7 +2536,7 @@
       {
        "tipo": "texto",
        "titulo": "Altas y medias, una a una",
-       "texto": "- **Cirros**: filamentos blancos, fibrosos o en forma de pluma («colas de gato»). No dan precipitación.\n- **Cirrocúmulos**: capa de nubecillas altas, pequeñas y redondeadas, como granitos (cielo aborregado fino).\n- **Cirrostratos**: velo blanquecino y transparente que cubre gran parte del cielo y produce **halo** alrededor del sol o la luna. A menudo anuncian un frente cálido.\n- **Altocúmulos**: capa o grupo de nubecillas **globulares o aplanadas**, blancas o grises, más gordas que los cirrocúmulos.\n- **Altostratos**: velo **grisáceo o azulado**, uniforme, a través del cual el sol se ve como tras un cristal esmerilado, sin halo."
+       "texto": "- **Cirros**: filamentos blancos, fibrosos o en forma de pluma («colas de gato»). No dan precipitación.\n- **Cirrocúmulos**: capa de nubecillas altas, pequeñas y redondeadas, como granitos (cielo aborregado fino).\n- **Cirrostratos**: velo blanquecino y transparente que cubre gran parte del cielo y produce **halo** alrededor del sol o la luna. A menudo anuncian un frente cálido.\n- **Altocúmulos**: capa o grupo de nubecillas **globulares o aplanadas**, blancas o grises, más gordas que los cirrocúmulos.\n- **Altostratos**: velo **grisáceo o azulado**, estriado, fibroso o uniforme, a través del cual el sol se ve como tras un cristal esmerilado, sin halo."
       },
       {
        "tipo": "texto",
@@ -2556,7 +2556,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Trampas que se repiten:\n- Los **cúmulos** son de desarrollo **vertical**, no «horizontal», aunque es verdad que en verano se asocian al buen tiempo.\n- Los **estratos** son bajos, no medios; los **estratocúmulos** también son bajos.\n- **Altocúmulos y altostratos** son medios, nunca altos.\n- «Capa de cirros pequeñas y redondeadas» describe al cirrocúmulo, no al cirrostrato; el «velo fibroso» es el cirrostrato, no el altostrato.\n- Las nubes altas no llegan a «25 000 m».\n- En 2022, en una «señala la FALSA», también era falsa «los cirrocúmulos son nubes altas de desarrollo vertical» (son altas, pero no de desarrollo vertical). Puntuó «los cúmulos son de desarrollo horizontal»: marca esa."
+       "texto": "Trampas que se repiten:\n- Los **cúmulos** son de desarrollo **vertical**, no «horizontal», aunque es verdad que en verano se asocian al buen tiempo.\n- Los **estratos** son bajos, no medios; los **estratocúmulos** también son bajos.\n- **Altocúmulos y altostratos** son medios, nunca altos.\n- «Capa de cirros pequeñas y redondeadas» describe al cirrocúmulo, no al cirrostrato; «altostratos, nubes altas de velo fibroso» es falsa por «altas»: el altostrato es medio, aunque su velo pueda ser fibroso.\n- Las nubes altas no llegan a «25 000 m».\n- En 2022, en una «señala la FALSA», también era falsa «los cirrocúmulos son nubes altas de desarrollo vertical» (son altas, pero no de desarrollo vertical). Puntuó «los cúmulos son de desarrollo horizontal»: marca esa."
       },
       {
        "tipo": "regla",
@@ -3252,7 +3252,7 @@
       {
        "tipo": "texto",
        "titulo": "Paralelos con nombre propio",
-       "texto": "El eje terrestre está inclinado unos 23° 27′ respecto a la órbita. De ahí salen cuatro paralelos famosos:\n- **Trópico de Cáncer**: **23° 27′ N**.\n- **Trópico de Capricornio**: **23° 27′ S**.\n- **Círculo Polar Ártico**: **66° 33′ N** (90° − 23° 27′).\n- **Círculo Polar Antártico**: **66° 33′ S**.\n\nHay trópicos y círculos polares en **los dos hemisferios**. Son valores aproximados: la inclinación del eje cambia muy despacio y hoy ronda 23° 26′, pero el examen usa 23° 27′ y 66° 33′."
+       "texto": "El eje terrestre está inclinado unos 23° 27′ respecto a la perpendicular al plano de la órbita (el ecuador forma ese mismo ángulo con la eclíptica). De ahí salen cuatro paralelos famosos:\n- **Trópico de Cáncer**: **23° 27′ N**.\n- **Trópico de Capricornio**: **23° 27′ S**.\n- **Círculo Polar Ártico**: **66° 33′ N** (90° − 23° 27′).\n- **Círculo Polar Antártico**: **66° 33′ S**.\n\nHay trópicos y círculos polares en **los dos hemisferios**. Son valores aproximados: la inclinación del eje cambia muy despacio y hoy ronda 23° 26′, pero el examen usa 23° 27′ y 66° 33′."
       },
       {
        "tipo": "ilustracion",
@@ -3418,7 +3418,7 @@
       {
        "tipo": "texto",
        "titulo": "Cuatro formas de conocer la Ct",
-       "texto": "1. **Carta y tablilla**: dm actualizada + Δ del rumbo de aguja.\n2. **Estrella Polar**: está prácticamente en el **norte verdadero** (error menor de 1° en nuestras latitudes). Tomas su demora (o azimut) de aguja y **Ct = 0° − Da**: Da 357° → **+3°**; Da 004° → **−4°**.\n3. **Enfilación u oposición**: su Dv la mides en la carta y **Ct = Dv − Da**.\n4. **Demora a un punto conocido** desde una situación **segura** (por ejemplo, atracado): también **Ct = Dv − Da**. «Con cualquier demora» es falso: sin saber dónde estás no conoces la Dv.\n\nLas tres últimas te dan la Ct; el desvío es **Δ = Ct − dm**."
+       "texto": "1. **Carta y tablilla**: dm actualizada + Δ del rumbo de aguja.\n2. **Estrella Polar**: está prácticamente en el **norte verdadero** (error menor de 1° en nuestras latitudes). Tomas su demora (o azimut) de aguja y **Ct = 0° − Da**, y si la Da pasa de 180° usa 360° en vez de 0°: Da 357° → 360° − 357° = **+3°**; Da 004° → 0° − 4° = **−4°**.\n3. **Enfilación u oposición**: su Dv la mides en la carta y **Ct = Dv − Da**.\n4. **Demora a un punto conocido** desde una situación **segura** (por ejemplo, atracado): también **Ct = Dv − Da**. «Con cualquier demora» es falso: sin saber dónde estás no conoces la Dv.\n\nLas tres últimas te dan la Ct; el desvío es **Δ = Ct − dm**."
       },
       {
        "tipo": "texto",
@@ -4496,7 +4496,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Las opciones inventan siglas parecidas: MOG, MOF, MOD o MOP en vez de **MOB**; ETS, ETLL o ETX en vez de **ETA**; CMG o VSG en vez de **SOG**. Ojo con **ETA** (llegada) y **ETD** (salida): en una plantilla se dio por buena «calcular la hora estimada de llegada a puerto (ETD)», con la sigla mal puesta, porque las otras opciones eran claramente falsas. Y el XTE no es la distancia que falta al WPT (eso es el DTG)."
+       "texto": "Las opciones inventan siglas parecidas: MOG, MOF, MOD o MOP en vez de **MOB**; ETS, ETLL o ETX en vez de **ETA**; VSG en vez de **SOG**. Ojo: **CMG** sí existe (*Course Made Good*, rumbo hecho bueno desde la salida), pero es un **rumbo**, no una velocidad. Ojo con **ETA** (llegada) y **ETD** (salida): en una plantilla se dio por buena «calcular la hora estimada de llegada a puerto (ETD)», con la sigla mal puesta, porque las otras opciones eran claramente falsas. Y el XTE no es la distancia que falta al WPT (eso es el DTG)."
       },
       {
        "tipo": "texto",
@@ -4618,7 +4618,7 @@
        "fuente": "Plantilla PY 2025-c2-n08 (resto de opciones falsas)"
       },
       {
-       "dato": "Desplazamiento ED50 → WGS-84 en la península: ≈ 155–180 m",
+       "dato": "Desplazamiento ED50 → WGS-84 en la península y Baleares: ≈ 155–185 m (unos 180 m en el Estrecho); en el texto, «unos 150 a 200 m»",
        "fuente": "Transformación Molodensky con parámetros EPSG ED50→WGS84 (−87, −98, −121) y (−84, −107, −120), calculada por el revisor en 4 puntos peninsulares"
       },
       {
@@ -4845,7 +4845,7 @@
       {
        "tipo": "texto",
        "titulo": "Actualizar la declinación",
-       "texto": "La rosa de la carta trae algo como **«4° W 2014 (6′ E)»**: valor, año y variación anual.\n\n1. Años transcurridos × variación anual.\n2. Si la variación tiene **el mismo sentido** que la declinación, la aumenta; si es **contraria**, la disminuye.\n3. Redondea al grado (o al medio grado, si el enunciado lo pide).\n\nEjemplo: «3°20′ W 2016 (5′ E)» en 2026 → 10 × 5′ = 50′ hacia el E → 3°20′ − 0°50′ = **2°30′ W (−2,5°)**.\n\nSi el enunciado no da la declinación ni la rosa, usa la de la carta del Estrecho: **2°50′ W 2005 (7′ E)**. Y si te la da ya calculada («dm = 4° NW»), úsala tal cual."
+       "texto": "La rosa de la carta trae algo como **«4° W 2014 (6′ E)»**: valor, año y variación anual.\n\n1. Años transcurridos × variación anual.\n2. Si la variación tiene **el mismo sentido** que la declinación, la aumenta; si es **contraria**, la disminuye.\n3. Quédate con el valor exacto, o como mucho redondea al medio grado. El examen da declinaciones y desvíos en medios grados (1,5° NE, −7,5°) y suele cuadrar la Ct en grados enteros.\n\nEjemplo: «3°20′ W 2016 (5′ E)» en 2026 → 10 × 5′ = 50′ hacia el E → 3°20′ − 0°50′ = **2°30′ W (−2,5°)**.\n\nSi el enunciado no da la declinación ni la rosa, usa la de la carta del Estrecho: **2°50′ W 2005 (7′ E)**. Y si te la da ya calculada («dm = 4° NW»), úsala tal cual."
       },
       {
        "tipo": "regla",
@@ -4958,7 +4958,7 @@
      ],
      "chuleta": [
       "Ct = dm + Δ (E +, W −). Rv = Ra + Ct; Ra = Rv − Ct.",
-      "dm del año = dm de la rosa ± variación × años; redondea al grado. Sin datos: 2°50′ W 2005 (7′ E).",
+      "dm del año = dm de la rosa ± variación × años; valor exacto o al medio grado. Sin datos: 2°50′ W 2005 (7′ E).",
       "Oposición: Dv = recta del otro faro hacia el marcado. Enfilación: del cercano al lejano.",
       "Ct = Dv − Da. Polar: Ct = 000° − Za.",
       "Δ = Ct − dm. El rumbo y la velocidad no intervienen en la Ct."
@@ -5310,7 +5310,7 @@
       {
        "tipo": "texto",
        "titulo": "No simultáneas: la primera línea viaja contigo",
-       "texto": "Si las dos observaciones se toman a horas distintas, entre una y otra has navegado. Entonces:\n1. Traza la **primera** línea de posición.\n2. **Trasládala paralela a sí misma** el rumbo y la distancia navegados en el intervalo (d = V × t).\n3. Córtala con la **segunda**: esa es tu situación a la hora de la segunda.\n\nUna recta se traslada desplazando cualquiera de sus puntos; una **circunferencia**, desplazando su **centro**. El rumbo del traslado es el que de verdad has seguido: el **Rv** sin viento, el **Rs** con viento y el **rumbo efectivo** con corriente."
+       "texto": "Si las dos observaciones se toman a horas distintas, entre una y otra has navegado. Entonces:\n1. Traza la **primera** línea de posición.\n2. **Trasládala paralela a sí misma** el rumbo y la distancia navegados en el intervalo (d = V × t).\n3. Córtala con la **segunda**: esa es tu situación a la hora de la segunda.\n\nUna recta se traslada desplazando cualquiera de sus puntos; una **circunferencia**, desplazando su **centro**. El rumbo del traslado es el que de verdad has seguido: el **Rv** sin viento, el **Rs** con viento y el **rumbo efectivo** con corriente. Con corriente, la distancia también es la efectiva: d = **Vef** × t, no la velocidad del barco."
       },
       {
        "tipo": "regla",

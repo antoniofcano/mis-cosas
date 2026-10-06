@@ -95,7 +95,7 @@
   {
    "id": "polvo",
    "nombre": "Polvo polivalente (ABC)",
-   "corto": "El extintor habitual a bordo. Actúa sobre todo por inhibición (corta la reacción en cadena) y sirve para A, B y C y con tensión eléctrica.",
+   "corto": "El extintor habitual a bordo. Actúa sobre todo por inhibición (corta la reacción en cadena) y sirve para A, B y C, y con tensión eléctrica si su etiqueta lo indica (normalmente hasta 1000 V a 1 m).",
    "spec": {
     "tipo": "fuego",
     "vista": "clases"

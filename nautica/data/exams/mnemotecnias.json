@@ -508,7 +508,7 @@
   {
    "id": "py-seg-01",
    "regla": "«G sube, GM baja»: GM = KM − KG (M por encima de G = estable)",
-   "significado": "GM (altura metacéntrica) = KM − KG. KM sale de las curvas hidrostáticas (KM = KC + CM); KG depende de cómo esté cargado el barco. Si G está por debajo de M (GM > 0) el barco es estable; si G = M, equilibrio indiferente; si G queda por encima de M, inestable. Todo lo que eleve G (cargar pesos altos, tripulación en la bañera alta, superficies libres) reduce GM. El centro de gravedad se mueve hacia el peso que se carga, se aleja del que se descarga y sigue en paralelo al peso que se traslada (dist. G = p·d/D). Matiz: GZ = GM·sen θ y par adrizante = D·GZ solo valen para escoras pequeñas (estabilidad inicial, hasta unos 10–15°); a grandes escoras manda la curva GZ.",
+   "significado": "GM (altura metacéntrica) = KM − KG. KM sale de las curvas hidrostáticas (KM = KB + BM); KG depende de cómo esté cargado el barco. Si G está por debajo de M (GM > 0) el barco es estable; si G = M, equilibrio indiferente; si G queda por encima de M, inestable. Todo lo que eleve G (cargar pesos altos, tripulación en la bañera alta, superficies libres) reduce GM. El centro de gravedad se mueve hacia el peso que se carga, se aleja del que se descarga y sigue en paralelo al peso que se traslada (dist. G = p·d/D). Matiz: GZ = GM·sen θ y par adrizante = D·GZ solo valen para escoras pequeñas (estabilidad inicial, hasta unos 10–15°); a grandes escoras manda la curva GZ.",
    "tema": "PY UT1 Seguridad",
    "preguntas": [
     "and-py-2020-c3-g02",

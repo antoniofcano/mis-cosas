@@ -115,12 +115,26 @@ export function conPreguntasIntercaladas(pasos, disponibles, rng, cada = CADA) {
   return out;
 }
 
-/** Minutos de un tramo de clase: sesiones cortas que se cierran solas. */
-export const TRAMO_MIN = 5;
+/** Tarjetas por tramo de clase: sesiones cortas que se cierran solas. */
+export const TARJETAS_TRAMO = 7;
+/** Segundos por tarjeta mientras no se sepa el ritmo real del alumno (se va midiendo al cerrar cada tramo). */
+export const SEG_TARJETA = 40;
 
-/** Cuántos tramos tiene una clase de `minutos` con `nPasos` pasos: uno cada unos 5 minutos (al menos 1). */
-export function numTramos(minutos = 10, nPasos = 1) {
-  return Math.max(1, Math.min(nPasos, Math.round(minutos / TRAMO_MIN)));
+/** Tarjetas que tendrá una clase con `nPasos` pasos: intro, una pregunta cada 3 pasos, «Empareja» y la final. */
+export const tarjetasDe = (nPasos) => nPasos + Math.floor(nPasos / 3) + 3;
+
+/** Cuántos tramos tiene una clase de `nPasos` pasos (sin los extra): uno cada unas 7 tarjetas (al menos 1). */
+export function numTramos(nPasos = 1) {
+  return Math.max(1, Math.min(nPasos, Math.round(tarjetasDe(nPasos) / TARJETAS_TRAMO)));
+}
+
+/** Minutos que lleva un tramo de `n` tarjetas al ritmo `seg` (segundos por tarjeta). */
+export const minutosTramo = (n, seg = SEG_TARJETA) => Math.max(1, Math.round((n * seg) / 60));
+
+/** Ritmo nuevo (media móvil) tras un tramo de `n` tarjetas hecho en `ms`; cada tarjeta cuenta entre 10 y 120 s. */
+export function nuevoRitmo(seg = SEG_TARJETA, n = 1, ms = 0) {
+  const muestra = Math.min(120, Math.max(10, ms / 1000 / Math.max(1, n)));
+  return Math.round(0.7 * seg + 0.3 * muestra);
 }
 
 /**
@@ -153,21 +167,6 @@ export function pistaParte(desc = '', max = 110) {
 export function definicionCorta(def = '', max = 95) {
   const f = def.split(/(?<=\.)\s/)[0].replace(/\.$/, '');
   return f.length > max ? `${f.slice(0, f.lastIndexOf(' ', max - 1))}…` : f;
-}
-
-/**
- * Términos del vocabulario que salen en el texto de la clase, en el orden en que aparecen (sin repetir).
- * @param {string} texto  texto de la clase
- * @param {{ re: RegExp|null, idDeForma: Map<string,string>, porId: Map<string,object> }} vocab
- */
-export function terminosDeClase(texto, vocab, max = 4) {
-  if (!vocab?.re) return [];
-  const ids = [];
-  for (const m of texto.matchAll(new RegExp(vocab.re.source, vocab.re.flags))) {
-    const id = vocab.idDeForma.get(m[0].toLowerCase());
-    if (id && !ids.includes(id)) ids.push(id);
-  }
-  return ids.map((id) => vocab.porId.get(id)).filter((t) => t?.definicion).slice(0, max);
 }
 
 /**

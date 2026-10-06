@@ -911,3 +911,53 @@ p.ver-progreso a.btn { width: 100%; }
 .emp-defs button { text-align: left; min-height: 52px; padding: .5rem .8rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-weight: 400; }
 button.emp-ok { border-color: var(--ok) !important; background: color-mix(in srgb, var(--ok) 14%, var(--surface)) !important; opacity: .85; }
 @media (prefers-reduced-motion: no-preference) { button.emp-mal { animation: .3s ease-out sacudida; } }
+/* ---- Panel inferior de corrección (hoja) ---- */
+.hoja { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-height: 72vh; display: flex; flex-direction: column;
+  padding: .4rem max(1.1rem, calc((100vw - 720px) / 2)) calc(1rem + env(safe-area-inset-bottom)); background: var(--surface);
+  border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(10, 30, 60, .22); transform: translateY(105%); transition: transform .32s cubic-bezier(.2, .8, .2, 1); }
+.hoja.arriba { transform: none; }
+.hoja-plegar { align-self: center; width: 56px; height: 22px; min-height: 0; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
+.hoja-plegar::before { content: ""; position: absolute; left: 14px; right: 14px; top: 8px; height: 5px; border-radius: 3px; background: var(--border); }
+.hoja-titulo { display: flex; align-items: center; gap: .5rem; font-size: 1.25rem; margin: .1rem 0 .4rem; }
+.hoja.ok .hoja-titulo { color: var(--ok); } .hoja.bad .hoja-titulo { color: var(--warn); }
+.hoja-cuerpo { overflow: auto; flex: 1 1 auto; min-height: 0; margin-bottom: .7rem; }
+.hoja-cuerpo .profe { background: none; border: 0; box-shadow: none; padding: 0; margin: 0; animation: none; color: var(--text); }
+.hoja-cuerpo .profe .profe-badge { display: none; }
+.hoja-continuar { width: 100%; }
+.hoja.ok .hoja-continuar { background: var(--ok); border-color: var(--ok); }
+.hoja.bad .hoja-continuar { background: var(--warn); border-color: var(--warn); }
+.hoja.plegada .hoja-cuerpo { display: none; }
+body.con-hoja .fila-inferior { visibility: hidden; }
+body.con-hoja main { padding-bottom: 60vh !important; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hoja.ok .hoja-continuar, :root:not([data-theme="light"]) .hoja.bad .hoja-continuar { color: #06121f; } }
+/* Opciones como en la maqueta: la buena en verde, la elegida si falla en rojo, el resto atenuado */
+.option.wrong.elegida { border-width: 2px; }
+.qcard.revelada .option:not(.correct):not(.wrong) { opacity: .45; }
+/* ---- Cierre como en la maqueta ---- */
+.cierre .fin-tick, .cierre .fin-icono { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; margin: .5rem auto 0; }
+.cierre .fin-tick { background: color-mix(in srgb, var(--ok) 14%, var(--surface)); }
+.cierre .fin-tick path { stroke: var(--ok); stroke-width: 5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cierre .fin-icono { background: var(--accent-2); color: var(--accent); }
+.cierre .fin-icono .ico { width: 44px; height: 44px; }
+.cierre .stats { display: flex; gap: .7rem; margin: 1.2rem 0 .4rem; }
+.cierre .stat { flex: 1; padding: .8rem .3rem; border-radius: 16px; background: var(--accent-2); text-align: center; }
+.cierre .stat b { display: block; font-size: 1.7rem; line-height: 1.1; }
+.cierre .stat span { font-size: .8rem; color: var(--muted); }
+.cierre ul.logros li { display: flex; gap: .5rem; align-items: flex-start; }
+.cierre ul.logros li .ico { color: var(--ok); width: 1.2em; height: 1.2em; margin-top: .15em; }
+.cierre .botones { display: grid; gap: .6rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .cierre .fin-tick { animation: .5s rebote; }
+  .cierre .fin-tick path { stroke-dasharray: 50; stroke-dashoffset: 50; animation: .5s .25s forwards dibuja; }
+}
+@keyframes dibuja { to { stroke-dashoffset: 0; } }
+.tarjeta-hoy .linea .ico, .despues .ico { width: 1.2em; height: 1.2em; vertical-align: -.2em; color: var(--accent); }
+.icono-grande .ico { width: 56px; height: 56px; color: var(--ok); }
+.profe p .ico { width: 1.15em; height: 1.15em; vertical-align: -.2em; }
+.profe p.tip .ico { color: var(--ok); } .profe p.trap .ico { color: var(--warn); }
+button.speak .ico { width: 20px; height: 20px; }
+/* Barra de actividad como en la maqueta: X, avance grueso y la cuenta */
+.ba-salir { width: 44px; height: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); display: grid; place-items: center; flex: none; }
+.ba-salir:active { background: var(--accent-2); }
+.ba-progreso { height: 10px !important; border-radius: 99px; overflow: hidden; }
+.ba-progreso > span { border-radius: 99px; }

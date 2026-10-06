@@ -167,6 +167,12 @@
        "dato": "Ilustración barco: babor arriba con proa a la derecha; amura, través y aleta bien situados (renderizada)",
        "fuente": "src/illustrations (tipo barco), comprobación visual"
       }
+     ],
+     "terminos": [
+      "casco",
+      "babor",
+      "barlovento",
+      "traves"
      ]
     },
     {
@@ -315,6 +321,12 @@
        "dato": "Pasamanos: piezas o barandas para apoyo junto a escalas, toldilla, castillo…",
        "fuente": "Plantilla oficial de Andalucía and-2022-c2-t03 (c)"
       }
+     ],
+     "terminos": [
+      "lumbrera",
+      "manguerote",
+      "imbornal",
+      "escotilla"
      ]
     },
     {
@@ -489,6 +501,12 @@
        "dato": "Grifos de fondo: válvulas bajo la flotación que toman agua de mar (p. ej., refrigeración del motor)",
        "fuente": "Plantilla oficial de Andalucía and-2020-c3-t04 (b), and-2025-c1-t02 (a)"
       }
+     ],
+     "terminos": [
+      "quilla",
+      "sentina",
+      "grifos-fondo",
+      "achique"
      ]
     },
     {
@@ -614,6 +632,11 @@
        "dato": "Cruz y bocina no son partes del timón",
        "fuente": "Plantilla oficial de Andalucía and-2025-c1-t01 (c), and-2026-c2-t02 (d)"
       }
+     ],
+     "terminos": [
+      "limera",
+      "guardines",
+      "bocina"
      ]
     },
     {
@@ -782,6 +805,12 @@
        "dato": "Dextrógira avante: la popa cae a estribor (efecto de la presión lateral de las palas); la ilustración dibuja la flecha a estribor",
        "fuente": "Teoría de maniobra del programa del PER (RD 875/2014, UT 3/maniobra); comprobación visual de la ilustración tipo helice"
       }
+     ],
+     "terminos": [
+      "levogira",
+      "dextrogira",
+      "helices-gemelas",
+      "bocina"
      ]
     },
     {
@@ -965,6 +994,12 @@
        "dato": "Fotos: ancla de arado (tipo Delta) y Danforth",
        "fuente": "Plantilla oficial de Andalucía and-2020-c3-t02 (d), and-2024-c1-t01 (a)"
       }
+     ],
+     "terminos": [
+      "pendura",
+      "a-pique",
+      "barboten",
+      "arganeo"
      ]
     },
     {
@@ -1165,6 +1200,12 @@
        "dato": "Escalas de calado: decímetros en números arábigos, pies en números romanos",
        "fuente": "Prefectura Naval Argentina, Ordenanza Marítima 29/71 (escalas de calado); práctica naval estándar"
       }
+     ],
+     "terminos": [
+      "obra-viva",
+      "obra-muerta",
+      "francobordo",
+      "asiento"
      ]
     }
    ]
@@ -1340,6 +1381,12 @@
        "dato": "Muerto, boyas, bichero en el programa oficial",
        "fuente": "RD 875/2014, anexo II (programa PER), UT 2 §2.1"
       }
+     ],
+     "terminos": [
+      "noray",
+      "bita",
+      "defensa",
+      "chicote"
      ]
     },
     {
@@ -1499,6 +1546,12 @@
        "dato": "Vuelta de escota: une cabos de distinta mena (fuera del programa; se cita como contraste)",
        "fuente": "Terminología marinera común (sheet bend); no figura en el programa del RD 875/2014"
       }
+     ],
+     "terminos": [
+      "nudo-llano",
+      "vuelta-rezon",
+      "ballestrinque",
+      "as-guia"
      ]
     },
     {
@@ -1658,6 +1711,11 @@
        "dato": "Sonda real = sonda de la carta (cero hidrográfico) + altura de marea",
        "fuente": "Definición de cero hidrográfico, IHM / cartas náuticas españolas"
       }
+     ],
+     "terminos": [
+      "fondeadero",
+      "tenedero",
+      "posidonia"
      ]
     },
     {
@@ -1831,6 +1889,12 @@
        "dato": "Exención para < 7 m fondeadas fuera de canal angosto, paso, fondeadero o zona de navegación frecuente",
        "fuente": "RIPA regla 30 e)"
       }
+     ],
+     "terminos": [
+      "molinete",
+      "pendura",
+      "filar",
+      "desembragar"
      ]
     },
     {
@@ -1979,6 +2043,12 @@
        "dato": "Radio de borneo ≈ cadena filada + eslora",
        "fuente": "Estimación geométrica por exceso (didáctica, sin norma)"
       }
+     ],
+     "terminos": [
+      "borneo",
+      "garreo",
+      "rolar",
+      "enfilacion"
      ]
     },
     {
@@ -2126,6 +2196,12 @@
        "dato": "Guardines: cabos o cadenas del timón",
        "fuente": "RD 875/2014, anexo II, UT 1 §1.4"
       }
+     ],
+     "terminos": [
+      "orinque",
+      "a-pique",
+      "levar",
+      "pendura"
      ]
     }
    ]
@@ -2293,6 +2369,12 @@
        "dato": "Sincronismo: periodo de la ola igual al del barco; se rompe cambiando rumbo y/o velocidad",
        "fuente": "Teoría del buque; coherente con and-2024-c2-t07 (opción «sincronismo») y and-2023-c3-t07"
       }
+     ],
+     "terminos": [
+      "estabilidad",
+      "escora",
+      "balance",
+      "cabezada"
      ]
     },
     {
@@ -2560,6 +2642,12 @@
        "dato": "Con mal tiempo, dejar la costa a barlovento; destrincar pesos o prepararse para abandono inminente no son medidas recomendables",
        "fuente": "Plantillas oficiales: and-2026-c1-t09, and-2025-c1-t08, and-2024-c3-t10"
       }
+     ],
+     "terminos": [
+      "son-mar",
+      "capear",
+      "correr-temporal",
+      "barlovento"
      ]
     },
     {
@@ -2747,6 +2835,12 @@
        "dato": "Aguas someras = poca profundidad; sonda y poca velocidad",
        "fuente": "Plantillas oficiales: and-2020-c3-t07, and-2021-c2-t07, and-2022-c3-t08, and-2025-c2-t10"
       }
+     ],
+     "terminos": [
+      "aguas-someras",
+      "reflector-radar",
+      "visibilidad-reducida",
+      "desvio"
      ]
     },
     {
@@ -3300,6 +3394,12 @@
        "dato": "Bandera O = hombre al agua",
        "fuente": "Código Internacional de Señales, señales de una letra"
       }
+     ],
+     "terminos": [
+      "anderson",
+      "boutakow",
+      "espiral-cuadrada",
+      "gnss"
      ]
     },
     {
@@ -3500,6 +3600,11 @@
        "dato": "Zona SAR de 1,5 millones de km² (unas tres veces el territorio nacional), en cuatro zonas: Atlántico, Estrecho, Mediterráneo y Canarias; Centro Nacional en Madrid",
        "fuente": "Salvamento Marítimo (salvamentomaritimo.es, «Conócenos» y «Misión y área de responsabilidad»)"
       }
+     ],
+     "terminos": [
+      "hipotermia",
+      "salvamento",
+      "sotavento"
      ]
     }
    ]
@@ -4640,6 +4745,11 @@
        "dato": "Posidonia: planta con flores endémica del Mediterráneo, de crecimiento muy lento",
        "fuente": "MITECO, fanerógamas marinas"
       }
+     ],
+     "terminos": [
+      "zepim",
+      "posidonia",
+      "borneo"
      ]
     }
    ]
@@ -4808,6 +4918,12 @@
        "dato": "Luz azul/amarilla alternada = marca de pecio (emergencia)",
        "fuente": "IALA R1001 ed. 2.0 (2023) §2.6, tabla 11"
       }
+     ],
+     "terminos": [
+      "iala",
+      "marca-tope",
+      "marca-especial",
+      "ritmo"
      ]
     },
     {
@@ -5009,6 +5125,12 @@
        "dato": "En región B existen cilindro verde y cono rojo (no en región A)",
        "fuente": "IALA R1001 ed. 2.0 (2023) tabla 2"
       }
+     ],
+     "terminos": [
+      "bifurcacion",
+      "canal-balizado",
+      "cilindro",
+      "cono"
      ]
     },
     {
@@ -5192,6 +5314,11 @@
        "dato": "Dos conos con vértices arriba = cardinal Norte con seguridad",
        "fuente": "pregunta and-2023-c3-t16"
       }
+     ],
+     "terminos": [
+      "cardinal",
+      "marca-tope",
+      "destello"
      ]
     },
     {
@@ -5382,6 +5509,11 @@
        "dato": "Boya de pecio: franjas verticales azules y amarillas en igual número (4 a 8), castillete o espeque, tope cruz amarilla vertical, luz alternada 1 s azul y 1 s amarilla con 0,5 s de eclipse, racon «D»",
        "fuente": "IALA R1001 ed. 2.0 (2023) §2.6, tabla 11"
       }
+     ],
+     "terminos": [
+      "peligro-aislado",
+      "marca-especial",
+      "resguardo"
      ]
     },
     {
@@ -5553,6 +5685,12 @@
        "dato": "Pregunta de 9 destellos a rumbo norte anulada, todas las respuestas correctas",
        "fuente": "pregunta and-2021-c2-t17 (nota informativa 22-nov-2021)"
       }
+     ],
+     "terminos": [
+      "destello",
+      "ocultaciones",
+      "isofase",
+      "periodo"
      ]
     }
    ]
@@ -5734,6 +5872,12 @@
        "dato": "Vela + motor: cono vértice abajo a proa, sin límite de eslora",
        "fuente": "Regla 25 e)"
       }
+     ],
+     "terminos": [
+      "sin-gobierno",
+      "maniobra-restringida",
+      "pesca",
+      "en-navegacion"
      ]
     },
     {
@@ -5885,6 +6029,11 @@
        "dato": "Maniobra clara, con antelación, amplia, evitar sucesión de pequeños cambios, solo rumbo si hay espacio, distancia segura, comprobar hasta pasado y en franquía, reducir/parar/dar atrás",
        "fuente": "Regla 8 a)–e)"
       }
+     ],
+     "terminos": [
+      "velocidad-seguridad",
+      "riesgo-abordaje",
+      "abordaje"
      ]
     },
     {
@@ -6093,6 +6242,12 @@
        "dato": "La regla 10 no exime de las demás; <20 m y vela no estorban a los de motor en la vía; pesca no estorba a ninguno",
        "fuente": "Regla 10 a), i), j); Regla 8 f)"
       }
+     ],
+     "terminos": [
+      "canal-angosto",
+      "via-circulacion",
+      "zona-separacion",
+      "navegacion-costera"
      ]
     },
     {
@@ -6282,6 +6437,12 @@
        "dato": "Sigue a rumbo: mantiene; puede maniobrar si el otro no actúa (no a babor por buque a su babor en cruce motor-motor); debe si no basta la maniobra del otro; no exime al que cede",
        "fuente": "Regla 17 a)–d); and-2026-c1-t24"
       }
+     ],
+     "terminos": [
+      "alcance-ripa",
+      "vuelta-encontrada",
+      "cruce",
+      "cede-paso"
      ]
     },
     {
@@ -6479,6 +6640,12 @@
        "dato": "Velero: costados y alcance; tricolor si < 20 m; roja sobre verde opcional, no con el tricolor",
        "fuente": "Regla 25 a)–c); and-2024-c3-t26"
       }
+     ],
+     "terminos": [
+      "bandas-contrarias",
+      "barlovento",
+      "buque-vela",
+      "luz-tope"
      ]
     },
     {
@@ -6621,6 +6788,12 @@
        "dato": "Luces también de día con visibilidad reducida; señales de la Regla 35",
        "fuente": "Reglas 20 c) y 35"
       }
+     ],
+     "terminos": [
+      "visibilidad-reducida",
+      "minima-gobierno",
+      "arrancada",
+      "pitada-larga"
      ]
     },
     {
@@ -6820,6 +6993,12 @@
        "dato": "Remolcador: 2 topes en vertical (3 si remolque > 200 m desde su popa al final del remolque), costados, alcance, amarilla sobre la de alcance, bicónica > 200 m; remolcado costados, alcance y bicónica > 200 m; unidad compuesta = buque de motor",
        "fuente": "Regla 24 a), b), e)"
       }
+     ],
+     "terminos": [
+      "luz-tope",
+      "luz-costado",
+      "luz-alcance",
+      "todo-horizonte"
      ]
     },
     {
@@ -7021,6 +7200,12 @@
        "dato": "Fondeado: blanca a proa / bola, otra más baja a popa; < 50 m una sola; ≥ 100 m luces de cubierta obligatorias; < 7 m fuera de canales exento; varado + 2 rojas / 3 bolas, < 12 m exento de estas",
        "fuente": "Regla 30 a)–f); and-2023-c2-t22, and-2026-c2-t27"
       }
+     ],
+     "terminos": [
+      "arrastre",
+      "sin-gobierno",
+      "maniobra-restringida",
+      "varado"
      ]
     },
     {
@@ -7201,6 +7386,12 @@
        "dato": "Fondeado: campana ~5 s cada ≤ 1 min, ≥ 100 m + gong a popa, puede C-L-C; varado 3 golpes antes y después; 12–20 m sin campana obligatoria; < 12 m otra señal cada ≤ 2 min",
        "fuente": "Regla 35 g)–j)"
       }
+     ],
+     "terminos": [
+      "pitada-corta",
+      "pitada-larga",
+      "senal-fonica",
+      "arrancada"
      ]
     },
     {
@@ -7503,6 +7694,12 @@
        "dato": "Encapillar = pasar la gaza por el noray (no abozar ni hacer firme)",
        "fuente": "Plantilla and-2024-c3-t29 (b)"
       }
+     ],
+     "terminos": [
+      "chicote",
+      "templar",
+      "largar",
+      "adujar"
      ]
     },
     {
@@ -7661,6 +7858,12 @@
        "dato": "Refuerzo con viento de popa (largo de popa y esprín de proa) y de proa (largo de proa y esprín de popa)",
        "fuente": "Geometría de las amarras (cada una resiste el empuje hacia el lado contrario a su noray); coherente con and-2025-c3-t29"
       }
+     ],
+     "terminos": [
+      "esprin",
+      "largo-amarre",
+      "traves-amarre",
+      "codera"
      ]
     },
     {
@@ -7810,6 +8013,11 @@
        "dato": "Caña al lado contrario de la caída de la proa; rueda y pala al mismo lado",
        "fuente": "Mecánica del timón (la caña es la palanca de la pala, opuesta a ella)"
       }
+     ],
+     "terminos": [
+      "arrancada",
+      "curva-evolucion",
+      "minima-gobierno"
      ]
     },
     {
@@ -7986,6 +8194,12 @@
        "dato": "Con arrancada atrás la popa va hacia la banda del timón; avante la proa va hacia la banda del timón",
        "fuente": "Mecánica del timón; ilustración «helice-timon» comprobada"
       }
+     ],
+     "terminos": [
+      "dextrogira",
+      "levogira",
+      "arrancada",
+      "timon-via"
      ]
     },
     {
@@ -8124,6 +8338,11 @@
        "dato": "Giro al exterior (supradivergentes): dextrógira en estribor y levógira en babor, palas altas hacia fuera; con una avante y otra atrás, las dos presiones laterales llevan la popa hacia el lado contrario al giro",
        "fuente": "Comprobación geométrica a partir del efecto de cada hélice (dextrógira atrás: popa a babor; levógira avante: popa a babor)"
       }
+     ],
+     "terminos": [
+      "ciaboga",
+      "helices-gemelas",
+      "arrancada"
      ]
     },
     {
@@ -8270,6 +8489,12 @@
        "dato": "Viento aparente = suma vectorial del real y el de avance (igual y contrario a la velocidad del barco)",
        "fuente": "Composición de vectores; ilustración «viento-aparente» comprobada"
       }
+     ],
+     "terminos": [
+      "abatimiento",
+      "deriva",
+      "obra-muerta",
+      "obra-viva"
      ]
     },
     {
@@ -8467,6 +8692,12 @@
        "dato": "Dextrógira atraca mejor por babor y levógira por estribor (la popa cae a esa banda al dar atrás)",
        "fuente": "Coherente con el efecto atrás de las plantillas de 7.2 (and-2021-c1-t29, and-2021-c2-t29)"
       }
+     ],
+     "terminos": [
+      "largo-amarre",
+      "codera",
+      "defensa",
+      "noray"
      ]
     },
     {
@@ -8610,6 +8841,12 @@
        "dato": "Abrir la proa: esprín de popa y máquina atrás (par entre el empuje atrás y el esprín en la aleta)",
        "fuente": "Comprobación geométrica; ilustraciones «desatraque» (proa y popa) comprobadas, atracado por babor"
       }
+     ],
+     "terminos": [
+      "desatracar",
+      "esprin",
+      "largo-amarre",
+      "largar"
      ]
     }
    ]
@@ -9292,6 +9529,12 @@
        "dato": "Deber de auxilio sin grave peligro para el propio buque",
        "fuente": "Ley 14/2014 de Navegación Marítima (BOE-A-2014-7877), art. 183.3"
       }
+     ],
+     "terminos": [
+      "varado",
+      "abordaje",
+      "trasegar",
+      "via-agua"
      ]
     },
     {
@@ -9441,6 +9684,12 @@
        "dato": "Achique: zonas 1–3 bomba de motor + manual + 2 baldes de 5 l; zonas 4–6 bomba manual o eléctrica + 1 balde; zona 7 bomba (o achicador de 2 l si L ≤ 6 m con cámaras de flotabilidad)",
        "fuente": "RD 339/2021 (BOE-A-2021-8268), art. 20.1"
       }
+     ],
+     "terminos": [
+      "bocina",
+      "limera",
+      "grifos-fondo",
+      "achique"
      ]
     },
     {
@@ -10275,6 +10524,12 @@
        "dato": "Tendencia: >3 hPa en 3 h bajando ≈ «falling quickly» (3,6–6 hPa/3 h), asociado a viento fuerte (regla py-met-06)",
        "fuente": "Met Office, términos de tendencia barométrica del Shipping Forecast"
       }
+     ],
+     "terminos": [
+      "presion-atmosferica",
+      "aneroide",
+      "isobara",
+      "tendencia"
      ]
     },
     {
@@ -10459,6 +10714,12 @@
        "dato": "and-2021-c2-t33 anulada: todas las respuestas dadas por correctas",
        "fuente": "Nota informativa del tribunal, 21-ene-2022 (2ª conv. 2021)"
       }
+     ],
+     "terminos": [
+      "borrasca",
+      "anticiclon",
+      "coriolis",
+      "isobara"
      ]
     },
     {
@@ -10596,6 +10857,11 @@
        "dato": "El viento se nombra por la dirección de la que viene",
        "fuente": "AEMET, Glosario de términos marítimos"
       }
+     ],
+     "terminos": [
+      "rolar",
+      "refrescar",
+      "racheado"
      ]
     },
     {
@@ -11034,6 +11300,11 @@
        "dato": "Douglas se usa para la mar de viento; la mar de fondo se da aparte",
        "fuente": "AEMET, Escalas de viento y oleaje; Guía de meteorología marítima"
       }
+     ],
+     "terminos": [
+      "beaufort",
+      "douglas",
+      "fetch"
      ]
     },
     {
@@ -11183,6 +11454,12 @@
        "dato": "La previsión se obtiene de boletines de AEMET y Centros de Salvamento Marítimo; terral = nocturno",
        "fuente": "Plantilla and-2026-c1-t33 (b falsa)"
       }
+     ],
+     "terminos": [
+      "beaufort",
+      "douglas",
+      "rolar",
+      "refrescar"
      ]
     }
    ]
@@ -11539,6 +11816,12 @@
        "dato": "HRB: hora de a bordo fijada por el patrón",
        "fuente": "Preguntas and-2020-c1-t40, and-2022-c2-t37, and-2024-c2-t40"
       }
+     ],
+     "terminos": [
+      "milla",
+      "coef-corredera",
+      "sonda",
+      "hrb"
      ]
     },
     {
@@ -11722,6 +12005,11 @@
        "dato": "Avisos a los Navegantes: grupos semanales",
        "fuente": "IHM, Avisos a los Navegantes (publicación semanal)"
       }
+     ],
+     "terminos": [
+      "carta-nautica",
+      "derrotero",
+      "cero-hidrografico"
      ]
     },
     {
@@ -11886,6 +12174,12 @@
        "dato": "De noche un faro se identifica por color y ritmo",
        "fuente": "Pregunta and-2021-c1-t41"
       }
+     ],
+     "terminos": [
+      "destello",
+      "ocultaciones",
+      "isofase",
+      "periodo"
      ]
     },
     {
@@ -12401,6 +12695,12 @@
        "dato": "Ilustraciones: Rv 110° y M 60° Br → 050°; Rv 300° y M 90° Er → 030°; enfilación 40 − 44 = −4°",
        "fuente": "Ilustraciones renderizadas y comprobadas"
       }
+     ],
+     "terminos": [
+      "marcacion",
+      "demora-verdadera",
+      "enfilacion",
+      "oposicion"
      ]
     },
     {
@@ -12583,6 +12883,11 @@
        "dato": "Vivas en sicigias (nueva y llena), muertas en cuadraturas",
        "fuente": "Definición astronómica estándar; Anuario de Mareas (IHM)"
       }
+     ],
+     "terminos": [
+      "pleamar",
+      "bajamar",
+      "sonda"
      ]
     },
     {
@@ -12714,6 +13019,12 @@
        "dato": "El programa del PER incluye viento y corriente (conceptos de abatimiento y deriva, efecto según obra viva y muerta); los ejercicios de carta del PER, sin viento ni corriente",
        "fuente": "RD 875/2014, anexo, programa PER UT 10 (BOE-A-2014-10344) §10.13 y UT 11.4–11.5"
       }
+     ],
+     "terminos": [
+      "abatimiento",
+      "deriva",
+      "obra-muerta",
+      "obra-viva"
      ]
     }
    ]
@@ -12937,6 +13248,12 @@
        "dato": "«Estamos en demora 310° desde el faro»: se traza el 310° desde el faro",
        "fuente": "and-2026-c1-q43, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (d)"
       }
+     ],
+     "terminos": [
+      "latitud",
+      "longitud",
+      "demora",
+      "sonda"
      ]
     },
     {
@@ -13131,6 +13448,12 @@
        "dato": "Oposición: Dv = dirección del otro faro hacia el marcado; enfilación: del faro cercano al lejano",
        "fuente": "kit.oposicion / kit.enfilacion; and-2026-c2-q42 (Dv 109,4°, Ct −3°, c)"
       }
+     ],
+     "terminos": [
+      "declinacion",
+      "desvio",
+      "enfilacion",
+      "oposicion"
      ]
     },
     {
@@ -13276,6 +13599,12 @@
        "dato": "PER: sin viento ni corriente",
        "fuente": "BOE RD 875/2014, anexo II PER, UT 11 (https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344), 11.4"
       }
+     ],
+     "terminos": [
+      "rumbo-verdadero",
+      "rumbo-aguja",
+      "hrb",
+      "milla"
      ]
     },
     {
@@ -13413,6 +13742,12 @@
        "dato": "Demora desde el faro = demora al faro ± 180° (073° → 253°)",
        "fuente": "and-2026-c2-q44, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (c)"
       }
+     ],
+     "terminos": [
+      "estima",
+      "rumbo-verdadero",
+      "hrb",
+      "nudo"
      ]
     },
     {
@@ -13550,6 +13885,11 @@
        "dato": "Dv 154° a Pta. Almina → desde el faro 334°, 6 millas",
        "fuente": "and-2025-c2-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (a)"
       }
+     ],
+     "terminos": [
+      "marcacion",
+      "demora-verdadera",
+      "traves"
      ]
     },
     {
@@ -13666,6 +14006,12 @@
        "dato": "Ra S 76° W = 256°; marcación 157° Er",
        "fuente": "and-2021-c1-q44, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (d)"
       }
+     ],
+     "terminos": [
+      "marcacion",
+      "demora-aguja",
+      "demora-verdadera",
+      "rumbo-verdadero"
      ]
     },
     {
@@ -13780,6 +14126,11 @@
        "dato": "Oposición Alcázar–Tarifa + Dv 080° a Cires → 2,9′",
        "fuente": "and-2024-c1-q42, Solución programada src/exams/solutions/andalucia-per-*.js + plantilla oficial (a)"
       }
+     ],
+     "terminos": [
+      "enfilacion",
+      "oposicion",
+      "demora-verdadera"
      ]
     },
     {

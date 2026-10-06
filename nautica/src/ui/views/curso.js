@@ -4,19 +4,20 @@
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
-import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, terminosDeClase, pistaParte, estadoLeccion, numTramos, enTramos } from '../../course/engine.js';
+import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
 import { resueltasDe, conResuelto } from '../../course/resueltos.js';
 import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
 import { MIN_TANDA } from '../../course/plan.js';
 import { tlink, volver } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
-import { pintarCierre, metaDiaria } from '../cierre.js';
+import { pintarCierre, cierre, cifrasCierre } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
 import { pidePrediccion, interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel } from './theory.js';
 import { voice } from '../voice.js';
 import { transicion, deslizar, vibrar } from '../movimiento.js';
 import { icono } from '../iconos.js';
+import { hojaRespuesta } from '../hoja.js';
 import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
 import { episodiosDeClase, enlaceEpisodio } from './podcast.js';
@@ -90,11 +91,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const pasosExtra = L.pasos.filter((p) => p.extra);
     const sinExtra = L.pasos.filter((p) => !p.extra);
     // La clase va en tramos de unos 5 minutos, cada uno con su cierre: se puede dejar al acabar cualquiera.
-    const k = numTramos(L.minutos ?? 10, sinExtra.length);
+    const k = numTramos(sinExtra.length);
     const pasosBase = enTramos(conResuelto(sinExtra, resueltasDe(L.id).filter((id) => preguntas.has(id))), k)
       .map((p) => (p.tipo === 'ilustracion' ? { ...p, prediccion: pidePrediccion(p.spec) } : p));
     // Ejercicios que no son de elegir opción: tocar las partes de una lámina y emparejar los términos de la clase.
-    const terminos = terminosDeClase(sinExtra.map((p) => `${p.titulo ?? ''} ${p.texto ?? ''}`).join('\n'), bank.vocab);
+    // Los términos los declara cada clase en sus datos (`terminos`): no se deducen del texto.
+    const terminos = (L.terminos ?? []).map((id) => bank.vocab?.porId.get(id)).filter((t) => t?.definicion);
     // Partes con nombre y una pista de qué es cada una: se pide por lo que hace, no por la letra que se ve escrita.
     const partesDe = (spec) => { const d = interactivaDe(spec); return d?.botonesPartes?.map(([k, nombre]) => [k, nombre, d.partes?.[k] ? pistaParte(d.partes[k]) : nombre]) ?? null; };
     const conTodo = conEjercicios(conPreguntaFinal(pasosBase, disponibles, rngClase), { terminos, partesDe });
@@ -102,12 +104,30 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     // Las preguntas añadidas (la final, las intercaladas) van en el tramo de la tarjeta que tienen delante.
     tarjetas.forEach((t, i) => { if (t.tramo == null) t.tramo = tarjetas[i - 1].tramo; });
     const n = tarjetas.length;
-    const minTramo = Math.max(1, Math.round((L.minutos ?? 10) / k));
+    // Duración de cada tramo al ritmo real del alumno (se mide al cerrar cada tramo) y hora de empiece del actual.
+    const ritmo = () => progress.settings().segTarjeta ?? SEG_TARJETA;
+    const tarjetasEn = (t) => tarjetas.filter((x) => x.tramo === t).length;
+    let inicioTramo = Date.now();
+    // Al cerrar un tramo: los minutos reales (con tope, por si se dejó la pantalla abierta) y el ritmo actualizado.
+    const apuntaTramo = (t) => {
+      const ms = Date.now() - inicioTramo;
+      const n = tarjetasEn(t);
+      progress.logActividad(Math.max(1, Math.round(Math.min(ms, n * 120000) / 60000)));
+      progress.setSetting('segTarjeta', nuevoRitmo(ritmo(), n, ms));
+      inicioTramo = Date.now();
+    };
     const finTramo = (i) => i < n - 1 && tarjetas[i + 1].tramo > tarjetas[i].tramo;
     const enTramo = (i) => { const t = tarjetas[i].tramo; const del = tarjetas.filter((x) => x.tramo === t); return { t, j: del.indexOf(tarjetas[i]) + 1, m: del.length }; };
     let paso = Math.min(Math.max(0, Number(reg().paso) || 0), n - 1);
     let checkOk = new Set();
     const enClase = { respondidas: 0, aciertos: 0 }; // preguntas de examen respondidas durante la clase
+
+    // Corrección de un «¿Lo pillas?»: en el modo tarjeta, en el panel que sube desde abajo (con «Continuar»); viendo
+    // todas las tarjetas seguidas, debajo de la pregunta.
+    function corrige(fb, ok, contenido) {
+      if (cont.querySelector('.paso-cabecera')) hojaRespuesta(cont, { ok, contenido, onContinuar: () => irSiguiente() });
+      else setChildren(fb, h('p', { class: ok ? 'ok' : 'warn' }, ok ? 'Correcto.' : 'No es esa.'), contenido);
+    }
 
     function pasoEl(p, i) {
       switch (p.tipo) {
@@ -233,9 +253,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false });
               card.replaceWith(nuevo);
               card = nuevo;
-              setChildren(fb, profePanel(q, bank.explicaciones[q.id], k));
               checkOk.add(i);
               if (i === paso) refrescaBotones();
+              corrige(fb, k === q.correcta, profePanel(q, bank.explicaciones[q.id], k));
             } });
             return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, fb);
           }
@@ -244,9 +264,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false });
             card.replaceWith(nuevo);
             card = nuevo;
-            setChildren(fb, h('p', { class: k === p.correcta ? 'ok' : 'warn' }, k === p.correcta ? '✅ ¡Bien!' : `❌ Era la ${p.correcta}).`), p.explicacion ? h('p', p.explicacion) : null);
             checkOk.add(i);
             if (i === paso) refrescaBotones();
+            corrige(fb, k === p.correcta, [k === p.correcta ? null : h('p', h('strong', `Era la ${p.correcta}).`)), p.explicacion ? h('p', p.explicacion) : null]);
           } });
           return h('div.paso.check', h('p.badge', '¿Lo pillas?'), card, fb);
         }
@@ -275,16 +295,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     // Fin de un tramo: lo hecho, la meta del día y elegir entre seguir o dejarlo aquí (se retoma en el siguiente tramo).
     function cierreTramo() {
       const hecho = tarjetas[paso - 1].tramo;
-      progress.logActividad(minTramo);
+      apuntaTramo(hecho);
       barra.set(`Tramo ${hecho + 1} de ${k} hecho`, paso / n);
-      setChildren(cont, h('section.cierre.cierre-tramo',
-        h('div.icono', { 'aria-hidden': 'true' }, '✅'),
-        h('h1', `Tramo ${hecho + 1} de ${k} hecho`),
-        h('ul.logros', logrosClase().slice(1).map((l) => h('li', l))),
-        metaDiaria(progress),
-        h('div.botones',
-          h('button.grande', { type: 'button', onclick: () => transicion(tarjeta, 'adelante') }, `Seguir: tramo ${hecho + 2} de ${k} (unos ${minTramo} min)`),
-          h('a.btn.secondary.grande', { href: tlink(tit) }, 'Lo dejo aquí por hoy'))));
+      const titulo = `Tramo ${hecho + 1} de ${k} hecho`;
+      setChildren(cont, cierre({ icono: '✅', titulo, tit, lineas: [L.titulo], logros: logrosClase().slice(1), stats: cifrasCierre(progress),
+        botones: [h('button.grande', { type: 'button', onclick: () => transicion(tarjeta, 'adelante') }, `Seguir con el tramo ${hecho + 2} (unos ${minutosTramo(tarjetasEn(hecho + 1), ritmo())} min)`),
+          h('a.btn.secondary.grande', { href: tlink(tit) }, 'Terminar por hoy')] }));
       summaryText = `CLASE ${L.id} · tramo ${hecho + 1}/${k} hecho`;
       window.scrollTo(0, 0);
     }
@@ -340,14 +356,14 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       window.scrollTo(0, 0);
     }
 
-    const logrosClase = () => [`🎓 Clase vista: ${L.titulo}`,
-      enClase.respondidas ? `✏️ ${enClase.aciertos} de ${enClase.respondidas} preguntas de examen bien por el camino` : null].filter(Boolean);
+    const logrosClase = () => [`Clase vista: ${L.titulo}`,
+      enClase.respondidas ? `${enClase.aciertos} de ${enClase.respondidas} preguntas de examen bien por el camino` : null].filter(Boolean);
 
     // --- final: chuleta, práctica y material para profundizar
     function terminar() {
       paso = 0;
       progress.saveLeccion(L.id, { ...reg(), visto: true, paso: 0, tramo: 0 });
-      progress.logActividad(minTramo); // el último tramo (los anteriores se apuntaron al cerrarlos)
+      apuntaTramo(tarjetas[n - 1].tramo); // el último tramo (los anteriores se apuntaron al cerrarlos)
       barra.set('Clase terminada', 1);
       // El podcast que trata esta clase, si ya tiene audio.
       const escucha = episodio ? h('p.radio-clase', h('a.btn.secondary', { href: enlacePodcast }, `🎧 Escúchalo: «${episodio.titulo}» (${minPodcast} min)`)) : null;
@@ -385,14 +401,14 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       const rng = createRng(randomSeed());
       const ses = rng.shuffle(disponibles).sort((a, b) => orden(a) - orden(b)).slice(0, PRACTICA_MAX);
       setChildren(cont, tandaPreguntas({
-        preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, rotulo: `🎓 ${L.titulo}`,
+        preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, rotulo: L.titulo,
         onSummary: (t) => { summaryText = `CLASE ${L.id} práctica\n${t}`; },
         onFin: (ok, total) => {
           const acierto = ok / total;
           progress.saveLeccion(L.id, { ...trasPractica(reg(), acierto), paso: 0 });
           progress.logActividad(MIN_TANDA);
           barra.remove();
-          const logros = [`✏️ ${ok} de ${total} preguntas de examen bien`, acierto >= APROBADO ? `🎓 Clase aprendida: ${L.titulo}` : null].filter(Boolean);
+          const logros = [`${ok} de ${total} preguntas de examen bien`, acierto >= APROBADO ? `Clase aprendida: ${L.titulo}` : null].filter(Boolean);
           pintarCierre(cont, progress, tit, acierto >= APROBADO
             ? { icono: '🎉', titulo: 'Clase aprendida', lineas: ['Volverá dentro de unos días para afianzarla.'], ut: L.ut, logros }
             : { icono: '💪', titulo: `${ok} de ${total}`, lineas: ['Casi. Mañana la repasamos.'], ut: L.ut, logros });

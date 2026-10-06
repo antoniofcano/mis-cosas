@@ -43,11 +43,16 @@ test('preguntas intercaladas: nunca más de 3 tarjetas seguidas sin responder (s
   assert.equal(conPreguntasIntercaladas(conLamina, reales, createRng(1)).length, conLamina.length);
 });
 
-test('tramos de clase: unos 5 minutos cada uno, seguidos, sin tramos vacíos', async () => {
-  const { numTramos, enTramos } = await import('../src/course/engine.js');
-  assert.equal(numTramos(14, 20), 3);
-  assert.equal(numTramos(4, 20), 1);
-  assert.equal(numTramos(30, 2), 2, 'nunca más tramos que pasos');
+test('tramos de clase: unas 7 tarjetas cada uno, seguidos, sin tramos vacíos; ritmo medido', async () => {
+  const { numTramos, enTramos, tarjetasDe, minutosTramo, nuevoRitmo } = await import('../src/course/engine.js');
+  assert.equal(tarjetasDe(21), 31);
+  assert.equal(numTramos(21), 4, '31 tarjetas → 4 tramos de unas 8');
+  assert.equal(numTramos(3), 1);
+  assert.equal(numTramos(2), 1, 'nunca más tramos que pasos');
+  assert.equal(minutosTramo(8, 45), 6);
+  assert.equal(nuevoRitmo(40, 8, 8 * 60000), 46, 'media móvil hacia el ritmo real');
+  assert.equal(nuevoRitmo(40, 2, 3600000), Math.round(0.7 * 40 + 0.3 * 120), 'una pantalla olvidada abierta cuenta como mucho 120 s por tarjeta');
+  assert.equal(nuevoRitmo(40, 8, 8 * 70000), Math.round(0.7 * 40 + 0.3 * 70));
   const pasos = Array.from({ length: 11 }, (_, i) => ({ tipo: 'texto', texto: 'x'.repeat(100 + 40 * (i % 4)) }));
   for (const k of [1, 2, 3, 5, 11]) {
     const t = enTramos(pasos, k).map((p) => p.tramo);
@@ -57,15 +62,12 @@ test('tramos de clase: unos 5 minutos cada uno, seguidos, sin tramos vacíos', a
 });
 
 test('ejercicios: «Toca» tras láminas con partes y «Empareja» con los términos de la clase', async () => {
-  const { conEjercicios, terminosDeClase, definicionCorta, pistaParte } = await import('../src/course/engine.js');
-  const { compilarVocabulario } = await import('../src/theory/vocabulario.js');
-  const vocab = compilarVocabulario([
-    { id: 'escora', termino: 'Escora', formas: ['escora'], definicion: 'Inclinación del barco hacia una banda. Más texto.' },
-    { id: 'balance', termino: 'Balance', formas: ['balance'], definicion: 'Oscilación de banda a banda.' },
-    { id: 'asiento', termino: 'Asiento', formas: ['asiento'], definicion: 'Diferencia de calados.' },
-  ]);
-  const t = terminosDeClase('El balance y la escora cambian; el asiento no. Otra escora.', vocab);
-  assert.deepEqual(t.map((x) => x.id), ['balance', 'escora', 'asiento'], 'en orden de aparición y sin repetir');
+  const { conEjercicios, definicionCorta, pistaParte } = await import('../src/course/engine.js');
+  const t = [
+    { id: 'escora', termino: 'Escora', definicion: 'Inclinación del barco hacia una banda. Más texto.' },
+    { id: 'balance', termino: 'Balance', definicion: 'Oscilación de banda a banda.' },
+    { id: 'asiento', termino: 'Asiento', definicion: 'Diferencia de calados.' },
+  ];
   assert.equal(definicionCorta('Inclinación del barco hacia una banda. Más texto.'), 'Inclinación del barco hacia una banda');
   assert.equal(pistaParte('G, centro de gravedad: donde se concentra el peso del barco. Sube si…'), 'donde se concentra el peso del barco');
   const final = { tipo: 'check', enunciado: '?', opciones: {}, correcta: 'a' };
@@ -73,4 +75,25 @@ test('ejercicios: «Toca» tras láminas con partes y «Empareja» con los térm
   const r = conEjercicios(pasos, { terminos: t, partesDe: () => [['g', 'G', 'peso'], ['b', 'B', 'empuje'], ['m', 'M', 'metacentro']] });
   assert.deepEqual(r.map((p) => p.tipo), ['texto', 'ilustracion', 'toca', 'emparejar', 'check']);
   assert.deepEqual(conEjercicios(pasos, { terminos: t.slice(0, 2) }).map((p) => p.tipo), ['texto', 'ilustracion', 'check'], 'con menos de 3 términos o sin partes, nada');
+});
+
+test('«Empareja»: cada clase declara 3 o 4 términos que existen y no se delatan entre sí', async () => {
+  const { readFileSync } = await import('node:fs');
+  const voc = (t) => JSON.parse(readFileSync(new URL(`../data/exams/vocabulario-${t}.json`, import.meta.url), 'utf8')).terminos;
+  const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  for (const tit of ['per', 'py']) {
+    const porId = new Map((tit === 'py' ? [...voc('per'), ...voc('py')] : voc('per')).map((x) => [x.id, x]));
+    const curso = JSON.parse(readFileSync(new URL(`../data/curso/${tit}.json`, import.meta.url), 'utf8'));
+    for (const l of curso.modulos.flatMap((m) => m.lecciones)) {
+      const ids = l.terminos ?? [];
+      if (!ids.length) continue;
+      assert.ok(ids.length >= 3 && ids.length <= 4, `${l.id}: ${ids.length} términos`);
+      assert.equal(new Set(ids).size, ids.length, `${l.id}: repetidos`);
+      const ts = ids.map((id) => { const x = porId.get(id); assert.ok(x?.definicion, `${l.id}: «${id}» no está en el vocabulario`); return x; });
+      for (const a of ts) for (const b of ts) {
+        if (a === b) continue;
+        for (const f of [b.termino, ...(b.formas ?? [])]) assert.ok(!new RegExp(`(^|[^a-zñ])${norm(f).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-zñ]|$)`).test(norm(a.definicion)), `${l.id}: la definición de «${a.termino}» delata «${b.termino}»`);
+      }
+    }
+  }
 });

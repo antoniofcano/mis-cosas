@@ -1,7 +1,7 @@
 // Recomendador único: decide qué toca hoy (pantalla Hoy, cierres de sesión y Temario), el estado de cada
 // tema y el avance global. Funciones puras: el progreso entra como datos.
 
-import { estadoLeccion, numTramos } from './engine.js';
+import { estadoLeccion, numTramos, tarjetasDe, minutosTramo, SEG_TARJETA } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { colaRepaso } from './repaso.js';
 
@@ -74,16 +74,17 @@ export function avance(estructura, curso, preguntas, regs = {}, respuestas = {},
 }
 
 /** Actividad «paso 4» para un tema que no está al día: clase a medias, clase nueva o tanda de preguntas. */
-function actividadTema(b, est, curso, regs, respuestas, ahora) {
+function actividadTema(b, est, curso, regs, respuestas, ahora, segTarjeta = SEG_TARJETA) {
   const clases = clasesDe(curso, b.ut).map((l) => ({ l, e: estadoLeccion(l, regs[l.id], respuestas, ahora).estado }));
   const empezada = clases.find((c) => c.e === 'empezada');
   const nueva = clases.find((c) => c.e === 'nueva');
   const c = empezada ?? nueva;
   if (c) {
     // Se propone un tramo de la clase (unos 5 minutos), no la clase entera.
-    const k = numTramos(c.l.minutos ?? 10, (c.l.pasos ?? []).filter((p) => !p.extra).length || 1);
+    const nPasos = (c.l.pasos ?? []).filter((p) => !p.extra).length || 1;
+    const k = numTramos(nPasos);
     const t = empezada ? Math.min(k - 1, regs[c.l.id]?.tramo ?? 0) : 0;
-    return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: Math.max(1, Math.round((c.l.minutos ?? 10) / k)),
+    return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: minutosTramo(Math.round(tarjetasDe(nPasos) / k), segTarjeta),
       tramo: k > 1 ? { i: t + 1, de: k } : null, ruta: ['curso', c.l.id], query: undefined, ut: b.ut };
   }
   return { tipo: 'preguntas', titulo: `${est.hechas ? `${TANDA} preguntas más` : `${TANDA} preguntas`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut };
@@ -94,7 +95,7 @@ function actividadTema(b, est, curso, regs, respuestas, ahora) {
  * @param {object} o  { estructura, curso, preguntas, regs, respuestas, tests, testEnCurso, fechaExamen, ahora }
  * @returns {{ tipo, titulo, verbo, minutos, ruta: string[], query?: object, ut: number|null }[]}
  */
-export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, ahora = Date.now() }) {
+export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, ahora = Date.now() }) {
   const lista = [];
   const simulacro = () => ({ tipo: 'simulacro', titulo: 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: undefined, ut: null });
 
@@ -125,7 +126,7 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   const pendientes = estados.filter((x) => !x.est.alDia);
 
   // 4. El primer tema que no está al día, en el orden de estudio recomendado
-  if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora));
+  if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora, segTarjeta));
 
   // 5. Repaso de fallos (B1) si se acumulan muchos para hoy; con pocos basta la línea de Hoy bajo la actividad.
   const cola = colaRepaso(preguntas, respuestas, hoy);
@@ -144,7 +145,7 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   }
 
   // 7. Con una sola actividad, proponer también el siguiente tema pendiente
-  if (lista.length === 1 && pendientes[1]) lista.push(actividadTema(pendientes[1].b, pendientes[1].est, curso, regs, respuestas, ahora));
+  if (lista.length === 1 && pendientes[1]) lista.push(actividadTema(pendientes[1].b, pendientes[1].est, curso, regs, respuestas, ahora, segTarjeta));
 
   return lista.slice(0, MAX_ACTIVIDADES);
 }

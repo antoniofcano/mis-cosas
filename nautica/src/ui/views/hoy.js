@@ -135,6 +135,15 @@ export function hoyView({ progress, tit }) {
       cabecera,
       hueco,
       meta,
+      // La guía de bienvenida se ofrece hasta que se abre o se descarta (luego queda en Biblioteca y Ajustes).
+      progress.settings()[`guiaVista_${tit}`] ? null : (() => {
+        const oferta = h('section.guia-oferta',
+          h('p', h('strong', '¿Primera vez?'), ' Te cuento en 3 minutos cómo funciona el curso y cómo aprobar.'),
+          h('div.guia-oferta-botones',
+            h('a.btn', { href: tlink(tit, ['guia']) }, 'Ver cómo funciona'),
+            h('button.secondary', { type: 'button', onclick: () => { progress.setSetting(`guiaVista_${tit}`, true); oferta.remove(); } }, 'Ahora no')));
+        return oferta;
+      })(),
       ritmo,
       lineaRepaso,
       // Lo demás, plegado: la portada dice qué toca, cuánto llevas hoy y cómo vas; nada más.

@@ -8,8 +8,11 @@ import { TITULACIONES, tlink } from '../titulacion.js';
 export function bibliotecaView({ tit }) {
   const T = TITULACIONES[tit];
   const per = tit === 'per';
-  // Tres grupos, una línea por recurso: lo que se escucha, lo que se ve y se practica, y la carta.
+  // Grupos, una línea por recurso: la guía, lo que se escucha, lo que se ve y se practica, y la carta.
   const grupos = [
+    ['Empezar', [
+      [tlink(tit, ['guia']), '🧭 Cómo funciona el curso', 'El método y cómo aprobar, en cinco pantallas (3 minutos).'],
+    ]],
     ['Escuchar', [
       [tlink(tit, ['podcast']), '🎧 Radio de a bordo', 'Episodios cortos del temario, con el guion y preguntas reales.'],
     ]],

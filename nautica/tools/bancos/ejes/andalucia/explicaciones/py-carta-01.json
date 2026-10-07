@@ -120,5 +120,128 @@
   "clave": "Ref = rumbo directo entre salida y llegada (tg R = A/Δl, A = ΔL·cos lm).",
   "trampa": "Mezclar la corriente en el cálculo del Ref o tomar ΔL sin pasarlo a apartamiento.",
   "concepto": null
+ },
+ "and-py-2015-c3-n11": {
+  "explicacion": "Ct = −3º + 4º = +1º → Rv = 136º; Dv de Trafalgar 056º (14:25) y 006º (15:10). Triángulo de velocidades: barco 136º/6 nudos + corriente 210º/3 nudos → Ref ≈ 159º, Vef ≈ 7,4 nudos; en 45 min, 5,6 M. Trasladando la 1ª demora 5,6 M al 159º y cortándola con la 2ª: ≈ 36º04,0′N 6º02,9′W; la más próxima es la a (36º03,6′N).",
+  "clave": "Demoras no simultáneas con corriente: la 1ª línea se traslada con el Ref y la distancia efectiva, no con el Rv.",
+  "trampa": "Trasladar la línea con el Rv y la Vhb, olvidando la corriente.",
+  "discrepancia": "El cálculo da 36º04,0′N: la oficial a (03,6′) es la más próxima, pero la c (05,0′) no queda lejos; todas las opciones tienen la misma longitud. Es una diferencia de trazado del tribunal (0,4′).",
+  "concepto": "and-py-2022-c1-n15"
+ },
+ "and-py-2015-c3-n12": {
+  "explicacion": "Ct = −3º + 1º = −2º → Rv = 190º. Viento W por estribor → abate a babor: Rs = 185º. Espartel queda al través por babor cuando su Dv = Rv − 90º = 100º. Trazando desde el faro 280º y cortando con nuestra derrota (185º desde 36º02,6′N 6º00,8′W): 35º48,5′N 6º02,3′W, a ≈ 5,7 M del faro (opción c, 5,6).",
+  "clave": "Al través: marcación 90º → Dv = Rv ± 90º; la situación está sobre la derrota (Rs).",
+  "trampa": "Tomar el través respecto al Rs, o recorrer la derrota con el Rv sin abatimiento.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n13": {
+  "explicacion": "De 36º07,0′N 5º57,4′W a Espartel: Rv = 175º. Estima a las 19:00 (2 h a 7 nudos, 14 M): 35º53,0′N 5º56,0′W. Observada con Dv 138º a Malabata y 210º a Espartel: 35º54,3′N 5º50,6′W. De la estima a la observada: Rc ≈ 074º, 4,5 M en 2 h → Ihc ≈ 2,25 nudos.",
+  "clave": "Corriente desconocida: vector estima → observada; Ihc = millas / horas.",
+  "trampa": "Unir observada → estima y dar el rumbo opuesto (254º/255º, la a).",
+  "concepto": "and-py-2022-c3-n16"
+ },
+ "and-py-2015-c3-n14": {
+  "explicacion": "Polar en el polo: Zv = 000º. Ct = Zv − Za = 360º − 355º = +5º. Dv = Da + Ct = 190º + 5º = 195º.",
+  "clave": "Ct por la Polar = 000º − Za; Dv = Da + Ct.",
+  "trampa": "Tomar la Ct como −5º y dar 185º (la c).",
+  "concepto": null
+ },
+ "and-py-2015-c3-n15": {
+  "explicacion": "En la oposición Isla de Tarifa–Pta. Alcázar estamos entre ambos faros: la Dv de Pta. Alcázar es la de la recta Tarifa → Alcázar, ≈ 166º. Ct = Dv − Da = 166º − 173º ≈ −7º. Desvío = Ct − dm = −7º − (−3º) = −4º.",
+  "clave": "Δ = Ct − dm (con signos: NW/W negativos).",
+  "trampa": "Dar la Ct (−7º, la a) como desvío, o sumar la dm (−10º, la c).",
+  "concepto": "and-py-2021-c1-n12"
+ },
+ "and-py-2015-c3-n16": {
+  "explicacion": "Salida: en la oposición Tarifa–Alcázar a 5 M de Pta. Alcázar (desde el faro, 346º y 5 M): 35º55,8′N 5º35,2′W. Barco 070º/6 nudos + corriente 095º/3 nudos → Ref ≈ 078º. La oposición Europa–Almina es la recta 166º desde Pta. Europa; nuestro Ref la corta en 35º58,7′N 5º18,2′W, a 8,2 M de Pta. Europa.",
+  "clave": "Con corriente se avanza por el Ref: la línea que se corta con la oposición es la del efectivo.",
+  "trampa": "Avanzar por el Rv 070º sin la corriente y medir la distancia en otro punto de la oposición.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n17": {
+  "explicacion": "Viento N por babor (rumbos al E) → abate a estribor: Rs 095º, 079º y, al caer 20º a babor (Rv 055º), 058º. A 8 nudos: 095º 48 M (01:30–07:30), 079º 16 M (07:30–09:30), 058º 12 M (09:30–11:00); corriente 070º, 4 × 9,5 = 38 M. Δl = −4,2 + 3,1 + 6,4 + 13,0 = +18,2′; A = 47,8 + 15,7 + 10,2 + 35,7 = +109,4′ → ΔL = 109,4/0,808 = +135,4′ (E). Situación: 36º13,2′N 2º59,6′W.",
+  "clave": "Estima analítica: cada tramo con su Rs; la corriente durante todo el tiempo; ΔL = A / cos lm.",
+  "trampa": "Restar el apartamiento (navegamos al E: la longitud W disminuye) y llegar a 7º30′W.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n18": {
+  "explicacion": "Δl = 25,0′ N; ΔL = 48,0′ E. lm 35,9º → A = 48 × 0,810 = 38,9′. Distancia = √(25² + 38,9²) = 46,2 M ≈ 46,3.",
+  "clave": "D = √(Δl² + A²), A = ΔL·cos lm.",
+  "trampa": "Usar ΔL sin pasarlo a apartamiento: √(25² + 48²) ≈ 54 M.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n19": {
+  "explicacion": "Δl = 77,0′ S; ΔL = 193,0′ W. lm 35,2º → A = 193 × 0,817 = 157,7′ W. tg R = 157,7/77 → R = S64,0ºW = 244º. Ese rumbo directo es el Ref; la corriente y la Vhb solo harían falta para el rumbo a dar.",
+  "clave": "Ref = rumbo directo (tg R = A/Δl).",
+  "trampa": "Calcular con ΔL en vez de A: tg R = 193/77 → S68ºW = 248º, o meter la corriente.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n20": {
+  "explicacion": "Viento SW con Rs 070º: entra por estribor y abate a babor (−6º). Rv = Rs − Ab = 070º + 6º = 076º. El radar da la marcación desde la proa en sentido horario: M = 45º Er. Dv = Rv + M = 076º + 45º = 121º.",
+  "clave": "Dv = Rv + M (la marcación sobre la proa verdadera, no sobre el Rs).",
+  "trampa": "Aplicar la marcación al Rs (115º) o abatir al revés (Rv 064º → 109º, la b).",
+  "concepto": null
+ },
+ "and-py-2016-c1-n11": {
+  "explicacion": "La enfilación Pta. Carnero–Pta. Europa medida en la carta: Dv ≈ 243,5º. Ct = Dv − Da = 243,5º − 258º ≈ −14º.",
+  "clave": "Enfilación: Ct = Dv (medida en la carta) − Da.",
+  "trampa": "Restar al revés y dar +14º.",
+  "concepto": "and-py-2026-c1-n13"
+ },
+ "and-py-2016-c1-n12": {
+  "explicacion": "En ½ h a 8 nudos: 4 M. Dv 160º (13:00) y 225º (13:30) a Pta. Cires. Trasladamos la 1ª demora (la recta 340º desde el faro) 4 M al 070º y la cortamos con la 2ª (045º desde el faro): 35º57,7′N 5º25,1′W.",
+  "clave": "Demoras no simultáneas: traslado de la 1ª línea con Rv y distancia navegada.",
+  "trampa": "Trasladar la 2ª línea en vez de la 1ª, o hacia atrás (situación de las 13:00).",
+  "concepto": "and-py-2026-c2-n11"
+ },
+ "and-py-2016-c1-n13": {
+  "explicacion": "Trafalgar está a 17,6 M al 309º. Tangente a 5 M dejando el faro por estribor: arcsen(5/17,6) ≈ 16,5º → Rs = 292º. Viento SW por babor → abate a estribor (+15º): Rv = 292º − 15º = 277º. Ct = −5º + 5º = 0º → Ra = 277º.",
+  "clave": "Ra = Rv − Ct; el abatimiento se compensa metiendo la proa al viento.",
+  "trampa": "Dar el rumbo de la tangente (292º, la a) o sumar el abatimiento (307º, la c).",
+  "concepto": "and-py-2025-c1-n12"
+ },
+ "and-py-2016-c1-n14": {
+  "explicacion": "Situación 11:00: desde Espartel 303º y 4 M → 35º49,7′N 5º59,6′W. Estima 12:30 (1,5 h a 8 nudos, 12 M al 060º): 35º55,7′N 5º46,7′W. Observada: 5 M al N de Pta. Malabata, 35º54,2′N 5º45,0′W. De la estima a la observada: Rc ≈ 136º (SE), 2,05 M en 1,5 h → Ihc ≈ 1,4 nudos (≈ 1,5).",
+  "clave": "Corriente desconocida: vector estima → observada, dividido por el tiempo.",
+  "trampa": "Unir al revés (Rc NW) o no dividir por 1,5 h (2,1 nudos).",
+  "discrepancia": "No es una discrepancia de cálculo: la cuenta da la oficial (SE, 1,4–1,5 nudos); se documentó porque el rumbo de la corriente viene escrito con letras («SE»/«NW») y no se podía comprobar automáticamente.",
+  "concepto": "and-py-2025-c1-n15"
+ },
+ "and-py-2016-c1-n15": {
+  "explicacion": "Ct = −3º − 5º = −8º → Rv = 298º − 8º = 290º. Viento SW con rumbo 290º: entra por babor y abate a estribor (+10º): Rs = 300º. Sin corriente, el rumbo sobre el fondo es el Rs: 300º.",
+  "clave": "Rs = Rv + Ab (Er +, Br −); sin corriente, Ref = Rs.",
+  "trampa": "Abatir hacia el viento (280º, la b) o no corregir la Ct (308º).",
+  "concepto": null
+ },
+ "and-py-2016-c1-n16": {
+  "explicacion": "Salida: enfilación Alcázar–Cires (Dv ≈ 047º) cortada con la línea al E de Pta. Carnero: 36º04,7′N 5º15,7′W. Tarifa está a 17,5 M al 255º; tangente a 3 M dejando el faro por estribor: Ref = 245º. Triángulo: corriente 135º/3 nudos y radio 8 nudos hasta el 245º → Rs = Rv = 265º. dm 2016 = −5º + 10 × 6′ = −4º; Ct = −4º − 8º = −12º. Ra = Rv − Ct = 265º + 12º = 277º ≈ 278º.",
+  "clave": "Orden: Ref (tangente) → corriente → Rv → Ra = Rv − Ct, con la dm actualizada al año.",
+  "trampa": "Olvidar la corriente (Ra ≈ 257º) o restar la Ct con su signo cambiado (253º).",
+  "concepto": "and-py-2022-c3-n12"
+ },
+ "and-py-2016-c1-n18": {
+  "explicacion": "Polar en el polo: Zv = 000º. Ct = Zv − Za = 000º − 005º = −5º.",
+  "clave": "Ct = Zv − Za, con Zv de la Polar = 000º.",
+  "trampa": "Cambiar el signo (+5º, la c).",
+  "concepto": null
+ },
+ "and-py-2016-c2-n11": {
+  "explicacion": "La enfilación Espartel–Malabata («Malabata Carnero» en el enunciado es Malabata) medida en la carta: Dv ≈ 078,6º. Ct = Dv − Da = 078,6º − 093º ≈ −14,4º; la opción más próxima es la d (−13º).",
+  "clave": "Enfilación: Ct = Dv − Da.",
+  "trampa": "Restar al revés y dar +13º.",
+  "discrepancia": "En la carta la enfilación mide 078,6º, así que la Ct es −14,4º; la oficial (−13º) es la más próxima pero queda a 1,4º: el tribunal debió medir 080º.",
+  "concepto": null
+ },
+ "and-py-2016-c2-n12": {
+  "explicacion": "Salida: en la enfilación (078,6º), por fuera de Espartel, 5,4 M al 259º del faro: 35º46,5′N 6º01,9′W. Malabata a 14,0 M al 079º; tangente a 5 M dejando el faro por estribor: arcsen(5/14) ≈ 21º → Rs = 058º. Viento SE por estribor → abate a babor (−8º): Rv = 058º + 8º = 066º. dm 2016 = −6º + 10 × 6′ = −5º; Ct = −5º − 5º = −10º. Ra = 066º + 10º = 076º.",
+  "clave": "Rv = Rs − Ab; Ra = Rv − Ct (Ct negativa → el Ra es mayor).",
+  "trampa": "Quedarse en el Rv (066º, la b) o aplicar la Ct al revés (056º).",
+  "concepto": "and-py-2024-c3-n12"
+ },
+ "and-py-2016-c2-n13": {
+  "explicacion": "16:00–17:00: Ct = −5º + 5º = 0º, Rv 060º, 8 M → 35º54,0′N 6º01,5′W. Desde las 17:00: Ct = −5º + 0º = −5º → Rv = 330º; viento W por babor → Rs = 340º. Barco 340º/8 nudos + corriente 090º/3 nudos → Ref ≈ 002º, Vef ≈ 7,5 nudos; en 1,5 h, 11,3 M → 36º05,3′N 6º01,0′W.",
+  "clave": "Cada tramo con su Ct (el desvío cambia con el rumbo); con corriente se avanza por el Ref.",
+  "trampa": "Mantener el desvío +5º en el 2º tramo o aplicar la corriente también a la primera hora.",
+  "concepto": "and-py-2020-c3-n15"
  }
 }

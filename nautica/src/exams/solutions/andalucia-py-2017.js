@@ -7,10 +7,7 @@ const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lo
 const N = 0; const NE = 45; const E = 90; const SE = 135; const S = 180; const SW = 225; const W = 270; const NW = 315;
 
 export const documentadas = {
-  'and-py-2017-c1-n15': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c): Ct = −10°, Rv 150°, estima a las 20:00 tras 15 millas; situación observada al S de Trafalgar y al W de Camarinal; Rc = 044,8° (NE) e Ihc = 2,5′. Pero las opciones dan el rumbo de la corriente por su nombre («Rc = NE») y el lector de opciones no lo lee (solo lee grados, cuadrantales con número o «Nv/Ev…»): sin él, b y c (2,4′) empatan, así que no se puede validar como resuelta.' },
-  'and-py-2017-c2-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (b): estima a las 23:00 tras 9,2 millas al 225° desde 36°10′N 5°10′W; situación observada con Dv 319° a Punta Europa y 196° a Punta Almina («Punta Amina» en el enunciado) en 36°00,9′N 5°14,4′W; Rc = 131,4° (SE) e Ihc = 2,0′. Pero las opciones dan el rumbo de la corriente por su nombre («Rc = SE») y el lector de opciones no lo lee: sin él, a y b (2′) empatan, así que no se puede validar como resuelta.' },
-  'and-py-2017-c3-n11': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c, −10°): en la carta la enfilación Camarinal (faro de Punta de Gracia)–Isla de Tarifa mide 298,9° hacia Tarifa, y con la Da 309° la Ct = −10,1°. Pero las opciones están mal transcritas del cuadernillo: el símbolo de grado se leyó como un cero («−140», «+100», «−100», «+140» por −14°, +10°, −10°, +14°), así que el lector las toma como −100, −140… y la oficial queda lejísimos del cálculo.' },
-  'and-py-2017-c3-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d): estima a las 22:00 tras 8 millas al 045° desde 35°45′N 6°10′W; situación observada a 4 millas de Espartel con Dv 097° en 35°48,0′N 6°00,3′W; Rc = 140,3° (SE) e Ihc = 3,4′ (la d da 3,6′). Pero las opciones dan el rumbo de la corriente por su nombre («Rc = SE») y el lector de opciones no lo lee: sin él, b y d (3,6′) empatan, así que no se puede validar como resuelta.' },
+  'and-py-2017-c3-n14': { tipo: 'discrepancia', texto: 'Corriente desconocida. Estima a las 22:00 tras 8 millas al 045° desde 35° 45′ N, 6° 10′ W: 35° 50,7′ N, 6° 03,0′ W; situación observada a 4 millas de Espartel con Dv 097°: 35° 48,0′ N, 6° 00,3′ W. Corriente: Rc = 140,3°, 3,44 millas en 1 h → Ihc = 3,4′. La oficial (d: «Rc = SE Ihc = 3,6´», 135°) es la más próxima, pero queda a 5,3° en el rumbo y 0,2′ en la intensidad: fuera del margen de examen. El tribunal debió redondear el rumbo al cuadrantal y la intensidad al alza.' },
 };
 
 export default {
@@ -50,6 +47,20 @@ export default {
     solve(k) {
       const d = k.distFor(6, hrb(12, 30) - hrb(11));
       return latlon(k.traslado('cabo-espartel', 160, 'punta-alcazar', 110, 65, d, 'Situación 12:30'));
+    },
+  },
+  'and-py-2017-c1-n15': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 15,8 N', '6 14,6 W', 'Situación 18:30');
+      const t = hrb(20) - hrb(18, 30);
+      const ct = k.ct({ dm: -5, desvio: -5 });
+      const rv = k.rv(160, ct);
+      const est = k.run(s, rv, k.distFor(10, t), 'Situación de estima 20:00');
+      // Al S verdadero del faro de Trafalgar y al W verdadero del de Punta Camarinal (faro de Punta Gracia).
+      const obs = k.cardinal2('cabo-trafalgar', S, 'punta-gracia', W, 'Situación observada 20:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2017-c1-n16': {
@@ -128,6 +139,18 @@ export default {
       return [{ kind: 'signed', value: k.ctFrom(dv, 41) }];
     },
   },
+  'and-py-2017-c2-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '5 10,0 W', 'Situación 21:00');
+      const t = hrb(23) - hrb(21);
+      const est = k.run(s, 225, k.distFor(4.6, t), 'Situación de estima 23:00');
+      // «Punta Amina» en el enunciado: es Punta Almina.
+      const obs = k.fix2('punta-europa', 319, 'punta-almina', 196, 'Situación observada 23:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
   'and-py-2017-c2-n15': {
     ejercicio: 'rumbo-pasar-distancia',
     solve(k) {
@@ -190,6 +213,14 @@ export default {
   },
 
   // ---- 3ª Convocatoria 2017
+  'and-py-2017-c3-n11': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // «Faro de Pta. Camarinal» = faro de Punta Gracia. Marcamos Isla de Tarifa: la demora es la de la recta hacia Tarifa.
+      const dv = k.enfilacion('punta-gracia', 'isla-tarifa', 309);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 309) }];
+    },
+  },
   'and-py-2017-c3-n12': {
     ejercicio: 'corriente-rumbo-a-dar',
     solve(k) {

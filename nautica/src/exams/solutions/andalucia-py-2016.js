@@ -1,8 +1,6 @@
 // Soluciones programadas PY Andalucía, convocatorias de 2016 (módulo de navegación, UT 4: carta, mareas y loxodrómica). Ver
 // andalucia-py.js para el formato. `documentadas`: las de carta sin solución programada, con su motivo
 // ({ tipo: 'discrepancia' | 'sin-calculo', texto }).
-// `pendientes`: resoluciones que llegan a la oficial pero que el lector de opciones (src/exams/options.js) no puede comparar
-// todavía: dan el rumbo de la corriente como «Rc = SE» / «NW», sin grados. Están en `documentadas` hasta que lo lea.
 import { hrb } from '../kit.js';
 import { rhumbDestination } from '../../math/mercator.js';
 import { fmtBearing, fmtPos } from '../../math/format.js';
@@ -10,52 +8,9 @@ import { fmtBearing, fmtPos } from '../../math/format.js';
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const N = 0; const NE = 45; const E = 90; const S = 180; const SE = 135; const SW = 225; const W = 270; const NW = 315;
 
-const lectorRc = (calc) => `El cálculo llega a la oficial (${calc}), pero el lector de opciones no entiende el rumbo de la corriente escrito con letras («Rc = SE» / «NW», sin grados): la comparación automática no lee ninguna opción. La resolución está en \`pendientes\` de este fichero.`;
-
 export const documentadas = {
-  'and-py-2016-c1-n14': { tipo: 'discrepancia', texto: lectorRc('Rc = 136° (SE), Ihc = 1,4′; oficial c, «Rc = SE, Ihc = 1,5′»') },
   'and-py-2016-c2-n11': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Espartel–Malabata mide 078,6° (como en and-py-2022-c2-n11): con la Da 093° la Ct es −14,4°. La oficial (−13°) es la más próxima, pero queda a 1,4° del cálculo, fuera de la tolerancia: el tribunal debió medir 080°. (El enunciado dice «Punta Malabata Carnero»: es Malabata.)' },
-  'and-py-2016-c2-n15': { tipo: 'discrepancia', texto: lectorRc('Rc = 138° (SE), Ihc = 1,5′; oficial d, «Rc = SE; Ihc = 1,5′»') },
   'and-py-2016-c3-n12': { tipo: 'discrepancia', texto: 'En la carta, la recta Espartel → Malabata mide 078,6°: en la oposición, con la Da 071° la Ct es +7,6°, más cerca de c (+7°) que de la oficial d (+9°). El tribunal debió medir 080° (la misma medida que en and-py-2016-c2-n11 y and-py-2022-c2-n11).' },
-  'and-py-2016-c3-n15': { tipo: 'discrepancia', texto: lectorRc('Rc = 135° (SE), Ihc = 2,0′; oficial b, «Rc = SE, Ihc = 2,0′»') },
-};
-
-export const pendientes = {
-  'and-py-2016-c1-n14': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = k.fixDist('cabo-espartel', 123, 4, 'Situación 11:00');
-      const d = k.distFor(8, hrb(12, 30) - hrb(11));
-      const est = k.run(s, 60, d, 'Situación de estima 12:30');
-      const obs = k.fromMark('punta-malabata', 0, 5, 'Situación observada 12:30');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, 90);
-      return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
-    },
-  },
-  'and-py-2016-c2-n15': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = enfilacionADistancia(k, 'punta-carnero', 'punta-europa', 6, 'Situación 14:00');
-      const d = k.distFor(5.1, hrb(16) - hrb(14));
-      const est = k.run(s, 227, d, 'Situación de estima 16:00');
-      const obs = k.cardinal2('punta-europa', 180, 'isla-tarifa', E, 'Situación observada 16:00');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, 120);
-      return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
-    },
-  },
-  'and-py-2016-c3-n15': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = k.pos('35 50,0 N', '6 10,0 W', 'Situación 17:00');
-      const ct = k.ct({ dm: 3, desvio: 7 });
-      const rv = k.rv(60, ct);
-      const d = k.distFor(5, hrb(19) - hrb(17));
-      const est = k.run(s, rv, d, 'Situación de estima 19:00');
-      const obs = k.fix2('cabo-espartel', 187, 'punta-malabata', 100, 'Situación observada 19:00');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, 120);
-      return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
-    },
-  },
 };
 
 // ---- Operaciones locales
@@ -106,6 +61,17 @@ export default {
       const rv = k.rvConAbatimiento(rs, 15, SW);
       const ct = k.ct({ dm: -5, desvio: 5 });
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2016-c1-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.fixDist('cabo-espartel', 123, 4, 'Situación 11:00');
+      const d = k.distFor(8, hrb(12, 30) - hrb(11));
+      const est = k.run(s, 60, d, 'Situación de estima 12:30');
+      const obs = k.fromMark('punta-malabata', 0, 5, 'Situación observada 12:30');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, 90);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2016-c1-n15': {
@@ -189,6 +155,17 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rs, ct) }];
     },
   },
+  'and-py-2016-c2-n15': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = enfilacionADistancia(k, 'punta-carnero', 'punta-europa', 6, 'Situación 14:00');
+      const d = k.distFor(5.1, hrb(16) - hrb(14));
+      const est = k.run(s, 227, d, 'Situación de estima 16:00');
+      const obs = k.cardinal2('punta-europa', 180, 'isla-tarifa', E, 'Situación observada 16:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, 120);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
   'and-py-2016-c2-n16': {
     ejercicio: 'corriente-rumbo-a-dar',
     solve(k) {
@@ -263,6 +240,19 @@ export default {
       const d = k.distFor(6, hrb(16, 30) - hrb(15));
       // «Faro de Punta Camarinal» = faro de Punta de Gracia (Camarinal).
       return latlon(k.traslado('cabo-roche', 30, 'punta-gracia', 100, 150, d, 'Situación 16:30'));
+    },
+  },
+  'and-py-2016-c3-n15': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 10,0 W', 'Situación 17:00');
+      const ct = k.ct({ dm: 3, desvio: 7 });
+      const rv = k.rv(60, ct);
+      const d = k.distFor(5, hrb(19) - hrb(17));
+      const est = k.run(s, rv, d, 'Situación de estima 19:00');
+      const obs = k.fix2('cabo-espartel', 187, 'punta-malabata', 100, 'Situación observada 19:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, 120);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2016-c3-n16': {

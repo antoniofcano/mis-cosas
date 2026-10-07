@@ -38,8 +38,10 @@ export function etiquetaConv(p, config) {
     const [anio, n] = p.claveConv.split('-c');
     return `${n}ª convocatoria ${anio}${p.fecha ? ` (${fechaLarga(p.fecha)})` : ''}`;
   }
+  // «Convocatoria de junio de 2025 (28 de junio)».
   const [anio, mes] = p.claveConv.split('-');
-  return `${MESES[Number(mes) - 1].replace(/^./, (x) => x.toUpperCase())} de ${anio}${p.fecha ? ` (${fechaLarga(p.fecha)})` : ''}`;
+  const dia = p.fecha ? fechaLarga(p.fecha).replace(/ de \d{4}$/, '') : null;
+  return `Convocatoria de ${MESES[Number(mes) - 1]} de ${anio}${dia ? ` (${dia})` : ''}`;
 }
 
 export function aContrato(p, { config, eje, tit }) {

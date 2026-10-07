@@ -3,6 +3,10 @@
  "prefijo": "dgmm",
  "nombre": "Madrid (Marina Mercante)",
  "organismo": "Dirección General de la Marina Mercante (Ministerio de Transportes y Movilidad Sostenible)",
+ "descripcion": {
+  "per": "Preguntas de los exámenes oficiales de Patrón de Embarcaciones de Recreo de la Marina Mercante en Madrid (junio de 2019 y de diciembre de 2020 a junio de 2026), con la plantilla oficial y sus modificaciones. Origen de los datos: Ministerio de Transportes y Movilidad Sostenible.",
+  "py": "Preguntas de los exámenes oficiales de Patrón de Yate de la Marina Mercante en Madrid (junio de 2019 y de diciembre de 2020 a abril de 2026), con la plantilla oficial y sus modificaciones. Origen de los datos: Ministerio de Transportes y Movilidad Sostenible."
+ },
  "indice": "https://www.transportes.gob.es/marina-mercante/titulaciones/titulaciones-de-recreo/examenes/examenes-para-la-obtencion-de-titulaciones-de-recreo",
  "descarga": { "userAgent": true },
  "adaptador": { "per": "plantilla-aparte", "py": "plantilla-aparte" },

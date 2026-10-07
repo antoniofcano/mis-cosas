@@ -1,9 +1,10 @@
-// #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, instalar,
+// #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, dónde te
+// examinas (si hay más de un banco publicado), instalar,
 // voz del profe y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
 // Biblioteca (#/<tit>/biblioteca).
 
 import { h, setChildren } from '../dom.js';
-import { TITULACIONES, tlink } from '../titulacion.js';
+import { TITULACIONES, tlink, currentEje } from '../titulacion.js';
 import { voice, spanishVoices } from '../voice.js';
 import { botonesMinutos } from './bienvenida.js';
 import { guardarCopia, botonRecuperar } from '../copia.js';
@@ -12,6 +13,7 @@ import { calcularPlan } from '../cierre.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
 import { DIAS_ESTUDIO } from '../../course/calendario.js';
 import { fechaLarga } from '../../texto.js';
+import { ejesElegibles, selectorEje, citaFuente } from '../eje.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -56,6 +58,18 @@ export function masView({ progress, tit, params }) {
 
   const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${fechaLarga(s.ultimaCopia)}.` : '');
 
+  // Dónde te examinas: solo si hay más de un banco publicado (con uno solo, la sección no existe).
+  const ejeEl = h('section.ajuste-eje', { hidden: true });
+  const pintaEje = (ejes) => {
+    const ficha = ejes.find((e) => e.id === currentEje(progress))?.ficha;
+    setChildren(ejeEl, h('h2', '📍 Dónde te examinas'),
+      h('p.muted', 'Estudias con los exámenes reales de tu tribunal. Si cambias, lo que ya has estudiado se queda guardado, y la fecha del examen no cambia.'),
+      selectorEje(progress, ejes, () => { pintaEje(ejes); pintaAviso(); }),
+      citaFuente(ficha));
+    ejeEl.hidden = false;
+  };
+  ejesElegibles().then((ejes) => { if (ejes.length) pintaEje(ejes); }).catch(() => {});
+
   // Instalar la app (Android/Chrome): solo aparece si el navegador lo ofrece y no está ya instalada.
   const instalarEl = h('section.instalar', { hidden: !puedeInstalar() }, h('h2', '📲 Instalar la app'),
     h('p', 'Ponla en la pantalla de inicio: abre como una app y funciona sin conexión.'),
@@ -79,6 +93,7 @@ export function masView({ progress, tit, params }) {
     h('section', h('h2', 'Titulación'),
       h('div.titulaciones', Object.values(TITULACIONES).map((X) => h('a.btn.grande', { href: tlink(X.id), class: X.id === tit ? '' : 'secondary', 'aria-current': X.id === tit ? 'true' : null },
         `${X.id === tit ? '✓ ' : ''}${X.id === 'per' ? 'PER' : X.nombre}`)))),
+    ejeEl,
     voice.supported ? h('section', h('h2', '👨‍🏫 Voz del profe'),
       h('p.muted', 'Usa las voces de tu navegador o sistema (gratis). En Chrome y en Android suelen estar las de Google; en iPhone/Mac, las de Apple. Si no oyes nada, revisa que haya una voz en español instalada.'),
       h('label.check', h('input', { type: 'checkbox', checked: voice.enabled, onchange: (ev) => voice.setEnabled(ev.target.checked) }), 'Voz activada'),
@@ -118,6 +133,6 @@ export function masView({ progress, tit, params }) {
   if (campo) setTimeout(lleva, 30);
   return {
     el,
-    summary: () => `VISTA ajustes · titulación activa ${T.sigla} · examen ${progress.settings()[`examen_${tit}`] || 'sin fecha'} · ${progress.settings().minutosDia ?? 20} min al día\nRUTAS: #/${tit}/biblioteca · #/progreso`,
+    summary: () => `VISTA ajustes · titulación activa ${T.sigla} · eje ${currentEje(progress)} · examen ${progress.settings()[`examen_${tit}`] || 'sin fecha'} · ${progress.settings().minutosDia ?? 20} min al día\nRUTAS: #/${tit}/biblioteca · #/progreso`,
   };
 }

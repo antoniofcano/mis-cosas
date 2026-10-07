@@ -8,6 +8,7 @@ import { link, navigate } from '../router.js';
 import { cargarBanco, cargarCurso, urlFigura, rutaResolucion, SOLUCIONES as cartaSolutions } from '../../bancos/index.js';
 import { bloque, bloquesEnOrden, totalPreguntas, posEstudio } from '../../theory/blocks.js';
 import { TITULACIONES, tlink, currentEje, reglasExamen } from '../titulacion.js';
+import { citaFuente } from '../eje.js';
 import { TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
@@ -260,6 +261,7 @@ export function examenesView({ ctx, progress, tit }) {
       tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
       h('details', h('summary', 'Exámenes de convocatorias anteriores'),
         h('p.muted', `Las preguntas de una convocatoria oficial de ${eje.nombre}, en su orden, con el tiempo y las reglas del examen.`),
+        citaFuente(eje),
         h('div.cards', convs.map((c) => {
           const hecho = progress.tests().filter((t) => t.conv === c.key).at(-1);
           return h('a.card', { href: tlink(T0.id, ['test', 'real', c.key]) },

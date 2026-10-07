@@ -17,3 +17,4 @@
 - and-py-2018-c1-g07 · RD 587/2022 · cambian los equipos radio obligatorios (VHF con LSD) · sí: el socorro por voz sigue siendo canal 16 y MAYDAY.
 - and-py-2018-c1-g08 · RD 339/2021 · cambia la dotación de pirotecnia, no las pautas ante un helicóptero · sí.
 - and-py-2018-c1-g10 · RD 339/2021, RD 587/2022 · regulan hoy las balsas y su estiba · sí: la zafa hidrostática sigue soltando la balsa automáticamente a ≤ 4 m.
+- and-py-2018-c1-n03 · RD 339/2021 (marcada para revisar) · el RD no afecta a la definición de SOG · sí: SOG sigue siendo la velocidad efectiva.

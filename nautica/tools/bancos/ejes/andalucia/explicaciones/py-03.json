@@ -356,7 +356,7 @@
  "and-py-2017-c2-n20": {
   "explicacion": "Δl = 42° 00′ N → 36° 00′ N = 360′ S. ΔL = de 179° 20′ E a 178° 35′ W por el antimeridiano: 40′ + 85′ = 125′ E. lm = 39° → A = 125·cos 39° = 97,1′ E. R = atan(97,1/360) = S 15,1° E ≈ 165°, y D = √(360² + 97,1²) = 372,9 millas.",
   "clave": "Rumbo directo: Δl, ΔL, A = ΔL·cos lm, R = atan(A/Δl), D = √(Δl² + A²). Al cruzar el antimeridiano, calcula ΔL por el camino corto (< 180°).",
-  "trampa": "Tomar ΔL por el camino largo hacia el W da el rumbo simétrico 195°; las de 62,1 millas confunden Δl con algo que no es.",
+  "trampa": "Tomar ΔL por el camino largo hacia el W da el rumbo simétrico 195°; las de 62,1 millas no salen de ningún cálculo correcto.",
   "ilustraciones": [
    {
     "tipo": "loxodromica"
@@ -489,7 +489,7 @@
   "concepto": "and-py-2026-c1-g11"
  },
  "and-py-2017-c3-g15": {
-  "explicacion": "El Siroco es el viento cálido, seco y cargado de polvo que llega del Sáhara, del cuadrante sur; en la rosa de los vientos mediterránea ocupa el SE. De las opciones, la única que encaja es el S. Del E sopla el Levante, del N la Tramontana y del W el Poniente.",
+  "explicacion": "El Siroco es el viento cálido que llega del Sáhara, del cuadrante sur; en la rosa de los vientos mediterránea ocupa el SE. De las opciones, la única que encaja es el S. Del E sopla el Levante, del N la Tramontana y del W el Poniente.",
   "clave": "Siroco = viento del sur (SE), cálido y del Sáhara.",
   "trampa": "La a: el viento del E es el Levante.",
   "concepto": null
@@ -753,5 +753,77 @@
   "clave": "«Distancia» = longitud de onda; «tiempo» = periodo.",
   "trampa": "El periodo también se define «entre dos crestas», pero se mide en segundos.",
   "concepto": "and-py-2022-c1-g14"
+ },
+ "and-py-2018-c1-g14": {
+  "explicacion": "La corriente de Portugal baja hacia el S por la costa ibérica y una de sus ramas entra en el Golfo de Cádiz y, por el Estrecho, en el Mediterráneo; el resto sigue al S como corriente de Canarias. La de Canarias es su continuación más al S, no una rama que suba al Golfo de Cádiz, la de las Azores queda mar adentro y la del Golfo es la del Atlántico norte occidental.",
+  "clave": "Portugal → rama al Golfo de Cádiz y al Estrecho; el resto sigue como Canarias.",
+  "trampa": "La b: Canarias es la continuación hacia el S, no la que entra en el Golfo de Cádiz.",
+  "concepto": null
+ },
+ "and-py-2018-c1-g15": {
+  "explicacion": "Cuando la superficie del mar queda inclinada, por ejemplo porque se juntan masas de agua de distinta densidad o por la presión atmosférica o el viento, aparece una diferencia de presión que mueve el agua: son las corrientes de gradiente. Las de densidad (termohalinas) se mueven por la propia diferencia de densidad, sobre todo en profundidad, las de arrastre por el viento y las de marea por los astros.",
+  "clave": "Gradiente = desnivel de la superficie del mar, con varias causas posibles.",
+  "trampa": "La a: la pregunta menciona la densidad, pero lo que mueve el agua es la inclinación del nivel, que define las de gradiente.",
+  "concepto": null
+ },
+ "and-py-2018-c1-g16": {
+  "explicacion": "La niebla de radiación se forma en noches despejadas y con poco viento, cuando el terreno pierde calor por radiación y enfría el aire que tiene encima hasta su punto de rocío. La de advección se debe a aire húmedo que se mueve sobre una superficie fría, la de vapor a aire frío sobre agua templada y la de mezcla al encuentro de dos masas de aire.",
+  "clave": "Radiación = el suelo se enfría de noche.",
+  "trampa": "La c: la de advección también es de enfriamiento, pero por desplazarse el aire, no por enfriarse el terreno.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-radiacion"
+   }
+  ],
+  "concepto": "and-py-2021-c2-g19"
+ },
+ "and-py-2018-c1-g17": {
+  "explicacion": "Es la descripción de la galerna: un salto brusco de viento del W-NW, fuerte y racheado, típico del Cantábrico en los meses cálidos, que interrumpe un día tranquilo y caluroso y levanta mucha mar. El vendaval es un viento fuerte genérico (del S-SW en el N peninsular), la nortada es el N persistente de la costa portuguesa y gallega en verano y el leveche es el SW cálido del Mediterráneo.",
+  "clave": "Cantábrico + cambio súbito en verano = galerna.",
+  "trampa": "Ninguno de los otros vientos describe ese cambio súbito del Cantábrico.",
+  "concepto": "and-py-2023-c2-g13"
+ },
+ "and-py-2018-c1-g18": {
+  "explicacion": "El frente frío avanza más deprisa que el cálido y acaba alcanzándolo; el sector cálido queda levantado del suelo y los dos frentes se funden en uno solo, el frente ocluido. Es el frío el que alcanza al cálido, no al revés, y antes de la oclusión el cálido va delante y el frío detrás, que es lo contrario de lo que dice la b.",
+  "clave": "Oclusión: el frente frío alcanza al cálido → un solo frente.",
+  "trampa": "La c invierte quién alcanza a quién.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2018-c1-g19": {
+  "explicacion": "Un viento que sube a fuerza 4 o más mezcla el aire de la niebla con aire más seco y la levanta o la dispersa. La a y la b describen justo las condiciones que forman o mantienen la niebla: aire por debajo de su punto de rocío o un mar más frío que ese punto de rocío. Por eso la d tampoco vale.",
+  "clave": "Viento de fuerza 4 o más → la niebla se dispersa.",
+  "trampa": "La a y la b son condiciones de formación de la niebla, no de dispersión.",
+  "concepto": null
+ },
+ "and-py-2018-c1-g20": {
+  "explicacion": "Las nubes medias son las del prefijo «alto-»: altocúmulos y altostratos, entre unos 2.000 y 6.000 m. Los estratocúmulos son nubes bajas. Por eso la a y la c son correctas.",
+  "clave": "Alto- = media; cirro- = alta; estrato- = baja.",
+  "trampa": "La b: el estratocúmulo es bajo aunque lleve «cúmulo».",
+  "concepto": null
+ },
+ "and-py-2018-c1-n01": {
+  "explicacion": "La Hora Reloj Bitácora es la que fija el patrón para regir la vida a bordo (guardias, comidas, cuaderno). Puede coincidir con la del huso, con la Hora Legal o con la oficial de un Estado si él lo decide, pero no es por definición ninguna de ellas.",
+  "clave": "HRB = la hora que decide el patrón para la vida a bordo.",
+  "trampa": "La a, la b y la d: la HRB puede coincidir con ellas, pero no es eso.",
+  "concepto": null
+ },
+ "and-py-2018-c1-n02": {
+  "explicacion": "El ecuador es el círculo máximo perpendicular al eje terrestre y, por tanto, perpendicular a todos los meridianos. Los demás paralelos y los círculos polares también cortan a los meridianos en ángulo recto, pero son círculos menores, y el meridiano de Greenwich es otro meridiano.",
+  "clave": "Ecuador: único círculo máximo ⟂ a los meridianos (y al eje).",
+  "trampa": "La a: los paralelos son perpendiculares a los meridianos, pero no son círculos máximos.",
+  "concepto": null
+ },
+ "and-py-2018-c1-n03": {
+  "explicacion": "SOG es Speed Over Ground, la velocidad sobre el fondo o velocidad efectiva que calcula el GNSS con posiciones sucesivas. La velocidad de corredera es la velocidad a través del agua, la de la corriente es solo una de sus componentes y la estimada es la que se calcula a mano sin situación.",
+  "clave": "SOG = velocidad efectiva; COG = rumbo efectivo.",
+  "trampa": "La c: la corredera mide la velocidad respecto al agua, no respecto al fondo.",
+  "concepto": "and-py-2023-c2-n06"
  }
 }

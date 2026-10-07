@@ -12,7 +12,7 @@ const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', '
 
 // Encabezados de bloque de datos compartidos (PY navegación) y cabeceras de las tablas de mareas y corrientes. Lista
 // cerrada: una sigla en mayúsculas sola en su línea («SOLAS», «MSSI») es la continuación de una opción, no un bloque.
-const CONTEXTO = /^(MAREAS|LOXODR[OÓ]MICA|HORAS?( UTC)?|D[IÍ]A|ALTURA DE (LA )?MAREAS?|C ?RECIENTE|VACIANTE|DESDE|HASTA|I ?NTERVALO|TABLA PARA CALCULAR .*)$/;
+const CONTEXTO = /^(MAREAS\.?|LOXODR[OÓ]MICA|HORAS?( UTC)?|D[IÍ]A|ALTURA DE (LA )?MAREAS?|C ?RECIENTE|VACIANTE|DESDE|HASTA|I ?NTERVALO|TABLA PARA CALCULAR .*)$/;
 
 export const REGLAS_ANDALUCIA = {
   // «7. …», «42)…», «9.- …» (2021-2ª y PY 2021: el guion no es parte del enunciado).
@@ -123,6 +123,26 @@ export function unirCompuestos(texto) {
   });
 }
 
+/**
+ * Datos del anuario dentro del enunciado (PY navegación 2/2016: «18. Puerto de Cádiz. Información del Anuario de Mareas
+ * para el 7 de junio de 2016: Hora Alt 03:48 3,34 … Calcular …»): la tabla pasa al contexto de la pregunta, y la
+ * siguiente que remite a ella («Información del Anuario de Mareas en el enunciado del ejercicio anterior») lleva el mismo
+ * contexto. Exportada para los tests.
+ */
+export function separarAnuario(q, i, todas) {
+  const m = /^(.*?Información del Anuario de Mareas para el [^:]{4,40}:)\s*(Hora\s+Alt\.?((?:\s+\d{1,2}:\d{2}\s+-?\d+,\d{1,2})+))\s+/i.exec(q.enunciado);
+  if (m) {
+    const filas = m[3].trim().split(/\s+(?=\d{1,2}:\d{2})/).join('\n');
+    q.contexto = [q.contexto, `MAREAS\n${m[1].trim()}\nHora Alt.\n${filas}`].filter(Boolean).join('\n');
+    q.enunciado = q.enunciado.slice(m[0].length).trim();
+    q.anuario = q.contexto;
+    return q;
+  }
+  const ant = todas?.[i - 1];
+  if (/Anuario de Mareas en el enunciado del ejercicio anterior/i.test(q.enunciado) && ant?.anuario) q.contexto = [q.contexto, ant.anuario].filter(Boolean).join('\n');
+  return q;
+}
+
 /** Calidad de una lectura: preguntas en secuencia 1..n con sus cuatro opciones no vacías. */
 export function calidad(preguntas, n) {
   const completas = preguntas.filter((q, i) => q.numero === i + 1 && 'abcd'.split('').every((l) => q.opciones[l])).length;
@@ -150,7 +170,7 @@ export function leerCuestionario(pdf, rotulos, n = null) {
   for (const modo of ['normal', 'raw', 'layout']) {
     const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo), REGLAS_ANDALUCIA);
     const ex = examenes[0];
-    const r = { preguntas: ex.preguntas.map(separarTabla), fecha: fechaPortada(ex.lineasPrevias), modo };
+    const r = { preguntas: ex.preguntas.map(separarTabla).map(separarAnuario), fecha: fechaPortada(ex.lineasPrevias), modo };
     r.calidad = n ? calidad(r.preguntas, n) : 0;
     if (!mejor || r.calidad > mejor.calidad) mejor = r;
     if (!n || r.calidad === n) break;

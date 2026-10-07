@@ -17,12 +17,26 @@ export const fechaLarga = (f) => (f ? `${Number(f.slice(8, 10))} de ${MESES[Numb
 
 /** Tabla de pleamares y bajamares de un bloque de contexto (pdftotext la saca por columnas). */
 export function tablaMareas(contexto) {
-  if (!contexto || !/pleamar|bajamar/i.test(contexto)) return null;
+  if (!contexto || !/pleamar|bajamar|marea/i.test(contexto)) return null;
   const lineas = contexto.split('\n').map((l) => l.trim());
   const filas = [];
   for (const l of lineas) {
     const m = /^(\d{1,2})\s+(\d{1,2}:\d{2})\s+(\d+[,.]\d+)$/.exec(l);
     if (m) filas.push({ dia: Number(m[1]), hora: m[2], altura_m: Number(m[3].replace(',', '.')) });
+  }
+  if (filas.length) return filas;
+  // «Día 19 19 19 · Hora Alt. 05:40 3,24 …» (PY 2016–2018): hora y altura en la misma línea, días en una columna aparte
+  // (o el del encabezado «… para el 7 de junio de 2016»).
+  const diaCabecera = Number(/para el (\d{1,2}) de/i.exec(contexto)?.[1] ?? NaN);
+  const cola = [];
+  let ultimo = Number.isFinite(diaCabecera) ? diaCabecera : null;
+  for (const l of lineas) {
+    if (/^\d{1,2}$/.test(l)) { cola.push(Number(l)); continue; }
+    const m = /^(\d{1,2}:\d{2})\s+(-?\d+[,.]\d+)$/.exec(l);
+    if (!m) continue;
+    if (cola.length) ultimo = cola.shift();
+    if (ultimo == null) return null;
+    filas.push({ dia: ultimo, hora: m[1], altura_m: Number(m[2].replace(',', '.')) });
   }
   if (filas.length) return filas;
   const dias = lineas.filter((l) => /^\d{1,2}$/.test(l)).map(Number);

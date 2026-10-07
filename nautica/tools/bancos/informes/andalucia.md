@@ -335,7 +335,7 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 
 - Apariciones extraídas: **1360** en 66 exámenes (convocatoria · modelo) de 34 convocatorias.
 - Preguntas distintas: **1360** (0 aparecen más de una vez).
-- Anuladas: **7** · con varias respuestas aceptadas: **0** · con norma a revisar: **105** · requieren carta: 246 · requieren anuario: 24.
+- Anuladas: **7** · con varias respuestas aceptadas: **0** · con norma a revisar: **105** · requieren carta: 248 · requieren anuario: 2.
 - Puertas de calidad: **0 errores**, 120 avisos.
 
 ### Avisos

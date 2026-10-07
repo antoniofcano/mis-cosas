@@ -54,8 +54,9 @@ export function puntosTema(texto, tit) {
   return out;
 }
 
-const esMareas = (t) => /(pleamar|bajamar|\bmarea|sonda (en|que)|altura de la marea|anuario)/.test(t);
-const esLoxodromica = (t) => /loxodrom|a los siguientes rumbos|(navegamos|navega) .{0,40}durante .{0,20}horas.*situacion/.test(t);
+const esMareas = (t) => /(pleamar|bajamar|\bmarea|sonda (en|que)|calcular la sonda|altura de la marea|anuario)/.test(t);
+// «Calcular el rumbo directo para navegar desde el punto 29º 15' S, 179º 35' W, hasta…» (PY 1/2016): estima analítica.
+const esLoxodromica = (t) => /loxodrom|a los siguientes rumbos|(navegamos|navega) .{0,40}durante .{0,20}horas.*situacion|rumbo directo|desea navegar hasta/.test(t);
 
 /** Posiciones «36º 05,0' N» / «005º 55,0' W» del texto → [{ lat }] y [{ lon }] en grados (W negativo). */
 export function coordenadas(texto) {

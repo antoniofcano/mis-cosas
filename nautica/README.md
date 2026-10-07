@@ -77,6 +77,8 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   Las mareas se calculan con la fórmula exacta; el examen usa la tabla del Anuario, y pueden diferir 1–2 cm o
   1 minuto. En las tandas de teoría del PY sale
   «Ver la resolución en la carta» (o «paso a paso» cuando no hay nada que dibujar).
+- **🧮 Calculadora científica** (`#/calculadora`, y flotante desde la carta, los ejercicios y las preguntas de carta): las teclas de la que se permite en el examen, °′″ incluida. En los simulacros sale solo si la ficha del eje la permite.
+- **➗ Las cuentas del patrón** (`#/<tit>/cuentas`): apéndice de matemáticas (grados, horas, signos y rumbos; en el PY también trigonometría y regla de tres) con ejercicios de números nuevos para la calculadora. No cuenta en el plan.
 - **Progreso** guardado en el navegador (también los minutos de estudio por día y el examen a medias), con copia de seguridad y recordatorio para guardarla.
 - **Preparada para asistentes IA** (Claude en Chrome / Cowork): resumen compacto `#ai-context`,
   API `window.nautica` y `llms.txt`.

@@ -82,4 +82,41 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
     },
   },
+  'and-2016-c3-q42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 13:00');
+      const { rv, dist } = k.rhumb(s, 'tanger-espigon');
+      // Declinación del enunciado: 7°00′ E 2006 (6′ W).
+      const ct = k.ct({ carta: [7, 2006, -6], anyo: 2016, desvio: 4 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(13, 0), dist, 6) }];
+    },
+  },
+  'and-2016-c3-q43': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const d1 = k.dvM(80, -60, 'punta-carnero');
+      const d2 = k.dvM(80, -140, 'punta-gracia');
+      return latlon(k.fix2('punta-carnero', d1, 'punta-gracia', d2, 'Situación 09:00'));
+    },
+  },
+  'and-2016-c3-q44': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.oposicion('punta-almina', 'punta-europa');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 352) }];
+    },
+  },
+  'and-2016-c3-q45': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const op = k.oposicion('punta-cires', 'punta-gracia');
+      // «Al Sur verdadero de Isla de Tarifa»: vemos el faro en Dv 000°.
+      const s = k.lineAndBearing('punta-cires', op, 'isla-tarifa', 0, 'Situación 09:00');
+      k.note('Banda', 'Punta Camarinal está en la costa española, al N del rumbo hacia el W: pasamos al S del faro, dejándolo por estribor.');
+      const rv = k.tangent(s, 'punta-gracia', 5, 'estribor');
+      const ct = k.ct({ dm: -5, desvio: 12 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
 };

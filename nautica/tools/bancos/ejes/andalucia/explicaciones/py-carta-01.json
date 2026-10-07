@@ -1,0 +1,124 @@
+{
+ "and-py-2015-c1-n11": {
+  "explicacion": "La Polar (supuesta en el polo) está en el norte verdadero: su azimut verdadero es Zv = 000º. Ct = Zv − Za = 000º − 007º = −7º, es decir 7º negativa (7−).",
+  "clave": "Polar en el polo: Zv = 000º → Ct = 360º − Za (o −Za).",
+  "trampa": "Dar el signo al revés (7+): si la aguja marca más que el verdadero, la Ct es negativa.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n12": {
+  "explicacion": "Desde 35º46,0′N 6º19,0′W Espartel está a 19,2 M al 085º. Tangente al círculo de 3 M dejando el faro por estribor (pasamos al N, al S está la costa): arcsen(3/19,2) = 9º → Rs = 085º − 9º = 076º. El viento NW entra por babor y abate a estribor (+6º): para hacer 076º damos Rv = Rs − Ab = 076º − 6º = 070º.",
+  "clave": "Rumbo para pasar a distancia: tangente al círculo; luego Rv = Rs − Ab (proa al viento).",
+  "trampa": "Sumar el abatimiento (082º) o dar el Rs de la tangente (076º) como Rv.",
+  "concepto": "and-py-2022-c2-n12"
+ },
+ "and-py-2015-c1-n13": {
+  "explicacion": "Dv de Malabata 180º: estamos en su meridiano, al N del faro (línea 000º desde Malabata, 5º45,0′W). Arco de 11 M con centro en Espartel: corta esa línea en el mar en ≈ 35º54,5′N 5º45,0′W (el otro corte cae en tierra). La opción es la d.",
+  "clave": "Demora + distancia: línea de la demora (Dv + 180º desde el faro) cortada con el arco de la distancia.",
+  "trampa": "Trazar la demora desde el faro hacia el S (al revés) o quedarse con 5º48′W (las opciones a, b y c).",
+  "concepto": "and-py-2022-c3-n17"
+ },
+ "and-py-2015-c1-n14": {
+  "explicacion": "Ct = dm + Δ = −3º − 3º = −6º. Rv = 086º − 6º = 080º. Dv de Pta. Alcázar: 136º − 6º = 130º (11:30) y 176º − 6º = 170º (12:00). En ½ h a 6 nudos se navegan 3 M. Trasladamos la 1ª demora 3 M al 080º y la cortamos con la 2ª (350º desde el faro): 35º54,5′N 5º34,4′W.",
+  "clave": "Demoras no simultáneas: se traslada la 1ª línea paralela a sí misma lo navegado (Rv y distancia) y se corta con la 2ª.",
+  "trampa": "Trasladar la línea con el Ra (086º) en vez del Rv, o aplicar la Ct con signo cambiado (+6º).",
+  "concepto": "and-py-2026-c2-n11"
+ },
+ "and-py-2015-c1-n15": {
+  "explicacion": "Ct = −3º + 5º = +2º → Rv = 070º + 2º = 072º (sin viento, Rs = Rv). Triángulo de velocidades: barco 072º/6 nudos + corriente 090º/3 nudos → Ref ≈ 078º, Vef ≈ 8,9 nudos (opción b, 8,8).",
+  "clave": "Efectivo = suma de vectores: barco (Rs, Vb) + corriente (Rc, Ihc).",
+  "trampa": "Restar la corriente en lugar de sumarla (≈ 3 nudos, opciones a y d) o no corregir la Ct.",
+  "concepto": "and-py-2023-c2-n14"
+ },
+ "and-py-2015-c1-n16": {
+  "explicacion": "Almina está a 11,0 M al 103º. Tangente a 3 M dejando el faro por estribor (pasamos al N): arcsen(3/11) ≈ 16º → Ref = 087º. Triángulo: corriente 058º/3 nudos desde la salida; con radio 6 nudos desde su extremo cortamos la línea del 087º → Rs = 102º (Vef 8,4 nudos). Sin viento, Rv = Rs = 102º.",
+  "clave": "Con corriente, el rumbo a dar sale del triángulo: corriente primero y el radio de la Vb hasta cortar el Ref.",
+  "trampa": "Dar el rumbo de la tangente (087º) olvidando la corriente.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n17": {
+  "explicacion": "Destino: 3 M al S de Isla de Tarifa (35º57,1′N 5º36,5′W): Rv = 247º. Estima a las 17:00 (3 h a 6 nudos, 18 M): 35º55,1′N 5º42,5′W. Ct = −3º − 3º = −6º: Dv Tarifa 341º, Dv Cires 121º → situación observada 35º57,8′N 5º35,6′W. De la estima a la observada: Rc ≈ 064º, 6,3 M en 3 h → Ihc 2,1 nudos.",
+  "clave": "Corriente desconocida: Rc e Ihc = vector de la situación de estima a la observada, dividido por el tiempo.",
+  "trampa": "Unir la observada con la estima al revés (Rc 180º cambiado) o dividir por un tiempo equivocado.",
+  "concepto": "and-py-2022-c1-n17"
+ },
+ "and-py-2015-c1-n18": {
+  "explicacion": "Se sale de la carta: estima analítica. 290º 24 M (19–23 h): Δl +8,2′, A −22,6′; 260º 30 M (23–04 h): Δl −5,2′, A −29,5′; corriente 080º 4 × 9 = 36 M: Δl +6,3′, A +35,5′. Total Δl = +9,3′, A = −16,6′; lm 36,1º → ΔL = −16,6/0,808 = −20,6′. Situación: 36º09,3′N 6º40,6′W.",
+  "clave": "Estima analítica: Δl = d·cos R, A = d·sen R; ΔL = A / cos lm. La corriente cuenta durante todo el tiempo.",
+  "trampa": "Aplicar la corriente solo a un tramo o sumar el apartamiento a la longitud sin dividir por cos lm.",
+  "concepto": "and-py-2022-c1-n15"
+ },
+ "and-py-2015-c1-n19": {
+  "explicacion": "Δl = 15,0′ N; ΔL = 100,0′ W. lm 36,1º → A = 100 × 0,808 = 80,8′ W. tg R = 80,8/15 → R = N79,5ºW = 280,5º ≈ 280º.",
+  "clave": "Rumbo directo: A = ΔL·cos lm; tg R = A/Δl; el cuadrante lo dan los signos de Δl y ΔL.",
+  "trampa": "Equivocar el cuadrante: 260º (S…W) o 100º/080º (hacia el E).",
+  "concepto": null
+ },
+ "and-py-2015-c1-n20": {
+  "explicacion": "En la oposición Europa–Almina estamos entre ambos faros: la Dv de Pta. Europa es la de la recta Almina → Europa, ≈ 346º. Ct = Dv − Da = 346º − 338º = +8º.",
+  "clave": "Oposición: la Dv del faro es la dirección de la recta desde el otro faro hacia él; Ct = Dv − Da.",
+  "trampa": "Tomar la recta al revés (166º) o invertir el signo (8º −).",
+  "concepto": "and-py-2021-c2-n12"
+ },
+ "and-py-2015-c2-n11": {
+  "explicacion": "De la salida a la luz roja de Barbate: Ref = 049º, 24,9 M en 3 h 34 min (12:45 → 16:19) → Vef = 7,0 nudos. Restando la corriente (072º/4 nudos) al vector efectivo queda el vector barco: Rs = 024º, Vb = 3,6 nudos.",
+  "clave": "Llegar a una hora: Vef = distancia/tiempo; vector barco = efectivo − corriente.",
+  "trampa": "Dar la velocidad efectiva (7,0 nudos, la a) como Vhb.",
+  "concepto": "and-py-2023-c2-n14"
+ },
+ "and-py-2015-c2-n12": {
+  "explicacion": "Ct = −3º + 1º = −2º → Rv = 073º. En 25 min a 7 nudos: 2,9 M. Se traslada el centro del 1er arco (Espartel, 3 M) 2,9 M al 073º y se traza de nuevo el arco de 3 M; cortado con el arco de 5 M centrado en Espartel da 35º51,3′N 5º51,4′W (el corte en el mar).",
+  "clave": "Distancias no simultáneas: se traslada el arco (su centro) lo navegado y se corta con el 2º arco.",
+  "trampa": "Quedarse con el otro corte de los arcos (en tierra) o trasladar con el Ra.",
+  "concepto": "and-py-2022-c3-n15"
+ },
+ "and-py-2015-c2-n13": {
+  "explicacion": "Ct = −3º + 3º = 0º → Rv = 074º. Estima 17:40 → 19:20 (1 h 40 min a 8 nudos, 13,3 M): 35º55,7′N 5º32,2′W. Observada con Dv 227º a Pta. Cires y 124º a Pta. Almina: 35º58,1′N 5º24,2′W. Corriente: Rc ≈ 069º, 6,9 M en 1 h 40 min → Ihc ≈ 4,1 nudos; la más próxima es la d (071º, 4,0 nudos).",
+  "clave": "Corriente desconocida: vector de la estima a la observada; Ihc = millas / tiempo.",
+  "trampa": "Dividir las millas entre 1,4 h (1 h 40 min no es 1,4 h, son 1,67 h).",
+  "discrepancia": "El cálculo da Rc 069º e Ihc 4,1 nudos: por la intensidad la oficial d (071º, 4,0) es la buena, pero por el rumbo queda más cerca la b (068º, 3,1). Son 2º de diferencia de trazado del tribunal; la d sigue siendo la opción que da el cálculo.",
+  "concepto": "and-py-2022-c3-n16"
+ },
+ "and-py-2015-c2-n14": {
+  "explicacion": "Destino: 3 M al E del faro de Pta. Europa. Desde 35º57,0′N 5º17,0′W el rumbo hacia él es 000,4º ≈ N. Sin corriente, el rumbo que hay que hacer sobre el agua es ese: Rs = N. El viento del W solo cambia el Rv que hay que dar (355º, metiendo la proa al viento), que no se pide.",
+  "clave": "Rs = rumbo sobre el agua (el de la derrota si no hay corriente); el abatimiento solo sirve para pasar a Rv.",
+  "trampa": "Dar el Rv corregido de abatimiento (355º, la a) cuando se pide el Rs.",
+  "discrepancia": "No es una discrepancia de cálculo: la cuenta da la oficial (Rs = N), pero la solución programada no puede comprobarla porque la opción está escrita solo como «N», sin grados.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n15": {
+  "explicacion": "Situamos Monte Gitano (36º05,9′N 5º32,5′W). La enfilación Pta. Carnero–Monte Gitano medida en la carta tiene Dv ≈ 282º. Ct = Dv − Da = 282º − 288º = −6º.",
+  "clave": "Enfilación: Dv = dirección de la recta entre los dos puntos (hacia el más lejano); Ct = Dv − Da.",
+  "trampa": "Restar al revés (Da − Dv) y dar +6º.",
+  "concepto": "and-py-2021-c2-n12"
+ },
+ "and-py-2015-c2-n16": {
+  "explicacion": "Viento N por estribor → abate a babor: Rs = 210º − 4º = 206º y 310º − 5º = 305º. A 8 nudos: 206º 24 M (01:30–04:30) y 305º 24 M (04:30–07:30); parados de 07:30 a 09:45 solo actúa la corriente, que lo hace las 8 h 15 min: 050º, 33 M. Δl = −21,6 + 13,8 + 21,2 = +13,4′; A = −10,5 − 19,7 + 25,3 = −4,9′ → ΔL = −4,9/0,810 = −6,0′. Situación: 35º58,4′N 8º41,0′W.",
+  "clave": "Estima con corriente: la corriente actúa todo el tiempo, también con la máquina parada.",
+  "trampa": "Dejar de aplicar la corriente durante la avería o aplicar el abatimiento hacia el viento.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n17": {
+  "explicacion": "Δl = 58,4′ N; ΔL = 72,0′ W. lm 37,2º → A = 72 × 0,797 = 57,4′. Distancia = √(58,4² + 57,4²) = 81,9 M.",
+  "clave": "Distancia loxodrómica: D = √(Δl² + A²), con A = ΔL·cos lm.",
+  "trampa": "Usar ΔL en vez del apartamiento: √(58,4² + 72²) ≈ 92,7 M.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n18": {
+  "explicacion": "Triángulo de velocidades: desde la salida, vector corriente 090º/4 nudos; desde su extremo, radio 8 nudos hasta cortar la línea del Ref 040º: el vector barco da Rs ≈ 017º (Vef 10 nudos). Sin viento, Rv = Rs = 017º.",
+  "clave": "Rumbo a dar con corriente: corriente primero, luego la Vb con el compás hasta el Ref.",
+  "trampa": "Corregir hacia el lado de la corriente (Rv > 040º, la a) en lugar de compensarla.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n19": {
+  "explicacion": "Viento NW con Rs 277º: entra por estribor y abate a babor (−5º). Rv = Rs − Ab = 277º + 5º = 282º. Marcación a estribor: Dv = Rv + M = 282º + 94º = 376º = 016º.",
+  "clave": "La marcación se aplica al Rv (proa verdadera): Dv = Rv + M(Er), Rv − M(Br).",
+  "trampa": "Aplicar la marcación sobre el Rs (011º, la c).",
+  "concepto": null
+ },
+ "and-py-2015-c2-n20": {
+  "explicacion": "Δl = 611,0′ S; ΔL = 782,0′ W. lm 33,7º → A = 782 × 0,832 = 650,4′ W. tg R = 650,4/611 → R = S46,8ºW = 226,8º ≈ 227º. Para llegar al punto, el Ref es el rumbo directo; la corriente y la Vhb solo servirían para el rumbo a dar.",
+  "clave": "Ref = rumbo directo entre salida y llegada (tg R = A/Δl, A = ΔL·cos lm).",
+  "trampa": "Mezclar la corriente en el cálculo del Ref o tomar ΔL sin pasarlo a apartamiento.",
+  "concepto": null
+ }
+}

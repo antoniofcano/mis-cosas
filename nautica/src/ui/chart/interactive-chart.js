@@ -135,6 +135,8 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     // Tres grupos: las herramientas de dibujo (siempre enteras, también en el móvil), las de edición y las de vista.
     h('div.ichart-toolbar',
       h('div.tools.dibujo', { role: 'group', 'aria-label': 'Herramientas de dibujo' }, toolButtons,
+        // La calculadora va con las de dibujo: siempre a la vista, también en el móvil (no escondida en «Más»).
+        calculadora ? botonCalculadora({ clase: 'tool', texto: 'Calcu\u00ADladora' }) : null,
         // Solo en pantallas estrechas: muestra u oculta edición y vista para que la carta conserve su alto.
         h('button.tool.mas-herramientas', { type: 'button', 'aria-expanded': 'false', title: 'Más herramientas: deshacer, coordenadas, zoom…', onclick: (ev) => {
           const bar = ev.currentTarget.closest('.ichart-toolbar');
@@ -144,8 +146,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       h('div.tools.edicion', { role: 'group', 'aria-label': 'Edición' },
         h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', '↶'), h('span.tool-name', 'Deshacer')),
         coordsBtn, coordBtn,
-        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo')),
-        calculadora ? botonCalculadora({ clase: 'tool', texto: 'Calcu\u00ADladora' }) : null),
+        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo'))),
       h('div.tools.vista', { role: 'group', 'aria-label': 'Vista' },
         h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', '+'), h('span.tool-name', 'Acercar')),
         h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', '−'), h('span.tool-name', 'Alejar')),

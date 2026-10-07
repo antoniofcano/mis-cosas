@@ -5,6 +5,7 @@
 //     banco (en `sinLector`, fuera de lo exportado; ver DISCREPANCIAS).
 //   - 24 en DISCREPANCIAS por usar elementos que no están en la carta de la app (isobáticas/sondas, naufragios,
 //     marcas cardinales o especiales, montes, el DST, puertos sin coordenadas).
+//   Las 39 que no se exportan van también en `documentadas` (tipo 'discrepancia'): ninguna es de anuario ni sin cálculo.
 import { hrb, cortesRectaArco } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -939,3 +940,46 @@ const sinLector = {
  * 'bal-per-2023-03-bf-45': naufragio no peligroso al S de la salida.
  * 'bal-per-2023-03-e-45': la respuesta pide si se está dentro o fuera del DST y en qué vía; sus límites no están en la carta.
 */
+
+// Todas las preguntas del lote que no quedan en `export default`, con el motivo (detalle en DISCREPANCIAS).
+export const documentadas = {
+  'bal-per-2021-06-bh-42': { tipo: 'discrepancia', texto: 'Lector de opciones: sale HRB 14:08 y 2,7 millas a Tarifa (oficial c: 1407 y 2,9). Horas sin separador. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-06-ci-44': { tipo: 'discrepancia', texto: 'Lector de opciones: 35° 57,8′ N 5° 47,4′ W (oficial b). Minutos «57\'8». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-09-b-42': { tipo: 'discrepancia', texto: 'Lector de opciones: Ra 193,5° y 08:48 (oficial b: 194°, 08.48). Hora con punto. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-09-c-42': { tipo: 'discrepancia', texto: 'Lector de opciones: 35° 57,5′ N 5° 40,2′ W (oficial c). Carácter \\x92 en las longitudes. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-09-d-42': { tipo: 'discrepancia', texto: 'Lector de opciones: 35° 51,7′ N 5° 58,8′ W (oficial b). Grados con guion. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-09-b-43': { tipo: 'discrepancia', texto: 'Lector de opciones: 36° 00,1′ N 5° 20,6′ W (oficial c). Minutos «00\'1». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-12-d-43': { tipo: 'discrepancia', texto: 'Lector de opciones: Ct = −11,4° (oficial c: 10,5° (−)). Signo «(-)». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2022-06-d-43': { tipo: 'discrepancia', texto: 'Lector de opciones: Ct = −6,5° (oficial a: 6° (−)). Signo «(-)». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2022-06-b-44': { tipo: 'discrepancia', texto: 'Lector de opciones: 35° 56,4′ N 5° 36,5′ W (oficial d). Minutos «56\',4». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2022-09-b-44': { tipo: 'discrepancia', texto: 'Lector de opciones: 01:02 UTC del día 21 (oficial c: 0105). Horas sin separador. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2022-12-a-43': { tipo: 'discrepancia', texto: 'Lector de opciones: UT 11:02 y 5° 23,7′ W (oficial b: 1109 y 5° 23,6′; la más próxima). Horas sin separador. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2022-12-be-44': { tipo: 'discrepancia', texto: 'Lector de opciones: 35° 57,8′ N 5° 47,4′ W (oficial c). Minutos «57\'8». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2023-03-a-44': { tipo: 'discrepancia', texto: 'Lector de opciones: Ra 101,5° y 13:37 (oficial a: 101,8° y 1339). Horas sin separador. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2023-06-d-42': { tipo: 'discrepancia', texto: 'Lector de opciones: 35° 58,7′ N 5° 14,4′ W y Rv 264° (oficial a). Minutos «58\'6». El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2023-09-c-43': { tipo: 'discrepancia', texto: 'Lector de opciones: Ra 334,3° y 15:53 (oficial c: 334°, 1553). Horas sin separador. El cálculo da la oficial, pero el comprobador no puede leer las opciones tal como están escritas en el banco (código en `sinLector`).' },
+  'bal-per-2021-03-c-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Se sitúa sobre la isobática de 100 m al NW del banco Majuán con una sola marcación. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-ci-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Situación por la enfilación Trafalgar–Roche y la sonda de 100 m (isobática). No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-espa-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Oposición con la boya cardinal E de la piscifactoría de Barbate y sectores de El Xarf. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-bh-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Oposición Carnero–Cires con la sonda de 500 m (isobática) y el DST. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-e-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Isobática al W de la marca cardinal N próxima a Malabata y sectores de El Xarf. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-espa-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Sonda de 50 m (isobática) y naufragio en el meridiano 005° 40′ W. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-bh-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Veril de 100 m al N de los bancos del Fénix. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-espa-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-06-g-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Enfilación con el monte Beni Meyimel. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-09-a-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Cruce de la isobática de 30 m. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2021-12-c-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Enfilación con el monte Magair. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-03-b-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Luz verde del puerto de Torre de Guadiaro (sin coordenadas en el enunciado). No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-09-a-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-09-b-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Marca cardinal E de la piscifactoría de Barbate y naufragio entre Zahara y Cabo Plata. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-09-a-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Cruce de la isobática de 100 m al S del DST. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-09-a-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Naufragio más próximo al faro de Cabo Espartel. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-09-b-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Oposición con la boya cardinal E de la piscifactoría de Barbate y sectores de El Xarf. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-12-a-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Veril de 100 m al N de los bancos del Fénix. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2022-12-be-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Sonda de 500 m, isobática de 50 m en la Ensenada de Ceuta y espigón de Piedra Redonda. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2023-03-cg-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Demora al monte Chajchuja. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2023-03-e-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Veril de 100 m al N de los bancos del Fénix. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2023-03-a-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Marca especial de La Línea de la Concepción. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2023-03-bf-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: Naufragio no peligroso al S de la salida. No se inventa: sin él no hay situación de partida o de llegada.' },
+  'bal-per-2023-03-e-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: La respuesta pide si se está dentro o fuera del DST y en qué vía; sus límites no están en la carta. No se inventa: sin él no hay situación de partida o de llegada.' },
+};

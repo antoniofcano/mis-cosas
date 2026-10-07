@@ -55,8 +55,7 @@ export function fusionar(dir) {
       if (!q) continue;
       problemas.push(...revisar(id, e, q, existe));
       expl[id] = Object.fromEntries(CAMPOS.filter((k) => e[k] != null && e[k] !== '').map((k) => [k, e[k]]));
-      const concepto = e.concepto || e.base || null;
-      if (concepto) q.concepto = concepto;
+      q.concepto = e.concepto || e.base || null;
       n++;
     }
     const ordenado = Object.fromEntries(datos[tit].preguntas.filter((q) => expl[q.id]).map((q) => [q.id, expl[q.id]]));

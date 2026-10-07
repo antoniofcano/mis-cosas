@@ -1,0 +1,599 @@
+{
+ "meta": {
+  "titulo": "Las cuentas del patrón",
+  "descripcion": "Apéndice de matemáticas: las cuentas que se usan en los ejercicios de carta, practicadas con la calculadora. No es un tema del examen: no cuenta en el temario, el plan ni «¿Estás listo?»."
+ },
+ "lecciones": [
+  {
+   "id": "mat-1",
+   "titulo": "Grados, minutos y segundos",
+   "tits": [
+    "per",
+    "py"
+   ],
+   "minutos": 12,
+   "objetivos": [
+    "Sumar y restar ángulos en grados y minutos, llevando y pidiendo prestado",
+    "Pasar de grados, minutos y segundos a grados con decimales, y al revés",
+    "Hacerlo con la tecla °′″ de la calculadora"
+   ],
+   "usadoEn": {
+    "lecciones": [
+     "per-11-1",
+     "py-3-1",
+     "py-4-10"
+    ],
+    "ejercicios": [
+     "estima-analitica"
+    ]
+   },
+   "pasos": [
+    {
+     "tipo": "texto",
+     "titulo": "Un grado son 60 minutos",
+     "texto": "Los ángulos (rumbos, latitudes, longitudes, declinaciones) se cuentan en **sistema sexagesimal**:\n- **1° = 60′** (minutos de arco).\n- **1′ = 60″** (segundos de arco).\n\nEn las cartas, la latitud y la longitud se escriben en grados y minutos con una decimal: **36° 05,2′ N** son 36 grados y 5,2 minutos. En el examen casi nunca hacen falta los segundos."
+    },
+    {
+     "tipo": "clave",
+     "texto": "En latitud, **1′ = 1 milla**. Por eso la diferencia de latitud en minutos (Δl) es directamente la distancia navegada hacia el N o hacia el S."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Sumar",
+     "texto": "Suma por separado los grados y los minutos. Si los minutos llegan a 60 o más, **quita 60′ y suma 1°**.\n\nEjemplo: 12° 45′ + 3° 30′ = 15° 75′ = **16° 15′**."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Restar",
+     "texto": "Si los minutos de arriba son menos que los de abajo, **pide prestado 1° = 60′**.\n\nEjemplo: 36° 10,4′ − 35° 52,7′. Como 10,4′ es menos que 52,7′, escribe 36° 10,4′ como 35° 70,4′. Ahora: 35° 70,4′ − 35° 52,7′ = **0° 17,7′**, es decir, una Δl de 17,7′ = 17,7 millas."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "¿Cuánto es 24° 50′ + 10° 25′?",
+     "opciones": {
+      "a": "34° 75′",
+      "b": "35° 15′",
+      "c": "35° 75′"
+     },
+     "correcta": "b",
+     "explicacion": "24° + 10° = 34° y 50′ + 25′ = 75′. Como 75′ = 1° 15′, queda 35° 15′."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "sumar-gm"
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "restar-gm"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "De grados y minutos a decimal",
+     "texto": "Divide los minutos entre 60 y los segundos entre 3600, y súmalo a los grados:\n\n**grados con decimales = g + m / 60 + s / 3600**\n\nEjemplo: 36° 27′ 36″ = 36 + 27/60 + 36/3600 = 36 + 0,45 + 0,01 = **36,46°**."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "De decimal a grados y minutos",
+     "texto": "Al revés: la parte entera son los grados; la parte decimal, **por 60**, son los minutos; y lo que sobre, otra vez por 60, los segundos.\n\nEjemplo: 5,7425° → 0,7425 × 60 = 44,55′ → 44′; y 0,55 × 60 = 33″. Resultado: **5° 44′ 33″**."
+    },
+    {
+     "tipo": "ojo",
+     "texto": "El error típico: escribir 36,46° como «36° 46′». No es lo mismo: 0,46° son 0,46 × 60 = 27,6′. Los decimales de grado **no** son minutos."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Con la calculadora: la tecla °′″",
+     "texto": "Para meter 36° 27′ 36″: **36 °′″ 27 °′″ 36 °′″ =**. Sale 36°27′36″.\n- Pulsa **°′″** otra vez y lo verás en decimal: 36.46.\n- Pulsa **°′″** de nuevo y vuelve a 36°27′36″.\n\nPara sumar o restar, escribe cada valor así y pulsa + o −: el resultado sale ya en grados y minutos. La calculadora usa **punto** decimal: 36.46 es 36,46."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "Tras una cuenta de grados, la calculadora marca 5.75. ¿Cuánto es en grados y minutos?",
+     "opciones": {
+      "a": "5° 75′",
+      "b": "5° 45′",
+      "c": "5° 7,5′"
+     },
+     "correcta": "b",
+     "explicacion": "0,75 × 60 = 45′. Con la tecla °′″ la calculadora lo pasa sola: 5°45′0″."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "gms-a-decimal"
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "decimal-a-gms"
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "diferencia-latitud"
+    }
+   ],
+   "chuleta": [
+    "1° = 60′ y 1′ = 60″. En latitud, 1′ = 1 milla.",
+    "Sumar: si los minutos pasan de 60, quita 60′ y suma 1°. Restar: si no llega, pide prestado 1° = 60′.",
+    "Decimal = g + m/60 + s/3600. Al revés: la parte decimal × 60 son minutos (y lo que sobre × 60, segundos).",
+    "Los decimales de grado no son minutos: 36,46° = 36° 27,6′.",
+    "Calculadora: 36 °′″ 27 °′″ =; otra vez °′″ cambia entre sexagesimal y decimal. Punto decimal: 12.5 = 12,5."
+   ]
+  },
+  {
+   "id": "mat-2",
+   "titulo": "Horas: de reloj a decimal, tiempo y hora de llegada",
+   "tits": [
+    "per",
+    "py"
+   ],
+   "minutos": 14,
+   "objetivos": [
+    "Pasar horas y minutos a horas con decimales, y al revés",
+    "Calcular tiempo = distancia / velocidad y la hora de llegada, también pasada la medianoche",
+    "Pasar de hora oficial a UT y de TU a hora legal del huso"
+   ],
+   "usadoEn": {
+    "lecciones": [
+     "per-11-3",
+     "py-3-5",
+     "py-4-9"
+    ],
+    "ejercicios": [
+     "rumbo-distancia",
+     "estima-directa",
+     "demoras-no-simultaneas",
+     "hora",
+     "marea-sonda",
+     "corriente-efectiva",
+     "corriente-rumbo-a-dar"
+    ]
+   },
+   "pasos": [
+    {
+     "tipo": "texto",
+     "titulo": "Las horas también son sexagesimales",
+     "texto": "Una hora tiene 60 minutos y un minuto, 60 segundos: se cuentan **igual que los grados**. Por eso valen los mismos trucos y la misma tecla °′″ de la calculadora.\n\nOjo: **1,5 h no es 1 h 50 min**, sino 1 h 30 min (0,5 × 60 = 30)."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "De horas y minutos a decimal",
+     "texto": "Divide los minutos entre 60: **2 h 27 min = 2 + 27/60 = 2,45 h**. Hace falta para multiplicar por una velocidad: en 2 h 27 min a 6 nudos recorres 6 × 2,45 = **14,7 millas**."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "De decimal a horas y minutos",
+     "texto": "La parte decimal, por 60: **1,59 h → 0,59 × 60 = 35,4 min → 1 h 35 min**."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "¿Cuánto es 2,25 h?",
+     "opciones": {
+      "a": "2 h 25 min",
+      "b": "2 h 15 min",
+      "c": "2 h 2,5 min"
+     },
+     "correcta": "b",
+     "explicacion": "0,25 × 60 = 15 min: 2 h 15 min."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "hm-a-decimal"
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "decimal-a-hm"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Tiempo, distancia y velocidad",
+     "texto": "Un nudo es una milla por hora. Las tres fórmulas son la misma:\n- **tiempo = distancia / velocidad**\n- **distancia = velocidad × tiempo**\n- **velocidad = distancia / tiempo**\n\nEl tiempo sale en **horas con decimales**: pásalo a horas y minutos antes de sumarlo a la hora de salida."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Hora de llegada",
+     "texto": "**HRB de llegada = HRB de salida + tiempo**. Ejemplo: 15 millas a 6 nudos = 2,5 h = 2 h 30 min. Si sales a las 10:40, llegas a las **13:10**.\n\nCon la calculadora: **15 ÷ 6 =** (2.5), **°′″** (2°30′0″) y **+ 10 °′″ 40 °′″ =** → 13°10′0″."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "hora-llegada"
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "velocidad"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Pasar la medianoche",
+     "texto": "Si la suma pasa de **24 h**, resta 24: es el día siguiente. 22:40 + 3 h 35 min = 26 h 15 min → **02:15** del día siguiente.\n\nY al revés: si al restar sale negativo, suma 24 h y es el día anterior. La calculadora no da la vuelta sola: te dará 26°15′0″ y la resta de 24 la haces tú."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "medianoche"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "UT, hora oficial y hora legal",
+     "texto": "- El **Anuario de Mareas** da las horas en **UT** (TU). **UT = hora oficial − adelanto** (en la península, TU + 1 en invierno y TU + 2 en verano). Al final, vuelve a hora oficial sumando el adelanto.\n- La **hora legal** del huso: **Hz = TU ± huso** (E suma, W resta).\n- La **HRB** es la del reloj de bitácora, la que fija el patrón."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "Son las 01:30 de hora oficial y el adelanto es de 2 h. ¿Qué hora es en UT?",
+     "opciones": {
+      "a": "03:30",
+      "b": "23:30 del día anterior",
+      "c": "−00:30"
+     },
+     "correcta": "b",
+     "explicacion": "01:30 − 2 h = −0 h 30 min: sale negativa, así que sumas 24 h. Son las 23:30 UT del día anterior."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "hora-ut"
+    },
+    {
+     "tipo": "ojo",
+     "texto": "Los errores que más cuestan: tomar los decimales de hora como minutos (1,59 h no es 1 h 59 min) y olvidar pasar a UT antes de entrar en el Anuario, o no volver a hora oficial al final."
+    }
+   ],
+   "chuleta": [
+    "1 h = 60 min. Decimal → minutos: × 60. Minutos → decimal: ÷ 60.",
+    "tiempo = d / V; d = V × t; V = d / t (t en horas con decimales).",
+    "Llegada = salida + tiempo. Si pasa de 24 h, resta 24 (día siguiente); si sale negativa, suma 24 (día anterior).",
+    "UT = hora oficial − adelanto. Hz = TU ± huso (E suma, W resta).",
+    "Calculadora: 15 ÷ 6 = °′″ → 2°30′0″; + 10 °′″ 40 °′″ = → 13°10′0″."
+   ]
+  },
+  {
+   "id": "mat-3",
+   "titulo": "Signos y rumbos: E y W, más y menos",
+   "tits": [
+    "per",
+    "py"
+   ],
+   "minutos": 14,
+   "objetivos": [
+    "Pasar E o NE a + y W o NW a −, y sumar correcciones: Ct = dm + Δ",
+    "Usar Rv = Ra + Ct y Ra = Rv − Ct con rumbos que pasan de 360° o bajan de 0°",
+    "Pasar rumbos cuadrantales a circulares y actualizar la declinación"
+   ],
+   "usadoEn": {
+    "lecciones": [
+     "per-10-5",
+     "per-11-2",
+     "py-3-2",
+     "py-4-1"
+    ],
+    "ejercicios": [
+     "conversion-rumbos",
+     "ct-enfilacion",
+     "rumbo-distancia",
+     "abatimiento"
+    ]
+   },
+   "pasos": [
+    {
+     "tipo": "texto",
+     "titulo": "E es más y W es menos",
+     "texto": "Declinación, desvío y corrección total son ángulos **con signo**:\n- **E o NE = +**\n- **W o NW = −**\n\nAsí, «dm = 3° NW» es **−3°** y «Δ = 7° NE» es **+7°**. Con el signo puesto, todo se suma."
+    },
+    {
+     "tipo": "ilustracion",
+     "spec": {
+      "tipo": "nortes",
+      "dm": -1,
+      "desvio": 6
+     },
+     "texto": "Ejemplo: declinación de 1° W (−1°) y desvío de +6°. La corrección total es Ct = −1° + 6° = +5° (5° NE)."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Sumar con signos",
+     "texto": "**Ct = dm + Δ**, cada uno con su signo:\n- (−3) + (+7) = **+4°**: signos distintos, restas y pones el signo del mayor.\n- (−3) + (−2) = **−5°**: mismo signo, sumas.\n- (+2) + (−6) = **−4°**.\n\nEn la calculadora, el signo menos de un número es la tecla **(−)**: (−) 3 + 7 = → 4."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "La declinación es 4° W y el desvío −2°. ¿Cuánto vale la Ct?",
+     "opciones": {
+      "a": "−2°",
+      "b": "+6°",
+      "c": "−6°"
+     },
+     "correcta": "c",
+     "explicacion": "Ct = (−4) + (−2) = −6° (6° NW): los dos son W, se suman."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "ct-suma"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Despejar",
+     "texto": "De Ct = dm + Δ salen **Δ = Ct − dm** y **dm = Ct − Δ**. Restar un negativo es sumar: con Ct = +3° y dm = −2°, Δ = 3 − (−2) = **+5°**."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Rumbos de más de 360° o de menos de 0°",
+     "texto": "**Rv = Ra + Ct** y **Ra = Rv − Ct**. Un rumbo circular va de 000° a 359°:\n- Si pasa de 360°, **resta 360°**: Ra 358° con Ct +5° → 363° → **003°**.\n- Si sale negativo, **suma 360°**: Rv 002° con Ct +6° → Ra = 002° − 6° = −4° → **356°**."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "En la carta mides Rv = 357° y la Ct es −5°. ¿Qué Ra das?",
+     "opciones": {
+      "a": "352°",
+      "b": "002°",
+      "c": "362°"
+     },
+     "correcta": "b",
+     "explicacion": "Ra = Rv − Ct = 357° − (−5°) = 362°. Pasa de 360°: 362° − 360° = 002°."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "rv-ra"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Corrección total por enfilación",
+     "texto": "**Ct = Dv − Da**. Si sale más de 180° en valor absoluto, suma o resta 360°: con Dv 359° y Da 005°, 359° − 5° = 354°, que equivale a 354° − 360° = **−6°**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "ct-enfilacion"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "De cuadrantal a circular",
+     "texto": "Un rumbo cuadrantal se cuenta desde el N o el S hacia el E o el W (de 0° a 90°). Para pasarlo a circular:\n- N x E = x\n- S x E = 180° − x\n- S x W = 180° + x\n- N x W = 360° − x\n\nEjemplos: S 76° W = 180° + 76° = **256°**; N 20° W = 360° − 20° = **340°**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "cuadrantal-circular"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "La declinación del año",
+     "texto": "La rosa de la carta trae, por ejemplo, «2°50′ W 2005 (7′ E)». **dm del año = dm de la carta + variación anual × años**, con signos. En 2024: 19 × 7′ = 133′ = 2° 13′ hacia el E (+). Queda −2° 50′ + 2° 13′ = **−0° 37′**, que se redondea a **1° W**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "dm-del-ano"
+    },
+    {
+     "tipo": "ojo",
+     "texto": "El fallo típico es el signo: tomar una dm W como positiva, o restar un negativo como si fuera positivo. Escribe siempre el signo entre paréntesis antes de operar: Ra = 075° − (−3°) = 078°."
+    }
+   ],
+   "chuleta": [
+    "E y NE: +. W y NW: −.",
+    "Ct = dm + Δ; Δ = Ct − dm. Restar un negativo es sumar.",
+    "Rv = Ra + Ct; Ra = Rv − Ct. Más de 360°: resta 360. Negativo: suma 360.",
+    "Ct = Dv − Da; si pasa de 180°, suma o resta 360°.",
+    "N x E = x; S x E = 180° − x; S x W = 180° + x; N x W = 360° − x."
+   ]
+  },
+  {
+   "id": "mat-4",
+   "titulo": "Trigonometría del triángulo de rumbo",
+   "tits": [
+    "py"
+   ],
+   "minutos": 16,
+   "objetivos": [
+    "Saber qué dan el seno, el coseno y la tangente en el triángulo de rumbo",
+    "Calcular la diferencia de latitud, el apartamiento y la distancia",
+    "Sacar el rumbo con la tangente inversa y su cuadrante"
+   ],
+   "usadoEn": {
+    "lecciones": [
+     "py-3-4",
+     "py-4-3",
+     "py-4-10"
+    ],
+    "ejercicios": [
+     "estima-analitica",
+     "rumbo-pasar-distancia"
+    ]
+   },
+   "pasos": [
+    {
+     "tipo": "texto",
+     "titulo": "El triángulo de rumbo",
+     "texto": "Al navegar una distancia D a un rumbo R se forma un triángulo rectángulo:\n- **D**: la distancia navegada (la hipotenusa).\n- **Δl**: lo que avanzas hacia el N o el S (diferencia de latitud, en minutos = millas).\n- **A**: lo que avanzas hacia el E o el W (apartamiento, en millas).\n\nEl rumbo R es el ángulo entre el meridiano (el N) y la derrota."
+    },
+    {
+     "tipo": "ilustracion",
+     "spec": {
+      "tipo": "loxodromica",
+      "modo": "triangulo",
+      "rumbo": 60,
+      "dist": 100,
+      "lm": 20
+     },
+     "texto": "Mueve el rumbo y la distancia y mira cómo cambian Δl y A."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Seno, coseno y tangente",
+     "texto": "En un triángulo rectángulo, con el ángulo R:\n- **sen R = cateto opuesto / hipotenusa = A / D**\n- **cos R = cateto contiguo / hipotenusa = Δl / D**\n- **tan R = opuesto / contiguo = A / Δl**\n\nDe ahí salen las fórmulas de la estima: **Δl = D · cos R** y **A = D · sen R**."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Con la calculadora",
+     "texto": "Siempre en **grados**: en la pantalla tiene que verse la **D** (DEG). Si ves R o G, está en radianes o en gradianes y todo saldrá mal.\n\nEjemplo: 40 millas al 060°: Δl = 40 · cos 60° = **20,0′** (N) y A = 40 · sen 60° = **34,6 millas** (E). Teclas: **40 × cos 60 ) =** y **40 × sin 60 ) =**."
+    },
+    {
+     "tipo": "clave",
+     "texto": "Con el rumbo **circular** (de 000° a 359°), el seno y el coseno salen ya con su signo: Δl positiva es N y negativa, S; A positivo es E y negativo, W. Al 110°: cos 110° = −0,342, así que la Δl es hacia el S."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "Navegas 10 millas al rumbo 180°. ¿Cuánto vale el apartamiento A = D · sen R?",
+     "opciones": {
+      "a": "10 millas E",
+      "b": "0",
+      "c": "10 millas W"
+     },
+     "correcta": "b",
+     "explicacion": "sen 180° = 0: navegando al S puro no te apartas nada hacia el E ni hacia el W. Toda la distancia es Δl."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "dif-latitud"
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "apartamiento"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "La distancia: Pitágoras",
+     "texto": "Si conoces Δl y A, la distancia es la hipotenusa: **D = √(Δl² + A²)**. Ejemplo: Δl = 305′ y A = 367,5 millas → D = √(93 025 + 135 056,25) ≈ **477,6 millas**. Teclas: **√ 305 x² + 367.5 x² ) =**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "distancia-inversa"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "El rumbo: la tangente inversa",
+     "texto": "**tan R = A / Δl**. Con **SHIFT tan** (tan⁻¹) sale un ángulo **x** entre 0° y 90°: es **cuadrantal**. El cuadrante lo dan los signos:\n- Δl N y A E: **R = x**\n- Δl S y A E: **R = 180° − x**\n- Δl S y A W: **R = 180° + x**\n- Δl N y A W: **R = 360° − x**\n\nEjemplo: Δl = 305′ S y A = 367,5 millas W → x = tan⁻¹(367,5 / 305) = 50,3° → S 50,3° W → **230,3°**."
+    },
+    {
+     "tipo": "ojo",
+     "texto": "En el tan⁻¹ mete los valores **sin signo** y decide tú el cuadrante: con los signos, la calculadora da un ángulo entre −90° y 90° que no es el rumbo. Y sen⁻¹ o cos⁻¹ de un número mayor que 1 da **Math ERROR**: has dividido al revés."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "Te sale A = 20 millas y Δl = 20′, los dos positivos. ¿Cuál es el rumbo?",
+     "opciones": {
+      "a": "045°",
+      "b": "135°",
+      "c": "315°"
+     },
+     "correcta": "a",
+     "explicacion": "tan⁻¹(20 / 20) = 45°. Δl N y A E: N 45° E = 045°."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "rumbo-inverso"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Latitud media y longitud",
+     "texto": "El apartamiento son millas sobre el paralelo. Para pasarlo a minutos de longitud, divide por el coseno de la latitud media: **ΔL = A / cos lm**. Al revés: **A = ΔL · cos lm**. Ejemplo: A = 30 millas en lm = 60° → ΔL = 30 / 0,5 = **60′**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "dif-longitud"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Pasar a una distancia de un faro",
+     "texto": "Para pasar a d millas de un faro que está a D millas, el ángulo α entre la visual al faro y el rumbo cumple **sen α = d / D**. Ejemplo: D = 8 y d = 2 → α = sen⁻¹ 0,25 = **14,5°**. Teclas: **SHIFT sin 2 ÷ 8 ) =**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "angulo-paso"
+    }
+   ],
+   "chuleta": [
+    "sen R = A / D; cos R = Δl / D; tan R = A / Δl.",
+    "Δl = D · cos R (+ N, − S); A = D · sen R (+ E, − W). Con rumbo circular, el signo sale solo.",
+    "D = √(Δl² + A²).",
+    "R: x = tan⁻¹(|A| / |Δl|) y el cuadrante por los signos.",
+    "ΔL = A / cos lm; A = ΔL · cos lm.",
+    "Calculadora en grados: la «D» en la pantalla."
+   ]
+  },
+  {
+   "id": "mat-5",
+   "titulo": "Regla de tres y proporciones",
+   "tits": [
+    "py"
+   ],
+   "minutos": 12,
+   "objetivos": [
+    "Plantear una regla de tres directa",
+    "Distancias, tiempos y la escala de latitudes de la carta",
+    "La regla de los duodécimos y la interpolación en la tabla de mareas"
+   ],
+   "usadoEn": {
+    "lecciones": [
+     "py-3-6",
+     "py-4-9"
+    ],
+    "ejercicios": [
+     "marea-sonda"
+    ]
+   },
+   "pasos": [
+    {
+     "tipo": "texto",
+     "titulo": "La regla de tres",
+     "texto": "Cuando dos cantidades crecen a la vez y en la misma proporción (el doble de tiempo, el doble de millas), se resuelve con una **regla de tres directa**:\n\nsi **a** corresponde a **b**, entonces a **c** le corresponde **x = b × c / a**.\n\nEjemplo: a 6 nudos (6 millas en 60 min), en 25 min recorres x = 6 × 25 / 60 = **2,5 millas**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "distancia-tiempo"
+    },
+    {
+     "tipo": "check",
+     "enunciado": "Una corriente de 2 nudos te afecta durante 1 h 30 min. ¿Cuántas millas te desplaza?",
+     "opciones": {
+      "a": "2,6 millas",
+      "b": "3 millas",
+      "c": "3,5 millas"
+     },
+     "correcta": "b",
+     "explicacion": "1 h 30 min son 1,5 h (no 1,3): 2 × 1,5 = 3 millas."
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Distancias en la carta",
+     "texto": "En la carta Mercator la distancia se mide en la **escala de latitudes**, a la altura del punto: **1′ de latitud = 1 milla**. Si mides con una regla, la cuenta es una regla de tres: si 1′ mide 1,85 cm, 7,4 cm son 7,4 / 1,85 = **4 millas**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "escala-latitudes"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "La regla de los duodécimos",
+     "texto": "Para comprobar de cabeza una marea: en cada sexto de la duración sube **1, 2, 3, 3, 2 y 1 doceavos** de la amplitud. Con 2,40 m de amplitud y 6 h de duración, en la 1.ª hora sube 2,40 / 12 = 0,20 m; tras dos horas, 3/12 × 2,40 = **0,60 m**; tras tres, la mitad (1,20 m). En el examen manda el Anuario."
+    },
+    {
+     "tipo": "check",
+     "enunciado": "Marea de 3,60 m de amplitud y 6 horas de duración. ¿Cuánto sube durante la 3.ª hora?",
+     "opciones": {
+      "a": "0,30 m",
+      "b": "0,90 m",
+      "c": "1,80 m"
+     },
+     "correcta": "b",
+     "explicacion": "En la 3.ª sexta parte sube 3/12 de la amplitud: 3/12 × 3,60 = 0,90 m."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "duodecimos"
+    },
+    {
+     "tipo": "texto",
+     "titulo": "Interpolar en una tabla",
+     "texto": "Cuando lo que buscas cae entre dos filas de una tabla, reparte la diferencia en proporción. En la tabla de mareas: la fila de 3 h 20 min da 1,38 m y la de 3 h 32 min da 1,51 m. Para 1,50 m: 12 min × (1,50 − 1,38) / (1,51 − 1,38) = 12 × 0,12 / 0,13 ≈ **11 min** → **3 h 31 min**."
+    },
+    {
+     "tipo": "cuenta",
+     "generador": "interpolar"
+    },
+    {
+     "tipo": "ojo",
+     "texto": "Antes de multiplicar, pasa los tiempos a la **misma unidad**: horas con decimales con velocidades en nudos, o minutos con minutos. 1 h 30 min son 1,5 h o 90 min, nunca 1,3."
+    }
+   ],
+   "chuleta": [
+    "Regla de tres directa: si a → b, entonces c → x = b × c / a.",
+    "d = V × t (t en horas); con t en minutos, d = V × t / 60.",
+    "Escala de latitudes: 1′ = 1 milla, a la altura del punto.",
+    "Duodécimos: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud por cada sexto de la duración.",
+    "Interpolar: primera fila + salto × (lo que falta) / (diferencia entre las dos filas)."
+   ]
+  }
+ ]
+}

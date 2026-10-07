@@ -1,9 +1,11 @@
-// #/<tit>/biblioteca — recursos de estudio: láminas, ejercicios de carta, reglas para recordar, conceptos y mesa.
+// #/<tit>/biblioteca — recursos de estudio: láminas, ejercicios de carta, reglas para recordar, conceptos, mesa,
+// las cuentas del patrón (apéndice de matemáticas) y la calculadora científica.
 // Los ajustes (fecha del examen, voz, instalar, copia) están en #/ajustes, tras el engranaje de la cabecera.
 
 import { h } from '../dom.js';
 import { link } from '../router.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
+import { APENDICE_PUBLICADO } from '../../course/apendice.js';
 
 export function bibliotecaView({ tit }) {
   const T = TITULACIONES[tit];
@@ -26,6 +28,11 @@ export function bibliotecaView({ tit }) {
       [tlink(tit, ['carta']), '🗺️ Ejercicios de carta', 'Problemas con datos nuevos cada vez, corregidos paso a paso.'],
       [link(['conceptos']), '📘 Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],
       [link(['mesa']), '🧰 Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador.'],
+    ]],
+    ['Cuentas', [
+      ...(!APENDICE_PUBLICADO ? [] : [[tlink(tit, ['cuentas']), '➗ Las cuentas del patrón', per ? 'Grados y minutos, horas y signos de los rumbos, con ejercicios para la calculadora.'
+        : 'Grados, horas, signos, trigonometría y regla de tres, con ejercicios para la calculadora.']]),
+      [link(['calculadora']), '🧮 Calculadora científica', 'Con las teclas de la que se permite en el examen: °′″, seno, coseno, tangente y memoria.'],
     ]],
   ];
   const recursos = grupos.flatMap(([, rs]) => rs);

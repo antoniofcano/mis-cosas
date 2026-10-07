@@ -13,6 +13,7 @@ import { fmtLat, fmtLon, fmtBearing, fmtMiles, fmtPos } from '../../math/format.
 import { getRaster } from './raster.js';
 import { rulersLayer, RULER_LEFT, RULER_TOP } from '../../graphics/rulers.js';
 import { parseAngle } from '../../math/format.js';
+import { botonCalculadora } from '../calculadora.js';
 
 const TOOLS = [
   { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías y el transportador. Un trazo: por un extremo (asa redonda) lo alargas o giras; por el medio lo trasladas paralelo; un círculo, por el centro lo mueves y por el borde cambias el radio. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
@@ -39,8 +40,9 @@ let nextId = 1;
  * @param {number} [opts.step]  paso de la solución hasta el que se dibuja
  * @param {object} [opts.progress] almacén de ajustes (capa preferida)
  * @param {number} [opts.height]
+ * @param {boolean} [opts.calculadora]  botón de la calculadora científica en la barra (no en un examen que no la permite)
  */
-export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480, fill = false }) {
+export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480, fill = false, calculadora = true }) {
   const state = {
     tool: 'move', z: 1, cx: 0, cy: 0, w: 640, h: height,
     user: [], history: [], protractor: null, protractorVisible: false, showCoords: true, drag: null, pointers: new Map(), preview: '', raster: null,
@@ -142,7 +144,8 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       h('div.tools.edicion', { role: 'group', 'aria-label': 'Edición' },
         h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', '↶'), h('span.tool-name', 'Deshacer')),
         coordsBtn, coordBtn,
-        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo'))),
+        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo')),
+        calculadora ? botonCalculadora({ clase: 'tool', texto: 'Calcu\u00ADladora' }) : null),
       h('div.tools.vista', { role: 'group', 'aria-label': 'Vista' },
         h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', '+'), h('span.tool-name', 'Acercar')),
         h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', '−'), h('span.tool-name', 'Alejar')),

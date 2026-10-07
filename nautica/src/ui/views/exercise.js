@@ -16,6 +16,8 @@ import { tlink, volver, currentTit, TITULACIONES } from '../titulacion.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { cronometro } from '../../course/cronometro.js';
+import { loadApendice } from '../../store/datasets.js';
+import { repasosPara, APENDICE_PUBLICADO } from '../../course/apendice.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: '✅ Correcto',
@@ -76,6 +78,14 @@ export function exerciseView({ ctx, progress, params: route }) {
     ),
   );
   const diag = h('div.diagnosis', { 'aria-live': 'polite' });
+  // «Repasa: …»: las clases del apéndice de matemáticas con las cuentas que pide este tipo de ejercicio (de sus datos).
+  const repasa = h('p.repasa.small', { hidden: true });
+  loadApendice().then((ap) => {
+    const rs = repasosPara(ap, tit, { ejercicio: exercise.id });
+    if (!rs.length || !APENDICE_PUBLICADO) return;
+    repasa.replaceChildren('Repasa: ', ...rs.flatMap((r, j) => [j ? ' · ' : '', h('a', { href: tlink(tit, ['cuentas', r.id]) }, r.titulo)]));
+    repasa.hidden = false;
+  }).catch(() => {});
 
   // --- Explicación del profe
   const resultText = answers.map((a) => `${a.label} ${quantity(a.kind).format(solution.results[a.key])}`).join(', ');
@@ -164,7 +174,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ayudas.panel,
     h('div.layout',
       h('div.col',
-        h('section.statement', h('h2', 'Enunciado'), statementEl, solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
+        h('section.statement', h('h2', 'Enunciado'), statementEl, repasa, solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
         h('section', h('h2', 'Resolución paso a paso'), stepsList,
           listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),

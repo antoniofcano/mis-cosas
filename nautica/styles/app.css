@@ -10,6 +10,8 @@
   --l-mar: #dcebf8; --l-verde: #1d9a4a; --l-roja: #d43a2f; --l-alcance: #8a6d00; --l-tope: #46525e;
   --l-noche: #0b1420; --l-mar-noche: #081019; --l-casco-noche: #22364b; --l-luz-blanca: #ffffff; --l-luz-verde: #33d17a; --l-luz-roja: #ff4d3d;
   --l-cielo: #cfe6fb; --l-niebla: #b8c2cc; --l-frio: #b9d4f2; --l-calido: #f6d3b0; --l-frente-frio: #1f5fbf; --l-frente-calido: #c8372d; --l-nube: #ffffff;
+  /* Calculadora: pantalla de cristal líquido */
+  --calc-lcd: #dfe7d6; --calc-lcd-texto: #18241a; --calc-lcd-apagado: #b9c4b0;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -23,6 +25,7 @@
     --l-mar: #12304a; --l-verde: #4ade80; --l-roja: #ff7b6e; --l-alcance: #f0c46e; --l-tope: #e6edf3;
     --l-noche: #050a10; --l-mar-noche: #03070c; --l-casco-noche: #22364b; --l-luz-blanca: #ffffff; --l-luz-verde: #33d17a; --l-luz-roja: #ff4d3d;
     --l-cielo: #1d3550; --l-niebla: #8a97a5; --l-frio: #23466f; --l-calido: #6b452a; --l-frente-frio: #6aa8ff; --l-frente-calido: #ff7b6e; --l-nube: #c9d3de;
+    --calc-lcd: #1b2a20; --calc-lcd-texto: #d6f3dc; --calc-lcd-apagado: #34483a;
     color-scheme: dark;
   }
 }
@@ -1112,6 +1115,84 @@ details.puerto-astillero > summary { min-height: 48px; display: flex; align-item
 @media print { .guia-todo .guia-pagina { break-inside: avoid; border: 0; padding: 0; } }
 .hoy-toca .descartar-examen { margin-top: .6rem; width: 100%; min-height: 48px; }
 
+/* Calculadora científica (src/ui/calculadora.js): pantalla de dos líneas y teclado; panel flotante o acoplado. */
+.calc { display: grid; gap: .45rem; }
+.calc-pantalla { background: var(--calc-lcd); color: var(--calc-lcd-texto); border: 2px solid var(--border); border-radius: 8px; padding: .3rem .6rem .4rem; font-variant-numeric: tabular-nums; }
+.calc-indicadores { display: flex; gap: .5rem; font-size: .75rem; font-weight: 800; line-height: 1.2; min-height: 1.2em; }
+.calc-ind { color: var(--calc-lcd-apagado); }
+.calc-ind.on { color: var(--calc-lcd-texto); }
+.calc-arriba { min-height: 1.6em; font-size: 1.05rem; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.calc-abajo { min-height: 1.4em; font-size: 1.7rem; font-weight: 700; text-align: right; white-space: nowrap; overflow-x: auto; line-height: 1.25; }
+.calc-abajo.error { font-size: 1.35rem; }
+.calc-teclas { display: grid; gap: .3rem; }
+.calc-teclas.funciones { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.calc-teclas.numeros { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+button.calc-tecla { min-height: 48px; min-width: 0; padding: .1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; line-height: 1.1;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; touch-action: manipulation; }
+button.calc-tecla:active { transform: translateY(1px); background: var(--accent-2); }
+button.calc-tecla.cifra { background: var(--accent-2); font-size: 1.2rem; }
+button.calc-tecla.borra { background: var(--warn); border-color: var(--warn); color: var(--surface); }
+button.calc-tecla.igual { background: var(--accent); border-color: var(--accent); color: var(--surface); font-size: 1.3rem; }
+button.calc-tecla.shift { background: var(--close); border-color: var(--close); color: var(--surface); font-size: .85rem; }
+.calc-shift { font-size: .68rem; font-weight: 700; color: var(--close); }
+.calc.con-shift .calc-shift { text-decoration: underline; font-size: .78rem; }
+.calc.con-shift button.calc-tecla.shift { outline: 3px solid var(--text); outline-offset: 1px; }
+.calc-texto { font-weight: 700; }
+.calc-pagina { max-width: 440px; margin: 1rem auto; }
+.calc-pagina button.calc-tecla { min-height: 56px; }
+.calc-ayuda dt { font-weight: 700; margin-top: .7rem; }
+.calc-ayuda dd { margin: .2rem 0 0; }
+code.calc-teclas-txt { font-family: inherit; font-weight: 600; background: var(--accent-2); border-radius: 6px; padding: .05rem .35rem; }
+.calc-atajos summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; color: var(--accent); }
+
+.calc-panel { position: fixed; z-index: 55; width: 360px; max-width: calc(100vw - 16px); max-height: calc(100vh - 16px); display: flex; flex-direction: column;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 8px 28px rgba(0, 0, 0, .28); }
+.calc-panel[data-modo="abajo"] { left: 0; right: 0; bottom: 0; width: auto; max-width: none; border-radius: 14px 14px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+.calc-panel[data-modo="arriba"] { left: 0; right: 0; top: 0; width: auto; max-width: none; border-radius: 0 0 14px 14px; }
+.calc-panel[data-modo="abajo"] .calc-cuerpo, .calc-panel[data-modo="arriba"] .calc-cuerpo { width: 100%; max-width: 440px; margin: 0 auto; }
+.calc-cabecera { display: flex; align-items: center; gap: .4rem; min-height: 52px; padding: .2rem .4rem .2rem .6rem; cursor: grab; touch-action: none; user-select: none; border-bottom: 1px solid var(--border); }
+.calc-panel.minimizada .calc-cabecera { border-bottom: 0; cursor: pointer; }
+.calc-agarre { color: var(--muted); font-size: 1.1rem; }
+.calc-titulo { white-space: nowrap; }
+.calc-resumen { flex: 1; min-width: 0; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calc-panel:not(.minimizada) .calc-resumen { visibility: hidden; }
+.calc-botones { display: flex; gap: .25rem; flex: none; }
+button.calc-boton { min-width: 48px; min-height: 48px; padding: 0 .4rem; background: transparent; color: var(--text); border: 1px solid var(--border); font-size: 1.05rem; }
+.calc-cuerpo { padding: .5rem .6rem .6rem; overflow-y: auto; }
+.calc-panel.minimizada .calc-cuerpo { display: none; }
+/* La página deja sitio a la calculadora acoplada: se puede ver y tocar todo lo que queda fuera. */
+body.con-calc-abajo main { padding-bottom: calc(var(--calc-alto, 0px) + 96px); }
+body.con-calc-abajo .fila-inferior, body.con-calc-abajo .hoja { bottom: var(--calc-alto, 0px); }
+body.con-calc-abajo .workspace { bottom: var(--calc-alto, 0px); }
+body.con-calc-arriba { padding-top: var(--calc-alto, 0px); }
+body.con-calc-arriba header.top, body.con-calc-arriba .barra-actividad { top: var(--calc-alto, 0px); }
+body.con-calc-arriba .workspace { top: var(--calc-alto, 0px); }
+@media (max-height: 640px) {
+  button.calc-tecla { min-height: 42px; }
+  .calc-abajo { font-size: 1.4rem; }
+}
+/* Acoplada, nunca más de 2/3 de la pantalla (con zoom grande, el teclado se desplaza dentro). */
+.calc-panel[data-modo="abajo"], .calc-panel[data-modo="arriba"] { max-height: 66vh; }
+/* Pantallas anchas y bajas (móvil apaisado, zoom del 200 %): funciones a la izquierda y cifras a la derecha. */
+@media (min-width: 560px) and (max-height: 600px) {
+  .calc { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .calc-pantalla { grid-column: 1 / -1; }
+  .calc-pantalla .calc-arriba { min-height: 1.3em; }
+}
+.boton-calculadora { white-space: nowrap; }
+.ba-derecha { display: inline-flex; align-items: center; justify-content: flex-end; gap: .4rem; }
+.ba-derecha .boton-calculadora { min-height: 48px; padding: .3rem .6rem; }
+/* «Repasa: …» (enlaces al apéndice de matemáticas) y tarjetas de cuentas con la calculadora. */
+.repasa { margin: .5rem 0; color: var(--muted); }
+.repasa a { font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
+.paso.cuenta .cuenta-enunciado { font-size: 1.1rem; font-weight: 600; line-height: 1.5; }
+.paso.cuenta input.cuenta-respuesta { min-height: 48px; font-size: 1.15rem; }
+.paso.cuenta .actions > * { min-height: 48px; }
+.cuenta-fb p { margin: .5rem 0; font-weight: 600; }
+.cuenta-solucion { border-left: 4px solid var(--accent); background: var(--accent-2); border-radius: 8px; padding: .5rem .8rem; margin-top: .6rem; }
+.cuenta-pasos { padding-left: 1.3rem; margin: .3rem 0; }
+.cuenta-pasos li { margin: .3rem 0; }
+.calc-pregunta { margin: .3rem 0 .6rem; }
 /* ---- Mesa de cartas: panel plegable y el enunciado a mano en el tutorial ---- */
 .ws-chart { position: relative; }
 .ws-tabs .ws-plegar { flex: none; align-self: stretch; margin: 0; padding: 0 .4rem; min-width: 56px; border-radius: 0; }

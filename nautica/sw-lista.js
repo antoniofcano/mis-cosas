@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '1327e1bc6811';
+self.VERSION = '50749b785b9d';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -19,10 +19,14 @@ self.APP = [
  "src/bancos/index.js",
  "src/bancos/registro.js",
  "src/bancos/soluciones.js",
+ "src/calculadora/motor.js",
+ "src/calculadora/reglas.js",
  "src/chart/chart.js",
+ "src/course/apendice.js",
  "src/course/calendario.js",
  "src/course/chuletario.js",
  "src/course/cronometro.js",
+ "src/course/cuentas.js",
  "src/course/engine.js",
  "src/course/guia.js",
  "src/course/listo.js",
@@ -184,6 +188,7 @@ self.APP = [
  "src/ui/app.js",
  "src/ui/aviso-error.js",
  "src/ui/ayudas.js",
+ "src/ui/calculadora.js",
  "src/ui/chart-widget.js",
  "src/ui/chart/interactive-chart.js",
  "src/ui/chart/raster.js",
@@ -211,7 +216,9 @@ self.APP = [
  "src/ui/titulacion.js",
  "src/ui/views/biblioteca.js",
  "src/ui/views/bienvenida.js",
+ "src/ui/views/calculadora.js",
  "src/ui/views/chuleta.js",
+ "src/ui/views/cuentas.js",
  "src/ui/views/curso.js",
  "src/ui/views/exams.js",
  "src/ui/views/exercise.js",
@@ -239,6 +246,7 @@ self.DATOS = [
  "data/comun/mnemotecnias.json",
  "data/comun/vocabulario-per.json",
  "data/comun/vocabulario-py.json",
+ "data/curso/apendice-matematicas.json",
  "data/curso/per.json",
  "data/curso/py.json",
  "data/curso/revisadas.json",

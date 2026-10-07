@@ -30,6 +30,8 @@ import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 import { cuenta, fechaLarga } from '../../texto.js';
+import { botonCalculadora, bloquearCalculadora, desbloquearCalculadora } from '../calculadora.js';
+import { calculadoraPermitida } from '../../calculadora/reglas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 
@@ -127,11 +129,11 @@ export function necesitaCarta(q) {
  * pantalla completa con el enunciado y, al cerrarla, sigues en la pregunta. null si la pregunta no la necesita.
  * @param {object} [ayudas]  contexto de práctica ({ modo, tit… }) para tener la chuleta en la carta; nunca en un examen
  */
-export function botonCarta(q, progress, ayudas = null) {
+export function botonCarta(q, progress, ayudas = null, { calculadora = true } = {}) {
   if (!necesitaCarta(q) || !chartRef) return null;
   return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
     chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
-    result: '', summary: () => `CARTA abierta para ${q.id}`,
+    result: '', summary: () => `CARTA abierta para ${q.id}`, calculadora,
     ayudas: ayudas ? { ...ayudas, ut: q.ut } : null, glosas: ayudas ? { tit: T.id, ut: q.ut } : null,
   }) }, icono('mapa'), 'Abrir la carta');
 }
@@ -532,6 +534,9 @@ function practiceSummary(q, ex, chosen) {
 
 const GUARDAR_CADA_MS = 10000;
 
+/** «Abrir la carta» en un examen: sin ayudas de práctica y, si no se permite, sin el botón de la calculadora. */
+const cartaDeExamen = (q, progress, calculadora) => botonCarta(q, progress, null, { calculadora });
+
 export function testView({ ctx, progress, params: route, tit }) {
   chartRef = ctx.chart;
   useTit(tit);
@@ -542,9 +547,15 @@ export function testView({ ctx, progress, params: route, tit }) {
   const seedQ = Number(route.query.s) || null;
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
   let summaryText = 'VISTA examen (cargando)';
+  // Calculadora: solo si en el examen de esta titulación se permite (src/calculadora/reglas.js). Mientras se carga la
+  // ficha del eje, lo de la titulación; en un examen sin calculadora se cierra y no se puede abrir.
+  let permitida = calculadoraPermitida(T0.id, null);
+  if (!permitida) bloquearCalculadora(el);
 
   cargarBanco(currentEje(progress), T0.id).then((banco) => {
     const { estudio: preguntas, explicaciones, reglasDe: rd, vocab: vocabBanco } = banco;
+    permitida = calculadoraPermitida(T0.id, banco.eje);
+    if (permitida) desbloquearCalculadora(el); else bloquearCalculadora(el);
     const eje = banco.eje.id;
     reglasDe = rd;
     const tc = progress.testEnCurso();
@@ -572,7 +583,8 @@ export function testView({ ctx, progress, params: route, tit }) {
             h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
             h('li', `${cuenta(E0.duracionMin, 'minuto')}`),
             h('li', `Apruebas con ${cuenta(E0.minAciertos, 'acierto')}`),
-            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
+            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`)),
+            h('li', permitida ? '🧮 Con calculadora científica (botón arriba, junto al reloj)' : 'Sin calculadora')),
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E0, f.ut)?.titulo ?? f.ut).join(', ')}; el simulacro no está completo.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
           otro
@@ -602,7 +614,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       let activo = true;
       let terminado = false;
       const reloj = h('span.reloj');
-      const barra = barraActividad({ texto: '', onSalir: salir, derecha: reloj });
+      const barra = barraActividad({ texto: '', onSalir: salir, derecha: [permitida ? botonCalculadora({ texto: '' }) : null, reloj] });
       const cuerpo = h('div');
       const panel = h('div.panel-preguntas', { hidden: true, role: 'dialog', 'aria-label': 'Todas las preguntas' });
 
@@ -659,7 +671,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         const ultima = i === n - 1;
         setChildren(cuerpo,
           questionCard(q, { number: i + 1, chosen: respuestas[q.id], onChoose: (k) => { respuestas[q.id] = k; guardar(); resumen(); } }),
-          botonCarta(q, progress),
+          cartaDeExamen(q, progress, permitida),
           h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); abrirPanel(); } }, 'Ver todas las preguntas')),
           h('div.fila-inferior',
             h('button.secondary.boton-anterior', { type: 'button', 'aria-label': 'Anterior', disabled: i === 0, onclick: () => ir(i - 1) }, '←'),
@@ -678,7 +690,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         panel.hidden = false;
       }
       function resumen() {
-        summaryText = `EXAMEN EN CURSO · ${test.titulo} · pregunta ${i + 1} de ${n} · ${n - sinResponder()}/${cuenta(n, 'respondida')} (sin corregir: el alumno está haciendo el examen; no des respuestas)`;
+        summaryText = `EXAMEN EN CURSO · ${test.titulo} · pregunta ${i + 1} de ${n} · ${n - sinResponder()}/${cuenta(n, 'respondida')} · calculadora: ${permitida ? 'permitida' : 'no permitida'} (sin corregir: el alumno está haciendo el examen; no des respuestas)`;
       }
 
       function finish(porTiempo = false) {

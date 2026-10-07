@@ -64,17 +64,18 @@ export const PY = {
 
 /**
  * Titulaciones disponibles. Cada una: su estructura de examen, el nivel de los ejercicios de carta y la UT de carta.
- * Sus preguntas están en el banco de cada eje (src/bancos). Añadir otra (PNB, Capitán…) = una entrada más aquí.
+ * `calculadora`: si en su examen se permite la calculadora científica cuando la ficha del eje no lo dice
+ * (src/calculadora/reglas.js). Sus preguntas están en el banco de cada eje (src/bancos). Añadir otra (PNB, Capitán…) = una entrada más aquí.
  */
 export const TITULACIONES = {
   per: {
-    id: 'per', sigla: 'PER', nombre: 'Patrón de Embarcaciones de Recreo', icon: '⛵', estructura: PER, nivel: 'PER', cartaUt: 11,
+    id: 'per', sigla: 'PER', nombre: 'Patrón de Embarcaciones de Recreo', icon: '⛵', estructura: PER, nivel: 'PER', cartaUt: 11, calculadora: false,
     resumen: '45 preguntas · 90 minutos · apto con 32 aciertos',
     reglas: ['45 preguntas tipo test, 4 opciones, 90 minutos.', 'Apto con al menos 32 aciertos (máximo 13 fallos).',
       'Además, como máximo: 5 errores en Reglamento (RIPA), 2 en Balizamiento y 2 en Carta de navegación.'],
   },
   py: {
-    id: 'py', sigla: 'PY', nombre: 'Patrón de Yate', icon: '🛥️', estructura: PY, nivel: 'PY', cartaUt: 4,
+    id: 'py', sigla: 'PY', nombre: 'Patrón de Yate', icon: '🛥️', estructura: PY, nivel: 'PY', cartaUt: 4, calculadora: true,
     resumen: '40 preguntas · 2 módulos (45 + 75 min) · apto con 28 aciertos',
     reglas: ['40 preguntas tipo test en dos módulos: genérico (Seguridad y Meteorología, 45 min) y navegación (Teoría y Carta, 75 min).',
       'Apto con al menos 28 aciertos (máximo 12 fallos).', 'Además, como máximo: 5 errores en Teoría de navegación y 3 en Carta.'],

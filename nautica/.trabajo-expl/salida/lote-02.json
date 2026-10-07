@@ -1151,5 +1151,875 @@
   "explicacion": "Adrizar es reducir o eliminar la escora, devolviendo el barco a su posición derecha. Aumentar la escora es escorar, y «igualar» la escora no es lo que se pide.",
   "clave": "Adrizar = quitar escora.",
   "trampa": "La b) es escorar, lo contrario."
+ },
+ "bal-per-2018-12-c-09": {
+  "explicacion": "Las balsas salvavidas tienen medios de acceso desde el agua: una rampa semirrígida de embarque, una escala con peldaños o ambas, según el modelo, y asas para izarse. Por eso la correcta es la c), a y b.",
+  "clave": "Balsa: se sube por rampa o escala de acceso.",
+  "trampa": "Cada opción describe un medio real; la completa es la c)."
+ },
+ "bal-per-2018-12-c-10": {
+  "explicacion": "La zafa hidrostática suelta la balsa automáticamente por la presión del agua cuando el barco se hunde, antes de llegar a 4 metros de profundidad; la balsa sube entonces a la superficie y se infla al tensarse la boza. No salta simplemente al mojarse (los golpes de mar la soltarían) ni espera a 10–15 metros.",
+  "clave": "Zafa hidrostática: suelta la balsa a 4 m como máximo.",
+  "trampa": "La c) suena lógica, pero la zafa actúa por presión, no por contacto con el agua.",
+  "concepto": "and-py-2026-c2-g07"
+ },
+ "bal-per-2018-12-d-08": {
+  "explicacion": "El sincronismo transversal se produce cuando el período aparente (de encuentro) del oleaje coincide con el período de balance del barco: cada ola empuja en el mismo sentido que el balance y este se amplifica peligrosamente. Si coincide con el período de cabeceo se habla de sincronismo longitudinal.",
+  "clave": "Sincronismo transversal: período de la ola = período de balance.",
+  "trampa": "La b) y la c) hablan del cabeceo: eso es el sincronismo longitudinal.",
+  "concepto": "bal-per-2018-12-d-08"
+ },
+ "bal-per-2018-12-d-09": {
+  "explicacion": "Antes de salir con un motor intraborda hay que comprobar, entre otras cosas, el nivel de aceite y la tensión de la correa del alternador (que suele mover también la bomba de agua). Los grifos de fondo de la refrigeración tienen que estar abiertos, no cerrados; el asiento no es algo a comprobar así, y el material pirotécnico no se prueba encendiéndolo.",
+  "clave": "Intraborda antes de salir: aceite, correa y grifo de refrigeración abierto.",
+  "trampa": "La a) cierra los grifos de fondo, y con ellos la refrigeración del motor.",
+  "concepto": "bal-per-2018-12-d-09"
+ },
+ "bal-per-2026-03-d-09": {
+  "explicacion": "Antes de salir con un motor intraborda hay que comprobar el nivel de aceite y la tensión de la correa del alternador, entre otras cosas. El grifo de fondo de la refrigeración tiene que estar abierto, las baterías conectadas para arrancar, y el asiento no es una comprobación de motor.",
+  "clave": "Intraborda antes de salir: aceite, correa y grifo de refrigeración abierto.",
+  "trampa": "La a) cierra los grifos de fondo, y con ellos la refrigeración del motor.",
+  "concepto": "bal-per-2018-12-d-09"
+ },
+ "bal-per-2018-12-d-10": {
+  "explicacion": "La estabilidad longitudinal estudia las inclinaciones en el sentido proa-popa, es decir, el cabeceo. El balanceo es transversal (estabilidad transversal) y la guiñada es un giro horizontal de la proa que no afecta a la estabilidad.",
+  "clave": "Cabeceo: longitudinal. Balance: transversal.",
+  "trampa": "El balanceo corresponde a la estabilidad transversal."
+ },
+ "bal-per-2018-12-f-07": {
+  "explicacion": "Las bengalas de mano llevan su propio oxidante y pueden seguir ardiendo un tiempo bajo el agua, así que el que se apague depende de cuánto tiempo y a qué profundidad haya estado sumergida. No se apaga siempre, pero tampoco es inmune al agua.",
+  "clave": "Bengala sumergida: puede seguir ardiendo un rato.",
+  "trampa": "La b) parece lógica, pero la pirotecnia lleva su propio oxígeno."
+ },
+ "bal-per-2018-12-f-08": {
+  "explicacion": "Antes de usar una señal pirotécnica hay que leer sus instrucciones, usarla solo cuando hay un peligro real (una señal de socorro sin motivo moviliza a los servicios de salvamento) y encenderla manteniéndola a sotavento de la persona. Todas son correctas.",
+  "clave": "Pirotecnia: instrucciones, solo en peligro, a sotavento.",
+  "trampa": "Cada opción es una precaución real; la completa es la d)."
+ },
+ "bal-per-2018-12-f-09": {
+  "explicacion": "La bengala de mano debe dar luz roja durante al menos 1 minuto, según las normas de homologación. Cuarenta segundos se queda corto y 2 o 5 minutos no son el requisito (3 minutos es lo que dura la señal fumígena).",
+  "clave": "Bengala de mano: luz roja, mínimo 1 minuto.",
+  "trampa": "No la confundas con la fumígena flotante, que dura 3 minutos.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2018-12-f-10": {
+  "explicacion": "Si no ves al náufrago hay que hacer una búsqueda sistemática: la exploración en espiral cuadrada o la exploración por sectores, ambas desde el datum. La maniobra de Anderson y la curva de evolución son de recogida, para cuando lo ves o sabes dónde está. Por eso la correcta es la d).",
+  "clave": "No lo ves: espiral cuadrada o sectores.",
+  "trampa": "Anderson es para volver a un náufrago a la vista, no para buscarlo."
+ },
+ "bal-per-2019-04-a-07": {
+  "explicacion": "La cabezada (cabeceo) es el movimiento del barco en sentido longitudinal, subiendo y bajando la proa y la popa al pasar las olas. El movimiento transversal, de banda a banda, es el balance.",
+  "clave": "Proa-popa = cabezada; babor-estribor = balance.",
+  "trampa": "La d) describe el balance, el movimiento transversal.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "cabezada"
+   }
+  ],
+  "concepto": "and-2022-c3-t07"
+ },
+ "bal-per-2019-04-a-08": {
+  "explicacion": "El balance es la oscilación transversal del barco, de babor a estribor y viceversa. La cabezada es la oscilación proa-popa, el pantocazo es el golpe del fondo del casco contra la ola al saltar, y la escora es una inclinación mantenida a una banda, no una oscilación.",
+  "clave": "Balance = de banda a banda.",
+  "trampa": "La escora es una inclinación fija; el balance va y viene.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "base": "and-2024-c2-t07",
+  "concepto": "and-2024-c2-t07"
+ },
+ "bal-per-2019-04-a-10": {
+  "explicacion": "Las señales fumígenas flotantes emiten humo naranja, que se ve de día pero no de noche, así que son de uso diurno. Las bengalas de mano y los cohetes con paracaídas dan luz roja y sirven de día y, sobre todo, de noche.",
+  "clave": "Humo = de día. Luz roja = de noche (y de día).",
+  "trampa": "Las bengalas se ven mejor de noche, pero valen siempre; las de uso solo diurno son las de humo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2019-04-a-10"
+ },
+ "bal-per-2022-12-be-09": {
+  "explicacion": "Las señales fumígenas flotantes emiten humo naranja, visible solo de día. Las bengalas de mano y los cohetes con paracaídas dan luz roja y se usan de día y de noche, y las «granadas de humo amarillo» no forman parte del equipo reglamentario: la señal de socorro de humo es naranja.",
+  "clave": "Humo = de día. Luz roja = de noche (y de día).",
+  "trampa": "La d) también es humo, pero el color de socorro es el naranja.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2019-04-a-10"
+ },
+ "bal-per-2019-04-b-08": {
+  "explicacion": "Un barco que escora mucho al meter el timón y tarda en recuperarse (período de balance largo) tiene un par adrizante pequeño: es un barco blando, con una estabilidad más bien baja. Un barco con mucha estabilidad es duro y recupera rápido. El equilibrio indiferente o la estabilidad negativa supondrían quedarse escorado o volcar.",
+  "clave": "Balance lento = barco blando = poca estabilidad.",
+  "trampa": "La a) es al revés: la estabilidad alta da balances rápidos y bruscos."
+ },
+ "bal-per-2019-04-c-07": {
+  "explicacion": "Nada más oír «hombre al agua», el timonel mete el timón a la misma banda por la que cayó el náufrago, para apartar de él la popa y la hélice. Meterlo a la banda contraria echaría la popa encima, y dar marcha atrás le acerca la hélice.",
+  "clave": "Timón a la banda de caída: la hélice se aparta.",
+  "trampa": "Parece que alejarte sea girar al lado contrario, pero eso echa la popa encima del náufrago."
+ },
+ "bal-per-2019-04-c-09": {
+  "explicacion": "El CO2 apaga principalmente por sofocamiento: desplaza el oxígeno del aire alrededor del fuego y la combustión se detiene (también enfría algo). Actuar sobre la reacción en cadena es lo que hace el polvo químico, y el CO2 no calienta ni dispersa.",
+  "clave": "CO2 = sofoca (quita el oxígeno).",
+  "trampa": "La b) es la acción del polvo químico, no del CO2.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2019-04-e-10": {
+  "explicacion": "Ante una hipotermia hay que evitar que siga perdiendo calor llevándole a un ambiente cálido y sin corrientes, quitarle la ropa mojada y abrigarle. No se le frota ni sacude, no se le da alcohol (dilata los vasos y hace perder más calor) y no se le calienta de forma agresiva, porque se pueden provocar arritmias.",
+  "clave": "Hipotermia: calor suave, abrigo, sin frotar ni alcohol.",
+  "trampa": "La d) busca rapidez, pero el recalentamiento brusco es peligroso."
+ },
+ "bal-per-2019-04-f-08": {
+  "explicacion": "Abarloados al costado de estribor del remolcador, el tiro va por nuestra banda de babor y el conjunto tiende a caer hacia nuestro lado; para compensarlo y seguir a rumbo se mete la rueda algo a babor, hacia el remolcador. Todo a estribor provocaría una guiñada fuerte, y dejar el timón en banda deja la desviación sin corregir.",
+  "clave": "Abarloado: timón un poco hacia el costado del remolcador.",
+  "trampa": "La c) mete todo el timón, cuando solo hace falta compensar un poco."
+ },
+ "bal-per-2019-06-a-09": {
+  "explicacion": "El material pirotécnico se revisa comprobando su fecha de caducidad y su estado aparente (envase, humedad, golpes). No se dispara para probarlo, porque se gasta y podría tomarse por una señal de socorro, y mirar solo el recipiente no basta.",
+  "clave": "Pirotecnia: revisa caducidad y estado, no la dispares.",
+  "trampa": "La c) parece una buena prueba, pero lanzar una señal sin peligro es una falsa alarma."
+ },
+ "bal-per-2019-06-b-09": {
+  "explicacion": "La cámara de máquinas, el cuarto de baterías o los depósitos de combustible acumulan gases inflamables o explosivos (vapores de combustible, hidrógeno de las baterías), así que hay que ventilarlos con frecuencia, y siempre antes de arrancar el motor. No hace falta un equipo de respiración ni evitar entrar en ellos.",
+  "clave": "Gases en máquinas y baterías: ventila antes de arrancar.",
+  "trampa": "La a) exagera: lo que evita la explosión es ventilar.",
+  "concepto": "bal-per-2019-06-b-09"
+ },
+ "bal-per-2021-06-g-08": {
+  "explicacion": "La cámara de máquinas, el cuarto de baterías o los depósitos de combustible acumulan gases inflamables o explosivos, así que hay que ventilarlos con frecuencia, y siempre antes de arrancar el motor. No hace falta equipo de respiración, ni evitar entrar, ni hay una regla de 40 °C.",
+  "clave": "Gases en máquinas y baterías: ventila antes de arrancar.",
+  "trampa": "La d) inventa un límite de temperatura; lo que evita la explosión es ventilar.",
+  "concepto": "bal-per-2019-06-b-09"
+ },
+ "bal-per-2019-06-b-10": {
+  "explicacion": "Estibar es colocar adecuadamente la carga o los pertrechos a bordo: cada cosa en su sitio, bien repartida y sujeta para que no se mueva ni afecte a la estabilidad. No es dejarlo al alcance de cualquiera, ni comprobar la estima, ni llenar un tanque.",
+  "clave": "Estibar = colocar bien la carga a bordo.",
+  "trampa": "La c) juega con el parecido entre estibar y estimar.",
+  "concepto": "bal-per-2019-06-b-10"
+ },
+ "bal-per-2020-07-ah-08": {
+  "explicacion": "Estibar es colocar adecuadamente la carga o los pertrechos a bordo, bien repartidos y en su sitio. Comprobar que la carga está trincada para que no se mueva es una consecuencia de una buena estiba (trincar), pero no es la definición, y llenar un tanque tampoco.",
+  "clave": "Estibar = colocar bien la carga a bordo.",
+  "trampa": "La b) describe trincar, que va con la estiba pero no es lo mismo.",
+  "concepto": "bal-per-2019-06-b-10"
+ },
+ "bal-per-2026-09-d-07": {
+  "explicacion": "Estibar es colocar adecuadamente la carga o los pertrechos a bordo, bien repartidos y en su sitio. Comprobar que la carga está trincada es trincar, no estibar; dejar las cosas a mano no es la definición, y llenar un tanque tampoco.",
+  "clave": "Estibar = colocar bien la carga a bordo.",
+  "trampa": "La d) describe trincar, que va con la estiba pero no es lo mismo.",
+  "concepto": "bal-per-2019-06-b-10"
+ },
+ "bal-per-2019-06-c-09": {
+  "explicacion": "En aguas someras hay riesgo de tocar fondo y de bajos sin señalizar, así que hay que navegar a velocidad de seguridad, vigilando la sonda y con un vigía (serviola) a proa. No está prohibido navegar por ellas, pero tampoco se puede ir deprisa ni sin precauciones.",
+  "clave": "Aguas someras: despacio, sonda y vigía a proa.",
+  "trampa": "La c) exagera: se puede navegar, con precaución."
+ },
+ "bal-per-2019-09-a-08": {
+  "explicacion": "Lo más eficaz para prevenir la hipotermia al abandonar el barco es ponerse ropa de abrigo (varias capas, gorro, guantes) bajo el chaleco antes de saltar al agua: retiene el calor aunque esté mojada. El alcohol acelera la pérdida de calor, y comer mucho no es la medida eficaz.",
+  "clave": "Abandono: ropa de abrigo bajo el chaleco, nada de alcohol.",
+  "trampa": "La b) parece que calienta, pero el alcohol hace perder calor."
+ },
+ "bal-per-2019-09-a-10": {
+  "explicacion": "Las señales fumígenas flotantes emiten una nube de humo naranja que se ve bien de día y nada de noche, así que se usan preferiblemente de día. No se usan siempre con cohetes: cada señal se elige según el momento.",
+  "clave": "Humo = de día. Luz roja = de noche (y de día).",
+  "trampa": "La c) es falsa: de noche el humo no se ve.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2019-09-c-08": {
+  "explicacion": "El sincronismo transversal se da cuando coinciden el período de balance del barco y el período (de encuentro) de las olas: los balances se van sumando y pueden llegar a ser peligrosos. Si coincide con el cabeceo es sincronismo longitudinal, y la dirección del viento y de las olas no tiene que ver.",
+  "clave": "Sincronismo transversal: período de la ola = período de balance.",
+  "trampa": "La c) habla del cabeceo: eso es el sincronismo longitudinal.",
+  "concepto": "bal-per-2018-12-d-08"
+ },
+ "bal-per-2019-09-c-09": {
+  "explicacion": "El remolque abarloado, costado con costado, solo se hace con la mar en calma, porque con olas los barcos se golpean, y es el típico en dársenas e interiores de puerto, donde hay poco espacio. Por eso la correcta es la b), que reúne la a) y la d).",
+  "clave": "Abarloado: costado con costado, solo con mar en calma.",
+  "trampa": "La c) es justo al revés: con mucha mar los barcos se destrozarían."
+ },
+ "bal-per-2019-09-c-10": {
+  "explicacion": "A un náufrago con hipotermia se le ayuda a recuperarse abrigándolo bien con mantas, tras quitarle la ropa mojada, en un lugar resguardado. El alcohol le hace perder más calor, un baño casi hirviendo le quemaría y provocaría un recalentamiento brusco, y el hielo es absurdo.",
+  "clave": "Hipotermia: abrigo y calor suave, nada de alcohol.",
+  "trampa": "Calentar muy deprisa es peligroso: la b) es una barbaridad."
+ },
+ "bal-per-2019-09-d-07": {
+  "explicacion": "La zafa hidrostática suelta la balsa por la presión del agua cuando el barco se hunde, a 4 m de profundidad como máximo, y la balsa sube y se infla al tensarse la boza. No actúa con un simple contacto con el agua (los golpes de mar la soltarían) ni tan profundo como 10–15 m.",
+  "clave": "Zafa: 4 m como máximo.",
+  "trampa": "La c): la zafa no salta al tocar el agua, sino por presión antes de 4 m.",
+  "base": "and-py-2026-c2-g07",
+  "concepto": "and-py-2026-c2-g07"
+ },
+ "bal-per-2019-09-d-09": {
+  "explicacion": "Con mal tiempo y la costa a sotavento hay que ganar todo el barlovento posible, alejándose de ella, porque el viento y la mar empujan el barco hacia tierra. Navegar entre rompientes o cerca de la costa es muy peligroso: con una avería acabarías contra las piedras.",
+  "clave": "Costa a sotavento con temporal: aléjate, gana barlovento.",
+  "trampa": "Tener la costa cerca no es una ventaja en una avería: es justo el peligro."
+ },
+ "bal-per-2019-09-d-10": {
+  "explicacion": "Cuando el período de la ola coincide con el período de balance del barco se produce el sincronismo, y los balances van aumentando. La marejada es un estado de la mar, la estabilidad es la capacidad de adrizarse, y «sintonía» no es el término.",
+  "clave": "Sincronismo: período de la ola = período del barco.",
+  "trampa": "«Sintonía» suena parecido, pero el término náutico es sincronismo.",
+  "concepto": "bal-per-2018-12-d-08"
+ },
+ "bal-per-2019-12-b-09": {
+  "explicacion": "Las válvulas que comunican directamente el interior del barco con el mar a través del casco son los grifos de fondo. Los imbornales son los orificios de cubierta por los que sale el agua al mar, los desagües son tuberías de salida y la bocina es el tubo por el que sale el eje de la hélice.",
+  "clave": "Grifo de fondo = válvula de mar en el casco.",
+  "trampa": "Los imbornales también comunican con el mar, pero desde la cubierta y sin válvula.",
+  "concepto": "bal-per-2019-12-b-09"
+ },
+ "bal-per-2025-12-d-09": {
+  "explicacion": "Las válvulas que comunican directamente el interior del barco con el mar a través del casco son los grifos de fondo. La bocina es el tubo por el que sale el eje de la hélice, los imbornales son los orificios de cubierta por los que sale el agua y los desagües son tuberías de salida.",
+  "clave": "Grifo de fondo = válvula de mar en el casco.",
+  "trampa": "«Bocinas de fondo» no existe: la bocina es el paso del eje.",
+  "concepto": "bal-per-2019-12-b-09"
+ },
+ "bal-per-2019-12-c-08": {
+  "explicacion": "Para que el boca a boca sea eficaz hay que liberar antes la boca y la nariz de cuerpos extraños, mantener la cabeza inclinada hacia atrás con la maniobra frente-mentón para abrir la vía aérea y pinzar la nariz al insuflar para que el aire no se escape. Todas son correctas.",
+  "clave": "Boca a boca: vía libre, frente-mentón y nariz pinzada.",
+  "trampa": "Cada opción es un paso necesario; la completa es la c)."
+ },
+ "bal-per-2019-12-d-07": {
+  "explicacion": "La temperatura del agua es lo que más influye en el tiempo de supervivencia. Con el agua a unos 15 °C y sin traje de supervivencia, la estimación más favorable de las tablas llega a unas 12 horas; por debajo el tiempo cae muy deprisa. 24 o 36 horas corresponden a aguas más templadas, y nunca es indefinida.",
+  "clave": "Agua a 15 °C sin traje: unas horas, hasta 12 como mucho.",
+  "trampa": "La d) es falsa: incluso en agua templada la hipotermia acaba llegando."
+ },
+ "bal-per-2019-12-d-08": {
+  "explicacion": "El nivel de agua de la sentina debe revisarse regularmente durante la navegación, porque una vía de agua, una fuga de la refrigeración o de la bocina pueden llenarla. Siempre entra algo de agua, y tener bombas de achique no exime de vigilarla: pueden fallar o no dar abasto.",
+  "clave": "Sentina: vigílala a menudo, aunque tengas bombas.",
+  "trampa": "La b) confía en las bombas, pero también hay que comprobar que funcionan."
+ },
+ "bal-per-2019-12-d-10": {
+  "explicacion": "Los elementos metálicos formados por ocho triedros abiertos (un octaedro de placas en ángulo recto) que se izan en lo alto de la arboladura son reflectores de radar: devuelven las ondas y hacen al velero visible en el radar de otros barcos. No son antenas ni un gallardete.",
+  "clave": "Octaedro metálico en el palo = reflector de radar.",
+  "trampa": "La d) parece lógica por la palabra radar, pero la antena emite; el reflector solo devuelve."
+ },
+ "bal-per-2020-07-ah-09": {
+  "explicacion": "El teléfono de emergencias de Salvamento Marítimo es el 900 202 202, gratuito, y también se puede llamar al 112, que pasa el aviso a Salvamento. Los demás números (902…, 971…, 012) son variaciones con alguna cifra cambiada o servicios de información, no de emergencias.",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "Fíjate en las cifras: 900 202 202, no 900 200 202 ni 902.",
+  "concepto": "bal-per-2020-07-ah-09"
+ },
+ "bal-per-2020-10-b-08": {
+  "explicacion": "El teléfono de emergencias de Salvamento Marítimo es el 900 202 202, gratuito, y también sirve el 112, que pasa el aviso. El 080 (bomberos), el 091 (policía) y el 012 (información administrativa) no son los de Salvamento, y los números que empiezan por 971 o 900 200 tienen cifras cambiadas.",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "Fíjate en las cifras: 900 202 202, no 900 200 202.",
+  "concepto": "bal-per-2020-07-ah-09"
+ },
+ "bal-per-2020-07-c-07": {
+  "explicacion": "Quien cae al agua desde un barco en marcha debe alejarse del casco, porque la popa y la hélice pasan por ese costado y pueden herirle; después, mantenerse a flote, ahorrar energía y hacerse ver. Arrimarse al casco para engancharse es muy peligroso, y bucear o nadar detrás del barco no sirve.",
+  "clave": "Caes al agua: apártate del casco y de la hélice.",
+  "trampa": "La c) parece instintiva, pero el casco y la hélice te arrastran y golpean."
+ },
+ "bal-per-2020-07-c-08": {
+  "explicacion": "Antes de salir hay que revisar el nivel de la sentina: agua de más puede indicar una vía de agua, una fuga de la refrigeración o de la bocina. Siempre puede entrar algo de agua, y tener bombas de achique no exime de mirarla.",
+  "clave": "Antes de salir: mira la sentina.",
+  "trampa": "La b) confía en las bombas, pero también hay que comprobar el porqué del agua.",
+  "concepto": "bal-per-2020-07-c-08"
+ },
+ "bal-per-2025-12-a-07": {
+  "explicacion": "Antes de salir hay que revisar el nivel de la sentina: agua de más puede delatar una vía de agua o una fuga de la refrigeración o de la bocina. Siempre puede entrar algo de agua, así que no se puede dar por hecho que esté seca ni dejar de revisarla.",
+  "clave": "Antes de salir: mira la sentina.",
+  "trampa": "La b) es una vuelta de tuerca sin sentido: la revisión es justo antes de salir a navegar.",
+  "concepto": "bal-per-2020-07-c-08"
+ },
+ "bal-per-2020-07-c-09": {
+  "explicacion": "El 900 202 202 es el teléfono gratuito de emergencias de Salvamento Marítimo, atendido las 24 horas por sus centros de coordinación. No es información náutica ni meteorológica, ni el Servicio de Costas.",
+  "clave": "900 202 202 = Salvamento Marítimo.",
+  "trampa": "Es gratuito, pero no es informativo: es el número de emergencias."
+ },
+ "bal-per-2020-07-d-08": {
+  "explicacion": "Con el náufrago a la vista se usa una maniobra de recogida para volver a él: la de Anderson (un giro de unos 250° a la banda de caída, la más rápida) o la de Boutakow (70° a la banda de caída y luego a la contraria hasta el rumbo opuesto). La «maniobra de Robinson» no existe.",
+  "clave": "Náufrago a la vista: Anderson o Boutakow.",
+  "trampa": "Robinson suena a náufrago, pero no es ninguna maniobra."
+ },
+ "bal-per-2020-07-d-10": {
+  "explicacion": "Sí: Salvamento Marítimo tiene un teléfono gratuito de emergencias, el 900 202 202, que se puede marcar desde cualquier teléfono (también vale el 112). No hace falta ningún equipo especial, y el 902 202 202 tiene una cifra cambiada.",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "La c) cambia el 900 por 902."
+ },
+ "bal-per-2020-07-e-09": {
+  "explicacion": "La estabilidad depende de la posición del centro de gravedad: cuanto más bajo esté respecto del metacentro, más estable es el barco. Por eso depende del reparto de pesos, y embarcar más peso no la aumenta por sí mismo (si es en alto, la reduce).",
+  "clave": "Estabilidad: G bajo = más estable.",
+  "trampa": "La c) es falsa: lo que cuenta es dónde va el peso, no cuánto."
+ },
+ "bal-per-2020-07-ig-07": {
+  "explicacion": "En aguas someras hay que extremar las precauciones: activar la sonda y que un tripulante vaya cantando las variaciones de profundidad, reducir la velocidad y poner a alguien en un punto alto para ver los bajos con antelación. Todas son correctas.",
+  "clave": "Aguas someras: despacio, sonda y vigía.",
+  "trampa": "Cada opción es una medida válida; la completa es la d)."
+ },
+ "bal-per-2020-10-a-07": {
+  "explicacion": "Con el náufrago a la vista se recurre a una maniobra de recogida como la de Boutakow: 70° hacia la banda de caída y luego a la contraria hasta el rumbo opuesto, para volver por la propia estela. El cuadro expansivo (espiral cuadrada) y la búsqueda por sectores son métodos para cuando no se le ve, y la «maniobra de Riling» no existe.",
+  "clave": "Lo ves: maniobra de recogida. No lo ves: búsqueda.",
+  "trampa": "El cuadro expansivo es una búsqueda, para cuando lo has perdido de vista."
+ },
+ "bal-per-2020-10-a-10": {
+  "explicacion": "Las señales fumígenas flotantes emiten humo naranja, muy visible de día, sobre todo desde el aire, durante al menos 3 minutos. El verde y el amarillo no son colores de socorro, y la mezcla de rojo y amarillo no existe.",
+  "clave": "Fumígena: naranja y 3 minutos.",
+  "trampa": "El rojo es el de la luz de bengalas y cohetes, no el del humo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "base": "and-2024-c1-t08",
+  "concepto": "and-2024-c1-t08"
+ },
+ "bal-per-2020-10-b-09": {
+  "explicacion": "Capear es aguantar el mal tiempo recibiendo la mar por la amura (o la proa), con poca máquina para mantener el gobierno. Fondear a barbas de gato es fondear con dos anclas abiertas por la proa, y quedar con la quilla al aire es zozobrar.",
+  "clave": "Capear: amura y poca máquina avante.",
+  "trampa": "La a) es otra maniobra de mal tiempo, pero de fondeo, no de navegación.",
+  "concepto": "and-2025-c1-t10"
+ },
+ "bal-per-2020-10-b-10": {
+  "explicacion": "La norma ISO 9650 para balsas salvavidas de embarcaciones de recreo establece una capacidad mínima de 4 personas. Por eso no hay balsas homologadas de 1 o 2 plazas; la balsa debe cubrir a todas las personas a bordo, con modelos de 4, 6, 8 o más.",
+  "clave": "Balsa ISO de recreo: mínimo 4 plazas.",
+  "trampa": "La d) es una capacidad habitual, pero el mínimo es 4."
+ },
+ "bal-per-2020-10-e-07": {
+  "explicacion": "El filtro decantador (o de decantación) de agua separa el agua y las impurezas del gasóleo antes de que lleguen a la bomba de inyección, y hay que revisarlo y purgarlo antes de salir. El separador de sentinas es para aguas oleosas, y los motores diésel no tienen carburador.",
+  "clave": "Diésel: revisa y purga el decantador de agua.",
+  "trampa": "El carburador es de los motores de gasolina; aquí se habla de inyección."
+ },
+ "bal-per-2020-10-e-08": {
+  "explicacion": "Si el motor se refrigera con agua de mar, hay que comprobar que esté abierta la válvula o grifo de fondo de la toma de agua; cerrada, el motor se recalienta enseguida. La termostática regula la temperatura del circuito, y la mariposa o la de seguridad no son la toma de mar.",
+  "clave": "Refrigeración por agua de mar: grifo de fondo abierto.",
+  "trampa": "La termostática es del circuito de refrigeración, pero no es la que deja entrar el agua.",
+  "concepto": "bal-per-2020-10-e-08"
+ },
+ "bal-per-2021-09-a-07": {
+  "explicacion": "Si el motor se refrigera con agua de mar, hay que comprobar que esté abierto el grifo de fondo de la toma de agua; cerrado, el motor se recalienta enseguida. La termostática regula la temperatura del circuito, y la de mariposa o la de seguridad no son la toma de mar.",
+  "clave": "Refrigeración por agua de mar: grifo de fondo abierto.",
+  "trampa": "La termostática es del circuito de refrigeración, pero no es la que deja entrar el agua.",
+  "concepto": "bal-per-2020-10-e-08"
+ },
+ "bal-per-2020-10-e-10": {
+  "explicacion": "Con muy mala mar se puede correr el temporal, popa a la mar, largando por la popa un ancla de capa o estachas para frenar el barco, o capear con muy poca máquina recibiendo la mar por la amura. Atravesarse a la mar es lo más peligroso, porque los balances pueden volcar el barco. Por eso la correcta es la d).",
+  "clave": "Temporal: capear o correr, nunca atravesado.",
+  "trampa": "La c) evita las cabezadas, pero a cambio de balances que hacen zozobrar."
+ },
+ "bal-per-2020-10-f-07": {
+  "explicacion": "Hay riesgo de zozobrar cuando el período de la mar que entra por el través coincide con el período de balance del barco: es el sincronismo transversal, y los balances crecen hasta poder volcarlo. Sentarse con los pies fuera por sotavento es imprudente, y la velocidad excesiva tiene otros riesgos, pero el que se pregunta es el sincronismo.",
+  "clave": "Mar de través en sincronismo: riesgo de zozobra.",
+  "trampa": "La a) suena a peligro, pero el riesgo de vuelco de la pregunta es el sincronismo."
+ },
+ "bal-per-2020-10-f-09": {
+  "explicacion": "Si llevas niños a bordo, necesitas chalecos de su talla: un chaleco de adulto se le puede salir a un niño y no le mantiene la cabeza fuera del agua. No vale con los de adulto, y un niño no puede depender de agarrarse a un adulto en el agua.",
+  "clave": "Niños a bordo: chalecos de su talla.",
+  "trampa": "La a) parece cumplir con la norma, pero el chaleco tiene que ser de la talla del usuario."
+ },
+ "bal-per-2020-12-a-10": {
+  "explicacion": "Un rayo puede inducir corrientes y campos magnéticos que alteren o dañen el compás magnético y averiar gravemente la instalación eléctrica y la electrónica. Partir el barco por la mitad no es el daño esperable. Por eso la correcta es la d), b y c.",
+  "clave": "Rayo: daña la electricidad y desvía la aguja.",
+  "trampa": "La a) exagera; el daño típico es eléctrico y magnético."
+ },
+ "bal-per-2020-12-b-07": {
+  "explicacion": "El cohete con paracaídas de socorro da una luz roja brillante que baja lentamente colgada del paracaídas, visible a gran distancia. El rojo es el color de socorro de las señales luminosas; el violeta, el verde o el azul no lo son.",
+  "clave": "Cohete de socorro: luz roja con paracaídas.",
+  "trampa": "El verde se usa en otras señales, pero no en las de socorro.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2020-12-b-08": {
+  "explicacion": "Recibir la mar por la proa produce cabezadas: la proa sube y baja con cada ola, un movimiento longitudinal. El balance aparece con la mar de través, la escora es una inclinación mantenida y el adrizamiento es volver a la posición derecha.",
+  "clave": "Mar por proa = cabezada; mar de través = balance.",
+  "trampa": "El balance es el movimiento de la mar del través, no de proa.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "cabezada"
+   }
+  ],
+  "concepto": "and-2022-c3-t07"
+ },
+ "bal-per-2020-12-c-08": {
+  "explicacion": "Estibar a son de mar es trincar bien a bordo todo lo que pueda moverse con los balances y causar averías o lesiones, para dejar el barco listo para navegar. Recoger cabos de cubierta forma parte de ello, pero no es la definición; taponar los imbornales es peligroso (no saldría el agua) y arriar la mayor es otra cosa.",
+  "clave": "A son de mar = todo trincado y en su sitio.",
+  "trampa": "La c) es justo lo contrario de lo seguro: los imbornales deben estar libres."
+ },
+ "bal-per-2020-12-c-09": {
+  "explicacion": "Las bengalas de mano se activan con el brazo extendido hacia sotavento y fuera de la borda, para que el viento se lleve el humo, las chispas y los restos incandescentes lejos de la persona y del barco. A barlovento te caerían encima, y la proa o el costado de babor no tienen nada que ver.",
+  "clave": "Bengala: por sotavento y fuera de la borda.",
+  "trampa": "Por barlovento parece que se ve mejor, pero te quema a ti y al barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2020-12-d-07": {
+  "explicacion": "Con mal tiempo no hay que atravesarse a la mar porque las olas por el través producen grandes balances que comprometen la estabilidad y pueden hacer volcar el barco, sobre todo si entra en sincronismo. La c) es falsa: gobernar atravesado no elimina el peligro. La correcta es la d).",
+  "clave": "Mal tiempo: nunca atravesado a la mar.",
+  "trampa": "La c) da una falsa seguridad; atravesado siempre hay peligro."
+ },
+ "bal-per-2020-12-d-08": {
+  "explicacion": "Atravesados a la mar, si el período de balance coincide con el de las olas se produce el sincronismo transversal, que amplifica los balances y hay que evitar cambiando el rumbo o la velocidad. El longitudinal es con el cabeceo, y el pantocazo es el golpe del casco contra la ola.",
+  "clave": "Sincronismo transversal: período de la ola = período de balance.",
+  "trampa": "La a) es el sincronismo con el cabeceo, por mar de proa o popa.",
+  "concepto": "bal-per-2018-12-d-08"
+ },
+ "bal-per-2020-12-d-09": {
+  "explicacion": "En caso de hombre al agua se pulsa la tecla MOB (Man Over Board) del GPS, que guarda la posición al instante y da rumbo y distancia para volver a ella. COG es el rumbo efectivo sobre el fondo, SOG la velocidad sobre el fondo y WP1 sería un waypoint concreto.",
+  "clave": "Hombre al agua: pulsa MOB.",
+  "trampa": "COG y SOG son datos de navegación, no funciones de emergencia.",
+  "concepto": "bal-per-2020-12-d-09"
+ },
+ "bal-per-2025-07-d-09": {
+  "explicacion": "En caso de hombre al agua se pulsa la tecla MOB (Man Over Board) del GPS, que guarda la posición al instante y da rumbo y distancia para volver. COG y SOG son el rumbo y la velocidad sobre el fondo, y SOS no es la tecla del GPS para esto.",
+  "clave": "Hombre al agua: pulsa MOB.",
+  "trampa": "SOS suena a emergencia, pero la tecla del GPS es MOB.",
+  "concepto": "bal-per-2020-12-d-09"
+ },
+ "bal-per-2020-12-d-10": {
+  "explicacion": "La falsa es la c): el reflector de radar es obligatorio en las embarcaciones de casco no metálico (zonas 1 a 4), que son las que dan poco eco; uno metálico ya refleja bien. Lo demás es cierto: mejora el eco de la señal del radar, es un cuerpo poliédrico metálico y conviene llevarlo izado en lo más alto.",
+  "clave": "Reflector de radar: casco no metálico, zonas 1 a 4.",
+  "trampa": "Piden la FALSA: la c) cambia «no metálico» por «metálico»."
+ },
+ "bal-per-2020-12-e-07": {
+  "explicacion": "La zafa hidrostática es el dispositivo que libera automáticamente la balsa de su soporte cuando el barco se hunde, por la presión del agua antes de los 4 metros de profundidad. La boza es el cabo que une la balsa al barco y dispara el inflado, pero no es lo que la suelta de la estiba.",
+  "clave": "Zafa hidrostática: suelta sola la balsa al hundirse el barco.",
+  "trampa": "La boza dispara el inflado; quien libera la balsa es la zafa."
+ },
+ "bal-per-2020-12-e-08": {
+  "explicacion": "La acción que NO se debe adoptar es aumentar la velocidad: en aguas someras hay que ir despacio, porque a más velocidad el golpe al tocar fondo es peor y el barco se asienta más (efecto squat). Sí hay que tener preparado el fondeo, fijar en la carta un veril de seguridad y activar la sonda.",
+  "clave": "Aguas someras: despacio, sonda, veril de seguridad y ancla lista.",
+  "trampa": "Piden la que NO hay que hacer: la c) con su explicación de la inercia es falsa."
+ },
+ "bal-per-2020-12-e-09": {
+  "explicacion": "Con Salvamento Marítimo se puede comunicar por radiotelefonía, a voz, en el canal 16 de VHF, el de socorro, seguridad y llamada. El canal 70 es solo para llamada selectiva digital (DSC) y no admite voz; por eso la a) y la b) fallan, y la c) atribuye el DSC al canal 16, cuando es el 70.",
+  "clave": "Canal 16: voz de socorro. Canal 70: solo DSC.",
+  "trampa": "La c) mezcla los dos: el DSC va por el 70, la voz por el 16.",
+  "concepto": "bal-per-2020-12-e-09"
+ },
+ "bal-per-2026-03-b-09": {
+  "explicacion": "Con Salvamento Marítimo se comunica por radiotelefonía, a voz, en el canal 16 de VHF, el de socorro, seguridad y llamada. El canal 70 es solo de llamada selectiva digital (DSC) y no admite voz, y el 13 no es un canal de seguridad para barcos de recreo, así que la d) tampoco vale.",
+  "clave": "Canal 16: voz de socorro. Canal 70: solo DSC.",
+  "trampa": "El canal 70 es de emergencias, pero digital: no se habla por él.",
+  "concepto": "bal-per-2020-12-e-09"
+ },
+ "bal-per-2020-12-e-10": {
+  "explicacion": "Si la persona no respira y no hay signos de circulación (o no estás seguro), hay que iniciar la reanimación cardiopulmonar completa: compresiones torácicas y ventilaciones, 30:2. Hacer solo boca a boca no mueve la sangre, y nunca se da por perdida sin intentarlo.",
+  "clave": "No respira: RCP, 30 compresiones y 2 insuflaciones.",
+  "trampa": "La a) solo oxigena el pulmón; sin compresiones la sangre no circula."
+ },
+ "bal-per-2020-12-f-09": {
+  "explicacion": "Además de los grifos de fondo, los puntos más vulnerables a una vía de agua son los pasos del casco: la bocina, por donde sale el eje de la hélice, y la limera, por donde pasa la mecha del timón. Los guardamancebos están en cubierta y no tienen nada que ver.",
+  "clave": "Vías de agua: grifos de fondo, bocina y limera.",
+  "trampa": "La c) está a bordo, pero por encima del agua.",
+  "concepto": "bal-per-2020-12-f-09"
+ },
+ "bal-per-2024-04-df-09": {
+  "explicacion": "Además de los grifos de fondo, los puntos más vulnerables a una vía de agua son la bocina, por donde sale el eje de la hélice, y la limera, por donde pasa la mecha del timón, porque atraviesan el casco bajo la flotación. Los guardamancebos están en cubierta.",
+  "clave": "Vías de agua: grifos de fondo, bocina y limera.",
+  "trampa": "La c) está a bordo, pero por encima del agua.",
+  "concepto": "bal-per-2020-12-f-09"
+ },
+ "bal-per-2020-12-g-10": {
+  "explicacion": "«A son de mar» significa tener el barco preparado para salir a la mar con seguridad: estiba y trincaje seguros de todo lo que hay a bordo y los cabos de cubierta arranchados (recogidos y ordenados). Las tres opciones describen ese estado, así que todas son correctas.",
+  "clave": "A son de mar = todo trincado, ordenado y listo.",
+  "trampa": "Cada opción es una parte; la completa es la d)."
+ },
+ "bal-per-2020-12-i-07": {
+  "explicacion": "La medida que NO es correcta es dejar que camine o haga ejercicio: el movimiento manda sangre fría de las extremidades al corazón y puede provocar arritmias. Sí hay que evitar el alcohol, ponerle en horizontal al sacarle del agua y quitarle la ropa mojada.",
+  "clave": "Hipotermia: en reposo, horizontal, seco y abrigado.",
+  "trampa": "Piden la INCORRECTA: hacer ejercicio parece calentar, pero es peligroso."
+ },
+ "bal-per-2020-12-i-08": {
+  "explicacion": "La capacidad del barco de recuperar su posición cuando las fuerzas exteriores le inician un cabeceo (inclinación proa-popa) es la estabilidad longitudinal. La transversal se refiere a la escora y el balance, y la flotabilidad es la capacidad de mantenerse a flote, no de recuperarse.",
+  "clave": "Cabeceo: estabilidad longitudinal. Escora: transversal.",
+  "trampa": "La c) y la d) son transversales: valen para la escora, no para el cabeceo."
+ },
+ "bal-per-2020-12-i-09": {
+  "explicacion": "Capear el temporal consiste en recibir la mar por la amura, con poca máquina avante para mantener el gobierno. Si recibes la mar por la popa o la aleta estás corriendo el temporal, y recibirla por el través es lo más peligroso, porque los balances fuertes pueden hacer zozobrar el barco.",
+  "clave": "Capear = amura (las dos con «a» de «adelante»).",
+  "trampa": "Elegir la aleta o la popa, que corresponden a correr el temporal.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ],
+  "base": "and-2020-c3-t08",
+  "concepto": "and-2020-c3-t08"
+ },
+ "bal-per-2020-12-i-10": {
+  "explicacion": "Las bengalas de mano solo duran alrededor de un minuto, así que se encienden cuando tengamos la seguridad de que nos pueden ver (un barco o una aeronave a la vista). Encenderlas sin nadie cerca las desperdicia, y la tecla MOB del GPS no tiene nada que ver con ellas.",
+  "clave": "Bengala: solo cuando alguien pueda verla.",
+  "trampa": "La c) las gasta sin testigos: duran muy poco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2021-03-b-07": {
+  "explicacion": "Para saltar al agua con chaleco hay que hacerlo de pie, con las piernas y las rodillas juntas, sujetando el chaleco con los brazos cruzados y tapándose la nariz. De cabeza o de espaldas el chaleco puede golpear la barbilla o el cuello. La b) se queda incompleta: falta juntar las piernas y taparse la nariz.",
+  "clave": "Saltar con chaleco: de pie, piernas juntas, sujetándolo y nariz tapada.",
+  "trampa": "La b) va bien encaminada, pero la c) es la descripción completa."
+ },
+ "bal-per-2021-03-b-10": {
+  "explicacion": "La estabilidad longitudinal estudia las inclinaciones proa-popa, es decir, el cabeceo. El balanceo es transversal (estabilidad transversal) y la guiñada es un giro horizontal de la proa, que no tiene que ver con la estabilidad.",
+  "clave": "Cabeceo: longitudinal. Balance: transversal.",
+  "trampa": "El balanceo corresponde a la estabilidad transversal."
+ },
+ "bal-per-2021-03-c-08": {
+  "explicacion": "Las bengalas y demás pirotecnia deben guardarse en un lugar seco (en un envase estanco), seguro y de fácil acceso, para que no se estropeen con la humedad y se puedan coger enseguida. «A mano» se queda corto, un pañol de popa puede ser húmedo o inaccesible y la cocina tiene fuego cerca.",
+  "clave": "Pirotecnia: seca, segura y a mano.",
+  "trampa": "La a) solo dice una de las tres condiciones."
+ },
+ "bal-per-2021-03-eg-08": {
+  "explicacion": "El arnés de seguridad, enganchado a una línea de vida o a un punto fuerte, es el elemento que evita que caigas al agua. El chaleco y el aro te mantienen a flote una vez en el agua, y la balsa sirve para abandonar el barco, pero ninguno impide la caída.",
+  "clave": "Arnés: evita caer. Chaleco y aro: flotar si caes.",
+  "trampa": "El chaleco salva vidas, pero cuando ya estás en el agua."
+ },
+ "bal-per-2021-03-eg-10": {
+  "explicacion": "Las balsas salvavidas tienen al menos dos cámaras de flotación independientes y están diseñadas para seguir a flote con todos sus ocupantes autorizados aunque una cámara se averíe o no se infle. No admiten un 10 % más de personas, aíslan tanto del frío como del calor (toldo y piso aislante) y la resistencia de 60 días no es un requisito.",
+  "clave": "Balsa: flota con su carga aunque falle una cámara.",
+  "trampa": "La c) suena generosa, pero la capacidad es la homologada, sin extras."
+ },
+ "bal-per-2021-03-h-09": {
+  "explicacion": "La regla V/33.1 del SOLAS obliga al capitán que recibe una señal de socorro a acudir a toda velocidad en auxilio de las personas en peligro si está en condiciones de prestar ayuda; si no puede o lo considera irrazonable o innecesario, debe anotar el motivo en el diario e informar al servicio de salvamento. Por eso la obligación no es absoluta (a) ni se limita a informar (b), y no depende de quién emita la señal.",
+  "clave": "SOLAS V/33: acudir si puedes ayudar; si no, anotar e informar.",
+  "trampa": "La a) suena heroica, pero la regla admite no acudir si no puedes ayudar."
+ },
+ "bal-per-2021-06-bh-10": {
+  "explicacion": "La hipotermia es una pérdida importante de calor corporal: la temperatura interna baja de 35 °C y el organismo deja de funcionar bien. En el agua se pierde calor unas 25 veces más rápido que en el aire. El desmayo o la parada cardiaca pueden ser consecuencias, y el agua en los pulmones es el ahogamiento.",
+  "clave": "Hipotermia = el cuerpo pierde calor, por debajo de 35 °C.",
+  "trampa": "La c) es el ahogamiento, otra causa de muerte distinta."
+ },
+ "bal-per-2021-06-ci-09": {
+  "explicacion": "Para reducir los picos de tensión se alarga el cabo de remolque según haga falta: más longitud forma más seno (catenaria), que absorbe los tirones, y conviene que ambos barcos estén en la misma fase de la ola. Acortarlo aumenta los estachonazos y el riesgo de rotura.",
+  "clave": "Remolque: largo y con seno, absorbe los tirones.",
+  "trampa": "Acortar el cabo parece darte más control, pero con mar da más tirones."
+ },
+ "bal-per-2021-06-d-07": {
+  "explicacion": "De noche lo primero es lanzar un aro salvavidas con luz: le da flotación al náufrago y marca su posición en la oscuridad. El humo naranja no se ve de noche, la pitada larga no es la señal de hombre al agua y dar máquina atrás acerca la hélice al náufrago.",
+  "clave": "Hombre al agua de noche: aro con luz al agua enseguida.",
+  "trampa": "El bote de humo es una señal diurna: de noche no sirve."
+ },
+ "bal-per-2021-06-e-08": {
+  "explicacion": "Hay que encender las bengalas cuando nos puedan ver (un barco o una aeronave a la vista), porque duran solo alrededor de un minuto. Se sostienen por sotavento, fuera de la borda y algo inclinadas hacia arriba, nunca por barlovento, y se encienden con su propio sistema, no con cerillas.",
+  "clave": "Bengala: solo cuando alguien pueda verla, por sotavento.",
+  "trampa": "La c) las pone a barlovento: el viento te echaría encima el humo y las chispas.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2021-06-f-09": {
+  "explicacion": "Si se ve la caída, lo recomendable es una maniobra de recogida como la de Boutakow: timón a la banda de caída hasta variar unos 70° y luego a la contraria hasta el rumbo opuesto, para volver por la propia estela. La espiral cuadrada es una búsqueda para cuando no se le ve, dar atrás acerca la hélice al náufrago y la «maniobra de Beaufort» no existe.",
+  "clave": "Lo ves: maniobra de recogida. No lo ves: búsqueda.",
+  "trampa": "La b) mete a Anderson, que es válida, junto a Beaufort, que no es ninguna maniobra.",
+  "concepto": "bal-per-2021-06-f-09"
+ },
+ "bal-per-2021-06-g-10": {
+  "explicacion": "La radiobaliza (RLS o EPIRB) es un equipo que transmite radioseñales de emergencia vía satélite con la identificación del barco y, en muchos modelos, su posición, para que los servicios de salvamento lo localicen. No sirve para saber si estás varado, ni para señalizar el ancla ni para avisar de proximidad.",
+  "clave": "Radiobaliza = socorro por satélite con tu identificación.",
+  "trampa": "Las otras opciones inventan usos; su única función es la emergencia.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2021-09-a-08": {
+  "explicacion": "La NO correcta es la c): no es obligatorio usar chalecos inflables combinados con arnés; es una opción cómoda, pero arnés y chaleco pueden ir por separado. Las demás son ciertas: las líneas de vida de cinta plana no ruedan al pisarlas, la línea del arnés debe ser corta para que no llegues al agua y hay que llevar al menos un chaleco por persona, también para los niños.",
+  "clave": "Arnés con línea corta; chaleco por persona, también niños.",
+  "trampa": "Piden la que NO es correcta: el «deben» de la c) convierte una opción en obligación."
+ },
+ "bal-per-2021-09-c-10": {
+  "explicacion": "Para contactar con Salvamento Marítimo en Baleares sirven el 900 202 202 (teléfono gratuito de emergencias), el 112 y el número directo del centro de coordinación de Palma, 971 724 562. Las otras opciones tienen cifras cambiadas o números de otros servicios (080, 091, 012).",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "Fíjate en las cifras: 900 202 202, no 900 200 202 ni 971 202 202.",
+  "concepto": "bal-per-2021-09-c-10"
+ },
+ "bal-per-2022-09-b-08": {
+  "explicacion": "Para contactar con Salvamento Marítimo en Baleares sirven el 900 202 202, el 112 y el número directo del centro de coordinación de Palma, 971 724 562. Las otras opciones cambian cifras (900 200 202, 971 202 202, 900 724 652) o mezclan otros servicios (080, 091, 012).",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "La c) se parece, pero todos sus números tienen cifras cambiadas.",
+  "concepto": "bal-per-2021-09-c-10"
+ },
+ "bal-per-2021-09-d-07": {
+  "explicacion": "Las constantes vitales son el pulso (frecuencia cardiaca), la frecuencia respiratoria, la temperatura y la presión arterial. La talla y el peso son datos antropométricos, y el estado de consciencia se valora en la exploración, pero no es una constante vital.",
+  "clave": "Constantes vitales: pulso, respiración, temperatura y tensión.",
+  "trampa": "La c) mezcla consciencia con dos constantes: se queda incompleta."
+ },
+ "bal-per-2021-09-d-10": {
+  "explicacion": "El ancla flotante (o de capa) es un saco o cono de lona que se larga por la proa para frenar el barco y mantenerlo proa o amura a la mar: sirve para capear el temporal. No agarra en el fondo, así que no sirve para fondear, y no es un aparejo de pesca.",
+  "clave": "Ancla flotante = ancla de capa: para capear.",
+  "trampa": "Se llama ancla, pero no toca el fondo: no sirve para fondear."
+ },
+ "bal-per-2021-09-e-07": {
+  "explicacion": "La respuesta oficial dice que todas las embarcaciones de recreo de casco no metálico deben llevar reflector de radar.",
+  "clave": "Reflector de radar: casco no metálico, zonas 1 a 4.",
+  "trampa": "La d) es falsa: los cascos no metálicos sí están obligados en las zonas de altura y costeras.",
+  "discrepancia": "El RD 339/2021 exige el reflector de radar a las embarcaciones de casco no metálico que naveguen por las zonas 1 a 4, no a todas: en las zonas 5 a 7 no es obligatorio. La b) recoge la norma con más precisión; en otra convocatoria el tribunal dio esa como correcta.",
+  "defendible": "b"
+ },
+ "bal-per-2021-09-f-07": {
+  "explicacion": "Las señales fumígenas flotantes producen una nube de humo naranja, un color muy visible, sobre todo desde el aire. Por eso son correctas la b) y la c), y la respuesta es la d). El gris se confundiría con la niebla o el humo de un motor.",
+  "clave": "Fumígena: naranja y 3 minutos.",
+  "trampa": "La c) es cierta, pero la b) también: la completa es la d).",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2021-09-f-08": {
+  "explicacion": "Con un fueraborda hay que comprobar antes de salir que refrigera (sale el chorrito testigo de agua), que hay combustible y aceite suficientes y que la hélice está libre y con su pasador. Todas son comprobaciones necesarias, así que la correcta es la d).",
+  "clave": "Fueraborda: chorro testigo, combustible, aceite y hélice.",
+  "trampa": "Cada opción es necesaria; la completa es la d).",
+  "concepto": "bal-per-2021-09-f-08"
+ },
+ "bal-per-2022-12-fd-08": {
+  "explicacion": "Antes de salir con un fueraborda hay que comprobar que refrigera (sale el chorrito testigo), el combustible y el aceite, y que la hélice está libre y con el pasador puesto. Todas son necesarias, así que la correcta es la d).",
+  "clave": "Fueraborda: chorro testigo, combustible, aceite y hélice.",
+  "trampa": "Cada opción es necesaria; la completa es la d).",
+  "concepto": "bal-per-2021-09-f-08"
+ },
+ "bal-per-2021-09-f-09": {
+  "explicacion": "El patrón de una embarcación con fueraborda debe ponerse el chaleco salvavidas y el desconectador o «hombre al agua» (el cabo con llave que va de la muñeca o el chaleco al motor), que para el motor si cae al agua o se suelta del timón. Uno solo de los dos deja un riesgo sin cubrir.",
+  "clave": "Fueraborda: chaleco y cordón de parada puestos.",
+  "trampa": "La b) y la c) solo cubren la mitad: hacen falta los dos."
+ },
+ "bal-per-2021-09-f-10": {
+  "explicacion": "El método NO válido es la d): el canal 70 de VHF es solo para llamada selectiva digital (DSC), con el botón de socorro del equipo, y no admite fonía. Sí sirven la voz en el canal 16 y los teléfonos 900 202 202 y 112.",
+  "clave": "Canal 16: voz de socorro. Canal 70: solo DSC.",
+  "trampa": "El canal 70 es de emergencias, pero digital: no se habla por él.",
+  "concepto": "bal-per-2020-12-e-09"
+ },
+ "bal-per-2021-12-a-08": {
+  "explicacion": "Si el fuego está en el costado de babor, hay que poner esa banda a sotavento, para que el viento se lleve las llamas y el humo hacia fuera del barco y no hacia el resto de la embarcación. Con babor a barlovento el viento empujaría el fuego hacia dentro.",
+  "clave": "Fuego en una banda: esa banda a sotavento.",
+  "trampa": "La a) pone el fuego a barlovento: el viento lo mete hacia el barco."
+ },
+ "bal-per-2021-12-a-10": {
+  "explicacion": "El equipo de seguridad de las embarcaciones debe estar homologado por la Dirección General de la Marina Mercante (o llevar el marcado de equipos marinos que esta reconoce). El SEVIMAR es el Convenio SOLAS en su versión española, no un organismo, y ni el capitán del puerto homologa equipos ni se puede llevar sin homologar.",
+  "clave": "Equipos de seguridad: homologados por la DGMM.",
+  "trampa": "El SEVIMAR fija requisitos, pero no es quien homologa."
+ },
+ "bal-per-2021-12-b-08": {
+  "explicacion": "En un remolque el remolcado gobierna siguiendo las aguas del remolcador, el remolcador hace los cambios de rumbo de forma suave (unos 10° cada vez) y tiene en cuenta que la curva de evolución del conjunto es mayor cuanto más largo es el remolque. Todas son correctas.",
+  "clave": "Remolque: cambios suaves y el remolcado sigue aguas.",
+  "trampa": "Cada opción es una pauta válida; la completa es la d).",
+  "concepto": "bal-per-2021-12-b-08"
+ },
+ "bal-per-2025-07-c-08": {
+  "explicacion": "En un remolque por popa el remolcado gobierna siguiendo las aguas del remolcador, este hace cambios de rumbo suaves (unos 10° cada vez) y tiene en cuenta que la curva de evolución crece con la longitud del remolque. Todas son correctas.",
+  "clave": "Remolque: cambios suaves y el remolcado sigue aguas.",
+  "trampa": "Cada opción es una pauta válida; la completa es la d).",
+  "concepto": "bal-per-2021-12-b-08"
+ },
+ "bal-per-2021-12-b-09": {
+  "explicacion": "El balance es el movimiento oscilante del barco inclinándose alternativamente a babor y a estribor. El cabeceo es el movimiento proa-popa, la escora es una inclinación mantenida a una banda y el vaivén es un desplazamiento longitudinal, no una inclinación.",
+  "clave": "Balance = de banda a banda.",
+  "trampa": "La escora es una inclinación fija; el balance va y viene.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "concepto": "and-2024-c2-t07"
+ },
+ "bal-per-2021-12-c-07": {
+  "explicacion": "En un fueraborda refrigerado por agua de mar, la prueba sencilla es ver que sale un chorro continuo de agua por el orificio testigo de la parte trasera del motor: indica que la bomba aspira y el circuito no está obstruido. Un fueraborda de este tipo no tiene tanque de refrigeración, y que no salga el chorro es justo la señal de avería.",
+  "clave": "Fueraborda: si sale el chorro testigo, refrigera.",
+  "trampa": "La c) es la señal de que algo va mal, no de que funciona."
+ },
+ "bal-per-2021-12-c-08": {
+  "explicacion": "Estibar y trincar a son de mar es colocar bien la carga y hacer firme todo lo que pueda desplazarse con los movimientos del barco y causar averías o lesiones. Recoger cabos sueltos forma parte de ello pero no es la definición; taponar los imbornales es peligroso y baldear la cubierta no tiene que ver.",
+  "clave": "A son de mar = todo trincado y en su sitio.",
+  "trampa": "La a) es lo contrario de lo seguro: los imbornales deben estar libres."
+ },
+ "bal-per-2021-12-c-09": {
+  "explicacion": "El chorro del extintor se dirige a la base del fuego, lo más horizontal posible y barriendo de lado a lado, porque ahí está el combustible que arde. Atacar las llamas por arriba no apaga el foco y gasta el agente extintor, que en un portátil dura pocos segundos.",
+  "clave": "Extintor: a la base de las llamas, barriendo.",
+  "trampa": "Las llamas impresionan, pero apuntar a ellas no apaga el combustible."
+ },
+ "bal-per-2021-12-c-10": {
+  "explicacion": "Antes de salir con un fueraborda hay que comprobar el combustible del tanque, que el motor refrigera bien (sale el chorro testigo) y que la hélice está libre y con el pasador. Todas deben hacerse siempre, así que la correcta es la b).",
+  "clave": "Fueraborda: chorro testigo, combustible, aceite y hélice.",
+  "trampa": "Cada opción es necesaria; la completa es la b).",
+  "concepto": "bal-per-2021-09-f-08"
+ },
+ "bal-per-2021-12-d-07": {
+  "explicacion": "El tiempo de supervivencia en el agua depende de la temperatura del agua (el factor principal, por la hipotermia), de la edad y la corpulencia de la persona y de su actividad física (nadar hace perder calor más deprisa). Por eso la correcta es la d).",
+  "clave": "Supervivencia en el agua: frío, actividad y constitución.",
+  "trampa": "Cada opción es un factor real; la completa es la d)."
+ },
+ "bal-per-2021-12-d-08": {
+  "explicacion": "Se llaman grifos de fondo las válvulas situadas por debajo de la línea de flotación conectadas a un pasacascos, por las que el mar comunica con el interior (tomas de refrigeración, aseos, desagües). No son las de los tanques de combustible, ni las del achique, ni todos los grifos del barco.",
+  "clave": "Grifo de fondo = válvula de mar bajo la flotación.",
+  "trampa": "La a) juega con la palabra «fondo», pero son las del casco."
+ },
+ "bal-per-2021-12-d-10": {
+  "explicacion": "El movimiento alternativo de giro sobre el eje transversal (el que va de babor a estribor) sube y baja la proa y la popa: es la cabezada. El balance es el giro sobre el eje longitudinal, de banda a banda; la escora y el adrizamiento no son oscilaciones.",
+  "clave": "Giro sobre el eje babor-estribor = cabezada.",
+  "trampa": "El eje «estribor-babor» confunde: girar sobre él mueve la proa arriba y abajo, no de lado.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "cabezada"
+   }
+  ],
+  "concepto": "and-2022-c3-t07"
+ },
+ "bal-per-2021-12-f-07": {
+  "explicacion": "En aguas someras hay que activar la sonda y vigilar las variaciones de profundidad, reducir la velocidad y poner un tripulante en el punto más alto para ver los bajos con antelación. Todas son correctas.",
+  "clave": "Aguas someras: despacio, sonda y vigía.",
+  "trampa": "Cada opción es una medida válida; la completa es la d).",
+  "concepto": "bal-per-2021-12-f-07"
+ },
+ "bal-per-2024-04-b-07": {
+  "explicacion": "En aguas someras hay que activar la sonda y vigilar las variaciones de profundidad, reducir la velocidad y poner un tripulante en el punto más alto para ver los bajos con antelación. Todas son correctas.",
+  "clave": "Aguas someras: despacio, sonda y vigía.",
+  "trampa": "Cada opción es una medida válida; la completa es la d).",
+  "concepto": "bal-per-2021-12-f-07"
+ },
+ "bal-per-2021-12-f-08": {
+  "explicacion": "Si el barco recupera muy lentamente la posición adrizada tras una gran escora, su par de estabilidad es pequeño: es un barco blando. Un barco duro, con par grande, se adriza rápido y con balances bruscos. El asiento es longitudinal y los grifos de fondo no tienen que ver.",
+  "clave": "Par pequeño: blanda, recupera despacio. Par grande: dura, rápido.",
+  "trampa": "La c) es al revés: el buque duro recupera deprisa."
+ },
+ "bal-per-2021-12-f-09": {
+  "explicacion": "Si se ve al náufrago, lo recomendable es una maniobra de recogida como la de Boutakow: timón a la banda de caída hasta variar unos 70° y luego a la contraria hasta el rumbo opuesto. La espiral cuadrada es para cuando no se le ve, dar atrás acerca la hélice y la «maniobra de Beaufort» no existe.",
+  "clave": "Lo ves: maniobra de recogida. No lo ves: búsqueda.",
+  "trampa": "La b) mete a Anderson, que es válida, junto a Beaufort, que no es ninguna maniobra.",
+  "concepto": "bal-per-2021-06-f-09"
+ },
+ "bal-per-2021-12-f-10": {
+  "explicacion": "El reflector de radar refleja las ondas que emiten los radares de otros barcos y genera un eco claro en sus pantallas, para que nos detecten. No indica que tengamos radar, no aumenta el alcance del nuestro y no emite ninguna identificación (eso lo hace el AIS).",
+  "clave": "Reflector de radar: te hace visible en el radar ajeno.",
+  "trampa": "La c) describe el AIS, no un reflector pasivo."
+ },
+ "bal-per-2022-03-a-07": {
+  "explicacion": "En el momento anterior al abandono lo fundamental es no perder la calma: permite seguir el procedimiento (dar el aviso de socorro, ponerse ropa de abrigo y chaleco, llevar la radiobaliza y agua) y evitar errores. La sala de máquinas no es un refugio, el barco es un buen flotador mientras aguante, y la pirotecnia se usa cuando alguien pueda verla.",
+  "clave": "Antes de abandonar: calma, abrigo, chaleco y socorro.",
+  "trampa": "La b) parece prudente, pero no se abandona el barco antes de tiempo."
+ },
+ "bal-per-2022-03-b-07": {
+  "explicacion": "Los imbornales son los orificios abiertos a intervalos en la amurada, a la altura del trancanil (el borde de la cubierta), por los que sale al mar el agua que embarca la cubierta. No son orificios del fondo del casco ni de los tanques.",
+  "clave": "Imbornal = desagüe de la cubierta en la amurada.",
+  "trampa": "La b) describe el tapón de achique de un bote, no un imbornal."
+ },
+ "bal-per-2022-03-c-07": {
+  "explicacion": "El cuarto elemento del tetraedro del fuego es la reacción en cadena, el proceso químico que mantiene la combustión; los otros tres son combustible, comburente (oxígeno) y calor (energía de activación). El oxígeno y el calor ya están entre los tres primeros, y la llama desnuda es una fuente de ignición.",
+  "clave": "Tetraedro: combustible, comburente, calor y reacción en cadena.",
+  "trampa": "El oxígeno es el comburente, que ya se ha nombrado.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2022-06-a-07": {
+  "explicacion": "Orzar es acercar la proa al viento, es decir, girar hacia barlovento. Alejar la proa del viento es arribar, caer a estribor es un giro que depende de por dónde venga el viento y apartarse del rumbo por la corriente es derivar.",
+  "clave": "Orzar = proa al viento. Arribar = proa lejos del viento.",
+  "trampa": "La a) es arribar, la maniobra contraria."
+ },
+ "bal-per-2022-06-e-09": {
+  "explicacion": "Si no sabes con exactitud dónde está el náufrago, no puedes hacer una maniobra de aproximación: tienes que buscar. La exploración en espiral cuadrada parte del datum (última posición conocida) y va ampliando tramos en cuadrados crecientes, cubriendo la zona de forma sistemática. Anderson y Boutakow son maniobras de regreso al punto de caída, útiles cuando sabes dónde cayó o lo tienes a la vista.",
+  "clave": "Náufrago perdido de vista: búsqueda (espiral cuadrada o sectores), no maniobra de aproximación.",
+  "trampa": "Elegir Anderson o Boutakow, que son maniobras para volver, no métodos de búsqueda.",
+  "base": "and-2020-c1-t08",
+  "concepto": "and-2020-c1-t08"
+ },
+ "bal-per-2022-09-a-07": {
+  "explicacion": "Toda búsqueda en espiral cuadrada empieza por fijar el punto inicial o datum, la posición más probable del náufrago, marcándolo con una boya o guardándolo en el GPS; desde ahí se trazan los tramos crecientes. Una defensa a la deriva se mueve, así que no sirve para marcar un punto fijo.",
+  "clave": "Búsqueda: primero el datum, luego los tramos.",
+  "trampa": "La c) parece marcar el punto, pero la defensa deriva.",
+  "concepto": "bal-per-2022-09-a-07"
+ },
+ "bal-per-2024-04-a-07": {
+  "explicacion": "Lo primero es marcar el punto inicial o datum, la posición más probable del náufrago, con una boya o en el GPS; desde ahí se trazan los tramos crecientes de la espiral. El rumbo inicial, el parte meteorológico o la hora de la caída ayudan, pero sin datum no hay búsqueda.",
+  "clave": "Búsqueda: primero el datum, luego los tramos.",
+  "trampa": "La a) es un paso posterior: primero hay que fijar desde dónde.",
+  "concepto": "bal-per-2022-09-a-07"
+ },
+ "bal-per-2022-09-a-08": {
+  "explicacion": "Aguantar el temporal recibiéndolo por la proa o la amura, con poca máquina, es capear. Correr el temporal es llevarlo por la popa o la aleta, «torear» no es un término náutico y navegar con mar gruesa describe el estado de la mar, no la maniobra.",
+  "clave": "Capear = proa o amura a la mar. Correr = popa a la mar.",
+  "trampa": "La a) es la maniobra opuesta, con la mar por popa.",
+  "concepto": "and-2025-c1-t10"
+ },
+ "bal-per-2022-09-a-09": {
+  "explicacion": "En las señales de mano del remolque, los brazos cruzados en alto con los puños cerrados indican afirmar (hacer firme) el cabo de remolque. Arriar, virar o lascar se indican con otros gestos de brazos.",
+  "clave": "Brazos cruzados en alto, puños cerrados: afirmar el remolque.",
+  "trampa": "Lascar y arriar parecen parecidos, pero piden soltar cabo; aquí se pide dejarlo firme."
+ },
+ "bal-per-2022-09-b-07": {
+  "explicacion": "Los balances provocados por las olas que llegan de través son los más peligrosos, porque pueden entrar en sincronismo y hacer volcar el barco; por eso lo fundamental es evitar atravesarse a la mar. Repartir pesos no anula los balances, y navegar a vela no es el problema.",
+  "clave": "Mal tiempo: nunca atravesado a la mar.",
+  "trampa": "La c) suena técnica, pero la medida eficaz es cambiar el rumbo respecto a la ola."
+ },
+ "bal-per-2022-09-b-10": {
+  "explicacion": "El sincronismo longitudinal (cabeceo al ritmo de las olas de proa o popa) se corrige cambiando la velocidad, el rumbo o ambos, porque así cambia el período de encuentro con la ola y deja de coincidir con el del barco. Amurarse por una banda u otra no es lo que se pide.",
+  "clave": "Sincronismo: cambia velocidad o rumbo.",
+  "trampa": "La b) y la c) son términos de vela que no corrigen el período de encuentro."
+ },
+ "bal-per-2022-09-c-07": {
+  "explicacion": "Antes de salir hay que revisar todo lo citado: aceite, refrigerante, combustible y luces de navegación; el parte meteorológico actualizado, y el estado de las baterías y del equipo de seguridad. Por eso la correcta es la d).",
+  "clave": "Antes de zarpar: motor, luces, baterías, seguridad y meteo.",
+  "trampa": "Cada opción es necesaria; la completa es la d)."
+ },
+ "bal-per-2022-09-c-10": {
+  "explicacion": "El balance es la oscilación transversal del barco, de banda a banda, por el estado de la mar. La cabezada es la oscilación proa-popa, el sincronismo es la coincidencia entre el período de la ola y el del barco, y el período es el tiempo de una oscilación completa.",
+  "clave": "Balance = de banda a banda.",
+  "trampa": "Sincronismo y período son términos reales, pero describen otras cosas.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "base": "and-2024-c2-t07",
+  "concepto": "and-2024-c2-t07"
  }
 }

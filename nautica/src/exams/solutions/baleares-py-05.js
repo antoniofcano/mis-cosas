@@ -873,3 +873,103 @@ export default {
  *     },
  * 'bal-py-2018-12-a-36' (faltan datos: tabla de mareas): Algeciras el 06-06-2018; la pregunta no trae la tabla del Anuario. Oficial: c (6,70 m).
  */
+
+// Preguntas del lote que no quedan en `export default` (detalle en el bloque DISCREPANCIAS).
+export const documentadas = {
+  'bal-py-2017-03-cb-34': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): sonda en Mazagón el 23-04-2017 a las 11:00 UT; la pregunta no trae la tabla del Anuario (bajamares y pleamares de ese día), así que no se puede calcular. Oficial: a (7,89 m).',
+  },
+  'bal-py-2017-03-cb-35': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la salida es «al SW/v de Cabo Roche sobre la isobática de 20 m», y las isobáticas no están en la carta de la app; sin ella no hay situación de estima para la corriente. Oficial: a (Rc 195°, Ic 2,1).',
+  },
+  'bal-py-2017-03-a-32': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35-57N», «05-21,6W». Con la Ct de la oposición Paloma–Alcázar (Da Alcázar 146°), Dv Europa y marcación de Almina sale 35° 57,0′ N 5° 21,5′ W, la oficial a.',
+  },
+  'bal-py-2017-07-a-31': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): es la misma pregunta que bal-py-2017-03-a-32, con opciones «35º-57\' N», «05º-21,6\' W». Sale 35° 57,0′ N 5° 21,5′ W, la oficial d. El código es el de bal-py-2017-03-a-32.',
+  },
+  'bal-py-2017-07-b-31': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,9′ N 5° 50,0′ W).',
+  },
+  'bal-py-2017-07-b-35': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): hora de sonda 10 m en Fisterra el 17-01-2017; la pregunta no trae la tabla del Anuario. Oficial: a (16:41).',
+  },
+  'bal-py-2017-12-b-32': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): hora de sonda 11 m en Navia el 23-06-2017; la pregunta no trae la tabla del Anuario. Oficial: a (11:43 UT).',
+  },
+  'bal-py-2018-04-a-31': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): sonda en Cádiz el 09-04-2018 a las 12:00 UT; la pregunta no trae la tabla del Anuario. Oficial: c (5,15 m).',
+  },
+  'bal-py-2018-04-a-32': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,8′ N 5° 50,0′ W).',
+  },
+  'bal-py-2018-04-c-33': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35-53,2N», «05-55,4 W». Sale 35° 53,3′ N 5° 55,4′ W y Ra a Tarifa 061°, la oficial a.',
+  },
+  'bal-py-2018-04-a-35': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): Santander el 23-05-2018; la pregunta no trae la tabla del Anuario. Oficial: b (07:01).',
+  },
+  'bal-py-2018-04-a-37': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): la oficial escribe «36º 04\'6\' N». Con Ct = +2° (Polar), Rv 192°, Rs 198°, marcación de Europa 40° Er y Da 313° trasladada 5 M sale 36° 04,7′ N 5° 18,2′ W, la oficial a; el lector, sin poder leer la a, elige la b.',
+  },
+  'bal-py-2018-04-b-38': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): Llanes el 12-04-2018; la pregunta no trae la tabla del Anuario. Oficial: d (6,42 m).',
+  },
+  'bal-py-2018-04-b-39': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): pregunta en qué vía del DST estaremos, y el dispositivo de separación de tráfico no está en la carta de la app. Oficial: b (vía hacia el Mediterráneo).',
+  },
+  'bal-py-2018-04-b-40': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la situación observada usa la demora a la cima de San Bartolomé, que no está en la carta de la app (el enunciado no da sus coordenadas). Oficial: c (Rc 078,5°, Ihc 1,95 nudos).',
+  },
+  'bal-py-2018-06-a-32': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): es la misma pregunta que bal-py-2017-03-a-32, con opciones «35º-57\' N», «005º-21,6\' W». Sale 35° 57,0′ N 5° 21,5′ W, la oficial d. El código es el de bal-py-2017-03-a-32.',
+  },
+  'bal-py-2018-06-a-33': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): Conil el 28-06-2018; la pregunta no trae la tabla del Anuario. Oficial: b (7,64 m).',
+  },
+  'bal-py-2018-06-a-36': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): la oficial escribe «35º-54,6\' N», «005º-54,0\' W». Con Ct = −3° (Polar), Rv 080°, Rs 085°, traslado de 11,7 M y Ra a Tarifa con la dm de 2018 y desvío +3,5° sale 35° 54,5′ N 5° 53,9′ W y Ra 063°, la oficial b; el lector, sin poder leer la b, elige la a.',
+  },
+  'bal-py-2018-06-b-37': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la situación a las 12:00 sale (36° 00′ N 6° 00,0′ W, la de la oficial a), pero la pregunta también pide cuántas veces pasamos por sondas de más de 100 m, y las isobáticas no están en la carta de la app; a y b solo se distinguen por la situación, pero no publicamos media respuesta.',
+  },
+  'bal-py-2018-06-b-38': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): Cádiz el 16-08-2018; la pregunta no trae la tabla del Anuario. Oficial: b (4,4 m).',
+  },
+  'bal-py-2018-12-a-31': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): misma pregunta que bal-py-2018-06-a-36 (opciones «35º-54,6\' N»). Sale 35° 54,5′ N 5° 53,9′ W y Ra 063°, la oficial d (064°). El código es el de bal-py-2018-06-a-36.',
+  },
+  'bal-py-2018-12-b-31': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35º 51\'4 N». Con Ct = −6,3°, Rv 226,7°, Rs 221,7° y 12 M sale 35° 51,1′ N 6° 09,8′ W, la oficial c.',
+  },
+  'bal-py-2018-12-a-34': {
+    tipo: 'discrepancia',
+    texto: '(sin margen frente a otra opción): sale Rc 069,8° e Ihc 2,6 nudos. La oficial a (072°, 2,6) es la más próxima, pero la c (070°, 1,5) queda a menos del doble de distancia y el comprobador del PY exige que la oficial gane con claridad. Puede deberse a la Ct (dato «3º» sin signo, tomado como +3°).',
+  },
+  'bal-py-2018-12-a-36': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): Algeciras el 06-06-2018; la pregunta no trae la tabla del Anuario. Oficial: c (6,70 m).',
+  },
+};

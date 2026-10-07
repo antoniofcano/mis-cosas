@@ -304,3 +304,31 @@ export default {
  *     },
  *   },
  */
+
+// Preguntas del lote que no quedan en `export default` (detalle en el bloque DISCREPANCIAS).
+export const documentadas = {
+  'bal-per-2026-03-a-43': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la segunda enfilación es faro de Punta de Gracia – cima del monte de San Bartolomé (436 m), y el monte no está en la carta de la app ni el enunciado da sus coordenadas. Sin esa situación de partida no se puede trazar el Rv (Ra 118°, Ct = −2,1° + 3,6° = +1,5°) hasta el arco de 8 M de Punta Alcázar. Oficial: c (35° 57,8′ N 5° 39,2′ W).',
+  },
+  'bal-per-2026-09-d-43': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la situación de partida es el corte de la enfilación El Xarf – espigón de Tánger con el veril de 200 m, y las isobáticas no están en la carta de la app; la última etapa usa además la marca cardinal de Punta de San García. Oficial: a (HRB 07:56; Ra 348°).',
+  },
+  'bal-per-2026-09-d-44': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): una de las etapas va al «naufragio más próximo a la luz de Cabo Espartel», y los naufragios no están en la carta de la app; la situación final depende de ese tramo. Oficial: c (35° 46,7′ N 6° 01,4′ W).',
+  },
+  'bal-per-2026-09-d-45': {
+    tipo: 'discrepancia',
+    texto: '(elemento que no está en la carta de la app): la derrota sigue el veril de 50 m desde el S de Barbate hasta 6° 00′ W, y las isobáticas no están en la carta de la app; el punto de la latitud 36° 10′ N depende de ese tramo. Oficial: c (Ra 013°).',
+  },
+  'bal-per-2026-09-b-42': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35º 53\',9 N» (las décimas después del apóstrofo). Con Ct = −2° + 9° = +7°, Rv 239° y 12 M desde 36° 00′ N 6° 00′ W sale 35° 53,8′ N 6° 12,7′ W, que es la opción oficial d. Código que la resuelve: \'bal-per-2026-09-b-42\': { ejercicio: \'estima-directa\', solve(k) { const s = k.pos(\'36 00,0 N\', \'6 00,0 W\', \'Situación 16:00\'); const ct = k.ct({ dm: -2, desvio: 9 }); const rv = k.rv(232, ct); const d = k.distFor(8, hrb(17, 30) - hrb(16, 0)); return latlon(k.run(s, rv, d, \'Situación 17:30\')); }, },',
+  },
+  'bal-per-2026-09-b-45': {
+    tipo: 'discrepancia',
+    texto: '(opciones con formato que el lector no reconoce): mismo formato «35º 52\',4 N». Con Ct = −7°, Dv Malabata 119° y Dv Espartel 208° sale 35° 52,4′ N 5° 52,2′ W, la opción oficial c. Código: \'bal-per-2026-09-b-45\': { ejercicio: \'situacion-dos-demoras\', solve(k) { const ct = k.ct({ dm: -2, desvio: -5 }); const d1 = k.dv(126, ct, \'punta-malabata\'); const d2 = k.dv(215, ct, \'cabo-espartel\'); return latlon(k.fix2(\'punta-malabata\', d1, \'cabo-espartel\', d2, \'Situación 09:12\')); }, },',
+  },
+};

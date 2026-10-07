@@ -1004,5 +1004,840 @@
   "explicacion": "La zona del espacio donde un imán ejerce su influencia es su campo magnético. Los polos norte y sur son los extremos del imán donde la fuerza es mayor, y «zona del imán» no es el término técnico.",
   "clave": "Influencia del imán = campo magnético.",
   "trampa": "La a) lo describe con palabras corrientes, pero el nombre es campo magnético."
+ },
+ "bal-per-2020-12-g-40": {
+  "explicacion": "De 2010 a 2015 pasan 5 años: 5 × 3′ = 15′ E. Como la declinación es W y la variación E, se restan: 10° 00′ − 15′ = 9° 45′ W. Si la sumaras te saldría 10° 15′ W, la c), que va en sentido contrario.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La c) suma los 15′ cuando la variación E reduce una declinación W."
+ },
+ "bal-per-2020-12-g-41": {
+  "explicacion": "Las cartas españolas actuales usan las abreviaturas internacionales del fondo, en inglés: S (sand) es arena, St (stones) piedras, M (mud) fango, R (rock) roca. Por eso el fondo de arena aparece como S. «Ar» no es la abreviatura que usan.",
+  "clave": "Abreviaturas internacionales: S arena, M fango, R roca, St piedras.",
+  "trampa": "La a) «Ar» parece la abreviatura lógica en castellano, pero no es la que trae la carta."
+ },
+ "bal-per-2020-12-i-37": {
+  "explicacion": "Con el coeficiente de corredera obtienes la velocidad verdadera del barco: Vv = K × Vc. La a) divide cuando hay que multiplicar, la b) invierte los términos y la d) mezcla la corriente, que la corredera no mide.",
+  "clave": "K multiplica a la corredera y te da lo verdadero.",
+  "trampa": "La a) da la magnitud correcta pero con la operación equivocada.",
+  "base": "and-2025-c1-t39",
+  "concepto": "and-2025-c1-t39"
+ },
+ "bal-per-2020-12-i-38": {
+  "explicacion": "La declinación magnética es el ángulo entre el norte verdadero y el norte magnético, y depende del lugar y del año. Verdadero–aguja es la corrección total, magnético–aguja es el desvío, y el ángulo entre un norte y la visual a un objeto es una demora.",
+  "clave": "Tres nortes: Nv–Nm dm, Nm–Na Δ, Nv–Na Ct.",
+  "trampa": "La c) es el desvío, que depende del barco."
+ },
+ "bal-per-2020-12-i-39": {
+  "explicacion": "La diferencia de altura entre pleamar y bajamar es la amplitud de la marea. La duración (de la creciente o la vaciante) y el intervalo se miden en tiempo, y el cero hidrográfico es la referencia de las sondas.",
+  "clave": "Amplitud = pleamar − bajamar (en metros).",
+  "trampa": "La a) habla de duración: eso son horas, no metros.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "base": "and-2024-c3-t41",
+  "concepto": "and-2024-c3-t41"
+ },
+ "bal-per-2020-12-i-41": {
+  "explicacion": "La deriva es el ángulo entre la dirección del movimiento del barco sobre el agua y su movimiento sobre el fondo, causado por la corriente; sin viento, es el ángulo entre el rumbo verdadero y el efectivo. El abatimiento es el del viento, el desvío un error de la aguja y la marcación un ángulo desde la proa.",
+  "clave": "Abatimiento: Rv→Rs (viento). Deriva: Rs→Re (corriente).",
+  "trampa": "La a): el abatimiento lo produce el viento, no la corriente.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-per-2021-03-d-39": {
+  "explicacion": "«Oc.WR.7s31m14M» se lee: ocultaciones aisladas (sin número entre paréntesis no es de grupo), sectores blanco y rojo, periodo de 7 s, elevación 31 m y alcance 14 millas. Las opciones de grupo de ocultaciones fallan porque faltaría el número del grupo, y las que dan 14 m y 31 millas invierten elevación y alcance.",
+  "clave": "Ritmo, color, periodo (s), elevación (m), alcance (M).",
+  "trampa": "La c) acierta las cifras pero dice «grupo»: sin paréntesis, las ocultaciones son aisladas.",
+  "ilustraciones": [
+   {
+    "tipo": "ritmo",
+    "ritmo": "Oc 6s"
+   }
+  ],
+  "concepto": "bal-per-2021-03-d-39"
+ },
+ "bal-per-2021-06-bh-39": {
+  "explicacion": "«Oc.WR.7s31m14M» se lee: ocultaciones aisladas (sin número entre paréntesis no es de grupo), sectores blanco y rojo, periodo de 7 s, elevación 31 m y alcance 14 millas. La a) invierte elevación y alcance, y la b) y la c) hablan de grupo de ocultaciones y además cambian las cifras.",
+  "clave": "Ritmo, color, periodo (s), elevación (m), alcance (M).",
+  "trampa": "La a) acierta el ritmo pero intercambia metros y millas.",
+  "ilustraciones": [
+   {
+    "tipo": "ritmo",
+    "ritmo": "Oc 6s"
+   }
+  ],
+  "concepto": "bal-per-2021-03-d-39"
+ },
+ "bal-per-2021-03-eg-38": {
+  "explicacion": "El veril es la línea isobática: une los puntos de igual profundidad en la carta. Las isobaras unen puntos de igual presión, y «isócora» o «isógora» no son nombres de estas líneas.",
+  "clave": "Veril = isobática = igual profundidad.",
+  "trampa": "La c): isobárica (presión) suena casi igual que isobática (profundidad)."
+ },
+ "bal-per-2021-03-eg-39": {
+  "explicacion": "El tiempo que pasa entre una pleamar y la bajamar más próxima (o al revés) es la duración de la marea, unas 6 horas aproximadamente. La amplitud es la diferencia de alturas, no de horas, y el coeficiente indica lo grande que es una marea respecto a la media.",
+  "clave": "Duración = horas; amplitud = metros.",
+  "trampa": "«Intervalo» suena bien, pero el término correcto es duración.",
+  "base": "and-2021-c2-t39",
+  "concepto": "and-2021-c2-t39"
+ },
+ "bal-per-2021-03-fi-37": {
+  "explicacion": "Las cartas náuticas se corrigen a medida que se publican los avisos a los navegantes, que recogen los cambios (nuevas balizas, peligros, luces que cambian). No hay un calendario fijo de correcciones: cada aviso se anota en cuanto sale.",
+  "clave": "Correcciones de la carta = avisos a los navegantes.",
+  "trampa": "La c): los avisos se publican con frecuencia, pero lo que manda es el aviso, no el calendario."
+ },
+ "bal-per-2021-06-bh-38": {
+  "explicacion": "El coeficiente es K = verdadera / corredera. Si la corredera marca menos que la velocidad verdadera, el numerador es mayor y K sale mayor que 1 (por ejemplo, 6 / 5 = 1,2). Sería menor que 1 si la corredera marcara de más, e igual a 1 si fuera exacta.",
+  "clave": "Corredera marca de menos → K > 1.",
+  "trampa": "La a) sale de dividir al revés, corredera entre verdadera."
+ },
+ "bal-per-2021-06-bh-41": {
+  "explicacion": "La latitud es el arco de meridiano contado desde el ecuador hasta el paralelo del lugar, de 0° a 90° N o S. Los arcos medidos sobre el ecuador o los paralelos desde un meridiano son la longitud, y la d) describe la colatitud (desde el lugar hasta el polo).",
+  "clave": "Latitud: arco de meridiano desde el ecuador (0–90° N/S).",
+  "trampa": "La d) también es arco de meridiano, pero contado hasta el polo: es la colatitud."
+ },
+ "bal-per-2021-06-ci-37": {
+  "explicacion": "Una línea de sonda (veril o isobática) es una línea de posición que une puntos de igual profundidad: si mides con la sonda, sabes que estás sobre ese veril. Las líneas de igual declinación se llaman isógonas y no hay líneas de igual desvío, porque el desvío depende del barco.",
+  "clave": "Línea de sonda = veril = igual profundidad.",
+  "trampa": "La b) describe las isógonas, que no son de sonda.",
+  "concepto": "bal-per-2021-06-ci-37"
+ },
+ "bal-per-2024-04-a-41": {
+  "explicacion": "Una línea de sonda (veril o isobática) es una línea de posición que une puntos de igual profundidad: si mides con la sonda, sabes que estás sobre ese veril. No hay líneas de igual desvío, porque el desvío depende del barco, y «sonda magnética» no existe.",
+  "clave": "Línea de sonda = veril = igual profundidad.",
+  "trampa": "La c) mezcla dos palabras conocidas para crear un concepto inventado.",
+  "concepto": "bal-per-2021-06-ci-37"
+ },
+ "bal-per-2021-06-ci-38": {
+  "explicacion": "Escala 1/30000 significa que 1 unidad en la carta son 30000 iguales en la realidad: 1 cm son 30000 cm, es decir, 300 m. Las otras opciones mueven la coma: 3000 m o 30000 m serían escalas de 1/300000 y 1/3000000.",
+  "clave": "1/E: 1 cm = E cm; divide entre 100 para metros.",
+  "trampa": "La a) toma las 30000 unidades como metros, cuando son centímetros."
+ },
+ "bal-per-2021-06-ci-40": {
+  "explicacion": "La corrección total es la suma algebraica de la variación (declinación magnética) y el desvío: Ct = dm + Δ. La a) describe el desvío como diferencia entre rumbos magnético y de aguja, la b) también es el desvío, y la d) suma declinación y «variación total», que no existe.",
+  "clave": "Ct = dm + Δ (E +, W −).",
+  "trampa": "La d): variación y declinación son lo mismo; falta el desvío."
+ },
+ "bal-per-2021-06-d-37": {
+  "explicacion": "El compás magnético de a bordo señala el norte de aguja, que incluye la declinación y el desvío; por eso indica el rumbo de aguja. Para obtener el verdadero hay que aplicarle la corrección total, y el efectivo además incluye viento y corriente.",
+  "clave": "Compás = rumbo de aguja; Rv = Ra + Ct.",
+  "trampa": "La b): el verdadero exige corregir la aguja."
+ },
+ "bal-per-2021-06-d-38": {
+  "explicacion": "La marcación es el ángulo entre la línea proa-popa y la visual a un objeto. Los ángulos entre la proa y los distintos nortes son rumbos (verdadero, de aguja o magnético), no marcaciones.",
+  "clave": "Proa → visual = marcación; norte → proa = rumbo.",
+  "trampa": "Las otras opciones definen rumbos."
+ },
+ "bal-per-2021-06-d-39": {
+  "explicacion": "De las cartas que publica el Instituto Hidrográfico de la Marina, las que más extensión abarcan son las generales (escala pequeña, punto menor). Los aproches y los portulanos cubren zonas muy reducidas con mucho detalle. Las «oceánicas» no forman parte de su clasificación.",
+  "clave": "Más extensión = generales; más detalle = portulanos.",
+  "trampa": "La d) suena lógica, pero no es una categoría de las cartas del Instituto Hidrográfico.",
+  "concepto": "bal-per-2021-06-d-39"
+ },
+ "bal-per-2024-12-a-39": {
+  "explicacion": "De las cartas que publica el Instituto Hidrográfico de la Marina, las que más extensión abarcan son las generales (escala pequeña, punto menor). Los aproches y los portulanos cubren zonas muy reducidas con mucho detalle, y las cartas «oceanográficas» no forman parte de su clasificación.",
+  "clave": "Más extensión = generales; más detalle = portulanos.",
+  "trampa": "La a) suena lógica, pero no es una categoría de las cartas náuticas del Instituto Hidrográfico.",
+  "concepto": "bal-per-2021-06-d-39"
+ },
+ "bal-per-2021-06-d-40": {
+  "explicacion": "El desvío se debe a la imantación de los hierros del barco y cambia al cambiar el rumbo, porque esos hierros quedan en otra posición respecto al campo magnético terrestre. No crece siempre en un sentido: según el rumbo puede ser positivo o negativo.",
+  "clave": "Desvío: cambia con el rumbo, por los hierros del barco.",
+  "trampa": "La a): lo que se mantiene al cambiar de rumbo es la declinación, no el desvío."
+ },
+ "bal-per-2021-06-d-41": {
+  "explicacion": "Una luz isofase muestra luz y oscuridad sucesivamente y con la misma duración. La b) describe una luz de grupo de ocultaciones, la c) una alternante y la d) una fija.",
+  "clave": "Isofase = luz y oscuridad iguales.",
+  "trampa": "La c) añade colores: eso la convierte en alternante.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables",
+    "ritmo": "Iso 4s"
+   }
+  ]
+ },
+ "bal-per-2021-06-f-37": {
+  "explicacion": "De 2005 a 2021 pasan 16 años: 16 × 7′ = 112′ = 1° 52′ E. Como la declinación es W y la variación E, se restan: 2° 50′ − 1° 52′ = 0° 58′ W. Sigue siendo W porque la corrección no supera el valor inicial.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La c) da 1° 50′ W, que confunde el valor de la variación con el resultado."
+ },
+ "bal-per-2021-06-f-38": {
+  "explicacion": "La duración de la vaciante es el tiempo que transcurre desde una pleamar hasta la bajamar siguiente, mientras el agua baja. De bajamar a pleamar es la creciente, y entre dos pleamares o dos bajamares hay un ciclo completo.",
+  "clave": "Vaciante: pleamar → bajamar. Creciente: bajamar → pleamar.",
+  "trampa": "La c) es la creciente, cuando el agua sube.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-per-2021-06-f-40": {
+  "explicacion": "La tablilla de desvíos da el desvío del compás que hay que aplicar a cada rumbo de aguja. La corrección total exige además la declinación de la carta, y la giroscópica tiene otro error que no se recoge en esta tablilla.",
+  "clave": "Tablilla = desvío según el rumbo de aguja.",
+  "trampa": "La b): la corrección total necesita también la declinación de la carta."
+ },
+ "bal-per-2021-06-f-41": {
+  "explicacion": "Una línea de posición es un lugar geométrico en el que sabes que está tu barco: oposiciones, isobáticas (veriles) o distancias a un punto. El rumbo es solo la dirección que sigues, no te dice dónde estás.",
+  "clave": "El rumbo te dice adónde vas, no dónde estás.",
+  "trampa": "La oposición sí es línea de posición, aunque se use menos.",
+  "base": "and-2021-c2-t37",
+  "concepto": "and-2021-c2-t37"
+ },
+ "bal-per-2022-12-c-41": {
+  "explicacion": "Una línea de posición es un lugar geométrico en el que sabes que está tu barco: enfilaciones, oposiciones o isobáticas (veriles). El rumbo es solo la dirección que sigues, no te dice dónde estás.",
+  "clave": "El rumbo te dice adónde vas, no dónde estás.",
+  "trampa": "La oposición sí es línea de posición, aunque se use menos.",
+  "base": "and-2021-c2-t37",
+  "concepto": "and-2021-c2-t37"
+ },
+ "bal-per-2021-06-g-37": {
+  "explicacion": "La corrección total es el ángulo entre el norte de aguja y el norte verdadero, y equivale a la suma de declinación y desvío (Ct = dm + Δ). La b) es el desvío, la c) la declinación, y la d) suma declinación y variación, que son la misma cosa.",
+  "clave": "Ct = dm + Δ (verdadero ↔ aguja).",
+  "trampa": "La d): «variación» es otro nombre de la declinación, no del desvío.",
+  "concepto": "bal-per-2021-06-g-37"
+ },
+ "bal-per-2025-09-a-37": {
+  "explicacion": "La corrección total es el ángulo entre el norte de aguja y el norte verdadero, y equivale a la suma de declinación y desvío (Ct = dm + Δ). La b) es el desvío, la c) la declinación, y la d) no tiene sentido: la declinación ya es un ángulo, no una dirección.",
+  "clave": "Ct = dm + Δ (verdadero ↔ aguja).",
+  "trampa": "La c) es solo la declinación, una parte de la corrección total.",
+  "concepto": "bal-per-2021-06-g-37"
+ },
+ "bal-per-2021-09-a-38": {
+  "explicacion": "El coeficiente de corredera es un factor que se multiplica: distancia real = K × distancia de corredera. Con K = 0,75, la distancia real es el 75 % de lo que marca la corredera (la corredera marca de más). No se resta, y la c) aplica el factor al revés.",
+  "clave": "Real = K × corredera.",
+  "trampa": "La c) multiplica la distancia real, cuando hay que multiplicar la de corredera."
+ },
+ "bal-per-2021-09-b-41": {
+  "explicacion": "La situación estimada se calcula con el rumbo, la velocidad y el tiempo navegado desde la última situación conocida. Es menos fiable que la observada (por demoras, enfilaciones, GPS o astronomía) y no tiene por qué coincidir con ella; la diferencia revela viento o corriente.",
+  "clave": "Estimada = rumbo + velocidad + tiempo.",
+  "trampa": "La a): la astronómica es una situación observada, no estimada."
+ },
+ "bal-per-2021-09-d-38": {
+  "explicacion": "Como los rumbos, las demoras pueden ser verdaderas (desde el norte verdadero), magnéticas (desde el norte magnético) y de aguja (desde el norte de aguja). «Del timón», «geográfica», «positiva» o «negativa» no son clases de demora.",
+  "clave": "Demoras: verdadera, magnética y de aguja.",
+  "trampa": "La b) cuela «geográfica», que sería otra forma de decir verdadera."
+ },
+ "bal-per-2021-09-e-37": {
+  "explicacion": "La tablilla de desvíos recoge los desvíos de la aguja para cada rumbo, causados por los hierros y el equipo de la propia embarcación. La declinación no figura en ella (viene en la carta), así que la a) y la b) fallan.",
+  "clave": "Tablilla = desvíos del propio barco, rumbo a rumbo.",
+  "trampa": "La a) empieza bien, pero le añade la declinación.",
+  "concepto": "bal-per-2021-09-e-37"
+ },
+ "bal-per-2024-09-d-38": {
+  "explicacion": "La tablilla de desvíos recoge los desvíos de la aguja para cada rumbo, causados por los hierros y el equipo de la propia embarcación. La declinación no figura en ella (viene en la carta), y nada tiene que ver con la holgura entre la rueda y la pala del timón.",
+  "clave": "Tablilla = desvíos del propio barco, rumbo a rumbo.",
+  "trampa": "La a) empieza bien, pero le añade la declinación.",
+  "concepto": "bal-per-2021-09-e-37"
+ },
+ "bal-per-2021-09-e-38": {
+  "explicacion": "El cartucho es el recuadro dentro de una carta que representa a mayor escala una zona de interés (un puerto, una entrada). El portulano y el aproche son tipos de carta independientes, y «detalle» no es el término técnico.",
+  "clave": "Recuadro ampliado dentro de la carta = cartucho.",
+  "trampa": "La b): el portulano es una carta propia, no un recuadro.",
+  "concepto": "bal-per-2021-09-e-38"
+ },
+ "bal-per-2026-03-d-39": {
+  "explicacion": "El cartucho es el recuadro dentro de una carta que representa a mayor escala una zona de interés (un puerto, una entrada). El portulano y el aproche son tipos de carta independientes, y «detalle» no es el término técnico.",
+  "clave": "Recuadro ampliado dentro de la carta = cartucho.",
+  "trampa": "La b): el portulano es una carta propia, no un recuadro.",
+  "concepto": "bal-per-2021-09-e-38"
+ },
+ "bal-per-2021-09-e-39": {
+  "explicacion": "El ángulo que nos aparta del rumbo por efecto de la corriente es la deriva. El que produce el viento es el abatimiento, el desvío es un error de la aguja y el apartamiento es una distancia en millas medida sobre un paralelo.",
+  "clave": "Corriente = deriva; viento = abatimiento.",
+  "trampa": "La d): el abatimiento es el del viento.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-per-2021-09-e-40": {
+  "explicacion": "El periodo es el tiempo que tarda una luz rítmica en repetir su secuencia completa de aspectos (luces y oscuridades). La a) habla de las fases o el ritmo, la b) de los colores y la c) solo del tiempo encendida.",
+  "clave": "Periodo = un ciclo completo de la secuencia.",
+  "trampa": "La c): el periodo incluye también las oscuridades.",
+  "concepto": "bal-per-2021-09-e-40"
+ },
+ "bal-per-2025-07-b-40": {
+  "explicacion": "El periodo es el tiempo que tarda una luz rítmica en repetir su secuencia completa de aspectos (luces y oscuridades). La a) habla de las fases o el ritmo, la b) de los colores y la c) solo del tiempo encendida.",
+  "clave": "Periodo = un ciclo completo de la secuencia.",
+  "trampa": "La c): el periodo incluye también las oscuridades.",
+  "concepto": "bal-per-2021-09-e-40"
+ },
+ "bal-per-2021-09-e-41": {
+  "explicacion": "Cada uno de los aspectos sucesivos (destellos, ocultaciones, intervalos de luz u oscuridad) que muestra una luz durante su periodo se llama fase. «Destellos» es solo una clase de fase, y «intermitencias» o «focos» no son el término técnico.",
+  "clave": "Fase = cada tramo de luz u oscuridad dentro del periodo.",
+  "trampa": "La b): el destello es un tipo de fase, no el nombre de todas."
+ },
+ "bal-per-2021-09-f-37": {
+  "explicacion": "La corredera mide la velocidad del barco respecto al agua y, con ella, la distancia navegada. La presión de aceite y las revoluciones se controlan con los instrumentos del motor, y los datos del agua con sensores específicos.",
+  "clave": "Corredera = velocidad y distancia sobre el agua.",
+  "trampa": "La d): las revoluciones las da el cuentavueltas del motor."
+ },
+ "bal-per-2021-09-f-39": {
+  "explicacion": "«30° abierto por la amura de estribor» es una marcación de +30°. Con D = R + M y rumbo 45°: D = 45° + 30° = 75°. La a) resta como si fuera por babor y la d) no sale de ninguna cuenta.",
+  "clave": "D = R + M (estribor +, babor −).",
+  "trampa": "La a) aplica el signo de babor.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ]
+ },
+ "bal-per-2021-09-f-40": {
+  "explicacion": "El meridiano del lugar es el círculo máximo que pasa por los polos y por el punto donde está el barco. El meridiano cero, el de Greenwich y el meridiano origen son el mismo: el de referencia para las longitudes, que solo coincide con el nuestro si estamos en él.",
+  "clave": "Por los polos y por el barco: meridiano del lugar.",
+  "trampa": "Las a), c) y d) son tres nombres del mismo meridiano de referencia.",
+  "concepto": "bal-per-2021-09-f-40"
+ },
+ "bal-per-2026-03-b-37": {
+  "explicacion": "El meridiano del lugar es el círculo máximo que pasa por los polos y por el punto donde está el barco. El meridiano cero y el de Greenwich son el mismo, el de referencia de las longitudes, y un paralelo no pasa por los polos.",
+  "clave": "Por los polos y por el barco: meridiano del lugar.",
+  "trampa": "La d): los paralelos no pasan por los polos.",
+  "concepto": "bal-per-2021-09-f-40"
+ },
+ "bal-per-2021-12-c-39": {
+  "explicacion": "La carta trae la declinación de la zona para un año y su variación anual, para poder actualizarla. No depende del rumbo (eso es el desvío) ni permanece fija: cambia lentamente con los años. La d) está mal porque es el ángulo entre el norte verdadero y el magnético, no el meridiano geográfico (que es el propio norte verdadero).",
+  "clave": "Declinación: en la carta, con su año y su variación anual.",
+  "trampa": "La b): cambia con los años; por eso la carta da su variación anual."
+ },
+ "bal-per-2021-12-c-40": {
+  "explicacion": "La milla náutica (1852 m) se divide en 10 cables de 185,2 m cada uno. La a) se equivoca al hablar de un segundo de meridiano (es un minuto), la b) da 12 cables, y la d) habla de un minuto de paralelo, que mide menos cuanto más alta es la latitud.",
+  "clave": "1 milla = 10 cables; 1 cable = 185,2 m.",
+  "trampa": "La a) acierta los 1852 m pero pone segundo en vez de minuto."
+ },
+ "bal-per-2021-12-c-41": {
+  "explicacion": "«GpCt(6)B+DL 15s» se lee: grupos de 6 centelleos seguidos de un destello largo, luz blanca, periodo de 15 segundos. Es el ritmo de una cardinal sur. La b) habla de centelleante rápida (CtR), que no es lo que pone, y la d) cambia centelleos por destellos.",
+  "clave": "Ct = centelleante; DL = destello largo; Gp(n) = grupo de n.",
+  "trampa": "La b) añade «rápida», que en la abreviatura sería CtR.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ]
+ },
+ "bal-per-2021-12-d-39": {
+  "explicacion": "Un grado tiene 60 minutos y cada minuto de arco de meridiano es una milla náutica, así que un grado de meridiano equivale a 60 millas.",
+  "clave": "1° = 60′ = 60 millas.",
+  "trampa": "La a) piensa en sistema decimal: los grados sexagesimales tienen 60 minutos."
+ },
+ "bal-per-2021-12-d-41": {
+  "explicacion": "La latitud es el arco de meridiano comprendido entre el ecuador y el paralelo del lugar, de 0° a 90° N o S. Las demás hablan de arcos desde un meridiano (Greenwich), que es la forma de medir la longitud.",
+  "clave": "Latitud: arco de meridiano desde el ecuador (0–90° N/S).",
+  "trampa": "La c) dice arco de meridiano, pero contado desde Greenwich, lo que no tiene sentido."
+ },
+ "bal-per-2021-12-f-39": {
+  "explicacion": "El desvío es el ángulo entre el norte magnético y el norte de aguja, causado por los hierros y equipos del barco. Entre el norte verdadero y el magnético está la declinación, y entre el verdadero y el de aguja, la corrección total. El ángulo entre el norte de aguja y la proa es el rumbo de aguja.",
+  "clave": "Nv–Nm = dm; Nm–Na = Δ; Nv–Na = Ct.",
+  "trampa": "Confundirlo con la corrección total (la a).",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -3,
+    "desvio": 2
+   }
+  ],
+  "base": "and-py-2026-c1-n02",
+  "concepto": "and-py-2026-c1-n02"
+ },
+ "bal-per-2021-12-f-40": {
+  "explicacion": "El cable es la décima parte de la milla náutica: 1852 / 10 = 185,2 m. Las demás opciones cambian el orden de las cifras o mueven la coma.",
+  "clave": "1 cable = 185,2 m.",
+  "trampa": "La b) invierte cifras: 158,2 en vez de 185,2."
+ },
+ "bal-per-2022-03-b-38": {
+  "explicacion": "El ángulo entre el rumbo verdadero y el rumbo de superficie es el abatimiento, que produce el viento. La variación (declinación) y el desvío son errores de la aguja, no efectos del viento.",
+  "clave": "Abatimiento: Rv→Rs (viento). Deriva: Rs→Re (corriente).",
+  "trampa": "La b): «variación» es la declinación, un error de la aguja.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "babor"
+   }
+  ]
+ },
+ "bal-per-2022-03-c-38": {
+  "explicacion": "Rv = Ra + Ct. Una corrección total NE (E) es positiva: 003° + 11° = 014°. Si se restara saldría −8°, es decir, 352°, que sería el caso de una corrección W.",
+  "clave": "Rv = Ra + Ct (E +, W −).",
+  "trampa": "La d) resta la corrección como si fuera W."
+ },
+ "bal-per-2022-03-di-37": {
+  "explicacion": "De 2005 a 2022 pasan 17 años: 17 × 7′ = 119′ = 1° 59′ E. Como la declinación es W y la variación E, se restan: 2° 50′ − 1° 59′ = 0° 51′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La c) da 1° 50′ W, que confunde el valor de la carta con el resultado.",
+  "concepto": "bal-per-2022-03-di-37"
+ },
+ "bal-per-2025-04-ae-40": {
+  "explicacion": "De 2005 a 2022 pasan 17 años: 17 × 7′ = 119′ = 1° 59′ E. Como la declinación es W y la variación E, se restan: 2° 50′ − 1° 59′ = 0° 51′ W. Las otras cifras salen de contar mal los años (16 años darían 0° 58′ W).",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La c) sale de contar 16 años en lugar de 17.",
+  "concepto": "bal-per-2022-03-di-37"
+ },
+ "bal-per-2022-06-a-37": {
+  "explicacion": "De 1973 a 2020 hay 47 años: 47 × 6′ = 282′ = 4° 42′ E. Como la declinación es W y la variación E, se restan: 4° 42′ − 4° 10′ = 0° 32′, con el nombre de la mayor (E). La declinación pasa al E; de las opciones, la oficial es 0,73° NE.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La c) mantiene la declinación al W, cuando la corrección ya supera el valor inicial.",
+  "discrepancia": "La cuenta da 0° 32′ E, unos 0,53°, no 0,73°. La oficial es la única opción que acierta que la declinación pasa al E con un valor menor de un grado, pero su cifra no cuadra con el cálculo."
+ },
+ "bal-per-2022-06-a-40": {
+  "explicacion": "La deriva es el desvío de la trayectoria del barco que produce la corriente. El que produce el viento es el abatimiento, y el que causa el campo magnético del barco es el desvío de la aguja.",
+  "clave": "Corriente = deriva; viento = abatimiento.",
+  "trampa": "La b): el viento produce abatimiento, no deriva.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-per-2022-06-d-39": {
+  "explicacion": "El ángulo entre la línea proa-popa y la visual a un objeto es la marcación, porque se cuenta desde la proa del barco. La demora se mide desde el norte, el rumbo es el ángulo entre el norte y la proa, y la declinación es un error de la aguja.",
+  "clave": "Si empieza en la proa, es marcación.",
+  "trampa": "«Demora» suena parecido, pero esa se cuenta desde el norte, no desde la proa.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 30,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "base": "and-2020-c3-t38",
+  "concepto": "and-2020-c3-t38"
+ },
+ "bal-per-2024-09-e-41": {
+  "explicacion": "El ángulo entre la línea proa-popa, contado desde la proa, y la visual a un objeto es la marcación. La demora se mide desde el norte, el rumbo es el ángulo entre el norte y la proa, y la declinación es un error de la aguja.",
+  "clave": "Si empieza en la proa, es marcación.",
+  "trampa": "«Demora» suena parecido, pero esa se cuenta desde el norte, no desde la proa.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 30,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "base": "and-2020-c3-t38",
+  "concepto": "and-2020-c3-t38"
+ },
+ "bal-per-2022-06-d-40": {
+  "explicacion": "En la carta Mercator una milla es un minuto de latitud, por eso las distancias se miden en la escala de latitudes. Un minuto de longitud o de paralelo mide cada vez menos al subir de latitud, así que no sirve como milla.",
+  "clave": "1 milla = 1′ de latitud.",
+  "trampa": "La b) suena bien, pero la carta mide millas en la escala de latitudes, no en la del ecuador."
+ },
+ "bal-per-2022-06-e-37": {
+  "explicacion": "La demora es el ángulo que forma el meridiano (la dirección norte) con la visual a un objeto, contado de 0° a 360° en sentido horario. Si el ángulo se mide desde la proa, es una marcación (la a), y el ángulo entre el meridiano y la línea proa-popa es el rumbo (la c).",
+  "clave": "Demora: desde el norte. Marcación: desde la proa. Rumbo: norte a proa.",
+  "trampa": "La a) describe la marcación; no confundas demora y marcación.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "demora": 60,
+    "etiqueta": "faro"
+   }
+  ],
+  "base": "and-2020-c1-t37",
+  "concepto": "and-2020-c1-t37"
+ },
+ "bal-per-2022-06-e-39": {
+  "explicacion": "La hora reloj de bitácora es la hora que se lleva a bordo, la que fija el patrón para organizar la vida del barco. Puede coincidir con la hora legal u oficial de un Estado, pero no tiene por qué.",
+  "clave": "Hora reloj de bitácora = hora de a bordo, la decide el patrón.",
+  "trampa": "Las opciones de hora oficial o legal son las tentaciones típicas.",
+  "base": "and-2020-c1-t40",
+  "concepto": "and-2020-c1-t40"
+ },
+ "bal-per-2022-06-e-41": {
+  "explicacion": "Una luz de ocultaciones permanece encendida la mayor parte del tiempo y se apaga brevemente a intervalos regulares; para identificarla te fijas en el ritmo de esas ocultaciones. La a) y la b) se inventan una función de emergencia, y la d) describe una luz de destellos.",
+  "clave": "Oc: casi siempre encendida y se apaga a ratos.",
+  "trampa": "La d) es una luz de destellos, justo al revés.",
+  "ilustraciones": [
+   {
+    "tipo": "ritmo",
+    "ritmo": "Oc 6s"
+   }
+  ],
+  "base": "and-2020-c1-t41",
+  "concepto": "and-2020-c1-t41"
+ },
+ "bal-per-2022-09-a-38": {
+  "explicacion": "El meridiano de referencia para las longitudes recibe varios nombres: meridiano cero, meridiano de Greenwich, primer meridiano o meridiano base. Los tres nombres de las opciones son correctos.",
+  "clave": "Meridiano 0 = Greenwich = primer meridiano.",
+  "trampa": "No te quedes con uno solo: los tres nombres valen."
+ },
+ "bal-per-2022-09-a-40": {
+  "explicacion": "El rumbo magnético es el ángulo entre el meridiano magnético y el eje longitudinal del barco (la proa), medido en sentido horario de 000° a 360°. Las opciones con 180° confunden con la marcación por bandas, y el eje transversal no indica la dirección del barco.",
+  "clave": "Rumbo: del norte a la proa, de 0° a 360° en sentido horario.",
+  "trampa": "La a) acierta el eje, pero limita el ángulo a 180°."
+ },
+ "bal-per-2022-09-c-37": {
+  "explicacion": "La declinación magnética es el ángulo entre el norte magnético y el norte verdadero, y depende del lugar y del año. Aguja–verdadero es la corrección total, magnético–aguja es el desvío, y el ángulo entre la crujía y el norte verdadero es el rumbo verdadero.",
+  "clave": "Tres nortes: Nv–Nm dm, Nm–Na Δ, Nv–Na Ct.",
+  "trampa": "La b) es el desvío, que depende del barco."
+ },
+ "bal-per-2022-09-c-38": {
+  "explicacion": "La entrante (creciente o flujo) es el periodo en que sube el agua, desde una bajamar hasta la pleamar siguiente; su duración es ese intervalo. De pleamar a bajamar es la vaciante, y entre dos pleamares o dos bajamares hay un ciclo completo.",
+  "clave": "Entrante o creciente: bajamar → pleamar.",
+  "trampa": "La a) es la vaciante, cuando el agua baja.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-per-2022-09-c-39": {
+  "explicacion": "El meridiano que pasa por el punto donde está el observador es el meridiano del lugar. El meridiano cero y el de Greenwich son el mismo, el de referencia para las longitudes.",
+  "clave": "Meridiano del lugar = el tuyo.",
+  "trampa": "La a) suena genérica, pero el de referencia es Greenwich, no el tuyo.",
+  "base": "and-2025-c3-t40",
+  "concepto": "and-2025-c3-t40"
+ },
+ "bal-per-2022-09-m-37": {
+  "explicacion": "La rosa indica 3° 50′ W en 2016 con una variación anual de 6′ W, es decir, la declinación W va aumentando. De 2016 a 2022 pasan 6 años: 6 × 6′ = 36′ W. Como ambas son W, se suman: 3° 50′ + 36′ = 4° 26′ W.",
+  "clave": "Mismo sentido, se suman; sentido contrario, se restan.",
+  "trampa": "La b) resta los 36′ cuando la variación es W, igual que la declinación."
+ },
+ "bal-per-2022-09-m-38": {
+  "explicacion": "El ángulo entre el norte de aguja y el norte verdadero es la corrección total, que reúne declinación y desvío: Ct = dm + Δ (E positivo, W negativo). El desvío solo cubre magnético–aguja, y la variación y la declinación son lo mismo: verdadero–magnético.",
+  "clave": "Ct = dm + Δ (E +, W −).",
+  "trampa": "La declinación y el desvío son cada uno una parte; aquí se pide el total.",
+  "base": "and-2023-c2-t39",
+  "concepto": "and-2023-c2-t39"
+ },
+ "bal-per-2022-09-m-39": {
+  "explicacion": "El coeficiente K = 1,1 multiplica lo que marca la corredera para obtener el valor verdadero, tanto en velocidad como en distancia (son proporcionales en el mismo tiempo). La corredera marca de menos y la realidad es un 10 % mayor. La c) divide cuando hay que multiplicar.",
+  "clave": "Real = K × corredera (velocidad o distancia).",
+  "trampa": "La c) divide: eso daría la corredera a partir de la real."
+ },
+ "bal-per-2022-09-m-41": {
+  "explicacion": "S 25° E se cuenta desde el sur 25° hacia el este. En circular: 180° − 25° = 155°. 205° sería S 25° W, y 115° y 165° no salen de esta conversión.",
+  "clave": "Cuadrante SE: 180° − ángulo.",
+  "trampa": "La c) es S 25° W: gira hacia el lado contrario."
+ },
+ "bal-per-2022-12-a-37": {
+  "explicacion": "La estela marca la dirección en que avanza realmente el barco sobre el agua; el ángulo entre ella y la línea proa-popa es el abatimiento, causado por el viento. La corriente no se ve en la estela, porque mueve a la vez barco y agua.",
+  "clave": "Ángulo estela–crujía = abatimiento.",
+  "trampa": "La a): la corriente arrastra el agua y el barco a la vez, así que no se refleja en la estela.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-per-2022-12-be-39": {
+  "explicacion": "De 2005 a 2013 pasan 8 años: 8 × 7′ = 56′ E. Como la declinación es W y la variación E, se restan: 2° 50′ − 56′ = 1° 54′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La d) suma los 56′ cuando la variación E reduce una declinación W."
+ },
+ "bal-per-2022-12-c-38": {
+  "explicacion": "El rumbo que se cuenta desde el meridiano magnético (norte magnético) es el rumbo magnético. El verdadero parte del norte verdadero, el de aguja del norte de aguja, y el de superficie es el verdadero corregido por el viento.",
+  "clave": "Cada rumbo toma el nombre de su norte.",
+  "trampa": "La d): el de aguja parte del norte de aguja, que incluye el desvío."
+ },
+ "bal-per-2022-12-c-39": {
+  "explicacion": "Las líneas que unen puntos de igual profundidad se llaman veriles o isóbatas (isobáticas): son dos nombres de lo mismo. Las sondas son los números de profundidad de cada punto, no las líneas.",
+  "clave": "Veril = isóbata = igual profundidad.",
+  "trampa": "La b): la sonda es el dato de un punto, no la línea que une varios."
+ },
+ "bal-per-2022-12-fd-37": {
+  "explicacion": "La duración de la creciente es el intervalo entre una bajamar y la pleamar que la sigue, mientras el agua sube. La b) es la duración de la vaciante, y la c) y la d) no son conceptos de duración de marea.",
+  "clave": "Creciente: bajamar → pleamar. Vaciante: pleamar → bajamar.",
+  "trampa": "La b) es la vaciante, el tramo en que el agua baja.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-per-2022-12-fd-38": {
+  "explicacion": "«St» es la abreviatura internacional (del inglés stones) de fondo de piedras. La arena es S (sand), el cascajo se abrevia aparte y la posidonia aparece como hierba o algas, no con «St».",
+  "clave": "S arena, St piedras, M fango, R roca.",
+  "trampa": "La a): S sola es arena; con la t, piedras."
+ },
+ "bal-per-2022-12-fd-39": {
+  "explicacion": "90° abierto por estribor significa tenerlo justo por el través de estribor (la a), y su demora es D = R + M: con rumbo 45°, 45° + 90° = 135° (la b). Las dos son correctas. La c) falla: una marcación circular de 270° sería el través de babor.",
+  "clave": "Través de estribor = M +90°; D = R + 90°.",
+  "trampa": "La c): 270° desde la proa en sentido horario es el través de babor.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "traves"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2022-12-fd-39"
+ },
+ "bal-per-2026-09-d-37": {
+  "explicacion": "90° abierto por estribor significa tenerlo justo por el través de estribor (la a), y su demora es D = R + M: con rumbo 45°, 45° + 90° = 135° (la b). Las dos son correctas. La c) lo sitúa a babor, que es justo el lado contrario.",
+  "clave": "Través de estribor = M +90°; D = R + 90°.",
+  "trampa": "La c) cambia la banda: 90° a babor sería el otro través.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "traves"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2022-12-fd-39"
+ },
+ "bal-per-2022-12-fd-41": {
+  "explicacion": "La distancia a una costa baja y arenosa es la línea de posición menos fiable: no se distingue bien dónde acaba la tierra, ni a ojo ni en el radar. Las costas altas y escarpadas dan buenos ecos y referencias, y las enfilaciones y oposiciones son de las líneas más seguras.",
+  "clave": "Costa baja y arenosa = distancia poco fiable.",
+  "trampa": "La c): la costa alta y acantilada es justo la buena para medir distancias."
+ },
+ "bal-per-2023-03-a-38": {
+  "explicacion": "De 2005 a 2023 pasan 18 años: 18 × 5′ = 90′ = 1° 30′ E. Como la declinación es W y la variación E, se restan: 3° 50′ − 1° 30′ = 2° 20′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La d) suma los 90′, cuando la variación E reduce una declinación W."
+ },
+ "bal-per-2023-03-bf-41": {
+  "explicacion": "Las mareas las produce la atracción gravitatoria de la Luna y del Sol sobre las masas de agua. La Luna es la que más influye por su cercanía, pero el Sol también cuenta: cuando se alinean dan las mareas vivas. El resto de astros apenas influye.",
+  "clave": "Mareas: Luna (principal) + Sol.",
+  "trampa": "La d): la Luna es la principal, pero no la única."
+ },
+ "bal-per-2023-06-bg-37": {
+  "explicacion": "Los derroteros describen la costa con detalle e incluyen perfiles o vistas de la costa para reconocerla. El almanaque náutico trae datos astronómicos, el anuario de mareas las horas y alturas de la marea, y el libro de faros las características de las luces.",
+  "clave": "Perfiles y descripción de la costa = derrotero.",
+  "trampa": "La c): el libro de faros describe las luces, no el perfil de la costa."
+ },
+ "bal-per-2023-06-bg-38": {
+  "explicacion": "La diferencia de altura entre una pleamar y la bajamar consecutiva es la amplitud de la marea. La semiamplitud es la mitad, la altura de la marea es el nivel en un instante sobre el cero, y el coeficiente compara una marea con la media.",
+  "clave": "Amplitud = pleamar − bajamar (en metros).",
+  "trampa": "La a): la semiamplitud es solo la mitad de esa diferencia.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "base": "and-2024-c3-t41",
+  "concepto": "and-2024-c3-t41"
+ },
+ "bal-per-2023-06-bg-39": {
+  "explicacion": "La carta trae la declinación de un año y su variación anual. Para actualizarla se multiplica esa variación por los años transcurridos y se suma o se resta al valor de la carta, según su sentido. La declinación sí varía, y no se busca en el derrotero ni se cambia de carta cada cinco años.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La a): la declinación cambia con los años, por eso la carta da su variación."
+ },
+ "bal-per-2023-09-a-39": {
+  "explicacion": "La hora reloj de bitácora la fija el patrón, y por regla general se hace coincidir en puerto con la hora oficial del país y en alta mar con la hora del huso en que se navega. La hora civil de Greenwich no es la que se usa como hora de a bordo.",
+  "clave": "Hora de bitácora: en puerto, la oficial; en alta mar, la del huso.",
+  "trampa": "La a) dice «siempre»: la hora de a bordo no es la de Greenwich."
+ },
+ "bal-per-2023-09-a-41": {
+  "explicacion": "El rumbo que se mide desde el norte de 000° a 360° en sentido horario es el rumbo circular. El cuadrantal se mide de 0° a 90° desde el N o el S hacia el E o el W. «Azimutal» y «astronómico» no son formas de contar rumbos.",
+  "clave": "Circular 0–360°; cuadrantal N/S x° E/W.",
+  "trampa": "La c): el acimut es un término de astronomía, no un tipo de rumbo."
+ },
+ "bal-per-2023-09-bf-41": {
+  "explicacion": "De 1971 a 2006 pasan 35 años: 35 × 3′ = 105′ = 1° 45′. Al ser un incremento, la declinación W aumenta: 1° 06′ + 1° 45′ = 2° 51′ W, unos 2,85° NW (es decir, W).",
+  "clave": "Incremento: la declinación crece en su sentido.",
+  "trampa": "La a) y la c) restan, como si fuera un decremento."
+ },
+ "bal-per-2023-12-a-40": {
+  "explicacion": "Cuando las longitudes son de distinto nombre (una W y otra E), la diferencia en longitud es la suma: 40° + 20° = 60°. Restarlas (20°) solo vale con el mismo nombre.",
+  "clave": "Mismo nombre, se restan; distinto nombre, se suman.",
+  "trampa": "Ninguna da 20°, pero las cifras intermedias tientan si no haces la suma."
+ },
+ "bal-per-2023-12-b-37": {
+  "explicacion": "N 80° W se cuenta desde el norte 80° hacia el oeste. En circular: 360° − 80° = 280°. 080° es N 80° E y 260° es S 80° W.",
+  "clave": "N x W = 360 − x.",
+  "trampa": "La c) es S 80° W, que parte del sur."
+ },
+ "bal-per-2023-12-b-40": {
+  "explicacion": "El ángulo entre la línea norte-sur (meridiano) y la línea proa-popa es el rumbo. Si se mide desde la proa hasta la visual a un objeto es la marcación, y desde el norte hasta la visual, la demora.",
+  "clave": "Norte → proa = rumbo; proa → objeto = marcación; norte → objeto = demora.",
+  "trampa": "La b): la marcación necesita la visual a un objeto."
+ },
+ "bal-per-2023-12-c-39": {
+  "explicacion": "De 2007 a 2019 pasan 12 años: 12 × 7′ = 84′ = 1° 24′ E. Como la declinación es W y la variación E, se restan: 9° 40′ − 1° 24′ = 8° 16′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La d) suma 1° 24′ cuando la variación E reduce una declinación W.",
+  "concepto": "bal-per-2023-12-c-39"
+ },
+ "bal-per-2025-12-b-41": {
+  "explicacion": "De 2007 a 2019 pasan 12 años: 12 × 7′ = 84′ = 1° 24′ E. Como la declinación es W y la variación E, se restan: 9° 40′ − 1° 24′ = 8° 16′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La a) suma 1° 24′ cuando la variación E reduce una declinación W.",
+  "concepto": "bal-per-2023-12-c-39"
+ },
+ "bal-per-2023-12-c-41": {
+  "explicacion": "Las cartas españolas actuales usan las abreviaturas internacionales del fondo, en inglés: S (sand) es arena, St (stones) piedras, M (mud) fango, R (rock) roca. Por eso la arena aparece como S, y St es otra cosa.",
+  "clave": "Abreviaturas internacionales: S arena, M fango, R roca, St piedras.",
+  "trampa": "La c) «St» se parece, pero son piedras."
+ },
+ "bal-per-2023-12-e-39": {
+  "explicacion": "La declinación magnética varía con el tiempo (por eso la carta indica su variación anual) y con el lugar. No depende del rumbo, del material del barco ni de la aguja: eso afecta al desvío.",
+  "clave": "Declinación: lugar + año. Desvío: barco + rumbo.",
+  "trampa": "La b): el que cambia con el rumbo es el desvío."
+ },
+ "bal-per-2023-12-e-40": {
+  "explicacion": "La longitud se cuenta desde el meridiano de Greenwich hacia el este o el oeste. Mirando al norte, a la derecha está el este: la longitud será E. Norte y sur son nombres de la latitud.",
+  "clave": "A la derecha de Greenwich (mirando al N), longitud E.",
+  "trampa": "La a) y la b) son nombres de la latitud, no de la longitud."
+ },
+ "bal-per-2023-12-e-41": {
+  "explicacion": "La longitud se cuenta desde Greenwich de 0° a 180° hacia el E o hacia el W, así que su máximo es 180°. La latitud llega como máximo a 90°.",
+  "clave": "Longitud 0–180° E/W; latitud 0–90° N/S.",
+  "trampa": "La a): 360° es la vuelta completa, pero la longitud se parte en E y W."
+ },
+ "bal-per-2024-04-a-38": {
+  "explicacion": "El meridiano del lugar es la circunferencia máxima que pasa por los dos polos y por la situación del barco. Los meridianos no son paralelos entre sí (todos convergen en los polos), la circunferencia paralela al ecuador es un paralelo, y los meridianos son círculos máximos, no menores.",
+  "clave": "Meridiano = círculo máximo de polo a polo por tu posición.",
+  "trampa": "La a) dice «circunferencia menor»: los meridianos son círculos máximos.",
+  "base": "and-2022-c3-t37",
+  "concepto": "and-2022-c3-t37"
+ },
+ "bal-per-2024-04-a-39": {
+  "explicacion": "La pregunta se refiere a la carta del examen, cuyos datos no vienen en el enunciado. Con los que usan otras preguntas de esa carta (2° 50′ W en 2005 y decremento anual de 7′ E), la declinación se anula cuando los años × 7′ igualan 170′: 170 / 7 ≈ 24,3 años, es decir, hacia 2029.",
+  "clave": "Años hasta dm = 0: dm de la carta / variación anual.",
+  "trampa": "La b) se queda corta: en 2019 aún quedaría casi 1° W."
+ },
+ "bal-per-2024-04-b-38": {
+  "explicacion": "El chapitel, los imanes y el estilo son partes de la aguja náutica: los imanes van unidos a la rosa, que descansa mediante el chapitel sobre la punta del estilo. El mortero y la línea de fe también lo son, pero el capacete pertenece a la bitácora y «núcleo» no es una pieza de la aguja.",
+  "clave": "Rosa con imanes → chapitel → sobre el estilo, dentro del mortero.",
+  "trampa": "La a) y la c) mezclan piezas válidas con otra que no es de la aguja.",
+  "base": "and-2025-c2-t38",
+  "concepto": "and-2025-c2-t38"
+ },
+ "bal-per-2024-04-ce-38": {
+  "explicacion": "Con presión baja el aire empuja menos sobre el mar y el nivel sube: la altura de marea es mayor que la prevista, unos 1 cm por cada hPa por debajo de 1013. Con presión alta ocurre lo contrario. No es que no afecte ni que solo retrase la pleamar.",
+  "clave": "Borrasca: más agua; anticiclón: menos agua (1 cm por hPa).",
+  "trampa": "La d) es el efecto de la presión alta."
+ },
+ "bal-per-2024-04-ce-39": {
+  "explicacion": "S 45° W se cuenta desde el sur 45° hacia el oeste. En circular: 180° + 45° = 225°. 135° sería S 45° E, 315° es N 45° W y 045° es N 45° E.",
+  "clave": "S x W = 180 + x; S x E = 180 − x.",
+  "trampa": "La c) es S 45° E: gira hacia el lado contrario.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 225
+   }
+  ]
+ },
+ "bal-per-2024-04-ce-40": {
+  "explicacion": "Sin viento, el rumbo de superficie coincide con el verdadero, y la corriente aparta al barco de él: la deriva es el ángulo entre el rumbo verdadero y el efectivo (b), que es lo mismo que el ángulo entre la línea proa-popa y la trayectoria real sobre el fondo (c). La a) sería el abatimiento, que aquí vale cero.",
+  "clave": "Sin viento: deriva = ángulo Rv → Ref.",
+  "trampa": "La a): entre Rv y Rs está el abatimiento, que sin viento no existe.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-per-2024-04-ce-41": {
+  "explicacion": "Distancia real = K × distancia de corredera = 0,94 × 13,6 = 12,78 millas. La c) y la d) dividen o suman en lugar de multiplicar, y la a) es un error de redondeo.",
+  "clave": "Real = K × corredera.",
+  "trampa": "La c) sale de dividir 13,6 / 0,94."
+ },
+ "bal-per-2024-04-df-39": {
+  "explicacion": "La línea de fe es la marca del mortero que representa la proa: el rumbo se lee en la rosa frente a ella. Si no coincide con el plano de crujía o no es paralela a él, leerás un rumbo distinto del que llevas. No tiene que ver con la estabilidad de la aguja.",
+  "clave": "Línea de fe paralela a la crujía, o el rumbo leído será falso.",
+  "trampa": "La a) habla de un eje «longitudinal transversal», que es una contradicción.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "crujia",
+     "babor",
+     "estribor"
+    ]
+   }
+  ]
+ },
+ "bal-per-2024-07-be-39": {
+  "explicacion": "El tribunal da por buenas las tres definiciones: la milla es la longitud de un minuto de arco, equivale a 1852 m y corresponde a un minuto de latitud (por eso las distancias se miden en la escala de latitudes).",
+  "clave": "1 milla = 1′ de latitud = 1852 m.",
+  "trampa": "No te quedes con una: el tribunal acepta las tres.",
+  "discrepancia": "En rigor, la milla náutica es el minuto de arco de meridiano (de latitud). Un minuto de arco de ecuador mide unos 1855 m (milla geográfica), así que la a) es una aproximación."
+ },
+ "bal-per-2024-07-c-40": {
+  "explicacion": "«Cy» es la abreviatura internacional (del inglés clay) de fondo de arcilla. La arena es S, la piedra St o R, y las algas Wd.",
+  "clave": "Cy = arcilla (clay).",
+  "trampa": "La c): la arena es S, no Cy."
+ },
+ "bal-per-2024-09-e-37": {
+  "explicacion": "La bajamar escorada es la mayor bajamar (la más baja) que se puede dar en condiciones normales, la de las mareas vivas equinocciales. Refiriendo a ella las sondas, la carta da la profundidad mínima: casi siempre habrá más agua, lo que es más seguro. No es un promedio y no tiene que ver con escorar el barco.",
+  "clave": "Sondas desde la bajamar más baja: la carta te da lo mínimo.",
+  "trampa": "La b) se deja engañar por «escorada»: no se refiere a la escora del barco."
+ },
+ "bal-per-2024-09-f-37": {
+  "explicacion": "La longitud es el arco de ecuador contado desde el meridiano de Greenwich hasta el meridiano del lugar, de 0° a 180° hacia el E o el W. La latitud es arco de meridiano desde el ecuador; la diferencia en longitud se refiere a dos lugares y el apartamiento es una distancia en millas sobre un paralelo.",
+  "clave": "Longitud: por el ecuador desde Greenwich. Latitud: por el meridiano desde el ecuador.",
+  "trampa": "La c): las «diferencias» son entre dos lugares, no desde Greenwich.",
+  "base": "and-2020-c3-t37",
+  "concepto": "and-2020-c3-t37"
+ },
+ "bal-per-2024-09-f-40": {
+  "explicacion": "La deriva es el ángulo entre la dirección de avance sobre el agua y el rumbo efectivo sobre el fondo, causado por la corriente. Sin viento el rumbo de superficie coincide con el verdadero, así que la deriva es el ángulo entre Rv y Ref. El abatimiento (viento) va entre Rv y Rs, y el desvío y la declinación son errores de la aguja.",
+  "clave": "Abatimiento: Rv→Rs (viento). Deriva: Rs→Ref (corriente).",
+  "trampa": "Confundir abatimiento y deriva.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ],
+  "base": "and-py-2021-c1-n05",
+  "concepto": "and-py-2021-c1-n05"
+ },
+ "bal-per-2024-12-a-41": {
+  "explicacion": "La rosa indica 3° 50′ W en 2016 con variación anual de 6′ W, así que la declinación W aumenta. De 2016 a 2022 pasan 6 años: 6 × 6′ = 36′ W. Como ambas son W, se suman: 3° 50′ + 36′ = 4° 26′ W.",
+  "clave": "Mismo sentido, se suman; sentido contrario, se restan.",
+  "trampa": "La a) resta los 36′ cuando la variación es W, igual que la declinación."
+ },
+ "bal-per-2024-12-b-39": {
+  "explicacion": "N 18° W se cuenta desde el norte 18° hacia el oeste. En circular: 360° − 18° = 342°. 288° es N 72° W y 252° es S 72° W.",
+  "clave": "N x W = 360 − x.",
+  "trampa": "La a) sale de sumar 270° + 18°, partiendo del oeste en lugar del norte."
+ },
+ "bal-per-2024-12-b-40": {
+  "explicacion": "Recalar es llegar a la vista de un puerto o punto de la costa para reconocerlo al final de una travesía. Calafatear es sellar las juntas del casco, y salir de puerto por mal tiempo no tiene nada que ver con la recalada.",
+  "clave": "Recalada = llegar y reconocer la costa o el puerto.",
+  "trampa": "La b) juega con el parecido de palabras: calafatear no es recalar."
+ },
+ "bal-per-2024-12-df-40": {
+  "explicacion": "De 2009 a 2017 pasan 8 años: 8 × 8′ = 64′ = 1° 04′ E. Como la declinación es W y la variación E, se restan: 4° 25′ − 1° 04′ = 3° 21′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La d) cambia el nombre a E, pero la corrección no supera el valor inicial."
+ },
+ "bal-per-2025-04-ae-37": {
+  "explicacion": "La marca de peligro nuevo (o de naufragio de emergencia) puede llevar un racón que responde con la letra Morse «D» (— · ·), además de su luz alternante azul y amarilla. Las marcas de aguas navegables y de peligro aislado tienen sus propias características, y el racón en «D» se reserva a los peligros nuevos.",
+  "clave": "Racón «D» = peligro nuevo.",
+  "trampa": "La d): el peligro aislado es un peligro conocido y cartografiado, no nuevo."
+ },
+ "bal-per-2025-04-ae-38": {
+  "explicacion": "La incorrecta es la b): una marca sin luz se llama baliza ciega, pero sigue siendo útil como marca diurna por su forma, color y tope. Las demás son ciertas: los faros pueden llevar marca de tope, existen buques faro y pueden servir de enfilación o como marca visible en el radar.",
+  "clave": "Baliza ciega = sin luz, pero útil de día.",
+  "trampa": "La c) parece rara, pero los buques faro existen."
+ },
+ "bal-per-2025-04-bf-37": {
+  "explicacion": "Las boyas SADO (sistemas de adquisición de datos oceánicos, ODAS en inglés) miden y transmiten en tiempo real datos como el oleaje, el viento o la temperatura del agua. Las radiobalizas EPIRB sirven para emergencias, las MOB para hombre al agua y el AIS identifica buques y ayudas.",
+  "clave": "SADO/ODAS = boyas de datos oceanográficos.",
+  "trampa": "La d): el AIS transmite identidad y posición, no datos de oleaje."
+ },
+ "bal-per-2025-04-bf-38": {
+  "explicacion": "Las MAtoN (ayudas móviles a la navegación) son marcas que se colocan para señalar peligros que se mueven o derivan, como un objeto a la deriva. VTS son los servicios de tráfico marítimo, SAR el salvamento y MOB hombre al agua.",
+  "clave": "Ayuda móvil a la navegación = MAtoN.",
+  "trampa": "La a): el VTS es un servicio de control de tráfico, no una marca."
  }
 }

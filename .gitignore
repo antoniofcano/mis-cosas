@@ -1,3 +1,6 @@
 node_modules/
 .DS_Store
 .claude/worktrees/
+# Caché del proceso de extracción de bancos (PDF oficiales descargados y salidas intermedias): nunca se sube
+nautica/.cache/
+nautica/tools/bancos/py/__pycache__/

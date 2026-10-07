@@ -1,0 +1,252 @@
+{
+ "eje": "andalucia",
+ "prefijo": "and",
+ "nombre": "Andalucía",
+ "organismo": "Junta de Andalucía (Instituto Andaluz del Deporte)",
+ "indice": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/cuestionarios-examenes.html",
+ "descarga": {
+  "userAgent": true,
+  "rangos": [
+   "/export/drupaljda/"
+  ]
+ },
+ "adaptador": {
+  "per": "hoja-optica",
+  "py": "hoja-optica"
+ },
+ "ids": "andalucia",
+ "salida": "cache",
+ "titulaciones": {
+  "per": {
+   "preguntas": 45,
+   "modelos": [
+    "A",
+    "B"
+   ],
+   "disposicion": "per-rd875"
+  },
+  "py": {
+   "preguntas": 40,
+   "modulos": {
+    "generico": 20,
+    "navegacion": 20
+   },
+   "disposicion": "py-modulos"
+  }
+ },
+ "notas": "Convocatorias 2015-2019 (activa: false): mismo formato (cuestionario de texto + hoja óptica escaneada); se procesan con --todas.",
+ "convocatorias": [
+  {
+   "clave": "2015-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2015.html",
+   "fecha": null,
+   "activa": false
+  },
+  {
+   "clave": "2015-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2015.html",
+   "fecha": null,
+   "activa": false
+  },
+  {
+   "clave": "2015-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2015.html",
+   "fecha": null,
+   "activa": false
+  },
+  {
+   "clave": "2016-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2016.html",
+   "fecha": "2016-04-09",
+   "activa": false
+  },
+  {
+   "clave": "2016-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2016.html",
+   "fecha": "2016-06-18",
+   "activa": false
+  },
+  {
+   "clave": "2016-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2016.html",
+   "fecha": "2016-11-19",
+   "activa": false
+  },
+  {
+   "clave": "2017-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2017.html",
+   "fecha": "2017-04-01",
+   "activa": false
+  },
+  {
+   "clave": "2017-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2017.html",
+   "fecha": "2017-06-17",
+   "activa": false
+  },
+  {
+   "clave": "2017-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2017.html",
+   "fecha": "2017-11-11",
+   "activa": false
+  },
+  {
+   "clave": "2018-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/investigacion-innovacion-deportiva/paginas/examenes-primeraconvocatoria-2018.html",
+   "fecha": "2018-03-10",
+   "activa": false
+  },
+  {
+   "clave": "2018-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2018.html",
+   "fecha": "2018-05-26",
+   "activa": false
+  },
+  {
+   "clave": "2018-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2018.html",
+   "fecha": "2018-09-29",
+   "activa": false
+  },
+  {
+   "clave": "2018-c4",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-cuartaconvocatoria-2018.html",
+   "fecha": "2018-12-01",
+   "activa": false
+  },
+  {
+   "clave": "2019-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2019.html",
+   "fecha": "2019-04-06",
+   "activa": false
+  },
+  {
+   "clave": "2019-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2019.html",
+   "fecha": "2019-06-15",
+   "activa": false
+  },
+  {
+   "clave": "2019-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2019.html",
+   "fecha": "2019-11-23",
+   "activa": false
+  },
+  {
+   "clave": "2020-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-extraordinariaprimera-2020.html",
+   "fecha": "2020-07-25",
+   "activa": true
+  },
+  {
+   "clave": "2020-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2020.html",
+   "fecha": "2020-12-19",
+   "activa": true
+  },
+  {
+   "clave": "2021-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2021.html",
+   "fecha": "2021-05-22",
+   "activa": true
+  },
+  {
+   "clave": "2021-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2021.html",
+   "fecha": "2021-11-20",
+   "activa": true
+  },
+  {
+   "clave": "2022-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2022.html",
+   "fecha": "2022-03-26",
+   "activa": true
+  },
+  {
+   "clave": "2022-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/cuestionarios-segundaconvocatoria-2022.html",
+   "fecha": "2022-06-11",
+   "activa": true
+  },
+  {
+   "clave": "2022-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/cuestionarios-terceraconvocatoria-2022.html",
+   "fecha": "2022-11-05",
+   "activa": true
+  },
+  {
+   "clave": "2023-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-tests-soluciones-1-2023.html",
+   "fecha": "2023-03-25",
+   "activa": true
+  },
+  {
+   "clave": "2023-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-tests-soluciones-2-2023.html",
+   "fecha": "2023-06-17",
+   "activa": true
+  },
+  {
+   "clave": "2023-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-tests-soluciones-3-2023.html",
+   "fecha": "2023-10-21",
+   "activa": true
+  },
+  {
+   "clave": "2024-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-tests-soluciones-1-2024.html",
+   "fecha": "2024-04-06",
+   "activa": true
+  },
+  {
+   "clave": "2024-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-tests-soluciones-2-2024.html",
+   "fecha": "2024-07-13",
+   "activa": true
+  },
+  {
+   "clave": "2024-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-tests-soluciones-3-2024.html",
+   "fecha": "2024-11-16",
+   "activa": true
+  },
+  {
+   "clave": "2025-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-1-2025.html",
+   "fecha": "2025-03-22",
+   "activa": true
+  },
+  {
+   "clave": "2025-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-2-2025.html",
+   "fecha": "2025-07-05",
+   "activa": true
+  },
+  {
+   "clave": "2025-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-3-2025.html",
+   "fecha": "2025-11-15",
+   "activa": true
+  },
+  {
+   "clave": "2026-c1",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-1-2026.html",
+   "fecha": "2026-03-21",
+   "activa": true
+  },
+  {
+   "clave": "2026-c2",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-2-2026.html",
+   "fecha": "2026-06-13",
+   "activa": true
+  }
+ ],
+ "repetidas": {
+  "entreConvocatorias": false,
+  "ordenModelos": [
+   "A",
+   "B"
+  ],
+  "permutaciones": true
+ }
+}

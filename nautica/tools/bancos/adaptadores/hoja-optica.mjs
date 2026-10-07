@@ -205,7 +205,8 @@ export function extraer(ctx, tit) {
         numero: q.numero, orden: tit === 'py' ? (modulo === 'navegacion' ? 20 : 0) + q.numero : q.numero,
         seccion: q.seccion, utPdf: ut ? Number(ut) : null, utTituloPdf: utTitulo || null,
         enunciado: q.enunciado, opciones: q.opciones, contexto: q.contexto ?? null,
-        respuesta: r ? { letras: r.marca ? [...r.marca] : [], estado: r.estado, origen: 'omr', puntos: r.puntos } : { letras: [], estado: 'sin-hoja', origen: 'omr' },
+        // umbral: tinta neta mínima de una burbuja marcada en esa hoja (para medir la confianza de la lectura en los informes).
+        respuesta: r ? { letras: r.marca ? [...r.marca] : [], estado: r.estado, origen: 'omr', puntos: r.puntos, umbral: hoja.umbral?.marca ?? null } : { letras: [], estado: 'sin-hoja', origen: 'omr' },
         fecha: cu.fecha ?? fechaConfig ?? null,
         fuentes: { examen: t.c.url, plantilla: t.p.url, pagina: t.c.pagina, correccion: paginaCorreccion(t.clave)[0] ?? null },
         paginaPDF: q.pagina,

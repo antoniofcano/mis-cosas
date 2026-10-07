@@ -17,6 +17,14 @@ import { clasificarNombre } from '../tools/bancos/descubrir/andalucia.mjs';
 import { documento, leerCSV } from '../tools/bancos/descubrir/murcia.mjs';
 import { esPaginaCaptcha, verificarArchivo } from '../tools/bancos/ejes/murcia/verificar.mjs';
 import { respuestaFuente } from '../tools/bancos/etapas/correcciones.mjs';
+import { CACHE } from '../tools/bancos/lib/comun.mjs';
+import {
+  confianza, correccionesFrenteHoja, cruceModelos, cruzarRepeticiones, diferenciaEnunciados,
+  estadisticas as estadisticasAntiguas, informe as informeAntiguas,
+} from '../tools/bancos/ejes/andalucia/antiguas.mjs';
+
+const hayCacheAndalucia = () => ['correcciones-per', 'correcciones-py', 'validar-per', 'validar-py']
+  .every((f) => existsSync(join(CACHE, 'andalucia', 'etapas', `${f}.json`)));
 
 const FIX = join(RAIZ, 'tests', 'fixtures', 'bancos');
 const conPyMuPDF = spawnSync('python3', ['-I', '-c', 'import pymupdf, numpy'], { encoding: 'utf8' }).status === 0;
@@ -207,4 +215,80 @@ test('ocr: esbozo con interfaz de adaptador que avisa de que no está implementa
   assert.equal(r.resumen.pendientes, 1);
   assert.match(avisos[0], /ocr/i);
   assert.throws(() => ocr.ocrPagina('x.pdf', 1), /no implementado/i);
+});
+
+// Informe de Andalucía 2015–2019 (ejes/andalucia/antiguas.mjs): medidas de confianza y cruces, con datos sintéticos.
+const ap = (conv, modelo, numero, letras, puntos, extra = {}) => ({
+  conv, modelo, numero, mapa: { a: 'a', b: 'b', c: 'c', d: 'd' },
+  respuesta: { letras, letrasOriginales: letras, estado: 'ok', origen: 'omr', puntos, umbral: 30, ...extra },
+});
+const preg = (id, conv, apareceEn, extra = {}) => ({
+  id, conv, enunciado: 'El nudo llano se emplea para:', opciones: { a: 'Gaza', b: 'Unir cabos distintos', c: 'Unir cabos iguales', d: 'Bita' },
+  correcta: 'c', aceptadas: ['c'], anulada: false, apareceEn, ...extra,
+});
+
+test('Andalucía 2015–2019: confianza de la lectura (relación 2.ª/1.ª, fuerza sobre el umbral, vacías y múltiples)', () => {
+  const ps = [
+    preg('and-2017-c1-t05', 'and-2017-c1', [ap('and-2017-c1', 'A', 5, ['c'], [0, 3, 90, 0]), ap('and-2017-c1', 'B', 6, ['c'], [0, 0, 45, 18])]),
+    preg('and-2017-c1-t06', 'and-2017-c1', [ap('and-2017-c1', 'A', 6, [], [1, 0, 0, 0], { estado: 'vacia' })], { anulada: true, correcta: null, aceptadas: [] }),
+    preg('and-2017-c1-t07', 'and-2017-c1', [ap('and-2017-c1', 'A', 7, ['a', 'b'], [80, 82, 0, 0], { estado: 'multiple' })], { aceptadas: ['a', 'b'] }),
+  ];
+  const c = confianza(ps);
+  assert.equal(c.leidas, 2);
+  assert.equal(c.relacion['< 0,10'], 1);
+  assert.equal(c.relacion['0,20–0,35'], 0);
+  assert.equal(c.relacion['≥ 0,35 (dudosa)'], 1); // 18/45 = 0,40
+  assert.equal(c.fuerza['1,5–2'], 1); // 45/30
+  assert.equal(c.fuerza['≥ 3'], 1); // 90/30
+  assert.equal(c.peorFuerza[0].ref, 'and-2017-c1/B/6');
+  assert.deepEqual(c.vacias.map((v) => [v.id, v.anulada]), [['and-2017-c1-t06', true]]);
+  assert.deepEqual(c.multiples[0].aceptadas, ['a', 'b']);
+  const m = cruceModelos(ps);
+  assert.deepEqual([m.pares, m.acuerdo, m.otroNumero, m.barajadas], [1, 1, 1, 0]);
+});
+
+test('Andalucía 2015–2019: correcciones publicadas frente a la hoja y repeticiones en otras convocatorias', () => {
+  const ps = [preg('and-2016-c3-t13', 'and-2016-c3', [ap('and-2016-c3', 'A', 13, ['c'], [0, 0, 90, 0])])];
+  const corr = [
+    { conv: 'and-2016-c3', modelo: 'A', numero: 13, accion: 'respuesta', letras: ['c'] },
+    { conv: 'and-2016-c3', modelo: 'A', numero: 13, accion: 'anular' },
+    { conv: 'and-2021-c1', modelo: 'A', numero: 6, accion: 'anular' }, // de 2020–2026: fuera
+    { conv: 'and-py-2016-c1', modelo: 'navegacion', numero: 18, accion: 'respuesta', letras: ['a'] }, // del PY: fuera
+  ];
+  const r = correccionesFrenteHoja(ps, corr, 'per');
+  assert.equal(r.length, 2);
+  assert.match(r[0].veredicto, /ya trae la respuesta/);
+  assert.match(r[1].veredicto, /marca «c»: la anulación solo está en la página/);
+
+  const otra = (id, conv, extra) => preg(id, conv, [], extra);
+  const rep = cruzarRepeticiones([
+    otra('and-2017-c1-t05', 'and-2017-c1'),
+    otra('and-2023-c2-t04', 'and-2023-c2'), // idéntica, misma respuesta
+    otra('and-2018-c1-t05', 'and-2018-c1', { enunciado: 'El nudo llano no se emplea para:', correcta: 'a', aceptadas: ['a'] }), // variante
+    otra('and-2022-c1-t05', 'and-2022-c1'), // con la de 2017 sí; con la de 2023 no (ninguna de las dos es de 2015–2019)
+  ]);
+  assert.equal(rep.identicas.pares, 2);
+  assert.equal(rep.identicas.acuerdo, 2);
+  assert.equal(rep.variantes.pares, 0); // Jaccard < 0,90 con «no»: no se compara
+  assert.equal(rep.preguntas, 1);
+  assert.deepEqual(diferenciaEnunciados('el aire polar de vanguardia es más frío', 'el aire polar de vanguardia es menos frío'), ['mas', 'menos']);
+});
+
+test('Andalucía 2015–2019 desde la caché: 16 + 16 convocatorias, A = B en el PER y sin dudas (se salta sin caché)', (t) => {
+  if (!hayCacheAndalucia()) { t.skip('sin .cache/bancos/andalucia (npm run bancos -- andalucia --todas)'); return; }
+  const e = estadisticasAntiguas();
+  assert.equal(e.per.convocatorias.length, 16);
+  assert.equal(e.py.convocatorias.length, 16);
+  assert.equal(e.per.preguntas, 720);
+  assert.equal(e.py.preguntas, 640);
+  assert.equal(e.per.modelos.acuerdo, e.per.modelos.pares);
+  for (const tit of ['per', 'py']) {
+    assert.deepEqual(e[tit].conflictos, []);
+    assert.deepEqual(e[tit].dudas, []);
+    assert.deepEqual(e[tit].errores, []);
+    assert.ok(e[tit].confianza.vacias.every((v) => v.anulada), `${tit}: fila vacía sin anular`);
+    assert.ok(e[tit].correcciones.every((c) => c.id), `${tit}: corrección sin pregunta`);
+    assert.ok(e[tit].repeticiones.distintas.every((d) => d.veredicto !== 'sin revisar'), `${tit}: repetición con respuesta distinta sin revisar`);
+  }
+  assert.match(informeAntiguas(e), /Confianza de la lectura óptica/);
 });

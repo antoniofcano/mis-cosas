@@ -1,0 +1,3462 @@
+{
+ "per": {
+  "and-2020-c1-t06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Art. 23.1.a): las aguas sucias de los tanques de retención se descargan a régimen moderado, en ruta y a no menos de 4 nudos. Igual que antes.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "No es del RD 339/2021: es MARPOL anexo V (el Mediterráneo es zona especial; restos de comida a más de 12 millas). Sin cambio.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "El RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima) deroga la Orden de 1964 de zonas para bañistas y regula el despacho; no toca el balizamiento, el RIPA ni la carta. La pregunta no depende de lo derogado.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t26": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t31": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c1-t38": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t03": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Art. 8: en zonas 1 a 4, aro con luz y rabiza (y otro sin luz ni rabiza en zona 1). La respuesta (bandas o popa, con luz y suelta rápida) sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "Zona de baño: la regla no estaba en la Orden de 1964 que derogó el RD 186/2023, sino en el art. 73 del Reglamento General de Costas (RD 876/2014), vigente: en las zonas balizadas no se navega; sin balizar, la zona ocupa 200 m en las playas y 50 m en el resto de la costa y dentro no se pasa de 3 nudos.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345#a73"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 186/2023"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Plásticos: MARPOL anexo V los prohíbe en el mar en todo caso (art. 21 del RD 339/2021 remite a MARPOL). Sin cambio.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 186/2023",
+      "motivo": "El RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima) deroga la Orden de 1964 de zonas para bañistas y regula el despacho; no toca el balizamiento, el RIPA ni la carta. La pregunta no depende de lo derogado.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "El RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima) deroga la Orden de 1964 de zonas para bañistas y regula el despacho; no toca el balizamiento, el RIPA ni la carta. La pregunta no depende de lo derogado.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t27": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t32": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t40": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2020-c3-t41": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "La fumígena flotante emite humo al menos 3 minutos (Código IDS; el art. 5 del RD 339/2021 exige equipos certificados). El RD cambia cuántas se llevan por zona (art. 9), no cuánto duran.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Art. 7.5: flotabilidad mínima de 275 N en zona 1, 150 N en zonas 2 a 4 y 100 N en zonas 5 a 7. Zona 4 = 150 N, como en la respuesta oficial.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c1-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "Zona de baño: la regla no estaba en la Orden de 1964 que derogó el RD 186/2023, sino en el art. 73 del Reglamento General de Costas (RD 876/2014), vigente: en las zonas balizadas no se navega; sin balizar, la zona ocupa 200 m en las playas y 50 m en el resto de la costa y dentro no se pasa de 3 nudos.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345#a73"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2021-c2-t29": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-q44": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "Ejercicio de carta (rumbo y hora de llegada a Ceuta): ninguna norma lo cambia.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t19": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c1-t28": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t11": {
+   "norma": {
+    "estado": "actualizada",
+    "normas": [
+     "RD 191/2026"
+    ],
+    "nota": "Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo."
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Respuesta oficial correcta con la norma de su fecha y con la actual; cambia la norma que lo regula: nota en la explicación.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c2-t29": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "Zona de baño: la regla no estaba en la Orden de 1964 que derogó el RD 186/2023, sino en el art. 73 del Reglamento General de Costas (RD 876/2014), vigente: en las zonas balizadas no se navega; sin balizar, la zona ocupa 200 m en las playas y 50 m en el resto de la costa y dentro no se pasa de 3 nudos.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345#a73"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2022-c3-t29": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t01": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 1188/2025 (gobierno sin título)"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 1188/2025 (gobierno sin título)",
+      "motivo": "No trata de la navegación sin título: es la línea de fondeo, art. 11.2 del RD 339/2021 (tramo de cadena al menos igual a la eslora, salvo en las de 6 m o menos). Coincide con la respuesta oficial.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "Zona de baño: la regla no estaba en la Orden de 1964 que derogó el RD 186/2023, sino en el art. 73 del Reglamento General de Costas (RD 876/2014), vigente: en las zonas balizadas no se navega; sin balizar, la zona ocupa 200 m en las playas y 50 m en el resto de la costa y dentro no se pasa de 3 nudos.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345#a73"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t20": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "El RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima) deroga la Orden de 1964 de zonas para bañistas y regula el despacho; no toca el balizamiento, el RIPA ni la carta. La pregunta no depende de lo derogado.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+     }
+    ]
+   }
+  },
+  "and-2023-c1-t28": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c2-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c2-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c2-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c2-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c2-t22": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2023-c2-t31": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t02": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 1188/2025 (buceo y ROM)"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 1188/2025 (buceo y ROM)",
+      "motivo": "Bandera de buceo: el RD 550/2020 (no modificado en esto por el RD 1188/2025) pide la bandera «Alfa» en la embarcación y en la boya; la roja con diagonal blanca es la de buceo deportivo de uso común, y la respuesta oficial (buceadores sumergidos) sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-6745"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2023-c3-t18": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 1188/2025 (buceo y ROM)"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 1188/2025 (buceo y ROM)",
+      "motivo": "El RD 1188/2025 cambia en el buceo los bautismos (1 instructor por alumno), la descompresión de emergencia y el personal mínimo, y en el ROM el despacho; no cambia la bandera «Alfa» (art. 41.3 del RD 550/2020) ni el RIPA (regla 34 d) y anexo IV). La respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-27010"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t20": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 1188/2025 (buceo y ROM)"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 1188/2025 (buceo y ROM)",
+      "motivo": "El RD 1188/2025 cambia en el buceo los bautismos (1 instructor por alumno), la descompresión de emergencia y el personal mínimo, y en el ROM el despacho; no cambia la bandera «Alfa» (art. 41.3 del RD 550/2020) ni el RIPA (regla 34 d) y anexo IV). La respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-27010"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t22": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 1188/2025 (buceo y ROM)"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 1188/2025 (buceo y ROM)",
+      "motivo": "El RD 1188/2025 cambia en el buceo los bautismos (1 instructor por alumno), la descompresión de emergencia y el personal mínimo, y en el ROM el despacho; no cambia la bandera «Alfa» (art. 41.3 del RD 550/2020) ni el RIPA (regla 34 d) y anexo IV). La respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-27010"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t32": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c1-t40": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2024-c2-t06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2024-c2-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c2-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c2-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c2-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c2-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t11": {
+   "norma": {
+    "estado": "actualizada",
+    "normas": [
+     "RD 191/2026"
+    ],
+    "nota": "Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo."
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Respuesta oficial correcta con la norma de su fecha y con la actual; cambia la norma que lo regula: nota en la explicación.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t12": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2024-c3-t19": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c1-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-q45": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Ejercicio de carta (zona de fondeo prohibido de la carta L105): no depende del RD 191/2026.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c2-t32": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t13": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t14": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t16": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t38": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-2025-c3-t39": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2026-c1-t11": {
+   "norma": {
+    "estado": "actualizada",
+    "normas": [
+     "RD 191/2026"
+    ],
+    "nota": "Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo."
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Respuesta oficial correcta con la norma de su fecha y con la actual; cambia la norma que lo regula: nota en la explicación.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-2026-c2-t11": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 1188/2025 (gobierno sin título)"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 1188/2025 (gobierno sin título)",
+      "motivo": "No trata de la navegación sin título. La c) es falsa por el art. 73.2 del Reglamento General de Costas (200 m en playas, 50 m en el resto de la costa): la respuesta oficial b) sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345#a73"
+     }
+    ]
+   }
+  }
+ },
+ "py": {
+  "and-py-2020-c1-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "La bengala de mano arde al menos 1 minuto (Código IDS). El RD 339/2021 cambia cuántas se llevan por zona (art. 9), no cuánto duran.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c1-g05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c1-g06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c1-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c1-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c1-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c1-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Fumígena: humo naranja al menos 3 minutos, de uso diurno, con retardo (Código IDS). El RD 339/2021 cambia cuántas se llevan por zona (art. 9), no sus características.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Características de los chalecos (vuelven a la persona boca arriba, bandas reflectantes, por encima de la ropa): sin cambio. El RD 339/2021 añade la luz del chaleco (art. 7.1), que la pregunta no trata.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2020-c3-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g02": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Art. 7.3: chalecos para todos los niños y bebés a bordo, adecuados a su peso y talla (uno por niño). Igual que la respuesta oficial.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g05": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 339/2021",
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 339/2021",
+      "motivo": "Marca ancha (el detector encaja con una palabra suelta: achique, corredera, bocina, «regla de», balsa…). La pregunta no trata del equipo obligatorio por zonas, que es lo que cambió respecto a la Orden FOM/1144/2003 (arts. 6–13 y 15 del RD 339/2021): la respuesta oficial sigue valiendo.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268"
+     },
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-g17": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c1-n15": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 186/2023"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 186/2023",
+      "motivo": "Ejercicio de carta (corriente, abatimiento y rumbo de aguja): ninguna norma lo cambia.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-n01": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-n06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 191/2026"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 191/2026",
+      "motivo": "Marca ancha («fondeadero», «fondo»): la pregunta trata del tenedero, del fondeadero, de las cartas o de las ZEPIM, no de fondear sobre praderas. El RD 191/2026 (art. 5) no cambia la respuesta.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5877"
+     }
+    ]
+   }
+  },
+  "and-py-2021-c2-n09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c1-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c1-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c1-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c1-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c2-g06": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c2-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c2-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c2-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c2-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "RD 587/2022",
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "RD 587/2022",
+      "motivo": "El RD 587/2022 solo cambia el NAVTEX obligatorio en zona 1 (lista 6.ª) y la homologación de las balsas (ISO 9650 u otra norma equivalente aprobada por la DGMM). La pregunta trata de supervivencia en la balsa, la zafa, la EPIRB, el SART, el AIS o los canales de VHF, que no cambian.",
+      "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013"
+     },
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c3-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c3-g08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2022-c3-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2023-c1-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2023-c1-n09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2023-c2-n08": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2023-c3-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2024-c1-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2025-c1-g04": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2025-c1-g10": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2025-c2-g01": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2025-c2-g07": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  },
+  "and-py-2025-c2-g09": {
+   "norma": {
+    "estado": "vigente",
+    "normas": [
+     "IALA MBS 2022"
+    ]
+   },
+   "revision": {
+    "motivos": [
+     {
+      "norma": "IALA MBS 2022",
+      "motivo": "Cotejada con la IALA R1001 ed. 2.0 (MBS que cita el BOE-A-2026-510; tablas 1–11) frente a la MBS 2010: los colores, formas, marcas de tope y ritmos de las laterales, bifurcaciones, cardinales, peligro aislado, aguas navegables, especiales y pecio no cambian. La ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las marcas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de la cardinal Norte y Este (VQ o Q; VQ(3) cada 5 s o Q(3) cada 10 s). Ninguna respuesta del banco depende de eso.",
+      "fuente": "https://www.iala.int/content/uploads/2022/05/C75-10.3.7-Revised-Recommendation-R1001-Ed2.0-The-IALA-Maritime-Buoyage-System-June-2022.pdf"
+     }
+    ]
+   }
+  }
+ }
+}

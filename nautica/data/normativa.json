@@ -120,7 +120,7 @@
    "publicacion": "2026-01-09",
    "vigor": "2026-01-09",
    "temas": { "per": [5], "py": [] },
-   "resumen": "La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: no se ha verificado con fuente primaria qué cambió entre ediciones, así que se revisan todas las preguntas de balizamiento anteriores.",
+   "resumen": "La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: cotejada la R1001 ed. 2.0 de la IALA con la MBS 2010 (fase F1), no cambian colores, formas, marcas de tope ni ritmos de las marcas que se preguntan: la ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las boyas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de las cardinales Norte y Este. El detector sigue marcando el balizamiento anterior para revisarlo.",
    "detectores": ["boya", "baliza", "balizamiento", "cardinal", "lateral", "peligro aislado", "aguas navegables", "aguas seguras", "marca especial", "marcas? especiales", "nuevo peligro", "naufragio", "marca de tope", "\\biala\\b", "\\baism\\b", "region a\\b", "centellea", "isofase", "marcas? de (babor|estribor)", "canal preferido"]
   },
   {

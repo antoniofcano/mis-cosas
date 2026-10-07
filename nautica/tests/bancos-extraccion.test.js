@@ -317,6 +317,17 @@ test('normativa de Andalucía (solo informe): data/normativa.json coincide con n
   assert.ok(r.marcas.porNorma['RD 191/2026'].every((x) => x.fecha < '2026-04-02'));
   const md = informeNormativa(r);
   for (const c of COMPROBAR) assert.match(md, new RegExp(`## ${c.id.replace(/[()/]/g, '\\$&')}`));
-  // Solo informe: el banco vivo sigue con norma «vigente» en todas las preguntas.
-  for (const t of ['per', 'py']) assert.ok(json(`data/ejes/andalucia/${t}/preguntas.json`).preguntas.every((q) => q.norma.estado === 'vigente'));
+  // F1: cada marca tiene su resolución (con motivo y fuente) en ajustes.json, y el banco vivo la lleva.
+  const ajustes = json('tools/bancos/ejes/andalucia/ajustes.json');
+  for (const id of r.marcas.porPregunta.keys()) {
+    const a = ajustes[id.startsWith('and-py-') ? 'py' : 'per'][id];
+    assert.ok(a && ['vigente', 'actualizada', 'retirada'].includes(a.norma.estado), id);
+    assert.ok(a.revision.motivos.length === r.marcas.porPregunta.get(id).length && a.revision.motivos.every((m) => m.motivo && /^https:/.test(m.fuente)), id);
+  }
+  for (const t of ['per', 'py']) {
+    for (const q of json(`data/ejes/andalucia/${t}/preguntas.json`).preguntas) assert.equal(q.norma.estado, ajustes[t][q.id]?.norma.estado ?? 'vigente', q.id);
+  }
+  // Las actualizadas llevan la nota en la explicación.
+  const ex = json('data/ejes/andalucia/per/explicaciones.json');
+  for (const [id, a] of Object.entries(ajustes.per)) if (a.norma.estado === 'actualizada') assert.ok(ex[id].explicacion.includes(a.norma.nota), id);
 });

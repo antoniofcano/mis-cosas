@@ -1,13 +1,10 @@
 // Soluciones programadas de carta del PY de Baleares (lote 08). Ver baleares-per.js para el formato.
 //
-// Resumen del lote 08 (109 preguntas, todas de PY): 85 resueltas y comprobadas; 24 en DISCREPANCIAS:
-//   - 7 de marea sin datos (puertos fuera de la carta o sin tabla de mareas en el enunciado);
-//   - 5 por el formato de las opciones (horas «0950» o latitudes «35º-56,2'» que el lector no lee; el cálculo da la oficial);
-//   - 5 de trazado al límite (la oficial queda cerca pero sin el margen del PY);
-//   - 4 con un elemento que no está en la carta de la app (Magair ×2, Loma El Garrób, isobática de 20 m);
-//   - 2 que no cuadran con la oficial (posible errata o planteamiento distinto);
-//   - 1 de respuesta cualitativa (vía del DST).
-// Las 24 están también en `documentadas` (16 discrepancia, 7 anuario, 1 sin-calculo).
+// Resumen del lote 08 (109 preguntas, todas de PY): 90 resueltas y comprobadas; 19 en `documentadas` (y en DISCREPANCIAS):
+//   - 7 'anuario': mareas sin la tabla del Anuario en el enunciado (Barbate, Cádiz ×4, Camariñas, Chipiona);
+//   - 5 'sin-calculo': 4 necesitan un elemento que no está en la carta de la app (Magair ×2, Loma El Garrób,
+//     isobática de 20 m) y 1 pide la vía del DST (respuesta no numérica);
+//   - 7 'discrepancia': 3 llegan a otra opción que la oficial y 4 llegan a la oficial sin el margen del PY.
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -185,8 +182,8 @@ export default {
       const x = k.pos('36 09,3 N', '6 02,7 W', 'Punto X');
       const r = k.rumboConCorriente(p, x, vb, 260, 4);
       k.eta(hrb(10, 30), r.dist, r.vef);
-      // Las opciones dan la HRB sin separador («1154»), que el lector de opciones no reconoce: se compara solo el Rv
-      // (sale 11:55, la de la opción a).
+      // Las opciones escriben la hora como «HRB= 1154», que el lector de opciones no reconoce: se compara solo el Rv
+      // (la llegada sale a las 11:55, la de la opción a).
       return [{ kind: 'bearing', value: r.rs }];
     },
   },
@@ -698,9 +695,7 @@ export default {
       const rv = k.rv(77, ct);
       const p = k.fix2('punta-cires', k.dvM(rv, 18, 'punta-cires'), 'punta-alcazar', k.dvM(rv, 105, 'punta-alcazar'), 'Situación observada');
       const d = k.distanceBetween(s, p);
-      k.eta(hrb(10, 45), d, 10);
-      // Las opciones dan la HRB sin separador («HRB 1223»), que el lector de opciones no reconoce: se compara la situación.
-      return latlon(p);
+      return [{ kind: 'clock', value: k.eta(hrb(10, 45), d, 10) }, ...latlon(p)];
     },
   },
   'bal-py-2026-03-a-33': {
@@ -927,34 +922,81 @@ export default {
       return latlon(k.run(s, rs, k.distFor(9, hrb(8, 53) - hrb(7, 35)), 'Situación 08:53'));
     },
   },
+  'bal-py-2025-07-a-39': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 00,0 W', 'Situación 08:00');
+      const r = k.rumboConCorriente(s, 'barbate-espigon', 12, 100, 3);
+      const rv = k.rvConAbatimiento(r.rs, 4, W);
+      const ct = k.ct({ dm: -2, desvio: -4 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(8, 0), r.dist, r.vef) }];
+    },
+  },
+  'bal-py-2025-12-b-36': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const dvOp = k.oposicion('punta-alcazar', 'punta-paloma');
+      const ct = k.ctFrom(dvOp, 326);
+      const s = k.fixBearingRange('punta-paloma', dvOp, 'punta-cires', 9.6, 0, 'Situación 22:31');
+      const rv = k.rv(95.5, ct);
+      const rs = k.abatimiento(rv, 2, NE);
+      return latlon(k.run(s, rs, 15, 'Situación 23:31'));
+    },
+  },
+  'bal-py-2026-03-b-35': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ct({ dm: -3.5, desvio: -2.5 });
+      const rv = k.rv(240, ct);
+      const rs = k.abatimiento(rv, 5, N);
+      const d1 = k.dvM(rv, 60, 'punta-europa');
+      const d2 = k.dvM(rv, 100, 'punta-carnero');
+      return latlon(k.traslado('punta-europa', d1, 'punta-carnero', d2, rs, k.distFor(7, 60), 'Situación 08:30'));
+    },
+  },
+  'bal-py-2026-03-b-39': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 330);
+      const ct = k.ctFrom(dv, 330);
+      const rv = k.rv(0, ct);
+      return latlon(k.lineAndBearing('cabo-trafalgar', dv, 'punta-gracia', k.dvM(rv, 45, 'punta-gracia'), 'Situación 11:00'));
+    },
+  },
+  'bal-py-2026-03-b-40': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(2);
+      const rv = k.rv(272, ct);
+      const rs = k.abatimiento(rv, 5, S);
+      const d1 = k.dvM(rv, -70, 'punta-cires');
+      const d2 = k.dvM(rv, 60, 'isla-tarifa');
+      return latlon(k.traslado('punta-cires', d1, 'isla-tarifa', d2, rs, k.distFor(6, 45), 'Situación 22:15'));
+    },
+  },
 };
 
 // Preguntas del lote que no quedan en export default, con el motivo (detalle y código en DISCREPANCIAS).
 export const documentadas = {
-  'bal-py-2024-07-a-33': { tipo: 'discrepancia', texto: 'Trazado al límite: sale Rc = 035,7°, Ihc = 2,47 nudos: el comprobador elige la a (035°, 2,4) y la oficial es la d (037°, 2,4). La intensidad cuadra; los 1,3° de rumbo son precisión de trazado y no se fuerzan.' },
-  'bal-py-2024-07-a-37': { tipo: 'anuario', texto: 'Marea sin datos: sonda en Barbate el 17-12-2024 con corrección barométrica: el enunciado no trae la tabla de mareas del Anuario y Barbate no tiene datos de marea en la app.' },
-  'bal-py-2024-07-a-40': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: la enfilación «Magair/cabo Espartel» necesita la marca de Magair, que no está en la carta de la app ni el enunciado da sus coordenadas.' },
+  'bal-py-2024-07-a-33': { tipo: 'discrepancia', texto: 'El cálculo llega a la a: Rc = 035,7°, Ihc = 2,47 nudos; la oficial es la d (037°, 2,4). La intensidad cuadra con las dos; los 1,3° de rumbo que las separan son precisión de trazado.' },
+  'bal-py-2024-07-a-37': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en Barbate el 17-12-2024 con corrección barométrica: el enunciado no trae la tabla de mareas del Anuario y Barbate no tiene datos de marea en la app.' },
+  'bal-py-2024-07-a-40': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la enfilación «Magair/cabo Espartel» necesita la marca de Magair, que no está en la carta de la app ni el enunciado da sus coordenadas.' },
   'bal-py-2024-12-a-33': { tipo: 'sin-calculo', texto: 'Respuesta cualitativa / DST: se pregunta en qué vía del DST estaremos a las 16:15; la respuesta no es un valor numérico y los límites del DST no están en la carta de la app.' },
-  'bal-py-2024-12-a-35': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: la salida es «al SW verdadero de Cabo Roche sobre la isobática de 20 m»: la carta de la app no tiene isobáticas.' },
-  'bal-py-2024-12-a-40': { tipo: 'anuario', texto: 'Marea sin datos: sonda en el puerto de Cádiz el 27-10-2024 por tabla: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2025-04-a-36': { tipo: 'discrepancia', texto: 'Trazado al límite: la enfilación Alcázar–Cires en la carta de la app da Dv = 226,6° y, con Da = 303° − 60° = 243°, Ct = −16,4°: la opción más próxima es la oficial (d, 15° NW) pero a 1,4°, fuera del margen del PY.' },
-  'bal-py-2025-04-a-39': { tipo: 'discrepancia', texto: 'No cuadra: el corte en el mar de los arcos de 5 millas (Paloma) y 7 millas (Tarifa) está en l = 35° 59,2′ N; al Rv 180° la corriente al W no cambia la latitud y los 4,2′ hasta 35° 55′ N se recorren en 36 min (10:36). La oficial (b, 10:53) supone salir unas 2′ más al N; posible errata o situación de partida distinta.' },
-  'bal-py-2025-07-a-33': { tipo: 'discrepancia', texto: 'Trazado al límite: sale Ra = 241,8° (dm 2019 = 1° 12′ W, Ct = +1,8°): queda entre la b (240°) y la oficial d (243°), más cerca de la oficial pero sin margen. En la pregunta gemela bal-py-2024-07-a-32 la plantilla también da ~0,9° más que el trazado de la app.' },
-  'bal-py-2025-04-bc-40': { tipo: 'anuario', texto: 'Marea sin datos: sonda en el puerto de Cádiz el 18-04-2025 por el método exacto: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2025-07-b-31': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: la enfilación del faro de Punta Cires con la cumbre del monte «Loma El Garrób» necesita ese monte, que no está en la carta de la app ni el enunciado da sus coordenadas.' },
-  'bal-py-2025-07-b-37': { tipo: 'anuario', texto: 'Marea sin datos: sonda en el puerto de Cádiz el 09-04-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2025-07-a-39': { tipo: 'discrepancia', texto: 'Formato de las opciones: sale Ra = 357,5° y llegada a las 09:49, que es la oficial (c: 358°, 0950); pero las horas vienen sin separador («Hrb=0950») y el lector de opciones no las lee, y con el Ra solo hay empate entre c y d (ambas 358°).' },
-  'bal-py-2025-12-b-36': { tipo: 'discrepancia', texto: 'Formato de las opciones: sale l = 35° 56,1′ N, L = 5° 21,3′ W, que es la oficial (a); pero las opciones escriben «35º-56,2\' N» con guion entre grados y minutos y el lector de opciones no las lee.' },
-  'bal-py-2025-07-a-40': { tipo: 'anuario', texto: 'Marea sin datos: sonda en el puerto de Camariñas el 03-01-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2025-12-b-35': { tipo: 'anuario', texto: 'Marea sin datos: sonda en el puerto de Chipiona el 08-08-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2025-12-a-37': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: la enfilación «monte Magair / faro de cabo Espartel» necesita el monte Magair, que no está en la carta de la app ni el enunciado da sus coordenadas (gemela de bal-py-2024-07-a-40).' },
-  'bal-py-2026-03-b-35': { tipo: 'discrepancia', texto: 'Formato de las opciones: sale l = 36° 00,6′ N, L = 5° 23,0′ W, que es la oficial (c); pero las opciones escriben «36º- 00,5\' N» con guion entre grados y minutos y el lector de opciones no las lee.' },
-  'bal-py-2026-03-b-39': { tipo: 'discrepancia', texto: 'Formato de las opciones: sale l = 36° 01,1′ N, L = 5° 52,7′ W, que es la oficial (a); pero las opciones escriben «36º-01,1\' N» con guion entre grados y minutos y el lector de opciones no las lee.' },
-  'bal-py-2026-03-b-38': { tipo: 'anuario', texto: 'Marea sin datos: sonda en el puerto de Cádiz el 27-10-2026 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2026-03-b-40': { tipo: 'discrepancia', texto: 'Formato de las opciones: sale l = 35° 56,3′ N, L = 5° 33,8′ W, que es la oficial (b); pero las opciones escriben «35º- 56,2\' N» con guion entre grados y minutos y el lector de opciones no las lee.' },
-  'bal-py-2026-06-a-36': { tipo: 'discrepancia', texto: 'Trazado al límite: el Ra sale 079,2° (el de la oficial c), pero la corriente da Rc = 038,3° e Ihc = 1,96 nudos, a medio camino entre la a (035°, 2,3) y la oficial c (041°, 2,3): el comprobador se queda con la c sin margen.' },
-  'bal-py-2026-06-b-36': { tipo: 'discrepancia', texto: 'No cuadra: siguiendo la derrota del enunciado (Ref tangente a 2′ de Espartel con corriente al E, 40 min con corriente, luego la misma proa sin corriente hasta Tánger por el través de babor y nueva tangente a 2′ de Espartel con 10° de abatimiento del NW) sale Rv = 224,7°; la oficial (a) es 222°, 2,7° de diferencia, fuera del margen del PY.' },
-  'bal-py-2026-06-a-39': { tipo: 'discrepancia', texto: 'Trazado al límite: sale Rc = 086,9° e Ihc = 4,29 nudos, entre la b (086°, 4,7) y la oficial a (089°, 4,4): el comprobador elige la b por muy poco. La situación de partida (arcos de 5 M de Trafalgar y 4 M de Barbate) es muy sensible al trazado.' },
+  'bal-py-2024-12-a-35': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la salida es «al SW verdadero de Cabo Roche sobre la isobática de 20 m»: la carta de la app no tiene isobáticas.' },
+  'bal-py-2024-12-a-40': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 27-10-2024 por tabla: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
+  'bal-py-2025-04-a-36': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d, 15° NW) pero lejos: la enfilación Alcázar–Cires en la carta de la app da Dv = 226,6° y, con Da = 303° − 60° = 243°, Ct = −16,4°, a 1,4° de la opción, fuera del margen del PY.' },
+  'bal-py-2025-04-a-39': { tipo: 'discrepancia', texto: 'El cálculo llega a la c (10:46 es la más próxima; sale 10:36): el corte en el mar de los arcos de 5 M (Paloma) y 7 M (Tarifa) está en 35° 59,2′ N y al Rv 180° (la corriente al W no cambia la latitud) los 4,2′ hasta 35° 55′ N se recorren en 36 min. La oficial (b, 10:53) supone salir unas 2′ más al N; posible errata.' },
+  'bal-py-2025-07-a-33': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d, 243°) sin margen: sale Ra = 241,8° (dm 2019 = 1° 12′ W, Ct = +1,8°), entre la b (240°) y la d. En la gemela bal-py-2024-07-a-32 la plantilla también da ~0,9° más que el trazado de la app.' },
+  'bal-py-2025-04-bc-40': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 18-04-2025 por el método exacto: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
+  'bal-py-2025-07-b-31': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la enfilación del faro de Punta Cires con la cumbre del monte «Loma El Garrób» necesita ese monte, que no está en la carta de la app ni el enunciado da sus coordenadas.' },
+  'bal-py-2025-07-b-37': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 09-04-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
+  'bal-py-2025-07-a-40': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Camariñas el 03-01-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
+  'bal-py-2025-12-b-35': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Chipiona el 08-08-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
+  'bal-py-2025-12-a-37': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la enfilación «monte Magair / faro de cabo Espartel» necesita el monte Magair, que no está en la carta de la app ni el enunciado da sus coordenadas (gemela de bal-py-2024-07-a-40).' },
+  'bal-py-2026-03-b-38': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 27-10-2026 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
+  'bal-py-2026-06-a-36': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c) sin margen: el Ra sale 079,2° (el de a y c), pero la corriente da Rc = 038,3° e Ihc = 1,96 nudos, a medio camino entre la a (035°, 2,3) y la c (041°, 2,3).' },
+  'bal-py-2026-06-b-36': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (a, 222°) pero lejos: siguiendo toda la derrota del enunciado (tangente a 2′ de Espartel con corriente al E, 40 min con corriente, misma proa sin corriente hasta Tánger por el través de babor y nueva tangente con 10° de abatimiento del NW) sale Rv = 224,7°, a 2,7° de la opción, fuera del margen del PY.' },
+  'bal-py-2026-06-a-39': { tipo: 'discrepancia', texto: 'El cálculo llega a la b (086°, 4,7) por muy poco: sale Rc = 086,9° e Ihc = 4,29 nudos, y la oficial es la a (089°, 4,4). La situación de partida (arcos de 5 M de Trafalgar y 4 M de Barbate) es muy sensible al trazado.' },
 };
 
 /* DISCREPANCIAS
@@ -1025,77 +1067,10 @@ export const documentadas = {
  * 'bal-py-2025-04-bc-40': (marea sin datos) sonda en el puerto de Cádiz el 18-04-2025 por el método exacto: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
  * 'bal-py-2025-07-b-31': (elemento que no está en la carta de la app) la enfilación del faro de Punta Cires con la cumbre del monte «Loma El Garrób» necesita ese monte, que no está en la carta de la app ni el enunciado da sus coordenadas.
  * 'bal-py-2025-07-b-37': (marea sin datos) sonda en el puerto de Cádiz el 09-04-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
- * 'bal-py-2025-07-a-39': (formato de las opciones) sale Ra = 357,5° y llegada a las 09:49, que es la oficial (c: 358°, 0950); pero las horas vienen sin separador («Hrb=0950») y el lector de opciones no las lee, y con el Ra solo hay empate entre c y d (ambas 358°).
- *
- *     'bal-py-2025-07-a-39': {
- *       ejercicio: 'corriente-rumbo-a-dar',
- *       solve(k) {
- *         const s = k.pos('35 50,0 N', '6 00,0 W', 'Situación 08:00');
- *         const r = k.rumboConCorriente(s, 'barbate-espigon', 12, 100, 3);
- *         const rv = k.rvConAbatimiento(r.rs, 4, W);
- *         const ct = k.ct({ dm: -2, desvio: -4 });
- *         return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(8, 0), r.dist, r.vef) }];
- *       },
- *     },
- *
- * 'bal-py-2025-12-b-36': (formato de las opciones) sale l = 35° 56,1′ N, L = 5° 21,3′ W, que es la oficial (a); pero las opciones escriben «35º-56,2' N» con guion entre grados y minutos y el lector de opciones no las lee.
- *
- *     'bal-py-2025-12-b-36': {
- *       ejercicio: 'estima-directa',
- *       solve(k) {
- *         const dvOp = k.oposicion('punta-alcazar', 'punta-paloma');
- *         const ct = k.ctFrom(dvOp, 326);
- *         const s = k.fixBearingRange('punta-paloma', dvOp, 'punta-cires', 9.6, 0, 'Situación 22:31');
- *         const rv = k.rv(95.5, ct);
- *         const rs = k.abatimiento(rv, 2, NE);
- *         return latlon(k.run(s, rs, 15, 'Situación 23:31'));
- *       },
- *     },
- *
  * 'bal-py-2025-07-a-40': (marea sin datos) sonda en el puerto de Camariñas el 03-01-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
  * 'bal-py-2025-12-b-35': (marea sin datos) sonda en el puerto de Chipiona el 08-08-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
  * 'bal-py-2025-12-a-37': (elemento que no está en la carta de la app) la enfilación «monte Magair / faro de cabo Espartel» necesita el monte Magair, que no está en la carta de la app ni el enunciado da sus coordenadas (gemela de bal-py-2024-07-a-40).
- * 'bal-py-2026-03-b-35': (formato de las opciones) sale l = 36° 00,6′ N, L = 5° 23,0′ W, que es la oficial (c); pero las opciones escriben «36º- 00,5' N» con guion entre grados y minutos y el lector de opciones no las lee.
- *
- *     'bal-py-2026-03-b-35': {
- *       ejercicio: 'demoras-no-simultaneas',
- *       solve(k) {
- *         const ct = k.ct({ dm: -3.5, desvio: -2.5 });
- *         const rv = k.rv(240, ct);
- *         const rs = k.abatimiento(rv, 5, N);
- *         const d1 = k.dvM(rv, 60, 'punta-europa');
- *         const d2 = k.dvM(rv, 100, 'punta-carnero');
- *         return latlon(k.traslado('punta-europa', d1, 'punta-carnero', d2, rs, k.distFor(7, 60), 'Situación 08:30'));
- *       },
- *     },
- *
- * 'bal-py-2026-03-b-39': (formato de las opciones) sale l = 36° 01,1′ N, L = 5° 52,7′ W, que es la oficial (a); pero las opciones escriben «36º-01,1' N» con guion entre grados y minutos y el lector de opciones no las lee.
- *
- *     'bal-py-2026-03-b-39': {
- *       ejercicio: 'situacion-dos-demoras',
- *       solve(k) {
- *         const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 330);
- *         const ct = k.ctFrom(dv, 330);
- *         const rv = k.rv(0, ct);
- *         return latlon(k.lineAndBearing('cabo-trafalgar', dv, 'punta-gracia', k.dvM(rv, 45, 'punta-gracia'), 'Situación 11:00'));
- *       },
- *     },
- *
  * 'bal-py-2026-03-b-38': (marea sin datos) sonda en el puerto de Cádiz el 27-10-2026 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
- * 'bal-py-2026-03-b-40': (formato de las opciones) sale l = 35° 56,3′ N, L = 5° 33,8′ W, que es la oficial (b); pero las opciones escriben «35º- 56,2' N» con guion entre grados y minutos y el lector de opciones no las lee.
- *
- *     'bal-py-2026-03-b-40': {
- *       ejercicio: 'demoras-no-simultaneas',
- *       solve(k) {
- *         const ct = k.ctPolar(2);
- *         const rv = k.rv(272, ct);
- *         const rs = k.abatimiento(rv, 5, S);
- *         const d1 = k.dvM(rv, -70, 'punta-cires');
- *         const d2 = k.dvM(rv, 60, 'isla-tarifa');
- *         return latlon(k.traslado('punta-cires', d1, 'isla-tarifa', d2, rs, k.distFor(6, 45), 'Situación 22:15'));
- *       },
- *     },
- *
  * 'bal-py-2026-06-a-36': (trazado al límite) el Ra sale 079,2° (el de la oficial c), pero la corriente da Rc = 038,3° e Ihc = 1,96 nudos, a medio camino entre la a (035°, 2,3) y la oficial c (041°, 2,3): el comprobador se queda con la c sin margen.
  *
  *     'bal-py-2026-06-a-36': {

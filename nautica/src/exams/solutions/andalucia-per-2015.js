@@ -42,4 +42,43 @@ export default {
       return [{ kind: 'signed', value: k.ctFrom(dv, 338) }];
     },
   },
+  'and-2015-c2-q42': {
+    ejercicio: 'situacion-demora-distancia',
+    solve(k) {
+      const ct = k.ct({ dm: -3, desvio: 8 });
+      const rv = k.rv(72, ct);
+      const dv = k.dvM(rv, 70, 'cabo-espartel');
+      return latlon(k.fixDist('cabo-espartel', dv, 5, 'Situación 12:00'));
+    },
+  },
+  'and-2015-c2-q43': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('35 53,0 N', '5 46,0 W', 'Situación 13:10');
+      const ct = k.ct({ dm: -3, desvio: -3 });
+      const rv = k.rv(84, ct);
+      const d = k.distFor(7, hrb(15, 30) - hrb(13, 10));
+      return latlon(k.run(s, rv, d, 'Situación 15:30'));
+    },
+  },
+  'and-2015-c2-q44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('35 56,5 N', '5 17,0 W', 'Situación 16:20');
+      const llegada = k.pos('36 16,0 N', '5 12,0 W', 'Punto de llegada');
+      const { rv } = k.rhumb(s, llegada);
+      const ct = k.ct({ dm: -3, desvio: -5 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2015-c2-q45': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 01,0 N', '5 20,5 W', 'Situación 19:00');
+      k.note('Banda', 'Navegamos hacia el W con la isla de Tarifa y la costa española al N: pasamos por fuera, al S del faro, dejándolo por estribor.');
+      const rv = k.tangent(s, 'isla-tarifa', 2.5, 'estribor');
+      const ct = k.ct({ dm: -3, desvio: 7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
 };

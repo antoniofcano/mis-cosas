@@ -25,7 +25,11 @@ export const REGLAS_ANDALUCIA = {
   },
   contexto: (l) => CONTEXTO.test(l) || /Pleamares y bajamares/i.test(l),
   // Restos de una página que es una imagen (tabla de mareas de 3/2022): caracteres de control o un paréntesis suelto.
-  ruido: (l) => /^[\p{Cc}\s]+$/u.test(l) || /^[()]$/.test(l),
+  // Cabecera de cada página de los cuadernillos de 2015 (centro que los maquetó): códigos de certificación «ER-…/2011»,
+  // «CÓDIGO nnnnnnnn» y las líneas del nombre, que pdftotext -raw saca con las letras separadas («C e n t r o …»).
+  ruido: (l) => /^[\p{Cc}\s]+$/u.test(l) || /^[()]$/.test(l)
+    || /^E[RS]-\d{4}\/\d{4}$/.test(l) || /^C ?[ÓO] ?D ?I ?G ?O\s*(\d ?){6,}/.test(l) || /^(\S ){4,}\S$/.test(l)
+    || /^(Centro Integrado de Formaci[óo]n|Profesional|Mar[ií]timo-\S+)$/.test(l),
   // Las instrucciones de la portada también van numeradas: las preguntas empiezan tras este encabezado.
   inicio: /^(UNIDAD\s+TE[ÓO]RICA|EXAMEN PARA LA OBTENCI)/i,
   maxNumero: 45,
@@ -93,8 +97,28 @@ export function leerRotulos(pdfs) {
   return python('etiquetas_figura.py', pdfs);
 }
 
-export function textoCuestionario(pdf, rotulos) {
-  return quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), Array.isArray(rotulos) ? rotulos : []);
+/**
+ * Texto del cuestionario en uno de tres modos de pdftotext:
+ *   normal → con los guiones repuestos desde -raw (2020–2026);
+ *   raw    → orden del contenido: sirve cuando el normal separa las letras «a) b) c) d)» de sus textos (2015);
+ *   layout → disposición física, con el mismo fin.
+ */
+export function textoCuestionario(pdf, rotulos, modo = 'normal') {
+  const r = Array.isArray(rotulos) ? rotulos : [];
+  if (modo === 'raw') return quitarRotulos(unirCompuestos(pdftotextCon(pdf, '-raw')), r);
+  if (modo === 'layout') return quitarRotulos(pdftotextCon(pdf, '-layout'), r);
+  return quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), r);
+}
+
+/** «estribor-⏎babor» → «estribor-babor» (texto de pdftotext -raw). Exportada para los tests. */
+export function unirCompuestos(texto) {
+  return texto.replace(/([a-záéíóúñü])-\n(?=[a-záéíóúñü])/g, '$1-');
+}
+
+/** Calidad de una lectura: preguntas en secuencia 1..n con sus cuatro opciones no vacías. */
+export function calidad(preguntas, n) {
+  const completas = preguntas.filter((q, i) => q.numero === i + 1 && 'abcd'.split('').every((l) => q.opciones[l])).length;
+  return completas - Math.abs(preguntas.length - n);
 }
 
 /**
@@ -109,10 +133,21 @@ export function separarTabla(q) {
   return q;
 }
 
-export function leerCuestionario(pdf, rotulos) {
-  const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos), REGLAS_ANDALUCIA);
-  const ex = examenes[0];
-  return { preguntas: ex.preguntas.map(separarTabla), fecha: fechaPortada(ex.lineasPrevias) };
+/**
+ * Preguntas de un cuestionario. Se lee en modo normal y, si no salen las n preguntas completas, se prueban -raw y
+ * -layout y se queda la mejor lectura (modo en el resultado, para el informe).
+ */
+export function leerCuestionario(pdf, rotulos, n = null) {
+  let mejor = null;
+  for (const modo of ['normal', 'raw', 'layout']) {
+    const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo), REGLAS_ANDALUCIA);
+    const ex = examenes[0];
+    const r = { preguntas: ex.preguntas.map(separarTabla), fecha: fechaPortada(ex.lineasPrevias), modo };
+    r.calidad = n ? calidad(r.preguntas, n) : 0;
+    if (!mejor || r.calidad > mejor.calidad) mejor = r;
+    if (!n || r.calidad === n) break;
+  }
+  return mejor;
 }
 
 /** Lee las hojas en un solo proceso de Python. pares: [{ pdf, n }] → { [pdf]: resultado } */
@@ -146,29 +181,36 @@ export function extraer(ctx, tit) {
   const hojas = leerHojas(trabajos.map((t) => ({ pdf: rutaPDF(eje, t.p), n: nDe(t) })));
   const rotulos = leerRotulos(trabajos.map((t) => rutaPDF(eje, t.c)));
   const apariciones = [];
+  const modos = {};
   for (const t of trabajos) {
     const cfgConv = config.convocatorias.find((c) => c.clave === t.clave);
-    const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)]);
+    const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)], nDe(t));
+    if (cu.modo !== 'normal') modos[`${t.clave} ${tit} ${t.modelo}`] = cu.modo;
     const hoja = hojas[rutaPDF(eje, t.p)];
     if (hoja?.error) avisos.add('extraer', `${t.clave} ${tit} ${t.modelo}: hoja óptica ilegible (${hoja.error})`);
     const n = nDe(t);
     if (cu.preguntas.length !== n) avisos.add('extraer', `${t.clave} ${tit} ${t.modelo}: ${cu.preguntas.length} preguntas en el cuestionario (se esperaban ${n})`);
-    if (cu.fecha && cfgConv?.fecha && cu.fecha !== cfgConv.fecha) avisos.add('extraer', `${t.clave}: la portada dice ${cu.fecha} y config.json ${cfgConv.fecha}`);
+    const fechaConfig = cfgConv?.fechas?.[tit] ?? cfgConv?.fecha;
+    if (cu.fecha && fechaConfig && cu.fecha !== fechaConfig) avisos.add('extraer', `${t.clave}: la portada dice ${cu.fecha} y config.json ${fechaConfig}`);
     const [modulo, variante] = tit === 'py' ? t.modelo.split('-') : [null, t.modelo];
+    // PY de la 1ª de 2018: dos exámenes distintos (modelos A y B de cada módulo, con preguntas distintas). El B es otra
+    // convocatoria a efectos del banco: clave «2018-c1b», ids and-py-2018-c1b-gNN|nNN (config.json lo titula).
+    const claveConv = tit === 'py' && variante && variante !== 'A' ? `${t.clave}${variante.toLowerCase()}` : t.clave;
+    const conv = claveConv === t.clave ? t.c.conv : `and-py-${claveConv}`;
     for (const q of cu.preguntas) {
       const r = hoja?.respuestas?.[q.numero - 1];
       const [ut, utTitulo] = q.seccion ? q.seccion.split('|') : [null, null];
       apariciones.push({
-        eje, tit, claveConv: t.clave, conv: t.c.conv, modelo: variante ?? null, modulo,
+        eje, tit, claveConv, conv, modelo: variante ?? null, modulo,
         numero: q.numero, orden: tit === 'py' ? (modulo === 'navegacion' ? 20 : 0) + q.numero : q.numero,
         seccion: q.seccion, utPdf: ut ? Number(ut) : null, utTituloPdf: utTitulo || null,
         enunciado: q.enunciado, opciones: q.opciones, contexto: q.contexto ?? null,
         respuesta: r ? { letras: r.marca ? [...r.marca] : [], estado: r.estado, origen: 'omr', puntos: r.puntos } : { letras: [], estado: 'sin-hoja', origen: 'omr' },
-        fecha: cu.fecha ?? cfgConv?.fecha ?? null,
+        fecha: cu.fecha ?? fechaConfig ?? null,
         fuentes: { examen: t.c.url, plantilla: t.p.url, pagina: t.c.pagina, correccion: paginaCorreccion(t.clave)[0] ?? null },
         paginaPDF: q.pagina,
       });
     }
   }
-  return { apariciones, resumen: { examenes: trabajos.length, apariciones: apariciones.length } };
+  return { apariciones, resumen: { examenes: trabajos.length, apariciones: apariciones.length, ...(Object.keys(modos).length ? { modos } : {}) } };
 }

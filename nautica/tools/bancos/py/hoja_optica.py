@@ -75,11 +75,16 @@ def filas_respuestas(marcas, n=25):
 def ajustar_columnas(color, tinta, y0, y1, escala):
     # Perfil de la plantilla impresa (burbujas y números) + perfil de las marcas a lápiz: las marcas solo caen en
     # burbujas, así que impiden que el peine se desplace una columna hacia los números.
-    impreso = np.convolve(((color[y0:y1] > 40) | (tinta[y0:y1] > 90)).sum(0).astype(float), np.ones(9) / 9, 'same')
-    lapiz = np.convolve((tinta[y0:y1] > 90).sum(0).astype(float), np.ones(9) / 9, 'same')
+    # Lápiz = oscuro y gris (sin color): umbral 60 para las marcas claras (PY 2/2015) y sin contar los números impresos,
+    # que en algunos escaneos salen en magenta oscuro.
+    gris = (tinta[y0:y1] > 60) & (color[y0:y1] < 40)
+    impreso = np.convolve(((color[y0:y1] > 30) | gris).sum(0).astype(float), np.ones(9) / 9, 'same')
+    lapiz = np.convolve(gris.sum(0).astype(float), np.ones(9) / 9, 'same')
     perfil = impreso / max(impreso.max(), 1) + 2 * lapiz / max(lapiz.max(), 1)
     mejor = None
-    for p in np.arange(PASO_BURBUJA * escala * 0.94, PASO_BURBUJA * escala * 1.06, 0.1):
+    # Paso de burbuja: entre el 92 % y el 102 % del nominal. En las 140 hojas de 2015–2026 sale entre el 94 % y el 99 %;
+    # los ajustes falsos (el peine corrido sobre la columna de números) piden un paso mayor, del 106 %.
+    for p in np.arange(PASO_BURBUJA * escala * 0.92, PASO_BURBUJA * escala * 1.02, 0.1):
         for bp in np.arange(PASO_BLOQUE * escala * 0.96, PASO_BLOQUE * escala * 1.04, 0.25):
             xs_rel = np.array([b * bp + j * p for b in range(4) for j in range(4)])
             # Hueco a la derecha de la burbuja d de cada bloque (antes de los números del bloque siguiente): debe estar
@@ -95,6 +100,59 @@ def ajustar_columnas(color, tinta, y0, y1, escala):
                     mejor = (s, x0, p, bp)
     _, x0, p, bp = mejor
     return [[x0 + b * bp + j * p for j in range(4)] for b in range(4)], p, perfil
+
+
+def inclinacion(tinta, ys):
+    """Giro del escaneo: pendiente x/y de la columna de marcas de sincronismo y su x media → (pendiente, x_marcas)."""
+    h, w = tinta.shape
+    x0 = int(w * 0.93)
+    xs, yv = [], []
+    for y in ys:
+        fila = tinta[max(int(y) - 1, 0):int(y) + 2, x0:]
+        idx = np.where((fila > 100).any(0))[0]
+        if len(idx):
+            xs.append(x0 + (idx.min() + idx.max()) / 2)
+            yv.append(y)
+    if len(xs) < 10:
+        return 0.0, w * 0.96
+    pendiente = float(np.polyfit(yv, xs, 1)[0])
+    return (pendiente if abs(pendiente) < 0.05 else 0.0), float(np.mean(xs))
+
+
+def desfase_filas(color, ys, cols, paso, pendiente, x_marcas, escala):
+    """Desfase vertical (dy) de las filas de cada bloque respecto de las marcas de sincronismo.
+
+    Un escaneo girado un 1,5 % desplaza medio paso de fila el bloque 1–25, que está lejos de las marcas (borde derecho):
+    se leería la burbuja de la fila de al lado (PER A 1/2017). El giro medido en las marcas predice el desfase de cada
+    bloque (pendiente × distancia a las marcas); alrededor de esa predicción (±0,45 pasos, para no saltar a la fila de
+    al lado) se ajusta un peine de 25 filas sobre la plantilla impresa (canal de color), que corrige además las
+    deformaciones del escaneo que no son un giro (PER A 3/2015).
+    """
+    h, w = color.shape
+    mascara = color > 20  # umbral bajo: en algunos escaneos las burbujas impresas salen muy pálidas (PY 1/2025)
+    rx, ry = int(round(5 * escala)), int(round(3 * escala))
+    ymid = (ys[0] + ys[-1]) / 2
+
+    def impreso(b, y):
+        tot = 0
+        for x in cols[b]:
+            cx, cy = int(round(x + pendiente * (y - ymid))), int(round(y))
+            if cy - ry < 0 or cy + ry >= h or cx - rx < 0 or cx + rx >= w:
+                continue
+            tot += int(mascara[cy - ry:cy + ry + 1, cx - rx:cx + rx + 1].sum())
+        return tot
+
+    ventana = int(0.45 * paso)
+    out = []
+    for b in range(len(cols)):
+        prediccion = int(round(pendiente * (x_marcas - float(np.mean(cols[b])))))
+        mejor = None
+        for dy in sorted(range(prediccion - ventana, prediccion + ventana + 1), key=lambda d: abs(d - prediccion)):
+            s = sum(impreso(b, y + dy) for y in ys)
+            if mejor is None or s > mejor[0]:
+                mejor = (s, dy)
+        out.append(mejor[1])
+    return out
 
 
 def puntuacion(tinta, x, y, r):
@@ -125,10 +183,14 @@ def leer(pdf, n):
     escala = paso_y / 16.7
     cols, paso_x, _ = ajustar_columnas(color, tinta, int(ys[0] - 8 * escala), int(ys[-1] + 8 * escala), escala)
     r = max(3, int(round(4.5 * escala)))
+    pendiente, x_marcas = inclinacion(tinta, ys)
+    dys = desfase_filas(color, ys, cols, paso_y, pendiente, x_marcas, escala)
+    ymid = (ys[0] + ys[-1]) / 2
     puntos = []
     for q in range(1, n + 1):
         b, f = divmod(q - 1, 25)
-        puntos.append([round(puntuacion(tinta, x, ys[f], r), 1) for x in cols[b]])
+        y = ys[f] + dys[b]
+        puntos.append([round(puntuacion(tinta, x + pendiente * (y - ymid), y, r), 1) for x in cols[b]])
     # Umbrales adaptados a cada hoja (hay escaneos con el lápiz muy claro): «base» = tinta de una burbuja vacía
     # (mediana de todas), «llena» = tinta típica de una burbuja marcada (percentil 90 de los máximos por fila).
     todas = np.array(puntos)
@@ -151,7 +213,8 @@ def leer(pdf, n):
                 estado = 'dudosa'
         filas.append({'n': q, 'puntos': [round(v, 1) for v in neto], 'marca': marca, 'estado': estado})
     res.update({
-        'geometria': {'pasoFila': round(paso_y, 2), 'pasoBurbuja': round(paso_x, 2), 'x0': round(cols[0][0], 1), 'y0': round(ys[0], 1)},
+        'geometria': {'pasoFila': round(paso_y, 2), 'pasoBurbuja': round(paso_x, 2), 'x0': round(cols[0][0], 1), 'y0': round(ys[0], 1),
+                      'giro': round(pendiente, 4), 'dyBloques': dys},
         'umbral': {'base': round(base, 1), 'llena': round(llena, 1), 'marca': round(umbral, 1)},
         'respuestas': filas,
     })

@@ -95,13 +95,32 @@
    "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/investigacion-innovacion-deportiva/paginas/examenes-primeraconvocatoria-2018.html",
    "fecha": "2018-03-10",
    "activa": false,
-   "nota": "Página bajo investigacion-innovacion-deportiva/ (la ruta de titulaciones-nauticas/ da 404). PY con modelos A y B de cada módulo (único caso)."
+   "nota": "Página bajo investigacion-innovacion-deportiva/ (la ruta de titulaciones-nauticas/ da 404). PY con modelos A y B de cada módulo (único caso).",
+   "fechas": {
+    "per": "2018-03-10",
+    "py": "2018-03-14"
+   }
+  },
+  {
+   "clave": "2018-c1b",
+   "titulo": "1ª convocatoria 2018, PY modelo B (14 de marzo de 2018)",
+   "fecha": "2018-03-14",
+   "activa": false,
+   "derivadaDe": "2018-c1",
+   "titulaciones": [
+    "py"
+   ],
+   "nota": "Sin página propia: el modelo B del PY de la 1ª de 2018 es otro examen (preguntas distintas del A) y se trata como una convocatoria aparte en el banco."
   },
   {
    "clave": "2018-c2",
    "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2018.html",
    "fecha": "2018-05-26",
-   "activa": false
+   "activa": false,
+   "fechas": {
+    "per": "2018-05-26",
+    "py": "2018-06-12"
+   }
   },
   {
    "clave": "2018-c3",
@@ -117,7 +136,11 @@
    "clave": "2018-c4",
    "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-cuartaconvocatoria-2018.html",
    "fecha": "2018-12-01",
-   "activa": false
+   "activa": false,
+   "fechas": {
+    "per": "2018-12-01",
+    "py": "2018-11-23"
+   }
   },
   {
    "clave": "2019-c1",

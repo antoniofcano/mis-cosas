@@ -122,6 +122,82 @@
    "texto": "PER Modelo B, pregunta 15, respuesta correcta c)."
   },
   {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "A",
+   "numero": 39,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: se anula la pregunta 39 del PER modelo A."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "B",
+   "numero": 39,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: se anula la pregunta 39 del PER modelo B."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "A",
+   "numero": 11,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo A, pregunta 11: válidas a y b."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "B",
+   "numero": 12,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo B, pregunta 12: válidas a y b."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "A",
+   "numero": 13,
+   "accion": "aceptar",
+   "letras": [
+    "c",
+    "d"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo A, pregunta 13: válidas c y d."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "B",
+   "numero": 14,
+   "accion": "aceptar",
+   "letras": [
+    "c",
+    "d"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo B, pregunta 14: válidas c y d."
+  },
+  {
    "conv": "and-2021-c1",
    "modelo": "A",
    "numero": 6,

@@ -87,7 +87,7 @@ test('descubrir Andalucía: nombres de 2015–2019 (1TC/1TP, 3T-C, Modelo-A, PY 
 
 test('Andalucía: configuración de 2015–2019 (16 convocatorias, 1ª de 2018 en su ruta propia, 3ª de 2018 sin PY)', () => {
   const cfg = json('tools/bancos/ejes/andalucia/config.json');
-  const antiguas = cfg.convocatorias.filter((c) => c.clave < '2020');
+  const antiguas = cfg.convocatorias.filter((c) => c.clave < '2020' && c.pagina);
   assert.equal(antiguas.length, 16);
   assert.ok(antiguas.every((c) => !c.activa));
   assert.match(antiguas.find((c) => c.clave === '2018-c1').pagina, /investigacion-innovacion-deportiva/);

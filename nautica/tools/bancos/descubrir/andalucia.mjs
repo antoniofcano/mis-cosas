@@ -45,7 +45,7 @@ export function enlacesPDF(html) {
 export async function descubrir(config, { avisos, todas = false, leerPagina = descargarPagina } = {}) {
   const docs = [];
   for (const c of config.convocatorias) {
-    if (!c.activa && !todas) continue;
+    if ((!c.activa && !todas) || !c.pagina) continue; // sin página: convocatoria derivada (PY 2018-c1b)
     const html = leerPagina(c.pagina);
     const vistos = new Set();
     for (const url of enlacesPDF(html)) {

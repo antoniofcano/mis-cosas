@@ -1278,3 +1278,35 @@ a.clase.siguiente-ruta { border-color: var(--accent); box-shadow: inset 4px 0 0 
 .aviso-apoyo ul { padding-left: 1.2rem; }
 .aviso-apoyo-botones { flex-wrap: wrap; }
 .aviso-apoyo-botones > * { flex: 1 1 14rem; }
+
+/* ---- Configuración del profesor y modo profesor ---- */
+.marca-config { margin: .4rem 0; font-size: .9rem; color: var(--muted); }
+.marca-config a { display: inline-flex; align-items: center; min-height: 48px; color: var(--muted); }
+.resumen-config { margin: .3rem 0 .8rem; padding-left: 1.2rem; }
+.config-revision, .config-avisos { padding: .8rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); margin: .6rem 0; }
+.config-avisos { border-color: var(--close); }
+textarea.config-pegar, textarea.profe-chuleta, .profe-modo textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .6rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
+.config-pegar-det > summary, .profe-nueva-regla > summary, .profe-vista details > summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.profe-modo section { margin: 1.4rem 0; }
+.profe-modo input:not([type="checkbox"]), .profe-modo select { min-height: 48px; width: 100%; box-sizing: border-box; }
+.ruta-editor { list-style: none; padding: 0; margin: .5rem 0; counter-reset: ruta; }
+.ruta-fila { counter-increment: ruta; display: flex; align-items: center; gap: .5rem; padding: .4rem .5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin: .25rem 0; }
+.ruta-fila.nuevo-tramo { margin-top: .8rem; border-top: 3px solid var(--accent); }
+.ruta-fila.arrastrando { opacity: .5; }
+.ruta-fila.destino { outline: 2px dashed var(--accent); }
+.ruta-fila.movida { box-shadow: inset 4px 0 0 var(--accent); }
+.ruta-asa { cursor: grab; color: var(--muted); font-size: 1.2rem; padding: 0 .2rem; }
+.ruta-texto { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ruta-texto .ruta-titulo::before { content: counter(ruta) ". "; color: var(--muted); }
+.ruta-tema { font-size: .8rem; color: var(--muted); }
+.ruta-titulo { font-weight: 600; overflow-wrap: anywhere; }
+.ruta-apoyo { font-size: .8rem; color: var(--muted); }
+.ruta-botones { display: flex; gap: .3rem; }
+.ruta-botones button { min-width: 48px; min-height: 48px; padding: 0; font-size: 1.2rem; }
+.aviso-ruta { min-height: 1.5em; }
+.profe-regla { padding: .6rem .8rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); margin: .4rem 0; }
+.profe-regla p { margin: .2rem 0; }
+.profe-regla.oculta { opacity: .6; }
+.profe-regla.cambiada, .profe-regla.nueva { border-left: 4px solid var(--accent); }
+.vista-tramos li { margin: .3rem 0; }
+@media (max-width: 420px) { .ruta-asa { display: none; } .ruta-botones { flex-direction: column; } }

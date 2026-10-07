@@ -93,3 +93,41 @@ Nada se migra: la ruta solo cambia **qué viene después**. Lo hecho sigue hecho
 clase a medias se propone la primera; después, la primera clase sin terminar de la ruta. Los ids de las unidades del
 plan con fecha no cambian (`clase:<id>`, `tanda:<ut>:<k>`), así que un plan guardado sigue valiendo. «¿Estás listo?» y
 el examen final no dependen de la ruta.
+
+## Configuración del profesor
+
+Un profesor puede preparar **su** ruta, sus reglas para recordar y sus chuletas y pasárselas a sus alumnos en un
+fichero. Solo cambia lo que ve quien lo importa; los datos por defecto de la app no cambian nunca.
+
+- **Modo profesor** (`#/profe`, Ajustes → «Soy profesor: preparar una configuración», `src/ui/views/profe.js`):
+  1. autor, nombre y titulación;
+  2. la ruta: se reordena arrastrando o con ↑ ↓ (botones de 48 px, accesibles con teclado y lector de pantalla); un
+     movimiento que pondría una clase antes de una que requiere se bloquea y se dice por qué;
+  3. las reglas para recordar: añadir, editar, ocultar (y volver a la original);
+  4. la chuleta de cada clase (una línea por punto);
+  5. vista previa: qué cambia, la ruta por tramos, las reglas y chuletas tocadas;
+  6. «Exportar configuración (.json)» (descarga) o «Copiar el texto».
+  Lo preparado se guarda como borrador en el aparato del profesor (`settings.borradorProfe`).
+- **Alumno** (Ajustes → «Usar la configuración de mi profesor», `src/ui/config-profe.js`): elegir el fichero o pegar el
+  texto; se valida, se enseña qué cambia (y los avisos) y se confirma. Queda en `settings.configProfe` (entra en las
+  copias de seguridad) y se quita cuando se quiera («Quitarla y volver a la ruta por defecto»). Mientras está puesta,
+  Hoy y Temario dicen, discretamente, «🧑‍🏫 Ruta de: <autor>»; la chuleta cambiada sale como «Chuleta de tu profesor».
+- **Un solo sitio** aplica la configuración (`src/course/config-profe.js`: `aplicarConfigCurso`, `aplicarConfigReglas`),
+  llamado desde `src/bancos/index.js` al cargar el curso y las reglas (`fijarConfigProfe` le dice de dónde leerla).
+  Simulacros, exámenes reales y examen final no cambian: las preguntas, el tiempo y la corrección son los de siempre.
+
+Formato (versión 1):
+
+```json
+{ "version": 1, "autor": "Marta Ruiz", "nombre": "Grupo de tarde", "fecha": "2026-10-07", "tit": "py",
+  "ruta": ["py-3-1", "py-3-2", "py-4-1", …],
+  "reglas": { "añadir": [{ "regla": "…", "significado": "…" }], "cambiar": { "r01": { "regla": "…" } }, "quitar": ["r02"] },
+  "chuletas": { "py-4-9": "Primero, pasa a UT.\nLuego, la tabla." } }
+```
+
+Validación estricta (`validarConfig`): solo esos campos, con su tipo y tamaño (fichero ≤ 300 KB; textos recortados);
+ids con forma de id; sin claves raras (`__proto__` incluido). No se ejecuta nada: el texto se limpia (sin caracteres
+de control, de anchura cero ni de dirección) y se pinta siempre como texto. Lo que no se entiende es un error y el
+fichero no se usa; las clases o reglas que la app no conoce son avisos y esa parte se ignora. Una ruta que no respeta
+`requiere` (también contando las clases que no nombra, que van al final) se avisa y se sigue la ruta por defecto. La
+configuración guardada se vuelve a validar al leerla (puede venir de una copia editada a mano).

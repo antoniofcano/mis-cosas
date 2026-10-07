@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { TITULACIONES } from '../src/theory/blocks.js';
 import { crearBancos } from '../src/bancos/index.js';
 import { EJE_POR_DEFECTO } from '../src/bancos/registro.js';
+import { validSpec } from '../src/illustrations/index.js';
 import { huella } from '../tools/bancos/migrar-andalucia.mjs';
 import { RAIZ, leerJSON, bancosNode, preguntasDe } from '../tools/bancos/leer.mjs';
 
@@ -94,6 +95,8 @@ for (const r of registro) {
       for (const [id, e] of Object.entries(expl)) {
         assert.ok(ids.has(id), `explicación de una pregunta que no está: ${id}`);
         assert.ok(e.explicacion && e.clave, `explicación sin texto o sin clave: ${id}`);
+        for (const sp of e.ilustraciones ?? []) assert.ok(validSpec(sp), `${id}: ilustración no dibujable ${JSON.stringify(sp)}`);
+        if (e.defendible) assert.ok(e.discrepancia, `${id}: defendible sin discrepancia`);
       }
     });
 

@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'dac2050ee047';
+self.VERSION = 'f1ef5cab7fb0';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -13,6 +13,7 @@ self.APP = [
  "src/analysis/checker.js",
  "src/analysis/quantities.js",
  "src/bancos/ejes/andalucia.js",
+ "src/bancos/ejes/dgmm.js",
  "src/bancos/equivalentes.js",
  "src/bancos/index.js",
  "src/bancos/registro.js",
@@ -44,6 +45,22 @@ self.APP = [
  "src/exams/solutions/andalucia-py-2025.js",
  "src/exams/solutions/andalucia-py-2026.js",
  "src/exams/solutions/andalucia-py.js",
+ "src/exams/solutions/dgmm-per-2019.js",
+ "src/exams/solutions/dgmm-per-2020.js",
+ "src/exams/solutions/dgmm-per-2021.js",
+ "src/exams/solutions/dgmm-per-2022.js",
+ "src/exams/solutions/dgmm-per-2023.js",
+ "src/exams/solutions/dgmm-per-2024.js",
+ "src/exams/solutions/dgmm-per-2025.js",
+ "src/exams/solutions/dgmm-per-2026.js",
+ "src/exams/solutions/dgmm-py-2019.js",
+ "src/exams/solutions/dgmm-py-2020.js",
+ "src/exams/solutions/dgmm-py-2021.js",
+ "src/exams/solutions/dgmm-py-2022.js",
+ "src/exams/solutions/dgmm-py-2023.js",
+ "src/exams/solutions/dgmm-py-2024.js",
+ "src/exams/solutions/dgmm-py-2025.js",
+ "src/exams/solutions/dgmm-py-2026.js",
  "src/exercises/compass-data.js",
  "src/exercises/define.js",
  "src/exercises/helpers.js",

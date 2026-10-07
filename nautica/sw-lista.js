@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '6c9b2dcaeff4';
+self.VERSION = 'd34ac3cfcbdb';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -269,11 +269,16 @@ self.DATOS = [
  "data/curso/ruta-per.json",
  "data/curso/ruta-py.json",
  "data/ejes/andalucia/eje.json",
+ "data/ejes/andalucia/img/and-2016-c2-t26.png",
+ "data/ejes/andalucia/img/and-2019-c2-t01.png",
+ "data/ejes/andalucia/img/and-2019-c2-t21.png",
+ "data/ejes/andalucia/img/and-2019-c3-t01.png",
  "data/ejes/andalucia/img/and-2020-c1-t29.png",
  "data/ejes/andalucia/img/and-2020-c3-t02.png",
  "data/ejes/andalucia/img/and-2023-c3-t11.png",
  "data/ejes/andalucia/img/and-2024-c1-t01.png",
  "data/ejes/andalucia/img/and-2025-c3-t19.png",
+ "data/ejes/andalucia/img/and-py-2016-c1-g17.png",
  "data/ejes/andalucia/img/and-py-2021-c1-g12.png",
  "data/ejes/andalucia/img/py-tabla-mareas.png",
  "data/ejes/andalucia/per/explicaciones.json",

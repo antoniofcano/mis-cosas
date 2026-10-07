@@ -6,7 +6,8 @@
 import { rutaPDF } from '../etapas/manifiesto.mjs';
 import { analizarCuestionario } from '../lib/cuestionario.mjs';
 import { execFileSync } from 'node:child_process';
-import { python } from '../lib/comun.mjs';
+import { join } from 'node:path';
+import { dirEje, leerJSON, python } from '../lib/comun.mjs';
 
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
@@ -210,6 +211,8 @@ export function extraer(ctx, tit) {
   const rotulos = leerRotulos(trabajos.map((t) => rutaPDF(eje, t.c)));
   const apariciones = [];
   const modos = {};
+  // Figuras recortadas de los cuestionarios (ejes/<eje>/figuras.json: «<conv>|<modelo o módulo>|<número>» → [rutas]).
+  const figuras = leerJSON(join(dirEje(eje), 'figuras.json'), {});
   for (const t of trabajos) {
     const cfgConv = config.convocatorias.find((c) => c.clave === t.clave);
     const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)], nDe(t));
@@ -233,6 +236,7 @@ export function extraer(ctx, tit) {
         numero: q.numero, orden: tit === 'py' ? (modulo === 'navegacion' ? 20 : 0) + q.numero : q.numero,
         seccion: q.seccion, utPdf: ut ? Number(ut) : null, utTituloPdf: utTitulo || null,
         enunciado: q.enunciado, opciones: q.opciones, contexto: q.contexto ?? null,
+        figuras: figuras[`${conv}|${variante ?? modulo}|${q.numero}`] ?? [],
         // umbral: tinta neta mínima de una burbuja marcada en esa hoja (para medir la confianza de la lectura en los informes).
         respuesta: r ? { letras: r.marca ? [...r.marca] : [], estado: r.estado, origen: 'omr', puntos: r.puntos, umbral: hoja.umbral?.marca ?? null } : { letras: [], estado: 'sin-hoja', origen: 'omr' },
         fecha: cu.fecha ?? fechaConfig ?? null,

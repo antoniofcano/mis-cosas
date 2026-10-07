@@ -858,5 +858,618 @@
   "explicacion": "El anti-sea clutter (STC o control de mar) reduce los ecos parásitos que produce el oleaje cerca del barco, en el centro de la pantalla. Para los ecos de lluvia se usa el anti-rain clutter (FTC); la niebla apenas afecta al radar.",
   "clave": "Sea clutter = oleaje; rain clutter = lluvia.",
   "trampa": "La b) corresponde al anti-rain clutter, no al anti-sea."
+ },
+ "bal-py-2018-04-a-21": {
+  "explicacion": "Con la presentación norte arriba el 0° de la pantalla es el norte verdadero (el radar recibe el rumbo de la giroscópica o del compás), así que el ángulo que da el cursor o la EBL sobre un eco es una demora verdadera. Con proa arriba, en cambio, lo que se mide son marcaciones.",
+  "clave": "Norte arriba = demoras verdaderas; proa arriba = marcaciones.",
+  "trampa": "La c) (marcaciones) es lo que se lee con proa arriba."
+ },
+ "bal-py-2018-04-a-22": {
+  "explicacion": "Las cartas náuticas a bordo deben estar actualizadas, y para ello se usan los avisos a los navegantes, que publican los cambios en faros, boyas, sondas o peligros. No están en desuso, las electrónicas también hay que actualizarlas (no se actualizan solas al llegar a puerto) y la descripción detallada de costas y puertos es propia de los derroteros, no de las cartas.",
+  "clave": "Carta al día gracias a los avisos a los navegantes.",
+  "trampa": "La b) describe los derroteros, no las cartas."
+ },
+ "bal-py-2018-04-a-23": {
+  "explicacion": "AIS significa Automatic Identification System: un sistema de identificación automática que intercambia por VHF la identidad, posición, rumbo y velocidad de los buques. No es un sistema de fonía, no maniobra por sí solo para evitar abordajes (es una ayuda) ni tiene que ver con el fondo marino.",
+  "clave": "AIS = sistema de identificación automática.",
+  "trampa": "La b): ayuda a prevenir abordajes, pero no es un sistema anticolisión automático."
+ },
+ "bal-py-2018-04-a-25": {
+  "explicacion": "La ENC es una carta vectorial: sus objetos tienen atributos que se pueden consultar, permite activar alarmas (sondas de seguridad, zonas peligrosas) y elegir qué información mostrar, así que es más completa que la RNC, que es solo una imagen escaneada de la carta de papel. Las cartas electrónicas son recomendables, y las de papel también hay que manejarlas con criterio.",
+  "clave": "ENC (vectorial) > RNC (imagen) en información.",
+  "trampa": "La b) invierte la relación entre RNC y ENC.",
+  "concepto": "bal-py-2018-04-a-25"
+ },
+ "bal-py-2023-03-ac-22": {
+  "explicacion": "La ENC es una carta vectorial: sus objetos tienen atributos que se pueden consultar, permite activar alarmas (sondas de seguridad, zonas peligrosas) y elegir qué información mostrar, así que es más completa que la RNC, que es solo una imagen escaneada de la carta de papel. Las cartas electrónicas son recomendables y no hay motivo para navegar solo con papel.",
+  "clave": "ENC (vectorial) > RNC (imagen) en información.",
+  "trampa": "La c) invierte la relación entre RNC y ENC.",
+  "concepto": "bal-py-2018-04-a-25"
+ },
+ "bal-py-2018-04-a-28": {
+  "explicacion": "El AIS transmite datos estáticos (nombre, MMSI, distintivo, tipo, eslora y manga; la bandera se deduce del MMSI) y datos dinámicos (posición, rumbo y velocidad). Por eso todas las afirmaciones son correctas.",
+  "clave": "AIS: estáticos (nombre, MMSI, dimensiones) y dinámicos (posición, rumbo, velocidad).",
+  "trampa": "Elegir solo la c), que es la parte más conocida."
+ },
+ "bal-py-2018-04-a-29": {
+  "explicacion": "La latitud es el arco de meridiano del lugar contado desde el ecuador hasta el paralelo del lugar, de 0° a 90° N o S. Se mide sobre el meridiano, no sobre el paralelo (sobre el paralelo no se puede «subir» desde el ecuador), y termina en el paralelo, no en el meridiano.",
+  "clave": "Latitud: por el meridiano, del ecuador al paralelo del lugar.",
+  "trampa": "La a) y la c) dicen «arco de paralelo», que es donde se mide la longitud."
+ },
+ "bal-py-2018-04-b-22": {
+  "explicacion": "La hora civil del lugar es el tiempo transcurrido desde que el sol medio pasó por el meridiano inferior del lugar, es decir, desde la medianoche local. Si se cuenta desde el meridiano inferior de Greenwich es la hora civil de Greenwich o TU; la a) describe el tiempo atómico y la b) la hora oficial.",
+  "clave": "HcL = sol medio, meridiano inferior del lugar (00 h = medianoche).",
+  "trampa": "La c) es la hora de Greenwich, no la del lugar."
+ },
+ "bal-py-2018-04-b-23": {
+  "explicacion": "En España los avisos a los navegantes los publica el Instituto Hidrográfico de la Marina (IHM), semanalmente, y se pueden consultar en su web y en la intranet de la Armada. Ni la AEMET (meteorología) ni la OMI (organización internacional) los publican.",
+  "clave": "Avisos a los navegantes: Instituto Hidrográfico de la Marina.",
+  "trampa": "La OMI (c) regula la seguridad marítima, pero no corrige cartas españolas."
+ },
+ "bal-py-2018-04-b-24": {
+  "explicacion": "El ecuador es la circunferencia máxima perpendicular al eje de la Tierra: la divide en hemisferios norte y sur y es el origen de las latitudes. Los círculos polares son circunferencias menores, los polos son puntos y los meridianos contienen el eje en lugar de ser perpendiculares a él.",
+  "clave": "Ecuador ⟂ eje; meridianos contienen el eje.",
+  "trampa": "El meridiano (d) es circunferencia máxima, pero pasa por el eje, no es perpendicular a él.",
+  "base": "and-py-2023-c2-n01",
+  "concepto": "and-py-2023-c2-n01"
+ },
+ "bal-py-2018-04-c-21": {
+  "explicacion": "El radar detecta los ecos que reflejan los objetos, sin que estos tengan que emitir nada, pero no ve lo que queda tapado por una isla o un cabo. El AIS, en cambio, recibe por VHF los datos que emiten otros barcos, de modo que puede mostrar uno oculto tras la costa si tiene el AIS encendido y la señal llega (directa o por repetidores). Todas las afirmaciones son correctas.",
+  "clave": "Radar: ve sin ayuda, pero no tras la costa. AIS: solo ve a quien emite.",
+  "trampa": "Pensar que el AIS sustituye al radar: un barco sin AIS no aparece."
+ },
+ "bal-py-2018-04-c-23": {
+  "explicacion": "El AIS de clase B, pensado para embarcaciones no obligadas, transmite menos datos que el de clase A (no envía destino, ETA ni calado), usa un transmisor de menor potencia (2 W frente a 12,5 W) y por eso su alcance es menor; además transmite con menos frecuencia. Todas las afirmaciones son correctas.",
+  "clave": "AIS B: menos datos, menos potencia, menos alcance.",
+  "trampa": "Quedarse con una sola diferencia cuando son ciertas las tres."
+ },
+ "bal-py-2018-04-c-27": {
+  "explicacion": "La corrección total es la suma de la declinación magnética y el desvío (Ct = dm + Δ), así que se puede obtener con ellas; también comparando una demora verdadera conocida con la de aguja (Ct = Dv − Da), que se obtiene con la estrella Polar (Dv ≈ 0°) o con una enfilación u oposición medida en la carta. Las tres formas son válidas.",
+  "clave": "Ct = dm + Δ, o Ct = Dv − Da (Polar, enfilación, oposición).",
+  "trampa": "Pensar que la Ct solo sale de la carta y la tablilla de desvíos.",
+  "ilustraciones": [
+   {
+    "tipo": "enfilacion",
+    "dv": 40,
+    "da": 44
+   }
+  ]
+ },
+ "bal-py-2018-04-c-28": {
+  "explicacion": "En España el organismo que emite los avisos a los navegantes, tanto para las cartas de papel como para las ENC, es el Instituto Hidrográfico de la Marina, que también las produce. La Dirección General de la Marina Mercante, la Armada en general o la AEMET tienen otras funciones.",
+  "clave": "Cartas y avisos a los navegantes: Instituto Hidrográfico de la Marina.",
+  "trampa": "La c): el IHM pertenece a la Armada, pero la respuesta precisa es el propio Instituto.",
+  "concepto": "bal-py-2018-04-c-28"
+ },
+ "bal-py-2022-12-ac-29": {
+  "explicacion": "En España el organismo que emite los avisos a los navegantes, tanto para las cartas de papel como para las ENC, es el Instituto Hidrográfico de la Marina, que también las produce. La Dirección General de la Marina Mercante, la Fábrica Nacional de Moneda y Timbre o la AEMET tienen otras funciones.",
+  "clave": "Cartas y avisos a los navegantes: Instituto Hidrográfico de la Marina.",
+  "trampa": "La b): la Marina Mercante regula buques y titulaciones, no las cartas.",
+  "concepto": "bal-py-2018-04-c-28"
+ },
+ "bal-py-2024-12-a-29": {
+  "explicacion": "En España el organismo que emite los avisos a los navegantes, tanto para las cartas de papel como para las ENC, es el Instituto Hidrográfico de la Marina, que también las produce. La Dirección General de la Marina Mercante tiene otras funciones, y la «Dirección General Hidrográfica de la Marina Mercante» no existe.",
+  "clave": "Cartas y avisos a los navegantes: Instituto Hidrográfico de la Marina.",
+  "trampa": "La a) mezcla los nombres de dos organismos en uno inexistente.",
+  "concepto": "bal-py-2018-04-c-28"
+ },
+ "bal-py-2018-06-a-27": {
+  "explicacion": "La corrección total es la suma de la declinación magnética y el desvío: Ct = dm + Δ. Dos barcos en la misma zona tienen la misma declinación, pero cada uno tiene su propio desvío (depende de los hierros y aparatos de a bordo y del rumbo), así que solo tendrán la misma Ct si sus desvíos coinciden.",
+  "clave": "Ct = dm + Δ: la dm es de la zona, el desvío es de cada barco.",
+  "trampa": "La b): en la misma zona la declinación es la misma; lo que cambia es el desvío."
+ },
+ "bal-py-2018-06-a-29": {
+  "explicacion": "Los radares de banda S (unos 3 GHz, longitud de onda de unos 10 cm) se ven menos afectados por la lluvia y el mar que los de banda X (9 GHz, unos 3 cm), así que detectan mejor los blancos con mal tiempo. La banda X da más definición con buen tiempo, y la «banda Z» no es una banda de radar marino.",
+  "clave": "Banda S: mejor con mal tiempo. Banda X: más definición.",
+  "trampa": "La banda X (d) es la más común en embarcaciones, pero sufre más con la lluvia."
+ },
+ "bal-py-2018-06-b-21": {
+  "explicacion": "La imagen de la pregunta no está disponible. Por las opciones, se trata de ecos parásitos en la pantalla: los que produce el oleaje cercano (sea clutter, concentrados alrededor del centro) y los de lluvia (rain clutter, en manchas). Ambas causas pueden producir esa imagen, y se reducen con los controles anti-sea y anti-rain; un brillo bajo no genera ecos.",
+  "clave": "Ecos parásitos: mar (anti-sea) y lluvia (anti-rain).",
+  "trampa": "La d): bajar el brillo oscurece la imagen, pero no crea perturbaciones."
+ },
+ "bal-py-2018-06-b-22": {
+  "explicacion": "La captura del GPS de la pregunta no está disponible. La distancia lateral a la derrota programada es el XTE (cross track error); según la respuesta oficial, la pantalla mostraba un XTE de una milésima de milla, que equivale a unos 1,85 m. Los valores de 6 o 0,535 millas corresponderían a otros campos de la pantalla, como la distancia al waypoint.",
+  "clave": "Separación lateral de la ruta = XTE; 0,001 millas ≈ 1,85 m.",
+  "trampa": "Leer la distancia al waypoint en lugar del XTE."
+ },
+ "bal-py-2018-06-b-24": {
+  "explicacion": "La latitud media se halla sumando las latitudes con su signo (N positivo, S negativo) y dividiendo entre dos: (35° 25' − 48° 35') / 2 = −13° 10' / 2 = −6° 35', es decir, 6° 35' S. Los 13° 10' de la c) son la suma sin dividir.",
+  "clave": "Latitud media = (l1 + l2) / 2, con signo.",
+  "trampa": "La c) olvida dividir entre dos."
+ },
+ "bal-py-2018-06-b-26": {
+  "explicacion": "MOB significa Man Overboard, hombre al agua: al pulsarlo el GPS guarda la posición del momento y da rumbo y distancia para volver a ella. Las demás siglas son inventadas.",
+  "clave": "MOB = Man Overboard = hombre al agua.",
+  "trampa": "La a) (Man On Boat) se parece, pero dice lo contrario."
+ },
+ "bal-py-2018-06-b-27": {
+  "explicacion": "Los extremos del eje de rotación de la Tierra son los polos, norte y sur. Los paralelos y los meridianos son circunferencias trazadas sobre la superficie, y los hemisferios son las mitades en que la divide un círculo máximo.",
+  "clave": "Extremos del eje = polos.",
+  "trampa": "Los meridianos (c) pasan por los polos, pero no son sus extremos."
+ },
+ "bal-py-2018-06-b-28": {
+  "explicacion": "Una enfilación es la línea que pasa por dos marcas y por el ojo del observador cuando las ve una detrás de otra. La oposición es cuando dos marcas se ven en direcciones opuestas, la demora es el ángulo desde el norte y la marcación el ángulo desde la proa.",
+  "clave": "Enfilación: dos marcas en línea con tu ojo.",
+  "trampa": "La oposición (d) también usa dos marcas, pero a 180° una de otra.",
+  "ilustraciones": [
+   {
+    "tipo": "enfilacion",
+    "dv": 40,
+    "da": 44
+   }
+  ]
+ },
+ "bal-py-2018-06-b-30": {
+  "explicacion": "Con la presentación norte arriba el 0° de la pantalla es el norte, así que las direcciones a los ecos se leen directamente como demoras. La presentación no hace que la imagen sea más borrosa ni que tenga más perturbaciones; las marcaciones directas son propias de la proa arriba.",
+  "clave": "Norte arriba = demoras directas.",
+  "trampa": "La a) corresponde a la presentación proa arriba."
+ },
+ "bal-py-2018-12-a-21": {
+  "explicacion": "El trópico de Cáncer es el paralelo de unos 23° 27' al norte del ecuador, y marca los puntos más septentrionales en los que el Sol puede estar en el cénit al mediodía (solsticio de junio). La b) dice «más meridionales» y la c) y la d) describen el trópico de Capricornio, en el hemisferio sur.",
+  "clave": "Cáncer N, Capricornio S: 23° 27'.",
+  "trampa": "La b) cambia «septentrionales» por «meridionales», que sería Capricornio."
+ },
+ "bal-py-2018-12-a-25": {
+  "explicacion": "La hora oficial es la que adopta cada Estado para su territorio, y puede coincidir o no con la hora legal (la del huso): en España peninsular y Baleares se lleva una hora más en invierno y dos en verano respecto al huso horario 0. La c) define la hora legal o de huso y la d) la hora civil del lugar.",
+  "clave": "Hora oficial = la que fija el Gobierno; puede no coincidir con la del huso.",
+  "trampa": "La c) define la hora legal (del huso), no la oficial."
+ },
+ "bal-py-2018-12-a-26": {
+  "explicacion": "En presentación norte arriba el radar orienta la imagen con el norte hacia arriba, de modo que el ángulo que se lee con el cursor de demoras (EBL) sobre un eco es su demora verdadera. Con proa arriba se leería la marcación; la distancia se mide con el VRM.",
+  "clave": "Norte arriba + EBL = demora verdadera.",
+  "trampa": "La b) (marcación) corresponde a la presentación proa arriba."
+ },
+ "bal-py-2018-12-a-27": {
+  "explicacion": "Un meridiano completo es una circunferencia máxima, porque su plano pasa por el centro de la Tierra. Los trópicos y los paralelos del lugar son circunferencias menores (el único paralelo máximo es el ecuador), y el meridiano superior del lugar es solo la mitad del meridiano, una semicircunferencia.",
+  "clave": "Circunferencias máximas: ecuador y meridianos.",
+  "trampa": "La d): el meridiano superior es solo media circunferencia."
+ },
+ "bal-py-2018-12-a-28": {
+  "explicacion": "El radar emite impulsos de ondas radioeléctricas y analiza la onda que se refleja en los objetos (el eco): el tiempo que tarda en volver da la distancia y la dirección de la antena, la demora. No se basa en la interrupción de la onda ni en campos o radiaciones que emitan los objetos.",
+  "clave": "Radar = eco de la onda reflejada.",
+  "trampa": "La d): el radar es activo, no capta radiación propia de los objetos."
+ },
+ "bal-py-2018-12-a-29": {
+  "explicacion": "El huso horario 0 abarca 15° de longitud, de 7° 30' W a 7° 30' E, y el meridiano superior de Greenwich (longitud 0°) lo divide en dos mitades de 7° 30'. El cambio de fecha se hace en el meridiano de 180° (el antimeridiano de Greenwich), y el sistema métrico decimal no tiene meridiano de origen.",
+  "clave": "Huso 0: 7° 30' a cada lado de Greenwich.",
+  "trampa": "La b) usa 15°, que es la anchura del huso entero, no de cada mitad.",
+  "concepto": "bal-py-2018-12-a-29"
+ },
+ "bal-py-2020-12-b-27": {
+  "explicacion": "El huso horario 0 abarca 15° de longitud, de 7° 30' W a 7° 30' E, y el meridiano superior de Greenwich (longitud 0°) lo divide en dos mitades de 7° 30'. El cambio de fecha se hace en el meridiano de 180° (el antimeridiano de Greenwich), y el sistema métrico decimal no tiene meridiano de origen.",
+  "clave": "Huso 0: 7° 30' a cada lado de Greenwich.",
+  "trampa": "La b) usa 15°, que es la anchura del huso entero, no de cada mitad.",
+  "concepto": "bal-py-2018-12-a-29"
+ },
+ "bal-py-2018-12-b-22": {
+  "explicacion": "XTE (Cross Track Error) es la distancia perpendicular entre la posición del barco y la línea de la ruta programada hacia el siguiente waypoint. DTG es la distancia que falta hasta el waypoint, TTG el tiempo que falta y COG el rumbo sobre el fondo.",
+  "clave": "XTE = cuánto te has salido de la ruta.",
+  "trampa": "La b) (DTG) también es una distancia, pero hasta el waypoint, no a la ruta."
+ },
+ "bal-py-2018-12-b-26": {
+  "explicacion": "La marcación es el ángulo entre la proa (la línea de crujía) y la visual al objeto, y la proa apunta siempre al rumbo verdadero, haya viento o corriente. Por eso para pasar de marcación a demora se usa el rumbo verdadero: Dv = Rv + M. El rumbo de superficie y el efectivo no coinciden con la dirección de la proa.",
+  "clave": "Demora = rumbo verdadero + marcación, siempre.",
+  "trampa": "La c): con viento el barco avanza por el rumbo de superficie, pero su proa sigue en el verdadero."
+ },
+ "bal-py-2018-12-b-27": {
+  "explicacion": "WPT (waypoint), COG (rumbo sobre el fondo), SOG (velocidad sobre el fondo), ETA (hora estimada de llegada) y XTE (error transversal) son siglas habituales de un receptor GNSS. MOP no es ninguna de ellas, así que la b) es la que no se corresponde con el GNSS.",
+  "clave": "Siglas GNSS: WPT, COG, SOG, ETA, XTE, MOB.",
+  "trampa": "MOP se parece a MOB (hombre al agua), que sí es una función del GPS."
+ },
+ "bal-py-2018-12-b-29": {
+  "explicacion": "Los datos dinámicos del AIS son los que cambian continuamente y se actualizan solos: posición, velocidad y rumbo sobre el fondo, rumbo de proa y la hora UTC de la posición. El calado es un dato de viaje, que se introduce a mano antes de salir, así que no es dinámico.",
+  "clave": "AIS dinámico: posición, SOG, COG, hora. De viaje: calado, destino, ETA.",
+  "trampa": "La d): la hora UTC acompaña a cada posición, así que sí es dinámica."
+ },
+ "bal-py-2019-04-a-21": {
+  "explicacion": "Los mástiles, chimeneas y otras estructuras cercanas a la antena tapan el haz del radar en ciertas direcciones y crean sectores ciegos o zonas de sombra, en los que no se ven ecos. Los falsos ecos son ecos que aparecen donde no hay nada, y las interferencias de otros radares forman líneas o puntos en espiral.",
+  "clave": "Obstáculos junto a la antena = sectores ciegos o de sombra.",
+  "trampa": "Los falsos ecos (b) también pueden deberse a estructuras de a bordo, pero por reflexión, no por bloqueo."
+ },
+ "bal-py-2019-04-a-22": {
+  "explicacion": "SOG (Speed Over Ground) es la velocidad sobre el fondo, es decir, la velocidad efectiva. COG es el rumbo sobre el fondo (rumbo efectivo), DST suele indicar distancia y SPD es la velocidad sin precisar sobre qué.",
+  "clave": "SOG = velocidad efectiva; COG = rumbo efectivo.",
+  "trampa": "El COG (c) es el rumbo efectivo, no la velocidad."
+ },
+ "bal-py-2019-04-a-24": {
+  "explicacion": "El GPS da la posición en el datum WGS 84. Solo si la carta está referida a ese mismo datum se puede llevar la posición directamente; si usa otro (por ejemplo, ED50), hay que aplicar la corrección que indica la propia carta, porque la diferencia puede ser de decenas o cientos de metros.",
+  "clave": "Posición GPS directa a la carta solo si la carta es WGS 84.",
+  "trampa": "La b): una carta oficial puede estar en otro datum y necesitar corrección.",
+  "concepto": "bal-py-2019-04-a-24"
+ },
+ "bal-py-2020-12-b-24": {
+  "explicacion": "El GPS da la posición en el datum WGS 84. Solo si la carta está referida a ese mismo datum se puede llevar la posición directamente con precisión; si usa otro (por ejemplo, ED50), hay que aplicar la corrección que indica la propia carta. No es que nunca se deba hacer, sino que hay que comprobar el datum.",
+  "clave": "Posición GPS directa a la carta solo si la carta es WGS 84.",
+  "trampa": "La b): una carta oficial puede estar en otro datum y necesitar corrección.",
+  "concepto": "bal-py-2019-04-a-24"
+ },
+ "bal-py-2019-04-a-25": {
+  "explicacion": "La declinación magnética es el ángulo entre el norte verdadero y el magnético. Depende del lugar de la Tierra, es decir, de la latitud y la longitud (y cambia lentamente con los años), pero no del barco ni del rumbo. Lo que depende de los hierros de a bordo y del rumbo es el desvío.",
+  "clave": "dm: depende del lugar y del año. Δ: depende del barco y del rumbo.",
+  "trampa": "Las a), b) y c) describen las causas del desvío, no de la declinación.",
+  "base": "and-py-2021-c1-n07",
+  "concepto": "and-py-2021-c1-n07"
+ },
+ "bal-py-2019-04-a-26": {
+  "explicacion": "La Tierra da una vuelta de 360° en 24 horas, así que cada hora corresponde a 360 / 24 = 15° de longitud: cada huso horario abarca 15°, 7° 30' a cada lado de su meridiano central.",
+  "clave": "Huso horario = 15° = 1 hora.",
+  "trampa": "La a) (7,5°) es solo la mitad del huso, a cada lado del meridiano central.",
+  "concepto": "bal-py-2019-04-a-26"
+ },
+ "bal-py-2024-07-a-26": {
+  "explicacion": "La Tierra da una vuelta de 360° en 24 horas, así que cada hora corresponde a 360 / 24 = 15° de longitud: cada huso horario abarca 15°, 7° 30' a cada lado de su meridiano central.",
+  "clave": "Huso horario = 15° = 1 hora.",
+  "trampa": "La a) (7,5°) es solo la mitad del huso, a cada lado del meridiano central.",
+  "concepto": "bal-py-2019-04-a-26"
+ },
+ "bal-py-2019-04-a-27": {
+  "explicacion": "La hora oficial es la que fija el Gobierno de cada país para unificar horarios o por razones económicas (por ejemplo, el horario de verano). La hora legal es la del huso horario, la hora de reloj de bitácora (HRB) la que decide el patrón a bordo y la astronómica una escala antigua que empezaba al mediodía.",
+  "clave": "Hora oficial = la que decide el Gobierno.",
+  "trampa": "La b) (legal) es la del huso, que no siempre coincide con la oficial."
+ },
+ "bal-py-2019-04-a-28": {
+  "explicacion": "Las costas altas y acantiladas devuelven un eco fuerte y nítido porque presentan una superficie vertical al haz del radar, y además se detectan desde más lejos. Las costas bajas, llanas o de arena reflejan mal y aparecen débiles o tarde en pantalla.",
+  "clave": "Acantilado = buen eco; costa baja y arenosa = eco pobre.",
+  "trampa": "Las a), b) y c) son en realidad lo mismo: costa baja que refleja poco."
+ },
+ "bal-py-2019-04-a-29": {
+  "explicacion": "El Instituto Hidrográfico de la Marina publica los Avisos a los Navegantes en un folleto semanal dividido en siete secciones, que recogen, entre otras cosas, las correcciones a las cartas, a los libros de faros, a los derroteros y a otras publicaciones náuticas, y los radioavisos en vigor.",
+  "clave": "Avisos a los navegantes del IHM: semanales, en 7 secciones.",
+  "trampa": "La a) acierta lo de semanal, pero no el número de secciones."
+ },
+ "bal-py-2019-04-b-21": {
+  "explicacion": "La tecla MOB (Man Overboard, hombre al agua) guarda al instante la posición en que cayó la persona y da rumbo y distancia para volver a ella. TTG es el tiempo hasta el waypoint, ARV la alarma de llegada y DTP no es una función de rescate.",
+  "clave": "Hombre al agua: pulsa MOB.",
+  "trampa": "La d) (ARV) es una alarma de llegada a un waypoint.",
+  "concepto": "bal-py-2019-04-b-21"
+ },
+ "bal-py-2023-06-ac-30": {
+  "explicacion": "La tecla MOB (Man Overboard, hombre al agua) guarda al instante la posición en que cayó la persona y da rumbo y distancia para volver a ella. HELP, MAYDAY y SEARCH no son teclas estándar del GPS; MAYDAY es la palabra de socorro por radio.",
+  "clave": "Hombre al agua: pulsa MOB.",
+  "trampa": "La c): MAYDAY se dice por la VHF, no se pulsa en el GPS.",
+  "concepto": "bal-py-2019-04-b-21"
+ },
+ "bal-py-2019-04-b-25": {
+  "explicacion": "Es falsa la c): el ángulo entre el rumbo efectivo y el de superficie se debe a la corriente y se llama deriva. El abatimiento es el ángulo entre el rumbo verdadero y el de superficie, por el viento, y es negativo a babor y positivo a estribor. La corrección total es la diferencia entre rumbo verdadero y de aguja.",
+  "clave": "Abatimiento (viento): Rv → Rs. Deriva (corriente): Rs → Re.",
+  "trampa": "Se pide la falsa: la c) llama abatimiento a lo que es deriva.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "babor"
+   }
+  ]
+ },
+ "bal-py-2019-04-b-28": {
+  "explicacion": "Los paralelos de 23° 27' N y S son los trópicos (Cáncer al norte y Capricornio al sur), y su latitud coincide con la inclinación del eje terrestre. Los círculos polares están en 66° 33', y los meridianos no son paralelos.",
+  "clave": "23° 27' = trópicos; 66° 33' = círculos polares.",
+  "trampa": "Los círculos polares (a) son 90° − 23° 27'.",
+  "concepto": "bal-py-2019-04-b-28"
+ },
+ "bal-py-2021-03-b-21": {
+  "explicacion": "Los paralelos de 23° 27' N y S son los trópicos (Cáncer al norte y Capricornio al sur), y su latitud coincide con la inclinación del eje terrestre. Los «círculos pre-polares» no existen, los meridianos no son paralelos y el único paralelo máximo es el ecuador.",
+  "clave": "23° 27' = trópicos; 66° 33' = círculos polares.",
+  "trampa": "La d): el único paralelo que es círculo máximo es el ecuador.",
+  "concepto": "bal-py-2019-04-b-28"
+ },
+ "bal-py-2019-04-b-30": {
+  "explicacion": "En la presentación proa arriba la línea de proa queda fija hacia arriba, así que al cambiar de rumbo es la imagen la que gira, en sentido contrario al cambio y los mismos grados. Los ángulos que se miden son marcaciones, no demoras verdaderas, y no es un simple cambio estético.",
+  "clave": "Proa arriba: proa fija, la imagen gira al revés de tu caída.",
+  "trampa": "La a) da el giro en el mismo sentido: es justo al contrario."
+ },
+ "bal-py-2019-06-a-22": {
+  "explicacion": "Es falsa la a): el AIS de a bordo sirve para identificar buques e intercambiar su posición, rumbo y velocidad, no para recibir partes meteorológicos (para eso está el NAVTEX, por ejemplo). Las demás son ciertas: la posición la toma del GPS, solo ciertos buques están obligados a llevarlo y complementa al radar sin sustituirlo.",
+  "clave": "AIS: identificación y posición; el tiempo, por NAVTEX.",
+  "trampa": "Se pide la falsa: la d) es cierta porque un barco sin AIS no aparece en pantalla."
+ },
+ "bal-py-2019-06-a-24": {
+  "explicacion": "La longitud es el ángulo (o el arco de ecuador) entre el meridiano de Greenwich y el meridiano del lugar, de 0° a 180° E o W: la a) y la b) lo dicen de dos formas. La c) describe una coordenada celeste medida desde el punto Aries, no la longitud geográfica.",
+  "clave": "Longitud: desde Greenwich, 0–180° E o W.",
+  "trampa": "La c) suena técnica, pero es astronomía, no coordenadas terrestres."
+ },
+ "bal-py-2019-06-a-28": {
+  "explicacion": "En la pantalla del GNSS, COG (Course Over Ground) es el rumbo sobre el fondo que lleva el barco: 168,9°. Los 220,4° son el BRG, la demora al waypoint, los 19,77 son el RNG (distancia en millas al waypoint) y los 0,00 son el XTE, la separación de la ruta.",
+  "clave": "COG = rumbo que llevas; BRG = demora al waypoint.",
+  "trampa": "La a) (220,4°) es la demora al destino, no el rumbo que se lleva."
+ },
+ "bal-py-2019-06-b-26": {
+  "explicacion": "Un GPS de embarcación bien inicializado da hoy una precisión del orden de unos pocos metros a unas decenas de metros, es decir, entre métrica y decamétrica (con correcciones SBAS como EGNOS mejora). La precisión submétrica o centimétrica requiere equipos diferenciales o geodésicos.",
+  "clave": "GPS de a bordo: precisión de metros a decenas de metros.",
+  "trampa": "La a) y la d) son precisiones de equipos profesionales con correcciones especiales."
+ },
+ "bal-py-2019-06-b-27": {
+  "explicacion": "La marcación es el ángulo medido desde la proa. En la presentación proa arriba la línea de proa está fija en el 0° de la pantalla, así que la EBL da la marcación directamente. Con norte arriba se leería la demora y habría que restar el rumbo.",
+  "clave": "Marcaciones: proa arriba. Demoras: norte arriba.",
+  "trampa": "La b) es la presentación cómoda para demoras, no para marcaciones."
+ },
+ "bal-py-2019-06-b-29": {
+  "explicacion": "El huso horario 0 está centrado en el meridiano de Greenwich y abarca 7° 30' a cada lado, de 7° 30' W a 7° 30' E. El huso +1 va de 7° 30' E a 22° 30' E y el −1 de 7° 30' W a 22° 30' W.",
+  "clave": "Huso = longitud / 15, redondeando; ±7° 30' = huso 0.",
+  "trampa": "La b) (+1): Baleares lleva hora oficial UTC+1, pero geográficamente está en el huso 0."
+ },
+ "bal-py-2019-12-a-27": {
+  "explicacion": "El NAVTEX es un receptor que recibe e imprime (o muestra en pantalla) de forma automática la información de seguridad marítima: radioavisos náuticos, boletines meteorológicos y otros avisos urgentes, emitidos en 518 kHz. La VHF transmite voz y LSD, el AIS datos de buques y el GPS solo da posición.",
+  "clave": "Información de seguridad impresa = NAVTEX.",
+  "trampa": "La b): por VHF se oyen boletines, pero no se reciben impresos."
+ },
+ "bal-py-2019-12-a-29": {
+  "explicacion": "La marcación es el ángulo medido desde la proa; la demora, desde el norte. Con el radar en proa arriba, la EBL da la marcación y la demora se obtiene sumándole el rumbo. Con el radar en norte arriba, la EBL ya mide desde el norte y la demora se lee directamente. Por eso la a) y la b) son ciertas.",
+  "clave": "Demora = rumbo + marcación; en norte arriba se lee directa.",
+  "trampa": "La d): la conversión es justo la fórmula básica demora = rumbo + marcación."
+ },
+ "bal-py-2019-12-c-21": {
+  "explicacion": "El ecuador es la circunferencia máxima perpendicular al eje norte-sur de la Tierra y la divide en dos mitades iguales llamadas hemisferios (norte y sur). Una circunferencia máxima paralela al eje sería un meridiano, y planisferio es la representación plana de la Tierra, no una mitad de ella.",
+  "clave": "Ecuador: perpendicular al eje, divide en hemisferios.",
+  "trampa": "Las opciones combinan «paralela/perpendicular» y «hemisferios/planisferios»: solo la b) acierta las dos."
+ },
+ "bal-py-2019-12-c-23": {
+  "explicacion": "Es falsa la b): para medir distancias con precisión los anillos deben ajustarse finos y con el brillo justo, no al máximo espesor, porque un anillo grueso tapa el eco y aumenta el error. La a) es cierta (en proa arriba se lee la marcación) y la c) describe bien el AIS, así que la d) también es correcta.",
+  "clave": "Anillos de distancia: finos y con poco brillo.",
+  "trampa": "Se pide la falsa: la d) agrupa dos afirmaciones verdaderas."
+ },
+ "bal-py-2020-07-a-22": {
+  "explicacion": "El ángulo entre el meridiano geográfico (norte verdadero) y el magnético es la declinación magnética, que también se llama variación local (o simplemente variación). El desvío es el ángulo entre el norte magnético y el de aguja, y la demora magnética es una dirección a un objeto, no un ángulo entre meridianos.",
+  "clave": "Nv → Nm: declinación o variación local.",
+  "trampa": "El desvío (b) también es un ángulo entre nortes, pero entre el magnético y el de aguja."
+ },
+ "bal-py-2020-07-a-23": {
+  "explicacion": "Los avisos a los navegantes del IHM comunican los cambios que afectan a la seguridad de la navegación, como anomalías en faros, boyas y balizas, y permiten corregir las cartas náuticas. Describir con detalle los accidentes de la costa es función de los derroteros, así que la incorrecta es la d).",
+  "clave": "Avisos = correcciones y novedades; derrotero = descripción de la costa.",
+  "trampa": "Se pide la incorrecta: la b) también es cometido de los avisos."
+ },
+ "bal-py-2020-07-a-24": {
+  "explicacion": "La hora legal es la hora del huso horario y se representa como Hz (de huso, zone time). HcG es la hora civil de Greenwich, HcL la hora civil del lugar y Ho la hora oficial.",
+  "clave": "Hora legal = Hz (hora del huso).",
+  "trampa": "La d) (Ho) es la hora oficial, que no siempre coincide con la legal.",
+  "concepto": "bal-py-2020-07-a-24"
+ },
+ "bal-py-2025-07-a-25": {
+  "explicacion": "La hora legal es la hora del huso horario y se representa como Hz (de huso, zone time). HcL es la hora civil del lugar y Ho la hora oficial; «HL» no es la abreviatura habitual.",
+  "clave": "Hora legal = Hz (hora del huso).",
+  "trampa": "La a) (HL) parece la abreviatura lógica, pero la notación es Hz.",
+  "concepto": "bal-py-2020-07-a-24"
+ },
+ "bal-py-2020-07-a-26": {
+  "explicacion": "Hacia el este se encuentra antes el Sol, así que la hora local es más tardía: al cruzar un huso navegando hacia el este se adelanta el reloj de bitácora una hora. Hacia el oeste se retrasa. Cada huso son 15° y equivale exactamente a una hora.",
+  "clave": "Este: adelanta. Oeste: retrasa. Una hora por huso.",
+  "trampa": "La c) es lo que se hace navegando hacia el oeste."
+ },
+ "bal-py-2020-07-a-27": {
+  "explicacion": "La diferencia de hora entre dos lugares es su diferencia de longitud expresada en tiempo, a razón de 15° por hora (1° = 4 minutos). El apartamiento es una distancia en millas sobre un paralelo, no un ángulo, y «la resta de longitudes» sin pasar a tiempo no da una hora.",
+  "clave": "ΔHora = ΔLongitud / 15 (1° = 4 min).",
+  "trampa": "La a): el apartamiento se mide en millas, no en grados de longitud."
+ },
+ "bal-py-2020-12-a-26": {
+  "explicacion": "El rumbo verdadero y el de superficie solo difieren por el abatimiento que produce el viento al empujar el costado. Con el viento a fil de roda (justo por la proa) no empuja ninguna banda, no hay abatimiento y ambos rumbos coinciden. Con viento por la amura o por la aleta sí hay abatimiento.",
+  "clave": "Viento por proa o por popa = sin abatimiento: Rs = Rv.",
+  "trampa": "La b): con viento por la aleta también hay componente lateral y por tanto abatimiento."
+ },
+ "bal-py-2020-12-a-27": {
+  "explicacion": "En la pantalla del AIS, COG (Course Over Ground) es el rumbo sobre el fondo, es decir, el rumbo efectivo: 264°. Los 89° son el HDG (rumbo de proa), los 127° el BRG (demora al blanco) y los 11,7 el RNG (distancia en millas al blanco).",
+  "clave": "Rumbo efectivo = COG; rumbo de proa = HDG.",
+  "trampa": "La d) (89°) es el HDG, hacia donde apunta la proa, no el rumbo efectivo."
+ },
+ "bal-py-2020-12-b-25": {
+  "explicacion": "Las RNC (Raster Navigational Charts) son imágenes digitales obtenidas escaneando las cartas de papel oficiales. Las ENC son vectoriales, el ECDIS es el equipo que las muestra y el WGS84 es un datum.",
+  "clave": "RNC = carta de papel escaneada; ENC = vectorial.",
+  "trampa": "La a): la ENC no se escanea, se construye con datos vectoriales."
+ },
+ "bal-py-2020-12-b-26": {
+  "explicacion": "El AIS trabaja en la banda de VHF marítimo, en dos canales propios (AIS 1 y AIS 2), y se basa en transpondedores automáticos a bordo que emiten y reciben datos de forma autónoma. No usa MF/HF, no funciona mediante la llamada selectiva digital ni en el canal 70, que es el de la LSD.",
+  "clave": "AIS = transpondedor automático en VHF (canales AIS 1 y 2).",
+  "trampa": "La c) cita el canal 70 de VHF, que es el de la llamada selectiva digital."
+ },
+ "bal-py-2020-12-b-28": {
+  "explicacion": "XTE (Cross Track Error) es la distancia transversal, perpendicular, que nos separa de la línea de la ruta programada. DST suele ser distancia, ETD la hora estimada de salida y TTG el tiempo que falta hasta el waypoint.",
+  "clave": "XTE = cuánto te has salido de la ruta.",
+  "trampa": "La b) (DST) es una distancia, pero no la transversal a la ruta."
+ },
+ "bal-py-2020-12-b-29": {
+  "explicacion": "El anti-sea clutter (control de mar o STC) reduce la ganancia cerca del barco para eliminar los ecos que produce el oleaje alrededor del centro de la pantalla. La ganancia general es el GAIN, la sintonía el TUNE y los ecos de lluvia se tratan con el anti-rain clutter (FTC).",
+  "clave": "Sea clutter = oleaje; rain clutter = lluvia.",
+  "trampa": "La d) corresponde al anti-rain clutter."
+ },
+ "bal-py-2020-12-b-30": {
+  "explicacion": "La hora legal es la hora del huso horario en que se encuentra el barco: TU ± el número de huso. La que depende del país es la hora oficial, que fija cada Gobierno con sus adelantos; la latitud no influye en la hora.",
+  "clave": "Legal = huso; oficial = Gobierno.",
+  "trampa": "La d): el país determina la hora oficial, no la legal.",
+  "base": "and-py-2023-c2-n04",
+  "concepto": "and-py-2023-c2-n04"
+ },
+ "bal-py-2026-03-a-21": {
+  "explicacion": "La hora legal es la hora del huso horario en que se encuentra el barco: TU ± el número de huso. La hora que rige en un país y los adelantos o retrasos que decide cada Gobierno definen la hora oficial, que puede no coincidir con la legal; la latitud no influye en la hora.",
+  "clave": "Legal = huso; oficial = Gobierno.",
+  "trampa": "La d): la hora que rige en un país es la oficial, no la legal.",
+  "base": "and-py-2023-c2-n04",
+  "concepto": "and-py-2023-c2-n04"
+ },
+ "bal-py-2021-03-ac-22": {
+  "explicacion": "La separación lateral respecto a la ruta es el XTE, y en la pantalla marca 0,05 millas. Como un cable es una décima de milla, 0,05 millas son 0,5 cables: medio cable, unos 93 m. Los 0,5 que aparecen a cada lado del gráfico son la escala de la autopista, no la distancia a la ruta, y los 9,0 son la distancia (RNG) al waypoint.",
+  "clave": "1 cable = 0,1 millas; XTE 0,05 millas = medio cable.",
+  "trampa": "La a) suma las marcas de escala del gráfico, que no son el XTE."
+ },
+ "bal-py-2021-03-ac-24": {
+  "explicacion": "El ECDIS muestra la carta electrónica con todos sus datos hidrográficos (sondas, veriles, peligros, balizamiento) junto con la posición del barco, y da alarmas con ellos. No es su función dar fases lunares, el idioma de los canales de radio ni la previsión meteorológica.",
+  "clave": "ECDIS = carta electrónica oficial con datos hidrográficos.",
+  "trampa": "La d): el tiempo se recibe por NAVTEX u otros medios, no lo da la carta."
+ },
+ "bal-py-2021-03-ac-28": {
+  "explicacion": "La imagen muestra rosas de vientos azules (con un número en el centro, que es el porcentaje de calmas) y flechas verdes de corriente con su intensidad media. Ese tipo de información climatológica es propia de las Pilot Charts, no del libro de faros, del anuario de mareas ni de las cartas náuticas del IHM, así que la respuesta es «en ninguna de ellas».",
+  "clave": "Rosas de viento y corrientes medias = Pilot Charts.",
+  "trampa": "La c): las cartas náuticas no llevan rosas de viento climatológicas."
+ },
+ "bal-py-2021-03-ac-30": {
+  "explicacion": "El control que reduce los ecos parásitos del oleaje cerca del barco es el anti-sea clutter (control de mar o STC). Los nombres «anti-wave», «anti-surf» o «anti-swell» no existen en los radares.",
+  "clave": "Oleaje = anti-sea clutter; lluvia = anti-rain clutter.",
+  "trampa": "Las otras opciones traducen «ola» de distintas formas, pero el mando se llama sea clutter.",
+  "concepto": "bal-py-2021-03-ac-30"
+ },
+ "bal-py-2022-03-b-21": {
+  "explicacion": "El control que reduce los ecos parásitos del oleaje cerca del barco es el anti-sea clutter (control de mar o STC). El anti-rain clutter (FTC) es para la lluvia, y los mandos «anti-fog» o «anti-swell» no existen.",
+  "clave": "Oleaje = anti-sea clutter; lluvia = anti-rain clutter.",
+  "trampa": "La b) existe, pero es para los ecos de lluvia.",
+  "concepto": "bal-py-2021-03-ac-30"
+ },
+ "bal-py-2021-03-b-23": {
+  "explicacion": "El meridiano de 180° separa las longitudes oeste de las este. Navegando hacia el oeste se pasa del hemisferio occidental al oriental y hay que adelantar la fecha un día (se salta un día); navegando hacia el este se pasa del oriental al occidental y se repite un día. La a) y la c) mezclan el sentido y el cambio de fecha.",
+  "clave": "Cruzando 180° hacia el W: +1 día. Hacia el E: −1 día.",
+  "trampa": "La c) acierta que hacia el este se atrasa un día, pero se equivoca de hemisferios."
+ },
+ "bal-py-2021-03-b-24": {
+  "explicacion": "La Polar describe un pequeño círculo alrededor del polo celeste. Cuando pasa por el meridiano superior o por el inferior del lugar está exactamente al norte verdadero, con azimut 0°, así que en esos dos momentos la corrección total que se obtiene no tiene error. En los demás momentos se aparta algo del norte.",
+  "clave": "Polar en el meridiano (superior o inferior) = azimut 0° exacto.",
+  "trampa": "La c): el meridiano cero es el de Greenwich, que no tiene que ver con el lugar."
+ },
+ "bal-py-2021-03-b-25": {
+  "explicacion": "Con niebla no se ven ni la Polar ni las marcas de tierra, así que no se pueden usar enfilaciones, oposiciones ni observaciones astronómicas. Solo queda calcular la corrección total sumando la declinación magnética (de la carta, actualizada al año) y el desvío para ese rumbo (de la tablilla): Ct = dm + Δ.",
+  "clave": "Sin visibilidad: Ct = dm + Δ (carta y tablilla).",
+  "trampa": "La d): la Polar y las enfilaciones necesitan ver algo."
+ },
+ "bal-py-2021-03-b-26": {
+  "explicacion": "La hora oficial es la que establece el Gobierno de cada país por razones económicas o de unificación, y no siempre coincide con la hora legal (la del huso): en España se lleva una hora más que la del huso en invierno y dos en verano. La a) define la hora legal y la d) la hora civil del lugar.",
+  "clave": "Hora oficial = la que decide el Gobierno; puede no coincidir con la del huso.",
+  "trampa": "La b) añade «siempre coincide», que es falso."
+ },
+ "bal-py-2021-03-b-27": {
+  "explicacion": "Los derroteros describen la costa con detalle: accidentes, puertos, fondeaderos, peligros, recaladas y recomendaciones para navegar por ella. El libro de faros da las características de las luces, los avisos a los navegantes las correcciones a cartas y publicaciones, y las Pilot Charts los vientos y corrientes medios de cada mes.",
+  "clave": "Derrotero = descripción de la costa.",
+  "trampa": "El libro de faros (a) solo describe luces y señales, no la costa."
+ },
+ "bal-py-2021-03-b-28": {
+  "explicacion": "En presentación norte arriba la pantalla está orientada al norte, así que el ángulo que da la EBL sobre un eco es su demora verdadera. Con proa arriba se leería la marcación, y la distancia se mide con el VRM.",
+  "clave": "Norte arriba + EBL = demora verdadera.",
+  "trampa": "La b) (marcación) corresponde a la presentación proa arriba."
+ },
+ "bal-py-2021-03-b-29": {
+  "explicacion": "Es falsa la c): GNSS (Global Navigation Satellite System) es el sistema global de navegación por satélite, como GPS, Galileo o GLONASS, que da la posición; no es una infraestructura de comunicaciones dúplex. COG es el rumbo efectivo, SOG la velocidad sobre el fondo y VMG la velocidad de aproximación al destino.",
+  "clave": "GNSS = posicionamiento por satélite, no comunicaciones.",
+  "trampa": "Se pide la falsa: la d) es correcta (velocity made good)."
+ },
+ "bal-py-2021-03-b-30": {
+  "explicacion": "La escora inclina el haz del radar, que deja de barrer el horizonte por una banda, y reduce mucho el alcance, sobre todo en los veleros. La potencia que importa es la de nuestro radar, no la del radar del barco que vemos en pantalla, así que la b) es falsa y la d) tampoco vale; el tribunal tampoco da por buena la c).",
+  "clave": "Escora = el haz no barre el horizonte: menos alcance.",
+  "trampa": "La b): el otro barco no necesita radar para que lo detectemos.",
+  "discrepancia": "Las condiciones atmosféricas (refracción por la variación de temperatura y humedad con la altura) también modifican el alcance del radar, y en otra pregunta del mismo banco se dan por válidas. La oficial se queda solo con la escora porque la b) es claramente falsa."
+ },
+ "bal-py-2021-06-ac-21": {
+  "explicacion": "La hora reloj de bitácora (HRB) es la que el patrón decide llevar a bordo. Lo habitual es hacerla coincidir con la hora legal del huso (Hz) o con la hora oficial del país (Ho), según convenga, así que puede coincidir con cualquiera de las dos.",
+  "clave": "HRB: la elige el patrón, igual a la Hz o a la Ho.",
+  "trampa": "La b) y la c) restringen a una sola hora lo que es una elección."
+ },
+ "bal-py-2021-06-ac-23": {
+  "explicacion": "La latitud se mide desde el ecuador hacia los polos, de 0° a 90° N o S, así que la latitud es 0° cuando estamos sobre el ecuador. Los meridianos inferiores del lugar o de Greenwich tienen que ver con la longitud o la hora, no con la latitud.",
+  "clave": "Latitud 0° = ecuador; longitud 0° = Greenwich.",
+  "trampa": "La b) mezcla la longitud y la hora con la latitud."
+ },
+ "bal-py-2021-06-ac-24": {
+  "explicacion": "La ganancia regula la sensibilidad del receptor. Si es muy alta, aparecen en pantalla los ecos del mar, el ruido y otras perturbaciones, que pueden saturarla y ocultar barcos, balizas y costa. Con la ganancia demasiado baja ocurre lo contrario: se pierden ecos débiles.",
+  "clave": "Ganancia alta = pantalla saturada de ruido.",
+  "trampa": "La a) dice que la saturación aclara la imagen, cuando la emborrona.",
+  "concepto": "bal-py-2021-06-ac-24"
+ },
+ "bal-py-2025-04-bc-23": {
+  "explicacion": "La ganancia regula la sensibilidad del receptor. Si es muy alta, aparecen en pantalla los ecos del mar, el ruido y otras perturbaciones, que pueden saturarla y ocultar barcos, balizas y costa. La lluvia no se elimina subiendo la ganancia, sino con el anti-rain clutter.",
+  "clave": "Ganancia alta = pantalla saturada de ruido.",
+  "trampa": "La d): subir la ganancia aumenta los ecos de lluvia, no los elimina.",
+  "concepto": "bal-py-2021-06-ac-24"
+ },
+ "bal-py-2021-06-ac-26": {
+  "explicacion": "Los meridianos son circunferencias máximas que pasan por los polos y, por eso, cortan al ecuador perpendicularmente. No son circunferencias mínimas, no son paralelos al ecuador (eso son los paralelos) y no tiene sentido decir que son perpendiculares a los polos, que son puntos.",
+  "clave": "Meridianos: máximos, por los polos, perpendiculares al ecuador.",
+  "trampa": "La d) dice «paralelas al ecuador», que es lo que son los paralelos."
+ },
+ "bal-py-2021-06-ac-27": {
+  "explicacion": "El ECDIS es un sistema de cartas electrónicas homologado que, usado con cartas oficiales (ENC) actualizadas y con un sistema de respaldo adecuado, cumple las prescripciones de la OMI y del SOLAS sobre llevar cartas, sustituyendo a las de papel. Un ECS no está homologado para eso, y el ECDIS no es una simple pantalla del radar.",
+  "clave": "ECDIS homologado + ENC + respaldo = cumple SOLAS sin papel.",
+  "trampa": "La d): el ECS es una carta electrónica no homologada, no lo mismo que el ECDIS."
+ },
+ "bal-py-2021-06-ac-28": {
+  "explicacion": "Los tipos de carta electrónica son las vectoriales (ENC) y las raster (RNC). Ninguna opción da esa pareja: «approaches» es una escala de carta, el ECDIS es el equipo que las muestra y un portulano es una carta antigua, así que la respuesta es «ninguna».",
+  "clave": "Cartas electrónicas: vectoriales (ENC) y raster (RNC).",
+  "trampa": "La b) acierta con las raster, pero el ECDIS es el equipo, no un tipo de carta."
+ },
+ "bal-py-2021-06-ac-29": {
+  "explicacion": "La Polar está a menos de 1° del polo celeste norte, así que su demora verdadera es prácticamente 000°. Tomando su demora de aguja, Ct = 0° − Da. Que sea circumpolar o «fija» no es lo que la hace útil, y marcarla no da el desvío directamente sino la Ct, de la que se saca Δ = Ct − dm.",
+  "clave": "Polar ≈ norte verdadero → Ct = −Da(Polar).",
+  "trampa": "La c): la Polar da la corrección total; el desvío sale después restando la declinación.",
+  "base": "and-py-2022-c3-n02",
+  "concepto": "and-py-2022-c3-n02"
+ },
+ "bal-py-2021-06-b-21": {
+  "explicacion": "Con la presentación norte arriba el 0° de la pantalla es el norte verdadero, así que el ángulo que da el cursor o la EBL sobre un eco es una demora verdadera. Con proa arriba, en cambio, lo que se mide son marcaciones.",
+  "clave": "Norte arriba = demoras verdaderas; proa arriba = marcaciones.",
+  "trampa": "La c) (marcaciones) es lo que se lee con proa arriba.",
+  "concepto": "bal-py-2021-06-b-21"
+ },
+ "bal-py-2026-03-a-27": {
+  "explicacion": "Con la presentación norte arriba el 0° de la pantalla es el norte verdadero, así que el ángulo que da el cursor o la EBL sobre un eco es una demora verdadera. Con proa arriba, en cambio, lo que se mide son marcaciones.",
+  "clave": "Norte arriba = demoras verdaderas; proa arriba = marcaciones.",
+  "trampa": "La c) (marcaciones) es lo que se lee con proa arriba.",
+  "concepto": "bal-py-2021-06-b-21"
+ },
+ "bal-py-2021-06-b-22": {
+  "explicacion": "La corrección total es la suma de la declinación magnética y el desvío: Ct = dm + Δ. En la misma zona la declinación es la misma para todos, pero el desvío depende de los hierros de cada barco y de su rumbo, así que solo tendrán la misma Ct cuando sus desvíos coincidan.",
+  "clave": "Ct = dm + Δ: la dm es de la zona, el desvío es de cada barco.",
+  "trampa": "La a) atribuye a la declinación lo que es propio del desvío."
+ },
+ "bal-py-2021-06-b-24": {
+  "explicacion": "En movimiento relativo nuestro barco queda fijo en el centro y los ecos se mueven según el movimiento relativo. Un barco parado se desplaza en pantalla a nuestra velocidad pero en sentido opuesto a nuestro rumbo, y uno en movimiento lo hace según la resultante de su vector y del opuesto al nuestro. Por eso la b) y la c) son correctas.",
+  "clave": "Relativo: eco = su movimiento − el nuestro.",
+  "trampa": "La d) describe el movimiento verdadero, no el relativo."
+ },
+ "bal-py-2021-06-b-25": {
+  "explicacion": "La función principal del ECDIS es contribuir a la seguridad de la navegación: muestra la posición sobre la carta oficial, vigila la derrota y da alarmas ante peligros o sondas insuficientes. Puede reemplazar a las cartas de papel o informatizar datos, pero esos son medios, no su finalidad.",
+  "clave": "ECDIS: su fin es navegar con más seguridad.",
+  "trampa": "La d) es una consecuencia posible, no su función principal."
+ },
+ "bal-py-2021-06-b-26": {
+  "explicacion": "Los mástiles y estructuras cercanas a la antena bloquean el haz en ciertas direcciones y crean zonas de sombra (sectores ciegos), en las que no se ven ecos. Los ecos del mar se deben al oleaje, los múltiples a reflexiones repetidas entre barcos cercanos y las interferencias de otros radares forman espirales de puntos.",
+  "clave": "Obstáculos junto a la antena = zonas de sombra.",
+  "trampa": "Los ecos múltiples (b) son repeticiones de un eco real, no huecos sin señal."
+ },
+ "bal-py-2021-06-b-27": {
+  "explicacion": "El racon, al recibir el impulso del radar, responde con una señal que aparece en pantalla como una letra en código morse (una línea de rayas y puntos) que empieza justo detrás del eco del racon. No aparecen círculos concéntricos (eso recuerda al SART) ni su nombre escrito.",
+  "clave": "Racon = letra morse en la pantalla del radar.",
+  "trampa": "La b): los círculos concéntricos son típicos del SART al acercarse."
+ },
+ "bal-py-2021-06-b-28": {
+  "explicacion": "Las ENC están referidas al datum WGS84, las publican los servicios hidrográficos oficiales o instituciones autorizadas y se actualizan con información digital que distribuye ese mismo servicio. Que sean digitales no las libra de tener datum: precisamente usan el WGS84, así que la d) no les corresponde.",
+  "clave": "ENC: oficial, actualizada y en WGS84.",
+  "trampa": "La d) contradice a la a): toda carta tiene un datum."
+ },
+ "bal-py-2021-06-b-29": {
+  "explicacion": "Los puntos de recalada o de paso que se programan en el GPS se llaman waypoints (WPT). Los racon son respondedores radar, y «ranmark points» o «position points» no son términos del GPS.",
+  "clave": "Punto de paso o recalada = waypoint (WPT).",
+  "trampa": "La b): el racon es una baliza radar, no un punto del GPS."
+ },
+ "bal-py-2021-12-b-21": {
+  "explicacion": "El Tiempo Universal es la hora civil de Greenwich: el tiempo transcurrido desde el paso del sol medio por el meridiano inferior de Greenwich. Contado desde el meridiano superior sería el antiguo tiempo astronómico, y las c) y d) se refieren al meridiano del lugar, no a Greenwich.",
+  "clave": "TU = HcG (sol medio, meridiano inferior de Greenwich).",
+  "trampa": "La a): desde el meridiano superior se cuenta a partir del mediodía.",
+  "base": "and-py-2026-c2-n06",
+  "concepto": "and-py-2026-c2-n06"
+ },
+ "bal-py-2021-12-b-23": {
+  "explicacion": "ETA (Estimated Time of Arrival) es la hora estimada de llegada al waypoint o punto de recalada, calculada con la distancia y la velocidad sobre el fondo. No tiene que ver con la deriva, el consumo de combustible ni las viradas.",
+  "clave": "ETA = hora estimada de llegada.",
+  "trampa": "La a) mete «tiempo» y «punto de recalada» para que suene parecida."
+ },
+ "bal-py-2021-12-b-24": {
+  "explicacion": "En proa arriba la EBL da la marcación. La demora verdadera es el rumbo verdadero más la marcación, con signo negativo si es por babor: Dv = 225° − 37° = 188°. Si se sumara como si fuera por estribor saldría 262°, la d).",
+  "clave": "Dv = Rv + M (estribor +, babor −).",
+  "trampa": "La d) (262°) suma la marcación como si fuera por estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 225
+   }
+  ]
+ },
+ "bal-py-2021-12-b-25": {
+  "explicacion": "La declinación magnética depende solo del lugar (y del año), así que dos barcos en el mismo sitio tienen la misma. El desvío, en cambio, depende de los hierros y equipos de cada barco además del rumbo, por lo que, aunque lleven el mismo rumbo, no tienen por qué tener el mismo desvío ni, por tanto, la misma corrección total.",
+  "clave": "Mismo lugar = misma dm; el desvío es de cada barco.",
+  "trampa": "La a): con el mismo rumbo puede parecer que la Ct coincide, pero el desvío de cada barco es distinto.",
+  "concepto": "bal-py-2021-12-b-25"
  }
 }

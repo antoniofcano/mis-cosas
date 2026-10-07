@@ -9,5 +9,13 @@ import y2023 from './andalucia-py-2023.js';
 import y2024 from './andalucia-py-2024.js';
 import y2025 from './andalucia-py-2025.js';
 import y2026 from './andalucia-py-2026.js';
+import y2015, { documentadas as d2015 } from './andalucia-py-2015.js';
+import y2016, { documentadas as d2016 } from './andalucia-py-2016.js';
+import y2017, { documentadas as d2017 } from './andalucia-py-2017.js';
+import y2018, { documentadas as d2018 } from './andalucia-py-2018.js';
+import y2019, { documentadas as d2019 } from './andalucia-py-2019.js';
 
-export default { ...y2020, ...y2021, ...y2022, ...y2023, ...y2024, ...y2025, ...y2026 };
+/** Preguntas de carta de 2015–2019 sin solución programada, con su motivo. */
+export const documentadas = { ...d2015, ...d2016, ...d2017, ...d2018, ...d2019 };
+
+export default { ...y2015, ...y2016, ...y2017, ...y2018, ...y2019, ...y2020, ...y2021, ...y2022, ...y2023, ...y2024, ...y2025, ...y2026 };

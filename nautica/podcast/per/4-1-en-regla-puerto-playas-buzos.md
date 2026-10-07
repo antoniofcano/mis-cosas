@@ -139,11 +139,11 @@ voces:
 
 **ANDRÉS:** El miércoles, peor. Había boyas amarillas, o sea, zona de baño balizada. Ahí no se navega, ni a dos nudos ni a ninguno. Los tres nudos son para la franja sin balizar. Si quería llegar a la orilla, por el canal de acceso, el de la cónica verde y la cilíndrica roja. Y si no había canal, a mi nieta la saludo desde fuera de las boyas.
 
-**ELENA:** [ríe] Desde fuera, con la mano. De sobresaliente. Vamos con el minijuego. Tres preguntas de exámenes reales. Yo leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «En cuanto al tráfico marítimo dentro de los puertos, ¿qué buques tienen preferencia de paso, si no se indica lo contrario por la autoridad competente?». A: las embarcaciones de recreo que naveguen a vela. Be: tiene prioridad quien llegue al puerto en primer lugar. Ce: los barcos comerciales de todo tipo: mercantes, pasajeros, remolcadores, prácticos. De: ninguna de las anteriores.
+**ELENA:** [ríe] Desde fuera, con la mano. De sobresaliente. Vamos con el minijuego. Tres preguntas de exámenes reales. Yo leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «¿Cuál de las siguientes opciones es correcta?». A: en condiciones normales, los buques que entran en puerto tienen preferencia sobre los que salen. Be: dentro de las zonas de baño balizadas se permite entrar o salir de la playa, a menos de tres nudos y extremando las precauciones con los bañistas. Ce: cuando una embarcación tiene izada la bandera a, alfa, del código internacional de señales, significa que tiene buzos sumergidos. De: todas las respuestas anteriores son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** La a es mi error del martes. La be no existe. Los comerciales de todo tipo. La ce.
+**ANDRÉS:** La a es al revés: por regla general, pasa antes el que sale que el que entra. La be, tampoco: dentro de las boyas no se navega, ni despacito; a la orilla se llega por el canal. La ce, bandera alfa, buzos abajo: esa es verdad. Y con dos falsas, la de no puede ser. La ce.
 
 **ELENA:** La ce. Segunda: «Dentro de una zona de baño balizada, una moto náutica de uso particular debe dar a los bañistas un resguardo de…». A: quince metros. Be: veinticinco metros. Ce: cincuenta metros. De: no pueden navegar dentro de las zonas de baño balizadas.
 
@@ -151,13 +151,13 @@ voces:
 
 **ANDRÉS:** Esta es la del miércoles. Da igual el resguardo: en la zona balizada no navega nadie, motos incluidas. La de.
 
-**ELENA:** La de. Y fíjate que los veinticinco y los cincuenta metros salen en el tema, pero para otras cosas: el ancho de los canales y los buzos. Tercera: «¿Qué resguardo, como mínimo, hay que darle a una embarcación que tenga izada la señal a, alfa, del código internacional de señales?». A: cien metros por ambas bandas o costados. Be: veinticinco metros por cualquiera de sus bandas o costados. Ce: cincuenta metros por una de sus bandas o costados. De: ninguno, solo es necesario reducir la velocidad, ya que el buzo está sumergido.
+**ELENA:** La de. Y fíjate que los veinticinco y los cincuenta metros salen en el tema, pero para otras cosas: el ancho de los canales y los buzos. Tercera, la del matiz: «Ante una playa balizada, ¿a qué distancia de la orilla está prohibida la navegación de recreo?». A: cincuenta metros. Be: cien metros. Ce: doscientos metros. De: tres millas náuticas.
 
 [pausa larga]
 
-**ANDRÉS:** La de es la trampa: no basta con ir despacio. Cincuenta metros. La ce.
+**ANDRÉS:** Esta nos la has contado: la que puntúa es la franja de las playas, doscientos metros. Cincuenta es para el resto de la costa, y las tres millas no pintan nada. La ce.
 
-**ELENA:** La ce. Y un detalle: en esa pregunta, la plantilla publicada marcaba otra opción, y el tribunal la corrigió a esta. La norma no habla de bandas: dice cincuenta metros como mínimo de la zona de buceo. Tú quédate con la cifra, cincuenta, que es la que puntúa.
+**ELENA:** La ce. Y el matiz de siempre: con boyas, en rigor, el límite es la línea de boyas; los doscientos metros se presumen en la playa sin balizar. Pero en el examen, doscientos, que es la que puntúa.
 
 **ANDRÉS:** Tres de tres. Y sin pitidos. [ríe]
 

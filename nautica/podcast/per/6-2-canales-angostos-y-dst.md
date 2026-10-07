@@ -129,19 +129,19 @@ voces:
 
 **ANDRÉS:** [ríe] Se lo devuelvo al vecino con las líneas en ángulo recto.
 
-**ELENA:** Vamos con el minijuego: tres preguntas de exámenes reales. Yo leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Navegando en un canal angosto nos aproximamos a un recodo que tiene la visión obstaculizada y no permite ver otros buques. ¿Qué señal fónica debemos hacer sonar?». A: ninguna. Be: una pitada larga. Ce: una pitada larga seguida de dos cortas. De: una pitada corta, una larga y una corta.
+**ELENA:** Vamos con el minijuego: tres preguntas de exámenes reales. Yo leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Navegando por un canal angosto, nos acercamos a un recodo que nos obstaculiza la visión. La señal fónica será…». A: una pitada corta. Be: dos pitadas largas seguidas de una corta. Ce: tres pitadas largas. De: una pitada larga.
 
 [pausa larga]
 
-**ANDRÉS:** En el recodo, una larga, y quien la oiga contesta con otra larga. La be.
+**ANDRÉS:** En el recodo, una larga, y quien la oiga contesta con otra larga. La de.
 
-**ELENA:** La be. Segunda: «¿Cómo se debe cruzar un dispositivo de separación del tráfico?». A: lo más perpendicularmente posible a la dirección general del tráfico. Be: con el menor ángulo posible en relación con la dirección general del tráfico. Ce: a la máxima velocidad que permita navegar con seguridad. De: las respuestas be y ce son correctas.
+**ELENA:** La de. Segunda: «¿Cómo cruzaremos una vía de circulación de un dispositivo de separación del tráfico?». A: normalmente por los extremos. Be: si tenemos que hacerlo, seguiremos un rumbo que forme el menor ángulo posible en relación con la dirección general de la corriente del tráfico. Ce: si tenemos que hacerlo, seguiremos un rumbo lo más perpendicular posible a la dirección general de la corriente del tráfico. De: las respuestas a y be son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** Esta es la mía. El menor ángulo es para entrar por un lado, y lo de la máxima velocidad no lo dice el reglamento. La a, lo más perpendicular posible.
+**ANDRÉS:** Esta es la mía. Por los extremos se entra y se sale, no se cruza; y el menor ángulo es para entrar por un lado. La ce, lo más perpendicular posible.
 
-**ELENA:** La a. Y la tercera: «Un buque se dirige a puerto por un canal angosto. Debido a sus dimensiones, solo puede navegar con seguridad dentro de dicho canal. ¿Qué buques no estorbarán su tránsito?». A: los de eslora inferior a veinte metros. Be: los de vela y los de eslora inferior a veinte metros. Ce: los de eslora inferior a veinte metros y los dedicados a la pesca. De: los de vela, los de eslora inferior a veinte metros y los dedicados a la pesca.
+**ELENA:** La ce. Y la tercera: «Un buque se dirige a puerto por un canal angosto. Debido a sus dimensiones, solo puede navegar con seguridad dentro de dicho canal. ¿Qué buques no estorbarán su tránsito?». A: los de eslora inferior a veinte metros. Be: los de vela y los de eslora inferior a veinte metros. Ce: los de eslora inferior a veinte metros y los dedicados a la pesca. De: los de vela, los de eslora inferior a veinte metros y los dedicados a la pesca.
 
 [pausa larga]
 

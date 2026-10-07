@@ -126,11 +126,11 @@ voces:
 
 **ANDRÉS:** La clave es «de a bordo». El noray está en el muelle, así que fuera. Cornamusa y bita, las dos están a bordo y las dos sirven para hacer firme. La de: a y ce son correctas.
 
-**ELENA:** Correcto. Si hubieras contestado solo cornamusa, te la habrían dado por mala. Segunda: «El extremo libre de un cabo o cable se denomina…». A: seno. Be: chicote. Ce: firme. De: gaza.
+**ELENA:** Correcto. Si hubieras contestado solo cornamusa, te la habrían dado por mala. Segunda: «Al extremo libre de un cabo se le denomina…». A: firme. Be: seno. Ce: chicote. De: boza.
 
 [pausa larga]
 
-**ANDRÉS:** El extremo libre es el chicote, la be. El seno es la curva, el firme lo que trabaja y la gaza el ojo cerrado.
+**ANDRÉS:** El extremo libre es el chicote, la ce. El firme es lo que trabaja, el seno la curva, y la boza es un trozo de cabo para sujetar otro un rato.
 
 **ELENA:** Chicote. Tercera, y esta es la tuya: «¿Qué nudo sería el más indicado para hacer firme rápidamente una defensa a los costados, si la defensa no ha de estar tendida mucho tiempo?». A: ballestrinque. Be: as de guía. Ce: envergue. De: llano.
 

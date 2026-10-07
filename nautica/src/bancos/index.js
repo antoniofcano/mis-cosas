@@ -240,8 +240,10 @@ export function crearBancos(leer) {
    * no, su equivalente (por concepto o por parecido del texto, src/bancos/equivalentes.js); y si no hay, la original.
    * → { q, propia, equivalente, ficha } (ficha: la del eje de la pregunta devuelta), o null si el id no existe.
    * Lo usan las pausas del minijuego del podcast, que citan preguntas de un eje concreto.
+   * `opciones.finalHecho(eje, tit)`: si el alumno ya ha hecho el examen final de ese eje y titulación, una reservada de
+   * su eje ya no hay que guardarla: la pausa enseña la del guion (con `reservada: true`).
    */
-  async function equivalente(id, eje) {
+  async function equivalente(id, eje, opciones = {}) {
     const r = await pregunta(id);
     if (!r) return null;
     const e = await resolverEje(eje);
@@ -251,6 +253,9 @@ export function crearBancos(leer) {
     const suplente = (banco, q) => equivalenteEn(q, banco.estudio.filter((x) => x.id !== q.id));
     if (r.q.eje === e) {
       if (estudiable(r.banco, r.q)) return { q: r.q, propia: true, equivalente: false, ficha: r.banco.eje };
+      if (r.banco.reservadas.has(r.q.id) && r.q.norma?.estado !== 'retirada' && opciones.finalHecho?.(e, r.q.tit)) {
+        return { q: r.q, propia: true, equivalente: false, reservada: true, ficha: r.banco.eje };
+      }
       const otra = suplente(r.banco, r.q);
       return otra ? { q: otra, propia: true, equivalente: true, ficha: r.banco.eje } : null;
     }
@@ -263,6 +268,17 @@ export function crearBancos(leer) {
     if (estudiable(r.banco, r.q)) return { q: r.q, propia: false, equivalente: false, ficha: r.banco.eje };
     const otra = suplente(r.banco, r.q);
     return otra ? { q: otra, propia: false, equivalente: true, ficha: r.banco.eje } : null;
+  }
+
+  /**
+   * ¿Es `id` una pregunta reservada para el examen final del alumno en el eje `eje`? → { eje, tit } o null (también
+   * null si es de otro eje: el examen final de otro tribunal no es el suyo). Para avisar antes de oír un episodio
+   * que la lee.
+   */
+  async function reservadaDe(id, eje) {
+    const r = await pregunta(id);
+    if (!r || r.q.eje !== await resolverEje(eje)) return null;
+    return r.banco.reservadas.has(id) ? { eje: r.q.eje, tit: r.q.tit } : null;
   }
 
   /** Dirección antigua de un banco (#/examenes/<fichero>) → { eje, tit, lista } (o null). */
@@ -286,7 +302,7 @@ export function crearBancos(leer) {
     return listas.some((l) => l.requiere === 'carta') && q.requiere?.includes('carta') ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };
 }
 
 // ---------------------------------------------------------------------------
@@ -305,4 +321,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva } = bancos;

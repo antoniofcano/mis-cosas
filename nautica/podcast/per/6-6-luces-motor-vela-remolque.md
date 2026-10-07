@@ -159,11 +159,11 @@ voces:
 
 **ANDRÉS:** La be, ciento treinta y cinco. Ciento doce coma cinco es cada costado y doscientos veinticinco es la de tope. Y ciento ochenta no es de ninguna.
 
-**ELENA:** Correcto. Segunda: «¿Cuál de las siguientes configuraciones de luces puede exhibir de noche un buque de propulsión mecánica de seis coma cinco metros de eslora que navega a una velocidad de diez nudos?». A: una única luz blanca todo horizonte. Be: una luz blanca todo horizonte y luces de costado. Ce: una luz blanca todo horizonte, luces de costado y luz de alcance. De: todas las respuestas anteriores son correctas.
+**ELENA:** Correcto. Segunda: «Un buque de propulsión mecánica de seis coma cinco metros de eslora, navegando de noche a una velocidad de diez nudos, puede exhibir…». A: una única luz blanca todo horizonte. Be: una luz blanca todo horizonte y luces de costado. Ce: luces de costado y luz de alcance. De: es suficiente con tener a mano, para su uso inmediato, una linterna o un farol con luz blanca.
 
 [pausa larga]
 
-**ANDRÉS:** La lancha de antes. Es pequeña pero va a diez nudos, así que la blanca sola no le vale. Y la ce suma la blanca todo horizonte con la de alcance, que no se suman. La be: blanca todo horizonte y costados.
+**ANDRÉS:** La lancha de antes. Es pequeña pero va a diez nudos, así que la blanca sola no le vale, y la linterna menos. La ce la deja sin luz blanca arriba, y a motor no puede faltar. La be: blanca todo horizonte y costados.
 
 **ELENA:** La be. Y la tercera: «Un buque de quince metros de eslora está navegando a vela y también se está propulsando con el motor. ¿Cuál de las luces siguientes debe exhibir?». A: solo luces de costado y luz de alcance. Be: una luz blanca todo horizonte y luces de costado. Ce: una luz blanca todo horizonte, luces de costado y luz de alcance. De: luz de tope, luces de costado y luz de alcance.
 

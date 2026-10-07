@@ -131,13 +131,13 @@ voces:
 
 **ANDRÉS:** Estibado y trincado: a son de mar. La ce.
 
-**ELENA:** La ce. Segunda: «Cuando las circunstancias lo permitan, durante una navegación con mal tiempo, es recomendable…». A: dejar la costa a barlovento. Be: dejar la costa a sotavento. Ce: realizar solo navegaciones diurnas. De: navegar siempre próximos a la costa y a sus peligros.
+**ELENA:** La ce. Segunda: «¿Por qué es importante no atravesarse a la mar con mal tiempo?». A: para no comprometer la estabilidad de la embarcación. Be: para evitar grandes balances. Ce: si se gobierna atravesado a la mar, no hay peligro. De: las respuestas a y be son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** La costa a sotavento es la que me come, y pegado a los peligros, menos. La costa a barlovento me aleja y me da abrigo. La a.
+**ANDRÉS:** Atravesado, la ola me pega de costado: balances enormes y la estabilidad en juego. La a y la be son buenas, y la ce es justo lo contrario. La de.
 
-**ELENA:** La a. Y la tercera: «La caída de un rayo en las proximidades de una embarcación puede afectar a la aguja magnética. ¿De qué manera?». A: provocando un cambio en la declinación magnética. Be: produciendo un desvío anómalo de la aguja. Ce: de ninguna, la inducción magnética de la descarga eléctrica no afecta a la aguja. De: las respuestas a y be son correctas.
+**ELENA:** La de. Y la tercera: «La caída de un rayo en las proximidades de nuestro barco puede afectar a la aguja…». A: provocando un cambio en la declinación magnética. Be: produciendo un desvío de aguja anómalo. Ce: la inducción magnética de la descarga no afecta a la aguja. De: las respuestas a y be son correctas.
 
 [pausa larga]
 

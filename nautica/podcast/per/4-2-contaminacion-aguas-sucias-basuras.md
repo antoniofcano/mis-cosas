@@ -149,11 +149,11 @@ voces:
 
 **ANDRÉS:** Trafalgar está al oeste del meridiano del Estrecho, así que es Atlántico, no zona especial. Ahí la comida sin triturar se puede, pero a más de doce millas. La ce. Y la a sería la respuesta si estuviera en el Mediterráneo.
 
-**ELENA:** Exacto, la ce. Por eso hay que mirar primero dónde estás. Tercera: «¿Quién será el responsable de las infracciones por contaminación del medio marino producidas desde una embarcación?». A: el causante, aunque solo sea un tripulante, solidariamente con el patrón. Be: únicamente el asegurador. Ce: únicamente el patrón. De: serán solidariamente responsables el naviero, el propietario, el asegurador de la responsabilidad civil y el patrón.
+**ELENA:** Exacto, la ce. Por eso hay que mirar primero dónde estás. Tercera: «Las infracciones por contaminación del medio marino causadas por el patrón desde una embarcación de recreo son responsabilidad…». A: principal del armador y subsidiaria del patrón. Be: principal del armador y subsidiaria del asegurador de la responsabilidad civil. Ce: principal del patrón y subsidiaria del asegurador de la responsabilidad civil. De: solidaria del armador, patrón y asegurador de la responsabilidad civil.
 
 [pausa larga]
 
-**ANDRÉS:** Las dos de «únicamente», fuera. La a se parece, pero no son esos. Los cuatro a la vez. La de.
+**ANDRÉS:** Principal y subsidiaria, nada: en contaminación responden todos a la vez. Solidaria de los tres. La de.
 
 **ELENA:** La de. Tres de tres, y la de Trafalgar era fina.
 

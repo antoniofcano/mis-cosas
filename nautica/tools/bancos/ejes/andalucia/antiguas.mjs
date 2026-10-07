@@ -1,4 +1,4 @@
-// Informe de la extracción de Andalucía 2015–2019 (fase F2; entran en la app en la fase F5).
+// Informe de la extracción de Andalucía 2015–2019 (fase F2) y de su entrada en el banco vivo (fase F5).
 //   npm run bancos -- andalucia --todas      (extrae 2015–2026 a .cache/bancos/andalucia/salida/, sin tocar data/ejes)
 //   node tools/bancos/ejes/andalucia/antiguas.mjs   → tools/bancos/informes/andalucia-2015-2019.md
 // Recuentos por convocatoria, lectura óptica (estados, margen entre la 1.ª y la 2.ª burbuja, fuerza de la marca sobre el
@@ -215,8 +215,8 @@ export function estadisticas({ cache = CACHE } = {}) {
 const lista = (o) => Object.entries(o).map(([k, n]) => `${k}: ${n}`).join('; ');
 
 export function informe(e) {
-  const L = ['# Andalucía 2015–2019 · extracción (solo caché)', ''];
-  L.push(`Generado por \`node tools/bancos/ejes/andalucia/antiguas.mjs\` el ${hoy()}, tras \`npm run bancos -- andalucia --todas\`. Las 16 convocatorias de 2015–2019 (research_notes/…/andalucia_anteriores.md) se extraen de sus PDF oficiales (cuestionario de texto + hoja de lectura óptica escaneada) con el adaptador \`hoja-optica\`, a \`.cache/bancos/andalucia/salida/<tit>/preguntas.json\` junto con las de 2020–2026. **No se escriben en \`data/ejes/\`**: entran en la app en la fase F5.`, '');
+  const L = ['# Andalucía 2015–2019 · extracción y entrada en el banco vivo', ''];
+  L.push(`Generado por \`node tools/bancos/ejes/andalucia/antiguas.mjs\` el ${hoy()}, tras \`npm run bancos -- andalucia --todas\`. Las 16 convocatorias de 2015–2019 (research_notes/…/andalucia_anteriores.md) se extraen de sus PDF oficiales (cuestionario de texto + hoja de lectura óptica escaneada) con el adaptador \`hoja-optica\`, a \`.cache/bancos/andalucia/salida/<tit>/preguntas.json\` junto con las de 2020–2026. Desde la fase F5 la etapa escribir las añade a \`data/ejes/andalucia/<tit>/preguntas.json\` sin tocar las publicadas (\`config.publicadas = \"conservar\"\`; ver «Entrada en el banco vivo»).`, '');
   L.push('Ids con el esquema de Andalucía: `and-AAAA-cN-tNN` (teoría PER), `and-AAAA-cN-qNN` (carta PER), `and-py-AAAA-cN-gNN|nNN` (PY). Casos especiales:', '');
   L.push('- **1ª de 2018**: su página está en otra ruta (`…/investigacion-innovacion-deportiva/…`). El PY tuvo modelos A y B de cada módulo con **preguntas distintas** (no son permutaciones): el A es `and-py-2018-c1-…` y el B, una convocatoria aparte del banco, `and-py-2018-c1b-gNN|nNN` («1ª convocatoria 2018, PY modelo B» en config.json).');
   L.push('- **3ª de 2018**: solo PNB y PER (Cádiz y Sevilla); no hubo PY (`titulaciones: ["per"]` en config.json).');
@@ -286,7 +286,7 @@ export function informe(e) {
 
     if (x.atipicas.length) {
       L.push('### Tema dudoso (clasificar)', '');
-      L.push(`El tema sale de la posición en el cuadernillo; estas suman palabras clave de otro tema. No se cambian: se revisan en la fase F5. ${x.atipicas.map((a) => `${a.id} (UT ${a.ut} → ${a.sugerido.join(', ')})`).join('; ')}.`, '');
+      L.push(`El tema sale de la posición en el cuadernillo; estas suman palabras clave de otro tema. Revisadas en la fase F5: se quedan en el tema de su bloque, porque es donde el tribunal las puso y el examen real se corrige por bloques (mínimos de RIPA, balizamiento y carta). ${x.atipicas.map((a) => `${a.id} (UT ${a.ut} → ${a.sugerido.join(', ')})`).join('; ')}.`, '');
     }
 
     if (x.anuladas.length || x.multiples.length) {
@@ -303,11 +303,16 @@ export function informe(e) {
   L.push('- **Escaneos girados**: un giro del 1,5 % desplaza medio paso de fila el bloque 1–25 respecto de las marcas de sincronismo (antes del arreglo: PER 1/2017 con 12 respuestas distintas entre las hojas A y B y 17 lecturas dudosas; PER 3/2015 con 26 y 22). `hoja_optica.py` mide el giro en las marcas, predice el desfase de cada bloque y lo afina con la plantilla impresa; también corrige la deriva horizontal de las columnas.');
   L.push('- **Hoja de 2015–2016 (otro impresor, casillas rectangulares) y lápiz claro**: el lápiz se busca como gris (oscuro y sin color), sin confundirlo con los números impresos en magenta oscuro, y el paso de burbuja se busca entre el 92 % y el 102 % del nominal (PY 2/2015: el peine se corría sobre los números y salían 10 filas en blanco).');
   L.push('- **Umbral de cada hoja en la salida**: el adaptador guarda en cada lectura el umbral de marca de su hoja (`respuesta.umbral`) para medir la fuerza de cada marca en este informe.');
+  L.push('- **Fase F5** (al revisar la salida para el banco vivo): en \`-raw\` el guion de una palabra partida por sílabas se quita si sus dos trozos no salen sueltos en el cuadernillo («obsta-culiza», 3/2015); el «0» volado que en 2017–2018 hace de símbolo de grado («237⁰», «-5⁰ (menos)», «marcación 090⁰») lo localiza \`py/grado_cero.py\` y se repone como «º» (26 preguntas); el encabezado «MAREAS.» con punto y la tabla del anuario metida en un enunciado (2/2016) pasan al contexto de sus preguntas, y \`tablaMareas\` lee el formato «Hora Alt. 05:40 3,24»; «calcular la sonda» es de mareas y «rumbo directo… desea navegar hasta» de loxodrómica; las 5 figuras dibujadas en la página (dos banderas «A», hélice, timón y una depresión) las recorta \`ejes/andalucia/figuras.mjs\`.');
   L.push('- Tras los arreglos, la prueba de oro de 2020–2026 sigue en el 100 % (informes/andalucia-oro.md).', '');
+  L.push('## Entrada en el banco vivo (fase F5)', '');
+  L.push('- PER: 689 preguntas nuevas y 31 que repiten una ya publicada (mismo enunciado, opciones y respuesta), que no se duplican: su aparición va al \`apareceEn\` de aquella (20 de la 1ª de 2015 son de la 1ª de 2021). PY: 609 nuevas y 31 unidas. Las 5 idénticas a preguntas reservadas para el examen final (2025) no se unen, porque las sacarían de la reserva: and-2015-c1-t29, and-2016-c2-t28, and-2016-c3-t38, and-2017-c1-t37 y and-2017-c3-t39.');
+  L.push('- Revisión normativa (\`revision-normativa.mjs\`, bloque F5; motivo y fuente en \`ajustes.json\`): de las 279 nuevas marcadas (y 1 publicada con una aparición más antigua), 4 retiradas (notificación reducida de desechos, derogada por el RD 128/2022; revisión anual de balsas, sustituida por la del fabricante en el RD 339/2021 y el RD 587/2022; la franja de baño a 3 nudos, una vez derogada la Orden de 1964) y 11 actualizadas (aguas sucias y extintores por el RD 339/2021, posidonia por el RD 191/2026). Ninguna remite al régimen anterior al RD 875/2014: todas siguen su estructura de examen.');
+  L.push('- Explicaciones de todas las que no son de carta (y de las de carta del PY, como en 2020–2026), adaptadas por concepto de las del mismo tribunal cuando la respuesta es la misma; soluciones de carta (PER 63 + 1 documentada; PY 151 + 7 documentadas; 2 de mareas sin tabla, con el método); práctica de cada clase ampliada.', '');
   L.push('## Pendiente', '');
-  L.push('- Fecha de las tres convocatorias de 2015 (sin fecha en cuadernillos ni páginas): hasta tenerla, la etapa normativa marca sus preguntas con toda norma cuyo detector encaja.');
+  L.push('- Fecha de las tres convocatorias de 2015 (sin fecha en cuadernillos ni páginas): hasta tenerla, la etapa normativa marca sus preguntas con toda norma cuyo detector encaja (y todas se han revisado).');
   L.push('- Nota de «alegaciones contestadas» de la 4ª de 2018: no descargable; si se consigue, comprobar que no cambia más respuestas.');
-  L.push('- Entrada en la app (fase F5): revisar las preguntas «norma a revisar» de la tabla y las de tema dudoso antes de pasar estas convocatorias a `data/ejes/andalucia/`.', '');
+  L.push('- Mareas de la 1ª de 2016 (and-py-2016-c1-n19 y -n20): el cuadernillo no trae la tabla del anuario; quedan con `requiere: ["anuario"]` y su explicación da el método.', '');
   return `${L.join('\n')}\n`;
 }
 

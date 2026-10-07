@@ -1,0 +1,14 @@
+{
+ "per": {
+  "bal-per-2019-06-c-22": {
+   "opciones": {"a": "Toda clase de embarcaciones, incluidas las embarcaciones sin desplazamiento y los hidroaviones, utilizadas o que pueda ser utilizadas como medio de transporte sobre el agua.", "b": "Toda clase de embarcaciones, incluidos los buques de instrucción, capaces de mantener la flotabilidad exigida por el Reglamento aunque no sean capaces de ser utilizadas como medio de transporte sobre el agua", "c": "Toda clase de embarcaciones con arrancada o en navegación capaces de transportar personas o mercancías.", "d": "Ninguna de las anteriores."},
+   "notas": "Texto adaptado: en la opción b) se usa «buques de instrucción» en lugar de la expresión del original (mismo sentido)."
+  }
+ },
+ "py": {
+  "bal-py-2019-12-c-40": {
+   "requiere": [],
+   "notas": "El cuadernillo trae, al final, las tablas del anuario de Navia (figuras): se resuelve sin anuario aparte."
+  }
+ }
+}

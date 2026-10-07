@@ -49,7 +49,7 @@
   "concepto": null
  },
  "and-py-2015-c1-g08": {
-  "explicacion": "La radiobaliza EPIRB se puede activar a mano o automáticamente: la de zafa hidrostática se suelta al hundirse el barco y se activa al flotar en el agua. Igual que se activa, se puede desactivar manualmente si fue un disparo accidental (avisando cuanto antes al centro de salvamento). La c) solo describe un caso de activación automática y la d) recoge las dos formas. Hoy la obligación de llevarla según la zona la fija el Real Decreto 339/2021 (y el 587/2022 para radiocomunicaciones), pero su funcionamiento es el mismo.",
+  "explicacion": "La radiobaliza EPIRB se puede activar a mano o automáticamente: la de zafa hidrostática se suelta al hundirse el barco y se activa al flotar en el agua. Igual que se activa, se puede desactivar manualmente si fue un disparo accidental (avisando cuanto antes al centro de salvamento). La c) solo describe un caso de activación automática y la d) recoge las dos formas. Qué embarcaciones de recreo la llevan según su zona lo fija el Real Decreto 1185/2006 (con los cambios del Real Decreto 587/2022), pero su funcionamiento es el mismo.",
   "clave": "EPIRB: manual o automática (zafa + agua).",
   "trampa": "La c) es cierta en parte, pero se queda corta frente a la d).",
   "ilustraciones": [
@@ -246,7 +246,7 @@
   "concepto": null
  },
  "and-py-2015-c2-g04": {
-  "explicacion": "El respondedor radar (SART) es un equipo que, al ser barrido por un radar de 9 GHz (banda X), contesta con una señal que aparece en la pantalla como una línea de 12 puntos o rayas que parte de su posición. No transmite en morse, y la c) describe a grandes rasgos el sistema de radiocomunicaciones, no un aparato concreto. Hoy los equipos de radio obligatorios por zona los fija el Real Decreto 339/2021, y el funcionamiento del SART no ha cambiado.",
+  "explicacion": "El respondedor radar (SART) es un equipo que, al ser barrido por un radar de 9 GHz (banda X), contesta con una señal que aparece en la pantalla como una línea de 12 puntos o rayas que parte de su posición. No transmite en morse, y la c) describe a grandes rasgos el sistema de radiocomunicaciones, no un aparato concreto. Los equipos de radio obligatorios por zona los fija el Real Decreto 1185/2006 (con los cambios del Real Decreto 587/2022), y el funcionamiento del SART no ha cambiado.",
   "clave": "SART: radar de 9 GHz → 12 puntos en la pantalla.",
   "trampa": "La a): confundirlo con una radiobaliza o un emisor de socorro; el SART solo responde al radar.",
   "ilustraciones": [

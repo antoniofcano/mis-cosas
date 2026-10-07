@@ -1,0 +1,2356 @@
+{
+ "grupo": "meteorologia",
+ "version": 1,
+ "conceptos": [
+  {
+   "id": "meteo",
+   "tipo": "grupo",
+   "etiqueta": "Meteorología",
+   "sinonimos": [],
+   "nota": "Raíz del grupo: el tiempo, el viento, la mar y las corrientes tal como los examinan el PER (UT 9) y el PY (UT 2).",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, y RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología"
+  },
+  {
+   "id": "meteo.presion",
+   "tipo": "grupo",
+   "etiqueta": "Presión atmosférica, barómetro e isobaras",
+   "sinonimos": [],
+   "nota": "Qué es la presión, cómo se mide, su valor normal, su tendencia y cómo se dibuja (isobaras, gradiente).",
+   "padre": "meteo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-1",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.2 Presión atmosférica"
+  },
+  {
+   "id": "meteo.presion.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Qué es la presión atmosférica",
+   "sinonimos": [
+    "peso de la columna de aire",
+    "peso por unidad de superficie",
+    "gravedad",
+    "máxima a nivel del mar",
+    "disminuye con la altura"
+   ],
+   "nota": "Definición (peso por unidad de superficie de la columna de aire), su causa (gravedad) y que disminuye con la altura. No incluye valores ni unidades.",
+   "padre": "meteo.presion",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-1",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.2 Presión atmosférica: definición"
+  },
+  {
+   "id": "meteo.presion.valor-normal",
+   "tipo": "concepto",
+   "etiqueta": "Valor normal y unidades de la presión",
+   "sinonimos": [
+    "1013 hPa",
+    "1013,25 mb",
+    "760 mm Hg",
+    "una atmósfera",
+    "milibar",
+    "hectopascal",
+    "baja presión",
+    "presión normal a nivel del mar",
+    "0 ºC y 45º de latitud"
+   ],
+   "nota": "Valor normal a nivel del mar (1013,25 hPa = 760 mmHg = 1 atm), equivalencia mb = hPa, otras unidades y qué se considera alta o baja presión.",
+   "padre": "meteo.presion",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-1",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.2 Presión atmosférica: unidades de medida y valor normal"
+  },
+  {
+   "id": "meteo.presion.barometro",
+   "tipo": "concepto",
+   "etiqueta": "Barómetros: aneroide y de mercurio",
+   "sinonimos": [
+    "aneroide",
+    "cápsula de Vidi",
+    "cápsula al vacío",
+    "fuerzas elásticas",
+    "lectura directa",
+    "barógrafo",
+    "barómetro de mercurio"
+   ],
+   "nota": "Tipos de barómetro, funcionamiento del aneroide (cápsula de Vidi con vacío parcial, fuerzas elásticas, lectura directa), barógrafo y correcciones. La interpretación de la lectura va en meteo.presion.tendencia.",
+   "padre": "meteo.presion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.2 Medida de la presión atmosférica con el barómetro aneroide"
+  },
+  {
+   "id": "meteo.presion.tendencia",
+   "tipo": "concepto",
+   "etiqueta": "Tendencia barométrica y previsión del tiempo",
+   "sinonimos": [
+    "bajada lenta y suave",
+    "subida brusca",
+    "bajada brusca",
+    "tendencia al empeoramiento",
+    "tendencia a la mejoría",
+    "presagio de mal tiempo",
+    "barómetro baja",
+    "predicción local"
+   ],
+   "nota": "Qué anuncia cada evolución del barómetro (lenta/brusca, sube/baja), solo o junto a la temperatura, y por qué importa más la tendencia que el valor.",
+   "padre": "meteo.presion",
+   "relacionados": [
+    "meteo.presion.barometro",
+    "meteo.sistemas.borrasca"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-1",
+    "per-9-7",
+    "py-2-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.presion.isobaras",
+   "tipo": "concepto",
+   "etiqueta": "Isobaras: definición",
+   "sinonimos": [
+    "isóbara",
+    "líneas de igual presión",
+    "superficie isobárica",
+    "intersección de las superficies isobáricas",
+    "isotermas",
+    "mapa isobárico",
+    "separación de 4 mb"
+   ],
+   "nota": "Qué es una isobara (y una superficie isobárica), en qué superficie se dibujan, su separación habitual y no confundirlas con isotermas, isobatas o isalobaras. La relación con el viento va en meteo.presion.gradiente.",
+   "padre": "meteo.presion",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-1",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.2 Definición de líneas isobaras; RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.1 Isobaras"
+  },
+  {
+   "id": "meteo.presion.gradiente",
+   "tipo": "concepto",
+   "etiqueta": "Gradiente horizontal de presión y fuerza del viento",
+   "sinonimos": [
+    "isobaras juntas",
+    "isobaras separadas",
+    "gradiente barométrico",
+    "inclinación de las superficies isobáricas",
+    "viento de altas a bajas presiones",
+    "intensidad del viento"
+   ],
+   "nota": "El aire va de altas a bajas presiones; definición del gradiente horizontal (diferencia de presión por unidad de distancia, perpendicular a las isobaras) y su relación con la separación de isobaras, la inclinación de las superficies isobáricas y la fuerza del viento.",
+   "padre": "meteo.presion",
+   "relacionados": [
+    "meteo.presion.isobaras"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-1",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.1 Definición y utilidad del gradiente horizontal de presión atmosférica"
+  },
+  {
+   "id": "meteo.presion.gradiente-calculo",
+   "tipo": "concepto",
+   "etiqueta": "Cálculo del gradiente horizontal de presión",
+   "sinonimos": [
+    "hPa por grado",
+    "mb/grado",
+    "mb por milla",
+    "isobaras separadas 120 millas"
+   ],
+   "nota": "Cálculo numérico sencillo: diferencia de presión entre dos isobaras dividida por su separación (en millas o en grados de latitud, 60 millas).",
+   "padre": "meteo.presion",
+   "relacionados": [
+    "meteo.presion.gradiente"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.1 Definición y utilidad del gradiente horizontal de presión atmosférica"
+  },
+  {
+   "id": "meteo.temperatura",
+   "tipo": "grupo",
+   "etiqueta": "Temperatura",
+   "sinonimos": [],
+   "nota": "Definición de temperatura y su medida en la escala centígrada.",
+   "padre": "meteo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.3 Temperatura"
+  },
+  {
+   "id": "meteo.temperatura.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Qué es la temperatura",
+   "sinonimos": [
+    "grado de calor del aire",
+    "movimiento de las moléculas",
+    "equilibrio térmico",
+    "temperatura y presión"
+   ],
+   "nota": "Definición de temperatura (física y meteorológica) y afirmaciones sobre su relación con la presión.",
+   "padre": "meteo.temperatura",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.3 Temperatura: definición"
+  },
+  {
+   "id": "meteo.temperatura.escala",
+   "tipo": "concepto",
+   "etiqueta": "Escala centígrada y medida de la temperatura",
+   "sinonimos": [
+    "grado centígrado",
+    "grado Celsius",
+    "fusión del hielo 0 ºC",
+    "ebullición del agua 100 ºC",
+    "100 divisiones",
+    "termómetro",
+    "termógrafo",
+    "dilatación"
+   ],
+   "nota": "Puntos de referencia de la escala centígrada (0 ºC fusión del hielo, 100 ºC ebullición), sus divisiones y valores negativos; termómetro y termógrafo.",
+   "padre": "meteo.temperatura",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.3 Temperatura: unidades de medida (escala centígrada)"
+  },
+  {
+   "id": "meteo.sistemas",
+   "tipo": "grupo",
+   "etiqueta": "Borrascas y anticiclones",
+   "sinonimos": [],
+   "nota": "Sistemas de presión: definición, giro del viento, tiempo asociado y trayectoria.",
+   "padre": "meteo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-2",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.4 Borrascas y Anticiclones"
+  },
+  {
+   "id": "meteo.sistemas.borrasca",
+   "tipo": "concepto",
+   "etiqueta": "Borrasca: definición y tiempo asociado",
+   "sinonimos": [
+    "depresión",
+    "baja",
+    "ciclón",
+    "B",
+    "L",
+    "ciclogénesis",
+    "presión menor en el centro",
+    "aire asciende",
+    "tiempo inestable",
+    "borrasca profunda"
+   ],
+   "nota": "Qué es una borrasca (presión mínima en el centro, isobaras cerradas que crecen hacia fuera, convergencia y ascenso del aire), cómo se rotula y el tiempo que trae. El giro del viento va en meteo.sistemas.circulacion.",
+   "padre": "meteo.sistemas",
+   "relacionados": [
+    "meteo.sistemas.circulacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-2",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.4 Borrascas: definición; RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Tiempo asociado al paso de Borrascas"
+  },
+  {
+   "id": "meteo.sistemas.anticiclon",
+   "tipo": "concepto",
+   "etiqueta": "Anticiclón: definición y tiempo asociado",
+   "sinonimos": [
+    "alta",
+    "altas presiones",
+    "A",
+    "H",
+    "subsidencia",
+    "aire desciende",
+    "presión mayor en el centro",
+    "tiempo estable",
+    "vientos flojos"
+   ],
+   "nota": "Qué es un anticiclón (presión máxima en el centro, divergencia y descenso del aire), cómo se rotula y el tiempo estable y de vientos flojos que trae.",
+   "padre": "meteo.sistemas",
+   "relacionados": [
+    "meteo.sistemas.circulacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-2",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.4 Anticiclones: definición; RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Tiempo asociado al paso de Anticiclones"
+  },
+  {
+   "id": "meteo.sistemas.circulacion",
+   "tipo": "concepto",
+   "etiqueta": "Giro del viento en borrascas y anticiclones (hemisferio norte)",
+   "sinonimos": [
+    "sentido antihorario",
+    "sentido horario",
+    "sentido ciclónico",
+    "contrario a las agujas del reloj",
+    "componente hacia dentro",
+    "componente hacia fuera"
+   ],
+   "nota": "En el hemisferio norte el viento gira en sentido antihorario y hacia dentro en la borrasca, y horario y hacia fuera en el anticiclón.",
+   "padre": "meteo.sistemas",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-2",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.4 Circulación general del viento en el hemisferio norte en estas formaciones"
+  },
+  {
+   "id": "meteo.sistemas.trayectoria",
+   "tipo": "concepto",
+   "etiqueta": "Trayectoria de las borrascas",
+   "sinonimos": [
+    "de oeste a este",
+    "hacia el NE",
+    "velocidad de traslación",
+    "rotación de la Tierra"
+   ],
+   "nota": "En nuestras latitudes las borrascas se desplazan en general de W a E (con componente NE); velocidad de traslación habitual.",
+   "padre": "meteo.sistemas",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-2",
+    "py-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.4 Trayectoria de las borrascas"
+  },
+  {
+   "id": "meteo.sistemas.buys-ballot",
+   "tipo": "concepto",
+   "etiqueta": "Ley de Buys-Ballot",
+   "sinonimos": [
+    "de cara al viento",
+    "la baja queda a la derecha",
+    "situar la borrasca"
+   ],
+   "nota": "Situar el centro de bajas a partir del viento: en el hemisferio norte, de cara al viento, la baja queda a la derecha (de espaldas, a la izquierda). En el PER se enseña pero solo lo pregunta el PY.",
+   "padre": "meteo.sistemas",
+   "relacionados": [
+    "meteo.sistemas.circulacion",
+    "meteo.modelos.geostrofico"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "per-9-2",
+    "py-2-3"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.sistemas.dorsal-vaguada",
+   "tipo": "concepto",
+   "etiqueta": "Dorsales y vaguadas",
+   "sinonimos": [
+    "cuña",
+    "cuña anticiclónica",
+    "vaguada",
+    "dorsal"
+   ],
+   "nota": "Prolongaciones de un anticiclón (dorsal o cuña) y de una borrasca (vaguada) en el mapa de isobaras.",
+   "padre": "meteo.sistemas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.viento",
+   "tipo": "grupo",
+   "etiqueta": "El viento: vocabulario, instrumentos y viento aparente",
+   "sinonimos": [],
+   "nota": "Cómo se nombra el viento, sus cambios, cómo se mide y qué viento se nota a bordo.",
+   "padre": "meteo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-3",
+    "per-9-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Viento"
+  },
+  {
+   "id": "meteo.viento.direccion",
+   "tipo": "concepto",
+   "etiqueta": "Dirección del viento: se nombra por donde viene",
+   "sinonimos": [
+    "viento del NW",
+    "poniente va hacia el este",
+    "procede de",
+    "cuadrante",
+    "de dónde viene"
+   ],
+   "nota": "El viento se nombra por la dirección de la que procede (un poniente sopla hacia el E). Incluye los cuadrantes de la rosa.",
+   "padre": "meteo.viento",
+   "relacionados": [
+    "meteo.regionales.rosa"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.viento.intensidad",
+   "tipo": "concepto",
+   "etiqueta": "Intensidad del viento y cómo se expresa",
+   "sinonimos": [
+    "velocidad del viento",
+    "fuerza del viento",
+    "nudos",
+    "km/h",
+    "grados Beaufort"
+   ],
+   "nota": "La intensidad es la velocidad (fuerza) del viento y se expresa en nudos, km/h, m/s o grados Beaufort.",
+   "padre": "meteo.viento",
+   "relacionados": [
+    "meteo.mar.beaufort",
+    "meteo.mar.factores"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3",
+    "per-9-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar: conceptos de intensidad"
+  },
+  {
+   "id": "meteo.viento.rolar",
+   "tipo": "concepto",
+   "etiqueta": "Rolar: cambio de dirección del viento",
+   "sinonimos": [
+    "rola",
+    "ha rolado",
+    "rolando",
+    "cambio de dirección",
+    "girar el viento"
+   ],
+   "nota": "Rolar es cambiar el viento de dirección (no implica cambio de intensidad).",
+   "padre": "meteo.viento",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Viento: definición de rolar"
+  },
+  {
+   "id": "meteo.viento.refrescar-caer",
+   "tipo": "concepto",
+   "etiqueta": "Refrescar, caer y calmar",
+   "sinonimos": [
+    "refresca",
+    "arreciar",
+    "aumenta su intensidad",
+    "cae",
+    "disminuye su intensidad",
+    "calmar",
+    "amainar",
+    "encalmarse"
+   ],
+   "nota": "Refrescar es aumentar la intensidad; caer, disminuir; calmar, quedar sin viento.",
+   "padre": "meteo.viento",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Viento: definiciones de caer, refrescar y calmar"
+  },
+  {
+   "id": "meteo.viento.racha",
+   "tipo": "concepto",
+   "etiqueta": "Racha y viento racheado",
+   "sinonimos": [
+    "racha",
+    "racheado",
+    "rachea",
+    "aumento brusco y momentáneo",
+    "varía continuamente"
+   ],
+   "nota": "Racha: aumento brusco y momentáneo de la intensidad; viento racheado: intensidad que varía continuamente a más y a menos.",
+   "padre": "meteo.viento",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Viento: definición de racha"
+  },
+  {
+   "id": "meteo.viento.anemometro",
+   "tipo": "concepto",
+   "etiqueta": "Anemómetro",
+   "sinonimos": [
+    "cazoletas",
+    "velocidad del viento",
+    "anemómetro de recorrido"
+   ],
+   "nota": "El anemómetro mide la velocidad (intensidad) del viento; tipos (cazoletas, hélice). Qué viento marca en marcha va en meteo.viento.real-aparente.",
+   "padre": "meteo.viento",
+   "relacionados": [
+    "meteo.viento.veleta-catavientos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Anemómetro, veletas y catavientos"
+  },
+  {
+   "id": "meteo.viento.veleta-catavientos",
+   "tipo": "concepto",
+   "etiqueta": "Veleta y catavientos",
+   "sinonimos": [
+    "veleta",
+    "catavientos",
+    "manga",
+    "lanillas",
+    "cintas en las velas",
+    "dirección del viento"
+   ],
+   "nota": "Veleta y catavientos (manga troncocónica, lanillas en velas y jarcia) indican la dirección del viento.",
+   "padre": "meteo.viento",
+   "relacionados": [
+    "meteo.viento.anemometro"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Anemómetro, veletas y catavientos"
+  },
+  {
+   "id": "meteo.viento.real-aparente",
+   "tipo": "concepto",
+   "etiqueta": "Viento real, relativo y aparente: definiciones",
+   "sinonimos": [
+    "viento verdadero",
+    "viento de avance",
+    "viento de marcha",
+    "viento relativo",
+    "viento aparente",
+    "el que notamos a bordo",
+    "embarcación parada"
+   ],
+   "nota": "Real: el que sopla (lo que se mide con el barco parado); relativo o de avance: el que crea nuestro movimiento; aparente: la resultante, la que marcan anemómetro y catavientos navegando.",
+   "padre": "meteo.viento",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Viento real, relativo y aparente: definiciones, sin cálculos"
+  },
+  {
+   "id": "meteo.viento.aparente-casos",
+   "tipo": "concepto",
+   "etiqueta": "Viento aparente: casos (nulo, de proa, de popa)",
+   "sinonimos": [
+    "aparente nulo",
+    "no sentimos viento",
+    "anemómetro marca cero",
+    "viento de popa igual a nuestra velocidad",
+    "viento de proa se suma"
+   ],
+   "nota": "Casos sin cálculo vectorial: real por popa a nuestra velocidad da aparente cero; de proa se suman; por la proa coinciden en dirección los tres.",
+   "padre": "meteo.viento",
+   "relacionados": [
+    "meteo.viento.real-aparente"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Viento real, relativo y aparente: definiciones, sin cálculos"
+  },
+  {
+   "id": "meteo.brisas",
+   "tipo": "grupo",
+   "etiqueta": "Brisas costeras",
+   "sinonimos": [],
+   "nota": "Régimen de brisas: por qué se forman, virazón y terral.",
+   "padre": "meteo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.6 Brisas costeras"
+  },
+  {
+   "id": "meteo.brisas.origen",
+   "tipo": "concepto",
+   "etiqueta": "Origen de las brisas costeras",
+   "sinonimos": [
+    "diferencia de temperatura tierra-mar",
+    "capacidad calorífica",
+    "contraste térmico",
+    "régimen de brisas",
+    "viento térmico"
+   ],
+   "nota": "Las brisas nacen de la diferente velocidad de calentamiento y enfriamiento de tierra y mar; cuanto mayor el contraste, más intensa la brisa.",
+   "padre": "meteo.brisas",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.6 Brisas costeras"
+  },
+  {
+   "id": "meteo.brisas.virazon",
+   "tipo": "concepto",
+   "etiqueta": "Virazón",
+   "sinonimos": [
+    "brisa de mar",
+    "brisa marina",
+    "de día",
+    "del mar a tierra",
+    "diurna"
+   ],
+   "nota": "Brisa diurna que sopla del mar hacia tierra porque la tierra se calienta más y forma una baja relativa.",
+   "padre": "meteo.brisas",
+   "relacionados": [
+    "meteo.brisas.terral"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.6 Terral y virazón"
+  },
+  {
+   "id": "meteo.brisas.terral",
+   "tipo": "concepto",
+   "etiqueta": "Terral",
+   "sinonimos": [
+    "brisa de tierra",
+    "de noche",
+    "de tierra al mar",
+    "nocturna"
+   ],
+   "nota": "Brisa nocturna que sopla de tierra hacia el mar porque la tierra se enfría antes y la baja relativa queda sobre el mar.",
+   "padre": "meteo.brisas",
+   "relacionados": [
+    "meteo.brisas.virazon"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.6 Terral y virazón"
+  },
+  {
+   "id": "meteo.mar",
+   "tipo": "grupo",
+   "etiqueta": "La mar que levanta el viento y sus escalas",
+   "sinonimos": [],
+   "nota": "Factores que hacen crecer la mar y escalas Beaufort y Douglas.",
+   "padre": "meteo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-6",
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar"
+  },
+  {
+   "id": "meteo.mar.factores",
+   "tipo": "concepto",
+   "etiqueta": "De qué depende la altura de la mar: intensidad, persistencia y fetch",
+   "sinonimos": [
+    "tres variables",
+    "función creciente",
+    "fuerza del viento, persistencia y fetch",
+    "mar de viento generada"
+   ],
+   "nota": "La mar de viento crece con la intensidad del viento, su persistencia y el fetch.",
+   "padre": "meteo.mar",
+   "relacionados": [
+    "meteo.mar.fetch",
+    "meteo.mar.persistencia",
+    "meteo.olas.formacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-6",
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar: conceptos de intensidad, persistencia y fetch"
+  },
+  {
+   "id": "meteo.mar.fetch",
+   "tipo": "concepto",
+   "etiqueta": "Fetch",
+   "sinonimos": [
+    "fecht",
+    "extensión rectilínea",
+    "alcance del viento",
+    "zona donde el viento sopla con la misma dirección e intensidad",
+    "millas"
+   ],
+   "nota": "Extensión (en millas) de mar sobre la que sopla un viento de dirección y fuerza constantes; no es un tiempo.",
+   "padre": "meteo.mar",
+   "relacionados": [
+    "meteo.mar.persistencia"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-6",
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar: concepto de fetch"
+  },
+  {
+   "id": "meteo.mar.persistencia",
+   "tipo": "concepto",
+   "etiqueta": "Persistencia del viento",
+   "sinonimos": [
+    "número de horas",
+    "tiempo que sopla el viento",
+    "misma dirección e intensidad"
+   ],
+   "nota": "Tiempo (horas) que lleva soplando el viento con la misma dirección e intensidad.",
+   "padre": "meteo.mar",
+   "relacionados": [
+    "meteo.mar.fetch"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar: concepto de persistencia"
+  },
+  {
+   "id": "meteo.mar.beaufort",
+   "tipo": "concepto",
+   "etiqueta": "Escala Beaufort",
+   "sinonimos": [
+    "fuerza del viento",
+    "grados 0 a 12",
+    "13 grados",
+    "intensidad del viento real",
+    "efectos en la mar"
+   ],
+   "nota": "Escala de la intensidad del viento (0 a 12) estimada por sus efectos; su utilidad y la necesidad de llevarla a bordo. No se exige memorizarla.",
+   "padre": "meteo.mar",
+   "relacionados": [
+    "meteo.mar.douglas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.5 Utilidad de la escala de Beaufort y necesidad de llevarla a bordo"
+  },
+  {
+   "id": "meteo.mar.douglas",
+   "tipo": "concepto",
+   "etiqueta": "Escala Douglas",
+   "sinonimos": [
+    "estado de la mar",
+    "altura de las olas",
+    "grados 0 a 9",
+    "10 grados",
+    "marejada",
+    "fuerte marejada"
+   ],
+   "nota": "Escala del estado de la mar (0 a 9) según la altura de las olas; su utilidad y la necesidad de llevarla a bordo. No se exige memorizarla.",
+   "padre": "meteo.mar",
+   "relacionados": [
+    "meteo.mar.beaufort"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Utilidad de la escala de Douglas y necesidad de llevarla a bordo"
+  },
+  {
+   "id": "meteo.prevision",
+   "tipo": "grupo",
+   "etiqueta": "La previsión meteorológica",
+   "sinonimos": [],
+   "nota": "Importancia del tiempo para la seguridad y formas de obtener la previsión oficial.",
+   "padre": "meteo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.1 Importancia del tiempo meteorológico en la seguridad de la navegación"
+  },
+  {
+   "id": "meteo.prevision.fuentes",
+   "tipo": "concepto",
+   "etiqueta": "Fuentes oficiales de la previsión",
+   "sinonimos": [
+    "AEMET",
+    "Agencia Estatal de Meteorología",
+    "METEONAV",
+    "internet",
+    "medios de comunicación",
+    "fuente válida"
+   ],
+   "nota": "Quién elabora y publica la previsión oficial (AEMET, Meteonav, medios de comunicación) y qué organismos no son fuente (Capitanía, DGMM, Distrito Marítimo, «AMMET»).",
+   "padre": "meteo.prevision",
+   "relacionados": [
+    "meteo.prevision.radio"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.1 Formas de obtener la previsión meteorológica"
+  },
+  {
+   "id": "meteo.prevision.radio",
+   "tipo": "concepto",
+   "etiqueta": "Previsión por radio: VHF, NAVTEX y Salvamento Marítimo",
+   "sinonimos": [
+    "VHF",
+    "canal 16",
+    "Salvamento Marítimo",
+    "estación radiocostera",
+    "NAVTEX",
+    "onda media",
+    "SMSSM",
+    "llamada selectiva digital"
+   ],
+   "nota": "Difusión a bordo: boletines de Salvamento Marítimo y radiocosteras por VHF (anunciados en el canal 16), onda media y NAVTEX; la LSD no es un medio para recibirla.",
+   "padre": "meteo.prevision",
+   "relacionados": [
+    "meteo.prevision.fuentes"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.1 Formas de obtener la previsión meteorológica"
+  },
+  {
+   "id": "meteo.prevision.importancia",
+   "tipo": "concepto",
+   "etiqueta": "Importancia del tiempo y parámetros para prever",
+   "sinonimos": [
+    "predicción del tiempo",
+    "barómetro y termómetro",
+    "temperatura y presión",
+    "decidir si salir"
+   ],
+   "nota": "Por qué el tiempo condiciona la seguridad y qué parámetros básicos (presión y temperatura) sirven para prever a bordo.",
+   "padre": "meteo.prevision",
+   "relacionados": [
+    "meteo.presion.tendencia"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-9-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.1 Importancia del tiempo meteorológico en la seguridad de la navegación"
+  },
+  {
+   "id": "meteo.frentes",
+   "tipo": "grupo",
+   "etiqueta": "Masas de aire y frentes",
+   "sinonimos": [],
+   "nota": "Masas de aire, frentes frío, cálido y ocluido y el tiempo de su paso.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Frentes, Borrascas y Anticiclones"
+  },
+  {
+   "id": "meteo.frentes.masas-aire",
+   "tipo": "concepto",
+   "etiqueta": "Masas de aire",
+   "sinonimos": [
+    "masa de aire polar",
+    "masa de aire tropical",
+    "marítima",
+    "continental",
+    "estabilidad"
+   ],
+   "nota": "Clasificación de las masas de aire por temperatura y humedad y su estabilidad.",
+   "padre": "meteo.frentes",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.frentes.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Qué es un frente y cómo se dibuja",
+   "sinonimos": [
+    "superficie frontal",
+    "línea de separación de dos masas de aire",
+    "símbolos",
+    "triángulos azules",
+    "semicírculos rojos",
+    "sector cálido",
+    "frente estacionario"
+   ],
+   "nota": "Frente como separación entre dos masas de aire, su representación en el mapa, el sector cálido y el frente estacionario.",
+   "padre": "meteo.frentes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Frentes"
+  },
+  {
+   "id": "meteo.frentes.frio",
+   "tipo": "concepto",
+   "etiqueta": "Frente frío y tiempo a su paso",
+   "sinonimos": [
+    "aire frío empuja al cálido",
+    "cumulonimbos",
+    "chubascos",
+    "presión sube tras el paso",
+    "visibilidad aumenta",
+    "pendiente acusada",
+    "más rápido que el cálido"
+   ],
+   "nota": "El aire frío avanza y obliga al cálido a subir: pendiente fuerte, cúmulos y cumulonimbos, chubascos; tras su paso sube la presión, baja la temperatura y mejora la visibilidad.",
+   "padre": "meteo.frentes",
+   "relacionados": [
+    "meteo.frentes.calido"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Definición de frente frío"
+  },
+  {
+   "id": "meteo.frentes.calido",
+   "tipo": "concepto",
+   "etiqueta": "Frente cálido y tiempo a su paso",
+   "sinonimos": [
+    "aire cálido asciende sobre cuña fría",
+    "cirros",
+    "nimbostratos",
+    "lluvia continua",
+    "llovizna",
+    "visibilidad regular a mala",
+    "pendiente suave",
+    "antes del frente cálido"
+   ],
+   "nota": "El aire cálido avanza y sube por encima de la cuña fría: pendiente suave, nubes que anuncian (cirros a nimbostratos), lluvia o llovizna extensa y visibilidad que empeora.",
+   "padre": "meteo.frentes",
+   "relacionados": [
+    "meteo.frentes.frio"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Definición de frente cálido"
+  },
+  {
+   "id": "meteo.frentes.ocluido",
+   "tipo": "concepto",
+   "etiqueta": "Frente ocluido",
+   "sinonimos": [
+    "oclusión",
+    "el frente frío alcanza al cálido",
+    "el sector cálido desaparece",
+    "aire cálido no toca el suelo"
+   ],
+   "nota": "Se forma cuando el frente frío, más rápido, alcanza al cálido y levanta el aire cálido del suelo.",
+   "padre": "meteo.frentes",
+   "relacionados": [
+    "meteo.frentes.oclusion-tipos"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Definición de frente ocluido (sin especificar)"
+  },
+  {
+   "id": "meteo.frentes.oclusion-tipos",
+   "tipo": "concepto",
+   "etiqueta": "Oclusión de tipo frío y de tipo cálido",
+   "sinonimos": [
+    "aire polar de vanguardia",
+    "aire polar de retaguardia",
+    "oclusión fría",
+    "oclusión cálida",
+    "frente ocluido frío"
+   ],
+   "nota": "Distinguir la oclusión fría (el aire de retaguardia es más frío que el de vanguardia) de la cálida (al revés).",
+   "padre": "meteo.frentes",
+   "relacionados": [
+    "meteo.frentes.ocluido"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.2 Definición de frente ocluido (cálido, frío)"
+  },
+  {
+   "id": "meteo.modelos",
+   "tipo": "grupo",
+   "etiqueta": "Modelos de viento",
+   "sinonimos": [],
+   "nota": "Vientos teóricos según las fuerzas que intervienen: gradiente, Coriolis, centrífuga y rozamiento.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Viento"
+  },
+  {
+   "id": "meteo.modelos.euler",
+   "tipo": "concepto",
+   "etiqueta": "Viento de Euler",
+   "sinonimos": [
+    "solo el gradiente de presión",
+    "perpendicular a las isobaras",
+    "de altas a bajas",
+    "viento ideal"
+   ],
+   "nota": "Viento ideal en el que solo actúa la fuerza del gradiente: va de altas a bajas, perpendicular a las isobaras.",
+   "padre": "meteo.modelos",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Definición de viento de Euler"
+  },
+  {
+   "id": "meteo.modelos.geostrofico",
+   "tipo": "concepto",
+   "etiqueta": "Viento geostrófico",
+   "sinonimos": [
+    "gradiente + Coriolis",
+    "paralelo a las isobaras",
+    "isobaras rectilíneas",
+    "altas presiones a la derecha",
+    "rotación terrestre"
+   ],
+   "nota": "Equilibrio entre gradiente y Coriolis: sopla paralelo a isobaras rectas dejando las altas a la derecha en el hemisferio norte; no considera rozamiento.",
+   "padre": "meteo.modelos",
+   "relacionados": [
+    "meteo.sistemas.buys-ballot"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Definición de viento geostrófico"
+  },
+  {
+   "id": "meteo.modelos.gradiente",
+   "tipo": "concepto",
+   "etiqueta": "Viento de gradiente",
+   "sinonimos": [
+    "isobaras curvas",
+    "gradiente, Coriolis y fuerza centrífuga"
+   ],
+   "nota": "Viento sobre isobaras curvas: resultante del gradiente, Coriolis y la fuerza centrífuga.",
+   "padre": "meteo.modelos",
+   "relacionados": [
+    "meteo.modelos.ciclostrofico"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-3"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.modelos.ciclostrofico",
+   "tipo": "concepto",
+   "etiqueta": "Viento ciclostrófico",
+   "sinonimos": [
+    "fuerza centrífuga",
+    "Coriolis despreciable",
+    "gradiente equilibrado por la centrífuga"
+   ],
+   "nota": "El gradiente se equilibra solo con la fuerza centrífuga (Coriolis despreciable), como en torbellinos pequeños e intensos.",
+   "padre": "meteo.modelos",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Definición de viento ciclostrófico"
+  },
+  {
+   "id": "meteo.modelos.antitriptico",
+   "tipo": "concepto",
+   "etiqueta": "Viento antitríptico y viento de superficie",
+   "sinonimos": [
+    "rozamiento",
+    "fricción",
+    "corta las isobaras",
+    "viento real de superficie",
+    "orografía"
+   ],
+   "nota": "Modelo que incluye el rozamiento (predominante); el viento real de superficie corta las isobaras hacia las bajas.",
+   "padre": "meteo.modelos",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Definición de viento antitríptico"
+  },
+  {
+   "id": "meteo.regionales",
+   "tipo": "grupo",
+   "etiqueta": "Vientos regionales del Mediterráneo y del Atlántico",
+   "sinonimos": [],
+   "nota": "Nombre, dirección, zona y carácter de los vientos característicos de nuestras costas.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.rosa",
+   "tipo": "concepto",
+   "etiqueta": "Rosa de los vientos mediterránea: nombre por dirección",
+   "sinonimos": [
+    "tramontana N",
+    "gregal NE",
+    "levante E",
+    "xaloc SE",
+    "siroco",
+    "migjorn",
+    "mediodía S",
+    "garbí SW",
+    "lebeche",
+    "poniente W",
+    "mestral NW"
+   ],
+   "nota": "Qué nombre recibe el viento de cada rumbo en el Mediterráneo (y en el mar Balear).",
+   "padre": "meteo.regionales",
+   "relacionados": [
+    "meteo.viento.direccion"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.mistral",
+   "tipo": "concepto",
+   "etiqueta": "Mistral",
+   "sinonimos": [
+    "mestral",
+    "NW",
+    "golfo de León",
+    "frío y seco",
+    "cielos claros"
+   ],
+   "nota": "Viento del NW, frío, seco y racheado del golfo de León que llega a Baleares y Córcega.",
+   "padre": "meteo.regionales",
+   "relacionados": [
+    "meteo.regionales.tramontana"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.tramontana",
+   "tipo": "concepto",
+   "etiqueta": "Tramontana",
+   "sinonimos": [
+    "N",
+    "cabo de Creus",
+    "golfo de León",
+    "vientos fríos y secos tras las borrascas"
+   ],
+   "nota": "Viento del N, frío y seco (golfo de León, Creus, norte de Baleares); en general, los fríos y secos de la retaguardia de las borrascas.",
+   "padre": "meteo.regionales",
+   "relacionados": [
+    "meteo.regionales.mistral"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.levante-poniente",
+   "tipo": "concepto",
+   "etiqueta": "Levante y poniente del Estrecho",
+   "sinonimos": [
+    "levante",
+    "poniente",
+    "Estrecho de Gibraltar",
+    "alta al norte de España"
+   ],
+   "nota": "Vientos del E y del W canalizados por el Estrecho de Gibraltar y el mar de Alborán; frecuencia y efectos.",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.gregal",
+   "tipo": "concepto",
+   "etiqueta": "Gregal",
+   "sinonimos": [
+    "NE",
+    "Baleares",
+    "frío y seco",
+    "continental",
+    "febrero"
+   ],
+   "nota": "Viento del NE, frío y seco de origen continental, característico de Baleares y el Mediterráneo central.",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.calidos-sur",
+   "tipo": "concepto",
+   "etiqueta": "Siroco y lebeche: los cálidos del sur",
+   "sinonimos": [
+    "siroco",
+    "xaloc",
+    "SE",
+    "lebeche",
+    "leveche",
+    "garbí",
+    "SW",
+    "norte de África",
+    "calima"
+   ],
+   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima.",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.galerna",
+   "tipo": "concepto",
+   "etiqueta": "Galerna",
+   "sinonimos": [
+    "Cantábrico",
+    "golfo de Vizcaya",
+    "súbito",
+    "racheado",
+    "rola al WNW",
+    "primavera y otoño"
+   ],
+   "nota": "Temporal súbito y violento del W–NW en el Cantábrico que corta un día apacible y caluroso; época y comportamiento.",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.vendaval",
+   "tipo": "concepto",
+   "etiqueta": "Vendaval",
+   "sinonimos": [
+    "SW",
+    "golfo de Cádiz",
+    "borrascas de invierno",
+    "lluvia y temporal"
+   ],
+   "nota": "Viento fuerte del SW ligado a las borrascas invernales, con lluvia y mala visibilidad (golfo de Cádiz, Atlántico).",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.alisios",
+   "tipo": "concepto",
+   "etiqueta": "Alisios",
+   "sinonimos": [
+    "NE",
+    "Canarias",
+    "anticiclón de las Azores",
+    "todo el año"
+   ],
+   "nota": "Vientos regulares del NE que soplan todo el año en Canarias, ligados al anticiclón de las Azores.",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.regionales.identificacion",
+   "tipo": "concepto",
+   "etiqueta": "Qué vientos son del Mediterráneo y cuáles no (otros vientos)",
+   "sinonimos": [
+    "bora",
+    "etesios",
+    "no es un viento del Mediterráneo",
+    "buran",
+    "pampero",
+    "sudestada",
+    "cudo",
+    "Atlántico oriental"
+   ],
+   "nota": "Reconocer qué nombres pertenecen al Mediterráneo o al Atlántico oriental frente a vientos de otras regiones; incluye bora (Adriático) y etesios (Egeo).",
+   "padre": "meteo.regionales",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.3 Vientos característicos del Mediterráneo y Atlántico oriental"
+  },
+  {
+   "id": "meteo.humedad",
+   "tipo": "grupo",
+   "etiqueta": "Humedad del aire",
+   "sinonimos": [],
+   "nota": "Humedad absoluta y relativa, punto de rocío y psicrómetro.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.4 Humedad"
+  },
+  {
+   "id": "meteo.humedad.absoluta",
+   "tipo": "concepto",
+   "etiqueta": "Humedad absoluta",
+   "sinonimos": [
+    "g/m3",
+    "gramos de vapor por metro cúbico",
+    "densidad del vapor de agua"
+   ],
+   "nota": "Masa de vapor de agua por unidad de volumen de aire (g/m³); no es un porcentaje.",
+   "padre": "meteo.humedad",
+   "relacionados": [
+    "meteo.humedad.relativa"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.4 Conceptos de humedad absoluta"
+  },
+  {
+   "id": "meteo.humedad.relativa",
+   "tipo": "concepto",
+   "etiqueta": "Humedad relativa y saturación",
+   "sinonimos": [
+    "tanto por ciento",
+    "%",
+    "100 %",
+    "saturado",
+    "tensión de vapor",
+    "el aire caliente admite más vapor",
+    "visibilidad"
+   ],
+   "nota": "Relación (en %) entre el vapor que hay y el máximo admisible a esa temperatura; 100 % = saturación; cómo cambia al calentar o enfriar el aire.",
+   "padre": "meteo.humedad",
+   "relacionados": [
+    "meteo.humedad.absoluta",
+    "meteo.humedad.punto-rocio"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.4 Conceptos de humedad relativa"
+  },
+  {
+   "id": "meteo.humedad.punto-rocio",
+   "tipo": "concepto",
+   "etiqueta": "Punto de rocío",
+   "sinonimos": [
+    "temperatura de rocío",
+    "Td",
+    "temperatura a la que se satura",
+    "empieza a condensarse"
+   ],
+   "nota": "Temperatura a la que hay que enfriar el aire (sin cambiar su vapor ni su presión) para que se sature y condense.",
+   "padre": "meteo.humedad",
+   "relacionados": [
+    "meteo.humedad.relativa",
+    "meteo.nieblas.prevision"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.4 Concepto de punto de rocío"
+  },
+  {
+   "id": "meteo.humedad.psicrometro",
+   "tipo": "concepto",
+   "etiqueta": "Psicrómetro y tablas psicrométricas",
+   "sinonimos": [
+    "termómetro seco",
+    "termómetro húmedo",
+    "tablas psicrométricas",
+    "diferencia psicrométrica"
+   ],
+   "nota": "Dos termómetros (seco y húmedo); con su lectura y las tablas se obtienen la humedad relativa y el punto de rocío. Si marcan lo mismo, HR = 100 %.",
+   "padre": "meteo.humedad",
+   "relacionados": [
+    "meteo.nieblas.prevision"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-5",
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Previsión a bordo mediante un psicrómetro"
+  },
+  {
+   "id": "meteo.nubes",
+   "tipo": "grupo",
+   "etiqueta": "Nubes",
+   "sinonimos": [],
+   "nota": "Cómo se forman y cómo se clasifican las nubes.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes"
+  },
+  {
+   "id": "meteo.nubes.formacion",
+   "tipo": "concepto",
+   "etiqueta": "Por qué se forma una nube",
+   "sinonimos": [
+    "ascenso del aire",
+    "enfriamiento adiabático",
+    "nivel de condensación",
+    "saturación"
+   ],
+   "nota": "Una nube se forma cuando el aire húmedo sube, se expande, se enfría y condensa.",
+   "padre": "meteo.nubes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nubes.convectivas",
+   "tipo": "concepto",
+   "etiqueta": "Nubes convectivas",
+   "sinonimos": [
+    "convección",
+    "inestabilidad térmica",
+    "corriente ascendente",
+    "cúmulos"
+   ],
+   "nota": "Nubes formadas por corrientes ascendentes de aire caliente y húmedo (inestabilidad térmica), como los cúmulos.",
+   "padre": "meteo.nubes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nubes.orograficas",
+   "tipo": "concepto",
+   "etiqueta": "Nubes orográficas",
+   "sinonimos": [
+    "ladera de una montaña",
+    "ascenso orográfico",
+    "barlovento de la montaña"
+   ],
+   "nota": "Nubes formadas cuando el viento obliga al aire a subir por la ladera de una montaña.",
+   "padre": "meteo.nubes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nubes.frontales",
+   "tipo": "concepto",
+   "etiqueta": "Nubes frontales",
+   "sinonimos": [
+    "encuentro de dos masas de aire",
+    "masa cálida asciende sobre la fría"
+   ],
+   "nota": "Nubes formadas al subir el aire cálido sobre el frío en un frente.",
+   "padre": "meteo.nubes",
+   "relacionados": [
+    "meteo.frentes.definicion"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nubes.altura",
+   "tipo": "concepto",
+   "etiqueta": "Clasificación de las nubes por su altura",
+   "sinonimos": [
+    "nubes altas",
+    "nubes medias",
+    "nubes bajas",
+    "desarrollo vertical",
+    "pisos",
+    "2000 a 7000 m"
+   ],
+   "nota": "Los cuatro grupos (altas, medias, bajas y de desarrollo vertical), sus alturas y a cuál pertenece cada género.",
+   "padre": "meteo.nubes",
+   "relacionados": [
+    "meteo.nubes.generos"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su altura"
+  },
+  {
+   "id": "meteo.nubes.forma",
+   "tipo": "concepto",
+   "etiqueta": "Clasificación de las nubes por su forma",
+   "sinonimos": [
+    "estratiformes",
+    "cumuliformes",
+    "Organización Meteorológica Mundial"
+   ],
+   "nota": "Clasificación de la OMM por la forma: estratiformes y cumuliformes.",
+   "padre": "meteo.nubes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su forma"
+  },
+  {
+   "id": "meteo.nubes.generos",
+   "tipo": "concepto",
+   "etiqueta": "Los géneros de nubes uno a uno",
+   "sinonimos": [
+    "cirros",
+    "cirrocúmulos",
+    "cirrostratos",
+    "altocúmulos",
+    "altostratos",
+    "nimbostratos",
+    "estratocúmulos",
+    "estratos",
+    "cúmulos",
+    "cumulonimbos",
+    "lenticulares",
+    "nimbos",
+    "yunque"
+   ],
+   "nota": "Aspecto y tiempo asociado de cada género (y de las lenticulares), reconocerlos por su descripción o imagen. A qué piso pertenecen va en meteo.nubes.altura.",
+   "padre": "meteo.nubes",
+   "relacionados": [
+    "meteo.nubes.altura"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.5 Nubes: clasificación según su forma y su altura"
+  },
+  {
+   "id": "meteo.nieblas",
+   "tipo": "grupo",
+   "etiqueta": "Nieblas",
+   "sinonimos": [],
+   "nota": "Tipos de niebla según su formación, previsión a bordo y disipación.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Nieblas"
+  },
+  {
+   "id": "meteo.nieblas.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Qué es la niebla (y no es neblina ni calima)",
+   "sinonimos": [
+    "visibilidad menor de 1 km",
+    "aviso de niebla",
+    "calima",
+    "neblina",
+    "bruma",
+    "condición necesaria para la niebla"
+   ],
+   "nota": "Niebla como nube a ras de superficie con visibilidad inferior a 1 km; diferencia con neblina y calima; condición de humedad cercana al 100 %.",
+   "padre": "meteo.nieblas",
+   "relacionados": [
+    "meteo.humedad.relativa"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.nieblas.clasificacion",
+   "tipo": "concepto",
+   "etiqueta": "Clasificación de las nieblas: enfriamiento, evaporación y mezcla",
+   "sinonimos": [
+    "nieblas de enfriamiento",
+    "nieblas de evaporación",
+    "nieblas de mezcla",
+    "radiación, advección y orográfica",
+    "vapor y frontal"
+   ],
+   "nota": "A qué grupo pertenece cada tipo: enfriamiento (radiación, advección, orográfica), evaporación (vapor, frontal) y mezcla.",
+   "padre": "meteo.nieblas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Nieblas: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nieblas.radiacion",
+   "tipo": "concepto",
+   "etiqueta": "Niebla de radiación",
+   "sinonimos": [
+    "enfriamiento del terreno",
+    "noches despejadas",
+    "madrugada",
+    "sobre tierra"
+   ],
+   "nota": "Se forma sobre tierra en noches claras y en calma al enfriarse el suelo y el aire en contacto hasta el punto de rocío.",
+   "padre": "meteo.nieblas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Nieblas: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nieblas.adveccion",
+   "tipo": "concepto",
+   "etiqueta": "Niebla de advección (niebla de mar)",
+   "sinonimos": [
+    "aire cálido y húmedo sobre superficie fría",
+    "niebla de mar",
+    "la más frecuente en la mar",
+    "se aclara sobre aguas más templadas"
+   ],
+   "nota": "Aire cálido y húmedo que se desplaza sobre agua (o tierra) más fría que su punto de rocío; la más frecuente y persistente en la mar.",
+   "padre": "meteo.nieblas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Nieblas: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nieblas.vapor",
+   "tipo": "concepto",
+   "etiqueta": "Niebla de vapor",
+   "sinonimos": [
+    "aire frío sobre agua templada",
+    "humo de mar",
+    "lagos y ríos",
+    "evaporación"
+   ],
+   "nota": "Niebla de evaporación: aire frío que pasa sobre agua mucho más templada.",
+   "padre": "meteo.nieblas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Nieblas: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nieblas.frontal",
+   "tipo": "concepto",
+   "etiqueta": "Niebla frontal",
+   "sinonimos": [
+    "delante del frente cálido",
+    "lluvia que se evapora",
+    "precipitación"
+   ],
+   "nota": "Niebla de evaporación delante de un frente cálido, al evaporarse la lluvia cálida en el aire frío de debajo.",
+   "padre": "meteo.nieblas",
+   "relacionados": [
+    "meteo.frentes.calido"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Nieblas: clasificación según su proceso de formación"
+  },
+  {
+   "id": "meteo.nieblas.prevision",
+   "tipo": "concepto",
+   "etiqueta": "Previsión de la niebla a bordo",
+   "sinonimos": [
+    "temperatura del agua y punto de rocío",
+    "Td próximo a Tm",
+    "psicrómetro"
+   ],
+   "nota": "Hay riesgo de niebla cuando la temperatura del mar se acerca o baja del punto de rocío (obtenido con el psicrómetro).",
+   "padre": "meteo.nieblas",
+   "relacionados": [
+    "meteo.humedad.psicrometro",
+    "meteo.humedad.punto-rocio"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Previsión a bordo mediante un psicrómetro"
+  },
+  {
+   "id": "meteo.nieblas.disipacion",
+   "tipo": "concepto",
+   "etiqueta": "Disipación de la niebla",
+   "sinonimos": [
+    "dispersión",
+    "aumento del viento",
+    "calentamiento",
+    "fuerza 4",
+    "sustracción de vapor"
+   ],
+   "nota": "Qué hace desaparecer la niebla: calentamiento, viento que arrecia, aire más seco.",
+   "padre": "meteo.nieblas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.6 Dispersión de la niebla"
+  },
+  {
+   "id": "meteo.olas",
+   "tipo": "grupo",
+   "etiqueta": "Olas",
+   "sinonimos": [],
+   "nota": "Formación, partes y tipos de oleaje.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.7 Olas"
+  },
+  {
+   "id": "meteo.olas.formacion",
+   "tipo": "concepto",
+   "etiqueta": "Formación de las olas",
+   "sinonimos": [
+    "el viento",
+    "transferencia de energía del viento",
+    "movimiento periódico",
+    "avanza la forma, no el agua"
+   ],
+   "nota": "Las olas son energía del viento transmitida al mar; avanza la forma, no el agua.",
+   "padre": "meteo.olas",
+   "relacionados": [
+    "meteo.mar.factores"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.7 Formación de las olas"
+  },
+  {
+   "id": "meteo.olas.partes",
+   "tipo": "concepto",
+   "etiqueta": "Partes y parámetros de una ola",
+   "sinonimos": [
+    "cresta",
+    "seno",
+    "valle",
+    "amplitud",
+    "frecuencia",
+    "parámetros de la ola",
+    "velocidad de la ola"
+   ],
+   "nota": "Cresta, seno y qué magnitudes describen una ola (altura, longitud, periodo, velocidad); la amplitud como mitad de la altura.",
+   "padre": "meteo.olas",
+   "relacionados": [
+    "meteo.olas.altura",
+    "meteo.olas.longitud",
+    "meteo.olas.periodo"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.7 Olas: definiciones de longitud, periodo y altura de la ola (sin relacionarlos)"
+  },
+  {
+   "id": "meteo.olas.altura",
+   "tipo": "concepto",
+   "etiqueta": "Altura de la ola",
+   "sinonimos": [
+    "distancia vertical entre cresta y seno",
+    "amplitud"
+   ],
+   "nota": "Distancia vertical entre una cresta y el seno contiguo (el doble de la amplitud).",
+   "padre": "meteo.olas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.7 Olas: definiciones de longitud, periodo y altura de la ola (sin relacionarlos)"
+  },
+  {
+   "id": "meteo.olas.longitud",
+   "tipo": "concepto",
+   "etiqueta": "Longitud de onda",
+   "sinonimos": [
+    "distancia entre dos crestas",
+    "distancia entre dos senos",
+    "longitud de la ola"
+   ],
+   "nota": "Distancia horizontal entre dos crestas (o dos senos) consecutivos.",
+   "padre": "meteo.olas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.7 Olas: definiciones de longitud, periodo y altura de la ola (sin relacionarlos)"
+  },
+  {
+   "id": "meteo.olas.periodo",
+   "tipo": "concepto",
+   "etiqueta": "Periodo de la ola",
+   "sinonimos": [
+    "tiempo entre dos crestas",
+    "segundos",
+    "por un mismo punto"
+   ],
+   "nota": "Tiempo (segundos) que tardan en pasar por un mismo punto dos crestas o dos senos consecutivos.",
+   "padre": "meteo.olas",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.7 Olas: definiciones de longitud, periodo y altura de la ola (sin relacionarlos)"
+  },
+  {
+   "id": "meteo.olas.altura-significativa",
+   "tipo": "concepto",
+   "etiqueta": "Altura significativa de la ola",
+   "sinonimos": [
+    "Hs",
+    "altura significante",
+    "tercio de olas más altas"
+   ],
+   "nota": "Media del tercio de olas más altas registradas: la altura que dan los partes.",
+   "padre": "meteo.olas",
+   "relacionados": [
+    "meteo.mar.douglas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-9-6",
+    "py-2-8"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.olas.mar-de-viento",
+   "tipo": "concepto",
+   "etiqueta": "Mar de viento",
+   "sinonimos": [
+    "olas levantadas por el viento reinante",
+    "crestas agudas",
+    "longitud corta",
+    "altura irregular",
+    "dirección del viento"
+   ],
+   "nota": "Olas generadas por el viento que sopla en la zona: crestas agudas, poca longitud, alturas irregulares y dirección la del viento.",
+   "padre": "meteo.olas",
+   "relacionados": [
+    "meteo.olas.mar-de-fondo"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "per-9-6",
+    "py-2-8"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.olas.mar-de-fondo",
+   "tipo": "concepto",
+   "etiqueta": "Mar de fondo (mar de leva)",
+   "sinonimos": [
+    "mar de leva",
+    "oleaje generado lejos",
+    "crestas redondeadas",
+    "longitud muy superior a la altura",
+    "periodo largo",
+    "sin viento local"
+   ],
+   "nota": "Oleaje que llega de una zona lejana sin viento local: crestas redondeadas, gran longitud y periodo largo, dirección que no tiene por qué coincidir con el viento.",
+   "padre": "meteo.olas",
+   "relacionados": [
+    "meteo.olas.mar-de-viento"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "per-9-6",
+    "py-2-8"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "meteo.corrientes",
+   "tipo": "grupo",
+   "etiqueta": "Corrientes marinas",
+   "sinonimos": [],
+   "nota": "Tipos de corriente según su causa y corrientes generales de nuestras costas.",
+   "padre": "meteo",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes marinas"
+  },
+  {
+   "id": "meteo.corrientes.clasificacion",
+   "tipo": "concepto",
+   "etiqueta": "Clasificación de las corrientes por su causa",
+   "sinonimos": [
+    "densidad, arrastre, gradiente y marea",
+    "según su origen"
+   ],
+   "nota": "Los cuatro tipos por su causa: de densidad (termohalinas), de arrastre, de gradiente y de marea.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes marinas: clasificación según las causas que las originan"
+  },
+  {
+   "id": "meteo.corrientes.densidad",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de densidad (termohalinas)",
+   "sinonimos": [
+    "termohalinas",
+    "temperatura y salinidad",
+    "aguas profundas"
+   ],
+   "nota": "Las causan diferencias de densidad por temperatura y salinidad entre masas de agua.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes marinas: clasificación según las causas que las originan"
+  },
+  {
+   "id": "meteo.corrientes.arrastre",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de arrastre",
+   "sinonimos": [
+    "acción directa del viento",
+    "rozamiento del viento",
+    "persistencia",
+    "corrientes de superficie"
+   ],
+   "nota": "Las genera el viento persistente al rozar la superficie; son la mayoría de las superficiales en océano abierto.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes marinas: clasificación según las causas que las originan"
+  },
+  {
+   "id": "meteo.corrientes.gradiente",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de gradiente",
+   "sinonimos": [
+    "diferencia de presión",
+    "inclinación del nivel del agua"
+   ],
+   "nota": "Las causa una diferencia de presión horizontal en el agua, por ejemplo por inclinación del nivel entre masas de distinta densidad o por la presión atmosférica.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes marinas: clasificación según las causas que las originan"
+  },
+  {
+   "id": "meteo.corrientes.marea",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de marea",
+   "sinonimos": [
+    "atracción de la Luna y el Sol",
+    "movimiento horizontal del agua",
+    "flujo y reflujo"
+   ],
+   "nota": "Movimiento horizontal del agua asociado a la subida y bajada de la marea. El cálculo de mareas es de otro grupo.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes marinas: clasificación según las causas que las originan"
+  },
+  {
+   "id": "meteo.corrientes.atlantico",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes del Cantábrico, Galicia, Portugal y Canarias",
+   "sinonimos": [
+    "golfo de Vizcaya",
+    "corriente de Portugal",
+    "rumbo sur",
+    "corriente de Canarias",
+    "rumbo SW",
+    "corriente del Golfo"
+   ],
+   "nota": "Golfo de Vizcaya (irregular, hacia el W en el Cantábrico), Galicia y Portugal (hacia el S), Canarias (hacia el SW) y su relación con la corriente del Golfo.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.estrecho",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes del Estrecho de Gibraltar",
+   "sinonimos": [
+    "dos capas",
+    "corriente superficial hacia el E",
+    "corriente profunda hacia el W",
+    "hasta 6 nudos",
+    "rama de la corriente de Portugal"
+   ],
+   "nota": "En el Estrecho el agua atlántica entra en superficie hacia el E (varios nudos) y la mediterránea sale en profundidad hacia el W.",
+   "padre": "meteo.corrientes",
+   "relacionados": [
+    "meteo.corrientes.mediterraneo"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.mediterraneo",
+   "tipo": "concepto",
+   "etiqueta": "Corriente general del Mediterráneo",
+   "sinonimos": [
+    "costa africana",
+    "Málaga a cabo de Gata hacia el E",
+    "cabo de Palos",
+    "corriente del Norte",
+    "canal de Malta",
+    "sentido antihorario",
+    "Tirreno",
+    "Adriático"
+   ],
+   "nota": "El agua atlántica corre hacia el E por la costa africana y vuelve en sentido antihorario por el norte (corriente del Norte hacia el SSW); detalles por zonas.",
+   "padre": "meteo.corrientes",
+   "relacionados": [
+    "meteo.corrientes.estrecho"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  }
+ ]
+}

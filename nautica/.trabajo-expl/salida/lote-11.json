@@ -1,0 +1,464 @@
+{
+ "bal-py-2017-03-cb-34": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 5,00 + h. En Mazagón a las 11:00 TU del 23 de abril de 2017, para llegar a la oficial (7,89 m) el anuario tiene que dar h = 2,89 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Sin dato de presión no hay corrección: no la inventes.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2017-07-b-35": {
+  "explicacion": "Con presión normal no hay corrección, así que la altura de marea necesaria es 10 − 7,5 = 2,5 m, y se busca en la tarde del 17 de enero de 2017 en Fisterra. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (16:41 h) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "Calcula primero la altura necesaria (2,5 m), no la sonda: el anuario da alturas sobre el cero, no sondas.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": "bal-py-2017-07-b-35"
+ },
+ "bal-py-2017-12-b-32": {
+  "explicacion": "Sin dato de presión no se corrige: la altura de marea necesaria es 11 − 8,7 = 2,3 m, en la marea de alrededor de las 11 UTC del 23 de junio de 2017 en Navia. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (11:43 TU) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "Elige el tramo de marea que pasa por las 11 UTC: la misma altura se alcanza también en la vaciante.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2018-04-a-31": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 3,00 + h. En Cádiz a las 12:00 TU del 9 de abril de 2018, para llegar a la oficial (5,15 m) el anuario tiene que dar h = 2,15 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Sin dato de presión no hay corrección: no la inventes.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-04-a-31"
+ },
+ "bal-py-2018-04-a-35": {
+  "explicacion": "Sin dato de presión no se corrige: la altura de marea necesaria es 10 − 7,80 = 2,20 m, y se busca en la creciente de la mañana del 23 de mayo de 2018 en Santander. A partir de esa hora la sonda será igual o mayor de 10 m, hasta que la vaciante la vuelva a bajar. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (07:01 h) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "«A partir de» pide el momento en que la creciente alcanza la altura, no la hora de la pleamar.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": "bal-py-2018-04-a-35"
+ },
+ "bal-py-2018-04-b-38": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 3,50 + h. En Llanes a las 11:45 UT del 12 de abril de 2018, para llegar a la oficial (6,42 m) el anuario tiene que dar h = 2,92 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Sin dato de presión no hay corrección: no la inventes.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-04-b-38"
+ },
+ "bal-py-2018-06-a-33": {
+  "explicacion": "Primero pasa la hora oficial a UT: 19:50 − 2 h = 17:50 UT. Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1038) cm = −0,25 m (presión alta, el agua baja). Sm = Sc + h + corrección = 6,50 − 0,25 + h. En Conil a las 17:50 UT del 28 de junio de 2018, para llegar a la oficial (7,64 m) el anuario tiene que dar h = 1,39 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La hora del enunciado es oficial: réstale el adelanto para pasarla a UT antes de entrar en el anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-06-a-33"
+ },
+ "bal-py-2018-06-b-38": {
+  "explicacion": "Primero pasa la hora oficial a UT: 11:15 − 2 h = 09:15 UT. Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 985) cm = +0,28 m (presión baja, el agua sube). Sm = Sc + h + corrección = 2,40 + 0,28 + h. En Cádiz a las 09:15 UT del 16 de agosto de 2018, para llegar a la oficial (4,40 m) el anuario tiene que dar h = 1,72 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La hora del enunciado es oficial: réstale el adelanto para pasarla a UT antes de entrar en el anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2018-12-a-36": {
+  "explicacion": "Primero pasa la hora oficial a UT: 05:36 − 2 h = 03:36 UT. Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1018) cm = −0,05 m (presión alta, el agua baja). Sm = Sc + h + corrección = 6,20 − 0,05 + h. En Algeciras a las 03:36 UT del 6 de junio de 2018, para llegar a la oficial (6,70 m) el anuario tiene que dar h = 0,55 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La hora del enunciado es oficial: réstale el adelanto para pasarla a UT antes de entrar en el anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2018-12-b-39": {
+  "explicacion": "Sin dato de presión no se corrige: la altura de marea necesaria es 10 − 7,80 = 2,20 m, y se busca en la creciente de la mañana del 23 de mayo de 2018 en Santander. A partir de esa hora la sonda será igual o mayor de 10 m, hasta que la vaciante la vuelva a bajar. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (07:01 h) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "«A partir de» pide el momento en que la creciente alcanza la altura, no la hora de la pleamar.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": "bal-py-2018-04-a-35"
+ },
+ "bal-py-2018-12-b-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 993) cm = +0,20 m (presión baja, el agua sube). Sm = Sc + h + corrección = 5,00 + 0,20 + h. En Barbate a las 10:00 GMT del 17 de diciembre de 2018, para llegar a la oficial (6,98 m) el anuario tiene que dar h = 1,78 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-12-b-40"
+ },
+ "bal-py-2019-04-a-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 2,50 + h. En Cádiz a las 10:00 UTC del 27 de junio de 2019, para llegar a la oficial (5,26 m) el anuario tiene que dar h = 2,76 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Sin dato de presión no hay corrección: no la inventes.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2019-06-a-39": {
+  "explicacion": "Corrección por presión: (1013 − 989) cm = +0,24 m. La altura de marea necesaria es 13 − 12 − 0,24 = 0,76 m, en el tramo de marea posterior a las 13:30 UT del 7 de agosto de 2019 en Barbate. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (13:39 UT) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "Resta la corrección de presión al despejar la altura: con presión baja hace falta menos marea.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2019-06-a-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1009) cm = +0,04 m (presión baja, el agua sube). Sm = Sc + h + corrección = 4,00 + 0,04 + h. En Llanes a las 13:15 UTC del 2 de julio de 2019, para llegar a la oficial (7,53 m) el anuario tiene que dar h = 3,49 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2019-06-a-40"
+ },
+ "bal-py-2020-07-a-33": {
+  "explicacion": "Para tener 2 m bajo la quilla con 1 m de calado hace falta una sonda de 3 m; sin dato de presión, la altura de marea necesaria es 3 − 0,6 = 2,4 m, en la creciente posterior a las 10:00 del 9 de mayo de 2020 en Santander. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (13:43 h) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "No olvides sumar el calado: lo que se pide es agua bajo la quilla, no sonda.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2020-07-a-40": {
+  "explicacion": "Para flotar con 0,20 m bajo la quilla con 3 m de calado hace falta una sonda de 3,20 m; sin dato de presión, la altura de marea necesaria es 3,20 − 1 = 2,20 m. Tras varar en la primera vaciante, esa altura se vuelve a alcanzar en la creciente siguiente del 8 de abril de 2020 en Baiona. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (12:32 TU) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "Tras varar en la vaciante, la siguiente vez que tendrás esa agua es en la creciente, no antes.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2020-12-a-36": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1028) cm = −0,15 m (presión alta, el agua baja). Sm = Sc + h + corrección = 2,50 − 0,15 + h. En Cádiz a las 10:00 UTC del 27 de octubre de 2020, para llegar a la oficial (5,00 m) el anuario tiene que dar h = 2,65 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2020-12-a-36"
+ },
+ "bal-py-2020-12-b-40": {
+  "explicacion": "Al quedar varada a las 03:54 TU la sonda en ese instante es igual al calado: 4,80 m. Del anuario se obtiene la altura de marea a las 03:54 (tabla o seno cuadrado) y Sc = 4,80 − h(03:54); con la oficial (Sc = 3,85 m) esa altura es 0,95 m. Para salir con 0,50 m de resguardo hace falta una sonda de 5,30 m, es decir, una altura de 5,30 − 3,85 = 1,45 m, que se busca en la creciente siguiente del 1 de julio de 2020 en Ayamonte: la oficial da las 07:35 TU. Las alturas y horas del anuario no vienen en la pregunta. Sin dato de presión no se corrige.",
+  "clave": "Varado: sonda = calado, así que Sc = calado − h(instante).",
+  "trampa": "Las cuatro Sc casi coinciden: lo que decide es la hora, que sale de la altura de 1,45 m en la creciente.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2021-03-ac-31": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 993) cm = +0,20 m (presión baja, el agua sube). Sm = Sc + h + corrección = 5,00 + 0,20 + h. En Barbate a las 10:00 GMT del 17 de diciembre de 2021, para llegar a la oficial (6,64 m) el anuario tiene que dar h = 1,44 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-12-b-40"
+ },
+ "bal-py-2021-03-b-35": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Con 1013 hPa no hay corrección por presión. Sm = Sc + h = 3,50 + h. En Llanes a las 11:45 UT del 12 de marzo de 2021, para llegar a la oficial (5,44 m) el anuario tiene que dar h = 1,94 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con 1013 hPa no hay corrección: la sonda es solo la de carta más la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-04-b-38"
+ },
+ "bal-py-2021-06-b-40": {
+  "explicacion": "Corrección por presión: (1013 − 998) cm = +0,15 m. La altura de marea necesaria es 8,50 − 7 − 0,15 = 1,35 m, en el tramo de marea de alrededor de las 10:00 UTC del 5 de enero de 2021 en Camariñas. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (11:34 TU) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "Con presión baja hace falta menos marea: resta la corrección al despejar la altura.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2021-12-b-40": {
+  "explicacion": "Corrección por presión: (1013 − 1028) cm = −0,15 m. Primero, la sonda a las 19:30 TU: del anuario se toman la pleamar y la bajamar que encierran esa hora y se calcula la altura con la tabla o el seno cuadrado; Sm = 6,55 − 0,15 + h, y para la oficial (7,0 m) h = 0,60 m. Después, para tener 8 m hace falta una altura de 8 − 6,55 + 0,15 = 1,60 m, que se busca en la creciente posterior a las 19:30 del 24 de junio de 2021 en Cádiz; la oficial da las 22:59 TU. Las alturas y horas del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección.",
+  "trampa": "Con presión alta necesitas más marea: al despejar, la corrección negativa se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2022-03-a-37": {
+  "explicacion": "Con presión normal no hay corrección, así que la altura de marea necesaria es 10 − 7,5 = 2,5 m, y se busca en la segunda vaciante del 17 de enero de 2022 en Fisterra, contando desde su pleamar. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (16:35 UT) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "En la vaciante el agua baja: la hora buscada va después de la pleamar, no de la bajamar.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": "bal-py-2017-07-b-35"
+ },
+ "bal-py-2022-03-a-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Con 1013 hPa no hay corrección por presión. Sm = Sc + h = 3,50 + h. En Llanes a las 11:45 UT del 12 de marzo de 2022, para llegar a la oficial (6,37 m) el anuario tiene que dar h = 2,87 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con 1013 hPa no hay corrección: la sonda es solo la de carta más la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-04-b-38"
+ },
+ "bal-py-2022-03-b-40": {
+  "explicacion": "Primero pasa la hora oficial a UT: 19:50 − 2 h = 17:50 UT. Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1038) cm = −0,25 m (presión alta, el agua baja). Sm = Sc + h + corrección = 6,50 − 0,25 + h. En Conil a las 17:50 UT del 28 de junio de 2022, para llegar a la oficial (7,51 m) el anuario tiene que dar h = 1,26 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La hora del enunciado es oficial: réstale el adelanto para pasarla a UT antes de entrar en el anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-06-a-33"
+ },
+ "bal-py-2022-06-a-37": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 993) cm = +0,20 m (presión baja, el agua sube). Sm = Sc + h + corrección = 5,00 + 0,20 + h. En Barbate a las 10:00 UTC del 17 de diciembre de 2022, para llegar a la oficial (6,95 m) el anuario tiene que dar h = 1,75 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-12-b-40"
+ },
+ "bal-py-2022-06-n-37": {
+  "explicacion": "La sonda medida a las 07:27 TU permite despejar la sonda de carta: Sc = 3,5 − h(07:27). A las 13:00 la sonda será Sc + h(13:00), y el agua bajo la quilla esa sonda menos 2 m de calado. Todo se reduce a la diferencia de alturas: agua bajo la quilla = 1,5 + h(13:00) − h(07:27). Las dos alturas salen del anuario de Algeciras del 11 de enero de 2022 (tabla o seno cuadrado) y no vienen en la pregunta; para la oficial (1,22 m), a las 13:00 la marea tiene que estar 0,28 m más baja que a las 07:27. No se da presión, así que no se corrige.",
+  "clave": "Sc = Sm medida − h(ese instante); luego Sm nueva = Sc + h(nuevo instante).",
+  "trampa": "No restes el calado a los 3,5 m y ya: entre las dos horas la marea ha cambiado.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2022-12-b-34": {
+  "explicacion": "El agua bajo la quilla es la sonda momento menos el calado: Sc + h − 7,50 = h − 0,50. Del anuario de Pasajes del 18 de marzo de 2022 se toman la pleamar y la bajamar que encierran las 09:00 TU y se calcula la altura con la tabla o el seno cuadrado; para la oficial (15 cm), la altura a esa hora tiene que ser 0,65 m. Ese valor no viene en la pregunta. No se da presión, así que no se corrige.",
+  "clave": "Agua bajo la quilla = Sc + h − calado.",
+  "trampa": "Con más calado que sonda de carta, sin marea estarías varado: los 0 cm de la a) olvidan la altura de marea.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2022-12-b-36": {
+  "explicacion": "Primero pasa la hora oficial a UT: 17:30 − 1 h = 16:30 UT. Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 2,10 + h. En Cádiz a las 16:30 UT del 17 de marzo de 2022, para llegar a la oficial (4,38 m) el anuario tiene que dar h = 2,28 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La hora del enunciado es oficial: réstale el adelanto para pasarla a UT antes de entrar en el anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2022-12-b-36"
+ },
+ "bal-py-2023-06-ac-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1009) cm = +0,04 m (presión baja, el agua sube). Sm = Sc + h + corrección = 4,00 + 0,04 + h. En Llanes a las 13:15 UTC del 2 de julio de 2023, para llegar a la oficial (7,66 m) el anuario tiene que dar h = 3,62 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2019-06-a-40"
+ },
+ "bal-py-2023-12-a-40": {
+  "explicacion": "Corrección por presión: (1013 − 1033) cm = −0,20 m. La altura de marea necesaria es 8 − 6,20 + 0,20 = 2,00 m, en la creciente de la mañana del 15 de abril de 2023 en Vigo. Busca en el anuario la creciente o la vaciante que pide el enunciado y despeja t, el tiempo contado desde la bajamar, con la tabla o con el seno cuadrado: sen²(90° · t / D) = (h − h bajamar) / A. En la creciente, la hora es la de la bajamar más t; en la vaciante, la de la bajamar siguiente menos t. Las horas y alturas de la pleamar y la bajamar salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta, así que la hora oficial (08:08 TU) solo se comprueba con él.",
+  "clave": "Altura necesaria = sonda pedida − Sc − corrección; luego, tabla o seno cuadrado.",
+  "trampa": "Con presión alta necesitas más marea: la corrección negativa se suma al despejar la altura.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2023-12-b-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 971) cm = +0,42 m (presión baja, el agua sube). Sm = Sc + h + corrección = 4,10 + 0,42 + h. En la base Johnson (isla Livingston) a las 16:00 UT del 19 de junio de 2023, para llegar a la oficial (6,03 m) el anuario tiene que dar h = 1,51 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2024-04-bc-35": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 5,00 + h. En Celeiro a las 08:00 TU del 6 de enero de 2024, para llegar a la oficial (7,39 m) el anuario tiene que dar h = 2,39 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Sin dato de presión no hay corrección: no la inventes.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2024-07-a-37": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 993) cm = +0,20 m (presión baja, el agua sube). Sm = Sc + h + corrección = 5,00 + 0,20 + h. En Barbate a las 10:00 UTC del 17 de diciembre de 2024, para llegar a la oficial (5,75 m) el anuario tiene que dar h = 0,55 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La a) da menos que la sonda de carta pese a que la presión baja sube el agua.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-12-b-40"
+ },
+ "bal-py-2024-12-a-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1028) cm = −0,15 m (presión alta, el agua baja). Sm = Sc + h + corrección = 2,50 − 0,15 + h. En Cádiz a las 10:00 UTC del 27 de octubre de 2024, para llegar a la oficial (5,07 m) el anuario tiene que dar h = 2,72 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2020-12-a-36"
+ },
+ "bal-py-2025-04-bc-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + h = 2,10 + h. En Cádiz a las 16:30 TU del 18 de abril de 2025, para llegar a la oficial (4,82 m) el anuario tiene que dar h = 2,72 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Tabla y seno cuadrado dan valores algo distintos; aquí la oficial sale del método exacto.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2022-12-b-36"
+ },
+ "bal-py-2025-07-b-37": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 968) cm = +0,45 m (presión baja, el agua sube). Sm = Sc + h + corrección = 3,00 + 0,45 + h. En Cádiz a las 15:30 TU del 9 de abril de 2025, para llegar a la oficial (5,38 m) el anuario tiene que dar h = 1,93 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2018-04-a-31"
+ },
+ "bal-py-2025-07-a-40": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 998) cm = +0,15 m (presión baja, el agua sube). Sm = Sc + h + corrección = 7,00 + 0,15 + h. En Camariñas a las 21:16 TU del 3 de enero de 2025, para llegar a la oficial (8,54 m) el anuario tiene que dar h = 1,39 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2025-12-b-35": {
+  "explicacion": "La presión viene en milímetros de mercurio: 734 mmHg × 1,333 ≈ 978,6 hPa. Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 978,6) cm ≈ +0,34 m (presión baja, el agua sube). Sm = Sc + h + corrección = 4,70 + 0,34 + h. En Chipiona a las 15:30 TU del 8 de agosto de 2025, para llegar a la oficial (7,79 m) el anuario tiene que dar h = 2,75 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "La presión viene en mmHg: pásala a hPa antes de comparar con 1013, no restes 734 de 1013.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2026-03-b-38": {
+  "explicacion": "Del anuario toma la pleamar y la bajamar que encierran esa hora, calcula la duración (D) y la amplitud (A) y halla la altura en ese instante con la tabla del anuario o con el seno cuadrado: h = h bajamar + A · sen²(90° · t / D), con t el tiempo desde la bajamar. Corrección por presión: (1013 − 1028) cm = −0,15 m (presión alta, el agua baja). Sm = Sc + h + corrección = 2,50 − 0,15 + h. En Cádiz a las 10:00 UTC del 27 de octubre de 2026, para llegar a la oficial (3,15 m) el anuario tiene que dar h = 0,80 m en ese instante. Ese valor sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + h(instante) + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-py-2020-12-a-36"
+ }
+}

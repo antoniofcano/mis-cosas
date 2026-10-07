@@ -313,8 +313,9 @@ test('normativa de Andalucía (solo informe): data/normativa.json coincide con n
 
   const r = ejecutarNormativa();
   for (const id of COMPROBAR.map((c) => c.id)) assert.ok(id in r.marcas.porNorma, id);
-  assert.ok(r.marcas.porNorma['RD 339/2021'].every((x) => x.fecha < '2021-07-01'));
-  assert.ok(r.marcas.porNorma['RD 191/2026'].every((x) => x.fecha < '2026-04-02'));
+  // Las de 2015 no tienen fecha (cuadernillos sin ella): se marcan con toda norma cuyo detector encaja.
+  assert.ok(r.marcas.porNorma['RD 339/2021'].every((x) => (x.fecha ?? '') < '2021-07-01'));
+  assert.ok(r.marcas.porNorma['RD 191/2026'].every((x) => (x.fecha ?? '') < '2026-04-02'));
   const md = informeNormativa(r);
   for (const c of COMPROBAR) assert.match(md, new RegExp(`## ${c.id.replace(/[()/]/g, '\\$&')}`));
   // F1: cada marca tiene su resolución (con motivo y fuente) en ajustes.json, y el banco vivo la lleva.

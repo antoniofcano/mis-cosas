@@ -265,7 +265,8 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
 - **Ajustes por id** (`tools/bancos/ejes/<eje>/ajustes.json`): `{ <tit>: { <id>: { norma: { estado, nota } } } }`.
   Es el sitio de la revisión normativa hecha a mano (`vigente` | `actualizada` | `retirada`); la etapa `normativa`
   la aplica y el informe la resume. Las `retirada` salen del estudio y del examen final, pero siguen en los exámenes
-  de convocatorias (se corrigen como anuladas y la revisión lo dice). Andalucía (banco migrado, sin etapas): su
+  de convocatorias (se corrigen como anuladas y la revisión lo dice). Andalucía (banco migrado; desde la fase F5 sus
+  convocatorias de 2015–2019 entran por la etapa escribir, que solo añade): su
   revisión de F1 está en `tools/bancos/ejes/andalucia/ajustes.json`, cada pregunta con `revision.motivos`
   (`{ norma, motivo, fuente }`), y la escribe y aplica `tools/bancos/ejes/andalucia/revision-normativa.mjs --escribir`
   (pone `norma` en el banco y, en las `actualizada`, la nota en la explicación tras su primera frase).
@@ -287,6 +288,18 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
 - **Elegir eje**: `ejesParaElegir()` = los publicados; con más de uno, la bienvenida pregunta «¿Dónde te
   examinas?» y Ajustes ofrece cambiarlo (`src/ui/eje.js`). Cambiar de eje conserva el progreso; la fecha de
   examen es por titulación.
+
+## Andalucía 2015–2019 (F5)
+
+Las 16 convocatorias de 2015–2019 entran en el banco vivo por el proceso de extracción (`config.publicadas =
+"conservar"`, docs/EXTRACCION.md): ids `and-AAAA-cN-tNN|qNN` y `and-py-AAAA-cN-gNN|nNN` (`and-py-2018-c1b-…` para el modelo
+B del PY de la 1ª de 2018, otro examen). Las 1530 publicadas no cambian (`tools/bancos/andalucia-huella.json`); las
+nuevas tienen su huella en `tools/bancos/andalucia-huella-2015-2019.json` (`ejes/andalucia/huella.mjs`). Una pregunta
+idéntica a otra ya publicada no se duplica: es la misma pregunta con otra aparición en `apareceEn`, y el examen de su
+convocatoria la incluye en su número (`ordenEn`). Las explicaciones salen de los lotes de
+`tools/bancos/ejes/andalucia/explicaciones/` (`ejes/andalucia/explicaciones.mjs fusionar`; `concepto` = la pregunta del
+mismo tribunal cuya explicación se adaptó) y la revisión normativa, de `revision-normativa.mjs` (bloque F5). La práctica
+se amplía sin tocar la que ya había: `node tools/bancos/practica.mjs andalucia --ampliar --escribir`.
 
 ## Migración de Andalucía (F0)
 

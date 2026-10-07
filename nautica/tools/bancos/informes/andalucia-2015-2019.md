@@ -1,6 +1,6 @@
-# Andalucía 2015–2019 · extracción (solo caché)
+# Andalucía 2015–2019 · extracción y entrada en el banco vivo
 
-Generado por `node tools/bancos/ejes/andalucia/antiguas.mjs` el 2026-10-07, tras `npm run bancos -- andalucia --todas`. Las 16 convocatorias de 2015–2019 (research_notes/…/andalucia_anteriores.md) se extraen de sus PDF oficiales (cuestionario de texto + hoja de lectura óptica escaneada) con el adaptador `hoja-optica`, a `.cache/bancos/andalucia/salida/<tit>/preguntas.json` junto con las de 2020–2026. **No se escriben en `data/ejes/`**: entran en la app en la fase F5.
+Generado por `node tools/bancos/ejes/andalucia/antiguas.mjs` el 2026-10-07, tras `npm run bancos -- andalucia --todas`. Las 16 convocatorias de 2015–2019 (research_notes/…/andalucia_anteriores.md) se extraen de sus PDF oficiales (cuestionario de texto + hoja de lectura óptica escaneada) con el adaptador `hoja-optica`, a `.cache/bancos/andalucia/salida/<tit>/preguntas.json` junto con las de 2020–2026. Desde la fase F5 la etapa escribir las añade a `data/ejes/andalucia/<tit>/preguntas.json` sin tocar las publicadas (`config.publicadas = "conservar"`; ver «Entrada en el banco vivo»).
 
 Ids con el esquema de Andalucía: `and-AAAA-cN-tNN` (teoría PER), `and-AAAA-cN-qNN` (carta PER), `and-py-AAAA-cN-gNN|nNN` (PY). Casos especiales:
 
@@ -33,22 +33,22 @@ Ids con el esquema de Andalucía: `and-AAAA-cN-tNN` (teoría PER), `and-AAAA-cN-
 
 | Convocatoria | Fecha | Preguntas | Apariciones | Anuladas | Varias válidas | Lecturas (estado) | A=B | Norma a revisar |
 |---|---|---|---|---|---|---|---|---|
-| and-2015-c1 | — | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 10 |
-| and-2015-c2 | — | 45 | 90 | 1 | 0 | 88 ok, 2 vacia | 45/45 | 13 |
-| and-2015-c3 | — | 45 | 90 | 1 | 0 | 90 ok | 45/45 | 15 |
-| and-2016-c1 | 2016-04-09 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 9 |
-| and-2016-c2 | 2016-06-18 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 11 |
-| and-2016-c3 | 2016-11-19 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 14 |
-| and-2017-c1 | 2017-04-01 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 13 |
-| and-2017-c2 | 2017-06-17 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 12 |
-| and-2017-c3 | 2017-11-11 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 11 |
-| and-2018-c1 | 2018-03-10 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 10 |
-| and-2018-c2 | 2018-05-26 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 12 |
-| and-2018-c3 | 2018-09-29 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 12 |
-| and-2018-c4 | 2018-12-01 | 45 | 90 | 1 | 2 | 84 ok, 4 multiple, 2 vacia | 45/45 | 9 |
-| and-2019-c1 | 2019-04-06 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 10 |
-| and-2019-c2 | 2019-06-15 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 12 |
-| and-2019-c3 | 2019-11-23 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 12 |
+| and-2015-c1 | — | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 6 |
+| and-2015-c2 | — | 45 | 90 | 1 | 0 | 88 ok, 2 vacia | 45/45 | 0 |
+| and-2015-c3 | — | 45 | 90 | 1 | 0 | 90 ok | 45/45 | 0 |
+| and-2016-c1 | 2016-04-09 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2016-c2 | 2016-06-18 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 1 |
+| and-2016-c3 | 2016-11-19 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2017-c1 | 2017-04-01 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2017-c2 | 2017-06-17 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 1 |
+| and-2017-c3 | 2017-11-11 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2018-c1 | 2018-03-10 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2018-c2 | 2018-05-26 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 1 |
+| and-2018-c3 | 2018-09-29 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2018-c4 | 2018-12-01 | 45 | 90 | 1 | 2 | 84 ok, 4 multiple, 2 vacia | 45/45 | 0 |
+| and-2019-c1 | 2019-04-06 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2019-c2 | 2019-06-15 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
+| and-2019-c3 | 2019-11-23 | 45 | 90 | 0 | 0 | 90 ok | 45/45 | 0 |
 
 ### Confianza de la lectura óptica
 
@@ -96,7 +96,7 @@ Preguntas de 2015–2019 que reaparecen en otra convocatoria de 2015–2026 (mis
 
 ### Tema dudoso (clasificar)
 
-El tema sale de la posición en el cuadernillo; estas suman palabras clave de otro tema. No se cambian: se revisan en la fase F5. and-2016-c2-t31 (UT 8 → 3); and-2018-c2-t09 (UT 3 → 8); and-2018-c3-t31 (UT 8 → 7); and-2018-c4-t09 (UT 3 → 1); and-2019-c2-t09 (UT 3 → 10); and-2019-c3-t12 (UT 4 → 8); and-2019-c3-t32 (UT 8 → 10).
+El tema sale de la posición en el cuadernillo; estas suman palabras clave de otro tema. Revisadas en la fase F5: se quedan en el tema de su bloque, porque es donde el tribunal las puso y el examen real se corrige por bloques (mínimos de RIPA, balizamiento y carta). and-2016-c2-t31 (UT 8 → 3); and-2018-c2-t09 (UT 3 → 8); and-2018-c3-t31 (UT 8 → 7); and-2018-c4-t09 (UT 3 → 1); and-2019-c2-t09 (UT 3 → 10); and-2019-c3-t12 (UT 4 → 8); and-2019-c3-t32 (UT 8 → 10).
 
 ### Anuladas y con varias respuestas
 
@@ -114,22 +114,22 @@ El tema sale de la posición en el cuadernillo; estas suman palabras clave de ot
 
 | Convocatoria | Fecha | Preguntas | Apariciones | Anuladas | Varias válidas | Lecturas (estado) | A=B | Norma a revisar |
 |---|---|---|---|---|---|---|---|---|
-| and-py-2015-c1 | — | 40 | 40 | 0 | 0 | 40 ok | — | 7 |
-| and-py-2015-c2 | — | 40 | 40 | 0 | 0 | 40 ok | — | 5 |
-| and-py-2015-c3 | — | 40 | 40 | 0 | 0 | 40 ok | — | 10 |
-| and-py-2016-c1 | 2016-04-09 | 40 | 40 | 0 | 0 | 40 ok | — | 5 |
-| and-py-2016-c2 | 2016-06-18 | 40 | 40 | 1 | 0 | 39 ok, 1 vacia | — | 5 |
-| and-py-2016-c3 | 2016-11-19 | 40 | 40 | 0 | 0 | 40 ok | — | 6 |
-| and-py-2017-c1 | 2017-04-01 | 40 | 40 | 0 | 0 | 40 ok | — | 3 |
-| and-py-2017-c2 | 2017-06-17 | 40 | 40 | 0 | 0 | 40 ok | — | 7 |
-| and-py-2017-c3 | 2017-11-11 | 40 | 40 | 0 | 0 | 40 ok | — | 6 |
-| and-py-2018-c1 | 2018-03-14 | 40 | 40 | 0 | 0 | 40 ok | — | 8 |
-| and-py-2018-c1b | 2018-03-14 | 40 | 40 | 0 | 0 | 40 ok | — | 5 |
-| and-py-2018-c2 | 2018-06-12 | 40 | 40 | 0 | 0 | 40 ok | — | 9 |
-| and-py-2018-c4 | 2018-11-23 | 40 | 40 | 0 | 0 | 40 ok | — | 6 |
-| and-py-2019-c1 | 2019-04-06 | 40 | 40 | 0 | 0 | 40 ok | — | 9 |
-| and-py-2019-c2 | 2019-06-15 | 40 | 40 | 0 | 0 | 40 ok | — | 7 |
-| and-py-2019-c3 | 2019-11-23 | 40 | 40 | 0 | 0 | 40 ok | — | 7 |
+| and-py-2015-c1 | — | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2015-c2 | — | 40 | 40 | 0 | 0 | 40 ok | — | 1 |
+| and-py-2015-c3 | — | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2016-c1 | 2016-04-09 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2016-c2 | 2016-06-18 | 40 | 40 | 1 | 0 | 39 ok, 1 vacia | — | 0 |
+| and-py-2016-c3 | 2016-11-19 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2017-c1 | 2017-04-01 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2017-c2 | 2017-06-17 | 40 | 40 | 0 | 0 | 40 ok | — | 1 |
+| and-py-2017-c3 | 2017-11-11 | 40 | 40 | 0 | 0 | 40 ok | — | 1 |
+| and-py-2018-c1 | 2018-03-14 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2018-c1b | 2018-03-14 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2018-c2 | 2018-06-12 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2018-c4 | 2018-11-23 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2019-c1 | 2019-04-06 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2019-c2 | 2019-06-15 | 40 | 40 | 0 | 0 | 40 ok | — | 0 |
+| and-py-2019-c3 | 2019-11-23 | 40 | 40 | 0 | 0 | 40 ok | — | 1 |
 
 ### Confianza de la lectura óptica
 
@@ -156,7 +156,7 @@ Preguntas de 2015–2019 que reaparecen en otra convocatoria de 2015–2026 (mis
 
 ### Tema dudoso (clasificar)
 
-El tema sale de la posición en el cuadernillo; estas suman palabras clave de otro tema. No se cambian: se revisan en la fase F5. and-py-2015-c1-n03 (UT 3 → 4); and-py-2015-c1-n10 (UT 3 → 4).
+El tema sale de la posición en el cuadernillo; estas suman palabras clave de otro tema. Revisadas en la fase F5: se quedan en el tema de su bloque, porque es donde el tribunal las puso y el examen real se corrige por bloques (mínimos de RIPA, balizamiento y carta). and-py-2015-c1-n03 (UT 3 → 4); and-py-2015-c1-n10 (UT 3 → 4).
 
 ### Anuladas y con varias respuestas
 
@@ -169,11 +169,18 @@ El tema sale de la posición en el cuadernillo; estas suman palabras clave de ot
 - **Escaneos girados**: un giro del 1,5 % desplaza medio paso de fila el bloque 1–25 respecto de las marcas de sincronismo (antes del arreglo: PER 1/2017 con 12 respuestas distintas entre las hojas A y B y 17 lecturas dudosas; PER 3/2015 con 26 y 22). `hoja_optica.py` mide el giro en las marcas, predice el desfase de cada bloque y lo afina con la plantilla impresa; también corrige la deriva horizontal de las columnas.
 - **Hoja de 2015–2016 (otro impresor, casillas rectangulares) y lápiz claro**: el lápiz se busca como gris (oscuro y sin color), sin confundirlo con los números impresos en magenta oscuro, y el paso de burbuja se busca entre el 92 % y el 102 % del nominal (PY 2/2015: el peine se corría sobre los números y salían 10 filas en blanco).
 - **Umbral de cada hoja en la salida**: el adaptador guarda en cada lectura el umbral de marca de su hoja (`respuesta.umbral`) para medir la fuerza de cada marca en este informe.
+- **Fase F5** (al revisar la salida para el banco vivo): en `-raw` el guion de una palabra partida por sílabas se quita si sus dos trozos no salen sueltos en el cuadernillo («obsta-culiza», 3/2015); el «0» volado que en 2017–2018 hace de símbolo de grado («237⁰», «-5⁰ (menos)», «marcación 090⁰») lo localiza `py/grado_cero.py` y se repone como «º» (26 preguntas); el encabezado «MAREAS.» con punto y la tabla del anuario metida en un enunciado (2/2016) pasan al contexto de sus preguntas, y `tablaMareas` lee el formato «Hora Alt. 05:40 3,24»; «calcular la sonda» es de mareas y «rumbo directo… desea navegar hasta» de loxodrómica; las 5 figuras dibujadas en la página (dos banderas «A», hélice, timón y una depresión) las recorta `ejes/andalucia/figuras.mjs`.
 - Tras los arreglos, la prueba de oro de 2020–2026 sigue en el 100 % (informes/andalucia-oro.md).
+
+## Entrada en el banco vivo (fase F5)
+
+- PER: 689 preguntas nuevas y 31 que repiten una ya publicada (mismo enunciado, opciones y respuesta), que no se duplican: su aparición va al `apareceEn` de aquella (20 de la 1ª de 2015 son de la 1ª de 2021). PY: 609 nuevas y 31 unidas. Las 5 idénticas a preguntas reservadas para el examen final (2025) no se unen, porque las sacarían de la reserva: and-2015-c1-t29, and-2016-c2-t28, and-2016-c3-t38, and-2017-c1-t37 y and-2017-c3-t39.
+- Revisión normativa (`revision-normativa.mjs`, bloque F5; motivo y fuente en `ajustes.json`): de las 279 nuevas marcadas (y 1 publicada con una aparición más antigua), 4 retiradas (notificación reducida de desechos, derogada por el RD 128/2022; revisión anual de balsas, sustituida por la del fabricante en el RD 339/2021 y el RD 587/2022; la franja de baño a 3 nudos, una vez derogada la Orden de 1964) y 11 actualizadas (aguas sucias y extintores por el RD 339/2021, posidonia por el RD 191/2026). Ninguna remite al régimen anterior al RD 875/2014: todas siguen su estructura de examen.
+- Explicaciones de todas las que no son de carta (y de las de carta del PY, como en 2020–2026), adaptadas por concepto de las del mismo tribunal cuando la respuesta es la misma; soluciones de carta (PER 63 + 1 documentada; PY 151 + 7 documentadas; 2 de mareas sin tabla, con el método); práctica de cada clase ampliada.
 
 ## Pendiente
 
-- Fecha de las tres convocatorias de 2015 (sin fecha en cuadernillos ni páginas): hasta tenerla, la etapa normativa marca sus preguntas con toda norma cuyo detector encaja.
+- Fecha de las tres convocatorias de 2015 (sin fecha en cuadernillos ni páginas): hasta tenerla, la etapa normativa marca sus preguntas con toda norma cuyo detector encaja (y todas se han revisado).
 - Nota de «alegaciones contestadas» de la 4ª de 2018: no descargable; si se consigue, comprobar que no cambia más respuestas.
-- Entrada en la app (fase F5): revisar las preguntas «norma a revisar» de la tabla y las de tema dudoso antes de pasar estas convocatorias a `data/ejes/andalucia/`.
+- Mareas de la 1ª de 2016 (and-py-2016-c1-n19 y -n20): el cuadernillo no trae la tabla del anuario; quedan con `requiere: ["anuario"]` y su explicación da el método.
 

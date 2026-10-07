@@ -1,0 +1,301 @@
+// Soluciones programadas PY Andalucía, convocatorias de 2017 (módulo de navegación, UT 4: carta, mareas y loxodrómica). Ver
+// andalucia-py.js para el formato. `documentadas`: las de carta sin solución programada, con su motivo
+// ({ tipo: 'discrepancia' | 'sin-calculo', texto }).
+import { hrb } from '../kit.js';
+
+const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
+const N = 0; const NE = 45; const E = 90; const SE = 135; const S = 180; const SW = 225; const W = 270; const NW = 315;
+
+export const documentadas = {
+  'and-py-2017-c3-n14': { tipo: 'discrepancia', texto: 'Corriente desconocida. Estima a las 22:00 tras 8 millas al 045° desde 35° 45′ N, 6° 10′ W: 35° 50,7′ N, 6° 03,0′ W; situación observada a 4 millas de Espartel con Dv 097°: 35° 48,0′ N, 6° 00,3′ W. Corriente: Rc = 140,3°, 3,44 millas en 1 h → Ihc = 3,4′. La oficial (d: «Rc = SE Ihc = 3,6´», 135°) es la más próxima, pero queda a 5,3° en el rumbo y 0,2′ en la intensidad: fuera del margen de examen. El tribunal debió redondear el rumbo al cuadrantal y la intensidad al alza.' },
+};
+
+export default {
+  // ---- 1ª Convocatoria 2017
+  'and-py-2017-c1-n11': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '5 15,0 W', 'Situación 18:30');
+      const { ref } = k.efectivo(210, 8, E, 3, s);
+      k.note('Demora verdadera del través', 'Punta Carnero queda al W, a nuestra derecha: la tendremos por el través de estribor. El través se mide desde la proa, es decir, desde el Rv: Dv = Rv + 90° = 210° + 90° = 300°.');
+      return latlon(k.corteRumbo(s, ref, 'punta-carnero', 300, 'Situación al través'));
+    },
+  },
+  'and-py-2017-c1-n12': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('35 45,0 N', '6 15,0 W', 'Salida');
+      // Entramos hacia el Estrecho por fuera (al N) de Espartel: el faro queda por estribor.
+      const rs = k.tangent(s, 'cabo-espartel', 5, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 15, E);
+      const ct = k.ct({ dm: -3, desvio: -6 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2017-c1-n13': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const dvT = k.oposicion('punta-alcazar', 'isla-tarifa');
+      const s = k.lineAndBearing('isla-tarifa', dvT, 'punta-cires', 100, 'Situación 16:00');
+      const rs = k.abatimiento(75, 10, N);
+      const { ref, vef } = k.efectivo(rs, 8, NW, 2, s);
+      return latlon(k.estimaEfectiva(s, ref, vef, hrb(18) - hrb(16), 'Situación 18:00'));
+    },
+  },
+  'and-py-2017-c1-n14': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const d = k.distFor(6, hrb(12, 30) - hrb(11));
+      return latlon(k.traslado('cabo-espartel', 160, 'punta-alcazar', 110, 65, d, 'Situación 12:30'));
+    },
+  },
+  'and-py-2017-c1-n15': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 15,8 N', '6 14,6 W', 'Situación 18:30');
+      const t = hrb(20) - hrb(18, 30);
+      const ct = k.ct({ dm: -5, desvio: -5 });
+      const rv = k.rv(160, ct);
+      const est = k.run(s, rv, k.distFor(10, t), 'Situación de estima 20:00');
+      // Al S verdadero del faro de Trafalgar y al W verdadero del de Punta Camarinal (faro de Punta Gracia).
+      const obs = k.cardinal2('cabo-trafalgar', S, 'punta-gracia', W, 'Situación observada 20:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'and-py-2017-c1-n16': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 09:00');
+      // 7º E 2002 con variación 4′ W anual.
+      const ct = k.ct({ carta: [7, 2002, -4], anyo: 2017, desvio: 9 });
+      const rv = k.rv(250, ct);
+      const rs = k.abatimiento(rv, 15, SW);
+      return latlon(k.run(s, rs, k.distFor(6, hrb(11) - hrb(9)), 'Situación de estima 11:00'));
+    },
+  },
+  'and-py-2017-c1-n17': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Salida 13:00');
+      const { rs, vb } = k.rumboYVelocidad(s, 'barbate-faro', hrb(15) - hrb(13), SW, 3);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ dm: 3, desvio: 5 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2017-c1-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Primera pleamar (05:16) → primera bajamar (11:16): la marea baja y la sonda mínima se tiene hasta esa hora.
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 0 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 4.1, 2.4, 2) }];
+    },
+  },
+  'and-py-2017-c1-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(22, 40), 2);
+      const tr = k.tramoMarea(q.tabla_mareas, { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 2.7) }];
+    },
+  },
+  'and-py-2017-c1-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('25 00,0 S', '178 50,0 W', 'Salida');
+      const b = k.pos('20 00,0 S', '179 25,0 E', 'Llegada');
+      const { rumbo, dist } = k.rumboDirecto(a, b);
+      return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
+    },
+  },
+
+  // ---- 2ª Convocatoria 2017
+  'and-py-2017-c2-n11': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const dvT = k.oposicion('punta-cires', 'isla-tarifa');
+      const s = k.lineAndBearing('isla-tarifa', dvT, 'punta-carnero', 32, 'Situación 15:00');
+      const rs = k.abatimiento(70, 15, N);
+      k.note('Demora verdadera del través', 'Punta Almina queda al SE, a nuestra derecha: la tendremos por el través de estribor. El través se mide desde la proa, es decir, desde el Rv: Dv = Rv + 90° = 070° + 90° = 160°.');
+      return latlon(k.corteRumbo(s, rs, 'punta-almina', 160, 'Situación al través'));
+    },
+  },
+  'and-py-2017-c2-n12': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 20,0 W', 'Salida 19:00');
+      const { vb } = k.rumboYVelocidad(s, 'algeciras-espigon', hrb(21) - hrb(19), E, 3);
+      return [{ kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2017-c2-n13': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.oposicion('punta-malabata', 'isla-tarifa');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 41) }];
+    },
+  },
+  'and-py-2017-c2-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '5 10,0 W', 'Situación 21:00');
+      const t = hrb(23) - hrb(21);
+      const est = k.run(s, 225, k.distFor(4.6, t), 'Situación de estima 23:00');
+      // «Punta Amina» en el enunciado: es Punta Almina.
+      const obs = k.fix2('punta-europa', 319, 'punta-almina', 196, 'Situación observada 23:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'and-py-2017-c2-n15': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const dvE = k.enfilacion('cabo-trafalgar', 'cabo-roche', 0);
+      const s = k.lineAndBearing('cabo-trafalgar', dvE, 'punta-gracia', E, 'Situación 12:00');
+      // Subimos hacia el N por fuera de la costa: Roche queda por estribor.
+      const rs = k.tangent(s, 'cabo-roche', 5, 'estribor');
+      return [{ kind: 'bearing', value: k.rvConAbatimiento(rs, 20, SW) }];
+    },
+  },
+  'and-py-2017-c2-n16': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const s = k.pos('35 45,0 N', '6 10,0 W', 'Situación 13:00');
+      // 6º E 2007 con variación 6′ W anual.
+      const ct = k.ct({ carta: [6, 2007, -6], anyo: 2017, desvio: 4 });
+      const rv = k.rv(40, ct);
+      const rs = k.abatimiento(rv, 15, NE);
+      const { ref, vef } = k.efectivo(rs, 8, W, 2, s);
+      return latlon(k.estimaEfectiva(s, ref, vef, hrb(14, 30) - hrb(13), 'Situación 14:30'));
+    },
+  },
+  'and-py-2017-c2-n17': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Salida 12:00');
+      const { rs } = k.rumboConCorriente(s, 'tanger-espigon', 8, E, 3);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ dm: 4, desvio: 6 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }];
+    },
+  },
+  'and-py-2017-c2-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Primera pleamar (07:51) → segunda bajamar (13:54): la marea baja.
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 1 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 3.7, 1.8, 2) }];
+    },
+  },
+  'and-py-2017-c2-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(8), 2);
+      const tr = k.tramoMarea(q.tabla_mareas, { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 1.8) }];
+    },
+  },
+  'and-py-2017-c2-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('42 00,0 N', '179 20,0 E', 'Salida');
+      const b = k.pos('36 00,0 N', '178 35,0 W', 'Llegada');
+      const { rumbo, dist } = k.rumboDirecto(a, b);
+      return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
+    },
+  },
+
+  // ---- 3ª Convocatoria 2017
+  'and-py-2017-c3-n11': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // «Faro de Pta. Camarinal» = faro de Punta Gracia. Marcamos Isla de Tarifa: la demora es la de la recta hacia Tarifa.
+      const dv = k.enfilacion('punta-gracia', 'isla-tarifa', 309);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 309) }];
+    },
+  },
+  'and-py-2017-c3-n12': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Salida 10:00');
+      const { rs } = k.rumboConCorriente(s, 'tanger-espigon', 8, W, 3);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ dm: 5, desvio: 4 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }];
+    },
+  },
+  'and-py-2017-c3-n13': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      k.note('Primera línea de posición', 'Al N verdadero del faro de Punta Cires: vemos el faro al S, Dv = 180°. Es el meridiano del faro.');
+      const d = k.distFor(6, hrb(11, 30) - hrb(10));
+      return latlon(k.traslado('punta-cires', S, 'punta-almina', 165, 70, d, 'Situación 11:30'));
+    },
+  },
+  'and-py-2017-c3-n15': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const s = k.pos('36 15,0 N', '6 15,0 W', 'Situación 12:00');
+      // 5º E 2007 con variación 6′ W anual.
+      const ct = k.ct({ carta: [5, 2007, -6], anyo: 2017, desvio: 6 });
+      const rv = k.rv(125, ct);
+      const rs = k.abatimiento(rv, 15, NE);
+      return latlon(k.run(s, rs, k.distFor(8, hrb(13) - hrb(12)), 'Situación de estima 13:00'));
+    },
+  },
+  'and-py-2017-c3-n16': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Salida 14:00');
+      const { rs, vb } = k.rumboYVelocidad(s, 'barbate-faro', hrb(17) - hrb(14), E, 2);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      return [{ kind: 'bearing', value: rs }, { kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2017-c3-n17': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '5 10,0 W', 'Salida 20:00');
+      // Bajamos al SW hacia el Estrecho por fuera de Carnero: el faro queda por estribor.
+      const rs = k.tangent(s, 'punta-carnero', 4, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 10, NW);
+      const ct = k.ct({ dm: -3, desvio: -3 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2017-c3-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Segunda bajamar (14:54) → segunda pleamar (21:10): la marea sube.
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 2 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 3.4, 1.8, 1) }];
+    },
+  },
+  'and-py-2017-c3-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(7, 15), 1);
+      const tr = k.tramoMarea(q.tabla_mareas, { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 1.8) }];
+    },
+  },
+  'and-py-2017-c3-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('42 00,0 N', '177 00,0 E', 'Salida');
+      const b = k.pos('36 00,0 N', '178 00,0 W', 'Llegada');
+      const { rumbo, dist } = k.rumboDirecto(a, b);
+      return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
+    },
+  },
+};

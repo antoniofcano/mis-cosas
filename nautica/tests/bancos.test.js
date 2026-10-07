@@ -9,6 +9,7 @@ import { crearBancos } from '../src/bancos/index.js';
 import { EJE_POR_DEFECTO } from '../src/bancos/registro.js';
 import { validSpec } from '../src/illustrations/index.js';
 import { huella } from '../tools/bancos/migrar-andalucia.mjs';
+import { deF5 } from '../tools/bancos/ejes/andalucia/huella.mjs';
 import { RAIZ, leerJSON, bancosNode, preguntasDe } from '../tools/bancos/leer.mjs';
 
 const CLAVES = ['id', 'eje', 'tit', 'conv', 'convocatoria', 'fecha', 'numero', 'orden', 'modulo', 'ut', 'ut_titulo', 'bloque', 'enunciado', 'opciones',
@@ -118,15 +119,28 @@ test('migración de Andalucía: mismas preguntas, mismos ids y nada cambiado (en
   const huellas = leerJSON('tools/bancos/andalucia-huella.json');
   const per = preguntasDe('per', 'andalucia');
   const py = preguntasDe('py', 'andalucia');
-  assert.equal(per.length, 810); // 738 de teoría + 72 de carta
-  assert.equal(per.filter((q) => q.requiere.includes('carta')).length, 72);
-  assert.equal(py.length, 720);
+  // 2020–2026 (las 1530 de la migración): 738 de teoría + 72 de carta en el PER, 720 en el PY.
+  const antiguas = (qs) => qs.filter((q) => !deF5(q.id));
+  assert.equal(antiguas(per).length, 810);
+  assert.equal(antiguas(per).filter((q) => q.requiere.includes('carta')).length, 72);
+  assert.equal(antiguas(py).length, 720);
   assert.equal(Object.keys(huellas).length, 810 + 720);
   const nuevas = new Map([...per, ...py].map((q) => [q.id, q]));
   for (const [id, h] of Object.entries(huellas)) {
     assert.ok(nuevas.has(id), `falta ${id}`);
     assert.equal(huella(nuevas.get(id)), h, `${id} ha cambiado`);
   }
+  // 2015–2019 (fase F5): 689 del PER y 609 del PY (las idénticas a otra ya publicada van en su apareceEn), con su huella.
+  const f5 = leerJSON('tools/bancos/andalucia-huella-2015-2019.json');
+  assert.equal(per.length, 810 + 689);
+  assert.equal(py.length, 720 + 609);
+  assert.equal(Object.keys(f5).length, 689 + 609);
+  for (const [id, h] of Object.entries(f5)) {
+    assert.ok(nuevas.has(id), `falta ${id}`);
+    assert.equal(huella(nuevas.get(id)), h, `${id} ha cambiado`);
+  }
+  // Las de 2020–2026 que se repiten en 2015–2019 solo ganan apariciones: sus primeras son las de siempre.
+  for (const q of [...antiguas(per), ...antiguas(py)]) assert.equal(q.apareceEn[0].conv, q.conv, q.id);
   // Las claves de convocatoria del progreso guardado no cambian.
   assert.equal(nuevas.get('and-2023-c1-q42').conv, 'and-2023-c1');
   assert.equal(nuevas.get('and-py-2023-c1-g07').conv, 'and-py-2023-c1');
@@ -142,9 +156,11 @@ test('motor de bancos: banco, práctica de las clases y preguntas por id (de cua
   assert.ok(per.estudio.every((q) => !per.reservadas.has(q.id)));
   assert.deepEqual(per.reserva.examenes.map((e) => e.key).sort(), ['and-2025-c1', 'and-2025-c2', 'and-2025-c3', 'and-2026-c1', 'and-2026-c2']);
   assert.ok(per.reserva.examenes.every((e) => e.ids.length === 45));
-  assert.equal(per.convocatorias().length, 13);
+  assert.equal(per.reservadas.size, 225);
+  assert.ok([...per.reservadas].every((id) => /^and-202[56]-/.test(id)));
+  assert.equal(per.convocatorias().length, 13 + 16); // 2020–2024 y 2015–2019
   assert.ok(per.convocatorias().every((c) => c.completa && c.n === 45));
-  assert.equal(per.lista('carta').preguntas.length, 52);
+  assert.equal(per.lista('carta').preguntas.length, 52 + 64);
   assert.equal(per.listaDe(per.porId.get('and-2020-c1-q42')).id, 'carta');
   const curso = await b.cargarCurso('per', EJE_POR_DEFECTO);
   const l = curso.modulos[0].lecciones[0];

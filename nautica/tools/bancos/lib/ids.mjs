@@ -16,6 +16,11 @@ import { textoPregunta } from './texto.mjs';
 
 const pad = (n) => String(n).padStart(2, '0');
 export const refAparicion = (a) => `${a.conv}|${a.modelo ?? ''}|${a.numero}`;
+/**
+ * Referencias con que una aparición extraída puede estar publicada: la suya y, si trae `orden`, la de una aparición sin
+ * modelo numerada por su orden en el examen (el PY de Andalucía publica { modelo: null, numero: orden }).
+ */
+const refsDe = (a) => (a.orden != null ? [refAparicion(a), `${a.conv}||${a.orden}`] : [refAparicion(a)]);
 
 /** Ids publicados: por aparición y por contenido. Devuelve un Map (por aparición) con `.porTexto` y `.todos`. */
 export function idsExistentes(eje, tit) {
@@ -24,10 +29,17 @@ export function idsExistentes(eje, tit) {
   const mapa = new Map();
   mapa.porTexto = new Map();
   mapa.todos = new Set();
+  // Apariciones en la convocatoria propia de la pregunta publicada (su `conv`): son las que deciden su id. Las de otras
+  // convocatorias (una pregunta idéntica de otro examen unida con apareceEn, Andalucía 2015–2019) solo se usan si la
+  // propia no aparece en la extracción.
+  mapa.propias = new Set();
   for (const p of banco?.preguntas ?? []) {
     mapa.todos.add(p.id);
-    mapa.porTexto.set(textoPregunta(p), p.id);
-    for (const a of p.apareceEn ?? []) mapa.set(refAparicion(a), p.id);
+    if (!mapa.porTexto.has(textoPregunta(p))) mapa.porTexto.set(textoPregunta(p), p.id);
+    for (const a of p.apareceEn ?? []) {
+      mapa.set(refAparicion(a), p.id);
+      if (a.conv === p.conv) mapa.propias.add(refAparicion(a));
+    }
   }
   return mapa;
 }
@@ -66,10 +78,21 @@ export function asignarIds(preguntas, config, tit, existentes = new Map()) {
   const reservados = existentes.todos ?? new Set();
   const js = juegos(preguntas, config);
   // Primero las que ya tenían id publicado (así ninguna nueva puede quitárselo).
+  // Por orden de fuerza: aparición en la convocatoria propia de la publicada, otra aparición, mismo texto. Así una
+  // pregunta de otra convocatoria con el mismo texto no le quita el id a la que lo tiene por su propia aparición.
   const previos = new Map();
-  for (const p of preguntas) {
-    const previo = p.apareceEn.map((a) => existentes.get(refAparicion(a))).find(Boolean) ?? existentes.porTexto?.get(textoPregunta(p));
-    if (previo && !usados.has(previo)) { previos.set(p, previo); usados.add(previo); }
+  const propias = existentes.propias ?? null;
+  const pasos = [
+    (p) => p.apareceEn.flatMap(refsDe).filter((r) => !propias || propias.has(r)).map((r) => existentes.get(r)).find(Boolean),
+    (p) => p.apareceEn.flatMap(refsDe).map((r) => existentes.get(r)).find(Boolean),
+    (p) => existentes.porTexto?.get(textoPregunta(p)),
+  ];
+  for (const paso of pasos) {
+    for (const p of preguntas) {
+      if (previos.has(p)) continue;
+      const previo = paso(p);
+      if (previo && !usados.has(previo)) { previos.set(p, previo); usados.add(previo); }
+    }
   }
   let nuevos = 0;
   for (const p of preguntas) {

@@ -16,7 +16,7 @@ Barra inferior con cuatro pestañas (en pantallas anchas, una fila bajo la cabec
 |---|---|---|
 | 🏠 **Hoy** | `#/` · `#/per` · `#/py` | Lo que toca hoy (una tarjeta, un botón), el avance («temas al día») y lo que viene después. Lo decide un único recomendador (`src/course/plan.js`): examen a medias, simulacro en la recta final, repasos de clases, la siguiente clase o tanda de preguntas del primer tema que no está al día y, si se acumulan, una sesión de fallos. |
 | 📚 **Temario** | `#/<tit>/temario` · `#/<tit>/temario/<n>` | Los temas del examen con su estado. Cada tema tiene sus clases (tarjetas paso a paso, chuleta y práctica con preguntas reales y repaso espaciado), sus preguntas de examen en tandas de 10 con **el profe** explicando cada respuesta (con voz, ilustraciones y animaciones) y, en el tema de carta, los ejercicios de carta. |
-| 📝 **Examen** | `#/<tit>/examenes` | Simulacros con el número de preguntas y el tiempo del examen y las convocatorias reales completas (2020–2026). Pantalla de inicio, una pregunta por pantalla, guardado continuo (se puede salir y seguir: el reloj se para) y corrección con las reglas oficiales y revisión con el profe. |
+| 📝 **Examen** | `#/<tit>/examenes` | Simulacros con el número de preguntas y el tiempo del examen y las convocatorias reales completas (Andalucía 2015–2026). Pantalla de inicio, una pregunta por pantalla, guardado continuo (se puede salir y seguir: el reloj se para) y corrección con las reglas oficiales y revisión con el profe. |
 | ☰ **Más** | `#/mas` | Biblioteca (láminas animadas, reglas para recordar, conceptos de carta, mesa de cartas), mi progreso, fecha del examen y minutos al día, titulación, voz del profe y copia de seguridad. |
 
 Durante una clase, una tanda de preguntas o un examen la app entra en «modo concentración»: sin barra inferior,
@@ -72,12 +72,13 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
 - **Notas de texto** en la carta con tamaño de letra (S–XXL), editables y movibles.
 - **Tu carta escaneada como fondo** (opcional): carga tu PDF/imagen de la L105 y la app la georreferencia
   con la calibración incluida (error < 0,1′). Se guarda solo en tu navegador (IndexedDB), nunca en el repo.
-- **72 preguntas reales de examen** (PER Andalucía 2020–2026, preguntas de carta) con la respuesta de la
+- **136 preguntas reales de examen** (PER Andalucía 2015–2026, preguntas de carta) con la respuesta de la
   plantilla oficial y **resolución paso a paso calculada por la app** (con dibujo en la carta).
-  La app resuelve 71 de ellas y en las 68 no anuladas elige la opción oficial: es la validación de los motores
-  y de la carta (`tests/exams.test.js`).
-- **180 preguntas de carta del PY Andalucía** (2020–2026: situación, viento, corriente, mareas, estima analítica):
-  la app resuelve 173 paso a paso. Cada resolución está escrita a mano para su pregunta (datos del enunciado →
+  La app resuelve 134 de ellas y en las 131 no anuladas elige la opción oficial: es la validación de los motores
+  y de la carta (`tests/exams.test.js`). Las otras 2 quedan documentadas (`documentadas` de `src/bancos/ejes/andalucia.js`).
+- **340 preguntas de carta del PY Andalucía** (2015–2026: situación, viento, corriente, mareas, estima analítica):
+  la app resuelve 324 paso a paso (de 2015–2019: 151 resueltas, 7 documentadas como discrepancia y 2 de mareas
+  sin la tabla del anuario en el cuadernillo, explicadas con el método). Cada resolución está escrita a mano para su pregunta (datos del enunciado →
   motores de cálculo), y un test comprueba que la opción oficial es la más próxima al resultado, dentro de dos
   veces la tolerancia: valida a la vez los motores y la transcripción de cada pregunta, no el texto de las
   explicaciones. Las 7 restantes (5 anuladas, 1 con errata en la plantilla y 1 por la medida de una enfilación)

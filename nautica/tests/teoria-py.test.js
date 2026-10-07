@@ -17,12 +17,18 @@ test('estructura PY: 40 preguntas, 28 aciertos, límites en navegación y carta'
   assert.equal(TITULACIONES.py.estructura, PY);
 });
 
-test('banco PY: 18 convocatorias completas de 40 preguntas, 180 por bloque', () => {
-  assert.equal(bank.length, 720);
-  for (const b of PY.bloques) assert.equal(bank.filter((q) => q.ut === b.ut).length, b.n * 18, `UT${b.ut}`);
+test('banco PY: 34 convocatorias completas de 40 preguntas (2020–2026: 180 por bloque)', () => {
+  const antiguas = bank.filter((q) => !/^and-py-201[5-9]-/.test(q.id));
+  assert.equal(antiguas.length, 720);
+  assert.equal(bank.length, 720 + 609); // 2015–2019 (fase F5): las que repiten una publicada van en su apareceEn
+  for (const b of PY.bloques) assert.equal(antiguas.filter((q) => q.ut === b.ut).length, b.n * 18, `UT${b.ut}`);
   const convs = convocatorias(PY, bank);
-  assert.equal(convs.length, 18);
+  assert.equal(convs.length, 34);
   assert.ok(convs.every((c) => c.completa && c.n === 40));
+  for (const c of convs) {
+    const t = buildReal(bank, c.key);
+    for (const b of PY.bloques) assert.equal(t.preguntas.filter((q) => q.ut === b.ut).length, b.n, `${c.key} UT${b.ut}`);
+  }
 });
 
 test('cada pregunta PY: 4 opciones, respuesta válida o anulada, figuras existentes', () => {
@@ -55,7 +61,7 @@ test('simulacro PY: 10 preguntas de cada bloque', () => {
   assert.equal(s.faltan.length, 0);
 });
 
-test('el profe tiene explicación para las 720 preguntas del PY, con ilustraciones dibujables', async () => {
+test('el profe tiene explicación para todas las preguntas del PY (también las de carta), con ilustraciones dibujables', async () => {
   const { narrateTheory } = await import('../src/teacher/theory.js');
   const { validSpec } = await import('../src/illustrations/index.js');
   const expl = JSON.parse(readFileSync(new URL('py/explicaciones.json', dir)));

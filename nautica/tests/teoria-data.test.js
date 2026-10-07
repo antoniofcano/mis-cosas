@@ -11,11 +11,23 @@ const dir = new URL('../data/ejes/andalucia/', import.meta.url);
 const bank = JSON.parse(readFileSync(new URL('per/preguntas.json', dir))).preguntas.filter((q) => !q.requiere.includes('carta'));
 const expl = JSON.parse(readFileSync(new URL('per/explicaciones.json', dir)));
 
-test('banco de teoría PER: 18 convocatorias × 41 preguntas con bloques del RD', () => {
-  assert.equal(bank.length, 738);
+test('banco de teoría PER: 34 convocatorias × 41 preguntas con bloques del RD', () => {
+  // 2020–2026: 18 convocatorias, 738 preguntas. 2015–2019 (fase F5): 16 más, con 625 preguntas propias; las que repiten
+  // una ya publicada van en su apareceEn.
+  const antiguas = bank.filter((q) => !/^and-201[5-9]-/.test(q.id));
+  assert.equal(antiguas.length, 738);
+  assert.equal(bank.length, 738 + 625);
   const per = new Map(PER.bloques.map((b) => [b.ut, 0]));
-  for (const q of bank) per.set(q.ut, per.get(q.ut) + 1);
+  for (const q of antiguas) per.set(q.ut, per.get(q.ut) + 1);
   for (const b of PER.bloques.filter((x) => x.ut <= 10)) assert.equal(per.get(b.ut), b.n * 18, `UT${b.ut}`);
+  // Cada convocatoria, con sus preguntas y las unidas: el reparto del RD en cada tema.
+  const convs = new Set(bank.map((q) => q.conv));
+  assert.equal(convs.size, 34);
+  for (const c of convs) {
+    for (const b of PER.bloques.filter((x) => x.ut <= 10)) {
+      assert.equal(bank.filter((q) => q.ut === b.ut && (q.conv === c || q.apareceEn.some((a) => a.conv === c))).length, b.n, `${c} UT${b.ut}`);
+    }
+  }
 });
 
 test('cada pregunta: 4 opciones, respuesta válida o anulada, figuras existentes', () => {

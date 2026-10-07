@@ -2,6 +2,9 @@
 // pregunta del banco del eje, usando la práctica del eje de referencia (Andalucía) como guía.
 //   node tools/bancos/practica.mjs <eje> [--escribir]   → propone data/ejes/<eje>/<tit>/practica.json (con --escribir, lo
 //                                                         escribe) e imprime el informe por clase.
+//   node tools/bancos/practica.mjs <eje> --ampliar [--escribir] → conserva la práctica que ya tiene el eje y solo coloca
+//        las preguntas de estudio que aún no están en ninguna clase (Andalucía 2015–2019, fase F5), con los mismos
+//        criterios; no toca resueltos.json (las reglas por tipo de ejercicio de cada clase ya recogen las nuevas).
 // Para cada pregunta (que se pueda estudiar: ni anulada, ni retirada, ni de una convocatoria reservada para el examen
 // final) y cada clase de su tema se suma:
 //   - concepto: si la pregunta de referencia cuya explicación se adaptó (q.concepto) está en la práctica de la clase;
@@ -68,7 +71,7 @@ function clasesPorEjercicio(resueltos, practicaRef) {
   }));
 }
 
-export function proponer(eje, tit) {
+export function proponer(eje, tit, { ampliar = false } = {}) {
   const ficha = leerJSON(join(RAIZ, 'data', 'ejes', eje, 'eje.json'));
   const curso = leerJSON(join(RAIZ, 'data', 'curso', `${tit}.json`));
   const qs = leerJSON(join(RAIZ, 'data', 'ejes', eje, tit, 'preguntas.json')).preguntas;
@@ -102,7 +105,11 @@ export function proponer(eje, tit) {
   for (const l of lecciones) l.reglas = cuenta(reglas(l.texto));
   const cartaUt = TITULACIONES[tit].cartaUt;
   const puntos = new Map(); // id → [{ l, p }] ordenado
-  for (const q of qs.filter(estudiable)) {
+  // Ampliar: la práctica del eje se queda como está y solo se colocan las de estudio que no están en ninguna clase.
+  const previa = ampliar ? leerJSON(join(RAIZ, 'data', 'ejes', eje, tit, 'practica.json')) : {};
+  const yaEnPractica = new Set(Object.values(previa).flat());
+  const estudio0 = new Set(qs.filter(estudiable).map((q) => q.id));
+  for (const q of qs.filter((x) => estudiable(x) && !yaEnPractica.has(x.id))) {
     // Las de la unidad de carta que no se hacen sobre la carta (mareas, estima analítica) pueden ir también a las clases
     // de la teoría de navegación (la unidad anterior).
     const deCartaSinCarta = q.ut === cartaUt && !q.requiere.includes('carta');
@@ -139,8 +146,11 @@ export function proponer(eje, tit) {
     }).sort((a, b) => b.p - a.p);
     puntos.set(q.id, { q, p });
   }
-  const practica = Object.fromEntries(lecciones.map((l) => [l.id, []]));
+  const practica = Object.fromEntries(lecciones.map((l) => [l.id, [...(previa[l.id] ?? [])]]));
+  const nuevas = Object.fromEntries(lecciones.map((l) => [l.id, 0]));
   for (const { q, p } of puntos.values()) {
+    if (p.length) nuevas[p[0].l.id]++;
+    if (p.length && p[1] && p[1].p >= 0.9 * p[0].p && p[1].cubre && !p[1].ajena) nuevas[p[1].l.id]++;
     if (!p.length) continue;
     practica[p[0].l.id].push(q.id);
     if (p[1] && p[1].p >= 0.9 * p[0].p && p[1].cubre && !p[1].ajena) practica[p[1].l.id].push(q.id);
@@ -149,7 +159,7 @@ export function proponer(eje, tit) {
   const faltan = {};
   const veces = new Map();
   for (const ids of Object.values(practica)) for (const id of ids) veces.set(id, (veces.get(id) ?? 0) + 1);
-  for (const l of lecciones) {
+  for (const l of ampliar ? [] : lecciones) {
     const minimo = (practicaRef[l.id] ?? []).length;
     if (practica[l.id].length >= minimo) continue;
     const ya = new Set(practica[l.id]);
@@ -166,6 +176,12 @@ export function proponer(eje, tit) {
     for (const { q } of extra) veces.set(q.id, (veces.get(q.id) ?? 0) + 1);
     if (practica[l.id].length < minimo) faltan[l.id] = { tiene: practica[l.id].length, referencia: minimo };
   }
+  // Revisión a mano al ampliar (tools/bancos/ejes/<eje>/practica-extra.json: { <tit>: { <leccionId>: [ids] } }): preguntas
+  // que también van a otra clase que el cálculo no ve (p. ej., la bandera «A» del RIPA en la clase de buzos y bañistas).
+  if (ampliar) {
+    const extra = leerJSON(join(RAIZ, 'tools', 'bancos', 'ejes', eje, 'practica-extra.json'), {})[tit] ?? {};
+    for (const [l, ids] of Object.entries(extra)) if (practica[l]) practica[l].push(...ids.filter((id) => estudio0.has(id) && !practica[l].includes(id)));
+  }
   // En el orden del banco.
   const orden = new Map(qs.map((q, i) => [q.id, i]));
   for (const l of Object.keys(practica)) practica[l] = [...new Set(practica[l])].sort((a, b) => orden.get(a) - orden.get(b));
@@ -179,7 +195,7 @@ export function proponer(eje, tit) {
   const porTema = (xs) => xs.reduce((m, q) => m.set(q.ut, (m.get(q.ut) ?? 0) + 1), new Map());
   return {
     practica, resueltos, faltan, estudio: estudio.length, referencia: ref.length, temas: { eje: porTema(estudio), referencia: porTema(ref) },
-    lecciones: lecciones.map((l) => ({ id: l.id, ut: l.ut, titulo: l.titulo, n: practica[l.id].length, referencia: (practicaRef[l.id] ?? []).length })),
+    lecciones: lecciones.map((l) => ({ id: l.id, ut: l.ut, titulo: l.titulo, n: practica[l.id].length, nuevas: nuevas[l.id], referencia: (practicaRef[l.id] ?? []).length })),
   };
 }
 
@@ -207,17 +223,19 @@ export function informePractica(eje, porTit) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const [eje, opcion] = process.argv.slice(2);
+  const [eje, ...opciones] = process.argv.slice(2);
+  const ampliar = opciones.includes('--ampliar');
+  const opcion = opciones.includes('--escribir') ? '--escribir' : null;
   const ficha = leerJSON(join(RAIZ, 'data', 'ejes', eje, 'eje.json'));
   const porTit = {};
   for (const tit of Object.keys(ficha.examen)) {
-    const r = proponer(eje, tit);
+    const r = proponer(eje, tit, { ampliar });
     porTit[tit] = r;
-    for (const l of r.lecciones) console.log(`${l.id.padEnd(10)} ${String(l.n).padStart(3)} (ref ${String(l.referencia).padStart(2)})${r.faltan[l.id] ? '  ← faltan' : ''}  ${l.titulo}`);
+    for (const l of r.lecciones) console.log(`${l.id.padEnd(10)} ${String(l.n).padStart(3)} (ref ${String(l.referencia).padStart(2)}${ampliar ? `, +${l.nuevas}` : ''})${r.faltan[l.id] ? '  ← faltan' : ''}  ${l.titulo}`);
     if (opcion === '--escribir') {
       escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'practica.json'), textoPractica(r.practica));
-      if (Object.keys(r.resueltos).length) escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'resueltos.json'), `${JSON.stringify(r.resueltos, null, 1)}\n`);
+      if (!ampliar && Object.keys(r.resueltos).length) escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'resueltos.json'), `${JSON.stringify(r.resueltos, null, 1)}\n`);
     }
   }
-  if (opcion === '--escribir') escribirTexto(join(RAIZ, 'tools', 'bancos', 'informes', `${eje}-practica.md`), informePractica(eje, porTit));
+  if (opcion === '--escribir' && !ampliar) escribirTexto(join(RAIZ, 'tools', 'bancos', 'informes', `${eje}-practica.md`), informePractica(eje, porTit));
 }

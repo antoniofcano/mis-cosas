@@ -16,14 +16,14 @@
  "listas": {
   "per": [
    { "id": "carta", "requiere": "carta", "titulo": "PER Andalucía · Carta de navegación",
-     "descripcion": "Preguntas 42–45 (UT 11, carta) de los exámenes oficiales de PER de la Junta de Andalucía, 2020–2026, con la respuesta de la plantilla oficial. Se usa la carta L105 Enseñanza (Estrecho de Gibraltar).",
+     "descripcion": "Preguntas 42–45 (UT 11, carta) de los exámenes oficiales de PER de la Junta de Andalucía, 2015–2026, con la respuesta de la plantilla oficial. Se usa la carta L105 Enseñanza (Estrecho de Gibraltar).",
      "tarjeta": "Las {n} preguntas de carta (42–45) de los exámenes del PER, resueltas paso a paso sobre la carta." },
    { "id": "teoria", "sinRequiere": "carta", "titulo": "PER Andalucía · Teoría (preguntas 1–41)",
-     "descripcion": "Preguntas de teoría de los exámenes oficiales del PER de la Junta de Andalucía (2020–2026) con la respuesta de la plantilla oficial (leída de las hojas de respuestas de los modelos A y B, coincidentes en el 100 %)." }
+     "descripcion": "Preguntas de teoría de los exámenes oficiales del PER de la Junta de Andalucía (2015–2026) con la respuesta de la plantilla oficial (leída de las hojas de respuestas de los modelos A y B, coincidentes en el 100 %)." }
   ],
   "py": [
    { "id": "todas", "titulo": "PY Andalucía · Examen teórico completo (40 preguntas)",
-     "descripcion": "Preguntas de los exámenes oficiales de Patrón de Yate de la Junta de Andalucía (2020–2026): módulo genérico (Seguridad, Meteorología) y de navegación (Teoría de navegación, Carta: carta, mareas y loxodrómica), con la respuesta de la plantilla oficial." }
+     "descripcion": "Preguntas de los exámenes oficiales de Patrón de Yate de la Junta de Andalucía (2015–2026): módulo genérico (Seguridad, Meteorología) y de navegación (Teoría de navegación, Carta: carta, mareas y loxodrómica), con la respuesta de la plantilla oficial." }
   ]
  },
  "legado": {

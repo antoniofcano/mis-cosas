@@ -6,13 +6,14 @@
 import { rutaPDF } from '../etapas/manifiesto.mjs';
 import { analizarCuestionario } from '../lib/cuestionario.mjs';
 import { execFileSync } from 'node:child_process';
-import { python } from '../lib/comun.mjs';
+import { join } from 'node:path';
+import { dirEje, leerJSON, python } from '../lib/comun.mjs';
 
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
 // Encabezados de bloque de datos compartidos (PY navegación) y cabeceras de las tablas de mareas y corrientes. Lista
 // cerrada: una sigla en mayúsculas sola en su línea («SOLAS», «MSSI») es la continuación de una opción, no un bloque.
-const CONTEXTO = /^(MAREAS|LOXODR[OÓ]MICA|HORAS?( UTC)?|D[IÍ]A|ALTURA DE (LA )?MAREAS?|C ?RECIENTE|VACIANTE|DESDE|HASTA|I ?NTERVALO|TABLA PARA CALCULAR .*)$/;
+const CONTEXTO = /^(MAREAS\.?|LOXODR[OÓ]MICA|HORAS?( UTC)?|D[IÍ]A|ALTURA DE (LA )?MAREAS?|C ?RECIENTE|VACIANTE|DESDE|HASTA|I ?NTERVALO|TABLA PARA CALCULAR .*)$/;
 
 export const REGLAS_ANDALUCIA = {
   // «7. …», «42)…», «9.- …» (2021-2ª y PY 2021: el guion no es parte del enunciado).
@@ -97,22 +98,80 @@ export function leerRotulos(pdfs) {
   return python('etiquetas_figura.py', pdfs);
 }
 
+/** Líneas con un «0» volado que hace de grado («237⁰», «-5⁰ (menos)») de varios PDF → { [pdf]: [línea con ⁰] } */
+export function leerGradosCero(pdfs) {
+  if (!pdfs.length) return {};
+  return python('grado_cero.py', pdfs);
+}
+
+/**
+ * El «0» volado que algunos cuadernillos (2017–2018) usan como símbolo de grado sale en pdftotext como un cero normal:
+ * «a) 2370» (237º), «-50 (menos)» (−5º), «marcación 0900 Estribor», «latitud de 450». Con las líneas que lo llevan
+ * (grado_cero.py, ⁰ en su sitio), se cambia en el texto cada «…dígitos0…» por «…dígitosº…», buscando el trozo de la línea
+ * alrededor del cero (los espacios pueden variar). Exportada para los tests.
+ */
+export function reponerGrados(texto, lineas = []) {
+  const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s*');
+  let t = texto;
+  for (const l of lineas) {
+    // La línea entera (todas sus ⁰ a la vez; dos líneas iguales, las dos).
+    const entera = new RegExp(esc(l.trim().replace(/⁰/g, '0')), 'g');
+    if (entera.test(t)) { t = t.replace(entera, l.trim().replace(/⁰/g, 'º')); continue; }
+    // Si pdftotext la parte de otro modo, cada cero por el trozo que lo rodea.
+    for (const m of l.matchAll(/⁰/g)) {
+      const antes = l.slice(Math.max(0, m.index - 10), m.index).replace(/⁰/g, 'º');
+      const despues = l.slice(m.index + 1, m.index + 7).replace(/⁰/g, '0');
+      const re = new RegExp(`(${esc(antes.trimStart())})0(\\s*${esc(despues.trim())})`);
+      t = t.replace(re, '$1º$2');
+    }
+  }
+  return t;
+}
+
 /**
  * Texto del cuestionario en uno de tres modos de pdftotext:
  *   normal → con los guiones repuestos desde -raw (2020–2026);
  *   raw    → orden del contenido: sirve cuando el normal separa las letras «a) b) c) d)» de sus textos (2015);
  *   layout → disposición física, con el mismo fin.
  */
-export function textoCuestionario(pdf, rotulos, modo = 'normal') {
+export function textoCuestionario(pdf, rotulos, modo = 'normal', grados = []) {
   const r = Array.isArray(rotulos) ? rotulos : [];
-  if (modo === 'raw') return quitarRotulos(unirCompuestos(pdftotextCon(pdf, '-raw')), r);
-  if (modo === 'layout') return quitarRotulos(pdftotextCon(pdf, '-layout'), r);
-  return quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), r);
+  if (modo === 'raw') return reponerGrados(quitarRotulos(unirCompuestos(pdftotextCon(pdf, '-raw')), r), grados);
+  if (modo === 'layout') return reponerGrados(quitarRotulos(pdftotextCon(pdf, '-layout'), r), grados);
+  return reponerGrados(quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), r), grados);
 }
 
-/** «estribor-⏎babor» → «estribor-babor» (texto de pdftotext -raw). Exportada para los tests. */
+/**
+ * Guion de final de línea en el texto de pdftotext -raw: «estribor-⏎babor» → «estribor-babor» (palabra compuesta: las dos
+ * partes son palabras que salen sueltas en el cuadernillo), pero «obsta-⏎culiza» → «obstaculiza» y «cor-⏎ta» → «corta»
+ * (palabra partida por sílabas al maquetar: 3ª de 2015). Exportada para los tests.
+ */
 export function unirCompuestos(texto) {
-  return texto.replace(/([a-záéíóúñü])-\n(?=[a-záéíóúñü])/g, '$1-');
+  const sueltas = new Set(texto.replace(/[a-záéíóúñü]+-\n[a-záéíóúñü]+/gi, ' ').toLowerCase().match(/[a-záéíóúñü]+/g) ?? []);
+  return texto.replace(/([a-záéíóúñü]+)-\n([a-záéíóúñü]+)/gi, (m, a, b) => {
+    if (!/^[a-záéíóúñü]/.test(b) || !/[a-záéíóúñü]$/.test(a)) return m;
+    return sueltas.has(a.toLowerCase()) && sueltas.has(b.toLowerCase()) ? `${a}-${b}` : `${a}${b}`;
+  });
+}
+
+/**
+ * Datos del anuario dentro del enunciado (PY navegación 2/2016: «18. Puerto de Cádiz. Información del Anuario de Mareas
+ * para el 7 de junio de 2016: Hora Alt 03:48 3,34 … Calcular …»): la tabla pasa al contexto de la pregunta, y la
+ * siguiente que remite a ella («Información del Anuario de Mareas en el enunciado del ejercicio anterior») lleva el mismo
+ * contexto. Exportada para los tests.
+ */
+export function separarAnuario(q, i, todas) {
+  const m = /^(.*?Información del Anuario de Mareas para el [^:]{4,40}:)\s*(Hora\s+Alt\.?((?:\s+\d{1,2}:\d{2}\s+-?\d+,\d{1,2})+))\s+/i.exec(q.enunciado);
+  if (m) {
+    const filas = m[3].trim().split(/\s+(?=\d{1,2}:\d{2})/).join('\n');
+    q.contexto = [q.contexto, `MAREAS\n${m[1].trim()}\nHora Alt.\n${filas}`].filter(Boolean).join('\n');
+    q.enunciado = q.enunciado.slice(m[0].length).trim();
+    q.anuario = q.contexto;
+    return q;
+  }
+  const ant = todas?.[i - 1];
+  if (/Anuario de Mareas en el enunciado del ejercicio anterior/i.test(q.enunciado) && ant?.anuario) q.contexto = [q.contexto, ant.anuario].filter(Boolean).join('\n');
+  return q;
 }
 
 /** Calidad de una lectura: preguntas en secuencia 1..n con sus cuatro opciones no vacías. */
@@ -137,12 +196,12 @@ export function separarTabla(q) {
  * Preguntas de un cuestionario. Se lee en modo normal y, si no salen las n preguntas completas, se prueban -raw y
  * -layout y se queda la mejor lectura (modo en el resultado, para el informe).
  */
-export function leerCuestionario(pdf, rotulos, n = null) {
+export function leerCuestionario(pdf, rotulos, n = null, grados = []) {
   let mejor = null;
   for (const modo of ['normal', 'raw', 'layout']) {
-    const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo), REGLAS_ANDALUCIA);
+    const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo, grados), REGLAS_ANDALUCIA);
     const ex = examenes[0];
-    const r = { preguntas: ex.preguntas.map(separarTabla), fecha: fechaPortada(ex.lineasPrevias), modo };
+    const r = { preguntas: ex.preguntas.map(separarTabla).map(separarAnuario), fecha: fechaPortada(ex.lineasPrevias), modo };
     r.calidad = n ? calidad(r.preguntas, n) : 0;
     if (!mejor || r.calidad > mejor.calidad) mejor = r;
     if (!n || r.calidad === n) break;
@@ -180,11 +239,14 @@ export function extraer(ctx, tit) {
   const nDe = (t) => (tit === 'per' ? 45 : 20);
   const hojas = leerHojas(trabajos.map((t) => ({ pdf: rutaPDF(eje, t.p), n: nDe(t) })));
   const rotulos = leerRotulos(trabajos.map((t) => rutaPDF(eje, t.c)));
+  const grados = leerGradosCero(trabajos.map((t) => rutaPDF(eje, t.c)));
   const apariciones = [];
   const modos = {};
+  // Figuras recortadas de los cuestionarios (ejes/<eje>/figuras.json: «<conv>|<modelo o módulo>|<número>» → [rutas]).
+  const figuras = leerJSON(join(dirEje(eje), 'figuras.json'), {});
   for (const t of trabajos) {
     const cfgConv = config.convocatorias.find((c) => c.clave === t.clave);
-    const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)], nDe(t));
+    const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)], nDe(t), grados[rutaPDF(eje, t.c)] ?? []);
     if (cu.modo !== 'normal') modos[`${t.clave} ${tit} ${t.modelo}`] = cu.modo;
     const hoja = hojas[rutaPDF(eje, t.p)];
     if (hoja?.error) avisos.add('extraer', `${t.clave} ${tit} ${t.modelo}: hoja óptica ilegible (${hoja.error})`);
@@ -205,6 +267,7 @@ export function extraer(ctx, tit) {
         numero: q.numero, orden: tit === 'py' ? (modulo === 'navegacion' ? 20 : 0) + q.numero : q.numero,
         seccion: q.seccion, utPdf: ut ? Number(ut) : null, utTituloPdf: utTitulo || null,
         enunciado: q.enunciado, opciones: q.opciones, contexto: q.contexto ?? null,
+        figuras: figuras[`${conv}|${variante ?? modulo}|${q.numero}`] ?? [],
         // umbral: tinta neta mínima de una burbuja marcada en esa hoja (para medir la confianza de la lectura en los informes).
         respuesta: r ? { letras: r.marca ? [...r.marca] : [], estado: r.estado, origen: 'omr', puntos: r.puntos, umbral: hoja.umbral?.marca ?? null } : { letras: [], estado: 'sin-hoja', origen: 'omr' },
         fecha: cu.fecha ?? fechaConfig ?? null,

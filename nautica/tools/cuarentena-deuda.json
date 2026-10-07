@@ -1791,6 +1791,10 @@
   {
    "clave": "podcast/py/2-6-nieblas.md#párrafo 75#and-py-2026-c1-g20#texto",
    "motivo": "El minijuego lee una pregunta pública (and-py-2025-c1-g17) cuya opción b) repite casi el enunciado corto de la reservada (\"las nieblas de radiación son debidas a…\"): no es la reservada."
+  },
+  {
+   "clave": "data/conceptos/nomenclatura-maniobra.json#conceptos.99.temario#bal-per-2026-06-c-28#texto",
+   "motivo": "Cita literal del punto 7.2 del anexo II del RD 875/2014 («Nombrar las tres fases de la curva de evolución…»), que coincide con el enunciado de la pregunta: es el temario oficial, no la pregunta."
   }
  ]
 }

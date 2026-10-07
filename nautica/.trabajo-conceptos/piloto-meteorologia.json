@@ -1,0 +1,443 @@
+{
+ "andalucia/per/and-2022-c2-t34": [
+  "meteo.presion.isobaras"
+ ],
+ "andalucia/per/and-2026-c2-t35": [
+  "meteo.presion.valor-normal"
+ ],
+ "andalucia/per/and-2017-c2-t36": [
+  "meteo.presion.isobaras"
+ ],
+ "dgmm/per/dgmm-per-2020-12-123": [
+  "meteo.temperatura.escala"
+ ],
+ "dgmm/per/dgmm-per-2021-07-79": [
+  "meteo.presion.valor-normal"
+ ],
+ "dgmm/per/dgmm-per-2021-12-80": [
+  "meteo.sistemas.anticiclon"
+ ],
+ "dgmm/per/dgmm-per-2022-12-79": [
+  "meteo.presion.definicion"
+ ],
+ "dgmm/per/dgmm-per-2023-11-79": [
+  "meteo.presion.valor-normal"
+ ],
+ "dgmm/per/dgmm-per-2025-04-33": [
+  "meteo.mar.fetch",
+  "meteo.mar.persistencia"
+ ],
+ "baleares/per/bal-per-2017-07-c-34": [
+  "meteo.presion.barometro"
+ ],
+ "baleares/per/bal-per-2018-04-e-36": [
+  "meteo.presion.barometro"
+ ],
+ "baleares/per/bal-per-2018-12-a-35": [
+  "meteo.presion.valor-normal"
+ ],
+ "baleares/per/bal-per-2020-12-e-35": [
+  "meteo.presion.valor-normal"
+ ],
+ "baleares/per/bal-per-2021-12-f-34": [
+  "meteo.presion.tendencia"
+ ],
+ "baleares/per/bal-per-2023-03-bf-33": [
+  "meteo.presion.barometro"
+ ],
+ "baleares/per/bal-per-2025-07-a-35": [
+  "meteo.presion.isobaras"
+ ],
+ "andalucia/per/and-2022-c1-t36": [
+  "meteo.sistemas.circulacion",
+  "meteo.sistemas.borrasca"
+ ],
+ "andalucia/per/and-2026-c1-t34": [
+  "meteo.sistemas.trayectoria"
+ ],
+ "andalucia/per/and-2018-c3-t35": [
+  "meteo.sistemas.circulacion",
+  "meteo.sistemas.borrasca"
+ ],
+ "dgmm/per/dgmm-per-2022-06-33": [
+  "meteo.sistemas.circulacion"
+ ],
+ "dgmm/per/dgmm-per-2024-06-79": [
+  "meteo.sistemas.circulacion",
+  "meteo.sistemas.borrasca"
+ ],
+ "baleares/per/bal-per-2018-04-e-34": [
+  "meteo.sistemas.borrasca"
+ ],
+ "baleares/per/bal-per-2019-04-b-34": [
+  "meteo.sistemas.circulacion"
+ ],
+ "baleares/per/bal-per-2020-12-e-36": [
+  "meteo.sistemas.trayectoria"
+ ],
+ "baleares/per/bal-per-2023-03-e-35": [
+  "meteo.viento.direccion"
+ ],
+ "baleares/per/bal-per-2026-03-a-33": [
+  "meteo.sistemas.borrasca"
+ ],
+ "andalucia/per/and-2024-c3-t36": [
+  "meteo.viento.rolar"
+ ],
+ "andalucia/per/and-2017-c2-t34": [
+  "meteo.viento.racha"
+ ],
+ "dgmm/per/dgmm-per-2021-02-78": [
+  "meteo.viento.rolar"
+ ],
+ "dgmm/per/dgmm-per-2022-12-80": [
+  "meteo.viento.direccion"
+ ],
+ "baleares/per/bal-per-2017-03-ci-34": [
+  "meteo.viento.rolar"
+ ],
+ "baleares/per/bal-per-2019-04-e-34": [
+  "meteo.viento.rolar"
+ ],
+ "baleares/per/bal-per-2022-06-d-36": [
+  "meteo.viento.rolar"
+ ],
+ "andalucia/per/and-2020-c1-t36": [
+  "meteo.viento.aparente-casos"
+ ],
+ "andalucia/per/and-2019-c2-t36": [
+  "meteo.viento.real-aparente",
+  "meteo.viento.anemometro"
+ ],
+ "baleares/per/bal-per-2017-03-fa-34": [
+  "meteo.viento.direccion"
+ ],
+ "baleares/per/bal-per-2020-10-a-35": [
+  "meteo.viento.aparente-casos"
+ ],
+ "baleares/per/bal-per-2025-09-d-34": [
+  "meteo.viento.real-aparente",
+  "meteo.viento.veleta-catavientos"
+ ],
+ "andalucia/per/and-2024-c3-t33": [
+  "meteo.brisas.terral",
+  "meteo.brisas.virazon"
+ ],
+ "andalucia/per/and-2018-c3-t33": [
+  "meteo.brisas.terral"
+ ],
+ "dgmm/per/dgmm-per-2021-04-78": [
+  "meteo.brisas.terral"
+ ],
+ "dgmm/per/dgmm-per-2024-11-35": [
+  "meteo.brisas.terral"
+ ],
+ "baleares/per/bal-per-2019-06-c-36": [
+  "meteo.brisas.terral"
+ ],
+ "baleares/per/bal-per-2024-04-df-36": [
+  "meteo.brisas.origen"
+ ],
+ "andalucia/per/and-2022-c2-t36": [
+  "meteo.mar.fetch"
+ ],
+ "andalucia/per/and-2025-c2-t34": [
+  "meteo.mar.douglas"
+ ],
+ "andalucia/per/and-2019-c2-t35": [
+  "meteo.mar.persistencia"
+ ],
+ "dgmm/per/dgmm-per-2021-07-34": [
+  "meteo.mar.douglas"
+ ],
+ "dgmm/per/dgmm-per-2022-10-80": [
+  "meteo.mar.douglas"
+ ],
+ "dgmm/per/dgmm-per-2024-11-33": [
+  "meteo.mar.fetch"
+ ],
+ "baleares/per/bal-per-2017-03-ge-36": [
+  "meteo.mar.factores",
+  "meteo.mar.fetch"
+ ],
+ "baleares/per/bal-per-2018-09-a-36": [
+  "meteo.mar.factores"
+ ],
+ "baleares/per/bal-per-2020-07-espbn-35": [
+  "meteo.mar.fetch"
+ ],
+ "baleares/per/bal-per-2021-03-b-36": [
+  "meteo.viento.anemometro"
+ ],
+ "baleares/per/bal-per-2023-06-bg-34": [
+  "meteo.viento.anemometro"
+ ],
+ "andalucia/per/and-2026-c1-t33": [
+  "meteo.brisas.terral"
+ ],
+ "dgmm/per/dgmm-per-2024-04-79": [
+  "meteo.prevision.fuentes"
+ ],
+ "baleares/per/bal-per-2020-12-d-34": [
+  "meteo.prevision.radio"
+ ],
+ "dgmm/per/dgmm-per-2025-11-79": [
+  "meteo.viento.refrescar-caer"
+ ],
+ "dgmm/per/dgmm-per-2026-04-35": [
+  "meteo.prevision.radio"
+ ],
+ "baleares/per/bal-per-2018-04-a-33": [
+  "meteo.presion.tendencia"
+ ],
+ "baleares/per/bal-per-2021-09-e-36": [
+  "meteo.mar.fetch"
+ ],
+ "baleares/per/bal-per-2025-12-a-33": [
+  "meteo.presion.isobaras"
+ ],
+ "baleares/per/bal-per-2026-06-c-35": [
+  "meteo.viento.real-aparente"
+ ],
+ "andalucia/py/and-py-2022-c1-g12": [
+  "meteo.presion.gradiente"
+ ],
+ "andalucia/py/and-py-2025-c1-g14": [
+  "meteo.presion.gradiente"
+ ],
+ "andalucia/py/and-py-2016-c1-g16": [
+  "meteo.presion.definicion"
+ ],
+ "dgmm/py/dgmm-py-2019-06-14": [
+  "meteo.presion.gradiente"
+ ],
+ "dgmm/py/dgmm-py-2022-06-15": [
+  "meteo.frentes.frio"
+ ],
+ "baleares/py/bal-py-2017-03-cb-14": [
+  "meteo.presion.tendencia"
+ ],
+ "baleares/py/bal-py-2019-04-a-12": [
+  "meteo.sistemas.borrasca"
+ ],
+ "baleares/py/bal-py-2022-12-b-11": [
+  "meteo.presion.gradiente"
+ ],
+ "baleares/py/bal-py-2025-07-b-20": [
+  "meteo.presion.gradiente"
+ ],
+ "andalucia/py/and-py-2022-c3-g15": [
+  "meteo.frentes.calido"
+ ],
+ "andalucia/py/and-py-2025-c3-g16": [
+  "meteo.frentes.frio"
+ ],
+ "andalucia/py/and-py-2016-c1-g17": [
+  "meteo.frentes.frio"
+ ],
+ "andalucia/py/and-py-2018-c4-g19": [
+  "meteo.frentes.ocluido"
+ ],
+ "dgmm/py/dgmm-py-2022-12-11": [
+  "meteo.frentes.ocluido"
+ ],
+ "baleares/py/bal-py-2017-03-cb-16": [
+  "meteo.frentes.frio"
+ ],
+ "baleares/py/bal-py-2019-04-a-19": [
+  "meteo.frentes.frio"
+ ],
+ "baleares/py/bal-py-2021-06-b-15": [
+  "meteo.frentes.frio",
+  "meteo.nubes.generos"
+ ],
+ "andalucia/py/and-py-2021-c1-g13": [
+  "meteo.modelos.geostrofico"
+ ],
+ "andalucia/py/and-py-2024-c2-g18": [
+  "meteo.modelos.antitriptico"
+ ],
+ "andalucia/py/and-py-2016-c1-g11": [
+  "meteo.modelos.antitriptico"
+ ],
+ "andalucia/py/and-py-2019-c2-g11": [
+  "meteo.modelos.antitriptico"
+ ],
+ "dgmm/py/dgmm-py-2023-11-20": [
+  "meteo.modelos.geostrofico",
+  "meteo.modelos.euler"
+ ],
+ "baleares/py/bal-py-2019-04-b-13": [
+  "meteo.modelos.ciclostrofico"
+ ],
+ "baleares/py/bal-py-2025-12-a-13": [
+  "meteo.modelos.geostrofico"
+ ],
+ "andalucia/py/and-py-2023-c2-g13": [
+  "meteo.regionales.galerna"
+ ],
+ "andalucia/py/and-py-2026-c2-g11": [
+  "meteo.regionales.mistral"
+ ],
+ "andalucia/py/and-py-2018-c4-g14": [
+  "meteo.regionales.vendaval"
+ ],
+ "dgmm/py/dgmm-py-2021-02-20": [
+  "meteo.corrientes.portugal-canarias"
+ ],
+ "dgmm/py/dgmm-py-2024-04-17": [
+  "meteo.corrientes.cantabrico"
+ ],
+ "baleares/py/bal-py-2018-12-a-20": [
+  "meteo.regionales.gregal"
+ ],
+ "baleares/py/bal-py-2023-06-b-11": [
+  "meteo.regionales.rosa",
+  "meteo.regionales.mistral"
+ ],
+ "andalucia/py/and-py-2020-c3-g19": [
+  "meteo.humedad.punto-rocio"
+ ],
+ "andalucia/py/and-py-2024-c1-g19": [
+  "meteo.humedad.relativa"
+ ],
+ "andalucia/py/and-py-2015-c2-g12": [
+  "meteo.humedad.absoluta"
+ ],
+ "andalucia/py/and-py-2017-c3-g18": [
+  "meteo.humedad.absoluta"
+ ],
+ "dgmm/py/dgmm-py-2021-12-17": [
+  "meteo.humedad.punto-rocio"
+ ],
+ "baleares/py/bal-py-2017-03-a-15": [
+  "meteo.humedad.punto-rocio"
+ ],
+ "baleares/py/bal-py-2018-12-a-15": [
+  "meteo.humedad.relativa"
+ ],
+ "baleares/py/bal-py-2021-03-b-17": [
+  "meteo.humedad.relativa"
+ ],
+ "baleares/py/bal-py-2024-12-a-15": [
+  "meteo.humedad.absoluta"
+ ],
+ "andalucia/py/and-py-2022-c3-g19": [
+  "meteo.nubes.altura"
+ ],
+ "andalucia/py/and-py-2025-c3-g17": [
+  "meteo.nubes.generos",
+  "meteo.nubes.altura"
+ ],
+ "andalucia/py/and-py-2016-c2-g12": [
+  "meteo.nubes.convectivas"
+ ],
+ "andalucia/py/and-py-2018-c1b-g11": [
+  "meteo.nubes.convectivas"
+ ],
+ "dgmm/py/dgmm-py-2022-12-18": [
+  "meteo.nieblas.frontal"
+ ],
+ "baleares/py/bal-py-2018-06-a-15": [
+  "meteo.nubes.generos"
+ ],
+ "baleares/py/bal-py-2021-03-ac-11": [
+  "meteo.nubes.generos"
+ ],
+ "andalucia/py/and-py-2021-c2-g19": [
+  "meteo.nieblas.clasificacion"
+ ],
+ "andalucia/py/and-py-2024-c2-g11": [
+  "meteo.nieblas.vapor"
+ ],
+ "andalucia/py/and-py-2016-c1-g13": [
+  "meteo.nieblas.adveccion"
+ ],
+ "andalucia/py/and-py-2018-c4-g20": [
+  "meteo.nieblas.adveccion"
+ ],
+ "dgmm/py/dgmm-py-2023-11-11": [
+  "meteo.nieblas.disipacion"
+ ],
+ "baleares/py/bal-py-2018-04-b-19": [
+  "meteo.nieblas.definicion"
+ ],
+ "baleares/py/bal-py-2025-04-bc-18": [
+  "meteo.nieblas.frontal"
+ ],
+ "andalucia/py/and-py-2022-c3-g12": [
+  "meteo.olas.altura",
+  "meteo.olas.partes"
+ ],
+ "andalucia/py/and-py-2024-c2-g19": [
+  "meteo.olas.mar-de-viento"
+ ],
+ "andalucia/py/and-py-2016-c3-g17": [
+  "meteo.olas.altura"
+ ],
+ "dgmm/py/dgmm-py-2020-12-13": [
+  "meteo.olas.periodo"
+ ],
+ "baleares/py/bal-py-2017-03-cb-12": [
+  "meteo.mar.fetch",
+  "meteo.olas.altura-significativa"
+ ],
+ "baleares/py/bal-py-2019-12-a-18": [
+  "meteo.olas.periodo"
+ ],
+ "baleares/py/bal-py-2025-12-b-12": [
+  "meteo.olas.mar-de-fondo"
+ ],
+ "andalucia/py/and-py-2022-c3-g18": [
+  "meteo.corrientes.gradiente"
+ ],
+ "andalucia/py/and-py-2024-c3-g20": [
+  "meteo.corrientes.portugal-canarias"
+ ],
+ "andalucia/py/and-py-2026-c2-g20": [
+  "meteo.corrientes.cantabrico"
+ ],
+ "andalucia/py/and-py-2016-c2-g19": [
+  "meteo.corrientes.gradiente"
+ ],
+ "andalucia/py/and-py-2017-c3-g19": [
+  "meteo.corrientes.arrastre"
+ ],
+ "andalucia/py/and-py-2019-c1-g18": [
+  "meteo.corrientes.gradiente"
+ ],
+ "baleares/py/bal-py-2017-12-a-13": [
+  "meteo.regionales.alisios",
+  "meteo.regionales.identificacion"
+ ],
+ "baleares/py/bal-py-2021-03-ac-16": [
+  "meteo.corrientes.mediterraneo-central"
+ ],
+ "dgmm/py/dgmm-py-2024-11-11": [
+  "meteo.regionales.calidos-sur"
+ ],
+ "dgmm/py/dgmm-py-2024-11-20": [
+  "meteo.humedad.punto-rocio"
+ ],
+ "dgmm/py/dgmm-py-2025-04-19": [
+  "meteo.corrientes.portugal-canarias"
+ ],
+ "dgmm/py/dgmm-py-2025-11-18": [
+  "meteo.humedad.punto-rocio"
+ ],
+ "dgmm/py/dgmm-py-2026-04-17": [
+  "meteo.modelos.euler"
+ ],
+ "baleares/py/bal-py-2019-04-b-18": [
+  "meteo.presion.gradiente"
+ ],
+ "baleares/py/bal-py-2024-07-bc-18": [
+  "meteo.humedad.punto-rocio"
+ ],
+ "baleares/py/bal-py-2026-03-b-12": [
+  "meteo.corrientes.arrastre"
+ ],
+ "baleares/py/bal-py-2026-06-b-15": [
+  "meteo.modelos.euler"
+ ]
+}

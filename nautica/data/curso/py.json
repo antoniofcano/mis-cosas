@@ -3192,6 +3192,11 @@
       },
       {
        "tipo": "texto",
+       "titulo": "Altura significativa",
+       "texto": "Un mar real mezcla olas de muchas alturas, así que para hablar de «la altura de las olas» se usa la **altura significativa**: la **media del tercio más alto** de las olas observadas. Es la que da el parte de mar y la que estima a ojo un observador experto. Alguna ola aislada será bastante mayor que ella, pero es lo que se espera ver con más frecuencia entre las grandes."
+      },
+      {
+       "tipo": "texto",
        "titulo": "Frecuencia",
        "texto": "- **Frecuencia**: número de olas (crestas) que pasan por un punto fijo **en cada segundo**. Es la **inversa del periodo**: **f = 1 / T**.\nCon un periodo de 8 s, f = 1/8 = **0,125 olas por segundo** (hercios), unas 7,5 por minuto.\nNo es una distancia ni un tiempo: la distancia entre crestas es la longitud de onda y el tiempo, el periodo."
       },

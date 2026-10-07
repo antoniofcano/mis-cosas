@@ -18,6 +18,7 @@ data/ejes/<eje>/<tit>/preguntas.json      banco normalizado (tit = per | py)
 data/ejes/<eje>/<tit>/explicaciones.json  { <id>: { explicacion, clave, trampa?, ilustraciones?, discrepancia?, defendible?, verificada? } }
 data/ejes/<eje>/<tit>/practica.json       { <leccionId>: [ids] }   preguntas de práctica de cada clase, para este eje
 data/ejes/<eje>/<tit>/resueltos.json      { <leccionId>: regla }   preguntas resueltas por la app que ilustran una clase de carta (opcional)
+data/ejes/<eje>/<tit>/conceptos.json      { <id>: [concepto principal, secundario?] }   conceptos del catálogo común (docs/CONCEPTOS.md; opcional)
 data/ejes/<eje>/img/                      figuras de preguntas (rutas relativas a data/ejes/<eje>/)
 data/comun/mnemotecnias.json              reglas nemotécnicas (comunes; citan ids de preguntas de cualquier eje)
 data/comun/vocabulario-<tit>.json         vocabulario para tocar en las preguntas (común)

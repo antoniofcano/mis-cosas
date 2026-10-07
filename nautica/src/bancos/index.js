@@ -14,6 +14,7 @@ import { SOLUCIONES } from './soluciones.js';
 import { EJE_POR_DEFECTO } from './registro.js';
 import { equivalenteEn } from './equivalentes.js';
 import { validarConfig, aplicarConfigCurso, aplicarConfigReglas, aplicarConfigReglasDe } from '../course/config-profe.js';
+import { RUTA_INDICE, rutaGrupo } from '../conceptos/catalogo.js';
 
 export { EJE_POR_DEFECTO, SOLUCIONES };
 
@@ -119,6 +120,16 @@ export function crearBancos(leer) {
     reglas: aplicarConfigReglas(m.reglas, configActiva()), reglasDe: (id) => aplicarConfigReglasDe(m.reglasDe(id), configActiva()), porDefecto: m.reglas,
   }));
 
+  /**
+   * Catálogo de conceptos (común a todos los ejes, docs/CONCEPTOS.md): los ficheros de grupo de data/conceptos/ que
+   * nombra su índice, ya leídos (un grupo que aún no existe se salta). Sin catálogo, []. Se carga solo si se pide.
+   */
+  const cargarCatalogoConceptos = () => memo('conceptos', async () => {
+    const indice = await leer(RUTA_INDICE).catch(() => ({ grupos: [] }));
+    const grupos = await Promise.all((indice.grupos ?? []).map((g) => leer(rutaGrupo(g)).catch(() => null)));
+    return grupos.filter(Boolean);
+  });
+
   /** Vocabulario para tocar en las preguntas. El de Yate incluye el del PER (se da por sabido); su matiz manda. */
   const cargarVocabulario = (tit = 'per') => memo(`vocab:${tit}`, async () => {
     const listas = await Promise.all((tit === 'py' ? ['per', 'py'] : ['per']).map((t) => leer(`data/comun/vocabulario-${t}.json`).then((d) => d.terminos ?? []).catch(() => [])));
@@ -204,6 +215,8 @@ export function crearBancos(leer) {
       practicaDe: (leccionId) => (practica[leccionId] ?? []).filter((id) => enEstudio.has(id)),
       resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId).filter((id) => enEstudio.has(id)),
       lista: (id) => listas.find((l) => l.id === id) ?? null,
+      /** Conceptos de cada pregunta ({ id: [principal, secundario?] }, docs/CONCEPTOS.md); se lee la primera vez que se pide. */
+      etiquetasConceptos: () => lee('conceptos.json', {}),
       /** La lista a la que pertenece una pregunta (la primera que la incluye). */
       listaDe: (q) => listas.find((l) => enLista(l, q)) ?? listas[0],
     };
@@ -302,7 +315,7 @@ export function crearBancos(leer) {
     return listas.some((l) => l.requiere === 'carta') && q.requiere?.includes('carta') ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };
 }
 
 // ---------------------------------------------------------------------------
@@ -321,4 +334,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva } = bancos;

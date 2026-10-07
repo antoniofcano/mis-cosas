@@ -1,0 +1,777 @@
+{
+ "andalucia/per/and-2015-c1-t24": [
+  "ripa.luces.calado"
+ ],
+ "andalucia/per/and-2016-c1-t23": [
+  "ripa.senales.duda"
+ ],
+ "andalucia/per/and-2016-c3-t16": [
+  "baliza.cardinal.luz"
+ ],
+ "andalucia/per/and-2016-c3-t17": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "andalucia/per/and-2016-c3-t20": [
+  "ripa.riesgo-abordaje.evaluacion"
+ ],
+ "andalucia/per/and-2016-c3-t24": [
+  "ripa.vuelta-encontrada",
+  "ripa.situacion.por-luces"
+ ],
+ "andalucia/per/and-2017-c1-t15": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "andalucia/per/and-2017-c1-t20": [
+  "ripa.def.pesca"
+ ],
+ "andalucia/per/and-2017-c2-t13": [
+  "baliza.nuevo-peligro"
+ ],
+ "andalucia/per/and-2017-c2-t15": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "andalucia/per/and-2017-c3-t25": [
+  "ripa.visibilidad.conducta"
+ ],
+ "andalucia/per/and-2018-c1-t26": [
+  "ripa.luces.sin-gobierno"
+ ],
+ "andalucia/per/and-2018-c2-t23": [
+  "ripa.cruce",
+  "ripa.dst.no-estorbar"
+ ],
+ "andalucia/per/and-2018-c3-t16": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "andalucia/per/and-2018-c3-t20": [
+  "ripa.peligro.senales"
+ ],
+ "andalucia/per/and-2018-c3-t27": [
+  "ripa.luces.motor-pequeno"
+ ],
+ "andalucia/per/and-2019-c2-t16": [
+  "baliza.peligro-aislado.aspecto"
+ ],
+ "andalucia/per/and-2019-c2-t17": [
+  "baliza.cardinal.colores"
+ ],
+ "andalucia/per/and-2019-c2-t24": [
+  "ripa.senales.maniobra"
+ ],
+ "andalucia/per/and-2019-c2-t26": [
+  "ripa.canal.adelantar"
+ ],
+ "andalucia/per/and-2019-c3-t23": [
+  "ripa.situacion.por-luces",
+  "ripa.sigue-rumbo"
+ ],
+ "andalucia/per/and-2019-c3-t24": [
+  "ripa.canal.navegar"
+ ],
+ "andalucia/per/and-2019-c3-t27": [
+  "ripa.jerarquia.motor-vela"
+ ],
+ "andalucia/per/and-2020-c1-t18": [
+  "ripa.cruce"
+ ],
+ "andalucia/per/and-2020-c1-t27": [
+  "ripa.visibilidad.radar"
+ ],
+ "andalucia/per/and-2021-c1-t14": [
+  "baliza.peligro-aislado.luz"
+ ],
+ "andalucia/per/and-2021-c2-t24": [
+  "ripa.luces.def.costado"
+ ],
+ "andalucia/per/and-2022-c1-t20": [
+  "ripa.velocidad-seguridad.definicion"
+ ],
+ "andalucia/per/and-2022-c2-t27": [
+  "ripa.dst.zona-separacion"
+ ],
+ "andalucia/per/and-2022-c3-t21": [
+  "ripa.def.vela"
+ ],
+ "andalucia/per/and-2023-c1-t18": [
+  "ripa.dst.no-estorbar"
+ ],
+ "andalucia/per/and-2023-c1-t26": [
+  "ripa.senales.maniobra"
+ ],
+ "andalucia/per/and-2023-c2-t14": [
+  "baliza.peligro-aislado.uso",
+  "baliza.peligro-aislado.aspecto"
+ ],
+ "andalucia/per/and-2023-c3-t16": [
+  "baliza.cardinal.tope",
+  "baliza.iala.reconocer"
+ ],
+ "andalucia/per/and-2024-c1-t24": [
+  "ripa.jerarquia.motor-vela"
+ ],
+ "andalucia/per/and-2024-c1-t27": [
+  "ripa.maniobra-evitar"
+ ],
+ "andalucia/per/and-2024-c2-t16": [
+  "baliza.lateral.banda"
+ ],
+ "andalucia/per/and-2024-c2-t17": [
+  "baliza.cardinal.tope"
+ ],
+ "andalucia/per/and-2024-c2-t19": [
+  "ripa.luces.motor"
+ ],
+ "andalucia/per/and-2024-c2-t21": [
+  "ripa.def.vista-visibilidad"
+ ],
+ "andalucia/per/and-2024-c2-t24": [
+  "ripa.situacion.por-luces",
+  "ripa.cruce"
+ ],
+ "andalucia/per/and-2024-c2-t26": [
+  "ripa.marcas.pesca"
+ ],
+ "andalucia/per/and-2024-c3-t13": [
+  "baliza.lateral.banda"
+ ],
+ "andalucia/per/and-2024-c3-t15": [
+  "baliza.cardinal.tope",
+  "baliza.cardinal.significado"
+ ],
+ "andalucia/per/and-2025-c1-t19": [
+  "ripa.marcas.vela-motor",
+  "ripa.luces.motor"
+ ],
+ "andalucia/per/and-2025-c1-t20": [
+  "ripa.dst.cruzar"
+ ],
+ "andalucia/per/and-2025-c1-t21": [
+  "ripa.canal.recodo"
+ ],
+ "andalucia/per/and-2025-c1-t22": [
+  "ripa.def.en-navegacion"
+ ],
+ "andalucia/per/and-2025-c1-t26": [
+  "ripa.marcas.pesca"
+ ],
+ "andalucia/per/and-2025-c2-t22": [
+  "ripa.dst.costera"
+ ],
+ "andalucia/per/and-2025-c2-t26": [
+  "ripa.alcance.obligacion",
+  "ripa.jerarquia.motor-vela"
+ ],
+ "andalucia/per/and-2025-c3-t18": [
+  "ripa.vela.misma-banda"
+ ],
+ "andalucia/per/and-2025-c3-t25": [
+  "ripa.def.maniobra-restringida"
+ ],
+ "andalucia/per/and-2026-c1-t22": [
+  "ripa.cruce"
+ ],
+ "andalucia/per/and-2026-c2-t16": [
+  "baliza.aguas-navegables.luz"
+ ],
+ "andalucia/per/and-2026-c2-t25": [
+  "ripa.situacion.por-luces",
+  "ripa.jerarquia.motor-vela"
+ ],
+ "baleares/per/bal-per-2017-03-a-13": [
+  "baliza.cardinal.tope"
+ ],
+ "baleares/per/bal-per-2017-03-a-22": [
+  "ripa.cruce"
+ ],
+ "baleares/per/bal-per-2017-03-a-27": [
+  "ripa.vela.misma-banda"
+ ],
+ "baleares/per/bal-per-2017-03-b-17": [
+  "baliza.peligro-aislado.luz"
+ ],
+ "baleares/per/bal-per-2017-03-ci-16": [
+  "baliza.cardinal.luz"
+ ],
+ "baleares/per/bal-per-2017-03-fa-23": [
+  "ripa.luces.def.todo-horizonte"
+ ],
+ "baleares/per/bal-per-2017-03-ge-14": [
+  "baliza.especial.aspecto"
+ ],
+ "baleares/per/bal-per-2017-03-ge-20": [
+  "ripa.def.vela"
+ ],
+ "baleares/per/bal-per-2017-03-ge-26": [
+  "ripa.peligro.senales"
+ ],
+ "baleares/per/bal-per-2017-03-ge-27": [
+  "ripa.luces.varado"
+ ],
+ "baleares/per/bal-per-2017-03-ge-38": [
+  "baliza.nuevo-peligro"
+ ],
+ "baleares/per/bal-per-2017-07-b-14": [
+  "baliza.especial.uso"
+ ],
+ "baleares/per/bal-per-2017-07-b-24": [
+  "ripa.senales.maniobra"
+ ],
+ "baleares/per/bal-per-2017-07-c-13": [
+  "baliza.peligro-aislado.aspecto"
+ ],
+ "baleares/per/bal-per-2017-07-c-16": [
+  "baliza.cardinal.tope",
+  "baliza.cardinal.colores"
+ ],
+ "baleares/per/bal-per-2017-07-eda-20": [
+  "ripa.canal.no-estorbar"
+ ],
+ "baleares/per/bal-per-2017-07-eda-26": [
+  "ripa.luces.sin-gobierno"
+ ],
+ "baleares/per/bal-per-2017-07-fc-13": [
+  "baliza.nuevo-peligro"
+ ],
+ "baleares/per/bal-per-2017-07-fc-23": [
+  "ripa.def.pesca"
+ ],
+ "baleares/per/bal-per-2017-07-fc-27": [
+  "ripa.cruce"
+ ],
+ "baleares/per/bal-per-2017-09-a-13": [
+  "baliza.aguas-navegables.aspecto"
+ ],
+ "baleares/per/bal-per-2017-09-a-22": [
+  "ripa.luces.def.tope"
+ ],
+ "baleares/per/bal-per-2017-09-a-24": [
+  "ripa.luces.aerodeslizador-wig"
+ ],
+ "baleares/per/bal-per-2017-09-c-21": [
+  "ripa.niebla.larga-dos-cortas"
+ ],
+ "baleares/per/bal-per-2017-09-d-24": [
+  "ripa.cruce"
+ ],
+ "baleares/per/bal-per-2017-09-e-20": [
+  "ripa.luces.fondeado"
+ ],
+ "baleares/per/bal-per-2017-12-a-17": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "baleares/per/bal-per-2017-12-a-20": [
+  "ripa.velocidad-seguridad.factores"
+ ],
+ "baleares/per/bal-per-2017-12-b-15": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "baleares/per/bal-per-2017-12-c-18": [
+  "ripa.luces.cuando"
+ ],
+ "baleares/per/bal-per-2018-04-c-19": [
+  "ripa.senales.maniobra"
+ ],
+ "baleares/per/bal-per-2018-04-e-18": [
+  "ripa.rumbo.secciones"
+ ],
+ "baleares/per/bal-per-2018-06-i-16": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "baleares/per/bal-per-2018-09-a-25": [
+  "ripa.marcas.vela-motor"
+ ],
+ "baleares/per/bal-per-2018-09-e-17": [
+  "baliza.iala.regiones"
+ ],
+ "baleares/per/bal-per-2018-12-a-14": [
+  "baliza.cardinal.colores"
+ ],
+ "baleares/per/bal-per-2018-12-c-24": [
+  "ripa.luces.sin-gobierno"
+ ],
+ "baleares/per/bal-per-2018-12-c-27": [
+  "ripa.luces.sin-gobierno"
+ ],
+ "baleares/per/bal-per-2019-04-c-20": [
+  "ripa.alcance.definicion"
+ ],
+ "baleares/per/bal-per-2019-04-e-16": [
+  "baliza.lateral.aspecto"
+ ],
+ "baleares/per/bal-per-2019-04-e-27": [
+  "ripa.luces.varado"
+ ],
+ "baleares/per/bal-per-2019-04-f-25": [
+  "ripa.senales.equipo"
+ ],
+ "baleares/per/bal-per-2019-06-a-17": [
+  "baliza.cardinal.colores"
+ ],
+ "baleares/per/bal-per-2019-06-c-20": [
+  "ripa.riesgo-abordaje.demora"
+ ],
+ "baleares/per/bal-per-2019-09-a-20": [
+  "ripa.niebla.larga-dos-cortas"
+ ],
+ "baleares/per/bal-per-2019-09-a-23": [
+  "ripa.luces.fondeado"
+ ],
+ "baleares/per/bal-per-2019-09-b-23": [
+  "ripa.def.buque"
+ ],
+ "baleares/per/bal-per-2019-09-c-25": [
+  "ripa.luces.dragaminas"
+ ],
+ "baleares/per/bal-per-2019-09-d-24": [
+  "ripa.luces.vela"
+ ],
+ "baleares/per/bal-per-2019-12-a-26": [
+  "ripa.ambito"
+ ],
+ "baleares/per/bal-per-2019-12-e-26": [
+  "ripa.luces.sin-gobierno",
+  "ripa.luces.maniobra-restringida"
+ ],
+ "baleares/per/bal-per-2020-07-c-20": [
+  "ripa.luces.vela-pequena-remo"
+ ],
+ "baleares/per/bal-per-2020-07-d-22": [
+  "ripa.niebla.pequenas"
+ ],
+ "baleares/per/bal-per-2020-07-e-26": [
+  "ripa.niebla.remolcado"
+ ],
+ "baleares/per/bal-per-2020-10-e-13": [
+  "baliza.peligro-aislado.luz"
+ ],
+ "baleares/per/bal-per-2020-12-a-22": [
+  "ripa.luces.varado"
+ ],
+ "baleares/per/bal-per-2020-12-c-13": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "baleares/per/bal-per-2020-12-d-15": [
+  "baliza.cardinal.colores"
+ ],
+ "baleares/per/bal-per-2020-12-g-18": [
+  "ripa.llamar-atencion"
+ ],
+ "baleares/per/bal-per-2021-03-a-18": [
+  "ripa.ambito"
+ ],
+ "baleares/per/bal-per-2021-03-a-25": [
+  "ripa.maniobra-evitar"
+ ],
+ "baleares/per/bal-per-2021-03-b-18": [
+  "ripa.jerarquia.calado"
+ ],
+ "baleares/per/bal-per-2021-03-c-18": [
+  "ripa.jerarquia.categorias"
+ ],
+ "baleares/per/bal-per-2021-03-eg-15": [
+  "baliza.aguas-navegables.luz"
+ ],
+ "baleares/per/bal-per-2021-03-eg-25": [
+  "ripa.luces.vela"
+ ],
+ "baleares/per/bal-per-2021-03-h-13": [
+  "baliza.cardinal.colores"
+ ],
+ "baleares/per/bal-per-2021-06-d-24": [
+  "ripa.peligro.senales"
+ ],
+ "baleares/per/bal-per-2021-06-e-16": [
+  "baliza.luz.ritmos"
+ ],
+ "baleares/per/bal-per-2021-06-f-21": [
+  "ripa.riesgo-abordaje.demora"
+ ],
+ "baleares/per/bal-per-2021-06-f-25": [
+  "ripa.luces.remolcador",
+  "ripa.luces.remolcado"
+ ],
+ "baleares/per/bal-per-2021-09-a-24": [
+  "ripa.luces.remolcado"
+ ],
+ "baleares/per/bal-per-2021-09-d-22": [
+  "ripa.ambito"
+ ],
+ "baleares/per/bal-per-2021-09-e-27": [
+  "ripa.luces.def.todo-horizonte"
+ ],
+ "baleares/per/bal-per-2021-09-f-17": [
+  "baliza.cardinal.colores"
+ ],
+ "baleares/per/bal-per-2021-12-a-14": [
+  "baliza.peligro-aislado.luz"
+ ],
+ "baleares/per/bal-per-2021-12-c-19": [
+  "ripa.senales.luminosas"
+ ],
+ "baleares/per/bal-per-2021-12-f-22": [
+  "ripa.luces.pesca-otra",
+  "ripa.jerarquia.categorias"
+ ],
+ "baleares/per/bal-per-2022-06-a-25": [
+  "ripa.jerarquia.categorias"
+ ],
+ "baleares/per/bal-per-2022-06-b-13": [
+  "baliza.iala.tipos"
+ ],
+ "baleares/per/bal-per-2022-09-a-16": [
+  "baliza.especial.uso"
+ ],
+ "baleares/per/bal-per-2022-09-b-27": [
+  "ripa.def.maniobra-restringida"
+ ],
+ "baleares/per/bal-per-2022-09-c-18": [
+  "ripa.luces.pesca-otra"
+ ],
+ "baleares/per/bal-per-2022-09-c-21": [
+  "ripa.alcance.obligacion"
+ ],
+ "baleares/per/bal-per-2022-09-c-24": [
+  "ripa.vuelta-encontrada"
+ ],
+ "baleares/per/bal-per-2022-09-m-22": [
+  "ripa.riesgo-abordaje.demora"
+ ],
+ "baleares/per/bal-per-2022-12-be-27": [
+  "ripa.def.buque"
+ ],
+ "baleares/per/bal-per-2022-12-c-18": [
+  "ripa.canal.no-estorbar"
+ ],
+ "baleares/per/bal-per-2022-12-c-25": [
+  "ripa.senales.duda"
+ ],
+ "baleares/per/bal-per-2023-03-bf-22": [
+  "ripa.niebla.larga-dos-cortas"
+ ],
+ "baleares/per/bal-per-2023-09-c-22": [
+  "ripa.luces.calado"
+ ],
+ "baleares/per/bal-per-2023-12-e-27": [
+  "ripa.niebla.motor"
+ ],
+ "baleares/per/bal-per-2024-04-a-17": [
+  "baliza.cardinal.luz"
+ ],
+ "baleares/per/bal-per-2024-04-ce-19": [
+  "ripa.senales.equipo"
+ ],
+ "baleares/per/bal-per-2024-04-df-16": [
+  "baliza.lateral.banda"
+ ],
+ "baleares/per/bal-per-2024-07-c-15": [
+  "baliza.aguas-navegables.luz"
+ ],
+ "baleares/per/bal-per-2024-07-c-18": [
+  "ripa.luces.draga"
+ ],
+ "baleares/per/bal-per-2024-12-a-13": [
+  "baliza.lateral.numeracion"
+ ],
+ "baleares/per/bal-per-2024-12-b-23": [
+  "ripa.dst.uso"
+ ],
+ "baleares/per/bal-per-2025-04-c-16": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "baleares/per/bal-per-2025-07-a-19": [
+  "ripa.niebla.larga-dos-cortas"
+ ],
+ "baleares/per/bal-per-2025-07-a-24": [
+  "ripa.niebla.fondeado-varado"
+ ],
+ "baleares/per/bal-per-2025-09-a-15": [
+  "baliza.aguas-navegables.uso"
+ ],
+ "baleares/per/bal-per-2025-09-a-23": [
+  "ripa.luces.cuando"
+ ],
+ "baleares/per/bal-per-2025-09-c-23": [
+  "ripa.luces.def.alcance"
+ ],
+ "baleares/per/bal-per-2025-12-c-27": [
+  "ripa.luces.vela"
+ ],
+ "baleares/per/bal-per-2026-03-a-13": [
+  "baliza.cardinal.maniobra",
+  "baliza.cardinal.luz"
+ ],
+ "baleares/per/bal-per-2026-06-a-23": [
+  "ripa.def.sin-gobierno"
+ ],
+ "baleares/per/bal-per-2026-06-c-19": [
+  "ripa.luces.practico",
+  "ripa.luces.def.alcance"
+ ],
+ "baleares/per/bal-per-2026-06-c-20": [
+  "ripa.cruce"
+ ],
+ "baleares/per/bal-per-2026-09-c-14": [
+  "baliza.lateral.aspecto",
+  "baliza.lateral.luz"
+ ],
+ "baleares/per/bal-per-2026-09-d-14": [
+  "baliza.especial.uso"
+ ],
+ "dgmm/per/dgmm-per-2019-06-24": [
+  "ripa.riesgo-abordaje.evaluacion"
+ ],
+ "dgmm/per/dgmm-per-2019-06-58": [
+  "baliza.lateral.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2019-06-62": [
+  "baliza.peligro-aislado.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2020-12-107": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "dgmm/per/dgmm-per-2020-12-111": [
+  "ripa.luces.def.costado"
+ ],
+ "dgmm/per/dgmm-per-2020-12-150": [
+  "baliza.aguas-navegables.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2020-12-64": [
+  "ripa.vigilancia",
+  "ripa.rumbo.secciones"
+ ],
+ "dgmm/per/dgmm-per-2020-12-68": [
+  "ripa.canal.navegar"
+ ],
+ "dgmm/per/dgmm-per-2021-02-65": [
+  "ripa.canal.navegar"
+ ],
+ "dgmm/per/dgmm-per-2021-02-66": [
+  "ripa.def.calado"
+ ],
+ "dgmm/per/dgmm-per-2021-02-69": [
+  "ripa.luces.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2021-02-70": [
+  "ripa.vigilancia"
+ ],
+ "dgmm/per/dgmm-per-2021-04-58": [
+  "baliza.aguas-navegables.uso"
+ ],
+ "dgmm/per/dgmm-per-2021-04-62": [
+  "baliza.cardinal.tope"
+ ],
+ "dgmm/per/dgmm-per-2021-04-67": [
+  "ripa.peligro.senales"
+ ],
+ "dgmm/per/dgmm-per-2021-04-72": [
+  "ripa.senales.luminosas"
+ ],
+ "dgmm/per/dgmm-per-2021-07-21": [
+  "ripa.niebla.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2021-07-26": [
+  "ripa.luces.fondeado"
+ ],
+ "dgmm/per/dgmm-per-2021-07-59": [
+  "baliza.lateral.banda",
+  "baliza.lateral.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2021-07-64": [
+  "ripa.visibilidad.senal-proa"
+ ],
+ "dgmm/per/dgmm-per-2021-10-23": [
+  "ripa.canal.navegar"
+ ],
+ "dgmm/per/dgmm-per-2021-10-60": [
+  "baliza.aguas-navegables.luz"
+ ],
+ "dgmm/per/dgmm-per-2021-10-63": [
+  "ripa.alcance.obligacion"
+ ],
+ "dgmm/per/dgmm-per-2021-10-69": [
+  "ripa.def.maniobra-restringida"
+ ],
+ "dgmm/per/dgmm-per-2021-12-14": [
+  "baliza.peligro-aislado.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2021-12-66": [
+  "ripa.cede-paso"
+ ],
+ "dgmm/per/dgmm-per-2021-12-67": [
+  "ripa.jerarquia.categorias"
+ ],
+ "dgmm/per/dgmm-per-2022-04-15": [
+  "baliza.cardinal.colores"
+ ],
+ "dgmm/per/dgmm-per-2022-04-59": [
+  "baliza.lateral.bifurcacion"
+ ],
+ "dgmm/per/dgmm-per-2022-04-63": [
+  "ripa.luces.pesca-arrastre"
+ ],
+ "dgmm/per/dgmm-per-2022-04-65": [
+  "ripa.responsabilidad"
+ ],
+ "dgmm/per/dgmm-per-2022-04-69": [
+  "ripa.luces.motor"
+ ],
+ "dgmm/per/dgmm-per-2022-06-24": [
+  "ripa.vela.bandas-contrarias"
+ ],
+ "dgmm/per/dgmm-per-2022-10-19": [
+  "ripa.luces.motor"
+ ],
+ "dgmm/per/dgmm-per-2022-10-60": [
+  "baliza.especial.uso"
+ ],
+ "dgmm/per/dgmm-per-2022-10-64": [
+  "ripa.jerarquia.hidroavion-wig"
+ ],
+ "dgmm/per/dgmm-per-2022-12-15": [
+  "baliza.aguas-navegables.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2022-12-20": [
+  "ripa.jerarquia.categorias"
+ ],
+ "dgmm/per/dgmm-per-2022-12-24": [
+  "ripa.peligro.uso"
+ ],
+ "dgmm/per/dgmm-per-2023-04-20": [
+  "ripa.riesgo-abordaje.demora"
+ ],
+ "dgmm/per/dgmm-per-2023-04-24": [
+  "ripa.responsabilidad"
+ ],
+ "dgmm/per/dgmm-per-2023-04-60": [
+  "baliza.aguas-navegables.luz"
+ ],
+ "dgmm/per/dgmm-per-2023-04-69": [
+  "ripa.def.maniobra-restringida"
+ ],
+ "dgmm/per/dgmm-per-2023-06-61": [
+  "baliza.cardinal.luz"
+ ],
+ "dgmm/per/dgmm-per-2023-06-65": [
+  "ripa.luces.aerodeslizador-wig",
+  "ripa.luces.motor-pequeno"
+ ],
+ "dgmm/per/dgmm-per-2023-11-14": [
+  "baliza.especial.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2023-11-16": [
+  "baliza.lateral.sentido-convencional"
+ ],
+ "dgmm/per/dgmm-per-2023-11-58": [
+  "baliza.aguas-navegables.aspecto",
+  "baliza.aguas-navegables.luz"
+ ],
+ "dgmm/per/dgmm-per-2023-11-65": [
+  "ripa.luces.def.alcance"
+ ],
+ "dgmm/per/dgmm-per-2023-11-71": [
+  "ripa.niebla.motor"
+ ],
+ "dgmm/per/dgmm-per-2023-11-72": [
+  "ripa.peligro.senales"
+ ],
+ "dgmm/per/dgmm-per-2024-04-24": [
+  "ripa.luces.def.remolque"
+ ],
+ "dgmm/per/dgmm-per-2024-04-70": [
+  "ripa.jerarquia.categorias"
+ ],
+ "dgmm/per/dgmm-per-2024-06-22": [
+  "ripa.sigue-rumbo"
+ ],
+ "dgmm/per/dgmm-per-2024-06-60": [
+  "baliza.aguas-navegables.uso"
+ ],
+ "dgmm/per/dgmm-per-2024-06-69": [
+  "ripa.niebla.motor"
+ ],
+ "dgmm/per/dgmm-per-2024-11-66": [
+  "ripa.vuelta-encontrada",
+  "ripa.situacion.por-luces"
+ ],
+ "dgmm/per/dgmm-per-2024-11-67": [
+  "ripa.velocidad-seguridad.factores"
+ ],
+ "dgmm/per/dgmm-per-2025-04-16": [
+  "baliza.especial.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2025-04-25": [
+  "ripa.luces.maniobra-restringida",
+  "ripa.luces.motor"
+ ],
+ "dgmm/per/dgmm-per-2025-04-68": [
+  "ripa.senales.luminosas"
+ ],
+ "dgmm/per/dgmm-per-2025-11-15": [
+  "baliza.especial.luz",
+  "baliza.especial.aspecto"
+ ],
+ "dgmm/per/dgmm-per-2025-11-18": [
+  "ripa.responsabilidad"
+ ],
+ "dgmm/per/dgmm-per-2025-11-67": [
+  "ripa.senales.maniobra",
+  "ripa.senales.pitadas"
+ ],
+ "dgmm/per/dgmm-per-2025-11-71": [
+  "ripa.llamar-atencion"
+ ],
+ "dgmm/per/dgmm-per-2026-04-61": [
+  "baliza.peligro-aislado.luz"
+ ],
+ "dgmm/per/dgmm-per-2026-06-19": [
+  "ripa.sigue-rumbo"
+ ],
+ "dgmm/per/dgmm-per-2026-06-26": [
+  "ripa.luces.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2020-12-21": [
+  "ripa.vela.barlovento"
+ ],
+ "dgmm/per/dgmm-per-2025-11-25": [
+  "ripa.vela.barlovento"
+ ],
+ "baleares/per/bal-per-2022-03-a-26": [
+  "ripa.vela.barlovento"
+ ],
+ "baleares/per/bal-per-2022-12-fd-20": [
+  "ripa.vela.barlovento"
+ ],
+ "andalucia/per/and-2015-c2-t21": [
+  "ripa.luces.draga"
+ ],
+ "andalucia/per/and-2026-c1-t21": [
+  "ripa.luces.buceo"
+ ],
+ "andalucia/per/and-2016-c2-t26": [
+  "ripa.luces.buceo"
+ ],
+ "dgmm/per/dgmm-per-2020-12-108": [
+  "ripa.luces.buceo"
+ ],
+ "baleares/per/bal-per-2020-10-e-25": [
+  "ripa.luces.buceo"
+ ],
+ "baleares/per/bal-per-2021-09-f-18": [
+  "ripa.luces.buceo"
+ ],
+ "baleares/per/bal-per-2025-09-a-25": [
+  "ripa.niebla.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2022-12-25": [
+  "ripa.niebla.practico"
+ ],
+ "dgmm/per/dgmm-per-2024-11-64": [
+  "ripa.niebla.practico"
+ ],
+ "baleares/per/bal-per-2021-06-g-27": [
+  "ripa.niebla.practico"
+ ],
+ "baleares/per/bal-per-2024-04-df-21": [
+  "ripa.niebla.practico"
+ ]
+}

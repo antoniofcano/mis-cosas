@@ -51,3 +51,7 @@ Rama `feat/discrepancias-oficiales`. Solo se han tocado `explicaciones.json` (ca
 - La clase `py-2-9` dice «en torno a 2 nudos» para el Estrecho; las preguntas de Baleares citan 4 a 7 y 6 nudos. Las explicaciones ya dicen que son máximos con marea; la clase podría citar ambas cifras (no se ha tocado: solo explicaciones).
 - `dgmm-per-2021-04-75` y la corrección del texto de `dgmm-per-2026-04-11` salen de la revisión, no del encargo. El criterio de `dgmm-per-2021-04-75` es médico (no de legislación ni matemáticas); conviene que lo valide quien lleve primeros auxilios.
 - La fuente `correccion` de `dgmm-per-2021-12-82` apunta a la rectificación de Patrón de Yate (preguntas 39 y 36), no a la de PER; la plantilla de PER es la que da «A y C».
+
+## Pendientes de validación humana (revertidas antes de publicar)
+- `dgmm-per-2021-04-75` (torniquete): la discrepancia es un criterio médico (guías actuales de primeros auxilios frente a la Guía Médica del ISM). No es legislación ni matemáticas; se deja como estaba hasta que un profesional sanitario lo valide.
+- `bal-py-2017-03-a-18` y `bal-py-2018-04-a-13` (corriente del Estrecho): las cifras («1 o 2 nudos», puntas de 6) no están contrastadas con una fuente. Se dejan como estaban hasta contrastarlas con el Derrotero o los pilot charts.

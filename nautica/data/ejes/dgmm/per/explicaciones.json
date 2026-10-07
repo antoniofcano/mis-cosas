@@ -2333,10 +2333,8 @@
   "clave": "A sólido, B líquido, C gas, D metal, F cocina."
  },
  "dgmm-per-2021-04-75": {
-  "explicacion": "La Guía Médica del Instituto Social de la Marina indica aflojar el torniquete cada 15 minutos, durante unos segundos, para que llegue sangre a los tejidos que están por debajo. Es un último recurso para hemorragias que no paran con presión directa, y hay que trasladar cuanto antes a la persona a un servicio médico: prolongar la isquemia durante horas puede dañar el miembro.",
-  "clave": "Torniquete: aflojar cada cuarto de hora.",
-  "discrepancia": "La plantilla sigue la Guía Médica del Instituto Social de la Marina, que recomendaba aflojar el torniquete de forma periódica. Las guías actuales de primeros auxilios (por ejemplo, las del Consejo Europeo de Resucitación) indican no aflojarlo una vez colocado, ni dejarlo en manos de quien no es personal sanitario: al aflojarlo la hemorragia se reanuda y se pierde su control. Por eso la d) es defendible con la doctrina actual, aunque en el examen cuenta la plantilla.",
-  "defendible": "d"
+  "explicacion": "La Guía Médica del Instituto Social de la Marina indica aflojar el torniquete cada 15 minutos, durante unos segundos, para que llegue sangre a los tejidos que están por debajo. Es un último recurso para hemorragias que no paran con presión directa. Mantenerlo apretado una o dos horas, o sin aflojar, puede destruir el miembro.",
+  "clave": "Torniquete: aflojar cada cuarto de hora."
  },
  "dgmm-per-2021-04-31": {
   "explicacion": "La llamada selectiva digital (LSD) del VHF se transmite siempre por el canal 70; después las comunicaciones de voz siguen por el 16. El canal 16 es el de socorro en voz, no el de LSD, y el 07 y el 77 son canales de trabajo.",

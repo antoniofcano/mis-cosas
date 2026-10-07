@@ -250,8 +250,7 @@
  "bal-py-2017-03-a-18": {
   "explicacion": "En el Estrecho de Gibraltar la corriente general superficial entra del Atlántico al Mediterráneo, hacia el este, porque el Mediterráneo pierde por evaporación más agua de la que recibe; por debajo sale hacia el oeste agua mediterránea más salada. Sumada a las corrientes de marea, en el Estrecho puede alcanzar varios nudos, y el tribunal da de 4 a 7: la a).",
   "clave": "Estrecho: en superficie, el Atlántico entra hacia el E.",
-  "trampa": "La c) da la dirección de la corriente profunda, que sale hacia el W.",
-  "discrepancia": "El sentido es correcto: en superficie la corriente general entra hacia el este. Lo discutible es la cifra. La corriente general superficial ronda 1 o 2 nudos (algo más junto a Tarifa); solo al sumarle la corriente de marea y el viento pasa de 4 nudos, y las puntas en torno a 6 nudos se dan en los pasos más estrechos con mareas vivas. Dar de 4 a 7 nudos como lo que puede alcanzar la corriente general la sobrestima, y 7 nudos queda por encima de los máximos que suelen citarse. La plantilla se queda con la a) leyendo la pregunta como el máximo posible con todos los factores; la b) (de 0 a 2 nudos) sería la corriente general sin marea."
+  "trampa": "La c) da la dirección de la corriente profunda, que sale hacia el W."
  },
  "bal-py-2017-03-cb-18": {
   "explicacion": "Las olas se describen con cuatro parámetros fundamentales: altura (de seno a cresta), longitud (entre dos crestas), periodo (tiempo entre dos crestas) y velocidad de propagación: la b). La a) y la c) se dejan uno fuera, y la persistencia es un factor del viento que genera las olas, no un parámetro de la ola.",
@@ -1152,8 +1151,7 @@
  "bal-py-2018-04-a-13": {
   "explicacion": "En el Estrecho de Gibraltar la corriente superficial predominante entra del Atlántico al Mediterráneo: viene del oeste y va hacia el este. Sumada a la marea, puede llegar a unos 6 nudos en algunos puntos. Por eso es la a); cruzándolo de norte a sur la tendrás por el costado de estribor.",
   "clave": "Estrecho: en superficie, la corriente viene del W y va hacia el E.",
-  "trampa": "La d) confunde «proviene del» con «va hacia».",
-  "discrepancia": "Las cuatro opciones dan la misma intensidad, así que la pregunta se decide por el origen: la corriente superficial viene del oeste y va hacia el este. Los 6 nudos son un máximo excepcional, con marea y viento a favor en los pasos más estrechos; la corriente general superficial ronda 1 o 2 nudos."
+  "trampa": "La d) confunde «proviene del» con «va hacia»."
  },
  "bal-py-2018-04-b-13": {
   "explicacion": "La oficial clasifica los cúmulos como nubes bajas, porque su base está por debajo de unos 2 000 m, que es como los agrupa la clasificación internacional de la OMM: la b). No son nubes medias ni altas.",

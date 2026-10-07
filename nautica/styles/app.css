@@ -1128,7 +1128,7 @@ details.ws-enunciado .ws-statement { margin: .2rem 0 .4rem; }
 /* ---- Ayudas de la práctica: botón «Chuleta» (y hueco para la calculadora) y el panel ---- */
 .ayudas { display: inline-flex; align-items: center; gap: .3rem; flex-wrap: wrap; }
 .ayudas-hueco:empty { display: none; }
-.boton-chuleta { display: inline-flex; align-items: center; gap: .3rem; min-height: 48px; padding: .3rem .7rem; border-radius: 999px; white-space: nowrap; }
+button.boton-chuleta { display: inline-flex; align-items: center; gap: .3rem; min-height: 48px; padding: .3rem .7rem; border-radius: 999px; white-space: nowrap; }
 .boton-chuleta .ico { width: 20px; height: 20px; }
 .boton-chuleta.activo { background: var(--accent-2); }
 header.con-ayudas { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; }
@@ -1141,7 +1141,7 @@ header.con-ayudas .ayudas { margin-left: auto; }
 .chuleta-titulo { flex: 1; font-size: 1.1rem; margin: 0; }
 .chuleta-titulo:focus { outline: none; }
 .chuleta-titulo:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-.chuleta-cerrar { min-width: 48px; min-height: 48px; padding: 0; display: grid; place-items: center; border-radius: 50%; }
+button.chuleta-cerrar { min-width: 48px; min-height: 48px; padding: 0; display: grid; place-items: center; border-radius: 50%; }
 .chuleta-cerrar .ico { width: 20px; height: 20px; }
 .chuleta-aviso { margin: 0 0 .4rem; font-size: .85rem; color: var(--muted); }
 .chuleta-ficha h3, .chuleta-clases h3 { font-size: 1rem; margin: .7rem 0 .2rem; color: var(--accent); }
@@ -1151,9 +1151,9 @@ header.con-ayudas .ayudas { margin-left: auto; }
 .chuleta-clases details summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
 .chuleta-clases { border-top: 1px solid var(--border); margin-top: .6rem; }
 /* En la mesa de cartas, la chuleta flota sobre la carta (no sobre la respuesta, que está en el panel). */
-.chuleta-panel.flotante { position: absolute; top: .5rem; left: .5rem; z-index: 4; width: min(380px, calc(100% - 1rem)); max-height: calc(100% - 1rem); margin: 0; box-shadow: 0 8px 30px rgba(10, 30, 60, .25); background: var(--surface); }
-@media (max-width: 860px) { .ws-head .boton-chuleta span { display: none; } }
-@media (max-width: 400px) { .ba-derecha .boton-chuleta span { display: none; } .ba-derecha .boton-chuleta { padding: 0; width: 48px; justify-content: center; } }
+.chuleta-panel.flotante { position: absolute; bottom: .5rem; left: .5rem; z-index: 4; width: min(380px, calc(100% - 1rem)); max-height: calc(100% - 8.5rem); margin: 0; box-shadow: 0 8px 30px rgba(10, 30, 60, .25); background: var(--surface); }
+@media (max-width: 860px) { .ws-head .boton-chuleta-texto { display: none; } .ws-head .boton-chuleta { width: 48px; padding: 0; justify-content: center; } }
+@media (max-width: 400px) { .ba-derecha .boton-chuleta-texto { display: none; } .ba-derecha .boton-chuleta { padding: 0; width: 48px; justify-content: center; } }
 
 /* ---- Siglas y términos que se explican al tocarlos ---- */
 button.glosa { display: inline; min-height: 0; padding: .35em 0; margin: -.35em 0; border: 0; border-radius: 0; background: none; color: inherit; font: inherit; font-weight: inherit; line-height: inherit; text-align: inherit; cursor: help;

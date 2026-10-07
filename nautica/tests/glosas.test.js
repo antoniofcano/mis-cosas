@@ -20,7 +20,10 @@ test('palabra completa: «Ct» sí, «Ctra», «CT» y «ct» no', () => {
   assert.deepEqual(marcas('Ct = dm + Δ', g), [['Ct', 'ab:Ct'], ['dm', 'ab:dm'], ['Δ', 'ab:Δ']]);
   assert.deepEqual(marcas('Por la Ctra. de Cádiz', g), []);
   assert.deepEqual(marcas('CT y ct no son la corrección total', g), []);
-  assert.deepEqual(marcas('Rv2 y 2Rv no; (Rv) sí', g), [['Rv', 'ab:Rv']]);
+  assert.deepEqual(marcas('Rv2 y 2Rv no; «Rv» sí', g), [['Rv', 'ab:Rv']]);
+  // Entre paréntesis justo detrás de su nombre ya está explicada: se marca la siguiente vez.
+  assert.deepEqual(buscarGlosas('Rumbo verdadero (Rv). Después, Rv = 045°.', g).filter((x) => x.tipo === 'glosa').map((x) => x.texto), ['Rv']);
+  assert.equal(buscarGlosas('Rumbo verdadero (Rv). Después, Rv = 045°.', g).findIndex((x) => x.tipo === 'glosa'), 1);
   assert.deepEqual(marcas('HRB: 10:30', g), [['HRB', 'ab:HRB']]);
   assert.deepEqual(marcas('Ra=230º', g), [['Ra', 'ab:Ra']]);
 });
@@ -76,6 +79,19 @@ test('el sentido de cada sigla depende del tema: Ct es centelleante en balizamie
   assert.deepEqual([...clavesTema({ tit: 'per', ut: 5, leccion: 'per-5-3' })], ['per-5', 'per-5-3']);
 });
 
+test('los términos del vocabulario, solo en su tema y los afines: «en navegación» del RIPA no sale en una clase de carta', () => {
+  const v = vocab('per');
+  const carta = compilarGlosas({ abreviaturas: AB, terminos: v }, { tit: 'per', ut: 10 });
+  const ripa = compilarGlosas({ abreviaturas: AB, terminos: v }, { tit: 'per', ut: 6 });
+  assert.deepEqual(marcas('En navegación hay tres nortes', carta), []);
+  assert.deepEqual(marcas('Un buque en navegación', ripa).map(([, id]) => id), ['vo:en-navegacion']);
+  // Con la aguja de la carta sí (tema afín, PER 11), también desde el PY.
+  assert.deepEqual(marcas('la aguja', carta), [['aguja', 'vo:aguja']]);
+  assert.deepEqual(marcas('la aguja', compilarGlosas({ terminos: vocab('py') }, { tit: 'py', ut: 4 })), [['aguja', 'vo:aguja']]);
+  // Sin tema (tarjetas de memoria), todos.
+  assert.deepEqual(marcas('Un buque en navegación', compilarGlosas({ terminos: v }, { tit: 'per' })).length, 1);
+});
+
 test('excluir: lo que delataría la respuesta no se marca (y no se marca otra cosa dentro)', () => {
   const g = soloSiglas({ tit: 'py', ut: 3 });
   assert.deepEqual(marcas('¿Qué es el COG y el SOG?', g, new Set(), { excluir: (e) => e.titulo === 'COG' }), [['SOG', 'ab:SOG']]);
@@ -83,7 +99,7 @@ test('excluir: lo que delataría la respuesta no se marca (y no se marca otra co
 
 test('con el vocabulario real: términos de varias palabras antes que los de una', () => {
   const g = compilarGlosas({ abreviaturas: AB, terminos: vocab('py') }, { tit: 'py', ut: 3 });
-  const conVarias = vocab('py').flatMap((t) => (t.formas ?? []).map((f) => [f, t.id])).find(([f]) => f.includes(' '));
+  const conVarias = vocab('py').filter((t) => t.temas?.includes('py-3')).flatMap((t) => (t.formas ?? []).map((f) => [f, t.id])).find(([f]) => f.includes(' '));
   assert.ok(conVarias, 'hay términos de varias palabras');
   const [forma, id] = conVarias;
   assert.deepEqual(marcas(`Aquí, ${forma}.`, g), [[forma, `vo:${id}`]]);

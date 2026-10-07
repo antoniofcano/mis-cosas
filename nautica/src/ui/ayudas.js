@@ -59,8 +59,8 @@ export function crearAyudas(ctx) {
     h('p.chuleta-aviso', 'Solo para practicar: en el examen no la tendrás.'),
     cuerpo);
   panel.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { ev.preventDefault(); pon(false, true); boton.focus(); } });
-  const boton = h('button.secondary.small.boton-chuleta', { type: 'button', 'aria-expanded': 'false', 'aria-controls': id, onclick: () => pon(panel.hidden, true) },
-    icono('temario'), h('span', 'Chuleta'));
+  const boton = h('button.secondary.small.boton-chuleta', { type: 'button', 'aria-label': 'Chuleta', title: 'Chuleta: fórmulas y signos', 'aria-expanded': 'false', 'aria-controls': id, onclick: () => pon(panel.hidden, true) },
+    icono('temario'), h('span.boton-chuleta-texto', 'Chuleta'));
   const barra = h('div.ayudas', { role: 'toolbar', 'aria-label': 'Ayudas' }, boton, huecos);
 
   let pintado = '';
@@ -115,7 +115,8 @@ export function crearAyudas(ctx) {
     if (ev.detail.desde !== panel) { pon(ev.detail.abierta); if (ev.detail.abierta) pinta(); }
   };
   addEventListener('nautica-chuleta', sincroniza);
-  if (leeAbierta()) { pon(true); pinta(); }
+  // Abierta la última vez: se abre sola en la página (en la mesa de cartas, no: taparía la carta nada más abrirla).
+  if (!actual.flotante && leeAbierta()) { pon(true); pinta(); }
 
   return {
     barra,

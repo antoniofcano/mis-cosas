@@ -10,6 +10,19 @@ const escapa = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const FUERA = '(?<![\\p{L}\\p{N}_])';
 const DENTRO = '(?![\\p{L}\\p{N}_])';
 
+/**
+ * Temas que tratan lo mismo en las dos titulaciones (la navegación del PER y la del PY, la meteorología, la seguridad):
+ * un término del vocabulario se explica en su tema y en los afines; fuera de ellos, no (en una clase de navegación,
+ * «en navegación» no es el término del RIPA).
+ */
+export const TEMAS_AFINES = {
+  'per-10': ['per-11', 'py-3', 'py-4'], 'per-11': ['per-10', 'py-3', 'py-4'], 'py-3': ['py-4', 'per-10', 'per-11'], 'py-4': ['py-3', 'per-10', 'per-11'],
+  'per-9': ['py-2'], 'py-2': ['per-9'],
+  'per-3': ['per-8', 'py-1'], 'per-8': ['per-3', 'py-1'], 'py-1': ['per-3', 'per-8'],
+  'per-1': ['per-2', 'per-7'], 'per-2': ['per-1', 'per-7'], 'per-7': ['per-1', 'per-2'],
+  'per-5': [], 'per-6': [], 'per-4': [],
+};
+
 /** Claves de tema de un contexto: «per-5» (titulación y UT) y la clase («per-5-3»). */
 export function clavesTema({ tit, ut, leccion } = {}) {
   return new Set([tit && ut != null ? `${tit}-${ut}` : null, leccion ?? null].filter(Boolean));
@@ -31,9 +44,13 @@ export function compilarGlosas({ abreviaturas = [], terminos = [] } = {}, ctx = 
     const ya = porSigla.get(a.sigla);
     if (!ya || (especifica && !ya.temas?.length)) porSigla.set(a.sigla, a);
   }
+  // Términos: los del tema y sus afines (sin tema en el contexto, todos).
+  const tema = ctx.tit && ctx.ut != null ? `${ctx.tit}-${ctx.ut}` : null;
+  const afines = tema ? new Set([tema, ...(TEMAS_AFINES[tema] ?? [])]) : null;
+  const delTema = afines ? terminos.filter((t) => !t.temas?.length || t.temas.some((x) => afines.has(x))) : terminos;
   const porForma = new Map();
-  const porTermino = new Map(terminos.map((t) => [t.id, t]));
-  for (const t of terminos) for (const f of t.formas ?? []) if (f && !porForma.has(f.toLowerCase())) porForma.set(f.toLowerCase(), t);
+  const porTermino = new Map(delTema.map((t) => [t.id, t]));
+  for (const t of delTema) for (const f of t.formas ?? []) if (f && !porForma.has(f.toLowerCase())) porForma.set(f.toLowerCase(), t);
   const alternativas = (formas) => formas.sort((a, b) => b.length - a.length).map(escapa).join('|');
   return {
     porSigla,
@@ -69,7 +86,9 @@ export function buscarGlosas(texto, g, usados = new Set(), { excluir } = {}) {
   if (g.reSigla) {
     for (const m of s.matchAll(g.reSigla)) {
       const a = g.porSigla.get(m[0]);
-      const excepto = (a.excepto ?? []).some((frase) => s.startsWith(frase, m.index));
+      // «Norte verdadero (Nv)»: la sigla entre paréntesis ya viene explicada al lado; no se marca esa vez.
+      const explicada = s[m.index - 1] === '(' && s[m.index + m[0].length] === ')';
+      const excepto = explicada || (a.excepto ?? []).some((frase) => s.startsWith(frase, m.index));
       hallados.push({ i: m.index, fin: m.index + m[0].length, id: excepto ? null : `ab:${a.sigla}`, clase: 'abreviatura' });
     }
   }

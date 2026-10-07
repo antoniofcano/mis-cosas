@@ -615,5 +615,148 @@
    }
   ],
   "concepto": null
+ },
+ "and-py-2016-c3-n07": {
+  "explicacion": "Los Avisos a los Navegantes, que publica cada semana el Instituto Hidrográfico de la Marina, recogen las correcciones a cartas, derroteros, libros de faros y catálogos, además de avisos de ejercicios de tiro y otras novedades de interés para la navegación. Los derroteros describen la costa y también se corrigen con ellos; el «libro de correcciones» no es una publicación oficial.",
+  "clave": "Lo que se corrige: cartas, derroteros, faros. Lo que corrige: Avisos a los Navegantes.",
+  "trampa": "La d): suena lógico, pero la publicación se llama Avisos a los Navegantes.",
+  "concepto": "and-py-2024-c1-n04"
+ },
+ "and-py-2016-c3-n08": {
+  "explicacion": "Con viento y sin corriente, el barco se desplaza hacia sotavento y avanza por el agua según el rumbo de superficie; el ángulo entre el rumbo verdadero (la proa) y ese rumbo de superficie es el abatimiento. La deriva es el efecto de la corriente, el rumbo de superficie es un rumbo y no un ángulo entre dos rumbos, y la intensidad horaria es de la corriente.",
+  "clave": "Viento → abatimiento (Rv → Rs); corriente → deriva (Rs → Ref).",
+  "trampa": "La a): la deriva la produce la corriente, no el viento.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "babor"
+   }
+  ],
+  "concepto": "and-py-2026-c1-n03"
+ },
+ "and-py-2016-c3-n09": {
+  "explicacion": "El meridiano que pasa por la posición del observador es el meridiano del lugar. El primer meridiano, meridiano cero o de Greenwich es el origen de las longitudes, que solo coincide con el del lugar si estamos sobre él.",
+  "clave": "Meridiano del lugar = el que pasa por ti; Greenwich = meridiano cero.",
+  "trampa": "La a), la c) y la d) son tres nombres del mismo meridiano: el de Greenwich.",
+  "concepto": null
+ },
+ "and-py-2016-c3-n10": {
+  "explicacion": "La HRB la fija el patrón para la vida a bordo y la hora legal es la del huso horario, así que son horas distintas que no tienen por qué coincidir; solo coinciden si el patrón decide poner el reloj de bitácora en la hora legal. Por eso son ciertas la a) y la c).",
+  "clave": "HRB ≠ hora legal, salvo que el patrón lo decida.",
+  "trampa": "La b), con su «siempre».",
+  "concepto": null
+ },
+ "and-py-2016-c3-n18": {
+  "explicacion": "Altura de marea necesaria = sonda deseada − sonda de carta = 3,2 − 1,4 = 1,80 m. Tramo PM 05:40 UT (3,24 m) y BM 11:53 UT (0,76 m): D = 6h13m, A = 3,24 − 0,76 = 2,48 m. C = 1,80 − 0,76 = 1,04 m → sen²(90°·I/D) = 1,04/2,48 = 0,419 → I = 2h47m antes de la BM → 09:06 UT + 1 h = 10:06 hora oficial; a partir de esa hora la sonda ya es menor de 3,2 m.",
+  "clave": "Altura necesaria = Sm − Sc; C = altura − h(BM); despeja I = D·asen(√(C/A))/90° y cuéntalo desde la BM; al final suma el adelanto.",
+  "trampa": "La b) es la hora en UT (09:06): falta sumar el adelanto de 1 h (horario de invierno).",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-n19": {
+  "explicacion": "22:15 hora oficial − 1 h = 21:15 UT, en el tramo PM 18:16 UT (2,93 m) → BM 00:07 UT del día 20 (1,05 m): D = 5h51m, A = 1,88 m e I = 2h52m hasta la BM. C = A·sen²(90°·I/D) = 1,88·sen²(44,1°) = 0,91 m → altura = 1,05 + 0,91 = 1,96 m → sonda = 1,7 + 1,96 = 3,66 m.",
+  "clave": "Sonda = sonda de carta + altura de marea; primero pasa la hora oficial a UT restando el adelanto.",
+  "trampa": "La bajamar siguiente es ya del día 20 (00:07): hay que usarla aunque cambie la fecha.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-n20": {
+  "explicacion": "Δl = de 12° 20′ S a 09° 10′ S = 190′ N. ΔL = de 177° 20′ W a 178° 15′ E cruzando el antimeridiano: 2° 40′ + 1° 45′ = 265′ W. lm = 10° 45′ S → A = 265·cos 10,75° = 260,3′ W. R = atan(260,3/190) = N 53,9° W ≈ N 54° W; distancia = √(190² + 260,3²) ≈ 322 millas.",
+  "clave": "Rumbo directo: Δl y ΔL en minutos, A = ΔL·cos lm, R = atan(A/Δl); distancia = √(Δl² + A²).",
+  "trampa": "La d) da el rumbo opuesto (S 54° E): vamos hacia el N (de 12° S a 9° S) y hacia el W por el antimeridiano.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2017-c1-g01": {
+  "explicacion": "La estabilidad estática estudia el buque en aguas tranquilas, sin olas ni viento, considerando solo el peso y el empuje. Con mar y viento se habla de estabilidad dinámica, que tiene en cuenta el trabajo de las fuerzas externas.",
+  "clave": "Estática = aguas en reposo; dinámica = con mar y viento.",
+  "trampa": "Confundir estática (aguas en reposo) con dinámica (mar y viento).",
+  "concepto": "and-py-2024-c2-g03"
+ },
+ "and-py-2017-c1-g02": {
+  "explicacion": "Al escorar, el centro de carena se desplaza hacia la banda que se sumerge; la vertical del nuevo empuje corta a la vertical del empuje con el barco adrizado (el eje de crujía) en el metacentro (M). El centro de empuje o de carena es el punto donde se aplica el empuje, y la altura metacéntrica es una distancia (GM), no un punto.",
+  "clave": "Vertical del empuje adrizado ∩ vertical del empuje escorado = metacentro.",
+  "trampa": "La a): el centro de empuje se mueve al escorar; el punto de corte de las dos verticales es el metacentro.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": "and-py-2025-c2-g10"
+ },
+ "and-py-2017-c1-g03": {
+  "explicacion": "Si tras escorar el barco sigue escorándose, el par que aparece es escorante: es equilibrio inestable, y ocurre cuando el metacentro queda por debajo del centro de gravedad (GM negativa). La b) dice inestable pero con G por debajo de M, que sería estable, y la a) dice estable con G por encima de M, que es contradictorio.",
+  "clave": "M bajo G → GM < 0 → inestable.",
+  "trampa": "La b): acierta con «inestable», pero G por debajo de M es justo la condición de estabilidad.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ],
+  "concepto": "and-py-2025-c3-g03"
+ },
+ "and-py-2017-c1-g05": {
+  "explicacion": "El espejo de señales (heliógrafo) refleja la luz del sol hacia un barco o aeronave, así que solo funciona con cielo despejado y sol, y su alcance eficaz es limitado. Por eso son desventajas la a) y la b). No necesita mantenimiento: es un espejo sin pilas ni pirotecnia, y esa es precisamente una de sus ventajas.",
+  "clave": "Espejo: sin sol no sirve y alcance corto, pero no caduca ni necesita mantenimiento.",
+  "trampa": "La c): es al revés, no requiere mantenimiento.",
+  "concepto": null
+ },
+ "and-py-2017-c1-g06": {
+  "explicacion": "Es falso que todos los chalecos den la vuelta a una persona inconsciente: depende de su flotabilidad. Hay cuatro tipos (50, 100, 150 y 275 N); el de 50 N es solo una ayuda a la flotación para quien sabe nadar y no gira a nadie, y la capacidad de dejar a la persona boca arriba la garantizan los de 150 y 275 N (el de 100 N solo en condiciones favorables). El RD 339/2021 fija qué flotabilidad se exige en cada zona.",
+  "clave": "50 N no gira; 150 N y 275 N dejan boca arriba al inconsciente.",
+  "trampa": "La c): el de 50 N es precisamente el que no lo hace.",
+  "concepto": null
+ },
+ "and-py-2017-c1-g07": {
+  "explicacion": "Al abarloarnos a un buque grande, los golpes de mar contra su costado mueven mucho nuestra embarcación. Hay que agarrarse a la escala y subir con decisión cuando nuestro barco está en la cresta de la ola, para no quedar atrapado entre los dos cascos cuando suba la siguiente. Si subimos en el seno, la siguiente ola puede aplastarnos contra el costado.",
+  "clave": "Escala de un mercante: se sube en la cresta y rápido.",
+  "trampa": "La c): en el seno, la ola siguiente levanta nuestro barco contra la persona que está en la escala.",
+  "concepto": null
+ },
+ "and-py-2017-c1-g08": {
+  "explicacion": "Salvamento Marítimo pide mantener la velocidad y un rumbo que deje el viento entre 20° y 30° por la amura de babor, porque el helicóptero se acerca por popa y la grúa está en su costado derecho; así el piloto ve el barco y controla bien la aeronave proa al viento. Las cifras de las opciones («200 y 300») son una errata del enunciado por 20° y 30°.",
+  "clave": "Helicóptero: viento 20–30° por la amura de babor.",
+  "trampa": "Las opciones de estribor son el reflejo de la correcta.",
+  "concepto": null
+ },
+ "and-py-2017-c1-g09": {
+  "explicacion": "Lo incorrecto es la b): no hay que tirarse al agua a toda prisa; mientras el barco flote es la mejor balsa, y siempre que se pueda se embarca en la balsa directamente desde el barco, sin mojarse. Sí hay que lanzar el mensaje de socorro, abrigarse, ponerse el chaleco o el traje de supervivencia, y parar el motor y cerrar portillos para retrasar el hundimiento.",
+  "clave": "Abandono: lo más tarde posible y, si se puede, a la balsa sin pasar por el agua.",
+  "trampa": "Pregunta en negativo: la b) suena decidida, pero el agua es el mayor peligro (hipotermia).",
+  "concepto": null
+ },
+ "and-py-2017-c1-g10": {
+  "explicacion": "El cable de izado del helicóptero acumula electricidad estática, por eso se deja que toque el agua o el barco antes de cogerlo, y nunca se hace firme a ninguna parte, porque si el helicóptero tiene que separarse arrastraría el barco. Si el helicóptero indica abandonar la embarcación o pasar a la balsa, hay que hacerlo.",
+  "clave": "Cable del helicóptero: que toque el agua antes, y nunca amarrarlo.",
+  "trampa": "La a): cogerlo antes de que toque el agua expone a una descarga de electricidad estática.",
+  "concepto": null
+ },
+ "and-py-2017-c1-g11": {
+  "explicacion": "El viento geostrófico es el modelo teórico en el que la fuerza del gradiente de presión se equilibra con la de Coriolis: sopla paralelo a isobaras rectilíneas y, en altura y sobre mar, se aproxima mucho al viento real. El ciclostrófico equilibra gradiente y fuerza centrífuga, el antitríptico añade el rozamiento y el de Euler solo tiene en cuenta el gradiente.",
+  "clave": "Geostrófico = gradiente + Coriolis, paralelo a isobaras rectas.",
+  "trampa": "La b): el ciclostrófico es el de giros pequeños e intensos, sin Coriolis.",
+  "concepto": "and-py-2020-c1-g17"
+ },
+ "and-py-2017-c1-g12": {
+  "explicacion": "Los estratos (St) son nubes bajas, por debajo de unos 2000 m: una capa gris y uniforme que puede llegar a confundirse con niebla y que da, como mucho, llovizna. «Frontales» no es una clasificación por altitud, sino por su origen.",
+  "clave": "Estrato «a secas» = bajo; altoestrato = medio; cirrostrato = alto.",
+  "trampa": "No confundir con el altostrato, que es nube media.",
+  "concepto": "and-py-2021-c2-g15"
  }
 }

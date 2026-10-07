@@ -11,3 +11,6 @@
 - and-py-2016-c3-g08 · RD 339/2021 · los extintores pasan a eficacia mínima 34B (antes 21B); el CO2 sigue siendo el recomendado con tensión eléctrica · sí, sigue valiendo.
 - and-py-2016-c3-g09 · RD 339/2021 · cambia la dotación de extintores, no las clases de fuego ni la prohibición del agua en clase D · sí, sigue valiendo.
 - and-py-2016-c3-g10 · RD 339/2021, RD 587/2022 · regulan las balsas, no la conducta del náufrago (permanecer en la zona) · sí, sigue valiendo.
+- and-py-2017-c1-g06 · RD 339/2021 · fija la flotabilidad mínima por zona (275 N zona 1, 150 N zonas 2–4, 100 N zonas 5–7) y exige luz; los tipos de chaleco y su capacidad de girar al inconsciente no cambian · sí, sigue valiendo.
+- and-py-2017-c1-g09 · RD 339/2021, RD 587/2022 · regulan equipos y balsas, no las medidas previas al abandono · sí, sigue valiendo.
+- and-py-2017-c1-g10 · RD 339/2021, RD 587/2022 · regulan equipos y balsas, no el manejo del cable de izado del helicóptero · sí, sigue valiendo.

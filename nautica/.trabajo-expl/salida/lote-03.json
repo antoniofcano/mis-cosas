@@ -570,7 +570,7 @@
   "trampa": "La a) es falsa: la carta sí lo indica precisamente para proteger la pradera."
  },
  "bal-per-2018-12-d-11": {
-  "explicacion": "Para no fondear sobre posidonia lo esencial es llevar cartas náuticas actualizadas que indiquen dónde están las praderas. Las sondas y profundímetros miden la profundidad, no la naturaleza del fondo, y no existe un sonar homologado para detectar posidonia.",
+  "explicacion": "Para no fondear sobre posidonia lo esencial es llevar cartas náuticas actualizadas que indiquen dónde están las praderas. Las sondas y profundímetros miden la profundidad, no la naturaleza del fondo, y la norma no exige ningún sonar especial: la referencia es la carta.",
   "clave": "Para respetar la posidonia: carta actualizada.",
   "trampa": "La b) atribuye a la sonda algo que no hace: mide metros, no el tipo de fondo."
  },
@@ -2061,6 +2061,1155 @@
    {
     "tipo": "boya",
     "clase": "peligro-aislado"
+   }
+  ]
+ },
+ "bal-per-2017-12-c-15": {
+  "explicacion": "La boya de emergencia para naufragios (pecio de emergencia) lleva luz alternativa azul y amarilla, a juego con sus franjas verticales azules y amarillas. Las luces rojas son de las laterales de babor y la blanca con destellos de otras marcas.",
+  "clave": "Naufragio reciente: luz alternativa azul y amarilla.",
+  "trampa": "La c) (roja y blanca) no corresponde a ninguna marca de naufragio."
+ },
+ "bal-per-2017-12-e-13": {
+  "explicacion": "Amarilla con una franja central negra es la cardinal Oeste: las aguas seguras están al oeste de la marca. Con rumbo Sur, la amura de babor queda hacia el este, así que la marca está al este de nosotros y ya navegamos por su lado seguro: seguimos a rumbo.",
+  "clave": "Cardinal Oeste: pasa por su oeste.",
+  "trampa": "La c) nos llevaría hacia el este, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2017-12-e-13"
+ },
+ "bal-per-2024-04-a-16": {
+  "explicacion": "Amarilla con una franja central negra es la cardinal Oeste: las aguas seguras están al oeste de la marca y el peligro al este. Con rumbo Sur, la amura de babor queda hacia el este, así que la marca está al este de nosotros y ya navegamos por su lado seguro: seguimos a rumbo.",
+  "clave": "Cardinal Oeste: pasa por su oeste.",
+  "trampa": "La b) dice que el peligro está al oeste de la boya; está al este.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2017-12-e-13"
+ },
+ "bal-per-2017-12-e-14": {
+  "explicacion": "Todas las cardinales tienen luz blanca; lo que las distingue es el ritmo (la Este, grupos de 3 centelleos). Las luces rojas y verdes son de las laterales.",
+  "clave": "Cardinales: siempre luz blanca.",
+  "trampa": "La a) mezcla los colores de las laterales.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ]
+ },
+ "bal-per-2017-12-e-15": {
+  "explicacion": "La cardinal Sur emite luz blanca en grupos de 6 centelleos más un destello largo: centelleante rápida cada 10 s o centelleante cada 15 s, las 6 del reloj. La luz amarilla es de las especiales, la blanca fija no se usa en las cardinales y el centelleo continuo es la Norte.",
+  "clave": "Sur: 6 + destello largo.",
+  "trampa": "La d) (centelleo continuo) es la Norte.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "base": "and-2026-c1-t17",
+  "concepto": "and-2026-c1-t17"
+ },
+ "bal-per-2018-04-a-13": {
+  "explicacion": "El tope de la marca de aguas navegables es una única esfera (roja). Las dos esferas, negras, son del peligro aislado, el aspa es de las especiales y la cruz de la boya de naufragio reciente.",
+  "clave": "Aguas navegables: una esfera roja sobre franjas verticales rojas y blancas.",
+  "trampa": "La c) (dos esferas) es el peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2022-c1-t13",
+  "concepto": "and-2022-c1-t13"
+ },
+ "bal-per-2018-04-a-14": {
+  "explicacion": "La marca especial lleva como tope, si lo tiene, un aspa amarilla en forma de X, del mismo color que su cuerpo y su luz. No existen aspas blancas y rojas, negras o amarillas y negras.",
+  "clave": "Especial: aspa amarilla (X).",
+  "trampa": "La d) añade el negro, que es de las cardinales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2018-04-b-15": {
+  "explicacion": "Una luz blanca en grupos de dos destellos es el ritmo de la marca de peligro aislado, pero en la costa también puede ser un faro, que tiene su propio ritmo; para identificarlo hay que consultar el Libro de Faros. Por eso son correctas la b) y la c). La marca de aguas navegables usa ritmos largos (isofase, ocultaciones, destello largo o Morse A).",
+  "clave": "Luz en costa: compruébala en el Libro de Faros.",
+  "trampa": "La c) sola se queda corta: en la costa también hay faros.",
+  "concepto": "bal-per-2018-04-b-15"
+ },
+ "bal-per-2018-12-c-15": {
+  "explicacion": "Una luz blanca en grupos de dos destellos es el ritmo de la marca de peligro aislado, pero en la costa también puede ser un faro, que tiene su propio ritmo y se identifica con el Libro de Faros. Por eso son correctas la b) y la c). La marca de aguas navegables usa ritmos largos (isofase, ocultaciones, destello largo o Morse A).",
+  "clave": "Luz en costa: compruébala en el Libro de Faros.",
+  "trampa": "La c) sola se queda corta: en la costa también hay faros.",
+  "concepto": "bal-per-2018-04-b-15"
+ },
+ "bal-per-2018-04-c-16": {
+  "explicacion": "Las reglas del sistema de balizamiento IALA se aplican a las marcas fijas y flotantes. Quedan fuera los faros, las luces de sector y las luces y marcas de enfilación, que se describen en las cartas y en el Libro de Faros.",
+  "clave": "IALA: marcas fijas y flotantes; no faros ni enfilaciones.",
+  "trampa": "La d) mete faros y enfilaciones, que el sistema excluye."
+ },
+ "bal-per-2018-04-d-14": {
+  "explicacion": "Dos conos negros con el vértice hacia abajo es la cardinal Sur: hay que pasar por su sur. Con rumbo 300º y la marca por la proa, el sur queda a nuestra izquierda, así que caemos a babor. La cardinal Este lleva los conos opuestos por la base.",
+  "clave": "Conos hacia abajo = Sur: pásala por su sur.",
+  "trampa": "La d) confunde la marca con la Este.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ]
+ },
+ "bal-per-2018-04-d-15": {
+  "explicacion": "Un destello largo blanco cada 10 segundos es uno de los ritmos de la marca de aguas navegables. El peligro aislado da grupos de dos destellos, el pecio de emergencia luz azul y amarilla, y las especiales (como las de acuicultura) luz amarilla.",
+  "clave": "Destello largo solo = aguas navegables; 6 + largo = Sur.",
+  "trampa": "Asociar cualquier destello largo con la cardinal Sur.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2025-c1-t14",
+  "concepto": "and-2025-c1-t14"
+ },
+ "bal-per-2018-04-d-16": {
+  "explicacion": "Las marcas cardinales tienen forma de castillete o de espeque; lo que las identifica son sus colores negro y amarillo y su tope de dos conos. Las formas cónica y cilíndrica son de las laterales y la esférica de aguas navegables.",
+  "clave": "Cardinales: castillete o espeque.",
+  "trampa": "La a) piensa en los conos del tope, no en el cuerpo de la marca.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ]
+ },
+ "bal-per-2018-04-e-16": {
+  "explicacion": "En la región A las laterales de babor son cilíndricas y las de estribor cónicas (también pueden ser de castillete o espeque). La forma esférica es propia de la marca de aguas navegables.",
+  "clave": "Babor cilindro, estribor cono.",
+  "trampa": "Las opciones con «esférica» mezclan la marca de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   },
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2018-06-a-13": {
+  "explicacion": "El sistema IALA tiene dos regiones de balizamiento: la A (Europa, África, la mayor parte de Asia y Oceanía), con rojo a babor entrando, y la B (América, Japón, Corea y Filipinas), con rojo a estribor. Solo cambian las marcas laterales.",
+  "clave": "Dos regiones: A (rojo a babor) y B (rojo a estribor).",
+  "trampa": "No hay tercera región: las cardinales y las demás son iguales en las dos."
+ },
+ "bal-per-2018-06-a-15": {
+  "explicacion": "Cada cardinal ocupa el cuadrante cuyo nombre lleva, limitado por las demoras verdaderas desde el peligro: la Norte entre el NW y el NE, la Este entre el NE y el SE, la Sur entre el SE y el SW y la Oeste entre el SW y el NW.",
+  "clave": "Cardinal Norte: entre NW y NE.",
+  "trampa": "La b) es el cuadrante Oeste.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2018-06-a-17": {
+  "explicacion": "Un puerto europeo está en la región A, donde entrando se deja el rojo a babor. Al salir el sentido se invierte, así que la boya roja se deja por estribor. No indica un peligro del que alejarse: marca el lado del canal.",
+  "clave": "Saliendo de puerto (región A): rojo a estribor.",
+  "trampa": "La b) aplica la regla de entrada sin darle la vuelta.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ]
+ },
+ "bal-per-2018-06-b-17": {
+  "explicacion": "Grupos de dos destellos blancos, GpD(2), es el ritmo de la marca de peligro aislado. La de centro de canal (aguas navegables) usa ritmos largos, la especial luz amarilla y la cardinal Este grupos de tres centelleos.",
+  "clave": "Dos esferas negras, dos destellos blancos.",
+  "trampa": "La c) (Este) también es blanca, pero da tres centelleos.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ]
+ },
+ "bal-per-2018-06-h-16": {
+  "explicacion": "Una luz de destellos largos es una luz de destellos aislados en la que cada destello dura 2 segundos o más. Los destellos que se suceden regularmente son de una luz de destellos normal, los grupos son destellos agrupados y luz y oscuridad iguales es la isofase.",
+  "clave": "Destello largo: 2 segundos o más de luz.",
+  "trampa": "La d) describe la luz isofase.",
+  "ilustraciones": [
+   {
+    "tipo": "ritmo",
+    "ritmo": "LFl 10s"
+   }
+  ]
+ },
+ "bal-per-2018-06-i-15": {
+  "explicacion": "Las zonas reservadas al recreo, como los límites de un fondeadero o de zonas de baño o deportes náuticos, se señalan con marcas especiales, amarillas y con aspa amarilla de tope. Las cardinales y las laterales tienen otros usos.",
+  "clave": "Especial = amarilla = «consulta la carta».",
+  "trampa": "La d): las laterales señalan los lados de un canal, no zonas de recreo.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2018-06-i-16": {
+  "explicacion": "La bifurcación con canal principal a babor es una lateral de estribor modificada (verde con banda roja), y por eso lleva el tope de estribor: un cono verde con el vértice hacia arriba. El cilindro rojo sería el de la bifurcación con canal principal a estribor; los cilindros verdes no existen en la región A.",
+  "clave": "Canal principal a babor: marca verde, cono verde.",
+  "trampa": "Escoger el rojo por asociar «babor» con rojo.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ],
+  "base": "and-2025-c3-t17",
+  "concepto": "and-2025-c3-t17"
+ },
+ "bal-per-2018-09-a-13": {
+  "explicacion": "En la región A las laterales de estribor son verdes (y las de babor rojas). Las que combinan verde y rojo son las de bifurcación: verde con franja roja indica canal principal a babor y roja con franja verde, canal principal a estribor.",
+  "clave": "Región A: verde a estribor entrando.",
+  "trampa": "La b) es la marca de bifurcación, no la lateral de estribor normal.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2018-09-a-15": {
+  "explicacion": "La cardinal Este lleva dos conos opuestos por sus bases, con forma de rombo; las puntas señalan arriba y abajo, donde está el negro. Opuestos por los vértices es la Oeste, hacia arriba la Norte y hacia abajo la Sur.",
+  "clave": "Conos: arriba N, abajo S, rombo E, cintura W.",
+  "trampa": "Confundir vértices unidos (Oeste) y bases unidas (Este).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-15"
+ },
+ "bal-per-2018-09-b-13": {
+  "explicacion": "En la región A, la bifurcación con el canal principal a estribor se señala con una lateral de babor modificada: roja con una banda ancha horizontal verde. Verde con banda roja indica el canal principal a babor, y la roja o la verde solas son laterales normales.",
+  "clave": "Color de fondo: por dónde la dejas; banda: hacia dónde va el canal principal.",
+  "trampa": "La b) es la contraria: canal principal a babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "bal-per-2018-09-b-13"
+ },
+ "bal-per-2022-09-a-13": {
+  "explicacion": "En la región A, la bifurcación con el canal principal a estribor se señala con una lateral de babor modificada: roja con una única banda ancha horizontal verde. Verde con banda roja indica el canal principal a babor, y las varias franjas no se usan en estas marcas.",
+  "clave": "Color de fondo: por dónde la dejas; banda: hacia dónde va el canal principal.",
+  "trampa": "La c) acierta los colores, pero la marca lleva una sola banda ancha.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "bal-per-2018-09-b-13"
+ },
+ "bal-per-2018-09-d-13": {
+  "explicacion": "La bifurcación con canal principal a estribor es una lateral de babor modificada, así que tiene la forma de las de babor: cilíndrica, de castillete o de espeque, roja con una banda horizontal verde. La a) es la de canal principal a babor, y las cónicas rojas no existen en la región A.",
+  "clave": "Canal principal a estribor: roja con banda verde, cilindro.",
+  "trampa": "La a) es la marca contraria, canal principal a babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ]
+ },
+ "bal-per-2018-09-e-13": {
+  "explicacion": "La cardinal Sur es amarilla arriba y negra abajo (amarillo sobre negro): sus conos apuntan hacia abajo, donde está el negro. Negro sobre amarillo es la Norte, y el rojo y el verde son de las laterales.",
+  "clave": "Las puntas de los conos señalan dónde está el negro.",
+  "trampa": "La b) (negro sobre amarillo) es la Norte.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "concepto": "bal-per-2018-09-e-13"
+ },
+ "bal-per-2024-04-a-14": {
+  "explicacion": "La cardinal Sur es amarilla arriba y negra abajo (amarillo sobre negro): sus conos apuntan hacia abajo, donde está el negro. Negro sobre amarillo es la Norte, y el rojo y el verde son de las laterales.",
+  "clave": "Las puntas de los conos señalan dónde está el negro.",
+  "trampa": "La b) (negro sobre amarillo) es la Norte.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "concepto": "bal-per-2018-09-e-13"
+ },
+ "bal-per-2018-09-e-14": {
+  "explicacion": "La cardinal Oeste es amarilla con una ancha banda horizontal negra, y su tope son dos conos negros unidos por los vértices: las puntas señalan al centro, de ahí la banda negra central. Negro con banda amarilla es la Este y negro sobre amarillo la Norte.",
+  "clave": "Oeste: conos «cintura» (vértices juntos), negro en medio. Este: conos «rombo», amarillo en medio.",
+  "trampa": "Intercambiar el Este y el Oeste: mira hacia dónde apuntan los conos.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "base": "and-2022-c3-t13",
+  "concepto": "and-2022-c3-t13"
+ },
+ "bal-per-2018-09-e-17": {
+  "explicacion": "Entre las regiones A y B solo cambian las marcas laterales: en la A el rojo va a babor entrando y en la B a estribor. Las cardinales, de peligro aislado, de aguas navegables, especiales y de naufragio son iguales en las dos.",
+  "clave": "Regiones A y B: solo cambian las laterales.",
+  "trampa": "La b): las cardinales son iguales en todo el mundo."
+ },
+ "bal-per-2018-12-a-14": {
+  "explicacion": "La cardinal Oeste es amarilla con una ancha banda horizontal negra, y su tope son dos conos negros unidos por los vértices: las puntas señalan al centro, de ahí la banda negra central. Negra con banda amarilla es la Este, y las cardinales nunca llevan franjas verticales ni blancas.",
+  "clave": "Oeste: conos «cintura» (vértices juntos), negro en medio. Este: conos «rombo», amarillo en medio.",
+  "trampa": "Intercambiar el Este y el Oeste: mira hacia dónde apuntan los conos.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "base": "and-2022-c3-t13",
+  "concepto": "and-2022-c3-t13"
+ },
+ "bal-per-2023-09-c-13": {
+  "explicacion": "La cardinal Oeste es amarilla con una ancha banda horizontal negra, y su tope son dos conos negros unidos por los vértices: las puntas señalan al centro, de ahí la banda negra central. Negro con banda amarilla es la Este, y las cardinales nunca llevan franjas verticales ni blancas.",
+  "clave": "Oeste: conos «cintura» (vértices juntos), negro en medio. Este: conos «rombo», amarillo en medio.",
+  "trampa": "Intercambiar el Este y el Oeste: mira hacia dónde apuntan los conos.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "base": "and-2022-c3-t13",
+  "concepto": "and-2022-c3-t13"
+ },
+ "bal-per-2018-12-b-13": {
+  "explicacion": "La luz blanca centelleante continua, sin grupos, es la de la cardinal Norte: piensa en las 12 del reloj, donde la luz no para. Hay que pasar por su norte, de modo que la marca nos queda al sur. La Sur emite 6 centelleos más un destello largo.",
+  "clave": "Norte = centelleo continuo; pasa por su norte.",
+  "trampa": "La c) acierta la marca, pero «dejarla al norte» es pasar por su sur, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "base": "and-2022-c2-t15",
+  "concepto": "and-2022-c2-t15"
+ },
+ "bal-per-2018-12-b-15": {
+  "explicacion": "La luz amarilla es exclusiva de las marcas especiales (con cualquier ritmo que no se confunda con los de las blancas). Las cardinales y la de aguas navegables llevan luz blanca, y la boya de naufragio reciente, azul y amarilla alternativa.",
+  "clave": "Luz amarilla = marca especial.",
+  "trampa": "La b): el naufragio alterna azul y amarillo, no solo amarillo.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2018-12-b-17": {
+  "explicacion": "Un punto de recalada (la primera marca al llegar desde alta mar a un puerto o canal) se señala con una marca de aguas navegables, de franjas verticales rojas y blancas. No hace falta combinarla con una especial ni existe una de aguas navegables modificada.",
+  "clave": "Recalada = marca de aguas navegables.",
+  "trampa": "La d) inventa una versión modificada que no existe.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ]
+ },
+ "bal-per-2018-12-d-13": {
+  "explicacion": "Sí: las marcas cardinales, como las demás del sistema, pueden complementarse con medios electrónicos como un racon (respondedor radar) o una señal AIS. No depende del tamaño de la marca ni de su distancia a la costa.",
+  "clave": "Cualquier marca puede llevar racon o AIS.",
+  "trampa": "La b) (nunca) olvida los racon, muy habituales en marcas de peligro."
+ },
+ "bal-per-2018-12-d-17": {
+  "explicacion": "Las cardinales se distinguen de día por la disposición de sus bandas horizontales negras y amarillas (y por su tope de dos conos). Las bandas verticales son de la marca de aguas navegables, y ni la emisión de radio ni la distancia a la costa las identifican.",
+  "clave": "Cardinales: bandas horizontales negras y amarillas.",
+  "trampa": "La d) pone las bandas en vertical, que es lo de las aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ]
+ },
+ "bal-per-2018-12-f-15": {
+  "explicacion": "Negro arriba, amarillo abajo y conos hacia arriba es la cardinal Norte: hay que pasar por su norte. Navegando al Este, el norte nos queda a babor, así que pasamos con la marca por nuestro estribor. Pasar por su oeste o «con margen» no garantiza librar el peligro, que está al sur.",
+  "clave": "Cardinal Norte: pasa por su norte (rumbo E, déjala a estribor).",
+  "trampa": "La b) nos llevaría por el sur de la marca, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "concepto": "bal-per-2018-12-f-15"
+ },
+ "bal-per-2020-07-d-17": {
+  "explicacion": "Negro arriba, amarillo abajo y conos hacia arriba es la cardinal Norte: hay que pasar por su norte. Navegando al Este, el norte nos queda a babor, así que pasamos con la marca por nuestro estribor. Pasar por su oeste o «con margen» no garantiza librar el peligro, que está al sur.",
+  "clave": "Cardinal Norte: pasa por su norte (rumbo E, déjala a estribor).",
+  "trampa": "La b) nos llevaría por el sur de la marca, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "concepto": "bal-per-2018-12-f-15"
+ },
+ "bal-per-2018-12-f-16": {
+  "explicacion": "La lateral de babor de la región A es roja y su luz es roja con cualquier ritmo, excepto el de grupos de 2+1 destellos, que está reservado a las marcas de bifurcación. La luz roja 2+1 sería de una babor modificada (canal principal a estribor), y las verdes son de estribor.",
+  "clave": "Babor: luz roja con cualquier ritmo menos 2+1.",
+  "trampa": "La a) es la marca de bifurcación, no la lateral de babor normal.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "concepto": "and-2026-c2-t13"
+ },
+ "bal-per-2023-12-a-17": {
+  "explicacion": "La lateral de babor es roja y su luz es roja con cualquier ritmo, excepto el de grupos de 2+1 destellos, que está reservado a las marcas de bifurcación. La luz roja 2+1 sería de una babor modificada, y las verdes son de estribor.",
+  "clave": "Babor: luz roja con cualquier ritmo menos 2+1.",
+  "trampa": "Pensar que la 2+1 roja es una babor normal.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "base": "and-2026-c2-t13",
+  "concepto": "and-2026-c2-t13"
+ },
+ "bal-per-2018-12-f-17": {
+  "explicacion": "Una marca cilíndrica roja es una lateral de babor de la región A: entrando en el puerto la dejaremos por babor (al salir, por estribor). No indica aguas peligrosas en general ni colectores, que se señalan con marcas especiales amarillas.",
+  "clave": "Cilindro rojo: babor entrando.",
+  "trampa": "La b) dice «siempre»: al entrar va por babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ]
+ },
+ "bal-per-2019-04-a-13": {
+  "explicacion": "La recalada se señala con marcas de aguas navegables: franjas verticales rojas y blancas, tope de una esfera roja y luz blanca de ritmo largo. Las franjas azules son del pecio de emergencia, y las rojas y negras no existen en vertical.",
+  "clave": "Recalada = marca de aguas navegables.",
+  "trampa": "La c) describe las laterales, que vienen después de la recalada.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ]
+ },
+ "bal-per-2019-04-a-17": {
+  "explicacion": "El sentido convencional del balizamiento se define de dos formas complementarias: el que sigue el navegante que viene de alta mar al acercarse a un puerto, río, estuario o vía navegable, y, donde no es evidente, el que fijan las autoridades competentes. Por eso son correctas la a) y la b).",
+  "clave": "Sentido convencional: de la mar hacia el puerto, o el que fije la autoridad.",
+  "trampa": "La b) sola se queda corta: en la costa abierta lo fija la autoridad.",
+  "concepto": "bal-per-2019-04-a-17"
+ },
+ "bal-per-2025-12-c-14": {
+  "explicacion": "El sentido convencional del balizamiento es la dirección general que sigue el navegante que viene de alta mar al acercarse a un puerto, río, estuario o vía navegable, o la que determine la autoridad competente, en consulta con los países vecinos cuando proceda. Son correctas la b) y la c).",
+  "clave": "Sentido convencional: de la mar hacia el puerto, o el que fije la autoridad.",
+  "trampa": "La b) sola se queda corta: en la costa abierta lo fija la autoridad.",
+  "concepto": "bal-per-2019-04-a-17"
+ },
+ "bal-per-2019-04-b-13": {
+  "explicacion": "Negro sobre amarillo con dos conos negros hacia arriba es la cardinal Norte: los conos apuntan al norte, y el agua segura está al norte de la marca. Por eso se debe pasar por su norte.",
+  "clave": "Conos hacia arriba = Norte; pasa por el norte.",
+  "trampa": "Creer que el peligro está hacia donde apuntan los conos.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "base": "and-2024-c1-t16",
+  "concepto": "and-2024-c1-t16"
+ },
+ "bal-per-2019-04-b-14": {
+  "explicacion": "Una marca roja con una ancha franja horizontal verde es una lateral de babor modificada de la región A: indica una bifurcación con el canal principal a estribor. Se deja por babor (manda el color de fondo) y el canal principal queda a estribor.",
+  "clave": "Roja con banda verde: canal principal a estribor.",
+  "trampa": "La b) es la marca verde con banda roja.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "bal-per-2019-04-b-14"
+ },
+ "bal-per-2025-04-c-16": {
+  "explicacion": "Una marca roja con una ancha franja horizontal verde es una lateral de babor modificada de la región A: indica una bifurcación con el canal principal a estribor. Se deja por babor (manda el color de fondo), no por estribor, y no prohíbe navegar hacia estribor: es justo hacia donde sigue el canal principal.",
+  "clave": "Roja con banda verde: canal principal a estribor.",
+  "trampa": "La b): siendo roja, se deja por babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "bal-per-2019-04-b-14"
+ },
+ "bal-per-2019-04-b-15": {
+  "explicacion": "En la región A las laterales de estribor son verdes y su tope es un cono verde con el vértice hacia arriba. El cilindro rojo es de babor, y no existen cilindros verdes ni conos con el vértice hacia abajo en las laterales.",
+  "clave": "Estribor = verde = cono hacia arriba.",
+  "trampa": "La c) da la vuelta al cono.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2019-04-c-16": {
+  "explicacion": "Entre las regiones A y B solo cambian las marcas laterales: en la A el rojo va a babor entrando y en la B a estribor. Las especiales, las de aguas navegables, las de peligro nuevo y el resto son iguales en las dos.",
+  "clave": "Regiones A y B: solo cambian las laterales.",
+  "trampa": "Ninguna otra marca cambia de una región a otra."
+ },
+ "bal-per-2019-04-e-13": {
+  "explicacion": "La cardinal Norte es negra arriba y amarilla abajo, y lleva dos conos negros superpuestos con los vértices hacia arriba, apuntando al norte. Todas las opciones repiten el color; lo que cambia es el tope: hacia abajo es la Sur, por la base la Este y por los vértices la Oeste.",
+  "clave": "Conos: arriba N, abajo S, rombo E, cintura W.",
+  "trampa": "Todas dan el color correcto: fíjate en el tope.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "base": "and-2024-c2-t17",
+  "concepto": "and-2024-c2-t17"
+ },
+ "bal-per-2019-04-e-14": {
+  "explicacion": "La marca especial lleva como tope, si lo tiene, un aspa amarilla en forma de X. Sí tiene marca de tope propia, no es una forma libre, y la esfera amarilla no existe en el sistema.",
+  "clave": "Especial: aspa amarilla (X).",
+  "trampa": "La d) confunde la forma libre del cuerpo con el tope, que siempre es el aspa.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2019-04-e-14"
+ },
+ "bal-per-2020-10-i-13": {
+  "explicacion": "La marca especial lleva como tope, si lo tiene, un aspa amarilla en forma de X. El cilindro rojo es de las laterales de babor, la esfera roja de aguas navegables y las dos bolas negras del peligro aislado.",
+  "clave": "Especial: aspa amarilla (X).",
+  "trampa": "Las otras opciones son topes reales, pero de otras marcas.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2019-04-e-14"
+ },
+ "bal-per-2019-04-e-16": {
+  "explicacion": "En la región A, que es la que se aplica en España, las laterales de babor son rojas y las de estribor verdes. Las que llevan una franja del otro color son las de bifurcación.",
+  "clave": "Región A: rojo a babor entrando.",
+  "trampa": "La b) es la marca de bifurcación, no la lateral de babor normal.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "base": "and-2025-c2-t13",
+  "concepto": "and-2025-c2-t13"
+ },
+ "bal-per-2019-04-f-13": {
+  "explicacion": "Entrando en puerto en la región A hay que llevar las marcas verdes (cono) por estribor y las rojas (cilindro) por babor. Es exactamente lo que ya está pasando, así que seguimos a rumbo; no da igual el costado.",
+  "clave": "Entrando: verde a estribor, rojo a babor.",
+  "trampa": "La a) nos sacaría del canal, dejando las verdes por babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ],
+  "concepto": "bal-per-2019-04-f-13"
+ },
+ "bal-per-2019-06-a-14": {
+  "explicacion": "Entrando en puerto en la región A hay que llevar las marcas verdes (cono) por estribor y las rojas (cilindro) por babor. Es exactamente lo que ya está pasando, así que seguimos a rumbo; no da igual el costado.",
+  "clave": "Entrando: verde a estribor, rojo a babor.",
+  "trampa": "La a) nos sacaría del canal, dejando las verdes por babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ],
+  "concepto": "bal-per-2019-04-f-13"
+ },
+ "bal-per-2019-04-f-14": {
+  "explicacion": "Dos conos negros opuestos por sus bases es la cardinal Este: hay que pasar por su este. Con rumbo Sur y la marca por la proa, el este queda a nuestra izquierda, así que caemos a babor. Seguir a rumbo nos llevaría encima de la marca.",
+  "clave": "Conos en rombo = Este: pásala por su este.",
+  "trampa": "La a) nos llevaría por su oeste, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ]
+ },
+ "bal-per-2019-04-f-17": {
+  "explicacion": "Una luz blanca en grupos de dos destellos, GpD(2), es la marca de peligro aislado. La cardinal Sur da 6 centelleos más un destello largo, la bifurcación usa luz roja o verde 2+1, y los límites de una reserva se señalan con marcas especiales de luz amarilla.",
+  "clave": "Dos esferas negras, dos destellos blancos.",
+  "trampa": "La b) usa grupos 2+1 y de color, no dos destellos blancos.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "bal-per-2019-04-f-17"
+ },
+ "bal-per-2025-09-b-15": {
+  "explicacion": "Una luz blanca en grupos de dos destellos, GpD(2), es la marca de peligro aislado. La cardinal Sur da 6 centelleos más un destello largo, el peligro nuevo luz azul y amarilla, y la de aguas navegables ritmos largos (isofase, ocultaciones, destello largo o Morse A).",
+  "clave": "Dos esferas negras, dos destellos blancos.",
+  "trampa": "La b) (peligro nuevo) alterna azul y amarillo.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "bal-per-2019-04-f-17"
+ },
+ "bal-per-2019-06-a-17": {
+  "explicacion": "La cardinal Sur es amarilla arriba y negra abajo (amarillo sobre negro): sus conos apuntan hacia abajo, donde está el negro. Negro sobre amarillo es la Norte, amarillo con banda negra la Oeste y negro con banda amarilla la Este.",
+  "clave": "Las puntas de los conos señalan dónde está el negro.",
+  "trampa": "La c) (negro sobre amarillo) es la Norte.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ]
+ },
+ "bal-per-2019-06-b-17": {
+  "explicacion": "Las cardinales se usan junto con el compás: cada una indica en qué cuadrante (N, E, S u W) respecto a la marca están las aguas navegables, es decir, por dónde hay que pasar. No señalan canales (son las laterales), ni agua navegable alrededor (aguas navegables o peligro aislado), ni zonas especiales.",
+  "clave": "Cardinal + compás: el cuadrante seguro.",
+  "trampa": "La c) describe el peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ],
+  "concepto": "bal-per-2019-06-b-17"
+ },
+ "bal-per-2019-09-d-17": {
+  "explicacion": "Las cardinales se usan junto con el compás: cada una indica en qué cuadrante (N, E, S u W) respecto a la marca están las aguas más profundas, es decir, por dónde hay que pasar. No señalan canales (son las laterales), ni agua navegable alrededor, ni zonas especiales.",
+  "clave": "Cardinal + compás: el cuadrante seguro.",
+  "trampa": "La c) describe el peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ],
+  "concepto": "bal-per-2019-06-b-17"
+ },
+ "bal-per-2019-09-a-15": {
+  "explicacion": "En la región A, que es la de España y Europa, quien viene de alta mar y entra en puerto deja el rojo a babor y el verde a estribor. Es fijo, no indistinto, y el rojo a estribor es lo de la región B.",
+  "clave": "Región A, entrando: rojo a babor, verde a estribor.",
+  "trampa": "La c) es la región B (América).",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   },
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2019-09-b-15": {
+  "explicacion": "La bifurcación con canal principal a estribor es una lateral de babor modificada (roja con banda verde), así que su tope es el de babor: un cilindro rojo. Los cilindros verdes no existen en la región A, el cono verde es de estribor y la esfera de aguas navegables.",
+  "clave": "Canal principal a estribor: marca roja, cilindro rojo.",
+  "trampa": "Escoger el cono verde porque el canal principal está a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "base": "and-2025-c1-t17",
+  "concepto": "and-2025-c1-t17"
+ },
+ "bal-per-2019-09-b-17": {
+  "explicacion": "Las franjas verticales rojas y blancas, con una esfera roja de tope, son el distintivo de la marca de aguas navegables. El peligro aislado es negro con bandas rojas horizontales, y los límites de un canal son rojos (babor) o verdes (estribor).",
+  "clave": "Franjas verticales rojas y blancas = aguas navegables (la única con rayas verticales).",
+  "trampa": "Confundir con el peligro aislado, que también lleva rojo pero en bandas horizontales con negro.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2022-c3-t15",
+  "concepto": "and-2022-c3-t15"
+ },
+ "bal-per-2019-12-d-16": {
+  "explicacion": "Todas las cardinales, también la Sur, tienen luz blanca; las distingue el ritmo (la Sur, 6 centelleos más un destello largo). El rojo y el verde son de las laterales y el amarillo de las especiales.",
+  "clave": "Cardinales: siempre luz blanca.",
+  "trampa": "La d) (amarilla) es la luz de las especiales, aunque la cardinal tenga amarillo en su pintura.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ]
+ },
+ "bal-per-2019-12-d-17": {
+  "explicacion": "Las marcas especiales son amarillas, con aspa amarilla de tope y, si tienen luz, amarilla. El rojo y el verde son de las laterales y el rojo y negro del peligro aislado.",
+  "clave": "Especial: todo amarillo.",
+  "trampa": "La b) (rojo y negro) es el peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2019-12-d-17"
+ },
+ "bal-per-2020-10-e-15": {
+  "explicacion": "La luz de las marcas especiales es amarilla, como su cuerpo y su aspa de tope. La blanca es de las cardinales, del peligro aislado y de aguas navegables, y la roja y la verde de las laterales.",
+  "clave": "Especial: todo amarillo, también la luz.",
+  "trampa": "La a) (blanca) es la de las cardinales y otras marcas.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2019-12-d-17"
+ },
+ "bal-per-2019-12-e-15": {
+  "explicacion": "Si tiene marca de tope, la de aguas navegables es una única bola (esfera) roja. Las dos bolas negras son del peligro aislado, los dos conos negros de las cardinales, y el aspa (amarilla) es de las especiales; no hay aspas rojas.",
+  "clave": "Aguas navegables: una esfera roja.",
+  "trampa": "Confundir con las dos esferas negras del peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2024-c1-t15",
+  "concepto": "and-2024-c1-t15"
+ },
+ "bal-per-2020-07-ah-14": {
+  "explicacion": "No: el sistema de balizamiento IALA se aplica a las marcas fijas y flotantes, pero no a los faros, las luces de sector ni las enfilaciones, que se describen en las cartas y en el Libro de Faros. No depende de la región A o B.",
+  "clave": "IALA: marcas fijas y flotantes; no faros.",
+  "trampa": "La b) y la c) mezclan las regiones, que solo cambian las laterales.",
+  "concepto": "bal-per-2020-07-ah-14"
+ },
+ "bal-per-2022-12-be-14": {
+  "explicacion": "No: el sistema de balizamiento IALA se aplica a las marcas fijas y flotantes, pero no a los faros, las luces de sector ni las enfilaciones, que se describen en las cartas y en el Libro de Faros. No depende de la región ni de que haya o no marcas instaladas.",
+  "clave": "IALA: marcas fijas y flotantes; no faros.",
+  "trampa": "La d) inventa una excepción que el sistema no recoge.",
+  "concepto": "bal-per-2020-07-ah-14"
+ },
+ "bal-per-2020-07-ah-15": {
+  "explicacion": "Las boyas meteorológicas y oceanográficas (ODAS) son marcas especiales, así que son amarillas, con aspa amarilla de tope y luz amarilla. El verde o el rojo son de las laterales y el negro con franjas rojas del peligro aislado.",
+  "clave": "Boya meteorológica = marca especial = amarilla.",
+  "trampa": "La a) (azul) solo aparece, con el amarillo, en la boya de naufragio reciente.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2020-07-ah-17": {
+  "explicacion": "Todas las marcas cardinales tienen luz blanca; lo que las distingue es el ritmo de centelleos (continuo la Norte, 3 la Este, 6 más un destello largo la Sur y 9 la Oeste). El rojo y el verde son de las laterales y el amarillo de las especiales.",
+  "clave": "Cardinales: siempre luz blanca.",
+  "trampa": "La b): aunque la marca lleve amarillo en su pintura, su luz es blanca.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ]
+ },
+ "bal-per-2020-07-c-15": {
+  "explicacion": "En la región A las laterales pueden ser cilíndricas (babor), cónicas (estribor) o de castillete o espeque. La forma esférica es propia de la marca de aguas navegables, así que la única opción correcta es la d).",
+  "clave": "Laterales: cilindro, cono, castillete o espeque; nunca esfera.",
+  "trampa": "La a) y la b) mezclan la forma esférica de las aguas navegables."
+ },
+ "bal-per-2020-07-d-13": {
+  "explicacion": "Una boya amarilla con una X amarilla de tope es una marca especial, que puede señalar, entre otras cosas, una zona reservada a las embarcaciones de recreo o de baño. Los peligros aislados se señalan con marcas negras y rojas con dos esferas negras.",
+  "clave": "Amarilla con aspa: marca especial (zonas, cables, recreo).",
+  "trampa": "La d) incluye la c), que describe un peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2020-07-d-14": {
+  "explicacion": "El balizamiento de un peligro nuevo puede duplicarse (con una segunda marca idéntica) solo cuando el peligro sea especialmente grave. No se hace siempre ni de forma libre.",
+  "clave": "Duplicar la marca: solo si el peligro es especialmente grave.",
+  "trampa": "La b) y la c) lo convierten en una regla general."
+ },
+ "bal-per-2020-07-d-16": {
+  "explicacion": "Una marca cilíndrica roja de la región A es una lateral de babor: entrando en el puerto la dejaremos por babor (al salir, por estribor). No indica aguas peligrosas ni someras en general.",
+  "clave": "Cilindro rojo: babor entrando.",
+  "trampa": "La b) dice «siempre»: al entrar va por babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ]
+ },
+ "bal-per-2020-07-e-15": {
+  "explicacion": "Las marcas cardinales indican que las aguas navegables más profundas están en el cuadrante que nombran: al norte de una Norte, al este de una Este, etc. No prohíben pasar por un cuadrante, aunque pasar por el indicado es lo prudente.",
+  "clave": "Cardinal: el agua más profunda está en el cuadrante de su nombre.",
+  "trampa": "La b) da la vuelta al significado: el cuadrante indicado es el bueno.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ],
+  "concepto": "bal-per-2020-07-e-15"
+ },
+ "bal-per-2025-09-a-17": {
+  "explicacion": "Las marcas cardinales indican que las aguas navegables más profundas están en el cuadrante que nombran: al norte de una Norte, al este de una Este, etc. Poder navegar alrededor de la marca es lo propio del peligro aislado.",
+  "clave": "Cardinal: el agua más profunda está en el cuadrante de su nombre.",
+  "trampa": "La a) describe la marca de peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ],
+  "concepto": "bal-per-2020-07-e-15"
+ },
+ "bal-per-2020-07-ig-14": {
+  "explicacion": "Dos conos negros opuestos por sus bases es la cardinal Este: hay que pasar por su este. Con rumbo Sur, el este queda a nuestra izquierda, así que caemos a babor y la marca queda por nuestro estribor.",
+  "clave": "Pasa la cardinal por el lado que dice su nombre.",
+  "trampa": "La a) nos llevaría por su oeste, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": "bal-per-2020-07-ig-14"
+ },
+ "bal-per-2022-03-di-14": {
+  "explicacion": "Dos conos negros opuestos por sus vértices es la cardinal Oeste: hay que pasar por su oeste. Con rumbo Norte, el oeste queda a nuestra izquierda, así que caemos a babor y la marca queda por nuestro estribor.",
+  "clave": "Pasa la cardinal por el lado que dice su nombre.",
+  "trampa": "La a) nos llevaría por su este, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2020-07-ig-14"
+ },
+ "bal-per-2025-12-b-13": {
+  "explicacion": "Amarilla con franja negra central y conos opuestos por sus vértices es la cardinal Oeste: hay que pasar por su oeste. Con rumbo Norte, el oeste queda a nuestra izquierda, así que caemos a babor y la marca queda por nuestro estribor.",
+  "clave": "Pasa la cardinal por el lado que dice su nombre.",
+  "trampa": "La a) nos llevaría por su este, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2020-07-ig-14"
+ },
+ "bal-per-2020-10-a-13": {
+  "explicacion": "Los límites de un área de fondeo se señalan con marcas especiales, que son amarillas. El negro y amarillo es de las cardinales y el rojo y blanco de las aguas navegables.",
+  "clave": "Especial = amarilla = «consulta la carta».",
+  "trampa": "La c) (negro y amarillo) son las cardinales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2020-10-a-17": {
+  "explicacion": "La cardinal Norte se coloca al norte del peligro para indicar que las aguas seguras están al norte de la marca; el peligro, por tanto, queda al sur de ella.",
+  "clave": "Cardinal Norte: el peligro está al sur.",
+  "trampa": "La a) confunde el nombre de la marca con la posición del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2020-10-b-14": {
+  "explicacion": "Entre las regiones IALA A y B solo cambian las marcas laterales: en la A el rojo va a babor entrando y en la B a estribor. Las cardinales, especiales, de peligro nuevo y el resto son iguales en las dos.",
+  "clave": "Regiones A y B: solo cambian las laterales.",
+  "trampa": "La a): las cardinales son iguales en todo el mundo."
+ },
+ "bal-per-2020-10-b-15": {
+  "explicacion": "La cardinal Norte está situada al norte del peligro: las aguas seguras están al norte de la baliza. No obliga a poner rumbo Norte ni tiene nada que ver con la costa.",
+  "clave": "Cardinal Norte: la marca al norte, el peligro al sur.",
+  "trampa": "La b) pone el peligro en el lado seguro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2020-10-d-14": {
+  "explicacion": "España está en la región A, donde entrando se dejan las verdes por estribor. Al salir el sentido se invierte, así que las verdes quedan por babor.",
+  "clave": "Saliendo de puerto: verde a babor, rojo a estribor.",
+  "trampa": "La a) aplica la regla de entrada sin darle la vuelta.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2020-10-d-16": {
+  "explicacion": "Nueve centelleos blancos cada 15 segundos es la cardinal Oeste: hay que pasar por su oeste, de modo que la marca nos queda al Este. Con rumbo Norte y la luz a proa, caemos a babor y la dejamos por estribor, es decir, al este.",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "La d) confunde el nombre de la marca con el lado en el que debe quedar.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ]
+ },
+ "bal-per-2020-10-d-17": {
+  "explicacion": "La luz blanca isofase (tiempos iguales de luz y oscuridad) es uno de los ritmos de la marca de aguas navegables, junto con ocultaciones, destello largo cada 10 s y Morse «A». Las cardinales usan centelleos y las especiales luz amarilla.",
+  "clave": "Aguas navegables: luces «largas» (isofase, ocultación, destello largo, Morse A).",
+  "trampa": "Las cardinales también son blancas, pero centellean.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables",
+    "ritmo": "Iso 4s"
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-17"
+ },
+ "bal-per-2025-07-c-15": {
+  "explicacion": "La luz blanca isofase (tiempos iguales de luz y oscuridad) es uno de los ritmos de la marca de aguas navegables, junto con ocultaciones, destello largo cada 10 s y Morse «A». Las cardinales centellean, el peligro nuevo alterna azul y amarillo y las especiales llevan luz amarilla.",
+  "clave": "Aguas navegables: luces «largas» (isofase, ocultación, destello largo, Morse A).",
+  "trampa": "La a) también es blanca, pero la cardinal Este da grupos de 3 centelleos.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables",
+    "ritmo": "Iso 4s"
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-17"
+ },
+ "bal-per-2020-10-e-13": {
+  "explicacion": "La luz blanca en grupos de dos destellos, GpD(2), es el ritmo de la marca de peligro aislado. La de aguas navegables usa isofase, ocultaciones, destello largo o Morse «A», y la especial luz amarilla.",
+  "clave": "Dos esferas negras, dos destellos blancos.",
+  "trampa": "Confundir el GpD(2) con el GpD(2+1) de las bifurcaciones.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2023-c3-t13",
+  "concepto": "and-2023-c3-t13"
+ },
+ "bal-per-2020-10-e-16": {
+  "explicacion": "En la región A la luz verde es de estribor; con un grupo de 3 destellos (cualquier ritmo salvo el 2+1) es una lateral de estribor normal. Las de bifurcación usan grupos de 2+1, y la de babor tiene luz roja.",
+  "clave": "Verde con cualquier ritmo menos 2+1: estribor.",
+  "trampa": "La c) también es verde, pero usaría el ritmo 2+1.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ],
+  "concepto": "bal-per-2020-10-e-16"
+ },
+ "bal-per-2021-09-e-16": {
+  "explicacion": "En la región A la luz verde es de estribor; con un grupo de 3 destellos (cualquier ritmo salvo el 2+1) es una lateral de estribor normal. Las de bifurcación usan grupos de 2+1, y la de babor tiene luz roja.",
+  "clave": "Verde con cualquier ritmo menos 2+1: estribor.",
+  "trampa": "La d) también es verde, pero usaría el ritmo 2+1.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ],
+  "concepto": "bal-per-2020-10-e-16"
+ },
+ "bal-per-2020-10-e-17": {
+  "explicacion": "El cuadrante Norte está limitado por las demoras verdaderas NW y NE tomadas desde el punto a balizar. El Este va del NE al SE, el Sur del SE al SW y el Oeste del SW al NW.",
+  "clave": "Cuadrante Norte: entre NW y NE.",
+  "trampa": "La b) es el cuadrante Este.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2020-10-f-13": {
+  "explicacion": "La IALA solo contempla el amarillo para las marcas especiales: cuerpo amarillo, aspa amarilla de tope y luz amarilla. No hay variantes grises, naranjas ni fluorescentes.",
+  "clave": "Especial: solo amarillo.",
+  "trampa": "La b) (naranja) suena verosímil, pero no está en el sistema.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2020-10-g-17": {
+  "explicacion": "El objetivo de la marca especial no es ayudar directamente a la navegación, sino señalar una zona o configuración especial cuya naturaleza figura en las cartas o publicaciones náuticas: zonas de recreo, cables, tuberías, vertidos, zonas militares... Usar el compás para las aguas navegables es lo de las cardinales, y el peligro rodeado de agua es el peligro aislado.",
+  "clave": "Especial = amarilla = «consulta la carta».",
+  "trampa": "La d) describe la marca de peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2020-10-g-17"
+ },
+ "bal-per-2021-03-b-14": {
+  "explicacion": "La marca especial sirve para indicar una zona o configuración especial cuya naturaleza figura en las cartas o publicaciones náuticas: zonas de recreo, cables, tuberías, vertidos, zonas militares... Usar el compás para las aguas navegables es lo de las cardinales, y el peligro rodeado de agua es el peligro aislado.",
+  "clave": "Especial = amarilla = «consulta la carta».",
+  "trampa": "La a) describe la marca de peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2020-10-g-17"
+ },
+ "bal-per-2021-12-d-15": {
+  "explicacion": "La marca especial sirve para indicar una zona o configuración especial cuya naturaleza figura en las cartas o publicaciones náuticas: zonas de recreo, cables, tuberías, vertidos, zonas militares... Sigue existiendo; usar el compás para las aguas navegables es lo de las cardinales, y el peligro rodeado de agua es el peligro aislado.",
+  "clave": "Especial = amarilla = «consulta la carta».",
+  "trampa": "La b) inventa una desaparición que no ha ocurrido.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2020-10-g-17"
+ },
+ "bal-per-2020-12-b-17": {
+  "explicacion": "La marca de peligro nuevo (pecio de emergencia) puede llevar un racon codificado con la letra Morse «D» (–··), que aparece en la pantalla del radar como señal de un peligro aún no cartografiado. Las demás marcas pueden llevar racon, pero no con esa letra reservada.",
+  "clave": "Racon «D» = peligro nuevo.",
+  "trampa": "La a): el peligro aislado puede llevar racon, pero no con la «D» reservada."
+ },
+ "bal-per-2020-12-c-13": {
+  "explicacion": "La boya cilíndrica de canal principal a estribor es una lateral de babor modificada (roja con banda verde), así que su luz es roja, en grupos de 2+1 destellos. El color de la luz coincide con el color de fondo de la marca.",
+  "clave": "Canal principal a estribor: marca roja, luz roja 2+1.",
+  "trampa": "La b) asocia «estribor» con verde; aquí manda el color de fondo, rojo.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "bal-per-2020-12-c-13"
+ },
+ "bal-per-2021-03-c-17": {
+  "explicacion": "La boya cilíndrica de canal principal a estribor es una lateral de babor modificada (roja con banda verde), así que su luz es roja, en grupos de 2+1 destellos. El color de la luz coincide con el color de fondo de la marca.",
+  "clave": "Canal principal a estribor: marca roja, luz roja 2+1.",
+  "trampa": "La b) asocia «estribor» con verde; aquí manda el color de fondo, rojo.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "bal-per-2020-12-c-13"
+ },
+ "bal-per-2020-12-c-16": {
+  "explicacion": "La bifurcación con canal principal a estribor es una lateral de babor modificada (roja con banda verde), así que su tope es el de babor: un cilindro rojo. Los cilindros verdes no existen en la región A y el cono verde es de estribor o de la bifurcación con canal principal a babor.",
+  "clave": "Canal principal a estribor: marca roja, cilindro rojo.",
+  "trampa": "Escoger el cono verde porque el canal principal está a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "base": "and-2025-c1-t17",
+  "concepto": "and-2025-c1-t17"
+ },
+ "bal-per-2020-12-c-17": {
+  "explicacion": "Grupos de tres centelleos blancos es la cardinal Este (las 3 del reloj): hay que pasar al este de la marca, lo que equivale a dejarla siempre a nuestro Oeste. Por eso son correctas la b) y la d); la a) es lo contrario.",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "La a) confunde el nombre de la marca con el lado en el que debe quedar.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ]
+ },
+ "bal-per-2020-12-d-15": {
+  "explicacion": "La cardinal Oeste es amarilla con una ancha banda horizontal negra en el centro: dos bandas amarillas y una central negra. Sus conos, unidos por los vértices, apuntan al centro, donde va el negro. Dos negras con una amarilla central es la Este.",
+  "clave": "Oeste: amarillo, negro en medio (conos en cintura).",
+  "trampa": "La c) es la cardinal Este.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ]
+ },
+ "bal-per-2020-12-e-15": {
+  "explicacion": "La IALA solo contempla el amarillo para las marcas especiales, cuya naturaleza se indica en la carta u otros documentos: cuerpo amarillo, aspa amarilla de tope y luz amarilla. No hay variantes azules, naranjas ni fluorescentes.",
+  "clave": "Especial: solo amarillo.",
+  "trampa": "La a): el azul solo aparece, junto al amarillo, en la boya de naufragio reciente.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2020-12-f-15": {
+  "explicacion": "El cuadrante Sur está limitado por las demoras verdaderas SE y SW tomadas desde el punto a balizar. El Norte va del NW al NE, el Este del NE al SE y el Oeste del SW al NW.",
+  "clave": "Cuadrante Sur: entre SE y SW.",
+  "trampa": "La a) es el cuadrante Norte.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
    }
   ]
  }

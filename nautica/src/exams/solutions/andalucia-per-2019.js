@@ -45,4 +45,42 @@ export default {
       return latlon(k.run(s, rv, d, 'Situación 11:30'));
     },
   },
+  'and-2019-c2-q42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Situación 09:00');
+      const { rv, dist } = k.rhumb(s, 'barbate-faro');
+      const ct = k.ct({ dm: 5, desvio: 6 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(9, 0), dist, 5) }];
+    },
+  },
+  'and-2019-c2-q43': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.enfilacion('punta-cires', 'punta-alcazar', 218);
+      k.note('Rumbo', 'El Ra = 232° no interviene: la Ct sale de la enfilación.');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 218) }];
+    },
+  },
+  'and-2019-c2-q44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '6 10,0 W', 'Situación 08:00');
+      const ct = k.ct({ dm: -4, desvio: 4 });
+      const rv = k.rv(135, ct);
+      const d = k.distFor(5, hrb(10, 42) - hrb(8, 0));
+      return latlon(k.run(s, rv, d, 'Situación 10:42'));
+    },
+  },
+  'and-2019-c2-q45': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const enf = k.enfilacion('punta-europa', 'punta-carnero', 243);
+      // Al Norte verdadero de Punta Almina: la demora desde el barco a Almina es 180°.
+      const s = k.lineAndBearing('punta-europa', enf, 'punta-almina', 180, 'Situación');
+      const rv = k.tangent(s, 'punta-carnero', 3, 'estribor');
+      const ct = k.ct({ carta: [7, 2014, -6], anyo: 2019, desvio: 8 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
 };

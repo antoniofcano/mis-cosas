@@ -42,12 +42,14 @@ Dependencias permitidas (de abajo arriba): `math` ← `nautical` ← `chart` ←
 ## Organización por titulación y navegación
 
 La titulación (PER, PY) es el eje de la interfaz. `src/theory/blocks.js` define `TITULACIONES`: estructura
-del examen (temas, nº de preguntas, límites de errores, aciertos mínimos, duración), nivel de los ejercicios
-de carta y ficheros de datos. Añadir una titulación = una entrada en `TITULACIONES` + su banco
-`data/exams/<comunidad>-<tit>-teoria.json` (mismo formato de pregunta: `id`, `ut`, `enunciado`, `opciones`,
-`correcta`, `anulada`, `orden?`, `figuras?`), opcionalmente sus explicaciones `…-explicaciones.json`
-(`{ id: { explicacion, clave, trampa?, discrepancia?, ilustraciones? } }`) y su curso `data/curso/<tit>.json`
-(si no existe, `loadCourse` devuelve `null` y la app funciona solo con preguntas).
+del examen (temas, nº de preguntas, límites de errores, aciertos mínimos, duración) y nivel de los ejercicios
+de carta. Añadir una titulación = una entrada en `TITULACIONES` + su banco en cada eje
+(`data/ejes/<eje>/<tit>/`) y su curso `data/curso/<tit>.json` (si no existe, `loadCourse` devuelve `null` y la
+app funciona solo con preguntas).
+
+Las preguntas reales de examen están en **bancos por eje** (administración examinadora; hoy, Andalucía): formato,
+motor (`src/bancos`) y cómo añadir un eje en [`BANCOS.md`](BANCOS.md). Ningún código fuera de `src/bancos` nombra
+un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 
 `ui/app.js` enruta por hash y pinta la barra inferior (`#tabbar`: Hoy, Temario, Examen, Más):
 
@@ -59,7 +61,8 @@ de carta y ficheros de datos. Añadir una titulación = una entrada en `TITULACI
 | `#/<tit>/curso/<id>[?practica=1]` | `views/curso.js` → `leccionView` (clase) |
 | `#/<tit>/teoria/ut/<n>?s=…[&f=1]` | `views/theory.js` → `practiceView` (tanda de 10) |
 | `#/<tit>/examenes`, `#/<tit>/test/simulacro?s=…`, `#/<tit>/test/real/<conv>` | `views/theory.js` → `examenesView`, `testView` |
-| `#/<tit>/carta`, `#/ej/<id>?s=…`, `#/examenes/<banco>/<id>`, `#/mesa` | ejercicios y mesa de cartas |
+| `#/<tit>/carta`, `#/ej/<id>?s=…`, `#/mesa` | ejercicios y mesa de cartas |
+| `#/q/<id>`, `#/<tit>/examenes/<lista>` (antes `#/examenes/<fichero>/<id>`, que redirige) | `views/exams.js` → `preguntaView`, `listaView` |
 | `#/<tit>/laminas`, `#/reglas`, `#/conceptos`, `#/mas`, `#/progreso` | biblioteca, «Más» y mi progreso |
 
 - **Recomendador único** (`course/plan.js`, funciones puras con tests): `planHoy` (lista ordenada de
@@ -96,21 +99,15 @@ de carta y ficheros de datos. Añadir una titulación = una entrada en `TITULACI
 
 `src/exams/kit.js` ofrece operaciones de alto nivel (`ct`, `oposicion`, `fix2`, `fromMark`, `tangent`, `run`,
 `eta`…) que calculan con los motores, redactan el paso explicado y añaden el dibujo. Cada pregunta tiene en
-`src/exams/solutions/<banco>*.js` una función corta que encadena esas operaciones y devuelve los valores
+`src/exams/solutions/<eje>*.js` (registradas por su eje en `src/bancos/ejes/<eje>.js`) una función corta que encadena esas operaciones y devuelve los valores
 pedidos. `src/exams/options.js` lee las opciones del examen y elige la más próxima; `tests/exams.test.js`
 exige que coincida con la plantilla oficial. Si cambias la carta o un motor, este test avisa.
 
 ## Añadir preguntas de examen
 
-Añade un fichero en `data/exams/`, su entrada en `data/exams/index.json` y (opcional) sus soluciones en
-`src/exams/solutions/`. Datos de la carta: `node tools/build-chart.mjs` regenera `data/chart-105.json`. Formato de pregunta:
-
-```json
-{ "id": "and-2024-11-a-41", "comunidad": "Andalucía", "titulacion": "PER", "convocatoria": "noviembre 2024",
-  "numero": 41, "enunciado_comun": "…", "enunciado": "…", "opciones": {"a": "…", "b": "…", "c": "…", "d": "…"},
-  "correcta": "b", "solucion": ["paso 1", "paso 2"], "ejercicio": "situacion-dos-demoras",
-  "fuente_examen": "https://…", "fuente_plantilla": "https://…", "notas": "" }
-```
+Las preguntas van en el banco de su eje (`data/ejes/<eje>/<tit>/preguntas.json`), con el formato normalizado y
+las reglas de [`BANCOS.md`](BANCOS.md) (que valida `tests/bancos.test.js`); sus soluciones de carta, opcionales,
+en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` regenera `data/chart-105.json`.
 
 ## Carta interactiva e instrumentos
 

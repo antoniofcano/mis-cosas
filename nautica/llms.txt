@@ -25,7 +25,7 @@
 - `#/<tit>/teoria/ut/<n>?s=<semilla>[&f=1]` tanda de 10 preguntas de un tema (f=1: solo falladas)
 - `#/<tit>/examenes` examen a medias, simulacro y convocatorias · `#/<tit>/test/simulacro?s=<semilla>` · `#/<tit>/test/real/<convocatoria>`
 - `#/<tit>/carta` ejercicios de carta · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible
-- `#/examenes/<banco>/<idPregunta>` pregunta real de carta resuelta · `#/mesa` mesa de cartas
+- `#/q/<idPregunta>` pregunta real resuelta (en la carta o paso a paso) · `#/<tit>/examenes/<lista>` lista de preguntas reales (p. ej. `#/per/examenes/carta`) · `#/mesa` mesa de cartas. Los enlaces antiguos `#/examenes/<fichero>/<id>` redirigen.
 - `#/<tit>/podcast` radio de a bordo: podcasts por tema (Elena y Andrés), en ruta de travesía · `#/<tit>/podcast/<id>` episodio con reproductor, guion sincronizado (data/podcast/<id>.json) y minijuego; el audio está en podcast/audio/<id>.mp3 y el índice en data/podcast-<tit>.json
 - `#/<tit>/biblioteca` (láminas, ejercicios de carta, reglas, conceptos, mesa) · `#/<tit>/laminas` · `#/reglas` · `#/conceptos` · `#/ajustes` (fecha, voz, instalar, copia; antes `#/mas`) · `#/progreso`
 - Redirecciones: `#/<tit>/curso` y `#/<tit>/teoria` → `#/<tit>/temario`; `#/teoria`, `#/test` → con la titulación activa; `#/carta` → `#/mesa`; `#/laminas` → `#/<tit>/laminas`.
@@ -33,8 +33,8 @@
 
 ## 4. Datos en JSON
 - `data/chart-105.json` puntos notables (lat/lon decimales, W negativo), costa, declinación.
-- `data/exams/index.json` y `data/exams/<banco>.json` preguntas reales con respuesta oficial.
-- Teoría: `data/exams/andalucia-per-teoria.json` (+ `-explicaciones.json`) y `data/exams/andalucia-py-teoria.json`; estructura de cada examen en `src/theory/blocks.js` (`TITULACIONES`).
+- Preguntas reales con respuesta oficial, por eje (administración examinadora): `data/ejes/index.json`, `data/ejes/<eje>/eje.json` y `data/ejes/<eje>/<tit>/preguntas.json` (+ `explicaciones.json`, `practica.json`); hoy, `data/ejes/andalucia/`. Formato en `docs/BANCOS.md`. Estructura de cada examen en `src/theory/blocks.js` (`TITULACIONES`).
+- Comunes: `data/comun/mnemotecnias.json` y `data/comun/vocabulario-<tit>.json`.
 - En la vista de una pregunta real, `nautica.state()` incluye la resolución calculada paso a paso (validada contra la plantilla).
 
 ## Dibujo del alumno

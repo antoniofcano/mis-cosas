@@ -3,6 +3,8 @@
 //   node tools/bancos/ejes/andalucia/explicaciones.mjs lote <tit> <n> <de>   → JSON del lote n (1..de) de pendientes
 //        (las que no son de carta), cada una con sus candidatas: primero la idéntica o la de mismo texto, si la hay, y
 //        las 3 más parecidas del mismo tema, con su explicación y si su respuesta (por el texto de la opción) es la misma.
+//   node tools/bancos/ejes/andalucia/explicaciones.mjs lote py <n> <de> --carta → igual, con las de carta del PY (que en
+//        Andalucía también llevan explicación: el cálculo paso a paso, como las de 2020–2026).
 //   node tools/bancos/ejes/andalucia/explicaciones.mjs fusionar               → junta tools/bancos/ejes/andalucia/explicaciones/*.json
 //        en data/ejes/andalucia/<tit>/explicaciones.json (solo añade: una explicación ya publicada no se toca) y pone el
 //        `concepto` de cada pregunta nueva (el id de la de Andalucía cuya explicación se adaptó; null si se escribió de cero).
@@ -33,10 +35,11 @@ export const respuestaTexto = (q) => (q.anulada ? 'ANULADA' : q.aceptadas.map((l
 const ficheros = () => (existsSync(DIR) ? readdirSync(DIR).filter((f) => f.endsWith('.json')).sort().map((f) => join(DIR, f)) : []);
 
 /** Preguntas sin explicación (ni en el banco ni en un lote ya escrito) que no son de carta. */
-export function pendientes(tit, { conLotes = true } = {}) {
+export function pendientes(tit, { conLotes = true, carta = false } = {}) {
   const hechas = new Set(Object.keys(leerJSON(ruta(tit, 'explicaciones.json'), {})));
   if (conLotes) for (const f of ficheros()) for (const id of Object.keys(leerJSON(f))) hechas.add(id);
-  return leerJSON(ruta(tit, 'preguntas.json')).preguntas.filter((q) => !q.requiere.includes('carta') && !hechas.has(q.id));
+  // Con `carta`, solo las de carta (el PY de Andalucía explica también sus ejercicios de carta: el cálculo paso a paso).
+  return leerJSON(ruta(tit, 'preguntas.json')).preguntas.filter((q) => q.requiere.includes('carta') === carta && !hechas.has(q.id));
 }
 
 /** Candidatas de Andalucía con explicación para una pregunta: la de mismo texto (si hay) y las 3 más parecidas del tema. */
@@ -51,11 +54,11 @@ export function candidatas(q, todas, expl, k = 3) {
   }));
 }
 
-export function lote(tit, n, de) {
+export function lote(tit, n, de, { carta = false } = {}) {
   const todas = leerJSON(ruta(tit, 'preguntas.json')).preguntas;
   const expl = leerJSON(ruta(tit, 'explicaciones.json'), {});
   // Los lotes se reparten sobre las que no tienen explicación en el banco (no cambian aunque ya haya lotes escritos).
-  const pend = pendientes(tit, { conLotes: false });
+  const pend = pendientes(tit, { conLotes: false, carta });
   const tam = Math.ceil(pend.length / de);
   return pend.slice((n - 1) * tam, n * tam).map((q) => ({
     id: q.id, ut: q.ut, ut_titulo: q.ut_titulo, fecha: q.fecha, convocatoria: q.convocatoria, bloque: q.bloque ?? undefined,
@@ -126,7 +129,7 @@ export function estado() {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const [orden, tit, n, de] = process.argv.slice(2);
-  if (orden === 'lote') console.log(JSON.stringify(lote(tit, Number(n), Number(de)), null, 1));
+  if (orden === 'lote') console.log(JSON.stringify(lote(tit, Number(n), Number(de), { carta: process.argv.includes('--carta') }), null, 1));
   else if (orden === 'fusionar') {
     const r = fusionar();
     console.log(JSON.stringify({ ...r, problemas: r.problemas.length }, null, 1));

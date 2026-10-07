@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'eea06a2e9062';
+self.VERSION = '79064afc8c53';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -13,6 +13,7 @@ self.APP = [
  "src/analysis/checker.js",
  "src/analysis/quantities.js",
  "src/bancos/ejes/andalucia.js",
+ "src/bancos/ejes/baleares.js",
  "src/bancos/index.js",
  "src/bancos/registro.js",
  "src/bancos/soluciones.js",
@@ -43,6 +44,15 @@ self.APP = [
  "src/exams/solutions/andalucia-py-2025.js",
  "src/exams/solutions/andalucia-py-2026.js",
  "src/exams/solutions/andalucia-py.js",
+ "src/exams/solutions/baleares-per-01.js",
+ "src/exams/solutions/baleares-per-02.js",
+ "src/exams/solutions/baleares-per-03.js",
+ "src/exams/solutions/baleares-per-04.js",
+ "src/exams/solutions/baleares-per-05.js",
+ "src/exams/solutions/baleares-py-05.js",
+ "src/exams/solutions/baleares-py-06.js",
+ "src/exams/solutions/baleares-py-07.js",
+ "src/exams/solutions/baleares-py-08.js",
  "src/exercises/compass-data.js",
  "src/exercises/define.js",
  "src/exercises/helpers.js",
@@ -255,9 +265,11 @@ self.DATOS = [
  "data/ejes/baleares/per/explicaciones.json",
  "data/ejes/baleares/per/practica.json",
  "data/ejes/baleares/per/preguntas.json",
+ "data/ejes/baleares/per/resueltos.json",
  "data/ejes/baleares/py/explicaciones.json",
  "data/ejes/baleares/py/practica.json",
  "data/ejes/baleares/py/preguntas.json",
+ "data/ejes/baleares/py/resueltos.json",
  "data/ejes/index.json",
  "data/mapas/balizamiento.json",
  "data/mapas/corriente-abatimiento.json",

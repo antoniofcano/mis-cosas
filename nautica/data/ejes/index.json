@@ -1,5 +1,6 @@
 {
  "ejes": [
-  { "id": "andalucia", "prefijo": "and", "nombre": "Andalucía", "estado": "publicado" }
+  { "id": "andalucia", "prefijo": "and", "nombre": "Andalucía", "estado": "publicado" },
+  { "id": "baleares", "prefijo": "bal", "nombre": "Illes Balears", "estado": "interno" }
  ]
 }

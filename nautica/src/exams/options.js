@@ -6,20 +6,22 @@ import { quantity } from '../analysis/quantities.js';
 
 const NUM = '(\\d+(?:[.,]\\d+)?)';
 const DEG = '\\s*[º°oª]?';
-// Apóstrofos de minuto, también U+0092 (el apóstrofo de Windows-1252 mal convertido).
-const APOS = `['′’´\u0092]`;
+// Apóstrofos de minuto, también U+0092 (el apóstrofo de Windows-1252 mal convertido) y la diéresis «¨» («27,8¨W»).
+const APOS = `['′’´\u0092¨]`;
 // Grados de una latitud o longitud: «36º», «35ª» (errata frecuente), «36º-07,0'» y «05-11,5'» (guion entre grados y
 // minutos).
 const GRADOS = `\\s*(?:[º°oª]\\s*-?|-(?=\\s*\\d))`;
 // Minutos: «53,9'», «53,9», «59'5» y «5º 25’2» (el apóstrofo hace de coma decimal: 59,5′) y «10',8» (apóstrofo y coma);
 // tras los minutos, a veces una errata: «24,0º'».
 const MIN = `\\s*(\\d+(?:[.,]\\d+|${APOS}\\s*[.,]?\\d+(?![\\d.,]))?)\\s*[º°]?${APOS}?`;
-const num = (s) => Number(String(s).replace(/\s/g, '').replace(/['′’´\u0092][.,]?|,/, '.'));
+const num = (s) => Number(String(s).replace(/\s/g, '').replace(/['′’´\u0092¨][.,]?|,/, '.'));
 
 const PATTERNS = {
   lat: { re: new RegExp(`(\\d{1,2})${GRADOS}${MIN}\\s*,?\\s*([NS])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/s/i.test(m[3]) ? -1 : 1) },
   lon: { re: new RegExp(`(\\d{1,3})${GRADOS}${MIN}\\s*([EW])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/w/i.test(m[3]) ? -1 : 1) },
   bearing: [
+    // Por su nombre: «Ev» (Este verdadero), «Nv», «Sv», «Wv»/«Ov».
+    { re: /(?<![\p{L}\d])([NSEWO])v(?![\p{L}])/u, val: (m) => ({ N: 0, E: 90, S: 180, W: 270, O: 270 })[m[1]] },
     // Cuadrantal: «S46,6ºW», «N46W» → circular.
     { re: new RegExp(`\\b([NS])\\s*${NUM}${DEG}\\s*([EW])\\b`, 'i'), val: (m) => {
       const a = num(m[2]); const ns = m[1].toUpperCase(); const ew = m[3].toUpperCase();
@@ -29,8 +31,8 @@ const PATTERNS = {
   ],
   // "+5º (más)", "–12º (menos)", "2º (-)", "Ct = 8º +", "Ct=004º NE", "- 9º", "20 grados babor" (babor −, estribor +)
   signed: [
-    // Declinación en grados y minutos: «4º50 NW», «4º 40′ NE».
-    { re: /(\d{1,2})\s*[º°]\s*(\d{1,2})\s*['′’]?\s*(NE|NW)\b/i, val: (m) => (Number(m[1]) + Number(m[2]) / 60) * (/NW/i.test(m[3]) ? -1 : 1) },
+    // Declinación o Ct en grados y minutos: «4º50 NW», «4º 40′ NE», «0º08' W», «1º28' E» (W/NW, −; E/NE, +).
+    { re: new RegExp(`(\\d{1,2})\\s*[º°]\\s*(\\d{1,2}(?:[.,]\\d+)?)\\s*${APOS}?\\s*(NE|NW|E|W)\\b`, 'i'), val: (m) => (Number(m[1]) + num(m[2]) / 60) * (/W/i.test(m[3]) ? -1 : 1) },
     { re: new RegExp(`([+\\-–‒−])?\\s*${NUM}\\s*(?:[º°]|grados)?\\s*(\\(\\s*(?:más|menos|[+\\-–‒−])\\s*\\)|NE|NW|(?:por\\s+)?(?:babor|estribor|Br|Er)\\b|[+\\-–‒−](?!\\s*\\d))?`, 'i'),
     val: (m) => {
       const v = num(m[2]);
@@ -41,7 +43,7 @@ const PATTERNS = {
   // «21h 34m», «21:34», «13.45», y «0924» (cuatro cifras seguidas).
   clock: [
     { re: /(\d{1,2})\s*(?:h|:|-|\.)\s*(\d{2})(?!\d)/, val: (m) => Number(m[1]) * 60 + Number(m[2]) },
-    { re: /(?<![\d.,])([01]\d|2[0-3])([0-5]\d)(?![\d.,])/, val: (m) => Number(m[1]) * 60 + Number(m[2]) },
+    { re: /(?<![\d.,])([01]\d|2[0-3])([0-5]\d)(?![\d,]|\.\d)/, val: (m) => Number(m[1]) * 60 + Number(m[2]) }, // también «0927.»
   ],
   distance: { re: new RegExp(`${NUM}\\s*(?:millas|′|'|M\\b)?`), val: (m) => num(m[1]) },
   meters: { re: new RegExp(`${NUM}\\s*(?:m\\b|metros)?`), val: (m) => num(m[1]) },
@@ -53,6 +55,8 @@ export function parseOption(text, kinds) {
   let rest = String(text);
   // Quitamos etiquetas como "Ra =", "HRB =", "l =", "L =", "Rv=", "d =", "Distancia=".
   rest = rest.replace(/\b(?:Ra|Rv|HRB|Ct|CT|Distancia|d|l|L)\s*=\s*/g, ' ');
+  // Y las aclaraciones entre paréntesis, que no son valores: «Ev (Este verdadero)». Se quedan los signos: «(-)», «(más)».
+  rest = rest.replace(/\((?!\s*(?:más|menos|[+\-–‒−])\s*\))[^)]*\)/gi, ' ');
   const out = [];
   for (const k of kinds) {
     if (!PATTERNS[k]) throw new Error(`Tipo de opción desconocido: ${k}`);

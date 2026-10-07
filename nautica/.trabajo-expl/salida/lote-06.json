@@ -54,7 +54,7 @@
  "bal-per-2023-12-a-18": {
   "explicacion": "La definición incorrecta es la c): el Reglamento no define ninguna «nave submarina». Lo que define es la «nave de vuelo rasante», una nave multimodal que en su modalidad principal vuela muy cerca de la superficie aprovechando el efecto superficie. Las definiciones de buque restringido por su calado, hidroavión y buque con capacidad de maniobra restringida son las de la Regla 3.",
   "clave": "Regla 3: nave de vuelo rasante, no «nave submarina».",
-  "trampa": "La c) copia la definición de la nave de vuelo rasante cambiando «vuela por encima» por «navega por debajo»."
+  "trampa": "La a) o la d) parecen rebuscadas, pero son copia literal de la Regla 3."
  },
  "bal-per-2023-12-a-20": {
   "explicacion": "La Regla 6 a) enumera los factores que todos los buques deben tener en cuenta: visibilidad, densidad de tráfico y concentraciones de pesca u otros buques, maniobrabilidad, resplandor nocturno de luces de tierra o propias, viento, mar y corrientes, y calado. La d) es inventada: el número de ecos a menos de media milla no figura como factor.",
@@ -74,7 +74,7 @@
  "bal-per-2023-12-a-23": {
   "explicacion": "La Regla 3 define, entre otros, el buque de propulsión mecánica, el buque de vela, el buque con capacidad de maniobra restringida y el buque restringido por su calado. «Capacidad de maniobra alterada» no es una definición del Reglamento.",
   "clave": "Regla 3: maniobra «restringida», nunca «alterada».",
-  "trampa": "La c) se parece al buque con capacidad de maniobra restringida, pero cambia la palabra."
+  "trampa": "La d): «restringido por su calado» suena raro, pero sí es una definición de la Regla 3."
  },
  "bal-per-2023-12-a-24": {
   "explicacion": "La Regla 20 a) dice literalmente que las reglas de la Parte C (luces y marcas) deberán cumplirse en todas las condiciones meteorológicas. No hay excepciones según la relevancia del tiempo ni a criterio del capitán.",
@@ -553,13 +553,13 @@
  "bal-per-2025-09-b-22": {
   "explicacion": "La Regla 35 i) dice que el buque de menos de 12 m no está obligado a emitir las señales de niebla normales, pero si no lo hace emitirá otra señal acústica eficaz a intervalos que no excedan de 2 minutos. Por eso la a) es la incorrecta: sí tiene que emitir alguna señal. El silbato, la campana o una pitada larga cada minuto cumplen como señal eficaz.",
   "clave": "Menor de 12 m en niebla: señal acústica eficaz cada 2 minutos como máximo.",
-  "trampa": "La a): estar dispensado de las señales completas no es estar dispensado de toda señal.",
+  "trampa": "La c) o la d) parecen inventadas, pero cualquier señal acústica eficaz cada 2 minutos como máximo cumple.",
   "concepto": "bal-per-2025-09-b-22"
  },
  "bal-per-2026-03-d-18": {
   "explicacion": "La Regla 35 i) dice que el buque de menos de 12 m no está obligado a emitir las señales de niebla normales, pero si no lo hace emitirá otra señal acústica eficaz a intervalos que no excedan de 2 minutos. Por eso la a) es la incorrecta. Las otras tres son las señales completas de la Regla 35, que también puede emitir si quiere.",
   "clave": "Menor de 12 m en niebla: señal acústica eficaz cada 2 minutos como máximo.",
-  "trampa": "La a): estar dispensado de las señales completas no es estar dispensado de toda señal.",
+  "trampa": "La b), la c) y la d) parecen excesivas para un barco pequeño, pero son señales que puede emitir.",
   "concepto": "bal-per-2025-09-b-22"
  },
  "bal-per-2025-09-b-24": {
@@ -862,7 +862,7 @@
  "bal-per-2026-09-c-18": {
   "explicacion": "La Regla 3 g) incluye en la capacidad de maniobra restringida al dragaminas, al cablero y al buque dedicado a dragado, entre otros. El pesquero faenando es otra categoría, «buque dedicado a la pesca» (Regla 3 d), con sus propias luces y preferencias.",
   "clave": "Pescando ≠ maniobra restringida: categorías distintas.",
-  "trampa": "La c) parece maniobra restringida, pero el Reglamento lo trata aparte."
+  "trampa": "La a): el dragaminas sí es de maniobra restringida, aunque no draga ni tiende cables."
  },
  "bal-per-2026-09-c-19": {
   "explicacion": "La Regla 26 b) asigna al arrastrero dos luces todo horizonte en línea vertical, verde la superior y blanca la inferior, además de costados y alcance si tiene arrancada. Roja sobre blanca es la de pesca que no es de arrastre y blanca sobre roja la de práctico.",
@@ -2131,7 +2131,7 @@
  "bal-per-2017-09-d-32": {
   "explicacion": "Los métodos de extinción actúan sobre el tetraedro del fuego: sofocación (quitar oxígeno), eliminación del combustible, enfriamiento (quitar calor) e inhibición de la reacción en cadena. Ventilar o soplar aire a presión aporta oxígeno y aviva el fuego, así que no es un método de extinción.",
   "clave": "Extinguir: quitar oxígeno, combustible, calor o reacción en cadena.",
-  "trampa": "La b): dar aire es alimentar el fuego."
+  "trampa": "La d): suprimir la reacción en cadena sí es un método, el que usa el polvo seco."
  },
  "bal-per-2017-12-a-30": {
   "explicacion": "Ante una vía de agua se intenta taponar, mejor desde fuera, porque la presión del agua aprieta el parche contra el casco; se ponen en marcha las bombas de achique, y, si sirve, se escora la embarcación para sacar el agujero del agua y reducir la entrada. Todas las medidas son correctas.",
@@ -2260,5 +2260,445 @@
   "explicacion": "La eficacia extintora indica la cantidad de combustible que un extintor es capaz de apagar en un ensayo normalizado, y se marca en la etiqueta con un número y la clase de fuego (por ejemplo, 21A o 113B). No mide el tiempo de extinción ni solo su capacidad de enfriar o de quitar oxígeno.",
   "clave": "Eficacia: cuánto fuego apaga (21A, 113B…).",
   "trampa": "La d): la eficacia no se mide en tiempo."
+ },
+ "bal-per-2018-06-i-30": {
+  "explicacion": "Los fuegos de sólidos son de clase A, que en el alfabeto fonético se lee «Alfa». Bravo (B) son los líquidos, Charlie (C) los gases y Delta (D) los metales.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La b): Bravo es la clase B, los líquidos.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2018-06-i-31": {
+  "explicacion": "El CO2 apaga por sofocación, no conduce la electricidad y no deja residuos, por eso es el agente de elección en fuegos con presencia de electricidad y sirve en fuegos de líquidos (clase B). La oficial incluye también la clase A. No vale para cualquier fuego: en metales o en espacios abiertos con viento no es eficaz.",
+  "clave": "CO2: fuegos eléctricos y de líquidos.",
+  "trampa": "La a): ningún agente vale para cualquier tipo de fuego.",
+  "discrepancia": "En fuegos de sólidos (clase A) el CO2 es poco eficaz: sofoca la llama pero no enfría las brasas, que pueden reavivarse. Los extintores de CO2 se certifican normalmente solo para la clase B."
+ },
+ "bal-per-2018-09-a-31": {
+  "explicacion": "Una contusión es la lesión producida por un golpe contra una parte del cuerpo sin que se rompa la piel (sin herida abierta); suele producir un hematoma. Si hay herida abierta es una herida contusa, y la pérdida súbita de conciencia es un desmayo o síncope.",
+  "clave": "Contusión: golpe sin herida abierta.",
+  "trampa": "La b): con la piel rota ya es una herida."
+ },
+ "bal-per-2018-09-a-32": {
+  "explicacion": "En el agua con chaleco hay que ahorrar energía (no nadar sin necesidad), mantenerse agrupados, lo que da calor, ánimo y un blanco más visible para el rescate, y adoptar la postura HELP para reducir la pérdida de calor. Todas son correctas.",
+  "clave": "En el agua: quieto, agrupado y en postura HELP.",
+  "trampa": "Elegir una sola medida cuando se aplican las tres."
+ },
+ "bal-per-2018-09-b-30": {
+  "explicacion": "Embarrancar, encallar y varar son términos que describen que la embarcación toca fondo y queda inmovilizada. Encallar se usa más para arena o piedras y varar también para sacar el barco a tierra a propósito, pero las tres expresiones valen.",
+  "clave": "Embarrancar = encallar = varar: tocar fondo y quedar inmovilizado.",
+  "trampa": "Elegir solo una cuando las tres son sinónimos."
+ },
+ "bal-per-2018-09-b-31": {
+  "explicacion": "El polvo seco actúa sobre todo por inhibición: interrumpe químicamente la reacción en cadena de la combustión. También tiene un ligero efecto de sofocación, pero no enfría de forma apreciable ni elimina el combustible.",
+  "clave": "Polvo seco: corta la reacción en cadena.",
+  "trampa": "La a): el que enfría es el agua.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2018-09-b-32": {
+  "explicacion": "El polvo seco actúa principalmente por inhibición: interfiere químicamente en las reacciones en cadena de la combustión y la detiene. No calienta, y la dispersión o la disipación no son sus mecanismos de extinción.",
+  "clave": "Polvo seco: corta la reacción en cadena.",
+  "trampa": "La d): la dispersión es eliminar combustible, no lo que hace el polvo."
+ },
+ "bal-per-2018-09-d-30": {
+  "explicacion": "La clasificación de los fuegos de la norma UNE-EN 2 se basa en la naturaleza del combustible que arde: sólidos (A), líquidos (B), gases (C), metales (D) y aceites de cocina (F). El comburente es casi siempre el oxígeno del aire, y el agente extintor se elige según la clase, no al revés.",
+  "clave": "Clases de fuego: según lo que arde.",
+  "trampa": "La d): el extintor se elige a partir de la clase de fuego."
+ },
+ "bal-per-2018-09-d-31": {
+  "explicacion": "La bocina es el tubo por el que el eje de la hélice atraviesa el casco; su prensaestopas o cierre puede perder agua, así que es un punto típico de vía de agua. La hélice, la pala del timón o el orinque están fuera del casco y no son aberturas en él (la mecha del timón sí atraviesa el casco, pero la pala no).",
+  "clave": "Vías de agua típicas: bocina, mecha del timón, grifos de fondo.",
+  "trampa": "La c): el riesgo está en la mecha que atraviesa el casco, no en la pala."
+ },
+ "bal-per-2018-09-d-32": {
+  "explicacion": "La dispersión o desalimentación consiste en eliminar el combustible: cortar el paso de gas o gasoil, retirar materiales o separarlos del fuego. Quitar el oxígeno es sofocación y quitar el calor es enfriamiento.",
+  "clave": "Desalimentar = quitar el combustible.",
+  "trampa": "La a) es la sofocación."
+ },
+ "bal-per-2018-09-e-31": {
+  "explicacion": "El tetraedro del fuego lo forman el combustible, el comburente (oxígeno), la energía de activación (calor) y la reacción en cadena. Las otras opciones repiten la temperatura, que es la energía de activación, o meten las formas de transmisión del calor (conducción, convección, radiación), que no son componentes de la combustión.",
+  "clave": "Tetraedro: combustible, comburente, calor y reacción en cadena.",
+  "trampa": "La b) cuenta dos veces lo mismo: energía de activación y temperatura.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2018-12-a-32": {
+  "explicacion": "La insolación produce vértigos, vómitos, fuerte dolor de cabeza y aumento de la temperatura corporal. El descenso de la temperatura es lo contrario y es propio de la hipotermia, así que es la respuesta incorrecta.",
+  "clave": "Insolación: calor, dolor de cabeza, vértigo, vómitos.",
+  "trampa": "La b): los vómitos sí son síntoma de insolación.",
+  "concepto": "bal-per-2018-06-a-32"
+ },
+ "bal-per-2018-12-b-30": {
+  "explicacion": "La sofocación consiste en eliminar o reducir el comburente, el oxígeno, por ejemplo tapando el fuego con una manta o usando CO2. Eliminar el combustible es desalimentación, reducir la temperatura es enfriamiento y socairear es maniobrar para quitar el viento al fuego.",
+  "clave": "Sofocar = quitar el oxígeno.",
+  "trampa": "La c): socairear ayuda, pero no es la sofocación."
+ },
+ "bal-per-2018-12-d-30": {
+  "explicacion": "Hay hipotermia cuando la temperatura central del cuerpo, medida en el recto, baja de 35 ºC. Por debajo de 37,5 ºC está una persona sana, el aumento de temperatura es hipertermia y la dificultad para respirar no define la hipotermia.",
+  "clave": "Hipotermia: menos de 35 ºC de temperatura central.",
+  "trampa": "La d): 37,5 ºC es una temperatura normal."
+ },
+ "bal-per-2018-12-d-32": {
+  "explicacion": "Ante una quemadura lo primero es valorar su importancia: extensión, profundidad (grado) y zona afectada, para decidir cómo tratarla y si hay que pedir consulta radiomédica o evacuación. Después se enfría con agua. No se revientan las ampollas, no se comprime la zona y sí hay que reponer líquidos.",
+  "clave": "Quemado: valora, enfría y no revientes ampollas.",
+  "trampa": "La a): el quemado pierde líquidos y necesita reponerlos."
+ },
+ "bal-per-2019-04-b-30": {
+  "explicacion": "Al Centro Radio-Médico Español se puede llamar directamente por teléfono, vía satélite o por móvil (91 310 34 75), o a través del servicio de radiotelefonía de las estaciones costeras, que conectan con ese mismo número. El 080 y el 085 son números de bomberos, no del servicio médico marítimo.",
+  "clave": "Radio-Médico: por satélite, móvil o costera.",
+  "trampa": "La c): esos números no son del servicio radio-médico."
+ },
+ "bal-per-2019-04-b-31": {
+  "explicacion": "Ante una quemadura de segundo o tercer grado, lo primero es enfriar la zona con agua o suero durante varios minutos, para frenar el daño del calor y aliviar el dolor. No se revientan ni recortan las ampollas, el vendaje viene después (limpio y sin apretar) y calentar la zona agrava la lesión.",
+  "clave": "Quemadura: primero, enfriar con agua.",
+  "trampa": "La b): desbridar es cosa de un médico, nunca lo primero a bordo."
+ },
+ "bal-per-2019-04-c-30": {
+  "explicacion": "Ante una hemorragia externa se tapa la herida y se presiona con fuerza (compresión directa), y se tumba al herido boca arriba elevando la zona que sangra por encima del corazón para reducir el flujo. Dar analgésicos no detiene la hemorragia.",
+  "clave": "Hemorragia externa: presión directa y elevar.",
+  "trampa": "La c): un analgésico no frena la sangre."
+ },
+ "bal-per-2019-04-c-32": {
+  "explicacion": "La señal fumígena produce humo naranja, visible de día, y se lanza al agua por sotavento para que el humo no envuelva la balsa ni a los náufragos. De noche el humo no se ve; entonces se usan bengalas y cohetes.",
+  "clave": "Fumígena: de día y por sotavento.",
+  "trampa": "La b): por barlovento el humo te cae encima.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2019-04-e-30": {
+  "explicacion": "La clase A de la norma UNE-EN 2 corresponde a los fuegos de combustibles sólidos (madera, papel, tejidos). Los líquidos son la B, los gases la C, y los eléctricos ya no tienen clase propia.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La d): la antigua clase E (eléctricos) ya no existe en la norma.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2019-04-f-30": {
+  "explicacion": "En la hemorragia arterial la sangre sale a impulsos, al ritmo del corazón, y de color rojo vivo porque va oxigenada. La que sale continua y oscura es venosa.",
+  "clave": "Arterial: roja viva y a borbotones.",
+  "trampa": "La d): sale a impulsos, pero el rojo oscuro es venoso."
+ },
+ "bal-per-2019-04-f-31": {
+  "explicacion": "Tras una varada lo primero es analizar la situación: tipo de fondo, posibles daños y vías de agua en el casco, y la marea. Dar máquina de golpe, avante o atrás, puede agrandar una avería o clavar más el barco, y si hay una vía de agua tapada por el fondo, al desvarar podemos hundirnos.",
+  "clave": "Varada: primero analiza fondo y averías.",
+  "trampa": "La a): dar atrás de inmediato puede abrir una vía de agua."
+ },
+ "bal-per-2019-04-f-32": {
+  "explicacion": "La Guía Sanitaria a bordo del Instituto Social de la Marina explica cómo actuar ante un riesgo vital, cómo hacer la consulta radiomédica (qué datos dar) y los primeros auxilios. Por eso son correctas todas.",
+  "clave": "Guía médica del ISM: primeros auxilios y consulta radiomédica.",
+  "trampa": "Quedarse con una sola de sus funciones."
+ },
+ "bal-per-2019-06-b-30": {
+  "explicacion": "Las baterías de plomo-ácido desprenden hidrógeno, sobre todo durante la carga. Es un gas muy inflamable y explosivo, así que el compartimento de baterías debe estar ventilado. No desprenden metano.",
+  "clave": "Baterías: hidrógeno explosivo, ventilar.",
+  "trampa": "La a): el peligro no es el calor, es el gas.",
+  "concepto": "bal-per-2019-06-b-30"
+ },
+ "bal-per-2019-12-e-31": {
+  "explicacion": "Las baterías de plomo-ácido desprenden hidrógeno, sobre todo durante la carga. Es un gas muy inflamable y explosivo, así que el compartimento de baterías debe estar ventilado. No desprenden CO2.",
+  "clave": "Baterías: hidrógeno explosivo, ventilar.",
+  "trampa": "La a): el peligro no es el calor, es el gas.",
+  "concepto": "bal-per-2019-06-b-30"
+ },
+ "bal-per-2019-09-a-32": {
+  "explicacion": "La posición lateral de seguridad mantiene libre la vía aérea de un inconsciente que respira: de lado, la lengua no cae hacia la garganta y si vomita no se ahoga. Boca arriba puede obstruirse, sentado se cae, y boca abajo dificulta la respiración y la vigilancia.",
+  "clave": "Inconsciente que respira: posición lateral de seguridad.",
+  "trampa": "La a): boca arriba la lengua o el vómito pueden ahogarlo.",
+  "concepto": "bal-per-2019-09-a-32"
+ },
+ "bal-per-2026-03-b-31": {
+  "explicacion": "La posición lateral de seguridad mantiene libre la vía aérea de un inconsciente que respira: de lado, la lengua no cae hacia la garganta y si vomita no se ahoga. Boca arriba puede obstruirse, un inconsciente no se mantiene sentado, y boca abajo dificulta la respiración y la vigilancia.",
+  "clave": "Inconsciente que respira: posición lateral de seguridad.",
+  "trampa": "La b): un inconsciente sentado se desploma y la vía aérea se cierra.",
+  "concepto": "bal-per-2019-09-a-32"
+ },
+ "bal-per-2019-09-b-30": {
+  "explicacion": "El chorro del extintor se dirige lo más horizontal posible hacia la base del fuego, donde está el combustible que arde, barriendo de lado a lado. Apuntar a las llamas o desde arriba gasta el agente sin apagar el foco.",
+  "clave": "Extintor: a la base de las llamas, en abanico.",
+  "trampa": "La d): por encima de las llamas no llegas al combustible."
+ },
+ "bal-per-2019-09-b-31": {
+  "explicacion": "Ante una hemorragia externa en un brazo, lo primero es tapar la herida y presionarla con fuerza (compresión directa), elevando el brazo. El torniquete es el último recurso si la presión no basta, y los medicamentos no detienen la sangre.",
+  "clave": "Hemorragia externa: primero, presión directa.",
+  "trampa": "La b): el torniquete es el último recurso, no el primero."
+ },
+ "bal-per-2019-12-a-30": {
+  "explicacion": "Antes de abandonar la embarcación hay que transmitir un MAYDAY con nuestra situación: es la llamada de socorro para un peligro grave e inminente, y dar la posición permite que nos encuentren. PAN-PAN es urgencia sin peligro inminente y SECURITÉ es un aviso de seguridad a la navegación.",
+  "clave": "Abandono: MAYDAY con la posición.",
+  "trampa": "La d): PAN-PAN se queda corto cuando vas a abandonar el barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "MAYDAY",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2019-12-a-30"
+ },
+ "bal-per-2021-03-a-30": {
+  "explicacion": "Antes de abandonar la embarcación hay que transmitir un MAYDAY con nuestra situación: es la llamada de socorro para un peligro grave e inminente, y dar la posición permite que nos encuentren. PAN-PAN es urgencia sin peligro inminente y SECURITÉ es un aviso de seguridad a la navegación.",
+  "clave": "Abandono: MAYDAY con la posición.",
+  "trampa": "La b): PAN-PAN se queda corto cuando vas a abandonar el barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "MAYDAY",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2019-12-a-30"
+ },
+ "bal-per-2019-12-e-32": {
+  "explicacion": "Se pide la falsa. El chorro de agua no sirve en fuegos de clase B (líquidos): el combustible flota sobre el agua y el chorro lo esparce, extendiendo el incendio. Las demás son ciertas: el agua es el agente ideal en sólidos (A), no apaga un fuego de gas (C) y la niebla de agua sí puede usarse en la B para enfriar y proteger.",
+  "clave": "Líquidos ardiendo: nunca agua a chorro.",
+  "trampa": "La c) parece contradecir a la d), pero la niebla de agua sí se usa en la clase B; el chorro no.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2020-07-ah-30": {
+  "explicacion": "Las quemaduras se clasifican por su profundidad: la de segundo grado afecta a capas más profundas de la piel y forma ampollas. La necrosis (tejido muerto) es propia del tercer grado, y la extensión en porcentaje de superficie corporal mide la gravedad, no el grado.",
+  "clave": "1.º rojo, 2.º ampollas, 3.º necrosis.",
+  "trampa": "La b) y la d) hablan de extensión, que no define el grado.",
+  "concepto": "bal-per-2020-07-ah-30"
+ },
+ "bal-per-2025-12-d-31": {
+  "explicacion": "Las quemaduras se clasifican por su profundidad: la de segundo grado afecta a capas más profundas de la piel y forma ampollas. Destruir los tejidos bajo la piel hasta el hueso es propio del tercer grado, y la extensión en porcentaje de superficie corporal mide la gravedad, no el grado.",
+  "clave": "1.º rojo, 2.º ampollas, 3.º destrucción.",
+  "trampa": "La d) describe el tercer grado.",
+  "concepto": "bal-per-2020-07-ah-30"
+ },
+ "bal-per-2020-07-e-30": {
+  "explicacion": "En equipos eléctricos o electrónicos se usa CO2: no conduce la electricidad, apaga por sofocación y no deja residuos que dañen los aparatos. El agua (dulce o salada) y la espuma conducen la corriente y pueden electrocutar a quien apaga. Siempre que se pueda, primero se corta la corriente.",
+  "clave": "Fuego eléctrico: CO2 y corta la corriente.",
+  "trampa": "La c): el agua dulce también conduce la electricidad.",
+  "concepto": "bal-per-2020-07-e-30"
+ },
+ "bal-per-2026-03-c-31": {
+  "explicacion": "En equipos eléctricos o electrónicos se usa preferentemente CO2: no conduce la electricidad, apaga por sofocación y no deja residuos que dañen los aparatos. La espuma y el agua, aunque sea pulverizada, conducen la corriente y pueden electrocutar a quien apaga. Siempre que se pueda, primero se corta la corriente.",
+  "clave": "Fuego eléctrico: CO2 y corta la corriente.",
+  "trampa": "La d): la espuma y el agua pulverizada siguen conduciendo electricidad.",
+  "concepto": "bal-per-2020-07-e-30"
+ },
+ "bal-per-2020-07-e-32": {
+  "explicacion": "Trasladar pesos hacia la zona donde hay más fondo reduce el calado en la parte varada y ayuda a liberarla. Esperar a la bajamar es lo contrario de lo que conviene, porque habrá menos agua (se espera la pleamar), y vaciar el combustible al mar contamina y no es la medida que se aconseja.",
+  "clave": "Varada: mueve pesos hacia donde hay agua y espera la pleamar.",
+  "trampa": "La a): con la bajamar el barco queda aún más varado."
+ },
+ "bal-per-2020-10-a-30": {
+  "explicacion": "La espuma forma una capa sobre el combustible que lo aísla del aire: apaga por sofocación (y algo de enfriamiento por el agua que contiene). La dispersión es quitar combustible y la inhibición, cortar la reacción en cadena, que es lo que hace el polvo seco.",
+  "clave": "Espuma: manta que sofoca.",
+  "trampa": "La c): la inhibición es propia del polvo seco."
+ },
+ "bal-per-2020-10-a-31": {
+  "explicacion": "Los incendios se clasifican según la naturaleza del combustible que arde: sólidos (A), líquidos (B), gases (C), metales (D) y aceites de cocina (F), según la norma UNE-EN 2. El tamaño de las llamas o la superficie quemada miden la magnitud del fuego, no su clase.",
+  "clave": "Clases de fuego: según lo que arde.",
+  "trampa": "La c): la reacción en cadena está en todos los fuegos."
+ },
+ "bal-per-2020-10-b-30": {
+  "explicacion": "La hemorragia venosa (sangre oscura que sale de forma continua) se controla casi siempre con compresión directa sobre la herida y elevando la zona. El torniquete es un último recurso para hemorragias graves de extremidades, no lo primero, y el herido debe estar tumbado, no de pie. Tampoco es una hemorragia sin importancia.",
+  "clave": "Hemorragia venosa: compresión directa.",
+  "trampa": "La c): no necesita torniquete, pero no por ser poco importante.",
+  "concepto": "bal-per-2020-10-b-30"
+ },
+ "bal-per-2025-12-d-30": {
+  "explicacion": "La hemorragia venosa (sangre oscura que sale de forma continua) se controla casi siempre con compresión directa sobre la herida y elevando la zona. El torniquete es un último recurso para hemorragias graves de extremidades, el herido debe estar tumbado, y un apósito adhesivo no basta si la herida sangra de forma continua.",
+  "clave": "Hemorragia venosa: compresión directa.",
+  "trampa": "La c): una hemorragia venosa puede ser importante y requiere presión.",
+  "concepto": "bal-per-2020-10-b-30"
+ },
+ "bal-per-2020-10-d-30": {
+  "explicacion": "Cuando la bengala se apaga sigue muy caliente y puede soltar escoria encendida. Hay que tirarla al agua por sotavento, para que ni ella ni el humo vuelvan hacia la balsa. Dejarla dentro, pasarla de mano en mano o atarla a los flotadores puede quemar o pinchar la balsa.",
+  "clave": "Bengala apagada: al agua por sotavento.",
+  "trampa": "La d): atada a los flotadores puede quemarlos.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-30"
+ },
+ "bal-per-2020-12-a-31": {
+  "explicacion": "Cuando la bengala se apaga sigue muy caliente y puede soltar escoria encendida. Hay que tirarla al agua por sotavento, para que ni ella ni el humo vuelvan hacia la balsa. Dejarla dentro, pasarla de mano en mano o atarla a los flotadores puede quemar o pinchar la balsa.",
+  "clave": "Bengala apagada: al agua por sotavento.",
+  "trampa": "La d): atada a los flotadores puede quemarlos, por mucho que se quiera evitar contaminar.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-30"
+ },
+ "bal-per-2020-12-f-31": {
+  "explicacion": "Cuando la bengala se apaga sigue muy caliente y puede soltar escoria encendida. Hay que tirarla al agua por sotavento, para que ni ella ni el humo vuelvan hacia la balsa. Dejarla dentro, pasarla de mano en mano o atarla a los flotadores puede quemar o pinchar la balsa.",
+  "clave": "Bengala apagada: al agua por sotavento.",
+  "trampa": "La d): atada a los flotadores puede quemarlos.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-30"
+ },
+ "bal-per-2024-07-a-32": {
+  "explicacion": "Cuando la bengala se apaga sigue muy caliente y puede soltar escoria encendida. Hay que tirarla al agua por sotavento, para que ni ella ni el humo vuelvan hacia la balsa. Pasarla de mano en mano o atarla a los flotadores puede quemar o pinchar la balsa, y no se lleva sepiolita para eso.",
+  "clave": "Bengala apagada: al agua por sotavento.",
+  "trampa": "La a) suena técnica, pero no es ningún procedimiento.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-30"
+ },
+ "bal-per-2020-10-d-32": {
+  "explicacion": "La lucha contra incendios sigue tres pasos: localizar el fuego (dónde está y qué arde), confinarlo (cerrar puertas, ventilación y combustible para que no se extienda) y extinguirlo. Enfriamiento y sofocación son métodos de extinción, no los pasos del procedimiento.",
+  "clave": "Incendio: localizar, confinar y extinguir.",
+  "trampa": "La c) mezcla métodos de extinción con el procedimiento."
+ },
+ "bal-per-2020-10-e-30": {
+  "explicacion": "La embarcación solo se abandona cuando hay certeza de que se va a hundir (o de que el peligro a bordo es mayor que en la balsa), porque el barco, aunque esté dañado, es mejor refugio y más fácil de localizar. Un incendio no obliga siempre a abandonar, ni hay que esperar a que otro barco nos vea.",
+  "clave": "Abandona solo si es seguro que se hunde: sube a la balsa, no bajes a ella antes de tiempo.",
+  "trampa": "La d): esperar a que te vean puede ser esperar demasiado.",
+  "concepto": "bal-per-2020-10-e-30"
+ },
+ "bal-per-2022-09-a-31": {
+  "explicacion": "La embarcación solo se abandona cuando hay certeza de que se va a hundir (o de que el peligro a bordo es mayor que en la balsa), porque el barco, aunque esté dañado, es mejor refugio y más fácil de localizar. Quedarse sin gobierno ni propulsión no es motivo para abandonar, ni hay que esperar a que otro barco nos vea.",
+  "clave": "Abandona solo si es seguro que se hunde.",
+  "trampa": "La c): un barco sin máquina sigue siendo mejor refugio que la balsa.",
+  "concepto": "bal-per-2020-10-e-30"
+ },
+ "bal-per-2020-10-e-32": {
+  "explicacion": "Las señales pirotécnicas se lanzan siempre por sotavento, para que el viento aleje las chispas, la escoria y el humo de la embarcación y de quien la sujeta. Por barlovento el viento devuelve todo hacia nosotros. Proa o popa no dicen nada de la dirección del viento.",
+  "clave": "Pirotecnia: siempre por sotavento.",
+  "trampa": "La a): por barlovento las chispas vuelven hacia ti.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2020-10-g-30": {
+  "explicacion": "Antes de abandonar la embarcación hay que transmitir un MAYDAY (pronunciado «medé») con nuestra situación: es la llamada de socorro ante un peligro grave e inminente. PAN-PAN es urgencia sin peligro inminente y SECURITÉ es un aviso de seguridad a la navegación.",
+  "clave": "Abandono: MAYDAY con la posición.",
+  "trampa": "La b): PAN-PAN se queda corto cuando vas a abandonar el barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "MAYDAY",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2019-12-a-30"
+ },
+ "bal-per-2020-12-d-30": {
+  "explicacion": "En el agua el cuerpo pierde calor mucho más rápido que en el aire. Moverse rápido aumenta esa pérdida y gasta energía, así que hay que permanecer lo más quieto posible, con el chaleco puesto y en posición fetal (HELP), protegiendo axilas, ingles y cuello. Abrigarse ayuda, pero no basta.",
+  "clave": "En el agua: quieto y en posición fetal (HELP).",
+  "trampa": "La b): moverse para entrar en calor enfría más rápido en el agua."
+ },
+ "bal-per-2020-12-f-30": {
+  "explicacion": "Ante una hemorragia nasal se sienta al herido con la cabeza inclinada hacia delante y se le pide que pince la nariz con los dedos durante 5 a 10 minutos. Así la sangre no se traga ni va a las vías respiratorias. Tumbarlo o hacer un torniquete no tienen sentido aquí.",
+  "clave": "Sangrado de nariz: sentado, cabeza adelante y pinzar 5–10 min.",
+  "trampa": "La c): tumbado, la sangre va hacia la garganta.",
+  "concepto": "bal-per-2020-12-f-30"
+ },
+ "bal-per-2024-04-b-32": {
+  "explicacion": "Ante una hemorragia nasal se sienta al herido con la cabeza inclinada hacia delante y se le pide que pince la nariz con los dedos durante 5 a 10 minutos. Así la sangre no se traga ni va a las vías respiratorias. Echar la cabeza hacia atrás, como dice la a), es un error frecuente.",
+  "clave": "Sangrado de nariz: sentado, cabeza adelante y pinzar 5–10 min.",
+  "trampa": "La a): con la cabeza atrás la sangre se traga.",
+  "concepto": "bal-per-2020-12-f-30"
+ },
+ "bal-per-2020-12-f-32": {
+  "explicacion": "El espiche es un tapón cónico, normalmente de madera blanda: se introduce por su parte estrecha en el agujero y se encaja a golpes para reducir o cortar la entrada de agua. No es un cubo ni una bomba de achique.",
+  "clave": "Espiche: tapón cónico, por la punta.",
+  "trampa": "La c) describe una bomba de achique.",
+  "concepto": "bal-per-2020-12-f-32"
+ },
+ "bal-per-2025-07-a-30": {
+  "explicacion": "El espiche es un tapón cónico, normalmente de madera blanda: se introduce por su parte estrecha en el agujero y se encaja a golpes para reducir o cortar la entrada de agua. No es un cubo ni una bomba de achique.",
+  "clave": "Espiche: tapón cónico, por la punta.",
+  "trampa": "La c) describe una bomba de achique.",
+  "concepto": "bal-per-2020-12-f-32"
+ },
+ "bal-per-2026-03-c-30": {
+  "explicacion": "El espiche es un tapón cónico, normalmente de madera blanda: se introduce por su parte estrecha en el agujero y se encaja a golpes para reducir o cortar la entrada de agua. No sirve para achicar ni para empujar el agua hacia fuera.",
+  "clave": "Espiche: tapón cónico, por la punta.",
+  "trampa": "La d): es precisamente para las vías de agua.",
+  "concepto": "bal-per-2020-12-f-32"
+ },
+ "bal-per-2020-12-i-30": {
+  "explicacion": "Según la UNE-EN 2, los fuegos de gases inflamables son de clase C. La A son sólidos, la B líquidos y la D metales.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La b): los líquidos que se evaporan siguen siendo clase B.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": "bal-per-2020-12-i-30"
+ },
+ "bal-per-2023-03-bf-30": {
+  "explicacion": "Según la UNE-EN 2, los fuegos de gases inflamables son de clase C. La A son sólidos, la B líquidos y la F aceites y grasas de cocina.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La b): los líquidos que se evaporan siguen siendo clase B.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": "bal-per-2020-12-i-30"
+ },
+ "bal-per-2020-12-i-31": {
+  "explicacion": "Eliminar el oxígeno (el comburente) es el método de sofocación, por ejemplo con una manta, espuma o CO2. El enfriamiento quita calor, y la dispersión o desalimentación quita el combustible.",
+  "clave": "Sofocar = quitar el oxígeno.",
+  "trampa": "La d): desalimentar es quitar el combustible."
+ },
+ "bal-per-2020-12-i-32": {
+  "explicacion": "Dar rápidamente marcha atrás es lo que no hay que hacer: en fango o arena la hélice aspira el fondo, puede dañarse la refrigeración del motor y el casco, y se agrava la varada. Lo adecuado es sondar alrededor y estudiar la maniobra, esperar la pleamar si hay marea y tender un ancla por la popa hacia aguas libres para cobrar de ella.",
+  "clave": "Varada: sonda, estudia, pleamar y ancla; nada de máquina atrás a lo loco.",
+  "trampa": "La d) parece complicada, pero tender un ancla hacia la salida es una técnica clásica.",
+  "concepto": "bal-per-2020-12-i-32"
+ },
+ "bal-per-2021-12-b-30": {
+  "explicacion": "Dar rápidamente marcha atrás como primera acción es lo que no hay que hacer: en fango o arena la hélice aspira el fondo, puede dañarse la refrigeración del motor y el casco, y se agrava la varada. Lo adecuado es sondar alrededor y estudiar la maniobra, esperar la pleamar si hay marea y tender un ancla por la popa hacia aguas libres para cobrar de ella.",
+  "clave": "Varada: sonda, estudia, pleamar y ancla; nada de máquina atrás a lo loco.",
+  "trampa": "La d) parece complicada, pero tender un ancla hacia la salida es una técnica clásica.",
+  "concepto": "bal-per-2020-12-i-32"
  }
 }

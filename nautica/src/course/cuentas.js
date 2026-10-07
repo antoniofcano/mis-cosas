@@ -260,7 +260,7 @@ const GENERADORES = {
       enunciado: `La rosa de la carta dice «${gm(-dm0, 0).replace(' ', '')} W ${año0} (${vari}′ E)». ¿Cuánto vale la declinación en ${año}? (en grados y minutos, con su signo o con E/W)`,
       tipo: 'signo', respuesta: dm, tolerancia: 0.6 / 60, solucion: `${gm(Math.abs(dm), 0).replace(' ', '')} ${dm < 0 ? 'W' : 'E'} (${dm < 0 ? '−' : '+'}${gm(Math.abs(dm), 0).replace(' ', '')})`,
       pasos: [`Años: ${año} − ${año0} = ${año - año0}. Variación: ${año - año0} × ${vari}′ = ${(año - año0) * vari}′ = ${gm(((año - año0) * vari) / 60, 0).replace(' ', '')} hacia el E (+).`,
-        `dm = −${gm(-dm0, 0).replace(' ', '')} + ${gm(((año - año0) * vari) / 60, 0).replace(' ', '')} = **${dm < 0 ? '−' : '+'}${gm(Math.abs(dm), 0).replace(' ', '')}** (${dm < 0 ? 'W' : 'E'}). En el examen se redondea al grado: ${Math.round(dm) === 0 ? '0°' : `${Math.abs(Math.round(dm))}° ${Math.round(dm) < 0 ? 'W' : 'E'}`}.`],
+        `dm = −${gm(-dm0, 0).replace(' ', '')} + ${gm(((año - año0) * vari) / 60, 0).replace(' ', '')} = **${dm < 0 ? '−' : '+'}${gm(Math.abs(dm), 0).replace(' ', '')}** (${dm < 0 ? 'W' : 'E'}). En el examen se redondea al grado: ${Math.round(Math.abs(dm)) === 0 ? '0°' : `${Math.round(Math.abs(dm))}° ${dm < 0 ? 'W' : 'E'}`}.`],
       teclas: `(−) ${Math.floor(-dm0)} °′″ ${Math.round((-dm0 % 1) * 60)} °′″ + ${año - año0} × 0 °′″ ${vari} °′″ =`,
     };
   },

@@ -311,7 +311,7 @@
     {
      "tipo": "texto",
      "titulo": "Rumbos de más de 360° o de menos de 0°",
-     "texto": "**Rv = Ra + Ct** y **Ra = Rv − Ct**. Un rumbo circular va de 000° a 359°:\n- Si pasa de 360°, **resta 360°**: Ra 358° con Ct +5° → 363° → **003°**.\n- Si sale negativo, **suma 360°**: Rv 002° con Ct +6° → Ra = 002° − 6° = −4° → **356°**."
+     "texto": "**Rv = Ra + Ct** y **Ra = Rv − Ct**. Un rumbo circular va de 000° a 359°:\n- Si pasa de 360°, **resta 360°**: con Ra 358° y Ct +5°, Rv = 358° + 5° = 363° → **003°**.\n- Si sale negativo, **suma 360°**: con Rv 002° y Ct +6°, Ra = 002° − 6° = −4° → **356°**."
     },
     {
      "tipo": "check",

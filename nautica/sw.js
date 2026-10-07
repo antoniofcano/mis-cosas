@@ -1,4 +1,9 @@
+// versión: b0a477d5f4f4
+<<<<<<< HEAD
 // versión: 7df110c26dab
+=======
+// versión: 9e9f4d752001
+>>>>>>> origin/main
 <<<<<<< HEAD
 // versión: 0e00b3d90f54
 =======

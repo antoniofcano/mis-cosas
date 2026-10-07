@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '942e82bf5f39';
+self.VERSION = 'fd9f0fe49c29';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -25,6 +25,7 @@ self.APP = [
  "src/course/apendice.js",
  "src/course/calendario.js",
  "src/course/chuletario.js",
+ "src/course/config-profe.js",
  "src/course/cronometro.js",
  "src/course/cuentas.js",
  "src/course/engine.js",
@@ -197,6 +198,7 @@ self.APP = [
  "src/ui/chart/tutorial.js",
  "src/ui/chart/workspace.js",
  "src/ui/cierre.js",
+ "src/ui/config-profe.js",
  "src/ui/copia.js",
  "src/ui/dom.js",
  "src/ui/eje.js",
@@ -233,6 +235,7 @@ self.APP = [
  "src/ui/views/misc.js",
  "src/ui/views/plan.js",
  "src/ui/views/podcast.js",
+ "src/ui/views/profe.js",
  "src/ui/views/reglas.js",
  "src/ui/views/tarjetas.js",
  "src/ui/views/temario.js",

@@ -38,6 +38,10 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   (en el PY, Teoría, Carta, Seguridad y Meteorología se van alternando), siempre después de las clases en las que se
   apoyan. Cada clase dice en qué otras se apoya y, si se abre antes de tiempo, lo avisa. Ver [`docs/RUTA.md`](docs/RUTA.md).
 
+- **🧑‍🏫 Modo profesor** (Ajustes → «Soy profesor»): un profesor reordena la ruta (sin romper las dependencias),
+  edita las reglas para recordar y las chuletas de las clases, y lo comparte en un fichero. Sus alumnos lo usan en
+  Ajustes → «Usar la configuración de mi profesor»; solo les cambia a ellos y se puede quitar cuando se quiera.
+
 - **📌 Chuleta para practicar**: en ejercicios de carta, clases, tandas, repasos y «5 minutos», un botón «Chuleta»
   abre las fórmulas, signos y conversiones de lo que se practica (Ct = dm + Δ, Rv = Ra + Ct, d = V × t, duodécimos,
   estima analítica…) y la chuleta de la clase (`data/comun/chuletario.json`). Nunca en simulacros ni exámenes.

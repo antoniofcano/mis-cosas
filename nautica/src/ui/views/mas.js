@@ -1,6 +1,6 @@
 // #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, dónde te
 // examinas (si hay más de un banco publicado), instalar,
-// voz del profe y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
+// voz del profe, la configuración del profesor (usarla o quitarla; enlace al modo profesor) y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
 // Biblioteca (#/<tit>/biblioteca).
 
 import { h, setChildren } from '../dom.js';
@@ -14,6 +14,7 @@ import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } fro
 import { DIAS_ESTUDIO } from '../../course/calendario.js';
 import { fechaLarga } from '../../texto.js';
 import { ejesElegibles, selectorEje, citaFuente } from '../eje.js';
+import { seccionConfigAlumno } from '../config-profe.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -110,6 +111,8 @@ export function masView({ progress, tit, params }) {
       h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, '▶ Probar la voz')),
     ) : null,
     instalarEl,
+    // Configuración del profesor (usarla o quitarla) y el modo profesor.
+    seccionConfigAlumno(progress),
     h('section', h('h2', '💾 Copia de seguridad'),
       h('p', 'Lo que has estudiado se guarda solo en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
       copiaHecha,
@@ -125,7 +128,7 @@ export function masView({ progress, tit, params }) {
   // Se espera a que la pantalla esté puesta (la transición la monta un poco después).
   let intentos = 0;
   const lleva = () => {
-    const destino = campo === 'fecha' ? fecha : minutos;
+    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : minutos;
     if (!destino.isConnected) { if (intentos++ < 60) setTimeout(lleva, 30); return; }
     destino.scrollIntoView({ block: 'center' });
     if (campo === 'fecha') { fecha.focus(); try { fecha.showPicker?.(); } catch { /* sin gesto del usuario */ } }

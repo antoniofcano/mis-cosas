@@ -37,7 +37,8 @@ import { iniciarCalculadora } from './calculadora.js';
 import { iniciarRadio, enVistaEpisodio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
-import { fijarReservaAlumno } from '../bancos/index.js';
+import { fijarReservaAlumno, fijarConfigProfe } from '../bancos/index.js';
+import { profeView } from './views/profe.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
@@ -73,6 +74,7 @@ const ROUTES = {
   calculadora: calculadoraView, // #/calculadora: la calculadora científica
   progreso: progressView,
   ajustes: masView,
+  profe: profeView, // #/profe: modo profesor (preparar y compartir una configuración)
 };
 
 // Direcciones antiguas → nuevas (enlaces guardados)
@@ -103,7 +105,7 @@ export function pestanaDe(parts) {
     return 'biblioteca'; // biblioteca, laminas, carta
   }
   if (a === 'ej' || a === 'examenes' || a === 'q') return 'temario';
-  if (a === 'ajustes') return null;
+  if (a === 'ajustes' || a === 'profe') return null;
   return 'biblioteca'; // reglas, conceptos, mesa
 }
 
@@ -169,6 +171,8 @@ async function main() {
     leer: (eje, tit) => progress.settings()[`reserva_${eje}_${tit}`] ?? null,
     guardar: (eje, tit, foto) => progress.setSetting(`reserva_${eje}_${tit}`, foto),
   });
+  // Configuración del profesor que el alumno ha importado (Ajustes): se aplica al cargar el curso y las reglas.
+  fijarConfigProfe(() => progress.settings().configProfe ?? null);
   // Una versión nueva se aplica sola al abrir la app, salvo con un examen a medias (entonces se pregunta).
   iniciarPwa({ puedeActualizarSolo: () => !progress.testEnCurso() });
   setSharedProgress(progress);

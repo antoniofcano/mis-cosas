@@ -13,6 +13,7 @@ import { resueltasSegun } from '../course/resueltos.js';
 import { SOLUCIONES } from './soluciones.js';
 import { EJE_POR_DEFECTO } from './registro.js';
 import { equivalenteEn } from './equivalentes.js';
+import { validarConfig, aplicarConfigCurso, aplicarConfigReglas, aplicarConfigReglasDe } from '../course/config-profe.js';
 
 export { EJE_POR_DEFECTO, SOLUCIONES };
 
@@ -65,6 +66,20 @@ export function crearBancos(leer) {
    * @param {{ leer: (eje, tit) => object|null, guardar: (eje, tit, foto) => void } | null} a
    */
   const fijarReservaAlumno = (a) => { alumno = a; };
+  // Configuración del profesor que ha importado el alumno (la app pone de dónde leerla con fijarConfigProfe). Se aplica
+  // aquí, encima de los datos por defecto ya cargados (que no cambian): el curso (ruta y chuletas) y las reglas.
+  let leerConfig = () => null;
+  const validadas = new WeakMap();
+  /** La configuración activa, validada (se vuelve a validar al leerla: viene de los ajustes, que se pueden recuperar de una copia). */
+  const configActiva = () => {
+    const raw = leerConfig();
+    if (!raw || typeof raw !== 'object') return null;
+    if (!validadas.has(raw)) validadas.set(raw, validarConfig(raw).config);
+    return validadas.get(raw);
+  };
+  /** @param {() => object|null} f  devuelve la configuración guardada (o null) */
+  const fijarConfigProfe = (f) => { leerConfig = typeof f === 'function' ? f : () => null; };
+  const conConfig = (curso, tit) => aplicarConfigCurso(curso, configActiva(), tit);
   const memo = (k, f) => {
     if (!cache.has(k)) cache.set(k, f());
     return cache.get(k);
@@ -93,12 +108,16 @@ export function crearBancos(leer) {
   const titsDe = (ficha) => Object.keys(ficha.examen ?? {}).filter((t) => TITULACIONES[t]);
 
   /** Reglas nemotécnicas (comunes a todos los ejes) y, para cada pregunta, las que le ayudan. */
-  const cargarMnemotecnias = () => memo('mnemo', async () => {
+  const mnemoBase = () => memo('mnemo', async () => {
     const d = await leer('data/comun/mnemotecnias.json').catch(() => ({ reglas: [] }));
     const byQ = new Map();
     for (const r of d.reglas) for (const id of r.preguntas ?? []) byQ.set(id, [...(byQ.get(id) ?? []), r]);
     return { reglas: d.reglas, reglasDe: (id) => byQ.get(id) ?? [] };
   });
+  /** Con la configuración del profesor encima (reglas cambiadas, ocultas o nuevas); `porDefecto`, las de la app. */
+  const cargarMnemotecnias = () => mnemoBase().then((m) => ({
+    reglas: aplicarConfigReglas(m.reglas, configActiva()), reglasDe: (id) => aplicarConfigReglasDe(m.reglasDe(id), configActiva()), porDefecto: m.reglas,
+  }));
 
   /** Vocabulario para tocar en las preguntas. El de Yate incluye el del PER (se da por sabido); su matiz manda. */
   const cargarVocabulario = (tit = 'per') => memo(`vocab:${tit}`, async () => {
@@ -112,8 +131,10 @@ export function crearBancos(leer) {
    * Curso nacional de una titulación (sin práctica), con su ruta por defecto en `ruta` (los tramos de
    * data/curso/ruta-<tit>.json; null si no hay); null si el curso aún no existe.
    */
-  const cargarCursoBase = (tit) => memo(`curso:${tit}`, () => Promise.all([leer(`data/curso/${tit}.json`).catch(() => null), leer(`data/curso/ruta-${tit}.json`).catch(() => null)])
+  const cursoPorDefecto = (tit) => memo(`curso:${tit}`, () => Promise.all([leer(`data/curso/${tit}.json`).catch(() => null), leer(`data/curso/ruta-${tit}.json`).catch(() => null)])
     .then(([curso, ruta]) => conRuta(curso, ruta)));
+  /** El mismo, con la configuración del profesor encima (si el alumno ha importado una). */
+  const cargarCursoBase = (tit) => cursoPorDefecto(tit).then((c) => conConfig(c, tit));
 
   /**
    * Reserva del alumno para un eje y una titulación: las convocatorias de su examen final (la foto que se guardó la
@@ -195,9 +216,9 @@ export function crearBancos(leer) {
   // Uno por banco (el banco cambia si cambia la reserva del alumno, y con él la práctica de las clases).
   const cursos = new WeakMap();
   const cursoDe = async (tit, eje) => {
-    const [curso, banco] = await Promise.all([cargarCursoBase(tit), bancoDe(eje, tit)]);
+    const [curso, banco] = await Promise.all([cursoPorDefecto(tit), bancoDe(eje, tit)]);
     if (!cursos.has(banco)) cursos.set(banco, cursoConPractica(curso, banco));
-    return cursos.get(banco);
+    return conConfig(cursos.get(banco), tit);
   };
   const cargarCurso = (tit, eje) => resolverEje(eje).then((e) => cursoDe(tit, e));
 
@@ -265,7 +286,7 @@ export function crearBancos(leer) {
     return listas.some((l) => l.requiere === 'carta') && q.requiere?.includes('carta') ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno };
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };
 }
 
 // ---------------------------------------------------------------------------
@@ -284,4 +305,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva } = bancos;

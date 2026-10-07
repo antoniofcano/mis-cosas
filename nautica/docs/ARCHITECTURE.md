@@ -75,6 +75,9 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 - **Ruta del curso** (`course/ruta.js`, [`RUTA.md`](RUTA.md)): cada clase declara `requiere` (clases del mismo curso
   en que se apoya) y `data/curso/ruta-<tit>.json` (generada con `tools/ruta.mjs` y retocada a mano) fija el orden en
   que se dan, intercalando temas. `planHoy`, `unidades` (plan con fecha) y `hoyToca` la siguen; Temario sigue por temas.
+- **Configuración del profesor** (`course/config-profe.js`, `ui/config-profe.js`, `views/profe.js`, [`RUTA.md`](RUTA.md)):
+  un JSON validado con esquema estricto que cambia ruta, reglas para recordar y chuletas solo para quien lo importa
+  (`settings.configProfe`). Se aplica en un solo sitio, al cargar curso y reglas en `bancos/index.js`.
 - **Modo concentración**: en clase, tanda o examen, `body.focus` oculta cabecera, barra inferior y pie; la vista
   coloca `barraActividad()` (`ui/actividad.js`) como primer hijo.
 - **Progreso** (`store/progress.js`, `nautica.progress.v1`, `version: 1`; solo campos opcionales nuevos):

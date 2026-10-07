@@ -1990,7 +1990,7 @@
      "verificacion": [
       {
        "dato": "Isobara = línea de igual presión en un momento dado, presiones reducidas al nivel del mar",
-       "fuente": "AEMET, mapa de análisis de superficie; plantillas and-py-2025-c2-g18 (d)"
+       "fuente": "AEMET, mapa de análisis de superficie; plantillas [pregunta reservada] (d)"
       },
       {
        "dato": "Presión normal 1013 hPa = 760 mmHg; cerca del suelo ≈ 1 hPa cada 8 m",
@@ -5747,7 +5747,7 @@
       },
       {
        "dato": "Rs = Rv + Ab; viento por babor Ab +, por estribor Ab −",
-       "fuente": "Regla validada py-nav-02; plantillas and-py-2022-c1-n16, 2025-c1-n16"
+       "fuente": "Regla validada py-nav-02; plantillas and-py-2022-c1-n16, [pregunta reservada]"
       },
       {
        "dato": "Problema modelo: de 36°02,0′ N 005°15,0′ W a la luz verde de Ceuta Rs 199,8°, 8,67 M → Rv 208°, Ra 214°, llegada 11:57",

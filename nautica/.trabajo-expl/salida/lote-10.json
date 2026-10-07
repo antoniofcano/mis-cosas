@@ -1,0 +1,862 @@
+{
+ "bal-py-2021-06-b-18": {
+  "explicacion": "Las corrientes que genera el viento al rozar la superficie del mar se llaman de arrastre (o de deriva). Las de densidad y las termohalinas se deben a diferencias de temperatura y salinidad del agua, y las de gradiente a diferencias de nivel o de presión, no al viento directamente.",
+  "clave": "Viento sobre el agua = corriente de arrastre o de deriva.",
+  "trampa": "Las termohalinas (b) suenan técnicas, pero son corrientes de densidad por temperatura y sal."
+ },
+ "bal-py-2021-06-b-19": {
+  "explicacion": "El psicrómetro tiene un termómetro seco y otro húmedo. El húmedo marca menos porque el agua de su gasa se evapora y le roba calor; si el aire está saturado no hay evaporación y ambos marcan lo mismo: humedad relativa del 100 %. Cuanto mayor es la diferencia entre ambos, más seco está el aire.",
+  "clave": "Seco = húmedo → aire saturado → 100 %.",
+  "trampa": "La c) (0 %) invierte la idea: sin diferencia no hay sequedad, sino saturación."
+ },
+ "bal-py-2021-06-b-20": {
+  "explicacion": "La corriente de marea es el desplazamiento horizontal del agua que acompaña a la subida y bajada de la marea (flujo y reflujo). El movimiento vertical de ascenso y descenso es la marea en sí, no su corriente, y el oleaje de viento es otro fenómeno.",
+  "clave": "Marea = sube y baja; corriente de marea = el agua se desplaza en horizontal.",
+  "trampa": "La a) describe la marea, no la corriente de marea."
+ },
+ "bal-py-2021-12-a-11": {
+  "explicacion": "El psicrómetro lleva dos termómetros: el seco da la temperatura del aire y el húmedo la temperatura húmeda. Con la diferencia entre ambos y las tablas psicrométricas se obtiene la humedad relativa (y el punto de rocío). Por eso las tres primeras son correctas a la vez.",
+  "clave": "Psicrómetro: seco + húmedo → humedad relativa y punto de rocío.",
+  "trampa": "Cada una de la a) a la c) es cierta por sí sola; la completa es la d)."
+ },
+ "bal-py-2021-12-a-16": {
+  "explicacion": "Un frente es la superficie (y en el mapa, la línea) que separa dos masas de aire de distinta temperatura y humedad, una fría y otra cálida. La dorsal es una cuña de altas presiones, la vaguada un surco de bajas presiones y la borrasca un centro de bajas presiones.",
+  "clave": "Frente = frontera entre aire frío y aire cálido.",
+  "trampa": "Vaguada y dorsal son formas de las isobaras, no límites entre masas de aire.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2021-12-a-19": {
+  "explicacion": "El viento de superficie sufre el rozamiento con el mar o la tierra: pierde velocidad, cambia de dirección y cruza las isobaras hacia dentro de las bajas y hacia fuera de las altas. Lo que describe la d) (resultante solo de Coriolis, presión y centrífuga) es el viento del gradiente en altura, sin rozamiento, así que no es característica del viento de superficie.",
+  "clave": "Viento de superficie = viento del gradiente + rozamiento.",
+  "trampa": "La d) suena completa, pero le falta el rozamiento, que es lo que define al viento de superficie."
+ },
+ "bal-py-2021-12-b-12": {
+  "explicacion": "La altura que se usa para describir el oleaje es la altura significativa: la media del tercio de las olas más altas, que coincide bastante con lo que estima a ojo un observador. No es un tercio de la ola máxima ni la media de todas las olas.",
+  "clave": "Altura significativa = media del tercio de olas más altas.",
+  "trampa": "La b) juega con «tercio» pero lo aplica a la ola más alta, que no es lo mismo."
+ },
+ "bal-py-2021-12-b-19": {
+  "explicacion": "En una borrasca la presión cambia mucho en poca distancia: las isobaras están juntas y el gradiente horizontal de presión es alto, por eso sopla viento fuerte. En un anticiclón ocurre lo contrario, con isobaras separadas, gradiente bajo y vientos flojos.",
+  "clave": "Borrasca: isobaras juntas, gradiente alto, viento fuerte.",
+  "trampa": "Las b) y c) describen un anticiclón, no una borrasca.",
+  "concepto": "bal-py-2021-12-b-19",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2024-07-a-15": {
+  "explicacion": "En una borrasca la presión cambia mucho en poca distancia: las isobaras están juntas y el gradiente horizontal de presión es alto, por eso sopla viento fuerte. No es bajo como en un anticiclón ni nulo (sin gradiente no habría viento), ni igual que en un anticiclón.",
+  "clave": "Borrasca: isobaras juntas, gradiente alto, viento fuerte.",
+  "trampa": "La b) describe un anticiclón, no una borrasca.",
+  "concepto": "bal-py-2021-12-b-19",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2021-12-b-20": {
+  "explicacion": "La mar de fondo es oleaje que ya ha salido de la zona donde lo generó el viento: olas largas, regulares y de cresta redondeada. Su longitud (distancia entre crestas) es muchísimo mayor que su altura, de decenas o cientos de metros frente a pocos metros de altura.",
+  "clave": "Mar de fondo: olas largas y redondeadas, longitud mucho mayor que altura.",
+  "trampa": "La b) invierte la relación; ninguna ola real es más alta que larga."
+ },
+ "bal-py-2022-03-b-12": {
+  "explicacion": "En la rosa de los vientos mediterránea el viento del sureste es el xaloc (siroco). El mistral (mestral) es del noroeste, el migjorn del sur y la tramontana del norte.",
+  "clave": "Rosa balear: N tramontana, NE gregal, E llevant, SE xaloc, S migjorn, SW garbí, W ponent, NW mestral.",
+  "trampa": "El migjorn (c) es del sur, no del sureste."
+ },
+ "bal-py-2022-06-n-17": {
+  "explicacion": "La niebla se disipa cuando el aire se calienta o se renueva: el viento fuerte la mezcla y la levanta, el calor del sol eleva la temperatura por encima del punto de rocío y una corriente superficial cálida calienta el aire que está en contacto con el mar. Las tres favorecen su dispersión.",
+  "clave": "La niebla se va con calor o con viento fuerte.",
+  "trampa": "Un viento flojo puede incluso traer niebla de advección; es el viento fuerte el que la dispersa."
+ },
+ "bal-py-2022-12-b-11": {
+  "explicacion": "Si las isobaras pasan de estar a 200 millas a estar a 100, la misma diferencia de presión se da en la mitad de distancia: el gradiente horizontal de presión se ha duplicado y, con él, el viento ha aumentado.",
+  "clave": "Isobaras más juntas = gradiente mayor = más viento.",
+  "trampa": "La b) acierta en que el viento aumenta, pero dice que el gradiente ha disminuido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2022-12-b-12": {
+  "explicacion": "En la rosa de los vientos mediterránea el viento del nordeste es el gregal. El xaloc es del sureste, el mistral (mestral) del noroeste y la tramontana del norte.",
+  "clave": "Rosa balear: N tramontana, NE gregal, E llevant, SE xaloc, S migjorn, SW garbí, W ponent, NW mestral.",
+  "trampa": "La tramontana (d) es del norte, no del nordeste."
+ },
+ "bal-py-2022-12-b-14": {
+  "explicacion": "Las corrientes de arrastre (o de deriva) las produce el viento al rozar con la superficie del mar y arrastrar el agua. La marea genera corrientes de marea, y la presión o la viscosidad no son la causa de este tipo de corriente.",
+  "clave": "Corriente de arrastre = la provoca el viento.",
+  "trampa": "La marea (a) causa corrientes de marea, que son otro tipo."
+ },
+ "bal-py-2022-12-b-15": {
+  "explicacion": "En aire saturado (humedad relativa del 100 %) el agua de la gasa del termómetro húmedo no puede evaporarse, así que no se enfría y marca lo mismo que el seco. Si el aire no está saturado, el húmedo siempre marca menos, nunca más.",
+  "clave": "Aire saturado: seco y húmedo marcan igual.",
+  "trampa": "La c) es lo normal con aire no saturado, no con aire saturado."
+ },
+ "bal-py-2022-12-b-18": {
+  "explicacion": "Al acercarse un frente frío la presión baja; cuando pasa, entra el aire frío y denso y la presión sube con rapidez y sigue subiendo, a menudo con chubascos y rolada del viento. En el frente cálido la bajada es lenta y prolongada y después la presión se estabiliza.",
+  "clave": "Frente frío: bajada y subida rápida del barómetro.",
+  "trampa": "El frente cálido (a) también hace bajar la presión, pero no provoca una subida rápida tras su paso.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2023-03-ac-13": {
+  "explicacion": "Las corrientes de arrastre, también llamadas de deriva, las genera el viento cuando sopla con persistencia: no aparecen de forma instantánea y su fuerza depende de cuánto tiempo y con qué intensidad sopla. Se dan en cualquier mar u océano, no solo en mares interiores, así que la incorrecta es la d).",
+  "clave": "Corriente de arrastre: viento persistente, en cualquier mar.",
+  "trampa": "Se pide la NO correcta: las a), b) y c) son ciertas."
+ },
+ "bal-py-2023-03-ac-16": {
+  "explicacion": "El levante sopla del este y aparece típicamente cuando hay altas presiones al norte de la península y bajas al sur; en el Estrecho de Gibraltar el embudo del relieve lo acelera hasta rachas de más de 100 km/h. El mestral es del noroeste, el gregal del nordeste y el migjorn del sur.",
+  "clave": "Levante del Estrecho: alta al norte, embudo en Gibraltar.",
+  "trampa": "El mestral (b) también es muy fuerte, pero sopla del noroeste y lo provocan otras situaciones."
+ },
+ "bal-py-2023-03-ac-18": {
+  "explicacion": "Los altocúmulos lenticulares se forman en la cresta de las ondas que crea el viento al pasar sobre montañas. El aire atraviesa la nube, que se forma por barlovento y se deshace por sotavento, por lo que la nube permanece estacionaria sobre el mismo sitio aunque el viento sea fuerte.",
+  "clave": "Lenticular = nube estacionaria de ondas de montaña.",
+  "trampa": "La forma de lenteja nada tiene que ver con un cumulonimbo, así que la c) y la d) fallan."
+ },
+ "bal-py-2023-06-ac-15": {
+  "explicacion": "La humedad relativa es la relación entre el vapor de agua que contiene el aire y el máximo que podría contener a esa temperatura, y se expresa en tanto por ciento. Hectopascales y milibares miden presión, y los grados miden temperatura.",
+  "clave": "Humedad relativa = %.",
+  "trampa": "Hectopascales y milibares son unidades de presión."
+ },
+ "bal-py-2023-06-b-11": {
+  "explicacion": "En la rosa de los vientos mediterránea el viento del noroeste es el mistral (mestral). El garbí es del suroeste, la tramontana del norte y el xaloc del sureste.",
+  "clave": "Rosa balear: N tramontana, NE gregal, E llevant, SE xaloc, S migjorn, SW garbí, W ponent, NW mestral.",
+  "trampa": "La tramontana (c) es del norte, no del noroeste."
+ },
+ "bal-py-2023-06-b-13": {
+  "explicacion": "Una borrasca es un centro de bajas presiones, así que al acercarse el barómetro marca un descenso de la presión, tanto más rápido cuanto más profunda y veloz es. Un aumento de presión indica que se aleja o que se acerca un anticiclón.",
+  "clave": "Barómetro que baja = borrasca que se acerca.",
+  "trampa": "La d) (subida brusca) es lo que se ve tras el paso de un frente frío, no al acercarse la borrasca."
+ },
+ "bal-py-2023-06-b-16": {
+  "explicacion": "La humedad relativa es la relación entre el vapor de agua que contiene el aire y el máximo que admitiría a esa temperatura, y se expresa en porcentaje. Los gramos de agua serían humedad absoluta, los grados miden temperatura y los hectopascales presión.",
+  "clave": "Humedad relativa = %.",
+  "trampa": "Gramos de agua (a) es la humedad absoluta, no la relativa."
+ },
+ "bal-py-2023-06-b-18": {
+  "explicacion": "En los mapas el frente cálido se dibuja con una línea roja de semicírculos, y el frente frío con una línea azul de triángulos; en ambos casos los símbolos apuntan hacia donde avanza el frente. Un frente ocluido combina triángulos y semicírculos en violeta.",
+  "clave": "Cálido: semicírculos rojos. Frío: triángulos azules.",
+  "trampa": "Mezclar color y forma: semicírculos azules o triángulos rojos no existen.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2023-12-a-12": {
+  "explicacion": "Es falsa la c): el psicrómetro no mide máximas y mínimas, sino que tiene un termómetro seco y otro húmedo para calcular, con las tablas, la humedad relativa y el punto de rocío. Las demás son ciertas: si la temperatura del mar se acerca al punto de rocío, el aire en contacto con ella se satura y puede formarse niebla.",
+  "clave": "Psicrómetro: seco + húmedo → humedad y punto de rocío; no es de máxima y mínima.",
+  "trampa": "Se pide la falsa; la a) y la b) son la base para prever la niebla de advección."
+ },
+ "bal-py-2023-12-a-15": {
+  "explicacion": "En el hemisferio norte las borrascas giran en sentido contrario a las agujas del reloj, tienen gradiente grande y traen viento fuerte, nubes y lluvia. En nuestras latitudes se desplazan casi siempre de oeste a este, empujadas por los vientos del oeste, y no suelen ser inmóviles, así que la falsa es la d).",
+  "clave": "Borrasca en HN: giro antihorario, se mueve de W a E.",
+  "trampa": "Se pide la NO correcta: la d) invierte el sentido de desplazamiento.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2023-12-a-19": {
+  "explicacion": "La niebla es condensación junto a la superficie, y para que el vapor condense el aire tiene que estar prácticamente saturado: humedad relativa cercana al 100 %. El viento fuerte la dispersa, la presión baja no es condición necesaria y con un 60 % el aire está lejos de saturarse.",
+  "clave": "Niebla = aire saturado, humedad relativa ≈ 100 %.",
+  "trampa": "El viento (b) puede traer niebla de advección, pero no es condición necesaria."
+ },
+ "bal-py-2023-12-b-12": {
+  "explicacion": "Las nubes lenticulares (altocúmulos lenticulares) tienen forma de lente o de platillo volador y se forman en las ondas que crea el viento al pasar sobre montañas. Los cirros son filamentos altos, los cumulonimbos torres de tormenta y los nimboestratos una capa gris de lluvia continua.",
+  "clave": "Platillo volador = nube lenticular.",
+  "trampa": "Los cumulonimbos (c) tienen forma de yunque, no de platillo.",
+  "concepto": "bal-py-2023-12-b-12"
+ },
+ "bal-py-2024-12-a-17": {
+  "explicacion": "Las nubes lenticulares (altocúmulos lenticulares) tienen forma de lente o de platillo volador y se forman en las ondas que crea el viento al pasar sobre montañas. Las «nubes aerodinámicas» no son un tipo de nube, los cumulonimbos son torres de tormenta y los nimboestratos una capa gris de lluvia continua.",
+  "clave": "Platillo volador = nube lenticular.",
+  "trampa": "La a) (aerodinámicas) suena plausible por la forma, pero no existe esa clasificación.",
+  "concepto": "bal-py-2023-12-b-12"
+ },
+ "bal-py-2023-12-b-14": {
+  "explicacion": "Mestral (mistral), xaloc (jaloque) y llebeig (lebeche) son vientos mediterráneos con su nombre equivalente en castellano. El garbí sí es mediterráneo (suroeste), pero la galerna es un temporal típico del Cantábrico, así que la pareja de la b) no es un viento característico del Mediterráneo.",
+  "clave": "Galerna = Cantábrico; garbí = suroeste mediterráneo.",
+  "trampa": "El garbí es mediterráneo; lo que falla en la b) es emparejarlo con la galerna."
+ },
+ "bal-py-2024-04-a-13": {
+  "explicacion": "El viento geostrófico es el viento teórico que sopla paralelo a isobaras rectilíneas, con la fuerza del gradiente de presión equilibrada por la de Coriolis. El de Euler solo tiene en cuenta el gradiente, el ciclostrófico es el de giros pequeños e intensos sin Coriolis y el antitríptico incluye el rozamiento y cruza las isobaras.",
+  "clave": "Paralelo a isobaras rectas = geostrófico.",
+  "trampa": "El ciclostrófico también es paralelo a las isobaras, pero curvas y muy cerradas, y sin Coriolis.",
+  "base": "and-py-2021-c1-g13",
+  "concepto": "and-py-2021-c1-g13"
+ },
+ "bal-py-2024-04-a-15": {
+  "explicacion": "Tras el paso del frente cálido entra el sector cálido: aire templado y húmedo que, al moverse sobre un mar más frío, suele traer brumas, neblinas o nieblas y lloviznas. La visibilidad, por tanto, disminuye; la mejora clara de visibilidad es típica del paso del frente frío.",
+  "clave": "Tras el frente cálido: aire húmedo, brumas y mala visibilidad.",
+  "trampa": "La d) describe el paso de un frente frío, con cielo que se abre y buena visibilidad."
+ },
+ "bal-py-2024-04-bc-13": {
+  "explicacion": "Cuando el aire cálido avanza y va sustituyendo al aire frío que retrocede, el frente es cálido. Si es el aire frío el que avanza y desplaza al cálido, el frente es frío, y si el frente frío alcanza al cálido y levanta el aire cálido del suelo, se forma un frente ocluido.",
+  "clave": "Avanza el aire cálido = frente cálido; avanza el frío = frente frío.",
+  "trampa": "La a) sería el caso contrario: aire frío que avanza.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2024-04-bc-15": {
+  "explicacion": "La altura de la ola es la distancia vertical entre la cresta y el seno. La a) describe olas reflejadas, no refractadas (la refracción es el giro de la ola al cambiar el fondo), y el periodo es el tiempo entre dos crestas consecutivas, no entre una cresta y el seno siguiente. Por eso la d) tampoco vale.",
+  "clave": "Altura: cresta a seno. Periodo: cresta a cresta.",
+  "trampa": "La a) confunde reflexión (rebote) con refracción (giro por el fondo)."
+ },
+ "bal-py-2024-04-bc-19": {
+  "explicacion": "Cuando el viento empuja una masa de aire húmedo contra una montaña, el aire se ve obligado a subir, se enfría y condensa: son nubes de ascenso orográfico. La convección térmica se debe al calentamiento del suelo y el ascenso frontal a la cuña de aire frío de un frente.",
+  "clave": "Aire que sube por una montaña = ascenso orográfico.",
+  "trampa": "La c) (frente) también eleva el aire, pero aquí lo que lo levanta es el relieve."
+ },
+ "bal-py-2024-04-bc-20": {
+  "explicacion": "El punto de rocío es la temperatura a la que hay que enfriar el aire, sin cambiar su cantidad de vapor, para que se sature. La b) define la humedad absoluta (gramos por metro cúbico), no la relativa, y la a) habla de la humedad «del agua», que no tiene sentido, así que la d) también falla.",
+  "clave": "Punto de rocío = temperatura a la que el aire se satura.",
+  "trampa": "La b) da a la humedad relativa la definición de la absoluta."
+ },
+ "bal-py-2024-07-a-12": {
+  "explicacion": "Las isobaras unen puntos de igual presión. Si están muy juntas, la presión cambia mucho en poca distancia: el gradiente de presión es elevado y el viento, fuerte. Isobaras separadas indican gradiente bajo y viento flojo.",
+  "clave": "Isobaras juntas = gradiente alto = viento fuerte.",
+  "trampa": "La b) es justo lo contrario: gradiente bajo con isobaras separadas.",
+  "concepto": "bal-py-2024-07-a-12",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2025-04-bc-12": {
+  "explicacion": "Las isobaras unen puntos de igual presión. Si están muy juntas, la presión cambia mucho en poca distancia: el gradiente de presión es elevado y el viento, fuerte. Isobaras separadas indican gradiente bajo y viento flojo.",
+  "clave": "Isobaras juntas = gradiente alto = viento fuerte.",
+  "trampa": "La b) es justo lo contrario: gradiente bajo con isobaras separadas.",
+  "concepto": "bal-py-2024-07-a-12",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2024-07-a-14": {
+  "explicacion": "El viento sopla de las altas a las bajas presiones y su velocidad es directamente proporcional al gradiente: cuanto más juntas las isobaras, más viento. Por eso la falsa es la d), que habla de proporción inversa.",
+  "clave": "Más gradiente, más viento: proporción directa.",
+  "trampa": "Se pide la FALSA: la b) y la d) se contradicen y la cierta es la b)."
+ },
+ "bal-py-2024-07-bc-12": {
+  "explicacion": "Los cúmulos tienen la base baja pero crecen hacia arriba por convección, así que se clasifican como nubes de desarrollo vertical, junto con los cumulonimbos. Las medias son los altocúmulos y altoestratos, las altas los cirros, y «lenticular» es una forma, no una familia por altura.",
+  "clave": "Cúmulos y cumulonimbos = desarrollo vertical.",
+  "trampa": "Su base está baja, pero no son nubes bajas puras: crecen en vertical.",
+  "concepto": "bal-py-2024-07-bc-12"
+ },
+ "bal-py-2025-12-a-15": {
+  "explicacion": "Los cúmulos tienen la base baja pero crecen hacia arriba por convección, así que se clasifican como nubes de desarrollo vertical, junto con los cumulonimbos. Las medias son los altocúmulos y altoestratos, las altas los cirros, y las lenticulares son una forma concreta de nube, no una familia por altura.",
+  "clave": "Cúmulos y cumulonimbos = desarrollo vertical.",
+  "trampa": "La a) mezcla términos: las lenticulares no son una familia y los cúmulos no se desarrollan en horizontal.",
+  "concepto": "bal-py-2024-07-bc-12"
+ },
+ "bal-py-2024-07-bc-20": {
+  "explicacion": "La Corriente del Norte (o Liguro-Provenzal) baja desde el golfo de León bordeando la costa catalana hacia el sur-suroeste, es decir, lleva rumbo SSW. No va hacia el NNE ni se la conoce como corriente occidental, así que la d) también falla.",
+  "clave": "Corriente del Norte: baja por la costa catalana hacia el SSW.",
+  "trampa": "La b) da el sentido contrario: se llama «del Norte» porque viene de allí, no porque vaya allí."
+ },
+ "bal-py-2024-12-a-12": {
+  "explicacion": "El viento geostrófico es el modelo teórico en el que la fuerza del gradiente de presión queda equilibrada exactamente por la de Coriolis, y sopla paralelo a isobaras rectas. El de Euler solo tiene en cuenta el gradiente, el ciclostrófico equilibra gradiente y centrífuga, y el antitríptico añade el rozamiento.",
+  "clave": "Geostrófico = gradiente + Coriolis en equilibrio.",
+  "trampa": "El ciclostrófico (c) equilibra el gradiente con la centrífuga, no con Coriolis."
+ },
+ "bal-py-2024-12-a-20": {
+  "explicacion": "Las corrientes de arrastre, también llamadas de deriva, las genera el viento cuando sopla con persistencia: no aparecen de forma instantánea y dependen de cuánto tiempo y con qué fuerza sopla. Se dan en cualquier mar u océano, no solo en mares interiores, así que la incorrecta es la d).",
+  "clave": "Corriente de arrastre: viento persistente, en cualquier mar.",
+  "trampa": "Se pide la incorrecta: las a), b) y c) son ciertas."
+ },
+ "bal-py-2024-12-bc-14": {
+  "explicacion": "El frente cálido avanza despacio y el aire cálido sube suavemente sobre el frío, formando nubes estratiformes (altoestratos, nimboestratos) con lluvias continuas o lloviznas y visibilidad de regular a mala por brumas y nieblas. Los chubascos son propios del frente frío.",
+  "clave": "Frente cálido: lluvia continua o llovizna, visibilidad regular a mala.",
+  "trampa": "Los chubascos de las a) y c) son de frente frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2024-12-bc-17": {
+  "explicacion": "La mar de fondo es oleaje generado lejos, por un viento que ya no sopla aquí, así que puede llegar de una dirección distinta a la de la mar de viento local. Por eso no tiene por qué coincidir con ella; a veces ambas se cruzan y forman mar confusa.",
+  "clave": "Mar de fondo: viene de lejos y de su propia dirección.",
+  "trampa": "La a) dice «siempre»; precisamente lo típico es que no coincidan."
+ },
+ "bal-py-2025-04-a-11": {
+  "explicacion": "El viento de gradiente es el viento teórico con isobaras curvas: resulta del equilibrio entre la fuerza del gradiente de presión, la de Coriolis y la fuerza centrífuga. Si solo intervienen gradiente y Coriolis (isobaras rectas) es el geostrófico, y si se añade el rozamiento es el antitríptico o de superficie.",
+  "clave": "Gradiente + Coriolis + centrífuga = viento de gradiente.",
+  "trampa": "La c) describe el viento geostrófico, no el de gradiente."
+ },
+ "bal-py-2025-04-a-17": {
+  "explicacion": "En la rosa de los vientos mediterránea el viento del noroeste es el mistral (mestral). El xaloc es del sureste, el gregal del nordeste y la tramontana del norte.",
+  "clave": "Rosa balear: N tramontana, NE gregal, E llevant, SE xaloc, S migjorn, SW garbí, W ponent, NW mestral.",
+  "trampa": "La tramontana (d) es del norte, no del noroeste."
+ },
+ "bal-py-2025-04-bc-13": {
+  "explicacion": "Si la separación entre isobaras baja de 70 a 45 millas, la misma diferencia de presión se da en menos distancia: el gradiente ha aumentado y el viento habrá refrescado (aumentado). Las isobaras sí están ligadas al viento, precisamente a través del gradiente.",
+  "clave": "Isobaras que se juntan = viento que refresca.",
+  "trampa": "La d) niega la relación entre isobaras y viento, que es la base de cualquier parte."
+ },
+ "bal-py-2025-04-bc-15": {
+  "explicacion": "Ley de Buys Ballot en el hemisferio norte: si das la espalda al viento, la baja presión queda a tu izquierda; dicho de otro modo, si recibes el viento de cara, la borrasca está a tu derecha (y la alta a tu izquierda). En el hemisferio sur es al revés.",
+  "clave": "HN: espalda al viento, borrasca a la izquierda; de cara, a la derecha.",
+  "trampa": "La b) mezcla las dos formas de decirlo: de cara al viento la borrasca queda a la derecha, no a la izquierda.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "buys-ballot"
+   }
+  ]
+ },
+ "bal-py-2025-04-bc-18": {
+  "explicacion": "La niebla frontal se forma cuando la lluvia que cae desde el aire cálido de un frente se evapora en el aire frío de debajo y lo satura, así que necesita precipitación. La de advección se debe al paso de aire húmedo sobre agua fría, la de radiación al enfriamiento nocturno del suelo y la orográfica al ascenso por una ladera.",
+  "clave": "Niebla frontal = lluvia que se evapora y satura el aire frío.",
+  "trampa": "La de advección (b) es la más típica en el mar, pero no necesita lluvia."
+ },
+ "bal-py-2025-07-a-16": {
+  "explicacion": "El frente cálido trae nubes estratiformes (altoestratos y nimboestratos) con precipitaciones regulares y continuas, y después del paso el aire templado y húmedo puede formar niebla. Vientos fuertes, cumulonimbos, chubascos y ráfagas son propios del frente frío.",
+  "clave": "Frente cálido: lluvia continua y posible niebla.",
+  "trampa": "La a) empieza bien (estratiformes) pero los chubascos son de frente frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2025-07-a-20": {
+  "explicacion": "El viento de Euler es el modelo teórico más simple: solo tiene en cuenta la fuerza del gradiente de presión, de modo que el aire iría directo de la alta a la baja. Si se añade Coriolis es el geostrófico, si se añade el rozamiento el antitríptico, y el ciclostrófico equilibra gradiente y centrífuga.",
+  "clave": "Solo gradiente de presión = viento de Euler.",
+  "trampa": "El geostrófico (b) ya incluye la fuerza de Coriolis."
+ },
+ "bal-py-2025-07-b-13": {
+  "explicacion": "En un mapa de superficie las isobaras se trazan con la misma diferencia de presión entre una y otra, así que el gradiente se lee por la distancia entre ellas: cuanto más juntas, mayor gradiente. El gradiente es la diferencia de presión dividida por la distancia, no multiplicada, por lo que la d) falla.",
+  "clave": "Gradiente = diferencia de presión / distancia; se ve en la separación de isobaras.",
+  "trampa": "La d) multiplica por la distancia en vez de dividir."
+ },
+ "bal-py-2025-07-b-14": {
+  "explicacion": "Una borrasca es una baja presión: en su interior la presión suele estar por debajo de la normal, 760 mmHg (1013 hPa). En el hemisferio norte el viento gira en sentido contrario a las agujas del reloj, no a favor, y la presión es mínima, no máxima, en el centro.",
+  "clave": "Borrasca: menos de 760 mmHg (1013 hPa), giro antihorario en el HN.",
+  "trampa": "La a) da el giro de un anticiclón y la d) describe el centro de un anticiclón.",
+  "concepto": "bal-py-2025-07-b-14",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2025-07-b-18": {
+  "explicacion": "La galerna es un temporal repentino del noroeste en el Cantábrico, con caída brusca de temperatura y viento muy fuerte, que suele aparecer tras días de calor con viento del sur. La respuesta oficial la sitúa sobre todo en primavera y otoño.",
+  "clave": "Galerna: golpe de viento del NW en el Cantábrico, en la estación templada.",
+  "trampa": "La a) (invierno) es la época de las borrascas atlánticas, no de las galernas.",
+  "discrepancia": "Los estudios de la galerna típica la sitúan sobre todo entre la primavera y el verano (de abril a septiembre), así que «en verano» también se puede defender; el tribunal se queda con primavera y otoño.",
+  "defendible": "b"
+ },
+ "bal-py-2025-07-b-20": {
+  "explicacion": "La presión varía tanto en vertical (disminuye con la altura, unos 1 hPa cada 8 m cerca del suelo) como en horizontal (la que se ve en las isobaras). El gradiente vertical es muy grande pero casi constante de un sitio a otro, mientras que el horizontal cambia mucho y es el que genera el viento, así que las tres afirmaciones se aceptan.",
+  "clave": "Hay gradiente vertical (casi fijo) y horizontal (el que mueve el viento).",
+  "trampa": "Pensar solo en el horizontal porque es el de los mapas."
+ },
+ "bal-py-2025-12-a-11": {
+  "explicacion": "El mistral (mestral) es el viento frío y seco del noroeste que baja por el valle del Ródano hacia el golfo de León y se extiende hasta el delta del Ebro y Baleares, con rachas muy fuertes. En Menorca el viento más habitual es la tramontana, del norte; el gregal es del nordeste y el lebeche del suroeste.",
+  "clave": "Mistral: NW, frío y seco, golfo de León.",
+  "trampa": "La tramontana (c) también es fría y fuerte, pero sopla del norte."
+ },
+ "bal-py-2025-12-a-13": {
+  "explicacion": "El viento geostrófico es el modelo teórico que sopla paralelo a isobaras rectilíneas, con la fuerza del gradiente de presión equilibrada por la de Coriolis; sobre el mar abierto y en altura se parece mucho al viento real. El de Euler solo tiene en cuenta el gradiente, el ciclostrófico es el de giros pequeños sin Coriolis y el antitríptico añade el rozamiento.",
+  "clave": "Geostrófico = gradiente + Coriolis, paralelo a isobaras rectas.",
+  "trampa": "El ciclostrófico también es paralelo a las isobaras, pero curvas y muy cerradas, y sin Coriolis.",
+  "base": "and-py-2020-c1-g17",
+  "concepto": "and-py-2020-c1-g17"
+ },
+ "bal-py-2025-12-a-14": {
+  "explicacion": "Cuando aire templado y húmedo se desplaza sobre una superficie más fría (normalmente el mar), se enfría por debajo del punto de rocío y se forma niebla de advección, la típica en el mar. La de radiación se debe al enfriamiento nocturno del suelo y la orográfica al ascenso por una ladera.",
+  "clave": "Aire húmedo que se mueve sobre mar frío = niebla de advección.",
+  "trampa": "La de radiación (a) también es por enfriamiento, pero del suelo por la noche y con el aire en calma.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2025-12-a-16": {
+  "explicacion": "Con la temperatura seca, la húmeda y las tablas psicrométricas se obtienen la humedad relativa y el punto de rocío. El psicrómetro mide el aire, no la temperatura del agua del mar, y la humedad absoluta no es lo que dan directamente sus tablas.",
+  "clave": "Psicrómetro + tablas = humedad relativa y punto de rocío.",
+  "trampa": "La c) cuela la temperatura del mar, que se mide con un termómetro aparte."
+ },
+ "bal-py-2025-12-a-17": {
+  "explicacion": "Una borrasca es una baja presión: en su interior la presión suele estar por debajo de la normal, 760 mmHg (1013 hPa). En el hemisferio norte el viento gira en sentido contrario a las agujas del reloj, no a favor, y la presión es mínima, no máxima, en el centro.",
+  "clave": "Borrasca: menos de 760 mmHg (1013 hPa), giro antihorario en el HN.",
+  "trampa": "La a) da el giro de un anticiclón y la d) describe el centro de un anticiclón.",
+  "concepto": "bal-py-2025-07-b-14",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2025-12-b-16": {
+  "explicacion": "El viento antitríptico es el viento real de superficie: además del gradiente de presión intervienen el rozamiento con el suelo o el mar y la orografía, que lo frenan y le hacen cruzar las isobaras. El de gradiente, el ciclostrófico y el de Euler son modelos teóricos sin rozamiento.",
+  "clave": "Viento real con rozamiento = antitríptico.",
+  "trampa": "El de gradiente (a) es teórico: no tiene en cuenta el rozamiento."
+ },
+ "bal-py-2025-12-b-18": {
+  "explicacion": "La niebla de radiación se forma en noches despejadas y con poco viento: el suelo pierde calor por radiación, enfría el aire en contacto con él hasta el punto de rocío y aparece la niebla, que suele disiparse con el sol de la mañana. La de advección se debe al aire húmedo que se desplaza sobre una superficie fría y la frontal a la lluvia de un frente.",
+  "clave": "Noche despejada + suelo frío = niebla de radiación.",
+  "trampa": "La de advección (b) también es por enfriamiento, pero de un aire que se desplaza.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-radiacion"
+   }
+  ]
+ },
+ "bal-py-2025-12-b-19": {
+  "explicacion": "El gradiente horizontal es la diferencia de presión dividida por la distancia: (1012 − 1008) / 40 = 4 / 40 = 0,1 mb por milla. Los otros valores salen de operar mal (por ejemplo, multiplicar o dividir al revés).",
+  "clave": "Gradiente = Δp / distancia.",
+  "trampa": "Dividir 40 entre 4 o confundir el resultado con 1,6 o 2 mb."
+ },
+ "bal-py-2025-12-b-20": {
+  "explicacion": "En el golfo de León confluyen los dos vientos fríos y fuertes del norte: la tramontana, que baja entre Pirineos y Macizo Central, y el mistral, que baja por el valle del Ródano. Ambos pueden alcanzar fuerza de temporal; el garbí (suroeste) es más moderado en esa zona.",
+  "clave": "Golfo de León: tramontana y mistral.",
+  "trampa": "Elegir solo uno de los dos, cuando ambos soplan con fuerza allí."
+ },
+ "bal-py-2026-03-a-15": {
+  "explicacion": "En el frente cálido el aire cálido sube muy despacio por una rampa poco inclinada sobre el frío, así que las nubes y la lluvia se extienden cientos de kilómetros por delante del frente. El frente frío tiene una pendiente mucho mayor y su mal tiempo es más intenso pero concentrado en una franja estrecha.",
+  "clave": "Frente cálido: pendiente suave, mal tiempo extenso. Frío: intenso y estrecho.",
+  "trampa": "Pensar que el frente frío, por ser más violento, afecta a una zona más amplia."
+ },
+ "bal-py-2026-03-a-18": {
+  "explicacion": "El viento de Euler es el modelo teórico más simple: solo actúa la fuerza del gradiente de presión, así que el aire iría directo de la alta a la baja. La a) describe el antitríptico (con rozamiento), la c) el ciclostrófico (centrífuga y gradiente) y la d) el geostrófico (Coriolis y gradiente).",
+  "clave": "Euler = solo gradiente de presión.",
+  "trampa": "La d) es el geostrófico, el modelo teórico más citado, pero ya incluye Coriolis."
+ },
+ "bal-py-2026-03-b-11": {
+  "explicacion": "En el hemisferio norte las borrascas giran en sentido contrario a las agujas del reloj, tienen gradiente grande y traen viento fuerte, nubes y lluvia. En nuestras latitudes se desplazan de oeste a este, empujadas por los vientos del oeste, así que la falsa es la d).",
+  "clave": "Borrasca en HN: giro antihorario, se mueve de W a E.",
+  "trampa": "Se pide la NO correcta: la d) invierte el sentido de desplazamiento.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2026-03-b-12": {
+  "explicacion": "Las corrientes de arrastre (o de deriva) las produce el viento al rozar con la superficie del mar y arrastrar el agua. La marea genera corrientes de marea y las diferencias de densidad por salinidad o temperatura dan corrientes de densidad, que son otros tipos.",
+  "clave": "Corriente de arrastre = la provoca el viento.",
+  "trampa": "La d) describe las corrientes de densidad (termohalinas), no las de arrastre."
+ },
+ "bal-py-2026-03-b-18": {
+  "explicacion": "La longitud de la ola es la distancia horizontal entre dos crestas (o dos senos) consecutivas. La altura es la distancia vertical entre seno y cresta, la amplitud la mitad de la altura y la celeridad la velocidad a la que avanza la ola.",
+  "clave": "Distancia entre crestas = longitud; tiempo entre crestas = periodo.",
+  "trampa": "La altura (b) es vertical; la longitud, horizontal.",
+  "base": "and-py-2021-c2-g18",
+  "concepto": "and-py-2021-c2-g18"
+ },
+ "bal-py-2026-03-b-20": {
+  "explicacion": "En el frente cálido el aire cálido asciende sobre la cuña fría por una pendiente muy suave, del orden de 1/100 a 1/400, y por eso su tiempo se extiende hasta 1.500 km por delante. Una pendiente acusada de 1/30 a 1/100 es la del frente frío, así que la d) no corresponde al cálido.",
+  "clave": "Frente cálido: pendiente suave (1/100–1/400). Frío: acusada (1/30–1/100).",
+  "trampa": "Se pide la que NO corresponde: la a), la b) y la c) sí describen el frente cálido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2026-06-a-14": {
+  "explicacion": "El viento de Euler es el modelo teórico en el que solo actúa la fuerza horizontal del gradiente de presión, de modo que el aire iría en línea recta de las altas a las bajas presiones. La b) describe el geostrófico, la c) el ciclostrófico, y la a) da el sentido al revés.",
+  "clave": "Euler = solo gradiente: directo de la alta a la baja.",
+  "trampa": "La a) habla de un viento teórico, pero de las bajas a las altas: el sentido está invertido."
+ },
+ "bal-py-2026-06-a-15": {
+  "explicacion": "La humedad relativa compara el vapor de agua que hay en el aire con el máximo que admitiría a esa temperatura y se expresa en porcentaje. La a) es la humedad absoluta (g/m³), la b) el punto de rocío y la d) el agua precipitable de una columna de aire.",
+  "clave": "Humedad relativa = vapor real / vapor de saturación, en %.",
+  "trampa": "La a) define la humedad absoluta, no la relativa."
+ },
+ "bal-py-2026-06-a-17": {
+  "explicacion": "En el Estrecho de Gibraltar la corriente superficial dominante entra del Atlántico al Mediterráneo, es decir, procede del oeste y va hacia el este; en superficie y combinada con la marea puede llegar a unos 6 nudos. Por debajo, el agua mediterránea, más salada y densa, sale hacia el Atlántico.",
+  "clave": "Estrecho: agua atlántica que entra por arriba, del W al E.",
+  "trampa": "La b) daría la corriente profunda de salida, no la superficial."
+ },
+ "bal-py-2026-06-a-19": {
+  "explicacion": "Según su causa, las corrientes marinas se deben al viento (de arrastre), a las variaciones de presión atmosférica (de gradiente), a las mareas (de marea) y a las diferencias de densidad del agua por temperatura y salinidad (termohalinas). El campo magnético o eléctrico de la Tierra no las genera.",
+  "clave": "Corrientes: viento, presión, marea y densidad.",
+  "trampa": "La d) se queda solo con el viento, que es una causa pero no la única."
+ },
+ "bal-py-2026-06-b-15": {
+  "explicacion": "El viento de Euler es un modelo teórico en el que solo actúa la fuerza del gradiente de presión, así que el aire va de la mayor a la menor presión: la a) y la c) son ciertas. Los alisios son vientos reales y constantes de las zonas tropicales, no un sinónimo del viento de Euler.",
+  "clave": "Euler: solo gradiente, de alta a baja presión.",
+  "trampa": "Quedarse con la a) o la c) sola cuando ambas son ciertas."
+ },
+ "bal-py-2026-06-b-16": {
+  "explicacion": "El punto de rocío es la temperatura a la que, al enfriarse el aire, el vapor empieza a condensarse, y la humedad relativa se expresa en porcentaje. El punto de rocío nada tiene que ver con perder presión, la humedad relativa no mide agua líquida y tampoco es una diferencia de temperaturas.",
+  "clave": "Rocío = temperatura de condensación; humedad relativa en %.",
+  "trampa": "La b) confunde vapor de agua con agua líquida."
+ },
+ "bal-py-2026-06-b-18": {
+  "explicacion": "La respuesta oficial es la d), que habla de un viento originado por la aceleración centrípeta en sistemas ciclónicos cerrados. El viento geostrófico, sin embargo, es el que resulta del equilibrio entre la fuerza del gradiente de presión y la de Coriolis y sopla paralelo a isobaras rectas, como dice la b). La a) y la c) son falsas: no lo causa la temperatura ni la fricción.",
+  "clave": "Geostrófico = gradiente + Coriolis, paralelo a las isobaras.",
+  "trampa": "La d) se parece al viento ciclostrófico o de gradiente, en que interviene la fuerza centrífuga.",
+  "discrepancia": "Lo que describe la d) (aceleración centrípeta en sistemas cerrados) es el viento ciclostrófico o el de gradiente, no el geostrófico. La definición correcta del geostrófico es la b), que el tribunal no da como buena.",
+  "defendible": "b"
+ },
+ "bal-py-2026-06-b-20": {
+  "explicacion": "En aguas profundas la velocidad de la ola crece con su periodo, y la longitud es velocidad por periodo, de modo que a mayor periodo, mayor longitud (aproximadamente L = 1,56 · T² en metros). Por eso las olas largas de mar de fondo viajan rápido y lejos conservando su energía. Las demás invierten la relación o la niegan.",
+  "clave": "Más periodo = ola más larga y más rápida.",
+  "trampa": "La a) y la d) dicen lo contrario con una explicación de apariencia técnica."
+ },
+ "bal-py-2017-03-a-21": {
+  "explicacion": "El círculo polar ártico es el paralelo de 66° 33' N, complementario de la oblicuidad de la eclíptica (90° − 23° 27'). El de 23° 27' N es el trópico de Cáncer, el de 23° 27' S el de Capricornio y el de 66° 33' S el círculo polar antártico.",
+  "clave": "Polar = 90° − 23° 27' = 66° 33'.",
+  "trampa": "La d) tiene el valor bueno pero en el hemisferio sur: es el antártico."
+ },
+ "bal-py-2017-03-a-22": {
+  "explicacion": "El AIS sirve para identificar a los buques e intercambiar de forma automática sus datos (identidad, posición, rumbo, velocidad, destino…) con otros buques y con tierra, como ayuda para evitar abordajes y para el control del tráfico. Rumbo, velocidad o ETA son solo algunos de esos datos, no su función principal.",
+  "clave": "AIS = identificación y datos automáticos para evitar abordajes.",
+  "trampa": "La b) y la c) son datos que transmite el AIS, pero no su función."
+ },
+ "bal-py-2017-03-a-23": {
+  "explicacion": "La Polar está a menos de un grado del polo norte celeste, así que su azimut se aparta muy poco del norte verdadero y depende de la latitud y de su posición en su pequeño giro diario. Para las latitudes de navegación habituales el tribunal fija en ±1,6° el error máximo que se comete al tomar la Polar como norte verdadero.",
+  "clave": "Polar ≈ norte verdadero, con un error máximo de ±1,6°.",
+  "trampa": "Los 0,5° de la a) son demasiado optimistas; 3° o 4° son excesivos."
+ },
+ "bal-py-2017-03-a-24": {
+  "explicacion": "WPT es la abreviatura de waypoint: un punto de paso o de destino que se programa en el GPS o el plotter para navegar hacia él, como un punto de recalada. El rumbo de fondo se abrevia COG, y la diferencia entre rumbo de fondo y verdadero es la deriva (o el abatimiento con corriente).",
+  "clave": "WPT = waypoint = punto de paso o recalada.",
+  "trampa": "La b) es el COG, otra función del GPS.",
+  "concepto": "bal-py-2017-03-a-24"
+ },
+ "bal-py-2017-07-b-22": {
+  "explicacion": "WPT es la abreviatura de waypoint: un punto de paso o de destino que se programa en el GPS o el plotter para navegar hacia él, como un punto de recalada. El rumbo efectivo es el COG y la separación entre el rumbo efectivo y el verdadero es la deriva.",
+  "clave": "WPT = waypoint = punto de paso o recalada.",
+  "trampa": "La b) es el COG, otra función del GPS.",
+  "concepto": "bal-py-2017-03-a-24"
+ },
+ "bal-py-2017-03-a-25": {
+  "explicacion": "El Tiempo Universal es la hora civil de Greenwich: el tiempo transcurrido desde el paso del sol medio por el meridiano inferior de Greenwich. La a) describe el Tiempo Atómico Internacional, la c) la hora civil del lugar y la d) la hora oficial o legal.",
+  "clave": "TU = hora civil de Greenwich (sol medio, meridiano inferior de Greenwich).",
+  "trampa": "La c) es la hora civil del lugar, no el TU.",
+  "base": "and-py-2026-c2-n06",
+  "concepto": "and-py-2026-c2-n06"
+ },
+ "bal-py-2017-03-a-26": {
+  "explicacion": "El transpondedor de radar (SART) trabaja en la banda X (9 GHz) y solo responde a los radares de esa banda, que son los habituales en embarcaciones. Los radares de banda S (3 GHz) no lo activan, y la «banda Z» no es una banda de radar marino.",
+  "clave": "SART = banda X (9 GHz).",
+  "trampa": "La d) (banda S) es la otra banda de radar marino, pero no activa el SART.",
+  "concepto": "bal-py-2017-03-a-26",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-12-b-23": {
+  "explicacion": "El transpondedor de radar (SART) trabaja en la banda X (9 GHz) y solo responde a los radares de esa banda, que son los habituales en embarcaciones. Los radares de banda S (3 GHz) no lo activan, y las «bandas» Y y Z no son bandas de radar marino.",
+  "clave": "SART = banda X (9 GHz).",
+  "trampa": "La c) (banda S) es la otra banda de radar marino, pero no activa el SART.",
+  "concepto": "bal-py-2017-03-a-26",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-03-a-27": {
+  "explicacion": "Una carta electrónica de navegación (ENC) contiene toda la información de la carta oficial: datos hidrográficos (sondas, veriles, naturaleza del fondo), ayudas a la navegación (faros, boyas, balizas) y dispositivos de separación de tráfico, entre otros. Por eso todas las opciones son correctas.",
+  "clave": "La ENC lleva todo lo de la carta oficial.",
+  "trampa": "Elegir una sola de las a), b) o d), cuando las tres son ciertas."
+ },
+ "bal-py-2017-03-a-28": {
+  "explicacion": "Una oposición son dos puntos de la costa que se ven en direcciones opuestas (uno a 180° del otro) cuando el barco está entre ambos. Como la enfilación, da una línea de posición cuya demora verdadera se mide en la carta; comparándola con la demora de aguja se obtiene la corrección total. Una sola línea no basta para situarse y no da la declinación por separado.",
+  "clave": "Demora verdadera (carta) − demora de aguja = corrección total.",
+  "trampa": "La a): en la enfilación los puntos están en la misma dirección, en la oposición en direcciones opuestas."
+ },
+ "bal-py-2017-03-a-29": {
+  "explicacion": "En el ECDIS el límite de la zona con datos no oficiales se marca con una línea roja con trazos diagonales hacia el lado que contiene esos datos no oficiales, para que el navegante sepa que allí la cartografía no está garantizada. Las demás representaciones no corresponden a ese símbolo.",
+  "clave": "Datos no oficiales: línea roja con rayas hacia ese lado.",
+  "trampa": "La a): esos límites sí existen y es importante reconocerlos."
+ },
+ "bal-py-2017-03-a-30": {
+  "explicacion": "El AIS identifica a cada estación por su número MMSI, el mismo que figura en la licencia de radiocomunicaciones de la embarcación; sin él programado el equipo no puede transmitir. El indicativo de llamada y el NIB son otros datos, y el radar no tiene nada que ver.",
+  "clave": "AIS = programado con el MMSI de la licencia.",
+  "trampa": "El indicativo de llamada (b) también es un dato de radio, pero el AIS identifica con el MMSI."
+ },
+ "bal-py-2017-03-cb-22": {
+  "explicacion": "Un AIS de clase B transmite al menos su MMSI y los datos dinámicos: posición, velocidad y rumbo sobre el fondo. Los datos de viaje como destino, ETA o calado los transmiten los equipos de clase A, no los de clase B.",
+  "clave": "AIS clase B: MMSI, posición, rumbo y velocidad.",
+  "trampa": "Las opciones con destino, ETA y calado describen datos de viaje de un AIS clase A."
+ },
+ "bal-py-2017-03-cb-23": {
+  "explicacion": "Las ENC usan el datum WGS84, solo las publican los servicios hidrográficos oficiales (o con su autorización) y se basan en sus datos y cartas. Su formato de datos es el estándar S-57 (ahora S-100) de la Organización Hidrográfica Internacional, no la norma ISO 19379, así que la incorrecta es la d).",
+  "clave": "ENC: WGS84, oficial y en formato S-57 de la OHI.",
+  "trampa": "Se pide la NO correcta; la ISO 19379 suena técnica, pero no es el estándar de las ENC."
+ },
+ "bal-py-2017-03-cb-24": {
+  "explicacion": "El ECDIS indica si una ENC no tiene cargadas las últimas actualizaciones y no admite una posterior si falta una intermedia; también se puede comprobar contra el último aviso a los navegantes; y si todas las cartas tienen la misma fecha de última actualización es señal de que no se han ido actualizando. Las tres afirmaciones son correctas.",
+  "clave": "ENC al día: lo avisa el ECDIS, se coteja con los avisos y se revisan fechas.",
+  "trampa": "Elegir solo la a), que es cierta pero no la única."
+ },
+ "bal-py-2017-03-cb-25": {
+  "explicacion": "El AIS trabaja en la banda de VHF marítimo, en dos canales dedicados (AIS 1 y AIS 2, 161,975 y 162,025 MHz). Por eso su alcance es similar al de la VHF: unas 20-30 millas entre buques.",
+  "clave": "AIS = VHF (canales 87B y 88B).",
+  "trampa": "Pensar en HF o MF por el largo alcance de otros sistemas del SMSSM.",
+  "base": "and-py-2021-c2-n01",
+  "concepto": "and-py-2021-c2-n01"
+ },
+ "bal-py-2017-03-cb-26": {
+  "explicacion": "El GPS da la posición referida al datum WGS-84. Si la carta usa otro datum (por ejemplo, el ED50), al llevar la posición a la carta puede haber un error de decenas o cientos de metros, salvo que se corrija. Por eso conviene que la carta esté en WGS-84; el «WGS-74» no existe como datum de cartas.",
+  "clave": "GPS en WGS-84: la carta, mejor en WGS-84.",
+  "trampa": "La c) niega el datum, que es justo lo que provoca el error."
+ },
+ "bal-py-2017-03-cb-27": {
+  "explicacion": "El abatimiento es el ángulo que forman la línea de crujía (el rumbo verdadero) y la estela o dirección real sobre el agua (el rumbo de superficie) por efecto del viento. Las tres definiciones expresan lo mismo con distintas palabras.",
+  "clave": "Abatimiento = Rs − Rv = ángulo estela–crujía (viento).",
+  "trampa": "Creer que solo una de las formulaciones es la buena.",
+  "base": "and-py-2022-c1-n04",
+  "concepto": "and-py-2022-c1-n04",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-28": {
+  "explicacion": "La hora civil en Greenwich (el Tiempo Universal) es una referencia única para todo el planeta: en un mismo instante es igual para cualquier observador, esté donde esté. La hora civil del lugar depende de la longitud, y la hora legal u oficial depende del huso y de lo que decida cada país, así que en dos puntos opuestos de la Tierra son distintas.",
+  "clave": "HcG (TU): la misma en toda la Tierra en un mismo instante.",
+  "trampa": "La hora civil del lugar (b) cambia con la longitud: en las antípodas difiere 12 horas.",
+  "concepto": "bal-py-2017-03-cb-28"
+ },
+ "bal-py-2026-03-b-29": {
+  "explicacion": "La hora civil en Greenwich (el Tiempo Universal) es una referencia única para todo el planeta: en un mismo instante es igual para cualquier observador. La hora civil del lugar y la legal dependen de la longitud o del huso, y el paso del Sol por el meridiano superior (mediodía) ocurre en momentos distintos en cada meridiano; en dos puntos opuestos, con 12 horas de diferencia.",
+  "clave": "HcG (TU): la misma en toda la Tierra en un mismo instante.",
+  "trampa": "La d): cuando en un punto es mediodía, en el opuesto es medianoche.",
+  "concepto": "bal-py-2017-03-cb-28"
+ },
+ "bal-py-2017-03-cb-29": {
+  "explicacion": "La marcación es el ángulo medido desde la proa; la demora, desde el norte. Con el radar en proa arriba, la EBL da la marcación y la demora verdadera se obtiene sumándole el rumbo verdadero. Con el radar en norte arriba, la EBL ya mide desde el norte y la demora se lee directamente. Por eso la a) y la b) son ciertas.",
+  "clave": "Demora = rumbo + marcación; en norte arriba se lee directa.",
+  "trampa": "La d): la conversión es justo la fórmula básica demora = rumbo + marcación."
+ },
+ "bal-py-2017-03-cb-30": {
+  "explicacion": "Los derroteros describen la costa con detalle: accidentes, puertos, fondeaderos, peligros, recaladas y recomendaciones para navegar por ella. El libro de faros da las características de las luces, los avisos a los navegantes las correcciones a cartas y publicaciones, y las Pilot Charts los vientos y corrientes medios de cada mes.",
+  "clave": "Derrotero = descripción de la costa.",
+  "trampa": "El libro de faros (a) solo describe luces y señales, no la costa."
+ },
+ "bal-py-2017-07-a-22": {
+  "explicacion": "Cada celda ENC se identifica con un código alfanumérico de 8 caracteres: los dos primeros indican el país productor (ES para España), el tercero la escala o propósito de navegación y los cinco restantes identifican la celda. No se identifican con las siglas ECDIS (que es el equipo) ni con un número aleatorio.",
+  "clave": "Celda ENC: 8 caracteres, los dos primeros el país.",
+  "trampa": "La d) cambia el número de caracteres: son 8, no 4.",
+  "concepto": "bal-py-2017-07-a-22"
+ },
+ "bal-py-2024-07-a-28": {
+  "explicacion": "Cada celda ENC se identifica con un código alfanumérico de 8 caracteres: los dos primeros indican el país productor (ES para España), el tercero la escala o propósito de navegación y los cinco restantes identifican la celda.",
+  "clave": "Celda ENC: 8 caracteres, los dos primeros el país.",
+  "trampa": "Todas las opciones repiten lo del país; lo que cambia es el número de caracteres, que es 8.",
+  "concepto": "bal-py-2017-07-a-22"
+ },
+ "bal-py-2017-07-a-23": {
+  "explicacion": "El VRM (marcador variable de distancia) es un anillo que se ajusta sobre el eco y da su distancia exacta. La EBL mide la demora o marcación, el TUNE sintoniza el receptor y el GAIN regula la ganancia o sensibilidad.",
+  "clave": "VRM = distancia; EBL = demora.",
+  "trampa": "La EBL (a) es el otro mando de medida, pero mide dirección, no distancia.",
+  "concepto": "bal-py-2017-07-a-23"
+ },
+ "bal-py-2026-03-b-27": {
+  "explicacion": "El VRM (marcador variable de distancia) es un anillo que se ajusta sobre el eco y da su distancia exacta. La EBL mide la demora o marcación, los RINGS (anillos fijos) solo dan una distancia aproximada y el CTR centra o descentra la imagen.",
+  "clave": "VRM = distancia; EBL = demora.",
+  "trampa": "Los anillos fijos (c) dan distancia, pero solo aproximada.",
+  "concepto": "bal-py-2017-07-a-23"
+ },
+ "bal-py-2017-07-a-25": {
+  "explicacion": "Es falsa la a): la declinación magnética sí está sujeta a la variación secular, un pequeño cambio anual que con los años se hace apreciable. Por eso cambia cada año en un mismo lugar y las cartas indican su valor para un año y su incremento o decremento anual. La c) da su definición correcta.",
+  "clave": "Declinación: cambia cada año; la carta da el valor y su variación anual.",
+  "trampa": "Se pide la falsa: la a) mete un «no» que la invierte."
+ },
+ "bal-py-2017-07-a-26": {
+  "explicacion": "El GPS trabaja con el datum WGS-84 (World Geodetic System 1984), que es el datum universal de referencia actual y el de las cartas modernas y las ENC. El ED-50 es el antiguo datum europeo de muchas cartas antiguas, y los «WGS-74» y «WGS-2004» no existen.",
+  "clave": "GPS y cartas modernas: WGS-84.",
+  "trampa": "El ED-50 (c) existe, pero es el datum europeo antiguo."
+ },
+ "bal-py-2017-07-a-27": {
+  "explicacion": "El AIS transmite la identificación (MMSI), la situación, el rumbo y la velocidad, y datos de viaje como el destino y la ETA; y el equipo o el plotter que lo recibe puede guardar esas posiciones y mostrar la trayectoria seguida por un buque durante un tiempo. No da datos meteorológicos ni climáticos de la zona.",
+  "clave": "AIS: identidad, posición, rumbo, velocidad, ETA y su histórico.",
+  "trampa": "La c): los datos meteorológicos no forman parte de los mensajes normales del AIS de un buque."
+ },
+ "bal-py-2017-07-a-28": {
+  "explicacion": "Los paralelos son circunferencias menores paralelas al ecuador y perpendiculares al eje de la Tierra; el único paralelo que es circunferencia máxima es el propio ecuador. Las circunferencias máximas que pasan por los polos son los meridianos.",
+  "clave": "Paralelos: menores y paralelos al ecuador. Meridianos: máximos por los polos.",
+  "trampa": "La c) describe los meridianos."
+ },
+ "bal-py-2017-07-a-30": {
+  "explicacion": "Para hallar la latitud media se suman con su signo (N positivo, S negativo) y se divide entre dos: (15 − 35) / 2 = −10, es decir, 10° S. Si se suman sin signo saldría 25°, que es la mitad de la diferencia en latitud, no la latitud media.",
+  "clave": "Latitud media = (l1 + l2) / 2, con signo.",
+  "trampa": "La a) (25°) sale de olvidar que una latitud es N y la otra S."
+ },
+ "bal-py-2017-07-b-23": {
+  "explicacion": "Las cartas raster (RNC) son una imagen escaneada de la carta de papel: la reproducen exactamente, tienen más cobertura mundial que las ENC y no permiten consultar información selectiva ni dar alarmas. Precisamente por ser una copia, no aportan información adicional a la de la carta de papel, así que la falsa es la d).",
+  "clave": "RNC = foto de la carta de papel: ni más ni menos.",
+  "trampa": "Se pide la NO correcta: la c) parece un defecto, pero es cierto."
+ },
+ "bal-py-2017-07-b-24": {
+  "explicacion": "La lluvia, el granizo o la nieve reflejan y absorben parte de la energía del radar: aparecen ecos de lluvia en pantalla, que pueden ocultar blancos, y la señal se atenúa, de modo que la distancia de detección disminuye. No aumenta el alcance por ningún efecto rebote.",
+  "clave": "Lluvia: atenúa y ensucia la pantalla, reduce la detección.",
+  "trampa": "La c) se inventa un efecto rebote que no existe."
+ },
+ "bal-py-2017-07-b-26": {
+  "explicacion": "Los avisos a los navegantes que afectan a las cartas náuticas se clasifican en permanentes (cambios definitivos que se corrigen en la carta), temporales (cambios que durarán un tiempo) y preliminares (información anticipada de cambios previstos).",
+  "clave": "Avisos a cartas: permanentes, temporales y preliminares.",
+  "trampa": "La b) y la d) son clasificaciones inventadas."
+ },
+ "bal-py-2017-07-b-28": {
+  "explicacion": "El trópico de Capricornio es el paralelo de 23° 27' de latitud sur, es decir, separado 23° 27' del ecuador hacia el hemisferio sur. El de 23° 27' N es el trópico de Cáncer, y los paralelos a 23° 27' de los polos son los círculos polares.",
+  "clave": "Cáncer 23° 27' N; Capricornio 23° 27' S.",
+  "trampa": "La a) es el trópico de Cáncer; la c) y la d) son los círculos polares.",
+  "concepto": "bal-py-2017-07-b-28"
+ },
+ "bal-py-2024-04-a-30": {
+  "explicacion": "El trópico de Capricornio es el paralelo de 23° 27' de latitud sur, es decir, separado 23° 27' del ecuador hacia el hemisferio sur. El de 23° 27' N es el trópico de Cáncer, y las opciones con 27° 23' simplemente cambian las cifras de orden.",
+  "clave": "Cáncer 23° 27' N; Capricornio 23° 27' S.",
+  "trampa": "La a) es el trópico de Cáncer.",
+  "concepto": "bal-py-2017-07-b-28"
+ },
+ "bal-py-2025-12-b-28": {
+  "explicacion": "El trópico de Capricornio es el paralelo de 23° 27' de latitud sur, es decir, separado 23° 27' del ecuador hacia el hemisferio sur. El de 23° 27' N es el trópico de Cáncer, y las opciones con 27° 23' simplemente cambian las cifras de orden.",
+  "clave": "Cáncer 23° 27' N; Capricornio 23° 27' S.",
+  "trampa": "La d) acierta el hemisferio pero invierte las cifras.",
+  "concepto": "bal-py-2017-07-b-28"
+ },
+ "bal-py-2017-07-b-29": {
+  "explicacion": "Las líneas isogónicas unen puntos con el mismo valor de la declinación magnética; la que une los puntos de declinación cero se llama agónica. Las isomagnéticas, isométricas o isodemáticas no son el nombre de estas líneas.",
+  "clave": "Igual declinación = isogónicas; declinación cero = agónica.",
+  "trampa": "«Isomagnéticas» (c) suena lógico, pero no es el término."
+ },
+ "bal-py-2017-07-b-30": {
+  "explicacion": "El alcance del radar depende de la potencia del equipo y de la altura de la antena, de las condiciones atmosféricas (lluvia y niebla atenúan la señal) y también de la escora, que inclina el haz y reduce mucho la detección, algo típico de los veleros. Por eso todos los parámetros citados condicionan el alcance.",
+  "clave": "Alcance radar: potencia, altura, atmósfera y escora.",
+  "trampa": "Olvidar la escora, que en un velero puede ser determinante."
+ },
+ "bal-py-2017-12-a-21": {
+  "explicacion": "La hora civil en Greenwich es el tiempo transcurrido desde que el sol medio pasó por el meridiano inferior de Greenwich, es decir, desde la medianoche de Greenwich; equivale al Tiempo Universal. Si se cuenta desde el meridiano superior (mediodía) se obtendría el antiguo tiempo astronómico, y si se cuenta desde el meridiano del lugar, la hora civil del lugar.",
+  "clave": "HcG = sol medio, meridiano inferior de Greenwich.",
+  "trampa": "La d) es la hora civil del lugar; la b) cuenta desde el mediodía."
+ },
+ "bal-py-2017-12-a-22": {
+  "explicacion": "La longitud es el arco de ecuador contado desde el meridiano de Greenwich hasta el meridiano del lugar, de 0° a 180° hacia el E o el W. La latitud, en cambio, es arco de meridiano desde el ecuador; las diferencias en latitud o longitud se refieren a dos puntos, no a uno.",
+  "clave": "Longitud: por el ecuador desde Greenwich. Latitud: por el meridiano desde el ecuador.",
+  "trampa": "Las «diferencias» son entre dos lugares, no desde Greenwich.",
+  "base": "and-2020-c3-t37",
+  "concepto": "and-2020-c3-t37"
+ },
+ "bal-py-2017-12-a-23": {
+  "explicacion": "El ECDIS necesita conocer continuamente la posición del buque para mostrarla sobre la carta electrónica y dar alarmas, así que siempre debe estar conectado a un sistema de posicionamiento (GPS). El AIS, el radar/ARPA y el piloto automático se pueden conectar y son útiles, pero no son imprescindibles.",
+  "clave": "ECDIS sin GPS no sitúa el barco: la posición es obligatoria.",
+  "trampa": "El radar/ARPA (d) se suele integrar, pero no es la conexión obligatoria."
+ },
+ "bal-py-2017-12-a-26": {
+  "explicacion": "En la presentación proa arriba la línea de proa queda fija hacia arriba, así que al cambiar de rumbo es la imagen la que gira, en sentido contrario al cambio y los mismos grados. Los ángulos que se miden son marcaciones, no demoras verdaderas, y la línea de proa no indica el rumbo verdadero.",
+  "clave": "Proa arriba: proa fija, la imagen gira al revés de tu caída.",
+  "trampa": "La b) da el giro en el mismo sentido: es justo al contrario."
+ },
+ "bal-py-2017-12-a-28": {
+  "explicacion": "El AIS proporciona la identificación del otro buque (nombre, MMSI, distintivo), su posición y su rumbo y velocidad, además de datos de viaje. Todos los datos citados los facilita el sistema.",
+  "clave": "AIS: quién es, dónde está y hacia dónde va.",
+  "trampa": "Elegir solo uno de los datos cuando los tres los da el AIS."
+ },
+ "bal-py-2017-12-a-29": {
+  "explicacion": "El rumbo de superficie es el que sigue el barco sobre el agua (rumbo verdadero corregido de abatimiento) y el rumbo efectivo el que sigue sobre el fondo. El ángulo entre ambos se debe a la corriente y se llama deriva. El abatimiento es el ángulo entre rumbo verdadero y rumbo de superficie, causado por el viento.",
+  "clave": "Abatimiento (viento): Rv → Rs. Deriva (corriente): Rs → Re.",
+  "trampa": "El abatimiento (d) es el ángulo debido al viento, no a la corriente.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-py-2017-12-a-30": {
+  "explicacion": "Un racon es un respondedor de radar instalado en una boya, faro o baliza: al recibir el impulso del radar responde con una señal que aparece en pantalla como un carácter morse (que empieza por raya) detrás del punto donde está, dando su demora y distancia. Un reflector de radar solo refuerza el eco, sin código morse.",
+  "clave": "Racon = morse en la pantalla del radar.",
+  "trampa": "El reflector de radar (d) aumenta el eco, pero no lo codifica."
+ },
+ "bal-py-2017-12-b-21": {
+  "explicacion": "La diferencia en latitud es el arco de meridiano comprendido entre los paralelos de dos lugares. La latitud es el arco de meridiano desde el ecuador hasta un lugar, y la diferencia en longitud es arco de ecuador entre dos meridianos.",
+  "clave": "Entre dos paralelos = diferencia en latitud.",
+  "trampa": "La latitud (a) se mide desde el ecuador, no entre dos paralelos cualesquiera."
+ },
+ "bal-py-2017-12-b-24": {
+  "explicacion": "XTE (cross track error, error transversal) es la distancia perpendicular a la que estamos de la línea directa entre los dos waypoints de la ruta, y hacia qué lado nos hemos desviado. La distancia al próximo waypoint es DTW, el tiempo estimado ETE o TTG, y el rumbo para llegar BRG o CTS.",
+  "clave": "XTE = cuánto te has salido de la ruta.",
+  "trampa": "La a) es la distancia al waypoint (DTW), otro dato del GPS.",
+  "concepto": "bal-py-2017-12-b-24"
+ },
+ "bal-py-2023-03-ac-26": {
+  "explicacion": "XTE (cross track error, error transversal) es la distancia más corta, perpendicular, a la que estamos de la línea directa entre los dos waypoints de la ruta, y hacia qué lado nos hemos desviado. La distancia al próximo waypoint es DTW, el tiempo estimado ETE o TTG, y el rumbo para llegar BRG o CTS.",
+  "clave": "XTE = cuánto te has salido de la ruta.",
+  "trampa": "La c) es la distancia al waypoint (DTW), otro dato del GPS.",
+  "concepto": "bal-py-2017-12-b-24"
+ },
+ "bal-py-2017-12-b-25": {
+  "explicacion": "Los avisos a los navegantes son de cuatro tipos: generales (información de carácter general), permanentes (cambios definitivos), temporales (cambios con duración limitada) y preliminares (cambios previstos). «Particulares» no es un tipo de aviso.",
+  "clave": "Avisos: generales, permanentes, temporales y preliminares.",
+  "trampa": "Las opciones con «particulares» meten un tipo que no existe."
+ },
+ "bal-py-2017-12-b-27": {
+  "explicacion": "La Polar está casi en el norte verdadero, así que su azimut verdadero es prácticamente 0° (o lo da la tabla). Con la marcación y el rumbo de aguja se obtiene el azimut de aguja; la diferencia entre ambos es la corrección total, y para separar el desvío hay que restarle la declinación magnética de la fecha y la zona: desvío = Ct − dm.",
+  "clave": "Ct = Zv − Za; desvío = Ct − dm (dm de la fecha y zona).",
+  "trampa": "La d): la declinación de la carta hay que actualizarla al año en curso con su variación anual.",
+  "concepto": "bal-py-2017-12-b-27"
+ },
+ "bal-py-2019-06-b-30": {
+  "explicacion": "La Polar está casi en el norte verdadero, así que su azimut verdadero es prácticamente 0° (o lo da la tabla). Con la marcación y el rumbo de aguja se obtiene el azimut de aguja; la diferencia entre ambos es la corrección total, y para separar el desvío hay que restarle la declinación magnética de la fecha y la zona: desvío = Ct − dm.",
+  "clave": "Ct = Zv − Za; desvío = Ct − dm (dm de la fecha y zona).",
+  "trampa": "La altura del observador (a) y la longitud de estima (d) no intervienen en el desvío.",
+  "concepto": "bal-py-2017-12-b-27"
+ },
+ "bal-py-2017-12-b-28": {
+  "explicacion": "Es falsa la a): el AIS no es obligatorio para todas las embarcaciones; lo es para buques de cierto tamaño o tipo (SOLAS, pesqueros de más de 15 m…), y en recreo es voluntario. Sí es una ayuda a la navegación, muestra la posición y datos de los barcos cercanos y existe en clase A y clase B.",
+  "clave": "AIS: obligatorio solo para ciertos buques; en recreo, voluntario.",
+  "trampa": "Se pide la falsa: las demás son ciertas."
+ },
+ "bal-py-2017-12-b-30": {
+  "explicacion": "El anti-sea clutter (STC o control de mar) reduce los ecos parásitos que produce el oleaje cerca del barco, en el centro de la pantalla. Para los ecos de lluvia se usa el anti-rain clutter (FTC); la niebla apenas afecta al radar.",
+  "clave": "Sea clutter = oleaje; rain clutter = lluvia.",
+  "trampa": "La b) corresponde al anti-rain clutter, no al anti-sea."
+ }
+}

@@ -81,4 +81,48 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
     },
   },
+  'and-2015-c3-q42': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: -3, desvio: -2 });
+      const rv = k.rv(260, ct);
+      // Las marcaciones vienen sin banda: con el Ra 260° los dos faros (al N, en la costa española) quedan por estribor.
+      k.note('Marcaciones', 'El enunciado no dice la banda: con el rumbo al W y los faros de Punta Europa y Punta Carnero al N, las dos marcaciones son por estribor (+).');
+      const d1 = k.dvM(rv, 110, 'punta-europa');
+      const d2 = k.dvM(rv, 52, 'punta-carnero');
+      return latlon(k.fix2('punta-europa', d1, 'punta-carnero', d2, 'Situación 13:40'));
+    },
+  },
+  'and-2015-c3-q43': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 01,2 N', '5 22,0 W', 'Situación 13:50');
+      k.note('Banda', 'Navegamos hacia el W con la isla de Tarifa al N del rumbo: pasamos al S del faro, dejándolo por estribor.');
+      const rv = k.tangent(s, 'isla-tarifa', 2.5, 'estribor');
+      // Por el través de estribor: el faro demora Rv + 90°.
+      const p = k.corteRumbo(s, rv, 'isla-tarifa', (rv + 90) % 360, 'Través de isla de Tarifa');
+      return [{ kind: 'distance', value: k.distanceBetween(p, 'punta-cires') }];
+    },
+  },
+  'and-2015-c3-q44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('35 56,9 N', '5 54,6 W', 'Situación 15:30');
+      const { dist } = k.rhumb(s, 'barbate-espigon');
+      const t = hrb(17, 43) - hrb(15, 30);
+      const v = dist / (t / 60);
+      k.note('Velocidad', `Vhb = d / t = ${dist.toFixed(1).replace('.', ',')} millas / ${t} min × 60 = ${v.toFixed(1).replace('.', ',')} nudos.`);
+      return [{ kind: 'speed', value: v }];
+    },
+  },
+  'and-2015-c3-q45': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.oposicion('isla-tarifa', 'punta-cires');
+      const ct = k.ctFrom(dv, 138);
+      const desvio = ct + 3;
+      k.note('Desvío', `Δ = Ct − dm = (${ct.toFixed(1).replace('.', ',')}°) − (−3°) = ${desvio.toFixed(1).replace('.', ',')}°.`);
+      return [{ kind: 'signed', value: desvio }];
+    },
+  },
 };

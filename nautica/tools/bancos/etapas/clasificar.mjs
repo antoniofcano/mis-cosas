@@ -57,6 +57,30 @@ export function puntosTema(texto, tit) {
 const esMareas = (t) => /(pleamar|bajamar|\bmarea|sonda (en|que)|altura de la marea|anuario)/.test(t);
 const esLoxodromica = (t) => /loxodrom|a los siguientes rumbos|(navegamos|navega) .{0,40}durante .{0,20}horas.*situacion/.test(t);
 
+/** Posiciones «36º 05,0' N» / «005º 55,0' W» del texto → [{ lat }] y [{ lon }] en grados (W negativo). */
+export function coordenadas(texto) {
+  const t = String(texto).replace(/\s+/g, ' ');
+  const num = (g, m) => Number(g) + Number(String(m ?? 0).replace(',', '.')) / 60;
+  const lats = [...t.matchAll(/(\d{1,2})\s*[º°]\s*(\d{1,2}(?:[,.]\d+)?)?\s*['’´′]*\s*([NS])\b/g)].map((m) => num(m[1], m[2]) * (m[3] === 'S' ? -1 : 1));
+  const lons = [...t.matchAll(/(\d{1,3})\s*[º°]\s*(\d{1,2}(?:[,.]\d+)?)?\s*['’´′]*\s*([EW])\b/g)].map((m) => num(m[1], m[2]) * (m[3] === 'W' ? -1 : 1));
+  return { lats, lons };
+}
+
+/**
+ * ¿Se resuelve sobre la carta del eje? Con config.carta (toponimos y limites de la carta): sí si el texto nombra un lugar
+ * de la carta o da una situación dentro de sus límites (los ejercicios de estima analítica fuera de la carta, no).
+ * Sin config.carta: todas las de la unidad de carta.
+ */
+export function usaCarta(texto, config) {
+  const c = config.carta;
+  if (!c?.toponimos && !c?.limites) return true;
+  const t = canonico(texto);
+  if ((c.toponimos ?? []).some((x) => t.includes(x))) return true;
+  const { lats, lons } = coordenadas(texto);
+  const L = c.limites;
+  return !!L && lats.some((la) => la >= L.latMin && la <= L.latMax) && lons.some((lo) => lo >= L.lonMin && lo <= L.lonMax);
+}
+
 export function clasificarPregunta(p, config, tit) {
   const disp = config.titulaciones[tit].disposicion;
   let ut;
@@ -77,8 +101,9 @@ export function clasificarPregunta(p, config, tit) {
   if (esCarta) {
     const mareas = esMareas(t);
     const conTabla = !!(p.tabla_mareas || (p.contexto && /pleamar|bajamar|\d{1,2}[:.]\d{2}/i.test(p.contexto)));
-    if (tit === 'py') bloque = mareas ? 'mareas' : esLoxodromica(t) || /loxodr/i.test(p.contexto ?? '') ? 'loxodromica' : 'carta';
-    if (mareas) { if (!conTabla) requiere.push('anuario'); } else if (!(tit === 'py' && bloque === 'loxodromica')) requiere.push('carta');
+    const enCarta = !mareas && usaCarta(`${p.contexto ?? ''} ${texto}`, config);
+    if (tit === 'py') bloque = mareas ? 'mareas' : esLoxodromica(t) || /loxodr/i.test(p.contexto ?? '') || !enCarta ? 'loxodromica' : 'carta';
+    if (mareas) { if (!conTabla) requiere.push('anuario'); } else if (!(tit === 'py' && bloque === 'loxodromica') && enCarta) requiere.push('carta');
   }
   return { ut, ut_titulo: ut ? UT_TITULOS[tit][ut - 1] : null, modulo, orden, bloque, requiere };
 }

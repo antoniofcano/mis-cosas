@@ -4,10 +4,10 @@
 // saltar), las preguntas del minijuego para contestar en la pausa, y su ficha con las clases.
 
 import { h, setChildren } from '../dom.js';
-import { TITULACIONES, tlink, volver } from '../titulacion.js';
+import { TITULACIONES, tlink, volver, currentEje } from '../titulacion.js';
 import { bloque } from '../../theory/blocks.js';
 import { loadPodcast, loadPodcastLinea } from '../../store/datasets.js';
-import { pregunta } from '../../bancos/index.js';
+import { equivalente } from '../../bancos/index.js';
 import {
   poner, alternar, saltar, ir, cambiarVelocidad, velocidad, suscribir, radio, fmt, estadoEpisodio, ultimoEpisodio,
   enVistaEpisodio, pararEnPreguntas, setPararEnPreguntas, marcarRespondida,
@@ -41,7 +41,7 @@ function estado(ep) {
   return { clase: 'nuevo', pct: 0 };
 }
 
-export function podcastView({ tit, params: route }) {
+export function podcastView({ progress, tit, params: route }) {
   const T = TITULACIONES[tit];
   const [, id] = route.parts;
   const el = h('div.podcast', h('p.muted', 'Sintonizando…'));
@@ -49,7 +49,7 @@ export function podcastView({ tit, params: route }) {
   const vista = { el, summary: () => summaryText };
 
   loadPodcast(tit).then((pod) => {
-    if (id) { summaryText = episodioView(el, tit, pod, id, route.query?.de) ?? summaryText; return; }
+    if (id) { summaryText = episodioView(el, tit, pod, id, route.query?.de, progress ? currentEje(progress) : null) ?? summaryText; return; }
     summaryText = travesia(el, tit, pod);
   }).catch((e) => setChildren(el, h('p.warn', `No se pudo cargar la radio: ${e.message}`)));
   if (!id) enVistaEpisodio(false);
@@ -143,7 +143,7 @@ function vuelta(tit, de) {
 /** Enlace a un episodio recordando desde dónde se abre (para que la flecha vuelva allí). */
 export const enlaceEpisodio = (tit, ep, de) => tlink(tit, ['podcast', ep.id], de ? { de } : undefined);
 
-function episodioView(el, tit, pod, id, de) {
+function episodioView(el, tit, pod, id, de, eje) {
   const T = TITULACIONES[tit];
   const eps = episodiosDe(pod);
   const ep = eps.find((e) => e.id === id);
@@ -216,13 +216,13 @@ function episodioView(el, tit, pod, id, de) {
   loadPodcastLinea(ep.id).then(async (linea) => {
     tramos = linea.tramos;
     const ids = tramos.filter((x) => x.p).map((x) => x.p);
-    const banco = ids.length ? await bancoDe(ids) : new Map();
+    const banco = ids.length ? await bancoDe(ids, eje) : new Map();
     filas = tramos.map((x) => {
       if (x.x) {
         return h('li.guion-linea', { class: x.q === 'E' ? 'elena' : 'andres', onclick: () => (suena() ? ir(x.t) : poner(tit, ep, { desde: x.t })) },
           h('span.guion-quien', x.q === 'E' ? 'Elena' : 'Andrés'), h('span.guion-txt', x.x));
       }
-      if (x.p && banco.has(x.p)) { const card = preguntaCard(banco.get(x.p)); preguntas.set(x.p, card); return h('li.guion-pregunta', card); }
+      if (x.p && banco.has(x.p)) { const card = preguntaCard(x.p, banco.get(x.p)); preguntas.set(x.p, card); return h('li.guion-pregunta', card); }
       return h('li.guion-pausa', { 'aria-hidden': 'true' }, '· · ·');
     });
     setChildren(guion, filas);
@@ -230,15 +230,18 @@ function episodioView(el, tit, pod, id, de) {
     pinta();
   }).catch(() => setChildren(guion, h('li.muted', 'No se pudo cargar el guion.')));
 
-  function preguntaCard(q) {
+  // La pregunta de la pausa es la del guion (de un eje concreto) o, si el alumno estudia otro eje, su equivalente en
+  // él; si no la hay, la del guion con el rótulo de su tribunal. La pausa se marca por el id del guion.
+  function preguntaCard(idGuion, { q, propia, ficha }) {
     const fb = h('div', { 'aria-live': 'polite' });
     const ops = Object.entries(q.opciones).map(([k, txt]) => h('button.secondary.radio-opcion', { type: 'button', onclick: () => {
       ops.forEach((b) => { b.disabled = true; if (b.dataset.k === q.correcta) b.classList.add('correcta'); else if (b.dataset.k === k) b.classList.add('fallada'); });
-      marcarRespondida(q.id);
+      marcarRespondida(idGuion);
       setChildren(fb, h('p', { class: k === q.correcta ? 'ok' : 'warn' }, k === q.correcta ? '✅ ¡Bien! Ahora escucha cómo lo razona Andrés.' : `❌ Era la ${q.correcta}). Escucha por qué.`),
         h('button', { type: 'button', onclick: () => { if (suena()) radio().audio.play(); } }, '▶ Seguir escuchando'));
     }, 'data-k': k }, `${k}) ${txt}`));
-    return h('div.radio-pregunta', h('p.radio-rotulo', '🎯 ¿Y tú qué dices?'), h('p.qtext', q.enunciado), h('div.radio-opciones', ops), fb);
+    const rotulo = propia ? '🎯 ¿Y tú qué dices?' : `🎯 ¿Y tú qué dices? · Pregunta del examen de ${ficha?.nombre ?? 'otro tribunal'}`;
+    return h('div.radio-pregunta', h('p.radio-rotulo', rotulo), h('p.qtext', q.enunciado), h('div.radio-opciones', ops), fb);
   }
 
   const off = suscribir((tipo, act, extra) => {
@@ -271,10 +274,10 @@ function episodioView(el, tit, pod, id, de) {
   return `VISTA episodio ${ep.n} «${ep.titulo}» (${minutos(ep.duracion)}) · ${suena() ? 'sonando' : 'parado'}\nSINOPSIS: ${ep.sinopsis ?? ''}\nCLASES: ${(ep.lecciones ?? []).join(', ')}`;
 }
 
-/** Las preguntas reales que cita el guion (por su id, sean del eje que sean), para el minijuego. */
-async function bancoDe(ids) {
-  const r = await Promise.all(ids.map((id) => pregunta(id).catch(() => null)));
-  return new Map(r.filter(Boolean).map(({ q }) => [q.id, q]));
+/** Las preguntas reales que cita el guion, para el minijuego: id del guion → { q, propia, ficha } en el eje del alumno. */
+async function bancoDe(ids, eje) {
+  const r = await Promise.all(ids.map((id) => equivalente(id, eje).then((x) => x && [id, x]).catch(() => null)));
+  return new Map(r.filter(Boolean));
 }
 
 /** Episodios que tratan una clase (para enlazar desde la clase y desde su tema). */

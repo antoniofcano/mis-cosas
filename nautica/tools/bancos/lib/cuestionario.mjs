@@ -13,6 +13,8 @@ import { limpiar } from './texto.mjs';
  *   nuevoExamen(linea) → objeto | null             separador de examen dentro del mismo PDF (DGMM)
  *   inicio: RegExp                                  (opcional) línea a partir de la cual empiezan las preguntas
  *   maxNumero                                      número máximo de pregunta
+ *   saltos                                         (opcional) admite huecos en la numeración (páginas perdidas del PDF)
+ *   reinicio                                       (opcional) si la numeración vuelve atrás, empieza otro examen
  * @returns {{ examenes: Array<{cabecera, preguntas}> }}
  */
 export function analizarCuestionario(texto, reglas) {
@@ -30,9 +32,10 @@ export function analizarCuestionario(texto, reglas) {
   nuevo();
   const cerrar = () => {
     if (!q) return;
+    // Primero se separan las opciones pegadas (sobre el texto tal cual: «b) … c) …») y después se limpia.
+    repararOpciones(q, R);
     q.enunciado = limpiar(q.enunciado);
     for (const k of Object.keys(q.opciones)) q.opciones[k] = limpiar(q.opciones[k]);
-    repararOpciones(q, R);
     q = null;
   };
   for (const pag of texto.split('\f')) {
@@ -50,7 +53,21 @@ export function analizarCuestionario(texto, reglas) {
       const nOpc = q ? Object.keys(q.opciones).length : 4;
       if (mn && Number(mn[1]) <= R.maxNumero) {
         const n = Number(mn[1]);
-        const cuadra = n === esperado || (!ex.preguntas.length && n > 1 && R.permiteInicio?.(n));
+        // saltos: el PDF ha perdido preguntas (página cortada): se acepta un número mayor que el esperado si la pregunta
+        // anterior ya tiene sus cuatro opciones y la línea parece un enunciado (larga, y con el formato de número estricto).
+        const salto = R.saltos && n > esperado && nOpc === 4 && mn[2].length > 20;
+        // reinicio: la numeración vuelve atrás sin cabecera (DGMM diciembre 2020: páginas de otro cuadernillo, sin su
+        // portada, pegadas detrás): empieza otro examen, sin cabecera ({ reinicio: n }).
+        if (R.reinicio && ex.preguntas.length >= 10 && n < esperado - 5 && nOpc === 4 && mn[2].length > 20) {
+          cerrar();
+          nuevo({ reinicio: n });
+          seccion = sec ?? seccion;
+          q = { numero: n, seccion, enunciado: mn[2], opciones: {}, contexto: null, pagina };
+          ex.preguntas.push(q);
+          campo = 'enunciado';
+          continue;
+        }
+        const cuadra = n === esperado || salto || (!ex.preguntas.length && n > 1 && R.permiteInicio?.(n));
         if (cuadra && (nOpc === 4 || (nOpc >= 2 && l.length > 25)) && (!enContexto || l.length > 20)) {
           cerrar();
           enContexto = false;
@@ -63,7 +80,9 @@ export function analizarCuestionario(texto, reglas) {
       const mo = typeof R.opcion === 'function' ? R.opcion(l) : R.opcion.exec(l);
       if (mo && q && !enContexto) {
         const letra = mo[1].toLowerCase();
-        const toca = 'abcd'[nOpc];
+        let toca = 'abcd'[nOpc];
+        // «a) 5ºb) 5º+» y luego «c) 0º»: antes de seguir, se separan las opciones pegadas en la línea anterior.
+        if (letra > toca) { repararOpciones(q, R); toca = 'abcd'[Object.keys(q.opciones).length]; }
         if (letra === toca) { q.opciones[letra] = mo[2]; campo = letra; continue; }
       }
       if (q && nOpc === 4 && R.contexto(l)) { cerrar(); enContexto = true; contexto = l; continue; }
@@ -99,7 +118,8 @@ export function repararOpciones(q, R = {}) {
   while (n > 0 && n < 4) {
     const ult = LETRAS[n - 1];
     const sig = LETRAS[n];
-    const re = new RegExp(`\\s(?:${sig}\\)|${sig.toUpperCase()}[.)]?)\\s+`);
+    // «… c) …» con espacio delante, o pegado a un símbolo de grado o minuto («b) 3ºc) 3º+»).
+    const re = new RegExp(`(?:\\s|(?<=[º°'’′]))(?:${sig}\\)|${sig.toUpperCase()}[.)]?)\\s+`);
     const m = re.exec(q.opciones[ult]);
     if (!m) break;
     q.opciones[sig] = q.opciones[ult].slice(m.index + m[0].length).trim();

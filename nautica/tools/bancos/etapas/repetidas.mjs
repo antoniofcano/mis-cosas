@@ -109,9 +109,29 @@ export function agrupar(apariciones, { entreConvocatorias = true, ordenModelos =
       if (!sueltas.has(k)) sueltas.set(k, []);
       sueltas.get(k).push(i);
     });
+    // Solo se emparejan exámenes que ya son permutaciones uno del otro: los que comparten al menos la mitad de sus
+    // preguntas unidas (DGMM: T01≡T03 sí; T01 y T02, juegos distintos con alguna pregunta común, no).
+    const enlaces = new Map();
+    const tam = new Map();
+    const porRaiz = new Map();
+    apariciones.forEach((a, i) => {
+      tam.set(examen(a), (tam.get(examen(a)) ?? 0) + 1);
+      const r = raiz(i);
+      if (!porRaiz.has(r)) porRaiz.set(r, new Set());
+      porRaiz.get(r).add(examen(a));
+    });
+    for (const exs of porRaiz.values()) {
+      const l = [...exs];
+      for (const x of l) for (const y of l) if (x < y) enlaces.set(`${x}~${y}`, (enlaces.get(`${x}~${y}`) ?? 0) + 1);
+    }
+    const permutados = (x, y) => {
+      if (x === y) return false;
+      const k = x < y ? `${x}~${y}` : `${y}~${x}`;
+      return (enlaces.get(k) ?? 0) >= 0.5 * Math.min(tam.get(x), tam.get(y));
+    };
     for (const idx of sueltas.values()) {
       const cand = [];
-      for (const i of idx) for (const j of idx) if (i < j && examen(apariciones[i]) !== examen(apariciones[j])) cand.push({ i, j, s: similitud(apariciones[i], apariciones[j]) });
+      for (const i of idx) for (const j of idx) if (i < j && permutados(examen(apariciones[i]), examen(apariciones[j]))) cand.push({ i, j, s: similitud(apariciones[i], apariciones[j]) });
       cand.sort((x, y) => y.s.total - x.s.total);
       const usado = new Set();
       for (const c of cand) {
@@ -128,7 +148,10 @@ export function agrupar(apariciones, { entreConvocatorias = true, ordenModelos =
   const orden = (a, b) => (a.fecha ?? '').localeCompare(b.fecha ?? '') || a.conv.localeCompare(b.conv) || rango(a.modelo) - rango(b.modelo) || String(a.modelo ?? '').localeCompare(String(b.modelo ?? '')) || a.orden - b.orden;
   const preguntas = [...grupos.values()].map((g) => {
     g.sort(orden);
-    const canon = g[0];
+    // La canónica es la primera aparición completa (cuatro opciones con texto): un PDF con una página cortada puede
+    // traer la pregunta incompleta en un modelo y entera en su permutación.
+    const completa = (a) => Object.keys(a.opciones).length === 4 && Object.values(a.opciones).every((t) => String(t).trim());
+    const canon = g.find(completa) ?? g[0];
     const apareceEn = g.map((a) => {
       const mapa = a === canon ? Object.fromEntries(Object.keys(a.opciones).map((l) => [l, l])) : mapaLetras(canon, a);
       return {
@@ -155,9 +178,12 @@ export async function repetidas(ctx) {
   for (const tit of ctx.tits) {
     const { apariciones } = leerJSON(rutaEtapa(ctx.eje, 'extraer', tit));
     const { preguntas, ambiguas, emparejadas } = agrupar(apariciones, { entreConvocatorias: cfg.entreConvocatorias ?? true, ordenModelos: cfg.ordenModelos ?? [], permutaciones: cfg.permutaciones ?? false });
-    asignarIds(preguntas, ctx.config, tit, idsExistentes(ctx.eje, tit));
+    const ids = asignarIds(preguntas, ctx.config, tit, idsExistentes(ctx.eje, tit));
+    // Los ids publicados no se pierden: si una pregunta publicada ya no sale (el PDF ha cambiado o el analizador la lee
+    // distinta), se avisa; la etapa «escribir» la conserva tal cual.
+    for (const id of ids.perdidos) ctx.avisos.add('repetidas', `pregunta publicada que ya no sale de la extracción: ${id}`);
     preguntas.sort((a, b) => (a.fecha ?? '').localeCompare(b.fecha ?? '') || a.conv.localeCompare(b.conv) || a.orden - b.orden || a.id.localeCompare(b.id));
-    escribirJSON(rutaEtapa(ctx.eje, 'repetidas', tit), { eje: ctx.eje, tit, preguntas, ambiguas, emparejadas });
+    escribirJSON(rutaEtapa(ctx.eje, 'repetidas', tit), { eje: ctx.eje, tit, preguntas, ambiguas, emparejadas, perdidos: ids.perdidos });
     out[tit] = { apariciones: apariciones.length, preguntas: preguntas.length, ambiguas: ambiguas.length, emparejadas: emparejadas.length, multiples: preguntas.filter((p) => p.apareceEn.length > 1).length };
   }
   return out;

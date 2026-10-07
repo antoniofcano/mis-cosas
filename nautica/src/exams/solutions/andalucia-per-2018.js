@@ -110,4 +110,41 @@ export default {
       return latlon(k.run(s, rv, d, 'Situación 14:30'));
     },
   },
+
+  // ---- 4ª Convocatoria 2018
+  'and-2018-c4-q42': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      k.note('Rumbo', 'El Ra = 240° y la velocidad no intervienen: la Ct sale de la enfilación.');
+      const dv = k.enfilacion('punta-cires', 'punta-alcazar', 236);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 236) }];
+    },
+  },
+  'and-2018-c4-q43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.cardinal2('punta-carnero', 90, 'punta-europa', 180, 'Salida');
+      const { rv } = k.rhumb(s, 'ceuta-bocana');
+      const ct = k.ct({ dm: 3, desvio: 8 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2018-c4-q44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      // De los dos cortes de los arcos, el del N (en el mar); el otro cae en tierra, en la costa de Marruecos.
+      const s = k.fix2Ranges('cabo-espartel', 4, 'punta-malabata', 6, { lat: 36, lon: -5.8 }, 'Situación 19:00');
+      const d = k.distFor(6, hrb(20, 30) - hrb(19, 0));
+      return latlon(k.run(s, 70, d, 'Situación 20:30'));
+    },
+  },
+  'and-2018-c4-q45': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.cardinal2('punta-gracia', 180, 'punta-paloma', 225, 'Situación 12:00');
+      const { rv, dist } = k.rhumb(s, 'barbate-faro');
+      const ct = k.ct({ carta: [8, 2008, -6], anyo: 2018, desvio: 5 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(12, 0), dist, 6) }];
+    },
+  },
 };

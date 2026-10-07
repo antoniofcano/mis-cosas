@@ -1,0 +1,56 @@
+{
+ "eje": "dgmm",
+ "prefijo": "dgmm",
+ "nombre": "Madrid (Marina Mercante)",
+ "organismo": "Dirección General de la Marina Mercante (Ministerio de Transportes y Movilidad Sostenible)",
+ "descripcion": {
+  "per": "Preguntas de los exámenes oficiales de Patrón de Embarcaciones de Recreo de la Marina Mercante en Madrid (junio de 2019 y de diciembre de 2020 a junio de 2026), con la plantilla oficial y sus modificaciones. Origen de los datos: Ministerio de Transportes y Movilidad Sostenible.",
+  "py": "Preguntas de los exámenes oficiales de Patrón de Yate de la Marina Mercante en Madrid (junio de 2019 y de diciembre de 2020 a abril de 2026), con la plantilla oficial y sus modificaciones. Origen de los datos: Ministerio de Transportes y Movilidad Sostenible."
+ },
+ "indice": "https://www.transportes.gob.es/marina-mercante/titulaciones/titulaciones-de-recreo/examenes/examenes-para-la-obtencion-de-titulaciones-de-recreo",
+ "descarga": { "userAgent": true },
+ "adaptador": { "per": "plantilla-aparte", "py": "plantilla-aparte" },
+ "ids": "conv-nn",
+ "salida": "data",
+ "repetidas": { "entreConvocatorias": true, "permutaciones": true, "ordenModelos": ["T01", "T02", "T03", "T04", "T05", "T06"] },
+ "titulaciones": {
+  "per": { "preguntas": 45, "disposicion": "per-rd875" },
+  "py": { "preguntas": 40, "disposicion": "py-40" }
+ },
+ "carta": {
+  "nombre": "L105",
+  "limites": { "latMin": 35.55, "latMax": 36.35, "lonMin": -6.45, "lonMax": -5.15 },
+  "toponimos": ["trafalgar", "tarifa", "europa", "carnero", "cires", "malabata", "espartel", "almina", "paloma", "gracia", "camarinal", "roche", "barbate", "alcazar", "cabo negro", "ceuta", "tanger", "algeciras", "gibraltar", "estrecho", "conil", "sancti petri", "punta de la", "isla de tarifa", "zahara", "bolonia", "getares", "la linea", "monte hacho", "punta leona", "alboran"]
+ },
+ "notas": "Exámenes de la DGMM en PDF de texto (junio de 2019 y de diciembre de 2020 a junio de 2026). Un solo PDF de enunciados por convocatoria con todas las titulaciones (CY, PY, PER, PER con PNB liberado, PNB) y una plantilla aparte. Los Test son permutaciones: PER T01≡T03 y T02≡T04 (un solo juego en junio de 2025 y 2026; tres en diciembre de 2020); PY T01≡T02. Los años escaneados (2016–2019 salvo junio de 2019) no se procesan todavía (haría falta OCR).",
+ "notasInforme": "Fechas de examen: anexos II de las resoluciones de convocatoria del BOE (BOE-A-2020-9998, BOE-A-2022-315, BOE-A-2022-10106, BOE-A-2022-24392, BOE-A-2025-1462, BOE-A-2026-510) y, donde no se ha consultado el BOE, la fecha que repiten los enunciados (columna «fechaFuente» de config.json). El PER de octubre de 2021, octubre de 2022 y junio de 2023 tiene un juego completo en el PDF; el otro se reconstruye con el PNB (1–27) y el «PER con PNB liberado» (28–45) del mismo código de Test.",
+ "huecos": {
+  "dgmm-per-2021-12 · T01": "el PDF de enunciados de diciembre de 2021 pierde las preguntas 44 y 45 del Test 01 y la opción d) de la 39 (página cortada); la plantilla sí las tiene",
+  "dgmm-per-2021-12 · T05": "el PDF de enunciados de diciembre de 2021 pierde las preguntas 38 a 43 del Test 05 (página cortada); entre los Test 01 y 05, permutaciones del mismo juego, faltan 2 preguntas"
+ },
+ "excepciones": {},
+ "convocatorias": [
+  { "clave": "2019-06", "fecha": "2019-06-22", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2020-12", "fecha": "2020-12-13", "fechaFuente": "BOE-A-2020-9998", "activa": true, "tipos": { "T06": "pnb" }, "codigos": { "per": ["-"], "per-lib": ["T06"] }, "nota": "El PDF trae el PNB del Test 06 (1–27, rotulado como PER), una copia sin portada del PER del Test 06 (6–45, se descarta) y el complementario «PNB previamente aprobado» del Test 06 (28–45, sin portada): el PER del Test 06 se reconstruye con el PNB y el complementario." },
+  { "clave": "2021-02", "fecha": "2021-02-27", "fechaFuente": "enunciados", "activa": true, "codigos": { "per": ["T01", "T05"], "py": ["T02"] } },
+  { "clave": "2021-04", "fecha": "2021-04-25", "fechaFuente": "nombre del PDF", "activa": true },
+  { "clave": "2021-07", "fecha": "2021-07-03", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2021-10", "fecha": "2021-10-16", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2021-12", "fecha": "2021-12-18", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2022-04", "fecha": "2022-04-02", "fechaFuente": "BOE-A-2022-315", "activa": true },
+  { "clave": "2022-06", "fecha": "2022-06-25", "fechaFuente": "BOE-A-2022-315", "activa": true },
+  { "clave": "2022-10", "fecha": "2022-10-15", "fechaFuente": "BOE-A-2022-10106", "activa": true },
+  { "clave": "2022-12", "fecha": "2022-12-17", "fechaFuente": "BOE-A-2022-10106", "activa": true },
+  { "clave": "2023-04", "fecha": "2023-04-22", "fechaFuente": "BOE-A-2022-24392", "activa": true },
+  { "clave": "2023-06", "fecha": "2023-06-24", "fechaFuente": "BOE-A-2022-24392", "activa": true },
+  { "clave": "2023-11", "fecha": "2023-11-25", "fechaFuente": "BOE-A-2022-24392", "activa": true },
+  { "clave": "2024-04", "fecha": "2024-04-20", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2024-06", "fecha": "2024-06-29", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2024-11", "fecha": "2024-11-23", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2025-04", "fecha": "2025-04-26", "fechaFuente": "BOE-A-2025-1462", "activa": true },
+  { "clave": "2025-06", "fecha": "2025-06-28", "fechaFuente": "BOE-A-2025-1462", "activa": true },
+  { "clave": "2025-11", "fecha": "2025-11-22", "fechaFuente": "enunciados", "activa": true },
+  { "clave": "2026-04", "fecha": "2026-04-18", "fechaFuente": "BOE-A-2026-510", "activa": true },
+  { "clave": "2026-06", "fecha": "2026-06-27", "fechaFuente": "BOE-A-2026-510", "activa": true }
+ ]
+}

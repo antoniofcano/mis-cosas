@@ -3,10 +3,14 @@
 /** Limpieza mínima del texto extraído: espacios, guiones de corte de línea y comillas tipográficas sueltas. */
 export function limpiar(s) {
   return String(s ?? '')
-    .replace(/­/g, '')
+    // El guion blando (U+00AD) entre minúsculas es un corte de palabra: fuera. Si no, es un guion o un signo menos que
+    // algunos PDF escriben así: «desvío 3º (­)» → «3º (-)», «Cabo Trafalgar­Cabo Espartel» → «Trafalgar-Cabo».
+    .replace(/(?<=\p{Ll})­(?=\p{Ll})/gu, '')
+    .replace(/­/g, '-')
     .replace(/[ -​ ]/g, ' ')
     .replace(/\s+/g, ' ')
-    .replace(/ ([,.;:)])(?=\s|$)/g, '$1')
+    // «palabra ,» → «palabra,», pero no dentro de una secuencia de puntos y rayas (código Morse: «. . . - - -»).
+    .replace(/([^\s.\-–]) ([,.;:)])(?=\s|$)/g, '$1$2')
     .trim();
 }
 

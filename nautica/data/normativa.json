@@ -122,6 +122,17 @@
    "temas": { "per": [5], "py": [] },
    "resumen": "La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: no se ha verificado con fuente primaria qué cambió entre ediciones, así que se revisan todas las preguntas de balizamiento anteriores.",
    "detectores": ["boya", "baliza", "balizamiento", "cardinal", "lateral", "peligro aislado", "aguas navegables", "aguas seguras", "marca especial", "marcas? especiales", "nuevo peligro", "naufragio", "marca de tope", "\\biala\\b", "\\baism\\b", "region a\\b", "centellea", "isofase", "marcas? de (babor|estribor)", "canal preferido"]
+  },
+  {
+   "id": "RD 128/2022",
+   "nombre": "Real Decreto 128/2022, de 15 de febrero, sobre instalaciones portuarias receptoras de desechos de buques",
+   "boe": "BOE-A-2022-2465",
+   "url": "https://www.boe.es/eli/es/rd/2022/02/15/128/con",
+   "publicacion": "2022-02-16",
+   "vigor": "2022-02-17",
+   "temas": { "per": [4], "py": [] },
+   "resumen": "Deroga el RD 1381/2002 y la Orden FOM/1392/2004. Desaparece la notificación reducida de desechos (anexo V del RD 1381/2002) de las embarcaciones de recreo: la notificación previa (art. 16) no se aplica a las embarcaciones y buques de recreo de eslora inferior a 45 m, y todo buque entrega sus desechos en una instalación portuaria receptora antes de dejar el puerto (art. 17).",
+   "detectores": ["1381/2002", "notificacion reducida", "fom/1392", "instalacion(es)? portuaria(s)? (de recepcion|receptora)"]
   }
  ]
 }

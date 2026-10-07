@@ -7,11 +7,12 @@
 // los tests, el sistema de ficheros. Las cargas se cachean (una promesa por fichero).
 
 import { TITULACIONES } from '../theory/blocks.js';
-import { convocatorias as convocatoriasDe } from '../theory/engine.js';
+import { convocatorias as convocatoriasDe, convDeClave } from '../theory/engine.js';
 import { compilarVocabulario } from '../theory/vocabulario.js';
 import { resueltasSegun } from '../course/resueltos.js';
 import { SOLUCIONES } from './soluciones.js';
 import { EJE_POR_DEFECTO } from './registro.js';
+import { equivalenteEn } from './equivalentes.js';
 
 export { EJE_POR_DEFECTO, SOLUCIONES };
 
@@ -39,6 +40,15 @@ export function crearBancos(leer) {
   const registro = () => memo('registro', () => leer('data/ejes/index.json').then((d) => d.ejes ?? []));
   /** Ejes que se ofrecen a los alumnos. */
   const ejesPublicados = async () => (await registro()).filter((e) => e.estado === 'publicado');
+  /**
+   * Ejes entre los que el alumno elige «dónde te examinas», con su ficha: los publicados, solo si hay más de uno (con
+   * uno solo no hay nada que elegir: []). Los ejes sin banco publicado no aparecen nunca.
+   */
+  const ejesParaElegir = async () => {
+    const pub = await ejesPublicados();
+    if (pub.length < 2) return [];
+    return Promise.all(pub.map(async (e) => ({ ...e, ficha: await cargarFicha(e.id).catch(() => null) })));
+  };
   /** El eje pedido si existe; si no, el de por defecto. */
   const resolverEje = async (eje) => ((await registro()).some((e) => e.id === eje) ? eje : EJE_POR_DEFECTO);
 
@@ -69,7 +79,8 @@ export function crearBancos(leer) {
   /**
    * Banco de un eje para una titulación.
    * - todas: todas sus preguntas; porId: id → pregunta.
-   * - estudio: las que se usan para estudiar (práctica, tandas, simulacros, exámenes de convocatorias);
+   * - estudio: las que se usan para estudiar (práctica, tandas, simulacros, exámenes de convocatorias): todas menos
+   *   las retiradas por la revisión normativa (norma.estado «retirada») y, en modo «pregunta», las reservadas;
    *   final: las reservadas para el examen final (ficha.reserva). En modo «examen» se reservan convocatorias
    *   (no se ofrecen como examen, pero sus preguntas siguen en la práctica); en modo «pregunta», además, sus
    *   preguntas salen de toda la práctica.
@@ -90,6 +101,8 @@ export function crearBancos(leer) {
     const reservadas = new Set(ficha.reserva?.[tit] ?? []);
     const final = reservadas.size ? todas.filter((q) => reservadas.has(q.conv) || (q.apareceEn ?? []).some((a) => reservadas.has(a.conv))) : [];
     const apartadas = modo === 'pregunta' ? new Set(final.map((q) => q.id)) : new Set();
+    // Las retiradas por la revisión normativa (su respuesta ya no es correcta) no se usan para estudiar.
+    for (const q of todas) if (q.norma?.estado === 'retirada') apartadas.add(q.id);
     const estudio = apartadas.size ? todas.filter((q) => !apartadas.has(q.id)) : todas;
     const enEstudio = new Set(estudio.map((q) => q.id));
     const estructura = TITULACIONES[tit].estructura;
@@ -97,7 +110,7 @@ export function crearBancos(leer) {
       .map((l) => ({ ...l, preguntas: todas.filter((q) => enLista(l, q)) }));
     const banco = {
       eje: ficha, tit, meta: datos.meta ?? {}, todas, estudio, final, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
-      convocatorias: () => convocatoriasDe(estructura, estudio).filter((c) => !reservadas.has(c.key)),
+      convocatorias: () => convocatoriasDe(estructura, estudio).filter((c) => !reservadas.has(convDeClave(c.key))),
       practicaDe: (leccionId) => (practica[leccionId] ?? []).filter((id) => enEstudio.has(id)),
       resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId),
       lista: (id) => listas.find((l) => l.id === id) ?? null,
@@ -129,6 +142,26 @@ export function crearBancos(leer) {
     return null;
   }
 
+  /**
+   * La pregunta que corresponde a `id` en el banco del eje `eje` (misma titulación): la propia si ya es de ese eje; si
+   * no, su equivalente (por concepto o por parecido del texto, src/bancos/equivalentes.js); y si no hay, la original.
+   * → { q, propia, equivalente, ficha } (ficha: la del eje de la pregunta devuelta), o null si el id no existe.
+   * Lo usan las pausas del minijuego del podcast, que citan preguntas de un eje concreto.
+   */
+  async function equivalente(id, eje) {
+    const r = await pregunta(id);
+    if (!r) return null;
+    const e = await resolverEje(eje);
+    if (r.q.eje === e) return { q: r.q, propia: true, equivalente: false, ficha: r.banco.eje };
+    const ficha = await cargarFicha(e).catch(() => null);
+    if (ficha && titsDe(ficha).includes(r.q.tit)) {
+      const banco = await bancoDe(e, r.q.tit);
+      const otra = equivalenteEn(r.q, banco.estudio);
+      if (otra) return { q: otra, propia: true, equivalente: true, ficha: banco.eje };
+    }
+    return { q: r.q, propia: false, equivalente: false, ficha: r.banco.eje };
+  }
+
   /** Dirección antigua de un banco (#/examenes/<fichero>) → { eje, tit, lista } (o null). */
   async function resolverLegado(fichero) {
     for (const e of await registro()) {
@@ -150,7 +183,7 @@ export function crearBancos(leer) {
     return listas.some((l) => l.requiere === 'carta') && q.requiere?.includes('carta') ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, resolverLegado, rutaResolucion };
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion };
 }
 
 // ---------------------------------------------------------------------------
@@ -169,4 +202,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, resolverLegado, rutaResolucion } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion } = bancos;

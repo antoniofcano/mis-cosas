@@ -6,8 +6,11 @@
 // encaja con algún detector. Los detectores son anchos a propósito: es
 // preferible revisar de más (el informe lista todas) que dejar pasar una respuesta obsoleta.
 // Las preguntas sin fecha conocida se marcan «revisar» con todas las normas cuyos detectores encajan.
+// Al final se aplican los ajustes a mano del eje (tools/bancos/ejes/<eje>/ajustes.json, por id): la resolución de la
+// revisión normativa (norma: { estado: vigente | actualizada | retirada, normas, nota }) y, si hace falta, requiere / ut /
+// concepto. Así una nueva extracción no deshace la revisión.
 import { join } from 'node:path';
-import { RAIZ, escribirJSON, leerJSON, rutaEtapa } from '../lib/comun.mjs';
+import { RAIZ, dirEje, escribirJSON, leerJSON, rutaEtapa } from '../lib/comun.mjs';
 import { canonico } from '../lib/texto.mjs';
 
 export function cargarNormas(ruta = join(RAIZ, 'data', 'normativa.json')) {
@@ -22,8 +25,23 @@ export function normasAfectadas(p, normas) {
   return normas.filter((n) => (!primera || primera < n.vigor) && n.re.some((r) => r.test(texto))).map((n) => n.id);
 }
 
+const CAMPOS_AJUSTE = ['norma', 'requiere', 'ut', 'ut_titulo', 'bloque', 'concepto', 'notas'];
+
+/** Aplica los ajustes a mano (id → campos). Devuelve los ids de ajustes que no encuentran su pregunta. */
+export function aplicarAjustes(preguntas, ajustes = {}) {
+  const porId = new Map(preguntas.map((p) => [p.id, p]));
+  const sinPregunta = [];
+  for (const [id, a] of Object.entries(ajustes)) {
+    const p = porId.get(id);
+    if (!p) { sinPregunta.push(id); continue; }
+    for (const k of CAMPOS_AJUSTE) if (k in a) p[k] = k === 'norma' ? { ...a.norma, normas: a.norma.normas ?? p.norma?.normas } : a[k];
+  }
+  return sinPregunta;
+}
+
 export async function normativa(ctx) {
   const normas = cargarNormas();
+  const ajustes = leerJSON(join(dirEje(ctx.eje), 'ajustes.json'), {});
   const out = {};
   for (const tit of ctx.tits) {
     const d = leerJSON(rutaEtapa(ctx.eje, 'clasificar', tit));
@@ -33,8 +51,11 @@ export async function normativa(ctx) {
       p.norma = afect.length ? { estado: 'revisar', normas: afect } : { estado: 'vigente' };
       for (const n of afect) porNorma[n] = (porNorma[n] ?? 0) + 1;
     }
+    for (const id of aplicarAjustes(d.preguntas, ajustes[tit])) ctx.avisos.add('normativa', `ajuste sin pregunta: ${tit} ${id}`);
     escribirJSON(rutaEtapa(ctx.eje, 'normativa', tit), d);
-    out[tit] = { revisar: d.preguntas.filter((p) => p.norma.estado === 'revisar').length, porNorma };
+    const estados = {};
+    for (const p of d.preguntas) estados[p.norma.estado] = (estados[p.norma.estado] ?? 0) + 1;
+    out[tit] = { ...estados, porNorma };
   }
   return out;
 }

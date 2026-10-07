@@ -1,0 +1,40 @@
+{
+ "id": "dgmm",
+ "nombre": "Madrid (Marina Mercante)",
+ "organismo": "Dirección General de la Marina Mercante (Ministerio de Transportes y Movilidad Sostenible)",
+ "ambito": ["Comunidad de Madrid", "Castilla y León", "Castilla-La Mancha", "Aragón", "Navarra", "La Rioja", "Extremadura"],
+ "descripcion": "Exámenes de la Marina Mercante en Madrid, que examina a quienes viven en comunidades sin tribunal propio.",
+ "estado": "publicado",
+ "prefijo": "dgmm",
+ "fuente": "https://www.transportes.gob.es/marina-mercante/titulaciones/titulaciones-de-recreo/examenes/examenes-para-la-obtencion-de-titulaciones-de-recreo",
+ "licencia": {
+  "tipo": "Reutilización autorizada citando la fuente (aviso legal del Ministerio; Ley 37/2007 y RD 1495/2011)",
+  "cita": "Origen de los datos: Ministerio de Transportes y Movilidad Sostenible",
+  "actualizado": "2026-10-07",
+  "citaObligatoria": true,
+  "usoApp": "permitido",
+  "url": "https://www.transportes.gob.es/ministerio/aviso-legal"
+ },
+ "carta": "L105",
+ "examen": {
+  "per": { "reglas": ["La carta es la del Estrecho de Gibraltar (la misma de la app); algunas preguntas de carta son de mareas, con el anuario que entrega el tribunal."] },
+  "py": { "reglas": ["Un solo cuadernillo de 40 preguntas (10 de Seguridad, 10 de Meteorología, 10 de Teoría de navegación y 10 de Carta) en dos horas.", "Carta: ejercicios sobre la carta del Estrecho, de mareas con el anuario que entrega el tribunal y de estima analítica."] }
+ },
+ "reserva": { "modo": "examen", "per": ["dgmm-per-2025-11", "dgmm-per-2026-04", "dgmm-per-2026-06"], "py": ["dgmm-py-2024-11", "dgmm-py-2025-04", "dgmm-py-2025-11", "dgmm-py-2026-04"] },
+ "listas": {
+  "per": [
+   { "id": "carta", "requiere": "carta", "titulo": "PER Madrid · Carta de navegación",
+     "descripcion": "Preguntas de carta (42–45) de los exámenes oficiales de PER de la Marina Mercante en Madrid (junio de 2019 y diciembre de 2020 a junio de 2026), con la respuesta de la plantilla oficial y sus modificaciones. Se usa la carta del Estrecho de Gibraltar.",
+     "tarjeta": "Las {n} preguntas de carta (42–45) de los exámenes del PER de Madrid, resueltas paso a paso sobre la carta." },
+   { "id": "teoria", "sinRequiere": "carta", "titulo": "PER Madrid · Teoría",
+     "descripcion": "Preguntas de los exámenes oficiales de PER de la Marina Mercante en Madrid que no se resuelven sobre la carta, con la respuesta de la plantilla oficial y sus modificaciones." }
+  ],
+  "py": [
+   { "id": "carta", "requiere": "carta", "titulo": "PY Madrid · Carta de navegación",
+     "descripcion": "Ejercicios sobre la carta del Estrecho de los exámenes oficiales de Patrón de Yate de la Marina Mercante en Madrid, con la respuesta de la plantilla oficial.",
+     "tarjeta": "Los {n} ejercicios de carta de los exámenes del PY de Madrid, resueltos paso a paso sobre la carta." },
+   { "id": "teoria", "sinRequiere": "carta", "titulo": "PY Madrid · Examen teórico",
+     "descripcion": "Preguntas de los exámenes oficiales de Patrón de Yate de la Marina Mercante en Madrid (Seguridad, Meteorología, Teoría de navegación, mareas y estima analítica), con la respuesta de la plantilla oficial y sus modificaciones." }
+  ]
+ }
+}

@@ -136,7 +136,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       solution.hidden = false;
       const computed = run
         ? h('p', h('strong', 'Resultado calculado: '), run.values.map((v) => quantity(v.kind).format(v.value)).join(' · '),
-          ` → opción más próxima: ${run.pick.choice})`, run.pick.choice === q.correcta ? ' ✔ coincide con la plantilla' : '')
+          run.pick.choice ? ` → opción más próxima: ${run.pick.choice})` : '', run.pick.choice === q.correcta ? ' ✔ coincide con la plantilla' : '')
         : null;
       setChildren(solution,
         q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : h('p.warn', 'Pregunta anulada por el tribunal.'),
@@ -160,8 +160,8 @@ export function preguntaView({ ctx, progress, params: route }) {
         h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
       ),
       result);
-    const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}, que corresponde a la opción ${run.pick.choice}`;
-    const examOutro = () => narrateOutro(`${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}, que corresponde a la opción ${run.pick.choice}`);
+    const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}${run.pick.choice ? `, que corresponde a la opción ${run.pick.choice}` : ''}`;
+    const examOutro = () => narrateOutro(examOutroText());
     const openTable = (tab) => {
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({

@@ -1,4 +1,5 @@
-// #/bienvenida — dos pantallas: la titulación, y la fecha del examen con los minutos al día; luego, la primera clase.
+// #/bienvenida — la titulación; dónde te examinas (solo si hay más de un banco publicado); y la fecha del examen con los
+// minutos al día. Luego, la primera clase.
 
 import { h, setChildren } from '../dom.js';
 import { navigate } from '../router.js';
@@ -6,6 +7,7 @@ import { TITULACIONES } from '../titulacion.js';
 import { cuenta, diaISO } from '../../texto.js';
 import { loadCourse } from '../../store/datasets.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
+import { ejesElegibles, selectorEje } from '../eje.js';
 
 /** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
@@ -27,6 +29,10 @@ export function bienvenidaView({ progress }) {
   const el = h('div.bienvenida');
   let paso = 1;
   let tit = 'per';
+  // Ejes entre los que elegir ([] si hay uno solo: entonces el paso no existe).
+  let ejes = [];
+  const total = () => (ejes.length ? 3 : 2);
+  ejesElegibles().then((l) => { ejes = l; if (paso === 1) render(); }).catch(() => {});
 
   // Al terminar, directo a la primera clase del orden de estudio (si el curso no carga, a Hoy).
   const empezar = (fecha, orientativa, min) => {
@@ -43,12 +49,18 @@ export function bienvenidaView({ progress }) {
   };
 
   function render() {
-    const cab = h('p.paso', `Paso ${paso} de 2`);
+    const cab = h('p.paso', `Paso ${paso} de ${total()}`);
+    const pasoFecha = ejes.length ? 3 : 2;
     if (paso === 1) {
       setChildren(el, cab, h('h1', '¿Qué título vas a sacarte?'),
         h('div.opciones-grandes',
           Object.values(TITULACIONES).map((T) => h('button.tarjeta-opcion', { type: 'button', onclick: () => { tit = T.id; progress.setSetting('level', T.nivel); paso = 2; render(); } },
             h('span.op-icono', { 'aria-hidden': 'true' }, T.icon), h('span.op-texto', T.id === 'per' ? `PER — ${T.nombre}` : T.nombre)))));
+    } else if (paso < pasoFecha) {
+      // Dónde te examinas: cada tribunal tiene su banco de preguntas (los exámenes reales de ese tribunal).
+      setChildren(el, cab, h('h1', '¿Dónde te examinas?'),
+        h('p.muted', 'Cada tribunal pone sus propias preguntas. Estudiarás con los exámenes reales del tuyo. Lo puedes cambiar en Ajustes.'),
+        selectorEje(progress, ejes, () => { paso = pasoFecha; render(); }, { marcar: false }));
     } else {
       // Una sola pantalla: fecha del examen y minutos al día, y a la primera clase.
       let orientativa = false;
@@ -71,5 +83,5 @@ export function bienvenidaView({ progress }) {
     window.scrollTo(0, 0);
   }
   render();
-  return { el, summary: () => `VISTA bienvenida · paso ${paso} de 2 (titulación; fecha del examen y minutos al día)` };
+  return { el, summary: () => `VISTA bienvenida · paso ${paso} de ${total()} (titulación;${ejes.length ? ' dónde te examinas;' : ''} fecha del examen y minutos al día)` };
 }

@@ -283,10 +283,10 @@
   "meteo.regionales.vendaval"
  ],
  "dgmm/py/dgmm-py-2021-02-20": [
-  "meteo.corrientes.atlantico"
+  "meteo.corrientes.portugal-canarias"
  ],
  "dgmm/py/dgmm-py-2024-04-17": [
-  "meteo.corrientes.atlantico"
+  "meteo.corrientes.cantabrico"
  ],
  "baleares/py/bal-py-2018-12-a-20": [
   "meteo.regionales.gregal"
@@ -392,10 +392,10 @@
   "meteo.corrientes.gradiente"
  ],
  "andalucia/py/and-py-2024-c3-g20": [
-  "meteo.corrientes.atlantico"
+  "meteo.corrientes.portugal-canarias"
  ],
  "andalucia/py/and-py-2026-c2-g20": [
-  "meteo.corrientes.atlantico"
+  "meteo.corrientes.cantabrico"
  ],
  "andalucia/py/and-py-2016-c2-g19": [
   "meteo.corrientes.gradiente"
@@ -411,7 +411,7 @@
   "meteo.regionales.identificacion"
  ],
  "baleares/py/bal-py-2021-03-ac-16": [
-  "meteo.corrientes.mediterraneo"
+  "meteo.corrientes.mediterraneo-central"
  ],
  "dgmm/py/dgmm-py-2024-11-11": [
   "meteo.regionales.calidos-sur"
@@ -420,7 +420,7 @@
   "meteo.humedad.punto-rocio"
  ],
  "dgmm/py/dgmm-py-2025-04-19": [
-  "meteo.corrientes.atlantico"
+  "meteo.corrientes.portugal-canarias"
  ],
  "dgmm/py/dgmm-py-2025-11-18": [
   "meteo.humedad.punto-rocio"

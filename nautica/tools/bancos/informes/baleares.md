@@ -701,21 +701,42 @@ Modo «pregunta»: las preguntas de bal-per-2026-06, bal-per-2026-09 (PER) y bal
 
 ### Explicaciones del profe
 
-- PER: 0 de 3110 preguntas sin carta con explicación; 0 adaptadas de una explicación ya revisada del otro banco (concepto `and-…`), 0 escritas para Baleares; 0 con discrepancia frente a la plantilla.
-- PY: 0 de 782 preguntas sin carta con explicación; 0 adaptadas de una explicación ya revisada del otro banco (concepto `and-…`), 0 escritas para Baleares; 0 con discrepancia frente a la plantilla.
+Una explicación por pregunta distinta (`data/ejes/baleares/<tit>/explicaciones.json`), escrita por lotes con la guía de estilo del otro banco y fusionada con `tools/bancos/ejes/baleares/explicaciones.mjs` (comprueba campos, letras citadas, `defendible`, ilustraciones dibujables, `concepto` existente y palabras prohibidas). Reutilizar solo cuando el concepto y la respuesta correcta coinciden, adaptando el texto a las opciones de la pregunta; el `concepto` de la pregunta queda en `preguntas.json`.
+
+| | PER | PY |
+|---|---|---|
+| Preguntas sin carta (incluidas las de mareas con anuario) | 3110 | 822 |
+| Con explicación | 3110 | 822 |
+| Adaptadas de una explicación revisada del otro banco (`concepto` and-…) | 364 | 55 |
+| Adaptadas de su hermana de este banco (misma pregunta con otras opciones; `concepto` bal-…) | 628 | 152 |
+| Escritas de cero | 2118 | 615 |
+| Con `discrepancia` frente a la respuesta oficial (con `defendible`) | 46 (20) | 19 (10) |
+
+Normativa ligada a las explicaciones: la respuesta oficial de RCP 1:5 (bal-per-2018-04-e-10) pasa a «retirada» (ninguna opción recoge la pauta actual de 30:2); las demás «actualizada»/«retirada» de la revisión normativa cuentan el cambio en la explicación.
+
+**Auditoría:** muestra aleatoria (semilla fija) del 5 % de las explicaciones, 195 de 3932, revisada a mano contra la norma (RIPA, IALA, RD 339/2021, MARPOL, Reglamento de Costas, RD 550/2020) y el cálculo (loxodrómica, declinación, mareas). Errores de contenido: 0 de 195 (0 %; cota superior del 95 %: ≈ 1,5 %). Sin cambios necesarios.
 
 ### Soluciones de carta
 
-- PER: 0 de 463 preguntas de carta con solución programada que llega a la oficial.
-- PY: 0 de 409 preguntas de carta con solución programada que llega a la oficial.
-- En los bloques DISCREPANCIAS de `src/exams/solutions/baleares-*.js`: 0 preguntas (no llegan a la oficial o necesitan un elemento que la carta de la app no tiene), cada una con su motivo.
-- Mareas que necesitan el anuario (`requiere: ["anuario"]`), PER: 62.
-- Mareas que necesitan el anuario (`requiere: ["anuario"]`), PY: 25.
+Soluciones programadas en `src/exams/solutions/baleares-{per,py}-NN.js` (por lotes), registradas en `src/bancos/ejes/baleares.js` con `{ soluciones, documentadas }`. Cada una pasa `tests/exams.test.js` con el lector de opciones de feat/eje-dgmm: la oficial leída, elegida y sin empate (y en el PY, con margen). Declinación «del año en curso»: la de la carta L105 (2°50′ W 2005, 7′ E) llevada al año de la convocatoria.
+
+| | PER | PY |
+|---|---|---|
+| Preguntas de carta | 463 | 369 |
+| Con solución programada que llega a la oficial | 369 | 338 |
+| Documentadas `sin-calculo` (elemento que no está en la carta de la app: isobáticas, sondas, naufragios, marcas, montes, DST; o les falta un dato) | 89 | 17 |
+| Documentadas `discrepancia` (el cálculo lleva a otra opción, o al de la oficial sin el margen del PY) | 5 | 14 |
+
+40 preguntas del PY que el clasificador había dejado como de carta eran cálculos de mareas sin el extracto del anuario: pasan a `requiere: ["anuario"]` y `bloque: "mareas"` (ajustes.json) y tienen explicación del método. Mareas con anuario: PER 62, PY 65.
 
 ### Práctica por clase
 
-practica.mjs asigna cada pregunta del estudio a una clase de su tema (concepto revisado del otro banco, pregunta vecina, tipo de ejercicio de carta o palabras clave de la clase); el motivo de cada una está en `practica-informe.json`.
+`practica.mjs` asigna cada pregunta del estudio (sin anuladas, retiradas ni reservadas, ni las que aparecen también en una convocatoria reservada) a una clase: por el concepto revisado del otro banco, por el tipo de ejercicio de su solución de carta, las de mareas con anuario a su clase de mareas y, el resto, por contenido (TF-IDF del enunciado, la respuesta y la explicación frente al texto de cada clase, más el voto de las 7 preguntas más parecidas del otro banco). Medido sobre el otro banco, dejando cada pregunta fuera, acierta su clase revisada en el 93 % (PER) y el 97 % (PY); el método por palabras clave, en el 83 % y el 86 %. Si una clase de otro tema puntúa más del doble (incendios, primeros auxilios o hipotermia que el tribunal pone entre las de seguridad), la pregunta va a esa clase. `resueltos.json` lista, por clase de carta, hasta 12 preguntas resueltas del estudio.
 
-- PER: 3224 preguntas en 86 clases; por motivo: texto 2916, vecina 252, mareas 56; clases sin práctica: ninguna.
-- PY: 1039 preguntas en 39 clases; por motivo: texto 965, vecina 52, mareas 22; clases sin práctica: ninguna.
+- PER: 3223 preguntas en 86 clases (mínimo 2, mediana 28, máximo 148); ninguna clase sin práctica; ninguna reservada.
+- PY: 1039 preguntas en 39 clases (mínimo 2, mediana 24, máximo 68); ninguna clase sin práctica; ninguna reservada.
+- Clases con poca práctica propia del banco: per-7-8 (desatracar), per-11-8 (marcaciones no simultáneas), py-3-4 (loxodrómica: conceptos), con 2 preguntas cada una.
 
+### Puertas de calidad
+
+`tools/bancos/puertas.mjs` (de feat/eje-dgmm) sobre este banco: cumple las cinco puertas (respuesta, tema, fuente y norma resuelta en todas; explicación en el 100 % de las que no son de carta; solución o motivo documentado en el 100 % de las de carta; práctica en todas las clases; licencia CC BY-SA con uso permitido). El eje sigue en estado «interno».

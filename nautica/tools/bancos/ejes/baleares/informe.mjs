@@ -98,14 +98,16 @@ for (const t of ['per', 'py']) {
   const carta = bancos[t].filter((q) => q.requiere.includes('carta'));
   L.push(`- ${t.toUpperCase()}: ${carta.filter((q) => balSol.soluciones[q.id]).length} de ${carta.length} preguntas de carta con solución programada que llega a la oficial.`);
 }
-L.push(`- En los bloques DISCREPANCIAS de \`src/exams/solutions/baleares-*.js\`: ${disc} preguntas (no llegan a la oficial o necesitan un elemento que la carta de la app no tiene), cada una con su motivo.`);
+const tipos = {};
+for (const d of Object.values(balSol.documentadas ?? {})) tipos[d.tipo] = (tipos[d.tipo] ?? 0) + 1;
+L.push(`- Documentadas sin solución (\`documentadas\` de src/bancos/ejes/${EJE}.js): ${Object.entries(tipos).map(([k, v]) => `${k} ${v}`).join(', ') || 'ninguna'}; en los bloques DISCREPANCIAS de los ficheros, ${disc} con el detalle.`);
 for (const t of ['per', 'py']) L.push(`- Mareas que necesitan el anuario (\`requiere: ["anuario"]\`), ${t.toUpperCase()}: ${bancos[t].filter((q) => q.requiere.includes('anuario')).length}.`);
 L.push('');
 
 // Práctica
 const pinf = leerJSON(join(dirEje(EJE), 'practica-informe.json'), null);
 if (pinf) {
-  L.push('### Práctica por clase', '', 'practica.mjs asigna cada pregunta del estudio a una clase de su tema (concepto revisado del otro banco, pregunta vecina, tipo de ejercicio de carta o palabras clave de la clase); el motivo de cada una está en `practica-informe.json`.', '');
+  L.push('### Práctica por clase', '', 'practica.mjs asigna cada pregunta del estudio a una clase (concepto revisado del otro banco, tipo de ejercicio de carta, mareas con anuario o contenido: TF-IDF con la explicación del profe y vecinas del otro banco); el motivo de cada una está en `practica-informe.json`.', '');
   for (const t of ['per', 'py']) L.push(`- ${t.toUpperCase()}: ${pinf[t].asignadas} preguntas en ${Object.keys(pinf[t].porClase).length} clases; por motivo: ${Object.entries(pinf[t].motivos).map(([k, v]) => `${k} ${v}`).join(', ')}; clases sin práctica: ${pinf[t].sinPractica.length ? pinf[t].sinPractica.join(', ') : 'ninguna'}.`);
   L.push('');
 }

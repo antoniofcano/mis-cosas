@@ -469,5 +469,227 @@
       }
     ],
     "concepto": "and-2022-c1-t13"
+  },
+  "and-2019-c3-t15": {
+    "explicacion": "Los grupos de 9 centelleos corresponden a la cardinal Oeste, como las 9 del reloj: Ct(9) cada 15 s o CtR(9) cada 10 s. La Este da 3 centelleos, la Sur 6 más un destello largo, y la de aguas navegables nunca centellea (isofase, ocultaciones, destello largo o Morse «A»).",
+    "clave": "Reloj: 3 Este, 6 Sur, 9 Oeste; Norte continuo.",
+    "trampa": "Confundir 9 con la Norte por ser el número más alto.",
+    "ilustraciones": [
+      {
+        "tipo": "cardinales",
+        "resaltar": "cardinal-w"
+      }
+    ],
+    "concepto": "and-2024-c1-t17"
+  },
+  "and-2019-c3-t16": {
+    "explicacion": "Dos conos negros superpuestos con los vértices hacia abajo son el tope de la cardinal Sur: las puntas señalan hacia el sur, y el negro de la marca va abajo. La Norte lleva los dos vértices hacia arriba, la de aguas navegables una esfera roja y el peligro aislado dos esferas negras.",
+    "clave": "Los conos apuntan hacia el lado por el que debes pasar: abajo = Sur.",
+    "trampa": "Confundir con la Norte, que es la misma figura invertida.",
+    "ilustraciones": [
+      {
+        "tipo": "cardinales",
+        "resaltar": "cardinal-s"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c3-t17": {
+    "explicacion": "La afirmación falsa es la c): la luz de una marca especial es amarilla y su ritmo puede ser cualquiera excepto los reservados a las cardinales, al peligro aislado y a la de aguas navegables, para no confundirse con ellas. Las demás son ciertas: señalan zonas o configuraciones que se identifican en la carta, su forma es libre sin prestarse a confusión, y la IALA admite usarlas para la separación del tráfico donde el balizamiento convencional del canal pudiera confundir.",
+    "clave": "Especial: amarilla, aspa amarilla, luz amarilla con ritmo no reservado.",
+    "trampa": "Pregunta en negativo: «cualquiera» es lo que la hace falsa.",
+    "ilustraciones": [
+      {
+        "tipo": "boya",
+        "clase": "especial"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c3-t18": {
+    "explicacion": "La Regla 10 d) permite a los buques de menos de 20 m usar la zona de navegación costera, y nada les prohíbe navegar por las vías de circulación del dispositivo; eso sí, en ellas no deben estorbar a los buques de propulsión mecánica que las sigan (Regla 10 j). La c) es la limitación que tienen los buques grandes, y no hay ninguna restricción por ser de día o de noche.",
+    "clave": "Menos de 20 m: vía o zona costera, sin estorbar a los grandes.",
+    "trampa": "La c) describe la regla para los demás buques, no para los menores de 20 m.",
+    "concepto": "and-2025-c2-t22"
+  },
+  "and-2019-c3-t19": {
+    "explicacion": "La Regla 8 b) pide que los cambios de rumbo o velocidad del buque que cede el paso sean lo bastante amplios para que el otro los perciba fácilmente, a la vista o por radar, y que se evite una sucesión de pequeños cambios. Además debe maniobrar con antelación (Regla 8 a), no esperar a que el abordaje sea inminente, así que la a), la b) y la d) fallan.",
+    "clave": "Cede el paso: pronto, en grande y a distancia segura.",
+    "trampa": "La a) suena a buena práctica, pero los cambios pequeños no se perciben.",
+    "concepto": "and-2025-c2-t23"
+  },
+  "and-2019-c3-t20": {
+    "explicacion": "La única luz blanca todo horizonte solo se permite a los buques de motor de menos de 7 m cuya velocidad máxima no supere los 7 nudos (Regla 23 d ii). A 10 nudos no se cumple, así que se aplica la Regla 23 d) i), para menos de 12 m: blanca todo horizonte y luces de costado. La c) se deja la luz de tope, y la linterna a mano es para veleros de menos de 7 m y embarcaciones de remo.",
+    "clave": "Menos de 7 m y más de 7 nudos: blanca todo horizonte + costados.",
+    "trampa": "La a) exige no superar 7 nudos de velocidad máxima.",
+    "concepto": "and-2025-c2-t25"
+  },
+  "and-2019-c3-t21": {
+    "explicacion": "La Regla 19 e) manda reducir la velocidad a la mínima de gobierno al oír, al parecer a proa del través, la señal de niebla de otro buque, y suprimir la arrancada si hace falta, navegando con extremada precaución. Meter toda la caña a una banda sin saber dónde está el otro es peligroso, y las cinco pitadas cortas son para buques a la vista.",
+    "clave": "Niebla oída por proa: mínima de gobierno y, si hace falta, paro.",
+    "trampa": "Cinco cortas solo con buques a la vista (Regla 34 d).",
+    "concepto": "and-2025-c2-t27"
+  },
+  "and-2019-c3-t22": {
+    "explicacion": "Pescar con caña no restringe la maniobrabilidad, así que no es un buque dedicado a la pesca (Regla 3 d). Tampoco está sin gobierno, porque puede arrancar el motor cuando quiera. Según la Regla 3 i) está «en navegación», ya que no está fondeado, amarrado ni varado, aunque vaya a la deriva.",
+    "clave": "A la deriva sin fondear ni amarrar = en navegación.",
+    "trampa": "Pensar que a la deriva y con la máquina parada se está sin gobierno.",
+    "concepto": "and-2025-c1-t22"
+  },
+  "and-2019-c3-t23": {
+    "explicacion": "Si lo ves por tu babor mostrando tope y verde, te enseña su costado de estribor: tú lo tienes por babor y él te tiene por su estribor. En este cruce entre buques de motor (Regla 15) el que cede es el otro, y tú, como buque que sigue a rumbo, debes mantener rumbo y velocidad (Regla 17 a). Moderar, parar o apartarte confundiría al que debe maniobrar.",
+    "clave": "Lo veo por babor (verde): sigo a rumbo y velocidad.",
+    "trampa": "Reducir velocidad «por prudencia» también es cambiar la maniobra que el otro espera.",
+    "ilustraciones": [
+      {
+        "tipo": "cruce",
+        "situacion": "cruce"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c3-t24": {
+    "explicacion": "La Regla 9 a) dice que el buque que navegue por un paso o canal angosto se mantendrá lo más cerca posible del límite exterior que quede por su costado de estribor, siempre que pueda hacerlo sin peligro. Así los buques que se cruzan pasan babor con babor. No se va por el centro, y la región de balizamiento (A o B) cambia el color de las laterales, no esta regla de rumbo.",
+    "clave": "Canal angosto: pégate a tu estribor.",
+    "trampa": "La d) mezcla el balizamiento con el Reglamento de Abordajes.",
+    "concepto": "and-2023-c2-t19"
+  },
+  "and-2019-c3-t25": {
+    "explicacion": "En un cruce entre buques de propulsión mecánica (Regla 15), el que tiene al otro por estribor cede el paso. Por tanto, el que ve al otro por babor es el que sigue a rumbo (Regla 17). Caer ambos a estribor es la maniobra de la vuelta encontrada, no del cruce.",
+    "clave": "Lo veo por babor: sigo a rumbo. Lo veo por estribor: me aparto.",
+    "ilustraciones": [
+      {
+        "tipo": "cruce",
+        "situacion": "cruce"
+      }
+    ],
+    "concepto": "and-2020-c3-t22"
+  },
+  "and-2019-c3-t26": {
+    "explicacion": "Según la Regla 12 a) ii), cuando dos veleros reciben el viento por la misma banda, el de barlovento se mantiene apartado del de sotavento. El de barlovento tiene más fácil la maniobra y, además, puede quitarle el viento al otro. Caer ambos a una banda no es una regla de veleros.",
+    "clave": "Misma banda: barlovento cede.",
+    "trampa": "La c) invierte la regla.",
+    "ilustraciones": [
+      {
+        "tipo": "cruce",
+        "situacion": "vela-barlovento"
+      }
+    ],
+    "concepto": "and-2022-c3-t27"
+  },
+  "and-2019-c3-t27": {
+    "explicacion": "La vuelta encontrada de la Regla 14 es solo entre buques de propulsión mecánica. Con un velero rige la Regla 18 a): el buque de motor se mantiene apartado del de vela, aunque vengan de frente. La única excepción sería que el velero estuviera alcanzando al de motor.",
+    "clave": "Motor ante vela, cede el motor, también de frente.",
+    "trampa": "Contestar «ambos a estribor» porque van a rumbos opuestos.",
+    "concepto": "and-2026-c2-t21"
+  },
+  "and-2019-c3-t28": {
+    "explicacion": "Para correr el barco hacia proa hay que cobrar de los cabos que tiran hacia proa y dar de los que lo retienen. Tiran hacia proa el largo de proa (sale de proa hacia delante) y el esprín de popa (sale de popa hacia proa); retienen el largo de popa y el esprín de proa, que llaman hacia popa. Por eso se vira del largo de proa y del esprín de popa y se lasca de los otros dos; la a) sería para correrlo hacia popa.",
+    "clave": "Correr a proa: virar largo de proa y esprín de popa.",
+    "trampa": "El esprín de proa, aunque esté a proa, llama hacia popa.",
+    "concepto": null
+  },
+  "and-2019-c3-t29": {
+    "explicacion": "Mientras el barco conserva arrancada avante, el agua sigue actuando sobre el timón y, con la caña a babor, la proa cae a babor. Al perder la arrancada y empezar a ir atrás domina el efecto de la hélice dextrógira en atrás, que lleva la popa a babor, y la proa cae a estribor (el timón a babor yendo atrás empuja en el mismo sentido). Por eso hay dos fases: primero a babor y luego a estribor.",
+    "clave": "Con arrancada manda el timón; sin ella, la hélice: dextrógira atrás, popa a babor.",
+    "trampa": "La d) es el orden inverso; fíjate en qué manda en cada momento.",
+    "ilustraciones": [
+      {
+        "tipo": "helice",
+        "sentido": "dextrogira",
+        "marcha": "atras"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c3-t30": {
+    "explicacion": "La sofocación elimina o reduce el comburente (el oxígeno) que necesita el fuego, por ejemplo cubriéndolo con una manta, espuma o CO2. Quitar el combustible es desalimentación, quitar calor es enfriamiento y cortar la reacción en cadena es inhibición.",
+    "clave": "Sofocar = quitar oxígeno (comburente).",
+    "concepto": "and-2024-c3-t32"
+  },
+  "and-2019-c3-t31": {
+    "explicacion": "En aguas templadas, sin chaleco, lo que menos energía gasta es flotar boca arriba (posición supina), respirando con calma. En aguas frías hay que moverse lo mínimo: nadar en círculo acelera la hipotermia, y con chaleco se adopta la postura fetal (HELP), no la supina. Los movimientos rápidos de la d) agotan y enfrían.",
+    "clave": "Agua fría: quieto y en postura fetal; agua templada sin chaleco: boca arriba.",
+    "trampa": "Nadar da sensación de calor, pero acelera la pérdida de calor.",
+    "concepto": null
+  },
+  "and-2019-c3-t32": {
+    "explicacion": "Lo que no se debe hacer es dar atrás rápidamente: la hélice levanta fango o arena, puede aspirarla por la refrigeración y además se puede agravar una vía de agua. Las otras son correctas: aprovechar la pleamar, sondar alrededor para estudiar por dónde salir y fondear un ancla por la popa hacia aguas libres para ayudarse a salir.",
+    "clave": "Varada en blando: sonda, pleamar y ancla; nada de atrás a lo loco.",
+    "trampa": "Pregunta en negativo: dar atrás es el reflejo instintivo.",
+    "concepto": null
+  },
+  "and-2019-c3-t33": {
+    "explicacion": "El terral sopla de noche y la virazón de día, y entre una y otra, al amanecer y al atardecer, cuando tierra y mar están a temperatura parecida, suele haber un rato de calma. Por eso la b) y la c) son ciertas. La a) las tiene al revés: la virazón sopla del mar a tierra y el terral de tierra al mar.",
+    "clave": "Virazón: día, mar→tierra. Terral: noche, tierra→mar. Entre ambas, calma.",
+    "trampa": "Terral viene de «tierra»: sopla desde tierra, de noche.",
+    "ilustraciones": [
+      {
+        "tipo": "meteo",
+        "sistema": "brisa-mar"
+      },
+      {
+        "tipo": "meteo",
+        "sistema": "brisa-tierra"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c3-t34": {
+    "explicacion": "Se dice que el viento ha caído cuando su intensidad disminuye. Si aumenta, refresca; si su fuerza sube y baja continuamente, es racheado; y un cambio lento de dirección e intensidad no tiene ese nombre (el cambio de dirección es rolar).",
+    "clave": "Cae = menos fuerza; refresca = más; rola = cambia de dirección.",
+    "trampa": "La d) es la definición de viento racheado.",
+    "concepto": null
+  },
+  "and-2019-c3-t35": {
+    "explicacion": "La escala Douglas clasifica el estado de la mar según la altura de las olas, de 0 (calma) a 9 (enorme). La fuerza del viento se gradúa con la escala Beaufort, y el fetch es la extensión de mar sobre la que sopla el viento, que no da ninguna escala.",
+    "clave": "Douglas = mar (olas). Beaufort = viento.",
+    "trampa": "No confundas Douglas con Beaufort: las dos aparecen juntas en los partes.",
+    "concepto": "and-2021-c2-t35"
+  },
+  "and-2019-c3-t36": {
+    "explicacion": "El barómetro aneroide mide la presión por las deformaciones de una cápsula metálica en la que se ha hecho el vacío: al subir o bajar la presión la cápsula se aplasta o se dilata y mueve una aguja sobre la esfera. El estrechamiento capilar y el tubo con mercurio son propios del barómetro de mercurio, que es otro instrumento.",
+    "clave": "Aneroide = sin líquido: cápsula de vacío.",
+    "trampa": "La a) y la b) describen el barómetro de mercurio.",
+    "concepto": null
+  },
+  "and-2019-c3-t37": {
+    "explicacion": "La duración de la marea es el tiempo que transcurre entre una pleamar y la bajamar siguiente, o entre una bajamar y la pleamar siguiente: vale para la vaciante y para la creciente. Por eso la a) y la b) se quedan cortas con su «solamente», y la d) no define nada.",
+    "clave": "Duración = horas entre pleamar y bajamar (en los dos sentidos); amplitud = metros.",
+    "trampa": "No confundas duración (tiempo) con amplitud (diferencia de alturas).",
+    "concepto": null
+  },
+  "and-2019-c3-t38": {
+    "explicacion": "La corredera tiene un error que se corrige con el coeficiente de corredera, K = distancia verdadera / distancia de corredera. Por tanto, la velocidad real es K × velocidad de corredera. Dividir sería aplicarlo al revés, y las dos velocidades solo coinciden si K = 1.",
+    "clave": "Vv = K × Vc.",
+    "trampa": "Dividir es el error típico: el coeficiente siempre multiplica.",
+    "concepto": "and-2020-c1-t38"
+  },
+  "and-2019-c3-t39": {
+    "explicacion": "La longitud se mide sobre el ecuador hasta el meridiano del lugar, así que todos los puntos con la misma longitud están sobre el mismo meridiano. Estar en el mismo paralelo implicaría la misma latitud, y nada obliga a que estén en el ecuador.",
+    "clave": "Misma longitud → mismo meridiano; misma latitud → mismo paralelo.",
+    "trampa": "Paralelo va con latitud, no con longitud.",
+    "concepto": "and-2023-c3-t41"
+  },
+  "and-2019-c3-t40": {
+    "explicacion": "La deriva es el efecto de la corriente: el ángulo entre la dirección del movimiento del barco respecto a la superficie y respecto al fondo. Sin viento no hay abatimiento, así que el rumbo de superficie coincide con el verdadero y la deriva es también el ángulo entre el rumbo verdadero y el efectivo; por eso valen la a) y la c). La b) daría cero, porque sin viento esos dos rumbos son el mismo.",
+    "clave": "Deriva = corriente (superficie → fondo); abatimiento = viento (verdadero → superficie).",
+    "trampa": "La b) es la definición del abatimiento.",
+    "concepto": null
+  },
+  "and-2019-c3-t41": {
+    "explicacion": "El ángulo horizontal entre la línea de crujía (proa-popa) y la visual a un objeto, contado desde la proa, es la marcación. La demora se mide desde el Norte, el rumbo es el ángulo entre el Norte y la proa, y el desvío es el ángulo entre el Norte magnético y el de aguja.",
+    "clave": "Si empieza en la proa, es marcación.",
+    "trampa": "«Demora» suena parecido, pero se cuenta desde el Norte, no desde la proa.",
+    "ilustraciones": [
+      {
+        "tipo": "rosa",
+        "rumbo": 30,
+        "demora": 120,
+        "marcacion": true,
+        "etiqueta": "faro"
+      }
+    ],
+    "concepto": "and-2020-c3-t38"
   }
 }

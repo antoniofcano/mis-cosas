@@ -143,13 +143,13 @@ voces:
 
 **ANDRÉS:** Entre veleros no cuentan las bandas por las que se ven, así que fuera la a y la be. Misma banda: la be pierde, barlovento. La ce.
 
-**ELENA:** Correcto. Segunda: «En mar abierto un buque de propulsión mecánica ve a un buque de vela que se le aproxima desde una marcación veinticinco grados a popa de su través de estribor. En esta situación…». A: ambos deben caer a estribor. Be: ambos deben caer a babor. Ce: el buque de propulsión mecánica se mantendrá apartado de la derrota del buque de vela. De: el buque de vela se mantendrá apartado de la derrota del buque de propulsión mecánica.
+**ELENA:** Correcto. Segunda: «Un buque de propulsión mecánica avista en marcación ciento treinta grados estribor un buque de vela que se está aproximando. En esta situación…». A: el buque de vela se mantendrá apartado de la derrota del buque de propulsión mecánica. Be: el buque de propulsión mecánica se mantendrá apartado de la derrota del buque de vela. Ce: el buque de propulsión mecánica caerá a babor y el buque de vela caerá a estribor. De: ambos caerán a estribor.
 
 [pausa larga]
 
-**ANDRÉS:** Esta es la mía del martes. Veinticinco grados a popa del través es más de veintidós coma cinco: el velero está alcanzando. Y el que alcanza se aparta. La de.
+**ANDRÉS:** Esta es la mía del martes. Ciento treinta grados es cuarenta a popa del través, más de veintidós coma cinco: el velero está alcanzando. Y el que alcanza se aparta. La a.
 
-**ELENA:** La de. La ce es la que te habrías marcado el martes.
+**ELENA:** La a. La be es la que te habrías marcado el martes.
 
 **ANDRÉS:** [ríe] Con bolígrafo y todo.
 

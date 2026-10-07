@@ -119,17 +119,17 @@ voces:
 
 **ANDRÉS:** La corriente va a la obra viva y la escora no es un agente externo. Lo que incide en la obra muerta es el viento. La de.
 
-**ELENA:** La de. Segunda: «Si queremos atracar de costado con corriente de proa paralela al muelle, el primer cabo que daremos a tierra será…». A: el esprín de proa. Be: el largo de popa. Ce: el través de popa. De: el largo de proa.
+**ELENA:** La de. Segunda: «Atracados de costado al muelle con corriente de proa, si queremos desatracar, el último cabo a largar será…». A: el largo de proa. Be: el esprín de popa. Ce: el largo de popa. De: el esprín de proa.
 
 [pausa larga]
 
-**ANDRÉS:** La corriente me empuja hacia atrás, y lo que aguanta es el largo de proa. El esprín de proa es la trampa: llama hacia popa. La de.
+**ANDRÉS:** La corriente me empuja hacia atrás, y lo que aguanta son el largo de proa y el esprín de popa. Largo el largo de proa para que la corriente me abra la proa, y el último, el esprín de popa, que me sujeta hasta que doy avante. La be.
 
-**ELENA:** La de. Tercera: «Estamos amarrados por el costado de estribor y damos máquina avante con timón metido hacia el muelle. ¿Qué cabo debemos mantener firme para separar la popa del muelle?». A: el largo de popa. Be: el esprín de popa. Ce: el esprín de proa. De: el través de proa.
+**ELENA:** La be. Tercera: «Si queremos desatracar de popa, pegando la proa al muelle sin que el barco vaya avante, el último cabo que debemos largar es…». A: el esprín de popa. Be: el largo de proa. Ce: el esprín de proa. De: el largo de popa.
 
 [pausa larga]
 
-**ANDRÉS:** Avante y timón al muelle es abrir la popa, y el pivote es el esprín de proa. El largo de popa sería la trampa. La ce.
+**ANDRÉS:** Salir de popa es abrir la popa: avante poco, timón al muelle, y el pivote es el esprín de proa, que llama hacia popa y no deja ir avante. Ese se larga el último. La ce.
 
 **ELENA:** La ce. Tres de tres. Vamos con el resumen para llevarse. Uno: el viento actúa sobre la obra muerta y la corriente sobre la obra viva, y las olas también cuentan; con poca arrancada, mejor recibirlos por la proa, y de costado es lo peor. Dos: de costado se entra con unos veinte a treinta grados y se da atrás para parar; con dextrógira se atraca por babor y con levógira por estribor. Tres: con viento de tierra o corriente de proa, el primer cabo es el largo de proa, nunca el esprín de proa; y de punta con viento de costado, los dos largos al noray de barlovento. Cuatro: al desatracar se largan primero los cabos que no trabajan; con corriente de proa, el esprín de proa y el largo de popa. Y cinco: para abrir la popa, esprín de proa, avante y timón al muelle; para abrir la proa, esprín de popa y atrás.
 

@@ -7,7 +7,7 @@ import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink, volver, currentEje } from '../titulacion.js';
 import { bloque } from '../../theory/blocks.js';
 import { loadPodcast, loadPodcastLinea } from '../../store/datasets.js';
-import { equivalente } from '../../bancos/index.js';
+import { equivalente, reservadaDe } from '../../bancos/index.js';
 import {
   poner, alternar, saltar, ir, cambiarVelocidad, velocidad, suscribir, radio, fmt, estadoEpisodio, ultimoEpisodio,
   enVistaEpisodio, pararEnPreguntas, setPararEnPreguntas, marcarRespondida,
@@ -49,11 +49,26 @@ export function podcastView({ progress, tit, params: route }) {
   const vista = { el, summary: () => summaryText };
 
   loadPodcast(tit).then((pod) => {
-    if (id) { summaryText = episodioView(el, tit, pod, id, route.query?.de, progress ? currentEje(progress) : null) ?? summaryText; return; }
+    if (id) { summaryText = episodioView(el, tit, pod, id, route.query?.de, progress ? currentEje(progress) : null, finalHechoDe(progress)) ?? summaryText; return; }
     summaryText = travesia(el, tit, pod);
   }).catch((e) => setChildren(el, h('p.warn', `No se pudo cargar la radio: ${e.message}`)));
   if (!id) enVistaEpisodio(false);
   return vista;
+}
+
+/**
+ * ¿Ha hecho ya el alumno el examen final de ese eje y titulación? Hasta entonces, lo reservado para él no se enseña
+ * en las pausas y los episodios que lo leen lo avisan (docs/BANCOS.md, «Cuarentena»).
+ */
+export const finalHechoDe = (progress) => (eje, tit) => Boolean(progress?.tests?.().some((t) => t.tipo === 'final' && t.eje === eje && (t.tit ?? 'per') === tit));
+
+/** Aviso suave (no bloquea) de un episodio cuyo audio lee una pregunta reservada para el examen final del alumno. */
+export const AVISO_RESERVADA = 'Este episodio comenta una pregunta del examen final; mejor escúchalo después de hacerlo.';
+
+/** ¿Lee el episodio alguna pregunta reservada para el examen final del alumno (que aún no ha hecho)? */
+export async function leeReservada(ep, eje, finalHecho = () => false) {
+  const rs = await Promise.all((ep.preguntas ?? []).map((id) => reservadaDe(id, eje).catch(() => null)));
+  return rs.some((r) => r && !finalHecho(r.eje, r.tit));
 }
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -143,7 +158,7 @@ function vuelta(tit, de) {
 /** Enlace a un episodio recordando desde dónde se abre (para que la flecha vuelva allí). */
 export const enlaceEpisodio = (tit, ep, de) => tlink(tit, ['podcast', ep.id], de ? { de } : undefined);
 
-function episodioView(el, tit, pod, id, de, eje) {
+function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
   const T = TITULACIONES[tit];
   const eps = episodiosDe(pod);
   const ep = eps.find((e) => e.id === id);
@@ -177,6 +192,9 @@ function episodioView(el, tit, pod, id, de, eje) {
   }
 
   enVistaEpisodio(true);
+  // Si el audio lee una pregunta reservada para su examen final, se avisa antes de escuchar (sin bloquear).
+  const aviso = h('div.aviso-reservada-hueco');
+  leeReservada(ep, eje, finalHecho).then((si) => { if (si) setChildren(aviso, h('p.aviso-reservada', { role: 'note' }, `🎯 ${AVISO_RESERVADA}`)); });
   const suena = () => radio().actual?.ep.id === ep.id;
   const btnPlay = h('button.radio-play', { type: 'button', onclick: () => (suena() ? alternar() : poner(tit, ep)) });
   const slider = h('input.radio-slider', { type: 'range', min: 0, max: Math.round(ep.duracion), step: 1, value: estadoEpisodio(ep.id).t ?? 0, 'aria-label': 'Posición' });
@@ -216,13 +234,15 @@ function episodioView(el, tit, pod, id, de, eje) {
   loadPodcastLinea(ep.id).then(async (linea) => {
     tramos = linea.tramos;
     const ids = tramos.filter((x) => x.p).map((x) => x.p);
-    const banco = ids.length ? await bancoDe(ids, eje) : new Map();
+    const banco = ids.length ? await bancoDe(ids, eje, finalHecho) : new Map();
     filas = tramos.map((x) => {
       if (x.x) {
         return h('li.guion-linea', { class: x.q === 'E' ? 'elena' : 'andres', onclick: () => (suena() ? ir(x.t) : poner(tit, ep, { desde: x.t })) },
           h('span.guion-quien', x.q === 'E' ? 'Elena' : 'Andrés'), h('span.guion-txt', x.x));
       }
       if (x.p && banco.has(x.p)) { const card = preguntaCard(x.p, banco.get(x.p)); preguntas.set(x.p, card); return h('li.guion-pregunta', card); }
+      // Reservada para el examen final y sin equivalente que no lo sea: la pausa se queda sin pregunta, con un aviso.
+      if (x.p) return h('li.guion-pausa.guion-apartada', 'Esta pregunta es del examen final: aquí no se enseña.');
       return h('li.guion-pausa', { 'aria-hidden': 'true' }, '· · ·');
     });
     setChildren(guion, filas);
@@ -252,6 +272,7 @@ function episodioView(el, tit, pod, id, de, eje) {
 
   setChildren(el,
     cabecera,
+    aviso,
     h('section.radio-reproductor',
       h('div.radio-fila', h('button.secondary.radio-salto', { type: 'button', 'aria-label': 'Atrás 15 segundos', onclick: () => saltar(-15) }, '↺ 15'),
         btnPlay,
@@ -275,8 +296,8 @@ function episodioView(el, tit, pod, id, de, eje) {
 }
 
 /** Las preguntas reales que cita el guion, para el minijuego: id del guion → { q, propia, ficha } en el eje del alumno. */
-async function bancoDe(ids, eje) {
-  const r = await Promise.all(ids.map((id) => equivalente(id, eje).then((x) => x && [id, x]).catch(() => null)));
+async function bancoDe(ids, eje, finalHecho) {
+  const r = await Promise.all(ids.map((id) => equivalente(id, eje, { finalHecho }).then((x) => x && [id, x]).catch(() => null)));
   return new Map(r.filter(Boolean));
 }
 

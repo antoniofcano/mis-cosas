@@ -149,11 +149,11 @@ voces:
 
 **ANDRÉS:** Transversal, de banda a banda: el balance. La cabezada es de proa a popa, el pantocazo es el golpe del casco contra la ola y el sincronismo es cuando la ola va al ritmo del barco. La a.
 
-**ELENA:** La a. Y la tercera: «¿Qué sistemas de nuestra embarcación debe comprobar el patrón antes de hacerse a la mar?». A: gobierno y propulsión. Be: refrigeración. Ce: combustible. De: todas las respuestas anteriores son correctas.
+**ELENA:** La a. Y la tercera: «Antes de hacernos a la mar debemos comprobar…». A: los niveles de aceite, combustible, refrigerante y agua potable. Be: la estanqueidad y los sistemas de achique. Ce: el estado de las baterías. De: todas las respuestas son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** Gobierno y propulsión se revisa. La refrigeración, también, con el agua por el escape. Y el combustible, con reserva. Las tres son buenas, así que la de: todas.
+**ANDRÉS:** Los niveles se miran, con reserva de combustible. La estanqueidad y el achique, también, que el agua dentro no avisa. Y las baterías, que sin ellas no arranca nada. Las tres son buenas, así que la de: todas.
 
 **ELENA:** La de. Tres de tres. Ese domingo no se repite.
 

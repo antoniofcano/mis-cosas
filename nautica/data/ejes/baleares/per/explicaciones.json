@@ -2,7 +2,8 @@
  "bal-per-2017-03-a-01": {
   "explicacion": "La orza es la pieza (aleta de quilla) que va unida a la quilla de la mayoría de los veleros actuales: aumenta mucho el calado, pero baja el centro de gravedad y da estabilidad, y al ser corta mejora la capacidad de giro. La quilla corrida recorre toda la eslora y hace al barco más lento en las viradas; el bulbo es el lastre que va en el extremo de la orza, no la pieza unida a la quilla.",
   "clave": "Orza = aleta unida a la quilla del velero: calado y estabilidad.",
-  "trampa": "El bulbo forma parte de muchas orzas, pero va en su extremo inferior, no es la pieza unida a la quilla."
+  "trampa": "El bulbo forma parte de muchas orzas, pero va en su extremo inferior, no es la pieza unida a la quilla.",
+  "discrepancia": "En nomenclatura náutica la orza es el apéndice bajo el casco, abatible o fijo, cuya función principal es reducir el abatimiento (que el viento desplace el barco de lado). El lastre que da estabilidad a los veleros modernos va en la quilla, normalmente en un bulbo en su extremo inferior, y esa es la pieza que describe el enunciado: une a la quilla, aumenta el calado y da estabilidad. En el uso corriente a la aleta de una quilla fija también se le llama orza, que es lo que recoge la plantilla; por eso la pregunta es discutible, pero la oficial es la a)."
  },
  "bal-per-2017-03-b-01": {
   "explicacion": "En una embarcación de dos hélices, estas giran en sentidos contrarios para que se anulen sus efectos evolutivos y el barco vaya recto. Las dos configuraciones posibles son girar hacia el interior o hacia el exterior (lo más habitual), por eso la correcta es la d). Que giren las dos hacia estribor haría que la popa se desplazara siempre hacia el mismo lado.",
@@ -2494,7 +2495,8 @@
  "bal-per-2017-09-c-04": {
   "explicacion": "La orza es la pieza (aleta de quilla) que va unida a la quilla de la mayoría de los veleros actuales: aumenta mucho el calado, pero baja el centro de gravedad y da estabilidad, y al ser corta mejora la capacidad de giro. La quilla corrida recorre toda la eslora y gira peor, el bulbo es el lastre del extremo de la orza y la quilla de balance es una aleta lateral contra el balanceo.",
   "clave": "Orza = aleta unida a la quilla del velero: calado y estabilidad.",
-  "trampa": "El bulbo forma parte de muchas orzas, pero va en su extremo inferior, no es la pieza unida a la quilla."
+  "trampa": "El bulbo forma parte de muchas orzas, pero va en su extremo inferior, no es la pieza unida a la quilla.",
+  "discrepancia": "En nomenclatura náutica la orza es el apéndice bajo el casco, abatible o fijo, cuya función principal es reducir el abatimiento (que el viento desplace el barco de lado). El lastre que da estabilidad a los veleros modernos va en la quilla, normalmente en un bulbo en su extremo inferior, y esa es la pieza que describe el enunciado: une a la quilla, aumenta el calado y da estabilidad. En el uso corriente a la aleta de una quilla fija también se le llama orza, que es lo que recoge la plantilla; por eso la pregunta es discutible, pero la oficial es la a)."
  },
  "bal-per-2017-09-d-04": {
   "explicacion": "Las partes de un ancla son el arganeo (argolla donde se une la cadena), la caña, la cruz, los brazos y en su extremo las uñas con su mapa o pala. El muerto es un fondeo fijo, el estopor es el freno de la cadena en cubierta y la cadena no forma parte del ancla.",
@@ -10583,7 +10585,8 @@
  "bal-per-2020-12-i-01": {
   "explicacion": "La diferencia entre los calados de proa y popa se llama asiento (se calcula como popa − proa, y su signo dice si el barco va apopado o aproado). El calado medio es la semisuma, y «calado apopante» no existe: apopante es un tipo de asiento.",
   "clave": "Asiento = calado de popa − calado de proa.",
-  "trampa": "La b) (alteración) es la variación del asiento al mover pesos, no el asiento."
+  "trampa": "La b) (alteración) es la variación del asiento al mover pesos, no el asiento.",
+  "discrepancia": "La redacción pide la diferencia «calado de proa − calado de popa». Entendida como magnitud sin signo, esa diferencia es el asiento, y la d) es la única opción posible. Pero el convenio habitual, que usan casi todas las demás convocatorias, es asiento = calado de popa − calado de proa: positivo si el barco va apopado y negativo si va aproado. Calculado como proa − popa, el signo sale invertido."
  },
  "bal-per-2020-12-b-02": {
   "explicacion": "Los baos son los refuerzos transversales que unen los extremos superiores de las cuadernas de cada banda y sostienen la cubierta. Las bularcamas son cuadernas reforzadas, las vagras son refuerzos longitudinales del fondo y el pantoque es la zona curva entre fondo y costado.",
@@ -10839,7 +10842,8 @@
  "bal-per-2020-12-c-11": {
   "explicacion": "El pabellón nacional es la bandera principal: si no está izado, no se puede izar ninguna otra, con la única excepción del gallardete del club. La bandera autonómica no lo sustituye.",
   "clave": "Sin pabellón izado, ninguna otra bandera (salvo el gallardete).",
-  "trampa": "La a) pretende que la autonómica sustituya a la nacional."
+  "trampa": "La a) pretende que la autonómica sustituya a la nacional.",
+  "discrepancia": "El Real Decreto 2335/1980 (art. 2.2) dice que ninguna otra bandera ni enseña puede permanecer izada si no lo está el pabellón nacional, y no recoge ninguna excepción para el gallardete del club; la plantilla sí la admite, por costumbre náutica. Las otras opciones se apartan más del texto: la a) contradice el art. 3 (la bandera autonómica solo se iza junto a la nacional) y la c) y la d) van más allá del art. 4, que obliga a izarla en las entradas y salidas de puerto, a la vista de buque de guerra y, en puerto, de sol a sol en festivos."
  },
  "bal-per-2020-12-e-11": {
   "explicacion": "El capitán está obligado a acudir en auxilio de quien esté en peligro en la mar, si está en condiciones de hacerlo, sea cual sea la fuente de la que reciba el aviso. No hace falta que lo pida un centro de salvamento, no depende de la nacionalidad y hay que acudir a toda máquina.",
@@ -16599,7 +16603,8 @@
  "bal-per-2023-12-c-03": {
   "explicacion": "La diferencia entre los calados de proa y popa es el asiento (se calcula como popa − proa, y su signo dice si el barco va apopado o aproado). La escora es la inclinación transversal, el francobordo la altura de la obra muerta y el calado medio la semisuma.",
   "clave": "Asiento = calado de popa − calado de proa.",
-  "trampa": "La d) es la semisuma, no la diferencia."
+  "trampa": "La d) es la semisuma, no la diferencia.",
+  "discrepancia": "La redacción pide la diferencia «calado de proa − calado de popa». Entendida como magnitud sin signo, esa diferencia es el asiento, y la d) es la única opción posible. Pero el convenio habitual, que usan casi todas las demás convocatorias, es asiento = calado de popa − calado de proa: positivo si el barco va apopado y negativo si va aproado. Calculado como proa − popa, el signo sale invertido."
  },
  "bal-per-2023-12-e-03": {
   "explicacion": "Adrizar es la acción por la que el buque recupera su posición derecha después de estar escorado. Balancear y cabecear son movimientos oscilantes del barco (transversal y longitudinal), y templar es tensar un cabo.",
@@ -18507,7 +18512,8 @@
  "bal-per-2024-12-a-12": {
   "explicacion": "Si no hay canal balizado, la aproximación a la playa se hace a la mínima velocidad (nunca más de 3 nudos en la franja de baño) y lo más perpendicular posible a la costa, para atravesar cuanto antes la zona de bañistas. Las playas no son, por norma general, parques naturales protegidos.",
   "clave": "Sin canal: perpendicular a la costa y a mínima velocidad.",
-  "trampa": "La b) mantiene la velocidad mínima, pero ir en paralelo te deja más tiempo entre bañistas."
+  "trampa": "La b) mantiene la velocidad mínima, pero ir en paralelo te deja más tiempo entre bañistas.",
+  "discrepancia": "El Reglamento General de Costas (RD 876/2014, art. 73.2) fija para la costa sin balizar una franja de 200 m en las playas, dentro de la cual se navega a 3 nudos como máximo y con las precauciones necesarias; no dice que la aproximación deba hacerse «lo más perpendicular posible» a la costa. Es una buena práctica, porque reduce el tiempo entre los bañistas, y puede venir de normas autonómicas o locales, pero no figura en la norma estatal; en otras convocatorias esa misma idea aparece como distractor. Entre las opciones, la a) es la única compatible con la norma estatal y con la prudencia."
  },
  "bal-per-2024-12-b-12": {
   "explicacion": "La zona de navegación 5 es la comprendida entre la costa y una línea paralela trazada a 5 millas. Las 2 millas son la zona 6, las 12 millas la zona 4 y las aguas protegidas la zona 7.",

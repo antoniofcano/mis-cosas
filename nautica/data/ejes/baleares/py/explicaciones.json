@@ -848,7 +848,8 @@
  "bal-py-2017-12-a-13": {
   "explicacion": "En el Atlántico oriental son característicos los alisios, vientos del NE que soplan con regularidad en la zona de Canarias, y el céfiro, nombre clásico del viento del oeste, que domina en las latitudes medias del Atlántico. Por eso es la d). El migjorn es el viento del sur en el Mediterráneo (Baleares y Cataluña).",
   "clave": "Atlántico oriental: alisios (NE) y vientos del oeste.",
-  "trampa": "El migjorn es mediterráneo, no atlántico."
+  "trampa": "El migjorn es mediterráneo, no atlántico.",
+  "discrepancia": "Los alisios sí son un viento característico del Atlántico oriental (Canarias, Madeira, costa africana). El céfiro, en cambio, es el nombre clásico y genérico del viento suave del oeste y no designa un viento propio de esa región: que en las latitudes medias del Atlántico dominen los vientos del oeste es cierto, pero no hace del «céfiro» un viento característico suyo. En otra convocatoria la misma pregunta tiene a los alisios como única respuesta."
  },
  "bal-py-2017-12-a-14": {
   "explicacion": "Para que se forme la niebla de advección, el aire tiene que ser más cálido que el mar (c), con humedad relativa cercana al 100 % (b), y enfriarse sobre un agua que está por debajo de su punto de rocío (a). Las tres condiciones se dan juntas: la d).",
@@ -2456,15 +2457,17 @@
   "trampa": "Lleva «cúmulo», pero no es de desarrollo vertical ni nube media."
  },
  "bal-py-2020-07-a-13": {
-  "explicacion": "Una dorsal o cuña es una prolongación de un anticiclón que se mete entre dos borrascas, con las isobaras curvadas en forma de U: la a). Si son las isobaras de una borrasca las que se meten en forma de V entre dos anticiclones, es una vaguada (c).",
-  "clave": "Dorsal: lengua de altas presiones (U). Vaguada: lengua de bajas (V).",
+  "explicacion": "Para la oficial, una dorsal o cuña es una prolongación de un anticiclón que se mete entre dos borrascas, con las isobaras en forma de «U»: la a). Si son las isobaras de una borrasca las que se meten en forma de V entre dos anticiclones, es una vaguada (c).",
+  "clave": "Dorsal: lengua de altas presiones entre dos bajas. Vaguada: lengua de bajas entre dos altas.",
   "trampa": "La c) describe la vaguada, que es lo opuesto.",
   "ilustraciones": [
    {
     "tipo": "meteo",
     "sistema": "anticiclon"
    }
-  ]
+  ],
+  "discrepancia": "En un mapa con el norte arriba, las isobaras de una dorsal dibujan una U o una V invertida (∩), abiertas hacia el ecuador; una «U» a secas es el trazo propio de una vaguada. La b) («V invertida») describe la dorsal con más exactitud; la a) solo se sostiene si «U» se entiende como la silueta de una lengua de altas presiones, sin precisar su orientación.",
+  "defendible": "b"
  },
  "bal-py-2020-07-b-13": {
   "explicacion": "Las nubes que se forman porque el aire cálido y húmedo sube por inestabilidad térmica, como los cúmulos, son nubes de convección térmica: la b). Las orográficas suben forzadas por una montaña, y la d) mezcla la convección con el ascenso frontal, que es otro mecanismo.",

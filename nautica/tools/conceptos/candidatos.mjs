@@ -178,13 +178,17 @@ export function textoLote(l) {
   return `{\n${cabecera},\n "conceptos": {\n${cs}\n },\n "preguntas": [\n${preguntas.map((q) => `  ${JSON.stringify(q)}`).join(',\n')}\n ]\n}\n`;
 }
 
-/** Etiquetas de oro: un conceptos.json ({ id: [c] }) o un lote de etiquetas decididas. → Map id → [conceptos] */
+/**
+ * Etiquetas de oro: un conceptos.json ({ id: [c] }), un piloto ({ "<eje>/<tit>/<id>": [c] }) o un lote de etiquetas
+ * decididas. → Map id → [conceptos]
+ */
 export function leerOro(datos) {
   const m = new Map();
+  const sinRuta = (id) => id.slice(id.lastIndexOf('/') + 1);
   if (datos?.formato === FORMATO_ETIQUETAS) {
-    for (const [id, e] of Object.entries(datos.etiquetas ?? {})) if (e?.conceptos?.length) m.set(id, e.conceptos);
+    for (const [id, e] of Object.entries(datos.etiquetas ?? {})) if (e?.conceptos?.length) m.set(sinRuta(id), e.conceptos);
   } else {
-    for (const [id, cs] of Object.entries(datos ?? {})) if (Array.isArray(cs) && cs.length) m.set(id, cs);
+    for (const [id, cs] of Object.entries(datos ?? {})) if (Array.isArray(cs) && cs.length) m.set(sinRuta(id), cs);
   }
   return m;
 }

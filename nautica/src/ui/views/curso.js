@@ -9,6 +9,7 @@ import { loadMnemonics, loadApendice } from '../../store/datasets.js';
 import { cargarBanco, cargarCurso, rutaResolucion, SOLUCIONES } from '../../bancos/index.js';
 import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosClase, minutosDeTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
 import { conResuelto } from '../../course/resueltos.js';
+import { requisitos } from '../../course/ruta.js';
 import { tlink, volver, currentEje } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre, cierre, cifrasCierre } from '../cierre.js';
@@ -96,11 +97,22 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     });
     const enlaceBase = ({ l, vista }) => h('li', h('a', { href: tlink('per', ['curso', l.id], { desde: L.id }) }, l.titulo), vista ? ' ✓' : h('span.muted.small', ' · sin ver'));
     const listaBase = () => h('ul.base-per', base.map(enlaceBase));
-    // Volver a la clase del PY desde la que se abrió esta del PER (o a la clase desde la que se abrió esta del apéndice).
+    // Clases de este mismo curso en las que se apoya esta (sus datos `requiere`): enlaces en la intro y, si alguna está
+    // sin ver, un aviso antes de empezar.
+    const apoyos = enApendice || !curso ? [] : requisitos(L, curso).map((l) => {
+      const e = estadoLeccion(l, progress.leccion(l.id), progress.get().exams).estado;
+      return { l, vista: e !== 'nueva' && e !== 'empezada' };
+    });
+    const enlaceApoyo = ({ l, vista }) => [h('a', { href: tlink(tit, ['curso', l.id], { desde: L.id }) }, l.titulo), vista ? ' ✓' : h('span.muted', ' (sin ver)')];
+    const lineaApoyos = () => (apoyos.length ? h('p.repasa.se-apoya.small', 'Se apoya en: ', apoyos.map((a, j) => [j ? ' · ' : null, enlaceApoyo(a)])) : null);
+    // Volver a la clase desde la que se abrió esta: otra de este curso (por «Se apoya en»), una del PY (si esta es la
+    // base del PER) o la clase desde la que se abrió esta del apéndice.
     const origenCuentas = enApendice && desde && curso ? leccionesDe(curso).find((l) => l.id === desde) : null;
-    const origen = origenCuentas ?? (!enApendice && desde && cursoPy ? leccionesDe(cursoPy).find((l) => l.id === desde) : null);
-    const volverOrigen = (cls = 'a.volver-origen') => (origen ? h(cls, { href: tlink(origenCuentas ? tit : 'py', ['curso', origen.id]) },
-      origenCuentas ? `← Volver a tu clase: ${origen.titulo}` : `← Volver a tu clase del PY: ${origen.titulo}`) : null);
+    const origenMismo = !enApendice && desde && curso ? leccionesDe(curso).find((l) => l.id === desde && l.id !== L.id) ?? null : null;
+    const origenPy = !enApendice && !origenMismo && desde && cursoPy ? leccionesDe(cursoPy).find((l) => l.id === desde) ?? null : null;
+    const origen = origenCuentas ?? origenMismo ?? origenPy;
+    const volverOrigen = (cls = 'a.volver-origen') => (origen ? h(cls, { href: tlink(origenPy ? 'py' : tit, ['curso', origen.id]) },
+      origenPy ? `← Volver a tu clase del PY: ${origen.titulo}` : `← Volver a tu clase: ${origen.titulo}`) : null);
 
     // El podcast de esta clase (si ya tiene audio): en la primera tarjeta, a mano en todas y al terminar.
     const episodio = episodios.find((e) => e.audio) ?? null;
@@ -165,6 +177,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${cuenta(base.length, 'clase', 'clases')})`),
             h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo (luego vuelves aquí):'),
             listaBase()) : null,
+          lineaApoyos(),
           enlaceRepasa(),
           enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora (🧮).') : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
@@ -500,7 +513,28 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       window.scrollTo(0, 0);
     }
 
+    // Aviso amable antes de empezar una clase que se apoya en otras que aún no se han visto (abierta desde Temario o
+    // un enlace): se puede ir a verlas o empezar igualmente. Una clase ya empezada o vista no avisa.
+    function avisoApoyos() {
+      const faltan = apoyos.filter((a) => !a.vista);
+      barra.set('Antes de empezar', 0);
+      setChildren(cont,
+        volverOrigen(),
+        h('div.paso.aviso-apoyo',
+          h('h2', L.titulo),
+          h('p', h('strong', 'Esta clase se apoya en:')),
+          h('ul', faltan.map((a) => h('li', enlaceApoyo(a)))),
+          h('p.muted', faltan.length > 1 ? 'Te irá mejor si las ves antes (luego vuelves aquí). Si ya lo sabes, empieza igualmente.'
+            : 'Te irá mejor si la ves antes (luego vuelves aquí). Si ya lo sabes, empieza igualmente.')),
+        h('div.actions.aviso-apoyo-botones',
+          h('a.btn.grande', { href: tlink(tit, ['curso', faltan[0].l.id], { desde: L.id }) }, `Ver antes: ${faltan[0].l.titulo}`),
+          h('button.secondary.grande', { type: 'button', onclick: () => tarjeta() }, 'Empezar igualmente')));
+      summaryText = `CLASE ${L.id} «${L.titulo}» · AVISO: se apoya en ${faltan.map((a) => `${a.l.id} ${a.l.titulo}`).join('; ')} (sin ver) · «Empezar igualmente» para seguir`;
+      window.scrollTo(0, 0);
+    }
+    const sinEmpezar = !reg().visto && reg().caja == null && !Number(reg().paso);
     if (route.query.practica === '1' && nPractica) practicar();
+    else if (sinEmpezar && apoyos.some((a) => !a.vista)) avisoApoyos();
     else tarjeta();
   }).catch((err) => setChildren(cont, h('p.warn', `No se pudo cargar la clase: ${err.message}`)));
 

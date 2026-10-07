@@ -24,6 +24,7 @@
       "per-1-7",
       "per-3-1"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -195,6 +196,9 @@
      "refresco": [
       "per-3-1"
      ],
+     "requiere": [
+      "py-1-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -364,6 +368,9 @@
       "per-3-1",
       "per-1-7"
      ],
+     "requiere": [
+      "py-1-2"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -532,6 +539,7 @@
       "per-3-5",
       "per-3-7"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -710,6 +718,7 @@
      "refresco": [
       "per-3-5"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -901,6 +910,7 @@
       "per-3-6",
       "per-8-8"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -1097,6 +1107,7 @@
       "per-8-6",
       "per-8-7"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -1295,6 +1306,9 @@
       "per-8-8",
       "per-8-9"
      ],
+     "requiere": [
+      "py-1-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -1473,6 +1487,7 @@
       "per-3-8",
       "per-6-10"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -1684,6 +1699,7 @@
       "per-3-8",
       "per-3-7"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -1857,6 +1873,7 @@
       "per-9-1",
       "per-9-2"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2017,6 +2034,9 @@
      ],
      "refresco": [
       "per-9-2"
+     ],
+     "requiere": [
+      "py-2-1"
      ],
      "pasos": [
       {
@@ -2198,6 +2218,9 @@
      "refresco": [
       "per-9-2",
       "per-9-3"
+     ],
+     "requiere": [
+      "py-2-1"
      ],
      "pasos": [
       {
@@ -2389,6 +2412,7 @@
       "per-9-3",
       "per-9-5"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2562,6 +2586,7 @@
       "per-9-1",
       "per-3-4"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2730,6 +2755,10 @@
      ],
      "refresco": [
       "per-9-2"
+     ],
+     "requiere": [
+      "py-2-2",
+      "py-2-5"
      ],
      "pasos": [
       {
@@ -2937,6 +2966,9 @@
       "per-3-4",
       "per-6-6"
      ],
+     "requiere": [
+      "py-2-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -3136,6 +3168,7 @@
      "refresco": [
       "per-9-6"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3317,6 +3350,7 @@
       "per-10-8",
       "per-10-9"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3558,6 +3592,7 @@
       "per-10-1",
       "per-11-1"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3750,6 +3785,7 @@
       "per-10-7",
       "per-11-2"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3931,6 +3967,9 @@
       "per-10-9",
       "per-11-4"
      ],
+     "requiere": [
+      "py-3-2"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -4100,6 +4139,9 @@
       "per-10-2",
       "per-11-3"
      ],
+     "requiere": [
+      "py-3-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -4225,6 +4267,9 @@
      ],
      "refresco": [
       "per-10-2"
+     ],
+     "requiere": [
+      "py-3-1"
      ],
      "pasos": [
       {
@@ -4421,6 +4466,9 @@
      "refresco": [
       "per-10-8"
      ],
+     "requiere": [
+      "py-3-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -4573,6 +4621,7 @@
      "refresco": [
       "per-10-3"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4737,6 +4786,7 @@
       "per-11-5",
       "per-6-6"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4985,6 +5035,7 @@
      "refresco": [
       "per-10-1"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -5168,6 +5219,9 @@
      "refresco": [
       "per-10-3",
       "per-6-2"
+     ],
+     "requiere": [
+      "py-3-8"
      ],
      "pasos": [
       {
@@ -5366,6 +5420,9 @@
       "per-10-5",
       "per-11-2"
      ],
+     "requiere": [
+      "py-3-2"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5563,6 +5620,10 @@
       "per-10-9",
       "per-11-3"
      ],
+     "requiere": [
+      "py-3-3",
+      "py-4-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5714,6 +5775,9 @@
       "per-11-9",
       "per-10-9"
      ],
+     "requiere": [
+      "py-4-2"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5855,6 +5919,9 @@
       "per-11-6",
       "per-11-7",
       "per-11-8"
+     ],
+     "requiere": [
+      "py-4-1"
      ],
      "pasos": [
       {
@@ -6021,6 +6088,9 @@
       "per-10-2",
       "per-10-9"
      ],
+     "requiere": [
+      "py-4-2"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6161,6 +6231,9 @@
       "per-11-4",
       "per-10-7"
      ],
+     "requiere": [
+      "py-4-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6290,6 +6363,9 @@
      "refresco": [
       "per-11-3",
       "per-10-9"
+     ],
+     "requiere": [
+      "py-4-5"
      ],
      "pasos": [
       {
@@ -6438,6 +6514,10 @@
       "per-11-4",
       "per-11-6"
      ],
+     "requiere": [
+      "py-4-4",
+      "py-4-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6578,6 +6658,9 @@
      ],
      "refresco": [
       "per-10-8"
+     ],
+     "requiere": [
+      "py-3-6"
      ],
      "pasos": [
       {
@@ -6790,6 +6873,9 @@
      "refresco": [
       "per-10-1",
       "per-10-2"
+     ],
+     "requiere": [
+      "py-3-4"
      ],
      "pasos": [
       {

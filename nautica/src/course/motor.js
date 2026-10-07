@@ -14,6 +14,7 @@ import { estadoFinal } from './final.js';
 import { SEG_TARJETA } from './engine.js';
 import { cuenta, fechaLarga, diaISO } from '../texto.js';
 import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
+import { siguienteEnRuta } from './ruta.js';
 
 /**
  * @typedef {object} Entrada
@@ -94,10 +95,13 @@ export function estadoAlumno(e) {
   // Dónde fallas más: por tema en cuanto hay 5 respuestas; por clase, con 3 de la misma clase.
   const flojos = { temas: temasFlojos(d.estructura, d.preguntas, d.respuestas), clases: clasesFlojas(d.curso, d.respuestas) };
 
+  // La ruta del curso: la siguiente clase que toca en ella (Temario la marca).
+  const ruta = { siguiente: siguienteEnRuta(d.estructura, d.curso, d.regs, d.respuestas, d.ahora)?.id ?? null };
+
   const ritmo = ritmoEstudio(d);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
 
-  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ritmo, listo, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ruta, ritmo, listo, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**

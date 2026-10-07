@@ -3,7 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { crearBancos, cursoConPractica } from '../../src/bancos/index.js';
+import { crearBancos, cursoConPractica, conRuta } from '../../src/bancos/index.js';
 import { EJE_POR_DEFECTO } from '../../src/bancos/registro.js';
 
 export const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -36,5 +36,7 @@ export const preguntasDe = (tit, eje = EJE_POR_DEFECTO) => leerJSON(`data/ejes/$
 /** Curso de una titulación con la práctica del eje en cada clase, como lo ve el motor (síncrono). */
 export function cursoDe(tit, eje = EJE_POR_DEFECTO) {
   const practica = practicaDe(tit, eje);
-  return cursoConPractica(leerJSON(`data/curso/${tit}.json`), { practicaDe: (id) => practica[id] ?? [] });
+  let ruta = null;
+  try { ruta = leerJSON(`data/curso/ruta-${tit}.json`); } catch { /* sin ruta: orden de estudio */ }
+  return cursoConPractica(conRuta(leerJSON(`data/curso/${tit}.json`), ruta), { practicaDe: (id) => practica[id] ?? [] });
 }

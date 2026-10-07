@@ -82,11 +82,15 @@ def ajustar_columnas(color, tinta, y0, y1, escala):
     for p in np.arange(PASO_BURBUJA * escala * 0.94, PASO_BURBUJA * escala * 1.06, 0.1):
         for bp in np.arange(PASO_BLOQUE * escala * 0.96, PASO_BLOQUE * escala * 1.04, 0.25):
             xs_rel = np.array([b * bp + j * p for b in range(4) for j in range(4)])
+            # Hueco a la derecha de la burbuja d de cada bloque (antes de los números del bloque siguiente): debe estar
+            # vacío. Penalizarlo evita que el peine se corra una columna hacia los números cuando estos salen en el
+            # escaneo más intensos que las burbujas (PY genérico 1/2025 y 1/2026).
+            hueco_rel = np.array([b * bp + 4 * p for b in range(4)])
             for x0 in range(int(X0_NOMINAL * escala - 45), int(X0_NOMINAL * escala + 45)):
                 xs = (x0 + xs_rel).astype(int)
                 if xs[-1] >= len(perfil):
                     break
-                s = perfil[xs].sum()
+                s = perfil[xs].sum() - perfil[np.minimum((x0 + hueco_rel).astype(int), len(perfil) - 1)].sum()
                 if mejor is None or s > mejor[0]:
                     mejor = (s, x0, p, bp)
     _, x0, p, bp = mejor

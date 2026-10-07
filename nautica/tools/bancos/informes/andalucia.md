@@ -10,12 +10,7 @@ Manifiesto: 153 documentos (72 cuestionario, 72 plantilla, 9 correccion); 153 co
 - Apariciones extraídas: **1620** en 36 exámenes (convocatoria · modelo) de 18 convocatorias.
 - Preguntas distintas: **810** (810 aparecen más de una vez).
 - Anuladas: **10** · con varias respuestas aceptadas: **0** · con norma a revisar: **142** · requieren carta: 72 · requieren anuario: 0.
-- Puertas de calidad: **1 errores**, 0 avisos.
-
-### Errores
-
-- and-2021-c1-q42: opciones ab (se esperaban a–d no vacías)
-
+- Puertas de calidad: **0 errores**, 0 avisos.
 
 ### Preguntas por examen
 
@@ -129,55 +124,49 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 
 - Apariciones extraídas: **720** en 36 exámenes (convocatoria · modelo) de 18 convocatorias.
 - Preguntas distintas: **720** (0 aparecen más de una vez).
-- Anuladas: **8** · con varias respuestas aceptadas: **0** · con norma a revisar: **67** · requieren carta: 128 · requieren anuario: 0.
-- Puertas de calidad: **2 errores**, 0 avisos.
-
-### Errores
-
-- and-py-2020-c1-n20: opciones abcd (se esperaban a–d no vacías)
-- and-py-2021-c1-n17: opciones abc (se esperaban a–d no vacías)
-
+- Anuladas: **6** · con varias respuestas aceptadas: **0** · con norma a revisar: **67** · requieren carta: 129 · requieren anuario: 0.
+- Puertas de calidad: **0 errores**, 0 avisos.
 
 ### Preguntas por examen
 
 | Examen (conv · modelo) | Preguntas |
 |---|---|
-| and-py-2020-c1 · generico | **20** |
-| and-py-2020-c1 · navegacion | **20** |
-| and-py-2020-c3 · generico | **20** |
-| and-py-2020-c3 · navegacion | **20** |
-| and-py-2021-c1 · generico | **20** |
-| and-py-2021-c1 · navegacion | **20** |
-| and-py-2021-c2 · generico | **20** |
-| and-py-2021-c2 · navegacion | **20** |
-| and-py-2022-c1 · generico | **20** |
-| and-py-2022-c1 · navegacion | **20** |
-| and-py-2022-c2 · generico | **20** |
-| and-py-2022-c2 · navegacion | **20** |
-| and-py-2022-c3 · generico | **20** |
-| and-py-2022-c3 · navegacion | **20** |
-| and-py-2023-c1 · generico | **20** |
-| and-py-2023-c1 · navegacion | **20** |
-| and-py-2023-c2 · generico | **20** |
-| and-py-2023-c2 · navegacion | **20** |
-| and-py-2023-c3 · generico | **20** |
-| and-py-2023-c3 · navegacion | **20** |
-| and-py-2024-c1 · generico | **20** |
-| and-py-2024-c1 · navegacion | **20** |
-| and-py-2024-c2 · generico | **20** |
-| and-py-2024-c2 · navegacion | **20** |
-| and-py-2024-c3 · generico | **20** |
-| and-py-2024-c3 · navegacion | **20** |
-| and-py-2025-c1 · generico | **20** |
-| and-py-2025-c1 · navegacion | **20** |
-| and-py-2025-c2 · generico | **20** |
-| and-py-2025-c2 · navegacion | **20** |
-| and-py-2025-c3 · generico | **20** |
-| and-py-2025-c3 · navegacion | **20** |
-| and-py-2026-c1 · generico | **20** |
-| and-py-2026-c1 · navegacion | **20** |
-| and-py-2026-c2 · generico | **20** |
-| and-py-2026-c2 · navegacion | **20** |
+| and-py-2020-c1 · generico | 20 |
+| and-py-2020-c1 · navegacion | 20 |
+| and-py-2020-c3 · generico | 20 |
+| and-py-2020-c3 · navegacion | 20 |
+| and-py-2021-c1 · generico | 20 |
+| and-py-2021-c1 · navegacion | 20 |
+| and-py-2021-c2 · generico | 20 |
+| and-py-2021-c2 · navegacion | 20 |
+| and-py-2022-c1 · generico | 20 |
+| and-py-2022-c1 · navegacion | 20 |
+| and-py-2022-c2 · generico | 20 |
+| and-py-2022-c2 · navegacion | 20 |
+| and-py-2022-c3 · generico | 20 |
+| and-py-2022-c3 · navegacion | 20 |
+| and-py-2023-c1 · generico | 20 |
+| and-py-2023-c1 · navegacion | 20 |
+| and-py-2023-c2 · generico | 20 |
+| and-py-2023-c2 · navegacion | 20 |
+| and-py-2023-c3 · generico | 20 |
+| and-py-2023-c3 · navegacion | 20 |
+| and-py-2024-c1 · generico | 20 |
+| and-py-2024-c1 · navegacion | 20 |
+| and-py-2024-c2 · generico | 20 |
+| and-py-2024-c2 · navegacion | 20 |
+| and-py-2024-c3 · generico | 20 |
+| and-py-2024-c3 · navegacion | 20 |
+| and-py-2025-c1 · generico | 20 |
+| and-py-2025-c1 · navegacion | 20 |
+| and-py-2025-c2 · generico | 20 |
+| and-py-2025-c2 · navegacion | 20 |
+| and-py-2025-c3 · generico | 20 |
+| and-py-2025-c3 · navegacion | 20 |
+| and-py-2026-c1 · generico | 20 |
+| and-py-2026-c1 · navegacion | 20 |
+| and-py-2026-c2 · generico | 20 |
+| and-py-2026-c2 · navegacion | 20 |
 
 ### Anuladas y respuestas múltiples
 
@@ -187,9 +176,7 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 | and-py-2021-c2-n17 | anulada | Nota informativa (22-11-2021): Patrón de Yate, módulo de navegación, pregunta 17: todas las respuestas correctas. [https://www.juntadeandalucia.es/export/drupaljda/20211122_nota_informativa_pruebas_teoricas_convocatoria_2_2021.pdf] |
 | and-py-2024-c1-g20 | anulada | Acuerdo del Tribunal (02-05-2024): anulación de la pregunta 20 del módulo genérico; la plantilla dio d) por errata de transcripción, siendo la correcta b). [https://www.juntadeandalucia.es/sites/default/files/inline-files/2024/05/20240502_IAD_Anulacion.pdf] |
 | and-py-2024-c2-n15 | anulada | Acuerdo del Tribunal (26-07-2024): anulación de la pregunta 15 del módulo de navegación por errata en el enunciado («demora a Punta Carnero de 200º» en vez de 20º). [https://www.juntadeandalucia.es/sites/default/files/inline-files/2024/08/2024_2_Tribunal_Acuerdo_Anulacion_Pregunta_PY.pdf] |
-| and-py-2025-c1-g09 | anulada |  |
 | and-py-2025-c3-n20 | anulada | Nota informativa: errores en la formulación de la pregunta 20 del módulo de navegación: ANULAR. [https://www.juntadeandalucia.es/sites/default/files/inline-files/2025/11/2025_3_Nota_Informativ_Nautica.pdf] |
-| and-py-2026-c1-g05 | anulada |  |
 | and-py-2026-c2-n17 | anulada | Acuerdo del Tribunal (29-06-2026): anulación de oficio de la pregunta 17 del módulo de navegación por error material de edición. [https://www.juntadeandalucia.es/sites/default/files/inline-files/2026/06/2026_2_Tribunal_IAD_Anulacion_Pregunta_PY_MN_17.pdf] |
 
 ### Conflictos de respuesta entre apariciones
@@ -198,10 +185,7 @@ _Ninguna._
 
 ### Lecturas dudosas o sin respuesta
 
-| id | Motivo | Detalle |
-|---|---|---|
-| and-py-2025-c1-g09 | plantilla sin marca | and-py-2025-c1/generico/9: vacia [0.8,-1.6,-0.2,-1.8] |
-| and-py-2026-c1-g05 | plantilla sin marca | and-py-2026-c1/generico/5: vacia [-0.9,0.8,-0.1,-0.4] |
+_Ninguna._
 
 ### Correcciones publicadas que no encuentran su pregunta
 

@@ -106,7 +106,7 @@ export function repararOpciones(q, R = {}) {
     q.opciones[ult] = q.opciones[ult].slice(0, m.index).trim();
     n++;
   }
-  const vacias = LETRAS.filter((l) => q.opciones[l] === '');
+  const vacias = [...LETRAS].filter((l) => q.opciones[l] === '');
   if (vacias.length === 3 && q.opciones.d) {
     const cs = q.opciones.d.match(COORD) ?? [];
     if (cs.length === 8) for (let i = 0; i < 4; i++) q.opciones[LETRAS[i]] = `${cs[i].replace(/\s+/g, ' ')} ${cs[i + 4].replace(/\s+/g, ' ')}`;

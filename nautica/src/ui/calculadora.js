@@ -263,8 +263,8 @@ export function abrirCalculadora() {
   }
   if (pagina?.isConnected) { pagina.scrollIntoView?.({ block: 'center' }); return true; }
   panel ??= crearPanel();
-  if (panel.el.isConnected) panel.muestra();
-  else panel.abre();
+  if (!panel.el.isConnected) panel.abre();
+  panel.muestra(); // abrirla con el botón siempre la despliega
   escribir({ abierta: true });
   return true;
 }

@@ -6,7 +6,8 @@ export function limpiar(s) {
     .replace(/­/g, '')
     .replace(/[ -​ ]/g, ' ')
     .replace(/\s+/g, ' ')
-    .replace(/ ([,.;:)])(?=\s|$)/g, '$1')
+    // «palabra ,» → «palabra,», pero no dentro de una secuencia de puntos y rayas (código Morse: «. . . - - -»).
+    .replace(/([^\s.\-–]) ([,.;:)])(?=\s|$)/g, '$1$2')
     .trim();
 }
 

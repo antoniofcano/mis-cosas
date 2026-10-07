@@ -1,0 +1,362 @@
+{
+ "eje": "dgmm",
+ "descripcion": "Modificaciones de respuestas publicadas por el Tribunal de la DGMM («Modificación de respuestas» / «Modificación de plantilla»), una entrada por pregunta y Test tal como las cita el acuerdo. Se aplican después de la plantilla (que no siempre las incorpora: diciembre 2022 y abril 2026) y la etapa «correcciones» las propaga a las demás apariciones de la misma pregunta. Las letras son las del Test citado. Las plantillas revisadas («rev», «v1», «definitivas») ya traen dentro sus anulaciones y respuestas múltiples y no se repiten aquí.",
+ "correcciones": [
+  {
+   "conv": "dgmm-py-2019-06",
+   "tit": "py",
+   "modelo": "T01",
+   "numero": 31,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PY T01 pregunta 31: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-py-2019-06",
+   "tit": "py",
+   "modelo": "T02",
+   "numero": 39,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PY T02 pregunta 39: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-py-2019-06",
+   "tit": "py",
+   "modelo": "T01",
+   "numero": 37,
+   "accion": "aceptar",
+   "letras": [
+    "b",
+    "c"
+   ],
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PY T01 pregunta 37: válidas b y c. Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-py-2019-06",
+   "tit": "py",
+   "modelo": "T02",
+   "numero": 38,
+   "accion": "aceptar",
+   "letras": [
+    "b",
+    "c"
+   ],
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PY T02 pregunta 38: válidas b y c. Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T01",
+   "numero": 42,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T01 pregunta 42: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T01",
+   "numero": 44,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T01 pregunta 44: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 8,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T02 pregunta 8: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 42,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T02 pregunta 42: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 45,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T02 pregunta 45: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T03",
+   "numero": 42,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T03 pregunta 42: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T03",
+   "numero": 43,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T03 pregunta 43: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 9,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T04 pregunta 9: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 44,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T04 pregunta 44: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 45,
+   "accion": "anular",
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T04 pregunta 45: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T01",
+   "numero": 45,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "d"
+   ],
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T01 pregunta 45: válidas a y d. Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-per-2019-06",
+   "tit": "per",
+   "modelo": "T03",
+   "numero": 45,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "d"
+   ],
+   "fecha": "2019-07-22",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/2019_07_31_modificacion_respuestas_junio_2019.pdf",
+   "texto": "PER T03 pregunta 45: válidas a y d. Acuerdo del Tribunal de 22-07-2019."
+  },
+  {
+   "conv": "dgmm-py-2021-12",
+   "tit": "py",
+   "modelo": "T01",
+   "numero": 39,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "d"
+   ],
+   "fecha": "2022-01-01",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examen_py_diciembre_2021.pdf",
+   "texto": "PY T01 pregunta 39: válidas a y d. Acuerdo del Tribunal (enero de 2022)."
+  },
+  {
+   "conv": "dgmm-py-2021-12",
+   "tit": "py",
+   "modelo": "T03",
+   "numero": 36,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "d"
+   ],
+   "fecha": "2022-01-01",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examen_py_diciembre_2021.pdf",
+   "texto": "PY T03 pregunta 36: válidas a y d. Acuerdo del Tribunal (enero de 2022)."
+  },
+  {
+   "conv": "dgmm-py-2022-12",
+   "tit": "py",
+   "modelo": "T01",
+   "numero": 37,
+   "accion": "anular",
+   "fecha": "2023-01-10",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examen_py_y_cy_diciembre_2022.pdf",
+   "texto": "PY T01 pregunta 37: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 10-01-2023."
+  },
+  {
+   "conv": "dgmm-py-2022-12",
+   "tit": "py",
+   "modelo": "T02",
+   "numero": 31,
+   "accion": "anular",
+   "fecha": "2023-01-10",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examen_py_y_cy_diciembre_2022.pdf",
+   "texto": "PY T02 pregunta 31: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 10-01-2023."
+  },
+  {
+   "conv": "dgmm-per-2023-04",
+   "tit": "per",
+   "modelo": "T01",
+   "numero": 19,
+   "accion": "anular",
+   "fecha": "2023-05-18",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examenes_abril_2023_0.pdf",
+   "texto": "PER T01 pregunta 19: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 18-05-2023."
+  },
+  {
+   "conv": "dgmm-per-2023-04",
+   "tit": "per",
+   "modelo": "T03",
+   "numero": 20,
+   "accion": "anular",
+   "fecha": "2023-05-18",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examenes_abril_2023_0.pdf",
+   "texto": "PER T03 pregunta 20: anulada (todas las respuestas válidas). Acuerdo del Tribunal de 18-05-2023."
+  },
+  {
+   "conv": "dgmm-per-2023-04",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 13,
+   "accion": "aceptar",
+   "letras": [
+    "c",
+    "d"
+   ],
+   "fecha": "2023-05-18",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examenes_abril_2023_0.pdf",
+   "texto": "PER T02 pregunta 13: válidas c y d. Acuerdo del Tribunal de 18-05-2023."
+  },
+  {
+   "conv": "dgmm-per-2023-04",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 14,
+   "accion": "aceptar",
+   "letras": [
+    "c",
+    "d"
+   ],
+   "fecha": "2023-05-18",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examenes_abril_2023_0.pdf",
+   "texto": "PER T04 pregunta 14: válidas c y d. Acuerdo del Tribunal de 18-05-2023."
+  },
+  {
+   "conv": "dgmm-per-2023-04",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 32,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fecha": "2023-05-18",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examenes_abril_2023_0.pdf",
+   "texto": "PER T02 pregunta 32: válidas a y b. Acuerdo del Tribunal de 18-05-2023."
+  },
+  {
+   "conv": "dgmm-per-2023-04",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 30,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fecha": "2023-05-18",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion_plantilla_respuestas_examenes_abril_2023_0.pdf",
+   "texto": "PER T04 pregunta 30: válidas a y b. Acuerdo del Tribunal de 18-05-2023."
+  },
+  {
+   "conv": "dgmm-per-2025-04",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 8,
+   "accion": "aceptar",
+   "letras": [
+    "b",
+    "c"
+   ],
+   "fecha": "2025-05-27",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion-plantilla-respuestas-examenes-per---pnb-02-y-04_abril-2025_vi.pdf",
+   "texto": "PER T02 pregunta 8: válidas b y c. Acuerdo del Tribunal de 27-05-2025."
+  },
+  {
+   "conv": "dgmm-per-2025-04",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 9,
+   "accion": "aceptar",
+   "letras": [
+    "b",
+    "c"
+   ],
+   "fecha": "2025-05-27",
+   "fuente": "https://cdn.transportes.gob.es/portal-web-transportes/maritimo/examenes-teoricos/modificacion-plantilla-respuestas-examenes-per---pnb-02-y-04_abril-2025_vi.pdf",
+   "texto": "PER T04 pregunta 9: válidas b y c. Acuerdo del Tribunal de 27-05-2025."
+  },
+  {
+   "conv": "dgmm-per-2026-04",
+   "tit": "per",
+   "modelo": "T02",
+   "numero": 21,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fecha": "2026-05-08",
+   "fuente": "https://www.transportes.gob.es/recursos_mfom/comodin/recursos/modificacion_plantilla_respuestas_examenes_per_-_pnb_02_y_04_abril_2026_vi.pdf",
+   "texto": "PER T02 pregunta 21: válidas a y b. Acuerdo del Tribunal de 08-05-2026."
+  },
+  {
+   "conv": "dgmm-per-2026-04",
+   "tit": "per",
+   "modelo": "T04",
+   "numero": 20,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fecha": "2026-05-08",
+   "fuente": "https://www.transportes.gob.es/recursos_mfom/comodin/recursos/modificacion_plantilla_respuestas_examenes_per_-_pnb_02_y_04_abril_2026_vi.pdf",
+   "texto": "PER T04 pregunta 20: válidas a y b. Acuerdo del Tribunal de 08-05-2026."
+  }
+ ]
+}

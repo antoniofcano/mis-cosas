@@ -201,7 +201,7 @@ function construirTest(estructura, preguntas, tipo, conv, seed) {
 
 /** Rehace un examen guardado: con sus preguntas guardadas (ids) o, si es de antes de guardarlas, con la semilla. */
 function rehacerTest(estructura, banco, tc) {
-  return testDesdeIds(tc.tipo, tc.ids, banco.porId) ?? construirTest(estructura, banco.estudio, tc.tipo, tc.conv, tc.seed);
+  return testDesdeIds(tc.tipo, tc.ids, banco.porId, tc.conv) ?? construirTest(estructura, banco.estudio, tc.tipo, tc.conv, tc.seed);
 }
 
 /** ¿El examen guardado (o hecho) es de esta titulación y este eje? (los antiguos, sin titulación, son del PER) */

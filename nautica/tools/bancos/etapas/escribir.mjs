@@ -72,7 +72,21 @@ export async function escribir(ctx) {
     const d = leerJSON(rutaEtapa(eje, 'normativa', tit));
     const v = leerJSON(rutaEtapa(eje, 'validar', tit), { errores: ['falta la etapa validar'] });
     if (enData && v.errores.length) throw new Error(`${eje}/${tit}: ${v.errores.length} errores de validación; no se escribe en data/ejes (ver tools/bancos/informes/${eje}.md)`);
-    const preguntas = d.preguntas.map((p) => aContrato(p, { config, eje, tit }));
+    let preguntas = d.preguntas.map((p) => aContrato(p, { config, eje, tit }));
+    const ruta0 = join(RAIZ, 'data', 'ejes', eje, tit, 'preguntas.json');
+    if (enData) {
+      // Solo se añade: las preguntas ya publicadas que esta extracción no produce se conservan tal cual (sus ids van en el
+      // progreso de los alumnos), y el «concepto» asignado después de extraer no se pierde.
+      const publicadas = leerJSON(ruta0, { preguntas: [] }).preguntas;
+      const nuevas = new Map(preguntas.map((q) => [q.id, q]));
+      for (const v of publicadas) {
+        const q = nuevas.get(v.id);
+        if (q && q.concepto == null && v.concepto != null) q.concepto = v.concepto;
+      }
+      const perdidas = publicadas.filter((v) => !nuevas.has(v.id));
+      if (perdidas.length) preguntas = [...preguntas, ...perdidas];
+      out.conservadas = (out.conservadas ?? 0) + perdidas.length;
+    }
     const meta = {
       eje, tit, titulo: `${tit.toUpperCase()} · ${config.nombre}`, generado: hoy(), fuente: config.indice ?? null,
       descripcion: config.descripcion?.[tit] ?? `Preguntas de los exámenes oficiales de ${tit === 'per' ? 'Patrón de Embarcaciones de Recreo' : 'Patrón de Yate'} de ${config.organismo}, extraídas con tools/bancos (npm run bancos -- ${eje}).`,

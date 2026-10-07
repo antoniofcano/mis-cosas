@@ -53,7 +53,7 @@ export function pdftotext(pdf, { layout = false, primera, ultima } = {}) {
   if (primera) args.push('-f', String(primera));
   if (ultima) args.push('-l', String(ultima));
   args.push(pdf, '-');
-  return execFileSync('pdftotext', args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  return execFileSync('pdftotext', args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
 }
 
 export function paginasPDF(pdf) {

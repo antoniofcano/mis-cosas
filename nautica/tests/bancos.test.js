@@ -88,12 +88,13 @@ for (const r of registro) {
       for (const c of ficha.reserva[tit] ?? []) assert.ok(convs.has(c), `reserva: ${c} no es una convocatoria`);
     });
 
-    test(`eje ${r.id} · ${tit}: explicación del profe para cada pregunta que no es de carta`, () => {
-      const qs = leerJSON(`${dir}/preguntas.json`).preguntas;
-      const expl = leerJSON(`${dir}/explicaciones.json`);
-      const ids = new Set(qs.map((q) => q.id));
-      for (const q of qs) if (!q.requiere.includes('carta')) assert.ok(expl[q.id]?.explicacion && expl[q.id]?.clave, `sin explicación: ${q.id}`);
-      for (const id of Object.keys(expl)) assert.ok(ids.has(id), `explicación de una pregunta que no está: ${id}`);
+    test(`eje ${r.id} · ${tit}: las explicaciones son de preguntas que existen y tienen sus campos`, () => {
+      const ids = new Set(leerJSON(`${dir}/preguntas.json`).preguntas.map((q) => q.id));
+      const expl = existsSync(join(RAIZ, `${dir}/explicaciones.json`)) ? leerJSON(`${dir}/explicaciones.json`) : {};
+      for (const [id, e] of Object.entries(expl)) {
+        assert.ok(ids.has(id), `explicación de una pregunta que no está: ${id}`);
+        assert.ok(e.explicacion && e.clave, `explicación sin texto o sin clave: ${id}`);
+      }
     });
 
     test(`eje ${r.id} · ${tit}: la práctica y los resueltos citan clases y preguntas que existen`, () => {

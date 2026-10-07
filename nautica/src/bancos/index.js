@@ -7,7 +7,7 @@
 // los tests, el sistema de ficheros. Las cargas se cachean (una promesa por fichero).
 
 import { TITULACIONES } from '../theory/blocks.js';
-import { convocatorias as convocatoriasDe } from '../theory/engine.js';
+import { convocatorias as convocatoriasDe, convDeClave } from '../theory/engine.js';
 import { compilarVocabulario } from '../theory/vocabulario.js';
 import { resueltasSegun } from '../course/resueltos.js';
 import { SOLUCIONES } from './soluciones.js';
@@ -97,7 +97,7 @@ export function crearBancos(leer) {
       .map((l) => ({ ...l, preguntas: todas.filter((q) => enLista(l, q)) }));
     const banco = {
       eje: ficha, tit, meta: datos.meta ?? {}, todas, estudio, final, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
-      convocatorias: () => convocatoriasDe(estructura, estudio).filter((c) => !reservadas.has(c.key)),
+      convocatorias: () => convocatoriasDe(estructura, estudio).filter((c) => !reservadas.has(convDeClave(c.key))),
       practicaDe: (leccionId) => (practica[leccionId] ?? []).filter((id) => enEstudio.has(id)),
       resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId),
       lista: (id) => listas.find((l) => l.id === id) ?? null,

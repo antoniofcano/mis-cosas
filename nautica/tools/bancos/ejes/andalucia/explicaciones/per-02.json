@@ -441,5 +441,233 @@
   "clave": "Líneas de vida planas, amarre corto, un chaleco por persona.",
   "discrepancia": "La técnica habitual, y los arneses según la norma ISO 12401, llevan el punto de enganche en el pecho: si caes y quedas colgado o arrastrado, vas boca arriba y con la cara fuera del agua. Enganchado a la espalda irías boca abajo. Por eso la c) es en realidad una recomendación correcta, aunque el tribunal la considerase falsa; ninguna otra opción es falsa.",
   "concepto": null
+ },
+ "and-2016-c2-t10": {
+  "explicacion": "Si no hay signos de circulación, o no estamos seguros, hay que empezar la reanimación cardiopulmonar (RCP): compresiones torácicas combinadas con ventilaciones, sin perder tiempo. Hacer solo respiración boca a boca no mueve la sangre, y dar a la persona por perdida (d) no es una opción mientras no llegue ayuda.",
+  "clave": "Sin signos de vida: RCP, 30 compresiones y 2 ventilaciones.",
+  "trampa": "Ante la duda no se espera: se empieza la RCP.",
+  "concepto": null
+ },
+ "and-2016-c2-t11": {
+  "explicacion": "Todo capitán o patrón que pueda hacerlo sin grave peligro para su barco y su gente está obligado a prestar auxilio a quien esté en peligro en la mar, sea cual sea la fuente por la que se entere: un centro de salvamento, una llamada por radio o lo que vea él mismo. No depende de la nacionalidad ni de que sea embarcación de recreo, y hay que acudir con la máxima rapidez, no esperar a los servicios de rescate.",
+  "clave": "Auxilio en la mar: obligatorio si puedes, lo pida quien lo pida.",
+  "trampa": "La d) suena prudente, pero retrasar el auxilio no es lo que pide la norma.",
+  "concepto": null
+ },
+ "and-2016-c2-t12": {
+  "explicacion": "El plástico, incluidas las bolsas de basura, no puede echarse al mar en ningún sitio (MARPOL, Anexo V). Si los restos de comida van mezclados con papel y vidrio dentro de una bolsa de plástico, todo se guarda a bordo y se entrega en puerto. Por eso ninguna distancia vale: la bolsa no puede ir al agua ni a 3, ni a 12, ni a 25 millas.",
+  "clave": "Plástico al mar: nunca. Si va mezclado, todo a tierra.",
+  "trampa": "Fijarse en «restos de comida desmenuzados» y olvidar la bolsa de plástico.",
+  "concepto": null
+ },
+ "and-2016-c2-t13": {
+  "explicacion": "La luz blanca centelleante continua, sin grupos, es la de la cardinal Norte: piensa en las 12 del reloj, donde la luz no para. El peligro aislado emite grupos de dos destellos, la de aguas navegables isofase, ocultaciones, destello largo o Morse «A», y la de bifurcación usa luz roja o verde.",
+  "clave": "Norte = centelleo continuo (las 12 en punto, sin pausa).",
+  "trampa": "Confundir «continua» con la isofase de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "concepto": "and-2022-c2-t15"
+ },
+ "and-2016-c2-t14": {
+  "explicacion": "En la Región A, un castillete verde con una banda ancha roja es una marca lateral de estribor modificada: indica una bifurcación con el canal principal a babor de la marca. Para seguir el canal principal la tratamos como una marca de estribor normal y la dejamos por nuestro estribor. La marca basta por sí sola para saberlo.",
+  "clave": "Manda el color de fondo: verde con banda roja se trata como verde (a estribor entrando).",
+  "trampa": "Fijarse en la banda roja y dejarla por babor: eso nos llevaría al canal secundario.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2016-c2-t15": {
+  "explicacion": "Si tiene marca de tope, la de aguas navegables es una única esfera roja. Los dos conos con los vértices hacia arriba son de la cardinal Norte, con los vértices hacia abajo de la Sur, y la esfera negra sola no existe en el sistema (el peligro aislado lleva dos).",
+  "clave": "Aguas navegables: una esfera roja.",
+  "trampa": "Confundir con las dos esferas negras del peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "concepto": "and-2024-c1-t15"
+ },
+ "and-2016-c2-t16": {
+  "explicacion": "La marca de peligro aislado emite luz blanca en grupos de dos destellos, GpD(2). Un destello largo cada 10 segundos y la Morse «A» son ritmos de la marca de aguas navegables, así que ni la b) ni la c) valen, y por tanto tampoco la d).",
+  "clave": "Dos esferas negras, dos destellos blancos.",
+  "trampa": "La b) y la c) son luces blancas reales, pero de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "and-2020-c3-t13"
+ },
+ "and-2016-c2-t18": {
+  "explicacion": "De día, un buque fondeado exhibe a proa una bola (esfera) negra (Regla 30). El cono con el vértice hacia abajo es de la vela con motor, los dos conos unidos por los vértices son de buque de pesca y los unidos por las bases no corresponden a ninguna señal de buque.",
+  "clave": "Fondeado de día: una bola negra a proa.",
+  "trampa": "Los dos conos unidos por los vértices son de pesca, no de fondeo.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-2016-c2-t19": {
+  "explicacion": "Ver la verde a la izquierda y la roja a la derecha es tener al otro buque de proa, viniendo hacia nosotros; pero sin luz de tope no es un buque de motor, sino un velero (que solo lleva luces de costado). Como vamos a motor, somos el buque que cede el paso y él sigue a rumbo (Regla 18). Caer los dos a estribor solo vale entre dos buques de motor de vuelta encontrada.",
+  "clave": "Luces de costado sin luz de tope = velero; motor cede a vela.",
+  "trampa": "Ver verde y roja de frente y aplicar vuelta encontrada: falta la luz de tope.",
+  "concepto": null
+ },
+ "and-2016-c2-t20": {
+  "explicacion": "Con visibilidad reducida hay que encender las luces de navegación también de día (Regla 20), tener las máquinas listas para maniobrar de inmediato (Regla 19) y emitir las señales acústicas de niebla (Regla 35). Las tres cosas son obligatorias, así que la respuesta es «todas».",
+  "clave": "Niebla: luces, máquinas listas y señales fónicas.",
+  "concepto": null
+ },
+ "and-2016-c2-t21": {
+  "explicacion": "En un canal angosto hay que ir lo más cerca posible del límite de estribor, no cruzarlo si con ello se estorba a un buque que solo puede navegar dentro del canal, y evitar fondear en él si las circunstancias lo permiten (Regla 9). Las tres son correctas.",
+  "clave": "Canal angosto: pegado a estribor, sin estorbar y sin fondear.",
+  "concepto": null
+ },
+ "and-2016-c2-t22": {
+  "explicacion": "Si oímos una señal de niebla aparentemente a proa del través de un buque cuya posición no conocemos, hay que reducir a la mínima velocidad de gobierno y, si hace falta, quitar toda la arrancada, navegando con extrema precaución hasta que pase el riesgo (Regla 19 e). Caer a una banda a ciegas puede llevarnos justo hacia él, y mantener rumbo y velocidad es lo que no se debe hacer.",
+  "clave": "Niebla, señal por la proa y sin radar: frena hasta la mínima de gobierno.",
+  "trampa": "Cambiar de rumbo sin saber dónde está el otro buque.",
+  "concepto": null
+ },
+ "and-2016-c2-t23": {
+  "explicacion": "Un buque de motor que se acerca por nuestro través de estribor con demora constante es un cruce con riesgo de abordaje, y como lo tenemos por estribor nos toca apartarnos, evitando cortarle la proa (Reglas 15 y 16). No es un alcance, la VHF no sustituye a la maniobra del Reglamento y las cinco pitadas son para expresar duda, no para resolver el cruce.",
+  "clave": "Por estribor y demora fija: te apartas, sin cortarle la proa.",
+  "trampa": "La c) suena sensata, pero coordinar por VHF no exime de cumplir la Regla 15.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2016-c2-t24": {
+  "explicacion": "Un buque de propulsión mecánica de menos de 50 m está obligado a llevar una luz de tope a proa, luces de costado y luz de alcance; la segunda luz de tope solo es obligatoria desde 50 m. Las luces de costado en un solo farol combinado solo se permiten a buques de menos de 20 m, y la blanca todo horizonte con costados es de los de menos de 12 m.",
+  "clave": "Motor < 50 m: un tope, costados y alcance. Farol combinado: < 20 m.",
+  "trampa": "La b) añade el farol combinado, que con 40 m no está permitido.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "motor",
+    "vista": "proa"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2016-c2-t25": {
+  "explicacion": "Si el otro viene por nuestra amura de babor somos el buque que sigue a rumbo; pero cuando es evidente que él no maniobra, podemos maniobrar nosotros para evitar el abordaje y, en un cruce, sin caer a babor hacia un buque que está por nuestro babor (Regla 17 a ii y c). Solo estamos obligados a maniobrar cuando el abordaje ya no puede evitarse por la sola maniobra del otro, así que la b) va más allá de lo que dice la regla.",
+  "clave": "Sigue a rumbo: si el otro no maniobra, puedes actuar, pero nunca cayendo a babor.",
+  "trampa": "La b) convierte el «puede» en «debe» antes de tiempo.",
+  "concepto": null
+ },
+ "and-2016-c2-t26": {
+  "explicacion": "La figura es la bandera «A» del Código Internacional de Señales (blanca al asta y azul cortada en cola de golondrina): buque dedicado a operaciones de buceo, que por su trabajo tiene la consideración de buque con capacidad de maniobra restringida (Regla 27). Hay que darle un buen resguardo y pasar despacio. El práctico iza la «H» y el buque sin gobierno no usa banderas, sino dos bolas negras.",
+  "clave": "Bandera A = buzo abajo: apártate y despacio.",
+  "trampa": "Confundir la «A» con la «H» del práctico, que es blanca y roja.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2016-c2-t27": {
+  "explicacion": "La Regla 8 pide maniobrar con decisión y suficiente antelación, con cambios amplios que el otro buque note (no una sucesión de cambios pequeños), y de modo que se pase a una distancia segura. Las tres afirmaciones son correctas.",
+  "clave": "Maniobra: a tiempo, amplia y que deje distancia segura.",
+  "concepto": null
+ },
+ "and-2016-c2-t28": {
+  "explicacion": "La velocidad de gobierno es la mínima a la que el barco responde al timón: por debajo de ella el agua no fluye lo suficiente por la pala y no gobierna. No tiene que ver con la velocidad máxima ni con la que proporciona el motor en general, ni es una magnitud de la curva de evolución.",
+  "clave": "Velocidad de gobierno: la mínima para que el timón obedezca.",
+  "concepto": "and-2025-c2-t29"
+ },
+ "and-2016-c2-t29": {
+  "explicacion": "La curva de evolución avante tiene tres periodos: de maniobra, variable y uniforme. El rabeo de la popa y el diámetro táctico son fenómenos o medidas de la curva, no periodos, por eso fallan la a), la b) y la d).",
+  "clave": "Curva de evolución: Maniobra, Variable, Uniforme (MVU).",
+  "trampa": "Las opciones mezclan periodos reales con medidas de la curva.",
+  "concepto": "and-2025-c1-t29"
+ },
+ "and-2016-c2-t30": {
+  "explicacion": "La sofocación consiste en eliminar o reducir el comburente, el oxígeno, por ejemplo tapando con una manta, con espuma o con CO2. La desalimentación elimina el combustible, el enfriamiento quita calor y la dispersión no es uno de los métodos de extinción.",
+  "clave": "Sofocar = quitar oxígeno.",
+  "trampa": "La desalimentación también apaga, pero quitando el combustible.",
+  "concepto": "and-2022-c3-t31"
+ },
+ "and-2016-c2-t31": {
+  "explicacion": "Primero el cohete con luz roja y paracaídas, porque sube a más de 300 m y se ve desde muy lejos; una vez que sabemos que nos han visto, la bengala de mano sirve para guiar a quien viene a rescatarnos hasta la balsa. El bote de humo es una señal de día (de noche no se ve), y no todas las señales valen para cualquier situación.",
+  "clave": "Lejos: cohete. Cerca y ya avistados: bengala. De día: humo.",
+  "trampa": "La a) recomienda el humo «sobre todo de noche», cuando precisamente no se ve.",
+  "concepto": null
+ },
+ "and-2016-c2-t32": {
+  "explicacion": "Los combustibles que en condiciones normales están en estado gaseoso (butano, propano, hidrógeno) dan fuegos de clase C. La A es de sólidos, la B de líquidos y la D de metales. La clasificación se basa en el estado físico y la naturaleza del combustible.",
+  "clave": "A sólido, B líquido, C gas, D metal, F cocina.",
+  "concepto": "and-2022-c1-t32"
+ },
+ "and-2016-c2-t33": {
+  "explicacion": "El viento ha rolado cuando ha cambiado de dirección. Que cambie constantemente de dirección es un viento variable o rolón; que disminuya es que ha caído, y que cese es calma.",
+  "clave": "Rolar = cambiar de dirección.",
+  "trampa": "No confundas rolar (dirección) con refrescar (más fuerza) ni con caer (menos fuerza).",
+  "concepto": "and-2022-c1-t33"
+ },
+ "and-2016-c2-t34": {
+  "explicacion": "Con el barco parado no hay viento generado por nuestra marcha, así que el anemómetro mide directamente el viento real. El aparente solo se distingue del real cuando el barco se mueve (en parado ambos coinciden), y «relativa» no es un tipo de viento.",
+  "clave": "Parado: aparente = real.",
+  "trampa": "Pensar que a bordo siempre se mide viento aparente.",
+  "concepto": null
+ },
+ "and-2016-c2-t35": {
+  "explicacion": "Las brisas costeras se llaman virazón, la que sopla de día del mar hacia tierra, y terral, la que sopla de noche de tierra hacia el mar. Levante y Poniente son vientos regionales del Estrecho, y Beaufort y Douglas son escalas de viento y de mar.",
+  "clave": "Virazón: de día, del mar. Terral: de noche, de tierra.",
+  "trampa": "Levante y Poniente son vientos con nombre propio, pero no brisas.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-mar"
+   },
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-tierra"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2016-c2-t36": {
+  "explicacion": "La escala centígrada o Celsius pone el 0º en el punto de congelación del agua y el 100º en el de ebullición (a presión normal), con cien divisiones entre ambos; su unidad es el grado centígrado, también llamado grado Celsius. Las tres afirmaciones son ciertas.",
+  "clave": "Celsius: 0º hielo, 100º ebullición.",
+  "concepto": null
+ },
+ "and-2016-c2-t37": {
+  "explicacion": "El desvío es el ángulo entre el Norte magnético y el Norte de aguja. La a) es la declinación magnética (verdadero–magnético), la b) la corrección total (verdadero–aguja) y la d) sería una demora de aguja.",
+  "clave": "Tres Nortes: Nv–Nm dm, Nm–Na Δ, Nv–Na Ct.",
+  "trampa": "La b) (verdadero–aguja) es la corrección total, no el desvío.",
+  "concepto": "and-2025-c2-t37"
+ },
+ "and-2016-c2-t38": {
+  "explicacion": "La Hora Reloj Bitácora es la hora que fija el patrón y por la que se rige la vida a bordo. La de Greenwich es la UT, la que fija el Gobierno es la hora legal u oficial, y la del huso en que se navega es la hora de huso.",
+  "clave": "HRB = la hora de a bordo, la decide el patrón.",
+  "concepto": null
+ },
+ "and-2016-c2-t39": {
+  "explicacion": "Puntos con la misma latitud están sobre el mismo paralelo, sea cual sea su longitud. Para estar en el mismo meridiano tendrían que compartir longitud, el Primer Meridiano es el de Greenwich, y el almicantarat es un círculo de la esfera celeste, no terrestre.",
+  "clave": "Misma latitud → mismo paralelo.",
+  "trampa": "El «no estén en el ecuador» es solo para despistar.",
+  "concepto": "and-2025-c2-t40"
  }
 }

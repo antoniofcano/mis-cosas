@@ -1,0 +1,2067 @@
+{
+ "bal-per-2024-12-b-10": {
+  "explicacion": "El polvo seco actúa sobre todo por sofocación: forma una capa que separa el combustible del oxígeno del aire (además interrumpe químicamente la reacción en cadena). No enfría de forma apreciable; el agente que actúa por enfriamiento es el agua.",
+  "clave": "Polvo seco = sofocación (y rotura de la reacción).",
+  "trampa": "La c) suena completa, pero el enfriamiento es cosa del agua, no del polvo.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2024-12-ce-07": {
+  "explicacion": "Si el tripulante cae por estribor, metemos el timón a estribor: la proa cae hacia él y la popa, con la hélice, se aparta de la banda por la que ha caído. Dejar el timón a la vía o meterlo a babor (banda contraria) acercaría la popa al náufrago.",
+  "clave": "Hombre al agua: timón a la banda por la que cae.",
+  "trampa": "La d) (banda contraria) es justo lo que lleva la hélice hacia él."
+ },
+ "bal-per-2024-12-ce-08": {
+  "explicacion": "Los balances fuertes suelen deberse a recibir la mar de través o a que el periodo de la ola coincide con el del barco; cambiando el rumbo (y la velocidad) cambiamos el ángulo de encuentro y los reducimos. Pasar pesos a una banda escora el barco, subirlos aumenta el KG y resta estabilidad, y tirar pesos no es una maniobra para esto.",
+  "clave": "Balances excesivos: cambia el rumbo respecto a la mar.",
+  "trampa": "La c) empeora la estabilidad: subir pesos aumenta el KG y reduce la altura metacéntrica."
+ },
+ "bal-per-2025-04-ae-07": {
+  "explicacion": "Con mal tiempo y una costa a sotavento, el viento y la mar nos empujan hacia ella; además, en una costa escarpada la ola rebota y forma resaca y mar confusa. Lo prudente es apartarse y ganar resguardo hacia mar abierta, no acercarse ni forzar la velocidad.",
+  "clave": "Costa a sotavento con temporal: aléjate de ella.",
+  "trampa": "La a) parece buscar abrigo, pero una costa a sotavento es el peligro, no el refugio."
+ },
+ "bal-per-2025-04-c-10": {
+  "explicacion": "Un par de estabilidad pequeño corresponde a un barco «blando»: tras escorarse tarda mucho en volver a adrizarse, con balances lentos. El barco «duro» tiene un par grande y vuelve rápido, con balances bruscos; por eso la a) y la c) describen el caso contrario.",
+  "clave": "Par pequeño = barco blando = vuelve despacio.",
+  "trampa": "Duro no significa débil: el barco duro es el de mucha estabilidad.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ]
+ },
+ "bal-per-2025-04-d-07": {
+  "explicacion": "Ante un tren de olas de estela hay que reducir la velocidad y cortarlas por la proa o ligeramente amurados, para que la embarcación suba y baje sin golpes ni balances. Acelerar provoca pantocazos y saltos, y no hacer nada o tomarlas de través expone a balances fuertes.",
+  "clave": "Estela grande: reduce y tómala por la proa o algo amurado.",
+  "trampa": "La d) (más velocidad para «saltar» las olas) es la que da los pantocazos."
+ },
+ "bal-per-2025-07-a-07": {
+  "explicacion": "El servicio de achique es la instalación de bombas (manuales y eléctricas) que se usa habitualmente para vaciar la sentina, sirve para aliviar el agua de un compartimiento inundado si hay una vía de agua y cuenta además con alguna bomba de emergencia. Las tres afirmaciones son ciertas.",
+  "clave": "Achique: sentina, vía de agua y bomba de emergencia.",
+  "trampa": "Cada opción describe solo una parte; la buena es la d)."
+ },
+ "bal-per-2025-07-b-08": {
+  "explicacion": "Lo correcto es actuar en el acto: lanzar el aro para que tenga algo a lo que agarrarse, marcar la posición con la tecla MOB del GPS y meter todo el timón a la banda por la que cayó, para apartar la popa y la hélice. Meter el timón a la banda contraria acerca la hélice, y dar atrás toda puede arrollarlo.",
+  "clave": "Aro, MOB y timón a la banda del náufrago.",
+  "trampa": "La a) habla de llevar la popa hacia él, que es lo contrario de lo que se busca."
+ },
+ "bal-per-2025-07-b-10": {
+  "explicacion": "Cuando el remolcador mete el timón a una banda, el remolcado debe meterlo a la banda contraria: así no corta la curva tirado por el cabo y sigue las aguas del remolcador, evitando tirones bruscos y que se le eche encima. Seguir el giro a la misma banda le haría atajar por dentro.",
+  "clave": "Remolcado: timón contrario al del remolcador al caer.",
+  "trampa": "Imitar al remolcador (la a) parece lógico, pero hace que el remolcado ataje por dentro de la curva."
+ },
+ "bal-per-2025-07-d-07": {
+  "explicacion": "La protección contra el rayo consiste en dar a la descarga un camino directo al agua: un conductor que una la jarcia firme (metálica, el palo y obenques) con el mar. La jarcia de labor son cabos, y unir el motor con la regala no lleva la descarga al agua.",
+  "clave": "Rayo: de la jarcia firme al mar con un cable.",
+  "trampa": "Jarcia de labor (cabos) no conduce; la firme (cables metálicos) sí."
+ },
+ "bal-per-2025-07-d-08": {
+  "explicacion": "En aguas someras el peligro es tocar fondo, así que hay que consultar la carta a menudo y vigilar la sonda de forma constante. No hace falta autorización, el radar no informa del fondo y no existen pitadas específicas para esta situación.",
+  "clave": "Aguas someras: carta y sonda.",
+  "trampa": "La c) (radar) sirve para ver buques y costa, no la profundidad."
+ },
+ "bal-per-2025-09-a-08": {
+  "explicacion": "Las tablas de supervivencia en agua fría dan, para una persona sin traje en agua a unos 15 ºC, una supervivencia estimada de alrededor de 6 horas; por encima de unos 20 ºC puede pasar de las 12 horas. Tres horas corresponde a aguas más frías y nunca es indefinida, porque el agua enfría el cuerpo mucho más que el aire.",
+  "clave": "Agua a 15 ºC sin traje: unas 6 horas.",
+  "trampa": "La d) olvida la hipotermia: incluso en agua templada el tiempo es limitado."
+ },
+ "bal-per-2025-09-a-09": {
+  "explicacion": "El remolque abarloado (las dos embarcaciones costado con costado) solo es práctico con mar en calma, porque con mar los cascos se golpean, y es el más útil en dársenas y puertos, donde hay poco espacio para maniobrar con un remolque largo. Por eso son correctas la b) y la c).",
+  "clave": "Abarloado: mar en calma y espacios reducidos.",
+  "trampa": "La a) es justo cuando no se debe abarloar: con mala mar se remolca por la popa con cabo largo."
+ },
+ "bal-per-2025-09-b-07": {
+  "explicacion": "Entre las comprobaciones previas antes de salir está verificar el nivel de combustible (con margen de reserva), junto al estado del motor, el equipo de seguridad y la previsión meteorológica. Víveres para toda la travesía, el reglaje del piloto o la presión de las defensas no figuran expresamente en esa lista.",
+  "clave": "Antes de salir: combustible, motor, seguridad y parte meteorológico.",
+  "trampa": "La a) parece prudente, pero no es una de las comprobaciones previas de la lista."
+ },
+ "bal-per-2025-09-b-09": {
+  "explicacion": "Si nadie ha visto caer a la persona no sabemos dónde está, así que se inicia una búsqueda en espiral cuadrada a partir del punto más probable. Las maniobras de Anderson, Boutakow (o Williamson) y la curva del minuto sirven para volver al náufrago cuando se ha visto la caída.",
+  "clave": "Caída no vista: búsqueda en espiral cuadrada.",
+  "trampa": "Anderson y Boutakow son maniobras de recogida, no patrones de búsqueda."
+ },
+ "bal-per-2025-09-b-10": {
+  "explicacion": "Para el masaje cardiaco el paciente debe estar boca arriba (decúbito supino) sobre una superficie dura y estable, para que las compresiones del tórax sean eficaces. Un colchón blando absorbe la fuerza, la posición lateral de seguridad es para quien respira y la de Trendelenburg no se usa para la reanimación.",
+  "clave": "RCP: boca arriba sobre superficie dura.",
+  "trampa": "La a) añade la Trendelenburg, que no forma parte de la reanimación."
+ },
+ "bal-per-2025-09-c-09": {
+  "explicacion": "Con fuego a proa ponemos popa al viento: el aire aparente se reduce, y el humo y las llamas van hacia proa, lejos del resto del barco y de la tripulación. Proa al viento llevaría el fuego hacia popa, y atravesado lo extendería por la banda de sotavento.",
+  "clave": "Fuego a proa: popa al viento. Fuego a popa: proa al viento.",
+  "trampa": "La c) es la maniobra para un fuego a popa."
+ },
+ "bal-per-2025-09-c-10": {
+  "explicacion": "Los desagües (tapones del fondo o de la bañera) permiten que salga el agua acumulada cuando la embarcación está en tierra o colgada de los pescantes. No sirven para sondar, ni para retener el agua embarcada, y desde luego no para meter agua a bordo: a flote deben estar cerrados.",
+  "clave": "Desagüe: deja salir el agua con el barco fuera del agua.",
+  "trampa": "La d) es lo que pasa si olvidas cerrarlo al botar."
+ },
+ "bal-per-2025-09-d-07": {
+  "explicacion": "Tras un abordaje lo primero es investigar la gravedad de las averías: saber si hay vías de agua, heridos o riesgo de hundimiento decide todo lo demás. Separarse dando atrás puede abrir la brecha que la proa del otro está taponando, y el socorro o los datos para el seguro vienen después.",
+  "clave": "Tras un abordaje: primero evaluar averías.",
+  "trampa": "La a) puede agravar la vía de agua al destaponarla."
+ },
+ "bal-per-2025-12-b-08": {
+  "explicacion": "Las bengalas son señales visuales de socorro, de duración limitada, así que solo tiene sentido usarlas cuando hay posibilidad de que alguien las vea (un barco, la costa o una aeronave a la vista). Las de mano se sostienen por sotavento, no por barlovento, llevan su propio sistema de encendido y no se disparan en vertical como los cohetes.",
+  "clave": "Bengala: solo si alguien puede verla, y por sotavento.",
+  "trampa": "La c) es al revés: se sujetan por sotavento para que el humo y las chispas no vengan a bordo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2025-12-c-09": {
+  "explicacion": "Según el RD 339/2021, las embarcaciones que naveguen en las zonas 1 a 3 llevan 6 bengalas de mano y las de las zonas 4 a 6, 3 bengalas de mano. Para la zona 4, por tanto, son 3.",
+  "clave": "Bengalas de mano: 6 en zonas 1–3, 3 en zonas 4–6.",
+  "trampa": "No confundas con las fumígenas (2 en zona 1, 1 en zonas 2–3)."
+ },
+ "bal-per-2025-12-d-10": {
+  "explicacion": "En un incendio en el motor o su compartimento se usa preferentemente CO2: desplaza el oxígeno, no conduce la electricidad y no deja residuos en la maquinaria. El agua a chorro es peligrosa con combustibles y tensión eléctrica, y la espuma de alta expansión no es el medio habitual en una embarcación de recreo.",
+  "clave": "Fuego en motor: CO2.",
+  "trampa": "El agua pulverizada (c) enfría, pero con combustible y electricidad no es la preferente."
+ },
+ "bal-per-2026-03-a-07": {
+  "explicacion": "Con niebla cerrada hay que hacer todo a la vez: extremar la vigilancia visual y auditiva, encender las luces de navegación y usar el radar si se tiene, navegar a velocidad de seguridad y emitir las señales acústicas de visibilidad reducida (Reglas 5, 6, 19 y 35 del RIPA). Por eso es la d).",
+  "clave": "Niebla: vigilancia, luces, radar, velocidad de seguridad y señales.",
+  "trampa": "Cada opción es correcta por separado; la respuesta es «todas».",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "-",
+    "texto": "Pitada larga: 4–6 segundos"
+   }
+  ]
+ },
+ "bal-per-2026-03-a-08": {
+  "explicacion": "Para proteger el barco del rayo se instala un pararrayos unido al mar con un cable conductor, de modo que la descarga vaya directa al agua. Un cabo no conduce la electricidad, unir el motor a la regala no la deriva al mar, y en barcos de madera o fibra el cable es precisamente lo recomendable.",
+  "clave": "Rayo: pararrayos y cable al mar.",
+  "trampa": "La b) cambia cable por cabo: un cabo no conduce."
+ },
+ "bal-per-2026-03-a-10": {
+  "explicacion": "La clasificación internacional de los incendios (clases A, B, C, D y F) se basa en el tipo de materia combustible: sólidos, líquidos, gases, metales y aceites de cocina. De esa clase depende después el agente extintor adecuado, pero no es el criterio de clasificación.",
+  "clave": "Clases de fuego: según lo que arde.",
+  "trampa": "La a) invierte la relación: el extintor se elige según la clase, no al revés.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2026-03-b-08": {
+  "explicacion": "La afirmación falsa es la d): las contusiones son traumatismos cerrados, sin herida en la piel. Aun así pueden causar hemorragias internas y ser graves si afectan a la cabeza o al abdomen, que es lo que dicen la b) y la c).",
+  "clave": "Contusión = golpe sin herida abierta.",
+  "trampa": "Pregunta por la FALSA: las otras tres son ciertas."
+ },
+ "bal-per-2026-03-c-07": {
+  "explicacion": "El reflector de radar es una pieza metálica de planchas en forma de tetraedros (normalmente ocho) que se iza en lo alto del palo para devolver el eco y hacer visible en el radar una embarcación de fibra o madera. El gallardete es una bandera, y las antenas de GPS o radar tienen otra forma y función.",
+  "clave": "Ocho tetraedros en el palo = reflector de radar.",
+  "trampa": "La d) (antena de radar) emite; el reflector solo devuelve el eco de los demás."
+ },
+ "bal-per-2026-03-c-09": {
+  "explicacion": "El remolcador se coloca a barlovento de la embarcación averiada para pasar la guía: el viento ayuda a que el cabo llegue a ella y él no corre el riesgo de que el otro barco, que deriva más, se le eche encima. Ponerse siempre a popa o a proa no tiene en cuenta el viento.",
+  "clave": "Pasar el remolque: desde barlovento.",
+  "trampa": "La c) (sotavento) obliga a lanzar contra el viento."
+ },
+ "bal-per-2026-03-d-07": {
+  "explicacion": "Un derrame de combustible puede venir del vuelco de bidones o recipientes, de no vigilar el nivel del tanque al repostar (rebosa por el respiradero) o de una rotura de tuberías. Las tres causas son reales, así que es la d).",
+  "clave": "Derrames: recipientes, repostaje y tuberías.",
+  "trampa": "Cada opción es una causa; la respuesta es «todas»."
+ },
+ "bal-per-2026-06-a-09": {
+  "explicacion": "Trincar a son de mar es asegurar (trincar) la carga y los objetos sueltos para que no se muevan ni se corran con los balances y cabezadas. Las otras opciones juegan con el sentido figurado de «a son de mar», pero no tienen nada que ver con la expresión marinera.",
+  "clave": "Trincar a son de mar = asegurar todo para navegar.",
+  "trampa": "La c) suena marinera, pero trincar es sujetar, no ajustar velas."
+ },
+ "bal-per-2026-06-b-07": {
+  "explicacion": "Capear es aguantar el temporal con la proa o la amura a la mar y el motor a poca velocidad, la justa para mantener el rumbo y recibir los golpes de mar con el mínimo castigo. Dar la popa o la aleta a la mar es correr el temporal, y atravesarse a la mar expone a balances peligrosos.",
+  "clave": "Capear = proa o amura a la mar, poca máquina.",
+  "trampa": "La a) describe correr el temporal, no capearlo."
+ },
+ "bal-per-2026-06-b-08": {
+  "explicacion": "El balance es la oscilación transversal del barco, de babor a estribor y viceversa. La cabezada es la oscilación de proa a popa, la guiñada es el giro de la proa a un lado y otro del rumbo, y un golpe de mar es el impacto de una ola contra el casco.",
+  "clave": "Balance = de banda a banda.",
+  "trampa": "La c) (cabezada) es el movimiento longitudinal, no el transversal.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "base": "and-2024-c2-t07",
+  "concepto": "and-2024-c2-t07"
+ },
+ "bal-per-2026-06-b-10": {
+  "explicacion": "Aguas someras son aguas poco profundas, con poca agua bajo la quilla. El término habla de profundidad, no del tipo de fondo, así que ni rocas ni arena lo definen, y las aguas profundas son lo contrario.",
+  "clave": "Somero = poco profundo.",
+  "trampa": "La b) y la c) describen la naturaleza del fondo, no su profundidad."
+ },
+ "bal-per-2026-06-c-07": {
+  "explicacion": "Ante un hombre al agua hay que librar la hélice metiendo el timón a la banda por la que ha caído, no perderlo de vista, marcar su posición (MOB del GPS, boya) y lanzarle aros o elementos flotantes mientras se inicia la maniobra para recogerlo. Esperar a verlo en el radar o alejarse hacia sotavento hace perder el contacto.",
+  "clave": "Hombre al agua: hélice libre, vigía, marcar posición y aro.",
+  "trampa": "La c) se queda corta: sin maniobrar no podremos volver a por él."
+ },
+ "bal-per-2026-06-c-09": {
+  "explicacion": "Correr el temporal es navegar recibiendo las olas por la aleta (o la popa), a la velocidad justa para tener arrancada y gobernar sobre la ola, sin que nos alcance ni nos atraviese. Tomarlas por la amura es capear, y salir con mal tiempo no tiene ese nombre.",
+  "clave": "Correr = aleta a la mar con arrancada para gobernar.",
+  "trampa": "La b) habla de popa redonda, donde el riesgo de atravesarse es mayor; la oficial prefiere la aleta."
+ },
+ "bal-per-2026-06-c-10": {
+  "explicacion": "En aguas someras hay que reducir la velocidad, y más cuanto menor sea la profundidad: el barco «se sienta» (squat), cala más, gobierna peor y aumenta el riesgo de tocar fondo. Mantener o aumentar la velocidad es justo lo contrario de lo prudente.",
+  "clave": "Menos agua bajo la quilla, menos velocidad.",
+  "trampa": "La c) invierte la relación: es en las aguas menos profundas donde hay que ir más despacio."
+ },
+ "bal-per-2026-06-d-08": {
+  "explicacion": "El Código LSA exige que la señal fumígena flotante emita humo de color muy visible durante un periodo no inferior a 3 minutos cuando flote en aguas tranquilas. Las otras opciones dan un minuto o criterios vagos que no son los del código.",
+  "clave": "Fumígena flotante: humo al menos 3 minutos.",
+  "trampa": "La b) suena razonable, pero el código fija un mínimo concreto.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2026-06-d-09": {
+  "explicacion": "La estabilidad estática transversal es la capacidad del barco para recuperar su posición de equilibrio cuando una fuerza lo ha escorado, es decir, lo ha sacado de ella en sentido transversal. La b) habla de sentido longitudinal (eso es la estabilidad longitudinal) y todo barco, sea cual sea su eslora, tiene estabilidad.",
+  "clave": "Transversal ↔ escora; longitudinal ↔ asiento.",
+  "trampa": "La b) es idéntica salvo por «longitudinal»: léela entera."
+ },
+ "bal-per-2026-06-d-10": {
+  "explicacion": "Antes de salir conviene revisar el nivel de combustible y de aceite, el sistema de refrigeración y el electrolito de las baterías, y el filtro decantador de combustible (que retiene el agua). Todas son comprobaciones habituales del motor, por eso es la d).",
+  "clave": "Antes de salir: combustible, aceite, refrigeración, baterías y filtros.",
+  "trampa": "Cada opción es una comprobación válida; la respuesta es «todas»."
+ },
+ "bal-per-2026-09-a-08": {
+  "explicacion": "Se llama balance negativo al que se produce con un par escorante: el barco ha perdido la estabilidad (altura metacéntrica negativa) y, en lugar de adrizarse, tiende a escorar más. Con par adrizante el barco vuelve a su posición, que es el caso estable.",
+  "clave": "Par adrizante, estable; par escorante, negativo.",
+  "trampa": "La a) describe el comportamiento normal y estable.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-per-2026-09-a-10": {
+  "explicacion": "El reflector de radar es un elemento pasivo que refleja las ondas de los radares de otros buques, para que una embarcación pequeña o de fibra aparezca con un eco claro en sus pantallas. No mejora nuestro radar, no emite sonidos y no filtra los ecos de las olas.",
+  "clave": "Reflector radar: pasivo, para que te vean.",
+  "trampa": "La a) lo confunde con algo que mejora tu radar; sirve para que te detecten los demás.",
+  "base": "and-2024-c2-t08",
+  "concepto": "and-2024-c2-t08"
+ },
+ "bal-per-2026-09-b-07": {
+  "explicacion": "Trincar a son de mar es sujetar la carga y todos los objetos sueltos para que no se corran con los balances y cabezadas. Colocar una carga (b) es estibarla, no trincarla, y las otras opciones no tienen relación con la expresión.",
+  "clave": "Trincar a son de mar = asegurar todo para navegar.",
+  "trampa": "La b) se queda corta: no basta colocar la carga, hay que sujetarla."
+ },
+ "bal-per-2026-09-b-10": {
+  "explicacion": "Los fuegos de gases (butano, propano, hidrógeno…) son de clase C; aquí las clases se nombran con el código fonético: Alfa (A, sólidos), Bravo (B, líquidos), Charlie (C, gases) y Delta (D, metales).",
+  "clave": "A sólidos, B líquidos, C gases, D metales.",
+  "trampa": "La b) (Bravo) son los líquidos inflamables, como la gasolina.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2026-09-c-07": {
+  "explicacion": "Con el náufrago a la vista lo primero, siempre, es meter el timón a la banda por la que ha caído para apartar la popa y evitar que la hélice le golpee. La d) añade que siempre hay que hacer la maniobra de Boutakow, que es una opción entre varias, y la búsqueda por sectores es para cuando no se le ve.",
+  "clave": "Hombre al agua: timón a la banda por la que cae.",
+  "trampa": "La d) empieza bien, pero ese «siempre Boutakow» la invalida."
+ },
+ "bal-per-2026-09-c-10": {
+  "explicacion": "El teléfono de Salvamento Marítimo para emergencias en la mar es el 900 202 202 (también sirve el 112, y por radio el canal 16 de VHF). Los demás números de las opciones no corresponden al servicio.",
+  "clave": "Salvamento Marítimo: 900 202 202 (o 112, o canal 16).",
+  "trampa": "La a) cambia el prefijo a 902, que es un número de pago y no es el de Salvamento."
+ },
+ "bal-per-2026-09-d-08": {
+  "explicacion": "La embarcación remolcada debe gobernar siguiendo la estela del remolcador, para que el cabo trabaje en línea y no dé tirones ni guiñadas. Acercarse al remolcador es peligroso y el gobierno no depende de mantener el viento por una banda concreta.",
+  "clave": "Remolcado: gobierna en la estela del remolcador.",
+  "trampa": "La b) propone acercarse, lo que aumenta el riesgo de golpearse."
+ },
+ "bal-per-2026-09-d-10": {
+  "explicacion": "Correr el temporal es navegar con la mar y el viento por la aleta o la popa, avanzando con ellos. No es sinónimo de capear: capear (c) es aguantar con la proa o la amura a la mar y poca máquina.",
+  "clave": "Correr = de aleta o popa. Capear = de proa o amura.",
+  "trampa": "La c) describe capear el temporal, la maniobra contraria."
+ },
+ "bal-per-2017-03-a-11": {
+  "explicacion": "Fondear sobre posidonia está prohibido: en Baleares lo prohíbe el Decreto 25/2018 y, desde el RD 191/2026, en todo el Mediterráneo. Dentro de una reserva marina la prohibición es total, sin depender de la profundidad ni de la época del año.",
+  "clave": "Posidonia: prohibido fondear encima.",
+  "trampa": "La b) (algunas restricciones) suaviza una prohibición que es total.",
+  "concepto": "bal-per-2017-03-a-11"
+ },
+ "bal-per-2025-12-d-11": {
+  "explicacion": "Fondear sobre posidonia está prohibido: en Baleares lo prohíbe el Decreto 25/2018 y, desde el RD 191/2026, en todo el Mediterráneo. Dentro de una reserva marina la prohibición es total, sin depender de la profundidad del tenedero ni de la época del año.",
+  "clave": "Posidonia: prohibido fondear encima.",
+  "trampa": "La b) (algunas restricciones) suaviza una prohibición que es total.",
+  "concepto": "bal-per-2017-03-a-11"
+ },
+ "bal-per-2017-03-a-12": {
+  "explicacion": "El número máximo de personas que puede llevar una embarcación figura en su certificado de navegabilidad (y en la placa del constructor), y nunca se puede superar. La licencia de radio y los otros certificados de las opciones no fijan ese dato.",
+  "clave": "Máximo de personas: certificado de navegabilidad.",
+  "trampa": "La b) suena técnica, pero ese límite figura en el certificado de navegabilidad."
+ },
+ "bal-per-2017-03-b-11": {
+  "explicacion": "La respuesta oficial era la buena con la Orden de 14-10-1997: el boyarín rojo con franja blanca señalaba a un buceador y había que darle 25 metros de resguardo. Esa orden está derogada. Desde el 1-7-2020, el RD 550/2020 fija como señal la bandera «Alfa» en la boya de superficie y un resguardo mínimo de 50 metros.",
+  "clave": "Hoy: bandera Alfa y 50 m de resguardo al buceo.",
+  "trampa": "Los 50 m de la a) son la distancia actual, pero no el esquiador ni el boyarín rojo y blanco.",
+  "discrepancia": "La d) era correcta con la Orden de 14-10-1997, derogada. Desde el 1-7-2020 el RD 550/2020 (art. 14.2 y anexo III) exige la bandera «Alfa» en la boya y mantenerse a 50 m como mínimo de la zona de buceo, así que hoy ninguna opción es correcta del todo.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2017-03-b-12": {
+  "explicacion": "La norma prohíbe toda descarga de aguas sucias, aunque estén tratadas, en zonas portuarias, aguas protegidas y rías, bahías y similares. Fuera de esas zonas solo se permite a más de 3 millas si están desmenuzadas y desinfectadas, o a más de 12 sin tratar, navegando a 4 nudos o más.",
+  "clave": "Puerto, aguas protegidas, rías y bahías: ninguna descarga.",
+  "trampa": "Cada opción es una zona prohibida; la respuesta es «todas»."
+ },
+ "bal-per-2017-03-ci-11": {
+  "explicacion": "Las aguas sucias sin tratar (ni desmenuzadas ni desinfectadas) solo se pueden descargar a más de 12 millas de la costa, navegando a 4 nudos o más. A más de 3 millas solo se permiten si están tratadas, y no existe la regla de «cualquier distancia a más de 5 nudos».",
+  "clave": "Sin tratar, más de 12 millas; tratadas, más de 3.",
+  "trampa": "La a) es la distancia para las aguas ya desmenuzadas y desinfectadas."
+ },
+ "bal-per-2017-03-ci-12": {
+  "explicacion": "La llamada bandera Bravo modificada es roja con una franja diagonal blanca; se usaba para señalar actividades de buceo. Hoy la señal reglamentaria de buceo en España es la bandera «Alfa» del Código Internacional de Señales (RD 550/2020), pero la forma de la Bravo modificada no ha cambiado.",
+  "clave": "Bravo modificada: roja con diagonal blanca.",
+  "trampa": "La b) pone la franja horizontal; es diagonal.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "buceo"
+   }
+  ]
+ },
+ "bal-per-2017-03-fa-11": {
+  "explicacion": "El Reglamento General de Costas (art. 73) fija, en los tramos de costa que no son playa (acantilados incluidos), una franja de 50 metros en la que solo se puede navegar a 3 nudos como máximo. En las playas esa franja es de 200 metros.",
+  "clave": "Franja costera: 200 m en playas, 50 m en el resto.",
+  "trampa": "La d) (200 m) es la franja de las playas, no la de un acantilado."
+ },
+ "bal-per-2017-03-fa-12": {
+  "explicacion": "Está prohibida toda descarga de aguas sucias, aunque estén tratadas, en zonas portuarias, zonas protegidas, rías y bahías. Las distancias de las demás opciones confunden la regla general: tratadas se pueden descargar a más de 3 millas, y sin tratar a más de 12, navegando a 4 nudos o más.",
+  "clave": "Puerto, aguas protegidas, rías y bahías: ninguna descarga.",
+  "trampa": "La d) (más de 12 millas) es donde sí se pueden descargar sin tratar."
+ },
+ "bal-per-2017-03-ge-11": {
+  "explicacion": "Los tanques de retención de aguas sucias deben tener capacidad suficiente para al menos dos días de uso, a razón de cuatro litros por persona y día. Son obligatorios también en aguas interiores y no dependen de navegar a más de 12 millas.",
+  "clave": "Tanque de retención: 2 días × 4 litros por persona.",
+  "trampa": "La b) duplica los días: son dos, no cuatro."
+ },
+ "bal-per-2017-07-b-11": {
+  "explicacion": "Quien sepa que hay personas en peligro en la mar debe acudir en su auxilio a toda la velocidad posible, informar a los náufragos o a Salvamento de que va hacia allí y mantener la escucha en el canal 16 de VHF. Las tres acciones forman parte del deber de auxilio, por eso es la d).",
+  "clave": "Deber de auxilio: acudir, avisar y escuchar el 16.",
+  "trampa": "Cada opción es una parte; la respuesta es «todas»."
+ },
+ "bal-per-2017-07-b-12": {
+  "explicacion": "La bandera autonómica (o de un club) puede izarse en puertos y aguas nacionales, pero solo junto a la del pabellón nacional, que es obligatoria y ocupa el lugar preferente. No es independiente de ella ni sustituye nunca a la nacional.",
+  "clave": "Bandera autonómica: solo acompañando a la nacional.",
+  "trampa": "La d) prohíbe algo que sí está permitido si se iza también la nacional."
+ },
+ "bal-per-2017-07-c-12": {
+  "explicacion": "Está prohibida toda descarga de aguas sucias, aunque estén tratadas, en aguas protegidas, zonas portuarias y rías, bahías y similares. Fuera de esas zonas se permite a más de 3 millas si están desmenuzadas y desinfectadas, o a más de 12 sin tratar, navegando a 4 nudos o más.",
+  "clave": "Puerto, aguas protegidas, rías y bahías: ninguna descarga.",
+  "trampa": "Cada opción es una zona prohibida; la respuesta es «todas»."
+ },
+ "bal-per-2017-07-eda-11": {
+  "explicacion": "Sin equipo para desmenuzar y desinfectar, las aguas sucias solo pueden descargarse a más de 12 millas de la costa (y navegando a 4 nudos o más), así que a menos de 12 millas está prohibido. Las 14 o 24 millas no son distancias de la norma, y la velocidad por sí sola no autoriza a descargar en cualquier sitio.",
+  "clave": "Sin tratar: prohibido a menos de 12 millas.",
+  "trampa": "La c) convierte la condición de la velocidad en un permiso general."
+ },
+ "bal-per-2017-07-eda-12": {
+  "explicacion": "Las ZEPIM (Zonas Especialmente Protegidas de Importancia para el Mediterráneo, del Convenio de Barcelona) son áreas importantes para conservar la biodiversidad mediterránea, que contienen ecosistemas típicos o hábitats de especies amenazadas y tienen especial interés científico, estético, cultural o educativo. Las tres descripciones son parte de la definición, por eso es la b).",
+  "clave": "ZEPIM: biodiversidad, hábitats y valor científico o cultural.",
+  "trampa": "Aquí «todas» está en la b), no en la d)."
+ },
+ "bal-per-2017-07-fc-11": {
+  "explicacion": "Fuera de las zonas especiales, el Anexo V del MARPOL permite echar restos de comida a más de 12 millas de tierra sin triturar, y a más de 3 millas si han pasado por un desmenuzador o triturador. Las dos afirmaciones son ciertas, así que es la d).",
+  "clave": "Restos de comida: más de 12 millas tal cual, más de 3 triturados.",
+  "trampa": "La c) (nunca) sería para plásticos, no para restos de comida."
+ },
+ "bal-per-2017-07-fc-12": {
+  "explicacion": "El Anexo V del MARPOL prohíbe echar al mar cualquier plástico, incluidas las bolsas de basura, en cualquier lugar y a cualquier distancia de la costa. Que el plástico sea degradable o esté mezclado con restos orgánicos no cambia nada.",
+  "clave": "Plásticos al mar: nunca.",
+  "trampa": "La d) suena ecológica, pero los plásticos «degradables» también están prohibidos."
+ },
+ "bal-per-2017-09-a-11": {
+  "explicacion": "Las aguas sucias desmenuzadas y desinfectadas se pueden descargar a más de 3 millas de la costa, siempre navegando a una velocidad no inferior a 4 nudos para que se dispersen. Estando a más de 4 millas se cumple la distancia, y la velocidad mínima es 4 nudos.",
+  "clave": "Descargas de aguas sucias: en ruta a 4 nudos o más.",
+  "trampa": "La a) confunde la velocidad con las 3 millas de distancia."
+ },
+ "bal-per-2017-09-c-11": {
+  "explicacion": "Las aguas sucias que no se han desmenuzado ni desinfectado solo se pueden descargar a más de 12 millas de la costa, navegando a 4 nudos o más. A más de 3 millas solo se permiten si están tratadas.",
+  "clave": "Sin tratar, más de 12 millas; tratadas, más de 3.",
+  "trampa": "La b) es la distancia para las aguas ya tratadas."
+ },
+ "bal-per-2017-09-c-12": {
+  "explicacion": "Si no hay canal balizado, la salida o llegada a una playa se hace a la mínima velocidad (nunca más de 3 nudos dentro de la franja de baño) y lo más perpendicular posible a la costa, para cruzar cuanto antes la zona de bañistas. Ir paralelo a la orilla alarga el tiempo dentro de esa zona.",
+  "clave": "Sin canal: perpendicular a la costa y a mínima velocidad.",
+  "trampa": "La d) mantiene la velocidad mínima, pero ir en paralelo te deja más tiempo entre bañistas."
+ },
+ "bal-per-2017-09-d-11": {
+  "explicacion": "La oficial (3 nudos) era el límite general en los puertos que fijaba la Orden de 2-7-1964. Esa orden quedó derogada por el RD 186/2023, en vigor desde el 11-4-2023, y desde entonces no hay un límite general: cada puerto fija su velocidad máxima en sus ordenanzas o reglamento de explotación y policía.",
+  "clave": "Hoy: la velocidad en el puerto la fija cada puerto.",
+  "trampa": "Los 3 nudos siguen vigentes en la franja de baño de la costa, pero no como regla general de los puertos.",
+  "discrepancia": "La b) era correcta con la Orden de 2-7-1964, derogada por el RD 186/2023 (desde el 11-4-2023). Hoy no hay una velocidad máxima común: cada puerto la fija en sus ordenanzas, así que ninguna cifra de las opciones es la regla general vigente."
+ },
+ "bal-per-2017-09-e-11": {
+  "explicacion": "La oficial venía de la Orden de 14-10-1997: el boyarín con bandera roja y franja blanca indicaba un buzo sumergido y había que darle 25 metros de resguardo. Esa orden está derogada. Desde el 1-7-2020 rige el RD 550/2020, que fija como señal la bandera «Alfa» en la boya de superficie y un resguardo mínimo de 50 metros.",
+  "clave": "Hoy: bandera Alfa y 50 m de resguardo al buceo.",
+  "trampa": "La d) da los 50 m actuales, pero los atribuye a un esquiador.",
+  "discrepancia": "La b) era correcta con la Orden de 14-10-1997, derogada. Desde el 1-7-2020 el RD 550/2020 (art. 14.2 y anexo III) obliga a mantenerse a 50 m como mínimo de la zona de buceo, señalada con la bandera «Alfa», así que hoy ninguna opción es correcta del todo.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ],
+  "concepto": "bal-per-2017-09-e-11"
+ },
+ "bal-per-2020-10-a-11": {
+  "explicacion": "Con la normativa vigente desde 2020 (RD 550/2020, art. 14.2) hay que mantenerse a 50 metros como mínimo de una zona de buceo señalizada. Los 25 metros de la d) eran los de la orden de 1997, ya derogada; la b) y la c) atribuyen la señal a otras cosas. Hoy la señal reglamentaria en la boya es la bandera «Alfa».",
+  "clave": "Buceo: 50 m de resguardo como mínimo.",
+  "trampa": "La d) también habla de un buzo, pero con la distancia antigua.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ],
+  "concepto": "bal-per-2017-09-e-11"
+ },
+ "bal-per-2017-09-e-12": {
+  "explicacion": "El pabellón es la bandera del país en el que está abanderada y matriculada la embarcación, que es la de la nación de su puerto de registro. La a) y la d) dicen lo mismo con otras palabras; la bandera autonómica (b) nunca es el pabellón.",
+  "clave": "Pabellón = bandera del país de registro.",
+  "trampa": "La b): la bandera autonómica es solo un distintivo opcional."
+ },
+ "bal-per-2017-12-a-11": {
+  "explicacion": "La oficial (3 nudos) era el límite general en los puertos que fijaba la Orden de 2-7-1964. Esa orden quedó derogada por el RD 186/2023, en vigor desde el 11-4-2023, y hoy la velocidad máxima la fija cada puerto en sus ordenanzas o reglamento de explotación y policía.",
+  "clave": "Hoy: la velocidad en el puerto la fija cada puerto.",
+  "trampa": "No confundas con los 3 nudos de la franja de baño, que siguen vigentes.",
+  "discrepancia": "La a) era correcta con la Orden de 2-7-1964, derogada por el RD 186/2023 (desde el 11-4-2023). Hoy no existe un límite común, pero tampoco es cierta la d): cada puerto fija su propio límite en sus ordenanzas."
+ },
+ "bal-per-2017-12-b-12": {
+  "explicacion": "La bandera «Alfa» del Código Internacional de Señales y la bandera Bravo modificada (roja con diagonal blanca) se han usado ambas para indicar que hay buceadores sumergidos y que hay que alejarse. Conceptualmente no hay diferencia, así que son ciertas la a) y la b). Hoy la señal reglamentaria en España es la «Alfa» (RD 550/2020).",
+  "clave": "Alfa y Bravo modificada: ambas, buceo.",
+  "trampa": "La c) confunde con la bandera B del código (carga o descarga de mercancías peligrosas, como combustible).",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2017-12-c-11": {
+  "explicacion": "Las reservas marinas son zonas delimitadas en las que la Administración regula las actividades, sobre todo la pesca, pero también la navegación, el fondeo y el buceo. No implican una prohibición general de navegar, fondear o pescar: dependen de la zona y de su normativa.",
+  "clave": "Reserva marina = actividades reguladas, no todo prohibido.",
+  "trampa": "La c) es una parte: la pesca está regulada, no siempre prohibida."
+ },
+ "bal-per-2017-12-c-12": {
+  "explicacion": "El Anexo V del MARPOL (reglas de basuras) prohíbe descargar en el mar el aceite de cocina, en cualquier lugar, se esté a la distancia que se esté. Se guarda a bordo y se entrega en puerto.",
+  "clave": "Aceite de cocina: nunca al mar.",
+  "trampa": "La d) mezcla el aceite con los restos de comida, que sí pueden triturarse y descargarse lejos de tierra."
+ },
+ "bal-per-2017-12-d-12": {
+  "explicacion": "El Mediterráneo es zona especial del Anexo V del MARPOL: allí los restos de comida solo pueden descargarse a más de 12 millas de tierra, desmenuzados o triturados y con la embarcación navegando en ruta. No se pueden echar tal cual, pero tampoco es cierto que esté prohibido siempre.",
+  "clave": "Mediterráneo: comida triturada, a más de 12 millas y en ruta.",
+  "trampa": "La c) olvida que en zona especial hay que triturarlos antes."
+ },
+ "bal-per-2018-04-a-11": {
+  "explicacion": "En bahías, rías, zonas portuarias y aguas protegidas está prohibida toda descarga de aguas sucias, aunque estén desmenuzadas y desinfectadas. Dentro de la bahía de Palma, por tanto, no hay velocidad que lo permita.",
+  "clave": "Bahías, rías y puertos: ninguna descarga.",
+  "trampa": "La a) da los 4 nudos de la norma, pero esa regla vale fuera de la bahía."
+ },
+ "bal-per-2018-04-a-12": {
+  "explicacion": "Las aguas sucias sin desmenuzar ni desinfectar solo se pueden descargar a más de 12 millas de la costa, navegando a 4 nudos o más. A más de 3 millas solo se permite si se han tratado.",
+  "clave": "Sin tratar, más de 12 millas; tratadas, más de 3.",
+  "trampa": "La d) es la distancia para las aguas tratadas."
+ },
+ "bal-per-2018-04-b-11": {
+  "explicacion": "La bahía de Alcúdia es una bahía, y en bahías, rías, puertos y aguas protegidas está prohibida toda descarga de aguas sucias, aunque estén tratadas. La a) y la b) describen descargas que estarían prohibidas dentro de ella.",
+  "clave": "Bahías, rías y puertos: ninguna descarga.",
+  "trampa": "La b) usa las condiciones de mar abierto, que no valen dentro de una bahía."
+ },
+ "bal-per-2018-04-b-12": {
+  "explicacion": "Ante un derrame de hidrocarburos en un puerto hay que avisar enseguida a Salvamento Marítimo (900 202 202) y a la Autoridad Marítima (Capitanía Marítima) del puerto. El práctico no es la autoridad competente para la contaminación.",
+  "clave": "Derrame: Salvamento (900 202 202) y Capitanía.",
+  "trampa": "La b): el práctico asesora a los buques en las maniobras, no gestiona la contaminación."
+ },
+ "bal-per-2018-04-d-11": {
+  "explicacion": "En zonas portuarias y aguas protegidas está prohibida toda descarga de aguas sucias, incluso desmenuzadas y desinfectadas. El tratamiento solo permite descargar a más de 3 millas fuera de esas zonas.",
+  "clave": "Puerto y aguas protegidas: ninguna descarga.",
+  "trampa": "La d) vale a más de 3 millas en mar abierto, no en puerto."
+ },
+ "bal-per-2018-04-d-12": {
+  "explicacion": "En las bocanas, las embarcaciones que salen tienen preferencia sobre las que entran, y las de recreo no deben estorbar el tráfico del resto de buques. Achicar sentinas con residuos oleosos es contaminar y está prohibido.",
+  "clave": "Bocana: preferencia para el que sale; recreo no estorba.",
+  "trampa": "La c) suena a buena práctica, pero achicar sentinas con aceites al mar es contaminación."
+ },
+ "bal-per-2018-04-e-11": {
+  "explicacion": "En las ZEPIM (zonas protegidas del Convenio de Barcelona) se regulan el paso de buques y cualquier detención o fondeo, y se prohíben la pesca, la caza, la captura de animales y la recolección o destrucción de plantas. Son ciertas la b) y la c); la a) es falsa porque la pesca sí está regulada.",
+  "clave": "ZEPIM: paso y fondeo regulados; pesca y captura prohibidas.",
+  "trampa": "La a) dice justo lo contrario de lo que pasa con la pesca."
+ },
+ "bal-per-2018-04-e-12": {
+  "explicacion": "La regla 33.1 del capítulo V del SOLAS obliga al capitán que reciba una señal de socorro a acudir a toda máquina en auxilio de las personas en peligro, si está en condiciones de prestar ayuda; si no puede o no es razonable, debe anotar el motivo en el diario e informar. Por eso la a) es la correcta y la c) se pasa al decir «siempre».",
+  "clave": "Deber de auxilio: acudir si puedes; si no, anotar y avisar.",
+  "trampa": "La c) olvida la condición de estar en condiciones de ayudar."
+ },
+ "bal-per-2018-06-a-11": {
+  "explicacion": "El Reglamento General de Costas (art. 73) establece, en los tramos no balizados, una franja de 50 metros en la costa que no es playa (y de 200 metros en las playas), dentro de la cual solo se puede navegar a 3 nudos como máximo.",
+  "clave": "Franja costera: 200 m en playas, 50 m en el resto.",
+  "trampa": "La c) (200 m) es la de las playas."
+ },
+ "bal-per-2018-06-a-12": {
+  "explicacion": "Navegar por una reserva marina no requiere permiso: el paso es libre para todos los buques. Lo que se regula son actividades concretas, como la pesca, el buceo o el fondeo, y en algunas zonas de reserva integral se limita el acceso.",
+  "clave": "Reserva marina: navegar es libre; se regulan las actividades.",
+  "trampa": "La a): la Guardia Civil vigila, pero no da permisos para navegar."
+ },
+ "bal-per-2018-06-b-11": {
+  "explicacion": "En una playa no balizada se entiende que la zona de baño ocupa una franja de 200 metros desde la costa (50 metros en el resto del litoral), y dentro de ella no se puede navegar a más de 3 nudos (art. 73 del Reglamento General de Costas). Sin boyas, la limitación sigue existiendo.",
+  "clave": "Playa sin balizar: 200 m de zona de baño, máximo 3 nudos.",
+  "trampa": "La d) usa los 50 m, que son para la costa que no es playa."
+ },
+ "bal-per-2018-09-a-11": {
+  "explicacion": "En la bocana de un puerto el que sale tiene preferencia sobre el que entra: el que entra puede esperar fuera, mientras que el que sale tiene poco espacio para maniobrar. La preferencia no depende del tipo de buque ni de su eslora.",
+  "clave": "Bocana: preferencia para el que sale.",
+  "trampa": "La b) parece cortés, pero la costumbre y las ordenanzas dan paso al que sale."
+ },
+ "bal-per-2018-09-d-11": {
+  "explicacion": "El art. 73 del Reglamento General de Costas dice que, en los tramos de costa no balizados, la zona de baño ocupa una franja de 200 metros en las playas y de 50 metros en el resto de la costa.",
+  "clave": "Franja de baño: 200 m en playas, 50 m en el resto.",
+  "trampa": "Las otras combinaciones cambian una sola cifra: 250 o 45 m."
+ },
+ "bal-per-2018-09-d-12": {
+  "explicacion": "La regla 2 del Anexo V del MARPOL dice que, salvo que se disponga otra cosa, sus disposiciones se aplican a todos los buques, sean del tamaño y tipo que sean, incluidas las embarcaciones de recreo. No se limita a las de recreo ni a una fecha de construcción.",
+  "clave": "MARPOL Anexo V: todos los buques.",
+  "trampa": "La a) y la d) restringen a las embarcaciones de recreo una norma que es para todos."
+ },
+ "bal-per-2018-09-e-12": {
+  "explicacion": "En las zonas de baño balizadas está prohibido navegar, y el lanzamiento o varada de embarcaciones solo puede hacerse por los canales balizados para ello. No se puede pasar de 3 nudos, ni navegar a vela o con artefactos entre los bañistas, ni varar por los extremos de la playa.",
+  "clave": "Zona balizada: entrar y salir solo por el canal.",
+  "trampa": "La d) ofrece una alternativa que la norma no permite."
+ },
+ "bal-per-2018-12-a-11": {
+  "explicacion": "En las cartas náuticas, las praderas de fanerógamas marinas como la posidonia se señalan con la abreviatura Sg (del inglés seagrass), que es la que usan las cartas españolas siguiendo el estándar internacional. Po, St o Ps no son esa abreviatura.",
+  "clave": "Posidonia en la carta: Sg.",
+  "trampa": "La a) (Po) parece obvia por «posidonia», pero no es la abreviatura de la carta."
+ },
+ "bal-per-2018-12-c-11": {
+  "explicacion": "El art. 73 del Reglamento General de Costas dice que, en una playa no balizada, la zona de baño ocupa 200 metros desde la orilla y que dentro de ella no se puede navegar a más de 3 nudos; no prohíbe fondear. Por eso se puede fondear a menos de 200 metros, siempre que nos acerquemos a menos de 3 nudos (y nunca sobre posidonia).",
+  "clave": "Playa sin balizar: 200 m a 3 nudos como máximo.",
+  "trampa": "La d) añade una prohibición de fondear que la norma no recoge.",
+  "discrepancia": "El tribunal dio respuestas distintas en el mismo examen: un modelo daba la d) (no se puede fondear a menos de 200 m) y otro aceptaba la a), la b) y la c). La norma solo limita la velocidad a 3 nudos dentro de los 200 m, así que la b) es la única con apoyo normativo; la d) no lo tiene."
+ },
+ "bal-per-2018-12-c-12": {
+  "explicacion": "Las cartas del Instituto Hidrográfico de la Marina indican las praderas de posidonia con la abreviatura Sg (seagrass) y, en la leyenda, advierten de que hay que extremar las precauciones al fondear donde la hay. Son ciertas la b) y la c), así que es la d).",
+  "clave": "Posidonia en la carta: Sg y aviso en la leyenda.",
+  "trampa": "La a) es falsa: la carta sí lo indica precisamente para proteger la pradera."
+ },
+ "bal-per-2018-12-d-11": {
+  "explicacion": "Para no fondear sobre posidonia lo esencial es llevar cartas náuticas actualizadas que indiquen dónde están las praderas. Las sondas y profundímetros miden la profundidad, no la naturaleza del fondo, y no existe un sonar homologado para detectar posidonia.",
+  "clave": "Para respetar la posidonia: carta actualizada.",
+  "trampa": "La b) atribuye a la sonda algo que no hace: mide metros, no el tipo de fondo."
+ },
+ "bal-per-2019-04-a-11": {
+  "explicacion": "En los tramos de costa que no son playa, como un acantilado, el Reglamento General de Costas (art. 73) fija una franja de 50 metros en la que no se puede pasar de 3 nudos; navegar sin esa limitación es posible a partir de 50 metros. En las playas la franja es de 200 metros.",
+  "clave": "Franja costera: 200 m en playas, 50 m en el resto.",
+  "trampa": "La a) (200 m) es la de las playas."
+ },
+ "bal-per-2019-04-a-12": {
+  "explicacion": "La presencia de submarinistas se ha señalado con la bandera «Alfa» del Código Internacional de Señales y con la bandera Bravo modificada (roja con diagonal blanca); por eso son correctas la a) y la b). Hoy la señal reglamentaria en España es la «Alfa» (RD 550/2020). La bandera C (Charlie) significa «sí» o afirmativo.",
+  "clave": "Buceo: Alfa (y la antigua Bravo modificada).",
+  "trampa": "La b) sola es la vigente hoy, pero la oficial da por buenas las dos.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2019-04-b-12": {
+  "explicacion": "El MARPOL es el convenio internacional para prevenir la contaminación por los buques: hidrocarburos, sustancias nocivas, aguas sucias, basuras y emisiones. El balizamiento es del sistema IALA, los abordajes del RIPA y la pesca deportiva tiene su propia normativa.",
+  "clave": "MARPOL = contaminación desde los buques.",
+  "trampa": "La d) es el RIPA, otro convenio distinto."
+ },
+ "bal-per-2019-04-c-11": {
+  "explicacion": "La regla 33.1 del capítulo V del SOLAS obliga a acudir en auxilio si se está en condiciones de prestar ayuda; si no se puede, o no es razonable o necesario, se informa al servicio de búsqueda y salvamento y se anota el motivo. En cualquier caso hay que comunicarlo. Las tres afirmaciones son ciertas, así que es la d).",
+  "clave": "Auxilio: acudir si puedes y avisar siempre a Salvamento.",
+  "trampa": "Cada opción es una parte de la regla; la respuesta es «todas»."
+ },
+ "bal-per-2019-04-e-11": {
+  "explicacion": "En aguas de Baleares el Decreto 25/2018 prohíbe con carácter general fondear sobre posidonia y también que la cadena pueda afectar a las praderas próximas al punto de fondeo; desde el RD 191/2026 la prohibición se extiende a todo el Mediterráneo. Son ciertas la a) y la c). La b) es falsa: el ancla y la cadena arrancan la planta, que crece muy despacio.",
+  "clave": "Posidonia: ni ancla ni cadena encima.",
+  "trampa": "La c) es cierta, pero la a) también: la respuesta es la d)."
+ },
+ "bal-per-2019-04-f-12": {
+  "explicacion": "Se pide la NO correcta: una rada protegida es precisamente un buen lugar para fondear, abrigado del viento y la mar. Lo que hay que evitar son las praderas de posidonia, los cables submarinos y los canales de acceso a puertos o playas.",
+  "clave": "Para fondear evita posidonia, cables y canales.",
+  "trampa": "Pregunta por la que NO hay que evitar."
+ },
+ "bal-per-2019-06-a-11": {
+  "explicacion": "La oficial era la de la Orden de 2-7-1964: los canales de lanzamiento y varada se señalaban con boyas flotantes lo más parecidas posible al balizamiento. Esa orden quedó derogada por el RD 186/2023 el 11-4-2023; hoy el Reglamento General de Costas (art. 73.1) solo exige que esos canales estén debidamente señalizados, aunque en la práctica se siguen balizando con boyas flotantes.",
+  "clave": "Canal de playa: balizado con boyas flotantes.",
+  "trampa": "La c) mezcla un color concreto que la norma no fija para todo el canal."
+ },
+ "bal-per-2019-06-a-12": {
+  "explicacion": "En el interior del puerto se puede repostar combustible, en la gasolinera habilitada. Bañarse está prohibido, achicar sentinas con residuos es contaminar y la pesca de arrastre no se practica dentro de un puerto.",
+  "clave": "En puerto se reposta; no se baña, no se achica, no se pesca.",
+  "trampa": "La c): achicar la sentina al agua del puerto es un vertido prohibido."
+ },
+ "bal-per-2019-06-b-12": {
+  "explicacion": "La oficial (3 nudos) era el límite general que fijaba la Orden de 2-7-1964 para la zona de navegación de los puertos. Esa orden quedó derogada por el RD 186/2023 el 11-4-2023, y hoy la velocidad máxima de cada puerto la fijan sus ordenanzas o reglamento de explotación y policía.",
+  "clave": "Hoy: la velocidad en el puerto la fija cada puerto.",
+  "trampa": "No confundas con los 3 nudos de la franja de baño, que siguen vigentes.",
+  "discrepancia": "La c) era correcta con la Orden de 2-7-1964, derogada por el RD 186/2023 (desde el 11-4-2023). Hoy no hay un límite común: cada puerto lo fija en sus ordenanzas, así que ninguna cifra de las opciones es la regla general vigente."
+ },
+ "bal-per-2019-06-c-12": {
+  "explicacion": "Dentro de un puerto, la contaminación de sus aguas la gestiona la Autoridad Portuaria, que es a quien hay que avisar enseguida para activar su plan de respuesta. El práctico no es el competente y la Autoridad Marítima actúa sobre todo fuera de la zona de servicio del puerto.",
+  "clave": "Derrame dentro del puerto: Autoridad Portuaria.",
+  "trampa": "La a) suena oficial, pero en el interior del puerto el primer aviso es a la Autoridad Portuaria."
+ },
+ "bal-per-2019-09-a-11": {
+  "explicacion": "Fondear sobre posidonia está prohibido en Baleares (Decreto 25/2018) y, desde el RD 191/2026, en todo el Mediterráneo; así que hay que fondear en el fondo de fango. Una cala no está prohibida en general, y la posidonia no es arena con algas: es una planta protegida que el ancla arranca.",
+  "clave": "Fango sí, posidonia nunca.",
+  "trampa": "La c) presenta la posidonia como buen tenedero, cuando está prohibido fondear en ella."
+ },
+ "bal-per-2019-09-b-11": {
+  "explicacion": "El pabellón nacional (la bandera del país de registro) debe mostrarse siempre, también dentro del puerto; es lo que identifica la nacionalidad de la embarcación. No es exclusivo de los extranjeros ni depende de lo que diga el capitán de puerto.",
+  "clave": "Pabellón: siempre izado.",
+  "trampa": "La b) piensa solo en los extranjeros, pero la obligación es de todos."
+ },
+ "bal-per-2019-09-b-12": {
+  "explicacion": "Desde el 1-7-2020, el RD 550/2020 obliga a todos los buques y embarcaciones a mantenerse a 50 metros como mínimo de la zona de buceo, señalizada con una boya con la bandera «Alfa». Los 25 metros eran los de la Orden de 14-10-1997, ya derogada.",
+  "clave": "Buceo: bandera Alfa y 50 m de resguardo.",
+  "trampa": "La b) (25 m) es la distancia de la norma antigua.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2019-12-a-11": {
+  "explicacion": "El fondeo en la zona de servicio y las proximidades de un puerto, incluidas las zonas prohibidas por posidonia, lo regula la Autoridad Portuaria. Los prácticos asesoran en las maniobras, Salvamento Marítimo se ocupa de las emergencias y una organización ecologista no tiene competencias.",
+  "clave": "Fondeo junto al puerto: Autoridad Portuaria.",
+  "trampa": "La a) (prácticos) participa en las maniobras, pero no regula el fondeo.",
+  "concepto": "bal-per-2019-12-a-11"
+ },
+ "bal-per-2021-03-a-11": {
+  "explicacion": "El fondeo en la zona de servicio y las proximidades de un puerto, incluidas las zonas prohibidas por posidonia, lo regula la Autoridad Portuaria de ese puerto. Capitanía Marítima, Salvamento Marítimo y Puertos del Estado tienen otras funciones.",
+  "clave": "Fondeo junto al puerto: Autoridad Portuaria.",
+  "trampa": "La d) (Puertos del Estado) coordina el sistema, pero cada puerto lo regula su Autoridad Portuaria.",
+  "concepto": "bal-per-2019-12-a-11"
+ },
+ "bal-per-2019-12-b-12": {
+  "explicacion": "El Mediterráneo es zona especial del MARPOL y los residuos sólidos perjudiciales (plásticos, latas, envases, aceites…) no se pueden tirar al mar: se guardan a bordo y se depositan en los contenedores del puerto. Solo los restos de comida triturados pueden descargarse a más de 12 millas.",
+  "clave": "Residuos sólidos: a tierra, al contenedor del puerto.",
+  "trampa": "La d) usa las 12 millas, que solo valen para restos de comida triturados."
+ },
+ "bal-per-2019-12-e-12": {
+  "explicacion": "Navegar sin el seguro obligatorio, sin el título que habilita para manejar la embarcación o sin el certificado de navegabilidad en vigor son infracciones que dan lugar a un procedimiento sancionador. Cualquiera de las tres basta.",
+  "clave": "Seguro, título y certificado: los tres son obligatorios.",
+  "trampa": "Cada opción es una infracción; la respuesta es «cualquiera»."
+ },
+ "bal-per-2020-07-d-11": {
+  "explicacion": "El número máximo de personas a bordo lo fija el certificado de navegabilidad de la embarcación y nunca se puede superar. No depende del espacio disponible, del peso de cada uno ni del título del patrón.",
+  "clave": "Máximo de personas: certificado de navegabilidad.",
+  "trampa": "La d): el título limita qué barco puedes llevar, no cuánta gente cabe."
+ },
+ "bal-per-2020-07-d-12": {
+  "explicacion": "Una boya naranja con franja blanca es una boya de señalización de inmersión, y a las zonas de buceo hay que darles un resguardo mínimo de 50 metros (RD 550/2020). La señal reglamentaria es hoy la bandera «Alfa» sobre la boya. Los 25 metros eran los de la norma derogada de 1997.",
+  "clave": "Buceo: 50 m de resguardo como mínimo.",
+  "trampa": "La b) (25 m) es la distancia de la norma antigua."
+ },
+ "bal-per-2020-07-e-11": {
+  "explicacion": "El salvamento de personas en peligro en la mar es siempre obligatorio para quien esté en condiciones de prestarlo, sea cual sea su eslora o su nacionalidad (SOLAS, capítulo V, regla 33, y Ley de Navegación Marítima). Que existan servicios profesionales no exime de ese deber.",
+  "clave": "Salvar vidas en la mar: obligatorio siempre.",
+  "trampa": "La d): Salvamento Marítimo coordina, pero el deber de auxilio es de todos."
+ },
+ "bal-per-2020-10-a-12": {
+  "explicacion": "El MARPOL es el convenio que regula la contaminación desde los buques; su Anexo V trata de las basuras. La OMI (IMO) es el organismo que lo aprueba, el SOLAS trata de la seguridad de la vida humana en el mar y las ZEPIM son zonas protegidas del Mediterráneo.",
+  "clave": "Basuras al mar: MARPOL, Anexo V.",
+  "trampa": "La b): la OMI es la organización, no el convenio."
+ },
+ "bal-per-2020-10-b-12": {
+  "explicacion": "La velocidad máxima en el interior de cada puerto la fijan sus ordenanzas o su reglamento de explotación y policía. El antiguo límite general de 3 nudos (Orden de 2-7-1964) quedó derogado por el RD 186/2023 el 11-4-2023, y nunca hubo uno general de 5 o de 1 nudo.",
+  "clave": "Velocidad en puerto: la que fije cada puerto.",
+  "trampa": "La b) (3 nudos) es el límite antiguo, hoy derogado como regla general."
+ },
+ "bal-per-2020-10-d-11": {
+  "explicacion": "Las aguas sucias sin ningún tratamiento solo pueden descargarse a más de 12 millas de la costa y navegando a más de 4 nudos. A más de 3 millas solo se pueden descargar si están desmenuzadas y desinfectadas.",
+  "clave": "Sin tratar, más de 12 millas a 4 nudos; tratadas, más de 3.",
+  "trampa": "La c) es la distancia para las aguas tratadas."
+ },
+ "bal-per-2020-10-e-11": {
+  "explicacion": "En las embarcaciones nacionales el asta de popa y el pico del palo mayor se reservan para la bandera de España. No se sustituye por la autonómica ni por banderas de señales, y en un puerto extranjero la del país anfitrión se iza como cortesía en la cruceta de estribor, sin quitar la propia.",
+  "clave": "Asta de popa: bandera de España.",
+  "trampa": "La d): la bandera del país visitado es de cortesía, no sustituye al pabellón."
+ },
+ "bal-per-2020-10-g-12": {
+  "explicacion": "El art. 73 del Reglamento General de Costas fija, en las playas no balizadas, una franja de 200 metros desde la orilla en la que no se puede navegar a más de 3 nudos (50 metros en el resto de la costa). Ni 250 ni 500 metros ni media milla.",
+  "clave": "Playa sin balizar: 200 m a 3 nudos como máximo.",
+  "trampa": "La d) (250 m) se acerca, pero son 200.",
+  "concepto": "bal-per-2020-10-g-12"
+ },
+ "bal-per-2024-07-df-12": {
+  "explicacion": "El art. 73 del Reglamento General de Costas fija, en las playas no balizadas, una franja de 200 metros desde la orilla en la que no se puede navegar a más de 3 nudos. Los 50 metros de la c) son la franja de la costa que no es playa.",
+  "clave": "Playa sin balizar: 200 m a 3 nudos como máximo.",
+  "trampa": "La c) (50 m) es para acantilados y costa que no es playa.",
+  "concepto": "bal-per-2020-10-g-12"
+ },
+ "bal-per-2020-10-i-11": {
+  "explicacion": "Los aceites y residuos oleosos de la sentina del motor no se pueden verter al mar: se recogen a bordo y se entregan en las instalaciones de recepción del puerto. Las distancias de las otras opciones son de las aguas sucias o las basuras, no de los hidrocarburos.",
+  "clave": "Aceites de sentina: nunca al mar.",
+  "trampa": "La d) toma las 12 millas de las aguas sucias sin tratar."
+ },
+ "bal-per-2020-12-c-11": {
+  "explicacion": "El pabellón nacional es la bandera principal: si no está izado, no se puede izar ninguna otra, con la única excepción del gallardete del club. La bandera autonómica no lo sustituye.",
+  "clave": "Sin pabellón izado, ninguna otra bandera (salvo el gallardete).",
+  "trampa": "La a) pretende que la autonómica sustituya a la nacional."
+ },
+ "bal-per-2020-12-e-11": {
+  "explicacion": "El capitán está obligado a acudir en auxilio de quien esté en peligro en la mar, si está en condiciones de hacerlo, sea cual sea la fuente de la que reciba el aviso. No hace falta que lo pida un centro de salvamento, no depende de la nacionalidad y hay que acudir a toda máquina.",
+  "clave": "Auxilio: acudir si puedes, te avise quien te avise.",
+  "trampa": "La d) pide no ir a toda máquina, cuando la norma pide acudir a la mayor velocidad posible."
+ },
+ "bal-per-2020-12-e-12": {
+  "explicacion": "Aunque los restos de comida triturados se pueden descargar fuera de zona especial a más de 3 millas, aquí van mezclados con papel y vidrio y metidos en una bolsa de plástico. El Anexo V del MARPOL prohíbe echar al mar cualquier plástico, así que todo eso se guarda a bordo y se entrega en tierra.",
+  "clave": "Si hay plástico de por medio: nunca al mar.",
+  "trampa": "La b) piensa solo en los restos de comida y olvida la bolsa de plástico."
+ },
+ "bal-per-2020-12-g-12": {
+  "explicacion": "En la costa que no es playa, el art. 73 del Reglamento General de Costas fija una franja de 50 metros en la que no se puede navegar a más de 3 nudos; en las playas, esa franja es de 200 metros.",
+  "clave": "Franja costera: 200 m en playas, 50 m en el resto.",
+  "trampa": "La c) (200 m) es la de las playas."
+ },
+ "bal-per-2020-12-i-11": {
+  "explicacion": "La legislación de marina mercante hace solidariamente responsables de las infracciones por contaminación desde una embarcación al armador o naviero, al propietario, al asegurador de la responsabilidad civil y al patrón. Que sea solidaria significa que la Administración puede exigir la sanción a cualquiera de ellos; no hay un responsable principal y otro subsidiario.",
+  "clave": "Contaminación: responden solidariamente armador, patrón y asegurador.",
+  "trampa": "Las opciones con responsable «principal» y «subsidiario» describen otro tipo de responsabilidad.",
+  "base": "and-2025-c2-t12",
+  "concepto": "and-2025-c2-t12"
+ },
+ "bal-per-2020-12-i-12": {
+  "explicacion": "Es verdadera la b): las aguas sucias desmenuzadas y desinfectadas se pueden descargar a más de 3 millas de la costa, navegando a más de 4 nudos. La a) falla porque en la franja no balizada sí se puede navegar a 3 nudos y la del resto del litoral es de 50 m; los plásticos (c) no se pueden tirar nunca, y el PER llega hasta 12 millas de la costa, no 20.",
+  "clave": "Aguas sucias tratadas: más de 3 millas y a 4 nudos.",
+  "trampa": "La d) cambia las 12 millas del PER por 20."
+ },
+ "bal-per-2021-03-a-12": {
+  "explicacion": "La isla de Tarifa no es una ZEPIM. Sí lo son, entre otras, el archipiélago de Cabrera, el Mar Menor y la costa oriental de Murcia, y las islas Columbretes, todas de la lista española del Convenio de Barcelona.",
+  "clave": "ZEPIM españolas: Alborán, Cabo de Gata, Levante almeriense, Maro-Cerro Gordo, Mar Menor, Columbretes, Cabrera, Medas, Cabo de Creus y el Corredor de cetáceos.",
+  "trampa": "Pregunta por la que NO es ZEPIM."
+ },
+ "bal-per-2021-03-b-12": {
+  "explicacion": "El Anexo V del MARPOL prohíbe arrojar al mar cualquier plástico, también las bolsas de basura, estén cerradas o no y a cualquier distancia de la costa. Los restos orgánicos sueltos sí pueden descargarse lejos de tierra, pero nunca dentro de una bolsa de plástico.",
+  "clave": "Plástico al mar: nunca, a ninguna distancia.",
+  "trampa": "La b) o la c) dan distancias que valen para restos de comida, no para plásticos."
+ },
+ "bal-per-2021-03-eg-11": {
+  "explicacion": "Las aguas sucias sin tratar (ni desinfectadas ni desmenuzadas) solo se pueden descargar a más de 12 millas de la costa y navegando a más de 4 nudos. Las otras combinaciones de distancia y velocidad no son las de la norma.",
+  "clave": "Sin tratar: más de 12 millas y a más de 4 nudos.",
+  "trampa": "La a) da las 3 millas de las aguas tratadas."
+ },
+ "bal-per-2021-03-eg-12": {
+  "explicacion": "Se pueden llevar banderas autonómicas a bordo, pero siempre a la vez que la bandera nacional, que es la obligatoria. Su uso es voluntario y no puede sustituir al pabellón en ninguna comunidad.",
+  "clave": "Bandera autonómica: voluntaria y siempre con la nacional.",
+  "trampa": "La d) la hace obligatoria; es opcional."
+ },
+ "bal-per-2021-06-bh-11": {
+  "explicacion": "Los reglamentos de policía (de explotación y policía) de los puertos fijan las normas de comportamiento náutico y administrativo dentro de ellos: velocidades, maniobras, fondeos, atraques y tráfico interior. Las tarifas van por otra vía y los delitos los regula el Código Penal.",
+  "clave": "Reglamento de policía del puerto: cómo navegar y comportarse en él.",
+  "trampa": "La d): sanciona infracciones administrativas, no delitos.",
+  "concepto": "bal-per-2021-06-bh-11"
+ },
+ "bal-per-2023-09-c-11": {
+  "explicacion": "Los reglamentos de policía (de explotación y policía) de los puertos fijan las normas de comportamiento náutico y administrativo dentro de ellos: velocidades, maniobras, fondeos, atraques y tráfico interior. No regulan delitos fuera del puerto, y las tarifas van por otra vía.",
+  "clave": "Reglamento de policía del puerto: cómo navegar y comportarse en él.",
+  "trampa": "La c) (tarifas) es otra norma distinta.",
+  "concepto": "bal-per-2021-06-bh-11"
+ },
+ "bal-per-2021-06-f-12": {
+  "explicacion": "Dentro de los puertos y sus canales de acceso, las embarcaciones deportivas no deben estorbar el tráfico de los buques con más restricciones de maniobra, obligándoles a maniobrar (Regla 9 del RIPA y ordenanzas portuarias). La Regla 6 no fija ninguna cifra de velocidad de seguridad, y los límites de 2 nudos u olas de 30 cm no son normas generales.",
+  "clave": "Recreo en puertos y canales: no estorbar a los grandes.",
+  "trampa": "La a) atribuye a la Regla 6 una cifra que no tiene: la velocidad de seguridad depende de las circunstancias."
+ },
+ "bal-per-2021-09-b-12": {
+  "explicacion": "Sí, siempre: con las condiciones que plantea el enunciado (sin poner en serio peligro la propia nave y estando a una distancia que permita ayudar) el auxilio a los náufragos es obligatorio, para cualquier embarcación y sea cual sea la nacionalidad o circunstancias de las personas en peligro. Que existan servicios profesionales no exime de ese deber.",
+  "clave": "Salvar vidas en la mar: obligatorio siempre que puedas.",
+  "trampa": "La b) inventa un límite de eslora que no existe."
+ },
+ "bal-per-2021-09-c-12": {
+  "explicacion": "En Baleares la ZEPIM reconocida es el archipiélago de Cabrera (Parque Nacional marítimo-terrestre). Dragonera es parque natural, y las bahías de Alcúdia y Pollença tienen otras figuras de protección, pero no son ZEPIM.",
+  "clave": "ZEPIM en Baleares: Cabrera.",
+  "trampa": "La d) añade Dragonera, que es parque natural pero no ZEPIM."
+ },
+ "bal-per-2021-09-d-12": {
+  "explicacion": "El «Mar Mayor» no existe como ZEPIM: la zona protegida de Murcia es el Mar Menor y la costa oriental de la Región de Murcia. Sí son ZEPIM el Santuario Pelagos para los mamíferos marinos (Italia, Francia y Mónaco), los fondos marinos del Levante de Almería y el Corredor de migración de cetáceos del Mediterráneo.",
+  "clave": "ZEPIM de Murcia: Mar Menor, no «Mar Mayor».",
+  "trampa": "La c) cambia una palabra: Mar Menor es ZEPIM, «Mar Mayor» no."
+ },
+ "bal-per-2021-09-e-11": {
+  "explicacion": "Las ZEPIM (Convenio de Barcelona) buscan mejorar el estado del Mediterráneo protegiendo zonas de especial valor ecológico. No tienen nada que ver con puertos, urbanismo o explotaciones petrolíferas, que serían lo contrario de su finalidad.",
+  "clave": "ZEPIM = protección ambiental del Mediterráneo.",
+  "trampa": "Las demás opciones son actividades que una ZEPIM limita, no fomenta."
+ },
+ "bal-per-2021-09-e-12": {
+  "explicacion": "Con una instalación de tratamiento homologada cuyo efluente no deja sólidos flotantes ni coloración, se puede descargar en todas las zonas de navegación salvo en la zona 7, que corresponde a aguas protegidas, puertos y bahías, donde está prohibida toda descarga, aunque esté tratada.",
+  "clave": "Efluente tratado: todas las zonas menos la 7.",
+  "trampa": "La b) olvida que el tratamiento es justo lo que permite descargar."
+ },
+ "bal-per-2021-09-f-11": {
+  "explicacion": "Para no derramar combustible al repostar hay que sujetar siempre el boquerel (nunca dejarlo en «manos libres»), no llenar el depósito al 100 % (el combustible se dilata y rebosa por el respiradero) y tener material absorbente a mano. Las tres medidas son buenas, así que es la d).",
+  "clave": "Repostar: boquerel en la mano, sin llenar a tope y absorbente listo.",
+  "trampa": "Cada opción es una medida; la respuesta es «todas».",
+  "concepto": "bal-per-2021-09-f-11"
+ },
+ "bal-per-2022-12-fd-11": {
+  "explicacion": "Para no derramar combustible al repostar hay que sujetar siempre el boquerel (nunca dejarlo en «manos libres»), no llenar el depósito al 100 % (el combustible se dilata y rebosa por el respiradero) y tener material absorbente a mano. Las tres medidas deberían aplicarse, por eso es la d).",
+  "clave": "Repostar: boquerel en la mano, sin llenar a tope y absorbente listo.",
+  "trampa": "Cada opción es una medida; la respuesta es «todas».",
+  "concepto": "bal-per-2021-09-f-11"
+ },
+ "bal-per-2021-09-f-12": {
+  "explicacion": "Al entrar y salir de puerto hay que gobernar en manual y reducir la velocidad a la mínima de gobierno, para poder maniobrar enseguida y cumplir las normas del puerto. El piloto automático no permite reaccionar en un espacio con tráfico y obstáculos.",
+  "clave": "En bocana: timón en manual y mínima de gobierno.",
+  "trampa": "La c) reduce la velocidad, pero con el piloto automático puesto."
+ },
+ "bal-per-2021-12-b-11": {
+  "explicacion": "El número máximo de personas a bordo es el que fija el certificado de navegabilidad de la embarcación. No hay una cifra general para todas, ni vale contar cuántas caben sentadas.",
+  "clave": "Máximo de personas: certificado de navegabilidad.",
+  "trampa": "La d) parece sentido común, pero el límite lo pone el certificado.",
+  "concepto": "bal-per-2021-12-b-11"
+ },
+ "bal-per-2026-03-a-11": {
+  "explicacion": "El número máximo de personas a bordo es el que fija el certificado de navegabilidad de la embarcación. No hay una cifra general (ni 8 ni 14), ni vale contar cuántas caben sentadas.",
+  "clave": "Máximo de personas: certificado de navegabilidad.",
+  "trampa": "La a) parece sentido común, pero el límite lo pone el certificado.",
+  "concepto": "bal-per-2021-12-b-11"
+ },
+ "bal-per-2021-12-b-12": {
+  "explicacion": "Los 200 metros de la oficial venían de la Orden de 2-7-1964, que prohibía los deportes náuticos a menos de esa distancia de la playa; fue derogada por el RD 186/2023 el 11-4-2023. Hoy rige el art. 73 del Reglamento General de Costas: en zonas de baño balizadas no se navega y, sin balizar, la franja de baño de las playas es de 200 metros con 3 nudos como máximo, lo que impide igualmente esas actividades.",
+  "clave": "Playa: 200 m de franja de baño, máximo 3 nudos.",
+  "trampa": "La a) (50 m) es la franja de la costa que no es playa."
+ },
+ "bal-per-2021-12-c-11": {
+  "explicacion": "Son buenas medidas no dejar el boquerel en posición de «manos libres» y tener material absorbente a mano, así que es la d). La b) es justo lo contrario de lo prudente: llenar el depósito al 100 % hace que el combustible rebose por el respiradero al dilatarse.",
+  "clave": "Repostar: boquerel en la mano, sin llenar a tope y absorbente listo.",
+  "trampa": "La b) dice «llenaría al 100 %», que es causa de derrames."
+ },
+ "bal-per-2021-12-c-12": {
+  "explicacion": "Fuera de las zonas especiales y en ruta, el Anexo V del MARPOL permite descargar restos de comida triturados o desmenuzados a más de 3 millas de la tierra más próxima, y sin triturar a más de 12 millas. Las 4 o 5 millas no aparecen en la norma, y las 12 millas son para los restos sin triturar.",
+  "clave": "Comida triturada: más de 3 millas; sin triturar: más de 12.",
+  "trampa": "La a) asigna las 12 millas a los restos ya triturados."
+ },
+ "bal-per-2021-12-f-12": {
+  "explicacion": "El Anexo V del MARPOL prohíbe arrojar al mar cualquier plástico, incluidas las bolsas de basura, dentro y fuera de las zonas especiales y a cualquier distancia de la costa.",
+  "clave": "Plástico al mar: nunca.",
+  "trampa": "Las distancias de las otras opciones no existen para los plásticos.",
+  "concepto": "bal-per-2021-12-f-12"
+ },
+ "bal-per-2022-03-e-12": {
+  "explicacion": "El Anexo V del MARPOL prohíbe arrojar al mar cualquier plástico, incluidas las bolsas de basura, dentro y fuera de las zonas especiales y a cualquier distancia de la costa.",
+  "clave": "Plástico al mar: nunca.",
+  "trampa": "Las distancias de las otras opciones no existen para los plásticos.",
+  "concepto": "bal-per-2021-12-f-12"
+ },
+ "bal-per-2022-03-a-11": {
+  "explicacion": "El número máximo de personas a bordo es el que figura en los certificados de la embarcación (certificado de navegabilidad). No hay una cifra general y no se puede subir a quien quepa aunque no comprometa la estabilidad.",
+  "clave": "Máximo de personas: lo que diga el certificado.",
+  "trampa": "La a) suena prudente, pero el límite lo fija el certificado."
+ },
+ "bal-per-2022-03-c-11": {
+  "explicacion": "Sí: la Administración puede limitar la navegación en zonas con bañistas, fijando zonas de baño balizadas, canales de entrada y salida y velocidades máximas (art. 73 del Reglamento General de Costas). Las limitaciones no se basan en la potencia ni en la eslora.",
+  "clave": "Zonas de baño: la Administración limita zonas y velocidad.",
+  "trampa": "La d) inventa un límite de eslora.",
+  "concepto": "bal-per-2022-03-c-11"
+ },
+ "bal-per-2025-07-c-12": {
+  "explicacion": "Sí: la Administración puede limitar la navegación en zonas con bañistas, fijando zonas de baño balizadas, canales de entrada y salida y velocidades máximas (art. 73 del Reglamento General de Costas). En los canales de acceso está prohibido bañarse, y no se miden en millas.",
+  "clave": "Zonas de baño: la Administración limita zonas y velocidad.",
+  "trampa": "La b) es al revés: el canal es para las embarcaciones, no para bañarse.",
+  "concepto": "bal-per-2022-03-c-11"
+ },
+ "bal-per-2022-03-c-12": {
+  "explicacion": "El auxilio a las personas en peligro es obligatorio siempre que pueda prestarse sin grave peligro para el buque, su dotación o sus pasajeros, y hay que dejar constancia de lo hecho en el diario de navegación. No depende de la eslora ni desaparece porque existan servicios profesionales.",
+  "clave": "Auxilio: obligatorio si no pone en grave peligro al propio barco.",
+  "trampa": "La c) inventa un límite de eslora."
+ },
+ "bal-per-2022-06-d-11": {
+  "explicacion": "El Anexo V del MARPOL prohíbe arrojar plásticos al mar en cualquier lugar y a cualquier distancia de la costa. Las 12 o 24 millas no sirven para los plásticos.",
+  "clave": "Plástico al mar: nunca.",
+  "trampa": "La c) usa las 12 millas de los restos de comida sin triturar.",
+  "concepto": "bal-per-2022-06-d-11"
+ },
+ "bal-per-2022-12-a-12": {
+  "explicacion": "El Anexo V del MARPOL prohíbe arrojar plásticos al mar en cualquier lugar y a cualquier distancia de la costa, estén triturados o no. Las 12 o 24 millas no sirven para los plásticos.",
+  "clave": "Plástico al mar: nunca.",
+  "trampa": "La d) añade un triturado que suena técnico, pero el plástico sigue prohibido.",
+  "concepto": "bal-per-2022-06-d-11"
+ },
+ "bal-per-2022-06-e-12": {
+  "explicacion": "El Mediterráneo es zona especial del Anexo V del MARPOL, y allí las reglas de basuras son más estrictas: los restos de comida solo pueden echarse a más de 12 millas de tierra, triturados o desmenuzados y con el barco en ruta. Fuera de las zonas especiales la comida triturada podría echarse a más de 3 millas, pero en el Mediterráneo no. Tampoco es «nunca», porque la comida es la principal excepción permitida.",
+  "clave": "Mediterráneo (zona especial): comida triturada y a más de 12 millas.",
+  "trampa": "La b) (3 millas) es la regla para la comida triturada fuera de las zonas especiales.",
+  "base": "and-2020-c1-t12",
+  "concepto": "and-2020-c1-t12"
+ },
+ "bal-per-2022-09-a-11": {
+  "explicacion": "España tiene 10 ZEPIM contando el Corredor de migración de cetáceos del Mediterráneo: Alborán, Cabo de Gata-Níjar, fondos marinos del Levante almeriense, acantilados de Maro-Cerro Gordo, Mar Menor y costa oriental de Murcia, islas Columbretes, archipiélago de Cabrera, islas Medes, Cap de Creus y el propio Corredor.",
+  "clave": "ZEPIM en España: 10 con el Corredor de cetáceos.",
+  "trampa": "La a) (8) se queda corta aunque no contaras el Corredor, que serían 9.",
+  "concepto": "bal-per-2022-09-a-11"
+ },
+ "bal-per-2024-07-a-12": {
+  "explicacion": "España tiene 10 ZEPIM contando el Corredor de migración de cetáceos del Mediterráneo: Alborán, Cabo de Gata-Níjar, fondos marinos del Levante almeriense, acantilados de Maro-Cerro Gordo, Mar Menor y costa oriental de Murcia, islas Columbretes, archipiélago de Cabrera, islas Medes, Cap de Creus y el propio Corredor.",
+  "clave": "ZEPIM en España: 10 con el Corredor de cetáceos.",
+  "trampa": "Las cifras de 12 y 14 no corresponden a ninguna lista.",
+  "concepto": "bal-per-2022-09-a-11"
+ },
+ "bal-per-2024-12-b-11": {
+  "explicacion": "España tiene 10 ZEPIM contando el Corredor de migración de cetáceos del Mediterráneo: Alborán, Cabo de Gata-Níjar, fondos marinos del Levante almeriense, acantilados de Maro-Cerro Gordo, Mar Menor y costa oriental de Murcia, islas Columbretes, archipiélago de Cabrera, islas Medes, Cap de Creus y el propio Corredor.",
+  "clave": "ZEPIM en España: 10 con el Corredor de cetáceos.",
+  "trampa": "La c) (11) suma una de más.",
+  "concepto": "bal-per-2022-09-a-11"
+ },
+ "bal-per-2022-09-a-12": {
+  "explicacion": "La ZEPIM reconocida en Baleares es el archipiélago de Cabrera. Dragonera es parque natural y la bahía de Fornells o los fondos de la bahía de Palma tienen otras figuras de protección, pero no figuran en la lista de ZEPIM.",
+  "clave": "ZEPIM en Baleares: Cabrera.",
+  "trampa": "La a) (Dragonera) está protegida, pero como parque natural, no como ZEPIM."
+ },
+ "bal-per-2022-09-c-11": {
+  "explicacion": "Las Zonas Especialmente Protegidas de Importancia para el Mediterráneo se conocen por sus siglas: ZEPIM. Las demás opciones son siglas inventadas que se le parecen.",
+  "clave": "Zona Especialmente Protegida de Importancia para el Mediterráneo = ZEPIM.",
+  "trampa": "Siglas parecidas; reconstrúyelas palabra a palabra.",
+  "concepto": "bal-per-2022-09-c-11"
+ },
+ "bal-per-2023-03-e-12": {
+  "explicacion": "Las Zonas Especialmente Protegidas de Importancia para el Mediterráneo se conocen por sus siglas: ZEPIM. ZETIM, ZEBIM o ZECIM no existen.",
+  "clave": "Zona Especialmente Protegida de Importancia para el Mediterráneo = ZEPIM.",
+  "trampa": "Siglas parecidas; reconstrúyelas palabra a palabra.",
+  "concepto": "bal-per-2022-09-c-11"
+ },
+ "bal-per-2022-09-m-11": {
+  "explicacion": "Un derrame de hidrocarburos en la mar se notifica a Salvamento Marítimo (canal 16 de VHF, 900 202 202 o 112), que coordina la lucha contra la contaminación marina. El club náutico, el ayuntamiento o la cofradía no tienen esa competencia.",
+  "clave": "Contaminación en la mar: aviso a Salvamento Marítimo.",
+  "trampa": "La b): el ayuntamiento actúa en la playa, pero el aviso en la mar va a Salvamento."
+ },
+ "bal-per-2022-12-be-12": {
+  "explicacion": "En una playa no balizada la zona de baño ocupa una franja de 200 metros desde la orilla, en la que no se puede pasar de 3 nudos (art. 73 del Reglamento General de Costas). Más allá de esos 200 metros se navega sin esas restricciones.",
+  "clave": "Playa sin balizar: 200 m a 3 nudos como máximo.",
+  "trampa": "La a) (50 m) es la franja de la costa que no es playa."
+ },
+ "bal-per-2022-12-c-11": {
+  "explicacion": "En las zonas de baño balizadas está prohibida la navegación de las embarcaciones de recreo; solo se puede entrar y salir por los canales balizados para ello. El límite de 3 nudos es para la franja de baño de las playas no balizadas, no para el interior de las boyas.",
+  "clave": "Dentro de las boyas de baño, ningún barco.",
+  "trampa": "La a) aplica los 3 nudos de las playas no balizadas.",
+  "concepto": "bal-per-2022-12-c-11"
+ },
+ "bal-per-2023-12-b-11": {
+  "explicacion": "En las zonas de baño balizadas está prohibida la navegación de las embarcaciones de recreo; solo se puede entrar y salir por los canales balizados para ello. El límite de 3 nudos es para la franja de baño de las playas no balizadas, no para el interior de las boyas.",
+  "clave": "Dentro de las boyas de baño, ningún barco.",
+  "trampa": "La d) (velocidad mínima) sigue siendo navegar, y está prohibido.",
+  "concepto": "bal-per-2022-12-c-11"
+ },
+ "bal-per-2022-12-c-12": {
+  "explicacion": "La bandera Bravo modificada (roja con diagonal blanca) indica que hay buzos sumergidos y que hay que alejarse y extremar las precauciones. Hoy la señal reglamentaria en España es la bandera «Alfa» con un resguardo mínimo de 50 metros (RD 550/2020), pero el significado es el mismo.",
+  "clave": "Bravo modificada: buzos sumergidos.",
+  "trampa": "La a) y la c) inventan significados de avería o naufragio.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "buceo"
+   }
+  ]
+ },
+ "bal-per-2023-03-cg-12": {
+  "explicacion": "El comportamiento del capitán ante una petición de auxilio lo regula el SOLAS en su capítulo V, regla 33 (no la 32), y la c) resume su contenido: quien esté en condiciones de ayudar debe acudir a toda máquina, salvo que lo estime irrazonable o innecesario, informando a los servicios de búsqueda y salvamento. Son ciertas la a) y la c).",
+  "clave": "Auxilio en la mar: SOLAS, capítulo V, regla 33.",
+  "trampa": "La b) cambia la regla 33 por la 32."
+ },
+ "bal-per-2023-06-af-11": {
+  "explicacion": "El RD 128/2022 tiene por objeto proteger el medio ambiente marino de los efectos negativos de las descargas de desechos de los buques que usan los puertos españoles, mejorando la disponibilidad y el uso de las instalaciones portuarias receptoras. Las otras opciones cambian una palabra clave: «lacustre», «desprotección» o «efectos positivos» y «astilleros».",
+  "clave": "RD 128/2022: proteger el medio marino con instalaciones receptoras en puerto.",
+  "trampa": "Las opciones son casi idénticas: busca la palabra cambiada."
+ },
+ "bal-per-2023-06-af-12": {
+  "explicacion": "El objeto del RD 339/2021 es establecer el equipo de seguridad y de prevención de la contaminación que deben llevar, con carácter obligatorio, las embarcaciones de recreo según la zona por la que naveguen. Las otras opciones lo hacen opcional o facultativo, o lo reducen a una parte.",
+  "clave": "RD 339/2021: equipo obligatorio según la zona de navegación.",
+  "trampa": "La a) solo cambia «obligatorio» por «opcional»."
+ },
+ "bal-per-2023-06-bg-11": {
+  "explicacion": "Se puede fondear libremente en una cala no balizada siempre que no pongamos en peligro la seguridad de la vida humana o la navegación de otros y que no haya restricciones de fondeo (posidonia, reservas, cables, zonas prohibidas). No hace falta permiso de Costas, de Salvamento o de Capitanía, y el pabellón no influye.",
+  "clave": "Fondear en una cala: libre si es seguro y no está restringido.",
+  "trampa": "La b) inventa un permiso que no hace falta."
+ },
+ "bal-per-2023-06-c-11": {
+  "explicacion": "En puerto está prohibido achicar aguas sucias o de sentina al mar; solo se admite en caso de emergencia grave por motivos de seguridad del barco o de las personas. Los aceites de cocina y los residuos tóxicos tampoco pueden echarse nunca.",
+  "clave": "Achicar en puerto: solo por emergencia grave.",
+  "trampa": "La b): el aceite de cocina está prohibido verterlo siempre."
+ },
+ "bal-per-2023-06-d-11": {
+  "explicacion": "Sí: las autoridades marítimas y portuarias pueden fijar las zonas en las que se permite fondear (y las prohibidas), en cualquier puerto o zona de su competencia, no solo en los grandes puertos o en la costa.",
+  "clave": "Las autoridades marítimas pueden fijar zonas de fondeo.",
+  "trampa": "La c) y la d) restringen una competencia que es general."
+ },
+ "bal-per-2023-09-bf-12": {
+  "explicacion": "Un vertido contaminante en alta mar se comunica a Salvamento Marítimo, que es el organismo encargado de la lucha contra la contaminación marina y coordina la respuesta. Los ministerios o el servicio de limpieza de un puerto no son quienes atienden la emergencia en la mar.",
+  "clave": "Contaminación en la mar: aviso a Salvamento Marítimo.",
+  "trampa": "La a) suena lógica, pero el ministerio no atiende las emergencias en la mar."
+ },
+ "bal-per-2023-09-c-12": {
+  "explicacion": "Las embarcaciones de recreo sin fines lucrativos se inscriben en la lista 7ª del Registro de Buques. La 6ª es para las de recreo que se explotan con fines lucrativos (alquiler, chárter), la 2ª para los buques de pasaje y la 5ª para remolcadores y auxiliares.",
+  "clave": "Recreo sin lucro: lista 7ª. Con lucro: lista 6ª.",
+  "trampa": "La a) (6ª) es la de las embarcaciones de alquiler."
+ },
+ "bal-per-2023-12-a-11": {
+  "explicacion": "Con la legislación actual (RD 550/2020, desde el 1-7-2020), todos los buques y embarcaciones deben mantenerse a 50 metros como mínimo de la zona de buceo señalizada con la bandera «Alfa». Los 25 metros eran de la orden de 1997, ya derogada, y la distancia es estatal, no autonómica.",
+  "clave": "Buceo: 50 m de resguardo como mínimo.",
+  "trampa": "La d) (25 m) es la distancia antigua.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2023-12-c-11": {
+  "explicacion": "En las zonas de baño balizadas está prohibida la navegación deportiva y de recreo, para proteger a los bañistas: no hay excepción para motos de agua ni para la vela. Para entrar o salir de la playa se usan los canales de acceso balizados. Navegar a menos de 3 nudos está permitido en la franja de baño de la costa no balizada, no dentro de las boyas.",
+  "clave": "Dentro de las boyas de baño, ningún barco; se entra y sale por el canal balizado.",
+  "trampa": "La b) aplica los 3 nudos de las playas no balizadas a las balizadas.",
+  "base": "and-2023-c2-t12",
+  "concepto": "and-2023-c2-t12"
+ },
+ "bal-per-2023-12-e-12": {
+  "explicacion": "La descarga de basuras desde los buques la regula el Anexo V del MARPOL. El Anexo III trata de las sustancias perjudiciales en bultos, el IV de las aguas sucias y el VI de la contaminación atmosférica.",
+  "clave": "MARPOL: I hidrocarburos, IV aguas sucias, V basuras, VI aire.",
+  "trampa": "La b) (Anexo IV) son las aguas sucias, no las basuras."
+ },
+ "bal-per-2024-04-a-11": {
+  "explicacion": "El uso de banderas autonómicas a bordo es voluntario, pero siempre junto a la bandera nacional, que es obligatoria. Ninguna comunidad puede hacer que sustituya al pabellón, y no depende del capitán marítimo.",
+  "clave": "Bandera autonómica: voluntaria y siempre con la nacional.",
+  "trampa": "La c) la hace obligatoria; es voluntaria."
+ },
+ "bal-per-2024-04-b-11": {
+  "explicacion": "El trayecto Maó-Ciutadella está en el Mediterráneo, que es zona especial del Anexo V del MARPOL: allí los restos de comida solo pueden echarse triturados (trozos de 25 mm como máximo), a más de 12 millas de tierra y en ruta. A 8,5 millas no se cumple la distancia; la a) se queda en 10 millas y sin triturar, y la c) da 35 mm y tampoco cumple la distancia. Ninguna es correcta.",
+  "clave": "Mediterráneo: comida solo triturada (≤ 25 mm) y a más de 12 millas.",
+  "trampa": "Aplicar la regla de fuera de las zonas especiales (triturada a más de 3 millas).",
+  "base": "and-2022-c3-t12",
+  "concepto": "and-2022-c3-t12"
+ },
+ "bal-per-2024-04-b-12": {
+  "explicacion": "Las aguas sucias sin tratar solo se pueden descargar a más de 12 millas de la costa y con la embarcación en ruta a una velocidad no inferior a 4 nudos, para que se dispersen.",
+  "clave": "Descarga de aguas sucias: en ruta a 4 nudos o más.",
+  "trampa": "La a) (3 nudos) confunde con el límite de velocidad de la franja de baño."
+ },
+ "bal-per-2024-04-ce-11": {
+  "explicacion": "La única ZEPIM reconocida en Baleares es el archipiélago de Cabrera. Los Freus de Eivissa y Formentera o el canal de Menorca tienen otras figuras de protección (parque natural, zonas de la Red Natura), pero no son ZEPIM.",
+  "clave": "ZEPIM en Baleares: solo Cabrera.",
+  "trampa": "La a) y la b) añaden a Cabrera zonas protegidas que no son ZEPIM.",
+  "concepto": "bal-per-2024-04-ce-11"
+ },
+ "bal-per-2024-12-ce-11": {
+  "explicacion": "La única ZEPIM reconocida en Baleares es el archipiélago de Cabrera. Los Freus de Eivissa y Formentera o el canal de Menorca tienen otras figuras de protección (parque natural, zonas de la Red Natura), pero no son ZEPIM.",
+  "clave": "ZEPIM en Baleares: solo Cabrera.",
+  "trampa": "La a) y la b) añaden a Cabrera zonas protegidas que no son ZEPIM.",
+  "concepto": "bal-per-2024-04-ce-11"
+ },
+ "bal-per-2024-04-df-11": {
+  "explicacion": "En zona portuaria está prohibida toda descarga de aguas sucias, estén tratadas o no. Solo pueden descargarse fuera, a más de 3 millas si están desmenuzadas y desinfectadas, o a más de 12 si no lo están, navegando a 4 nudos o más.",
+  "clave": "Puerto: ninguna descarga de aguas sucias.",
+  "trampa": "La a) vale a más de 3 millas en mar abierto, no en puerto."
+ },
+ "bal-per-2024-04-df-12": {
+  "explicacion": "Los canales de entrada y salida de las playas se señalizan con marcas flotantes laterales del sistema IALA región A: rojas a babor y verdes a estribor, entrando desde el mar. No se usan formas o colores distintos de los del balizamiento.",
+  "clave": "Canal de playa: boyas laterales, rojas y verdes.",
+  "trampa": "La c) solo habla del verde; el canal lleva las dos bandas.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   },
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2024-07-be-12": {
+  "explicacion": "La matrícula de una embarcación de recreo se obtiene inscribiéndola en el Registro Marítimo (Registro de Buques y Empresas Navieras), que se lleva en las Capitanías Marítimas. La Comandancia de Marina es una denominación antigua, y ni la comunidad autónoma ni el Instituto Hidrográfico la matriculan.",
+  "clave": "Matrícula: Registro Marítimo, en Capitanía.",
+  "trampa": "La b) usa un nombre de organismo que ya no existe con esa función."
+ },
+ "bal-per-2024-09-d-11": {
+  "explicacion": "Las embarcaciones de recreo sin fines lucrativos se inscriben en la lista 7ª del Registro de Buques. La 6ª es para las de recreo que se explotan con fines lucrativos (alquiler, chárter), la 3ª para los pesqueros y la 8ª no existe en el registro actual.",
+  "clave": "Recreo sin lucro: lista 7ª. Con lucro: lista 6ª.",
+  "trampa": "La c) (6ª) es la de las embarcaciones de alquiler."
+ },
+ "bal-per-2024-09-e-11": {
+  "explicacion": "Al entrar en un puerto hay que navegar por el lado de estribor del canal o de la bocana (Regla 9 del RIPA), igual que en tierra se circula por un lado. En la región A eso supone llevar las marcas verdes por estribor y las rojas por babor. No es indiferente ni se elige por la cercanía al amarre.",
+  "clave": "Entrando en puerto: por tu estribor.",
+  "trampa": "La c) parece práctica, pero cruzar la bocana para atajar es justo lo que hay que evitar."
+ },
+ "bal-per-2024-12-a-12": {
+  "explicacion": "Si no hay canal balizado, la aproximación a la playa se hace a la mínima velocidad (nunca más de 3 nudos en la franja de baño) y lo más perpendicular posible a la costa, para atravesar cuanto antes la zona de bañistas. Las playas no son, por norma general, parques naturales protegidos.",
+  "clave": "Sin canal: perpendicular a la costa y a mínima velocidad.",
+  "trampa": "La b) mantiene la velocidad mínima, pero ir en paralelo te deja más tiempo entre bañistas."
+ },
+ "bal-per-2024-12-b-12": {
+  "explicacion": "La zona de navegación 5 es la comprendida entre la costa y una línea paralela trazada a 5 millas. Las 2 millas son la zona 6, las 12 millas la zona 4 y las aguas protegidas la zona 7.",
+  "clave": "Zonas: 4 = 12 millas, 5 = 5 millas, 6 = 2 millas, 7 = aguas protegidas.",
+  "trampa": "La b) (2 millas) es la zona 6."
+ },
+ "bal-per-2024-12-ce-12": {
+  "explicacion": "En las zonas de baño no balizadas, la franja de baño de las playas es de 200 metros desde la orilla y dentro de ella no se puede navegar a más de 3 nudos (art. 73 del Reglamento General de Costas), lo que impide practicar deportes náuticos a menos de esa distancia. En la costa que no es playa la franja es de 50 metros.",
+  "clave": "Playa sin balizar: 200 m a 3 nudos como máximo.",
+  "trampa": "La a) (50 m) es la franja de la costa que no es playa."
+ },
+ "bal-per-2024-12-df-12": {
+  "explicacion": "Quien avista un vertido contaminante está obligado a avisar a Salvamento Marítimo, que coordina la lucha contra la contaminación marina. El Mayday se reserva para un peligro grave e inminente para un barco o personas, y un vertido no lo es.",
+  "clave": "Vertido a la vista: aviso obligatorio a Salvamento Marítimo.",
+  "trampa": "La c): el Mayday es para vidas o buques en peligro grave, no para una mancha."
+ },
+ "bal-per-2025-04-ae-11": {
+  "explicacion": "De la contaminación producida desde una embarcación responden solidariamente el armador (o naviero y propietario), el patrón y el asegurador de la responsabilidad civil. Las demás opciones dejan fuera a alguno de ellos o meten al práctico, que no tiene nada que ver.",
+  "clave": "Contaminación: responden armador, patrón y asegurador.",
+  "trampa": "La b) y la d) se quedan con dos de los tres responsables."
+ },
+ "bal-per-2025-07-a-11": {
+  "explicacion": "La bandera Bravo modificada es roja con una franja diagonal blanca; se ha usado para señalar buceadores. Hoy la señal reglamentaria de buceo en España es la «Alfa», que es blanca y azul (d), y no hay que confundirlas.",
+  "clave": "Bravo modificada: roja y blanca.",
+  "trampa": "La d) (blanco y azul) son los colores de la bandera Alfa.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "buceo"
+   }
+  ]
+ },
+ "bal-per-2025-07-b-12": {
+  "explicacion": "Fuera de las zonas especiales, el Anexo V del MARPOL permite tirar restos de comida sin triturar a partir de 12 millas de la tierra más próxima, con el barco en ruta. Si están triturados, basta con estar a más de 3 millas.",
+  "clave": "Comida sin triturar: más de 12 millas; triturada: más de 3.",
+  "trampa": "La d) (3 millas) vale solo para la comida triturada."
+ },
+ "bal-per-2025-07-c-11": {
+  "explicacion": "Si avistamos un vertido contaminante en mar abierto es obligatorio avisar a Salvamento Marítimo, que coordina la lucha contra la contaminación marina. El Mayday se reserva para un peligro grave e inminente para un barco o personas.",
+  "clave": "Vertido a la vista: aviso obligatorio a Salvamento Marítimo.",
+  "trampa": "La c): el Mayday es para vidas o buques en peligro grave, no para una mancha."
+ },
+ "bal-per-2025-09-a-11": {
+  "explicacion": "La obligación del capitán de prestar auxilio a las personas en peligro en la mar está en el Convenio SOLAS 1974, capítulo V, regla 33. El MARPOL trata de la contaminación, la Regla 5 del RIPA de la vigilancia y el STCW de la formación de la gente de mar.",
+  "clave": "Auxilio en la mar: SOLAS, capítulo V, regla 33.",
+  "trampa": "La b) cita una regla real del RIPA, pero trata de la vigilancia, no del auxilio."
+ },
+ "bal-per-2025-09-b-11": {
+  "explicacion": "Se pide la incorrecta: una rada protegida es precisamente un buen lugar para fondear, abrigado del viento y la mar. Lo que hay que evitar al fondear son las praderas de posidonia, los cables submarinos y los canales de acceso a puertos o playas.",
+  "clave": "Para fondear evita posidonia, cables y canales.",
+  "trampa": "Pregunta por la que NO hay que evitar."
+ },
+ "bal-per-2025-12-a-12": {
+  "explicacion": "Amarrados en un puerto no se permite ninguna descarga de aguas sucias, ni siquiera tratadas: en zonas portuarias, aguas protegidas, rías y bahías la prohibición es total. Hay que usar el tanque de retención y vaciarlo en las instalaciones de recogida del puerto.",
+  "clave": "En puerto: ninguna descarga de aguas sucias.",
+  "trampa": "La c) vale a más de 3 millas en mar abierto, no en puerto."
+ },
+ "bal-per-2025-12-b-11": {
+  "explicacion": "En zonas portuarias y aguas protegidas está prohibida toda descarga de aguas sucias, estén tratadas o no. No hay excepciones por mezcla, por porcentaje ni por tratamiento químico.",
+  "clave": "Puerto y aguas protegidas: ninguna descarga.",
+  "trampa": "La d) vale fuera de esas zonas, no dentro."
+ },
+ "bal-per-2025-12-c-12": {
+  "explicacion": "El Mediterráneo es zona especial del Anexo V del MARPOL: allí solo se pueden descargar restos de comida a más de 12 millas de tierra, desmenuzados o triturados para que pasen por una criba de 25 mm y con la embarcación en ruta. No están prohibidos del todo, pero tampoco se pueden echar sin procesar.",
+  "clave": "Mediterráneo: comida triturada (≤ 25 mm), a más de 12 millas y en ruta.",
+  "trampa": "La a) prohíbe lo que en zona especial sí se permite con triturado."
+ },
+ "bal-per-2025-12-d-12": {
+  "explicacion": "Las ZEPIM (Convenio de Barcelona) son áreas importantes para conservar la biodiversidad del Mediterráneo y que tienen un interés científico, estético, cultural o educativo especial. Son ciertas la a) y la c); la b) no tiene nada que ver, las zonas de ejercicios militares son otra cosa.",
+  "clave": "ZEPIM: biodiversidad y valor científico o cultural.",
+  "trampa": "La b) mezcla zonas militares, que no son espacios protegidos."
+ },
+ "bal-per-2026-03-b-11": {
+  "explicacion": "El RD 339/2021 prohíbe con carácter general la descarga de aguas sucias desde embarcaciones de recreo en zonas portuarias, aguas protegidas y rías, bahías y similares, aunque estén tratadas. Las tres opciones son espacios prohibidos, por eso es la d).",
+  "clave": "Puerto, aguas protegidas, rías y bahías: ninguna descarga.",
+  "trampa": "Cada opción es una zona prohibida; la respuesta es «todas»."
+ },
+ "bal-per-2026-03-b-12": {
+  "explicacion": "Fuera de las zonas especiales, la regla 4 del Anexo V del MARPOL permite descargar restos de comida sin triturar a 12 millas o más de la tierra más próxima, y triturados a 3 millas o más, siempre con el buque en ruta. La a) añade «parado o en ruta», y la descarga debe hacerse en ruta, por eso la oficial se queda solo con la b).",
+  "clave": "Comida: triturada a más de 3 millas, sin triturar a más de 12, siempre en ruta.",
+  "trampa": "La a) parece correcta, pero admite descargar con el buque parado."
+ },
+ "bal-per-2026-03-c-12": {
+  "explicacion": "El RD 339/2021 exige un sistema de retención o de tratamiento de aguas sucias a todas las embarcaciones de recreo que tengan aseos, mientras estén en espacios donde haya limitaciones de descarga. No depende de la eslora, la lista de registro ni la distancia a la costa.",
+  "clave": "¿Tienes aseo? Necesitas retención o tratamiento.",
+  "trampa": "La a) inventa un límite de eslora."
+ },
+ "bal-per-2026-03-d-11": {
+  "explicacion": "La bandera «Alfa» (blanca y azul) indica que hay un buzo sumergido, y con la normativa actual (RD 550/2020) hay que darle un resguardo mínimo de 50 metros. Los 25 metros eran de la norma derogada, y la c) describe la Bravo modificada, que es roja con diagonal blanca, no la Alfa.",
+  "clave": "Bandera Alfa: buzo sumergido, 50 m de resguardo.",
+  "trampa": "La c) acierta la distancia, pero describe otra bandera.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2026-03-d-12": {
+  "explicacion": "El puerto de matrícula es aquel en cuyo Registro (la Capitanía Marítima correspondiente) está inscrita la embarcación. No depende de dónde tenga el amarre, de dónde se construyó ni de dónde viva el dueño.",
+  "clave": "Puerto de matrícula = donde está registrada.",
+  "trampa": "La a) confunde el puerto base, que es donde amarra, con el de matrícula."
+ },
+ "bal-per-2026-06-a-12": {
+  "explicacion": "Hasta 3 millas de la costa solo se permite descargar el efluente de una instalación de tratamiento homologada que no deje sólidos flotantes ni produzca decoloración en el agua (y nunca en puertos, aguas protegidas, rías o bahías). Las aguas solo desmenuzadas y desinfectadas tienen que esperar a estar a más de 3 millas.",
+  "clave": "Hasta 3 millas: solo efluente tratado, sin sólidos ni color.",
+  "trampa": "La b) es la condición para descargar a partir de 3 millas."
+ },
+ "bal-per-2026-06-b-11": {
+  "explicacion": "Según el RD 875/2014, el título de Patrón de Embarcaciones de Recreo faculta, en sus atribuciones básicas, para gobernar embarcaciones de recreo de hasta 15 metros de eslora, en navegaciones hasta 12 millas de la costa (y entre islas de Baleares y Canarias). Los 24 metros corresponden al Patrón de Yate.",
+  "clave": "PER: hasta 15 m y 12 millas.",
+  "trampa": "La a) (12) mezcla la eslora con las millas."
+ },
+ "bal-per-2026-06-d-12": {
+  "explicacion": "Todas las embarcaciones matriculadas en España deben enarbolar el pabellón nacional. La bandera autonómica es voluntaria, siempre como acompañamiento, y nunca puede ser mayor que la nacional.",
+  "clave": "Matriculada en España = pabellón español.",
+  "trampa": "La c) convierte en obligatoria una bandera que es voluntaria."
+ },
+ "bal-per-2026-09-c-12": {
+  "explicacion": "De las opciones, solo el archipiélago de Cabrera es ZEPIM. La Illa de l'Aire, Dragonera y los Freus tienen valores naturales y otras figuras de protección, pero no están en la lista de ZEPIM.",
+  "clave": "ZEPIM en Baleares: Cabrera.",
+  "trampa": "Las razones que dan las otras opciones suenan bien, pero no las convierten en ZEPIM."
+ },
+ "bal-per-2026-09-d-11": {
+  "explicacion": "En zonas con muchos bañistas, la Administración puede balizar canales de entrada y salida de embarcaciones señalados con marcas flotantes (boyas laterales), y solo por ellos se puede acceder a la playa (art. 73 del Reglamento General de Costas). No se señalan con banderas ni se prohíbe por sistema el acceso.",
+  "clave": "Canal de playa: balizado con boyas flotantes.",
+  "trampa": "La b) cambia las boyas por una bandera."
+ },
+ "bal-per-2017-03-a-13": {
+  "explicacion": "La cardinal Sur lleva como tope dos conos negros superpuestos con las puntas hacia abajo, apuntando al sur. Puntas hacia arriba es la Norte, opuestos por el vértice (forma de reloj de arena) la Oeste y opuestos por la base (rombo) la Este.",
+  "clave": "Conos hacia abajo = Sur.",
+  "trampa": "Confundir «opuestos por los vértices» (Oeste) y «por las bases» (Este).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "base": "and-2026-c1-t14",
+  "concepto": "and-2026-c1-t14"
+ },
+ "bal-per-2017-03-a-14": {
+  "explicacion": "En la región A, que es la que se aplica en España, las laterales de babor son rojas y las de estribor verdes. El amarillo es de las especiales y el blanco solo aparece en las franjas de aguas navegables.",
+  "clave": "Región A: rojo a babor entrando.",
+  "trampa": "La a) (verde) es la de babor en la región B.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "base": "and-2025-c2-t13",
+  "concepto": "and-2025-c2-t13"
+ },
+ "bal-per-2017-03-a-15": {
+  "explicacion": "Las marcas especiales son amarillas, llevan como tope un aspa amarilla y, si tienen luz, es amarilla. El rojo y el verde son de las laterales, y el blanco con rojo son las franjas de aguas navegables.",
+  "clave": "Especial: todo amarillo.",
+  "trampa": "La c) (blanco y rojo) es la marca de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "base": "and-2025-c2-t17",
+  "concepto": "and-2025-c2-t17"
+ },
+ "bal-per-2017-03-a-16": {
+  "explicacion": "En la región A, entrando en puerto según el sentido convencional del balizamiento, las marcas rojas quedan por babor y las verdes por estribor. No es aleatorio: el sentido convencional es el de quien viene del mar.",
+  "clave": "Región A, entrando: rojo a babor, verde a estribor.",
+  "trampa": "La b) es la región B, donde el rojo queda a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ]
+ },
+ "bal-per-2017-03-a-17": {
+  "explicacion": "El tope del peligro aislado son dos esferas (bolas) negras, una encima de otra. El aspa amarilla es de las especiales, y en el sistema no existen topes de un aspa negra ni de una sola bola negra.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Mezclar el número de esferas con el color.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2026-c2-t17",
+  "concepto": "and-2026-c2-t17"
+ },
+ "bal-per-2017-03-b-13": {
+  "explicacion": "La marca de aguas navegables lleva, si tiene marca de tope, una única esfera roja, a juego con sus franjas verticales rojas y blancas. Las dos esferas negras son del peligro aislado, y no existen topes de dos esferas rojas ni de una esfera negra sola.",
+  "clave": "Aguas navegables: una esfera roja. Peligro aislado: dos esferas negras.",
+  "trampa": "Confundir la esfera roja con las dos esferas negras.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2021-c1-t15",
+  "concepto": "and-2021-c1-t15"
+ },
+ "bal-per-2017-12-e-17": {
+  "explicacion": "La marca de aguas navegables lleva, si tiene marca de tope, una única esfera roja, a juego con sus franjas verticales rojas y blancas. Las dos esferas negras son del peligro aislado, los dos conos hacia arriba de la cardinal Norte y los opuestos por el vértice de la cardinal Oeste.",
+  "clave": "Aguas navegables: una esfera roja. Peligro aislado: dos esferas negras.",
+  "trampa": "Confundir la esfera roja con las dos esferas negras.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2021-c1-t15",
+  "concepto": "and-2021-c1-t15"
+ },
+ "bal-per-2026-03-a-17": {
+  "explicacion": "La marca de aguas navegables lleva, si tiene marca de tope, una única esfera roja, a juego con sus franjas verticales rojas y blancas. Las dos esferas negras son del peligro aislado y la «X» amarilla de las especiales; una esfera negra sola no existe en el sistema.",
+  "clave": "Aguas navegables: una esfera roja. Peligro aislado: dos esferas negras.",
+  "trampa": "Confundir la esfera roja con las dos esferas negras.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "base": "and-2021-c1-t15",
+  "concepto": "and-2021-c1-t15"
+ },
+ "bal-per-2017-03-b-14": {
+  "explicacion": "El rojo y el verde en una misma marca solo aparecen en las laterales modificadas, las que indican el canal principal en una bifurcación: roja con una banda verde o verde con una banda roja. Las especiales son amarillas, las cardinales negras y amarillas, y el peligro aislado negro y rojo.",
+  "clave": "Rojo y verde juntos: lateral de bifurcación.",
+  "trampa": "La d) (peligro) combina rojo con negro, no con verde."
+ },
+ "bal-per-2017-03-b-15": {
+  "explicacion": "Franjas horizontales negras y rojas con dos esferas negras de tope es la marca de peligro aislado: señala un peligro de poca extensión rodeado de aguas navegables. Su luz es blanca con grupos de dos destellos.",
+  "clave": "Negro y rojo con dos esferas negras: peligro aislado.",
+  "trampa": "La c) (aguas navegables) es roja y blanca con franjas verticales y una esfera roja.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ]
+ },
+ "bal-per-2017-03-b-16": {
+  "explicacion": "La cardinal Norte emite luz blanca centelleante (rápida o muy rápida) continua, sin grupos: son las 12 del reloj. Tres destellos son de la Este, y uno o dos destellos no corresponden a ninguna cardinal.",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "La a) da grupos de 3, que son de la cardinal Este.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "base": "and-2023-c2-t17",
+  "concepto": "and-2023-c2-t17"
+ },
+ "bal-per-2017-03-b-17": {
+  "explicacion": "La marca de peligro aislado emite luz blanca en grupos de dos destellos, GpD(2). El rojo es propio de las laterales de babor y no se combina con el blanco en esta marca.",
+  "clave": "Peligro aislado: blanca, dos destellos, como sus dos esferas.",
+  "trampa": "Los colores rojo y negro de su pintura no se trasladan a la luz: la luz es blanca.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2021-c1-t14",
+  "concepto": "and-2021-c1-t14"
+ },
+ "bal-per-2017-09-d-17": {
+  "explicacion": "La marca de peligro aislado emite luz blanca en grupos de dos destellos, GpD(2). El rojo es propio de las laterales de babor, y una luz alternativa blanca y roja no corresponde a esta marca.",
+  "clave": "Peligro aislado: blanca, dos destellos, como sus dos esferas.",
+  "trampa": "Los colores rojo y negro de su pintura no se trasladan a la luz: la luz es blanca.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2021-c1-t14",
+  "concepto": "and-2021-c1-t14"
+ },
+ "bal-per-2017-03-ci-13": {
+  "explicacion": "Las marcas especiales llevan como tope un aspa amarilla en forma de X, del mismo color que su cuerpo y su luz. La cruz amarilla vertical (+) es el tope de la boya de naufragio reciente, y no existen aspas negras ni azules.",
+  "clave": "Especial: aspa amarilla (X). Naufragio reciente: cruz amarilla (+).",
+  "trampa": "La d) (cruz recta) es la marca de un naufragio reciente, no la especial.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-13"
+ },
+ "bal-per-2018-04-b-17": {
+  "explicacion": "Las marcas especiales llevan como tope un aspa amarilla en forma de X, del mismo color que su cuerpo y su luz. Los conos opuestos por el vértice son de la cardinal Oeste, los conos hacia arriba de la Norte y las dos esferas negras del peligro aislado.",
+  "clave": "Especial: aspa amarilla (X).",
+  "trampa": "Las otras opciones son topes reales, pero de otras marcas.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-13"
+ },
+ "bal-per-2023-09-bf-17": {
+  "explicacion": "Las marcas especiales llevan como tope un aspa amarilla en forma de X, del mismo color que su cuerpo y su luz. Los conos hacia arriba son de la cardinal Norte, la esfera roja de aguas navegables y las dos esferas negras del peligro aislado.",
+  "clave": "Especial: aspa amarilla (X).",
+  "trampa": "Las otras opciones son topes reales, pero de otras marcas.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-13"
+ },
+ "bal-per-2024-07-df-16": {
+  "explicacion": "Las marcas especiales llevan como tope un aspa amarilla en forma de X, del mismo color que su cuerpo y su luz. En el sistema no existen aspas azules o negras ni bolas amarillas como tope.",
+  "clave": "Especial: aspa amarilla (X).",
+  "trampa": "El azul solo aparece, con el amarillo, en la boya de naufragio reciente.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-13"
+ },
+ "bal-per-2017-03-ci-14": {
+  "explicacion": "El sentido convencional del balizamiento es el de entrada a puerto. Al salir se invierte: en la región A las marcas de babor (rojas) quedan por nuestro estribor, y las de estribor (verdes) por babor.",
+  "clave": "Saliendo de puerto: rojo a estribor.",
+  "trampa": "La b) aplica la regla de entrada sin darle la vuelta.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ]
+ },
+ "bal-per-2017-03-ci-15": {
+  "explicacion": "En la región A las laterales de estribor son verdes y su tope es un cono verde con el vértice hacia arriba. El cilindro rojo es de babor, y los conos negros son de las cardinales.",
+  "clave": "Estribor = verde = cono.",
+  "trampa": "La b) y la c) usan conos negros, que son de las cardinales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2017-03-ci-16": {
+  "explicacion": "Luz blanca centelleante en grupos de 9 cada 15 segundos (Ct(9) 15s) es la cardinal Oeste: las 9 del reloj. La Sur da 6 centelleos más un destello largo, el peligro aislado dos destellos y la especial tiene luz amarilla.",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "La a) (Sur) también va en grupos, pero de 6 más un destello largo.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ]
+ },
+ "bal-per-2017-03-fa-13": {
+  "explicacion": "Una luz roja con destellos es de una lateral de babor de la región A (el número de destellos no cambia la clase de marca), y el tope de las laterales de babor es un cilindro rojo. El cono con el vértice hacia arriba es de estribor y la esfera es de aguas navegables.",
+  "clave": "Luz roja = babor = cilindro.",
+  "trampa": "La a) es el cono verde de estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-13"
+ },
+ "bal-per-2019-04-b-17": {
+  "explicacion": "Una luz roja con destellos es de una lateral de babor de la región A (el número de destellos no cambia la clase de marca), y el tope de las laterales de babor es un cilindro rojo. El cono con el vértice hacia arriba es de estribor y la esfera es de aguas navegables.",
+  "clave": "Luz roja = babor = cilindro.",
+  "trampa": "La a) es el cono verde de estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-13"
+ },
+ "bal-per-2017-03-fa-14": {
+  "explicacion": "Las marcas cardinales indican el lado por el que se debe pasar para salvar un peligro: las aguas más seguras están en el cuadrante que nombra la marca (al norte de una cardinal Norte, etc.). No señalan dónde fondear ni dónde atracar.",
+  "clave": "Cardinal: pasa por el lado que dice su nombre.",
+  "trampa": "La b) mezcla la marca con zonas de fondeo, que señalan las especiales.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ]
+ },
+ "bal-per-2017-03-fa-15": {
+  "explicacion": "Una cardinal Este indica que las aguas seguras están al este de la marca. Navegando al norte, para pasar por su este hay que dejarla por nuestro costado de babor. No obliga a caer a babor ni a poner rumbo Este al llegar.",
+  "clave": "Cardinal Este: pasa por su este (rumbo N, déjala a babor).",
+  "trampa": "La c) nos haría pasar por su oeste, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-15"
+ },
+ "bal-per-2018-04-d-17": {
+  "explicacion": "Una cardinal Este indica que las aguas seguras están al este de la marca. Con rumbo Norte y la marca por la proa, para pasar por su este hay que dejarla por nuestro costado de babor. No obliga a caer a babor ni a poner rumbo Este al llegar.",
+  "clave": "Cardinal Este: pasa por su este (rumbo N, déjala a babor).",
+  "trampa": "La c) nos haría pasar por su oeste, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-15"
+ },
+ "bal-per-2017-03-fa-16": {
+  "explicacion": "Una luz roja con grupos de destellos (2+1) es la de una lateral modificada de babor de la región A (roja con una banda verde): indica que el canal principal está a estribor. Una lateral de babor normal no usa el ritmo 2+1, y el canal principal a babor tendría luz verde.",
+  "clave": "Destellos 2+1: bifurcación. Color de la luz = banda que manda.",
+  "trampa": "La c) acierta el color de babor, pero el ritmo 2+1 indica la bifurcación.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ]
+ },
+ "bal-per-2017-03-fa-17": {
+  "explicacion": "La cardinal Norte (conos con los vértices hacia arriba) se coloca al norte del peligro e indica que las aguas seguras están al norte de la marca. La oficial lo amplía a los cuadrantes este, norte y oeste desde la boya, entendiendo que el peligro queda al sur.",
+  "clave": "Cardinal Norte: el peligro al sur, pasa por el norte.",
+  "trampa": "La a) es justo el lado del peligro, al sur de la boya.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "discrepancia": "El sistema IALA solo dice que las aguas más seguras están en el cuadrante norte de la marca; no garantiza que se pueda pasar por el este o el oeste de la boya, que pueden quedar cerca del peligro. La c), que limita el paso al cuadrante norte, se ajusta más a la definición.",
+  "defendible": "c"
+ },
+ "bal-per-2017-03-ge-13": {
+  "explicacion": "La luz blanca en grupos de dos destellos, GpD(2), es el ritmo de la marca de peligro aislado. La de aguas navegables usa isofase, ocultaciones, destello largo o Morse «A», y las bifurcaciones usan grupos de 2+1 en rojo o verde.",
+  "clave": "Dos esferas negras, dos destellos blancos.",
+  "trampa": "Confundir el GpD(2) con el GpD(2+1) de las bifurcaciones.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2023-c3-t13",
+  "concepto": "and-2023-c3-t13"
+ },
+ "bal-per-2017-03-ge-14": {
+  "explicacion": "Las marcas especiales son amarillas, llevan como tope un aspa amarilla y, si tienen luz, es amarilla. El negro con franjas rojas es el peligro aislado, el negro sobre amarillo la cardinal Norte y el amarillo con banda negra la cardinal Oeste.",
+  "clave": "Especial: todo amarillo.",
+  "trampa": "La d) también lleva amarillo, pero es la cardinal Oeste.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "base": "and-2025-c2-t17",
+  "concepto": "and-2025-c2-t17"
+ },
+ "bal-per-2017-03-ge-15": {
+  "explicacion": "El tope del peligro aislado son dos esferas negras, una encima de otra. La esfera roja es de aguas navegables, los conos hacia arriba de la cardinal Norte y los opuestos por el vértice de la Oeste.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Confundir la esfera roja de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2026-c2-t17",
+  "concepto": "and-2026-c2-t17"
+ },
+ "bal-per-2017-07-eda-14": {
+  "explicacion": "El tope del peligro aislado son dos esferas negras, una encima de otra. No existen topes de dos esferas rojas, de una esfera negra sola ni de tres esferas.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Mezclar el número de esferas con el color.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2026-c2-t17",
+  "concepto": "and-2026-c2-t17"
+ },
+ "bal-per-2018-09-d-16": {
+  "explicacion": "El tope del peligro aislado son dos esferas negras, una encima de otra. Los dos conos negros son de las cardinales, y no existen topes de dos esferas rojas ni de dos cilindros rojos.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Mezclar el número de esferas con el color.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2026-c2-t17",
+  "concepto": "and-2026-c2-t17"
+ },
+ "bal-per-2020-12-d-17": {
+  "explicacion": "El tope del peligro aislado son dos esferas negras, una encima de otra. El aspa amarilla es de las especiales, la cruz amarilla de la boya de naufragio reciente y no existe un tope de dos esferas rojas.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Mezclar el número de esferas con el color.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2026-c2-t17",
+  "concepto": "and-2026-c2-t17"
+ },
+ "bal-per-2025-09-a-14": {
+  "explicacion": "El tope del peligro aislado son dos esferas negras, una encima de otra. La esfera roja única es de aguas navegables, y no existen topes de dos esferas rojas ni de tres esferas.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Mezclar el número de esferas con el color.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2026-c2-t17",
+  "concepto": "and-2026-c2-t17"
+ },
+ "bal-per-2017-03-ge-16": {
+  "explicacion": "Saliendo de puerto se invierte el sentido convencional, así que dejamos por babor las marcas de estribor. En la región A son verdes y su tope es un cono verde con el vértice hacia arriba. El cilindro rojo es de babor, y no existen conos rojos ni cilindros verdes.",
+  "clave": "Saliendo de puerto: verde (cono) a babor.",
+  "trampa": "La c) (roja cilíndrica) es la que dejarías a babor al entrar.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ]
+ },
+ "bal-per-2017-03-ge-17": {
+  "explicacion": "La cardinal Este es negra con una ancha banda horizontal amarilla en su centro. Sus conos (bases unidas, puntas hacia fuera) apuntan a donde está el negro: arriba y abajo. La a) es la Norte, la c) la Sur y la d) la Oeste.",
+  "clave": "Este: negro arriba y abajo, amarillo en medio (conos en rombo).",
+  "trampa": "Intercambiar Este y Oeste.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "base": "and-2025-c1-t15",
+  "concepto": "and-2025-c1-t15"
+ },
+ "bal-per-2017-07-b-13": {
+  "explicacion": "Una boya cónica verde con una banda roja central es una lateral de estribor modificada de la región A: indica que el canal principal está a babor en el sentido convencional, y para seguirlo hay que dejarla por nuestro estribor. Son ciertas la a) y la d).",
+  "clave": "Bifurcación: el color dominante dice por qué lado dejarla.",
+  "trampa": "La b) invierte el lado del canal principal.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ]
+ },
+ "bal-per-2017-07-b-14": {
+  "explicacion": "Las zonas reservadas al recreo, los límites de un fondeadero, los cables o las tuberías se señalan con marcas especiales, amarillas y con aspa amarilla de tope. Las cardinales y el peligro aislado indican peligros, y la de peligro nuevo, naufragios recientes.",
+  "clave": "Especial = amarilla = «consulta la carta».",
+  "trampa": "La d) (cardinales) señala por dónde pasar para evitar un peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ]
+ },
+ "bal-per-2017-07-b-15": {
+  "explicacion": "El naufragio reciente que aún no figura en las publicaciones náuticas se señala con la boya de pecio de emergencia, de franjas verticales azules y amarillas, con una cruz amarilla recta (+) como tope y luz alternativa azul y amarilla. El aspa amarilla (X) es de las especiales.",
+  "clave": "Naufragio reciente: azul y amarilla, cruz amarilla (+).",
+  "trampa": "La b) (aspa) es el tope de la marca especial."
+ },
+ "bal-per-2017-07-b-17": {
+  "explicacion": "La bifurcación con canal principal a estribor es una lateral de babor modificada (roja con banda verde), así que su tope es el de babor: un cilindro rojo. Los cilindros verdes y los conos rojos no existen en la región A, y el cono verde es de estribor o de la bifurcación con canal principal a babor.",
+  "clave": "Canal principal a estribor: marca roja, cilindro rojo.",
+  "trampa": "Escoger el cono verde porque el canal principal está a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "base": "and-2025-c1-t17",
+  "concepto": "and-2025-c1-t17"
+ },
+ "bal-per-2017-07-c-13": {
+  "explicacion": "La marca de peligro aislado es negra con una o varias franjas horizontales rojas, y lleva dos esferas negras de tope. El rojo y blanco es de aguas navegables, el amarillo y negro de las cardinales y el rojo y verde de las bifurcaciones.",
+  "clave": "Peligro aislado: negro y rojo.",
+  "trampa": "La b) (rojo y blanco) es la marca de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ]
+ },
+ "bal-per-2017-07-c-15": {
+  "explicacion": "La cardinal Sur, que indica aguas navegables al sur, lleva dos conos negros con los vértices hacia abajo, apuntando al sur. Vértices hacia arriba es la Norte, opuestos por las bases (rombo) la Este y enfrentados por los vértices (cintura) la Oeste.",
+  "clave": "Conos hacia abajo = Sur.",
+  "trampa": "Confundir «opuestos por los vértices» y «por las bases».",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "base": "and-2026-c1-t14",
+  "concepto": "and-2026-c1-t14"
+ },
+ "bal-per-2017-07-c-16": {
+  "explicacion": "Amarillo arriba y negro abajo es la cardinal Sur: los conos apuntan hacia donde está el negro, así que van con los vértices hacia abajo. Hacia arriba sería la Norte (negro arriba), unidos por las bases la Este y por los vértices la Oeste.",
+  "clave": "Las puntas de los conos señalan dónde está el negro.",
+  "trampa": "La a) sería la Norte, que es negra arriba.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ]
+ },
+ "bal-per-2017-07-c-17": {
+  "explicacion": "Amarillo sobre negro es la cardinal Sur: las aguas seguras están al sur de la marca. Navegando al 045º con la marca por la proa, para pasar por su sur hay que caer a estribor (hacia el SE). No es la Este, que es negra con banda amarilla, ni la Oeste, amarilla con banda negra.",
+  "clave": "Amarillo sobre negro = Sur: pásala por su sur.",
+  "trampa": "La d) (Oeste) nos llevaría por el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "concepto": "bal-per-2017-07-c-17"
+ },
+ "bal-per-2021-06-e-14": {
+  "explicacion": "Un castillete amarillo arriba y negro abajo es la cardinal Sur: las aguas seguras están al sur de la marca. Navegando al 045º con la marca por la proa, para pasar por su sur hay que caer a estribor (hacia el SE). No es la Oeste ni la Este, y tampoco es de aguas navegables, que es roja y blanca.",
+  "clave": "Amarillo sobre negro = Sur: pásala por su sur.",
+  "trampa": "La a) (Oeste) nos llevaría por el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "concepto": "bal-per-2017-07-c-17"
+ },
+ "bal-per-2024-04-df-17": {
+  "explicacion": "Un castillete amarillo arriba y negro abajo es la cardinal Sur: las aguas seguras están al sur de la marca. Navegando al 045º con la marca por la proa, para pasar por su sur hay que caer a estribor (hacia el SE). No es la Oeste ni la Este, y tampoco es de aguas navegables, que es roja y blanca.",
+  "clave": "Amarillo sobre negro = Sur: pásala por su sur.",
+  "trampa": "La d) (Oeste) nos llevaría por el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "concepto": "bal-per-2017-07-c-17"
+ },
+ "bal-per-2017-07-eda-13": {
+  "explicacion": "En la región A las laterales de babor son rojas y su tope, si lo tienen, es un cilindro rojo. El cono verde es de estribor, y los conos negros son de las cardinales.",
+  "clave": "Babor = rojo = cilindro (lata roja).",
+  "trampa": "La d) (cono verde) es el tope de estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "base": "and-2021-c2-t15",
+  "concepto": "and-2021-c2-t15"
+ },
+ "bal-per-2017-07-eda-17": {
+  "explicacion": "La cardinal Sur lleva dos conos negros con los vértices hacia abajo, apuntando al sur. Vértices hacia arriba es la Norte, opuestos por la base (rombo) la Este y opuestos por los vértices (cintura) la Oeste.",
+  "clave": "Conos hacia abajo = Sur.",
+  "trampa": "Confundir «opuestos por los vértices» y «por las bases».",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "base": "and-2026-c1-t14",
+  "concepto": "and-2026-c1-t14"
+ },
+ "bal-per-2019-09-a-17": {
+  "explicacion": "La cardinal Sur lleva dos conos negros con las puntas hacia abajo, apuntando al sur. Puntas hacia arriba es la Norte, superpuestos por el vértice (cintura) la Oeste y opuestos por la base (rombo) la Este.",
+  "clave": "Conos hacia abajo = Sur.",
+  "trampa": "Confundir «opuestos por los vértices» y «por las bases».",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "base": "and-2026-c1-t14",
+  "concepto": "and-2026-c1-t14"
+ },
+ "bal-per-2017-07-fc-13": {
+  "explicacion": "Las marcas de peligro nuevo (boya de pecio de emergencia) tienen forma de castillete o espeque, con franjas verticales azules y amarillas, y llevan como tope una cruz amarilla recta (+). El aspa amarilla en X es de las especiales.",
+  "clave": "Peligro nuevo: castillete o espeque con cruz amarilla (+).",
+  "trampa": "La d) usa el aspa (X), que es de las especiales."
+ },
+ "bal-per-2017-07-fc-14": {
+  "explicacion": "Las marcas de peligro aislado se colocan sobre un peligro de dimensiones limitadas que está rodeado por completo de aguas navegables, así que se pueden pasar por cualquier lado. Los peligros nuevos tienen su propia marca, las laterales señalan los lados del canal y las cardinales indican por qué cuadrante pasar.",
+  "clave": "Peligro aislado: peligro pequeño con agua navegable alrededor.",
+  "trampa": "La b) es la marca de peligro nuevo (pecio de emergencia).",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "bal-per-2017-07-fc-14"
+ },
+ "bal-per-2024-04-ce-15": {
+  "explicacion": "Las marcas de peligro aislado se colocan sobre un peligro de dimensiones limitadas que está rodeado por completo de aguas navegables, así que se pueden pasar por cualquier lado. Los peligros nuevos tienen su propia marca, las laterales señalan los lados del canal y las cardinales indican por qué cuadrante pasar.",
+  "clave": "Peligro aislado: peligro pequeño con agua navegable alrededor.",
+  "trampa": "La b) es la marca de peligro nuevo (pecio de emergencia).",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "bal-per-2017-07-fc-14"
+ },
+ "bal-per-2017-09-a-13": {
+  "explicacion": "Las marcas de aguas navegables son blancas y rojas, con franjas verticales, y llevan una esfera roja de tope. Amarillo y negro son de las cardinales, negro y rojo del peligro aislado, y azul con amarillo de la boya de naufragio reciente.",
+  "clave": "Aguas navegables: franjas verticales rojas y blancas.",
+  "trampa": "La b) (negro y rojo) es el peligro aislado.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ]
+ },
+ "bal-per-2017-09-a-14": {
+  "explicacion": "Una luz blanca centelleante en grupos de nueve es la cardinal Oeste: las aguas seguras están al oeste de la marca, así que hay que pasar por su oeste y la marca nos queda al Este. Al este pasaríamos con la cardinal Este (3), al sur con la Sur (6 más destello largo) y al norte con la Norte (continua).",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "La a) confunde «dejarla al este» con «pasar por su este».",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ]
+ },
+ "bal-per-2017-09-a-16": {
+  "explicacion": "En la región A, una marca roja en un canal (sea boya, espeque o castillete) es una lateral de babor. Las de estribor son verdes, y las de canal principal combinan rojo y verde.",
+  "clave": "Rojo = babor; la forma del cuerpo no cambia la clase.",
+  "trampa": "La c) es roja, pero lleva una banda verde."
+ },
+ "bal-per-2017-09-c-14": {
+  "explicacion": "La cardinal Norte es negra arriba y amarilla abajo (negro sobre amarillo): sus conos apuntan hacia arriba, donde está el negro. Amarillo sobre negro es la Sur, amarillo con banda negra la Oeste y negro con banda amarilla la Este.",
+  "clave": "Las puntas de los conos señalan dónde está el negro.",
+  "trampa": "La a) (amarillo sobre negro) es la Sur.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2017-09-c-17": {
+  "explicacion": "La marca de peligro aislado emite luz blanca en grupos de dos destellos, GpD(2). El rojo es propio de las laterales de babor, y los grupos de 3 o 4 no corresponden a esta marca.",
+  "clave": "Peligro aislado: blanca, dos destellos, como sus dos esferas.",
+  "trampa": "Los colores rojo y negro de su pintura no se trasladan a la luz: la luz es blanca.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "base": "and-2021-c1-t14",
+  "concepto": "and-2021-c1-t14"
+ },
+ "bal-per-2017-09-d-13": {
+  "explicacion": "La cardinal Norte emite luz blanca centelleante (o centelleante rápida) continua, sin grupos: son las 12 del reloj. Los grupos de tres son de la Este y los de seis de la Sur; las cardinales nunca tienen luz roja.",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "La d) acierta el ritmo continuo, pero las cardinales siempre son blancas.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "base": "and-2023-c2-t17",
+  "concepto": "and-2023-c2-t17"
+ },
+ "bal-per-2017-09-d-15": {
+  "explicacion": "Los conos de las cardinales señalan dos cosas a la vez: hacia dónde está el negro en el cuerpo de la marca (arriba en la Norte, abajo en la Sur, arriba y abajo en la Este, en el centro en la Oeste) y el cuadrante por el que se debe navegar. Son ciertas la a) y la b). El sistema cardinal es igual en las regiones A y B.",
+  "clave": "Las puntas de los conos señalan el negro y el lado seguro.",
+  "trampa": "La d): solo las laterales cambian entre las regiones A y B.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales"
+   }
+  ]
+ },
+ "bal-per-2017-09-d-16": {
+  "explicacion": "En la región A, una marca verde en un canal (sea boya, espeque o castillete) es una lateral de estribor. Las de babor son rojas, y las de canal principal combinan verde y rojo.",
+  "clave": "Verde = estribor; la forma del cuerpo no cambia la clase.",
+  "trampa": "La b) es verde, pero lleva una banda roja."
+ },
+ "bal-per-2017-09-e-13": {
+  "explicacion": "Negro arriba, amarillo abajo y conos con los vértices hacia arriba es la cardinal Norte, que se coloca al norte del peligro: las aguas seguras están al norte de la marca.",
+  "clave": "Conos hacia arriba = Norte: la marca está al norte del peligro.",
+  "trampa": "La b) pone la marca donde está el peligro, al revés.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2017-09-e-15": {
+  "explicacion": "Negro arriba, amarillo abajo y conos hacia arriba es la cardinal Norte: hay que pasar por su norte. Navegando al W, el norte nos queda a estribor, así que pasamos con la marca por nuestro babor. Pasar por su oeste o «con margen» no garantiza librar el peligro, que está al sur.",
+  "clave": "Cardinal Norte: pasa por su norte (rumbo W, déjala a babor).",
+  "trampa": "La b) nos llevaría por el sur de la marca, el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2017-09-e-16": {
+  "explicacion": "Negro sobre amarillo es la cardinal Norte: hay que pasar por su norte. Con rumbo 040º, el norte queda a nuestra izquierda de la proa, así que pasamos por ese lado y la marca nos queda por estribor. No basta con darle un resguardo cualquiera.",
+  "clave": "Cardinal Norte: pasa por su norte.",
+  "trampa": "La c) acierta el tipo de marca, pero al dejarla por babor pasaríamos por su sur.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ]
+ },
+ "bal-per-2017-12-a-15": {
+  "explicacion": "La cardinal Este lleva dos conos negros opuestos por la base, con forma de rombo; las puntas señalan arriba y abajo, donde está el negro del cuerpo. Opuestos por los vértices es la Oeste, hacia abajo la Sur y hacia arriba la Norte.",
+  "clave": "Conos: arriba N, abajo S, rombo E, cintura W.",
+  "trampa": "Confundir vértices unidos (Oeste) y bases unidas (Este).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-15"
+ },
+ "bal-per-2018-04-d-13": {
+  "explicacion": "La cardinal Oeste lleva dos conos negros opuestos por sus vértices, con forma de cintura; las puntas señalan al centro, donde va su banda negra. Opuestos por la base es la Este, hacia arriba la Norte y hacia abajo la Sur.",
+  "clave": "Conos: arriba N, abajo S, rombo E, cintura W.",
+  "trampa": "Confundir vértices unidos (Oeste) y bases unidas (Este).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-15"
+ },
+ "bal-per-2018-09-e-15": {
+  "explicacion": "La cardinal Oeste lleva dos conos negros opuestos por sus vértices, con forma de cintura; las puntas señalan al centro, donde va su banda negra. Opuestos por las bases es la Este, hacia arriba la Norte y hacia abajo la Sur.",
+  "clave": "Conos: arriba N, abajo S, rombo E, cintura W.",
+  "trampa": "Confundir vértices unidos (Oeste) y bases unidas (Este).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-15"
+ },
+ "bal-per-2024-12-ce-17": {
+  "explicacion": "La cardinal Oeste lleva dos conos negros unidos por sus vértices, con forma de cintura; las puntas señalan al centro, donde va su banda negra. Unidos por la base es la Este, hacia arriba la Norte y hacia abajo la Sur.",
+  "clave": "Conos: arriba N, abajo S, rombo E, cintura W.",
+  "trampa": "Confundir vértices unidos (Oeste) y bases unidas (Este).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-15"
+ },
+ "bal-per-2017-12-a-16": {
+  "explicacion": "La marca de peligro aislado es negra con una o varias franjas horizontales rojas, con dos esferas negras de tope. Negro sobre amarillo es la cardinal Norte, las franjas verticales rojas y blancas son de aguas navegables y el amarillo con banda negra es la cardinal Oeste.",
+  "clave": "Peligro aislado: negro con franjas rojas.",
+  "trampa": "La c) es la marca de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ]
+ },
+ "bal-per-2017-12-a-17": {
+  "explicacion": "Una luz verde con grupos de 2+1 destellos es una lateral de estribor modificada de la región A (verde con banda roja): indica que el canal principal está a babor. Para seguir el canal principal se deja por el costado de estribor, como cualquier marca verde.",
+  "clave": "Destellos 2+1: bifurcación. La luz dice por qué lado dejarla.",
+  "trampa": "La b) piensa en el lado del canal y no en el lado por el que se deja la marca.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ]
+ },
+ "bal-per-2017-12-b-15": {
+  "explicacion": "Una marca verde con una franja roja y cono verde de tope es una lateral de estribor modificada: indica una bifurcación con el canal principal a babor. Entrando la dejas por estribor (manda el color de fondo), y el canal principal te queda a babor. No es una lateral de estribor normal, que sería toda verde.",
+  "clave": "El color de fondo dice por dónde la dejas; la banda, hacia dónde queda el canal principal.",
+  "trampa": "La b) es tentadora por el cono verde, pero la franja roja la convierte en marca de bifurcación.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ],
+  "base": "and-2021-c1-t13",
+  "concepto": "and-2021-c1-t13"
+ },
+ "bal-per-2017-12-b-16": {
+  "explicacion": "La marca de peligro aislado está sobre un peligro pequeño rodeado por completo de aguas navegables, así que se puede librar por cualquier costado, dándole un resguardo prudente.",
+  "clave": "Peligro aislado: se pasa por cualquier lado.",
+  "trampa": "La a) y la b) le aplican la lógica de las laterales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ]
+ }
+}

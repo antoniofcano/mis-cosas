@@ -667,7 +667,7 @@
  "bal-per-2019-09-b-41": {
   "explicacion": "El cero hidrográfico es el lugar geométrico de los puntos de mínimo avance del mar sobre la tierra en condiciones meteorológicas medias y bajo cualquier combinación astronómica, y desde él se miden las sondas de la carta: la sonda de carta es la mínima que habrá en ese punto en condiciones medias. Por eso son correctas la a) y la c). La b) habla de condiciones extremas, que no se tienen en cuenta.",
   "clave": "Cero hidrográfico ≈ bajamar más baja posible en condiciones medias.",
-  "trampa": "La b) cambia «medias» por «extremas»: con presión muy alta el agua puede bajar del cero."
+  "trampa": "La b) cambia «medias» por «extremas»: con condiciones extremas (presión muy alta) el agua puede quedar incluso por debajo del cero."
  },
  "bal-per-2019-09-c-37": {
   "explicacion": "Los rumbos se cuentan de forma circular (de 0° a 360° en el sentido de las agujas del reloj desde el norte) o cuadrantal (de 0° a 90° desde el N o el S hacia el E o el W). La ortodrómica es un tipo de derrota, no una forma de contar rumbos.",
@@ -1839,5 +1839,1007 @@
   "explicacion": "Las MAtoN (ayudas móviles a la navegación) son marcas que se colocan para señalar peligros que se mueven o derivan, como un objeto a la deriva. VTS son los servicios de tráfico marítimo, SAR el salvamento y MOB hombre al agua.",
   "clave": "Ayuda móvil a la navegación = MAtoN.",
   "trampa": "La a): el VTS es un servicio de control de tráfico, no una marca."
+ },
+ "bal-per-2025-04-c-38": {
+  "explicacion": "El ángulo entre la línea proa-popa, contado desde la proa, y la visual a un objeto es la marcación. La demora se mide desde el norte y el rumbo es el ángulo entre el norte y la proa, así que la d) tampoco vale.",
+  "clave": "Si empieza en la proa, es marcación.",
+  "trampa": "«Demora» suena parecido, pero esa se cuenta desde el norte, no desde la proa.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 30,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "base": "and-2020-c3-t38",
+  "concepto": "and-2020-c3-t38"
+ },
+ "bal-per-2025-04-d-38": {
+  "explicacion": "La incorrecta es la c): de día no hace falta un faro encendido, sirve cualquier punto notable que figure en la carta (un cabo, una torre, un faro como edificio). Las demás sí son condiciones de una buena situación: buena visibilidad, mar que permita medir y demoras que se corten entre 60° y 120°.",
+  "clave": "Demoras fiables: puntos claros, buena visibilidad y cortes entre 60° y 120°.",
+  "trampa": "La a) parece un detalle técnico, pero es una condición real: cortes muy agudos dan malas situaciones."
+ },
+ "bal-per-2025-07-a-40": {
+  "explicacion": "Un minuto de arco de meridiano mide una milla náutica (1852 m). El cable es la décima parte de la milla, y la braza y la yarda son medidas mucho menores (1,83 m y 0,91 m).",
+  "clave": "1′ de meridiano = 1 milla = 1852 m.",
+  "trampa": "La a): el cable es solo una décima de milla."
+ },
+ "bal-per-2025-07-a-41": {
+  "explicacion": "La carta del Estrecho da 2° 50′ W en 2005 con un decremento anual de 7′ E (dato de la carta, que no viene en el enunciado). De 2005 a 2029 pasan 24 años: 24 × 7′ = 168′ = 2° 48′ E. 2° 50′ W − 2° 48′ = 0° 02′ W.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La c) da el valor bien pero le cambia el nombre: aún no ha pasado al E."
+ },
+ "bal-per-2025-07-b-39": {
+  "explicacion": "De 1978 a 2025 pasan 47 años: 47 × 3′ = 141′ = 2° 21′. Al ser un decremento, la declinación W disminuye: 3° 53′ − 2° 21′ = 1° 32′ W (NW).",
+  "clave": "Decremento: la declinación se reduce.",
+  "trampa": "La d) acierta la cifra pero le cambia el nombre: sigue siendo W."
+ },
+ "bal-per-2025-07-d-39": {
+  "explicacion": "La latitud crece desde el ecuador hacia los polos: en la carta, hacia arriba en el hemisferio norte y hacia abajo en el sur. Hacia la derecha o la izquierda crecen las longitudes, según la carta sea del hemisferio oriental u occidental.",
+  "clave": "Latitud crece hacia el polo: arriba en el N, abajo en el S.",
+  "trampa": "La a) describe cómo crecen las longitudes."
+ },
+ "bal-per-2025-09-a-38": {
+  "explicacion": "Con solo viento, el ángulo entre la línea de crujía (rumbo verdadero) y la dirección real de avance del barco es el abatimiento. El rumbo es el ángulo desde el norte, no desde la crujía, y la corriente produciría deriva, no abatimiento.",
+  "clave": "Abatimiento: ángulo entre la proa y la trayectoria sobre el agua.",
+  "trampa": "La d): la corriente da deriva, que es otro ángulo.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-per-2025-09-a-39": {
+  "explicacion": "La carta náutica trae faros y boyas, sondas y edificios notables de la costa que sirven de referencia. La información meteorológica local no se da en la carta: se busca en los derroteros y en las predicciones.",
+  "clave": "Carta: señales, sondas y referencias; la meteo va aparte.",
+  "trampa": "La c): las iglesias y torres sí salen, porque sirven para situarse."
+ },
+ "bal-per-2025-09-a-40": {
+  "explicacion": "El meridiano de 180° separa las longitudes E de las W, es decir, el hemisferio oriental del occidental. Al cruzarlo (más exactamente, la línea internacional de cambio de fecha, que lo sigue en general) lo que cambia es la fecha, no la hora, y no es el límite entre los océanos Índico y Pacífico.",
+  "clave": "180° = frontera entre longitudes E y W.",
+  "trampa": "La a): se cambia de fecha, no de hora."
+ },
+ "bal-per-2025-09-b-37": {
+  "explicacion": "En una carta del hemisferio oriental las longitudes (E) aumentan hacia la derecha, y en una del occidental (W) aumentan hacia la izquierda. Basta con mirar la escala de longitudes de los márgenes superior e inferior.",
+  "clave": "Longitudes crecen a la derecha = E; a la izquierda = W.",
+  "trampa": "La c) o la d) funcionan, pero no hace falta salir de la propia carta."
+ },
+ "bal-per-2025-09-b-38": {
+  "explicacion": "S 41° W se cuenta desde el sur 41° hacia el oeste. En circular: 180° + 41° = 221°. 139° sería S 41° E, 319° es N 41° W y 041° es N 41° E.",
+  "clave": "S x W = 180 + x.",
+  "trampa": "La c) es S 41° E: gira hacia el lado contrario."
+ },
+ "bal-per-2025-09-d-40": {
+  "explicacion": "El alcance (en millas) es la última cifra de cada característica y, si hay dos, son las del sector blanco y el rojo. Punta Paloma da 10 millas en blanco y 7 en rojo: a 10 millas el rojo no se ve y el blanco está justo en su límite. Tarifa (26/18 M a 10 millas), Malabata (22 M a 5,5) y Punta de Gracia (13 M a 11,2) quedan dentro de su alcance.",
+  "clave": "Se ve la luz si la distancia es menor que su alcance.",
+  "trampa": "La d): Punta de Gracia y Tarifa tienen alcance de sobra para esas distancias."
+ },
+ "bal-per-2025-12-a-37": {
+  "explicacion": "Una cruz rodeada de un círculo de puntos indica una roca cubierta (sumergida) de profundidad desconocida y peligrosa para la navegación. El círculo de puntos sirve precisamente para destacar el peligro. Las pesquerías y los viveros tienen sus propios símbolos.",
+  "clave": "Cruz dentro de círculo de puntos = roca peligrosa.",
+  "trampa": "La a): una roca no peligrosa no se rodea con el círculo de peligro."
+ },
+ "bal-per-2025-12-a-41": {
+  "explicacion": "De 2010 a 2026 pasan 16 años: 16 × 6′ = 96′ = 1° 36′ W. Como la declinación también es W, se suman: 3° 25′ + 1° 36′ = 5° 01′ W.",
+  "clave": "Mismo sentido, se suman; sentido contrario, se restan.",
+  "trampa": "La a) resta los 96′ cuando la variación es W, igual que la declinación."
+ },
+ "bal-per-2025-12-b-38": {
+  "explicacion": "N 35° W se cuenta desde el norte 35° hacia el oeste. En circular: 360° − 35° = 325°. 215° es S 35° W, 145° es S 35° E y 035° es N 35° E.",
+  "clave": "N x W = 360 − x.",
+  "trampa": "La d) copia el número sin convertirlo: 035° es N 35° E."
+ },
+ "bal-per-2025-12-c-37": {
+  "explicacion": "Un minuto de arco de meridiano mide una milla náutica (1852 m). El cable es una décima de milla, y 1609,3 m es la milla terrestre (inglesa), que no se usa en navegación.",
+  "clave": "1′ de meridiano = 1 milla = 1852 m.",
+  "trampa": "La d) es la milla terrestre, no la náutica."
+ },
+ "bal-per-2025-12-c-40": {
+  "explicacion": "El mortero del compás va suspendido en un sistema de anillos llamado suspensión cardán, que lo mantiene horizontal aunque el barco balancee y cabecee. El chapitel y el estilo son piezas del interior de la aguja, sobre las que gira la rosa.",
+  "clave": "Suspensión del mortero = cardán.",
+  "trampa": "La b) y la c) son piezas de la aguja, no de su suspensión."
+ },
+ "bal-per-2025-12-c-41": {
+  "explicacion": "De 2008 a 2023 pasan 15 años: 15 × 7′ = 105′ = 1° 45′ W. Como la declinación es E y la variación W, se restan: 4° 50′ − 1° 45′ = 3° 05′ E.",
+  "clave": "dm actual = dm carta ± años × variación anual.",
+  "trampa": "La a) acierta la cifra pero le cambia el nombre: sigue siendo E."
+ },
+ "bal-per-2025-12-d-38": {
+  "explicacion": "En una carta del hemisferio oriental las longitudes aumentan hacia la derecha, y en una del occidental hacia la izquierda. Hacia dónde está el norte o hacia dónde crecen las latitudes indica, como mucho, el hemisferio norte o sur, no el oriental u occidental.",
+  "clave": "Longitudes crecen a la derecha = E; a la izquierda = W.",
+  "trampa": "La b): las latitudes distinguen norte y sur, no este y oeste."
+ },
+ "bal-per-2025-12-d-41": {
+  "explicacion": "De 2003 a 2017 pasan 14 años: 14 × 11′ = 154′ = 2° 34′ E. Como la declinación también es E, se suman: 4° 20′ + 2° 34′ = 6° 54′ E.",
+  "clave": "Mismo sentido, se suman; sentido contrario, se restan.",
+  "trampa": "La d) resta cuando ambas son E."
+ },
+ "bal-per-2026-03-a-37": {
+  "explicacion": "La enfilación es la línea de posición más fiable: dos puntos alineados no exigen instrumentos ni tienen error de aguja. La oposición también es buena pero es más difícil de apreciar, la demora depende de la aguja y el veril es poco preciso.",
+  "clave": "La enfilación es la línea de posición más segura.",
+  "trampa": "La c): la oposición es fiable, pero apreciarla con exactitud es más difícil."
+ },
+ "bal-per-2026-03-a-38": {
+  "explicacion": "El desvío lo causa el magnetismo del propio barco y cambia con el rumbo, porque al girar varía la posición de los hierros respecto al campo magnético terrestre. La época del año y la velocidad no influyen, y lo que cambia con el lugar es la declinación.",
+  "clave": "Desvío: cambia con el rumbo.",
+  "trampa": "La d) describe la declinación."
+ },
+ "bal-per-2026-03-a-39": {
+  "explicacion": "El estilo, el chapitel y la rosa son piezas de la aguja magnética: la rosa, con sus imanes, se apoya mediante el chapitel sobre la punta del estilo. «Cazo» no es el nombre de ninguna pieza de la aguja.",
+  "clave": "Rosa con imanes → chapitel → sobre el estilo, dentro del mortero.",
+  "trampa": "La c): el chapitel sí es una pieza de la aguja."
+ },
+ "bal-per-2026-03-b-41": {
+  "explicacion": "S 36° W se cuenta desde el sur 36° hacia el oeste. En circular: 180° + 36° = 216°. 144° sería S 36° E, 324° es N 36° W y 036° es N 36° E.",
+  "clave": "S x W = 180 + x.",
+  "trampa": "La c) es S 36° E: gira hacia el lado contrario."
+ },
+ "bal-per-2026-03-c-38": {
+  "explicacion": "La milla náutica mide 1852 metros, la longitud media de un minuto de arco de meridiano. La b) invierte cifras (1582) y las demás son redondeos que no corresponden a la milla.",
+  "clave": "1 milla = 1852 m.",
+  "trampa": "La b) cambia el orden de las cifras."
+ },
+ "bal-per-2026-03-c-39": {
+  "explicacion": "Una oposición, como cualquier otra línea de posición, solo te dice que estás sobre una línea (la recta entre los dos puntos). Para tener una posición necesitas cortarla con otra línea de posición. Tampoco es una enfilación: en la enfilación los dos puntos quedan por el mismo lado.",
+  "clave": "Una línea sola no da situación: hace falta cruzarla con otra.",
+  "trampa": "La b): una sola línea nunca da la posición."
+ },
+ "bal-per-2026-03-c-40": {
+  "explicacion": "El meridiano del lugar coincide con el meridiano cero cuando estamos sobre el meridiano de Greenwich, es decir, con longitud 0°, como ocurre en el Real Observatorio de Greenwich. Estar en el ecuador o en un paralelo no dice nada de la longitud, y 180° es el meridiano opuesto.",
+  "clave": "Meridiano del lugar = meridiano 0 solo si tu longitud es 0°.",
+  "trampa": "La a) mezcla latitud 0° con longitud 0°."
+ },
+ "bal-per-2026-03-c-41": {
+  "explicacion": "Una corredera que adelanta marca más de lo real. Como K = real / corredera, el denominador es mayor y K sale menor que la unidad (por ejemplo, 9 / 10 = 0,9). Sería mayor que 1 si atrasara, y 1 si fuera exacta.",
+  "clave": "Corredera adelanta → K < 1; atrasa → K > 1.",
+  "trampa": "La b) es el caso de una corredera que atrasa."
+ },
+ "bal-per-2026-03-d-37": {
+  "explicacion": "N 45° W se cuenta desde el norte 45° hacia el oeste. En circular: 360° − 45° = 315° (el NW). 045° es el NE, 135° el SE y 225° el SW.",
+  "clave": "NE 45, SE 135, SW 225, NW 315.",
+  "trampa": "La a) copia el número sin convertirlo."
+ },
+ "bal-per-2026-03-d-40": {
+  "explicacion": "La corredera mide la velocidad del barco respecto al agua y la distancia navegada. El manómetro mide presiones, el bitón es un elemento de amarre y el pitómetro es un tipo de medidor de velocidad por presión del agua, pero el nombre general del instrumento de a bordo es corredera.",
+  "clave": "Corredera: velocidad y distancia; sonda: profundidad.",
+  "trampa": "La c): el pitómetro es un principio de medida, no el nombre del instrumento."
+ },
+ "bal-per-2026-06-a-38": {
+  "explicacion": "La hora reloj de bitácora es la hora por la que se rige la vida a bordo, la que fija el patrón. Puede coincidir con la del huso, con la local o con la oficial, pero no tiene por qué.",
+  "clave": "Bitácora = a bordo = patrón.",
+  "trampa": "Coincidir con la hora del huso no significa que lo sea.",
+  "base": "and-2022-c2-t37",
+  "concepto": "and-2022-c2-t37"
+ },
+ "bal-per-2026-06-d-37": {
+  "explicacion": "La latitud es el arco de meridiano contado desde el ecuador hasta el paralelo del lugar, de 0° a 90° N o S. La b) es la longitud, la c) mezcla conceptos de husos horarios y la d) es la declinación magnética.",
+  "clave": "Latitud: arco de meridiano desde el ecuador (0–90° N/S).",
+  "trampa": "La b) define la longitud.",
+  "base": "and-2021-c2-t38",
+  "concepto": "and-2021-c2-t38"
+ },
+ "bal-per-2026-06-d-38": {
+  "explicacion": "El ángulo entre el norte verdadero (Nv) y el norte magnético (Nm) es la declinación magnética. El desvío está entre el magnético y el de aguja, la deriva es el efecto de la corriente y la inclinación es el ángulo vertical de las líneas del campo magnético.",
+  "clave": "Tres nortes: Nv–Nm dm, Nm–Na Δ, Nv–Na Ct.",
+  "trampa": "La c): el desvío empieza en el norte magnético, no en el verdadero."
+ },
+ "bal-per-2026-06-d-39": {
+  "explicacion": "La carta náutica trae la declinación magnética de la zona con su año y su variación anual. El desvío no aparece porque depende de cada barco, el viento predominante se busca en los derroteros, y las sondas se refieren a la bajamar más baja, no a una pleamar.",
+  "clave": "Carta: declinación. Tablilla del barco: desvío.",
+  "trampa": "La b): el desvío es propio de cada barco y no puede ir en la carta."
+ },
+ "bal-per-2026-09-a-37": {
+  "explicacion": "La declinación magnética depende del lugar y del año, no del barco: en una misma zona afecta por igual a todos los barcos. Lo que depende del rumbo, del tamaño o del material del barco es el desvío.",
+  "clave": "Declinación: lugar + año, igual para todos. Desvío: cada barco.",
+  "trampa": "La a) describe el desvío."
+ },
+ "bal-per-2026-09-b-40": {
+  "explicacion": "El libro de faros recoge todas las luces y señales de una zona con sus características físicas y luminosas (ritmo, color, periodo, altura, alcance). El derrotero describe la costa, el catálogo enumera las cartas y las guías náuticas son publicaciones comerciales.",
+  "clave": "Luces con sus características = libro de faros.",
+  "trampa": "La b): el derrotero menciona señales, pero no las relaciona todas con sus datos."
+ },
+ "bal-per-2026-09-d-40": {
+  "explicacion": "El desvío lo causa el magnetismo del propio barco y cambia con el rumbo. No depende de la declinación ni de la situación geográfica (eso es la declinación), y sí depende de la embarcación, por eso cada una tiene su tablilla.",
+  "clave": "Desvío: depende del barco y del rumbo.",
+  "trampa": "La b) describe la declinación."
+ },
+ "bal-per-2017-03-ci-45": {
+  "explicacion": "Busca en el anuario de Ceuta el 20 de febrero de 2017 y toma la primera pleamar posterior a las 18:30 TU (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,00 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 0,72 m (Sm = 6,82 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2017-03-ge-45": {
+  "explicacion": "Busca en el anuario de el Puerto de Santa María el 31 de marzo de 2017 y toma la segunda pleamar. Corrige la presión: (1013 − 1028) cm = −0,15 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 5,00 − 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,51 m (Sm = 8,36 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2017-07-c-45": {
+  "explicacion": "Busca en el anuario de Barbate el 22 de diciembre de 2017 y toma la pleamar y la bajamar comprendidas entre las 12:00 y las 23:00. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,97 m (Sm = 8,27 m) y una altura de bajamar de 0,60 m (Sm = 6,90 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2017-09-d-43": {
+  "explicacion": "Busca en el anuario de Gallineras el 9 de septiembre de 2017 y toma la segunda pleamar. Corrige la presión: (1013 − 1011) cm = +0,02 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,60 + 0,02 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,27 m (Sm = 4,89 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2017-09-e-45": {
+  "explicacion": "Busca en el anuario de Chipiona el 1 de enero de 2017 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,99 m (Sm = 5,89 m) y una altura de bajamar de 0,73 m (Sm = 3,63 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2017-12-e-45": {
+  "explicacion": "Busca en el anuario de Chipiona el 1 de enero de 2017 y toma la segunda bajamar. Con 1013 hPa no hay corrección por presión. Sm = Sc + altura de marea: 3,00 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,73 m (Sm = 3,73 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Sin corrección de presión, la sonda es solo la de carta más la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-04-c-45": {
+  "explicacion": "Busca en el anuario de Chipiona el 17 de mayo de 2018 y toma la primera bajamar. Corrige la presión: (1013 − 978) cm = +0,35 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 2,70 + 0,35 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,36 m (Sm = 3,41 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-04-d-42": {
+  "explicacion": "Busca en el anuario de Bonanza (Sanlúcar de Barrameda) el 3 de junio de 2018 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1030) cm = −0,17 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,50 − 0,17 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,35 m (Sm = 4,68 m) y una altura de bajamar de 0,64 m (Sm = 2,97 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-04-e-44": {
+  "explicacion": "Busca en el anuario de Barbate el 22 de diciembre de 2018 y toma la pleamar y la bajamar comprendidas entre las 12:00 y las 23:00. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,33 m (Sm = 8,63 m) y una altura de bajamar de 0,24 m (Sm = 6,54 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-06-a-45": {
+  "explicacion": "Busca en el anuario de Conil el 12 de agosto de 2018 y toma la primera bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,30 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,28 m (Sm = 3,48 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-06-b-45": {
+  "explicacion": "Busca en el anuario de Morro Jable el 27 de junio de 2018 y toma la pleamar de la segunda marea. Corrige la presión: (1013 − 995) cm = +0,18 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,80 + 0,18 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,26 m (Sm = 4,24 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-per-2018-06-b-45"
+ },
+ "bal-per-2022-06-a-44": {
+  "explicacion": "Busca en el anuario de Morro Jable el 27 de junio de 2022 y toma la pleamar. Corrige la presión: (1013 − 995) cm = +0,18 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,80 + 0,18 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,26 m (Sm = 4,24 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-per-2018-06-b-45"
+ },
+ "bal-per-2018-09-e-45": {
+  "explicacion": "Busca en el anuario de Santa Uxía de Ribeira el 11 de julio de 2018 y toma la primera bajamar. Corrige la presión: (1013 − 1028) cm = −0,15 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,47 − 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,60 m (Sm = 2,92 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-12-c-45": {
+  "explicacion": "Busca en el anuario de Tarifa el 25 de diciembre de 2018 y toma la primera pleamar posterior a las 22:00 UT (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 983) cm = +0,30 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 2,40 + 0,30 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,45 m (Sm = 4,15 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2018-12-d-43": {
+  "explicacion": "Busca en el anuario de Ceuta el 20 de febrero de 2018 y toma la primera pleamar posterior a las 18:30 TU (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,00 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 0,97 m (Sm = 7,07 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2019-06-e-44": {
+  "explicacion": "Busca en el anuario de Cádiz el 9 de enero de 2019 y toma la primera pleamar posterior a las 18:30 UT (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 3,00 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,01 m (Sm = 6,11 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2019-09-a-42": {
+  "explicacion": "Busca en el anuario de Barbate el 23 de agosto y toma la segunda pleamar. Corrige la presión: (1013 − 1014) cm = −0,01 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 5,00 − 0,01 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,91 m (Sm = 6,90 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2020-10-b-45": {
+  "explicacion": "Busca en el anuario de Morro Jable el 12 de junio de 2020 y toma la segunda bajamar. Corrige la presión: (1013 − 1009) cm = +0,04 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,40 + 0,04 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,97 m (Sm = 2,41 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2020-10-e-43": {
+  "explicacion": "Busca en el anuario de Barbate el 5 de julio de 2020 y toma la primera pleamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + altura de marea: 6,20 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,29 m (Sm = 8,49 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2020-10-f-42": {
+  "explicacion": "Busca en el anuario de Morro Jable el 25 de agosto de 2020 y toma la segunda pleamar. Corrige la presión: (1013 − 1019) cm = −0,06 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 1,60 − 0,06 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,99 m (Sm = 3,53 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2020-12-a-45": {
+  "explicacion": "Busca en el anuario de Cádiz el 25 de diciembre de 2020 y toma la segunda bajamar. Corrige la presión: (1013 − 1017) cm = −0,04 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,20 − 0,04 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 1,10 m (Sm = 3,26 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2020-12-b-45": {
+  "explicacion": "Busca en el anuario de Cádiz el 17 de septiembre de 2020 y toma la segunda bajamar. Corrige la presión: (1013 − 1001) cm = +0,12 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,20 + 0,12 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,31 m (Sm = 1,63 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-03-d-42": {
+  "explicacion": "Busca en el anuario de Algeciras el 16 de marzo de 2021 y toma la primera pleamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 7,80 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 0,98 m (Sm = 8,68 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-03-eg-45": {
+  "explicacion": "Busca en el anuario de Santa Uxía de Ribeira el 11 de julio de 2021 y toma la primera bajamar. Corrige la presión: (1013 − 1028) cm = −0,15 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,47 − 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,73 m (Sm = 3,05 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-06-bh-45": {
+  "explicacion": "Busca en el anuario de Barbate el 22 de diciembre de 2021 y toma la pleamar y la bajamar comprendidas entre las 12:00 y las 23:00. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,07 m (Sm = 8,37 m) y una altura de bajamar de 0,63 m (Sm = 6,93 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-06-espa-45": {
+  "explicacion": "Busca en el anuario de Chipiona el 1 de enero de 2021 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,03 m (Sm = 5,93 m) y una altura de bajamar de 0,74 m (Sm = 3,64 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-per-2021-06-espa-45"
+ },
+ "bal-per-2021-12-a-45": {
+  "explicacion": "Busca en el anuario de Chipiona el 1 de enero de 2021 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,03 m (Sm = 5,93 m) y una altura de bajamar de 0,74 m (Sm = 3,64 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "bal-per-2021-06-espa-45"
+ },
+ "bal-per-2021-06-g-43": {
+  "explicacion": "Busca en el anuario de Gallineras el 9 de septiembre de 2021 y toma la segunda pleamar. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,60 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,38 m (Sm = 5,08 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-09-e-44": {
+  "explicacion": "Busca en el anuario de Sancti Petri el 26 de septiembre de 2021 y toma la primera bajamar. Corrige la presión: (1013 − 1008) cm = +0,05 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,80 + 0,05 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 1,01 m (Sm = 7,86 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-12-b-45": {
+  "explicacion": "Busca en el anuario de Barbate el 22 de diciembre de 2021 y toma la pleamar y la bajamar comprendidas entre las 12:00 y las 23:00 UT. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,07 m (Sm = 8,37 m) y una altura de bajamar de 0,64 m (Sm = 6,94 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2021-12-f-45": {
+  "explicacion": "Busca en el anuario de Bilbao el 3 de julio de 2021 y toma la primera bajamar. Corrige la presión: (1013 − 1028) cm = −0,15 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,47 − 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 1,53 m (Sm = 3,85 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2022-03-a-45": {
+  "explicacion": "Busca en el anuario de Barbate el 5 de julio de 2022 y toma la primera pleamar. El enunciado no da la presión, así que no se corrige. Sm = Sc + altura de marea: 6,20 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,00 m (Sm = 8,20 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2022-03-b-45": {
+  "explicacion": "Busca en el anuario de Conil el 12 de agosto de 2022 y toma la primera bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,30 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,43 m (Sm = 3,63 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2022-03-c-45": {
+  "explicacion": "Busca en el anuario de Barbate el 23 de agosto de 2022 y toma la primera pleamar posterior a las 13:00 UTC (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1014) cm = −0,01 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 5,00 − 0,01 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,92 m (Sm = 6,91 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2022-06-d-45": {
+  "explicacion": "Busca en el anuario de Chipiona el 1 de enero de 2022 y toma la segunda bajamar. Con 1013 hPa no hay corrección por presión. Sm = Sc + altura de marea: 3,00 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,52 m (Sm = 3,52 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Sin corrección de presión, la sonda es solo la de carta más la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2022-09-c-45": {
+  "explicacion": "Busca en el anuario de Barbate el 22 de diciembre de 2022 y toma la pleamar y la bajamar comprendidas entre las 12:00 y las 23:00. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,33 m (Sm = 8,63 m) y una altura de bajamar de 0,38 m (Sm = 6,68 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2022-09-m-44": {
+  "explicacion": "Busca en el anuario de Ceuta el 17 de noviembre de 2022 y toma la primera pleamar posterior a las 22:47 (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 5,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 0,90 m (Sm = 5,80 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-03-bf-42": {
+  "explicacion": "Busca en el anuario de Punta Umbría el 12 de junio de 2023 y toma la segunda bajamar. Corrige la presión: (1013 − 995) cm = +0,18 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,03 + 0,18 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,92 m (Sm = 2,13 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-06-bg-42": {
+  "explicacion": "Busca en el anuario de Algeciras el 9 de diciembre de 2023 y toma la primera bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 6,50 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,37 m (Sm = 6,77 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-06-d-44": {
+  "explicacion": "Busca en el anuario de San Cibrao el 22 de noviembre de 2023 y toma la segunda pleamar. Corrige la presión: (1013 − 1024) cm = −0,11 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,35 − 0,11 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,71 m (Sm = 5,95 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-09-bf-43": {
+  "explicacion": "Busca en el anuario de Marín el 19 de noviembre de 2023 y toma la bajamar y la pleamar comprendidas entre las 12:00 y las 20:00. Corrige la presión: (1013 − 973) cm = +0,40 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 4,30 + 0,40 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 1,18 m (Sm = 5,88 m) y una altura de pleamar de 2,87 m (Sm = 7,57 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-09-c-44": {
+  "explicacion": "Busca en el anuario de A Guarda el 9 de septiembre de 2023 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,50 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,42 m (Sm = 5,82 m) y una altura de bajamar de 1,32 m (Sm = 4,72 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-12-b-45": {
+  "explicacion": "Busca en el anuario de Ceuta el 17 de noviembre de 2023 y toma la primera pleamar posterior a las 09:47 TU (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 5,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,03 m (Sm = 5,93 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-12-c-42": {
+  "explicacion": "Busca en el anuario de Arinaga el 10 de noviembre de 2023 y toma la primera pleamar posterior a las 09:10 UTC (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 993) cm = +0,20 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 3,42 + 0,20 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,08 m (Sm = 5,70 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2023-12-e-43": {
+  "explicacion": "Busca en el anuario de Sanxenxo el 26 de noviembre de 2023 y toma la primera pleamar posterior a las 09:35 TU (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 998) cm = +0,15 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,20 + 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,45 m (Sm = 4,80 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2024-04-b-44": {
+  "explicacion": "Busca en el anuario de Mazagón el 19 de mayo de 2024 y toma la primera pleamar. Corrige la presión: (1013 − 988) cm = +0,25 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 4,00 + 0,25 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,82 m (Sm = 7,07 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2024-04-df-43": {
+  "explicacion": "Busca en el anuario de La Carraca (San Fernando) el 8 de abril de 2024 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1028) cm = −0,15 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,30 − 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,77 m (Sm = 6,92 m) y una altura de bajamar de 0,27 m (Sm = 3,42 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2024-07-df-42": {
+  "explicacion": "Busca en el anuario de Marín el 6 de agosto de 2024 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 4,50 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,51 m (Sm = 7,91 m) y una altura de bajamar de 0,70 m (Sm = 5,10 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2024-12-ce-44": {
+  "explicacion": "Busca en el anuario de Tapia de Casariego el 9 de diciembre de 2024 y toma la segunda pleamar. Corrige la presión: (1013 − 978) cm = +0,35 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,35 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,32 m (Sm = 9,87 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2025-04-d-45": {
+  "explicacion": "Busca en el anuario de Barbate el 16 de junio de 2025 y toma la pleamar y la bajamar comprendidas entre las 10:00 y las 20:00 UT. Corrige la presión: (1013 − 1003) cm = +0,10 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 6,20 + 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,16 m (Sm = 8,46 m) y una altura de bajamar de 0,73 m (Sm = 7,03 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2025-07-a-44": {
+  "explicacion": "Busca en el anuario de Ceuta el 28 de junio de 2025 y toma la segunda bajamar. Corrige la presión: (1013 − 1033) cm = −0,20 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,00 − 0,20 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,33 m (Sm = 3,13 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2025-07-b-42": {
+  "explicacion": "Busca en el anuario de Conil de la Frontera el 7 de junio de 2025 y toma la segunda pleamar. Corrige la presión: (1013 − 963) cm = +0,50 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 5,30 + 0,50 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,56 m (Sm = 8,36 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2025-07-c-44": {
+  "explicacion": "Busca en el anuario de Gijón el 25 de octubre de 2025 y toma la segunda pleamar. Corrige la presión: (1013 − 1018) cm = −0,05 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 5,00 − 0,05 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,69 m (Sm = 8,64 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2025-07-d-42": {
+  "explicacion": "Busca en el anuario de Morro Jable el 27 de junio de 2025 y toma la primera pleamar. Corrige la presión: (1013 − 995) cm = +0,18 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,80 + 0,18 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,29 m (Sm = 4,27 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2025-09-b-45": {
+  "explicacion": "Busca en el anuario de Sanxenxo el 23 de noviembre de 2025 y toma la primera pleamar posterior a las 09:35 TU (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 998) cm = +0,15 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,20 + 0,15 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,96 m (Sm = 4,31 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-03-b-42": {
+  "explicacion": "Busca en el anuario de Punta Umbría el 12 de junio de 2026 y toma la segunda bajamar. Corrige la presión: (1013 − 993) cm = +0,20 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 1,03 + 0,20 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 0,59 m (Sm = 1,82 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-06-a-42": {
+  "explicacion": "Busca en el anuario de Ceuta el 30 de septiembre de 2026 y toma la primera pleamar posterior a las 09:47 TU (compara las horas en la misma referencia horaria). Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 4,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 1,10 m (Sm = 5,00 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Toma la pleamar siguiente a la hora del enunciado, no la primera del día.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-06-a-43": {
+  "explicacion": "Busca en el anuario de Baiona el 28 de mayo de 2026 y toma la segunda pleamar y la segunda bajamar. Corrige la presión: (1013 − 1033) cm = −0,20 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,50 − 0,20 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,059 m (Sm = 5,359 m) y una altura de bajamar de 0,832 m (Sm = 3,132 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-06-b-44": {
+  "explicacion": "Busca en el anuario de Sancti Petri el 1 de junio de 2026 y toma la primera pleamar. Corrige la presión: (1013 − 968) cm = +0,45 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 2,00 + 0,45 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,67 m (Sm = 5,12 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión baja el agua sube: la corrección se suma, no se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-06-b-45": {
+  "explicacion": "Busca en el anuario de Ayamonte el 16 de agosto de 2026 y toma la primera pleamar y la primera bajamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 3,00 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 3,07 m (Sm = 5,97 m) y una altura de bajamar de 0,50 m (Sm = 3,40 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Las opciones con sondas menores que la de carta restan la altura de la marea en lugar de sumarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-09-a-45": {
+  "explicacion": "Busca en el anuario de Ayamonte el 24 de agosto de 2026 y toma la segunda pleamar. Corrige la presión: (1013 − 1023) cm = −0,10 m, porque con presión alta el agua baja. Sm = Sc + altura de marea + corrección: 2,50 − 0,10 + h. Para llegar a la oficial, el anuario tiene que dar una altura de pleamar de 2,56 m (Sm = 4,96 m). Esa altura sale del extracto del anuario que entrega el tribunal y no viene en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Con presión alta el agua baja: la corrección se resta, no se suma.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-per-2026-09-c-42": {
+  "explicacion": "Busca en el anuario de El Puerto de Santa María el 19 de noviembre de 2026 y toma la bajamar y la pleamar comprendidas entre las 09:00 y las 17:00. Corrige la presión: (1013 − 973) cm = +0,40 m, porque con presión baja el agua sube. Sm = Sc + altura de marea + corrección: 4,30 + 0,40 + h. Para llegar a la oficial, el anuario tiene que dar una altura de bajamar de 1,15 m (Sm = 5,85 m) y una altura de pleamar de 2,70 m (Sm = 7,40 m). Esas alturas salen del extracto del anuario que entrega el tribunal y no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + (1013 − P) cm.",
+  "trampa": "Aplica a la pleamar y a la bajamar la misma sonda de carta y la misma corrección de presión; solo cambia la altura del anuario.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-01": {
+  "explicacion": "La falsa es la d): la estabilidad inicial es la de pequeñas escoras, hasta unos 10–15°, no por encima de 15°. Las demás son ciertas: el KM depende del calado (se lee en las curvas hidrostáticas), la estabilidad es la tendencia a recuperar el equilibrio y el centro de carena es el punto de aplicación del empuje.",
+  "clave": "Estabilidad inicial = escoras pequeñas (hasta 10–15°).",
+  "trampa": "La a) parece rara, pero el KM sí cambia con el calado.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-02": {
+  "explicacion": "Cuando el KM es igual al KG, la altura metacéntrica GM es nula y el barco está en equilibrio indiferente: al escorarlo no aparece par adrizante y puede quedarse con una escora permanente. Las tres opciones describen la misma situación con palabras distintas.",
+  "clave": "GM = 0 ⇔ KM = KG ⇔ equilibrio indiferente.",
+  "trampa": "No elijas una sola: las tres son la misma condición."
+ },
+ "bal-py-2017-03-a-03": {
+  "explicacion": "Al trasladar un peso a bordo, el centro de gravedad se mueve paralelo al traslado y en el mismo sentido, una distancia GG′ = p × d / D (peso por distancia entre desplazamiento). Si el peso sube y va a babor, G sube y se va a babor; no solo verticalmente, y siempre se ve afectado aunque el peso sea pequeño.",
+  "clave": "GG′ = p × d / D, paralelo al traslado del peso.",
+  "trampa": "La a) se queda solo con la componente vertical."
+ },
+ "bal-py-2017-03-a-04": {
+  "explicacion": "La falsa es la a): el extintor portátil se usa en posición vertical; tumbado puede no expulsar bien el agente. Las demás son ciertas: toda la tripulación debe conocer su ubicación y manejo, el polvo seco sirve para casi todas las clases de fuego (no para aceites de cocina, clase F) y deben estar a mano y revisados.",
+  "clave": "Extintor: vertical, a mano y revisado.",
+  "trampa": "La c) parece demasiado amplia, pero el polvo polivalente sirve para casi todo salvo la clase F.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-05": {
+  "explicacion": "La falsa es la b): si hay que saltar al agua no se recogen pertenencias, se sale con el chaleco puesto y lo imprescindible. Las demás son medidas correctas ante una evacuación por helicóptero: chalecos puestos, velas arriadas y cubierta despejada de objetos que el rebufo del rotor podría levantar.",
+  "clave": "Evacuación: chaleco puesto, cubierta despejada, nada de equipaje.",
+  "trampa": "La d) parece exagerada, pero el rebufo del rotor levanta cualquier objeto suelto."
+ },
+ "bal-py-2017-03-a-06": {
+  "explicacion": "La falsa es la c): si baja el centro de gravedad, aumenta la altura metacéntrica GM (GM = KM − KG) y con ella el brazo adrizante GZ, así que el barco es más estable. Las demás son ciertas: el traslado vertical de un peso sube o baja G en el mismo sentido y no cambia el desplazamiento.",
+  "clave": "G más bajo → más GM → más estabilidad.",
+  "trampa": "La a) y la b) dicen lo mismo de otra forma; las dos son ciertas.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-07": {
+  "explicacion": "Los aros salvavidas se estiban a popa (o cerca de ella), en un lugar accesible y listos para lanzar, porque una persona que cae al agua queda rápidamente por la popa del barco. No es indiferente, y la proa o la amura quedan lejos del punto donde estará el náufrago.",
+  "clave": "Aro salvavidas: a popa y listo para lanzar.",
+  "trampa": "La c): en la amura el aro llegaría tarde al náufrago, que se queda por la popa."
+ },
+ "bal-py-2017-03-a-08": {
+  "explicacion": "El respondedor de radar (SART o RESAR) es un dispositivo que, al recibir la señal de un radar de banda X (9 GHz), emite una respuesta que aparece en la pantalla como una línea de puntos que indica su posición. No transmite en Morse ni es un equipo de comunicaciones de voz.",
+  "clave": "SART: responde al radar de banda X con una línea de puntos.",
+  "trampa": "La a) confunde el SART con una radiobaliza de socorro.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-03-a-09": {
+  "explicacion": "La falsa es la c): no se debe lanzar un cohete con paracaídas cuando el helicóptero está cerca, porque puede alcanzarlo o deslumbrar al piloto. Para que nos localice valen el espejo de señales, una bengala de mano (sin apuntarle) y el respondedor de radar (RESAR o SART) activado.",
+  "clave": "Con el helicóptero cerca: espejo, bengala de mano o humo; nunca cohetes.",
+  "trampa": "La b) es correcta: la bengala de mano se puede usar, el cohete no.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-03-a-10": {
+  "explicacion": "En un barco dado, la altura del metacentro sobre la quilla (KM) se obtiene de las curvas o tablas hidrostáticas entrando con el calado (o el desplazamiento), porque cambia al variar la carena. La manga y la eslora son fijas y ya están incluidas en esas curvas, y el GRT es un arqueo, no un dato de estabilidad.",
+  "clave": "KM: se lee en las hidrostáticas con el calado.",
+  "trampa": "La a): la manga influye en el diseño, pero en un barco concreto no cambia; lo que varía es el calado."
+ },
+ "bal-py-2017-03-cb-01": {
+  "explicacion": "La EPIRB (radiobaliza de localización de siniestros) puede activarse manualmente con su interruptor, automáticamente al entrar en contacto con el agua y, en las de zafa automática, al ser liberada de su contenedor por la unidad de liberación hidrostática (HRU) cuando el barco se hunde. Las tres formas son correctas.",
+  "clave": "EPIRB: activación manual o automática (agua o zafa hidrostática).",
+  "trampa": "Elegir una sola: hay activación manual y automática.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ],
+  "base": "and-py-2023-c3-g04",
+  "concepto": "and-py-2023-c3-g04"
+ },
+ "bal-py-2019-06-a-05": {
+  "explicacion": "La EPIRB (radiobaliza de localización de siniestros) puede activarse manualmente con su interruptor, automáticamente al entrar en contacto con el agua y, en las de zafa automática, al ser liberada de su contenedor por la unidad de liberación hidrostática (HRU) cuando este queda sumergido. Las tres formas son correctas.",
+  "clave": "EPIRB: activación manual o automática (agua o zafa hidrostática).",
+  "trampa": "Elegir una sola: hay activación manual y automática.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ],
+  "base": "and-py-2023-c3-g04",
+  "concepto": "and-py-2023-c3-g04"
  }
 }

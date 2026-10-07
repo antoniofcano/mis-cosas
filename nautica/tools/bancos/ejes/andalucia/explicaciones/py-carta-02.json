@@ -122,5 +122,129 @@
     "clave": "Vector buque = efectivo − corriente; Ra = Rv − Ct.",
     "trampa": "Olvidar la corriente (162º − 9º = 153º, la a).",
     "concepto": "and-py-2020-c1-n16"
+  },
+  "and-py-2018-c1b-n13": {
+    "explicacion": "Ct = +5º + 4º = +9º → Rv = 060º + 9º = 069º. Viento del NW por babor: abate a estribor, Rs = 069º + 10º = 079º. Distancia: 6 × 1,5 h = 9 M al 079º desde 35º 50′ N 006º 10′ W → 35º 51,7′ N 005º 59,1′ W ≈ la c.",
+    "clave": "Viento por babor → Rs = Rv + Ab; distancia = V × t.",
+    "trampa": "Abatir hacia el viento (Rs 059º) o navegar al Ra sin corregir.",
+    "concepto": "and-py-2022-c2-n15"
+  },
+  "and-py-2018-c1b-n14": {
+    "explicacion": "Estima 14:00: 4,8 M al 300º desde 36º 00′ N 005º 50′ W → 36º 02,4′ N 005º 55,1′ W. Observada 14:00: meridiano del faro de Barbate (al S de él, el faro nos demora 000º) cortado con el paralelo del de Punta Paloma (al W de él): 36º 03,9′ N 005º 55,3′ W. Estima → observada: Rc ≈ 355º (N), 1,5 M en 1 h → Ihc ≈ 1,5′ ≈ 1,6′.",
+    "clave": "Corriente desconocida: Rc = de la estima a la observada; Ihc = distancia / horas.",
+    "trampa": "Invertir el vector (Rc S, la a).",
+    "discrepancia": "Sin discrepancia en el cálculo: da la oficial (Rc ≈ 355º, rumbo N; Ihc ≈ 1,5′). Las opciones dan el rumbo de la corriente por su nombre (N/S), no en grados.",
+    "concepto": "and-py-2024-c2-n17"
+  },
+  "and-py-2018-c1b-n15": {
+    "explicacion": "Salida 14:00: 5 M al N del faro de Punta Malabata → 35º 54,2′ N 005º 45,0′ W. Punta Cires queda a 13,0 M al 088º; tangente al círculo de 2 M dejando el faro por estribor: arcsen(2 / 13) = 9º → Rs = 079º. Viento del N por babor (+15º): Rv = Rs − Ab = 079º − 15º = 064º. Ct = −4º + 12º = +8º → Ra = 064º − 8º = 056º.",
+    "clave": "Rumbo para pasar a d millas: Rs = demora ± arcsen(d / distancia); viento por babor → Rv = Rs − Ab; Ra = Rv − Ct.",
+    "trampa": "Abatir al revés (Rv 094º → Ra 086º, la b).",
+    "concepto": "and-py-2022-c2-n12"
+  },
+  "and-py-2018-c1b-n16": {
+    "explicacion": "Ref: de 36º 00′ N 006º 10′ W a la luz roja del espigón de Barbate, 047º y 16,0 M en 3 h → Vef = 5,3 nudos. Triángulo: corriente 135º 3 nudos; uniendo su extremo con el del vector efectivo sale el buque: Rs = 017º, Vb = 6,0 nudos. Sin viento, Rv = 017º. dm 2018 = 5º E − 10 × 6′ = +4º; Ct = +4º + 3º = +7º → Ra = 017º − 7º = 010º.",
+    "clave": "Hora de llegada fijada: Vef = D / t; buque = efectivo − corriente; Ra = Rv − Ct.",
+    "trampa": "Tomar la Vef (≈ 5,4 nudos) como Vb (la a o la d).",
+    "concepto": "and-py-2026-c2-n17"
+  },
+  "and-py-2018-c1b-n17": {
+    "explicacion": "15:00: al N verdadero de Cabo Espartel → la 1ª línea es el meridiano del faro (Dv 180º). Navegado hasta 16:00: 7 M al 075º; trasladamos esa línea 7 M al 075º. 16:00: desde el faro de Punta Malabata trazamos 340º (opuesta de 160º): corta a la línea trasladada en 35º 53,9′ N 005º 47,1′ W ≈ la b.",
+    "clave": "Demoras no simultáneas: traslada la primera línea con el rumbo y la distancia navegados.",
+    "trampa": "Cortar el meridiano de Espartel con la demora de Malabata sin trasladarlo.",
+    "concepto": "and-py-2023-c3-n17"
+  },
+  "and-py-2018-c2-n11": {
+    "explicacion": "La enfilación Trafalgar–Roche medida en la carta da Dv = 323º. Ct = Dv − Da = 323º − 314º = +9º. El Ra y la velocidad no intervienen.",
+    "clave": "Ct = Dv − Da, con la Dv sacada de la enfilación en la carta.",
+    "trampa": "Restar al revés (−9º, la b) o usar el Ra (323º − 335º = −12º, la d).",
+    "concepto": "and-py-2025-c1-n11"
+  },
+  "and-py-2018-c2-n12": {
+    "explicacion": "Salida 20:00: 5 M al N del faro de Punta Alcázar → 35º 56,0′ N 005º 33,7′ W. Punta Almina queda a 13,8 M al 098º; tangente al círculo de 3 M dejando el faro por estribor: arcsen(3 / 13,8) = 12,6º → Rs = 085º. Viento del N por babor (+20º): Rv = 085º − 20º = 065º. Ct = +5º + 7º = +12º → Ra = 065º − 12º = 053º ≈ 054º.",
+    "clave": "Viento por babor → Rv = Rs − Ab; Ra = Rv − Ct.",
+    "trampa": "Abatir al revés (Rv 105º → Ra ≈ 093º, la c).",
+    "concepto": "and-py-2022-c2-n12"
+  },
+  "and-py-2018-c2-n13": {
+    "explicacion": "Ct = −3º − 7º = −10º → Rv = 300º − 10º = 290º. Viento del NE por estribor: abate a babor, Rs = 290º − 15º = 275º. Distancia: 6 × 2,5 h = 15 M al 275º desde 35º 55′ N 005º 50′ W → 35º 56,3′ N 006º 08,5′ W.",
+    "clave": "Rv = Ra + Ct (Ct negativa: resta); viento por estribor → Rs = Rv − Ab.",
+    "trampa": "Sumar la Ct al revés (Rv 310º) o abatir hacia el viento (Rs 305º).",
+    "concepto": "and-py-2024-c1-n13"
+  },
+  "and-py-2018-c2-n14": {
+    "explicacion": "Salida 10:00: 6,4 M al W de Cabo Espartel → 35º 47,5′ N 006º 03,3′ W. Ct = −3º + 3º = 0º → Rv = 073º. Estima 12:00: 12 M al 073º → 35º 51,0′ N 005º 49,2′ W. Observada 12:00: al W de Punta Cires (su paralelo) y al N de Punta Malabata (su meridiano): 35º 54,6′ N 005º 45,0′ W. Estima → observada: Rc ≈ 043º (NE), 4,9 M en 2 h → Ihc = 2,5′.",
+    "clave": "Corriente desconocida: estima → observada; Ihc = distancia / horas.",
+    "trampa": "No dividir entre 2 h (≈ 5′, la a) o invertir el vector (SW, la b).",
+    "discrepancia": "Sin discrepancia en el cálculo: da la oficial (Rc ≈ 043º, en el cuadrante NE; Ihc 2,5′). Las opciones dan el rumbo de la corriente por su cuadrante (NE/SW), no en grados.",
+    "concepto": "and-py-2025-c1-n15"
+  },
+  "and-py-2018-c2-n15": {
+    "explicacion": "Situación 18:00: desde el faro de Punta Camarinal (Punta de Gracia) trazamos 150º (opuesta de 330º) y desde el de Isla de Tarifa 240º (opuesta de 060º): 35º 57,2′ N 005º 42,7′ W. Triángulo: buque 290º a 6 nudos + corriente 000º a 3 nudos → Ref 312º, Vef 7,6 nudos. En 1,5 h: 11,4 M al 312º → 36º 04,8′ N 005º 53,1′ W.",
+    "clave": "Situación por dos demoras (trazadas desde el faro con su opuesta) y estima con corriente: buque + corriente, × tiempo.",
+    "trampa": "Trazar las demoras desde el faro sin invertirlas u olvidar la corriente.",
+    "concepto": "and-py-2025-c2-n16"
+  },
+  "and-py-2018-c2-n16": {
+    "explicacion": "Ref: de 36º 00′ N 005º 15′ W a la luz roja del espigón de Algeciras, 316º y 12,3 M en 1,5 h → Vef = 8,2 nudos. Triángulo: corriente 225º 3 nudos; uniendo su extremo con el del vector efectivo sale el buque: Rs = 336º, Vb = 8,8 nudos. Sin viento, Rv = 336º. dm 2018 = 6º E − 10 × 6′ = +5º; Ct = +5º + 8º = +13º → Ra = 336º − 13º = 323º.",
+    "clave": "Hora de llegada fijada: Vef = D / t; buque = efectivo − corriente; Ra = Rv − Ct.",
+    "trampa": "Tomar la Vef (≈ 8,3 nudos) como Vb (la a o la c) o no actualizar la dm (Ra 322º–333º).",
+    "concepto": "and-py-2024-c2-n13"
+  },
+  "and-py-2018-c2-n17": {
+    "explicacion": "Salida 17:30: 2 M al E de Punta Carnero → 36º 04,7′ N 005º 23,0′ W. A la luz verde de la bocana de Ceuta: 162º y 11,5 M (ese es el rumbo que queremos hacer, Rs). Viento del E por babor (+15º): Rv = 162º − 15º = 147º. Ct = −6º − 3º = −9º → Ra = 147º + 9º = 156º ≈ 155º. Llegada: 11,5 / 6 = 1 h 55 m → 19:25 ≈ 19:24.",
+    "clave": "Viento por babor → Rv = Rs − Ab; con Ct negativa, Ra = Rv + |Ct|; t = d / V.",
+    "trampa": "Abatir al revés (Ra ≈ 186º, como la a) o restar la Ct (Ra ≈ 138º, como la d).",
+    "concepto": "and-py-2022-c2-n13"
+  },
+  "and-py-2018-c4-n11": {
+    "explicacion": "Ct = −5º + 9º = +4º → Rv = 144º + 4º = 148º. Sin viento, Rs = Rv. Triángulo: buque 148º a 8 nudos + corriente 225º a 3 nudos → Ref = 167º ≈ 166º (Vef 9,2 nudos). La situación de salida no interviene.",
+    "clave": "Ref = dirección de (vector buque + vector corriente).",
+    "trampa": "Restar la corriente en vez de sumarla o dar el Rv sin la corriente.",
+    "concepto": "and-py-2026-c1-n15"
+  },
+  "and-py-2018-c4-n12": {
+    "explicacion": "Ct = −3º − 11º = −14º → Rv = 234º − 14º = 220º. Viento del SE por babor: abate a estribor, Rs = 220º + 10º = 230º. Triángulo: buque 230º a 8 nudos + corriente 135º a 3 nudos → Ref 209º, Vef 8,3 nudos. En 1,5 h: 12,4 M al 209º desde 36º 00′ N 005º 50′ W → 35º 49,1′ N 005º 57,4′ W.",
+    "clave": "Ra → Rv (+Ct) → Rs (abatimiento) → + corriente, todo × tiempo.",
+    "trampa": "Abatir hacia el viento (Rs 210º) o sumar la Ct negativa al revés.",
+    "concepto": "and-py-2020-c3-n15"
+  },
+  "and-py-2018-c4-n13": {
+    "explicacion": "Ct = Dv − Da, con la Dv de la enfilación Espartel–Malabata medida en la carta. Con los faros de la carta (Espartel 35º 47,5′ N 005º 55,4′ W; Malabata 35º 49,2′ N 005º 45,0′ W) la enfilación mide 078,6º: estando al W de Espartel, ese faro (y Malabata detrás) nos demora 078,6º. Ct = 078,6º − 087º = −8,4º. La más próxima es la oficial, −7º.",
+    "clave": "Ct = Dv − Da, con la Dv de la enfilación medida en la carta.",
+    "trampa": "Usar el Rv en lugar de la Dv (087º − 070º = +17º, la a).",
+    "discrepancia": "El cálculo da Ct ≈ −8,4º, no −7º: la oficial supone la enfilación en 080º, y con los faros de la carta sale 078,6º. La b es la más próxima y ninguna otra opción se acerca.",
+    "concepto": "and-py-2022-c2-n11"
+  },
+  "and-py-2018-c4-n14": {
+    "explicacion": "Estima 12:30: 8,5 × 1,5 = 12,75 M al 265º desde 36º 01′ N 005º 49,4′ W → 35º 59,9′ N 006º 05,1′ W. Observada 12:30: desde el faro de Punta Camarinal (Punta de Gracia) 254,5º (opuesta de 074,5º) y desde Trafalgar 180º: 36º 02,5′ N 006º 02,0′ W. Estima → observada: Rc ≈ 044º (NE), 3,6 M en 1,5 h → Ihc = 2,4′ ≈ 2,5′.",
+    "clave": "Corriente desconocida: estima → observada; Ihc = distancia / horas.",
+    "trampa": "No dividir entre 1,5 h (≈ 3,6′, la a) o invertir el vector (SW, la b).",
+    "discrepancia": "Sin discrepancia en el cálculo: da la oficial (Rc ≈ 044º, en el cuadrante NE; Ihc 2,4′). Las opciones dan el rumbo de la corriente por su cuadrante (NE/SW), no en grados.",
+    "concepto": "and-py-2024-c2-n17"
+  },
+  "and-py-2018-c4-n15": {
+    "explicacion": "08:00: Dv 200º a Punta Malabata → desde el faro trazamos 020º. Navegado hasta 10:30: 6 × 2,5 = 15 M al 070º; trasladamos la 1ª línea 15 M al 070º. 10:30: desde el faro de Isla de Tarifa trazamos 110º (opuesta de 290º): corta a la línea trasladada en 35º 57,1′ N 005º 26,3′ W.",
+    "clave": "Demoras no simultáneas: traslada la primera línea el rumbo y la distancia navegados y córtala con la segunda.",
+    "trampa": "Cortar las dos demoras sin trasladar o trazarlas desde el faro sin invertirlas.",
+    "concepto": "and-py-2023-c3-n17"
+  },
+  "and-py-2018-c4-n16": {
+    "explicacion": "La enfilación Carnero–Europa mide 063,5º en la carta: a 4 M de Punta Europa, en su prolongación más allá de este faro, estamos 4 M al 064º del faro → 36º 08,5′ N 005º 16,2′ W. Ref: a la luz verde de la bocana de Ceuta, 188º y 14,8 M en 2,5 h → Vef = 5,9 nudos. Triángulo: corriente 225º 3 nudos; buque = efectivo − corriente → Rs = 160º, Vb = 4,0 nudos. dm 2018 = 7º E − 10 × 6′ = +6º; Ct = +6º + 9º = +15º → Ra = 160º − 15º = 145º ≈ 143º, Vb ≈ 3,9 nudos.",
+    "clave": "Hora de llegada fijada: Vef = D / t; buque = efectivo − corriente; Ra = Rv − Ct.",
+    "trampa": "Tomar la Vef (5,9 nudos) como Vb (la b o la d).",
+    "concepto": "and-py-2020-c1-n17"
+  },
+  "and-py-2018-c4-n17": {
+    "explicacion": "A la farola del espigón de Tánger: 206º y 13,9 M desde 36º 00′ N 005º 40′ W (rumbo a hacer, Rs). Viento del E por babor (+15º): Rv = Rs − Ab = 206º − 15º = 191º. Ct = +6º + 3º = +9º → Ra = 191º − 9º = 182º.",
+    "clave": "Viento por babor → Rv = Rs − Ab; Ra = Rv − Ct.",
+    "trampa": "Abatir al revés (Rv 221º → Ra 212º, la a).",
+    "concepto": "and-py-2022-c3-n14"
+  },
+  "and-py-2019-c1-n11": {
+    "explicacion": "La enfilación Roche–Trafalgar medida en la carta da Dv = 323º. Ct = Dv − Da = 323º − 315º = +8º. El Ra y la velocidad no intervienen.",
+    "clave": "Ct = Dv − Da, con la Dv sacada de la enfilación en la carta.",
+    "trampa": "Usar el Ra en lugar de la demora (323º − 333º = −10º, la a).",
+    "concepto": "and-py-2025-c1-n11"
   }
 }

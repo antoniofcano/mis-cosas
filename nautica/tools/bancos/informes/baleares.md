@@ -574,3 +574,148 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 | RD 191/2026 | 54 | bal-py-2017-03-a-34, bal-py-2017-03-a-36, bal-py-2017-03-cb-37, bal-py-2017-03-a-39, bal-py-2017-07-a-36, bal-py-2017-12-a-34, bal-py-2017-12-a-38, bal-py-2018-06-b-31, bal-py-2018-06-b-39, bal-py-2019-04-a-34, bal-py-2019-04-a-35, bal-py-2019-04-a-38, bal-py-2019-06-b-36, bal-py-2019-12-a-31, bal-py-2019-12-c-34, bal-py-2019-12-a-35, bal-py-2019-12-a-38, bal-py-2020-07-a-36, bal-py-2020-07-b-36, bal-py-2020-12-b-32, bal-py-2020-12-b-37, bal-py-2021-03-b-37, bal-py-2021-06-ac-33, bal-py-2021-06-b-34, bal-py-2021-06-b-36, bal-py-2021-06-ac-37, bal-py-2021-12-a-32, bal-py-2021-12-b-33, bal-py-2021-12-a-37, bal-py-2022-06-a-38, bal-py-2022-12-b-33, bal-py-2022-12-ac-37, bal-py-2023-06-ac-33, bal-py-2023-06-b-33, bal-py-2023-12-a-33, bal-py-2023-12-a-35, bal-py-2023-12-b-38, bal-py-2024-04-bc-31, bal-py-2024-04-a-35, bal-py-2024-04-bc-37, bal-py-2024-07-a-34, bal-py-2024-07-bc-34, bal-py-2024-07-bc-37, bal-py-2024-07-a-39, bal-py-2024-12-bc-31, bal-py-2024-12-bc-35, bal-py-2024-12-a-38, bal-py-2025-04-a-37, bal-py-2025-04-a-38, bal-py-2025-04-a-40, bal-py-2025-07-b-33, bal-py-2025-12-b-32, bal-py-2026-03-a-38, bal-py-2026-03-b-39 |
 | RD 1188/2025 (buceo y ROM) | 2 | bal-py-2018-06-b-10, bal-py-2023-03-ac-02 |
 
+## Particularidades de Baleares
+
+### Documentos
+
+Un PDF por modelo (isla y turno), con la respuesta impresa tras cada pregunta. La etapa «manifiesto» lee la cabecera de cada PDF para saber titulación, modelo e idioma.
+
+| Titulación · rol (idioma) | PDF |
+|---|---|
+| per · cuestionario (es) | 219 |
+| per · especifico (es) | 4 |
+| per · traduccion (ca) | 1 |
+| py · cuestionario (es) | 69 |
+| py · traduccion (ca) | 1 |
+| — · anexo | 7 |
+
+- PER: 221 exámenes extraídos (9864 apariciones).
+- PY: 67 exámenes extraídos (2680 apariciones).
+- Descartados: las versiones en catalán (PER dic-2022 primer turno de Mallorca, PDF 408507; PY de Mallorca de mar-2023, PDF 420397, **que solo existe en catalán**: ese examen falta en el banco) y 4 PDF que repiten otro de la misma página con el mismo modelo (225538, 234244, 290008, 385649).
+- PER específico (preguntas 28–45, para quien ya tiene el PNB): en Baleares son juegos propios, no un trozo de un PER completo. Entran como exámenes de 18 preguntas (modelos «ESP-…», huecos documentados en config.json).
+
+### Fechas
+
+Fecha de cada convocatoria: el primer día de examen (Menorca y Eivissa) según la resolución anual del BOIB o el calendario de la DG. Sin resolución encontrada (14 convocatorias), la fecha es el día 1 del mes: 2017-03, 2017-07, 2017-09, 2017-12, 2019-04, 2019-06, 2019-09, 2019-12, 2020-07, 2020-10, 2022-03, 2022-06, 2022-09, 2022-12. Solo afecta a la comparación con la entrada en vigor de las normas (al mes) y al año de la declinación.
+
+### Preguntas repetidas: decisiones
+
+El tribunal recicla mucho su banco: al copiar las preguntas corrige erratas, cambia la puntuación, reordena o retoca las opciones. La regla genérica de la etapa (umbral de similitud) dejaba miles de parejas como ambiguas; `decidir-repetidas.mjs` las decide con una regla más fina (documentada en el propio fichero) y deja cada decisión con su motivo en `repetidas.json` (7120 decisiones). Las que siguen sin decidir están en la tabla «Posibles duplicados no unidos» de arriba: no se han unido.
+
+| Titulación · decisión · motivo | Parejas |
+|---|---|
+| per · separar · enunciado distinto | 1251 |
+| per · unir · opciones retocadas ; misma respuesta oficial | 1130 |
+| per · separar · variante con otras opciones | 1081 |
+| per · unir · mismas opciones; enunciado reformulado  y misma respuesta oficial | 874 |
+| per · separar · una opción cambia de sentido | 756 |
+| per · unir · mismo texto salvo puntuación, palabras vacías o el orden de las opciones | 520 |
+| py · unir · opciones retocadas ; misma respuesta oficial | 257 |
+| py · separar · enunciado distinto | 226 |
+| py · separar · variante con otras opciones | 203 |
+| py · unir · mismas opciones; enunciado reformulado  y misma respuesta oficial | 194 |
+| py · unir · mismo texto salvo puntuación, palabras vacías o el orden de las opciones | 167 |
+| py · separar · una opción cambia de sentido | 153 |
+| per · unir · erratas o puntuación | 99 |
+| per · separar · enunciado: cifras distintas | 54 |
+| per · separar · enunciado: palabra de sentido «…» | 52 |
+| py · unir · erratas o puntuación | 43 |
+| py · separar · enunciado: palabra de sentido «…» | 23 |
+| py · separar · enunciado: cifras distintas | 22 |
+| per · separar · enunciado: palabra de sentido | 9 |
+| per · separar · otra figura | 4 |
+| py · separar · otra figura | 2 |
+
+### Correcciones
+
+Baleares no publica anulaciones ni plantillas revisadas. Erratas aplicadas (fe de erratas de la página y notas «(*) NOTA» del cuadernillo):
+
+| Examen | nº | Cambio | Fuente |
+|---|---|---|---|
+| bal-per-2024-07 · B/E | 35 | opcion-a: «760 mm» → «760 mmHg» | https://www.caib.es/sites/transportmaritim/es/convocataria_dabril_de_2024_examens_resolts_0/ |
+| bal-per-2022-09 · A | 45 | enunciado: «latitud 36º 50'N» → «latitud 35º 50'N» | https://www.caib.es/sites/transportmaritim/es/archivopub.do?ctrl=MCRST165ZI401195&id=401195 |
+| bal-py-2023-06 · A/C | 39 | enunciado: «l= 39º50' N (*)» → «l= 35º50' N» | https://www.caib.es/sites/transportmaritim/es/archivopub.do?ctrl=MCRST165ZI429188&id=429188 |
+
+Respuestas contradictorias del propio tribunal entre convocatorias (o modelos) de la misma pregunta: **8**, resueltas a mano contra la norma o el cálculo:
+
+| Examen de referencia | nº | Se toma | Motivo |
+|---|---|---|---|
+| bal-per-2017-12 · D | 30 | d | Conflicto entre convocatorias: dic-2017 y mar-2021 dan d) (sólidos); jun-2026 (modelo B, nº 30) da a) (gases). La clase A de fuego es la de los combustibles sólidos (norma UNE-EN 2, a la que remite el Reglamento de instalaciones de protección contra incendios, RD 513/2017). Se toma d); la de jun-2026 es un error de la plantilla. |
+| bal-per-2018-12 · C | 11 | b | Conflicto en el mismo examen: Eivissa (modelo C) da d) «No se puede fondear a menos de 200 metros»; Menorca (modelo I, idéntico) da por buenas a), b) y c). El Reglamento General de Costas (RD 876/2014, art. 73.2) dice que en los tramos no balizados la zona de baño ocupa 200 m en las playas y que dentro de ella no se puede navegar a más de 3 nudos; no prohíbe fondear. Se toma b) «Sí, pero debemos aproximarnos a menos de tres nudos», la única que recoge la norma; d) no tiene apoyo normativo. |
+| bal-per-2019-04 · A | 24 | c | Conflicto entre convocatorias: abr-2019, abr-2025 y jul-2025 dan «Una pitada corta»; jun-2026 (modelo A, nº 25) marca «Dos pitadas cortas». RIPA, regla 34 a): una pitada corta = «caigo a estribor»; dos = «caigo a babor». Se toma c). |
+| bal-per-2019-09 · B | 12 | d | Conflicto entre convocatorias: sep-2019 da 25 m (norma anterior, la Orden de 14-10-1997); mar-2021 da 50 m. Desde el 1-7-2020 el RD 550/2020 dice que «todos los buques o embarcaciones deberán mantenerse a una distancia de seguridad mínima de 50 metros de la zona de buceo». Se toma d) 50 metros, la respuesta oficial más reciente y la de la norma vigente. |
+| bal-per-2020-12 · D | 45 | c | Conflicto entre convocatorias: dic-2020 da Ra = 327º; abr-2025 y sep-2025 dan Ra = 329º. Resuelto sobre la carta (kit de la app): situación a 3,2 millas al 103º del faro de Punta Carnero, Rv a la luz roja de Algeciras = 327º, Ra = Rv − Ct = 327º − (−2º) = 329º. Se toma c). |
+| bal-per-2022-12 · C | 5 | d | Conflicto entre convocatorias: dic-2022 da a) «Para balizarlo»; sep-2023 (dos modelos) y jul-2024 dan d) «a y c son correctas». El orinque (cabo con boyarín amarrado a la cruz del ancla) sirve a la vez para señalar dónde está el ancla y para zarparla por la cruz si se enroca: las dos cosas. Se toma d). |
+| bal-per-2024-04 · D/F | 25 | b | Conflicto entre convocatorias: abr-2024 da «Ninguna es correcta»; dic-2025 (modelo C, nº 20) marca la b), que en ese modelo es «Un buque fondeado» (la letra de la «Ninguna» de abr-2024: error al reordenar las opciones). RIPA, regla 3 d): «buque dedicado a la pesca» excluye a los que pescan con curricán u otros aparejos que no restringen su maniobrabilidad; tampoco es un buque fondeado ni con maniobrabilidad restringida. Se toma «Ninguna es correcta». |
+| bal-py-2026-03 · A | 23 | c | Conflicto entre convocatorias: mar-2026 (modelo A, nº 23) da b); jun-2026 (modelo B, nº 27) da c). La latitud se mide sobre el meridiano desde el Ecuador (0º) hasta los polos (90º N o S): c) es correcta. b) es falsa: cualquier círculo máximo divide la Tierra en dos hemisferios, pero solo el meridiano de Greenwich con su antimeridiano la divide en occidental y oriental; a) describe la longitud y d) mide la longitud en kilómetros. Se toma c). |
+
+### Figuras
+
+28 imágenes sacadas de los PDF (figuras.mjs), asignadas a 24 preguntas. Preguntas que citan una imagen que el PDF no trae (se explican con lo que dicen las opciones):
+
+| id | Enunciado |
+|---|---|
+| bal-py-2018-06-b-21 | Si observamos esta imagen en la pantalla del Radar. ¿A qué se puede deber? |
+| bal-py-2021-03-ac-03 | Indicar en la imagen siguiente, para que sirve el tubo/cilindro negro de la izquierda en el respondedor SART: |
+
+### Tema por posición
+
+El tema sale de la posición de la primera aparición (reparto 4-2-4-2-5-10-2-3-4-5-4 del PER; 10 + 10 + 10 + 10 del PY). Preguntas que el tribunal ha puesto en posiciones de temas distintos:
+
+| id | ut | Posiciones | Enunciado |
+|---|---|---|---|
+| bal-per-2017-03-b-25 | 6 | 25, 40, 37, 37, 37 | Si vemos un faro de color verde y de golpe, cambia a color rojo, nos indica, |
+| bal-per-2017-03-ci-38 | 10 | 38, 17, 17, 41, 15, 41, 15, 37, 40, 40 | Si navegando de noche en direccion Norte o Sur entre Mallorca e Isla Dragonera ( Es Freu) observamos |
+| bal-per-2017-07-c-05 | 2 | 5, 5, 2 | Que nombre recibe el asta larga con un gancho en un extremo que utilizamos para ayudarnos a atracar  |
+| bal-per-2020-07-d-40 | 10 | 40, 40, 36 | ¿Qué efecto tiene la presión atmosférica sobre el nivel de las aguas? |
+| bal-per-2021-12-d-07 | 3 | 7, 29 | El tiempo de supervivencia en la mar depende: |
+
+### Revisión normativa
+
+Todas las preguntas que el detector de `data/normativa.json` marcó «revisar» se han revisado contra el BOE (decisión y nota de cada una en `ajustes.json`, campo `norma`):
+
+- PER: 772 vigente, 4 actualizada, 5 retirada; quedan «revisar»: 0.
+- PY: 220 vigente, 2 actualizada, 1 retirada; quedan «revisar»: 0.
+
+| id | Estado | Nota |
+|---|---|---|
+| bal-per-2017-03-a-08 | actualizada | El salto desde 4,5 m sin lesiones es el ensayo de los chalecos homologados según el Código LSA (SOLAS). El RD 339/2021 (art. 7.5), vigente desde el 1-7-2021, ya no lo enuncia y admite chalecos certificados como equipo de protección individual (Reglamento UE 2016/425), con su flotabilidad mínima por zona. |
+| bal-per-2017-03-b-11 | retirada | Desde el 1-7-2020 el RD 550/2020 (art. 14.2) obliga a mantenerse a 50 m como mínimo de la zona de buceo, y la señal reglamentaria es la boya con la bandera «Alfa» (anexo III); los 25 m y el boyarín rojo con franja blanca eran de la Orden de 14-10-1997, derogada. Ninguna opción es hoy correcta. Revisada: el detector saltó por una cifra en metros o nudos (esloras y luces del RIPA, sondas o distancias en la carta), no por las zonas de baño ni el despacho que regula el RD 186/2023. Revisada: el tribunal de Baleares no cita una edición concreta del sistema IALA. Lo que pregunta (colores, formas, marcas de tope y ritmos de las marcas laterales, cardinales, de peligro aislado, de aguas navegables, especiales y de naufragio de la región A) es igual en la edición de 2010 y en las posteriores de la recomendación R1001; las de carta, sondas o luces del RIPA solo nombran una boya o un naufragio. |
+| bal-per-2017-09-d-11 | retirada | Los 3 nudos como velocidad máxima en el interior de los puertos venían de la Orden de 2-7-1964, derogada por el RD 186/2023 (en vigor desde el 11-4-2023). Hoy la velocidad en cada puerto la fijan sus ordenanzas o reglamento de explotación y policía; el propio tribunal ya lo pregunta así desde octubre de 2020. |
+| bal-per-2017-09-e-11 | retirada | Desde el 1-7-2020 el RD 550/2020 (art. 14.2) obliga a mantenerse a 50 m como mínimo de la zona de buceo, y la señal reglamentaria es la boya con la bandera «Alfa» (anexo III); los 25 m y el boyarín rojo con franja blanca eran de la Orden de 14-10-1997, derogada. Ninguna opción es hoy correcta. Revisada: el detector saltó por una cifra en metros o nudos (esloras y luces del RIPA, sondas o distancias en la carta), no por las zonas de baño ni el despacho que regula el RD 186/2023. Revisada: el tribunal de Baleares no cita una edición concreta del sistema IALA. Lo que pregunta (colores, formas, marcas de tope y ritmos de las marcas laterales, cardinales, de peligro aislado, de aguas navegables, especiales y de naufragio de la región A) es igual en la edición de 2010 y en las posteriores de la recomendación R1001; las de carta, sondas o luces del RIPA solo nombran una boya o un naufragio. |
+| bal-per-2017-12-a-11 | retirada | Los 3 nudos como velocidad máxima en el interior de los puertos venían de la Orden de 2-7-1964, derogada por el RD 186/2023 (en vigor desde el 11-4-2023). Hoy la velocidad en cada puerto la fijan sus ordenanzas o reglamento de explotación y policía; el propio tribunal ya lo pregunta así desde octubre de 2020. |
+| bal-per-2018-06-h-10 | actualizada | El salto desde 4,5 m sin lesiones es el ensayo de los chalecos homologados según el Código LSA (SOLAS). El RD 339/2021 (art. 7.5), vigente desde el 1-7-2021, ya no lo enuncia y admite chalecos certificados como equipo de protección individual (Reglamento UE 2016/425), con su flotabilidad mínima por zona. |
+| bal-per-2019-06-a-11 | actualizada | Esta precisión (señales flotantes y parecidas al balizamiento) venía de la Orden de 2-7-1964, derogada por el RD 186/2023 el 11-4-2023. Hoy el Reglamento General de Costas (art. 73.1) solo exige que el lanzamiento y la varada se hagan por canales debidamente señalizados; en la práctica se siguen balizando con boyas flotantes. Revisada: el tribunal de Baleares no cita una edición concreta del sistema IALA. Lo que pregunta (colores, formas, marcas de tope y ritmos de las marcas laterales, cardinales, de peligro aislado, de aguas navegables, especiales y de naufragio de la región A) es igual en la edición de 2010 y en las posteriores de la recomendación R1001; las de carta, sondas o luces del RIPA solo nombran una boya o un naufragio. |
+| bal-per-2019-06-b-12 | retirada | Los 3 nudos como velocidad máxima en los puertos venían de la Orden de 2-7-1964, derogada por el RD 186/2023 (en vigor desde el 11-4-2023). Hoy la velocidad en cada puerto la fijan sus ordenanzas o reglamento de explotación y policía. Revisada: no depende de lo que cambió el RD 339/2021 (número de bengalas, cohetes y fumígenas por zona, chaleco adicional en zona 1, extintores 34B, material náutico obligatorio); trata de técnica, del RIPA o de conceptos que no cambian. |
+| bal-per-2021-12-b-12 | actualizada | La prohibición de practicar deportes náuticos a menos de 200 m de la playa era de la Orden de 2-7-1964, derogada por el RD 186/2023 el 11-4-2023. Hoy rige el art. 73 del Reglamento General de Costas: en las zonas de baño balizadas no se puede navegar y, sin balizar, la franja de baño es de 200 m en las playas y dentro de ella no se puede pasar de 3 nudos, lo que impide igualmente esas actividades. |
+| bal-py-2017-03-cb-09 | actualizada | La revisión anual de los chalecos inflables por centros homologados venía de la Orden FOM/1144/2003. Desde el 1-7-2021 el RD 339/2021 (art. 7.4) remite a las instrucciones del fabricante y a estaciones de servicio autorizadas, sin fijar un plazo anual en la norma. |
+| bal-py-2017-07-b-02 | actualizada | La revisión anual de los chalecos inflables venía de la Orden FOM/1144/2003. Desde el 1-7-2021 el RD 339/2021 (art. 7.4) dice que se revisan según las instrucciones del fabricante y en estaciones de servicio autorizadas, sin fijar un plazo anual en la norma; siguen siendo los inflables los que se revisan. |
+| bal-py-2019-04-b-06 | retirada | Desde el 1-7-2021 el RD 339/2021 (art. 9) exige en zonas 2 y 3 una sola señal fumígena flotante (dos solo en zona 1); la respuesta oficial (2) era la de la Orden FOM/1144/2003, derogada, y ninguna opción es hoy correcta. |
+
+### Reserva para el examen final
+
+Modo «pregunta»: las preguntas de bal-per-2026-06, bal-per-2026-09 (PER) y bal-py-2026-03, bal-py-2026-06 (PY), y las que aparecen también en ellas, salen de toda la práctica.
+
+- PER: 344 preguntas reservadas (218 de ellas ya habían salido antes).
+- PY: 151 preguntas reservadas (67 de ellas ya habían salido antes).
+
+### Explicaciones del profe
+
+- PER: 0 de 3110 preguntas sin carta con explicación; 0 adaptadas de una explicación ya revisada del otro banco (concepto `and-…`), 0 escritas para Baleares; 0 con discrepancia frente a la plantilla.
+- PY: 0 de 782 preguntas sin carta con explicación; 0 adaptadas de una explicación ya revisada del otro banco (concepto `and-…`), 0 escritas para Baleares; 0 con discrepancia frente a la plantilla.
+
+### Soluciones de carta
+
+- PER: 0 de 463 preguntas de carta con solución programada que llega a la oficial.
+- PY: 0 de 409 preguntas de carta con solución programada que llega a la oficial.
+- En los bloques DISCREPANCIAS de `src/exams/solutions/baleares-*.js`: 0 preguntas (no llegan a la oficial o necesitan un elemento que la carta de la app no tiene), cada una con su motivo.
+- Mareas que necesitan el anuario (`requiere: ["anuario"]`), PER: 62.
+- Mareas que necesitan el anuario (`requiere: ["anuario"]`), PY: 25.
+
+### Práctica por clase
+
+practica.mjs asigna cada pregunta del estudio a una clase de su tema (concepto revisado del otro banco, pregunta vecina, tipo de ejercicio de carta o palabras clave de la clase); el motivo de cada una está en `practica-informe.json`.
+
+- PER: 3224 preguntas en 86 clases; por motivo: texto 2916, vecina 252, mareas 56; clases sin práctica: ninguna.
+- PY: 1039 preguntas en 39 clases; por motivo: texto 965, vecina 52, mareas 22; clases sin práctica: ninguna.
+

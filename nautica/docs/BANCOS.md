@@ -6,7 +6,8 @@ cambia de un eje a otro son las preguntas, sus explicaciones, la práctica de ca
 de su tribunal.
 
 Este documento es el contrato entre el proceso de extracción (`tools/bancos/`, fase F2) y la app (`src/bancos/`,
-fase F0). Hoy hay un solo eje, **Andalucía**, que es también el eje por defecto (`src/bancos/registro.js`).
+fase F0). **Andalucía** es el eje por defecto (`src/bancos/registro.js`); el registro (`data/ejes/index.json`) dice
+qué otros ejes hay y en qué estado.
 
 ## Ficheros
 
@@ -211,8 +212,8 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
 ## Cómo añadir un eje
 
 1. Extrae sus exámenes al formato normalizado (F2: `tools/bancos/`): `data/ejes/<eje>/<tit>/preguntas.json`
-   con ids `<prefijo>-<tit>-<conv>-<NN>` y `conv` `<prefijo>-<tit>-AAAA-MM`, y sus figuras en
-   `data/ejes/<eje>/img/`.
+   con ids `<prefijo>-<tit>-AAAA-MM-NN` (`"ids": "conv-nn"` en su config) y `conv` `<prefijo>-<tit>-AAAA-MM`, y sus
+   figuras en `data/ejes/<eje>/img/`.
 2. Escribe su ficha `data/ejes/<eje>/eje.json` (organismo, fuente, licencia, carta, particularidades del examen,
    reserva y, si hace falta, listas) y añádelo a `data/ejes/index.json` con `estado: "borrador"`.
 3. Explicaciones del profe (`explicaciones.json`) para cada pregunta que no es de carta, y la práctica de cada
@@ -221,6 +222,37 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
    `src/bancos/soluciones.js`) y `resueltos.json` para las clases de carta.
 5. `npm test`: `tests/bancos.test.js` valida todos sus ficheros contra este contrato. Cuando esté revisado,
    `estado: "publicado"`. Después, `git add` y `npm run precache`.
+
+## Convenciones de los ejes nuevos
+
+- **Ids congelados**: una vez publicado, un id no cambia. `escribir` es de solo añadir: casa cada pregunta extraída
+  con la publicada por su aparición o por su texto, conserva las publicadas que ya no se extraen y su `concepto`, y
+  numera las nuevas a continuación (`tools/bancos/lib/ids.mjs`).
+- **Juegos de un examen**: si una convocatoria tiene varios juegos de preguntas distintos (PER completo, liberado,
+  PNB…), la clave de su examen es `<conv>@<modelo>` (p. ej. `dgmm-per-2021-10@T05`) y el examen se arma con el
+  orden de `apareceEn`, también con preguntas que vienen de otra convocatoria (`convocatorias()` y `buildReal` en
+  `src/theory/engine.js`). Las permutaciones de un mismo juego (T01/T03…) se juntan en una pregunta con `apareceEn`.
+- **Ajustes por id** (`tools/bancos/ejes/<eje>/ajustes.json`): `{ <tit>: { <id>: { norma: { estado, nota } } } }`.
+  Es el sitio de la revisión normativa hecha a mano (`vigente` | `actualizada` | `retirada`); la etapa `normativa`
+  la aplica y el informe la resume. Las `retirada` salen del estudio.
+- **Explicaciones** (`tools/bancos/explicaciones.mjs`): `lote` saca lotes de preguntas con sus 3 candidatas más
+  parecidas del eje de referencia (Andalucía), `revisar` comprueba una explicación y `fusionar` reúne los lotes en
+  `explicaciones.json` y pone en cada pregunta su `concepto` = el id de la pregunta de Andalucía cuya explicación se
+  adaptó. `src/bancos/equivalentes.js` usa ese `concepto` (y, si no, el parecido del texto en el mismo tema) para
+  buscar la pregunta equivalente de otro eje (`equivalente(id, eje)` del motor: las pausas del podcast).
+- **Práctica** (`tools/bancos/practica.mjs <eje> [--escribir]`): propone `practica.json` con la práctica de
+  Andalucía como guía (concepto, vecinas, reglas del RIPA citadas, palabras propias de la clase y tipo de ejercicio
+  de las de carta) y avisa de las clases que no llegan a las preguntas de su homóloga.
+- **Soluciones de carta**: el módulo de cada eje (`src/bancos/ejes/<eje>.js`) exporta `{ id, soluciones,
+  documentadas }`. `documentadas` = las de carta que no se resuelven, con su motivo: `{ tipo: 'discrepancia' |
+  'sin-calculo', texto }`.
+- **Puertas de calidad** (`tools/bancos/puertas.mjs <eje>`): lo que tiene que cumplir un eje para publicarse
+  (explicación para toda pregunta que no es de carta, solución o motivo documentado para toda la de carta, práctica
+  en cada clase, revisión normativa hecha, licencia citada). `tests/bancos.test.js` las exige a todo eje
+  `publicado`.
+- **Elegir eje**: `ejesParaElegir()` = los publicados; con más de uno, la bienvenida pregunta «¿Dónde te
+  examinas?» y Ajustes ofrece cambiarlo (`src/ui/eje.js`). Cambiar de eje conserva el progreso; la fecha de
+  examen es por titulación.
 
 ## Migración de Andalucía (F0)
 

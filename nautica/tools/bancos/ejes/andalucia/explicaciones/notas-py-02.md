@@ -5,3 +5,5 @@
 - and-py-2016-c2-g07 · RD 339/2021, RD 587/2022 · regulan la dotación y homologación de las balsas, no la conducta a bordo de ellas · sí, la oficial sigue valiendo (aunque se marca discrepancia técnica sobre el orden: ancla flotante).
 - and-py-2016-c2-g08 · RD 339/2021, RD 587/2022 · balsas ISO 9650 u homologadas por la DGMM; el funcionamiento boza/zafa no cambia · sí, sigue valiendo.
 - and-py-2016-c2-g10 · RD 339/2021, RD 587/2022 · cambia qué embarcaciones llevan equipos radio/SART, no el uso del respondedor · sí, sigue valiendo.
+- and-py-2016-c3-g04 · RD 339/2021, RD 587/2022 · regulan la dotación y homologación de las balsas, no la secuencia boza/alejarse/ancla flotante · sí, sigue valiendo.
+- and-py-2016-c3-g06 · RD 339/2021 · los chalecos deben llevar luz y en zona 1 uno más; la forma de inflado (automática, manual, oral) no cambia · sí, sigue valiendo.

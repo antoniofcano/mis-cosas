@@ -314,5 +314,161 @@
   "clave": "Gradiente = desnivel o diferencia de presión en el agua (que el viento puede crear); Luna = marea.",
   "trampa": "La b) parece describir corrientes de arrastre, pero se refiere al desnivel que provoca el viento.",
   "concepto": null
+ },
+ "and-py-2016-c2-g20": {
+  "explicacion": "Las tres son formas reales de que se disipe una niebla, según su tipo: si el aire se calienta por encima de su punto de rocío (la de radiación se levanta al salir el sol), si el agua sobre la que se forma se calienta por encima de ese punto de rocío (la de advección) o si entra viento fuerte que mezcla el aire y la rompe. Por eso la correcta es la d).",
+  "clave": "La niebla se va cuando el aire deja de estar saturado (se calienta) o cuando el viento la mezcla.",
+  "trampa": "Elegir solo una: la pregunta dice «dependiendo del tipo de niebla».",
+  "concepto": null
+ },
+ "and-py-2016-c2-n01": {
+  "explicacion": "Los puntos de igual latitud están sobre el mismo paralelo, que es justamente el círculo que une todos los lugares a la misma distancia angular del ecuador. Los de igual longitud están sobre el mismo meridiano. La enfilación y la demora son líneas de posición respecto a objetos, nada que ver con la latitud.",
+  "clave": "Misma latitud = mismo paralelo; misma longitud = mismo meridiano.",
+  "trampa": "La d): confundir paralelo con meridiano.",
+  "concepto": null
+ },
+ "and-py-2016-c2-n02": {
+  "explicacion": "El dátum es el sistema de referencia geodésico (elipsoide y punto fundamental) respecto al cual se dan las coordenadas, por ejemplo WGS84 o ED50; el GNSS y la carta deben usar el mismo. GPS y GNSS son sistemas de posicionamiento por satélite y el ECDIS es un sistema de cartografía electrónica.",
+  "clave": "Dátum = referencia de lat/lon (WGS84, ED50).",
+  "trampa": "La a) y la c): dan la posición, pero referida a un dátum.",
+  "concepto": "and-py-2022-c2-n05"
+ },
+ "and-py-2016-c2-n03": {
+  "explicacion": "Los tipos de carta electrónica son las vectoriales (ENC) y las raster (RNC). El ECDIS es el sistema o equipo que las muestra, no un tipo de carta, y el AIS es un sistema de identificación de buques; «RCDIS» se refiere al modo raster del equipo.",
+  "clave": "Cartas: vectorial/raster. Equipo: ECDIS/ECS.",
+  "trampa": "La b): ECDIS es el equipo, no la carta.",
+  "concepto": "and-py-2022-c2-n09"
+ },
+ "and-py-2016-c2-n04": {
+  "explicacion": "Para reducir los ecos del oleaje cercano se usa el control de perturbación de mar (anti-clutter sea o STC), que atenúa los ecos próximos al centro, y se retoca la ganancia. Por eso la c) es la más completa. La perturbación de lluvia (anti-clutter rain) es para la lluvia.",
+  "clave": "Mar = anti-clutter sea + ganancia; lluvia = anti-clutter rain + ganancia.",
+  "trampa": "La a) es cierta pero incompleta.",
+  "concepto": "and-py-2022-c3-n09"
+ },
+ "and-py-2016-c2-n05": {
+  "explicacion": "Los círculos polares están en latitud 66° 33′, así que desde el polo (90°) hasta el círculo polar hay 90° − 66° 33′ = 23° 27′, lo mismo que la latitud de los trópicos, porque ambos valores salen de la inclinación del eje terrestre. 66° 33′ es la latitud del círculo polar, no la distancia al polo.",
+  "clave": "Trópicos 23° 27′; círculos polares 66° 33′; del polo al círculo polar, 23° 27′.",
+  "trampa": "La c): 66° 33′ es la latitud del círculo polar, medida desde el ecuador.",
+  "concepto": null
+ },
+ "and-py-2016-c2-n06": {
+  "explicacion": "Las tres son ciertas: GNSS significa Global Navigation Satellite System (Sistema Global de Navegación por Satélite), sirve para obtener la posición con las señales de satélites artificiales y el GPS estadounidense es uno de ellos, igual que Galileo, GLONASS o BeiDou.",
+  "clave": "GNSS = nombre genérico; GPS, Galileo, GLONASS y BeiDou son GNSS.",
+  "trampa": "Pensar que GPS y GNSS son cosas distintas: el GPS es un GNSS.",
+  "concepto": null
+ },
+ "and-py-2016-c2-n07": {
+  "explicacion": "Si el desvío es cero, el norte de aguja coincide con el magnético y Ra = Rm. Y como Rv = Rm + dm siempre, Rm = Rv − dm. Por eso son ciertas la a) y la b). La c) suma la declinación en lugar de restarla.",
+  "clave": "Δ = 0 ⇒ Ra = Rm = Rv − dm.",
+  "trampa": "La c): el signo de la declinación; para pasar de verdadero a magnético se resta.",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -3,
+    "desvio": 0
+   }
+  ],
+  "concepto": "and-py-2022-c3-n04"
+ },
+ "and-py-2016-c2-n08": {
+  "explicacion": "El eje de rotación terrestre corta la superficie en los polos Norte y Sur. Los meridianos de 0° y 180° van de polo a polo, el ecuador es un círculo máximo perpendicular al eje y los hemisferios son divisiones, no extremos del eje.",
+  "clave": "Eje terrestre: Polo Norte – Polo Sur.",
+  "trampa": "La a): confundir el eje con los meridianos de 0° y 180°.",
+  "concepto": "and-py-2022-c2-n01"
+ },
+ "and-py-2016-c2-n09": {
+  "explicacion": "El XTE (Cross Track Error) es la distancia perpendicular entre el barco y la línea que une el waypoint de salida con el de llegada: dice cuánto nos hemos apartado lateralmente de la derrota y hacia qué banda corregir. La a) describe el radio de llegada (alarma de arribada), la b) la distancia al waypoint y la d) una diferencia de rumbos.",
+  "clave": "XTE = separación lateral respecto a la ruta WPT→WPT.",
+  "trampa": "La a): eso es el radio de llegada, no el XTE.",
+  "concepto": "and-py-2022-c1-n03"
+ },
+ "and-py-2016-c2-n10": {
+  "explicacion": "La Hora Reloj Bitácora es la que fija el patrón para regir la vida a bordo (guardias, comidas…). Puede coincidir con la hora civil, la legal o la oficial si el patrón así lo decide, pero no se define por ninguna de ellas.",
+  "clave": "HRB = hora de a bordo, la que decide el patrón.",
+  "trampa": "La c): la HRB puede coincidir con la oficial, pero la fija el patrón, no el Gobierno.",
+  "concepto": null
+ },
+ "and-py-2016-c2-n18": {
+  "explicacion": "Altura de marea necesaria = sonda deseada − sonda de carta = 2,8 − 1,7 = 1,10 m. Tramo BM 09:44 UT (0,56 m) y PM 16:08 UT (3,47 m): D = 6h24m, A = 3,47 − 0,56 = 2,91 m. C = 1,10 − 0,56 = 0,54 m → sen²(90°·I/D) = 0,54/2,91 = 0,186 → I = 1h49m después de la BM → 11:33 UT + 2 h = 13:33 hora oficial.",
+  "clave": "Altura necesaria = Sm − Sc; C = altura − h(BM); despeja I = D·asen(√(C/A))/90° y cuéntalo desde la BM; al final suma el adelanto.",
+  "trampa": "La d) es la hora en UT (11:33): falta sumar las 2 h de adelanto.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c2-n19": {
+  "explicacion": "22:00 hora oficial − 2 h = 20:00 UT, en el tramo PM 16:08 UT (3,47 m) → BM 22:19 UT (0,47 m): D = 6h11m, A = 3,00 m e I = 2h19m hasta la BM. C = A·sen²(90°·I/D) = 3,00·sen²(33,7°) = 0,93 m → altura = 0,47 + 0,93 = 1,40 m → sonda = 1,7 + 1,40 ≈ 3,09 m.",
+  "clave": "Sonda = sonda de carta + altura de marea; primero pasa la hora oficial a UT restando el adelanto.",
+  "trampa": "Entrar en la tabla con las 22:00 sin restar el adelanto pone el barco casi en la bajamar y da una sonda menor.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c2-n20": {
+  "explicacion": "Δl = de 15° 00′ S a 10° 00′ S = 300′ N. ΔL = de 178° 00′ E a 176° 00′ W cruzando el antimeridiano: 2° + 4° = 360′ E. lm = 12,5° S → A = 360·cos 12,5° = 351,5′ E. R = atan(351,5/300) = N 49,5° E.",
+  "clave": "Rumbo directo: Δl y ΔL en minutos, A = ΔL·cos lm, R = atan(A/Δl) y cuadrante según signos.",
+  "trampa": "Calcular ΔL por el camino largo (354° hacia el W) da N 49,5° W; y la a) intercambia Δl y A.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-g01": {
+  "explicacion": "Bajar pesos baja el centro de gravedad, KG disminuye y GM = KM − KG aumenta: el traslado de pesos hacia abajo no disminuye la altura metacéntrica, la mejora. Embarcar pesos altos sube G y desembarcar pesos bajos también lo sube, así que las dos reducen GM.",
+  "clave": "G sube → GM baja; G baja → GM sube.",
+  "trampa": "Pregunta en negativo, y la b) engaña: quitar peso de abajo también sube G.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-g02": {
+  "explicacion": "En el equilibrio indiferente el centro de gravedad coincide con el metacentro (GM = 0): al escorar, el peso y el empuje siguen actuando en la misma vertical, no hay brazo ni par adrizante y el barco se queda escorado. Si G estuviera por encima de M el equilibrio sería inestable y el barco seguiría escorando.",
+  "clave": "G = M → sin par → se queda escorado (indiferente). G sobre M → inestable.",
+  "trampa": "La a): G por encima de M es equilibrio inestable, no indiferente.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "indiferente"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-g03": {
+  "explicacion": "Se habla de estabilidad para grandes inclinaciones cuando la escora supera unos 10°: a partir de ahí el metacentro deja de estar fijo en el plano diametral y se desplaza, y GM ya no sirve para calcular el par adrizante; hay que usar las curvas de brazos GZ. La b) mantiene el metacentro fijo, que solo vale para pequeñas inclinaciones.",
+  "clave": "≤ 10°: M fijo en el diametral (estabilidad inicial); > 10°: M se mueve → curvas GZ.",
+  "trampa": "La b) solo cambia «no se halla» por «se halla».",
+  "concepto": null
+ },
+ "and-py-2016-c3-g04": {
+  "explicacion": "Lo incorrecto es la c): si se larga el ancla flotante antes de cortar la boza, la balsa queda frenada junto al barco que se hunde. Primero se corta la boza y nos alejamos con los remos a una distancia prudencial; después, ya con las pastillas contra el mareo repartidas, se larga el ancla flotante para no derivar y permanecer en la zona de búsqueda.",
+  "clave": "Balsa: cortar boza → alejarse → pastillas → ancla flotante.",
+  "trampa": "Pregunta en negativo: la c) parece prudente («no alejarnos»), pero lo primero es separarse del barco.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g05": {
+  "explicacion": "Lo incorrecto es la c): antes de abandonar hay que quitarse el calzado pesado (botas), que dificulta nadar y puede arrastrar hacia abajo; se conserva, si acaso, un calzado ligero. Sí hay que emitir el mensaje de socorro y parar el barco, y abrigarse bien con varias capas para retrasar la hipotermia.",
+  "clave": "Abandono: socorro, barco parado, abrigo sí, calzado pesado no.",
+  "trampa": "La c) se disfraza de abrigo, pero el calzado pesado estorba en el agua.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g06": {
+  "explicacion": "Los chalecos inflables por gas tienen tres formas de inflarse: automática, al mojarse la pastilla o el sensor hidrostático; manual, tirando del tirador que perfora la botella de CO2; y oral, soplando por el tubo si fallan los otros dos. Por eso son ciertas todas. El RD 339/2021 exige además que lleven luz.",
+  "clave": "Chaleco inflable: automático, manual (tirador) y oral (tubo).",
+  "trampa": "Creer que el tubo es solo para desinflar: también sirve para inflar a boca.",
+  "concepto": null
  }
 }

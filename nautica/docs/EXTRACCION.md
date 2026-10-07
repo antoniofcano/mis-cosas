@@ -32,7 +32,7 @@ npm run bancos -- <eje> [--tit per|py] [--solo etapa[,etapa]] [--desde etapa] [-
 Ejemplos:
 
 ```
-npm run bancos -- andalucia                          # 2020–2026, todas las etapas
+npm run bancos -- andalucia                          # 2020–2026, todas las etapas (las de 2015–2019 se conservan)
 npm run bancos -- andalucia --todas --sin-red        # 2015–2026 con los PDF ya en la caché
 npm run bancos -- andalucia --tit py --solo extraer  # repetir solo la extracción del PY
 npm run bancos -- andalucia --desde normativa        # tras cambiar data/normativa.json
@@ -119,6 +119,11 @@ Detalles de `hoja-optica` que conviene conocer:
 - `py/etiquetas_figura.py` quita del texto los rótulos que caen dentro de una figura (banderas, tablas de mareas).
 - Los modelos A y B del PER son dos hojas escaneadas por separado: la etapa repetidas los empareja y la de
   correcciones comprueba que la opción marcada en las dos tenga el mismo texto.
+- 2015–2019: en `-raw` el guion de una palabra partida por sílabas se quita si sus dos trozos no salen sueltos en el
+  cuadernillo («obsta-culiza»); el «0» volado que en 2017–2018 hace de símbolo de grado («237⁰», «-5⁰ (menos)») lo
+  localiza `py/grado_cero.py` y se repone como «º»; el encabezado «MAREAS.» y la tabla del anuario metida en un enunciado
+  (2/2016) pasan al contexto de sus preguntas; las figuras dibujadas en la página las recorta
+  `ejes/andalucia/figuras.mjs` (`py/recorte.py`) y las asigna `ejes/andalucia/figuras.json` por aparición.
 
 La DGMM y Baleares tienen sus propios adaptadores (plantilla aparte, respuesta en línea) en sus ramas.
 
@@ -154,8 +159,13 @@ CY y PER reducido). Murcia no descarga nada (CAPTCHA y licencia): el manifiesto 
 - `tools/bancos/ejes/<eje>/manifiesto.json`: metadatos de los documentos (sin contenido).
 - `tools/bancos/informes/<eje>.md` (validar): recuentos, avisos, conflictos, ambiguas, atípicas y normas a revisar.
   Con `config.informeEnCache` va a la caché, porque cita textos de preguntas que la licencia no deja publicar.
-- `data/ejes/<eje>/` solo si `config.salida = "data"` y la validación no tiene errores. Andalucía usa `"cache"`: su
-  banco vivo se migró en la fase F0 y el proceso no lo sobrescribe (la prueba de oro lo compara).
+- `data/ejes/<eje>/` solo si `config.salida = "data"` y la validación no tiene errores. Andalucía (desde la fase F5) usa
+  `"data"` con `publicadas: "conservar"`: las preguntas ya publicadas se quedan tal cual (texto, norma, concepto) y la
+  etapa escribir solo añade detrás las nuevas; una nueva idéntica (mismo enunciado, mismas opciones y misma respuesta por
+  el texto de la opción) a una publicada o a otra nueva anterior no se duplica, sus apariciones pasan al `apareceEn` de
+  aquella (nunca a una que solo sale en convocatorias reservadas para el examen final: la sacaría de la reserva). La
+  salida tal como sale de los PDF sigue yendo también a `.cache/bancos/andalucia/salida/` (la compara la prueba de oro).
+  Volver a ejecutarlo no cambia nada (0 nuevas). Receta completa de 2015–2019 en `nautica/.trabajo-andalucia/ESTADO.md`.
 
 ## config.json del eje
 
@@ -167,6 +177,7 @@ CY y PER reducido). Murcia no descarga nada (CAPTCHA y licencia): el manifiesto 
 | `adaptador` | Nombre o `{ per, py }`. Una convocatoria puede declarar el suyo (`convocatorias[].adaptador`). |
 | `ids` | `"andalucia"` (esquema propio y fijo) o `"nuevo"` (`<conv>-<modelo>-<NN>`, ver abajo). |
 | `salida` | `"data"` o `"cache"`. `informeEnCache`: el informe a la caché. |
+| `publicadas` | `"conservar"`: las publicadas no se reescriben y las idénticas nuevas se unen a ellas (ver «Salidas que se suben»). |
 | `titulaciones` | `{ per: { preguntas: 45, modelos, disposicion }, py: { preguntas: 40, modulos \| modelos, disposicion } }`. |
 | `convocatorias` | `[{ clave, pagina, fecha \| fechas: { per, py }, activa, titulaciones?, adaptador?, titulo?, derivadaDe?, nota? }]`. `activa: false` → solo con `--todas`. |
 | `repetidas` | `{ entreConvocatorias, ordenModelos, permutaciones }`. |

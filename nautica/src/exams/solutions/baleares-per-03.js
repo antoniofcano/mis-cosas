@@ -1,5 +1,11 @@
 // Soluciones programadas de carta del PER de Baleares (lote 03). Ver baleares-per.js para el formato.
-import { hrb } from '../kit.js';
+// Lote 03: 109 preguntas (PER, 2021-03 a 2023-09).
+//   - 70 resueltas y comprobadas (en `export default`).
+//   - 15 resueltas con el valor de la opción oficial, pero el lector de opciones no entiende cómo están escritas en el
+//     banco (en `sinLector`, fuera de lo exportado; ver DISCREPANCIAS).
+//   - 24 en DISCREPANCIAS por usar elementos que no están en la carta de la app (isobáticas/sondas, naufragios,
+//     marcas cardinales o especiales, montes, el DST, puertos sin coordenadas).
+import { hrb, cortesRectaArco } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 // Declinación de la carta L105: 2°50′ W 2005 (7′ E).
@@ -571,6 +577,151 @@ export default {
       return latlon(k.lineAndBearing('cabo-trafalgar', op, 'barbate-espigon', dv));
     },
   },
+  'bal-per-2022-12-fd-45': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const A = k.P('punta-alcazar');
+      const cortes = cortesRectaArco({ lat: A.lat, lon: -(5 + 40 / 60) }, N, A, 6);
+      const p = cortes.sort((u, v) => v.lat - u.lat)[0];
+      k.note('Situación de salida', 'Meridiano 005° 40′ W y arco de 6 millas con centro en Punta Alcázar: de los dos cortes, el del N (el otro cae en tierra).');
+      const s = k.pos(`${p.lat} N`, `${-p.lon} W`, 'Salida');
+      // Vamos hacia el E pasando por el N de Punta Cires: el faro queda por estribor.
+      const rv = k.tangent(s, 'punta-cires', 2, 'estribor');
+      const op = k.oposicion('isla-tarifa', 'punta-cires');
+      return latlon(k.corteRumbo(s, rv, 'punta-cires', op, 'Oposición Cires–Tarifa'));
+    },
+  },
+  'bal-per-2023-03-a-42': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('35 54,6 N', '5 50,0 W', 'Situación 10:00');
+      // Vamos hacia el E pasando por el S de Isla de Tarifa: el faro queda por babor.
+      const rv = k.tangent(s, 'isla-tarifa', 3, 'babor');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 5.1 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-per-2023-03-cg-43': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      k.note('Declinación', 'El enunciado solo da el desvío: la declinación es la de la carta llevada a 2023.');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 5 });
+      const d1 = k.dv(15, ct, 'punta-europa');
+      const d2 = k.dv(289, ct, 'punta-carnero');
+      return latlon(k.fix2('punta-europa', d1, 'punta-carnero', d2));
+    },
+  },
+  'bal-per-2023-03-e-43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fromMark('cabo-espartel', NW, 4, 'Situación 11:30');
+      const rv = k.rv(80, k.ct({ dm: -2, desvio: -3 }));
+      const op = k.oposicion('punta-gracia', 'punta-malabata');
+      const p = k.corteRumbo(s, rv, 'punta-malabata', op, 'Oposición Gracia–Malabata');
+      k.note('Distancia a Malabata', 'La distancia a Punta Malabata (4,2 millas) solo confirma la situación sobre la oposición.');
+      const d1 = k.distanceBetween(s, p);
+      const { dist } = k.rhumb(p, 'tanger-espigon');
+      return [{ kind: 'clock', value: k.eta(hrb(11, 30), d1 + dist, 7) }];
+    },
+  },
+  'bal-per-2023-03-cg-44': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const enf = k.enfilacion('cabo-roche', 'cabo-trafalgar');
+      const dv = k.dv(80, k.ct({ dm: 2, desvio: -1.7 }), 'punta-gracia');
+      const s = k.lineAndBearing('cabo-trafalgar', enf, 'punta-gracia', dv, 'Situación 13:10');
+      // Bajamos hacia el SE pasando por fuera (al S) de Punta Paloma: el faro queda por babor.
+      const rv = k.tangent(s, 'punta-paloma', 3, 'babor');
+      const p = k.corteRumbo(s, rv, 'punta-paloma', rv - 90, 'Paloma por el través');
+      const d = k.distanceBetween(s, p);
+      const v = d / 1.5;
+      k.note('Velocidad', `De 13:10 a 14:40 hay 1,5 h: V = ${d.toFixed(1).replace('.', ',')} / 1,5 = ${v.toFixed(1).replace('.', ',')} nudos.`);
+      return [{ kind: 'speed', value: v }];
+    },
+  },
+  'bal-per-2023-03-e-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fromMark('cabo-espartel', W, 3, 'Situación 10:25');
+      const b = k.pos('36 10,0 N', '6 10,0 W', 'Pesquero');
+      const { rv, dist } = k.rhumb(s, b);
+      return [{ kind: 'bearing', value: rv }, { kind: 'distance', value: dist }];
+    },
+  },
+  'bal-per-2023-03-cg-45': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const enf = k.enfilacion('punta-alcazar', 'punta-cires');
+      const op = k.oposicion('punta-carnero', 'punta-almina');
+      const s = k.lineAndBearing('punta-cires', enf, 'punta-almina', op, 'Situación 18:30');
+      const p = k.fromMark('punta-europa', E, 3, 'Punto de paso');
+      const { rv } = k.rhumb(s, p);
+      return latlon(k.run(s, rv, k.distFor(8, hrb(20, 40) - hrb(18, 30)), 'Situación 20:40'));
+    },
+  },
+  'bal-per-2023-06-bg-43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const ct = k.ct({ ct: -5 });
+      const rv = k.rv(230, ct);
+      const d1 = k.dvM(rv, 35, 'punta-leona');
+      const d2 = k.dv(210, ct, 'punta-almina');
+      const s = k.fix2('punta-leona', d1, 'punta-almina', d2, 'Situación 10:00');
+      const p = k.fromMark('punta-cires', N, 5, 'Punto de paso');
+      const { rv: r } = k.rhumb(s, p);
+      return [{ kind: 'bearing', value: k.ra(r, ct) }];
+    },
+  },
+  'bal-per-2023-06-c-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fromMark('punta-almina', E, 2, 'Situación 10:00');
+      const { rv, dist } = k.rhumb(s, 'algeciras-espigon');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: -2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(10), dist, 10) }];
+    },
+  },
+  'bal-per-2023-09-a-42': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '6 15,0 W', 'Salida 17:00');
+      const rv = k.rv(117, k.ct({ ct: 3 }));
+      return latlon(k.run(s, rv, k.distFor(5, 240), 'Situación 21:00'));
+    },
+  },
+  'bal-per-2023-09-a-43': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const ct = k.ct({ dm: -5, desvio: 4 });
+      const rv = k.rv(140, ct);
+      const d1 = k.dv(30, ct, 'cabo-trafalgar');
+      const d2 = k.dvM(rv, -45, 'punta-gracia');
+      const s = k.fix2('cabo-trafalgar', d1, 'punta-gracia', d2, 'Situación 10:22');
+      const { rv: r } = k.rhumb(s, 'tanger-espigon');
+      return latlon(k.run(s, r, k.distFor(12, hrb(11, 43) - hrb(10, 22)), 'Situación 11:43'));
+    },
+  },
+  'bal-per-2023-09-a-44': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const op = k.oposicion('punta-malabata', 'isla-tarifa');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 0 });
+      const dv = k.dv(132, ct, 'punta-alcazar');
+      return latlon(k.lineAndBearing('isla-tarifa', op, 'punta-alcazar', dv));
+    },
+  },
+  'bal-per-2023-09-bf-44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      k.note('Corrección total', 'La «variación magnética de +1°» es el desvío; la declinación, 4° W.');
+      const ct = k.ct({ dm: -4, desvio: 1 });
+      const d1 = k.dv(45, ct, 'punta-gracia');
+      const d2 = k.dv(119, ct, 'punta-malabata');
+      const s = k.fix2('punta-gracia', d1, 'punta-malabata', d2, 'Situación 12:20');
+      const rv = k.rv(202, ct);
+      return latlon(k.run(s, rv, k.distFor(4.5, hrb(14, 30) - hrb(12, 20)), 'Situación 14:30'));
+    },
+  },
 };
 
 // Resueltas y con el valor de la opción oficial, pero el lector de opciones (src/exams/options.js) no entiende cómo
@@ -705,7 +856,86 @@ const sinLector = {
       return latlon(k.run(s, rv, k.distFor(5, 75), 'Situación 14:45'));
     },
   },
+  'bal-per-2023-03-a-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const op1 = k.oposicion('punta-malabata', 'cabo-trafalgar');
+      const op2 = k.oposicion('punta-gracia', 'cabo-espartel');
+      const s = k.lineAndBearing('cabo-trafalgar', op1, 'cabo-espartel', op2, 'Situación 10:00');
+      const op3 = k.oposicion('punta-paloma', 'punta-alcazar');
+      const p = k.fixBearingRange('punta-alcazar', op3, 'punta-cires', 6, 0, 'Destino');
+      const { rv, dist } = k.rhumb(s, p);
+      const ct = k.ct({ ct: 2.2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(10), dist, 3.5) }];
+    },
+  },
+  'bal-per-2023-06-d-42': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fixBearingRange('punta-europa', 328, 'punta-almina', 5, 0);
+      // Hacia el W pasando por el N de Punta Leona: queda por babor.
+      const rv = k.tangent(s, 'punta-leona', 2.5, 'babor');
+      return [...latlon(s), { kind: 'bearing', value: rv }];
+    },
+  },
+  'bal-per-2023-09-c-43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fixBearingRange('cabo-espartel', SW, 'isla-tarifa', 8, 0, 'Situación 13:45');
+      const { rv, dist } = k.rhumb(s, 'barbate-espigon');
+      k.note('Declinación', 'El enunciado fecha el ejercicio el 13 de septiembre de 2012: la declinación es la de la carta llevada a 2012.');
+      const ct = k.ct({ carta: L105, anyo: 2012, desvio: -2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(13, 45), dist, 8) }];
+    },
+  },
 };
 
+
 /* DISCREPANCIAS
- */
+
+ Opciones que el lector (src/exams/options.js) no entiende (15). El cálculo da la opción oficial, pero el comprobador no
+ puede leer las opciones: carácter \x92 en lugar del apóstrofo, minutos escritos como «58'4» o «56',4», grados con
+ guion («35º-51,8’»), horas sin separador («HRB= 1407», «0105 UTC») o con punto («08.58»), o el signo de la Ct como
+ «(+)»/«(-)». El código está en `sinLector`; basta pasarlo a `export default` cuando el banco o el lector se arreglen.
+ * 'bal-per-2021-06-bh-42': sale HRB 14:08 y 2,7 millas a Tarifa (oficial c: 1407 y 2,9). Horas sin separador.
+ * 'bal-per-2021-06-ci-44': 35° 57,8′ N 5° 47,4′ W (oficial b). Minutos «57'8».
+ * 'bal-per-2021-09-b-42': Ra 193,5° y 08:48 (oficial b: 194°, 08.48). Hora con punto.
+ * 'bal-per-2021-09-c-42': 35° 57,5′ N 5° 40,2′ W (oficial c). Carácter \x92 en las longitudes.
+ * 'bal-per-2021-09-d-42': 35° 51,7′ N 5° 58,8′ W (oficial b). Grados con guion.
+ * 'bal-per-2021-09-b-43': 36° 00,1′ N 5° 20,6′ W (oficial c). Minutos «00'1».
+ * 'bal-per-2021-12-d-43': Ct = −11,4° (oficial c: 10,5° (−)). Signo «(-)».
+ * 'bal-per-2022-06-d-43': Ct = −6,5° (oficial a: 6° (−)). Signo «(-)».
+ * 'bal-per-2022-06-b-44': 35° 56,4′ N 5° 36,5′ W (oficial d). Minutos «56',4».
+ * 'bal-per-2022-09-b-44': 01:02 UTC del día 21 (oficial c: 0105). Horas sin separador.
+ * 'bal-per-2022-12-a-43': UT 11:02 y 5° 23,7′ W (oficial b: 1109 y 5° 23,6′; la más próxima). Horas sin separador.
+ * 'bal-per-2022-12-be-44': 35° 57,8′ N 5° 47,4′ W (oficial c). Minutos «57'8».
+ * 'bal-per-2023-03-a-44': Ra 101,5° y 13:37 (oficial a: 101,8° y 1339). Horas sin separador.
+ * 'bal-per-2023-06-d-42': 35° 58,7′ N 5° 14,4′ W y Rv 264° (oficial a). Minutos «58'6».
+ * 'bal-per-2023-09-c-43': Ra 334,3° y 15:53 (oficial c: 334°, 1553). Horas sin separador.
+
+ Elementos que no están en la carta de la app (24). No se inventan: sin ellos no hay situación de partida o de llegada.
+ * 'bal-per-2021-03-c-45': se sitúa sobre la isobática de 100 m al NW del banco Majuán con una sola marcación.
+ * 'bal-per-2021-06-ci-42': situación por la enfilación Trafalgar–Roche y la sonda de 100 m (isobática).
+ * 'bal-per-2021-06-espa-42': oposición con la boya cardinal E de la piscifactoría de Barbate y sectores de El Xarf.
+ * 'bal-per-2021-06-bh-43': oposición Carnero–Cires con la sonda de 500 m (isobática) y el DST.
+ * 'bal-per-2021-06-e-43': isobática al W de la marca cardinal N próxima a Malabata y sectores de El Xarf.
+ * 'bal-per-2021-06-espa-43': sonda de 50 m (isobática) y naufragio en el meridiano 005° 40′ W.
+ * 'bal-per-2021-06-bh-44': veril de 100 m al N de los bancos del Fénix.
+ * 'bal-per-2021-06-espa-44': naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata.
+ * 'bal-per-2021-06-g-44': enfilación con el monte Beni Meyimel.
+ * 'bal-per-2021-09-a-43': cruce de la isobática de 30 m.
+ * 'bal-per-2021-12-c-42': enfilación con el monte Magair.
+ * 'bal-per-2022-03-b-42': luz verde del puerto de Torre de Guadiaro (sin coordenadas en el enunciado).
+ * 'bal-per-2022-09-a-42': naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata.
+ * 'bal-per-2022-09-b-42': marca cardinal E de la piscifactoría de Barbate y naufragio entre Zahara y Cabo Plata.
+ * 'bal-per-2022-09-a-43': cruce de la isobática de 100 m al S del DST.
+ * 'bal-per-2022-09-a-45': naufragio más próximo al faro de Cabo Espartel.
+ * 'bal-per-2022-09-b-45': oposición con la boya cardinal E de la piscifactoría de Barbate y sectores de El Xarf.
+ * 'bal-per-2022-12-a-42': veril de 100 m al N de los bancos del Fénix.
+ * 'bal-per-2022-12-be-43': sonda de 500 m, isobática de 50 m en la Ensenada de Ceuta y espigón de Piedra Redonda.
+ * 'bal-per-2023-03-cg-42': demora al monte Chajchuja.
+ * 'bal-per-2023-03-e-42': veril de 100 m al N de los bancos del Fénix.
+ * 'bal-per-2023-03-a-45': marca especial de La Línea de la Concepción.
+ * 'bal-per-2023-03-bf-45': naufragio no peligroso al S de la salida.
+ * 'bal-per-2023-03-e-45': la respuesta pide si se está dentro o fuera del DST y en qué vía; sus límites no están en la carta.
+*/

@@ -97,6 +97,15 @@ export async function validar(ctx) {
     if (d.emparejadas?.length) L.push('### Permutaciones emparejadas con diferencias de texto entre modelos', '', tabla(['A', 'B', 'Similitud', 'Texto A', 'Texto B'], d.emparejadas.map((a) => [a.a, a.b, a.similitud, a.enunciadoA, a.enunciadoB])), '');
     L.push('### Clasificación: preguntas atípicas para su tema', '', 'El tema sale de la posición; estas preguntas suman palabras clave de otro tema y ninguna del suyo (o el cuadernillo las pone en otra unidad). No se cambian: se revisan.', '', tabla(['id', 'UT asignada', 'Sugerida', 'Indicio', 'Enunciado'], (d.atipicas ?? []).map((a) => [a.id, a.ut, a.sugerido.join(', '), a.puntos, a.enunciado])), '');
     L.push('### Normativa: preguntas a revisar', '', tabla(['Norma', 'Preguntas', 'ids'], Object.entries(porNorma).map(([n, ids]) => [n, ids.length, ids.join(', ')])), '');
+    // Revisión normativa ya hecha (ajustes.json): cuántas se marcaron por cada norma y cómo se resolvieron.
+    const revisadas = preguntas.filter((p) => p.norma?.normas?.length && p.norma.estado !== 'revisar');
+    if (revisadas.length) {
+      const res = {};
+      for (const p of revisadas) for (const n of p.norma.normas) { res[n] ??= { vigente: 0, actualizada: 0, retirada: 0 }; res[n][p.norma.estado] = (res[n][p.norma.estado] ?? 0) + 1; }
+      L.push('### Normativa: revisión hecha', '', `${revisadas.length} preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): ${['vigente', 'actualizada', 'retirada'].map((e) => `${revisadas.filter((p) => p.norma.estado === e).length} ${e}`).join(', ')}.`, '',
+        tabla(['Norma', 'Vigente', 'Actualizada', 'Retirada'], Object.entries(res).map(([n, r]) => [n, r.vigente, r.actualizada, r.retirada])), '',
+        tabla(['id', 'Estado', 'Por qué'], revisadas.filter((p) => p.norma.estado !== 'vigente').map((p) => [p.id, p.norma.estado, p.norma.nota ?? ''])), '');
+    }
     secciones.push(L.join('\n'));
     out[tit] = { preguntas: preguntas.length, errores: errores.length, avisos: avisos.length };
   }

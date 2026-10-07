@@ -24,7 +24,7 @@ const sinPunto = (l) => canonico(l).replace(/\.$/, '').trim();
 const RUIDO = [
   /^MINISTERIO$/, /^SECRETAR[ÍI]A/, /^DE TRANSPORTES?\b/, /^Y (AGENDA|MOVILIDAD)/, /^DIRECCI[ÓO]N GENERAL/, /^MARINA MERCANTE$/,
   /^DE LA MARINA MERCANTE$/, /^SUBDIRECCI[ÓO]N GENERAL/, /^[ÁA]REA (FUNCIONAL|DE FORMACI)/, /^DE INFRAESTRUCTURAS/, /^TRANSPORTE( Y VIVIENDA)?$/,
-  /^DE FOMENTO$/, /^FOMENTO$/, /^DE$/, /^MAR[ÍI]TIMA$/, /^DE TRANSPORTE,? MOVILIDAD/, /^E$/, /^\d{1,3}$/, /^\.$/,
+  /^DE FOMENTO$/, /^FOMENTO$/, /^(DE )?TRANSPORTES?( Y (MOVILIDAD|VIVIENDA))?( SOSTENIBLE)?$/, /^DE$/, /^MAR[ÍI]TIMA$/, /^DE TRANSPORTE,? MOVILIDAD/, /^E$/, /^\d{1,3}$/, /^\.$/,
   /^\(?Con\.?$/i, /^\.?\s*PNB Liberado\)?$/i, /^\(?(CON )?PNB LIBERADO\)?$/i, /^\(?Con\.? PNB/i, /^C[óo]digo de Test/i, /^EXAMEN DE/,
 ];
 export const esRuido = (l) => RUIDO.some((r) => r.test(l));

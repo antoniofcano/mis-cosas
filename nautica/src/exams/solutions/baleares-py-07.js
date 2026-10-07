@@ -1,11 +1,10 @@
 // Soluciones programadas de carta del PY de Baleares (lote 07). Ver baleares-py.js para el formato.
-// Resumen del lote (109 preguntas): 86 resueltas y comprobadas; 23 en DISCREPANCIAS:
-//   12 de mareas sin tabla (la pregunta no trae la tabla del Anuario),
-//   9 con las opciones en un formato que el lector de opciones no entiende («35º- 53,5′», «35º56’0», «HRB 1235»,
-//     «0º08' W»); con su código en el bloque: 8 dan la oficial y en la otra coincide la situación pero no el Rc,
-//   1 que elige la oficial sin margen (empate),
-//   1 con un elemento que no está en la carta de la app (isobática de 100 m).
-// Las 23 están también en `documentadas` (12 «anuario», 11 «discrepancia»).
+// Resumen del lote (109 preguntas): 93 resueltas y comprobadas; 16 fuera de export default, en `documentadas`
+// y en DISCREPANCIAS:
+//   12 «anuario»: mareas sin el extracto del Anuario de Mareas,
+//   1 «sin-calculo»: necesita la isobática de 100 m, que la carta de la app no tiene,
+//   3 «discrepancia»: dos eligen la oficial sin margen y una da la oficial pero el lector de opciones no lee su
+//     formato de Ct («0º08' W»).
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -994,67 +993,141 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv2, ct2) }, { kind: 'clock', value: k.eta(hrb(13), r.dist - 1, r.vef) }];
     },
   },
+  'bal-py-2021-12-b-32': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(2);
+      const rv = k.rv(272, ct);
+      const rs = k.abatimiento(rv, 5, S);
+      const d1 = k.dvM(rv, -70, 'punta-cires');
+      const d2 = k.dvM(rv, 60, 'isla-tarifa');
+      const d = k.distFor(6, hrb(22, 15) - hrb(21, 30));
+      return latlon(k.traslado('punta-cires', d1, 'isla-tarifa', d2, rs, d, 'Situación 22:15'));
+    },
+  },
+  'bal-py-2021-12-b-33': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvR = k.enfilacion('cabo-trafalgar', 'cabo-roche', 330);
+      const ct = k.ctFrom(dvR, 330);
+      const rv = k.rv(0, ct);
+      const dvG = k.dvM(rv, 45, 'punta-gracia');
+      return latlon(k.lineAndBearing('cabo-roche', dvR, 'punta-gracia', dvG, 'Situación 11:00'));
+    },
+  },
+  'bal-py-2022-06-n-36': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(3);
+      const rv = k.rv(83, ct);
+      const rs = k.abatimiento(rv, 5, NE);
+      const d1 = k.dvM(rv, 40, 'cabo-espartel');
+      const d2 = k.dvM(rv, -37, 'punta-paloma');
+      const p = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
+      const { rv: rs2 } = k.rhumb(p, 'isla-tarifa');
+      const rv2 = k.rvConAbatimiento(rs2, 3, NE);
+      const ct2 = k.ct({ carta: L105, anyo: 2022, desvio: 3.5 });
+      return [...latlon(p), { kind: 'bearing', value: k.ra(rv2, ct2) }];
+    },
+  },
+  'bal-py-2022-12-ac-36': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvOp = k.oposicion('punta-alcazar', 'punta-paloma');
+      const ct = k.ctFrom(dvOp, 326);
+      const rv = k.rv(95.5, ct);
+      const dvE = k.dv(1, ct, 'punta-europa');
+      const dvA = k.dvM(rv, 28, 'punta-almina');
+      return latlon(k.fix2('punta-europa', dvE, 'punta-almina', dvA, 'Situación 23:31'));
+    },
+  },
+  'bal-py-2023-12-a-31': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      k.oposicion('punta-malabata', 'punta-gracia');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 2 });
+      k.note('Rumbo', 'La oposición y el rumbo solo sitúan la derrota: la situación sale de las dos demoras.');
+      const d1 = k.dv(2, ct, 'punta-gracia');
+      const d2 = k.dv(67, ct, 'isla-tarifa');
+      return latlon(k.fix2('punta-gracia', d1, 'isla-tarifa', d2, 'Situación observada'));
+    },
+  },
+  'bal-py-2023-12-a-34': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const s = k.pos('35 52,4 N', '5 53,8 W', 'Situación 10:45');
+      const ct = k.ctPolar(5);
+      const rv = k.rv(77, ct);
+      const o = k.fix2('punta-cires', k.dvM(rv, 18, 'punta-cires'), 'punta-alcazar', k.dvM(rv, 105, 'punta-alcazar'), 'Situación observada');
+      const { dist } = k.rhumb(s, o, 'Distancia navegada');
+      return [{ kind: 'clock', value: k.eta(hrb(10, 45), dist, 10) }, ...latlon(o)];
+    },
+  },
+  'bal-py-2023-12-a-35': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const ct = k.ct({ ct: -9 });
+      const s = k.fix2('cabo-trafalgar', k.dv(359, ct, 'cabo-trafalgar'), 'barbate-faro', k.dv(45, ct, 'barbate-faro'), 'Situación 04:20');
+      const p = k.pos('35 58,1 N', '6 12,5 W', 'Punto P');
+      const r = k.rumboConCorriente(s, p, 8, 100, 1.5);
+      const rv = k.rvConAbatimiento(r.rs, 2, NW);
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(4, 20), r.dist, r.vef) }];
+    },
+  },
 };
 
 // Preguntas del lote que no quedan en export default, con su motivo.
 export const documentadas = {
-  'bal-py-2021-12-b-32': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 56,3′ N 5° 33,8′ W, que es la oficial b. Se publicará cuando el lector admita ese guion." },
-  'bal-py-2021-12-b-33': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 36° 01,1′ N 5° 52,7′ W, que es la oficial a." },
-  'bal-py-2021-12-b-37': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 58,6′ N 5° 21,3′ W (la situación de la oficial d), pero la corriente da Rc 139,5° / Ihc 2,4 nudos frente a 135° / 2,5 de la d (las a y b llevan Rc 139°): la diferencia de rumbo de corriente sale de cómo se traza el rumbo para pasar a 3 millas de Isla de Tarifa." },
-  'bal-py-2021-12-b-38': { tipo: 'discrepancia', texto: "Empate: elige la oficial c (Rc 038°, 2,4 nudos) pero sin margen: sale Rc 035,7° e Ihc 2,47 nudos, a medio camino entre la c y la b (035°, 3,1 nudos). Probablemente diferencias de trazado en la situación de las 09:30 (Leona y Cires dan un corte muy agudo)." },
-  'bal-py-2022-06-n-36': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). La oficial b y las c y d están en ese formato. Calculada sale 35° 54,5′ N 5° 53,9′ W y Ra 062,7°, que es la oficial b (35° 54,6′ N 5° 53,9′ W, Ra 064°)." },
-  'bal-py-2021-12-b-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-03-a-37': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-03-a-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-03-b-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-06-a-37': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-12-ac-36': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º-57′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 57,0′ N 5° 21,5′ W, que es la oficial a." },
-  'bal-py-2022-06-n-37': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-12-b-34': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-12-b-36': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2022-12-ac-35': { tipo: 'discrepancia', texto: "Elemento que no está en la carta de la app: la situación de las 04:00 es el corte de la enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa situación no se puede trazar el rumbo para pasar a 1 milla de Punta Cires." },
-  'bal-py-2023-12-a-31': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º56’0 N» (la décima detrás del apóstrofo) y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 56,0′ N 5° 49,2′ W, que es la oficial b." },
-  'bal-py-2023-06-ac-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2023-12-a-34': { tipo: 'discrepancia', texto: "Formato de las opciones: la hora viene escrita «HRB 1235» (sin «:» ni «h») y el lector de opciones no la entiende (todas puntúan ∞). Calculada sale HRB 12:23, 35° 54,6′ N 5° 33,9′ W, que es la oficial d." },
-  'bal-py-2023-12-a-35': { tipo: 'discrepancia', texto: "Formato de las opciones: la hora viene escrita «HRB: 0603» (sin «:» entre horas y minutos) y el lector de opciones no la entiende (todas puntúan ∞). Calculada sale Ra 252,0° y llegada a las 06:03, que es la oficial b." },
-  'bal-py-2024-04-a-31': { tipo: 'discrepancia', texto: "Formato de las opciones: la Ct viene escrita «0º08' W» / «1º28' E» y el lector de opciones solo entiende NE/NW con grados y minutos: lee 0 en a, c y d (empate). Calculada sale dm 2035 = +0° 40′ y Ct = +0,67° − 0,8° = −0,13° = 0° 08′ W, que es la oficial c." },
-  'bal-py-2023-12-a-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2023-12-b-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
-  'bal-py-2024-04-bc-35': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2021-12-b-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-03-a-37': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-03-a-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-03-b-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-06-a-37': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-06-n-37': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-12-b-34': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-12-b-36': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2023-06-ac-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2023-12-a-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2023-12-b-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2024-04-bc-35': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
+  'bal-py-2022-12-ac-35': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la situación de las 04:00 es el corte de la enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa situación no se puede trazar el rumbo para pasar a 1 milla de Punta Cires." },
+  'bal-py-2021-12-b-37': { tipo: 'discrepancia', texto: "Elige la oficial d, pero sin margen: la situación de las 05:00 sale 35° 58,6′ N 5° 21,3′ W (la de la d), pero la corriente da Rc 139,5° e Ihc 2,4 nudos frente a 135° y 2,5 nudos de la d; la b (Rc 139°, 2,1 nudos) queda casi empatada. La diferencia de Rc sale de cómo se traza el rumbo para pasar a 3 millas de Isla de Tarifa." },
+  'bal-py-2021-12-b-38': { tipo: 'discrepancia', texto: "Elige la oficial c, pero sin margen: sale Rc 035,7° e Ihc 2,47 nudos, a medio camino entre la c (038°, 2,4 nudos) y la b (035°, 3,1 nudos). Probablemente diferencias de trazado en la situación de las 09:30 (Punta Leona y Punta Cires dan un corte muy agudo)." },
+  'bal-py-2024-04-a-31': { tipo: 'discrepancia', texto: "El cálculo da la oficial c, pero el lector de opciones no la distingue: sale dm 2035 = 2° 50′ W + 30 × 7′ E = 0° 40′ E y Ct = +0,67° − 0,8° = −0,13° = 0° 08′ W (la c). Las opciones escriben la Ct como «0º08' W» / «0º48' E» y el lector solo lee los grados (0 en a, c y d), así que empatan." },
 };
 
 /* DISCREPANCIAS
- * 'bal-py-2021-12-b-32' (formato de las opciones): las coordenadas vienen escritas como «35º- 53,5′» y el lector de
- * opciones no las entiende (todas puntúan ∞). Calculada sale 35° 56,3′ N 5° 33,8′ W, que es la oficial b. Se publicará
- * cuando el lector admita ese guion.
- *   'bal-py-2021-12-b-32': {
- *     ejercicio: 'demoras-no-simultaneas',
- *     solve(k) {
- *       const ct = k.ctPolar(2);
- *       const rv = k.rv(272, ct);
- *       const rs = k.abatimiento(rv, 5, S);
- *       const d1 = k.dvM(rv, -70, 'punta-cires');
- *       const d2 = k.dvM(rv, 60, 'isla-tarifa');
- *       const d = k.distFor(6, hrb(22, 15) - hrb(21, 30));
- *       return latlon(k.traslado('punta-cires', d1, 'isla-tarifa', d2, rs, d, 'Situación 22:15'));
- *     },
- *   },
- * 'bal-py-2021-12-b-33' (formato de las opciones): las coordenadas vienen escritas como «35º- 53,5′» y el lector de
- * opciones no las entiende (todas puntúan ∞). Calculada sale 36° 01,1′ N 5° 52,7′ W, que es la oficial a.
- *   'bal-py-2021-12-b-33': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       const dvR = k.enfilacion('cabo-trafalgar', 'cabo-roche', 330);
- *       const ct = k.ctFrom(dvR, 330);
- *       const rv = k.rv(0, ct);
- *       const dvG = k.dvM(rv, 45, 'punta-gracia');
- *       return latlon(k.lineAndBearing('cabo-roche', dvR, 'punta-gracia', dvG, 'Situación 11:00'));
- *     },
- *   },
- * 'bal-py-2021-12-b-37' (formato de las opciones): las coordenadas vienen escritas como «35º- 53,5′» y el lector de
- * opciones no las entiende (todas puntúan ∞). Calculada sale 35° 58,6′ N 5° 21,3′ W (la situación de la oficial d),
- * pero la corriente da Rc 139,5° / Ihc 2,4 nudos frente a 135° / 2,5 de la d (las a y b llevan Rc 139°): la diferencia
- * de rumbo de corriente sale de cómo se traza el rumbo para pasar a 3 millas de Isla de Tarifa.
+ * 'bal-py-2021-12-b-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-03-a-37' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-03-a-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-03-b-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-06-a-37' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-06-n-37' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-12-b-34' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-12-b-36' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2023-06-ac-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2023-12-a-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2023-12-b-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2024-04-bc-35' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
+ * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
+ * 'bal-py-2022-12-ac-35' (sin-calculo): Elemento que no está en la carta de la app: la situación de las 04:00 es el
+ * corte de la enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa
+ * situación no se puede trazar el rumbo para pasar a 1 milla de Punta Cires.
+ * 'bal-py-2021-12-b-37' (discrepancia): Elige la oficial d, pero sin margen: la situación de las 05:00 sale 35° 58,6′
+ * N 5° 21,3′ W (la de la d), pero la corriente da Rc 139,5° e Ihc 2,4 nudos frente a 135° y 2,5 nudos de la d; la b
+ * (Rc 139°, 2,1 nudos) queda casi empatada. La diferencia de Rc sale de cómo se traza el rumbo para pasar a 3 millas
+ * de Isla de Tarifa.
  *   'bal-py-2021-12-b-37': {
  *     ejercicio: 'corriente-desconocida',
  *     solve(k) {
@@ -1075,9 +1148,9 @@ export const documentadas = {
  *       return [...latlon(o), { kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
  *     },
  *   },
- * 'bal-py-2021-12-b-38' (empate): elige la oficial c (Rc 038°, 2,4 nudos) pero sin margen: sale Rc 035,7° e Ihc 2,47
- * nudos, a medio camino entre la c y la b (035°, 3,1 nudos). Probablemente diferencias de trazado en la situación de
- * las 09:30 (Leona y Cires dan un corte muy agudo).
+ * 'bal-py-2021-12-b-38' (discrepancia): Elige la oficial c, pero sin margen: sale Rc 035,7° e Ihc 2,47 nudos, a medio
+ * camino entre la c (038°, 2,4 nudos) y la b (035°, 3,1 nudos). Probablemente diferencias de trazado en la situación
+ * de las 09:30 (Punta Leona y Punta Cires dan un corte muy agudo).
  *   'bal-py-2021-12-b-38': {
  *     ejercicio: 'corriente-desconocida',
  *     solve(k) {
@@ -1091,102 +1164,9 @@ export const documentadas = {
  *       return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
  *     },
  *   },
- * 'bal-py-2022-06-n-36' (formato de las opciones): las coordenadas vienen escritas como «35º- 53,5′» y el lector de
- * opciones no las entiende (todas puntúan ∞). La oficial b y las c y d están en ese formato. Calculada sale 35° 54,5′
- * N 5° 53,9′ W y Ra 062,7°, que es la oficial b (35° 54,6′ N 5° 53,9′ W, Ra 064°).
- *   'bal-py-2022-06-n-36': {
- *     ejercicio: 'demoras-no-simultaneas',
- *     solve(k) {
- *       const ct = k.ctPolar(3);
- *       const rv = k.rv(83, ct);
- *       const rs = k.abatimiento(rv, 5, NE);
- *       const d1 = k.dvM(rv, 40, 'cabo-espartel');
- *       const d2 = k.dvM(rv, -37, 'punta-paloma');
- *       const p = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
- *       const { rv: rs2 } = k.rhumb(p, 'isla-tarifa');
- *       const rv2 = k.rvConAbatimiento(rs2, 3, NE);
- *       const ct2 = k.ct({ carta: L105, anyo: 2022, desvio: 3.5 });
- *       return [...latlon(p), { kind: 'bearing', value: k.ra(rv2, ct2) }];
- *     },
- *   },
- * 'bal-py-2021-12-b-40' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-03-a-37' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-03-a-40' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-03-b-40' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-06-a-37' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-12-ac-36' (formato de las opciones): las coordenadas vienen escritas como «35º-57′» y el lector de
- * opciones no las entiende (todas puntúan ∞). Calculada sale 35° 57,0′ N 5° 21,5′ W, que es la oficial a.
- *   'bal-py-2022-12-ac-36': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       const dvOp = k.oposicion('punta-alcazar', 'punta-paloma');
- *       const ct = k.ctFrom(dvOp, 326);
- *       const rv = k.rv(95.5, ct);
- *       const dvE = k.dv(1, ct, 'punta-europa');
- *       const dvA = k.dvM(rv, 28, 'punta-almina');
- *       return latlon(k.fix2('punta-europa', dvE, 'punta-almina', dvA, 'Situación 23:31'));
- *     },
- *   },
- * 'bal-py-2022-06-n-37' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-12-b-34' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-12-b-36' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2022-12-ac-35' (elemento que no está en la carta de la app): la situación de las 04:00 es el corte de la
- * enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa situación
- * no se puede trazar el rumbo para pasar a 1 milla de Punta Cires.
- * 'bal-py-2023-12-a-31' (formato de las opciones): las coordenadas vienen escritas como «35º56’0 N» (la décima detrás
- * del apóstrofo) y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 56,0′ N 5° 49,2′ W, que
- * es la oficial b.
- *   'bal-py-2023-12-a-31': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       k.oposicion('punta-malabata', 'punta-gracia');
- *       const ct = k.ct({ carta: L105, anyo: 2023, desvio: 2 });
- *       k.note('Rumbo', 'La oposición y el rumbo solo sitúan la derrota: la situación sale de las dos demoras.');
- *       const d1 = k.dv(2, ct, 'punta-gracia');
- *       const d2 = k.dv(67, ct, 'isla-tarifa');
- *       return latlon(k.fix2('punta-gracia', d1, 'isla-tarifa', d2, 'Situación observada'));
- *     },
- *   },
- * 'bal-py-2023-06-ac-40' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de
- * Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2023-12-a-34' (formato de las opciones): la hora viene escrita «HRB 1235» (sin «:» ni «h») y el lector de
- * opciones no la entiende (todas puntúan ∞). Calculada sale HRB 12:23, 35° 54,6′ N 5° 33,9′ W, que es la oficial d.
- *   'bal-py-2023-12-a-34': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       const s = k.pos('35 52,4 N', '5 53,8 W', 'Situación 10:45');
- *       const ct = k.ctPolar(5);
- *       const rv = k.rv(77, ct);
- *       const o = k.fix2('punta-cires', k.dvM(rv, 18, 'punta-cires'), 'punta-alcazar', k.dvM(rv, 105, 'punta-alcazar'), 'Situación observada');
- *       const { dist } = k.rhumb(s, o, 'Distancia navegada');
- *       return [{ kind: 'clock', value: k.eta(hrb(10, 45), dist, 10) }, ...latlon(o)];
- *     },
- *   },
- * 'bal-py-2023-12-a-35' (formato de las opciones): la hora viene escrita «HRB: 0603» (sin «:» entre horas y minutos) y
- * el lector de opciones no la entiende (todas puntúan ∞). Calculada sale Ra 252,0° y llegada a las 06:03, que es la
- * oficial b.
- *   'bal-py-2023-12-a-35': {
- *     ejercicio: 'corriente-rumbo-a-dar',
- *     solve(k) {
- *       const ct = k.ct({ ct: -9 });
- *       const s = k.fix2('cabo-trafalgar', k.dv(359, ct, 'cabo-trafalgar'), 'barbate-faro', k.dv(45, ct, 'barbate-faro'), 'Situación 04:20');
- *       const p = k.pos('35 58,1 N', '6 12,5 W', 'Punto P');
- *       const r = k.rumboConCorriente(s, p, 8, 100, 1.5);
- *       const rv = k.rvConAbatimiento(r.rs, 2, NW);
- *       return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(4, 20), r.dist, r.vef) }];
- *     },
- *   },
- * 'bal-py-2024-04-a-31' (formato de las opciones): la Ct viene escrita «0º08' W» / «1º28' E» y el lector de opciones
- * solo entiende NE/NW con grados y minutos: lee 0 en a, c y d (empate). Calculada sale dm 2035 = +0° 40′ y Ct = +0,67°
- * − 0,8° = −0,13° = 0° 08′ W, que es la oficial c.
+ * 'bal-py-2024-04-a-31' (discrepancia): El cálculo da la oficial c, pero el lector de opciones no la distingue: sale
+ * dm 2035 = 2° 50′ W + 30 × 7′ E = 0° 40′ E y Ct = +0,67° − 0,8° = −0,13° = 0° 08′ W (la c). Las opciones escriben la
+ * Ct como «0º08' W» / «0º48' E» y el lector solo lee los grados (0 en a, c y d), así que empatan.
  *   'bal-py-2024-04-a-31': {
  *     sinCarta: true,
  *     ejercicio: 'ct-enfilacion',
@@ -1195,10 +1175,4 @@ export const documentadas = {
  *       return [{ kind: 'signed', value: k.ct({ carta: L105, anyo: 2035, desvio: -0.8 }) }];
  *     },
  *   },
- * 'bal-py-2023-12-a-40' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2023-12-b-40' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
- * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
- * 'bal-py-2024-04-bc-35' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de
- * Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
  */

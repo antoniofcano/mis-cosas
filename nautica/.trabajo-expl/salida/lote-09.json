@@ -1569,5 +1569,1292 @@
     ]
    }
   ]
+ },
+ "bal-py-2025-07-b-09": {
+  "explicacion": "No es prudente: un barco que se hunde puede volcar, arrastrarte con él o golpearte el casco. Hay que mantener una distancia de seguridad y recoger a la gente del agua o de la balsa: la d). Ni por barlovento, ni por sotavento, ni por cualquier costado.",
+  "clave": "Barco hundiéndose: nunca abarloarse; distancia de seguridad.",
+  "trampa": "La b) (sotavento) parece la banda protegida, pero el riesgo de que te arrastre sigue ahí.",
+  "concepto": "bal-py-2023-06-b-10"
+ },
+ "bal-py-2025-07-b-10": {
+  "explicacion": "El orden es: hacer firme la boza al barco, lanzar la balsa al agua y tirar de la boza hasta que el tirón dispara la botella de gas e infla la balsa: la c). Si la boza no está firme al barco, la balsa se va a la deriva; amarrarla «a la balsa» (b) no sirve de nada, porque ya va unida a ella.",
+  "clave": "Balsa: boza firme al barco, lanzar y tirar.",
+  "trampa": "La b) cambia «al barco» por «a la balsa».",
+  "concepto": "bal-py-2018-04-a-05"
+ },
+ "bal-py-2025-12-a-02": {
+  "explicacion": "Es incorrecta la d): para llamar por VHF hay que ponerse de pie y subir la antena lo más alto posible, porque el alcance del VHF depende de la altura de la antena; tumbarse lo reduce. Las demás son correctas: salto al agua de pie con las piernas juntas, sujetando el chaleco y tapando la nariz; radiobaliza, SART y VHF portátil a la balsa; y el SART en su punto más alto.",
+  "clave": "VHF: cuanto más alta la antena, más alcance.",
+  "trampa": "Tumbarse da estabilidad en la balsa, pero no «aumenta el alcance».",
+  "concepto": "bal-py-2018-06-b-01"
+ },
+ "bal-py-2025-12-a-05": {
+  "explicacion": "Un barco que, tras ser escorado, se queda en la nueva escora sin volver ni tumbarse más está en equilibrio indiferente: G coincide con M (GM = 0) y no hay par adrizante: la c). Si el equilibrio fuera estable recuperaría la posición, y si fuera inestable seguiría escorándose.",
+  "clave": "Se queda como está = indiferente (GM = 0).",
+  "trampa": "Confundir quedarse escorado (indiferente) con seguir escorándose (inestable).",
+  "base": "and-py-2022-c3-g03",
+  "concepto": "and-py-2022-c3-g03"
+ },
+ "bal-py-2025-12-a-09": {
+  "explicacion": "Antes de lanzar el contenedor hay que comprobar que la boza está firme al barco: si no, la balsa se va a la deriva. Después, con la balsa en el agua, se cobra la boza y un tirón fuerte dispara el inflado: la b). La zafa hidrostática no actúa por el golpe contra el agua (a y c), sino por presión a unos 4 m si el barco se hunde con la balsa trincada.",
+  "clave": "Lanzar balsa: boza firme, al agua, tirón y se infla.",
+  "trampa": "La c) mezcla bien lo de la boza con un falso inflado por la zafa al tocar el agua.",
+  "concepto": "bal-py-2018-04-a-05"
+ },
+ "bal-py-2025-12-a-10": {
+  "explicacion": "Las balsas y los chalecos que se llevan a bordo, SOLAS o no, tienen que estar homologados: con la homologación de la Dirección General de la Marina Mercante o con el marcado de la rueda de timón, que otorga un organismo notificado reconocido por la Administración. Por eso valen la a) y la b), que es la d). La Armada no homologa equipos de salvamento de buques civiles.",
+  "clave": "Equipos de salvamento: homologados (organismo notificado o DGMM).",
+  "trampa": "La c) (Ministerio de Defensa) suena oficial, pero la competencia es de la Marina Mercante.",
+  "concepto": "bal-py-2017-03-cb-07"
+ },
+ "bal-py-2025-12-b-02": {
+  "explicacion": "La línea de vida es un cabo o cinta tendido a lo largo de la cubierta al que se engancha el arnés: su función principal es evitar que caigamos al agua, porque nos deja movernos por cubierta sin desengancharnos. Es la c). No sirve para no tropezar ni para no caer sobre la propia cubierta.",
+  "clave": "Línea de vida + arnés: para no caer al agua.",
+  "trampa": "La b) suena parecida, pero caer en cubierta no es lo que evita."
+ },
+ "bal-py-2025-12-b-06": {
+  "explicacion": "En el equilibrio inestable el metacentro queda por debajo del centro de gravedad, así que la altura metacéntrica es negativa: la b). Al escorar, peso y empuje forman un par que aumenta la escora. Con GM positiva es estable y con GM nula, indiferente.",
+  "clave": "GM > 0 estable · GM = 0 indiferente · GM < 0 inestable.",
+  "trampa": "La d) (GM nula) es el equilibrio indiferente.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-py-2025-12-b-10": {
+  "explicacion": "Es incorrecta la d): la batería de la EPIRB debe durar al menos 48 horas de funcionamiento, no 36. Las demás son ciertas: la EPIRB alerta a los servicios SAR con identidad y posición, cada una se programa con una identidad única y el propietario debe registrarla ante la autoridad de su país.",
+  "clave": "EPIRB: autonomía mínima de 48 horas.",
+  "trampa": "36 horas suena razonable, pero se queda corto.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2026-03-a-01": {
+  "explicacion": "Con el helicóptero aproximándose no hay que lanzar un cohete con paracaídas: puede alcanzarlo o deslumbrar a la tripulación. Por eso es la d). Las demás sí son medidas correctas: en un velero, velas abajo y motor en marcha; señales con el espejo, y el SART (RESAR) activado para que te localice por radar.",
+  "clave": "Con el helicóptero cerca: nada de cohetes.",
+  "trampa": "El cohete es una señal de socorro válida, pero no con una aeronave encima.",
+  "concepto": "bal-py-2017-12-b-07"
+ },
+ "bal-py-2026-03-a-04": {
+  "explicacion": "No es una medida correcta la b): si hay que saltar al agua no se recogen las pertenencias, que estorban y distraen; se salta con el chaleco puesto. Las demás sí lo son: todos con chaleco, la boza (que el enunciado llama driza) firme a bordo antes de lanzar la balsa, y embarcar por parejas, sin mojarse ni saltar encima, subiendo después el material.",
+  "clave": "Al abandonar: chaleco sí, pertenencias no.",
+  "trampa": "Coger tus cosas parece prudente, pero retrasa y pone en peligro el abandono."
+ },
+ "bal-py-2026-03-a-07": {
+  "explicacion": "Al escorar, el centro de carena se desplaza y la vertical trazada desde su nueva posición corta el plano diametral en el metacentro (M): la c). El centro de empuje es el propio centro de carena, el par adrizante es un momento, no un punto, y el «centro de gravedad transversal» no es el término.",
+  "clave": "Metacentro: corte de las líneas de empuje a pequeñas escoras.",
+  "trampa": "La b) es el punto de partida (el centro de carena), no el corte.",
+  "concepto": "bal-py-2019-04-b-02"
+ },
+ "bal-py-2026-03-a-08": {
+  "explicacion": "El SART trabaja en la banda X del radar, en torno a 9 GHz: la c). 2 y 4 GHz corresponden a la banda S, a la que el SART no responde, y 406 es la frecuencia de la radiobaliza EPIRB, pero en MHz, no en GHz.",
+  "clave": "SART: banda X, 9 GHz. EPIRB: 406 MHz.",
+  "trampa": "La d) toma el número de la EPIRB y le cambia la unidad.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2026-03-a-09": {
+  "explicacion": "La EPIRB emite en 406 MHz una señal digital hacia los satélites con la identificación del barco y, si lleva GPS, sus coordenadas (c), y además una señal de baja potencia en 121,5 MHz para que los medios de rescate se guíen hasta ella (b). Por eso es la d). La a) falla porque la EPIRB no emite una alerta LSD por VHF.",
+  "clave": "EPIRB: 406 MHz al satélite + 121,5 MHz para el homing.",
+  "trampa": "La a) confunde la alerta de la EPIRB con la alerta LSD de un VHF.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "satelite"
+   }
+  ]
+ },
+ "bal-py-2026-03-b-01": {
+  "explicacion": "Hay equilibrio inestable cuando el metacentro queda por debajo del centro de gravedad (GM negativo): al escorar, peso y empuje forman un par que aumenta la escora. Es la b). Si M está por encima de G es estable, si coincide es indiferente, y el empuje no es mayor que el desplazamiento en un barco que flota en reposo.",
+  "clave": "M bajo G = inestable.",
+  "trampa": "La a) es justo el caso estable.",
+  "concepto": "bal-py-2019-04-b-08",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-py-2026-03-b-05": {
+  "explicacion": "El CO2 se guarda a muy alta presión como gas licuado y la carga se controla por peso, no con manómetro (los de polvo sí lo llevan). Por eso la d) es falsa. Tienen un difusor ancho en forma de trompa (que no debe agarrarse por el frío), precinto de seguridad e instrucciones en la etiqueta.",
+  "clave": "CO2: sin manómetro, se controla pesándolo.",
+  "trampa": "Pensar que todos los extintores llevan manómetro.",
+  "base": "and-py-2025-c3-g01",
+  "concepto": "and-py-2025-c3-g01"
+ },
+ "bal-py-2026-03-b-10": {
+  "explicacion": "Los aros salvavidas llevan una guirnalda (cabo agarradero) sujeta en cuatro puntos equidistantes, de al menos 9,5 mm de diámetro y una longitud de al menos 4 veces el diámetro exterior del aro: la d). Es una sola guirnalda, no dos, y la luz no es obligatoria «siempre» en todos los aros.",
+  "clave": "Aro: una guirnalda en 4 puntos, ≥ 9,5 mm y ≥ 4 diámetros.",
+  "trampa": "La b) copia el requisito pero con dos guirnaldas."
+ },
+ "bal-py-2026-06-a-03": {
+  "explicacion": "La altura metacéntrica (GM) indica cómo es la estabilidad del barco: con GM grande es «duro» (balances rápidos y bruscos) y con GM pequeño es «blando» (balances lentos y amplios): la b). Sí depende de la posición del centro de gravedad (GM = KM − KG), es una distancia y no un volumen, y no indica la escora.",
+  "clave": "GM grande = barco duro; GM pequeño = barco blando.",
+  "trampa": "La a) es falsa: subir o bajar G cambia GM directamente."
+ },
+ "bal-py-2026-06-a-04": {
+  "explicacion": "Un barco «duro» es el de GM grande. Para conseguirlo hay que bajar el centro de gravedad desplazando pesos hacia abajo, con lo que aumenta GM = KM − KG: la a). La b) baja G pero dice que GM disminuye, y la c) y la d) suben los pesos, lo que sube G, no lo baja.",
+  "clave": "Bajar pesos: G baja, GM sube, barco más duro.",
+  "trampa": "Las opciones mezclan bien un dato con otro falso: lee las tres partes."
+ },
+ "bal-py-2026-06-b-01": {
+  "explicacion": "Sería incorrecto tirar con fuerza de la boza si la balsa está parcialmente sumergida o atrapada bajo el costado: se inflaría donde no debe y podría dañarse o quedar trabada contra el casco. Primero hay que liberarla. Las demás actuaciones son correctas: boza firme al barco, gente agrupada con chaleco lista para embarcar sin saltar, y balsa inflada por sotavento antes de embarcar.",
+  "clave": "No tires de la boza con la balsa atrapada bajo el costado.",
+  "trampa": "«Acelerar el inflado» suena eficaz, pero en esas condiciones daña la balsa."
+ },
+ "bal-py-2026-06-b-06": {
+  "explicacion": "La zafa hidrostática suelta el contenedor al llegar a su profundidad de actuación (unos 4 m como máximo); la boza sigue unida al barco y, al subir la balsa, se tensa y dispara el inflado. Si se lanza a mano, el inflado se activa también con el tirón de la boza. Es la d). La zafa no acciona la botella directamente, no hay que dispararla antes a mano y no retiene la balsa a cualquier profundidad.",
+  "clave": "Zafa suelta → boza tensa → inflado.",
+  "trampa": "La a) atribuye el inflado a la zafa, cuando lo provoca la boza."
+ },
+ "bal-py-2026-06-b-07": {
+  "explicacion": "Al consumir víveres de pañoles altos sale peso de arriba: baja el centro de gravedad, aumenta GM y el barco se vuelve más «duro», con balances más rápidos. Es la d), un cambio claro de estabilidad inicial. La b) falla porque vaciar tanques bajos sube KG, y la c) porque embarcar carga alta también sube KG y reduce la rigidez.",
+  "clave": "Quitar peso alto: G baja, GM sube, balances más rápidos.",
+  "trampa": "La c) acierta que el desplazamiento aumenta, pero cargar arriba sube KG."
+ },
+ "bal-py-2026-06-b-09": {
+  "explicacion": "En el equilibrio inestable el GM es negativo: al escorar no aparece un brazo adrizante sino uno escorante, que aumenta la escora y pone en riesgo la embarcación. Es la d). Con GM positivo (a y c) el equilibrio es estable, y la b) es contradictoria, porque un GM negativo no da brazo adrizante.",
+  "clave": "GM negativo: brazo escorante, riesgo de zozobra.",
+  "trampa": "La b) acierta el signo de GM, pero le atribuye un brazo adrizante.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-11": {
+  "explicacion": "Por regla general, el frente frío avanza más deprisa que el cálido: el aire frío, más denso, empuja como una cuña por debajo del cálido y lo levanta. Por eso el frío alcanza al cálido y se forma el frente ocluido. Es la a).",
+  "clave": "El frente frío es más rápido: alcanza al cálido y lo ocluye.",
+  "trampa": "La c): el ocluido es el resultado de esa alcanzada, no el más rápido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-12": {
+  "explicacion": "Las galernas del Cantábrico (golfo de Vizcaya) son temporales súbitos del noroeste que llegan con el paso brusco de un frente frío tras días cálidos del sur. Son típicas de la época cálida, de primavera a otoño, y sobre todo del verano: la c). En invierno el mal tiempo es más persistente, no de este tipo súbito.",
+  "clave": "Galerna: golpe de viento súbito del NW en el Cantábrico, de primavera a otoño.",
+  "concepto": "bal-py-2017-03-a-12"
+ },
+ "bal-py-2019-06-a-20": {
+  "explicacion": "Las galernas del Cantábrico (golfo de Vizcaya) son temporales súbitos del noroeste que llegan con el paso brusco de un frente frío tras días cálidos del sur. Son típicas de la época cálida, de primavera a otoño, y sobre todo del verano: la c). No son de invierno, así que tampoco vale la b).",
+  "clave": "Galerna: golpe de viento súbito del NW en el Cantábrico, de primavera a otoño.",
+  "concepto": "bal-py-2017-03-a-12"
+ },
+ "bal-py-2017-03-a-13": {
+  "explicacion": "La oficial es la d): suma del gradiente de presión, la fuerza de Coriolis y la fuerza centrífuga. La a) es el geostrófico (gradiente y Coriolis, isobaras rectas) y la b) y la c) hablan del rozamiento, que es lo que define al antitríptico.",
+  "clave": "Gradiente: + centrífuga. Ciclostrófico: gradiente ≈ centrífuga, sin Coriolis.",
+  "trampa": "La b) mete el rozamiento, propio del viento antitríptico.",
+  "discrepancia": "Lo que describe la d) (gradiente + Coriolis + centrífuga) es en rigor el viento del gradiente. El viento ciclostrófico es el equilibrio entre el gradiente de presión y la fuerza centrífuga, con Coriolis despreciable (tornados, trombas, latitudes bajas). Ninguna opción da esa definición; la d) es la más próxima porque incluye la centrífuga."
+ },
+ "bal-py-2017-03-a-14": {
+  "explicacion": "En el golfo de León, entre Barcelona y Marsella, los vientos que levantan más mar son la tramontana (N-NW, que baja por el Ampurdán y el Rosellón) y el mistral (NW, que baja por el valle del Ródano). Soplan con fuerza y gran recorrido sobre el golfo: la a). El garbí o lebeche es del SW y aquí es mucho menos violento.",
+  "clave": "Golfo de León: tramontana y mistral.",
+  "trampa": "La b) y la c) son correctas a medias: los dos vientos actúan."
+ },
+ "bal-py-2017-03-a-15": {
+  "explicacion": "Las tres afirmaciones describen el punto de rocío: es la temperatura a la que hay que enfriar el aire, sin cambiar su vapor de agua, para que se sature (a); en ese momento la humedad relativa es del 100 % (b), y por debajo de ella empieza la condensación (c). Por eso es la d).",
+  "clave": "Punto de rocío = temperatura de saturación (HR 100 %).",
+  "concepto": "bal-py-2017-03-a-15"
+ },
+ "bal-py-2024-07-bc-18": {
+  "explicacion": "Las tres afirmaciones describen el punto de rocío: es la temperatura a la que una masa de aire se satura sin cambiar su vapor de agua (a); en ese momento la humedad relativa es del 100 % (b), y a esa temperatura empieza a condensarse el vapor (c). Por eso es la d).",
+  "clave": "Punto de rocío = temperatura de saturación (HR 100 %).",
+  "concepto": "bal-py-2017-03-a-15"
+ },
+ "bal-py-2017-03-a-16": {
+  "explicacion": "No es correcta la d): en las nubes de convección lo que asciende es aire cálido y húmedo, calentado desde el suelo o el mar, no aire frío y seco, que pesa más y no sube. Las demás son ciertas: la convección forma cúmulos y cumulonimbos, las frontales nacen del choque de masas de aire distintas y las orográficas, de aire húmedo obligado a subir por el relieve.",
+  "clave": "Convección: sube aire cálido y húmedo.",
+  "trampa": "La d) usa la palabra correcta (convección) con el aire equivocado."
+ },
+ "bal-py-2017-03-a-17": {
+  "explicacion": "La humedad absoluta es la masa (los gramos) de vapor de agua contenida en 1 m³ de aire: la c). Miligramos o kilogramos no son la unidad con la que se define, así que tampoco vale la d).",
+  "clave": "Absoluta = gramos de vapor por m³.",
+  "trampa": "No la confundas con la relativa, que es un tanto por ciento.",
+  "base": "and-py-2021-c2-g14",
+  "concepto": "and-py-2021-c2-g14"
+ },
+ "bal-py-2017-07-b-18": {
+  "explicacion": "La humedad absoluta es la masa (los gramos) de vapor de agua contenida en 1 m³ de aire: la c). Miligramos o kilogramos no son la unidad con la que se define, así que tampoco vale la d).",
+  "clave": "Absoluta = gramos de vapor por m³.",
+  "trampa": "No la confundas con la relativa, que es un tanto por ciento.",
+  "base": "and-py-2021-c2-g14",
+  "concepto": "and-py-2021-c2-g14"
+ },
+ "bal-py-2024-12-a-15": {
+  "explicacion": "La humedad absoluta es la masa (los gramos) de vapor de agua contenida en 1 m³ de aire: la c). Miligramos, kilogramos o toneladas no son la unidad con la que se define.",
+  "clave": "Absoluta = gramos de vapor por m³.",
+  "trampa": "No la confundas con la relativa, que es un tanto por ciento.",
+  "base": "and-py-2021-c2-g14",
+  "concepto": "and-py-2021-c2-g14"
+ },
+ "bal-py-2017-03-a-18": {
+  "explicacion": "En el Estrecho de Gibraltar la corriente general superficial entra del Atlántico al Mediterráneo, hacia el este, porque el Mediterráneo pierde por evaporación más agua de la que recibe; por debajo sale hacia el oeste agua mediterránea más salada. Sumada a las corrientes de marea, en el Estrecho puede alcanzar varios nudos, y el tribunal da de 4 a 7: la a).",
+  "clave": "Estrecho: en superficie, el Atlántico entra hacia el E.",
+  "trampa": "La c) da la dirección de la corriente profunda, que sale hacia el W."
+ },
+ "bal-py-2017-03-a-19": {
+  "explicacion": "La mar de viento es la que levanta el viento que está soplando en la zona: sus olas tienen la cresta aguda, longitud corta y es frecuente que rompan en borreguillos. Las tres afirmaciones son ciertas, así que es la d). La mar de fondo, en cambio, tiene olas largas, redondeadas y regulares.",
+  "clave": "Mar de viento: crestas agudas, olas cortas y rompientes. Mar de fondo: largas y redondas.",
+  "trampa": "Pensar que alguna de las tres describe la mar de fondo."
+ },
+ "bal-py-2017-03-a-20": {
+  "explicacion": "La niebla de advección (o marina) se forma cuando aire cálido y húmedo pasa sobre agua más fría y se enfría hasta saturarse. Para eso la temperatura del mar tiene que ser inferior a la del punto de rocío del aire: la d). Si el mar está por encima del punto de rocío (a), el aire no llega a saturarse.",
+  "clave": "Niebla de advección: mar más frío que el punto de rocío del aire.",
+  "trampa": "La a) invierte la condición.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-11": {
+  "explicacion": "Las corrientes superficiales que el viento genera directamente al rozar con el agua se llaman corrientes de arrastre (o de deriva): la c). Las de densidad y las termohalinas nacen de diferencias de temperatura y salinidad, y las de marea, de la atracción de la Luna y el Sol.",
+  "clave": "Viento sobre el mar → corriente de arrastre.",
+  "trampa": "Las termohalinas también son oceánicas, pero las mueve la densidad, no el viento."
+ },
+ "bal-py-2017-03-cb-12": {
+  "explicacion": "El fetch es la extensión de mar sobre la que el viento sopla con la misma dirección e intensidad. Cuanto mayor es el fetch, más energía recibe el mar y mayores son las olas, y por tanto también su altura significativa. Son ciertas la a) y la c): la d).",
+  "clave": "Más fetch, más ola (y más altura significativa).",
+  "trampa": "La b) invierte la relación."
+ },
+ "bal-py-2017-03-cb-13": {
+  "explicacion": "Un gran desarrollo vertical de cúmulos indica tormenta probable (a), y un aumento de cirros seguido de cirroestratos y altoestratos cada vez más bajos anuncia un frente cálido (c). La oficial es la d), que da por buena también la b) (Ac o As antes de un frente frío).",
+  "clave": "Cirros que espesan y bajan: frente cálido. Torres de cúmulos: tormenta.",
+  "trampa": "La c) es la secuencia clásica del frente cálido; no la confundas con el frío.",
+  "discrepancia": "La b) es discutible: los altoestratos son típicos de la llegada de un frente cálido, no de uno frío. Ante el frío pueden verse altocúmulos (por ejemplo castellanus), pero no es la señal característica. Las seguras son la a) y la c)."
+ },
+ "bal-py-2017-03-cb-14": {
+  "explicacion": "No es correcta la d): los cambios bruscos y grandes de presión anuncian un cambio rápido e importante del tiempo, normalmente a peor, no un cambio lento y moderado. Las demás son ciertas: el barómetro que sube suele indicar mejoría y el que baja empeoramiento, la borrasca trae bajada de presión y la desaparición de la marea barométrica diaria anuncia un cambio notable.",
+  "clave": "Caída brusca de presión = cambio rápido y fuerte.",
+  "trampa": "La c) suena rara, pero perder la oscilación diaria normal sí avisa de mal tiempo."
+ },
+ "bal-py-2017-03-cb-15": {
+  "explicacion": "Isobaras muy juntas significan un gradiente de presión intenso, y cuanto mayor es el gradiente, más fuerte es el viento. Son ciertas la a) y la b), que es la c). La d) es falsa: con más viento, el oleaje es mayor, no menor.",
+  "clave": "Isobaras juntas = gradiente grande = viento fuerte.",
+  "trampa": "La d) invierte la relación entre viento y ola.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-16": {
+  "explicacion": "Al pasar un frente frío la presión sube rápidamente tras el paso (a) y aparecen nubes de gran desarrollo vertical, cúmulos y cumulonimbos, con chubascos (b). Por eso es la d). La gran visibilidad llega después, ya en el aire frío posterior, y el viento es racheado y rola, no persistente.",
+  "clave": "Frente frío: Cb, chubascos, rolada y subida rápida de la presión.",
+  "trampa": "La c) describe el tiempo que queda tras el frente, no su paso.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-17": {
+  "explicacion": "Durante el paso de un frente cálido, el aire cálido sube despacio sobre el frío y forma nimboestratos y estratos que dan lluvia o llovizna continua y poco intensa: la b). Los cumulonimbos con chubascos son del frente frío, y los cirros y cirroestratos aparecen antes, cuando el frente cálido todavía está lejos.",
+  "clave": "Frente cálido: lluvia continua o llovizna; frente frío: chubascos.",
+  "trampa": "La d) son las nubes que lo anuncian horas antes, no las de su paso.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-18": {
+  "explicacion": "Las olas se describen con cuatro parámetros fundamentales: altura (de seno a cresta), longitud (entre dos crestas), periodo (tiempo entre dos crestas) y velocidad de propagación: la b). La a) y la c) se dejan uno fuera, y la persistencia es un factor del viento que genera las olas, no un parámetro de la ola.",
+  "clave": "Ola: altura, longitud, periodo y velocidad.",
+  "trampa": "La d) mete la persistencia, que es del viento, no de la ola."
+ },
+ "bal-py-2017-03-cb-19": {
+  "explicacion": "El viento geostrófico resulta del equilibrio entre la fuerza del gradiente de presión y la de Coriolis: sopla paralelo (tangente) a isobaras rectas, con velocidad uniforme y proporcional al gradiente: la b). El de Euler va perpendicular a las isobaras, el ciclostrófico aparece con isobaras muy curvas y el antitríptico está dominado por el rozamiento.",
+  "clave": "Geostrófico: gradiente + Coriolis, paralelo a isobaras rectas.",
+  "trampa": "El de Euler es el único que cruza las isobaras perpendicularmente."
+ },
+ "bal-py-2017-03-cb-20": {
+  "explicacion": "La humedad relativa es el tanto por ciento de vapor de agua que hay en el aire respecto al máximo que podría haber a esa misma temperatura: la b). La absoluta se expresa en gramos por metro cúbico, el punto de rocío es una temperatura y la saturación es el estado en que la humedad relativa llega al 100 %.",
+  "clave": "Relativa = % de vapor respecto al máximo a esa temperatura.",
+  "trampa": "La d) es el caso extremo (100 %), no la definición."
+ },
+ "bal-py-2017-07-a-11": {
+  "explicacion": "El viento de Euler es el modelo más simple: solo actúa la fuerza del gradiente horizontal de presión, así que el aire iría en línea recta de la alta a la baja, perpendicular a las isobaras: la a). El geostrófico añade Coriolis, el ciclostrófico la fuerza centrífuga y el antitríptico el rozamiento.",
+  "clave": "Euler = solo gradiente.",
+  "trampa": "La c): el geostrófico añade Coriolis; con solo el gradiente es el viento de Euler.",
+  "base": "and-py-2026-c2-g17",
+  "concepto": "and-py-2026-c2-g17"
+ },
+ "bal-py-2017-07-a-12": {
+  "explicacion": "La niebla marina se forma cuando el aire se enfría sobre el agua hasta su punto de rocío. Para preverla, el navegante compara la temperatura del agua del mar con la del punto de rocío del aire: si el mar está por debajo o muy cerca, hay riesgo de niebla. Es la b). Los termómetros seco y húmedo sirven para calcular la humedad y el punto de rocío, pero lo decisivo es compararlo con el mar.",
+  "clave": "Mar ≤ punto de rocío → riesgo de niebla.",
+  "trampa": "La a) es el paso previo (psicrómetro), no la comparación que predice la niebla."
+ },
+ "bal-py-2017-07-a-14": {
+  "explicacion": "Los etesios (o meltemi) son vientos del norte típicos del mar Egeo que soplan con regularidad de mediados de mayo a mediados de septiembre y pueden alcanzar fuerza 7 u 8 Beaufort. Son ciertas la a) y la d), que es la c). La b) es falsa: no son del Mediterráneo occidental ni soplan del este.",
+  "clave": "Etesios = meltemi: N, Egeo, verano, hasta fuerza 7–8.",
+  "trampa": "La b) los traslada al Mediterráneo occidental y les cambia la dirección."
+ },
+ "bal-py-2017-07-a-15": {
+  "explicacion": "La intensidad de la corriente de marea depende de la amplitud de la marea (mareas vivas, más corriente), de la forma de la costa (los pasos estrechos la aceleran) y del momento de la marea: es máxima a media marea y casi nula en la repunta. Las tres son ciertas: la d).",
+  "clave": "Corriente de marea: amplitud, forma de la costa y fase de la marea."
+ },
+ "bal-py-2017-07-a-17": {
+  "explicacion": "Se habla de frente cálido cuando la masa de aire cálido avanza hacia la fría y, al ser menos densa, sube lentamente por encima de ella: la a). Si es la masa fría la que avanza y empuja al aire cálido (b y d), es un frente frío; y si la superficie frontal no se mueve, es un frente estacionario (c).",
+  "clave": "Avanza el cálido: frente cálido. Avanza el frío: frente frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2017-07-a-20": {
+  "explicacion": "Los cirrocúmulos son nubes altas, de la familia de los cirros, por encima de unos 6 000 m: la a). Las medias son los altocúmulos y altoestratos, y las bajas, estratos, estratocúmulos y nimboestratos.",
+  "clave": "Cirro- = nube alta; alto- = nube media.",
+  "trampa": "La terminación «-cúmulo» despista: lo que manda es el prefijo «cirro»."
+ },
+ "bal-py-2017-07-b-11": {
+  "explicacion": "La niebla que se forma cuando aire cálido y húmedo se desplaza sobre una superficie más fría (mar frío o tierra fría) y se enfría hasta saturarse es la niebla de advección: la b). La de irradiación se forma por el enfriamiento nocturno del suelo en noches despejadas y en calma, y la orográfica, por ascenso del aire por el relieve.",
+  "clave": "Advección: aire cálido que se mueve sobre superficie fría.",
+  "trampa": "La a) también enfría el aire, pero por radiación nocturna y sin viento.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2017-07-b-12": {
+  "explicacion": "Cuando el frente frío alcanza al cálido, levanta del suelo todo el aire cálido y la masa fría que avanza se une con la fría que había delante: es una oclusión (frente ocluido), la a). El frente cálido y el frío son las dos fases anteriores.",
+  "clave": "Frío alcanza al cálido y lo levanta: oclusión.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2017-07-b-13": {
+  "explicacion": "Por su altura las nubes se clasifican en altas, medias y bajas, y se añade un cuarto grupo, las de desarrollo vertical (cúmulos y cumulonimbos), que abarcan varios niveles: la c). La a) cambia «vertical» por «horizontal».",
+  "clave": "Altas, medias, bajas y de desarrollo vertical.",
+  "trampa": "La b) olvida el grupo de desarrollo vertical."
+ },
+ "bal-py-2017-07-b-14": {
+  "explicacion": "Las nubes de desarrollo vertical son los cúmulos y los cumulonimbos, que crecen en altura por convección: la c). Los cirrocúmulos son altos, los altocúmulos medios y los estratocúmulos bajos.",
+  "clave": "Desarrollo vertical: cúmulos y cumulonimbos.",
+  "trampa": "Todas llevan «cúmulo», pero solo el cumulonimbo crece en vertical."
+ },
+ "bal-py-2017-07-b-17": {
+  "explicacion": "La diferencia de presión entre dos puntos dividida por la distancia horizontal que los separa es el gradiente de presión: la c). Cuanto mayor es, más juntas están las isobaras y más fuerte el viento. El fetch es una extensión de mar y la fuerza del viento es una consecuencia del gradiente.",
+  "clave": "Gradiente = diferencia de presión / distancia.",
+  "trampa": "La b) es el efecto del gradiente, no su definición.",
+  "concepto": "bal-py-2017-07-b-17"
+ },
+ "bal-py-2021-03-b-11": {
+  "explicacion": "La diferencia de presión entre dos puntos dividida por la distancia horizontal que los separa es el gradiente de presión horizontal: la d). Cuanto mayor es, más juntas están las isobaras y más fuerte el viento. «Fetch lateral» y «alcance vertical» no son esa magnitud, y la fuerza del viento es una consecuencia del gradiente.",
+  "clave": "Gradiente = diferencia de presión / distancia.",
+  "trampa": "La b) es el efecto del gradiente, no su definición.",
+  "concepto": "bal-py-2017-07-b-17"
+ },
+ "bal-py-2017-07-b-19": {
+  "explicacion": "El viento antitríptico es el que está dominado por el rozamiento con la superficie: por eso no sopla paralelo a las isobaras como el geostrófico, sino que las cruza hacia las bajas presiones. Es la c). El de Euler solo tiene en cuenta el gradiente, y el de gradiente y el ciclostrófico tienen en cuenta la curvatura de las isobaras, no el rozamiento.",
+  "clave": "Antitríptico = viento con rozamiento.",
+  "trampa": "El enunciado describe el geostrófico para luego negarlo: la clave es «rozamiento»."
+ },
+ "bal-py-2017-07-b-20": {
+  "explicacion": "La altura significante (Hs) es la media de las alturas del tercio de olas más altas registradas en un periodo: la d). Se usa porque coincide aproximadamente con la altura que estima a ojo un observador. No es la media de todas las olas (a), ni la ola máxima (c).",
+  "clave": "Hs = media del tercio de olas más altas.",
+  "trampa": "La c) es la ola máxima, que puede ser casi el doble de Hs."
+ },
+ "bal-py-2017-12-a-13": {
+  "explicacion": "En el Atlántico oriental son característicos los alisios, vientos del NE que soplan con regularidad en la zona de Canarias, y el céfiro, nombre clásico del viento del oeste, que domina en las latitudes medias del Atlántico. Por eso es la d). El migjorn es el viento del sur en el Mediterráneo (Baleares y Cataluña).",
+  "clave": "Atlántico oriental: alisios (NE) y vientos del oeste.",
+  "trampa": "El migjorn es mediterráneo, no atlántico."
+ },
+ "bal-py-2017-12-a-14": {
+  "explicacion": "Para que se forme la niebla de advección, el aire tiene que ser más cálido que el mar (c), con humedad relativa cercana al 100 % (b), y enfriarse sobre un agua que está por debajo de su punto de rocío (a). Las tres condiciones se dan juntas: la d).",
+  "clave": "Niebla de advección: aire cálido y húmedo sobre mar más frío que su punto de rocío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2017-12-a-15": {
+  "explicacion": "El psicrómetro tiene dos termómetros, uno seco y otro con el bulbo mojado; con la diferencia entre ambos y las tablas psicrométricas se obtiene la humedad relativa: la b), que es la respuesta oficial. No mide la temperatura del mar.",
+  "clave": "Psicrómetro (seco y húmedo) + tablas → humedad relativa y punto de rocío.",
+  "trampa": "La a) da la humedad absoluta, que no es lo que se lee en las tablas.",
+  "discrepancia": "Con el psicrómetro y las tablas psicrométricas también se obtiene el punto de rocío; de hecho, en otra pregunta de este banco la respuesta oficial es «la humedad relativa y el punto de rocío». La c) también es defendible.",
+  "defendible": "c"
+ },
+ "bal-py-2017-12-b-12": {
+  "explicacion": "Los alisios son vientos de los océanos tropicales (en el Atlántico, del NE en la zona de Canarias), no del Mediterráneo: la d). El gregal (NE), el garbí (SW) y el meltemi (N, en el Egeo) sí son vientos mediterráneos.",
+  "clave": "Alisios: tropicales y oceánicos, no mediterráneos.",
+  "trampa": "El meltemi suena lejano, pero es del Egeo, en el Mediterráneo oriental."
+ },
+ "bal-py-2017-12-b-14": {
+  "explicacion": "El garbí, llebeig o lebeche es el viento del suroeste en el Mediterráneo español: la b). El del sureste es el siroco o xaloc, el del sur el migjorn y el del nordeste el gregal.",
+  "clave": "Garbí = lebeche = SW.",
+  "trampa": "La a) es el siroco (xaloc), el otro viento del sur con componente este."
+ },
+ "bal-py-2017-12-b-16": {
+  "explicacion": "La ley de Buys-Ballot dice que, en el hemisferio norte, si te pones de cara al viento, la baja presión queda a tu derecha (algo hacia atrás) y la alta a tu izquierda: la c). Con el viento en la espalda es al revés: la baja queda a la izquierda. La a) y la b) no tienen que ver con la ley.",
+  "clave": "HN, cara al viento: la baja a la derecha.",
+  "trampa": "La d) es la regla mirando a sotavento (viento en la espalda).",
+  "concepto": "bal-py-2017-12-b-16",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "buys-ballot"
+   }
+  ]
+ },
+ "bal-py-2026-03-a-20": {
+  "explicacion": "La ley de Buys-Ballot dice que, en el hemisferio norte, si te pones de cara al viento, la baja presión queda a tu derecha (algo hacia atrás) y la alta a tu izquierda: la c). Con el viento en la espalda es al revés: la baja queda a la izquierda. La a) no tiene que ver con la ley y la b) no sitúa la baja en un costado.",
+  "clave": "HN, cara al viento: la baja a la derecha.",
+  "trampa": "La d) es la regla mirando a sotavento (viento en la espalda).",
+  "concepto": "bal-py-2017-12-b-16",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "buys-ballot"
+   }
+  ]
+ },
+ "bal-py-2017-12-b-17": {
+  "explicacion": "El psicrómetro tiene un termómetro seco y otro con el bulbo mojado; con la diferencia de temperaturas y las tablas psicrométricas se obtienen la humedad relativa y el punto de rocío: la a). No da la humedad absoluta ni la temperatura del mar.",
+  "clave": "Psicrómetro + tablas → humedad relativa y punto de rocío.",
+  "trampa": "La c) cambia la humedad relativa por la absoluta."
+ },
+ "bal-py-2017-12-b-18": {
+  "explicacion": "Para que haya niebla, el aire tiene que estar prácticamente saturado: humedad relativa próxima al 100 % (d). La b) dice lo mismo con la definición de humedad relativa (vapor real dividido por el máximo posible a esa temperatura). Por eso es la a). Con un 60 % el aire está lejos de condensar.",
+  "clave": "Niebla: humedad relativa cerca del 100 %.",
+  "trampa": "La b) parece otra cosa, pero es la humedad relativa escrita con su fórmula."
+ },
+ "bal-py-2017-12-b-20": {
+  "explicacion": "Las isobaras muy juntas indican que la presión cambia mucho en poca distancia, es decir, un gradiente de presión elevado, y por tanto viento fuerte: la a). Isobaras separadas indican gradiente bajo y viento flojo.",
+  "clave": "Isobaras juntas = gradiente grande = viento fuerte.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2018-04-a-11": {
+  "explicacion": "La longitud de una ola es la distancia horizontal entre dos crestas consecutivas o, lo que es lo mismo, entre dos senos consecutivos. Por eso valen la a) y la b): la d). La distancia vertical entre seno y cresta es la altura, y la horizontal entre seno y cresta es solo media longitud.",
+  "clave": "Longitud de ola: de cresta a cresta (o de seno a seno).",
+  "trampa": "La c) da media longitud de onda."
+ },
+ "bal-py-2018-04-a-13": {
+  "explicacion": "En el Estrecho de Gibraltar la corriente superficial predominante entra del Atlántico al Mediterráneo: viene del oeste y va hacia el este. Sumada a la marea, puede llegar a unos 6 nudos en algunos puntos. Por eso es la a); cruzándolo de norte a sur la tendrás por el costado de estribor.",
+  "clave": "Estrecho: en superficie, la corriente viene del W y va hacia el E.",
+  "trampa": "La d) confunde «proviene del» con «va hacia».",
+  "concepto": "bal-py-2017-03-a-18"
+ },
+ "bal-py-2018-04-a-14": {
+  "explicacion": "Justo detrás de un frente frío entra aire frío, seco y limpio, que se ha llevado la humedad y las partículas: la visibilidad aumenta mucho, salvo dentro de algún chubasco aislado. Es la a).",
+  "clave": "Tras el frente frío: aire limpio y gran visibilidad.",
+  "trampa": "La b) describe lo que ocurre durante el paso, con los chubascos, no después.",
+  "concepto": "bal-py-2018-04-a-14",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2021-03-b-12": {
+  "explicacion": "Justo detrás de un frente frío entra aire frío, seco y limpio, que se ha llevado la humedad y las partículas: la visibilidad aumenta mucho, salvo dentro de algún chubasco aislado. Es la a).",
+  "clave": "Tras el frente frío: aire limpio y gran visibilidad.",
+  "trampa": "La d) parece prudente, pero la tendencia general es clara: mejora.",
+  "concepto": "bal-py-2018-04-a-14",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2018-04-a-15": {
+  "explicacion": "El viento geostrófico sopla paralelo a isobaras rectas, por el equilibrio entre el gradiente de presión y la fuerza de Coriolis. En el hemisferio norte, mirándolo de frente (de cara al viento), deja las bajas presiones a la derecha y las altas a la izquierda, como dice la ley de Buys-Ballot: la d). El de Euler cruza las isobaras y el antitríptico las corta por el rozamiento.",
+  "clave": "Geostrófico: paralelo a isobaras rectas (gradiente + Coriolis).",
+  "trampa": "El ciclostrófico aparece con isobaras muy curvas, no rectas.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "buys-ballot"
+   }
+  ]
+ },
+ "bal-py-2018-04-a-17": {
+  "explicacion": "Cuando un frente frío alcanza por detrás a un frente cálido y levanta el aire cálido del suelo, se forma un frente ocluido: la a). El frente frío y el cálido son las dos fases que se juntan para formarlo.",
+  "clave": "Frío alcanza al cálido: frente ocluido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2018-04-a-18": {
+  "explicacion": "El gradiente se expresa por grado de latitud, es decir, por cada 60 millas. Si en 160 millas la presión cambia 4 hPa, en 60 millas cambia 4 × 60 / 160 = 1,5 hPa: la b).",
+  "clave": "Gradiente (hPa/°) = Δp × 60 / distancia en millas.",
+  "trampa": "La a) divide 4 entre 2,5 o redondea mal: el grado son 60 millas."
+ },
+ "bal-py-2018-04-b-11": {
+  "explicacion": "La niebla que se forma de noche o de madrugada porque el suelo pierde calor por radiación y enfría el aire en contacto con él hasta su punto de rocío es la niebla de radiación (o de irradiación): la b). La de advección se forma cuando aire húmedo se desplaza sobre una superficie fría, y la frontal, con la lluvia de un frente.",
+  "clave": "Radiación: noche despejada y en calma, el suelo se enfría.",
+  "trampa": "La d) también enfría el aire, pero porque se mueve sobre algo frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-radiacion"
+   }
+  ]
+ },
+ "bal-py-2018-04-b-13": {
+  "explicacion": "La oficial clasifica los cúmulos como nubes bajas, porque su base está por debajo de unos 2 000 m, que es como los agrupa la clasificación internacional de la OMM: la b). No son nubes medias ni altas.",
+  "clave": "Cúmulos: base baja; crecen en vertical.",
+  "trampa": "Pensar en altura de la cima en vez de la base.",
+  "discrepancia": "Muchos manuales, y otras preguntas de este mismo banco, clasifican los cúmulos (junto a los cumulonimbos) como nubes de desarrollo vertical. Con ese criterio la a) también es defendible.",
+  "defendible": "a"
+ },
+ "bal-py-2018-04-b-14": {
+  "explicacion": "Es falsa la b): el aire húmedo y cálido que se enfría hasta saturarse al moverse sobre un mar frío no disipa la niebla, sino que la forma (es la niebla de advección). Las demás sí la aclaran: pasar sobre aguas más cálidas, vientos fuertes que mezclan el aire y un cambio en la dirección del viento.",
+  "clave": "La niebla se disipa con calor, viento fuerte o cambio de viento.",
+  "trampa": "La b) describe cómo nace la niebla, no cómo desaparece.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2018-04-b-15": {
+  "explicacion": "La galerna es el viento típico del golfo de Vizcaya y el Cantábrico que llega de golpe con un frente frío: rola bruscamente al noroeste, baja la temperatura, sube la humedad y da rachas de hasta unos 100 km/h: la a). Los alisios son de Canarias, la tramontana del golfo de León y el ábrego es un viento del suroeste.",
+  "clave": "Galerna: golpe de NW súbito en el Cantábrico.",
+  "concepto": "bal-py-2018-04-b-15"
+ },
+ "bal-py-2025-04-a-18": {
+  "explicacion": "La galerna es el viento típico del golfo de Vizcaya y el Cantábrico que llega de golpe con un frente frío: rola bruscamente al noroeste, baja la temperatura, sube la humedad y da rachas de hasta unos 100 km/h: la a). El cierzo es del valle del Ebro, la tramontana del golfo de León y el ábrego es un viento del suroeste.",
+  "clave": "Galerna: golpe de NW súbito en el Cantábrico.",
+  "concepto": "bal-py-2018-04-b-15"
+ },
+ "bal-py-2018-04-b-19": {
+  "explicacion": "No tienen la misma composición: la niebla está formada por agua (gotitas muy pequeñas procedentes de la condensación del vapor) y la calima, por partículas sólidas en suspensión, como polvo o arena. La oficial es la c), que la describe como vapor de agua. La d) invierte los papeles.",
+  "clave": "Niebla: agua. Calima: polvo.",
+  "trampa": "La d) atribuye el agua a la calima."
+ },
+ "bal-py-2018-04-c-11": {
+  "explicacion": "Es falsa la a) por la palabra «únicamente»: la niebla se puede disipar por subir la temperatura, pero también por la llegada de aguas más cálidas (b), por viento más fuerte que mezcla el aire (c) o por el calentamiento del suelo (d).",
+  "clave": "Disipa la niebla: calor, aguas cálidas, viento fuerte.",
+  "trampa": "Las absolutas como «únicamente» suelen delatar la falsa."
+ },
+ "bal-py-2018-04-c-12": {
+  "explicacion": "El oleaje que no lo genera el viento que sopla en el lugar, sino que llega de un temporal lejano, se llama mar de fondo, también mar tendida o mar de leva. Son tres nombres para lo mismo: la d).",
+  "clave": "Mar de fondo = mar tendida = mar de leva: no es del viento local."
+ },
+ "bal-py-2018-04-c-13": {
+  "explicacion": "El periodo de la ola es el tiempo, en segundos, que tardan dos crestas sucesivas en pasar por un mismo punto: la b). Las demás mezclan distancias que no tienen que ver con la definición.",
+  "clave": "Periodo: segundos entre dos crestas que pasan por un mismo punto."
+ },
+ "bal-py-2018-04-c-15": {
+  "explicacion": "Los alisios soplan durante todo el año en Canarias, del nordeste, por la latitud de las islas y la cercanía del anticiclón de las Azores, que los alimenta: la d). La galerna es del Cantábrico, la tramontana del golfo de León y el ábrego, un viento del suroeste.",
+  "clave": "Canarias: alisios del NE (anticiclón de las Azores)."
+ },
+ "bal-py-2018-04-c-16": {
+  "explicacion": "Frente a la costa atlántica gallega la corriente general es la de Portugal, que baja hacia el sur a lo largo de la península: la b). Es una rama del sistema de corrientes que gira alrededor del anticiclón de las Azores.",
+  "clave": "Galicia y Portugal: la corriente general va hacia el S."
+ },
+ "bal-py-2018-04-c-17": {
+  "explicacion": "La imagen muestra una capa baja de nubes grises en grandes bancos o rollos redondeados, con huecos entre ellos, que cubre buena parte del cielo: son estratocúmulos, la d). Los cirros y cirroestratos son altos y finos, y los estratos forman una capa gris uniforme sin esos bancos.",
+  "clave": "Estratocúmulos: bancos o rollos bajos y grises.",
+  "trampa": "Los estratos son una capa lisa, sin rollos."
+ },
+ "bal-py-2018-06-a-11": {
+  "explicacion": "Los alisios son vientos característicos del Atlántico oriental: soplan del nordeste en la zona de Canarias todo el año: la a). El migjorn y la tramontana son vientos del Mediterráneo occidental, y los etesios del mar Egeo.",
+  "clave": "Atlántico oriental: alisios.",
+  "concepto": "bal-py-2017-12-a-13"
+ },
+ "bal-py-2018-06-a-13": {
+  "explicacion": "La niebla de advección se forma cuando aire húmedo se desplaza sobre una superficie más fría (normalmente un mar frío) y se enfría hasta saturarse: la a). Si el aire es obligado a subir se forman nubes orográficas, y si aire frío pasa sobre agua cálida se forma la niebla de evaporación o «humo de mar».",
+  "clave": "Advección: aire húmedo sobre superficie más fría.",
+  "trampa": "La d) invierte las temperaturas.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2018-06-a-14": {
+  "explicacion": "Las nubes de desarrollo vertical son los cúmulos y los cumulonimbos, que crecen en altura por convección: la c). Los cirros y cirroestratos son altos, los altocúmulos medios, y los estratocúmulos y nimboestratos son bajos.",
+  "clave": "Desarrollo vertical: cúmulos y cumulonimbos.",
+  "concepto": "bal-py-2017-07-b-14"
+ },
+ "bal-py-2018-06-a-15": {
+  "explicacion": "Las nubes densas, oscuras y de base irregular que anuncian lluvia son los nimbos (nimboestratos y cumulonimbos): «nimbo» significa precisamente nube de lluvia. Es la a). Los estratos dan como mucho llovizna, y los altocúmulos y los cirros no suelen dar precipitación.",
+  "clave": "Nimbo = nube de lluvia.",
+  "concepto": "bal-py-2018-06-a-15"
+ },
+ "bal-py-2021-12-b-14": {
+  "explicacion": "Las nubes densas, oscuras y de base irregular que anuncian lluvia son los nimbos (nimboestratos y cumulonimbos): «nimbo» significa precisamente nube de lluvia. Es la d). Los estratos dan como mucho llovizna, y los altocúmulos y los cirros no suelen dar precipitación.",
+  "clave": "Nimbo = nube de lluvia.",
+  "concepto": "bal-py-2018-06-a-15"
+ },
+ "bal-py-2018-06-a-17": {
+  "explicacion": "En las borrascas las isobaras están más juntas que en los anticiclones, así que el gradiente horizontal de presión es mayor en las áreas de baja presión: la a). Por eso las bajas traen vientos fuertes, y los anticiclones, con isobaras separadas, vientos flojos.",
+  "clave": "Bajas: isobaras juntas y mucho viento. Altas: separadas y calma.",
+  "trampa": "La c) es justo el caso de los anticiclones, con poco gradiente.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2018-06-a-19": {
+  "explicacion": "La humedad relativa es la relación entre el vapor de agua que contiene el aire y el máximo que podría contener a esa misma temperatura, expresada en tanto por ciento: la d). La a) habla del mínimo en vez del máximo, y la b) y la c) no tienen sentido físico.",
+  "clave": "Relativa = vapor real / vapor máximo a esa temperatura (%).",
+  "trampa": "La a) solo cambia «máximo» por «mínimo».",
+  "concepto": "bal-py-2017-03-cb-20"
+ },
+ "bal-py-2018-06-b-12": {
+  "explicacion": "Una masa de aire llega a su punto de rocío (se satura) de dos formas: añadiéndole vapor de agua hasta que no admite más (a) o enfriándola hasta la temperatura a la que el vapor que tiene ya la satura (b). Por eso es la d). Elevar la temperatura hace lo contrario: aleja la saturación.",
+  "clave": "Saturar el aire: más vapor o más frío.",
+  "trampa": "La c) aumenta la capacidad del aire para contener vapor."
+ },
+ "bal-py-2018-06-b-13": {
+  "explicacion": "El aumento de la humedad relativa no disipa la niebla, la refuerza: la d). Sí ayudan a que desaparezca el calor del sol, que calienta el aire, las corrientes superficiales cálidas y los vientos fuertes, que mezclan y secan el aire.",
+  "clave": "Disipa la niebla: sol, agua cálida y viento. La humedad la mantiene.",
+  "trampa": "Fíjate en el «no» del enunciado."
+ },
+ "bal-py-2018-06-b-16": {
+  "explicacion": "La imagen no viene con esta pregunta, pero es la misma que otra de este banco: una nube de gran desarrollo vertical que acaba arriba en forma de yunque o seta. Eso es un cumulonimbo, la nube de tormenta: la b). El nimboestrato es una capa gris uniforme, y el altocúmulo y el estratocúmulo son bancos sin desarrollo vertical.",
+  "clave": "Torre con yunque arriba = cumulonimbo (tormenta).",
+  "concepto": "bal-py-2018-06-b-16"
+ },
+ "bal-py-2021-03-ac-11": {
+  "explicacion": "La imagen muestra una nube de gran desarrollo vertical, con una torre que sube desde la base y se abre arriba en forma de yunque o seta: es un cumulonimbo, la nube de tormenta: la b). Los nimboestratos y cirroestratos son capas, y la forma de seta no es la del altocúmulo, sino la del yunque del cumulonimbo.",
+  "clave": "Torre con yunque arriba = cumulonimbo (tormenta).",
+  "trampa": "La d) usa bien la palabra «seta», pero se la atribuye al altocúmulo.",
+  "concepto": "bal-py-2018-06-b-16"
+ },
+ "bal-py-2018-06-b-19": {
+  "explicacion": "La mar de fondo (o de leva) llega desde un temporal lejano; en el camino las olas cortas se disipan y quedan las largas, así que su periodo es relativamente largo comparado con el de la mar de viento: la a). La mar de viento, generada en el lugar, tiene olas cortas y de periodo corto.",
+  "clave": "Mar de fondo: olas largas y de periodo largo.",
+  "trampa": "La b) describe la mar de viento.",
+  "concepto": "bal-py-2018-06-b-19"
+ },
+ "bal-py-2025-12-b-12": {
+  "explicacion": "La mar de fondo (o de leva) llega desde un temporal lejano; en el camino las olas cortas se disipan y quedan las largas, así que su periodo es relativamente más largo que el de la mar de viento: la a). La mar de viento, generada en el lugar, tiene olas cortas y de periodo corto.",
+  "clave": "Mar de fondo: olas largas y de periodo largo.",
+  "trampa": "La b) describe la mar de viento.",
+  "concepto": "bal-py-2018-06-b-19"
+ },
+ "bal-py-2026-03-a-11": {
+  "explicacion": "La mar de fondo (o de leva) llega desde un temporal lejano; en el camino las olas cortas se disipan y quedan las largas, así que su periodo es relativamente más largo que el de la mar de viento: la a). La mar de viento, generada en el lugar, tiene olas cortas y de periodo corto.",
+  "clave": "Mar de fondo: olas largas y de periodo largo.",
+  "trampa": "La b) describe la mar de viento.",
+  "concepto": "bal-py-2018-06-b-19"
+ },
+ "bal-py-2018-12-a-11": {
+  "explicacion": "La ley de Buys-Ballot dice que, en el hemisferio norte, si te pones de cara al viento, la baja presión queda a tu derecha (algo hacia atrás) y la alta a tu izquierda: la a). En el hemisferio sur sería al revés.",
+  "clave": "HN, cara al viento: la baja a la derecha.",
+  "trampa": "La b) es la regla con el viento en la espalda o en el hemisferio sur.",
+  "concepto": "bal-py-2017-12-b-16",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "buys-ballot"
+   }
+  ]
+ },
+ "bal-py-2018-12-a-12": {
+  "explicacion": "En un anticiclón la presión es máxima en el centro, así que el valor de las isobaras disminuye del centro hacia la periferia: la b). En una borrasca ocurre al revés. Las isobaras no valen todas lo mismo, y aunque se suelen trazar cada 2 o 4 hPa, no hay un intervalo fijo obligatorio.",
+  "clave": "Anticiclón: presión máxima en el centro, baja hacia fuera.",
+  "trampa": "La a) describe una borrasca.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   }
+  ]
+ },
+ "bal-py-2018-12-a-13": {
+  "explicacion": "Con el psicrómetro se obtiene el punto de rocío del aire, y se compara con la temperatura de la superficie del mar: cuando el mar se enfría hasta igualar el punto de rocío, el aire en contacto con él se satura y aparece la niebla: la d). La b) dice que aparece cuando el punto de rocío es menor, y entonces el aire no llega a saturarse.",
+  "clave": "Niebla: temperatura del mar = punto de rocío.",
+  "trampa": "La b) usa bien las dos temperaturas, pero con la desigualdad al revés.",
+  "concepto": "bal-py-2017-07-a-12"
+ },
+ "bal-py-2018-12-a-14": {
+  "explicacion": "La niebla que se forma al enfriarse una masa de aire húmeda y templada que se desplaza sobre una superficie más fría es la niebla de advección: la c). La de radiación se forma sin viento, por el enfriamiento nocturno del suelo; la orográfica, al subir el aire por una ladera; y la frontal, con la lluvia de un frente.",
+  "clave": "Advección: aire húmedo sobre superficie más fría.",
+  "concepto": "bal-py-2018-06-a-13",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2018-12-a-15": {
+  "explicacion": "Una humedad relativa del 100 % significa que el aire está saturado: no admite más vapor de agua sin que se condense: la c). No quiere decir que el aire sea todo agua, ni que la humedad absoluta sea cero, y el punto de rocío es una temperatura, no un porcentaje.",
+  "clave": "HR 100 % = aire saturado.",
+  "trampa": "La b) interpreta el 100 % como composición del aire."
+ },
+ "bal-py-2018-12-a-16": {
+  "explicacion": "En una oclusión de tipo frío, la masa de aire frío que empuja por detrás está más fría que la masa fría que va por delante, así que se mete por debajo de ella y la levanta junto con el aire cálido: la a). Si la de detrás es menos fría, la oclusión es de tipo cálido (b y c). La ascensión del aire no es espontánea, sino forzada por la cuña de aire frío.",
+  "clave": "Oclusión fría: el aire de detrás es el más frío.",
+  "trampa": "La b) y la c) describen la oclusión cálida.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2018-12-a-17": {
+  "explicacion": "El mistral es el viento fuerte, frío y seco del noroeste que baja por el valle del Ródano y sopla en el golfo de León, llegando a veces hasta Menorca y Córcega: la c). La tramontana es del norte-noroeste en el Ampurdán, el siroco es cálido del sureste y la bora sopla en el Adriático.",
+  "clave": "Mistral: NW por el Ródano, golfo de León.",
+  "trampa": "La b) (tramontana) sopla en la misma zona, pero del N-NW por el Ampurdán.",
+  "concepto": "bal-py-2018-12-a-17"
+ },
+ "bal-py-2024-07-bc-11": {
+  "explicacion": "El mistral es el viento fuerte, frío y seco del noroeste que baja por el valle del Ródano y sopla en el golfo de León, llegando a veces hasta Menorca y Córcega: la c). La tramontana es del norte-noroeste en el Ampurdán, el siroco o xaloc es cálido del sureste y el gregal sopla del nordeste.",
+  "clave": "Mistral: NW por el Ródano, golfo de León.",
+  "trampa": "La b) (tramontana) sopla en la misma zona, pero del N-NW por el Ampurdán.",
+  "concepto": "bal-py-2018-12-a-17"
+ },
+ "bal-py-2018-12-a-18": {
+  "explicacion": "Los altocúmulos son nubes medias, entre unos 2 000 y 6 000 m: la d). Los estratocúmulos son bajos, los cirros altos y los cumulonimbos abarcan varios niveles por su desarrollo vertical.",
+  "clave": "Prefijo «alto-» = nube media.",
+  "trampa": "«Alto» engaña: altocúmulo y altoestrato son nubes medias, no altas."
+ },
+ "bal-py-2018-12-a-20": {
+  "explicacion": "El gregal es un viento del nordeste característico de Baleares y del Mediterráneo central; llega frío y seco por su origen continental: la a). La b) describe el garbí (SW), y la d), un viento africano como el siroco.",
+  "clave": "Gregal = NE, frío y seco en Baleares.",
+  "trampa": "La b) se lo cambia por el garbí, del suroeste."
+ },
+ "bal-py-2018-12-b-11": {
+  "explicacion": "Lo primero que anuncia la llegada de un frente cálido son los cirros, nubes altas y finas que aparecen con mucha antelación; luego vienen cirroestratos, altoestratos y nimboestratos cada vez más bajos: la a). Los cúmulos y cumulonimbos son propios del frente frío.",
+  "clave": "Frente cálido en camino: primero cirros.",
+  "trampa": "La c) es la nube del frente frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2018-12-b-12": {
+  "explicacion": "Cuando la niebla se forma o se mantiene porque una masa de aire se desplaza sobre una superficie más fría que ella es una niebla de advección: la c). La de radiación es sin viento, por el enfriamiento nocturno del suelo; la de mezcla, por la mezcla de dos masas de aire, y la orográfica, por subir el aire por una ladera.",
+  "clave": "Advección: aire que se mueve sobre superficie más fría.",
+  "concepto": "bal-py-2018-06-a-13",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-adveccion"
+   }
+  ]
+ },
+ "bal-py-2018-12-b-20": {
+  "explicacion": "Las corrientes termohalinas se deben a diferencias de temperatura (termo) y salinidad (halina) del agua, que cambian su densidad; por eso también se llaman corrientes de densidad: la a). Las de deriva o arrastre las produce el viento.",
+  "clave": "Termohalina = de densidad (temperatura y sal).",
+  "trampa": "La d) son las corrientes que mueve el viento."
+ },
+ "bal-py-2019-04-a-11": {
+  "explicacion": "En un mapa isobárico el gradiente de presión lo indica la distancia entre isobaras: cuanto más juntas, mayor gradiente y más viento: la a). La d) falla porque el gradiente se obtiene dividiendo la diferencia de presión por la distancia, no multiplicando.",
+  "clave": "Gradiente: isobaras juntas = grande.",
+  "trampa": "La d) suena técnica, pero multiplica en vez de dividir.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2019-04-a-12": {
+  "explicacion": "En una borrasca el aire converge en superficie y asciende en su interior; al subir se enfría y condensa, de modo que el tiempo es nuboso, inestable y con precipitaciones frecuentes: la b). El descenso de aire (c y d) es propio de los anticiclones, que dan tiempo estable y seco.",
+  "clave": "Borrasca: el aire sube, nubes y lluvia. Anticiclón: el aire baja, buen tiempo.",
+  "trampa": "La c) acierta el tiempo, pero le pone el movimiento vertical del anticiclón.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2019-04-a-13": {
+  "explicacion": "Las nieblas frontales no se forman por enfriamiento del aire, sino por aporte de humedad: la lluvia del frente se evapora en el aire frío de debajo y lo satura. Por eso es la a). Las de advección, las orográficas y las de radiación se forman al enfriarse el aire hasta su punto de rocío.",
+  "clave": "Niebla frontal: por evaporación de la lluvia, no por enfriamiento.",
+  "trampa": "La c) (orográfica) también parece distinta, pero el aire se enfría al subir."
+ },
+ "bal-py-2019-04-a-14": {
+  "explicacion": "El siroco (xaloc) es el viento cálido del sureste que llega al Mediterráneo desde el norte de África, a menudo cargado de polvo: la c). El mistral es frío del noroeste, el gregal del nordeste, y el ostria es un nombre del viento del sur en el Adriático.",
+  "clave": "Siroco (xaloc) = SE, cálido, africano."
+ },
+ "bal-py-2019-04-a-16": {
+  "explicacion": "Cuanto más seco está el aire, menos gotitas y bruma hay en suspensión y mejor es la visibilidad. Con una humedad relativa del 10 % la visibilidad es mucho mejor que con el 50 %, y al 100 % el aire está saturado y es cuando aparecen la niebla o la neblina: la b).",
+  "clave": "Menos humedad relativa, más visibilidad.",
+  "trampa": "La d) cambia «latitud» por «longitud»; en cualquier caso no es la clave.",
+  "concepto": "bal-py-2019-04-a-16"
+ },
+ "bal-py-2019-04-a-18": {
+  "explicacion": "En el frente cálido el aire cálido sube lentamente sobre el frío y forma capas de nubes (nimboestratos, estratos) que dan lloviznas o lluvia continua y poco intensa, con visibilidad de regular a mala: la d). Los chubascos y la buena visibilidad posterior son propios del frente frío.",
+  "clave": "Frente cálido: llovizna y mala visibilidad. Frente frío: chubascos y luego aire limpio.",
+  "trampa": "La a) describe el frente frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2019-04-a-19": {
+  "explicacion": "El frente frío se desplaza más deprisa que el cálido: el aire frío, más denso, avanza como una cuña por debajo del cálido. Por eso acaba alcanzándolo y se forma la oclusión. Es la a).",
+  "clave": "El frente frío es más rápido: alcanza al cálido y lo ocluye.",
+  "concepto": "bal-py-2017-03-a-11",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2019-04-a-20": {
+  "explicacion": "En una borrasca, la zona que queda entre el frente cálido (por delante) y el frente frío (por detrás) está ocupada por aire cálido: es el sector cálido, la b). Detrás del frente frío queda el sector frío, y la oclusión aparece cuando el frío alcanza al cálido y el sector cálido desaparece de la superficie.",
+  "clave": "Entre frente cálido y frente frío: sector cálido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2019-04-b-11": {
+  "explicacion": "Las líneas que unen puntos de igual presión se llaman isobaras: la a). Un frente es la superficie de separación entre dos masas de aire, y el gradiente de presión es la variación de presión por unidad de distancia, que se aprecia por lo juntas que están las isobaras.",
+  "clave": "Iso-bara: igual (iso) presión (baros).",
+  "trampa": "La d) se lee en el mapa a partir de las isobaras, pero no son las líneas.",
+  "base": "and-2021-c1-t33",
+  "concepto": "and-2021-c1-t33",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2019-04-b-13": {
+  "explicacion": "El viento ciclostrófico es el que resulta del equilibrio entre el gradiente de presión y la fuerza centrífuga del movimiento circular, sin tener en cuenta Coriolis ni el rozamiento: la b). Se da en giros muy cerrados (tornados, trombas) o cerca del ecuador. El geostrófico equilibra gradiente y Coriolis, y el del gradiente suma además la centrífuga.",
+  "clave": "Ciclostrófico: gradiente = centrífuga, sin Coriolis.",
+  "trampa": "La c) (viento del gradiente) sí incluye Coriolis."
+ },
+ "bal-py-2019-04-b-18": {
+  "explicacion": "Cuanto más separadas están las isobaras, menos cambia la presión por unidad de distancia: el gradiente horizontal de presión es menor y el viento más flojo: la c). Las isobaras de un mapa de superficie hablan del gradiente horizontal, no del vertical.",
+  "clave": "Isobaras separadas = gradiente pequeño = poco viento.",
+  "trampa": "La a) y la d) hablan del gradiente vertical, que el mapa no muestra."
+ },
+ "bal-py-2019-04-c-16": {
+  "explicacion": "El viento antitríptico es el viento teórico en el que se tiene en cuenta el rozamiento con la superficie, que frena el aire y reduce el efecto de Coriolis, así que cruza las isobaras hacia las bajas: la c). La a) es el viento de Euler, la b) el geostrófico y la d) el ciclostrófico.",
+  "clave": "Antitríptico = viento con rozamiento.",
+  "concepto": "bal-py-2017-07-b-19"
+ },
+ "bal-py-2019-06-a-11": {
+  "explicacion": "La fuerza del gradiente de presión por unidad de masa es la diferencia de presión por unidad de distancia dividida por la densidad del aire: es inversamente proporcional a la densidad, la a). Con el mismo gradiente, el aire menos denso se acelera más.",
+  "clave": "Fuerza de gradiente = (Δp / distancia) / densidad.",
+  "trampa": "La b) pone la densidad multiplicando."
+ },
+ "bal-py-2019-06-a-12": {
+  "explicacion": "Es falsa la b): el psicrómetro, que tiene un termómetro seco y otro húmedo, sirve con sus tablas para calcular la humedad relativa y el punto de rocío, no la temperatura del mar. Las demás son ciertas: está formado por dos termómetros (a), da humedad relativa y punto de rocío (c) y, comparando el punto de rocío con la temperatura del mar, se predice la niebla (d).",
+  "clave": "Psicrómetro + tablas → humedad relativa y punto de rocío.",
+  "trampa": "La b) y la c) solo se diferencian en «temperatura del mar» y «humedad relativa»."
+ },
+ "bal-py-2019-06-a-17": {
+  "explicacion": "El viento descrito es la tramontana: viento del norte-noroeste, frío, que en el golfo de León y el norte de Baleares da las peores condiciones de navegación y supera los 40 nudos en el cabo de Creus: la d). El levante y el gregal soplan del este y nordeste, y el migjorn del sur.",
+  "clave": "Tramontana: N-NW frío; muy fuerte en el cabo de Creus.",
+  "concepto": "bal-py-2019-06-a-17"
+ },
+ "bal-py-2023-06-ac-19": {
+  "explicacion": "El viento descrito es la tramontana: viento del norte-noroeste, frío, que en el golfo de León y el norte de Baleares da las peores condiciones de navegación y supera los 40 nudos en el cabo de Creus: la c). El levante y el gregal soplan del este y nordeste, y el migjorn del sur.",
+  "clave": "Tramontana: N-NW frío; muy fuerte en el cabo de Creus.",
+  "concepto": "bal-py-2019-06-a-17"
+ },
+ "bal-py-2019-06-a-18": {
+  "explicacion": "La imagen muestra una nube aislada, lisa y con forma de lente o platillo, sobre una zona montañosa: es un altocúmulo lenticular, la a). Se forma en la cresta de las ondas que hace el viento fuerte al pasar sobre las montañas, y avisa de viento fuerte en altura. No tiene el desarrollo vertical del cumulonimbo ni es una capa como el nimboestrato.",
+  "clave": "Nube en forma de lente sobre montañas: altocúmulo lenticular.",
+  "trampa": "«Cirrus volantis» no es un tipo de nube.",
+  "concepto": "bal-py-2019-06-a-18"
+ },
+ "bal-py-2020-12-a-14": {
+  "explicacion": "La imagen muestra una nube aislada, lisa y con forma de lente o platillo: es un altocúmulo lenticular, la a). Se forma en la cresta de las ondas que hace el viento fuerte al pasar sobre las montañas, y avisa de viento fuerte en altura. No tiene el desarrollo vertical del cumulonimbo ni es una capa como el nimboestrato.",
+  "clave": "Nube en forma de lente sobre montañas: altocúmulo lenticular.",
+  "trampa": "«Cirrus volantis» no es un tipo de nube.",
+  "concepto": "bal-py-2019-06-a-18"
+ },
+ "bal-py-2019-06-b-20": {
+  "explicacion": "En el Estrecho de Gibraltar la corriente general superficial va hacia el este, del Atlántico al Mediterráneo, y sumada a la corriente de marea y al viento puede superar los 4 nudos: la a). La b) limita la intensidad a 2 nudos, y la c) y la d) dan una dirección equivocada.",
+  "clave": "Estrecho: en superficie, el Atlántico entra hacia el E.",
+  "trampa": "La b) acierta la dirección, pero se queda corta en intensidad.",
+  "concepto": "bal-py-2017-03-a-18"
+ },
+ "bal-py-2019-12-a-11": {
+  "explicacion": "Cuanto más seco está el aire, menos gotitas y bruma hay en suspensión y mejor es la visibilidad. Con una humedad relativa del 10 % la visibilidad es mucho mejor que con el 50 %, y al 100 % el aire está saturado y es cuando aparecen la niebla o la neblina: la a).",
+  "clave": "Menos humedad relativa, más visibilidad.",
+  "concepto": "bal-py-2019-04-a-16"
+ },
+ "bal-py-2019-12-a-12": {
+  "explicacion": "Si una masa de aire se enfría sin ganar ni perder vapor, su humedad absoluta no cambia, pero el máximo de vapor que puede contener baja. Por eso la humedad relativa aumenta: la b). Si sigue enfriándose llega al punto de rocío y se satura.",
+  "clave": "Enfriar el aire: misma humedad absoluta, más humedad relativa.",
+  "trampa": "La c) y la d) cambian la absoluta, que no varía si no entra ni sale vapor."
+ },
+ "bal-py-2019-12-a-15": {
+  "explicacion": "La altura de la ola es la distancia vertical entre la cresta y el seno, es decir, entre el punto más alto y el más bajo de la ola: la b). La distancia entre dos crestas o dos senos es la longitud de onda (y se mide en horizontal), y la mitad de la altura es la amplitud.",
+  "clave": "Altura = vertical seno-cresta; longitud = horizontal cresta-cresta.",
+  "trampa": "La d) es la amplitud, la mitad de la altura.",
+  "base": "and-py-2021-c1-g17",
+  "concepto": "and-py-2021-c1-g17"
+ },
+ "bal-py-2023-06-b-15": {
+  "explicacion": "La altura de la ola es la distancia vertical entre la cresta y el seno, es decir, entre el punto más alto y el más bajo de la ola: la b). Medir desde el nivel medio hasta la cresta o hasta el seno da la amplitud, que es la mitad de la altura, igual que la d).",
+  "clave": "Altura = vertical seno-cresta; longitud = horizontal cresta-cresta.",
+  "trampa": "La a) mide desde el nivel medio: eso es solo la mitad.",
+  "base": "and-py-2021-c1-g17",
+  "concepto": "and-py-2021-c1-g17"
+ },
+ "bal-py-2019-12-a-18": {
+  "explicacion": "El periodo de una ola es el tiempo que transcurre entre el paso de dos crestas consecutivas por un mismo punto: la c). La a) y la b) son distancias (media longitud y altura), y la d) da solo medio periodo.",
+  "clave": "Periodo: segundos entre dos crestas que pasan por un mismo punto.",
+  "concepto": "bal-py-2018-04-c-13"
+ },
+ "bal-py-2019-12-a-19": {
+  "explicacion": "Las nubes que se forman cuando el aire choca con una montaña, sube por la ladera de barlovento, se enfría y se satura son las nubes orográficas: la b). Las frontales nacen del encuentro de dos masas de aire, y las convectivas, del calentamiento desde el suelo.",
+  "clave": "Montaña que obliga a subir al aire: nube orográfica."
+ },
+ "bal-py-2019-12-c-14": {
+  "explicacion": "Las dos afirmaciones son ciertas: las olas son la manifestación visible de la energía que el viento transmite al mar, y la longitud de onda es la distancia entre dos crestas o dos senos consecutivos. Por eso es la a).",
+  "clave": "Ola: energía del viento; longitud de cresta a cresta."
+ },
+ "bal-py-2019-12-c-18": {
+  "explicacion": "Las nubes que se forman por convección, cuando el suelo o el mar calientan el aire y este sube, son los cúmulos (y, si crecen mucho, los cumulonimbos): la c). Los cirros son nubes altas de hielo y los estratos se forman en capas, con aire estable.",
+  "clave": "Convección → cúmulos.",
+  "trampa": "Los estratos son justo lo contrario: aire estable, sin ascenso."
+ },
+ "bal-py-2020-07-a-11": {
+  "explicacion": "El gradiente se da por grado de latitud, que son 60 millas. Entre 1008 y 1012 hay 4 mb en 120 millas, así que en 60 millas hay 4 × 60 / 120 = 2 mb: la a).",
+  "clave": "Gradiente (mb/°) = Δp × 60 / distancia en millas.",
+  "trampa": "Dividir 4 entre 2 sin pensar que el grado son 60 millas funciona aquí, pero no siempre.",
+  "concepto": "bal-py-2020-07-a-11"
+ },
+ "bal-py-2024-12-a-13": {
+  "explicacion": "El gradiente se da por grado de latitud, que son 60 millas. Entre 1008 y 1012 hay 4 mb en 120 millas, así que en 60 millas hay 4 × 60 / 120 = 2 mb: la c).",
+  "clave": "Gradiente (mb/°) = Δp × 60 / distancia en millas.",
+  "trampa": "Las demás cifras salen de dividir mal o de no pasar a grados (60 millas).",
+  "concepto": "bal-py-2020-07-a-11"
+ },
+ "bal-py-2020-07-a-12": {
+  "explicacion": "Los estratocúmulos son nubes bajas, por debajo de unos 2 000 m: bancos o capas grises con rollos o masas redondeadas: la c). Las medias son altocúmulos y altoestratos, y las altas, cirros, cirrocúmulos y cirroestratos.",
+  "clave": "Estratocúmulos: nubes bajas.",
+  "trampa": "Lleva «cúmulo», pero no es de desarrollo vertical ni nube media."
+ },
+ "bal-py-2020-07-a-13": {
+  "explicacion": "Una dorsal o cuña es una prolongación de un anticiclón que se mete entre dos borrascas, con las isobaras curvadas en forma de U: la a). Si son las isobaras de una borrasca las que se meten en forma de V entre dos anticiclones, es una vaguada (c).",
+  "clave": "Dorsal: lengua de altas presiones (U). Vaguada: lengua de bajas (V).",
+  "trampa": "La c) describe la vaguada, que es lo opuesto.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   }
+  ]
+ },
+ "bal-py-2020-07-a-14": {
+  "explicacion": "Las borrascas se caracterizan por tiempo inestable (aire que sube, nubes y lluvia) y por vientos fuertes, porque sus isobaras suelen estar muy juntas: la b). Las demás combinan mal estabilidad e intensidad del viento.",
+  "clave": "Borrasca: inestable y con viento fuerte.",
+  "trampa": "La c) acierta lo de inestable, pero quita los vientos fuertes.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2020-07-a-15": {
+  "explicacion": "La mar de viento la levanta el viento que sopla en el lugar: olas de perfil agudo, longitud de onda corta y alturas irregulares: la a). Los perfiles redondeados y las olas largas y regulares son de la mar de fondo.",
+  "clave": "Mar de viento: aguda, corta e irregular. Mar de fondo: redonda, larga y regular.",
+  "trampa": "Cada opción falsa mezcla un rasgo de la mar de viento con otro de la mar de fondo.",
+  "concepto": "bal-py-2020-07-a-15"
+ },
+ "bal-py-2025-07-a-17": {
+  "explicacion": "La mar de viento la levanta el viento que sopla en el lugar: olas de perfil agudo, longitud de onda corta y alturas irregulares: la a). Los perfiles redondeados y las olas largas y regulares son de la mar de fondo.",
+  "clave": "Mar de viento: aguda, corta e irregular. Mar de fondo: redonda, larga y regular.",
+  "trampa": "Cada opción falsa mezcla un rasgo de la mar de viento con otro de la mar de fondo.",
+  "concepto": "bal-py-2020-07-a-15"
+ },
+ "bal-py-2020-07-a-17": {
+  "explicacion": "Al paso de un frente cálido la visibilidad disminuye: hay lloviznas y lluvia continua, el aire es muy húmedo y puede formarse niebla, sobre todo justo antes y durante el paso del frente: la c). La d) falla en la causa: con el frente cálido la temperatura sube, no baja.",
+  "clave": "Frente cálido: llovizna, niebla y mala visibilidad.",
+  "trampa": "La d) acierta que disminuye, pero da una causa falsa.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2020-07-a-18": {
+  "explicacion": "Tras el paso de un frente frío entra aire frío y denso: la presión sube y la temperatura baja: la b). Las bajadas de presión se dan antes del frente, y la temperatura sube con el paso de un frente cálido, no de uno frío.",
+  "clave": "Tras el frente frío: sube la presión, baja la temperatura.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2020-07-a-19": {
+  "explicacion": "Las corrientes termohalinas se deben a diferencias de densidad entre masas de agua, causadas por su temperatura (termo) y su salinidad (halina): la a). Las que mueve el viento son de arrastre, las de diferencia de nivel son de pendiente y las de marea, otra cosa distinta.",
+  "clave": "Termohalina = de densidad (temperatura y sal).",
+  "concepto": "bal-py-2018-12-b-20"
+ },
+ "bal-py-2020-07-b-11": {
+  "explicacion": "Es falsa la a): el psicrómetro no es un termómetro de máxima y mínima, sino un par de termómetros (seco y húmedo) que, con las tablas psicrométricas, dan la humedad relativa y el punto de rocío (d). Las demás son ciertas: si la temperatura del mar se acerca al punto de rocío cabe esperar niebla, y así se predice a bordo.",
+  "clave": "Psicrómetro: seco + húmedo → humedad y punto de rocío.",
+  "trampa": "La a) lo confunde con el termómetro de máxima y mínima."
+ },
+ "bal-py-2020-07-b-13": {
+  "explicacion": "Las nubes que se forman porque el aire cálido y húmedo sube por inestabilidad térmica, como los cúmulos, son nubes de convección térmica: la b). Las orográficas suben forzadas por una montaña, y la d) mezcla la convección con el ascenso frontal, que es otro mecanismo.",
+  "clave": "Aire cálido que sube solo → convección → cúmulos.",
+  "concepto": "bal-py-2020-07-b-13"
+ },
+ "bal-py-2024-04-a-14": {
+  "explicacion": "Las nubes que se forman porque el aire cálido y húmedo sube por inestabilidad térmica, como los cúmulos, son nubes de convección: la a). Las orográficas y las de elevación forzada suben porque algo las obliga (una montaña, un frente), no por estar más calientes que el entorno.",
+  "clave": "Aire cálido que sube solo → convección → cúmulos.",
+  "concepto": "bal-py-2020-07-b-13"
+ },
+ "bal-py-2020-07-b-15": {
+  "explicacion": "No corresponde a un frente cálido la d): una pendiente acusada, de 1/30 a 1/100, es propia del frente frío. El frente cálido tiene una pendiente muy suave (del orden de 1/100 a 1/300), por eso su tiempo se extiende cientos de kilómetros por delante (c). Las demás sí lo describen: el aire cálido sube por encima de la cuña fría (b) y el rozamiento deja una delgada capa de aire frío en superficie donde se forman nieblas (a).",
+  "clave": "Pendiente: frente frío fuerte; frente cálido muy suave.",
+  "trampa": "La a) parece rebuscada, pero describe bien la niebla previa al frente cálido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ]
+ },
+ "bal-py-2020-12-a-13": {
+  "explicacion": "Las nubes altas, blancas, fibrosas o en filamentos, formadas por cristales de hielo entre unos 6 000 y 10 000 m y que no dan precipitación, son los cirros: la a). Los cirrocúmulos son altos pero en pequeños copos, y los altoestratos y altocúmulos son nubes medias.",
+  "clave": "Cirros: altos, de hielo y en filamentos («colas de caballo»).",
+  "trampa": "La b) también es nube alta, pero en copos, no en filamentos."
+ },
+ "bal-py-2020-12-a-19": {
+  "explicacion": "Frente a las costas atlánticas de Galicia y Portugal la corriente general es la de Portugal, que baja hacia el sur, rodeando por el este el anticiclón de las Azores: la d).",
+  "clave": "Galicia y Portugal: la corriente general va hacia el S.",
+  "concepto": "bal-py-2020-12-a-19"
+ },
+ "bal-py-2022-12-ac-20": {
+  "explicacion": "Frente a las costas atlánticas de Galicia y Portugal la corriente general es la de Portugal, que baja hacia el sur, rodeando por el este el anticiclón de las Azores: la d).",
+  "clave": "Galicia y Portugal: la corriente general va hacia el S.",
+  "concepto": "bal-py-2020-12-a-19"
+ },
+ "bal-py-2020-12-a-20": {
+  "explicacion": "En una oclusión de tipo frío, la masa de aire frío que empuja por detrás está más fría que la masa fría que va por delante, así que se mete por debajo de ella y la levanta junto con el aire cálido: la a). Si la de detrás es menos fría, la oclusión es de tipo cálido (b y c). La ascensión del aire no es espontánea, sino forzada por la cuña de aire frío.",
+  "clave": "Oclusión fría: el aire de detrás es el más frío.",
+  "trampa": "La b) y la c) describen la oclusión cálida.",
+  "concepto": "bal-py-2018-12-a-16",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-12": {
+  "explicacion": "En un mapa isobárico el gradiente de presión lo indica la distancia entre isobaras: cuanto más juntas, mayor gradiente y más fuerte el viento que circula entre ellas: la a). La b) falla porque el gradiente se obtiene dividiendo la diferencia de presión por la distancia, no multiplicando.",
+  "clave": "Gradiente: isobaras juntas = grande.",
+  "trampa": "La b) suena técnica, pero multiplica en vez de dividir.",
+  "concepto": "bal-py-2019-04-a-11",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-14": {
+  "explicacion": "En superficie, el frente frío se traslada más deprisa que el cálido: el aire frío, más denso, avanza como una cuña por debajo del cálido y acaba alcanzándolo, formando la oclusión. Es la a).",
+  "clave": "El frente frío es más rápido: alcanza al cálido y lo ocluye.",
+  "concepto": "bal-py-2017-03-a-11",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-15": {
+  "explicacion": "El punto de rocío es una temperatura del aire: la temperatura a la que hay que enfriarlo, sin cambiar su vapor, para que se sature: la c). No es una humedad (absoluta o relativa) ni la temperatura del agua, aunque se compare con ella para prever la niebla.",
+  "clave": "Punto de rocío: temperatura del aire a la que se satura.",
+  "trampa": "La b): se compara con la temperatura del agua, pero no lo es."
+ },
+ "bal-py-2020-12-b-17": {
+  "explicacion": "Entre las mismas dos isobaras, la diferencia de presión es igual, pero donde están separadas 50 millas el gradiente es el doble que donde están a 100 millas. Más gradiente, más viento: la intensidad es mayor en la zona de 50 millas, la d).",
+  "clave": "Isobaras más juntas = más viento.",
+  "trampa": "La a) olvida que el gradiente depende también de la distancia.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-18": {
+  "explicacion": "Es falsa la a) por la palabra «únicamente»: la niebla se puede disipar por subir la temperatura, pero también por la llegada de aguas más cálidas (b), por viento más fuerte que mezcla el aire (c) o por el calentamiento del suelo (d).",
+  "clave": "Disipa la niebla: calor, aguas cálidas, viento fuerte.",
+  "trampa": "Las absolutas como «únicamente» suelen delatar la falsa.",
+  "concepto": "bal-py-2018-04-c-11"
+ },
+ "bal-py-2020-12-b-19": {
+  "explicacion": "El oleaje que no lo genera el viento que sopla en el lugar, sino que llega de un temporal lejano, se llama mar de fondo: la c). La mar de viento es justo la generada por el viento local, y «mar de fetch» o «mar epicicloidal» no son tipos de mar.",
+  "clave": "Mar de fondo: olas que vienen de lejos, sin viento local.",
+  "trampa": "La d) es el caso contrario.",
+  "concepto": "bal-py-2020-12-b-19"
+ },
+ "bal-py-2023-12-b-13": {
+  "explicacion": "El oleaje que no lo genera el viento que sopla en el lugar, sino que llega de un temporal lejano, se llama mar de fondo: la c). «Mar de fetch», «mar de Coriolis» o «mar de Euler» no existen: toman nombres de otros conceptos de meteorología.",
+  "clave": "Mar de fondo: olas que vienen de lejos, sin viento local.",
+  "trampa": "Coriolis y Euler son nombres de fuerzas y vientos, no tipos de mar.",
+  "concepto": "bal-py-2020-12-b-19"
+ },
+ "bal-py-2020-12-b-20": {
+  "explicacion": "Una borrasca es una zona en la que la presión es menor que en la región que la rodea: la c). En el hemisferio norte su viento gira en sentido contrario a las agujas del reloj (no a favor, como dice la a), su presión no tiene por qué estar por encima de 760 mmHg, y la presión máxima en el centro (d) es la definición de anticiclón.",
+  "clave": "Borrasca: mínimo de presión; en el HN gira al revés que el reloj.",
+  "trampa": "La a) acierta casi todo, pero pone el giro del anticiclón.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2021-03-ac-13": {
+  "explicacion": "La imagen es un psicrómetro: el termómetro con la mecha mojada (a la derecha) es el húmedo, y como la evaporación lo enfría, marca menos que el seco. Las lecturas son 28 °C el seco y 22 °C el húmedo: la d). Por eso fallan la a) y la b), que ponen el húmedo por encima del seco.",
+  "clave": "El termómetro húmedo nunca marca más que el seco.",
+  "trampa": "La a) da los mismos valores, pero intercambiados: imposible."
+ },
+ "bal-py-2021-03-ac-14": {
+  "explicacion": "El aparato con dos termómetros, uno seco y otro con el bulbo envuelto en una mecha mojada, es un psicrómetro: la b). Con sus lecturas y las tablas psicrométricas se obtienen la humedad relativa y el punto de rocío. El barómetro mide presión y el clinómetro, la escora.",
+  "clave": "Psicrómetro: termómetro seco + húmedo.",
+  "trampa": "La d) usa un nombre de instrumento que mide ángulos, no temperatura."
+ },
+ "bal-py-2021-03-ac-15": {
+  "explicacion": "En el Adriático, como en general en las cuencas del Mediterráneo, las corrientes superficiales giran en sentido antihorario: entran hacia el noroeste por la costa oriental (balcánica) y salen hacia el sureste por la costa italiana: la b). Hay entrada y salida, no una sola corriente.",
+  "clave": "Cuencas del Mediterráneo: circulación antihoraria.",
+  "trampa": "La c) y la d) solo describen media vuelta del giro."
+ },
+ "bal-py-2021-03-ac-16": {
+  "explicacion": "En el mar Tirreno la circulación superficial general también es en sentido antihorario, como en la mayor parte de las cuencas del Mediterráneo: el agua sube hacia el norte por la costa italiana y vuelve hacia el sur por el lado de Córcega y Cerdeña: la b).",
+  "clave": "Cuencas del Mediterráneo: circulación antihoraria.",
+  "trampa": "La c) y la d) describen solo un tramo del giro.",
+  "concepto": "bal-py-2021-03-ac-15"
+ },
+ "bal-py-2021-03-ac-17": {
+  "explicacion": "La tramontana es un viento del norte (con algo de componente oeste en el Ampurdán), frío y a menudo fuerte, que baja de los Pirineos y afecta a Cataluña, el golfo de León y el norte de Baleares: la b). La a) describe más bien el mistral, del NW; el gregal es del NE y el levante del E.",
+  "clave": "Tramontana: viento del N.",
+  "trampa": "La a) es el mistral, el otro viento frío del golfo de León."
+ },
+ "bal-py-2021-03-b-13": {
+  "explicacion": "La superficie de separación entre dos masas de aire de distintas características, como una polar y otra tropical, es un frente: la a). La dorsal y la vaguada son formas de las isobaras, y la borrasca es un centro de bajas presiones.",
+  "clave": "Frente = superficie de separación entre dos masas de aire.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ]
+ },
+ "bal-py-2021-03-b-15": {
+  "explicacion": "Los etesios (o meltemi) son vientos del norte típicos del mar Egeo, que soplan con regularidad de mediados de mayo a mediados de septiembre y pueden alcanzar fuerza 7 u 8 Beaufort. Son ciertas la a) y la b): la d). La c) es falsa: no son del Mediterráneo occidental ni soplan del este.",
+  "clave": "Etesios = meltemi: N, Egeo, verano, hasta fuerza 7–8.",
+  "trampa": "La c) los traslada al Mediterráneo occidental y les cambia la dirección.",
+  "concepto": "bal-py-2017-07-a-14"
+ },
+ "bal-py-2021-03-b-16": {
+  "explicacion": "El viento que sopla paralelo a isobaras rectas, con intensidad proporcional a la diferencia de presión e inversamente proporcional a la distancia entre isobaras (es decir, al gradiente), es el geostrófico: la b). Resulta del equilibrio entre el gradiente y Coriolis. El de Euler cruza las isobaras, el ciclostrófico va con isobaras muy curvas y el antitríptico está frenado por el rozamiento.",
+  "clave": "Geostrófico: gradiente + Coriolis, paralelo a isobaras rectas.",
+  "concepto": "bal-py-2017-03-cb-19"
+ },
+ "bal-py-2021-03-b-17": {
+  "explicacion": "La incorrecta es la b): el aire está saturado cuando la humedad relativa llega al 100 %, no al 110 %; por encima del 100 % el exceso de vapor se condensa. Las definiciones de humedad absoluta (gramos de vapor por m³ de aire) y de punto de rocío son correctas, y por eso también es cierta la d).",
+  "clave": "Saturación = humedad relativa del 100 %.",
+  "trampa": "La d) parece otra opción para marcar, pero es cierta: la incorrecta es la b).",
+  "concepto": "bal-py-2021-03-b-17"
+ },
+ "bal-py-2026-06-a-11": {
+  "explicacion": "La incorrecta es la b): el aire está saturado cuando la humedad relativa llega al 100 %, no al 110 %; por encima del 100 % el exceso de vapor se condensa. Las definiciones de humedad absoluta (gramos de vapor por m³ de aire) y de punto de rocío (temperatura a la que empieza a condensar el vapor) son correctas, y por eso también es cierta la d).",
+  "clave": "Saturación = humedad relativa del 100 %.",
+  "trampa": "La d) parece otra opción para marcar, pero es cierta: la incorrecta es la b).",
+  "concepto": "bal-py-2021-03-b-17"
+ },
+ "bal-py-2021-06-ac-12": {
+  "explicacion": "Cuando es el aire frío el que avanza y va desplazando y levantando al aire cálido, el frente es frío: la a). Si avanza el aire cálido sobre el frío, es un frente cálido, y si el frío alcanza al cálido y lo levanta del todo, es un frente ocluido.",
+  "clave": "Avanza el frío: frente frío. Avanza el cálido: frente cálido.",
+  "concepto": "bal-py-2017-07-a-17",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2021-06-b-12": {
+  "explicacion": "La bora es el viento frío y racheado del nordeste que baja de los Alpes Dináricos sobre el mar Adriático: la a). El mistral y la tramontana son del golfo de León, y el migjorn es el viento del sur en Baleares.",
+  "clave": "Bora: NE frío del Adriático."
+ },
+ "bal-py-2021-06-b-15": {
+  "explicacion": "El frente frío levanta bruscamente el aire cálido y forma nubes de gran desarrollo vertical: cúmulos y cumulonimbos, con chubascos y tormentas: la d). La sucesión de cirros, altoestratos y nimboestratos es la del frente cálido.",
+  "clave": "Frente frío: cúmulos y cumulonimbos.",
+  "trampa": "La b) (altocúmulos y altoestratos) es más propia del frente cálido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ]
+ },
+ "bal-py-2021-06-b-16": {
+  "explicacion": "Una borrasca de latitudes medias se traslada normalmente a una velocidad de entre 15 y 30 nudos, arrastrada por la circulación general del oeste: la b). Menos de 5 nudos sería casi estacionaria, y más de 60 nudos no es una velocidad normal de traslación.",
+  "clave": "Borrasca: se traslada a 15–30 nudos.",
+  "trampa": "No confundas la velocidad de traslación con la del viento dentro de la borrasca.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ]
+ },
+ "bal-py-2021-06-b-17": {
+  "explicacion": "El punto de rocío es la temperatura a la que el aire se satura. Si la temperatura del aire es igual a su punto de rocío, el aire está saturado y su humedad relativa es del 100 %: la b).",
+  "clave": "Temperatura = punto de rocío → HR 100 %.",
+  "trampa": "Cualquier valor inferior al 100 % significa que el aire aún no ha llegado al punto de rocío."
  }
 }

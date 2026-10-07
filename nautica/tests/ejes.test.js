@@ -68,8 +68,18 @@ test('una pregunta que se repite en otra convocatoria sale también en el examen
 test('Andalucía no cambia: un examen por convocatoria con sus 45 preguntas (modelos A y B juntos)', () => {
   const per = leerJSON('data/ejes/andalucia/per/preguntas.json').preguntas;
   const cs = convocatorias(PER, per);
+  assert.equal(cs.length, 34); // 2015–2026
   assert.ok(cs.every((c) => !c.key.includes('@') && c.n === 45 && c.completa));
-  for (const c of cs) assert.deepEqual(buildReal(per, c.key).preguntas.map((q) => q.id), per.filter((q) => q.conv === c.key).sort((a, b) => a.orden - b.orden).map((q) => q.id));
+  // Cada examen: sus preguntas y las de otra convocatoria idénticas que se unieron (apareceEn; 2015–2019), en el orden
+  // del modelo A.
+  const numeroA = (q, conv) => (q.conv === conv ? q.orden : q.apareceEn.find((a) => a.conv === conv && a.modelo === 'A').numero);
+  for (const c of cs) {
+    const suyas = per.filter((q) => q.conv === c.key || q.apareceEn.some((a) => a.conv === c.key));
+    assert.equal(suyas.length, 45, c.key);
+    assert.deepEqual(buildReal(per, c.key).preguntas.map((q) => q.id), suyas.sort((a, b) => numeroA(a, c.key) - numeroA(b, c.key)).map((q) => q.id), c.key);
+  }
+  // Las de 2020–2026 siguen siendo exámenes solo de sus preguntas.
+  for (const c of cs.filter((x) => x.key >= 'and-2020')) assert.ok(buildReal(per, c.key).preguntas.every((q) => q.conv === c.key), c.key);
 });
 
 test('preguntas equivalentes entre ejes: por concepto, por parecido del texto o ninguna', () => {

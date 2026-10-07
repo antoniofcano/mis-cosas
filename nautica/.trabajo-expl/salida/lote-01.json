@@ -1592,5 +1592,1015 @@
   "trampa": "La a) es la definición de barlovento, puesta ahí para que la marques sin leer bien.",
   "base": "and-2020-c1-t04",
   "concepto": "and-2020-c1-t04"
+ },
+ "bal-per-2022-09-c-01": {
+  "explicacion": "Los grifos de fondo son válvulas situadas bajo la línea de flotación que dejan pasar el agua de mar para refrigerar el motor y alimentar bombas, aseos, cocina y otros servicios, y que se cierran para aislar esas tomas. No sirven para lastrar ni para ventilar, y los llevan también las embarcaciones pequeñas.",
+  "clave": "Grifo de fondo = válvula de toma de mar bajo la flotación.",
+  "trampa": "La c) es falsa: cualquier barco con motor intraborda o aseo lleva grifos de fondo.",
+  "concepto": "bal-per-2017-09-e-04"
+ },
+ "bal-per-2022-09-c-02": {
+  "explicacion": "La lumbrera es una abertura en la cubierta, más pequeña que la escotilla, para ventilar e iluminar las cámaras interiores. El tambucho es la cubierta corrediza de una entrada, el escobén es el paso de la cadena y el manguerote solo ventila.",
+  "clave": "Lumbrera = luz y aire desde la cubierta.",
+  "trampa": "La d): el manguerote ventila, pero no da luz.",
+  "concepto": "bal-per-2018-04-d-01"
+ },
+ "bal-per-2022-09-c-03": {
+  "explicacion": "La línea formada por la intersección del agua con el casco es la línea de flotación. El plano de flotación es la superficie que contiene esa línea, la obra viva es la parte sumergida y la crujía es la línea de proa a popa.",
+  "clave": "Flotación = donde el agua toca el casco.",
+  "trampa": "La a): se pregunta por la línea, no por el plano.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "linea-flotacion",
+     "obra-viva"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-04"
+ },
+ "bal-per-2022-09-c-04": {
+  "explicacion": "El puntal es la altura desde la quilla hasta la cubierta principal o la cubierta corrida más alta. El francobordo va de la flotación a la cubierta, el calado de la flotación al punto más bajo y el asiento es la diferencia de calados.",
+  "clave": "Puntal = calado + francobordo, de la quilla a la cubierta.",
+  "trampa": "La b) (francobordo) solo es la parte de esa altura que queda fuera del agua.",
+  "concepto": "bal-per-2018-04-a-03"
+ },
+ "bal-per-2022-09-m-01": {
+  "explicacion": "Los baos refuerzan la cubierta por debajo, de banda a banda, y su curvatura (la brusca) es la que da a la cubierta su forma abombada. El mamparo es un tabique, la borda es la parte del costado sobre la cubierta y la regala su remate.",
+  "clave": "Baos = vigas transversales que aguantan la cubierta.",
+  "trampa": "La a): el mamparo es transversal, pero es un tabique, no sostiene la cubierta.",
+  "concepto": "bal-per-2017-03-a-03"
+ },
+ "bal-per-2022-09-m-02": {
+  "explicacion": "El barbotén es la rueda o corona del molinete con muescas donde engranan los eslabones de la cadena. El molinete es la máquina completa, el estopor la pieza que bloquea la cadena en cubierta y el escobén el orificio por el que sale al exterior.",
+  "clave": "Barbotén = rueda dentada de la cadena.",
+  "trampa": "La a): el molinete contiene el barbotén, pero es la máquina entera.",
+  "concepto": "and-2025-c3-t02"
+ },
+ "bal-per-2022-09-m-04": {
+  "explicacion": "En hélices gemelas de giro al exterior, vistas desde popa en avante, las palas de arriba se mueven hacia fuera: la de estribor gira como las agujas del reloj (dextrógira, paso a derechas) y la de babor al revés (levógira). La d) y la c) describen el giro al interior, y el nombre se refiere a la marcha avante, no a la marcha atrás.",
+  "clave": "Giro al exterior: estribor dextrógira, babor levógira.",
+  "trampa": "La c) es la d) dicha con otras palabras: paso a izquierdas es levógira.",
+  "base": "and-2024-c3-t03",
+  "concepto": "and-2024-c3-t03"
+ },
+ "bal-per-2026-03-b-03": {
+  "explicacion": "En hélices gemelas de giro al exterior, vistas desde popa en avante, las palas de arriba se mueven hacia fuera: la de estribor gira como las agujas del reloj (dextrógira, paso a derechas) y la de babor al revés (levógira). La d) y la c) describen el giro al interior, y el nombre se refiere a la marcha avante, no a la marcha atrás.",
+  "clave": "Giro al exterior: estribor dextrógira, babor levógira.",
+  "trampa": "La c) es la d) dicha con otras palabras: paso a izquierdas es levógira.",
+  "base": "and-2024-c3-t03",
+  "concepto": "and-2024-c3-t03"
+ },
+ "bal-per-2022-12-be-02": {
+  "explicacion": "Las formas de popa más habituales son la de crucero (redondeada y sumergida), la de espejo (plana, la de casi todas las embarcaciones de recreo) y la de remolcador. «Popa de velero» o «de yate» no son formas tipificadas.",
+  "clave": "Popas: de crucero, de espejo y de remolcador.",
+  "trampa": "La a) cambia la de remolcador por una «de velero» que no existe como tipo."
+ },
+ "bal-per-2022-12-be-03": {
+  "explicacion": "La bovedilla es la parte de la popa que, desde la zona sumergida, se curva hacia proa y por la que pasa el eje de la limera. El arrufo y el quebranto son curvaturas longitudinales del casco, y la quilla es la pieza del fondo.",
+  "clave": "Bovedilla = curva de la popa por donde pasa la limera.",
+  "trampa": "Arrufo y quebranto son curvaturas de todo el casco, no una zona de la popa."
+ },
+ "bal-per-2022-12-be-04": {
+  "explicacion": "Las brazolas son los marcos verticales que rodean la escotilla y sobre los que apoya la tapa con su cierre estanco; además evitan que entre el agua de cubierta. Las lumbreras y los ojos de buey son aberturas de luz, y las bisagras solo articulan la tapa.",
+  "clave": "Brazola = marco elevado de la escotilla.",
+  "trampa": "La d): las bisagras van en la brazola, pero no son el marco."
+ },
+ "bal-per-2022-12-c-02": {
+  "explicacion": "Con el viento entrando por popa, la popa es barlovento y la parte hacia la que va el viento, la proa, es sotavento. Babor y estribor quedan de costado, ni a barlovento ni a sotavento.",
+  "clave": "Sotavento: hacia donde va el viento.",
+  "trampa": "La d): por popa entra el viento, así que es barlovento."
+ },
+ "bal-per-2022-12-c-03": {
+  "explicacion": "Los rezones son anclas pequeñas sin cepo, con cuatro brazos terminados en uñas. La de arado tiene un solo brazo, la Danforth dos uñas planas y el bichero es un palo con gancho para coger cabos.",
+  "clave": "Rezón = ancla pequeña de cuatro brazos sin cepo.",
+  "trampa": "La c): el bichero tiene gancho, pero no es un ancla.",
+  "concepto": "bal-per-2017-03-ge-03"
+ },
+ "bal-per-2022-12-c-04": {
+  "explicacion": "Los baos son piezas transversales: van de banda a banda uniendo las cabezas de las cuadernas y sostienen la cubierta. Las piezas longitudinales son la quilla, las vagras o los palmejares.",
+  "clave": "Baos = vigas transversales que aguantan la cubierta.",
+  "trampa": "La b): longitudinales son la quilla y las vagras, no los baos.",
+  "concepto": "bal-per-2017-03-a-03"
+ },
+ "bal-per-2022-12-fd-01": {
+  "explicacion": "La obra muerta es la parte del casco que queda por encima de la línea de flotación. La parte sumergida es la obra viva, y el color de la pintura no tiene nada que ver.",
+  "clave": "Obra viva = sumergida; obra muerta = emergida.",
+  "trampa": "La a) juega con el contraste viva/muerta y los colores.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-muerta",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2019-06-c-01"
+ },
+ "bal-per-2022-12-fd-04": {
+  "explicacion": "El ancla va a la pendura cuando cuelga fuera del escobén o por encima de la borda, sin tocar fondo, lista para fondear. Con la cadena vertical y el ancla en el fondo está a pique, trincada en el escobén está estibada, y quitar el estopor no basta si el ancla no se ha arriado.",
+  "clave": "Pendura = colgada y lista para fondear.",
+  "trampa": "La a) describe el ancla a pique.",
+  "concepto": "bal-per-2018-06-i-01"
+ },
+ "bal-per-2023-03-a-01": {
+  "explicacion": "Las lumbreras son aberturas en la cubierta para dar luz y ventilación al interior. Las aberturas del casco y los mamparos son portillos, las de paso en cubierta son escotillas y los tubos de humos son chimeneas o ventiladores.",
+  "clave": "Lumbrera = luz y aire desde la cubierta.",
+  "trampa": "La a) describe los portillos, que están en los costados.",
+  "concepto": "bal-per-2018-04-d-01"
+ },
+ "bal-per-2023-03-bf-01": {
+  "explicacion": "La hélice dextrógira es la que, vista desde popa y dando avante, gira en el sentido de las agujas del reloj. La que gira al revés es levógira, y la definición se da siempre para la marcha avante.",
+  "clave": "Vista desde popa, avante: dextrógira horaria, levógira antihoraria.",
+  "trampa": "La b) cambia avante por atrás: dando atrás una dextrógira gira al revés.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "avante"
+   }
+  ],
+  "concepto": "bal-per-2020-10-e-02"
+ },
+ "bal-per-2023-03-bf-03": {
+  "explicacion": "La línea de flotación es la frontera entre la obra viva y la obra muerta: es el límite superior de la obra viva (y el inferior de la obra muerta). No es el límite inferior de la obra viva, que es la quilla, ni separa la obra muerta de la borda.",
+  "clave": "Flotación: debajo obra viva, encima obra muerta.",
+  "trampa": "La b): la flotación es el límite inferior de la obra muerta, no el superior.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "linea-flotacion",
+     "obra-viva"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2017-12-a-04"
+ },
+ "bal-per-2023-03-cg-03": {
+  "explicacion": "Adrizar es reducir o eliminar la escora, devolviendo la embarcación a la vertical. Lo opuesto a orzar es arribar, y las drizas sirven para izar velas, no para adrizar.",
+  "clave": "Adrizar = quitar la escora.",
+  "trampa": "La d) juega con el parecido entre «adrizar» y «driza».",
+  "concepto": "bal-per-2018-04-e-02"
+ },
+ "bal-per-2023-06-bg-01": {
+  "explicacion": "Mirando a proa, babor queda a la izquierda, y la aleta es la parte del costado donde la manga disminuye para cerrar la popa. Así, la aleta de babor es la zona izquierda de popa. Las zonas que se estrechan hacia la proa son las amuras.",
+  "clave": "Amuras a proa, aletas a popa; mirando a proa, babor a la izquierda.",
+  "trampa": "La a) es la aleta de estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "aleta",
+     "popa"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2017-07-c-04"
+ },
+ "bal-per-2023-06-bg-02": {
+  "explicacion": "Adrizar (escrito con errata en la b) es poner derecha una embarcación que estaba inclinada. Desviarse del rumbo por el viento o la corriente es abatir o derivar, no escorar, y las definiciones de barlovento y sotavento de la c) y la d) están cambiadas.",
+  "clave": "Adrizar = quitar la escora.",
+  "trampa": "La c) y la d) intercambian barlovento y sotavento.",
+  "concepto": "bal-per-2018-04-e-02"
+ },
+ "bal-per-2023-06-c-03": {
+  "explicacion": "La pieza de metal larga y resistente de la parte superior del ancla, que va del arganeo a la cruz, es la caña. Las uñas están en el extremo de los brazos y la cruz es la unión de la caña con ellos, en la parte baja.",
+  "clave": "Caña: del arganeo a la cruz.",
+  "trampa": "La c): la cruz está en el extremo inferior, no es la barra larga.",
+  "concepto": "bal-per-2019-04-f-01"
+ },
+ "bal-per-2023-09-a-02": {
+  "explicacion": "La lumbrera es una especie de escotilla o caseta sobre la cubierta que sirve para ventilar y dar luz al interior. El acceso a los compartimentos es la escotilla, el elemento orientable para ventilar es el manguerote y el espacio de alojamiento es la cámara.",
+  "clave": "Lumbrera = luz y aire desde la cubierta.",
+  "trampa": "La d) describe el manguerote, que ventila pero no da luz.",
+  "concepto": "bal-per-2018-04-d-01"
+ },
+ "bal-per-2023-09-a-04": {
+  "explicacion": "La amura es la parte delantera del costado, y la de babor es la del lado izquierdo mirando a proa. Un barco visto por la amura de babor está, por tanto, delante y a la izquierda. Detrás sería por la aleta.",
+  "clave": "Amura = delante; aleta = detrás; babor = izquierda.",
+  "trampa": "La d) es la aleta de babor.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ]
+ },
+ "bal-per-2023-09-c-02": {
+  "explicacion": "El peso de una embarcación es su desplazamiento, igual al peso del agua que desaloja. El peso muerto y el porte se refieren a lo que puede cargar, no al peso total del barco.",
+  "clave": "Desplazamiento = peso del barco.",
+  "trampa": "La a) (peso muerto) es la carga que puede llevar.",
+  "concepto": "bal-per-2017-03-b-03"
+ },
+ "bal-per-2023-09-c-03": {
+  "explicacion": "El costado es cada uno de los lados del casco: el de babor y el de estribor. Las cabezas del barco son la proa y la popa, y las partes curvas son las amuras y las aletas, que están en los costados.",
+  "clave": "Costados = babor y estribor.",
+  "trampa": "La b): proa y popa son las cabezas, no los costados."
+ },
+ "bal-per-2023-12-a-01": {
+  "explicacion": "La mecha es el eje del timón: en un extremo lleva la pala y en el otro atraviesa el casco por la limera, donde va la prensaestopas que la hace estanca, y recibe la caña o el sector. La bocina es del eje de la hélice, el codaste es una pieza del casco y la cuaderna, una costilla.",
+  "clave": "Mecha = eje del timón; pala = la parte que actúa en el agua.",
+  "trampa": "La a): la bocina también lleva prensaestopas, pero es la del eje de la hélice.",
+  "concepto": "bal-per-2023-12-a-01"
+ },
+ "bal-per-2024-07-df-04": {
+  "explicacion": "La mecha es el eje del timón: en un extremo lleva la pala y en el otro atraviesa el casco por la limera, donde va la prensaestopas que la hace estanca, y recibe la caña o el sector. La bocina es del eje de la hélice, el codaste es una pieza del casco y la limera es el orificio, no el eje.",
+  "clave": "Mecha = eje del timón; pala = la parte que actúa en el agua.",
+  "trampa": "La d): por la limera pasa la mecha, pero la limera no tiene extremos con pala.",
+  "concepto": "bal-per-2023-12-a-01"
+ },
+ "bal-per-2023-12-a-02": {
+  "explicacion": "La limera es el orificio del casco y la mecha es el eje del timón que pasa por dentro de ella. No es al revés, y el trancanil es una pieza del borde de la cubierta que no tiene nada que ver.",
+  "clave": "La mecha pasa por la limera.",
+  "trampa": "La b) invierte la relación: el orificio no pasa por dentro del eje.",
+  "concepto": "and-2022-c3-t02"
+ },
+ "bal-per-2023-12-a-03": {
+  "explicacion": "Lo más a popa de la hélice es el capacete, el capuchón que remata el núcleo y tapa el extremo del eje. Las aristas de ataque y de salida están en las palas, por delante, y el eje viene del interior del barco, a proa de la hélice.",
+  "clave": "Capacete = capuchón que tapa el extremo del eje.",
+  "trampa": "La a): la arista de salida es la parte de popa de cada pala, pero el capacete sobresale más.",
+  "concepto": "bal-per-2019-09-a-01"
+ },
+ "bal-per-2023-12-b-01": {
+  "explicacion": "Una hélice levógira es la que, vista desde popa en marcha avante, gira en sentido contrario a las agujas del reloj. La que gira en el sentido de las agujas es dextrógira, la de palas plegables es la abatible y la de palas orientables es la de paso variable.",
+  "clave": "Vista desde popa, avante: dextrógira horaria, levógira antihoraria.",
+  "trampa": "La a) es la dextrógira.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "avante"
+   }
+  ],
+  "concepto": "bal-per-2018-04-b-01"
+ },
+ "bal-per-2023-12-b-03": {
+  "explicacion": "La roda es la pieza, recta o curva, que prolonga la quilla hacia proa y forma el filo de la proa; su equivalente a popa es el codaste. No es un pasamanos, ni la bañera de popa, ni la borda.",
+  "clave": "Roda a proa, codaste a popa: ambas continúan la quilla.",
+  "trampa": "La d) describe la borda.",
+  "base": "and-2024-c3-t01",
+  "concepto": "and-2024-c3-t01"
+ },
+ "bal-per-2023-12-c-01": {
+  "explicacion": "El barbotén es la corona del molinete con muescas en las que encajan los eslabones de la cadena. El freno la retiene, el embrague la une o separa del motor y la mordaza es un elemento para bloquear cabos.",
+  "clave": "Barbotén = rueda dentada de la cadena.",
+  "trampa": "La d): el embrague mueve el barbotén, pero no es la corona.",
+  "concepto": "and-2025-c3-t02"
+ },
+ "bal-per-2023-12-c-02": {
+  "explicacion": "Los imbornales son los orificios del costado, a ras de cubierta (a la altura del trancanil), por donde sale al mar el agua embarcada. Los grifos de fondo toman agua bajo la flotación, los barraganetes son prolongaciones de las cuadernas que sostienen la borda y la fogonadura es el paso del palo.",
+  "clave": "Imbornal = desagüe de cubierta.",
+  "trampa": "La a): los grifos de fondo están en el forro, pero bajo el agua.",
+  "base": "and-2022-c3-t03",
+  "concepto": "and-2022-c3-t03"
+ },
+ "bal-per-2023-12-c-04": {
+  "explicacion": "Cada tramo de cadena de fondeo de 15 brazas, unos 27,5 m, se llama grillete, por el grillete que lo une al siguiente. El contrete es el travesaño de refuerzo dentro del eslabón, el cáncamo es una argolla fija y el mosquetón un enganche rápido.",
+  "clave": "1 grillete = 15 brazas ≈ 27,5 m.",
+  "trampa": "La a): el contrete está dentro de cada eslabón, no es un tramo de cadena.",
+  "concepto": "bal-per-2018-06-b-03"
+ },
+ "bal-per-2023-12-e-01": {
+  "explicacion": "El codaste es la pieza unida a la quilla por su extremo de popa, donde termina el casco. La roda es la equivalente en la proa, el bao es una viga transversal de la cubierta y la cuaderna una costilla del casco.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La c) (roda) es la misma pieza pero en la proa.",
+  "concepto": "bal-per-2017-12-e-03"
+ },
+ "bal-per-2023-12-e-02": {
+  "explicacion": "La quilla es la pieza longitudinal principal del casco, la columna vertebral, que va de proa a popa por la parte central e inferior y sobre la que se montan las cuadernas. Los baos los soportan las cuadernas, la orza es una pieza distinta que se añade a la quilla y la llevan barcos de cualquier material.",
+  "clave": "Quilla = espina dorsal del barco.",
+  "trampa": "La b): en los veleros la orza va unida a la quilla, pero no son lo mismo.",
+  "base": "and-2024-c2-t01",
+  "concepto": "and-2024-c2-t01"
+ },
+ "bal-per-2023-12-e-03": {
+  "explicacion": "Adrizar es la acción por la que el buque recupera su posición derecha después de estar escorado. Balancear y cabecear son movimientos oscilantes del barco (transversal y longitudinal), y templar es tensar un cabo.",
+  "clave": "Adrizar = quitar la escora.",
+  "trampa": "La a): el balance pasa por la posición derecha, pero sigue oscilando a ambas bandas.",
+  "concepto": "bal-per-2018-04-e-02"
+ },
+ "bal-per-2024-04-b-01": {
+  "explicacion": "El diámetro de la hélice es el del círculo que describen las puntas de sus palas al girar. El paso es lo que avanzaría en una vuelta, la cavitación es la formación de burbujas en las palas y el arrastre no es una medida de la hélice.",
+  "clave": "Diámetro = círculo que barren las puntas de las palas.",
+  "trampa": "La b): el paso es una distancia de avance, no un diámetro.",
+  "concepto": "bal-per-2024-04-b-01"
+ },
+ "bal-per-2024-04-ce-01": {
+  "explicacion": "Con la de estribor dextrógira y la de babor levógira (giro al exterior), la presión lateral de las palas de una compensa la de la otra y el barco no tiende a caer a una banda. Si fueran las dos levógiras, el efecto se sumaría.",
+  "clave": "Dos hélices de giro contrario: efectos laterales anulados.",
+  "trampa": "La b) dice justo lo contrario: lo que se busca es anular, no aumentar.",
+  "concepto": "bal-per-2017-03-b-01"
+ },
+ "bal-per-2024-04-ce-02": {
+  "explicacion": "El codaste es la pieza gruesa, más o menos vertical, que se levanta sobre el extremo de popa de la quilla y sirve de base a toda la estructura de la popa. La roda es la equivalente en la proa, la borda es el costado sobre la cubierta y la sentina el fondo interior.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La a) (roda) es la misma pieza pero en la proa.",
+  "concepto": "bal-per-2017-12-e-03"
+ },
+ "bal-per-2024-04-ce-04": {
+  "explicacion": "La eslora es la dimensión longitudinal del buque, medida de proa a popa. La de babor a estribor es la manga, y la c) y la d) mezclan direcciones o conceptos (el francobordo es una altura).",
+  "clave": "Eslora = largo, manga = ancho, puntal = alto.",
+  "trampa": "La c) dice «longitudinal» pero mide de babor a estribor: se contradice.",
+  "concepto": "bal-per-2018-09-a-03"
+ },
+ "bal-per-2024-04-df-01": {
+  "explicacion": "El francobordo es la distancia vertical entre la línea de flotación y la cubierta. El calado se mide de la flotación hacia abajo, el puntal es la altura desde la quilla hasta la cubierta y el asiento es la diferencia de calados.",
+  "clave": "Francobordo = de la flotación a la cubierta.",
+  "trampa": "No lo confundas con el puntal, que se mide desde la quilla.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "francobordo",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "base": "and-2026-c2-t04",
+  "concepto": "and-2026-c2-t04"
+ },
+ "bal-per-2024-04-df-03": {
+  "explicacion": "Las cuadernas son las piezas curvas, repartidas a lo largo de la eslora, que suben desde la quilla hasta la cubierta y forman las costillas del casco. Los baos unen sus extremos superiores bajo la cubierta, las varengas son solo la parte del fondo y el codaste está en la popa.",
+  "clave": "Cuadernas = costillas del casco, de la quilla a la cubierta.",
+  "trampa": "La b): la varenga es la parte baja de la cuaderna, no toda la pieza."
+ },
+ "bal-per-2024-07-a-04": {
+  "explicacion": "El bichero es un asta larga con un gancho en el extremo que se usa para atracar, desatracar, coger cabos o boyas y separarse de otros barcos. El salabre es una red con mango para sacar peces o recoger objetos del agua, y «atracador» o «desatracador» no son nombres de ningún útil.",
+  "clave": "Bichero = palo con gancho para atracar y coger cabos.",
+  "trampa": "La d): el salabre también tiene mango, pero termina en una red."
+ },
+ "bal-per-2024-07-c-01": {
+  "explicacion": "El peso del agua de mar que desaloja un buque al flotar es su desplazamiento, igual a su propio peso (principio de Arquímedes). El arqueo es una medida de capacidad, la obra viva es la parte sumergida y el volumen es solo eso.",
+  "clave": "Desplazamiento = peso del agua desalojada = peso del barco.",
+  "trampa": "La a) (arqueo) mide capacidad, no peso.",
+  "concepto": "bal-per-2017-03-fa-01"
+ },
+ "bal-per-2024-07-c-02": {
+  "explicacion": "Adrizar es poner derecha la embarcación que estaba escorada. Lo opuesto a orzar (llevar la proa al viento) es arribar, y las drizas sirven para izar velas, no para adrizar.",
+  "clave": "Adrizar = quitar la escora.",
+  "trampa": "La d) juega con el parecido entre «adrizar» y «driza».",
+  "concepto": "bal-per-2018-04-e-02"
+ },
+ "bal-per-2024-07-c-03": {
+  "explicacion": "El desplazamiento es el peso del buque, que se expresa en toneladas métricas y es igual al peso del agua que desaloja. Las toneladas Moorsom miden el arqueo, que es capacidad, y la parte emergida o sumergida del casco son la obra muerta y la obra viva.",
+  "clave": "Desplazamiento = peso del barco.",
+  "trampa": "La b): la tonelada Moorsom es una unidad de volumen (arqueo), no de peso.",
+  "concepto": "bal-per-2017-03-b-03"
+ },
+ "bal-per-2024-07-c-04": {
+  "explicacion": "La respuesta oficial da por buenas las dos: en el casco, la bocina es el tubo o revestimiento que guarnece el orificio por el que sale el eje de cola de la hélice, y en el lenguaje corriente bocina es también el aparato de señales acústicas (la bocina de niebla). No es ninguna parte del timón.",
+  "clave": "Bocina = paso del eje de la hélice (y también el aparato sonoro).",
+  "trampa": "La d): el timón tiene limera y mecha, no bocina.",
+  "concepto": "and-2021-c2-t04"
+ },
+ "bal-per-2024-07-df-01": {
+  "explicacion": "La parte opuesta a aquella de donde viene el viento es sotavento; la parte de donde viene es barlovento. Babor y estribor son las bandas izquierda y derecha mirando a proa y no dependen del viento.",
+  "clave": "Barlovento: de donde viene el viento. Sotavento: hacia donde va.",
+  "trampa": "Babor y estribor no dependen del viento.",
+  "concepto": "and-2023-c1-t02"
+ },
+ "bal-per-2024-09-a-02": {
+  "explicacion": "La roda es la pieza que cierra el casco por la proa, prolongando la quilla hacia arriba. El codaste lo cierra por la popa, el pantoque es la curva entre fondo y costado y el imbornal es un desagüe.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La a) (codaste) es la pieza de cierre de la popa.",
+  "concepto": "and-2024-c3-t01"
+ },
+ "bal-per-2024-09-a-03": {
+  "explicacion": "Las cuadernas son las costillas del casco: salen de la quilla y suben por los costados en sentido transversal y vertical. Las piezas longitudinales son la quilla y las vagras, y las horizontales que cierran por arriba son los baos.",
+  "clave": "Cuadernas = costillas transversales del casco.",
+  "trampa": "La b): longitudinal es la quilla, perpendicular a las cuadernas.",
+  "concepto": "bal-per-2024-04-df-03"
+ },
+ "bal-per-2024-09-d-02": {
+  "explicacion": "El firme es la parte más larga del cabo, la que queda sin trabajar o hecha firme, frente al chicote, que es el extremo libre. El seno es la curva que forma el cabo, la vuelta es cada giro alrededor de algo y la gaza es un ojo hecho en un extremo.",
+  "clave": "Chicote = extremo; firme = la parte larga; seno = la curva.",
+  "trampa": "La b): el seno es una curva del cabo, no su parte más larga."
+ },
+ "bal-per-2024-09-d-04": {
+  "explicacion": "El capacete es la pieza hidrodinámica que cubre la parte trasera del núcleo y tapa la tuerca y el extremo del eje, sea la hélice dextrógira o levógira. La pala es cada aspa, el eje transmite el giro y la bocina es el paso del eje por el casco.",
+  "clave": "Capacete = capuchón que tapa el extremo del eje.",
+  "trampa": "El dato de «dextrógira» no cambia nada: todas las hélices llevan capacete.",
+  "concepto": "bal-per-2019-09-a-01"
+ },
+ "bal-per-2024-12-a-01": {
+  "explicacion": "Las aletas son las zonas curvas de los costados situadas en las proximidades de la popa. Las de las proximidades de la proa son las amuras, y babor y estribor son las bandas en general.",
+  "clave": "Amuras a proa, aletas a popa.",
+  "trampa": "La c) describe las amuras.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "aleta",
+     "popa"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2017-07-c-04"
+ },
+ "bal-per-2024-12-b-03": {
+  "explicacion": "La anchura mayor de la embarcación, en su parte más ancha, es la manga máxima. El calado es la parte sumergida, la eslora la longitud y el puntal la altura del casco.",
+  "clave": "Manga = anchura máxima, de banda a banda.",
+  "trampa": "La b) (eslora) es la mayor dimensión, pero es la longitud, no la anchura.",
+  "concepto": "bal-per-2017-12-e-02"
+ },
+ "bal-per-2024-12-ce-01": {
+  "explicacion": "Los imbornales son los orificios a ras de cubierta que devuelven al mar el agua embarcada por golpes de mar o lluvia. La bocina es el paso del eje de la hélice, y «sangrías» o «groeras» no son el término para esos desagües.",
+  "clave": "Imbornal = desagüe de cubierta.",
+  "trampa": "La d): las groeras son pequeños orificios de paso en el interior del casco, no desagües de cubierta.",
+  "base": "and-2023-c2-t03",
+  "concepto": "and-2023-c2-t03"
+ },
+ "bal-per-2024-12-ce-03": {
+  "explicacion": "La regala es la pieza longitudinal que corre de proa a popa sobre la borda y remata los extremos de los barraganetes (las prolongaciones de las cuadernas por encima de la cubierta). La borda es el costado que esos barraganetes sostienen, y roda y codaste son las piezas de proa y popa.",
+  "clave": "Regala = remate superior de la borda.",
+  "trampa": "La d): la borda es el muro; la regala, la pieza que lo cubre por arriba.",
+  "concepto": "bal-per-2020-12-d-01"
+ },
+ "bal-per-2024-12-ce-04": {
+  "explicacion": "Se pide la errónea. El codaste está en la popa, así que el plano de referencia de proa no puede pasar por él: la c) es falsa. Según la ISO 8666, la eslora máxima incluye las partes estructurales e integrales y las uniones casco-cubierta, excluye el púlpito desmontable sin destruirlo e incluye elementos fijos como la caja de cadenas.",
+  "clave": "Eslora: lo estructural cuenta; lo desmontable, no.",
+  "trampa": "En la c) el error está en una palabra: codaste en vez de roda.",
+  "concepto": "bal-per-2017-07-fc-01"
+ },
+ "bal-per-2025-04-ae-01": {
+  "explicacion": "El ancla Danforth tiene dos uñas anchas y planas unidas mediante una articulación a una caña larga, de modo que basculan y se clavan muy bien en arena y fango. Los cuatro brazos son del rezón y el brazo en forma de arado es de la CQR.",
+  "clave": "Danforth = dos uñas planas que basculan.",
+  "trampa": "La b) es el ancla de arado.",
+  "concepto": "bal-per-2017-03-fa-04"
+ },
+ "bal-per-2025-04-ae-02": {
+  "explicacion": "La línea de crujía es la línea longitudinal de proa a popa que divide al buque en dos mitades iguales, las bandas de babor y estribor. La línea de flotación es la del agua en el casco, la línea de fondeo es ancla, cadena y cabo y la línea base es la referencia horizontal del fondo.",
+  "clave": "Crujía: proa-popa, separa babor de estribor.",
+  "trampa": "La a) es horizontal y separa obra viva y obra muerta.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "crujia",
+     "babor",
+     "estribor"
+    ]
+   }
+  ],
+  "concepto": "and-2021-c2-t01"
+ },
+ "bal-per-2025-04-bf-02": {
+  "explicacion": "El casco es el cuerpo del buque sin la máquina, la arboladura, las superestructuras ni los pertrechos. El aparejo es el conjunto de palos, velas y jarcia, la obra viva solo la parte sumergida y las cuadernas son piezas del casco.",
+  "clave": "Casco = el cuerpo, sin palos, máquinas ni pertrechos.",
+  "trampa": "La b) es solo la parte sumergida del casco.",
+  "concepto": "bal-per-2020-10-b-03"
+ },
+ "bal-per-2025-04-bf-04": {
+  "explicacion": "El molinete es la máquina, eléctrica, hidráulica o manual, que se usa para virar la cadena del ancla. El estopor bloquea la cadena, el cabirón es el tambor del molinete para cabos y la cornamusa es una pieza de amarre.",
+  "clave": "Molinete = máquina de virar el ancla.",
+  "trampa": "La c): el cabirón es parte del molinete, pero para cabos, no la máquina.",
+  "concepto": "bal-per-2017-09-d-03"
+ },
+ "bal-per-2025-04-c-02": {
+  "explicacion": "Las hélices gemelas son dos hélices iguales que giran en sentidos contrarios, y pueden ser ambas de giro al interior o ambas de giro al exterior. Que sean de palas abatibles o de paso variable no las define, y una no puede girar hacia dentro y la otra hacia fuera: girarían las dos en el mismo sentido.",
+  "clave": "Dos hélices de giro contrario: efectos laterales anulados.",
+  "trampa": "La b) suena a giro contrario, pero dentro/fuera en cada banda es el mismo sentido de rotación.",
+  "concepto": "bal-per-2017-03-b-01"
+ },
+ "bal-per-2025-07-a-01": {
+  "explicacion": "Se pide la que no forma parte de la hélice. El capazo no existe como pieza: la parte que tapa el extremo del eje es el capacete. Las palas, el núcleo y el eje sobre el que va montada sí forman parte del sistema de la hélice.",
+  "clave": "Hélice: núcleo, palas y capacete (más eje y bocina).",
+  "trampa": "«Capazo» se parece a «capacete»: lee despacio.",
+  "concepto": "bal-per-2019-04-b-02"
+ },
+ "bal-per-2025-07-a-04": {
+  "explicacion": "Estribor es la banda derecha del buque mirando de popa a proa, es decir, hacia delante. Mirando de proa a popa la derecha sería babor, y la banda izquierda mirando a proa es babor.",
+  "clave": "Mirando a proa: babor a la izquierda, estribor a la derecha.",
+  "trampa": "La b) mira de proa a popa: así la derecha es babor.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "crujia",
+     "babor",
+     "estribor"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2019-09-b-04"
+ },
+ "bal-per-2025-07-c-02": {
+  "explicacion": "Las piezas unidas a los extremos de la quilla son la roda, a proa, y el codaste, a popa. Regala y borda están en lo alto del costado, baos y cuadernas son piezas transversales y los mamparos y el plan son interiores.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La b): las cuadernas salen de la quilla, pero a lo largo de ella, no en sus extremos.",
+  "concepto": "bal-per-2017-12-e-03"
+ },
+ "bal-per-2025-07-d-02": {
+  "explicacion": "La bocina es el orificio del casco ajustado al eje que lo atraviesa (el de la hélice), con su sistema de estanqueidad para impedir que entre el agua. No es un silbato, y las piezas que forman la proa y la popa con la quilla son la roda y el codaste.",
+  "clave": "Bocina = paso estanco del eje de la hélice.",
+  "trampa": "La b) juega con el nombre: aquí la bocina no suena.",
+  "base": "and-2021-c2-t04",
+  "concepto": "and-2021-c2-t04"
+ },
+ "bal-per-2025-07-d-04": {
+  "explicacion": "La estructura del barco la forman la quilla, la roda, el codaste, las cuadernas y los baos. El puntal es una medida (la altura del casco), no una pieza, y la regala es un remate de la borda, no un elemento estructural principal.",
+  "clave": "Estructura: quilla, roda, codaste, cuadernas y baos.",
+  "trampa": "La a) mete el puntal, que es una dimensión, no una pieza."
+ },
+ "bal-per-2025-09-a-02": {
+  "explicacion": "La principal ventaja de las palas abatibles es que, plegadas, disminuyen la resistencia al avance cuando se navega a vela con el motor parado. Abiertas ocupan lo mismo que una fija, no son más baratas y para invertir la marcha sin parar el motor hace falta una hélice de paso variable.",
+  "clave": "Palas abatibles = menos resistencia navegando a vela.",
+  "trampa": "La d) describe la ventaja de la hélice de paso variable.",
+  "concepto": "bal-per-2018-04-c-04"
+ },
+ "bal-per-2025-09-b-02": {
+  "explicacion": "El calado medio es la semisuma de los calados de proa y popa: (Cpr + Cpp) / 2. La suma sin dividir da el doble, la diferencia (dividida o no) tiene que ver con el asiento y la b) mezcla asientos, que no son calados.",
+  "clave": "Calado medio = (proa + popa) / 2.",
+  "trampa": "La d) usa la diferencia en vez de la suma: eso es la mitad del asiento.",
+  "concepto": "bal-per-2020-12-e-04"
+ },
+ "bal-per-2025-12-b-02": {
+  "explicacion": "La quilla es la pieza que recorre el buque de proa a popa por su parte más baja y sobre la que se asientan las cuadernas: la espina dorsal del barco. No es transversal, no va sobre la cubierta y el conjunto de costillas transversales son las cuadernas.",
+  "clave": "Quilla = espina dorsal: abajo y de proa a popa.",
+  "trampa": "La b) acierta en la dirección pero la pone encima de la cubierta.",
+  "concepto": "bal-per-2017-03-b-04"
+ },
+ "bal-per-2025-12-b-04": {
+  "explicacion": "Las hélices gemelas giran en sentidos contrarios para que se anulen sus efectos evolutivos y el barco vaya recto. Las dos configuraciones posibles son girar hacia el interior o hacia el exterior, por eso la correcta es la d). Si giraran las dos hacia estribor, la popa se desplazaría siempre hacia el mismo lado.",
+  "clave": "Dos hélices: giro contrario, hacia dentro o hacia fuera.",
+  "trampa": "La a) (las dos hacia estribor) suma los efectos laterales en vez de compensarlos.",
+  "concepto": "bal-per-2017-03-b-01"
+ },
+ "bal-per-2025-12-c-01": {
+  "explicacion": "La roda es la pieza que forma el canto de proa del casco, justo donde el plano de crujía corta la línea de agua en la parte más a proa. El forro es el revestimiento del casco, el plan el fondo interior y el pantoque la curva entre fondo y costado.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La c): el pantoque es una zona curva del costado, no el extremo de proa.",
+  "concepto": "and-2024-c3-t01"
+ },
+ "bal-per-2025-12-c-02": {
+  "explicacion": "Las hélices plegables recogen sus palas cuando el motor se para y así reducen su resistencia hidrodinámica al navegar a vela. Las de paso variable orientan las palas para cambiar el ángulo de ataque, no para recogerlas, y «enfundables» no es un tipo de hélice.",
+  "clave": "Plegable = palas que se recogen; paso variable = palas que se orientan.",
+  "trampa": "La b) también mueve las palas, pero para cambiar el paso.",
+  "concepto": "bal-per-2018-04-c-04"
+ },
+ "bal-per-2025-12-c-04": {
+  "explicacion": "El desplazamiento máximo es el peso del buque completamente cargado y con todos los pertrechos para salir a la mar, es decir, con el calado máximo. No es solo el peso del casco, ni un volumen, ni una autonomía en millas.",
+  "clave": "Desplazamiento máximo = peso a plena carga.",
+  "trampa": "La d) juega con el sentido corriente de «desplazarse».",
+  "concepto": "bal-per-2021-03-a-02"
+ },
+ "bal-per-2026-03-a-04": {
+  "explicacion": "El codaste es la pieza vertical o algo inclinada del extremo de popa, que cierra el casco por detrás y sirve de soporte al timón. La roda es su equivalente en la proa, la quilla la pieza del fondo y la regala el remate de la borda.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La a) (roda) es la misma pieza pero en la proa.",
+  "concepto": "bal-per-2017-12-e-03"
+ },
+ "bal-per-2026-03-b-02": {
+  "explicacion": "La roda es la pieza unida a la quilla, generalmente inclinada o curva, que remata el casco por la proa. El codaste lo remata por la popa, el bao es una viga transversal de la cubierta y el pantoque es la curva entre fondo y costado.",
+  "clave": "Roda a proa; codaste a popa.",
+  "trampa": "La a) (codaste) es la pieza equivalente de popa.",
+  "concepto": "and-2024-c3-t01"
+ },
+ "bal-per-2026-03-c-01": {
+  "explicacion": "El grillete que une el arganeo del ancla con el primer eslabón de la cadena es el grillete de unión, también llamado de entalingadura. El orinque es el cabo de recuperación del ancla, el escandallo es la sonda de mano y el cepo es la barra de las anclas clásicas; ninguno da nombre a ese grillete.",
+  "clave": "Entalingadura = unión de cadena y ancla.",
+  "trampa": "La a): el orinque va al ancla, pero es un cabo y se hace firme a la cruz.",
+  "concepto": "bal-per-2018-06-a-04"
+ },
+ "bal-per-2026-03-c-02": {
+  "explicacion": "La cubierta es la superficie que cierra el casco por arriba y lo hace prácticamente estanco. El plan es el fondo interior, el forro es el revestimiento exterior del casco y la bovedilla es la curva de la popa.",
+  "clave": "Cubierta = tapa estanca del casco.",
+  "trampa": "La c): el forro también es estanco, pero es la piel del casco, no la tapa superior.",
+  "concepto": "bal-per-2017-12-a-01"
+ },
+ "bal-per-2026-03-c-03": {
+  "explicacion": "La diferencia entre el calado de popa y el de proa es el asiento, que indica la inclinación longitudinal del barco. El calado medio es la semisuma de los calados, la manga es la anchura y el plan es el fondo interior.",
+  "clave": "Asiento = calado de popa − calado de proa.",
+  "trampa": "La a) es la semisuma, no la diferencia.",
+  "concepto": "bal-per-2020-12-i-01"
+ },
+ "bal-per-2026-03-c-04": {
+  "explicacion": "El plano de crujía es el plano longitudinal de proa a popa que divide el barco en dos mitades simétricas: babor y estribor. Proa y popa las separa el plano transversal de la cuaderna maestra, y obra viva y obra muerta, el plano de flotación.",
+  "clave": "Crujía: proa-popa, separa babor de estribor.",
+  "trampa": "La c): la obra viva y la muerta las separa la flotación, que es horizontal.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "crujia",
+     "babor",
+     "estribor"
+    ]
+   }
+  ],
+  "concepto": "and-2021-c2-t01"
+ },
+ "bal-per-2026-03-d-02": {
+  "explicacion": "La ventaja de las hélices plegables es que, recogidas, disminuyen la resistencia al avance cuando se navega a vela. Abiertas no ocupan menos, no empujan más que una hélice fija (suelen rendir algo menos) y no evitan la cavitación.",
+  "clave": "Palas abatibles = menos resistencia navegando a vela.",
+  "trampa": "La b): ganan velocidad a vela por quitar freno, no por empujar más.",
+  "concepto": "bal-per-2018-04-c-04"
+ },
+ "bal-per-2026-03-d-04": {
+  "explicacion": "Filar es largar cadena (o cabo) de forma controlada, como se hace al fondear. Templar es tensar, virar es recoger y zarpar es que el ancla se despegue del fondo.",
+  "clave": "Filar = soltar cadena o cabo poco a poco.",
+  "trampa": "La b) (virar) es justo lo contrario: recoger.",
+  "concepto": "bal-per-2020-12-d-02"
+ },
+ "bal-per-2026-06-a-03": {
+  "explicacion": "La manga es la mayor anchura de la embarcación, medida de banda a banda en el plano horizontal. La eslora es la longitud, el puntal la altura del casco y el calado la parte sumergida.",
+  "clave": "Eslora = largo, manga = ancho, puntal = alto.",
+  "trampa": "La a): la eslora también es horizontal, pero de proa a popa.",
+  "concepto": "bal-per-2017-03-ci-01"
+ },
+ "bal-per-2026-06-b-04": {
+  "explicacion": "El calado es la distancia vertical entre la línea de flotación y la parte más baja de la quilla. La distancia de la flotación a la cubierta es el francobordo, el lastre no es una distancia y el puente no interviene.",
+  "clave": "Calado = de la flotación al punto más bajo.",
+  "trampa": "La c) es el francobordo, que se mide hacia arriba.",
+  "concepto": "bal-per-2018-12-d-01"
+ },
+ "bal-per-2026-06-c-01": {
+  "explicacion": "El ancla está a pique cuando, al virar, el barco queda justo encima de ella: el ancla sigue en el fondo, bajo la proa, y la cadena está vertical. Colgando lista para estibar o para fondear está a la pendura, y con toda la cadena filada y extendida el barco está simplemente fondeado.",
+  "clave": "Secuencia al levar: a pique, zarpa, clara.",
+  "trampa": "La a): el ancla suspendida ya no está a pique, ha zarpado.",
+  "concepto": "and-2022-c3-t01"
+ },
+ "bal-per-2026-06-c-02": {
+  "explicacion": "La mecha es el eje del timón, sobre el que gira la pala. El orificio por el que pasa es la limera, el volante es la rueda y la cadena o los cables que la mueven son los guardines.",
+  "clave": "Mecha = eje del timón; limera = su orificio.",
+  "trampa": "La b) es la limera.",
+  "concepto": "bal-per-2017-07-b-01"
+ },
+ "bal-per-2026-06-c-03": {
+  "explicacion": "La inclinación longitudinal del barco, en el sentido proa-popa, se mide con el asiento (diferencia de calados entre popa y proa). El calado de popa es solo uno de los dos datos, adrizar es quitar la escora transversal y la «inclinación de Jacobs» no existe.",
+  "clave": "Proa-popa: asiento. Babor-estribor: escora.",
+  "trampa": "La c) se refiere a la inclinación transversal, no a la longitudinal.",
+  "concepto": "bal-per-2020-12-i-01"
+ },
+ "bal-per-2026-06-d-01": {
+  "explicacion": "La obra viva es la parte sumergida de la embarcación, por debajo de la línea de flotación. No se cuenta desde el calado medio, todas las embarcaciones la tienen, sea cual sea su eslora, y la regala es otra cosa.",
+  "clave": "Obra viva = sumergida; obra muerta = emergida.",
+  "trampa": "La c) es absurda: cualquier barco que flota tiene parte sumergida.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-03"
+ },
+ "bal-per-2026-09-c-02": {
+  "explicacion": "El rezón es un ancla pequeña con una caña central de la que salen cuatro garfios o uñas, útil en fondos rocosos y como ancla de respeto o para auxiliares. La veleta del tope del palo, el gancho del bichero y la trinca del ancla son otras piezas.",
+  "clave": "Rezón = ancla pequeña de cuatro brazos sin cepo.",
+  "trampa": "La b): el bichero tiene gancho, pero no es un ancla.",
+  "concepto": "bal-per-2017-03-ge-03"
+ },
+ "bal-per-2026-09-c-03": {
+  "explicacion": "Una hélice es dextrógira cuando, vista desde popa hacia proa, gira en el sentido de las agujas del reloj al dar avante. Vista desde proa el giro se ve al revés, y el sentido se define siempre en marcha avante, no atrás.",
+  "clave": "Vista desde popa, avante: dextrógira horaria, levógira antihoraria.",
+  "trampa": "La a) mira desde proa: así el sentido se invierte.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "avante"
+   }
+  ],
+  "concepto": "bal-per-2020-10-e-02"
+ },
+ "bal-per-2026-09-d-04": {
+  "explicacion": "El desplazamiento máximo es el peso total de la embarcación a plena carga: su propio peso más todo lo que lleva a bordo (tripulación, equipaje, combustible, agua, pertrechos y carga). Lo que puede cargar sin contar su peso es el peso muerto, no el desplazamiento.",
+  "clave": "Desplazamiento máximo = peso del barco + todo lo que lleva.",
+  "trampa": "La b) excluye el peso del barco: eso es el peso muerto.",
+  "concepto": "bal-per-2021-03-a-02"
+ },
+ "bal-per-2017-03-a-05": {
+  "explicacion": "Al bornear, el barco gira alrededor del ancla. Como la cadena no queda horizontal (forma una catenaria hasta el fondo), el radio de borneo es siempre menor que la cadena filada más la eslora del barco. No está limitado por la cadena sola, porque hay que sumar la eslora, ni por la profundidad o la sonda.",
+  "clave": "Radio de borneo < cadena filada + eslora.",
+  "trampa": "La b) olvida que el barco entero gira, así que hay que sumarle la eslora."
+ },
+ "bal-per-2017-03-a-06": {
+  "explicacion": "El ancla garrea (se arrastra por el fondo) por cualquiera de esas causas: un mal tenedero, que no deja agarrar, poca cadena filada, que hace que el tiro sea hacia arriba y arranque el ancla, o un ancla sucia cuyas uñas no giran y no se clavan. Por eso valen todas.",
+  "clave": "Garreo: mal fondo, poca cadena o ancla que no se clava.",
+  "trampa": "Cada causa por separado es correcta, así que la buena es la d)."
+ },
+ "bal-per-2017-03-b-05": {
+  "explicacion": "Las defensas se colocan colgando alrededor del casco para amortiguar los golpes contra el muelle o contra otros barcos. No son boyas ni refuerzos de la quilla, y aunque suelen ser de plástico y flotar, eso no las define.",
+  "clave": "Defensas = amortiguadores del casco al atracar.",
+  "trampa": "La d) describe su aspecto, no su función."
+ },
+ "bal-per-2017-03-b-06": {
+  "explicacion": "La gatera es un orificio, normalmente circular o elíptico, para dar paso a los cabos de amarre (y, en la proa, a la cadena hacia la caja de cadenas). No está en el guardacalor, existe también en embarcaciones de recreo y no es un espacio confinado.",
+  "clave": "Gatera = orificio de paso de cabos o cadena.",
+  "trampa": "La b): las embarcaciones de recreo también tienen gateras."
+ },
+ "bal-per-2017-03-ci-05": {
+  "explicacion": "El orinque es el cabo que se hace firme a la cruz del ancla y se lleva a una boya: señaliza dónde está el ancla y permite recuperarla si se pierde o se engancha, tirando de ella en sentido contrario. No impide el garreo, así que la correcta es la d).",
+  "clave": "Orinque: marca y recupera el ancla.",
+  "trampa": "La a): el orinque no aguanta el barco, solo señaliza y ayuda a sacar el ancla.",
+  "concepto": "bal-per-2017-03-ci-05"
+ },
+ "bal-per-2017-07-eda-05": {
+  "explicacion": "El orinque es el cabo que se hace firme a la cruz del ancla y se lleva a una boya: señaliza dónde está el ancla (c) y permite localizarla y recuperarla si se pierde (a). No impide el garreo, así que la correcta es la b).",
+  "clave": "Orinque: marca y recupera el ancla.",
+  "trampa": "La d): el orinque no aguanta el barco, solo señaliza y ayuda a sacar el ancla.",
+  "concepto": "bal-per-2017-03-ci-05"
+ },
+ "bal-per-2017-03-ci-06": {
+  "explicacion": "Si el barco garrea se desplaza hacia popa, y los puntos de tierra que estaban por el través se ven moverse los dos hacia proa (a). Además, en la proa se notan socollazos en la cadena al resbalar el ancla por el fondo (c). Por eso la correcta es la d). Si una marcación va a proa y la otra a popa, el barco solo está girando (borneando).",
+  "clave": "Garreo: marcaciones que corren juntas hacia proa y tirones en la cadena.",
+  "trampa": "La b) es el borneo: el barco gira sobre el ancla sin desplazarse.",
+  "concepto": "bal-per-2017-03-ci-06"
+ },
+ "bal-per-2023-06-d-05": {
+  "explicacion": "Si el barco garrea se desplaza hacia popa, y los puntos de tierra que estaban por el través se ven moverse los dos hacia proa (a). Además, en la proa se notan socollazos en la cadena al resbalar el ancla por el fondo (c). Por eso la correcta es la d). Si una marcación va a proa y la otra a popa, el barco solo está girando (borneando).",
+  "clave": "Garreo: marcaciones que corren juntas hacia proa y tirones en la cadena.",
+  "trampa": "La b) es el borneo: el barco gira sobre el ancla sin desplazarse.",
+  "concepto": "bal-per-2017-03-ci-06"
+ },
+ "bal-per-2017-03-fa-05": {
+  "explicacion": "Con muy mal tiempo conviene filar toda la cadena posible: más peso y más catenaria absorben los tirones y hacen que el esfuerzo sobre el ancla sea horizontal. En condiciones normales se fila de 3 a 5 veces la profundidad, pero con temporal se da toda la que permita el borneo.",
+  "clave": "Mal tiempo: toda la cadena que puedas.",
+  "trampa": "La c) y la d) son la regla para tiempo normal, no para temporal.",
+  "concepto": "bal-per-2017-03-fa-05"
+ },
+ "bal-per-2017-12-b-05": {
+  "explicacion": "Con muy mal tiempo conviene filar toda la cadena posible: más peso y más catenaria absorben los tirones y hacen que el esfuerzo sobre el ancla sea horizontal. En condiciones normales se fila de 3 a 5 veces la profundidad, pero con temporal se da toda la que permita el borneo.",
+  "clave": "Mal tiempo: toda la cadena que puedas.",
+  "trampa": "La b) y la d) son la regla para tiempo normal, no para temporal.",
+  "concepto": "bal-per-2017-03-fa-05"
+ },
+ "bal-per-2017-03-ge-05": {
+  "explicacion": "Un grillete de cadena (cada tramo entre grilletes de unión) mide 15 brazas, unos 27,5 m, por eso se redondea a 27 m. Las demás cifras no corresponden a esa medida tradicional.",
+  "clave": "1 grillete = 15 brazas ≈ 27,5 m.",
+  "trampa": "La d) (15 m) confunde el número de brazas con metros.",
+  "concepto": "bal-per-2018-06-b-03"
+ },
+ "bal-per-2017-03-ge-06": {
+  "explicacion": "El seno es la curvatura que forma un cabo, cable o cadena entre los puntos que lo sujetan. El extremo es el chicote, la parte más larga es el firme y el grosor es la mena.",
+  "clave": "Chicote = extremo; firme = la parte larga; seno = la curva.",
+  "trampa": "La b) es el firme.",
+  "concepto": "bal-per-2024-09-d-02"
+ },
+ "bal-per-2017-07-b-05": {
+  "explicacion": "Todas sirven para comprobar que no se garrea: la alarma de la sonda avisa si cambia la profundidad (por ejemplo, si el barco se va hacia aguas más someras), la alarma de fondeo del GPS avisa si la posición se sale de un radio y las marcaciones a puntos de tierra muestran si el barco se desplaza.",
+  "clave": "Vigilar el fondeo: GPS, sonda y marcaciones.",
+  "trampa": "Cada método por separado sirve, así que la buena es la d)."
+ },
+ "bal-per-2017-07-b-06": {
+  "explicacion": "Al elegir fondeadero hay que buscar un fondo sin mucha pendiente (para que el ancla no se vaya cuesta abajo), que no sea de roca (agarra mal y se puede trabar) y con espacio suficiente para bornear sin tocar a nadie. Por eso valen todas.",
+  "clave": "Fondeadero: fondo llano, buen tenedero y sitio para bornear.",
+  "trampa": "Cada condición por separado es correcta, así que la buena es la d)."
+ },
+ "bal-per-2017-07-c-05": {
+  "explicacion": "El bichero es un asta larga con un gancho en el extremo que se usa para atracar, desatracar, coger cabos o boyas y separarse de otros barcos. El salabre es una red con mango, el garfio es solo un gancho y «desatracador» no es el nombre de ningún útil.",
+  "clave": "Bichero = palo con gancho para atracar y coger cabos.",
+  "trampa": "La a): el garfio es la punta, el útil completo con su asta es el bichero.",
+  "concepto": "bal-per-2017-07-c-05"
+ },
+ "bal-per-2021-03-a-05": {
+  "explicacion": "El bichero es un asta larga con un gancho en el extremo que se usa para atracar, desatracar, coger cabos o boyas y separarse de otros barcos. El salabre es una red con mango, el garfio es solo un gancho y el pulpo es un tensor elástico.",
+  "clave": "Bichero = palo con gancho para atracar y coger cabos.",
+  "trampa": "La a): el garfio es la punta, el útil completo con su asta es el bichero.",
+  "concepto": "bal-per-2017-07-c-05"
+ },
+ "bal-per-2025-04-c-06": {
+  "explicacion": "El bichero es un asta larga con un gancho en el extremo que se usa para atracar, desatracar, coger cabos o boyas y separarse de otros barcos. El salabre es una red con mango, el garfio es solo un gancho y el guía-cabos es una pieza fija que dirige los cabos.",
+  "clave": "Bichero = palo con gancho para atracar y coger cabos.",
+  "trampa": "La a): el garfio es la punta, el útil completo con su asta es el bichero.",
+  "concepto": "bal-per-2017-07-c-05"
+ },
+ "bal-per-2017-07-c-06": {
+  "explicacion": "Si se comprueba que el barco garrea hay que actuar: filar más cadena para que el ancla vuelva a agarrar (b) o, si no agarra, levar y fondear en otro punto o en otro fondeadero (c). Por eso la correcta es la d). Garrear sin hacer nada es peligroso aunque no haya barcos cerca, porque el viento te lleva hacia la costa o los bajos.",
+  "clave": "Garreando: más cadena o cambiar de sitio.",
+  "trampa": "La a): sin barcos cerca sigue habiendo costa, bajos y rocas a sotavento."
+ },
+ "bal-per-2017-07-eda-06": {
+  "explicacion": "Si se doblan el chicote sobre el firme y se entretejen sus cordones con los del firme, se obtiene una gaza trenzada (o costura de gaza), el ojo más resistente y permanente. El as de guía hace un ojo con un nudo, sin trenzar, la vuelta de rezón es para argollas y la mena es el grosor del cabo.",
+  "clave": "Gaza trenzada = ojo hecho entretejiendo chicote y firme.",
+  "trampa": "La c) también forma un ojo, pero con un nudo, no trenzando los cordones."
+ },
+ "bal-per-2017-07-fc-06": {
+  "explicacion": "Con buen tiempo, la regla general es filar de tres a cinco veces la profundidad del fondeadero. Menos cadena hace que el tiro levante el ancla y garree, y más de cinco veces se reserva para el mal tiempo.",
+  "clave": "Buen tiempo: cadena de 3 a 5 veces el fondo.",
+  "trampa": "La b) (más de 5 veces) es para mal tiempo."
+ },
+ "bal-per-2017-09-a-05": {
+  "explicacion": "La cornamusa es la pieza en forma de T, fijada al casco, a la cubierta o al palo, en la que se dan vueltas a los cabos para hacerlos firmes. La bita es un poste (o pareja de postes) de amarre más robusto, el imbornal es un desagüe y la guía solo dirige el cabo.",
+  "clave": "Cornamusa = pieza en T para hacer firme un cabo.",
+  "trampa": "La b): la bita también sirve para amarrar, pero es un poste, no una T.",
+  "concepto": "bal-per-2017-09-a-05"
+ },
+ "bal-per-2019-09-c-05": {
+  "explicacion": "La cornamusa es la pieza en forma de T, fijada al casco, a la cubierta o al palo, en la que se dan vueltas a los cabos para hacerlos firmes. El noray está en el muelle, no en el barco, el imbornal es un desagüe y la guía solo dirige el cabo.",
+  "clave": "Cornamusa = pieza en T para hacer firme un cabo.",
+  "trampa": "La b): el noray también sirve para amarrar, pero está en tierra.",
+  "concepto": "bal-per-2017-09-a-05"
+ },
+ "bal-per-2023-09-c-06": {
+  "explicacion": "La cornamusa es la pieza en forma de T, fijada al casco, a la cubierta o al palo, en la que se dan vueltas a los cabos para hacerlos firmes. El noray está en el muelle, no en el barco, la guía solo dirige el cabo y el guardacabos es el refuerzo metálico de una gaza.",
+  "clave": "Cornamusa = pieza en T para hacer firme un cabo.",
+  "trampa": "La b): el noray también sirve para amarrar, pero está en tierra.",
+  "concepto": "bal-per-2017-09-a-05"
+ },
+ "bal-per-2017-09-a-06": {
+  "explicacion": "El as de guía forma un ojo fijo que no se corre ni se aprieta, y se deshace con facilidad, así que sirve para sustituir una gaza en cualquier cabo. El ballestrinque sirve para hacer firme a un palo o candelero, la vuelta de rezón para argollas y el llano para unir dos cabos iguales.",
+  "clave": "As de guía = gaza improvisada que no se corre.",
+  "trampa": "La c): la vuelta de rezón también se hace en el extremo, pero rodeando una argolla.",
+  "concepto": "bal-per-2017-09-a-06"
+ },
+ "bal-per-2017-09-c-05": {
+  "explicacion": "El bichero es la percha o palo con un gancho en un extremo que se usa al atracar y desatracar para coger la guía o las amarras. La pieza en T donde descansa la botavara es la horquilla o el pescante, y el palo para amurar el spinnaker es el tangón.",
+  "clave": "Bichero = palo con gancho para atracar y coger cabos.",
+  "trampa": "La c) describe el tangón del spinnaker.",
+  "concepto": "bal-per-2017-07-c-05"
+ },
+ "bal-per-2017-09-c-06": {
+  "explicacion": "El fondo de arena es un buen tenedero: el ancla se clava y agarra bien. La piedra no deja enterrarse al ancla y puede trabarla, en las algas resbala, y una pendiente brusca hace que el ancla se vaya hacia lo hondo.",
+  "clave": "Bueno: arena, fango duro. Malo: roca, algas, pendiente.",
+  "trampa": "La b): en roca el ancla se puede enganchar, pero no agarra y es fácil perderla.",
+  "concepto": "bal-per-2017-09-c-06"
+ },
+ "bal-per-2017-09-d-06": {
+  "explicacion": "Todos sirven para detectar el garreo: una alarma de sonda avisa si cambia la profundidad, dos demoras simultáneas situadas en la carta muestran si la posición se mueve y la posición GPS (mejor con su alarma de fondeo) hace lo mismo. Por eso la correcta es la d).",
+  "clave": "Vigilar el fondeo: GPS, sonda y marcaciones.",
+  "trampa": "Cada método por separado sirve, así que la buena es la d).",
+  "concepto": "bal-per-2017-07-b-05"
+ },
+ "bal-per-2017-09-e-05": {
+  "explicacion": "La roldana es la rueda giratoria de una polea, motón o cajera sobre la que laborea un cabo, reduciendo el roce y cambiando su dirección. No es una cornamusa ni un guardamancebo, y la pieza fija sobre la regala que guía los cabos es la guía o la gatera.",
+  "clave": "Roldana = ruedecita por donde corre el cabo.",
+  "trampa": "La d) describe una guía de amarre, que es fija y no gira.",
+  "base": "and-2024-c3-t05",
+  "concepto": "and-2024-c3-t05"
+ },
+ "bal-per-2023-06-c-05": {
+  "explicacion": "La roldana es la rueda giratoria de una polea, motón o cajera sobre la que laborea un cabo, reduciendo el roce y cambiando su dirección. No es una cornamusa ni un guardamancebo, y la pieza fija sobre la regala que guía los cabos es la guía o la gatera.",
+  "clave": "Roldana = ruedecita por donde corre el cabo.",
+  "trampa": "La b) describe una guía de amarre, que es fija y no gira.",
+  "base": "and-2024-c3-t05",
+  "concepto": "and-2024-c3-t05"
+ },
+ "bal-per-2017-12-a-05": {
+  "explicacion": "Amarrar por seno es pasar el cabo alrededor del noray y devolverlo a bordo, de modo que firme y chicote quedan los dos en el barco. Así puedes largar desde a bordo sin ayuda de tierra: sueltas un extremo y cobras del otro. Dar varias vueltas o usar un as de guía no es amarrar por seno.",
+  "clave": "Por seno: el cabo va y vuelve; los dos extremos a bordo.",
+  "trampa": "La c) deja la gaza en tierra: así ya no puedes largar desde a bordo.",
+  "base": "and-2023-c1-t29",
+  "concepto": "and-2023-c1-t29"
+ },
+ "bal-per-2017-12-c-05": {
+  "explicacion": "La vuelta de rezón es el nudo típico para hacer firme un cabo a una argolla, como el arganeo del ancla: se dan dos vueltas al aro, se pasa el chicote alrededor del firme y por dentro de esas vueltas, y se remata. Para unir dos cabos de la misma mena se usa el nudo llano.",
+  "clave": "Rezón = cabo a argolla.",
+  "trampa": "La a): unir dos cabos iguales es el llano, no la vuelta de rezón.",
+  "base": "and-2021-c1-t05",
+  "concepto": "and-2021-c1-t05"
+ },
+ "bal-per-2017-12-c-06": {
+  "explicacion": "El firme es la parte más larga o principal del cabo, frente al chicote, que es su extremo libre. El seno es la curva que forma el cabo y la piola es un cabo fino.",
+  "clave": "Chicote = extremo; firme = la parte larga; seno = la curva.",
+  "trampa": "La c): el seno es una curva del cabo, no su parte principal.",
+  "concepto": "bal-per-2024-09-d-02"
+ },
+ "bal-per-2026-03-c-06": {
+  "explicacion": "El firme es la parte más larga o principal del cabo, frente al chicote, que es su extremo libre. El seno es la curva que forma el cabo y la estacha es un cabo grueso de amarre.",
+  "clave": "Chicote = extremo; firme = la parte larga; seno = la curva.",
+  "trampa": "La c): el seno es una curva del cabo, no su parte principal.",
+  "concepto": "bal-per-2024-09-d-02"
+ },
+ "bal-per-2017-12-d-06": {
+  "explicacion": "Al levar conviene dar unas paladas avante mientras se recoge cadena, para acercar el barco al ancla hasta tenerla a pique y que el molinete no tenga que arrastrar el barco. Dejar que el molinete tire de todo el barco lo fuerza, y dar atrás tensa la cadena en sentido contrario.",
+  "clave": "Para levar: avante poco a poco hasta tener el ancla a pique.",
+  "trampa": "La b): el molinete sube el ancla, no está pensado para remolcar el barco."
+ },
+ "bal-per-2017-12-e-06": {
+  "explicacion": "El noray es una pieza metálica, normalmente de hierro fundido, curvada y fija en el muelle, a la que se encapillan o dan vuelta las amarras. La boya de amarre está en el agua, la pieza en T de a bordo es la cornamusa y el anillo fijo en cubierta es un cáncamo.",
+  "clave": "Noray = en el muelle; cornamusa y bita = a bordo.",
+  "trampa": "La b) describe la cornamusa, que va en el barco.",
+  "concepto": "bal-per-2017-12-e-06"
+ },
+ "bal-per-2018-04-a-05": {
+  "explicacion": "La roldana es la rueda sobre la que gira el cabo en poleas, motones y pastecas. La pieza de la regala que dirige las amarras es la guía, y las piezas para hacer firmes drizas, escotas y amarras son cornamusas y bitas.",
+  "clave": "Roldana = ruedecita por donde corre el cabo.",
+  "trampa": "La a) describe una guía de amarre, que es fija y no gira.",
+  "concepto": "and-2024-c3-t05"
+ },
+ "bal-per-2018-04-a-06": {
+  "explicacion": "Antes de fondear hay que tener en cuenta la sonda (para calcular la cadena y no tocar fondo al bornear), el tipo de fondo (que sea buen tenedero y no haya posidonia) y la normativa de la zona, que puede prohibir o limitar el fondeo. Por eso se deben considerar todas.",
+  "clave": "Fondeadero: sonda, tipo de fondo y normas de la zona.",
+  "trampa": "La b) también vale: en Baleares está prohibido fondear sobre posidonia."
+ },
+ "bal-per-2018-04-b-06": {
+  "explicacion": "El rezón es un ancla pequeña sin cepo, con cuatro brazos terminados en uñas. La percha con gancho es el bichero, no es un ancla para buques grandes y la de un solo brazo en forma de arado es la CQR.",
+  "clave": "Rezón = ancla pequeña de cuatro brazos sin cepo.",
+  "trampa": "La b) describe el bichero.",
+  "concepto": "bal-per-2017-03-ge-03"
+ },
+ "bal-per-2018-04-e-05": {
+  "explicacion": "Se pide lo que no influye. La sonda, la eslora (y con ella el espacio de borneo) y la normativa de la zona sí cuentan al elegir dónde fondear. El «círculo de garreo» no es algo que se planifique: lo que se calcula es el círculo de borneo, y el garreo es precisamente lo que se quiere evitar.",
+  "clave": "Se calcula el borneo; el garreo se evita.",
+  "trampa": "La c) suena técnica porque se confunde con el círculo de borneo, que sí se tiene en cuenta."
+ },
+ "bal-per-2018-04-e-06": {
+  "explicacion": "El as de guía es el nudo más usado para sustituir una gaza: forma un ojo fijo que no se corre ni se aprieta y se deshace con facilidad. La vuelta de rezón es para argollas, el llano une dos cabos iguales y el ballestrinque sirve para hacer firme a un palo o candelero.",
+  "clave": "As de guía = gaza improvisada que no se corre.",
+  "trampa": "La c): el ballestrinque se hace alrededor de algo, no forma un ojo.",
+  "concepto": "bal-per-2017-09-a-06"
+ },
+ "bal-per-2018-06-a-05": {
+  "explicacion": "La bita es un poste de amarre, simple o doble, que va fijo en la cubierta del barco, no en el muelle. En el muelle están el bolardo, el noray y las argollas a las que se hacen firmes las amarras.",
+  "clave": "Noray, bolardo y argolla en tierra; bita y cornamusa a bordo.",
+  "trampa": "La a): el bolardo se parece a una bita, pero está en tierra."
+ },
+ "bal-per-2018-06-a-06": {
+  "explicacion": "La respuesta oficial cuenta el grillete como 25 m: 7 × 25 = 175 m. Con la medida tradicional de 15 brazas (unos 27,5 m) saldrían unos 192 m, y la opción más cercana sigue siendo 175 m; 225 y 125 m quedan mucho más lejos.",
+  "clave": "Cadena filada = número de grilletes × longitud del grillete.",
+  "trampa": "La c) (144 m) no sale con ninguna medida de grillete habitual.",
+  "discrepancia": "En otras preguntas del mismo banco el grillete vale 27,5 m, con lo que 7 grilletes son 192,5 m, cifra que no está entre las opciones. La oficial (175 m) supone grilletes de 25 m; es la más cercana, pero el cálculo exacto no coincide.",
+  "concepto": "bal-per-2018-06-b-03"
+ },
+ "bal-per-2018-06-b-05": {
+  "explicacion": "Una boya es un objeto flotante, de materiales diversos, unido a un muerto (un peso en el fondo) para señalizar o para amarrar. Un flotador a la deriva no es una boya, y los objetos que se cuelgan en los costados son defensas.",
+  "clave": "Boya = flotador fondeado con un muerto.",
+  "trampa": "La c) y la d) describen las defensas."
+ },
+ "bal-per-2018-06-c-05": {
+  "explicacion": "Las defensas son objetos que se colocan alrededor del casco para amortiguar los golpes contra el muelle u otros barcos. No son boyas ni refuerzos de la quilla, y aunque suelen ser de plástico y flotar, eso no las define.",
+  "clave": "Defensas = amortiguadores del casco al atracar.",
+  "trampa": "La d) describe su aspecto, no su función.",
+  "concepto": "bal-per-2017-03-b-05"
+ },
+ "bal-per-2018-06-i-06": {
+  "explicacion": "El nudo llano une por sus chicotes dos cabos de la misma mena (grosor); si las menas son distintas se usa la vuelta de escota. El ballestrinque es para palos o candeleros, el as de guía forma una gaza y la vuelta de rezón es para argollas.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "trampa": "El as de guía forma un ojo, no une dos cabos.",
+  "base": "and-2023-c2-t05",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2018-09-a-06": {
+  "explicacion": "El nudo llano une dos cabos de la misma mena (grosor); si las menas son distintas se usa la vuelta de escota. La vuelta de rezón es para argollas, el as de guía hace una gaza y el ballestrinque sirve para palos o candeleros.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "trampa": "El as de guía forma un ojo, no une dos cabos.",
+  "base": "and-2023-c2-t05",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2018-09-d-06": {
+  "explicacion": "Al dar fondo conviene llevar una ligera arrancada atrás para que la cadena se vaya tendiendo sobre el fondo y no caiga amontonada sobre el ancla. El giro alrededor del ancla es el borneo, no el garreo; con mal tiempo se fila toda la cadena posible, y las algas son mal tenedero.",
+  "clave": "Al fondear: arrancada atrás suave para tender la cadena.",
+  "trampa": "La a) describe el borneo con el nombre del garreo.",
+  "concepto": "bal-per-2018-09-d-06"
+ },
+ "bal-per-2026-03-b-06": {
+  "explicacion": "Al dar fondo conviene llevar una ligera arrancada atrás para que la cadena se vaya tendiendo sobre el fondo y no caiga amontonada sobre el ancla. El giro alrededor del ancla es el borneo, no el garreo; con mal tiempo se fila mucho más de 3 veces la sonda, y las algas son mal tenedero.",
+  "clave": "Al fondear: arrancada atrás suave para tender la cadena.",
+  "trampa": "La a) describe el borneo con el nombre del garreo.",
+  "concepto": "bal-per-2018-09-d-06"
+ },
+ "bal-per-2018-09-e-05": {
+  "explicacion": "Fondear a la gira es hacerlo con una sola ancla por proa, dejando que el barco gire libremente a su alrededor según el viento y la corriente. Las maniobras con dos anclas, abiertas en ángulo o una a proa y otra a popa, son otras formas de fondear que limitan ese giro.",
+  "clave": "A la gira = una sola ancla y el barco bornea libre.",
+  "trampa": "La c) es justo lo contrario: proa y popa para que no gire."
+ },
+ "bal-per-2018-12-b-05": {
+  "explicacion": "Se pide el que no se usa para amarrar. El obenque es un cable de la jarcia firme que sujeta el palo hacia los costados. La roldana guía los cabos, el muerto es el peso del fondo al que se amarra una boya y la bita es el poste de cubierta para hacer firmes las amarras.",
+  "clave": "Obenque = jarcia del palo, no amarre.",
+  "trampa": "La a): la roldana no amarra por sí sola, pero los cabos de amarre pasan por ella.",
+  "concepto": "bal-per-2018-12-b-05"
+ },
+ "bal-per-2024-04-a-06": {
+  "explicacion": "Se pide el que no se usa para amarrar. El obenque es un cable de la jarcia firme que sujeta el palo hacia los costados. El bichero sirve para coger amarras, el muerto es el peso del fondo al que se amarra una boya y la bita es el poste de cubierta para hacer firmes las amarras.",
+  "clave": "Obenque = jarcia del palo, no amarre.",
+  "trampa": "La a): el bichero no amarra por sí solo, pero se usa en la maniobra de amarre.",
+  "concepto": "bal-per-2018-12-b-05"
+ },
+ "bal-per-2018-12-b-06": {
+  "explicacion": "La roca es el peor tenedero: el ancla no puede enterrarse, apenas agarra y, si se engancha, es fácil perderla. La arena, el fango y la arena fangosa son fondos en los que el ancla se clava bien.",
+  "clave": "Bueno: arena, fango duro. Malo: roca, algas, pendiente.",
+  "trampa": "El fango blando agarra peor que el duro, pero sigue siendo mejor que la roca.",
+  "concepto": "bal-per-2017-09-c-06"
+ },
+ "bal-per-2018-12-d-06": {
+  "explicacion": "El noray es la pieza de metal fijada fuertemente en el muelle, cerca del cantil, para hacer firmes las amarras. La cornamusa va a bordo, el muerto es un peso en el fondo y la muserola es una pieza de la caña o la botavara, no de amarre en tierra.",
+  "clave": "Noray = en el muelle; cornamusa y bita = a bordo.",
+  "trampa": "La c): la cornamusa también sirve para amarrar, pero está en el barco.",
+  "concepto": "bal-per-2017-12-e-06"
+ },
+ "bal-per-2018-12-f-05": {
+  "explicacion": "Las partes de un cabo son el chicote (cada extremo), el seno (la curva que forma) y el firme (la parte principal o larga). La gaza es un ojo que se hace en el cabo, «extremos» es otra forma de decir chicote y «curva» no es el término náutico.",
+  "clave": "Chicote = extremo; firme = la parte larga; seno = la curva.",
+  "trampa": "La b): la gaza se hace con el cabo, no es una de sus partes.",
+  "concepto": "bal-per-2024-09-d-02"
+ },
+ "bal-per-2018-12-f-06": {
+  "explicacion": "Si el ancla queda enrocada, lo indicado es dar unas paladas avante para pasar por encima y recomenzar la maniobra virando en sentido contrario al que llamaba la cadena, para sacarla por donde entró. Dar toda atrás o toda avante puede romper la línea o el molinete, y cortar es el último recurso (para eso se lleva orinque).",
+  "clave": "Ancla enrocada: tirar en sentido contrario, sin violencia.",
+  "trampa": "La b): cortar es el último recurso, no lo primero."
+ },
+ "bal-per-2019-04-a-06": {
+  "explicacion": "Los muertos son bloques de piedra, hierro u hormigón colocados en el fondo, a los que se amarra una cadena con su boya para fijar una embarcación en un puerto o fondeadero. Los norays están en el muelle, los candeleros sostienen los guardamancebos y el orinque es el cabo de recuperación del ancla.",
+  "clave": "Muerto = peso fijo en el fondo para amarrar.",
+  "trampa": "La a): el noray también sirve para amarrar, pero está en el muelle, no en el fondo."
  }
 }

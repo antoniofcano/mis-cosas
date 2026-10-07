@@ -1,0 +1,1155 @@
+{
+ "bal-per-2019-04-b-05": {
+  "explicacion": "El as de guía forma una gaza fija que no se corre ni se aprieta con la tensión, así que su gran utilidad es sustituir a una gaza hecha con costura en cualquier cabo, y se deshace fácilmente aunque haya trabajado. Para unir dos cabos de la misma mena se usa el nudo llano, y para acortar provisionalmente un cabo, el margarita.",
+  "clave": "As de guía = gaza fija improvisada.",
+  "trampa": "Unir dos chicotes o dos cabos es cosa del llano o de la vuelta de escota, no del as de guía."
+ },
+ "bal-per-2019-04-c-05": {
+  "explicacion": "La bita es una pieza robusta de dos columnas metálicas, a veces ensanchadas arriba en forma de hongo, empernada a cubierta, donde se dan vueltas a las amarras. La cornamusa es una pieza en forma de T con dos brazos, el candelero es el puntal que sostiene los guardamancebos y la guía solo conduce el cabo.",
+  "clave": "Bita = dos columnas para las amarras.",
+  "trampa": "La cornamusa también sirve para hacer firme un cabo, pero tiene forma de T con dos brazos, no dos columnas."
+ },
+ "bal-per-2019-04-c-06": {
+  "explicacion": "El tenedero es el lugar o fondo, más o menos apropiado, donde se fondea; se califica de bueno o malo según cómo agarre el ancla (arena y fango duro, buenos; roca y algas, malos). El giro del barco fondeado es el borneo, sujetar el ancla al fondo es hacer cabeza y el sondador de mano es el escandallo.",
+  "clave": "Tenedero = el fondo donde fondeas.",
+  "trampa": "El giro del barco fondeado se llama borneo, no tenedero."
+ },
+ "bal-per-2019-04-f-06": {
+  "explicacion": "El as de guía forma una gaza fija: un lazo que no se corre ni se cierra al tirar, por eso se usa para encapillar un noray o para salvamento. No es un nudo de unión (eso es el llano o la vuelta de escota), la gaza corrediza se cierra al tirar y el falcaceado es el remate del chicote para que no se descolche.",
+  "clave": "As de guía = gaza fija, no corre.",
+  "trampa": "La gaza corrediza se cierra al tirar; la del as de guía no."
+ },
+ "bal-per-2019-06-b-06": {
+  "explicacion": "El chicote es el extremo de un cabo o cable. El firme es la parte que está amarrada o que trabaja, el seno es la parte curva o central del cabo y la gaza es un lazo u ojo hecho en él.",
+  "clave": "Chicote = la punta del cabo.",
+  "trampa": "El firme es el lado que trabaja o está amarrado, no la punta libre.",
+  "base": "and-2025-c2-t05",
+  "concepto": "and-2025-c2-t05"
+ },
+ "bal-per-2019-06-c-05": {
+  "explicacion": "Las praderas de Posidonia oceánica están protegidas: en Baleares el Decreto 25/2018 prohíbe fondear sobre ellas, y desde el RD 191/2026 la prohibición se extiende a todo el Mediterráneo. Cerca de una piscifactoría, de una zona de pesca deportiva o de una central puede haber limitaciones locales, pero no una prohibición general como la de la posidonia.",
+  "clave": "Posidonia: nunca fondees encima, fondea en arena.",
+  "trampa": "La piscifactoría suele estar balizada y hay que apartarse, pero la abstención obligatoria que se pregunta es la de la posidonia."
+ },
+ "bal-per-2019-09-a-05": {
+  "explicacion": "El bichero es una pértiga (la percha o asta) que termina en una pieza metálica con un gancho y una punta, llamada puntera, con la que se cogen gazas, cabos, amarras u objetos flotantes o se aparta el barco. El garfio es un gancho genérico, no el nombre de esa pieza, y el pulpo es un tensor elástico.",
+  "clave": "Bichero: percha + puntera (el gancho).",
+  "trampa": "Garfio suena a gancho, pero la pieza del bichero se llama puntera.",
+  "concepto": "bal-per-2019-09-a-05"
+ },
+ "bal-per-2022-09-b-06": {
+  "explicacion": "La pieza del extremo del bichero con gancho y punta, con la que se cogen gazas, cabos, amarras u objetos flotantes, se llama puntera. «Gancho» y «garfio» describen la forma pero no son el nombre de la pieza, y el pulpo es un tensor elástico.",
+  "clave": "Bichero: percha + puntera (el gancho).",
+  "trampa": "La a) y la b) describen la forma de la pieza, no su nombre: la puntera.",
+  "concepto": "bal-per-2019-09-a-05"
+ },
+ "bal-per-2019-09-a-06": {
+  "explicacion": "La imagen muestra un guiacabos (guía o gatera) abierto, fijado en la regala, por el que pasa el cabo para conducirlo desde la cubierta hasta el noray o la bita del muelle sin que roce. No sirve para hacer firme el cabo: la bita tiene dos columnas, el noray está en el muelle y la cornamusa tiene forma de T con dos brazos.",
+  "clave": "Guiacabos: el cabo pasa por él, no se amarra en él.",
+  "trampa": "Por su aspecto metálico parece una cornamusa, pero no tiene brazos para dar vueltas: solo guía."
+ },
+ "bal-per-2019-12-c-05": {
+  "explicacion": "Con el ancla ya en la roldana hay que trincarla bien a cubierta para que no caiga o golpee el casco con la mar, y desconectar el interruptor del molinete para evitar que se suelte por un accionamiento accidental. La c) junta ambas cosas y por eso la oficial es d), «todas son correctas».",
+  "clave": "Ancla arriba: trincada y molinete desconectado.",
+  "trampa": "La c) ya parece completa, pero como a) y b) también son ciertas, la que lo abarca todo es la d)."
+ },
+ "bal-per-2019-12-c-06": {
+  "explicacion": "El orinque es un cabo amarrado a la cruz del ancla con un boyarín en su extremo. Señala la vertical del ancla a ti y a las demás embarcaciones (útil en calas concurridas) y, si el ancla se enroca, permite virar del orinque para hacerla zarpar por la cruz. Por eso todas son correctas.",
+  "clave": "Orinque: señala el ancla y la desenroca.",
+  "trampa": "No te quedes con una sola ventaja: las tres son ciertas."
+ },
+ "bal-per-2020-07-d-06": {
+  "explicacion": "La vuelta de rezón sirve para hacer firme un cabo a una argolla, como el arganeo del rezón o del ancla: se dan dos vueltas al aro, se pasa el chicote alrededor del firme y por dentro de las vueltas, y se remata. No es para estibar el rezón a bordo ni para evitar que gire, y unir dos cabos de la misma mena es el nudo llano.",
+  "clave": "Rezón = cabo a argolla.",
+  "trampa": "Unir dos cabos iguales es el llano, no la vuelta de rezón.",
+  "base": "and-2021-c1-t05",
+  "concepto": "and-2021-c1-t05"
+ },
+ "bal-per-2020-07-e-06": {
+  "explicacion": "El garreo es el arrastre del ancla por el fondo porque no agarra, y su causa típica es un mal tenedero (roca, algas, fango blando) o poca cadena filada. El borneo es solo el giro del barco alrededor del ancla y tener mucha cadena filada mejora el agarre, no lo empeora.",
+  "clave": "Garrea: mal fondo o poca cadena.",
+  "trampa": "Demasiada cadena no hace garrear; lo que hace garrear es filar poca."
+ },
+ "bal-per-2020-07-ig-06": {
+  "explicacion": "El ballestrinque es el nudo de amarrada que se hace con dos vueltas cruzadas alrededor de una bita, un candelero o un pasamanos; por eso se usa para afirmar las amarras a la bita y las defensas a los guardamancebos. El llano une dos cabos, el margarita acorta un cabo y la vuelta de rezón es para argollas.",
+  "clave": "Ballestrinque: amarrar a palo, bita o candelero (defensas).",
+  "trampa": "La vuelta de rezón también amarra, pero a una argolla, no a una bita o barandilla."
+ },
+ "bal-per-2020-10-a-06": {
+  "explicacion": "La falsa es la b): la piedra y la roca son malos tenederos, porque el ancla no se clava y garrea o se enroca. El resto es correcto: borneo es el giro del barco fondeado alrededor del ancla, el orinque balizado con boyarín marca el ancla, y tras fondear hay que tomar marcaciones o enfilaciones y comprobar la sonda.",
+  "clave": "Buen tenedero: arena, fango duro. Malo: roca, algas.",
+  "trampa": "Piden la FALSA: no elijas una de las definiciones correctas."
+ },
+ "bal-per-2020-10-d-05": {
+  "explicacion": "El ancla garrea cuando no agarra bien, y eso pasa por tener filada poca cadena (el tiro deja de ser horizontal y arranca el ancla) o por un mal tenedero. Tener filada mucha cadena mejora el agarre, así que la b) es falsa y la correcta es la d), que junta la a) y la c).",
+  "clave": "Garrea: poca cadena o mal fondo.",
+  "trampa": "Demasiada cadena no hace garrear: la b) es la que sobra."
+ },
+ "bal-per-2020-10-e-05": {
+  "explicacion": "El nudo llano une dos cabos de la misma mena; si las menas son distintas se usa la vuelta de escota. La vuelta de rezón es para argollas, el ballestrinque para palos o candeleros y el as de guía hace una gaza.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "base": "and-2023-c2-t05",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2020-10-e-06": {
+  "explicacion": "El fondo de arena es el tenedero preferente: el ancla se entierra y agarra bien (también el fango duro). Los fondos en declive hacen que el ancla se deslice hacia lo hondo, las algas impiden que se clave y la roca la deja sin agarre o enrocada.",
+  "clave": "Mejor tenedero: arena (o fango duro), en fondo llano.",
+  "trampa": "Las algas parecen blandas, pero el ancla resbala sobre ellas y garrea."
+ },
+ "bal-per-2020-10-f-06": {
+  "explicacion": "Las cornamusas son piezas metálicas en forma de T con dos brazos en las que se hacen firmes las drizas, escotas y amarras. Los pasamanos son barandillas para agarrarse, las guías solo conducen los cabos y las bitas son las columnas robustas para las amarras.",
+  "clave": "Cornamusa = T de dos brazos para drizas y escotas.",
+  "trampa": "La bita también afirma cabos, pero es para amarras y tiene forma de columna.",
+  "concepto": "bal-per-2020-10-f-06"
+ },
+ "bal-per-2021-09-a-06": {
+  "explicacion": "Las cornamusas son piezas metálicas en forma de T con dos brazos donde se hacen firmes drizas, escotas y otros cabos. Los pasamanos son barandillas, las guías conducen el cabo sin fijarlo y las roldanas son ruedas por las que laborea un cabo.",
+  "clave": "Cornamusa = T de dos brazos para drizas y escotas.",
+  "trampa": "La roldana hace pasar el cabo, no lo deja firme.",
+  "concepto": "bal-per-2020-10-f-06"
+ },
+ "bal-per-2020-12-b-05": {
+  "explicacion": "Dar una vuelta es pasar el cabo alrededor de un tambor o pieza de amarre (molinete, cabrestante, bita o cornamusa) para cobrarlo o hacerlo firme. El barbotén es la rueda con huecos donde engrana la cadena, no se le dan vueltas con un cabo, y pasar el cabo por la guía no es dar una vuelta.",
+  "clave": "Vuelta = cabo alrededor de tambor, bita o cornamusa.",
+  "trampa": "El barbotén lleva cadena engranada; el cabo se trabaja en el tambor (cabirón).",
+  "concepto": "bal-per-2020-12-b-05"
+ },
+ "bal-per-2024-04-a-05": {
+  "explicacion": "Dar una vuelta es pasar el cabo alrededor del tambor del molinete o cabrestante, de una bita o de una cornamusa. Poner la gaza en el bolardo es encapillar, y pasar el cabo por la guía solo lo conduce.",
+  "clave": "Vuelta = cabo alrededor de tambor, bita o cornamusa.",
+  "trampa": "La a) es encapillar una gaza, no dar una vuelta.",
+  "concepto": "bal-per-2020-12-b-05"
+ },
+ "bal-per-2020-12-b-06": {
+  "explicacion": "El barbotén es el tambor del molinete con huecos o almohadillas en los que engranan los eslabones de la cadena para cobrarla o filarla. El revestimiento del escobén es la bocina, y ni la palanca ni el cambio de velocidad son el barbotén.",
+  "clave": "Barbotén = rueda del molinete donde engrana la cadena.",
+  "trampa": "No lo confundas con el cabirón o tambor, que es para cabos."
+ },
+ "bal-per-2020-12-c-05": {
+  "explicacion": "Si el ancla se ha enrocado, lo prudente es dar unas paladas avante para pasar la vertical y cambiar el ángulo de tiro, y volver a intentar levar; a menudo zarpa al tirar desde el lado contrario. Dar toda atrás o toda avante puede partir la cadena o dañar el molinete y la proa, y cortar la línea es el último recurso.",
+  "clave": "Ancla enrocada: tira desde otro ángulo, con suavidad.",
+  "trampa": "Dar toda máquina parece resolverlo, pero arriesgas la cadena y el barco."
+ },
+ "bal-per-2020-12-c-06": {
+  "explicacion": "El borneo es el giro que describe la embarcación fondeada con una sola ancla alrededor de ella cuando rola el viento o cambia la corriente. El garreo es el arrastre del ancla por el fondo, y el balanceo por la ola de otro barco no es borneo.",
+  "clave": "Bornear = girar alrededor del ancla.",
+  "trampa": "Garreo y borneo no son sinónimos: el garreo es que el ancla se arrastre."
+ },
+ "bal-per-2020-12-d-05": {
+  "explicacion": "El borneo es el movimiento circular del barco fondeado alrededor del ancla al cambiar el viento o la corriente. La a) es falsa porque ese cabo se llama orinque (tenedero es el fondo), la c) porque se fondea proa al viento y ya parado o con ligera arrancada atrás, y la d) porque la cadena se calcula sobre la profundidad (unas 3 a 5 veces la sonda), no sobre la eslora.",
+  "clave": "Borneo = círculo alrededor del ancla.",
+  "trampa": "La a) describe bien el orinque, pero le pone el nombre equivocado.",
+  "concepto": "bal-per-2020-12-d-05"
+ },
+ "bal-per-2021-06-g-05": {
+  "explicacion": "Se llama borneo al movimiento circular que describe el barco fondeado alrededor de su ancla. La a) define el orinque, no el tenedero (que es el fondo); la c) es falsa porque al fondear se va proa al viento y parado o con muy poca arrancada atrás, y la d) porque la cadena se mide en función de la sonda, no de la eslora.",
+  "clave": "Borneo = círculo alrededor del ancla.",
+  "trampa": "La a) describe el orinque con el nombre de tenedero.",
+  "concepto": "bal-per-2020-12-d-05"
+ },
+ "bal-per-2020-12-e-05": {
+  "explicacion": "El nudo llano une dos cabos de la misma mena; si las menas son distintas se usa la vuelta de escota. La vuelta de rezón es para argollas, el ballestrinque para palos o candeleros y el as de guía hace una gaza.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "base": "and-2023-c2-t05",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2020-12-e-06": {
+  "explicacion": "Si la cadena tira por largo con mucha fuerza, el barco está lejos del ancla y el molinete estaría arrastrando el barco entero. Lo correcto es dar unas paladas avante para acercarte al ancla y quitar tensión mientras cobras cadena. Forzar el molinete puede averiarlo y dar atrás aumenta todavía más la tensión.",
+  "clave": "Tira por largo: avante suave hacia el ancla.",
+  "trampa": "Aumentar la fuerza del molinete parece lógico, pero lo puedes romper.",
+  "base": "and-2023-c1-t05",
+  "concepto": "and-2023-c1-t05"
+ },
+ "bal-per-2020-12-i-06": {
+  "explicacion": "El círculo que describe el barco fondeado al girar alrededor del ancla con el viento o la corriente es el círculo de borneo; su radio es la cadena filada más la eslora. Hay que tenerlo en cuenta para no tocar a otros barcos ni a la costa. «Garreo» es el arrastre del ancla, no un círculo.",
+  "clave": "Círculo de borneo: radio = cadena + eslora.",
+  "trampa": "Garreo no es girar, es que el ancla se arrastre."
+ },
+ "bal-per-2021-03-b-05": {
+  "explicacion": "Una boya es un objeto flotante, de materiales diversos, fondeado o anclado al lecho marino para señalizar o para amarrar. Las defensas se colocan en los costados para proteger el casco y un flotador a la deriva no es una boya, precisamente porque no está fondeado.",
+  "clave": "Boya = flotador fondeado al fondo.",
+  "trampa": "La d) describe una defensa, no una boya."
+ },
+ "bal-per-2021-03-b-06": {
+  "explicacion": "El noray es una pieza metálica, normalmente de hierro, roma y curvada en su parte superior, fijada al muelle para encapillar las amarras. La pieza de dos brazos en T es la cornamusa, la argolla fija en cubierta es un cáncamo y la boya de amarre es un muerto o boya.",
+  "clave": "Noray = en el muelle; cornamusa = a bordo.",
+  "trampa": "La d) es la cornamusa, que está a bordo."
+ },
+ "bal-per-2021-06-ci-05": {
+  "explicacion": "La vuelta de rezón sirve para unir un cabo a una argolla, como el grillete o arganeo del ancla. Para unir dos cabos de la misma mena está el llano, para las defensas el ballestrinque y para encapillar un noray una gaza o un as de guía.",
+  "clave": "Rezón = cabo a argolla.",
+  "trampa": "Las defensas se amarran con ballestrinque, no con vuelta de rezón.",
+  "concepto": "and-2021-c1-t05"
+ },
+ "bal-per-2021-06-d-05": {
+  "explicacion": "La roldana es la rueda acanalada, montada en un motón o en la proa, por la que laborea o corre un cabo. La bita y la cornamusa sirven para hacer firme el cabo, y el guiacabos lo conduce pero no tiene rueda.",
+  "clave": "Roldana = rueda por donde corre el cabo.",
+  "trampa": "El guiacabos también conduce el cabo, pero sin rueda giratoria."
+ },
+ "bal-per-2021-06-f-05": {
+  "explicacion": "Si no hay estopor, conviene abozar la cadena: hacerla firme con una boza a una bita o cornamusa de cubierta, para que el esfuerzo del fondeo no lo aguante el molinete ni su barbotén. Dejarla solo en el barbotén puede dañar el molinete o soltarse, y un candelero no está hecho para ese esfuerzo.",
+  "clave": "Fondeado: la cadena, abozada; el molinete, descansando.",
+  "trampa": "La a) parece cómoda, pero el molinete no debe soportar los tirones del fondeo."
+ },
+ "bal-per-2021-06-f-06": {
+  "explicacion": "Para fondear con un ancla en viento constante la aproximación se hace proa al viento y con poca arrancada avante, hasta pararse sobre el punto elegido; entonces se larga el ancla mientras el barco cae hacia atrás. Atravesado al viento abatirías sin control, y el timón a una u otra banda no es lo que define la maniobra.",
+  "clave": "Aproximación al fondeo: proa al viento, poca arrancada.",
+  "trampa": "Las opciones b) y c) hablan del timón, pero lo esencial es proa al viento y avanzar despacio."
+ },
+ "bal-per-2021-09-a-05": {
+  "explicacion": "La roca es el peor tenedero de los propuestos: el ancla no se entierra, garrea o se queda enrocada. La arena, el fango y la arena fangosa permiten que el ancla se clave.",
+  "clave": "Roca: el ancla ni agarra ni sale.",
+  "trampa": "El fango solo es malo cuando es muy blando; aquí la peor es la roca."
+ },
+ "bal-per-2021-09-f-05": {
+  "explicacion": "Una gaza es un lazo u ojo hecho en el extremo de un cabo doblándolo y uniéndolo con costura o ligada. El extremo del cabo es el chicote, el grosor es la mena y el nudo de vueltas cruzadas no es una gaza.",
+  "clave": "Gaza = ojo en el extremo del cabo.",
+  "trampa": "La a) define el chicote y la c) la mena."
+ },
+ "bal-per-2021-12-a-06": {
+  "explicacion": "Un grillete de cadena es un tramo de unos 27,5 metros (15 brazas), por eso la respuesta más cercana es 27 m. Se usa para contar la cadena filada: los tramos se unen con grilletes que suelen ir marcados.",
+  "clave": "1 grillete ≈ 27,5 m (15 brazas).",
+  "trampa": "15 son las brazas, no los metros."
+ },
+ "bal-per-2021-12-c-05": {
+  "explicacion": "El nudo llano une dos cabos de la misma mena por sus chicotes; si las menas son distintas se usa la vuelta de escota. La vuelta de rezón es para argollas, el ballestrinque para palos o candeleros y el as de guía hace una gaza.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "base": "and-2023-c2-t05",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2021-12-c-06": {
+  "explicacion": "Para un fondeo largo sin garrear conviene elegir un buen tenedero (arena, fango o arcilla), filar mucha cadena (5 veces la sonda o más, para que el tiro sobre el ancla sea horizontal) y abozar la cadena a una cornamusa para que el esfuerzo no lo aguante el molinete. Las tres medidas son buenas, así que la respuesta es la d).",
+  "clave": "Contra el garreo: buen fondo, mucha cadena, cadena abozada.",
+  "trampa": "Cada opción es cierta por separado; la completa es la d)."
+ },
+ "bal-per-2021-12-d-05": {
+  "explicacion": "Con buen tiempo se fila cadena de unas 3 veces la sonda, y con mal tiempo hay que aumentarla, entre 5 y 6 veces la sonda, para que el peso de la cadena absorba los tirones y el tiro sobre el ancla siga siendo horizontal. Las opciones de 1 a 3 veces se quedan cortas: con temporal el barco garrearía.",
+  "clave": "Cadena: 3 × sonda con buen tiempo; 5–6 × con malo.",
+  "trampa": "La a) y la d) son iguales y valen para buen tiempo, no para temporal."
+ },
+ "bal-per-2021-12-d-06": {
+  "explicacion": "La respuesta oficial es el círculo de borneo. La sonda condiciona la cadena que hay que filar, la eslora el tamaño del barco y la regulación de la zona si se puede fondear o no.",
+  "clave": "Tenedero: sonda, fondo, abrigo, espacio y normativa.",
+  "discrepancia": "El círculo de borneo sí influye al elegir dónde fondear: hay que tener sitio para girar sin tocar a otros barcos ni a la costa, y la propia eslora entra en su radio. En otra convocatoria la misma pregunta pone como respuesta la temperatura del agua, que es lo que de verdad no influye; aquí ninguna opción es claramente ajena a la elección."
+ },
+ "bal-per-2021-12-f-06": {
+  "explicacion": "Un buen fondeadero reúne todo lo que se cita: fondo de arena o fango que agarre bien, una profundidad moderada respecto al calado y sin desniveles, y abrigo del viento y la mar con salida fácil si empeora el tiempo. Por eso la correcta es la c), «todas las opciones son correctas».",
+  "clave": "Buen fondeadero: buen fondo, poca sonda, abrigo y salida fácil.",
+  "trampa": "Cada opción describe una parte; la respuesta completa es la c)."
+ },
+ "bal-per-2022-06-d-06": {
+  "explicacion": "El as de guía forma una gaza fija que no se corre, por eso se usa, entre otras cosas, para hacer una gaza en el chicote de una amarra y encapillarla en un noray. Para unir dos chicotes está el llano, para acortar un cabo el margarita, y una driza no se sujeta al molinete con un as de guía.",
+  "clave": "As de guía = gaza fija improvisada.",
+  "trampa": "Unir dos chicotes es trabajo del llano, no del as de guía."
+ },
+ "bal-per-2022-06-e-05": {
+  "explicacion": "Cornamusas y bitas son herrajes de a bordo donde se hacen firmes los cabos: la cornamusa tiene forma de T con dos brazos y la bita es una columna (o pareja de columnas) robusta en cubierta. El noray, en cambio, está fijado en el muelle, no en el barco.",
+  "clave": "Noray en el muelle; cornamusa y bita a bordo.",
+  "trampa": "El noray también sirve para hacer firme un cabo, pero la pregunta dice «de a bordo».",
+  "base": "and-2020-c1-t05",
+  "concepto": "and-2020-c1-t05"
+ },
+ "bal-per-2022-09-a-06": {
+  "explicacion": "El fondo de arena es el mejor tenedero de los propuestos: el ancla se entierra y agarra. En una pendiente brusca el ancla se desliza hacia lo hondo, en la piedra no se clava (o se enroca) y sobre las algas resbala.",
+  "clave": "Mejor tenedero: arena (o fango duro), en fondo llano.",
+  "trampa": "La pendiente no es un tipo de fondo malo por el material, sino por el desnivel: el ancla se va hacia lo hondo."
+ },
+ "bal-per-2022-09-c-05": {
+  "explicacion": "El orinque es el cabo fino que va de la cruz del ancla a un boyarín: baliza la posición del ancla y permite zarparla por la cruz si se enroca. El ballestrinque es un nudo, la filástica es cada uno de los hilos que forman un cabo y la estacha es un cabo grueso de amarre o remolque.",
+  "clave": "Orinque: cruz del ancla → boyarín.",
+  "trampa": "La estacha también es un cabo, pero grueso y para amarrar o remolcar.",
+  "concepto": "bal-per-2022-09-c-05"
+ },
+ "bal-per-2025-12-d-06": {
+  "explicacion": "El orinque es el cabo fino que va de la cruz del ancla a un boyarín, para balizar el ancla y poder zarparla por la cruz si se enroca. El rezón es una pequeña ancla de varios brazos, la filástica es un hilo de los que forman el cabo y la estacha un cabo grueso de amarre.",
+  "clave": "Orinque: cruz del ancla → boyarín.",
+  "trampa": "El rezón es un ancla pequeña, no un cabo.",
+  "concepto": "bal-per-2022-09-c-05"
+ },
+ "bal-per-2022-09-m-06": {
+  "explicacion": "La vuelta de rezón sirve para hacer firme un cabo a una argolla o cáncamo, y también para entalingar (unir el cabo de fondeo) a un ancla o a un rezón por su arganeo. Por eso la correcta es la d). Para unir dos cabos de la misma mena se usa el llano.",
+  "clave": "Rezón = cabo a argolla (y entalingar el ancla).",
+  "trampa": "La c) es el nudo llano.",
+  "concepto": "and-2021-c1-t05"
+ },
+ "bal-per-2022-12-be-05": {
+  "explicacion": "El bichero es el asta larga con un gancho (la puntera) en su extremo, con la que se cogen cabos y gazas o se aparta el barco al atracar y desatracar. El garfio es solo un gancho, el salabre es una red con mango para sacar peces y «acercamuelles» no es un término náutico.",
+  "clave": "Bichero = asta con gancho para atracar.",
+  "trampa": "El garfio es la forma del gancho, no el nombre del utensilio completo."
+ },
+ "bal-per-2022-12-c-05": {
+  "explicacion": "El orinque, un cabo con boyarín amarrado a la cruz del ancla, sirve para balizar la posición del ancla y para desenrocarla tirando de la cruz si se ha quedado enganchada en las piedras. No evita el garreo, que depende del tenedero y de la cadena filada. Por eso la correcta es la d), a y c.",
+  "clave": "Orinque: señala el ancla y la desenroca.",
+  "trampa": "El orinque no sujeta nada: no impide que el ancla garree.",
+  "concepto": "bal-per-2022-12-c-05"
+ },
+ "bal-per-2025-12-a-06": {
+  "explicacion": "Se orinca el ancla para balizarla (el boyarín señala dónde está) y para desenrocarla tirando de la cruz si se ha quedado enganchada en las piedras. El orinque no evita el garreo, que depende del tenedero y de la cadena. La correcta es la d), a y c.",
+  "clave": "Orinque: señala el ancla y la desenroca.",
+  "trampa": "El orinque no sujeta nada: no impide que el ancla garree.",
+  "concepto": "bal-per-2022-12-c-05"
+ },
+ "bal-per-2022-12-c-06": {
+  "explicacion": "Lo más favorable es fondear proa al viento: el barco se para con facilidad, cae hacia atrás estirando la cadena y queda alineado con el ancla, como quedará después fondeado. Con el viento o la corriente por la popa el barco no se para y pasa por encima de la cadena, y atravesado abate sin control.",
+  "clave": "Fondear: proa al viento (o a la corriente).",
+  "trampa": "Popa al viento parece cómodo, pero el barco no se detiene y monta la cadena."
+ },
+ "bal-per-2022-12-fd-06": {
+  "explicacion": "Para unir la línea de fondeo al arganeo del ancla se usa la vuelta de rezón, el nudo para hacer firme un cabo a una argolla. El ballestrinque es para palos o candeleros, el llano une dos cabos y el as de guía forma una gaza.",
+  "clave": "Rezón = cabo a argolla (arganeo).",
+  "trampa": "El as de guía también podría pasarse por el arganeo, pero el nudo propio es la vuelta de rezón.",
+  "concepto": "and-2021-c1-t05"
+ },
+ "bal-per-2023-06-bg-06": {
+  "explicacion": "La gaza es el lazo u ojo que se forma en el extremo de un cabo doblándolo y uniéndolo con costura o ligada, para enganchar o ceñir algo. El chicote es el extremo del cabo, el firme la parte que trabaja o está amarrada y el seno la parte curva entre dos puntos.",
+  "clave": "Gaza = ojo en el extremo del cabo.",
+  "trampa": "El chicote es la punta del cabo; la gaza es el ojo que se hace con ella."
+ },
+ "bal-per-2023-06-d-06": {
+  "explicacion": "El ballestrinque, dos vueltas cruzadas alrededor de un palo o barra, es el nudo para afirmar el chicote del cabo de una defensa a un pasamanos o candelero, y se regula con facilidad. El llano une dos cabos, el margarita acorta un cabo y la vuelta de rezón es para argollas.",
+  "clave": "Ballestrinque: amarrar a palo, bita o candelero (defensas).",
+  "trampa": "La vuelta de rezón también amarra, pero a una argolla, no a una barandilla."
+ },
+ "bal-per-2023-09-a-06": {
+  "explicacion": "Garrear es que el ancla resbale o se arrastre por el fondo sin agarrarse, de modo que el barco se desplaza. No es que crezca el círculo de borneo, ni que se esté levando el ancla, ni que se le ponga un orinque con boya.",
+  "clave": "Garreo = el ancla se arrastra, el barco se mueve.",
+  "trampa": "Garrear no es bornear: bornear es girar alrededor del ancla que sí agarra.",
+  "concepto": "bal-per-2023-09-a-06"
+ },
+ "bal-per-2023-12-a-06": {
+  "explicacion": "La cornamusa es una pieza en forma de T con dos brazos para hacer firme un cabo, y se instala donde haga falta: en la cubierta para amarras y escotas, en el mástil para las drizas y en los pantalanes flotantes para amarrar los barcos. Por eso todas son correctas.",
+  "clave": "Cornamusa: en cubierta, en el palo y en el pantalán.",
+  "trampa": "Aunque se asocie al barco, en los pantalanes también hay cornamusas."
+ },
+ "bal-per-2023-12-b-05": {
+  "explicacion": "El nudo llano, también llamado de rizo, une dos cabos de la misma mena; si las menas son distintas se usa la vuelta de escota. El ballestrinque es para palos o candeleros y el as de guía hace una gaza. La b) no es un nudo de unión.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "base": "and-2023-c2-t05",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2023-12-c-06": {
+  "explicacion": "El cabo que une el ancla fondeada (por su cruz) a una boya o boyarín es el orinque. La driza iza velas, la escota las caza y la boza es un cabo corto para sujetar provisionalmente un cabo o una cadena.",
+  "clave": "Orinque: cruz del ancla → boyarín.",
+  "trampa": "La boza también trabaja con la cadena de fondeo, pero la sujeta a bordo, no al boyarín.",
+  "concepto": "bal-per-2022-09-c-05"
+ },
+ "bal-per-2023-12-e-05": {
+  "explicacion": "El nudo llano se usa para unir por sus chicotes dos cabos del mismo grosor o mena. Si los grosores son distintos se usa la vuelta de escota, la gaza fija para encapillar un noray es el as de guía y para una argolla está la vuelta de rezón.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "trampa": "La c) es casi igual, pero con distinto grosor el llano se suelta: ahí va la vuelta de escota.",
+  "concepto": "and-2023-c2-t05"
+ },
+ "bal-per-2024-04-b-05": {
+  "explicacion": "Para levar el ancla el molinete tiene que estar embragado, es decir, con el barbotén engranado al motor para que pueda cobrar cadena. Desembragado, el barbotén gira libre y sirve para dejar caer el ancla por su peso al fondear.",
+  "clave": "Levar: embragado. Largar por gravedad: desembragado.",
+  "trampa": "Desembragado es para fondear dejando caer el ancla, no para levarla."
+ },
+ "bal-per-2024-04-ce-06": {
+  "explicacion": "El noray es la pieza de hierro fijada en el muelle, roma y curvada por arriba, en la que se encapilla la gaza de un cabo de amarre. La argolla es un aro para pasar o anudar un cabo, la roldana una rueda por donde corre el cabo y el muerto un peso fondeado en el fondo.",
+  "clave": "Noray = en el muelle, para encapillar gazas.",
+  "trampa": "La argolla también está en tierra, pero en ella se anuda el cabo, no se encapilla una gaza."
+ },
+ "bal-per-2024-04-df-05": {
+  "explicacion": "Para amarrarse a un muerto hay que hacerlo a la gaza o al cabo unido a la cadena del muerto por debajo de la boya, que es lo que aguanta el esfuerzo. La boya solo flota y señala: si te amarras a ella la puedes arrancar. Tampoco hace falta fondear el ancla antes.",
+  "clave": "Muerto: amárrate a la cadena o gaza, no a la boya.",
+  "trampa": "Encapillar la boya parece lo lógico, pero la boya no está hecha para aguantar el barco."
+ },
+ "bal-per-2024-04-df-06": {
+  "explicacion": "La vuelta de rezón es el nudo más indicado para amarrar un cabo a una argolla o arganeo. Para unir dos cabos de distinta mena se usa la vuelta de escota, la gaza para encapillar un noray se hace con as de guía y la escota se une al puño de la vela con un as de guía o un grillete.",
+  "clave": "Rezón = cabo a argolla.",
+  "trampa": "Encapillar un noray es cosa del as de guía.",
+  "base": "and-2021-c1-t05",
+  "concepto": "and-2021-c1-t05"
+ },
+ "bal-per-2024-07-a-05": {
+  "explicacion": "El obenque es un cable de la jarcia firme que sujeta el palo por los costados; no está diseñado para amarrar ni encapillar nada. Noray, cornamusa y bita, en cambio, son piezas pensadas para hacer firmes o encapillar los cabos de amarre.",
+  "clave": "Obenque = jarcia del palo, no amarre.",
+  "trampa": "Piden el que NO sirve para amarrar: los otros tres sí sirven."
+ },
+ "bal-per-2024-07-c-05": {
+  "explicacion": "La temperatura del agua no influye en la elección del tenedero. Sí influyen la sonda (cuánta cadena hay que filar), la eslora (espacio para bornear) y la normativa de la zona (por ejemplo, la prohibición de fondear sobre posidonia).",
+  "clave": "Tenedero: sonda, fondo, abrigo, espacio y normativa.",
+  "trampa": "Piden lo que NO influye: las otras tres sí cuentan."
+ },
+ "bal-per-2024-12-df-06": {
+  "explicacion": "La aproximación al fondeo con un ancla y viento constante se hace proa al viento y con poca arrancada avante hasta pararse en el punto elegido; entonces se larga el ancla mientras el barco cae atrás. Con la popa al viento el barco no se para y monta la cadena, y el timón no es lo que define la maniobra.",
+  "clave": "Aproximación al fondeo: proa al viento, poca arrancada.",
+  "trampa": "La c) acierta con proa al viento, pero lo correcto es venir con arrancada avante, no meter timón."
+ },
+ "bal-per-2025-04-ae-06": {
+  "explicacion": "El círculo que describe el barco fondeado girando alrededor del ancla, con un radio igual a la cadena filada más la eslora, es el círculo de borneo. «Círculo de garreo» no existe: garrear es que el ancla se arrastre.",
+  "clave": "Círculo de borneo: radio = cadena + eslora.",
+  "trampa": "Garreo no es girar, es que el ancla se arrastre.",
+  "concepto": "bal-per-2025-09-a-06"
+ },
+ "bal-per-2025-07-d-05": {
+  "explicacion": "Garrear es que el ancla pierde agarre y se arrastra por el fondo, con lo que el barco se va desplazando. No es que crezca el círculo de borneo, ni que se leve el ancla, ni ponerle una boya de señalización.",
+  "clave": "Garreo = el ancla se arrastra, el barco se mueve.",
+  "trampa": "Garrear no es bornear: bornear es girar alrededor del ancla que sí agarra.",
+  "concepto": "bal-per-2023-09-a-06"
+ },
+ "bal-per-2025-09-a-06": {
+  "explicacion": "El radio del círculo de borneo es la longitud de cadena filada más la eslora del barco, porque la proa gira a una distancia igual a la cadena y la popa queda una eslora más allá. Con solo la cadena te quedas corto y te podrías acercar demasiado a otro barco o a la costa.",
+  "clave": "Círculo de borneo: radio = cadena + eslora.",
+  "trampa": "La a) olvida la eslora: la popa también barre el círculo.",
+  "concepto": "bal-per-2025-09-a-06"
+ },
+ "bal-per-2026-03-c-05": {
+  "explicacion": "La roldana es la rueda acanalada, móvil, sobre la que apoya un cabo para cambiar su dirección de tiro con poco rozamiento (por ejemplo, la de un motón o la de proa). El guiacabos también cambia la dirección, pero es fijo y el cabo roza; la cornamusa sirve para hacer firme.",
+  "clave": "Roldana = rueda por donde corre el cabo.",
+  "trampa": "El guiacabos guía, pero no gira: el cabo roza."
+ },
+ "bal-per-2026-06-d-06": {
+  "explicacion": "Para comprobar que no garreas puedes poner la alarma de la sonda, que avisa si el fondo cambia (el barco se desplaza hacia aguas más someras), y tomar varias marcaciones o enfilaciones a tierra y vigilar que no cambien. El orinque solo señala dónde está el ancla, no dice si el barco se mueve. Por eso la correcta es la d).",
+  "clave": "Vigilar el garreo: marcaciones a tierra y alarma de sonda.",
+  "trampa": "El orinque localiza el ancla, pero no detecta que garree."
+ },
+ "bal-per-2026-09-c-05": {
+  "explicacion": "El ballestrinque se hace rápido para dejar firme un chicote a un noray, una pinza o un candelero, pero si la tracción no es constante se puede zafar, así que no es un amarre definitivo. La a) es falsa porque para menas distintas se usa la vuelta de escota; la b) describe el as de guía, y la d) mezcla la vuelta de rezón con una gaza corrediza.",
+  "clave": "Ballestrinque: rápido, pero se zafa si el tiro varía.",
+  "trampa": "La b) define bien la gaza fija, pero esa es la del as de guía, no la vuelta de rezón."
+ },
+ "bal-per-2026-09-d-06": {
+  "explicacion": "El seno es la parte del cabo que forma una curva u holgura entre dos puntos de sujeción, sin estar tensa. El extremo libre que se maneja es el chicote, la parte hecha firme es el firme y el extremo labrado en ojo es una gaza.",
+  "clave": "Seno = la curva del cabo; chicote = la punta; firme = lo amarrado.",
+  "trampa": "La b) describe el chicote y la d) el firme."
+ },
+ "bal-per-2017-03-a-07": {
+  "explicacion": "Catamaranes y trimaranes tienen una manga muy grande con los flotadores separados, lo que les da una estabilidad transversal inicial mucho mayor que la de un monocasco: escoran muy poco. Por eso la correcta es la a). Su contrapartida es que, si llegan a volcar, no se adrizan solos.",
+  "clave": "Multicasco: mucha manga, mucha estabilidad transversal.",
+  "trampa": "La c) se queda solo con el catamarán, pero el trimarán también la tiene."
+ },
+ "bal-per-2017-03-a-08": {
+  "explicacion": "La respuesta oficial, 4,5 m, es la altura del ensayo de los chalecos homologados según el Código LSA (SOLAS): el usuario debe poder saltar al agua desde 4,5 m sin lesionarse ni que el chaleco se desplace. Esa era la referencia del antiguo reglamento de equipos. Desde el 1 de julio de 2021, el RD 339/2021 (art. 7.5) ya no enuncia esa prueba y admite chalecos certificados como equipo de protección individual (Reglamento UE 2016/425), con su flotabilidad mínima por zona.",
+  "clave": "Chaleco SOLAS: salto desde 4,5 m sin lesiones.",
+  "trampa": "Las alturas pequeñas no sirven: el ensayo está pensado para saltar desde la cubierta de un buque."
+ },
+ "bal-per-2017-03-a-09": {
+  "explicacion": "Todas valen para avisar a Salvamento Marítimo: su teléfono de emergencias 900 202 202, el 112, que deriva la llamada, y sobre todo el canal 16 de VHF, el de socorro y llamada, que escuchan los centros de coordinación y los barcos cercanos.",
+  "clave": "Emergencia: canal 16, 900 202 202 o 112.",
+  "trampa": "En la mar el canal 16 es el preferente, pero los teléfonos también son válidos."
+ },
+ "bal-per-2017-03-a-10": {
+  "explicacion": "Capear es aguantar el temporal con la proa o la amura a la mar y poca máquina, lo justo para gobernar, hasta que amaine. Correr el temporal es lo contrario, recibirlo por la popa o la aleta, y navegar de través al temporal es lo más peligroso porque el barco puede volcar.",
+  "clave": "Capear = proa o amura a la mar. Correr = popa a la mar.",
+  "trampa": "Correr el temporal suena a escapar, pero es llevar la mar por popa."
+ },
+ "bal-per-2017-03-b-07": {
+  "explicacion": "Aguas someras son simplemente aguas de poca profundidad, en las que hay poca agua bajo la quilla y riesgo de tocar fondo. No tienen nada que ver con la contaminación, y tampoco son aguas de profundidad media o grande.",
+  "clave": "Somero = poco profundo.",
+  "trampa": "La b) suena técnica, pero somero no es «medio»: es poco profundo.",
+  "base": "and-2021-c2-t07",
+  "concepto": "and-2021-c2-t07"
+ },
+ "bal-per-2025-07-a-08": {
+  "explicacion": "Aguas someras son simplemente aguas de poca profundidad, en las que hay poca agua bajo la quilla y riesgo de tocar fondo. No tienen nada que ver con la contaminación ni con el estado de la mar, aunque las opciones intenten liarte.",
+  "clave": "Somero = poco profundo.",
+  "trampa": "«Tranquilas» no es somero: unas aguas pueden ser someras y tener mucha ola.",
+  "base": "and-2021-c2-t07",
+  "concepto": "and-2021-c2-t07"
+ },
+ "bal-per-2025-12-d-07": {
+  "explicacion": "Aguas someras son simplemente aguas de poca profundidad, en las que hay poca agua bajo la quilla y riesgo de tocar fondo. No significa aguas en calma ni aguas contaminadas.",
+  "clave": "Somero = poco profundo.",
+  "trampa": "La b) confunde somero con calmado: en aguas someras la ola incluso rompe antes.",
+  "base": "and-2021-c2-t07",
+  "concepto": "and-2021-c2-t07"
+ },
+ "bal-per-2017-03-b-08": {
+  "explicacion": "Con mala mar no hay que navegar atravesado a ella, porque el barco balancea violentamente y puede volcar; se navega recibiendo la mar por la amura o por la aleta. Hay que cerrar escotillas y portillos, que la tripulación esté protegida (no toda en cubierta) y moderar la velocidad para no dar pantocazos.",
+  "clave": "Mala mar: nunca atravesado, todo cerrado, velocidad moderada.",
+  "trampa": "Correr a puerto lo más rápido posible hace que el barco golpee y sufra: hay que moderar."
+ },
+ "bal-per-2017-03-b-09": {
+  "explicacion": "El reflector de radar es un elemento pasivo que devuelve las ondas del radar de los demás barcos y aumenta nuestro eco en sus pantallas, para que nos detecten, sobre todo si el casco no es metálico. No mejora nuestro propio radar ni emite luz.",
+  "clave": "Reflector de radar: te hace visible en el radar ajeno.",
+  "trampa": "La a) habla de nuestro radar, pero el reflector sirve a los radares de los otros.",
+  "concepto": "bal-per-2017-03-b-09"
+ },
+ "bal-per-2025-12-c-08": {
+  "explicacion": "El reflector de radar pasivo no emite nada: solo devuelve las ondas que le llegan de los radares de otros barcos y así aumenta nuestro eco en sus pantallas. No mejora nuestro propio radar ni emite luz, y la d) es falsa porque habla de emitir señales, que es lo que haría un respondedor activo.",
+  "clave": "Reflector de radar: te hace visible en el radar ajeno.",
+  "trampa": "La d) dice «emitir»: un reflector pasivo solo refleja.",
+  "concepto": "bal-per-2017-03-b-09"
+ },
+ "bal-per-2017-03-b-10": {
+  "explicacion": "El tiempo de supervivencia en el agua depende de muchos factores a la vez: la temperatura del agua (el principal, por la hipotermia) y el viento, la actividad que haga el náufrago (nadar le hace perder calor más rápido) y sus condiciones físicas, como la edad y la corpulencia. Por eso todas son correctas.",
+  "clave": "Supervivencia en el agua: frío, actividad y constitución.",
+  "trampa": "Cada opción es un factor real; la completa es la a)."
+ },
+ "bal-per-2017-03-ci-07": {
+  "explicacion": "En las zonas de navegación 1 a 4 el aro salvavidas debe llevar una luz de encendido automático y una rabiza, el cabo flotante para atraer al náufrago. Solo la luz o solo la rabiza se quedan cortos, y el reflector de radar no es un complemento del aro.",
+  "clave": "Aro en zonas 1–4: con luz y rabiza.",
+  "trampa": "La b) y la c) tienen la mitad: hacen falta las dos cosas."
+ },
+ "bal-per-2017-03-ci-08": {
+  "explicacion": "La luz de encendido automático del aro salvavidas debe permanecer encendida al menos dos horas, el tiempo exigido por las normas de homologación para que el náufrago pueda ser localizado de noche. Cuatro o cinco horas no es el requisito, y no se deja al criterio del fabricante.",
+  "clave": "Luz del aro: 2 horas como mínimo.",
+  "trampa": "No confundas con otros tiempos de los equipos: la luz del aro, 2 horas.",
+  "concepto": "bal-per-2017-03-ci-08"
+ },
+ "bal-per-2025-07-c-09": {
+  "explicacion": "La luz del aro salvavidas debe permanecer encendida como mínimo dos horas, lo que exigen las normas de homologación. Cuatro u ocho horas no es el requisito, y no basta con lo que diga el fabricante aunque supere los treinta minutos.",
+  "clave": "Luz del aro: 2 horas como mínimo.",
+  "trampa": "La c) parece flexible, pero el mínimo está fijado: 2 horas.",
+  "concepto": "bal-per-2017-03-ci-08"
+ },
+ "bal-per-2017-03-ci-09": {
+  "explicacion": "El 900 202 202 es el teléfono gratuito de emergencias de Salvamento Marítimo, que atienden sus centros de coordinación las 24 horas. No es un número de información náutica, de Costas ni de meteorología.",
+  "clave": "900 202 202 = Salvamento Marítimo.",
+  "trampa": "Es gratuito, pero no es informativo: es el número de emergencias."
+ },
+ "bal-per-2017-03-ci-10": {
+  "explicacion": "Al náufrago se le recoge por el costado de sotavento del barco: el barco le hace socaire, le protege del viento y la mar, y deriva hacia él en vez de alejarse. Por la popa está la hélice, que es un peligro, y por la proa es difícil verlo y subirlo.",
+  "clave": "Hombre al agua: recógelo por sotavento, lejos de la hélice.",
+  "trampa": "Por la popa parece más bajo y cómodo, pero allí está la hélice."
+ },
+ "bal-per-2017-03-fa-07": {
+  "explicacion": "El centro de gravedad es el punto donde se considera aplicado el peso total del barco, así que su posición depende de cómo estén distribuidos los pesos a bordo: subir o bajar pesos lo sube o lo baja. La forma de la carena y las dimensiones determinan el centro de carena, no el de gravedad.",
+  "clave": "G = pesos; C = forma de la carena.",
+  "trampa": "La a) es lo que define el centro de carena."
+ },
+ "bal-per-2017-03-fa-08": {
+  "explicacion": "En la curva de evolución se mete todo el timón a la banda por la que cayó el náufrago hasta haber girado unos 270°, y el barco vuelve hacia la zona de caída con el náufrago por la proa. Girar hasta el rumbo opuesto o hasta el primitivo no te devuelve al punto, y la d) mezcla dos maniobras.",
+  "clave": "Curva de evolución: todo el timón a la banda de caída, unos 270°.",
+  "trampa": "La d) no existe: la combinación de dos giros es la de Boutakow (70° y luego a la contraria)."
+ },
+ "bal-per-2017-03-fa-09": {
+  "explicacion": "La guirnalda es el cabo que rodea el aro salvavidas, sujeto en varios puntos, para que el náufrago pueda agarrarse. La estacha es un cabo grueso de amarre, el andarivel un cabo tendido para sujetarse o desplazarse y la filástica cada hilo de un cabo.",
+  "clave": "Guirnalda = cabo alrededor del aro.",
+  "trampa": "El andarivel también es para agarrarse, pero va tendido a bordo, no alrededor del aro."
+ },
+ "bal-per-2017-03-fa-10": {
+  "explicacion": "Si no sabes cuándo cayó el tripulante, se toma como datum la última posición en que se le vio a bordo, se invierte el rumbo para volver por la misma derrota y se mantiene una vigilancia visual estricta, además de avisar por el canal 16. Por eso todas son correctas.",
+  "clave": "Caída no vista: datum, rumbo inverso y vigilancia.",
+  "trampa": "Cada opción es un paso del mismo procedimiento; la completa es la d)."
+ },
+ "bal-per-2017-03-ge-07": {
+  "explicacion": "Con mal tiempo y la costa a sotavento, el viento y la mar te empujan hacia ella, así que hay que ir corrigiendo el rumbo hacia barlovento para ganar distancia de la costa. Navegar entre rompientes o cerca de tierra es peligrosísimo: si falla el motor, el barco acabaría contra la costa.",
+  "clave": "Costa a sotavento con temporal: aléjate, gana barlovento.",
+  "trampa": "Tener la costa cerca no es una ventaja en una avería: es justo el peligro."
+ },
+ "bal-per-2017-03-ge-08": {
+  "explicacion": "Al caer un tripulante se mete inmediatamente el timón a la misma banda por la que cayó: la popa, y con ella la hélice, se aparta del náufrago. Meter el timón a la banda contraria lanzaría la popa hacia él.",
+  "clave": "Timón a la banda de caída: la hélice se aparta.",
+  "trampa": "Parece que alejarte sea girar al lado contrario, pero eso echa la popa encima del náufrago."
+ },
+ "bal-per-2017-03-ge-10": {
+  "explicacion": "Para evitar tirones en el cabo de remolque se alarga según haga falta: un remolque largo forma una catenaria que absorbe los golpes, y conviene que los dos barcos estén en el mismo punto de la ola. Acortarlo aumenta los tirones y el riesgo de que se parta.",
+  "clave": "Remolque: largo y con seno, absorbe los tirones.",
+  "trampa": "Acortar el cabo parece darte más control, pero con mar da más tirones."
+ },
+ "bal-per-2017-07-b-07": {
+  "explicacion": "La autonomía es la distancia o el tiempo que puede navegar una embarcación sin repostar combustible. La velocidad es lo que recorre por unidad de tiempo, la capacidad el volumen del depósito o la carga, y el fetch es la extensión de mar sobre la que sopla el viento.",
+  "clave": "Autonomía = millas u horas sin repostar.",
+  "trampa": "La capacidad del depósito influye en la autonomía, pero no es lo mismo."
+ },
+ "bal-per-2017-07-b-08": {
+  "explicacion": "La maniobra de Boutakow consiste en meter el timón a la banda de caída hasta que la proa haya caído unos 70° y luego cambiarlo a la otra banda hasta quedar al rumbo opuesto al inicial, así vuelves por tu propia estela. Caer unos 270° es la curva de evolución, y remolcar un cabo o dar atrás no forman parte de ella.",
+  "clave": "Boutakow: 70° a la banda de caída, luego a la contraria hasta el rumbo opuesto.",
+  "trampa": "La b) es la curva de evolución, no Boutakow.",
+  "concepto": "and-2023-c2-t08"
+ },
+ "bal-per-2017-07-b-09": {
+  "explicacion": "La tecla MOB (Man Over Board, hombre al agua) del GPS guarda al instante la posición como waypoint y da rumbo y distancia para volver a ella. WP es la gestión general de waypoints, que es más lenta, y D.P. no es esa función.",
+  "clave": "Hombre al agua: pulsa MOB.",
+  "trampa": "Con WP también puedes guardar un punto, pero la tecla rápida es MOB."
+ },
+ "bal-per-2017-07-b-10": {
+  "explicacion": "El ancla de capa no es un ancla de fondeo: es un saco de lona troncocónico con un aro de refuerzo que se larga por la proa o la popa para frenar el barco y mantenerlo con la proa o la popa a la mar, evitando que se atraviese. Las demás opciones describen anclas de fondeo.",
+  "clave": "Ancla de capa = saco que frena, no agarra el fondo.",
+  "trampa": "Su nombre incluye «ancla», pero no toca el fondo."
+ },
+ "bal-per-2017-07-c-08": {
+  "explicacion": "Cuando el remolcador cae a una banda, el cabo tira de la proa del remolcado hacia ese lado; el remolcado mete el timón a la banda contraria para contrarrestar ese tirón y que el cabo trabaje en la línea de crujía, siguiendo las aguas del remolcador sin atravesarse. Con mal tiempo el remolque se alarga, no se acorta, y las órdenes las da el remolcador.",
+  "clave": "Remolcado: timón contrario al del remolcador, cabo a crujía.",
+  "trampa": "La c) es al revés: con mal tiempo se larga más remolque."
+ },
+ "bal-per-2017-07-c-09": {
+  "explicacion": "El remolcador se coloca a barlovento del remolcado para lanzarle la guía: el viento ayuda a que el cabo llegue y, si hay que acercarse, el remolcador no deriva sobre el otro barco. A sotavento el viento devuelve el cabo y empuja al remolcado encima.",
+  "clave": "Para pasar el remolque: el remolcador, a barlovento.",
+  "trampa": "A sotavento parece más seguro, pero el viento te tira el cabo encima y no llega.",
+  "concepto": "bal-per-2017-07-c-09"
+ },
+ "bal-per-2019-12-a-07": {
+  "explicacion": "La posición más favorable para lanzar la guía es a barlovento del remolcado: el viento lleva el cabo hacia él y el remolcador no deriva sobre el otro barco. No se trata de ponerse siempre a proa o a popa, y a sotavento el viento devuelve el cabo.",
+  "clave": "Para pasar el remolque: el remolcador, a barlovento.",
+  "trampa": "A sotavento parece más seguro, pero el viento te tira el cabo encima y no llega.",
+  "concepto": "bal-per-2017-07-c-09"
+ },
+ "bal-per-2017-07-eda-09": {
+  "explicacion": "Para capear el temporal se recibe la mar por la amura, con poca máquina avante para mantener el gobierno. Por la aleta o la popa se corre el temporal, y por el través el barco balancea violentamente y puede volcar.",
+  "clave": "Capear: amura y poca máquina avante.",
+  "trampa": "La c), la aleta, es correr el temporal, no capearlo.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ],
+  "base": "and-2025-c1-t10",
+  "concepto": "and-2025-c1-t10"
+ },
+ "bal-per-2017-07-eda-10": {
+  "explicacion": "Cerrados en niebla hay que hacer todo lo que se cita: reducir a velocidad de seguridad y dar las señales fónicas reglamentarias, extremar la vigilancia visual y auditiva, conectar el radar si lo hay y encender las luces de navegación. Por eso la correcta es la b).",
+  "clave": "Niebla: despacio, señales fónicas, luces, radar y vigía.",
+  "trampa": "Cada opción es una medida correcta; la completa es la b)."
+ },
+ "bal-per-2017-07-fc-07": {
+  "explicacion": "El reflector de radar es obligatorio en las embarcaciones de casco no metálico que naveguen por las zonas 1 a 4, porque su casco apenas da eco en el radar de otros barcos. Un casco metálico ya refleja bien, por eso no se exige a todas.",
+  "clave": "Reflector de radar: casco no metálico, zonas 1 a 4.",
+  "trampa": "La c) se queda corta en zonas: llega hasta la 4."
+ },
+ "bal-per-2017-07-fc-08": {
+  "explicacion": "Al caer un tripulante hay que parar el motor (o al menos desembragar) para no herirle con la hélice, meter el timón a la banda de caída para apartar la popa y lanzarle un aro salvavidas enseguida. Todas son acciones correctas, a las que se añade avisar, señalarlo y no perderlo de vista.",
+  "clave": "Hombre al agua: timón a su banda, hélice parada, aro al agua.",
+  "trampa": "Cada opción es una acción correcta; la completa es la d)."
+ },
+ "bal-per-2017-07-fc-09": {
+  "explicacion": "Correr el temporal es navegar con el viento y la mar por la aleta o por la popa, con la velocidad justa para gobernar y que la ola no rompa sobre la popa. Dar la proa o la amura es capear, ponerse al pairo es quedarse parado y arriar todo el aparejo no es correr.",
+  "clave": "Correr = aleta o popa a la mar. Capear = proa o amura.",
+  "trampa": "La d) es capear, la maniobra contraria.",
+  "concepto": "bal-per-2017-07-fc-09"
+ },
+ "bal-per-2019-04-b-07": {
+  "explicacion": "Correr el temporal es navegar recibiendo la mar por la aleta o por la popa, con la velocidad justa para gobernar sin que la ola rompa sobre la popa. Dar la proa o la amura al viento es capear, ponerse al pairo es quedarse parado y arriar el aparejo no define la maniobra.",
+  "clave": "Correr = aleta o popa a la mar. Capear = proa o amura.",
+  "trampa": "La d) es capear, la maniobra contraria.",
+  "concepto": "bal-per-2017-07-fc-09"
+ },
+ "bal-per-2025-09-a-10": {
+  "explicacion": "Correr el temporal es navegar con el viento y la mar por la aleta o por la popa, con la velocidad justa para gobernar. Dar la proa o la amura al viento es capear, ponerse al pairo es quedarse parado y arriar el aparejo no es la maniobra.",
+  "clave": "Correr = aleta o popa a la mar. Capear = proa o amura.",
+  "trampa": "La d) es capear, la maniobra contraria.",
+  "concepto": "bal-per-2017-07-fc-09"
+ },
+ "bal-per-2017-07-fc-10": {
+  "explicacion": "Hay que llevar como mínimo un chaleco salvavidas por cada persona autorizada a bordo. No pueden sustituirse por otros dispositivos, deben estar homologados o certificados (no basta con una flotabilidad cualquiera) y los niños necesitan chalecos de su talla, porque uno de adulto se les puede salir.",
+  "clave": "Chalecos: uno por persona, homologado y de su talla.",
+  "trampa": "La d) parece práctica, pero un chaleco de adulto no sujeta bien a un niño."
+ },
+ "bal-per-2017-09-a-08": {
+  "explicacion": "Un barco adrizado es el que no tiene escora, y eso ocurre cuando el centro de gravedad y el centro de carena están en la misma vertical. El asiento nulo se refiere a la inclinación longitudinal (calados iguales a proa y popa), no a la escora. Por eso la correcta es la d), a y b.",
+  "clave": "Adrizado = sin escora; G y C en la misma vertical.",
+  "trampa": "La c) habla del asiento, que es longitudinal, no transversal."
+ },
+ "bal-per-2017-09-a-09": {
+  "explicacion": "Atravesarse a la mar en un temporal es lo más peligroso, por eso solo se hace cuando no hay alternativa (por ejemplo, para pasar de capear a correr): antes se trinca todo lo que pueda moverse, se espera un momento de calma relativa y se ejecuta la maniobra lo más rápido posible, para quedar corriendo el temporal popa a la mar. Todas son correctas.",
+  "clave": "Atravesarse: preparado, rápido y a correr popa a la mar.",
+  "trampa": "Cada opción es un paso de la misma maniobra; la completa es la d).",
+  "concepto": "bal-per-2017-09-a-09"
+ },
+ "bal-per-2018-06-b-08": {
+  "explicacion": "Lejos de la costa, si no hay más remedio que atravesarse a la mar, se prepara el barco trincando todo lo que pueda moverse, se ejecuta la maniobra lo más rápido posible aprovechando una calma relativa y se queda corriendo el temporal popa a la mar. Las tres cosas son correctas.",
+  "clave": "Atravesarse: preparado, rápido y a correr popa a la mar.",
+  "trampa": "Cada opción es un paso de la misma maniobra; la completa es la d).",
+  "concepto": "bal-per-2017-09-a-09"
+ },
+ "bal-per-2017-09-a-10": {
+  "explicacion": "La maniobra de Boutakow consiste en meter todo el timón a la banda de caída del náufrago hasta variar unos 70° el rumbo y, después, meterlo a la banda contraria hasta quedar al rumbo opuesto al inicial. Así vuelves por tu propia estela al punto de caída. Caer 270° en un solo giro es la curva de evolución.",
+  "clave": "Boutakow: 70° a la banda de caída, luego a la contraria hasta el rumbo opuesto.",
+  "trampa": "La b) empieza a la banda contraria: el primer giro siempre es hacia la banda de la caída.",
+  "base": "and-2023-c2-t08",
+  "concepto": "and-2023-c2-t08"
+ },
+ "bal-per-2017-09-c-07": {
+  "explicacion": "Antes de salir hay que comprobar el combustible (con reserva suficiente), el aceite y el estado del motor, y consultar la predicción meteorológica de la zona. Son comprobaciones básicas de seguridad y todas son correctas.",
+  "clave": "Antes de zarpar: combustible, aceite y parte meteorológico.",
+  "trampa": "Cada opción es necesaria; la completa es la d)."
+ },
+ "bal-per-2017-09-c-08": {
+  "explicacion": "Fondeado con viento y mar arreciando y la costa a sotavento, hay que evitar garrear: dar una segunda ancla por la proa si se puede, filar toda la cadena posible teniendo en cuenta el nuevo radio de borneo y dar poca máquina avante para quitar tensión a la cadena. Todas las medidas son adecuadas, así que la correcta es la a).",
+  "clave": "Fondeo con temporal: más cadena, segunda ancla y máquina avante.",
+  "trampa": "Cada opción es una medida válida; la completa es la a)."
+ },
+ "bal-per-2017-09-c-09": {
+  "explicacion": "Poner popa (o aleta) a la mar y navegar con ella hasta que pase el temporal es correr el temporal. Capear es lo contrario, aguantarlo con la proa o la amura a la mar, y pairear es quedarse al pairo, parado. «Sotaventear» no es el nombre de esta maniobra.",
+  "clave": "Correr = popa a la mar. Capear = proa o amura.",
+  "trampa": "Capear es la maniobra opuesta: proa o amura a la mar.",
+  "concepto": "bal-per-2017-09-c-09"
+ },
+ "bal-per-2024-12-a-07": {
+  "explicacion": "Poner popa (o aleta) a la mar y navegar con ella hasta que pase el temporal es correr el temporal. Capear es aguantarlo con la proa o la amura a la mar, pairear es quedarse parado al pairo y «encarar» no es el nombre de ninguna maniobra de temporal.",
+  "clave": "Correr = popa a la mar. Capear = proa o amura.",
+  "trampa": "Capear es la maniobra opuesta: proa o amura a la mar.",
+  "concepto": "bal-per-2017-09-c-09"
+ },
+ "bal-per-2017-09-c-10": {
+  "explicacion": "Si ves al náufrago, lo que toca es una maniobra de recogida para volver a él: la de Anderson (un giro de unos 250° hacia la banda de caída, la más rápida) o la de Boutakow (70° a la banda de caída y luego a la contraria hasta el rumbo opuesto). La exploración por sectores es un método de búsqueda para cuando no lo ves.",
+  "clave": "Lo ves: maniobra de recogida. No lo ves: búsqueda.",
+  "trampa": "La exploración por sectores sirve para buscarlo, no para volver a recogerlo."
+ },
+ "bal-per-2017-09-d-07": {
+  "explicacion": "Los círculos concéntricos no son un método de búsqueda de hombre al agua. La espiral cuadrada (cuadrados crecientes) y la exploración por sectores son métodos de búsqueda desde un datum, y la de Anderson es una maniobra de recogida de náufrago.",
+  "clave": "Búsqueda: espiral cuadrada y sectores.",
+  "trampa": "Piden la que NO es una maniobra de hombre al agua: Anderson sí lo es."
+ },
+ "bal-per-2017-09-d-08": {
+  "explicacion": "La tecla MOB (hombre al agua) es una función del GPS o del plóter que, al pulsarla, guarda la posición del momento como waypoint y da rumbo y distancia para volver a ella. No es la maniobra en sí, y no se activa sola en un naufragio: hay que pulsarla.",
+  "clave": "MOB = marca en el GPS la posición del náufrago.",
+  "trampa": "La a) la confunde con la maniobra de recogida; el MOB solo guarda el punto."
+ },
+ "bal-per-2017-09-d-09": {
+  "explicacion": "La estabilidad es la propiedad del barco de volver por sí solo a la posición de adrizado cuando una fuerza externa (viento, olas, pesos) lo escora. El adrizamiento es la acción de enderezarse, no la propiedad, y verticalidad o recuperación no son los términos técnicos.",
+  "clave": "Estabilidad = capacidad de volver a adrizarse.",
+  "trampa": "Elegir «adrizamiento», que es el resultado, no la propiedad.",
+  "base": "and-2023-c1-t07",
+  "concepto": "and-2023-c1-t07"
+ },
+ "bal-per-2017-09-d-10": {
+  "explicacion": "La bengala de mano se exhibe por sotavento, con el brazo extendido hacia fuera de la borda, para que el viento se lleve el humo, las chispas y los restos incandescentes lejos del barco y de la persona. Por barlovento el viento te los echaría encima.",
+  "clave": "Bengala: por sotavento y fuera de la borda.",
+  "trampa": "Por barlovento parece que se ve mejor, pero te quema a ti y al barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2017-09-e-07": {
+  "explicacion": "Cuando el centro de gravedad coincide con el metacentro el equilibrio es indiferente: el barco escorado no tiene par que lo adrice ni que lo vuelque, y se queda con escora permanente. Si el metacentro está por encima de G el barco es estable, y si G está por encima del metacentro es inestable y tiende a volcar.",
+  "clave": "M sobre G: estable. M = G: indiferente. G sobre M: inestable.",
+  "trampa": "La d) es el equilibrio inestable: el barco no se queda escorado, sigue escorando."
+ },
+ "bal-per-2017-09-e-10": {
+  "explicacion": "Lo más correcto es hacer las tres cosas a la vez: lanzar el aro salvavidas, pulsar el MOB del GPS para guardar la posición y meter todo el timón a la banda por la que cayó, para apartar la popa y la hélice. La a) se queda corta, la b) mete el timón al lado equivocado y la d) abandona al náufrago.",
+  "clave": "Hombre al agua: aro, MOB y timón a su banda.",
+  "trampa": "La a) es correcta pero incompleta; la c) incluye todo lo necesario."
+ },
+ "bal-per-2017-12-a-09": {
+  "explicacion": "El ancla de capa es un saco de lona troncocónico que se larga por la proa o la popa para frenar el barco y contener su deriva, manteniéndolo proa o popa a la mar con temporal. No agarra en el fondo, así que no sirve para fondear en roca, y frena en lugar de aumentar la velocidad.",
+  "clave": "Ancla de capa: frena y contiene la deriva.",
+  "trampa": "No es un ancla de fondeo, aunque se llame ancla."
+ },
+ "bal-per-2017-12-b-09": {
+  "explicacion": "La bengala de mano quema a mucha temperatura y gotea restos incandescentes, por eso conviene cogerla con guantes o un trapo húmedo y sostenerla por sotavento, fuera de la borda. Se enciende con su propio sistema de percusión o rascador, no con un mechero, y no se tira al agua: tiene que verse.",
+  "clave": "Bengala: con guantes, por sotavento y sostenida.",
+  "trampa": "La d) la pone a barlovento: el viento te echaría encima el humo y las chispas.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2017-12-b-10": {
+  "explicacion": "Con el agua a 5–7 °C el mayor riesgo es la hipotermia: el agua roba calor al cuerpo unas 25 veces más rápido que el aire y en esas temperaturas se pierde la consciencia en poco tiempo, aunque el día sea soleado. El cansancio, la sed o las quemaduras solares son riesgos secundarios.",
+  "clave": "Agua fría: el enemigo es la hipotermia.",
+  "trampa": "El sol despista: con el agua a 5 °C, el problema es el frío."
+ },
+ "bal-per-2017-12-c-07": {
+  "explicacion": "La incorrecta es la c): ante una tormenta eléctrica sí hay que desconectar los aparatos eléctricos y electrónicos que no sean imprescindibles. Es cierto que conviene que la instalación esté conectada a masa para descargar al mar y que la aguja magnética puede verse afectada por el rayo.",
+  "clave": "Tormenta eléctrica: desconecta los equipos, masa a la mar.",
+  "trampa": "Piden la INCORRECTA: la a), la b) y la d) son ciertas."
+ },
+ "bal-per-2017-12-c-08": {
+  "explicacion": "Un barco tumbado o inclinado transversalmente por el viento, las olas o una mala distribución de los pesos está escorado. Adrizado es justo lo contrario, sin escora, y «desestabilizado» no es el término técnico.",
+  "clave": "Inclinado a una banda = escorado; derecho = adrizado.",
+  "trampa": "Adrizado es el barco derecho, no el inclinado."
+ },
+ "bal-per-2017-12-c-09": {
+  "explicacion": "Capear el temporal es ponerse proa o amura a la mar con muy poca máquina avante, la justa para mantener el gobierno. Popa o aleta a la mar es correr el temporal, y atravesarse a la mar es la posición más peligrosa.",
+  "clave": "Capear: amura y poca máquina avante.",
+  "trampa": "La a) y la b) describen correr el temporal, no capear.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ],
+  "base": "and-2025-c1-t10",
+  "concepto": "and-2025-c1-t10"
+ },
+ "bal-per-2017-12-d-07": {
+  "explicacion": "Los dos reflectores pasivos de radar habituales son la lente de Luneberg y el reflector de triedros y diedros (placas metálicas en ángulo recto que devuelven la onda hacia el radar). El intensificador de blancos (RTE) y los racones son activos: reciben la señal del radar y emiten una respuesta.",
+  "clave": "Pasivos: Luneberg y triedros. Activos: RTE y racón.",
+  "trampa": "El RTE aumenta el eco, pero es activo porque emite."
+ },
+ "bal-per-2017-12-d-08": {
+  "explicacion": "Los líquidos libres (tanques a medio llenar, agua en la sentina) se desplazan hacia la banda escorada y su efecto equivale a subir el centro de gravedad, por lo que reducen la estabilidad. No aumentan ni la flotabilidad ni la estabilidad.",
+  "clave": "Superficies libres: menos estabilidad. Tanques llenos o vacíos.",
+  "trampa": "La a) suena razonable, pero el efecto que se estudia es la pérdida de estabilidad."
+ },
+ "bal-per-2017-12-d-09": {
+  "explicacion": "Con mal tiempo, antes de salir a cubierta hay que ponerse el chaleco salvavidas y, si es posible, el arnés enganchado a la línea de vida, porque el riesgo de caer al agua es grande. La ropa de abrigo ayuda, pero no protege de caer al mar, y no hay que parar máquina ni encender luces de sin gobierno.",
+  "clave": "Mal tiempo en cubierta: chaleco y arnés.",
+  "trampa": "La ropa de abrigo está bien, pero la precaución clave es no caer al agua."
+ },
+ "bal-per-2017-12-d-10": {
+  "explicacion": "Con chaleco puesto el náufrago flota con la cabeza fuera del agua, así que el mayor peligro es la hipotermia: el agua le enfría el cuerpo mucho más rápido que el aire. La asfixia la evita el chaleco y la sed o los tiburones no son el riesgo principal.",
+  "clave": "Náufrago con chaleco: el riesgo es la hipotermia.",
+  "trampa": "El chaleco evita ahogarse, no enfriarse.",
+  "concepto": "bal-per-2017-12-d-10"
+ },
+ "bal-per-2024-12-df-08": {
+  "explicacion": "Con chaleco puesto el náufrago flota con la cabeza fuera, así que el mayor peligro es la hipotermia, porque el agua le enfría el cuerpo mucho más rápido que el aire. La asfixia la evita el chaleco, y la sed o el mareo no son el riesgo principal.",
+  "clave": "Náufrago con chaleco: el riesgo es la hipotermia.",
+  "trampa": "El chaleco evita ahogarse, no enfriarse.",
+  "concepto": "bal-per-2017-12-d-10"
+ },
+ "bal-per-2017-12-e-10": {
+  "explicacion": "En el remolque abarloado los dos barcos van costado con costado, amarrados entre sí. Solo se puede hacer con la mar en calma, porque con olas los costados se golpean, y es el habitual en dársenas e interiores de puerto, donde hay poco espacio para un remolque por popa. Por eso la correcta es la d), b y c.",
+  "clave": "Abarloado: costado con costado, solo con mar en calma.",
+  "trampa": "La a) es justo al revés: con mucha mar los barcos se destrozarían."
+ },
+ "bal-per-2018-04-a-07": {
+  "explicacion": "El reflector de radar es el elemento metálico que aumenta el eco de la embarcación en el radar de otros barcos. El radiogoniómetro toma demoras a emisoras, la corredera mide velocidad y distancia, y el espejo de señales sirve para hacer señales visuales con el sol.",
+  "clave": "Reflector de radar: te hace visible en el radar ajeno.",
+  "trampa": "El espejo de señales también refleja, pero la luz del sol, no las ondas de radar."
+ },
+ "bal-per-2018-04-a-08": {
+  "explicacion": "Ante una hipotermia hay que quitar la ropa mojada y secar a la persona sin frotar, luego abrigarla con ropa seca y mantas en un lugar resguardado. El alcohol dilata los vasos y hace perder más calor, dejar la ropa mojada sigue enfriando y frotar con fuerza puede provocar arritmias al mover sangre fría hacia el corazón.",
+  "clave": "Hipotermia: fuera ropa mojada, secar sin frotar, abrigar. Nada de alcohol.",
+  "trampa": "La d) parece reanimar, pero frotar con fuerza es peligroso."
+ },
+ "bal-per-2018-04-a-09": {
+  "explicacion": "Las bengalas de mano deben guardarse en un recipiente completamente estanco, protegidas de la humedad, en un lugar de fácil acceso y con sus instrucciones de uso impresas. Fuera de su embalaje en cubierta se estropean, la humedad las inutiliza y no se prueban encendiéndolas.",
+  "clave": "Pirotecnia: estanca, a mano y con instrucciones.",
+  "trampa": "La c) cree que la humedad da seguridad: solo las inutiliza."
+ },
+ "bal-per-2018-04-b-07": {
+  "explicacion": "Con mal tiempo se cierran los grifos de fondo que no sean necesarios (aseos, fregaderos, desagües), pero no el de la toma de agua de mar de refrigeración del motor: si lo cierras, el motor se recalienta y te quedas sin propulsión justo cuando más la necesitas.",
+  "clave": "Mal tiempo: cierra los grifos de fondo, menos la refrigeración del motor.",
+  "trampa": "La a) suena a seguridad total, pero cerrar la refrigeración para el motor."
+ },
+ "bal-per-2018-04-b-09": {
+  "explicacion": "La incorrecta es la a): a una persona con hipotermia no se le frota ni se la sacude, porque se puede mandar sangre fría al corazón y provocar arritmias. Lo correcto es cambiarle la ropa húmeda por seca, ponerla en un lugar cálido y sin corrientes y, si no basta, darle calor corporal abrazándola y envolviéndose con mantas.",
+  "clave": "Hipotermia: secar, abrigar, calor suave. Sin frotar.",
+  "trampa": "Piden la INCORRECTA: el calor corporal de la d) sí es correcto."
+ },
+ "bal-per-2018-04-b-10": {
+  "explicacion": "El sincronismo longitudinal se da cuando el período de cabeceo del barco coincide o casi con el período de las olas que le entran por proa o popa: las oscilaciones se suman y la cabezada se hace cada vez mayor. Si es el período de balance con la ola del través, se habla de sincronismo transversal.",
+  "clave": "Sincronismo longitudinal: cabeceo = período de la ola de proa o popa.",
+  "trampa": "La b) es el sincronismo transversal (balance y mar de través)."
+ },
+ "bal-per-2018-04-c-08": {
+  "explicacion": "La cabezada (o cabeceo) es el movimiento longitudinal, proa-popa, en el que la proa sube y baja al pasar las olas. El balance es transversal (babor-estribor), la escora es una inclinación lateral mantenida y el adrizamiento es volver a la posición vertical.",
+  "clave": "Proa-popa = cabezada; babor-estribor = balance.",
+  "trampa": "Confundir escora (inclinación mantenida) con balance (oscilación).",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "cabezada"
+   }
+  ],
+  "base": "and-2022-c3-t07",
+  "concepto": "and-2022-c3-t07"
+ },
+ "bal-per-2018-04-c-10": {
+  "explicacion": "Hay que tirarse de pie, con los pies juntos, sujetando el chaleco con los brazos cruzados sobre el pecho y tapándose la nariz, mirando que no haya nada debajo. De cabeza o de espaldas el chaleco puede golpear la barbilla o el cuello, y encogido no se entra bien en el agua.",
+  "clave": "Saltar con chaleco: de pie, brazos cruzados sujetándolo.",
+  "trampa": "De cabeza el chaleco te puede romper el cuello al chocar con el agua."
+ },
+ "bal-per-2018-04-d-07": {
+  "explicacion": "De noche hay que tener en cuenta todo lo que se cita: la proximidad de tierra, que no se ve; la facilidad para confundir las luces de otros barcos con las de tierra y viceversa, y lo difícil que es apreciar las distancias. Por eso todas son correctas.",
+  "clave": "De noche: tierra invisible, luces engañosas, distancias dudosas.",
+  "trampa": "Cada opción es un riesgo real; la completa es la d)."
+ },
+ "bal-per-2018-04-d-09": {
+  "explicacion": "Si el incendio está a proa hay que poner popa al viento, para que el viento lleve el humo y las llamas hacia proa, fuera del barco, y no hacia el resto de la embarcación. Proa al viento echaría el fuego hacia popa, y atravesado lo extendería a lo largo del costado.",
+  "clave": "Fuego a proa: popa al viento. Fuego a popa: proa al viento.",
+  "trampa": "Proa al viento es para un fuego a popa, no a proa."
+ },
+ "bal-per-2018-04-d-10": {
+  "explicacion": "Sobre una pradera de posidonia no se debe fondear: el ancla y la cadena arrancan la planta, que está protegida (en Baleares por el Decreto 25/2018 y en todo el Mediterráneo por el RD 191/2026). Hay que buscar un fondo de arena cercano y, si no lo hay, otro lugar para fondear. Filar poca cadena o usar dos anclas sigue dañándola.",
+  "clave": "Posidonia: nunca fondees encima, busca arena.",
+  "trampa": "La b) y la a) presentan el problema como de agarre, pero lo que está prohibido es dañar la pradera."
+ },
+ "bal-per-2018-04-e-07": {
+  "explicacion": "El remolcado amarra el cabo de remolque en la proa, a elementos fijos y resistentes como bitas o cornamusas (o repartiendo el esfuerzo entre varios). La cadena del ancla no es un punto de amarre del remolque, y en la popa el barco no seguiría al remolcador.",
+  "clave": "Remolcado: cabo a proa, en bitas o cornamusas.",
+  "trampa": "La c) es donde lo amarra el remolcador, no el remolcado."
+ },
+ "bal-per-2018-04-e-08": {
+  "explicacion": "Cuando el remolcador mete el timón a una banda, el cabo tira de la proa del remolcado hacia ese lado; el remolcado, si tiene gobierno, mete el timón a la banda contraria para no recortar la curva por dentro y seguir sus aguas con el cabo trabajando por crujía. El timón del remolcado sí tiene efecto, porque el barco avanza en el agua.",
+  "clave": "Remolcado: timón contrario al del remolcador, cabo a crujía.",
+  "trampa": "La d) es falsa: el remolcado avanza en el agua y su timón gobierna."
+ },
+ "bal-per-2018-04-e-09": {
+  "explicacion": "Toda búsqueda en espiral cuadrada empieza por fijar el punto inicial o datum (la posición más probable del náufrago), marcándolo con una boya o guardándolo en el GPS; desde ahí se trazan los tramos crecientes. Una defensa a la deriva se mueve, así que no sirve para marcar un punto fijo.",
+  "clave": "Búsqueda: primero el datum, luego los tramos.",
+  "trampa": "La c) parece marcar el punto, pero la defensa deriva."
+ },
+ "bal-per-2018-04-e-10": {
+  "explicacion": "La respuesta oficial, 1 respiración por 5 compresiones con dos reanimadores, era la pauta antigua de reanimación. Hoy las recomendaciones (desde 2005, ERC) son 30 compresiones por cada 2 insuflaciones, haya uno o dos reanimadores.",
+  "clave": "RCP hoy: 30 compresiones y 2 insuflaciones.",
+  "trampa": "La d), 2 por 15, también fue pauta antigua para un solo reanimador.",
+  "discrepancia": "La pauta 1:5 está superada: desde las recomendaciones del ERC de 2005 la relación es 30 compresiones por 2 insuflaciones para cualquier número de reanimadores. Ninguna opción recoge la pauta actual.",
+  "concepto": "bal-per-2018-06-c-10"
+ },
+ "bal-per-2018-06-c-10": {
+  "explicacion": "La reanimación cardiopulmonar se hace con 30 compresiones torácicas por cada 2 insuflaciones boca a boca, haya uno o dos reanimadores, a un ritmo de 100–120 compresiones por minuto. Las pautas de 1:2, 5:1 o 2:15 son antiguas o incorrectas.",
+  "clave": "RCP: 30 compresiones y 2 insuflaciones.",
+  "trampa": "La d), 2 por 15, fue una pauta antigua, hoy superada.",
+  "concepto": "bal-per-2018-06-c-10"
+ },
+ "bal-per-2018-06-a-07": {
+  "explicacion": "Capear el temporal es poner la amura (o la proa) a la mar y navegar a la velocidad mínima de gobierno, aguantando hasta que amaine. Poner la aleta a la mar es correr el temporal, y largar el ancla de capa con máquina atrás no es la maniobra de capear.",
+  "clave": "Capear: amura y poca máquina avante.",
+  "trampa": "La c) es correr el temporal.",
+  "concepto": "and-2025-c1-t10"
+ },
+ "bal-per-2018-06-a-08": {
+  "explicacion": "Ante una tormenta eléctrica lo prudente es, si se puede, cambiar el rumbo para alejarse de la zona tormentosa, y además desconectar los equipos eléctricos y mantener a la tripulación bajo cubierta. Encender toda la instalación o tener a la gente en cubierta aumenta el riesgo, y parar el barco no aleja de la tormenta.",
+  "clave": "Tormenta eléctrica: aléjate, equipos desconectados, gente abajo.",
+  "trampa": "La a) suena a protección, pero nadie debe estar en cubierta con rayos."
+ },
+ "bal-per-2018-06-a-09": {
+  "explicacion": "Se le lanza un aro salvavidas y se aproxima el barco por barlovento del náufrago, si las circunstancias lo permiten, para que el barco le haga socaire y derive hacia él; así se le recoge por el costado de sotavento del barco. Acercarse con la popa o subirlo por ella es peligroso por la hélice.",
+  "clave": "Náufrago: aro al agua, llegar por su barlovento, lejos de la hélice.",
+  "trampa": "La popa parece cómoda para subirlo, pero allí está la hélice."
+ },
+ "bal-per-2018-06-a-10": {
+  "explicacion": "El remolque debe ser lo bastante largo para que remolcador y remolcado estén a la vez en la cresta o en el seno de la ola y para que el cabo trabaje con una tensión constante, sin estachonazos (tirones bruscos). No se trata solo de guardar una distancia mínima. Por eso la correcta es la d), b y c.",
+  "clave": "Remolque: los dos barcos en la misma fase de la ola, tensión constante.",
+  "trampa": "La a) habla de distancia, pero lo que manda es la longitud de la ola.",
+  "concepto": "bal-per-2018-06-a-10"
+ },
+ "bal-per-2020-12-b-09": {
+  "explicacion": "La longitud del remolque se ajusta para que remolcador y remolcado coincidan a la vez en la cresta o en el seno de la ola y el cabo mantenga una tensión constante, evitando estachonazos. No hay una distancia fija de 50 metros: depende de la mar. La correcta es la d), b y c.",
+  "clave": "Remolque: los dos barcos en la misma fase de la ola, tensión constante.",
+  "trampa": "La a) da una cifra fija, pero la longitud depende de la ola.",
+  "concepto": "bal-per-2018-06-a-10"
+ },
+ "bal-per-2018-06-b-07": {
+  "explicacion": "El barco está adrizado (sin escora) cuando el centro de gravedad y el centro de carena están en la misma vertical: peso y empuje se anulan sin crear par. Si G está desplazado a una banda respecto de C, el barco escora hacia esa banda, así que su posición no es indiferente.",
+  "clave": "Adrizado = G y C en la misma vertical.",
+  "trampa": "La d) es falsa: si G se desplaza a una banda, el barco escora.",
+  "concepto": "bal-per-2018-06-b-07"
+ },
+ "bal-per-2025-04-c-08": {
+  "explicacion": "El barco está adrizado cuando el centro de gravedad y el centro de carena están en la misma vertical, sin par que lo escore. Si G está a una banda de C, el barco escora hacia ella. La d) habla de calados iguales a proa y popa, que es el asiento nulo, algo longitudinal, no de escora.",
+  "clave": "Adrizado = G y C en la misma vertical.",
+  "trampa": "Calados iguales es asiento nulo (longitudinal), no adrizado (transversal).",
+  "concepto": "bal-per-2018-06-b-07"
+ },
+ "bal-per-2018-06-b-10": {
+  "explicacion": "Hay que llevar como mínimo un chaleco salvavidas por cada persona a bordo (y en la zona 1 se exige uno más). No depende solo del tipo de navegación ni hay un número fijo entre dos y quince.",
+  "clave": "Chalecos: como mínimo uno por persona.",
+  "trampa": "La b) tiene algo de cierto (la flotabilidad depende de la zona), pero el número lo marcan las personas."
+ },
+ "bal-per-2018-06-c-07": {
+  "explicacion": "Los tejos (piezas de material reflectante y luces) y los zaguales (remos cortos de pala) forman parte del equipo de las balsas salvavidas. No los llevan ni los chalecos ni los arneses.",
+  "clave": "Zaguales y tejos: equipo de la balsa.",
+  "trampa": "El chaleco lleva silbato y luz, pero no zaguales."
+ },
+ "bal-per-2018-06-c-08": {
+  "explicacion": "Lo primero es leer las instrucciones o el pictograma de la bengala, porque cada modelo se enciende de forma distinta y un error puede causar quemaduras o desperdiciarla. Después se usa con guante, por sotavento y fuera de la borda. La fuerza del viento o la altura de ola no son lo primero.",
+  "clave": "Bengala: primero leer las instrucciones.",
+  "trampa": "El guante es importante, pero va después de saber cómo se enciende."
+ },
+ "bal-per-2018-06-c-09": {
+  "explicacion": "La señal fumígena flotante debe emitir humo naranja de forma continua durante al menos 3 minutos flotando en aguas tranquilas, según las normas de homologación. Un minuto es poco y 9 o 18 minutos no son el requisito.",
+  "clave": "Fumígena flotante: humo naranja, mínimo 3 minutos.",
+  "trampa": "La bengala de mano dura 1 minuto; la fumígena, 3.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2018-06-h-08": {
+  "explicacion": "Los incendios de aceites y grasas de cocina, vegetales o animales, son los de clase F y se apagan con extintores marcados con el pictograma F, que forman una capa que enfría y aísla el aceite. El agua provoca una explosión de aceite ardiendo, y el polvo o el CO2 no enfrían lo suficiente y el aceite se reaviva.",
+  "clave": "Clase F = aceites de cocina: extintor F.",
+  "trampa": "El agua pulverizada sobre aceite hirviendo lo hace estallar.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": "bal-per-2018-06-h-08"
+ },
+ "bal-per-2020-07-c-10": {
+  "explicacion": "Los fuegos de aceites y grasas vegetales o animales (los de cocina) son de clase F y se apagan con extintores marcados con el pictograma F, que enfrían y aíslan el aceite. El agua lo hace estallar, y el polvo o el CO2 no lo enfrían y el fuego se reaviva.",
+  "clave": "Clase F = aceites de cocina: extintor F.",
+  "trampa": "El agua pulverizada sobre aceite hirviendo lo hace estallar.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": "bal-per-2018-06-h-08"
+ },
+ "bal-per-2024-12-ce-09": {
+  "explicacion": "Los fuegos de aceites y grasas de cocina son de clase F y se apagan con extintores marcados con el pictograma F. La clase D es la de los metales combustibles, y el polvo seco o el CO2 no enfrían el aceite lo suficiente y el fuego se reaviva.",
+  "clave": "Clase F = aceites de cocina: extintor F.",
+  "trampa": "La d) es la clase de los metales, no la de los aceites.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": "bal-per-2018-06-h-08"
+ },
+ "bal-per-2018-06-h-09": {
+  "explicacion": "Aguas someras son simplemente aguas de poca profundidad, en las que hay poca agua bajo la quilla y riesgo de tocar fondo. No tienen un límite fijo de 100 metros (eso no sería nada somero para un barco de recreo), y desde luego no son aguas muy profundas.",
+  "clave": "Somero = poco profundo.",
+  "trampa": "La a) da una cifra que parece técnica, pero 100 m de sonda es agua profunda.",
+  "base": "and-2021-c2-t07",
+  "concepto": "and-2021-c2-t07"
+ },
+ "bal-per-2018-06-h-10": {
+  "explicacion": "La respuesta oficial es el ensayo de los chalecos homologados según el Código LSA (SOLAS): el usuario debe poder saltar al agua desde al menos 4,5 m sin lesionarse ni dañar el chaleco. Era la referencia del antiguo reglamento de equipos. Desde el 1 de julio de 2021, el RD 339/2021 (art. 7.5) ya no enuncia esa prueba y admite chalecos certificados como equipo de protección individual (Reglamento UE 2016/425), con su flotabilidad mínima por zona.",
+  "clave": "Chaleco SOLAS: salto desde 4,5 m sin lesiones.",
+  "trampa": "Las alturas de 2,5 y 3,5 m no son las del ensayo."
+ },
+ "bal-per-2018-06-i-08": {
+  "explicacion": "Los grifos de fondo son las válvulas de mar instaladas en el casco por debajo de la línea de flotación (tomas de refrigeración, aseos, desagües). Hay que conocerlas y revisarlas, porque una que falle puede inundar el barco. No son todos los grifos, ni las del achique, ni las de los tanques de combustible.",
+  "clave": "Grifo de fondo = válvula de mar bajo la flotación.",
+  "trampa": "La d) juega con la palabra «fondo», pero son las del casco."
+ },
+ "bal-per-2018-06-i-09": {
+  "explicacion": "El MOB es una función del GPS o del plóter que, al pulsarla, guarda la posición en que cayó la persona y da rumbo y distancia para volver: sirve para la búsqueda del hombre al agua. No es una maniobra ni se activa sola en un naufragio, así que la b) tampoco vale.",
+  "clave": "MOB = marca en el GPS la posición del náufrago.",
+  "trampa": "La c) la confunde con la maniobra; el MOB solo guarda el punto.",
+  "concepto": "bal-per-2018-06-i-09"
+ },
+ "bal-per-2021-12-d-09": {
+  "explicacion": "La tecla MOB es una opción del GPS que, al pulsarla, guarda la posición de la caída y da rumbo y distancia para volver: sirve para la búsqueda del hombre al agua. No lanza una llamada de socorro (eso es el DSC de la VHF), no se activa sola y no hace ninguna maniobra automática.",
+  "clave": "MOB = marca en el GPS la posición del náufrago.",
+  "trampa": "La a) la confunde con el botón de socorro DSC de la radio.",
+  "concepto": "bal-per-2018-06-i-09"
+ },
+ "bal-per-2018-06-i-10": {
+  "explicacion": "Antes de hacerte a la mar tienes que revisar el motor completo: nivel de aceite y combustible suficiente con margen, sistema de refrigeración y correa del alternador, electrolito de la batería y filtros. Todas son comprobaciones básicas, así que la correcta es la c).",
+  "clave": "Antes de salir: aceite, combustible, refrigeración, correa, batería y filtros.",
+  "trampa": "Quedarse con una sola opción cuando todas forman parte de la revisión.",
+  "base": "and-2024-c3-t07",
+  "concepto": "and-2024-c3-t07"
+ },
+ "bal-per-2018-09-a-10": {
+  "explicacion": "El ancla flotante (o de capa) es un saco o cono de lona que se larga por la proa para frenar el barco y mantenerlo proa o amura a la mar, es decir, para capear el temporal. No agarra en el fondo, así que no sirve para fondear, y tampoco es un aparejo de pesca.",
+  "clave": "Ancla flotante = ancla de capa: para capear.",
+  "trampa": "Se llama ancla, pero no toca el fondo: no sirve para fondear."
+ },
+ "bal-per-2018-09-b-07": {
+  "explicacion": "Para capear se pone la proa a la mar o ligeramente amurados, y en un barco a motor se ayuda con un ancla de capa largada por la proa, que mantiene la proa a la mar y frena la deriva. Popa o aleta a la mar es correr el temporal, y el ancla de capa por popa no mantendría la proa a la mar.",
+  "clave": "Capear a motor: proa o amura a la mar, ancla de capa por proa.",
+  "trampa": "La c) acierta con proa a la mar pero pone el ancla de capa a popa."
+ },
+ "bal-per-2018-09-b-08": {
+  "explicacion": "Ante un aviso de temporal lo primero es preparar el barco: cerrar portillos, tambuchos y lumbreras y hacerlo estanco para que no entre agua, además de trincar todo lo suelto. Capear o correr se decide después, según el temporal, y abandonar el barco es el último recurso.",
+  "clave": "Aviso de temporal: primero estanqueidad y trincar.",
+  "trampa": "Capear o correr son maniobras posteriores, no lo primero."
+ },
+ "bal-per-2018-09-d-07": {
+  "explicacion": "Navegamos por aguas someras cuando estamos en aguas poco profundas, con poca agua bajo la quilla. Sondas de más de 100 metros son aguas profundas, y la maniobrabilidad restringida o la baja visibilidad no tienen que ver con la profundidad.",
+  "clave": "Somero = poco profundo.",
+  "trampa": "La a) da sondas grandes, justo lo contrario de somero.",
+  "concepto": "and-2021-c2-t07"
+ },
+ "bal-per-2018-09-d-08": {
+  "explicacion": "El aro salvavidas es un elemento básico de seguridad que da flotabilidad al náufrago y, con su luz y su color naranja, ayuda a señalizar su posición. Por eso todas son correctas.",
+  "clave": "Aro: flota, se agarra y señala al náufrago.",
+  "trampa": "Cada opción es una función real; la completa es la d)."
+ },
+ "bal-per-2018-09-d-09": {
+  "explicacion": "El número de extintores obligatorio depende de la eslora del barco y de la potencia propulsora instalada: hay un mínimo por eslora y se añaden más si hay motores de cierta potencia, sobre todo intraborda. El francobordo, el material del casco o el número de personas no lo determinan.",
+  "clave": "Extintores: según eslora y potencia del motor.",
+  "trampa": "El número de personas fija los chalecos, no los extintores."
+ },
+ "bal-per-2018-09-d-10": {
+  "explicacion": "Si ves al náufrago lo recomendable es una maniobra de recogida para volver a él, como la de Boutakow (70° a la banda de caída y luego a la contraria hasta el rumbo opuesto). La exploración por sectores o en espiral cuadrada son métodos de búsqueda para cuando no lo ves, y dar toda atrás acerca la hélice al náufrago.",
+  "clave": "Lo ves: maniobra de recogida. No lo ves: búsqueda.",
+  "trampa": "La a) parece rápida, pero da atrás echa la hélice encima del náufrago."
+ },
+ "bal-per-2018-09-e-07": {
+  "explicacion": "Una escora permanente se debe a una mala distribución lateral de pesos: si hay más peso en una banda, el centro de gravedad se desplaza a ese lado y el barco se queda escorado. Las corrientes no escoran el barco de forma permanente, el asiento aproante es una inclinación longitudinal y el peso en crujía no escora.",
+  "clave": "Escora permanente: pesos mal repartidos a una banda.",
+  "trampa": "El asiento es longitudinal (proa-popa), la escora transversal."
+ },
+ "bal-per-2018-09-e-08": {
+  "explicacion": "Con la costa a sotavento el viento y la mar te empujan hacia ella, así que conviene ir corrigiendo el rumbo hacia barlovento para ganar distancia. Acercarse a tierra es peligroso aunque haya mucha sonda, porque cualquier avería te deja contra la costa, y correr el temporal no siempre es posible si la costa está en esa dirección.",
+  "clave": "Costa a sotavento con temporal: aléjate, gana barlovento.",
+  "trampa": "La b) parece segura por la sonda, pero el peligro es acabar contra la costa."
+ },
+ "bal-per-2018-09-e-09": {
+  "explicacion": "En el remolcado el cabo se hace firme en la zona de proa, en elementos resistentes, y se pasa por los guiacabos de modo que el tiro se haga desde la línea de crujía; así el remolcado sigue las aguas del remolcador sin guiñadas. Si el tiro viene por una amura el barco se atraviesa, y a popa iría marcha atrás.",
+  "clave": "Remolcado: cabo a proa y tiro por crujía.",
+  "trampa": "La c) acierta con la proa, pero el tiro por la amura hace guiñar al remolcado.",
+  "concepto": "bal-per-2018-09-e-09"
+ },
+ "bal-per-2020-10-g-09": {
+  "explicacion": "El cabo de remolque se hace firme en la zona de proa del remolcado y se guía por los guiacabos para que el tiro se haga desde la línea de crujía, así el barco sigue las aguas del remolcador sin guiñar. Con el tiro por un costado se atraviesa, y amarrado a popa iría marcha atrás.",
+  "clave": "Remolcado: cabo a proa y tiro por crujía.",
+  "trampa": "La c) acierta con la proa, pero el tiro por el costado hace guiñar al remolcado.",
+  "concepto": "bal-per-2018-09-e-09"
+ },
+ "bal-per-2021-03-eg-09": {
+  "explicacion": "El cabo de remolque se hace firme en la zona de proa del remolcado y se guía por los guiacabos para que el tiro se haga desde la línea de crujía, así el barco sigue las aguas del remolcador sin guiñar. Con el tiro por un costado se atraviesa, y amarrado a popa iría marcha atrás.",
+  "clave": "Remolcado: cabo a proa y tiro por crujía.",
+  "trampa": "La c) acierta con la proa, pero el tiro por el costado hace guiñar al remolcado.",
+  "concepto": "bal-per-2018-09-e-09"
+ },
+ "bal-per-2018-09-e-10": {
+  "explicacion": "Las cartas náuticas recogen las sondas, la naturaleza del fondo y los peligros ocultos (bajos, piedras, cascos hundidos). El GPS solo da la posición, el libro de faros describe luces y señales de niebla y el RIPA es el reglamento para evitar abordajes.",
+  "clave": "Sondas, fondos y bajos: en la carta náutica.",
+  "trampa": "El GPS te dice dónde estás, no qué hay debajo.",
+  "concepto": "bal-per-2018-09-e-10"
+ },
+ "bal-per-2021-03-a-10": {
+  "explicacion": "Las sondas, el tipo de fondo y los peligros que no se ven están en las cartas náuticas. El GPS solo da la posición, el libro de faros describe luces y señales de niebla y el RIPA es el reglamento de abordajes.",
+  "clave": "Sondas, fondos y bajos: en la carta náutica.",
+  "trampa": "La a) dice «todos los receptores GPS», pero un GPS sin carta no da sondas.",
+  "concepto": "bal-per-2018-09-e-10"
+ },
+ "bal-per-2018-12-a-08": {
+  "explicacion": "Cargar pesos sobre cubierta sube el centro de gravedad, reduce la altura metacéntrica y, por tanto, disminuye la estabilidad: el barco se vuelve más «blando» y escora con más facilidad. «Duro» o «rígido» es justo lo contrario, lo que ocurre al bajar pesos.",
+  "clave": "Pesos arriba: menos estabilidad. Pesos abajo: más.",
+  "trampa": "«Dura» y «rígida» describen el barco con los pesos bajos.",
+  "concepto": "bal-per-2018-12-a-08"
+ },
+ "bal-per-2024-04-a-08": {
+  "explicacion": "Cargar pesos sobre cubierta sube el centro de gravedad y reduce la altura metacéntrica, así que la estabilidad disminuye y el barco se vuelve más «blando». Volverse «duro» o «rígido» es lo que pasa al bajar los pesos.",
+  "clave": "Pesos arriba: menos estabilidad. Pesos abajo: más.",
+  "trampa": "«Dura» y «rígida» describen el barco con los pesos bajos.",
+  "concepto": "bal-per-2018-12-a-08"
+ },
+ "bal-per-2018-12-a-10": {
+  "explicacion": "Cuando cae una persona al agua se pulsa la tecla MOB (Man Over Board) del GPS, que guarda la posición al instante y da rumbo y distancia para volver. ENTER confirma, GOTO navega a un punto ya guardado y RUN no es esa función.",
+  "clave": "Hombre al agua: pulsa MOB.",
+  "trampa": "GOTO te lleva a un waypoint, pero primero hay que guardarlo: eso lo hace MOB."
+ },
+ "bal-per-2018-12-b-07": {
+  "explicacion": "La incorrecta es la d): el reflector de radar es obligatorio en los cascos no metálicos (zonas 1 a 4), porque son los que dan poco eco; un casco metálico ya refleja bien. Lo demás es cierto: mejora el eco de la emisión del radar, suele ser un poliedro izado en una cruceta y conviene llevarlo siempre izado.",
+  "clave": "Reflector de radar: casco no metálico, zonas 1 a 4.",
+  "trampa": "Piden la INCORRECTA: la d) cambia «no metálico» por «metálico»."
+ },
+ "bal-per-2018-12-b-08": {
+  "explicacion": "En una tormenta eléctrica hay que hacer todo lo que se cita: permanecer en el interior lejos de las partes metálicas, desconectar físicamente los equipos no imprescindibles para protegerlos de sobretensiones y alejarse del núcleo de la tormenta gobernando desde dentro si se puede. Todas son correctas.",
+  "clave": "Tormenta eléctrica: dentro, equipos desconectados y alejarse.",
+  "trampa": "Cada opción es una medida válida; la completa es la d)."
+ },
+ "bal-per-2018-12-b-09": {
+  "explicacion": "Si el par adrizante es pequeño, el barco tiene poca estabilidad y tras una escora vuelve a la posición adrizada lentamente: se dice que es una embarcación blanda. La embarcación dura tiene un par adrizante grande y recupera rápido, con balances bruscos.",
+  "clave": "Par pequeño: blanda, recupera despacio. Par grande: dura, rápido.",
+  "trampa": "La c) acierta con «lentamente» pero la llama dura."
+ },
+ "bal-per-2018-12-b-10": {
+  "explicacion": "La eficacia de un extintor portátil se identifica con un número y una letra, por ejemplo 21B: el número indica el tamaño del fuego que es capaz de apagar en el ensayo y la letra la clase de fuego. Los extintores pueden ser de agua, espuma, polvo o CO2, así que la a) y la c) son falsas.",
+  "clave": "Eficacia del extintor: número + letra (p. ej. 21B).",
+  "trampa": "La b) habla de tres cifras, pero es un número y una letra."
+ },
+ "bal-per-2018-12-c-07": {
+  "explicacion": "Si se ha perdido de vista al náufrago hay que hacer una búsqueda sistemática desde el datum, y la exploración en espiral cuadrada es el mejor método de los propuestos. La curva de evolución, la inversión de la marcha y Boutakow son maniobras para volver al punto de caída, útiles cuando se sabe dónde está.",
+  "clave": "Náufrago perdido de vista: espiral cuadrada desde el datum.",
+  "trampa": "Boutakow vuelve por tu estela, pero no es un método de búsqueda."
+ },
+ "bal-per-2018-12-c-08": {
+  "explicacion": "Adrizar es reducir o eliminar la escora, devolviendo el barco a su posición derecha. Aumentar la escora es escorar, y «igualar» la escora no es lo que se pide.",
+  "clave": "Adrizar = quitar escora.",
+  "trampa": "La b) es escorar, lo contrario."
+ }
+}

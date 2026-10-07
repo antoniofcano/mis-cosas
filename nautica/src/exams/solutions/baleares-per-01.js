@@ -1,18 +1,16 @@
 // Soluciones programadas de carta del PER de Baleares (lote 01). Ver andalucia-per-0.js para el formato.
 // Resumen del lote (109 preguntas):
-//   - 55 resueltas y exportadas (el comprobador elige la oficial);
-//   - 27 resueltas pero sin exportar: la opción oficial viene en un formato que el lector de opciones no entiende
-//     (`porFormato`);
-//   - 25 en DISCREPANCIAS por elemento que no está en la carta de la app (isobáticas, sondas, naufragios, marcas…);
-//   - 1 en DISCREPANCIAS porque la respuesta oficial no es un valor («A ninguna hora»);
-//   - 1 en DISCREPANCIAS porque el resultado cae justo entre dos opciones.
+//   - 82 resueltas en export default (el comprobador elige la oficial);
+//   - 26 sin cálculo posible con la carta de la app: 25 usan un elemento que no está en ella (isobáticas, sondas,
+//     naufragios, marcas, puntos sin coordenadas) y 1 tiene por respuesta oficial «A ninguna hora», que no es un valor;
+//   - 1 discrepancia: el resultado cae justo entre la oficial y otra opción.
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 // Declinación de la carta L105: 2°50′ W 2005 (7′ E).
 const L105 = [-(2 + 50 / 60), 2005, 7];
 
-const todas = {
+export default {
   'bal-per-2017-03-a-42': {
     ejercicio: 'ct-enfilacion',
     solve(k) {
@@ -542,6 +540,7 @@ const todas = {
   'bal-per-2018-04-b-44': {
     ejercicio: 'ct-enfilacion',
     solve(k) {
+      // Sale entre la a (280,9°, 9,1° NE) y la oficial c (282°, 9,8° NE), algo más cerca de la c.
       const enf = k.enfilacion('punta-alcazar', 'punta-cires', 215);
       const ct = k.ctFrom(enf, 215);
       const desvio = ct - 2.2;
@@ -849,42 +848,6 @@ const todas = {
   },
 };
 
-// Resueltas y comprobadas a mano, pero el lector de opciones (src/exams/options.js) no entiende el formato de la
-// opción oficial («HRB=0924», «5º 25’2 W», «36º 10',8 N», «35ª», «05-11,5' W», «20 grados babor»): con el lector
-// actual no se pueden comprobar, así que no se exportan. Ver DISCREPANCIAS.
-const FORMATO = new Set([
-  'bal-per-2017-03-b-42',
-  'bal-per-2017-03-fa-42',
-  'bal-per-2017-03-ge-42',
-  'bal-per-2017-03-ge-43',
-  'bal-per-2017-03-ci-44',
-  'bal-per-2017-03-ge-44',
-  'bal-per-2017-03-b-45',
-  'bal-per-2017-03-fa-45',
-  'bal-per-2017-07-fc-43',
-  'bal-per-2017-09-a-42',
-  'bal-per-2017-09-c-42',
-  'bal-per-2017-09-a-43',
-  'bal-per-2017-09-c-43',
-  'bal-per-2017-09-a-44',
-  'bal-per-2017-12-d-43',
-  'bal-per-2018-04-c-42',
-  'bal-per-2018-04-a-43',
-  'bal-per-2018-04-e-43',
-  'bal-per-2018-04-d-44',
-  'bal-per-2018-06-a-42',
-  'bal-per-2018-06-c-42',
-  'bal-per-2018-09-b-43',
-  'bal-per-2018-09-d-44',
-  'bal-per-2018-09-e-44',
-  'bal-per-2018-09-a-45',
-  'bal-per-2018-12-b-45',
-  'bal-per-2019-04-e-42',
-]);
-
-export default Object.fromEntries(Object.entries(todas).filter(([id]) => !FORMATO.has(id)));
-export const porFormato = Object.fromEntries(Object.entries(todas).filter(([id]) => FORMATO.has(id)));
-
 /* DISCREPANCIAS
  * Elemento que no está en la carta de la app (isobáticas, sondas, veriles, naufragios, marcas, puntos sin coordenadas):
  * 'bal-per-2017-03-a-43': enfilación Trafalgar–Roche y sonda de 100 m; la carta de la app no tiene isobáticas.
@@ -921,77 +884,35 @@ export const porFormato = Object.fromEntries(Object.entries(todas).filter(([id])
  * Resultado entre dos opciones:
  * 'bal-per-2018-06-c-44': la enfilación Europa–Carnero mide Dv 243,5° en la carta; con Da 250° sale Ct −6,5° y
  *   Δ = −4,5°, justo entre la oficial (c, −3°) y la d (−6°). La oficial supone la enfilación a 245°.
- *
- * Formato de la opción oficial que el lector de opciones no entiende (resueltas en `porFormato`, no exportadas;
- * entre paréntesis lo calculado, que cae en la oficial al leer bien la opción):
- * 'bal-per-2017-03-b-42' (36°00,8′ N 5°25,1′ W), 'bal-per-2017-03-fa-42' (09:28), 'bal-per-2017-03-ge-42' (12:25),
- * 'bal-per-2017-03-ge-43' (M = 20° Er; «20 grados estribor» y «20 grados babor» se leen igual), 'bal-per-2017-03-ci-44'
- * (35°52,4′ N 5°49,8′ W), 'bal-per-2017-03-ge-44' (36°02,1′ N 5°53,7′ W), 'bal-per-2017-03-b-45' (11:40),
- * 'bal-per-2017-03-fa-45' (36°04,3′ N 5°19,7′ W), 'bal-per-2017-07-fc-43' (13:57), 'bal-per-2017-09-a-42'
- * (36°00,5′ N 5°20,2′ W), 'bal-per-2017-09-c-42' (36°02,4′ N 5°54,0′ W), 'bal-per-2017-09-a-43' (35°57,8′ N 5°47,4′ W),
- * 'bal-per-2017-09-c-43' (11:40), 'bal-per-2017-09-a-44' (15:28), 'bal-per-2017-12-d-43' (36°03,5′ N 5°21,9′ W),
- * 'bal-per-2018-04-c-42' (Ra 101,5°, 13:37), 'bal-per-2018-04-a-43' (36°10,6′ N 6°07,4′ W), 'bal-per-2018-04-e-43'
- * (36°07,7′ N 5°10,5′ W), 'bal-per-2018-04-d-44' (35°57,6′ N 5°25,0′ W; la opción escribe «35ª»),
- * 'bal-per-2018-06-a-42' (11:02 y 5°23,7′ W), 'bal-per-2018-06-c-42' (36°00,8′ N 5°25,1′ W), 'bal-per-2018-09-b-43'
- * (14:08 y 2,7 M), 'bal-per-2018-09-d-44' (36°01,1′ N 5°52,7′ W), 'bal-per-2018-09-e-44' (35°59,1′ N 5°17,5′ W),
- * 'bal-per-2018-09-a-45' (Rv 76,6°, 35°55,5′ N 5°37,7′ W), 'bal-per-2018-12-b-45' (36°15,0′ N 5°10,8′ W),
- * 'bal-per-2019-04-e-42' (35°59,6′ N 5°31,8′ W).
  */
 
 // Preguntas del lote que no quedan en export default, con el motivo (lo mismo que el bloque DISCREPANCIAS).
 export const documentadas = {
-  'bal-per-2017-03-a-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: enfilación Trafalgar–Roche y sonda de 100 m; la carta de la app no tiene isobáticas.' },
-  'bal-per-2017-07-b-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación sobre la isobática de 100 m con marcación de Trafalgar; sin isobáticas.' },
-  'bal-per-2017-09-d-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: el destino es el corte con la isobática de 30 m; sin isobáticas.' },
-  'bal-per-2017-09-e-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: hora y situación al pasar el veril de 200 m; sin isobáticas.' },
-  'bal-per-2017-09-a-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: corte con la isobática de 100 m al S del DST; ni isobáticas ni DST.' },
-  'bal-per-2018-04-e-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: luz verde del puerto de Torre de Guadiaro; no está en la carta de la app.' },
-  'bal-per-2018-04-b-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación sobre la isobática de 100 m al NW del banco Majuán; sin isobáticas.' },
-  'bal-per-2018-04-d-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: rumbo al buque parcialmente hundido al NE de Cabo Espartel; sin naufragios.' },
-  'bal-per-2018-04-c-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación por la oposición Paloma–Malabata y la isobática de 100 m; sin isobáticas.' },
-  'bal-per-2018-04-a-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: salida desde la marca especial al E de La Línea; sin marcas especiales.' },
-  'bal-per-2018-04-d-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: corte con la isobática de 30 m del banco de Trafalgar; sin isobáticas.' },
-  'bal-per-2018-06-b-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: oposición Isla de Tarifa–desembocadura del río El Liam; ese punto no está en la carta.' },
-  'bal-per-2018-06-i-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: enfilación Magair–Cabo Espartel; Magair no está en la carta de la app.' },
-  'bal-per-2018-06-a-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: destino en Punta de los Judíos; no está en la carta de la app.' },
-  'bal-per-2018-06-b-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: sonda de 500 m, espigón de Piedra Redonda e isobática de 50 m; nada de eso está.' },
-  'bal-per-2018-06-a-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: marca cardinal E de la piscifactoría de Barbate y naufragio entre Zahara y Cabo Plata.' },
-  'bal-per-2018-06-b-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata.' },
-  'bal-per-2018-09-a-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación por oposición Carnero–Cires, DST y sonda de 500 m; ni DST ni sondas.' },
-  'bal-per-2018-09-b-42': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación por enfilación Carnero–Europa y sonda de 200 m; sin sondas.' },
-  'bal-per-2018-09-d-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación a 2,2 M de Tánger sobre la isobática de 50 m y en el sector blanco de El Xarf; ni isobáticas ni sectores.' },
-  'bal-per-2018-09-a-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: rumbo S hasta el naufragio no peligroso; sin naufragios.' },
-  'bal-per-2018-09-b-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: espigón de Piedra Redonda y sonda de 500 m; ni ese faro ni sondas.' },
-  'bal-per-2018-12-c-43': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: rumbo al buque parcialmente hundido al NE de Cabo Espartel; sin naufragios.' },
-  'bal-per-2018-12-a-44': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: enfilaciones con Cima Órganos y Cima Beni Meyimel, y sonda de 30 m; nada de eso está.' },
-  'bal-per-2018-12-a-45': { tipo: 'discrepancia', texto: 'Elemento que no está en la carta de la app: situación por oposición Trafalgar–Espartel y sonda de 100 m; sin sondas.' },
-  'bal-per-2018-04-c-43': { tipo: 'discrepancia', texto: 'La oficial es «A ninguna hora»: desde 36°02,0′ N 6°10,0′ W al Rv 162,8° Punta Malabata queda siempre por babor, nunca a 65° por estribor. Es correcta, pero no es un valor que se pueda comparar con las opciones.' },
+  'bal-per-2017-03-a-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: enfilación Trafalgar–Roche y sonda de 100 m; la carta de la app no tiene isobáticas.' },
+  'bal-per-2017-07-b-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación sobre la isobática de 100 m con marcación de Trafalgar; sin isobáticas.' },
+  'bal-per-2017-09-d-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: el destino es el corte con la isobática de 30 m; sin isobáticas.' },
+  'bal-per-2017-09-e-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: hora y situación al pasar el veril de 200 m; sin isobáticas.' },
+  'bal-per-2017-09-a-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: corte con la isobática de 100 m al S del DST; ni isobáticas ni DST.' },
+  'bal-per-2018-04-e-42': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: luz verde del puerto de Torre de Guadiaro; no está en la carta de la app.' },
+  'bal-per-2018-04-b-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación sobre la isobática de 100 m al NW del banco Majuán; sin isobáticas.' },
+  'bal-per-2018-04-d-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: rumbo al buque parcialmente hundido al NE de Cabo Espartel; sin naufragios.' },
+  'bal-per-2018-04-c-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación por la oposición Paloma–Malabata y la isobática de 100 m; sin isobáticas.' },
+  'bal-per-2018-04-a-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: salida desde la marca especial al E de La Línea; sin marcas especiales.' },
+  'bal-per-2018-04-d-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: corte con la isobática de 30 m del banco de Trafalgar; sin isobáticas.' },
+  'bal-per-2018-06-b-42': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: oposición Isla de Tarifa–desembocadura del río El Liam; ese punto no está en la carta.' },
+  'bal-per-2018-06-i-42': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: enfilación Magair–Cabo Espartel; Magair no está en la carta de la app.' },
+  'bal-per-2018-06-a-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: destino en Punta de los Judíos; no está en la carta de la app.' },
+  'bal-per-2018-06-b-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: sonda de 500 m, espigón de Piedra Redonda e isobática de 50 m; nada de eso está.' },
+  'bal-per-2018-06-a-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: marca cardinal E de la piscifactoría de Barbate y naufragio entre Zahara y Cabo Plata.' },
+  'bal-per-2018-06-b-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata.' },
+  'bal-per-2018-09-a-42': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación por oposición Carnero–Cires, DST y sonda de 500 m; ni DST ni sondas.' },
+  'bal-per-2018-09-b-42': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación por enfilación Carnero–Europa y sonda de 200 m; sin sondas.' },
+  'bal-per-2018-09-d-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación a 2,2 M de Tánger sobre la isobática de 50 m y en el sector blanco de El Xarf; ni isobáticas ni sectores.' },
+  'bal-per-2018-09-a-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: rumbo S hasta el naufragio no peligroso; sin naufragios.' },
+  'bal-per-2018-09-b-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: espigón de Piedra Redonda y sonda de 500 m; ni ese faro ni sondas.' },
+  'bal-per-2018-12-c-43': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: rumbo al buque parcialmente hundido al NE de Cabo Espartel; sin naufragios.' },
+  'bal-per-2018-12-a-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: enfilaciones con Cima Órganos y Cima Beni Meyimel, y sonda de 30 m; nada de eso está.' },
+  'bal-per-2018-12-a-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación por oposición Trafalgar–Espartel y sonda de 100 m; sin sondas.' },
+  'bal-per-2018-04-c-43': { tipo: 'sin-calculo', texto: 'La oficial es «A ninguna hora»: desde 36°02,0′ N 6°10,0′ W al Rv 162,8° Punta Malabata queda siempre por babor, nunca a 65° por estribor. Es correcta, pero no es un valor que se pueda comparar con las opciones.' },
   'bal-per-2018-06-c-44': { tipo: 'discrepancia', texto: 'La enfilación Europa–Carnero mide Dv 243,5° en la carta; con Da 250° sale Ct −6,5° y desvío −4,5°, justo entre la oficial (c, −3°) y la d (−6°). La oficial supone la enfilación a 245°.' },
-  'bal-per-2017-03-b-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°00,8′ N, 5°25,1′ W, que coincide con la oficial (a), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-03-fa-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 09:28, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-03-ge-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 12:25, que coincide con la oficial (c), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-03-ge-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 20,0°, que coincide con la oficial (a), pero el lector de opciones no entiende el formato de la opción oficial. «20 grados estribor» y «20 grados babor» se leen igual.' },
-  'bal-per-2017-03-ci-44': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 35°52,4′ N, 5°49,8′ W, que coincide con la oficial (c), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-03-ge-44': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°02,1′ N, 5°53,7′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-03-b-45': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 11:40, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-03-fa-45': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°04,3′ N, 5°19,7′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-07-fc-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 13:57, que coincide con la oficial (d), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-09-a-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°00,5′ N, 5°20,2′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-09-c-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°02,4′ N, 5°54,0′ W, que coincide con la oficial (c), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-09-a-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 35°57,8′ N, 5°47,4′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-09-c-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 11:40, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-09-a-44': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 15:28, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2017-12-d-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°03,5′ N, 5°21,9′ W, que coincide con la oficial (c), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-04-c-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 101,5°, 13:37, que coincide con la oficial (a), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-04-a-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°10,6′ N, 6°07,4′ W, que coincide con la oficial (c), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-04-e-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°07,7′ N, 5°10,5′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-04-d-44': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 35°57,6′ N, 5°25,0′ W, que coincide con la oficial (d), pero el lector de opciones no entiende el formato de la opción oficial. La opción escribe «35ª».' },
-  'bal-per-2018-06-a-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 11:02, 5°23,7′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-06-c-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°00,8′ N, 5°25,1′ W, que coincide con la oficial (a), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-09-b-43': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 14:08, 2,7 M, que coincide con la oficial (c), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-09-d-44': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°01,1′ N, 5°52,7′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-09-e-44': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 35°59,1′ N, 5°17,5′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-09-a-45': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 76,6°, 35°55,5′ N, 5°37,7′ W, que coincide con la oficial (b), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2018-12-b-45': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 36°15,0′ N, 5°10,8′ W, que coincide con la oficial (d), pero el lector de opciones no entiende el formato de la opción oficial.' },
-  'bal-per-2019-04-e-42': { tipo: 'discrepancia', texto: 'Resuelta en porFormato: sale 35°59,6′ N, 5°31,8′ W, que coincide con la oficial (a), pero el lector de opciones no entiende el formato de la opción oficial.' },
 };

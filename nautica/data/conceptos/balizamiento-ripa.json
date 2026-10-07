@@ -183,7 +183,15 @@
     "boya roja por estribor",
     "nos hemos salido del canal",
     "navegar siempre por estribor",
-    "pasaremos cerca de"
+    "pasaremos cerca de",
+    "marcas laterales rojas",
+    "marcas laterales verdes",
+    "marcas laterales de color rojo",
+    "marcas laterales de color verde",
+    "al salir",
+    "al entrar",
+    "saliendo de un puerto",
+    "entrando a un puerto"
    ],
    "nota": "Región A: entrando, rojas por babor y verdes por estribor; saliendo, al revés. Incluye deducir si se entra o se sale, o si se está fuera del canal, por la banda a la que quedan las marcas.",
    "padre": "baliza.lateral",
@@ -212,7 +220,14 @@
     "espeque",
     "cilindro rojo",
     "cono verde con el vértice hacia arriba",
-    "forma de las marcas laterales"
+    "forma de las marcas laterales",
+    "marcas laterales de babor",
+    "marcas laterales de estribor",
+    "lateral de babor",
+    "lateral de estribor",
+    "marca cilíndrica de color rojo",
+    "boya cónica",
+    "cono verde"
    ],
    "nota": "Babor: roja, cilíndrica (o castillete/espeque), tope un cilindro rojo. Estribor: verde, cónica (o castillete/espeque), tope un cono verde con el vértice hacia arriba. Las modificadas de bifurcación van en baliza.lateral.bifurcacion.",
    "padre": "baliza.lateral",
@@ -271,7 +286,13 @@
     "franja roja",
     "GpD (2+1)",
     "grupos de 2+1 destellos",
-    "canal secundario"
+    "canal secundario",
+    "2 + 1",
+    "2+1",
+    "franja verde",
+    "banda roja",
+    "banda verde",
+    "canal principal"
    ],
    "nota": "Roja con banda verde (cilindro rojo, luz roja 2+1) = canal principal a estribor; verde con banda roja (cono verde, luz verde 2+1) = canal principal a babor. Se dejan como la lateral de su color dominante para seguir el canal principal (al revés para el secundario).",
    "padre": "baliza.lateral",
@@ -373,7 +394,9 @@
     "opuestos por sus vértices",
     "unidos por la base",
     "dos triángulos",
-    "puntas hacia abajo"
+    "puntas hacia abajo",
+    "conos superpuestos",
+    "dos conos"
    ],
    "nota": "N: conos hacia arriba; S: hacia abajo; E: opuestos por las bases; W: opuestos por los vértices. Es la característica diurna más importante de una cardinal.",
    "padre": "baliza.cardinal",
@@ -400,7 +423,15 @@
     "mitad superior negra",
     "bandas horizontales amarillas y negras",
     "castillete o espeque",
-    "color representativo"
+    "color representativo",
+    "colores",
+    "pintada",
+    "franja negra",
+    "banda negra",
+    "negro en su parte central",
+    "parte superior",
+    "negro con una ancha banda",
+    "amarillo con una ancha banda"
    ],
    "nota": "El negro va donde apuntan los conos: N negro sobre amarillo, S amarillo sobre negro, E negra con banda amarilla, W amarilla con banda negra. Normalmente castillete o espeque.",
    "padre": "baliza.cardinal",
@@ -429,7 +460,10 @@
     "seis centelleos más un destello largo",
     "nueve centelleos",
     "9 destellos cada 15 segundos",
-    "luz blanca"
+    "luz blanca",
+    "centelleos",
+    "centellante",
+    "cardinal del cuadrante"
    ],
    "nota": "Blanca, centelleante (Q) o centelleante rápida (VQ): N continua; E 3 (cada 10 s o 5 s); S 6 + destello largo (15 s o 10 s); W 9 (15 s o 10 s). Incluye identificar la cardinal por su luz.",
    "padre": "baliza.cardinal",
@@ -522,7 +556,12 @@
     "negra con bandas horizontales rojas",
     "negro con una o varias anchas bandas horizontales rojas",
     "rojo y negro",
-    "castillete o espeque"
+    "castillete o espeque",
+    "boya negra",
+    "bandas horizontales rojas",
+    "anchas bandas horizontales rojas",
+    "bandas anchas horizontales rojas",
+    "colores de una marca de peligro aislado"
    ],
    "nota": "Negra con una o varias bandas anchas horizontales rojas; tope dos esferas negras superpuestas; forma libre sin confusión con laterales (preferible castillete o espeque).",
    "padre": "baliza.peligro-aislado",
@@ -543,7 +582,10 @@
     "GpD(2)",
     "Fl(2)",
     "dos destellos de manera continua",
-    "luz blanca en grupos de dos destellos"
+    "luz blanca en grupos de dos destellos",
+    "dos destellos",
+    "grupos de dos destellos",
+    "luz de la marca de peligro aislado"
    ],
    "nota": "Blanca, grupos de dos destellos. Incluye identificar la marca por esa luz.",
    "padre": "baliza.peligro-aislado",
@@ -589,7 +631,9 @@
     "entrada de un canal",
     "aproximación a un puerto",
     "paso bajo un puente",
-    "no señalan ningún peligro"
+    "no señalan ningún peligro",
+    "sirven para",
+    "definir los ejes"
    ],
    "nota": "Indica que hay agua navegable alrededor: ejes y centros de canal, recaladas, aproximación a puerto o estuario y mejor paso bajo un puente.",
    "padre": "baliza.aguas-navegables",
@@ -610,7 +654,10 @@
     "esfera roja",
     "bola roja",
     "esférica",
-    "castillete con franjas verticales"
+    "castillete con franjas verticales",
+    "blanco y rojo",
+    "rojo y blanco",
+    "franjas verticales"
    ],
    "nota": "Franjas verticales rojas y blancas; esférica, castillete o espeque; tope una esfera roja.",
    "padre": "baliza.aguas-navegables",
@@ -680,7 +727,13 @@
     "límites de un área de fondeo",
     "separación del tráfico",
     "zonas o configuraciones especiales",
-    "consultar la carta u otra publicación náutica"
+    "consultar la carta u otra publicación náutica",
+    "objetivo principal",
+    "naturaleza exacta",
+    "indicada en la carta",
+    "marca especial puede ser utilizada",
+    "vertederos",
+    "indicadora de separación de tráfico"
    ],
    "nota": "Señalan zonas o configuraciones cuya naturaleza está en la carta (recreo, cables, vertederos, SADO, ejercicios militares, fondeaderos, separación de tráfico donde el balizamiento de canal confunda); no se usan para aproximación a puerto ni recaladas.",
    "padre": "baliza.especial",
@@ -703,7 +756,9 @@
     "cruz diagonal amarilla",
     "forma de libre elección",
     "pictograma",
-    "letras o cifras"
+    "letras o cifras",
+    "color de las marcas especiales",
+    "marcas especiales tienen"
    ],
    "nota": "Amarillas; tope un aspa amarilla en X; forma libre que no se confunda; pueden llevar letras, números o pictogramas.",
    "padre": "baliza.especial",
@@ -723,7 +778,9 @@
     "luz amarilla",
     "cualquier ritmo excepto",
     "destellos aislados de color amarillo",
-    "grupos de 5 destellos"
+    "grupos de 5 destellos",
+    "su luz, si tiene",
+    "luz de una marca especial"
    ],
    "nota": "Amarilla, con cualquier ritmo que no sea el de cardinales, peligro aislado o aguas navegables. Incluye identificar la marca por su luz.",
    "padre": "baliza.especial",
@@ -952,7 +1009,10 @@
     "vela y motor",
     "propulsándose con el motor",
     "maquinaria propulsora no se esté utilizando",
-    "motovelero"
+    "motovelero",
+    "buque a vela",
+    "motor, si lo lleva",
+    "su motor"
    ],
    "nota": "Es buque de vela el que navega a vela sin usar la máquina; con la máquina en uso es de propulsión mecánica a todos los efectos. La marca del cono está en ripa.marcas.vela-motor.",
    "padre": "ripa.def",
@@ -1240,7 +1300,9 @@
     "no se tendrá en cuenta",
     "titulación",
     "potencia del motor",
-    "nacionalidad"
+    "nacionalidad",
+    "determinar la velocidad de seguridad",
+    "determinamos la velocidad de seguridad"
    ],
    "nota": "Qué factores enumera la Regla 6 (para todos los buques y, además, con radar) y cuáles no (titulación, pericia, potencia, nacionalidad, hora de llegada…).",
    "padre": "ripa.conducta",
@@ -1269,7 +1331,11 @@
     "buque de gran tamaño",
     "remolque",
     "muy corta distancia",
-    "la demora varía"
+    "la demora varía",
+    "demora",
+    "nos demora",
+    "varía",
+    "varia notablemente"
    ],
    "nota": "Si la demora de un buque que se aproxima no varía apreciablemente hay riesgo; puede haberlo aunque varíe con buques grandes, remolques o a muy corta distancia.",
    "padre": "ripa.conducta",
@@ -1326,7 +1392,10 @@
     "pasado y en franquía",
     "buenas prácticas marineras",
     "no estorbar",
-    "distancia mínima"
+    "distancia mínima",
+    "maniobras para evitar el abordaje",
+    "evitar un abordaje",
+    "evitar el abordaje"
    ],
    "nota": "Maniobra clara, a tiempo y amplia (no pequeños cambios sucesivos); con espacio, el cambio de rumbo solo puede ser lo más eficaz; reducir o parar si hace falta; comprobar su eficacia hasta pasar franco; obligación de no estorbar (8 f)).",
    "padre": "ripa.conducta",
@@ -1388,7 +1457,10 @@
     "dedicados a la pesca",
     "solo pueda navegar con seguridad dentro del canal",
     "cruzar un canal angosto",
-    "cinco pitadas cortas si duda"
+    "cinco pitadas cortas si duda",
+    "no deben estorbar",
+    "menores de 20 metros",
+    "veleros"
    ],
    "nota": "Los < 20 m y los de vela no estorban al que solo puede navegar dentro del canal; los de pesca no estorban a ninguno; no se cruza si se estorba a ese buque.",
    "padre": "ripa.canal",
@@ -1484,9 +1556,11 @@
     "evitar fondear",
     "mayor margen posible",
     "adoptados por la OMI",
-    "unirnos al mismo"
+    "unirnos al mismo",
+    "usar el dispositivo",
+    "utilizar el dispositivo"
    ],
-   "nota": "Navegar por la vía apropiada en el sentido del tráfico; entrar y salir por los extremos o, por los lados, con el menor ángulo; evitar fondear en el DST o cerca de sus extremos; quien no lo usa se aparta con el mayor margen.",
+   "nota": "Navegar por la vía apropiada en el sentido del tráfico; entrar y salir por los extremos o, por los lados, con el menor ángulo; evitar fondear en el DST o cerca de sus extremos; quien no lo usa se aparta con el mayor margen. Lo puede usar cualquier buque, también los de vela y los < 20 m.",
    "padre": "ripa.dst",
    "tit": [
     "per"
@@ -1611,7 +1685,9 @@
     "22,5 grados a popa del través",
     "solo la luz de alcance",
     "luz de alcance del alcanzado",
-    "duda de si está alcanzando"
+    "duda de si está alcanzando",
+    "alcanzando",
+    "estamos alcanzando"
    ],
    "nota": "Alcanza quien se aproxima desde más de 22,5° a popa del través del otro (de noche solo vería su luz de alcance); en duda, se considera que alcanza.",
    "padre": "ripa.vista",
@@ -1637,7 +1713,9 @@
     "velero que alcanza a un buque de motor",
     "pesquero que alcanza",
     "adelantar por ambas bandas",
-    "no le convierte en buque que cruza"
+    "no le convierte en buque que cruza",
+    "alcance a otro",
+    "alcanza a"
    ],
    "nota": "El que alcanza se aparta del alcanzado sea cual sea su tipo (prevalece sobre la Regla 18) y sigue siéndolo hasta dejarlo franco.",
    "padre": "ripa.vista",
@@ -1873,7 +1951,9 @@
     "dedicado a la pesca",
     "vela se mantendrá apartado de",
     "pesca se mantendrá apartado de",
-    "curricán"
+    "curricán",
+    "se mantendrá apartado de la derrota de",
+    "pesquero faenando"
    ],
    "nota": "Motor se aparta de sin gobierno, maniobra restringida, pesca y vela; vela de sin gobierno, maniobra restringida y pesca; pesca, en lo posible, de sin gobierno y maniobra restringida (sin perjuicio de las Reglas 9, 10 y 13).",
    "padre": "ripa.vista",
@@ -1896,7 +1976,9 @@
    "sinonimos": [
     "restringido por su calado",
     "evitará estorbar el tránsito seguro",
-    "navegará con especial precaución"
+    "navegará con especial precaución",
+    "evitará estorbar",
+    "estorbar el tránsito seguro de"
    ],
    "nota": "Todos salvo el sin gobierno y el de maniobra restringida evitarán estorbar al restringido por su calado, que navegará con precaución.",
    "padre": "ripa.vista",
@@ -1988,7 +2070,9 @@
     "a proa del través",
     "por el través o a popa",
     "evitando un cambio de rumbo hacia",
-    "medidas tempranas"
+    "medidas tempranas",
+    "detectamos en el radar",
+    "no está a la vista"
    ],
    "nota": "Maniobrar con antelación evitando caer a babor por un buque a proa del través (salvo el que se alcanza) y evitando caer hacia un buque por el través o a popa.",
    "padre": "ripa.visibilidad",
@@ -2049,7 +2133,11 @@
     "marcas de día",
     "todas las condiciones meteorológicas",
     "en niebla",
-    "anexo I"
+    "anexo I",
+    "encenderse",
+    "luces reglamentarias",
+    "deberán cumplirse",
+    "luces de navegación"
    ],
    "nota": "Luces de la puesta a la salida del sol y también de día con visibilidad reducida; marcas de día; en todas las condiciones meteorológicas.",
    "padre": "ripa.luces",
@@ -2153,7 +2241,8 @@
     "luz todo horizonte",
     "360 grados",
     "luz centelleante",
-    "120 o más centelleos por minuto"
+    "120 o más centelleos por minuto",
+    "todo horizonte"
    ],
    "nota": "Todo horizonte: 360°. Centelleante: 120 o más centelleos por minuto.",
    "padre": "ripa.luces.def",
@@ -2308,7 +2397,10 @@
     "eslora inferior a 20 metros",
     "roja sobre verde",
     "luces potestativas",
-    "nunca exhiben luz de tope"
+    "nunca exhiben luz de tope",
+    "navegando a vela de noche",
+    "embarcación de vela",
+    "vela sin utilizar"
    ],
    "nota": "Costados y alcance (farol combinado en el tope si < 20 m); opcional roja sobre verde todo horizonte en el tope (no con el farol combinado); nunca luz de tope. Incluye reconocer un velero por sus luces.",
    "padre": "ripa.luces",
@@ -2431,7 +2523,10 @@
     "dos conos unidos por sus vértices",
     "marca bicónica no es de pesca",
     "cuando no esté pescando",
-    "marca diurna de pesca"
+    "marca diurna de pesca",
+    "conos negros unidos por el vértice",
+    "dos conos unidos",
+    "marca bicónica es característica"
    ],
    "nota": "De día todo buque dedicado a la pesca (arrastre o no) lleva dos conos unidos por los vértices; si no está pescando, solo las luces y marcas de un buque de su eslora.",
    "padre": "ripa.luces",
@@ -2482,7 +2577,9 @@
     "esfera-bicono-esfera",
     "con arrancada luces de tope",
     "remolque con dificultad de maniobra",
-    "eslora inferior a 12 metros"
+    "eslora inferior a 12 metros",
+    "conjunto de luces",
+    "con capacidad de maniobra restringida"
    ],
    "nota": "Roja-blanca-roja todo horizonte (de día bola-bicónica-bola); con arrancada, topes, costados y alcance; remolcando con dificultad, además las del remolque. Los < 12 m (salvo buceo) no están obligados.",
    "padre": "ripa.luces",
@@ -2512,7 +2609,9 @@
     "buceo",
     "bandera Alfa",
     "material rígido",
-    "tengo buzo sumergido"
+    "tengo buzo sumergido",
+    "costado de la obstrucción",
+    "dragado con obstrucción"
    ],
    "nota": "Con obstrucción: dos rojas/dos bolas del lado obstruido y dos verdes/dos bicónicas del lado libre por donde se pasa; buceo de pequeño tamaño: roja-blanca-roja y bandera «A» rígida de al menos 1 m.",
    "padre": "ripa.luces",
@@ -2605,7 +2704,9 @@
     "luces de cubierta",
     "100 metros",
     "eslora inferior a 7 metros",
-    "zona de navegación frecuente"
+    "zona de navegación frecuente",
+    "fondear",
+    "fondeo"
    ],
    "nota": "De día una bola a proa; de noche blanca todo horizonte a proa y, si ≥ 50 m, otra más baja a popa; ≥ 100 m, además luces de cubierta; < 7 m fuera de canales y fondeaderos, exento.",
    "padre": "ripa.luces",
@@ -2630,7 +2731,8 @@
     "tres esferas negras",
     "dos luces rojas todo horizonte",
     "luces de fondeo",
-    "eslora inferior a 12 metros"
+    "eslora inferior a 12 metros",
+    "embarcación varada"
    ],
    "nota": "De noche las de fondeado más dos rojas todo horizonte; de día tres bolas en vertical; los < 12 m no están obligados.",
    "padre": "ripa.luces",
@@ -2715,7 +2817,9 @@
     "dos pitadas cortas",
     "caigo a babor",
     "tres pitadas cortas",
-    "estoy dando atrás"
+    "estoy dando atrás",
+    "dando atrás",
+    "tres pitadas"
    ],
    "nota": "Buque de propulsión mecánica a la vista de otro que maniobra: 1 corta = caigo a estribor; 2 = a babor; 3 = dando atrás.",
    "padre": "ripa.senales",
@@ -2764,7 +2868,10 @@
     "no entiende las intenciones",
     "tiene dudas",
     "advertencia",
-    "cinco destellos"
+    "cinco destellos",
+    "duda de la maniobra",
+    "dudas",
+    "duda"
    ],
    "nota": "Quien no entienda las intenciones del otro o dude de que maniobre lo suficiente lo indica con al menos cinco pitadas (o destellos) cortas y rápidas.",
    "padre": "ripa.senales",
@@ -2826,7 +2933,10 @@
     "maniobra restringida",
     "restringido por su calado",
     "remolcando o empujando",
-    "pesca fondeado"
+    "pesca fondeado",
+    "pitada larga seguida de dos cortas",
+    "larga y dos cortas",
+    "larga seguida de dos cortas"
    ],
    "nota": "Una larga y dos cortas cada ≤ 2 min para todos ellos (también pesca y maniobra restringida fondeados).",
    "padre": "ripa.niebla",
@@ -2872,7 +2982,9 @@
     "corta, larga y corta",
     "tres golpes de campana",
     "varado",
-    "fondeado"
+    "fondeado",
+    "una pitada corta, una larga y una corta",
+    "buque fondeado podrá"
    ],
    "nota": "Fondeado: repique de campana ~5 s cada ≤ 1 min (≥ 100 m, además gong a popa); puede añadir corta-larga-corta. Varado: campana con tres golpes antes y después del repique.",
    "padre": "ripa.niebla",
@@ -2965,7 +3077,11 @@
     "canal 70",
     "radiobaliza",
     "no es una señal de peligro",
-    "bengala verde"
+    "bengala verde",
+    "solicita auxilio",
+    "en peligro",
+    "necesita auxilio",
+    "luz roja"
    ],
    "nota": "Reconocer las señales de la lista del anexo IV y descartar las que no lo son (MC, DE, «N» y «A», bengalas verdes, 112, otras frecuencias).",
    "padre": "ripa.peligro",

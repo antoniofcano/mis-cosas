@@ -108,6 +108,7 @@ export function proponer(eje, tit, { ampliar = false } = {}) {
   // Ampliar: la práctica del eje se queda como está y solo se colocan las de estudio que no están en ninguna clase.
   const previa = ampliar ? leerJSON(join(RAIZ, 'data', 'ejes', eje, tit, 'practica.json')) : {};
   const yaEnPractica = new Set(Object.values(previa).flat());
+  const estudio0 = new Set(qs.filter(estudiable).map((q) => q.id));
   for (const q of qs.filter((x) => estudiable(x) && !yaEnPractica.has(x.id))) {
     // Las de la unidad de carta que no se hacen sobre la carta (mareas, estima analítica) pueden ir también a las clases
     // de la teoría de navegación (la unidad anterior).
@@ -174,6 +175,12 @@ export function proponer(eje, tit, { ampliar = false } = {}) {
     practica[l.id].push(...extra.map(({ q }) => q.id));
     for (const { q } of extra) veces.set(q.id, (veces.get(q.id) ?? 0) + 1);
     if (practica[l.id].length < minimo) faltan[l.id] = { tiene: practica[l.id].length, referencia: minimo };
+  }
+  // Revisión a mano al ampliar (tools/bancos/ejes/<eje>/practica-extra.json: { <tit>: { <leccionId>: [ids] } }): preguntas
+  // que también van a otra clase que el cálculo no ve (p. ej., la bandera «A» del RIPA en la clase de buzos y bañistas).
+  if (ampliar) {
+    const extra = leerJSON(join(RAIZ, 'tools', 'bancos', 'ejes', eje, 'practica-extra.json'), {})[tit] ?? {};
+    for (const [l, ids] of Object.entries(extra)) if (practica[l]) practica[l].push(...ids.filter((id) => estudio0.has(id) && !practica[l].includes(id)));
   }
   // En el orden del banco.
   const orden = new Map(qs.map((q, i) => [q.id, i]));

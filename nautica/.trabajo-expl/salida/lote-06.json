@@ -1479,5 +1479,786 @@
   "explicacion": "El spring de popa sale de la popa y se hace firme en tierra hacia proa. Al cobrarlo tira de la popa hacia el muelle y hacia delante, así que la popa se atraca y la embarcación avanza. El spring de proa la lleva hacia atrás, y el largo de popa también.",
   "clave": "Spring de popa: popa al muelle y barco avante.",
   "trampa": "La d): el largo de popa arrima la popa, pero lleva el barco hacia atrás."
+ },
+ "bal-per-2021-03-eg-28": {
+  "explicacion": "Si las dos hélices son dextrógiras, al dar atrás las dos tienden a llevar la popa a babor, de modo que la reacción inicial es popa a babor y proa a estribor. La a) y la b) dicen lo contrario, y la c) no vale porque, parado y sin arrancada, los timones todavía no tienen efecto. Por eso ninguna es correcta.",
+  "clave": "Dos dextrógiras atrás: popa a babor, como una sola.",
+  "trampa": "La c): sin arrancada el agua no pasa por los timones y no gobiernan.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2021-03-eg-29": {
+  "explicacion": "Para abrir la popa se busca un punto de giro a proa. Dando avante sobre el esprin de proa (a), el cabo retiene la proa y la popa se separa del muelle. También puede hacerse dejando solo el través de proa y virando de él (c), con lo que la proa se arrima y la popa se abre. Dar atrás sobre el esprin de popa abriría la proa, no la popa.",
+  "clave": "Abrir popa: pivota en la proa (esprin de proa avante).",
+  "trampa": "La b): trabajar sobre el esprin de popa abre la proa.",
+  "concepto": "bal-per-2021-03-eg-29"
+ },
+ "bal-per-2022-12-c-28": {
+  "explicacion": "Para abrir la popa se busca un punto de giro a proa. Dando avante sobre el esprin de proa (a), el cabo retiene la proa y la popa se separa del muelle, sea la hélice levógira o dextrógira. También puede hacerse dejando solo el través de proa y virando de él (c). Avante sobre el esprin de popa no retiene nada, porque ese cabo trabaja hacia atrás.",
+  "clave": "Abrir popa: pivota en la proa (esprin de proa avante).",
+  "trampa": "La b): el esprin de popa no aguanta la marcha avante.",
+  "concepto": "bal-per-2021-03-eg-29"
+ },
+ "bal-per-2021-03-fi-28": {
+  "explicacion": "El viento de través tiende a separar el barco del muelle, y eso lo aguantan los traveses, que trabajan perpendiculares al costado. La corriente de marea longitudinal lo empuja hacia proa o hacia popa, y eso lo aguantan los springs. Los largos ayudan, pero las dos fuerzas se reparten mejor entre traveses y springs.",
+  "clave": "Fuerza transversal: traveses; longitudinal: springs.",
+  "trampa": "La c): solo con traveses la corriente arrastraría el barco a lo largo del muelle."
+ },
+ "bal-per-2021-06-bh-29": {
+  "explicacion": "Cobrar es recoger o tirar de un cabo para tensarlo o meterlo a bordo. Soltar o liberar un cabo es largar o lascar, y adujar es recogerlo en vueltas ordenadas una vez cobrado.",
+  "clave": "Cobrar = tirar del cabo.",
+  "trampa": "La b): adujar es ordenarlo en vueltas, no tirar de él."
+ },
+ "bal-per-2021-09-d-28": {
+  "explicacion": "En un fondo de algas el ancla no puede clavarse en el sedimento: resbala sobre las hojas y garrea, arrastrándose por el fondo. Además, en Baleares está prohibido fondear sobre posidonia (Decreto 25/2018), y desde el RD 191/2026 en todo el Mediterráneo. Bornear es girar alrededor del ancla, algo normal en cualquier fondeo.",
+  "clave": "Algas: el ancla garrea (y la posidonia no se toca).",
+  "trampa": "La a): bornear pasa en cualquier fondo; el problema de las algas es garrear."
+ },
+ "bal-per-2021-09-e-28": {
+  "explicacion": "Con dos hélices se puede dar avante con una y atrás con la otra: el par de fuerzas hace girar la embarcación casi sobre sí misma, más rápido y en menos espacio que con una sola hélice. Con giro al exterior los efectos laterales se compensan y la maniobra es igual de buena por las dos bandas. No hace falta viento.",
+  "clave": "Dos hélices: una avante y otra atrás, giro sobre sí misma.",
+  "trampa": "La c): es justo lo contrario; es una ventaja.",
+  "concepto": "bal-per-2021-09-e-28"
+ },
+ "bal-per-2026-03-d-28": {
+  "explicacion": "Con dos hélices se puede dar avante con una y atrás con la otra: el par de fuerzas hace girar la embarcación casi sobre sí misma, más rápido y en menos espacio que con una sola hélice. Se puede hacer desde parado, y con giro al exterior los efectos laterales se compensan, así que no hace falta compensar con el timón.",
+  "clave": "Dos hélices: una avante y otra atrás, giro sobre sí misma.",
+  "trampa": "La a): la ciaboga con dos hélices se hace precisamente sin arrancada.",
+  "concepto": "bal-per-2021-09-e-28"
+ },
+ "bal-per-2021-09-e-29": {
+  "explicacion": "La fuerza del timón depende de la velocidad del agua que pasa por la pala. A poca velocidad el flujo es pequeño y el efecto del timón también, aunque no es nulo mientras se esté por encima de la velocidad de gobierno.",
+  "clave": "Poca velocidad, poco timón.",
+  "trampa": "La c): nulo solo es sin arrancada (o por debajo de la velocidad de gobierno)."
+ },
+ "bal-per-2021-09-f-29": {
+  "explicacion": "Tomar vueltas es dar una o varias vueltas a un cabo sobre una bita, cornamusa u otro elemento para que la fricción soporte la tensión y no la mano. Hacer firme es dejarlo fijado del todo, adujar es recogerlo en vueltas ordenadas y amarrar por seno es pasarlo por un punto de tierra y devolverlo a bordo.",
+  "clave": "Tomar vueltas: que la bita aguante, no la mano.",
+  "trampa": "La b): hacer firme es fijarlo del todo; tomar vueltas es el paso previo."
+ },
+ "bal-per-2021-12-a-28": {
+  "explicacion": "Los cabos de amarre a tierra de un barco atracado de costado son los largos (por fuera de proa y popa), los traveses (perpendiculares al costado) y los esprines o springs (cruzados hacia el centro). La contra, el amante y el calabrote no son nombres de amarras al muelle.",
+  "clave": "Amarras: largos, traveses y esprines.",
+  "trampa": "La d) incluye el calabrote, que es un tipo de cabo grueso, no una amarra."
+ },
+ "bal-per-2021-12-c-28": {
+  "explicacion": "En un canal de entrada o salida de puerto hay que llevar el timón en gobierno manual, para reaccionar al instante, y una velocidad por encima de la mínima de gobierno, para que el timón responda. El piloto automático no reacciona ante el tráfico ni ante el viento, y por debajo de la velocidad de gobierno el barco no obedece al timón.",
+  "clave": "En la canal: timón a mano y velocidad con gobierno.",
+  "trampa": "La b): ir por debajo de la velocidad de gobierno es perder el control.",
+  "concepto": "bal-per-2021-12-c-28"
+ },
+ "bal-per-2024-04-a-28": {
+  "explicacion": "En un canal de entrada o salida de puerto hay que llevar el timón en gobierno manual, para reaccionar al instante, y una velocidad por encima de la mínima de gobierno, para que el timón responda. El piloto automático no reacciona ante el tráfico, por debajo de la velocidad de gobierno el barco no obedece y un timón levantado no gobierna.",
+  "clave": "En la canal: timón a mano y velocidad con gobierno.",
+  "trampa": "La b): ir por debajo de la velocidad de gobierno es perder el control, no ayudar al tráfico.",
+  "concepto": "bal-per-2021-12-c-28"
+ },
+ "bal-per-2021-12-c-29": {
+  "explicacion": "Antes de atracar o desatracar hay que mirar siempre la dirección e intensidad del viento, porque desplaza la embarcación cuando va despacio y condiciona qué cabo se da o se larga primero. El paso de la hélice y las amarras son cosas del propio barco, y el tipo de nubes no influye en la maniobra.",
+  "clave": "Antes de maniobrar: mira el viento.",
+  "trampa": "La a): el paso de la hélice es de tu barco, no un elemento externo."
+ },
+ "bal-per-2021-12-d-28": {
+  "explicacion": "Ciabogar es hacer revirar la embarcación en el menor espacio posible, prácticamente sobre sí misma, para orientar la proa o la popa hacia donde se quiere. No implica una vuelta completa de 360º, no tiene que ver con los remos y amarrar de costado a otro barco es abarloar.",
+  "clave": "Ciaboga: girar casi sobre sí misma en poco espacio.",
+  "trampa": "La c): no hace falta una vuelta completa; se gira lo necesario.",
+  "concepto": "bal-per-2021-12-d-28"
+ },
+ "bal-per-2026-03-c-28": {
+  "explicacion": "Ciabogar es hacer revirar la embarcación en el menor espacio posible, prácticamente sobre sí misma, para orientar la proa o la popa hacia donde se quiere. No exige girar 180º como mínimo: se gira lo necesario. Amarrar de costado a otro barco es abarloar y los remos no tienen nada que ver.",
+  "clave": "Ciaboga: girar casi sobre sí misma en poco espacio.",
+  "trampa": "La b) añade un mínimo de 180º que la definición no exige.",
+  "concepto": "bal-per-2021-12-d-28"
+ },
+ "bal-per-2021-12-f-29": {
+  "explicacion": "El viento de popa empuja la embarcación hacia proa, y el cabo que trabaja contra ese movimiento es el esprin de proa (sale de proa hacia popa). Por eso es el último en largarse: aguanta el barco mientras se sueltan los demás y, al final, sirve de pivote para abrir la popa antes de salir.",
+  "clave": "Viento de popa: el esprin de proa es el último.",
+  "trampa": "La c): el largo de popa también trabaja hacia atrás, pero no sirve de pivote para salir."
+ },
+ "bal-per-2022-03-a-28": {
+  "explicacion": "El abatimiento es el ángulo entre el rumbo verdadero (hacia donde apunta la proa) y el rumbo de superficie (el que realmente hace el barco sobre el agua) por efecto del viento. La b) es el ángulo total de viento y corriente juntos, y la c) es la deriva por la corriente.",
+  "clave": "Abatimiento: Rv → Rs, solo viento.",
+  "trampa": "La c) es el efecto de la corriente, no del viento.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-per-2022-03-b-29": {
+  "explicacion": "El largo de popa sale de la popa hacia atrás y se hace firme en tierra por detrás del barco. Al cobrarlo arrima la popa al muelle y desplaza la embarcación hacia popa. El que atraca la popa y la mueve hacia proa es el spring de popa.",
+  "clave": "Largo de popa: popa al muelle y barco atrás.",
+  "trampa": "La c) describe el spring de popa."
+ },
+ "bal-per-2022-03-di-29": {
+  "explicacion": "En la canal de entrada de un puerto deportivo se gobierna a mano, para reaccionar al instante ante otros barcos, y a la velocidad mínima con la que el barco todavía gobierna, para no levantar ola y tener tiempo de maniobrar. El piloto automático no reacciona ante el tráfico, y la velocidad no es indiferente.",
+  "clave": "En la canal: timón a mano y poca velocidad, pero con gobierno.",
+  "trampa": "La c): llevar piloto automático en la canal nunca es indiferente."
+ },
+ "bal-per-2022-06-a-28": {
+  "explicacion": "Barlovento es la zona o el lado de donde viene el viento, y sotavento hacia donde va. «Fil de roda» es la dirección de la proa y «ladovento» no es ningún término náutico.",
+  "clave": "Barlovento: de donde viene; sotavento: adonde va.",
+  "trampa": "La a) es el lado contrario."
+ },
+ "bal-per-2022-06-d-28": {
+  "explicacion": "El spring de popa sale de la popa y se hace firme en tierra hacia proa. Al virarlo tira de la popa hacia el muelle y hacia delante, así que acerca la popa y mueve el barco hacia proa. El largo de popa arrima la popa pero lleva el barco hacia atrás.",
+  "clave": "Spring de popa: popa al muelle y barco avante.",
+  "trampa": "La b): el largo de popa mueve el barco hacia atrás."
+ },
+ "bal-per-2022-06-e-28": {
+  "explicacion": "Amarrar por seno significa que el cabo sale de a bordo, da la vuelta al noray o argolla de tierra y vuelve a bordo, de modo que firme y chicote quedan los dos en el barco. Así puedes largar desde a bordo sin que nadie en tierra tenga que soltar el cabo. Si algún extremo queda en tierra, ya no es por seno.",
+  "clave": "Por seno: el cabo va y vuelve; los dos extremos a bordo.",
+  "trampa": "No confundas firme y chicote: lo que importa es que ninguno queda en tierra.",
+  "base": "and-2020-c1-t28",
+  "concepto": "and-2020-c1-t28"
+ },
+ "bal-per-2022-09-a-28": {
+  "explicacion": "El largo de proa sale de la proa hacia delante y se hace firme en tierra por delante del barco. Al cobrarlo arrima la proa al muelle y hace avanzar la embarcación. El que atraca la proa y la lleva atrás es el spring de proa.",
+  "clave": "Largo de proa: proa al muelle y barco avante.",
+  "trampa": "La a) describe el spring de proa.",
+  "concepto": "bal-per-2022-09-a-28"
+ },
+ "bal-per-2024-12-a-28": {
+  "explicacion": "El largo de proa sale de la proa hacia delante y se hace firme en tierra por delante del barco. Al cobrarlo arrima la proa al muelle y hace avanzar la embarcación. El que atraca la proa y la lleva atrás es el spring de proa.",
+  "clave": "Largo de proa: proa al muelle y barco avante.",
+  "trampa": "La a) describe el spring de proa.",
+  "concepto": "bal-per-2022-09-a-28"
+ },
+ "bal-per-2022-09-c-28": {
+  "explicacion": "Abarloarse es situarse al costado de otra embarcación y amarrarse a ella, costado con costado. Ir por su popa sin amarrarse no es abarloarse, y dar un remolque por la popa es remolcar.",
+  "clave": "Abarloar = costado con costado.",
+  "trampa": "La a): estar cerca no es estar abarloado; hay que amarrarse al costado."
+ },
+ "bal-per-2022-09-c-29": {
+  "explicacion": "En un pantalán con muertos, al entrar de popa entre dos barcos, lo primero es coger con el bichero la guía que va del muelle al muerto y hacer firme el largo de proa (la amarra del muerto). Así la proa queda sujeta y no cae sobre los vecinos mientras se dan los cabos de popa.",
+  "clave": "Atraque con muerto: primero se asegura la proa.",
+  "trampa": "La a): con la proa suelta, el viento te lleva contra los barcos de al lado."
+ },
+ "bal-per-2022-09-m-28": {
+  "explicacion": "Con hélice levógira (giro a la izquierda) en marcha atrás, la corriente de expulsión, que va hacia proa, golpea el casco de forma asimétrica y, como la presión lateral de las palas, lleva la popa a estribor. Es el efecto contrario al de la dextrógira, y desde parado es cuando más se nota.",
+  "clave": "Levógira atrás: popa a estribor.",
+  "trampa": "La b) (popa a babor) es lo que haría una dextrógira.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2022-12-fd-28": {
+  "explicacion": "La hélice levógira en marcha avante gira en sentido contrario a las agujas del reloj (vista desde popa) y la presión lateral de las palas lleva la popa a babor. Con la popa a babor, la proa cae a estribor. Por eso son ciertas la a) y la c).",
+  "clave": "Levógira avante: popa a babor, proa a estribor.",
+  "trampa": "La b) es lo que hace la dextrógira en avante.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "avante"
+   }
+  ]
+ },
+ "bal-per-2022-12-fd-29": {
+  "explicacion": "Con arrancada atrás, la popa va hacia la banda a la que se mete el timón. Si queremos que la proa caiga a babor, la popa tiene que ir a estribor, así que metemos la rueda a estribor. Con el timón a la vía no habría caída y no es indiferente.",
+  "clave": "Con arrancada atrás, la popa va hacia donde metes el timón.",
+  "trampa": "La b): en marcha atrás el timón a babor lleva la proa a estribor."
+ },
+ "bal-per-2023-03-cg-29": {
+  "explicacion": "Al muerto se llega poniendo la proa al muerto y al viento: el viento frena la embarcación, permite ir muy despacio con gobierno y deja el muerto bajo la proa para cogerlo con el bichero. Con el viento de costado el barco abate y se pierde la boya, y pasarse el muerto para dar atrás complica la maniobra.",
+  "clave": "Al muerto: proa al muerto y al viento.",
+  "trampa": "La b): con viento de costado el barco se va a sotavento antes de amarrar."
+ },
+ "bal-per-2023-03-e-28": {
+  "explicacion": "Bornear es el giro que hace la embarcación fondeada alrededor del ancla cuando cambia el viento o la corriente, describiendo un círculo con centro en el ancla. Cuando el ancla se arrastra es garrear, balizarla con un orinque es poner un arinque, y los golpes de proa son pantocazos.",
+  "clave": "Bornear: girar alrededor del ancla.",
+  "trampa": "La a) es garrear."
+ },
+ "bal-per-2023-06-bg-28": {
+  "explicacion": "Para abrir la proa hay que pivotar sobre la popa. Dejando solo el esprin de popa firme y dando atrás poca, el cabo retiene la popa contra el muelle y la proa se separa, aun con viento de mar empujando hacia el muelle. Avante sobre el esprin de proa abre la popa, no la proa, y lascar el largo de popa no separa nada con el viento en contra.",
+  "clave": "Abrir proa: atrás sobre el esprin de popa.",
+  "trampa": "La a) abre la popa: el esprin de proa es el pivote para salir de popa."
+ },
+ "bal-per-2023-09-a-28": {
+  "explicacion": "Mientras el barco conserva arrancada avante, el timón a babor sigue gobernando y la proa cae a babor. Cuando pierde la arrancada manda el efecto de la hélice: la dextrógira en marcha atrás lleva la popa a babor, y la proa cae a estribor. Por eso la caída cambia de banda.",
+  "clave": "Con arrancada manda el timón; sin ella, la hélice.",
+  "trampa": "La d) invierte el orden: primero manda el timón, después la hélice."
+ },
+ "bal-per-2023-09-c-28": {
+  "explicacion": "El tiempo de supervivencia de un náufrago depende sobre todo de la temperatura del agua, de su corpulencia y grasa corporal, de la ropa y la protección térmica y de la actividad que haga (nadar acelera la pérdida de calor). La velocidad a la que iba el barco no influye una vez que la persona está en el agua.",
+  "clave": "Supervivencia: agua, cuerpo, ropa y actividad.",
+  "trampa": "La c) parece no influir, pero moverse en el agua aumenta la pérdida de calor."
+ },
+ "bal-per-2023-12-b-28": {
+  "explicacion": "Los traveses salen perpendiculares al costado, así que al virarlos solo acercan la proa o la popa al muelle, sin mover la embarcación hacia delante ni hacia atrás. Los largos y los esprines, al trabajar en sentido longitudinal, sí la desplazan avante o atrás.",
+  "clave": "Traveses: arriman sin mover avante ni atrás.",
+  "trampa": "La d): los largos arriman y además desplazan el barco."
+ },
+ "bal-per-2023-12-c-28": {
+  "explicacion": "El desplazamiento que produce la corriente se llama deriva y el que produce el viento, abatimiento. Escora, cabeceo y asiento son inclinaciones o movimientos del barco, no efectos del viento o la corriente sobre la trayectoria.",
+  "clave": "Corriente → deriva; viento → abatimiento.",
+  "trampa": "La b) invierte el orden y añade la escora."
+ },
+ "bal-per-2023-12-e-29": {
+  "explicacion": "La curva de evolución avante tiene tres periodos: de maniobra, variable y uniforme. El rabeo de la popa es un fenómeno que se da durante la evolución, no uno de sus periodos.",
+  "clave": "Curva de evolución: Maniobra, Variable, Uniforme (MVU).",
+  "trampa": "Las opciones mezclan periodos reales con el rabeo de la popa.",
+  "base": "and-2025-c1-t29",
+  "concepto": "and-2025-c1-t29"
+ },
+ "bal-per-2024-04-ce-28": {
+  "explicacion": "Con dos hélices, la ciaboga se hace dando avante con una y atrás con la otra: el par de fuerzas hace girar la embarcación sobre sí misma. Para caer a babor, la de estribor empuja avante y la de babor tira atrás. Dar las dos avante solo traza una curva normal, y la d) haría la ciaboga por estribor.",
+  "clave": "Ciaboga a babor: estribor avante, babor atrás.",
+  "trampa": "La d) invierte las máquinas y hace girar hacia estribor."
+ },
+ "bal-per-2024-04-df-28": {
+  "explicacion": "Con caña la proa cae al lado contrario de la metida (caña a babor, proa a estribor), la respuesta es más directa y rápida y es lo práctico en embarcaciones pequeñas. Con rueda, la proa va hacia donde se gira. Las tres afirmaciones son ciertas.",
+  "clave": "Caña: la proa va al lado contrario de la caña.",
+  "trampa": "La a) parece un error, pero es justo cómo funciona la caña."
+ },
+ "bal-per-2024-04-df-29": {
+  "explicacion": "Parado y con timón a la vía, el timón no actúa, pero la presión lateral de las palas sí: la popa cae hacia la banda hacia la que gira la hélice (vista desde popa, por la parte alta de las palas). Una dextrógira en marcha atrás gira a la izquierda y lleva la popa a babor; una levógira, a estribor. Es precisamente sin arrancada cuando más se nota.",
+  "clave": "Presión lateral: la popa va hacia donde gira la hélice.",
+  "trampa": "La d): sin arrancada el timón no actúa, pero la hélice sí.",
+  "concepto": "bal-per-2024-04-df-29"
+ },
+ "bal-per-2026-06-c-29": {
+  "explicacion": "Parado y con timón a la vía, el timón no actúa, pero la presión lateral de las palas sí: la popa cae hacia la banda hacia la que gira la hélice (vista desde popa, por la parte alta de las palas). Una dextrógira en marcha atrás gira a la izquierda y lleva la popa a babor; una levógira, a estribor. Es precisamente sin arrancada cuando más se nota.",
+  "clave": "Presión lateral: la popa va hacia donde gira la hélice.",
+  "trampa": "La d): sin arrancada el timón no actúa, pero la hélice sí.",
+  "concepto": "bal-per-2024-04-df-29"
+ },
+ "bal-per-2024-07-a-28": {
+  "explicacion": "Amollar es soltar gradualmente o aflojar un cabo (o una escota). Trincar es sujetar algo con cabos para que no se mueva, cazar es tirar de una escota para tensarla y adujar es recoger el cabo en vueltas ordenadas.",
+  "clave": "Amollar = aflojar; cazar = tensar.",
+  "trampa": "La b): cazar es lo contrario de amollar."
+ },
+ "bal-per-2024-07-a-29": {
+  "explicacion": "El tiempo de supervivencia de un náufrago depende sobre todo de la temperatura del agua, de su corpulencia y grasa corporal, de la ropa y la protección térmica y de la actividad que haga (nadar acelera la pérdida de calor). La velocidad a la que iba el barco no influye una vez que la persona está en el agua.",
+  "clave": "Supervivencia: agua, cuerpo, ropa y actividad.",
+  "trampa": "La c) parece no influir, pero moverse en el agua aumenta la pérdida de calor."
+ },
+ "bal-per-2024-07-be-28": {
+  "explicacion": "Al bornear, la embarcación gira alrededor del ancla con un radio igual a la cadena filada más la eslora. Ese radio tiene que ser menor que la distancia a los barcos fondeados cercanos (y a la costa o los bajos), para no tocarlos al rolar el viento. No hay una cifra fija de 200 m.",
+  "clave": "Radio de borneo menor que la distancia al vecino.",
+  "trampa": "La a): mayor que la distancia supone chocar al bornear."
+ },
+ "bal-per-2024-07-df-29": {
+  "explicacion": "El ballestrinque se hace y se ajusta con rapidez sobre un candelero, una barandilla o un guardamancebo, y permite subir o bajar la defensa con facilidad. Por eso es el nudo habitual para afirmar las defensas. La gaza no es un nudo de amarre a una barra, el cote es un medio nudo y el llano sirve para unir dos cabos.",
+  "clave": "Defensas: ballestrinque.",
+  "trampa": "La c): el nudo llano une cabos, no los fija a una barra."
+ },
+ "bal-per-2024-09-e-29": {
+  "explicacion": "Con dos hélices, la ciaboga se hace dando avante con una y atrás con la otra: el par de fuerzas hace girar la embarcación sobre sí misma. Para que la proa caiga a babor, la de estribor empuja avante y la de babor tira atrás. La a) haría girar a estribor y dar las dos avante solo traza una curva normal.",
+  "clave": "Ciaboga a babor: estribor avante, babor atrás.",
+  "trampa": "La a) invierte las máquinas y hace girar hacia estribor."
+ },
+ "bal-per-2024-09-f-28": {
+  "explicacion": "La curva de Boutakow es una maniobra de hombre al agua para volver por la propia estela: se mete todo el timón a una banda y, cuando la proa ha caído unos 70º, se mete todo a la banda contraria hasta quedar al rumbo opuesto. Con 30º o 45º se quedaría desplazado de la estela, y con 90º se pasaría.",
+  "clave": "Boutakow: 70º a una banda y todo a la contraria.",
+  "trampa": "La d): 90º es demasiado; el cambio se hace a unos 70º."
+ },
+ "bal-per-2024-12-b-28": {
+  "explicacion": "En la canal de entrada de un puerto deportivo se gobierna a mano, para reaccionar al instante ante otros barcos, y a la velocidad mínima con la que el barco todavía gobierna, para no levantar ola y tener tiempo de maniobrar. El piloto automático no reacciona ante el tráfico, y la velocidad no es indiferente.",
+  "clave": "En la canal: timón a mano y poca velocidad, pero con gobierno.",
+  "trampa": "La c): llevar piloto automático en la canal nunca es indiferente."
+ },
+ "bal-per-2024-12-df-29": {
+  "explicacion": "Levar es la faena de cobrar o subir el ancla. Filar y arriar son lo contrario, dar cadena o bajar el ancla, y lascar es aflojar un poco un cabo.",
+  "clave": "Levar = subir el ancla.",
+  "trampa": "La a): filar es soltar cadena, no recogerla."
+ },
+ "bal-per-2025-07-a-28": {
+  "explicacion": "Encapillar es pasar el ojo (gaza) de un cabo por un noray, bolardo o bita. Abozar es sujetar provisionalmente un cabo con una boza y tesar es tensarlo, así que no son todas correctas. Al atracar, primero encapillas en tierra y luego haces firme a bordo.",
+  "clave": "Encapillar = meter la gaza en el noray.",
+  "trampa": "La d): abozar y tesar son otras faenas distintas.",
+  "base": "and-2024-c3-t29",
+  "concepto": "and-2024-c3-t29"
+ },
+ "bal-per-2025-07-b-28": {
+  "explicacion": "El ballestrinque es un nudo de dos vueltas cruzadas que sirve para afirmar un cabo rápidamente a un poste, barandilla, candelero o noray, y se ajusta y suelta con facilidad. No es corredizo, no sustituye a una gaza y para unir cabos de distinta mena se usa la vuelta de escota.",
+  "clave": "Ballestrinque: afirmar rápido a un poste o barra.",
+  "trampa": "La d) describe la vuelta de escota."
+ },
+ "bal-per-2025-07-c-29": {
+  "explicacion": "La fuerza del timón depende de la velocidad del agua que pasa por la pala. Aumentando las revoluciones, la corriente de expulsión de la hélice golpea el timón con más fuerza y su efecto crece. Reducirlas hace lo contrario, y poner proa a la mar no aumenta la eficacia del timón.",
+  "clave": "Más vueltas, más timón.",
+  "trampa": "La c): menos revoluciones, menos agua en la pala y menos efecto.",
+  "concepto": "bal-per-2025-07-c-29"
+ },
+ "bal-per-2025-12-b-29": {
+  "explicacion": "La fuerza del timón depende de la velocidad del agua que pasa por la pala. Aumentando las revoluciones, la corriente de expulsión de la hélice golpea el timón con más fuerza y su efecto crece. Reducir las revoluciones o detener la arrancada hacen justo lo contrario.",
+  "clave": "Más vueltas, más timón.",
+  "trampa": "La d): sin arrancada el timón deja de gobernar.",
+  "concepto": "bal-per-2025-07-c-29"
+ },
+ "bal-per-2025-09-b-28": {
+  "explicacion": "Lascar es soltar un cabo poco a poco, sin perder el control y manteniéndolo con tensión. Largar es soltarlo del todo, y templar es lo contrario: tensarlo.",
+  "clave": "Lascar = soltar poco a poco, controlando.",
+  "trampa": "La c): largar es soltar del todo, no poco a poco."
+ },
+ "bal-per-2025-09-c-28": {
+  "explicacion": "El retroceso (o resbalamiento) es la diferencia entre lo que la hélice avanzaría en una vuelta según su paso teórico y lo que avanza realmente, porque el agua no es un medio rígido. El paso es ese avance teórico, el núcleo es la parte central donde van las palas y el capacete la pieza que lo cubre.",
+  "clave": "Retroceso = paso teórico − avance real.",
+  "trampa": "La d): el paso es el avance teórico, no la pérdida."
+ },
+ "bal-per-2025-12-a-29": {
+  "explicacion": "Atracando proa al viento, el viento frena la embarcación y tiende a llevarla hacia atrás. Lo primero es dar el largo de proa, que trabaja hacia proa y aguanta ese empuje, para que la proa no se separe ni el barco retroceda; después se dan los demás cabos.",
+  "clave": "Proa al viento: primero el largo de proa.",
+  "trampa": "La d): el largo de popa no aguanta el empuje del viento por la proa."
+ },
+ "bal-per-2025-12-b-28": {
+  "explicacion": "El spring de proa sale de la proa y se hace firme en tierra hacia popa. Al cobrarlo tira de la proa hacia el muelle y hacia atrás, así que la embarcación retrocede y, al pivotar sobre la proa, la popa se separa. El spring de popa la llevaría hacia delante.",
+  "clave": "Spring de proa: barco atrás y popa abierta.",
+  "trampa": "La d): el largo de popa arrima la popa, no la separa."
+ },
+ "bal-per-2025-12-c-28": {
+  "explicacion": "Las balsas salvavidas llevan unas cinchas en el fondo para adrizarlas si se inflan boca abajo: el náufrago se sube encima, se coloca a barlovento, tira de las cinchas y deja que el viento le ayude a voltearla. Quedarse encima o esperar a que una ola la gire no es lo correcto.",
+  "clave": "Balsa invertida: adrizarla tirando de las cinchas.",
+  "trampa": "La b): encima de una balsa volcada no tienes refugio ni equipo."
+ },
+ "bal-per-2025-12-c-29": {
+  "explicacion": "Las bengalas de mano de luz roja son señales pirotécnicas de socorro (Anexo IV del RIPA). Solo deben usarse para pedir socorro, sobre todo cuando ya hay un barco o una aeronave a la vista, y no para alumbrar, llamar la atención o reclamar paso.",
+  "clave": "Bengala roja = socorro, solo socorro.",
+  "trampa": "La a): usarla para llamar la atención sin peligro es una falsa alarma.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2026-03-a-28": {
+  "explicacion": "Los esprines son las amarras que salen por la proa y trabajan hacia popa (esprin de proa) o salen por la popa y trabajan hacia proa (esprin de popa). Los largos trabajan hacia fuera, por delante de la proa y por detrás de la popa, los traveses son perpendiculares y la codera va a un muerto o boya.",
+  "clave": "Esprines: se cruzan hacia el centro del barco.",
+  "trampa": "La a): los largos trabajan hacia fuera, no hacia el centro."
+ },
+ "bal-per-2026-03-b-28": {
+  "explicacion": "Los largos son las amarras que salen por la proa hacia proa (largo de proa) o por la popa hacia popa (largo de popa). Los esprines trabajan en sentido contrario, cruzándose hacia el centro, los traveses son perpendiculares al costado y las escotas son cabos de maniobra de las velas.",
+  "clave": "Largos: hacia fuera por proa y por popa.",
+  "trampa": "La c): los esprines van de proa hacia popa y viceversa."
+ },
+ "bal-per-2026-03-b-29": {
+  "explicacion": "La velocidad mínima a la que el timón es efectivo se llama velocidad de gobierno: por debajo, el agua no fluye lo suficiente por la pala y el barco no responde. Avante media es una orden de máquina, la de crucero es la económica de navegación y la «de puerto» es la que fija cada puerto.",
+  "clave": "Velocidad de gobierno: la mínima para que el timón obedezca.",
+  "trampa": "La b): la velocidad de puerto es un límite de cada puerto, no una propiedad del barco.",
+  "concepto": "bal-per-2019-04-e-29"
+ },
+ "bal-per-2026-03-c-29": {
+  "explicacion": "La codera es una amarra que se da desde la popa (o la proa) a una boya, a otro buque o a un punto de tierra, y sirve, entre otras cosas, para ayudar en el desatraque haciendo de punto fijo. No es un cabo de proa para evitar que el barco vaya atrás, ni un cabo de remolque, ni una pieza metálica del muelle.",
+  "clave": "Codera: amarra desde popa a boya, buque o tierra.",
+  "trampa": "La d) juega con la palabra «codo»."
+ },
+ "bal-per-2026-06-a-29": {
+  "explicacion": "Cuando en un noray ya hay varias gazas, la nuestra se mete de abajo hacia arriba por el interior de las gazas de las otras amarras. Así cualquiera de los barcos puede sacar la suya sin levantar las demás. Hay un orden, y la b) se refiere a sí misma, así que no tiene sentido.",
+  "clave": "Gaza en noray ocupado: por dentro de las otras, de abajo arriba.",
+  "trampa": "La c): encapillar sin más puede bloquear la amarra de otro barco."
+ },
+ "bal-per-2026-06-b-29": {
+  "explicacion": "La oficial da por buena el nudo de pescador como nudo para hacer una gaza sin costuras. El ballestrinque sirve para afirmar un cabo a un poste o candelero y la vuelta de cornamusa para hacerlo firme en una cornamusa: ninguno forma una gaza.",
+  "clave": "Gaza sin costura: un nudo que forme un ojo fijo.",
+  "trampa": "La b): el ballestrinque se hace alrededor de una barra, no forma un ojo.",
+  "discrepancia": "El nudo que se enseña para hacer una gaza fija sin costuras es el as de guía; el nudo de pescador se usa sobre todo para unir dos cabos o sedales. La a) es la respuesta habitual.",
+  "defendible": "a"
+ },
+ "bal-per-2026-06-c-28": {
+  "explicacion": "La curva de evolución se divide en tres periodos, por este orden: de maniobra (desde que empiezas a meter el timón hasta que la pala llega al ángulo pedido), variable (el giro se va acelerando) y uniforme (el barco describe un círculo constante). Las fases de «navegación, curvatura y estabilización» no existen.",
+  "clave": "Fases de la curva: Maniobra, Variable, Uniforme (MVU).",
+  "trampa": "La d) tiene los nombres buenos, pero en otro orden.",
+  "base": "and-2023-c3-t29",
+  "concepto": "and-2023-c3-t29"
+ },
+ "bal-per-2026-06-d-28": {
+  "explicacion": "El esprin de proa sale de la proa y se hace firme en tierra hacia popa. Al cobrarlo, tira de la proa hacia el muelle (y lleva la embarcación hacia atrás). La popa no se acerca: al pivotar sobre la proa, si acaso se separa.",
+  "clave": "Esprin de proa: atraca la proa.",
+  "trampa": "La b): la popa la atraca el esprin de popa."
+ },
+ "bal-per-2026-06-d-29": {
+  "explicacion": "La arrancada es el movimiento que lleva la embarcación en el sentido de su marcha, avante o atrás, aunque ya no esté dando máquina. Por eso se habla de «tener arrancada» o «perder la arrancada». No significa que el motor esté encendido.",
+  "clave": "Arrancada = el barco se mueve por inercia en su sentido de marcha.",
+  "trampa": "La a): con el motor arrancado puedes estar parado y sin arrancada."
+ },
+ "bal-per-2026-09-d-28": {
+  "explicacion": "La corriente actúa sobre la obra viva, la parte sumergida del casco, y produce la deriva. El viento, en cambio, actúa sobre la obra muerta (la parte fuera del agua) y produce el abatimiento. Las olas influyen igualmente haya o no viento o corriente.",
+  "clave": "Corriente → obra viva (deriva); viento → obra muerta (abatimiento).",
+  "trampa": "La b) y la d) cruzan cada agente con la parte del casco equivocada.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   }
+  ]
+ },
+ "bal-per-2026-09-d-29": {
+  "explicacion": "Parado y sin arrancada, el timón a la vía no gobierna y en marcha atrás la corriente de expulsión va hacia proa, no hacia el timón. Lo que predomina es la presión lateral de las palas: la dextrógira, en marcha atrás, lleva la popa a babor.",
+  "clave": "Dextrógira atrás desde parado: efecto de pala, popa a babor.",
+  "trampa": "La c): popa a estribor sería la levógira en marcha atrás.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2017-03-a-30": {
+  "explicacion": "La norma UNE-EN 2 clasifica los fuegos en A (sólidos), B (líquidos), C (gases), D (metales) y F (aceites y grasas de cocina, vegetales o animales). Los gases son la C, los líquidos inflamables la B y los metales la D.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La b): los aceites de cocina se separaron de los líquidos (B) en la clase F.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-03-a-31": {
+  "explicacion": "El servicio de consulta médica por radio (Centro Radio Médico) es gratuito, funciona las 24 horas todos los días del año y se accede a él por radiotelefonía a través de las estaciones costeras (onda corta, onda media o VHF). Por eso son ciertas todas.",
+  "clave": "Consulta médica por radio: gratis, 24 h, por la costera.",
+  "trampa": "Quedarse solo con una de las tres características."
+ },
+ "bal-per-2017-03-a-32": {
+  "explicacion": "Socairear el fuego es dar a la embarcación el rumbo y la velocidad necesarios para que el viento aparente sobre la zona del incendio sea nulo o mínimo, de modo que no aviva las llamas ni lleva el humo hacia el resto del barco. Confinar el fuego cerrando aberturas o sofocarlo son otras acciones distintas.",
+  "clave": "Socairear: rumbo y velocidad para quitar el viento al fuego.",
+  "trampa": "La c): confinar es cerrar aberturas, no maniobrar con el barco."
+ },
+ "bal-per-2017-03-b-30": {
+  "explicacion": "Los fuegos de clase C son los de gases. Además de cortar el suministro de gas, hoy se combaten con extintores de polvo seco (polivalente ABC o BC), que son los que la norma considera adecuados para esta clase. El CO2 no es eficaz en fuegos de gas.",
+  "clave": "Clase C (gas): corta el gas y polvo seco.",
+  "trampa": "La a): el CO2 es para fuegos eléctricos y líquidos, no para gases.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-03-b-31": {
+  "explicacion": "Los fuegos de aceites y grasas de cocina, vegetales o animales, forman la clase F (UNE-EN 2). La A son sólidos, la B líquidos inflamables, y la E se usaba antes para los fuegos eléctricos, que hoy no tienen clase propia.",
+  "clave": "Clase F: aceite de la sartén.",
+  "trampa": "La d): antes iban en la B, pero ahora tienen su propia clase F.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-03-b-32": {
+  "explicacion": "En el agua con chaleco hay que reducir la pérdida de calor: la postura HELP (piernas recogidas y brazos pegados al pecho) protege las zonas de mayor pérdida, como axilas, ingles y cuello. Nadar o quitarse la ropa aceleran la hipotermia, y estirarse expone más superficie al agua.",
+  "clave": "En el agua con chaleco: postura HELP, quieto y vestido.",
+  "trampa": "La a): nadar consume energía y enfría más rápido."
+ },
+ "bal-per-2017-03-ci-31": {
+  "explicacion": "El fuego necesita cuatro elementos, el tetraedro del fuego: combustible, oxígeno (comburente), temperatura (energía de activación) y reacción en cadena. Basta con eliminar uno cualquiera para que se extinga; no hace falta eliminarlos todos ni solo una pareja concreta.",
+  "clave": "Quita una cara del tetraedro y el fuego se apaga.",
+  "trampa": "La c): eliminarlos todos no es necesario; basta con uno.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-31"
+ },
+ "bal-per-2019-06-c-32": {
+  "explicacion": "El fuego necesita cuatro elementos, el tetraedro del fuego: combustible, oxígeno (comburente), temperatura (energía de activación) y reacción en cadena. Basta con eliminar uno cualquiera para que se extinga; no hace falta eliminarlos todos ni solo una pareja concreta.",
+  "clave": "Quita una cara del tetraedro y el fuego se apaga.",
+  "trampa": "La c): eliminarlos todos no es necesario; basta con uno.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-31"
+ },
+ "bal-per-2019-09-c-30": {
+  "explicacion": "El fuego necesita cuatro elementos, el tetraedro del fuego: combustible, oxígeno (comburente), energía de activación (calor) y reacción en cadena. Basta con eliminar uno cualquiera para que se extinga; no hace falta eliminarlos todos ni solo una pareja concreta.",
+  "clave": "Quita una cara del tetraedro y el fuego se apaga.",
+  "trampa": "La c): eliminarlos todos no es necesario; basta con uno.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ],
+  "concepto": "bal-per-2017-03-ci-31"
+ },
+ "bal-per-2017-03-ci-32": {
+  "explicacion": "El gasoil es un líquido inflamable, así que su fuego es de clase B (UNE-EN 2). La A son sólidos que dejan brasa, la C gases y la D metales.",
+  "clave": "Líquidos (gasoil, gasolina) = clase B.",
+  "trampa": "La c): el gasoil no es un gas, aunque se llame «gas-oil».",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-03-fa-31": {
+  "explicacion": "Para que la lengua no tape la vía aérea se hace la maniobra frente-mentón: se empuja la frente hacia abajo y se eleva el mentón, inclinando la cabeza hacia atrás. Así la base de la lengua se separa de la garganta. Meter los dedos o algodón en la boca es peligroso, y tapar la nariz sirve para que el aire no se escape, no para la lengua.",
+  "clave": "Vía aérea: frente atrás, mentón arriba.",
+  "trampa": "La c): pinzar la nariz se hace al insuflar, pero no aparta la lengua."
+ },
+ "bal-per-2017-03-fa-32": {
+  "explicacion": "Sin chaleco hay que mantenerse a flote gastando la menor energía posible: nadar aumenta el consumo y la pérdida de calor, así que se evita salvo para llegar a algo cercano que flote. La ropa conserva calor y ayuda a flotar, y meter la cabeza en el agua enfría mucho. La postura HELP es para quien lleva chaleco.",
+  "clave": "Sin chaleco: no nades, flota y conserva la ropa.",
+  "trampa": "La d): sin chaleco es muy difícil mantener la postura HELP sin hundirse."
+ },
+ "bal-per-2017-03-ge-30": {
+  "explicacion": "En un abandono, lo primero es que todos se pongan el chaleco salvavidas, porque cualquier otra cosa puede salir mal si alguien cae al agua sin él. Las señales pirotécnicas y los aros vienen después, y el equipo de buceo no es un medio de supervivencia.",
+  "clave": "Abandono: primero, chalecos puestos.",
+  "trampa": "La a): las bengalas se usan cuando hay alguien a la vista."
+ },
+ "bal-per-2017-03-ge-32": {
+  "explicacion": "La contusión es una lesión por golpe sin herida abierta: rompe pequeños vasos bajo la piel y produce un hematoma (moratón). La herida punzante la causa un objeto puntiagudo y la incisa un objeto cortante.",
+  "clave": "Golpe sin herida = contusión = hematoma.",
+  "trampa": "La c): la herida incisa es un corte, no un golpe."
+ },
+ "bal-per-2017-07-b-31": {
+  "explicacion": "El gasoil es un líquido inflamable, así que su fuego es de clase B (UNE-EN 2). La A son sólidos que dejan brasa, la C gases y la F aceites y grasas de cocina.",
+  "clave": "Líquidos (gasoil, gasolina) = clase B.",
+  "trampa": "La d): la F es solo para aceites de cocina.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-07-b-32": {
+  "explicacion": "En equipos eléctricos o electrónicos se usa CO2: no conduce la electricidad y no deja residuos que dañen los aparatos. El agua (dulce o salada) y la espuma conducen la corriente y pueden electrocutar a quien apaga. Siempre que se pueda, primero se corta la corriente.",
+  "clave": "Fuego eléctrico: CO2 y corta la corriente.",
+  "trampa": "La b): el agua dulce también conduce electricidad."
+ },
+ "bal-per-2017-07-c-30": {
+  "explicacion": "Para apagar un incendio hay que atacar la base de las llamas, donde está el combustible, avanzar siempre de cara al fuego, sin darle la espalda, y aproximarse con el viento a la espalda para que el humo y el calor no vengan hacia nosotros. Las tres pautas son correctas.",
+  "clave": "Al fuego: a la base, de frente y con el viento a la espalda.",
+  "trampa": "Elegir solo una pauta cuando las tres son ciertas."
+ },
+ "bal-per-2017-07-c-32": {
+  "explicacion": "Ante una vía de agua se ponen en marcha las bombas de achique, se intenta taponarla con espiches, palletes de colisión, cuñas u otros materiales y, si es demasiado grande para controlarla, se busca una playa o zona resguardada para varar y salvar el barco y la tripulación. Todas las acciones son correctas.",
+  "clave": "Vía de agua: achica, tapona y, si no puedes, vara.",
+  "trampa": "Quedarse con una sola medida cuando se combinan las tres."
+ },
+ "bal-per-2017-07-eda-30": {
+  "explicacion": "Para salir de una varada hay que reducir el calado: aligerar pesos, achicar tanques, cambiar el asiento o la escora trasladando pesos y aprovechar la pleamar. Lastrar tanques hace lo contrario, aumenta el calado y clava más el barco, así que es la respuesta errónea.",
+  "clave": "Varada: aligera y espera la pleamar; nunca lastres.",
+  "trampa": "La c) suena drástica, pero aligerar es lo correcto."
+ },
+ "bal-per-2017-07-eda-31": {
+  "explicacion": "Los fuegos de clase C son de gases inflamables. Lo primero es cortar el suministro de gas, y el agente adecuado es el polvo seco, que interrumpe la reacción en cadena. El agua, a chorro o pulverizada, no apaga un fuego de gas y el CO2 se dispersa y no es eficaz en esta clase.",
+  "clave": "Clase C (gas): corta el gas y polvo seco.",
+  "trampa": "La b): el CO2 es útil en fuegos eléctricos, no en gases.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-07-fc-31": {
+  "explicacion": "En un cuadro eléctrico se usa CO2: no conduce la corriente, apaga por sofocación y no deja residuos que estropeen la instalación. El polvo seco también apaga, pero ensucia y daña los contactos, y el agua, a chorro o pulverizada, conduce la electricidad.",
+  "clave": "Fuego eléctrico: CO2 y corta la corriente.",
+  "trampa": "La a): el polvo apaga, pero deja residuos que dañan la instalación.",
+  "concepto": "bal-per-2017-07-fc-31"
+ },
+ "bal-per-2025-07-a-31": {
+  "explicacion": "En un cuadro eléctrico se usa CO2: no conduce la corriente, apaga por sofocación y no deja residuos que estropeen la instalación. El polvo seco también apaga, pero ensucia y daña los contactos, y el agua pulverizada o con espumante conduce la electricidad.",
+  "clave": "Fuego eléctrico: CO2 y corta la corriente.",
+  "trampa": "La a): el polvo apaga, pero deja residuos que dañan la instalación.",
+  "concepto": "bal-per-2017-07-fc-31"
+ },
+ "bal-per-2017-07-fc-32": {
+  "explicacion": "Desde la balsa hay que leer las instrucciones de cada señal antes de usarla, dispararla por sotavento para que las chispas y el humo no caigan sobre la balsa, y usarla solo cuando haya un barco o aeronave que pueda verla, porque son pocas. Las tres consideraciones son correctas.",
+  "clave": "Pirotecnia: instrucciones, sotavento y solo si te pueden ver.",
+  "trampa": "Quedarse con una sola de las tres precauciones.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2017-09-a-30": {
+  "explicacion": "La posición lateral de seguridad se usa con una persona inconsciente que respira y tiene pulso: se la tumba de lado, con la cabeza apoyada sobre su mano y la pierna y el brazo del lado contrario flexionados para que no ruede. Así la lengua y los vómitos no obstruyen la vía aérea. Boca abajo o sentada no protegen la respiración.",
+  "clave": "Inconsciente que respira: posición lateral de seguridad.",
+  "trampa": "La d): boca arriba puede ahogarse con la lengua o un vómito."
+ },
+ "bal-per-2017-09-a-32": {
+  "explicacion": "La sangre arterial sale de color rojo brillante, porque va oxigenada, y a borbotones, al ritmo del corazón y con presión. La sangre oscura que sale de forma continua y sin fuerza es la venosa.",
+  "clave": "Arterial: roja brillante y a borbotones.",
+  "trampa": "La a) describe la hemorragia venosa."
+ },
+ "bal-per-2017-09-c-30": {
+  "explicacion": "A bordo, los lugares con más riesgo de incendio son la cocina (llamas y grasas), el pañol de pinturas y disolventes, la cámara de motores (combustible y calor) y la zona de baterías (hidrógeno y cortocircuitos). Todas las opciones son correctas.",
+  "clave": "Riesgo de incendio: cocina, pinturas, motores y baterías.",
+  "trampa": "Elegir solo la cámara de motores, que es la más evidente."
+ },
+ "bal-per-2017-09-c-31": {
+  "explicacion": "Para taponar una vía de agua sirven los espiches (tapones cónicos de madera), los palletes de colisión (lonas que se aplican por fuera y la presión del agua pega al casco) y las turafallas, entre otros materiales. Todas las opciones son correctas.",
+  "clave": "Vía de agua: espiches, palletes y lo que sirva para taponar.",
+  "trampa": "Quedarse con un solo elemento cuando todos sirven.",
+  "concepto": "bal-per-2017-09-c-31"
+ },
+ "bal-per-2017-12-e-31": {
+  "explicacion": "Para taponar una vía de agua sirven los espiches (tapones cónicos de madera) y cualquier objeto que impida o reduzca la entrada de agua, como colchonetas, cojines o ropa sujetos contra el agujero. Lo que importa es frenar la entrada de agua. Todas las opciones son correctas.",
+  "clave": "Vía de agua: espiches y lo que sirva para taponar.",
+  "trampa": "La a) parece improvisada, pero una colchoneta bien sujeta sirve.",
+  "concepto": "bal-per-2017-09-c-31"
+ },
+ "bal-per-2017-09-c-32": {
+  "explicacion": "Para salir de una varada sin vía de agua hay que reducir el calado en la zona que toca: esperar a la pleamar para tener más agua, aligerar achicando tanques y trasladar pesos hacia la parte que flota para levantar la zona varada. Todas las medidas son aconsejables.",
+  "clave": "Varada: más agua (pleamar) y menos calado (aligerar y mover pesos).",
+  "trampa": "Quedarse solo con la pleamar."
+ },
+ "bal-per-2017-09-d-31": {
+  "explicacion": "Los lugares de más riesgo de incendio a bordo son la instalación eléctrica y las baterías (cortocircuitos e hidrógeno), la cocina (llamas y grasas) y la cámara de motores (combustible y calor). Todas las opciones son correctas.",
+  "clave": "Riesgo de incendio: electricidad, baterías, cocina y motores.",
+  "trampa": "Elegir solo la cámara de motores, que es la más evidente."
+ },
+ "bal-per-2017-09-d-32": {
+  "explicacion": "Los métodos de extinción actúan sobre el tetraedro del fuego: sofocación (quitar oxígeno), eliminación del combustible, enfriamiento (quitar calor) e inhibición de la reacción en cadena. Ventilar o soplar aire a presión aporta oxígeno y aviva el fuego, así que no es un método de extinción.",
+  "clave": "Extinguir: quitar oxígeno, combustible, calor o reacción en cadena.",
+  "trampa": "La b): dar aire es alimentar el fuego."
+ },
+ "bal-per-2017-12-a-30": {
+  "explicacion": "Ante una vía de agua se intenta taponar, mejor desde fuera, porque la presión del agua aprieta el parche contra el casco; se ponen en marcha las bombas de achique, y, si sirve, se escora la embarcación para sacar el agujero del agua y reducir la entrada. Todas las medidas son correctas.",
+  "clave": "Vía de agua: tapona por fuera, achica y escora si ayuda.",
+  "trampa": "Quedarse con una sola medida cuando se combinan."
+ },
+ "bal-per-2017-12-b-32": {
+  "explicacion": "El Centro Radio-Médico del Instituto Social de la Marina presta un servicio gratuito, las 24 horas de todos los días del año, a cualquier barco que lo pida, y se coordina con Salvamento Marítimo cuando hace falta una evacuación. Todas las respuestas son correctas.",
+  "clave": "Radio-Médico: gratis, 24 h, para cualquier barco.",
+  "trampa": "Quedarse con una sola característica."
+ },
+ "bal-per-2017-12-d-30": {
+  "explicacion": "La norma UNE-EN 2 llama clase A a los fuegos de combustibles sólidos, normalmente orgánicos, que forman brasas (madera, papel, tejidos). Los gases son la clase C, los metales la D y los líquidos la B.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La a): los gases son la clase C.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2017-12-d-32": {
+  "explicacion": "Tras un golpe, el frío local (hielo envuelto en un paño) contrae los vasos sanguíneos y reduce el sangrado bajo la piel, así que limita el hematoma y la inflamación. El calor hace lo contrario, una compresión fuerte puede dañar más y una pomada antihistamínica es para alergias o picaduras.",
+  "clave": "Golpe reciente: frío local.",
+  "trampa": "La a): el calor se usa días después, no en el momento."
+ },
+ "bal-per-2017-12-e-32": {
+  "explicacion": "Un fuego en el depósito de gasolina o gasoil es de clase B (líquidos). El polvo seco es el agente adecuado, como también lo sería la espuma. El agua a chorro es lo peor: esparce el combustible encendido, que flota sobre ella.",
+  "clave": "Combustible ardiendo (clase B): polvo o espuma, nunca agua a chorro.",
+  "trampa": "La a): el agua a chorro extiende el fuego de líquidos.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2018-04-a-31": {
+  "explicacion": "Según la UNE-EN 2, la clase A son los fuegos de combustibles sólidos. Los líquidos o sólidos licuables son la B (no la C), los metales la D (no la F) y los gases la C (no la B).",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "Cada opción falsa cruza una clase con la descripción de otra.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2018-04-a-32": {
+  "explicacion": "La forma de detectar a tiempo una vía de agua es revisar periódicamente la sentina: si aparece agua que no debería estar, hay que buscar su origen. Abrir y cerrar los grifos de fondo sirve para que no se agarroten y probar la bomba para que funcione, pero ninguna de las dos avisa de una vía de agua.",
+  "clave": "Vías de agua: mira la sentina con frecuencia.",
+  "trampa": "La c): probar la bomba es mantenimiento, no detección."
+ },
+ "bal-per-2018-04-d-31": {
+  "explicacion": "Las quemaduras se clasifican por su gravedad o profundidad en tres grados: primer grado (enrojecimiento), segundo grado (ampollas) y tercer grado (destrucción de la piel). El agente causante (calor, químico, eléctrico) es otra forma de describirlas, pero los grados son tres.",
+  "clave": "Quemaduras: 1.º rojo, 2.º ampolla, 3.º destrucción.",
+  "trampa": "La b): el agente causante no define los tipos de quemadura."
+ },
+ "bal-per-2018-04-d-32": {
+  "explicacion": "El chorro del extintor se dirige horizontalmente hacia la base del fuego, donde está el combustible que arde, barriendo de lado a lado. Apuntar a las llamas o desde arriba gasta el agente sin apagar el foco.",
+  "clave": "Extintor: a la base de las llamas, en abanico.",
+  "trampa": "La d): por encima de las llamas no llegas al combustible."
+ },
+ "bal-per-2018-04-e-30": {
+  "explicacion": "El tetraedro del fuego tiene cuatro factores: combustible, comburente (oxígeno), energía de activación (calor) y reacción en cadena. La «espontaneidad» no es uno de ellos.",
+  "clave": "Tetraedro: combustible, comburente, calor y reacción en cadena.",
+  "trampa": "La d): energía de activación es otro nombre del calor, que sí está.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2018-04-e-31": {
+  "explicacion": "España tiene un Centro Radio-Médico (Instituto Social de la Marina) que atiende gratis las 24 horas. Se contacta por radio, a través del canal 16 de VHF y las estaciones costeras o Salvamento Marítimo, o por teléfono. Se puede pedir en cualquier idioma y no hace falta esperar a tierra.",
+  "clave": "Consulta médica: Centro Radio-Médico, por VHF 16 o teléfono.",
+  "trampa": "La c): no es solo por teléfono; también por radio."
+ },
+ "bal-per-2018-06-a-30": {
+  "explicacion": "Según la UNE-EN 2, la clase C corresponde a los fuegos de gases inflamables. Los líquidos y sólidos licuables son la B y los metales la D.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La a) y la b) son la clase B.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2018-06-a-31": {
+  "explicacion": "El agua, a chorro o pulverizada, se usa sobre todo en fuegos de clase A (sólidos), donde enfría las brasas. En la clase D (metales) puede reaccionar violentamente, en la C (gases) no apaga, y en la F (aceites de cocina) provoca una explosión de aceite.",
+  "clave": "Agua: para sólidos (clase A).",
+  "trampa": "La d): agua en aceite de cocina ardiendo provoca una bola de fuego.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2018-06-a-32": {
+  "explicacion": "La insolación produce dolor de cabeza, vértigos, náuseas y vómitos y, sobre todo, aumento de la temperatura corporal. La bajada de temperatura es lo contrario: es propio de la hipotermia, no de la insolación.",
+  "clave": "Insolación: calor, dolor de cabeza, vértigo, vómitos.",
+  "trampa": "La b): los vómitos sí son síntoma de insolación.",
+  "concepto": "bal-per-2018-06-a-32"
+ },
+ "bal-per-2019-12-d-30": {
+  "explicacion": "La insolación produce dolor de cabeza, vértigos, náuseas y vómitos y, sobre todo, aumento de la temperatura corporal. La bajada de temperatura es lo contrario: es propio de la hipotermia, no de la insolación.",
+  "clave": "Insolación: calor, dolor de cabeza, vértigo, náuseas.",
+  "trampa": "La b): las náuseas sí son síntoma de insolación.",
+  "concepto": "bal-per-2018-06-a-32"
+ },
+ "bal-per-2018-06-b-30": {
+  "explicacion": "Ante una sospecha de hemorragia interna no se puede cortar el sangrado desde fuera: se abriga al herido para evitar el shock, se le mantiene en reposo, no se le da nada por boca (puede necesitar cirugía) y se pide consulta radiomédica o evacuación. El torniquete solo sirve para hemorragias externas graves en extremidades.",
+  "clave": "Hemorragia interna: abrigar, nada por boca y pedir ayuda.",
+  "trampa": "La a): un torniquete no sirve para una hemorragia interna."
+ },
+ "bal-per-2018-06-b-31": {
+  "explicacion": "Ante una herida lo primero es detener la hemorragia, con presión directa, y limpiarla para evitar la infección. El torniquete es un último recurso para hemorragias graves de extremidades, la consulta médica se pide si la herida lo requiere y la reanimación solo si no respira.",
+  "clave": "Herida: para la sangre y limpia.",
+  "trampa": "La a): el torniquete es el último recurso, no el primero."
+ },
+ "bal-per-2018-06-c-31": {
+  "explicacion": "La eficacia extintora indica la cantidad de combustible que un extintor es capaz de apagar en un ensayo normalizado, y se marca en la etiqueta con un número y la clase de fuego (por ejemplo, 21A o 113B). No mide el tiempo de extinción ni solo su capacidad de enfriar o de quitar oxígeno.",
+  "clave": "Eficacia: cuánto fuego apaga (21A, 113B…).",
+  "trampa": "La d): la eficacia no se mide en tiempo."
  }
 }

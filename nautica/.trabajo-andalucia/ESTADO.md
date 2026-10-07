@@ -43,7 +43,7 @@ ficheros (`git checkout origin/<rama> -- <fichero>`): explicaciones/<tit>-NN.jso
 - [x] 1. Fusión en `data/ejes/andalucia/{per,py}/preguntas.json` por la etapa escribir (solo añadir; duplicados → apareceEn).
   Arreglos: guiones de sílaba de 2015 (-raw), «MAREAS.» con punto, tabla del anuario en el enunciado (2/2016),
   formato «Hora Alt.» de 2016–2018, clasificación de mareas/loxodrómica, 5 figuras recortadas.
-- [ ] 2. Revisión normativa de las marcadas (ajustes.json con motivo y fuente) — la hace el coordinador.
+- [x] 2. Revisión normativa: 474 marcas resueltas (457 vigente, 14 actualizada, 3 retirada: and-2018-c2-t12, and-2018-c4-t11 (RD 128/2022), and-py-2019-c1-g07 (RD 339/2021, balsas)). Falta que las notas de las actualizadas entren en sus explicaciones: `revision-normativa.mjs --escribir` tras fusionar.
 - [ ] 3. Explicaciones (lotes en curso).
 - [ ] 4. Soluciones de carta (lotes en curso).
 - [ ] 5. Práctica por clase (practica.mjs).

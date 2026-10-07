@@ -141,9 +141,21 @@ export function informe({ normas, comprobacion, marcas, totales, resolucion = nu
   return `${L.join('\n')}\n`;
 }
 
+/**
+ * Fecha de cada aparición: la de su convocatoria (la de las preguntas que la tienen como `conv`). Una pregunta publicada
+ * que también salió antes en otra convocatoria (apareceEn, Andalucía 2015–2019) se marca por la más antigua. Las
+ * convocatorias sin fecha (2015) cuentan desde el 1 de enero de su año: solo para comparar con la entrada en vigor.
+ */
+export function conFechasDeAparicion(preguntas) {
+  const fechaConv = new Map();
+  for (const q of preguntas) if (!fechaConv.has(q.conv) || (q.fecha && !fechaConv.get(q.conv))) fechaConv.set(q.conv, q.fecha ?? null);
+  const fecha = (conv) => fechaConv.get(conv) ?? (/-(\d{4})-c/.exec(conv) ? `${/-(\d{4})-c/.exec(conv)[1]}-01-01` : null);
+  return preguntas.map((q) => (q.apareceEn.some((a) => a.conv !== q.conv) ? { ...q, apareceEn: q.apareceEn.map((a) => ({ ...a, fecha: fecha(a.conv) })) } : q));
+}
+
 export function ejecutar() {
   const normas = cargarNormas();
-  const bancos = Object.fromEntries(['per', 'py'].map((t) => [t, JSON.parse(readFileSync(join(RAIZ, 'data', 'ejes', 'andalucia', t, 'preguntas.json'), 'utf8')).preguntas]));
+  const bancos = Object.fromEntries(['per', 'py'].map((t) => [t, conFechasDeAparicion(JSON.parse(readFileSync(join(RAIZ, 'data', 'ejes', 'andalucia', t, 'preguntas.json'), 'utf8')).preguntas)]));
   const comprobacion = comprobarNormas(normas);
   const marcas = marcar(bancos, normas);
   let resolucion = null;

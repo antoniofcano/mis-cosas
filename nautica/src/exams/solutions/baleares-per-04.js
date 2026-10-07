@@ -1,4 +1,11 @@
 // Soluciones programadas de carta del PER de Baleares (lote 04). Ver baleares-per.js para el formato.
+// Resumen del lote: 109 preguntas, todas del PER. Resueltas: 78. En DISCREPANCIAS: 31, por motivo:
+//   - 17 usan un elemento que no está en la carta de la app (isobáticas y sondas, torres, cerros, naufragios,
+//     marcas cardinales, áreas de refugio, el espigón de Piedra Redonda, el río El Liam);
+//   - 9 resueltas a la oficial pero con opciones que el comprobador no lee (hora sin separador «1428», minutos
+//     «52',1», signo «(-)»);
+//   - 1 con respuesta no numérica (nombres de faros), resuelta a la oficial;
+//   - 4 que no llegan a la oficial por la plantilla o el enunciado.
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -591,6 +598,217 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
     },
   },
+  'bal-per-2025-09-c-43': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fix2('punta-paloma', 50, 'punta-malabata', 150, 'Situación 11:00');
+      // Hacia el NW costeando: Trafalgar (tierra) queda por estribor.
+      const rv = k.tangent(s, 'cabo-trafalgar', 4, 'estribor');
+      const p = k.run(s, rv, k.distFor(10, 90), 'Situación 12:30');
+      return [{ kind: 'bearing', value: k.bearingTo(p, 'cabo-trafalgar').dv }];
+    },
+  },
+  'bal-per-2025-09-a-44': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ carta: L105, anyo: 2012, desvio: -8 });
+      const rv = k.rv(184, ct);
+      const d1 = k.dv(4, ct, 'cabo-roche');
+      const d2 = k.dvM(rv, -90, 'cabo-trafalgar');
+      return latlon(k.fix2('cabo-roche', d1, 'cabo-trafalgar', d2));
+    },
+  },
+  'bal-per-2025-09-b-44': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const ct = k.ct({ dm: -2, desvio: 6 });
+      const rv = k.rv(40, ct);
+      k.note('Marcaciones', 'Espartel por el través de estribor (+90°) y Malabata 55° por estribor.');
+      const d1 = k.dvM(rv, 90, 'cabo-espartel');
+      const d2 = k.dvM(rv, 55, 'punta-malabata');
+      const s = k.fix2('cabo-espartel', d1, 'punta-malabata', d2, 'Situación 14:00');
+      const r = k.tangent(s, 'punta-cires', 3, 'estribor');
+      const p = k.corteRumbo(s, r, 'punta-cires', 180, 'Al N de Punta Cires');
+      return [{ kind: 'clock', value: k.eta(hrb(14, 0), k.distanceBetween(s, p), 11) }];
+    },
+  },
+  'bal-per-2025-09-a-45': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.P('ceuta-bocana');
+      const { rv, dist } = k.rhumb(s, 'algeciras-espigon');
+      const v = dist / (140 / 60);
+      k.note('Velocidad', `Para llegar en 140 min: V = ${dist.toFixed(1).replace('.', ',')} / 2,33 = ${v.toFixed(2).replace('.', ',')} nudos.`);
+      k.note('Línea de posición', 'Al NE verdadero de Punta Cires: desde el barco el faro demora 225°.');
+      const p = k.corteRumbo(s, rv, 'punta-cires', 225, 'Al NE de Punta Cires');
+      const d1 = k.distanceBetween(s, p);
+      const { dist: d2 } = k.rhumb(p, 'tarifa-espigon');
+      return [{ kind: 'clock', value: k.eta(hrb(12, 30), d1 + d2, v) }];
+    },
+  },
+  'bal-per-2025-12-a-42': {
+    ejercicio: 'distancia-faro',
+    solve(k) {
+      const s = k.fromMark('punta-carnero', 135, 4.3);
+      k.note('Través', 'Con Rv 251° Isla de Tarifa queda al N, por estribor: lo tendremos al través cuando demore 251° + 90° = 341°.');
+      const p = k.corteRumbo(s, 251, 'isla-tarifa', 341, 'Tarifa por el través');
+      return [{ kind: 'distance', value: k.distanceBetween(s, p) }];
+    },
+  },
+  'bal-per-2025-12-b-42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('36 04,0 N', '5 53,0 W');
+      const { rv } = k.rhumb(s, 'barbate-espigon');
+      return [{ kind: 'bearing', value: k.ra(rv, k.ct({ dm: -2, desvio: -6 })) }];
+    },
+  },
+  'bal-per-2025-12-c-42': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      k.note('Paralelo', 'El enunciado no da la latitud: tomamos el paralelo 36° N, en el centro del Estrecho.');
+      const a = k.pos('36 00,0 N', '5 44,0 W', 'Meridiano 005° 44′ W');
+      const b = k.pos('36 00,0 N', '5 31,0 W', 'Meridiano 005° 31′ W');
+      return [{ kind: 'distance', value: k.rhumb(a, b).dist }];
+    },
+  },
+  'bal-per-2025-12-d-42': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 01,0 N', '5 20,5 W', 'Situación 19:00');
+      // Hacia el W, Isla de Tarifa (tierra al N) queda por estribor.
+      const rv = k.tangent(s, 'isla-tarifa', 2.5, 'estribor');
+      return [{ kind: 'bearing', value: k.ra(rv, k.ct({ dm: -3, desvio: 7 })) }];
+    },
+  },
+  'bal-per-2025-12-a-43': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.fix2('punta-paloma', 55, 'barbate-espigon', 338, 'Situación 13:30');
+      const rv = k.rv(175, k.ct({ ct: 7 }));
+      return latlon(k.run(s, rv, k.distFor(6, 90), 'Situación 15:00'));
+    },
+  },
+  'bal-per-2025-12-b-43': {
+    ejercicio: 'distancia-faro',
+    solve(k) {
+      const ct = k.ct({ dm: -3, desvio: -2 });
+      const rv = k.rv(320, ct);
+      const d1 = k.dvM(rv, 0, 'punta-europa');
+      const d2 = k.dvM(rv, -90, 'punta-cires');
+      const s = k.fix2('punta-europa', d1, 'punta-cires', d2);
+      return [{ kind: 'distance', value: k.distanceBetween(s, 'algeciras-espigon') }];
+    },
+  },
+  'bal-per-2025-12-c-43': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fromMark('cabo-espartel', 315, 4, 'Situación 18:00');
+      // Hacia el E por el Estrecho, Cires (costa de Marruecos) queda por estribor.
+      const rv = k.tangent(s, 'punta-cires', 2.5, 'estribor');
+      const ct = k.ct({ dm: -2, desvio: -2 });
+      const p = k.corteRumbo(s, rv, 'punta-cires', (rv + 90) % 360, 'Cires por el través');
+      return [{ kind: 'clock', value: k.eta(hrb(18, 0), k.distanceBetween(s, p), 11) }, { kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-per-2025-12-b-44': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: -4, desvio: 1 });
+      const rv = k.rv(120, ct);
+      const d1 = k.dv(333, ct, 'cabo-trafalgar');
+      const d2 = k.dvM(rv, -97, 'barbate-faro');
+      return latlon(k.fix2('cabo-trafalgar', d1, 'barbate-faro', d2, 'Situación 05:30'));
+    },
+  },
+  'bal-per-2025-12-c-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const op = k.oposicion('punta-gracia', 'cabo-trafalgar');
+      const s = k.lineAndBearing('cabo-trafalgar', op, 'barbate-faro', 340, 'Situación 15:00');
+      const { rv, dist } = k.rhumb(s, 'cabo-espartel');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 7.7 });
+      const v = dist / (220 / 60);
+      k.note('Velocidad', `De 15:00 a 18:40 hay 3 h 40 min: V = ${dist.toFixed(1).replace('.', ',')} / 3,67 = ${v.toFixed(1).replace('.', ',')} nudos.`);
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'speed', value: v }];
+    },
+  },
+  'bal-per-2025-12-d-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const ct = k.ct({ dm: 0, desvio: 6 });
+      const rv = k.rv(250, ct);
+      const d1 = k.dvM(rv, 13, 'isla-tarifa');
+      const d2 = k.dvM(rv, -55, 'punta-cires');
+      const s = k.fix2('isla-tarifa', d1, 'punta-cires', d2);
+      const { dist } = k.rhumb(s, 'punta-alcazar');
+      const v = dist / 3.5;
+      k.note('Velocidad', `Vb = ${dist.toFixed(1).replace('.', ',')} / 3,5 = ${v.toFixed(1).replace('.', ',')} nudos.`);
+      return [{ kind: 'speed', value: v }];
+    },
+  },
+  'bal-per-2025-12-a-45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const s = k.pos('36 02,2 N', '6 11,7 W', 'Salida');
+      const ct = k.ct({ dm: -1.9, desvio: -2.7 });
+      const rv = k.rv(111, ct);
+      const dv = k.dvM(rv, 33, 'punta-malabata');
+      return latlon(k.corteRumbo(s, rv, 'punta-malabata', dv));
+    },
+  },
+  'bal-per-2025-12-c-45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const s = k.pos('36 01,2 N', '6 14,7 W', 'Salida');
+      const ct = k.ct({ dm: -2, desvio: 8 });
+      const rv = k.rv(92, ct);
+      k.note('Marcación', 'El enunciado no dice la banda: navegando al E, Isla de Tarifa queda a nuestro N, por babor (−23°).');
+      const dv = k.dvM(rv, -23, 'isla-tarifa');
+      return latlon(k.corteRumbo(s, rv, 'isla-tarifa', dv));
+    },
+  },
+  'bal-per-2025-12-d-45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 19,8 W', 'Salida');
+      const ct = k.ct({ dm: -2.2, desvio: -1.9 });
+      const rv = k.rv(281, ct);
+      const dv = k.dvM(rv, -83, 'punta-alcazar');
+      return latlon(k.corteRumbo(s, rv, 'punta-alcazar', dv));
+    },
+  },
+  'bal-per-2026-03-a-42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('36 01,4 N', '5 19,2 W', 'Salida');
+      const dest = k.fromMark('punta-europa', 90, 1.8, '1,8 M al E de Punta Europa');
+      const { rv } = k.rhumb(s, dest);
+      const ct = k.ct({ carta: L105, anyo: 2026, desvio: 2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-per-2026-03-c-42': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: -2, desvio: 10 });
+      const rv = k.rv(84, ct);
+      const d1 = k.dvM(rv, 133, 'punta-cires');
+      const d2 = k.dv(132, ct, 'punta-almina');
+      return latlon(k.fix2('punta-cires', d1, 'punta-almina', d2, 'Situación 15:00'));
+    },
+  },
+  'bal-per-2026-03-d-42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const d1 = k.dvM(105, -43, 'punta-gracia');
+      const d2 = k.dvM(105, 35, 'punta-malabata');
+      const s = k.fix2('punta-gracia', d1, 'punta-malabata', d2, 'Situación 02:43');
+      const dest = k.fromMark('cabo-espartel', 255, 5, 'Destino');
+      const { dist } = k.rhumb(s, dest);
+      return [{ kind: 'clock', value: k.eta(hrb(2, 43), dist, 12) }];
+    },
+  },
 };
 
 /* DISCREPANCIAS
@@ -615,6 +833,16 @@ export default {
  * 'bal-per-2024-12-df-42' (elemento): la situación de partida es la oposición Trafalgar–Espartel donde la sonda marca
  *   100 m: la carta no tiene isobáticas.
  * 'bal-per-2024-12-b-44' (elemento): faro del espigón de Piedra Redonda y sonda de 500 m: no están en la carta.
+ * 'bal-per-2025-07-c-42' (elemento): igual que 'bal-per-2023-12-a-45' (área de refugio de peces, Lajas de Conil,
+ *   marca cardinal E de Barbate y dique exterior de Cabo Roche): no están en la carta.
+ * 'bal-per-2025-07-a-43' (elemento): naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata: no están
+ *   en la carta.
+ * 'bal-per-2025-07-b-43' (elemento): sonda de 500 m en la enfilación Carnero–Europa, espigón de Piedra Redonda e
+ *   isobática de 50 m de la Ensenada de Ceuta: no están en la carta.
+ * 'bal-per-2025-07-d-43' (elemento): isobática de 30 m del banco de Trafalgar: no está en la carta.
+ * 'bal-per-2025-07-d-44' (elemento): la Ct solo sale de la enfilación Isla de Tarifa–monte Gitano, y el monte Gitano no
+ *   está en la carta (el enunciado no da dm ni desvío).
+ * 'bal-per-2025-09-d-42' (elemento): igual que 'bal-per-2023-12-e-45' (cerros Gitano y Vacas, sonda de 200 m).
  *
  * — Respuesta que el comprobador no puede leer —
  * 'bal-per-2024-09-a-43' (respuesta no numérica): las opciones son nombres de faros. Dos faros en demoras opuestas
@@ -655,6 +883,20 @@ export default {
  *   opciones como positivas. Código:
  *     const dv = k.enfilacion('cabo-espartel', 'punta-malabata', 90);
  *     return [{ kind: 'signed', value: k.ctFrom(dv, 90) }];
+ * 'bal-per-2025-04-d-43' (formato): es 'bal-per-2023-12-c-44' a las 12:45: sale Ra 147° y HRB 15:03, la oficial (a),
+ *   pero las opciones escriben la hora como «15.03h» y el comprobador no las lee (y el Ra solo empata a con c).
+ * 'bal-per-2025-09-d-45' (formato): sale Ra 174° (175° en las opciones a y d) y HRB 21:34 (oficial a, 21:33), pero las
+ *   opciones escriben la hora sin separador («HRB= 2133»). Código:
+ *     const s = k.fromMark('punta-europa', 180, 2, 'Situación 20:00');
+ *     const { rv, dist } = k.rhumb(s, 'ceuta-bocana');
+ *     const ct = k.ct({ carta: L105, anyo: 2025, desvio: -2 });
+ *     return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(20, 0), dist, 7) }];
+ * 'bal-per-2025-12-a-44' (formato): sale 35° 52,4′ N 005° 52,2′ W, exactamente la oficial (c), pero las opciones
+ *   escriben los minutos como «52',4». Código:
+ *     const ct = k.ct({ dm: -2, desvio: -5 });
+ *     const d1 = k.dv(126, ct, 'punta-malabata');
+ *     const d2 = k.dv(215, ct, 'cabo-espartel');
+ *     return latlon(k.fix2('punta-malabata', d1, 'cabo-espartel', d2, 'Situación 09:12'));
  *
  * — Plantilla o enunciado —
  * 'bal-per-2024-12-ce-45' (plantilla): tomando la salida en 005° 58,4′ W (el «E» del enunciado es errata), Rv = 315,8°
@@ -663,4 +905,11 @@ export default {
  * 'bal-per-2025-04-ae-44' (plantilla): es el mismo enunciado que 'bal-per-2024-07-be-43' (Pangea): Rv = 148,4°,
  *   Gracia en Dv 106,4° y Alcázar en Dv 136,4° → 9,7 M a Cabo Trafalgar, que aquí cae en la opción c (9,8 M); la
  *   oficial es la d (10,3 M), y en 2024-07 la oficial era 10,5 M: la plantilla no es coherente entre convocatorias.
+ * 'bal-per-2025-12-d-43' (plantilla): Ct = 6,5° − 2,5° = +4° → Rv 151°, Gracia en Dv 109° y Malabata en Dv 166°:
+ *   10,9 M a Cabo Trafalgar (opción a, 10,8 M); la oficial es la c (9,2 M). Probando otras bandas y signos de la Ct
+ *   salen 8,4, 8,3, 12,6… nunca 9,2: no hay una lectura del enunciado que lleve a la oficial.
+ * 'bal-per-2025-12-b-45' (plantilla): los arcos de 5 M de Almina y 11 M de Carnero se cortan en 35° 53,9′ N
+ *   005° 23,0′ W (en el mar, al W de Ceuta) y en 35° 58,6′ N 005° 14,2′ W. Con Rv = 264° − 4° = 260° y Alcázar por el
+ *   través de babor (Dv 170°) salen 9,0 M → 1 h 48 min desde el primero o 3 h 22 min desde el segundo; la oficial es
+ *   2 h 24 min (b), que no sale con ninguno.
  */

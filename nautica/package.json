@@ -9,6 +9,11 @@
     "start": "node tools/serve.mjs",
     "precache": "node tools/precache.mjs",
     "podcast": "node tools/podcast.mjs",
-    "bancos": "node tools/bancos/bancos.mjs"
+    "bancos": "node tools/bancos/bancos.mjs",
+    "conceptos": "node tools/conceptos/conceptos.mjs"
+  },
+  "devDependencies": {
+    "minisearch": "7.2.0",
+    "snowball-stemmers": "0.6.0"
   }
 }

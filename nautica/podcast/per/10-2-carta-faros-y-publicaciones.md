@@ -148,13 +148,13 @@ voces:
 
 **ANDRÉS:** Ese-te, de «stones», piedras. La ce. La roca es la erre, y la conchuela, ese-hache.
 
-**ELENA:** Correcto, y sin caer en la roca. Segunda: «Las cartas que dan al navegante el detalle más completo de una pequeña extensión de costa, ensenadas, puertos, radas, fondeaderos, etcétera, se llaman…». A: cartuchos. Be: de recalada. Ce: de navegación costera. De: portulanos.
+**ELENA:** Correcto, y sin caer en la roca. Segunda: «Las cartas que muestran al navegante el detalle más completo de una pequeña extensión de costa y mar, unas veces puertos y otras radas, ensenadas, fondeaderos, etcétera, se denominan…». A: cartuchos. Be: portulanos. Ce: de recalada. De: de navegación costera.
 
 [pausa larga]
 
-**ANDRÉS:** El detalle más completo, el portulano. La de. La de recalada es para aproximarse, y el cartucho es un recuadro dentro de otra carta, no un tipo de carta.
+**ANDRÉS:** El detalle más completo, el portulano. La be. La de recalada es para aproximarse, y el cartucho es un recuadro dentro de otra carta, no un tipo de carta.
 
-**ELENA:** La de. Y la tercera: «En una carta figura la siguiente inscripción al lado de un faro: efe-ele, dos entre paréntesis, diez ese, quince eme. ¿Qué significa quince eme?». A: el faro tiene una altura de quince metros. Be: el faro tarda quince minutos en encenderse y apagarse. Ce: el faro, en caso de emergencia, puede dar hasta quince destellos. De: la luz del faro tiene quince millas de alcance.
+**ELENA:** La be. Y la tercera: «En una carta figura la siguiente inscripción al lado de un faro: efe-ele, dos entre paréntesis, diez ese, quince eme. ¿Qué significa quince eme?». A: el faro tiene una altura de quince metros. Be: el faro tarda quince minutos en encenderse y apagarse. Ce: el faro, en caso de emergencia, puede dar hasta quince destellos. De: la luz del faro tiene quince millas de alcance.
 
 [pausa larga]
 

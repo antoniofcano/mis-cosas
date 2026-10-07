@@ -8,7 +8,7 @@
 // de la propia pregunta: su fila del banco, su explicación, sus conceptos, su solución programada y su figura.
 // tests/cuarentena.test.js usa `inventario()`: falla con cualquier referencia que no esté en la deuda
 // (tools/cuarentena-deuda.json, solo lo que se arregla regenerando audio).
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { RAIZ, bancosNode, ejes, titsDeEje } from './bancos/leer.mjs';
 
@@ -219,7 +219,42 @@ export function tablaMarkdown(refs, deuda) {
   ].join('\n');
 }
 
-export const leerDeuda = () => JSON.parse(readFileSync(join(RAIZ, 'tools/cuarentena-deuda.json'), 'utf8')).deuda;
+/** La deuda (tools/cuarentena-deuda.json): { deuda: [...], permitidas: [...] }. */
+export const leerDeudaCompleta = () => JSON.parse(readFileSync(join(RAIZ, 'tools/cuarentena-deuda.json'), 'utf8'));
+export const leerDeuda = () => leerDeudaCompleta().deuda;
+
+/** Id del episodio del podcast al que pertenece una referencia (o null si no es del podcast). */
+export function episodioDe(r) {
+  let m = /^data\/podcast\/([a-z0-9-]+)\.json$/.exec(r.fichero);
+  if (m) return m[1];
+  const E = JSON.parse(readFileSync(join(RAIZ, 'podcast/episodios.json'), 'utf8'));
+  const id = (tit, x) => `${tit}-${String(x.n).replace('.', '-')}`;
+  m = /^podcast\/((per|py)\/.+\.md)$/.exec(r.fichero);
+  if (m) { const x = E[m[2]].find((e) => e.archivo === m[1]); return x ? id(m[2], x) : null; }
+  m = /^(per|py)\.(\d+)\./.exec(r.ruta);
+  if (r.fichero === 'podcast/episodios.json' && m) return id(m[1], E[m[1]][Number(m[2])]);
+  m = /^data\/podcast-(per|py)\.json$/.exec(r.fichero);
+  const n = /^temas\.(\d+)\.episodios\.(\d+)\./.exec(r.ruta);
+  if (m && n) return JSON.parse(readFileSync(join(RAIZ, r.fichero), 'utf8')).temas[Number(n[1])].episodios[Number(n[2])].id;
+  return null;
+}
+
+/** ¿Tiene audio grabado el episodio? */
+export const conAudio = (ep) => Boolean(ep) && existsSync(join(RAIZ, `podcast/audio/${ep}.mp3`));
+
+/** Motivo legible de una entrada de la deuda. */
+function motivoDe(r) {
+  const que = { 'podcast-linea': r.via === 'id' ? 'la pausa del minijuego cita la reservada' : 'el audio (línea de tiempo) lee su enunciado',
+    'podcast-ficha': 'la ficha del episodio la lista entre las preguntas del minijuego', 'podcast-fuente': 'episodios.json la tiene en el minijuego',
+    'podcast-guion': 'el guion lee su enunciado en el minijuego' }[r.tipo] ?? r.tipo;
+  return `${que}; cambiarla exige regrabar el episodio`;
+}
+
+/** La deuda que corresponde al inventario actual: lo del podcast que solo se arregla regenerando el audio. */
+export function deudaDe(refs) {
+  return refs.filter((r) => r.alcance !== 'metadato' && r.tipo.startsWith('podcast-') && conAudio(episodioDe(r)))
+    .map((r) => ({ clave: claveRef(r), id: r.id, episodio: episodioDe(r), fichero: r.fichero, ruta: r.ruta, motivo: motivoDe(r), estado: 'pendiente regenerar audio' }));
+}
 
 // ---------------------------------------------------------------------------------------------------------------
 // Arreglos baratos (solo texto): node tools/cuarentena.mjs --arreglar
@@ -305,6 +340,12 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop()
     const cambios = await arreglar({ escribir: process.argv.includes('--arreglar') });
     for (const c of cambios) console.log(JSON.stringify(c));
     console.log(`${cambios.length} cambios${process.argv.includes('--arreglar') ? ' escritos' : ' (sin escribir; --arreglar para escribirlos)'}`);
+  } else if (process.argv.includes('--deuda')) {
+    // Solo para crear la lista la primera vez o tras regrabar: el test exige que no crezca.
+    const viejo = (() => { try { return leerDeudaCompleta(); } catch { return { permitidas: [] }; } })();
+    const deuda = deudaDe(refs);
+    writeFileSync(join(RAIZ, 'tools/cuarentena-deuda.json'), `${JSON.stringify({ nota: viejo.nota, deuda, permitidas: viejo.permitidas ?? [] }, null, 1)}\n`);
+    console.log(`tools/cuarentena-deuda.json: ${deuda.length} entradas de deuda`);
   } else if (process.argv.includes('--json')) console.log(JSON.stringify(refs, null, 1));
   else if (process.argv.includes('--escribir')) {
     const doc = join(RAIZ, 'docs/CUARENTENA.md');

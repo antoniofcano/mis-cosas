@@ -110,13 +110,13 @@ voces:
 
 **ANDRÉS:** Me quedo con el corte que está en el agua. Por babor, el faro a la izquierda, me abro a la derecha: se suma. Cuatro más dieciséis, veinte. Pero eso es verdadero, y el cero veinte es la trampa de darlo al timón tal cual. Corrección total, menos cuatro menos tres, menos siete. Al timón, al revés: veinte más siete, veintisiete. La más cercana, cero veintiséis: la de. Y el cero trece sería restar donde había que sumar.
 
-**ELENA:** La de. Un grado arriba o abajo es la medida en la carta. Tercera: «El veintiuno de marzo de dos mil veintiséis nos encontramos al este de la Bahía de Algeciras, a cinco millas y cuatro décimas del faro de Punta Europa y a doce millas del faro de Punta Almina. Calcular el rumbo de aguja para pasar a una milla al sur verdadero del faro de la Isla de Tarifa. Desvío, menos seis. Declinación, la de la carta, redondeando al grado más próximo». A: doscientos treinta y ocho. Be: doscientos cincuenta. Ce: doscientos cincuenta y seis. De: doscientos sesenta y dos. Te doy lo medido: desde la situación hasta el punto de llegada, rumbo verdadero doscientos cincuenta.
+**ELENA:** La de. Un grado arriba o abajo es la medida en la carta. Tercera: «A la hache-erre-be cero ocho cero cero del trece de julio de dos mil veinticuatro nos encontramos a cinco millas al noroeste verdadero del faro de Punta Malabata. Situados, damos rumbo a un punto situado a cuatro millas al sur verdadero del faro de Cabo Trafalgar, a ocho nudos. Calcular el rumbo de aguja y la hora de llegada a ese punto. La declinación es tres grados noroeste y el desvío, más seis». A: trescientos quince, a las diez catorce. Be: trescientos veintiuno, a las diez catorce. Ce: trescientos veintisiete, a las diez y media. De: trescientos veintitrés, a las nueve y media. Te doy lo medido: del punto de salida al de llegada, rumbo verdadero trescientos veinticuatro y diecisiete millas y seis décimas.
 
 [pausa larga]
 
-**ANDRÉS:** De los dos cortes, el del este de la bahía, que es la pista. Y aquí no hay tangente que valga: «una milla al sur verdadero» es un punto. Desde Tarifa, una milla hacia el ciento ochenta, y voy directo. Rumbo verdadero doscientos cincuenta. La declinación de la carta, puesta al día a dos mil veintiséis, redondea a cero. Corrección total, menos seis. Al timón, doscientos cincuenta más seis, doscientos cincuenta y seis: la ce. Y la be es otra vez el verdadero dado al timón.
+**ANDRÉS:** Aquí no hay tangente que valga: «cuatro millas al sur verdadero» es un punto. Desde Trafalgar, cuatro millas hacia el ciento ochenta, y voy directo. La salida, cinco millas desde Malabata hacia el trescientos quince. Rumbo verdadero trescientos veinticuatro. Corrección total, menos tres más seis, más tres. Al timón, trescientos veinticuatro menos tres, trescientos veintiuno. Diecisiete coma seis millas a ocho nudos, dos horas y doce minutos: las diez y doce, la más cercana, diez catorce. La be. Y la ce es sumar la corrección en vez de restarla.
 
-**ELENA:** La ce. Tres de tres, y el tema de la carta terminado.
+**ELENA:** La be. Tres de tres, y el tema de la carta terminado.
 
 **ANDRÉS:** [ríe] Y con Trafalgar doblado, aunque sea en el papel.
 

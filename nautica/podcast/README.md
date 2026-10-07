@@ -64,7 +64,7 @@ Panorama del tema de Seguridad en la mar: por qué flota y se adriza un barco, c
 - Radiobaliza, SART y VHF: la radiobaliza emite en 406 MHz a los satélites y dura al menos 48 horas; el SART se ve en el radar como una línea de 12 puntos; socorro por voz en el canal 16 y alerta digital en el 70.
 - Helicóptero: contacto por el canal 16, chalecos puestos, en velero velas arriadas y motor en marcha, el cable debe tocar el agua antes de cogerlo y nunca se hace firme, y nada de cohetes con el helicóptero cerca.
 
-**Minijuego** (180 preguntas reales de examen en estas clases):
+**Minijuego** (279 preguntas reales de examen en estas clases):
 
 - ¿Cómo será el equilibrio de nuestra embarcación si el metacentro se encuentra por encima del centro de gravedad?: *(and-py-2022-c2-g01)*
 - El extintor portátil recomendado para apagar un fuego en el cuadro eléctrico de una embarcación será de: *(and-py-2024-c1-g05)*
@@ -97,7 +97,7 @@ Por qué flota un barco y cuándo vuelve a su sitio tras una escora: desplazamie
 - En el equilibrio indiferente coinciden M y G, no G y C ni M y C; si las opciones dan «M coincide con G» y «GM es cero» por separado, la buena suele ser «a y b son correctas».
 - Los tipos de equilibrio son estable, indiferente e inestable; «transversal y longitudinal» o «estático y dinámico» son formas de clasificar la estabilidad. Un barco en puerto pasando pesos de banda a banda es estabilidad estática transversal (aguas en reposo).
 
-**Minijuego** (39 preguntas reales de examen en estas clases):
+**Minijuego** (67 preguntas reales de examen en estas clases):
 
 - El centro de carena es: *(and-py-2022-c3-g01)*
 - Cuando un buque, que está adrizado, se escora a una banda por una acción externa y no recobra la posición de adrizado, sino que mantiene la escora adquirida, se dice que tiene: *(and-py-2022-c3-g03)*
@@ -131,7 +131,7 @@ Qué le pasa a la estabilidad cuando se cargan, consumen o trasladan pesos: haci
 - Para mejorar la estabilidad no se suben pesos ni se llevan de proa a popa: se pasan de cubiertas superiores a inferiores.
 - En un barco con equilibrio indiferente, subir un peso por encima de G no lo hace estable ni aumenta GM: deja GM negativa y el barco puede escorar, no recuperarse y dar la vuelta.
 
-**Minijuego** (12 preguntas reales de examen en estas clases):
+**Minijuego** (22 preguntas reales de examen en estas clases):
 
 - El consumo de agua dulce de un tanque situado en la zona de proa y por debajo del centro de gravedad supondrá: *(and-py-2025-c1-g02)*
 - Si se quiere corregir una escora a estribor y disminuir la altura metacéntrica ¿en qué dirección se debe trasladar un peso? *(and-py-2025-c3-g05)*
@@ -166,7 +166,7 @@ Los requisitos técnicos y de estiba del material de flotación: chalecos, arné
 - La zafa suelta a 4 m como máximo; son falsas «al mojarse», «con un golpe», «a 6 m», «entre 5 y 7 m» o «solo se dispara a mano». En una convocatoria sin opción de 4 m se dio por buena «entre 1,5 y 4,5 m».
 - Son falsas: el toldo «para ir de pie», el contenedor «completamente estanco, sin desagües», «el peso máximo» marcado en la envoltura (es el número de personas), el ancla flotante «estibada en el paquete SOLAS» y añadir trincas extra «por si acaso».
 
-**Minijuego** (40 preguntas reales de examen en estas clases):
+**Minijuego** (51 preguntas reales de examen en estas clases):
 
 - ¿De qué color han de ser las luces de los chalecos salvavidas?: *(and-py-2025-c2-g03)*
 - En caso de no poder disparar la zafa hidrostática manualmente, ésta se disparará automáticamente al sumergirse en el agua a una profundidad de: *(and-py-2024-c2-g04)*
@@ -201,7 +201,7 @@ Las señales para hacerse ver (bengala de mano, cohete con paracaídas, fumígen
 - ¿Un ABC con electricidad? Ni «siempre» ni «nunca»: lo dice el propio extintor (voltaje y distancia), no un manual o una ficha técnica. Y el de CO₂ no lleva manómetro.
 - El ataque no empieza por el centro del fuego ni va de sotavento a barlovento; y el balde sí sirve para achicar, pero nunca para trasvasar combustible.
 
-**Minijuego** (36 preguntas reales de examen en estas clases):
+**Minijuego** (48 preguntas reales de examen en estas clases):
 
 - La bengala de mano tendrá un periodo de combustión mínimo de: *(and-py-2023-c2-g05)*
 - ¿Cuál de estas acciones NO es adecuada para el uso de cohetes con paracaídas?: *(and-py-2025-c2-g08)*
@@ -236,7 +236,7 @@ Cuándo y cómo se abandona el barco, cómo se lanza la balsa, se embarca y se a
 - Las pastillas contra el mareo se toman cuanto antes, no a las 24 horas: el vómito deshidrata.
 - Nunca agua de mar, ni en pequeñas cantidades; y comer alimentos grasos o muy dulces «que den energía» no es recomendable sin agua suficiente.
 
-**Minijuego** (20 preguntas reales de examen en estas clases):
+**Minijuego** (28 preguntas reales de examen en estas clases):
 
 - Antes de abandonar la embarcación y embarcar en la balsa salvavidas es importante llevar con nosotros: *(and-py-2024-c1-g08)*
 - ¿Qué acción NO es recomendable para evitar la deshidratación dentro de una balsa salvavidas?: *(and-py-2026-c1-g07)*
@@ -271,7 +271,7 @@ Cómo se pide y se recibe ayuda: la radiobaliza y el camino de su alerta, el res
 - Las horas del reloj se dan desde el punto de vista del helicóptero, no desde nuestra embarcación: su proa son las 12.
 - En velero, la respuesta que puntúa es arriar las velas y arrancar el motor; solo en una pregunta de 2020 la plantilla dio por buena «apagar».
 
-**Minijuego** (33 preguntas reales de examen en estas clases):
+**Minijuego** (64 preguntas reales de examen en estas clases):
 
 - Si tenemos que abandonar la embarcación, utilizaremos el VHF de la siguiente manera: *(and-py-2022-c1-g10)*
 - ¿En qué equipo de a bordo se puede visualizar la señal del RESAR / SART para facilitar la localización en un siniestro marítimo?: *(and-py-2025-c2-g01)*
@@ -305,7 +305,7 @@ Recorrido por todo el tema de Meteorología del Patrón de Yate: presión e isob
 - Olas: son energía del viento transmitida al mar; longitud y periodo van de cresta a cresta (distancia y tiempo), y la altura es el doble de la amplitud; crecen con intensidad, persistencia y fetch; la mar de viento tiene crestas agudas y la mar de fondo, redondeadas y largas.
 - Corrientes: se nombran por hacia dónde van; son de densidad (temperatura y salinidad), de arrastre (viento), de gradiente (desnivel por presión) o de marea (Luna y Sol); en el Estrecho el agua atlántica entra en superficie hacia el E y la mediterránea sale en profundidad hacia el W.
 
-**Minijuego** (180 preguntas reales de examen en estas clases):
+**Minijuego** (273 preguntas reales de examen en estas clases):
 
 - ¿Qué indica un conjunto de isobaras muy próximas entre sí en una carta meteorológica? *(and-py-2025-c3-g15)*
 - En el Golfo de Cádiz, a un viento fuerte del SW ligado a la actividad borrascosa invernal, y que va acompañado de lluvia, temporales y mala visibilidad, se le suele conocer con la denominación general de: *(and-py-2025-c1-g13)*
@@ -338,7 +338,7 @@ Qué es una isobara, qué es el gradiente horizontal de presión y cómo se rela
 - Falso: el anticiclón trae viento fuerte girando en sentido horario y lluvias. Cierto: gira en sentido horario en el HN, pero con viento flojo y variable, cielo despejado y estabilidad.
 - Falso: en una borrasca del hemisferio norte el viento gira en sentido horario. Cierto: gira en sentido antihorario.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (24 preguntas reales de examen en estas clases):
 
 - Con respecto a las isobaras marque la opción correcta. *(and-py-2025-c2-g18)*
 - Cuanto mayor sea el gradiente horizontal de presión: *(and-py-2025-c1-g14)*
@@ -373,7 +373,7 @@ Masas de aire y frentes: cómo se clasifican las masas, cómo se dibuja cada fre
 - Falso: un frente ocluido solo puede ser de tipo frío (o solo de tipo cálido). Cierto: puede ser de los dos tipos.
 - Falso: con la vanguardia más fría que la retaguardia la oclusión es de tipo frío. Cierto: es de tipo cálido; leer despacio «vanguardia», «retaguardia» y si dice «más frío» o «más cálido».
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (35 preguntas reales de examen en estas clases):
 
 - Cuando dos masas de aire entran en contacto, si el aire cálido de una depresión no toca el suelo y el aire polar de retaguardia es más frío que el de vanguardia se trataría de: *(and-py-2023-c2-g12)*
 - ¿Qué tipo de frente suele tener asociados cumulonimbos y una alta precipitación? *(and-py-2021-c2-g16)*
@@ -408,7 +408,7 @@ Los cinco modelos de viento del temario, construidos añadiendo fuerzas: Euler, 
 - Falso: el viento de gradiente es un viento real afectado por la fricción o perpendicular a las isobaras. Cierto: es teórico, sin rozamiento, y paralelo a isobaras curvas.
 - Falso: el antitríptico es paralelo a las isobaras, va de bajas a altas o su única fuerza es el gradiente. Cierto: es el que considera el rozamiento; en el examen marca siempre la opción del rozamiento, aunque en teoría estricta desprecie Coriolis.
 
-**Minijuego** (18 preguntas reales de examen en estas clases):
+**Minijuego** (26 preguntas reales de examen en estas clases):
 
 - Un viento ideal en el que la única fuerza que actúa sobre él es el gradiente horizontal de presión se denomina: *(and-py-2026-c2-g17)*
 - Un viento que discurre paralelo a las isobaras rectilíneas y que se aproxima al 90% del viento real se denomina: *(and-py-2020-c1-g17)*
@@ -443,7 +443,7 @@ Los vientos con nombre propio de nuestras costas: la rosa mediterránea, los fr�
 - Falso: el siroco es un viento característico de la costa cantábrica. Cierto: es mediterráneo, del SE.
 - Falso: los vendavales son de componente NE y los alisios de SW. Cierto: vendaval del SW y alisios del NE.
 
-**Minijuego** (18 preguntas reales de examen en estas clases):
+**Minijuego** (23 preguntas reales de examen en estas clases):
 
 - Un viento súbito muy fuerte y racheado, acompañado o no de precipitaciones, propio del mar Cantábrico, y que corta de manera brusca y súbita un tiempo apacible y generalmente caluroso, se denomina: *(and-py-2023-c2-g13)*
 - En general, en todo el Mediterráneo, los vientos fríos y secos que soplan en las regiones posteriores a las borrascas reciben el nombre de: *(and-py-2026-c1-g13)*
@@ -478,7 +478,7 @@ Humedad absoluta, humedad relativa, punto de rocío y psicrómetro, y después l
 - Falso: los cúmulos son nubes de desarrollo horizontal. Cierto: son de desarrollo vertical (aunque en verano se asocien a buen tiempo).
 - Falso: los estratos o los estratocúmulos son nubes medias, y el nimbostrato es alto. Cierto: para el examen los tres son nubes bajas; las altas rara vez pasan de 10 000 m, nunca de 25 000.
 
-**Minijuego** (38 preguntas reales de examen en estas clases):
+**Minijuego** (69 preguntas reales de examen en estas clases):
 
 - ¿Cómo se denomina a la cantidad del vapor de agua expresada en gramos por metro cúbico en una masa de aire? *(and-py-2021-c1-g15)*
 - El valor que debe tomar la temperatura para que con la misma cantidad de vapor de agua se alcance el punto de saturación se denomina: *(and-py-2020-c3-g19)*
@@ -513,7 +513,7 @@ Qué es la niebla, cómo se clasifica por su formación (enfriamiento, evaporaci
 - Falso: la niebla de mezcla se produce entre masas de aire de la misma naturaleza. Cierto: entre corrientes de naturaleza distinta.
 - Falso: la niebla de mar se aclara sobre aguas más frías, o un viento frío y húmedo o más intenso la hace persistir. Cierto: se aclara sobre aguas más templadas y se dispersa con viento de fuerza 4 o más.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (31 preguntas reales de examen en estas clases):
 
 - ¿Cuáles de estas nieblas pertenecen al grupo de “nieblas por enfriamiento”? *(and-py-2021-c1-g20)*
 - Utilizando un psicrómetro entenderemos que tenemos mayor posibilidad de nieblas cuando: *(and-py-2021-c2-g20)*
@@ -548,7 +548,7 @@ Qué es una ola, sus partes (cresta, seno, longitud de onda, altura, amplitud y 
 - Falso: las olas son la transferencia de calor o de materia de la atmósfera al mar. Cierto: son transferencia de energía del viento.
 - Falso: la mar de viento tiene altura regular y la mar de fondo crestas agudas o longitud y altura similares. Cierto: al revés; la de viento es irregular y aguda, la de fondo redondeada y con longitud muy superior a la altura.
 
-**Minijuego** (22 preguntas reales de examen en estas clases):
+**Minijuego** (28 preguntas reales de examen en estas clases):
 
 - El tiempo, contado en segundos, entre el paso de dos crestas sucesivas por un mismo punto, se denomina: *(and-py-2023-c3-g19)*
 - El “mar de fondo” forma olas con: *(and-py-2022-c2-g20)*
@@ -583,7 +583,7 @@ Qué es una corriente marina y cómo se nombra, sus cuatro tipos por su causa (d
 - Falso: en el Estrecho la corriente superficial va de E a W y el retorno mediterráneo es superficial. Cierto: en superficie entra el Atlántico hacia el E y el Mediterráneo sale en profundidad hacia el W.
 - Falso: la corriente de Portugal va hacia el norte, continúa como corriente de los alisios, o la de Canarias va al norte. Cierto: Portugal va al sur y sigue como corriente de Canarias, fría y hacia el S-SW; y entre Palos y San Antonio son dos ramas, no tres.
 
-**Minijuego** (27 preguntas reales de examen en estas clases):
+**Minijuego** (51 preguntas reales de examen en estas clases):
 
 - Las corrientes debidas a variaciones de temperatura y salinidad entre aguas de diferentes lugares o a distintas profundidades reciben el nombre de: *(and-py-2026-c1-g15)*
 - ¿Cuál es el sentido más habitual de las corrientes en el litoral mediterráneo desde el meridiano de Málaga al cabo de Gata? *(and-py-2021-c1-g19)*
@@ -618,7 +618,7 @@ Recorrido por todo el tema de teoría de navegación: coordenadas, corrección t
 - El GNSS: COG es el rumbo efectivo, SOG la velocidad efectiva, XTE el error transversal, ETA la hora estimada de llegada y MOB el hombre al agua; antes de pasar la posición a la carta, mismo datum.
 - Cartas electrónicas y AIS: solo hay dos tipos de carta, raster (RNC) y vectorial (ENC); el AIS trabaja en VHF, ayuda a prevenir abordajes pero no sustituye al radar ni a la vigilancia visual.
 
-**Minijuego** (216 preguntas reales de examen en estas clases):
+**Minijuego** (312 preguntas reales de examen en estas clases):
 
 - ¿El Angulo que separa el Norte Verdadero del Norte de Aguja se conoce cómo? *(and-py-2021-c2-n10)*
 - ¿El rumbo que describe una embarcación cuando ha sido abatido por el viento se denomina? *(and-py-2021-c2-n04)*
@@ -651,7 +651,7 @@ Las definiciones finas de la esfera terrestre: eje, polos, círculos máximos y 
 - Falso: que la latitud sea un arco de paralelo o se mida desde Greenwich. Cierto: la latitud es arco de meridiano contado desde el ecuador.
 - Falso: que los círculos polares estén solo en el hemisferio norte. Cierto: hay uno en cada hemisferio, a 66° 33′ N y S.
 
-**Minijuego** (22 preguntas reales de examen en estas clases):
+**Minijuego** (51 preguntas reales de examen en estas clases):
 
 - ¿Qué círculos máximos de la superficie terrestre pasan por los polos?: *(and-py-2023-c3-n04)*
 - Todos los observadores que se encuentren en el mismo paralelo: *(and-py-2022-c2-n04)*
@@ -686,7 +686,7 @@ De qué depende la declinación magnética, el desvío y la corrección total, c
 - Falso: restar a la demora de aguja la de la carta, o restar además la declinación. Cierto: Ct = Dv (carta) − Da, sin tocar la declinación.
 - Falso: que la Ct se pueda calcular «con cualquier demora». Cierto: hace falta conocer la demora verdadera, con una enfilación, una oposición, la Polar o desde una situación segura.
 
-**Minijuego** (25 preguntas reales de examen en estas clases):
+**Minijuego** (40 preguntas reales de examen en estas clases):
 
 - La declinación magnética depende: *(and-py-2024-c1-n02)*
 - En relación a la corrección total, ¿qué respuesta es la correcta? *(and-py-2022-c2-n02)*
@@ -721,7 +721,7 @@ Qué hacen el viento y la corriente con el rumbo del barco: abatimiento y rumbo 
 - Falso: que con viento y corriente a la vez el rumbo resultante sea el de superficie o un «rumbo de superficie efectivo». Cierto: es el rumbo efectivo.
 - Falso: confundir abatimiento y deriva. Cierto: la estela torcida respecto a la crujía sin corriente es abatimiento; el ángulo entre la crujía y la derrota sobre el fondo con corriente y sin viento es deriva.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (26 preguntas reales de examen en estas clases):
 
 - El ángulo entre la estela del buque y el plano de crujía del buque es: *(and-py-2023-c1-n05)*
 - ¿Qué afirmación es CORRECTA?: *(and-py-2022-c1-n06)*
@@ -756,7 +756,7 @@ Las horas de la mar: Sol verdadero y Sol medio, tiempo universal, hora civil del
 - Falso: que la HcL coincida siempre con la legal. Cierto: solo si estás en el meridiano central del huso, con longitud múltiplo de 15°.
 - Falso: que dos lugares con la misma longitud en distintos países tengan siempre la misma hora oficial. Cierto: tienen siempre la misma hora legal.
 
-**Minijuego** (16 preguntas reales de examen en estas clases):
+**Minijuego** (36 preguntas reales de examen en estas clases):
 
 - La hora civil del lugar (HcL) es: *(and-py-2024-c2-n05)*
 - Dos lugares con la misma longitud, pero en distintos países tendrán siempre la misma hora: *(and-py-2021-c1-n04)*
@@ -790,7 +790,7 @@ Qué publica el Instituto Hidrográfico de la Marina, qué es un derrotero, para
 - Falso: que haya que pagar una suscripción para acceder a los Avisos. Cierto: son gratuitos en la web del Instituto Hidrográfico.
 - Falso: que la publicación que describe la costa sea la carta o el Libro de Faros. Cierto: es el derrotero; el Libro de Faros da las luces y el Anuario, las mareas.
 
-**Minijuego** (14 preguntas reales de examen en estas clases):
+**Minijuego** (17 preguntas reales de examen en estas clases):
 
 - ¿Qué publicación náutica describe, entre otros aspectos, las características detalladas de la costa y de sus peligros?: *(and-py-2026-c1-n04)*
 - Con los avisos a los navegantes podemos corregir y actualizar: *(and-py-2020-c3-n08)*
@@ -825,7 +825,7 @@ Cómo funciona el radar, qué mandos se tocan con lluvia, con mar o para una ima
 - Falso: que la marcación radar se cuente desde un «meridiano radar». Cierto: se cuenta desde la línea de proa, la línea de fe.
 - Falso: que la falta de visibilidad o los AIS de las boyas estropeen la imagen. Cierto: la estropean las perturbaciones de mar y lluvia; el radar ve igual con niebla o de noche.
 
-**Minijuego** (22 preguntas reales de examen en estas clases):
+**Minijuego** (32 preguntas reales de examen en estas clases):
 
 - En condiciones de fuertes precipitaciones de lluvia o granizo, ¿qué control del equipo RADAR debemos ajustar para filtrar las interferencias meteorológicas y visualizar mejor los ecos reales?: *(and-py-2026-c1-n06)*
 - Al utilizar el control de perturbación de mar (anti-clutter sea): *(and-py-2023-c2-n05)*
@@ -860,7 +860,7 @@ Qué es un GNSS, qué te da y qué no, las siglas de la pantalla (WPT, COG, SOG,
 - Falso: que con otro datum el GNSS pierda la señal o la SOG sea incorrecta. Cierto: lo único que falla es dónde cae la posición en la carta.
 - Falso: que el COG sea el rumbo verdadero o el de aguja. Cierto: COG y SOG incluyen viento y corriente, son los efectivos.
 
-**Minijuego** (26 preguntas reales de examen en estas clases):
+**Minijuego** (36 preguntas reales de examen en estas clases):
 
 - En un equipo GNSS la posición de una persona que ha caído se representa por las siglas: *(and-py-2025-c3-n07)*
 - En un equipo GNSS, las siglas XTE indican: *(and-py-2023-c3-n08)*
@@ -895,7 +895,7 @@ Los dos tipos de carta electrónica, raster y vectorial, y la diferencia entre l
 - Falso: que el AIS intercambie datos solo entre barcos o use UHF, radar, telefonía móvil o satélites GPS. Cierto: barcos, estaciones costeras y ayudas a la navegación, por VHF.
 - Falso: que el patrón nunca pueda apagar el AIS. Cierto: puede apagarlo si cree que tenerlo encendido compromete la seguridad o protección del buque.
 
-**Minijuego** (35 preguntas reales de examen en estas clases):
+**Minijuego** (46 preguntas reales de examen en estas clases):
 
 - Los tipos de Cartas Electrónicas son: *(and-py-2022-c3-n06)*
 - De las siguientes afirmaciones, marque la opción CORRECTA con relación al Sistema de Identificación Automática de buques (AIS): *(and-py-2025-c3-n10)*
@@ -930,7 +930,7 @@ Recorrido por las diez preguntas de carta del Patrón de Yate: corrección total
 - Mareas: el Anuario da las horas en UT (UT = hora oficial − adelanto). C = A · sen²(90° · I / D), con el intervalo contado desde la bajamar, y la sonda es la de la carta más la altura de la bajamar más C.
 - Estima analítica, casi siempre la pregunta 20: Δl = D · cos R, A = D · sen R y ΔL = A / cos lm. Para el rumbo directo, tan R = A / Δl, con el cuadrante decidido por los signos y atención al paso por el meridiano 180°.
 
-**Minijuego** (180 preguntas reales de examen en estas clases):
+**Minijuego** (290 preguntas reales de examen en estas clases):
 
 - El 12 de noviembre de 2020 navegamos a 7 nudos al Rumbo de aguja 197º, con viento del SE que nos produce un abatimiento de 15º. La declinación magnética de la carta es 2,5º E 2015 (6' W) y el Desvío de la aguja = +11º (más). Calcular el rumbo de superficie que hará el barco. *(and-py-2020-c3-n16)*
 - Al ser HRB = 09:00 nos encontramos en situación 36º 10,0′ N, 005º 15,0′ W, navegando al Rumbo verdadero 220º y velocidad 7 nudos. Al ser HRB = 10:00 nos encontramos al Este verdadero del faro de Punta Carnero y al Norte verdadero del faro de Punta Almina. Calcular el rumbo de la corriente e Intensidad horaria de la misma. *(and-py-2022-c1-n17)*
@@ -963,7 +963,7 @@ La corrección total con las tres vías del programa: desvío y declinación act
 - Restar al revés (Da − Dv) cambia el signo de la Ct, y las opciones del examen traen siempre el mismo valor con los dos signos. Lo cierto es Ct = Dv − Da.
 - Los nombres de la carta confunden: el «faro de Punta Camarinal» de los enunciados es el faro de Punta de Gracia (Camarinal). La «farola del espigón», la «luz del espigón» y la «luz de la bocana» de Tánger son la misma luz, y en Ceuta la verde es la del dique de poniente y la roja, la del dique de levante.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (32 preguntas reales de examen en estas clases):
 
 - En una carta de navegación leemos los siguientes datos: 6º10´W 2005 (5´E). Calcule la declinación magnética para el año 2021. *(and-py-2021-c2-n13)*
 - Navegamos al rumbo de aguja 060º. Al cruzar la oposición de los faros de Punta Malabata y Punta Cires, marcamos al faro de Punta Cires en demora de aguja 078º. Dec. magnética = 3º W. Calcular la corrección total. *(and-py-2024-c1-n11)*
@@ -998,7 +998,7 @@ Cómo entra el viento en los problemas de carta: el abatimiento, la banda por la
 - Muchos enunciados obligan antes a situarse o a actualizar la declinación con el año de la rosa. Si se salta ese paso, todo lo que viene después sale mal.
 - Con corriente, la tangente ya no es el Rs sino el rumbo efectivo.
 
-**Minijuego** (28 preguntas reales de examen en estas clases):
+**Minijuego** (45 preguntas reales de examen en estas clases):
 
 - El 17 de Marzo de 2022 navegamos a 6 nudos al Rumbo de aguja 315º, con viento del NE que nos produce un abatimiento de 20º. La declinación magnética de la carta es 3,5º E 2017 (6' W) y el Desvío de la aguja = –8º (menos). Calcular el rumbo de superficie que hará el barco *(and-py-2022-c1-n16)*
 - Al ser HRB = 06:00 nos encontramos en situación 35º 50,0′ N, 005º 50,0′ W, navegando al rumbo de aguja = 350º. Sopla viento del oeste (W) que nos produce un abatimiento de 20º. Calcular el rumbo que realiza el barco afectado por el viento, sabiendo que la declinación magnética = 5º NE y el desvío de la aguja = +10º (más). *(and-py-2025-c1-n16)*
@@ -1033,7 +1033,7 @@ Cómo situarse en la carta con líneas de posición, simultáneas o tomadas a ho
 - Falso que el través se calcule con el Rs. En el ejemplo de la clase (Rv 170°, Rs 160°, Cabo Espartel por babor) daría Dv 070° en vez de 080°, y una situación tan cercana a la buena que el examen suele poner las dos.
 - Una distancia y otra línea suelen cortarse en dos puntos: la pista del enunciado («ya en aguas del Estrecho», «al norte de…») dice cuál vale. Si la plantilla difiere en uno o dos minutos, se elige la opción más próxima.
 
-**Minijuego** (29 preguntas reales de examen en estas clases):
+**Minijuego** (34 preguntas reales de examen en estas clases):
 
 - A HRB = 15h 00m nos encontramos al OESTE (W) verdadero del faro de Cabo Espartel. Navegamos al Rumbo de aguja = 070º con velocidad del buque = 8 nudos. A HRB = 16h 15m obtenemos demora verdadera al faro de Punta Camarinal = NORTE. Calcular situación a HRB = 16h 15m. Declinación magnética = 2º NW y desvío de la aguja = –8º (menos). *(and-py-2025-c2-n15)*
 - Navegamos al rumbo verdadero 340º a 10 nudos de velocidad. Sopla viento de poniente (del oeste), que nos produce un abatimiento de 20º. Al tener el faro de Cabo Espartel por el través de estribor, tomamos distancia radar a dicho faro = 6,8 millas. Calcular la situación. *(and-py-2023-c3-n14)*
@@ -1068,7 +1068,7 @@ La estima gráfica con viento y corriente: dónde estarás a una hora, qué rumb
 - Si la corriente empieza a mitad de la navegación, solo cuenta el tiempo que estás dentro de ella.
 - Falso que 2 h 15 min sean 2,15 horas: son 2,25 horas, así que con Ihc 2 millas la corriente te desplaza 4,5 millas y no 4,3.
 
-**Minijuego** (17 preguntas reales de examen en estas clases):
+**Minijuego** (31 preguntas reales de examen en estas clases):
 
 - El día 25 de marzo de 2023, a HRB = 20:00, estamos en situación 36º 00,0’ N, 006º 10,0′ W. Navegamos a 8 nudos al rumbo verdadero 080º, teniendo en cuenta que existe una corriente de Rc = S e intensidad horaria = 3 millas. Calcular el rumbo que hará el barco como consecuencia de la corriente. *(and-py-2023-c1-n16)*
 - Navegamos a 11 nudos al rumbo de aguja 270º, con viento del SW que nos produce un abatimiento de 15º y una corriente de Rc = 050º e Ih = 4′. Declinación magnética = 6º NE, desvío = +8º. Calcular el rumbo efectivo. *(and-py-2023-c2-n17)*
@@ -1103,7 +1103,7 @@ Los dos problemas de corriente que faltan. Con la corriente conocida, qué rumbo
 - En la corriente desconocida, las opciones traen el rumbo opuesto, a 180°: el vector va de la estimada a la observada, nunca al revés.
 - Las opciones también traen la intensidad doble o mitad: se divide por las horas desde la última situación fiable, no por una hora. Y en la estima no se mete la corriente, porque es justo lo que se busca.
 
-**Minijuego** (33 preguntas reales de examen en estas clases):
+**Minijuego** (63 preguntas reales de examen en estas clases):
 
 - Desde la situación 36º 12,0′ N, 005º 12,0′ W, damos rumbo a Ceuta (luz verde de la bocana del puerto), teniendo en cuenta que nos afecta una corriente de Rc = E e intensidad horaria = 4 millas. Navegamos a 10 nudos de velocidad. Calcular la velocidad efectiva del buque. *(and-py-2023-c2-n14)*
 - A HRB = 13:00, desde la situación 35º 59,0′ N, 005º 45,0′ W, damos rumbo a Barbate (faro de Tierra), teniendo en cuenta que nos afecta una corriente de Rc = W e intensidad horaria 3 millas. Declinación magnética = 2º NE y Desvío de la aguja = – 8º (menos). Calcular el rumbo de aguja y la velocidad del buque para llegar a Barbate a HRB = 15:00. *(and-py-2023-c1-n13)*
@@ -1138,7 +1138,7 @@ Las mareas completas: qué trae el Anuario de Mareas y cómo sube la marea, y de
 - Falso que la presión alta dé más agua: da menos, unos 7 cm menos con 1020 hPa. Si el enunciado dice que no se tenga en cuenta, no se aplica.
 - Con la calculadora en radianes, la cuenta sale mal: hay que ponerla en grados. Y si el resultado difiere de las opciones en 1 o 2 cm o en unos minutos, se elige la más próxima, porque las tablas del Anuario redondean.
 
-**Minijuego** (35 preguntas reales de examen en estas clases):
+**Minijuego** (52 preguntas reales de examen en estas clases):
 
 - Calcular la sonda en metros que tendremos a la hora oficial 12:51 del 27 de agosto de 2023 en un bajo de Chipiona señalado en la carta con una sonda de 0,9 metros. Presión atmosférica = 1020 hPa. Adelanto vigente: +2 horas. *(and-py-2023-c3-n18)*
 - Calcular la sonda que tendremos a la hora oficial 17:30 del 17 de marzo de 2022, en un bajo señalado en la carta con 2,10 metros. Adelanto vigente: +1 hora. *(and-py-2022-c1-n19)*
@@ -1175,7 +1175,7 @@ La loxodrómica y la estima analítica: qué son la derrota de rumbo constante, 
 - En el hemisferio sur, ir hacia el sur hace crecer la latitud.
 - Si piden aproximar al medio grado, se redondea solo al final. Y con la calculadora en radianes, la cuenta sale mal.
 
-**Minijuego** (20 preguntas reales de examen en estas clases):
+**Minijuego** (38 preguntas reales de examen en estas clases):
 
 - Que es el apartamiento *(and-py-2021-c1-n09)*
 - ¿A qué rumbo directo (Rd) deberemos navegar si queremos ir desde un punto A de l = 35º 46,8´N y L = 006º 00,2´W, hasta llegar a otro punto B de l = 35º 20,0´N y L = 006º 35,0´W? *(and-py-2021-c1-n18)*
@@ -1228,7 +1228,7 @@ Panorama del tema de nomenclatura náutica: el casco y sus referencias, la cubie
 - Fondeo: el molinete tiene barbotén, cabirón, embrague y freno; la línea de fondeo mide al menos 5 esloras con al menos 1 eslora de cadena; a la pendura, a pique, zarpar, clara y levar son las voces de la maniobra.
 - Dimensiones: obra viva sumergida y obra muerta emergida; calado de la flotación a la quilla, francobordo de la flotación a la cubierta estanca, y asiento igual a calado de popa menos calado de proa.
 
-**Minijuego** (72 preguntas reales de examen en estas clases):
+**Minijuego** (116 preguntas reales de examen en estas clases):
 
 - El lado o costado contrario a aquel por el que viene o entra el viento se denomina: *(and-2023-c1-t02)*
 - El eje alrededor del cual gira la pala del timón se denomina: *(and-2026-c1-t03)*
@@ -1261,7 +1261,7 @@ El casco y sus referencias (proa, popa, crujía, bandas, amuras, través, aletas
 - Falso: el codaste es de proa. Cierto: el codaste prolonga la quilla hacia popa; la roda y la amura son de proa.
 - Falso: la regala es un refuerzo transversal. Cierto: es longitudinal y remata la borda por arriba; los baos son los transversales.
 
-**Minijuego** (25 preguntas reales de examen en estas clases):
+**Minijuego** (42 preguntas reales de examen en estas clases):
 
 - Banda de Sotavento es: *(and-2020-c1-t04)*
 - Si quisiéramos ventilar y al mismo tiempo dar luz a un espacio del buque utilizaríamos: *(and-2022-c1-t02)*
@@ -1296,7 +1296,7 @@ Las partes del timón y de la hélice, hacia dónde cae la proa con caña y con 
 - Falso: en gemelas de giro al exterior las dos son dextrógiras (o las dos levógiras). Cierto: nunca giran igual; al exterior, estribor dextrógira y babor levógira.
 - Falso: «bocina, núcleo y capacete» es una trampa porque la bocina no es de la hélice. Cierto: el programa la incluye entre las partes de la hélice y esa respuesta es la correcta.
 
-**Minijuego** (21 preguntas reales de examen en estas clases):
+**Minijuego** (28 preguntas reales de examen en estas clases):
 
 - Indique cuál de las siguientes NO es una parte del timón: *(and-2026-c2-t02)*
 - Si miramos de popa hacia proa, una hélice de giro levógira es: *(and-2020-c1-t02)*
@@ -1331,7 +1331,7 @@ El equipo de fondeo (molinete, ancla, línea de fondeo y las voces de la maniobr
 - Falso: el asiento es el ángulo de inclinación transversal. Cierto: eso es la escora; el asiento es la diferencia de calados de popa y de proa.
 - Falso: adrizar es «eliminar el asiento». Cierto: adrizar es quitar la escora y poner el barco derecho; y «obra semiviva» u «obra semimuerta» no existen.
 
-**Minijuego** (26 preguntas reales de examen en estas clases):
+**Minijuego** (46 preguntas reales de examen en estas clases):
 
 - Cuando tenemos el ancla rozando el agua y lista para fondear, el ancla se encuentra: *(and-2022-c1-t01)*
 - En las embarcaciones de más de 6 metros de eslora, la longitud del tramo de cadena de la línea de fondeo será como mínimo igual a: *(and-2023-c1-t01)*
@@ -1362,7 +1362,7 @@ Panorama del tema de amarre y fondeo: herrajes y partes de un cabo, los cuatro n
 - Bornear es girar alrededor del ancla; garrear es que el ancla se arrastra por el fondo; el radio de borneo es aproximadamente la cadena filada más la eslora.
 - El orinque es un cabo afirmado a la cruz del ancla con un boyarín que señala su posición; si al levar la cadena tira por largo con mucha fuerza, se dan unas paladas avante.
 
-**Minijuego** (36 preguntas reales de examen en estas clases):
+**Minijuego** (57 preguntas reales de examen en estas clases):
 
 - ¿Qué nudo se usa para unir dos cabos del mismo material y mena (grosor)? *(and-2023-c2-t05)*
 - De los tenederos siguientes, ¿cuál sería el menos apropiado para fondear?: *(and-2020-c1-t06)*
@@ -1395,10 +1395,10 @@ Los herrajes del muelle y de a bordo, las defensas, el bichero, el guiacabos y l
 - Falso: el envergue sirve para colgar defensas o hacer gazas. Cierto: «de rizo» o «de envergue» son nombres del nudo llano, que es para unir cabos.
 - Falso: el seno es el extremo libre. Cierto: el extremo libre es el chicote; el seno es la curva.
 
-**Minijuego** (14 preguntas reales de examen en estas clases):
+**Minijuego** (26 preguntas reales de examen en estas clases):
 
 - ¿Qué elemento de a bordo sirve para hacer firme un cabo?: *(and-2020-c1-t05)*
-- El extremo libre de un cabo o cable se denomina: *(and-2025-c2-t05)*
+- Al extremo libre de un cabo se le denomina: *(and-2017-c3-t06)*
 - ¿Qué nudo sería el más indicado para hacer firme rápidamente una defensa a los costados, si la defensa no ha de estar tendida mucho tiempo?: *(and-2023-c3-t06)*
 
 **Relacionados:** 2.0, 2.2, 7.1.
@@ -1430,7 +1430,7 @@ Elegir fondeadero y tenedero, la maniobra de fondeo a la gira con el molinete, c
 - Falso: si al levar la cadena tira por largo con fuerza, se dan paladas atrás o se fuerza el molinete. Cierto: unas paladas avante para acercarse al ancla.
 - Falso: un barco de recreo de 8 a 12 metros fondeado no necesita la bola. Cierto: la exención solo es para menores de 7 metros y fuera de zonas de paso o fondeo.
 
-**Minijuego** (22 preguntas reales de examen en estas clases):
+**Minijuego** (31 preguntas reales de examen en estas clases):
 
 - Indique cuál de los siguientes tenederos es el más adecuado para fondear: *(and-2022-c2-t05)*
 - Para poder levar el ancla debemos: *(and-2022-c1-t05)*
@@ -1463,10 +1463,10 @@ Panorama del tema de seguridad en la mar: estabilidad y movimientos del barco, r
 - Hombre al agua: timón a la banda de la caída, aro al agua, alguien señalando y tecla MOB; Anderson cae hasta 250 grados; Boutakow cae 70 grados y luego a la contraria hasta el rumbo opuesto; si no se le ve, espiral cuadrada o sectores.
 - Hipotermia: abrigar sin frotar ni dar alcohol; RCP en el ahogado: 5 insuflaciones iniciales y luego 30 compresiones por 2 insuflaciones; Salvamento Marítimo: canal 16, 900 202 202 o 112.
 
-**Minijuego** (72 preguntas reales de examen en estas clases):
+**Minijuego** (111 preguntas reales de examen en estas clases):
 
 - El movimiento longitudinal de la embarcación en sentido proa-popa se denomina: *(and-2022-c3-t07)*
-- Para capear un temporal navegaremos recibiendo la mar por: *(and-2025-c1-t10)*
+- Cuando capeamos un temporal: *(and-2020-c3-t08)*
 - Hombre al agua. En la maniobra de aproximación de Anderson, ¿cuántos grados debemos caer antes de poner timón a la vía y parar la máquina? *(and-2023-c1-t10)*
 
 #### 3.1 · Estabilidad y antes de salir
@@ -1495,11 +1495,11 @@ Qué es la estabilidad y sus apellidos (estática o dinámica, transversal o lon
 - Falso: antes de salir hay que comprobar «un aro salvavidas por cada tripulante». Cierto: lo que va por persona es el chaleco.
 - Falso: hay que llevar suficiente agua salada en los tanques. Cierto: se lleva agua dulce; si las demás opciones son comprobaciones correctas del motor, la buena suele ser «todas las anteriores».
 
-**Minijuego** (14 preguntas reales de examen en estas clases):
+**Minijuego** (26 preguntas reales de examen en estas clases):
 
 - La propiedad que tiene el buque, una vez escorado, de recuperar su posición de equilibrio, cuando se encuentra flotando en aguas en reposo, se llama: *(and-2023-c3-t10)*
 - El movimiento oscilante transversal de una embarcación en el sentido estribor-babor, se denomina: *(and-2024-c2-t07)*
-- ¿Qué sistemas de nuestra embarcación debe comprobar el patrón antes de hacerse a la mar?: *(and-2025-c3-t07)*
+- Antes de hacernos a la mar debemos comprobar: *(and-2016-c3-t10)*
 
 **Relacionados:** 3.0, 3.2, 1.3.
 
@@ -1530,11 +1530,11 @@ Preparar el barco «a son de mar», capear y correr el temporal, por qué no hay
 - Falso: el rayo cambia la declinación magnética o mejora la aguja. Cierto: puede provocar un desvío anómalo de la aguja en cualquier tipo de casco.
 - Falso: con niebla o en aguas someras, aumentar la velocidad para salir antes, buscar el tráfico o quitar el reflector radar. Cierto: reducir la velocidad, extremar la vigilancia y evitar el tráfico.
 
-**Minijuego** (34 preguntas reales de examen en estas clases):
+**Minijuego** (35 preguntas reales de examen en estas clases):
 
 - La expresión utilizada para indicar que se ha estibado y trincado a bordo con criterio y a conciencia antes de salir a la mar es: *(and-2020-c3-t09)*
-- Cuando las circunstancias lo permitan, durante una navegación con mal tiempo, es recomendable: *(and-2026-c1-t09)*
-- La caída de un rayo en las proximidades de una embarcación puede afectar a la aguja magnética. ¿De qué manera?: *(and-2026-c2-t09)*
+- ¿Por qué es importante no atravesarse a la mar con mal tiempo? *(and-2016-c1-t07)*
+- La caída de un rayo en las proximidades de nuestro barco puede afectar a la aguja: *(and-2019-c2-t09)*
 
 **Relacionados:** 3.0, 3.1, 6.5, 10.3.
 
@@ -1565,7 +1565,7 @@ El equipo de seguridad obligatorio según el RD 339/2021: a qué barcos se aplic
 - Falso: las señales pirotécnicas se lanzan nada más abandonar el barco, aunque no haya nadie a la vista. Cierto: solo cuando haya seguridad de que alguien puede verlas.
 - Falso: el arnés y el espejo de señales son obligatorios en zona 4. Cierto: el RD 339/2021 no los exige (la pregunta que lo preguntaba se anuló).
 
-**Minijuego** (8 preguntas reales de examen en estas clases):
+**Minijuego** (19 preguntas reales de examen en estas clases):
 
 - Los chalecos salvavidas reglamentarios para la zona de navegación 4, deberán tener una flotación mínima de: *(and-2024-c2-t09)*
 - El color y duración mínima del humo de las señales fumígenas flotantes son; *(and-2024-c1-t08)*
@@ -1600,7 +1600,7 @@ Hombre al agua de principio a fin: prevenir la caída, los primeros segundos, la
 - Falso: la espiral cuadrada termina en el datum, necesita dos unidades o los sectores giran 100 grados a babor. Cierto: la espiral sale del datum y se abre, la hace un solo barco, y los sectores giran 120 grados.
 - Falso: el teléfono de Salvamento Marítimo es 902 202 202 o 900 200 200. Cierto: 900 202 202 (o el 112); el 091 es la Policía Nacional.
 
-**Minijuego** (16 preguntas reales de examen en estas clases):
+**Minijuego** (31 preguntas reales de examen en estas clases):
 
 - En caso de caída de un hombre al agua, ¿qué maniobra de búsqueda debemos realizar cuando no tengamos el náufrago a la vista?: *(and-2024-c3-t08)*
 - Navegando a motor vemos a un tripulante caer al agua. Para volver rápidamente a la situación de caída, realizaremos la maniobra denominada: *(and-2022-c1-t08)*
@@ -1633,7 +1633,7 @@ Recorrido por la legislación que pide el PER: estar en regla, el puerto comerci
 - Banderas: popa y pico del palo mayor son de la bandera de España; la autonómica solo con la nacional izada y con un tercio de su área como máximo.
 - Espacios protegidos: ZEPIM es Zona Especialmente Protegida de Importancia para el Mediterráneo (en Andalucía, Alborán, Cabo de Gata-Níjar, Levante almeriense y Maro-Cerro Gordo); sobre posidonia no se fondea, ni con el ancla ni con la cadena.
 
-**Minijuego** (36 preguntas reales de examen en estas clases):
+**Minijuego** (57 preguntas reales de examen en estas clases):
 
 - Al aproximarse a una playa no balizada, la velocidad máxima a la que se puede navegar es: *(and-2020-c3-t11)*
 - La descarga de aguas sucias que no han sido previamente desinfectadas ni desmenuzadas debe realizarse: *(and-2023-c2-t11)*
@@ -1666,11 +1666,11 @@ Qué necesita el barco para navegar en regla, quién manda dentro de un puerto c
 - Falso: «con la bandera A basta con reducir la velocidad». Cierto: hay que dejar como mínimo 50 m a la zona de buceo, además de ir despacio.
 - Falso: la roja con cola de golondrina («B», Bravo) indica buceo. Cierto: la «B» es mercancías peligrosas; el buceo es la «A» o la roja con franja diagonal blanca.
 
-**Minijuego** (12 preguntas reales de examen en estas clases):
+**Minijuego** (18 preguntas reales de examen en estas clases):
 
-- En cuanto al tráfico marítimo dentro de los puertos ¿qué buques tienen preferencia de paso, si no se indica lo contrario por la Autoridad competente?: *(and-2025-c3-t12)*
+- ¿Cuál de las siguientes opciones es correcta?: *(and-2023-c1-t12)*
 - Dentro de una zona de baño balizada, una moto náutica de uso particular debe dar a los bañistas un resguardo de: *(and-2023-c3-t12)*
-- ¿Qué resguardo, como mínimo, hay que darle a una embarcación que tenga izada la señal “A” (ALFA) del Código Internacional de Señales?: *(and-2025-c3-t11)*
+- Ante una playa balizada, a que distancia de la orilla está prohibida la navegación de recreo. *(and-2021-c2-t12)*
 
 **Relacionados:** 4.0, 4.3, 6.7.
 
@@ -1701,11 +1701,11 @@ Qué se puede echar al mar, dónde y cómo: aguas sucias, basuras según MARPOL 
 - Falso: «responde únicamente el patrón», «solo el propietario» o «solo el asegurador». Cierto: responden los cuatro a la vez, de forma solidaria.
 - Falso: «solo se acude si lo pide un centro de salvamento», «solo si es de mi bandera» o «si no voy, no tengo que explicar nada». Cierto: se acude siempre que se pueda sin grave peligro, y si no, diario y aviso a salvamento.
 
-**Minijuego** (16 preguntas reales de examen en estas clases):
+**Minijuego** (28 preguntas reales de examen en estas clases):
 
 - La descarga de aguas sucias que hayan estado almacenadas en los tanques de retención se realizará: *(and-2020-c1-t11)*
 - Navegando a la altura del cabo Trafalgar, ¿podemos descargar al mar alimentos sin triturar ni desmenuzar?: *(and-2024-c1-t11)*
-- ¿Quién será el responsable de las infracciones por contaminación del medio marino producidas desde una embarcación?: *(and-2025-c2-t12)*
+- Las infracciones por contaminación del medio marino causadas por el patrón desde una embarcación de recreo son responsabilidad de: *(and-2017-c1-t11)*
 
 **Relacionados:** 4.0, 4.1, 4.3.
 
@@ -1736,7 +1736,7 @@ Dónde va la bandera de España y en qué condiciones se puede izar la autonómi
 - Falso: «en las ZEPIM el paso y el fondeo no están reglamentados». Cierto: se pueden regular el paso, la parada y el fondeo.
 - Falso: en un campo de boyas se puede fondear directamente sobre la posidonia. Cierto: se amarra a la boya precisamente para no fondear sobre la pradera.
 
-**Minijuego** (8 preguntas reales de examen en estas clases):
+**Minijuego** (12 preguntas reales de examen en estas clases):
 
 - ¿Podemos llevar la bandera de la comunidad autónoma izada en nuestra embarcación? *(and-2021-c1-t11)*
 - Las siglas ZEPIM significan: *(and-2021-c2-t11)*
@@ -1766,7 +1766,7 @@ El mapa del balizamiento IALA: laterales y bifurcaciones, cardinales, peligro ai
 - Peligro aislado (dos esferas negras, luz blanca de dos destellos), aguas navegables (franjas verticales rojas y blancas, una esfera roja), especiales (todo amarillo, aspa en X) y pecio (azul y amarillo, cruz +).
 - Leer la luz: destellos, luz menor que oscuridad; ocultaciones, mayor; isofase, igual; las luces «tranquilas» blancas son de aguas navegables y las «nerviosas» de cardinales.
 
-**Minijuego** (90 preguntas reales de examen en estas clases):
+**Minijuego** (139 preguntas reales de examen en estas clases):
 
 - Al entrar en puerto ¿qué color tienen las marcas laterales de babor y estribor, respectivamente?: *(and-2025-c3-t13)*
 - Una marca cuya marca de tope consiste en dos conos negros superpuestos con los vértices hacia arriba indica que se debe pasar al … de ella (completar con la opción que proceda). *(and-2024-c1-t16)*
@@ -1799,7 +1799,7 @@ Cómo funciona el sistema IALA, qué cambia entre la región A y la B, y todo so
 - Falso: si de noche solo ves una luz amarilla, necesitas ver la forma para saber qué es. Cierto: una luz amarilla ya dice que es una marca especial.
 - Falso: numeración de tierra hacia la mar o verdes pares. Cierto: de la mar hacia tierra, rojas pares y verdes impares.
 
-**Minijuego** (32 preguntas reales de examen en estas clases):
+**Minijuego** (48 preguntas reales de examen en estas clases):
 
 - Si de noche divisamos una boya de la cual no distinguimos la forma, pero sí divisamos una luz de color amarillo se trata de: *(and-2021-c2-t13)*
 - Saliendo de puerto debemos dejar por estribor las marcas laterales de color: *(and-2024-c3-t13)*
@@ -1832,7 +1832,7 @@ Las cuatro cardinales: qué dicen, por dónde se pasan, cómo son sus colores y 
 - Falso: la Este es amarilla con banda negra. Cierto: esa es la Oeste; la Este es negra con banda amarilla (conos por las bases, negro arriba y abajo).
 - Falso: la cardinal Este da grupos de 3 destellos u ocultaciones. Cierto: son centelleos, y el destello largo solo lo lleva la Sur, detrás de sus seis centelleos.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (29 preguntas reales de examen en estas clases):
 
 - Una marca cardinal Sur indica: *(and-2022-c3-t17)*
 - Para indicar que hay que pasar al oeste de un peligro, se utilizará una marca de color: *(and-2023-c2-t16)*
@@ -1865,7 +1865,7 @@ Las marcas que no son laterales ni cardinales: peligro aislado, aguas navegables
 - Falso: el centro del canal se marca con laterales o con peligro aislado. Cierto: con la marca de aguas navegables.
 - Falso: aguas navegables lleva franjas horizontales. Cierto: verticales rojas y blancas; las bandas horizontales rojas son del peligro aislado, sobre fondo negro.
 
-**Minijuego** (26 preguntas reales de examen en estas clases):
+**Minijuego** (39 preguntas reales de examen en estas clases):
 
 - Una marca que tiene como marca de tope dos esferas negras superpuestas: *(and-2023-c2-t14)*
 - ¿Cuál de las siguientes marcas se utiliza para indicar el centro de un canal?: *(and-2022-c2-t13)*
@@ -1898,7 +1898,7 @@ Cómo se lee la característica de una luz (ritmo, color y periodo) y cómo pasa
 - Falso: «ninguna marca IALA da luz de ocultaciones, solo los faros» o «no existe marca con Morse A». Cierto: las dos son luces de aguas navegables.
 - Falso: la «luz centelleante» del RIPA es la misma que la del balizamiento. Cierto: en el RIPA es de 120 o más destellos por minuto; en balizamiento se distingue centelleante (60 o 50) de centelleante rápida (120 o 100).
 
-**Minijuego** (13 preguntas reales de examen en estas clases):
+**Minijuego** (23 preguntas reales de examen en estas clases):
 
 - Una boya emite una luz blanca con un período de cuatro segundos, de forma que está tres segundos encendida y un segundo apagada. Se trata de una marca: *(and-2022-c1-t16)*
 - Una marca cuya luz es un grupo de dos destellos blancos cada quince segundos es una: *(and-2020-c1-t13)*
@@ -1933,7 +1933,7 @@ El Reglamento Internacional para Prevenir los Abordajes de un vistazo: definicio
 - Señales acústicas: corta de 1 s y larga de 4 a 6 s; a la vista, 1 corta estribor, 2 babor, 3 atrás y 5 o más duda; en niebla, 1 larga el de motor con arrancada y 2 largas el parado.
 - Señales de peligro (anexo IV): solo significan peligro y necesidad de ayuda; entre ellas, sonido continuo, estrellas rojas, MAYDAY, humo naranja y subir y bajar los brazos.
 
-**Minijuego** (180 preguntas reales de examen en estas clases):
+**Minijuego** (281 preguntas reales de examen en estas clases):
 
 - Una embarcación de recreo está pescando con caña, manteniéndose a la deriva con la máquina desembragada. Se trata de: *(and-2025-c1-t22)*
 - En una situación de alcance en mar abierto con buques que están a la vista el uno del otro, ¿cuándo el buque que alcanza deberá mantenerse apartado de la derrota del buque alcanzado?: *(and-2025-c1-t18)*
@@ -1966,7 +1966,7 @@ Dónde se aplica el RIPA, la regla de la responsabilidad y las definiciones que 
 - Falso: «si la demora no varía, no hay riesgo» o «con un buque grande no hay riesgo». Cierto: demora constante es riesgo, y con un buque grande o un remolque puede haberlo aunque cambie.
 - Falso: es aconsejable una sucesión de pequeños cambios de rumbo. Cierto: un cambio amplio que el otro aprecie a simple vista o en el radar.
 
-**Minijuego** (27 preguntas reales de examen en estas clases):
+**Minijuego** (39 preguntas reales de examen en estas clases):
 
 - Un yate de 20 metros de eslora está navegando a vela, propulsándose al mismo tiempo con la máquina. En el contexto del Reglamento de Abordajes, tiene la condición de: *(and-2022-c2-t25)*
 - Para determinar la velocidad de seguridad, en todos los buques, se tendrá en cuenta entre otros factores: *(and-2021-c1-t18)*
@@ -2001,10 +2001,10 @@ Cómo se navega por un canal angosto y por un dispositivo de separación del tr�
 - Falso: «voy por la vía, soy el que sigue a rumbo». Cierto: no hay preferencia por ir en la vía; si el otro buque de motor está por tu estribor, cedes tú.
 - Falso: los menores de 20 m no pueden ir por la vía y deben ir por la zona costera. Cierto: pueden usar tanto la vía como la zona costera.
 
-**Minijuego** (24 preguntas reales de examen en estas clases):
+**Minijuego** (37 preguntas reales de examen en estas clases):
 
-- Navegando en un canal angosto nos aproximamos a un recodo que tiene la visión obstaculizada y no permite ver otros buques. ¿Qué señal fónica debemos hacer sonar? *(and-2025-c1-t21)*
-- ¿Cómo se debe cruzar un dispositivo de separación del tráfico?: *(and-2025-c1-t20)*
+- Navegando por un canal angosto, nos acercamos a un recodo que nos obstaculiza la visión, la señal fónica será: *(and-2015-c3-t26)*
+- ¿Cómo cruzaremos una vía de circulación de un dispositivo de separación del tráfico?: *(and-2017-c3-t24)*
 - Un buque se dirige a puerto por un canal angosto. Debido a sus dimensiones, solo puede navegar con seguridad dentro de dicho canal. ¿Qué buques no estorbarán su tránsito? *(and-2020-c3-t23)*
 
 **Relacionados:** 6.1, 6.3, 6.8.
@@ -2034,7 +2034,7 @@ Las tres situaciones entre buques que se ven: alcance, vuelta encontrada y cruce
 - Falso: de vuelta encontrada caen los dos a babor, o maniobra el primero que lo vea, o se coordina por VHF. Cierto: los dos caen a estribor.
 - Falso: si veo su luz roja por mi estribor, soy el que sigue a rumbo. Cierto: lo tengo por estribor, así que cedo yo.
 
-**Minijuego** (26 preguntas reales de examen en estas clases):
+**Minijuego** (46 preguntas reales de examen en estas clases):
 
 - Avistamos un buque en marcación 110º Br, que se aproxima al nuestro sin que la marcación varíe de forma apreciable. Nos encontramos en una situación de: *(and-2023-c2-t21)*
 - Un buque mercante y una embarcación de recreo, ambos de propulsión mecánica y a la vista, se cruzan en mar abierto con riesgo de abordaje. ¿Cuál debe mantenerse apartado de la derrota del otro? *(and-2023-c2-t24)*
@@ -2069,10 +2069,10 @@ Cómo se resuelven los encuentros entre dos veleros, la escalera de quién se ap
 - Falso: una sola luz verde por mi babor sin luz de tope es un buque de motor y yo sigo a rumbo. Cierto: sin luz de tope es un velero (o un remolcado), y a motor me aparto.
 - Falso: el velero se aparta del buque de propulsión mecánica. Cierto: es al revés, salvo cuando el velero alcanza.
 
-**Minijuego** (33 preguntas reales de examen en estas clases):
+**Minijuego** (44 preguntas reales de examen en estas clases):
 
 - Dos buques de vela se encuentran en una situación de cruce con riesgo de abordaje. Si ambos buques están a la vista y reciben el viento por la misma banda, ¿cuál debe mantenerse apartado de la derrota del otro? *(and-2020-c3-t19)*
-- En mar abierto un buque de propulsión mecánica ve a un buque de vela que se le aproxima desde una marcación 25º a popa de su través de estribor. En esta situación: *(and-2026-c2-t22)*
+- Un buque de propulsión mecánica avista en marcación 130º estribor un buque de vela que se está aproximando. En esta situación: *(and-2024-c1-t21)*
 - Navegando a motor de noche observamos por nuestra amura de babor una luz verde; no vemos ninguna otra luz y la luz verde se aproxima, manteniendo constante su demora. En este caso: *(and-2020-c1-t26)*
 
 **Relacionados:** 6.3, 6.6, 6.7.
@@ -2102,10 +2102,10 @@ Qué cambia cuando los buques no se ven: qué reglas siguen valiendo, hacia dón
 - Falso: de día en niebla no hace falta encender luces, o la señal de niebla solo se da al oír a otro. Cierto: luces siempre y señales de la Regla 35 siempre.
 - Falso: en visibilidad reducida todos reducen a la mínima de gobierno o el velero debe arrancar el motor. Cierto: velocidad de seguridad y, los de motor, máquinas listas.
 
-**Minijuego** (15 preguntas reales de examen en estas clases):
+**Minijuego** (22 preguntas reales de examen en estas clases):
 
 - Navegando en condiciones de visibilidad reducida detectamos en el radar un buque que no está a la vista, que se mantiene en marcación 50º Babor, aproximándose con riesgo de abordaje. En estas circunstancias: *(and-2022-c3-t25)*
-- Visibilidad reducida. Salvo en los casos en que hayamos comprobado que no existe riesgo de abordaje, ¿qué debemos hacer si oímos, más o menos por la amura de babor, la señal de niebla de otro buque? *(and-2025-c2-t27)*
+- Salvo en los casos en que hayamos comprobado que no existe riesgo de abordaje, ¿qué debemos hacer si en visibilidad reducida oímos, más o menos por la amura de babor, la señal de niebla de otro buque?: *(and-2019-c3-t21)*
 - En condiciones de visibilidad reducida, un buque de vela detecta únicamente por medio del radar la presencia de otro buque, que se aproxima por su través de estribor sin que la demora varíe de forma apreciable. En este caso: *(and-2022-c1-t24)*
 
 **Relacionados:** 6.1, 6.3, 6.8.
@@ -2137,10 +2137,10 @@ Cuándo se encienden las luces y cuándo se llevan las marcas, los sectores de c
 - Falso: todos los buques de más de 50 m llevan dos luces de tope. Cierto: es para los de propulsión mecánica.
 - Falso: en niebla, de día no hace falta encender luces. Cierto: se encienden siempre.
 
-**Minijuego** (20 preguntas reales de examen en estas clases):
+**Minijuego** (38 preguntas reales de examen en estas clases):
 
 - ¿Qué sector de visibilidad tiene la luz de alcance? *(and-2023-c2-t27)*
-- ¿Cuál de las siguientes configuraciones de luces puede exhibir de noche un buque de propulsión mecánica de 6,5 metros de eslora que navega a una velocidad de 10 nudos?: *(and-2025-c2-t25)*
+- Un buque de propulsión mecánica de 6,5 metros de eslora, navegando de noche a una velocidad de 10 nudos, puede exhibir: *(and-2019-c3-t20)*
 - Un buque de 15 metros de eslora está navegando a vela y también se está propulsando con el motor. ¿Cuál de las luces siguientes debe exhibir?: *(and-2023-c3-t21)*
 
 **Relacionados:** 6.4, 6.7, 6.1.
@@ -2171,7 +2171,7 @@ Las luces y marcas de pesqueros, buques sin gobierno, con maniobra restringida (
 - Falso: la embarcación de buceo de menos de 7 m va solo con una linterna. Cierto: los menores de 12 m están exentos de la Regla 27 salvo los de buceo, que llevan roja-blanca-roja.
 - Falso: un fondeado de 150 m lleva una sola blanca, o la de popa más alta. Cierto: blanca a proa, otra más baja a popa y luces de trabajo en cubierta.
 
-**Minijuego** (18 preguntas reales de examen en estas clases):
+**Minijuego** (29 preguntas reales de examen en estas clases):
 
 - Si de noche divisamos una embarcación con dos luces en el mismo vertical roja la superior y blanca la inferior se trata de: *(and-2021-c2-t25)*
 - Si de día divisamos una embarcación con 2 esferas negras superpuestas. *(and-2021-c2-t23)*
@@ -2206,10 +2206,10 @@ Las pitadas y el equipo acústico según la eslora, las señales de maniobra y d
 - Falso: corta-larga-corta es del buque con maniobra restringida. Cierto: es del fondeado; el de maniobra restringida da larga y 2 cortas.
 - Falso: el humo naranja avisa de buzos o de repostaje, o un pito continuo es dar atrás. Cierto: los dos son señales de peligro y petición de ayuda.
 
-**Minijuego** (17 preguntas reales de examen en estas clases):
+**Minijuego** (28 preguntas reales de examen en estas clases):
 
 - Un buque de propulsión mecánica emite tres pitadas cortas. Con ello indica que: *(and-2023-c1-t26)*
-- Si en condiciones de visibilidad reducida escuchamos por nuestro costado de babor grupos de dos pitadas largas separadas por un intervalo de unos dos segundos y que se repiten cada dos minutos como máximo, debemos entender que se trata de: *(and-2025-c3-t23)*
+- Un buque de propulsión mecánica en navegación pero parado y sin arrancada en visibilidad reducida emitirá: *(and-2015-c1-t26)*
 - Un buque lanza una señal fumígena que produce una densa humareda de color naranja. ¿Qué quiere indicar?: *(and-2024-c1-t20)*
 
 **Relacionados:** 6.2, 6.5, 6.3.
@@ -2239,7 +2239,7 @@ Recorrido por todo el tema de maniobra: el vocabulario de los cabos, las amarras
 - Atracar: con dextrógira se atraca por babor y con levógira por estribor; con viento de tierra o corriente de proa el primer cabo es el largo de proa.
 - Desatracar: primero se largan los cabos que no trabajan; para abrir la popa te quedas con el esprín de proa y das avante con el timón al muelle, y para abrir la proa, con el esprín de popa y das atrás.
 
-**Minijuego** (39 preguntas reales de examen en estas clases):
+**Minijuego** (60 preguntas reales de examen en estas clases):
 
 - ¿Qué nombre recibe la acción de dar tensión a los cabos?: *(and-2023-c2-t28)*
 - Una embarcación con hélice dextrógira, en marcha atrás, hacia donde tendera a caer la popa. *(and-2021-c1-t29)*
@@ -2271,7 +2271,7 @@ El vocabulario de los cabos y las amarras: partes de un cabo, encapillar, amarra
 - Falso: el esprín de proa tira hacia proa porque se llama «de proa». Cierto: sale de la proa pero tira hacia popa; si lo viras lascando los demás, el barco va atrás, la proa se junta al muelle y la popa se separa.
 - Falso: con solo los traveses, cobrando el de proa y lascando el de popa, el barco se desplaza a lo largo del muelle. Cierto: los traveses no mueven el barco avante ni atrás; con viento de tierra, la popa se abre a sotavento.
 
-**Minijuego** (13 preguntas reales de examen en estas clases):
+**Minijuego** (21 preguntas reales de examen en estas clases):
 
 - Por «amarrar por seno» se entiende: *(and-2020-c1-t28)*
 - Durante una maniobra de atraque, ¿qué término se utiliza para describir la acción de hacer pasar un cabo por un noray? *(and-2024-c3-t29)*
@@ -2306,11 +2306,11 @@ Cómo responde el barco al timón y a la hélice: caña o rueda, velocidad de go
 - Falso: en una ciaboga lo mejor es fondear primero, o es indiferente hacia qué banda girar. Cierto: sin viento conviene ciabogar hacia la banda que da la hélice al dar atrás.
 - Falso: atrás el timón nunca actúa. Cierto: lo que no funciona es el timón sin arrancada; con arrancada atrás, la popa va hacia el lado del timón.
 
-**Minijuego** (15 preguntas reales de examen en estas clases):
+**Minijuego** (26 preguntas reales de examen en estas clases):
 
 - Las fases de la curva de evolución son: *(and-2023-c3-t29)*
 - El efecto de la corriente de expulsión en una hélice de giro dextrógiro, en un buque con timón a la vía, parado y sin arrancada y que dé máquinas atrás, es: *(and-2023-c2-t29)*
-- En ausencia de viento, al realizar la ciaboga con una embarcación de una única hélice levógira la primera acción, más conveniente y más rápida será: *(and-2026-c2-t29)*
+- Al realizar una ciaboga, sin viento y con una hélice dextrógira, lo más conveniente y más rápido es hacer que la proa caiga o evolucione a: *(and-2022-c3-t29)*
 
 **Relacionados:** 1.2, 7.1, 7.3.
 
@@ -2341,11 +2341,11 @@ Los agentes que no controlas, viento, corriente y olas, y cómo usarlos para atr
 - Falso: atracando de punta con viento de costado conviene encapillar los largos en el noray de sotavento, o uno en cada noray. Cierto: los dos al noray de barlovento, para que tiren contra el viento.
 - Falso: la escora o el tipo de fondo son agentes de la maniobra. Cierto: los agentes son viento, corriente y olas; el fondo importa para fondear.
 
-**Minijuego** (11 preguntas reales de examen en estas clases):
+**Minijuego** (15 preguntas reales de examen en estas clases):
 
 - El agente externo que influye en la maniobra, al incidir en la obra muerta del barco, es: *(and-2022-c3-t28)*
-- Si queremos atracar de costado con corriente de proa paralela al muelle, el primer cabo que daremos a tierra será: *(and-2026-c2-t28)*
-- Estamos amarrados por el costado de estribor y damos máquina avante con timón metido hacia el muelle. ¿Qué cabo debemos mantener firme para separar la popa del muelle?: *(and-2026-c1-t29)*
+- Atracados de costado al muelle con corriente de proa, si queremos desatracar, el último cabo a largar será: *(and-2019-c1-t28)*
+- Si queremos desatracar de popa, pegando la proa al muelle sin que el barco vaya avante, el último cabo que debemos largar es: *(and-2017-c2-t29)*
 
 **Relacionados:** 7.1, 7.2, 9.2, 10.5.
 
@@ -2375,10 +2375,10 @@ Panorama de las emergencias a bordo: primeros auxilios, ayuda médica a distanci
 - Abandono: solo cuando el barco protege menos que la balsa y por orden del patrón, tras el socorro y con la radiobaliza; las bengalas, por sotavento y cuando alguien pueda verlas.
 - Hipotermia: por debajo de 35 grados de temperatura interna; en el agua, quieto, en postura fetal si llevas chaleco, agrupados y subidos a lo que flote, y nunca nadar para entrar en calor.
 
-**Minijuego** (56 preguntas reales de examen en estas clases):
+**Minijuego** (86 preguntas reales de examen en estas clases):
 
-- ¿Cuál de las siguientes opciones NO es un síntoma característico de la insolación?: *(and-2025-c3-t31)*
-- ¿Cuál de las siguientes opciones NO es un punto de posible inundación de la embarcación?: *(and-2026-c1-t32)*
+- Señale la afirmación correcta sobre accidentes personales: *(and-2023-c2-t32)*
+- En caso de una vía de agua, entre las primeras medidas a tomar estarán: *(and-2023-c1-t32)*
 - El mecanismo de extinción de un fuego que trata de eliminar el comburente se llama: *(and-2022-c3-t31)*
 
 #### 8.1 · Primeros auxilios y ayuda médica a distancia
@@ -2408,7 +2408,7 @@ Primeros auxilios a bordo: contusiones, heridas, hemorragias externas e internas
 - Falso: el descenso de la temperatura corporal es un síntoma de insolación, y se enfría al paciente hasta 37 grados. Cierto: la insolación sube la temperatura y se para de enfriar al bajar de unos 39 grados.
 - Falso: la consulta radio-médica solo se puede hacer por teléfono móvil. Cierto: también por radio a través de las estaciones costeras.
 
-**Minijuego** (14 preguntas reales de examen en estas clases):
+**Minijuego** (25 preguntas reales de examen en estas clases):
 
 - Las medidas generales que habrán de adoptarse ante una contusión, especialmente cuando ésta es leve, incluyen: *(and-2022-c1-t30)*
 - Para detener una hemorragia en un brazo, inicialmente: *(and-2023-c1-t30)*
@@ -2443,10 +2443,10 @@ Qué hacer cuando el barco toca fondo, choca con otro o le entra agua: evaluar d
 - Falso: la hélice es un punto de inundación. Cierto: la hélice no atraviesa el casco; lo que lo atraviesa es su eje, por la bocina.
 - Falso: se abren los grifos de fondo o las escotillas, o se espera a que el motor achique solo. Cierto: se achica con bomba manual o eléctrica y se tapona la vía de agua.
 
-**Minijuego** (14 preguntas reales de examen en estas clases):
+**Minijuego** (17 preguntas reales de examen en estas clases):
 
 - Para reflotar un barco que nos ha quedado varado en fondo de fango o arena, ¿cuál de las siguientes acciones es adecuada?: *(and-2023-c1-t31)*
-- Tras sufrir un abordaje, ¿cuál de las siguientes actuaciones es prioritaria?: *(and-2025-c2-t31)*
+- En caso de sufrir un abordaje, no es aconsejable intentar separar los dos barcos sin previamente haber valorado la situación. Para ello es importante: *(and-2020-c1-t31)*
 - Si descubrimos una vía de agua en la sentina: *(and-2024-c2-t32)*
 
 **Relacionados:** 3.3, 4.2, 8.4.
@@ -2478,11 +2478,11 @@ El fuego a bordo: el tetraedro, las clases de fuego de la norma UNE-EN 2, los lu
 - Falso: sofocar es eliminar el combustible, o el CO2 es el mejor agente para enfriar. Cierto: sofocar elimina el comburente, y para enfriar lo más eficaz es el agua en niebla.
 - Falso: parar el motor hace cero el viento aparente. Cierto: solo quita el viento de la marcha; el real sigue soplando, y lo correcto es socairear el fuego.
 
-**Minijuego** (17 preguntas reales de examen en estas clases):
+**Minijuego** (32 preguntas reales de examen en estas clases):
 
-- Los fuegos derivados de aceites y grasas vegetales o animales en materiales y aparatos de cocina se denominan de la: *(and-2025-c3-t30)*
+- Los fuegos derivados de la utilización de aceites y grasas vegetales o animales en los aparatos de cocina son fuegos de la clase: *(and-2017-c1-t30)*
 - Para extinguir un incendio por enfriamiento, ¿cuál de los siguientes agentes extintores será el más eficaz?: *(and-2024-c1-t31)*
-- En caso de fuego a bordo en navegación, ¿cómo deberemos proceder si tenemos viento?: *(and-2025-c1-t31)*
+- La teoría del tetraedro de fuego: *(and-2018-c3-t32)*
 
 **Relacionados:** 3.3, 9.2.
 
@@ -2513,10 +2513,10 @@ Cuándo y cómo se abandona el barco, qué se prepara antes, cómo se usan benga
 - Falso: se salta al agua con las piernas plegadas sobre el estómago. Cierto: se salta con las piernas juntas y estiradas; la postura fetal es para flotar quieto.
 - Falso: sin chaleco hay que nadar para entrar en calor. Cierto: nadar acelera la hipotermia; vertical, movimientos lentos y agrupados.
 
-**Minijuego** (11 preguntas reales de examen en estas clases):
+**Minijuego** (12 preguntas reales de examen en estas clases):
 
 - ¿Cuál de las siguientes medidas a tomar antes de abandonar la embarcación es correcta?: *(and-2023-c2-t31)*
-- Indique la opción INCORRECTA respecto al uso de las bengalas de mano: *(and-2025-c3-t32)*
+- Las señales pirotécnicas en caso de emergencia se utilizarán: *(and-2021-c2-t32)*
 - Si tuviese que abandonar la embarcación y no dispone de balsa salvavidas, ¿cuáles de las siguientes acciones son correctas?: *(and-2022-c3-t32)*
 
 **Relacionados:** 3.3, 3.4, 6.8, 8.1.
@@ -2545,7 +2545,7 @@ Panorama de la meteorología del PER: presión y barómetros, borrascas y antici
 - Escalas: Beaufort mide el viento en 13 grados, de 0 a 12; Douglas mide el estado de la mar por la altura de las olas en 10 grados, de 0 a 9; la mar crece con intensidad, persistencia y fetch.
 - Decidir: la previsión oficial es la de AEMET, que difunden también Salvamento Marítimo por radio y el NAVTEX; se sale con plan B, puerto de refugio y hora límite.
 
-**Minijuego** (72 preguntas reales de examen en estas clases):
+**Minijuego** (112 preguntas reales de examen en estas clases):
 
 - ¿Cómo se llaman las líneas que unen puntos de igual presión? *(and-2021-c1-t33)*
 - Si el viento cambia de dirección y se mantiene en ella se dice que: *(and-2024-c3-t36)*
@@ -2578,7 +2578,7 @@ La presión atmosférica, su valor normal y sus unidades, el barómetro de mercu
 - Falso: la presión es el peso por unidad de volumen. Cierto: por unidad de superficie.
 - Falso: en una borrasca la presión aumenta del exterior hacia el interior, o el viento es perpendicular a las isobaras. Cierto: en la borrasca el centro es lo más bajo, y el viento va casi paralelo a las isobaras.
 
-**Minijuego** (30 preguntas reales de examen en estas clases):
+**Minijuego** (47 preguntas reales de examen en estas clases):
 
 - En relación al barómetro aneroide, marque la opción FALSA: *(and-2023-c3-t36)*
 - En el hemisferio norte la circulación de los vientos en una borrasca: *(and-2023-c2-t33)*
@@ -2612,7 +2612,7 @@ Las palabras del viento (rolar, refrescar, caer, calmar, racha y racheado) y sus
 - Falso: si no sientes viento navegando, el real sopla en dirección opuesta a tu rumbo, o el aparente no depende de la velocidad del barco. Cierto: el real te viene por popa a tu velocidad, y el aparente sí depende de la velocidad.
 - Falso: el terral sopla de día, o la virazón de tierra al mar, o las brisas se deben a que tierra y mar se calientan por igual. Cierto: terral de noche y de tierra; virazón de día y del mar; y tierra y mar no se calientan igual.
 
-**Minijuego** (24 preguntas reales de examen en estas clases):
+**Minijuego** (52 preguntas reales de examen en estas clases):
 
 - Si la intensidad del viento varia continuamente, tanto a más como a menos, se dice que: *(and-2022-c3-t36)*
 - Si navegamos avante recibiendo el viento verdadero por Popa y la velocidad del buque es igual a la intensidad de dicho viento verdadero: *(and-2022-c2-t35)*
@@ -2646,7 +2646,7 @@ La escala Beaufort para el viento y la Douglas para la mar, los tres factores qu
 - Falso: existen las escalas de Coriolis o de persistencia. Cierto: las escalas del examen son Beaufort para el viento y Douglas para la mar.
 - Falso, en la pregunta que mezcla previsión y lecciones anteriores: el terral se produce en horas diurnas. Cierto: el terral es nocturno; lo de AEMET y Salvamento, el aneroide y Douglas es correcto.
 
-**Minijuego** (18 preguntas reales de examen en estas clases):
+**Minijuego** (22 preguntas reales de examen en estas clases):
 
 - El tiempo durante el que está soplando un viento con dirección y fuerza uniformes se denomina: *(and-2023-c1-t35)*
 - La escala de Douglas clasifica según: *(and-2021-c2-t35)*
@@ -2680,7 +2680,7 @@ Recorrido por todo lo que hay que saber antes de poner el lápiz en la carta: co
 - Amplitud es diferencia de alturas entre pleamar y bajamar, duración es diferencia de horas; las sondas de la carta se miden desde el cero hidrográfico (la Mayor Bajamar Astronómica), y con baja presión hay más agua de la prevista.
 - El viento produce abatimiento (ángulo de la estela con la crujía) y la corriente produce deriva, que arrastra igual a cualquier barco sea cual sea su tamaño.
 
-**Minijuego** (90 preguntas reales de examen en estas clases):
+**Minijuego** (139 preguntas reales de examen en estas clases):
 
 - Los barcos que se encuentran en la misma longitud se encuentran a su vez en el mismo: *(and-2023-c3-t41)*
 - ¿Cuál es el valor del rumbo cuadrantal S45W? *(and-2022-c1-t38)*
@@ -2713,9 +2713,9 @@ Cómo se dice dónde está un barco (latitud y longitud) y cómo se miden la dis
 - Falso: el coeficiente se suma, se resta o se divide. Cierto: multiplica a lo que marca la corredera; con k mayor que 1 el resultado sale mayor, con k menor que 1, menor.
 - Falso: la HRB es la hora legal o la que fija el Gobierno. Cierto: es la hora que se lleva a bordo, fijada por el patrón. Y la sonda mide la profundidad, no el calado ni el francobordo.
 
-**Minijuego** (24 preguntas reales de examen en estas clases):
+**Minijuego** (41 preguntas reales de examen en estas clases):
 
-- Dos buques que tengan la misma latitud y no estén en el ecuador: *(and-2025-c2-t40)*
+- Dos buques que tengan la misma latitud y no estén en el ecuador: *(and-2016-c2-t39)*
 - Si el coeficiente de corredera es 1,1 y la distancia de corredera es 8 millas, ¿cuál será la distancia verdadera navegada?: *(and-2023-c2-t40)*
 - La Hora Reloj Bitácora es: *(and-2024-c2-t40)*
 
@@ -2748,10 +2748,10 @@ Qué cuenta la carta náutica: tipos de carta según su escala, sondas y veriles
 - Falso: «Fl 5s» son cinco destellos, y «F W» es un destello blanco. Cierto: Fl 5s es un destello cada 5 segundos (cinco serían Fl(5)), y F W es una luz blanca fija.
 - Falso: un faro de ocultaciones está apagado y se enciende en caso de emergencia. Cierto: está encendido y se apaga cada cierto periodo; lo de «emergencia» no existe.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (20 preguntas reales de examen en estas clases):
 
 - Carta náutica. Debajo de la cifra que indica la sonda en un lugar determinado figura la abreviatura «St». Con ello se indica que el fondo es: *(and-2024-c3-t40)*
-- Las cartas que dan al navegante el detalle más completo de una pequeña extensión de costa, ensenadas, puertos, radas, fondeaderos, etc., se llaman: *(and-2025-c3-t39)*
+- Las cartas que muestran al navegante el detalle más completo de una pequeña extensión de costa y mar, unas veces puertos y otras radas, ensenadas, fondeaderos, etc., se denominan: *(and-2019-c2-t41)*
 - En una carta figura la siguiente inscripción al lado de un faro: Fl (2) 10s 15M. ¿Qué significa 15M?: *(and-2023-c3-t39)*
 
 **Relacionados:** 10.1, 5.4, 11.1.
@@ -2783,7 +2783,7 @@ Los tres nortes (verdadero, magnético y de aguja), los dos ángulos que los sep
 - Falso: la aguja se instala junto a planchas de acero o cables con mucha corriente, y la línea de fe da igual dónde esté. Cierto: lejos de hierros, altavoces y cables, con la línea de fe en la crujía o paralela a ella.
 - Falso: S45W es 135°. Cierto: S…W cae siempre entre 180° y 270°, así que es 225°; 135° sería S45E.
 
-**Minijuego** (18 preguntas reales de examen en estas clases):
+**Minijuego** (30 preguntas reales de examen en estas clases):
 
 - El ángulo que forma la dirección Norte-Sur de la aguja con el norte magnético se llama: *(and-2023-c1-t39)*
 - El desvío de la aguja: *(and-2024-c1-t41)*
@@ -2818,7 +2818,7 @@ La diferencia entre rumbo, demora y marcación, la fórmula que las une y qué e
 - Falso: una enfilación es fiable si los objetos están cerca del barco, o si el posterior es más bajo. Cierto: lejos, bien separados y el posterior igual o más alto.
 - Falso: el ángulo entre la línea proa-popa y la visual a un faro se llama enfilación. Cierto: es la marcación; la enfilación es ver dos objetos alineados, uno detrás de otro.
 
-**Minijuego** (13 preguntas reales de examen en estas clases):
+**Minijuego** (22 preguntas reales de examen en estas clases):
 
 - El ángulo horizontal que forma la línea proa-popa del barco con la visual a un objeto se denomina: *(and-2020-c3-t38)*
 - Navegando obtenemos una demora de aguja de cabo Espartel y otra demora de aguja de Punta Gracia, ¿podemos posicionarnos directamente en la carta de navegación? *(and-2021-c1-t38)*
@@ -2853,7 +2853,7 @@ Por qué sube y baja el mar, qué son amplitud y duración, mareas vivas y muert
 - Falso: la baja presión hace bajar la marea, o solo influye por debajo de cierto valor. Cierto: la sube, y el efecto existe siempre.
 - Falso: el ángulo entre la estela y la crujía es la deriva, y la deriva crece con el viento. Cierto: ese ángulo es el abatimiento; la deriva se debe solo a la corriente.
 
-**Minijuego** (16 preguntas reales de examen en estas clases):
+**Minijuego** (30 preguntas reales de examen en estas clases):
 
 - La diferencia entre la hora de la bajamar y la hora de la pleamar siguiente se conoce como: *(and-2021-c2-t39)*
 - ¿Cuál es la influencia de una baja presión en las mareas?: *(and-2024-c2-t39)*
@@ -2887,10 +2887,10 @@ El mapa del examen de carta: las cuatro últimas preguntas (de la 42 a la 45) se
 - Demoras no simultáneas: la primera línea viaja con el barco; pero en el PER las observaciones del examen son simultáneas y se cruzan sin trasladar nada.
 - Pasar a X millas de un faro: circunferencia de ese radio y tangente por el lado correcto (por fuera, por el mar, si no dicen la banda); «a X millas al Sur del faro» es un punto, no una tangente.
 
-**Minijuego** (72 preguntas reales de examen en estas clases):
+**Minijuego** (116 preguntas reales de examen en estas clases):
 
-- Al encontrarnos en la enfilación de los faros de Punta Paloma y Punta Camarinal marcamos este último en demora de aguja 112º. Calcular la corrección total. *(and-2026-c2-q42)*
-- Al cruzar la oposición de los faros de Isla de Tarifa y Punta Cires, marcamos Punta Alcázar en demora verdadera 205º. Calcular a qué distancia nos encontramos del faro de Punta Europa. *(and-2025-c3-q42)*
+- Al cruzar la enfilación de los faros de Cabo Trafalgar y Cabo Roche, marcamos Cabo Trafalgar en demora de aguja 330º. Calcular la corrección total. *(and-2017-c1-q44)*
+- Al cruzar la oposición de los faros de Isla de Tarifa y punta Cires, marcamos punta Alcázar en demora verdadera 205º. Calcular a qué distancia nos encontramos del faro de punta Europa. *(and-2022-c3-q43)*
 - A las 10h 00m del 25 de marzo de 2023, navegando al Rumbo verdadero 340º, nos encontramos al Sur verdadero del faro de Cabo Trafalgar y obtenemos marcación al faro de Punta Camarinal 110º ER. Situados, damos rumbo para pasar a 5 millas del faro de Cabo Roche. Calcular el rumbo de aguja, sabiendo que la declinación magnética es 4º NW y que el desvío de la aguja es +4º (más) *(and-2023-c1-q45)*
 
 #### 11.1 · La carta del Estrecho, la corrección total y el rumbo directo
@@ -2920,10 +2920,10 @@ Lo primero del examen de carta: leer y situar coordenadas, medir distancias, rum
 - Falso: cualquier luz del puerto vale como llegada. Cierto: en Barbate hay faro de tierra y luz roja del espigón, en Ceuta se pide la luz verde de la bocana y en Tánger la farola del espigón; equivocarse de luz te lleva a la opción de al lado.
 - Falso: «demora 310° desde el faro» y «demora 310° al faro» son lo mismo. Cierto: la primera se traza hacia el 310° desde el faro; en la segunda el barco está hacia el 130° del faro.
 
-**Minijuego** (36 preguntas reales de examen en estas clases):
+**Minijuego** (50 preguntas reales de examen en estas clases):
 
-- Navegamos al rumbo de aguja = 340º. Al encontrarnos en la oposición de los faros de Punta Almina y Punta Carnero, marcamos el faro de Punta Carnero en demora de aguja 332º. Calcular la corrección total. *(and-2025-c3-q45)*
-- Nos encontramos en la situación 35º 53,0′ N, 006º 02,5′ W y queremos navegar hasta la situación 35º 52,0′ N, 005º 36,7′ W. ¿Qué rumbo de aguja tendremos que poner y qué distancia recorremos, teniendo en cuenta que el desvío es +2º y la declinación magnética = 4º NW? *(and-2025-c2-q43)*
+- Navegamos al rumbo de aguja = 340º. Al encontrarnos en la oposición de los faros de Punta Almina y Punta Carnero, marcamos el faro de Punta Carnero en demora de aguja 332º. Calcular la corrección total. *(and-2020-c1-q43)*
+- En situación l= 35º 50´ N y L = 006º 00´ W y nos dirigimos a una situación l = 35º 57´ N y L = 005º 28´ W, dm = 3º NW y Desvío = 3º NW. Se pide el Ra. *(and-2015-c1-q43)*
 - A las 13h 00m del 25 de marzo de 2023, nos encontramos en situación verdadera 35º 55,0' N, 005º 15,0' W. Situados y en ausencia de viento y corriente, damos rumbo al puerto de Algeciras (luz roja del espigón) con velocidad del barco 8 nudos. Calcular el rumbo de aguja, sabiendo que la declinación magnética indicada en la carta es 3° 40′ E 2018 (8′ W) y que el desvío es +6° (más). *(and-2023-c1-q42)*
 
 **Relacionados:** 10.1, 10.3, 11.2.
@@ -2955,11 +2955,11 @@ Dos maneras de saber dónde estás: por estima (de dónde saliste, a qué rumbo,
 - Falso: el faro de «Punta Gracia» y el de «Punta Camarinal» son dos faros distintos. Cierto: es el mismo faro, en la Torre de Gracia, Oc(2) 5s 13M.
 - Falso: un arco de distancia a otro faro corta la demora en un único punto. Cierto: puede cortarla en dos; te quedas con el que cuadre con el enunciado.
 
-**Minijuego** (19 preguntas reales de examen en estas clases):
+**Minijuego** (27 preguntas reales de examen en estas clases):
 
 - Situados en posición l=35º 50´ N y L= 006º 10´W Navegamos a Rv= 032º y a una Velocidad= 6 Nudos, transcurridas 2,5 horas, ¿A qué distancia de Punta Gracia nos encontraremos? *(and-2021-c2-q44)*
-- El 13 de junio de 2026, al ser HRB = 12h 00m, navegamos a 6 nudos al rumbo de aguja 154° y nos encontramos a 5 millas al W verdadero (oeste) del faro de Cabo Roche. Calcular la demora verdadera y distancia que nos encontramos desde el faro de Cabo Trafalgar al ser HRB = 13h 42m. La declinación magnética de la carta = 5º 20′ W 2010 (5′ E) y desvío de la aguja = -10º (menos). *(and-2026-c2-q44)*
-- El 5 de julio de 2025 se observa el faro de Punta Almina en demora verdadera 154º y a una distancia de 6 millas. ¿Cuál es nuestra situación?: *(and-2025-c2-q42)*
+- A las 11h 30m del 5 de noviembre de 2022, tomamos demora de aguja al faro de cabo Espartel = 143° y distancia a dicho faro = 4,5 millas. Navegamos a 7 nudos al rumbo de aguja 285°, en ausencia de viento y corriente. Calcular la situación de estima a las 13h 00m sabiendo que la declinación magnética indicada en la carta es 5° 40′ W 2005 (8′ E) y que el desvío es +5° (más). *(and-2022-c3-q42)*
+- Navegamos al rumbo verdadero 130º y tomamos marcación al faro de cabo Trafalgar 090º Br (babor) y distancia 6,3 millas. Calcular la situación. *(and-2022-c1-q42)*
 
 **Relacionados:** 11.1, 10.4, 11.3.
 
@@ -2988,7 +2988,7 @@ Situarse cruzando dos líneas de posición: dos marcaciones o demoras tomadas a 
 - Falso: la distancia que piden es a uno de los faros que has usado para situarte. Cierto: suele ser a otro faro, a menudo lejano; lee la pregunta hasta el final.
 - Falso: dos líneas casi paralelas dan una buena situación. Cierto: la mejor es con un corte cercano a 90°; si salen casi paralelas, un error pequeño mueve mucho el punto.
 
-**Minijuego** (14 preguntas reales de examen en estas clases):
+**Minijuego** (22 preguntas reales de examen en estas clases):
 
 - Navegamos a 8 nudos al rumbo verdadero 090º y obtenemos marcación al faro de Cabo Espartel 120º ER y simultáneamente marcación al faro de Punta Malabata 30º ER. Calcular la situación. *(and-2023-c2-q43)*
 - Al cruzar la oposición de los faros de Punta Alcázar y la Isla de Tarifa, marcamos Punta Cires en demora verdadera 080º. Calcular a qué distancia nos encontramos del faro de Punta Alcázar. *(and-2024-c1-q42)*
@@ -3021,10 +3021,10 @@ El rumbo para pasar a una distancia de seguridad de un faro o un cabo: la tangen
 - Falso: con dos distancias el corte es único. Cierto: hay dos puntos; busca en el enunciado la pista para quedarte con uno antes de seguir.
 - Falso: una vez medida la tangente, ese ya es el rumbo que se da al timón. Cierto: es un rumbo verdadero; al timón va Ra = Rv − Ct.
 
-**Minijuego** (5 preguntas reales de examen en estas clases):
+**Minijuego** (18 preguntas reales de examen en estas clases):
 
 - A HRB = 12h 00m nos encontramos a 5 millas del faro de Punta Paloma y al Oeste verdadero del faro de Isla Tarifa, en una longitud más al este que la de Punta Paloma. Calcular el rumbo de aguja para pasar a 4 millas del faro de Cabo Trafalgar, sabiendo que la declinación magnética = 5° NE y desvío de la aguja = –5° (menos). *(and-2024-c3-q44)*
 - Nos encontramos a 4,2 millas de la Isla del Perejil y a 5,3 millas del faro de punta Almina. Calcular el rumbo de aguja para pasar a 2,5 millas de punta Europa, dejándola por la banda de babor. Declinación magnética = 4° NW, desvío de la aguja = –3° (menos). La Isla del Perejil (35° 54,8′ N, 005° 25,1′ W) se encuentra junto a la costa africana del Estrecho, prácticamente al sur de punta Carnero. *(and-2022-c3-q44)*
-- El 21 de marzo de 2026 nos encontramos al este de la Bahía de Algeciras, a 5,4 millas del faro de Punta Europa y a 12,0 millas del faro de Punta Almina. Calcular el rumbo de aguja para pasar a 1 milla al sur verdadero del faro de la Isla de Tarifa. Desvío de aguja = –6º (menos). Declinación magnética de la carta, redondeando el resultado al grado más próximo. *(and-2026-c1-q44)*
+- A HRB = 08:00 del 13 de julio de 2024 nos encontramos a 5 millas al noroeste (NW) verdadero del faro de Punta Malabata. Situados, damos rumbo a un punto situado a 4 millas al sur verdadero del faro de Cabo Trafalgar, a 8 nudos de velocidad. Calcular el rumbo de aguja y la HRB cuando estemos a 4 millas al sur del faro de Cabo Trafalgar. La declinación magnética es 3º NW y el desvío de la aguja = +6º (más). *(and-2024-c2-q45)*
 
 **Relacionados:** 11.1, 11.2, 11.3.

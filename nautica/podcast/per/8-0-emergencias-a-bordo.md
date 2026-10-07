@@ -125,19 +125,19 @@ voces:
 
 **ANDRÉS:** Pido ayuda a tiempo por radio. Y si el corte es feo, consulta al Radio-Médico. Y abandonar, solo si el barco ya protege menos que la balsa. Que eso lo decido yo, que soy el patrón.
 
-**ELENA:** Y con esa respuesta tu nieta te pone un sobresaliente. Esto, en un examen, no te lo preguntan todo junto; pero en la mar, a veces viene así. Vamos con el minijuego: tres preguntas de exámenes reales, de bloques distintos. Yo las leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «¿Cuál de las siguientes opciones no es un síntoma característico de la insolación?». A: vómitos. Be: mareos o vértigos. Ce: dolor intenso de cabeza. De: descenso de la temperatura corporal.
+**ELENA:** Y con esa respuesta tu nieta te pone un sobresaliente. Esto, en un examen, no te lo preguntan todo junto; pero en la mar, a veces viene así. Vamos con el minijuego: tres preguntas de exámenes reales, de bloques distintos. Yo las leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Señale la afirmación correcta sobre accidentes personales». A: para tratar una quemadura química, inicialmente colocaremos una gasa estéril o un paño limpio sobre ella. Be: para tratar una herida abdominal de urgencia, aplicaremos un vendaje que comprima. Ce: para detener una hemorragia en un brazo, bajaremos la zona de sangrado por debajo del corazón. De: para tratar una insolación o golpe de calor, llevaremos al paciente a un lugar fresco, seco y bien ventilado y le quitaremos la ropa.
 
 [pausa larga]
 
-**ANDRÉS:** Vómitos, mareo y dolor de cabeza son de la insolación. Lo que no encaja es que baje la temperatura: con la insolación sube. Eso de bajar es hipotermia. La de.
+**ANDRÉS:** La quemadura química, primero mucha agua, no taparla. La herida abdominal, sin apretar. Y la hemorragia del brazo se sube, no se baja. La insolación sí: a la sombra, fresco, ventilado y fuera ropa. La de.
 
-**ELENA:** La de. Segunda: «¿Cuál de las siguientes opciones no es un punto de posible inundación de la embarcación?». A: bocina. Be: hélice. Ce: limera del timón. De: grifos de fondo.
+**ELENA:** La de. Segunda: «En caso de una vía de agua, entre las primeras medidas a tomar estarán…». A: achicar con la bomba de achique y taponar en la medida de lo posible la vía de agua, vigilando que el nivel de agua del compartimento se mantiene o disminuye. Be: abrir los grifos de fondo. Ce: apagar el motor del barco para poder utilizar las bombas de achique eléctricas. De: las respuestas a y be son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** El agua entra por donde algo atraviesa el casco. La bocina, sí. La limera, sí. Los grifos, también. Pero la hélice está fuera, no atraviesa nada: lo que atraviesa es su eje, por la bocina. La be.
+**ANDRÉS:** Achicar y taponar, y mirar si el nivel baja: esa. Abrir los grifos de fondo es meter más agua, y apagar el motor es quedarme sin carga para las bombas. La a.
 
-**ELENA:** La be. Y la tercera, del fuego: «El mecanismo de extinción de un fuego que trata de eliminar el comburente se llama…». A: desalimentación. Be: sofocación. Ce: inhibición. De: enfriamiento.
+**ELENA:** La a. Y la tercera, del fuego: «El mecanismo de extinción de un fuego que trata de eliminar el comburente se llama…». A: desalimentación. Be: sofocación. Ce: inhibición. De: enfriamiento.
 
 [pausa larga]
 

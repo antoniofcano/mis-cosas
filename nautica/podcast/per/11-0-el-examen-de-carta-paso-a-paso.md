@@ -100,11 +100,11 @@ voces:
 
 **ANDRÉS:** Por la pregunta: lo de la carta, verdadero; lo del timón, de aguja.
 
-**ELENA:** Vamos al minijuego. Tres preguntas de exámenes reales. Yo te doy lo que se mide en la carta, y tú razonas. Y tú, que nos escuchas, piensa también. Primera: «Al encontrarnos en la enfilación de los faros de Punta Paloma y Punta Camarinal marcamos este último en demora de aguja ciento doce grados. Calcular la corrección total». A: más once. Be: más tres. Ce: menos tres. De: menos once. Te doy la medida: en la carta, la enfilación hacia Camarinal da unos ciento nueve grados y medio.
+**ELENA:** Vamos al minijuego. Tres preguntas de exámenes reales. Yo te doy lo que se mide en la carta, y tú razonas. Y tú, que nos escuchas, piensa también. Primera: «Al cruzar la enfilación de los faros de Cabo Trafalgar y Cabo Roche, marcamos Cabo Trafalgar en demora de aguja trescientos treinta grados. Calcular la corrección total». A: más siete. Be: menos cinco. Ce: menos siete. De: más cinco. Te doy la medida: en la carta, la enfilación hacia Trafalgar da trescientos veintitrés grados.
 
 [pausa larga]
 
-**ANDRÉS:** Enfilación: la carta me da la verdadera, ciento nueve y medio. Verdadera menos aguja: ciento nueve y medio menos ciento doce, menos dos y medio. Redondeando, menos tres: la ce. El más tres es la cuenta al revés.
+**ANDRÉS:** Enfilación: la carta me da la verdadera, trescientos veintitrés. Verdadera menos aguja: trescientos veintitrés menos trescientos treinta, menos siete: la ce. El más siete es la cuenta al revés.
 
 **ELENA:** Correcto, la ce. Segunda: «Al cruzar la oposición de los faros de Isla de Tarifa y Punta Cires, marcamos Punta Alcázar en demora verdadera doscientos cinco grados. Calcular a qué distancia nos encontramos del faro de Punta Europa». A: nueve coma seis millas. Be: trece coma cinco. Ce: catorce coma uno. De: dieciséis coma tres. Te doy las medidas desde el corte: a Punta Alcázar hay unas cinco millas y media, a Tarifa unas seis, y a Punta Europa, trece y media.
 

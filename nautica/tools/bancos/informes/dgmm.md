@@ -473,7 +473,7 @@ _Ninguna._
 
 ### Normativa: revisión hecha
 
-407 preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): 404 vigente, 2 actualizada, 1 retirada.
+410 preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): 404 vigente, 2 actualizada, 4 retirada.
 
 | Norma | Vigente | Actualizada | Retirada |
 |---|---|---|---|
@@ -481,6 +481,7 @@ _Ninguna._
 | RD 191/2026 | 74 | 0 | 0 |
 | IALA MBS 2022 | 273 | 0 | 0 |
 | RD 587/2022 | 23 | 0 | 0 |
+| RD 128/2022 | 0 | 0 | 3 |
 | RD 186/2023 | 23 | 2 | 0 |
 | RD 550/2020 | 1 | 0 | 0 |
 | RD 1188/2025 (buceo y ROM) | 7 | 0 | 0 |
@@ -488,8 +489,11 @@ _Ninguna._
 
 | id | Estado | Por qué |
 |---|---|---|
+| dgmm-per-2019-06-11 | retirada | RD 1381/2002 derogado el 17-2-2022 por el RD 128/2022, que suprime la notificación reducida de desechos del anexo V: la notificación previa (art. 16) no se aplica a las embarcaciones de recreo de menos de 45 m de eslora, y todo buque entrega sus desechos en una instalación portuaria receptora antes de dejar el puerto (art. 17). La respuesta oficial ya no tiene base normativa. |
 | dgmm-per-2020-12-101 | actualizada | Lo decía la Orden de 2-7-1964, derogada por el RD 186/2023 (11-4-2023). Hoy el art. 46.2 del Reglamento de Ordenación de la Navegación Marítima dice lo mismo: las embarcaciones de recreo de menos de 20 m no estorbarán el tránsito en las aguas de servicio de los puertos comerciales. |
+| dgmm-per-2020-12-57 | retirada | RD 1381/2002 derogado el 17-2-2022 por el RD 128/2022, que suprime la notificación reducida de desechos del anexo V: la notificación previa (art. 16) no se aplica a las embarcaciones de recreo de menos de 45 m de eslora, y todo buque entrega sus desechos en una instalación portuaria receptora antes de dejar el puerto (art. 17). La respuesta oficial ya no tiene base normativa. |
 | dgmm-per-2021-02-12 | actualizada | Lo decía la Orden de 2-7-1964, derogada por el RD 186/2023 (11-4-2023). Hoy el art. 46.2 del Reglamento de Ordenación de la Navegación Marítima dice lo mismo: las embarcaciones de recreo de menos de 20 m no estorbarán el tránsito en las aguas de servicio de los puertos comerciales. |
+| dgmm-per-2021-04-11 | retirada | RD 1381/2002 derogado el 17-2-2022 por el RD 128/2022, que suprime la notificación reducida de desechos del anexo V: la notificación previa (art. 16) no se aplica a las embarcaciones de recreo de menos de 45 m de eslora, y todo buque entrega sus desechos en una instalación portuaria receptora antes de dejar el puerto (art. 17). La respuesta oficial ya no tiene base normativa. |
 | dgmm-per-2021-04-12 | retirada | Pregunta por lo que decía la Orden FOM/1144/2003, derogada el 1-7-2021 por el RD 339/2021. Hoy (art. 23 del RD 339/2021) la descarga de aguas sucias está prohibida salvo a más de 3 millas de la línea de base (desmenuzadas y desinfectadas), a más de 12 millas (sin tratar, a 4 nudos o más) o fuera de la zona 7 con una planta de tratamiento homologada. |
 
 

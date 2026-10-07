@@ -6,8 +6,9 @@ import { quantity } from '../analysis/quantities.js';
 
 const NUM = '(\\d+(?:[.,]\\d+)?)';
 const DEG = '\\s*[º°o]?';
-const MIN = `\\s*${NUM}\\s*['′’´]?`;
-const num = (s) => Number(String(s).replace(',', '.'));
+// Minutos: «53,9'», «53,9», y también «59'5» (= 59,5′: el apóstrofo hace de coma decimal).
+const MIN = `\\s*(\\d+(?:[.,]\\d+|['′’´]\\d+(?![\\d.,]))?)\\s*['′’´]?`;
+const num = (s) => Number(String(s).replace(/[,'′’´]/, '.'));
 
 const PATTERNS = {
   lat: { re: new RegExp(`(\\d{1,2})\\s*[º°o]${MIN}\\s*,?\\s*([NS])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/s/i.test(m[3]) ? -1 : 1) },
@@ -20,11 +21,11 @@ const PATTERNS = {
     } },
     { re: new RegExp(`(\\d{1,3}(?:[.,]\\d+)?)${DEG}`), val: (m) => num(m[1]) },
   ],
-  // "+5º (más)", "–12º (menos)", "Ct = 8º +", "Ct=004º NE", "- 9º"
+  // "+5º (más)", "–12º (menos)", "2º (-)", "Ct = 8º +", "Ct=004º NE", "- 9º"
   signed: [
     // Declinación en grados y minutos: «4º50 NW», «4º 40′ NE».
     { re: /(\d{1,2})\s*[º°]\s*(\d{1,2})\s*['′’]?\s*(NE|NW)\b/i, val: (m) => (Number(m[1]) + Number(m[2]) / 60) * (/NW/i.test(m[3]) ? -1 : 1) },
-    { re: new RegExp(`([+\\-–‒−])?\\s*${NUM}\\s*[º°]?\\s*(\\((?:más|menos)\\)|NE|NW|[+\\-–‒−](?!\\s*\\d))?`, 'i'),
+    { re: new RegExp(`([+\\-–‒−])?\\s*${NUM}\\s*[º°]?\\s*(\\(\\s*(?:más|menos|[+\\-–‒−])\\s*\\)|NE|NW|[+\\-–‒−](?!\\s*\\d))?`, 'i'),
     val: (m) => {
       const v = num(m[2]);
       const s = `${m[1] ?? ''}${m[3] ?? ''}`;

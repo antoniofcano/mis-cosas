@@ -8,6 +8,8 @@ import { chart } from './helpers.js';
 import { bancosNode, todasLasPreguntas } from '../tools/bancos/leer.mjs';
 
 const preguntas = todasLasPreguntas();
+/** Dos opciones con los mismos valores leídos (una opción repetida en el cuadernillo). */
+const mismoValor = (r, a, b) => a === b || (r.parsed[a] && JSON.stringify(r.parsed[a]) === JSON.stringify(r.parsed[b]));
 const byId = new Map(preguntas.map((q) => [q.id, q]));
 
 for (const [id, sol] of Object.entries(solutions)) {
@@ -18,7 +20,8 @@ for (const [id, sol] of Object.entries(solutions)) {
     const values = sol.solve(k, q);
     const r = chooseOption(q.opciones, values);
     const detail = `calculado=${JSON.stringify(values.map((v) => +v.value.toFixed(3)))} scores=${JSON.stringify(Object.fromEntries(Object.entries(r.scores).map(([a, b]) => [a, +b.toFixed(2)])))}`;
-    if (q.correcta) assert.equal(r.choice, q.correcta, detail);
+    // Si dos opciones dicen lo mismo (mismo valor leído), vale cualquiera de las dos.
+    if (q.correcta) assert.equal(mismoValor(r, r.choice, q.correcta) ? q.correcta : r.choice, q.correcta, detail);
     console.log(`${id}: elegida ${r.choice} (oficial ${q.correcta}) ${detail}`);
   });
 }
@@ -50,7 +53,9 @@ test('PY: cada resolución llega a la opción oficial con margen', () => {
     if (byId.get(id).tit !== 'py') continue;
     const q = byId.get(id);
     const values = sol.solve(createKit(chart), q);
-    const s = Object.values(chooseOption(q.opciones, values).scores).sort((a, b) => a - b);
+    // Las opciones repetidas (mismo valor que la oficial) no cuentan como rivales.
+    const r = chooseOption(q.opciones, values);
+    const s = Object.entries(r.scores).filter(([k]) => k === r.choice || !mismoValor(r, k, r.choice)).map(([, v]) => v).sort((a, b) => a - b);
     assert.ok(s[0] / values.length <= 2, `${id}: lejos de la opción (${s[0].toFixed(2)})`);
     assert.ok(s[1] >= 2 * s[0], `${id}: dos opciones casi empatadas (${s[0].toFixed(2)} / ${s[1].toFixed(2)})`);
   }

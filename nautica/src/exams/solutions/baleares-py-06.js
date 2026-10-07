@@ -1,11 +1,10 @@
 // Soluciones programadas de carta del PY de Baleares (lote 06). Ver baleares-py.js para el formato.
-// Resumen: 109 preguntas; 79 resueltas y comprobadas, 30 en DISCREPANCIAS:
-//   - falta la tabla de mareas: 12
-//   - formato de las opciones: 9
-//   - elemento que no está en la carta de la app: 5
-//   - sin margen frente a otra opción: 2
-//   - no llega a la oficial: 1
-//   - no llega a la oficial con margen: 1
+// Resumen: 109 preguntas; 88 resueltas y comprobadas en export default, 21 en `documentadas`:
+//   - anuario (falta la tabla de mareas): 12
+//   - discrepancia (no llega a la oficial): 1
+//   - discrepancia (no llega a la oficial con margen): 1
+//   - discrepancia (sin margen frente a otra opción): 2
+//   - sin-calculo (elemento que no está en la carta de la app): 5
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -73,6 +72,16 @@ export default {
       return [{ kind: 'signed', value: ct }];
     },
   },
+  'bal-py-2019-04-b-31': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
+      const ct = k.ct({ carta: L105, anyo: 2019, desvio: -5 });
+      const rv = k.rv(233, ct);
+      const rs = k.abatimiento(rv, 5, W);
+      return latlon(k.run(s, rs, k.distFor(6, hrb(17, 30) - hrb(15, 30)), 'Situación de estima 17:30'));
+    },
+  },
   'bal-py-2019-04-a-32': {
     ejercicio: 'abatimiento',
     solve(k) {
@@ -130,6 +139,16 @@ export default {
       return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
+  'bal-py-2019-04-b-36': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 00,0 W', 'Situación 08:00');
+      const { rs, vef, dist } = k.rumboConCorriente(s, 'barbate-espigon', 12, 100, 3);
+      const rv = k.rvConAbatimiento(rs, 4, W);
+      const ct = k.ct({ dm: -2, desvio: -4 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(8), dist, vef) }];
+    },
+  },
   'bal-py-2019-04-a-37': {
     ejercicio: 'corriente-desconocida',
     solve(k) {
@@ -185,6 +204,26 @@ export default {
       k.note('Punta Cires por la proa', 'Dv de Cires = Rv.');
       const d2 = k.dvM(rv, 115, 'punta-alcazar');
       return latlon(k.fix2('punta-cires', rv, 'punta-alcazar', d2, 'Situación 12:15'));
+    },
+  },
+  'bal-py-2019-04-b-40': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvOp = k.oposicion('punta-paloma', 'punta-alcazar');
+      const ct = k.ctFrom(dvOp, 146);
+      const rv = k.rv(95.5, ct);
+      const d1 = k.dv(1, ct, 'punta-europa');
+      const d2 = k.dvM(rv, 28, 'punta-almina');
+      return latlon(k.fix2('punta-europa', d1, 'punta-almina', d2, 'Situación 23:31'));
+    },
+  },
+  'bal-py-2019-06-a-32': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: -2, desvio: -10 });
+      const d1 = k.dv(171, ct, 'punta-alcazar');
+      const d2 = k.dv(110, ct, 'punta-cires');
+      return latlon(k.fix2('punta-alcazar', d1, 'punta-cires', d2, 'Situación 11:21'));
     },
   },
   'bal-py-2019-06-b-32': {
@@ -317,6 +356,12 @@ export default {
       return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
+  'bal-py-2019-12-c-34': {
+    ejercicio: 'situacion-demora-distancia',
+    solve(k) {
+      return latlon(k.fix2Ranges('cabo-roche', 7.8, 'cabo-trafalgar', 10.2, { lat: 36.2, lon: -6.3 }, 'Situación 13:45'));
+    },
+  },
   'bal-py-2019-12-a-35': {
     ejercicio: 'rumbo-pasar-distancia',
     solve(k) {
@@ -405,6 +450,15 @@ export default {
       return latlon(k.tramos(s, [{ rumbo: rv, millas: 140 }], 'Situación final de estima'));
     },
   },
+  'bal-py-2019-12-c-39': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
+      const ct = k.ct({ carta: L105, anyo: 2019, desvio: -4.8 });
+      const rs = k.abatimiento(k.rv(233, ct), 5, W);
+      return latlon(k.run(s, rs, k.distFor(6, hrb(17, 30) - hrb(15, 30)), 'Situación de estima 17:30'));
+    },
+  },
   'bal-py-2019-12-a-40': {
     sinCarta: true,
     ejercicio: 'estima-analitica',
@@ -412,6 +466,13 @@ export default {
       const a = k.pos('43 22,6 N', '3 03,2 W', 'Salida');
       const b = k.pos('44 53,9 N', '2 42,1 W', 'Llegada');
       return [{ kind: 'distance', value: k.rumboDirecto(a, b).dist }];
+    },
+  },
+  'bal-py-2020-07-b-31': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvEnf = k.enfilacion('punta-leona', 'punta-cires', 270);
+      return latlon(k.lineAndBearing('punta-cires', dvEnf, 'isla-tarifa', N, 'Situación 10:45'));
     },
   },
   'bal-py-2020-07-a-32': {
@@ -508,6 +569,21 @@ export default {
       const d1 = k.dv(92, ct, 'cabo-espartel');
       const d2 = k.dvM(rv, 90, 'cabo-espartel');
       return latlon(k.traslado('cabo-espartel', d1, 'cabo-espartel', d2, rs, k.distFor(8, 60), 'Situación 02:00'));
+    },
+  },
+  'bal-py-2020-07-b-37': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct1 = k.ctPolar(3);
+      const rv = k.rv(83, ct1);
+      const rs = k.abatimiento(rv, 5, NE);
+      const d1 = k.dvM(rv, 40, 'cabo-espartel');
+      const d2 = k.dvM(rv, -37, 'punta-paloma');
+      const s = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
+      const { rv: rs2 } = k.rhumb(s, 'isla-tarifa');
+      const rv2 = k.rvConAbatimiento(rs2, 3, NE);
+      const ct2 = k.ct({ carta: L105, anyo: 2020, desvio: 3.5 });
+      return [...latlon(s), { kind: 'bearing', value: k.ra(rv2, ct2) }];
     },
   },
   'bal-py-2020-07-b-38': {
@@ -888,6 +964,17 @@ export default {
       return latlon(k.run(s, k.rv(233, ct), k.distFor(6, 120), 'Situación de estima 17:30'));
     },
   },
+  'bal-py-2021-12-b-31': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ct({ dm: -3.5, desvio: -2.5 });
+      const rv = k.rv(240, ct);
+      const rs = k.abatimiento(rv, 5, N);
+      const d1 = k.dvM(rv, 60, 'punta-europa');
+      const d2 = k.dvM(rv, 100, 'punta-carnero');
+      return latlon(k.traslado('punta-europa', d1, 'punta-carnero', d2, rs, k.distFor(7, 60), 'Situación 08:30'));
+    },
+  },
 };
 
 /* DISCREPANCIAS
@@ -898,31 +985,15 @@ export default {
  * 'bal-py-2019-04-a-40' (falta la tabla de mareas): sonda en Cádiz el 27-06-2019 a las 10:00 UTC. Oficial: a (5,26 m).
  * 'bal-py-2019-06-a-39' (falta la tabla de mareas): hora con 13 m de sonda en Barbate el 07-08-2019, con presión de
  *   989 hPa. Oficial: c (13:39 UT).
- * 'bal-py-2019-04-b-31' (formato de las opciones): sale 35° 51,1′ N, 6° 09,9′ W, que es la c (oficial), pero las
- *   opciones escriben «35º 51'4 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.
- * 'bal-py-2019-04-b-36' (formato de las opciones): sale Ra = 357,5° y llegada 09:49, que es la c (oficial), pero las
- *   opciones escriben la hora sin separador («Hrb=0950») y el lector de opciones no la entiende.
- * 'bal-py-2019-04-b-40' (formato de las opciones): sale 35° 57,0′ N, 5° 21,5′ W, que es la d (oficial), pero las
- *   opciones escriben «35º-57' N» (guion tras el grado) y el lector de opciones no las entiende.
- * 'bal-py-2019-06-a-32' (formato de las opciones): sale 35° 55,4′ N, 5° 35,8′ W, que es la a (oficial), pero las
- *   opciones escriben «35º55’2 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.
  * 'bal-py-2019-06-a-36' (elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair / cabo
- *   Espartel» y Magair no está en la carta; además las opciones llevan «35º-49,0´N». Oficial: b.
+ *   Espartel» y Magair no está en la carta. Oficial: b.
  * 'bal-py-2019-06-a-40' (falta la tabla de mareas): sonda en Llanes el 02-07-2019 a las 13:15 UTC con 1009 mb.
  *   Oficial: c (7,53 m).
- * 'bal-py-2019-12-c-34' (formato de las opciones): por dos distancias sale 36° 11,9′ N, 6° 14,6′ W, que es la d
- *   (oficial), pero las opciones escriben «36º12’0 N» (décimas tras el apóstrofo) y el lector no las entiende.
  * 'bal-py-2019-12-a-32' (no llega a la oficial): Rv 297°, Rs 301° (viento del W por babor), corriente 045°/2,5 nudos
  *   durante 2 h: sale 35° 54,9′ N, 6° 08,8′ W (la d). La oficial (a, 35° 51,1′ N, 6° 10,6′ W) supone un
  *   desplazamiento de unas 10 millas al 306°, que no sale ni sin corriente ni con el abatimiento al otro lado. El mismo enunciado
  *   vuelve en 'bal-py-2020-12-a-31' con la oficial d (la que sale aquí): probable errata de la plantilla de 2019.
- * 'bal-py-2019-12-c-39' (formato de las opciones): sale 35° 51,1′ N, 6° 09,9′ W, que es la c (oficial), pero las
- *   opciones escriben «35º 51'2 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.
- * 'bal-py-2020-07-b-31' (formato de las opciones): enfilación Punta Leona–Cires y S/v de Tarifa: sale 35° 53,4′ N,
- *   5° 36,5′ W, que es la a (oficial), pero las opciones escriben «35º 53'2 N» y el lector no las entiende.
  * 'bal-py-2020-07-a-33' (falta la tabla de mareas): hora de salida en Santander el 09-05-2020. Oficial: b (13:43).
- * 'bal-py-2020-07-b-37' (formato de las opciones): sale 35° 54,5′ N, 5° 53,9′ W y Ra = 063°, que es la c (oficial),
- *   pero las opciones b, c y d escriben «35º-54,6' N» (guion tras el grado) y el lector solo entiende la a.
  * 'bal-py-2020-07-a-38' (elemento que no está en la carta de la app): la situación es el corte de la enfilación
  *   Malabata–El Xarf con la isobática de 100 m, que la carta de la app no tiene. Oficial: b (Ra = 066°).
  * 'bal-py-2020-07-a-40' (falta la tabla de mareas): varada en Baiona el 08-04-2020. Oficial: a (12:32 TU).
@@ -949,99 +1020,6 @@ export default {
  *   Oficial: a (11:34 TU).
  * 'bal-py-2021-12-a-31' (elemento que no está en la carta de la app): la situación usa la demora a la cima de San
  *   Bartolomé (436 m, junto a Punta Paloma), que la carta de la app no tiene. Oficial: c (079,5° y 1,95 nudos).
- * 'bal-py-2021-12-b-31' (formato de las opciones): sale 36° 00,6′ N, 5° 23,0′ W, que es la c (oficial), pero las
- *   opciones escriben «36º- 00,5' N» (guion tras el grado) y el lector de opciones no las entiende.
- *
- * Código de las que se resuelven bien pero no pasan el lector de opciones:
- *
- *   'bal-py-2019-04-b-31': {
- *     ejercicio: 'estima-directa',
- *     solve(k) {
- *       const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
- *       const ct = k.ct({ carta: L105, anyo: 2019, desvio: -5 });
- *       const rv = k.rv(233, ct);
- *       const rs = k.abatimiento(rv, 5, W);
- *       return latlon(k.run(s, rs, k.distFor(6, hrb(17, 30) - hrb(15, 30)), 'Situación de estima 17:30'));
- *     },
- *   },
- *   'bal-py-2019-04-b-36': {
- *     ejercicio: 'corriente-rumbo-a-dar',
- *     solve(k) {
- *       const s = k.pos('35 50,0 N', '6 00,0 W', 'Situación 08:00');
- *       const { rs, vef, dist } = k.rumboConCorriente(s, 'barbate-espigon', 12, 100, 3);
- *       const rv = k.rvConAbatimiento(rs, 4, W);
- *       const ct = k.ct({ dm: -2, desvio: -4 });
- *       return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(8), dist, vef) }];
- *     },
- *   },
- *   'bal-py-2019-04-b-40': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       const dvOp = k.oposicion('punta-paloma', 'punta-alcazar');
- *       const ct = k.ctFrom(dvOp, 146);
- *       const rv = k.rv(95.5, ct);
- *       const d1 = k.dv(1, ct, 'punta-europa');
- *       const d2 = k.dvM(rv, 28, 'punta-almina');
- *       return latlon(k.fix2('punta-europa', d1, 'punta-almina', d2, 'Situación 23:31'));
- *     },
- *   },
- *   'bal-py-2019-06-a-32': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       const ct = k.ct({ dm: -2, desvio: -10 });
- *       const d1 = k.dv(171, ct, 'punta-alcazar');
- *       const d2 = k.dv(110, ct, 'punta-cires');
- *       return latlon(k.fix2('punta-alcazar', d1, 'punta-cires', d2, 'Situación 11:21'));
- *     },
- *   },
- *   'bal-py-2019-12-c-34': {
- *     ejercicio: 'situacion-demora-distancia',
- *     solve(k) {
- *       return latlon(k.fix2Ranges('cabo-roche', 7.8, 'cabo-trafalgar', 10.2, { lat: 36.2, lon: -6.3 }, 'Situación 13:45'));
- *     },
- *   },
- *   'bal-py-2019-12-c-39': {
- *     ejercicio: 'estima-directa',
- *     solve(k) {
- *       const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
- *       const ct = k.ct({ carta: L105, anyo: 2019, desvio: -4.8 });
- *       const rs = k.abatimiento(k.rv(233, ct), 5, W);
- *       return latlon(k.run(s, rs, k.distFor(6, hrb(17, 30) - hrb(15, 30)), 'Situación de estima 17:30'));
- *     },
- *   },
- *   'bal-py-2020-07-b-31': {
- *     ejercicio: 'situacion-dos-demoras',
- *     solve(k) {
- *       const dvEnf = k.enfilacion('punta-leona', 'punta-cires', 270);
- *       return latlon(k.lineAndBearing('punta-cires', dvEnf, 'isla-tarifa', N, 'Situación 10:45'));
- *     },
- *   },
- *   'bal-py-2020-07-b-37': {
- *     ejercicio: 'demoras-no-simultaneas',
- *     solve(k) {
- *       const ct1 = k.ctPolar(3);
- *       const rv = k.rv(83, ct1);
- *       const rs = k.abatimiento(rv, 5, NE);
- *       const d1 = k.dvM(rv, 40, 'cabo-espartel');
- *       const d2 = k.dvM(rv, -37, 'punta-paloma');
- *       const s = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
- *       const { rv: rs2 } = k.rhumb(s, 'isla-tarifa');
- *       const rv2 = k.rvConAbatimiento(rs2, 3, NE);
- *       const ct2 = k.ct({ carta: L105, anyo: 2020, desvio: 3.5 });
- *       return [...latlon(s), { kind: 'bearing', value: k.ra(rv2, ct2) }];
- *     },
- *   },
- *   'bal-py-2021-12-b-31': {
- *     ejercicio: 'demoras-no-simultaneas',
- *     solve(k) {
- *       const ct = k.ct({ dm: -3.5, desvio: -2.5 });
- *       const rv = k.rv(240, ct);
- *       const rs = k.abatimiento(rv, 5, N);
- *       const d1 = k.dvM(rv, 60, 'punta-europa');
- *       const d2 = k.dvM(rv, 100, 'punta-carnero');
- *       return latlon(k.traslado('punta-europa', d1, 'punta-carnero', d2, rs, k.distFor(7, 60), 'Situación 08:30'));
- *     },
- *   },
  */
 
 // Preguntas del lote que no están en export default (ver DISCREPANCIAS).
@@ -1062,56 +1040,24 @@ export const documentadas = {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: hora con 13 m de sonda en Barbate el 07-08-2019, con presión de 989 hPa. Oficial: c (13:39 UT).',
   },
-  'bal-py-2019-04-b-31': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale 35° 51,1′ N, 6° 09,9′ W, que es la c (oficial), pero las opciones escriben «35º 51\'4 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.',
-  },
-  'bal-py-2019-04-b-36': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale Ra = 357,5° y llegada 09:49, que es la c (oficial), pero las opciones escriben la hora sin separador («Hrb=0950») y el lector de opciones no la entiende.',
-  },
-  'bal-py-2019-04-b-40': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale 35° 57,0′ N, 5° 21,5′ W, que es la d (oficial), pero las opciones escriben «35º-57\' N» (guion tras el grado) y el lector de opciones no las entiende.',
-  },
-  'bal-py-2019-06-a-32': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale 35° 55,4′ N, 5° 35,8′ W, que es la a (oficial), pero las opciones escriben «35º55’2 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.',
-  },
   'bal-py-2019-06-a-36': {
-    tipo: 'discrepancia',
-    texto: 'Elemento que no está en la carta de la app: la Ct sale de la enfilación «Magair / cabo Espartel» y Magair no está en la carta; además las opciones llevan «35º-49,0´N». Oficial: b.',
+    tipo: 'sin-calculo',
+    texto: 'Elemento que no está en la carta de la app: la Ct sale de la enfilación «Magair / cabo Espartel» y Magair no está en la carta. Oficial: b.',
   },
   'bal-py-2019-06-a-40': {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: sonda en Llanes el 02-07-2019 a las 13:15 UTC con 1009 mb. Oficial: c (7,53 m).',
   },
-  'bal-py-2019-12-c-34': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: por dos distancias sale 36° 11,9′ N, 6° 14,6′ W, que es la d (oficial), pero las opciones escriben «36º12’0 N» (décimas tras el apóstrofo) y el lector no las entiende.',
-  },
   'bal-py-2019-12-a-32': {
     tipo: 'discrepancia',
     texto: 'No llega a la oficial: Rv 297°, Rs 301° (viento del W por babor), corriente 045°/2,5 nudos durante 2 h: sale 35° 54,9′ N, 6° 08,8′ W (la d). La oficial (a, 35° 51,1′ N, 6° 10,6′ W) supone un desplazamiento de unas 10 millas al 306°, que no sale ni sin corriente ni con el abatimiento al otro lado. El mismo enunciado vuelve en \'bal-py-2020-12-a-31\' con la oficial d (la que sale aquí): probable errata de la plantilla de 2019.',
-  },
-  'bal-py-2019-12-c-39': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale 35° 51,1′ N, 6° 09,9′ W, que es la c (oficial), pero las opciones escriben «35º 51\'2 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.',
-  },
-  'bal-py-2020-07-b-31': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: enfilación Punta Leona–Cires y S/v de Tarifa: sale 35° 53,4′ N, 5° 36,5′ W, que es la a (oficial), pero las opciones escriben «35º 53\'2 N» y el lector no las entiende.',
   },
   'bal-py-2020-07-a-33': {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: hora de salida en Santander el 09-05-2020. Oficial: b (13:43).',
   },
-  'bal-py-2020-07-b-37': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale 35° 54,5′ N, 5° 53,9′ W y Ra = 063°, que es la c (oficial), pero las opciones b, c y d escriben «35º-54,6\' N» (guion tras el grado) y el lector solo entiende la a.',
-  },
   'bal-py-2020-07-a-38': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: 'Elemento que no está en la carta de la app: la situación es el corte de la enfilación Malabata–El Xarf con la isobática de 100 m, que la carta de la app no tiene. Oficial: b (Ra = 066°).',
   },
   'bal-py-2020-07-a-40': {
@@ -1123,7 +1069,7 @@ export const documentadas = {
     texto: 'Falta la tabla de mareas: sonda en Cádiz el 27-10-2020 a las 10:00 UTC con 1028 mb. Oficial: c (5 m).',
   },
   'bal-py-2020-12-b-37': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: 'Elemento que no está en la carta de la app: el destino es la marca cardinal N próxima a Punta Malabata, que la carta de la app no tiene. Oficial: b (Ra = 181°, Vm = 7,7 nudos).',
   },
   'bal-py-2020-12-b-40': {
@@ -1135,7 +1081,7 @@ export const documentadas = {
     texto: 'Falta la tabla de mareas: sonda en Barbate el 17-12-2021 a las 10:00 GMT con 993 mb. Oficial: a (6,64 m).',
   },
   'bal-py-2021-03-ac-34': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: 'Elemento que no está en la carta de la app: la situación inicial usa la enfilación Punta Paloma – cima del monte Órganos, que la carta de la app no tiene. Oficial: a.',
   },
   'bal-py-2021-03-b-35': {
@@ -1159,11 +1105,7 @@ export const documentadas = {
     texto: 'Falta la tabla de mareas: hora con 8,50 m de sonda en Camariñas el 05-01-2021 con 998 mb. Oficial: a (11:34 TU).',
   },
   'bal-py-2021-12-a-31': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: 'Elemento que no está en la carta de la app: la situación usa la demora a la cima de San Bartolomé (436 m, junto a Punta Paloma), que la carta de la app no tiene. Oficial: c (079,5° y 1,95 nudos).',
-  },
-  'bal-py-2021-12-b-31': {
-    tipo: 'discrepancia',
-    texto: 'Formato de las opciones: sale 36° 00,6′ N, 5° 23,0′ W, que es la c (oficial), pero las opciones escriben «36º- 00,5\' N» (guion tras el grado) y el lector de opciones no las entiende.',
   },
 };

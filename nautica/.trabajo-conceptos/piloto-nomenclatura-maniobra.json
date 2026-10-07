@@ -118,7 +118,7 @@
   "baleares/per/bal-per-2017-03-fa-28": ["maniobra.helice.atras"],
   "baleares/per/bal-per-2023-09-a-28": ["maniobra.helice.combinado"],
   "baleares/per/bal-per-2017-12-e-29": ["maniobra.atraque.preparar"],
-  "baleares/per/bal-per-2023-12-c-28": ["maniobra.agentes.abatimiento"],
+  "baleares/per/bal-per-2023-12-c-28": ["nav.viento-corriente.abatimiento"],
   "baleares/per/bal-per-2018-04-a-29": ["maniobra.atraque.punta", "maniobra.amarras.codera"],
   "baleares/per/bal-per-2024-07-a-04": ["amarre.elementos.bichero"]
 }

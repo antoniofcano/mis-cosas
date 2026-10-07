@@ -1,6 +1,6 @@
 # Cambios aplicados · balizamiento-ripa
 
-Rama `feat/conceptos-cambios-balizamiento-ripa` (desde origin/feat/conceptos). `version` del grupo: 1 -> 2.
+Rama `feat/conceptos-cambios-balizamiento-ripa` (desde origin/feat/conceptos). `version` del grupo: 1 -> 3.
 
 Fuente usada para contrastar el RIPA: texto español del Convenio COLREG 1972 con las enmiendas hasta 2002 (edición
 oficial chilena, directemar.cl, en español) y, para el inglés, cultofsea.com. **No pude abrir el RIPA en el BOE**
@@ -34,22 +34,20 @@ de barlovento (dgmm-per-2020-12-21, dgmm-per-2025-11-25, bal-per-2022-03-a-26, b
 `ripa.vela.barlovento`. Las dos del piloto con `misma-banda` (and-2025-c3-t18, bal-per-2017-03-a-27) son de la regla
 12 a) ii) y se quedan. No existen aún ficheros `data/ejes/*/*/conceptos.json` en esta rama: solo hay piloto que re-etiquetar.
 
+## Aplicado en una segunda ronda (aprobación del responsable)
+8. **Partir `ripa.luces.draga-buceo`**: nuevos `ripa.luces.draga` (27 d)) y `ripa.luces.buceo` (27 e) y g)); el viejo pasa
+   a grupo. Piloto: bal-per-2024-07-c-18 y and-2015-c2-t21 -> draga; and-2026-c1-t21, and-2016-c2-t26,
+   dgmm-per-2020-12-108, bal-per-2020-10-e-25, bal-per-2021-09-f-18 -> buceo (las cinco últimas no estaban en el piloto y se añaden).
+9. **Partir `ripa.niebla.remolcado-practico`**: nuevos `ripa.niebla.remolcado` (35 e)) y `ripa.niebla.practico`
+   (**35 k)**, no j)); el viejo pasa a grupo. La unidad empujador-empujado (35 f)) pasa a la nota y al temario de
+   `ripa.niebla.motor`. Piloto: bal-per-2020-07-e-26, dgmm-per-2021-07-21, bal-per-2025-09-a-25 -> remolcado;
+   dgmm-per-2022-12-25, dgmm-per-2024-11-64, bal-per-2021-06-g-27, bal-per-2024-04-df-21 -> práctico (las
+   no existentes antes se añaden). Versión del grupo: 3.
+10. **`ripa.niebla.pequenas` corregido** con las letras verificadas (35 i) = 12 a <20 m, 35 j) = <12 m): etiqueta,
+   nota (sin «la mitad de campana/gong») y temario «Regla 35 i) y j)». El temario del práctico, que decía j), es ahora k).
+   No se parte este concepto.
+
 ## NO aplicado y por qué (lista para el responsable)
-- **`ripa.niebla.pequenas` (alta): propuesta incorrecta en las letras.** En el texto oficial: 35 i) = buques de 12 a
-  menos de 20 m (sin obligación de las señales de campana/gong de g) y h); si no las hacen, otra señal acústica eficaz
-  cada <= 2 min); 35 j) = buques de < 12 m; 35 k) = embarcación de práctico. Por tanto la propuesta de quitar el
-  paréntesis «(< 20 m, solo la mitad de campana/gong)» y citar 35 i) para <12 m no cuadra: la nota actual mezcla i) y
-  j), y la etiqueta y el temario actuales («Regla 35 i)») son erróneos para <12 m (es 35 j)). Arreglo sugerido:
-  nota «< 12 m (35 j)) y 12-20 m (35 i)): no obligados a las señales de campana/gong y otras de la regla; harán otra
-  señal acústica eficaz a intervalos <= 2 min», temario «Regla 35 i) y j)». A decidir; posible partición en dos.
-- **`ripa.niebla.remolcado-practico` (partición no aprobada + letras mal):** valoración «duda» y la propuesta cita
-  «35 j)» para el práctico; en el texto oficial el práctico es **35 k)** (cuatro cortas, «además de las de a), b) o f)»,
-  no «a), b) o g)») y 35 e) remolcado y 35 f) unidad compuesta sí cuadran. Sin aplicar. Además el temario actual
-  «Regla 35 e), f) y j)» tiene la letra j) mal (debe ser k)).
-- **`ripa.luces.draga-buceo` (partición no aprobada, valoración «duda»).** Contrastado: 27 d) (dragas: dos rojas/dos
-  bolas del lado obstruido; dos verdes/dos bicónicas del libre), 27 e) (roja-blanca-roja y bandera A rígida >= 1 m,
-  cuando las dimensiones impiden las del d)) y 27 g) (exención < 12 m salvo buceo) son correctos. Solo falta la
-  aprobación de la partición.
 - **`ripa.marcas.vela-motor` (nota <12 m, Regla 25 e)): no cuadra.** El texto que pude leer de 25 e) (español y
   cultofsea.com en inglés) no contiene ninguna exención para < 12 m. Habría que comprobarlo en el texto vigente del BOE
   o de la OMI; queda pendiente.
@@ -73,9 +71,11 @@ de barlovento (dgmm-per-2020-12-21, dgmm-per-2025-11-25, bal-per-2022-03-a-26, b
 - Antes (principal / todas las etiquetas): recall@1 86,8 % / 80,8 %; @3 98,3 / 95,8; @5 99,1 / 98,1; @8 99,6 / 98,8;
   MRR 0,926.
 - Después de re-etiquetar el mismo piloto (235): @1 86,8 / 80,8; @3 97,9 / 95,8; @5 99,1 / 98,1; @8 99,6 / 99,2; MRR 0,925.
-- Después de añadir las 4 preguntas de barlovento (239): @1 87,0 / 81,1; @3 97,9 / 95,8; @5 99,2 / 98,1; @8 99,6 / 99,2;
+- Tras la primera ronda, con 4 preguntas de barlovento (239): @1 87,0 / 81,1; @3 97,9 / 95,8; @5 99,2 / 98,1; @8 99,6 / 99,2;
   MRR 0,926.
 
+- Tras la segunda ronda (250 preguntas: +11 de buceo, draga, remolcado y práctico): @1 87,2 / 81,5; @3 98,0 / 96,0;
+  @5 99,2 / 98,2; @8 99,6 / 99,3; MRR 0,928.
+
 ## Para otro grupo
-- Nada que dependa de otras ramas. Las preguntas de buceo (RD 550/2020, seguridad-legislacion) se relacionarán con
-  `ripa.luces.buceo` solo si se aprueba la partición pendiente.
+- Seguridad-legislacion: si procede, relacionar `ripa.luces.buceo` con el concepto de buceo de RD 550/2020.

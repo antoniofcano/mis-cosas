@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 2,
+ "version": 3,
  "conceptos": [
   {
    "id": "baliza",
@@ -2670,27 +2670,40 @@
   },
   {
    "id": "ripa.luces.draga-buceo",
-   "tipo": "concepto",
+   "tipo": "grupo",
    "etiqueta": "Dragas, operaciones submarinas y buceo (Regla 27 d) y e))",
+   "sinonimos": [],
+   "nota": "Agrupa las señales de dragas con obstrucción y de embarcaciones de buceo (Regla 27 d) y e)).",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 d), e) y g)"
+  },
+  {
+   "id": "ripa.luces.draga",
+   "tipo": "concepto",
+   "etiqueta": "Dragas y operaciones submarinas con obstrucción (Regla 27 d))",
    "sinonimos": [
     "dragado",
+    "draga",
     "obstrucción",
     "dos luces rojas en vertical por el costado de la obstrucción",
     "dos luces verdes por el costado libre",
     "dos bolas",
     "dos marcas bicónicas",
     "operaciones submarinas",
-    "buceo",
-    "bandera Alfa",
-    "material rígido",
-    "tengo buzo sumergido",
     "costado de la obstrucción",
     "dragado con obstrucción"
    ],
-   "nota": "Con obstrucción: dos rojas/dos bolas del lado obstruido y dos verdes/dos bicónicas del lado libre por donde se pasa; buceo de pequeño tamaño: roja-blanca-roja y bandera «A» rígida de al menos 1 m.",
-   "padre": "ripa.luces",
+   "nota": "Además de las de maniobra restringida: dos rojas todo horizonte o dos bolas en vertical del lado de la obstrucción; dos verdes o dos bicónicas en vertical del lado por donde puede pasar otro buque.",
+   "padre": "ripa.luces.draga-buceo",
    "relacionados": [
-    "ripa.luces.maniobra-restringida"
+    "ripa.luces.maniobra-restringida",
+    "ripa.luces.buceo"
    ],
    "tit": [
     "per"
@@ -2698,7 +2711,37 @@
    "clases": [
     "per-6-8"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 d) y e)"
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 d)"
+  },
+  {
+   "id": "ripa.luces.buceo",
+   "tipo": "concepto",
+   "etiqueta": "Embarcación de buceo (Regla 27 e) y g))",
+   "sinonimos": [
+    "buceo",
+    "operaciones de buceo",
+    "bandera Alfa",
+    "bandera A",
+    "material rígido",
+    "altura no inferior a 1 metro",
+    "tengo buzo sumergido",
+    "roja, blanca y roja",
+    "tres luces todo horizonte roja blanca roja",
+    "buque de pequeñas dimensiones dedicado a buceo"
+   ],
+   "nota": "Si por sus dimensiones no puede mostrar las de dragado: tres luces todo horizonte rojo-blanco-rojo y réplica rígida de la bandera «A» de al menos 1 m, visible en todo el horizonte. Los buques de menos de 12 m no están obligados a las luces y marcas de la Regla 27, salvo los de buceo.",
+   "padre": "ripa.luces.draga-buceo",
+   "relacionados": [
+    "ripa.luces.maniobra-restringida",
+    "ripa.luces.draga"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 e) y g)"
   },
   {
    "id": "ripa.luces.dragaminas",
@@ -2976,7 +3019,7 @@
   {
    "id": "ripa.niebla.motor",
    "tipo": "concepto",
-   "etiqueta": "Niebla, buque de propulsión mecánica: una larga o dos largas (Regla 35 a) y b))",
+   "etiqueta": "Niebla, buque de propulsión mecánica: una larga o dos largas (Regla 35 a), b) y f))",
    "sinonimos": [
     "una pitada larga a intervalos que no excedan de dos minutos",
     "dos pitadas largas",
@@ -2984,7 +3027,7 @@
     "parado y sin arrancada",
     "con arrancada"
    ],
-   "nota": "Con arrancada, una larga cada ≤ 2 min; parado y sin arrancada, dos largas separadas ~2 s cada ≤ 2 min.",
+   "nota": "Con arrancada, una larga cada ≤ 2 min; parado y sin arrancada, dos largas separadas ~2 s cada ≤ 2 min. Un buque que empuja y otro empujado unidos de forma rígida (unidad compuesta) hacen estas mismas señales (Regla 35 f)).",
    "padre": "ripa.niebla",
    "tit": [
     "per"
@@ -2992,7 +3035,7 @@
    "clases": [
     "per-6-9"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 a) y b)"
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 a), b) y f)"
   },
   {
    "id": "ripa.niebla.larga-dos-cortas",
@@ -3024,17 +3067,10 @@
   },
   {
    "id": "ripa.niebla.remolcado-practico",
-   "tipo": "concepto",
-   "etiqueta": "Niebla: remolcado (larga y tres cortas), empujado y práctico (cuatro cortas) (Regla 35 e), f) y j))",
-   "sinonimos": [
-    "una larga seguida de tres cortas",
-    "remolcado",
-    "último del remolque",
-    "unidad compuesta",
-    "cuatro pitadas cortas",
-    "práctico"
-   ],
-   "nota": "Remolcado tripulado (o el último): una larga y tres cortas justo tras la del remolcador; unidad compuesta como un buque de motor; práctico en servicio puede añadir cuatro cortas.",
+   "tipo": "grupo",
+   "etiqueta": "Niebla: remolcado y práctico (Regla 35 e) y k))",
+   "sinonimos": [],
+   "nota": "Agrupa las señales de niebla del buque remolcado y de la embarcación de práctico.",
    "padre": "ripa.niebla",
    "tit": [
     "per"
@@ -3042,7 +3078,58 @@
    "clases": [
     "per-6-9"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 e), f) y j)"
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 e) y k)"
+  },
+  {
+   "id": "ripa.niebla.remolcado",
+   "tipo": "concepto",
+   "etiqueta": "Niebla: buque remolcado, una larga y tres cortas (Regla 35 e))",
+   "sinonimos": [
+    "una larga seguida de tres cortas",
+    "remolcado",
+    "buque remolcado",
+    "último del remolque",
+    "cuatro pitadas consecutivas",
+    "tras la señal del remolcador"
+   ],
+   "nota": "Buque remolcado, o el último del remolque, si va tripulado: una larga y tres cortas cada ≤ 2 min, justo tras la señal del remolcador cuando sea posible.",
+   "padre": "ripa.niebla.remolcado-practico",
+   "relacionados": [
+    "ripa.niebla.larga-dos-cortas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 e)"
+  },
+  {
+   "id": "ripa.niebla.practico",
+   "tipo": "concepto",
+   "etiqueta": "Niebla: embarcación de práctico, cuatro cortas (Regla 35 k))",
+   "sinonimos": [
+    "práctico",
+    "embarcación de práctico",
+    "servicio de practicaje",
+    "cuatro pitadas cortas",
+    "señal de identificación",
+    "cuatro cortas"
+   ],
+   "nota": "Embarcación de práctico en servicio de practicaje: puede añadir (facultativa) cuatro pitadas cortas de identificación a las señales de a), b) o f).",
+   "padre": "ripa.niebla.remolcado-practico",
+   "relacionados": [
+    "ripa.luces.practico",
+    "ripa.niebla.motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 k)"
   },
   {
    "id": "ripa.niebla.fondeado-varado",
@@ -3073,14 +3160,16 @@
   {
    "id": "ripa.niebla.pequenas",
    "tipo": "concepto",
-   "etiqueta": "Niebla: buques pequeños (Regla 35 i))",
+   "etiqueta": "Niebla: buques pequeños, otra señal acústica eficaz (Regla 35 i) y j))",
    "sinonimos": [
     "eslora inferior a 12 metros",
     "cualquier señal acústica eficaz",
+    "otra señal acústica eficaz",
     "intervalos que no excedan de dos minutos",
-    "no tendrá obligación"
+    "no tendrá obligación",
+    "eslora igual o superior a 12 metros pero inferior a 20"
    ],
-   "nota": "< 12 m no están obligados a las señales de la regla, pero harán otra señal acústica eficaz cada ≤ 2 min (< 20 m, solo la mitad de campana/gong).",
+   "nota": "Menos de 12 m (35 j)) y de 12 a menos de 20 m (35 i)): no obligados a las señales de campana/gong (los de menos de 12 m, a ninguna de las de la regla); si no las hacen, emitirán otra señal acústica eficaz a intervalos ≤ 2 min.",
    "padre": "ripa.niebla",
    "relacionados": [
     "ripa.senales.equipo"
@@ -3091,7 +3180,7 @@
    "clases": [
     "per-6-9"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 i)"
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 i) y j)"
   },
   {
    "id": "ripa.llamar-atencion",

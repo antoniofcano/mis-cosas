@@ -308,9 +308,10 @@ export function calculadoraEnPagina() {
 
 /**
  * ¿Va el botón en la barra de ayudas de esta pantalla de práctica? En los ejercicios y preguntas de carta y en las
- * tandas del tema de carta (en el PY, también mareas y loxodrómica). Practicando siempre se puede usar.
+ * tandas del tema de carta (en el PY, también mareas y loxodrómica) y en las clases del apéndice de matemáticas.
+ * Practicando siempre se puede usar.
  */
-export const calculadoraEnAyudas = (ctx = {}) => ctx.modo === 'ejercicio' || ctx.modo === 'pregunta'
+export const calculadoraEnAyudas = (ctx = {}) => ctx.modo === 'ejercicio' || ctx.modo === 'pregunta' || /^mat-/.test(ctx.leccion ?? '')
   || (!!TITULACIONES[ctx.tit] && ctx.ut === TITULACIONES[ctx.tit].cartaUt);
 
 /** Al arrancar la app: el botón en el hueco de la barra de ayudas, el teclado y, si estaba abierta, la calculadora. */

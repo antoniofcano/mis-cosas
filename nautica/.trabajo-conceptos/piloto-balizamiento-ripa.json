@@ -339,7 +339,7 @@
   "ripa.niebla.pequenas"
  ],
  "baleares/per/bal-per-2020-07-e-26": [
-  "ripa.niebla.remolcado-practico"
+  "ripa.niebla.remolcado"
  ],
  "baleares/per/bal-per-2020-10-e-13": [
   "baliza.peligro-aislado.luz"
@@ -467,7 +467,7 @@
   "baliza.aguas-navegables.luz"
  ],
  "baleares/per/bal-per-2024-07-c-18": [
-  "ripa.luces.draga-buceo"
+  "ripa.luces.draga"
  ],
  "baleares/per/bal-per-2024-12-a-13": [
   "baliza.lateral.numeracion"
@@ -491,7 +491,7 @@
   "ripa.luces.cuando"
  ],
  "baleares/per/bal-per-2025-09-c-23": [
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.alcance"
  ],
  "baleares/per/bal-per-2025-12-c-27": [
   "ripa.luces.vela"
@@ -505,7 +505,7 @@
  ],
  "baleares/per/bal-per-2026-06-c-19": [
   "ripa.luces.practico",
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.alcance"
  ],
  "baleares/per/bal-per-2026-06-c-20": [
   "ripa.cruce"
@@ -567,7 +567,7 @@
   "ripa.senales.luminosas"
  ],
  "dgmm/per/dgmm-per-2021-07-21": [
-  "ripa.niebla.remolcado-practico"
+  "ripa.niebla.remolcado"
  ],
  "dgmm/per/dgmm-per-2021-07-26": [
   "ripa.luces.fondeado"
@@ -666,7 +666,7 @@
   "baliza.aguas-navegables.luz"
  ],
  "dgmm/per/dgmm-per-2023-11-65": [
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.alcance"
  ],
  "dgmm/per/dgmm-per-2023-11-71": [
   "ripa.niebla.motor"
@@ -675,7 +675,7 @@
   "ripa.peligro.senales"
  ],
  "dgmm/per/dgmm-per-2024-04-24": [
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.remolque"
  ],
  "dgmm/per/dgmm-per-2024-04-70": [
   "ripa.jerarquia.categorias"
@@ -728,5 +728,50 @@
  ],
  "dgmm/per/dgmm-per-2026-06-26": [
   "ripa.luces.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2020-12-21": [
+  "ripa.vela.barlovento"
+ ],
+ "dgmm/per/dgmm-per-2025-11-25": [
+  "ripa.vela.barlovento"
+ ],
+ "baleares/per/bal-per-2022-03-a-26": [
+  "ripa.vela.barlovento"
+ ],
+ "baleares/per/bal-per-2022-12-fd-20": [
+  "ripa.vela.barlovento"
+ ],
+ "andalucia/per/and-2015-c2-t21": [
+  "ripa.luces.draga"
+ ],
+ "andalucia/per/and-2026-c1-t21": [
+  "ripa.luces.buceo"
+ ],
+ "andalucia/per/and-2016-c2-t26": [
+  "ripa.luces.buceo"
+ ],
+ "dgmm/per/dgmm-per-2020-12-108": [
+  "ripa.luces.buceo"
+ ],
+ "baleares/per/bal-per-2020-10-e-25": [
+  "ripa.luces.buceo"
+ ],
+ "baleares/per/bal-per-2021-09-f-18": [
+  "ripa.luces.buceo"
+ ],
+ "baleares/per/bal-per-2025-09-a-25": [
+  "ripa.niebla.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2022-12-25": [
+  "ripa.niebla.practico"
+ ],
+ "dgmm/per/dgmm-per-2024-11-64": [
+  "ripa.niebla.practico"
+ ],
+ "baleares/per/bal-per-2021-06-g-27": [
+  "ripa.niebla.practico"
+ ],
+ "baleares/per/bal-per-2024-04-df-21": [
+  "ripa.niebla.practico"
  ]
 }

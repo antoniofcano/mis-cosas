@@ -1,0 +1,1573 @@
+{
+ "bal-py-2017-03-cb-02": {
+  "explicacion": "Una altura metacéntrica (GM) positiva y muy grande hace al barco muy estable, pero «duro»: el par adrizante es tan fuerte que recupera las escoras de golpe, con balances cortos, bruscos y violentos que fatigan a la tripulación y a la estructura. Por eso son ciertas la a) y la c), y falla la b): un GM grande no da comodidad, la da un GM moderado.",
+  "clave": "GM muy grande: muy estable pero «duro» e incómodo.",
+  "trampa": "La b) confunde estabilidad con comodidad: el barco cómodo es el de GM moderado («blando»).",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-04": {
+  "explicacion": "El SART, una vez encendido, queda en espera (stand-by) y solo pasa a transmitir cuando lo interroga un radar de banda X (9 GHz): entonces responde y en la pantalla del radar aparece una línea de 12 puntos hacia su posición. No reacciona a los radares de banda S, no transmite por el simple hecho de encenderlo y tampoco depende de la luz.",
+  "clave": "SART: encendido en espera; transmite al recibir radar de banda X (9 GHz).",
+  "trampa": "La c) confunde encenderlo (pasa a espera) con transmitir (solo al ser interrogado por un radar X).",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-05": {
+  "explicacion": "El gasóleo es un combustible líquido, fuego de clase B. Se apaga por sofocación: la espuma forma una capa que lo aísla del oxígeno y el polvo seco corta la reacción en cadena, así que son buenas la a) y la c). El agua a chorro (b) está contraindicada: el combustible flota sobre ella y el fuego se extiende.",
+  "clave": "Combustible líquido (clase B): espuma o polvo, nunca agua a chorro.",
+  "trampa": "La b) (agua) es el agente más común, pero sobre un líquido inflamable esparce el fuego.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-06": {
+  "explicacion": "Los VHF portátiles del SMSSM (GMDSS) para embarcaciones de supervivencia deben trabajar como mínimo en el canal 16 (socorro y llamada), el canal 6 (comunicaciones en el lugar del siniestro entre buques y aeronaves de búsqueda) y otro canal de trabajo, que es el 13 (seguridad de la navegación entre puentes). Ese trío es la b); las demás cambian el 6 o el 13 por canales que no se exigen.",
+  "clave": "VHF portátil SMSSM: canales 16, 6 y 13.",
+  "trampa": "El canal 9 (a y c) es de uso habitual en náutica de recreo, pero no es de los obligatorios."
+ },
+ "bal-py-2017-03-cb-07": {
+  "explicacion": "Las balsas y los chalecos que se llevan a bordo, sean SOLAS o no, nacionales o de importación, tienen que estar homologados: o con el marcado de la rueda de timón, que otorga un organismo notificado reconocido por la Administración, o con la homologación de la Dirección General de la Marina Mercante. Por eso valen la b) y la c), que es la a). La Armada no homologa equipos de salvamento de buques civiles.",
+  "clave": "Equipos de salvamento: homologados (organismo notificado o DGMM).",
+  "trampa": "La d) (Ministerio de Defensa) suena oficial, pero la competencia es de la Marina Mercante."
+ },
+ "bal-py-2017-03-cb-08": {
+  "explicacion": "Desde la balsa, la llamada al helicóptero de salvamento se hace por el canal 16, el de socorro y llamada que escuchan todas las unidades de búsqueda y salvamento. El canal 6 se reserva para la coordinación en el lugar del siniestro y la unidad puede pedirte que pases a él, pero el contacto se establece por el 16. El 9 y el 13 no son canales de socorro.",
+  "clave": "Contacto con el helicóptero SAR: canal 16.",
+  "trampa": "La a) (canal 6) es el de coordinación SAR en escena, no el de llamada."
+ },
+ "bal-py-2017-03-cb-09": {
+  "explicacion": "Los chalecos autoinflables se inflan solos al sumergirse y, homologados, no pueden perder más de un 5 % de flotabilidad tras 24 horas en el agua; con la norma de la fecha del examen, además, tenían que revisarse cada año en un centro autorizado. Por eso la oficial es la d) (todas). Ojo: desde el 1-7-2021 el RD 339/2021 (art. 7.4) ya no fija la revisión anual y remite a las instrucciones del fabricante y a estaciones de servicio autorizadas.",
+  "clave": "Chaleco autoinflable: se infla al mojarse y se revisa en estación autorizada.",
+  "trampa": "La b) era cierta con la Orden FOM/1144/2003; hoy el plazo lo marca el fabricante, no la norma.",
+  "discrepancia": "La revisión anual de los chalecos inflables venía de la Orden FOM/1144/2003. Desde el 1-7-2021 el RD 339/2021 (art. 7.4) remite a las instrucciones del fabricante y a estaciones de servicio autorizadas, sin plazo anual en la norma, así que la b) ya no es cierta tal cual y la d) era la respuesta con la norma antigua."
+ },
+ "bal-py-2017-03-cb-10": {
+  "explicacion": "Lo incorrecto es la b): con el arnés puesto, si levantas los brazos te puedes escurrir de él y caer, así que hay que llevarlos pegados al cuerpo. Las demás son buenas prácticas: el cable se deja tocar el agua para descargar la electricidad estática, en un velero se arrían las velas para que no se enganche nada y el cable nunca se amarra al barco.",
+  "clave": "Izado en arnés: brazos abajo; cable al agua antes de tocarlo; nunca amarrarlo.",
+  "trampa": "La a) parece un descuido, pero dejar que el cable toque el agua es precisamente lo correcto."
+ },
+ "bal-py-2017-07-a-01": {
+  "explicacion": "La radiobaliza de localización de siniestros (RLS/EPIRB) se activa a mano o sola al hundirse el barco y lanza por satélite una alerta de socorro que equivale a un Mayday, con la identidad del barco y su posición, para que los servicios SAR puedan buscarlo y rescatarlo. Las tres afirmaciones describen esa función, así que la respuesta es la d).",
+  "clave": "EPIRB: alerta de socorro por satélite con identidad y posición.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-07-a-03": {
+  "explicacion": "La luz de encendido automático del aro salvavidas debe lucir, desde que se activa, durante al menos 2 horas (Código IDS, 2.1.2), con una intensidad mínima de 2 candelas, fija o de destellos. Cinco u ocho horas no son los mínimos exigidos, y sí hay criterios definidos.",
+  "clave": "Luz del aro salvavidas: mínimo 2 horas.",
+  "trampa": "No confundas con las 48 horas de autonomía de la radiobaliza."
+ },
+ "bal-py-2017-07-a-05": {
+  "explicacion": "Si KG ≥ KM, la altura metacéntrica GM = KM − KG es nula o negativa y el barco es inestable. Hay que bajar el centro de gravedad cuanto antes: desembarcar pesos altos, bajar pesos altos o embarcar pesos lo más bajo posible, siempre de forma simétrica respecto a crujía para no provocar escora. Las tres medidas sirven, así que la respuesta es la d).",
+  "clave": "KG ≥ KM: inestable; baja G con pesos bajos y simétricos.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-py-2017-07-a-08": {
+  "explicacion": "Las bengalas de mano se disparan por sotavento para que el viento se lleve las chispas, el humo y los restos lejos del barco, y con el brazo por fuera de la borda para que lo que gotea caiga al agua y no sobre la cubierta o la balsa. Las opciones con barlovento te echan todo encima.",
+  "clave": "Bengala: a sotavento y con el brazo por fuera.",
+  "trampa": "Barlovento es el error clásico: el viento te devuelve chispas y humo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-07-a-09": {
+  "explicacion": "Durante el izado hay que mantener los brazos abajo, pegados al cuerpo o cruzados sobre el pecho, para no escurrirse del arnés. Por eso valen la a) y la b), que es la d). Levantar los brazos, como dice la c), es precisamente lo que puede hacer que te salgas del arnés y caigas.",
+  "clave": "En el arnés del helicóptero, nunca levantes los brazos.",
+  "trampa": "Levantar los brazos (c) parece natural para agarrarse, pero te saca del arnés."
+ },
+ "bal-py-2017-07-a-10": {
+  "explicacion": "Cuando un radar de banda X interroga al SART, este pasa de espera a transmisión y lo avisa él mismo con una luz o un indicador sonoro, así que sabes al momento que te han detectado. Las llamadas por VHF o de un centro de salvamento pueden llegar o no, y no son la forma inmediata de confirmarlo.",
+  "clave": "SART: al ser detectado cambia de modo y avisa con luz o sonido.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-07-b-01": {
+  "explicacion": "La zafa hidrostática suelta la balsa automáticamente por la presión del agua cuando el barco se hunde, antes de llegar a unos 4 m de profundidad. Libre, la balsa sube, tira de la boza y se infla. No tiene nada que ver con la posición de la balsa en el agua, la presión de sus cámaras ni su estabilidad.",
+  "clave": "Zafa: automática y a ≤ 4 m.",
+  "trampa": "La a), la b) y la c) hablan de la balsa ya inflada; la zafa solo sirve para soltarla.",
+  "base": "and-py-2022-c2-g09",
+  "concepto": "and-py-2022-c2-g09"
+ },
+ "bal-py-2017-07-b-02": {
+  "explicacion": "Los chalecos que exigen revisión periódica son los de hinchado automático, porque llevan cartucho de gas y un mecanismo de disparo que pueden fallar; los de espuma no. En la fecha del examen la Orden FOM/1144/2003 fijaba su revisión anual. Desde el 1-7-2021 el RD 339/2021 (art. 7.4) remite a las instrucciones del fabricante y a estaciones de servicio autorizadas, sin plazo anual en la norma, pero siguen siendo los inflables los que se revisan.",
+  "clave": "Se revisan los chalecos inflables, en estación de servicio autorizada.",
+  "trampa": "La c) (cualquier chaleco) generaliza: los de espuma no tienen mecanismo que revisar."
+ },
+ "bal-py-2017-07-b-03": {
+  "explicacion": "El Reglamento (Reglas 3 l) y 35) obliga a hacer las señales acústicas de visibilidad reducida cuando la visibilidad esté disminuida por niebla, bruma, nevada, fuertes aguaceros, tormentas de arena o causas análogas, sin fijar una distancia en millas. Por eso es la b); las opciones con 3, 4 o 5 millas inventan un límite que no existe.",
+  "clave": "Visibilidad reducida: hay señales de niebla, sin cifra de millas.",
+  "trampa": "Las cifras en millas suenan precisas, pero el RIPA no da ninguna."
+ },
+ "bal-py-2017-07-b-04": {
+  "explicacion": "Con KM > KG el metacentro está por encima del centro de gravedad, GM es positivo y el barco es estable: cierta la a). Las otras cruzan los casos: KM < KG da equilibrio inestable (no indiferente) y KM = KG da equilibrio indiferente (no inestable).",
+  "clave": "KM > KG estable; KM = KG indiferente; KM < KG inestable.",
+  "trampa": "La b) y la c) intercambian «indiferente» e «inestable».",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2017-07-b-06": {
+  "explicacion": "La radiobaliza EPIRB de 406 MHz debe poder funcionar sin interrupción durante al menos 48 horas desde su activación, tiempo suficiente para que el sistema Cospas-Sarsat la localice y llegue el rescate. 12 o 24 horas se quedan cortas y 60 no es el mínimo exigido.",
+  "clave": "EPIRB: autonomía mínima de 48 horas.",
+  "trampa": "No la confundas con las 2 horas de la luz del aro salvavidas.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-07-b-07": {
+  "explicacion": "Es falsa la b): el polvo seco polivalente (ABC) sirve para muchas clases de fuego, pero no para todas; no es adecuado, por ejemplo, para metales (clase D) ni el mejor para aceites de cocina (clase F). Las demás son ciertas: extintores a mano y revisados por empresa autorizada, toda la tripulación sabe dónde están y cómo se usan, y se emplean en posición vertical.",
+  "clave": "Polvo ABC: polivalente, pero no vale para todo (metales, aceites).",
+  "trampa": "«Polivalente» no significa «universal».",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2017-07-b-10": {
+  "explicacion": "El SART (respondedor de radar, RESAR en español) sirve para que un barco o una aeronave nos localice con su radar de banda X (9 GHz): al ser interrogado, el SART responde y en la pantalla aparece una línea de 12 puntos que señala la posición del náufrago. No responde a radares de banda S, no mide olas y no hace llamadas selectivas digitales (eso es la LSD).",
+  "clave": "SART = respondedor de radar de banda X.",
+  "trampa": "La a) solo cambia X por S: el SART no responde a la banda S.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-12-a-02": {
+  "explicacion": "Lo incorrecto es la d): la radiobaliza sí necesita mantenimiento, porque su batería y su zafa hidrostática caducan y hay que revisarla periódicamente. La alerta lleva un código de identificación (que puede incluir el MMSI) registrado con los datos del barco, y la localización por efecto Doppler tiene una precisión de unas 2 millas.",
+  "clave": "EPIRB: batería y zafa caducan; necesita revisiones.",
+  "trampa": "La a) suena rara, pero los datos del barco se obtienen de su registro a partir de la identidad que emite.",
+  "discrepancia": "En rigor la EPIRB no transmite la eslora ni el nombre: emite un código de identidad (MMSI o similar) y los datos del barco salen de la base de registro. La a) también podría considerarse incorrecta.",
+  "defendible": "a",
+  "concepto": "bal-py-2017-12-a-02",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2022-06-a-02": {
+  "explicacion": "Lo incorrecto es la d): la radiobaliza sí necesita mantenimiento, porque su batería y su zafa hidrostática caducan y hay que revisarla periódicamente. La alerta lleva un código de identificación (que puede incluir el MMSI) registrado con los datos del barco, y la localización por Doppler da unas 2 millas, o unos metros si la baliza lleva GPS, como dice la b).",
+  "clave": "EPIRB: batería y zafa caducan; necesita revisiones.",
+  "trampa": "La a) suena rara, pero los datos del barco se obtienen de su registro a partir de la identidad que emite.",
+  "discrepancia": "En rigor la EPIRB no transmite la eslora ni el nombre: emite un código de identidad (MMSI o similar) y los datos del barco salen de la base de registro. La a) también podría considerarse incorrecta.",
+  "defendible": "a",
+  "concepto": "bal-py-2017-12-a-02",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-12-a-03": {
+  "explicacion": "Los VHF portátiles del SMSSM (GMDSS) deben tener como mínimo el canal 16 (socorro y llamada), el 6 (comunicaciones en el lugar del siniestro con buques y aeronaves SAR) y el 13 (seguridad de la navegación entre puentes). Ese trío es la a); el 9 y el 3 no son obligatorios.",
+  "clave": "VHF portátil SMSSM: canales 16, 6 y 13.",
+  "trampa": "La b) cambia el 13 por el 9, canal habitual en recreo pero no obligatorio.",
+  "concepto": "bal-py-2017-12-a-03"
+ },
+ "bal-py-2023-06-ac-06": {
+  "explicacion": "Los VHF portátiles del SMSSM (GMDSS) deben tener como mínimo el canal 16 (socorro y llamada), el 6 (comunicaciones en el lugar del siniestro con buques y aeronaves SAR) y el 13 (seguridad de la navegación entre puentes). Ese trío es la c); el 3, el 9 o el 1 no forman parte del mínimo exigido.",
+  "clave": "VHF portátil SMSSM: canales 16, 6 y 13.",
+  "trampa": "La b) cambia el 13 por el 9, canal habitual en recreo pero no obligatorio.",
+  "concepto": "bal-py-2017-12-a-03"
+ },
+ "bal-py-2017-12-a-04": {
+  "explicacion": "La altura metacéntrica es la distancia entre el centro de gravedad y el metacentro: GM = KM − KG. Ninguna opción la da así: la a) suma KG en vez de restarlo, la b) resta el brazo adrizante GZ y la c) mezcla el centro de carena con GZ. Por eso la respuesta es la d).",
+  "clave": "GM = KM − KG.",
+  "trampa": "La a) se parece mucho, pero suma en lugar de restar."
+ },
+ "bal-py-2017-12-a-05": {
+  "explicacion": "Las tres afirmaciones sobre el arnés son ciertas, así que la respuesta es la c) («ninguna es falsa»). El arnés sirve para no caer al agua o, al menos, no separarse del barco; la cinta plana es preferible al cabo porque no rueda bajo el pie; y la línea de vida del arnés debe ser corta, unos 2 m como máximo, para que no te deje caer por la borda.",
+  "clave": "Arnés: cinta plana, línea corta (≤ 2 m), siempre enganchado.",
+  "trampa": "La d) parece una restricción excesiva, pero una línea larga te deja caer al agua."
+ },
+ "bal-py-2017-12-a-08": {
+  "explicacion": "Es falsa la a): los chalecos deben estar homologados, pero no tienen una flotabilidad única de 100 N; según el RD 339/2021 se exigen 275 N en zona 1, 150 N en zonas 2 a 4 y 100 N en zonas 5 a 7. Las demás son ciertas: chalecos a la medida de los menores con cinchas de entrepierna, estibados en un sitio accesible y conocido, y capaces de girar boca arriba a una persona inconsciente en pocos segundos.",
+  "clave": "Flotabilidad: 275 N zona 1, 150 N zonas 2–4, 100 N zonas 5–7.",
+  "trampa": "100 N es solo el mínimo de las zonas más costeras (5 a 7)."
+ },
+ "bal-py-2017-12-a-10": {
+  "explicacion": "Las señales fumígenas flotantes tienen un pequeño retardo de encendido para dar tiempo a lanzarlas al agua y emiten humo de color muy visible (naranja) durante al menos 3 minutos. Por eso son ciertas la b) y la c), que es la d); la a) falla porque no se encienden en el instante de tirar del percutor.",
+  "clave": "Fumígena: retardo de encendido y humo naranja ≥ 3 min.",
+  "trampa": "La a) describe una bengala de mano, no una fumígena.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-12-b-01": {
+  "explicacion": "El SART se puede activar a voluntad, con su interruptor, y los modelos de zafa libre se activan solos al quedar en el agua. Por eso valen la a) y la b), que es la d). La c) falla: no viene «programado»; hay que encenderlo o que se active al flotar, y entonces queda en espera hasta que lo interroga un radar de banda X.",
+  "clave": "SART: se enciende a mano o al flotar; transmite al recibir radar X.",
+  "trampa": "Encendido no es transmitir: en espera solo responde a un radar de banda X.",
+  "concepto": "bal-py-2017-12-b-01",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2025-12-b-08": {
+  "explicacion": "El SART se puede activar a voluntad, con su interruptor, y algunos modelos (los de zafa libre) se activan solos al quedar en el agua. Por eso valen la a) y la b), que es la d). La c) falla: no se activa al recibir una señal AIS; una vez encendido queda en espera y responde cuando lo interroga un radar de banda X.",
+  "clave": "SART: se enciende a mano o al flotar; transmite al recibir radar X.",
+  "trampa": "La c) mezcla el SART con el AIS: el SART reacciona al radar, no a señales AIS.",
+  "concepto": "bal-py-2017-12-b-01",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-12-b-02": {
+  "explicacion": "A mayor altura metacéntrica (GM), mayor par adrizante y, por tanto, mayor estabilidad inicial: cierta la a). Pero un GM demasiado grande vuelve al barco «duro», con balances bruscos e incómodos que castigan a la gente y a la estructura, así que también es cierta la c). La b) dice lo contrario de la a). Respuesta: la d).",
+  "clave": "Más GM, más estabilidad; demasiado GM, barco duro.",
+  "trampa": "La c) parece contradecir la a), pero ambas son ciertas a la vez.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2017-12-b-04": {
+  "explicacion": "La radiobaliza EPIRB (RLS) sirve para alertar por satélite a los servicios de búsqueda y salvamento y darles la identidad y la posición de quien está en peligro grave e inminente: la d). No permite hablar por voz con un centro de salvamento, y lo de aparecer en la pantalla de un radar de banda X es la función del SART, no de la radiobaliza; con la banda S no funciona ninguno de los dos.",
+  "clave": "EPIRB alerta por satélite; SART se ve en el radar X.",
+  "trampa": "La c) describe el SART, no la radiobaliza.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2017-12-b-05": {
+  "explicacion": "La luz de encendido automático del aro salvavidas debe lucir al menos 2 horas desde que se activa (Código IDS, 2.1.2), con una intensidad mínima de 2 candelas. Una hora, hora y media o tres horas no son el mínimo exigido.",
+  "clave": "Luz del aro salvavidas: mínimo 2 horas.",
+  "trampa": "La luz del chaleco son 8 horas; la del aro, 2.",
+  "concepto": "bal-py-2017-12-b-05"
+ },
+ "bal-py-2024-04-bc-08": {
+  "explicacion": "La luz de encendido automático del aro salvavidas debe lucir al menos 2 horas desde que se activa (Código IDS, 2.1.2), con una intensidad mínima de 2 candelas: la b). Una, tres o cuatro horas no son el mínimo exigido.",
+  "clave": "Luz del aro salvavidas: mínimo 2 horas.",
+  "trampa": "La luz del chaleco son 8 horas; la del aro, 2.",
+  "concepto": "bal-py-2017-12-b-05"
+ },
+ "bal-py-2017-12-b-07": {
+  "explicacion": "Con el helicóptero encima no hay que hacer ninguna de las tres cosas: un cohete con paracaídas puede alcanzarlo o deslumbrar a la tripulación (para señalarte usa humo o bengala de mano), el cable nunca se amarra a la balsa porque si el helicóptero tiene que separarse la arrastraría, y el arnés no se toca hasta que haya tocado el agua y descargado la electricidad estática. Por eso es la d).",
+  "clave": "Con helicóptero: nada de cohetes, cable sin amarrar, que toque el agua.",
+  "trampa": "El cohete parece buena señal, pero cerca de la aeronave es un peligro."
+ },
+ "bal-py-2017-12-b-09": {
+  "explicacion": "El centro de carena (B) es el centro de gravedad del volumen sumergido para una flotación dada, y en él se aplica el empuje del agua. No es el centro de gravedad del buque (G), ni la altura metacéntrica (una distancia, GM), ni tiene que ver con la línea de flotación, que es una línea y no un volumen.",
+  "clave": "Carena = volumen sumergido; centro de carena = su centro (B).",
+  "trampa": "La b) confunde B con G, el centro de gravedad de todo el barco.",
+  "base": "and-py-2022-c3-g01",
+  "concepto": "and-py-2022-c3-g01",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   }
+  ]
+ },
+ "bal-py-2018-04-a-01": {
+  "explicacion": "Navegar hasta 12 millas de la costa corresponde a la zona 4, y el RD 339/2021 exige en las zonas 2 a 4 chalecos de al menos 150 N; 275 N son para zona 1 y 100 N para las zonas 5 a 7. Por eso la respuesta es la d). 40 y 80 N no son flotabilidades de chaleco salvavidas homologado para estas zonas.",
+  "clave": "Chalecos: 275 N zona 1, 150 N zonas 2–4, 100 N zonas 5–7.",
+  "trampa": "La b) (250 N) se acerca a los 275 N de la zona 1, que es navegación oceánica."
+ },
+ "bal-py-2018-04-a-03": {
+  "explicacion": "Al llegar a la puerta del helicóptero hay que quedarse quieto y dejarse meter a bordo por la tripulación: la d). Las demás son errores graves: el cable nunca se amarra al barco, quien dirige la maniobra es la tripulación del helicóptero y no el patrón, y el cable no se coge antes de que toque el agua o el barco, porque puede dar una descarga de electricidad estática.",
+  "clave": "Rescate con helicóptero: obedece, no amarres nada, sé pasivo.",
+  "trampa": "La b) parece lógica (el patrón manda a bordo), pero la operación la dirige el helicóptero."
+ },
+ "bal-py-2018-04-a-04": {
+  "explicacion": "En la balsa hay que montar guardias de vigilancia las 24 horas hasta tener la certeza de haber sido detectados: la c). Llevar SART o radiobaliza no exime de vigilar, porque hay que ver barcos y aeronaves para hacer señales; las guardias cada 8 horas no tienen sentido y la radiobaliza, una vez activada, se deja funcionando.",
+  "clave": "En la balsa: vigilancia 24 h hasta que te detecten.",
+  "trampa": "La d) parece prudente para ahorrar batería, pero apagar la EPIRB corta la alerta.",
+  "concepto": "bal-py-2018-04-a-04"
+ },
+ "bal-py-2020-12-b-09": {
+  "explicacion": "En la balsa hay que montar guardias de vigilancia 24 horas sobre 24 hasta tener la certeza de haber sido detectados: la c). Llevar SART o radiobaliza no exime de vigilar, porque hay que ver barcos y aeronaves para hacer señales; las guardias cada 8 horas no tienen sentido y la radiobaliza, una vez activada, se deja funcionando.",
+  "clave": "En la balsa: vigilancia 24 h hasta que te detecten.",
+  "trampa": "La d) parece prudente para ahorrar batería, pero apagar la EPIRB corta la alerta.",
+  "concepto": "bal-py-2018-04-a-04"
+ },
+ "bal-py-2023-12-a-06": {
+  "explicacion": "Lo más apropiado es mantener vigilancia de 24 horas hasta tener la certeza de haber sido detectados: la c). Llevar SART o radiobaliza no exime de vigilar, porque hay que ver barcos y aeronaves para hacer señales; las guardias cada 8 horas no tienen sentido y la radiobaliza, una vez activada, se deja funcionando.",
+  "clave": "En la balsa: vigilancia 24 h hasta que te detecten.",
+  "trampa": "La d) parece prudente para ahorrar batería, pero apagar la EPIRB corta la alerta.",
+  "concepto": "bal-py-2018-04-a-04"
+ },
+ "bal-py-2018-04-a-05": {
+  "explicacion": "Antes de lanzar el contenedor hay que comprobar que la boza está firme al barco: si no, la balsa se va a la deriva. Con la balsa en el agua se cobra la boza y se da un tirón fuerte, que dispara la botella de gas y la infla; ya con todos a bordo, se corta la boza. Eso es la b). La zafa hidrostática no actúa por el golpe contra el agua (a y c), sino por presión a unos 4 m si el barco se hunde con la balsa trincada.",
+  "clave": "Lanzar balsa: boza firme, al agua, tirón y se infla.",
+  "trampa": "La c) mezcla bien lo de la boza con un falso inflado por la zafa al tocar el agua.",
+  "concepto": "bal-py-2018-04-a-05"
+ },
+ "bal-py-2018-04-a-06": {
+  "explicacion": "Para que el helicóptero localice la posición de cerca se usan la señal fumígena naranja flotante, que además le indica la dirección del viento, y la bengala de mano roja: la a), que reúne la b) y la c). El cohete con paracaídas sirve para llamar la atención a gran distancia, pero lanzarlo con un helicóptero cerca es peligroso.",
+  "clave": "Con el helicóptero cerca: humo y bengala de mano, no cohetes.",
+  "trampa": "La d) es una señal de socorro válida, pero no durante el rescate aéreo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-04-a-08": {
+  "explicacion": "Lo que no se puede olvidar al abandonar es la radiobaliza de localización de siniestros (RLS/EPIRB), que es la que da la alerta y la posición a los servicios de salvamento: la c). El botiquín ya va en el equipo de la balsa, el reflector de radar del barco no hace falta y los efectos personales son lo último.",
+  "clave": "Al abandonar: llévate la radiobaliza.",
+  "trampa": "El botiquín parece imprescindible, pero ya forma parte del equipo de la balsa.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-04-a-10": {
+  "explicacion": "Cuando un peso se traslada, el centro de gravedad del barco se mueve en la misma dirección y sentido que el peso (paralelo a su traslado). Si el traslado es horizontal, G se desplaza horizontalmente hacia ese costado y el barco escora: la c). No sube ni baja (b y d), porque el peso no cambia de altura, y G no coincide con el centro de carena (a).",
+  "clave": "G se mueve paralelo y en el mismo sentido que el peso trasladado.",
+  "trampa": "La a) supone que G y B coinciden en la flotación, lo que no es cierto."
+ },
+ "bal-py-2018-04-b-01": {
+  "explicacion": "El centro de gravedad del volumen sumergido se llama centro de carena (B), y en él se aplica el empuje del agua: la c). El metacentro es otro punto (por donde pasa la línea de empuje al escorar), la obra viva es la parte sumergida del casco y la altura metacéntrica es una distancia (GM).",
+  "clave": "Volumen sumergido → centro de carena.",
+  "trampa": "La b) (obra viva) es la parte sumergida, no su centro.",
+  "base": "and-py-2023-c1-g03",
+  "concepto": "and-py-2023-c1-g03"
+ },
+ "bal-py-2022-12-ac-07": {
+  "explicacion": "El centro de gravedad del volumen sumergido se llama centro de carena (B), y en él se aplica el empuje del agua: la b). «Centro de metacentro», «centro de crujía» o «centro de obra viva» no son términos de estabilidad: el metacentro ya es un punto, la crujía es el plano longitudinal del barco y la obra viva es la parte sumergida del casco.",
+  "clave": "Volumen sumergido → centro de carena.",
+  "trampa": "La d) suena parecido porque la obra viva es lo sumergido, pero el término correcto es centro de carena.",
+  "base": "and-py-2023-c1-g03",
+  "concepto": "and-py-2023-c1-g03"
+ },
+ "bal-py-2018-04-b-03": {
+  "explicacion": "La tendencia a recuperar la posición de adrizado cuando el barco se escora por fuerzas externas es la estabilidad estática transversal: la c). El equilibrio inestable es justo lo contrario (el barco sigue escorando) y el centro de presión no es una propiedad del barco sino un punto de aplicación de fuerzas.",
+  "clave": "Volver a adrizarse tras escorar = estabilidad transversal.",
+  "trampa": "La b) usa la palabra «equilibrio», pero inestable significa que no se recupera.",
+  "base": "and-2026-c2-t07",
+  "concepto": "and-2026-c2-t07"
+ },
+ "bal-py-2018-04-b-05": {
+  "explicacion": "Es falsa la d): abrigarse sí, pero no cambiar el calzado ligero por otro pesado, que dificulta nadar y mantenerse a flote. Las demás son medidas correctas: emitir el socorro y activar la radiobaliza, parar el barco antes de arriar la balsa para que no se aleje ni se dañe, y llevar una navaja para cortar la boza.",
+  "clave": "Al abandonar: abrígate, pero nada de calzado pesado.",
+  "trampa": "«Abrigarse bien» es cierto y arrastra a dar por buena toda la d).",
+  "concepto": "bal-py-2018-04-b-05"
+ },
+ "bal-py-2018-12-b-07": {
+  "explicacion": "Es falsa la d): abrigarse sí, pero no cambiar el calzado ligero por otro pesado, que dificulta nadar y mantenerse a flote. Las demás son medidas correctas: emitir el socorro y activar la radiobaliza, parar el barco antes de arriar la balsa y leer las instrucciones de la balsa antes de lanzarla.",
+  "clave": "Al abandonar: abrígate, pero nada de calzado pesado.",
+  "trampa": "«Abrigarse bien» es cierto y arrastra a dar por buena toda la d).",
+  "concepto": "bal-py-2018-04-b-05"
+ },
+ "bal-py-2018-04-b-07": {
+  "explicacion": "El SART es un equipo portátil de emergencia que complementa el sistema de alerta de socorro: al recibir las ondas de un radar de banda X transmite y aparece en la pantalla de buques y aeronaves como una línea de puntos, de modo que localizan a los supervivientes con su propio radar. Las tres afirmaciones son ciertas, así que la respuesta es la d).",
+  "clave": "SART: localización por radar de banda X.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-04-c-02": {
+  "explicacion": "Si el centro de gravedad coincide con el metacentro, la altura metacéntrica es nula: al escorar, peso y empuje quedan en la misma vertical, no hay par adrizante ni escorante y el buque se queda escorado. Es el equilibrio indiferente, la c). Con G por debajo de M es estable y con G por encima, inestable.",
+  "clave": "GM = 0 → indiferente.",
+  "trampa": "Confundir el caso G = M (indiferente) con G por encima de M (inestable).",
+  "base": "and-py-2024-c1-g03",
+  "concepto": "and-py-2024-c1-g03"
+ },
+ "bal-py-2018-04-c-03": {
+  "explicacion": "En la balsa, por regla general, se mantiene encendido el VHF portátil a la escucha, se arría el ancla flotante para reducir la deriva y no alejarse de la zona del naufragio, y se ponen en marcha la radiobaliza y el SART para que te localicen. Las tres medidas son correctas, así que la respuesta es la d).",
+  "clave": "En la balsa: ancla flotante, EPIRB, SART y VHF a la escucha."
+ },
+ "bal-py-2018-04-c-04": {
+  "explicacion": "No es correcto lanzar todos los cohetes y bengalas antes de abandonar: la pirotecnia es limitada y hay que reservarla para cuando haya un barco o una aeronave que pueda verla. Las demás medidas son correctas: emitir el socorro, no dejar el barco mientras no sea seguro que se hunde (sigue siendo la mejor balsa) y la orden de abandono la da el patrón.",
+  "clave": "Pirotecnia: solo cuando alguien pueda verla.",
+  "trampa": "Gastar todas las señales parece aumentar las opciones, pero las desperdicia."
+ },
+ "bal-py-2018-04-c-06": {
+  "explicacion": "Es falsa la d): el cable del helicóptero nunca se amarra a la balsa ni al barco, porque si el helicóptero tiene que separarse de golpe los arrastraría. Las demás son correctas: pueden bajar solo un arnés, el cable se deja tocar el agua para descargar la electricidad estática y durante el izado los brazos van pegados al cuerpo o cruzados en el pecho.",
+  "clave": "El cable del helicóptero nunca se amarra.",
+  "trampa": "Amarrarlo parece asegurarlo, pero convierte la balsa en un ancla del helicóptero."
+ },
+ "bal-py-2018-04-c-09": {
+  "explicacion": "La balsa se puede poner en servicio a mano (se lanza y se tira de la boza para inflarla) o de forma automática, cuando la zafa hidrostática la suelta al hundirse el barco y se infla sola: la a). La d) es falsa: la balsa es obligatoria precisamente en las zonas de navegación más alejadas, 1, 2 y 3.",
+  "clave": "Balsa: manual o automática con la zafa hidrostática.",
+  "trampa": "La d) invierte la norma: las zonas 1 a 3 son las que sí llevan balsa.",
+  "concepto": "bal-py-2018-04-c-09"
+ },
+ "bal-py-2018-04-c-10": {
+  "explicacion": "El punto donde se aplica la resultante de todos los pesos del barco es el centro de gravedad (G): la b). El desplazamiento es el valor de ese peso, no un punto; el centro de carena es donde se aplica el empuje, y la altura metacéntrica es una distancia.",
+  "clave": "Pesos → centro de gravedad (G); empuje → centro de carena (B).",
+  "trampa": "El desplazamiento es una fuerza (peso), no un punto."
+ },
+ "bal-py-2018-06-a-01": {
+  "explicacion": "La eficacia de un extintor se expresa con un número y una letra: la letra es la clase de fuego y el número el tamaño del hogar tipo que apaga. La clase B corresponde a combustibles líquidos y el hogar tipo se mide en litros, así que 113 B significa que apaga 113 litros de combustible líquido: la b). Los sólidos son clase A, los gases clase C y las grasas de cocina clase F.",
+  "clave": "Eficacia 113 B = 113 litros de líquido inflamable.",
+  "trampa": "La a) habla de sólidos, que son clase A, no B.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2018-06-a-02": {
+  "explicacion": "Las superficies libres (líquidos que se mueven en tanques a medio llenar) suben virtualmente el centro de gravedad del barco, y con ello disminuye la altura metacéntrica GM y la estabilidad: la a). No tienen efectos positivos ni aumentan el par adrizante, y lo que alteran es G, no el KM.",
+  "clave": "Superficies libres: suben G virtual y reducen GM.",
+  "trampa": "La d) dice bien que trasladan G, pero cambia «disminuyendo» por «aumentando»."
+ },
+ "bal-py-2018-06-a-04": {
+  "explicacion": "La que no es correcta es la b): el cable del helicóptero nunca se amarra a la embarcación, porque si el helicóptero tiene que separarse la arrastraría. Las demás son correctas: puede que solo bajen un arnés, el cable se deja tocar el agua para descargar la electricidad estática y luego se acerca a la embarcación.",
+  "clave": "El cable del helicóptero nunca se amarra.",
+  "trampa": "«Firmemente» suena a seguridad, pero es justo lo prohibido."
+ },
+ "bal-py-2018-06-a-06": {
+  "explicacion": "El desplazamiento (peso, aplicado en G) y el empuje (aplicado en B) son iguales y opuestos. Si no actúan sobre la misma vertical, forman un par de fuerzas que hace girar al barco, es decir, lo escora. Por eso son ciertas la a) y la b), que es la c).",
+  "clave": "Peso y empuje fuera de la misma vertical = par = escora.",
+  "trampa": "La d) solo se cumple si peso y empuje están en la misma vertical."
+ },
+ "bal-py-2018-06-a-07": {
+  "explicacion": "Antes de usar cualquier señal pirotécnica hay que leer sus instrucciones, porque cada modelo se dispara de una forma y usarla mal puede causar quemaduras o desperdiciarla: la a). Guantes, gafas o casco no son el paso previo exigido; lo imprescindible es saber cómo se usa.",
+  "clave": "Pirotecnia: lee las instrucciones antes de usarla.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-py-2018-06-a-07"
+ },
+ "bal-py-2018-06-a-08": {
+  "explicacion": "Las bengalas de mano homologadas siguen ardiendo aunque se sumerjan un tiempo y hasta cierta profundidad: el Código IDS exige que sigan encendidas tras 10 segundos bajo 100 mm de agua. Por eso es la c); no se apagan al momento, no estallan y no dependen de la temperatura del agua.",
+  "clave": "La bengala de mano sigue ardiendo bajo el agua un tiempo.",
+  "trampa": "La b) es lo que pasaría con una llama normal, pero la bengala lleva su propio oxidante.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-06-a-10": {
+  "explicacion": "La luz del chaleco salvavidas es blanca y debe lucir al menos 8 horas (Código IDS, 2.2.3), fija o de destellos. Las 2 horas son de la luz del aro salvavidas, y los colores rojo, naranja o amarillo no son los de la luz del chaleco.",
+  "clave": "Luz del chaleco: blanca, 8 h. Luz del aro: 2 h.",
+  "trampa": "La a) mezcla un color incorrecto con la duración de la luz del aro."
+ },
+ "bal-py-2018-06-b-01": {
+  "explicacion": "Es falsa la d): para llamar por VHF hay que ponerse de pie y subir la antena lo más alto posible, porque el alcance del VHF depende de la altura de la antena; sentarse lo reduce. Las demás son correctas: el SART en el punto más alto de la balsa, salto al agua de pie con las piernas juntas sujetando el chaleco y tapando la nariz, y a la balsa se llevan radiobaliza, SART y VHF portátil.",
+  "clave": "VHF: cuanto más alta la antena, más alcance.",
+  "trampa": "Sentarse da estabilidad en la balsa, pero no «aumenta el alcance»."
+ },
+ "bal-py-2018-06-b-04": {
+  "explicacion": "No es correcta la d): la boza (que el enunciado llama driza) no la corta el primero que embarca, sino que se corta cuando todos están a bordo de la balsa; cortarla antes deja a la deriva la balsa y separa a quien no ha embarcado. Prepararse con antelación, dar la llamada de socorro, activar la radiobaliza y releer las instrucciones de la balsa son pasos del protocolo de abandono.",
+  "clave": "La boza se corta cuando todos están en la balsa.",
+  "trampa": "Cortar pronto parece agilizar, pero puede dejar gente en el agua."
+ },
+ "bal-py-2018-06-b-07": {
+  "explicacion": "Como GM = KM − KG, el equilibrio es indiferente cuando GM = 0, es decir, cuando KM = KG (el metacentro y el centro de gravedad coinciden): la c). Con KM > KG es estable y con KM < KG es inestable, así que la d), que mezcla la a) con la c), no vale.",
+  "clave": "KM > KG estable · KM = KG indiferente · KM < KG inestable.",
+  "trampa": "La d) incluye KM > KG, que es el equilibrio estable.",
+  "base": "and-py-2021-c2-g02",
+  "concepto": "and-py-2021-c2-g02"
+ },
+ "bal-py-2020-12-a-02": {
+  "explicacion": "Como GM = KM − KG, el equilibrio es indiferente cuando GM = 0, es decir, cuando KM = KG (el metacentro y el centro de gravedad coinciden): la c). Con KM > KG es estable y con KM < KG es inestable, así que la d), que junta esos dos casos, no vale.",
+  "clave": "KM > KG estable · KM = KG indiferente · KM < KG inestable.",
+  "trampa": "La d) junta el caso estable y el inestable, que se excluyen.",
+  "base": "and-py-2021-c2-g02",
+  "concepto": "and-py-2021-c2-g02"
+ },
+ "bal-py-2018-06-b-09": {
+  "explicacion": "Las señales pirotécnicas (fumígenas, bengalas y cohetes) deben guardarse en un estuche hidrorresistente, estanco al agua, para que la humedad no las inutilice: la b). Fluorescente, «pirotécnico» o «lumínico» no son requisitos del estuche.",
+  "clave": "Pirotecnia: en estuche hidrorresistente.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-06-b-10": {
+  "explicacion": "Si abandonas por incendio, aléjate nadando hacia barlovento: el viento empuja hacia sotavento el humo, las llamas y el combustible que arde sobre el agua. Por eso es la c); quedarse a sotavento o pegado al casco te expone al fuego y al humo, y bucear 50 m no es una pauta general ni realista.",
+  "clave": "Abandono por incendio: aléjate a barlovento.",
+  "trampa": "La a) da un motivo (que te vean) que no compensa respirar el humo.",
+  "concepto": "bal-py-2018-06-b-10"
+ },
+ "bal-py-2023-03-ac-02": {
+  "explicacion": "Si abandonas por incendio, aléjate nadando hacia barlovento: el viento empuja hacia sotavento el humo, las llamas y el combustible que arde sobre el agua. Por eso es la c); quedarse a sotavento o pegado al casco te expone al fuego y al humo, y bucear siempre 50 m no es una pauta general ni realista.",
+  "clave": "Abandono por incendio: aléjate a barlovento.",
+  "trampa": "La a) da un motivo (que te vean) que no compensa respirar el humo.",
+  "concepto": "bal-py-2018-06-b-10"
+ },
+ "bal-py-2018-12-a-03": {
+  "explicacion": "Los cohetes con paracaídas se lanzan por la banda de sotavento, para que el viento aleje del barco los residuos incandescentes y no caigan sobre la cubierta: la a). Por barlovento te vuelven encima, en horizontal no subirían a su altura de trabajo y no se lanzan «siempre» al abandonar, sino cuando hay alguien que pueda verlos.",
+  "clave": "Pirotecnia a sotavento.",
+  "trampa": "La b) promete más visibilidad, pero devuelve los restos al barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-12-a-04": {
+  "explicacion": "La zafa hidrostática de la radiobaliza es un mecanismo automático que la suelta cuando el barco se hunde y queda sumergida a cierta profundidad (unos 1,5 a 4 m); la baliza sube a flote y se activa sola. No es el transmisor de 406 MHz, no permite comunicaciones bidireccionales y no tiene nada que ver con la LSD.",
+  "clave": "Zafa hidrostática: suelta automáticamente al hundirse.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2018-12-a-09": {
+  "explicacion": "Para adrizar una balsa volcada, una persona se sube por el lado donde está la botella de gas, se pone de pie sobre ella y tira hacia atrás de las cinchas de adrizamiento que cruzan el fondo; la balsa gira y queda en su posición: la a). Que suba toda la tripulación no ayuda, las balsas sí pueden volcar y no se espera a que se adricen solas.",
+  "clave": "Balsa volcada: uno sobre la botella y tira de las cinchas.",
+  "trampa": "La c) da por hecho que toda balsa es autoadrizante, y no es así."
+ },
+ "bal-py-2018-12-b-03": {
+  "explicacion": "El Código IDS (SOLAS) exige que la balsa resista 30 días a la intemperie flotando, sea cual sea el estado de la mar: la c). Las opciones con 20 días o con «buen estado de la mar y temperaturas suaves» rebajan el requisito.",
+  "clave": "Balsa SOLAS: 30 días a la intemperie, con cualquier mar.",
+  "trampa": "La d) acierta los 30 días, pero los limita a buen tiempo.",
+  "concepto": "bal-py-2018-12-b-03"
+ },
+ "bal-py-2019-04-c-01": {
+  "explicacion": "El Código IDS (SOLAS) exige que la balsa resista 30 días a la intemperie flotando, sea cual sea el estado de la mar: la c). Las opciones con 20 o 25 días o con «buen estado de la mar y temperaturas suaves» rebajan el requisito.",
+  "clave": "Balsa SOLAS: 30 días a la intemperie, con cualquier mar.",
+  "trampa": "La b) acierta en «cualquier estado de la mar», pero se queda en 20 días.",
+  "concepto": "bal-py-2018-12-b-03"
+ },
+ "bal-py-2024-12-a-07": {
+  "explicacion": "El Código IDS (SOLAS) exige que la balsa resista 30 días a la intemperie flotando, sea cual sea el estado de la mar: la c). 20 o 25 días se quedan cortos y 35 no es la cifra de la norma.",
+  "clave": "Balsa SOLAS: 30 días a la intemperie, con cualquier mar.",
+  "concepto": "bal-py-2018-12-b-03"
+ },
+ "bal-py-2025-07-b-05": {
+  "explicacion": "El Código IDS (SOLAS) exige que la balsa resista 30 días a la intemperie flotando, sea cual sea el estado de la mar: la b). 20 días se quedan cortos y 40 o 50 no son la cifra de la norma.",
+  "clave": "Balsa SOLAS: 30 días a la intemperie, con cualquier mar.",
+  "concepto": "bal-py-2018-12-b-03"
+ },
+ "bal-py-2018-12-b-04": {
+  "explicacion": "La estabilidad inicial es la de pequeñas escoras, hasta unos 10° (algunos textos dicen 10 a 15°). En ese margen el metacentro se considera fijo y el brazo adrizante se calcula como GZ = GM · sen θ. Con 40, 45 o 55° ya se habla de estabilidad a grandes ángulos.",
+  "clave": "Estabilidad inicial: escoras menores de unos 10°.",
+  "trampa": "40–45° suena a escora peligrosa, pero eso es estabilidad a grandes ángulos."
+ },
+ "bal-py-2018-12-b-08": {
+  "explicacion": "El desplazamiento es el peso del barco y se aplica en su centro de gravedad (G): la c). El empuje se aplica en el centro de carena, que también se llama centro de empuje (por eso fallan la a y la b), y el metacentro es el punto por donde pasa el empuje al escorar.",
+  "clave": "Peso (desplazamiento) en G; empuje en B.",
+  "trampa": "La a) y la b) son el mismo punto: donde se aplica el empuje, no el peso."
+ },
+ "bal-py-2018-12-b-10": {
+  "explicacion": "En la balsa se puede obtener agua dulce recogiendo la lluvia, aprovechando la condensación (rocío) que se forma en las superficies de la balsa y, como último recurso, con el líquido que contiene el pescado crudo. Las tres son válidas, así que la respuesta es la d). Lo que nunca se bebe es agua de mar.",
+  "clave": "Agua en la balsa: lluvia, rocío y jugo de pescado; nunca de mar."
+ },
+ "bal-py-2019-04-a-01": {
+  "explicacion": "El SART debe poder estar en espera (stand-by) al menos 96 horas y, después, transmitir durante al menos 8 horas cuando lo interroga un radar. Por eso la respuesta es la d). 48 horas es la autonomía de la radiobaliza EPIRB, no la del SART.",
+  "clave": "SART: 96 h en espera + 8 h transmitiendo.",
+  "trampa": "La c) (48 h) es la cifra de la EPIRB.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2019-04-a-02": {
+  "explicacion": "Las radiobalizas EPIRB de 406 MHz trabajan con el sistema internacional de satélites COSPAS-SARSAT, que recibe la alerta, calcula la posición y la pasa a los servicios SAR: la c). PLB y ELT son tipos de baliza (personal y de aeronave), no sistemas, y NAVTEX es un servicio de avisos a los navegantes.",
+  "clave": "EPIRB → satélites COSPAS-SARSAT.",
+  "trampa": "La a) y la b) mezclan medio nombre del sistema con tipos de baliza.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "satelite"
+   }
+  ]
+ },
+ "bal-py-2019-04-a-03": {
+  "explicacion": "Las normas europeas de chalecos distinguen cuatro niveles de flotabilidad: 50 N (ayuda a la flotación), 100 N, 150 N y 275 N: la b). Las demás opciones se dejan algún nivel fuera.",
+  "clave": "Chalecos CE: 50, 100, 150 y 275 N.",
+  "trampa": "La a) olvida el de 275 N, el de navegación oceánica."
+ },
+ "bal-py-2019-04-a-04": {
+  "explicacion": "El SOLAS (Código IDS) fija que ninguna balsa salvavidas puede ser para menos de seis personas: la c). Cuatro, cinco u ocho no son el mínimo de la norma; las balsas para recreo de menor capacidad son de otro tipo, no SOLAS.",
+  "clave": "Balsa SOLAS: capacidad mínima 6 personas."
+ },
+ "bal-py-2019-04-a-05": {
+  "explicacion": "Si el viento escora el barco sin mover pesos, el centro de gravedad no cambia (c), porque los pesos siguen en su sitio, mientras que el centro de carena sí se desplaza (b), porque cambia la forma del volumen sumergido. Por eso es la d). El desplazamiento no aumenta: el peso del barco es el mismo.",
+  "clave": "Escora sin mover pesos: G fijo, B se mueve.",
+  "trampa": "La a) confunde la forma de la carena con el peso, que no varía."
+ },
+ "bal-py-2019-04-a-06": {
+  "explicacion": "Para escoras pequeñas, el brazo adrizante es GZ = GM · sen θ, así que si aumenta la altura metacéntrica aumenta el par adrizante: la c), y por eso es falsa la b). La a) falla porque subir pesos reduce GM, y la d) también, porque GM depende de dónde están los pesos (KG).",
+  "clave": "GZ = GM · sen θ: más GM, más par adrizante.",
+  "trampa": "La a) dice «siempre aumenta», pero subir pesos la disminuye."
+ },
+ "bal-py-2019-04-a-07": {
+  "explicacion": "En un velero que va a ser rescatado por helicóptero hay que arriar las velas, para que nada se enrede con el cable y el barco no dé bandazos, y mantener el motor en marcha para gobernar con el rumbo y la velocidad que indique la tripulación del helicóptero: la d).",
+  "clave": "Velero con helicóptero: velas abajo, motor en marcha.",
+  "trampa": "La a) apaga el motor, y sin él no puedes mantener el rumbo que te pidan.",
+  "concepto": "bal-py-2019-04-a-07"
+ },
+ "bal-py-2019-04-a-08": {
+  "explicacion": "No conviene montar un reflector de radar junto a un SART: el eco fuerte del reflector puede enmascarar o degradar en la pantalla la línea de puntos de la respuesta del SART: la a). La c) falla porque el reflector no transmite nada, solo devuelve el eco.",
+  "clave": "Con SART, quita el reflector de radar.",
+  "trampa": "La c) dice que el reflector «transmite»: es pasivo, solo refleja.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2019-04-a-09": {
+  "explicacion": "La función principal del arnés es no caer al agua: con una línea corta enganchada a una línea de vida, el cuerpo no llega a pasar la borda. Por eso la oficial es la b). Evitar resbalones es cosa del calzado y de la cubierta antideslizante.",
+  "clave": "Arnés con línea corta: para no caer al agua.",
+  "trampa": "La a) describe lo que pasa si el arnés se usa mal, con línea larga.",
+  "discrepancia": "Muchos manuales dan al arnés las dos funciones: evitar caer al agua y, si se cae, mantenerse unido al barco. Con ese criterio la a) también es defendible.",
+  "defendible": "a"
+ },
+ "bal-py-2019-04-a-10": {
+  "explicacion": "Al trasladar un peso p una distancia d, el centro de gravedad del barco se mueve en la misma dirección una distancia GG' = p · d / D, siendo D el desplazamiento: la a). Es el teorema de los momentos: el momento del peso trasladado se reparte entre todo el desplazamiento.",
+  "clave": "GG' = p · d / D.",
+  "trampa": "La d) invierte la fracción (D · d / p) y daría traslados enormes."
+ },
+ "bal-py-2019-04-b-02": {
+  "explicacion": "El metacentro transversal (M) es el punto donde se corta la vertical del empuje con el barco adrizado con la nueva línea de empuje al escorar un ángulo muy pequeño: la a). El longitudinal se refiere a cambios de asiento, el radio metacéntrico es la distancia BM y la altura metacéntrica es la distancia GM.",
+  "clave": "Metacentro: corte de las líneas de empuje a pequeñas escoras.",
+  "trampa": "La c) y la d) son distancias, no puntos.",
+  "concepto": "bal-py-2019-04-b-02"
+ },
+ "bal-py-2019-04-b-06": {
+  "explicacion": "La oficial es la a) (2 fumígenas en zona 2), que era lo que exigía la Orden FOM/1144/2003 en la fecha del examen. Desde el 1-7-2021 el RD 339/2021 (art. 9) pide en zonas 2 y 3 una sola señal fumígena flotante; dos solo en zona 1. Así que hoy ninguna opción es correcta.",
+  "clave": "Fumígenas hoy: 2 en zona 1, 1 en zonas 2 y 3.",
+  "trampa": "Memorizar la cifra antigua (2) para la zona 2.",
+  "discrepancia": "La respuesta oficial (2) era la de la Orden FOM/1144/2003, derogada. Desde el 1-7-2021 el RD 339/2021 exige en zona 2 una sola señal fumígena flotante, cifra que no aparece entre las opciones.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2019-04-b-08": {
+  "explicacion": "Hay equilibrio inestable cuando el metacentro queda por debajo del centro de gravedad (GM negativo): al escorar, peso y empuje forman un par que aumenta la escora. Es la d). Si M coincide con G es indiferente, si está por encima es estable, y el empuje nunca es mayor que el desplazamiento en un barco que flota en reposo.",
+  "clave": "M bajo G = inestable.",
+  "trampa": "La b) es justo el caso estable.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-py-2019-04-b-10": {
+  "explicacion": "Los aros salvavidas deben estar estibados de forma que se puedan soltar al instante y sin sujeciones permanentes, porque hay que lanzarlos en segundos cuando alguien cae al agua: la a). Guardarlos en la sala de máquinas o bajo llave haría imposible usarlos a tiempo.",
+  "clave": "Aro salvavidas: a mano y sin trincas fijas."
+ },
+ "bal-py-2019-06-a-04": {
+  "explicacion": "En la figura el centro de gravedad G está por encima del metacentro M, así que la altura metacéntrica es negativa: el barco está en equilibrio inestable (a) y, ante cualquier escora, peso y empuje forman un par que la aumenta hasta zozobrar (b). Por eso es la d). La c) falla porque GM no es positiva: para eso M tendría que estar por encima de G.",
+  "clave": "G por encima de M: GM negativa, inestable.",
+  "trampa": "La c) da por hecho GM positiva sin mirar el orden de G y M en la figura.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "inestable"
+   }
+  ]
+ },
+ "bal-py-2019-06-a-06": {
+  "explicacion": "La imagen muestra una zafa hidrostática (el cartucho redondo con la fecha de caducidad y el cabo con la unión débil): suelta la balsa o la radiobaliza por la presión del agua cuando el barco se hunde, antes de unos 4 m. No es el inflador de la balsa, que es la botella de gas, ni el mecanismo de un chaleco autoinflable.",
+  "clave": "Zafa hidrostática: libera por presión del agua al hundirse el barco.",
+  "trampa": "La a) le atribuye el inflado, que lo hace la botella al tensarse la boza."
+ },
+ "bal-py-2019-12-a-01": {
+  "explicacion": "A la balsa hay que llevarse los equipos que sirven para que te localicen y para comunicarte: la radiobaliza EPIRB, el respondedor de radar (SART) y el VHF portátil: la d). El NAVTEX solo recibe avisos, el radiogoniómetro no hace falta y el reflector de radar del barco no está pensado para la balsa.",
+  "clave": "A la balsa: EPIRB, SART y VHF portátil.",
+  "trampa": "La a) acierta dos de tres, pero el NAVTEX no sirve para pedir ayuda."
+ },
+ "bal-py-2019-12-a-10": {
+  "explicacion": "El AIS-SART transmite por VHF en los canales del AIS: tiene mayor alcance de detección que el SART de radar (a) y su señal VHF puede propagarse algo alrededor de accidentes geográficos (b). Por eso es la d). La c) es falsa: el AIS-SART no aparece en los radares de banda X, sino en las pantallas AIS y plotters.",
+  "clave": "AIS-SART: VHF, más alcance; no sale en el radar.",
+  "trampa": "La c) le da al AIS-SART una propiedad del SART de radar."
+ },
+ "bal-py-2019-12-c-02": {
+  "explicacion": "La balsa se puede poner en servicio a mano (se lanza y se tira de la boza para inflarla) o de forma automática, cuando la zafa hidrostática la suelta al hundirse el barco y se infla sola: la b). La a) es falsa: la balsa es obligatoria precisamente en las zonas de navegación más alejadas, 1, 2 y 3.",
+  "clave": "Balsa: manual o automática con la zafa hidrostática.",
+  "trampa": "La a) invierte la norma: las zonas 1 a 3 son las que sí llevan balsa.",
+  "concepto": "bal-py-2018-04-c-09"
+ },
+ "bal-py-2019-12-c-03": {
+  "explicacion": "Las tres afirmaciones son ciertas, así que la respuesta es la a). El barco, mientras flote, es la mejor balsa: solo se abandona cuando deja de ser un lugar seguro, por peligro inminente de hundimiento o un incendio incontrolable con riesgo de explosión, y es una decisión que hay que meditar mientras siga a flote.",
+  "clave": "Solo se abandona el barco cuando ya no es un lugar seguro.",
+  "concepto": "bal-py-2019-12-c-03"
+ },
+ "bal-py-2024-04-bc-10": {
+  "explicacion": "Las tres afirmaciones son ciertas, así que la respuesta es la d). El abandono es una decisión drástica que hay que ponderar: el barco, mientras flote, es la mejor balsa, y solo se deja cuando ya no es un lugar seguro, por peligro inminente de hundimiento o un incendio incontrolable con riesgo de explosión.",
+  "clave": "Solo se abandona el barco cuando ya no es un lugar seguro.",
+  "concepto": "bal-py-2019-12-c-03"
+ },
+ "bal-py-2019-12-c-04": {
+  "explicacion": "GM es la altura metacéntrica: la distancia entre el centro de gravedad (G) y el metacentro (M) del buque, y mide su estabilidad inicial: la c). No es un sistema de comunicación, no se mide respecto al mar y lo del gonio y la manga no tiene sentido.",
+  "clave": "GM = altura metacéntrica = distancia de G a M.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2019-12-c-07": {
+  "explicacion": "Las afirmaciones a), b) y c) sobre el arnés son ciertas: la cinta plana es mejor que el cabo porque no rueda bajo el pie, el arnés evita caer al agua o al menos separarse del barco, y su línea debe ser corta, unos 2 m como máximo. Por tanto, la falsa es la d) («ninguna es verdadera»).",
+  "clave": "Arnés: cinta plana, línea corta (≤ 2 m), siempre enganchado.",
+  "trampa": "Buscar un fallo en la a), b) o c) cuando la falsa es la d)."
+ },
+ "bal-py-2019-12-c-09": {
+  "explicacion": "Es falsa la c): el KG sí se puede variar, subiendo, bajando, cargando o descargando pesos, y es la forma práctica de corregir la estabilidad. Las demás son ciertas: el GM debe estar entre un mínimo de seguridad y un máximo de comodidad; con mucho GM el barco es «duro», con balances rápidos y violentos, y con poco GM es «blando» o «dormilón», con balances amplios y lentos.",
+  "clave": "GM: ni poco (barco blando) ni mucho (barco duro); se ajusta moviendo pesos.",
+  "trampa": "La d) suena a jerga, pero describe bien al barco con poco GM."
+ },
+ "bal-py-2020-07-a-01": {
+  "explicacion": "Según el Código IDS, la señal fumígena flotante debe emitir humo de color muy visible (naranja) de forma uniforme durante 3 minutos como mínimo, flotando en aguas tranquilas; además no debe anegarse con mar encrespada. Es la a); 5 minutos, 1 minuto o «entre 1 y 2» no son la cifra de la norma.",
+  "clave": "Humo flotante: naranja y 3 minutos.",
+  "trampa": "Las cifras cambian: son 3 minutos y en aguas tranquilas.",
+  "base": "and-py-2024-c3-g09",
+  "concepto": "and-py-2024-c3-g09",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2026-03-b-06": {
+  "explicacion": "Según el Código IDS, la señal fumígena flotante debe emitir humo de color muy visible (naranja) de forma uniforme durante 3 minutos como mínimo, flotando en aguas tranquilas; además no debe anegarse con mar encrespada. Es la c); 1 minuto, 5 minutos o «entre 1 y 2» no son la cifra de la norma.",
+  "clave": "Humo flotante: naranja y 3 minutos.",
+  "trampa": "Las cifras cambian: son 3 minutos y en aguas tranquilas.",
+  "base": "and-py-2024-c3-g09",
+  "concepto": "and-py-2024-c3-g09",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2020-07-a-03": {
+  "explicacion": "El canal 70 de VHF está reservado a la llamada selectiva digital (LSD): no se puede hablar por él, así que una llamada de socorro por fonía en el 70 es lo que no se puede hacer: la a). Lo correcto es la alerta LSD (por el 70, pulsando DISTRESS) y luego el Mayday por fonía en el canal 16.",
+  "clave": "Canal 70: solo LSD, nunca voz. Voz de socorro: canal 16.",
+  "trampa": "La c) también menciona el 70, pero la LSD sí es su uso.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "LSD",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2020-07-a-04": {
+  "explicacion": "Al subir un peso, el centro de gravedad del barco sube (KG aumenta) y, como GM = KM − KG, la altura metacéntrica disminuye y la estabilidad empeora: la d). El centro de carena no cambia porque el desplazamiento es el mismo, y un traslado vertical no produce escora.",
+  "clave": "Subir pesos: sube G, baja GM.",
+  "trampa": "La a) acierta que la estabilidad empeora, pero culpa a la carena en vez de a G."
+ },
+ "bal-py-2020-07-a-05": {
+  "explicacion": "En un rescate con helicóptero todas las personas a bordo deben llevar puesto el chaleco salvavidas, porque pueden acabar en el agua durante la maniobra: la d). No es voluntario ni estorba, y vale cualquier chaleco homologado, no solo los autoinflables.",
+  "clave": "Rescate con helicóptero: todos con chaleco."
+ },
+ "bal-py-2020-07-a-06": {
+  "explicacion": "Si nadie mueve pesos, el centro de gravedad no cambia por mucho que el viento escore el barco: la b). El desplazamiento tampoco aumenta (a); lo que se mueve es el centro de carena, no G (c); y al cesar el viento, como G sigue en crujía, el par adrizante devuelve el barco a la posición de adrizado (d).",
+  "clave": "Escora sin mover pesos: G fijo, B se mueve.",
+  "trampa": "La c) atribuye a G el movimiento que en realidad hace B.",
+  "concepto": "bal-py-2020-07-a-06"
+ },
+ "bal-py-2021-03-b-01": {
+  "explicacion": "Si nadie mueve pesos, el centro de gravedad no cambia por mucho que el viento escore el barco: la b). El desplazamiento tampoco aumenta (a); lo que se mueve es el centro de carena, no G (c); y al cesar el viento, como G sigue en crujía, el par adrizante devuelve el barco a la posición de adrizado (d).",
+  "clave": "Escora sin mover pesos: G fijo, B se mueve.",
+  "trampa": "La c) atribuye a G el movimiento que en realidad hace B.",
+  "concepto": "bal-py-2020-07-a-06"
+ },
+ "bal-py-2020-07-a-08": {
+  "explicacion": "El SART se activa a mano y, una vez en espera, lo detectan automáticamente los radares de banda X de barcos y aeronaves, en cuya pantalla aparece como una línea de 12 puntos: la c). La a) describe un reflector de radar, la b) una radiobaliza EPIRB y la d) la zafa hidrostática.",
+  "clave": "SART: se enciende a mano y lo ven los radares de banda X.",
+  "trampa": "La b) es la EPIRB: alerta por satélite, no por radar.",
+  "concepto": "bal-py-2020-07-a-08",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2021-03-b-07": {
+  "explicacion": "El SART se activa a mano y, una vez en espera, lo detectan automáticamente los radares de banda X de barcos y aeronaves, en cuya pantalla aparece como una línea de 12 puntos: la c). La a) describe un reflector de radar, la b) una radiobaliza EPIRB y la d) la zafa hidrostática.",
+  "clave": "SART: se enciende a mano y lo ven los radares de banda X.",
+  "trampa": "La b) es la EPIRB: alerta por satélite, no por radar.",
+  "concepto": "bal-py-2020-07-a-08",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2020-07-a-10": {
+  "explicacion": "En un velero que va a ser rescatado por helicóptero hay que arriar las velas, para que nada se enrede con el cable y el barco no dé bandazos, y arrancar el motor para gobernar con el rumbo y la velocidad que indique la tripulación del helicóptero: la b).",
+  "clave": "Velero con helicóptero: velas abajo, motor en marcha.",
+  "trampa": "La c) arría bien las velas, pero sin motor no puedes mantener el rumbo que te pidan.",
+  "concepto": "bal-py-2019-04-a-07"
+ },
+ "bal-py-2020-07-b-01": {
+  "explicacion": "Para adrizar una balsa invertida se trabaja desde el lado de la botella de gas y se aprovecha el viento: se levanta el lado de barlovento para que el viento se meta por debajo y ayude a voltearla: la c). Nunca hay que quitarse el chaleco, y la capota no se quita: forma parte de la protección de la balsa.",
+  "clave": "Balsa volcada: desde la botella, tirando de las cinchas y con el viento a favor.",
+  "trampa": "Quitarse el chaleco para maniobrar mejor es un error grave."
+ },
+ "bal-py-2020-07-b-06": {
+  "explicacion": "Al cargar pesos cerca de la quilla, es decir, por debajo del centro de gravedad del barco, G baja: la b). Eso aumenta la altura metacéntrica GM y mejora la estabilidad; por eso el lastre va abajo.",
+  "clave": "Peso cargado por debajo de G: G baja y GM sube.",
+  "trampa": "La a) sería el caso de cargar pesos altos, sobre cubierta."
+ },
+ "bal-py-2020-12-a-07": {
+  "explicacion": "Lo que no figura en el protocolo de abandono es la d): no se trata de agruparse de cuatro en cuatro ni de recoger lo que uno quiera llevarse, sino de mantener unido a todo el grupo y llevar el equipo de supervivencia (radiobaliza, SART, VHF). Detener el barco, dar la llamada de socorro, activar la radiobaliza y abrigarse con chaleco o traje de supervivencia sí son pasos correctos.",
+  "clave": "Antes de abandonar: parar, socorro, radiobaliza, abrigo y chaleco.",
+  "trampa": "La d) suena organizada, pero no es un paso del protocolo."
+ },
+ "bal-py-2020-12-b-01": {
+  "explicacion": "La estabilidad mejora cuanto más bajo está el centro de gravedad, porque así aumenta GM = KM − KG: hay que mover pesos de modo que KG sea lo más pequeño posible: la c). El centro de carena no se baja moviendo pesos (a), subir G reduce GM (b) y mover pesos de proa a popa cambia el asiento, no la altura de G (d).",
+  "clave": "Más estabilidad = G más bajo.",
+  "trampa": "La b) dice «elevar G» para que GM sea mayor: es justo al revés.",
+  "concepto": "bal-py-2020-12-b-01"
+ },
+ "bal-py-2021-06-b-03": {
+  "explicacion": "La estabilidad mejora cuanto más bajo está el centro de gravedad, porque así aumenta GM = KM − KG: hay que mover pesos de modo que G quede lo más bajo posible: la c). El centro de carena no se baja moviendo pesos (a), subir G reduce GM (b) y mover pesos de proa a popa cambia el asiento, no la estabilidad transversal (d).",
+  "clave": "Más estabilidad = G más bajo.",
+  "trampa": "La b) dice «elevar G» para que GM sea mayor: es justo al revés.",
+  "concepto": "bal-py-2020-12-b-01"
+ },
+ "bal-py-2020-12-b-04": {
+  "explicacion": "Las radiobalizas del sistema Cospas-Sarsat transmiten la alerta a los satélites en 406 MHz: la d). Muchas llevan además una señal de 121,5 MHz, pero solo sirve para que los medios de rescate se guíen hasta ella en la última fase (homing), no para la alerta por satélite.",
+  "clave": "EPIRB: 406 MHz al satélite; 121,5 MHz para el homing.",
+  "trampa": "La b) (121,5 MHz) existe en la baliza, pero no es la frecuencia de alerta.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "satelite"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-06": {
+  "explicacion": "El SART se coloca en el punto más alto de la balsa, porque cuanto más alto esté más lejos lo detectarán los radares: la c). La radiobaliza se lleva a la balsa (no se deja en el barco, que se hunde), el chaleco se pone antes de abandonar y el SART no va siempre encendido: se activa en la emergencia.",
+  "clave": "SART lo más alto posible en la balsa.",
+  "trampa": "La a) parece lógica (localizar el barco), pero el barco se hunde y la gente está en la balsa.",
+  "concepto": "bal-py-2020-12-b-06"
+ },
+ "bal-py-2020-12-b-07": {
+  "explicacion": "Antes de lanzar el contenedor hay que comprobar que la boza está firme al barco: si no, la balsa se va a la deriva. Con la balsa en el agua se cobra la boza y se da un tirón fuerte, que dispara la botella de gas y la infla; ya con todos a bordo, se corta la boza. Eso es la b). La zafa hidrostática no actúa por el golpe contra el agua (a y c), sino por presión a unos 4 m si el barco se hunde con la balsa trincada.",
+  "clave": "Lanzar balsa: boza firme, al agua, tirón y se infla.",
+  "trampa": "La c) mezcla bien lo de la boza con un falso inflado por la zafa al tocar el agua.",
+  "concepto": "bal-py-2018-04-a-05"
+ },
+ "bal-py-2021-03-ac-01": {
+  "explicacion": "La imagen muestra un cilindro transparente con elementos reflectantes en su interior y un soporte para fijarlo al palo: es un reflector de radar tubular, que devuelve las ondas del radar para que los demás barcos te vean en pantalla. No es una radiobaliza: la EPIRB y la radiobaliza de localización de siniestros son el mismo aparato, que emite por satélite y tiene otra forma.",
+  "clave": "Reflector de radar: pasivo, solo devuelve el eco del radar.",
+  "trampa": "La c) junta dos nombres del mismo aparato, que no es el de la imagen."
+ },
+ "bal-py-2021-03-ac-02": {
+  "explicacion": "Las imágenes muestran reflectores de radar, en este caso de tipo octaédrico (placas metálicas cruzadas formando triedros), que se izan en la jarcia para que el barco devuelva un eco fuerte en los radares ajenos: la c). No son flotadores para el palo, ni magnetrones, ni la bola negra de fondeo del RIPA.",
+  "clave": "Reflector de radar: placas cruzadas en triedros, izado en alto.",
+  "trampa": "La d) recuerda a la bola de fondeo, pero esta es negra y no metálica."
+ },
+ "bal-py-2021-03-ac-03": {
+  "explicacion": "La imagen no viene con la pregunta, pero las opciones lo dejan claro: el tubo negro del SART es un mástil extensor que sirve para elevarlo, porque cuanto más alto está más lejos alcanza su señal y antes lo detectan los radares. Es la a). No refleja la señal, su función no es dar flotabilidad y no es un mango para hacer señales visuales.",
+  "clave": "SART: cuanto más alto, más alcance; para eso el mástil.",
+  "trampa": "La c) suena a norma SOLAS, pero el tubo no está para flotar.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2021-03-ac-06": {
+  "explicacion": "El aparato de la imagen transmite en 406 MHz a un satélite de alerta, que pasa el aviso al centro de salvamento, recibe la posición de los satélites GPS y emite además en 121,5 MHz para que el helicóptero y la lancha se guíen hasta él: es una radiobaliza EPIRB, la c). El SART responde a radares de banda X, la luz Holmes es solo luminosa y la d) no es un equipo real.",
+  "clave": "406 MHz + 121,5 MHz + GPS = radiobaliza EPIRB.",
+  "trampa": "El SART también va en la balsa, pero no emite al satélite.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "satelite"
+   }
+  ]
+ },
+ "bal-py-2021-03-ac-07": {
+  "explicacion": "Lejos del SART, en el radar se ve una línea de 12 puntos que parte de su posición. Al acercarse a menos de 1 milla, los puntos se ensanchan en arcos y, muy cerca, se convierten en círculos concéntricos alrededor del centro de la pantalla. Por eso estamos más cerca en la imagen de la izquierda, con círculos, que en la de la derecha, con la línea de puntos: la b).",
+  "clave": "SART en radar: puntos (lejos) → arcos → círculos (muy cerca).",
+  "trampa": "Los círculos parecen interferencias, pero indican que estás encima del SART.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2021-03-ac-08": {
+  "explicacion": "En la pantalla, con anillos cada 3 millas, la señal del SART empieza dentro del primer anillo y sus puntos ya se han ensanchado en arcos, lo que ocurre al acercarse a alrededor de 1 milla, pero todavía no forman círculos completos. Por eso estamos entre 1 y 3 millas: la c). A más de 4 o 6 millas se vería la línea de puntos finos, y a menos de 1 milla los arcos se cierran en círculos.",
+  "clave": "SART: el primer punto es su posición; arcos = cerca, círculos = encima.",
+  "trampa": "La línea de puntos se alarga hacia fuera; lo que cuenta es dónde empieza.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2021-03-ac-09": {
+  "explicacion": "La pieza que cuelga del cabo en el espejo de señales es la mira o visor: se pone delante y sirve para apuntar, alineando el agujero del espejo y el de la mira con el objetivo (barco o aeronave) para dirigirle el destello del sol: la c). El cabo evita perderla, pero su función no es dar flotabilidad ni sujetar el espejo a la muñeca.",
+  "clave": "Espejo de señales: la mira sirve para apuntar el destello.",
+  "trampa": "La b) describe el cabo, no la pieza que lleva atada.",
+  "concepto": "bal-py-2021-03-ac-09"
+ },
+ "bal-py-2023-12-b-06": {
+  "explicacion": "La pieza que cuelga del cabo en el espejo de señales es la mira o visor: se pone delante y sirve para apuntar, alineando el agujero del espejo y el de la mira con el objetivo (barco o aeronave) para dirigirle el destello del sol: la c). El cabo evita perderla, pero su función no es dar flotabilidad, sujetar el espejo a la muñeca ni trabajar de pie.",
+  "clave": "Espejo de señales: la mira sirve para apuntar el destello.",
+  "trampa": "La b) describe el cabo, no la pieza que lleva atada.",
+  "concepto": "bal-py-2021-03-ac-09"
+ },
+ "bal-py-2021-06-ac-01": {
+  "explicacion": "Para adrizar una balsa invertida se trabaja desde el lado de la botella de gas y se aprovecha el viento: subiéndose por sotavento se levanta el lado de barlovento para que el viento se meta por debajo y ayude a voltearla: la c). Nunca hay que quitarse el chaleco, y la capota no se quita: forma parte de la protección de la balsa.",
+  "clave": "Balsa volcada: desde la botella, tirando de las cinchas y con el viento a favor.",
+  "trampa": "Quitarse el chaleco para maniobrar mejor es un error grave.",
+  "concepto": "bal-py-2020-07-b-01"
+ },
+ "bal-py-2021-06-ac-06": {
+  "explicacion": "Antes de usar por primera vez cualquier señal pirotécnica hay que leer sus instrucciones, porque cada modelo se dispara de una forma y usarla mal puede causar quemaduras o desperdiciarla: la a). Guantes, gafas o casco no son el paso previo exigido; lo imprescindible es saber cómo se usa.",
+  "clave": "Pirotecnia: lee las instrucciones antes de usarla.",
+  "concepto": "bal-py-2018-06-a-07",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2021-06-ac-07": {
+  "explicacion": "El metacentro (M) es el punto donde se cortan la línea de empuje del barco adrizado y la nueva línea de empuje al escorar un ángulo muy pequeño: la d). El centro de carena es donde se aplica el empuje, el radio metacéntrico es la distancia entre ese centro y M, y la curva metacéntrica es el lugar de los metacentros para distintos calados.",
+  "clave": "Metacentro: corte de las líneas de empuje a pequeñas escoras.",
+  "trampa": "La b) es una distancia (BM), no el punto.",
+  "concepto": "bal-py-2019-04-b-02"
+ },
+ "bal-py-2021-06-ac-08": {
+  "explicacion": "El equilibrio indiferente se da cuando el centro de gravedad coincide con el metacentro, es decir, cuando la altura metacéntrica es nula: la a). Con GM positiva el equilibrio es estable y con GM negativa, inestable, y la d) es falsa porque GM es precisamente la medida de la estabilidad transversal inicial.",
+  "clave": "GM > 0 estable · GM = 0 indiferente · GM < 0 inestable.",
+  "trampa": "Confundir indiferente (GM nula) con inestable (GM negativa)."
+ },
+ "bal-py-2021-06-b-01": {
+  "explicacion": "Antes de que llegue el helicóptero hay que despejar la cubierta de todo lo que pueda salir volando con el rebufo del rotor, porque podría golpear a alguien o meterse en el rotor: la b). No se esperan instrucciones para eso, no se lanzan cohetes con el helicóptero cerca y en un velero las velas se arrían.",
+  "clave": "Helicóptero: cubierta despejada, nada suelto.",
+  "trampa": "La d) acierta con el motor, pero las velas se arrían, no se mantienen izadas."
+ },
+ "bal-py-2021-06-b-02": {
+  "explicacion": "Para que el SART funcione bien hay que quitar el pasador de seguridad, ponerlo en ON y colocarlo al menos a 1 m por encima del agua, porque cuanto más alto más lejos lo detectan los radares: la a). Flotando a ras de agua su alcance se reduce mucho, la posición TEST es solo para probarlo y quitar el pasador no basta.",
+  "clave": "SART: pasador fuera, ON y a 1 m o más de altura.",
+  "trampa": "La b) lo deja flotando: funciona, pero con mucho menos alcance.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2021-06-b-10": {
+  "explicacion": "La norma exige un chaleco por persona a bordo, adecuado a su peso y talla, así que hay que llevar un chaleco infantil por cada menor embarcado: la b). No vale cualquier chaleco, porque uno de adulto no sujeta bien a un niño, y no hay un mínimo de dos ni un 20 % extra.",
+  "clave": "Un chaleco infantil por cada niño a bordo.",
+  "trampa": "El 20 % extra suena a norma, pero en recreo la regla es uno por persona.",
+  "base": "and-py-2021-c1-g04",
+  "concepto": "and-py-2021-c1-g04"
+ },
+ "bal-py-2021-12-a-05": {
+  "explicacion": "Lo incorrecto es la b): con el arnés puesto no hay que agarrarse al cable, sino llevar los brazos pegados al cuerpo o cruzados en el pecho; si levantas los brazos te puedes escurrir del arnés. Las demás son correctas: el cable se deja tocar el agua para descargar la electricidad estática, en un velero se arrían las velas y el cable nunca se amarra al barco.",
+  "clave": "Izado en arnés: brazos abajo; cable al agua antes de tocarlo; nunca amarrarlo.",
+  "trampa": "Sujetarse al cable parece más seguro, pero obliga a subir los brazos.",
+  "concepto": "bal-py-2017-03-cb-10"
+ },
+ "bal-py-2021-12-a-10": {
+  "explicacion": "Las balsas homologadas deben poder adrizarse por una sola persona si quedan invertidas en el agua, tirando de las cinchas desde el lado de la botella: la a). Por eso llevan cinchas de adrizamiento en el fondo.",
+  "clave": "Una balsa volcada la tiene que poder adrizar una persona."
+ },
+ "bal-py-2021-12-b-01": {
+  "explicacion": "La altura metacéntrica es la distancia entre el centro de gravedad y el metacentro: GM = KM − KG, la d). La a) suma la altura del centro de carena, la b) resta el brazo adrizante GZ y la c) mezcla KC con GZ; ninguna mide esa distancia.",
+  "clave": "GM = KM − KG.",
+  "trampa": "La b) usa GZ, que es el brazo adrizante, no una altura."
+ },
+ "bal-py-2021-12-b-02": {
+  "explicacion": "Es falsa la b): el polvo seco polivalente (ABC) sirve para muchas clases de fuego, pero no para todas; no es adecuado, por ejemplo, para metales (clase D) ni el mejor para aceites de cocina (clase F). Las demás son ciertas: extintores a mano y revisados por empresa autorizada, toda la tripulación sabe dónde están y cómo se usan, y se emplean en posición vertical.",
+  "clave": "Polvo ABC: polivalente, pero no vale para todo (metales, aceites).",
+  "trampa": "«Polivalente» no significa «universal».",
+  "concepto": "bal-py-2017-07-b-07",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2021-12-b-03": {
+  "explicacion": "A mayor altura metacéntrica, mayor par adrizante (GZ = GM · sen θ) y mayor estabilidad: la a). La b) dice lo contrario, y un GM negativo (c y d) significa equilibrio inestable: el barco no se recupera de la escora y puede zozobrar.",
+  "clave": "Más GM, más estabilidad; GM negativo, inestable.",
+  "trampa": "La d) añade «muy elevado» para que suene bien, pero un GM negativo nunca es aconsejable.",
+  "concepto": "bal-py-2021-12-b-03"
+ },
+ "bal-py-2024-04-bc-03": {
+  "explicacion": "A mayor altura metacéntrica, mayor par adrizante (GZ = GM · sen θ) y mayor estabilidad: la a). La b) dice lo contrario; un GM negativo da equilibrio inestable y un GM = 0, equilibrio indiferente: en ninguno de los dos casos el barco se recupera de la escora.",
+  "clave": "Más GM, más estabilidad; GM ≤ 0, el barco no se recupera.",
+  "trampa": "La d) (GM = 0) parece neutral, pero el barco se queda escorado.",
+  "concepto": "bal-py-2021-12-b-03"
+ },
+ "bal-py-2021-12-b-04": {
+  "explicacion": "Si el peso se mueve hacia popa sin cambiar su distancia a crujía, el centro de gravedad se desplaza solo longitudinalmente: cambian el asiento, los calados de proa y popa y la posición del centro de carena, pero no aparece escora, porque G sigue en el plano de crujía. Por eso es la d).",
+  "clave": "Traslado proa-popa: cambia el asiento; traslado a una banda: escora.",
+  "trampa": "La c) parece que no cambia, pero al variar el asiento el volumen sumergido cambia de forma y B se mueve."
+ },
+ "bal-py-2021-12-b-09": {
+  "explicacion": "No está en el protocolo de Salvamento Marítimo la d): reunir las pertenencias no es prioritario; lo que se lleva es el equipo de supervivencia. Sí lo están prepararse con antelación, dar la llamada de socorro, activar la radiobaliza manualmente y releer las instrucciones de la balsa antes de lanzarla.",
+  "clave": "Al abandonar: equipo de supervivencia, no pertenencias.",
+  "trampa": "Una bolsa hermética suena prudente, pero distrae de lo esencial."
+ },
+ "bal-py-2021-12-b-10": {
+  "explicacion": "Lo ideal es embarcar en la balsa directamente desde el barco sin mojarse y sin saltar encima de ella, porque el agua fría acelera la hipotermia y un salto puede dañar la balsa o herir a quien ya está dentro: la d). Si no queda más remedio se entra desde el agua, siempre con el chaleco puesto, pero no es lo preferible.",
+  "clave": "Embarcar en la balsa: seco y sin saltar encima.",
+  "trampa": "La a) es lo que haces si no hay otra opción, no lo que hay que procurar."
+ },
+ "bal-py-2022-03-a-02": {
+  "explicacion": "Si la radiobaliza se ha activado por error al mojarse, hay que sacarla del agua y secar los contactos del interruptor de mar para que deje de emitir, desactivarla y avisar cuanto antes al centro de salvamento (CRC o MCC) de que es una falsa alerta, para que no se ponga en marcha una búsqueda. Las tres acciones son correctas, así que la respuesta es la b).",
+  "clave": "Falsa alerta EPIRB: apágala y avisa enseguida al centro de salvamento.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2022-06-a-05": {
+  "explicacion": "Las afirmaciones a), b) y d) sobre el arnés son ciertas: evita caer al agua o al menos separarse del barco, la cinta plana es mejor que el cabo porque no rueda bajo el pie y la línea debe ser corta, unos 2 m como máximo. Por tanto, la falsa es la c) («todas son falsas»).",
+  "clave": "Arnés: cinta plana, línea corta (≤ 2 m), siempre enganchado.",
+  "trampa": "Buscar un fallo en la a), b) o d) cuando la falsa es la c)."
+ },
+ "bal-py-2022-06-n-01": {
+  "explicacion": "La eficacia de un extintor indica su poder de extinción para un tipo de fuego (a) y se expresa como la cantidad de combustible, dispuesta en un hogar tipo normalizado, que es capaz de apagar (c): por ejemplo, 113 B son 113 litros de líquido. Por eso es la b). No mide cuántos fuegos apaga en un tiempo dado.",
+  "clave": "Eficacia = tamaño del hogar tipo que apaga (número + clase).",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2022-06-n-10": {
+  "explicacion": "El AIS conviene llevarlo siempre encendido, porque te hace visible para los demás y te ayuda a evitar abordajes. Se puede apagar, pero solo en casos concretos en los que emitir la posición comprometa la seguridad del barco (por ejemplo, en zonas con riesgo de piratería): la a). No depende de si es de clase A o B ni de estar fondeado.",
+  "clave": "AIS: siempre encendido salvo riesgo para la seguridad.",
+  "trampa": "La b) es tajante, pero la norma admite apagarlo por seguridad."
+ },
+ "bal-py-2022-12-ac-02": {
+  "explicacion": "Lo primero es asegurarse de que la boza está hecha firme al barco: si no, al lanzar la balsa se iría a la deriva. Después se lanza, se cobra la boza y un tirón fuerte dispara el inflado: la d). Tirar de la boza es un paso posterior, y la zafa hidrostática no se rompe a mano.",
+  "clave": "Balsa manual: boza firme, lanzar, cobrar y tirón.",
+  "trampa": "La b) es el paso siguiente, no el primero.",
+  "concepto": "bal-py-2018-04-a-05"
+ },
+ "bal-py-2022-12-b-01": {
+  "explicacion": "Las bengalas de mano son pocas y duran muy poco, así que solo se disparan cuando hay certeza de que alguien puede verlas: un barco o una aeronave a la vista: la c). Encenderlas al embarcar, cada 4 horas o con mal tiempo es desperdiciarlas.",
+  "clave": "Pirotecnia: solo cuando alguien pueda verla.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2022-12-b-03": {
+  "explicacion": "Con GM positivo, el metacentro está por encima del centro de gravedad: aunque una fuerza externa (viento, olas) mantenga escorado el barco, el par adrizante tiende a devolverlo a la posición de adrizado y lo hará en cuanto cese la fuerza. El equilibrio es estable: la a).",
+  "clave": "GM positivo = estable, aunque esté escorado por una fuerza externa.",
+  "trampa": "Ver el barco escorado y pensar que es inestable: la escora la causa la fuerza, no la falta de estabilidad.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2022-12-b-04": {
+  "explicacion": "En un velero que va a ser rescatado por helicóptero hay que arriar las velas, para que nada se enrede con el cable y el barco no dé bandazos, y arrancar el motor para gobernar con el rumbo y la velocidad que indique la tripulación del helicóptero: la c).",
+  "clave": "Velero con helicóptero: velas abajo, motor en marcha.",
+  "trampa": "La b) arría bien las velas, pero sin motor no puedes mantener el rumbo que te pidan.",
+  "concepto": "bal-py-2019-04-a-07"
+ },
+ "bal-py-2023-03-ac-04": {
+  "explicacion": "El principio de Arquímedes dice que todo cuerpo sumergido en un líquido recibe un empuje vertical, de abajo hacia arriba, igual al peso del líquido desalojado, aplicado en el centro de gravedad de ese volumen, que en un barco es el centro de carena o centro de empuje. La oficial marca como incorrecta la a), que sin embargo es el enunciado correcto del principio.",
+  "clave": "Arquímedes: empuje hacia arriba = peso del líquido desalojado, aplicado en B.",
+  "trampa": "La b) cambia el sentido del empuje y lo reparte por todo el volumen.",
+  "discrepancia": "La a) es el enunciado correcto del principio de Arquímedes, y la c) y la d) también son ciertas. La única incorrecta es la b), que dice que el empuje va de arriba hacia abajo y se reparte por todo el volumen. Parece un error del tribunal; en la versión de 2026 la oficial ya es la b).",
+  "defendible": "b",
+  "concepto": "bal-py-2023-03-ac-04"
+ },
+ "bal-py-2026-03-a-06": {
+  "explicacion": "La incorrecta es la b): el empuje de Arquímedes es vertical y va de abajo hacia arriba, no de arriba hacia abajo. Las demás son ciertas: su valor es el peso del líquido desalojado (a), solo actúa sobre cuerpos total o parcialmente sumergidos en un fluido (c) y en un barco se aplica en el centro de carena (d).",
+  "clave": "Arquímedes: empuje hacia arriba = peso del líquido desalojado, aplicado en B.",
+  "trampa": "La a) y la b) solo se diferencian en el sentido del empuje.",
+  "concepto": "bal-py-2023-03-ac-04"
+ },
+ "bal-py-2023-06-ac-01": {
+  "explicacion": "En recreo las bocinas de niebla son manuales (de fuelle o soplido) o de gas a presión, y también las hay eléctricas. Las «bocinas hidráulicas» no existen, así que la que no es un tipo real es la b). La d) es falsa porque las otras dos sí existen.",
+  "clave": "Bocinas de niebla: manual, de gas o eléctrica; hidráulica no.",
+  "trampa": "«Hidráulica» suena técnico, pero no es un tipo de bocina."
+ },
+ "bal-py-2023-06-ac-10": {
+  "explicacion": "Es incorrecta la d): la balsa se revisa en una estación de servicio autorizada con la periodicidad que marque el fabricante, y el criterio que aplica el tribunal es no pasar de 24 meses, no 36. Las demás son correctas: se comprueba la balsa y todos sus accesorios, se sustituye lo caducado y lo hace personal especializado de entidades autorizadas.",
+  "clave": "Balsa: revisión en estación autorizada, según fabricante (≤ 24 meses).",
+  "trampa": "36 meses suena razonable, pero se pasa del intervalo exigido.",
+  "concepto": "bal-py-2023-12-a-09"
+ },
+ "bal-py-2023-06-b-05": {
+  "explicacion": "La radiobaliza emite un código de identificación que incluye el MMSI del barco, el número que se asigna en la licencia de estación de barco (LEB); con él, el centro de salvamento consulta la base de datos y sabe de qué barco se trata y a quién avisar. Es la b). No emite el puerto de registro, ni datos del propietario o del patrón.",
+  "clave": "EPIRB: emite la identidad (MMSI); el resto sale del registro.",
+  "trampa": "Los datos de las otras opciones están en el registro, no en la señal.",
+  "concepto": "bal-py-2023-06-b-05",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2023-12-b-01": {
+  "explicacion": "La radiobaliza emite un código de identificación que incluye el MMSI del barco, el número que se asigna en la licencia de estación de barco (LEB); con él, el centro de salvamento consulta la base de datos y sabe de qué barco se trata y a quién avisar. Es la b). No emite el puerto de registro con el distintivo de llamada, ni datos del propietario o del patrón.",
+  "clave": "EPIRB: emite la identidad (MMSI); el resto sale del registro.",
+  "trampa": "Los datos de las otras opciones están en el registro, no en la señal.",
+  "concepto": "bal-py-2023-06-b-05",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2023-06-b-06": {
+  "explicacion": "Cuando un radar de banda X interroga al SART, este responde y en la pantalla aparece una línea de 12 puntos en línea que sale de la posición del SART hacia fuera; el punto más cercano al centro marca dónde está. A menos de 1 milla los puntos se convierten en arcos y luego en círculos. Por eso, a más de 3 millas, es la c).",
+  "clave": "SART en el radar: línea de 12 puntos.",
+  "trampa": "La a) cambia 12 por 10; no hay señal Morse ni SOS en pantalla.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2023-06-b-07": {
+  "explicacion": "Cuando se acerca el helicóptero, el velero arría las velas para que no estorben ni flameen con el rebufo del rotor y arranca el motor. Así puede mantener el rumbo y la velocidad que le indique el helicóptero, como recomienda Salvamento Marítimo: la b). No se lanzan pirotecnias como el cohete de la a) con el helicóptero ya en la zona, porque puede alcanzarlo.",
+  "clave": "Velero ante helicóptero: velas abajo y motor en marcha.",
+  "trampa": "La a): con el helicóptero ya encima, la pirotecnia es un peligro para él.",
+  "base": "and-py-2023-c2-g09",
+  "concepto": "and-py-2023-c2-g09"
+ },
+ "bal-py-2023-06-b-10": {
+  "explicacion": "A un barco que se hunde no hay que abarloarse nunca: puede volcar, arrastrarte con él o golpearte el casco. Se mantiene una distancia de seguridad y se recoge a la gente del agua o de la balsa: la d). Ni por barlovento ni por sotavento.",
+  "clave": "Barco hundiéndose: nunca abarloarse; distancia de seguridad.",
+  "trampa": "La b) (sotavento) parece la banda protegida, pero el riesgo de que te arrastre sigue ahí."
+ },
+ "bal-py-2023-12-a-03": {
+  "explicacion": "Si el metacentro M está por encima de G, GM es positivo. Al escorar, el peso (en G) y el empuje (en B) forman un par adrizante que devuelve el barco a la vertical en cuanto cesa la fuerza exterior, así que el equilibrio es estable: la a). Si M coincide con G es indiferente, y si queda por debajo, inestable.",
+  "clave": "M por encima de G → estable.",
+  "trampa": "Elegir «indiferente»: eso es con M y G coincidiendo, no con M por encima.",
+  "base": "and-py-2022-c2-g01",
+  "concepto": "and-py-2022-c2-g01",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ]
+ },
+ "bal-py-2023-12-a-07": {
+  "explicacion": "La zafa hidrostática es el dispositivo que mantiene trincada la balsa (o la radiobaliza) y la suelta sola por la presión del agua si el barco se hunde, antes de 4 m: la d). La boza es el cabo que une la balsa al barco y dispara el inflado, y la unión débil es el eslabón de la boza que se rompe después, cuando la balsa ya está inflada, para que el barco no la arrastre al fondo.",
+  "clave": "Zafa = suelta a ≤ 4 m. Unión débil = se rompe para liberar la balsa inflada.",
+  "trampa": "Confundir la zafa hidrostática con la unión débil: actúan en momentos distintos.",
+  "base": "and-py-2020-c3-g05",
+  "concepto": "and-py-2020-c3-g05"
+ },
+ "bal-py-2023-12-a-09": {
+  "explicacion": "Las balsas se revisan en una estación de servicio autorizada, con la periodicidad que marque el fabricante, y el tribunal da como criterio intervalos no superiores a 24 meses: la a). No la revisa la tripulación (b), 48 meses es demasiado (d) y la c) es falsa porque la balsa solo es obligatoria en las zonas 1, 2 y 3, no en la 4.",
+  "clave": "Balsa: revisión en estación autorizada, según fabricante (≤ 24 meses).",
+  "trampa": "La c) parece prudente, pero en zona 4 la balsa no es obligatoria.",
+  "concepto": "bal-py-2023-12-a-09"
+ },
+ "bal-py-2023-12-b-03": {
+  "explicacion": "En el equilibrio indiferente, G coincide con el metacentro M, así que GM = 0. Al escorar no aparece par adrizante ni escorante y el barco se queda con la escora que tenga: la d). Si GM es positiva el equilibrio es estable, y si es negativa, inestable.",
+  "clave": "GM > 0 estable · GM = 0 indiferente · GM < 0 inestable.",
+  "trampa": "Confundir indiferente (GM = 0) con inestable (GM negativa, opción b).",
+  "base": "and-py-2020-c3-g03",
+  "concepto": "and-py-2020-c3-g03"
+ },
+ "bal-py-2023-12-b-04": {
+  "explicacion": "Es falsa la a): el cable del helicóptero nunca se amarra a la embarcación, porque si el helicóptero tiene que separarse de golpe la arrastraría. Las otras son ciertas: el cable se deja tocar el agua o el barco para descargar la electricidad estática, se obedecen las instrucciones del helicóptero y, por tanto, algunas de las respuestas sí son correctas (d).",
+  "clave": "El cable del helicóptero nunca se amarra.",
+  "trampa": "«Trabajar con tranquilidad» suena razonable, pero amarrar el cable es lo más peligroso.",
+  "concepto": "bal-py-2018-04-c-06"
+ },
+ "bal-py-2023-12-b-05": {
+  "explicacion": "El centro de carena es el centro del volumen sumergido del casco, así que siempre está en la obra viva: la b). Se mueve al escorar o al cambiar el asiento, pero sigue estando dentro de la parte sumergida, por eso la d) no vale; y nada tiene que ver con el palo o la botavara, que están fuera del agua.",
+  "clave": "Centro de carena: siempre en la obra viva.",
+  "trampa": "La d) acierta en que varía, pero eso no lo saca de la obra viva.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   }
+  ]
+ },
+ "bal-py-2023-12-b-10": {
+  "explicacion": "Es correcta la c): el CO2 no conduce la electricidad y no deja residuos, por eso es el agente indicado para fuegos de origen eléctrico. La a) falla porque el cohete con paracaídas se ve más lejos que la bengala de mano, y la b) porque la balsa debe resistir 30 días, no 3.",
+  "clave": "Fuego eléctrico: CO2.",
+  "trampa": "La b) cambia 30 días por 3.",
+  "discrepancia": "La d) también es cierta: el RD 339/2021 exige el reflector de radar a las embarcaciones de casco no metálico solo en las zonas 1 a 4, así que en las zonas 5 y 6 no es obligatorio. Con la norma vigente, la pregunta tendría dos respuestas correctas.",
+  "defendible": "d",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-py-2024-04-a-02": {
+  "explicacion": "El Código IDS exige que el cohete con paracaídas alcance al menos 300 m de altura y que su bengala baje a 5 m/s como máximo: la a). Las otras cifras fallan: la bengala de mano arde al menos 1 minuto (no 120 s), el cohete luce unos 40 s como mínimo (no 80) y el alcance de la bengala de mano no llega a 16 millas.",
+  "clave": "Cohete: ≥ 300 m, baja a ≤ 5 m/s, luce ≥ 40 s. Bengala de mano: ≥ 1 min.",
+  "trampa": "La c) duplica la duración mínima de la bengala de mano.",
+  "concepto": "bal-py-2024-04-a-02",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2026-06-a-09": {
+  "explicacion": "El Código IDS exige que el cohete con paracaídas alcance al menos 300 m de altura: la a). Las otras cifras fallan: la bengala de mano arde al menos 1 minuto (no 120 s), el cohete luce unos 40 s como mínimo (no 80) y el alcance de la bengala de mano no llega a 16 millas.",
+  "clave": "Cohete: ≥ 300 m, baja a ≤ 5 m/s, luce ≥ 40 s. Bengala de mano: ≥ 1 min.",
+  "trampa": "La c) duplica la duración mínima de la bengala de mano.",
+  "concepto": "bal-py-2024-04-a-02",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2024-04-a-04": {
+  "explicacion": "Un GM muy grande da mucha estabilidad, pero el par adrizante es tan fuerte que el barco recupera las escoras de golpe, con balances cortos, bruscos y violentos: es un barco «duro». Es la d). Las recuperaciones lentas son propias del GM pequeño (barco «blando»).",
+  "clave": "GM grande: muy estable y duro; GM pequeño: blando y lento.",
+  "trampa": "La b) acierta la estabilidad, pero le pone los balances del barco blando."
+ },
+ "bal-py-2024-04-a-05": {
+  "explicacion": "Usar bien una EPIRB en un barco español exige registrarla (con su identidad y los datos del barco y de contacto) ante la Administración marítima, utilizarla solo en emergencias, mantener al día la zafa y la batería, y tenerla a mano para llevarla a la balsa: la d). No hay que avisar antes de activarla, no se guarda encerrada dentro de la habilitación y no hace falta orden de Capitanía para usarla.",
+  "clave": "EPIRB: registrada, mantenida y solo para emergencias.",
+  "trampa": "La b) la encierra dentro: así la zafa no podría soltarla al hundirse el barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2024-04-a-07": {
+  "explicacion": "Es falsa la d): el peso del buque vacío, sin pertrechos ni combustible, es el desplazamiento en rosca. El desplazamiento en lastre es el del barco listo para navegar (con combustible, agua, pertrechos y tripulación) pero sin carga. Las demás definiciones son correctas.",
+  "clave": "Rosca: barco vacío. Lastre: listo para navegar, sin carga.",
+  "trampa": "«Lastre» suena a vacío, pero incluye combustible y pertrechos."
+ },
+ "bal-py-2024-04-a-08": {
+  "explicacion": "Las balsas homologadas deben resistir 30 días a la intemperie flotando, sea cual sea el estado de la mar (Código IDS): la c). Las opciones con 20 o 25 días, o limitadas a «buen estado de la mar y temperaturas suaves», rebajan el requisito.",
+  "clave": "Balsa: 30 días a la intemperie, con cualquier mar.",
+  "trampa": "Las opciones con «buen estado de la mar» rebajan el requisito.",
+  "concepto": "bal-py-2018-12-b-03"
+ },
+ "bal-py-2024-04-a-09": {
+  "explicacion": "Nada más estar todos en la balsa se toman las pastillas contra el mareo, porque el mareo hace vomitar y perder agua y ánimo, y se revisa el material de supervivencia: la c). El agua y la comida no se reparten el primer día salvo necesidad, los chalecos no se quitan y la pirotecnia se guarda para cuando alguien pueda verla.",
+  "clave": "En la balsa: primero pastillas contra el mareo e inventario del material.",
+  "trampa": "La a) parece urgente, pero el primer día no se bebe ni se come salvo heridos.",
+  "concepto": "bal-py-2024-04-a-09"
+ },
+ "bal-py-2024-07-a-10": {
+  "explicacion": "Nada más estar todos en la balsa se toman las pastillas contra el mareo, porque el mareo hace vomitar y perder agua y ánimo, y se revisa el material de supervivencia: la c). El agua y la comida no se reparten el primer día salvo necesidad, los chalecos no se quitan y la pirotecnia se guarda para cuando alguien pueda verla.",
+  "clave": "En la balsa: primero pastillas contra el mareo e inventario del material.",
+  "trampa": "La a) parece urgente, pero el primer día no se bebe ni se come salvo heridos.",
+  "concepto": "bal-py-2024-04-a-09"
+ },
+ "bal-py-2024-04-a-10": {
+  "explicacion": "El espejo de señales del equipo de la balsa se llama heliógrafo: refleja la luz del sol hacia un barco o una aeronave y en días soleados se ve a muchas millas. Es la b). El goniómetro mide ángulos, el reflector de radar devuelve ondas de radar y el fotómetro mide la luz.",
+  "clave": "Heliógrafo = espejo de señales (helios = sol).",
+  "trampa": "El reflector de radar también «refleja», pero ondas de radar, no la luz del sol.",
+  "base": "and-py-2020-c3-g08",
+  "concepto": "and-py-2020-c3-g08"
+ },
+ "bal-py-2024-04-bc-06": {
+  "explicacion": "El Código IDS exige que el chaleco dé la vuelta en el agua a una persona inconsciente, desde cualquier posición, hasta dejarle la boca fuera del agua en no más de 5 segundos: la a). Las demás cambian los requisitos: el 75 % de las personas deben ponérselo en 1 minuto, no en 3; el salto es desde 4,5 m, no 8; y a los niños pequeños se les ayuda a ponérselo.",
+  "clave": "Chaleco: boca arriba en ≤ 5 s; puesto en 1 min; salto de 4,5 m.",
+  "trampa": "La c) y la d) tienen la forma del requisito real, pero con la cifra cambiada."
+ },
+ "bal-py-2024-04-bc-07": {
+  "explicacion": "Es falsa la a): en zona 2 el RD 339/2021 exige chalecos de al menos 150 N, no 120 N (275 N en zona 1 y 100 N en zonas 5 a 7). Las demás son ciertas: el chaleco debe girar boca arriba a una persona inconsciente en pocos segundos, estar estibado en un lugar accesible y conocido, y los menores deben tener uno a su medida con cinchas de entrepierna.",
+  "clave": "Chalecos: 275 N zona 1, 150 N zonas 2–4, 100 N zonas 5–7.",
+  "trampa": "120 N no es ninguno de los niveles de flotabilidad de la norma.",
+  "concepto": "bal-py-2024-04-bc-07"
+ },
+ "bal-py-2025-12-b-07": {
+  "explicacion": "Es falsa la a): en zona 2 el RD 339/2021 exige chalecos de al menos 150 N; los de 100 N solo valen para las zonas 5 a 7. Las demás son ciertas: el chaleco debe girar boca arriba a una persona inconsciente en pocos segundos, estar estibado en un lugar accesible y los menores deben tener uno a su medida con cinchas de entrepierna.",
+  "clave": "Chalecos: 275 N zona 1, 150 N zonas 2–4, 100 N zonas 5–7.",
+  "trampa": "100 N existe, pero es para las zonas más costeras.",
+  "concepto": "bal-py-2024-04-bc-07"
+ },
+ "bal-py-2024-04-bc-09": {
+  "explicacion": "La oficial es la d) (todas ciertas): los chalecos autoinflables se inflan solos al sumergirse y, homologados, no pierden más de un 5 % de flotabilidad tras 24 horas en el agua. La revisión anual en centros autorizados venía de la Orden FOM/1144/2003; desde el 1-7-2021 el RD 339/2021 (art. 7.4) remite a las instrucciones del fabricante y a estaciones de servicio autorizadas.",
+  "clave": "Chaleco autoinflable: se infla al mojarse y se revisa en estación autorizada.",
+  "trampa": "La b) era cierta con la norma antigua; hoy el plazo lo marca el fabricante.",
+  "discrepancia": "Desde el 1-7-2021 el RD 339/2021 (art. 7.4) ya no fija una revisión anual de los chalecos inflables: se revisan según las instrucciones del fabricante en estaciones de servicio autorizadas. La b) solo es cierta si el fabricante pide revisión anual, como hacen muchos.",
+  "concepto": "bal-py-2017-03-cb-09"
+ },
+ "bal-py-2024-07-a-02": {
+  "explicacion": "Las señales fumígenas flotantes tienen un pequeño retardo de encendido para dar tiempo a lanzarlas al agua y emiten humo de color muy visible (naranja) durante al menos 3 minutos. Por eso son ciertas la b) y la c), que es la d); la a) falla porque no se encienden en el instante de tirar del percutor, haya la humedad que haya.",
+  "clave": "Fumígena: retardo de encendido y humo naranja ≥ 3 min.",
+  "trampa": "La a) describe una bengala de mano, no una fumígena.",
+  "concepto": "bal-py-2017-12-a-10",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2024-12-a-05": {
+  "explicacion": "El SART, una vez activado, queda en espera y solo pasa a transmitir cuando lo interroga un radar de banda X (9 GHz): la c). No responde a los radares de banda S (2–4 GHz), y las bandas «Z» e «Y» de las otras opciones no son las de los radares marinos.",
+  "clave": "SART: transmite al recibir radar de banda X (9 GHz).",
+  "trampa": "La a) da bien los 9 GHz, pero con una banda inventada.",
+  "concepto": "bal-py-2017-03-cb-04",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2024-12-a-06": {
+  "explicacion": "El metacentro transversal (M) es el punto del plano diametral donde corta la vertical trazada desde el centro de carena al escorar ligeramente el barco: la a). El longitudinal se refiere a cambios de asiento, el radio metacéntrico es la distancia BM y la altura metacéntrica es la distancia GM.",
+  "clave": "Metacentro: corte de las líneas de empuje a pequeñas escoras.",
+  "trampa": "La c) y la d) son distancias, no puntos.",
+  "concepto": "bal-py-2019-04-b-02"
+ },
+ "bal-py-2024-12-a-10": {
+  "explicacion": "La incorrecta es la b): el cable del helicóptero nunca se amarra a la embarcación, porque si el helicóptero tiene que separarse la arrastraría. Las demás son correctas: el cable se deja tocar el agua para descargar la electricidad estática, luego se acerca a la embarcación, y puede que solo bajen un arnés.",
+  "clave": "El cable del helicóptero nunca se amarra.",
+  "trampa": "«Firmemente» suena a seguridad, pero es justo lo prohibido.",
+  "concepto": "bal-py-2018-06-a-04"
+ },
+ "bal-py-2024-12-bc-02": {
+  "explicacion": "Un cuerpo que flota está en equilibrio cuando su peso, que en un barco se llama desplazamiento, y el empuje del agua son iguales y de sentido contrario: la c). El momento escorante y el par adrizante son pares que aparecen al escorar, no las dos fuerzas de la flotación.",
+  "clave": "Flotar: empuje = desplazamiento.",
+  "trampa": "La a) habla de pares de escora, que son otra cosa."
+ },
+ "bal-py-2024-12-bc-04": {
+  "explicacion": "Cuanto mayor es la altura metacéntrica GM, mayor es el par adrizante y mayor la estabilidad: la c). Con GM pequeño la estabilidad es escasa, con KM = KG (GM = 0) el equilibrio es indiferente, y que el volumen de carena sea constante no dice nada de la estabilidad.",
+  "clave": "Más GM, más estabilidad.",
+  "trampa": "La d) parece equilibrio, pero es el indiferente, sin estabilidad."
+ },
+ "bal-py-2024-12-bc-05": {
+  "explicacion": "Cuando un radar de banda X interroga al SART, este responde y en la pantalla aparece una secuencia de 12 puntos en línea que sale de la posición del SART hacia fuera; el punto más cercano al centro marca dónde está. A menos de 1 milla los puntos se convierten en arcos y luego en círculos. Por eso, a más de 3 millas, es la c).",
+  "clave": "SART en el radar: línea de 12 puntos.",
+  "trampa": "La a) cambia 12 por 10; no hay señal Morse ni SOS en pantalla.",
+  "concepto": "bal-py-2023-06-b-06",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2024-12-bc-08": {
+  "explicacion": "El Código IDS limita a 185 kg la masa de la balsa con su envoltura y su equipo, salvo que se arríe con un dispositivo de puesta a flote aprobado: así puede manejarse y lanzarse al agua sin medios mecánicos. Es la b).",
+  "clave": "Balsa con envoltura y equipo: máximo 185 kg."
+ },
+ "bal-py-2024-12-bc-09": {
+  "explicacion": "El Código IDS exige que con el chaleco puesto se pueda saltar al agua desde al menos 4,5 m de altura sin lesiones y sin que el chaleco se descoloque ni se dañe: la b).",
+  "clave": "Chaleco: salto desde 4,5 m sin lesiones ni daños.",
+  "trampa": "No confundas con los 18 m del salto desde una balsa o con otros mínimos del Código IDS."
+ },
+ "bal-py-2024-12-bc-10": {
+  "explicacion": "El RD 339/2021 exige 6 cohetes con luz roja y paracaídas en las zonas 1, 2 y 3, y 3 en la zona 4: la c). 4, 5 o 7 no son cifras de la norma.",
+  "clave": "Cohetes con paracaídas: 6 en zonas 1–3, 3 en zona 4.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2025-04-bc-02": {
+  "explicacion": "Al trasladar un peso verticalmente cambia la altura del centro de gravedad y, con ella, GM y el brazo adrizante GZ: si el peso sube, GZ disminuye; si baja, aumenta. Es la c). Un traslado vertical no mueve el centro de carena, porque el desplazamiento no cambia, y tampoco produce escora.",
+  "clave": "Traslado vertical: cambia G, GM y GZ; no escora.",
+  "trampa": "La a) y la b) atribuyen el cambio a la carena, cuando lo que se mueve es G.",
+  "concepto": "bal-py-2025-04-bc-02"
+ },
+ "bal-py-2025-12-b-04": {
+  "explicacion": "Al trasladar un peso verticalmente cambia la altura del centro de gravedad y, con ella, GM y el brazo adrizante GZ: es la c). La b) solo es cierta si el peso baja (si sube, GM disminuye), así que no vale en general y tampoco la d). La a) falla porque el centro de carena no se mueve con un traslado vertical.",
+  "clave": "Traslado vertical: cambia G, GM y GZ; no escora.",
+  "trampa": "La b) solo describe el caso de bajar el peso.",
+  "concepto": "bal-py-2025-04-bc-02"
+ },
+ "bal-py-2025-04-bc-05": {
+  "explicacion": "Es incorrecta la d): el país programado en la radiobaliza sí figura en su etiqueta de identidad, junto con el código hexadecimal de 15 caracteres, porque forma parte de esa identidad. Las demás son ciertas: la EPIRB alerta a los servicios SAR con identidad y posición, cada una se programa con una identidad única y el propietario debe registrarla ante la autoridad de su país.",
+  "clave": "Etiqueta de la EPIRB: identidad única, con el país programado.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ]
+ },
+ "bal-py-2025-04-bc-09": {
+  "explicacion": "Lo que decide si el equilibrio es estable o inestable es la posición del metacentro respecto al centro de gravedad: M por encima de G, estable; coincidentes, indiferente; M por debajo, inestable. Es la c). Las demás comparan puntos que no deciden el tipo de equilibrio.",
+  "clave": "M sobre G estable; M = G indiferente; M bajo G inestable.",
+  "trampa": "La a) compara G con B, pero un barco con G sobre B puede ser estable."
+ },
+ "bal-py-2025-07-a-01": {
+  "explicacion": "El SOLAS (Código IDS) fija que ninguna balsa salvavidas puede ser para menos de seis personas: la d). Tres, cuatro o cinco no son el mínimo de la norma; las balsas de recreo de menor capacidad no son de tipo SOLAS.",
+  "clave": "Balsa SOLAS: capacidad mínima 6 personas.",
+  "concepto": "bal-py-2019-04-a-04"
+ },
+ "bal-py-2025-07-a-04": {
+  "explicacion": "No todas las embarcaciones de recreo tienen que llevar aro salvavidas: el RD 339/2021 fija el equipo de seguridad según la zona de navegación, y el aro (con luz y rabiza en las zonas 1 a 4) no se exige en todas. Por eso es la a). No depende del fabricante ni del tiempo que haga.",
+  "clave": "Equipo de seguridad (aro incluido): según la zona de navegación.",
+  "trampa": "La b) suena a máxima prudencia, pero la norma no lo exige en todas las zonas."
+ },
+ "bal-py-2025-07-a-05": {
+  "explicacion": "Es incorrecta la b): para flotar basta con que el empuje sea igual al desplazamiento; que el centro de carena y el de gravedad estén en la misma vertical es la condición para estar en equilibrio sin escora, no para flotar. Las demás son ciertas: la flotabilidad depende de la densidad del agua (y por tanto de su salinidad) y la masa del barco no cambia por flotar más o menos.",
+  "clave": "Flotar: empuje = peso. Misma vertical G-B: equilibrio adrizado.",
+  "trampa": "La b) mezcla la condición de flotación con la de equilibrio."
+ },
+ "bal-py-2025-07-a-08": {
+  "explicacion": "No es correcta la d): la boza (que el enunciado llama driza) no la corta el primero que embarca, sino que se corta cuando todos están a bordo de la balsa; cortarla antes deja la balsa a la deriva y separa a quien no ha embarcado. Prepararse con antelación, dar la llamada de socorro, activar la radiobaliza y releer las instrucciones de la balsa son pasos correctos.",
+  "clave": "La boza se corta cuando todos están en la balsa.",
+  "trampa": "Cortar pronto parece agilizar, pero puede dejar gente en el agua.",
+  "concepto": "bal-py-2018-06-b-04"
+ },
+ "bal-py-2025-07-b-01": {
+  "explicacion": "Un buque con altura metacéntrica muy grande se llama «duro»: es muy estable, pero recupera las escoras de golpe, con balances cortos y violentos. Es la d). El buque «blando» es el de GM pequeño, «adrizado» es el que no tiene escora y el arrufo es una deformación longitudinal del casco.",
+  "clave": "GM grande = barco duro; GM pequeño = barco blando.",
+  "trampa": "La b) es justo el caso contrario."
+ },
+ "bal-py-2025-07-b-06": {
+  "explicacion": "El centro de carena es el centro de gravedad del volumen sumergido (c) y en él se aplica el empuje ascendente del agua (a), que es la fuerza de flotación (b). Las tres son formas de decir lo mismo, así que la respuesta es la d).",
+  "clave": "Centro de carena = centro del volumen sumergido = punto de aplicación del empuje.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   }
+  ]
+ }
+}

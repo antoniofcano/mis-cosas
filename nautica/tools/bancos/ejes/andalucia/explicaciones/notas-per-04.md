@@ -21,3 +21,12 @@
 - and-2017-c3-t17 · IALA MBS 2022 · colores de la cardinal Sur sin cambios · sí.
 - and-2017-c3-t30 · RD 339/2021 · la bomba de achique sigue exigida; la conducta ante una vía de agua no cambia · sí.
 - and-2017-c3-t32 · RD 238/2019, RD 339/2021 (detectores) · la clasificación de fuegos (UNE-EN 2) no cambia · sí.
+- and-2017-c3-t41 · RD 339/2021 · la corredera deja de ser equipo obligatorio; el coeficiente de corredera no cambia · sí.
+- and-2018-c1-t08 · RD 339/2021 · el número de aros, luces y rabizas va por zona; la estiba recomendada (aletas o popa, suelta rápida) no cambia · sí.
+- and-2018-c1-t10 · RD 339/2021, RD 587/2022 (detectores) · la maniobra de remolque no depende de esas normas · sí.
+- and-2018-c1-t12 · RD 339/2021 (art. 23) · aguas sucias sin tratar: más de 12 millas, hoy contadas desde la línea de base, en ruta a no menos de 4 nudos · sí.
+- and-2018-c1-t13 · IALA MBS 2022 · colores de la cardinal Norte sin cambios · sí.
+- and-2018-c1-t14 · IALA MBS 2022 · lateral de babor modificada sin cambios · sí.
+- and-2018-c1-t15 · IALA MBS 2022 · cardinal Este sin cambios · sí.
+- and-2018-c1-t16 · IALA MBS 2022 · laterales: cualquier ritmo salvo 2+1, sin cambios · sí.
+- and-2018-c1-t17 · IALA MBS 2022 · tope en aspa de las especiales sin cambios · sí.

@@ -536,5 +536,253 @@
    }
   ],
   "concepto": null
+ },
+ "and-2017-c3-t33": {
+  "explicacion": "Las isobaras son las intersecciones de las superficies isobáricas existentes en un momento dado con la superficie del mar, es decir, líneas de igual presión en el mapa. Las de igual tendencia barométrica, la c), son las isalobaras; los 4 milibares de la d) son solo la separación habitual al trazarlas, y las isobaras son líneas, no puntos.",
+  "clave": "Isobara = corte de la superficie isobárica con el nivel del mar.",
+  "trampa": "Isobara = igual presión. Isalobara = igual tendencia barométrica. Isoterma = igual temperatura.",
+  "concepto": "and-2023-c1-t36"
+ },
+ "and-2017-c3-t34": {
+  "explicacion": "La virazón es la brisa que sopla de día desde el mar hacia la tierra, cuando la tierra se ha calentado más que el agua. La que sopla de noche desde tierra hacia el mar es el terral, y «viento costero marítimo» no es un término meteorológico.",
+  "clave": "Virazón: de día, del mar a tierra; terral: de noche, de tierra al mar.",
+  "trampa": "Terral viene de «tierra»: sopla desde tierra.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-mar"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c3-t35": {
+  "explicacion": "Un anticiclón es un área de altas presiones: la presión aumenta desde la periferia hacia el interior, y en el hemisferio norte sus vientos giran en el sentido de las agujas del reloj. La a) combina altas presiones con giro antihorario, que es el de las borrascas, y la c) y la d) hablan de bajas presiones.",
+  "clave": "Anticiclón HN: centro alto, giro horario.",
+  "trampa": "Lee bien «del interior hacia la periferia» frente a «de la periferia hacia el interior».",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   }
+  ],
+  "concepto": "and-2022-c3-t33"
+ },
+ "and-2017-c3-t36": {
+  "explicacion": "Cuando la intensidad del viento sube y baja continuamente decimos que el viento es racheado: sopla a golpes, con rachas. Rolar se refiere a cambios de dirección, refrescar a un aumento sostenido de fuerza y caer a una disminución.",
+  "clave": "Racheado = fuerza a golpes, arriba y abajo.",
+  "trampa": "«Rolando» suena a movimiento, pero rolar es dirección, no fuerza.",
+  "concepto": "and-2022-c3-t36"
+ },
+ "and-2017-c3-t37": {
+  "explicacion": "El ángulo entre la línea proa-popa y la visual a un objeto es la marcación, porque se cuenta desde la proa del barco. La demora se mide desde el Norte, el rumbo es el ángulo entre el Norte y la proa, y la enfilación es una línea de posición formada por dos objetos alineados.",
+  "clave": "Si empieza en la proa, es marcación.",
+  "trampa": "«Demora» suena parecido, pero esa se cuenta desde el Norte, no desde la proa.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 30,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "concepto": "and-2020-c3-t38"
+ },
+ "and-2017-c3-t38": {
+  "explicacion": "Oc 5s 13M 30m es una luz de ocultaciones: está encendida la mayor parte del tiempo y se apaga una vez en cada periodo de 5 segundos; 13M es el alcance nominal (13 millas) y 30m la altura del foco sobre el nivel medio (30 metros). La a) y la c) describen una luz de destellos, la c) se inventa un alcance de emergencia y la d) habla de cinco apagones por segundo.",
+  "clave": "Oc: más luz que oscuridad; M mayúscula, millas; m minúscula, metros.",
+  "trampa": "Confundir ocultación con destello: en la ocultación lo breve es la oscuridad.",
+  "ilustraciones": [
+   {
+    "tipo": "ritmo",
+    "ritmo": "Oc 5s"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c3-t39": {
+  "explicacion": "Las cartas de recalada facilitan la aproximación a los puertos y a los accidentes geográficos que requieren más detalle. Las de navegación costera abarcan tramos de costa más amplios, los portulanos dan el detalle máximo de puertos y fondeaderos pequeños, y el cartucho es un recuadro dentro de una carta, no un tipo de carta.",
+  "clave": "De mayor a menor zona: costera → recalada → portulano.",
+  "trampa": "Portulano es más detallado aún: puertos y fondeaderos concretos, no la aproximación.",
+  "concepto": "and-2025-c1-t41"
+ },
+ "and-2017-c3-t40": {
+  "explicacion": "Con baja presión atmosférica el mar «se levanta», de modo que la marea sube más de lo previsto (aproximadamente 1 cm por cada hPa por debajo de la presión normal). Con altas presiones ocurre lo contrario, la c): la marea queda más baja. La presión cambia la altura del agua, no la hora de la bajamar.",
+  "clave": "Baja presión, agua más alta; alta presión, agua más baja.",
+  "trampa": "La c) es justo el efecto de las altas presiones.",
+  "concepto": "and-2024-c2-t39"
+ },
+ "and-2017-c3-t41": {
+  "explicacion": "El coeficiente de corredera es la distancia real navegada dividida entre la que marca la corredera. Si las dos son iguales, el cociente es 1: la corredera no tiene error. Un coeficiente 0 anularía cualquier distancia, y el coeficiente es un número sin unidades, no una fracción de la distancia.",
+  "clave": "Coeficiente = distancia real / distancia de corredera; iguales → 1.",
+  "trampa": "Pensar que «sin error» es coeficiente 0: el 0 es la corrección, el coeficiente es 1.",
+  "concepto": null
+ },
+ "and-2018-c1-t01": {
+  "explicacion": "El ancla está a la pendura cuando ya está fuera de su estiba, colgando del escobén y lista para largarse. A pique es cuando, fondeados, la cadena trabaja vertical sobre el ancla; «clara» es cuando sale limpia del agua al levar, y ha zarpado cuando se despega del fondo.",
+  "clave": "A la pendura = colgando, lista para fondear.",
+  "trampa": "«A pique» también es vertical, pero con el ancla en el fondo.",
+  "concepto": null
+ },
+ "and-2018-c1-t02": {
+  "explicacion": "El embrague del molinete conecta el barbotén con el motor del molinete para que gire y así levar o filar el ancla con motor. Desembragado, el barbotén queda libre y es el freno el que controla la cadena (por ejemplo, para fondear por gravedad). Es una pieza del molinete y trabaja con la cadena del ancla, no solo con cabos.",
+  "clave": "Embrague: barbotén con motor; freno: barbotén suelto controlado.",
+  "trampa": "La a) atribuye al embrague la función del freno.",
+  "concepto": null
+ },
+ "and-2018-c1-t03": {
+  "explicacion": "Los baos son los refuerzos transversales que unen las cuadernas de banda a banda y sirven de apoyo a las cubiertas. Las bordas son la parte del costado por encima de la cubierta, las regalas su remate superior y los mamparos son tabiques que dividen el casco.",
+  "clave": "Bao = viga transversal de la cubierta.",
+  "trampa": "Los mamparos también son transversales, pero son tabiques, no vigas que sostienen la cubierta.",
+  "concepto": "and-2024-c1-t03"
+ },
+ "and-2018-c1-t04": {
+  "explicacion": "El francobordo es la distancia vertical, medida en el centro del costado, entre la flotación y la cubierta completa más alta con medios permanentes de cierre. El calado se mide de la flotación hacia abajo, el puntal es la altura desde la quilla hasta la cubierta y la obra muerta es una zona del casco, no una distancia.",
+  "clave": "Francobordo = de la flotación a la cubierta estanca.",
+  "trampa": "No lo confundas con el puntal, que se mide desde la quilla.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "francobordo",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": "and-2026-c2-t04"
+ },
+ "and-2018-c1-t05": {
+  "explicacion": "El nudo llano une dos cabos del mismo material y mena; si las menas son distintas se usa la vuelta de escota. La vuelta de rezón es para argollas, el ballestrinque para palos o candeleros y el as de guía hace una gaza.",
+  "clave": "Mismo grosor: llano; distinto: vuelta de escota.",
+  "concepto": "and-2023-c2-t05"
+ },
+ "and-2018-c1-t06": {
+  "explicacion": "La cadena que se larga se calcula sobre la profundidad, no sobre la eslora: con buen tiempo, de tres a cuatro veces el fondo; con mal tiempo hay que dar más, cinco o seis veces o más. La eslora del barco no interviene en esa regla.",
+  "clave": "Buen tiempo: 3–4 veces el fondo; mal tiempo: 5–6 o más.",
+  "trampa": "La d) es la cantidad para mal tiempo, y las de eslora no tienen sentido.",
+  "concepto": null
+ },
+ "and-2018-c1-t07": {
+  "explicacion": "Las cabezadas (la proa sube y baja) son máximas con la mar justo por la proa. Para suavizarlas se pone la amura a la mar con poca máquina, o se navega con la mar por la aleta, de modo que el barco no cabecee de lleno. Por eso valen la a) y la b), y la c) es precisamente lo que las provoca.",
+  "clave": "Contra las cabezadas: mar por la amura o por la aleta, nunca de proa.",
+  "trampa": "La c) parece la posición segura, pero es la que más cabezadas da.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "cabezada"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t08": {
+  "explicacion": "Los aros salvavidas deben ir a mano en las bandas (aletas) o en la popa, que es por donde se queda el náufrago y desde donde mejor se lanzan, con un sistema de suelta rápida y, en su caso, luz y rabiza. En proa o en las amuras quedan lejos del náufrago, que se queda atrás con la arrancada del barco. Hoy el equipo de aros y luces lo fija el Real Decreto 339/2021 según la zona de navegación.",
+  "clave": "Aro en popa o en las aletas, con suelta rápida: el náufrago siempre se queda atrás.",
+  "trampa": "Pensar en la proa porque es lo primero que llega al náufrago; con arrancada, el náufrago queda a popa.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "aleta",
+     "popa"
+    ]
+   }
+  ],
+  "concepto": "and-2020-c3-t10"
+ },
+ "and-2018-c1-t09": {
+  "explicacion": "Cuando no sabes con exactitud dónde está el náufrago hay que buscarlo, y la exploración en espiral cuadrada, que empieza en el datum (última posición conocida) y abre tramos crecientes, es el método de búsqueda adecuado. Boutakow y la aproximación son maniobras para volver al punto de caída cuando lo conoces, y no existe ninguna «exploración de Anderson».",
+  "clave": "No lo ves: busca (espiral o sectores). Lo ves: aproxímate (Anderson o Boutakow).",
+  "trampa": "La a) mezcla el nombre de una maniobra con la palabra «exploración».",
+  "concepto": "and-2024-c3-t08"
+ },
+ "and-2018-c1-t10": {
+  "explicacion": "Lo que NO hay que hacer es dar el remolque por la popa: el remolcado hace firme el cabo a proa, en una bita o cornamusa resistente, para ir detrás del remolcador con la proa por delante. Todo lo demás es correcto: escuchar el canal que indique Salvamento Marítimo, recibir primero la sisga y luego el cabo, trabajar con chaleco, calzado y guantes, y poner el timón a la vía siguiendo las instrucciones del remolcador.",
+  "clave": "Remolcado: el remolque se hace firme a proa.",
+  "trampa": "La b) mezcla un error (la popa) con consejos ciertos (chaleco, guantes) para que parezca buena.",
+  "concepto": null
+ },
+ "and-2018-c1-t11": {
+  "explicacion": "En un suceso de contaminación la responsabilidad es solidaria: responden juntos el patrón, el naviero, el propietario y el asegurador, y se puede reclamar el total a cualquiera de ellos. No es subsidiaria (solo si falla otro) ni exclusiva del patrón.",
+  "clave": "Contaminación: responsabilidad solidaria.",
+  "trampa": "«Personal» parece lógica para el patrón, pero no es exclusiva suya.",
+  "concepto": null
+ },
+ "and-2018-c1-t12": {
+  "explicacion": "Sin sistema de tratamiento ni de desmenuzado y desinfección, las aguas sucias solo pueden descargarse a más de 12 millas, en ruta a no menos de 4 nudos y a régimen moderado. Si estuvieran desmenuzadas y desinfectadas bastarían más de 3 millas. Hoy lo regula el Real Decreto 339/2021 (art. 23), que cuenta esas millas desde la línea de base del mar territorial.",
+  "clave": "Sin tratar → 12 millas; tratadas → 3 millas.",
+  "trampa": "Elegir 3 millas, que vale solo para aguas desmenuzadas y desinfectadas.",
+  "concepto": null
+ },
+ "and-2018-c1-t13": {
+  "explicacion": "Negro arriba y amarillo abajo es la cardinal Norte: el negro va donde apuntan sus conos, que en la Norte miran hacia arriba. La Sur es al revés (amarillo arriba, negro abajo), el peligro aislado es negro con bandas rojas y las de bifurcación son rojas o verdes.",
+  "clave": "El negro va donde apuntan los conos: arriba = Norte.",
+  "trampa": "Confundir Norte (negro arriba) y Sur (negro abajo).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t14": {
+  "explicacion": "Un espeque rojo con una banda verde es una lateral de babor modificada: indica una bifurcación con el canal principal a estribor. Manda el color de fondo (rojo, se deja por babor entrando) y la banda dice hacia dónde queda el canal principal. No es una lateral de estribor, que sería verde, y por eso la d) tampoco vale.",
+  "clave": "Rojo con banda verde = canal principal a estribor.",
+  "trampa": "Asociar rojo/babor con «canal principal a babor».",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "and-2024-c2-t15"
+ },
+ "and-2018-c1-t15": {
+  "explicacion": "Las tres afirmaciones son ciertas. La cardinal Este indica que las aguas profundas están al este (pasa por su este), es negra con una ancha banda horizontal amarilla y su tope son dos conos negros unidos por las bases, con las puntas hacia arriba y abajo, que es donde va el negro.",
+  "clave": "Este: conos en rombo, negro arriba y abajo, amarillo en medio.",
+  "trampa": "Intercambiar el Este y el Oeste: en el Oeste los conos se unen por los vértices.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t16": {
+  "explicacion": "Un grupo de 2 destellos rojos es una lateral de babor normal: las laterales usan cualquier ritmo salvo el 2+1, que queda reservado a las de bifurcación. Si fuera 2+1 rojo sería la a) (canal principal a estribor); la luz verde sería de estribor.",
+  "clave": "Rojo con cualquier ritmo menos 2+1: lateral de babor.",
+  "trampa": "Leer «2 destellos» como si fuera «2+1».",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t17": {
+  "explicacion": "El aspa amarilla en forma de X es la marca de tope de las marcas especiales, que además son amarillas y, de noche, dan luz amarilla. Las cardinales llevan dos conos negros y el peligro aislado, dos esferas negras.",
+  "clave": "Aspa amarilla = marca especial.",
+  "trampa": "Confundir el aspa con los conos de las cardinales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t18": {
+  "explicacion": "La Regla 3 g) define al buque con capacidad de maniobra restringida como el que, por la naturaleza de su trabajo, no puede maniobrar como exige el Reglamento ni apartarse de otro buque. El sin gobierno lo está por una circunstancia excepcional, el restringido por su calado lo está por la profundidad, y «restringido por su trabajo» no es una categoría del Reglamento.",
+  "clave": "«Por la naturaleza de su trabajo» = maniobra restringida.",
+  "trampa": "La c) suena igual, pero el nombre reglamentario es otro.",
+  "concepto": "and-2025-c2-t24"
+ },
+ "and-2018-c1-t19": {
+  "explicacion": "La Regla 7 d) i) establece que se considerará que existe riesgo de abordaje si la demora de un buque que se aproxima no varía de forma apreciable. No hay que quedarse sin conclusión, como dice la b), y la demora fija no obliga por sí misma a parar máquinas: primero se evalúa y se aplica la regla que corresponda.",
+  "clave": "Demora fija, abordaje a la vista.",
+  "trampa": "La c) dice justo lo contrario de la Regla 7.",
+  "concepto": "and-2023-c1-t21"
  }
 }

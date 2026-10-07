@@ -15,7 +15,12 @@
   "py": "hoja-optica"
  },
  "ids": "andalucia",
- "salida": "cache",
+ "salida": "data",
+ "publicadas": "conservar",
+ "descripcion": {
+  "per": "Preguntas de los exámenes oficiales de Patrón de Embarcaciones de Recreo de la Junta de Andalucía (2015–2026) con la respuesta de la plantilla oficial.",
+  "py": "Preguntas de los exámenes oficiales de Patrón de Yate de la Junta de Andalucía (2015–2026) con la respuesta de la plantilla oficial."
+ },
  "titulaciones": {
   "per": {
    "preguntas": 45,

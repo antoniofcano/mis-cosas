@@ -110,9 +110,17 @@ export function textoCuestionario(pdf, rotulos, modo = 'normal') {
   return quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), r);
 }
 
-/** «estribor-⏎babor» → «estribor-babor» (texto de pdftotext -raw). Exportada para los tests. */
+/**
+ * Guion de final de línea en el texto de pdftotext -raw: «estribor-⏎babor» → «estribor-babor» (palabra compuesta: las dos
+ * partes son palabras que salen sueltas en el cuadernillo), pero «obsta-⏎culiza» → «obstaculiza» y «cor-⏎ta» → «corta»
+ * (palabra partida por sílabas al maquetar: 3ª de 2015). Exportada para los tests.
+ */
 export function unirCompuestos(texto) {
-  return texto.replace(/([a-záéíóúñü])-\n(?=[a-záéíóúñü])/g, '$1-');
+  const sueltas = new Set(texto.replace(/[a-záéíóúñü]+-\n[a-záéíóúñü]+/gi, ' ').toLowerCase().match(/[a-záéíóúñü]+/g) ?? []);
+  return texto.replace(/([a-záéíóúñü]+)-\n([a-záéíóúñü]+)/gi, (m, a, b) => {
+    if (!/^[a-záéíóúñü]/.test(b) || !/[a-záéíóúñü]$/.test(a)) return m;
+    return sueltas.has(a.toLowerCase()) && sueltas.has(b.toLowerCase()) ? `${a}-${b}` : `${a}${b}`;
+  });
 }
 
 /** Calidad de una lectura: preguntas en secuencia 1..n con sus cuatro opciones no vacías. */

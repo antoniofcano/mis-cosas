@@ -1,0 +1,350 @@
+{
+ "eje": "murcia",
+ "prefijo": "mur",
+ "nombre": "Murcia",
+ "organismo": "Región de Murcia (Consejería de Fomento e Infraestructuras, Dirección General de Litoral y Puertos)",
+ "indice": "https://www.carm.es/web/pagina?IDCONTENIDO=74737&IDTIPO=100",
+ "licencia": "Aviso legal de carm.es: «Sólo está autorizado el uso personal no-comercial. No está permitida la modificación». Hasta tener autorización expresa (nautica@carm.es), la salida se queda en la caché y no se sube nada de sus preguntas.",
+ "descarga": {
+  "manual": true
+ },
+ "adaptador": {
+  "per": "subrayado",
+  "py": "subrayado"
+ },
+ "ids": "nuevo",
+ "salida": "cache",
+ "informeEnCache": true,
+ "titulaciones": {
+  "per": {
+   "preguntas": 45,
+   "modelos": [
+    "T1",
+    "T2"
+   ],
+   "disposicion": "per-rd875"
+  },
+  "py": {
+   "preguntas": 40,
+   "modelos": [
+    "T1",
+    "T2"
+   ],
+   "disposicion": "py-40"
+  }
+ },
+ "notas": "Inventario y fechas: research_notes/…/murcia.md. El histórico solo conserva el Tipo 1 (el Tipo 2 es el mismo juego barajado); junio de 2026 trae los dos. 2020-10 (aplazada al 9 y 10-01-2021) y 2021-04 tienen dos exámenes de PER en días distintos (modelo «T1-dDD»). Fechas: las del BORM; si da dos días posibles, el primero.",
+ "convocatorias": [
+  {
+   "clave": "2015-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74777&IDTIPO=100",
+   "fechas": {
+    "per": "2015-03-29",
+    "py": "2015-03-29"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2015-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74778&IDTIPO=100",
+   "fechas": {
+    "per": "2015-06-21",
+    "py": "2015-06-21"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2015-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74779&IDTIPO=100",
+   "fechas": {
+    "per": "2015-11-22",
+    "py": "2015-11-22"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2016-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74773&IDTIPO=100",
+   "fechas": {
+    "per": "2016-03-13",
+    "py": "2016-03-13"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2016-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74775&IDTIPO=100",
+   "fechas": {
+    "per": "2016-11-20",
+    "py": "2016-11-20"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2017-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74769&IDTIPO=100",
+   "fechas": {
+    "per": "2017-03-26",
+    "py": "2017-03-26"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2017-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74770&IDTIPO=100",
+   "fechas": {
+    "per": "2017-06-25",
+    "py": "2017-06-25"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2017-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74771&IDTIPO=100",
+   "fechas": {
+    "per": "2017-11-19",
+    "py": "2017-11-19"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2018-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74765&IDTIPO=100",
+   "fechas": {
+    "per": "2018-03-11",
+    "py": "2018-03-11"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2018-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74766&IDTIPO=100",
+   "fechas": {
+    "per": "2018-06-17",
+    "py": "2018-06-17"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2018-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74767&IDTIPO=100",
+   "fechas": {
+    "per": "2018-11-18",
+    "py": "2018-11-18"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2019-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74761&IDTIPO=100",
+   "fechas": {
+    "per": "2019-03-24",
+    "py": "2019-03-24"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2019-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74762&IDTIPO=100",
+   "fechas": {
+    "per": "2019-06-23",
+    "py": "2019-06-23"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2019-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74763&IDTIPO=100",
+   "fechas": {
+    "per": "2019-11-17",
+    "py": "2019-11-17"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2020-07",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74757&IDTIPO=100",
+   "fechas": {
+    "per": "2020-07-19",
+    "py": "2020-07-18"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2020-10",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74758&IDTIPO=100",
+   "fechas": {
+    "per-d09": "2021-01-09",
+    "per-d10": "2021-01-10"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2021-04",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74753&IDTIPO=100",
+   "fechas": {
+    "py": "2021-04-25",
+    "per-d17": "2021-04-17",
+    "per-d18": "2021-04-18"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2021-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74754&IDTIPO=100",
+   "fechas": {
+    "per": "2021-06-27",
+    "py": "2021-07-04"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2021-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74755&IDTIPO=100",
+   "fechas": {
+    "per": "2021-11-13",
+    "py": "2021-11-21"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2022-04",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74749&IDTIPO=100",
+   "fechas": {
+    "per": "2022-04-02",
+    "py": "2022-04-02"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2022-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74750&IDTIPO=100",
+   "fechas": {
+    "per": "2022-06-26",
+    "py": "2022-06-26"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2022-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74751&IDTIPO=100",
+   "fechas": {
+    "per": "2022-11-27",
+    "py": "2022-11-27"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2023-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74745&IDTIPO=100",
+   "fechas": {
+    "per": "2023-03-26",
+    "py": "2023-03-26"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2023-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74746&IDTIPO=100",
+   "fechas": {
+    "per": "2023-06-25",
+    "py": "2023-06-25"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2023-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74747&IDTIPO=100",
+   "fechas": {
+    "per": "2023-11-26",
+    "py": "2023-11-26"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2024-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74742&IDTIPO=100",
+   "fechas": {
+    "per": "2024-03-17",
+    "py": "2024-03-17"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2024-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74741&IDTIPO=100",
+   "fechas": {
+    "per": "2024-06-16",
+    "py": "2024-06-16"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2024-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74743&IDTIPO=100",
+   "fechas": {
+    "per": "2024-11-24",
+    "py": "2024-11-24"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2025-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74739&IDTIPO=100",
+   "fechas": {
+    "per": "2025-03-16",
+    "py": "2025-03-15"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2025-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74952&IDTIPO=100",
+   "fechas": {
+    "per": "2025-06-15",
+    "py": "2025-06-14"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2025-11",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=75242&IDTIPO=100",
+   "fechas": {
+    "per": "2025-11-23",
+    "py": "2025-11-22"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2026-03",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=75475&IDTIPO=100",
+   "fechas": {
+    "per": "2026-03-15",
+    "py": "2026-03-14"
+   },
+   "activa": true
+  },
+  {
+   "clave": "2026-06",
+   "pagina": "https://www.carm.es/web/pagina?IDCONTENIDO=74794&IDTIPO=100",
+   "paginas": [
+    "https://www.carm.es/web/pagina?IDCONTENIDO=74794&IDTIPO=100",
+    "https://www.carm.es/web/pagina?IDCONTENIDO=74796&IDTIPO=100"
+   ],
+   "fechas": {
+    "per": "2026-06-14",
+    "py": "2026-06-13"
+   },
+   "activa": true
+  }
+ ],
+ "repetidas": {
+  "entreConvocatorias": true,
+  "ordenModelos": [
+   "T1",
+   "T2"
+  ],
+  "permutaciones": true
+ },
+ "huecos": {}
+}

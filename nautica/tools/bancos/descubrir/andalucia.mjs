@@ -64,7 +64,7 @@ export async function descubrir(config, { avisos, todas = false, leerPagina = de
       });
     }
     const roles = docs.filter((d) => d.pagina === c.pagina);
-    for (const tit of ['per', 'py']) {
+    for (const tit of c.titulaciones ?? ['per', 'py']) {
       if (!roles.some((d) => d.tit === tit && d.rol === 'cuestionario')) avisos?.add('manifiesto', `${c.clave}: la página no enlaza cuestionario ${tit.toUpperCase()}`);
       if (!roles.some((d) => d.tit === tit && d.rol === 'plantilla')) avisos?.add('manifiesto', `${c.clave}: la página no enlaza plantilla ${tit.toUpperCase()}`);
     }

@@ -8,7 +8,7 @@
 //   - ids únicos;
 //   - cada examen (convocatoria + modelo) con 45 (PER) o 40 (PY) preguntas, salvo huecos documentados (config.huecos).
 import { join } from 'node:path';
-import { BANCOS, escribirJSON, escribirTexto, hoy, leerJSON, rutaEtapa } from '../lib/comun.mjs';
+import { BANCOS, cacheEje, escribirJSON, escribirTexto, hoy, leerJSON, rutaEtapa } from '../lib/comun.mjs';
 
 const N_UT = { per: 11, py: 4 };
 
@@ -108,6 +108,8 @@ export async function validar(ctx) {
     `Manifiesto: ${docs.length} documentos (${[...roles].map(([r, n]) => `${n} ${r}`).join(', ')}); ${docs.filter((x) => x.sha256).length} con sha256.`,
     config.notasInforme ? `\n${config.notasInforme}\n` : '', '',
   ];
-  escribirTexto(join(BANCOS, 'informes', `${eje}.md`), `${cab.join('\n')}\n${secciones.join('\n\n')}\n`);
+  // config.informeEnCache: el informe cita textos de preguntas; si la licencia no permite publicarlas (Murcia), va a la caché.
+  const rutaInforme = config.informeEnCache ? join(cacheEje(eje), 'informe.md') : join(BANCOS, 'informes', `${eje}.md`);
+  escribirTexto(rutaInforme, `${cab.join('\n')}\n${secciones.join('\n\n')}\n`);
   return out;
 }

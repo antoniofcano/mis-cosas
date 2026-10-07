@@ -49,7 +49,8 @@ const pdftotextCon = (pdf, ...args) => execFileSync('pdftotext', [...args, pdf, 
  * pdftotext (modo normal) «deshace» los guiones de final de línea y se come el guion: «estribor-⏎babor» → «estriborbabor»,
  * «(babor -⏎estribor)» → «(babor estribor)», «b) Ct = 8º -⏎c) Ct = 6º +» → «b) Ct = 8º c) Ct = 6º +». El modo -raw sí los
  * conserva, pero desordena las tablas de mareas. Se toma el texto normal y se reponen los guiones que -raw tiene al final
- * de una línea: pegado a la palabra (compuesto partido) → «estribor-babor»; suelto («8º -») → guion y salto de línea.
+ * de una línea: pegado a la palabra (compuesto partido) → «estribor-babor»; suelto («8º -») o delante de una opción o de
+ * una pregunta → guion y salto de línea.
  * Exportada para los tests.
  */
 export function reponerGuiones(normal, crudo) {
@@ -60,13 +61,15 @@ export function reponerGuiones(normal, crudo) {
     if (!l.endsWith('-') || l.endsWith('--')) continue;
     const antes = l.slice(0, -1);
     const suelto = /\s$/.test(antes);
+    // Tras el guion viene una opción o una pregunta («punto -P-⏎a) 10:30»): se repone también el salto de línea.
+    const salto = suelto || /^\s*([a-dA-D]\)|\d{1,2}\s*[.)])/.test(lineas[i + 1]);
     const cola = antes.trimEnd().slice(-14);
     const cabeza = lineas[i + 1].trim().slice(0, 14);
     if (!cola || !cabeza) continue;
     const comido = suelto ? `${cola} ${cabeza}` : `${cola}${cabeza}`;
     const k = texto.indexOf(comido);
     if (k < 0 || texto.indexOf(comido, k + 1) >= 0) continue;
-    texto = texto.slice(0, k) + (suelto ? `${cola} -\n${cabeza}` : `${cola}-${cabeza}`) + texto.slice(k + comido.length);
+    texto = texto.slice(0, k) + `${cola}${suelto ? ' -' : '-'}${salto ? '\n' : ''}${cabeza}` + texto.slice(k + comido.length);
   }
   return texto;
 }

@@ -55,7 +55,7 @@
    "vigor": "2021-07-01",
    "temas": { "per": [3, 4, 8], "py": [1] },
    "resumen": "Equipo por zona de navegación: cambian bengalas, cohetes y fumígenas (zona 4: de 6+6+1 a 3+3+0; zona 2: 1 fumígena); chaleco por persona con luz y +1 en zona 1 (antes 110 %); extintores 34B (antes 21B); desaparecen como obligatorios la corredera, el compás de puntas, el transportador y la regla; campana solo si L ≥ 20 m; aguas sucias referidas a la línea de base.",
-   "detectores": ["bengala", "cohete", "fumigen", "pirotecni", "chaleco", "aro salvavidas", "aros salvavidas", "balsa", "extintor", "21 ?b", "34 ?b", "corredera", "compas de puntas", "transportador", "regla de", "campana", "botiquin", "achique", "achicador", "balde", "aguas sucias", "aguas negras", "aguas residuales", "tanque de retencion", "zona de navegacion", "zona [1-7]\\b", "equipo de seguridad", "material nautico", "linterna", "reflector de radar", "prismatico", "sextante", "cronometro", "bocina", "luz de chaleco", "senales de socorro", "orden fom/1144", "categoria de diseno"]
+   "detectores": ["bengala", "cohete", "fumigen", "pirotecni", "chaleco", "aro salvavidas", "aros salvavidas", "balsa", "extintor", "21 ?b", "34 ?b", "corredera", "compas de puntas", "transportador", "regla de", "campana", "botiquin", "achique", "achicador", "balde", "aguas sucias", "aguas negras", "aguas residuales", "tanque de retencion", "zona de navegacion", "zona [1-7]\\b", "equipo de seguridad", "material nautico", "linterna", "reflector de radar", "prismatico", "sextante", "cronometro", "bocina", "luz de chaleco", "senales de socorro", "orden fom/1144", "categoria de diseno", "marpol", "basura", "plastico", "desmenuz", "vertido", "descarga(r)? (al|en el) mar", "linea de fondeo", "flotabilidad", "inflable", "tablilla de desvios"]
   },
   {
    "id": "RD 587/2022",
@@ -66,7 +66,7 @@
    "vigor": "2022-07-21",
    "temas": { "per": [3], "py": [1] },
    "resumen": "Radio en zona 1: el NAVTEX solo es obligatorio para las embarcaciones de la lista 6.ª; balsas ISO 9650 u otra normativa equivalente homologadas por la DGMM.",
-   "detectores": ["navtex", "balsa", "radiobaliza", "epirb", "respondedor", "vhf", "\\blsd\\b", "llamada selectiva digital", "equipos? de radio", "radiotelefon", "mf/hf", "estacion terrena"]
+   "detectores": ["navtex", "balsa", "radiobaliza", "epirb", "respondedor", "vhf", "\\blsd\\b", "llamada selectiva digital", "equipos? de radio", "radiotelefon", "mf/hf", "estacion terrena", "canal(es)? (16|70|6|06|9|13)\\b", "\\bmmsi\\b", "\\bsart\\b", "406 ?mhz", "zafa hidrostatica"]
   },
   {
    "id": "RD 186/2023",
@@ -99,7 +99,7 @@
    "vigor": "2026-04-02",
    "temas": { "per": [2, 4], "py": [1] },
    "resumen": "Prohibición general de fondear sobre Posidonia oceanica y Cymodocea nodosa (y en arenas próximas si la cadena o el borneo las afectan) en todo el Mediterráneo español, salvo con sistemas de bajo impacto autorizados.",
-   "detectores": ["posidonia", "pradera", "faneroga", "cymodocea", "alga", "tenedero", "fondo (de|para) fondear", "(lugar|sitio|fondo).{0,30}(fondear|fondeo)", "(fondear|fondeo).{0,30}(lugar|sitio|fondo)", "medio ambiente", "espacio(s)? (natural|protegid)", "reserva marina"]
+   "detectores": ["posidonia", "pradera", "faneroga", "cymodocea", "\\balgas?\\b", "tenedero", "fondo (de|para) fondear", "(lugar|sitio|fondo).{0,30}(fondear|fondeo)", "(fondear|fondeo).{0,30}(lugar|sitio|fondo)", "medio ambiente", "espacio(s)? (natural|protegid)", "reserva marina", "fondeadero", "prohibido fondear", "fondear.{0,30}prohibid", "prohibid.{0,30}fonde", "zona(s)? especialmente protegida", "\\bzepim\\b", "fondos? marinos?", "campos? de boyas"]
   },
   {
    "id": "RD 1188/2025 (gobierno sin título)",
@@ -110,7 +110,7 @@
    "vigor": "2026-10-01",
    "temas": { "per": [4], "py": [] },
    "resumen": "Sin título solo para uso privado de embarcaciones a motor de hasta 5 m y 15 CV sin dispositivo reductor (antes 11,26 kW), vela deportiva hasta 6 m y artefactos de playa; a 2 millas del puerto, marina o playa de salida; el alquiler exige título.",
-   "detectores": ["sin titul", "sin necesidad de titul", "no (se )?(requiere|necesita|exige)n? (ningun )?titul", "11[,.]26", "kilovatio", "\\bkw\\b", "15 ?cv", "caballos", "alquiler", "arrendamiento", "arrendatario", "artefactos? (flotante|de playa)", "5 metros de eslora", "6 metros de eslora", "licencia de navegacion"]
+   "detectores": ["sin titul", "sin necesidad de titul", "no (se )?(requiere|necesita|exige)n? (ningun )?titul", "11[,.]26", "kilovatio", "\\bkw\\b", "15 ?cv", "caballos", "alquiler", "arrendamiento", "arrendatario", "artefactos? (flotante|de playa)", "(^|[^0-9,.])5 metros de eslora", "(^|[^0-9,.])6 metros de eslora", "licencia de navegacion", "lugar de abrigo", "playa de salida", "\\b(2|dos) millas.{0,30}(puerto|marina|abrigo|playa)", "uso privado", "edad minima"]
   },
   {
    "id": "IALA MBS 2022",
@@ -121,7 +121,7 @@
    "vigor": "2026-01-09",
    "temas": { "per": [5], "py": [] },
    "resumen": "La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: no se ha verificado con fuente primaria qué cambió entre ediciones, así que se revisan todas las preguntas de balizamiento anteriores.",
-   "detectores": ["boya", "baliza", "balizamiento", "cardinal", "lateral", "peligro aislado", "aguas navegables", "aguas seguras", "marca especial", "marcas? especiales", "nuevo peligro", "naufragio", "marca de tope", "\\biala\\b", "\\baism\\b", "region a\\b"]
+   "detectores": ["boya", "baliza", "balizamiento", "cardinal", "lateral", "peligro aislado", "aguas navegables", "aguas seguras", "marca especial", "marcas? especiales", "nuevo peligro", "naufragio", "marca de tope", "\\biala\\b", "\\baism\\b", "region a\\b", "centellea", "isofase", "marcas? de (babor|estribor)", "canal preferido"]
   }
  ]
 }

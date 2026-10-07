@@ -18,6 +18,8 @@ import { documento, leerCSV } from '../tools/bancos/descubrir/murcia.mjs';
 import { esPaginaCaptcha, verificarArchivo } from '../tools/bancos/ejes/murcia/verificar.mjs';
 import { respuestaFuente } from '../tools/bancos/etapas/correcciones.mjs';
 import { CACHE } from '../tools/bancos/lib/comun.mjs';
+import { cargarNormas, normasAfectadas } from '../tools/bancos/etapas/normativa.mjs';
+import { COMPROBAR, comprobarNormas, ejecutar as ejecutarNormativa, informe as informeNormativa, motivo } from '../tools/bancos/ejes/andalucia/normativa.mjs';
 import {
   confianza, correccionesFrenteHoja, cruceModelos, cruzarRepeticiones, diferenciaEnunciados,
   estadisticas as estadisticasAntiguas, informe as informeAntiguas,
@@ -291,4 +293,30 @@ test('Andalucía 2015–2019 desde la caché: 16 + 16 convocatorias, A = B en el
     assert.ok(e[tit].repeticiones.distintas.every((d) => d.veredicto !== 'sin revisar'), `${tit}: repetición con respuesta distinta sin revisar`);
   }
   assert.match(informeAntiguas(e), /Confianza de la lectura óptica/);
+});
+
+test('normativa de Andalucía (solo informe): data/normativa.json coincide con normativa.md y el banco vivo no se toca', () => {
+  const normas = cargarNormas();
+  for (const c of comprobarNormas(normas)) assert.ok(c.ok, `${c.id}: ${c.fallos.join('; ')}`);
+  // Los detectores compilan y los anchos no se disparan con palabras que solo los contienen («Trafalgar», «15 metros»).
+  const n191 = normas.find((n) => n.id === 'RD 191/2026');
+  const sinTitulo = normas.find((n) => n.id === 'RD 1188/2025 (gobierno sin título)');
+  const p = (enunciado, fecha = '2021-05-22') => ({ id: 'x', fecha, enunciado, opciones: { a: 'uno', b: 'dos', c: 'tres', d: 'cuatro' }, apareceEn: [] });
+  assert.deepEqual(normasAfectadas(p('Al sur verdadero del faro de cabo Trafalgar'), [n191]), []);
+  assert.deepEqual(normasAfectadas(p('Un buque de 15 metros de eslora navega a vela'), [sinTitulo]), []);
+  assert.deepEqual(normasAfectadas(p('¿Se puede fondear sobre la pradera de posidonia?'), [n191]), ['RD 191/2026']);
+  assert.deepEqual(normasAfectadas(p('¿Se puede fondear sobre la pradera de posidonia?', '2026-06-13'), [n191]), []);
+  const m = motivo(p('Al llegar a la pradera de Posidonia oceánica fondeamos'), n191);
+  assert.equal(m.fecha, '2021-05-22');
+  assert.ok(m.detectores.includes('posidonia'));
+  assert.match(m.fragmento, /\*\*pradera\*\*|\*\*posidonia\*\*/);
+
+  const r = ejecutarNormativa();
+  for (const id of COMPROBAR.map((c) => c.id)) assert.ok(id in r.marcas.porNorma, id);
+  assert.ok(r.marcas.porNorma['RD 339/2021'].every((x) => x.fecha < '2021-07-01'));
+  assert.ok(r.marcas.porNorma['RD 191/2026'].every((x) => x.fecha < '2026-04-02'));
+  const md = informeNormativa(r);
+  for (const c of COMPROBAR) assert.match(md, new RegExp(`## ${c.id.replace(/[()/]/g, '\\$&')}`));
+  // Solo informe: el banco vivo sigue con norma «vigente» en todas las preguntas.
+  for (const t of ['per', 'py']) assert.ok(json(`data/ejes/andalucia/${t}/preguntas.json`).preguntas.every((q) => q.norma.estado === 'vigente'));
 });

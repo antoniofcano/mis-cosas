@@ -8,14 +8,16 @@ import { rhumbDestination } from '../../math/mercator.js';
 import { fmtBearing, fmtPos } from '../../math/format.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
-const NE = 45; const E = 90; const SE = 135; const SW = 225; const W = 270;
+const N = 0; const NE = 45; const E = 90; const S = 180; const SE = 135; const SW = 225; const W = 270; const NW = 315;
 
 const lectorRc = (calc) => `El cálculo llega a la oficial (${calc}), pero el lector de opciones no entiende el rumbo de la corriente escrito con letras («Rc = SE» / «NW», sin grados): la comparación automática no lee ninguna opción. La resolución está en \`pendientes\` de este fichero.`;
 
 export const documentadas = {
-  'and-py-2016-c2-n11': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Espartel–Malabata mide 078,6° (como en and-py-2022-c2-n11): con la Da 093° la Ct es −14,4°. La oficial (−13°) es la más próxima, pero queda a 1,4° del cálculo, fuera de la tolerancia: el tribunal debió medir 080°. (El enunciado dice «Punta Malabata Carnero»: es Malabata.)' },
   'and-py-2016-c1-n14': { tipo: 'discrepancia', texto: lectorRc('Rc = 136° (SE), Ihc = 1,4′; oficial c, «Rc = SE, Ihc = 1,5′»') },
+  'and-py-2016-c2-n11': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Espartel–Malabata mide 078,6° (como en and-py-2022-c2-n11): con la Da 093° la Ct es −14,4°. La oficial (−13°) es la más próxima, pero queda a 1,4° del cálculo, fuera de la tolerancia: el tribunal debió medir 080°. (El enunciado dice «Punta Malabata Carnero»: es Malabata.)' },
   'and-py-2016-c2-n15': { tipo: 'discrepancia', texto: lectorRc('Rc = 138° (SE), Ihc = 1,5′; oficial d, «Rc = SE; Ihc = 1,5′»') },
+  'and-py-2016-c3-n12': { tipo: 'discrepancia', texto: 'En la carta, la recta Espartel → Malabata mide 078,6°: en la oposición, con la Da 071° la Ct es +7,6°, más cerca de c (+7°) que de la oficial d (+9°). El tribunal debió medir 080° (la misma medida que en and-py-2016-c2-n11 y and-py-2022-c2-n11).' },
+  'and-py-2016-c3-n15': { tipo: 'discrepancia', texto: lectorRc('Rc = 135° (SE), Ihc = 2,0′; oficial b, «Rc = SE, Ihc = 2,0′»') },
 };
 
 export const pendientes = {
@@ -41,9 +43,30 @@ export const pendientes = {
       return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
     },
   },
+  'and-py-2016-c3-n15': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 10,0 W', 'Situación 17:00');
+      const ct = k.ct({ dm: 3, desvio: 7 });
+      const rv = k.rv(60, ct);
+      const d = k.distFor(5, hrb(19) - hrb(17));
+      const est = k.run(s, rv, d, 'Situación de estima 19:00');
+      const obs = k.fix2('cabo-espartel', 187, 'punta-malabata', 100, 'Situación observada 19:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, 120);
+      return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
+    },
+  },
 };
 
 // ---- Operaciones locales
+
+/** Tabla del Anuario que pasa de un día al siguiente: las horas del día siguiente se cuentan a partir de las 24:00. */
+function horasSeguidas(k, tabla) {
+  const d0 = tabla[0].dia;
+  const sig = tabla.filter((x) => x.dia !== d0);
+  if (sig.length) k.note('Horas del día siguiente', `La tabla sigue en el día ${sig[0].dia}: para medir los intervalos contamos sus horas a partir de las 24:00 (${sig.map((x) => `${x.hora} → ${String(24 + Number(x.hora.slice(0, 2))).padStart(2, '0')}${x.hora.slice(2)}`).join(', ')}).`);
+  return tabla.map((x) => (x.dia === d0 ? x : { ...x, hora: `${24 * (x.dia - d0) + Number(x.hora.slice(0, 2))}${x.hora.slice(2)}` }));
+}
 
 /**
  * «En la enfilación de A y B y a `dist` millas de B»: estamos en la prolongación de la recta A → B, más allá de B
@@ -207,6 +230,84 @@ export default {
       const a = k.pos('15 00,0 S', '178 00,0 E', 'Salida');
       const b = k.pos('10 00,0 S', '176 00,0 W', 'Llegada');
       return [{ kind: 'bearing', value: k.rumboDirecto(a, b).rumbo }];
+    },
+  },
+
+  // ---- 3ª Convocatoria 2016
+  'and-py-2016-c3-n11': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      // Al E de Punta Europa: por el otro lado, a 5 millas de Europa estaríamos a 0,6 millas de Carnero, dentro del arco de 3.
+      const s = enfilacionADistancia(k, 'punta-carnero', 'punta-europa', 5, 'Situación 11:00');
+      // Vamos hacia el SW a doblar Carnero por fuera: lo dejamos por estribor (al N de nuestra derrota).
+      const rs = k.tangent(s, 'punta-carnero', 3, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 10, NW);
+      // 7º W 2006 con variación 6′ E anual.
+      const ct = k.ct({ carta: [-7, 2006, 6], anyo: 2016, desvio: -4 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2016-c3-n13': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.fix2('isla-tarifa', 110, 'punta-alcazar', 145, 'Situación 12:00');
+      const { rs } = k.rumboConCorriente(s, 'tanger-espigon', 8, W, 3);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ dm: 8, desvio: 4 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }];
+    },
+  },
+  'and-py-2016-c3-n14': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const d = k.distFor(6, hrb(16, 30) - hrb(15));
+      // «Faro de Punta Camarinal» = faro de Punta de Gracia (Camarinal).
+      return latlon(k.traslado('cabo-roche', 30, 'punta-gracia', 100, 150, d, 'Situación 16:30'));
+    },
+  },
+  'and-py-2016-c3-n16': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.cardinal2('punta-alcazar', N, 'punta-cires', W, 'Situación 08:00');
+      const rs = k.abatimiento(71, 8, S);
+      const d = k.distFor(6, hrb(10) - hrb(8));
+      return latlon(k.run(s, rs, d, 'Situación de estima 10:00'));
+    },
+  },
+  'and-py-2016-c3-n17': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Salida 20:00');
+      const { ref, vb } = k.rumboYVelocidad(s, 'barbate-faro', hrb(22) - hrb(20), NE, 3);
+      return [{ kind: 'bearing', value: ref }, { kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2016-c3-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Primera pleamar (05:40 UT) → primera bajamar (11:53 UT): la marea baja y la sonda de 3,2 m dura hasta esa hora.
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 0 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 3.2, 1.4, 1) }];
+    },
+  },
+  'and-py-2016-c3-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(22, 15), 1);
+      const tr = k.tramoMarea(horasSeguidas(k, q.tabla_mareas), { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 1.7) }];
+    },
+  },
+  'and-py-2016-c3-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('12 20,0 S', '177 20,0 W', 'Salida');
+      const b = k.pos('9 10,0 S', '178 15,0 E', 'Llegada');
+      const { rumbo, dist } = k.rumboDirecto(a, b);
+      return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
     },
   },
 };

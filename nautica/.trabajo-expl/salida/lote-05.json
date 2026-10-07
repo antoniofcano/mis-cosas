@@ -1919,5 +1919,891 @@
   "explicacion": "La Regla 18 b) obliga al buque de vela a mantenerse apartado de la derrota de los buques con capacidad de maniobra restringida. Si hay riesgo de abordaje, maniobramos nosotros con un cambio de rumbo claro que evite la colisión. No tenemos preferencia, no podemos contar con que el otro se pare, y la llamada de emergencia no sustituye la maniobra.",
   "clave": "Velero ante maniobra restringida: el velero se aparta.",
   "trampa": "La a) cita la Regla 17, pero aquí el que debe seguir a rumbo es el buque restringido, no nosotros."
+ },
+ "bal-per-2021-03-fi-24": {
+  "explicacion": "El Anexo IV del RIPA, al que remite la Regla 37, incluye entre las señales de peligro un sonido continuo producido por cualquier aparato de señales de niebla. Indica que el buque está en peligro y necesita ayuda. No es una orden de apartarse ni un aviso de niebla.",
+  "clave": "Sonido continuo de niebla = socorro.",
+  "trampa": "La a) suena a advertencia, pero para eso no existe una señal continua."
+ },
+ "bal-per-2021-03-fi-27": {
+  "explicacion": "La Regla 13 dice que todo buque que alcance a otro se mantendrá apartado de su derrota, y prevalece sobre la Regla 18. Aunque normalmente el de motor cede al de vela, si el velero está alcanzando, maniobra el velero. No hay maniobras simultáneas fijadas para ambos.",
+  "clave": "Velero que alcanza, velero que se aparta.",
+  "trampa": "La b) aplica la Regla 18 sin ver que el alcance manda.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "and-2022-c3-t18"
+ },
+ "bal-per-2021-03-h-21": {
+  "explicacion": "Entre buques de propulsión mecánica, en vuelta encontrada los dos caen a estribor (Regla 14), y en un cruce se aparta el que ve al otro por su costado de estribor (Regla 15). La b) invierte la regla del cruce y la c) mezcla la vuelta encontrada con la regla del cruce.",
+  "clave": "Vuelta encontrada: ambos a estribor. Cruce: cede el que ve al otro por estribor.",
+  "trampa": "La b) es casi igual a la d), pero cambia estribor por babor en el cruce.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ]
+ },
+ "bal-per-2021-03-h-27": {
+  "explicacion": "La Regla 32 define la pitada corta como un sonido de una duración aproximada de un segundo. La larga dura de cuatro a seis segundos. Medio segundo, dos o dos y medio no son duraciones del Reglamento.",
+  "clave": "Corta ≈ 1 s; larga ≈ 4–6 s.",
+  "trampa": "La c) (dos segundos) no es ni corta ni larga.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".",
+    "texto": "Pitada corta: ≈ 1 segundo"
+   }
+  ],
+  "base": "and-2021-c1-t27",
+  "concepto": "and-2021-c1-t27"
+ },
+ "bal-per-2021-06-bh-20": {
+  "explicacion": "Dos luces rojas todo horizonte en vertical son del buque sin gobierno (Regla 27 a); si tiene arrancada añade las de costado y alcance. La roja más baja y desplazada es su luz de costado de babor, así que lo vemos por babor y con arrancada. El restringido por calado lleva tres rojas, el de maniobra restringida roja-blanca-roja y el pesquero, roja sobre blanca.",
+  "clave": "Dos rojas + costado = sin gobierno con arrancada.",
+  "trampa": "La c) suma tres rojas, pero las del restringido por calado van las tres en vertical."
+ },
+ "bal-per-2021-06-ci-23": {
+  "explicacion": "Si vemos la luz verde (estribor) de un buque que está por nuestro estribor, nosotros estamos en su costado de estribor: él nos ve por su estribor, así que es él quien debe apartarse (Regla 15). Nosotros seguimos a rumbo y velocidad (Regla 17), atentos por si no maniobra.",
+  "clave": "Verde con verde, sigue a rumbo.",
+  "trampa": "La a) sería correcta si por estribor viéramos su luz roja."
+ },
+ "bal-per-2021-06-ci-25": {
+  "explicacion": "La Regla 3 i) dice que un buque está «en navegación» cuando no está fondeado, ni amarrado a tierra, ni varado. Las otras opciones se dejan fuera alguno de los tres casos.",
+  "clave": "En navegación = ni fondeado, ni amarrado, ni varado.",
+  "trampa": "La b) olvida el buque amarrado a tierra.",
+  "concepto": "bal-per-2018-09-d-18"
+ },
+ "bal-per-2021-06-d-19": {
+  "explicacion": "La Regla 30 e) dice que el buque de eslora inferior a 7 m, cuando esté fondeado fuera de un canal angosto, paso, fondeadero o zona donde naveguen normalmente otros buques, no está obligado a exhibir las luces ni la marca de fondeo. Fuera de esos casos llevaría una blanca todo horizonte.",
+  "clave": "Menos de 7 m fondeado lejos del tráfico: sin luces obligatorias.",
+  "trampa": "La b) sería la luz si fondeara en una zona de paso."
+ },
+ "bal-per-2021-06-d-23": {
+  "explicacion": "Verde sobre blanca en vertical es un arrastrero faenando (Regla 26 b), y la verde más baja es su luz de costado de estribor. El buque de propulsión mecánica debe mantenerse apartado del buque dedicado a la pesca (Regla 18 a), aunque esté por nuestro babor, así que maniobramos, cayendo a estribor si hace falta. No es un pesquero no de arrastre (roja sobre blanca) y cortarle la proa es peligroso.",
+  "clave": "Verde sobre blanco = arrastrero: el de motor se aparta.",
+  "trampa": "La a) aplica la regla del cruce entre motores, pero frente a un pesquero manda la Regla 18.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-arrastre",
+    "vista": "proa"
+   }
+  ]
+ },
+ "bal-per-2021-06-d-24": {
+  "explicacion": "El Anexo IV del RIPA incluye como señal de peligro una bandera cuadrada que tenga encima o debajo una bola o algo parecido. Los cohetes de socorro despiden estrellas rojas, no blancas, y agitar una bandera o enseñar una bandera roja no son señales del Anexo IV.",
+  "clave": "Bandera cuadrada + bola = socorro.",
+  "trampa": "La a) cambia el color: las estrellas de socorro son rojas."
+ },
+ "bal-per-2021-06-e-23": {
+  "explicacion": "Según la Regla 34 a), un buque de propulsión mecánica a la vista de otro que da una pitada corta indica «caigo a estribor». Dos cortas son «caigo a babor» y la duda son cinco o más cortas. No es un saludo.",
+  "clave": "1 corta estribor, 2 babor, 3 atrás.",
+  "trampa": "La b) (caigo a babor) son dos pitadas cortas.",
+  "concepto": "bal-per-2019-04-a-24"
+ },
+ "bal-per-2021-06-f-18": {
+  "explicacion": "La Regla 34 b) iii) dice que la luz utilizada para las señales luminosas de maniobra será una luz blanca todo horizonte, visible a 5 millas como mínimo. No se usan la de alcance, la de tope ni las de costado, que son luces de navegación con sectores limitados.",
+  "clave": "Destellos de maniobra: luz blanca todo horizonte.",
+  "trampa": "La c) (tope) es blanca, pero solo se ve por proa."
+ },
+ "bal-per-2021-06-f-19": {
+  "explicacion": "El Anexo IV del RIPA dice que, para facilitar la identificación desde el aire, puede usarse un trozo de lona de color naranja con un cuadrado negro y un círculo, u otro símbolo pertinente. Ni verde, ni rojo, ni amarillo.",
+  "clave": "Desde el aire: lona naranja con cuadrado y círculo negros.",
+  "trampa": "La d) cambia el color: es naranja, el color de las señales de socorro."
+ },
+ "bal-per-2021-06-f-20": {
+  "explicacion": "La Regla 3 d) excluye de los «buques dedicados a la pesca» a los que pescan con curricán u otros artes que no restringen su maniobrabilidad. Y la Regla 3 c) dice que un velero que usa su maquinaria propulsora es un buque de propulsión mecánica. No tiene la maniobra restringida por su actividad.",
+  "clave": "Curricán no es pesca a efectos del RIPA; vela + motor = motor.",
+  "trampa": "La a) cae en que «pesca» es pesca; el curricán no da preferencia."
+ },
+ "bal-per-2021-06-f-21": {
+  "explicacion": "La demora pasa de 030° a 029,5°: prácticamente no varía, y la distancia baja de 6 a 4 millas. Según la Regla 7 d), eso es riesgo de abordaje. Como está por nuestra amura de estribor, debemos maniobrar con un cambio claro y con antelación (Reglas 8 y 15), normalmente a estribor. Los cambios graduales y a babor son lo que la Regla 8 pide evitar.",
+  "clave": "Demora constante y distancia que baja = riesgo de abordaje.",
+  "trampa": "La c) suena a maniobra, pero gradual y a babor es justo lo que no se debe hacer.",
+  "concepto": "bal-per-2018-12-c-20"
+ },
+ "bal-per-2023-06-bg-21": {
+  "explicacion": "La demora oscila entre 030° y 029,5° y vuelve a 030°: no varía de forma apreciable, mientras la distancia baja de 6 a 3 millas. Según la Regla 7 d), eso es riesgo de abordaje. Como está por nuestra amura de estribor, debemos maniobrar con un cambio claro y con antelación (Reglas 8 y 15). Los cambios graduales y a babor son lo que la Regla 8 pide evitar.",
+  "clave": "Demora constante y distancia que baja = riesgo de abordaje.",
+  "trampa": "La c) suena a maniobra, pero gradual y a babor es justo lo que no se debe hacer.",
+  "concepto": "bal-per-2021-06-f-21"
+ },
+ "bal-per-2021-06-f-23": {
+  "explicacion": "La Regla 10 h) dice que el buque que no utilice un dispositivo de separación del tráfico deberá apartarse de él dejando el mayor margen posible. No hay que justificar nada al llegar a puerto, y navegar fuera del dispositivo está permitido.",
+  "clave": "Si no usas el DST, apártate de él todo lo que puedas.",
+  "trampa": "La a) es lo contrario de lo que pide la regla."
+ },
+ "bal-per-2021-06-f-25": {
+  "explicacion": "Tres luces blancas de tope en vertical son de un remolcador con un remolque de más de 200 m (Regla 24 a). Si midiera 50 m o más llevaría además otra luz de tope a popa, así que mide menos de 50 m. La roja a su lado es su costado de babor, y la roja más lejos, el costado de babor del remolcado, que va detrás (a nuestra derecha si se mueven hacia la izquierda). Vistos por la popa veríamos luces blancas y amarilla, no rojas.",
+  "clave": "Tres topes en vertical = remolque de más de 200 m; sin tope de popa, menos de 50 m.",
+  "trampa": "La b) olvida que un remolcador de 50 m o más mostraría una cuarta luz blanca, a popa."
+ },
+ "bal-per-2021-06-g-18": {
+  "explicacion": "El Anexo IV del RIPA incluye entre las señales de peligro una bandera cuadrada con una bola, o algo parecido, encima o debajo de ella. El buque está en peligro y necesita ayuda. El sin gobierno lleva dos bolas, y la de práctico es la bandera «H».",
+  "clave": "Bandera cuadrada + bola = socorro.",
+  "trampa": "La b) despista con la bola: el sin gobierno lleva dos bolas, sin bandera.",
+  "concepto": "bal-per-2021-06-d-24"
+ },
+ "bal-per-2021-06-g-21": {
+  "explicacion": "La Regla 35 g) dice que el buque fondeado toca la campana rápidamente durante unos cinco segundos cada minuto, y puede emitir además tres pitadas (corta, larga y corta) para advertir de su posición a un buque que se aproxime. Por eso esa señal corresponde a un buque fondeado. El varado añade tres campanadas separadas antes y después del repique.",
+  "clave": "Corta-larga-corta en niebla: estoy fondeado, ojo conmigo.",
+  "trampa": "La c) es otro buque quieto, pero el varado no tiene esa señal de pito.",
+  "base": "and-2021-c2-t26",
+  "concepto": "and-2021-c2-t26"
+ },
+ "bal-per-2021-06-g-27": {
+  "explicacion": "Dos pitadas largas son de buque de propulsión mecánica parado y sin arrancada (Regla 35 b), y la Regla 35 k) permite al buque de práctico en servicio añadir una señal de identidad de cuatro pitadas cortas. El pesquero, el restringido y el que hace trabajos hidrográficos dan una larga y dos cortas.",
+  "clave": "Cuatro cortas añadidas = práctico.",
+  "trampa": "Las demás opciones son de buques que usan larga y dos cortas, no dos largas y cuatro cortas."
+ },
+ "bal-per-2021-09-a-18": {
+  "explicacion": "La Regla 34 c) i) dice que, en un canal angosto, el que pretenda alcanzar a otro por su costado de babor dará dos pitadas largas seguidas de dos cortas; por su estribor, dos largas y una corta. Larga-corta-larga-corta es la conformidad del alcanzado.",
+  "clave": "Adelantar en canal: 2 largas + 1 corta por estribor; 2 largas + 2 cortas por babor.",
+  "trampa": "La c) es la de adelantar por estribor.",
+  "concepto": "bal-per-2020-07-d-18"
+ },
+ "bal-per-2021-09-a-19": {
+  "explicacion": "La Regla 27 g) dice que los buques de eslora inferior a 12 m, salvo los dedicados a operaciones de buceo, no están obligados a exhibir las luces ni las marcas de sin gobierno y de maniobra restringida. La exención alcanza tanto a las luces como a las marcas.",
+  "clave": "Menos de 12 m: exentos de luces y marcas de sin gobierno o restringido (salvo buceo).",
+  "trampa": "La c) y la d) parten la exención en dos; la regla incluye luces y marcas.",
+  "concepto": "bal-per-2018-12-a-24"
+ },
+ "bal-per-2021-09-a-20": {
+  "explicacion": "El Anexo IV del RIPA, al que remite la Regla 37, incluye entre las señales de peligro un sonido continuo producido por cualquier aparato de señales de niebla. Indica peligro y necesidad de ayuda; no se usa para ejercicios.",
+  "clave": "Sonido continuo de niebla = socorro.",
+  "trampa": "Las a) y b) suenan a señales de a bordo, pero no son señales del RIPA.",
+  "concepto": "bal-per-2021-03-fi-24"
+ },
+ "bal-per-2021-09-a-21": {
+  "explicacion": "La Regla 3 d) excluye de los «buques dedicados a la pesca» a los que pescan con curricán, porque no restringe su maniobra. El que pesca al curricán (normalmente a motor) es un buque de propulsión mecánica, y según la Regla 18 a) debe apartarse del buque de vela. Lo del viento por babor solo vale entre dos veleros.",
+  "clave": "Curricán no es pesca a efectos del RIPA: cede al velero.",
+  "trampa": "La d) aplica la regla de vela frente a pesca, pero el curricán no cuenta como pesca.",
+  "concepto": "bal-per-2021-06-f-20"
+ },
+ "bal-per-2026-09-c-27": {
+  "explicacion": "La Regla 3 d) excluye de los «buques dedicados a la pesca» a los que pescan con curricán, porque no restringe su maniobra. Aunque sea un buque de pesca, mientras pesca al curricán (normalmente a motor) es un buque de propulsión mecánica, y según la Regla 18 a) debe apartarse del que navega a vela. Lo del viento por babor solo vale entre dos veleros.",
+  "clave": "Curricán no es pesca a efectos del RIPA: cede al velero.",
+  "trampa": "La d) aplica la regla de vela frente a pesca, pero el curricán no cuenta como pesca.",
+  "concepto": "bal-per-2021-06-f-20"
+ },
+ "bal-per-2021-09-a-22": {
+  "explicacion": "Una pitada larga y dos cortas cada dos minutos es la señal de los buques de la Regla 35 c): sin gobierno, maniobra restringida, restringido por calado, vela, pesca y remolcador. Ninguna opción los nombra: el remolcado da larga y tres cortas, el de motor con arrancada una larga y sin arrancada dos largas.",
+  "clave": "Larga + dos cortas = buques «especiales» y remolcador.",
+  "trampa": "La a) suena parecida, pero el remolcado añade una tercera corta.",
+  "concepto": "bal-per-2018-12-f-23"
+ },
+ "bal-per-2021-09-b-18": {
+  "explicacion": "La Regla 24 a) v) dice que el remolcador, cuando la longitud del remolque supere 200 m, exhibirá una marca bicónica, es decir, dos conos unidos por la base. Dos conos unidos por el vértice son de pesca, el cilindro de restringido por su calado y la esfera de fondeado.",
+  "clave": "Bicono = remolque de más de 200 m.",
+  "trampa": "La a) (conos por el vértice) es la marca de pesca.",
+  "concepto": "bal-per-2018-09-d-23"
+ },
+ "bal-per-2021-09-b-21": {
+  "explicacion": "La Regla 21 a) define la luz de tope como una luz blanca colocada sobre el eje proa-popa, con un arco de 225°. Rojas y verdes son las de costado, y la amarilla es la de remolque.",
+  "clave": "Tope y alcance, blancas; costados, roja y verde; remolque, amarilla.",
+  "trampa": "La d) (amarilla) es la luz de remolque."
+ },
+ "bal-per-2021-09-b-27": {
+  "explicacion": "La Regla 21 d) define la luz de remolque como una luz amarilla de las mismas características que la de alcance. La de alcance y la de tope son blancas, así que la a), la c) y la d) no valen.",
+  "clave": "Luz amarilla fija hacia popa = remolque.",
+  "trampa": "La a) comparte sector con la de remolque, pero es blanca.",
+  "concepto": "bal-per-2020-10-e-19"
+ },
+ "bal-per-2021-09-c-21": {
+  "explicacion": "Con el motor en marcha y las velas arriba, el velero es un buque de propulsión mecánica, y la Regla 25 e) le obliga a exhibir a proa, donde mejor pueda verse, un cono con el vértice hacia abajo. Dos conos por el vértice son de pesca, el cilindro de calado y el bicono de remolque largo.",
+  "clave": "Vela + motor de día: cono con la punta hacia abajo.",
+  "trampa": "La c) (bicono) es la marca de remolque de más de 200 m.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-21"
+ },
+ "bal-per-2025-09-a-24": {
+  "explicacion": "Con el motor en marcha y las velas arriba, el velero es un buque de propulsión mecánica, y la Regla 25 e) le obliga a exhibir a proa, donde mejor pueda verse, un cono con el vértice hacia abajo. Dos conos por el vértice son de pesca, el cilindro de calado y dos conos unidos por la base (bicono), de remolque largo.",
+  "clave": "Vela + motor de día: cono con la punta hacia abajo.",
+  "trampa": "La c) (conos por la base) es la marca de remolque de más de 200 m.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-21"
+ },
+ "bal-per-2021-09-c-26": {
+  "explicacion": "La luz de remolque es amarilla y tiene las mismas características que la luz de alcance (Regla 21 d), que cubre un arco de 135°, 67,5° a cada banda desde la popa. Los 225° son de la luz de tope y 112,5° de cada luz de costado.",
+  "clave": "Alcance y remolque 135°; costados 112,5°; tope 225°.",
+  "trampa": "La b) (225°) es el sector de la luz de tope.",
+  "base": "and-2023-c2-t27",
+  "concepto": "and-2023-c2-t27"
+ },
+ "bal-per-2021-09-d-21": {
+  "explicacion": "La Regla 33 a) dice que los buques de 12 m o más llevarán un pito; los de 20 m o más, además, una campana; y los de 100 m o más, también un gong. Entre 20 y 100 m: pito y campana. El megáfono y la sirena no son los aparatos del RIPA.",
+  "clave": "12 m pito; 20 m + campana; 100 m + gong.",
+  "trampa": "La b) vale solo de 12 a 20 m."
+ },
+ "bal-per-2021-09-d-22": {
+  "explicacion": "La Regla 1 b) permite que la autoridad competente dicte reglas especiales para radas, puertos, ríos, lagos o vías de navegación interior que tengan comunicación con alta mar y sean navegables por buques de navegación marítima. La a) y la b) recogen esos lugares, así que la correcta es la c).",
+  "clave": "Reglas especiales: radas, puertos, ríos, lagos y aguas interiores comunicadas con el mar.",
+  "trampa": "La d) niega lo que la Regla 1 b) permite expresamente.",
+  "concepto": "bal-per-2019-12-a-26"
+ },
+ "bal-per-2021-09-d-25": {
+  "explicacion": "Delante de la bocana de un puerto comercial, un portacontenedores en maniobra de entrada o salida suele navegar por un canal o acceso del que no puede salirse, y la Regla 9 b) dice que el buque de vela no estorbará el tránsito de un buque que solo pueda navegar con seguridad dentro de ese paso. Por eso la oficial es la c): nos mantenemos apartados de su derrota (d) y lo hacemos pasando por su popa (b), sin cortarle la proa.",
+  "clave": "Ante un mercante en la bocana, el velero no estorba: le pasa por la popa.",
+  "trampa": "La a) aplica la Regla 18 de mar abierto, pero junto a la bocana manda la Regla 9.",
+  "discrepancia": "Si el cruce ocurriera en mar abierto, sin canal ni acceso restringido, la Regla 18 a) obligaría al portacontenedores (buque de propulsión mecánica) a apartarse del velero; la pregunta no aclara que el mercante solo pueda navegar dentro de un canal.",
+  "defendible": "a"
+ },
+ "bal-per-2021-09-e-18": {
+  "explicacion": "La Regla 13 obliga al que alcanza a mantenerse apartado del alcanzado, pero no le dice por qué banda adelantar: puede hacerlo por cualquiera de las dos, según lo que sea más seguro. En un canal angosto, incluso hay señales distintas para adelantar por estribor o por babor (Regla 34 c).",
+  "clave": "El que alcanza puede pasar por cualquier banda, pero siempre se aparta.",
+  "trampa": "La b) y la c) inventan una banda obligatoria que el RIPA no fija.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ]
+ },
+ "bal-per-2021-09-e-19": {
+  "explicacion": "Entre veleros no se aplica la vuelta encontrada de la Regla 14, que es solo para buques de propulsión mecánica: manda el viento (Regla 12). Si se aproximan de frente, normalmente reciben el viento por bandas contrarias, y se aparta el que lo recibe por babor, cayendo a estribor. Barlovento solo cuenta cuando lo reciben por la misma banda.",
+  "clave": "Dos veleros de frente: cede el de viento por babor.",
+  "trampa": "La b) aplica a veleros la regla de los motores.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vela-amuras"
+   }
+  ],
+  "concepto": "and-2023-c2-t26"
+ },
+ "bal-per-2021-09-e-21": {
+  "explicacion": "La Regla 6 enumera, entre otros factores para la velocidad de seguridad, el calado en relación con la profundidad disponible, el estado del viento, mar y corriente, y, en buques con radar, la evaluación más exacta de la visibilidad que permite el radar. El número de tripulantes en el puente no figura en la lista.",
+  "clave": "Velocidad de seguridad: visibilidad, tráfico, maniobra, mar, calado, radar.",
+  "trampa": "La c) parece demasiado técnica para estar en la regla, pero es casi una cita literal de la Regla 6 b)."
+ },
+ "bal-per-2021-09-e-22": {
+  "explicacion": "La Regla 7 a) dice que, si hay alguna duda, se considerará que el riesgo de abordaje existe. La b) es lo contrario de la Regla 7 d) (si la demora no varía, sí hay riesgo), la Regla 7 c) prohíbe hacer suposiciones con información escasa, especialmente de radar, y no se fija ninguna escala de 12 millas.",
+  "clave": "¿Dudas? Hay riesgo de abordaje.",
+  "trampa": "La b) invierte la regla: demora constante significa riesgo.",
+  "concepto": "bal-per-2021-03-b-24"
+ },
+ "bal-per-2021-09-e-23": {
+  "explicacion": "La Regla 6 enumera como factores de la velocidad de seguridad, entre otros, la visibilidad, la densidad de tráfico y la maniobrabilidad del buque (distancia de parada y capacidad de giro). La nacionalidad o el pabellón no influyen en nada.",
+  "clave": "Velocidad de seguridad: visibilidad, tráfico, maniobra, mar, calado, radar.",
+  "trampa": "Las tres primeras están en la regla; solo la nacionalidad sobra.",
+  "concepto": "bal-per-2021-09-e-21"
+ },
+ "bal-per-2021-09-e-24": {
+  "explicacion": "La Regla 25 a) dice que el buque de vela en navegación exhibirá luces de costado y luz de alcance. La luz de tope es de los buques de propulsión mecánica, y verde sobre blanca es la de un arrastrero. Solo los costados, sin alcance, no se ve por la popa.",
+  "clave": "Velero: costados y alcance; con tope, ya va a motor.",
+  "trampa": "La b) añade la luz de tope, que convierte al velero en buque de motor.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "concepto": "bal-per-2019-12-e-18"
+ },
+ "bal-per-2025-12-c-27": {
+  "explicacion": "La Regla 25 a) dice que el buque de vela en navegación exhibirá luces de costado y luz de alcance. Con 7 m justos no se acoge a la excepción de la Regla 25 d) i), que solo permite usar una linterna a los veleros de menos de 7 m. La luz de tope es de buques de motor y verde sobre blanca, de arrastrero.",
+  "clave": "Velero: costados y alcance; con tope, ya va a motor.",
+  "trampa": "La b) añade la luz de tope, que convierte al velero en buque de motor.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "concepto": "bal-per-2019-12-e-18"
+ },
+ "bal-per-2021-09-e-25": {
+  "explicacion": "La Regla 24 a) i) dice que el buque que remolca exhibirá, en lugar de su luz de tope de proa, dos luces de tope en línea vertical, o tres si la longitud del remolque supera 200 m. Con menos de 200 m, dos. El remolcado no lleva luces de tope, sino costados y alcance.",
+  "clave": "Remolcador: 2 topes (3 si el remolque supera 200 m).",
+  "trampa": "La d) sería la de un buque de motor normal, sin remolque.",
+  "concepto": "bal-per-2020-10-g-22"
+ },
+ "bal-per-2021-09-e-26": {
+  "explicacion": "La Regla 21 f) define la luz centelleante como una luz que produce centelleos a intervalos regulares con una frecuencia de 120 o más centelleos por minuto. Es la que usan, por ejemplo, los aerodeslizadores (amarilla) y las naves de vuelo rasante (roja).",
+  "clave": "Centelleante: 120 o más por minuto.",
+  "trampa": "Las otras cifras son parecidas, pero la regla dice 120."
+ },
+ "bal-per-2021-09-e-27": {
+  "explicacion": "La Regla 21 e) define la luz todo horizonte como la visible sin interrupción en un arco de horizonte de 360°. 180° no corresponde a ninguna luz del RIPA: la de alcance tiene 135° y la de tope, 225°.",
+  "clave": "Todo horizonte = 360°.",
+  "trampa": "La c) (90° a cada banda) sigue sumando solo 180°.",
+  "concepto": "bal-per-2020-10-i-21"
+ },
+ "bal-per-2021-09-f-18": {
+  "explicacion": "La Regla 27 e) dice que el buque dedicado a operaciones de buceo exhibirá las luces de maniobra restringida (tres todo horizonte en vertical, roja, blanca y roja) y, si por su tamaño no puede mostrar las marcas, una reproducción rígida de la bandera «A» del Código Internacional de Señales de al menos 1 m de altura. Tres rojas son de calado y dos rojas, de sin gobierno.",
+  "clave": "Buceo: roja-blanca-roja de noche; bandera «A» rígida de día.",
+  "trampa": "La a) pone tres rojas (restringido por calado) en lugar de roja-blanca-roja."
+ },
+ "bal-per-2021-09-f-20": {
+  "explicacion": "La Regla 32 b) define la pitada corta como un sonido de una duración aproximada de un segundo. La larga dura de cuatro a seis segundos, y ocho segundos no aparece en el Reglamento.",
+  "clave": "Corta ≈ 1 s; larga ≈ 4–6 s.",
+  "trampa": "La a) y la d) son los límites de la pitada larga.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".",
+    "texto": "Pitada corta: ≈ 1 segundo"
+   }
+  ],
+  "base": "and-2021-c1-t27",
+  "concepto": "and-2021-c1-t27"
+ },
+ "bal-per-2021-09-f-27": {
+  "explicacion": "La Regla 27 a) dice que el buque sin gobierno exhibirá dos luces rojas todo horizonte en línea vertical, donde mejor puedan verse (y de día dos bolas). Las amarillas, blancas o verdes en esa disposición no corresponden al sin gobierno.",
+  "clave": "Sin gobierno: dos rojas de noche, dos bolas de día.",
+  "trampa": "La c) recuerda al dragaminas, pero ese lleva tres verdes.",
+  "concepto": "bal-per-2018-12-c-27"
+ },
+ "bal-per-2021-12-a-23": {
+  "explicacion": "Sí se puede adelantar en un canal angosto. Si el alcanzado no tiene que maniobrar para dejarnos pasar con seguridad, se aplica sin más la Regla 13 (el que alcanza se aparta). Si tiene que maniobrar, la Regla 9 e) exige anunciarlo con las señales de la Regla 34 c) y esperar su conformidad. La eslora no tiene nada que ver.",
+  "clave": "Adelantar en canal: sí, con señales si el otro tiene que apartarse.",
+  "trampa": "La b) prohíbe algo que la Regla 9 e) regula expresamente."
+ },
+ "bal-per-2021-12-a-25": {
+  "explicacion": "Según la Regla 7 d), hay riesgo de abordaje si la marcación (o demora) de un buque que se aproxima no varía de forma apreciable. Que lleven rumbos opuestos y se aproximen no basta (pueden cruzarse a buena distancia), ni la banda por la que se acerque.",
+  "clave": "Marcación constante y distancia que baja = riesgo de abordaje.",
+  "trampa": "La a) describe una vuelta encontrada, que solo es peligrosa si además la marcación no cambia.",
+  "concepto": "bal-per-2018-12-c-20"
+ },
+ "bal-per-2021-12-b-19": {
+  "explicacion": "Entre dos buques de propulsión mecánica que se cruzan, la Regla 15 obliga a apartarse al que ve al otro por su costado de estribor, sin importar el tamaño. Si el mercante nos ve por su estribor, maniobra él. Otra cosa es que en canales angostos o dispositivos de separación el pequeño no deba estorbar (Reglas 9 y 10).",
+  "clave": "Motor contra motor: cede el que ve al otro por estribor, sea grande o pequeño.",
+  "trampa": "La a) y la d) deciden por el tamaño, que el RIPA no tiene en cuenta en el cruce.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "bal-per-2019-04-b-18"
+ },
+ "bal-per-2021-12-b-21": {
+  "explicacion": "La Regla 25 d) ii) dice que la embarcación de remo puede exhibir las luces de los buques de vela, pero si no lo hace tendrá a mano una linterna eléctrica o un farol encendido con luz blanca, que mostrará con tiempo suficiente para evitar el abordaje. Eso es lo único obligatorio.",
+  "clave": "Bote de remos: basta una linterna blanca a mano.",
+  "trampa": "La a) son las luces potestativas de vela, no las obligatorias."
+ },
+ "bal-per-2024-07-a-19": {
+  "explicacion": "La Regla 25 d) ii) dice que la embarcación de remo puede exhibir las luces de los buques de vela, pero si no lo hace tendrá a mano una linterna eléctrica o un farol encendido con luz blanca, que mostrará con tiempo suficiente para evitar el abordaje. Si no usa las luces potestativas, lo obligatorio es la linterna.",
+  "clave": "Bote de remos: basta una linterna blanca a mano.",
+  "trampa": "La a) son precisamente las luces no obligatorias.",
+  "concepto": "bal-per-2021-12-b-21"
+ },
+ "bal-per-2021-12-b-27": {
+  "explicacion": "Una pitada larga y dos cortas es la señal del buque que remolca (Regla 35 c), y la larga seguida de tres cortas, emitida justo después, es la del remolcado tripulado (Regla 35 e). Las pitadas cortas de caer a babor o dar atrás son señales con buques a la vista, no de niebla.",
+  "clave": "Larga + 2 cortas y luego larga + 3 cortas = remolcador y remolcado.",
+  "trampa": "La a) acierta con la primera señal, pero el velero no da larga y tres cortas.",
+  "concepto": "bal-per-2018-09-e-21"
+ },
+ "bal-per-2021-12-c-18": {
+  "explicacion": "La Regla 3 i) dice que la expresión «en navegación» se aplica a un buque que no esté ni fondeado, ni amarrado a tierra, ni varado. Estar proyectado para maniobrar sobre las aguas es la definición de hidroavión, y no depende de estar en alta mar o en aguas interiores.",
+  "clave": "En navegación = ni fondeado, ni amarrado, ni varado.",
+  "trampa": "La a) es parte de la definición de hidroavión (Regla 3 e).",
+  "concepto": "bal-per-2018-09-d-18"
+ },
+ "bal-per-2024-07-be-24": {
+  "explicacion": "La Regla 3 i) dice que la expresión «en navegación» se aplica a un buque que no esté ni fondeado, ni amarrado a tierra, ni varado. Un buque al garete, a la deriva o con los motores parados sigue en navegación, así que la a) y la b) dicen lo contrario.",
+  "clave": "En navegación = ni fondeado, ni amarrado, ni varado.",
+  "trampa": "La b) excluye los motores parados, y un buque parado sigue en navegación.",
+  "concepto": "bal-per-2018-09-d-18"
+ },
+ "bal-per-2021-12-c-19": {
+  "explicacion": "La Regla 34 b) iii) dice que la luz utilizada para las señales luminosas de maniobra, cuando se lleve, será una luz blanca todo horizonte visible a una distancia mínima de 5 millas, conforme al Anexo I. No es roja y el alcance no es de tres millas.",
+  "clave": "Destellos de maniobra: blanca todo horizonte, 5 millas.",
+  "trampa": "La c) acierta con el color, pero falla en la distancia.",
+  "concepto": "bal-per-2021-06-f-18"
+ },
+ "bal-per-2025-04-c-25": {
+  "explicacion": "La Regla 34 b) iii) dice que la luz utilizada para las señales luminosas de maniobra, cuando se lleve, será una luz blanca todo horizonte visible a una distancia mínima de 5 millas, conforme al Anexo I. No es amarilla y el alcance no es de tres millas.",
+  "clave": "Destellos de maniobra: blanca todo horizonte, 5 millas.",
+  "trampa": "La c) acierta con el color, pero falla en la distancia.",
+  "concepto": "bal-per-2021-06-f-18"
+ },
+ "bal-per-2021-12-c-20": {
+  "explicacion": "La Regla 30 a) dice que el buque fondeado exhibirá en su parte de proa, donde mejor pueda verse, una luz blanca todo horizonte de noche o una bola de día. Las luces verdes, amarillas o rojas no son luces de fondeo.",
+  "clave": "Fondeado: de día una bola a proa; de noche luz blanca.",
+  "trampa": "La d) (roja) es de buques sin gobierno o restringidos, no de fondeo.",
+  "concepto": "bal-per-2019-09-a-23"
+ },
+ "bal-per-2021-12-c-21": {
+  "explicacion": "Si el velero nos alcanza, la Regla 13 le obliga a él a mantenerse apartado, aunque nosotros seamos un buque de motor. Como buque alcanzado, la Regla 17 a) nos manda mantener rumbo y velocidad, atentos por si tenemos que actuar al final (Regla 17 b).",
+  "clave": "Me alcanzan: sigo a rumbo y velocidad.",
+  "trampa": "La a) o las caídas a una banda desconciertan al que alcanza, que cuenta con que sigamos igual."
+ },
+ "bal-per-2021-12-c-22": {
+  "explicacion": "La Regla 18 b) dice que el buque de vela en navegación se mantendrá apartado de los buques sin gobierno, de los de maniobra restringida y de los dedicados a la pesca. Del buque de propulsión mecánica no (es él quien cede al velero), y el hidroavión debe apartarse de todos (Regla 18 e).",
+  "clave": "El velero cede a: sin gobierno, restringido y pesquero.",
+  "trampa": "La b) despista: el hidroavión es el que se aparta de todos.",
+  "concepto": "bal-per-2019-04-c-19"
+ },
+ "bal-per-2021-12-c-27": {
+  "explicacion": "La Regla 3 g) incluye entre los buques con capacidad de maniobra restringida a los dedicados a colocar, reparar o recoger cables o conductos submarinos. No es un buque sin gobierno (avería) ni restringido por su calado, y es más que un simple buque de propulsión mecánica.",
+  "clave": "Cablero = maniobra restringida.",
+  "trampa": "La d) es cierta en cuanto a la propulsión, pero no es su categoría a efectos de preferencia.",
+  "concepto": "bal-per-2019-09-c-18"
+ },
+ "bal-per-2021-12-d-20": {
+  "explicacion": "La Regla 18 fija el orden: los buques sin gobierno y los de maniobra restringida son los que menos maniobran, luego vienen los dedicados a la pesca, después los de vela y por último los de propulsión mecánica. Cada uno se aparta de los que tiene por encima.",
+  "clave": "Orden: sin gobierno/restringido > pesca > vela > motor.",
+  "trampa": "La a) pone la pesca por delante del de maniobra restringida, y es al revés: el pesquero se aparta del restringido."
+ },
+ "bal-per-2021-12-d-22": {
+  "explicacion": "Una luz roja sola en movimiento es la luz de costado de babor de un buque que no lleva luz de tope ni luces todo horizonte. El buque de propulsión mecánica mostraría además la blanca de tope, y el pesquero sus luces todo horizonte; el velero, en cambio, solo muestra costados y alcance (Regla 25), así que de lado solo se ve la roja.",
+  "clave": "Solo una roja que se mueve: velero visto por babor.",
+  "trampa": "La b) olvida que el buque de motor siempre lleva tope blanco."
+ },
+ "bal-per-2021-12-d-23": {
+  "explicacion": "La Regla 18 b) obliga al velero a apartarse de los buques sin gobierno, de los de maniobra restringida (el dragaminas lo es, Regla 3 g) y de los de pesca. Frente al buque de propulsión mecánica es al revés: el de motor se aparta del velero (Regla 18 a), salvo que el velero lo alcance.",
+  "clave": "El velero cede a: sin gobierno, restringido y pesquero; no al de motor.",
+  "trampa": "La b) parece de otra categoría, pero el dragaminas es un buque de maniobra restringida.",
+  "concepto": "bal-per-2019-04-c-19"
+ },
+ "bal-per-2023-06-c-24": {
+  "explicacion": "La Regla 18 b) obliga al velero a apartarse de los buques sin gobierno, de los de maniobra restringida (el dragaminas lo es, Regla 3 g) y de los de pesca. Frente al buque de propulsión mecánica es al revés: el de motor se aparta del velero (Regla 18 a), salvo que el velero lo alcance.",
+  "clave": "El velero cede a: sin gobierno, restringido y pesquero; no al de motor.",
+  "trampa": "La c) parece de otra categoría, pero el dragaminas es un buque de maniobra restringida.",
+  "concepto": "bal-per-2019-04-c-19"
+ },
+ "bal-per-2021-12-d-26": {
+  "explicacion": "La Regla 30 a) dice que el buque fondeado exhibirá de día una bola en la parte de proa, donde mejor pueda verse. Dos esferas son de sin gobierno, el cilindro de restringido por su calado y el bicono, de remolque de más de 200 m.",
+  "clave": "Fondeado de día: una bola a proa.",
+  "trampa": "La b) (dos esferas) es la marca del buque sin gobierno.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2019-09-a-23"
+ },
+ "bal-per-2021-12-f-18": {
+  "explicacion": "La Regla 10 c) dice que se evitará cruzar las vías de circulación, pero si hay que hacerlo se seguirá un rumbo que forme, en lo posible, una perpendicular con la dirección general del tráfico, para cruzar cuanto antes. El RIPA no fija una velocidad para cruzar, y el rumbo paralelo es para incorporarse.",
+  "clave": "Cruzar el DST: en perpendicular al tráfico.",
+  "trampa": "La d) es la forma de incorporarse a la vía, no de cruzarla.",
+  "concepto": "and-2026-c1-t27"
+ },
+ "bal-per-2021-12-f-21": {
+  "explicacion": "Son dos buques de propulsión mecánica en situación de cruce, y la Regla 15 obliga a apartarse al que tiene al otro por su costado de estribor: el portacontenedores ve a la embarcación por su estribor, así que maniobra él. En mar abierto el tamaño y la velocidad no cambian la regla, y la embarcación debe mantener rumbo y velocidad (Regla 17), lista para actuar si el otro no lo hace.",
+  "clave": "Motor contra motor: cede el que ve al otro por estribor, sea grande o pequeño.",
+  "trampa": "La b) y la d) deciden por el tamaño, algo que la Regla 15 no contempla.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "bal-per-2019-04-b-18"
+ },
+ "bal-per-2021-12-f-22": {
+  "explicacion": "Dos conos unidos por el vértice indican un buque dedicado a la pesca, y el cono con el vértice hacia arriba señala que su aparejo se extiende más de 150 m en horizontal hacia esa banda (Regla 26 c). Como somos un buque de propulsión mecánica, la Regla 18 a) nos obliga a apartarnos del pesquero, y lo haremos por la banda donde no tiene el arte. No es una vuelta encontrada, que solo se da entre dos buques de motor.",
+  "clave": "Pesca con arte largo: se pasa por el lado contrario al cono.",
+  "trampa": "La b) aplica la vuelta encontrada, pero el otro es un pesquero faenando, no un buque de motor normal.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-no-arrastre",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2021-12-f-26": {
+  "explicacion": "La Regla 25 a) dice que el buque de vela en navegación exhibirá luces de costado y luz de alcance, sea cual sea su velocidad. La luz blanca todo horizonte, sola o con costados, es una alternativa para buques de propulsión mecánica de menos de 12 m (Regla 23 d), no para veleros.",
+  "clave": "Velero: costados y alcance, vaya a la velocidad que vaya.",
+  "trampa": "La b) es la configuración de una lancha a motor de menos de 12 m.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ]
+ },
+ "bal-per-2026-03-d-22": {
+  "explicacion": "La Regla 25 a) dice que el buque de vela en navegación exhibirá luces de costado y luz de alcance, sea cual sea su velocidad. Las dos luces roja sobre verde del tope son potestativas y se suman a las anteriores (Regla 25 c); con solo la de alcance, como dice la a), faltarían los costados. La blanca todo horizonte con costados es de buques de motor de menos de 12 m.",
+  "clave": "Velero: costados y alcance; roja sobre verde, opcional y además.",
+  "trampa": "La a) quita las luces de costado, que son obligatorias.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "concepto": "bal-per-2021-12-f-26"
+ },
+ "bal-per-2022-03-a-19": {
+  "explicacion": "La Regla 23 d) i) permite al buque de propulsión mecánica de eslora inferior a 12 m sustituir las luces de tope y alcance por una luz blanca todo horizonte, junto con las luces de costado. La blanca sola (a) solo se permite a los de menos de 7 m que no superan 7 nudos, y costados con alcance (d) dejaría al buque sin luz de tope.",
+  "clave": "Motor de menos de 12 m: blanca todo horizonte + costados.",
+  "trampa": "La a) solo vale para menos de 7 m y velocidad máxima de 7 nudos.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "motor",
+    "vista": "todas"
+   }
+  ],
+  "base": "and-2025-c2-t25",
+  "concepto": "and-2025-c2-t25"
+ },
+ "bal-per-2022-03-a-22": {
+  "explicacion": "La Regla 1 d) dice que la Organización Marítima Internacional (OMI) podrá adoptar dispositivos de separación del tráfico a los efectos del Reglamento. Ni Salvamento Marítimo ni las Capitanías los adoptan, aunque estas puedan dictar reglas especiales locales.",
+  "clave": "Los DST los adopta la OMI.",
+  "trampa": "La b) suena cercana, pero la Capitanía no adopta dispositivos de separación del tráfico."
+ },
+ "bal-per-2022-03-a-26": {
+  "explicacion": "La Regla 12 b) dice que, a efectos de esa regla, la banda de barlovento es la contraria a aquella en que se lleve cazada la vela mayor (o la vela de cuchillo mayor en los de aparejo cruzado). Lo normal es que coincida con la banda por la que entra el viento, pero la definición del Reglamento es la de la mayor, por eso la oficial es la a).",
+  "clave": "Barlovento = banda contraria a la que lleva la mayor.",
+  "trampa": "La c) es la idea intuitiva, pero la definición oficial se basa en la posición de la mayor."
+ },
+ "bal-per-2022-03-b-23": {
+  "explicacion": "La Regla 30 a) dice que el buque fondeado exhibirá de día una bola (esfera negra) en la parte de proa, donde mejor pueda verse. Dos esferas son de sin gobierno, el cono con el vértice abajo de velero a motor y el cono hacia arriba indica el arte largo de un pesquero.",
+  "clave": "Fondeado de día: una bola a proa.",
+  "trampa": "La a) (dos esferas) es del sin gobierno.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2019-09-a-23"
+ },
+ "bal-per-2022-03-b-24": {
+  "explicacion": "La Regla 13 b) considera que alcanza todo buque que se aproxima a otro desde una marcación mayor de 22,5° a popa del través de este último, es decir, desde una posición en la que de noche solo vería su luz de alcance y ninguna de las de costado. Tener más velocidad o venir del través hacia popa no basta.",
+  "clave": "Más de 22,5° a popa del través = alcance (solo ves su luz de alcance).",
+  "trampa": "La b) olvida los 22,5°: entre el través y ese límite todavía se ve la luz de costado.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "base": "and-2021-c1-t21",
+  "concepto": "and-2021-c1-t21"
+ },
+ "bal-per-2022-03-c-26": {
+  "explicacion": "La Regla 34 e) dice que el buque que se aproxime a un recodo donde otros puedan quedar ocultos emitirá una pitada larga, y que todo buque que se aproxime por el otro lado y la oiga contestará con otra pitada larga. Cinco cortas son de duda y caer a estribor no es la respuesta prevista.",
+  "clave": "Recodo sin visibilidad: una pitada larga (y se contesta con otra).",
+  "trampa": "La a) es prudente, pero la regla pide contestar a la señal.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "-",
+    "texto": "Aproximación a un recodo"
+   }
+  ],
+  "concepto": "bal-per-2018-12-c-21"
+ },
+ "bal-per-2022-06-a-25": {
+  "explicacion": "La Regla 18 c) dice que el buque dedicado a la pesca en navegación se mantendrá, en la medida de lo posible, apartado de la derrota de los buques sin gobierno y de los de maniobra restringida. Maniobra el pesquero; el tamaño no cuenta.",
+  "clave": "El pesquero cede solo a sin gobierno y a maniobra restringida.",
+  "trampa": "La b) invierte la regla.",
+  "concepto": "bal-per-2019-04-f-22"
+ },
+ "bal-per-2022-06-d-18": {
+  "explicacion": "La Regla 8 a) dice que la maniobra para evitar el abordaje se hará de forma clara, con la debida antelación y respetando las buenas prácticas marineras. Esperar al último momento, hacer pequeños cambios sucesivos (Regla 8 b) o cortarle la proa al otro es justo lo que hay que evitar.",
+  "clave": "Maniobra: clara, con antelación y con buen sentido marinero.",
+  "trampa": "La a) tiene la palabra «decidida», pero en el último momento ya no hay margen.",
+  "concepto": "bal-per-2019-06-a-23"
+ },
+ "bal-per-2022-06-d-20": {
+  "explicacion": "Dos luces rojas todo horizonte en vertical son la señal del buque sin gobierno (Regla 27 a). Si solo se ven esas dos, sin luces de costado ni alcance, el buque no tiene arrancada; con arrancada añadiría costados y alcance. El arrastrero lleva verde sobre blanca y el práctico, blanca sobre roja.",
+  "clave": "Dos rojas solas = sin gobierno parado; con costados, con arrancada.",
+  "trampa": "La d) necesitaría ver también sus luces de costado o alcance.",
+  "concepto": "bal-per-2019-12-a-27"
+ },
+ "bal-per-2022-06-d-21": {
+  "explicacion": "La Regla 25 e) dice que el buque que navegue a vela y a motor a la vez exhibirá a proa, donde mejor pueda verse, un cono con el vértice hacia abajo. Dos bolas son de sin gobierno, una bola de fondeado, y el cono hacia arriba indica el arte de un pesquero.",
+  "clave": "Vela + motor de día: cono con la punta hacia abajo.",
+  "trampa": "La b) es el mismo cono al revés: hacia arriba es otra señal.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-21"
+ },
+ "bal-per-2022-06-e-18": {
+  "explicacion": "La Regla 13 (alcance) prevalece sobre las demás reglas de rumbo y gobierno: el buque que alcanza, sea del tipo que sea, se mantiene apartado del alcanzado. Por eso el velero que alcanza a un buque de motor debe apartarse. En un cruce normal, en cambio, la Regla 18 obliga al buque de motor a apartarse del de vela, da igual por qué banda lo vea, así que la c) es falsa.",
+  "clave": "Quien alcanza, se aparta. Siempre, aunque sea un velero.",
+  "trampa": "La c) aplica la regla de cruce entre motores (Regla 15) a un velero; con vela manda la Regla 18.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "base": "and-2020-c1-t19",
+  "concepto": "and-2020-c1-t19"
+ },
+ "bal-per-2022-06-e-19": {
+  "explicacion": "En un dispositivo de separación del tráfico (Regla 10) se siguen aplicando las reglas de rumbo y gobierno: navegar por la vía de circulación no da preferencia frente a otro buque de propulsión mecánica. Entre dos buques de motor que se cruzan rige la Regla 15: el que tiene al otro por estribor cede el paso. Como lo vemos por estribor, nos toca apartarnos.",
+  "clave": "En el DST no hay preferencia de paso: el de estribor sigue mandando.",
+  "trampa": "Creer que ir por la vía de circulación te convierte en «sigue a rumbo».",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "base": "and-2020-c1-t21",
+  "concepto": "and-2020-c1-t21"
+ },
+ "bal-per-2022-06-e-21": {
+  "explicacion": "Si solo ves una luz de costado, sin luz de tope, se trata de un buque de vela (Regla 25). Que la demora se mantenga constante mientras se acerca indica riesgo de abordaje (Regla 7). Según la Regla 18, el buque de propulsión mecánica se mantiene apartado del de vela, así que eres tú quien debe maniobrar, aunque lo veas por babor.",
+  "clave": "Luz de costado sin tope = velero; el motor se aparta.",
+  "trampa": "Aplicar la regla de cruce entre motores y creer que, al verlo por babor, sigues a rumbo.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "estribor"
+   }
+  ],
+  "base": "and-2020-c1-t26",
+  "concepto": "and-2020-c1-t26"
+ },
+ "bal-per-2022-06-e-25": {
+  "explicacion": "Con visibilidad reducida y el buque solo en el radar no hay «sigue a rumbo» ni «cede el paso»: rige la Regla 19 y todos deben maniobrar con antelación. Para un buque a proa del través, que no te esté alcanzando, la Regla 19 d) manda evitar en lo posible la caída a babor. A 65° Br está a proa del través, así que no caigas a babor.",
+  "clave": "Radar en niebla: proa del través → no caigas a babor.",
+  "trampa": "En niebla y sin verse no existe el «sigue a rumbo».",
+  "base": "and-2020-c1-t27",
+  "concepto": "and-2020-c1-t27"
+ },
+ "bal-per-2022-06-e-27": {
+  "explicacion": "La luz de alcance (Regla 21 c) es blanca, se coloca lo más cerca posible de la popa y es visible en un arco de 135°, 67,5° a cada banda contados desde la popa. Por eso no es amarilla, no va a proa y su arco no es de 125°.",
+  "clave": "Alcance: blanca, a popa, 135°.",
+  "trampa": "La amarilla es la luz de remolque, que tiene el mismo sector que la de alcance.",
+  "base": "and-2020-c1-t24",
+  "concepto": "and-2020-c1-t24"
+ },
+ "bal-per-2026-09-c-24": {
+  "explicacion": "La luz de alcance (Regla 21 c) es siempre blanca, se coloca lo más cerca posible de la popa y es visible en un arco de 135°, 67,5° a cada banda contados desde la popa. No cambia de color según el barco, no va a proa y su arco no es de 125°.",
+  "clave": "Alcance: blanca, a popa, 135°.",
+  "trampa": "La a) confunde la luz de alcance con la de remolque, que es amarilla y tiene el mismo sector.",
+  "base": "and-2020-c1-t24",
+  "concepto": "and-2020-c1-t24"
+ },
+ "bal-per-2022-09-a-22": {
+  "explicacion": "En un cruce entre buques de propulsión mecánica, la Regla 15 dice que el que tiene al otro por su costado de estribor se mantendrá apartado. El que lo ve por babor sigue a rumbo, y caer ambos a estribor es la vuelta encontrada, no el cruce.",
+  "clave": "Estribor manda.",
+  "trampa": "La b) es la maniobra de la vuelta encontrada.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "base": "and-2026-c2-t20",
+  "concepto": "and-2026-c2-t20"
+ },
+ "bal-per-2022-09-c-18": {
+  "explicacion": "La Regla 26 c) asigna al buque de pesca que no sea de arrastre dos luces todo horizonte en línea vertical, roja la superior y blanca la inferior. Verde sobre blanca es la del arrastrero y blanca sobre roja la del práctico.",
+  "clave": "Verde sobre blanco, arrastre; rojo sobre blanco, pesca de otro tipo.",
+  "trampa": "La c) invierte el orden: blanca sobre roja es el práctico.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-no-arrastre",
+    "vista": "proa"
+   }
+  ],
+  "concepto": "and-2022-c1-t22"
+ },
+ "bal-per-2022-09-c-19": {
+  "explicacion": "La Regla 25 a) dice que el buque de vela en navegación exhibirá luces de costado y luz de alcance. El farol combinado del tope es una opción para los de menos de 20 m (Regla 25 b), no una obligación. Dos rojas son de sin gobierno y tres rojas, de restringido por su calado.",
+  "clave": "Velero: costados y alcance; el farol tricolor es opcional.",
+  "trampa": "La b) convierte en obligatorio lo que es potestativo.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "concepto": "bal-per-2019-12-e-18"
+ },
+ "bal-per-2022-09-c-20": {
+  "explicacion": "La Regla 10 d) reserva la zona de navegación costera, en general, a los buques de menos de 20 m, los de vela y los de pesca. Cualquier buque puede usarla cuando va o viene de un puerto, instalación o lugar situado en ella, o para evitar un peligro inmediato. Por eso valen las tres opciones.",
+  "clave": "Zona costera: pequeños, veleros, pesca, quien va o viene de ella, o ante un peligro.",
+  "trampa": "Cada opción por separado es cierta; la respuesta completa es la d).",
+  "base": "and-2020-c3-t27",
+  "concepto": "and-2020-c3-t27"
+ },
+ "bal-per-2022-09-c-21": {
+  "explicacion": "La Regla 13 a) dice que todo buque que alcance a otro se mantendrá apartado de su derrota, sin perjuicio de la Regla 18. Aunque normalmente el velero se aparta del pesquero, si es el arrastrero quien alcanza, maniobra el arrastrero.",
+  "clave": "El que alcanza siempre se aparta, sea quien sea.",
+  "trampa": "La a) aplica la Regla 18 (vela cede a pesca), pero en el alcance prevalece la Regla 13.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "bal-per-2018-12-d-20"
+ },
+ "bal-per-2022-09-c-22": {
+  "explicacion": "La Regla 3 d) excluye de los «buques dedicados a la pesca» a los que pescan con curricán u otros artes que no restringen su maniobrabilidad. Y la Regla 3 c) dice que un velero que usa su maquinaria propulsora es un buque de propulsión mecánica.",
+  "clave": "Curricán no es pesca a efectos del RIPA; vela + motor = motor.",
+  "trampa": "La a) cae en que «pesca» es pesca; el curricán no da preferencia.",
+  "concepto": "bal-per-2021-06-f-20"
+ },
+ "bal-per-2022-09-c-23": {
+  "explicacion": "La Regla 17 a) dice que, cuando uno de los dos buques deba mantenerse apartado, el otro (el que tiene preferencia) mantendrá su rumbo y su velocidad. Así el que cede puede calcular su maniobra. Solo actuará si el otro no maniobra a tiempo (Regla 17 b).",
+  "clave": "El que tiene preferencia sigue a rumbo y velocidad.",
+  "trampa": "La b) y la c) describen por dónde pasará, algo que decide el que cede, no el que sigue a rumbo."
+ },
+ "bal-per-2022-09-c-26": {
+  "explicacion": "La Regla 25 e) dice que el buque que navegue a vela y a motor a la vez exhibirá a proa, donde mejor pueda verse, un cono con el vértice hacia abajo. Dos conos por el vértice son de pesca y por la base (bicono), de remolque largo.",
+  "clave": "Vela + motor de día: cono con la punta hacia abajo.",
+  "trampa": "La c) es el mismo cono al revés.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-21"
+ },
+ "bal-per-2022-09-m-18": {
+  "explicacion": "La Regla 14 a) dice que, cuando dos buques de propulsión mecánica navegan de vuelta encontrada con riesgo de abordaje, cada uno caerá a estribor para pasar por la banda de babor del otro. Maniobran los dos, y los dos a estribor.",
+  "clave": "Vuelta encontrada = rumbos opuestos; los dos caen a estribor.",
+  "trampa": "La c) hace maniobrar solo a uno; en la vuelta encontrada maniobran ambos.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   }
+  ],
+  "concepto": "bal-per-2019-04-b-20"
+ },
+ "bal-per-2022-09-m-19": {
+  "explicacion": "La Regla 20 c) dice que las luces de navegación se exhibirán también desde la salida hasta la puesta del sol con visibilidad reducida. Las luces de cubierta no tienen nada que ver; las únicas que se mencionan en el RIPA son las de los fondeados de 100 m o más.",
+  "clave": "De día con niebla, luces encendidas.",
+  "trampa": "La d) mete las luces de cubierta, que no son luces de navegación.",
+  "concepto": "bal-per-2018-12-b-24"
+ },
+ "bal-per-2022-09-m-20": {
+  "explicacion": "Nosotros vamos amurados a estribor (viento por estribor) y el otro amurado a babor (viento por babor). La Regla 12 a) i) dice que, con viento por bandas contrarias, se aparta el que lo recibe por babor, es decir, el que lleva la mayor cazada a estribor. Nosotros seguimos a rumbo.",
+  "clave": "Viento por babor, cedo yo.",
+  "trampa": "La b) y la d) hacen maniobrar al amurado a estribor, que es justo el que tiene preferencia.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vela-amuras"
+   }
+  ],
+  "concepto": "and-2023-c1-t23"
+ },
+ "bal-per-2022-09-m-21": {
+  "explicacion": "Roja, blanca y roja en vertical es la señal de maniobra restringida (Regla 27 b). Si además tiene arrancada, añade luz de tope, luces de costado y alcance: la verde es su costado de estribor y la blanca, su tope. El pesquero lleva roja o verde sobre blanca, y el sin gobierno, dos rojas sin blanca.",
+  "clave": "Rojo-blanco-rojo = maniobra restringida (con arrancada, + tope y costados).",
+  "trampa": "La d) tiene dos rojas, pero el sin gobierno no lleva blanca en medio.",
+  "concepto": "bal-per-2018-09-e-18"
+ },
+ "bal-per-2022-09-m-22": {
+  "explicacion": "La Regla 7 d) dice que hay riesgo de abordaje si la demora de un buque que se aproxima no varía de forma apreciable. Si varía notablemente, los buques se cruzarán a cierta distancia y, en principio, no hay riesgo (aunque la regla avisa de buques grandes o muy cerca, donde puede haberlo incluso con demora cambiante).",
+  "clave": "Demora que cambia mucho: sin riesgo; demora constante: riesgo.",
+  "trampa": "La c) introduce la velocidad, pero el criterio de la regla es la demora."
+ },
+ "bal-per-2022-09-m-23": {
+  "explicacion": "La Regla 25 e) dice que el buque que navegue a vela y a motor a la vez exhibirá a proa un cono con el vértice hacia abajo. El de maniobra restringida lleva bola-bicono-bola, el pesquero dos conos por el vértice y el sin gobierno dos bolas.",
+  "clave": "Vela + motor de día: cono con la punta hacia abajo.",
+  "trampa": "La b) lleva conos, pero dos y unidos por el vértice.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "bal-per-2020-10-d-21"
+ },
+ "bal-per-2022-09-m-25": {
+  "explicacion": "Blanca sobre roja es una embarcación de práctico en servicio (Regla 29), y ver a la vez sus dos luces de costado significa que viene de frente. Con la marcación constante y la distancia disminuyendo hay riesgo de abordaje entre dos buques de propulsión mecánica a rumbos opuestos: vuelta encontrada, y los dos caen a estribor (Regla 14). El práctico no tiene preferencia por serlo, y no es un pesquero (roja sobre blanca).",
+  "clave": "Práctico de frente: vuelta encontrada, ambos a estribor.",
+  "trampa": "La b) supone que el práctico tiene preferencia, y el RIPA no se la da.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   }
+  ]
+ },
+ "bal-per-2022-12-a-20": {
+  "explicacion": "La Regla 1 c) dice que las luces, señales luminosas, marcas o señales de pito adicionales que fijen los Estados para buques de guerra, convoyes o pesca en flotilla serán tales, en la medida de lo posible, que no puedan confundirse con ninguna luz, marca o señal autorizada en el Reglamento. No vale que se confundan, ni basta con evitarlo solo con las marcas de día.",
+  "clave": "Señales adicionales: que no se confundan con las del RIPA.",
+  "trampa": "La d) limita la regla a las marcas diurnas; abarca también luces y sonidos.",
+  "concepto": "bal-per-2021-03-a-18"
+ },
+ "bal-per-2022-12-a-21": {
+  "explicacion": "En el Código Internacional de Señales, la bandera «A» (Alfa) significa «Tengo buzo sumergido: manténgase alejado y a poca velocidad». «Maniobro con dificultad» es la «D» y «Hombre al agua», la «O». Libre plática se pide con la «Q».",
+  "clave": "Bandera A = buzo sumergido.",
+  "trampa": "La b) es la bandera «D».",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2023-03-a-19": {
+  "explicacion": "En el Código Internacional de Señales, la bandera «A» (Alfa) significa «Tengo buzo sumergido: manténgase alejado y a poca velocidad». «Tengo práctico a bordo» es la «H», «Maniobro con dificultad» la «D», y la libre plática se pide con la «Q».",
+  "clave": "Bandera A = buzo sumergido.",
+  "trampa": "La c) es la bandera «D».",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ],
+  "concepto": "bal-per-2022-12-a-21"
+ },
+ "bal-per-2022-12-be-18": {
+  "explicacion": "En mar abierto, la Regla 18 a) obliga al buque de propulsión mecánica a mantenerse apartado del buque de vela, sin importar por qué banda lo vea ni su tamaño (salvo que el velero lo esté alcanzando). Como vamos a vela, maniobra el mercante y nosotros seguimos a rumbo (Regla 17), atentos por si no lo hace.",
+  "clave": "Motor contra vela (sin alcance): cede el de motor.",
+  "trampa": "La a) aplica a un velero la regla de estribor de los buques de motor.",
+  "concepto": "bal-per-2020-12-i-26"
+ },
+ "bal-per-2022-12-be-27": {
+  "explicacion": "La Regla 3 a) incluye las naves de vuelo rasante en la definición de buque, y la Regla 3 m) define así a las embarcaciones que, en modo operacional, vuelan muy cerca de la superficie aprovechando el efecto suelo, como el ekranoplano. Tienen sus propias reglas (luces de la Regla 23 c y obligación de apartarse de la Regla 18 f).",
+  "clave": "Ekranoplano = nave de vuelo rasante: sí le aplica el RIPA.",
+  "trampa": "La a) lo excluye, pero el RIPA las incluye expresamente como buques."
+ },
+ "bal-per-2022-12-c-18": {
+  "explicacion": "La Regla 9 b) dice que los buques de eslora inferior a 20 m y los buques de vela no estorbarán el tránsito de un buque que solo pueda navegar con seguridad dentro de un paso o canal angosto. El criterio es la eslora en metros, no el arqueo en TRB.",
+  "clave": "En canal angosto, vela y menores de 20 m no estorban.",
+  "trampa": "La b) y la c) cambian metros de eslora por toneladas de registro.",
+  "concepto": "bal-per-2019-09-d-26"
  }
 }

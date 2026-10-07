@@ -32,7 +32,7 @@ function medio(k, a, b, label = 'Situación') {
 /** Situación cuando un faro queda por el través (babor: Dv = Rv − 90°; estribor: Dv = Rv + 90°). */
 function traves(k, from, rv, id, banda, label) {
   const dv = norm360(rv + (banda === 'estribor' ? 90 : -90));
-  k.note(`Través de ${k.P(id).name.replace(/^Faro de /, '')}`, `Por el través de ${banda}: Dv = Rv ${banda === 'estribor' ? '+' : '−'} 90° = ${String(Math.round(dv)).padStart(3, '0')}°.`);
+  k.note(`Través de ${k.P(id).name.replace(/^Faro de /, '').replace(/\s*\(.*\)/, '')}`, `Por el través de ${banda}: Dv = Rv ${banda === 'estribor' ? '+' : '−'} 90° = ${String(Math.round(dv)).padStart(3, '0')}°.`);
   return k.corteRumbo(from, rv, id, dv, label);
 }
 

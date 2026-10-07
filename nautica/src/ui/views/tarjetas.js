@@ -13,6 +13,8 @@ import { barraActividad } from '../actividad.js';
 import { pintarCierre } from '../cierre.js';
 import { cronometro } from '../../course/cronometro.js';
 import { cuenta } from '../../texto.js';
+import { glosar } from '../glosas.js';
+import { delata } from '../../theory/vocabulario.js';
 
 export function tarjetasView(o) {
   return o.params.parts[1] ? sesionView(o) : listaView(o);
@@ -38,7 +40,16 @@ function listaView({ progress, tit }) {
   return { el, summary: () => `VISTA tarjetas ${T.sigla} · ${tocan.length} por repasar hoy\n${ms.map((m) => `${m.id}: ${m.titulo} (${m.cartas.length}) → ${tlink(tit, ['tarjetas', m.id])}`).join('\n')}` };
 }
 
-function anversoEl(c) {
+/**
+ * ¿La explicación de una sigla o término delataría la respuesta de la tarjeta? (en el anverso no se marca)
+ * @param {object} e  entrada de la glosa ({ clase, titulo, significado, texto })
+ */
+const delataTarjeta = (c) => (e) => {
+  const respuesta = `${c.reverso.titulo} ${c.reverso.texto ?? ''}`;
+  return delata({ formas: [e.titulo], termino: e.significado || e.titulo, definicion: e.texto }, respuesta);
+};
+
+function anversoEl(c, tit) {
   const a = c.anverso;
   const partes = [];
   if (a.spec) {
@@ -50,7 +61,10 @@ function anversoEl(c) {
     partes.push(h('button.grande.secondary', { type: 'button', onclick: () => playSignal(r?.sound ?? a.sonido) }, '▶ Escuchar la señal'));
   }
   if (a.texto) partes.push(h('p.tarjeta-texto', a.texto));
-  partes.push(h('p.tarjeta-pregunta', a.pregunta));
+  // En el anverso, lo que se pregunta (a.texto) no se explica; en la pregunta, nada que delate la respuesta.
+  const pregunta = h('p.tarjeta-pregunta', a.pregunta);
+  glosar(pregunta, { tit }, { excluir: delataTarjeta(c) });
+  partes.push(pregunta);
   return partes;
 }
 
@@ -78,6 +92,7 @@ function sesionView({ progress, tit, params }) {
     const c = cartas[i];
     barra.set(`${titulo} · ${i + 1} de ${cartas.length}`, i / cartas.length);
     const reverso = vuelta ? h('div.tarjeta-reverso', h('p.tarjeta-respuesta', c.reverso.titulo), c.reverso.texto ? h('p', c.reverso.texto) : null) : null;
+    glosar(reverso, { tit });
     const responder = (ok) => {
       progress.recordExam(c.clave, { choice: null, ok });
       crono.marca();
@@ -91,7 +106,7 @@ function sesionView({ progress, tit, params }) {
       summaryText = `VISTA tarjetas terminadas: ${bien} de ${cartas.length}`;
     };
     setChildren(cont,
-      h('div.tarjeta', anversoEl(c), reverso),
+      h('div.tarjeta', anversoEl(c, tit), reverso),
       h('div.fila-inferior', vuelta
         ? [h('button.secondary.grande', { type: 'button', onclick: () => responder(false) }, '✗ No lo sabía'), h('button.grande', { type: 'button', onclick: () => responder(true) }, '✓ Lo sabía')]
         : h('button.grande', { type: 'button', onclick: () => mostrar(true) }, 'Ver la respuesta')));

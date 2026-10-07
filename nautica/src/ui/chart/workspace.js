@@ -9,6 +9,9 @@ import { interactiveChart } from './interactive-chart.js';
 import { createTutorial } from './tutorial.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { voice } from '../voice.js';
+import { botonPlegar } from '../hoja.js';
+import { crearAyudas } from '../ayudas.js';
+import { glosar } from '../glosas.js';
 
 const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -59,6 +62,7 @@ export function openWorkspace(o) {
 
   // --- Panel: ejercicio
   const statementEl = h('p.ws-statement', o.statement);
+  glosar(statementEl, o.glosas);
   const chips = h('div.chips', statementChips(o.statement).map((c) => h('button.chip', { type: 'button', title: 'Enviar a la carta como nota', onclick: () => chartApi.addNote(c) }, c)));
   const sendSel = h('button.small.secondary', {
     type: 'button',
@@ -104,6 +108,7 @@ export function openWorkspace(o) {
           info.drawing ? h('p.ws-instrument', '✍️ ', info.drawing) : null]
           : h('div.profe', h('span.profe-badge', '👨‍🏫 El profe'), profeText(narration.intro.display)),
       );
+      glosar(caption.querySelector('.profe'), o.glosas);
       chartApi.setReadout(n ? `Paso ${n}: ${info.step.title}` : 'Tutorial al principio.');
     },
   });
@@ -114,7 +119,11 @@ export function openWorkspace(o) {
     await tutorial.play();
     playBtn.textContent = '▶ Reproducir';
   }
+  // El enunciado, a mano también en el tutorial: para comprobar lo que dice el profe contra lo que pide la pregunta.
+  const enunciadoTutorial = h('details.ws-enunciado', h('summary', '📋 Ver el enunciado'), h('p.ws-statement', o.statement));
+  glosar(enunciadoTutorial.querySelector('p'), o.glosas);
   const tabTutorial = h('section.ws-tab',
+    enunciadoTutorial,
     h('div.ws-controls',
       h('button.small.secondary', { type: 'button', title: 'Al principio', onclick: () => tutorial.first() }, '⏮'),
       h('button.small.secondary', { type: 'button', title: 'Paso anterior', onclick: () => tutorial.prev() }, '◀'),
@@ -135,26 +144,41 @@ export function openWorkspace(o) {
   const tabButtons = Object.entries({ ejercicio: '📋 Ejercicio', tutorial: '🎓 Tutorial' }).map(([id, label]) =>
     h('button.ws-tabbtn', { type: 'button', 'data-tab': id, onclick: () => showTab(id) }, label));
   const panelBody = h('div.ws-panel-body');
+  // El panel (abajo en el móvil, a la derecha en pantallas anchas) tapa parte de la carta: se pliega y se despliega con
+  // la misma asa que la corrección; tocar una pestaña lo vuelve a abrir.
+  const panel = h('aside.ws-panel', { 'aria-label': 'Ejercicio y tutorial' });
+  const plegar = botonPlegar(panel, { plegar: 'Plegar el panel para ver la carta', desplegar: 'Desplegar el panel',
+    onCambio: (p) => ws.classList.toggle('panel-plegado', p) });
+  plegar.classList.add('ws-plegar');
+  panel.append(h('div.ws-tabs', plegar, tabButtons), panelBody);
   function showTab(id) {
+    if (panel.classList.contains('plegada')) { plegar.pliega(false); ws.classList.remove('panel-plegado'); }
     setChildren(panelBody, tabs[id]);
     tabButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === id)));
     if (id !== 'tutorial') { tutorial.stop(); playBtn.textContent = '▶ Reproducir'; }
   }
 
+  // Ayudas de práctica (chuleta y el hueco de la calculadora): solo si la vista que abre la mesa las pide.
+  const ayudas = o.ayudas ? crearAyudas({ ...o.ayudas, flotante: true }) : null;
   const ws = h('div.workspace', { role: 'dialog', 'aria-modal': 'true', 'aria-label': `Carta: ${o.title}` },
     h('header.ws-head',
       h('strong.ws-title', `🗺️ ${o.title}`),
       h('span.spacer'),
+      ayudas?.barra,
       h('button.small.secondary', { type: 'button', title: 'Cerrar la carta (Esc)', onclick: () => close() }, '✕ Cerrar'),
     ),
     h('div.ws-main',
-      h('div.ws-chart', chartApi.el),
-      h('aside.ws-panel', h('div.ws-tabs', tabButtons), panelBody),
+      h('div.ws-chart', chartApi.el, ayudas?.panel),
+      panel,
     ),
     h('details.ai-context#ai-context-ws', { hidden: true }),
   );
 
-  const onKey = (ev) => { if (ev.key === 'Escape' && !ev.target.closest?.('input')) close(); };
+  const onKey = (ev) => {
+    // Esc cierra antes lo que está encima (la explicación de una sigla, la chuleta) que la mesa.
+    if (ev.key !== 'Escape' || ev.defaultPrevented || ev.target.closest?.('input, .chuleta-panel, .glosa-pop')) return;
+    close();
+  };
   /** Oculta la mesa (se conserva lo dibujado) y devuelve el formulario de respuesta a su sitio. */
   function close() {
     if (!ws.isConnected) return;

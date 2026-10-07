@@ -1,0 +1,312 @@
+{
+  "nota": "Chuleta de la práctica: fórmulas, signos y conversiones para tener a mano mientras se practica. Nunca sale en simulacros, exámenes reales ni en el examen final (tests/chuletario.test.js). Cada ficha se escribe una vez y se cita por tema (UT de cada titulación) y por tipo de ejercicio de carta. La verdad es la normativa y las matemáticas; la notación es la de las clases (Rv, Ra, Ct, dm, Δ, Dv, Da, M, Rs, Ab, Rc, Ihc, Ref, Vef, Δl, ΔL, A, lm). **negrita** resalta la fórmula.",
+  "fichas": {
+    "ct": {
+      "titulo": "Corrección total",
+      "lineas": [
+        "**Ct = dm + Δ**",
+        "Signos: **E o NE (+)** · **W o NW (−)**.",
+        "dm: del Nv al Nm (lugar y año, rosa de la carta). Δ: del Nm al Na (tu barco y tu rumbo, tablilla). Ct: del Nv al Na.",
+        "dm del año = dm de la carta + variación anual × años, cada una con su signo.",
+        "**Δ = Ct − dm** · **dm = Ct − Δ**",
+        "**Ct = Rv − Ra = Dv − Da**"
+      ]
+    },
+    "rumbos": {
+      "titulo": "Rumbo verdadero y de aguja",
+      "lineas": [
+        "De la aguja a la carta: **Rv = Ra + Ct**",
+        "De la carta al timón: **Ra = Rv − Ct**",
+        "Por pasos: **Rm = Ra + Δ** y **Rv = Rm + dm**.",
+        "Si sale negativo, suma 360°; si pasa de 360°, resta 360°.",
+        "En la carta solo se trazan rumbos y demoras verdaderos."
+      ]
+    },
+    "demoras": {
+      "titulo": "Demoras y marcaciones",
+      "lineas": [
+        "**Dv = Da + Ct** · **Da = Dv − Ct** (con la Ct del rumbo que llevas).",
+        "**Dv = Rv + M** · **M = Dv − Rv**, marcación por **estribor (+)** y por **babor (−)**.",
+        "Marcación circular (de 0° a 360°, desde la proa hacia estribor): Dv = Rv + M, sin signo.",
+        "Través: por estribor **Dv = Rv + 90°**; por babor **Dv = Rv − 90°**.",
+        "La demora se traza desde el faro con la opuesta: **Dv ± 180°**."
+      ]
+    },
+    "enfilacion": {
+      "titulo": "Ct por enfilación u oposición",
+      "lineas": [
+        "La recta entre los dos faros, medida en la carta, es la Dv (enfilación: del cercano al lejano; oposición: del otro faro hacia el marcado).",
+        "**Ct = Dv − Da** · después **Δ = Ct − dm**.",
+        "Si la Ct sale de más de 180°, suma o resta 360°.",
+        "El rumbo y la velocidad no intervienen: el rumbo solo dice a qué desvío corresponde."
+      ]
+    },
+    "polar": {
+      "titulo": "Ct por la Polar",
+      "lineas": [
+        "La Polar está casi en el norte verdadero: **Zv ≈ 000°**.",
+        "**Ct = Zv − Za = 000° − Za** (Za 357° → Ct = +3°)."
+      ]
+    },
+    "cuadrantales": {
+      "titulo": "Rumbos por cuadrantes",
+      "lineas": [
+        "**N x E = x** · **S x E = 180° − x** · **S x W = 180° + x** · **N x W = 360° − x**",
+        "Ejemplo: S 40° W = 180° + 40° = 220°."
+      ]
+    },
+    "angulos": {
+      "titulo": "Grados, minutos y segundos",
+      "lineas": [
+        "**1° = 60′** · **1′ = 60″**",
+        "Segundos a décimas de minuto: 18″ = 18 / 60 = 0,3′ → 36° 07′ 18″ = 36° 07,3′.",
+        "A grados con decimales: 36° 07,3′ = 36 + 7,3 / 60 = 36,1217°.",
+        "De decimales a grados y minutos: 5,977° → 5° y 0,977 × 60 = 58,6′ → 5° 58,6′.",
+        "Al sumar o restar, pasa 60′ de los grados a los minutos (o al revés) cuando haga falta."
+      ]
+    },
+    "horas": {
+      "titulo": "Horas, minutos y segundos",
+      "lineas": [
+        "**1 h = 60 min** · **1 min = 60 s**",
+        "Minutos a horas: 40 min = 40 / 60 = 0,67 h → 1 h 40 min = 1,67 h.",
+        "Horas a minutos: 0,35 h × 60 = 21 min.",
+        "hh:mm:ss a horas: 2 h 15 min 36 s = 2 + 15 / 60 + 36 / 3600 = 2,26 h.",
+        "Si la HRB pasa de 24 h, resta 24: es el día siguiente."
+      ]
+    },
+    "dvt": {
+      "titulo": "Distancia, velocidad y tiempo",
+      "lineas": [
+        "**d = V × t** (t en horas) · **t = d / V** · **V = d / t**",
+        "**1 nudo = 1 milla por hora** · 1 milla = 1852 m · 1 cable = 0,1 millas.",
+        "Las distancias se miden en la **escala de latitudes** (márgenes laterales): 1′ de latitud = 1 milla. Nunca en la de longitudes.",
+        "Ejemplo: 6 nudos durante 40 min → d = 6 × 0,67 = 4 millas.",
+        "Corredera: distancia verdadera = k × distancia de corredera (siempre multiplicar)."
+      ]
+    },
+    "coordenadas": {
+      "titulo": "Latitud y longitud",
+      "lineas": [
+        "Latitud: de 0° a 90° N o S; en los márgenes laterales de la carta.",
+        "Longitud: de 0° a 180° E o W; arriba y abajo. En la carta del Estrecho, W.",
+        "Formato: 36° 07,3′ N · 005° 58,6′ W.",
+        "Δl y ΔL: con el mismo nombre se restan; con distinto nombre se suman."
+      ]
+    },
+    "lineas-posicion": {
+      "titulo": "Líneas de posición y situación",
+      "lineas": [
+        "Todo a verdadero antes de trazar: **Dv = Da + Ct**; **Dv = Rv + M**.",
+        "Demora: desde el faro con la opuesta (**Dv ± 180°**). Distancia: arco con centro en el faro (escala de latitudes).",
+        "Enfilación u oposición: la recta entre los dos faros, sin Ct.",
+        "Dos líneas a la vez: la situación es el corte; mejor cuanto más cerca de 90°.",
+        "No simultáneas: desde un punto de la 1.ª línea, el rumbo y **d = V × t**; por ahí, una paralela; corte con la 2.ª."
+      ]
+    },
+    "tangente": {
+      "titulo": "Pasar a una distancia de un faro",
+      "lineas": [
+        "**sen α = distancia de paso / distancia al faro**",
+        "Faro por estribor: **R = Dv − α**. Por babor: **R = Dv + α**.",
+        "R es el Rv (con viento, el Rs). Después: Ra = Rv − Ct.",
+        "Sin banda en el enunciado: la tangente que pasa por fuera (por el lado del mar)."
+      ]
+    },
+    "abatimiento": {
+      "titulo": "Viento: abatimiento",
+      "lineas": [
+        "**Rs = Rv + Ab** · **Rv = Rs − Ab**",
+        "Viento por **babor: Ab (+)** · por **estribor: Ab (−)**.",
+        "Banda: viento − Rv; de 0° a 180° entra por estribor, de 180° a 360° por babor.",
+        "Del timón a la carta: Rv = Ra + Ct → Rs = Rv + Ab. De la carta al timón: Rv = Rs − Ab → Ra = Rv − Ct.",
+        "El viento se nombra por de dónde viene; el Rs queda siempre a sotavento del Rv."
+      ]
+    },
+    "corriente": {
+      "titulo": "Corriente",
+      "lineas": [
+        "La corriente se nombra por **hacia dónde va** (Rc) y su intensidad horaria (Ihc), en nudos.",
+        "Estima: Vb × t millas al Rs (o al Rv) y, a continuación, **Ihc × t** millas al Rc.",
+        "**Ref** y **Vef**: de la salida a la situación final; **Vef = distancia / tiempo**.",
+        "Rumbo a dar: vector corriente de 1 h desde la salida; desde su extremo, arco de radio Vb que corta el Ref. Extremo de la corriente → corte = rumbo a dar; salida → corte = Vef.",
+        "Hora de llegada con la Vef: **t = d / Vef**.",
+        "Corriente desconocida: Rc = de la situación estimada a la observada; **Ihc = distancia entre ellas / horas**."
+      ]
+    },
+    "estima-analitica": {
+      "titulo": "Estima analítica (loxodrómica)",
+      "lineas": [
+        "Por tramo: **Δl = D · cos R** · **A = D · sen R** (N y E +, S y W −).",
+        "**lm = l salida + Δl / 2**",
+        "**ΔL = A / cos lm** · **A = ΔL · cos lm**",
+        "Inversa: **tan R = A / Δl** · **D = √(Δl² + A²)**; el cuadrante, por los signos de Δl y A.",
+        "Δl y ΔL en minutos de arco (1° = 60′); A y D en millas. La corriente es un tramo más.",
+        "Longitud de más de 180°: 360° − L y cambia E por W."
+      ]
+    },
+    "mareas": {
+      "titulo": "Mareas: altura y sonda",
+      "lineas": [
+        "Anuario en UT: **hora oficial = UT + adelanto** (península: +1 h en invierno, +2 h en verano).",
+        "Tramo BM–PM: **D** = duración (horas), **A** = amplitud (altura PM − altura BM), **I** = tiempo desde la BM del tramo.",
+        "**C = A · sen² (90° · I / D)** · **h = altura BM + C**",
+        "**Sonda = sonda de la carta + h** · agua bajo la quilla = sonda − calado.",
+        "Inverso: C = h necesaria − altura BM; **I = D · arcsen √(C / A) / 90°**. Hora: BM + I si sube, BM − I si baja.",
+        "Regla de los duodécimos (comprobación): en cada sexto de la duración sube o baja **1, 2, 3, 3, 2 y 1 doceavos** de la amplitud."
+      ]
+    },
+    "mareas-per": {
+      "titulo": "Mareas",
+      "lineas": [
+        "Amplitud = altura PM − altura BM. Duración = tiempo entre BM y PM (unas 6 h 12 min).",
+        "**Sonda = sonda de la carta + altura de la marea** (las sondas de la carta están referidas al cero hidrográfico).",
+        "Regla de los duodécimos: en cada sexto de la duración sube o baja **1, 2, 3, 3, 2 y 1 doceavos** de la amplitud.",
+        "Presión: unos 1 cm menos de agua por cada hPa por encima de 1013 y 1 cm más por cada hPa por debajo."
+      ]
+    },
+    "hora": {
+      "titulo": "La hora",
+      "lineas": [
+        "**15° = 1 h** · **1° = 4 min** · **1′ = 4 s**",
+        "**HcL = TU + L** en tiempo (L este suma, L oeste resta).",
+        "Huso = longitud / 15, redondeado. **Hz = TU ± huso** (E suma, W resta).",
+        "Hora oficial (península): **TU + 1** en invierno, **TU + 2** en verano. **TU = hora oficial − adelanto**.",
+        "Cruzando el meridiano de 180° hacia el W, +1 día; hacia el E, −1 día."
+      ]
+    },
+    "viento-aparente": {
+      "titulo": "Viento real, de avance y aparente",
+      "lineas": [
+        "Aparente = real + viento de avance (de proa, igual a tu velocidad), sumados como vectores.",
+        "Con α el ángulo del real con la proa: de proa = **Vr · cos α + Vb**; de costado = **Vr · sen α**.",
+        "Intensidad = **√(proa² + costado²)** · ángulo con la proa = **arctg (costado / proa)** (si la componente de proa sale negativa, 180° menos ese ángulo).",
+        "El aparente entra más a proa que el real."
+      ]
+    },
+    "cardinales": {
+      "titulo": "Marcas cardinales y ritmos",
+      "lineas": [
+        "Luz blanca centelleante: **N continua** · **E Q(3) 10 s o VQ(3) 5 s** · **S Q(6) + LFl 15 s o VQ(6) + LFl 10 s** · **W Q(9) 15 s o VQ(9) 10 s**.",
+        "Q: 60 o 50 centelleos por minuto. VQ: 120 o 100. LFl: destello de 2 s o más.",
+        "Topes: N ▲▲ · S ▼▼ · E rombo (bases unidas) · W reloj de arena (vértices unidos). Se pasa por el lado de su nombre."
+      ]
+    },
+    "laterales": {
+      "titulo": "Laterales y otras marcas (región A)",
+      "lineas": [
+        "Entrando desde la mar: **rojo a babor** (cilindro) y **verde a estribor** (cono). Saliendo, al revés.",
+        "Bifurcación: banda del otro color y luz **Fl(2+1)**; manda el color de fondo.",
+        "Peligro aislado: **Fl(2)** blanca. Aguas navegables: **Iso, Oc, LFl 10 s o Mo(A)** blanca. Especial: amarilla. Nuevo peligro: azul y amarilla alternas.",
+        "Fl: luz < oscuridad · Oc: luz > oscuridad · Iso: luz = oscuridad. Sin color indicado, la luz es blanca."
+      ]
+    },
+    "luces-ripa": {
+      "titulo": "Sectores y alcance de las luces",
+      "lineas": [
+        "**Tope 225°** · **costados 112,5°** cada uno (verde Er, roja Br) · **alcance 135°** · remolque amarilla 135° · todo horizonte 360°.",
+        "Alcance: llegas desde más de 22,5° a popa del través (más de 112,5° desde la proa).",
+        "Eslora < 12 m: tope 2 M, costados 1 M, alcance 2 M, todo horizonte 2 M.",
+        "Eslora de 12 a 50 m: tope 5 M (3 M si < 20 m), costados 2 M, alcance 2 M, todo horizonte 2 M."
+      ]
+    },
+    "sonidos-ripa": {
+      "titulo": "Señales acústicas",
+      "lineas": [
+        "**Corta ≈ 1 s** · **larga de 4 a 6 s**.",
+        "A la vista: **1 corta** caigo a estribor · **2 cortas** caigo a babor · **3 cortas** doy atrás · **5 o más** duda.",
+        "Visibilidad reducida (cada 2 min como máximo): 1 larga con arrancada · 2 largas parado · L + 2C vela, pesca, sin gobierno, restringidos y remolcador · L + 3C remolcado."
+      ]
+    },
+    "fondeo": {
+      "titulo": "Fondeo",
+      "lineas": [
+        "Cadena: unas **3 veces la profundidad** con buen tiempo; **5 o más** con mal tiempo.",
+        "Radio de borneo ≈ cadena filada + eslora.",
+        "Orinque: algo más largo que la profundidad en pleamar."
+      ]
+    },
+    "costa": {
+      "titulo": "Navegar cerca de la costa",
+      "lineas": [
+        "Costa no balizada: zona de baño de **200 m en playas** y **50 m en el resto** de la costa.",
+        "Dentro de esa franja: como máximo **3 nudos**.",
+        "Zona de buceo: resguardo mínimo de **50 m**."
+      ]
+    },
+    "presion": {
+      "titulo": "Presión y viento",
+      "lineas": [
+        "**1 atm = 1013,25 hPa = 1013,25 mb = 760 mmHg**",
+        "Beaufort: intensidad del viento, de 0 a 12 (F8 = temporal). Douglas: estado de la mar, de 0 a 9.",
+        "**1 nudo = 1,852 km/h ≈ 0,51 m/s**",
+        "Buys-Ballot (HN): de espaldas al viento, las bajas presiones quedan a la izquierda.",
+        "El viento se nombra por de dónde viene; la corriente, por hacia dónde va."
+      ]
+    },
+    "gradiente": {
+      "titulo": "Gradiente y humedad",
+      "lineas": [
+        "**Gradiente horizontal = Δp / distancia**, medido perpendicular a las isobaras (hPa por grado = por 60 millas).",
+        "Isobaras juntas → más gradiente → viento más fuerte.",
+        "**HR = tensión de vapor / tensión saturante × 100** (en %). Con T = punto de rocío, HR = 100 %."
+      ]
+    },
+    "estabilidad": {
+      "titulo": "Estabilidad",
+      "lineas": [
+        "**GM = KM − KG** · **KM = KB + BM**",
+        "**GZ = GM · sen θ** (escoras pequeñas) · momento adrizante = desplazamiento × GZ.",
+        "Traslado de un peso: **GG′ = p · d / D** (p peso, d distancia, D desplazamiento), paralelo al traslado.",
+        "Estable: KM > KG · indiferente: KM = KG · inestable: KG > KM."
+      ]
+    },
+    "socorro": {
+      "titulo": "Socorro y radio",
+      "lineas": [
+        "Salvamento Marítimo: **VHF 16** (LSD en el **70**), 900 202 202 o 112.",
+        "Socorro: **MAYDAY** ×3 · urgencia: **PAN-PAN** ×3 · seguridad: **SÉCURITÉ** ×3.",
+        "Mensaje de socorro: quién, dónde, qué pasa, qué ayuda necesitas y cuántos sois."
+      ]
+    }
+  },
+  "temas": {
+    "per": {
+      "2": ["fondeo"],
+      "3": ["socorro"],
+      "4": ["costa"],
+      "5": ["cardinales", "laterales"],
+      "6": ["luces-ripa", "sonidos-ripa"],
+      "7": ["abatimiento"],
+      "8": ["socorro"],
+      "9": ["presion", "viento-aparente"],
+      "10": ["ct", "rumbos", "demoras", "cuadrantales", "angulos", "horas", "dvt", "coordenadas", "mareas-per", "abatimiento"],
+      "11": ["ct", "rumbos", "demoras", "enfilacion", "lineas-posicion", "tangente", "dvt", "horas", "angulos", "coordenadas"]
+    },
+    "py": {
+      "1": ["estabilidad", "socorro"],
+      "2": ["presion", "gradiente"],
+      "3": ["ct", "polar", "rumbos", "demoras", "abatimiento", "corriente", "estima-analitica", "hora", "mareas", "angulos", "horas", "coordenadas"],
+      "4": ["ct", "rumbos", "demoras", "enfilacion", "polar", "lineas-posicion", "tangente", "abatimiento", "corriente", "mareas", "estima-analitica", "dvt", "horas", "angulos"]
+    }
+  },
+  "ejercicios": {
+    "conversion-rumbos": ["ct", "rumbos", "demoras", "cuadrantales"],
+    "ct-enfilacion": ["enfilacion", "ct", "polar"],
+    "estima-directa": ["rumbos", "ct", "dvt", "horas", "coordenadas"],
+    "rumbo-distancia": ["rumbos", "ct", "dvt", "horas"],
+    "rumbo-pasar-distancia": ["tangente", "demoras", "rumbos", "ct"],
+    "situacion-demora-distancia": ["lineas-posicion", "demoras", "ct", "coordenadas"],
+    "situacion-dos-demoras": ["lineas-posicion", "demoras", "ct", "coordenadas"],
+    "distancia-faro": ["lineas-posicion", "enfilacion", "demoras", "dvt"],
+    "demoras-no-simultaneas": ["lineas-posicion", "demoras", "ct", "dvt", "horas"],
+    "corriente-efectiva": ["corriente", "rumbos", "ct", "dvt", "horas"],
+    "corriente-rumbo-a-dar": ["corriente", "rumbos", "ct", "dvt", "horas"],
+    "corriente-desconocida": ["corriente", "rumbos", "ct", "dvt", "horas"],
+    "abatimiento": ["abatimiento", "rumbos", "ct"],
+    "estima-analitica": ["estima-analitica", "cuadrantales", "angulos", "dvt"],
+    "marea-sonda": ["mareas", "horas", "hora"],
+    "viento-aparente": ["viento-aparente"],
+    "hora": ["hora", "horas", "angulos"]
+  }
+}

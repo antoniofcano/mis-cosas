@@ -7,6 +7,7 @@ import { bloque } from '../../theory/blocks.js';
 import { temasDePocoPeso } from '../../course/calendario.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { rich } from './curso.js';
+import { glosar } from '../glosas.js';
 
 /** Contenido de la chuleta de un tema, sin DOM: por clase, sus puntos clave, reglas y trampas. */
 export function contenidoChuleta(curso, ut, reglas = new Map()) {
@@ -44,11 +45,15 @@ export function chuletaView({ tit, params: route, progress = null }) {
       ? h('p.ok', '✅ Leída: cuenta en tu plan. ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan'))
       : h('button.grande', { type: 'button', onclick: () => { progress.setSetting(clave, [...(progress.settings()[clave] ?? []), ut]); pintaMarca(); } }, '✓ Ya la he leído'));
     pintaMarca();
-    setChildren(cuerpo, clases.map((c) => h('section.chuleta-clase',
-      h('h2', c.titulo),
-      c.claves.length ? h('ul', c.claves.map((x) => h('li', rich(x)))) : null,
-      c.reglas.map((r) => h('p.chuleta-regla', h('strong', `🧠 ${r.regla}`), ` — ${r.significado}`)),
-      c.trampas.map((t) => h('div.chuleta-trampa', h('strong', '⚠️ Trampa: '), rich(t))))));
+    setChildren(cuerpo, clases.map((c) => {
+      const s = h('section.chuleta-clase',
+        h('h2', c.titulo),
+        c.claves.length ? h('ul', c.claves.map((x) => h('li', rich(x)))) : null,
+        c.reglas.map((r) => h('p.chuleta-regla', h('strong', `🧠 ${r.regla}`), ` — ${r.significado}`)),
+        c.trampas.map((t) => h('div.chuleta-trampa', h('strong', '⚠️ Trampa: '), rich(t))));
+      glosar(s, { tit, ut, leccion: c.id }); // siglas explicadas al tocarlas, la primera vez en cada clase
+      return s;
+    }));
     if (marca) cuerpo.append(marca);
     summaryText = `VISTA chuleta ${T.sigla} ${b?.titulo}\n${clases.map((c) => `## ${c.titulo}\n${c.claves.join('\n')}${c.reglas.map((r) => `\nREGLA: ${r.regla} — ${r.significado}`).join('')}${c.trampas.map((t) => `\nTRAMPA: ${t}`).join('')}`).join('\n')}`;
   }).catch((e) => setChildren(cuerpo, h('p.warn', `No se pudo preparar la chuleta: ${e.message}`)));

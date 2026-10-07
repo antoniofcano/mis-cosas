@@ -1043,3 +1043,127 @@ export default {
  *     },
  *   },
  */
+
+// Preguntas del lote que no están en export default (ver DISCREPANCIAS).
+export const documentadas = {
+  'bal-py-2018-12-b-39': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: hora con sonda ≥ 10 m en Santander el 23-05-2018; el banco no trae el Anuario de mareas (tabla_mareas vacía). Oficial: b (07:01).',
+  },
+  'bal-py-2018-12-b-40': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: sonda en Barbate el 17-12-2018 a las 10:00 GMT corregida por presión (993 mb); sin el Anuario de ese día no se puede calcular. Oficial: a (6,98 m).',
+  },
+  'bal-py-2019-04-a-40': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: sonda en Cádiz el 27-06-2019 a las 10:00 UTC. Oficial: a (5,26 m).',
+  },
+  'bal-py-2019-06-a-39': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: hora con 13 m de sonda en Barbate el 07-08-2019, con presión de 989 hPa. Oficial: c (13:39 UT).',
+  },
+  'bal-py-2019-04-b-31': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale 35° 51,1′ N, 6° 09,9′ W, que es la c (oficial), pero las opciones escriben «35º 51\'4 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.',
+  },
+  'bal-py-2019-04-b-36': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale Ra = 357,5° y llegada 09:49, que es la c (oficial), pero las opciones escriben la hora sin separador («Hrb=0950») y el lector de opciones no la entiende.',
+  },
+  'bal-py-2019-04-b-40': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale 35° 57,0′ N, 5° 21,5′ W, que es la d (oficial), pero las opciones escriben «35º-57\' N» (guion tras el grado) y el lector de opciones no las entiende.',
+  },
+  'bal-py-2019-06-a-32': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale 35° 55,4′ N, 5° 35,8′ W, que es la a (oficial), pero las opciones escriben «35º55’2 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.',
+  },
+  'bal-py-2019-06-a-36': {
+    tipo: 'discrepancia',
+    texto: 'Elemento que no está en la carta de la app: la Ct sale de la enfilación «Magair / cabo Espartel» y Magair no está en la carta; además las opciones llevan «35º-49,0´N». Oficial: b.',
+  },
+  'bal-py-2019-06-a-40': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: sonda en Llanes el 02-07-2019 a las 13:15 UTC con 1009 mb. Oficial: c (7,53 m).',
+  },
+  'bal-py-2019-12-c-34': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: por dos distancias sale 36° 11,9′ N, 6° 14,6′ W, que es la d (oficial), pero las opciones escriben «36º12’0 N» (décimas tras el apóstrofo) y el lector no las entiende.',
+  },
+  'bal-py-2019-12-a-32': {
+    tipo: 'discrepancia',
+    texto: 'No llega a la oficial: Rv 297°, Rs 301° (viento del W por babor), corriente 045°/2,5 nudos durante 2 h: sale 35° 54,9′ N, 6° 08,8′ W (la d). La oficial (a, 35° 51,1′ N, 6° 10,6′ W) supone un desplazamiento de unas 10 millas al 306°, que no sale ni sin corriente ni con el abatimiento al otro lado. El mismo enunciado vuelve en \'bal-py-2020-12-a-31\' con la oficial d (la que sale aquí): probable errata de la plantilla de 2019.',
+  },
+  'bal-py-2019-12-c-39': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale 35° 51,1′ N, 6° 09,9′ W, que es la c (oficial), pero las opciones escriben «35º 51\'2 N» (décimas tras el apóstrofo) y el lector de opciones no las entiende.',
+  },
+  'bal-py-2020-07-b-31': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: enfilación Punta Leona–Cires y S/v de Tarifa: sale 35° 53,4′ N, 5° 36,5′ W, que es la a (oficial), pero las opciones escriben «35º 53\'2 N» y el lector no las entiende.',
+  },
+  'bal-py-2020-07-a-33': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: hora de salida en Santander el 09-05-2020. Oficial: b (13:43).',
+  },
+  'bal-py-2020-07-b-37': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale 35° 54,5′ N, 5° 53,9′ W y Ra = 063°, que es la c (oficial), pero las opciones b, c y d escriben «35º-54,6\' N» (guion tras el grado) y el lector solo entiende la a.',
+  },
+  'bal-py-2020-07-a-38': {
+    tipo: 'discrepancia',
+    texto: 'Elemento que no está en la carta de la app: la situación es el corte de la enfilación Malabata–El Xarf con la isobática de 100 m, que la carta de la app no tiene. Oficial: b (Ra = 066°).',
+  },
+  'bal-py-2020-07-a-40': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: varada en Baiona el 08-04-2020. Oficial: a (12:32 TU).',
+  },
+  'bal-py-2020-12-a-36': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: sonda en Cádiz el 27-10-2020 a las 10:00 UTC con 1028 mb. Oficial: c (5 m).',
+  },
+  'bal-py-2020-12-b-37': {
+    tipo: 'discrepancia',
+    texto: 'Elemento que no está en la carta de la app: el destino es la marca cardinal N próxima a Punta Malabata, que la carta de la app no tiene. Oficial: b (Ra = 181°, Vm = 7,7 nudos).',
+  },
+  'bal-py-2020-12-b-40': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: varada en la barra de Ayamonte el 01-07-2020. Oficial: a.',
+  },
+  'bal-py-2021-03-ac-31': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: sonda en Barbate el 17-12-2021 a las 10:00 GMT con 993 mb. Oficial: a (6,64 m).',
+  },
+  'bal-py-2021-03-ac-34': {
+    tipo: 'discrepancia',
+    texto: 'Elemento que no está en la carta de la app: la situación inicial usa la enfilación Punta Paloma – cima del monte Órganos, que la carta de la app no tiene. Oficial: a.',
+  },
+  'bal-py-2021-03-b-35': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: sonda en Llanes el 12-03-2021 a las 11:45 UT. Oficial: c (5,44 m).',
+  },
+  'bal-py-2021-03-b-33': {
+    tipo: 'discrepancia',
+    texto: 'Sin margen frente a otra opción: Rv 071°, 19,25 millas de estima y situación verdadera por Europa (Dv 306°) y Almina (Dv 205°): sale Rc = 069,8° e Ihc = 2,56 nudos. Elige la oficial (b, 072°/2,5) pero la a (070°/1,5) queda casi empatada por el rumbo, y el comprobador del PY exige que la segunda quede al doble.',
+  },
+  'bal-py-2021-03-b-40': {
+    tipo: 'discrepancia',
+    texto: 'Sin margen frente a otra opción: Ct = +1°, sale Ra = 199,3° y Vb = 10,7 nudos. Elige la oficial (a, 200°/10,2) pero sin el margen del PY frente a la b (195°/10,8). En la misma pregunta de 2019 (\'bal-py-2019-06-a-37\', Ct +0,8°) la oficial daba 10,4 nudos.',
+  },
+  'bal-py-2021-06-ac-31': {
+    tipo: 'discrepancia',
+    texto: 'No llega a la oficial con margen: en la carta de la app la enfilación Alcázar–Cires va al 046,7° / 226,7°; con Da de Cires = Ra − 60° = 243° sale Ct = −16,4° (16,4° NW). La más próxima es la oficial (d, 15° NW), pero a 1,4° y fuera del margen del PY: la plantilla mide la enfilación al 228°.',
+  },
+  'bal-py-2021-06-b-40': {
+    tipo: 'anuario',
+    texto: 'Falta la tabla de mareas: hora con 8,50 m de sonda en Camariñas el 05-01-2021 con 998 mb. Oficial: a (11:34 TU).',
+  },
+  'bal-py-2021-12-a-31': {
+    tipo: 'discrepancia',
+    texto: 'Elemento que no está en la carta de la app: la situación usa la demora a la cima de San Bartolomé (436 m, junto a Punta Paloma), que la carta de la app no tiene. Oficial: c (079,5° y 1,95 nudos).',
+  },
+  'bal-py-2021-12-b-31': {
+    tipo: 'discrepancia',
+    texto: 'Formato de las opciones: sale 36° 00,6′ N, 5° 23,0′ W, que es la c (oficial), pero las opciones escriben «36º- 00,5\' N» (guion tras el grado) y el lector de opciones no las entiende.',
+  },
+};

@@ -149,11 +149,11 @@ voces:
 
 **ANDRÉS:** [ríe] La culpa siempre es del que mide.
 
-**ELENA:** Vamos con el minijuego. Tres preguntas de exámenes reales. Yo las leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Dos buques que tengan la misma latitud y no estén en el ecuador…». A: se encuentran en el mismo meridiano. Be: se encuentran en el mismo paralelo. Ce: se encuentran en el mismo primer meridiano. De: se encuentran entre los paralelos de Cáncer y Capricornio.
+**ELENA:** Vamos con el minijuego. Tres preguntas de exámenes reales. Yo las leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Dos buques que tengan la misma latitud y no estén en el ecuador…». A: se encuentran en el primer meridiano. Be: se encuentran en el almicantarat. Ce: se encuentran en el mismo meridiano. De: se encuentran en el mismo paralelo.
 
 [pausa larga]
 
-**ANDRÉS:** Misma latitud, mismo paralelo. La be. El mismo meridiano sería con la misma longitud, y lo de Cáncer y Capricornio no tiene por qué.
+**ANDRÉS:** Misma latitud, mismo paralelo. La de. El mismo meridiano sería con la misma longitud, el primer meridiano es el de Greenwich, y el almicantarat no lo he oído en mi vida.
 
 **ELENA:** Correcto. Segunda: «Si el coeficiente de corredera es uno coma uno y la distancia de corredera es ocho millas, ¿cuál será la distancia verdadera navegada?». A: siete coma tres millas. Be: ocho coma cero millas. Ce: ocho coma ocho millas. De: nueve coma uno millas.
 

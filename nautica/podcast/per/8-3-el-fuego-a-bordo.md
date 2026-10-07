@@ -117,23 +117,23 @@ voces:
 
 **ANDRÉS:** Doy la alarma, saco a la gente y uso el extintor: de espaldas al viento, con la salida a mi espalda, a la base de la llama y barriendo. Y luego vigilo que no se reavive y ventilo. Y el móvil, lejos de la cocina.
 
-**ELENA:** [ríe] Eso sobre todo. Vamos con el minijuego: tres preguntas de exámenes reales. Yo las leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Los fuegos derivados de aceites y grasas vegetales o animales en materiales y aparatos de cocina se denominan de la…». A: clase a. Be: clase be. Ce: clase ce. De: clase efe.
+**ELENA:** [ríe] Eso sobre todo. Vamos con el minijuego: tres preguntas de exámenes reales. Yo las leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Los fuegos derivados de la utilización de aceites y grasas vegetales o animales en los aparatos de cocina son fuegos de la clase…». A: clase be. Be: clase efe. Ce: clase ce. De: clase e.
 
 [pausa larga]
 
-**ANDRÉS:** La de mi sartén. No es be, aunque sea líquido. Aceites de cocina, clase efe. La de.
+**ANDRÉS:** La de mi sartén. No es be, aunque sea líquido. Aceites de cocina, clase efe. La be.
 
-**ELENA:** La de. Segunda: «Para extinguir un incendio por enfriamiento, ¿cuál de los siguientes agentes extintores será el más eficaz?». A: la espuma de alta o baja expansión. Be: el agua en forma de niebla. Ce: extintores de anhídrido carbónico. De: extintores de polvo seco.
+**ELENA:** La be. Segunda: «Para extinguir un incendio por enfriamiento, ¿cuál de los siguientes agentes extintores será el más eficaz?». A: la espuma de alta o baja expansión. Be: el agua en forma de niebla. Ce: extintores de anhídrido carbónico. De: extintores de polvo seco.
 
 [pausa larga]
 
 **ANDRÉS:** La espuma y el ce-o-dos sofocan, sobre todo. El polvo inhibe. Para enfriar, el agua, y en niebla, más. La be.
 
-**ELENA:** La be. Y la tercera: «En caso de fuego a bordo en navegación, ¿cómo deberemos proceder si tenemos viento?». A: maniobrando para socairear el fuego. Be: maniobrando para incrementar el viento aparente. Ce: parando el motor para que el viento aparente sea cero. De: no es necesario tomar ninguna medida extraordinaria e inmediata.
+**ELENA:** La be. Y la tercera: «La teoría del tetraedro del fuego…». A: explica el porqué, una vez que el fuego se inicia, adquiere un proceso de continuidad hasta la anulación de alguno de sus factores básicos de desarrollo. Be: explica qué tipo de agente extintor tenemos que emplear en cada lado del tetraedro para impedir el desarrollo del fuego. Ce: explica y establece los tipos de fuego según los lados del tetraedro. De: todas las respuestas anteriores son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** Más viento aviva el fuego, así que la be no. Parar el motor no deja el aparente en cero, que el real sigue soplando. Y no hacer nada, ni hablar. La a, socairear.
+**ANDRÉS:** El tetraedro no clasifica fuegos ni reparte extintores por lados. Explica por qué el fuego sigue, por la reacción en cadena, hasta que le quitas una de sus patas. La a.
 
 **ELENA:** La a. Tres de tres.
 

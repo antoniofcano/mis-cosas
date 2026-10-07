@@ -135,13 +135,13 @@ voces:
 
 **ANDRÉS:** La a, dando atrás. Una estribor, dos babor, tres atrás. No entender al otro serían cinco o más, y las de adelantar llevan pitadas largas.
 
-**ELENA:** Correcto. Segunda: «Si en condiciones de visibilidad reducida escuchamos por nuestro costado de babor grupos de dos pitadas largas separadas por un intervalo de unos dos segundos y que se repiten cada dos minutos como máximo, debemos entender que se trata de…». A: un buque que pretende alcanzarnos por su banda de babor. Be: un buque de propulsión mecánica en navegación, pero parado y sin arrancada. Ce: un buque dedicado a la pesca. De: un buque de vela en navegación.
+**ELENA:** Correcto. Segunda: «Un buque de propulsión mecánica en navegación, pero parado y sin arrancada, en visibilidad reducida emitirá…». A: tres pitadas largas. Be: una corta seguida de dos largas que no excedan de dos segundos entre ambas. Ce: a intervalos que no excedan de dos minutos, dos pitadas largas consecutivas separadas por un intervalo de unos dos segundos entre ambas. De: una pitada larga que no exceda de dos minutos.
 
 [pausa larga]
 
-**ANDRÉS:** Mi niebla del sábado. La be, motor parado y sin arrancada. El pesquero y el velero darían una larga y dos cortas. Y la a es justo lo que pensé yo, y está mal.
+**ANDRÉS:** Mi niebla del sábado, lo que oí por babor. Parado y sin arrancada: dos largas, separadas unos dos segundos, cada dos minutos como máximo. La ce. Una larga sola es la del que va con arrancada, y las otras dos no son de nadie.
 
-**ELENA:** La be. Y la tercera: «Un buque lanza una señal fumígena que produce una densa humareda de color naranja. ¿Qué quiere indicar?». A: que hay buceadores en las inmediaciones. Be: que está contaminado y nos debemos mantener alejados. Ce: que está aprovisionándose de combustible. De: que está en peligro y necesita ayuda.
+**ELENA:** La ce. Y la tercera: «Un buque lanza una señal fumígena que produce una densa humareda de color naranja. ¿Qué quiere indicar?». A: que hay buceadores en las inmediaciones. Be: que está contaminado y nos debemos mantener alejados. Ce: que está aprovisionándose de combustible. De: que está en peligro y necesita ayuda.
 
 [pausa larga]
 

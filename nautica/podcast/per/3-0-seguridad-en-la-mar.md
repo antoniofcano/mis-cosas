@@ -122,13 +122,13 @@ voces:
 
 **ANDRÉS:** Longitudinal, de proa a popa: la cabezada. El balance es de banda a banda, la escora es una inclinación que se queda, y adrizado es estar derecho. La ce.
 
-**ELENA:** La ce. Segunda: «Para capear un temporal navegaremos recibiendo la mar por…». A: la aleta y con poca máquina avante. Be: la popa y con poca máquina avante. Ce: la amura y con poca máquina avante. De: la proa y con la máquina parada.
+**ELENA:** La ce. Segunda: «Cuando capeamos un temporal…». A: recibimos la mar por la amura. Be: recibimos la mar por la aleta. Ce: recibimos la mar por el través. De: recibimos la mar por la popa.
 
 [pausa larga]
 
-**ANDRÉS:** Capear es por la amura. La aleta y la popa son de correr el temporal, y con la máquina parada pierdo el gobierno. La ce.
+**ANDRÉS:** Capear es por la amura. La aleta y la popa son de correr el temporal, y atravesado a la mar, por el través, es justo lo que no hay que hacer. La a.
 
-**ELENA:** La ce otra vez. Y la tercera: «Hombre al agua. En la maniobra de aproximación de Anderson, ¿cuántos grados debemos caer antes de poner timón a la vía y parar la máquina?». A: hasta variar el rumbo inicial en setenta grados. Be: en noventa. Ce: en ciento setenta. De: en doscientos cincuenta.
+**ELENA:** La a. Y la tercera: «Hombre al agua. En la maniobra de aproximación de Anderson, ¿cuántos grados debemos caer antes de poner timón a la vía y parar la máquina?». A: hasta variar el rumbo inicial en setenta grados. Be: en noventa. Ce: en ciento setenta. De: en doscientos cincuenta.
 
 [pausa larga]
 

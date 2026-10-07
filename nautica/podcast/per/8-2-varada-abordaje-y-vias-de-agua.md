@@ -135,13 +135,13 @@ voces:
 
 **ANDRÉS:** La bajamar me deja con menos agua. Atrás rápido, ni hablar. Y el ancla se lleva hacia aguas profundas, no por la proa sin más. La ce: sondar alrededor y estudiar cómo salir.
 
-**ELENA:** La ce. Segunda: «Tras sufrir un abordaje, ¿cuál de las siguientes actuaciones es prioritaria?». A: separar inmediatamente ambas embarcaciones, sin comprobar los daños. Be: evaluar posibles vías de agua o daños estructurales, especialmente por debajo de la línea de flotación. Ce: avisar a Salvamento Marítimo únicamente si se detectan daños visibles por encima de la cubierta. De: detener el motor y todos los medios de achique en funcionamiento.
+**ELENA:** La ce. Segunda: «En caso de sufrir un abordaje, no es aconsejable intentar separar los dos barcos sin previamente haber valorado la situación. Para ello es importante…». A: tomar las medidas de estanqueidad oportunas. Be: tomar medidas de apuntalamiento y achique oportunas. Ce: acordar la separación con el patrón o capitán de la otra embarcación. De: todas las respuestas anteriores son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** Separar de golpe es quitar el corcho. Lo peligroso está por debajo, no por encima de la cubierta. Y parar el motor y el achique es justo al revés. La be.
+**ANDRÉS:** Separar de golpe es quitar el corcho. Antes, estanqueidad, apuntalar y achicar, y ponerse de acuerdo con el otro patrón. Las tres hacen falta. La de.
 
-**ELENA:** La be. Y la tercera: «Si descubrimos una vía de agua en la sentina…». A: no apagaremos el motor, ya que las bombas eléctricas consumen mucha batería. Be: designaremos a un tripulante a bombear con la bomba manual y el resto a achicar con los baldes. Ce: pondremos de inmediato rumbo a puerto. De: todas las respuestas anteriores son correctas.
+**ELENA:** La de. Y la tercera: «Si descubrimos una vía de agua en la sentina…». A: no apagaremos el motor, ya que las bombas eléctricas consumen mucha batería. Be: designaremos a un tripulante a bombear con la bomba manual y el resto a achicar con los baldes. Ce: pondremos de inmediato rumbo a puerto. De: todas las respuestas anteriores son correctas.
 
 [pausa larga]
 

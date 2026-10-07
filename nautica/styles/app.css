@@ -1310,3 +1310,5 @@ textarea.config-pegar, textarea.profe-chuleta, .profe-modo textarea { width: 100
 .profe-regla.cambiada, .profe-regla.nueva { border-left: 4px solid var(--accent); }
 .vista-tramos li { margin: .3rem 0; }
 @media (max-width: 420px) { .ruta-asa { display: none; } .ruta-botones { flex-direction: column; } }
+.aviso-reservada { border-left: 4px solid var(--close); padding: .3rem .6rem; margin: .4rem 0; color: var(--muted); font-size: .95em; }
+.guion-pausa.guion-apartada { letter-spacing: normal; font-size: .9em; font-style: italic; }

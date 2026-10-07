@@ -137,13 +137,13 @@ voces:
 
 **ANDRÉS:** Dextrógira, atrás, desde parado: popa a babor. Y lo de «primero a un lado y luego al otro» es la trampa, va a una sola banda. La de.
 
-**ELENA:** La de. Tercera: «En ausencia de viento, al realizar la ciaboga con una embarcación de una única hélice levógira, la primera acción, más conveniente y más rápida, será…». A: dar avante con el timón a estribor para que la proa caiga a estribor. Be: dar avante con el timón a babor para que la proa caiga a babor. Ce: dar avante con el timón a babor o a estribor, es indiferente. De: dar atrás con la máquina.
+**ELENA:** La de. Tercera: «Al realizar una ciaboga, sin viento y con una hélice dextrógira, lo más conveniente y más rápido es hacer que la proa caiga o evolucione a…». A: babor. Be: es indiferente. Ce: estribor. De: en una ciaboga lo mejor es fondear, en primer lugar.
 
 [pausa larga]
 
-**ANDRÉS:** Levógira, al revés que la mía: ciaboga a babor. La primera acción es avante, no atrás, así que la de fuera. Indiferente no es, que eso me pasó a mí en la dársena. La be: avante con el timón a babor.
+**ANDRÉS:** Dextrógira, como la mía: cada vez que doy atrás, la popa se va a babor y la proa ayuda hacia estribor. Ciaboga a estribor. Indiferente no es, que eso me pasó a mí en la dársena, y fondear no pinta nada. La ce.
 
-**ELENA:** La be. Tres de tres, y la tercera con experiencia propia.
+**ELENA:** La ce. Tres de tres, y la tercera con experiencia propia.
 
 **ELENA:** Vamos con el resumen para llevarse. Uno: con rueda la proa cae al lado del giro y con caña al contrario; la velocidad de gobierno es la mínima a la que el barco obedece al timón, y la arrancada, la que conserva por inercia. Dos: la curva de evolución tiene tres fases, de maniobra, variable y uniforme; avance, traslado y diámetros son medidas, y la popa rabea hacia la banda contraria al giro. Tres: parado, sin arrancada, timón a la vía y máquina atrás, la dextrógira lleva la popa a babor y la levógira a estribor, porque presión lateral y corriente de expulsión se suman. Cuatro: sin arrancada el timón no hace nada; con arrancada, avante la proa va hacia el lado del timón y atrás es la popa la que va hacia él. Y cinco: la ciaboga empieza avante con el timón a la banda del giro; con dextrógira a estribor, con levógira a babor, y con dos hélices la proa cae hacia la que va atrás.
 

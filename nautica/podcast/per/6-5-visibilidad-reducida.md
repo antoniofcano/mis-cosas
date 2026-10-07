@@ -147,7 +147,7 @@ voces:
 
 **ANDRÉS:** Cincuenta grados babor es la amura: a proa del través. Y a proa, sea la banda que sea, no caigo a babor. La ce. La be es la trampa de pensar «hacia él», la a no existe en niebla y las cinco cortas son para cuando nos vemos.
 
-**ELENA:** Correcto. Segunda: «Visibilidad reducida. Salvo en los casos en que hayamos comprobado que no existe riesgo de abordaje, ¿qué debemos hacer si oímos, más o menos por la amura de babor, la señal de niebla de otro buque?». A: caer con toda la caña a estribor. Be: caer con toda la caña a babor. Ce: emitir cinco o más pitadas cortas y rápidas. De: reducir la velocidad a la mínima de gobierno.
+**ELENA:** Correcto. Segunda: «Salvo en los casos en que hayamos comprobado que no existe riesgo de abordaje, ¿qué debemos hacer si en visibilidad reducida oímos, más o menos por la amura de babor, la señal de niebla de otro buque?». A: caer con toda la caña a estribor. Be: caer con toda la caña a babor. Ce: emitir cinco o más pitadas cortas y rápidas. De: reducir la velocidad a la mínima de gobierno.
 
 [pausa larga]
 

@@ -123,11 +123,11 @@ voces:
 
 **ANDRÉS:** Rumbo y velocidad, no: primero se para. Trincar lo que flota, no: se lanza al agua. Y el aro, no: lo que me pongo es el chaleco. La be, socorro y radiobaliza.
 
-**ELENA:** La be. Segunda, y ojo, que pide la incorrecta: «Indique la opción incorrecta respecto al uso de las bengalas de mano». A: deben emplearse únicamente en una situación de emergencia real. Be: deben ser activadas a sotavento y con el brazo extendido. Ce: su uso es recomendable en ejercicios rutinarios de mantenimiento. De: debemos revisar su caducidad.
+**ELENA:** La be. Segunda: «Las señales pirotécnicas en caso de emergencia se utilizarán…». A: solo por el patrón de la embarcación, pues es quien tiene conocimiento para hacerlo. Be: tan pronto como nos encontremos en peligro, sin atender a otros factores. Ce: cuando estemos seguros de que otra embarcación o aeronave nos puede divisar, por sotavento y siguiendo las instrucciones del fabricante. De: todas las respuestas son correctas.
 
 [pausa larga]
 
-**ANDRÉS:** Emergencia real, sotavento con el brazo extendido y la caducidad, las tres son buenas. Lo de los ejercicios es lo que está mal: las gastas y puedes dar una falsa alarma. La incorrecta es la ce.
+**ANDRÉS:** Tirarlas en cuanto hay peligro es gastarlas al aire: se lanzan cuando alguien las puede ver. Y no solo el patrón, cualquiera, con las instrucciones del fabricante. Por sotavento y cuando nos vean. La ce.
 
 **ELENA:** La ce. Y la tercera: «Si tuviese que abandonar la embarcación y no dispone de balsa salvavidas, ¿cuáles de las siguientes acciones son correctas?». A: salte al agua y no intente nadar; si tiene que hacerlo, hágalo de espaldas. Be: una vez en el agua, mantenga agrupada a toda la tripulación. Ce: súbase a cualquier objeto flotante para reducir la hipotermia. De: todas las acciones anteriores son correctas.
 

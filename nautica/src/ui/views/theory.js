@@ -30,6 +30,8 @@ import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 import { cuenta, fechaLarga } from '../../texto.js';
+import { crearAyudas } from '../ayudas.js';
+import { glosar } from '../glosas.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -123,12 +125,14 @@ export function necesitaCarta(q) {
 /**
  * Botón «Abrir la carta» para una pregunta que se resuelve sobre ella (en tandas, tests y clases): la carta se abre a
  * pantalla completa con el enunciado y, al cerrarla, sigues en la pregunta. null si la pregunta no la necesita.
+ * @param {object} [ayudas]  contexto de práctica ({ modo, tit… }) para tener la chuleta en la carta; nunca en un examen
  */
-export function botonCarta(q, progress) {
+export function botonCarta(q, progress, ayudas = null) {
   if (!necesitaCarta(q) || !chartRef) return null;
   return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
     chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
     result: '', summary: () => `CARTA abierta para ${q.id}`,
+    ayudas: ayudas ? { ...ayudas, ut: q.ut } : null, glosas: ayudas ? { tit: T.id, ut: q.ut } : null,
   }) }, icono('mapa'), 'Abrir la carta');
 }
 
@@ -162,6 +166,8 @@ export function profePanel(q, expl, chosen) {
     ok ? null : enlaceTrampa(q, chosen),
     h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
+  // Las siglas de la explicación (Ct, HRB, MMSI…) se explican al tocarlas. La pregunta ya está respondida.
+  glosar(panel, { tit: T.id, ut: q.ut });
   return panel;
 }
 
@@ -284,7 +290,10 @@ export function examenesView({ ctx, progress, tit }) {
  *   onFin: (ok: number, n: number) => void, onSummary?: (texto: string) => void }} o
  * @returns {HTMLElement}
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, onFin, onSummary = () => {} }) {
+/**
+ * ayudas: la de la vista (crearAyudas), para que la chuleta siga el tema de cada pregunta y la carta la lleve también.
+ */
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
@@ -293,6 +302,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
   function show() {
     const q = preguntas[i];
     barra.set(`Pregunta ${i + 1} de ${n}`, i / n);
+    ayudas?.contexto({ ut: q.ut });
     let respondida = false;
     const feedback = h('div.feedback-profe', { tabindex: '-1' });
     const siguiente = h('button.grande', { type: 'button', hidden: true, onclick: () => {
@@ -325,7 +335,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta, vocab });
     // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
     // citados resaltados, y al cerrarla sigues en la pregunta.
-    const carta = botonCarta(q, progress);
+    const carta = botonCarta(q, progress, ayudas?.ctx() ?? null);
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
@@ -357,9 +367,10 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const soloFalladas = route.query.f === '1';
   if (!b) return { el: h('div.practice', h('p', 'Este tema no existe.'), h('a.btn', { href: tlink(T.id, ['temario']) }, 'Ir al temario')), summary: () => 'ERROR tema no encontrado' };
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'tanda', tit: tit0, ut });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
   const eje = currentEje(progress);
@@ -389,7 +400,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -406,9 +417,10 @@ export function practiceView({ ctx, progress, params: route, tit }) {
 // #/<tit>/teoria/mezcla?s=semilla — repaso mezclado: 10 preguntas de los temas ya empezados, por turnos
 function mezclaView({ progress, seed }) {
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'mezcla', tit: tit0 });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA repaso mezclado';
   cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
@@ -422,7 +434,7 @@ function mezclaView({ progress, seed }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${cuenta(empezados.length, 'tema')}`, temaEnCadaPregunta: true,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔀 Repaso mezclado · ${cuenta(empezados.length, 'tema')}`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -440,9 +452,10 @@ function mezclaView({ progress, seed }) {
 // #/<tit>/teoria/repaso — repaso espaciado de fallos (B1): las preguntas que tocan hoy, de 10 en 10
 function repasoView({ progress }) {
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'repaso', tit: tit0 });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA repaso de fallos';
   cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
@@ -455,7 +468,7 @@ function repasoView({ progress }) {
     }
     const tanda = cola.hoy.slice(0, TANDA);
     setChildren(cont, tandaPreguntas({
-      preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
+      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -477,15 +490,16 @@ function repasoView({ progress }) {
 // #/<tit>/teoria/rapido?s=semilla — «5 minutos» (B8): 5 preguntas, primero las del repaso
 function rapidoView({ progress, seed }) {
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'rapido', tit: tit0 });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA 5 minutos';
   cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const tanda = tandaRapida(preguntas, progress.get().exams, createRng(seed));
     setChildren(cont, tandaPreguntas({
-      preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
+      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);

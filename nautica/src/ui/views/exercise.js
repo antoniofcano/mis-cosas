@@ -12,7 +12,9 @@ import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { link, navigate } from '../router.js';
-import { tlink, volver, currentTit } from '../titulacion.js';
+import { tlink, volver, currentTit, TITULACIONES } from '../titulacion.js';
+import { crearAyudas } from '../ayudas.js';
+import { glosar } from '../glosas.js';
 import { cronometro } from '../../course/cronometro.js';
 
 const STATUS_TEXT = {
@@ -38,6 +40,11 @@ export function exerciseView({ ctx, progress, params: route }) {
   const crono = cronometro(() => Date.now(), 20 * 60000); // un ejercicio de carta: tiempo real, como mucho 20 min
   let ws = null; // mesa de cartas a pantalla completa (se abre al resolver en la carta)
   let widget = null;
+  // Ayudas de la práctica (chuleta de fórmulas) y siglas explicadas al tocarlas, en el contexto del tema de carta.
+  const tit = currentTit(progress);
+  const enTema = { modo: 'ejercicio', tit, ut: TITULACIONES[tit].cartaUt, ejercicios: [exercise.id] };
+  const glosas = { tit, ut: enTema.ut };
+  const ayudas = crearAyudas(enTema);
 
   // --- Respuestas
   const inputs = answers.map((a) => {
@@ -91,7 +98,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ws = openWorkspace({
       chart: ctx.chart, title: exercise.title, statement, steps: solution.steps,
       items: solution.drawing.items, focus: solution.drawing.focus, kind: exercise.title, result: resultText,
-      answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(),
+      answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(), ayudas: enTema, glosas,
     });
   };
   const tableButtons = solution.drawing
@@ -105,7 +112,7 @@ export function exerciseView({ ctx, progress, params: route }) {
 
   function reveal(n) {
     state.revealed = Math.min(Math.max(n, state.revealed), solution.steps.length);
-    stepsList.replaceChildren(...profeStepItems(solution.steps.slice(0, state.revealed), narration));
+    stepsList.replaceChildren(...profeStepItems(solution.steps.slice(0, state.revealed), narration, glosas));
     widget?.setStep(state.revealed);
     if (state.revealed >= solution.steps.length) showSolution();
     refreshAi();
@@ -145,15 +152,19 @@ export function exerciseView({ ctx, progress, params: route }) {
     + (widget?.summary() ? `\nDIBUJO ALUMNO: ${widget.summary()}` : '');
   const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
+  const statementEl = h('p', statement);
+  glosar(statementEl, glosas);
   const el = h('div.exercise',
     volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
-    h('header',
+    h('header.con-ayudas',
       h('h1', exercise.title),
       h('div.badges', exercise.levels.map((l) => h('span.badge', l))),
+      ayudas.barra,
     ),
+    ayudas.panel,
     h('div.layout',
       h('div.col',
-        h('section.statement', h('h2', 'Enunciado'), h('p', statement), solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
+        h('section.statement', h('h2', 'Enunciado'), statementEl, solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
         h('section', h('h2', 'Resolución paso a paso'), stepsList,
           listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),

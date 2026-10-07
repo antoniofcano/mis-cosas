@@ -125,6 +125,29 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
   transportador + compás) y lo reproduce con encuadre automático. Cualquier tipo de ejercicio nuevo que dibuje
   su solución tiene tutorial sin escribir nada más.
 
+## Ayudas del alumno
+
+- **Asa de plegar** (`ui/hoja.js` → `botonPlegar(panel)`): botón `.hoja-plegar` (48 px) que alterna la clase
+  `plegada` del panel y su `aria-expanded`. La usan la corrección (hoja) y el panel de la mesa de cartas (en el
+  móvil se queda en la fila de pestañas y la carta ocupa todo; en pantallas anchas, una columna estrecha). El
+  tutorial de la mesa trae el enunciado plegado («Ver el enunciado») para compararlo con lo que dice el profe.
+- **Chuleta de la práctica** (`data/comun/chuletario.json`, `course/chuletario.js`, `ui/ayudas.js`): fichas de
+  fórmulas, signos y conversiones citadas por tema (`temas.<tit>.<ut>`) y por tipo de ejercicio (`ejercicios.<id>`);
+  debajo, la chuleta de las clases que vienen a cuento. `crearAyudas({ modo, tit, ut, ejercicios, leccion })` da la
+  barra (botón «Chuleta») y el panel, que va en el flujo de la página (no tapa la respuesta) o flotando sobre la
+  carta en la mesa. Abierta o cerrada se recuerda en `sessionStorage`. **Solo en práctica** (`MODOS_PRACTICA`):
+  nunca en simulacro, examen real ni examen final; `tests/chuletario.test.js` lo comprueba en las vistas.
+- **Hueco para otras ayudas** (calculadora, apéndice de matemáticas): `registrarAyuda({ id, crear(ctx) })` en
+  `ui/ayudas.js` añade un botón a la barra de ayudas de todas las pantallas de práctica (`.ayudas-hueco[data-hueco]`).
+  La barra no existe en los exámenes: si una ayuda debe estar también allí, que la vista del examen la pinte aparte.
+- **Siglas y términos al tocarlos** (`data/comun/abreviaturas.json`, `theory/glosas.js`, `ui/glosas.js`):
+  `glosar(raiz, { tit, ut, leccion })` convierte, en el texto ya pintado, la primera aparición de cada sigla y de
+  cada término del vocabulario (`vocabulario-*.json`, los de ese tema y sus afines) en un botón con una explicación
+  flotante (tocar, ratón o teclado; Esc o tocar fuera la cierra; nunca tapa la palabra). Solo nodos de texto, sin
+  innerHTML; no entra en botones, enlaces, opciones de respuesta ni títulos. Se usa en las tarjetas y la chuleta de
+  las clases, las tarjetas de memoria (en el anverso, nada que delate la respuesta), los enunciados de carta y las
+  explicaciones del profe. En los exámenes no se marca nada.
+
 ## El profe y la voz
 
 - `teacher/lessons.js`: conocimiento pedagógico. Cada lección reconoce un tipo de paso por su título (y, si hace

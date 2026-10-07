@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'a4b876edf2eb';
+self.VERSION = '1327e1bc6811';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -21,6 +21,7 @@ self.APP = [
  "src/bancos/soluciones.js",
  "src/chart/chart.js",
  "src/course/calendario.js",
+ "src/course/chuletario.js",
  "src/course/cronometro.js",
  "src/course/engine.js",
  "src/course/guia.js",
@@ -177,10 +178,12 @@ self.APP = [
  "src/texto.js",
  "src/theory/blocks.js",
  "src/theory/engine.js",
+ "src/theory/glosas.js",
  "src/theory/vocabulario.js",
  "src/ui/actividad.js",
  "src/ui/app.js",
  "src/ui/aviso-error.js",
+ "src/ui/ayudas.js",
  "src/ui/chart-widget.js",
  "src/ui/chart/interactive-chart.js",
  "src/ui/chart/raster.js",
@@ -191,6 +194,7 @@ self.APP = [
  "src/ui/dom.js",
  "src/ui/eje.js",
  "src/ui/encaja.js",
+ "src/ui/glosas.js",
  "src/ui/hoja.js",
  "src/ui/iconos.js",
  "src/ui/illustration.js",
@@ -230,6 +234,8 @@ self.APP = [
 self.DATOS = [
  "data/carta-l105-calibracion.json",
  "data/chart-105.json",
+ "data/comun/abreviaturas.json",
+ "data/comun/chuletario.json",
  "data/comun/mnemotecnias.json",
  "data/comun/vocabulario-per.json",
  "data/comun/vocabulario-py.json",

@@ -5,6 +5,32 @@
 import { h } from './dom.js';
 import { icono } from './iconos.js';
 
+let nPlegables = 0;
+
+/**
+ * Asa para plegar y desplegar un panel que tapa lo que hay debajo (la corrección, el panel de la mesa de cartas, la
+ * chuleta): alterna la clase `plegada` del panel y dice su estado con `aria-expanded`. El mismo botón en toda la app.
+ * @param {HTMLElement} panel
+ * @param {{ plegar?: string, desplegar?: string, plegado?: boolean, onCambio?: (plegado: boolean) => void }} [o]
+ *   plegar / desplegar: lo que hace el botón en cada estado (para el lector de pantalla y el texto visible)
+ */
+export function botonPlegar(panel, { plegar = 'Plegar la explicación para ver la pregunta', desplegar = 'Desplegar la explicación', plegado = false, onCambio } = {}) {
+  if (!panel.id) panel.id = `plegable-${++nPlegables}`;
+  const texto = h('span.hoja-plegar-texto');
+  const b = h('button.hoja-plegar', { type: 'button', 'aria-controls': panel.id }, texto);
+  const pinta = (p) => {
+    panel.classList.toggle('plegada', p);
+    b.setAttribute('aria-expanded', String(!p));
+    b.setAttribute('aria-label', p ? desplegar : plegar);
+    b.title = p ? desplegar : plegar;
+    texto.textContent = p ? desplegar : '';
+  };
+  pinta(plegado);
+  b.addEventListener('click', () => { const p = !panel.classList.contains('plegada'); pinta(p); onCambio?.(p); });
+  b.pliega = (p) => pinta(p);
+  return b;
+}
+
 /**
  * @param {HTMLElement} donde  contenedor de la vista (el panel va fijo abajo, por encima de todo)
  * @param {{ ok: boolean|null, titulo?: string, contenido: Node|Node[], onContinuar: () => void, boton?: string }} o
@@ -13,13 +39,11 @@ import { icono } from './iconos.js';
 export function hojaRespuesta(donde, { ok, titulo, contenido, onContinuar, boton = 'Continuar' }) {
   donde.querySelector(':scope > .hoja')?.remove();
   const tit = titulo ?? (ok ? 'Correcto' : ok === false ? 'No es esa' : 'La respuesta');
-  const plegar = h('button.hoja-plegar', { type: 'button', 'aria-expanded': 'true', 'aria-label': 'Plegar la explicación para ver la pregunta',
-    onclick: () => { const p = el.classList.toggle('plegada'); plegar.setAttribute('aria-expanded', String(!p)); } });
   const el = h('section.hoja', { class: ok ? 'ok' : ok === false ? 'bad' : '', role: 'region', 'aria-label': tit, tabindex: '-1' },
-    plegar,
     h('h3.hoja-titulo', icono(ok ? 'ok' : ok === false ? 'no' : 'bombilla'), tit),
     h('div.hoja-cuerpo', contenido),
     h('button.grande.hoja-continuar', { type: 'button', onclick: () => { el.remove(); onContinuar(); } }, boton));
+  el.prepend(botonPlegar(el));
   donde.append(el);
   document.body.classList.add('con-hoja');
   // Entra desde abajo en el siguiente fotograma (la transición está en el CSS; nada con «reducir movimiento»).

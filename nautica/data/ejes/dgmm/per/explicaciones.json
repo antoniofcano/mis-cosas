@@ -5003,7 +5003,8 @@
  "dgmm-per-2022-06-78": {
   "explicacion": "La temperatura es una magnitud física, se puede expresar en grados Celsius, y la d) es el principio cero de la termodinámica. La c) es la incorrecta: al aumentar la presión sobre el aire este se comprime y se calienta, no se enfría.",
   "clave": "Aire comprimido se calienta; aire que se expande se enfría.",
-  "trampa": "Pregunta negativa: la d) suena rara, pero es una ley física cierta."
+  "trampa": "Pregunta negativa: la d) suena rara, pero es una ley física cierta.",
+  "discrepancia": "La c) es la única afirmación que el tribunal puede dar por incorrecta, porque las otras tres son ciertas, y encaja con la ley de los gases: a igualdad de volumen, o al comprimir el aire, temperatura y presión suben juntas. Es el mismo criterio que aplica en otras preguntas de 2023. En meteorología sinóptica, en cambio, el aire frío y denso tiende a dar presiones altas en superficie y el aire cálido, presiones bajas (bajas térmicas), y esa es la regla de las preguntas de tendencia (temperatura que sube y presión que baja anuncian empeoramiento); leída así, la c) no sería falsa. Ninguna otra opción es defendible como incorrecta."
  },
  "dgmm-per-2022-06-34": {
   "explicacion": "La presión atmosférica es el peso de la columna de aire que hay encima, así que es máxima al nivel del mar y disminuye al subir. Al sumergirte en el agua la presión total aumenta, pero por el agua, no porque aumente la presión atmosférica, que no se mide bajo el agua.",
@@ -6571,7 +6572,7 @@
   "explicacion": "La oficial es la b): el tribunal la considera falsa porque, para un gas, a igualdad de volumen la presión aumenta con la temperatura, no disminuye. Las demás se dan por ciertas: la temperatura informa del estado térmico de un cuerpo, dos cuerpos en equilibrio térmico con un tercero lo están entre sí (principio cero) y Celsius y centígrado son la misma escala.",
   "clave": "Principio cero: si A = C y B = C, entonces A = B.",
   "trampa": "Te piden la INCORRECTA.",
-  "discrepancia": "En meteorología se enseña que el aire caliente se dilata, pesa menos y hace bajar la presión (así se forman las bajas térmicas), así que la b) es defendible. En cambio, la a) confunde temperatura con calor, que en física son magnitudes distintas.",
+  "discrepancia": "En meteorología se enseña que el aire cálido se dilata, pesa menos y hace bajar la presión en superficie (así se forman las bajas térmicas), de modo que la b) puede leerse como cierta; el tribunal aplica aquí la ley de los gases (a volumen constante, más temperatura es más presión), el mismo criterio que en otras preguntas suyas de 2022 y 2023. En cambio, la a) dice que la temperatura informa del «calor o energía térmica» de una sustancia, y en física temperatura y calor son magnitudes distintas: la temperatura no mide la energía térmica de un cuerpo, que depende también de su masa. Por eso la a) es la que mejor se sostiene como incorrecta.",
   "defendible": "a"
  },
  "dgmm-per-2023-04-34": {
@@ -7111,7 +7112,7 @@
   "explicacion": "La oficial es la d): para el tribunal, como en un gas a volumen constante, un aumento de temperatura va acompañado de un aumento de presión. Es el mismo criterio que aplicó en otra convocatoria de 2023, en la que dio por falsa la afirmación contraria.",
   "clave": "Para el tribunal: más temperatura, más presión.",
   "trampa": "La c) es lo que enseñan muchos manuales de meteorología.",
-  "discrepancia": "En meteorología se explica que el aire caliente se dilata, pesa menos y hace bajar la presión en superficie (así se forman las bajas térmicas), por lo que la c) es defendible. El criterio del tribunal sale de la ley de los gases a volumen constante, que no describe bien la atmósfera libre.",
+  "discrepancia": "En meteorología se explica que el aire caliente se dilata, pesa menos y hace bajar la presión en superficie (así se forman las bajas térmicas), por lo que la c) es defendible. El criterio del tribunal sale de la ley de los gases a volumen constante, que no describe bien la atmósfera libre; es el mismo que aplica en otras preguntas de 2022 y 2023, por ejemplo al dar por incorrecta la afirmación contraria.",
   "defendible": "c"
  },
  "dgmm-per-2023-06-79": {
@@ -10761,9 +10762,10 @@
   "trampa": "La b) lo confunde con un radar o un respondedor activo."
  },
  "dgmm-per-2026-04-11": {
-  "explicacion": "En una playa sin canales balizados, el Reglamento General de Costas (art. 73) presume una zona de baño de 200 m desde la orilla y solo permite cruzarla a 3 nudos como máximo, entrando y saliendo perpendicularmente a la costa. No se puede ir paralelo a la orilla a cualquier velocidad, y lo de ir con el motor apagado a 3 nudos o más no tiene sentido.",
+  "explicacion": "En una playa sin canales balizados, el Reglamento General de Costas (art. 73.2) presume una zona de baño de 200 m desde la orilla y solo permite navegar dentro de ella a 3 nudos como máximo y con precaución. Entrar perpendicularmente a la costa es la práctica recomendable, aunque el artículo no lo menciona. No se puede ir paralelo a la orilla a cualquier velocidad (a), y lo de ir con el motor apagado a 3 nudos o más (b) no tiene sentido.",
   "clave": "Playa sin balizar: perpendicular a la costa y a 3 nudos como máximo.",
-  "trampa": "La b) pone los 3 nudos como mínimo, cuando son el máximo."
+  "trampa": "La b) pone los 3 nudos como mínimo, cuando son el máximo.",
+  "discrepancia": "El art. 73.2 del Reglamento General de Costas fija el máximo de 3 nudos, pero no exige entrar perpendicularmente a la costa: eso es una buena práctica, no un mandato, y en otras convocatorias la misma idea aparece como distractor. La c) es la única opción que respeta el máximo de 3 nudos."
  },
  "dgmm-per-2026-04-56": {
   "explicacion": "La Regla 33 del capítulo V del SOLAS obliga a acudir en auxilio de quien está en peligro, pero si el capitán o patrón no puede o considera que no es razonable hacerlo, debe anotar en el diario de navegación los motivos y, si procede, informar a los servicios de salvamento. No basta con no hacer nada, y apagar la radio o desviarse sería desatender la llamada.",

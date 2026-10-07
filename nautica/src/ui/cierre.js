@@ -26,6 +26,8 @@ export async function calcularPlan(progress, tit, ahora = Date.now()) {
     tit, estructura: T.estructura, curso, preguntas: banco.estudio, regs: progress.lecciones(), respuestas: progress.get().exams,
     tests: progress.tests().filter(delEje), testEnCurso: tc && delEje(tc) ? tc : null,
     settings: progress.settings(), minutosHoy: progress.minutosHoy(ahora), racha: progress.racha(ahora), planGuardado: progress.planEstudio(tit), ahora,
+    // El examen final: la reserva del alumno (lo que no se estudia) y sus convocatorias.
+    reserva: banco.reserva, pool: banco.final, reservadas: banco.reservadas,
   });
   if (st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base);
   return { ...st.datos, banco, plan: st.actividades, st };
@@ -40,7 +42,7 @@ export function hrefActividad(tit, a) {
 /** Tipo de actividad → [icono de línea, nombre]. */
 export const TIPO_TXT = {
   clase: ['clase', 'Clase'], chuleta: ['temario', 'Chuleta del tema'], preguntas: ['lapiz', 'Preguntas'], repaso: ['repaso', 'Repaso'], fallos: ['aviso', 'Repaso de fallos'],
-  simulacro: ['examen', 'Simulacro de examen'], mezclado: ['repaso', 'Repaso mezclado'], 'examen-en-curso': ['reloj', 'Examen a medias'],
+  simulacro: ['examen', 'Simulacro de examen'], mezclado: ['repaso', 'Repaso mezclado'], 'examen-en-curso': ['reloj', 'Examen a medias'], final: ['examen', 'Examen final'],
 };
 
 /** Marca de «hecho» que se dibuja (círculo verde con el visto). */

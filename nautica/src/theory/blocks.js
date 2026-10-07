@@ -23,6 +23,8 @@ export const PER = {
   // Orden en que se recomienda estudiar: el vocabulario primero y después lo que más pesa y más práctica pide
   // (los temas con límite de fallos y la navegación); el resto al final.
   ordenEstudio: [1, 5, 6, 10, 11, 2, 3, 4, 7, 8, 9],
+  // Aprobar «con margen» el examen final (F1): lo que hace falta para darse por preparado, no solo apto.
+  margen: { minAciertos: 36, maxErrores: { 6: 3, 5: 1, 11: 1 } },
 };
 
 export const totalPreguntas = (estructura) => estructura.bloques.reduce((s, b) => s + b.n, 0);
@@ -60,6 +62,7 @@ export const PY = {
   ],
   // Primero el módulo de navegación (límites de fallos y más práctica); después el genérico.
   ordenEstudio: [3, 4, 1, 2],
+  margen: { minAciertos: 32, maxErrores: { 4: 1, 3: 3 } },
 };
 
 /**

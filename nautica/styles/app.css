@@ -455,6 +455,20 @@ p.vacio { font-size: 1.1rem; margin: 1.5rem 0; }
 .examenes, .inicio-examen { max-width: 720px; margin: 0 auto; }
 .examen-medias h2 { margin-top: 0; }
 .simulacro { margin: 1rem 0; }
+/* Examen final (F1): cerrado (qué falta) o abierto; resultados con el criterio de margen */
+.examen-final { border: 2px solid var(--border); border-radius: 14px; padding: 1rem 1.2rem; margin: 1rem 0; background: var(--surface); overflow-wrap: anywhere; }
+.examen-final.abierto { border-color: var(--accent); background: var(--accent-2); }
+.examen-final.cerrado { border-style: dashed; }
+.examen-final h2, .examen-final h3 { margin: .2rem 0 .5rem; }
+.examen-final p { margin: .4rem 0; }
+.examen-final .btn { margin-top: .5rem; }
+ul.resultados-final { padding-left: 1.2rem; margin: .3rem 0; }
+ul.resultados-final li.ok, p.linea-final.ok { color: var(--ok); font-weight: 600; }
+p.linea-final { font-weight: 600; }
+p.aviso-final, p.aviso-vistas { border-left: 4px solid var(--close); padding-left: .6rem; }
+p.nota-retirada { border-left: 4px solid var(--warn); padding-left: .6rem; }
+details.revision-pregunta.retirada summary { opacity: .85; }
+details.revision-pregunta.retirada .revision-dato { color: var(--close); }
 .simulacro p { margin: .4rem 0; }
 ul.ultimos { padding-left: 1.2rem; }
 button.linklike.descartar { min-height: 44px; font-weight: 600; text-decoration: underline; }

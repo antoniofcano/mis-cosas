@@ -99,7 +99,7 @@ function actividadTema(b, est, curso, regs, respuestas, ahora, segTarjeta = SEG_
  * @param {object} o  { estructura, curso, preguntas, regs, respuestas, tests, testEnCurso, fechaExamen, ahora }
  * @returns {{ tipo, titulo, verbo, minutos, ruta: string[], query?: object, ut: number|null }[]}
  */
-export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, ahora = Date.now() }) {
+export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, final = null, ahora = Date.now() }) {
   const lista = [];
   const simulacro = () => ({ tipo: 'simulacro', titulo: 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: undefined, ut: null });
 
@@ -108,14 +108,16 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
     const restante = Math.max(1, Math.round(estructura.duracionMin - (testEnCurso.consumidoMs ?? 0) / 60000));
     const real = testEnCurso.tipo === 'real';
     lista.push({ tipo: 'examen-en-curso', titulo: 'Examen a medias', verbo: 'Continuar', minutos: restante,
-      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : ['test', 'simulacro'],
-      query: real || testEnCurso.seed == null ? undefined : { s: String(testEnCurso.seed) }, ut: null });
+      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ['test', 'simulacro'],
+      query: real || testEnCurso.tipo === 'final' || testEnCurso.seed == null ? undefined : { s: String(testEnCurso.seed) }, ut: null });
   }
 
-  // 2. Simulacro en la recta final (≤ 14 días) si hoy no se ha hecho ninguno
+  // 2. Examen final (F1) si estás listo, el examen se acerca y aún no lo has aprobado con margen (lo decide final.js);
+  //    si no, simulacro en la recta final (≤ 14 días) si hoy no se ha hecho ninguno
   const dias = fechaExamen ? diasHasta(fechaExamen, ahora) : null;
   const hoy = diaLocal(ahora);
-  if (dias != null && dias >= 0 && dias <= 14 && !tests.some((t) => t.t && diaLocal(new Date(t.t).getTime()) === hoy)) lista.push(simulacro());
+  if (final?.sugerir) lista.push({ tipo: 'final', titulo: 'Examen final', verbo: 'Hacer el examen final', minutos: estructura.duracionMin, ruta: ['test', 'final'], query: undefined, ut: null });
+  else if (dias != null && dias >= 0 && dias <= 14 && !tests.some((t) => t.t && diaLocal(new Date(t.t).getTime()) === hoy)) lista.push(simulacro());
 
   // 3. Repasos de clases (máximo 2): primero los temas con límite de errores, luego los más atrasados
   const prioridad = new Set(estructura.bloques.filter((b) => b.maxErrores != null).map((b) => b.ut));
@@ -183,7 +185,7 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
     const est = estadoTema(b, curso, preguntas, regs, respuestas, ahora);
     tandas += Math.ceil(Math.max(0, Math.min(est.total, OBJETIVO_TEMA) - est.hechas) / TANDA);
   }
-  const hechos = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real').length;
+  const hechos = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real' || t.tipo === 'final').length;
   // El repaso de fallos también ocupa tiempo: cada pregunta de la cola, las veces que le faltan para salir.
   const repaso = colaRepaso(preguntas, respuestas, diaLocal(ahora)).minutosPendientes;
   const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin, repaso };

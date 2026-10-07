@@ -10,6 +10,7 @@ import { bloquesEnOrden } from '../theory/blocks.js';
 import { estadoTema, avance, planHoy, ritmoEstudio, diasHasta, temasFlojos, clasesFlojas } from './plan.js';
 import { avanceCamino, unidades, temasDePocoPeso, crearPlan, planCaducado, seguimiento, alternativaEsencial, describir, duracion } from './calendario.js';
 import { estoyListo } from './listo.js';
+import { estadoFinal } from './final.js';
 import { SEG_TARJETA } from './engine.js';
 import { cuenta, fechaLarga, diaISO } from '../texto.js';
 import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
@@ -29,6 +30,9 @@ import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
  * @property {number} racha  progress.racha()
  * @property {object|null} planGuardado  progress.planEstudio(tit)
  * @property {number} ahora
+ * @property {object|null} [reserva]  banco.reserva: { modo, examenes: [{ key, titulo, fecha, n, ids }] } (examen final)
+ * @property {object[]} [pool]  banco.final: las preguntas del examen final del alumno
+ * @property {Set<string>} [reservadas]  banco.reservadas: ids que no se estudian (son del examen final)
  */
 
 /** El estado del alumno: lo único que leen las pantallas. @param {Entrada} e */
@@ -44,7 +48,7 @@ export function estadoAlumno(e) {
   const d = {
     estructura: e.estructura, curso: e.curso, preguntas: e.preguntas, regs: e.regs ?? {}, respuestas: e.respuestas ?? {}, tests: e.tests ?? [],
     testEnCurso: e.testEnCurso ?? null, fechaExamen, ultimoMezclado: s[`mezclado_${tit}`] || null, segTarjeta, minutosDia: objetivo,
-    minutosHoy: e.minutosHoy ?? 0, esencial, chuletasLeidas, ahora: e.ahora ?? Date.now(),
+    minutosHoy: e.minutosHoy ?? 0, esencial, chuletasLeidas, ahora: e.ahora ?? Date.now(), reservadas: e.reservadas ?? new Set(),
   };
 
   // Día: minutos y meta.
@@ -68,6 +72,12 @@ export function estadoAlumno(e) {
     }
   }
 
+  // ¿Listo? y examen final (antes que las actividades: Hoy propone el final cuando toca).
+  const listo = estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
+  const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
+  const final = estadoFinal({ estructura: d.estructura, reserva: e.reserva ?? null, pool: e.pool ?? [], respuestas: d.respuestas, tests: d.tests, listo, diasAlExamen, ahora: d.ahora });
+  d.final = final;
+
   // Actividades del día; con el plan esencial, en un tema de poco peso toca su chuleta en vez de la clase.
   const actividades = planHoy(d);
   let principal = actividades[0];
@@ -85,11 +95,9 @@ export function estadoAlumno(e) {
   const flojos = { temas: temasFlojos(d.estructura, d.preguntas, d.respuestas), clases: clasesFlojas(d.curso, d.respuestas) };
 
   const ritmo = ritmoEstudio(d);
-  const listo = estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
-  const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
 
-  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ritmo, listo, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ritmo, listo, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**
@@ -146,5 +154,13 @@ export function invariantes(st) {
   // Si con estos minutos no se llega, el mensaje lo dice (salvo examen a medias o día de descanso).
   if (st.plan?.seg.estado === 'no-llega' && ['toca', 'hecho', 'hecho-atraso'].includes(mensaje.tipo) && !mensaje.aviso && st.principal?.tipo !== 'examen-en-curso') mal.push('no llega y el mensaje no avisa');
   if (st.plan && st.principal?.tipo === 'clase' && !(st.principal.minutos > 0)) mal.push('actividad sin minutos');
+  // Examen final: lo reservado no se estudia; se abre solo si estás listo; Hoy lo propone solo si está abierto.
+  const f = st.final;
+  if (d.preguntas.some((q) => d.reservadas.has(q.id))) mal.push('una pregunta reservada para el examen final está en el estudio');
+  if (f?.desbloqueado && st.listo.estado !== 'listo') mal.push('examen final abierto sin estar listo');
+  if (st.actividades.some((a) => a.tipo === 'final') && !(f?.desbloqueado && f.sugerir)) mal.push('Hoy propone el examen final sin que toque');
+  if (f?.preparado && !(f.ultimo?.apto && f.ultimo.conMargen)) mal.push('preparado sin aprobar el final con margen');
+  if (f?.hay && f.modo === 'examen' && !f.todasVistas && f.convs.find((c) => c.key === f.siguiente?.key)?.vista) mal.push('el examen final propone una convocatoria ya vista habiendo otras sin ver');
+  if (f?.desbloqueado && f.bloqueo) mal.push('examen final abierto y con bloqueo');
   return mal;
 }

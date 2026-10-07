@@ -7,6 +7,8 @@ import { barraActividad } from '../actividad.js';
 import { icono } from '../iconos.js';
 import { transicion } from '../movimiento.js';
 import { paginasGuia } from '../../course/guia.js';
+import { cargarBanco } from '../../bancos/index.js';
+import { currentEje } from '../titulacion.js';
 
 /** Una pantalla de la guía. */
 function pagina(p) {
@@ -19,16 +21,24 @@ function pagina(p) {
 export function guiaView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
   const s = progress.settings();
-  const paginas = paginasGuia(T, { minutosDia: s.minutosDia ?? 20, fechaExamen: s[`examen_${tit}`] || null });
+  const opciones = { minutosDia: s.minutosDia ?? 20, fechaExamen: s[`examen_${tit}`] || null };
+  let paginas = paginasGuia(T, opciones);
   progress.setSetting(`guiaVista_${tit}`, true); // ya no se ofrece en Hoy
+  // El examen final se cuenta con los datos de la reserva del banco del alumno (llegan después: se repinta).
+  const conFinal = (repinta) => cargarBanco(currentEje(progress), tit).then((b) => {
+    paginas = paginasGuia(T, { ...opciones, final: { modo: b.reserva.modo, convocatorias: b.reserva.examenes.length, preguntas: b.final.length, eje: b.eje.nombre } });
+    repinta();
+  }).catch(() => {});
   const resumen = () => `VISTA guía ${T.sigla}\n${paginas.map((p, i) => `${i + 1}. ${p.titulo}`).join('\n')}`;
 
   // Todo en una página (y para imprimir).
   if (params.query.todo === '1') {
+    const todas = h('div.guia-paginas', paginas.map(pagina));
+    conFinal(() => setChildren(todas, paginas.map(pagina)));
     const el = h('div.guia.guia-todo',
       h('p.no-imprimir', h('a', { href: tlink(tit) }, '← Hoy')),
       h('h1', `Cómo funciona el curso del ${T.sigla}`),
-      paginas.map(pagina),
+      todas,
       h('div.botones-columna.no-imprimir',
         h('button.grande', { type: 'button', onclick: () => window.print() }, 'Imprimir la guía'),
         h('a.btn.grande.secondary', { href: tlink(tit) }, 'Empezar a estudiar')));
@@ -61,5 +71,6 @@ export function guiaView({ progress, tit, params }) {
     transicion(pinta, sentido);
   }
   pinta();
+  conFinal(() => { if (el.isConnected || !el.parentNode) pinta(); });
   return { el, summary: resumen };
 }

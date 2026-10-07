@@ -122,7 +122,9 @@ test('clases de carta (PER y PY): «míralo resuelto» con preguntas reales del 
       reglas += 1;
       assert.ok(clases.has(id), `${id}: no es una clase del ${tit}`);
       const ids = banco.resueltasDe(id);
-      assert.ok(ids.length >= 5, `${id}: solo ${ids.length}`);
+      // La reserva del examen final se lleva algunas (las de las convocatorias recientes): quedan al menos 4.
+      assert.ok(ids.length >= 4, `${id}: solo ${ids.length}`);
+      assert.ok(ids.every((q) => !banco.reservadas.has(q)), `${id}: con preguntas reservadas`);
       assert.ok(ids.every((q) => SOLUCIONES[q]), id);
       // Cada titulación, con preguntas de su propio banco.
       assert.ok(ids.every((q) => banco.porId.get(q)?.tit === tit), id);

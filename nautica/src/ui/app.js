@@ -34,6 +34,8 @@ import { podcastView } from './views/podcast.js';
 import { iniciarRadio, enVistaEpisodio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
+import { fijarReservaAlumno } from '../bancos/index.js';
+import { fijarModoExamen, modoExamen } from './modo-examen.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
 const TIT_ROUTES = {
@@ -155,6 +157,12 @@ async function main() {
   const chart = createChart(await loadChartData());
   const ctx = { chart };
   const progress = createProgressStore();
+  // Examen final: la reserva de cada eje y titulación se fija para el alumno la primera vez que carga ese banco
+  // (ajuste reserva_<eje>_<tit>); si después cambian los datos, su examen final no cambia.
+  fijarReservaAlumno({
+    leer: (eje, tit) => progress.settings()[`reserva_${eje}_${tit}`] ?? null,
+    guardar: (eje, tit, foto) => progress.setSetting(`reserva_${eje}_${tit}`, foto),
+  });
   // Una versión nueva se aplica sola al abrir la app, salvo con un examen a medias (entonces se pregunta).
   iniciarPwa({ puedeActualizarSolo: () => !progress.testEnCurso() });
   setSharedProgress(progress);
@@ -194,6 +202,7 @@ async function main() {
     if (footer) footer.hidden = route.parts[0] !== 'ajustes';
     renderNav(tit, route.parts, (id) => { setTit(progress, id); render(); });
     enVistaEpisodio(false); // la vista del episodio lo vuelve a poner
+    if (modoExamen()) fijarModoExamen(null); // el examen en marcha lo vuelve a poner
     try {
       current = view({ ctx, progress, params, tit });
     } catch (e) {

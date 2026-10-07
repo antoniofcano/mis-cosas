@@ -10,13 +10,25 @@ import { cuenta } from '../texto.js';
 // Para no ser optimista con preguntas repetidas: una pregunta respondida una sola vez cuenta entera; si la has
 // respondido varias veces, cuenta mitad tu primer intento y mitad el último (acertarla tras verla no es lo mismo
 // que saberla de entrada). Y los simulacros completos recientes corrigen el resultado: el modelo vale como
-// PESO_MODELO simulacros y cada simulacro reciente suma su apto o no apto.
+// PESO_MODELO simulacros y cada simulacro reciente suma su apto o no apto. Un examen de preguntas que el alumno no había
+// visto dice más que acertar preguntas repetidas: el examen final pesa PESO_FINAL y un simulacro o examen real con al
+// menos un INEDITO de preguntas nuevas, PESO_INEDITO (los demás, 1).
 
 export const MIN_RESPUESTAS = 10; // preguntas respondidas por tema para opinar
 export const LISTO = 0.8;
 export const CASI = 0.5;
 export const PESO_MODELO = 3; // el modelo cuenta como 3 simulacros
 export const SIMULACROS = 5; // simulacros completos recientes que se tienen en cuenta
+export const PESO_FINAL = 3; // el examen final (preguntas reservadas, nunca estudiadas)
+export const PESO_INEDITO = 2; // simulacro o examen real con la mayoría de preguntas nuevas
+export const INEDITO = 0.6; // fracción de preguntas nuevas para que un examen cuente como inédito
+
+/** Peso de un examen completo en «¿Estás listo?». */
+export function pesoExamen(t) {
+  if (t.tipo === 'final') return PESO_FINAL;
+  if (t.total && t.nuevas != null && t.nuevas / t.total >= INEDITO) return PESO_INEDITO;
+  return 1;
+}
 
 /** log Γ(x) (aproximación de Lanczos), suficiente para las combinatorias de un examen. */
 function lgamma(x) {
@@ -86,14 +98,16 @@ export function estoyListo(estructura, preguntas, respuestas = {}, tests = []) {
     const total = preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta).length;
     const dist = fallosBloque(b.n, aciertos, hechas - aciertos);
     const pFallaLimite = b.maxErrores == null ? null : dist.slice(b.maxErrores + 1).reduce((x, y) => x + y, 0);
-    return { ut: b.ut, titulo: b.titulo, n: b.n, hechas, aciertos, aciertosReales, pct: hechas ? Math.round((100 * aciertos) / hechas) : null, maxErrores: b.maxErrores ?? null, pFallaLimite, suficiente: hechas >= Math.min(MIN_RESPUESTAS, total), dist };
+    const necesarias = Math.min(MIN_RESPUESTAS, total);
+    return { ut: b.ut, titulo: b.titulo, n: b.n, hechas, necesarias, aciertos, aciertosReales, pct: hechas ? Math.round((100 * aciertos) / hechas) : null, maxErrores: b.maxErrores ?? null, pFallaLimite, suficiente: hechas >= necesarias, dist };
   });
   const temasSinDatos = temas.filter((t) => !t.suficiente);
   const sims = simulacrosRecientes(tests);
-  const simulacros = { hechos: sims.length, aprobados: sims.filter((t) => t.apto).length };
+  const simulacros = { hechos: sims.length, aprobados: sims.filter((t) => t.apto).length, ineditos: sims.filter((t) => pesoExamen(t) > 1).length,
+    peso: sims.reduce((s, t) => s + pesoExamen(t), 0), pesoAprobados: sims.filter((t) => t.apto).reduce((s, t) => s + pesoExamen(t), 0) };
   if (temasSinDatos.length) return { estado: 'faltan-datos', prob: null, probModelo: null, simulacros, temasSinDatos, limitante: null, temas };
   const probModelo = probAprobar(estructura, temas.map((t) => t.dist));
-  const prob = (PESO_MODELO * probModelo + simulacros.aprobados) / (PESO_MODELO + simulacros.hechos);
+  const prob = (PESO_MODELO * probModelo + simulacros.pesoAprobados) / (PESO_MODELO + simulacros.peso);
   // Lo que más te tumba: el tema que, si lo dominaras (95 % de acierto), más subiría tu probabilidad de aprobar.
   let limitante = null;
   let mejora = 0;
@@ -117,7 +131,7 @@ export function lineaListo(r) {
   const base = r.estado === 'listo' ? '✅ Estás listo' : r.estado === 'casi' ? 'Casi' : 'Todavía no';
   let txt = `${base}: con lo que aciertas ahora aprobarías unas ${de10} de cada 10 veces.`;
   const s = r.simulacros;
-  if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${cuenta(s.hechos, 'simulacro')}`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta.`;
+  if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${cuenta(s.hechos, 'simulacro')}`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta${s.ineditos ? ' (más los exámenes con preguntas que no habías visto)' : ''}.`;
   else txt += ' Haz un simulacro completo: es la mejor prueba.';
   if (r.limitante) {
     const t = r.limitante;

@@ -10,9 +10,10 @@ import { bloque, bloquesEnOrden, totalPreguntas, posEstudio } from '../../theory
 import { TITULACIONES, tlink, currentEje, reglasExamen } from '../titulacion.js';
 import { citaFuente } from '../eje.js';
 import { TANDA } from '../../course/plan.js';
-import { pintarCierre } from '../cierre.js';
+import { pintarCierre, calcularPlan } from '../cierre.js';
+import { fijarModoExamen } from '../modo-examen.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
-import { buildSimulacro, buildReal, buildPractica, buildMezcla, testDesdeIds, grade } from '../../theory/engine.js';
+import { buildSimulacro, buildReal, buildFinal, buildPractica, buildMezcla, testDesdeIds, grade, nuevasDe } from '../../theory/engine.js';
 import { narrateTheory, esDefendible } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
@@ -135,7 +136,7 @@ export function botonCarta(q, progress) {
 /** Panel del profe para una pregunta respondida. */
 export function profePanel(q, expl, chosen) {
   const n = narrateTheory(q, expl, chosen, reglasDe(q.id));
-  const ok = q.anulada || chosen === q.correcta;
+  const ok = q.anulada || q.norma?.estado === 'retirada' || chosen === q.correcta;
   // Al corregir: vibración breve y la explicación sube a la vista (el panel entra desde abajo, ver CSS).
   if (chosen != null) {
     vibrar(ok);
@@ -143,6 +144,9 @@ export function profePanel(q, expl, chosen) {
   }
   const panel = h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
     h('span.profe-badge', '👨‍🏫 El profe'),
+    // Pregunta retirada por la revisión normativa: se ve en la revisión del examen real, pero ya no se estudia.
+    q.norma?.estado === 'retirada' ? h('p.nota-retirada', h('strong', 'Pregunta retirada. '),
+      `${q.norma.nota ?? 'La norma ha cambiado y la respuesta oficial ya no es correcta.'} No cuenta en la nota del examen y ya no sale al estudiar.`) : null,
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', 'aria-label': 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, icono('escuchar')) : null,
     // Al acertar, solo el truco (o la idea clave) y el resto bajo «Ver por qué»; al fallar, todo a la vista.
     (() => {
@@ -192,21 +196,41 @@ const pct = (s) => (s.hechas ? Math.round((100 * s.ok) / s.hechas) : null);
 
 /** Enlace para continuar un examen guardado. */
 export function rutaTest(tc) {
+  if (tc.tipo === 'final') return tlink(tc.tit, ['test', 'final']);
   return tlink(tc.tit, tc.tipo === 'real' ? ['test', 'real', String(tc.conv)] : ['test', 'simulacro'], tc.tipo === 'real' || tc.seed == null ? undefined : { s: String(tc.seed) });
 }
 
-/** Construye las preguntas de un examen (simulacro con su semilla o convocatoria real). */
-function construirTest(estructura, preguntas, tipo, conv, seed) {
-  return tipo === 'real' ? buildReal(preguntas, conv) : buildSimulacro(estructura, preguntas, createRng(seed));
+/**
+ * Construye las preguntas de un examen: convocatoria real (con sus preguntas retiradas, que se corrigen como anuladas)
+ * o simulacro con su semilla (del estudio; con `respuestas`, primero las no vistas).
+ */
+function construirTest(estructura, banco, tipo, conv, seed, respuestas = null) {
+  return tipo === 'real' ? buildReal(banco.examenes, conv) : buildSimulacro(estructura, banco.estudio, createRng(seed), { respuestas });
 }
 
 /** Rehace un examen guardado: con sus preguntas guardadas (ids) o, si es de antes de guardarlas, con la semilla. */
 function rehacerTest(estructura, banco, tc) {
-  return testDesdeIds(tc.tipo, tc.ids, banco.porId, tc.conv) ?? construirTest(estructura, banco.estudio, tc.tipo, tc.conv, tc.seed);
+  return testDesdeIds(tc.tipo, tc.ids, banco.porId, tc.conv) ?? (tc.tipo === 'final' ? { tipo: 'final', titulo: 'Examen final', preguntas: [], faltan: [] } : construirTest(estructura, banco, tc.tipo, tc.conv, tc.seed));
 }
 
 /** ¿El examen guardado (o hecho) es de esta titulación y este eje? (los antiguos, sin titulación, son del PER) */
 const deTitEje = (x, tit, eje) => (x?.tit ?? 'per') === tit && x?.eje === eje;
+
+/**
+ * Tarjeta del examen final (F1): cerrada hasta que estés listo (dice qué falta) o abierta (con qué examen toca). Todo
+ * lo que dice sale del motor (st.final); null si el eje no reserva nada.
+ */
+export function tarjetaFinal(T0, fin, { titulo = 'h2' } = {}) {
+  if (!fin?.hay) return null;
+  return h('section.examen-final', { class: fin.desbloqueado ? 'abierto' : 'cerrado' },
+    h(titulo, fin.desbloqueado ? '🎯 Examen final' : '🔒 Examen final'),
+    h('p.muted.small', 'Preguntas reales reservadas que no salen al estudiar: la mejor prueba de si lo sabes de verdad.'),
+    fin.lineas.map((l) => h('p', l)),
+    fin.desbloqueado
+      ? h('a.btn.grande', { href: tlink(T0.id, ['test', 'final']), class: fin.sugerir || !fin.todasVistas ? '' : 'secondary' }, fin.todasVistas ? 'Hacerlo igualmente' : 'Hacer el examen final')
+      : null,
+    fin.lineasResultado.length ? [h('h3', 'Tus exámenes finales'), h('ul.resultados-final', fin.lineasResultado.map((l, i) => h('li', { class: i === 0 && fin.preparado ? 'ok' : '' }, l)))] : null);
+}
 
 export function examenesView({ ctx, progress, tit }) {
   chartRef = ctx.chart;
@@ -215,9 +239,10 @@ export function examenesView({ ctx, progress, tit }) {
   const E0 = E;
   const el = h('div.examenes', h('h1', 'Examen'), h('p.muted', 'Cargando exámenes…'));
   let summaryText = `VISTA exámenes ${T0.sigla} (cargando)`;
-  cargarBanco(currentEje(progress), T0.id).then((banco) => {
+  calcularPlan(progress, T0.id).then(({ banco, st }) => {
     const preguntas = banco.estudio;
     const eje = banco.eje;
+    const fin = st.final; // del motor: el examen final (abierto o no, qué falta, resultados)
     const convs = banco.convocatorias();
     const tests = progress.tests().filter((t) => deTitEje(t, T0.id, eje.id)).slice(-8).reverse();
     const tc = progress.testEnCurso();
@@ -236,12 +261,14 @@ export function examenesView({ ctx, progress, tit }) {
         } }, 'Descartarlo')));
     }
     summaryText = `VISTA exámenes ${T0.sigla} · ${convs.length} convocatorias${aMedias ? ` · EXAMEN A MEDIAS (${Object.keys(aMedias.respuestas ?? {}).length} respondidas) → ${rutaTest(aMedias)}` : ''}\n${convs.map((c) => `${c.key}: ${c.titulo} (${cuenta(c.n, 'pregunta')})`).join('\n')}` +
+      (fin.hay ? `\nEXAMEN FINAL: ${fin.desbloqueado ? 'abierto' : 'cerrado'} · ${fin.lineas.join(' ')}${fin.lineasResultado.length ? ` · ${fin.lineasResultado.join(' ')}` : ''} → #/${T0.id}/test/final` : '') +
       `\nRUTAS: #/${T0.id}/test/simulacro?s=<semilla> · #/${T0.id}/test/real/<convocatoria> · #/${T0.id}/teoria/ut/<n>?s=<semilla> (test por tema; f=1 solo fallos) · #/${T0.id}/teoria/mezcla · #/${T0.id}/teoria/repaso (repaso espaciado) · #/${T0.id}/teoria/rapido (5 minutos)`;
     setChildren(el,
       h('h1', 'Examen'),
       aviso,
+      tarjetaFinal(T0, fin),
       h('section.simulacro',
-        h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias ? 'secondary' : '' }, 'Hacer un simulacro'),
+        h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`)),
       (() => {
         const cola = colaRepaso(preguntas, progress.get().exams);
@@ -258,7 +285,7 @@ export function examenesView({ ctx, progress, tit }) {
             fallos ? h('a.fallos-tema', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed(), f: '1' }) }, `Mis fallos (${fallos})`) : null);
         })),
         h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'mezcla'], { s: randomSeed() }) }, 'Repaso mezclado de varios temas')),
-      tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
+      tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.tipo === 'final' ? '🎯 ' : ''}${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
       h('details', h('summary', 'Exámenes de convocatorias anteriores'),
         h('p.muted', `Las preguntas de una convocatoria oficial de ${eje.nombre}, en su orden, con el tiempo y las reglas del examen.`),
         citaFuente(eje),
@@ -523,28 +550,42 @@ export function testView({ ctx, progress, params: route, tit }) {
   useTit(tit);
   const T0 = T;
   const E0 = E;
-  const tipo = route.parts[1] === 'real' ? 'real' : 'simulacro';
+  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : 'simulacro';
   const conv = tipo === 'real' ? route.parts[2] : null;
   const seedQ = Number(route.query.s) || null;
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
   let summaryText = 'VISTA examen (cargando)';
 
-  cargarBanco(currentEje(progress), T0.id).then((banco) => {
-    const { estudio: preguntas, explicaciones, reglasDe: rd, vocab: vocabBanco } = banco;
+  // El examen final necesita el estado del motor (si está abierto y qué convocatoria toca).
+  Promise.all([cargarBanco(currentEje(progress), T0.id), tipo === 'final' ? calcularPlan(progress, T0.id) : null]).then(([banco, plan]) => {
+    const { explicaciones, reglasDe: rd, vocab: vocabBanco } = banco;
     const eje = banco.eje.id;
+    const fin = plan?.st.final ?? null;
+    // Calculadora en el examen: solo si la ficha del eje la permite para esta titulación (examen.<tit>.calculadora).
+    const conCalculadora = banco.eje.examen?.[T0.id]?.calculadora === true;
     reglasDe = rd;
     const tc = progress.testEnCurso();
-    const mismo = deTitEje(tc, T0.id, eje) && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : seedQ != null && tc.seed === seedQ);
+    const mismo = deTitEje(tc, T0.id, eje) && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : tipo === 'final' ? true : seedQ != null && tc.seed === seedQ);
     if (mismo) correr(tc);
     else inicio(tc);
 
     // --- pantalla de inicio
     function inicio(otro) {
       const seed = seedQ ?? randomSeed();
-      const test = construirTest(E0, preguntas, tipo, conv, seed);
+      const respuestasAntes = progress.get().exams;
+      if (tipo === 'final' && !fin?.desbloqueado) {
+        summaryText = `VISTA examen final ${T0.sigla}: CERRADO · ${fin?.lineas.join(' ') ?? 'este eje no reserva exámenes'}`;
+        setChildren(el, h('div.inicio-examen', h('h1', '🔒 Examen final'), (fin?.hay ? fin.lineas : ['Este tribunal no tiene exámenes reservados en la app.']).map((l) => h('p', l)),
+          h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver a Examen')));
+        return;
+      }
+      const test = tipo === 'final'
+        ? buildFinal(E0, { modo: banco.reserva.modo, key: fin.siguiente?.key, examenes: banco.reserva.examenes, porId: banco.porId, pool: banco.final, respuestas: respuestasAntes, rng: createRng(seed) })
+        : construirTest(E0, banco, tipo, conv, seed, respuestasAntes);
       if (!test.preguntas.length) { setChildren(el, h('p.warn', 'No hay preguntas para este examen.'), h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver')); return; }
       const empezar = () => {
-        const nuevo = { tit: T0.id, eje, tipo, conv, seed: tipo === 'simulacro' ? seed : null, ids: test.preguntas.map((q) => q.id), respuestas: {}, i: 0, consumidoMs: 0 };
+        // nuevas: las que no había respondido nunca (un examen inédito pesa más en «¿Estás listo?»).
+        const nuevo = { tit: T0.id, eje, tipo, conv: tipo === 'final' ? test.key : conv, seed: tipo === 'simulacro' ? seed : null, ids: test.preguntas.map((q) => q.id), nuevas: nuevasDe(test.preguntas, respuestasAntes), respuestas: {}, i: 0, consumidoMs: 0 };
         progress.saveTestEnCurso(nuevo);
         if (tipo === 'simulacro' && seedQ !== seed) navigate([T0.id, 'test', 'simulacro'], { s: String(seed) }, { replace: true });
         correr(progress.testEnCurso());
@@ -559,7 +600,9 @@ export function testView({ ctx, progress, params: route, tit }) {
             h('li', `${cuenta(E0.duracionMin, 'minuto')}`),
             h('li', `Apruebas con ${cuenta(E0.minAciertos, 'acierto')}`),
             limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
-          test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E0, f.ut)?.titulo ?? f.ut).join(', ')}; el simulacro no está completo.`) : null,
+          test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E0, f.ut)?.titulo ?? f.ut).join(', ')}; el ${tipo === 'final' ? 'examen' : 'simulacro'} no está completo.`) : null,
+          tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', `Como el día del examen: sin chuleta ni ayudas${conCalculadora ? ', con calculadora' : ', sin calculadora'}. Al terminar, el profe te explica tus fallos.`)] : null,
+          test.avisoVistas ? h('p.aviso-vistas', `Ya has respondido el ${Math.round(test.vistas * 100)} % de las preguntas de estudio: este simulacro repetirá muchas que ya has visto y aprobarlo dice menos. La prueba de verdad es el examen final, con preguntas reservadas.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
           otro
             ? [h('p.aviso-medias', 'Tienes otro examen a medias.'),
@@ -579,6 +622,8 @@ export function testView({ ctx, progress, params: route, tit }) {
       const estado = { ...guardado, eje: guardado.eje ?? eje, ids: test.preguntas.map((q) => q.id) };
       const n = test.preguntas.length;
       if (!n) { progress.saveTestEnCurso(null); setChildren(el, h('p.warn', 'No hay preguntas para este examen.')); return; }
+      // Modo examen: sin chuleta ni ayudas (src/ui/modo-examen.js); la calculadora, solo si el eje la permite.
+      fijarModoExamen(tipo === 'final' ? 'final' : 'examen', { calculadora: conCalculadora });
       const respuestas = { ...(estado.respuestas ?? {}) };
       let i = Math.min(Math.max(0, estado.i ?? 0), n - 1);
       let consumido = estado.consumidoMs ?? 0;
@@ -674,10 +719,13 @@ export function testView({ ctx, progress, params: route, tit }) {
         contar();
         limpiar();
         terminado = true;
+        fijarModoExamen(null);
         const g = grade(E0, test, respuestas);
-        for (const d of g.detalle) if (d.respuesta) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
+        // Las retiradas no se guardan: no se estudian y su respuesta oficial ya no vale.
+        for (const d of g.detalle) if (d.respuesta && !d.retirada) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
         const minutos = Math.max(1, Math.round(consumido / 60000));
-        progress.recordTest({ tit: T0.id, eje, conv: test.tipo === 'real' ? estado.conv : undefined, tipo: test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, apto: g.apto, minutos,
+        progress.recordTest({ tit: T0.id, eje, conv: test.tipo === 'real' || test.tipo === 'final' ? estado.conv : undefined, tipo: test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, apto: g.apto, minutos,
+          nuevas: estado.nuevas ?? undefined,
           porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
         progress.saveTestEnCurso(null);
         progress.logActividad(minutos);
@@ -701,17 +749,17 @@ export function testView({ ctx, progress, params: route, tit }) {
       const review = h('div.review');
       const renderReview = () => setChildren(review, test.preguntas.map((q, j) => {
         const d = g.detalle[j];
-        if (filtro.value === 'falladas' && d.ok) return null;
+        if (filtro.value === 'falladas' && d.ok && !d.retirada) return null;
         // Una línea por pregunta (se ve todo el examen de un vistazo); al tocarla, la pregunta y el profe (se pintan al abrir).
         const b = bloque(E0, q.ut);
         const cuerpo = h('div.revision-cuerpo');
-        const det = h('details.revision-pregunta', { class: d.ok ? 'ok' : 'bad', ontoggle: () => {
+        const det = h('details.revision-pregunta', { class: d.retirada ? 'retirada' : d.ok ? 'ok' : 'bad', ontoggle: () => {
           if (det.open && !cuerpo.childElementCount) cuerpo.append(questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
         } },
         h('summary',
           h('span.revision-num', String(j + 1)),
           h('span.revision-texto', h('span.revision-tema', b ? `${b.icon} ${b.titulo}` : ''), h('span.revision-enunciado', (q.enunciado ?? '').slice(0, 90) + ((q.enunciado ?? '').length > 90 ? '…' : '')),
-            h('span.revision-dato', d.ok ? `Bien: la ${d.correcta})` : d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`))),
+            h('span.revision-dato', d.retirada ? 'Retirada: la norma ha cambiado y no cuenta en la nota' : d.ok ? `Bien: la ${d.correcta})` : d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`))),
         cuerpo);
         return det;
       }));
@@ -720,8 +768,18 @@ export function testView({ ctx, progress, params: route, tit }) {
       renderReview();
       const conFallos = g.bloques.filter((b) => b.errores > 0).sort((a, b) => b.errores - a.errores);
       const tituloRevision = h('h2#revision', 'Repasa tus fallos con el profe');
+      // Examen final: si has aprobado con margen (lo dice el motor, con el examen ya guardado).
+      const lineaFinal = h('p.linea-final');
+      if (test.tipo === 'final') {
+        calcularPlan(progress, T0.id).then(({ st }) => {
+          lineaFinal.textContent = `Examen final: ${st.final.lineasResultado[0] ?? ''}`;
+          lineaFinal.classList.toggle('ok', st.final.preparado);
+          summaryText += `\nEXAMEN FINAL: ${st.final.lineasResultado[0] ?? ''}`;
+        }).catch(() => {});
+      }
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : g.apto ? '✅ APTO' : '❌ NO APTO'),
+          test.tipo === 'final' ? lineaFinal : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
         conFallos.length

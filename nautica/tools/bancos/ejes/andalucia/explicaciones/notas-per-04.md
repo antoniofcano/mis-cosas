@@ -11,3 +11,13 @@
 - and-2017-c2-t32 · RD 339/2021 · la bomba de achique sigue exigida; la conducta ante una vía de agua no cambia · sí.
 - and-2017-c2-t39 · IALA MBS 2022 (detector) · el cartucho es un concepto cartográfico, no de balizamiento · sí.
 - and-2017-c2-t40 · RD 339/2021 · la corredera deja de ser equipo obligatorio; el coeficiente de corredera no cambia · sí.
+- and-2017-c3-t08 · RD 339/2021, RD 186/2023 (detector) · cambia el número de cohetes por zona, no sus características (300 m de altura) · sí.
+- and-2017-c3-t11 · RD 339/2021 (art. 23) · aguas sucias: las 3 millas (desmenuzadas y desinfectadas) y 12 (sin tratar) se cuentan hoy desde la línea de base; en ruta a no menos de 4 nudos · sí.
+- and-2017-c3-t12 · RD 186/2023 (art. 73 del Reglamento General de Costas), RD 191/2026 e IALA (detectores) · en tramo no balizado se puede navegar dentro de la franja a ≤3 nudos; la falsa es la b), no la d) · no: puesta discrepancia con defendible b (y ya lo era con la Orden de 1964, que también permitía navegar a 3 nudos).
+- and-2017-c3-t13 · IALA MBS 2022 · tope de la cardinal Sur sin cambios · sí.
+- and-2017-c3-t14 · IALA MBS 2022 · tope cónico de estribor sin cambios · sí.
+- and-2017-c3-t15 · IALA MBS 2022 · cardinales sin cambios · sí.
+- and-2017-c3-t16 · IALA MBS 2022 · ritmo 2+1 de bifurcación sin cambios · sí.
+- and-2017-c3-t17 · IALA MBS 2022 · colores de la cardinal Sur sin cambios · sí.
+- and-2017-c3-t30 · RD 339/2021 · la bomba de achique sigue exigida; la conducta ante una vía de agua no cambia · sí.
+- and-2017-c3-t32 · RD 238/2019, RD 339/2021 (detectores) · la clasificación de fuegos (UNE-EN 2) no cambia · sí.

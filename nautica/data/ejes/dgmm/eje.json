@@ -4,7 +4,7 @@
  "organismo": "Dirección General de la Marina Mercante (Ministerio de Transportes y Movilidad Sostenible)",
  "ambito": ["Comunidad de Madrid", "Castilla y León", "Castilla-La Mancha", "Aragón", "Navarra", "La Rioja", "Extremadura"],
  "descripcion": "Exámenes de la Marina Mercante en Madrid, que examina a quienes viven en comunidades sin tribunal propio.",
- "estado": "interno",
+ "estado": "publicado",
  "prefijo": "dgmm",
  "fuente": "https://www.transportes.gob.es/marina-mercante/titulaciones/titulaciones-de-recreo/examenes/examenes-para-la-obtencion-de-titulaciones-de-recreo",
  "licencia": {

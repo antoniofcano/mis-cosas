@@ -44,22 +44,27 @@ const cobertura = (q, visto) => {
  * que lo nombran en `ejercicios`, las que listan preguntas resueltas de ese tipo en `ids` y las que las llevan en su
  * práctica. Ordenadas de más a menos preguntas de ese tipo.
  */
-function clasesPorEjercicio(resueltos, preguntasRef, practicaRef) {
+function clasesPorEjercicio(resueltos, practicaRef) {
   const cuenta = new Map(); // ejercicio → Map(leccion → n)
   const suma = (e, l, n) => { if (!cuenta.has(e)) cuenta.set(e, new Map()); cuenta.get(e).set(l, (cuenta.get(e).get(l) ?? 0) + n); };
-  // También las de carta resueltas que la referencia pone en la práctica de cada clase.
-  for (const [l, ids] of Object.entries(practicaRef)) for (const id of ids) if (SOLUCIONES[id]?.ejercicio) suma(SOLUCIONES[id].ejercicio, l, 1);
-  for (const [l, r] of Object.entries(resueltos)) {
-    if (r.ids) { for (const id of r.ids) if (SOLUCIONES[id]?.ejercicio) suma(SOLUCIONES[id].ejercicio, l, 1); continue; }
-    for (const e of r.ejercicios ?? []) {
-      const n = preguntasRef.filter((q) => SOLUCIONES[q.id]?.ejercicio === e && !(r.excepto ?? []).includes(q.id)).length;
-      suma(e, l, Math.max(1, n));
+  // Las de carta resueltas que la referencia pone en la práctica de cada clase (salvo las que su regla de resueltos
+  // excluye: no son de esa clase)…
+  for (const [l, ids] of Object.entries(practicaRef)) {
+    const r = resueltos[l];
+    for (const id of ids) {
+      if (!SOLUCIONES[id]?.ejercicio || (r?.excepto ?? []).includes(id) || (r?.ids && !r.ids.includes(id))) continue;
+      suma(SOLUCIONES[id].ejercicio, l, 1);
     }
   }
-  // Solo las clases con al menos la mitad de las preguntas de ese tipo que la que más tiene (las demás son casos sueltos).
+  // … y dos más por cada tipo que nombra la regla de resueltos de la clase (la que lo enseña).
+  for (const [l, r] of Object.entries(resueltos)) {
+    const tipos = r.ids ? new Set(r.ids.map((id) => SOLUCIONES[id]?.ejercicio).filter(Boolean)) : new Set(r.ejercicios ?? []);
+    for (const e of tipos) suma(e, l, 2);
+  }
+  // Solo las clases con al menos un tercio de las preguntas de ese tipo que la que más tiene (las demás son casos sueltos).
   return new Map([...cuenta].map(([e, m]) => {
     const orden = [...m].sort((a, b) => b[1] - a[1]);
-    return [e, orden.filter(([, n]) => n >= orden[0][1] / 2).map(([l]) => l)];
+    return [e, orden.filter(([, n]) => n >= orden[0][1] / 3).map(([l]) => l)];
   }));
 }
 
@@ -77,7 +82,7 @@ export function proponer(eje, tit) {
   const lecciones = curso.modulos.flatMap((m) => m.lecciones.map((l) => ({ ...l, ut: m.ut, texto: textoClase(l) })));
   const porUt = new Map();
   for (const l of lecciones) { if (!porUt.has(l.ut)) porUt.set(l.ut, []); porUt.get(l.ut).push(l); }
-  const porEjercicio = clasesPorEjercicio(resueltosRef, ref, practicaRef);
+  const porEjercicio = clasesPorEjercicio(resueltosRef, practicaRef);
   const refPorUt = new Map();
   for (const r of ref) { if (!refPorUt.has(r.ut)) refPorUt.set(r.ut, []); refPorUt.get(r.ut).push(r); }
 
@@ -115,14 +120,22 @@ export function proponer(eje, tit) {
     const deSuTipo = ej && porEjercicio.get(ej)?.length ? new Set(porEjercicio.get(ej)) : null;
     const p = ls.filter((l) => !deSuTipo || deSuTipo.has(l.id)).map((l) => {
       let s = 0;
+      let ajena = false; // de su tipo, pero la pregunta no trata lo propio de esta clase
       if (maxCitas) s += 2 * citas(l) / maxCitas;
       // Las de marea con anuario, a la clase de mareas.
       if (q.requiere.includes('anuario') && /marea/i.test(l.titulo)) s += 3;
       if (q.concepto && clasesDeRef.get(q.concepto)?.has(l.id)) s += 1.5;
       for (const v of vecinas) if (clasesDeRef.get(v.r.id)?.has(l.id)) s += v.s;
       s += 0.5 * cobertura(q, l.texto) + 1.5 * propia(q, l);
-      if (deSuTipo) s += 2 / (1 + porEjercicio.get(ej).indexOf(l.id)); // la clase con más preguntas de su tipo, primero
-      return { l, p: s, cubre: cubierta(q, l.texto) };
+      if (deSuTipo) {
+        // La clase con más preguntas de su tipo, primero; otra de su tipo solo si la pregunta trata más lo propio de esa
+        // clase (p. ej., una situación por dos demoras con viento, en la de abatimiento).
+        const principal = lecciones.find((x) => x.id === porEjercicio.get(ej)[0]);
+        const idx = porEjercicio.get(ej).indexOf(l.id);
+        s += 2 / (1 + idx);
+        if (idx > 0 && principal && propia(q, l) <= propia(q, principal)) { s -= 3; ajena = true; }
+      }
+      return { l, p: s, cubre: cubierta(q, l.texto), ajena };
     }).sort((a, b) => b.p - a.p);
     puntos.set(q.id, { q, p });
   }
@@ -130,7 +143,7 @@ export function proponer(eje, tit) {
   for (const { q, p } of puntos.values()) {
     if (!p.length) continue;
     practica[p[0].l.id].push(q.id);
-    if (p[1] && p[1].p >= 0.9 * p[0].p && p[1].cubre) practica[p[1].l.id].push(q.id);
+    if (p[1] && p[1].p >= 0.9 * p[0].p && p[1].cubre && !p[1].ajena) practica[p[1].l.id].push(q.id);
   }
   // Mínimo: tantas como la clase homóloga de referencia (si el tema da para ello y la clase las explica).
   const faltan = {};
@@ -144,7 +157,9 @@ export function proponer(eje, tit) {
     const extra = [...puntos.values()]
       .map(({ q, p }) => ({ q, x: p.find((y) => y.l.id === l.id), rango: p.findIndex((y) => y.l.id === l.id) }))
       // Como mucho en dos clases, y solo en una de sus tres mejores.
-      .filter(({ q, x, rango }) => x && rango <= 2 && (x.cubre || rango === 1) && !ya.has(q.id) && (veces.get(q.id) ?? 0) < 2)
+      // Las «ajenas» (de su tipo pero sin lo propio de la clase), solo para que la clase no se quede vacía.
+      .filter(({ q, x, rango }) => x && rango <= 2 && (x.cubre || rango === 1) && !ya.has(q.id) && (veces.get(q.id) ?? 0) < 2
+        && (!x.ajena || !practica[l.id].length))
       .sort((a, b) => b.x.p - a.x.p)
       .slice(0, minimo - practica[l.id].length);
     practica[l.id].push(...extra.map(({ q }) => q.id));
@@ -173,6 +188,8 @@ export const textoPractica = (p) => `{\n${Object.entries(p).map(([l, ids]) => `$
 /** Informe de la práctica (tools/bancos/informes/<eje>-practica.md): preguntas por clase frente a la referencia y por
  * qué no llegan las que no llegan. */
 export function informePractica(eje, porTit) {
+  // Notas a mano por clase (tools/bancos/ejes/<eje>/practica-notas.json: { leccionId: texto }).
+  const notas = leerJSON(join(RAIZ, 'tools', 'bancos', 'ejes', eje, 'practica-notas.json'), {});
   const l = [`# Práctica por clase · ${eje}`, '', `Generado por \`node tools/bancos/practica.mjs ${eje} --escribir\`. Referencia: la práctica de ${REFERENCIA}.`,
     'Solo entran preguntas de estudio (ni anuladas, ni retiradas, ni de convocatorias reservadas para el examen final).', ''];
   for (const [tit, r] of Object.entries(porTit)) {
@@ -183,7 +200,7 @@ export function informePractica(eje, porTit) {
         + '(el banco de este eje es más pequeño en ese tema, o sus preguntas tratan sobre todo lo de otras clases). Se dejan con las que le corresponden de verdad, sin rellenar con preguntas de otras clases.', '');
     }
     l.push('| Clase | Preguntas | Referencia | |', '|---|---:|---:|---|');
-    for (const x of r.lecciones) l.push(`| ${x.id} ${x.titulo} | ${x.n} | ${x.referencia} | ${r.faltan[x.id] ? 'no llega' : ''} |`);
+    for (const x of r.lecciones) l.push(`| ${x.id} ${x.titulo} | ${x.n} | ${x.referencia} | ${[r.faltan[x.id] ? 'no llega' : '', notas[x.id] ?? ''].filter(Boolean).join('. ')} |`);
     l.push('');
   }
   return l.join('\n');

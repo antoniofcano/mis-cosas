@@ -7,8 +7,6 @@ Solo entran preguntas de estudio (ni anuladas, ni retiradas, ni de convocatorias
 
 Preguntas de estudio: 1704 (referencia: 810). Por tema: UT1 154 (ref 72) · UT2 77 (ref 36) · UT3 153 (ref 72) · UT4 72 (ref 36) · UT5 190 (ref 90) · UT6 385 (ref 180) · UT7 76 (ref 36) · UT8 113 (ref 54) · UT9 154 (ref 72) · UT10 188 (ref 90) · UT11 142 (ref 72).
 
-1 clases no llegan a las preguntas de su homóloga: el tema no tiene tantas preguntas de estudio que la clase explique (el banco de este eje es más pequeño en ese tema, o sus preguntas tratan sobre todo lo de otras clases). Se dejan con las que le corresponden de verdad, sin rellenar con preguntas de otras clases.
-
 | Clase | Preguntas | Referencia | |
 |---|---:|---:|---|
 | per-1-1 El casco y las referencias del barco | 12 | 6 |  |
@@ -91,18 +89,18 @@ Preguntas de estudio: 1704 (referencia: 810). Por tema: UT1 154 (ref 72) · UT2 
 | per-11-1 La carta del Estrecho: coordenadas, distancias y rumbos | 8 | 4 |  |
 | per-11-2 Corrección total y conversión de rumbos | 13 | 13 |  |
 | per-11-3 Rumbo directo, distancia y hora de llegada | 28 | 20 |  |
-| per-11-4 Situación de estima | 28 | 16 |  |
+| per-11-4 Situación de estima | 29 | 16 |  |
 | per-11-5 Líneas de posición: demora, marcación y distancia | 5 | 3 |  |
 | per-11-6 Situación por dos demoras o marcaciones simultáneas | 19 | 7 |  |
-| per-11-7 Oposición o enfilación y demora: situación y distancia a un faro | 6 | 4 |  |
-| per-11-8 Marcaciones «más tarde»: cuándo hay que trasladar y cuándo no | 0 | 3 | no llega |
+| per-11-7 Oposición o enfilación y demora: situación y distancia a un faro | 5 | 4 |  |
+| per-11-8 Marcaciones «más tarde»: cuándo hay que trasladar y cuándo no | 3 | 3 | El PER de la DGMM no tiene preguntas de marcaciones no simultáneas: la clase lleva situaciones por demoras simultáneas, para practicar a distinguir cuándo no hay que trasladar |
 | per-11-9 Rumbo para pasar a una distancia de un faro | 12 | 5 |  |
 
 ## PY
 
 Preguntas de estudio: 387 (referencia: 720). Por tema: UT1 99 (ref 180) · UT2 96 (ref 180) · UT3 99 (ref 180) · UT4 93 (ref 180).
 
-22 clases no llegan a las preguntas de su homóloga: el tema no tiene tantas preguntas de estudio que la clase explique (el banco de este eje es más pequeño en ese tema, o sus preguntas tratan sobre todo lo de otras clases). Se dejan con las que le corresponden de verdad, sin rellenar con preguntas de otras clases.
+23 clases no llegan a las preguntas de su homóloga: el tema no tiene tantas preguntas de estudio que la clase explique (el banco de este eje es más pequeño en ese tema, o sus preguntas tratan sobre todo lo de otras clases). Se dejan con las que le corresponden de verdad, sin rellenar con preguntas de otras clases.
 
 | Clase | Preguntas | Referencia | |
 |---|---:|---:|---|
@@ -136,12 +134,12 @@ Preguntas de estudio: 387 (referencia: 720). Por tema: UT1 99 (ref 180) · UT2 9
 | py-3-9 GNSS: las siglas de la pantalla y el datum | 24 | 26 | no llega |
 | py-3-10 Cartas electrónicas y AIS | 30 | 35 | no llega |
 | py-4-1 Corrección total: declinación, enfilaciones, oposiciones y la Polar | 9 | 19 | no llega |
-| py-4-2 Viento y abatimiento: rumbo de superficie y rumbo a dar | 12 | 12 |  |
-| py-4-3 Rumbo para pasar a una distancia de un faro, con viento | 9 | 16 | no llega |
-| py-4-4 Situación por líneas de posición simultáneas y no simultáneas | 21 | 17 |  |
+| py-4-2 Viento y abatimiento: rumbo de superficie y rumbo a dar | 9 | 12 | no llega |
+| py-4-3 Rumbo para pasar a una distancia de un faro, con viento | 10 | 16 | no llega |
+| py-4-4 Situación por líneas de posición simultáneas y no simultáneas | 22 | 17 |  |
 | py-4-5 Estima con viento y corriente: situación y rumbo efectivo | 14 | 17 | no llega |
-| py-4-6 Faro por el través y otros cortes con la derrota | 5 | 12 | no llega |
+| py-4-6 Faro por el través y otros cortes con la derrota | 1 | 12 | no llega |
 | py-4-7 Corriente conocida: rumbo a dar, velocidad y hora de llegada | 9 | 23 | no llega |
 | py-4-8 Corriente desconocida: rumbo e intensidad | 10 | 10 |  |
-| py-4-9 Mareas: sonda en un momento y hora para tener una sonda | 9 | 35 | no llega |
+| py-4-9 Mareas: sonda en un momento y hora para tener una sonda | 9 | 35 | no llega. El PY de la DGMM tiene 14 preguntas de marea con anuario en total, contando las de convocatorias reservadas |
 | py-4-10 Estima analítica: derrota loxodrómica | 8 | 19 | no llega |

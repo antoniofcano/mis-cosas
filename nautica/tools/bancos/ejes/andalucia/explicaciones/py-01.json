@@ -1,0 +1,322 @@
+{
+ "and-py-2015-c1-g01": {
+  "explicacion": "El centro de gravedad del volumen sumergido (la carena) es el centro de carena (B), donde se aplica el empuje del agua. El metacentro es el punto donde la vertical del empuje corta a la crujía al escorar, y la altura metacéntrica es una distancia (GM), no un punto. Como la b) es correcta, la d) sobra.",
+  "clave": "Volumen sumergido → centro de carena (B).",
+  "trampa": "Metacentro y altura metacéntrica suenan técnicos, pero se definen a partir de B y G, no son el centro del volumen sumergido.",
+  "concepto": "and-py-2020-c3-g01"
+ },
+ "and-py-2015-c1-g02": {
+  "explicacion": "Al trasladar un peso en vertical, el centro de gravedad del barco se mueve en la misma dirección y sentido, paralelo al traslado: sube si el peso sube y baja si baja, una distancia GG1 = p · d / D. Hacia proa o popa solo se mueve G si el peso se traslada longitudinalmente, y siempre que se mueve un peso a bordo G se desplaza, así que la c) es falsa.",
+  "clave": "G se mueve paralelo al peso trasladado: GG1 = p · d / D.",
+  "trampa": "La a) mezcla un traslado vertical con un efecto longitudinal (asiento).",
+  "concepto": null
+ },
+ "and-py-2015-c1-g03": {
+  "explicacion": "El aro salvavidas lleva una guirnalda (un cabo de agarre) sujeta a cuatro puntos equidistantes, de al menos 9,5 mm de diámetro y con una longitud no inferior a cuatro veces el diámetro exterior del aro. Es una sola guirnalda, no dos, y ni el silbato ni las bengalas forman parte del aro (la luz y la rabiza flotante son accesorios aparte). Hoy el equipo de seguridad lo regula el Real Decreto 339/2021, que exige aros homologados conforme a estas mismas especificaciones del Código IDS.",
+  "clave": "Aro: UNA guirnalda, 4 puntos, Ø ≥ 9,5 mm, longitud ≥ 4 × Ø exterior.",
+  "trampa": "La b) es idéntica a la d) salvo en «dos guirnaldas»: es una sola.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g04": {
+  "explicacion": "Sí: el Código IDS exige que el chaleco salvavidas dé la vuelta a una persona inconsciente, desde cualquier posición, hasta dejarla con la boca fuera del agua en no más de 5 segundos. Las demás opciones niegan algo que es precisamente la función principal del chaleco. Hoy el Real Decreto 339/2021 pide chalecos homologados (Código IDS o norma ISO 12402); los de menor flotabilidad (100 N) no garantizan ese giro en todas las condiciones, por eso se reservan a aguas protegidas.",
+  "clave": "Chaleco IDS: da la vuelta al inconsciente en ≤ 5 s, boca fuera.",
+  "trampa": "«Es indiferente»: el autoadrizamiento es justo lo que distingue a un chaleco salvavidas de una ayuda a la flotación.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g05": {
+  "explicacion": "El desplazamiento es el peso total del barco y, como todo peso, se considera aplicado en el centro de gravedad (G), actuando hacia abajo. El centro de carena, que es lo mismo que el centro de empuje, es donde se aplica el empuje del agua, hacia arriba, y el metacentro es un punto de referencia para la estabilidad, no el punto de aplicación de ninguna fuerza.",
+  "clave": "Desplazamiento (peso) → G hacia abajo; empuje → B (carena) hacia arriba.",
+  "trampa": "La a) y la d) son el mismo punto con dos nombres: el del empuje, no el del peso.",
+  "concepto": "and-py-2022-c1-g03"
+ },
+ "and-py-2015-c1-g06": {
+  "explicacion": "El Código IDS exige que el cohete con paracaídas, disparado en vertical, alcance al menos 300 m y que, en el punto más alto de la trayectoria o cerca de él, suelte la bengala con paracaídas (que arde roja al menos 40 s). Las alturas de 50, 100 o 200 m no son las del cohete. Hoy el número de cohetes a bordo depende de la zona de navegación según el Real Decreto 339/2021, pero la especificación de los 300 m sigue siendo la misma.",
+  "clave": "Cohete con paracaídas: ≥ 300 m de altura, luz roja ≥ 40 s.",
+  "trampa": "Las cuatro opciones repiten la misma frase y solo cambia la cifra: hay que saberse los 300 m.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c1-g07": {
+  "explicacion": "En un rescate con helicóptero hay que seguir siempre sus indicaciones y dejar que el cable o el gancho toque primero el agua o el barco, para descargar la electricidad estática que acumula el rotor; tocarlo antes puede dar una descarga. Lo que nunca se hace es amarrar el cable al barco: si el helicóptero tiene que separarse, queda enganchado a la embarcación. Por eso son correctas la b) y la c).",
+  "clave": "Cable del helicóptero: que toque agua o cubierta primero, y nunca se amarra.",
+  "trampa": "La a) suena práctica, pero amarrar el cable pone en peligro al helicóptero.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g08": {
+  "explicacion": "La radiobaliza EPIRB se puede activar a mano o automáticamente: la de zafa hidrostática se suelta al hundirse el barco y se activa al flotar en el agua. Igual que se activa, se puede desactivar manualmente si fue un disparo accidental (avisando cuanto antes al centro de salvamento). La c) solo describe un caso de activación automática y la d) recoge las dos formas. Hoy la obligación de llevarla según la zona la fija el Real Decreto 339/2021 (y el 587/2022 para radiocomunicaciones), pero su funcionamiento es el mismo.",
+  "clave": "EPIRB: manual o automática (zafa + agua).",
+  "trampa": "La c) es cierta en parte, pero se queda corta frente a la d).",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "radiobaliza",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c1-g09": {
+  "explicacion": "El centro de gravedad (G) es el punto donde se consideran aplicados todos los pesos del barco, es decir, su desplazamiento. La b) describe el centro de carena (empuje del agua), que nunca coincide con G en un barco adrizado normal, porque B queda más abajo. Tampoco está siempre a mitad de eslora: depende de cómo se repartan los pesos.",
+  "clave": "G = pesos (hacia abajo); B = empuje (hacia arriba).",
+  "trampa": "La b) es la definición del centro de carena, no la de G.",
+  "concepto": "and-py-2022-c1-g03"
+ },
+ "and-py-2015-c1-g10": {
+  "explicacion": "El respondedor radar (SART) se activa y desactiva a mano: es un requisito de las normas de la OMI. Esas mismas normas permiten, como opción, que algunos modelos (por ejemplo, los integrados en equipos de zafa) se activen solos, y por eso el tribunal dio por buena la d). Una vez activo queda en espera y solo responde cuando lo barre un radar de 9 GHz, con 12 puntos en la pantalla. La c) es falsa: no viene programado para activarse solo.",
+  "clave": "SART: activación manual obligatoria; la automática es opcional y no la llevan todos.",
+  "trampa": "Confundir el SART con la EPIRB de zafa hidrostática, que sí se activa siempre sola al flotar.",
+  "discrepancia": "La activación automática al contacto con el agua no es una característica general del SART: la norma solo exige la manual. El propio tribunal, en la 2022-c3-g04, dio por falsa la frase «al igual que la radiobaliza, se activa automáticamente al entrar en contacto con el agua». Con ese criterio, lo que vale para todo SART es la a) («a voluntad»).",
+  "defendible": "a",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c1-g11": {
+  "explicacion": "Las isobaras unen puntos con la misma presión atmosférica, reducida al nivel del mar, en un momento dado: son las líneas del mapa del tiempo. Las de igual tendencia barométrica son las isalobaras, y «mareas barométricas» no es algo que se una con líneas en un mapa.",
+  "clave": "Iso‑bara = misma presión; isalobara = misma tendencia.",
+  "trampa": "La b): la tendencia barométrica se representa con isalobaras.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ],
+  "concepto": "and-py-2025-c2-g18"
+ },
+ "and-py-2015-c1-g12": {
+  "explicacion": "La humedad relativa es el cociente, en tanto por ciento, entre el vapor de agua que contiene realmente el aire y el que podría contener si estuviera saturado a la misma temperatura. El punto de rocío es una temperatura, no una humedad, así que la b) no tiene sentido, y la c) y la d) son cifras inventadas.",
+  "clave": "HR = vapor real / vapor de saturación (misma temperatura) × 100.",
+  "trampa": "La b) mete el punto de rocío, que es una temperatura, no una cantidad de vapor.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g13": {
+  "explicacion": "Las nubes de desarrollo vertical son los cúmulos y los cumulonimbos: crecen hacia arriba por convección y el cumulonimbo puede ir desde la base baja hasta la tropopausa. Los cirrocúmulos son nubes altas, los altocúmulos medias y los estratocúmulos bajas.",
+  "clave": "Desarrollo vertical: Cu y Cb.",
+  "trampa": "Las tres falsas llevan «-cúmulo» en el nombre, pero están clasificadas por su piso, no son verticales.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g14": {
+  "explicacion": "Los altocúmulos son nubes medias, entre unos 2000 y 6000 m. El prefijo «alto-» identifica las nubes medias (altocúmulo, altostrato), mientras que «cirro-» identifica las altas y los cúmulos y cumulonimbos son los de desarrollo vertical.",
+  "clave": "«Alto-» = medias, por paradójico que suene.",
+  "trampa": "El nombre invita a pensar en nubes altas, pero «alto-» corresponde a la familia media.",
+  "concepto": "and-py-2022-c3-g19"
+ },
+ "and-py-2015-c1-g15": {
+  "explicacion": "En el frente frío, la masa de aire frío, más densa, avanza y se mete como una cuña bajo el aire cálido, obligándolo a subir de forma brusca, de ahí los cúmulos, cumulonimbos y chubascos. La b) describe un frente cálido, y el aire cálido nunca se ve obligado a descender, porque es menos denso.",
+  "clave": "Frente frío = el frío empuja y el cálido sube de golpe.",
+  "trampa": "La b) es el frente cálido; la c) y la d) hablan de «descender», que no ocurre.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ],
+  "concepto": "and-py-2026-c2-g19"
+ },
+ "and-py-2015-c1-g16": {
+  "explicacion": "En una oclusión, el tipo lo decide cuál de las dos masas frías es más fría. Si la de retaguardia (detrás del frente frío) es más fría que la de vanguardia (delante del frente cálido), se mete por debajo de todo y la oclusión es de tipo frío. Es lo que dice la a): la de delante está menos fría que la de detrás. La b) es la oclusión de tipo cálido.",
+  "clave": "Oclusión: gana el más frío. Retaguardia más fría = fría; vanguardia más fría = cálida.",
+  "trampa": "La b) es justo la oclusión de tipo cálido.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g17": {
+  "explicacion": "En el estrecho de Gibraltar el agua atlántica, menos salada y menos densa, entra por la superficie hacia el Mediterráneo, así que la corriente general va hacia el E. Por debajo sale hacia el Atlántico el agua mediterránea, más densa. Las mareas y los vientos de levante o poniente la modifican, pero la corriente general de superficie va hacia el E.",
+  "clave": "Estrecho y Mediterráneo: corriente general de superficie hacia el E.",
+  "trampa": "Pensar en la salida del agua mediterránea, que va hacia el W pero por el fondo.",
+  "concepto": null
+ },
+ "and-py-2015-c1-g18": {
+  "explicacion": "El viento de Euler es el modelo más simple: solo actúa la fuerza del gradiente horizontal de presión, así que el aire iría en línea recta de la alta a la baja, perpendicular a las isobaras. El geostrófico añade Coriolis, el ciclostrófico la fuerza centrífuga y el antitríptico el rozamiento.",
+  "clave": "Euler = solo gradiente.",
+  "trampa": "La b): el geostrófico añade Coriolis; con solo el gradiente es el viento de Euler.",
+  "concepto": "and-py-2026-c2-g17"
+ },
+ "and-py-2015-c1-g19": {
+  "explicacion": "Las corrientes producidas por la acción directa y continuada del viento sobre la superficie del mar son las de arrastre, y son la mayoría de las corrientes superficiales en mar abierto. Las de densidad (o termohalinas) se deben a diferencias de temperatura y salinidad y las de marea a la atracción de la Luna y el Sol.",
+  "clave": "Viento → arrastre; temperatura y sal → termohalinas; astros → marea.",
+  "trampa": "La a) y la d) son en realidad el mismo tipo de corriente (densidad = termohalina).",
+  "concepto": null
+ },
+ "and-py-2015-c1-g20": {
+  "explicacion": "El periodo de una ola es un tiempo: lo que tarda en pasar por un mismo punto la siguiente cresta. La b) describe la longitud de onda (distancia entre dos crestas o dos senos), y entre cresta y seno, en vertical, está la altura; la a) no es ninguna magnitud de la ola.",
+  "clave": "Periodo = tiempo; longitud = distancia cresta‑cresta; altura = seno‑cresta.",
+  "trampa": "La b) es la longitud de onda: una distancia, no un tiempo.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n01": {
+  "explicacion": "La Tierra gira sobre un diámetro imaginario que pasa por los dos polos: el eje de la Tierra (o eje terrestre). Los polos son sus extremos, no el diámetro, y un paralelo es un círculo menor paralelo al Ecuador. «Eje de Ecuador» no es ningún término de navegación.",
+  "clave": "Eje terrestre: diámetro de giro, de polo a polo.",
+  "trampa": "La b): los polos son los extremos del eje, no el eje.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n02": {
+  "explicacion": "El círculo polar ártico está en latitud 66° 33′ N, así que dista del polo 90° − 66° 33′ = 23° 27′, el mismo valor que la inclinación del eje terrestre y que la latitud de los trópicos. Las demás cifras no corresponden a ningún paralelo notable.",
+  "clave": "Círculo polar: 66° 33′, es decir, a 23° 27′ del polo.",
+  "trampa": "Dar la latitud del círculo polar (66° 33′) en lugar de su distancia al polo.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n03": {
+  "explicacion": "Para hallar la corrección total hace falta una demora verdadera conocida y compararla con la de aguja: Ct = Dv − Da. La enfilación da esa demora verdadera, porque se mide en la carta. Una demora o una marcación a un punto solo sirven si ya conocemos nuestra situación, y una distancia no tiene dirección, así que no da Ct.",
+  "clave": "Ct = Dv (carta) − Da (aguja): enfilación, oposición o Polar.",
+  "trampa": "La a): una demora cualquiera no trae la verdadera; hay que conocerla por otro medio.",
+  "ilustraciones": [
+   {
+    "tipo": "enfilacion",
+    "dv": 40,
+    "da": 44
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c1-n04": {
+  "explicacion": "Un paralelo es el lugar geométrico de los puntos que tienen la misma latitud. Los de igual longitud están en el mismo meridiano, así que la b) es falsa. Y paralelos hay infinitos: por cada punto de la Tierra pasa uno, de modo que la c) y la d) también fallan.",
+  "clave": "Mismo paralelo = misma latitud; mismo meridiano = misma longitud.",
+  "trampa": "Cruzar paralelo con meridiano, o creer que hay un número limitado de paralelos porque en la carta solo se dibujan algunos.",
+  "concepto": "and-py-2022-c2-n04"
+ },
+ "and-py-2015-c1-n05": {
+  "explicacion": "El viento sobre el casco y la superestructura empuja el barco hacia sotavento, así que avanza por una dirección distinta de la proa: es el abatimiento, y el rumbo resultante es el de superficie (Rs = Rv + Ab). No solo cambia la velocidad: también cambia la dirección del movimiento.",
+  "clave": "Viento → abatimiento → el barco no va hacia donde apunta la proa.",
+  "trampa": "La c): el viento afecta a la velocidad, pero sobre todo desvía el rumbo.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c1-n06": {
+  "explicacion": "En la presentación proa arriba la línea de proa está fija hacia arriba, así que los ángulos que se leen son respecto a la proa: marcaciones. Para tener demoras hay que sumarles el rumbo (Dv = Rv + M), o usar la presentación norte arriba, que sí da demoras directamente. La presentación no introduce errores de distancia ni imágenes borrosas.",
+  "clave": "Proa arriba → marcaciones; norte arriba → demoras.",
+  "trampa": "La b): demoras directamente las da la presentación norte arriba.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n07": {
+  "explicacion": "Los Avisos a los Navegantes, que publica semanalmente el Instituto Hidrográfico de la Marina, traen las correcciones de las cartas náuticas y de las publicaciones náuticas: derroteros, libro de faros y señales de niebla, etc. Por eso todas las opciones son correctas.",
+  "clave": "Avisos a los Navegantes: corrigen cartas Y publicaciones.",
+  "trampa": "Quedarse solo con las cartas: también se corrigen derroteros y libro de faros.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n08": {
+  "explicacion": "Las relaciones a), c) y d) son las fórmulas de siempre, contando la longitud y el huso positivos al W: HcG = Hz + Z, HcL = HcG − L y Z = HcG − Hz. La incorrecta es la b): la hora oficial se obtiene de la hora del huso sumándole el adelanto que fija el Gobierno, y no se pasa de Ho a HcG con una simple resta como la que se propone.",
+  "clave": "HcG = Hz + Z; HcL = HcG − L (W +); Ho = Hz + adelanto.",
+  "trampa": "Es en negativo: hay que buscar la fórmula que NO vale, y las otras tres son las de uso diario.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n09": {
+  "explicacion": "El sistema de posicionamiento por satélite que se usaba de forma general en 2015 era el GPS, cuya constelación se llama NAVSTAR: unos 24 a 31 satélites en órbitas medias inclinadas, no polares ni ecuatoriales. «Cualquier satélite» no sirve, porque cada sistema tiene su constelación. Hoy los receptores combinan GPS con otros sistemas GNSS como Galileo o GLONASS, pero el GPS sigue siendo la constelación NAVSTAR.",
+  "clave": "GPS = constelación NAVSTAR.",
+  "trampa": "Las órbitas polares eran las del antiguo sistema Transit, ya retirado.",
+  "concepto": null
+ },
+ "and-py-2015-c1-n10": {
+  "explicacion": "La marcación es el ángulo entre la proa y el objeto, y la proa apunta al rumbo verdadero, no al de superficie ni al efectivo. Por eso, para pasar de marcación a demora verdadera se usa siempre el rumbo verdadero: Dv = Rv + M, haya o no viento y corriente.",
+  "clave": "Dv = Rv + M (siempre con el verdadero).",
+  "trampa": "Usar el rumbo efectivo porque es por donde avanza el barco: la marcación se toma desde la proa.",
+  "concepto": null
+ },
+ "and-py-2015-c2-g01": {
+  "explicacion": "Según la posición del metacentro respecto al centro de gravedad, el equilibrio puede ser estable (M por encima de G, estabilidad positiva), indiferente (M = G, estabilidad nula) o inestable (M por debajo de G, estabilidad negativa). «Permanente», «escorante», «indefinido» o «adrizante» no son tipos de equilibrio.",
+  "clave": "Equilibrio: estable, indiferente o inestable.",
+  "trampa": "Las a) y c) mezclan palabras de estabilidad (escorante, adrizante) que no son tipos de equilibrio.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": "and-py-2024-c2-g02"
+ },
+ "and-py-2015-c2-g03": {
+  "explicacion": "El Código IDS exige que el chaleco salvavidas dé la vuelta a una persona inconsciente hasta dejarla con la boca fuera del agua en no más de 5 segundos, no 10. Por eso la respuesta es «sí, pero en 5 segundos». Hoy el Real Decreto 339/2021 pide chalecos homologados (Código IDS o norma ISO 12402); los de 100 N, que solo se admiten en aguas protegidas, no garantizan ese giro en todos los casos.",
+  "clave": "Chaleco IDS: da la vuelta al inconsciente en ≤ 5 s.",
+  "trampa": "La a): el enunciado dice 10 segundos para que contestes «sí» sin fijarte en la cifra.",
+  "concepto": null
+ },
+ "and-py-2015-c2-g04": {
+  "explicacion": "El respondedor radar (SART) es un equipo que, al ser barrido por un radar de 9 GHz (banda X), contesta con una señal que aparece en la pantalla como una línea de 12 puntos o rayas que parte de su posición. No transmite en morse, y la c) describe a grandes rasgos el sistema de radiocomunicaciones, no un aparato concreto. Hoy los equipos de radio obligatorios por zona los fija el Real Decreto 339/2021, y el funcionamiento del SART no ha cambiado.",
+  "clave": "SART: radar de 9 GHz → 12 puntos en la pantalla.",
+  "trampa": "La a): confundirlo con una radiobaliza o un emisor de socorro; el SART solo responde al radar.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ],
+  "concepto": "and-py-2022-c3-g04"
+ },
+ "and-py-2015-c2-g05": {
+  "explicacion": "El centro de carena es el centro de gravedad del volumen sumergido para una condición de carga y flotación dada; si cambian el calado o la escora, cambia de sitio. Nunca coincide con el centro de gravedad del barco (B queda por debajo de G en un barco normal), así que la b) es falsa y con ella la c).",
+  "clave": "Carena = volumen sumergido → su centro es B, donde empuja el agua.",
+  "trampa": "La b) empieza bien pero añade «siempre coincide con G», que es falso.",
+  "concepto": "and-py-2020-c1-g02"
+ },
+ "and-py-2015-c2-g06": {
+  "explicacion": "Los aros salvavidas se estiban de modo que se puedan soltar rápidamente, sin trincas ni fijaciones permanentes, porque ante un hombre al agua hay que lanzarlos al instante. Guardarlos en la sala de máquinas o bajo llave en el puente impediría usarlos a tiempo. Hoy el equipo de seguridad lo regula el Real Decreto 339/2021, y la regla de la suelta rápida sigue igual.",
+  "clave": "Aro: a mano, en cubierta y de suelta rápida.",
+  "trampa": "Pensar en protegerlo del robo o del mal tiempo: lo que manda es poder lanzarlo al momento.",
+  "concepto": null
+ },
+ "and-py-2015-c2-g07": {
+  "explicacion": "El Código IDS exige que el cohete con luz roja y paracaídas, disparado en vertical, alcance al menos 300 m y suelte la bengala con paracaídas en el punto más alto de su trayectoria o cerca de él. Las alturas de 30 o 100 m no son las del cohete. Hoy el número de cohetes a bordo depende de la zona de navegación según el Real Decreto 339/2021, pero la especificación de los 300 m no ha cambiado.",
+  "clave": "Cohete con paracaídas: ≥ 300 m.",
+  "trampa": "Las cuatro opciones repiten la frase y solo cambia la cifra (la b) y la c) son idénticas).",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-g08": {
+  "explicacion": "La altura metacéntrica es la distancia de G a M, y como las dos alturas se miden desde la quilla, GM = KM − KG. GZ es el brazo adrizante, no una altura, y la c) no tiene sentido. Con KM mayor que KG, GM es positivo y el barco es estable.",
+  "clave": "GM = KM − KG.",
+  "trampa": "La b): GZ es el brazo del par adrizante, que depende de GM y de la escora.",
+  "concepto": "and-py-2021-c2-g01"
+ },
+ "and-py-2015-c2-g09": {
+  "explicacion": "En un rescate con helicóptero se siguen siempre sus indicaciones y se deja que el cable o el gancho toque primero el agua o el barco, para que se descargue la electricidad estática; tocarlo antes puede dar una descarga. El cable nunca se amarra a bordo: si el helicóptero tiene que separarse, quedaría enganchado al barco. Por eso son correctas la b) y la c).",
+  "clave": "Cable del helicóptero: que toque agua o cubierta primero, y nunca se amarra.",
+  "trampa": "La a) suena práctica, pero amarrar el cable pone en peligro al helicóptero.",
+  "concepto": null
+ },
+ "and-py-2015-c2-g10": {
+  "explicacion": "El desplazamiento es el peso total del barco y, por el principio de Arquímedes, es igual al peso del volumen de agua que desaloja su carena. No es el peso de la obra viva ni el de la obra muerta, que son partes del casco, sino el del barco entero con todo lo que lleva.",
+  "clave": "Desplazamiento = peso total = peso del agua desalojada.",
+  "trampa": "La b): la obra viva define el volumen que desaloja, pero el desplazamiento es el peso de todo el barco.",
+  "concepto": null
+ },
+ "and-py-2015-c2-g11": {
+  "explicacion": "Las dos afirmaciones son ciertas. El gradiente horizontal de presión es la fuerza que pone en marcha el viento, de las altas a las bajas presiones. Y cuanto más inclinadas están las superficies isobáricas, mayor es el gradiente y más juntas aparecen las isobaras en el mapa, lo que significa más viento.",
+  "clave": "Isobaras juntas = gradiente grande = viento fuerte.",
+  "trampa": "Quedarse en la a) o la b) sin ver que las dos son verdaderas.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-g12": {
+  "explicacion": "La humedad absoluta es la densidad del vapor de agua, es decir, los gramos de vapor por m³ de aire. La relativa es un porcentaje respecto a la saturación, el punto de rocío es una temperatura y la «humedad variable» no existe como magnitud.",
+  "clave": "Absoluta = g/m³; relativa = %; rocío = °C.",
+  "trampa": "La a): la relativa es un porcentaje, no unos gramos por m³.",
+  "concepto": "and-py-2026-c2-g15"
+ }
+}

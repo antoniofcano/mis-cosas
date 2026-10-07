@@ -10,7 +10,11 @@
 //             y el enunciado tiene Jaccard de palabras ≥ 0,90; o si la similitud total es ≥ 0,97.
 //   AMBIGUA   si 0,80 ≤ similitud total y no se cumple lo anterior: NO se unen; se listan en el informe.
 // Nunca se unen dos apariciones del mismo examen (misma convocatoria y modelo).
-import { escribirJSON, leerJSON, rutaEtapa } from '../lib/comun.mjs';
+// Decisiones a mano (opcional): tools/bancos/ejes/<eje>/repetidas.json → { decisiones: [{ tit, a, b, decision, motivo }] }
+// con a/b = «conv/modelo/número». «unir» une una pareja aunque no llegue al umbral (variantes de erratas revisadas);
+// «separar» impide que dos apariciones acaben en la misma pregunta, aunque superen el umbral o se unan por cadena.
+import { join } from 'node:path';
+import { dirEje, escribirJSON, leerJSON, rutaEtapa } from '../lib/comun.mjs';
 import { clave, similitud, tokens } from '../lib/texto.mjs';
 import { asignarIds, idsExistentes } from '../lib/ids.mjs';
 
@@ -72,20 +76,53 @@ export function mapaLetras(canon, ap) {
     }
     if (mejor && mejor.s >= 0.5) { mapa[l] = mejor.c; libres.delete(mejor.c); }
   }
+  // Opciones reescritas (p. ej. «dos esferas negras» / «dos bolas negras» en dos opciones a la vez): segunda pasada,
+  // emparejando uno a uno las que quedan por su mayor parecido (≥ 0,3).
+  const resto = [];
+  for (const [l, t] of Object.entries(ap.opciones)) {
+    if (mapa[l]) continue;
+    for (const c of libres) resto.push({ l, c, s: similitud({ enunciado: '', opciones: { x: t } }, { enunciado: '', opciones: { x: canon.opciones[c] } }).opciones });
+  }
+  resto.sort((x, y) => y.s - x.s);
+  for (const r of resto) if (!mapa[r.l] && libres.has(r.c) && r.s >= 0.3) { mapa[r.l] = r.c; libres.delete(r.c); }
+  // Si solo queda una opción sin pareja a cada lado (una opción reescrita entre exámenes), son la misma.
+  const sueltas = Object.keys(ap.opciones).filter((l) => !mapa[l]);
+  if (sueltas.length === 1 && libres.size === 1) mapa[sueltas[0]] = [...libres][0];
   return mapa;
 }
 
-export function agrupar(apariciones, { entreConvocatorias = true, ordenModelos = [], permutaciones = false } = {}) {
+export function agrupar(apariciones, { entreConvocatorias = true, ordenModelos = [], permutaciones = false, decisiones = [] } = {}) {
   const n = apariciones.length;
   const padre = [...Array(n).keys()];
   const raiz = (i) => (padre[i] === i ? i : (padre[i] = raiz(padre[i])));
   const examenesDe = new Map(apariciones.map((a, i) => [i, new Set([examen(a)])]));
+  const miembros = new Map(apariciones.map((a, i) => [i, [i]]));
   const ambiguas = [];
   const mismoGrupo = (i, j) => entreConvocatorias || apariciones[i].conv === apariciones[j].conv;
-  const pares = candidatos(apariciones, mismoGrupo)
-    .map(([i, j]) => ({ i, j, ...decidir(apariciones[i], apariciones[j]) }))
+  // Decisiones a mano, por referencia de aparición.
+  const indice = new Map(apariciones.map((a, i) => [ref(a), i]));
+  const forzadas = new Map();
+  const separar = new Map();
+  const aplicadas = [];
+  for (const d of decisiones) {
+    const i = indice.get(d.a);
+    const j = indice.get(d.b);
+    if (i === undefined || j === undefined) continue;
+    aplicadas.push(d);
+    if (d.decision === 'unir') forzadas.set(`${Math.min(i, j)}|${Math.max(i, j)}`, d.motivo ?? 'decisión a mano');
+    else if (d.decision === 'separar') { for (const [x, y] of [[i, j], [j, i]]) { if (!separar.has(x)) separar.set(x, new Set()); separar.get(x).add(y); } }
+  }
+  const vistos = new Set();
+  const pares = [...candidatos(apariciones, mismoGrupo), ...[...forzadas.keys()].map((k) => k.split('|').map(Number))]
+    .filter(([i, j]) => { const k = `${Math.min(i, j)}|${Math.max(i, j)}`; if (vistos.has(k)) return false; vistos.add(k); return true; })
+    .map(([i, j]) => {
+      const d = decidir(apariciones[i], apariciones[j]);
+      const f = forzadas.get(`${Math.min(i, j)}|${Math.max(i, j)}`);
+      return { i, j, ...d, ...(f ? { decision: 'unir', motivo: f } : {}) };
+    })
     .filter((p) => p.decision)
-    .sort((x, y) => y.s.total - x.s.total);
+    .sort((x, y) => Number(Boolean(forzadas.get(`${Math.min(y.i, y.j)}|${Math.max(y.i, y.j)}`))) - Number(Boolean(forzadas.get(`${Math.min(x.i, x.j)}|${Math.max(x.i, x.j)}`))) || y.s.total - x.s.total);
+  const prohibido = (ri, rj) => miembros.get(ri).some((x) => separar.has(x) && miembros.get(rj).some((y) => separar.get(x).has(y)));
   for (const p of pares) {
     const ri = raiz(p.i);
     const rj = raiz(p.j);
@@ -94,8 +131,10 @@ export function agrupar(apariciones, { entreConvocatorias = true, ordenModelos =
     const ei = examenesDe.get(ri);
     const ej = examenesDe.get(rj);
     if ([...ei].some((e) => ej.has(e))) { ambiguas.push({ ...p, motivo: 'mismo examen' }); continue; }
+    if (separar.size && prohibido(ri, rj)) continue;
     padre[rj] = ri;
     for (const e of ej) ei.add(e);
+    miembros.get(ri).push(...miembros.get(rj));
   }
   // Modelos que son permutaciones del mismo juego (Andalucía A/B): las apariciones que quedan sueltas se emparejan
   // uno a uno con la más parecida del otro modelo (similitud ≥ 0,6). Son diferencias de texto entre modelos: se listan.
@@ -167,7 +206,12 @@ export function agrupar(apariciones, { entreConvocatorias = true, ordenModelos =
     enunciadoA: apariciones[p.i].enunciado.slice(0, 160), enunciadoB: apariciones[p.j].enunciado.slice(0, 160),
   }));
   const ya = new Set(emparejadas.map((e) => `${e.a}~${e.b}`));
-  return { preguntas, ambiguas: ambiguasInfo.filter((x) => !ya.has(`${x.a}~${x.b}`) && !ya.has(`${x.b}~${x.a}`)), emparejadas };
+  // Las parejas ambiguas que una decisión a mano ya resolvió (unidas por cadena o separadas a propósito) no se listan.
+  const decididas = new Set(aplicadas.flatMap((d) => [`${d.a}~${d.b}`, `${d.b}~${d.a}`]));
+  const grupoDe = new Map();
+  apariciones.forEach((a, i) => grupoDe.set(ref(a), raiz(i)));
+  const pendientes = ambiguasInfo.filter((x) => !ya.has(`${x.a}~${x.b}`) && !ya.has(`${x.b}~${x.a}`) && !decididas.has(`${x.a}~${x.b}`) && grupoDe.get(x.a) !== grupoDe.get(x.b));
+  return { preguntas, ambiguas: pendientes, emparejadas, decisiones: aplicadas };
 }
 
 export const ref = (a) => `${a.conv}/${a.modelo ?? a.modulo ?? '-'}/${a.numero}`;
@@ -177,14 +221,15 @@ export async function repetidas(ctx) {
   const cfg = ctx.config.repetidas ?? {};
   for (const tit of ctx.tits) {
     const { apariciones } = leerJSON(rutaEtapa(ctx.eje, 'extraer', tit));
-    const { preguntas, ambiguas, emparejadas } = agrupar(apariciones, { entreConvocatorias: cfg.entreConvocatorias ?? true, ordenModelos: cfg.ordenModelos ?? [], permutaciones: cfg.permutaciones ?? false });
+    const decisiones = leerJSON(join(dirEje(ctx.eje), 'repetidas.json'), { decisiones: [] }).decisiones.filter((d) => !d.tit || d.tit === tit);
+    const { preguntas, ambiguas, emparejadas, decisiones: aplicadas } = agrupar(apariciones, { entreConvocatorias: cfg.entreConvocatorias ?? true, ordenModelos: cfg.ordenModelos ?? [], permutaciones: cfg.permutaciones ?? false, decisiones });
     const ids = asignarIds(preguntas, ctx.config, tit, idsExistentes(ctx.eje, tit));
     // Los ids publicados no se pierden: si una pregunta publicada ya no sale (el PDF ha cambiado o el analizador la lee
     // distinta), se avisa; la etapa «escribir» la conserva tal cual.
     for (const id of ids.perdidos) ctx.avisos.add('repetidas', `pregunta publicada que ya no sale de la extracción: ${id}`);
     preguntas.sort((a, b) => (a.fecha ?? '').localeCompare(b.fecha ?? '') || a.conv.localeCompare(b.conv) || a.orden - b.orden || a.id.localeCompare(b.id));
-    escribirJSON(rutaEtapa(ctx.eje, 'repetidas', tit), { eje: ctx.eje, tit, preguntas, ambiguas, emparejadas, perdidos: ids.perdidos });
-    out[tit] = { apariciones: apariciones.length, preguntas: preguntas.length, ambiguas: ambiguas.length, emparejadas: emparejadas.length, multiples: preguntas.filter((p) => p.apareceEn.length > 1).length };
+    escribirJSON(rutaEtapa(ctx.eje, 'repetidas', tit), { eje: ctx.eje, tit, preguntas, ambiguas, emparejadas, decisiones: aplicadas, perdidos: ids.perdidos });
+    out[tit] = { apariciones: apariciones.length, preguntas: preguntas.length, ambiguas: ambiguas.length, emparejadas: emparejadas.length, multiples: preguntas.filter((p) => p.apareceEn.length > 1).length, decisiones: aplicadas.length };
   }
   return out;
 }

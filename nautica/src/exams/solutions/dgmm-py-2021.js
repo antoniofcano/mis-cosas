@@ -204,15 +204,7 @@ export default {
         return latlon(k.lineAndBearing('isla-tarifa', dv, 'punta-cires', dvC, 'Situación 09:00'));
       },
     },
-    'dgmm-py-2021-12-36': {
-      ejercicio: 'ct-enfilacion',
-      solve(k) {
-        // Vemos Trafalgar con Roche detrás (al NW). El Rv 300° no interviene. La opción b («3º», sin signo) dice lo mismo
-        // que la oficial c («3º+»).
-        const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 320);
-        return [{ kind: 'signed', value: k.ctFrom(dv, 320) }];
-      },
-    },
+    // 12-36: ver documentadas (la Ct +3° coincide con las opciones b, «3º», y c, «3º+»).
     'dgmm-py-2021-12-37': {
       ejercicio: 'demoras-no-simultaneas',
       solve(k, q) {
@@ -242,6 +234,7 @@ export default {
     // 12-40: ver documentadas (sale Rc 098°; la oficial es 095°).
   },
   documentadas: {
+    'dgmm-py-2021-12-36': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Trafalgar–Roche (vemos Trafalgar con Roche detrás, al NW) mide 323,0°: con la Da 320° la Ct es +3°, que es la oficial (c, «3º+»). Pero la opción b dice «3º» sin signo, el mismo valor: el cálculo no puede preferir una a otra, así que no se cuenta como resuelta. El Rv 300° no interviene.' },
     'dgmm-py-2021-07-32': { tipo: 'discrepancia', texto: 'Del punto A (35° 50′ N 005° 10′ W) a Punta Almina la carta da Rs = 307° (6,8 millas). El viento del N entra por estribor y nos abatiría 7° a babor: Rv = 314°. Ct = dm 2021 (2° 50′ W + 16 × 7′ E = 0° 58′ W) + desvío −3° = −4°: Ra = 318°. La oficial (d, 322°) queda a 4°, fuera de la tolerancia, aunque es la opción más próxima. Para llegar a 322° hace falta una Ct de −8°, como si se hubiera tomado una declinación de unos 5° W (no la de la carta L105 para 2021).' },
     'dgmm-py-2021-12-40': { tipo: 'discrepancia', texto: 'Ct = −3,5° − 7,5° = −11°: Rv = 123°. Estima 02:20–03:35 (12,5 millas): 35° 56,2′ N 005° 52,7′ W. Situación verdadera con las Dv 211° a Espartel y 152° a Malabata: 35° 55,8′ N 005° 49,3′ W. Corriente: Rc = 098°, 2,83 millas en 1,25 h → Ihc = 2,3 nudos. La intensidad es la oficial (a, 095° y 2,3 nudos), pero el rumbo queda a 3°, fuera de la tolerancia, y la opción c (095°, 2,9 nudos) queda casi igual de cerca: no gana con claridad. Con un vector de corriente tan corto (2,8 millas), 3° son solo 0,15 millas en la carta: diferencia de trazado.' },
   },

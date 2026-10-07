@@ -8,8 +8,6 @@ import { chart } from './helpers.js';
 import { bancosNode, todasLasPreguntas } from '../tools/bancos/leer.mjs';
 
 const preguntas = todasLasPreguntas();
-/** Dos opciones con los mismos valores leídos (una opción repetida en el cuadernillo). */
-const mismoValor = (r, a, b) => a === b || (r.parsed[a] && JSON.stringify(r.parsed[a]) === JSON.stringify(r.parsed[b]));
 const byId = new Map(preguntas.map((q) => [q.id, q]));
 
 for (const [id, sol] of Object.entries(solutions)) {
@@ -20,8 +18,11 @@ for (const [id, sol] of Object.entries(solutions)) {
     const values = sol.solve(k, q);
     const r = chooseOption(q.opciones, values);
     const detail = `calculado=${JSON.stringify(values.map((v) => +v.value.toFixed(3)))} scores=${JSON.stringify(Object.fromEntries(Object.entries(r.scores).map(([a, b]) => [a, +b.toFixed(2)])))}`;
-    // Si dos opciones dicen lo mismo (mismo valor leído), vale cualquiera de las dos.
-    if (q.correcta) assert.equal(mismoValor(r, r.choice, q.correcta) ? q.correcta : r.choice, q.correcta, detail);
+    // Nunca una opción por defecto: si no se lee ninguna, falla. Un empate con otra opción de distinto texto (el
+    // lector no las distingue) tampoco vale. Una opción repetida en el cuadernillo (mismo texto) vale como la oficial.
+    assert.ok(r.choice, `ninguna opción legible: ${detail}`);
+    assert.deepEqual(r.empate, [], `empate entre ${[r.choice, ...r.empate].join(', ')}: ${detail}`);
+    if (q.correcta) assert.ok(r.choice === q.correcta || r.repetidas.includes(q.correcta), `elegida ${r.choice}, oficial ${q.correcta}: ${detail}`);
     console.log(`${id}: elegida ${r.choice} (oficial ${q.correcta}) ${detail}`);
   });
 }
@@ -53,9 +54,9 @@ test('PY: cada resolución llega a la opción oficial con margen', () => {
     if (byId.get(id).tit !== 'py') continue;
     const q = byId.get(id);
     const values = sol.solve(createKit(chart), q);
-    // Las opciones repetidas (mismo valor que la oficial) no cuentan como rivales.
+    // Las opciones repetidas (mismo texto que la elegida) no cuentan como rivales.
     const r = chooseOption(q.opciones, values);
-    const s = Object.entries(r.scores).filter(([k]) => k === r.choice || !mismoValor(r, k, r.choice)).map(([, v]) => v).sort((a, b) => a - b);
+    const s = Object.entries(r.scores).filter(([k]) => !r.repetidas.includes(k)).map(([, v]) => v).sort((a, b) => a - b);
     assert.ok(s[0] / values.length <= 2, `${id}: lejos de la opción (${s[0].toFixed(2)})`);
     assert.ok(s[1] >= 2 * s[0], `${id}: dos opciones casi empatadas (${s[0].toFixed(2)} / ${s[1].toFixed(2)})`);
   }

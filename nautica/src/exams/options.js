@@ -5,14 +5,20 @@
 import { quantity } from '../analysis/quantities.js';
 
 const NUM = '(\\d+(?:[.,]\\d+)?)';
-const DEG = '\\s*[º°o]?';
-// Minutos: «53,9'», «53,9», y también «59'5» (= 59,5′: el apóstrofo hace de coma decimal).
-const MIN = `\\s*(\\d+(?:[.,]\\d+|['′’´]\\d+(?![\\d.,]))?)\\s*['′’´]?`;
-const num = (s) => Number(String(s).replace(/[,'′’´]/, '.'));
+const DEG = '\\s*[º°oª]?';
+// Apóstrofos de minuto, también U+0092 (el apóstrofo de Windows-1252 mal convertido).
+const APOS = `['′’´\u0092]`;
+// Grados de una latitud o longitud: «36º», «35ª» (errata frecuente), «36º-07,0'» y «05-11,5'» (guion entre grados y
+// minutos).
+const GRADOS = `\\s*(?:[º°oª]\\s*-?|-(?=\\s*\\d))`;
+// Minutos: «53,9'», «53,9», «59'5» y «5º 25’2» (el apóstrofo hace de coma decimal: 59,5′) y «10',8» (apóstrofo y coma);
+// tras los minutos, a veces una errata: «24,0º'».
+const MIN = `\\s*(\\d+(?:[.,]\\d+|${APOS}\\s*[.,]?\\d+(?![\\d.,]))?)\\s*[º°]?${APOS}?`;
+const num = (s) => Number(String(s).replace(/\s/g, '').replace(/['′’´\u0092][.,]?|,/, '.'));
 
 const PATTERNS = {
-  lat: { re: new RegExp(`(\\d{1,2})\\s*[º°o]${MIN}\\s*,?\\s*([NS])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/s/i.test(m[3]) ? -1 : 1) },
-  lon: { re: new RegExp(`(\\d{1,3})\\s*[º°o]${MIN}\\s*([EW])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/w/i.test(m[3]) ? -1 : 1) },
+  lat: { re: new RegExp(`(\\d{1,2})${GRADOS}${MIN}\\s*,?\\s*([NS])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/s/i.test(m[3]) ? -1 : 1) },
+  lon: { re: new RegExp(`(\\d{1,3})${GRADOS}${MIN}\\s*([EW])`, 'i'), val: (m) => (num(m[1]) + num(m[2]) / 60) * (/w/i.test(m[3]) ? -1 : 1) },
   bearing: [
     // Cuadrantal: «S46,6ºW», «N46W» → circular.
     { re: new RegExp(`\\b([NS])\\s*${NUM}${DEG}\\s*([EW])\\b`, 'i'), val: (m) => {
@@ -21,18 +27,22 @@ const PATTERNS = {
     } },
     { re: new RegExp(`(\\d{1,3}(?:[.,]\\d+)?)${DEG}`), val: (m) => num(m[1]) },
   ],
-  // "+5º (más)", "–12º (menos)", "2º (-)", "Ct = 8º +", "Ct=004º NE", "- 9º"
+  // "+5º (más)", "–12º (menos)", "2º (-)", "Ct = 8º +", "Ct=004º NE", "- 9º", "20 grados babor" (babor −, estribor +)
   signed: [
     // Declinación en grados y minutos: «4º50 NW», «4º 40′ NE».
     { re: /(\d{1,2})\s*[º°]\s*(\d{1,2})\s*['′’]?\s*(NE|NW)\b/i, val: (m) => (Number(m[1]) + Number(m[2]) / 60) * (/NW/i.test(m[3]) ? -1 : 1) },
-    { re: new RegExp(`([+\\-–‒−])?\\s*${NUM}\\s*[º°]?\\s*(\\(\\s*(?:más|menos|[+\\-–‒−])\\s*\\)|NE|NW|[+\\-–‒−](?!\\s*\\d))?`, 'i'),
+    { re: new RegExp(`([+\\-–‒−])?\\s*${NUM}\\s*(?:[º°]|grados)?\\s*(\\(\\s*(?:más|menos|[+\\-–‒−])\\s*\\)|NE|NW|(?:por\\s+)?(?:babor|estribor|Br|Er)\\b|[+\\-–‒−](?!\\s*\\d))?`, 'i'),
     val: (m) => {
       const v = num(m[2]);
       const s = `${m[1] ?? ''}${m[3] ?? ''}`;
-      return /[-–‒−]|menos|NW/i.test(s) ? -v : v;
+      return /[-–‒−]|menos|NW|babor|\bBr\b/i.test(s) ? -v : v;
     } },
   ],
-  clock: { re: /(\d{1,2})\s*(?:h|:|-)\s*(\d{2})/, val: (m) => Number(m[1]) * 60 + Number(m[2]) },
+  // «21h 34m», «21:34», «13.45», y «0924» (cuatro cifras seguidas).
+  clock: [
+    { re: /(\d{1,2})\s*(?:h|:|-|\.)\s*(\d{2})(?!\d)/, val: (m) => Number(m[1]) * 60 + Number(m[2]) },
+    { re: /(?<![\d.,])([01]\d|2[0-3])([0-5]\d)(?![\d.,])/, val: (m) => Number(m[1]) * 60 + Number(m[2]) },
+  ],
   distance: { re: new RegExp(`${NUM}\\s*(?:millas|′|'|M\\b)?`), val: (m) => num(m[1]) },
   meters: { re: new RegExp(`${NUM}\\s*(?:m\\b|metros)?`), val: (m) => num(m[1]) },
   speed: { re: new RegExp(`${NUM}\\s*(?:nudos|kn)?`), val: (m) => num(m[1]) },
@@ -56,12 +66,18 @@ export function parseOption(text, kinds) {
   return out;
 }
 
+/** Texto de una opción para comparar repeticiones exactas (sin espacios, puntos finales ni mayúsculas). */
+const textoOpcion = (t) => String(t).toLowerCase().replace(/\s+/g, '').replace(/\.$/, '');
+
 /**
  * Elige la opción más cercana a los valores calculados.
  * @param {Record<string,string>} opciones  {a: '...', b: '...'}
  * @param {{kind:string, value:number}[]} values
- * @returns {{ choice:string, scores:Record<string,number>, parsed:Record<string,number[]> }}
+ * @returns {{ choice:string|null, scores:Record<string,number>, parsed:Record<string,number[]>, repetidas:string[], empate:string[] }}
  *   score = suma de (error / tolerancia de examen) de cada valor; < 1 por valor = dentro de tolerancia.
+ *   `choice` es null si no se puede leer ninguna opción (nunca se elige una por defecto). `repetidas`: las opciones con
+ *   el mismo texto que la elegida (una opción repetida en el cuadernillo). `empate`: las que, con otro texto, puntúan
+ *   igual que la elegida (el lector no las distingue: la comparación no vale).
  */
 export function chooseOption(opciones, values) {
   const kinds = values.map((v) => v.kind);
@@ -76,6 +92,10 @@ export function chooseOption(opciones, values) {
       return acc + q.error(vals[i], v.value) / q.tolerance;
     }, 0);
   }
-  const choice = Object.entries(scores).sort((a, b) => a[1] - b[1])[0][0];
-  return { choice, scores, parsed };
+  const orden = Object.entries(scores).filter(([, s]) => Number.isFinite(s)).sort((a, b) => a[1] - b[1]);
+  if (!orden.length) return { choice: null, scores, parsed, repetidas: [], empate: [] };
+  const [choice, mejor] = orden[0];
+  const repetidas = Object.keys(opciones).filter((k) => k !== choice && textoOpcion(opciones[k]) === textoOpcion(opciones[choice]));
+  const empate = orden.slice(1).filter(([k, s]) => !repetidas.includes(k) && Math.abs(s - mejor) < 1e-9).map(([k]) => k);
+  return { choice, scores, parsed, repetidas, empate };
 }

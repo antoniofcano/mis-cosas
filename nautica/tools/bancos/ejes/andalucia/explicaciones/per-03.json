@@ -543,5 +543,266 @@
    }
   ],
   "concepto": null
+ },
+ "and-2017-c1-t18": {
+  "explicacion": "La Regla 18 b) obliga al buque de vela en navegación a mantenerse apartado de los buques sin gobierno, de los de maniobra restringida y de los dedicados a la pesca, así que las tres son correctas. Frente a un buque de propulsión mecánica normal, en cambio, es el de motor quien cede (salvo que el velero lo esté alcanzando).",
+  "clave": "El velero cede a: sin gobierno, restringido y pesquero.",
+  "trampa": "Pensar que el velero tiene preferencia sobre todos los demás.",
+  "concepto": null
+ },
+ "and-2017-c1-t19": {
+  "explicacion": "Dos buques de propulsión mecánica a rumbos opuestos con riesgo de abordaje están en vuelta encontrada (Regla 14): los dos caen a estribor para pasar babor con babor. Caer a babor es justo lo contrario, y el desplazamiento no cuenta: aquí no hay un buque que cede y otro que sigue.",
+  "clave": "Vuelta encontrada: los dos a estribor.",
+  "trampa": "La c) se inventa una preferencia por tamaño que el Reglamento no recoge.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   }
+  ],
+  "concepto": "and-2025-c1-t24"
+ },
+ "and-2017-c1-t20": {
+  "explicacion": "La Regla 3 d) considera «buque dedicado a la pesca» al que está pescando con redes, líneas, aparejos de arrastre u otros artes que restrinjan su maniobrabilidad. No incluye al que pesca con curricán, que no le restringe la maniobra, y no depende de que sea pesquero comercial: si no está pescando con el arte largado es un buque normal.",
+  "clave": "Pesquero en el RIPA = pescando con un arte que le restringe la maniobra.",
+  "trampa": "Pescar con curricán no te convierte en «buque dedicado a la pesca».",
+  "concepto": "and-2022-c1-t21"
+ },
+ "and-2017-c1-t21": {
+  "explicacion": "La Regla 13 b) considera que alcanza el buque que se aproxima a otro desde más de 22,5° a popa de su través, es decir, desde una posición en la que de noche solo le vería la luz de alcance, sin ninguna de las de costado. Si además ves una luz de costado, estás a proa de ese límite y ya no es un alcance sino un cruce.",
+  "clave": "Alcance: solo veo su luz de alcance (más de 22,5° a popa del través).",
+  "trampa": "Las b) y c) añaden una luz de costado, que te saca del sector de alcance.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t22": {
+  "explicacion": "La Regla 27 a) asigna al buque sin gobierno dos luces rojas todo horizonte en línea vertical, en el lugar más visible, y si tiene arrancada añade las luces de costado y la de alcance. La b) sería el sin gobierno parado; roja sobre blanca es de pesca que no es de arrastre, y roja-blanca-roja es la de maniobra restringida.",
+  "clave": "Sin gobierno: dos rojas; con arrancada, más costados y alcance.",
+  "trampa": "La b) es correcta solo sin arrancada.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "sin-gobierno",
+    "vista": "proa"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t23": {
+  "explicacion": "La Regla 34 a) establece que, con buques a la vista, dos pitadas cortas de un buque de propulsión mecánica significan «caigo a babor». Una corta es a estribor y tres cortas, dar atrás; estar sin arrancada no tiene una señal de maniobra.",
+  "clave": "1 estribor, 2 babor, 3 atrás.",
+  "trampa": "Intercambiar una y dos cortas.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".."
+   }
+  ],
+  "concepto": "and-2024-c3-t27"
+ },
+ "and-2017-c1-t24": {
+  "explicacion": "Según la Regla 21 b), cada luz de costado se ve en un arco de 112,5°, desde la proa hasta 22,5° a popa del través de su banda. Los colores están cambiados en la b) (verde a estribor, roja a babor), desde la popa se ve la luz de alcance y no las de costado, y el farol combinado en crujía solo se permite en buques de menos de 20 m, no de 50.",
+  "clave": "Costados: 112,5° cada uno, de proa a 22,5° a popa del través.",
+  "trampa": "La d) cambia los 20 m por 50 m.",
+  "concepto": "and-2021-c2-t24"
+ },
+ "and-2017-c1-t25": {
+  "explicacion": "La Regla 25 e) obliga al buque que navega a vela y se propulsa también con el motor a exhibir a proa un cono con el vértice hacia abajo: a efectos del Reglamento es un buque de propulsión mecánica. El arte de pesca de más de 150 m se señala con un cono con el vértice hacia arriba, el fondeado lleva una bola y el de maniobra restringida bola-bicónica-bola.",
+  "clave": "Cono vértice abajo = velero con motor = buque de motor.",
+  "trampa": "Vértice arriba: arte de pesca de más de 150 m; vértice abajo: vela con motor.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "and-2023-c2-t20"
+ },
+ "and-2017-c1-t26": {
+  "explicacion": "Dos buques de propulsión mecánica se cruzan con riesgo de abordaje (la demora no cambia): según la Regla 15 cede el que tiene al otro por estribor. Como tú lo ves por babor, el que se aparta es él, y tú eres el que sigue a rumbo, así que mantienes rumbo y velocidad (Regla 17). Las demás opciones son maniobras de quien cede el paso o señales que no corresponden.",
+  "clave": "Lo veo por babor: sigo a rumbo. Lo veo por estribor: me aparto.",
+  "trampa": "Maniobrar «por si acaso»: el que sigue a rumbo debe mantenerse mientras el otro cumpla.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "and-2020-c3-t22"
+ },
+ "and-2017-c1-t27": {
+  "explicacion": "El buque restringido por su calado exhibe, además de las luces que le corresponden como buque de propulsión mecánica (dos topes al tener más de 50 m, costados y alcance), tres luces rojas todo horizonte en línea vertical en el lugar más visible (Regla 28). La c) se queda corta porque omite las luces de navegación, y las dos rojas son de buque sin gobierno.",
+  "clave": "Restringido por calado: tres rojas + las luces de motor.",
+  "trampa": "La c) describe bien la señal especial, pero olvida que sigue navegando con sus luces normales.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "calado",
+    "vista": "proa"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t28": {
+  "explicacion": "Con hélice dextrógira (de giro a la derecha), parado y dando atrás, la presión lateral de las palas lleva la popa a babor, y por tanto la proa tiende a estribor. La corriente de expulsión va en el mismo sentido, por eso el efecto en atrás de una dextrógira es tan claro. Proa a babor y popa a estribor (a) y b)) es el efecto de una levógira.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "Las a) y b) son coherentes entre sí, pero corresponden a una levógira.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "and-2023-c2-t29"
+ },
+ "and-2017-c1-t29": {
+  "explicacion": "Amollar un cabo es aflojarlo, darle seno, igual que lascar. Lo contrario es templar o azocar (apretarlo), cobrar es recogerlo y hacer firme es asegurarlo para que no corra.",
+  "clave": "Amollar = aflojar.",
+  "trampa": "Amollar suena a «ablandar», y eso es: aflojar, no apretar.",
+  "concepto": null
+ },
+ "and-2017-c1-t30": {
+  "explicacion": "Los fuegos de aceites y grasas vegetales o animales en aparatos de cocina son de clase F. Nunca uses agua sobre ellos, porque provoca una proyección de aceite ardiendo. La B es de líquidos inflamables, la C de gases, y la «clase E» ya no existe en la clasificación vigente.",
+  "clave": "F de «Freidora».",
+  "trampa": "El aceite es líquido, pero no es clase B: tiene clase propia.",
+  "concepto": "and-2025-c3-t30"
+ },
+ "and-2017-c1-t31": {
+  "explicacion": "El tetraedro del fuego añade al triángulo (combustible, comburente y calor) la reacción en cadena, que explica por qué un fuego, una vez iniciado, se mantiene solo hasta que se anula alguno de sus factores. No sirve para establecer clases de fuego (eso depende del combustible) ni asigna un agente extintor a cada lado. Por eso la b) es la única correcta.",
+  "clave": "Tetraedro: la reacción en cadena explica que el fuego se automantiene.",
+  "trampa": "Las clases de fuego dependen del combustible, no de los lados del tetraedro.",
+  "concepto": "and-2022-c2-t32"
+ },
+ "and-2017-c1-t32": {
+  "explicacion": "En una hemorragia arterial la sangre es de color rojo vivo y sale a borbotones, a impulsos y con fuerza, al ritmo del corazón; como se pierde mucha sangre muy deprisa, hay que controlarla cuanto antes con presión directa y elevando el miembro. La c) describe una hemorragia venosa: sangre oscura que mana de forma continua, sin latir.",
+  "clave": "Arterial: rojo vivo y a chorros. Venosa: oscura y continua.",
+  "trampa": "La c) es la venosa.",
+  "concepto": null
+ },
+ "and-2017-c1-t33": {
+  "explicacion": "En el hemisferio norte el viento gira en el sentido de las agujas del reloj alrededor de un anticiclón y en sentido contrario alrededor de una borrasca, siguiendo aproximadamente las isobaras. No circula en línea recta entre los centros, y los dos sistemas giran en sentidos opuestos.",
+  "clave": "HN: anticiclón horario, borrasca antihorario.",
+  "trampa": "Pensar que el aire va en línea recta de la alta a la baja: la rotación de la Tierra lo desvía.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   },
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t34": {
+  "explicacion": "Si el viento cambia de dirección decimos que rola. Refrescar es aumentar de intensidad, rachear es soplar a golpes o rachas, y «contraste» no es un término para el viento.",
+  "clave": "Rola = cambia de dirección.",
+  "trampa": "No confundas rolar (dirección) con refrescar (más fuerza).",
+  "concepto": "and-2023-c1-t33"
+ },
+ "and-2017-c1-t35": {
+  "explicacion": "La presión atmosférica es el peso de la columna de aire que se extiende desde un punto de la superficie hasta el límite superior de la atmósfera, por unidad de superficie. Las demás opciones son definiciones vagas o incorrectas: no se ejerce solo sobre el mar ni nace de una «intersección» o de un volumen de aire.",
+  "clave": "Presión = peso de la columna de aire sobre ti.",
+  "trampa": "La a) suena parecida, pero limita la presión a la superficie del mar.",
+  "concepto": "and-2022-c1-t35"
+ },
+ "and-2017-c1-t36": {
+  "explicacion": "La presión atmosférica normal, al nivel del mar, a 0 °C y a 45° de latitud, es de 760 mm de mercurio, que equivalen a 1013,2 mb (hectopascales). 780 mm de Hg no es el valor normal, 980 mb es una presión baja propia de una borrasca y 1025 hPa una presión alta, de anticiclón.",
+  "clave": "Presión normal: 1013 mb = 760 mm de Hg.",
+  "trampa": "La a) cambia 760 por 780 mm.",
+  "concepto": null
+ },
+ "and-2017-c1-t37": {
+  "explicacion": "El desvío es el ángulo entre el Norte magnético y el Norte de aguja, causado por los hierros y aparatos de a bordo. La a) es la declinación magnética (verdadero–magnético), la c) la corrección total (verdadero–aguja) y la d) sería una demora de aguja.",
+  "clave": "Tres Nortes: Nv–Nm dm, Nm–Na Δ, Nv–Na Ct.",
+  "trampa": "La c) (verdadero–aguja) es la corrección total, no el desvío.",
+  "concepto": "and-2025-c2-t37"
+ },
+ "and-2017-c1-t38": {
+  "explicacion": "La corredera mide la velocidad y la distancia navegada por el barco respecto al agua. La sonda mide la profundidad, la aguja náutica da el rumbo y el anuario de mareas da horas y alturas de marea, no la velocidad del barco.",
+  "clave": "Corredera: velocidad y distancia; sonda: profundidad.",
+  "trampa": "El anuario trae corrientes de marea, pero no la velocidad de tu barco.",
+  "concepto": "and-2020-c3-t40"
+ },
+ "and-2017-c1-t39": {
+  "explicacion": "La Hora Reloj de Bitácora (HRB) es la hora que se lleva a bordo, la que fija el patrón para organizar la vida del barco. Puede coincidir con la hora legal u oficial, pero no tiene por qué, y la hora civil del lugar es otra referencia astronómica.",
+  "clave": "HRB = hora de a bordo, la decide el patrón.",
+  "trampa": "Las opciones de hora oficial o legal son las tentaciones típicas.",
+  "concepto": "and-2024-c2-t40"
+ },
+ "and-2017-c1-t40": {
+  "explicacion": "El abatimiento lo causa el viento al empujar la parte del barco que queda fuera del agua, así que cuanto mayor es la obra muerta (más superficie expuesta), más abate. La deriva la causa la corriente, que actúa sobre la obra viva, y no depende del tamaño de la obra muerta.",
+  "clave": "Más obra muerta = más abatimiento.",
+  "trampa": "Las b) y d) hablan de deriva, que es cosa de la corriente.",
+  "concepto": null
+ },
+ "and-2017-c1-t41": {
+  "explicacion": "Una alta presión atmosférica «aprieta» la superficie del mar, de modo que la marea queda más baja de lo previsto (aproximadamente 1 cm por cada hPa por encima de la presión normal). Con bajas presiones ocurre lo contrario: el agua sube más. No cambia la hora de la pleamar.",
+  "clave": "Alta presión, agua más baja; baja presión, agua más alta.",
+  "trampa": "La a) es justo el efecto de las bajas presiones.",
+  "concepto": null
+ },
+ "and-2017-c2-t01": {
+  "explicacion": "La parte del casco situada por debajo de la línea de flotación es la obra viva o carena; la que queda por encima es la obra muerta. El costado es el lateral del casco y el plan es la parte más baja del interior del casco, junto a la quilla.",
+  "clave": "Viva bajo el agua; muerta fuera.",
+  "trampa": "Confundir obra viva con obra muerta.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-viva",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": "and-2026-c2-t01"
+ },
+ "and-2017-c2-t02": {
+  "explicacion": "La hélice que en marcha avante, vista desde popa, gira en sentido contrario a las agujas del reloj es la levógira (gira «a la izquierda»); la que gira como las agujas es la dextrógira. Paso variable y plegable describen otros tipos de hélice, no su sentido de giro.",
+  "clave": "Levógira = antihorario avante; dextrógira = horario.",
+  "trampa": "Elegir dextrógira sin fijarse en que gira al contrario de las agujas.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "avante"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c2-t03": {
+  "explicacion": "Los guardamancebos son los cabos o cables que corren de proa a popa por los costados, a cierta altura, para agarrarse y evitar caídas al agua. Los candeleros son los soportes verticales que los sostienen, los pasamanos son las barandas de apoyo de escalas y superestructuras, y los manguerotes son conductos de ventilación.",
+  "clave": "Guardamancebos: el «cable de seguridad» de la borda.",
+  "trampa": "Confundir guardamancebos con los candeleros que los sujetan.",
+  "concepto": null
+ },
+ "and-2017-c2-t04": {
+  "explicacion": "Levar el ancla es virar la cadena progresivamente hasta tener el ancla a bordo. Ponerla a pique es solo el paso intermedio en que la cadena queda vertical; el ancla está clara cuando aflora limpia, y filar es lo contrario de virar: dar cadena.",
+  "clave": "Levar = recoger el ancla; filar = dar cadena.",
+  "trampa": "«A pique» es una fase de la maniobra, no toda la maniobra.",
+  "concepto": null
+ },
+ "and-2017-c2-t05": {
+  "explicacion": "Para colgar una defensa de un pasamanos, guardamancebos o candelero se usa el ballestrinque: se hace rápido, aguanta y se ajusta fácil de altura. El llano une dos cabos iguales, la margarita sirve para acortar un cabo y la vuelta de rezón para hacerlo firme a una argolla.",
+  "clave": "Ballestrinque: cabo a palo, candelero o pasamanos.",
+  "trampa": "La vuelta de rezón también hace firme un cabo, pero a una argolla.",
+  "concepto": null
+ },
+ "and-2017-c2-t06": {
+  "explicacion": "Bornear es girar alrededor del ancla por efecto del viento o la corriente estando fondeado. Garrear es que el ancla se arrastre por el fondo y rolar es el cambio de dirección del viento, no del barco.",
+  "clave": "Bornear = girar en torno al ancla.",
+  "trampa": "Rolar se refiere al viento, no al barco.",
+  "discrepancia": "«Estar a la gira» es también una expresión marinera para el buque fondeado que gira libremente alrededor de su ancla, así que la b) es defendible; la oficial se queda con el término más usual, bornear.",
+  "defendible": "b",
+  "concepto": "and-2024-c1-t05"
  }
 }

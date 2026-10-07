@@ -1,0 +1,1468 @@
+{
+ "dgmm-per-2023-11-33": {
+  "explicacion": "La formación o intensificación de una borrasca se llama ciclogénesis. En una borrasca la presión es más baja que la del aire de alrededor y el aire converge hacia su centro y asciende, por eso da nubes y lluvia. La a) y la d) describen un anticiclón, y la b) cambia la convergencia por divergencia.",
+  "clave": "Borrasca: baja presión, aire que entra y sube; se forma por ciclogénesis.",
+  "trampa": "La b) mezcla el aire que sale (propio del anticiclón) con las nubes de la borrasca.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2023-11-78": {
+  "explicacion": "El anemómetro mide la velocidad (intensidad) del viento. La dirección la dan la veleta y el catavientos, que es una cinta o banderola ligera que se coloca en obenques, baluma o grátil; la grímpola es la que va en el tope del palo. Por eso la b), la c) y la d) son falsas.",
+  "clave": "Anemómetro: cuánto sopla. Veleta: de dónde sopla.",
+  "trampa": "Cambiar los papeles del anemómetro y la veleta.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-34": {
+  "explicacion": "En el lenguaje náutico, el viento «refresca» cuando aumenta de intensidad. Cuando disminuye se dice que «calma» o «amaina», y los cambios de dirección se describen como rolar, rondar o caer.",
+  "clave": "Refresca = sube el viento; amaina = baja.",
+  "trampa": "Pensar que refrescar es que el viento se vuelve más suave o más fresco.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-79": {
+  "explicacion": "La presión atmosférica normal al nivel del mar es de unos 1013 milibares (1013,25 hPa, equivalentes a 760 mm de mercurio). Las demás cifras están desplazadas de orden de magnitud: 1,013 sería en bares, no en milibares.",
+  "clave": "Presión normal: 1013 mb = 760 mm Hg.",
+  "trampa": "La a) es el valor en bares, no en milibares.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-35": {
+  "explicacion": "La escala centígrada (Celsius) toma el 0 en la fusión del hielo y el 100 en la ebullición del agua a presión normal, y divide ese intervalo en 100 grados. El mercurio solo es el líquido de algunos termómetros, no la referencia de la escala, y no hay 1000 divisiones.",
+  "clave": "Centígrada: 0 hielo, 100 agua hirviendo, 100 divisiones.",
+  "trampa": "La c) tiene las referencias bien, pero el número de divisiones mal.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-80": {
+  "explicacion": "Los anticiclones son zonas de alta presión, y por eso se les llama también altas presiones o simplemente altas. En ellos el aire desciende y diverge hacia fuera, lo que da tiempo estable y pocas nubes. La ciclogénesis es la formación de borrascas, y la presión mínima en el centro es propia de las bajas.",
+  "clave": "Anticiclón = alta: aire que baja y sale, buen tiempo.",
+  "trampa": "La b) describe bien la salida del aire, pero un anticiclón no forma nubes ni lluvia.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2023-11-36": {
+  "explicacion": "La escala Douglas mide el estado de la mar por la altura de las olas, con grados del 0 (mar llana, calma) al 9 (mar enorme). La que va de 0 a 12 es la escala Beaufort, que mide la fuerza del viento.",
+  "clave": "Douglas: mar, de 0 a 9. Beaufort: viento, de 0 a 12.",
+  "trampa": "Confundir Douglas con Beaufort o invertir el orden de los grados.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-81": {
+  "explicacion": "La intensidad del viento es su velocidad, que se mide en nudos, metros por segundo o grados Beaufort. La a) se parece a la persistencia, la b) a la variabilidad de dirección y la d) describe el fetch, la extensión de mar sobre la que sopla el viento.",
+  "clave": "Intensidad = velocidad del viento.",
+  "trampa": "La d) define el fetch, no la intensidad.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-37": {
+  "explicacion": "El cero hidrográfico es el plano horizontal de referencia desde el que se miden las sondas de la carta y las alturas de los accidentes que velan en bajamar. En España coincide con la bajamar más baja astronómicamente previsible. El lecho marino es lo que se mide y la altura de la marea se suma a la sonda, pero no es la referencia.",
+  "clave": "Cero hidrográfico: la referencia de todas las sondas de la carta.",
+  "trampa": "La bajamar de marea muerta no es la más baja: el cero queda por debajo.",
+  "concepto": "and-2022-c1-t41"
+ },
+ "dgmm-per-2023-11-82": {
+  "explicacion": "La deriva es el efecto que produce sobre el rumbo el movimiento del agua (la corriente) actuando sobre la obra viva. El abatimiento es lo mismo pero causado por el viento sobre la obra muerta. El rumbo de superficie es el resultado de aplicar el abatimiento al rumbo verdadero.",
+  "clave": "Corriente = deriva; viento = abatimiento.",
+  "trampa": "Elegir abatimiento: ese lo causa el viento, no el agua.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-38": {
+  "explicacion": "El rumbo de aguja difiere del verdadero por dos causas: la declinación magnética (diferencia entre el norte magnético y el verdadero en la zona) y el desvío (efecto de los hierros y campos magnéticos del propio barco). Las dos juntas forman la corrección total. La d) olvida el desvío.",
+  "clave": "Ra → Rv: declinación + desvío = corrección total.",
+  "trampa": "La d) dice «únicamente» la declinación: falta el desvío.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-83": {
+  "explicacion": "La rosa de la aguja descansa y oscila sobre el estilo, una pieza fija y afilada. Lo que se apoya sobre él es el chapitel, una pequeña copa de piedra dura en el centro de la rosa. La línea de fe marca la proa y el domo es la tapa transparente del mortero.",
+  "clave": "Estilo: la punta fija; chapitel: la copa de la rosa que se apoya en él.",
+  "trampa": "Elegir el chapitel, que es la pieza de la rosa, no la punta sobre la que gira.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-39": {
+  "explicacion": "Para actualizar la declinación tomas la que trae la carta, su variación anual y los años transcurridos hasta el año en curso. El desvío no interviene, porque depende del rumbo y de los hierros del barco, no de la zona ni del año.",
+  "clave": "Declinación actual = dm de la carta + variación anual × años.",
+  "trampa": "Meter el desvío en la actualización: es del barco, no de la carta.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-84": {
+  "explicacion": "Cuando ves dos objetos de la costa uno detrás del otro, estás sobre la recta que los une: es una enfilación, la línea de posición más exacta que hay. La marcación es el ángulo desde la proa, el veril une puntos de igual profundidad y la oposición es una línea entre dos puntos a cada lado del observador.",
+  "clave": "Dos objetos en línea = enfilación.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-40": {
+  "explicacion": "La demora es el ángulo desde el norte al objeto, el rumbo es el ángulo desde el norte a la proa y la marcación el ángulo desde la proa al objeto. Por eso D = R + M, contando la marcación de 0º a 360º por estribor (si es por babor se resta).",
+  "clave": "D = R + M.",
+  "trampa": "Restar siempre: solo se resta la marcación cuando es por babor.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 30,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2023-11-85": {
+  "explicacion": "La corrección total es la suma algebraica de la declinación magnética y el desvío (Ct = dm + Δ), y se aplica al rumbo de aguja para obtener el verdadero: Rv = Ra + Ct. La d) aplica la Ct al rumbo magnético, que ya lleva el desvío corregido. La b) solo describe la declinación actualizada y la fórmula de la c) no existe.",
+  "clave": "Ct = dm + Δ; Rv = Ra + Ct.",
+  "trampa": "La d) es casi igual, pero sobre el rumbo magnético basta sumar la declinación.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-41": {
+  "explicacion": "El veril es la línea de la carta que une los puntos de igual profundidad (una isobata). La naturaleza del fondo se indica con abreviaturas (A arena, F fango...), no con líneas, y los límites del mar territorial o de las aguas abrigadas no tienen nada que ver con él.",
+  "clave": "Veril = línea de igual sonda.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-86": {
+  "explicacion": "Los derroteros son publicaciones náuticas que describen la costa con detalle: puertos, fondeaderos, peligros, recaladas e instrucciones para navegar por ella, como complemento de la carta. No van impresos en la carta, no tratan de primeros auxilios y no son avisos de SASEMAR.",
+  "clave": "Derrotero = la descripción escrita de la costa.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-42": {
+  "explicacion": "Sonda en el momento = sonda de la carta + altura de la marea ± corrección por presión. De la tabla de mareas de Algeciras para ese día (el extracto del tribunal) sacas la altura de la primera bajamar, y con 1020 mb restas unos 7 cm, porque cada milibar por encima de 1013 baja el nivel alrededor de 1 cm. Sumando todo a los 5,4 m de la carta sale 5,85 m.",
+  "clave": "Sonda = sonda carta + altura marea − (P − 1013) cm.",
+  "trampa": "Sumar la corrección por presión cuando está alta: con presión alta el mar baja.",
+  "concepto": null
+ },
+ "dgmm-per-2023-11-88": {
+  "explicacion": "Se toma la altura de la primera pleamar del 8 de noviembre en Algeciras del anuario de mareas que da el tribunal y se suma a la sonda de la carta (6,9 m). Con 1033 mb, 20 mb por encima de la normal, el nivel baja unos 20 cm, que hay que restar. El resultado es 7,62 m.",
+  "clave": "Presión alta: resta 1 cm por cada mb sobre 1013.",
+  "trampa": "La c) olvida restar la corrección por presión.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-01": {
+  "explicacion": "Una hélice dextrógira gira en el sentido de las agujas del reloj vista desde popa cuando da avante. Al dar atrás invierte el giro y lo hace en sentido contrario, que es lo que dice la b). El número de palas y la forma del capacete no tienen que ver con el sentido de giro.",
+  "clave": "Dextrógira: avante, como el reloj vista desde popa; atrás, al revés.",
+  "trampa": "La c) describe la levógira avante.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-46": {
+  "explicacion": "La quilla es la pieza longitudinal que recorre el fondo del barco de popa a proa y sobre la que se asienta toda la estructura, como la columna vertebral. La roda es su prolongación hacia arriba en la proa, el codaste en la popa, y el bao es una viga transversal que sostiene la cubierta.",
+  "clave": "Quilla: la columna vertebral del casco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-02": {
+  "explicacion": "La caña es la palanca unida a la cabeza de la mecha: si la llevas a una banda, la pala gira hacia la contraria. Con rueda no pasa así, porque los guardines hacen que la pala vaya a la banda a la que giras. La limera es el orificio del casco por donde pasa la mecha.",
+  "clave": "Caña a babor, pala a estribor (y la proa a estribor).",
+  "trampa": "Elegir la rueda: con ella la pala sigue el sentido del giro.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-47": {
+  "explicacion": "El francobordo es la distancia vertical, medida en el costado, entre la línea de flotación (en máxima carga) y la cubierta estanca más alta. La altura de la obra viva y la distancia de la quilla a la flotación son el calado, y la c) mide el puntal.",
+  "clave": "Francobordo = de la flotación a la cubierta estanca.",
+  "trampa": "La c) y la d) parten de la quilla: eso es puntal o calado.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "francobordo",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-03": {
+  "explicacion": "La amura es la parte del costado donde el casco empieza a estrecharse para formar la proa. La obra muerta está por encima de la flotación, no por debajo; un portillo es una pequeña ventana del costado (el desagüe es el imbornal), y los guardamancebos son los cables o barandillas que van entre los candeleros, que son los puntales verticales.",
+  "clave": "Amura: donde el costado se cierra hacia la proa.",
+  "trampa": "La d) intercambia candeleros (verticales) y guardamancebos (horizontales).",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-48": {
+  "explicacion": "La escora se produce sobre todo por una mala distribución de pesos y por la acción del viento o del oleaje. Barlovento es de donde viene el viento y sotavento hacia donde va, al revés de lo que dicen la a) y la b). Adrizar es poner el barco derecho, no inclinarlo.",
+  "clave": "Barlovento: de donde viene. Sotavento: hacia donde va.",
+  "trampa": "La d) define escorar, no adrizar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-04": {
+  "explicacion": "Zarpar es el momento en que el ancla se despega del fondo al levar, no cuando lo toca al fondear, así que la c) es la incorrecta. Las demás están bien: virar es cobrar cadena, filar es soltarla y levar es virar para recoger el ancla.",
+  "clave": "Zarpar = el ancla deja el fondo.",
+  "trampa": "Confundir zarpar con fondear: son momentos opuestos.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-49": {
+  "explicacion": "Poner el ancla a la pendura es dejarla colgando fuera del escobén, sujeta por el freno y cerca del agua, lista para fondear en cuanto se suelte. No está en el fondo ni sumergida, y no tiene nada que ver con abandonarla.",
+  "clave": "Pendura = colgada, lista para fondear.",
+  "trampa": "Confundirla con «a pique», que es la cadena vertical estando fondeado.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-05": {
+  "explicacion": "Al fondear conviene llevar una ligera arrancada atrás, para que la cadena se vaya tendiendo sobre el fondo y no caiga amontonada encima del ancla. El giro alrededor del ancla es el borneo (garrear es arrastrar el ancla), con mal tiempo hay que filar más cadena, no menos, y las algas son mal tenedero.",
+  "clave": "Fondear con arrancada atrás suave; mal tiempo, más cadena.",
+  "trampa": "La a) confunde borneo con garreo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-50": {
+  "explicacion": "El as de guía forma una gaza fija que no se corre ni se aprieta, ideal para encapillar un cabo en un noray o bolardo, y se deshace con facilidad. El ballestrinque sirve para hacer firme a un palo o candelero, la vuelta de rezón para una argolla y el nudo llano para unir dos cabos.",
+  "clave": "As de guía = la gaza que no se corre.",
+  "concepto": "and-2021-c2-t06"
+ },
+ "dgmm-per-2024-04-06": {
+  "explicacion": "La cornamusa es una pieza con dos brazos curvados, fijada por su centro a la cubierta o al muelle, donde se hacen firmes los cabos dándoles vueltas en ocho. El noray es un poste del muelle, el candelero un puntal vertical de la borda y la guía conduce el cabo.",
+  "clave": "Cornamusa: dos cuernos para hacer firme el cabo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-51": {
+  "explicacion": "La c) es la incorrecta: para levar se va avante despacio hacia el ancla mientras se vira cadena, para no forzar el molinete, hasta que la cadena queda a pique y el ancla zarpa. Además, un ancla a la pendura cuelga y no toca el fondo, así que la frase se contradice. Las demás son ciertas.",
+  "clave": "Levar: avante poco a poco hacia el ancla, virando.",
+  "trampa": "Pensar que se leva dando atrás: eso es para fondear y tender la cadena.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-07": {
+  "explicacion": "En aguas someras aparecen el squat (el barco se hunde y aumenta su calado al navegar), la reflexión del oleaje en el fondo o la costa y el frenado de las olas que rompen. La d) no tiene sentido: la presión hidrostática del agua no influye en la velocidad del viento.",
+  "clave": "Poco fondo: squat, olas que rompen y rebotan; el viento no cambia.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-52": {
+  "explicacion": "Los arneses, las líneas de vida y la bocina de niebla son material de seguridad. Los grifos de fondo son válvulas del casco que dejan pasar el agua para refrigeración, aseos o desagües: hay que vigilarlos, pero forman parte de la instalación del barco, no del equipo de seguridad.",
+  "clave": "Grifo de fondo: instalación del casco, no equipo de seguridad.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-08": {
+  "explicacion": "Ante un hombre al agua hay que lanzarle ayudas flotantes, marcar la posición en el GNSS (botón MOB), no perderlo de vista y, si no se ve, hacer maniobras de búsqueda. La bocina sirve para alertar a la tripulación o a otros barcos, pero tocarla para llamar la atención del náufrago no ayuda a recuperarlo, por eso es la que no se recomienda.",
+  "clave": "Hombre al agua: ayudas, marcar MOB, vigía y maniobra.",
+  "trampa": "La d) parece dudosa, pero buscar es lo correcto si lo has perdido de vista.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-53": {
+  "explicacion": "El pararrayos debe tener puntas afiladas y resistentes, un conductor sin ángulos bruscos y una conexión continua con el mar. Lo que no debe es estar en contacto con otras antenas o jarcias para «reforzarlo», porque la descarga podría saltar a esos elementos y dañarlos, así que la d) es la incorrecta.",
+  "clave": "Pararrayos: punta afilada, cable recto y continuo hasta el agua.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-09": {
+  "explicacion": "Con mal tiempo hay que capear o correr el temporal según convenga, estibar y trincar todo a son de mar y revisar y cerrar las aberturas. Abrir los grifos de fondo no desagua nada: al contrario, puede dejar entrar más agua, porque el casco está por debajo del nivel del mar.",
+  "clave": "Mal tiempo: todo trincado y todo cerrado.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-54": {
+  "explicacion": "Antes de salir es indispensable comprobar la estanqueidad del barco: que no entre agua por grifos de fondo, bocina, portillos o escotillas. La comida, el tanque de aguas negras o un supuesto tanque de agua salada pueden revisarse, pero no son la comprobación de seguridad esencial.",
+  "clave": "Antes de salir: que el barco no haga agua.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-10": {
+  "explicacion": "El balance es el movimiento de oscilación transversal, de una banda a otra. La cabezada es la oscilación longitudinal, de proa a popa. Atravesarse a la mar es quedar de costado a las olas y virar es cambiar de amura (o cobrar cadena).",
+  "clave": "Balance: de banda a banda. Cabezada: de proa a popa.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-55": {
+  "explicacion": "Puedes avisar a Salvamento Marítimo con la radio de a bordo (canal 16 o LSD), llamando al 112 o a su teléfono de emergencias, el 900 202 202. El 900 102 102 no es un número de Salvamento Marítimo.",
+  "clave": "Salvamento Marítimo: canal 16, 112 o 900 202 202.",
+  "trampa": "El 900 102 102 se parece mucho, pero no es el suyo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-11": {
+  "explicacion": "Las banderas autonómicas pueden izarse a bordo, pero siempre junto al pabellón nacional y con un tamaño limitado: nunca mayores de un tercio de la superficie del pabellón. Por eso la c) es falsa, la a) también (nunca en solitario) y la d) atribuye a la autonómica la obligación de izado propia del pabellón nacional.",
+  "clave": "Bandera autonómica: siempre con la nacional y nunca mayor de un tercio de ella.",
+  "trampa": "La d) describe las ocasiones de izado obligatorio del pabellón nacional, no de la autonómica.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-56": {
+  "explicacion": "Las embarcaciones CE de hasta 12 m que usan el régimen de inscripción del artículo 8 del RD 1435/2010 no se abanderan ni matriculan: obtienen un certificado de inscripción antes de entrar en servicio y solo pueden navegar por el mar territorial español, sin pasar de la zona que permita su categoría de diseño. Por eso la a) y la b) son falsas, y la d) también, porque no basta con el nombre.",
+  "clave": "Régimen de inscripción: certificado previo y solo mar territorial español.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-12": {
+  "explicacion": "El seguro obligatorio de responsabilidad civil (RD 607/1999) alcanza a todas las embarcaciones de recreo a motor, motos náuticas incluidas, sea cual sea su eslora, y a las que no tienen motor cuando superan los 6 m de eslora. La b) y la c) olvidan los veleros y la d) mete kayaks y piraguas con un límite de 5 m que no existe.",
+  "clave": "Seguro obligatorio: todo lo de motor y lo de más de 6 m sin motor.",
+  "trampa": "Fijarse solo en las de motor y olvidar los barcos sin motor de más de 6 m.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-57": {
+  "explicacion": "Los navieros o propietarios de embarcaciones de recreo extranjeras que naveguen por aguas españolas tienen que asegurar la responsabilidad civil, o acreditar que ya tienen seguro, siempre que entren o salgan de un puerto español, que es cuando se les puede exigir. No depende de la eslora ni de la voluntad del propietario.",
+  "clave": "Extranjeras: seguro acreditado al entrar o salir de puerto español.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-13": {
+  "explicacion": "Las cardinales indican dónde están las aguas más profundas, el lado seguro para salvar un peligro y llaman la atención sobre una curva, unión o bifurcación de un canal. Señalar la entrada de un canal, la aproximación a un puerto o un punto de recalada es función de la marca de aguas navegables.",
+  "clave": "Recalada o entrada de canal: aguas navegables, no cardinal.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-58": {
+  "explicacion": "Tres centelleos (rápidos o muy rápidos) seguidos de oscuridad son la cardinal Este, como las 3 del reloj. La Sur da 6 más un destello largo, la Oeste 9 y la Norte un centelleo continuo.",
+  "clave": "Reloj: 3 Este, 6 Sur, 9 Oeste, Norte continuo.",
+  "trampa": "Confundir el número de centelleos con el de la Oeste o la Sur.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": "and-2024-c1-t17"
+ },
+ "dgmm-per-2024-04-14": {
+  "explicacion": "Las marcas especiales indican una zona o configuración particular (baño, cables, ejercicios, balizas de datos...) cuya naturaleza se precisa en la carta u otro documento náutico. Son amarillas, con tope en aspa, y si llevan luz es amarilla, no blanca. Su forma es libre, pero no deben confundirse con las laterales.",
+  "clave": "Especial: todo amarillo; su significado, en la carta.",
+  "trampa": "La b) acierta con el color, pero la luz es amarilla, no blanca.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-59": {
+  "explicacion": "La marca de aguas navegables se pinta con franjas verticales rojas y blancas, y es la única del sistema con franjas verticales. Las franjas horizontales rojas y negras sobre negro son del peligro aislado; el rojo y blanco horizontal no se usa en el balizamiento.",
+  "clave": "Aguas navegables: rayas verticales rojas y blancas.",
+  "trampa": "Confundir verticales con horizontales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "concepto": "and-2024-c1-t14"
+ },
+ "dgmm-per-2024-04-15": {
+  "explicacion": "La luz roja la llevan las laterales de babor y las de babor modificadas, que en una bifurcación indican que el canal principal sigue a estribor. Las de estribor y las estribor modificadas (canal principal a babor) tienen luz verde.",
+  "clave": "Cuerpo rojo, luz roja: babor y babor modificada.",
+  "trampa": "Pensar que «principal a babor» lleva luz roja: es una estribor modificada, verde.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   },
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-60": {
+  "explicacion": "La marca de peligro aislado se coloca sobre un peligro de dimensiones limitadas que está rodeado por completo de aguas navegables, así que puedes pasarla por cualquier lado, a una distancia prudente. Indicar los lados de un canal es cosa de las laterales, y la marca no cambia según el tamaño del peligro: eso hay que consultarlo en la carta.",
+  "clave": "Peligro aislado: peligro pequeño con agua navegable alrededor.",
+  "trampa": "La d) dice que la marca varía con el tamaño del peligro: es siempre la misma.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-16": {
+  "explicacion": "La marca de aguas navegables puede ser esférica, de castillete o de espeque, y como marca de tope lleva una sola esfera roja. La forma libre «sin confundirse con las laterales» es la de las marcas especiales, y no hay marcas rectangulares ni triangulares en el sistema.",
+  "clave": "Aguas navegables: esfera (o castillete/espeque) y tope esférico rojo.",
+  "trampa": "La a) describe la regla de forma de las marcas especiales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-61": {
+  "explicacion": "Las marcas especiales no tienen una forma fija: se puede elegir cualquiera, siempre que no se confunda con la de otras marcas. Son amarillas, pero no se usan para señalar canales u obstrucciones (para eso hay laterales y cardinales), y no tienen por qué ser rectangulares ni de castillete o espeque.",
+  "clave": "Especial: amarilla y de forma libre que no confunda.",
+  "trampa": "La c) acierta con el color pero impone una forma.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-17": {
+  "explicacion": "La marca de peligro aislado no dice ni el tamaño del peligro ni a qué distancia puedes pasar con seguridad, así que tienes que consultar la carta y las publicaciones náuticas. No marca bandas de un canal, no obliga a ninguna señal acústica y, desde luego, no hay que acercarse a ella.",
+  "clave": "Peligro aislado: rodéalo con margen y mira la carta.",
+  "trampa": "La d) es justo lo contrario de lo prudente.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-62": {
+  "explicacion": "Las laterales modificadas (rojas o verdes con una banda horizontal del color contrario) se ponen en la bifurcación de un canal e indican cuál es el canal principal o preferido. Roja con banda verde: principal a estribor; verde con banda roja: principal a babor.",
+  "clave": "Lateral con banda del otro color = bifurcación.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   },
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-18": {
+  "explicacion": "La Regla 8 pide que cualquier maniobra para evitar el abordaje sea clara, hecha con tiempo suficiente y, si hace falta, reduciendo la velocidad o parando para tener más tiempo de valorar la situación. Aunque el velero sea en principio el que sigue a rumbo frente a la motora, nunca es «en ningún caso»: si la otra no maniobra, tienes que actuar. Los pequeños cambios sucesivos son justo lo que la Regla 8 desaconseja.",
+  "clave": "Regla 8: maniobra clara, amplia y a tiempo; reduce si lo necesitas.",
+  "trampa": "La a): tener preferencia no te exime de evitar el abordaje.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-63": {
+  "explicacion": "La Regla 35 b) manda al buque de propulsión mecánica en navegación pero parado y sin arrancada emitir, a intervalos de no más de dos minutos, dos pitadas largas seguidas separadas por unos dos segundos. Una sola pitada larga es la del que navega con arrancada.",
+  "clave": "En niebla: 1 larga avanzo, 2 largas parado.",
+  "trampa": "Una larga cada 2 minutos es el buque con arrancada, no el parado.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "--"
+   }
+  ],
+  "concepto": "and-2021-c1-t26"
+ },
+ "dgmm-per-2024-04-19": {
+  "explicacion": "La Regla 28 permite al buque restringido por su calado exhibir, además de las luces de propulsión mecánica, tres luces rojas todo horizonte en línea vertical o, de día, un cilindro. El cono no es su marca y la luz amarilla es de los remolques y aerodeslizadores.",
+  "clave": "Restringido por calado: tres rojas o un cilindro.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "calado",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-64": {
+  "explicacion": "Si ves la luz de tope y las dos de costado de otro buque de motor justo por la proa, os estáis viendo de frente: es una situación de vuelta encontrada (Regla 14). Los dos debéis caer a estribor para pasar uno por la banda de babor del otro.",
+  "clave": "Tope + verde + roja de frente: vuelta encontrada, los dos a estribor.",
+  "trampa": "No es alcance: en el alcance verías la luz de alcance, no los costados.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-20": {
+  "explicacion": "La Regla 10 permite a los buques de menos de 20 m, a los de vela y a los de pesca usar la zona de navegación costera. Un barco de 15 m puede hacerlo o, si lo puede hacer con seguridad y sin estorbar, usar la vía de circulación adecuada. La zona de separación no está para navegar por ella.",
+  "clave": "Menos de 20 m: puede ir por la zona costera.",
+  "trampa": "La d) dice «en cualquier caso»: no es una obligación, es una opción.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-65": {
+  "explicacion": "Según la Regla 13, el buque que alcanza se mantiene apartado del alcanzado, y eso prevalece sobre las demás reglas de la Parte B, incluida la preferencia del velero de la Regla 18. Como el velero te alcanza, es él quien maniobra; tú mantienes rumbo y velocidad.",
+  "clave": "El que alcanza se aparta, aunque sea un velero.",
+  "trampa": "Pensar que la vela siempre tiene preferencia sobre el motor.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-21": {
+  "explicacion": "La Regla 24 a) pide al remolcador exhibir de día una marca bicónica cuando la longitud del remolque, medida desde la popa del remolcador hasta el extremo de popa del remolcado, supera los 200 m. Los 25 m de manga o los 100 m de eslora no son el criterio.",
+  "clave": "Bicónica: remolque de más de 200 m.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-66": {
+  "explicacion": "La Regla 33 a) exige pito a partir de 12 m de eslora, y campana además del pito a partir de 20 m; el gong se añade desde 100 m. Un buque de 24 m debe llevar, por tanto, pito y campana.",
+  "clave": "12 m pito; 20 m pito y campana; 100 m además gong.",
+  "trampa": "La a) es lo que vale para menos de 12 m.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-22": {
+  "explicacion": "La Regla 3 d) define al buque dedicado a la pesca como el que pesca con redes, líneas, aparejos de arrastre u otros artes que restrinjan su maniobrabilidad, y excluye expresamente a los que pescan con curricán u otros artes que no la restringen. Tampoco se considera buque sin gobierno.",
+  "clave": "Pesca en el RIPA: solo si el arte le resta maniobra; curricán no cuenta.",
+  "trampa": "La c) incluye el curricán, que está expresamente excluido.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-67": {
+  "explicacion": "Un buque de propulsión mecánica de 15 m debe llevar una luz de tope a proa, luces de costado y luz de alcance (Regla 23 a). La segunda luz de tope solo es obligatoria desde 50 m, y la luz blanca todo horizonte con costados es la alternativa para los de menos de 12 m.",
+  "clave": "Motor de 12 a 50 m: tope, costados y alcance.",
+  "trampa": "La a) añade la segunda luz de tope, obligatoria solo desde 50 m.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "motor",
+    "vista": "todas"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-23": {
+  "explicacion": "La Regla 34 d) establece que el buque que no entienda las intenciones del otro, o dude de que esté maniobrando lo suficiente, lo indicará con al menos cinco pitadas cortas y rápidas, que pueden completarse con cinco destellos cortos.",
+  "clave": "Dudas: cinco o más cortas y rápidas.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "....."
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-68": {
+  "explicacion": "La Regla 20 obliga a cumplir las reglas de luces de la puesta a la salida del sol y con visibilidad reducida, en cualquier tiempo, y las reglas de marcas deben cumplirse de día siempre, no a criterio del patrón. Por eso la d) es la incorrecta; las demás reproducen la regla.",
+  "clave": "Luces de noche y con mala visibilidad; marcas de día, siempre.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-24": {
+  "explicacion": "La Regla 21 d) define la luz de remolque como una luz amarilla con las mismas características que la luz de alcance: 135º de arco, 67,5º a cada banda desde la popa. La todo horizonte es otra definición y los centelleos a 120 o más por minuto son la luz de centelleos.",
+  "clave": "Remolque = luz de alcance, pero amarilla.",
+  "trampa": "La d) define la luz centelleante, no la de remolque.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-69": {
+  "explicacion": "La luz blanca en el eje del buque visible en un arco de 225º, desde la proa hasta 22,5º a popa del través de cada banda, es la luz de tope (Regla 21 a). La de alcance está en la popa y cubre los 135º restantes, la de remolque es amarilla y la de fondeo es todo horizonte.",
+  "clave": "Tope 225º hacia proa; alcance 135º hacia popa.",
+  "trampa": "Confundir tope y alcance: entre las dos suman 360º.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-25": {
+  "explicacion": "El Anexo IV del RIPA incluye entre las señales de peligro un sonido continuo emitido con cualquier aparato de señales de niebla. No depende del tipo de peligro, y un sonido corto repetido no es la señal.",
+  "clave": "Socorro con la bocina: sonido continuo.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "-",
+    "texto": "Sonido continuo"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-70": {
+  "explicacion": "La Regla 18 dice al revés lo que afirma la d): es el buque de propulsión mecánica el que se mantiene apartado del de vela. Las otras son correctas: el de motor se aparta del sin gobierno, el de vela del pesquero y el pesquero, en lo posible, del de maniobra restringida.",
+  "clave": "Orden: sin gobierno, restringido, pesca, vela, motor.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-26": {
+  "explicacion": "La Regla 17 d) aclara que lo que se permite o exige al buque que sigue a rumbo no exime al que cede el paso de mantenerse apartado. La b) es falsa porque, si el abordaje ya no puede evitarse solo con la maniobra del otro, el que sigue a rumbo debe actuar; la c) cambia babor por estribor: lo que se evita es caer a babor hacia un buque que está por babor.",
+  "clave": "El que cede el paso nunca deja de estar obligado.",
+  "trampa": "La c) invierte la banda: evita caer a babor, no a estribor.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-71": {
+  "explicacion": "La Regla 25 d) permite que un velero de menos de 7 m que no pueda llevar luces de costado y de alcance tenga preparada una linterna de luz blanca para mostrarla a tiempo, y lo mismo vale para las embarcaciones de remo. Para los veleros de 7 a 20 m la alternativa es la linterna combinada, no la linterna de mano.",
+  "clave": "Vela de menos de 7 m o remo: basta linterna blanca.",
+  "trampa": "Confundir con los 12 m, que es el límite para los de motor.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-27": {
+  "explicacion": "La Regla 23 c) exige a los aerodeslizadores, cuando operan sin desplazamiento (sobre su colchón de aire), una luz amarilla de centelleos todo horizonte además de las luces normales. No es siempre, sino solo en esa condición; las naves de vuelo rasante llevan una luz roja de destellos de gran intensidad.",
+  "clave": "Aerodeslizador sin desplazamiento: amarilla centelleante.",
+  "trampa": "La b) quita la condición «sin desplazamiento».",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-72": {
+  "explicacion": "La Regla 6 b) pide, a quien usa radar, tener en cuenta sus limitaciones, entre ellas que la escala en uso condiciona qué ecos detecta. El estado de la mar sí genera ecos parásitos, los objetos pequeños pueden no detectarse y el resplandor de las luces de tierra afecta a la vista, no al radar.",
+  "clave": "Radar: escala, mar y lluvia limitan lo que ves.",
+  "trampa": "La c) dice «siempre»: los objetos pequeños a menudo no dan eco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-28": {
+  "explicacion": "Estar «libre a sotavento» es tener suficiente resguardo entre el barco y la costa o los bajos cuando el viento, la mar o la corriente tienden a echarte sobre ellos. Una costa a sotavento es peligrosa porque es hacia donde te lleva todo; hay que dejar margen.",
+  "clave": "Libre a sotavento: margen con lo que tienes debajo del viento.",
+  "trampa": "La d) dice justo lo contrario: no tener resguardo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-73": {
+  "explicacion": "Para tomar una boya conviene aproximarse proa al viento (o a la corriente, si es la que domina): así el barco va frenado, gobierna bien a poca velocidad y, una vez amarrado, queda en la posición en que se va a quedar. Con el viento por popa llegarías con demasiada arrancada.",
+  "clave": "A la boya: proa al viento o a la corriente.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-29": {
+  "explicacion": "Para alejar el fueraborda de la roda del barco de popa hay que desplazar el nuestro hacia proa: cobrando del largo de proa y del esprín de popa, que tiran hacia adelante, y lascando el largo de popa y el esprín de proa, que lo retienen. Cobrar solo el largo de popa lo llevaría justo hacia atrás.",
+  "clave": "Para ir hacia proa: cobra largo de proa y esprín de popa.",
+  "trampa": "La b) acerca más la popa al otro barco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-74": {
+  "explicacion": "Amollar es soltar un poco un cabo o una escota, aflojarlo. Cazar y tensar son lo contrario, y una lasca no es un nudo, sino también la acción de soltar poco a poco.",
+  "clave": "Amollar = lascar = soltar un poco.",
+  "trampa": "Confundir amollar con cazar, que es lo opuesto.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-30": {
+  "explicacion": "Si tienes que saltar al agua sin balsa, hazlo de pie, con las piernas juntas y el chaleco sujeto, pero luego no te muevas sin necesidad: nadar y agitarse aumentan la pérdida de calor y aceleran la hipotermia. Lo correcto es quedarse en posición fetal (HELP) o en grupo. Las demás medidas son correctas.",
+  "clave": "En el agua fría: quieto y encogido, no nades sin necesidad.",
+  "trampa": "La d) empieza bien (cómo saltar) y acaba mal (moverse).",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-75": {
+  "explicacion": "Ante una vía de agua no se abandona el barco de inmediato: hay que localizarla, taponarla (con espiches si falla un pasacascos o una válvula), achicar y aligerar pesos. Solo si no puedes controlarla pides socorro y, como último recurso, abandonas el barco.",
+  "clave": "Vía de agua: localiza, tapona, achica; abandonar es lo último.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-31": {
+  "explicacion": "Ante una hemorragia nasal hay que inclinar la cabeza hacia delante y presionar las fosas nasales, cerca del hueso, durante unos minutos. Echar la cabeza atrás hace que la sangre vaya a la garganta y al estómago, y el calor dilata los vasos y aumenta el sangrado.",
+  "clave": "Nariz que sangra: cabeza adelante y apretar.",
+  "trampa": "La a), echar la cabeza atrás, es el error clásico.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-76": {
+  "explicacion": "Para prevenir abordajes hay que usar la bocina con mala visibilidad, izar un reflector de radar, desconfiar de que respeten tu preferencia y, si hace falta, llamar por VHF al buque que va a rumbo de colisión. Prohibir el VHF «en ningún caso» no tiene sentido.",
+  "clave": "Contra el abordaje: hacerse ver, oír y, si hace falta, llamar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-32": {
+  "explicacion": "Para salir de una varada influyen el tipo de fondo, la marea (suele convenir esperar a la pleamar) y la ayuda exterior. La distribución de pesos sí se puede cambiar: mover o desembarcar pesos para variar el asiento o la escora es una de las técnicas para desvarar, así que la d) es la incorrecta.",
+  "clave": "Varada: fondo, marea, ayuda y mover pesos.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-77": {
+  "explicacion": "La norma UNE-EN 2 clasifica los fuegos según el material que arde: A sólidos, B líquidos, C gases, D metales y F aceites de cocina. El extintor adecuado se elige a partir de esa clase, no al revés.",
+  "clave": "Clases de fuego por combustible: A sólido, B líquido, C gas, D metal, F aceite.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-33": {
+  "explicacion": "El fetch es la extensión de mar sobre la que el viento sopla con dirección y fuerza constantes; junto con la intensidad y la duración, determina el tamaño de la mar de viento. El número de horas que sopla es la duración y la velocidad es la intensidad.",
+  "clave": "Fetch = recorrido del viento sobre el mar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-78": {
+  "explicacion": "Una isobara es una línea dibujada en un mapa que une los puntos con la misma presión atmosférica. Las superficies de igual presión son las superficies isobáricas, no las isobaras, y las líneas de igual temperatura son las isotermas.",
+  "clave": "Isobara: línea de igual presión.",
+  "trampa": "La d) habla de superficie; la isobara es una línea.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-34": {
+  "explicacion": "El viento real es el que sopla de verdad en ese lugar, el que notarías con el barco parado. Navegando percibes el viento aparente, que resulta de combinar el real con el que genera tu propio avance.",
+  "clave": "Real: el de fuera. Aparente: real + tu avance.",
+  "trampa": "La b) es el viento aparente.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-79": {
+  "explicacion": "La previsión meteorológica se obtiene por NAVTEX, por las emisiones de las estaciones radiocosteras en VHF o en la web de AEMET, entre otros medios. Los distritos marítimos son oficinas de la Administración marítima y no emiten boletines meteorológicos.",
+  "clave": "Meteo: NAVTEX, radiocosteras, AEMET.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-35": {
+  "explicacion": "El barómetro aneroide mide la presión atmosférica mediante una cápsula metálica de vacío que se deforma con los cambios de presión. La velocidad del barco la da la corredera, la velocidad del viento el anemómetro y su dirección la veleta.",
+  "clave": "Barómetro = presión.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-80": {
+  "explicacion": "Rolar es cambiar el viento de dirección. Los aumentos de intensidad se dicen «refrescar», las disminuciones «amainar» o «calmar», y un cese momentáneo es una calma o encalmada.",
+  "clave": "Rolar = cambiar de dirección.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-36": {
+  "explicacion": "En el hemisferio norte el viento gira alrededor de una borrasca en sentido contrario a las agujas del reloj en las capas bajas, converge hacia el centro y asciende, lo que forma nubes y lluvia. Girar en sentido horario y divergir es lo que hace en un anticiclón.",
+  "clave": "Borrasca HN: antihorario, hacia dentro y hacia arriba.",
+  "trampa": "La c) dice «divergiendo», que es propio del anticiclón.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-81": {
+  "explicacion": "El terral es la brisa nocturna que sopla de tierra hacia el mar: de noche la tierra se enfría más que el agua y el aire va de la zona fría (alta) a la templada. De día ocurre al revés y sopla la virazón, del mar a tierra.",
+  "clave": "Terral: de noche, de tierra al mar. Virazón: de día, del mar a tierra.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-tierra"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-37": {
+  "explicacion": "La amplitud de la marea es la diferencia de altura entre una pleamar y la bajamar consecutiva. La sonda de la carta es la profundidad referida al cero hidrográfico y la profundidad observada es la que hay en un momento dado; ninguna es la oscilación de la marea.",
+  "clave": "Amplitud = pleamar − bajamar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-82": {
+  "explicacion": "Las cartas de navegación costera tienen escalas aproximadas entre 1/50.000 y 1/200.000 y sirven para navegar reconociendo la costa. La a) describe los portulanos o planos de puerto, la b) las cartas de arrumbamiento o de navegación y la d) las cartas generales oceánicas.",
+  "clave": "Costera: de 1/50.000 a 1/200.000.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-38": {
+  "explicacion": "Las distancias se miden con el compás y se llevan a la escala de latitudes (la de los márgenes laterales), porque en la carta mercatoriana un minuto de latitud equivale a una milla. La escala de longitudes no sirve, porque sus minutos son menores que una milla salvo en el ecuador.",
+  "clave": "Distancias: siempre en la escala de latitudes.",
+  "trampa": "Medir en la escala de longitudes, la de arriba y abajo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-83": {
+  "explicacion": "Las burbujas de aire en el mortero sí son una perturbación: hacen que la rosa oscile y lea mal, y hay que eliminarlas rellenando el líquido. Lo demás es cierto: las tormentas eléctricas afectan a la aguja, una buena aguja debe ser sensible y estable y el desvío cambia con el rumbo.",
+  "clave": "Burbuja en la aguja = avería que corregir.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-39": {
+  "explicacion": "En la forma cuadrantal se cuenta de 0º a 90º desde el Norte o el Sur hacia el Este o el Oeste (por ejemplo N40E o S30W). Para pasar a circular se suma en el primer y tercer cuadrante (NE: R; SW: 180 + R) y se resta en el segundo y cuarto (SE: 180 − R; NW: 360 − R), de ahí el signo positivo o negativo de la c). La a) describe la forma circular.",
+  "clave": "Cuadrantal: N o S, grados, E o W.",
+  "trampa": "La d) invierte los signos de los cuadrantes.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-84": {
+  "explicacion": "La marcación circular se cuenta de 0º a 360º desde la proa en el sentido de las agujas del reloj y es siempre positiva. En la forma semicircular, de 0º a 180º, es positiva por estribor y negativa por babor.",
+  "clave": "Marcación: estribor +, babor −.",
+  "trampa": "La c) y la d) invierten los signos de babor y estribor.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-40": {
+  "explicacion": "El ángulo entre el Norte geográfico (verdadero) y el Norte magnético en un lugar es la declinación magnética, que cambia de un sitio a otro y con los años. El desvío es entre el Norte magnético y el de aguja, y la corrección total entre el verdadero y el de aguja.",
+  "clave": "Nv ↔ Nm = declinación.",
+  "trampa": "Confundirla con el desvío, que depende de tu barco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-85": {
+  "explicacion": "S70W está en el tercer cuadrante: se cuenta desde el Sur (180º) 70º hacia el Oeste, así que el rumbo circular es 180º + 70º = 250º. 110º sería S70E y 070º sería N70E.",
+  "clave": "SW: 180 + R.",
+  "trampa": "Restar en vez de sumar: 180 − 70 es S70E.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 250
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-04-41": {
+  "explicacion": "La alidada es el instrumento que se coloca sobre el compás para tomar demoras: tiene pínulas (miras) por las que se apunta al objeto mientras se lee la rosa. La pínula es solo una parte de la alidada, el giróscopo es otro tipo de compás y el transportador sirve para trazar en la carta.",
+  "clave": "Alidada: el visor del compás para tomar demoras.",
+  "trampa": "La pínula es la mira, no el aparato completo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-86": {
+  "explicacion": "El abatimiento es el desvío que produce el viento al empujar la obra muerta del barco. La deriva es el efecto de la corriente sobre la obra viva. La c) y la d) no son términos de navegación.",
+  "clave": "Viento = abatimiento; corriente = deriva.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-88": {
+  "explicacion": "El tribunal anuló la pregunta. El método es sumar a la sonda de la carta la altura de la marea y aplicar la corrección por presión: con 1028 mb el nivel baja unos 15 cm, lo que daría 9,2 + 0,1 − 0,15 = 9,15 m en la bajamar y 9,2 + 0,8 − 0,15 = 9,85 m en la pleamar, como en la d). Pero el enunciado dice que la corrección de −0,15 es «para 1003 mb», y con presión baja el nivel sube en vez de bajar, así que los datos se contradicen.",
+  "clave": "Presión alta resta, presión baja suma: 1 cm por mb.",
+  "trampa": "Aplicar a ciegas el signo que da el enunciado sin comprobar la presión.",
+  "concepto": null
+ },
+ "dgmm-per-2024-04-44": {
+  "explicacion": "Con 996 mb, 17 mb por debajo de la presión normal, el nivel del mar sube unos 17 cm. Tomas del extracto del anuario la altura de la segunda bajamar del 4 de abril en Algeciras, la sumas a los 7,2 m de la carta y añades los 0,17 m: sale 7,67 m.",
+  "clave": "Presión baja: suma 1 cm por cada mb bajo 1013.",
+  "trampa": "Restar la corrección: con presión baja el mar sube.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-01": {
+  "explicacion": "Estando fondeados, la cadena está a pique cuando trabaja vertical, justo sobre el ancla, que sigue en el fondo. «A la pendura» es el ancla colgando lista para fondear, y «clara» o «libre» es cuando sale limpia a la superficie al levar.",
+  "clave": "A pique = cadena vertical sobre el ancla.",
+  "trampa": "Confundir «a pique» con «a la pendura», que es antes de fondear.",
+  "concepto": "and-2025-c2-t02"
+ },
+ "dgmm-per-2024-06-46": {
+  "explicacion": "Los grifos de fondo son las válvulas montadas por debajo de la flotación que dejan entrar el agua de mar para refrigeración, aseos y otros servicios, o salir los desagües. Las sentinas son la parte más baja del interior del casco y los imbornales los desagües de cubierta.",
+  "clave": "Grifo de fondo: la válvula del casco bajo la flotación.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-02": {
+  "explicacion": "Escorar es inclinarse el barco sobre uno de sus costados. Enderezarse es adrizar, y hundir la proa o la popa es cambiar el asiento (cabecear o apopar).",
+  "clave": "Escorar = inclinarse a una banda.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-47": {
+  "explicacion": "La bocina es el tubo por el que el eje de la hélice atraviesa el casco, con su prensaestopas o cierre. Si se deteriora, el agua puede entrar al barco. Las palas, el núcleo y el capacete están fuera, en el agua, y su avería no abre ninguna vía.",
+  "clave": "Bocina: donde el eje cruza el casco; si falla, entra agua.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-03": {
+  "explicacion": "El través es la dirección perpendicular a la quilla (y al plano de crujía), a 90º de la proa por cada banda. El plano de crujía es el longitudinal que divide al barco en dos mitades y la aleta está entre el través y la popa.",
+  "clave": "Través: a 90º de la proa.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "traves"
+    ]
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-48": {
+  "explicacion": "El desplazamiento es el peso del agua que desaloja el barco, igual a su propio peso. Es máximo cuando el barco está cargado al máximo, con todo a bordo, porque entonces se hunde más y desaloja más agua. La velocidad o la estela no lo cambian.",
+  "clave": "Más carga, más desplazamiento.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-04": {
+  "explicacion": "La limera es el orificio del casco por el que pasa la mecha, así que no se mueve. Al girar la rueda se mueven los guardines, la mecha (el eje del timón) y la pala.",
+  "clave": "Limera: el agujero de la mecha, fijo en el casco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-49": {
+  "explicacion": "La obra muerta es la parte del casco que queda por encima de la línea de flotación. La parte sumergida es la obra viva, y la distancia de la quilla a la cubierta es el puntal.",
+  "clave": "Obra muerta: lo que está fuera del agua.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "obra-muerta",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-05": {
+  "explicacion": "La roldana es la rueda acanalada de un motón o polea por la que corre el cabo, reduciendo el rozamiento. La a) describe una guía o gatera, la b) una bita y la c) una cornamusa.",
+  "clave": "Roldana = ruedecita por donde corre el cabo.",
+  "concepto": "and-2024-c3-t05"
+ },
+ "dgmm-per-2024-06-50": {
+  "explicacion": "La vuelta de rezón sirve para hacer firme un cabo a una argolla, un cáncamo o un palo, y es muy segura porque no se afloja con los tirones. Unir dos cabos de la misma mena es cosa del nudo llano.",
+  "clave": "Vuelta de rezón: cabo a una argolla.",
+  "trampa": "La a): también puede usarse para defensas, pero no es su definición.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-06": {
+  "explicacion": "El orinque es el cabo que va de la cruz del ancla a una boya o boyarín, no a la proa del barco: señala dónde está el ancla y permite zarparla si se enroca. Lo demás es correcto: la sonda es clave, se prefieren fondos blandos y hay que vigilar con referencias y alarma de sonda.",
+  "clave": "Orinque: del ancla a un boyarín.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-51": {
+  "explicacion": "Durante el fondeo hay que tomar referencias a tierra y vigilar la sonda con alarma para detectar a tiempo si el ancla garrea. Los fondos de roca o algas agarran mal; fondear a la gira es con una sola ancla (con dos se habla de fondeo a barba de gato), y la longitud de la línea de fondeo se calcula en función de la sonda, no de la eslora.",
+  "clave": "Fondeado: referencias a tierra y alarma de sonda.",
+  "trampa": "La c) mezcla la gira (un ancla) con el fondeo con dos anclas.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-07": {
+  "explicacion": "Con la mar por la proa, reducir la velocidad a la mínima de gobierno suaviza los pantocazos y la cabezada sin perder el control del barco. Parar te dejaría sin gobierno, atravesarte a la mar te expone a los balances y aumentar la velocidad empeora los golpes.",
+  "clave": "Mar de proa: velocidad mínima de gobierno.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-52": {
+  "explicacion": "Antes de salir conviene comunicar el plan de navegación a alguien en tierra (ruta, horarios, personas a bordo), para que pueda dar la alerta si no llegas. No todos los grifos de fondo deben ir cerrados (algunos son necesarios, como la refrigeración) y el móvil no sustituye a la radio para pedir socorro.",
+  "clave": "Antes de salir: que alguien en tierra sepa tu plan.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-08": {
+  "explicacion": "Para evitar caídas al agua hay que moverse despacio y agarrado («una mano para ti y otra para el barco»), no fiarse de los candeleros y extremar el cuidado al orinar por la borda. Moverse deprisa y alejarse del equipo de seguridad es justo lo contrario de lo recomendable.",
+  "clave": "Una mano para ti y otra para el barco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-53": {
+  "explicacion": "Capear es aguantar el temporal con la mar por la proa o las amuras, con la mínima velocidad que permite gobernar. Correr el temporal es llevar la mar por la popa o las aletas; ceñir es navegar a vela lo más cerca posible del viento.",
+  "clave": "Capear: mar por proa, poca máquina. Correr: mar por popa.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-09": {
+  "explicacion": "Los chalecos inflables se revisan según las instrucciones del fabricante en estaciones de servicio autorizadas, no en Salvamento Marítimo, así que la a) es la incorrecta. Las demás son ciertas: en zonas 2, 3 y 4 se exigen 150 N (RD 339/2021), hay que mantenerlos en buen estado y llevar uno por persona adecuado a su talla y peso.",
+  "clave": "Chaleco inflable: revisión en estación de servicio autorizada.",
+  "trampa": "Salvamento Marítimo rescata, no revisa equipos.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-54": {
+  "explicacion": "Los aros salvavidas deben ir en las aletas o en la popa, estibados de forma que se puedan soltar al instante, porque se lanzan al náufrago que queda a popa. No deben ir fijos de forma permanente, conviene que lleven el nombre del barco y, si se pierde uno, hay que reponerlo.",
+  "clave": "Aro: a popa y listo para lanzar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-10": {
+  "explicacion": "Añadir pesos en cubierta, por encima del centro de gravedad, eleva ese centro y reduce la altura metacéntrica: la estabilidad transversal empeora y el barco escora con más facilidad. Además se hunde, así que el francobordo disminuye, y el balance se vuelve más lento, no más rápido.",
+  "clave": "Peso arriba = menos estabilidad.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-55": {
+  "explicacion": "El canal 70 de VHF está reservado a la llamada selectiva digital (LSD): por él no se habla. Para pedir socorro puedes pulsar el botón de socorro, que transmite por el canal 70, o llamar a voz por el canal 16, al 112 o al 900 202 202.",
+  "clave": "Canal 70: solo LSD, nunca voz.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-11": {
+  "explicacion": "La obligación de auxilio no es «en cualquier circunstancia»: el capitán debe acudir si puede hacerlo sin grave peligro para su buque y su gente. Si no acude, lo anota en el diario de navegación con la razón, y si acude informa a los náufragos o al servicio de salvamento. La ayuda no depende de la nacionalidad ni de la situación de las personas.",
+  "clave": "Auxilio obligatorio, salvo grave peligro propio (y anotándolo).",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-56": {
+  "explicacion": "Hay que llevar a bordo el justificante del seguro obligatorio. Si la autoridad lo pide y no lo llevas, el tomador dispone de 5 días hábiles para acreditar ante ella que el seguro está en vigor.",
+  "clave": "Sin papel del seguro a bordo: 5 días hábiles para justificarlo.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-12": {
+  "explicacion": "Cuando ves la boya o el dispositivo de señalización en superficie de un buceador, debes mantenerte a una distancia mínima de 50 m de la zona de buceo. No es una distancia a criterio del patrón, y los 200 m son los de las zonas de baño de las playas, no los del buceo.",
+  "clave": "Buceador señalizado: 50 m como mínimo.",
+  "trampa": "No confundir con los 200 m de las playas.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-57": {
+  "explicacion": "MARPOL, Anexo V: fuera de zonas especiales, los restos de comida triturados se pueden echar al mar con el buque en ruta a 3 millas o más de la tierra más próxima, siempre que pasen por una criba de 25 mm como máximo. Sin triturar, la distancia mínima es de 12 millas.",
+  "clave": "Comida triturada (≤ 25 mm): 3 millas; sin triturar: 12.",
+  "trampa": "La c) es la regla para los restos sin triturar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-13": {
+  "explicacion": "La marca de aguas navegables es esférica, de castillete o de espeque, con franjas verticales rojas y blancas, y su tope, si lo lleva, es una esfera roja. Sí sirve para indicar la entrada de un canal o un punto de recalada; llamar la atención sobre curvas o bifurcaciones es una de las funciones de las cardinales.",
+  "clave": "Aguas navegables: tope de una esfera roja.",
+  "trampa": "La a) le pone el tope cilíndrico, propio de babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-58": {
+  "explicacion": "En la región A, la marca de estribor es verde y cónica, y se deja por estribor al entrar en puerto (en el sentido convencional del balizamiento). Si la tienes por estribor, estás entrando por dentro del canal. Saliendo deberías dejarla por babor.",
+  "clave": "Región A entrando: verde a estribor, roja a babor.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-14": {
+  "explicacion": "Una luz verde de grupos (2+1) es una marca de estribor modificada: señala una bifurcación con el canal principal a babor. Si la ves por babor y una verde lateral por estribor, has dejado el canal principal a tu izquierda y entras por el canal secundario. No hay cardinal ni peligro aislado, que tienen luz blanca.",
+  "clave": "Destellos (2+1): bifurcación; la verde indica principal a babor.",
+  "trampa": "Pensar en cardinales o peligro aislado: sus luces son blancas.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-59": {
+  "explicacion": "La cardinal Este lleva dos conos negros opuestos por sus bases, formando un rombo («huevo»). Con los vértices hacia arriba es la Norte, hacia abajo la Sur, y opuestos por los vértices (cintura) la Oeste.",
+  "clave": "Rombo = Este; cintura = Oeste.",
+  "trampa": "Confundir «opuestos por las bases» con «por los vértices».",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-15": {
+  "explicacion": "Las marcas especiales son amarillas, con tope en aspa amarilla y, si tienen luz, es amarilla, nunca roja; por eso la d) es la incorrecta. Lo demás es cierto: pueden llevar letras, números o pictogramas, su significado está en la carta y pueden usarse como ayuda móvil sobre objetos flotantes peligrosos.",
+  "clave": "Especial: todo amarillo, también la luz.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-60": {
+  "explicacion": "Las marcas de aguas navegables indican aguas seguras a su alrededor y se usan para señalar ejes de canal, centros de canal, recaladas o aproximaciones. El canal principal lo indican las laterales modificadas y el lado por el que pasar, las cardinales.",
+  "clave": "Aguas navegables: centro o eje del canal, recalada.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-16": {
+  "explicacion": "El tope de la marca de peligro aislado son dos esferas negras superpuestas. Una sola esfera (roja) es de aguas navegables y los dos conos negros son de las cardinales.",
+  "clave": "Peligro aislado: dos esferas negras, dos destellos blancos.",
+  "trampa": "Confundirla con la esfera única de aguas navegables.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "and-2024-c3-t17"
+ },
+ "dgmm-per-2024-06-61": {
+  "explicacion": "La marca de peligro aislado es negra con una o más bandas anchas horizontales rojas. El amarillo y negro es de las cardinales y no hay marcas con bandas verticales salvo las de aguas navegables (rojas y blancas).",
+  "clave": "Peligro aislado: negro y rojo horizontal.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-17": {
+  "explicacion": "Una banda negra entre dos amarillas y un tope de conos opuestos por los vértices (una «cintura» o W) es la cardinal Oeste. Las cardinales llevan el nombre del lado seguro, así que las aguas más profundas están al oeste de la marca.",
+  "clave": "Oeste: conos por los vértices, negro en el centro.",
+  "trampa": "Confundir con la Este, que tiene los conos por las bases y amarillo en el centro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-w"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-62": {
+  "explicacion": "Las marcas especiales pueden llevar letras, números o pictogramas con la simbología de la OHI para indicar su finalidad. No sirven para señalar canales, obstrucciones ni vías navegables, y si tienen luz es amarilla, no blanca.",
+  "clave": "Especial: amarilla, con letras o pictogramas si hace falta.",
+  "trampa": "La d) parece bien hasta el final: la luz es amarilla.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-18": {
+  "explicacion": "La Regla 12 a) iii) dice que si recibes el viento por babor y ves un velero a barlovento sin poder saber por qué banda lo recibe, debes mantenerte apartado de él. En la duda, se aparta el que recibe el viento por babor.",
+  "clave": "Viento por babor y duda: me aparto.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vela-barlovento"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-63": {
+  "explicacion": "Frente a un buque dedicado a la pesca, la motora debe apartarse (Regla 18). Según la Regla 8, la maniobra debe ser clara, hecha con tiempo y amplia, reduciendo velocidad si hace falta para valorar la situación. La c) y la d) proponen cambios pequeños, que la Regla 8 desaconseja porque el otro no los aprecia.",
+  "clave": "Motor ante pesquero: me aparto con una maniobra clara y a tiempo.",
+  "trampa": "La a): la motora no tiene preferencia sobre el pesquero.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-19": {
+  "explicacion": "De día, dos bolas negras en línea vertical son la marca de buque sin gobierno (Regla 27 a). El restringido por su calado muestra un cilindro y el fondeado una sola bola a proa.",
+  "clave": "Dos bolas: sin gobierno. Una bola: fondeado.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "sin-gobierno",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-64": {
+  "explicacion": "La Regla 34 b) permite completar las pitadas de maniobra con destellos de luz de aproximadamente un segundo, repetidos mientras dura la maniobra: un destello «caigo a estribor», dos «caigo a babor» y tres «estoy dando atrás». Por eso solo la b) es correcta.",
+  "clave": "1 estribor, 2 babor, 3 atrás (pitadas o destellos).",
+  "trampa": "La a) y la d) intercambian babor y estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "."
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-20": {
+  "explicacion": "La Regla 9 b) dice que los buques de menos de 20 m y los de vela no estorbarán el tránsito de un buque que solo pueda navegar con seguridad dentro del canal angosto. Además, todo buque debe navegar lo más cerca posible del límite exterior del canal que quede por su estribor, no por su babor como dice la d).",
+  "clave": "Canal angosto: pequeño y vela no estorban; vas pegado a tu estribor.",
+  "trampa": "La d) parece completa pero dice «babor».",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-65": {
+  "explicacion": "Con rumbos opuestos y riesgo de abordaje entre dos buques de motor hay vuelta encontrada (Regla 14): cada uno cae a estribor para pasar por la banda de babor del otro. Ninguno espera al otro ni se acuerdan maniobras distintas por radio.",
+  "clave": "Vuelta encontrada: los dos a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-21": {
+  "explicacion": "La Regla 20 b) obliga a exhibir las luces también entre la salida y la puesta del sol cuando hay visibilidad reducida, así que con unos aguaceros fuertes hay que encenderlas aunque sea de día. No es una opción del patrón ni depende de que haya tormenta eléctrica.",
+  "clave": "Mala visibilidad de día: luces encendidas.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-66": {
+  "explicacion": "La luz de alcance es blanca, va lo más cerca posible de la popa y es visible en un arco de 135º, 67,5º a cada banda contados desde la popa (Regla 21 c). Junto con los 225º de la luz de tope completa el horizonte.",
+  "clave": "Alcance: 135º, 67,5º a cada lado de la popa.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-22": {
+  "explicacion": "La Regla 17 d) dice que esta regla no exime al buque que cede el paso de su obligación de mantenerse apartado. El que sigue a rumbo mantiene rumbo y velocidad, pero puede maniobrar si el otro no actúa y debe hacerlo si el abordaje ya no se evita solo con la maniobra del otro; por eso la a) y la c) son falsas.",
+  "clave": "El que cede el paso nunca deja de estar obligado.",
+  "trampa": "La a) dice «siempre»: la Regla 17 permite y a veces exige maniobrar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-67": {
+  "explicacion": "El arrastrero lleva dos luces todo horizonte, verde la superior y blanca la inferior; si mide 50 m o más, añade una luz de tope a popa y más alta que la verde, y con arrancada muestra además costados y alcance (Regla 26 b). Roja sobre blanca es la de pesca que no es de arrastre.",
+  "clave": "Verde sobre blanco, arrastre; rojo sobre blanco, otra pesca.",
+  "trampa": "La a) invierte el orden de los colores y le faltan costados y alcance.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-arrastre",
+    "vista": "proa"
+   }
+  ],
+  "concepto": "and-2022-c1-t22"
+ },
+ "dgmm-per-2024-06-23": {
+  "explicacion": "El buque remolcado que no está parcialmente sumergido exhibe luces de costado y luz de alcance (Regla 24 e). La luz de remolque amarilla sobre la de alcance la lleva el remolcador, no el remolcado.",
+  "clave": "Remolcado: costados y alcance.",
+  "trampa": "La b) añade la luz de remolque, que es del remolcador.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-68": {
+  "explicacion": "La Regla 3 g) incluye entre los buques con capacidad de maniobra restringida a los que hacen dragados, limpieza de minas o se abastecen de combustible en navegación, entre otros. Un buque de vela, por el hecho de serlo, nunca entra en esa categoría.",
+  "clave": "Vela ≠ maniobra restringida.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-24": {
+  "explicacion": "La Regla 10 l) exime del cumplimiento de la regla, en la medida necesaria para su trabajo, al buque con capacidad de maniobra restringida que tiende, mantiene o levanta un cable submarino dentro de un dispositivo de separación del tráfico. Lo mismo vale, según la Regla 10 k), para el que trabaja en la seguridad de la navegación.",
+  "clave": "Trabajos en un DST: exentos de la Regla 10 lo necesario.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-69": {
+  "explicacion": "Según la Regla 35 a), el buque de propulsión mecánica con arrancada emite una pitada larga a intervalos de no más de dos minutos. Si está parado sin arrancada da dos largas; el sin gobierno o restringido da una larga y dos cortas, y el fondeado toca la campana.",
+  "clave": "Niebla: 1 larga, motor avante; 2 largas, motor parado.",
+  "trampa": "La d) es el mismo buque parado: dos pitadas, no una.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "-"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-25": {
+  "explicacion": "El Anexo IV incluye como señales de socorro el cohete con paracaídas o la bengala de mano de luz roja. La señal fumígena debe dar humo naranja, no amarillo; la señal de socorro del Código Internacional es NC, no AL, y «pan-pan» indica urgencia, no peligro grave e inminente (eso es «mayday»).",
+  "clave": "Socorro: luz roja, humo naranja, NC, mayday.",
+  "trampa": "«Pan-pan» es urgencia, no socorro.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-70": {
+  "explicacion": "La Regla 2 b) admite que, para evitar un peligro inmediato y teniendo en cuenta los riesgos de la navegación y las circunstancias especiales, puede ser necesario apartarse de las reglas. Eso no exime de responsabilidad por no cumplirlas o por descuidar la buena práctica marinera. No depende de un servicio de tráfico ni exime al buque sin gobierno.",
+  "clave": "Regla 2: apartarse del RIPA solo para evitar un peligro inmediato.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-26": {
+  "explicacion": "La Regla 6 b) pide a quien lleva radar tener en cuenta que puede no detectar a distancia suficiente embarcaciones pequeñas, hielos u otros objetos flotantes. Las luces de tierra dificultan ver las de otros buques, en zonas de tráfico denso hay que moderar la velocidad y el radar sí puede ayudar a valorar la visibilidad.",
+  "clave": "Radar: no todo lo que flota da eco.",
+  "trampa": "La a) dice que las luces de tierra ayudan; en realidad confunden.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-71": {
+  "explicacion": "Blanca sobre roja en el tope del palo es la embarcación de prácticos en servicio (Regla 29); con las dos luces de costado a la vista está navegando y viene de frente hacia ti. Un pesquero que no es de arrastre lleva roja sobre blanca, el arrastrero verde sobre blanca y el sin gobierno dos rojas.",
+  "clave": "Blanca sobre roja: práctico («blanco de gorra, rojo de cara»).",
+  "trampa": "La a) invierte el orden: el pesquero lleva la roja arriba.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "proa"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-27": {
+  "explicacion": "Un buque fondeado de 40 m lleva en la parte de proa una luz blanca todo horizonte y, a popa o cerca de ella, otra blanca a menor altura (Regla 30 a). Los de menos de 50 m pueden sustituirlas por una sola, pero no están obligados. El de popa más bajo es lo correcto, y varado añadiría dos luces rojas.",
+  "clave": "Fondeado: blanca a proa alta, blanca a popa más baja.",
+  "trampa": "La b) invierte las alturas.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado-50",
+    "vista": "estribor"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-72": {
+  "explicacion": "Por la Regla 18, el buque de motor se aparta del de vela y del pesquero, el velero se aparta del pesquero, y el hidroavión amarado se mantiene apartado de todos. El que mantiene su derrota frente a todos ellos es el buque dedicado a la pesca.",
+  "clave": "Pesca > vela > motor > hidroavión.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-28": {
+  "explicacion": "El esprín de proa sale de la proa hacia popa hasta el muelle. Al virarlo (cobrarlo) arrima la proa al muelle e impide que el barco avance, es decir, frena el movimiento hacia proa. El que impide el movimiento hacia popa es el esprín de popa.",
+  "clave": "Esprín de proa: arrima la proa y frena el avance.",
+  "trampa": "La c) atribuye al esprín de proa el efecto del de popa.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-73": {
+  "explicacion": "Templar un cabo es tensarlo hasta que no tenga seno, sin llegar a forzarlo. Aflojarlo es lascar o amollar, soltarlo es largar y recogerlo en vueltas es adujarlo.",
+  "clave": "Templar = tensar sin seno.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-29": {
+  "explicacion": "Al meter timón con arrancada avante, la pala frena el barco (pierde velocidad), la popa se desplaza hacia la banda contraria a la metida (la proa cae hacia la de metida) y, por la fuerza que actúa bajo el centro de gravedad, el barco escora hacia la banda de metida. Hay barcos rápidos que escoran hacia dentro de la curva, pero la respuesta general es la b).",
+  "clave": "Timón metido: pierde velocidad, la popa abre y escora a la banda de metida.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-74": {
+  "explicacion": "El timón solo gobierna si el agua corre por la pala, así que al perder la arrancada se pierde el gobierno. Dar atrás con arrancada avante, meter todo el timón o poner el piloto automático no te dejan, por sí solos, sin gobierno.",
+  "clave": "Sin arrancada no hay gobierno.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-30": {
+  "explicacion": "Ante una posible hemorragia interna hay que tener al herido acostado en horizontal, abrigado, vigilarlo y evacuarlo; si pierde el conocimiento, se le pone en posición lateral de seguridad. No se le da nada por la boca, ni siquiera agua, y no se le enfría, porque lo que corre riesgo es que entre en shock.",
+  "clave": "Hemorragia interna: tumbado, abrigado y nada por la boca.",
+  "trampa": "La a) parece inofensiva, pero no se da de beber.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-75": {
+  "explicacion": "Unas quemaduras que cubren una cuarta parte del cuerpo son graves por su extensión, aunque sean de primer grado, así que hay que evacuar al afectado a un centro sanitario. La ropa pegada no se arranca, las ampollas no se recortan y no se administran antibióticos por tu cuenta.",
+  "clave": "Quemadura extensa: evacuar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-31": {
+  "explicacion": "Un fuego necesita combustible, comburente (oxígeno), calor y la reacción en cadena. Cortar la reacción en cadena se llama inhibición; quitar el oxígeno es sofocación y bajar la temperatura, enfriamiento o refrigeración. «Socaireación» no existe.",
+  "clave": "Inhibición = romper la reacción en cadena.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-76": {
+  "explicacion": "En el agua hay que conservar el calor: postura fetal (HELP) si estás solo o en grupo abrazados, sin nadar ni moverse más de lo necesario. Moverse acelera la hipotermia, el agua de mar deshidrata más y el chaleco no se quita nunca.",
+  "clave": "En el agua: quieto, encogido, en grupo y con chaleco.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-32": {
+  "explicacion": "Tras un abordaje no hay que separar los barcos sin haber evaluado antes las averías: el casco del otro puede estar taponando la brecha y al separarlos entraría el agua de golpe. Revisar daños, avisar al centro de salvamento y cerrar los compartimentos estancos sí son medidas adecuadas.",
+  "clave": "Abordaje: no separes los barcos hasta saber qué se rompió.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-77": {
+  "explicacion": "Para reflotar un barco varado hay que esperar a la pleamar, no a la bajamar, porque con más agua el barco flota mejor. Mover pesos para cambiar el asiento, balancear el barco para romper la succión del fango y pedir un remolcador son actuaciones correctas.",
+  "clave": "Varado: espera a la pleamar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-33": {
+  "explicacion": "La temperatura es la magnitud que mide la agitación media de las moléculas de una sustancia y nos informa de su energía térmica. La b) define el calor, la c) se parece a un gradiente y la d) describe la radiación.",
+  "clave": "Temperatura: lo agitadas que están las moléculas.",
+  "trampa": "La b) es el calor, que no es lo mismo que la temperatura.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-78": {
+  "explicacion": "Refrescar es aumentar la intensidad del viento. Cuando disminuye se dice que amaina o calma, y un cambio de dirección es rolar.",
+  "clave": "Refresca = sube el viento.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-34": {
+  "explicacion": "La previsión meteorológica marítima se difunde por los Centros de Salvamento Marítimo en VHF, por las estaciones radiocosteras en onda media y VHF y por NAVTEX. No existe un servicio meteorológico de las Autoridades Portuarias por el canal 69 al que llamar en cualquier momento.",
+  "clave": "Meteo: radiocosteras, CCS y NAVTEX.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-79": {
+  "explicacion": "En el hemisferio norte el viento gira alrededor de una borrasca en sentido antihorario, y la presión en ella es baja, en general por debajo de los 1013 mb. Girar en sentido horario con presión alta es lo propio de un anticiclón.",
+  "clave": "Borrasca HN: antihoraria y presión baja.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-35": {
+  "explicacion": "La escala Douglas sirve para estimar el estado de la mar por rangos de altura de ola, del grado 0 (llana) al 9 (enorme). La fuerza del viento se mide con la Beaufort, y entre ambas hay una relación aproximada, porque a más viento corresponde más mar.",
+  "clave": "Douglas: mar. Beaufort: viento.",
+  "trampa": "La c): sí hay relación orientativa entre las dos escalas.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-80": {
+  "explicacion": "Las isobaras unen puntos con el mismo valor de la presión atmosférica en una superficie dada, normalmente reducida al nivel del mar. Las líneas de igual temperatura son las isotermas.",
+  "clave": "Isobara: igual presión.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-36": {
+  "explicacion": "La virazón es la brisa diurna que sopla del mar hacia tierra: de día la tierra se calienta más que el mar y el aire sube sobre ella, aspirando aire del mar. De noche ocurre al revés y sopla el terral, de tierra al mar.",
+  "clave": "Virazón: de día, del mar a tierra.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-mar"
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-81": {
+  "explicacion": "El viento real es el que hay en el lugar, el que notarías con el barco parado. El aparente sí cambia con el movimiento del barco, porque es la combinación del real y el del propio avance (que depende del rumbo y la velocidad), y con arrancada lo que mides es el aparente, no el real.",
+  "clave": "Parado notas el real; navegando, el aparente.",
+  "trampa": "La d) describe lo que medirías navegando: el aparente.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-37": {
+  "explicacion": "S32W está en el tercer cuadrante: desde el Sur (180º) 32º hacia el Oeste, así que el rumbo circular es 180º + 32º = 212º. 148º sería S32E.",
+  "clave": "SW: 180 + R.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 212
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-06-82": {
+  "explicacion": "El chapitel es la pieza central de la rosa, troncocónica y hueca, que se apoya en el estilo; así el punto de apoyo queda por encima del centro de gravedad y la rosa es estable. El estilo es la punta fija sobre la que descansa, la suspensión cardán mantiene horizontal el mortero y el mortero es el recipiente.",
+  "clave": "Chapitel sobre estilo.",
+  "trampa": "Confundir el chapitel (en la rosa) con el estilo (la punta fija).",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-38": {
+  "explicacion": "El meridiano cero (Greenwich) es la referencia desde la que se cuentan las longitudes, de 0º a 180º hacia el Este o el Oeste. La a) define el meridiano del lugar, la c) la latitud y la d) el ecuador.",
+  "clave": "Meridiano cero: origen de las longitudes.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-83": {
+  "explicacion": "La corrección total es la suma algebraica de la declinación magnética y el desvío (Ct = dm + Δ). La a) es la declinación y la b) el desvío por separado, y la d) suma la declinación consigo misma, porque «variación local» es otro nombre de la declinación.",
+  "clave": "Ct = dm + Δ.",
+  "trampa": "«Variación local» es la propia declinación.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-39": {
+  "explicacion": "La declinación magnética cambia de un lugar a otro y también con los años, porque el polo magnético se desplaza; por eso la carta da su valor para un año y su variación anual. El desvío no influye en ella: es un error del barco, no del campo terrestre.",
+  "clave": "Declinación: depende del lugar y del año.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-84": {
+  "explicacion": "El compás de marcaciones es una aguja magnética de mano, así que lo que lees directamente es una demora de aguja, sin corregir. Para llevarla a la carta hay que aplicarle la corrección (Dv = Da + Ct). La marcación se mide desde la proa, no desde el norte.",
+  "clave": "Compás de mano: lees demora de aguja; corrígela antes de trazarla.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-40": {
+  "explicacion": "En forma semicircular, las marcaciones se miden de 0º a 180º desde la proa por cada banda, positivas por estribor y negativas por babor. En forma circular se cuentan de 0º a 360º en el sentido de las agujas del reloj y son siempre positivas.",
+  "clave": "Marcación: estribor +, babor −.",
+  "trampa": "La a) invierte los signos.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-85": {
+  "explicacion": "La deriva es el efecto de la corriente sobre el barco, que lo desplaza respecto al rumbo que lleva. El abatimiento lo causa el viento sobre la obra muerta.",
+  "clave": "Corriente → deriva; viento → abatimiento.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-41": {
+  "explicacion": "La marea sube por encima de lo previsto con presión baja (unos 20 cm con 993 mb, a razón de 1 cm por mb) y con viento del mar hacia tierra, que acumula agua en la costa. La a) junta los dos efectos; las demás tienen presión alta o viento de tierra, que bajan el nivel.",
+  "clave": "Marea más alta: presión baja + viento hacia tierra.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-86": {
+  "explicacion": "La Hora Reloj de Bitácora es la hora que se lleva a bordo, la que decide el patrón para organizar la vida del barco. Puede coincidir con la hora legal, pero no tiene por qué, y no se obtiene sumando dos horas.",
+  "clave": "HRB: la hora de a bordo, la decide el patrón.",
+  "concepto": "and-2024-c2-t40"
+ },
+ "dgmm-per-2024-06-44": {
+  "explicacion": "Con 1022 mb, 9 mb por encima de la presión normal, el nivel baja unos 9 cm. Sacas del extracto del anuario la altura de la primera bajamar del 6 de junio en Algeciras, la sumas a los 6,2 m de la carta y restas los 0,09 m: el resultado es 6,23 m.",
+  "clave": "Sonda = carta + marea − (P − 1013) cm.",
+  "concepto": null
+ },
+ "dgmm-per-2024-06-90": {
+  "explicacion": "Del anuario (extracto del tribunal) se sacan las alturas de la bajamar y la pleamar más cercanas a las 18:00 UTC del 29 de junio en Tapia de Casariego. Se suman a los 9 m de la carta y, con 1018 mb, se restan unos 5 cm a cada una, lo que da 10,10 m y 12,47 m. La d) resta la marea, y la a) y la b) no aplican bien la corrección por presión.",
+  "clave": "Presión alta: resta 1 cm por mb sobre 1013 a cada altura.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-01": {
+  "explicacion": "La limera es el orificio o tubo por el que la mecha (el eje del timón) atraviesa el casco y dentro del cual gira. La mecha es el propio eje, los guardines son los cables que lo mueven desde la rueda y la pala es la superficie que desvía el agua.",
+  "clave": "Limera = el agujero de la mecha.",
+  "trampa": "Mecha es el eje, no el tubo por el que pasa.",
+  "concepto": "and-2022-c3-t02"
+ },
+ "dgmm-per-2024-11-46": {
+  "explicacion": "Los guardamancebos son los cables o cabos que van por las bandas sostenidos por los candeleros, como una barandilla, para que la tripulación no caiga al agua. La b) describe una cornamusa, la c) una bita y la d) una lumbrera.",
+  "clave": "Guardamancebo: la «barandilla» entre candeleros.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-02": {
+  "explicacion": "Los imbornales son las aberturas en los costados, a ras de cubierta, que devuelven al mar el agua que se acumula en ella, sobre todo la de los golpes de mar. La a) describe un grifo de fondo, la b) la bañera y la d) una escotilla.",
+  "clave": "Imbornal = desagüe de cubierta.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-47": {
+  "explicacion": "La bocina es el tubo fijo por el que el eje de la hélice atraviesa el casco: el eje gira dentro, pero ella no se mueve. Las palas, el núcleo y el capacete giran con la hélice.",
+  "clave": "Bocina: fija; por ella pasa el eje que gira.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-03": {
+  "explicacion": "Los baos son las vigas transversales que van de banda a banda, se unen a las cuadernas y sostienen la cubierta. Las cuadernas son las «costillas» del costado, la regala remata la borda y la roda es la prolongación de la quilla en la proa.",
+  "clave": "Bao: viga transversal bajo la cubierta.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-48": {
+  "explicacion": "Filar es ir arriando poco a poco un cabo o una cadena que está trabajando. Levar es recoger el ancla, zarpar es cuando el ancla se despega del fondo y librar no es el término de esta maniobra.",
+  "clave": "Filar = soltar poco a poco lo que trabaja.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-04": {
+  "explicacion": "El francobordo es la distancia vertical entre la línea de flotación en máxima carga y la cubierta (la estanca más alta). La distancia de la quilla a la cubierta es el puntal, y no se mide en horizontal.",
+  "clave": "Francobordo = de la flotación a la cubierta.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "francobordo",
+     "linea-flotacion"
+    ]
+   }
+  ],
+  "concepto": null
+ },
+ "dgmm-per-2024-11-49": {
+  "explicacion": "Adrizar es enderezar el barco, devolverlo a la vertical después de una escora. Inclinarse a una banda es escorar, y hundir la proa o la popa es cambiar el asiento.",
+  "clave": "Adrizar = enderezar.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-05": {
+  "explicacion": "Un barco fondeado gira alrededor del ancla por el viento o la corriente; el círculo que describe, con radio igual a la cadena filada más la eslora, es el círculo de borneo. Hay que contar con él para no tocar a otros barcos ni a la costa. Garrear es arrastrar el ancla.",
+  "clave": "Borneo = el círculo que barres fondeado.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-50": {
+  "explicacion": "El orinque es el cabo que une la cruz del ancla con un boyarín para señalarla y poder zarparla; forma parte del fondeo, no del amarre. Las cornamusas, las bitas y los muertos (bloques en el fondo con boya) sí se usan para amarrar.",
+  "clave": "Orinque: del fondeo, no del amarre.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-06": {
+  "explicacion": "El chicote es cualquiera de los dos extremos de un cabo. La curvatura de un cabo que no trabaja es el seno, un cabo fino es un cabito o piola y el bucle es una gaza.",
+  "clave": "Chicote = la punta del cabo.",
+  "trampa": "La a) describe el seno.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-51": {
+  "explicacion": "La aproximación al fondeadero se hace despacio, proa al viento o a la corriente, y se para el barco antes de largar el ancla; a toda máquina sería peligroso y la cadena caería mal. Por eso la c) es la incorrecta. Las demás son ciertas: ligera arrancada atrás al fondear, al menos tres veces la sonda con buen tiempo y, si garrea, virar y volver a fondear.",
+  "clave": "Al fondeadero: despacio y proa al viento.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-07": {
+  "explicacion": "«A son de mar» significa estibar y trincar los objetos de a bordo de forma que no se muevan con los balances y las cabezadas. No es una forma de capear ni de correr el temporal, aunque es lo primero que se hace cuando se espera mal tiempo.",
+  "clave": "A son de mar: todo estibado y trincado.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-52": {
+  "explicacion": "Con un hombre al agua lo primero es alejar la hélice de él, no perderlo de vista (designando a alguien que lo señale) y lanzarle ayudas flotantes. Saltar al agua a por él solo añade una víctima, y acercarse dando atrás por la popa pone al náufrago junto a la hélice.",
+  "clave": "Hombre al agua: hélice lejos, vista fija y ayudas al agua.",
+  "trampa": "La c) acerca la hélice, que es lo más peligroso.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-08": {
+  "explicacion": "La a) es la incorrecta: conviene complementar las señales pirotécnicas con espejos de señales, linternas de destellos o luces químicas, que ayudan a que te localicen. Lo demás es correcto: guardarlas en un lugar seco, conocer bien sus instrucciones y respetar su caducidad.",
+  "clave": "Pirotecnia: seca, en fecha y sabiendo usarla; los complementos ayudan.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-53": {
+  "explicacion": "El reflector radar es un elemento pasivo que devuelve las ondas de los radares ajenos para que un barco de fibra o madera, que da poco eco, aparezca en sus pantallas. No es tu propia antena de radar, no te oculta y no es obligatorio en cualquier barco.",
+  "clave": "Reflector radar: para que TE vean.",
+  "trampa": "La c) dice justo lo contrario de su función.",
+  "concepto": "and-2024-c2-t08"
+ },
+ "dgmm-per-2024-11-09": {
+  "explicacion": "Si un aro salvavidas aparece en el agua, alguien puede pensar que ha caído una persona y dar la alerta. Por eso, si lo has perdido, debes avisar a Salvamento Marítimo para evitar una falsa alarma (y reponerlo antes de salir). Activar la radiobaliza sería, justamente, una falsa alarma.",
+  "clave": "Aro perdido: avisa a Salvamento para evitar una búsqueda en falso.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-54": {
+  "explicacion": "El teléfono de emergencias de Salvamento Marítimo es el 900 202 202, no el 900 200 200. Por radio puedes usar el canal 16 en voz o el 70 mediante llamada selectiva digital (LSD).",
+  "clave": "Salvamento Marítimo: 900 202 202, canal 16 o LSD por el 70.",
+  "trampa": "El canal 70 vale para LSD; lo que no admite es voz.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-10": {
+  "explicacion": "La estabilidad transversal depende de la posición relativa del centro de gravedad y del centro de carena (y del metacentro que este define). El balance es la oscilación transversal, no la longitudinal; la estabilidad longitudinal también depende del centro de carena, y la cabezada tiene que ver con la longitudinal.",
+  "clave": "Estabilidad: gravedad frente a carena.",
+  "concepto": null
+ },
+ "dgmm-per-2024-11-55": {
+  "explicacion": "Al capear se reduce la velocidad, pero manteniendo la arrancada mínima para gobernar; si paras, pierdes el gobierno y el barco se atraviesa a la mar. Por eso la a) es la incorrecta. Las demás son ciertas: correr el temporal es más cómodo pero se reciben golpes por popa, la elección depende del barco y del temporal y el ancla flotante ayuda a capear.",
+  "clave": "Capear: poca máquina, pero con gobierno.",
+  "concepto": null
+ }
+}

@@ -446,6 +446,151 @@ export default {
       return [{ kind: 'distance', value: k.distanceBetween(s, 'algeciras-espigon') }];
     },
   },
+  'bal-per-2025-04-c-42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fromMark('punta-almina', 90, 2, 'Situación 10:00');
+      const { rv, dist } = k.rhumb(s, 'algeciras-espigon');
+      const ct = k.ct({ carta: L105, anyo: 2025, desvio: -2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(10, 0), dist, 10) }];
+    },
+  },
+  'bal-per-2025-04-d-42': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.fix2('punta-paloma', 55, 'barbate-espigon', 338, 'Situación 16:30');
+      const rv = k.rv(175, k.ct({ ct: 7 }));
+      return latlon(k.run(s, rv, k.distFor(6, 90), 'Situación 18:00'));
+    },
+  },
+  'bal-per-2025-04-bf-44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const op1 = k.oposicion('punta-cires', 'punta-europa');
+      const op2 = k.oposicion('punta-almina', 'punta-carnero');
+      const s = k.lineAndBearing('punta-europa', op1, 'punta-carnero', op2, 'Situación inicial');
+      const ct = k.ct({ dm: -1.3, desvio: 1.8 });
+      const rv = k.rv(243, ct);
+      return latlon(k.run(s, rv, k.distFor(2.5, 240), 'Situación 4 h después'));
+    },
+  },
+  'bal-per-2025-04-d-44': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      k.note('Línea de posición', 'Al S verdadero de Punta Paloma: estamos sobre el meridiano del faro.');
+      const s = k.lineAndBearing('punta-paloma', 180, 'isla-tarifa', 70);
+      // Hacia el SW, con la costa de Marruecos al S: Espartel queda por babor.
+      const rv = k.tangent(s, 'cabo-espartel', 3, 'babor');
+      return [{ kind: 'bearing', value: k.ra(rv, k.ct({ ct: -8 })) }];
+    },
+  },
+  'bal-per-2025-04-ae-45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: -3, desvio: -3 });
+      const rv = k.rv(80, ct);
+      const d1 = k.dvM(rv, 26, 'punta-cires');
+      const d2 = k.dvM(rv, -90, 'isla-tarifa');
+      return latlon(k.fix2('punta-cires', d1, 'isla-tarifa', d2, 'Situación 09:30'));
+    },
+  },
+  'bal-per-2025-04-bf-45': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const d1 = k.dvM(247, 35, 'punta-carnero');
+      const d2 = k.dvM(247, -90, 'punta-almina');
+      const s = k.fix2('punta-carnero', d1, 'punta-almina', d2, 'Situación 07:24');
+      const dest = k.fromMark('isla-tarifa', 135, 3, '3 M al SE de Tarifa');
+      const { dist } = k.rhumb(s, dest);
+      return [{ kind: 'clock', value: k.eta(hrb(7, 24), dist, 7) }];
+    },
+  },
+  'bal-per-2025-07-c-43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const ct1 = k.ct({ dm: 6, desvio: -1 });
+      const dv = k.dv(245, ct1, 'punta-europa');
+      k.note('Línea de posición', 'Al Norte verdadero del faro de Punta Almina: estamos sobre el meridiano del faro, al N de él.');
+      const s = k.lineAndBearing('punta-almina', 0, 'punta-europa', dv, 'Situación 10:23');
+      const { rv, dist } = k.rhumb(s, 'ceuta-bocana');
+      const ct2 = k.ct({ dm: 6, desvio: 4 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct2) }, { kind: 'clock', value: k.eta(hrb(10, 23), dist, 6) }];
+    },
+  },
+  'bal-per-2025-07-b-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const e1 = k.enfilacion('punta-carnero', 'punta-europa');
+      const e2 = k.enfilacion('punta-almina', 'cabo-negro');
+      const s = k.lineAndBearing('punta-carnero', e1, 'punta-almina', e2, 'Situación 12:00');
+      const { dist } = k.rhumb(s, 'ceuta-bocana');
+      return [{ kind: 'clock', value: k.eta(hrb(12, 0), dist, 20) }];
+    },
+  },
+  'bal-per-2025-07-a-45': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.P('ceuta-bocana');
+      k.note('Rumbo', 'Sin viento ni corriente, el rumbo de superficie es el verdadero: 347°.');
+      k.note('Línea de posición', 'Al SW verdadero de Punta Europa: desde el barco el faro demora 045°.');
+      const p = k.corteRumbo(s, 347, 'punta-europa', 45, 'Al SW de Punta Europa');
+      return [{ kind: 'clock', value: k.eta(hrb(12, 0), k.distanceBetween(s, p), 9) }];
+    },
+  },
+  'bal-per-2025-07-b-45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ carta: L105, anyo: 2012, desvio: 5 });
+      const d1 = k.dv(15, ct, 'punta-europa');
+      const d2 = k.dv(289, ct, 'punta-carnero');
+      return latlon(k.fix2('punta-europa', d1, 'punta-carnero', d2, 'Situación 11:15'));
+    },
+  },
+  'bal-per-2025-07-c-45': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.enfilacion('punta-cires', 'punta-alcazar', 234);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 234) }];
+    },
+  },
+  'bal-per-2025-07-d-45': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.fix2('punta-carnero', 310, 'punta-almina', 220, 'Situación 22:00');
+      const ct = k.ct({ carta: L105, anyo: 2011, desvio: -3.8 });
+      const rv = k.rv(280, ct);
+      return latlon(k.run(s, rv, k.distFor(4, hrb(24, 15) - hrb(22, 0)), 'Situación 00:15'));
+    },
+  },
+  'bal-per-2025-09-b-42': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const op = k.oposicion('punta-cires', 'isla-tarifa');
+      const dv = k.dvM(286, -85, 'punta-alcazar');
+      return latlon(k.lineAndBearing('isla-tarifa', op, 'punta-alcazar', dv, 'Situación 11:10'));
+    },
+  },
+  'bal-per-2025-09-c-42': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      k.note('Enfilación', 'En la parte S de la enfilación Roche–Trafalgar vemos Trafalgar con Roche detrás, hacia el NNW.');
+      const dvT = k.enfilacion('cabo-trafalgar', 'cabo-roche', 330);
+      const ct = k.ctFrom(dvT, 330);
+      const dvP = k.dv(75, ct, 'punta-paloma');
+      return latlon(k.lineAndBearing('cabo-trafalgar', dvT, 'punta-paloma', dvP));
+    },
+  },
+  'bal-per-2025-09-b-43': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const op = k.oposicion('punta-paloma', 'punta-malabata');
+      const ct = k.ctFrom(op, 193.5);
+      const dv = k.dv(346, ct, 'punta-gracia');
+      const s = k.lineAndBearing('punta-malabata', op, 'punta-gracia', dv, 'Situación 17:20');
+      const { rv } = k.rhumb(s, 'cabo-trafalgar');
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
 };
 
 /* DISCREPANCIAS
@@ -497,9 +642,25 @@ export default {
  *     const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 16:00');
  *     const ct = k.ct({ dm: -2, desvio: 9 });
  *     return latlon(k.run(s, k.rv(232, ct), k.distFor(8, 90), 'Situación 17:30'));
+ * 'bal-per-2025-04-ae-43' (formato): sale HRB 09:28 (oficial b, 09:27), pero las opciones escriben la hora sin
+ *   separador («HRB=0927»). Código:
+ *     const s = k.P('ceuta-bocana');
+ *     const { rv, dist } = k.rhumb(s, 'algeciras-espigon');
+ *     const v = dist / (70 / 60);
+ *     const p = k.corteRumbo(s, rv, 'punta-carnero', 315, 'Al SE de Punta Carnero');
+ *     const { dist: d2 } = k.rhumb(p, 'tarifa-espigon');
+ *     return [{ kind: 'clock', value: k.eta(hrb(8, 0), k.distanceBetween(s, p) + d2, v) }];
+ * 'bal-per-2025-04-c-45' (formato): la enfilación Espartel → Malabata mide 078,6° en la carta: Ct = 078,6° − 090° =
+ *   −11,4°, la más próxima es la oficial (c, 10° (−)); pero el comprobador no lee el signo «(-)» y toma las cuatro
+ *   opciones como positivas. Código:
+ *     const dv = k.enfilacion('cabo-espartel', 'punta-malabata', 90);
+ *     return [{ kind: 'signed', value: k.ctFrom(dv, 90) }];
  *
  * — Plantilla o enunciado —
  * 'bal-per-2024-12-ce-45' (plantilla): tomando la salida en 005° 58,4′ W (el «E» del enunciado es errata), Rv = 315,8°
  *   y 23,4 M → HRB 01:25 del día siguiente, como la oficial (c); pero con Ct = −9° − 3,5° = −12,5° el Ra sale
  *   328°. La oficial (Ra 303°) solo sale sumando la Ct con el signo cambiado (315,8° − 12,5°).
+ * 'bal-per-2025-04-ae-44' (plantilla): es el mismo enunciado que 'bal-per-2024-07-be-43' (Pangea): Rv = 148,4°,
+ *   Gracia en Dv 106,4° y Alcázar en Dv 136,4° → 9,7 M a Cabo Trafalgar, que aquí cae en la opción c (9,8 M); la
+ *   oficial es la d (10,3 M), y en 2024-07 la oficial era 10,5 M: la plantilla no es coherente entre convocatorias.
  */

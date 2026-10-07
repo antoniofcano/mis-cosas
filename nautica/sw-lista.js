@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '6d5017c4fa74';
+self.VERSION = '81ae637ac828';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -252,8 +252,10 @@ self.DATOS = [
  "data/ejes/baleares/img/bal-351393-28.jpg",
  "data/ejes/baleares/img/bal-351399-33.jpg",
  "data/ejes/baleares/img/bal-368749-41.jpg",
+ "data/ejes/baleares/per/explicaciones.json",
  "data/ejes/baleares/per/practica.json",
  "data/ejes/baleares/per/preguntas.json",
+ "data/ejes/baleares/py/explicaciones.json",
  "data/ejes/baleares/py/practica.json",
  "data/ejes/baleares/py/preguntas.json",
  "data/ejes/index.json",

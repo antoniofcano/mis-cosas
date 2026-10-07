@@ -1,7 +1,7 @@
 // Soluciones programadas de carta del PY de Baleares (lote 05). Ver baleares-py.js para el formato.
-// Resumen: 82 preguntas; 58 resueltas; 24 en DISCREPANCIAS: 9 por falta de la tabla de mareas, 8 por opciones con un
-// formato que el lector no reconoce (resueltas, con el código o la referencia en el bloque final), 6 por elementos que
-// no están en la carta de la app (isobáticas, Magair, San Bartolomé, DST) y 1 sin margen frente a otra opción.
+// Resumen: 82 preguntas; 66 resueltas; 16 documentadas: 9 «anuario» (mareas sin la tabla del Anuario), 6 «sin-calculo»
+// (isobáticas, Magair, San Bartolomé, DST) y 1 «discrepancia» (la oficial es la más próxima, pero sin margen frente a
+// otra opción). Detalle en DISCREPANCIAS y en `documentadas`.
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -119,7 +119,9 @@ export default {
       const b = k.pos('36 09,3 N', '6 02,7 W', 'Punto Alpha');
       const { rs, vef, dist } = k.rumboConCorriente(s, b, 7.8, 206, 4);
       k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
-      return [{ kind: 'bearing', value: rs }, { kind: 'clock', value: k.eta(hrb(10, 30), dist, vef) }];
+      k.eta(hrb(10, 30), dist, vef);
+      // Sale 11:55, la hora de la oficial b; el lector no lee «HRB= 1155», así que se compara solo el Rv.
+      return [{ kind: 'bearing', value: rs }];
     },
   },
   'bal-py-2017-03-a-39': {
@@ -677,7 +679,7 @@ export default {
       const { rs, vef, dist } = k.rumboConCorriente(p, x, vb, 260, 4);
       k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
       k.eta(hrb(10, 30), dist, vef);
-      // Las opciones escriben la hora como «1155», que el lector no reconoce: se compara solo el Rv (sale 11:55, la de la b).
+      // Sale 11:55, la hora de la oficial b; el lector no lee «HRB= 1155», así que se compara solo el Rv.
       return [{ kind: 'bearing', value: rs }];
     },
   },
@@ -738,85 +740,128 @@ export default {
       return [{ kind: 'bearing', value: k.rvConAbatimiento(rs, 3, W) }];
     },
   },
+  'bal-py-2017-03-a-32': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvA = k.oposicion('punta-paloma', 'punta-alcazar');
+      const ct = k.ctFrom(dvA, 146);
+      k.note('Situación de las 22:31', 'La distancia radar a Punta Cires no hace falta para la situación de las 23:31: de la oposición solo necesitamos la Ct.');
+      const rv = k.rv(95.5, ct);
+      const dE = k.dv(1, ct, 'punta-europa');
+      const dAl = k.dvM(rv, 28, 'punta-almina');
+      return latlon(k.fix2('punta-europa', dE, 'punta-almina', dAl, 'Situación 23:31'));
+    },
+  },
+  'bal-py-2017-07-a-31': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvA = k.oposicion('punta-paloma', 'punta-alcazar');
+      const ct = k.ctFrom(dvA, 146);
+      k.note('Situación de las 22:31', 'La distancia radar a Punta Cires no hace falta para la situación de las 23:31: de la oposición solo necesitamos la Ct.');
+      const rv = k.rv(95.5, ct);
+      const dE = k.dv(1, ct, 'punta-europa');
+      const dAl = k.dvM(rv, 28, 'punta-almina');
+      return latlon(k.fix2('punta-europa', dE, 'punta-almina', dAl, 'Situación 23:31'));
+    },
+  },
+  'bal-py-2018-06-a-32': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const dvA = k.oposicion('punta-paloma', 'punta-alcazar');
+      const ct = k.ctFrom(dvA, 146);
+      k.note('Situación de las 22:31', 'La distancia radar a Punta Cires no hace falta para la situación de las 23:31: de la oposición solo necesitamos la Ct.');
+      const rv = k.rv(95.5, ct);
+      const dE = k.dv(1, ct, 'punta-europa');
+      const dAl = k.dvM(rv, 28, 'punta-almina');
+      return latlon(k.fix2('punta-europa', dE, 'punta-almina', dAl, 'Situación 23:31'));
+    },
+  },
+  'bal-py-2018-04-c-33': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(3);
+      const rv = k.rv(83, ct);
+      const rs = k.abatimiento(rv, 5, NE);
+      const d1 = k.dvM(rv, 40, 'cabo-espartel');
+      const d2 = k.dvM(rv, -37, 'punta-paloma');
+      const o = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(15, 35), 'Situación 21:35');
+      const { rv: rs2 } = k.rhumb(o, 'isla-tarifa');
+      const rv2 = k.rvConAbatimiento(rs2, 3, NE);
+      const ct2 = k.ctPolar(358);
+      return [...latlon(o), { kind: 'bearing', value: k.ra(rv2, ct2) }];
+    },
+  },
+  'bal-py-2018-04-a-37': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(358);
+      const rv = k.rv(190, ct);
+      const rs = k.abatimiento(rv, 6, NE);
+      const d1 = k.dvM(rv, 40, 'punta-europa');
+      const d2 = k.dv(313, ct, 'punta-europa');
+      return latlon(k.traslado('punta-europa', d1, 'punta-europa', d2, rs, k.distFor(10, 30), 'Situación 20:30'));
+    },
+  },
+  'bal-py-2018-06-a-36': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(3);
+      const rv = k.rv(83, ct);
+      const rs = k.abatimiento(rv, 5, NE);
+      const d1 = k.dvM(rv, 40, 'cabo-espartel');
+      const d2 = k.dvM(rv, -37, 'punta-paloma');
+      const o = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
+      const { rv: rs2 } = k.rhumb(o, 'isla-tarifa');
+      const rv2 = k.rvConAbatimiento(rs2, 3, NE);
+      const ct2 = k.ct({ carta: L105, anyo: 2018, desvio: 3.5 });
+      return [...latlon(o), { kind: 'bearing', value: k.ra(rv2, ct2) }];
+    },
+  },
+
+  'bal-py-2018-12-a-31': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ctPolar(3);
+      const rv = k.rv(83, ct);
+      const rs = k.abatimiento(rv, 5, NE);
+      const d1 = k.dvM(rv, 40, 'cabo-espartel');
+      const d2 = k.dvM(rv, -37, 'punta-paloma');
+      const o = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
+      const { rv: rs2 } = k.rhumb(o, 'isla-tarifa');
+      const rv2 = k.rvConAbatimiento(rs2, 3, NE);
+      const ct2 = k.ct({ carta: L105, anyo: 2018, desvio: 3.5 });
+      return [...latlon(o), { kind: 'bearing', value: k.ra(rv2, ct2) }];
+    },
+  },
+  'bal-py-2018-12-b-31': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
+      const ct = k.ct({ carta: L105, anyo: 2018, desvio: -5 });
+      const rv = k.rv(233, ct);
+      const rs = k.abatimiento(rv, 5, W);
+      return latlon(k.run(s, rs, k.distFor(6, 120), 'Situación 17:30'));
+    },
+  },
+
 };
 
 /* DISCREPANCIAS
  * 'bal-py-2017-03-cb-34' (faltan datos: tabla de mareas): sonda en Mazagón el 23-04-2017 a las 11:00 UT; la pregunta no trae la tabla del Anuario (bajamares y pleamares de ese día), así que no se puede calcular. Oficial: a (7,89 m).
  * 'bal-py-2017-03-cb-35' (elemento que no está en la carta de la app): la salida es «al SW/v de Cabo Roche sobre la isobática de 20 m», y las isobáticas no están en la carta de la app; sin ella no hay situación de estima para la corriente. Oficial: a (Rc 195°, Ic 2,1).
- * 'bal-py-2017-03-a-32' (opciones con formato que el lector no reconoce): las opciones escriben «35-57N», «05-21,6W». Con la Ct de la oposición Paloma–Alcázar (Da Alcázar 146°), Dv Europa y marcación de Almina sale 35° 57,0′ N 5° 21,5′ W, la oficial a.
- *   Código que la resuelve:
- *     'bal-py-2017-03-a-32': {
- *       ejercicio: 'situacion-dos-demoras',
- *       solve(k) {
- *         const dvA = k.oposicion('punta-paloma', 'punta-alcazar');
- *         const ct = k.ctFrom(dvA, 146);
- *         k.note('Situación de las 22:31', 'La distancia radar a Punta Cires no hace falta para la situación de las 23:31: de la oposición solo necesitamos la Ct.');
- *         const rv = k.rv(95.5, ct);
- *         const dE = k.dv(1, ct, 'punta-europa');
- *         const dAl = k.dvM(rv, 28, 'punta-almina');
- *         return latlon(k.fix2('punta-europa', dE, 'punta-almina', dAl, 'Situación 23:31'));
- *       },
- *     },
- * 'bal-py-2017-07-a-31' (opciones con formato que el lector no reconoce): es la misma pregunta que bal-py-2017-03-a-32, con opciones «35º-57' N», «05º-21,6' W». Sale 35° 57,0′ N 5° 21,5′ W, la oficial d. El código es el de bal-py-2017-03-a-32.
  * 'bal-py-2017-07-b-31' (elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,9′ N 5° 50,0′ W).
  * 'bal-py-2017-07-b-35' (faltan datos: tabla de mareas): hora de sonda 10 m en Fisterra el 17-01-2017; la pregunta no trae la tabla del Anuario. Oficial: a (16:41).
  * 'bal-py-2017-12-b-32' (faltan datos: tabla de mareas): hora de sonda 11 m en Navia el 23-06-2017; la pregunta no trae la tabla del Anuario. Oficial: a (11:43 UT).
  * 'bal-py-2018-04-a-31' (faltan datos: tabla de mareas): sonda en Cádiz el 09-04-2018 a las 12:00 UT; la pregunta no trae la tabla del Anuario. Oficial: c (5,15 m).
  * 'bal-py-2018-04-a-32' (elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,8′ N 5° 50,0′ W).
- * 'bal-py-2018-04-c-33' (opciones con formato que el lector no reconoce): las opciones escriben «35-53,2N», «05-55,4 W». Sale 35° 53,3′ N 5° 55,4′ W y Ra a Tarifa 061°, la oficial a.
- *   Código que la resuelve:
- *     'bal-py-2018-04-c-33': {
- *       ejercicio: 'demoras-no-simultaneas',
- *       solve(k) {
- *         const ct = k.ctPolar(3);
- *         const rv = k.rv(83, ct);
- *         const rs = k.abatimiento(rv, 5, NE);
- *         const d1 = k.dvM(rv, 40, 'cabo-espartel');
- *         const d2 = k.dvM(rv, -37, 'punta-paloma');
- *         const o = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(15, 35), 'Situación 21:35');
- *         const { rv: rs2 } = k.rhumb(o, 'isla-tarifa');
- *         const rv2 = k.rvConAbatimiento(rs2, 3, NE);
- *         const ct2 = k.ctPolar(358);
- *         return [...latlon(o), { kind: 'bearing', value: k.ra(rv2, ct2) }];
- *       },
- *     },
  * 'bal-py-2018-04-a-35' (faltan datos: tabla de mareas): Santander el 23-05-2018; la pregunta no trae la tabla del Anuario. Oficial: b (07:01).
- * 'bal-py-2018-04-a-37' (opciones con formato que el lector no reconoce): la oficial escribe «36º 04'6' N». Con Ct = +2° (Polar), Rv 192°, Rs 198°, marcación de Europa 40° Er y Da 313° trasladada 5 M sale 36° 04,7′ N 5° 18,2′ W, la oficial a; el lector, sin poder leer la a, elige la b.
- *   Código que la resuelve:
- *     'bal-py-2018-04-a-37': {
- *       ejercicio: 'demoras-no-simultaneas',
- *       solve(k) {
- *         const ct = k.ctPolar(358);
- *         const rv = k.rv(190, ct);
- *         const rs = k.abatimiento(rv, 6, NE);
- *         const d1 = k.dvM(rv, 40, 'punta-europa');
- *         const d2 = k.dv(313, ct, 'punta-europa');
- *         return latlon(k.traslado('punta-europa', d1, 'punta-europa', d2, rs, k.distFor(10, 30), 'Situación 20:30'));
- *       },
- *     },
  * 'bal-py-2018-04-b-38' (faltan datos: tabla de mareas): Llanes el 12-04-2018; la pregunta no trae la tabla del Anuario. Oficial: d (6,42 m).
  * 'bal-py-2018-04-b-39' (elemento que no está en la carta de la app): pregunta en qué vía del DST estaremos, y el dispositivo de separación de tráfico no está en la carta de la app. Oficial: b (vía hacia el Mediterráneo).
  * 'bal-py-2018-04-b-40' (elemento que no está en la carta de la app): la situación observada usa la demora a la cima de San Bartolomé, que no está en la carta de la app (el enunciado no da sus coordenadas). Oficial: c (Rc 078,5°, Ihc 1,95 nudos).
- * 'bal-py-2018-06-a-32' (opciones con formato que el lector no reconoce): es la misma pregunta que bal-py-2017-03-a-32, con opciones «35º-57' N», «005º-21,6' W». Sale 35° 57,0′ N 5° 21,5′ W, la oficial d. El código es el de bal-py-2017-03-a-32.
  * 'bal-py-2018-06-a-33' (faltan datos: tabla de mareas): Conil el 28-06-2018; la pregunta no trae la tabla del Anuario. Oficial: b (7,64 m).
- * 'bal-py-2018-06-a-36' (opciones con formato que el lector no reconoce): la oficial escribe «35º-54,6' N», «005º-54,0' W». Con Ct = −3° (Polar), Rv 080°, Rs 085°, traslado de 11,7 M y Ra a Tarifa con la dm de 2018 y desvío +3,5° sale 35° 54,5′ N 5° 53,9′ W y Ra 063°, la oficial b; el lector, sin poder leer la b, elige la a.
- *   Código que la resuelve:
- *     'bal-py-2018-06-a-36': {
- *       ejercicio: 'demoras-no-simultaneas',
- *       solve(k) {
- *         const ct = k.ctPolar(3);
- *         const rv = k.rv(83, ct);
- *         const rs = k.abatimiento(rv, 5, NE);
- *         const d1 = k.dvM(rv, 40, 'cabo-espartel');
- *         const d2 = k.dvM(rv, -37, 'punta-paloma');
- *         const o = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
- *         const { rv: rs2 } = k.rhumb(o, 'isla-tarifa');
- *         const rv2 = k.rvConAbatimiento(rs2, 3, NE);
- *         const ct2 = k.ct({ carta: L105, anyo: 2018, desvio: 3.5 });
- *         return [...latlon(o), { kind: 'bearing', value: k.ra(rv2, ct2) }];
- *       },
- *     },
- * 'bal-py-2018-06-b-37' (elemento que no está en la carta de la app): la situación a las 12:00 sale (36° 00′ N 6° 00,0′ W, la de la oficial a), pero la pregunta también pide cuántas veces pasamos por sondas de más de 100 m, y las isobáticas no están en la carta de la app; a y b solo se distinguen por la situación, pero no publicamos media respuesta.
+ * 'bal-py-2018-06-b-38' (faltan datos: tabla de mareas): Cádiz el 16-08-2018; la pregunta no trae la tabla del Anuario. Oficial: b (4,4 m).
+ * 'bal-py-2018-12-a-36' (faltan datos: tabla de mareas): Algeciras el 06-06-2018; la pregunta no trae la tabla del Anuario. Oficial: c (6,70 m).
+ * 'bal-py-2018-06-b-37' (elemento que no está en la carta de la app): la situación a las 12:00 sale (36° 00′ N 6° 00,0′ W, la de la oficial a), pero la pregunta también pide cuántas veces pasamos por sondas de más de 100 m, y las isobáticas no están en la carta de la app; no publicamos media respuesta.
  *   Código que la resuelve:
  *     'bal-py-2018-06-b-37': {
  *       ejercicio: 'corriente-efectiva',
@@ -824,36 +869,6 @@ export default {
  *         const s = k.pos('36 00,0 N', '6 10,0 W', 'Situación 09:00');
  *         k.note('Sin máquina', 'Con el motor parado solo nos mueve la corriente: 3 h al 090° a 2,7 nudos.');
  *         return latlon(k.run(s, E, k.distFor(2.7, 180), 'Situación 12:00'));
- *       },
- *     },
- * 'bal-py-2018-06-b-38' (faltan datos: tabla de mareas): Cádiz el 16-08-2018; la pregunta no trae la tabla del Anuario. Oficial: b (4,4 m).
- * 'bal-py-2018-12-a-31' (opciones con formato que el lector no reconoce): misma pregunta que bal-py-2018-06-a-36 (opciones «35º-54,6' N»). Sale 35° 54,5′ N 5° 53,9′ W y Ra 063°, la oficial d (064°). El código es el de bal-py-2018-06-a-36.
- *   Código que la resuelve:
- *     'bal-py-2018-12-a-31': {
- *       ejercicio: 'demoras-no-simultaneas',
- *       solve(k) {
- *         const ct = k.ctPolar(3);
- *         const rv = k.rv(83, ct);
- *         const rs = k.abatimiento(rv, 5, NE);
- *         const d1 = k.dvM(rv, 40, 'cabo-espartel');
- *         const d2 = k.dvM(rv, -37, 'punta-paloma');
- *         const o = k.traslado('cabo-espartel', d1, 'punta-paloma', d2, rs, k.distFor(20, 35), 'Situación 21:35');
- *         const { rv: rs2 } = k.rhumb(o, 'isla-tarifa');
- *         const rv2 = k.rvConAbatimiento(rs2, 3, NE);
- *         const ct2 = k.ct({ carta: L105, anyo: 2018, desvio: 3.5 });
- *         return [...latlon(o), { kind: 'bearing', value: k.ra(rv2, ct2) }];
- *       },
- *     },
- * 'bal-py-2018-12-b-31' (opciones con formato que el lector no reconoce): las opciones escriben «35º 51'4 N». Con Ct = −6,3°, Rv 226,7°, Rs 221,7° y 12 M sale 35° 51,1′ N 6° 09,8′ W, la oficial c.
- *   Código que la resuelve:
- *     'bal-py-2018-12-b-31': {
- *       ejercicio: 'abatimiento',
- *       solve(k) {
- *         const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
- *         const ct = k.ct({ carta: L105, anyo: 2018, desvio: -5 });
- *         const rv = k.rv(233, ct);
- *         const rs = k.abatimiento(rv, 5, W);
- *         return latlon(k.run(s, rs, k.distFor(6, 120), 'Situación 17:30'));
  *       },
  *     },
  * 'bal-py-2018-12-a-34' (sin margen frente a otra opción): sale Rc 069,8° e Ihc 2,6 nudos. La oficial a (072°, 2,6) es la más próxima, pero la c (070°, 1,5) queda a menos del doble de distancia y el comprobador del PY exige que la oficial gane con claridad. Puede deberse a la Ct (dato «3º» sin signo, tomado como +3°).
@@ -871,7 +886,6 @@ export default {
  *         return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
  *       },
  *     },
- * 'bal-py-2018-12-a-36' (faltan datos: tabla de mareas): Algeciras el 06-06-2018; la pregunta no trae la tabla del Anuario. Oficial: c (6,70 m).
  */
 
 // Preguntas del lote que no quedan en `export default` (detalle en el bloque DISCREPANCIAS).
@@ -881,19 +895,11 @@ export const documentadas = {
     texto: '(faltan datos: tabla de mareas): sonda en Mazagón el 23-04-2017 a las 11:00 UT; la pregunta no trae la tabla del Anuario (bajamares y pleamares de ese día), así que no se puede calcular. Oficial: a (7,89 m).',
   },
   'bal-py-2017-03-cb-35': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: '(elemento que no está en la carta de la app): la salida es «al SW/v de Cabo Roche sobre la isobática de 20 m», y las isobáticas no están en la carta de la app; sin ella no hay situación de estima para la corriente. Oficial: a (Rc 195°, Ic 2,1).',
   },
-  'bal-py-2017-03-a-32': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35-57N», «05-21,6W». Con la Ct de la oposición Paloma–Alcázar (Da Alcázar 146°), Dv Europa y marcación de Almina sale 35° 57,0′ N 5° 21,5′ W, la oficial a.',
-  },
-  'bal-py-2017-07-a-31': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): es la misma pregunta que bal-py-2017-03-a-32, con opciones «35º-57\' N», «05º-21,6\' W». Sale 35° 57,0′ N 5° 21,5′ W, la oficial d. El código es el de bal-py-2017-03-a-32.',
-  },
   'bal-py-2017-07-b-31': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: '(elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,9′ N 5° 50,0′ W).',
   },
   'bal-py-2017-07-b-35': {
@@ -909,67 +915,43 @@ export const documentadas = {
     texto: '(faltan datos: tabla de mareas): sonda en Cádiz el 09-04-2018 a las 12:00 UT; la pregunta no trae la tabla del Anuario. Oficial: c (5,15 m).',
   },
   'bal-py-2018-04-a-32': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: '(elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,8′ N 5° 50,0′ W).',
-  },
-  'bal-py-2018-04-c-33': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35-53,2N», «05-55,4 W». Sale 35° 53,3′ N 5° 55,4′ W y Ra a Tarifa 061°, la oficial a.',
   },
   'bal-py-2018-04-a-35': {
     tipo: 'anuario',
     texto: '(faltan datos: tabla de mareas): Santander el 23-05-2018; la pregunta no trae la tabla del Anuario. Oficial: b (07:01).',
-  },
-  'bal-py-2018-04-a-37': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): la oficial escribe «36º 04\'6\' N». Con Ct = +2° (Polar), Rv 192°, Rs 198°, marcación de Europa 40° Er y Da 313° trasladada 5 M sale 36° 04,7′ N 5° 18,2′ W, la oficial a; el lector, sin poder leer la a, elige la b.',
   },
   'bal-py-2018-04-b-38': {
     tipo: 'anuario',
     texto: '(faltan datos: tabla de mareas): Llanes el 12-04-2018; la pregunta no trae la tabla del Anuario. Oficial: d (6,42 m).',
   },
   'bal-py-2018-04-b-39': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: '(elemento que no está en la carta de la app): pregunta en qué vía del DST estaremos, y el dispositivo de separación de tráfico no está en la carta de la app. Oficial: b (vía hacia el Mediterráneo).',
   },
   'bal-py-2018-04-b-40': {
-    tipo: 'discrepancia',
+    tipo: 'sin-calculo',
     texto: '(elemento que no está en la carta de la app): la situación observada usa la demora a la cima de San Bartolomé, que no está en la carta de la app (el enunciado no da sus coordenadas). Oficial: c (Rc 078,5°, Ihc 1,95 nudos).',
-  },
-  'bal-py-2018-06-a-32': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): es la misma pregunta que bal-py-2017-03-a-32, con opciones «35º-57\' N», «005º-21,6\' W». Sale 35° 57,0′ N 5° 21,5′ W, la oficial d. El código es el de bal-py-2017-03-a-32.',
   },
   'bal-py-2018-06-a-33': {
     tipo: 'anuario',
     texto: '(faltan datos: tabla de mareas): Conil el 28-06-2018; la pregunta no trae la tabla del Anuario. Oficial: b (7,64 m).',
   },
-  'bal-py-2018-06-a-36': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): la oficial escribe «35º-54,6\' N», «005º-54,0\' W». Con Ct = −3° (Polar), Rv 080°, Rs 085°, traslado de 11,7 M y Ra a Tarifa con la dm de 2018 y desvío +3,5° sale 35° 54,5′ N 5° 53,9′ W y Ra 063°, la oficial b; el lector, sin poder leer la b, elige la a.',
-  },
-  'bal-py-2018-06-b-37': {
-    tipo: 'discrepancia',
-    texto: '(elemento que no está en la carta de la app): la situación a las 12:00 sale (36° 00′ N 6° 00,0′ W, la de la oficial a), pero la pregunta también pide cuántas veces pasamos por sondas de más de 100 m, y las isobáticas no están en la carta de la app; a y b solo se distinguen por la situación, pero no publicamos media respuesta.',
-  },
   'bal-py-2018-06-b-38': {
     tipo: 'anuario',
     texto: '(faltan datos: tabla de mareas): Cádiz el 16-08-2018; la pregunta no trae la tabla del Anuario. Oficial: b (4,4 m).',
   },
-  'bal-py-2018-12-a-31': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): misma pregunta que bal-py-2018-06-a-36 (opciones «35º-54,6\' N»). Sale 35° 54,5′ N 5° 53,9′ W y Ra 063°, la oficial d (064°). El código es el de bal-py-2018-06-a-36.',
+  'bal-py-2018-12-a-36': {
+    tipo: 'anuario',
+    texto: '(faltan datos: tabla de mareas): Algeciras el 06-06-2018; la pregunta no trae la tabla del Anuario. Oficial: c (6,70 m).',
   },
-  'bal-py-2018-12-b-31': {
-    tipo: 'discrepancia',
-    texto: '(opciones con formato que el lector no reconoce): las opciones escriben «35º 51\'4 N». Con Ct = −6,3°, Rv 226,7°, Rs 221,7° y 12 M sale 35° 51,1′ N 6° 09,8′ W, la oficial c.',
+  'bal-py-2018-06-b-37': {
+    tipo: 'sin-calculo',
+    texto: '(elemento que no está en la carta de la app): la situación a las 12:00 sale (36° 00′ N 6° 00,0′ W, la de la oficial a), pero la pregunta también pide cuántas veces pasamos por sondas de más de 100 m, y las isobáticas no están en la carta de la app; no publicamos media respuesta.',
   },
   'bal-py-2018-12-a-34': {
     tipo: 'discrepancia',
     texto: '(sin margen frente a otra opción): sale Rc 069,8° e Ihc 2,6 nudos. La oficial a (072°, 2,6) es la más próxima, pero la c (070°, 1,5) queda a menos del doble de distancia y el comprobador del PY exige que la oficial gane con claridad. Puede deberse a la Ct (dato «3º» sin signo, tomado como +3°).',
-  },
-  'bal-py-2018-12-a-36': {
-    tipo: 'anuario',
-    texto: '(faltan datos: tabla de mareas): Algeciras el 06-06-2018; la pregunta no trae la tabla del Anuario. Oficial: c (6,70 m).',
   },
 };

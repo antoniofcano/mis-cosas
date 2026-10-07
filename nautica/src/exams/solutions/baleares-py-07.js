@@ -5,6 +5,7 @@
 //     «0º08' W»); con su código en el bloque: 8 dan la oficial y en la otra coincide la situación pero no el Rc,
 //   1 que elige la oficial sin margen (empate),
 //   1 con un elemento que no está en la carta de la app (isobática de 100 m).
+// Las 23 están también en `documentadas` (12 «anuario», 11 «discrepancia»).
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -993,6 +994,33 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv2, ct2) }, { kind: 'clock', value: k.eta(hrb(13), r.dist - 1, r.vef) }];
     },
   },
+};
+
+// Preguntas del lote que no quedan en export default, con su motivo.
+export const documentadas = {
+  'bal-py-2021-12-b-32': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 56,3′ N 5° 33,8′ W, que es la oficial b. Se publicará cuando el lector admita ese guion." },
+  'bal-py-2021-12-b-33': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 36° 01,1′ N 5° 52,7′ W, que es la oficial a." },
+  'bal-py-2021-12-b-37': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 58,6′ N 5° 21,3′ W (la situación de la oficial d), pero la corriente da Rc 139,5° / Ihc 2,4 nudos frente a 135° / 2,5 de la d (las a y b llevan Rc 139°): la diferencia de rumbo de corriente sale de cómo se traza el rumbo para pasar a 3 millas de Isla de Tarifa." },
+  'bal-py-2021-12-b-38': { tipo: 'discrepancia', texto: "Empate: elige la oficial c (Rc 038°, 2,4 nudos) pero sin margen: sale Rc 035,7° e Ihc 2,47 nudos, a medio camino entre la c y la b (035°, 3,1 nudos). Probablemente diferencias de trazado en la situación de las 09:30 (Leona y Cires dan un corte muy agudo)." },
+  'bal-py-2022-06-n-36': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º- 53,5′» y el lector de opciones no las entiende (todas puntúan ∞). La oficial b y las c y d están en ese formato. Calculada sale 35° 54,5′ N 5° 53,9′ W y Ra 062,7°, que es la oficial b (35° 54,6′ N 5° 53,9′ W, Ra 064°)." },
+  'bal-py-2021-12-b-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-03-a-37': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-03-a-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-03-b-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-06-a-37': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-12-ac-36': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º-57′» y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 57,0′ N 5° 21,5′ W, que es la oficial a." },
+  'bal-py-2022-06-n-37': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-12-b-34': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-12-b-36': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2022-12-ac-35': { tipo: 'discrepancia', texto: "Elemento que no está en la carta de la app: la situación de las 04:00 es el corte de la enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa situación no se puede trazar el rumbo para pasar a 1 milla de Punta Cires." },
+  'bal-py-2023-12-a-31': { tipo: 'discrepancia', texto: "Formato de las opciones: las coordenadas vienen escritas como «35º56’0 N» (la décima detrás del apóstrofo) y el lector de opciones no las entiende (todas puntúan ∞). Calculada sale 35° 56,0′ N 5° 49,2′ W, que es la oficial b." },
+  'bal-py-2023-06-ac-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2023-12-a-34': { tipo: 'discrepancia', texto: "Formato de las opciones: la hora viene escrita «HRB 1235» (sin «:» ni «h») y el lector de opciones no la entiende (todas puntúan ∞). Calculada sale HRB 12:23, 35° 54,6′ N 5° 33,9′ W, que es la oficial d." },
+  'bal-py-2023-12-a-35': { tipo: 'discrepancia', texto: "Formato de las opciones: la hora viene escrita «HRB: 0603» (sin «:» entre horas y minutos) y el lector de opciones no la entiende (todas puntúan ∞). Calculada sale Ra 252,0° y llegada a las 06:03, que es la oficial b." },
+  'bal-py-2024-04-a-31': { tipo: 'discrepancia', texto: "Formato de las opciones: la Ct viene escrita «0º08' W» / «1º28' E» y el lector de opciones solo entiende NE/NW con grados y minutos: lee 0 en a, c y d (empate). Calculada sale dm 2035 = +0° 40′ y Ct = +0,67° − 0,8° = −0,13° = 0° 08′ W, que es la oficial c." },
+  'bal-py-2023-12-a-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2023-12-b-40': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
+  'bal-py-2024-04-bc-35': { tipo: 'anuario', texto: "Marea, falta la tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app." },
 };
 
 /* DISCREPANCIAS

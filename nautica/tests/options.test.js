@@ -23,6 +23,15 @@ test('signos: «(-)», «(+)», «(menos)», sueltos y babor/estribor', () => {
   lee('4º 40′ NW', ['signed'], [-gm(4, 40)]);
   lee('20 grados babor', ['signed'], [-20]);
   lee('20 grados estribor', ['signed'], [20]);
+  lee("CT= 0º08' W", ['signed'], [-gm(0, 8)]); // grados y minutos con E/W
+  lee("CT= 0º48' E", ['signed'], [gm(0, 48)]);
+  lee("CT= 1º28' E", ['signed'], [gm(1, 28)]);
+});
+
+test('rumbos y demoras por su nombre, sin leer las aclaraciones entre paréntesis', () => {
+  lee('Demora: Ev (Este verdadero) d: 12,0 millas.', ['bearing', 'distance'], [90, 12]);
+  lee('Demora: 275º d: 12,0 millas.', ['bearing', 'distance'], [275, 12]);
+  lee('Ra = 101,8º (Rv 100º)', ['bearing'], [101.8]);
 });
 
 test('latitudes y longitudes en los formatos de los cuadernillos', () => {
@@ -35,12 +44,15 @@ test('latitudes y longitudes en los formatos de los cuadernillos', () => {
   lee("36º-07,0' N Lo= 05-11,5' W", ['lat', 'lon'], [gm(36, 7), -gm(5, 11.5)]); // guion entre grados y minutos
   lee('l = 35º 57\u00922 N; L= 005º 40\u00923 W', ['lat', 'lon'], [gm(35, 57.2), -gm(5, 40.3)]); // U+0092
   lee("longitud estimada= 005º 24,0º' W", ['lon'], [-gm(5, 24)]); // errata «º'» tras los minutos
+  lee('lo = 36º 00,6´N L = 05º 27,8¨W', ['lat', 'lon'], [gm(36, 0.6), -gm(5, 27.8)]); // diéresis como apóstrofo
 });
 
 test('horas: «21h 34m», «21:34», «13.45» y sin separador «0924»', () => {
   lee('HRB = 21h 34m', ['clock'], [21 * 60 + 34]);
   lee('Hrb= 13.45', ['clock'], [13 * 60 + 45]);
   lee('HRB=0924', ['clock'], [9 * 60 + 24]);
+  lee('HRB=0927.', ['clock'], [9 * 60 + 27]); // con punto final
+  lee('HRB= 2133.', ['clock'], [21 * 60 + 33]);
   lee('HRB= 1407 y d= 2,8 millas.', ['clock', 'distance'], [14 * 60 + 7, 2.8]);
 });
 

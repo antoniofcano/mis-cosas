@@ -1,0 +1,78 @@
+{
+ "id": "baleares",
+ "nombre": "Illes Balears",
+ "organismo": "Govern de les Illes Balears (Direcció General de Ports i Transport Marítim)",
+ "ambito": [
+  "Illes Balears"
+ ],
+ "estado": "publicado",
+ "prefijo": "bal",
+ "fuente": "https://www.caib.es/sites/transportmaritim/es/",
+ "licencia": {
+  "tipo": "CC BY-SA 4.0",
+  "cita": "Preguntas de los exámenes resueltos publicados por el Govern de les Illes Balears (Direcció General de Ports i Transport Marítim, caib.es). Adaptadas: extraídas de los PDF, deduplicadas, con correcciones y explicaciones añadidas. Este banco derivado se distribuye con la licencia CC BY-SA 4.0 (ver data/ejes/baleares/LICENCIA.md).",
+  "aviso": "Toda la información de este portal, así como el diseño, los textos, las imágenes, el sonido y cualquier otro material que lo integre, es propiedad intelectual de la Administración de la Comunidad Autónoma de las Illes Balears, aunque se puede utilizar con la licencia llamada Creative Commons, en la modalidad Reconocimiento-Compartir Igual (by-sa).",
+  "avisoUrl": "https://www.caib.es/webgoib/es/aviso-legal",
+  "usoApp": "permitido",
+  "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.es"
+ },
+ "carta": "L105",
+ "examen": {
+  "per": {
+   "calculadora": true,
+   "reglas": [
+    "Calculadora no programable permitida (también en el PER).",
+    "Preguntas 42–45: ejercicios sobre la carta del Estrecho y cálculos de marea de puertos de toda España; el tribunal entrega el extracto del Anuario de Mareas, que no se publica."
+   ]
+  },
+  "py": {
+   "calculadora": true,
+   "reglas": [
+    "Calculadora no programable permitida.",
+    "Módulo genérico (1–20) y módulo de navegación (21–40) en un solo cuadernillo; el aprobado por módulos solo vale en Baleares.",
+    "Carta (31–40): carta del Estrecho, mareas (con el extracto del anuario que entrega el tribunal) y loxodrómica."
+   ]
+  }
+ },
+ "reserva": {
+  "modo": "pregunta",
+  "per": [
+   "bal-per-2026-06",
+   "bal-per-2026-09"
+  ],
+  "py": [
+   "bal-py-2026-03",
+   "bal-py-2026-06"
+  ]
+ },
+ "listas": {
+  "per": [
+   {
+    "id": "carta",
+    "requiere": "carta",
+    "titulo": "PER Baleares · Carta de navegación",
+    "descripcion": "Preguntas 42–45 de los exámenes de PER del Govern de les Illes Balears (2017–2026) que se resuelven sobre la carta del Estrecho (L105 Enseñanza), con la respuesta oficial.",
+    "tarjeta": "Las {n} preguntas de carta (42–45) de los exámenes del PER de Baleares."
+   },
+   {
+    "id": "mareas",
+    "requiere": "anuario",
+    "titulo": "PER Baleares · Mareas (con anuario)",
+    "descripcion": "Cálculos de marea de las preguntas 42–45: necesitan el extracto del Anuario de Mareas que entrega el tribunal y no se publica. Se muestra la respuesta oficial y el método."
+   },
+   {
+    "id": "teoria",
+    "sinRequiere": "carta",
+    "titulo": "PER Baleares · Teoría (preguntas 1–41)",
+    "descripcion": "Preguntas de teoría de los exámenes oficiales del PER del Govern de les Illes Balears (2017–2026), con la respuesta impresa en el propio cuadernillo («Resposta correcta»)."
+   }
+  ],
+  "py": [
+   {
+    "id": "todas",
+    "titulo": "PY Baleares · Examen teórico completo (40 preguntas)",
+    "descripcion": "Preguntas de los exámenes oficiales de Patrón de Yate del Govern de les Illes Balears (2017–2026): módulo genérico (Seguridad, Meteorología) y de navegación (Teoría de navegación, Carta), con la respuesta oficial."
+   }
+  ]
+ }
+}

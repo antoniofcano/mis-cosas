@@ -1,0 +1,429 @@
+{
+ "eje": "baleares",
+ "prefijo": "bal",
+ "nombre": "Illes Balears",
+ "organismo": "Govern de les Illes Balears (Direcció General de Ports i Transport Marítim)",
+ "indice": "https://www.caib.es/sites/transportmaritim/es/",
+ "descarga": {
+  "userAgent": true,
+  "pausa": 2000
+ },
+ "adaptador": {
+  "per": "respuesta-en-linea",
+  "py": "respuesta-en-linea"
+ },
+ "ids": "eje",
+ "salida": "data",
+ "titulaciones": {
+  "per": {
+   "preguntas": 45,
+   "disposicion": "per-rd875"
+  },
+  "py": {
+   "preguntas": 40,
+   "modulos": {
+    "generico": 20,
+    "navegacion": 20
+   },
+   "disposicion": "py-40"
+  }
+ },
+ "repetidas": {
+  "entreConvocatorias": true,
+  "permutaciones": false
+ },
+ "notas": "Una página por convocatoria (caib.es/sites/transportmaritim/es/<slug>/) con un PDF por modelo (isla y turno). Fechas: primer día de examen (Menorca y Eivissa) según la resolución anual de convocatoria del BOIB o el calendario de exámenes de la DG; en las convocatorias marcadas fechaAproximada no se ha encontrado la resolución y la fecha es el día 1 del mes de la convocatoria. El PY de Mallorca de marzo de 2023 (PDF 420397) solo existe en catalán y no entra en el banco.",
+ "convocatorias": [
+  {
+   "clave": "2017-03",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/maraabril_2017_respostes_examens/",
+   "fecha": "2017-03-01",
+   "fechaAproximada": true,
+   "titulo": "Marzo-abril de 2017",
+   "activa": true
+  },
+  {
+   "clave": "2017-07",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/juliol_2017_respostes_dels_examens/",
+   "fecha": "2017-07-01",
+   "fechaAproximada": true,
+   "titulo": "Julio de 2017",
+   "activa": true
+  },
+  {
+   "clave": "2017-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/setembre_2017_respostes_examens/",
+   "fecha": "2017-09-01",
+   "fechaAproximada": true,
+   "titulo": "Septiembre de 2017",
+   "activa": true
+  },
+  {
+   "clave": "2017-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/desembre_2017_examens_amb_respostes/",
+   "fecha": "2017-12-01",
+   "fechaAproximada": true,
+   "titulo": "Diciembre de 2017",
+   "activa": true
+  },
+  {
+   "clave": "2018-04",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/abril_2018_examens_amb_respostes_/",
+   "fecha": "2018-04-10",
+   "fechaAproximada": false,
+   "titulo": "Abril de 2018",
+   "activa": true
+  },
+  {
+   "clave": "2018-06",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/juny_2018_examens_amb_respostes/",
+   "fecha": "2018-06-26",
+   "fechaAproximada": false,
+   "titulo": "Junio de 2018",
+   "activa": true
+  },
+  {
+   "clave": "2018-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/setembre_2018_examens_amb_respostes/",
+   "fecha": "2018-09-10",
+   "fechaAproximada": false,
+   "titulo": "Septiembre de 2018",
+   "activa": true
+  },
+  {
+   "clave": "2018-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/desembre_2018_examens_amb_respostes/",
+   "fecha": "2018-12-14",
+   "fechaAproximada": false,
+   "titulo": "Diciembre de 2018",
+   "activa": true
+  },
+  {
+   "clave": "2019-04",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/abril_2019_examens_amb_respostes/",
+   "fecha": "2019-04-01",
+   "fechaAproximada": true,
+   "titulo": "Abril de 2019",
+   "activa": true
+  },
+  {
+   "clave": "2019-06",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocatoria_juny_2019_examens_amb_respostes/",
+   "fecha": "2019-06-01",
+   "fechaAproximada": true,
+   "titulo": "Junio de 2019",
+   "activa": true
+  },
+  {
+   "clave": "2019-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2019_examens_amb_respostes/",
+   "fecha": "2019-09-01",
+   "fechaAproximada": true,
+   "titulo": "Septiembre de 2019",
+   "activa": true
+  },
+  {
+   "clave": "2019-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_desembre_2019_examens_resolts/",
+   "fecha": "2019-12-01",
+   "fechaAproximada": true,
+   "titulo": "Diciembre de 2019",
+   "activa": true
+  },
+  {
+   "clave": "2020-07",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_juliol_2020_examens_resolts_0/",
+   "fecha": "2020-07-01",
+   "fechaAproximada": true,
+   "titulo": "Julio de 2020 (la de abril, aplazada)",
+   "activa": true
+  },
+  {
+   "clave": "2020-10",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_doctubre_de_2020_examens_resolts/",
+   "fecha": "2020-10-01",
+   "fechaAproximada": true,
+   "titulo": "Octubre de 2020",
+   "activa": true
+  },
+  {
+   "clave": "2020-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_desembre_de_2020_examens_amb_respostes_/",
+   "fecha": "2020-12-15",
+   "fechaAproximada": false,
+   "titulo": "Diciembre de 2020",
+   "activa": true
+  },
+  {
+   "clave": "2021-03",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_mara_de_2021_examens_amb_respostes/",
+   "fecha": "2021-03-23",
+   "fechaAproximada": false,
+   "titulo": "Marzo de 2021",
+   "activa": true
+  },
+  {
+   "clave": "2021-06",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_juny_de_2021_examens_amb_respostes/",
+   "fecha": "2021-06-22",
+   "fechaAproximada": false,
+   "titulo": "Junio de 2021",
+   "activa": true
+  },
+  {
+   "clave": "2021-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2021_examens_amb_respostes/",
+   "fecha": "2021-09-14",
+   "fechaAproximada": false,
+   "titulo": "Septiembre de 2021",
+   "activa": true
+  },
+  {
+   "clave": "2021-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_desembre_de_2021_examens_amb_respostes/",
+   "fecha": "2021-12-14",
+   "fechaAproximada": false,
+   "titulo": "Diciembre de 2021",
+   "activa": true
+  },
+  {
+   "clave": "2022-03",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_abril_2022_examens_resolts/",
+   "fecha": "2022-03-01",
+   "fechaAproximada": true,
+   "titulo": "Marzo de 2022",
+   "activa": true
+  },
+  {
+   "clave": "2022-06",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_juny_de_2022_examens_resolts/",
+   "fecha": "2022-06-01",
+   "fechaAproximada": true,
+   "titulo": "Junio de 2022",
+   "activa": true
+  },
+  {
+   "clave": "2022-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2022_examens_resolts/",
+   "fecha": "2022-09-01",
+   "fechaAproximada": true,
+   "titulo": "Septiembre de 2022",
+   "activa": true
+  },
+  {
+   "clave": "2022-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_desembre_de_2022_examens_resolts/",
+   "fecha": "2022-12-01",
+   "fechaAproximada": true,
+   "titulo": "Diciembre de 2022",
+   "activa": true
+  },
+  {
+   "clave": "2023-03",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_mara_de_2023_examens_resolts/",
+   "fecha": "2023-03-28",
+   "fechaAproximada": false,
+   "titulo": "Marzo de 2023",
+   "activa": true
+  },
+  {
+   "clave": "2023-06",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_juny_de_2023_examens_resolts/",
+   "fecha": "2023-06-13",
+   "fechaAproximada": false,
+   "titulo": "Junio de 2023",
+   "activa": true
+  },
+  {
+   "clave": "2023-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2023_examens_resolts_0/",
+   "fecha": "2023-09-12",
+   "fechaAproximada": false,
+   "titulo": "Septiembre de 2023",
+   "activa": true
+  },
+  {
+   "clave": "2023-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_desembre_de_2023_examens_resolts/",
+   "fecha": "2023-12-12",
+   "fechaAproximada": false,
+   "titulo": "Diciembre de 2023",
+   "activa": true
+  },
+  {
+   "clave": "2024-04",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_dabril_de_2024_examens_resolts/",
+   "fecha": "2024-04-09",
+   "fechaAproximada": false,
+   "titulo": "Abril de 2024",
+   "activa": true
+  },
+  {
+   "clave": "2024-07",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_dabril_de_2024_examens_resolts_0/",
+   "fecha": "2024-07-02",
+   "fechaAproximada": false,
+   "titulo": "Julio de 2024",
+   "activa": true
+  },
+  {
+   "clave": "2024-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2024_examens_resolts/",
+   "fecha": "2024-09-17",
+   "fechaAproximada": false,
+   "titulo": "Septiembre de 2024",
+   "activa": true
+  },
+  {
+   "clave": "2024-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_desembre_de_2024_examens_resolts/",
+   "fecha": "2024-12-10",
+   "fechaAproximada": false,
+   "titulo": "Diciembre de 2024",
+   "activa": true
+  },
+  {
+   "clave": "2025-04",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_dabril_de_2025_examens_resolts/",
+   "fecha": "2025-04-01",
+   "fechaAproximada": false,
+   "titulo": "Abril de 2025",
+   "activa": true
+  },
+  {
+   "clave": "2025-07",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_juliol_de_2025_examens_resolts/",
+   "fecha": "2025-07-01",
+   "fechaAproximada": false,
+   "titulo": "Julio de 2025",
+   "activa": true
+  },
+  {
+   "clave": "2025-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocatoria_setembre_2025_examens_resolts/",
+   "fecha": "2025-09-23",
+   "fechaAproximada": false,
+   "titulo": "Septiembre de 2025",
+   "activa": true
+  },
+  {
+   "clave": "2025-12",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_desembre_de_2025_examens_resolts/",
+   "fecha": "2025-12-10",
+   "fechaAproximada": false,
+   "titulo": "Diciembre de 2025",
+   "activa": true
+  },
+  {
+   "clave": "2026-03",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_mara_de_2026_examens_resolts/",
+   "fecha": "2026-03-24",
+   "fechaAproximada": false,
+   "titulo": "Marzo de 2026",
+   "activa": true
+  },
+  {
+   "clave": "2026-06",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_juny_de_2026/",
+   "fecha": "2026-06-30",
+   "fechaAproximada": false,
+   "titulo": "Junio de 2026",
+   "activa": true
+  },
+  {
+   "clave": "2026-09",
+   "pagina": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2026_examens_resolts/",
+   "fecha": "2026-09-15",
+   "fechaAproximada": false,
+   "titulo": "Septiembre de 2026",
+   "activa": true
+  }
+ ],
+ "huecos": {
+  "bal-per-2020-07 · ESP-B/N": "PER específico (preguntas 28–45) de Menorca y Eivissa: un juego propio de 18 preguntas, no un trozo de un PER completo",
+  "bal-per-2020-07 · ESP-F": "PER específico (preguntas 28–45) de Mallorca: un juego propio de 18 preguntas",
+  "bal-per-2021-06 · ESP-A": "PER específico (preguntas 28–45) de Mallorca: un juego propio de 18 preguntas"
+ },
+ "ficha": {
+  "id": "baleares",
+  "nombre": "Illes Balears",
+  "organismo": "Govern de les Illes Balears (Direcció General de Ports i Transport Marítim)",
+  "ambito": [
+   "Illes Balears"
+  ],
+  "estado": "interno",
+  "prefijo": "bal",
+  "fuente": "https://www.caib.es/sites/transportmaritim/es/",
+  "licencia": {
+   "tipo": "CC BY-SA 4.0",
+   "cita": "Preguntas de los exámenes resueltos publicados por el Govern de les Illes Balears (Direcció General de Ports i Transport Marítim, caib.es). Adaptadas: extraídas de los PDF, deduplicadas, con correcciones y explicaciones añadidas. Este banco derivado se distribuye con la licencia CC BY-SA 4.0 (ver data/ejes/baleares/LICENCIA.md).",
+   "aviso": "Toda la información de este portal, así como el diseño, los textos, las imágenes, el sonido y cualquier otro material que lo integre, es propiedad intelectual de la Administración de la Comunidad Autónoma de las Illes Balears, aunque se puede utilizar con la licencia llamada Creative Commons, en la modalidad Reconocimiento-Compartir Igual (by-sa).",
+   "avisoUrl": "https://www.caib.es/webgoib/es/aviso-legal",
+   "usoApp": "permitido",
+   "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.es"
+  },
+  "carta": "L105",
+  "examen": {
+   "per": {
+    "calculadora": true,
+    "reglas": [
+     "Calculadora no programable permitida (también en el PER).",
+     "Preguntas 42–45: ejercicios sobre la carta del Estrecho y cálculos de marea de puertos de toda España; el tribunal entrega el extracto del Anuario de Mareas, que no se publica."
+    ]
+   },
+   "py": {
+    "calculadora": true,
+    "reglas": [
+     "Calculadora no programable permitida.",
+     "Módulo genérico (1–20) y módulo de navegación (21–40) en un solo cuadernillo; el aprobado por módulos solo vale en Baleares.",
+     "Carta (31–40): carta del Estrecho, mareas (con el extracto del anuario que entrega el tribunal) y loxodrómica."
+    ]
+   }
+  },
+  "reserva": {
+   "modo": "pregunta",
+   "per": [
+    "bal-per-2026-06",
+    "bal-per-2026-09"
+   ],
+   "py": [
+    "bal-py-2026-03",
+    "bal-py-2026-06"
+   ]
+  },
+  "listas": {
+   "per": [
+    {
+     "id": "carta",
+     "requiere": "carta",
+     "titulo": "PER Baleares · Carta de navegación",
+     "descripcion": "Preguntas 42–45 de los exámenes de PER del Govern de les Illes Balears (2017–2026) que se resuelven sobre la carta del Estrecho (L105 Enseñanza), con la respuesta oficial.",
+     "tarjeta": "Las {n} preguntas de carta (42–45) de los exámenes del PER de Baleares."
+    },
+    {
+     "id": "mareas",
+     "requiere": "anuario",
+     "titulo": "PER Baleares · Mareas (con anuario)",
+     "descripcion": "Cálculos de marea de las preguntas 42–45: necesitan el extracto del Anuario de Mareas que entrega el tribunal y no se publica. Se muestra la respuesta oficial y el método."
+    },
+    {
+     "id": "teoria",
+     "sinRequiere": "carta",
+     "titulo": "PER Baleares · Teoría (preguntas 1–41)",
+     "descripcion": "Preguntas de teoría de los exámenes oficiales del PER del Govern de les Illes Balears (2017–2026), con la respuesta impresa en el propio cuadernillo («Resposta correcta»)."
+    }
+   ],
+   "py": [
+    {
+     "id": "todas",
+     "titulo": "PY Baleares · Examen teórico completo (40 preguntas)",
+     "descripcion": "Preguntas de los exámenes oficiales de Patrón de Yate del Govern de les Illes Balears (2017–2026): módulo genérico (Seguridad, Meteorología) y de navegación (Teoría de navegación, Carta), con la respuesta oficial."
+    }
+   ]
+  }
+ },
+ "descripcion": {
+  "per": "Preguntas de los exámenes resueltos de Patrón de Embarcaciones de Recreo del Govern de les Illes Balears (2017–2026), extraídas con tools/bancos (npm run bancos -- baleares). Fuente: Govern de les Illes Balears, CC BY-SA.",
+  "py": "Preguntas de los exámenes resueltos de Patrón de Yate del Govern de les Illes Balears (2017–2026), extraídas con tools/bancos (npm run bancos -- baleares). Fuente: Govern de les Illes Balears, CC BY-SA."
+ }
+}

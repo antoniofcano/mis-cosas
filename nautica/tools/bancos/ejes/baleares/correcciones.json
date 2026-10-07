@@ -1,0 +1,146 @@
+{
+ "eje": "baleares",
+ "descripcion": "Correcciones del Tribunal de las Illes Balears: la fe de erratas publicada en la página de una convocatoria y las notas «(*) NOTA» leídas en las aulas e impresas en el propio cuadernillo. Baleares no publica anulaciones ni plantillas revisadas. Se mantiene a mano; cada entrada cita su fuente. Modelo y número son los del cuadernillo citado. Además, las preguntas repetidas a las que el propio tribunal dio respuestas distintas en convocatorias diferentes se resuelven a mano contra la norma o el cálculo (accion «respuesta», con «revision»: true y la norma citada como fuente).",
+ "correcciones": [
+  {
+   "tit": "per",
+   "conv": "bal-per-2024-07",
+   "modelo": "B/E",
+   "numero": 35,
+   "accion": "errata",
+   "campo": "opcion-a",
+   "buscar": "760 mm",
+   "reemplazar": "760 mmHg",
+   "fuente": "https://www.caib.es/sites/transportmaritim/es/convocataria_dabril_de_2024_examens_resolts_0/",
+   "texto": "Fe de erratas de la convocatoria de julio de 2024: «En la respuesta A de la pregunta 35, que afecta a la prueba de PER de los modelos B (Ibiza) y E (Menorca), donde dice \"760 mm\" debe decir \"760 mmHg\"»."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2022-09",
+   "modelo": "A",
+   "numero": 45,
+   "accion": "errata",
+   "campo": "enunciado",
+   "buscar": "latitud 36º 50'N",
+   "reemplazar": "latitud 35º 50'N",
+   "fuente": "https://www.caib.es/sites/transportmaritim/es/archivopub.do?ctrl=MCRST165ZI401195&id=401195",
+   "texto": "Nota del tribunal leída en las aulas (PER Mallorca, 2.º turno, modelo A): error material en la pregunta 45; donde dice «Al llegar a la latitud 36º 50'N» se debe leer «35º 50'N»."
+  },
+  {
+   "tit": "py",
+   "conv": "bal-py-2023-06",
+   "modelo": "A/C",
+   "numero": 39,
+   "accion": "errata",
+   "campo": "enunciado",
+   "buscar": "l= 39º50' N (*)",
+   "reemplazar": "l= 35º50' N",
+   "fuente": "https://www.caib.es/sites/transportmaritim/es/archivopub.do?ctrl=MCRST165ZI429188&id=429188",
+   "texto": "Nota del tribunal (PY Menorca y Eivissa, pregunta 39): error tipográfico en la latitud inicial; donde figura «l= 39º50' N» se ha de leer «l= 35º50' N»."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2017-12",
+   "modelo": "D",
+   "numero": 30,
+   "accion": "respuesta",
+   "letras": [
+    "d"
+   ],
+   "revision": true,
+   "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-6606",
+   "texto": "Conflicto entre convocatorias: dic-2017 y mar-2021 dan d) (sólidos); jun-2026 (modelo B, nº 30) da a) (gases). La clase A de fuego es la de los combustibles sólidos (norma UNE-EN 2, a la que remite el Reglamento de instalaciones de protección contra incendios, RD 513/2017). Se toma d); la de jun-2026 es un error de la plantilla."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2018-12",
+   "modelo": "C",
+   "numero": 11,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "revision": true,
+   "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345",
+   "texto": "Conflicto en el mismo examen: Eivissa (modelo C) da d) «No se puede fondear a menos de 200 metros»; Menorca (modelo I, idéntico) da por buenas a), b) y c). El Reglamento General de Costas (RD 876/2014, art. 73.2) dice que en los tramos no balizados la zona de baño ocupa 200 m en las playas y que dentro de ella no se puede navegar a más de 3 nudos; no prohíbe fondear. Se toma b) «Sí, pero debemos aproximarnos a menos de tres nudos», la única que recoge la norma; d) no tiene apoyo normativo."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2019-04",
+   "modelo": "A",
+   "numero": 24,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "revision": true,
+   "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-11718",
+   "texto": "Conflicto entre convocatorias: abr-2019, abr-2025 y jul-2025 dan «Una pitada corta»; jun-2026 (modelo A, nº 25) marca «Dos pitadas cortas». RIPA, regla 34 a): una pitada corta = «caigo a estribor»; dos = «caigo a babor». Se toma c)."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2019-09",
+   "modelo": "B",
+   "numero": 12,
+   "accion": "respuesta",
+   "letras": [
+    "d"
+   ],
+   "revision": true,
+   "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-6745",
+   "texto": "Conflicto entre convocatorias: sep-2019 da 25 m (norma anterior, la Orden de 14-10-1997); mar-2021 da 50 m. Desde el 1-7-2020 el RD 550/2020 dice que «todos los buques o embarcaciones deberán mantenerse a una distancia de seguridad mínima de 50 metros de la zona de buceo». Se toma d) 50 metros, la respuesta oficial más reciente y la de la norma vigente."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2020-12",
+   "modelo": "D",
+   "numero": 45,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "revision": true,
+   "fuente": "https://www.caib.es/sites/transportmaritim/es/convocataria_dabril_de_2025_examens_resolts/",
+   "texto": "Conflicto entre convocatorias: dic-2020 da Ra = 327º; abr-2025 y sep-2025 dan Ra = 329º. Resuelto sobre la carta (kit de la app): situación a 3,2 millas al 103º del faro de Punta Carnero, Rv a la luz roja de Algeciras = 327º, Ra = Rv − Ct = 327º − (−2º) = 329º. Se toma c)."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2022-12",
+   "modelo": "C",
+   "numero": 5,
+   "accion": "respuesta",
+   "letras": [
+    "d"
+   ],
+   "revision": true,
+   "fuente": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_setembre_de_2023_examens_resolts_0/",
+   "texto": "Conflicto entre convocatorias: dic-2022 da a) «Para balizarlo»; sep-2023 (dos modelos) y jul-2024 dan d) «a y c son correctas». El orinque (cabo con boyarín amarrado a la cruz del ancla) sirve a la vez para señalar dónde está el ancla y para zarparla por la cruz si se enroca: las dos cosas. Se toma d)."
+  },
+  {
+   "tit": "per",
+   "conv": "bal-per-2024-04",
+   "modelo": "D/F",
+   "numero": 25,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "revision": true,
+   "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-11718",
+   "texto": "Conflicto entre convocatorias: abr-2024 da «Ninguna es correcta»; dic-2025 (modelo C, nº 20) marca la b), que en ese modelo es «Un buque fondeado» (la letra de la «Ninguna» de abr-2024: error al reordenar las opciones). RIPA, regla 3 d): «buque dedicado a la pesca» excluye a los que pescan con curricán u otros aparejos que no restringen su maniobrabilidad; tampoco es un buque fondeado ni con maniobrabilidad restringida. Se toma «Ninguna es correcta»."
+  },
+  {
+   "tit": "py",
+   "conv": "bal-py-2026-03",
+   "modelo": "A",
+   "numero": 23,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "revision": true,
+   "fuente": "https://www.caib.es/sites/transportmaritim/es/convocataria_de_juny_de_2026/",
+   "texto": "Conflicto entre convocatorias: mar-2026 (modelo A, nº 23) da b); jun-2026 (modelo B, nº 27) da c). La latitud se mide sobre el meridiano desde el Ecuador (0º) hasta los polos (90º N o S): c) es correcta. b) es falsa: cualquier círculo máximo divide la Tierra en dos hemisferios, pero solo el meridiano de Greenwich con su antimeridiano la divide en occidental y oriental; a) describe la longitud y d) mide la longitud en kilómetros. Se toma c)."
+  }
+ ]
+}

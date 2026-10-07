@@ -491,7 +491,7 @@
   "ripa.luces.cuando"
  ],
  "baleares/per/bal-per-2025-09-c-23": [
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.alcance"
  ],
  "baleares/per/bal-per-2025-12-c-27": [
   "ripa.luces.vela"
@@ -505,7 +505,7 @@
  ],
  "baleares/per/bal-per-2026-06-c-19": [
   "ripa.luces.practico",
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.alcance"
  ],
  "baleares/per/bal-per-2026-06-c-20": [
   "ripa.cruce"
@@ -666,7 +666,7 @@
   "baliza.aguas-navegables.luz"
  ],
  "dgmm/per/dgmm-per-2023-11-65": [
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.alcance"
  ],
  "dgmm/per/dgmm-per-2023-11-71": [
   "ripa.niebla.motor"
@@ -675,7 +675,7 @@
   "ripa.peligro.senales"
  ],
  "dgmm/per/dgmm-per-2024-04-24": [
-  "ripa.luces.def.alcance-remolque"
+  "ripa.luces.def.remolque"
  ],
  "dgmm/per/dgmm-per-2024-04-70": [
   "ripa.jerarquia.categorias"
@@ -728,5 +728,17 @@
  ],
  "dgmm/per/dgmm-per-2026-06-26": [
   "ripa.luces.remolcado"
+ ],
+ "dgmm/per/dgmm-per-2020-12-21": [
+  "ripa.vela.barlovento"
+ ],
+ "dgmm/per/dgmm-per-2025-11-25": [
+  "ripa.vela.barlovento"
+ ],
+ "baleares/per/bal-per-2022-03-a-26": [
+  "ripa.vela.barlovento"
+ ],
+ "baleares/per/bal-per-2022-12-fd-20": [
+  "ripa.vela.barlovento"
  ]
 }

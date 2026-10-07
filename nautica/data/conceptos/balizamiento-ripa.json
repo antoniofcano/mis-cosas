@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 1,
+ "version": 2,
  "conceptos": [
   {
    "id": "baliza",
@@ -114,7 +114,7 @@
     "combinan los colores rojo y verde",
     "pictogramas"
    ],
-   "nota": "Las cuatro pistas de una marca y cómo deducir la familia cuando solo se ve una: el color de la luz (blanca = cardinal, peligro aislado o aguas navegables; amarilla = especial; roja o verde = lateral) o la forma del tope sin color. Si la pregunta da la característica completa de una familia, va al concepto de esa familia.",
+   "nota": "Las cuatro pistas de una marca y cómo deducir la familia cuando solo se ve una: el color de la luz (blanca = cardinal, peligro aislado o aguas navegables; amarilla = especial; roja o verde = lateral) o la forma del tope sin color. Si la pregunta da la característica completa de una familia, va al concepto de esa familia. Azul y amarilla alternantes = nuevo peligro (marca de emergencia).",
    "padre": "baliza.iala",
    "tit": [
     "per"
@@ -809,7 +809,12 @@
     "racon",
     "Morse «D»",
     "duplicar el balizamiento",
-    "por duplicado"
+    "por duplicado",
+    "marca de emergencia de pecio",
+    "pecio",
+    "naufragio",
+    "azul y amarillo",
+    "peligro nuevo no publicado"
    ],
    "nota": "Cómo se balizan los peligros aún no publicados: boya de pecio (franjas verticales azules y amarillas, cruz amarilla, luz alternante azul y amarilla, racon «D»), duplicación de marcas si el riesgo es grave y retirada.",
    "padre": "baliza",
@@ -852,7 +857,7 @@
     "luz de destellos largos",
     "característica de la luz"
    ],
-   "nota": "Definiciones de los ritmos y del periodo (p. ej. destello largo ≥ 2 s, centelleo 50–60/min, rápido 100–120/min). Identificar una marca por su luz va al concepto de luz de esa familia.",
+   "nota": "Definiciones de los ritmos y del periodo (p. ej. destello largo ≥ 2 s, centelleo 50–60/min, rápido 100–120/min). Identificar una marca por su luz va al concepto de luz de esa familia. Ojo: en el RIPA (Regla 21 f)) una luz centelleante da 120 o más centelleos por minuto; en el balizamiento IALA la luz centelleante (Q) da 50-60 y la centelleante rápida (VQ), 100-120. No son lo mismo.",
    "padre": "baliza.luz",
    "tit": [
     "per"
@@ -860,7 +865,10 @@
    "clases": [
     "per-5-5"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales",
+   "relacionados": [
+    "ripa.luces.def.todo-horizonte"
+   ]
   },
   {
    "id": "ripa",
@@ -1891,19 +1899,18 @@
   {
    "id": "ripa.vela.misma-banda",
    "tipo": "concepto",
-   "etiqueta": "Dos veleros con el viento por la misma banda: cede el de barlovento (Regla 12 a) ii) y b))",
+   "etiqueta": "Dos veleros con el viento por la misma banda: cede el de barlovento (Regla 12 a) ii))",
    "sinonimos": [
     "misma banda",
     "barlovento",
     "sotavento",
-    "el que esté a barlovento",
-    "banda de barlovento",
-    "contraria a la que lleve cazada la mayor"
+    "el que esté a barlovento"
    ],
-   "nota": "Cede el de barlovento; banda de barlovento = la contraria a la que lleva cazada la mayor (o la mayor vela de cuchillo).",
+   "nota": "Con el viento por la misma banda, el buque que está a barlovento se mantiene apartado de la derrota del que está a sotavento. Qué es la banda de barlovento está en ripa.vela.barlovento.",
    "padre": "ripa.vista",
    "relacionados": [
-    "ripa.vela.bandas-contrarias"
+    "ripa.vela.bandas-contrarias",
+    "ripa.vela.barlovento"
    ],
    "tit": [
     "per"
@@ -1911,7 +1918,33 @@
    "clases": [
     "per-6-5"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 12 a) ii) y b)"
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 12 a) ii)"
+  },
+  {
+   "id": "ripa.vela.barlovento",
+   "tipo": "concepto",
+   "etiqueta": "Banda de barlovento de un velero (Regla 12 b))",
+   "sinonimos": [
+    "banda de barlovento",
+    "contraria a la que lleve cazada la mayor",
+    "contraria a la que se lleva cazada la vela mayor",
+    "aparejo cuadro",
+    "aparejo cruzado",
+    "mayor de las velas de cuchillo",
+    "definición de barlovento"
+   ],
+   "nota": "La banda contraria a la que lleva cazada la vela mayor; en los buques de aparejo cruzado, la contraria a la que lleva cazada la mayor de las velas de cuchillo.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.vela.misma-banda"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 12 b)"
   },
   {
    "id": "ripa.jerarquia.motor-vela",
@@ -2139,7 +2172,7 @@
     "deberán cumplirse",
     "luces de navegación"
    ],
-   "nota": "Luces de la puesta a la salida del sol y también de día con visibilidad reducida; marcas de día; en todas las condiciones meteorológicas.",
+   "nota": "Luces de la puesta a la salida del sol y también de día con visibilidad reducida (si el buque las lleva instaladas, Regla 20 c)); marcas de día; en todas las condiciones meteorológicas. Las luces y marcas cumplen las especificaciones técnicas del anexo I (Regla 20 e)).",
    "padre": "ripa.luces",
    "tit": [
     "per"
@@ -2209,22 +2242,11 @@
   },
   {
    "id": "ripa.luces.def.alcance-remolque",
-   "tipo": "concepto",
+   "tipo": "grupo",
    "etiqueta": "Luz de alcance (blanca) y luz de remolque (amarilla): 135° a popa",
-   "sinonimos": [
-    "luz de alcance",
-    "135 grados",
-    "67,5 grados",
-    "lo más cerca posible de la popa",
-    "luz de remolque",
-    "luz amarilla",
-    "mismas características"
-   ],
-   "nota": "Alcance: blanca a popa, 135° (67,5° por banda desde la popa). Remolque: amarilla con las mismas características.",
+   "sinonimos": [],
+   "nota": "Agrupa la luz de alcance (blanca) y la luz de remolque (amarilla), de 135 grados a popa.",
    "padre": "ripa.luces.def",
-   "relacionados": [
-    "ripa.alcance.definicion"
-   ],
    "tit": [
     "per"
    ],
@@ -2232,6 +2254,55 @@
     "per-6-7"
    ],
    "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 c) y d)"
+  },
+  {
+   "id": "ripa.luces.def.alcance",
+   "tipo": "concepto",
+   "etiqueta": "Luz de alcance: blanca, 135 grados a popa",
+   "sinonimos": [
+    "luz de alcance",
+    "135 grados",
+    "67,5 grados",
+    "lo más cerca posible de la popa",
+    "luz blanca a popa",
+    "arco de luz de la luz de alcance"
+   ],
+   "nota": "Blanca, lo más cerca posible de la popa, 135 grados = 67,5 por banda desde la popa; de noche, lo que se ve al alcanzar (Regla 21 c)).",
+   "padre": "ripa.luces.def.alcance-remolque",
+   "relacionados": [
+    "ripa.alcance.definicion",
+    "ripa.luces.def.remolque"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 c)"
+  },
+  {
+   "id": "ripa.luces.def.remolque",
+   "tipo": "concepto",
+   "etiqueta": "Luz de remolque: amarilla, mismas características que la de alcance",
+   "sinonimos": [
+    "luz de remolque",
+    "luz amarilla",
+    "mismas características que la luz de alcance",
+    "luz amarilla a popa"
+   ],
+   "nota": "Amarilla, con las mismas características que la luz de alcance (blanca, 135 grados a popa); se muestra sobre la de alcance en el buque que remolca (Regla 21 d)).",
+   "padre": "ripa.luces.def.alcance-remolque",
+   "relacionados": [
+    "ripa.luces.def.alcance"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 d)"
   },
   {
    "id": "ripa.luces.def.todo-horizonte",
@@ -2244,7 +2315,7 @@
     "120 o más centelleos por minuto",
     "todo horizonte"
    ],
-   "nota": "Todo horizonte: 360°. Centelleante: 120 o más centelleos por minuto.",
+   "nota": "Todo horizonte: 360°. Centelleante: 120 o más centelleos por minuto. Ojo: en el RIPA (Regla 21 f)) una luz centelleante da 120 o más centelleos por minuto; en el balizamiento IALA la luz centelleante (Q) da 50-60 y la centelleante rápida (VQ), 100-120. No son lo mismo.",
    "padre": "ripa.luces.def",
    "tit": [
     "per"
@@ -2252,7 +2323,10 @@
    "clases": [
     "per-6-7"
    ],
-   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 e) y f)"
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 e) y f)",
+   "relacionados": [
+    "baliza.luz.ritmos"
+   ]
   },
   {
    "id": "ripa.luces.motor",
@@ -2372,7 +2446,7 @@
     "marca bicónica",
     "como si fueran un solo buque"
    ],
-   "nota": "Remolcado visible: costados y alcance (bicónica si > 200 m); por el costado o empujados en grupo, como un solo buque; objetos poco visibles: luces blancas todo horizonte y bicónicas en los extremos.",
+   "nota": "Remolcado visible: luces de costado y de alcance (y marca bicónica si el remolque supera 200 m); por el costado o empujados en grupo, como un solo buque. Objeto o buque poco visible o parcialmente sumergido (Regla 24 g)): luz blanca todo horizonte en cada extremo (dos más si la anchura es de 25 m o más; luces intermedias si pasa de 100 m, a no más de 100 m entre sí) y una marca bicónica en el extremo de popa del último objeto, más otra cerca del extremo de proa si el remolque supera 200 m.",
    "padre": "ripa.luces",
    "relacionados": [
     "ripa.luces.remolcador"

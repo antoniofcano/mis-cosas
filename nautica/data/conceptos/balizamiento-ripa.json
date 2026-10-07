@@ -1,0 +1,3127 @@
+{
+ "grupo": "balizamiento-ripa",
+ "version": 1,
+ "conceptos": [
+  {
+   "id": "baliza",
+   "tipo": "grupo",
+   "etiqueta": "Balizamiento (sistema IALA, región A)",
+   "sinonimos": [
+    "balizamiento",
+    "IALA",
+    "AISM",
+    "boyas",
+    "balizas"
+   ],
+   "nota": "Raíz de la UT5 del PER: marcas del sistema de balizamiento marítimo IALA-AISM tal como se aplican en España (región A).",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-1",
+    "per-5-2",
+    "per-5-3",
+    "per-5-4",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.iala",
+   "tipo": "grupo",
+   "etiqueta": "El sistema IALA: familias, regiones y cómo reconocer una marca",
+   "sinonimos": [],
+   "nota": "Ideas generales del sistema que no son de una familia concreta.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.iala.tipos",
+   "tipo": "concepto",
+   "etiqueta": "Tipos de marcas del sistema IALA",
+   "sinonimos": [
+    "seis tipos de marcas",
+    "tipos de señales",
+    "sistema de balizamiento marítimo",
+    "IALA-AISM",
+    "faros",
+    "marcas fijas y flotantes",
+    "International Association of Marine Aids to Navigation",
+    "ayudas a la navegación"
+   ],
+   "nota": "Qué familias forman el sistema (laterales, cardinales, peligro aislado, aguas navegables, especiales y nuevos peligros), qué queda fuera (faros, enfilaciones y luces de sector son «otras marcas»), a qué marcas se aplica y qué organismo lo publica. Las preguntas sobre una familia concreta van a su concepto.",
+   "padre": "baliza.iala",
+   "relacionados": [
+    "baliza.iala.regiones"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.iala.regiones",
+   "tipo": "concepto",
+   "etiqueta": "Regiones de balizamiento A y B",
+   "sinonimos": [
+    "región A",
+    "región B",
+    "región Alfa",
+    "sistema A",
+    "zona A",
+    "regiones de balizamiento",
+    "puerto europeo",
+    "puerto español",
+    "qué marcas son distintas"
+   ],
+   "nota": "Hay dos regiones; solo cambian las marcas laterales (región A: rojo a babor entrando; región B al revés) y España es región A. Por qué banda se deja cada lateral está en baliza.lateral.banda.",
+   "padre": "baliza.iala",
+   "relacionados": [
+    "baliza.lateral.banda"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.iala.reconocer",
+   "tipo": "concepto",
+   "etiqueta": "Reconocer la familia de una marca por su color, forma, tope o color de luz",
+   "sinonimos": [
+    "marca de tope",
+    "característica diurna",
+    "color de la luz",
+    "luz blanca",
+    "luz amarilla",
+    "únicas marcas que utilizan una luz blanca",
+    "no distinguimos la forma",
+    "reverberación del sol",
+    "no permite distinguir el color",
+    "qué marcas emiten una luz roja",
+    "combinan los colores rojo y verde",
+    "pictogramas"
+   ],
+   "nota": "Las cuatro pistas de una marca y cómo deducir la familia cuando solo se ve una: el color de la luz (blanca = cardinal, peligro aislado o aguas navegables; amarilla = especial; roja o verde = lateral) o la forma del tope sin color. Si la pregunta da la característica completa de una familia, va al concepto de esa familia.",
+   "padre": "baliza.iala",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-1",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral",
+   "tipo": "grupo",
+   "etiqueta": "Marcas laterales (región A)",
+   "sinonimos": [
+    "marcas laterales"
+   ],
+   "nota": "Marcas que señalan los lados de un canal y sus bifurcaciones.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral.sentido-convencional",
+   "tipo": "concepto",
+   "etiqueta": "Sentido convencional del balizamiento",
+   "sinonimos": [
+    "sentido convencional del balizamiento",
+    "dirección convencional de balizamiento",
+    "procedente de alta mar",
+    "aproximándose a un puerto",
+    "río, estuario u otra vía acuática",
+    "subiendo por un canal",
+    "dirección general tomada por el navegante"
+   ],
+   "nota": "Qué se entiende por «entrar» (desde el mar hacia puerto, río o estuario, o el sentido que fija la autoridad, en general en el sentido de las agujas del reloj alrededor de un continente). La banda a la que se deja cada marca está en baliza.lateral.banda.",
+   "padre": "baliza.lateral",
+   "relacionados": [
+    "baliza.lateral.banda"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-1",
+    "per-5-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral.banda",
+   "tipo": "concepto",
+   "etiqueta": "Por qué banda se dejan las laterales entrando y saliendo de puerto",
+   "sinonimos": [
+    "entrando en puerto",
+    "saliendo de puerto",
+    "dejaremos por babor",
+    "por nuestra banda de estribor",
+    "rojas por estribor",
+    "verdes por babor",
+    "boya roja por estribor",
+    "nos hemos salido del canal",
+    "navegar siempre por estribor",
+    "pasaremos cerca de",
+    "marcas laterales rojas",
+    "marcas laterales verdes",
+    "marcas laterales de color rojo",
+    "marcas laterales de color verde",
+    "al salir",
+    "al entrar",
+    "saliendo de un puerto",
+    "entrando a un puerto"
+   ],
+   "nota": "Región A: entrando, rojas por babor y verdes por estribor; saliendo, al revés. Incluye deducir si se entra o se sale, o si se está fuera del canal, por la banda a la que quedan las marcas.",
+   "padre": "baliza.lateral",
+   "relacionados": [
+    "baliza.iala.regiones",
+    "baliza.lateral.aspecto"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral.aspecto",
+   "tipo": "concepto",
+   "etiqueta": "Color, forma y marca de tope de las laterales de babor y estribor",
+   "sinonimos": [
+    "marca lateral de babor",
+    "marca lateral de estribor",
+    "cilíndrica",
+    "cónica",
+    "castillete",
+    "espeque",
+    "cilindro rojo",
+    "cono verde con el vértice hacia arriba",
+    "forma de las marcas laterales",
+    "marcas laterales de babor",
+    "marcas laterales de estribor",
+    "lateral de babor",
+    "lateral de estribor",
+    "marca cilíndrica de color rojo",
+    "boya cónica",
+    "cono verde"
+   ],
+   "nota": "Babor: roja, cilíndrica (o castillete/espeque), tope un cilindro rojo. Estribor: verde, cónica (o castillete/espeque), tope un cono verde con el vértice hacia arriba. Las modificadas de bifurcación van en baliza.lateral.bifurcacion.",
+   "padre": "baliza.lateral",
+   "relacionados": [
+    "baliza.lateral.banda",
+    "baliza.lateral.bifurcacion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral.luz",
+   "tipo": "concepto",
+   "etiqueta": "Luz de las marcas laterales",
+   "sinonimos": [
+    "luz roja",
+    "luz verde",
+    "cualquier ritmo excepto GpD (2+1)",
+    "ritmo libre",
+    "grupo de tres destellos verdes",
+    "grupo de 2 destellos rojos",
+    "luces sincronizadas",
+    "luces secuenciadas",
+    "destello simple"
+   ],
+   "nota": "Color (rojo babor, verde estribor) y ritmo (cualquiera salvo el compuesto 2+1, reservado a bifurcaciones), modos de sincronización, e identificar una lateral solo por su luz.",
+   "padre": "baliza.lateral",
+   "relacionados": [
+    "baliza.lateral.bifurcacion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-2",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral.bifurcacion",
+   "tipo": "concepto",
+   "etiqueta": "Marcas de bifurcación (laterales modificadas): canal principal a babor o a estribor",
+   "sinonimos": [
+    "canal principal a estribor",
+    "canal principal a babor",
+    "lateral modificada",
+    "marca de bifurcación",
+    "banda ancha horizontal verde",
+    "banda ancha horizontal roja",
+    "franja roja",
+    "GpD (2+1)",
+    "grupos de 2+1 destellos",
+    "canal secundario",
+    "2 + 1",
+    "2+1",
+    "franja verde",
+    "banda roja",
+    "banda verde",
+    "canal principal"
+   ],
+   "nota": "Roja con banda verde (cilindro rojo, luz roja 2+1) = canal principal a estribor; verde con banda roja (cono verde, luz verde 2+1) = canal principal a babor. Se dejan como la lateral de su color dominante para seguir el canal principal (al revés para el secundario).",
+   "padre": "baliza.lateral",
+   "relacionados": [
+    "baliza.lateral.aspecto",
+    "baliza.lateral.luz"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.lateral.numeracion",
+   "tipo": "concepto",
+   "etiqueta": "Numeración de las marcas laterales",
+   "sinonimos": [
+    "numeración de las marcas laterales",
+    "números pares",
+    "números impares",
+    "sucesión numérica creciente",
+    "ordenadas numérica o alfabéticamente"
+   ],
+   "nota": "Se numeran en el sentido convencional, desde la mar: pares las rojas e impares las verdes.",
+   "padre": "baliza.lateral",
+   "relacionados": [
+    "baliza.lateral.sentido-convencional"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.cardinal",
+   "tipo": "grupo",
+   "etiqueta": "Marcas cardinales",
+   "sinonimos": [
+    "cardinal"
+   ],
+   "nota": "Marcas que indican en qué cuadrante están las aguas navegables respecto a un peligro o punto.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.cardinal.significado",
+   "tipo": "concepto",
+   "etiqueta": "Qué indica una cardinal: cuadrantes y usos",
+   "sinonimos": [
+    "aguas más profundas",
+    "aguas navegables",
+    "aguas seguras",
+    "cuadrante",
+    "demoras verdaderas",
+    "NW-NE",
+    "NE-SE",
+    "SE-SW",
+    "SW-NW",
+    "asociadas al compás",
+    "recodo, confluencia, bifurcación",
+    "extremo de un bajo",
+    "se ha de pasar por el cuadrante",
+    "dónde se encuentra el peligro"
+   ],
+   "nota": "La marca está en el cuadrante de su nombre y se pasa por ese lado; cuadrantes limitados por las demoras verdaderas NW-NE, NE-SE, SE-SW y SW-NW desde el punto balizado; usos y no usos (no marcan recaladas ni peligros aislados) y cautelas (cardinales próximas con características distintas, no abusar de ellas).",
+   "padre": "baliza.cardinal",
+   "relacionados": [
+    "baliza.cardinal.maniobra"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.cardinal.tope",
+   "tipo": "concepto",
+   "etiqueta": "Marca de tope de las cardinales (dos conos negros)",
+   "sinonimos": [
+    "dos conos negros superpuestos",
+    "vértices hacia arriba",
+    "vértices hacia abajo",
+    "opuestos por sus bases",
+    "opuestos por sus vértices",
+    "unidos por la base",
+    "dos triángulos",
+    "puntas hacia abajo",
+    "conos superpuestos",
+    "dos conos"
+   ],
+   "nota": "N: conos hacia arriba; S: hacia abajo; E: opuestos por las bases; W: opuestos por los vértices. Es la característica diurna más importante de una cardinal.",
+   "padre": "baliza.cardinal",
+   "relacionados": [
+    "baliza.cardinal.colores"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.cardinal.colores",
+   "tipo": "concepto",
+   "etiqueta": "Colores y forma de las cardinales",
+   "sinonimos": [
+    "negro sobre amarillo",
+    "amarillo sobre negro",
+    "banda ancha horizontal negra",
+    "banda ancha horizontal amarilla",
+    "mitad superior negra",
+    "bandas horizontales amarillas y negras",
+    "castillete o espeque",
+    "color representativo",
+    "colores",
+    "pintada",
+    "franja negra",
+    "banda negra",
+    "negro en su parte central",
+    "parte superior",
+    "negro con una ancha banda",
+    "amarillo con una ancha banda"
+   ],
+   "nota": "El negro va donde apuntan los conos: N negro sobre amarillo, S amarillo sobre negro, E negra con banda amarilla, W amarilla con banda negra. Normalmente castillete o espeque.",
+   "padre": "baliza.cardinal",
+   "relacionados": [
+    "baliza.cardinal.tope"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.cardinal.luz",
+   "tipo": "concepto",
+   "etiqueta": "Luz de las cardinales (centelleos blancos)",
+   "sinonimos": [
+    "centelleante continua",
+    "centelleo rápido",
+    "Q",
+    "VQ",
+    "CtRp",
+    "grupos de 3 centelleos",
+    "seis centelleos más un destello largo",
+    "nueve centelleos",
+    "9 destellos cada 15 segundos",
+    "luz blanca",
+    "centelleos",
+    "centellante",
+    "cardinal del cuadrante"
+   ],
+   "nota": "Blanca, centelleante (Q) o centelleante rápida (VQ): N continua; E 3 (cada 10 s o 5 s); S 6 + destello largo (15 s o 10 s); W 9 (15 s o 10 s). Incluye identificar la cardinal por su luz.",
+   "padre": "baliza.cardinal",
+   "relacionados": [
+    "baliza.luz.ritmos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-3",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.cardinal.maniobra",
+   "tipo": "concepto",
+   "etiqueta": "Por dónde dejar una cardinal navegando a un rumbo dado",
+   "sinonimos": [
+    "navegando a rumbo",
+    "rumbo verdadero",
+    "caer a babor",
+    "caer a estribor",
+    "dejarla por estribor",
+    "dejarla por babor",
+    "seguir a rumbo",
+    "por qué punto cardinal deberemos dejarla",
+    "proa al norte"
+   ],
+   "nota": "Aplicar el significado de la cardinal (identificada de día o de noche) al rumbo propio para decidir la banda o la caída.",
+   "padre": "baliza.cardinal",
+   "relacionados": [
+    "baliza.cardinal.significado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-3",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.peligro-aislado",
+   "tipo": "grupo",
+   "etiqueta": "Marca de peligro aislado",
+   "sinonimos": [],
+   "nota": "Marca sobre un peligro de dimensiones limitadas rodeado de aguas navegables.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.peligro-aislado.uso",
+   "tipo": "concepto",
+   "etiqueta": "Qué señala la marca de peligro aislado",
+   "sinonimos": [
+    "peligro de dimensiones limitadas",
+    "rodeado de aguas navegables",
+    "colocada o fondeada sobre un peligro",
+    "consultar la carta",
+    "por qué costado librar",
+    "dónde se encuentran las aguas navegables",
+    "darle resguardo"
+   ],
+   "nota": "Se coloca sobre o junto a un peligro con agua navegable alrededor; no dice el tamaño del peligro (consultar la carta) y se puede librar por cualquier lado con resguardo.",
+   "padre": "baliza.peligro-aislado",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.peligro-aislado.aspecto",
+   "tipo": "concepto",
+   "etiqueta": "Color, forma y tope de la marca de peligro aislado",
+   "sinonimos": [
+    "dos esferas negras",
+    "dos bolas negras",
+    "negra con bandas horizontales rojas",
+    "negro con una o varias anchas bandas horizontales rojas",
+    "rojo y negro",
+    "castillete o espeque",
+    "boya negra",
+    "bandas horizontales rojas",
+    "anchas bandas horizontales rojas",
+    "bandas anchas horizontales rojas",
+    "colores de una marca de peligro aislado"
+   ],
+   "nota": "Negra con una o varias bandas anchas horizontales rojas; tope dos esferas negras superpuestas; forma libre sin confusión con laterales (preferible castillete o espeque).",
+   "padre": "baliza.peligro-aislado",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.peligro-aislado.luz",
+   "tipo": "concepto",
+   "etiqueta": "Luz de la marca de peligro aislado",
+   "sinonimos": [
+    "grupo de dos destellos blancos",
+    "GpD(2)",
+    "Fl(2)",
+    "dos destellos de manera continua",
+    "luz blanca en grupos de dos destellos",
+    "dos destellos",
+    "grupos de dos destellos",
+    "luz de la marca de peligro aislado"
+   ],
+   "nota": "Blanca, grupos de dos destellos. Incluye identificar la marca por esa luz.",
+   "padre": "baliza.peligro-aislado",
+   "relacionados": [
+    "baliza.luz.ritmos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.aguas-navegables",
+   "tipo": "grupo",
+   "etiqueta": "Marca de aguas navegables",
+   "sinonimos": [
+    "aguas seguras"
+   ],
+   "nota": "Marca rodeada de aguas navegables que no señala ningún peligro.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.aguas-navegables.uso",
+   "tipo": "concepto",
+   "etiqueta": "Para qué sirve la marca de aguas navegables",
+   "sinonimos": [
+    "aguas seguras",
+    "eje del canal",
+    "centro de canal",
+    "recalada",
+    "boya de recalada",
+    "entrada de un canal",
+    "aproximación a un puerto",
+    "paso bajo un puente",
+    "no señalan ningún peligro",
+    "sirven para",
+    "definir los ejes"
+   ],
+   "nota": "Indica que hay agua navegable alrededor: ejes y centros de canal, recaladas, aproximación a puerto o estuario y mejor paso bajo un puente.",
+   "padre": "baliza.aguas-navegables",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.aguas-navegables.aspecto",
+   "tipo": "concepto",
+   "etiqueta": "Color, forma y tope de la marca de aguas navegables",
+   "sinonimos": [
+    "franjas verticales rojas y blancas",
+    "esfera roja",
+    "bola roja",
+    "esférica",
+    "castillete con franjas verticales",
+    "blanco y rojo",
+    "rojo y blanco",
+    "franjas verticales"
+   ],
+   "nota": "Franjas verticales rojas y blancas; esférica, castillete o espeque; tope una esfera roja.",
+   "padre": "baliza.aguas-navegables",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.aguas-navegables.luz",
+   "tipo": "concepto",
+   "etiqueta": "Luz de la marca de aguas navegables",
+   "sinonimos": [
+    "isofase",
+    "ocultaciones",
+    "un destello largo cada 10 segundos",
+    "Morse «A»",
+    "punto raya",
+    "LFl 10 s",
+    "igual duración de luz y oscuridad",
+    "tres segundos encendida y uno apagada"
+   ],
+   "nota": "Blanca, isofase, de ocultaciones, un destello largo cada 10 s o Morse «A». Incluye identificar la marca por esa luz.",
+   "padre": "baliza.aguas-navegables",
+   "relacionados": [
+    "baliza.luz.ritmos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.especial",
+   "tipo": "grupo",
+   "etiqueta": "Marcas especiales",
+   "sinonimos": [],
+   "nota": "Marcas amarillas que indican una zona o configuración descrita en la carta.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.especial.uso",
+   "tipo": "concepto",
+   "etiqueta": "Qué indican las marcas especiales",
+   "sinonimos": [
+    "zonas reservadas al recreo",
+    "cables o tuberías submarinas",
+    "vertedero",
+    "SADO",
+    "boya meteorológica",
+    "oceanográfica",
+    "ejercicios militares",
+    "límites de un área de fondeo",
+    "separación del tráfico",
+    "zonas o configuraciones especiales",
+    "consultar la carta u otra publicación náutica",
+    "objetivo principal",
+    "naturaleza exacta",
+    "indicada en la carta",
+    "marca especial puede ser utilizada",
+    "vertederos",
+    "indicadora de separación de tráfico"
+   ],
+   "nota": "Señalan zonas o configuraciones cuya naturaleza está en la carta (recreo, cables, vertederos, SADO, ejercicios militares, fondeaderos, separación de tráfico donde el balizamiento de canal confunda); no se usan para aproximación a puerto ni recaladas.",
+   "padre": "baliza.especial",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.especial.aspecto",
+   "tipo": "concepto",
+   "etiqueta": "Color, forma y tope de las marcas especiales",
+   "sinonimos": [
+    "amarillo",
+    "aspa amarilla",
+    "X amarilla",
+    "cruz diagonal amarilla",
+    "forma de libre elección",
+    "pictograma",
+    "letras o cifras",
+    "color de las marcas especiales",
+    "marcas especiales tienen"
+   ],
+   "nota": "Amarillas; tope un aspa amarilla en X; forma libre que no se confunda; pueden llevar letras, números o pictogramas.",
+   "padre": "baliza.especial",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.especial.luz",
+   "tipo": "concepto",
+   "etiqueta": "Luz de las marcas especiales",
+   "sinonimos": [
+    "luz amarilla",
+    "cualquier ritmo excepto",
+    "destellos aislados de color amarillo",
+    "grupos de 5 destellos",
+    "su luz, si tiene",
+    "luz de una marca especial"
+   ],
+   "nota": "Amarilla, con cualquier ritmo que no sea el de cardinales, peligro aislado o aguas navegables. Incluye identificar la marca por su luz.",
+   "padre": "baliza.especial",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4",
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.nuevo-peligro",
+   "tipo": "concepto",
+   "etiqueta": "Nuevos peligros y boya de pecio (marca de emergencia)",
+   "sinonimos": [
+    "peligro nuevo",
+    "nuevos peligros",
+    "naufragio reciente",
+    "marca de emergencia",
+    "boya de pecio",
+    "franjas verticales azules y amarillas",
+    "cruz amarilla",
+    "luz alternante amarillo/azul",
+    "racon",
+    "Morse «D»",
+    "duplicar el balizamiento",
+    "por duplicado"
+   ],
+   "nota": "Cómo se balizan los peligros aún no publicados: boya de pecio (franjas verticales azules y amarillas, cruz amarilla, luz alternante azul y amarilla, racon «D»), duplicación de marcas si el riesgo es grave y retirada.",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales (la marca de nuevos peligros no se nombra en la lista del punto 5.1; forma parte de la normativa IALA que fija cada convocatoria)"
+  },
+  {
+   "id": "baliza.luz",
+   "tipo": "grupo",
+   "etiqueta": "Luces de las marcas: ritmos",
+   "sinonimos": [],
+   "nota": "La característica de una luz (color, ritmo, periodo).",
+   "padre": "baliza",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "baliza.luz.ritmos",
+   "tipo": "concepto",
+   "etiqueta": "Ritmos de las luces: destello, destello largo, ocultaciones, isofase, centelleo y Morse",
+   "sinonimos": [
+    "destello",
+    "destello largo",
+    "ocultaciones",
+    "isofase",
+    "centelleo",
+    "centelleo rápido",
+    "periodo",
+    "Morse",
+    "luz de destellos largos",
+    "característica de la luz"
+   ],
+   "nota": "Definiciones de los ritmos y del periodo (p. ej. destello largo ≥ 2 s, centelleo 50–60/min, rápido 100–120/min). Identificar una marca por su luz va al concepto de luz de esa familia.",
+   "padre": "baliza.luz",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-5-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales"
+  },
+  {
+   "id": "ripa",
+   "tipo": "grupo",
+   "etiqueta": "Reglamento internacional para prevenir los abordajes (RIPA)",
+   "sinonimos": [
+    "RIPA",
+    "Reglamento de Abordajes",
+    "COLREG"
+   ],
+   "nota": "Raíz de la UT6 del PER (COLREG 1972 con enmiendas; texto consolidado BOE-A-1977-15605). Excluidos del examen: Regla 22 y anexos I a III.",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1",
+    "per-6-2",
+    "per-6-3",
+    "per-6-4",
+    "per-6-5",
+    "per-6-6",
+    "per-6-7",
+    "per-6-8",
+    "per-6-9",
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), Reglas 1 a 37 y anexo IV (excluidos Regla 22 y anexos I, II y III)"
+  },
+  {
+   "id": "ripa.generalidades",
+   "tipo": "grupo",
+   "etiqueta": "Generalidades (Reglas 1 a 3)",
+   "sinonimos": [],
+   "nota": "Ámbito, responsabilidad y definiciones.",
+   "padre": "ripa",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3)"
+  },
+  {
+   "id": "ripa.ambito",
+   "tipo": "concepto",
+   "etiqueta": "Ámbito de aplicación y reglas especiales (Regla 1)",
+   "sinonimos": [
+    "ámbito de aplicación",
+    "alta mar",
+    "aguas que tengan comunicación con ella",
+    "navegables por los buques de navegación marítima",
+    "reglas especiales",
+    "pesca en flotilla",
+    "buques de guerra",
+    "radas, puertos, ríos, lagos",
+    "pantanos y embalses",
+    "a qué buques se aplica"
+   ],
+   "nota": "Dónde y a quién se aplica; reglas especiales locales lo más parecidas posible; luces, marcas o pitadas adicionales de buques de guerra, convoyes y pesca en flotilla sin confusión. Los DST adoptados por la OMI están en ripa.dst.uso.",
+   "padre": "ripa.generalidades",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 1"
+  },
+  {
+   "id": "ripa.responsabilidad",
+   "tipo": "concepto",
+   "etiqueta": "Responsabilidad y apartarse del Reglamento (Regla 2)",
+   "sinonimos": [
+    "responsabilidad",
+    "negligencia",
+    "eximirá",
+    "propietario, capitán o dotación",
+    "buenas prácticas marineras",
+    "apartarse de este reglamento",
+    "peligro inmediato",
+    "circunstancias especiales",
+    "limitaciones de los buques interesados"
+   ],
+   "nota": "Nadie queda exento de las consecuencias de una negligencia; se tendrán en cuenta los peligros y circunstancias especiales que obliguen a apartarse del Reglamento para evitar un peligro inmediato.",
+   "padre": "ripa.generalidades",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 2"
+  },
+  {
+   "id": "ripa.def",
+   "tipo": "grupo",
+   "etiqueta": "Definiciones generales (Regla 3)",
+   "sinonimos": [],
+   "nota": "Tipos de buque y situaciones definidos en la Regla 3.",
+   "padre": "ripa.generalidades",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3"
+  },
+  {
+   "id": "ripa.def.buque",
+   "tipo": "concepto",
+   "etiqueta": "Buque, buque de propulsión mecánica, hidroavión, nave de vuelo rasante y eslora",
+   "sinonimos": [
+    "la palabra buque",
+    "embarcaciones sin desplazamiento",
+    "hidroavión",
+    "nave de vuelo rasante",
+    "ekranoplano",
+    "aerodeslizador",
+    "hovercraft",
+    "movido por una máquina",
+    "eslora total",
+    "nave submarina"
+   ],
+   "nota": "Qué es «buque» (toda embarcación usada como transporte sobre el agua, incluidas sin desplazamiento, WIG e hidroaviones), «buque de propulsión mecánica», «hidroavión», «nave de vuelo rasante» y «eslora/manga». Vela, pesca, sin gobierno, maniobra restringida y calado tienen concepto propio.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.def.vela"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 a), b), e), j), m)"
+  },
+  {
+   "id": "ripa.def.vela",
+   "tipo": "concepto",
+   "etiqueta": "Buque de vela: si usa el motor es de propulsión mecánica",
+   "sinonimos": [
+    "buque de vela",
+    "navegando a vela",
+    "vela y motor",
+    "propulsándose con el motor",
+    "maquinaria propulsora no se esté utilizando",
+    "motovelero",
+    "buque a vela",
+    "motor, si lo lleva",
+    "su motor"
+   ],
+   "nota": "Es buque de vela el que navega a vela sin usar la máquina; con la máquina en uso es de propulsión mecánica a todos los efectos. La marca del cono está en ripa.marcas.vela-motor.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.marcas.vela-motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 c)"
+  },
+  {
+   "id": "ripa.def.pesca",
+   "tipo": "concepto",
+   "etiqueta": "Buque dedicado a la pesca",
+   "sinonimos": [
+    "buque dedicado a la pesca",
+    "artes que restrinjan su maniobrabilidad",
+    "redes, líneas, aparejos de arrastre",
+    "curricán",
+    "pescando con caña",
+    "pesquero de regreso a puerto",
+    "cerquero"
+   ],
+   "nota": "Solo si pesca con artes que restrinjan su maniobrabilidad; no lo es el que pesca al curricán u otros aparejos que no la restringen, ni el pesquero que no está pescando.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.marcas.pesca"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 d)"
+  },
+  {
+   "id": "ripa.def.sin-gobierno",
+   "tipo": "concepto",
+   "etiqueta": "Buque sin gobierno",
+   "sinonimos": [
+    "buque sin gobierno",
+    "circunstancia excepcional",
+    "incapaz de maniobrar",
+    "avería en el sistema de gobierno"
+   ],
+   "nota": "El que por una circunstancia excepcional no puede maniobrar como exige el Reglamento ni apartarse de la derrota de otro.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.luces.sin-gobierno"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 f)"
+  },
+  {
+   "id": "ripa.def.maniobra-restringida",
+   "tipo": "concepto",
+   "etiqueta": "Buque con capacidad de maniobra restringida",
+   "sinonimos": [
+    "capacidad de maniobra restringida",
+    "naturaleza de su trabajo",
+    "dragado",
+    "trabajos hidrográficos",
+    "oceanográficos",
+    "operaciones submarinas",
+    "tendido de cable",
+    "colocando marcas de navegación",
+    "portaaviones",
+    "lanzamiento o recuperación de aeronaves",
+    "haciendo combustible",
+    "aprovisionamiento en navegación",
+    "limpieza de minas",
+    "operaciones de remolque que restrinja"
+   ],
+   "nota": "El que por la naturaleza de su trabajo no puede maniobrar como exige el Reglamento; lista de ejemplos de la Regla 3 g). No lo son los pesqueros, los veleros ni el buque sin gobierno.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.luces.maniobra-restringida"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 g)"
+  },
+  {
+   "id": "ripa.def.calado",
+   "tipo": "concepto",
+   "etiqueta": "Buque restringido por su calado",
+   "sinonimos": [
+    "restringido por su calado",
+    "profundidad y anchura disponibles",
+    "capacidad muy restringida de apartarse"
+   ],
+   "nota": "Buque de propulsión mecánica que, por su calado respecto a la profundidad y anchura del agua navegable, apenas puede apartarse de su derrota.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.jerarquia.calado",
+    "ripa.luces.calado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 h)"
+  },
+  {
+   "id": "ripa.def.en-navegacion",
+   "tipo": "concepto",
+   "etiqueta": "Buque en navegación",
+   "sinonimos": [
+    "en navegación",
+    "ni fondeado, ni amarrado a tierra, ni varado",
+    "a la deriva",
+    "parado y sin arrancada",
+    "máquina parada"
+   ],
+   "nota": "Está en navegación todo buque que no esté fondeado, amarrado a tierra ni varado, aunque esté parado y sin arrancada.",
+   "padre": "ripa.def",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 i)"
+  },
+  {
+   "id": "ripa.def.vista-visibilidad",
+   "tipo": "concepto",
+   "etiqueta": "«A la vista» y «visibilidad reducida»",
+   "sinonimos": [
+    "a la vista uno del otro",
+    "observado visualmente",
+    "visibilidad reducida",
+    "niebla, bruma, nieve, fuertes aguaceros",
+    "tormentas de arena"
+   ],
+   "nota": "A la vista: solo cuando uno puede ser observado visualmente desde el otro. Visibilidad reducida: la disminuida por niebla, bruma, nieve, aguaceros, arena u otras causas análogas.",
+   "padre": "ripa.def",
+   "relacionados": [
+    "ripa.rumbo.secciones"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-1"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.1 Generalidades (Reglas 1 a 3); RIPA, Regla 3 k) y l)"
+  },
+  {
+   "id": "ripa.rumbo",
+   "tipo": "grupo",
+   "etiqueta": "Reglas de rumbo y gobierno (Reglas 4 a 19)",
+   "sinonimos": [],
+   "nota": "Parte B del RIPA.",
+   "padre": "ripa",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2",
+    "per-6-3",
+    "per-6-4",
+    "per-6-5",
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19)"
+  },
+  {
+   "id": "ripa.conducta",
+   "tipo": "grupo",
+   "etiqueta": "Conducta en cualquier condición de visibilidad (Reglas 4 a 8)",
+   "sinonimos": [],
+   "nota": "Sección I de la parte B (sin canales ni DST).",
+   "padre": "ripa.rumbo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19)"
+  },
+  {
+   "id": "ripa.rumbo.secciones",
+   "tipo": "concepto",
+   "etiqueta": "A qué situaciones se aplica cada sección de rumbo y gobierno",
+   "sinonimos": [
+    "cualquier condición de visibilidad",
+    "regla 4",
+    "regla 11",
+    "buques que se encuentren a la vista",
+    "sección I",
+    "sección II",
+    "en todas las condiciones meteorológicas"
+   ],
+   "nota": "Sección I (Reglas 4–10) en cualquier visibilidad; sección II (Reglas 11–18) solo con buques a la vista; sección III (Regla 19) cuando no se ven en o cerca de visibilidad reducida.",
+   "padre": "ripa.conducta",
+   "relacionados": [
+    "ripa.visibilidad.conducta"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2",
+    "per-6-4",
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Reglas 4, 11 y 19 a)"
+  },
+  {
+   "id": "ripa.vigilancia",
+   "tipo": "concepto",
+   "etiqueta": "Vigilancia (Regla 5)",
+   "sinonimos": [
+    "vigilancia visual y auditiva",
+    "todos los medios disponibles",
+    "en todo momento",
+    "guardia",
+    "navegación en solitario"
+   ],
+   "nota": "Todos los buques mantendrán en todo momento una eficaz vigilancia visual y auditiva y con todos los medios disponibles.",
+   "padre": "ripa.conducta",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 5"
+  },
+  {
+   "id": "ripa.velocidad-seguridad.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Velocidad de seguridad: qué es (Regla 6)",
+   "sinonimos": [
+    "velocidad de seguridad",
+    "pararse a la distancia apropiada",
+    "maniobra adecuada y eficaz",
+    "mala visibilidad"
+   ],
+   "nota": "La que permite maniobrar con eficacia para evitar el abordaje y pararse a la distancia apropiada; se lleva siempre y varía con las circunstancias.",
+   "padre": "ripa.conducta",
+   "relacionados": [
+    "ripa.velocidad-seguridad.factores"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 6"
+  },
+  {
+   "id": "ripa.velocidad-seguridad.factores",
+   "tipo": "concepto",
+   "etiqueta": "Factores de la velocidad de seguridad (Regla 6 a) y b))",
+   "sinonimos": [
+    "factores",
+    "densidad de tráfico",
+    "concentraciones de buques de pesca",
+    "distancia de parada",
+    "capacidad de giro",
+    "resplandor de luces de tierra",
+    "calado en relación con la profundidad",
+    "estado del viento, mar y corrientes",
+    "escala del radar",
+    "no se tendrá en cuenta",
+    "titulación",
+    "potencia del motor",
+    "nacionalidad",
+    "determinar la velocidad de seguridad",
+    "determinamos la velocidad de seguridad"
+   ],
+   "nota": "Qué factores enumera la Regla 6 (para todos los buques y, además, con radar) y cuáles no (titulación, pericia, potencia, nacionalidad, hora de llegada…).",
+   "padre": "ripa.conducta",
+   "relacionados": [
+    "ripa.velocidad-seguridad.definicion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 6 a) y b)"
+  },
+  {
+   "id": "ripa.riesgo-abordaje.demora",
+   "tipo": "concepto",
+   "etiqueta": "Riesgo de abordaje por la demora (Regla 7 d))",
+   "sinonimos": [
+    "la demora no varía",
+    "marcación constante",
+    "misma marcación",
+    "la distancia disminuye",
+    "demora fija",
+    "rumbo de colisión",
+    "buque de gran tamaño",
+    "remolque",
+    "muy corta distancia",
+    "la demora varía",
+    "demora",
+    "nos demora",
+    "varía",
+    "varia notablemente"
+   ],
+   "nota": "Si la demora de un buque que se aproxima no varía apreciablemente hay riesgo; puede haberlo aunque varíe con buques grandes, remolques o a muy corta distancia.",
+   "padre": "ripa.conducta",
+   "relacionados": [
+    "ripa.riesgo-abordaje.evaluacion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 7 d)"
+  },
+  {
+   "id": "ripa.riesgo-abordaje.evaluacion",
+   "tipo": "concepto",
+   "etiqueta": "Cómo evaluar el riesgo de abordaje: dudas y radar (Regla 7 a)–c))",
+   "sinonimos": [
+    "en caso de duda",
+    "se considerará que existe",
+    "radar",
+    "exploración a gran distancia",
+    "punteo radar",
+    "suposiciones basadas en información insuficiente"
+   ],
+   "nota": "Usar todos los medios; ante la duda, hay riesgo; con radar, exploración a gran distancia y punteo; no hacer suposiciones con información insuficiente.",
+   "padre": "ripa.conducta",
+   "relacionados": [
+    "ripa.riesgo-abordaje.demora"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 7 a)–c)"
+  },
+  {
+   "id": "ripa.maniobra-evitar",
+   "tipo": "concepto",
+   "etiqueta": "Cómo maniobrar para evitar el abordaje (Regla 8)",
+   "sinonimos": [
+    "maniobra para evitar el abordaje",
+    "con la debida antelación",
+    "de forma clara",
+    "cambios amplios",
+    "sucesión de pequeños cambios",
+    "cambiar solamente de rumbo",
+    "reducir la velocidad",
+    "suprimir la arrancada",
+    "distancia segura",
+    "pasado y en franquía",
+    "buenas prácticas marineras",
+    "no estorbar",
+    "distancia mínima",
+    "maniobras para evitar el abordaje",
+    "evitar un abordaje",
+    "evitar el abordaje"
+   ],
+   "nota": "Maniobra clara, a tiempo y amplia (no pequeños cambios sucesivos); con espacio, el cambio de rumbo solo puede ser lo más eficaz; reducir o parar si hace falta; comprobar su eficacia hasta pasar franco; obligación de no estorbar (8 f)).",
+   "padre": "ripa.conducta",
+   "relacionados": [
+    "ripa.cede-paso"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-2"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 8"
+  },
+  {
+   "id": "ripa.canal",
+   "tipo": "grupo",
+   "etiqueta": "Canales angostos (Regla 9)",
+   "sinonimos": [],
+   "nota": "Navegación en pasos o canales angostos.",
+   "padre": "ripa.rumbo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 9"
+  },
+  {
+   "id": "ripa.canal.navegar",
+   "tipo": "concepto",
+   "etiqueta": "Por dónde navegar en un canal angosto y fondeo",
+   "sinonimos": [
+    "canal angosto",
+    "paso angosto",
+    "límite exterior del canal",
+    "por su costado de estribor",
+    "evitar fondear en el canal"
+   ],
+   "nota": "Lo más cerca posible del límite exterior de estribor si no hay peligro; evitar fondear en el canal.",
+   "padre": "ripa.canal",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 9 a) y g)"
+  },
+  {
+   "id": "ripa.canal.no-estorbar",
+   "tipo": "concepto",
+   "etiqueta": "Quién no estorba en un canal angosto y cómo cruzarlo",
+   "sinonimos": [
+    "no estorbarán",
+    "eslora inferior a 20 metros",
+    "buques de vela",
+    "dedicados a la pesca",
+    "solo pueda navegar con seguridad dentro del canal",
+    "cruzar un canal angosto",
+    "cinco pitadas cortas si duda",
+    "no deben estorbar",
+    "menores de 20 metros",
+    "veleros"
+   ],
+   "nota": "Los < 20 m y los de vela no estorban al que solo puede navegar dentro del canal; los de pesca no estorban a ninguno; no se cruza si se estorba a ese buque.",
+   "padre": "ripa.canal",
+   "relacionados": [
+    "ripa.dst.no-estorbar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 9 b)–d)"
+  },
+  {
+   "id": "ripa.canal.adelantar",
+   "tipo": "concepto",
+   "etiqueta": "Adelantar en un canal angosto: señales y conformidad",
+   "sinonimos": [
+    "adelantar en un canal",
+    "dos pitadas largas seguidas de una corta",
+    "dos largas y dos cortas",
+    "por su costado de estribor",
+    "por su banda de babor",
+    "conformidad",
+    "larga, corta, larga, corta"
+   ],
+   "nota": "2L+1C: le alcanzo por su estribor; 2L+2C: por su babor; conformidad L-C-L-C (si duda, 5 cortas). Si no hace falta que el alcanzado maniobre, se adelanta sin señales; la Regla 13 sigue aplicándose.",
+   "padre": "ripa.canal",
+   "relacionados": [
+    "ripa.alcance.obligacion",
+    "ripa.senales.duda"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3",
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 9 e); y 6.4 Señales acústicas y luminosas, Regla 34 c)"
+  },
+  {
+   "id": "ripa.canal.recodo",
+   "tipo": "concepto",
+   "etiqueta": "Recodo con visión obstruida: una pitada larga",
+   "sinonimos": [
+    "recodo",
+    "visión obstaculizada",
+    "visión obstruida",
+    "una pitada larga",
+    "contestar con otra pitada larga",
+    "navegar alerta"
+   ],
+   "nota": "Al acercarse a un recodo sin visibilidad: navegar alerta y con precaución y dar una pitada larga; quien la oiga contesta con otra.",
+   "padre": "ripa.canal",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3",
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 9 f); y 6.4 Señales acústicas y luminosas, Regla 34 e)"
+  },
+  {
+   "id": "ripa.dst",
+   "tipo": "grupo",
+   "etiqueta": "Dispositivos de separación del tráfico (Regla 10)",
+   "sinonimos": [],
+   "nota": "Uso, cruce y zonas de los DST.",
+   "padre": "ripa.rumbo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10"
+  },
+  {
+   "id": "ripa.dst.uso",
+   "tipo": "concepto",
+   "etiqueta": "Navegar por un DST: vía, entradas y salidas, fondeo",
+   "sinonimos": [
+    "dispositivo de separación del tráfico",
+    "DST",
+    "vía de circulación",
+    "dirección general de la corriente del tráfico",
+    "límites laterales",
+    "menor ángulo posible",
+    "extremos del dispositivo",
+    "evitar fondear",
+    "mayor margen posible",
+    "adoptados por la OMI",
+    "unirnos al mismo",
+    "usar el dispositivo",
+    "utilizar el dispositivo"
+   ],
+   "nota": "Navegar por la vía apropiada en el sentido del tráfico; entrar y salir por los extremos o, por los lados, con el menor ángulo; evitar fondear en el DST o cerca de sus extremos; quien no lo usa se aparta con el mayor margen. Lo puede usar cualquier buque, también los de vela y los < 20 m.",
+   "padre": "ripa.dst",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 a)–b), g)–h)"
+  },
+  {
+   "id": "ripa.dst.cruzar",
+   "tipo": "concepto",
+   "etiqueta": "Cruzar un DST: rumbo perpendicular",
+   "sinonimos": [
+    "cruzar una vía de circulación",
+    "lo más perpendicular posible",
+    "rumbo perpendicular",
+    "cruzar el dispositivo"
+   ],
+   "nota": "Si hay que cruzar, con un rumbo lo más perpendicular posible a la dirección general del tráfico.",
+   "padre": "ripa.dst",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 c)"
+  },
+  {
+   "id": "ripa.dst.zona-separacion",
+   "tipo": "concepto",
+   "etiqueta": "Zona y línea de separación: cuándo se pueden cruzar",
+   "sinonimos": [
+    "zona de separación",
+    "línea de separación",
+    "caso de emergencia",
+    "pescar en la zona de separación",
+    "cambio de sentido"
+   ],
+   "nota": "No se entra en la zona de separación ni se cruza la línea salvo al cruzar, entrar o salir, en emergencia para evitar un peligro inmediato o para pescar dentro de la zona.",
+   "padre": "ripa.dst",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 e)"
+  },
+  {
+   "id": "ripa.dst.costera",
+   "tipo": "concepto",
+   "etiqueta": "Zona de navegación costera",
+   "sinonimos": [
+    "zona de navegación costera",
+    "eslora inferior a 20 metros",
+    "buques de vela",
+    "dedicados a la pesca",
+    "evitar un peligro inmediato",
+    "puerto situado dentro de la zona"
+   ],
+   "nota": "No la usa quien puede usar con seguridad la vía; sí los < 20 m, los de vela y los de pesca; los demás solo para ir o venir de un puerto, instalación o fondeadero de la zona o para evitar un peligro inmediato.",
+   "padre": "ripa.dst",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 d)"
+  },
+  {
+   "id": "ripa.dst.no-estorbar",
+   "tipo": "concepto",
+   "etiqueta": "Quién no estorba en un DST y quién queda exento",
+   "sinonimos": [
+    "no estorbarán el tránsito seguro",
+    "buques de propulsión mecánica que naveguen en una vía",
+    "pesca en el dispositivo",
+    "vela en el dispositivo",
+    "mantenimiento de la seguridad de la navegación",
+    "tendido de cable submarino",
+    "exentos"
+   ],
+   "nota": "Pesca no estorba a los que siguen una vía; < 20 m y vela no estorban a los de propulsión mecánica en la vía; los de maniobra restringida en tareas de seguridad o cables quedan exentos en lo necesario. Ir por la vía no da preferencia en un cruce.",
+   "padre": "ripa.dst",
+   "relacionados": [
+    "ripa.canal.no-estorbar",
+    "ripa.cruce"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 i)–l)"
+  },
+  {
+   "id": "ripa.vista",
+   "tipo": "grupo",
+   "etiqueta": "Buques a la vista uno del otro (Reglas 11 a 18)",
+   "sinonimos": [],
+   "nota": "Sección II de la parte B: situaciones de encuentro y jerarquía.",
+   "padre": "ripa.rumbo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4",
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19)"
+  },
+  {
+   "id": "ripa.alcance.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Cuándo un buque alcanza a otro (Regla 13 b) y c))",
+   "sinonimos": [
+    "buque que alcanza",
+    "22,5 grados a popa del través",
+    "solo la luz de alcance",
+    "luz de alcance del alcanzado",
+    "duda de si está alcanzando",
+    "alcanzando",
+    "estamos alcanzando"
+   ],
+   "nota": "Alcanza quien se aproxima desde más de 22,5° a popa del través del otro (de noche solo vería su luz de alcance); en duda, se considera que alcanza.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.luces.def.alcance-remolque",
+    "ripa.alcance.obligacion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 13 b) y c)"
+  },
+  {
+   "id": "ripa.alcance.obligacion",
+   "tipo": "concepto",
+   "etiqueta": "El que alcanza se aparta siempre (Regla 13 a) y d))",
+   "sinonimos": [
+    "se mantendrá apartado de la derrota del alcanzado",
+    "siempre",
+    "velero que alcanza a un buque de motor",
+    "pesquero que alcanza",
+    "adelantar por ambas bandas",
+    "no le convierte en buque que cruza",
+    "alcance a otro",
+    "alcanza a"
+   ],
+   "nota": "El que alcanza se aparta del alcanzado sea cual sea su tipo (prevalece sobre la Regla 18) y sigue siéndolo hasta dejarlo franco.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.jerarquia.categorias"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4",
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 13 a) y d)"
+  },
+  {
+   "id": "ripa.vuelta-encontrada",
+   "tipo": "concepto",
+   "etiqueta": "Vuelta encontrada entre buques de motor: ambos caen a estribor (Regla 14)",
+   "sinonimos": [
+    "vuelta encontrada",
+    "rumbos opuestos o casi opuestos",
+    "ambos caerán a estribor",
+    "pasar por babor",
+    "luces de tope enfiladas",
+    "ambas luces de costado",
+    "en caso de duda supondrá que existe"
+   ],
+   "nota": "Dos buques de propulsión mecánica a rumbos opuestos con riesgo: cada uno cae a estribor; se da cuando se ven de proa (topes enfilados y/o ambos costados); en duda, existe.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.situacion.por-luces"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 14"
+  },
+  {
+   "id": "ripa.cruce",
+   "tipo": "concepto",
+   "etiqueta": "Situación de cruce entre buques de motor: cede el que ve al otro por estribor (Regla 15)",
+   "sinonimos": [
+    "situación de cruce",
+    "el que tenga al otro por su costado de estribor",
+    "evitar cortarle la proa",
+    "ve al otro por babor",
+    "mercante y embarcación de recreo",
+    "quién maniobra"
+   ],
+   "nota": "Entre dos de propulsión mecánica que se cruzan, se aparta el que tiene al otro por su estribor y evita cortarle la proa; el tamaño no da preferencia.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.situacion.por-luces",
+    "ripa.cede-paso"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 15"
+  },
+  {
+   "id": "ripa.situacion.por-luces",
+   "tipo": "concepto",
+   "etiqueta": "Reconocer la situación de encuentro por la marcación o las luces del otro",
+   "sinonimos": [
+    "marcación",
+    "por la amura de estribor",
+    "por el través de babor",
+    "luz de tope y la luz de costado roja",
+    "solo una luz verde",
+    "las dos luces de costado",
+    "una única luz blanca",
+    "qué luces veremos",
+    "quién cede el paso",
+    "somos el buque que sigue a rumbo"
+   ],
+   "nota": "Deducir si es alcance, vuelta encontrada o cruce (y quién cede) a partir de la marcación o de las luces que se ven del otro buque. Las reglas aplicadas van también en su concepto.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.luces.def.costado",
+    "ripa.luces.def.tope",
+    "ripa.luces.vela"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4",
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Reglas 13 a 15; y 6.3 Luces y marcas, Regla 21"
+  },
+  {
+   "id": "ripa.cede-paso",
+   "tipo": "concepto",
+   "etiqueta": "Maniobra del buque que cede el paso (Regla 16)",
+   "sinonimos": [
+    "buque que cede el paso",
+    "con anticipación suficiente",
+    "de forma decidida",
+    "quedar bien franco",
+    "medidas tempranas y sustanciales"
+   ],
+   "nota": "Quien debe apartarse maniobra pronto y de forma decidida para quedar bien franco.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.maniobra-evitar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 16"
+  },
+  {
+   "id": "ripa.sigue-rumbo",
+   "tipo": "concepto",
+   "etiqueta": "Maniobra del buque que sigue a rumbo (Regla 17)",
+   "sinonimos": [
+    "buque que sigue a rumbo",
+    "mantendrá su rumbo y velocidad",
+    "tan pronto como resulte evidente",
+    "no caer a babor",
+    "tan próximo que no pueda evitarse el abordaje",
+    "no exime al buque que cede el paso",
+    "ambos responsables"
+   ],
+   "nota": "Mantiene rumbo y velocidad; puede maniobrar en cuanto vea que el otro no actúa (evitando caer a babor si este está por su babor) y debe hacerlo si el abordaje ya no se evita solo con la maniobra del otro; esto no exime al que cede el paso.",
+   "padre": "ripa.vista",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 17"
+  },
+  {
+   "id": "ripa.vela.bandas-contrarias",
+   "tipo": "concepto",
+   "etiqueta": "Dos veleros con el viento por bandas contrarias: cede el amurado a babor (Regla 12 a) i) y iii))",
+   "sinonimos": [
+    "dos buques de vela",
+    "bandas contrarias",
+    "recibe el viento por babor",
+    "amurado a babor",
+    "recibe el viento por estribor",
+    "no puede determinar la banda",
+    "distintas bandas"
+   ],
+   "nota": "Cede el que recibe el viento por babor; si el amurado a babor ve a otro a barlovento y no sabe su amura, también cede.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.vela.misma-banda"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 12 a) i) y iii)"
+  },
+  {
+   "id": "ripa.vela.misma-banda",
+   "tipo": "concepto",
+   "etiqueta": "Dos veleros con el viento por la misma banda: cede el de barlovento (Regla 12 a) ii) y b))",
+   "sinonimos": [
+    "misma banda",
+    "barlovento",
+    "sotavento",
+    "el que esté a barlovento",
+    "banda de barlovento",
+    "contraria a la que lleve cazada la mayor"
+   ],
+   "nota": "Cede el de barlovento; banda de barlovento = la contraria a la que lleva cazada la mayor (o la mayor vela de cuchillo).",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.vela.bandas-contrarias"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 12 a) ii) y b)"
+  },
+  {
+   "id": "ripa.jerarquia.motor-vela",
+   "tipo": "concepto",
+   "etiqueta": "Motor frente a vela: el de motor se aparta (Regla 18 a))",
+   "sinonimos": [
+    "buque de propulsión mecánica y buque de vela",
+    "el de propulsión mecánica se mantendrá apartado",
+    "de vuelta encontrada con un velero",
+    "cruce con un velero",
+    "cono con el vértice hacia abajo"
+   ],
+   "nota": "El de propulsión mecánica se aparta del de vela en cualquier encuentro (también de frente), salvo que el velero alcance o en canal angosto o DST. Un velero que usa motor cuenta como de propulsión mecánica.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.alcance.obligacion",
+    "ripa.def.vela"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 18 a)"
+  },
+  {
+   "id": "ripa.jerarquia.categorias",
+   "tipo": "concepto",
+   "etiqueta": "Obligaciones entre categorías de buques (Regla 18 a)–c))",
+   "sinonimos": [
+    "obligaciones entre categorías",
+    "orden de preferencia",
+    "preferencia de paso",
+    "sin gobierno",
+    "maniobra restringida",
+    "dedicado a la pesca",
+    "vela se mantendrá apartado de",
+    "pesca se mantendrá apartado de",
+    "curricán",
+    "se mantendrá apartado de la derrota de",
+    "pesquero faenando"
+   ],
+   "nota": "Motor se aparta de sin gobierno, maniobra restringida, pesca y vela; vela de sin gobierno, maniobra restringida y pesca; pesca, en lo posible, de sin gobierno y maniobra restringida (sin perjuicio de las Reglas 9, 10 y 13).",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.jerarquia.motor-vela",
+    "ripa.def.pesca"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 18 a)–c)"
+  },
+  {
+   "id": "ripa.jerarquia.calado",
+   "tipo": "concepto",
+   "etiqueta": "No estorbar al buque restringido por su calado (Regla 18 d))",
+   "sinonimos": [
+    "restringido por su calado",
+    "evitará estorbar el tránsito seguro",
+    "navegará con especial precaución",
+    "evitará estorbar",
+    "estorbar el tránsito seguro de"
+   ],
+   "nota": "Todos salvo el sin gobierno y el de maniobra restringida evitarán estorbar al restringido por su calado, que navegará con precaución.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.def.calado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 18 d)"
+  },
+  {
+   "id": "ripa.jerarquia.hidroavion-wig",
+   "tipo": "concepto",
+   "etiqueta": "Hidroaviones y naves de vuelo rasante (Regla 18 e) y f))",
+   "sinonimos": [
+    "hidroavión amarado",
+    "nave de vuelo rasante",
+    "despegue",
+    "aterrizaje",
+    "como buques de propulsión mecánica"
+   ],
+   "nota": "El hidroavión amarado se mantiene alejado y no estorba; la nave de vuelo rasante se aparta al despegar, aterrizar o volar cerca de la superficie y, en el agua, cumple como buque de propulsión mecánica.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.def.buque"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 18 e) y f)"
+  },
+  {
+   "id": "ripa.visibilidad",
+   "tipo": "grupo",
+   "etiqueta": "Conducta en visibilidad reducida (Regla 19)",
+   "sinonimos": [],
+   "nota": "Sección III de la parte B: buques que no se ven.",
+   "padre": "ripa.rumbo",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 19"
+  },
+  {
+   "id": "ripa.visibilidad.conducta",
+   "tipo": "concepto",
+   "etiqueta": "Conducta general en visibilidad reducida (Regla 19 a)–c))",
+   "sinonimos": [
+    "visibilidad reducida",
+    "niebla",
+    "máquinas listas para maniobrar inmediatamente",
+    "velocidad de seguridad adaptada",
+    "buques que no estén a la vista",
+    "cerca o dentro de una zona de visibilidad reducida",
+    "moderar la velocidad"
+   ],
+   "nota": "Se aplica a buques que no se ven, en o cerca de visibilidad reducida; velocidad de seguridad y máquinas listas. Encender luces y hacer señales de niebla son de las Reglas 20 y 35.",
+   "padre": "ripa.visibilidad",
+   "relacionados": [
+    "ripa.luces.cuando",
+    "ripa.niebla.motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 19 a)–c)"
+  },
+  {
+   "id": "ripa.visibilidad.radar",
+   "tipo": "concepto",
+   "etiqueta": "Buque detectado solo por radar: hacia dónde no caer (Regla 19 d))",
+   "sinonimos": [
+    "detecta únicamente por medio del radar",
+    "situación de aproximación excesiva",
+    "evitar caer a babor",
+    "a proa del través",
+    "por el través o a popa",
+    "evitando un cambio de rumbo hacia",
+    "medidas tempranas",
+    "detectamos en el radar",
+    "no está a la vista"
+   ],
+   "nota": "Maniobrar con antelación evitando caer a babor por un buque a proa del través (salvo el que se alcanza) y evitando caer hacia un buque por el través o a popa.",
+   "padre": "ripa.visibilidad",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 19 d)"
+  },
+  {
+   "id": "ripa.visibilidad.senal-proa",
+   "tipo": "concepto",
+   "etiqueta": "Señal de niebla oída a proa del través (Regla 19 e))",
+   "sinonimos": [
+    "oiga a proa de su través la señal de niebla",
+    "mínima velocidad de gobierno",
+    "suprimir toda la arrancada",
+    "extrema precaución",
+    "por la amura de babor",
+    "por la proa"
+   ],
+   "nota": "Salvo que se sepa que no hay riesgo: reducir a la mínima de gobierno, suprimir la arrancada si hace falta y navegar con extrema precaución hasta que pase el peligro.",
+   "padre": "ripa.visibilidad",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 19 e)"
+  },
+  {
+   "id": "ripa.luces",
+   "tipo": "grupo",
+   "etiqueta": "Luces y marcas (Reglas 20, 21 y 23 a 31)",
+   "sinonimos": [],
+   "nota": "Parte C del RIPA (sin la Regla 22, excluida del examen).",
+   "padre": "ripa",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7",
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31)"
+  },
+  {
+   "id": "ripa.luces.cuando",
+   "tipo": "concepto",
+   "etiqueta": "Cuándo se encienden las luces y se llevan las marcas (Regla 20)",
+   "sinonimos": [
+    "puesta del sol",
+    "salida del sol",
+    "de día con visibilidad reducida",
+    "marcas de día",
+    "todas las condiciones meteorológicas",
+    "en niebla",
+    "anexo I",
+    "encenderse",
+    "luces reglamentarias",
+    "deberán cumplirse",
+    "luces de navegación"
+   ],
+   "nota": "Luces de la puesta a la salida del sol y también de día con visibilidad reducida; marcas de día; en todas las condiciones meteorológicas.",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 20"
+  },
+  {
+   "id": "ripa.luces.def",
+   "tipo": "grupo",
+   "etiqueta": "Definiciones de las luces (Regla 21)",
+   "sinonimos": [],
+   "nota": "Color y sector de cada luz.",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21"
+  },
+  {
+   "id": "ripa.luces.def.tope",
+   "tipo": "concepto",
+   "etiqueta": "Luz de tope: blanca, 225°",
+   "sinonimos": [
+    "luz de tope",
+    "225 grados",
+    "eje longitudinal",
+    "22,5 grados a popa del través",
+    "luz blanca de tope"
+   ],
+   "nota": "Blanca, en el eje, visible en 225° (de la proa a 22,5° a popa del través por cada banda).",
+   "padre": "ripa.luces.def",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 a)"
+  },
+  {
+   "id": "ripa.luces.def.costado",
+   "tipo": "concepto",
+   "etiqueta": "Luces de costado: verde a estribor, roja a babor, 112,5°",
+   "sinonimos": [
+    "luces de costado",
+    "verde la de estribor",
+    "roja la de babor",
+    "112,5 grados",
+    "farol combinado",
+    "en el eje longitudinal"
+   ],
+   "nota": "Verde a estribor y roja a babor, cada una 112,5° desde la proa; en < 20 m pueden ir en un farol combinado.",
+   "padre": "ripa.luces.def",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 b)"
+  },
+  {
+   "id": "ripa.luces.def.alcance-remolque",
+   "tipo": "concepto",
+   "etiqueta": "Luz de alcance (blanca) y luz de remolque (amarilla): 135° a popa",
+   "sinonimos": [
+    "luz de alcance",
+    "135 grados",
+    "67,5 grados",
+    "lo más cerca posible de la popa",
+    "luz de remolque",
+    "luz amarilla",
+    "mismas características"
+   ],
+   "nota": "Alcance: blanca a popa, 135° (67,5° por banda desde la popa). Remolque: amarilla con las mismas características.",
+   "padre": "ripa.luces.def",
+   "relacionados": [
+    "ripa.alcance.definicion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 c) y d)"
+  },
+  {
+   "id": "ripa.luces.def.todo-horizonte",
+   "tipo": "concepto",
+   "etiqueta": "Luz todo horizonte y luz centelleante",
+   "sinonimos": [
+    "luz todo horizonte",
+    "360 grados",
+    "luz centelleante",
+    "120 o más centelleos por minuto",
+    "todo horizonte"
+   ],
+   "nota": "Todo horizonte: 360°. Centelleante: 120 o más centelleos por minuto.",
+   "padre": "ripa.luces.def",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 21 e) y f)"
+  },
+  {
+   "id": "ripa.luces.motor",
+   "tipo": "concepto",
+   "etiqueta": "Luces del buque de propulsión mecánica en navegación (Regla 23 a))",
+   "sinonimos": [
+    "buque de propulsión mecánica en navegación",
+    "luz de tope a proa",
+    "segunda luz de tope",
+    "a popa y más alta",
+    "50 metros",
+    "luces de costado y luz de alcance",
+    "visto por la proa",
+    "visto por la popa"
+   ],
+   "nota": "Tope a proa, segunda tope a popa y más alta (obligatoria desde 50 m), costados y alcance; incluye identificarlo por sus luces.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.motor-pequeno"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 23 a)"
+  },
+  {
+   "id": "ripa.luces.motor-pequeno",
+   "tipo": "concepto",
+   "etiqueta": "Buques de motor pequeños: luz blanca todo horizonte (Regla 23 d))",
+   "sinonimos": [
+    "eslora inferior a 12 metros",
+    "eslora inferior a 7 metros",
+    "velocidad máxima no exceda de 7 nudos",
+    "luz blanca todo horizonte",
+    "si es posible luces de costado",
+    "fuera del eje"
+   ],
+   "nota": "< 12 m: blanca todo horizonte + costados en lugar de tope y alcance; < 7 m y ≤ 7 nudos: blanca todo horizonte (y costados si es posible); la luz puede ir fuera del eje con costados combinados.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 23 d)"
+  },
+  {
+   "id": "ripa.luces.aerodeslizador-wig",
+   "tipo": "concepto",
+   "etiqueta": "Aerodeslizadores, naves de vuelo rasante e hidroaviones (Reglas 23 b), c) y 31)",
+   "sinonimos": [
+    "aerodeslizador",
+    "condición sin desplazamiento",
+    "luz amarilla centelleante",
+    "nave de vuelo rasante",
+    "luz roja centelleante de gran intensidad",
+    "hidroavión",
+    "características lo más parecidas posible"
+   ],
+   "nota": "Aerodeslizador sin desplazamiento: luces de motor + amarilla centelleante todo horizonte; WIG al despegar, aterrizar o volar cerca de la superficie: + roja centelleante de gran intensidad; hidroaviones y WIG que no puedan, lo más parecido posible.",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Reglas 23 b) y c) y 31"
+  },
+  {
+   "id": "ripa.luces.remolcador",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marca del buque que remolca o empuja (Regla 24 a)–d))",
+   "sinonimos": [
+    "remolcando",
+    "dos luces de tope",
+    "tres luces de tope",
+    "longitud del remolque",
+    "200 metros",
+    "marca bicónica",
+    "luz de remolque",
+    "empujando",
+    "unidad compuesta",
+    "conexión rígida"
+   ],
+   "nota": "Remolcador: 2 topes (3 si el remolque > 200 m), costados, alcance y de remolque encima; bicónica de día si > 200 m. Empujador y empujado rígidamente unidos = un buque de propulsión mecánica.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.remolcado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 24 a)–d)"
+  },
+  {
+   "id": "ripa.luces.remolcado",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marcas del buque u objeto remolcado o empujado (Regla 24 e)–i))",
+   "sinonimos": [
+    "buque remolcado",
+    "objeto remolcado",
+    "poco visible y parcialmente sumergido",
+    "remolcado por el costado",
+    "buque empujado",
+    "luces de costado y luz de alcance",
+    "marca bicónica",
+    "como si fueran un solo buque"
+   ],
+   "nota": "Remolcado visible: costados y alcance (bicónica si > 200 m); por el costado o empujados en grupo, como un solo buque; objetos poco visibles: luces blancas todo horizonte y bicónicas en los extremos.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.remolcador"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 24 e)–i)"
+  },
+  {
+   "id": "ripa.luces.vela",
+   "tipo": "concepto",
+   "etiqueta": "Luces del buque de vela en navegación (Regla 25 a)–c))",
+   "sinonimos": [
+    "buque de vela en navegación",
+    "luces de costado y luz de alcance",
+    "farol combinado",
+    "tricolor",
+    "eslora inferior a 20 metros",
+    "roja sobre verde",
+    "luces potestativas",
+    "nunca exhiben luz de tope",
+    "navegando a vela de noche",
+    "embarcación de vela",
+    "vela sin utilizar"
+   ],
+   "nota": "Costados y alcance (farol combinado en el tope si < 20 m); opcional roja sobre verde todo horizonte en el tope (no con el farol combinado); nunca luz de tope. Incluye reconocer un velero por sus luces.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.situacion.por-luces"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7",
+    "per-6-5"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 25 a)–c)"
+  },
+  {
+   "id": "ripa.luces.vela-pequena-remo",
+   "tipo": "concepto",
+   "etiqueta": "Veleros de menos de 7 m y embarcaciones de remo (Regla 25 d))",
+   "sinonimos": [
+    "eslora inferior a 7 metros",
+    "linterna eléctrica",
+    "farol de luz blanca",
+    "embarcaciones de remo",
+    "bote a remos",
+    "tiempo suficiente para evitar el abordaje"
+   ],
+   "nota": "Si no llevan costados y alcance, linterna o farol blanco a mano para mostrar a tiempo; el remo puede llevar las del velero.",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 25 d)"
+  },
+  {
+   "id": "ripa.marcas.vela-motor",
+   "tipo": "concepto",
+   "etiqueta": "Velero que navega también a motor: cono con el vértice hacia abajo (Regla 25 e))",
+   "sinonimos": [
+    "cono con el vértice hacia abajo",
+    "marca cónica",
+    "vela y motor",
+    "motovelero",
+    "velas izadas y motor en marcha"
+   ],
+   "nota": "De día lleva a proa un cono con el vértice hacia abajo; de noche, las luces de un buque de propulsión mecánica.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.def.vela",
+    "ripa.luces.motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-7"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 25 e)"
+  },
+  {
+   "id": "ripa.luces.pesca-arrastre",
+   "tipo": "concepto",
+   "etiqueta": "Luces del pesquero de arrastre (Regla 26 b))",
+   "sinonimos": [
+    "pesca de arrastre",
+    "arrastrero",
+    "verde sobre blanca",
+    "verde la superior y blanca la inferior",
+    "luz de tope a popa más alta",
+    "50 metros",
+    "con arrancada costados y alcance"
+   ],
+   "nota": "Verde sobre blanca todo horizonte; tope a popa y más alta si ≥ 50 m (opcional si menor); con arrancada, costados y alcance.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.marcas.pesca"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 26 b)"
+  },
+  {
+   "id": "ripa.luces.pesca-otra",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marcas del pesquero que no es de arrastre (Regla 26 c))",
+   "sinonimos": [
+    "no sea de arrastre",
+    "roja sobre blanca",
+    "roja la superior y blanca la inferior",
+    "aparejo largado",
+    "150 metros",
+    "luz blanca todo horizonte en dirección del aparejo",
+    "cono con el vértice hacia arriba"
+   ],
+   "nota": "Roja sobre blanca todo horizonte; aparejo > 150 m: blanca todo horizonte o cono con vértice hacia arriba en su dirección; con arrancada, costados y alcance.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.marcas.pesca"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 26 c)"
+  },
+  {
+   "id": "ripa.marcas.pesca",
+   "tipo": "concepto",
+   "etiqueta": "Marca de pesca: dos conos unidos por los vértices (Regla 26 b), c) y e))",
+   "sinonimos": [
+    "dos conos unidos por sus vértices",
+    "marca bicónica no es de pesca",
+    "cuando no esté pescando",
+    "marca diurna de pesca",
+    "conos negros unidos por el vértice",
+    "dos conos unidos",
+    "marca bicónica es característica"
+   ],
+   "nota": "De día todo buque dedicado a la pesca (arrastre o no) lleva dos conos unidos por los vértices; si no está pescando, solo las luces y marcas de un buque de su eslora.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.def.pesca"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 26 b), c) y e)"
+  },
+  {
+   "id": "ripa.luces.sin-gobierno",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marcas del buque sin gobierno (Regla 27 a))",
+   "sinonimos": [
+    "sin gobierno",
+    "dos luces rojas todo horizonte",
+    "dos bolas negras",
+    "dos esferas negras",
+    "con arrancada",
+    "eslora inferior a 12 metros"
+   ],
+   "nota": "Dos rojas todo horizonte en vertical (de día dos bolas); con arrancada, además costados y alcance. Los < 12 m no están obligados.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.def.sin-gobierno"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 a) y g)"
+  },
+  {
+   "id": "ripa.luces.maniobra-restringida",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marcas del buque con maniobra restringida (Regla 27 b) y c))",
+   "sinonimos": [
+    "roja, blanca y roja",
+    "roja-blanca-roja",
+    "bola, bicónica, bola",
+    "esfera-bicono-esfera",
+    "con arrancada luces de tope",
+    "remolque con dificultad de maniobra",
+    "eslora inferior a 12 metros",
+    "conjunto de luces",
+    "con capacidad de maniobra restringida"
+   ],
+   "nota": "Roja-blanca-roja todo horizonte (de día bola-bicónica-bola); con arrancada, topes, costados y alcance; remolcando con dificultad, además las del remolque. Los < 12 m (salvo buceo) no están obligados.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.def.maniobra-restringida"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 b), c) y g)"
+  },
+  {
+   "id": "ripa.luces.draga-buceo",
+   "tipo": "concepto",
+   "etiqueta": "Dragas, operaciones submarinas y buceo (Regla 27 d) y e))",
+   "sinonimos": [
+    "dragado",
+    "obstrucción",
+    "dos luces rojas en vertical por el costado de la obstrucción",
+    "dos luces verdes por el costado libre",
+    "dos bolas",
+    "dos marcas bicónicas",
+    "operaciones submarinas",
+    "buceo",
+    "bandera Alfa",
+    "material rígido",
+    "tengo buzo sumergido",
+    "costado de la obstrucción",
+    "dragado con obstrucción"
+   ],
+   "nota": "Con obstrucción: dos rojas/dos bolas del lado obstruido y dos verdes/dos bicónicas del lado libre por donde se pasa; buceo de pequeño tamaño: roja-blanca-roja y bandera «A» rígida de al menos 1 m.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.maniobra-restringida"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 d) y e)"
+  },
+  {
+   "id": "ripa.luces.dragaminas",
+   "tipo": "concepto",
+   "etiqueta": "Buque dedicado a limpieza de minas (Regla 27 f))",
+   "sinonimos": [
+    "dragaminas",
+    "limpieza de minas",
+    "tres luces verdes",
+    "tres bolas negras",
+    "formando triángulo",
+    "1000 metros"
+   ],
+   "nota": "Tres verdes todo horizonte (o tres bolas) en triángulo: peligroso acercarse a menos de 1000 m.",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 27 f)"
+  },
+  {
+   "id": "ripa.luces.calado",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marca del buque restringido por su calado (Regla 28)",
+   "sinonimos": [
+    "restringido por su calado",
+    "tres luces rojas todo horizonte",
+    "cilindro"
+   ],
+   "nota": "Además de las de motor, puede llevar tres rojas todo horizonte en vertical o un cilindro.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.def.calado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 28"
+  },
+  {
+   "id": "ripa.luces.practico",
+   "tipo": "concepto",
+   "etiqueta": "Luces de la embarcación de práctico (Regla 29)",
+   "sinonimos": [
+    "práctico",
+    "servicio de practicaje",
+    "blanca sobre roja",
+    "blanca la superior y roja la inferior"
+   ],
+   "nota": "En servicio: blanca sobre roja todo horizonte; en navegación además costados y alcance; fondeada, además las de fondeo; fuera de servicio, las de un buque de su eslora.",
+   "padre": "ripa.luces",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 29"
+  },
+  {
+   "id": "ripa.luces.fondeado",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marca del buque fondeado (Regla 30 a)–c) y e))",
+   "sinonimos": [
+    "fondeado",
+    "una bola en la parte de proa",
+    "esfera negra",
+    "luz blanca todo horizonte a proa",
+    "otra a popa más baja",
+    "50 metros",
+    "luces de cubierta",
+    "100 metros",
+    "eslora inferior a 7 metros",
+    "zona de navegación frecuente",
+    "fondear",
+    "fondeo"
+   ],
+   "nota": "De día una bola a proa; de noche blanca todo horizonte a proa y, si ≥ 50 m, otra más baja a popa; ≥ 100 m, además luces de cubierta; < 7 m fuera de canales y fondeaderos, exento.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.varado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 30 a)–c) y e)"
+  },
+  {
+   "id": "ripa.luces.varado",
+   "tipo": "concepto",
+   "etiqueta": "Luces y marcas del buque varado (Regla 30 d) y f))",
+   "sinonimos": [
+    "varado",
+    "tres bolas",
+    "tres esferas negras",
+    "dos luces rojas todo horizonte",
+    "luces de fondeo",
+    "eslora inferior a 12 metros",
+    "embarcación varada"
+   ],
+   "nota": "De noche las de fondeado más dos rojas todo horizonte; de día tres bolas en vertical; los < 12 m no están obligados.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.luces.fondeado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 30 d) y f)"
+  },
+  {
+   "id": "ripa.senales",
+   "tipo": "grupo",
+   "etiqueta": "Señales acústicas y luminosas (Reglas 32 a 37) y de peligro (anexo IV)",
+   "sinonimos": [],
+   "nota": "Parte D del RIPA y anexo IV.",
+   "padre": "ripa",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9",
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37)"
+  },
+  {
+   "id": "ripa.senales.pitadas",
+   "tipo": "concepto",
+   "etiqueta": "Pito, pitada corta y pitada larga (Regla 32)",
+   "sinonimos": [
+    "pitada corta",
+    "un segundo",
+    "pitada larga",
+    "cuatro a seis segundos",
+    "pito"
+   ],
+   "nota": "Corta ≈ 1 s; larga 4–6 s; «pito» = dispositivo conforme al anexo III.",
+   "padre": "ripa.senales",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 32"
+  },
+  {
+   "id": "ripa.senales.equipo",
+   "tipo": "concepto",
+   "etiqueta": "Equipo para señales acústicas según la eslora (Regla 33)",
+   "sinonimos": [
+    "pito",
+    "campana",
+    "gong",
+    "12 metros",
+    "20 metros",
+    "100 metros",
+    "otros medios para hacer señales acústicas eficaces"
+   ],
+   "nota": "Pito desde 12 m; pito y campana desde 20 m; además gong desde 100 m; < 12 m, si no los llevan, otro medio eficaz.",
+   "padre": "ripa.senales",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 33"
+  },
+  {
+   "id": "ripa.senales.maniobra",
+   "tipo": "concepto",
+   "etiqueta": "Señales de maniobra entre buques a la vista: 1, 2 y 3 cortas (Regla 34 a))",
+   "sinonimos": [
+    "una pitada corta",
+    "caigo a estribor",
+    "dos pitadas cortas",
+    "caigo a babor",
+    "tres pitadas cortas",
+    "estoy dando atrás",
+    "dando atrás",
+    "tres pitadas"
+   ],
+   "nota": "Buque de propulsión mecánica a la vista de otro que maniobra: 1 corta = caigo a estribor; 2 = a babor; 3 = dando atrás.",
+   "padre": "ripa.senales",
+   "relacionados": [
+    "ripa.senales.luminosas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 34 a)"
+  },
+  {
+   "id": "ripa.senales.luminosas",
+   "tipo": "concepto",
+   "etiqueta": "Señales luminosas que complementan las pitadas (Regla 34 b))",
+   "sinonimos": [
+    "destellos",
+    "señales luminosas",
+    "luz blanca todo horizonte",
+    "cinco millas",
+    "duración de un segundo",
+    "complementar las pitadas"
+   ],
+   "nota": "Pueden complementarse con destellos (1, 2 o 3) de una luz blanca todo horizonte visible a 5 millas, de ~1 s separados ~1 s y al menos 10 s entre señales.",
+   "padre": "ripa.senales",
+   "relacionados": [
+    "ripa.senales.maniobra"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 34 b)"
+  },
+  {
+   "id": "ripa.senales.duda",
+   "tipo": "concepto",
+   "etiqueta": "Señal de duda o advertencia: al menos cinco cortas y rápidas (Regla 34 d))",
+   "sinonimos": [
+    "cinco pitadas cortas y rápidas",
+    "no entiende las intenciones",
+    "tiene dudas",
+    "advertencia",
+    "cinco destellos",
+    "duda de la maniobra",
+    "dudas",
+    "duda"
+   ],
+   "nota": "Quien no entienda las intenciones del otro o dude de que maniobre lo suficiente lo indica con al menos cinco pitadas (o destellos) cortas y rápidas.",
+   "padre": "ripa.senales",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9",
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 34 d)"
+  },
+  {
+   "id": "ripa.niebla",
+   "tipo": "grupo",
+   "etiqueta": "Señales acústicas en visibilidad reducida (Regla 35)",
+   "sinonimos": [],
+   "nota": "Señales de niebla de cada tipo de buque.",
+   "padre": "ripa.senales",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35"
+  },
+  {
+   "id": "ripa.niebla.motor",
+   "tipo": "concepto",
+   "etiqueta": "Niebla, buque de propulsión mecánica: una larga o dos largas (Regla 35 a) y b))",
+   "sinonimos": [
+    "una pitada larga a intervalos que no excedan de dos minutos",
+    "dos pitadas largas",
+    "separadas por unos dos segundos",
+    "parado y sin arrancada",
+    "con arrancada"
+   ],
+   "nota": "Con arrancada, una larga cada ≤ 2 min; parado y sin arrancada, dos largas separadas ~2 s cada ≤ 2 min.",
+   "padre": "ripa.niebla",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 a) y b)"
+  },
+  {
+   "id": "ripa.niebla.larga-dos-cortas",
+   "tipo": "concepto",
+   "etiqueta": "Niebla: una larga y dos cortas (sin gobierno, maniobra restringida, calado, vela, pesca, remolcando) (Regla 35 c) y d))",
+   "sinonimos": [
+    "una larga seguida de dos cortas",
+    "larga, corta, corta",
+    "buque de vela",
+    "dedicado a la pesca",
+    "sin gobierno",
+    "maniobra restringida",
+    "restringido por su calado",
+    "remolcando o empujando",
+    "pesca fondeado",
+    "pitada larga seguida de dos cortas",
+    "larga y dos cortas",
+    "larga seguida de dos cortas"
+   ],
+   "nota": "Una larga y dos cortas cada ≤ 2 min para todos ellos (también pesca y maniobra restringida fondeados).",
+   "padre": "ripa.niebla",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 c) y d)"
+  },
+  {
+   "id": "ripa.niebla.remolcado-practico",
+   "tipo": "concepto",
+   "etiqueta": "Niebla: remolcado (larga y tres cortas), empujado y práctico (cuatro cortas) (Regla 35 e), f) y j))",
+   "sinonimos": [
+    "una larga seguida de tres cortas",
+    "remolcado",
+    "último del remolque",
+    "unidad compuesta",
+    "cuatro pitadas cortas",
+    "práctico"
+   ],
+   "nota": "Remolcado tripulado (o el último): una larga y tres cortas justo tras la del remolcador; unidad compuesta como un buque de motor; práctico en servicio puede añadir cuatro cortas.",
+   "padre": "ripa.niebla",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 e), f) y j)"
+  },
+  {
+   "id": "ripa.niebla.fondeado-varado",
+   "tipo": "concepto",
+   "etiqueta": "Niebla: fondeado y varado (campana, gong, corta-larga-corta) (Regla 35 g) y h))",
+   "sinonimos": [
+    "repique de campana",
+    "cinco segundos",
+    "intervalos de un minuto",
+    "gong",
+    "corta, larga y corta",
+    "tres golpes de campana",
+    "varado",
+    "fondeado",
+    "una pitada corta, una larga y una corta",
+    "buque fondeado podrá"
+   ],
+   "nota": "Fondeado: repique de campana ~5 s cada ≤ 1 min (≥ 100 m, además gong a popa); puede añadir corta-larga-corta. Varado: campana con tres golpes antes y después del repique.",
+   "padre": "ripa.niebla",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 g) y h)"
+  },
+  {
+   "id": "ripa.niebla.pequenas",
+   "tipo": "concepto",
+   "etiqueta": "Niebla: buques pequeños (Regla 35 i))",
+   "sinonimos": [
+    "eslora inferior a 12 metros",
+    "cualquier señal acústica eficaz",
+    "intervalos que no excedan de dos minutos",
+    "no tendrá obligación"
+   ],
+   "nota": "< 12 m no están obligados a las señales de la regla, pero harán otra señal acústica eficaz cada ≤ 2 min (< 20 m, solo la mitad de campana/gong).",
+   "padre": "ripa.niebla",
+   "relacionados": [
+    "ripa.senales.equipo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-9"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 35 i)"
+  },
+  {
+   "id": "ripa.llamar-atencion",
+   "tipo": "concepto",
+   "etiqueta": "Señales para llamar la atención (Regla 36)",
+   "sinonimos": [
+    "llamar la atención",
+    "proyector",
+    "no pueda confundirse",
+    "luces estroboscópicas",
+    "luz azul"
+   ],
+   "nota": "Cualquier señal luminosa o acústica que no se confunda con las del Reglamento, o el proyector sin molestar; evitar destellos estroboscópicos.",
+   "padre": "ripa.senales",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.4 Señales acústicas y luminosas (Reglas 32 a 37); RIPA, Regla 36"
+  },
+  {
+   "id": "ripa.peligro",
+   "tipo": "grupo",
+   "etiqueta": "Señales de peligro (Regla 37 y anexo IV)",
+   "sinonimos": [],
+   "nota": "Señales para pedir ayuda.",
+   "padre": "ripa.senales",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.5 Señales de peligro (anexo IV)"
+  },
+  {
+   "id": "ripa.peligro.senales",
+   "tipo": "concepto",
+   "etiqueta": "Cuáles son señales de peligro del anexo IV",
+   "sinonimos": [
+    "peligro y necesidad de ayuda",
+    "SOS",
+    "· · · — — — · · ·",
+    "MAYDAY",
+    "NC",
+    "bandera cuadrada con una bola",
+    "cohete con paracaídas",
+    "bengala de mano roja",
+    "humo naranja",
+    "señal fumígena",
+    "sonido continuo",
+    "llamaradas",
+    "subiendo y bajando los brazos",
+    "llamada selectiva digital",
+    "canal 70",
+    "radiobaliza",
+    "no es una señal de peligro",
+    "bengala verde",
+    "solicita auxilio",
+    "en peligro",
+    "necesita auxilio",
+    "luz roja"
+   ],
+   "nota": "Reconocer las señales de la lista del anexo IV y descartar las que no lo son (MC, DE, «N» y «A», bengalas verdes, 112, otras frecuencias).",
+   "padre": "ripa.peligro",
+   "relacionados": [
+    "ripa.peligro.uso"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.5 Señales de peligro (anexo IV); RIPA, Regla 37 y anexo IV 1"
+  },
+  {
+   "id": "ripa.peligro.uso",
+   "tipo": "concepto",
+   "etiqueta": "Cuándo se usan las señales de peligro y señales para la identificación aérea (Regla 37, anexo IV 2–3)",
+   "sinonimos": [
+    "cuándo se utilizarán",
+    "esté en peligro y requiera ayuda",
+    "juntas o por separado",
+    "prohibido",
+    "lona de color naranja",
+    "cuadrado negro y un círculo",
+    "colorante",
+    "identificación desde el aire"
+   ],
+   "nota": "Solo cuando se está en peligro y se necesita ayuda (prohibido usarlas para otra cosa); se pueden usar juntas o por separado; lona naranja con cuadrado y círculo negros o colorante para que lo vean desde el aire.",
+   "padre": "ripa.peligro",
+   "relacionados": [
+    "ripa.peligro.senales"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-10"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.5 Señales de peligro (anexo IV); RIPA, Regla 37 y anexo IV 2 y 3"
+  }
+ ]
+}

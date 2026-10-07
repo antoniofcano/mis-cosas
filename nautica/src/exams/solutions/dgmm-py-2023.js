@@ -21,7 +21,7 @@ export default {
         const rv = k.rv(215, ct);
         const rs = k.abatimiento(rv, 2, S);
         const { vb } = k.rumboYVelocidad(s, 'punta-europa', hrb(14, 45) - hrb(14, 15), 340, 2.4);
-        k.note('Comprobación', `El Rs que sale del triángulo coincide con el que llevamos (${Math.round(rs)}°): con esa proa basta ajustar la velocidad de máquinas.`);
+        k.note('Comprobación', `El Rs que sale del triángulo es prácticamente el que llevamos (${Math.round(rs)}°): con esa proa basta ajustar la velocidad de máquinas.`);
         return [{ kind: 'speed', value: vb }];
       },
     },

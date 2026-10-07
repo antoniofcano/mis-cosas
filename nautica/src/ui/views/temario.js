@@ -16,6 +16,7 @@ import { mapasDeClases } from '../../course/mapas.js';
 import { episodiosDeTema, enlaceEpisodio } from './podcast.js';
 import { estadoEpisodio } from '../radio.js';
 import { cuenta } from '../../texto.js';
+import { marcaConfig } from '../config-profe.js';
 
 const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', vista: 'vista · falta practicarla', repasar: 'toca repasar', dominada: 'aprendida' };
 const ESTADO_CLS = { dominada: 'ok', vista: 'ok', repasar: 'warn', empezada: 'close' };
@@ -47,6 +48,7 @@ export function temarioView({ progress, tit }) {
       `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${cuenta(TANDA, 'pregunta')}`;
     setChildren(el,
       h('h1', `Temario del ${T.sigla}`),
+      marcaConfig(),
       h('p.muted', 'Por temas: primero la base y los temas en los que se suspende por fallos. Las clases las vas dando en la ruta del curso, que alterna temas para que no se haga pesado; «Hoy» te dice cuál toca.'),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]) },
         b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null,

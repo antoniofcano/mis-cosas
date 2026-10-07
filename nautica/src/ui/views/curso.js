@@ -463,7 +463,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,
         enlaceRepasa(),
       ];
-      const chuleta = L.chuleta?.length ? glosado(h('section.chuleta', h('h2', '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
+      const chuleta = L.chuleta?.length ? glosado(h('section.chuleta', h('h2', L.chuletaProfe ? '📌 Chuleta de tu profesor' : '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
         voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null)) : null;
       const vuelta = origen ? h('p', volverOrigen('a.btn.grande')) : null;
       if (enApendice) {

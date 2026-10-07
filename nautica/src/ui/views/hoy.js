@@ -1,6 +1,7 @@
 // #/ y #/<tit> — Hoy: saludo, la actividad que toca (una sola acción principal), el avance y lo que viene después.
 
 import { h, setChildren } from '../dom.js';
+import { marcaConfig } from '../config-profe.js';
 import { diasHasta, lineaAvance } from '../../course/plan.js';
 import { lineaListo } from '../../course/listo.js';
 import { mazos, tarjetasPorRepasar } from '../../course/tarjetas.js';
@@ -165,6 +166,7 @@ export function hoyView({ progress, tit }) {
         h('h3', x.titulo), h('p', TIPO_TXT[x.tipo] ? icono(TIPO_TXT[x.tipo][0]) : null, ` unos ${cuenta(x.minutos, 'minuto')}`))))] : null),
       avisoCopia(progress),
       h('p.ver-todo', h('a', { href: tlink(tit, ['temario']) }, 'Ver todo el temario →')),
+      marcaConfig(),
     );
   }).catch((e) => setChildren(el, cabecera, h('p.warn', `No se pudo preparar el plan: ${e.message}`)));
 

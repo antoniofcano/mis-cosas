@@ -318,5 +318,329 @@
   "clave": "Absoluta = g/m³; relativa = %; rocío = °C.",
   "trampa": "La a): la relativa es un porcentaje, no unos gramos por m³.",
   "concepto": "and-py-2026-c2-g15"
+ },
+ "and-py-2015-c2-g13": {
+  "explicacion": "Los altostratos son nubes medias, entre unos 2000 y 6000 m: un velo grisáceo o azulado que deja ver el Sol como a través de un cristal esmerilado. El prefijo «alto-» identifica las nubes medias (altostrato, altocúmulo), mientras que «cirro-» marca las altas y los estratos «a secas» son bajos.",
+  "clave": "«Alto-» = medias, por paradójico que suene.",
+  "trampa": "El nombre invita a pensar en nubes altas, pero «alto-» corresponde a la familia media.",
+  "concepto": "and-py-2022-c3-g19"
+ },
+ "and-py-2015-c2-g14": {
+  "explicacion": "Las nubes altas son las de la familia «cirro-»: cirros, cirrocúmulos y cirrostratos, formadas por cristales de hielo por encima de unos 6000 m. Los altocúmulos son medios, los estratos y estratocúmulos bajos y el nimbostrato es una nube baja o media de lluvia continua, así que todas las demás parejas fallan.",
+  "clave": "Cirro‑ = alta; alto‑ = media; estrato‑ = baja.",
+  "trampa": "Las parejas falsas mezclan una nube media con una baja; ninguna lleva «cirro-».",
+  "concepto": null
+ },
+ "and-py-2015-c2-g16": {
+  "explicacion": "El frente cálido tiene una pendiente muy suave, del orden de 1/100 a 1/400; la pendiente acusada, de 1/30 a 1/100, es la del frente frío. Lo demás sí es propio del frente cálido: el aire cálido sube por sí solo sobre la cuña fría, el mal tiempo se anticipa cientos de kilómetros por delante (cirros y estratos) y el rozamiento retrasa la traza en el suelo, con nieblas justo antes de su paso.",
+  "clave": "Frente cálido: pendiente suave (1/100–1/400). Frente frío: acusada (1/30–1/100).",
+  "trampa": "Es en negativo: las tres primeras describen bien el frente cálido y la d) le cuelga la pendiente del frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-calido-corte"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-g17": {
+  "explicacion": "En una oclusión, el aire que es más frío se queda abajo. Si el aire polar de retaguardia (sector posterior) es más cálido que el de vanguardia, monta sobre él y la oclusión es de tipo cálido: es lo que dice la a). La b) describe la oclusión de tipo frío, y con las dos masas a la misma temperatura no habría ese contraste.",
+  "clave": "Oclusión: retaguardia más cálida = tipo cálido; retaguardia más fría = tipo frío.",
+  "trampa": "La b) es la oclusión de tipo frío.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-g18": {
+  "explicacion": "Las nieblas por enfriamiento se forman cuando el aire se enfría hasta su punto de rocío: las de radiación (el suelo se enfría de noche), las de advección (aire templado sobre una superficie fría) y las orográficas (el aire se enfría al subir por una ladera). Las de vapor y las frontales son de evaporación, y la de mezcla forma su propio grupo, por eso las otras opciones fallan.",
+  "clave": "Enfriamiento: radiación, advección, orográfica. Evaporación: vapor, frontal.",
+  "trampa": "La de vapor «suena» a frío porque el aire es frío, pero se forma por evaporación del agua templada.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "niebla-radiacion"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-g19": {
+  "explicacion": "Las corrientes de marea son el movimiento horizontal del agua asociado a la subida y bajada de la marea, causado por la atracción de la Luna y el Sol. Las termohalinas dependen de la temperatura y la salinidad, las de arrastre del viento y las de gradiente del desnivel de la superficie del mar.",
+  "clave": "Astros → marea; viento → arrastre; temperatura y sal → termohalinas.",
+  "trampa": "Las de gradiente también son horizontales, pero su causa es el desnivel, no los astros.",
+  "concepto": "and-py-2021-c1-g18"
+ },
+ "and-py-2015-c2-g20": {
+  "explicacion": "Las corrientes que se deben a diferencias de temperatura y salinidad, es decir, de densidad, entre aguas de distintos lugares o profundidades son las termohalinas: termo, temperatura; halina, sal. Las de marea se deben a los astros, las de gradiente al desnivel de la superficie y las de arrastre al viento.",
+  "clave": "Termohalina = temperatura + sal.",
+  "trampa": "La b): las de gradiente se deben al desnivel de la superficie, no a temperatura y sal.",
+  "concepto": "and-py-2026-c1-g15"
+ },
+ "and-py-2015-c2-n01": {
+  "explicacion": "El meridiano que pasa por el observador es el meridiano del lugar. El de Greenwich es el meridiano cero, origen de las longitudes, y solo coincidiría con el del lugar para quien esté en Greenwich; el de 180° es su opuesto.",
+  "clave": "Meridiano del lugar = el que pasa por mí.",
+  "trampa": "La d): Greenwich no es «mi» meridiano salvo que esté allí.",
+  "concepto": "and-py-2023-c1-n01"
+ },
+ "and-py-2015-c2-n02": {
+  "explicacion": "WPT (waypoint) es un punto de paso o de destino que se guarda en el GPS o el plotter: el punto de recalada al que queremos llegar. La separación entre rumbo de fondo y verdadero, el rumbo de fondo (COG) y la deriva son otras magnitudes que muestra el equipo con otras siglas.",
+  "clave": "WPT = waypoint (punto de recalada o de paso).",
+  "trampa": "Las otras opciones son datos que también da el GPS, pero con otras siglas (COG, XTE…).",
+  "concepto": "and-py-2026-c1-n07"
+ },
+ "and-py-2015-c2-n03": {
+  "explicacion": "La latitud es el arco de meridiano del lugar contado desde el Ecuador hasta el paralelo del lugar, de 0° a 90° N o S. La longitud se mide sobre el Ecuador (o un paralelo) desde Greenwich, y las diferencias de latitud o de longitud son arcos entre dos lugares, no desde el Ecuador.",
+  "clave": "Latitud: sobre el meridiano, desde el Ecuador. Longitud: sobre el Ecuador, desde Greenwich.",
+  "trampa": "La a): la diferencia de latitud es entre dos paralelos, no desde el Ecuador.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n04": {
+  "explicacion": "Los ecos falsos o indirectos los produce el propio barco: el haz del radar rebota en palos, chimeneas u otras estructuras de a bordo y devuelve un eco en una demora equivocada. El estado de la mar produce ecos de mar (clutter), los objetos pequeños dan ecos reales débiles y los otros radares producen interferencias en forma de espirales o rayos, que no son ecos indirectos.",
+  "clave": "Ecos indirectos = reflejos en la estructura del propio barco.",
+  "trampa": "La a) y la d) sí ensucian la pantalla, pero son clutter e interferencias, no ecos indirectos.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n05": {
+  "explicacion": "La corrección total es la suma de la declinación magnética y el desvío (Ct = dm + Δ). En la misma zona la declinación es la misma para los dos barcos, pero el desvío depende de cada barco y de su rumbo. Por eso solo tendrán la misma Ct si coincide el desvío.",
+  "clave": "Ct = dm (del lugar) + Δ (del barco y del rumbo).",
+  "trampa": "La b): en la misma zona la declinación es la misma; lo que cambia es el desvío.",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -2,
+    "desvio": 3
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-n06": {
+  "explicacion": "El Trópico de Capricornio es el paralelo de 23° 27′ S, en el hemisferio sur: está separado del Ecuador 23° 27′. Del polo sur dista 90° − 23° 27′ = 66° 33′, así que la c) es falsa, y la a) describe el Trópico de Cáncer.",
+  "clave": "Capricornio = 23° 27′ S; Cáncer = 23° 27′ N.",
+  "trampa": "La c): 23° 27′ del polo es el círculo polar, no el trópico.",
+  "concepto": "and-py-2022-c3-n01"
+ },
+ "and-py-2015-c2-n07": {
+  "explicacion": "En la presentación norte arriba el norte está fijo en la parte alta de la pantalla, así que los ángulos que se leen con la EBL son demoras directamente. Con proa arriba se leen marcaciones. La presentación no hace la imagen más borrosa ni produce más perturbaciones.",
+  "clave": "Norte arriba → demoras; proa arriba → marcaciones.",
+  "trampa": "La a): las marcaciones directas son de la presentación proa arriba.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n08": {
+  "explicacion": "El Tiempo Universal es la hora civil de Greenwich, es decir, el tiempo transcurrido desde el paso del sol medio por el meridiano inferior de Greenwich. Por eso son correctas la b) y la c), que lo dicen de dos maneras. La a) define la hora civil del lugar, que solo coincide con el TU para quien esté en Greenwich.",
+  "clave": "TU = HcG (sol medio, meridiano inferior de Greenwich).",
+  "trampa": "La a): es la HcL de cualquier lugar, no el TU.",
+  "concepto": null
+ },
+ "and-py-2015-c2-n09": {
+  "explicacion": "La corrección total es positiva (NE) cuando el norte de aguja queda a la derecha del norte verdadero, y negativa (NW) cuando queda a la izquierda. Es la suma algebraica de declinación y desvío (Ct = dm + Δ), no su resta, y se obtiene restando, no sumando, los rumbos: Ct = Rv − Ra.",
+  "clave": "Na a la derecha de Nv → Ct + (NE); a la izquierda → Ct − (NW).",
+  "trampa": "La a) resta el desvío en vez de sumarlo, y la d) invierte el signo.",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -2,
+    "desvio": 3
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c2-n10": {
+  "explicacion": "Los derroteros describen con detalle la costa: accidentes, puertos, fondeaderos, peligros, corrientes y recomendaciones de navegación. El libro de faros detalla luces y señales, los Avisos a los Navegantes corrigen las publicaciones y las Pilot Charts son cartas de vientos y corrientes medias de cada mes.",
+  "clave": "Derrotero = descripción escrita de la costa.",
+  "trampa": "Las Pilot Charts suenan a «pilotaje costero», pero son cartas climatológicas oceánicas.",
+  "concepto": "and-py-2025-c2-n04"
+ },
+ "and-py-2015-c3-g01": {
+  "explicacion": "La zafa hidrostática suelta la balsa por la presión del agua cuando el barco se hunde. La norma exige que suelte antes de llegar a 4 m de profundidad, y no a poca profundidad, para que no la disparen los golpes de mar: de ahí el margen de 1,5 a 4 m. Más de 5 m es demasiado (la balsa podría quedar atrapada), menos de 1,40 m la haría saltar con las olas y la c) supera los 4 m. Hoy las balsas y su estiba las regula el Real Decreto 339/2021 (con los cambios del 587/2022), y la zafa sigue el Código IDS.",
+  "clave": "Zafa hidrostática: suelta a ≤ 4 m (típicamente a partir de 1,5 m).",
+  "trampa": "La c) se parece mucho, pero 5 m supera el máximo de 4 m.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g02": {
+  "explicacion": "Un barco con una altura metacéntrica muy grande tiene un par adrizante muy fuerte: recupera la posición de forma brusca y da balances rápidos e incómodos. Se le llama barco «duro». Con GM pequeño los balances son lentos y suaves y el barco es «blando»; «semirrígido» no es un término de estabilidad.",
+  "clave": "GM grande → duro (balances bruscos); GM pequeño → blando (balances suaves).",
+  "trampa": "Pensar que más estabilidad es siempre más comodidad: un GM grande da balances bruscos.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g03": {
+  "explicacion": "Según el Código IDS, la señal fumígena flotante debe emitir humo de color muy visible (naranja), de forma uniforme, durante al menos 3 minutos flotando en aguas tranquilas. Los tiempos de la pirotecnia son siempre mínimos, así que la a) («como máximo») es falsa y con ella la d), y la b) se pasa de cifra. Hoy el número de fumígenas por zona lo fija el Real Decreto 339/2021, pero la especificación de los 3 minutos sigue igual.",
+  "clave": "Fumígena flotante: humo naranja ≥ 3 min.",
+  "trampa": "La a) y la c) solo se diferencian en «máximo» y «mínimo».",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g04": {
+  "explicacion": "Al trasladar un peso en sentido transversal, el centro de gravedad se desplaza hacia esa banda, fuera de crujía, y el barco escora hasta que el centro de carena se coloca en la vertical de G. El asiento (diferencia de calados entre proa y popa) se produce con traslados longitudinales, y cualquier traslado de pesos mueve G.",
+  "clave": "Peso a una banda → escora; peso a proa o popa → asiento.",
+  "trampa": "La b) o la d): el asiento es cosa de traslados longitudinales.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g05": {
+  "explicacion": "Esas piezas de ocho triedros (rincones formados por tres planos perpendiculares) son los reflectores de radar: devuelven la energía del radar hacia su origen y hacen que una embarcación pequeña, sobre todo de madera o fibra, dé un eco claro en la pantalla de los demás. Se izan lo más alto posible para aumentar su alcance. Las antenas de VHF y GPS no tienen esa forma y el ARPA es una función del radar, no una antena. Hoy el reflector forma parte del equipo de seguridad que exige el Real Decreto 339/2021.",
+  "clave": "Ocho triedros en lo alto = reflector de radar.",
+  "trampa": "La d): el ARPA es la ayuda de punteo del radar, no un elemento que se iza.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g06": {
+  "explicacion": "El cohete con paracaídas arde con luz roja brillante, el color de socorro de la pirotecnia luminosa (igual que la bengala de mano). El naranja es el color del humo de las señales fumígenas, que son de día, y el amarillo no es un color de socorro. Hoy el número de cohetes por zona lo fija el Real Decreto 339/2021, pero el color sigue siendo el rojo del Código IDS.",
+  "clave": "Luz de socorro = roja; humo de socorro = naranja.",
+  "trampa": "La b): el naranja es el humo de la fumígena, no la luz del cohete.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g07": {
+  "explicacion": "Lo que nunca se hace es quitarse el chaleco: en un rescate con helicóptero todos deben llevarlo puesto, por si alguien cae al agua durante la maniobra. Lo demás son recomendaciones correctas: contactar por el canal 16 y seguir sus instrucciones, despejar la cubierta de objetos que pueda levantar el rebufo del rotor y, en los veleros, arriar las velas y arrancar el motor para mantener el rumbo que pida el helicóptero.",
+  "clave": "Helicóptero: chalecos puestos, cubierta despejada, canal 16 y, en vela, velas abajo y motor en marcha.",
+  "trampa": "Es en negativo: hay que marcar lo que NO se debe hacer.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g08": {
+  "explicacion": "El equilibrio es estable cuando el metacentro está por encima del centro de gravedad, es decir, KM > KG y GM positivo: al escorar aparece un par adrizante que devuelve el barco a su posición. Con M por debajo de G (KM < KG) es inestable y con M en el mismo punto (KM = KG) es indiferente, así que la b), la c) y la d) fallan.",
+  "clave": "KM > KG estable · KM = KG indiferente · KM < KG inestable.",
+  "trampa": "La d) mezcla el equilibrio estable con el indiferente.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g09": {
+  "explicacion": "Al subir a la balsa, el patrón organiza lo básico: comprueba que esté bien inflada y que las válvulas y el fondo no pierdan aire, revisa el material de supervivencia que lleva (equipo, agua, pirotecnia, achicador) y hace que la gente escurra o cambie la ropa mojada y se abrigue, porque la hipotermia es el primer enemigo. Todas las medidas son correctas.",
+  "clave": "En la balsa: revisarla, revisar el equipo y combatir el frío.",
+  "trampa": "Elegir una sola: las tres son tareas de los primeros momentos.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g10": {
+  "explicacion": "El SART (respondedor radar de búsqueda y salvamento) trabaja en la banda X (9 GHz): cuando lo barre un radar, contesta con una señal que aparece en la pantalla como una línea de 12 puntos o rayas que parte de su posición. No oculta el barco, al contrario, y la b) describe el reflector de radar, que solo devuelve el eco y no emite nada.",
+  "clave": "SART: radar en banda X → 12 puntos en la pantalla.",
+  "trampa": "La b): el reflector de radar es pasivo; el SART es un equipo activo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ],
+  "concepto": "and-py-2021-c2-g09"
+ },
+ "and-py-2015-c3-g11": {
+  "explicacion": "El gradiente horizontal de presión es la fuerza que pone en marcha el viento, de las altas a las bajas, así que interviene decisivamente en su circulación y la d) es falsa. La b) y la c) rompen la relación: cuanto más inclinadas están las superficies isobáricas, mayor es el gradiente y más juntas aparecen las isobaras.",
+  "clave": "Más inclinación = más gradiente = isobaras más juntas = más viento.",
+  "trampa": "Comprueba las tres partes de la b) y la c): basta con una invertida para que sean falsas.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g12": {
+  "explicacion": "En una oclusión se queda abajo el aire más frío. Si el aire de retaguardia (detrás del frente frío) es más frío que el de vanguardia (delante del frente cálido), se mete por debajo de todo y la oclusión es de tipo frío: es lo que dice la a), con la masa de delante menos fría que la de detrás. La b) describe la oclusión de tipo cálido.",
+  "clave": "Oclusión: retaguardia más fría = tipo frío; vanguardia más fría = tipo cálido.",
+  "trampa": "La b) es justo la oclusión de tipo cálido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frentes"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g13": {
+  "explicacion": "El frente frío tiene una pendiente acusada, de 1/30 a 1/100; la pendiente suave, del orden de 1/100 a 1/400, es la del frente cálido. Lo demás sí corresponde al frente frío: el aire frío empuja y levanta al cálido, el mal tiempo se concentra junto al frente y el rozamiento retrasa su traza en el suelo, con abombamiento y fuerte turbulencia.",
+  "clave": "Frente frío: pendiente acusada (1/30–1/100), tiempo junto al frente.",
+  "trampa": "Es en negativo: la c) le pone la pendiente suave del frente cálido.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "frente-frio-corte"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2015-c3-g14": {
+  "explicacion": "El viento antitríptico es aquel en el que el rozamiento con la superficie es determinante: frena el aire y le hace cortar las isobaras hacia las bajas presiones. La a) describe el ciclostrófico y la b) el viento de Euler, y ningún modelo tiene a Coriolis como única fuerza, porque sin gradiente no hay viento.",
+  "clave": "Antitríptico = con rozamiento; Euler = solo gradiente; ciclostrófico = centrífuga.",
+  "trampa": "La b) es la definición del viento de Euler.",
+  "concepto": "and-py-2025-c3-g13"
+ },
+ "and-py-2015-c3-g15": {
+  "explicacion": "La humedad relativa es el cociente, en tanto por ciento, entre el vapor de agua que contiene realmente el aire y el que podría contener si estuviera saturado a la misma temperatura. La c) y la d) definen la humedad absoluta (gramos por m³), y la a) no tiene sentido, porque el punto de rocío es una temperatura.",
+  "clave": "Absoluta = g/m³; relativa = % respecto a la saturación.",
+  "trampa": "La c) y la d) son la humedad absoluta dicha de dos formas.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g16": {
+  "explicacion": "La tramontana es un viento del N o NW, frío y seco, que baja de los Pirineos y sopla con fuerza en el golfo de León y la costa de Cataluña y Baleares, muchas veces junto al mistral del valle del Ródano. En Alborán dominan levante y poniente, en el golfo de Génova el libeccio y la bora del Adriático, y entre el norte de África y Sicilia el siroco.",
+  "clave": "Tramontana (y mistral) → golfo de León.",
+  "trampa": "La c): ahí sopla el siroco, cálido y del S o SE.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g17": {
+  "explicacion": "Los altocúmulos son nubes medias, entre unos 2000 y 6000 m, como indica el prefijo «alto-». Los cumulonimbos son de desarrollo vertical, los estratocúmulos bajos y los cirrocúmulos altos.",
+  "clave": "Alto‑ = media; cirro‑ = alta.",
+  "trampa": "Confundir prefijos: «alto-» es nube media y «cirro-» es nube alta.",
+  "concepto": "and-py-2022-c3-g19"
+ },
+ "and-py-2015-c3-g19": {
+  "explicacion": "Las nieblas por evaporación se forman cuando se añade vapor al aire hasta saturarlo: la de vapor (aire frío sobre agua más templada, que «humea») y la frontal (la lluvia cálida que cae del frente se evapora en el aire frío de debajo). Las de advección y las orográficas son de enfriamiento y la de mezcla forma su propio grupo.",
+  "clave": "Evaporación: vapor y frontal. Enfriamiento: radiación, advección y orográfica.",
+  "trampa": "Las demás parejas aciertan con una niebla y fallan con la otra.",
+  "concepto": null
+ },
+ "and-py-2015-c3-g20": {
+  "explicacion": "Por su origen, las corrientes se clasifican en: de marea (atracción de la Luna y el Sol), de gradiente (desnivel de la superficie del mar), termohalinas (diferencias de densidad por temperatura y sal) y de arrastre (viento). Las de densidad y las termohalinas son el mismo grupo, así que las opciones que las cuentan por separado repiten un tipo y se dejan otro.",
+  "clave": "Marea, gradiente, termohalinas (densidad) y arrastre.",
+  "trampa": "«Densidad» y «termohalinas» son lo mismo: las listas que las ponen juntas cuentan dos veces el mismo tipo.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n01": {
+  "explicacion": "La hora reloj bitácora es la que fija el patrón para la vida a bordo y, en la práctica habitual, se hace coincidir con la hora legal del huso en el que se navega, adelantando o atrasando el reloj al cambiar de huso. Por eso el tribunal da la d). No es la HcL, que cambia con cada minuto de longitud, ni la HcG, y la hora oficial es la que fija cada Gobierno en tierra.",
+  "clave": "HRB: la decide el patrón; lo normal es ponerla a la hora legal del huso.",
+  "trampa": "La a): la oficial es la de tierra, con su adelanto; a bordo se lleva la del huso.",
+  "discrepancia": "En sentido estricto la HRB no «es igual» a ninguna otra hora: es la que decide el patrón. El propio tribunal, en la 2022-c2-n03, dio por buena «ninguna de las anteriores» ante opciones que igualaban la HRB a la legal o a la oficial. Aquí no hay esa opción, así que la d) es la mejor respuesta posible.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n02": {
+  "explicacion": "COG (Course Over Ground) es el rumbo sobre el fondo, el efectivo, que el GPS calcula con posiciones sucesivas, teniendo ya en cuenta viento y corriente. La separación entre rumbo de fondo y verdadero es el efecto conjunto de abatimiento y deriva, y el punto de recalada es el WPT.",
+  "clave": "COG = rumbo sobre el fondo; SOG = velocidad sobre el fondo.",
+  "trampa": "La d): el punto de recalada es el WPT.",
+  "concepto": "and-py-2021-c2-n06"
+ },
+ "and-py-2015-c3-n03": {
+  "explicacion": "El arco de meridiano comprendido entre los paralelos de dos lugares es la diferencia de latitud. La latitud sola se cuenta desde el Ecuador, y la longitud y su diferencia se miden sobre el Ecuador o un paralelo, no sobre el meridiano.",
+  "clave": "Arco de meridiano entre dos paralelos = Δl (diferencia de latitud).",
+  "trampa": "La c): la latitud se cuenta desde el Ecuador, no entre dos lugares.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n04": {
+  "explicacion": "La hora depende de la longitud: el Sol recorre 15° de longitud cada hora. Por eso la diferencia de horas entre dos lugares es su diferencia de longitud expresada en tiempo (15° = 1 h, 1° = 4 min). La latitud no influye en la hora, y la diferencia de longitud en grados es un arco, no una hora.",
+  "clave": "ΔL en tiempo: 15° = 1 h; 1° = 4 min.",
+  "trampa": "La d): es la misma magnitud, pero en grados; la pregunta pide horas.",
+  "concepto": null
  }
 }

@@ -9,3 +9,10 @@
 - and-py-2015-c2-g04 · RD 339/2021 / RD 587/2022 · equipos radio por zona · sí: el funcionamiento del SART (9 GHz, 12 puntos) no ha cambiado.
 - and-py-2015-c2-g06 · RD 339/2021 · deroga la Orden FOM/1144/2003 · sí: los aros siguen estibándose para suelta rápida.
 - and-py-2015-c2-g07 · RD 339/2021 · el número de cohetes depende de la zona · sí: altura mínima de 300 m (Código IDS).
+- and-py-2015-c3-g01 · RD 339/2021 / RD 587/2022 · balsas y su estiba por zona · sí: la zafa suelta a ≤ 4 m (Código IDS), margen 1,5–4 m.
+- and-py-2015-c3-g03 · RD 339/2021 · número de fumígenas por zona · sí: humo ≥ 3 min (Código IDS).
+- and-py-2015-c3-g05 · RD 339/2021 / RD 587/2022 · el reflector de radar forma parte del equipo exigido hoy por el RD 339/2021 · sí: la definición (ocho triedros) no cambia.
+- and-py-2015-c3-g06 · RD 339/2021 · número de cohetes por zona · sí: luz roja (Código IDS).
+- and-py-2015-c3-g07 · RD 339/2021 / RD 587/2022 · ningún cambio que afecte a las pautas de rescate con helicóptero · sí.
+- and-py-2015-c3-g09 · RD 339/2021 / RD 587/2022 · equipo de la balsa según el RD 339/2021 · sí: las medidas al embarcar en la balsa son de buena práctica.
+- and-py-2015-c3-g10 · RD 339/2021 / RD 587/2022 · equipos radio por zona · sí: el funcionamiento del SART no ha cambiado.

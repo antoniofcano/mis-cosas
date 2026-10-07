@@ -254,6 +254,327 @@ export default {
       return [...latlon(o), { kind: 'speed', value: ic }, { kind: 'bearing', value: rc }];
     },
   },
+  'bal-py-2022-06-a-38': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 05,0 N', '6 10,0 W', 'Situación 04:00');
+      const ct = k.ct({ dm: -4, desvio: -1 });
+      const rv = k.rv(140, ct);
+      const t = hrb(4, 45) - hrb(4);
+      const e = k.run(s, rv, k.distFor(8, t), 'Situación de estima 04:45');
+      const o = k.fromMark('cabo-trafalgar', S, 7, 'Situación verdadera 04:45');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2022-06-n-38': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const ct = k.ctPolar(8);
+      const s = k.fix2('punta-almina', k.dv(184, ct, 'punta-almina'), 'punta-carnero', k.dv(300, ct, 'punta-carnero'), 'Situación 23:00');
+      const rs = k.tangent(s, 'isla-tarifa', 1.9, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 3, SW);
+      const t = hrb(25) - hrb(23);
+      const e = k.run(s, rs, k.distFor(10, t), 'Situación de estima 01:00');
+      k.note('Situación observada', 'Las dos marcaciones de Isla de Tarifa no son simultáneas: trasladamos la primera lo navegado en esos 30 minutos (rumbo de superficie y 5 millas).');
+      const o = k.traslado('isla-tarifa', k.dvM(rv, 43, 'isla-tarifa'), 'isla-tarifa', k.dvM(rv, 103, 'isla-tarifa'), rs, k.distFor(10, 30), 'Situación 01:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2022-06-n-39': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const s = k.pos('52 14,2 S', '3 18,2 W', 'Situación 00:00');
+      const ct = k.ct({ dm: 14, desvio: 7 });
+      const rv = k.rv(67, ct);
+      const rs = k.abatimiento(rv, 2, NW);
+      return latlon(k.tramos(s, [{ rumbo: rs, millas: k.distFor(12, hrb(14, 20)) }], 'Situación 14:20'));
+    },
+  },
+  'bal-py-2022-06-a-40': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 07,2 N', '6 00,5 W', 'Situación 04:00');
+      // Hacia el ESE, Punta Paloma queda por babor.
+      const rv = k.tangent(s, 'punta-paloma', 5, 'babor');
+      const ct = k.ct({ carta: L105, anyo: 2022, desvio: 1.2 });
+      const t = hrb(5) - hrb(4);
+      const e = k.run(s, rv, k.distFor(12, t), 'Situación de estima 05:00');
+      const o = k.traslado('punta-paloma', k.dv(92, ct, 'punta-paloma'), 'punta-paloma', k.dv(19, ct, 'punta-paloma'), rv, k.distFor(12, 30), 'Situación 05:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [...latlon(o), { kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2022-06-n-40': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('35 57,4 N', '5 35,8 W', 'Situación de estima 12:59');
+      const ct = k.ct({ carta: L105, anyo: 2022, desvio: -3 });
+      k.note('Caída a estribor', 'Ra = 258° + 22° = 280°.');
+      const rv = k.rv(280, ct);
+      const t = hrb(14) - hrb(12, 59);
+      const e = k.run(s, rv, k.distFor(10, t), 'Situación de estima 14:00');
+      const o = k.traslado('punta-paloma', k.dvM(rv, 90, 'punta-paloma'), 'punta-paloma', k.dv(56.5, ct, 'punta-paloma'), rv, k.distFor(10, 30), 'Situación 14:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      const r = k.rumboConCorriente(o, 'barbate-espigon', 10, rc, ic);
+      const ct2 = k.ct({ carta: L105, anyo: 2022, desvio: -2.5 });
+      return [...latlon(o), { kind: 'bearing', value: rc }, { kind: 'speed', value: ic }, { kind: 'bearing', value: k.ra(r.rs, ct2) }];
+    },
+  },
+  'bal-py-2022-12-ac-31': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const s = k.pos('35 56,5 N', '5 21,5 W', 'Situación 23:31');
+      const d = k.fromMark('punta-europa', E, 1.5, 'Destino 00:21');
+      const { rv: rs, dist } = k.rhumb(s, d);
+      const vb = dist / ((hrb(24, 21) - hrb(23, 31)) / 60);
+      k.note('Velocidad', `En 50 minutos: Vb = ${dist.toFixed(2).replace('.', ',')} M / 0,83 h = ${vb.toFixed(1).replace('.', ',')} nudos.`);
+      const rv = k.rvConAbatimiento(rs, 4, NE);
+      const ct = k.ct({ carta: L105, anyo: 2022, desvio: 7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
+  'bal-py-2022-12-b-31': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const s = k.fix2Ranges('punta-paloma', 5, 'isla-tarifa', 7, k.P('punta-cires'), 'Situación 10:00');
+      const ct = k.ct({ dm: 5, desvio: 4 });
+      const rv = k.rv(171, ct);
+      const { ref, vef } = k.efectivo(rv, 7, W, 3, s);
+      const vN = -vef * Math.cos(ref * Math.PI / 180);
+      const dl = (s.lat - (35 + 55 / 60)) * 60;
+      const min = dl / vN * 60;
+      k.note('Paralelo 35° 55′ N', `Hasta el paralelo faltan ${dl.toFixed(1).replace('.', ',')}′ de latitud; bajamos hacia el S a Vef · cos Ref = ${vN.toFixed(2).replace('.', ',')} nudos: ${Math.round(min)} minutos.`);
+      k.estimaEfectiva(s, ref, vef, min, 'Paralelo 35° 55′ N');
+      return [{ kind: 'clock', value: hrb(10) + min }];
+    },
+  },
+  'bal-py-2022-12-b-32': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      // «Observa el faro por el NE verdadero»: el faro demora 045°, así que estamos al 225° del faro.
+      const s = k.fromMark('punta-gracia', SW, 3, 'Salida');
+      const ref = k.tangent(s, 'cabo-espartel', 4, 'babor');
+      const { rs } = k.rumboConCorriente(s, ref, 10, NW, 4);
+      return [{ kind: 'bearing', value: k.rvConAbatimiento(rs, 7, N) }];
+    },
+  },
+  'bal-py-2022-12-ac-33': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const dv = k.oposicion('punta-carnero', 'punta-europa');
+      const s = k.fixDist('punta-europa', dv, 1, 'Situación');
+      const a = k.P('ceuta-bocana'); const b = k.P('ceuta-roja');
+      const d = { lat: (a.lat + b.lat) / 2, lon: (a.lon + b.lon) / 2, name: 'Puerto de Ceuta (entre puntas)' };
+      k.note('Destino', 'La bocana de Ceuta «entre puntas»: el punto medio entre las luces verde y roja de los diques.');
+      const { rv: rs, dist } = k.rhumb(s, d);
+      const rv = k.rvConAbatimiento(rs, 4, E);
+      const ct = k.ct({ ct: -1 });
+      const v = dist / (40 / 60);
+      k.note('Velocidad', `${dist.toFixed(1).replace('.', ',')} millas en 40 minutos: v = ${v.toFixed(1).replace('.', ',')} nudos.`);
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'speed', value: v }];
+    },
+  },
+  'bal-py-2022-12-b-33': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const t = hrb(13) - hrb(11, 6);
+      const e = k.run(k.P('cabo-espartel'), 330, k.distFor(9, t), 'Situación de estima 13:00');
+      const o = k.fromMark('cabo-trafalgar', S, 5, 'Situación verdadera 13:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2022-12-ac-34': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('36 30,0 N', '7 20,0 W', 'Salida');
+      const b = k.pos('35 40,0 N', '10 10,0 W', 'Punto P');
+      const { rumbo, dist } = k.rumboDirecto(a, b);
+      return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
+    },
+  },
+  'bal-py-2022-12-ac-37': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ct({ dm: -5, desvio: -4 });
+      const rv = k.rv(142, ct);
+      const rs = k.abatimiento(rv, 8, NE);
+      const d1 = k.dvM(rv, -45, 'cabo-trafalgar');
+      const d2 = k.dvM(rv, -90, 'cabo-trafalgar');
+      const s = k.traslado('cabo-trafalgar', d1, 'cabo-trafalgar', d2, rs, k.distFor(12, 30), 'Situación 07:30');
+      // Sin viento y sin conocer la corriente, el Rv es el de la tangente; hacia el E, Isla de Tarifa queda por babor.
+      const rv2 = k.tangent(s, 'isla-tarifa', 2, 'babor');
+      const ct2 = k.ct({ dm: -5, desvio: -5 });
+      return [...latlon(s), { kind: 'bearing', value: k.ra(rv2, ct2) }];
+    },
+  },
+  'bal-py-2022-12-b-37': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const op = k.oposicion('isla-tarifa', 'punta-cires');
+      const s = k.lineAndBearing('isla-tarifa', op, 'punta-alcazar', S, 'Salida');
+      const rs = k.tangent(s, 'punta-gracia', 4, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 15, NE);
+      const ct = k.ct({ dm: -5, desvio: -7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-py-2022-12-b-38': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const d1 = k.dvM(70, 140, 'punta-malabata');
+      const d2 = k.dvM(70, 40, 'punta-cires');
+      return latlon(k.traslado('punta-malabata', d1, 'punta-cires', d2, 70, k.distFor(8, 60), 'Situación 23:00'));
+    },
+  },
+  'bal-py-2022-12-ac-39': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const { rs, vb } = k.rumboYVelocidad(k.P('barbate-espigon'), 'tanger-espigon', 200, 100, 1.5);
+      const ct = k.ct({ dm: 3, desvio: 2 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
+  'bal-py-2022-12-b-39': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      // En la enfilación (Carnero detrás de Europa): estamos al E de Punta Europa y vemos los dos faros hacia el W.
+      const dv = k.enfilacion('punta-carnero', 'punta-europa', W);
+      const s = k.fixDist('punta-europa', dv, 1.8, 'Situación 00:00');
+      const { rs, vb } = k.rumboYVelocidad(s, 'ceuta-bocana', 40, NE, 6);
+      const ct = k.ct({ dm: -2, desvio: 12 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
+  'bal-py-2022-12-ac-40': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      // En la enfilación (Carnero detrás de Europa): estamos al E de Punta Europa y vemos los dos faros hacia el W.
+      const dv = k.enfilacion('punta-carnero', 'punta-europa', W);
+      const s = k.fixDist('punta-europa', dv, 2, 'Situación 02:25');
+      const ct = k.ct({ carta: L105, anyo: 2022, desvio: -0.7 });
+      const rv = k.rv(172, ct);
+      const t = hrb(4, 12) - hrb(2, 25);
+      const e = k.run(s, rv, k.distFor(5, t), 'Situación de estima 04:12');
+      const o = k.fix2('punta-almina', 192, 'punta-carnero', 290, 'Situación 04:12');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }, ...latlon(o)];
+    },
+  },
+  'bal-py-2022-12-b-40': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      k.note('Rumbo', 'El Rv y la velocidad no intervienen: la Ct sale de la oposición, Ct = Dv − Da.');
+      const dv = k.oposicion('punta-almina', 'punta-europa');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 352) }];
+    },
+  },
+  'bal-py-2023-03-ac-31': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 15:30');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: -5 });
+      const rv = k.rv(233, ct);
+      const rs = k.abatimiento(rv, 5, W);
+      return latlon(k.run(s, rs, k.distFor(6, hrb(17, 30) - hrb(15, 30)), 'Situación 17:30'));
+    },
+  },
+  'bal-py-2023-03-ac-32': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      k.note('Declinación', 'El enunciado no la da: la de la carta llevada al año del examen (2023).');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 6 });
+      const rv = k.rv(335, ct);
+      const rs = k.abatimiento(rv, 8, W);
+      const d1 = k.dv(305, ct, 'punta-almina');
+      const d2 = k.dvM(rv, -90, 'punta-almina');
+      return latlon(k.traslado('punta-almina', d1, 'punta-almina', d2, rs, k.distFor(8, 45), 'Situación 04:45'));
+    },
+  },
+  'bal-py-2023-03-ac-33': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fromMark('punta-carbonera', E, 2, 'Salida');
+      const rs = k.tangent(s, 'punta-europa', 2, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 12, E);
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: 7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-py-2023-03-ac-34': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const ct = k.ct({ ct: -5 });
+      const s = k.fixDist('punta-europa', k.dv(278, ct, 'punta-europa'), 4.5, 'Situación');
+      const rv = k.rv(182, ct);
+      const { ref, vef } = k.efectivo(rv, 7, 260, 3, s);
+      return [{ kind: 'bearing', value: ref }, { kind: 'speed', value: vef }];
+    },
+  },
+  'bal-py-2023-03-ac-35': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      // «Observa el faro por el NE verdadero»: el faro demora 045°, así que estamos al 225° del faro.
+      const s = k.fromMark('punta-gracia', SW, 3, 'Salida');
+      const ref = k.tangent(s, 'cabo-espartel', 4, 'babor');
+      const { rs } = k.rumboConCorriente(s, ref, 10, NW, 4);
+      return [{ kind: 'bearing', value: k.rvConAbatimiento(rs, 7, N) }];
+    },
+  },
+  'bal-py-2023-03-ac-36': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 02,0 N', '5 22,0 W', 'Situación 14:00');
+      const d = k.fromMark('isla-tarifa', S, 3, 'Destino');
+      const { rv } = k.rhumb(s, d);
+      const t = hrb(17) - hrb(14);
+      const e = k.run(s, rv, k.distFor(6, t), 'Situación de estima 17:00');
+      const ct = k.ct({ dm: -2, desvio: -3 });
+      const o = k.fix2('isla-tarifa', k.dv(347, ct, 'isla-tarifa'), 'punta-cires', k.dv(127, ct, 'punta-cires'), 'Situación verdadera 17:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2023-03-ac-40': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 11,1 N', '6 09,1 W', 'Situación 10:30');
+      const a = k.pos('36 09,3 N', '6 02,7 W', 'Punto Alpha');
+      const r = k.rumboConCorriente(s, a, 7.8, 206, 4);
+      return [{ kind: 'bearing', value: r.rs }, { kind: 'clock', value: k.eta(hrb(10, 30), r.dist, r.vef) }];
+    },
+  },
+  'bal-py-2023-06-ac-31': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('35 57,4 N', '5 30,1 W', 'Situación 12:00');
+      const ct = k.ct({ carta: L105, anyo: 2023, desvio: -7 });
+      const rv = k.rv(261, ct);
+      const p = k.run(s, rv, 12, 'Situación 13:00');
+      const { rs } = k.rumboConCorriente(p, 'barbate-espigon', 12, 210, 3);
+      const rv2 = k.rvConAbatimiento(rs, 15, E);
+      const ct2 = k.ct({ carta: L105, anyo: 2023, desvio: -5 });
+      return [{ kind: 'bearing', value: k.ra(rv2, ct2) }];
+    },
+  },
+  'bal-py-2023-06-ac-32': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.fromMark('punta-alcazar', N, 5, 'Situación 08:00');
+      // Hacia el W, Cabo Espartel queda por babor.
+      const ref = k.tangent(s, 'cabo-espartel', 5, 'babor');
+      k.note('Velocidad efectiva', 'Es dato (12 nudos): el extremo del vector efectivo está a 12 millas por el Ref.');
+      const x = k.run(s, ref, 12, 'Extremo del vector efectivo');
+      const { rs } = k.rumboYVelocidad(s, x, 60, 30, 4);
+      const rv = k.rvConAbatimiento(rs, 7, S);
+      const ct = k.ctPolar(6);
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
 };
 
 /* DISCREPANCIAS
@@ -352,4 +673,26 @@ export default {
  * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
  * 'bal-py-2022-06-a-37' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
  * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
+ * 'bal-py-2022-12-ac-36' (formato de las opciones): las coordenadas vienen escritas como «35º-57′» y el lector de
+ * opciones no las entiende (todas puntúan ∞). Calculada sale 35° 57,0′ N 5° 21,5′ W, que es la oficial a.
+ *   'bal-py-2022-12-ac-36': {
+ *     ejercicio: 'situacion-dos-demoras',
+ *     solve(k) {
+ *       const dvOp = k.oposicion('punta-alcazar', 'punta-paloma');
+ *       const ct = k.ctFrom(dvOp, 326);
+ *       const rv = k.rv(95.5, ct);
+ *       const dvE = k.dv(1, ct, 'punta-europa');
+ *       const dvA = k.dvM(rv, 28, 'punta-almina');
+ *       return latlon(k.fix2('punta-europa', dvE, 'punta-almina', dvA, 'Situación 23:31'));
+ *     },
+ *   },
+ * 'bal-py-2022-06-n-37' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
+ * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
+ * 'bal-py-2022-12-b-34' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
+ * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
+ * 'bal-py-2022-12-b-36' (marea, falta la tabla): pide una sonda o una hora de marea en un puerto del Anuario de Mareas
+ * y la pregunta no trae la tabla (tabla_mareas = null); no se puede resolver con los datos de la app.
+ * 'bal-py-2022-12-ac-35' (elemento que no está en la carta de la app): la situación de las 04:00 es el corte de la
+ * enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa situación
+ * no se puede trazar el rumbo para pasar a 1 milla de Punta Cires.
  */

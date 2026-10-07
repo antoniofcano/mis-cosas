@@ -1,6 +1,6 @@
 {
  "grupo": "meteorologia",
- "version": 1,
+ "version": 2,
  "conceptos": [
   {
    "id": "meteo",
@@ -82,8 +82,7 @@
    "nota": "Valor normal a nivel del mar (1013,25 hPa = 760 mmHg = 1 atm), equivalencia mb = hPa, otras unidades y qué se considera alta o baja presión.",
    "padre": "meteo.presion",
    "tit": [
-    "per",
-    "py"
+    "per"
    ],
    "clases": [
     "per-9-1",
@@ -132,7 +131,12 @@
     "barómetro",
     "lectura de presión",
     "subida lenta",
-    "bajada de la presión"
+    "bajada de la presión",
+    "subida de temperatura y bajada de presión",
+    "barógrafo",
+    "variación de la presión en una hora",
+    "empeoramiento del tiempo",
+    "mejoría sin poder asegurar su persistencia"
    ],
    "nota": "Qué anuncia cada evolución del barómetro (lenta/brusca, sube/baja), solo o junto a la temperatura, y por qué importa más la tendencia que el valor.",
    "padre": "meteo.presion",
@@ -193,7 +197,12 @@
     "gradiente de presión",
     "gradiente horizontal",
     "isobaras muy juntas",
-    "proximidad de las isobaras"
+    "proximidad de las isobaras",
+    "causas del viento",
+    "formación del viento",
+    "diferencias de presión entre dos lugares",
+    "la intensidad del viento es función del gradiente",
+    "pendiente de las superficies isobáricas"
    ],
    "nota": "El aire va de altas a bajas presiones; definición del gradiente horizontal (diferencia de presión por unidad de distancia, perpendicular a las isobaras) y su relación con la separación de isobaras, la inclinación de las superficies isobáricas y la fuerza del viento.",
    "padre": "meteo.presion",
@@ -218,9 +227,13 @@
     "hPa por grado",
     "mb/grado",
     "mb por milla",
-    "isobaras separadas 120 millas"
+    "isobaras separadas 120 millas",
+    "mb/milla",
+    "hPa por milla",
+    "60 millas por grado",
+    "distancia en millas entre isobaras"
    ],
-   "nota": "Cálculo numérico sencillo: diferencia de presión entre dos isobaras dividida por su separación (en millas o en grados de latitud, 60 millas).",
+   "nota": "Cálculo numérico sencillo: diferencia de presión entre dos isobaras dividida por su separación (en millas o en grados de latitud, 60 millas). 1 grado de latitud = 60 M: gradiente (hPa/grado) = Δp / distancia(M) x 60; también se pide en hPa/milla (4 hPa / 40 M = 0,1 hPa/milla).",
    "padre": "meteo.presion",
    "relacionados": [
     "meteo.presion.gradiente"
@@ -421,11 +434,10 @@
     "desplazamiento de las borrascas",
     "componente sur"
    ],
-   "nota": "En nuestras latitudes las borrascas se desplazan en general de W a E (con componente NE); velocidad de traslación habitual.",
+   "nota": "En nuestras latitudes las borrascas se desplazan en general de W a E (con componente NE).",
    "padre": "meteo.sistemas",
    "tit": [
-    "per",
-    "py"
+    "per"
    ],
    "clases": [
     "per-9-2",
@@ -440,7 +452,12 @@
    "sinonimos": [
     "de cara al viento",
     "la baja queda a la derecha",
-    "situar la borrasca"
+    "situar la borrasca",
+    "de espaldas al viento",
+    "baja a la izquierda",
+    "identificar el centro de bajas presiones",
+    "posición de una borrasca",
+    "ley de Buys Ballot"
    ],
    "nota": "Situar el centro de bajas a partir del viento: en el hemisferio norte, de cara al viento, la baja queda a la derecha (de espaldas, a la izquierda). En el PER se enseña pero solo lo pregunta el PY.",
    "padre": "meteo.sistemas",
@@ -467,7 +484,7 @@
     "vaguada",
     "dorsal"
    ],
-   "nota": "Prolongaciones de un anticiclón (dorsal o cuña) y de una borrasca (vaguada) en el mapa de isobaras.",
+   "nota": "Prolongaciones de un anticiclón (dorsal o cuña) y de una borrasca (vaguada) en el mapa de isobaras. Dorsal o cuña: lengua de altas presiones entre dos bajas (isobaras en U/V invertida); vaguada: lengua de bajas entre dos altas (isobaras en V). Discrepancia: bal-py-2020-07-a-13 da por buena «forma de U» para la dorsal.",
    "padre": "meteo.sistemas",
    "tit": [
     "py"
@@ -532,12 +549,8 @@
     "km/h",
     "grados Beaufort"
    ],
-   "nota": "La intensidad es la velocidad (fuerza) del viento y se expresa en nudos, km/h, m/s o grados Beaufort.",
+   "nota": "Retirado: fusionado en meteo.mar.factores.",
    "padre": "meteo.viento",
-   "relacionados": [
-    "meteo.mar.beaufort",
-    "meteo.mar.factores"
-   ],
    "tit": [
     "per"
    ],
@@ -545,7 +558,8 @@
     "per-9-3",
     "per-9-6"
    ],
-   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar: conceptos de intensidad"
+   "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.7 Mar: conceptos de intensidad",
+   "sustituidoPor": "meteo.mar.factores"
   },
   {
    "id": "meteo.viento.rolar",
@@ -607,7 +621,7 @@
     "aumento brusco y momentáneo",
     "varía continuamente"
    ],
-   "nota": "Racha: aumento brusco y momentáneo de la intensidad; viento racheado: intensidad que varía continuamente a más y a menos.",
+   "nota": "Racha: aumento brusco y momentáneo de la intensidad; viento racheado: intensidad que varía continuamente a más y a menos. Ojo: and-2017-c2-t34 describe una racha («varía de forma breve e intensa, aumentando su fuerza») y da por correcta «el viento es racheado».",
    "padre": "meteo.viento",
    "tit": [
     "per"
@@ -827,14 +841,18 @@
   {
    "id": "meteo.mar.factores",
    "tipo": "concepto",
-   "etiqueta": "De qué depende la altura de la mar: intensidad, persistencia y fetch",
+   "etiqueta": "Intensidad del viento y de qué depende la mar de viento (intensidad, persistencia, fetch)",
    "sinonimos": [
     "tres variables",
     "función creciente",
     "fuerza del viento, persistencia y fetch",
-    "mar de viento generada"
+    "mar de viento generada",
+    "intensidad del viento",
+    "se denomina intensidad",
+    "cómo se expresa la intensidad",
+    "velocidad con la que sopla el viento"
    ],
-   "nota": "La mar de viento crece con la intensidad del viento, su persistencia y el fetch.",
+   "nota": "La intensidad es la velocidad (fuerza) del viento y se expresa en nudos, km/h, m/s o grados Beaufort. La mar de viento crece con la intensidad, la persistencia y el fetch, hasta la mar totalmente desarrollada. Persistencia y fetch se etiquetan aparte (meteo.mar.persistencia, meteo.mar.fetch); la escala Beaufort, en meteo.mar.beaufort.",
    "padre": "meteo.mar",
    "relacionados": [
     "meteo.mar.fetch",
@@ -912,7 +930,7 @@
     "efectos en la mar"
    ],
    "nota": "Escala de la intensidad del viento (0 a 12) estimada por sus efectos; su utilidad y la necesidad de llevarla a bordo. No se exige memorizarla.",
-   "padre": "meteo.mar",
+   "padre": "meteo.viento",
    "relacionados": [
     "meteo.mar.douglas"
    ],
@@ -976,7 +994,7 @@
     "medios de comunicación",
     "fuente válida"
    ],
-   "nota": "Quién elabora y publica la previsión oficial (AEMET, Meteonav, medios de comunicación) y qué organismos no son fuente (Capitanía, DGMM, Distrito Marítimo, «AMMET»).",
+   "nota": "Quién elabora y publica la previsión oficial (AEMET, Meteonav, medios de comunicación) y qué organismos no son fuente (Capitanía, DGMM, Distrito Marítimo, «AMMET»). Válidas: AEMET (web, redes oficiales), medios de comunicación, boletines por VHF/NAVTEX. No válidas: AMMET, Capitanía, Distrito Marítimo, Dirección General de la Marina Mercante, canal 69 de la Autoridad Portuaria. Discrepancia: dgmm-per-2020-12-171 deja «información del club náutico» como opción no incorrecta.",
    "padre": "meteo.prevision",
    "relacionados": [
     "meteo.prevision.radio"
@@ -1065,7 +1083,7 @@
     "continental",
     "estabilidad"
    ],
-   "nota": "Clasificación de las masas de aire por temperatura y humedad y su estabilidad.",
+   "nota": "Retirado: fusionado en meteo.frentes.definicion.",
    "padre": "meteo.frentes",
    "tit": [
     "per",
@@ -1074,12 +1092,13 @@
    "clases": [
     "py-2-2"
    ],
-   "temario": "pendiente"
+   "temario": "pendiente",
+   "sustituidoPor": "meteo.frentes.definicion"
   },
   {
    "id": "meteo.frentes.definicion",
    "tipo": "concepto",
-   "etiqueta": "Qué es un frente y cómo se dibuja",
+   "etiqueta": "Masas de aire y frentes: qué es un frente y cómo se dibuja",
    "sinonimos": [
     "superficie frontal",
     "línea de separación de dos masas de aire",
@@ -1090,9 +1109,13 @@
     "frente estacionario",
     "frente",
     "frentes",
-    "superficie de separación"
+    "superficie de separación",
+    "masa de aire polar",
+    "masa de aire tropical",
+    "marítima",
+    "continental"
    ],
-   "nota": "Frente como separación entre dos masas de aire, su representación en el mapa, el sector cálido y el frente estacionario.",
+   "nota": "Frente como separación entre dos masas de aire, su representación en el mapa, el sector cálido y el frente estacionario. Un frente separa dos masas de aire de distinta temperatura y humedad (ártica y polar frías, tropical cálida; marítima húmeda, continental seca).",
    "padre": "meteo.frentes",
    "tit": [
     "py"
@@ -1232,7 +1255,8 @@
     "de altas a bajas",
     "viento ideal",
     "viento de Euler",
-    "únicamente por la acción del gradiente"
+    "únicamente por la acción del gradiente",
+    "aceleración proporcional al gradiente"
    ],
    "nota": "Viento ideal en el que solo actúa la fuerza del gradiente: va de altas a bajas, perpendicular a las isobaras.",
    "padre": "meteo.modelos",
@@ -1254,7 +1278,9 @@
     "isobaras rectilíneas",
     "altas presiones a la derecha",
     "rotación terrestre",
-    "viento geostrófico"
+    "viento geostrófico",
+    "90 % del viento real",
+    "sopla por encima de la capa de rozamiento"
    ],
    "nota": "Equilibrio entre gradiente y Coriolis: sopla paralelo a isobaras rectas dejando las altas a la derecha en el hemisferio norte; no considera rozamiento.",
    "padre": "meteo.modelos",
@@ -1364,7 +1390,7 @@
     "poniente W",
     "mestral NW"
    ],
-   "nota": "Qué nombre recibe el viento de cada rumbo en el Mediterráneo (y en el mar Balear).",
+   "nota": "Qué nombre recibe el viento de cada rumbo en el Mediterráneo (y en el mar Balear). Se usa cuando la pregunta pide el nombre de un viento a partir del rumbo (o el rumbo a partir del nombre), p. ej. «¿cómo se llama el viento del NE en el mar Balear?». Si la pregunta pide las características de un viento concreto (frío/seco, zona, época), va al concepto de ese viento (mistral, tramontana, gregal, levante-poniente, calidos-sur…).",
    "padre": "meteo.regionales",
    "relacionados": [
     "meteo.viento.direccion"
@@ -1480,7 +1506,7 @@
     "norte de África",
     "calima"
    ],
-   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima.",
+   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima. Discrepancia: and-py-2017-c3-g15 da el siroco como «del S»; Baleares y la rosa lo dan del SE (bal-py-2019-04-a-14). El siroco es muy cálido en verano y moderado en invierno (and-py-2024-c3-g11) y el lebeche llega seco, cálido y con calima (dgmm-py-2024-11-11).",
    "padre": "meteo.regionales",
    "tit": [
     "py"
@@ -1555,18 +1581,17 @@
   {
    "id": "meteo.regionales.identificacion",
    "tipo": "concepto",
-   "etiqueta": "Qué vientos son del Mediterráneo y cuáles no (otros vientos)",
+   "etiqueta": "Vientos ajenos al Mediterráneo y vientos mediterráneos poco comunes",
    "sinonimos": [
     "bora",
     "etesios",
-    "no es un viento del Mediterráneo",
     "buran",
     "pampero",
     "sudestada",
     "cudo",
     "Atlántico oriental"
    ],
-   "nota": "Reconocer qué nombres pertenecen al Mediterráneo o al Atlántico oriental frente a vientos de otras regiones; incluye bora (Adriático) y etesios (Egeo).",
+   "nota": "Reconocer qué nombres no son del Mediterráneo ni del Atlántico oriental (pampero, buran, sudestada, cudo, berg…) y ubicar los mediterráneos menos comunes: bora (Adriático, NE), etesios/meltemi (Egeo, N, mayo-septiembre, hasta fuerza 7-8). Los vientos principales tienen su propio concepto.",
    "padre": "meteo.regionales",
    "tit": [
     "py"
@@ -1803,7 +1828,7 @@
     "pisos",
     "2000 a 7000 m"
    ],
-   "nota": "Los cuatro grupos (altas, medias, bajas y de desarrollo vertical), sus alturas y a cuál pertenece cada género.",
+   "nota": "Los cuatro grupos (altas, medias, bajas y de desarrollo vertical), sus alturas y a cuál pertenece cada género. El examen usa 4 grupos: altas (cirros, cirrocúmulos, cirrostratos; > 6000 m), medias (altocúmulos, altostratos; 2000-6000 m), bajas (estratos, estratocúmulos, nimbostratos; < 2000 m) y de desarrollo vertical (cúmulos, cumulonimbos). La OMM usa 3 pisos con otras alturas (5-13, 2-7 y 0-2 km) y pone el nimbostrato en el medio.",
    "padre": "meteo.nubes",
    "relacionados": [
     "meteo.nubes.generos"
@@ -1896,9 +1921,12 @@
     "calima",
     "neblina",
     "bruma",
-    "condición necesaria para la niebla"
+    "condición necesaria para la niebla",
+    "0,5 millas",
+    "inferior a 1 km",
+    "niebla y calima no tienen la misma composición"
    ],
-   "nota": "Niebla como nube a ras de superficie con visibilidad inferior a 1 km; diferencia con neblina y calima; condición de humedad cercana al 100 %.",
+   "nota": "Niebla: nube a ras de superficie con visibilidad inferior a 1 km (0,5 millas náuticas; el aviso de niebla implica menos de 0,5 M según dgmm-py-2021-07-17); condición de humedad cercana al 100 %. Neblina/bruma: reducción menor de la visibilidad por gotitas; calima: partículas sólidas en suspensión; la niebla es vapor condensado.",
    "padre": "meteo.nieblas",
    "relacionados": [
     "meteo.humedad.relativa"
@@ -2113,14 +2141,13 @@
     "cresta",
     "seno",
     "valle",
-    "amplitud",
     "frecuencia",
     "parámetros de la ola",
     "velocidad de la ola",
     "parámetros",
     "variables que caracterizan a las olas"
    ],
-   "nota": "Cresta, seno y qué magnitudes describen una ola (altura, longitud, periodo, velocidad); la amplitud como mitad de la altura.",
+   "nota": "Cresta, seno (o valle), qué magnitudes caracterizan una ola (altura, longitud, periodo y velocidad; el seno no es un parámetro) y la frecuencia como inversa del periodo.",
    "padre": "meteo.olas",
    "relacionados": [
     "meteo.olas.altura",
@@ -2143,7 +2170,7 @@
     "distancia vertical entre cresta y seno",
     "amplitud"
    ],
-   "nota": "Distancia vertical entre una cresta y el seno contiguo (el doble de la amplitud).",
+   "nota": "Distancia vertical entre una cresta y el seno contiguo (el doble de la amplitud). La altura es el doble de la amplitud (la opción «la altura es la mitad de la amplitud» es la falsa típica).",
    "padre": "meteo.olas",
    "tit": [
     "py"
@@ -2181,7 +2208,7 @@
     "segundos",
     "por un mismo punto"
    ],
-   "nota": "Tiempo (segundos) que tardan en pasar por un mismo punto dos crestas o dos senos consecutivos.",
+   "nota": "Tiempo (segundos) que tardan en pasar por un mismo punto dos crestas o dos senos consecutivos. Baleares 2026 pregunta la relación periodo-longitud en mar abierto (a más periodo, más longitud: bal-py-2026-06-b-20), fuera del anexo II, que dice «sin relacionarlos»; se etiqueta aquí y con meteo.olas.longitud, sin concepto propio.",
    "padre": "meteo.olas",
    "tit": [
     "py"
@@ -2209,10 +2236,7 @@
     "per",
     "py"
    ],
-   "clases": [
-    "per-9-6",
-    "py-2-8"
-   ],
+   "clases": [],
    "temario": "pendiente"
   },
   {
@@ -2383,21 +2407,64 @@
   },
   {
    "id": "meteo.corrientes.atlantico",
-   "tipo": "concepto",
+   "tipo": "grupo",
    "etiqueta": "Corrientes del Cantábrico, Galicia, Portugal y Canarias",
+   "sinonimos": [],
+   "nota": "Corrientes generales del Atlántico en nuestras costas: golfo de Vizcaya y Cantábrico por un lado; Galicia, Portugal y Canarias por otro.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.cantabrico",
+   "tipo": "concepto",
+   "etiqueta": "Corriente del golfo de Vizcaya y del Cantábrico",
    "sinonimos": [
     "golfo de Vizcaya",
+    "irregular",
+    "Cantábrico",
+    "rumbo oeste",
+    "corriente del Golfo",
+    "Vizcaya"
+   ],
+   "nota": "Débil, irregular en intensidad y dirección y muy influida por el viento; en el Cantábrico va hacia el W según DGMM (dgmm-py-2024-04-17).",
+   "padre": "meteo.corrientes.atlantico",
+   "relacionados": [
+    "meteo.corrientes.portugal-canarias"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.portugal-canarias",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de Galicia, Portugal y Canarias",
+   "sinonimos": [
     "corriente de Portugal",
     "rumbo sur",
     "corriente de Canarias",
     "rumbo SW",
-    "corriente del Golfo",
+    "costa oeste de Galicia",
     "litoral atlántico gallego",
     "Galicia",
-    "costa oeste de Galicia"
+    "Canarias"
    ],
-   "nota": "Golfo de Vizcaya (irregular, hacia el W en el Cantábrico), Galicia y Portugal (hacia el S), Canarias (hacia el SW) y su relación con la corriente del Golfo.",
-   "padre": "meteo.corrientes",
+   "nota": "Galicia y Portugal: la corriente de Portugal va hacia el S (muy débil, pocas millas al día), una rama entra en el Mediterráneo por el Estrecho y su continuación es la corriente de Canarias, fría, hacia el SW (no «corriente de los alisios»); relación con la corriente del Golfo en la costa de Galicia.",
+   "padre": "meteo.corrientes.atlantico",
+   "relacionados": [
+    "meteo.corrientes.cantabrico",
+    "meteo.corrientes.estrecho"
+   ],
    "tit": [
     "py"
    ],
@@ -2417,10 +2484,12 @@
     "hasta 6 nudos",
     "rama de la corriente de Portugal"
    ],
-   "nota": "En el Estrecho el agua atlántica entra en superficie hacia el E (varios nudos) y la mediterránea sale en profundidad hacia el W.",
+   "nota": "En el Estrecho el agua atlántica entra en superficie hacia el E (varios nudos) y la mediterránea sale en profundidad hacia el W. Intensidad: los bancos de Baleares dan «hasta 6 nudos» y «de 4 a 7 nudos» (bal-py-2017-03-a-18, bal-py-2018-04-a-13) y la clase py-2-9 dice «en torno a 2 nudos» (más intensa a la altura de Tarifa, con las corrientes de marea encima): discrepancia documentada; como respuesta de examen vale «hacia el E, puede superar los 4 nudos».",
    "padre": "meteo.corrientes",
    "relacionados": [
-    "meteo.corrientes.mediterraneo"
+    "meteo.corrientes.mediterraneo-occidental",
+    "meteo.corrientes.mediterraneo-central",
+    "meteo.corrientes.portugal-canarias"
    ],
    "tit": [
     "py"
@@ -2432,25 +2501,66 @@
   },
   {
    "id": "meteo.corrientes.mediterraneo",
-   "tipo": "concepto",
+   "tipo": "grupo",
    "etiqueta": "Corriente general del Mediterráneo",
+   "sinonimos": [],
+   "nota": "Corriente general del Mediterráneo: la parte occidental (hasta Baleares, golfo de León y corriente del Norte) y la central con los mares secundarios.",
+   "padre": "meteo.corrientes",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.mediterraneo-occidental",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes del Mediterráneo occidental",
    "sinonimos": [
     "costa africana",
-    "Málaga a cabo de Gata hacia el E",
+    "Málaga a cabo de Gata",
     "cabo de Palos",
+    "cabo de San Antonio",
+    "golfo de León",
+    "golfo de Valencia",
     "corriente del Norte",
+    "paralelo de Ceuta",
+    "Mediterráneo occidental"
+   ],
+   "nota": "El agua atlántica entra por el Estrecho: frente a Ceuta y entre Málaga y cabo de Gata va al E; sigue pegada a la costa africana; entre cabo de Palos y cabo de San Antonio se divide en dos ramas (ESE hacia Baleares y NE); golfo de Valencia y golfo de León con vientos fuertes del NW; la corriente del Norte baja hacia el SSW.",
+   "padre": "meteo.corrientes.mediterraneo",
+   "relacionados": [
+    "meteo.corrientes.estrecho",
+    "meteo.corrientes.mediterraneo-central"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.mediterraneo-central",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes del Mediterráneo central y mares secundarios",
+   "sinonimos": [
     "canal de Malta",
-    "sentido antihorario",
+    "Túnez y Sicilia",
     "Tirreno",
     "Adriático",
-    "litoral mediterráneo",
-    "Málaga",
-    "Mediterráneo"
+    "sentido antihorario",
+    "mares secundarios",
+    "Egeo"
    ],
-   "nota": "El agua atlántica corre hacia el E por la costa africana y vuelve en sentido antihorario por el norte (corriente del Norte hacia el SSW); detalles por zonas.",
-   "padre": "meteo.corrientes",
+   "nota": "Canal Túnez-Sicilia y canal de Malta: hacia el E; en Tirreno y Adriático (y en los mares secundarios) circulación antihoraria.",
+   "padre": "meteo.corrientes.mediterraneo",
    "relacionados": [
-    "meteo.corrientes.estrecho"
+    "meteo.corrientes.estrecho",
+    "meteo.corrientes.mediterraneo-occidental"
    ],
    "tit": [
     "py"

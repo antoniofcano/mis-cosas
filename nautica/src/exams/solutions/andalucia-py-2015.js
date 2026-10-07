@@ -22,13 +22,6 @@ export const documentadas = {
       + 'en 1h 40m → Ihc 4,1 nudos. La oficial (d: 071°, 4,0 nudos) es la más próxima, pero no con claridad: por el rumbo '
       + 'está más cerca la b (068°, 3,1 nudos) y solo la intensidad las separa. Diferencia de trazado del tribunal (2°).',
   },
-  'and-py-2015-c2-n14': {
-    tipo: 'discrepancia',
-    texto: 'Rumbo hacia el punto a 3 millas al E del faro de Punta Europa desde 35° 57,0′ N 005° 17,0′ W: Rs = 000,4° = N, '
-      + 'la oficial (b: «Rs = N.»). Sin corriente, el rumbo que se hace es el de superficie; el viento del W solo cambia el Rv a dar '
-      + '(355°, la opción a). El cálculo llega a la oficial, pero el lector de opciones no lee un rumbo escrito solo como «N» (sin grados) '
-      + 'y no puede comprobarse: se deja documentada.',
-  },
   'and-py-2015-c3-n11': {
     tipo: 'discrepancia',
     texto: 'Demoras no simultáneas con corriente. Ct = −3° + 4° = +1°: Rv 136°, Dv 056° y 006° a Trafalgar. Triángulo de '
@@ -162,7 +155,17 @@ export default {
       return latlon(p);
     },
   },
-  // c2-n13 y c2-n14: ver `documentadas`.
+  // c2-n13: ver `documentadas`.
+  'and-py-2015-c2-n14': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('35 57,0 N', '5 17,0 W', 'Situación 20:00');
+      const p = k.fromMark('punta-europa', E, 3, 'Punto de destino');
+      const { rv: rs } = k.rhumb(s, p, 'Rumbo de superficie');
+      k.note('Rumbo de superficie', 'Sin corriente, el rumbo que hacemos sobre el fondo es el de superficie: el que une la salida con el destino. El viento del W solo cambia el Rv que hay que dar para hacerlo (Rv = Rs − abatimiento), no el Rs.');
+      return [{ kind: 'bearing', value: rs }];
+    },
+  },
   'and-py-2015-c2-n15': {
     ejercicio: 'ct-enfilacion',
     solve(k) {

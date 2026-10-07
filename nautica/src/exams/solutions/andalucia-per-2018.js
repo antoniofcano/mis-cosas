@@ -5,7 +5,6 @@ import { hrb } from '../kit.js';
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 
 export const documentadas = {
-  'and-2018-c2-q43': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Trafalgar–Roche mide 323,0°: con la Da 331° la Ct es −8,0°, la oficial (b, −8°). Pero las opciones del cuadernillo llegan con el «º» convertido en «0» («-50», «-80», «+50», «+130»): el lector las toma como −50°, −80°… y la más próxima a −8 es la a. Se resuelve igual que and-2017-c1-q44 y and-2017-c3-q43; queda documentada hasta que se corrija el texto de las opciones.' },
   'and-2018-c3-q45': { tipo: 'discrepancia', texto: 'Rv 250° con Punta Carnero a 55° Er (Dv 305°) y Punta Almina a 88° Br (Dv 162°): situación 36° 01,5′ N, 005° 19,7′ W. La oficial (d) dice «36º 01,4\' N; 006º 19,6\' W»: los minutos coinciden, pero el grado de longitud es una errata (006° por 005°; a 006° 19,6′ W estaríamos en el borde W de la carta, a más de 50 millas de Punta Almina). El cálculo cae en la a (36° 01,4′ N, 005° 18,0′ W) por la errata, así que no se compara.' },
 };
 
@@ -57,6 +56,14 @@ export default {
       const { rv, dist } = k.rhumb(s, 'algeciras-espigon');
       const ct = k.ct({ dm: -5, desvio: 9 });
       return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(21, 0), dist, 6) }];
+    },
+  },
+  'and-2018-c2-q43': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      k.note('Rumbo', 'El Ra = 318° no interviene: la Ct sale de la enfilación.');
+      const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 331);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 331) }];
     },
   },
   'and-2018-c2-q44': {

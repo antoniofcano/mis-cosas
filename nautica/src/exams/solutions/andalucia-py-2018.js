@@ -6,67 +6,9 @@ import { hrb } from '../kit.js';
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const N = 0; const E = 90; const S = 180; const W = 270; const NE = 45; const SE = 135; const SW = 225; const NW = 315;
 
-// Corriente desconocida con el rumbo de la corriente en las opciones como un cardinal («Rc = NW Ihc = 2,0´»): el lector
-// de opciones (src/exams/options.js) no lee un rumbo sin número, así que no se pueden comparar en el test y quedan en
-// `documentadas`. El cálculo está aquí, listo para pasar a `default` cuando el lector lea «NW», «SE»…
-export const rcCardinal = {
-  'and-py-2018-c1-n14': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = k.fixDist('punta-cires', 120, 3, 'Situación 08:00');
-      const t = hrb(10) - hrb(8);
-      const est = k.run(s, 90, k.distFor(5, t), 'Situación de estima 10:00');
-      const obs = k.fixDist('punta-europa', 17, 8, 'Situación observada 10:00');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
-      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
-    },
-  },
-  'and-py-2018-c1b-n14': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = k.pos('36 00,0 N', '5 50,0 W', 'Situación 13:00');
-      const t = hrb(14) - hrb(13);
-      const est = k.run(s, 300, k.distFor(4.8, t), 'Situación de estima 14:00');
-      // Al S verdadero del faro de Barbate y al W verdadero del de Punta Paloma.
-      const obs = k.cardinal2('barbate-faro', S, 'punta-paloma', W, 'Situación observada 14:00');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
-      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
-    },
-  },
-  'and-py-2018-c2-n14': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = k.fromMark('cabo-espartel', W, 6.4, 'Situación 10:00');
-      const t = hrb(12) - hrb(10);
-      const ct = k.ct({ dm: -3, desvio: 3 });
-      const rv = k.rv(73, ct);
-      const est = k.run(s, rv, k.distFor(6, t), 'Situación de estima 12:00');
-      // Al W verdadero de Punta Cires y al N verdadero del faro de Punta Malabata.
-      const obs = k.cardinal2('punta-cires', W, 'punta-malabata', N, 'Situación observada 12:00');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
-      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
-    },
-  },
-  'and-py-2018-c4-n14': {
-    ejercicio: 'corriente-desconocida',
-    solve(k) {
-      const s = k.pos('36 01,0 N', '5 49,4 W', 'Situación 11:00');
-      const t = hrb(12, 30) - hrb(11);
-      const est = k.run(s, 265, k.distFor(8.5, t), 'Situación de estima 12:30');
-      // «Faro de Punta Camarinal» = faro de Punta Gracia.
-      const obs = k.fix2('punta-gracia', 74.5, 'cabo-trafalgar', 0, 'Situación observada 12:30');
-      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
-      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
-    },
-  },
-};
-
 export const documentadas = {
-  'and-py-2018-c1-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c): situación 08:00 a 3 millas de Punta Cires (Dv 120°), estima de 10 millas al 090° y situación observada 10:00 a 8 millas de Punta Europa (Dv 017°) dan Rc = 314° (NW) e Ihc = 2,1′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = NW Ihc = 2,0´») y el lector de opciones no lo lee (ninguna opción legible). Código en `rcCardinal`.' },
-  'and-py-2018-c1b-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d): estima de 4,8 millas al 300° desde 36° 00′ N, 5° 50′ W y situación observada 14:00 al S verdadero del faro de Barbate y al W verdadero del de Punta Paloma dan Rc = 355° (N) e Ihc = 1,5′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = N Ihc = 1,6´») y el lector de opciones no lo lee. Código en `rcCardinal`.' },
-  'and-py-2018-c2-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c): salida 10:00 a 6,4 millas al W verdadero de Cabo Espartel, Rv = 073° + (−3° + 3°) = 073°, estima de 12 millas, y situación observada 12:00 al W verdadero de Punta Cires y al N verdadero del faro de Punta Malabata dan Rc = 043° (NE) e Ihc = 2,5′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = NE Ihc = 2,5´») y el lector de opciones no lo lee. Código en `rcCardinal`.' },
+  'and-py-2018-c1b-n14': { tipo: 'discrepancia', texto: 'Corriente desconocida. Estima a las 14:00 tras 4,8 millas al 300° desde 36° 00′ N, 5° 50′ W: 36° 02,4′ N, 5° 55,1′ W; situación observada al S verdadero del faro de Barbate y al W verdadero del de Punta Paloma: 36° 03,9′ N, 5° 55,3′ W. Corriente: Rc = 355,2°, 1,54 millas en 1 h → Ihc = 1,5′. La oficial (d: «Rc = N Ihc = 1,6´», 000°) es la más próxima, pero queda a 4,8° en el rumbo: fuera del margen de examen. El tribunal debió redondear el rumbo al cardinal.' },
   'and-py-2018-c4-n13': { tipo: 'discrepancia', texto: 'La enfilación Cabo Espartel–Punta Malabata medida en la carta de la app da Dv = 078,6°: Ct = 078,6° − 087° = −8,4°. La más próxima es la oficial (b, −7°), pero a 1,4° y fuera de la tolerancia: la oficial supone la enfilación en 080°. Con los faros de la carta (Espartel 35° 47,5′ N, 5° 55,4′ W; Malabata 35° 49,2′ N, 5° 45,0′ W) no sale 080°.' },
-  'and-py-2018-c4-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c): estima de 12,75 millas al 265° desde 36° 01′ N, 5° 49,4′ W y situación observada 12:30 por las demoras de Punta Camarinal (074,5°) y Cabo Trafalgar (000°) dan Rc = 044° (NE) e Ihc = 2,4′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = NE, Ihc = 2,5\'») y el lector de opciones no lo lee. Código en `rcCardinal`.' },
 };
 
 export default {
@@ -98,6 +40,17 @@ export default {
       const rv = k.rv(305, ct);
       const rs = k.abatimiento(rv, 15, NE);
       return latlon(k.run(s, rs, k.distFor(6, hrb(11, 30) - hrb(9)), 'Situación 11:30'));
+    },
+  },
+  'and-py-2018-c1-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.fixDist('punta-cires', 120, 3, 'Situación 08:00');
+      const t = hrb(10) - hrb(8);
+      const est = k.run(s, 90, k.distFor(5, t), 'Situación de estima 10:00');
+      const obs = k.fixDist('punta-europa', 17, 8, 'Situación observada 10:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2018-c1-n15': {
@@ -279,6 +232,20 @@ export default {
       return latlon(k.run(s, rs, k.distFor(6, hrb(13, 30) - hrb(11)), 'Situación 13:30'));
     },
   },
+  'and-py-2018-c2-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.fromMark('cabo-espartel', W, 6.4, 'Situación 10:00');
+      const t = hrb(12) - hrb(10);
+      const ct = k.ct({ dm: -3, desvio: 3 });
+      const rv = k.rv(73, ct);
+      const est = k.run(s, rv, k.distFor(6, t), 'Situación de estima 12:00');
+      // Al W verdadero de Punta Cires y al N verdadero del faro de Punta Malabata.
+      const obs = k.cardinal2('punta-cires', W, 'punta-malabata', N, 'Situación observada 12:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
   'and-py-2018-c2-n15': {
     ejercicio: 'corriente-efectiva',
     solve(k) {
@@ -357,6 +324,18 @@ export default {
       const rs = k.abatimiento(rv, 10, SE);
       const { ref, vef } = k.efectivo(rs, 8, SE, 3, s);
       return latlon(k.estimaEfectiva(s, ref, vef, hrb(10, 30) - hrb(9), 'Situación 10:30'));
+    },
+  },
+  'and-py-2018-c4-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 01,0 N', '5 49,4 W', 'Situación 11:00');
+      const t = hrb(12, 30) - hrb(11);
+      const est = k.run(s, 265, k.distFor(8.5, t), 'Situación de estima 12:30');
+      // «Faro de Punta Camarinal» = faro de Punta Gracia.
+      const obs = k.fix2('punta-gracia', 74.5, 'cabo-trafalgar', 0, 'Situación observada 12:30');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2018-c4-n15': {

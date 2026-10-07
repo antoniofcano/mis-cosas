@@ -2021,5 +2021,352 @@
   ],
   "base": "and-2024-c2-t07",
   "concepto": "and-2024-c2-t07"
+ },
+ "bal-per-2022-09-m-07": {
+  "explicacion": "El heliógrafo, o espejo de señales, sirve para hacer destellos reflejando los rayos del sol hacia un barco o una aeronave para que nos localicen; se ve desde muy lejos en días soleados. No tiene nada que ver con el radar ni con la identificación por ondas, y no sirve para tomar demoras.",
+  "clave": "Heliógrafo = espejo que lanza destellos de sol.",
+  "trampa": "La c) describe el AIS, no un espejo de señales."
+ },
+ "bal-per-2022-09-m-08": {
+  "explicacion": "La tecla MOB del GPS graba de inmediato la posición en que cae un náufrago como waypoint y da rumbo y distancia para volver a ella. No informa del datum geodésico ni de la sonda, y sigue siendo una función útil y habitual.",
+  "clave": "MOB = marca en el GPS la posición del náufrago.",
+  "trampa": "La b) juega con «datum», pero aquí sería el datum geodésico, no la posición del náufrago."
+ },
+ "bal-per-2022-09-m-10": {
+  "explicacion": "Los extintores portátiles deben instalarse en lugares de fácil acceso, para cogerlos enseguida. Dentro del compartimento del motor o muy cerca del foco no podrías alcanzarlos si allí empieza el fuego, y escondidos y cerrados no sirven en una emergencia.",
+  "clave": "Extintores: siempre a mano, fuera del foco.",
+  "trampa": "La a) parece lógica, pero si el fuego empieza allí, no podrás cogerlo."
+ },
+ "bal-per-2022-12-be-08": {
+  "explicacion": "El propósito principal del arnés y la línea de vida es evitar que caigas al agua: con una línea corta enganchada a la línea de vida, no llegas a la borda. Seguir unido al barco desde el agua es peligroso, porque te arrastraría, y no están pensados para moverse más deprisa.",
+  "clave": "Arnés y línea de vida: para no caer al agua.",
+  "trampa": "La a) parece una ventaja, pero ser arrastrado por el barco es un gran peligro.",
+  "concepto": "bal-per-2022-12-be-08"
+ },
+ "bal-per-2023-12-e-08": {
+  "explicacion": "El propósito principal del arnés y la línea de vida es evitar que caigas al agua: enganchado con una línea corta, no llegas a la borda. No activan ninguna alarma (eso lo hacen algunos dispositivos MOB electrónicos) ni son para moverse más deprisa.",
+  "clave": "Arnés y línea de vida: para no caer al agua.",
+  "trampa": "La a) describe un dispositivo electrónico de hombre al agua, no el arnés.",
+  "concepto": "bal-per-2022-12-be-08"
+ },
+ "bal-per-2022-12-c-07": {
+  "explicacion": "Los arneses y las líneas de vida están diseñados específicamente para evitar que caigas al agua. Aros, chalecos y ayudas a la flotabilidad sirven para mantenerte a flote cuando ya has caído.",
+  "clave": "Arnés: evita caer. Chaleco y aro: flotar si caes.",
+  "trampa": "El chaleco salva vidas, pero cuando ya estás en el agua.",
+  "concepto": "bal-per-2022-12-be-08"
+ },
+ "bal-per-2022-12-c-09": {
+  "explicacion": "Si el náufrago cae por estribor, se mete el timón a estribor, la misma banda de caída: la proa cae a estribor y la popa, con la hélice, se aparta hacia babor, lejos de él. Meterlo a babor echaría la popa encima del náufrago.",
+  "clave": "Timón a la banda de caída: la hélice se aparta.",
+  "trampa": "Parece que alejarte sea girar al lado contrario, pero eso echa la popa encima del náufrago."
+ },
+ "bal-per-2022-12-fd-07": {
+  "explicacion": "La oficial es «todas son correctas»: se puede contactar con Salvamento Marítimo por el 112, que traslada el aviso, y por el canal 16 de VHF, el de socorro.",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "Mira bien la a): el número de Salvamento empieza por 900, no por 902.",
+  "discrepancia": "El teléfono de Salvamento Marítimo es el 900 202 202, no el 902 202 202 que aparece en la a), así que, leída al pie de la letra, la a) es falsa y «todas» no debería ser correcta. Seguramente es una errata del cuadernillo; en otra convocatoria la misma pregunta lleva el 900.",
+  "concepto": "bal-per-2022-12-fd-07"
+ },
+ "bal-per-2024-04-b-10": {
+  "explicacion": "Con Salvamento Marítimo se puede contactar por su teléfono gratuito de emergencias, el 900 202 202, por el 112, que traslada el aviso, y por el canal 16 de VHF, el de socorro, seguridad y llamada. Todas son correctas.",
+  "clave": "Salvamento Marítimo: 900 202 202 o 112 (y canal 16).",
+  "trampa": "Cada opción es una vía válida; la completa es la d).",
+  "concepto": "bal-per-2022-12-fd-07"
+ },
+ "bal-per-2022-12-fd-10": {
+  "explicacion": "La balsa salvavidas se estiba en cubierta, cerca de la borda para poder lanzarla fácilmente, y sujeta con una zafa hidrostática que la libere sola si el barco se hunde. Encerrada no saldría a flote, suelta se la llevaría la mar y junto al motor tiene riesgo de fuego.",
+  "clave": "Balsa: en cubierta, junto a la borda y con zafa.",
+  "trampa": "La a) la protege, pero si el barco se hunde no podría salir a flote."
+ },
+ "bal-per-2023-03-a-09": {
+  "explicacion": "La norma ISO 9650, a la que remite el RD 339/2021 para las balsas de embarcaciones de recreo, establece una capacidad mínima de 4 personas. No hay balsas homologadas de 1 o 2 plazas; la balsa debe cubrir a todas las personas a bordo.",
+  "clave": "Balsa ISO de recreo: mínimo 4 plazas.",
+  "trampa": "La d) es una capacidad habitual, pero el mínimo es 4."
+ },
+ "bal-per-2023-03-a-10": {
+  "explicacion": "La tecla MOB marca como waypoint la posición en que está el barco al pulsarla, y el GPS da rumbo y distancia para volver a ese punto. No lanza la llamada de socorro (eso es el DSC de la VHF), no se activa sola y no hace ninguna maniobra automática.",
+  "clave": "MOB = marca en el GPS la posición del náufrago.",
+  "trampa": "La a) la confunde con el botón de socorro DSC de la radio.",
+  "concepto": "bal-per-2018-06-i-09"
+ },
+ "bal-per-2023-03-cg-10": {
+  "explicacion": "Con niebla hay que reducir la velocidad a una de seguridad y emitir las señales fónicas reglamentarias (Regla 35 del RIPA), además de encender las luces y extremar la vigilancia. Tres luces rojas, dos pitadas largas y tres cortas o dar la vuelta no son lo que manda el reglamento.",
+  "clave": "Niebla: velocidad de seguridad y señales fónicas.",
+  "trampa": "La b) inventa una señal; la de un buque de propulsión mecánica con arrancada es una pitada larga cada 2 minutos."
+ },
+ "bal-per-2023-06-af-09": {
+  "explicacion": "Antes de lanzar la balsa a mano hay que amarrar el cabo de disparo (la boza) a un punto fuerte del barco: al tirar de él la balsa se infla, y además queda sujeta y no se la lleva el viento. Si la tiras sin amarrar, la pierdes; no se abre antes de lanzarla.",
+  "clave": "Lanzar la balsa: primero la boza amarrada al barco.",
+  "trampa": "La a) parece rápida, pero sin la boza amarrada la balsa se va."
+ },
+ "bal-per-2023-06-af-10": {
+  "explicacion": "Si cae un rayo cerca, conviene comprobar en cuanto se pueda el desvío de la aguja, porque el campo magnético del rayo puede haberla alterado. La tripulación no debe estar en cubierta, parar el barco no aleja de la tormenta y la instalación eléctrica se desconecta, no se enciende.",
+  "clave": "Tras un rayo cercano: comprueba el desvío de la aguja.",
+  "trampa": "La a) suena a protección, pero nadie debe estar en cubierta con rayos.",
+  "concepto": "bal-per-2023-06-af-10"
+ },
+ "bal-per-2023-06-bg-07": {
+  "explicacion": "Cuando el balance es rápido (frecuencia alta, período corto), el barco tiene un par adrizante grande: es un barco duro, con mucha estabilidad transversal. Un balance lento indica un barco blando, con poca estabilidad. La cabezada tiene que ver con la estabilidad longitudinal.",
+  "clave": "Balance rápido = barco duro = mucha estabilidad.",
+  "trampa": "La c) y la d) hablan de la cabezada, que es longitudinal."
+ },
+ "bal-per-2023-06-c-09": {
+  "explicacion": "Ante una inundación hay que poner en marcha las bombas de achique, y a la vez localizar y taponar la vía de agua. Tres pitadas cortas significan «estoy dando atrás», escorar el barco no achica nada y aumentar la velocidad puede hacer entrar más agua.",
+  "clave": "Inundación: achicar y taponar.",
+  "trampa": "La b) es una señal de maniobra, no de emergencia."
+ },
+ "bal-per-2023-06-d-08": {
+  "explicacion": "La gasolina es un combustible líquido, así que su fuego es de clase B (Bravo). La clase A es la de los sólidos, la C la de los gases y la D la de los metales.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "Las opciones usan el alfabeto fonético para despistar: Bravo es la B.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2023-09-a-07": {
+  "explicacion": "La señal fumígena flotante emite humo naranja, muy visible de día, sobre todo desde el aire, durante al menos 3 minutos. El verde no es un color de socorro, 1 minuto no llega al mínimo (es lo que dura una bengala) y 6 minutos no es el requisito.",
+  "clave": "Fumígena: naranja y 3 minutos.",
+  "trampa": "Confundir con la bengala de mano (1 minuto, luz roja).",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "base": "and-2024-c1-t08",
+  "concepto": "and-2024-c1-t08"
+ },
+ "bal-per-2023-09-a-10": {
+  "explicacion": "Se habla de hipotermia cuando la temperatura central del cuerpo baja de 35 °C. Por debajo de 32 °C es moderada y por debajo de 28 °C, grave, con riesgo de parada cardiaca.",
+  "clave": "Hipotermia: por debajo de 35 °C.",
+  "trampa": "32 y 28 °C marcan hipotermias más graves, no el comienzo."
+ },
+ "bal-per-2023-09-c-07": {
+  "explicacion": "La cabezada se agrava cuando el barco entra en sincronismo longitudinal con las olas; para reducirla hay que cambiar la velocidad, aumentándola o disminuyéndola, hasta romper ese sincronismo. Por eso todas son correctas.",
+  "clave": "Sincronismo: cambia velocidad o rumbo.",
+  "trampa": "Subir o bajar la velocidad parecen contradictorias, pero ambas cambian el período de encuentro."
+ },
+ "bal-per-2023-12-a-07": {
+  "explicacion": "Con un helicóptero a la vista y de día, la señal fumígena de humo naranja es la que mejor llama su atención y le indica además la dirección del viento. Nunca se apunta un cohete ni un lanzacabos hacia una aeronave, porque puede alcanzarla, y escribir en los chalecos no se ve desde el aire.",
+  "clave": "Helicóptero de día: humo naranja. Nunca dispares hacia él.",
+  "trampa": "La b) parece llamativa, pero un cohete dirigido al helicóptero puede derribarlo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2023-12-a-07"
+ },
+ "bal-per-2025-04-c-09": {
+  "explicacion": "De día, la mejor forma de llamar la atención del helicóptero es activar una señal fumígena naranja, que se ve muy bien desde el aire y le indica la dirección del viento. Disparar un cohete o el lanzacabos hacia la aeronave, y más en su vertical, puede alcanzarla, y unas letras con chalecos no se distinguen.",
+  "clave": "Helicóptero de día: humo naranja. Nunca dispares hacia él.",
+  "trampa": "La b) parece llamativa, pero un cohete en la vertical del helicóptero puede alcanzarlo.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "humo",
+    "solo": true
+   }
+  ],
+  "concepto": "bal-per-2023-12-a-07"
+ },
+ "bal-per-2023-12-a-08": {
+  "explicacion": "El pallete de colisión es una lona reforzada que se aplica por fuera del casco sobre una vía de agua: la presión del mar la pega al casco y reduce la entrada de agua. No evita colisiones, no repara la cubierta y la obra muerta está por encima de la flotación.",
+  "clave": "Pallete de colisión = lona para taponar una vía de agua.",
+  "trampa": "El nombre lleva «colisión», pero sirve para después: taponar el agujero."
+ },
+ "bal-per-2023-12-a-09": {
+  "explicacion": "Toda herida, sea cual sea su profundidad o extensión, tiene dos peligros: la hemorragia (pérdida de sangre) y la infección. El contagio, la hipotermia o una mala cicatrización pueden darse, pero no son los peligros propios de cualquier herida.",
+  "clave": "Herida: hemorragia e infección.",
+  "trampa": "La d) es una posible consecuencia de la infección, no el peligro principal.",
+  "concepto": "bal-per-2023-12-a-09"
+ },
+ "bal-per-2023-12-b-10": {
+  "explicacion": "Con niebla aumentan la seguridad todas las medidas citadas: encender las luces de navegación, emitir la señal fónica reglamentaria y reforzar la vigilancia visual y auditiva, además de reducir la velocidad. Todas son correctas.",
+  "clave": "Niebla: despacio, señales fónicas, luces, radar y vigía.",
+  "trampa": "Cada opción es una medida correcta; la completa es la d)."
+ },
+ "bal-per-2023-12-c-10": {
+  "explicacion": "En aguas someras hay que consultar la carta con frecuencia para saber dónde están los bajos y vigilar la sonda constantemente. No hay que avisar por VHF ni dar pitadas, y el radar muestra la costa y los barcos, no el fondo.",
+  "clave": "Aguas someras: carta y sonda a la vista.",
+  "trampa": "El radar no ve debajo del agua: para eso está la sonda."
+ },
+ "bal-per-2023-12-e-09": {
+  "explicacion": "Antes de salir hay que comprobar las baterías, el funcionamiento del achique y la estanqueidad del barco, y los niveles de combustible, refrigerante, aceite y agua potable. Todas son revisiones necesarias, así que la correcta es la d).",
+  "clave": "Antes de zarpar: motor, baterías, achique y estanqueidad.",
+  "trampa": "Cada opción es necesaria; la completa es la d)."
+ },
+ "bal-per-2023-12-e-10": {
+  "explicacion": "La incorrecta es la b): el remolque abarloado solo es recomendable con mar en calma y en espacios reducidos, como dentro de un puerto; en la mar se remolca por la popa. Las demás son ciertas: la longitud del remolque depende del estado de la mar, del período de la ola, del desplazamiento del remolcado y de la velocidad.",
+  "clave": "Abarloado: solo con calma y en puerto; en la mar, por popa.",
+  "trampa": "Piden la INCORRECTA: el «siempre» de la b) es lo que la hace falsa."
+ },
+ "bal-per-2024-04-a-09": {
+  "explicacion": "Una vía de agua es una abertura o rotura por debajo de la línea de flotación por la que entra agua en el barco. Los orificios para desaguar la cubierta son los imbornales, los de achique son de las sentinas y las «vías marítimas» no tienen nada que ver.",
+  "clave": "Vía de agua = agujero bajo la flotación por el que entra agua.",
+  "trampa": "La a) describe los imbornales."
+ },
+ "bal-per-2024-04-a-10": {
+  "explicacion": "Quien cae al agua desde un barco a motor debe alejarse del casco, porque la popa y la hélice pasan por ese costado y pueden herirle. Arrimarse para engancharse es muy peligroso, y bucear o nadar detrás del barco no sirve.",
+  "clave": "Caes al agua: apártate del casco y de la hélice.",
+  "trampa": "La b) parece instintiva, pero el casco y la hélice te arrastran y golpean."
+ },
+ "bal-per-2024-04-b-09": {
+  "explicacion": "Si cae por babor, se cae a babor (timón a babor): la proa va hacia ese lado y la popa, con la hélice, se aparta del náufrago. Caer a estribor lanzaría la popa encima de él, y poner el timón a la vía no lo aparta.",
+  "clave": "Timón a la banda de caída: la hélice se aparta.",
+  "trampa": "La c) parece alejarte, pero echa la popa encima del náufrago."
+ },
+ "bal-per-2024-04-ce-08": {
+  "explicacion": "El Centro Radio-Médico Español atiende gratis, las 24 horas, cualquier consulta de salud de cualquier barco, profesional o de recreo, en cualquier zona de navegación, por radio o teléfono. No funciona solo en horario de oficina ni se limita a una zona o a los profesionales.",
+  "clave": "Centro Radio-Médico: 24 horas, para cualquier barco.",
+  "trampa": "La d) es falsa: también atiende a la náutica de recreo."
+ },
+ "bal-per-2024-04-ce-10": {
+  "explicacion": "Los fuegos de combustibles líquidos o de sólidos que se licúan al arder (gasolina, gasóleo, ceras, plásticos) son de clase B, y se apagan con extintores marcados con el pictograma B. La A es la de los sólidos que hacen brasa, la C la de los gases y la F la de los aceites de cocina.",
+  "clave": "A sólidos, B líquidos, C gases, D metales, F aceites de cocina.",
+  "trampa": "La F también son líquidos, pero solo los aceites y grasas de cocina.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ]
+ },
+ "bal-per-2024-04-df-07": {
+  "explicacion": "La estabilidad estática transversal es la propiedad del barco de recuperar su posición de equilibrio, una vez escorado, cuando flota en aguas en reposo: estática porque no interviene el movimiento de la mar y transversal porque la escora es de banda a banda. Con cualquier mar se hablaría de estabilidad dinámica, y el quebranto y el arrufo son deformaciones longitudinales del casco.",
+  "clave": "Escora + aguas en reposo = estática transversal.",
+  "trampa": "La a) dice «cualquier situación de mar»: eso ya no es estática."
+ },
+ "bal-per-2024-04-df-08": {
+  "explicacion": "Las bengalas se encienden y sostienen hacia sotavento y con el brazo por fuera de la embarcación, para que el viento se lleve el humo y los restos incandescentes lejos del barco y de las personas. A barlovento te caerían encima, y con el brazo por dentro quemarían la cubierta.",
+  "clave": "Bengala: por sotavento y fuera de la borda.",
+  "trampa": "La b) acierta el sotavento, pero con el brazo dentro gotea sobre el barco.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2024-07-a-08": {
+  "explicacion": "La guindola es un aro o salvavidas con luz (y a veces con otros elementos de señalización) que se lanza al náufrago para que flote y se le localice. No es un chaleco ni una cinta de chaleco, y las lanillas de los obenques que indican el viento son los catavientos.",
+  "clave": "Guindola = aro salvavidas con luz.",
+  "trampa": "La d) describe los catavientos."
+ },
+ "bal-per-2024-07-a-09": {
+  "explicacion": "Toda herida, sea cual sea su profundidad o extensión, tiene dos peligros: la hemorragia y la infección. El contagio o la hipotermia no son propios de cualquier herida, y el grupo sanguíneo no es un peligro.",
+  "clave": "Herida: hemorragia e infección.",
+  "trampa": "La d) solo importaría si hubiera que transfundir sangre.",
+  "concepto": "bal-per-2023-12-a-09"
+ },
+ "bal-per-2024-07-a-10": {
+  "explicacion": "Cuando el período de la ola coincide con el período de balance del barco se produce el sincronismo transversal, y los balances van creciendo. El longitudinal es con el cabeceo, y «marejada longitudinal» o «sintonía» no son el término.",
+  "clave": "Sincronismo transversal: período de la ola = período de balance.",
+  "trampa": "La b) es el sincronismo del cabeceo, no del balance.",
+  "concepto": "bal-per-2018-12-d-08"
+ },
+ "bal-per-2024-07-be-07": {
+  "explicacion": "En la hemorragia venosa la sangre es roja oscura (poco oxigenada) y sale de forma continua, sin presión. La sangre roja brillante que sale a borbotones, al ritmo del pulso, es la de una hemorragia arterial.",
+  "clave": "Venosa: oscura y continua. Arterial: brillante y a borbotones.",
+  "trampa": "La a) es la arterial, la más grave."
+ },
+ "bal-per-2024-07-be-08": {
+  "explicacion": "El remolcado amarra el cabo de remolque en la proa, a elementos fijos y resistentes como bitas o cornamusas (repartiendo el esfuerzo si se puede). La cadena del ancla no es un punto de amarre para el remolque, y en la popa el barco iría marcha atrás.",
+  "clave": "Remolcado: cabo a proa, en bitas o cornamusas.",
+  "trampa": "La c) es donde lo amarra el remolcador, no el remolcado."
+ },
+ "bal-per-2024-07-c-09": {
+  "explicacion": "Lo desaconsejable es meter el timón a la banda contraria a la de caída: la popa, con la hélice, iría hacia el náufrago. Lo correcto es meterlo a la banda de caída, lanzar un aro salvavidas sin perderle de vista y detener el barco para aproximarse a recuperarle.",
+  "clave": "Timón a la banda de caída: la hélice se aparta.",
+  "trampa": "Piden la desaconsejable: la a) es justo lo que hay que hacer."
+ },
+ "bal-per-2024-07-c-10": {
+  "explicacion": "La incorrecta es la d): no es obligatorio alejarse de las zonas de tráfico, recaladas o bocanas; es prudente, pero el RIPA no lo impone. Sí hay que reducir la velocidad a una de seguridad, usar las ayudas electrónicas disponibles (radar) y emitir las señales fónicas reglamentarias.",
+  "clave": "Niebla: velocidad de seguridad, radar y señales fónicas.",
+  "trampa": "Piden la INCORRECTA: el «será obligatorio» de la d) es lo que falla."
+ },
+ "bal-per-2024-07-df-10": {
+  "explicacion": "La hipotermia es una pérdida importante de calor corporal, con la temperatura interna por debajo de 35 °C. El desmayo o la parada cardiaca pueden ser consecuencias, y la entrada de agua en los pulmones es el ahogamiento.",
+  "clave": "Hipotermia = el cuerpo pierde calor, por debajo de 35 °C.",
+  "trampa": "La c) es el ahogamiento, otra causa de muerte distinta."
+ },
+ "bal-per-2024-09-a-10": {
+  "explicacion": "El equipo de seguridad de las embarcaciones de recreo españolas debe estar homologado por la Dirección General de la Marina Mercante (o llevar el marcado de equipos marinos que esta reconoce). La Policía Portuaria, la consignataria o Salvamento Marítimo no homologan equipos.",
+  "clave": "Equipos de seguridad: homologados por la DGMM.",
+  "trampa": "Salvamento Marítimo usa estos equipos, pero no los homologa."
+ },
+ "bal-per-2024-09-d-07": {
+  "explicacion": "Si cae un rayo cerca, hay que comprobar en cuanto se pueda el desvío de la aguja, porque puede haber quedado alterada. La tripulación no debe estar en cubierta, parar el barco no aleja de la tormenta y la instalación eléctrica se desconecta, no se enciende.",
+  "clave": "Tras un rayo cercano: comprueba el desvío de la aguja.",
+  "trampa": "La a) suena a protección, pero nadie debe estar en cubierta con rayos.",
+  "concepto": "bal-per-2023-06-af-10"
+ },
+ "bal-per-2026-03-a-09": {
+  "explicacion": "Si cae un rayo cerca, hay que comprobar en cuanto se pueda el desvío de la aguja, porque puede haber quedado alterada. Agarrarse a obenques o estais metálicos es justo lo que no hay que hacer (son el camino del rayo), parar el barco no ayuda y la instalación eléctrica se desconecta, no se enciende.",
+  "clave": "Tras un rayo cercano: comprueba el desvío de la aguja.",
+  "trampa": "La a) es peligrosísima: la jarcia metálica conduce la descarga.",
+  "concepto": "bal-per-2023-06-af-10"
+ },
+ "bal-per-2024-09-d-08": {
+  "explicacion": "El tiempo de supervivencia en el agua depende de la temperatura del agua (el factor principal), de la edad y la corpulencia de la persona y de su actividad física (nadar hace perder calor más deprisa). Por eso la correcta es la a), que reúne las tres.",
+  "clave": "Supervivencia en el agua: frío, actividad y constitución.",
+  "trampa": "Cada opción es un factor real; la completa es la a).",
+  "concepto": "bal-per-2024-09-d-08"
+ },
+ "bal-per-2025-12-b-09": {
+  "explicacion": "El tiempo de supervivencia en el agua depende de la temperatura del agua (el factor principal), de la edad y la corpulencia de la persona y de su actividad física. Por eso la correcta es la a), «todas son correctas».",
+  "clave": "Supervivencia en el agua: frío, actividad y constitución.",
+  "trampa": "Cada opción es un factor real; la completa es la a).",
+  "concepto": "bal-per-2024-09-d-08"
+ },
+ "bal-per-2024-09-d-09": {
+  "explicacion": "La zafa hidrostática es un elemento de seguridad que actúa por la presión del agua y se usa para liberar automáticamente la balsa salvavidas cuando el barco se hunde, antes de los 4 m de profundidad. Por eso son correctas la a) y la b). No tiene nada que ver con la transmisión del timón.",
+  "clave": "Zafa hidrostática: suelta sola la balsa por la presión del agua.",
+  "trampa": "La a) y la b) son ciertas a la vez; la completa es la d)."
+ },
+ "bal-per-2024-09-e-07": {
+  "explicacion": "Para que haya incendio hacen falta los cuatro elementos del tetraedro del fuego: combustible, oxígeno (comburente), temperatura (calor) y reacción en cadena. El CO2 no es un elemento del fuego, sino un agente extintor, y la d) se queda con el triángulo clásico, sin la reacción en cadena.",
+  "clave": "Tetraedro: combustible, comburente, calor y reacción en cadena.",
+  "trampa": "La d) es el triángulo del fuego: le falta la reacción en cadena.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ]
+ },
+ "bal-per-2024-09-f-08": {
+  "explicacion": "La derrota es el camino que sigue o debe seguir el barco para ir de un lugar a otro. Gruta, grifos y fondo son palabras que no tienen ese significado.",
+  "clave": "Derrota = camino de un punto a otro.",
+  "trampa": "Las demás son palabras náuticas o parecidas, pero no designan la navegación entre dos puntos."
+ },
+ "bal-per-2024-09-f-10": {
+  "explicacion": "Los imbornales son los orificios de la amurada, a la altura de la cubierta, que sirven para desalojar al mar el agua que embarca la cubierta. No achican inundaciones del interior (eso lo hacen las bombas) ni descargan tanques de lastre.",
+  "clave": "Imbornal = desagüe de la cubierta.",
+  "trampa": "La b) confunde el desagüe de cubierta con el achique de la sentina."
+ },
+ "bal-per-2024-12-b-07": {
+  "explicacion": "Las bengalas llevan su propio oxidante y pueden seguir ardiendo un rato bajo el agua, así que el que se apague depende del tiempo y la profundidad a la que permanezca sumergida. No se apagan con solo tocar el agua, pero tampoco son inmunes a ella.",
+  "clave": "Bengala sumergida: puede seguir ardiendo un rato.",
+  "trampa": "La b) parece lógica, pero la pirotecnia lleva su propio oxígeno."
+ },
+ "bal-per-2024-12-b-09": {
+  "explicacion": "El balance es el movimiento del barco inclinándose alternativamente a babor y a estribor. El movimiento longitudinal proa-popa es la cabezada, y «mantener la escora positiva» no es ninguna definición.",
+  "clave": "Balance = de banda a banda.",
+  "trampa": "La b) describe la cabezada.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "concepto": "and-2024-c2-t07"
  }
 }

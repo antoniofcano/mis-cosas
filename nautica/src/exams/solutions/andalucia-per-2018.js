@@ -6,6 +6,7 @@ const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lo
 
 export const documentadas = {
   'and-2018-c2-q43': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Trafalgar–Roche mide 323,0°: con la Da 331° la Ct es −8,0°, la oficial (b, −8°). Pero las opciones del cuadernillo llegan con el «º» convertido en «0» («-50», «-80», «+50», «+130»): el lector las toma como −50°, −80°… y la más próxima a −8 es la a. Se resuelve igual que and-2017-c1-q44 y and-2017-c3-q43; queda documentada hasta que se corrija el texto de las opciones.' },
+  'and-2018-c3-q45': { tipo: 'discrepancia', texto: 'Rv 250° con Punta Carnero a 55° Er (Dv 305°) y Punta Almina a 88° Br (Dv 162°): situación 36° 01,5′ N, 005° 19,7′ W. La oficial (d) dice «36º 01,4\' N; 006º 19,6\' W»: los minutos coinciden, pero el grado de longitud es una errata (006° por 005°; a 006° 19,6′ W estaríamos en el borde W de la carta, a más de 50 millas de Punta Almina). El cálculo cae en la a (36° 01,4′ N, 005° 18,0′ W) por la errata, así que no se compara.' },
 };
 
 export default {
@@ -76,6 +77,37 @@ export default {
       const rv = k.rv(275, ct);
       const d = k.distFor(6, hrb(15, 30) - hrb(13, 0));
       return latlon(k.run(s, rv, d, 'Situación 15:30'));
+    },
+  },
+
+  // ---- 3ª Convocatoria 2018
+  'and-2018-c3-q42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.cardinal2('isla-tarifa', 270, 'punta-gracia', 180, 'Situación 09:00');
+      const { rv } = k.rhumb(s, 'tanger-espigon');
+      const ct = k.ct({ carta: [8, 2008, -6], anyo: 2018, desvio: 5 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2018-c3-q43': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fromMark('punta-alcazar', 0, 5, 'Situación 14:00');
+      // Hacia el E por el N de Punta Almina: el faro queda por estribor.
+      const rv = k.tangent(s, 'punta-almina', 5, 'estribor');
+      const ct = k.ct({ dm: -7, desvio: 7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2018-c3-q44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '5 50,0 W', 'Situación 12:00');
+      const ct = k.ct({ dm: 8, desvio: 6 });
+      const rv = k.rv(300, ct);
+      const d = k.distFor(6, hrb(14, 30) - hrb(12, 0));
+      return latlon(k.run(s, rv, d, 'Situación 14:30'));
     },
   },
 };

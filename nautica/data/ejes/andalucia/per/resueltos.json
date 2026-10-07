@@ -1,0 +1,9 @@
+{
+ "per-11-2": { "ejercicios": ["ct-enfilacion"] },
+ "per-11-3": { "ejercicios": ["rumbo-distancia"] },
+ "per-11-4": { "ejercicios": ["estima-directa"] },
+ "per-11-5": { "ejercicios": ["situacion-demora-distancia", "distancia-faro"] },
+ "per-11-6": { "ejercicios": ["situacion-dos-demoras"] },
+ "per-11-7": { "ejercicios": ["distancia-faro", "ct-enfilacion"] },
+ "per-11-9": { "ejercicios": ["rumbo-pasar-distancia"] }
+}

@@ -1,0 +1,34 @@
+{
+ "id": "andalucia",
+ "nombre": "Andalucía",
+ "organismo": "Junta de Andalucía",
+ "ambito": ["Andalucía"],
+ "estado": "publicado",
+ "prefijo": "and",
+ "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/cuestionarios-examenes.html",
+ "licencia": { "tipo": "CC BY 3.0", "cita": "Información obtenida del Portal de la Junta de Andalucía", "usoApp": "permitido", "url": "https://www.juntadeandalucia.es/informacion/legal.html" },
+ "carta": "L105",
+ "examen": {
+  "per": {},
+  "py": { "reglas": ["Carta: 7 ejercicios sobre la carta del Estrecho, 2 de mareas (con anuario y tabla) y 1 de loxodrómica."] }
+ },
+ "reserva": { "modo": "examen", "per": [], "py": [] },
+ "listas": {
+  "per": [
+   { "id": "carta", "requiere": "carta", "titulo": "PER Andalucía · Carta de navegación",
+     "descripcion": "Preguntas 42–45 (UT 11, carta) de los exámenes oficiales de PER de la Junta de Andalucía, 2020–2026, con la respuesta de la plantilla oficial. Se usa la carta L105 Enseñanza (Estrecho de Gibraltar).",
+     "tarjeta": "Las {n} preguntas de carta (42–45) de los exámenes del PER, resueltas paso a paso sobre la carta." },
+   { "id": "teoria", "sinRequiere": "carta", "titulo": "PER Andalucía · Teoría (preguntas 1–41)",
+     "descripcion": "Preguntas de teoría de los exámenes oficiales del PER de la Junta de Andalucía (2020–2026) con la respuesta de la plantilla oficial (leída de las hojas de respuestas de los modelos A y B, coincidentes en el 100 %)." }
+  ],
+  "py": [
+   { "id": "todas", "titulo": "PY Andalucía · Examen teórico completo (40 preguntas)",
+     "descripcion": "Preguntas de los exámenes oficiales de Patrón de Yate de la Junta de Andalucía (2020–2026): módulo genérico (Seguridad, Meteorología) y de navegación (Teoría de navegación, Carta: carta, mareas y loxodrómica), con la respuesta de la plantilla oficial." }
+  ]
+ },
+ "legado": {
+  "andalucia-per.json": { "tit": "per", "lista": "carta" },
+  "andalucia-per-teoria.json": { "tit": "per", "lista": "teoria" },
+  "andalucia-py-teoria.json": { "tit": "py", "lista": "todas" }
+ }
+}

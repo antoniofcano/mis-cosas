@@ -147,14 +147,6 @@
        "explicacion": "La crujía es longitudinal, de proa a popa, y separa babor de estribor. El través es perpendicular a ella."
       }
      ],
-     "practica": [
-      "and-2022-c1-t04",
-      "and-2021-c2-t01",
-      "and-2020-c1-t04",
-      "and-2021-c1-t04",
-      "and-2023-c1-t02",
-      "and-2024-c1-t02"
-     ],
      "chuleta": [
       "Casco = cuerpo estanco, sin palos, jarcia, superestructura ni motor.",
       "Crujía: de proa a popa por el centro; separa las bandas.",
@@ -297,17 +289,6 @@
        "correcta": "b",
        "explicacion": "Están a ras de cubierta, en la unión con el costado, para que el agua salga de la cubierta al mar. Lo que está bajo la flotación son los grifos de fondo."
       }
-     ],
-     "practica": [
-      "and-2020-c3-t01",
-      "and-2022-c3-t03",
-      "and-2023-c2-t03",
-      "and-2022-c1-t02",
-      "and-2023-c1-t04",
-      "and-2024-c2-t04",
-      "and-2026-c1-t01",
-      "and-2025-c2-t01",
-      "and-2022-c2-t03"
      ],
      "chuleta": [
       "Escotilla: abertura en cubierta para pasar.",
@@ -477,18 +458,6 @@
        "explicacion": "Son válvulas bajo la flotación que dan paso al agua de mar para los servicios de a bordo. La cubierta la desaguan los imbornales."
       }
      ],
-     "practica": [
-      "and-2020-c1-t01",
-      "and-2023-c3-t03",
-      "and-2024-c1-t03",
-      "and-2024-c2-t01",
-      "and-2024-c3-t01",
-      "and-2024-c3-t04",
-      "and-2021-c2-t03",
-      "and-2025-c2-t04",
-      "and-2020-c3-t04",
-      "and-2025-c1-t02"
-     ],
      "chuleta": [
       "Quilla: de proa a popa por abajo; roda la continúa a proa y codaste a popa.",
       "Cuadernas: costillas transversales. Baos: de banda a banda, sostienen la cubierta.",
@@ -614,15 +583,6 @@
        "correcta": "b",
        "explicacion": "La caña mueve la pala al lado contrario: caña a babor, pala a estribor, proa a estribor."
       }
-     ],
-     "practica": [
-      "and-2020-c3-t03",
-      "and-2022-c3-t02",
-      "and-2023-c1-t03",
-      "and-2023-c3-t04",
-      "and-2025-c1-t01",
-      "and-2026-c1-t03",
-      "and-2026-c2-t02"
      ],
      "chuleta": [
       "Pala (azafrán) + mecha (eje) + limera (orificio en el casco).",
@@ -772,22 +732,6 @@
        "correcta": "b",
        "explicacion": "Al interior es lo contrario que al exterior: estribor levógira y babor dextrógira."
       }
-     ],
-     "practica": [
-      "and-2021-c2-t04",
-      "and-2025-c1-t04",
-      "and-2026-c1-t04",
-      "and-2020-c1-t02",
-      "and-2021-c1-t03",
-      "and-2022-c2-t04",
-      "and-2023-c2-t01",
-      "and-2024-c2-t02",
-      "and-2025-c3-t04",
-      "and-2022-c1-t03",
-      "and-2022-c3-t04",
-      "and-2024-c3-t03",
-      "and-2025-c2-t03",
-      "and-2026-c1-t02"
      ],
      "chuleta": [
       "Partes: eje, bocina (por donde sale el eje), núcleo, palas y capacete (cierra el extremo del eje).",
@@ -957,22 +901,6 @@
        "correcta": "a",
        "explicacion": "El tramo de cadena debe medir como mínimo la eslora (9 m). Los 45 m son el mínimo de la línea completa: 5 veces la eslora."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t03",
-      "and-2026-c2-t03",
-      "and-2020-c3-t02",
-      "and-2024-c1-t01",
-      "and-2022-c1-t01",
-      "and-2023-c3-t02",
-      "and-2025-c1-t03",
-      "and-2022-c2-t01",
-      "and-2025-c2-t02",
-      "and-2022-c3-t01",
-      "and-2023-c1-t01",
-      "and-2023-c3-t01",
-      "and-2024-c2-t03",
-      "and-2025-c3-t02"
      ],
      "chuleta": [
       "Molinete: barbotén (muescas para la cadena), cabirón (cabos), embrague y freno.",
@@ -1162,20 +1090,6 @@
        "explicacion": "La a) es el calado y la c), el puntal."
       }
      ],
-     "practica": [
-      "and-2021-c1-t02",
-      "and-2021-c2-t02",
-      "and-2023-c2-t02",
-      "and-2024-c1-t04",
-      "and-2024-c3-t02",
-      "and-2026-c2-t01",
-      "and-2021-c1-t01",
-      "and-2025-c3-t03",
-      "and-2025-c3-t01",
-      "and-2026-c2-t04",
-      "and-2022-c2-t02",
-      "and-2023-c2-t04"
-     ],
      "chuleta": [
       "Obra viva (carena) = sumergida; obra muerta = emergida, la que empuja el viento.",
       "Calado: flotación → quilla. Francobordo: flotación → cubierta estanca. Puntal: quilla → cubierta.",
@@ -1356,15 +1270,6 @@
        "explicacion": "Chicote es el extremo libre. El seno es la curva del cabo y el firme, la parte principal que trabaja."
       }
      ],
-     "practica": [
-      "and-2020-c1-t05",
-      "and-2020-c3-t05",
-      "and-2022-c3-t05",
-      "and-2023-c3-t05",
-      "and-2024-c2-t05",
-      "and-2024-c3-t05",
-      "and-2025-c2-t05"
-     ],
      "chuleta": [
       "Muelle: noray (y bolardo, más grande). A bordo: bita y cornamusa. Todos sirven para hacer firme.",
       "Muerto: peso en el fondo; de él sube la cadena a la boya de amarre.",
@@ -1526,15 +1431,6 @@
        "explicacion": "Para una argolla y mucho tiempo, vuelta de rezón. El ballestrinque es rápido pero puede correrse con los tirones."
       }
      ],
-     "practica": [
-      "and-2021-c1-t05",
-      "and-2021-c2-t06",
-      "and-2022-c1-t06",
-      "and-2023-c1-t06",
-      "and-2023-c2-t05",
-      "and-2023-c3-t06",
-      "and-2026-c2-t06"
-     ],
      "chuleta": [
       "Llano (o de rizo): une dos cabos de igual mena y material.",
       "Vuelta de rezón: cabo a una argolla; defensas para mucho tiempo.",
@@ -1685,15 +1581,6 @@
        "correcta": "b",
        "explicacion": "En pendiente, el ancla resbala cuesta abajo cuando trabaja y pierde agarre. Por eso se buscan fondos llanos."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t06",
-      "and-2022-c2-t05",
-      "and-2022-c3-t06",
-      "and-2024-c2-t06",
-      "and-2025-c1-t05",
-      "and-2025-c3-t06",
-      "and-2026-c2-t05"
      ],
      "chuleta": [
       "Fondeadero = el lugar; tenedero = la calidad del fondo.",
@@ -1868,11 +1755,6 @@
        "explicacion": "Freno puesto y desembragado: al aflojar el freno, la cadena sale por su peso y tú controlas la velocidad. Embragado y con el freno suelto es la posición de levar."
       }
      ],
-     "practica": [
-      "and-2022-c1-t05",
-      "and-2025-c1-t06",
-      "and-2026-c1-t06"
-     ],
      "chuleta": [
       "A la gira: una sola ancla por la proa; el barco gira libre.",
       "Molinete: barbotén (donde encajan los eslabones), embrague y freno.",
@@ -2026,15 +1908,6 @@
        "explicacion": "Radio ≈ cadena filada + eslora = 20 + 10 = 30 m. Es una estimación por exceso que te deja margen."
       }
      ],
-     "practica": [
-      "and-2021-c1-t06",
-      "and-2022-c2-t06",
-      "and-2023-c2-t06",
-      "and-2024-c1-t05",
-      "and-2024-c3-t06",
-      "and-2025-c2-t06",
-      "and-2025-c3-t05"
-     ],
      "chuleta": [
       "Bornear: el barco gira alrededor del ancla. Garrear: el ancla se arrastra.",
       "Radio de borneo ≈ cadena filada + eslora. Se reduce con menos cadena o una segunda ancla.",
@@ -2180,13 +2053,6 @@
        "correcta": "a",
        "explicacion": "El orinque va a la cruz del ancla y lleva un boyarín en el otro extremo: así marca la posición y permite zarparla tirando por la cruz."
       }
-     ],
-     "practica": [
-      "and-2020-c3-t06",
-      "and-2021-c2-t05",
-      "and-2023-c1-t05",
-      "and-2024-c1-t06",
-      "and-2026-c1-t05"
      ],
      "chuleta": [
       "Orinque: cabo a la cruz del ancla con boyarín; señala el ancla y la desenroca.",
@@ -2362,18 +2228,6 @@
        "explicacion": "Balance = transversal, de banda a banda. La cabezada es proa-popa y la guiñada es la proa yéndose a un lado y a otro."
       }
      ],
-     "practica": [
-      "and-2020-c1-t10",
-      "and-2021-c1-t10",
-      "and-2021-c2-t10",
-      "and-2022-c1-t07",
-      "and-2022-c2-t07",
-      "and-2022-c3-t07",
-      "and-2023-c1-t07",
-      "and-2023-c3-t10",
-      "and-2024-c2-t07",
-      "and-2026-c2-t07"
-     ],
      "chuleta": [
       "Estabilidad: capacidad de volver a adrizarse. Tras una escora en aguas en reposo = estática transversal.",
       "G gravedad (peso, abajo) · C carena (empuje, arriba) · M metacentro · GZ brazo adrizante.",
@@ -2485,12 +2339,6 @@
        "correcta": "b",
        "explicacion": "Por persona se lleva un chaleco, no un aro. El decantador y la correa sí se revisan siempre antes de salir."
       }
-     ],
-     "practica": [
-      "and-2022-c1-t09",
-      "and-2023-c2-t07",
-      "and-2024-c3-t07",
-      "and-2025-c3-t07"
      ],
      "chuleta": [
       "Antes de salir: tiempo previsto, barco y personas.",
@@ -2628,24 +2476,6 @@
        "correcta": "c",
        "explicacion": "Se cierran los que no sean necesarios, pero el motor necesita su toma de agua de refrigeración."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t07",
-      "and-2020-c3-t08",
-      "and-2020-c3-t09",
-      "and-2022-c2-t08",
-      "and-2022-c3-t09",
-      "and-2023-c1-t09",
-      "and-2023-c2-t09",
-      "and-2023-c3-t07",
-      "and-2024-c2-t10",
-      "and-2024-c3-t10",
-      "and-2025-c1-t07",
-      "and-2025-c1-t08",
-      "and-2025-c1-t10",
-      "and-2025-c3-t09",
-      "and-2026-c1-t07",
-      "and-2026-c1-t09"
      ],
      "chuleta": [
       "A son de mar = todo estibado y trincado.",
@@ -2803,26 +2633,6 @@
        "correcta": "b",
        "explicacion": "El rayo puede alterar el magnetismo de la aguja y producir desvíos anómalos. La declinación no depende del barco."
       }
-     ],
-     "practica": [
-      "and-2024-c1-t09",
-      "and-2025-c2-t07",
-      "and-2025-c3-t08",
-      "and-2026-c2-t09",
-      "and-2022-c2-t10",
-      "and-2024-c1-t07",
-      "and-2024-c3-t09",
-      "and-2025-c1-t09",
-      "and-2025-c2-t09",
-      "and-2026-c1-t08",
-      "and-2023-c1-t08",
-      "and-2024-c2-t08",
-      "and-2026-c2-t08",
-      "and-2020-c3-t07",
-      "and-2021-c2-t07",
-      "and-2022-c3-t08",
-      "and-2024-c1-t10",
-      "and-2025-c2-t10"
      ],
      "chuleta": [
       "Tormenta: lejos de metales, electrónica desconectada; después, comprobar la aguja (desvío anómalo; la declinación no cambia).",
@@ -2994,11 +2804,6 @@
        "correcta": "b",
        "explicacion": "El RD 339/2021 la exige en zonas 1, 2 y 3, con capacidad para todas las personas a bordo."
       }
-     ],
-     "practica": [
-      "and-2020-c3-t10",
-      "and-2021-c1-t09",
-      "and-2024-c2-t09"
      ],
      "chuleta": [
       "RD 339/2021: recreo de 2,5 a 24 m y hasta 12 pasajeros (no motos náuticas, kayaks ni tablas).",
@@ -3172,13 +2977,6 @@
        "correcta": "b",
        "explicacion": "Bengala: al menos 1 minuto. Los 40 s son del cohete y los 3 min de la fumígena."
       }
-     ],
-     "practica": [
-      "and-2021-c1-t07",
-      "and-2021-c2-t09",
-      "and-2022-c3-t10",
-      "and-2023-c3-t08",
-      "and-2024-c1-t08"
      ],
      "chuleta": [
       "Bengala: luz roja ≥ 1 min, brazo extendido a sotavento.",
@@ -3366,20 +3164,6 @@
        "correcta": "b",
        "explicacion": "Sin saber dónde está, no puedes aproximarte: hay que buscar sistemáticamente desde el datum."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t08",
-      "and-2020-c1-t09",
-      "and-2021-c1-t08",
-      "and-2021-c2-t08",
-      "and-2022-c1-t08",
-      "and-2022-c2-t09",
-      "and-2023-c1-t10",
-      "and-2023-c2-t08",
-      "and-2024-c3-t08",
-      "and-2025-c2-t08",
-      "and-2026-c1-t10",
-      "and-2026-c2-t10"
      ],
      "chuleta": [
       "Prevención: agarrado, chaleco y arnés; los candeleros no son fiables.",
@@ -3578,12 +3362,6 @@
        "explicacion": "Las guías actuales piden 30 compresiones por cada 2 insuflaciones; en un ahogado se empieza además con 5 insuflaciones."
       }
      ],
-     "practica": [
-      "and-2023-c3-t09",
-      "and-2025-c3-t10",
-      "and-2022-c1-t10",
-      "and-2023-c2-t10"
-     ],
      "chuleta": [
       "Recogida: despacio, hélice en punto muerto, aro con rabiza, escala; en horizontal si estuvo mucho en agua fría.",
       "Hipotermia (< 35 °C): temblores, torpeza, confusión. Abrigar, ropa seca, bebida caliente si está consciente. Nunca frotar ni alcohol.",
@@ -3729,11 +3507,6 @@
        "correcta": "b",
        "explicacion": "En las aguas de servicio de los puertos comerciales, las embarcaciones de recreo de menos de 20 m no estorban el tránsito de los demás buques. La preferencia de la vela del RIPA no te sirve aquí para obligar a un buque comercial a maniobrar por ti."
       }
-     ],
-     "practica": [
-      "and-2024-c1-t12",
-      "and-2025-c3-t12",
-      "and-2026-c2-t11"
      ],
      "chuleta": [
       "En regla: registro y certificado en vigor, seguro, equipo de seguridad, zona y personas autorizadas y titulación adecuada.",
@@ -3895,14 +3668,6 @@
        "explicacion": "La reserva integral es la parte más protegida de la reserva marina: allí no se pesca, no se bucea y no se fondea. Fuera de ella, la pesca recreativa y el buceo necesitan autorización y se fondea solo donde está permitido."
       }
      ],
-     "practica": [
-      "and-2020-c3-t11",
-      "and-2021-c2-t12",
-      "and-2022-c3-t11",
-      "and-2023-c2-t12",
-      "and-2023-c3-t12",
-      "and-2025-c1-t11"
-     ],
      "chuleta": [
       "Zona de baño balizada: prohibida la navegación de recreo, motos incluidas. Se entra y sale por los canales.",
       "Costa no balizada: zona de baño de 200 m en playas y 50 m en el resto de la costa.",
@@ -4029,11 +3794,6 @@
        "correcta": "b",
        "explicacion": "Es la bandera «A»: hay buzos en el agua. Debes dejar como mínimo 50 m a la zona de buceo y navegar despacio; ir despacio sin apartarte no es suficiente."
       }
-     ],
-     "practica": [
-      "and-2023-c1-t12",
-      "and-2023-c3-t11",
-      "and-2025-c3-t11"
      ],
      "chuleta": [
       "Bandera «A» (Alfa, blanca y azul): buzo sumergido.",
@@ -4181,14 +3941,6 @@
        "explicacion": "Las aguas sin desmenuzar ni desinfectar solo se descargan a más de 12 millas de la línea de base, a régimen moderado y en ruta a no menos de 4 nudos. A 8 millas todavía no puedes."
       }
      ],
-     "practica": [
-      "and-2020-c1-t11",
-      "and-2022-c1-t12",
-      "and-2023-c2-t11",
-      "and-2024-c2-t12",
-      "and-2025-c1-t12",
-      "and-2026-c2-t12"
-     ],
      "chuleta": [
       "Con inodoro: tanque de retención, instalación de tratamiento o sistema de desmenuzar y desinfectar con almacenamiento.",
       "Tanque fijo: conexión universal a tierra; pasacascos con válvulas precintables.",
@@ -4327,14 +4079,6 @@
        "explicacion": "El Mediterráneo es zona especial: los restos de comida solo se echan triturados (criba de 25 mm), a más de 12 millas y en ruta. Sin triturar, a guardar y al puerto."
       }
      ],
-     "practica": [
-      "and-2020-c1-t12",
-      "and-2020-c3-t12",
-      "and-2022-c1-t11",
-      "and-2022-c3-t12",
-      "and-2024-c1-t11",
-      "and-2026-c1-t12"
-     ],
      "chuleta": [
       "MARPOL V: prohibición general de echar basuras al mar; se aplica también al recreo.",
       "Nunca: plásticos (bolsas, cabos, redes…) y aceite de cocina. Mezclas: la norma más rigurosa.",
@@ -4465,12 +4209,6 @@
        "explicacion": "La obligación nace en cuanto sabes que hay personas en peligro, sean de la nacionalidad que sean y aunque nadie te lo pida. Si de verdad no pudieras ir, tendrías que anotar el motivo en el diario e informar a salvamento."
       }
      ],
-     "practica": [
-      "and-2022-c2-t12",
-      "and-2024-c3-t12",
-      "and-2025-c2-t12",
-      "and-2026-c1-t11"
-     ],
      "chuleta": [
       "Contaminación: responsables solidarios naviero, propietario, asegurador de RC y patrón.",
       "Si ves contaminación: aviso inmediato a la autoridad marítima o Salvamento (VHF 16, 900 202 202, 112) con posición, aspecto y buque.",
@@ -4580,11 +4318,6 @@
        "correcta": "b",
        "explicacion": "El asta de popa y el pico del palo mayor están reservados a la bandera de España. La autonómica puede ir en otro lugar, siempre con la nacional izada y con un tamaño de un tercio de su área como máximo."
       }
-     ],
-     "practica": [
-      "and-2021-c1-t11",
-      "and-2024-c2-t11",
-      "and-2025-c2-t11"
      ],
      "chuleta": [
       "Único pabellón: la bandera de España.",
@@ -4716,13 +4449,6 @@
        "correcta": "b",
        "explicacion": "Alborán es una de las cuatro ZEPIM andaluzas (con Cabo de Gata-Níjar, Fondos marinos del Levante almeriense y Maro-Cerro Gordo). Tabarca es reserva marina, pero no ZEPIM, y la bahía de Cádiz está en el Atlántico, fuera del Mediterráneo."
       }
-     ],
-     "practica": [
-      "and-2021-c1-t12",
-      "and-2021-c2-t11",
-      "and-2022-c2-t11",
-      "and-2023-c1-t11",
-      "and-2024-c3-t11"
      ],
      "chuleta": [
       "ZEPIM = Zona Especialmente Protegida de Importancia para el Mediterráneo (Convenio de Barcelona).",
@@ -4899,12 +4625,6 @@
        "explicacion": "Solo las laterales cambian de color entre regiones (en la B el rojo va a estribor entrando). Cardinales, peligro aislado, aguas navegables y especiales son iguales en todo el mundo."
       }
      ],
-     "practica": [
-      "and-2021-c2-t13",
-      "and-2024-c2-t16",
-      "and-2025-c2-t13",
-      "and-2025-c3-t13"
-     ],
      "chuleta": [
       "Sistema IALA: laterales, cardinales, peligro aislado, aguas navegables, especiales y nuevo peligro.",
       "España = región A: entrando, rojo a babor y verde a estribor. Región B (América, Japón, Corea, Filipinas): al revés.",
@@ -5068,36 +4788,6 @@
        "correcta": "b",
        "explicacion": "Luz roja 2+1 = babor modificada (canal principal a estribor). Lleva el tope de su color de fondo, el de babor: un cilindro rojo."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t15",
-      "and-2020-c1-t16",
-      "and-2020-c3-t15",
-      "and-2020-c3-t16",
-      "and-2021-c1-t13",
-      "and-2021-c2-t14",
-      "and-2021-c2-t15",
-      "and-2022-c1-t15",
-      "and-2022-c1-t17",
-      "and-2022-c2-t14",
-      "and-2022-c2-t17",
-      "and-2022-c3-t14",
-      "and-2023-c1-t13",
-      "and-2023-c2-t13",
-      "and-2023-c2-t15",
-      "and-2023-c3-t15",
-      "and-2024-c1-t13",
-      "and-2024-c2-t15",
-      "and-2024-c3-t13",
-      "and-2024-c3-t14",
-      "and-2025-c1-t13",
-      "and-2025-c1-t17",
-      "and-2025-c2-t16",
-      "and-2025-c3-t15",
-      "and-2025-c3-t17",
-      "and-2026-c1-t16",
-      "and-2026-c2-t13",
-      "and-2026-c2-t14"
      ],
      "chuleta": [
       "Babor: roja, cilindro rojo, luz roja (cualquier ritmo menos 2+1).",
@@ -5288,27 +4978,6 @@
        "explicacion": "Negro abajo: los conos apuntan al negro, hacia abajo. Es la cardinal Sur."
       }
      ],
-     "practica": [
-      "and-2020-c3-t17",
-      "and-2021-c1-t16",
-      "and-2022-c3-t13",
-      "and-2022-c3-t17",
-      "and-2023-c1-t17",
-      "and-2023-c2-t16",
-      "and-2023-c2-t17",
-      "and-2023-c3-t16",
-      "and-2023-c3-t17",
-      "and-2024-c1-t16",
-      "and-2024-c2-t17",
-      "and-2024-c3-t15",
-      "and-2025-c1-t15",
-      "and-2025-c2-t14",
-      "and-2025-c3-t14",
-      "and-2026-c1-t14",
-      "and-2026-c1-t15",
-      "and-2026-c1-t17",
-      "and-2026-c2-t15"
-     ],
      "chuleta": [
       "La cardinal se pasa por el lado de su nombre (allí está el agua segura).",
       "Topes: N ▲▲, S ▼▼, E bases unidas (rombo), W vértices unidos (reloj de arena).",
@@ -5476,34 +5145,6 @@
        "explicacion": "Las franjas verticales azules y amarillas son de la boya de balizamiento de emergencia de pecios. Las zonas de baño las señalan las especiales (amarillas) y el centro del canal la de aguas navegables (rojas y blancas)."
       }
      ],
-     "practica": [
-      "and-2020-c1-t14",
-      "and-2020-c3-t13",
-      "and-2020-c3-t14",
-      "and-2021-c1-t14",
-      "and-2021-c1-t15",
-      "and-2021-c1-t17",
-      "and-2021-c2-t16",
-      "and-2022-c1-t13",
-      "and-2022-c1-t14",
-      "and-2022-c2-t13",
-      "and-2022-c3-t15",
-      "and-2023-c1-t14",
-      "and-2023-c1-t15",
-      "and-2023-c2-t14",
-      "and-2023-c3-t14",
-      "and-2024-c1-t14",
-      "and-2024-c1-t15",
-      "and-2024-c2-t13",
-      "and-2024-c2-t14",
-      "and-2024-c3-t17",
-      "and-2025-c1-t16",
-      "and-2025-c2-t15",
-      "and-2025-c2-t17",
-      "and-2025-c3-t16",
-      "and-2026-c1-t13",
-      "and-2026-c2-t17"
-     ],
      "chuleta": [
       "Peligro aislado: negra con bandas rojas horizontales, dos esferas negras, luz blanca Fl(2).",
       "Aguas navegables: franjas verticales rojas y blancas, una esfera roja, luz blanca Iso, Oc, LFl 10 s o Mo(A).",
@@ -5660,21 +5301,6 @@
        "correcta": "a",
        "explicacion": "Nueve centelleos = las 9 del reloj = Oeste, y la cardinal se pasa por el lado de su nombre."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t13",
-      "and-2020-c1-t17",
-      "and-2021-c2-t17",
-      "and-2022-c1-t16",
-      "and-2022-c2-t15",
-      "and-2022-c2-t16",
-      "and-2022-c3-t16",
-      "and-2023-c1-t16",
-      "and-2023-c3-t13",
-      "and-2024-c1-t17",
-      "and-2024-c3-t16",
-      "and-2025-c1-t14",
-      "and-2026-c2-t16"
      ],
      "chuleta": [
       "Característica = ritmo + color + periodo; sin color indicado, es blanca.",
@@ -5848,24 +5474,6 @@
        "explicacion": "Los trabajos hidrográficos limitan la maniobra por la naturaleza del trabajo. El arrastrero es «dedicado a la pesca» y el del timón averiado, «sin gobierno»."
       }
      ],
-     "practica": [
-      "and-2020-c1-t22",
-      "and-2021-c2-t18",
-      "and-2022-c1-t21",
-      "and-2022-c2-t25",
-      "and-2022-c3-t21",
-      "and-2023-c3-t20",
-      "and-2024-c2-t21",
-      "and-2024-c3-t21",
-      "and-2025-c1-t22",
-      "and-2025-c2-t18",
-      "and-2025-c2-t24",
-      "and-2025-c3-t20",
-      "and-2025-c3-t25",
-      "and-2025-c3-t26",
-      "and-2026-c1-t23",
-      "and-2026-c2-t24"
-     ],
      "chuleta": [
       "RIPA: alta mar y aguas comunicadas con ella. Partes A (1–3), B (4–19), C (20–31), D (32–37), E (38), F (39–41); anexo IV, señales de peligro.",
       "Regla 2: hay que apartarse del reglamento si hace falta para evitar un peligro inmediato.",
@@ -6014,19 +5622,6 @@
        "correcta": "b",
        "explicacion": "Regla 7: el riesgo puede existir aunque la demora varíe cuando te acercas a un buque grande, a un remolque o a muy corta distancia."
       }
-     ],
-     "practica": [
-      "and-2021-c1-t18",
-      "and-2022-c1-t20",
-      "and-2022-c2-t18",
-      "and-2022-c3-t20",
-      "and-2023-c1-t21",
-      "and-2023-c3-t19",
-      "and-2024-c1-t27",
-      "and-2025-c2-t23",
-      "and-2025-c3-t24",
-      "and-2026-c1-t26",
-      "and-2026-c2-t19"
      ],
      "chuleta": [
       "Vigilancia: visual, auditiva y con todos los medios, siempre.",
@@ -6206,32 +5801,6 @@
        "explicacion": "Cruzar en perpendicular reduce el tiempo dentro de la vía y deja clara tu intención. El menor ángulo es para incorporarse por un lateral."
       }
      ],
-     "practica": [
-      "and-2020-c3-t23",
-      "and-2023-c1-t20",
-      "and-2023-c2-t19",
-      "and-2023-c3-t25",
-      "and-2024-c1-t26",
-      "and-2024-c2-t23",
-      "and-2024-c3-t23",
-      "and-2022-c1-t23",
-      "and-2024-c2-t20",
-      "and-2025-c1-t21",
-      "and-2020-c1-t21",
-      "and-2020-c3-t27",
-      "and-2021-c1-t19",
-      "and-2021-c2-t22",
-      "and-2022-c1-t19",
-      "and-2022-c2-t27",
-      "and-2023-c1-t18",
-      "and-2023-c3-t27",
-      "and-2024-c2-t18",
-      "and-2024-c3-t19",
-      "and-2025-c1-t20",
-      "and-2025-c2-t22",
-      "and-2026-c1-t27",
-      "and-2026-c2-t26"
-     ],
      "chuleta": [
       "Canal angosto: pegado a tu estribor; < 20 m y vela no estorban al que solo cabe en el canal; el pesquero no estorba a nadie.",
       "Cruzar el canal: sí, si no estorbas. Fondear: evítalo. Recodo: 1 larga (y se contesta con 1 larga).",
@@ -6403,34 +5972,6 @@
        "correcta": "b",
        "explicacion": "El alcance empieza a más de 112,5°. A 110° todavía es cruce, y si los dos vais a motor, como lo tienes por babor, en principio sigues a rumbo."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t18",
-      "and-2020-c3-t22",
-      "and-2020-c3-t24",
-      "and-2021-c1-t21",
-      "and-2021-c2-t19",
-      "and-2022-c1-t25",
-      "and-2022-c1-t26",
-      "and-2022-c3-t23",
-      "and-2022-c3-t24",
-      "and-2023-c1-t24",
-      "and-2023-c1-t27",
-      "and-2023-c2-t21",
-      "and-2023-c2-t24",
-      "and-2023-c3-t24",
-      "and-2024-c1-t18",
-      "and-2024-c1-t23",
-      "and-2024-c2-t24",
-      "and-2024-c3-t18",
-      "and-2025-c1-t18",
-      "and-2025-c1-t24",
-      "and-2025-c2-t21",
-      "and-2025-c3-t22",
-      "and-2026-c1-t18",
-      "and-2026-c1-t22",
-      "and-2026-c1-t24",
-      "and-2026-c2-t20"
      ],
      "chuleta": [
       "Alcance: llegas desde más de 22,5° a popa del través (> 112,5°); de noche solo ves la luz de alcance. El que alcanza se aparta siempre. En caso de duda, alcanzas.",
@@ -6604,41 +6145,6 @@
        "explicacion": "Una luz de costado sin luz de tope es un velero (o un buque remolcado). Frente a un velero, el buque de motor se aparta, lo vea por la banda que lo vea."
       }
      ],
-     "practica": [
-      "and-2020-c1-t19",
-      "and-2020-c1-t26",
-      "and-2020-c3-t19",
-      "and-2020-c3-t21",
-      "and-2020-c3-t25",
-      "and-2021-c1-t20",
-      "and-2021-c1-t25",
-      "and-2021-c2-t20",
-      "and-2021-c2-t21",
-      "and-2022-c1-t18",
-      "and-2022-c2-t20",
-      "and-2022-c2-t22",
-      "and-2022-c2-t26",
-      "and-2022-c3-t18",
-      "and-2022-c3-t27",
-      "and-2023-c1-t23",
-      "and-2023-c1-t25",
-      "and-2023-c2-t26",
-      "and-2023-c3-t23",
-      "and-2024-c1-t21",
-      "and-2024-c1-t24",
-      "and-2024-c2-t22",
-      "and-2024-c3-t25",
-      "and-2024-c3-t26",
-      "and-2025-c1-t23",
-      "and-2025-c2-t26",
-      "and-2025-c3-t18",
-      "and-2025-c3-t21",
-      "and-2026-c1-t19",
-      "and-2026-c2-t21",
-      "and-2026-c2-t22",
-      "and-2026-c2-t23",
-      "and-2026-c2-t25"
-     ],
      "chuleta": [
       "Dos veleros: viento por bandas contrarias, cede el amurado a babor; misma banda, cede el de barlovento.",
       "Motor < vela < pesca < maniobra restringida / sin gobierno; al restringido por su calado no se le estorba.",
@@ -6774,23 +6280,6 @@
        "correcta": "b",
        "explicacion": "Es la Regla 19 e). Las cinco cortas son de duda entre buques que se ven."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t27",
-      "and-2020-c3-t18",
-      "and-2022-c1-t24",
-      "and-2022-c2-t24",
-      "and-2022-c3-t25",
-      "and-2023-c1-t22",
-      "and-2023-c2-t23",
-      "and-2023-c2-t25",
-      "and-2023-c3-t26",
-      "and-2024-c2-t27",
-      "and-2024-c3-t20",
-      "and-2024-c3-t24",
-      "and-2025-c1-t25",
-      "and-2025-c2-t27",
-      "and-2026-c1-t20"
      ],
      "chuleta": [
       "Sin verse: rigen las Reglas 4–10 y 19; no hay cruce, alcance, vuelta encontrada ni «sigue a rumbo».",
@@ -6968,28 +6457,6 @@
        "correcta": "b",
        "explicacion": "La de alcance es blanca y se ve en 135° hacia popa. La de remolque tiene el mismo sector, pero es amarilla."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t24",
-      "and-2020-c3-t20",
-      "and-2021-c1-t22",
-      "and-2021-c1-t23",
-      "and-2021-c2-t24",
-      "and-2022-c1-t27",
-      "and-2022-c2-t19",
-      "and-2022-c2-t23",
-      "and-2022-c3-t19",
-      "and-2023-c2-t20",
-      "and-2023-c2-t27",
-      "and-2023-c3-t21",
-      "and-2023-c3-t22",
-      "and-2024-c1-t19",
-      "and-2024-c1-t25",
-      "and-2024-c2-t19",
-      "and-2024-c2-t25",
-      "and-2025-c1-t19",
-      "and-2025-c2-t20",
-      "and-2025-c2-t25"
      ],
      "chuleta": [
       "Luces: de la puesta a la salida del sol y siempre con visibilidad reducida. Marcas: de día.",
@@ -7176,26 +6643,6 @@
        "explicacion": "Blanco sobre rojo, práctico. Si fuera rojo sobre blanco sería un pesquero que no es de arrastre."
       }
      ],
-     "practica": [
-      "and-2020-c1-t23",
-      "and-2021-c1-t24",
-      "and-2021-c2-t23",
-      "and-2021-c2-t25",
-      "and-2022-c1-t22",
-      "and-2022-c2-t21",
-      "and-2022-c3-t26",
-      "and-2023-c1-t19",
-      "and-2023-c2-t22",
-      "and-2024-c2-t26",
-      "and-2024-c3-t22",
-      "and-2025-c1-t26",
-      "and-2025-c3-t19",
-      "and-2025-c3-t27",
-      "and-2026-c1-t21",
-      "and-2026-c1-t25",
-      "and-2026-c2-t18",
-      "and-2026-c2-t27"
-     ],
      "chuleta": [
       "Pesca de día: dos conos unidos por los vértices. Arrastre: verde sobre blanca. Otra pesca: roja sobre blanca (> 150 m de aparejo: blanca o cono con el vértice arriba hacia el aparejo).",
       "Sin gobierno: 2 rojas / 2 bolas. Maniobra restringida: roja-blanca-roja / bola-bicónica-bola. Buceo: R-B-R y bandera «A» rígida (aunque mida menos de 12 m).",
@@ -7368,23 +6815,6 @@
        "explicacion": "1 corta, estribor; 2 cortas, babor; 3 cortas, atrás; 5 o más, duda."
       }
      ],
-     "practica": [
-      "and-2020-c1-t20",
-      "and-2020-c1-t25",
-      "and-2020-c3-t26",
-      "and-2021-c1-t26",
-      "and-2021-c1-t27",
-      "and-2021-c2-t26",
-      "and-2021-c2-t27",
-      "and-2022-c3-t22",
-      "and-2023-c1-t26",
-      "and-2023-c2-t18",
-      "and-2023-c3-t18",
-      "and-2024-c1-t22",
-      "and-2024-c3-t27",
-      "and-2025-c2-t19",
-      "and-2025-c3-t23"
-     ],
      "chuleta": [
       "Corta ≈ 1 s; larga 4–6 s.",
       "Equipo: ≥ 12 m pito; ≥ 20 m + campana; ≥ 100 m + gong; < 12 m, otro medio acústico eficaz.",
@@ -7509,12 +6939,6 @@
        "correcta": "b",
        "explicacion": "Cinco cortas es la señal de duda de la Regla 34 d). Las otras dos están en el anexo IV."
       }
-     ],
-     "practica": [
-      "and-2024-c1-t20",
-      "and-2025-c1-t27",
-      "and-2024-c1-t22",
-      "and-2023-c3-t18"
      ],
      "chuleta": [
       "Llamar la atención: luces o sonidos que no se confundan; proyector hacia el peligro; nada de estroboscópicas.",
@@ -7681,17 +7105,6 @@
        "explicacion": "Amarrada por seno, sueltas un extremo desde a bordo y cobras del otro: no necesitas a nadie en el muelle."
       }
      ],
-     "practica": [
-      "and-2020-c1-t28",
-      "and-2020-c3-t29",
-      "and-2022-c1-t29",
-      "and-2023-c1-t29",
-      "and-2023-c2-t28",
-      "and-2024-c1-t29",
-      "and-2024-c2-t29",
-      "and-2024-c3-t29",
-      "and-2025-c2-t28"
-     ],
      "chuleta": [
       "Chicote: cada extremo. Firme: la parte que trabaja. Seno: la parte intermedia, en curva.",
       "Encapillar: meter la gaza en el noray; si ya hay otra, la tuya por dentro y de abajo arriba.",
@@ -7846,12 +7259,6 @@
        "correcta": "a",
        "explicacion": "El esprín de popa sale de la popa y llama hacia proa: acerca la popa y lleva el barco hacia el noray, que está más a proa."
       }
-     ],
-     "practica": [
-      "and-2021-c1-t28",
-      "and-2021-c2-t28",
-      "and-2023-c3-t28",
-      "and-2025-c3-t28"
      ],
      "chuleta": [
       "Largos: hacia su mismo extremo. Esprines: cruzados, en diagonal hacia el extremo contrario. Traveses: perpendiculares.",
@@ -8008,12 +7415,6 @@
        "correcta": "b",
        "explicacion": "Al caer a estribor, la popa barre hacia babor, justo donde está el pantalán. Hay que separarse con poco timón o dejar más resguardo."
       }
-     ],
-     "practica": [
-      "and-2022-c2-t28",
-      "and-2023-c3-t29",
-      "and-2025-c1-t29",
-      "and-2025-c2-t29"
      ],
      "chuleta": [
       "Rueda: la proa cae al lado del giro. Caña: al lado contrario de la caña.",
@@ -8183,16 +7584,6 @@
        "explicacion": "Con arrancada atrás, la popa va hacia el lado al que metes el timón. Lo que no funciona es el timón sin arrancada."
       }
      ],
-     "practica": [
-      "and-2020-c3-t28",
-      "and-2021-c1-t29",
-      "and-2021-c2-t29",
-      "and-2022-c1-t28",
-      "and-2022-c2-t29",
-      "and-2023-c1-t28",
-      "and-2023-c2-t29",
-      "and-2026-c1-t28"
-     ],
      "chuleta": [
       "Sentido de giro: mirando de popa a proa, avante. Dextrógira = horario; levógira = antihorario.",
       "Avante el efecto es pequeño: dextrógira, popa a estribor.",
@@ -8336,11 +7727,6 @@
        "explicacion": "Atrás, la popa va hacia el lado del timón: con el timón a babor la llevas a babor, igual que la hélice, y la proa sigue cayendo a estribor."
       }
      ],
-     "practica": [
-      "and-2022-c3-t29",
-      "and-2025-c1-t28",
-      "and-2026-c2-t29"
-     ],
      "chuleta": [
       "Ciaboga: girar en poco espacio alternando avante y atrás, con el timón cambiado de banda.",
       "Dextrógira: avante con timón a estribor, atrás con timón a babor; la proa cae a estribor.",
@@ -8483,14 +7869,6 @@
        "correcta": "a",
        "explicacion": "Orzar es llevar la proa hacia barlovento; arribar, hacia sotavento. Abatir es desplazarse a sotavento por el viento."
       }
-     ],
-     "practica": [
-      "and-2022-c3-t28",
-      "and-2024-c2-t28",
-      "and-2024-c3-t28",
-      "and-2021-c2-t40",
-      "and-2025-c1-t37",
-      "and-2024-c3-t39"
      ],
      "chuleta": [
       "Viento: obra muerta. Corriente: obra viva. Olas: balances y cambios de rumbo y velocidad.",
@@ -8690,11 +8068,6 @@
        "explicacion": "La corriente te empuja hacia atrás; el cabo que lo impide es el largo de proa, que llama hacia proa."
       }
      ],
-     "practica": [
-      "and-2020-c1-t29",
-      "and-2024-c1-t28",
-      "and-2026-c2-t28"
-     ],
      "chuleta": [
       "Defensas y cabos listos antes de entrar; despacio, a la velocidad de gobierno.",
       "De costado, con 20–30° y atrás para parar: dextrógira por babor, levógira por estribor.",
@@ -8843,10 +8216,6 @@
        "correcta": "a",
        "explicacion": "El esprín de popa impide que el barco retroceda y hace de pivote en la aleta: al dar atrás, la proa se separa. Con el esprín de proa y avante se abre la popa."
       }
-     ],
-     "practica": [
-      "and-2025-c3-t29",
-      "and-2026-c1-t29"
      ],
      "chuleta": [
       "Primero se largan los cabos que no trabajan; los que trabajan, al final y pasados por seno.",
@@ -9033,15 +8402,6 @@
        "explicacion": "El hematoma no se pincha: riesgo de infección sin ningún beneficio. Frío, reposo, elevación y, si acaso, pomada de heparina."
       }
      ],
-     "practica": [
-      "and-2020-c1-t32",
-      "and-2021-c1-t30",
-      "and-2022-c1-t30",
-      "and-2022-c2-t30",
-      "and-2023-c1-t30",
-      "and-2024-c2-t30",
-      "and-2026-c2-t30"
-     ],
      "chuleta": [
       "Contusión: inmovilizar, elevar, frío (nunca directo), pomada de heparina. NO pinchar el hematoma ni dar calor.",
       "Arterial: rojo vivo, a borbotones. Venosa: rojo oscuro, continua y con poca presión.",
@@ -9207,13 +8567,6 @@
        "explicacion": "Es de 2.º grado (ampollas). Se enfría con agua fresca, nunca hielo, no se revientan las ampollas y se cubre con apósito estéril."
       }
      ],
-     "practica": [
-      "and-2023-c2-t32",
-      "and-2023-c3-t30",
-      "and-2024-c1-t30",
-      "and-2024-c3-t30",
-      "and-2025-c3-t31"
-     ],
      "chuleta": [
       "1.er grado: rojo sin ampollas; 2.º: ampollas (riesgo de infección); 3.º: blanco/negro, puede no doler.",
       "Térmica: agua fresca (no hielo) 10–20 min; no reventar ampollas; si es extensa, no enfriar a todo el cuerpo.",
@@ -9349,10 +8702,6 @@
        "correcta": "a",
        "explicacion": "La publica el ISM y se descarga gratuitamente de su web (Seguridad Social)."
       }
-     ],
-     "practica": [
-      "and-2020-c3-t31",
-      "and-2022-c3-t30"
      ],
      "chuleta": [
       "CRME (ISM, Madrid): 24 h, 365 días, gratis. Por radio vía costera («consulta médica») o tel. 91 310 34 75.",
@@ -9515,15 +8864,6 @@
        "explicacion": "Tu proa puede estar taponando su brecha. Primero se evalúan daños, se preparan estanqueidad, puntales y achique, y se acuerda la separación con el otro patrón."
       }
      ],
-     "practica": [
-      "and-2020-c3-t30",
-      "and-2022-c1-t31",
-      "and-2023-c1-t31",
-      "and-2023-c3-t32",
-      "and-2020-c1-t31",
-      "and-2023-c2-t30",
-      "and-2025-c2-t31"
-     ],
      "chuleta": [
       "Embarrancada: heridos → evaluar daños y vías de agua → sondar alrededor → mirar la marea.",
       "Reflotar: pleamar, trasladar pesos y trasvasar líquidos (rompe la ventosa en fondo blando), ancla hacia aguas profundas, escorar si es velero, motor con suavidad, remolque.",
@@ -9678,15 +9018,6 @@
        "explicacion": "Bocina, limera y grifos de fondo atraviesan el casco. La hélice está fuera: el punto débil es la bocina de su eje."
       }
      ],
-     "practica": [
-      "and-2020-c3-t32",
-      "and-2021-c2-t30",
-      "and-2023-c1-t32",
-      "and-2024-c2-t32",
-      "and-2025-c1-t32",
-      "and-2026-c1-t32",
-      "and-2026-c2-t31"
-     ],
      "chuleta": [
       "Puntos críticos: bocina (eje), limera (timón), grifos de fondo y pasacascos, escape.",
       "Grifos de fondo que no uses: cerrados.",
@@ -9827,20 +9158,6 @@
        "correcta": "b",
        "explicacion": "Los aceites y grasas de cocina tienen su propia clase, la F."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t30",
-      "and-2021-c1-t31",
-      "and-2021-c1-t32",
-      "and-2021-c2-t31",
-      "and-2022-c1-t32",
-      "and-2022-c2-t32",
-      "and-2024-c2-t31",
-      "and-2025-c1-t30",
-      "and-2025-c2-t30",
-      "and-2025-c3-t30",
-      "and-2026-c1-t30",
-      "and-2026-c2-t32"
      ],
      "chuleta": [
       "Tetraedro: combustible + comburente (oxígeno) + calor + reacción en cadena.",
@@ -10019,13 +9336,6 @@
        "explicacion": "Con el viento por popa, el fuego de proa queda a sotavento del barco, y ajustando la velocidad se reduce el viento aparente que lo aviva: es socairear el fuego."
       }
      ],
-     "practica": [
-      "and-2022-c3-t31",
-      "and-2023-c3-t31",
-      "and-2024-c1-t31",
-      "and-2024-c3-t32",
-      "and-2025-c1-t31"
-     ],
      "chuleta": [
       "Enfriamiento (calor), sofocación (oxígeno), desalimentación (combustible), inhibición (reacción en cadena).",
       "Agua en niebla: lo mejor para enfriar. Espuma: A y B. CO₂: B y eléctrico. Polvo ABC: el de a bordo. Halón: prohibido.",
@@ -10170,14 +9480,6 @@
        "explicacion": "Se reserva para cuando alguien pueda verla, se usa por sotavento y solo en emergencia real. Probarla en un ejercicio la gasta y puede provocar una falsa alarma."
       }
      ],
-     "practica": [
-      "and-2023-c2-t31",
-      "and-2024-c1-t32",
-      "and-2025-c2-t32",
-      "and-2026-c1-t31",
-      "and-2021-c2-t32",
-      "and-2025-c3-t32"
-     ],
      "chuleta": [
       "Abandonar solo cuando el barco protege menos que la balsa; la orden la da el patrón.",
       "Antes: parar, MAYDAY + radiobaliza (contigo), chaleco con abrigo debajo, balsa y material, lanzar al agua lo que flote.",
@@ -10308,13 +9610,6 @@
        "correcta": "b",
        "explicacion": "Con chaleco, la postura fetal (HELP) reduce la pérdida de calor; agruparse ayuda aún más. Nadar acelera la hipotermia y el chaleco nunca se quita."
       }
-     ],
-     "practica": [
-      "and-2022-c2-t31",
-      "and-2022-c3-t32",
-      "and-2024-c3-t31",
-      "and-2023-c3-t09",
-      "and-2025-c3-t10"
      ],
      "chuleta": [
       "Saltar: mirar abajo, poca altura, tapar nariz y boca, sujetar el chaleco, piernas juntas y estiradas.",
@@ -10503,23 +9798,6 @@
        "explicacion": "Isobaras juntas significan un gradiente de presión grande, y cuanto mayor es el gradiente, más fuerte sopla el viento."
       }
      ],
-     "practica": [
-      "and-2020-c3-t36",
-      "and-2021-c1-t33",
-      "and-2021-c2-t36",
-      "and-2022-c1-t35",
-      "and-2022-c2-t34",
-      "and-2023-c1-t36",
-      "and-2023-c2-t36",
-      "and-2023-c3-t36",
-      "and-2024-c1-t33",
-      "and-2024-c2-t36",
-      "and-2025-c1-t35",
-      "and-2025-c2-t33",
-      "and-2025-c3-t33",
-      "and-2026-c2-t35",
-      "and-2026-c2-t36"
-     ],
      "chuleta": [
       "Presión = peso por unidad de superficie de la columna de aire. Se mide con barómetro (no manómetro).",
       "Normal: 1 atm = 1013,25 hPa = 1013,25 mb = 760 mmHg (760 NO son hPa).",
@@ -10693,23 +9971,6 @@
        "explicacion": "Ley de Buys-Ballot: en el hemisferio norte, con el viento en la espalda, la baja queda a la izquierda (algo adelantada)."
       }
      ],
-     "practica": [
-      "and-2020-c1-t34",
-      "and-2020-c3-t34",
-      "and-2021-c1-t34",
-      "and-2021-c2-t33",
-      "and-2022-c1-t36",
-      "and-2022-c3-t33",
-      "and-2022-c3-t34",
-      "and-2023-c1-t34",
-      "and-2023-c2-t33",
-      "and-2024-c2-t35",
-      "and-2024-c3-t34",
-      "and-2025-c1-t33",
-      "and-2025-c2-t35",
-      "and-2026-c1-t34",
-      "and-2026-c2-t34"
-     ],
      "chuleta": [
       "Borrasca (B/L): presión más baja que alrededor, baja hacia el centro; HN antihoraria y convergente; mal tiempo.",
       "Anticiclón (A/H): presión más alta, sube hacia el centro; HN horario y divergente; tiempo estable (posibles nieblas).",
@@ -10848,20 +10109,6 @@
        "explicacion": "El anemómetro mide la velocidad del viento. La veleta da la dirección y el barómetro, la presión."
       }
      ],
-     "practica": [
-      "and-2020-c1-t33",
-      "and-2020-c3-t33",
-      "and-2022-c1-t33",
-      "and-2022-c3-t36",
-      "and-2023-c1-t33",
-      "and-2023-c3-t35",
-      "and-2024-c1-t36",
-      "and-2024-c2-t33",
-      "and-2024-c3-t36",
-      "and-2025-c2-t36",
-      "and-2025-c3-t34",
-      "and-2026-c1-t35"
-     ],
      "chuleta": [
       "El viento se nombra por de dónde viene.",
       "Rola = cambia de dirección. Refresca = sube. Cae = baja. Calma = cesa.",
@@ -10999,11 +10246,6 @@
        "explicacion": "Por popa los vientos se restan: 12 − 12 = 0. El aparente es nulo."
       }
      ],
-     "practica": [
-      "and-2020-c1-t36",
-      "and-2021-c2-t34",
-      "and-2022-c2-t35"
-     ],
      "chuleta": [
       "Real = el que sopla; de avance = el de tu marcha (de proa, igual a tu velocidad); aparente = suma de los dos.",
       "El aparente es el que notas a bordo, el que mide el anemómetro y el que mueve las velas.",
@@ -11119,17 +10361,6 @@
        "correcta": "c",
        "explicacion": "Las brisas existen justamente porque tierra y mar NO se calientan ni se enfrían al mismo ritmo."
       }
-     ],
-     "practica": [
-      "and-2020-c3-t35",
-      "and-2021-c1-t35",
-      "and-2022-c1-t34",
-      "and-2022-c3-t35",
-      "and-2023-c2-t35",
-      "and-2023-c3-t34",
-      "and-2024-c3-t33",
-      "and-2025-c1-t34",
-      "and-2025-c3-t36"
      ],
      "chuleta": [
       "Causa: la tierra se calienta y se enfría más deprisa que el mar.",
@@ -11282,25 +10513,6 @@
        "explicacion": "Gruesa es el grado 5 de la escala Douglas, que describe el estado de la mar por la altura de las olas."
       }
      ],
-     "practica": [
-      "and-2020-c1-t35",
-      "and-2021-c1-t36",
-      "and-2021-c2-t35",
-      "and-2022-c2-t33",
-      "and-2022-c2-t36",
-      "and-2023-c1-t35",
-      "and-2023-c2-t34",
-      "and-2023-c3-t33",
-      "and-2024-c1-t34",
-      "and-2024-c1-t35",
-      "and-2024-c2-t34",
-      "and-2024-c3-t35",
-      "and-2025-c1-t36",
-      "and-2025-c2-t34",
-      "and-2025-c3-t35",
-      "and-2026-c1-t36",
-      "and-2026-c2-t33"
-     ],
      "chuleta": [
       "Beaufort = intensidad del viento, 13 grados (0 calma … 12 temporal huracanado). F8 = temporal.",
       "Douglas = estado de la mar por altura de ola, 10 grados (0 calma … 9 enorme).",
@@ -11443,12 +10655,6 @@
        "correcta": "b",
        "explicacion": "Fuerza 7 (frescachón) es demasiado para una embarcación pequeña, y una previsión para la tarde puede adelantarse. Lo prudente es no salir o cambiar de plan."
       }
-     ],
-     "practica": [
-      "and-2026-c1-t33",
-      "and-2025-c3-t35",
-      "and-2024-c1-t35",
-      "and-2026-c2-t33"
      ],
      "chuleta": [
       "Fuente oficial: AEMET (predicción costera hasta 20 millas, alta mar y avisos).",
@@ -11617,18 +10823,6 @@
        "explicacion": "Los paralelos (salvo el ecuador) no pasan por el centro de la Tierra: son círculos menores. Ecuador y meridianos son círculos máximos."
       }
      ],
-     "practica": [
-      "and-2020-c3-t37",
-      "and-2021-c2-t38",
-      "and-2022-c1-t37",
-      "and-2022-c2-t38",
-      "and-2022-c3-t37",
-      "and-2023-c3-t41",
-      "and-2024-c2-t41",
-      "and-2024-c3-t38",
-      "and-2025-c2-t40",
-      "and-2025-c3-t40"
-     ],
      "chuleta": [
       "Círculos máximos: ecuador y meridianos. Menores: los paralelos.",
       "Latitud: arco de meridiano desde el ecuador, 0–90° N/S. Mismo paralelo = misma latitud.",
@@ -11787,22 +10981,6 @@
        "titulo": "La hora de a bordo: HRB",
        "texto": "En los problemas verás la **HRB**, la **Hora Reloj de Bitácora**. Es la **hora que se lleva a bordo**, la que fija el **patrón** y por la que se rige la vida del barco: guardias, comidas, anotaciones en el diario.\n\nPuede coincidir con la hora oficial del país, pero no es obligatorio: no es «la hora legal» ni «la que fija el Gobierno»."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t38",
-      "and-2020-c1-t40",
-      "and-2020-c3-t40",
-      "and-2022-c1-t40",
-      "and-2022-c2-t37",
-      "and-2022-c3-t39",
-      "and-2022-c3-t40",
-      "and-2023-c2-t40",
-      "and-2023-c2-t41",
-      "and-2024-c2-t38",
-      "and-2024-c2-t40",
-      "and-2025-c1-t39",
-      "and-2026-c1-t39",
-      "and-2026-c1-t40"
      ],
      "carta": [
       "estima-directa"
@@ -11982,20 +11160,6 @@
        "explicacion": "M viene de «mud», fango. Piedras es St y conchuela, Sh."
       }
      ],
-     "practica": [
-      "and-2020-c3-t41",
-      "and-2022-c1-t39",
-      "and-2022-c3-t38",
-      "and-2022-c3-t41",
-      "and-2023-c1-t40",
-      "and-2024-c1-t39",
-      "and-2024-c1-t40",
-      "and-2024-c3-t40",
-      "and-2025-c1-t41",
-      "and-2025-c2-t39",
-      "and-2025-c3-t38",
-      "and-2025-c3-t39"
-     ],
      "chuleta": [
       "Mercator: meridianos y paralelos rectos; rumbo constante = recta.",
       "Más escala = más detalle. Recalada: aproximación. Portulano: máximo detalle. Cartucho: recuadro a mayor escala dentro de una carta.",
@@ -12160,15 +11324,6 @@
        "correcta": "b",
        "explicacion": "LFl (long flash) es el destello largo: dura 2 segundos o más."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t41",
-      "and-2021-c1-t41",
-      "and-2022-c2-t40",
-      "and-2023-c3-t39",
-      "and-2024-c1-t38",
-      "and-2026-c1-t38",
-      "and-2026-c2-t41"
      ],
      "chuleta": [
       "Fl(3) 10s 18M = grupo de 3 destellos, periodo 10 s, alcance 18 millas. Sin color = blanca.",
@@ -12343,21 +11498,6 @@
        "explicacion": "Ct = dm + Δ = −5 + 2 = −3°, es decir, 3° W."
       }
      ],
-     "practica": [
-      "and-2021-c1-t37",
-      "and-2023-c1-t39",
-      "and-2023-c2-t39",
-      "and-2023-c3-t40",
-      "and-2024-c1-t41",
-      "and-2024-c2-t37",
-      "and-2024-c3-t37",
-      "and-2025-c2-t37",
-      "and-2025-c2-t38",
-      "and-2025-c3-t41",
-      "and-2026-c1-t37",
-      "and-2026-c2-t38",
-      "and-2026-c2-t40"
-     ],
      "carta": [
       "conversion-rumbos"
      ],
@@ -12492,13 +11632,6 @@
        "correcta": "b",
        "explicacion": "N x W = 360° − x = 360 − 70 = 290°."
       }
-     ],
-     "practica": [
-      "and-2022-c1-t38",
-      "and-2023-c1-t38",
-      "and-2023-c2-t38",
-      "and-2025-c1-t40",
-      "and-2025-c3-t37"
      ],
      "carta": [
       "conversion-rumbos",
@@ -12668,21 +11801,6 @@
        "correcta": "b",
        "explicacion": "Ct = Dv − Da = 244 − 247 = −3°."
       }
-     ],
-     "practica": [
-      "and-2020-c1-t37",
-      "and-2020-c3-t38",
-      "and-2021-c1-t38",
-      "and-2021-c1-t39",
-      "and-2021-c1-t40",
-      "and-2021-c2-t37",
-      "and-2021-c2-t41",
-      "and-2022-c2-t39",
-      "and-2023-c2-t37",
-      "and-2023-c3-t37",
-      "and-2024-c1-t37",
-      "and-2025-c2-t41",
-      "and-2026-c1-t41"
      ],
      "carta": [
       "ct-enfilacion",
@@ -12861,20 +11979,6 @@
        "explicacion": "La amplitud es la diferencia de alturas entre pleamar y bajamar: 3,1 − 0,7 = 2,4 m."
       }
      ],
-     "practica": [
-      "and-2020-c1-t39",
-      "and-2020-c3-t39",
-      "and-2021-c2-t39",
-      "and-2022-c1-t41",
-      "and-2022-c2-t41",
-      "and-2023-c1-t37",
-      "and-2023-c3-t38",
-      "and-2024-c2-t39",
-      "and-2024-c3-t41",
-      "and-2025-c1-t38",
-      "and-2026-c2-t37",
-      "and-2026-c2-t39"
-     ],
      "chuleta": [
       "Mareas: atracción de la Luna y el Sol (la Luna, más).",
       "Amplitud = altura PM − altura BM. Duración = horas entre BM y PM (≈ 6 h 12 min, variable).",
@@ -13016,12 +12120,6 @@
        "correcta": "b",
        "explicacion": "La deriva es el efecto de la corriente; el viento produce abatimiento."
       }
-     ],
-     "practica": [
-      "and-2021-c2-t40",
-      "and-2023-c1-t41",
-      "and-2024-c3-t39",
-      "and-2025-c1-t37"
      ],
      "chuleta": [
       "Viento → abatimiento. Corriente → deriva.",
@@ -13232,12 +12330,6 @@
        "explicacion": "Si el barco está al sur del faro, el faro queda al norte del barco: demora verdadera 000°. En la carta, desde el faro trazas la línea hacia el 180°."
       }
      ],
-     "practica": [
-      "and-2025-c2-q45",
-      "and-2025-c2-q43",
-      "and-2025-c2-q42",
-      "and-2021-c2-q44"
-     ],
      "chuleta": [
       "Latitud en los márgenes laterales (N); longitud arriba y abajo (W en esta carta). Cada división vale 0,2′.",
       "1′ de latitud = 1 milla. Las distancias, siempre en la escala de latitudes.",
@@ -13425,21 +12517,6 @@
        "explicacion": "Δ = Ct − dm = (+3°) − (−2°) = +5°."
       }
      ],
-     "practica": [
-      "and-2020-c1-q43",
-      "and-2021-c1-q42",
-      "and-2021-c2-q43",
-      "and-2022-c1-q45",
-      "and-2022-c2-q45",
-      "and-2023-c1-q44",
-      "and-2023-c2-q44",
-      "and-2023-c3-q44",
-      "and-2024-c2-q44",
-      "and-2025-c1-q42",
-      "and-2025-c3-q45",
-      "and-2026-c1-q42",
-      "and-2026-c2-q42"
-     ],
      "carta": [
       "conversion-rumbos",
       "ct-enfilacion"
@@ -13578,28 +12655,6 @@
        "explicacion": "Tiempo = 15 / 6 = 2,5 h = 2 h 30 min. Así que 10:40 + 2:30 = 13:10."
       }
      ],
-     "practica": [
-      "and-2020-c1-q45",
-      "and-2020-c3-q44",
-      "and-2021-c2-q45",
-      "and-2022-c1-q44",
-      "and-2022-c2-q44",
-      "and-2022-c3-q45",
-      "and-2023-c1-q42",
-      "and-2023-c2-q45",
-      "and-2023-c3-q45",
-      "and-2024-c1-q43",
-      "and-2024-c2-q42",
-      "and-2024-c2-q45",
-      "and-2024-c3-q45",
-      "and-2025-c1-q43",
-      "and-2025-c2-q43",
-      "and-2025-c2-q44",
-      "and-2025-c3-q44",
-      "and-2026-c1-q43",
-      "and-2026-c2-q43",
-      "and-2026-c2-q45"
-     ],
      "carta": [
       "rumbo-distancia"
      ],
@@ -13724,24 +12779,6 @@
        "correcta": "b",
        "explicacion": "Ct = 0° + (−3°) = −3°, y Rv = 297° + (−3°) = 294°."
       }
-     ],
-     "practica": [
-      "and-2020-c1-q44",
-      "and-2020-c3-q43",
-      "and-2020-c3-q45",
-      "and-2021-c1-q45",
-      "and-2021-c2-q44",
-      "and-2022-c2-q42",
-      "and-2022-c3-q42",
-      "and-2023-c1-q43",
-      "and-2023-c2-q42",
-      "and-2023-c3-q42",
-      "and-2024-c1-q45",
-      "and-2024-c3-q42",
-      "and-2025-c1-q44",
-      "and-2025-c3-q43",
-      "and-2026-c1-q45",
-      "and-2026-c2-q44"
      ],
      "carta": [
       "estima-directa"
@@ -13886,11 +12923,6 @@
        "explicacion": "Desde el faro trazas la demora opuesta: 154° + 180° = 334°. El barco está sobre esa línea, al NNW del faro."
       }
      ],
-     "practica": [
-      "and-2022-c1-q42",
-      "and-2025-c1-q45",
-      "and-2025-c2-q42"
-     ],
      "carta": [
       "situacion-demora-distancia"
      ],
@@ -14002,15 +13034,6 @@
        "correcta": "b",
        "explicacion": "Las líneas que se cortan casi en ángulo recto dan el punto más preciso. Si son casi paralelas (0° o 180°), un error pequeño desplaza mucho el corte."
       }
-     ],
-     "practica": [
-      "and-2021-c1-q44",
-      "and-2021-c2-q42",
-      "and-2022-c1-q43",
-      "and-2022-c2-q43",
-      "and-2023-c2-q43",
-      "and-2024-c1-q44",
-      "and-2024-c2-q43"
      ],
      "carta": [
       "situacion-dos-demoras"
@@ -14125,12 +13148,6 @@
        "correcta": "b",
        "explicacion": "La demora va del barco al faro, así que desde el faro trazas la opuesta: 080° + 180° = 260°. Su corte con la recta de la oposición es tu situación."
       }
-     ],
-     "practica": [
-      "and-2022-c3-q43",
-      "and-2023-c3-q43",
-      "and-2024-c1-q42",
-      "and-2025-c3-q42"
      ],
      "carta": [
       "distancia-faro"
@@ -14268,11 +13285,6 @@
        "explicacion": "Las dos líneas son de la misma hora. La situación de las 12:00 no hace falta para situarte: solo sirve para medir la distancia navegada. El rumbo te lo da el enunciado."
       }
      ],
-     "practica": [
-      "and-2020-c1-q42",
-      "and-2020-c3-q42",
-      "and-2024-c3-q43"
-     ],
      "carta": [
       "demoras-no-simultaneas"
      ],
@@ -14386,13 +13398,6 @@
        "correcta": "b",
        "explicacion": "La dirección (al sur verdadero) fija un punto concreto. No es un problema de tangente."
       }
-     ],
-     "practica": [
-      "and-2021-c1-q43",
-      "and-2022-c3-q44",
-      "and-2023-c1-q45",
-      "and-2024-c3-q44",
-      "and-2026-c1-q44"
      ],
      "carta": [
       "rumbo-pasar-distancia"

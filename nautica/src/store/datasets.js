@@ -27,7 +27,16 @@ export const loadCourse = cargarCursoBase;
 /** Reglas nemotécnicas validadas y, para cada pregunta, las que le ayudan. */
 export const loadMnemonics = cargarMnemotecnias;
 
+/** Chuleta de la práctica: fórmulas, signos y conversiones por tema y por tipo de ejercicio. */
+export const loadChuletario = () => loadJSON('data/comun/chuletario.json');
+
+/** Siglas y abreviaturas con su significado (se explican al tocarlas). */
+export const loadAbreviaturas = () => loadJSON('data/comun/abreviaturas.json');
+
 /** Podcasts de una titulación: temas, episodios con su ficha y si ya tienen audio (sale de tools/podcast.mjs). */
 export const loadPodcast = (tit) => loadJSON(`data/podcast-${tit}.json`);
 /** Línea de tiempo de un episodio: cuándo empieza cada intervención y las pausas del minijuego. */
 export const loadPodcastLinea = (id) => loadJSON(`data/podcast/${id}.json`);
+
+/** Apéndice «Las cuentas del patrón» (clases de matemáticas; fuera del temario del examen). */
+export const loadApendice = () => loadJSON('data/curso/apendice-matematicas.json');

@@ -17,8 +17,8 @@
  },
  "carta": "L105",
  "examen": {
-  "per": { "reglas": ["La carta es la del Estrecho de Gibraltar (la misma de la app); algunas preguntas de carta son de mareas, con el anuario que entrega el tribunal."] },
-  "py": { "reglas": ["Un solo cuadernillo de 40 preguntas (10 de Seguridad, 10 de Meteorología, 10 de Teoría de navegación y 10 de Carta) en dos horas.", "Carta: ejercicios sobre la carta del Estrecho, de mareas con el anuario que entrega el tribunal y de estima analítica."] }
+  "per": { "calculadora": false, "calculadoraFuente": "BOE-A-2026-510: calculadora solo en los exámenes de PY y CY.", "reglas": ["La carta es la del Estrecho de Gibraltar (la misma de la app); algunas preguntas de carta son de mareas, con el anuario que entrega el tribunal."] },
+  "py": { "calculadora": true, "calculadoraFuente": "BOE-A-2026-510: calculadora solo en los exámenes de PY y CY.", "reglas": ["Un solo cuadernillo de 40 preguntas (10 de Seguridad, 10 de Meteorología, 10 de Teoría de navegación y 10 de Carta) en dos horas.", "Carta: ejercicios sobre la carta del Estrecho, de mareas con el anuario que entrega el tribunal y de estima analítica."] }
  },
  "reserva": { "modo": "examen", "per": ["dgmm-per-2025-11", "dgmm-per-2026-04", "dgmm-per-2026-06"], "py": ["dgmm-py-2024-11", "dgmm-py-2025-04", "dgmm-py-2025-11", "dgmm-py-2026-04"] },
  "listas": {

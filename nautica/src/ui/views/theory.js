@@ -31,6 +31,10 @@ import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 import { cuenta, fechaLarga } from '../../texto.js';
+import { botonCalculadora, bloquearCalculadora, desbloquearCalculadora } from '../calculadora.js';
+import { calculadoraPermitida } from '../../calculadora/reglas.js';
+import { crearAyudas } from '../ayudas.js';
+import { glosar } from '../glosas.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -124,12 +128,14 @@ export function necesitaCarta(q) {
 /**
  * Botón «Abrir la carta» para una pregunta que se resuelve sobre ella (en tandas, tests y clases): la carta se abre a
  * pantalla completa con el enunciado y, al cerrarla, sigues en la pregunta. null si la pregunta no la necesita.
+ * @param {object} [ayudas]  contexto de práctica ({ modo, tit… }) para tener la chuleta en la carta; nunca en un examen
  */
-export function botonCarta(q, progress) {
+export function botonCarta(q, progress, ayudas = null, { calculadora = true } = {}) {
   if (!necesitaCarta(q) || !chartRef) return null;
   return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
     chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
-    result: '', summary: () => `CARTA abierta para ${q.id}`,
+    result: '', summary: () => `CARTA abierta para ${q.id}`, calculadora,
+    ayudas: ayudas ? { ...ayudas, ut: q.ut } : null, glosas: ayudas ? { tit: T.id, ut: q.ut } : null,
   }) }, icono('mapa'), 'Abrir la carta');
 }
 
@@ -166,6 +172,8 @@ export function profePanel(q, expl, chosen) {
     ok ? null : enlaceTrampa(q, chosen),
     h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
+  // Las siglas de la explicación (Ct, HRB, MMSI…) se explican al tocarlas. La pregunta ya está respondida.
+  glosar(panel, { tit: T.id, ut: q.ut });
   return panel;
 }
 
@@ -311,7 +319,10 @@ export function examenesView({ ctx, progress, tit }) {
  *   onFin: (ok: number, n: number) => void, onSummary?: (texto: string) => void }} o
  * @returns {HTMLElement}
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, onFin, onSummary = () => {} }) {
+/**
+ * ayudas: la de la vista (crearAyudas), para que la chuleta siga el tema de cada pregunta y la carta la lleve también.
+ */
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
@@ -320,6 +331,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
   function show() {
     const q = preguntas[i];
     barra.set(`Pregunta ${i + 1} de ${n}`, i / n);
+    ayudas?.contexto({ ut: q.ut });
     let respondida = false;
     const feedback = h('div.feedback-profe', { tabindex: '-1' });
     const siguiente = h('button.grande', { type: 'button', hidden: true, onclick: () => {
@@ -352,7 +364,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     let card = questionCard(q, { onChoose: responder, tema: temaEnCadaPregunta, vocab });
     // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
     // citados resaltados, y al cerrarla sigues en la pregunta.
-    const carta = botonCarta(q, progress);
+    const carta = botonCarta(q, progress, ayudas?.ctx() ?? null);
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
@@ -384,9 +396,10 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const soloFalladas = route.query.f === '1';
   if (!b) return { el: h('div.practice', h('p', 'Este tema no existe.'), h('a.btn', { href: tlink(T.id, ['temario']) }, 'Ir al temario')), summary: () => 'ERROR tema no encontrado' };
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'tanda', tit: tit0, ut });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
   const eje = currentEje(progress);
@@ -416,7 +429,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -433,9 +446,10 @@ export function practiceView({ ctx, progress, params: route, tit }) {
 // #/<tit>/teoria/mezcla?s=semilla — repaso mezclado: 10 preguntas de los temas ya empezados, por turnos
 function mezclaView({ progress, seed }) {
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'mezcla', tit: tit0 });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA repaso mezclado';
   cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
@@ -449,7 +463,7 @@ function mezclaView({ progress, seed }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, rotulo: `🔀 Repaso mezclado · ${cuenta(empezados.length, 'tema')}`, temaEnCadaPregunta: true,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔀 Repaso mezclado · ${cuenta(empezados.length, 'tema')}`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -467,9 +481,10 @@ function mezclaView({ progress, seed }) {
 // #/<tit>/teoria/repaso — repaso espaciado de fallos (B1): las preguntas que tocan hoy, de 10 en 10
 function repasoView({ progress }) {
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'repaso', tit: tit0 });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA repaso de fallos';
   cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
@@ -482,7 +497,7 @@ function repasoView({ progress }) {
     }
     const tanda = cola.hoy.slice(0, TANDA);
     setChildren(cont, tandaPreguntas({
-      preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
+      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -504,15 +519,16 @@ function repasoView({ progress }) {
 // #/<tit>/teoria/rapido?s=semilla — «5 minutos» (B8): 5 preguntas, primero las del repaso
 function rapidoView({ progress, seed }) {
   const tit0 = T.id;
-  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); } });
+  const ayudas = crearAyudas({ modo: 'rapido', tit: tit0 });
+  const barra = barraActividad({ texto: 'Preparando…', onSalir: () => { location.hash = tlink(tit0); }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando…'));
-  const el = h('div.practice', barra, cont);
+  const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA 5 minutos';
   cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const tanda = tandaRapida(preguntas, progress.get().exams, createRng(seed));
     setChildren(cont, tandaPreguntas({
-      preguntas: tanda, explicaciones, progress, barra, vocab, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
+      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -545,6 +561,9 @@ function practiceSummary(q, ex, chosen) {
 
 const GUARDAR_CADA_MS = 10000;
 
+/** «Abrir la carta» en un examen: sin ayudas de práctica y, si no se permite, sin el botón de la calculadora. */
+const cartaDeExamen = (q, progress, calculadora) => botonCarta(q, progress, null, { calculadora });
+
 export function testView({ ctx, progress, params: route, tit }) {
   chartRef = ctx.chart;
   useTit(tit);
@@ -555,14 +574,18 @@ export function testView({ ctx, progress, params: route, tit }) {
   const seedQ = Number(route.query.s) || null;
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
   let summaryText = 'VISTA examen (cargando)';
+  // Calculadora: solo si en el examen de esta titulación se permite (src/calculadora/reglas.js). Mientras se carga la
+  // ficha del eje, lo de la titulación; en un examen sin calculadora se cierra y no se puede abrir.
+  let permitida = calculadoraPermitida(T0.id, null);
+  if (!permitida) bloquearCalculadora(el);
 
   // El examen final necesita el estado del motor (si está abierto y qué convocatoria toca).
   Promise.all([cargarBanco(currentEje(progress), T0.id), tipo === 'final' ? calcularPlan(progress, T0.id) : null]).then(([banco, plan]) => {
     const { explicaciones, reglasDe: rd, vocab: vocabBanco } = banco;
+    permitida = calculadoraPermitida(T0.id, banco.eje);
+    if (permitida) desbloquearCalculadora(el); else bloquearCalculadora(el);
     const eje = banco.eje.id;
     const fin = plan?.st.final ?? null;
-    // Calculadora en el examen: solo si la ficha del eje la permite para esta titulación (examen.<tit>.calculadora).
-    const conCalculadora = banco.eje.examen?.[T0.id]?.calculadora === true;
     reglasDe = rd;
     const tc = progress.testEnCurso();
     const mismo = deTitEje(tc, T0.id, eje) && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : tipo === 'final' ? true : seedQ != null && tc.seed === seedQ);
@@ -599,9 +622,10 @@ export function testView({ ctx, progress, params: route, tit }) {
             h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
             h('li', `${cuenta(E0.duracionMin, 'minuto')}`),
             h('li', `Apruebas con ${cuenta(E0.minAciertos, 'acierto')}`),
-            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
+            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`)),
+            h('li', permitida ? '🧮 Con calculadora científica (botón arriba, junto al reloj)' : 'Sin calculadora')),
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E0, f.ut)?.titulo ?? f.ut).join(', ')}; el ${tipo === 'final' ? 'examen' : 'simulacro'} no está completo.`) : null,
-          tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', `Como el día del examen: sin chuleta ni ayudas${conCalculadora ? ', con calculadora' : ', sin calculadora'}. Al terminar, el profe te explica tus fallos.`)] : null,
+          tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', 'Como el día del examen: solo tú, el reloj y las reglas del tribunal. Al terminar, el profe te explica tus fallos.')] : null,
           test.avisoVistas ? h('p.aviso-vistas', `Ya has respondido el ${Math.round(test.vistas * 100)} % de las preguntas de estudio: este simulacro repetirá muchas que ya has visto y aprobarlo dice menos. La prueba de verdad es el examen final, con preguntas reservadas.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
           otro
@@ -622,8 +646,9 @@ export function testView({ ctx, progress, params: route, tit }) {
       const estado = { ...guardado, eje: guardado.eje ?? eje, ids: test.preguntas.map((q) => q.id) };
       const n = test.preguntas.length;
       if (!n) { progress.saveTestEnCurso(null); setChildren(el, h('p.warn', 'No hay preguntas para este examen.')); return; }
-      // Modo examen: sin chuleta ni ayudas (src/ui/modo-examen.js); la calculadora, solo si el eje la permite.
-      fijarModoExamen(tipo === 'final' ? 'final' : 'examen', { calculadora: conCalculadora });
+      // Modo examen (src/ui/modo-examen.js): la señal para que no se ofrezca ninguna ayuda de práctica; la calculadora,
+      // la regla de la ficha del eje (calculadoraPermitida).
+      fijarModoExamen(tipo === 'final' ? 'final' : 'examen', { calculadora: permitida });
       const respuestas = { ...(estado.respuestas ?? {}) };
       let i = Math.min(Math.max(0, estado.i ?? 0), n - 1);
       let consumido = estado.consumidoMs ?? 0;
@@ -633,7 +658,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       let activo = true;
       let terminado = false;
       const reloj = h('span.reloj');
-      const barra = barraActividad({ texto: '', onSalir: salir, derecha: reloj });
+      const barra = barraActividad({ texto: '', onSalir: salir, derecha: [permitida ? botonCalculadora({ texto: '' }) : null, reloj] });
       const cuerpo = h('div');
       const panel = h('div.panel-preguntas', { hidden: true, role: 'dialog', 'aria-label': 'Todas las preguntas' });
 
@@ -690,7 +715,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         const ultima = i === n - 1;
         setChildren(cuerpo,
           questionCard(q, { number: i + 1, chosen: respuestas[q.id], onChoose: (k) => { respuestas[q.id] = k; guardar(); resumen(); } }),
-          botonCarta(q, progress),
+          cartaDeExamen(q, progress, permitida),
           h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); abrirPanel(); } }, 'Ver todas las preguntas')),
           h('div.fila-inferior',
             h('button.secondary.boton-anterior', { type: 'button', 'aria-label': 'Anterior', disabled: i === 0, onclick: () => ir(i - 1) }, '←'),
@@ -709,7 +734,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         panel.hidden = false;
       }
       function resumen() {
-        summaryText = `EXAMEN EN CURSO · ${test.titulo} · pregunta ${i + 1} de ${n} · ${n - sinResponder()}/${cuenta(n, 'respondida')} (sin corregir: el alumno está haciendo el examen; no des respuestas)`;
+        summaryText = `EXAMEN EN CURSO · ${test.titulo} · pregunta ${i + 1} de ${n} · ${n - sinResponder()}/${cuenta(n, 'respondida')} · calculadora: ${permitida ? 'permitida' : 'no permitida'} (sin corregir: el alumno está haciendo el examen; no des respuestas)`;
       }
 
       function finish(porTiempo = false) {

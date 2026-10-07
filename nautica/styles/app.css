@@ -10,6 +10,8 @@
   --l-mar: #dcebf8; --l-verde: #1d9a4a; --l-roja: #d43a2f; --l-alcance: #8a6d00; --l-tope: #46525e;
   --l-noche: #0b1420; --l-mar-noche: #081019; --l-casco-noche: #22364b; --l-luz-blanca: #ffffff; --l-luz-verde: #33d17a; --l-luz-roja: #ff4d3d;
   --l-cielo: #cfe6fb; --l-niebla: #b8c2cc; --l-frio: #b9d4f2; --l-calido: #f6d3b0; --l-frente-frio: #1f5fbf; --l-frente-calido: #c8372d; --l-nube: #ffffff;
+  /* Calculadora: pantalla de cristal líquido */
+  --calc-lcd: #dfe7d6; --calc-lcd-texto: #18241a; --calc-lcd-apagado: #b9c4b0;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -23,6 +25,7 @@
     --l-mar: #12304a; --l-verde: #4ade80; --l-roja: #ff7b6e; --l-alcance: #f0c46e; --l-tope: #e6edf3;
     --l-noche: #050a10; --l-mar-noche: #03070c; --l-casco-noche: #22364b; --l-luz-blanca: #ffffff; --l-luz-verde: #33d17a; --l-luz-roja: #ff4d3d;
     --l-cielo: #1d3550; --l-niebla: #8a97a5; --l-frio: #23466f; --l-calido: #6b452a; --l-frente-frio: #6aa8ff; --l-frente-calido: #ff7b6e; --l-nube: #c9d3de;
+    --calc-lcd: #1b2a20; --calc-lcd-texto: #d6f3dc; --calc-lcd-apagado: #34483a;
     color-scheme: dark;
   }
 }
@@ -940,8 +943,12 @@ button.emp-ok { border-color: var(--ok) !important; background: color-mix(in srg
   padding: .4rem max(1.1rem, calc((100vw - 720px) / 2)) calc(1rem + env(safe-area-inset-bottom)); background: var(--surface);
   border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(10, 30, 60, .22); transform: translateY(105%); transition: transform .32s cubic-bezier(.2, .8, .2, 1); }
 .hoja.arriba { transform: none; }
-.hoja-plegar { align-self: center; width: 56px; height: 22px; min-height: 0; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
-.hoja-plegar::before { content: ""; position: absolute; left: 14px; right: 14px; top: 8px; height: 5px; border-radius: 3px; background: var(--border); }
+/* Asa para plegar y desplegar (corrección, panel de la mesa de cartas): la raya se ve pequeña, pero se toca en 48 px. */
+.hoja-plegar { align-self: center; min-width: 96px; min-height: 48px; height: auto; padding: 20px .8rem 4px; margin: -.4rem 0 -.2rem; border: 0; border-radius: 12px; background: none; color: var(--accent); font-size: .95rem; font-weight: 600; cursor: pointer; position: relative; }
+.hoja-plegar::before { content: ""; position: absolute; left: 50%; width: 40px; margin-left: -20px; top: 10px; height: 5px; border-radius: 3px; background: var(--border); }
+.hoja-plegar:hover::before, .hoja-plegar:focus-visible::before { background: var(--accent); }
+.hoja-plegar:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.hoja-plegar-texto:empty { display: none; }
 .hoja-titulo { display: flex; align-items: center; gap: .5rem; font-size: 1.25rem; margin: .1rem 0 .4rem; }
 .hoja.ok .hoja-titulo { color: var(--ok); } .hoja.bad .hoja-titulo { color: var(--warn); }
 .hoja-cuerpo { overflow: auto; flex: 1 1 auto; min-height: 0; margin-bottom: .7rem; }
@@ -1121,3 +1128,144 @@ details.puerto-astillero > summary { min-height: 48px; display: flex; align-item
 .guia-oferta-botones > * { min-height: 48px; }
 @media print { .guia-todo .guia-pagina { break-inside: avoid; border: 0; padding: 0; } }
 .hoy-toca .descartar-examen { margin-top: .6rem; width: 100%; min-height: 48px; }
+
+/* Calculadora científica (src/ui/calculadora.js): pantalla de dos líneas y teclado; panel flotante o acoplado. */
+.calc { display: grid; gap: .45rem; }
+.calc-pantalla { background: var(--calc-lcd); color: var(--calc-lcd-texto); border: 2px solid var(--border); border-radius: 8px; padding: .3rem .6rem .4rem; font-variant-numeric: tabular-nums; }
+.calc-indicadores { display: flex; gap: .5rem; font-size: .75rem; font-weight: 800; line-height: 1.2; min-height: 1.2em; }
+.calc-ind { color: var(--calc-lcd-apagado); }
+.calc-ind.on { color: var(--calc-lcd-texto); }
+.calc-arriba { min-height: 1.6em; font-size: 1.05rem; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.calc-abajo { min-height: 1.4em; font-size: 1.7rem; font-weight: 700; text-align: right; white-space: nowrap; overflow-x: auto; line-height: 1.25; }
+.calc-abajo.error { font-size: 1.35rem; }
+.calc-teclas { display: grid; gap: .3rem; }
+.calc-teclas.funciones { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.calc-teclas.numeros { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+button.calc-tecla { min-height: 48px; min-width: 0; padding: .1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; line-height: 1.1;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; touch-action: manipulation; }
+button.calc-tecla:active { transform: translateY(1px); background: var(--accent-2); }
+button.calc-tecla.cifra { background: var(--accent-2); font-size: 1.2rem; }
+button.calc-tecla.borra { background: var(--warn); border-color: var(--warn); color: var(--surface); }
+button.calc-tecla.igual { background: var(--accent); border-color: var(--accent); color: var(--surface); font-size: 1.3rem; }
+button.calc-tecla.shift { background: var(--close); border-color: var(--close); color: var(--surface); font-size: .85rem; }
+.calc-shift { font-size: .68rem; font-weight: 700; color: var(--close); }
+.calc.con-shift .calc-shift { text-decoration: underline; font-size: .78rem; }
+.calc.con-shift button.calc-tecla.shift { outline: 3px solid var(--text); outline-offset: 1px; }
+.calc-texto { font-weight: 700; }
+.calc-pagina { max-width: 440px; margin: 1rem auto; }
+.calc-pagina button.calc-tecla { min-height: 56px; }
+.calc-ayuda dt { font-weight: 700; margin-top: .7rem; }
+.calc-ayuda dd { margin: .2rem 0 0; }
+code.calc-teclas-txt { font-family: inherit; font-weight: 600; background: var(--accent-2); border-radius: 6px; padding: .05rem .35rem; }
+.calc-atajos summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; color: var(--accent); }
+
+.calc-panel { position: fixed; z-index: 55; width: 360px; max-width: calc(100vw - 16px); max-height: calc(100vh - 16px); display: flex; flex-direction: column;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 8px 28px rgba(0, 0, 0, .28); }
+.calc-panel[data-modo="abajo"] { left: 0; right: 0; bottom: 0; width: auto; max-width: none; border-radius: 14px 14px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+.calc-panel[data-modo="arriba"] { left: 0; right: 0; top: 0; width: auto; max-width: none; border-radius: 0 0 14px 14px; }
+.calc-panel[data-modo="abajo"] .calc-cuerpo, .calc-panel[data-modo="arriba"] .calc-cuerpo { width: 100%; max-width: 440px; margin: 0 auto; }
+.calc-cabecera { display: flex; align-items: center; gap: .4rem; min-height: 52px; padding: .2rem .4rem .2rem .6rem; cursor: grab; touch-action: none; user-select: none; border-bottom: 1px solid var(--border); }
+.calc-panel.minimizada .calc-cabecera { border-bottom: 0; cursor: pointer; }
+.calc-agarre { color: var(--muted); font-size: 1.1rem; }
+.calc-titulo { white-space: nowrap; }
+.calc-resumen { flex: 1; min-width: 0; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calc-panel:not(.minimizada) .calc-resumen { visibility: hidden; }
+.calc-botones { display: flex; gap: .25rem; flex: none; }
+button.calc-boton { min-width: 48px; min-height: 48px; padding: 0 .4rem; background: transparent; color: var(--text); border: 1px solid var(--border); font-size: 1.05rem; }
+.calc-cuerpo { padding: .5rem .6rem .6rem; overflow-y: auto; }
+.calc-panel.minimizada .calc-cuerpo { display: none; }
+/* La página deja sitio a la calculadora acoplada: se puede ver y tocar todo lo que queda fuera. */
+body.con-calc-abajo main { padding-bottom: calc(var(--calc-alto, 0px) + 96px); }
+body.con-calc-abajo .fila-inferior, body.con-calc-abajo .hoja { bottom: var(--calc-alto, 0px); }
+body.con-calc-abajo .workspace { bottom: var(--calc-alto, 0px); }
+body.con-calc-arriba { padding-top: var(--calc-alto, 0px); }
+body.con-calc-arriba header.top, body.con-calc-arriba .barra-actividad { top: var(--calc-alto, 0px); }
+body.con-calc-arriba .workspace { top: var(--calc-alto, 0px); }
+@media (max-height: 640px) {
+  button.calc-tecla { min-height: 42px; }
+  .calc-abajo { font-size: 1.4rem; }
+}
+/* Acoplada, nunca más de 2/3 de la pantalla (con zoom grande, el teclado se desplaza dentro). */
+.calc-panel[data-modo="abajo"], .calc-panel[data-modo="arriba"] { max-height: 66vh; }
+/* Pantallas anchas y bajas (móvil apaisado, zoom del 200 %): funciones a la izquierda y cifras a la derecha. */
+@media (min-width: 560px) and (max-height: 600px) {
+  .calc { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .calc-pantalla { grid-column: 1 / -1; }
+  .calc-pantalla .calc-arriba { min-height: 1.3em; }
+}
+.boton-calculadora { white-space: nowrap; }
+.ba-derecha { display: inline-flex; align-items: center; justify-content: flex-end; gap: .4rem; }
+.ba-derecha .boton-calculadora { min-height: 48px; padding: .3rem .6rem; }
+/* «Repasa: …» (enlaces al apéndice de matemáticas) y tarjetas de cuentas con la calculadora. */
+.repasa { margin: .5rem 0; color: var(--muted); }
+.repasa a { font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
+.paso.cuenta .cuenta-enunciado { font-size: 1.1rem; font-weight: 600; line-height: 1.5; }
+.paso.cuenta input.cuenta-respuesta { min-height: 48px; font-size: 1.15rem; }
+.paso.cuenta .actions > * { min-height: 48px; }
+.cuenta-fb p { margin: .5rem 0; font-weight: 600; }
+.cuenta-solucion { border-left: 4px solid var(--accent); background: var(--accent-2); border-radius: 8px; padding: .5rem .8rem; margin-top: .6rem; }
+.cuenta-pasos { padding-left: 1.3rem; margin: .3rem 0; }
+.cuenta-pasos li { margin: .3rem 0; }
+.calc-pregunta { margin: .3rem 0 .6rem; }
+/* ---- Mesa de cartas: panel plegable y el enunciado a mano en el tutorial ---- */
+.ws-chart { position: relative; }
+.ws-tabs .ws-plegar { flex: none; align-self: stretch; margin: 0; padding: 0 .4rem; min-width: 56px; border-radius: 0; }
+.ws-tabs .ws-plegar::before { top: 50%; margin-top: -2px; width: 28px; margin-left: -14px; }
+.ws-tabs .ws-plegar .hoja-plegar-texto { display: none; }
+.ws-tabbtn { min-height: 48px; }
+.ws-panel.plegada .ws-panel-body { display: none; }
+@media (max-width: 860px) {
+  .workspace.panel-plegado .ws-main { grid-template-rows: minmax(0, 1fr) auto; }
+}
+@media (min-width: 861px) {
+  .workspace.panel-plegado .ws-main { grid-template-columns: minmax(0, 1fr) auto; }
+  .ws-panel.plegada .ws-tabs { flex-direction: column; border-bottom: 0; }
+  .ws-panel.plegada .ws-tabbtn { writing-mode: vertical-rl; flex: none; padding: .8rem .2rem; }
+  .ws-panel.plegada .ws-plegar { min-height: 56px; }
+}
+details.ws-enunciado { margin: .5rem 0; }
+details.ws-enunciado summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--accent); font-weight: 600; }
+details.ws-enunciado .ws-statement { margin: .2rem 0 .4rem; }
+
+/* ---- Ayudas de la práctica: botón «Chuleta» (y hueco para la calculadora) y el panel ---- */
+.ayudas { display: inline-flex; align-items: center; gap: .3rem; flex-wrap: wrap; }
+.ayudas-hueco:empty { display: none; }
+button.boton-chuleta { display: inline-flex; align-items: center; gap: .3rem; min-height: 48px; padding: .3rem .7rem; border-radius: 999px; white-space: nowrap; }
+.boton-chuleta .ico { width: 20px; height: 20px; }
+.boton-chuleta.activo { background: var(--accent-2); }
+header.con-ayudas { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; }
+header.con-ayudas h1 { flex: 1 1 14rem; margin-bottom: .2rem; }
+header.con-ayudas .ayudas { margin-left: auto; }
+.ba-derecha .ayudas { justify-content: flex-end; }
+.ba-derecha .boton-chuleta { font-size: .9rem; padding: .3rem .6rem; }
+.chuleta-panel { margin: 0 0 1rem; padding: .3rem 1rem .8rem; background: color-mix(in srgb, var(--accent) 7%, var(--surface)); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius); max-height: 45vh; max-height: 45dvh; overflow-y: auto; overscroll-behavior: contain; scroll-margin-top: 90px; }
+.chuleta-cabecera { display: flex; align-items: center; gap: .5rem; position: sticky; top: -.3rem; background: inherit; padding-top: .3rem; z-index: 1; }
+.chuleta-titulo { flex: 1; font-size: 1.1rem; margin: 0; }
+.chuleta-titulo:focus { outline: none; }
+.chuleta-titulo:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button.chuleta-cerrar { min-width: 48px; min-height: 48px; padding: 0; display: grid; place-items: center; border-radius: 50%; }
+.chuleta-cerrar .ico { width: 20px; height: 20px; }
+.chuleta-aviso { margin: 0 0 .4rem; font-size: .85rem; color: var(--muted); }
+.chuleta-ficha h3, .chuleta-clases h3 { font-size: 1rem; margin: .7rem 0 .2rem; color: var(--accent); }
+.chuleta-ficha ul, .chuleta-clases ul { margin: .1rem 0 .3rem; padding-left: 1.2rem; }
+.chuleta-ficha li, .chuleta-clases li { margin: .15rem 0; }
+.chuleta-ficha strong { font-variant-numeric: tabular-nums; white-space: normal; }
+.chuleta-clases details summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.chuleta-clases { border-top: 1px solid var(--border); margin-top: .6rem; }
+/* En la mesa de cartas, la chuleta flota sobre la carta (no sobre la respuesta, que está en el panel). */
+.chuleta-panel.flotante { position: absolute; bottom: .5rem; left: .5rem; z-index: 4; width: min(380px, calc(100% - 1rem)); max-height: calc(100% - 8.5rem); margin: 0; box-shadow: 0 8px 30px rgba(10, 30, 60, .25); background: var(--surface); }
+@media (max-width: 860px) { .ws-head .boton-chuleta-texto { display: none; } .ws-head .boton-chuleta { width: 48px; padding: 0; justify-content: center; } }
+@media (max-width: 400px) { .ba-derecha .boton-chuleta-texto { display: none; } .ba-derecha .boton-chuleta { padding: 0; width: 48px; justify-content: center; } }
+
+/* ---- Siglas y términos que se explican al tocarlos ---- */
+button.glosa { display: inline; min-height: 0; padding: .35em 0; margin: -.35em 0; border: 0; border-radius: 0; background: none; color: inherit; font: inherit; font-weight: inherit; line-height: inherit; text-align: inherit; cursor: help;
+  text-decoration: underline dotted var(--accent) 2px; text-underline-offset: 4px; }
+button.glosa:hover { color: var(--accent); }
+button.glosa[aria-expanded="true"] { background: var(--accent-2); color: var(--accent); }
+button.glosa:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.glosa-pop { position: fixed; z-index: 90; padding: .6rem .8rem; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-top: 4px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(10, 30, 60, .25); font-size: .95rem; line-height: 1.45; overflow-y: auto; overscroll-behavior: contain; }
+.glosa-pop p { margin: .15rem 0; }
+.glosa-pop .glosa-titulo { font-size: 1rem; }
+.glosa-pop .glosa-tit { font-size: .8rem; color: var(--muted); }
+@media print { button.glosa { text-decoration: none; } .glosa-pop, .ayudas, .chuleta-panel { display: none !important; } }

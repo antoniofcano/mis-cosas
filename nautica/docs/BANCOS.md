@@ -64,7 +64,8 @@ Las soluciones programadas de las preguntas de carta de Andalucía siguen en `sr
 
 - `examen.<tit>`: qué titulaciones tiene el banco (sus claves) y las particularidades del tribunal sobre la
   estructura nacional (RD 875/2014, en `src/theory/blocks.js`). Vacío = estructura nacional tal cual. Claves:
-  `reglas` (líneas que se añaden a «Reglas del examen»); más adelante, p. ej. `{ "calculadora": true }`,
+  `reglas` (líneas que se añaden a «Reglas del examen»); `calculadora` (true/false: si en el examen se permite la
+  calculadora científica; la app la enseña en el simulacro solo si es true; `calculadoraFuente`, de dónde sale); más adelante, p. ej.
   `{ "cuadernillos": 2 }`.
 - `reserva`: claves `conv` reservadas como examen final (F1). `modo`: `examen` (se reservan convocatorias: no se
   ofrecen como examen de convocatoria, pero sus preguntas siguen en la práctica) | `pregunta` (además, sus

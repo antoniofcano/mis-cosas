@@ -31,6 +31,9 @@ import { tarjetasView } from './views/tarjetas.js';
 import { planView } from './views/plan.js';
 import { mapasView } from './views/mapas.js';
 import { podcastView } from './views/podcast.js';
+import { calculadoraView } from './views/calculadora.js';
+import { cuentasView } from './views/cuentas.js';
+import { iniciarCalculadora } from './calculadora.js';
 import { iniciarRadio, enVistaEpisodio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
@@ -49,6 +52,7 @@ const TIT_ROUTES = {
   plan: planView, // #/<tit>/plan: calendario hasta el examen
   mapas: mapasView, // #/<tit>/mapas[/<id>]: mapas de conceptos
   podcast: podcastView, // #/<tit>/podcast[/<id>]: la radio de a bordo (podcasts)
+  cuentas: (o) => (o.params.parts[1] ? leccionView(o) : cuentasView(o)), // #/<tit>/cuentas[/<id>]: apéndice de matemáticas
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
@@ -66,6 +70,7 @@ const ROUTES = {
   mesa: chartView,
   conceptos: theoryView,
   reglas: reglasView,
+  calculadora: calculadoraView, // #/calculadora: la calculadora científica
   progreso: progressView,
   ajustes: masView,
 };
@@ -107,7 +112,7 @@ function esFoco(parts) {
   if (parts[0] === 'bienvenida') return true;
   if (!TITULACIONES[parts[0]]) return false;
   const [, b, c] = parts;
-  return b === 'guia' || (b === 'curso' && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c);
+  return b === 'guia' || ((b === 'curso' || b === 'cuentas') && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c);
 }
 
 /** Misma sección en la otra titulación (una clase o un tema concreto no existen en la otra: se va a su apartado). */
@@ -115,6 +120,7 @@ export function rutaEnTit(parts, id) {
   if (!TITULACIONES[parts[0]]) return null; // rutas comunes (reglas, mesa…): se queda en la misma página
   const b = parts[1];
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
+  if (b === 'cuentas') return [id, 'cuentas'];
   if (['examenes', 'laminas', 'biblioteca', 'carta'].includes(b)) return [id, b];
   return [id];
 }
@@ -168,6 +174,7 @@ async function main() {
   setSharedProgress(progress);
   voice.bind(progress);
   iniciarRadio(progress);
+  iniciarCalculadora();
   let current = null;
 
   const session = { summary: () => current?.summary?.() ?? '' };

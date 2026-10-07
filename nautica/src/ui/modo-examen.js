@@ -12,7 +12,7 @@ export function modoExamen() {
 }
 
 /** ¿Se puede usar la calculadora ahora? Fuera de un examen, sí; dentro, solo si el eje y la titulación lo permiten. */
-export function calculadoraPermitida() {
+export function calculadoraEnExamen() {
   if (!modoExamen()) return true;
   return document.body.dataset.calculadora === 'si';
 }

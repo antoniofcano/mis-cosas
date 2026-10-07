@@ -129,17 +129,44 @@ export function proponer(eje, tit) {
   // En el orden del banco.
   const orden = new Map(qs.map((q, i) => [q.id, i]));
   for (const l of Object.keys(practica)) practica[l] = [...new Set(practica[l])].sort((a, b) => orden.get(a) - orden.get(b));
-  return { practica, faltan, lecciones: lecciones.map((l) => ({ id: l.id, titulo: l.titulo, n: practica[l.id].length, referencia: (practicaRef[l.id] ?? []).length })) };
+  const estudio = qs.filter(estudiable);
+  const porTema = (xs) => xs.reduce((m, q) => m.set(q.ut, (m.get(q.ut) ?? 0) + 1), new Map());
+  return {
+    practica, faltan, estudio: estudio.length, referencia: ref.length, temas: { eje: porTema(estudio), referencia: porTema(ref) },
+    lecciones: lecciones.map((l) => ({ id: l.id, ut: l.ut, titulo: l.titulo, n: practica[l.id].length, referencia: (practicaRef[l.id] ?? []).length })),
+  };
 }
 
 export const textoPractica = (p) => `{\n${Object.entries(p).map(([l, ids]) => `${JSON.stringify(l)}:${JSON.stringify(ids)}`).join(',\n')}\n}\n`;
 
+/** Informe de la práctica (tools/bancos/informes/<eje>-practica.md): preguntas por clase frente a la referencia y por
+ * qué no llegan las que no llegan. */
+export function informePractica(eje, porTit) {
+  const l = [`# Práctica por clase · ${eje}`, '', `Generado por \`node tools/bancos/practica.mjs ${eje} --escribir\`. Referencia: la práctica de ${REFERENCIA}.`,
+    'Solo entran preguntas de estudio (ni anuladas, ni retiradas, ni de convocatorias reservadas para el examen final).', ''];
+  for (const [tit, r] of Object.entries(porTit)) {
+    const cortas = r.lecciones.filter((x) => r.faltan[x.id]);
+    l.push(`## ${tit.toUpperCase()}`, '', `Preguntas de estudio: ${r.estudio} (referencia: ${r.referencia}). Por tema: ${[...r.temas.eje].sort((a, b) => a[0] - b[0]).map(([ut, n]) => `UT${ut} ${n} (ref ${r.temas.referencia.get(ut) ?? 0})`).join(' · ')}.`, '');
+    if (cortas.length) {
+      l.push(`${cortas.length} clases no llegan a las preguntas de su homóloga: el tema no tiene tantas preguntas de estudio que la clase explique `
+        + '(el banco de este eje es más pequeño en ese tema, o sus preguntas tratan sobre todo lo de otras clases). Se dejan con las que le corresponden de verdad, sin rellenar con preguntas de otras clases.', '');
+    }
+    l.push('| Clase | Preguntas | Referencia | |', '|---|---:|---:|---|');
+    for (const x of r.lecciones) l.push(`| ${x.id} ${x.titulo} | ${x.n} | ${x.referencia} | ${r.faltan[x.id] ? 'no llega' : ''} |`);
+    l.push('');
+  }
+  return l.join('\n');
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const [eje, opcion] = process.argv.slice(2);
   const ficha = leerJSON(join(RAIZ, 'data', 'ejes', eje, 'eje.json'));
+  const porTit = {};
   for (const tit of Object.keys(ficha.examen)) {
     const r = proponer(eje, tit);
+    porTit[tit] = r;
     for (const l of r.lecciones) console.log(`${l.id.padEnd(10)} ${String(l.n).padStart(3)} (ref ${String(l.referencia).padStart(2)})${r.faltan[l.id] ? '  ← faltan' : ''}  ${l.titulo}`);
     if (opcion === '--escribir') escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'practica.json'), textoPractica(r.practica));
   }
+  if (opcion === '--escribir') escribirTexto(join(RAIZ, 'tools', 'bancos', 'informes', `${eje}-practica.md`), informePractica(eje, porTit));
 }

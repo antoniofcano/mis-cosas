@@ -2108,7 +2108,8 @@
  "dgmm-py-2024-11-16": {
   "explicacion": "La mar de fondo es oleaje que ha salido de la zona donde lo levantó el viento y viaja lejos, regular y de periodo largo. Su origen es el viento; la marea y las corrientes pueden modificarla (por ejemplo, con corriente en contra se encrespa), y por eso la oficial las incluye. Los buques, la luna llena o la temperatura no la generan.",
   "clave": "Mar de fondo = olas de un viento lejano.",
-  "trampa": "La b): la Luna produce mareas, no mar de fondo."
+  "trampa": "La b): la Luna produce mareas, no mar de fondo.",
+  "discrepancia": "La mar de fondo la genera solo el viento: es el oleaje que levantó un temporal lejano y que sigue propagándose fuera de la zona donde sopla. La marea y las corrientes no generan oleaje; como mucho lo modifican (con corriente en contra las olas se hacen más cortas y empinadas). La c) es la única opción que nombra el viento y por eso es la oficial, pero lo que añade sobre la marea y las corrientes no es correcto. Ninguna otra opción es defendible."
  },
  "dgmm-py-2024-11-17": {
   "explicacion": "El viento geostrófico es el que resulta del equilibrio entre la fuerza del gradiente horizontal de presión y la de Coriolis: sopla paralelo a las isobaras rectas. Con solo el gradiente sería el viento de Euler, el de gradiente añade la fuerza centrífuga por isobaras curvas, y el ciclostrófico equilibra gradiente y centrífuga sin Coriolis.",

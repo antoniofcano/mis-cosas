@@ -36,11 +36,26 @@ export const rcCardinal = {
       return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
     },
   },
+  'and-py-2018-c2-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.fromMark('cabo-espartel', W, 6.4, 'Situación 10:00');
+      const t = hrb(12) - hrb(10);
+      const ct = k.ct({ dm: -3, desvio: 3 });
+      const rv = k.rv(73, ct);
+      const est = k.run(s, rv, k.distFor(6, t), 'Situación de estima 12:00');
+      // Al W verdadero de Punta Cires y al N verdadero del faro de Punta Malabata.
+      const obs = k.cardinal2('punta-cires', W, 'punta-malabata', N, 'Situación observada 12:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
 };
 
 export const documentadas = {
   'and-py-2018-c1-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c): situación 08:00 a 3 millas de Punta Cires (Dv 120°), estima de 10 millas al 090° y situación observada 10:00 a 8 millas de Punta Europa (Dv 017°) dan Rc = 314° (NW) e Ihc = 2,1′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = NW Ihc = 2,0´») y el lector de opciones no lo lee (ninguna opción legible). Código en `rcCardinal`.' },
   'and-py-2018-c1b-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d): estima de 4,8 millas al 300° desde 36° 00′ N, 5° 50′ W y situación observada 14:00 al S verdadero del faro de Barbate y al W verdadero del de Punta Paloma dan Rc = 355° (N) e Ihc = 1,5′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = N Ihc = 1,6´») y el lector de opciones no lo lee. Código en `rcCardinal`.' },
+  'and-py-2018-c2-n14': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (c): salida 10:00 a 6,4 millas al W verdadero de Cabo Espartel, Rv = 073° + (−3° + 3°) = 073°, estima de 12 millas, y situación observada 12:00 al W verdadero de Punta Cires y al N verdadero del faro de Punta Malabata dan Rc = 043° (NE) e Ihc = 2,5′. No queda en `default` porque las opciones dan el rumbo de la corriente como un cardinal («Rc = NE Ihc = 2,5´») y el lector de opciones no lo lee. Código en `rcCardinal`.' },
 };
 
 export default {
@@ -219,6 +234,96 @@ export default {
     solve(k) {
       const a = k.pos('13 00,0 N', '176 30,0 E', 'Salida');
       const b = k.pos('11 00,0 S', '174 50,0 E', 'Llegada');
+      const { rumbo, dist } = k.rumboDirecto(a, b);
+      return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
+    },
+  },
+  // ---- 2ª Convocatoria 2018
+  'and-py-2018-c2-n11': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // El Ra 335º y la velocidad no intervienen. En la enfilación vemos Cabo Roche detrás de Trafalgar, hacia el NW: la
+      // demora de Trafalgar es la de la línea.
+      const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 314);
+      const ct = k.ctFrom(dv, 314);
+      k.note('Lectura de las opciones', 'En el cuadernillo la «º» se lee como un 0: «+90 (más)» es +9°.');
+      return ctLeidaConCero(ct);
+    },
+  },
+  'and-py-2018-c2-n12': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fromMark('punta-alcazar', N, 5, 'Salida 20:00');
+      // Pasamos al N de Punta Almina: el faro queda por estribor.
+      const rs = k.tangent(s, 'punta-almina', 3, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 20, N);
+      const ct = k.ct({ dm: 5, desvio: 7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2018-c2-n13': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const s = k.pos('35 55,0 N', '5 50,0 W', 'Situación 11:00');
+      const ct = k.ct({ dm: -3, desvio: -7 });
+      const rv = k.rv(300, ct);
+      const rs = k.abatimiento(rv, 15, NE);
+      return latlon(k.run(s, rs, k.distFor(6, hrb(13, 30) - hrb(11)), 'Situación 13:30'));
+    },
+  },
+  'and-py-2018-c2-n15': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      // «Faro de Punta Camarinal» = faro de Punta Gracia.
+      const s = k.fix2('punta-gracia', 330, 'isla-tarifa', 60, 'Situación 18:00');
+      const { ref, vef } = k.efectivo(290, 6, N, 3, s);
+      return latlon(k.estimaEfectiva(s, ref, vef, hrb(19, 30) - hrb(18), 'Situación 19:30'));
+    },
+  },
+  'and-py-2018-c2-n16': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 15,0 W', 'Salida 09:00');
+      const { rs, vb } = k.rumboYVelocidad(s, 'algeciras-espigon', hrb(10, 30) - hrb(9), SW, 3);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ carta: [6, 2008, -6], anyo: 2018, desvio: 8 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2018-c2-n17': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fromMark('punta-carnero', E, 2, 'Salida 17:30');
+      const { rv: rs, dist } = k.rhumb(s, 'ceuta-bocana');
+      const rv = k.rvConAbatimiento(rs, 15, E);
+      const ct = k.ct({ dm: -6, desvio: -3 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(17, 30), dist, 6) }];
+    },
+  },
+  'and-py-2018-c2-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Segunda bajamar (13:42 UT) → segunda pleamar (20:01 UT).
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 2 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 3.90, 1.85, 2) }];
+    },
+  },
+  'and-py-2018-c2-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(13, 15), 2);
+      const tr = k.tramoMarea(q.tabla_mareas, { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 1.85) }];
+    },
+  },
+  'and-py-2018-c2-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('23 00,0 N', '179 50,0 E', 'Salida');
+      const b = k.pos('28 00,0 N', '178 35,0 W', 'Llegada');
       const { rumbo, dist } = k.rumboDirecto(a, b);
       return [{ kind: 'bearing', value: rumbo }, { kind: 'distance', value: dist }];
     },

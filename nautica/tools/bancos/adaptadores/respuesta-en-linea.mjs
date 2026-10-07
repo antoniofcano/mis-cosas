@@ -98,7 +98,8 @@ export function analizarTexto(texto, { paginas = 0 } = {}) {
   };
   for (const pag of t.split('\f')) {
     for (const bruta of pag.split('\n')) {
-      let l = bruta.replace(/[  ]/g, ' ').trim();
+      // \u0092 es el apóstrofo de Windows-1252 que algunos PDF dejan sin convertir: «58\u00924» → «58'4».
+      let l = bruta.replace(/[  ]/g, ' ').replace(/\u0092/g, "'").trim();
       if (!l || /^\d+\s*-\s*\d+$/.test(l) || /^P[àa]gina \d+/i.test(l)) continue;
       const h = RE_CABECERA.exec(l);
       if (h) {

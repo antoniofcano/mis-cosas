@@ -260,5 +260,214 @@
       }
     ],
     "concepto": "and-2021-c1-t21"
+  },
+  "and-2019-c2-t28": {
+    "explicacion": "Amollar es aflojar un cabo, darle seno para que trabaje con menos tensión. Lo contrario es templar (dar tensión); virar es cobrar cabo con un medio mecánico, acortar un cabo no tiene ese nombre y agarrarlo con fuerza sería aguantarlo o hacerlo firme.",
+    "clave": "Amollar = aflojar; templar = tensar.",
+    "trampa": "Confundir amollar con virar porque las dos se hacen con el cabo trabajando.",
+    "concepto": null
+  },
+  "and-2019-c2-t29": {
+    "explicacion": "Con hélice dextrógira, al dar atrás la presión lateral de las palas y la corriente de expulsión llevan la popa a babor, así que la proa cae a estribor, aunque el barco aún lleve arrancada avante. La a) es lo que ocurriría con una levógira, y no hay efecto nulo ni cambio de banda en dos fases.",
+    "clave": "Dextrógira atrás: popa a babor, proa a estribor.",
+    "trampa": "Responder pensando en la popa cuando te preguntan por la proa.",
+    "ilustraciones": [
+      {
+        "tipo": "helice",
+        "sentido": "dextrogira",
+        "marcha": "atras"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c2-t30": {
+    "explicacion": "Los objetos clavados en el abdomen no se retiran nunca: se inmovilizan tal como están, porque pueden estar taponando una hemorragia y al sacarlos se agravaría la lesión. Lo demás es lo que aconseja la Guía Sanitaria a Bordo: tumbado boca arriba con las piernas flexionadas, no reintroducir el intestino (se cubre con un paño limpio humedecido) y pedir consejo médico por radio.",
+    "clave": "Objeto clavado: se inmoviliza, no se saca.",
+    "trampa": "Pregunta en negativo: «con suavidad» hace que la c) suene razonable.",
+    "concepto": null
+  },
+  "and-2019-c2-t31": {
+    "explicacion": "El tetraedro del fuego tiene cuatro elementos: combustible, comburente (normalmente el oxígeno del aire), calor (energía de activación) y reacción en cadena. Los materiales ignífugos precisamente no arden, y las opciones c) y d) repiten el oxígeno, que ya es el comburente, y se dejan fuera el calor o la reacción en cadena.",
+    "clave": "Tetraedro: combustible, comburente, calor y reacción en cadena.",
+    "trampa": "Oxígeno y comburente son lo mismo: si aparecen los dos, sobra uno.",
+    "concepto": "and-2026-c2-t32"
+  },
+  "and-2019-c2-t32": {
+    "explicacion": "El extintor de polvo se agita o se voltea antes de usarlo para soltar el polvo si está apelmazado, se presuriza si es de presión adosada, y se dirige el chorro a la base de las llamas, que es donde está el combustible ardiendo. Por eso valen la a) y la c); atacar directamente las llamas (la b) desperdicia el agente y no apaga el foco.",
+    "clave": "Extintor: agitar, presurizar si hace falta y a la base del fuego.",
+    "trampa": "La b) y la c) solo se diferencian en «llamas» frente a «base del fuego».",
+    "concepto": null
+  },
+  "and-2019-c2-t33": {
+    "explicacion": "El terral sopla de noche y desde tierra hacia el mar, porque de noche la tierra se enfría antes que el agua y el aire frío de tierra se desplaza hacia la mar. La virazón es la brisa contraria: de día y del mar a tierra.",
+    "clave": "Terral: noche, tierra→mar. Virazón: día, mar→tierra.",
+    "trampa": "Terral viene de «tierra»: sopla desde tierra, de noche.",
+    "ilustraciones": [
+      {
+        "tipo": "meteo",
+        "sistema": "brisa-tierra"
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c2-t34": {
+    "explicacion": "El viento está racheado cuando su intensidad sube y baja continuamente, a golpes, en vez de soplar de forma uniforme. Si aumenta y se mantiene, el viento refresca; si disminuye hasta cero, calma; y un cambio lento alrededor de un promedio no es una racha.",
+    "clave": "Racheado = fuerza que sube y baja a golpes.",
+    "trampa": "La a) es refrescar, no rachear.",
+    "concepto": null
+  },
+  "and-2019-c2-t35": {
+    "explicacion": "La persistencia es el tiempo que lleva soplando el viento con la misma dirección e intensidad. La extensión de mar en la que sopla así es el fetch, y la fuerza o velocidad es la intensidad; las tres juntas determinan el estado de la mar.",
+    "clave": "Persistencia = tiempo; fetch = distancia; intensidad = fuerza.",
+    "trampa": "El fetch es una distancia; la persistencia es un tiempo. No los confundas.",
+    "concepto": null
+  },
+  "and-2019-c2-t36": {
+    "explicacion": "El anemómetro mide la velocidad del viento que llega al barco, es decir, la del viento aparente. Pero si el barco está parado no hay viento de marcha que sumar, y el aparente coincide con el real: la lectura es la del viento real. El anemómetro mide velocidad (la dirección la da la veleta o catavientos) y funciona también parado.",
+    "clave": "Parado: aparente = real. Navegando: aparente = real + viento de tu marcha.",
+    "trampa": "Responder «aparente» por reflejo, olvidando que parado son iguales.",
+    "concepto": null
+  },
+  "and-2019-c2-t37": {
+    "explicacion": "El rumbo es el ángulo entre el meridiano (la dirección Norte) y la línea proa-popa del barco, contado de 0° a 360° en sentido horario. El ángulo entre el meridiano y la visual a un objeto es la demora, y el que va de la proa a la visual es la marcación; la d) no define nada.",
+    "clave": "Rumbo: Norte → proa. Demora: Norte → objeto. Marcación: proa → objeto.",
+    "trampa": "La a) es la definición de demora, puesta para que la marques sin leer el final.",
+    "ilustraciones": [
+      {
+        "tipo": "rosa",
+        "rumbo": 30
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c2-t38": {
+    "explicacion": "El chapitel, los imanes y el estilo son partes de la aguja náutica: los imanes van unidos a la rosa, que descansa mediante el chapitel sobre la punta del estilo. En la a) se cuela el núcleo (que es de la hélice) y en la c) el capacete (de la bitácora o de la hélice), así que la d) tampoco vale.",
+    "clave": "Rosa con imanes → chapitel → sobre el estilo, dentro del mortero.",
+    "trampa": "La a) y la c) mezclan una pieza válida (mortero, línea de fe) con otra que no es de la aguja.",
+    "concepto": "and-2025-c2-t38"
+  },
+  "and-2019-c2-t39": {
+    "explicacion": "Con baja presión atmosférica el mar «se levanta», de modo que la marea alcanza más altura de la prevista en las tablas, en torno a 1 cm por cada hPa por debajo de la presión normal. Con altas presiones ocurre lo contrario, y el efecto es sobre la altura, no sobre la hora de la pleamar.",
+    "clave": "Presión baja → agua más alta; presión alta → agua más baja.",
+    "trampa": "La b) es justo el efecto de las altas presiones.",
+    "concepto": "and-2026-c2-t39"
+  },
+  "and-2019-c2-t40": {
+    "explicacion": "El abatimiento es el ángulo entre el rumbo verdadero y el que realmente hace el barco cuando el viento lo empuja hacia sotavento, sin contar la corriente. La b) describe el efecto de la corriente (deriva), y la c) mezcla viento y corriente, lo que da el rumbo efectivo respecto al fondo; por eso la d) tampoco vale.",
+    "clave": "Abatimiento: solo viento, hacia sotavento. Deriva: corriente.",
+    "trampa": "La c) mezcla corriente: eso ya no es abatimiento puro.",
+    "concepto": "and-2025-c1-t37"
+  },
+  "and-2019-c2-t41": {
+    "explicacion": "Los portulanos son las cartas de mayor escala: dan el detalle más completo de una pequeña extensión, como puertos, radas, ensenadas o fondeaderos. Las de recalada sirven para aproximarse a la costa o a un puerto, las de navegación costera cubren tramos amplios de litoral, y el cartucho es un recuadro ampliado dentro de otra carta, no un tipo de carta.",
+    "clave": "Portulano = puerto en detalle (máxima escala).",
+    "trampa": "El cartucho también amplía, pero es un recuadro dentro de otra carta.",
+    "concepto": "and-2025-c3-t39"
+  },
+  "and-2019-c3-t01": {
+    "explicacion": "La flecha señala el eje vertical sobre el que gira la pala: es la mecha del timón. La limera es el orificio del casco por el que pasa la mecha, la caña es la palanca con la que se gobierna desde arriba y los guardines son los cables que llevan el giro de la rueda al timón.",
+    "clave": "Mecha = eje; limera = agujero; caña = palanca.",
+    "trampa": "Mecha y limera aparecen juntas en el dibujo: una es el eje y la otra el agujero por el que pasa.",
+    "concepto": null
+  },
+  "and-2019-c3-t02": {
+    "explicacion": "El rezón es el ancla pequeña de cuatro (o cinco) brazos terminados en uña, típica de botes y embarcaciones menores. La Danforth tiene dos uñas planas que pivotan, la de cepo (almirantazgo) dos brazos y una barra transversal, y la de arado una sola reja.",
+    "clave": "Rezón: cuatro brazos con uña.",
+    "trampa": "Confundir el número de brazos: Danforth y cepo tienen dos.",
+    "concepto": null
+  },
+  "and-2019-c3-t03": {
+    "explicacion": "La bocina es el orificio (o tubo) del casco, a popa, por el que sale el eje del motor hacia la hélice, con su sistema de estanqueidad. El núcleo es la pieza de la hélice donde van acopladas las palas (la a y la b dicen lo mismo), y la sirena no tiene nada que ver.",
+    "clave": "Bocina = eje de la hélice; limera = mecha del timón.",
+    "trampa": "«Bocina» en tierra es la sirena: aquí es el paso del eje.",
+    "concepto": "and-2021-c2-t04"
+  },
+  "and-2019-c3-t04": {
+    "explicacion": "Las aletas son las zonas del costado donde la manga va disminuyendo para cerrar y formar la popa. Las amuras son lo mismo pero a proa, el través es la dirección perpendicular a la crujía y la línea de crujía es el plano longitudinal de proa a popa por el centro del barco.",
+    "clave": "Amura a proa, aleta a popa.",
+    "trampa": "Confundir amura y aleta: las dos son zonas curvas del costado.",
+    "ilustraciones": [
+      {
+        "tipo": "barco",
+        "resaltar": [
+          "aleta"
+        ]
+      }
+    ],
+    "concepto": null
+  },
+  "and-2019-c3-t05": {
+    "explicacion": "Los guía-cabos son piezas (con forma de boca o con rodillos) por las que pasan las amarras para conducirlas en la dirección correcta y evitar que rocen con el casco, la borda u otros elementos. Bitas y cornamusas sirven para hacer firmes los cabos, y la roldana es la rueda de una polea por la que laborea el cabo.",
+    "clave": "Guía-cabos guía y protege; cornamusa y bita sujetan; roldana gira.",
+    "trampa": "La roldana también conduce el cabo, pero es la rueda de una polea.",
+    "concepto": "and-2022-c3-t05"
+  },
+  "and-2019-c3-t06": {
+    "explicacion": "Si al levar la cadena tira por largo con mucha fuerza, el barco está lejos del ancla y el molinete estaría arrastrando el barco entero. Lo correcto es dar unas paladas avante para acercarte al ancla y aliviar la tensión mientras cobras cadena. Forzar el molinete puede averiarlo, dar atrás aumenta la tensión y meter todo el timón no resuelve el problema.",
+    "clave": "Tira por largo: avante suave hacia el ancla.",
+    "trampa": "Aumentar la fuerza del molinete parece lógico, pero lo puedes romper.",
+    "concepto": "and-2020-c3-t06"
+  },
+  "and-2019-c3-t08": {
+    "explicacion": "Capear el temporal es recibir la mar por la amura, con la máquina justa para mantener arrancada avante y gobierno, de modo que el barco suba y baje las olas sin golpes excesivos ni quedar atravesado. Correr el temporal es lo contrario (mar por popa o aleta), «a son de mar» se refiere a la estiba y trinca, y el sincronismo es el peligroso fenómeno de que el periodo de la ola coincida con el de balance del barco.",
+    "clave": "Capear = amura y poca máquina; correr = popa o aleta.",
+    "trampa": "Confundir sincronismo o «a son de mar» con una maniobra.",
+    "ilustraciones": [
+      {
+        "tipo": "barco",
+        "resaltar": [
+          "amura"
+        ]
+      }
+    ],
+    "concepto": "and-2020-c1-t07"
+  },
+  "and-2019-c3-t09": {
+    "explicacion": "La maniobra de Anderson consiste en meter todo el timón a la banda de la caída y mantenerlo hasta haber caído unos 270°, de modo que el náufrago queda por la proa para la aproximación final. Es la más rápida cuando se ve al náufrago. La de Boutakow o Williamson (que son la misma) cae unos 70° y luego mete el timón a la banda contraria hasta el rumbo opuesto, para volver por la propia estela.",
+    "clave": "Anderson: giro de unos 270° y náufrago por la proa. Boutakow/Williamson: 70° y vuelta por la estela.",
+    "trampa": "Boutakow y Williamson son dos nombres de la misma maniobra; ninguna es la de 270°.",
+    "concepto": null
+  },
+  "and-2019-c3-t10": {
+    "explicacion": "«A son de mar» significa tener todo el material y los elementos del barco estibados y trincados a conciencia antes de salir, para que nada se mueva ni se suelte con los balances. No es ninguna forma de navegar: buscar el sincronismo con las olas sería peligrosísimo, y recibir la mar por la amura es capear.",
+    "clave": "A son de mar = todo estibado y trincado.",
+    "trampa": "La expresión suena a maniobra, pero se refiere a la estiba.",
+    "concepto": null
+  },
+  "and-2019-c3-t11": {
+    "explicacion": "Las tres zonas tienen limitaciones: en las playas no balizadas se presume una zona de baño de 200 m (50 m en el resto de la costa, como los acantilados) donde no se navega a más de 3 nudos, y en las reservas marinas la navegación, el fondeo y la pesca están regulados por su norma de protección. Hoy la regla de las playas y la costa está en el art. 73 del Reglamento General de Costas (RD 876/2014), después de que el RD 186/2023 derogara la antigua orden de bañistas.",
+    "clave": "Playas sin balizar: 200 m; resto de costa: 50 m; máximo 3 nudos. Reservas marinas: con su propia norma.",
+    "trampa": "Pensar que sin boyas no hay limitación.",
+    "concepto": null
+  },
+  "and-2019-c3-t12": {
+    "explicacion": "El capitán o patrón está obligado a prestar auxilio a las personas en peligro en el mar, siempre que pueda hacerlo sin grave riesgo para su barco y su gente. Si no puede o no procede, debe anotar en el diario de navegación por qué no acudió e informar a los servicios de búsqueda y salvamento. La a) suprime ese deber de informar, la c) niega la obligación, y por tanto la d) tampoco vale.",
+    "clave": "Auxilio: obligación siempre; si no acudes, lo justificas por escrito y avisas a Salvamento.",
+    "trampa": "La c) parece razonable porque existe Salvamento, pero no exime al patrón.",
+    "concepto": null
+  },
+  "and-2019-c3-t13": {
+    "explicacion": "Una marca verde con una banda horizontal roja es una lateral de estribor modificada: indica una bifurcación con el canal principal a babor, y su tope es un cono verde. Entrando la dejas por estribor si sigues el canal principal (manda el color de fondo), pero no «siempre»: para tomar el canal secundario la dejarías por babor, por eso fallan la a) y la b). La d) es la de la marca roja con banda verde.",
+    "clave": "El color de fondo dice por dónde la dejas; la banda, hacia dónde queda el canal principal.",
+    "trampa": "Pensar que la banda roja indica que el canal principal está a estribor.",
+    "ilustraciones": [
+      {
+        "tipo": "boya",
+        "clase": "canal-principal-babor"
+      }
+    ],
+    "concepto": "and-2021-c1-t13"
+  },
+  "and-2019-c3-t14": {
+    "explicacion": "El tope de la marca de aguas navegables, si lo tiene, es una única esfera roja, a juego con sus franjas verticales rojas y blancas. El cilindro es propio de las laterales de babor, el aspa amarilla de las marcas especiales, y que no lleve tope es posible pero no es la respuesta a qué tope lleva.",
+    "clave": "Aguas navegables: una esfera roja.",
+    "trampa": "Confundir con las dos esferas negras del peligro aislado.",
+    "ilustraciones": [
+      {
+        "tipo": "boya",
+        "clase": "aguas-navegables"
+      }
+    ],
+    "concepto": "and-2022-c1-t13"
   }
 }

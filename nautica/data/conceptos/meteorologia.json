@@ -41,7 +41,11 @@
     "peso por unidad de superficie",
     "gravedad",
     "máxima a nivel del mar",
-    "disminuye con la altura"
+    "disminuye con la altura",
+    "presión atmosférica",
+    "columna de aire",
+    "peso del aire",
+    "atracción gravitatoria"
    ],
    "nota": "Definición (peso por unidad de superficie de la columna de aire), su causa (gravedad) y que disminuye con la altura. No incluye valores ni unidades.",
    "padre": "meteo.presion",
@@ -68,7 +72,12 @@
     "hectopascal",
     "baja presión",
     "presión normal a nivel del mar",
-    "0 ºC y 45º de latitud"
+    "0 ºC y 45º de latitud",
+    "presión normal",
+    "valor normal",
+    "presión media",
+    "unidades de medida de la presión",
+    "milibares"
    ],
    "nota": "Valor normal a nivel del mar (1013,25 hPa = 760 mmHg = 1 atm), equivalencia mb = hPa, otras unidades y qué se considera alta o baja presión.",
    "padre": "meteo.presion",
@@ -93,7 +102,9 @@
     "fuerzas elásticas",
     "lectura directa",
     "barógrafo",
-    "barómetro de mercurio"
+    "barómetro de mercurio",
+    "barómetro aneroide",
+    "barómetros"
    ],
    "nota": "Tipos de barómetro, funcionamiento del aneroide (cápsula de Vidi con vacío parcial, fuerzas elásticas, lectura directa), barógrafo y correcciones. La interpretación de la lectura va en meteo.presion.tendencia.",
    "padre": "meteo.presion",
@@ -117,7 +128,11 @@
     "tendencia a la mejoría",
     "presagio de mal tiempo",
     "barómetro baja",
-    "predicción local"
+    "predicción local",
+    "barómetro",
+    "lectura de presión",
+    "subida lenta",
+    "bajada de la presión"
    ],
    "nota": "Qué anuncia cada evolución del barómetro (lenta/brusca, sube/baja), solo o junto a la temperatura, y por qué importa más la tendencia que el valor.",
    "padre": "meteo.presion",
@@ -147,7 +162,10 @@
     "intersección de las superficies isobáricas",
     "isotermas",
     "mapa isobárico",
-    "separación de 4 mb"
+    "separación de 4 mb",
+    "isobaras",
+    "línea isobárica",
+    "líneas isobáricas"
    ],
    "nota": "Qué es una isobara (y una superficie isobárica), en qué superficie se dibujan, su separación habitual y no confundirlas con isotermas, isobatas o isalobaras. La relación con el viento va en meteo.presion.gradiente.",
    "padre": "meteo.presion",
@@ -171,7 +189,11 @@
     "gradiente barométrico",
     "inclinación de las superficies isobáricas",
     "viento de altas a bajas presiones",
-    "intensidad del viento"
+    "intensidad del viento",
+    "gradiente de presión",
+    "gradiente horizontal",
+    "isobaras muy juntas",
+    "proximidad de las isobaras"
    ],
    "nota": "El aire va de altas a bajas presiones; definición del gradiente horizontal (diferencia de presión por unidad de distancia, perpendicular a las isobaras) y su relación con la separación de isobaras, la inclinación de las superficies isobáricas y la fuerza del viento.",
    "padre": "meteo.presion",
@@ -234,7 +256,9 @@
     "grado de calor del aire",
     "movimiento de las moléculas",
     "equilibrio térmico",
-    "temperatura y presión"
+    "temperatura y presión",
+    "temperatura",
+    "definición de temperatura"
    ],
    "nota": "Definición de temperatura (física y meteorológica) y afirmaciones sobre su relación con la presión.",
    "padre": "meteo.temperatura",
@@ -258,7 +282,10 @@
     "100 divisiones",
     "termómetro",
     "termógrafo",
-    "dilatación"
+    "dilatación",
+    "escala centígrada",
+    "punto de fusión",
+    "ebullición"
    ],
    "nota": "Puntos de referencia de la escala centígrada (0 ºC fusión del hielo, 100 ºC ebullición), sus divisiones y valores negativos; termómetro y termógrafo.",
    "padre": "meteo.temperatura",
@@ -301,7 +328,10 @@
     "presión menor en el centro",
     "aire asciende",
     "tiempo inestable",
-    "borrasca profunda"
+    "borrasca profunda",
+    "borrasca",
+    "borrascas",
+    "bajas presiones"
    ],
    "nota": "Qué es una borrasca (presión mínima en el centro, isobaras cerradas que crecen hacia fuera, convergencia y ascenso del aire), cómo se rotula y el tiempo que trae. El giro del viento va en meteo.sistemas.circulacion.",
    "padre": "meteo.sistemas",
@@ -331,7 +361,9 @@
     "aire desciende",
     "presión mayor en el centro",
     "tiempo estable",
-    "vientos flojos"
+    "vientos flojos",
+    "anticiclón",
+    "anticiclones"
    ],
    "nota": "Qué es un anticiclón (presión máxima en el centro, divergencia y descenso del aire), cómo se rotula y el tiempo estable y de vientos flojos que trae.",
    "padre": "meteo.sistemas",
@@ -358,7 +390,10 @@
     "sentido ciclónico",
     "contrario a las agujas del reloj",
     "componente hacia dentro",
-    "componente hacia fuera"
+    "componente hacia fuera",
+    "circula",
+    "circulación de los vientos",
+    "giran"
    ],
    "nota": "En el hemisferio norte el viento gira en sentido antihorario y hacia dentro en la borrasca, y horario y hacia fuera en el anticiclón.",
    "padre": "meteo.sistemas",
@@ -380,7 +415,11 @@
     "de oeste a este",
     "hacia el NE",
     "velocidad de traslación",
-    "rotación de la Tierra"
+    "rotación de la Tierra",
+    "trayectoria",
+    "se desplazan",
+    "desplazamiento de las borrascas",
+    "componente sur"
    ],
    "nota": "En nuestras latitudes las borrascas se desplazan en general de W a E (con componente NE); velocidad de traslación habitual.",
    "padre": "meteo.sistemas",
@@ -464,7 +503,10 @@
     "poniente va hacia el este",
     "procede de",
     "cuadrante",
-    "de dónde viene"
+    "de dónde viene",
+    "se nombra",
+    "quiere decir que va hacia",
+    "se dirige hacia"
    ],
    "nota": "El viento se nombra por la dirección de la que procede (un poniente sopla hacia el E). Incluye los cuadrantes de la rosa.",
    "padre": "meteo.viento",
@@ -514,7 +556,8 @@
     "ha rolado",
     "rolando",
     "cambio de dirección",
-    "girar el viento"
+    "girar el viento",
+    "rolar"
    ],
    "nota": "Rolar es cambiar el viento de dirección (no implica cambio de intensidad).",
    "padre": "meteo.viento",
@@ -538,7 +581,10 @@
     "disminuye su intensidad",
     "calmar",
     "amainar",
-    "encalmarse"
+    "encalmarse",
+    "refrescar",
+    "caer",
+    "refrescando"
    ],
    "nota": "Refrescar es aumentar la intensidad; caer, disminuir; calmar, quedar sin viento.",
    "padre": "meteo.viento",
@@ -629,7 +675,12 @@
     "viento relativo",
     "viento aparente",
     "el que notamos a bordo",
-    "embarcación parada"
+    "embarcación parada",
+    "viento real",
+    "aparente",
+    "experimentado en cubierta",
+    "observado a bordo",
+    "real relativo y aparente"
    ],
    "nota": "Real: el que sopla (lo que se mide con el barco parado); relativo o de avance: el que crea nuestro movimiento; aparente: la resultante, la que marcan anemómetro y catavientos navegando.",
    "padre": "meteo.viento",
@@ -650,7 +701,11 @@
     "no sentimos viento",
     "anemómetro marca cero",
     "viento de popa igual a nuestra velocidad",
-    "viento de proa se suma"
+    "viento de proa se suma",
+    "no sentimos ningún viento",
+    "aparente puede ser cero",
+    "aparente es cero",
+    "aparente será cero"
    ],
    "nota": "Casos sin cálculo vectorial: real por popa a nuestra velocidad da aparente cero; de proa se suman; por la proa coinciden en dirección los tres.",
    "padre": "meteo.viento",
@@ -689,7 +744,9 @@
     "capacidad calorífica",
     "contraste térmico",
     "régimen de brisas",
-    "viento térmico"
+    "viento térmico",
+    "brisas costeras",
+    "brisas"
    ],
    "nota": "Las brisas nacen de la diferente velocidad de calentamiento y enfriamiento de tierra y mar; cuanto mayor el contraste, más intensa la brisa.",
    "padre": "meteo.brisas",
@@ -710,7 +767,8 @@
     "brisa marina",
     "de día",
     "del mar a tierra",
-    "diurna"
+    "diurna",
+    "virazón"
    ],
    "nota": "Brisa diurna que sopla del mar hacia tierra porque la tierra se calienta más y forma una baja relativa.",
    "padre": "meteo.brisas",
@@ -733,7 +791,8 @@
     "brisa de tierra",
     "de noche",
     "de tierra al mar",
-    "nocturna"
+    "nocturna",
+    "terral"
    ],
    "nota": "Brisa nocturna que sopla de tierra hacia el mar porque la tierra se enfría antes y la baja relativa queda sobre el mar.",
    "padre": "meteo.brisas",
@@ -801,7 +860,8 @@
     "extensión rectilínea",
     "alcance del viento",
     "zona donde el viento sopla con la misma dirección e intensidad",
-    "millas"
+    "millas",
+    "fetch"
    ],
    "nota": "Extensión (en millas) de mar sobre la que sopla un viento de dirección y fuerza constantes; no es un tiempo.",
    "padre": "meteo.mar",
@@ -1027,7 +1087,10 @@
     "triángulos azules",
     "semicírculos rojos",
     "sector cálido",
-    "frente estacionario"
+    "frente estacionario",
+    "frente",
+    "frentes",
+    "superficie de separación"
    ],
    "nota": "Frente como separación entre dos masas de aire, su representación en el mapa, el sector cálido y el frente estacionario.",
    "padre": "meteo.frentes",
@@ -1050,7 +1113,9 @@
     "presión sube tras el paso",
     "visibilidad aumenta",
     "pendiente acusada",
-    "más rápido que el cálido"
+    "más rápido que el cálido",
+    "frente frío",
+    "frentes fríos"
    ],
    "nota": "El aire frío avanza y obliga al cálido a subir: pendiente fuerte, cúmulos y cumulonimbos, chubascos; tras su paso sube la presión, baja la temperatura y mejora la visibilidad.",
    "padre": "meteo.frentes",
@@ -1077,7 +1142,9 @@
     "llovizna",
     "visibilidad regular a mala",
     "pendiente suave",
-    "antes del frente cálido"
+    "antes del frente cálido",
+    "frente cálido",
+    "aire caliente desplaza al aire frío"
    ],
    "nota": "El aire cálido avanza y sube por encima de la cuña fría: pendiente suave, nubes que anuncian (cirros a nimbostratos), lluvia o llovizna extensa y visibilidad que empeora.",
    "padre": "meteo.frentes",
@@ -1100,7 +1167,8 @@
     "oclusión",
     "el frente frío alcanza al cálido",
     "el sector cálido desaparece",
-    "aire cálido no toca el suelo"
+    "aire cálido no toca el suelo",
+    "frente ocluido"
    ],
    "nota": "Se forma cuando el frente frío, más rápido, alcanza al cálido y levanta el aire cálido del suelo.",
    "padre": "meteo.frentes",
@@ -1162,7 +1230,9 @@
     "solo el gradiente de presión",
     "perpendicular a las isobaras",
     "de altas a bajas",
-    "viento ideal"
+    "viento ideal",
+    "viento de Euler",
+    "únicamente por la acción del gradiente"
    ],
    "nota": "Viento ideal en el que solo actúa la fuerza del gradiente: va de altas a bajas, perpendicular a las isobaras.",
    "padre": "meteo.modelos",
@@ -1183,7 +1253,8 @@
     "paralelo a las isobaras",
     "isobaras rectilíneas",
     "altas presiones a la derecha",
-    "rotación terrestre"
+    "rotación terrestre",
+    "viento geostrófico"
    ],
    "nota": "Equilibrio entre gradiente y Coriolis: sopla paralelo a isobaras rectas dejando las altas a la derecha en el hemisferio norte; no considera rozamiento.",
    "padre": "meteo.modelos",
@@ -1226,7 +1297,8 @@
    "sinonimos": [
     "fuerza centrífuga",
     "Coriolis despreciable",
-    "gradiente equilibrado por la centrífuga"
+    "gradiente equilibrado por la centrífuga",
+    "viento ciclostrófico"
    ],
    "nota": "El gradiente se equilibra solo con la fuerza centrífuga (Coriolis despreciable), como en torbellinos pequeños e intensos.",
    "padre": "meteo.modelos",
@@ -1247,7 +1319,8 @@
     "fricción",
     "corta las isobaras",
     "viento real de superficie",
-    "orografía"
+    "orografía",
+    "viento antitríptico"
    ],
    "nota": "Modelo que incluye el rozamiento (predominante); el viento real de superficie corta las isobaras hacia las bajas.",
    "padre": "meteo.modelos",
@@ -1525,7 +1598,8 @@
    "sinonimos": [
     "g/m3",
     "gramos de vapor por metro cúbico",
-    "densidad del vapor de agua"
+    "densidad del vapor de agua",
+    "humedad absoluta"
    ],
    "nota": "Masa de vapor de agua por unidad de volumen de aire (g/m³); no es un porcentaje.",
    "padre": "meteo.humedad",
@@ -1551,7 +1625,8 @@
     "saturado",
     "tensión de vapor",
     "el aire caliente admite más vapor",
-    "visibilidad"
+    "visibilidad",
+    "humedad relativa"
    ],
    "nota": "Relación (en %) entre el vapor que hay y el máximo admisible a esa temperatura; 100 % = saturación; cómo cambia al calentar o enfriar el aire.",
    "padre": "meteo.humedad",
@@ -1575,7 +1650,8 @@
     "temperatura de rocío",
     "Td",
     "temperatura a la que se satura",
-    "empieza a condensarse"
+    "empieza a condensarse",
+    "punto de rocío"
    ],
    "nota": "Temperatura a la que hay que enfriar el aire (sin cambiar su vapor ni su presión) para que se sature y condense.",
    "padre": "meteo.humedad",
@@ -1599,7 +1675,10 @@
     "termómetro seco",
     "termómetro húmedo",
     "tablas psicrométricas",
-    "diferencia psicrométrica"
+    "diferencia psicrométrica",
+    "psicrómetro",
+    "temperatura seca",
+    "temperatura húmeda"
    ],
    "nota": "Dos termómetros (seco y húmedo); con su lectura y las tablas se obtienen la humedad relativa y el punto de rocío. Si marcan lo mismo, HR = 100 %.",
    "padre": "meteo.humedad",
@@ -1638,7 +1717,9 @@
     "ascenso del aire",
     "enfriamiento adiabático",
     "nivel de condensación",
-    "saturación"
+    "saturación",
+    "formación de nubes",
+    "proceso de formación de nubes"
    ],
    "nota": "Una nube se forma cuando el aire húmedo sube, se expande, se enfría y condensa.",
    "padre": "meteo.nubes",
@@ -1771,7 +1852,11 @@
     "cumulonimbos",
     "lenticulares",
     "nimbos",
-    "yunque"
+    "yunque",
+    "nube",
+    "estratocumulus",
+    "cumulonimbus",
+    "altocumulus"
    ],
    "nota": "Aspecto y tiempo asociado de cada género (y de las lenticulares), reconocerlos por su descripción o imagen. A qué piso pertenecen va en meteo.nubes.altura.",
    "padre": "meteo.nubes",
@@ -1835,7 +1920,9 @@
     "nieblas de evaporación",
     "nieblas de mezcla",
     "radiación, advección y orográfica",
-    "vapor y frontal"
+    "vapor y frontal",
+    "nieblas por enfriamiento",
+    "formación por enfriamiento"
    ],
    "nota": "A qué grupo pertenece cada tipo: enfriamiento (radiación, advección, orográfica), evaporación (vapor, frontal) y mezcla.",
    "padre": "meteo.nieblas",
@@ -1875,7 +1962,9 @@
     "aire cálido y húmedo sobre superficie fría",
     "niebla de mar",
     "la más frecuente en la mar",
-    "se aclara sobre aguas más templadas"
+    "se aclara sobre aguas más templadas",
+    "advección",
+    "nieblas de advección"
    ],
    "nota": "Aire cálido y húmedo que se desplaza sobre agua (o tierra) más fría que su punto de rocío; la más frecuente y persistente en la mar.",
    "padre": "meteo.nieblas",
@@ -1895,7 +1984,9 @@
     "aire frío sobre agua templada",
     "humo de mar",
     "lagos y ríos",
-    "evaporación"
+    "evaporación",
+    "niebla de vapor",
+    "aire frío se mueve sobre agua más cálida"
    ],
    "nota": "Niebla de evaporación: aire frío que pasa sobre agua mucho más templada.",
    "padre": "meteo.nieblas",
@@ -1961,7 +2052,9 @@
     "aumento del viento",
     "calentamiento",
     "fuerza 4",
-    "sustracción de vapor"
+    "sustracción de vapor",
+    "desaparición de la niebla",
+    "se aclaran"
    ],
    "nota": "Qué hace desaparecer la niebla: calentamiento, viento que arrecia, aire más seco.",
    "padre": "meteo.nieblas",
@@ -1993,7 +2086,8 @@
    "tipo": "concepto",
    "etiqueta": "Formación de las olas",
    "sinonimos": [
-    "el viento",
+    "formación de las olas",
+    "origen de la formación de olas",
     "transferencia de energía del viento",
     "movimiento periódico",
     "avanza la forma, no el agua"
@@ -2022,7 +2116,9 @@
     "amplitud",
     "frecuencia",
     "parámetros de la ola",
-    "velocidad de la ola"
+    "velocidad de la ola",
+    "parámetros",
+    "variables que caracterizan a las olas"
    ],
    "nota": "Cresta, seno y qué magnitudes describen una ola (altura, longitud, periodo, velocidad); la amplitud como mitad de la altura.",
    "padre": "meteo.olas",
@@ -2128,7 +2224,8 @@
     "crestas agudas",
     "longitud corta",
     "altura irregular",
-    "dirección del viento"
+    "dirección del viento",
+    "mar de viento"
    ],
    "nota": "Olas generadas por el viento que sopla en la zona: crestas agudas, poca longitud, alturas irregulares y dirección la del viento.",
    "padre": "meteo.olas",
@@ -2154,7 +2251,8 @@
     "crestas redondeadas",
     "longitud muy superior a la altura",
     "periodo largo",
-    "sin viento local"
+    "sin viento local",
+    "mar de fondo"
    ],
    "nota": "Oleaje que llega de una zona lejana sin viento local: crestas redondeadas, gran longitud y periodo largo, dirección que no tiene por qué coincidir con el viento.",
    "padre": "meteo.olas",
@@ -2230,7 +2328,9 @@
     "acción directa del viento",
     "rozamiento del viento",
     "persistencia",
-    "corrientes de superficie"
+    "corrientes de superficie",
+    "corrientes de arrastre",
+    "arrastre"
    ],
    "nota": "Las genera el viento persistente al rozar la superficie; son la mayoría de las superficiales en océano abierto.",
    "padre": "meteo.corrientes",
@@ -2267,7 +2367,9 @@
    "sinonimos": [
     "atracción de la Luna y el Sol",
     "movimiento horizontal del agua",
-    "flujo y reflujo"
+    "flujo y reflujo",
+    "mareas",
+    "corriente de marea"
    ],
    "nota": "Movimiento horizontal del agua asociado a la subida y bajada de la marea. El cálculo de mareas es de otro grupo.",
    "padre": "meteo.corrientes",
@@ -2289,7 +2391,10 @@
     "rumbo sur",
     "corriente de Canarias",
     "rumbo SW",
-    "corriente del Golfo"
+    "corriente del Golfo",
+    "litoral atlántico gallego",
+    "Galicia",
+    "costa oeste de Galicia"
    ],
    "nota": "Golfo de Vizcaya (irregular, hacia el W en el Cantábrico), Galicia y Portugal (hacia el S), Canarias (hacia el SW) y su relación con la corriente del Golfo.",
    "padre": "meteo.corrientes",
@@ -2337,7 +2442,10 @@
     "canal de Malta",
     "sentido antihorario",
     "Tirreno",
-    "Adriático"
+    "Adriático",
+    "litoral mediterráneo",
+    "Málaga",
+    "Mediterráneo"
    ],
    "nota": "El agua atlántica corre hacia el E por la costa africana y vuelve en sentido antihorario por el norte (corriente del Norte hacia el SSW); detalles por zonas.",
    "padre": "meteo.corrientes",

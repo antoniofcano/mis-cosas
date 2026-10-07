@@ -382,6 +382,146 @@ export default {
       return latlon(k.traslado('punta-paloma', d1, 'isla-tarifa', d2, rv, k.distFor(7, 25), 'Situación 14:30'));
     },
   },
+  'bal-py-2025-04-bc-35': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const ct = k.ct({ ct: -8 });
+      const rv = k.rv(258, ct);
+      const s = k.fixDist('punta-europa', k.dv(328, ct, 'punta-europa'), 3, 'Situación 07:00');
+      const t = hrb(7, 50) - hrb(7, 0);
+      const e = k.run(s, rv, k.distFor(10, t), 'Situación de estima 07:50');
+      const o = k.fix2('punta-europa', k.dv(8, ct, 'punta-europa'), 'isla-tarifa', k.dv(266, ct, 'isla-tarifa'), 'Situación observada 07:50');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'speed', value: ic }, { kind: 'bearing', value: rc }];
+    },
+  },
+  'bal-py-2025-04-a-37': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fixDist('cabo-trafalgar', 340, 3, 'Situación');
+      // Costeamos hacia el SE: Punta de Gracia queda por babor.
+      const rs = k.tangent(s, 'punta-gracia', 6.1, 'babor');
+      const rv = k.rvConAbatimiento(rs, 4, NE);
+      const ct = k.ct({ carta: L105, anyo: 2025, desvio: -2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-py-2025-04-bc-37': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('43 22,6 N', '3 03,2 W', 'Salida');
+      const b = k.pos('44 53,9 N', '2 42,1 W', 'Llegada');
+      return [{ kind: 'distance', value: k.rumboDirecto(a, b).dist }];
+    },
+  },
+  'bal-py-2025-04-a-38': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const ct = k.ct({ dm: -1, desvio: -3 });
+      const s = k.fix2('cabo-trafalgar', k.dv(330, ct, 'cabo-trafalgar'), 'cabo-espartel', k.dv(204, ct, 'cabo-espartel'), 'Situación 17:15');
+      const rv = k.rv(284, ct);
+      const rs = k.abatimiento(rv, 3, NW);
+      const { ref, vef } = k.efectivo(rs, 4.5, S, 2, s);
+      return latlon(k.estimaEfectiva(s, ref, vef, hrb(20, 15) - hrb(17, 15), 'Situación 20:15'));
+    },
+  },
+  'bal-py-2025-04-bc-38': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      k.note('Rumbo verdadero', 'La Polar (en el polo) demora 000°: marcándola 70° por babor, Rv − 70° = 000° → Rv = 070°. Ct = Rv − Ra = 070° − 078° = −8°.');
+      const rv = 70;
+      const s = k.fixDist('cabo-espartel', k.dvM(rv, 60, 'cabo-espartel'), 1.8, 'Situación 07:00');
+      return latlon(k.run(s, rv, k.distFor(14, 15), 'Situación 07:15'));
+    },
+  },
+  'bal-py-2025-04-bc-39': {
+    sinCarta: true,
+    ejercicio: 'abatimiento',
+    solve(k) {
+      return [{ kind: 'bearing', value: k.abatimiento(S, 3, E) }];
+    },
+  },
+  'bal-py-2025-04-a-40': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.fix2Ranges('cabo-espartel', 6, 'punta-malabata', 6, { lat: 35.9, lon: -5.85 }, 'Situación 12:22');
+      const { rv } = k.rhumb(s, 'cabo-trafalgar');
+      const t = hrb(13, 58) - hrb(12, 22);
+      const e = k.run(s, rv, k.distFor(7, t), 'Situación de estima 13:58');
+      const o = k.fromMark('punta-gracia', W, 5, 'Situación observada 13:58');
+      return [{ kind: 'speed', value: k.corrienteDesconocida(e, o, t).ic }];
+    },
+  },
+  'bal-py-2025-07-a-31': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const ct = k.ct({ dm: -1, desvio: -5 });
+      const rv = k.rv(48, ct);
+      const rs = k.abatimiento(rv, 9, W);
+      const d1 = k.dv(92, ct, 'cabo-espartel');
+      const d2 = k.dvM(rv, 90, 'cabo-espartel');
+      return latlon(k.traslado('cabo-espartel', d1, 'cabo-espartel', d2, rs, k.distFor(8, 60), 'Situación 02:00'));
+    },
+  },
+  'bal-py-2025-07-b-33': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Situación');
+      // Subimos hacia el NW por fuera del cabo: Trafalgar queda por estribor.
+      const rs = k.tangent(s, 'cabo-trafalgar', 3, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 5, SW);
+      return [{ kind: 'bearing', value: k.ra(rv, k.ct({ ct: -8 })) }];
+    },
+  },
+  'bal-py-2025-07-b-34': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const s = k.pos('36 15,0 N', '6 14,0 W', 'Situación 10:00');
+      const ct = k.ct({ dm: -3, desvio: 1 });
+      const rv = k.rv(132, ct);
+      const { ref, vef } = k.efectivo(rv, 5, 260, 3.5, s);
+      return latlon(k.estimaEfectiva(s, ref, vef, hrb(12, 15) - hrb(10, 0), 'Situación 12:15'));
+    },
+  },
+  'bal-py-2025-07-b-35': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.fromMark('cabo-espartel', N, 3, 'Salida');
+      // Entramos en el Estrecho hacia el E: Punta Cires, en la costa africana, queda por estribor.
+      const rs = k.tangent(s, 'punta-cires', 2, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 10, E);
+      const ct = k.ct({ dm: -2, desvio: 7 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'bal-py-2025-07-a-36': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const t = hrb(17, 30) - hrb(16, 0);
+      const e = k.run(k.P('tanger-espigon'), 350, k.distFor(7, t), 'Situación de estima 17:30');
+      const o = k.fix2Ranges('punta-gracia', 6.1, 'punta-paloma', 4.2, { lat: 36.0, lon: -5.75 }, 'Situación observada 17:30');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2025-07-b-36': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const op = k.oposicion('isla-tarifa', 'punta-alcazar');
+      const ct = k.ct({ dm: 9, desvio: -12 });
+      const dv = k.dv(227, ct, 'punta-malabata');
+      return latlon(k.lineAndBearing('isla-tarifa', op, 'punta-malabata', dv, 'Situación 13:40'));
+    },
+  },
+  'bal-py-2025-07-a-37': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const { rs, vb } = k.rumboYVelocidad('barbate-espigon', 'tanger-espigon', hrb(9, 20) - hrb(7, 0), 96, 3.2);
+      const rv = k.rvConAbatimiento(rs, 5, W);
+      return [{ kind: 'bearing', value: k.ra(rv, k.ct({ ct: -5 })) }, { kind: 'speed', value: vb }];
+    },
+  },
 };
 
 /* DISCREPANCIAS
@@ -406,4 +546,50 @@ export default {
  * 'bal-py-2024-12-a-33': (respuesta cualitativa / DST) se pregunta en qué vía del DST estaremos a las 16:15; la respuesta no es un valor numérico y los límites del DST no están en la carta de la app.
  * 'bal-py-2024-12-a-35': (elemento que no está en la carta de la app) la salida es «al SW verdadero de Cabo Roche sobre la isobática de 20 m»: la carta de la app no tiene isobáticas.
  * 'bal-py-2024-12-a-40': (marea sin datos) sonda en el puerto de Cádiz el 27-10-2024 por tabla: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
+ * 'bal-py-2025-04-a-36': (trazado al límite) la enfilación Alcázar–Cires en la carta de la app da Dv = 226,6° y, con Da = 303° − 60° = 243°, Ct = −16,4°: la opción más próxima es la oficial (d, 15° NW) pero a 1,4°, fuera del margen del PY.
+ *
+ *     'bal-py-2025-04-a-36': {
+ *       ejercicio: 'ct-enfilacion',
+ *       solve(k) {
+ *         const da = 303 - 60;
+ *         k.note('Demora de aguja', `Marcación por babor: Da = Ra − M = 303° − 60° = ${da}°.`);
+ *         const dv = k.enfilacion('punta-alcazar', 'punta-cires', 230);
+ *         return [{ kind: 'signed', value: k.ctFrom(dv, da) }];
+ *       },
+ *     },
+ *
+ * 'bal-py-2025-04-a-39': (no cuadra) el corte en el mar de los arcos de 5 millas (Paloma) y 7 millas (Tarifa) está en l = 35° 59,2′ N; al Rv 180° la corriente al W no cambia la latitud y los 4,2′ hasta 35° 55′ N se recorren en 36 min (10:36). La oficial (b, 10:53) supone salir unas 2′ más al N; posible errata o situación de partida distinta.
+ *
+ *     'bal-py-2025-04-a-39': {
+ *       ejercicio: 'corriente-efectiva',
+ *       solve(k) {
+ *         const s = k.fix2Ranges('punta-paloma', 5, 'isla-tarifa', 7, { lat: 35.95, lon: -5.72 }, 'Situación 10:00');
+ *         const ct = k.ct({ dm: 5, desvio: 4 });
+ *         const rv = k.rv(171, ct);
+ *         const { ref, vef } = k.efectivo(rv, 7, W, 3, s);
+ *         const dl = (s.lat - (35 + 55 / 60)) * 60;
+ *         const min = (dl / (vef * -Math.cos(ref * Math.PI / 180))) * 60;
+ *         k.note('Paralelo de 35° 55′ N', `Faltan ${dl.toFixed(1).replace('.', ',')}′ de latitud; al Ref la latitud baja ${(vef * -Math.cos(ref * Math.PI / 180)).toFixed(2).replace('.', ',')}′ por hora: t = ${Math.round(min)} min.`);
+ *         k.estimaEfectiva(s, ref, vef, min, 'Cruce del paralelo');
+ *         return [{ kind: 'clock', value: hrb(10, 0) + min }];
+ *       },
+ *     },
+ *
+ * 'bal-py-2025-07-a-33': (trazado al límite) sale Ra = 241,8° (dm 2019 = 1° 12′ W, Ct = +1,8°): queda entre la b (240°) y la oficial d (243°), más cerca de la oficial pero sin margen. En la pregunta gemela bal-py-2024-07-a-32 la plantilla también da ~0,9° más que el trazado de la app.
+ *
+ *     'bal-py-2025-07-a-33': {
+ *       ejercicio: 'rumbo-pasar-distancia',
+ *       solve(k) {
+ *         const ct = k.ct({ carta: L105, anyo: 2019, desvio: 3 });
+ *         const s = k.fix2('punta-carnero', k.dv(280, ct, 'punta-carnero'), 'punta-europa', k.dv(14, ct, 'punta-europa'), 'Situación 21:12');
+ *         // Navegamos al W y pasamos por el S de Isla de Tarifa: la dejamos por estribor.
+ *         const rs = k.tangent(s, 'isla-tarifa', 2.5, 'estribor');
+ *         const rv = k.rvConAbatimiento(rs, 3, W);
+ *         return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+ *       },
+ *     },
+ *
+ * 'bal-py-2025-04-bc-40': (marea sin datos) sonda en el puerto de Cádiz el 18-04-2025 por el método exacto: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
+ * 'bal-py-2025-07-b-31': (elemento que no está en la carta de la app) la enfilación del faro de Punta Cires con la cumbre del monte «Loma El Garrób» necesita ese monte, que no está en la carta de la app ni el enunciado da sus coordenadas.
+ * 'bal-py-2025-07-b-37': (marea sin datos) sonda en el puerto de Cádiz el 09-04-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.
  */

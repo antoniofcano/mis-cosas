@@ -1211,7 +1211,7 @@
     "baldes",
     "grifos de fondo no es material de seguridad"
    ],
-   "nota": "Resto de dotación por zona: material náutico, botiquín, medios de achique y baldes. Norma vigente: RD 339/2021, arts. 12, 13 y 20 (desaparecen corredera, compás de puntas y regla).",
+   "nota": "Qué elementos se consideran material de seguridad (y cuáles no, p. ej. los grifos de fondo) y el resto de dotación por zona: material náutico, botiquín, medios de achique y baldes. Norma vigente: RD 339/2021, arts. 12, 13 y 20 (desaparecen corredera, compás de puntas y regla).",
    "padre": "seguridad.equipo",
    "relacionados": [
     "seguridad.equipo.zonas"
@@ -1584,6 +1584,32 @@
     "per-8-8"
    ],
    "temario": "RD 875/2014, anexo II: PER UT 8.6 (Abandono de la embarcación); PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "seguridad.salvamento.rescate-buque",
+   "tipo": "concepto",
+   "etiqueta": "Rescate por otro buque o a otro buque",
+   "sinonimos": [
+    "abarloarse a un buque que se hunde",
+    "distancia de seguridad",
+    "abarloarse a un mercante",
+    "golpes de mar contra el casco",
+    "escala de práctico",
+    "red de rescate"
+   ],
+   "nota": "Cómo se hace el rescate entre barcos: no abarloarse a un buque que se hunde (mantener la distancia) y precauciones al ser recogido por un buque grande.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.helicoptero.maniobra"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-8",
+    "py-1-10"
+   ],
+   "temario": "pendiente"
   },
   {
    "id": "seguridad.helicoptero.preparacion",
@@ -3189,7 +3215,7 @@
     "temperatura del agua",
     "no nadar"
    ],
-   "nota": "Cómo aumentar la supervivencia en el agua (postura fetal o HELP, agruparse, no nadar, ropa puesta) y de qué depende el tiempo de supervivencia (temperatura del agua, ropa, chaleco).",
+   "nota": "Cómo aumentar la supervivencia en el agua y prevenir la hipotermia (ropa de abrigo antes de saltar, postura fetal o HELP, agruparse, no nadar) y de qué depende el tiempo de supervivencia (temperatura del agua, ropa, chaleco).",
    "padre": "emergencia.abandono",
    "relacionados": [
     "emergencia.hipotermia.definicion"

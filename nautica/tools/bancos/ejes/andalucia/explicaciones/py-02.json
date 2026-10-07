@@ -470,5 +470,150 @@
   "clave": "Chaleco inflable: automático, manual (tirador) y oral (tubo).",
   "trampa": "Creer que el tubo es solo para desinflar: también sirve para inflar a boca.",
   "concepto": null
+ },
+ "and-py-2016-c3-g07": {
+  "explicacion": "La balsa debe ir trincada solo con la trinca que viene unida a la zafa hidrostática. Si se ponen trincas adicionales, cuando el barco se hunda la zafa soltará pero la balsa seguirá sujeta y se irá al fondo con él. Por eso la a), la c) y la d) son peligrosas.",
+  "clave": "Balsa: una sola trinca, la de la zafa.",
+  "trampa": "Más trincas parece más seguro frente a un golpe de mar, pero anulan la suelta automática.",
+  "concepto": "and-py-2024-c3-g06"
+ },
+ "and-py-2016-c3-g08": {
+  "explicacion": "El CO2 no conduce la electricidad y no deja residuos, por eso es el extintor indicado para fuegos con tensión eléctrica. La espuma conduce la corriente y es peligrosa, y el polvo seco puede usarse (si así lo indica el extintor) pero ensucia y daña los equipos. El RD 339/2021 cambió la eficacia mínima exigida (34B), no este criterio.",
+  "clave": "Tensión eléctrica → CO2.",
+  "trampa": "La c): el polvo seco también apaga con tensión, pero el recomendado es el CO2.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": "and-py-2024-c2-g09"
+ },
+ "and-py-2016-c3-g09": {
+  "explicacion": "Los fuegos de clase D son de metales combustibles (magnesio, sodio, potasio…): el agua reacciona con ellos, puede liberar hidrógeno y provocar explosiones, así que está totalmente prohibida. En la clase A (sólidos) el agua es el agente ideal; en la B (líquidos) no se recomienda a chorro porque esparce el combustible, y en la C (gases) lo eficaz es cortar el suministro.",
+  "clave": "Clase D (metales): nunca agua.",
+  "trampa": "La b): el agua a chorro no conviene en líquidos, pero solo en metales está prohibida de forma absoluta.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "clases"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-g10": {
+  "explicacion": "En la balsa hay que quedarse en la zona del siniestro, que es donde nos buscarán (posición de la radiobaliza o del Mayday), con el ancla flotante largada para no derivar. Remar hacia la costa agota a los náufragos y nos aleja del área de búsqueda. Repartir las pastillas contra el mareo, achicar y organizar guardias son acciones correctas.",
+  "clave": "En la balsa: quedarse en la zona, con el ancla flotante largada.",
+  "trampa": "Pregunta en negativo: remar hacia la costa parece sensato, pero aleja de la zona de búsqueda.",
+  "concepto": "and-py-2024-c3-g07"
+ },
+ "and-py-2016-c3-g11": {
+  "explicacion": "El viento de Euler es el modelo más simple: solo actúa la fuerza del gradiente horizontal de presión, así que el aire iría en línea recta de la alta a la baja, perpendicular a las isobaras. El geostrófico añade Coriolis, el ciclostrófico la fuerza centrífuga y el antitríptico el rozamiento.",
+  "clave": "Euler = solo gradiente.",
+  "trampa": "La a): el geostrófico añade Coriolis; con solo el gradiente es el viento de Euler.",
+  "concepto": "and-py-2026-c2-g17"
+ },
+ "and-py-2016-c3-g12": {
+  "explicacion": "Cuando se encuentran una masa de aire frío y otra cálida se forma un frente: el aire cálido, menos denso, asciende sobre el frío, se enfría y condensa en nubes frontales (estratos y nimbostratos en el frente cálido, cumulonimbos en el frío). Las orográficas se deben al ascenso por una montaña y las de convección al calentamiento desde abajo.",
+  "clave": "Choque de masas cálida y fría = frente = nubes frontales.",
+  "trampa": "La d): «nubes cálidas» no es un tipo de nube por su origen.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g13": {
+  "explicacion": "La humedad absoluta es la masa de vapor de agua contenida en un metro cúbico de aire, en g/m³. La a) usa el centímetro cúbico, que no es la unidad con la que se define, y la c) describe el calor latente de condensación.",
+  "clave": "Absoluta = g/m³; relativa = %; rocío = °C.",
+  "trampa": "La a): la magnitud se refiere al metro cúbico, no al centímetro cúbico.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g14": {
+  "explicacion": "Los vendavales son vientos del SW, húmedos y a menudo duros, asociados al paso de borrascas atlánticas. En el Estrecho y en el Mediterráneo occidental se llama así al viento fuerte del SW con mal tiempo.",
+  "clave": "Vendaval = SW con borrasca.",
+  "trampa": "No lo confundas con el Levante (E) ni con el Mistral o la Tramontana (NW-N).",
+  "concepto": "and-py-2020-c3-g14"
+ },
+ "and-py-2016-c3-g15": {
+  "explicacion": "Las tres son ciertas: el frente ocluido se forma cuando el frente frío, que avanza más deprisa, alcanza al cálido; es el resultado de la unión de los dos, con el aire cálido levantado del suelo; y según qué aire frío sea más frío, el de delante o el de detrás, la oclusión es de tipo cálido o de tipo frío.",
+  "clave": "Ocluido = el frío alcanza al cálido; puede ser de tipo frío o cálido.",
+  "trampa": "Quedarse con una sola: la d) las recoge todas.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g16": {
+  "explicacion": "Cuando aire frío pasa sobre agua más cálida, el agua se evapora y el vapor se condensa enseguida en el aire frío: es la niebla de vapor (también llamada de evaporación o «humo de mar»). La de radiación y las de enfriamiento se forman al revés, cuando el aire se enfría, y la frontal va ligada a la lluvia de un frente.",
+  "clave": "Aire frío sobre agua templada = niebla de vapor; aire templado sobre agua fría = advección.",
+  "trampa": "La b): suena a frío, pero aquí el proceso es la evaporación del agua templada, no el enfriamiento del aire.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g17": {
+  "explicacion": "La altura de la ola es la distancia vertical entre lo más alto de la cresta y lo más bajo del seno, y como la amplitud es la mitad de esa altura (de la superficie en reposo a la cresta), la altura es el doble de la amplitud. Por eso son ciertas la b) y la c). La a) define la longitud de la ola.",
+  "clave": "Altura = seno-cresta = 2 × amplitud; longitud = cresta-cresta.",
+  "trampa": "La a): «distancia horizontal» es la longitud, no la altura.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g18": {
+  "explicacion": "Si el agua del mar está más fría que el punto de rocío del aire que tiene encima, el aire en contacto con ella se enfría hasta saturarse y se forma niebla (de advección). Si el agua está por encima del punto de rocío no hay condensación, y que el termómetro seco marque más que el húmedo indica que el aire no está saturado.",
+  "clave": "Mar por debajo del punto de rocío = niebla.",
+  "trampa": "La c): seco > húmedo significa aire no saturado, lo contrario de niebla.",
+  "concepto": null
+ },
+ "and-py-2016-c3-g19": {
+  "explicacion": "Las tres afirmaciones son ciertas: el gradiente horizontal de presión es la variación de presión por unidad de distancia, medida perpendicularmente a las isobaras; es la proyección horizontal del gradiente máximo, perpendicular a las superficies isobáricas; y suele expresarse en milibares (hectopascales) por grado de meridiano, es decir, por cada 60 millas.",
+  "clave": "Gradiente horizontal = mb por grado (60 millas), medido perpendicular a las isobaras.",
+  "trampa": "La a) parece rara, pero «mb/grado» es la unidad clásica del gradiente.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "isobaras"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c3-g20": {
+  "explicacion": "La corriente general del Mediterráneo nace del agua atlántica que entra por el Estrecho, alimentada por la corriente de Portugal: baja hacia el S por la costa ibérica y una de sus ramas se dirige al Estrecho de Gibraltar, mientras el resto continúa como corriente de Canarias. Ya dentro del Mediterráneo, la corriente general avanza hacia el E.",
+  "clave": "Corriente de Portugal → una rama al Estrecho → corriente general del Mediterráneo hacia el E.",
+  "trampa": "La a) y la b): son corrientes del Atlántico Norte más lejanas que no entran directamente por el Estrecho.",
+  "concepto": null
+ },
+ "and-py-2016-c3-n01": {
+  "explicacion": "Los puntos de igual longitud están sobre el mismo meridiano, que es la línea de polo a polo que une los lugares con la misma longitud. Los de igual latitud están sobre el mismo paralelo; el ecuador es solo el paralelo de latitud 0° y la demora es una dirección, no una coordenada.",
+  "clave": "Misma longitud = mismo meridiano; misma latitud = mismo paralelo.",
+  "trampa": "La a): confundir meridiano con paralelo.",
+  "concepto": null
+ },
+ "and-py-2016-c3-n02": {
+  "explicacion": "ETA (Estimated Time of Arrival) es la hora estimada de llegada al waypoint o destino, calculada con la distancia restante y la SOG. ETD es la hora estimada de salida (Departure), XTE es el error transversal y «TELL» no es una sigla estándar.",
+  "clave": "ETA llegada (Arrival); ETD salida (Departure).",
+  "trampa": "La b): ETD es la de salida.",
+  "concepto": "and-py-2022-c2-n07"
+ },
+ "and-py-2016-c3-n03": {
+  "explicacion": "Las RNC (Raster Navigational Charts) son copias raster digitales de las cartas de papel; las «RNC oficiales» son las publicadas bajo la autoridad de un Servicio Hidrográfico Nacional, y la palabra «oficial» sirve precisamente para distinguirlas de las que no lo son. Por eso son ciertas la b) y la c). La a) describe las ENC, que son vectoriales.",
+  "clave": "RNC = raster (copia del papel); ENC = vectorial.",
+  "trampa": "La a): vectorial es la ENC, no la RNC.",
+  "concepto": null
+ },
+ "and-py-2016-c3-n04": {
+  "explicacion": "El trópico de Cáncer está en el hemisferio norte, a una latitud igual a la inclinación del eje terrestre (≈ 23° 27′ N). El de Capricornio es su simétrico al sur (23° 27′ S); 27° 23′ es una inversión de cifras.",
+  "clave": "Cáncer N, Capricornio S: 23° 27′. Círculos polares: 66° 33′ (90° − 23° 27′).",
+  "trampa": "Las cifras invertidas (27° 23′) y el hemisferio sur.",
+  "concepto": "and-py-2024-c2-n01"
+ },
+ "and-py-2016-c3-n05": {
+  "explicacion": "El AIS intercambia automáticamente por VHF datos de identidad y navegación (posición, rumbo, velocidad…) entre barcos y también con estaciones costeras, como los centros de tráfico y salvamento. No es solo para las estaciones ni solo entre barcos, y sí intercambia información: con ella el equipo puede calcular el riesgo de abordaje.",
+  "clave": "AIS = intercambio automático de datos barco↔barco y barco↔costa.",
+  "trampa": "La c): el «solo» deja fuera las estaciones costeras.",
+  "concepto": null
+ },
+ "and-py-2016-c3-n06": {
+  "explicacion": "Si la declinación es cero, el norte verdadero coincide con el magnético, así que Rv = Rm, y la corrección total queda reducida al desvío: Rv = Ra + Δ. Por eso las tres afirmaciones son ciertas.",
+  "clave": "dm = 0 → Nv = Nm, Rv = Rm y Ct = Δ.",
+  "trampa": "La b) parece incompleta, pero con dm = 0 la corrección total es solo el desvío.",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": 0,
+    "desvio": 3
+   }
+  ],
+  "concepto": null
  }
 }

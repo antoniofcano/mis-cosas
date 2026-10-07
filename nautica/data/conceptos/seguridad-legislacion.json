@@ -1,6 +1,6 @@
 {
  "grupo": "seguridad-legislacion",
- "version": 1,
+ "version": 2,
  "conceptos": [
   {
    "id": "estabilidad",
@@ -791,7 +791,7 @@
     "caducidad",
     "revisión"
    ],
-   "nota": "Quién homologa el equipo (DGMM), equipo SOLAS o no SOLAS, obligación de mantenerlo vigente y revisado; llevar equipo caducado es infracción grave. Norma vigente: RD 339/2021, arts. 4, 5 y 24.",
+   "nota": "Los equipos de salvamento se certifican según el RD 701/2016 (equipos marinos, marca de la rueda de timón) por un organismo notificado (art. 5); los chalecos también pueden ser EPI con marcado CE (Reglamento UE 2016/425, art. 7.5) y las balsas ISO 9650 las homologa la DGMM (art. 6.2). Propietario o patrón responden de mantener el equipo conforme (art. 4); tener sobrepasada la fecha de revisión o caducidad de balsas, chalecos inflables, pirotecnia, botiquín, extintores o sistemas fijos de extinción es infracción grave (art. 24.2.b). Norma vigente: RD 339/2021.",
    "padre": "seguridad.equipo",
    "tit": [
     "per",
@@ -818,7 +818,7 @@
     "chalecos de niños",
     "luz del chaleco"
    ],
-   "nota": "Número y flotabilidad mínima según la zona (zona 1 275 N; zonas 2–4 150 N; zonas 5–7 100 N), uno por persona más uno en zona 1, chalecos para niños y luz obligatoria. Norma vigente: RD 339/2021, art. 7 (antes, Orden FOM/1144/2003: 110 % en zona 1).",
+   "nota": "Número y flotabilidad mínima según la zona (zona 1 275 N; zonas 2–4 150 N; zonas 5–7 100 N), uno por persona más uno en zona 1, chalecos para niños y luz (se puede prescindir de ella en zonas 4–7 con navegación exclusivamente diurna, art. 7.1). Norma vigente: RD 339/2021, art. 7 (antes, Orden FOM/1144/2003: 110 % en zona 1).",
    "padre": "seguridad.equipo",
    "relacionados": [
     "seguridad.equipo.zonas"
@@ -961,7 +961,7 @@
     "revisión cada 24 meses",
     "estación de servicio autorizada"
    ],
-   "nota": "Zonas que exigen balsa (1–3), capacidad para todas las personas autorizadas, tipos ISO 9650 o SOLAS (capacidad mínima 4 y 6), homologación por la DGMM y revisiones en estación autorizada. Norma vigente: RD 339/2021, art. 6, modificado por el RD 587/2022.",
+   "nota": "Zonas 1, 2 y 3: una o varias balsas con capacidad para el total de las personas a bordo (art. 6.1). Pueden ser ISO 9650 u otra norma equivalente si las homologa la DGMM (art. 6.2). Se revisan según el fabricante en estación de servicio autorizada; solo en uso comercial hay un máximo de 24 meses (art. 6.3). Norma vigente: RD 339/2021, art. 6, modificado por el RD 587/2022 (que suprimió el paquete de emergencia SOLAS A/B y la limitación de las ISO a las zonas 2–3). Capacidad mínima, que fija la norma técnica y no el RD: ISO 9650-1, 4 personas; SOLAS (Código IDS, 4.1.2.1), 6.",
    "padre": "seguridad.equipo",
    "relacionados": [
     "seguridad.equipo.zonas"
@@ -1211,7 +1211,7 @@
     "baldes",
     "grifos de fondo no es material de seguridad"
    ],
-   "nota": "Qué elementos se consideran material de seguridad (y cuáles no, p. ej. los grifos de fondo) y el resto de dotación por zona: material náutico, botiquín, medios de achique y baldes. Norma vigente: RD 339/2021, arts. 12, 13 y 20 (desaparecen corredera, compás de puntas y regla).",
+   "nota": "Qué elementos se consideran material de seguridad (y cuáles no, p. ej. los grifos de fondo) y el resto de dotación por zona: material náutico, botiquín, medios de achique y baldes. Norma vigente: RD 339/2021, arts. 12, 13 y 20 (ya no se enumeran corredera, compás de puntas, transportador ni regla, como hacía la Orden FOM/1144/2003, pero en zonas 1–4 se exigen con las cartas «los útiles necesarios para su uso», art. 12.2.c, y no llevarlos es infracción grave, art. 24.2.a).",
    "padre": "seguridad.equipo",
    "relacionados": [
     "seguridad.equipo.zonas"
@@ -1746,7 +1746,7 @@
     "reconocimientos periódicos",
     "plazo para presentar la documentación"
    ],
-   "nota": "El número máximo de personas lo fija el certificado de navegabilidad; reconocimientos e inspecciones periódicas y excepciones (RD 1434/1999); plazo para justificar documentos requeridos.",
+   "nota": "El número máximo de personas lo fija el certificado de navegabilidad; reconocimientos e inspecciones periódicas y excepciones (RD 1434/1999); plazo para justificar documentos requeridos. RD 1434/1999 (vigente), art. 3: reconocimientos periódicos cada 5 años como máximo para las de 6 a 24 m de la lista 7.ª; las de menos de 6 m de la lista 7.ª están exentas y su certificado dice «sin caducidad».",
    "padre": "legis.embarcacion",
    "tit": [
     "per"
@@ -1795,7 +1795,7 @@
     "licencia de navegación",
     "embarcación de otro Estado"
    ],
-   "nota": "Atribuciones básicas y complementarias del PER y demás títulos, gobierno sin título y licencia de navegación, reconocimiento psicofísico y títulos para embarcaciones extranjeras. Norma vigente: RD 875/2014, arts. 8–11, modificado por el RD 238/2019 y por el RD 1188/2025 (art. 10, desde el 1-10-2026: 15 CV, uso privado).",
+   "nota": "Atribuciones básicas y complementarias del PER y demás títulos, gobierno sin título y licencia de navegación, reconocimiento psicofísico y títulos para embarcaciones extranjeras. Norma vigente: RD 875/2014, arts. 8–11, modificado por el RD 238/2019 y por el RD 1188/2025 (art. 10, en la redacción del RD 1188/2025 en vigor desde el 1-10-2026: sin título solo para el uso privado de embarcaciones a motor de hasta 5 m y 15 CV sin dispositivo reductor de potencia, el uso deportivo de vela de hasta 6 m y los artefactos flotantes o de playa, a no más de 2 millas del puerto, marina o playa de salida, de día y con 18 años; nunca motos náuticas; quien alquila necesita título).",
    "padre": "legis.embarcacion",
    "tit": [
     "per"
@@ -1847,14 +1847,14 @@
     "canales de acceso",
     "bocanas",
     "no estorbarán el tránsito",
-    "eslora inferior a 20 metros",
-    "preferencia de los buques comerciales",
+    "embarcaciones de recreo de menos de 20 metros",
+    "no estorbar el tránsito en aguas de servicio",
     "el que sale tiene preferencia",
     "velocidad en puerto",
     "Reglamento de Policía de Puertos",
     "ordenanzas del puerto"
    ],
-   "nota": "Las embarcaciones de recreo no estorbarán a los buques que solo pueden navegar dentro del puerto o sus canales (menores de 20 m); velocidad y normas según las ordenanzas de cada puerto. Norma vigente: RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima).",
+   "nota": "Las embarcaciones de recreo de eslora total inferior a 20 m y los artefactos flotantes de recreo no estorbarán el tránsito del resto de buques y embarcaciones en las aguas de servicio de los puertos comerciales (art. 46.2); en esas aguas rige el RIPA (art. 46.1). Velocidad y demás normas, según las ordenanzas de cada puerto. Norma vigente: RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima), art. 46.",
    "padre": "legis.navegacion",
    "tit": [
     "per"
@@ -1928,7 +1928,7 @@
     "limitaciones por la Administración",
     "derecho a detenerse o fondear"
    ],
-   "nota": "Qué son las reservas marinas y qué regulan (pesca, fondeo, navegación), y la facultad de la Administración de limitar zonas, velocidades y fondeos.",
+   "nota": "Qué son las reservas marinas y qué regulan (pesca, fondeo, navegación), y la facultad de la Administración de limitar zonas, velocidades y fondeos. Normas: Ley 14/2014 de Navegación Marítima, art. 20 (la Administración Marítima puede condicionar, restringir o prohibir la navegación en ciertos lugares, también por conservación de la biodiversidad marina) y art. 21 (el derecho a navegar no incluye detenerse o fondear fuera de las zonas de servicio de los puertos, salvo fuerza mayor, autorización expresa o embarcaciones de recreo que se detengan en calas o lugares de baño no balizados); reservas marinas de interés pesquero: Ley 5/2023 de pesca sostenible e investigación pesquera, art. 22 (pueden limitar también la navegación), que sustituye a la Ley 3/2001.",
    "padre": "legis.navegacion",
    "tit": [
     "per"
@@ -1977,7 +1977,7 @@
     "embarcación de apoyo",
     "bañistas"
    ],
-   "nota": "Distancia mínima de 50 m a la zona de buceo señalizada y precauciones ante bañistas. Norma vigente: RD 550/2020, art. 14 (modificado por el RD 1188/2025).",
+   "nota": "Todos los buques y embarcaciones, salvo la de apoyo, se mantienen a 50 m como mínimo de la zona de buceo y actúan según el RIPA (RD 550/2020, art. 14.2); la boya que señala al buceador (dispositivo de balizamiento en superficie) lleva la bandera «Alfa» (art. 2.r). Precauciones ante bañistas. Norma vigente: RD 550/2020, art. 14.",
    "padre": "legis.navegacion",
    "relacionados": [
     "legis.buceo.banderas"
@@ -2044,7 +2044,7 @@
     "ni siquiera con tratamiento",
     "espacios protegidos"
    ],
-   "nota": "Lugares donde no se puede descargar nada, ni tratado: puertos, aguas protegidas y otros espacios. Norma vigente: RD 339/2021, art. 23 (antes, Orden FOM/1144/2003: rías y bahías).",
+   "nota": "En la zona 7 (aguas costeras protegidas, puertos, radas, rías, bahías abrigadas y aguas protegidas en general, art. 3.1.g) no se puede descargar nada, ni siquiera tratado: el RD 339/2021, art. 23, prohíbe toda descarga salvo a más de 3 millas (desmenuzadas y desinfectadas) o de 12 (sin tratar) de la línea de base, o con planta de tratamiento fuera de la zona 7 (excepciones: seguridad de las personas o avería, art. 23.3). La Orden FOM/1144/2003 (art. 24.1) lo enumeraba: zonas portuarias, aguas protegidas y rías, bahías y similares.",
    "padre": "legis.contaminacion",
    "relacionados": [
     "legis.aguas-sucias.descarga"
@@ -2069,7 +2069,7 @@
     "capacidad del tanque",
     "embarcaciones con marcado CE"
    ],
-   "nota": "Embarcaciones con inodoro: sistema de retención o tratamiento, conexión universal de descarga y capacidad. Norma vigente: RD 339/2021, art. 22.",
+   "nota": "No se aplica a las embarcaciones con marcado CE (art. 22.1). Las demás con inodoro llevan uno de estos equipos: sistema de retención con capacidad suficiente para la navegación y las personas a bordo, instalación de tratamiento o sistema homologado para desmenuzar y desinfectar (art. 22.3); con depósito de retención fijo, conexión universal a tierra, y los conductos de descarga al mar que atraviesen el casco, con válvulas que se puedan cerrar herméticamente (art. 22.4). Norma vigente: RD 339/2021, art. 22.",
    "padre": "legis.contaminacion",
    "tit": [
     "per"
@@ -2090,7 +2090,7 @@
     "RD 128/2022",
     "contenedores del puerto"
    ],
-   "nota": "Las basuras y desechos se entregan en las instalaciones receptoras del puerto. Norma vigente: RD 128/2022 (deroga el RD 1381/2002; ya no hay notificación reducida anual para el recreo).",
+   "nota": "Las basuras y desechos se entregan en las instalaciones portuarias receptoras: el capitán entrega todos los desechos antes de salir del puerto (art. 17.1), salvo que tenga capacidad de almacenamiento suficiente hasta el siguiente puerto de escala (art. 17.5); el recreo de menos de 45 m no hace notificación previa (art. 16.1). Norma vigente: RD 128/2022 (deroga el RD 1381/2002).",
    "padre": "legis.contaminacion",
    "tit": [
     "per"
@@ -2233,7 +2233,7 @@
     "armador",
     "multa"
    ],
-   "nota": "De las infracciones por contaminación desde una embarcación responden solidariamente el naviero o propietario, el patrón y el asegurador de la responsabilidad civil (TRLPEMM).",
+   "nota": "De las infracciones por contaminación del medio marino desde una embarcación responden solidariamente el naviero, el propietario, el asegurador de la responsabilidad civil y el capitán o patrón, que quedan también obligados solidariamente a reparar el daño. Norma: TRLPEMM (RDL 2/2011), art. 310.2.d.",
    "padre": "legis.contaminacion",
    "tit": [
     "per"
@@ -2311,7 +2311,7 @@
     "RD 210/2004",
     "comunicar a la Capitanía"
    ],
-   "nota": "Qué sucesos hay que comunicar a la Administración marítima o a la estación costera (RD 210/2004, art. 19; Ley 14/2014).",
+   "nota": "Qué sucesos hay que comunicar inmediatamente a la estación costera: incidentes o accidentes que afecten a la seguridad del buque (abordaje, varada, daños, inundación…) o de la navegación (fallos de maniobrabilidad, propulsión, gobierno, electricidad, navegación o comunicaciones), situaciones que puedan contaminar y manchas contaminantes o contenedores a la deriva avistados. El aviso incluye al menos identidad, posición, puertos de origen y destino, personas a bordo y detalles del suceso. Norma: RD 210/2004, art. 17; al recreo de menos de 45 m le aplican solo los arts. 17–25 (art. 2.3).",
    "padre": "legis.obligaciones",
    "relacionados": [
     "legis.contaminacion.aviso"
@@ -2337,7 +2337,7 @@
     "único pabellón",
     "gallardete del club"
    ],
-   "nota": "Las embarcaciones matriculadas en España enarbolan el pabellón español, reservado al asta de popa o al pico; sin él izado no se iza otra bandera (salvo el gallardete del club).",
+   "nota": "Los buques y embarcaciones españoles, también los de recreo, enarbolan como único pabellón la Bandera de España, reservada al asta de popa y al pico del palo mayor; ninguna otra bandera ni enseña puede estar izada si no lo está la nacional. Hay que izarla a la vista de buque de guerra o fortaleza, al entrar y salir de puerto y, en puerto, de sol a sol en los festivos. Norma: RD 2335/1980, arts. 1, 2 y 4. Discrepancia: Baleares da por buena la excepción del gallardete del club (bal-per-2020-12-c-11), que la norma no recoge.",
    "padre": "legis.obligaciones",
    "relacionados": [
     "legis.pabellon.autonomica"
@@ -2360,7 +2360,7 @@
     "junto con la nacional",
     "no en el asta de popa"
    ],
-   "nota": "Uso voluntario de la bandera autonómica: siempre con la nacional izada, nunca en el asta de popa ni en el pico, y de tamaño no superior a un tercio de la nacional.",
+   "nota": "Uso voluntario de la bandera autonómica: solo en puertos nacionales y aguas interiores, siempre a la vez que la nacional, nunca en el asta de popa ni en el pico (reservados a la nacional) y de dimensiones no superiores a un tercio del área de la nacional. Norma: RD 2335/1980, arts. 2 y 3.",
    "padre": "legis.obligaciones",
    "relacionados": [
     "legis.pabellon.nacional"
@@ -2423,7 +2423,7 @@
     "boyas de fondeo",
     "fondear en arena"
    ],
-   "nota": "Valor de la posidonia, cómo reconocerla en la carta y prohibición de fondear sobre ella. Norma vigente: RD 191/2026 (prohibición general en el Mediterráneo desde el 2-4-2026) y normas autonómicas (Baleares, Decreto 25/2018).",
+   "nota": "Valor de la posidonia, cómo reconocerla en la carta y prohibición de fondear sobre ella. El RD 191/2026, art. 5, prohíbe con carácter general fondear sobre praderas de Posidonia oceanica y Cymodocea nodosa y en la arena próxima si la cadena u otros elementos de fondeo se apoyan en ellas o las afecta el borneo; sobre ellas solo con sistemas de bajo impacto autorizados (boyas), salvo fuerza mayor o peligro. Norma vigente: RD 191/2026 (Mediterráneo, en vigor desde el 2-4-2026) y normas autonómicas (Baleares, Decreto 25/2018).",
    "padre": "legis.espacios",
    "tit": [
     "per"

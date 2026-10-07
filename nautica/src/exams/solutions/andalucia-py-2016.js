@@ -4,14 +4,18 @@
 // `pendientes`: resoluciones que llegan a la oficial pero que el lector de opciones (src/exams/options.js) no puede comparar
 // todavía: dan el rumbo de la corriente como «Rc = SE» / «NW», sin grados. Están en `documentadas` hasta que lo lea.
 import { hrb } from '../kit.js';
+import { rhumbDestination } from '../../math/mercator.js';
+import { fmtBearing, fmtPos } from '../../math/format.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
-const SW = 225;
+const NE = 45; const E = 90; const SE = 135; const SW = 225; const W = 270;
 
 const lectorRc = (calc) => `El cálculo llega a la oficial (${calc}), pero el lector de opciones no entiende el rumbo de la corriente escrito con letras («Rc = SE» / «NW», sin grados): la comparación automática no lee ninguna opción. La resolución está en \`pendientes\` de este fichero.`;
 
 export const documentadas = {
+  'and-py-2016-c2-n11': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Espartel–Malabata mide 078,6° (como en and-py-2022-c2-n11): con la Da 093° la Ct es −14,4°. La oficial (−13°) es la más próxima, pero queda a 1,4° del cálculo, fuera de la tolerancia: el tribunal debió medir 080°. (El enunciado dice «Punta Malabata Carnero»: es Malabata.)' },
   'and-py-2016-c1-n14': { tipo: 'discrepancia', texto: lectorRc('Rc = 136° (SE), Ihc = 1,4′; oficial c, «Rc = SE, Ihc = 1,5′»') },
+  'and-py-2016-c2-n15': { tipo: 'discrepancia', texto: lectorRc('Rc = 138° (SE), Ihc = 1,5′; oficial d, «Rc = SE; Ihc = 1,5′»') },
 };
 
 export const pendientes = {
@@ -26,7 +30,33 @@ export const pendientes = {
       return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
     },
   },
+  'and-py-2016-c2-n15': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = enfilacionADistancia(k, 'punta-carnero', 'punta-europa', 6, 'Situación 14:00');
+      const d = k.distFor(5.1, hrb(16) - hrb(14));
+      const est = k.run(s, 227, d, 'Situación de estima 16:00');
+      const obs = k.cardinal2('punta-europa', 180, 'isla-tarifa', E, 'Situación observada 16:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, 120);
+      return [{ kind: 'bearing', value: rc }, { kind: 'distance', value: ic }];
+    },
+  },
 };
+
+// ---- Operaciones locales
+
+/**
+ * «En la enfilación de A y B y a `dist` millas de B»: estamos en la prolongación de la recta A → B, más allá de B
+ * (los dos faros se ven uno detrás del otro; entre ellos no habría enfilación).
+ */
+function enfilacionADistancia(k, a, b, dist, label) {
+  const dv = k.enfilacion(b, a);
+  const p = rhumbDestination(k.P(b), dv + 180, dist);
+  k.note(label, `Estamos en la enfilación, por fuera de ${k.P(b).name.replace(/^Faro de /, 'faro de ')}: desde él trazamos ${fmtBearing(dv + 180)} y medimos ${String(dist).replace('.', ',')} millas: ${fmtPos(p)}.`);
+  k.items.push({ t: 'pos', at: p, label, style: 'start', step: k.steps.length });
+  k.focus.push(p);
+  return p;
+}
 
 export default {
   // ---- 1ª Convocatoria 2016
@@ -95,6 +125,88 @@ export default {
     sinCarta: true,
     solve(k) {
       return [{ kind: 'signed', value: k.ctPolar(5) }];
+    },
+  },
+
+  // ---- 2ª Convocatoria 2016
+  'and-py-2016-c2-n12': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      // Al W de Espartel, con los dos faros enfilados por la proa.
+      const s = enfilacionADistancia(k, 'punta-malabata', 'cabo-espartel', 5.4, 'Situación de salida');
+      // Entramos en el Estrecho hacia el E: Malabata queda a la derecha, lo dejamos por estribor.
+      const rs = k.tangent(s, 'punta-malabata', 5, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 8, SE);
+      // 6º W 2006 con variación 6′ E anual.
+      const ct = k.ct({ carta: [-6, 2006, 6], anyo: 2016, desvio: -5 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2016-c2-n13': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 10,0 W', 'Situación 16:00');
+      const ct1 = k.ct({ dm: -5, desvio: 5 });
+      const rv1 = k.rv(60, ct1);
+      const p = k.run(s, rv1, k.distFor(8, hrb(17) - hrb(16)), 'Situación 17:00');
+      const ct2 = k.ct({ dm: -5, desvio: 0 });
+      const rv2 = k.rv(335, ct2);
+      const rs = k.abatimiento(rv2, 10, W);
+      const { ref, vef } = k.efectivo(rs, 8, E, 3, p);
+      return latlon(k.estimaEfectiva(p, ref, vef, hrb(18, 30) - hrb(17), 'Situación 18:30'));
+    },
+  },
+  'and-py-2016-c2-n14': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.fix2('punta-paloma', 45, 'isla-tarifa', 100, 'Situación de salida');
+      const { rs } = k.rumboConCorriente(s, 'barbate-faro', 8, W, 2);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ dm: 7, desvio: 8 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }];
+    },
+  },
+  'and-py-2016-c2-n16': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.fromMark('punta-europa', E, 6, 'Situación 19:00');
+      const { rs, vb } = k.rumboYVelocidad(s, 'ceuta-bocana', hrb(21) - hrb(19), E, 2);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      return [{ kind: 'bearing', value: rs }, { kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2016-c2-n17': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const d = k.distFor(8, hrb(11) - hrb(10));
+      return latlon(k.traslado('punta-cires', 200, 'punta-almina', 170, 70, d, 'Situación 11:00'));
+    },
+  },
+  'and-py-2016-c2-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Primera bajamar (09:44 UT) → segunda pleamar (16:08 UT).
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 1 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 2.8, 1.7, 2) }];
+    },
+  },
+  'and-py-2016-c2-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(22), 2);
+      const tr = k.tramoMarea(q.tabla_mareas, { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 1.7) }];
+    },
+  },
+  'and-py-2016-c2-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = k.pos('15 00,0 S', '178 00,0 E', 'Salida');
+      const b = k.pos('10 00,0 S', '176 00,0 W', 'Llegada');
+      return [{ kind: 'bearing', value: k.rumboDirecto(a, b).rumbo }];
     },
   },
 };

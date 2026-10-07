@@ -12,7 +12,7 @@ import { relative } from 'node:path';
 import { ID_CONCEPTO, ID_GRUPO, MAX_POR_PREGUNTA, TIPOS } from '../../src/conceptos/catalogo.js';
 import { RAIZ, TITS, bancosEnDisco, clasesDelCurso, etiquetasDisco, leerArgs, leerCatalogo, preguntasDe, rutaEtiquetasDisco } from './lib.mjs';
 
-const CAMPOS = ['id', 'tipo', 'etiqueta', 'sinonimos', 'nota', 'padre', 'relacionados', 'tit', 'clases', 'temario'];
+const CAMPOS = ['id', 'tipo', 'etiqueta', 'sinonimos', 'nota', 'padre', 'relacionados', 'tit', 'clases', 'temario', 'sustituidoPor'];
 const esTexto = (x) => typeof x === 'string' && x.trim() !== '';
 const listaDeTextos = (x) => Array.isArray(x) && x.every((s) => typeof s === 'string');
 
@@ -85,6 +85,11 @@ export function validarCatalogo(raiz = RAIZ) {
         if (p.tipo !== 'grupo') errores.push(`${quien}: el padre ${c.padre} no es de tipo «grupo»`);
         if (Array.isArray(c.tit) && Array.isArray(p.tit) && c.tit.some((t) => !p.tit.includes(t))) avisos.push(`${quien}: tiene titulaciones que su padre ${c.padre} no tiene`);
       }
+    }
+    if (c.sustituidoPor !== undefined) {
+      const t = porId.get(c.sustituidoPor)?.c;
+      if (typeof c.sustituidoPor !== 'string' || !t) errores.push(`${quien}: «sustituidoPor» ${JSON.stringify(c.sustituidoPor)} no existe`);
+      else if (t.tipo !== 'concepto' || t.sustituidoPor) errores.push(`${quien}: «sustituidoPor» debe apuntar a un concepto vigente (no sustituido ni grupo)`);
     }
     for (const r of Array.isArray(c.relacionados) ? c.relacionados : []) {
       if (r === c.id) errores.push(`${quien}: se cita a sí mismo en «relacionados»`);

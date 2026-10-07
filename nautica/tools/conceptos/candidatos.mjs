@@ -66,7 +66,7 @@ export function crearProcesador(stemmer) {
  * @returns {{ proponer: (q, extra?) => Array<{ id: string, p: number, clase?: true }> }}
  */
 export function crearBuscador({ catalogo, MiniSearch, stemmer, pesos = PESOS }) {
-  const conceptos = catalogo.conceptos.filter((c) => c.tipo === 'concepto');
+  const conceptos = catalogo.conceptos.filter((c) => c.tipo === 'concepto' && !c.sustituidoPor);
   const processTerm = crearProcesador(stemmer);
   const ms = new MiniSearch({
     fields: ['etiqueta', 'sinonimos', 'nota', 'padre'],

@@ -62,6 +62,8 @@ dos preguntas se responden sabiendo lo mismo, son del mismo concepto.
   por id. Si un concepto se parte en dos, se crean dos ids nuevos y el viejo pasa a `tipo: "grupo"` padre de ambos
   (sus preguntas se re-etiquetan); si dos se juntan, uno queda y el otro se deja de usar (no se borra hasta que ninguna
   etiqueta lo cite y nunca se reutiliza su id).
+- Un concepto que deja de usarse conserva su id y lleva `"sustituidoPor": "<id vigente>"`: el buscador de candidatos no
+  lo propone y las etiquetas que lo citen se migran al sustituto. Para fusionar A en B: A.sustituidoPor = B.
 - Los ids son únicos en todo el catálogo (entre todos los grupos).
 
 ### Etiquetas (`data/ejes/<eje>/<tit>/conceptos.json`)

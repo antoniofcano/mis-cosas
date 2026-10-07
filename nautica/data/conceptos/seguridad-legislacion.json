@@ -1,6 +1,6 @@
 {
  "grupo": "seguridad-legislacion",
- "version": 2,
+ "version": 3,
  "conceptos": [
   {
    "id": "estabilidad",
@@ -217,6 +217,7 @@
    "nota": "Clasificación del equilibrio según la posición de M respecto a G (M sobre G estable, M en G indiferente, M bajo G inestable) y comportamiento del barco escorado en cada caso.",
    "padre": "estabilidad",
    "tit": [
+    "per",
     "py"
    ],
    "clases": [
@@ -1903,7 +1904,7 @@
     "mínima velocidad",
     "motos náuticas en zona de baño"
    ],
-   "nota": "En las zonas de baño balizadas no se navega; la entrada y salida se hace por canales señalizados o, si no los hay, perpendicular a la playa a mínima velocidad. Norma vigente: RD 876/2014, art. 73.",
+   "nota": "El lanzamiento y la varada se hacen por canales señalizados (RD 876/2014, art. 73.1). Sin canal, Baleares da por buena la aproximación perpendicular a la playa a mínima velocidad (bal-per-2024-12-a-12); no lo recoge la norma estatal.",
    "padre": "legis.navegacion",
    "relacionados": [
     "legis.zona-bano.no-balizada"

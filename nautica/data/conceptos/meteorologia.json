@@ -1,6 +1,6 @@
 {
  "grupo": "meteorologia",
- "version": 2,
+ "version": 3,
  "conceptos": [
   {
    "id": "meteo",
@@ -85,8 +85,7 @@
     "per"
    ],
    "clases": [
-    "per-9-1",
-    "py-2-1"
+    "per-9-1"
    ],
    "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.2 Presión atmosférica: unidades de medida y valor normal"
   },
@@ -440,8 +439,7 @@
     "per"
    ],
    "clases": [
-    "per-9-2",
-    "py-2-1"
+    "per-9-2"
    ],
    "temario": "RD 875/2014, anexo II, 3 (PER), UT 9 Meteorología, 9.4 Trayectoria de las borrascas"
   },

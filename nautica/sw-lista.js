@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'd6d8558a1d2a';
+self.VERSION = '8df01d631182';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",

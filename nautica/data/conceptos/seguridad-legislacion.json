@@ -1,6 +1,6 @@
 {
  "grupo": "seguridad-legislacion",
- "version": 3,
+ "version": 4,
  "conceptos": [
   {
    "id": "estabilidad",
@@ -1981,7 +1981,8 @@
    "nota": "Todos los buques y embarcaciones, salvo la de apoyo, se mantienen a 50 m como mínimo de la zona de buceo y actúan según el RIPA (RD 550/2020, art. 14.2); la boya que señala al buceador (dispositivo de balizamiento en superficie) lleva la bandera «Alfa» (art. 2.r). Precauciones ante bañistas. Norma vigente: RD 550/2020, art. 14.",
    "padre": "legis.navegacion",
    "relacionados": [
-    "legis.buceo.banderas"
+    "legis.buceo.banderas",
+    "ripa.luces.buceo"
    ],
    "tit": [
     "per"

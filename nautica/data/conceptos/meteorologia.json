@@ -1,6 +1,6 @@
 {
  "grupo": "meteorologia",
- "version": 3,
+ "version": 5,
  "conceptos": [
   {
    "id": "meteo",
@@ -265,14 +265,18 @@
    "tipo": "concepto",
    "etiqueta": "Qué es la temperatura",
    "sinonimos": [
+    "aire cálido",
+    "aire frío",
+    "definición de temperatura",
+    "dilatación del aire",
+    "equilibrio térmico",
     "grado de calor del aire",
     "movimiento de las moléculas",
-    "equilibrio térmico",
-    "temperatura y presión",
     "temperatura",
-    "definición de temperatura"
+    "temperatura sube presión baja",
+    "temperatura y presión"
    ],
-   "nota": "Definición de temperatura (física y meteorológica) y afirmaciones sobre su relación con la presión.",
+   "nota": "Definición de temperatura (física y meteorológica) y su relación con la presión. Lo que se enseña: al calentarse, el aire se dilata, pierde densidad y asciende, de modo que a igual nivel la presión baja; aire más frío y denso, presión más alta. Hay preguntas oficiales que dan por buena «más temperatura, más presión» (discrepancia documentada en sus explicaciones): en el examen cuenta la plantilla, pero el concepto correcto es el inverso.",
    "padre": "meteo.temperatura",
    "tit": [
     "per"
@@ -1504,7 +1508,7 @@
     "norte de África",
     "calima"
    ],
-   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima. Discrepancia: and-py-2017-c3-g15 da el siroco como «del S»; Baleares y la rosa lo dan del SE (bal-py-2019-04-a-14). El siroco es muy cálido en verano y moderado en invierno (and-py-2024-c3-g11) y el lebeche llega seco, cálido y con calima (dgmm-py-2024-11-11).",
+   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima. Discrepancia: and-py-2017-c3-g15 da el siroco como «del S»; Baleares y la rosa lo dan del SE. El siroco es muy cálido en verano y moderado en invierno (and-py-2024-c3-g11) y el lebeche llega seco, cálido y con calima.",
    "padre": "meteo.regionales",
    "tit": [
     "py"
@@ -2206,7 +2210,7 @@
     "segundos",
     "por un mismo punto"
    ],
-   "nota": "Tiempo (segundos) que tardan en pasar por un mismo punto dos crestas o dos senos consecutivos. Baleares 2026 pregunta la relación periodo-longitud en mar abierto (a más periodo, más longitud: bal-py-2026-06-b-20), fuera del anexo II, que dice «sin relacionarlos»; se etiqueta aquí y con meteo.olas.longitud, sin concepto propio.",
+   "nota": "Tiempo (segundos) que tardan en pasar por un mismo punto dos crestas o dos senos consecutivos. Baleares 2026 pregunta la relación periodo-longitud en mar abierto (a más periodo, más longitud), fuera del anexo II, que dice «sin relacionarlos»; se etiqueta aquí y con meteo.olas.longitud, sin concepto propio.",
    "padre": "meteo.olas",
    "tit": [
     "py"
@@ -2234,7 +2238,9 @@
     "per",
     "py"
    ],
-   "clases": [],
+   "clases": [
+    "py-2-8"
+   ],
    "temario": "pendiente"
   },
   {

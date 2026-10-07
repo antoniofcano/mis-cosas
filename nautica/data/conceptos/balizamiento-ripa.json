@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 3,
+ "version": 5,
  "conceptos": [
   {
    "id": "baliza",
@@ -816,7 +816,7 @@
     "azul y amarillo",
     "peligro nuevo no publicado"
    ],
-   "nota": "Cómo se balizan los peligros aún no publicados: boya de pecio (franjas verticales azules y amarillas, cruz amarilla, luz alternante azul y amarilla, racon «D»), duplicación de marcas si el riesgo es grave y retirada.",
+   "nota": "Cómo se balizan los peligros aún no publicados: boya de pecio (franjas verticales azules y amarillas, cruz amarilla, luz alternante azul y amarilla, racon «D»), duplicación de marcas si el riesgo es grave y retirada. No figura expresamente en el punto 5.1 del anexo II: forma parte de la normativa IALA del sistema de balizamiento marítimo, que cada convocatoria especifica, y los tres tribunales la preguntan.",
    "padre": "baliza",
    "tit": [
     "per"
@@ -2733,7 +2733,8 @@
    "padre": "ripa.luces.draga-buceo",
    "relacionados": [
     "ripa.luces.maniobra-restringida",
-    "ripa.luces.draga"
+    "ripa.luces.draga",
+    "legis.buceo.distancia"
    ],
    "tit": [
     "per"

@@ -1,127 +1,2936 @@
 {
-  "grupo": "nomenclatura-maniobra",
-  "version": 2,
-  "conceptos": [
-    {"id": "nomen", "tipo": "grupo", "etiqueta": "Nomenclatura náutica", "sinonimos": [], "nota": "Partes, estructura, equipo de fondeo, timón, hélice y dimensiones del barco, y su terminología básica (PER, UT 1).", "relacionados": [], "tit": ["per"], "clases": ["per-1-1", "per-1-2", "per-1-3", "per-1-4", "per-1-5", "per-1-6", "per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica"},
-    {"id": "nomen.casco", "tipo": "grupo", "etiqueta": "El casco y sus referencias", "sinonimos": [], "nota": "Qué es el casco y cómo se nombran sus partes y direcciones (proa, popa, crujía, bandas, costados).", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco"},
-    {"id": "nomen.casco.casco", "tipo": "concepto", "etiqueta": "Casco y cubierta", "sinonimos": ["casco", "vaso", "cuerpo del buque", "envoltura estanca", "estanqueidad", "flotabilidad", "características principales del buque", "arboladura", "jarcia", "superestructuras", "pertrechos", "cubierta", "monocasco", "catamarán", "fibra de vidrio"], "nota": "Qué es el casco (cuerpo estanco, sin arboladura, jarcia, superestructuras, máquinas ni pertrechos; el timón no es casco) y qué es la cubierta que lo cierra por arriba. Incluye estanqueidad y las cualidades del buque cuando se preguntan como vocabulario.", "padre": "nomen.casco", "relacionados": [], "tit": ["per"], "clases": ["per-1-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Casco y cubierta»"},
-    {"id": "nomen.casco.proapopa", "tipo": "concepto", "etiqueta": "Proa y popa", "sinonimos": ["proa", "popa", "parte delantera", "parte posterior", "sentido de la marcha", "corta las aguas", "formas de popa", "popa de espejo"], "nota": "Definición de proa y popa, incluidas las formas de popa cuando se preguntan como vocabulario.", "padre": "nomen.casco", "relacionados": [], "tit": ["per"], "clases": ["per-1-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Proa y popa»"},
-    {"id": "nomen.casco.crujia", "tipo": "concepto", "etiqueta": "Línea y plano de crujía; babor y estribor", "sinonimos": ["línea de crujía", "plano de crujía", "plano diametral", "eje de simetría longitudinal", "bandas", "babor", "estribor", "mirando de popa a proa", "dos mitades simétricas", "banda izquierda", "banda derecha"], "nota": "La crujía divide el barco en dos bandas; mirando a proa, estribor a la derecha y babor a la izquierda. Son referencias fijas del barco (no dependen del viento).", "padre": "nomen.casco", "relacionados": ["nomen.terminos.barlovento"], "tit": ["per"], "clases": ["per-1-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Línea y plano de crujía, para definir: Estribor y babor»"},
-    {"id": "nomen.casco.costados", "tipo": "concepto", "etiqueta": "Costados: amura, través y aleta", "sinonimos": ["costado", "costados", "amura", "amuras", "través", "aleta", "aletas", "partes curvas de los costados", "convergen hacia proa", "cerrar y formar la popa", "perpendicular a la quilla", "por la amura de babor"], "nota": "Zonas de cada costado (amura delante, través en medio, aleta detrás) y su uso para situar objetos («por la amura de babor»).", "padre": "nomen.casco", "relacionados": [], "tit": ["per"], "clases": ["per-1-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Costados, amura, través y aleta»"},
-    {"id": "nomen.cubierta", "tipo": "grupo", "etiqueta": "En cubierta: aberturas, desagües y barandillas", "sinonimos": [], "nota": "Elementos de la cubierta que nombra el temario: bañera, imbornales, aberturas, ventilación y barandillas.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco"},
-    {"id": "nomen.cubierta.banera", "tipo": "concepto", "etiqueta": "Bañera", "sinonimos": ["bañera", "cámara abierta", "embarcaciones menores", "donde va la caña o rueda"], "nota": "La bañera: cámara abierta, normalmente a popa, donde va la tripulación y el gobierno.", "padre": "nomen.cubierta", "relacionados": [], "tit": ["per"], "clases": ["per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Bañera e imbornales»"},
-    {"id": "nomen.cubierta.imbornales", "tipo": "concepto", "etiqueta": "Imbornales", "sinonimos": ["imbornal", "imbornales", "orificios", "desagüe", "desagües", "a la altura del trancanil", "agua embarcada en cubierta", "golpes de mar", "amurada"], "nota": "Orificios que dan salida al agua embarcada en cubierta o en la bañera. No confundir con grifos de fondo ni con vías de agua.", "padre": "nomen.cubierta", "relacionados": ["nomen.estructura.grifos"], "tit": ["per"], "clases": ["per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Bañera e imbornales»"},
-    {"id": "nomen.cubierta.aberturas", "tipo": "concepto", "etiqueta": "Escotillas, lumbreras, portillos y tragaluces", "sinonimos": ["escotilla", "escotilla principal", "lumbrera", "lumbreras", "portillo", "portillos", "ojo de buey", "tragaluz", "dar luz y ventilación", "abertura en cubierta", "abertura en el costado"], "nota": "Aberturas de paso (escotilla), de luz y ventilación en cubierta (lumbrera) y en el costado (portillo), y tragaluces.", "padre": "nomen.cubierta", "relacionados": ["nomen.cubierta.manguerotes"], "tit": ["per"], "clases": ["per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Escotillas, escotilla principal», «Lumbreras…» y «Portillos y tragaluces»"},
-    {"id": "nomen.cubierta.manguerotes", "tipo": "concepto", "etiqueta": "Manguerotes de ventilación", "sinonimos": ["manguerote", "manguerotes", "ventilar", "ventilación", "aire fresco", "aire viciado", "boca orientable"], "nota": "El manguerote solo ventila (conduce aire al interior, con boca orientable); si además hay que dar luz, es una lumbrera.", "padre": "nomen.cubierta", "relacionados": ["nomen.cubierta.aberturas"], "tit": ["per"], "clases": ["per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Lumbreras y manguerotes ventilación»"},
-    {"id": "nomen.cubierta.barandillas", "tipo": "concepto", "etiqueta": "Pasamanos, candeleros y guardamancebos", "sinonimos": ["pasamanos", "candelero", "candeleros", "guardamancebo", "guardamancebos", "barandilla", "puntal metálico", "cabo de proa a popa", "seguridad de la tripulación"], "nota": "Candeleros (puntales verticales) que sostienen los guardamancebos (cables o cabos a lo largo de las bandas) y pasamanos para agarrarse.", "padre": "nomen.cubierta", "relacionados": [], "tit": ["per"], "clases": ["per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Pasamanos, candeleros y guardamancebos»"},
-    {"id": "nomen.estructura", "tipo": "grupo", "etiqueta": "La estructura del casco", "sinonimos": [], "nota": "Piezas estructurales del casco, sentina, grifos de fondo y achique.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura"},
-    {"id": "nomen.estructura.quilla", "tipo": "concepto", "etiqueta": "Quilla", "sinonimos": ["quilla", "columna vertebral", "pieza longitudinal", "de proa a popa por la parte inferior", "refuerzo longitudinal", "base de sustentación", "orza", "bulbo"], "nota": "La quilla como pieza longitudinal inferior sobre la que se asienta la estructura; incluye las orzas y quillas añadidas de los veleros cuando se preguntan. Discrepancia: bal-per-2017-03-a-01 y bal-per-2017-09-c-04 dan «orza» a lo que describen como pieza unida a la quilla con bulbo; se acepta la oficial, pero no usar esas preguntas como oro.", "padre": "nomen.estructura", "relacionados": [], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «Quilla»"},
-    {"id": "nomen.estructura.rodacodaste", "tipo": "concepto", "etiqueta": "Roda y codaste", "sinonimos": ["roda", "codaste", "prolongación de la quilla", "prolonga la quilla hacia proa", "remata el casco por popa", "cierre del casco por su proa", "soporte del timón"], "nota": "La roda prolonga la quilla hacia proa y el codaste la remata por popa (y soporta el timón). Preguntas de «qué pieza no es de proa».", "padre": "nomen.estructura", "relacionados": ["nomen.estructura.quilla"], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «roda, codaste»"},
-    {"id": "nomen.estructura.cuadernas", "tipo": "concepto", "etiqueta": "Cuadernas y baos", "sinonimos": ["cuaderna", "cuadernas", "bao", "baos", "refuerzos transversales", "costillas", "sostienen la cubierta", "de babor a estribor", "cuaderna maestra"], "nota": "Cuadernas (costillas transversales que arrancan de la quilla) y baos (piezas de banda a banda que sostienen la cubierta). Se preguntan juntas por confusión.", "padre": "nomen.estructura", "relacionados": [], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «cuadernas, baos»"},
-    {"id": "nomen.estructura.borda", "tipo": "concepto", "etiqueta": "Borda, regala y trancanil", "sinonimos": ["borda", "regala", "tapa de regala", "amurada", "canto superior del costado", "trancanil", "barraganetes"], "nota": "Borda: parte del costado por encima de la cubierta; regala: su canto superior (tapa de regala); trancanil: unión de cubierta y costado, solo como distractor.", "padre": "nomen.estructura", "relacionados": [], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «borda, regala»"},
-    {"id": "nomen.estructura.mamparos", "tipo": "concepto", "etiqueta": "Mamparos", "sinonimos": ["mamparo", "mamparos", "mamparo estanco", "mamparo de colisión", "subdivisión de los espacios interiores", "flotabilidad"], "nota": "Tabiques que subdividen el interior; los estancos aseguran la flotabilidad.", "padre": "nomen.estructura", "relacionados": [], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «mamparos»"},
-    {"id": "nomen.estructura.sentina", "tipo": "concepto", "etiqueta": "Plan y sentina", "sinonimos": ["plan", "sentina", "fondo interior", "parte casi horizontal del fondo", "aguas filtradas", "derrames", "baldeos"], "nota": "El plan (parte interior baja y casi horizontal) y la sentina (donde se recogen las aguas de filtraciones y derrames).", "padre": "nomen.estructura", "relacionados": ["nomen.estructura.achique"], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «plan y sentina»"},
-    {"id": "nomen.estructura.grifos", "tipo": "concepto", "etiqueta": "Grifos de fondo y pasacascos", "sinonimos": ["grifos de fondo", "grifo de fondo", "válvulas de mar", "por debajo de la línea de flotación", "pasacascos", "refrigeración del motor", "toma de agua de mar"], "nota": "Válvulas bajo la flotación que dan o cortan el paso del agua de mar a los servicios (motor, aseos), montadas sobre pasacascos. Su cierre con mal tiempo es de seguridad.", "padre": "nomen.estructura", "relacionados": ["nomen.cubierta.imbornales", "seguridad.mal-tiempo.aberturas"], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «Grifos de fondo»"},
-    {"id": "nomen.estructura.achique", "tipo": "concepto", "etiqueta": "Bombas de achique", "sinonimos": ["bomba de achique", "bombas de achique", "achicar", "sacar el agua", "descarga de la bomba"], "nota": "Para qué sirven las bombas de achique y dónde descargan. La lucha contra una vía de agua es de emergencias.", "padre": "nomen.estructura", "relacionados": ["nomen.estructura.sentina"], "tit": ["per"], "clases": ["per-1-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «Bombas de achique»"},
-    {"id": "nomen.fondeo", "tipo": "grupo", "etiqueta": "Equipo de fondeo", "sinonimos": [], "nota": "Molinete, línea de fondeo, anclas y voces de la maniobra de fondeo.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo"},
-    {"id": "nomen.fondeo.molinete", "tipo": "concepto", "etiqueta": "Molinete: barbotén, cabirón, embrague y freno", "sinonimos": ["molinete", "barbotén", "cabirón", "cabirol", "chigre", "embrague", "embragar", "desembragar", "freno", "estopor", "corona con muescas"], "nota": "Partes del molinete y cómo se usan: embragado y freno libre para levar; frenado y desembragado para fondear dosificando con el freno; estopor para descargar el barbotén. Barbotén: corona donde engranan los eslabones; cabirón o cabirol: tambor liso para cabos; estopor: traba que sujeta la cadena. «Chigre» es solo otro nombre de molinete.", "padre": "nomen.fondeo", "relacionados": ["amarre.fondeo.gira", "amarre.fondeo.levar"], "tit": ["per"], "clases": ["per-1-6", "per-2-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Molinete: Barbotén, embrague y freno»"},
-    {"id": "nomen.fondeo.linea", "tipo": "concepto", "etiqueta": "Línea de fondeo y grillete de unión", "sinonimos": ["línea de fondeo", "cadena", "estacha", "grillete", "grillete de unión", "grillete de entalingadura", "tramo de cadena", "grillete de cadena"], "nota": "Qué forma la línea de fondeo (ancla, cadena y cabo o estacha) y cómo se une (grillete de unión o de entalingadura).", "padre": "nomen.fondeo", "relacionados": ["nomen.fondeo.lineaminima", "nomen.fondeo.grillete-medida"], "tit": ["per"], "clases": ["per-1-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Línea de fondeo. Grillete de unión»"},
-    {"id": "nomen.fondeo.grillete-medida", "tipo": "concepto", "etiqueta": "El grillete como medida de cadena (27,5 m)", "sinonimos": ["grillete de cadena", "27,5 metros", "15 brazas", "tramo de cadena", "metros de cadena"], "nota": "Un grillete es cada tramo de la cadena de fondeo, unos 27,5 m (15 brazas); se usa para contar la cadena filada («siete grilletes»). No confundir con el grillete de unión (nomen.fondeo.linea).", "padre": "nomen.fondeo", "relacionados": ["nomen.fondeo.linea"], "tit": ["per"], "clases": ["per-1-6", "per-2-5"], "temario": "pendiente"},
-    {"id": "nomen.fondeo.lineaminima", "tipo": "concepto", "etiqueta": "Longitud mínima de la línea de fondeo", "sinonimos": ["cinco veces la eslora", "longitud mínima de la línea de fondeo", "tramo de cadena igual a la eslora", "toda de estacha", "más de 6 metros de eslora"], "nota": "Lo que exige la norma de equipo: línea de al menos 5 esloras y tramo de cadena de al menos 1 eslora (hasta 6 m puede ser toda estacha). No confundir con la cadena que se fila según la sonda. Peso mínimo del ancla y diámetros de cadena y estacha según la tabla del art. 11.4 (p. ej. L=9 m: ancla de 14 kg, cadena de 8 mm, estacha de 12 mm); la tabla corresponde a anclas de alto poder de agarre (otros tipos, +1/3) y el ancla puede repartirse en dos, la principal ≥ 75 % (11.7). Hoy no se pregunta el peso, solo 5 esloras y cadena ≥ 1 eslora.", "padre": "nomen.fondeo", "relacionados": ["amarre.fondeo.cadena"], "tit": ["per"], "clases": ["per-1-6", "per-2-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Línea de fondeo». Cifras: RD 339/2021, de 18 de mayo, art. 11 (BOE-A-2021-8268): longitud ≥ 5 esloras (11.1); tramo de cadena ≥ 1 eslora, salvo L ≤ 6 m, que puede ser toda estacha (11.2); sin cadenas ni estachas empalmadas sin grillete (11.3); tabla de peso mínimo del ancla y diámetros (11.4)"},
-    {"id": "nomen.fondeo.ancla", "tipo": "concepto", "etiqueta": "Partes del ancla", "sinonimos": ["arganeo", "caña", "cruz", "brazos", "uñas", "mapa", "cepo", "ancla sin cepo", "partes del ancla"], "nota": "Partes del ancla sin cepo (arganeo, caña, cruz, brazos, uñas) y qué es el cepo.", "padre": "nomen.fondeo", "relacionados": [], "tit": ["per"], "clases": ["per-1-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Partes del ancla sin cepo»"},
-    {"id": "nomen.fondeo.tiposancla", "tipo": "concepto", "etiqueta": "Tipos de ancla: arado, Danforth y rezón", "sinonimos": ["ancla de arado", "arado", "CQR", "Danforth", "rezón", "grampín", "almirantazgo", "dos uñas", "cuatro brazos", "ancla de patente", "anclote"], "nota": "Reconocer por su forma el ancla de arado, la Danforth y el rezón, y en qué fondo o barco conviene cada una.", "padre": "nomen.fondeo", "relacionados": ["amarre.fondeo.tenedero"], "tit": ["per"], "clases": ["per-1-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Forma del ancla de arado, del ancla Danforth y del rezón»"},
-    {"id": "nomen.fondeo.filar", "tipo": "concepto", "etiqueta": "Filar y virar", "sinonimos": ["filar", "filar cadena", "arriar progresivamente", "largar cadena", "dejar salir cadena", "virar", "cobrar con el molinete"], "nota": "Filar es dejar salir (arriar) cadena o cabo que trabaja; virar es cobrarla con el molinete.", "padre": "nomen.fondeo", "relacionados": ["maniobra.cabos.cobrar"], "tit": ["per"], "clases": ["per-1-6", "per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Virar, filar»"},
-    {"id": "nomen.fondeo.pendura", "tipo": "concepto", "etiqueta": "Ancla a la pendura", "sinonimos": ["a la pendura", "colgada lista para fondear", "sobre freno", "fuera del escobén", "salida clara de la cadena", "¡fondo!"], "nota": "Ancla colgando fuera de su estiba, sobre freno y lista para fondear, y para qué se lleva así.", "padre": "nomen.fondeo", "relacionados": [], "tit": ["per"], "clases": ["per-1-6", "per-2-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «a la pendura»"},
-    {"id": "nomen.fondeo.apique", "tipo": "concepto", "etiqueta": "A pique, zarpar, levar, clara y libre", "sinonimos": ["a pique", "llamando verticalmente", "cadena perpendicular", "zarpar", "ha zarpado", "despega del fondo", "levar", "levar el ancla", "clara y libre"], "nota": "Voces del final del fondeo: a pique (cadena vertical), zarpar (el ancla despega del fondo), levar (subirla) y clara y libre (fuera del agua sin obstáculos).", "padre": "nomen.fondeo", "relacionados": ["amarre.fondeo.levar"], "tit": ["per"], "clases": ["per-1-6", "per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «a pique, levar, zarpar, clara y libre»"},
-    {"id": "nomen.timon", "tipo": "grupo", "etiqueta": "El timón", "sinonimos": [], "nota": "Partes del timón y tipos.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón"},
-    {"id": "nomen.timon.pala", "tipo": "concepto", "etiqueta": "Pala y mecha del timón", "sinonimos": ["pala", "azafrán", "mecha", "eje del timón", "eje vertical", "prensaestopas", "parte ancha del timón"], "nota": "La pala (superficie sobre la que actúa el agua) y la mecha (eje que la une con la caña).", "padre": "nomen.timon", "relacionados": [], "tit": ["per"], "clases": ["per-1-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón: «Partes del timón: … mecha … y pala»"},
-    {"id": "nomen.timon.limera", "tipo": "concepto", "etiqueta": "Limera", "sinonimos": ["limera", "orificio por donde pasa la mecha", "tubo dentro del cual gira el eje del timón", "permanece inmóvil"], "nota": "Orificio o tubo por el que la mecha atraviesa el casco. Se confunde a propósito con la bocina (eje de la hélice).", "padre": "nomen.timon", "relacionados": ["nomen.helice.bocina"], "tit": ["per"], "clases": ["per-1-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón: «limera»"},
-    {"id": "nomen.timon.guardines", "tipo": "concepto", "etiqueta": "Caña, rueda y guardines", "sinonimos": ["caña", "rueda", "guardines", "guardín", "guarnes", "cables y poleas", "transmiten el giro de la rueda"], "nota": "Caña o rueda con que se gobierna y guardines (cables, cabos o cadenas) que llevan el giro de la rueda a la mecha.", "padre": "nomen.timon", "relacionados": ["maniobra.gobierno.cana"], "tit": ["per"], "clases": ["per-1-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón: «Caña o rueda … guardines»"},
-    {"id": "nomen.timon.tipos", "tipo": "concepto", "etiqueta": "Tipos de timón", "sinonimos": ["timón compensado", "semicompensado", "suspendido", "ordinario"], "nota": "Timón ordinario, compensado y suspendido. El punto 1.4 solo cita las partes; se pregunta en Baleares. La eficacia del timón está en maniobra.gobierno.timon.", "padre": "nomen.timon", "relacionados": ["maniobra.gobierno.timon"], "tit": ["per"], "clases": ["per-1-4"], "temario": "pendiente"},
-    {"id": "nomen.helice", "tipo": "grupo", "etiqueta": "La hélice", "sinonimos": [], "nota": "Partes, sentido de giro y tipos de hélice.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice"},
-    {"id": "nomen.helice.partes", "tipo": "concepto", "etiqueta": "Partes de la hélice", "sinonimos": ["eje", "núcleo", "palas", "capacete", "capuchón", "cara activa", "dorso", "diámetro de la hélice", "elemento propulsor"], "nota": "Eje, núcleo, palas y capacete (y qué es la hélice como propulsor). La bocina tiene concepto propio.", "padre": "nomen.helice", "relacionados": ["nomen.helice.bocina"], "tit": ["per"], "clases": ["per-1-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Partes de la hélice: Eje, bocina, núcleo, palas y capacete»"},
-    {"id": "nomen.helice.bocina", "tipo": "concepto", "etiqueta": "Bocina", "sinonimos": ["bocina", "orificio por donde sale el eje de la hélice", "sin que entre agua", "eje de cola", "riesgo de inundación"], "nota": "Orificio o tubo por el que el eje de la hélice atraviesa el casco sin que entre agua. Se confunde con la limera.", "padre": "nomen.helice", "relacionados": ["nomen.timon.limera"], "tit": ["per"], "clases": ["per-1-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «… bocina …»"},
-    {"id": "nomen.helice.giro", "tipo": "concepto", "etiqueta": "Hélice dextrógira y levógira", "sinonimos": ["dextrógira", "levógira", "paso a la derecha", "paso a la izquierda", "giro a la derecha", "giro a la izquierda", "agujas del reloj", "vista desde popa", "marcha avante", "máquina atrás"], "nota": "Sentido de giro visto desde popa y avante; dando atrás se invierte el giro pero no el nombre.", "padre": "nomen.helice", "relacionados": ["maniobra.helice.atras"], "tit": ["per"], "clases": ["per-1-5", "per-7-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Hélice dextrógira y hélice levógira»"},
-    {"id": "nomen.helice.gemelas", "tipo": "concepto", "etiqueta": "Hélices gemelas de giro al exterior", "sinonimos": ["hélices gemelas", "giro al exterior", "giro al interior", "supradivergentes", "dos hélices", "estribor dextrógira", "babor levógira", "compensan la presión lateral"], "nota": "Con giro al exterior la de estribor es dextrógira y la de babor levógira; por qué se compensan los efectos laterales.", "padre": "nomen.helice", "relacionados": ["maniobra.ciaboga.dos"], "tit": ["per"], "clases": ["per-1-5", "per-7-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Hélices gemelas de giro al exterior»"},
-    {"id": "nomen.helice.abatibles", "tipo": "concepto", "etiqueta": "Palas abatibles", "sinonimos": ["palas abatibles", "hélice plegable", "pico de pato", "menor resistencia", "navegar a vela"], "nota": "Hélices de palas abatibles o plegables, «pico de pato» (menos resistencia navegando a vela).", "padre": "nomen.helice", "relacionados": [], "tit": ["per"], "clases": ["per-1-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Hélice de palas abatibles»"},
-    {"id": "nomen.helice.paso", "tipo": "concepto", "etiqueta": "Paso, retroceso, paso variable y cavitación", "sinonimos": ["paso de la hélice", "avanzaría en una vuelta", "retroceso", "pérdida de avance", "cavitación", "paso variable", "ángulo de ataque"], "nota": "Definiciones de paso, retroceso, paso variable y cavitación. No figuran expresamente en el punto 1.5; se preguntan en Baleares.", "padre": "nomen.helice", "relacionados": [], "tit": ["per"], "clases": ["per-1-5", "per-7-4"], "temario": "pendiente"},
-    {"id": "nomen.dimensiones", "tipo": "grupo", "etiqueta": "Flotación y dimensiones", "sinonimos": [], "nota": "Flotación, dimensiones principales, asiento y desplazamiento.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco (plano de flotación) y 1.6 Dimensiones"},
-    {"id": "nomen.dimensiones.flotacion", "tipo": "concepto", "etiqueta": "Flotación: obra viva y obra muerta", "sinonimos": ["plano de flotación", "línea de flotación", "obra viva", "carena", "obra muerta", "parte sumergida", "parte emergida"], "nota": "El plano o línea de flotación separa la obra viva (carena, sumergida) de la obra muerta (emergida).", "padre": "nomen.dimensiones", "relacionados": ["maniobra.agentes.viento"], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Plano de flotación, para definir: Obra viva (carena) y obra muerta»"},
-    {"id": "nomen.dimensiones.eslora", "tipo": "concepto", "etiqueta": "Eslora", "sinonimos": ["eslora", "eslora total", "eslora máxima", "eslora entre perpendiculares", "eslora del casco", "longitud"], "nota": "Longitud del barco y sus variantes (total o máxima, entre perpendiculares, del casco con marcado CE).", "padre": "nomen.dimensiones", "relacionados": [], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «Eslora»"},
-    {"id": "nomen.dimensiones.manga", "tipo": "concepto", "etiqueta": "Manga y manga máxima", "sinonimos": ["manga", "manga máxima", "anchura", "de babor a estribor", "cuaderna maestra", "parte más ancha"], "nota": "Anchura del barco; la manga máxima se mide en la parte más ancha por fuera del forro.", "padre": "nomen.dimensiones", "relacionados": [], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «manga y manga máxima»"},
-    {"id": "nomen.dimensiones.puntal", "tipo": "concepto", "etiqueta": "Puntal", "sinonimos": ["puntal", "altura del casco", "desde la quilla hasta la cubierta", "dimensión vertical"], "nota": "Altura del casco desde la quilla hasta la cubierta corrida más alta; no cambia con la carga.", "padre": "nomen.dimensiones", "relacionados": [], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «puntal»"},
-    {"id": "nomen.dimensiones.calado", "tipo": "concepto", "etiqueta": "Calado y calado medio", "sinonimos": ["calado", "calado de proa", "calado de popa", "calado medio", "semisuma", "media aritmética", "cala"], "nota": "Distancia vertical de la flotación a la quilla (punto más bajo); calado medio = semisuma de los de proa y popa.", "padre": "nomen.dimensiones", "relacionados": ["nomen.dimensiones.asiento"], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «calado de proa, calado de popa, calado medio»"},
-    {"id": "nomen.dimensiones.francobordo", "tipo": "concepto", "etiqueta": "Francobordo", "sinonimos": ["francobordo", "franco bordo", "reserva de flotabilidad", "de la flotación a la cubierta", "cubierta estanca", "máxima carga"], "nota": "Distancia vertical, medida en el centro del costado, entre la flotación y la cubierta completa más alta con medios permanentes de cierre estanco; es la reserva de flotabilidad. Disminuye al aumentar el calado o la carga (desplazamiento).", "padre": "nomen.dimensiones", "relacionados": [], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «franco bordo»"},
-    {"id": "nomen.dimensiones.asiento", "tipo": "concepto", "etiqueta": "Asiento: aproado, apopado y aguas iguales", "sinonimos": ["asiento", "diferencia de calados", "calado de popa menos calado de proa", "aproado", "aproante", "apopado", "apopante", "aguas iguales", "asiento negativo"], "nota": "Asiento = calado de popa − calado de proa: positivo apopado, negativo aproado, cero en aguas iguales; efecto en el gobierno.", "padre": "nomen.dimensiones", "relacionados": ["nomen.dimensiones.calado"], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «asiento»"},
-    {"id": "nomen.dimensiones.desplazamiento", "tipo": "concepto", "etiqueta": "Desplazamiento", "sinonimos": ["desplazamiento", "desplazamiento máximo", "peso del agua desplazada", "peso del buque", "cargada al máximo", "desplazamiento en lastre", "arqueo"], "nota": "Peso del barco (= peso del agua que desaloja) y desplazamiento máximo en recreo; el arqueo es volumen, no peso.", "padre": "nomen.dimensiones", "relacionados": ["estabilidad.desplazamiento"], "tit": ["per"], "clases": ["per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «Desplazamiento máximo en embarcaciones de recreo»"},
-    {"id": "nomen.terminos", "tipo": "grupo", "etiqueta": "Terminología: escora y viento", "sinonimos": [], "nota": "Términos del punto 1.7: escorar y adrizar, barlovento y sotavento.", "padre": "nomen", "relacionados": [], "tit": ["per"], "clases": ["per-1-1", "per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.7 Terminología"},
-    {"id": "nomen.terminos.barlovento", "tipo": "concepto", "etiqueta": "Barlovento y sotavento", "sinonimos": ["barlovento", "sotavento", "banda de barlovento", "banda de sotavento", "por donde entra el viento", "por donde viene el viento", "costado contrario", "por donde sale el viento", "orzar"], "nota": "Lado por el que viene el viento y lado contrario; cambian con el viento y el rumbo (ejercicios «rumbo N con viento del W»). Incluye orzar cuando se pregunta como vocabulario.", "padre": "nomen.terminos", "relacionados": ["nomen.casco.crujia", "maniobra.agentes.libresotavento"], "tit": ["per"], "clases": ["per-1-1", "per-1-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.7 Terminología: «Barlovento y sotavento»"},
-    {"id": "nomen.terminos.escora", "tipo": "concepto", "etiqueta": "Escorar y adrizar", "sinonimos": ["escorar", "escora", "escorado", "adrizar", "adrizado", "enderezar", "inclinarse a una banda", "escora nula", "clinómetro"], "nota": "Escorar es inclinarse a una banda; adrizar, volver a la vertical o corregir la escora. Las causas y la estabilidad son de seguridad.", "padre": "nomen.terminos", "relacionados": [], "tit": ["per"], "clases": ["per-1-7", "per-1-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.7 Terminología: «Escorar y adrizar»"},
-    {"id": "amarre", "tipo": "grupo", "etiqueta": "Amarre y fondeo", "sinonimos": [], "nota": "Elementos de amarre, partes de un cabo, nudos del PER y maniobra de fondeo (PER, UT 2).", "relacionados": [], "tit": ["per"], "clases": ["per-2-1", "per-2-2", "per-2-3", "per-2-4", "per-2-5", "per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo"},
-    {"id": "amarre.elementos", "tipo": "grupo", "etiqueta": "Elementos de amarre", "sinonimos": [], "nota": "Herrajes del muelle y de a bordo y accesorios para amarrar.", "padre": "amarre", "relacionados": [], "tit": ["per"], "clases": ["per-2-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre"},
-    {"id": "amarre.elementos.noray", "tipo": "concepto", "etiqueta": "Noray y bolardo", "sinonimos": ["noray", "norays", "bolardo", "pieza fijada al muelle", "elemento de tierra", "cantil del muelle"], "nota": "Piezas del muelle donde se encapillan o hacen firmes las amarras. Preguntas de «qué elemento no está en el muelle».", "padre": "amarre.elementos", "relacionados": ["amarre.elementos.bita"], "tit": ["per"], "clases": ["per-2-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «Noray»"},
-    {"id": "amarre.elementos.bita", "tipo": "concepto", "etiqueta": "Bitas y cornamusas", "sinonimos": ["bita", "bitas", "cornamusa", "cornamusas", "dos columnas", "en forma de T", "encorvada en sus extremos", "elemento de a bordo", "afirmar drizas y escotas"], "nota": "Herrajes de a bordo para hacer firme un cabo (bita de dos columnas; cornamusa en forma de T). Incluye «qué elemento no se usa en el amarre».", "padre": "amarre.elementos", "relacionados": ["amarre.elementos.noray"], "tit": ["per"], "clases": ["per-2-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «bitas y cornamusas»"},
-    {"id": "amarre.elementos.muerto", "tipo": "concepto", "etiqueta": "Muertos y boyas de amarre", "sinonimos": ["muerto", "muertos", "boya", "boyas", "bloque de cemento", "peso en el fondo", "cuerpo flotante", "lastre"], "nota": "El muerto (peso en el fondo) y la boya que flota unida a él para amarrarse.", "padre": "amarre.elementos", "relacionados": ["maniobra.atraque.boya"], "tit": ["per"], "clases": ["per-2-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «muertos, boyas»"},
-    {"id": "amarre.elementos.defensas", "tipo": "concepto", "etiqueta": "Defensas", "sinonimos": ["defensa", "defensas", "amortiguar golpes", "proteger el casco", "entre el costado y el muelle"], "nota": "Qué son las defensas y dónde se colocan.", "padre": "amarre.elementos", "relacionados": [], "tit": ["per"], "clases": ["per-2-1", "per-1-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «defensas»"},
-    {"id": "amarre.elementos.bichero", "tipo": "concepto", "etiqueta": "Bichero", "sinonimos": ["bichero", "asta larga con un gancho", "percha", "puntera", "coger la guía o las amarras"], "nota": "Pértiga con gancho para coger cabos, boyas u objetos al atracar o desatracar.", "padre": "amarre.elementos", "relacionados": [], "tit": ["per"], "clases": ["per-2-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «bichero»"},
-    {"id": "amarre.elementos.guiacabos", "tipo": "concepto", "etiqueta": "Guiacabos y gateras", "sinonimos": ["guía-cabos", "guiacabos", "gatera", "evitan el roce", "pasar y guiar los cabos"], "nota": "Piezas por las que pasan las amarras para guiarlas y evitar roces.", "padre": "amarre.elementos", "relacionados": [], "tit": ["per"], "clases": ["per-2-1", "per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «guía-cabos»"},
-    {"id": "amarre.elementos.roldana", "tipo": "concepto", "etiqueta": "Roldana", "sinonimos": ["roldana", "rueda acanalada", "polea", "motón", "pasteca", "laborea", "cambiar la dirección del cabo"], "nota": "Rueda de poleas y motones por la que corre un cabo.", "padre": "amarre.elementos", "relacionados": [], "tit": ["per"], "clases": ["per-2-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «roldana»"},
-    {"id": "amarre.cabo", "tipo": "grupo", "etiqueta": "Partes de un cabo", "sinonimos": [], "nota": "Chicote, seno, firme y gaza.", "padre": "amarre", "relacionados": [], "tit": ["per"], "clases": ["per-2-1", "per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre"},
-    {"id": "amarre.cabo.partes", "tipo": "concepto", "etiqueta": "Chicote, seno y firme", "sinonimos": ["chicote", "seno", "firme", "extremo libre", "parte que trabaja", "porción más larga", "curvatura", "arco que forma el cabo", "mena", "grosor"], "nota": "Partes de un cabo: chicote (extremo), firme (la que trabaja) y seno (la curva entre ambos). Incluye la mena (grosor) cuando se pregunta.", "padre": "amarre.cabo", "relacionados": ["amarre.cabo.gaza"], "tit": ["per"], "clases": ["per-2-1", "per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «chicote, seno, firme»"},
-    {"id": "amarre.cabo.gaza", "tipo": "concepto", "etiqueta": "Gaza", "sinonimos": ["gaza", "lazo", "ojo", "gaza trenzada", "costura", "ligada"], "nota": "Lazo u ojo cerrado en el extremo de un cabo, hecho con costura, ligada o nudo.", "padre": "amarre.cabo", "relacionados": ["amarre.nudos.asdeguia", "maniobra.cabos.encapillar"], "tit": ["per"], "clases": ["per-2-1", "per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «gaza»"},
-    {"id": "amarre.nudos", "tipo": "grupo", "etiqueta": "Nudos", "sinonimos": [], "nota": "Para qué se emplea cada uno de los cuatro nudos del temario.", "padre": "amarre", "relacionados": [], "tit": ["per"], "clases": ["per-2-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos"},
-    {"id": "amarre.nudos.llano", "tipo": "concepto", "etiqueta": "Nudo llano", "sinonimos": ["nudo llano", "nudo de rizo", "unir dos cabos", "misma mena", "mismo grosor", "por sus chicotes"], "nota": "Une por sus chicotes dos cabos de la misma mena y material.", "padre": "amarre.nudos", "relacionados": [], "tit": ["per"], "clases": ["per-2-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «Llano»"},
-    {"id": "amarre.nudos.rezon", "tipo": "concepto", "etiqueta": "Vuelta de rezón", "sinonimos": ["vuelta de rezón", "argolla", "arganeo", "cáncamo", "defensas mucho tiempo", "línea de fondeo al ancla"], "nota": "Afirma un cabo a una argolla o arganeo; defensas que van a estar puestas mucho tiempo.", "padre": "amarre.nudos", "relacionados": ["amarre.nudos.ballestrinque"], "tit": ["per"], "clases": ["per-2-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «vuelta de rezón»"},
-    {"id": "amarre.nudos.ballestrinque", "tipo": "concepto", "etiqueta": "Ballestrinque", "sinonimos": ["ballestrinque", "afirmar rápidamente", "defensa poco tiempo", "candelero", "pasamanos", "bita", "palo", "cote"], "nota": "Afirma rápido un cabo a un palo, candelero o bita; defensas por poco tiempo.", "padre": "amarre.nudos", "relacionados": ["amarre.nudos.rezon"], "tit": ["per"], "clases": ["per-2-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «ballestrinque»"},
-    {"id": "amarre.nudos.asdeguia", "tipo": "concepto", "etiqueta": "As de guía", "sinonimos": ["as de guía", "gaza fija", "no corrediza", "sin costura", "encapillar", "reemplazar a una gaza"], "nota": "Hace una gaza fija sin costura, para encapillar en un noray o rodear a una persona.", "padre": "amarre.nudos", "relacionados": ["amarre.cabo.gaza"], "tit": ["per"], "clases": ["per-2-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «as de guía»"},
-    {"id": "amarre.fondeo", "tipo": "grupo", "etiqueta": "Fondeo", "sinonimos": [], "nota": "Dónde y cómo fondear, cuánta cadena, borneo, garreo, vigilancia, orinque y levar.", "padre": "amarre", "relacionados": [], "tit": ["per"], "clases": ["per-2-3", "per-2-4", "per-2-5", "per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo"},
-    {"id": "amarre.fondeo.lugar", "tipo": "concepto", "etiqueta": "Elección del lugar de fondeo", "sinonimos": ["lugar de fondeo", "fondeadero", "abrigo", "profundidad", "pendiente del fondo", "espacio para bornear", "corrientes", "carta y derrotero"], "nota": "Qué se valora al elegir dónde fondear (abrigo del viento, profundidad, tipo de fondo, corriente, espacio) y por qué no conviene un fondo con mucha pendiente.", "padre": "amarre.fondeo", "relacionados": ["amarre.fondeo.tenedero"], "tit": ["per"], "clases": ["per-2-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Elección del lugar de fondeo»"},
-    {"id": "amarre.fondeo.tenedero", "tipo": "concepto", "etiqueta": "Tenedero: calidad del fondo", "sinonimos": ["tenedero", "arena", "fango duro", "fango blando", "roca", "piedra", "algas", "cascajo", "agarre del ancla", "arcilla"], "nota": "Tenedero es la calidad del fondo para el agarre del ancla; buenos: arena fina compacta, arcilla, fango compacto, arena fangosa; malos: roca, algas, fango blando.", "padre": "amarre.fondeo", "relacionados": ["amarre.fondeo.lugar", "amarre.fondeo.garreo"], "tit": ["per"], "clases": ["per-2-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Elección … del tenedero»"},
-    {"id": "amarre.fondeo.gira", "tipo": "concepto", "etiqueta": "Fondeo a la gira: la maniobra", "sinonimos": ["fondeo a la gira", "una sola ancla por proa", "proa al viento", "mínima velocidad de gobierno", "arrancada atrás", "dar fondo", "larga el ancla", "fondear"], "nota": "Qué es fondear a la gira y cómo se hace: aproximación proa al viento a poca velocidad, dar fondo con ligera arrancada atrás y comprobar que agarra.", "padre": "amarre.fondeo", "relacionados": ["nomen.fondeo.molinete", "nomen.fondeo.pendura"], "tit": ["per"], "clases": ["per-2-4", "per-2-5", "per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Fondeo a la gira con un ancla: Maniobra»"},
-    {"id": "amarre.fondeo.cadena", "tipo": "concepto", "etiqueta": "Cuánta cadena filar", "sinonimos": ["longitud de fondeo", "cadena a filar", "tres a cuatro veces el fondo", "tres veces la sonda", "cinco veces la sonda", "mal tiempo", "la máxima posible", "grilletes de cadena"], "nota": "Cadena a filar según la sonda: con buen tiempo 3–4 veces el fondo (Baleares admite 3–5; DGMM, no menos de 3); con mal tiempo 5–6 veces o la máxima posible; nunca 1–2 veces. No confundir con la longitud mínima de la línea de fondeo, que depende de la eslora.", "padre": "amarre.fondeo", "relacionados": ["nomen.fondeo.lineaminima", "amarre.fondeo.borneo"], "tit": ["per"], "clases": ["per-2-4", "per-2-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «longitud del fondeo»"},
-    {"id": "amarre.fondeo.borneo", "tipo": "concepto", "etiqueta": "Borneo y círculo de borneo", "sinonimos": ["bornear", "bornea", "borneo", "círculo de borneo", "radio de borneo", "cadena filada más la eslora", "gira alrededor del ancla"], "nota": "Giro del barco alrededor del ancla y radio del círculo de borneo (cadena filada + eslora); cómo se reduce y espacio libre necesario.", "padre": "amarre.fondeo", "relacionados": ["amarre.fondeo.garreo"], "tit": ["per"], "clases": ["per-2-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «círculo de borneo»"},
-    {"id": "amarre.fondeo.garreo", "tipo": "concepto", "etiqueta": "Garreo", "sinonimos": ["garreo", "garrear", "garrea", "el ancla se arrastra", "no agarra", "resbala", "evitar el garreo"], "nota": "Qué es garrear, por qué ocurre (mal tenedero, poca cadena, más viento) y cómo evitarlo.", "padre": "amarre.fondeo", "relacionados": ["amarre.fondeo.vigilancia", "amarre.fondeo.borneo"], "tit": ["per"], "clases": ["per-2-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Garreo»"},
-    {"id": "amarre.fondeo.vigilancia", "tipo": "concepto", "etiqueta": "Vigilancia del fondeo", "sinonimos": ["vigilancia", "referencias a tierra", "marcas en tierra", "enfilaciones", "alarma de sonda", "alarma de fondeo", "GPS", "detectar el garreo"], "nota": "Cómo comprobar que el ancla no garrea: marcas o enfilaciones en tierra, alarma de sonda y alarma de fondeo del GPS.", "padre": "amarre.fondeo", "relacionados": ["amarre.fondeo.garreo"], "tit": ["per"], "clases": ["per-2-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Vigilancia durante el fondeo: Marcas, alarma de sonda»"},
-    {"id": "amarre.fondeo.orinque", "tipo": "concepto", "etiqueta": "Orinque", "sinonimos": ["orinque", "orincar", "boyarín", "balizar el ancla", "cruz del ancla", "ancla enrocada", "recuperar el ancla"], "nota": "Cabo afirmado a la cruz del ancla con un boyarín: señala dónde está y ayuda a desenrocarla.", "padre": "amarre.fondeo", "relacionados": ["amarre.fondeo.levar"], "tit": ["per"], "clases": ["per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Orinque»"},
-    {"id": "amarre.fondeo.levar", "tipo": "concepto", "etiqueta": "Maniobra de levar el ancla", "sinonimos": ["levar", "levar el ancla", "tira por largo", "paladas avante", "ancla enrocada", "estibar el ancla", "quedar a pique"], "nota": "Pasos para levar (avante suave hacia el ancla, virar hasta a pique, zarpar y estibar) y qué hacer si tira por largo o está enrocada.", "padre": "amarre.fondeo", "relacionados": ["nomen.fondeo.apique", "nomen.fondeo.molinete"], "tit": ["per"], "clases": ["per-2-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Maniobra de levar el ancla»"},
-    {"id": "maniobra", "tipo": "grupo", "etiqueta": "Maniobra y navegación", "sinonimos": [], "nota": "Voces del trabajo con cabos, amarras, gobierno, efectos de la hélice, ciaboga, agentes externos, atraque y desatraque (PER, UT 7).", "relacionados": [], "tit": ["per"], "clases": ["per-7-1", "per-7-2", "per-7-3", "per-7-4", "per-7-5", "per-7-6", "per-7-7", "per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación"},
-    {"id": "maniobra.cabos", "tipo": "grupo", "etiqueta": "Voces de la maniobra con cabos", "sinonimos": [], "nota": "Definiciones del punto 7.1: encapillar, por seno, tomar vueltas, cobrar, aflojar, adujar.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras"},
-    {"id": "maniobra.cabos.encapillar", "tipo": "concepto", "etiqueta": "Encapillar una gaza al noray", "sinonimos": ["encapillar", "encapillada", "gaza en el noray", "por dentro", "por debajo", "por el ojo de la otra"], "nota": "Meter la gaza en el noray y, si ya hay otra, pasar la nuestra por dentro y de abajo arriba para que ambas puedan largarse.", "padre": "maniobra.cabos", "relacionados": ["amarre.cabo.gaza"], "tit": ["per"], "clases": ["per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Encapillar una gaza al noray»"},
-    {"id": "maniobra.cabos.seno", "tipo": "concepto", "etiqueta": "Amarrar por seno", "sinonimos": ["amarrar por seno", "por seno", "firme y chicote a bordo", "largar desde a bordo", "facilitar el desamarre", "sin ir a la boya"], "nota": "Dar el cabo de ida y vuelta (firme y chicote a bordo) para poder largarlo desde el barco.", "padre": "maniobra.cabos", "relacionados": ["maniobra.desatraque.costado"], "tit": ["per"], "clases": ["per-7-1", "per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «amarrar por seno»"},
-    {"id": "maniobra.cabos.firme", "tipo": "concepto", "etiqueta": "Tomar vueltas y hacer firme", "sinonimos": ["tomar vueltas", "hacer firme", "afirmar", "en forma de ocho", "dar vueltas a la cornamusa", "abozar"], "nota": "Dar vueltas a una bita o cornamusa para sujetar el cabo sin aguantar toda la tensión, y hacerlo firme para que no se mueva.", "padre": "maniobra.cabos", "relacionados": [], "tit": ["per"], "clases": ["per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «tomar vueltas y hacer firme»"},
-    {"id": "maniobra.cabos.cobrar", "tipo": "concepto", "etiqueta": "Cobrar, virar, tesar y templar", "sinonimos": ["cobrar", "virar", "tesar", "templar", "dar tensión", "tirar de un cabo", "por medios mecánicos", "sin seno"], "nota": "Recoger o tensar un cabo: cobrar (a mano), virar (con máquina), tesar y templar (dar tensión; templar también es igualarla entre varios cabos).", "padre": "maniobra.cabos", "relacionados": ["maniobra.cabos.lascar", "nomen.fondeo.filar"], "tit": ["per"], "clases": ["per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Cobrar, virar, tesar, templar»"},
-    {"id": "maniobra.cabos.lascar", "tipo": "concepto", "etiqueta": "Amollar, lascar, arriar y largar", "sinonimos": ["amollar", "lascar", "arriar", "largar", "aflojar", "soltar despacio", "soltar un poco"], "nota": "Aflojar o soltar un cabo, de menos a más: lascar y amollar (un poco, poco a poco), arriar (dejar correr) y largar (soltarlo del todo).", "padre": "maniobra.cabos", "relacionados": ["maniobra.cabos.cobrar"], "tit": ["per"], "clases": ["per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «amollar, lascar, arriar y largar»"},
-    {"id": "maniobra.cabos.adujar", "tipo": "concepto", "etiqueta": "Adujar", "sinonimos": ["adujar", "recoger en vueltas", "en espiral", "sin cocas", "claro y listo para usar"], "nota": "Recoger un cabo en vueltas ordenadas, sin cocas y listo para usarse.", "padre": "maniobra.cabos", "relacionados": [], "tit": ["per"], "clases": ["per-7-1"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Adujar»"},
-    {"id": "maniobra.amarras", "tipo": "grupo", "etiqueta": "Las amarras", "sinonimos": [], "nota": "Nombre de cada amarra, efecto de cobrarla y cuáles reforzar.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras"},
-    {"id": "maniobra.amarras.tipos", "tipo": "concepto", "etiqueta": "Largos, traveses y esprines", "sinonimos": ["largo", "largos", "través", "traveses", "esprín", "esprines", "spring", "cabos de amarre", "trabajan hacia proa", "en diagonal"], "nota": "Reconocer cada amarra por hacia dónde trabaja: largos hacia su extremo, esprines cruzados, traveses perpendiculares.", "padre": "maniobra.amarras", "relacionados": ["maniobra.amarras.cobrar"], "tit": ["per"], "clases": ["per-7-2", "per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Largo, través, esprín y codera»"},
-    {"id": "maniobra.amarras.codera", "tipo": "concepto", "etiqueta": "La codera", "sinonimos": ["codera", "coderas", "banda contraria al muelle", "muerto", "boya", "ayudar a desatracar", "evitar golpes contra el muelle"], "nota": "Cabo que se da por la banda contraria al muelle y ayuda a desatracar (dgmm-per-2021-02-74); también, cabo de proa o popa a un muerto o boya (dgmm-per-2020-12-73).", "padre": "maniobra.amarras", "relacionados": ["maniobra.atraque.punta"], "tit": ["per"], "clases": ["per-7-2", "per-7-7", "per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «codera»"},
-    {"id": "maniobra.amarras.cobrar", "tipo": "concepto", "etiqueta": "Efecto de cobrar cada amarra", "sinonimos": ["al cobrar", "virar del esprín", "atraca la proa", "atraca la popa", "mueve el barco hacia atrás", "va avante", "correr el barco", "lascar el resto"], "nota": "Qué hace el barco atracado de costado al cobrar un largo, un esprín o un través, y cómo correrlo hacia proa o popa con los cabos.", "padre": "maniobra.amarras", "relacionados": ["maniobra.amarras.tipos"], "tit": ["per"], "clases": ["per-7-2", "per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «efectos producidos al cobrar de cada una de las amarras, estando el barco atracado costado al muelle»"},
-    {"id": "maniobra.amarras.reforzar", "tipo": "concepto", "etiqueta": "Amarras según viento y corriente", "sinonimos": ["reforzar", "viento de proa", "viento de popa", "corriente", "marea", "viento de través"], "nota": "Qué amarras trabajan y hay que reforzar según venga el viento o la corriente (de proa: largo de proa y esprín de popa; de popa: al revés).", "padre": "maniobra.amarras", "relacionados": [], "tit": ["per"], "clases": ["per-7-2"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Utilización de las amarras según viento y corriente»"},
-    {"id": "maniobra.gobierno", "tipo": "grupo", "etiqueta": "Gobierno", "sinonimos": [], "nota": "Caña o rueda, velocidad de gobierno, arrancada, curva de evolución y rabeo.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"},
-    {"id": "maniobra.gobierno.cana", "tipo": "concepto", "etiqueta": "Gobierno con caña o con rueda", "sinonimos": ["caña", "rueda", "la proa cae", "banda contraria", "misma banda", "meter la caña", "girar la rueda"], "nota": "Hacia dónde cae la proa: con caña al lado contrario de la caña; con rueda al lado del giro.", "padre": "maniobra.gobierno", "relacionados": ["nomen.timon.guardines"], "tit": ["per"], "clases": ["per-7-3", "per-1-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"},
-    {"id": "maniobra.gobierno.velocidad", "tipo": "concepto", "etiqueta": "Velocidad de gobierno", "sinonimos": ["velocidad de gobierno", "velocidad mínima", "el timón sea efectivo", "canal de entrada", "gobierno manual", "entrada y salida de puerto"], "nota": "Velocidad mínima a la que el barco obedece al timón y cómo se gobierna en canales y bocanas.", "padre": "maniobra.gobierno", "relacionados": ["maniobra.gobierno.arrancada"], "tit": ["per"], "clases": ["per-7-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Definiciones de: Velocidad de gobierno y arrancada»"},
-    {"id": "maniobra.gobierno.arrancada", "tipo": "concepto", "etiqueta": "Arrancada", "sinonimos": ["arrancada", "sin arrancada", "inercia", "marcha avante o atrás", "perder arrancada", "ciar"], "nota": "Velocidad que conserva el barco por inercia; sin arrancada no hay gobierno. Incluye ciar (ir hacia atrás) cuando se pregunta.", "padre": "maniobra.gobierno", "relacionados": ["maniobra.gobierno.velocidad"], "tit": ["per"], "clases": ["per-7-3", "per-7-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Definiciones de: Velocidad de gobierno y arrancada»"},
-    {"id": "maniobra.gobierno.curva", "tipo": "concepto", "etiqueta": "Curva de evolución", "sinonimos": ["curva de evolución", "fase de maniobra", "periodo de maniobra", "fase variable", "fase uniforme", "diámetro táctico", "avance", "traslado"], "nota": "Trayectoria al meter el timón con máquina avante y sus tres fases (maniobra, variable y uniforme).", "padre": "maniobra.gobierno", "relacionados": [], "tit": ["per"], "clases": ["per-7-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Nombrar las tres fases de la curva de evolución en marcha avante»"},
-    {"id": "maniobra.gobierno.rabeo", "tipo": "concepto", "etiqueta": "Rabeo de la popa", "sinonimos": ["rabeo", "rabear", "la popa se abre", "desplazamiento transversal de la popa", "espacio por la otra banda"], "nota": "Al evolucionar, la popa barre hacia la banda contraria al giro: hay que dejarle espacio.", "padre": "maniobra.gobierno", "relacionados": ["maniobra.gobierno.curva"], "tit": ["per"], "clases": ["per-7-3"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «la importancia del rabeo de la popa»"},
-    {"id": "maniobra.gobierno.timon", "tipo": "concepto", "etiqueta": "Eficacia del timón: velocidad, hélice y superficie", "sinonimos": ["timón a la vía", "efecto del timón", "aumentar las revoluciones", "poca velocidad", "metida del timón", "pérdida de gobierno", "eficacia del timón", "superficie de la pala"], "nota": "Qué es llevar el timón a la vía y de qué depende la eficacia del timón (velocidad, corriente de la hélice, superficie de la pala); qué pasa al meterlo a una banda.", "padre": "maniobra.gobierno", "relacionados": ["maniobra.gobierno.arrancada", "nomen.timon.tipos"], "tit": ["per"], "clases": ["per-7-4"], "temario": "pendiente"},
-    {"id": "maniobra.helice", "tipo": "grupo", "etiqueta": "Efectos de la hélice", "sinonimos": [], "nota": "Presión lateral de las palas, corriente de expulsión y efecto combinado con el timón.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"},
-    {"id": "maniobra.helice.atras", "tipo": "concepto", "etiqueta": "Corrientes de la hélice y presión lateral: efecto al dar atrás parado", "sinonimos": ["presión lateral de las palas", "corriente de expulsión", "corriente de aspiración", "parado y sin arrancada", "timón a la vía", "máquina atrás", "la popa cae a babor", "la popa cae a estribor"], "nota": "Qué corrientes crea la hélice (aspiración y expulsión) y la presión lateral de las palas; sobre todo hacia dónde cae la popa al dar atrás desde parado con el timón a la vía (dextrógira a babor, levógira a estribor). También el pequeño efecto avante. La corriente de aspiración aumenta la acción del timón con marcha avante.", "padre": "maniobra.helice", "relacionados": ["nomen.helice.giro", "seguridad.hombre-al-agua.primeras-acciones"], "tit": ["per"], "clases": ["per-7-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «El efecto de la corriente de expulsión y de la presión lateral de las palas sobre una embarcación que se encuentre, parada sin arrancada, con el timón a la vía y da máquina atrás»"},
-    {"id": "maniobra.helice.combinado", "tipo": "concepto", "etiqueta": "Hélice y timón con arrancada avante y máquina atrás", "sinonimos": ["arrancada avante", "máquina atrás", "efecto combinado", "en los primeros momentos", "cuando pierde la arrancada", "timón a babor"], "nota": "Qué hacen proa y popa al dar atrás llevando arrancada avante, con el timón a la vía o metido.", "padre": "maniobra.helice", "relacionados": ["maniobra.helice.atras"], "tit": ["per"], "clases": ["per-7-4"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «El efecto combinado hélice - timón con arrancada avante y máquina atrás»"},
-    {"id": "maniobra.ciaboga", "tipo": "grupo", "etiqueta": "La ciaboga", "sinonimos": [], "nota": "Girar en poco espacio con una o con dos hélices.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"},
-    {"id": "maniobra.ciaboga.una", "tipo": "concepto", "etiqueta": "Ciaboga con una hélice", "sinonimos": ["ciaboga", "ciabogar", "revirar en poco espacio", "sobre sí misma", "por estribor", "por babor", "avante y atrás alternando"], "nota": "Qué es la ciaboga y cómo se hace con una hélice: hacia qué banda conviene (dextrógira a estribor, levógira a babor) y cómo influye el viento.", "padre": "maniobra.ciaboga", "relacionados": ["maniobra.helice.atras"], "tit": ["per"], "clases": ["per-7-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «La ciaboga con una hélice»"},
-    {"id": "maniobra.ciaboga.dos", "tipo": "concepto", "etiqueta": "Ciaboga con dos hélices gemelas", "sinonimos": ["dos hélices", "hélices gemelas", "avante estribor y atrás babor", "una avante y otra atrás", "giro al exterior", "girar sobre sí mismo"], "nota": "Con dos hélices de giro al exterior: una avante y otra atrás; la proa cae hacia la que da atrás.", "padre": "maniobra.ciaboga", "relacionados": ["nomen.helice.gemelas"], "tit": ["per"], "clases": ["per-7-5"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «La ciaboga con dos hélices gemelas de giro al exterior»"},
-    {"id": "maniobra.agentes", "tipo": "grupo", "etiqueta": "Agentes que influyen en la maniobra", "sinonimos": [], "nota": "Viento, corriente y olas; abatimiento y deriva; libre a sotavento.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Agentes que influyen en la maniobra»"},
-    {"id": "maniobra.agentes.viento", "tipo": "concepto", "etiqueta": "Viento, corriente y olas en la maniobra", "sinonimos": ["agentes externos", "viento y corriente", "obra muerta", "obra viva", "olas", "aproarse al viento", "proa a la corriente"], "nota": "Sobre qué actúa cada agente (viento en la obra muerta, corriente en la obra viva) y cuáles mirar antes de atracar o desatracar. Abatimiento y deriva (efecto del viento y de la corriente sobre el rumbo) están en nav.viento-corriente.abatimiento.", "padre": "maniobra.agentes", "relacionados": ["nomen.dimensiones.flotacion", "nav.viento-corriente.abatimiento"], "tit": ["per"], "clases": ["per-7-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Viento, corriente y olas»"},
-    {"id": "maniobra.agentes.abatimiento", "tipo": "concepto", "etiqueta": "Abatimiento y deriva", "sinonimos": ["abatimiento", "deriva", "ángulo de abatimiento", "rumbo de superficie", "efecto del viento", "efecto de la corriente"], "nota": "Sustituido por nav.viento-corriente.abatimiento (fusión de abatimiento y deriva, grupo navegación). Abatimiento es el efecto del viento y deriva el de la corriente sobre el rumbo; el cálculo con rumbos es de navegación.", "padre": "maniobra.agentes", "relacionados": [], "tit": ["per"], "clases": [], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Concepto de abatimiento y deriva»", "sustituidoPor": "nav.viento-corriente.abatimiento"},
-    {"id": "maniobra.agentes.libresotavento", "tipo": "concepto", "etiqueta": "Libre a sotavento", "sinonimos": ["libre a sotavento", "resguardo", "costa a sotavento", "echarnos sobre el peligro"], "nota": "Tener mar libre por sotavento: resguardo suficiente frente a la costa o escollos hacia los que empujan viento, mar o corriente.", "padre": "maniobra.agentes", "relacionados": ["nomen.terminos.barlovento", "seguridad.mal-tiempo.costa-sotavento"], "tit": ["per"], "clases": ["per-7-6"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Libre a sotavento»"},
-    {"id": "maniobra.atraque", "tipo": "grupo", "etiqueta": "Atracar", "sinonimos": [], "nota": "Preparación, atraque de costado y de punta, abarloarse y amarrar a una boya.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras"},
-    {"id": "maniobra.atraque.preparar", "tipo": "concepto", "etiqueta": "Preparar la maniobra", "sinonimos": ["defensas y cabos listos", "cabos claros de la hélice", "que no se enganchen con la hélice", "despacio", "poca arrancada"], "nota": "Antes de atracar o desatracar: defensas y cabos listos, cabos lejos de la hélice, entrar despacio.", "padre": "maniobra.atraque", "relacionados": [], "tit": ["per"], "clases": ["per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Atraque y desatraque»"},
-    {"id": "maniobra.atraque.costado", "tipo": "concepto", "etiqueta": "Atracar de costado", "sinonimos": ["atracar de costado", "primer cabo", "largo de proa", "viento de tierra", "corriente de proa", "banda de atraque", "proa al viento y a la corriente"], "nota": "Aproximación, banda de atraque según la hélice y qué cabo dar primero según viento y corriente.", "padre": "maniobra.atraque", "relacionados": ["maniobra.amarras.tipos"], "tit": ["per"], "clases": ["per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Atraque … costado al muelle» y «Amarrar: cabos que deben darse … y orden»"},
-    {"id": "maniobra.atraque.punta", "tipo": "concepto", "etiqueta": "Atracar de punta", "sinonimos": ["atracar de punta", "proa al muelle", "popa al muelle", "muerto", "codera", "noray de barlovento", "viento de costado", "viento de mar", "viento de tierra"], "nota": "Atraque de proa o de popa al muelle con largos y muerto, codera o ancla; qué cabo primero y dónde encapillar con viento de costado.", "padre": "maniobra.atraque", "relacionados": ["maniobra.amarras.codera"], "tit": ["per"], "clases": ["per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Atraque … en punta (proa y popa)»"},
-    {"id": "maniobra.atraque.abarloarse", "tipo": "concepto", "etiqueta": "Abarloarse a otra embarcación", "sinonimos": ["abarloarse", "abarloados", "de costado a otro barco", "varias embarcaciones amarradas juntas"], "nota": "Amarrarse al costado de otro barco y qué cabos van a él y cuáles a tierra. (En Baleares «abarloado al muelle» se usa como atracado de costado.)", "padre": "maniobra.atraque", "relacionados": [], "tit": ["per"], "clases": ["per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Abarloarse a otra embarcación»"},
-    {"id": "maniobra.atraque.boya", "tipo": "concepto", "etiqueta": "Amarrar a una boya", "sinonimos": ["amarrar a una boya", "boya", "muerto", "proa al viento", "por barlovento", "contra la corriente", "borneo menor"], "nota": "Aproximación a la boya o muerto proa al viento o a la corriente, por barlovento y con poca arrancada; cómo bornea amarrado a ella.", "padre": "maniobra.atraque", "relacionados": ["amarre.elementos.muerto"], "tit": ["per"], "clases": ["per-7-7"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Amarrar a una boya»"},
-    {"id": "maniobra.desatraque", "tipo": "grupo", "etiqueta": "Desatracar", "sinonimos": [], "nota": "Orden de largar los cabos y maniobra para salir.", "padre": "maniobra", "relacionados": [], "tit": ["per"], "clases": ["per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras"},
-    {"id": "maniobra.desatraque.costado", "tipo": "concepto", "etiqueta": "Desatracar de costado", "sinonimos": ["desatracar", "último cabo", "primeros cabos a largar", "abrir la popa", "abrir la proa", "esprín de proa firme", "esprín de popa firme", "viento atracante", "viento de tierra"], "nota": "Qué cabos largar primero (los que no trabajan) y cuál al final; abrir la popa con el esprín de proa o la proa con el de popa según viento y corriente.", "padre": "maniobra.desatraque", "relacionados": ["maniobra.amarras.cobrar"], "tit": ["per"], "clases": ["per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Desamarrar: Orden en que largar los cabos … y maniobra a realizar para desatracar»"},
-    {"id": "maniobra.desatraque.punta", "tipo": "concepto", "etiqueta": "Desatracar de punta", "sinonimos": ["atracados de punta", "largar el muerto", "desamarrar de punta"], "nota": "Orden para salir atracado de punta: largar amarras del muelle, luego el muerto, y salir controlando la hélice.", "padre": "maniobra.desatraque", "relacionados": ["maniobra.atraque.punta"], "tit": ["per"], "clases": ["per-7-8"], "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Desamarrar … para desatracar»"}
-  ]
+ "grupo": "nomenclatura-maniobra",
+ "version": 3,
+ "conceptos": [
+  {
+   "id": "nomen",
+   "tipo": "grupo",
+   "etiqueta": "Nomenclatura náutica",
+   "sinonimos": [],
+   "nota": "Partes, estructura, equipo de fondeo, timón, hélice y dimensiones del barco, y su terminología básica (PER, UT 1).",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1",
+    "per-1-2",
+    "per-1-3",
+    "per-1-4",
+    "per-1-5",
+    "per-1-6",
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica"
+  },
+  {
+   "id": "nomen.casco",
+   "tipo": "grupo",
+   "etiqueta": "El casco y sus referencias",
+   "sinonimos": [],
+   "nota": "Qué es el casco y cómo se nombran sus partes y direcciones (proa, popa, crujía, bandas, costados).",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco"
+  },
+  {
+   "id": "nomen.casco.casco",
+   "tipo": "concepto",
+   "etiqueta": "Casco y cubierta",
+   "sinonimos": [
+    "casco",
+    "vaso",
+    "cuerpo del buque",
+    "envoltura estanca",
+    "estanqueidad",
+    "flotabilidad",
+    "características principales del buque",
+    "arboladura",
+    "jarcia",
+    "superestructuras",
+    "pertrechos",
+    "cubierta",
+    "monocasco",
+    "catamarán",
+    "fibra de vidrio"
+   ],
+   "nota": "Qué es el casco (cuerpo estanco, sin arboladura, jarcia, superestructuras, máquinas ni pertrechos; el timón no es casco) y qué es la cubierta que lo cierra por arriba. Incluye estanqueidad y las cualidades del buque cuando se preguntan como vocabulario.",
+   "padre": "nomen.casco",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Casco y cubierta»"
+  },
+  {
+   "id": "nomen.casco.proapopa",
+   "tipo": "concepto",
+   "etiqueta": "Proa y popa",
+   "sinonimos": [
+    "proa",
+    "popa",
+    "parte delantera",
+    "parte posterior",
+    "sentido de la marcha",
+    "corta las aguas",
+    "formas de popa",
+    "popa de espejo"
+   ],
+   "nota": "Definición de proa y popa, incluidas las formas de popa cuando se preguntan como vocabulario.",
+   "padre": "nomen.casco",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Proa y popa»"
+  },
+  {
+   "id": "nomen.casco.crujia",
+   "tipo": "concepto",
+   "etiqueta": "Línea y plano de crujía; babor y estribor",
+   "sinonimos": [
+    "línea de crujía",
+    "plano de crujía",
+    "plano diametral",
+    "eje de simetría longitudinal",
+    "bandas",
+    "babor",
+    "estribor",
+    "mirando de popa a proa",
+    "dos mitades simétricas",
+    "banda izquierda",
+    "banda derecha"
+   ],
+   "nota": "La crujía divide el barco en dos bandas; mirando a proa, estribor a la derecha y babor a la izquierda. Son referencias fijas del barco (no dependen del viento).",
+   "padre": "nomen.casco",
+   "relacionados": [
+    "nomen.terminos.barlovento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Línea y plano de crujía, para definir: Estribor y babor»"
+  },
+  {
+   "id": "nomen.casco.costados",
+   "tipo": "concepto",
+   "etiqueta": "Costados: amura, través y aleta",
+   "sinonimos": [
+    "costado",
+    "costados",
+    "amura",
+    "amuras",
+    "través",
+    "aleta",
+    "aletas",
+    "partes curvas de los costados",
+    "convergen hacia proa",
+    "cerrar y formar la popa",
+    "perpendicular a la quilla",
+    "por la amura de babor"
+   ],
+   "nota": "Zonas de cada costado (amura delante, través en medio, aleta detrás) y su uso para situar objetos («por la amura de babor»).",
+   "padre": "nomen.casco",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Costados, amura, través y aleta»"
+  },
+  {
+   "id": "nomen.cubierta",
+   "tipo": "grupo",
+   "etiqueta": "En cubierta: aberturas, desagües y barandillas",
+   "sinonimos": [],
+   "nota": "Elementos de la cubierta que nombra el temario: bañera, imbornales, aberturas, ventilación y barandillas.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco"
+  },
+  {
+   "id": "nomen.cubierta.banera",
+   "tipo": "concepto",
+   "etiqueta": "Bañera",
+   "sinonimos": [
+    "bañera",
+    "cámara abierta",
+    "embarcaciones menores",
+    "donde va la caña o rueda"
+   ],
+   "nota": "La bañera: cámara abierta, normalmente a popa, donde va la tripulación y el gobierno.",
+   "padre": "nomen.cubierta",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Bañera e imbornales»"
+  },
+  {
+   "id": "nomen.cubierta.imbornales",
+   "tipo": "concepto",
+   "etiqueta": "Imbornales",
+   "sinonimos": [
+    "imbornal",
+    "imbornales",
+    "orificios",
+    "desagüe",
+    "desagües",
+    "a la altura del trancanil",
+    "agua embarcada en cubierta",
+    "golpes de mar",
+    "amurada"
+   ],
+   "nota": "Orificios que dan salida al agua embarcada en cubierta o en la bañera. No confundir con grifos de fondo ni con vías de agua.",
+   "padre": "nomen.cubierta",
+   "relacionados": [
+    "nomen.estructura.grifos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Bañera e imbornales»"
+  },
+  {
+   "id": "nomen.cubierta.aberturas",
+   "tipo": "concepto",
+   "etiqueta": "Escotillas, lumbreras, portillos y tragaluces",
+   "sinonimos": [
+    "escotilla",
+    "escotilla principal",
+    "lumbrera",
+    "lumbreras",
+    "portillo",
+    "portillos",
+    "ojo de buey",
+    "tragaluz",
+    "dar luz y ventilación",
+    "abertura en cubierta",
+    "abertura en el costado"
+   ],
+   "nota": "Aberturas de paso (escotilla), de luz y ventilación en cubierta (lumbrera) y en el costado (portillo), y tragaluces.",
+   "padre": "nomen.cubierta",
+   "relacionados": [
+    "nomen.cubierta.manguerotes"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Escotillas, escotilla principal», «Lumbreras…» y «Portillos y tragaluces»"
+  },
+  {
+   "id": "nomen.cubierta.manguerotes",
+   "tipo": "concepto",
+   "etiqueta": "Manguerotes de ventilación",
+   "sinonimos": [
+    "manguerote",
+    "manguerotes",
+    "ventilar",
+    "ventilación",
+    "aire fresco",
+    "aire viciado",
+    "boca orientable"
+   ],
+   "nota": "El manguerote solo ventila (conduce aire al interior, con boca orientable); si además hay que dar luz, es una lumbrera.",
+   "padre": "nomen.cubierta",
+   "relacionados": [
+    "nomen.cubierta.aberturas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Lumbreras y manguerotes ventilación»"
+  },
+  {
+   "id": "nomen.cubierta.barandillas",
+   "tipo": "concepto",
+   "etiqueta": "Pasamanos, candeleros y guardamancebos",
+   "sinonimos": [
+    "pasamanos",
+    "candelero",
+    "candeleros",
+    "guardamancebo",
+    "guardamancebos",
+    "barandilla",
+    "puntal metálico",
+    "cabo de proa a popa",
+    "seguridad de la tripulación"
+   ],
+   "nota": "Candeleros (puntales verticales) que sostienen los guardamancebos (cables o cabos a lo largo de las bandas) y pasamanos para agarrarse.",
+   "padre": "nomen.cubierta",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Pasamanos, candeleros y guardamancebos»"
+  },
+  {
+   "id": "nomen.estructura",
+   "tipo": "grupo",
+   "etiqueta": "La estructura del casco",
+   "sinonimos": [],
+   "nota": "Piezas estructurales del casco, sentina, grifos de fondo y achique.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura"
+  },
+  {
+   "id": "nomen.estructura.quilla",
+   "tipo": "concepto",
+   "etiqueta": "Quilla",
+   "sinonimos": [
+    "quilla",
+    "columna vertebral",
+    "pieza longitudinal",
+    "de proa a popa por la parte inferior",
+    "refuerzo longitudinal",
+    "base de sustentación",
+    "orza",
+    "bulbo"
+   ],
+   "nota": "La quilla como pieza longitudinal inferior sobre la que se asienta la estructura; incluye las orzas y quillas añadidas de los veleros cuando se preguntan. Discrepancia: bal-per-2017-03-a-01 y bal-per-2017-09-c-04 dan «orza» a lo que describen como pieza unida a la quilla con bulbo; se acepta la oficial, pero no usar esas preguntas como oro.",
+   "padre": "nomen.estructura",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «Quilla»"
+  },
+  {
+   "id": "nomen.estructura.rodacodaste",
+   "tipo": "concepto",
+   "etiqueta": "Roda y codaste",
+   "sinonimos": [
+    "roda",
+    "codaste",
+    "prolongación de la quilla",
+    "prolonga la quilla hacia proa",
+    "remata el casco por popa",
+    "cierre del casco por su proa",
+    "soporte del timón"
+   ],
+   "nota": "La roda prolonga la quilla hacia proa y el codaste la remata por popa (y soporta el timón). Preguntas de «qué pieza no es de proa».",
+   "padre": "nomen.estructura",
+   "relacionados": [
+    "nomen.estructura.quilla"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «roda, codaste»"
+  },
+  {
+   "id": "nomen.estructura.cuadernas",
+   "tipo": "concepto",
+   "etiqueta": "Cuadernas y baos",
+   "sinonimos": [
+    "cuaderna",
+    "cuadernas",
+    "bao",
+    "baos",
+    "refuerzos transversales",
+    "costillas",
+    "sostienen la cubierta",
+    "de babor a estribor",
+    "cuaderna maestra"
+   ],
+   "nota": "Cuadernas (costillas transversales que arrancan de la quilla) y baos (piezas de banda a banda que sostienen la cubierta). Se preguntan juntas por confusión.",
+   "padre": "nomen.estructura",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «cuadernas, baos»"
+  },
+  {
+   "id": "nomen.estructura.borda",
+   "tipo": "concepto",
+   "etiqueta": "Borda, regala y trancanil",
+   "sinonimos": [
+    "borda",
+    "regala",
+    "tapa de regala",
+    "amurada",
+    "canto superior del costado",
+    "trancanil",
+    "barraganetes"
+   ],
+   "nota": "Borda: parte del costado por encima de la cubierta; regala: su canto superior (tapa de regala); trancanil: unión de cubierta y costado, solo como distractor.",
+   "padre": "nomen.estructura",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «borda, regala»"
+  },
+  {
+   "id": "nomen.estructura.mamparos",
+   "tipo": "concepto",
+   "etiqueta": "Mamparos",
+   "sinonimos": [
+    "mamparo",
+    "mamparos",
+    "mamparo estanco",
+    "mamparo de colisión",
+    "subdivisión de los espacios interiores",
+    "flotabilidad"
+   ],
+   "nota": "Tabiques que subdividen el interior; los estancos aseguran la flotabilidad.",
+   "padre": "nomen.estructura",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «mamparos»"
+  },
+  {
+   "id": "nomen.estructura.sentina",
+   "tipo": "concepto",
+   "etiqueta": "Plan y sentina",
+   "sinonimos": [
+    "plan",
+    "sentina",
+    "fondo interior",
+    "parte casi horizontal del fondo",
+    "aguas filtradas",
+    "derrames",
+    "baldeos"
+   ],
+   "nota": "El plan (parte interior baja y casi horizontal) y la sentina (donde se recogen las aguas de filtraciones y derrames).",
+   "padre": "nomen.estructura",
+   "relacionados": [
+    "nomen.estructura.achique"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «plan y sentina»"
+  },
+  {
+   "id": "nomen.estructura.grifos",
+   "tipo": "concepto",
+   "etiqueta": "Grifos de fondo y pasacascos",
+   "sinonimos": [
+    "grifos de fondo",
+    "grifo de fondo",
+    "válvulas de mar",
+    "por debajo de la línea de flotación",
+    "pasacascos",
+    "refrigeración del motor",
+    "toma de agua de mar"
+   ],
+   "nota": "Válvulas bajo la flotación que dan o cortan el paso del agua de mar a los servicios (motor, aseos), montadas sobre pasacascos. Su cierre con mal tiempo es de seguridad.",
+   "padre": "nomen.estructura",
+   "relacionados": [
+    "nomen.cubierta.imbornales",
+    "seguridad.mal-tiempo.aberturas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «Grifos de fondo»"
+  },
+  {
+   "id": "nomen.estructura.achique",
+   "tipo": "concepto",
+   "etiqueta": "Bombas de achique",
+   "sinonimos": [
+    "bomba de achique",
+    "bombas de achique",
+    "achicar",
+    "sacar el agua",
+    "descarga de la bomba"
+   ],
+   "nota": "Para qué sirven las bombas de achique y dónde descargan. La lucha contra una vía de agua es de emergencias.",
+   "padre": "nomen.estructura",
+   "relacionados": [
+    "nomen.estructura.sentina"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.2 Estructura: «Bombas de achique»"
+  },
+  {
+   "id": "nomen.fondeo",
+   "tipo": "grupo",
+   "etiqueta": "Equipo de fondeo",
+   "sinonimos": [],
+   "nota": "Molinete, línea de fondeo, anclas y voces de la maniobra de fondeo.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo"
+  },
+  {
+   "id": "nomen.fondeo.molinete",
+   "tipo": "concepto",
+   "etiqueta": "Molinete: barbotén, cabirón, embrague y freno",
+   "sinonimos": [
+    "molinete",
+    "barbotén",
+    "cabirón",
+    "cabirol",
+    "chigre",
+    "embrague",
+    "embragar",
+    "desembragar",
+    "freno",
+    "estopor",
+    "corona con muescas"
+   ],
+   "nota": "Partes del molinete y cómo se usan: embragado y freno libre para levar; frenado y desembragado para fondear dosificando con el freno; estopor para descargar el barbotén. Barbotén: corona donde engranan los eslabones; cabirón o cabirol: tambor liso para cabos; estopor: traba que sujeta la cadena. «Chigre» es solo otro nombre de molinete.",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "amarre.fondeo.gira",
+    "amarre.fondeo.levar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6",
+    "per-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Molinete: Barbotén, embrague y freno»"
+  },
+  {
+   "id": "nomen.fondeo.linea",
+   "tipo": "concepto",
+   "etiqueta": "Línea de fondeo y grillete de unión",
+   "sinonimos": [
+    "línea de fondeo",
+    "cadena",
+    "estacha",
+    "grillete",
+    "grillete de unión",
+    "grillete de entalingadura",
+    "tramo de cadena",
+    "grillete de cadena"
+   ],
+   "nota": "Qué forma la línea de fondeo (ancla, cadena y cabo o estacha) y cómo se une (grillete de unión o de entalingadura).",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "nomen.fondeo.lineaminima",
+    "nomen.fondeo.grillete-medida"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Línea de fondeo. Grillete de unión»"
+  },
+  {
+   "id": "nomen.fondeo.grillete-medida",
+   "tipo": "concepto",
+   "etiqueta": "El grillete como medida de cadena (27,5 m)",
+   "sinonimos": [
+    "grillete de cadena",
+    "27,5 metros",
+    "15 brazas",
+    "tramo de cadena",
+    "metros de cadena"
+   ],
+   "nota": "Un grillete es cada tramo de la cadena de fondeo, unos 27,5 m (15 brazas); se usa para contar la cadena filada («siete grilletes»). No confundir con el grillete de unión (nomen.fondeo.linea).",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "nomen.fondeo.linea"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6",
+    "per-2-5"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "nomen.fondeo.lineaminima",
+   "tipo": "concepto",
+   "etiqueta": "Longitud mínima de la línea de fondeo",
+   "sinonimos": [
+    "cinco veces la eslora",
+    "longitud mínima de la línea de fondeo",
+    "tramo de cadena igual a la eslora",
+    "toda de estacha",
+    "más de 6 metros de eslora"
+   ],
+   "nota": "Lo que exige la norma de equipo: línea de al menos 5 esloras y tramo de cadena de al menos 1 eslora (hasta 6 m puede ser toda estacha). No confundir con la cadena que se fila según la sonda. Peso mínimo del ancla y diámetros de cadena y estacha según la tabla del art. 11.4 (p. ej. L=9 m: ancla de 14 kg, cadena de 8 mm, estacha de 12 mm); la tabla corresponde a anclas de alto poder de agarre (otros tipos, +1/3) y el ancla puede repartirse en dos, la principal ≥ 75 % (11.7). Hoy no se pregunta el peso, solo 5 esloras y cadena ≥ 1 eslora.",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "amarre.fondeo.cadena"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6",
+    "per-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Línea de fondeo». Cifras: RD 339/2021, de 18 de mayo, art. 11 (BOE-A-2021-8268): longitud ≥ 5 esloras (11.1); tramo de cadena ≥ 1 eslora, salvo L ≤ 6 m, que puede ser toda estacha (11.2); sin cadenas ni estachas empalmadas sin grillete (11.3); tabla de peso mínimo del ancla y diámetros (11.4)"
+  },
+  {
+   "id": "nomen.fondeo.ancla",
+   "tipo": "concepto",
+   "etiqueta": "Partes del ancla",
+   "sinonimos": [
+    "arganeo",
+    "caña",
+    "cruz",
+    "brazos",
+    "uñas",
+    "mapa",
+    "cepo",
+    "ancla sin cepo",
+    "partes del ancla"
+   ],
+   "nota": "Partes del ancla sin cepo (arganeo, caña, cruz, brazos, uñas) y qué es el cepo.",
+   "padre": "nomen.fondeo",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Partes del ancla sin cepo»"
+  },
+  {
+   "id": "nomen.fondeo.tiposancla",
+   "tipo": "concepto",
+   "etiqueta": "Tipos de ancla: arado, Danforth y rezón",
+   "sinonimos": [
+    "ancla de arado",
+    "arado",
+    "CQR",
+    "Danforth",
+    "rezón",
+    "grampín",
+    "almirantazgo",
+    "dos uñas",
+    "cuatro brazos",
+    "ancla de patente",
+    "anclote"
+   ],
+   "nota": "Reconocer por su forma el ancla de arado, la Danforth y el rezón, y en qué fondo o barco conviene cada una.",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "amarre.fondeo.tenedero"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Forma del ancla de arado, del ancla Danforth y del rezón»"
+  },
+  {
+   "id": "nomen.fondeo.filar",
+   "tipo": "concepto",
+   "etiqueta": "Filar y virar",
+   "sinonimos": [
+    "filar",
+    "filar cadena",
+    "arriar progresivamente",
+    "largar cadena",
+    "dejar salir cadena",
+    "virar",
+    "cobrar con el molinete"
+   ],
+   "nota": "Filar es dejar salir (arriar) cadena o cabo que trabaja; virar es cobrarla con el molinete.",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "maniobra.cabos.cobrar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6",
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «Virar, filar»"
+  },
+  {
+   "id": "nomen.fondeo.pendura",
+   "tipo": "concepto",
+   "etiqueta": "Ancla a la pendura",
+   "sinonimos": [
+    "a la pendura",
+    "colgada lista para fondear",
+    "sobre freno",
+    "fuera del escobén",
+    "salida clara de la cadena",
+    "¡fondo!"
+   ],
+   "nota": "Ancla colgando fuera de su estiba, sobre freno y lista para fondear, y para qué se lleva así.",
+   "padre": "nomen.fondeo",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6",
+    "per-2-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «a la pendura»"
+  },
+  {
+   "id": "nomen.fondeo.apique",
+   "tipo": "concepto",
+   "etiqueta": "A pique, zarpar, levar, clara y libre",
+   "sinonimos": [
+    "a pique",
+    "llamando verticalmente",
+    "cadena perpendicular",
+    "zarpar",
+    "ha zarpado",
+    "despega del fondo",
+    "levar",
+    "levar el ancla",
+    "clara y libre"
+   ],
+   "nota": "Voces del final del fondeo: a pique (cadena vertical), zarpar (el ancla despega del fondo), levar (subirla) y clara y libre (fuera del agua sin obstáculos).",
+   "padre": "nomen.fondeo",
+   "relacionados": [
+    "amarre.fondeo.levar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-6",
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.3 Equipo de fondeo: «a pique, levar, zarpar, clara y libre»"
+  },
+  {
+   "id": "nomen.timon",
+   "tipo": "grupo",
+   "etiqueta": "El timón",
+   "sinonimos": [],
+   "nota": "Partes del timón y tipos.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón"
+  },
+  {
+   "id": "nomen.timon.pala",
+   "tipo": "concepto",
+   "etiqueta": "Pala y mecha del timón",
+   "sinonimos": [
+    "pala",
+    "azafrán",
+    "mecha",
+    "eje del timón",
+    "eje vertical",
+    "prensaestopas",
+    "parte ancha del timón"
+   ],
+   "nota": "La pala (superficie sobre la que actúa el agua) y la mecha (eje que la une con la caña).",
+   "padre": "nomen.timon",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón: «Partes del timón: … mecha … y pala»"
+  },
+  {
+   "id": "nomen.timon.limera",
+   "tipo": "concepto",
+   "etiqueta": "Limera",
+   "sinonimos": [
+    "limera",
+    "orificio por donde pasa la mecha",
+    "tubo dentro del cual gira el eje del timón",
+    "permanece inmóvil"
+   ],
+   "nota": "Orificio o tubo por el que la mecha atraviesa el casco. Se confunde a propósito con la bocina (eje de la hélice).",
+   "padre": "nomen.timon",
+   "relacionados": [
+    "nomen.helice.bocina"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón: «limera»"
+  },
+  {
+   "id": "nomen.timon.guardines",
+   "tipo": "concepto",
+   "etiqueta": "Caña, rueda y guardines",
+   "sinonimos": [
+    "caña",
+    "rueda",
+    "guardines",
+    "guardín",
+    "guarnes",
+    "cables y poleas",
+    "transmiten el giro de la rueda"
+   ],
+   "nota": "Caña o rueda con que se gobierna y guardines (cables, cabos o cadenas) que llevan el giro de la rueda a la mecha.",
+   "padre": "nomen.timon",
+   "relacionados": [
+    "maniobra.gobierno.cana"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.4 Timón: «Caña o rueda … guardines»"
+  },
+  {
+   "id": "nomen.timon.tipos",
+   "tipo": "concepto",
+   "etiqueta": "Tipos de timón",
+   "sinonimos": [
+    "timón compensado",
+    "semicompensado",
+    "suspendido",
+    "ordinario"
+   ],
+   "nota": "Timón ordinario, compensado y suspendido. El punto 1.4 solo cita las partes; se pregunta en Baleares. La eficacia del timón está en maniobra.gobierno.timon.",
+   "padre": "nomen.timon",
+   "relacionados": [
+    "maniobra.gobierno.timon"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-4"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "nomen.helice",
+   "tipo": "grupo",
+   "etiqueta": "La hélice",
+   "sinonimos": [],
+   "nota": "Partes, sentido de giro y tipos de hélice.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice"
+  },
+  {
+   "id": "nomen.helice.partes",
+   "tipo": "concepto",
+   "etiqueta": "Partes de la hélice",
+   "sinonimos": [
+    "eje",
+    "núcleo",
+    "palas",
+    "capacete",
+    "capuchón",
+    "cara activa",
+    "dorso",
+    "diámetro de la hélice",
+    "elemento propulsor"
+   ],
+   "nota": "Eje, núcleo, palas y capacete (y qué es la hélice como propulsor). La bocina tiene concepto propio.",
+   "padre": "nomen.helice",
+   "relacionados": [
+    "nomen.helice.bocina"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Partes de la hélice: Eje, bocina, núcleo, palas y capacete»"
+  },
+  {
+   "id": "nomen.helice.bocina",
+   "tipo": "concepto",
+   "etiqueta": "Bocina",
+   "sinonimos": [
+    "bocina",
+    "orificio por donde sale el eje de la hélice",
+    "sin que entre agua",
+    "eje de cola",
+    "riesgo de inundación"
+   ],
+   "nota": "Orificio o tubo por el que el eje de la hélice atraviesa el casco sin que entre agua. Se confunde con la limera.",
+   "padre": "nomen.helice",
+   "relacionados": [
+    "nomen.timon.limera"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «… bocina …»"
+  },
+  {
+   "id": "nomen.helice.giro",
+   "tipo": "concepto",
+   "etiqueta": "Hélice dextrógira y levógira",
+   "sinonimos": [
+    "dextrógira",
+    "levógira",
+    "paso a la derecha",
+    "paso a la izquierda",
+    "giro a la derecha",
+    "giro a la izquierda",
+    "agujas del reloj",
+    "vista desde popa",
+    "marcha avante",
+    "máquina atrás"
+   ],
+   "nota": "Sentido de giro visto desde popa y avante; dando atrás se invierte el giro pero no el nombre.",
+   "padre": "nomen.helice",
+   "relacionados": [
+    "maniobra.helice.atras"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5",
+    "per-7-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Hélice dextrógira y hélice levógira»"
+  },
+  {
+   "id": "nomen.helice.gemelas",
+   "tipo": "concepto",
+   "etiqueta": "Hélices gemelas de giro al exterior",
+   "sinonimos": [
+    "hélices gemelas",
+    "giro al exterior",
+    "giro al interior",
+    "supradivergentes",
+    "dos hélices",
+    "estribor dextrógira",
+    "babor levógira",
+    "compensan la presión lateral"
+   ],
+   "nota": "Con giro al exterior la de estribor es dextrógira y la de babor levógira; por qué se compensan los efectos laterales.",
+   "padre": "nomen.helice",
+   "relacionados": [
+    "maniobra.ciaboga.dos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5",
+    "per-7-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Hélices gemelas de giro al exterior»"
+  },
+  {
+   "id": "nomen.helice.abatibles",
+   "tipo": "concepto",
+   "etiqueta": "Palas abatibles",
+   "sinonimos": [
+    "palas abatibles",
+    "hélice plegable",
+    "pico de pato",
+    "menor resistencia",
+    "navegar a vela"
+   ],
+   "nota": "Hélices de palas abatibles o plegables, «pico de pato» (menos resistencia navegando a vela).",
+   "padre": "nomen.helice",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.5 Hélice: «Hélice de palas abatibles»"
+  },
+  {
+   "id": "nomen.helice.paso",
+   "tipo": "concepto",
+   "etiqueta": "Paso, retroceso, paso variable y cavitación",
+   "sinonimos": [
+    "paso de la hélice",
+    "avanzaría en una vuelta",
+    "retroceso",
+    "pérdida de avance",
+    "cavitación",
+    "paso variable",
+    "ángulo de ataque"
+   ],
+   "nota": "Definiciones de paso, retroceso, paso variable y cavitación. No figuran expresamente en el punto 1.5; se preguntan en Baleares.",
+   "padre": "nomen.helice",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-5",
+    "per-7-4"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "nomen.dimensiones",
+   "tipo": "grupo",
+   "etiqueta": "Flotación y dimensiones",
+   "sinonimos": [],
+   "nota": "Flotación, dimensiones principales, asiento y desplazamiento.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco (plano de flotación) y 1.6 Dimensiones"
+  },
+  {
+   "id": "nomen.dimensiones.flotacion",
+   "tipo": "concepto",
+   "etiqueta": "Flotación: obra viva y obra muerta",
+   "sinonimos": [
+    "plano de flotación",
+    "línea de flotación",
+    "obra viva",
+    "carena",
+    "obra muerta",
+    "parte sumergida",
+    "parte emergida"
+   ],
+   "nota": "El plano o línea de flotación separa la obra viva (carena, sumergida) de la obra muerta (emergida).",
+   "padre": "nomen.dimensiones",
+   "relacionados": [
+    "maniobra.agentes.viento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.1 Casco: «Plano de flotación, para definir: Obra viva (carena) y obra muerta»"
+  },
+  {
+   "id": "nomen.dimensiones.eslora",
+   "tipo": "concepto",
+   "etiqueta": "Eslora",
+   "sinonimos": [
+    "eslora",
+    "eslora total",
+    "eslora máxima",
+    "eslora entre perpendiculares",
+    "eslora del casco",
+    "longitud"
+   ],
+   "nota": "Longitud del barco y sus variantes (total o máxima, entre perpendiculares, del casco con marcado CE).",
+   "padre": "nomen.dimensiones",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «Eslora»"
+  },
+  {
+   "id": "nomen.dimensiones.manga",
+   "tipo": "concepto",
+   "etiqueta": "Manga y manga máxima",
+   "sinonimos": [
+    "manga",
+    "manga máxima",
+    "anchura",
+    "de babor a estribor",
+    "cuaderna maestra",
+    "parte más ancha"
+   ],
+   "nota": "Anchura del barco; la manga máxima se mide en la parte más ancha por fuera del forro.",
+   "padre": "nomen.dimensiones",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «manga y manga máxima»"
+  },
+  {
+   "id": "nomen.dimensiones.puntal",
+   "tipo": "concepto",
+   "etiqueta": "Puntal",
+   "sinonimos": [
+    "puntal",
+    "altura del casco",
+    "desde la quilla hasta la cubierta",
+    "dimensión vertical"
+   ],
+   "nota": "Altura del casco desde la quilla hasta la cubierta corrida más alta; no cambia con la carga.",
+   "padre": "nomen.dimensiones",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «puntal»"
+  },
+  {
+   "id": "nomen.dimensiones.calado",
+   "tipo": "concepto",
+   "etiqueta": "Calado y calado medio",
+   "sinonimos": [
+    "calado",
+    "calado de proa",
+    "calado de popa",
+    "calado medio",
+    "semisuma",
+    "media aritmética",
+    "cala"
+   ],
+   "nota": "Distancia vertical de la flotación a la quilla (punto más bajo); calado medio = semisuma de los de proa y popa.",
+   "padre": "nomen.dimensiones",
+   "relacionados": [
+    "nomen.dimensiones.asiento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «calado de proa, calado de popa, calado medio»"
+  },
+  {
+   "id": "nomen.dimensiones.francobordo",
+   "tipo": "concepto",
+   "etiqueta": "Francobordo",
+   "sinonimos": [
+    "francobordo",
+    "franco bordo",
+    "reserva de flotabilidad",
+    "de la flotación a la cubierta",
+    "cubierta estanca",
+    "máxima carga"
+   ],
+   "nota": "Distancia vertical, medida en el centro del costado, entre la flotación y la cubierta completa más alta con medios permanentes de cierre estanco; es la reserva de flotabilidad. Disminuye al aumentar el calado o la carga (desplazamiento).",
+   "padre": "nomen.dimensiones",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «franco bordo»"
+  },
+  {
+   "id": "nomen.dimensiones.asiento",
+   "tipo": "concepto",
+   "etiqueta": "Asiento: aproado, apopado y aguas iguales",
+   "sinonimos": [
+    "asiento",
+    "diferencia de calados",
+    "calado de popa menos calado de proa",
+    "aproado",
+    "aproante",
+    "apopado",
+    "apopante",
+    "aguas iguales",
+    "asiento negativo"
+   ],
+   "nota": "Asiento = calado de popa − calado de proa: positivo apopado, negativo aproado, cero en aguas iguales; efecto en el gobierno.",
+   "padre": "nomen.dimensiones",
+   "relacionados": [
+    "nomen.dimensiones.calado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «asiento»"
+  },
+  {
+   "id": "nomen.dimensiones.desplazamiento",
+   "tipo": "concepto",
+   "etiqueta": "Desplazamiento",
+   "sinonimos": [
+    "desplazamiento",
+    "desplazamiento máximo",
+    "peso del agua desplazada",
+    "peso del buque",
+    "cargada al máximo",
+    "desplazamiento en lastre",
+    "arqueo"
+   ],
+   "nota": "Peso del barco (= peso del agua que desaloja) y desplazamiento máximo en recreo; el arqueo es volumen, no peso.",
+   "padre": "nomen.dimensiones",
+   "relacionados": [
+    "estabilidad.desplazamiento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.6 Dimensiones: «Desplazamiento máximo en embarcaciones de recreo»"
+  },
+  {
+   "id": "nomen.terminos",
+   "tipo": "grupo",
+   "etiqueta": "Terminología: escora y viento",
+   "sinonimos": [],
+   "nota": "Términos del punto 1.7: escorar y adrizar, barlovento y sotavento.",
+   "padre": "nomen",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1",
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.7 Terminología"
+  },
+  {
+   "id": "nomen.terminos.barlovento",
+   "tipo": "concepto",
+   "etiqueta": "Barlovento y sotavento",
+   "sinonimos": [
+    "barlovento",
+    "sotavento",
+    "banda de barlovento",
+    "banda de sotavento",
+    "por donde entra el viento",
+    "por donde viene el viento",
+    "costado contrario",
+    "por donde sale el viento",
+    "orzar"
+   ],
+   "nota": "Lado por el que viene el viento y lado contrario; cambian con el viento y el rumbo (ejercicios «rumbo N con viento del W»). Incluye orzar cuando se pregunta como vocabulario.",
+   "padre": "nomen.terminos",
+   "relacionados": [
+    "nomen.casco.crujia",
+    "maniobra.agentes.libresotavento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1",
+    "per-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.7 Terminología: «Barlovento y sotavento»"
+  },
+  {
+   "id": "nomen.terminos.escora",
+   "tipo": "concepto",
+   "etiqueta": "Escorar y adrizar",
+   "sinonimos": [
+    "escorar",
+    "escora",
+    "escorado",
+    "adrizar",
+    "adrizado",
+    "enderezar",
+    "inclinarse a una banda",
+    "escora nula",
+    "clinómetro"
+   ],
+   "nota": "Escorar es inclinarse a una banda; adrizar, volver a la vertical o corregir la escora. Las causas y la estabilidad son de seguridad.",
+   "padre": "nomen.terminos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-7",
+    "per-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 1 Nomenclatura náutica, 1.7 Terminología: «Escorar y adrizar»"
+  },
+  {
+   "id": "amarre",
+   "tipo": "grupo",
+   "etiqueta": "Amarre y fondeo",
+   "sinonimos": [],
+   "nota": "Elementos de amarre, partes de un cabo, nudos del PER y maniobra de fondeo (PER, UT 2).",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1",
+    "per-2-2",
+    "per-2-3",
+    "per-2-4",
+    "per-2-5",
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo"
+  },
+  {
+   "id": "amarre.elementos",
+   "tipo": "grupo",
+   "etiqueta": "Elementos de amarre",
+   "sinonimos": [],
+   "nota": "Herrajes del muelle y de a bordo y accesorios para amarrar.",
+   "padre": "amarre",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre"
+  },
+  {
+   "id": "amarre.elementos.noray",
+   "tipo": "concepto",
+   "etiqueta": "Noray y bolardo",
+   "sinonimos": [
+    "noray",
+    "norays",
+    "bolardo",
+    "pieza fijada al muelle",
+    "elemento de tierra",
+    "cantil del muelle"
+   ],
+   "nota": "Piezas del muelle donde se encapillan o hacen firmes las amarras. Preguntas de «qué elemento no está en el muelle».",
+   "padre": "amarre.elementos",
+   "relacionados": [
+    "amarre.elementos.bita"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «Noray»"
+  },
+  {
+   "id": "amarre.elementos.bita",
+   "tipo": "concepto",
+   "etiqueta": "Bitas y cornamusas",
+   "sinonimos": [
+    "bita",
+    "bitas",
+    "cornamusa",
+    "cornamusas",
+    "dos columnas",
+    "en forma de T",
+    "encorvada en sus extremos",
+    "elemento de a bordo",
+    "afirmar drizas y escotas"
+   ],
+   "nota": "Herrajes de a bordo para hacer firme un cabo (bita de dos columnas; cornamusa en forma de T). Incluye «qué elemento no se usa en el amarre».",
+   "padre": "amarre.elementos",
+   "relacionados": [
+    "amarre.elementos.noray"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «bitas y cornamusas»"
+  },
+  {
+   "id": "amarre.elementos.muerto",
+   "tipo": "concepto",
+   "etiqueta": "Muertos y boyas de amarre",
+   "sinonimos": [
+    "muerto",
+    "muertos",
+    "boya",
+    "boyas",
+    "bloque de cemento",
+    "peso en el fondo",
+    "cuerpo flotante",
+    "lastre"
+   ],
+   "nota": "El muerto (peso en el fondo) y la boya que flota unida a él para amarrarse.",
+   "padre": "amarre.elementos",
+   "relacionados": [
+    "maniobra.atraque.boya"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «muertos, boyas»"
+  },
+  {
+   "id": "amarre.elementos.defensas",
+   "tipo": "concepto",
+   "etiqueta": "Defensas",
+   "sinonimos": [
+    "defensa",
+    "defensas",
+    "amortiguar golpes",
+    "proteger el casco",
+    "entre el costado y el muelle"
+   ],
+   "nota": "Qué son las defensas y dónde se colocan.",
+   "padre": "amarre.elementos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1",
+    "per-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «defensas»"
+  },
+  {
+   "id": "amarre.elementos.bichero",
+   "tipo": "concepto",
+   "etiqueta": "Bichero",
+   "sinonimos": [
+    "bichero",
+    "asta larga con un gancho",
+    "percha",
+    "puntera",
+    "coger la guía o las amarras"
+   ],
+   "nota": "Pértiga con gancho para coger cabos, boyas u objetos al atracar o desatracar.",
+   "padre": "amarre.elementos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «bichero»"
+  },
+  {
+   "id": "amarre.elementos.guiacabos",
+   "tipo": "concepto",
+   "etiqueta": "Guiacabos y gateras",
+   "sinonimos": [
+    "guía-cabos",
+    "guiacabos",
+    "gatera",
+    "evitan el roce",
+    "pasar y guiar los cabos"
+   ],
+   "nota": "Piezas por las que pasan las amarras para guiarlas y evitar roces.",
+   "padre": "amarre.elementos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1",
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «guía-cabos»"
+  },
+  {
+   "id": "amarre.elementos.roldana",
+   "tipo": "concepto",
+   "etiqueta": "Roldana",
+   "sinonimos": [
+    "roldana",
+    "rueda acanalada",
+    "polea",
+    "motón",
+    "pasteca",
+    "laborea",
+    "cambiar la dirección del cabo"
+   ],
+   "nota": "Rueda de poleas y motones por la que corre un cabo.",
+   "padre": "amarre.elementos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «roldana»"
+  },
+  {
+   "id": "amarre.cabo",
+   "tipo": "grupo",
+   "etiqueta": "Partes de un cabo",
+   "sinonimos": [],
+   "nota": "Chicote, seno, firme y gaza.",
+   "padre": "amarre",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1",
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre"
+  },
+  {
+   "id": "amarre.cabo.partes",
+   "tipo": "concepto",
+   "etiqueta": "Chicote, seno y firme",
+   "sinonimos": [
+    "chicote",
+    "seno",
+    "firme",
+    "extremo libre",
+    "parte que trabaja",
+    "porción más larga",
+    "curvatura",
+    "arco que forma el cabo",
+    "mena",
+    "grosor"
+   ],
+   "nota": "Partes de un cabo: chicote (extremo), firme (la que trabaja) y seno (la curva entre ambos). Incluye la mena (grosor) cuando se pregunta.",
+   "padre": "amarre.cabo",
+   "relacionados": [
+    "amarre.cabo.gaza"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1",
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «chicote, seno, firme»"
+  },
+  {
+   "id": "amarre.cabo.gaza",
+   "tipo": "concepto",
+   "etiqueta": "Gaza",
+   "sinonimos": [
+    "gaza",
+    "lazo",
+    "ojo",
+    "gaza trenzada",
+    "costura",
+    "ligada"
+   ],
+   "nota": "Lazo u ojo cerrado en el extremo de un cabo, hecho con costura, ligada o nudo.",
+   "padre": "amarre.cabo",
+   "relacionados": [
+    "amarre.nudos.asdeguia",
+    "maniobra.cabos.encapillar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-1",
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.1 Elementos de amarre: «gaza»"
+  },
+  {
+   "id": "amarre.nudos",
+   "tipo": "grupo",
+   "etiqueta": "Nudos",
+   "sinonimos": [],
+   "nota": "Para qué se emplea cada uno de los cuatro nudos del temario.",
+   "padre": "amarre",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos"
+  },
+  {
+   "id": "amarre.nudos.llano",
+   "tipo": "concepto",
+   "etiqueta": "Nudo llano",
+   "sinonimos": [
+    "nudo llano",
+    "nudo de rizo",
+    "unir dos cabos",
+    "misma mena",
+    "mismo grosor",
+    "por sus chicotes"
+   ],
+   "nota": "Une por sus chicotes dos cabos de la misma mena y material.",
+   "padre": "amarre.nudos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «Llano»"
+  },
+  {
+   "id": "amarre.nudos.rezon",
+   "tipo": "concepto",
+   "etiqueta": "Vuelta de rezón",
+   "sinonimos": [
+    "vuelta de rezón",
+    "argolla",
+    "arganeo",
+    "cáncamo",
+    "defensas mucho tiempo",
+    "línea de fondeo al ancla"
+   ],
+   "nota": "Afirma un cabo a una argolla o arganeo; defensas que van a estar puestas mucho tiempo.",
+   "padre": "amarre.nudos",
+   "relacionados": [
+    "amarre.nudos.ballestrinque"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «vuelta de rezón»"
+  },
+  {
+   "id": "amarre.nudos.ballestrinque",
+   "tipo": "concepto",
+   "etiqueta": "Ballestrinque",
+   "sinonimos": [
+    "ballestrinque",
+    "afirmar rápidamente",
+    "defensa poco tiempo",
+    "candelero",
+    "pasamanos",
+    "bita",
+    "palo",
+    "cote"
+   ],
+   "nota": "Afirma rápido un cabo a un palo, candelero o bita; defensas por poco tiempo.",
+   "padre": "amarre.nudos",
+   "relacionados": [
+    "amarre.nudos.rezon"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «ballestrinque»"
+  },
+  {
+   "id": "amarre.nudos.asdeguia",
+   "tipo": "concepto",
+   "etiqueta": "As de guía",
+   "sinonimos": [
+    "as de guía",
+    "gaza fija",
+    "no corrediza",
+    "sin costura",
+    "encapillar",
+    "reemplazar a una gaza"
+   ],
+   "nota": "Hace una gaza fija sin costura, para encapillar en un noray o rodear a una persona.",
+   "padre": "amarre.nudos",
+   "relacionados": [
+    "amarre.cabo.gaza"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.2 Nudos: «as de guía»"
+  },
+  {
+   "id": "amarre.fondeo",
+   "tipo": "grupo",
+   "etiqueta": "Fondeo",
+   "sinonimos": [],
+   "nota": "Dónde y cómo fondear, cuánta cadena, borneo, garreo, vigilancia, orinque y levar.",
+   "padre": "amarre",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-3",
+    "per-2-4",
+    "per-2-5",
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo"
+  },
+  {
+   "id": "amarre.fondeo.lugar",
+   "tipo": "concepto",
+   "etiqueta": "Elección del lugar de fondeo",
+   "sinonimos": [
+    "lugar de fondeo",
+    "fondeadero",
+    "abrigo",
+    "profundidad",
+    "pendiente del fondo",
+    "espacio para bornear",
+    "corrientes",
+    "carta y derrotero"
+   ],
+   "nota": "Qué se valora al elegir dónde fondear (abrigo del viento, profundidad, tipo de fondo, corriente, espacio) y por qué no conviene un fondo con mucha pendiente.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "amarre.fondeo.tenedero"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Elección del lugar de fondeo»"
+  },
+  {
+   "id": "amarre.fondeo.tenedero",
+   "tipo": "concepto",
+   "etiqueta": "Tenedero: calidad del fondo",
+   "sinonimos": [
+    "tenedero",
+    "arena",
+    "fango duro",
+    "fango blando",
+    "roca",
+    "piedra",
+    "algas",
+    "cascajo",
+    "agarre del ancla",
+    "arcilla"
+   ],
+   "nota": "Tenedero es la calidad del fondo para el agarre del ancla; buenos: arena fina compacta, arcilla, fango compacto, arena fangosa; malos: roca, algas, fango blando.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "amarre.fondeo.lugar",
+    "amarre.fondeo.garreo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Elección … del tenedero»"
+  },
+  {
+   "id": "amarre.fondeo.gira",
+   "tipo": "concepto",
+   "etiqueta": "Fondeo a la gira: la maniobra",
+   "sinonimos": [
+    "fondeo a la gira",
+    "una sola ancla por proa",
+    "proa al viento",
+    "mínima velocidad de gobierno",
+    "arrancada atrás",
+    "dar fondo",
+    "larga el ancla",
+    "fondear"
+   ],
+   "nota": "Qué es fondear a la gira y cómo se hace: aproximación proa al viento a poca velocidad, dar fondo con ligera arrancada atrás y comprobar que agarra.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "nomen.fondeo.molinete",
+    "nomen.fondeo.pendura"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-4",
+    "per-2-5",
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Fondeo a la gira con un ancla: Maniobra»"
+  },
+  {
+   "id": "amarre.fondeo.cadena",
+   "tipo": "concepto",
+   "etiqueta": "Cuánta cadena filar",
+   "sinonimos": [
+    "longitud de fondeo",
+    "cadena a filar",
+    "tres a cuatro veces el fondo",
+    "tres veces la sonda",
+    "cinco veces la sonda",
+    "mal tiempo",
+    "la máxima posible",
+    "grilletes de cadena"
+   ],
+   "nota": "Cadena a filar según la sonda: con buen tiempo 3–4 veces el fondo (Baleares admite 3–5; DGMM, no menos de 3); con mal tiempo 5–6 veces o la máxima posible; nunca 1–2 veces. No confundir con la longitud mínima de la línea de fondeo, que depende de la eslora.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "nomen.fondeo.lineaminima",
+    "amarre.fondeo.borneo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-4",
+    "per-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «longitud del fondeo»"
+  },
+  {
+   "id": "amarre.fondeo.borneo",
+   "tipo": "concepto",
+   "etiqueta": "Borneo y círculo de borneo",
+   "sinonimos": [
+    "bornear",
+    "bornea",
+    "borneo",
+    "círculo de borneo",
+    "radio de borneo",
+    "cadena filada más la eslora",
+    "gira alrededor del ancla"
+   ],
+   "nota": "Giro del barco alrededor del ancla y radio del círculo de borneo (cadena filada + eslora); cómo se reduce y espacio libre necesario.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "amarre.fondeo.garreo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «círculo de borneo»"
+  },
+  {
+   "id": "amarre.fondeo.garreo",
+   "tipo": "concepto",
+   "etiqueta": "Garreo",
+   "sinonimos": [
+    "garreo",
+    "garrear",
+    "garrea",
+    "el ancla se arrastra",
+    "no agarra",
+    "resbala",
+    "evitar el garreo"
+   ],
+   "nota": "Qué es garrear, por qué ocurre (mal tenedero, poca cadena, más viento) y cómo evitarlo.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "amarre.fondeo.vigilancia",
+    "amarre.fondeo.borneo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Garreo»"
+  },
+  {
+   "id": "amarre.fondeo.vigilancia",
+   "tipo": "concepto",
+   "etiqueta": "Vigilancia del fondeo",
+   "sinonimos": [
+    "vigilancia",
+    "referencias a tierra",
+    "marcas en tierra",
+    "enfilaciones",
+    "alarma de sonda",
+    "alarma de fondeo",
+    "GPS",
+    "detectar el garreo"
+   ],
+   "nota": "Cómo comprobar que el ancla no garrea: marcas o enfilaciones en tierra, alarma de sonda y alarma de fondeo del GPS.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "amarre.fondeo.garreo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Vigilancia durante el fondeo: Marcas, alarma de sonda»"
+  },
+  {
+   "id": "amarre.fondeo.orinque",
+   "tipo": "concepto",
+   "etiqueta": "Orinque",
+   "sinonimos": [
+    "orinque",
+    "orincar",
+    "boyarín",
+    "balizar el ancla",
+    "cruz del ancla",
+    "ancla enrocada",
+    "recuperar el ancla"
+   ],
+   "nota": "Cabo afirmado a la cruz del ancla con un boyarín: señala dónde está y ayuda a desenrocarla.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "amarre.fondeo.levar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Orinque»"
+  },
+  {
+   "id": "amarre.fondeo.levar",
+   "tipo": "concepto",
+   "etiqueta": "Maniobra de levar el ancla",
+   "sinonimos": [
+    "levar",
+    "levar el ancla",
+    "tira por largo",
+    "paladas avante",
+    "ancla enrocada",
+    "estibar el ancla",
+    "quedar a pique"
+   ],
+   "nota": "Pasos para levar (avante suave hacia el ancla, virar hasta a pique, zarpar y estibar) y qué hacer si tira por largo o está enrocada.",
+   "padre": "amarre.fondeo",
+   "relacionados": [
+    "nomen.fondeo.apique",
+    "nomen.fondeo.molinete"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-2-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 2 Elementos de amarre y fondeo, 2.3 Fondeo: «Maniobra de levar el ancla»"
+  },
+  {
+   "id": "maniobra",
+   "tipo": "grupo",
+   "etiqueta": "Maniobra y navegación",
+   "sinonimos": [],
+   "nota": "Voces del trabajo con cabos, amarras, gobierno, efectos de la hélice, ciaboga, agentes externos, atraque y desatraque (PER, UT 7).",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1",
+    "per-7-2",
+    "per-7-3",
+    "per-7-4",
+    "per-7-5",
+    "per-7-6",
+    "per-7-7",
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación"
+  },
+  {
+   "id": "maniobra.cabos",
+   "tipo": "grupo",
+   "etiqueta": "Voces de la maniobra con cabos",
+   "sinonimos": [],
+   "nota": "Definiciones del punto 7.1: encapillar, por seno, tomar vueltas, cobrar, aflojar, adujar.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras"
+  },
+  {
+   "id": "maniobra.cabos.encapillar",
+   "tipo": "concepto",
+   "etiqueta": "Encapillar una gaza al noray",
+   "sinonimos": [
+    "encapillar",
+    "encapillada",
+    "gaza en el noray",
+    "por dentro",
+    "por debajo",
+    "por el ojo de la otra"
+   ],
+   "nota": "Meter la gaza en el noray y, si ya hay otra, pasar la nuestra por dentro y de abajo arriba para que ambas puedan largarse.",
+   "padre": "maniobra.cabos",
+   "relacionados": [
+    "amarre.cabo.gaza"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Encapillar una gaza al noray»"
+  },
+  {
+   "id": "maniobra.cabos.seno",
+   "tipo": "concepto",
+   "etiqueta": "Amarrar por seno",
+   "sinonimos": [
+    "amarrar por seno",
+    "por seno",
+    "firme y chicote a bordo",
+    "largar desde a bordo",
+    "facilitar el desamarre",
+    "sin ir a la boya"
+   ],
+   "nota": "Dar el cabo de ida y vuelta (firme y chicote a bordo) para poder largarlo desde el barco.",
+   "padre": "maniobra.cabos",
+   "relacionados": [
+    "maniobra.desatraque.costado"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1",
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «amarrar por seno»"
+  },
+  {
+   "id": "maniobra.cabos.firme",
+   "tipo": "concepto",
+   "etiqueta": "Tomar vueltas y hacer firme",
+   "sinonimos": [
+    "tomar vueltas",
+    "hacer firme",
+    "afirmar",
+    "en forma de ocho",
+    "dar vueltas a la cornamusa",
+    "abozar"
+   ],
+   "nota": "Dar vueltas a una bita o cornamusa para sujetar el cabo sin aguantar toda la tensión, y hacerlo firme para que no se mueva.",
+   "padre": "maniobra.cabos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «tomar vueltas y hacer firme»"
+  },
+  {
+   "id": "maniobra.cabos.cobrar",
+   "tipo": "concepto",
+   "etiqueta": "Cobrar, virar, tesar y templar",
+   "sinonimos": [
+    "cobrar",
+    "virar",
+    "tesar",
+    "templar",
+    "dar tensión",
+    "tirar de un cabo",
+    "por medios mecánicos",
+    "sin seno"
+   ],
+   "nota": "Recoger o tensar un cabo: cobrar (a mano), virar (con máquina), tesar y templar (dar tensión; templar también es igualarla entre varios cabos).",
+   "padre": "maniobra.cabos",
+   "relacionados": [
+    "maniobra.cabos.lascar",
+    "nomen.fondeo.filar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Cobrar, virar, tesar, templar»"
+  },
+  {
+   "id": "maniobra.cabos.lascar",
+   "tipo": "concepto",
+   "etiqueta": "Amollar, lascar, arriar y largar",
+   "sinonimos": [
+    "amollar",
+    "lascar",
+    "arriar",
+    "largar",
+    "aflojar",
+    "soltar despacio",
+    "soltar un poco"
+   ],
+   "nota": "Aflojar o soltar un cabo, de menos a más: lascar y amollar (un poco, poco a poco), arriar (dejar correr) y largar (soltarlo del todo).",
+   "padre": "maniobra.cabos",
+   "relacionados": [
+    "maniobra.cabos.cobrar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «amollar, lascar, arriar y largar»"
+  },
+  {
+   "id": "maniobra.cabos.adujar",
+   "tipo": "concepto",
+   "etiqueta": "Adujar",
+   "sinonimos": [
+    "adujar",
+    "recoger en vueltas",
+    "en espiral",
+    "sin cocas",
+    "claro y listo para usar"
+   ],
+   "nota": "Recoger un cabo en vueltas ordenadas, sin cocas y listo para usarse.",
+   "padre": "maniobra.cabos",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-1"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Adujar»"
+  },
+  {
+   "id": "maniobra.amarras",
+   "tipo": "grupo",
+   "etiqueta": "Las amarras",
+   "sinonimos": [],
+   "nota": "Nombre de cada amarra, efecto de cobrarla y cuáles reforzar.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras"
+  },
+  {
+   "id": "maniobra.amarras.tipos",
+   "tipo": "concepto",
+   "etiqueta": "Largos, traveses y esprines",
+   "sinonimos": [
+    "largo",
+    "largos",
+    "través",
+    "traveses",
+    "esprín",
+    "esprines",
+    "spring",
+    "cabos de amarre",
+    "trabajan hacia proa",
+    "en diagonal"
+   ],
+   "nota": "Reconocer cada amarra por hacia dónde trabaja: largos hacia su extremo, esprines cruzados, traveses perpendiculares.",
+   "padre": "maniobra.amarras",
+   "relacionados": [
+    "maniobra.amarras.cobrar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-2",
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Largo, través, esprín y codera»"
+  },
+  {
+   "id": "maniobra.amarras.codera",
+   "tipo": "concepto",
+   "etiqueta": "La codera",
+   "sinonimos": [
+    "codera",
+    "coderas",
+    "banda contraria al muelle",
+    "muerto",
+    "boya",
+    "ayudar a desatracar",
+    "evitar golpes contra el muelle"
+   ],
+   "nota": "Cabo que se da por la banda contraria al muelle y ayuda a desatracar (dgmm-per-2021-02-74); también, cabo de proa o popa a un muerto o boya (dgmm-per-2020-12-73).",
+   "padre": "maniobra.amarras",
+   "relacionados": [
+    "maniobra.atraque.punta"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-2",
+    "per-7-7",
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «codera»"
+  },
+  {
+   "id": "maniobra.amarras.cobrar",
+   "tipo": "concepto",
+   "etiqueta": "Efecto de cobrar cada amarra",
+   "sinonimos": [
+    "al cobrar",
+    "virar del esprín",
+    "atraca la proa",
+    "atraca la popa",
+    "mueve el barco hacia atrás",
+    "va avante",
+    "correr el barco",
+    "lascar el resto"
+   ],
+   "nota": "Qué hace el barco atracado de costado al cobrar un largo, un esprín o un través, y cómo correrlo hacia proa o popa con los cabos.",
+   "padre": "maniobra.amarras",
+   "relacionados": [
+    "maniobra.amarras.tipos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-2",
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «efectos producidos al cobrar de cada una de las amarras, estando el barco atracado costado al muelle»"
+  },
+  {
+   "id": "maniobra.amarras.reforzar",
+   "tipo": "concepto",
+   "etiqueta": "Amarras según viento y corriente",
+   "sinonimos": [
+    "reforzar",
+    "viento de proa",
+    "viento de popa",
+    "corriente",
+    "marea",
+    "viento de través"
+   ],
+   "nota": "Qué amarras trabajan y hay que reforzar según venga el viento o la corriente (de proa: largo de proa y esprín de popa; de popa: al revés).",
+   "padre": "maniobra.amarras",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-2"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.1 Amarras: «Utilización de las amarras según viento y corriente»"
+  },
+  {
+   "id": "maniobra.gobierno",
+   "tipo": "grupo",
+   "etiqueta": "Gobierno",
+   "sinonimos": [],
+   "nota": "Caña o rueda, velocidad de gobierno, arrancada, curva de evolución y rabeo.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"
+  },
+  {
+   "id": "maniobra.gobierno.cana",
+   "tipo": "concepto",
+   "etiqueta": "Gobierno con caña o con rueda",
+   "sinonimos": [
+    "caña",
+    "rueda",
+    "la proa cae",
+    "banda contraria",
+    "misma banda",
+    "meter la caña",
+    "girar la rueda"
+   ],
+   "nota": "Hacia dónde cae la proa: con caña al lado contrario de la caña; con rueda al lado del giro.",
+   "padre": "maniobra.gobierno",
+   "relacionados": [
+    "nomen.timon.guardines"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-3",
+    "per-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"
+  },
+  {
+   "id": "maniobra.gobierno.velocidad",
+   "tipo": "concepto",
+   "etiqueta": "Velocidad de gobierno",
+   "sinonimos": [
+    "velocidad de gobierno",
+    "velocidad mínima",
+    "el timón sea efectivo",
+    "canal de entrada",
+    "gobierno manual",
+    "entrada y salida de puerto"
+   ],
+   "nota": "Velocidad mínima a la que el barco obedece al timón y cómo se gobierna en canales y bocanas.",
+   "padre": "maniobra.gobierno",
+   "relacionados": [
+    "maniobra.gobierno.arrancada"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Definiciones de: Velocidad de gobierno y arrancada»"
+  },
+  {
+   "id": "maniobra.gobierno.arrancada",
+   "tipo": "concepto",
+   "etiqueta": "Arrancada",
+   "sinonimos": [
+    "arrancada",
+    "sin arrancada",
+    "inercia",
+    "marcha avante o atrás",
+    "perder arrancada",
+    "ciar"
+   ],
+   "nota": "Velocidad que conserva el barco por inercia; sin arrancada no hay gobierno. Incluye ciar (ir hacia atrás) cuando se pregunta.",
+   "padre": "maniobra.gobierno",
+   "relacionados": [
+    "maniobra.gobierno.velocidad"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-3",
+    "per-7-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Definiciones de: Velocidad de gobierno y arrancada»"
+  },
+  {
+   "id": "maniobra.gobierno.curva",
+   "tipo": "concepto",
+   "etiqueta": "Curva de evolución",
+   "sinonimos": [
+    "curva de evolución",
+    "fase de maniobra",
+    "periodo de maniobra",
+    "fase variable",
+    "fase uniforme",
+    "diámetro táctico",
+    "avance",
+    "traslado"
+   ],
+   "nota": "Trayectoria al meter el timón con máquina avante y sus tres fases (maniobra, variable y uniforme).",
+   "padre": "maniobra.gobierno",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Nombrar las tres fases de la curva de evolución en marcha avante»"
+  },
+  {
+   "id": "maniobra.gobierno.rabeo",
+   "tipo": "concepto",
+   "etiqueta": "Rabeo de la popa",
+   "sinonimos": [
+    "rabeo",
+    "rabear",
+    "la popa se abre",
+    "desplazamiento transversal de la popa",
+    "espacio por la otra banda"
+   ],
+   "nota": "Al evolucionar, la popa barre hacia la banda contraria al giro: hay que dejarle espacio.",
+   "padre": "maniobra.gobierno",
+   "relacionados": [
+    "maniobra.gobierno.curva"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-3"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «la importancia del rabeo de la popa»"
+  },
+  {
+   "id": "maniobra.gobierno.timon",
+   "tipo": "concepto",
+   "etiqueta": "Eficacia del timón: velocidad, hélice y superficie",
+   "sinonimos": [
+    "timón a la vía",
+    "efecto del timón",
+    "aumentar las revoluciones",
+    "poca velocidad",
+    "metida del timón",
+    "pérdida de gobierno",
+    "eficacia del timón",
+    "superficie de la pala"
+   ],
+   "nota": "Qué es llevar el timón a la vía y de qué depende la eficacia del timón (velocidad, corriente de la hélice, superficie de la pala); qué pasa al meterlo a una banda.",
+   "padre": "maniobra.gobierno",
+   "relacionados": [
+    "maniobra.gobierno.arrancada",
+    "nomen.timon.tipos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-4"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "maniobra.helice",
+   "tipo": "grupo",
+   "etiqueta": "Efectos de la hélice",
+   "sinonimos": [],
+   "nota": "Presión lateral de las palas, corriente de expulsión y efecto combinado con el timón.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"
+  },
+  {
+   "id": "maniobra.helice.atras",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de la hélice y presión lateral: efecto al dar atrás parado",
+   "sinonimos": [
+    "presión lateral de las palas",
+    "corriente de expulsión",
+    "corriente de aspiración",
+    "parado y sin arrancada",
+    "timón a la vía",
+    "máquina atrás",
+    "la popa cae a babor",
+    "la popa cae a estribor"
+   ],
+   "nota": "Qué corrientes crea la hélice (aspiración y expulsión) y la presión lateral de las palas; sobre todo hacia dónde cae la popa al dar atrás desde parado con el timón a la vía (dextrógira a babor, levógira a estribor). También el pequeño efecto avante. La corriente de aspiración aumenta la acción del timón con marcha avante.",
+   "padre": "maniobra.helice",
+   "relacionados": [
+    "nomen.helice.giro",
+    "seguridad.hombre-al-agua.primeras-acciones"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «El efecto de la corriente de expulsión y de la presión lateral de las palas sobre una embarcación que se encuentre, parada sin arrancada, con el timón a la vía y da máquina atrás»"
+  },
+  {
+   "id": "maniobra.helice.combinado",
+   "tipo": "concepto",
+   "etiqueta": "Hélice y timón con arrancada avante y máquina atrás",
+   "sinonimos": [
+    "arrancada avante",
+    "máquina atrás",
+    "efecto combinado",
+    "en los primeros momentos",
+    "cuando pierde la arrancada",
+    "timón a babor"
+   ],
+   "nota": "Qué hacen proa y popa al dar atrás llevando arrancada avante, con el timón a la vía o metido.",
+   "padre": "maniobra.helice",
+   "relacionados": [
+    "maniobra.helice.atras"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-4"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «El efecto combinado hélice - timón con arrancada avante y máquina atrás»"
+  },
+  {
+   "id": "maniobra.ciaboga",
+   "tipo": "grupo",
+   "etiqueta": "La ciaboga",
+   "sinonimos": [],
+   "nota": "Girar en poco espacio con una o con dos hélices.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2 Gobierno con caña o rueda"
+  },
+  {
+   "id": "maniobra.ciaboga.una",
+   "tipo": "concepto",
+   "etiqueta": "Ciaboga con una hélice",
+   "sinonimos": [
+    "ciaboga",
+    "ciabogar",
+    "revirar en poco espacio",
+    "sobre sí misma",
+    "por estribor",
+    "por babor",
+    "avante y atrás alternando"
+   ],
+   "nota": "Qué es la ciaboga y cómo se hace con una hélice: hacia qué banda conviene (dextrógira a estribor, levógira a babor) y cómo influye el viento.",
+   "padre": "maniobra.ciaboga",
+   "relacionados": [
+    "maniobra.helice.atras"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «La ciaboga con una hélice»"
+  },
+  {
+   "id": "maniobra.ciaboga.dos",
+   "tipo": "concepto",
+   "etiqueta": "Ciaboga con dos hélices gemelas",
+   "sinonimos": [
+    "dos hélices",
+    "hélices gemelas",
+    "avante estribor y atrás babor",
+    "una avante y otra atrás",
+    "giro al exterior",
+    "girar sobre sí mismo"
+   ],
+   "nota": "Con dos hélices de giro al exterior: una avante y otra atrás; la proa cae hacia la que da atrás.",
+   "padre": "maniobra.ciaboga",
+   "relacionados": [
+    "nomen.helice.gemelas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-5"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «La ciaboga con dos hélices gemelas de giro al exterior»"
+  },
+  {
+   "id": "maniobra.agentes",
+   "tipo": "grupo",
+   "etiqueta": "Agentes que influyen en la maniobra",
+   "sinonimos": [],
+   "nota": "Viento, corriente y olas; abatimiento y deriva; libre a sotavento.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Agentes que influyen en la maniobra»"
+  },
+  {
+   "id": "maniobra.agentes.viento",
+   "tipo": "concepto",
+   "etiqueta": "Viento, corriente y olas en la maniobra",
+   "sinonimos": [
+    "agentes externos",
+    "viento y corriente",
+    "obra muerta",
+    "obra viva",
+    "olas",
+    "aproarse al viento",
+    "proa a la corriente"
+   ],
+   "nota": "Sobre qué actúa cada agente (viento en la obra muerta, corriente en la obra viva) y cuáles mirar antes de atracar o desatracar. Abatimiento y deriva (efecto del viento y de la corriente sobre el rumbo) están en nav.viento-corriente.abatimiento.",
+   "padre": "maniobra.agentes",
+   "relacionados": [
+    "nomen.dimensiones.flotacion",
+    "nav.viento-corriente.abatimiento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Viento, corriente y olas»"
+  },
+  {
+   "id": "maniobra.agentes.abatimiento",
+   "tipo": "concepto",
+   "etiqueta": "Abatimiento y deriva",
+   "sinonimos": [
+    "abatimiento",
+    "deriva",
+    "ángulo de abatimiento",
+    "rumbo de superficie",
+    "efecto del viento",
+    "efecto de la corriente"
+   ],
+   "nota": "Sustituido por nav.viento-corriente.abatimiento (fusión de abatimiento y deriva, grupo navegación). Abatimiento es el efecto del viento y deriva el de la corriente sobre el rumbo; el cálculo con rumbos es de navegación.",
+   "padre": "maniobra.agentes",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Concepto de abatimiento y deriva»",
+   "sustituidoPor": "nav.viento-corriente.abatimiento"
+  },
+  {
+   "id": "maniobra.agentes.libresotavento",
+   "tipo": "concepto",
+   "etiqueta": "Libre a sotavento",
+   "sinonimos": [
+    "libre a sotavento",
+    "resguardo",
+    "costa a sotavento",
+    "echarnos sobre el peligro"
+   ],
+   "nota": "Tener mar libre por sotavento: resguardo suficiente frente a la costa o escollos hacia los que empujan viento, mar o corriente.",
+   "padre": "maniobra.agentes",
+   "relacionados": [
+    "nomen.terminos.barlovento",
+    "seguridad.mal-tiempo.costa-sotavento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-6"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.2: «Libre a sotavento»"
+  },
+  {
+   "id": "maniobra.atraque",
+   "tipo": "grupo",
+   "etiqueta": "Atracar",
+   "sinonimos": [],
+   "nota": "Preparación, atraque de costado y de punta, abarloarse y amarrar a una boya.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras"
+  },
+  {
+   "id": "maniobra.atraque.preparar",
+   "tipo": "concepto",
+   "etiqueta": "Preparar la maniobra",
+   "sinonimos": [
+    "defensas y cabos listos",
+    "cabos claros de la hélice",
+    "que no se enganchen con la hélice",
+    "despacio",
+    "poca arrancada"
+   ],
+   "nota": "Antes de atracar o desatracar: defensas y cabos listos, cabos lejos de la hélice, entrar despacio.",
+   "padre": "maniobra.atraque",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Atraque y desatraque»"
+  },
+  {
+   "id": "maniobra.atraque.costado",
+   "tipo": "concepto",
+   "etiqueta": "Atracar de costado",
+   "sinonimos": [
+    "atracar de costado",
+    "primer cabo",
+    "largo de proa",
+    "viento de tierra",
+    "corriente de proa",
+    "banda de atraque",
+    "proa al viento y a la corriente"
+   ],
+   "nota": "Aproximación, banda de atraque según la hélice y qué cabo dar primero según viento y corriente.",
+   "padre": "maniobra.atraque",
+   "relacionados": [
+    "maniobra.amarras.tipos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Atraque … costado al muelle» y «Amarrar: cabos que deben darse … y orden»"
+  },
+  {
+   "id": "maniobra.atraque.punta",
+   "tipo": "concepto",
+   "etiqueta": "Atracar de punta",
+   "sinonimos": [
+    "atracar de punta",
+    "proa al muelle",
+    "popa al muelle",
+    "muerto",
+    "codera",
+    "noray de barlovento",
+    "viento de costado",
+    "viento de mar",
+    "viento de tierra"
+   ],
+   "nota": "Atraque de proa o de popa al muelle con largos y muerto, codera o ancla; qué cabo primero y dónde encapillar con viento de costado.",
+   "padre": "maniobra.atraque",
+   "relacionados": [
+    "maniobra.amarras.codera"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Atraque … en punta (proa y popa)»"
+  },
+  {
+   "id": "maniobra.atraque.abarloarse",
+   "tipo": "concepto",
+   "etiqueta": "Abarloarse a otra embarcación",
+   "sinonimos": [
+    "abarloarse",
+    "abarloados",
+    "de costado a otro barco",
+    "varias embarcaciones amarradas juntas"
+   ],
+   "nota": "Amarrarse al costado de otro barco y qué cabos van a él y cuáles a tierra. (En Baleares «abarloado al muelle» se usa como atracado de costado.)",
+   "padre": "maniobra.atraque",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Abarloarse a otra embarcación»"
+  },
+  {
+   "id": "maniobra.atraque.boya",
+   "tipo": "concepto",
+   "etiqueta": "Amarrar a una boya",
+   "sinonimos": [
+    "amarrar a una boya",
+    "boya",
+    "muerto",
+    "proa al viento",
+    "por barlovento",
+    "contra la corriente",
+    "borneo menor"
+   ],
+   "nota": "Aproximación a la boya o muerto proa al viento o a la corriente, por barlovento y con poca arrancada; cómo bornea amarrado a ella.",
+   "padre": "maniobra.atraque",
+   "relacionados": [
+    "amarre.elementos.muerto"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-7"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Amarrar a una boya»"
+  },
+  {
+   "id": "maniobra.desatraque",
+   "tipo": "grupo",
+   "etiqueta": "Desatracar",
+   "sinonimos": [],
+   "nota": "Orden de largar los cabos y maniobra para salir.",
+   "padre": "maniobra",
+   "relacionados": [],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras"
+  },
+  {
+   "id": "maniobra.desatraque.costado",
+   "tipo": "concepto",
+   "etiqueta": "Desatracar de costado",
+   "sinonimos": [
+    "desatracar",
+    "último cabo",
+    "primeros cabos a largar",
+    "abrir la popa",
+    "abrir la proa",
+    "esprín de proa firme",
+    "esprín de popa firme",
+    "viento atracante",
+    "viento de tierra"
+   ],
+   "nota": "Qué cabos largar primero (los que no trabajan) y cuál al final; abrir la popa con el esprín de proa o la proa con el de popa según viento y corriente.",
+   "padre": "maniobra.desatraque",
+   "relacionados": [
+    "maniobra.amarras.cobrar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Desamarrar: Orden en que largar los cabos … y maniobra a realizar para desatracar»"
+  },
+  {
+   "id": "maniobra.desatraque.punta",
+   "tipo": "concepto",
+   "etiqueta": "Desatracar de punta",
+   "sinonimos": [
+    "atracados de punta",
+    "largar el muerto",
+    "desamarrar de punta"
+   ],
+   "nota": "Orden para salir atracado de punta: largar amarras del muelle, luego el muerto, y salir controlando la hélice.",
+   "padre": "maniobra.desatraque",
+   "relacionados": [
+    "maniobra.atraque.punta"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-7-8"
+   ],
+   "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Desamarrar … para desatracar»"
+  }
+ ]
 }

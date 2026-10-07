@@ -1,12 +1,17 @@
 // Genera podcast/README.md a partir de podcast/episodios.json y de las clases (objetivos de cada lección).
 // Uso: node podcast/indice.mjs
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { todasLasPreguntas, practicaDe } from '../tools/bancos/leer.mjs';
 
 const raiz = new URL('..', import.meta.url);
 const leer = (p) => JSON.parse(readFileSync(new URL(p, raiz)));
 const E = leer('podcast/episodios.json');
-const banco = new Map(['andalucia-per-teoria', 'andalucia-py-teoria', 'andalucia-per'].flatMap((f) => leer(`data/exams/${f}.json`).preguntas).map((q) => [q.id, q]));
-const lecciones = new Map(['per', 'py'].flatMap((t) => leer(`data/curso/${t}.json`).modulos.flatMap((m) => m.lecciones)).map((l) => [l.id, l]));
+const banco = new Map(todasLasPreguntas().map((q) => [q.id, q]));
+// Las clases, con la práctica del eje por defecto (las preguntas reales de examen de cada una).
+const lecciones = new Map(['per', 'py'].flatMap((t) => {
+  const practica = practicaDe(t);
+  return leer(`data/curso/${t}.json`).modulos.flatMap((m) => m.lecciones).map((l) => ({ ...l, practica: practica[l.id] ?? [] }));
+}).map((l) => [l.id, l]));
 
 const TIT = { py: 'Patrón de Yate (PY)', per: 'Patrón de Embarcaciones de Recreo (PER)' };
 const TIPO = { bienvenida: '👋 Bienvenida', panorama: '🧭 Panorama', profundiza: '🔎 Profundiza' };

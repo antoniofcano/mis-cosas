@@ -1,5 +1,5 @@
 // Motor de tests: arma simulacros y exámenes reales y los corrige con las reglas oficiales.
-// Las preguntas de todos los bancos comparten formato: { id, ut, enunciado, opciones, correcta, anulada, ... }.
+// Las preguntas de todos los bancos comparten formato (docs/BANCOS.md): { id, conv, ut, enunciado, opciones, correcta, anulada, ... }.
 
 import { totalPreguntas } from './blocks.js';
 import { cuenta } from '../texto.js';
@@ -19,7 +19,7 @@ export function buildSimulacro(estructura, banco, rng) {
 
 /** Examen real: todas las preguntas de una convocatoria en su orden (PY: genérico y luego navegación). */
 export function buildReal(banco, convocatoriaKey) {
-  const preguntas = banco.filter((q) => sittingKey(q.id) === convocatoriaKey).sort((a, b) => (a.orden ?? a.numero) - (b.orden ?? b.numero));
+  const preguntas = banco.filter((q) => q.conv === convocatoriaKey).sort((a, b) => (a.orden ?? a.numero) - (b.orden ?? b.numero));
   return { tipo: 'real', titulo: preguntas[0]?.convocatoria ?? convocatoriaKey, preguntas, faltan: [] };
 }
 
@@ -67,14 +67,21 @@ export function buildMezcla(banco, uts, rng, { respuestas = {}, conLimite = new 
   return { tipo: 'mezcla', uts, preguntas };
 }
 
-/** "and-2023-c1-t07" / "and-2023-c1-q42" → "and-2023-c1"; PY: "and-py-2023-c1-g07" / "-n15" → "and-py-2023-c1" */
-export const sittingKey = (id) => id.replace(/-[tqgn]\d+$/, '');
+/**
+ * Test guardado a medias rehecho con sus preguntas en el orden en que salieron (ids guardados). null si alguna ya
+ * no está en el banco (entonces se rehace con la semilla o la convocatoria).
+ */
+export function testDesdeIds(tipo, ids, porId) {
+  const preguntas = (ids ?? []).map((id) => porId.get(id));
+  if (!preguntas.length || preguntas.some((q) => !q)) return null;
+  return { tipo, titulo: tipo === 'real' ? preguntas[0].convocatoria : 'Simulacro de examen', preguntas, faltan: [] };
+}
 
-/** Convocatorias disponibles en el banco (completas: con las preguntas de todos los bloques). */
+/** Convocatorias disponibles en el banco, por su clave `conv` (completas: con las preguntas de todos los bloques). */
 export function convocatorias(estructura, banco) {
   const map = new Map();
   for (const q of banco) {
-    const k = sittingKey(q.id);
+    const k = q.conv;
     if (!map.has(k)) map.set(k, { key: k, titulo: q.convocatoria, fecha: q.fecha, n: 0 });
     map.get(k).n += 1;
   }

@@ -1,8 +1,8 @@
 // Cierre de sesión (final de una clase, una tanda de preguntas…) y utilidades del recomendador en la interfaz.
 
 import { h } from './dom.js';
-import { TITULACIONES, tlink } from './titulacion.js';
-import { loadCourse, loadTheoryBank } from '../store/datasets.js';
+import { TITULACIONES, tlink, currentEje } from './titulacion.js';
+import { cargarBanco, cargarCurso } from '../bancos/index.js';
 import { estadoTema } from '../course/plan.js';
 import { estadoAlumno } from '../course/motor.js';
 import { randomSeed } from '../math/rng.js';
@@ -13,19 +13,22 @@ import { cuenta } from '../texto.js';
 /**
  * El estado del alumno para una titulación (motor de seguimiento, src/course/motor.js): carga los datos, llama al
  * motor y guarda el plan base si el motor ha hecho uno nuevo. Las pantallas leen `st` y nada más.
- * Devuelve también los datos compartidos (para compatibilidad) y `plan` = las actividades del día.
+ * Devuelve también los datos compartidos, el banco del eje y `plan` = las actividades del día.
  */
 export async function calcularPlan(progress, tit, ahora = Date.now()) {
   const T = TITULACIONES[tit];
-  const [curso, bank] = await Promise.all([loadCourse(tit), loadTheoryBank(tit)]);
+  const eje = currentEje(progress);
+  // El banco del eje (sus preguntas para estudiar) y el curso con la práctica de cada clase de ese banco.
+  const [curso, banco] = await Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit)]);
+  const delEje = (x) => (x.tit ?? 'per') === tit && x.eje === banco.eje.id;
   const tc = progress.testEnCurso();
   const st = estadoAlumno({
-    tit, estructura: T.estructura, curso, preguntas: bank.preguntas, regs: progress.lecciones(), respuestas: progress.get().exams,
-    tests: progress.tests().filter((t) => (t.tit ?? 'per') === tit), testEnCurso: tc && tc.tit === tit ? tc : null,
+    tit, estructura: T.estructura, curso, preguntas: banco.estudio, regs: progress.lecciones(), respuestas: progress.get().exams,
+    tests: progress.tests().filter(delEje), testEnCurso: tc && delEje(tc) ? tc : null,
     settings: progress.settings(), minutosHoy: progress.minutosHoy(ahora), racha: progress.racha(ahora), planGuardado: progress.planEstudio(tit), ahora,
   });
   if (st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base);
-  return { ...st.datos, bank, plan: st.actividades, st };
+  return { ...st.datos, banco, plan: st.actividades, st };
 }
 
 /** Enlace a una actividad del plan (las tandas de preguntas llevan su semilla para poder recargarlas). */

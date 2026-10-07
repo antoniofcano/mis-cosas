@@ -5,13 +5,13 @@
 
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
-import { loadTheoryBank, loadCourse } from '../../store/datasets.js';
+import { cargarBanco, cargarCurso, urlFigura, rutaResolucion, SOLUCIONES as cartaSolutions } from '../../bancos/index.js';
 import { bloque, bloquesEnOrden, totalPreguntas, posEstudio } from '../../theory/blocks.js';
-import { TITULACIONES, tlink } from '../titulacion.js';
+import { TITULACIONES, tlink, currentEje, reglasExamen } from '../titulacion.js';
 import { TANDA } from '../../course/plan.js';
 import { pintarCierre } from '../cierre.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
-import { buildSimulacro, buildReal, buildPractica, buildMezcla, convocatorias, grade } from '../../theory/engine.js';
+import { buildSimulacro, buildReal, buildPractica, buildMezcla, testDesdeIds, grade } from '../../theory/engine.js';
 import { narrateTheory, esDefendible } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
@@ -27,7 +27,6 @@ import { openWorkspace } from '../chart/workspace.js';
 import { colaRepaso, tandaRapida } from '../../course/repaso.js';
 import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
-import { SOLUCIONES as cartaSolutions, bancoResolucion } from '../../exams/solutions/index.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 import { cuenta, fechaLarga } from '../../texto.js';
 
@@ -54,7 +53,6 @@ function useTit(tit) {
   T = TITULACIONES[tit] ?? TITULACIONES.per;
   E = T.estructura;
 }
-const imgSrc = (p) => new URL(`../../../data/exams/${p}`, import.meta.url).href;
 
 // ---------------------------------------------------------------------------
 // Componente: una pregunta tipo test
@@ -89,7 +87,7 @@ export function questionCard(q, o = {}) {
     const fig = q.opciones_figuras?.[k];
     return h('label.option', { class: cls },
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
-      h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: imgSrc(fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
+      h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: urlFigura(q, fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard', { class: o.reveal ? 'revelada' : '' },
     h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
@@ -97,8 +95,8 @@ export function questionCard(q, o = {}) {
     q.contexto ? h('pre.qcontext', q.contexto) : null,
     h('p.qtext', enunciado),
     (q.figuras ?? []).map((f) => (/tabla-mareas/.test(f)
-      ? h('details.qtable', h('summary', '📊 Tabla para calcular la altura de la marea'), h('img.qfig.wide', { src: imgSrc(f), alt: 'Tabla de corrección de la altura de la marea', loading: 'lazy' }))
-      : h('img.qfig', { src: imgSrc(f), alt: 'Figura de la pregunta', loading: 'lazy' }))),
+      ? h('details.qtable', h('summary', '📊 Tabla para calcular la altura de la marea'), h('img.qfig.wide', { src: urlFigura(q, f), alt: 'Tabla de corrección de la altura de la marea', loading: 'lazy' }))
+      : h('img.qfig', { src: urlFigura(q, f), alt: 'Figura de la pregunta', loading: 'lazy' }))),
     defBox,
     h('div.options', opts),
   );
@@ -115,10 +113,10 @@ export function prepareTheory({ tit, chart, reglas }) {
 
 export { explanationFor };
 
-/** ¿Esta pregunta se resuelve sobre la carta? (las de carta del PER y las del PY que no son solo cálculo) */
+/** ¿Esta pregunta se resuelve sobre la carta? (las que la requieren, salvo las que la app resuelve solo con cálculo) */
 export function necesitaCarta(q) {
   const sol = cartaSolutions[q.id];
-  return /-q\d+$/.test(q.id) || (!!sol && !sol.sinCarta) || (q.bloque === 'carta' && !sol?.sinCarta);
+  return (!!q.requiere?.includes('carta') && !sol?.sinCarta) || (!!sol && !sol.sinCarta);
 }
 
 /**
@@ -168,10 +166,10 @@ export function profePanel(q, expl, chosen) {
 
 /** «Ver la resolución»: en la carta, o paso a paso si la pregunta se resuelve sin ella (mareas, estima analítica). */
 function enlaceResolucion(q) {
-  const banco = bancoResolucion(q);
-  if (!banco) return null;
+  const ruta = rutaResolucion(q);
+  if (!ruta) return null;
   const sinCarta = cartaSolutions[q.id]?.sinCarta;
-  return h('p', h('a.btn.secondary', { href: link(['examenes', banco, q.id]) }, sinCarta ? '🧮 Ver la resolución paso a paso' : '🗺️ Ver la resolución en la carta'));
+  return h('p', h('a.btn.secondary', { href: link(ruta) }, sinCarta ? '🧮 Ver la resolución paso a paso' : '🗺️ Ver la resolución en la carta'));
 }
 
 // ---------------------------------------------------------------------------
@@ -196,10 +194,18 @@ export function rutaTest(tc) {
   return tlink(tc.tit, tc.tipo === 'real' ? ['test', 'real', String(tc.conv)] : ['test', 'simulacro'], tc.tipo === 'real' || tc.seed == null ? undefined : { s: String(tc.seed) });
 }
 
-/** Reconstruye las preguntas de un examen (simulacro con su semilla o convocatoria real). */
+/** Construye las preguntas de un examen (simulacro con su semilla o convocatoria real). */
 function construirTest(estructura, preguntas, tipo, conv, seed) {
   return tipo === 'real' ? buildReal(preguntas, conv) : buildSimulacro(estructura, preguntas, createRng(seed));
 }
+
+/** Rehace un examen guardado: con sus preguntas guardadas (ids) o, si es de antes de guardarlas, con la semilla. */
+function rehacerTest(estructura, banco, tc) {
+  return testDesdeIds(tc.tipo, tc.ids, banco.porId) ?? construirTest(estructura, banco.estudio, tc.tipo, tc.conv, tc.seed);
+}
+
+/** ¿El examen guardado (o hecho) es de esta titulación y este eje? (los antiguos, sin titulación, son del PER) */
+const deTitEje = (x, tit, eje) => (x?.tit ?? 'per') === tit && x?.eje === eje;
 
 export function examenesView({ ctx, progress, tit }) {
   chartRef = ctx.chart;
@@ -208,14 +214,16 @@ export function examenesView({ ctx, progress, tit }) {
   const E0 = E;
   const el = h('div.examenes', h('h1', 'Examen'), h('p.muted', 'Cargando exámenes…'));
   let summaryText = `VISTA exámenes ${T0.sigla} (cargando)`;
-  loadTheoryBank(T0.id).then(({ preguntas }) => {
-    const convs = convocatorias(E0, preguntas);
-    const tests = progress.tests().filter((t) => (t.tit ?? 'per') === T0.id).slice(-8).reverse();
+  cargarBanco(currentEje(progress), T0.id).then((banco) => {
+    const preguntas = banco.estudio;
+    const eje = banco.eje;
+    const convs = banco.convocatorias();
+    const tests = progress.tests().filter((t) => deTitEje(t, T0.id, eje.id)).slice(-8).reverse();
     const tc = progress.testEnCurso();
-    const aMedias = tc && tc.tit === T0.id ? tc : null;
+    const aMedias = deTitEje(tc, T0.id, eje.id) ? tc : null;
     let aviso = null;
     if (aMedias) {
-      const total = construirTest(E0, preguntas, aMedias.tipo, aMedias.conv, aMedias.seed).preguntas.length;
+      const total = rehacerTest(E0, banco, aMedias).preguntas.length;
       const resp = Object.keys(aMedias.respuestas ?? {}).length;
       const quedan = Math.max(1, Math.round(E0.duracionMin - (aMedias.consumidoMs ?? 0) / 60000));
       aviso = h('section.tarjeta-hoy.examen-medias',
@@ -251,7 +259,7 @@ export function examenesView({ ctx, progress, tit }) {
         h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'mezcla'], { s: randomSeed() }) }, 'Repaso mezclado de varios temas')),
       tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
       h('details', h('summary', 'Exámenes de convocatorias anteriores'),
-        h('p.muted', 'Las preguntas de una convocatoria oficial de Andalucía, en su orden, con el tiempo y las reglas del examen.'),
+        h('p.muted', `Las preguntas de una convocatoria oficial de ${eje.nombre}, en su orden, con el tiempo y las reglas del examen.`),
         h('div.cards', convs.map((c) => {
           const hecho = progress.tests().filter((t) => t.conv === c.key).at(-1);
           return h('a.card', { href: tlink(T0.id, ['test', 'real', c.key]) },
@@ -260,7 +268,7 @@ export function examenesView({ ctx, progress, tit }) {
               hecho ? h('span.stat', { class: hecho.apto ? 'ok' : 'warn' }, `${hecho.aciertos} de ${hecho.total} ${hecho.apto ? '✅' : '❌'}`) : null));
         }))),
       h('details', h('summary', 'Reglas del examen'),
-        h('ul', T0.reglas.map((r) => h('li', r)), h('li', 'En la app, las preguntas en blanco cuentan como fallo y las anuladas por el tribunal como acierto.'))),
+        h('ul', reglasExamen(T0, eje).map((r) => h('li', r)), h('li', 'En la app, las preguntas en blanco cuentan como fallo y las anuladas por el tribunal como acierto.'))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
   return { el, summary: () => summaryText };
@@ -352,7 +360,8 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   const el = h('div.practice', barra, cont);
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
-  Promise.all([loadTheoryBank(tit0), loadCourse(tit0)]).then(([{ preguntas, explicaciones, reglasDe: rd, vocab }, curso]) => {
+  const eje = currentEje(progress);
+  Promise.all([cargarBanco(eje, tit0), cargarCurso(tit0, eje)]).then(([{ estudio: preguntas, explicaciones, reglasDe: rd, vocab }, curso]) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     // Tema sin empezar (ni clases ni preguntas): se avisa antes de preguntar lo que aún no se ha explicado.
@@ -399,7 +408,7 @@ function mezclaView({ progress, seed }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, cont);
   let summaryText = 'VISTA repaso mezclado';
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     const empezados = bloquesEnOrden(E).filter((x) => preguntas.some((q) => q.ut === x.ut && respuestas[q.id])).map((x) => x.ut);
@@ -433,7 +442,7 @@ function repasoView({ progress }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, cont);
   let summaryText = 'VISTA repaso de fallos';
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const cola = colaRepaso(preguntas, progress.get().exams);
     if (!cola.hoy.length) {
@@ -470,7 +479,7 @@ function rapidoView({ progress, seed }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, cont);
   let summaryText = 'VISTA 5 minutos';
-  loadTheoryBank(tit0).then(({ preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const tanda = tandaRapida(preguntas, progress.get().exams, createRng(seed));
     setChildren(cont, tandaPreguntas({
@@ -518,10 +527,12 @@ export function testView({ ctx, progress, params: route, tit }) {
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
   let summaryText = 'VISTA examen (cargando)';
 
-  loadTheoryBank(T0.id).then(({ preguntas, explicaciones, reglasDe: rd, vocab: vocabBanco }) => {
+  cargarBanco(currentEje(progress), T0.id).then((banco) => {
+    const { estudio: preguntas, explicaciones, reglasDe: rd, vocab: vocabBanco } = banco;
+    const eje = banco.eje.id;
     reglasDe = rd;
     const tc = progress.testEnCurso();
-    const mismo = tc && tc.tit === T0.id && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : seedQ != null && tc.seed === seedQ);
+    const mismo = deTitEje(tc, T0.id, eje) && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : seedQ != null && tc.seed === seedQ);
     if (mismo) correr(tc);
     else inicio(tc);
 
@@ -531,7 +542,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       const test = construirTest(E0, preguntas, tipo, conv, seed);
       if (!test.preguntas.length) { setChildren(el, h('p.warn', 'No hay preguntas para este examen.'), h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver')); return; }
       const empezar = () => {
-        const nuevo = { tit: T0.id, tipo, conv, seed: tipo === 'simulacro' ? seed : null, respuestas: {}, i: 0, consumidoMs: 0 };
+        const nuevo = { tit: T0.id, eje, tipo, conv, seed: tipo === 'simulacro' ? seed : null, ids: test.preguntas.map((q) => q.id), respuestas: {}, i: 0, consumidoMs: 0 };
         progress.saveTestEnCurso(nuevo);
         if (tipo === 'simulacro' && seedQ !== seed) navigate([T0.id, 'test', 'simulacro'], { s: String(seed) }, { replace: true });
         correr(progress.testEnCurso());
@@ -560,8 +571,10 @@ export function testView({ ctx, progress, params: route, tit }) {
     }
 
     // --- examen en marcha: una pregunta por pantalla
-    function correr(estado) {
-      const test = construirTest(E0, preguntas, estado.tipo, estado.conv, estado.seed);
+    function correr(guardado) {
+      const test = rehacerTest(E0, banco, guardado);
+      // Un examen guardado sin sus preguntas (de antes de guardarlas) las guarda desde ya.
+      const estado = { ...guardado, eje: guardado.eje ?? eje, ids: test.preguntas.map((q) => q.id) };
       const n = test.preguntas.length;
       if (!n) { progress.saveTestEnCurso(null); setChildren(el, h('p.warn', 'No hay preguntas para este examen.')); return; }
       const respuestas = { ...(estado.respuestas ?? {}) };
@@ -662,7 +675,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         const g = grade(E0, test, respuestas);
         for (const d of g.detalle) if (d.respuesta) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
         const minutos = Math.max(1, Math.round(consumido / 60000));
-        progress.recordTest({ tit: T0.id, conv: test.tipo === 'real' ? estado.conv : undefined, tipo: test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, apto: g.apto, minutos,
+        progress.recordTest({ tit: T0.id, eje, conv: test.tipo === 'real' ? estado.conv : undefined, tipo: test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, apto: g.apto, minutos,
           porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
         progress.saveTestEnCurso(null);
         progress.logActividad(minutos);

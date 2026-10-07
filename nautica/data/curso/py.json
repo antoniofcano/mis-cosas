@@ -139,25 +139,6 @@
        "explicacion": "El desplazamiento es el peso total del barco. Si consumes combustible, el barco pesa menos y desplaza menos agua."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g01",
-      "and-py-2020-c1-g02",
-      "and-py-2020-c3-g01",
-      "and-py-2021-c1-g03",
-      "and-py-2022-c1-g03",
-      "and-py-2022-c3-g01",
-      "and-py-2023-c1-g03",
-      "and-py-2023-c2-g01",
-      "and-py-2023-c3-g01",
-      "and-py-2024-c1-g02",
-      "and-py-2024-c3-g04",
-      "and-py-2022-c2-g03",
-      "and-py-2024-c2-g01",
-      "and-py-2024-c3-g05",
-      "and-py-2025-c2-g05",
-      "and-py-2026-c1-g01",
-      "and-py-2026-c2-g04"
-     ],
      "chuleta": [
       "Flota en equilibrio si empuje = peso y los dos en la misma vertical.",
       "Desplazamiento = peso total = peso del agua desalojada. Cambia con consumos y cargas, no al mover pesos a bordo.",
@@ -320,30 +301,6 @@
        "correcta": "b",
        "explicacion": "Transversal/longitudinal y estática/dinámica son formas de clasificar la estabilidad. Los tipos de equilibrio, según dónde quede M respecto a G, son estable, indiferente e inestable."
       }
-     ],
-     "practica": [
-      "and-py-2020-c3-g03",
-      "and-py-2021-c1-g01",
-      "and-py-2021-c2-g01",
-      "and-py-2021-c2-g02",
-      "and-py-2022-c1-g01",
-      "and-py-2022-c2-g01",
-      "and-py-2022-c2-g02",
-      "and-py-2022-c2-g04",
-      "and-py-2022-c3-g03",
-      "and-py-2023-c1-g01",
-      "and-py-2023-c2-g03",
-      "and-py-2023-c2-g04",
-      "and-py-2023-c3-g02",
-      "and-py-2024-c1-g03",
-      "and-py-2024-c1-g04",
-      "and-py-2024-c2-g02",
-      "and-py-2024-c2-g03",
-      "and-py-2024-c3-g02",
-      "and-py-2025-c1-g05",
-      "and-py-2025-c2-g10",
-      "and-py-2025-c3-g03",
-      "and-py-2026-c1-g10"
      ],
      "chuleta": [
       "Estática = aguas en reposo. Transversal = tras un balance; longitudinal = cabeceo.",
@@ -518,20 +475,6 @@
        "explicacion": "Con GM pequeño (positivo) el par adrizante es menor y los balances son lentos y suaves: es un buque blando. Con GM muy grande serían rápidos y bruscos."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g03",
-      "and-py-2020-c3-g02",
-      "and-py-2022-c1-g02",
-      "and-py-2022-c3-g02",
-      "and-py-2023-c1-g02",
-      "and-py-2023-c2-g02",
-      "and-py-2023-c3-g03",
-      "and-py-2024-c1-g01",
-      "and-py-2024-c3-g01",
-      "and-py-2025-c1-g02",
-      "and-py-2025-c1-g08",
-      "and-py-2025-c3-g05"
-     ],
      "chuleta": [
       "Cargar: G va hacia el peso. Descargar/consumir: G se aleja. Trasladar: G paralelo al traslado, GG′ = p·d/D.",
       "Bajar pesos sube GM; subirlos o consumir de abajo lo baja.",
@@ -698,24 +641,6 @@
        "correcta": "a",
        "explicacion": "Uno por persona (el adicional solo se exige en zona 1), con 150 N en zonas 2 a 4, y los de los niños adaptados a su peso y talla."
       }
-     ],
-     "practica": [
-      "and-py-2020-c3-g06",
-      "and-py-2021-c1-g04",
-      "and-py-2021-c2-g03",
-      "and-py-2021-c2-g04",
-      "and-py-2022-c1-g05",
-      "and-py-2023-c1-g05",
-      "and-py-2024-c2-g10",
-      "and-py-2025-c1-g10",
-      "and-py-2025-c2-g02",
-      "and-py-2025-c2-g03",
-      "and-py-2025-c3-g04",
-      "and-py-2026-c1-g02",
-      "and-py-2026-c1-g04",
-      "and-py-2026-c2-g01",
-      "and-py-2026-c2-g02",
-      "and-py-2026-c2-g03"
      ],
      "chuleta": [
       "Chalecos: 1 por persona (+1 en zona 1), 1 por niño. 275 N zona 1 · 150 N zonas 2-4 · 100 N zonas 5-7.",
@@ -906,32 +831,6 @@
        "correcta": "b",
        "explicacion": "La zafa suelta el contenedor; la unión débil es el eslabón de la boza que cede cuando la balsa ya está inflada y el barco sigue hundiéndose."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-g05",
-      "and-py-2020-c3-g05",
-      "and-py-2021-c1-g02",
-      "and-py-2021-c2-g05",
-      "and-py-2022-c1-g04",
-      "and-py-2022-c2-g08",
-      "and-py-2022-c2-g09",
-      "and-py-2022-c3-g05",
-      "and-py-2022-c3-g08",
-      "and-py-2023-c1-g04",
-      "and-py-2023-c1-g06",
-      "and-py-2023-c1-g10",
-      "and-py-2023-c2-g06",
-      "and-py-2023-c3-g09",
-      "and-py-2024-c2-g04",
-      "and-py-2024-c2-g05",
-      "and-py-2024-c3-g03",
-      "and-py-2024-c3-g06",
-      "and-py-2025-c3-g07",
-      "and-py-2025-c3-g10",
-      "and-py-2026-c1-g05",
-      "and-py-2026-c2-g05",
-      "and-py-2026-c2-g07",
-      "and-py-2026-c2-g08"
      ],
      "chuleta": [
       "Balsa en zonas 1-3, para todos a bordo; revisión según fabricante (comercial: ≤ 24 meses).",
@@ -1126,34 +1025,6 @@
        "correcta": "b",
        "explicacion": "El cohete sube a 300 m o más y su bengala da 30.000 cd durante al menos 40 s. Los 15.000 cd y el minuto son de la bengala de mano."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-g04",
-      "and-py-2020-c3-g04",
-      "and-py-2020-c3-g08",
-      "and-py-2021-c1-g09",
-      "and-py-2021-c2-g06",
-      "and-py-2022-c1-g07",
-      "and-py-2022-c2-g05",
-      "and-py-2022-c3-g06",
-      "and-py-2023-c1-g08",
-      "and-py-2023-c2-g05",
-      "and-py-2023-c2-g07",
-      "and-py-2023-c3-g05",
-      "and-py-2023-c3-g06",
-      "and-py-2023-c3-g10",
-      "and-py-2024-c2-g07",
-      "and-py-2024-c3-g09",
-      "and-py-2024-c3-g10",
-      "and-py-2025-c2-g04",
-      "and-py-2025-c2-g07",
-      "and-py-2025-c2-g08",
-      "and-py-2025-c3-g02",
-      "and-py-2025-c3-g06",
-      "and-py-2026-c1-g06",
-      "and-py-2026-c1-g08",
-      "and-py-2026-c2-g06",
-      "and-py-2026-c2-g09"
      ],
      "chuleta": [
       "Todas: estuche hidrorresistente, instrucciones impresas, ignición incorporada manual.",
@@ -1354,18 +1225,6 @@
        "explicacion": "El agente debe llegar al combustible, en la base. Se barre desde el borde más cercano y con el viento a la espalda (de barlovento a sotavento)."
       }
      ],
-     "practica": [
-      "and-py-2022-c1-g06",
-      "and-py-2023-c2-g08",
-      "and-py-2023-c3-g07",
-      "and-py-2024-c1-g05",
-      "and-py-2024-c2-g09",
-      "and-py-2025-c1-g06",
-      "and-py-2025-c1-g09",
-      "and-py-2025-c2-g06",
-      "and-py-2025-c3-g01",
-      "and-py-2026-c1-g09"
-     ],
      "chuleta": [
       "Clases UNE-EN 2: A sólidos, B líquidos, C gases, D metales, F cocina. Lo eléctrico es un riesgo añadido.",
       "RD 339/2021: extintores 34B de ≥ 2 kg según eslora y potencia; uno alcanzable desde el gobierno.",
@@ -1551,28 +1410,6 @@
        "correcta": "b",
        "explicacion": "La boza mantiene la balsa al costado mientras embarca la gente. Si se suelta antes, el viento la aleja."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-g06",
-      "and-py-2020-c1-g10",
-      "and-py-2020-c3-g07",
-      "and-py-2020-c3-g10",
-      "and-py-2021-c1-g08",
-      "and-py-2021-c1-g10",
-      "and-py-2022-c1-g09",
-      "and-py-2022-c2-g10",
-      "and-py-2022-c3-g07",
-      "and-py-2023-c2-g10",
-      "and-py-2024-c1-g06",
-      "and-py-2024-c1-g08",
-      "and-py-2024-c1-g10",
-      "and-py-2024-c2-g06",
-      "and-py-2024-c3-g07",
-      "and-py-2025-c1-g01",
-      "and-py-2025-c2-g09",
-      "and-py-2025-c3-g09",
-      "and-py-2026-c1-g07",
-      "and-py-2026-c2-g10"
      ],
      "chuleta": [
       "Antes de abandonar: MAYDAY + radiobaliza activada; chaleco con abrigo; llévate la EPIRB.",
@@ -1770,26 +1607,6 @@
        "explicacion": "El SART responde a los impulsos de un radar de 9 GHz y se ve en su pantalla como una línea de 12 puntos hacia su posición."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g08",
-      "and-py-2020-c1-g09",
-      "and-py-2021-c1-g05",
-      "and-py-2021-c2-g07",
-      "and-py-2021-c2-g08",
-      "and-py-2021-c2-g09",
-      "and-py-2021-c2-g10",
-      "and-py-2022-c1-g10",
-      "and-py-2022-c2-g06",
-      "and-py-2022-c3-g04",
-      "and-py-2022-c3-g09",
-      "and-py-2023-c1-g07",
-      "and-py-2023-c1-g09",
-      "and-py-2023-c3-g04",
-      "and-py-2024-c1-g09",
-      "and-py-2025-c1-g04",
-      "and-py-2025-c2-g01",
-      "and-py-2025-c3-g08"
-     ],
      "chuleta": [
       "EPIRB: 406 MHz a Cospas-Sarsat con el MMSI (+ 121,5 MHz de recalada). Manual o automática con zafa. ≥ 48 h.",
       "Siempre registrada en la DGMM, aunque no sea obligatoria. Se prueba con el test, nunca activándola.",
@@ -1981,23 +1798,6 @@
        "explicacion": "Las horas se dan desde el helicóptero, con las 12 en su proa: las 3 a su derecha, las 6 por su popa y las 9 a su izquierda."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g07",
-      "and-py-2020-c3-g09",
-      "and-py-2021-c1-g06",
-      "and-py-2021-c1-g07",
-      "and-py-2022-c1-g08",
-      "and-py-2022-c2-g07",
-      "and-py-2022-c3-g10",
-      "and-py-2023-c2-g09",
-      "and-py-2023-c3-g08",
-      "and-py-2024-c1-g07",
-      "and-py-2024-c2-g08",
-      "and-py-2024-c3-g08",
-      "and-py-2025-c1-g03",
-      "and-py-2025-c1-g07",
-      "and-py-2026-c1-g03"
-     ],
      "chuleta": [
       "Salvamento Marítimo: 24 h. VHF 16 (LSD 70), 2182 kHz, 900 202 202 o 112.",
       "Antes del rescate: chalecos puestos, cubierta despejada, solo documentación imprescindible.",
@@ -2152,27 +1952,6 @@
        "tipo": "ojo",
        "texto": "En una pregunta de 2020 que pedía la afirmación FALSA, además de la del gradiente («a más inclinación, menos gradiente»), venía otra que decía que la niebla de radiación se da sobre todo «en primavera y verano». También es falsa (se da en otoño e invierno, lo verás en la lección de nieblas), pero el tribunal dio por buena la del gradiente. Si te sale, marca la del gradiente."
       }
-     ],
-     "practica": [
-      "and-py-2020-c3-g13",
-      "and-py-2021-c2-g11",
-      "and-py-2021-c2-g12",
-      "and-py-2021-c2-g17",
-      "and-py-2022-c1-g12",
-      "and-py-2022-c2-g11",
-      "and-py-2022-c3-g14",
-      "and-py-2023-c1-g18",
-      "and-py-2023-c2-g18",
-      "and-py-2023-c3-g17",
-      "and-py-2024-c1-g17",
-      "and-py-2024-c2-g16",
-      "and-py-2024-c3-g15",
-      "and-py-2025-c1-g14",
-      "and-py-2025-c2-g17",
-      "and-py-2025-c2-g18",
-      "and-py-2025-c3-g15",
-      "and-py-2026-c1-g16",
-      "and-py-2026-c2-g12"
      ],
      "chuleta": [
       "Isobara = igual presión en un momento dado, reducida al nivel del mar; normal 1013 hPa; suelen ir cada 4 hPa.",
@@ -2357,27 +2136,6 @@
        "explicacion": "Morado y alternos del mismo lado = ocluido. El estacionario alterna rojo y azul a lados opuestos."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g16",
-      "and-py-2020-c1-g20",
-      "and-py-2020-c3-g18",
-      "and-py-2021-c1-g11",
-      "and-py-2021-c1-g12",
-      "and-py-2021-c2-g16",
-      "and-py-2022-c2-g12",
-      "and-py-2022-c3-g15",
-      "and-py-2023-c1-g12",
-      "and-py-2023-c2-g12",
-      "and-py-2023-c3-g11",
-      "and-py-2024-c1-g13",
-      "and-py-2024-c2-g13",
-      "and-py-2024-c3-g12",
-      "and-py-2025-c1-g11",
-      "and-py-2025-c2-g19",
-      "and-py-2025-c3-g16",
-      "and-py-2026-c1-g12",
-      "and-py-2026-c2-g19"
-     ],
      "chuleta": [
       "Masas: A y P frías, T cálida; m húmeda, c seca.",
       "Frío (azul, triángulos): el frío empuja y obliga al cálido a subir → Cb, chubascos; al pasar sube la presión, baja la temperatura, rola a la derecha.",
@@ -2558,26 +2316,6 @@
        "explicacion": "El geostrófico deja las altas a la derecha y las bajas a la izquierda en el HN (ley de Buys-Ballot)."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g17",
-      "and-py-2020-c3-g16",
-      "and-py-2021-c1-g13",
-      "and-py-2021-c2-g13",
-      "and-py-2022-c1-g15",
-      "and-py-2022-c2-g13",
-      "and-py-2022-c3-g16",
-      "and-py-2023-c1-g13",
-      "and-py-2023-c2-g16",
-      "and-py-2023-c3-g15",
-      "and-py-2024-c1-g20",
-      "and-py-2024-c2-g18",
-      "and-py-2024-c3-g16",
-      "and-py-2025-c1-g15",
-      "and-py-2025-c2-g16",
-      "and-py-2025-c3-g13",
-      "and-py-2026-c1-g18",
-      "and-py-2026-c2-g17"
-     ],
      "chuleta": [
       "Coriolis: a la derecha en el HN, nula en el ecuador, máxima en los polos.",
       "Euler: solo gradiente horizontal; de altas a bajas, perpendicular a las isobaras. Ideal.",
@@ -2754,26 +2492,6 @@
        "explicacion": "Viento súbito, fuerte y racheado que corta un tiempo apacible y caluroso en el Cantábrico: galerna."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g18",
-      "and-py-2020-c3-g14",
-      "and-py-2021-c1-g14",
-      "and-py-2022-c1-g13",
-      "and-py-2022-c1-g20",
-      "and-py-2022-c2-g14",
-      "and-py-2022-c3-g20",
-      "and-py-2023-c1-g14",
-      "and-py-2023-c2-g13",
-      "and-py-2023-c3-g12",
-      "and-py-2024-c1-g11",
-      "and-py-2024-c2-g12",
-      "and-py-2024-c3-g11",
-      "and-py-2025-c1-g13",
-      "and-py-2025-c2-g20",
-      "and-py-2025-c3-g19",
-      "and-py-2026-c1-g13",
-      "and-py-2026-c2-g11"
-     ],
      "chuleta": [
       "Rosa mediterránea: N tramontana, NE gregal, E levante, SE siroco, S mediodía, SW lebeche, W poniente, NW mistral.",
       "Mistral: NW, golfo de León, frío, seco, cielo claro, rachas.",
@@ -2949,27 +2667,6 @@
        "correcta": "b",
        "explicacion": "Es la definición de punto de rocío. La HR es un porcentaje y el gradiente adiabático describe cómo se enfría el aire al subir (adiabático: sin intercambiar calor con el aire de alrededor; se enfría solo por expandirse)."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-g14",
-      "and-py-2020-c1-g19",
-      "and-py-2020-c3-g19",
-      "and-py-2021-c1-g15",
-      "and-py-2021-c2-g14",
-      "and-py-2022-c1-g16",
-      "and-py-2022-c2-g15",
-      "and-py-2022-c3-g17",
-      "and-py-2023-c1-g19",
-      "and-py-2023-c2-g11",
-      "and-py-2023-c3-g20",
-      "and-py-2024-c1-g19",
-      "and-py-2024-c2-g14",
-      "and-py-2024-c3-g19",
-      "and-py-2025-c1-g18",
-      "and-py-2025-c2-g15",
-      "and-py-2025-c3-g12",
-      "and-py-2026-c1-g17",
-      "and-py-2026-c2-g15"
      ],
      "chuleta": [
       "Más temperatura = el aire admite más vapor.",
@@ -3178,27 +2875,6 @@
        "explicacion": "El cumulonimbo, de gran desarrollo vertical y cima en yunque, es la nube de tormenta."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g11",
-      "and-py-2020-c3-g11",
-      "and-py-2021-c1-g16",
-      "and-py-2021-c2-g15",
-      "and-py-2022-c1-g17",
-      "and-py-2022-c1-g19",
-      "and-py-2022-c2-g16",
-      "and-py-2022-c3-g19",
-      "and-py-2023-c1-g15",
-      "and-py-2023-c2-g14",
-      "and-py-2023-c3-g13",
-      "and-py-2024-c1-g12",
-      "and-py-2024-c2-g15",
-      "and-py-2024-c3-g13",
-      "and-py-2025-c1-g20",
-      "and-py-2025-c2-g12",
-      "and-py-2025-c3-g17",
-      "and-py-2026-c1-g14",
-      "and-py-2026-c2-g13"
-     ],
      "chuleta": [
       "Nube = aire que sube, se enfría y llega al punto de rocío. Convectivas (inestabilidad), orográficas (montaña), frontales (cálido sobre frío).",
       "Examen: altas (> 6000 m): Ci, Cc, Cs. Medias (2000–6000 m): Ac, As. Bajas (< 2000 m): St, Sc, Ns. Verticales: Cu, Cb. (OMM, latitudes templadas: altas 5–13 km, medias 2–7 km, Ns en el medio.)",
@@ -3392,27 +3068,6 @@
        "explicacion": "El agua está prácticamente a la temperatura del punto de rocío (incluso por debajo): el aire se enfriará hasta saturarse sobre ella."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-g13",
-      "and-py-2020-c3-g20",
-      "and-py-2021-c1-g20",
-      "and-py-2021-c2-g19",
-      "and-py-2021-c2-g20",
-      "and-py-2022-c1-g18",
-      "and-py-2022-c2-g17",
-      "and-py-2022-c3-g11",
-      "and-py-2023-c1-g17",
-      "and-py-2023-c2-g17",
-      "and-py-2023-c3-g16",
-      "and-py-2024-c1-g16",
-      "and-py-2024-c2-g11",
-      "and-py-2024-c3-g18",
-      "and-py-2025-c1-g17",
-      "and-py-2025-c2-g11",
-      "and-py-2025-c3-g18",
-      "and-py-2026-c1-g20",
-      "and-py-2026-c2-g16"
-     ],
      "chuleta": [
       "Niebla: visibilidad < 1 km por gotitas; calima: partículas secas.",
       "Enfriamiento: radiación (tierra, noche raso y calma, otoño-invierno), advección (aire cálido y húmedo sobre agua fría, la del mar), orográfica.",
@@ -3599,30 +3254,6 @@
        "correcta": "b",
        "explicacion": "La Luna y el Sol causan las mareas, y la temperatura y la salinidad las corrientes termohalinas (las debidas a diferencias de densidad del agua). Las olas son energía del viento."
       }
-     ],
-     "practica": [
-      "and-py-2020-c3-g15",
-      "and-py-2021-c1-g17",
-      "and-py-2021-c2-g18",
-      "and-py-2022-c1-g14",
-      "and-py-2022-c2-g18",
-      "and-py-2022-c2-g20",
-      "and-py-2022-c3-g12",
-      "and-py-2022-c3-g13",
-      "and-py-2023-c1-g11",
-      "and-py-2023-c1-g20",
-      "and-py-2023-c2-g19",
-      "and-py-2023-c2-g20",
-      "and-py-2023-c3-g18",
-      "and-py-2023-c3-g19",
-      "and-py-2024-c1-g18",
-      "and-py-2024-c2-g19",
-      "and-py-2024-c3-g17",
-      "and-py-2025-c1-g16",
-      "and-py-2025-c2-g13",
-      "and-py-2025-c3-g14",
-      "and-py-2026-c1-g11",
-      "and-py-2026-c2-g18"
      ],
      "chuleta": [
       "Ola = energía del viento transmitida al mar; movimiento periódico sin transporte de agua.",
@@ -3837,35 +3468,6 @@
        "texto": "Son cartas por océanos y por meses con información **estadística** de vientos dominantes, corrientes, altura de las olas, visibilidad, presión, frecuencia de temporales y límites de hielos. No son una previsión: te dicen qué es lo más probable en esa zona y ese mes, para elegir la mejor ruta y época.",
        "extra": true
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-g12",
-      "and-py-2020-c1-g15",
-      "and-py-2020-c3-g12",
-      "and-py-2020-c3-g17",
-      "and-py-2021-c1-g18",
-      "and-py-2021-c1-g19",
-      "and-py-2022-c1-g11",
-      "and-py-2022-c2-g19",
-      "and-py-2022-c3-g18",
-      "and-py-2023-c1-g16",
-      "and-py-2023-c2-g15",
-      "and-py-2023-c3-g14",
-      "and-py-2024-c1-g14",
-      "and-py-2024-c1-g15",
-      "and-py-2024-c2-g17",
-      "and-py-2024-c2-g20",
-      "and-py-2024-c3-g14",
-      "and-py-2024-c3-g20",
-      "and-py-2025-c1-g12",
-      "and-py-2025-c1-g19",
-      "and-py-2025-c2-g14",
-      "and-py-2025-c3-g11",
-      "and-py-2025-c3-g20",
-      "and-py-2026-c1-g15",
-      "and-py-2026-c1-g19",
-      "and-py-2026-c2-g14",
-      "and-py-2026-c2-g20"
      ],
      "chuleta": [
       "La corriente se nombra por hacia dónde va; el viento, por de dónde viene.",
@@ -4091,30 +3693,6 @@
        "explicacion": "Son de distinto nombre: 170 + 170 = 340°, que pasa de 180°. Se toma 360 − 340 = 20° y se cambia el sentido: cruzas el meridiano de 180° yendo hacia el E."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n02",
-      "and-py-2020-c1-n04",
-      "and-py-2020-c3-n02",
-      "and-py-2021-c1-n01",
-      "and-py-2021-c2-n02",
-      "and-py-2022-c1-n02",
-      "and-py-2022-c2-n01",
-      "and-py-2022-c2-n04",
-      "and-py-2022-c3-n01",
-      "and-py-2023-c1-n01",
-      "and-py-2023-c2-n01",
-      "and-py-2023-c3-n01",
-      "and-py-2023-c3-n04",
-      "and-py-2024-c1-n01",
-      "and-py-2024-c2-n01",
-      "and-py-2024-c2-n02",
-      "and-py-2024-c3-n01",
-      "and-py-2025-c1-n01",
-      "and-py-2025-c2-n01",
-      "and-py-2025-c2-n02",
-      "and-py-2026-c1-n01",
-      "and-py-2026-c2-n01"
-     ],
      "chuleta": [
       "Círculos máximos: ecuador y meridianos. Menores: paralelos.",
       "Perpendiculares al eje: ecuador y paralelos. Meridianos: pasan por los polos y son perpendiculares al ecuador.",
@@ -4277,33 +3855,6 @@
        "correcta": "b",
        "explicacion": "Ct = Dv − Da = 112 − 115 = −3°. Δ = Ct − dm = −3 − (−2) = −1°, válido solo para el Ra 080°."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n07",
-      "and-py-2020-c3-n04",
-      "and-py-2020-c3-n07",
-      "and-py-2021-c1-n03",
-      "and-py-2021-c1-n06",
-      "and-py-2021-c1-n07",
-      "and-py-2021-c2-n03",
-      "and-py-2021-c2-n08",
-      "and-py-2021-c2-n10",
-      "and-py-2022-c2-n02",
-      "and-py-2022-c3-n02",
-      "and-py-2022-c3-n04",
-      "and-py-2023-c1-n04",
-      "and-py-2023-c2-n07",
-      "and-py-2023-c3-n05",
-      "and-py-2023-c3-n10",
-      "and-py-2024-c1-n02",
-      "and-py-2024-c2-n03",
-      "and-py-2024-c3-n02",
-      "and-py-2025-c1-n02",
-      "and-py-2025-c2-n03",
-      "and-py-2025-c3-n03",
-      "and-py-2026-c1-n02",
-      "and-py-2026-c2-n02",
-      "and-py-2026-c2-n03"
      ],
      "carta": [
       "conversion-rumbos",
@@ -4484,27 +4035,6 @@
        "explicacion": "Viento por estribor → caes a babor → Ab = −8°. Rs = Rv + Ab = 200 − 8 = 192°."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n05",
-      "and-py-2020-c3-n05",
-      "and-py-2021-c1-n05",
-      "and-py-2021-c2-n04",
-      "and-py-2022-c1-n04",
-      "and-py-2022-c1-n05",
-      "and-py-2022-c1-n06",
-      "and-py-2022-c2-n06",
-      "and-py-2022-c3-n05",
-      "and-py-2022-c3-n07",
-      "and-py-2023-c1-n05",
-      "and-py-2023-c2-n08",
-      "and-py-2023-c3-n07",
-      "and-py-2024-c1-n03",
-      "and-py-2024-c3-n03",
-      "and-py-2025-c1-n03",
-      "and-py-2025-c3-n01",
-      "and-py-2026-c1-n03",
-      "and-py-2026-c2-n04"
-     ],
      "carta": [
       "abatimiento",
       "corriente-efectiva",
@@ -4643,28 +4173,6 @@
        "correcta": "a",
        "explicacion": "El apartamiento son millas sobre el paralelo; la ΔL son minutos de arco (A = ΔL · cos lm). La distancia más corta es la ortodrómica."
       }
-     ],
-     "practica": [
-      "and-py-2021-c1-n09",
-      "and-py-2020-c1-n20",
-      "and-py-2020-c3-n20",
-      "and-py-2021-c1-n18",
-      "and-py-2021-c2-n18",
-      "and-py-2021-c2-n19",
-      "and-py-2022-c1-n20",
-      "and-py-2022-c2-n20",
-      "and-py-2022-c3-n20",
-      "and-py-2023-c1-n20",
-      "and-py-2023-c2-n20",
-      "and-py-2023-c3-n20",
-      "and-py-2024-c1-n20",
-      "and-py-2024-c2-n20",
-      "and-py-2024-c3-n20",
-      "and-py-2025-c1-n20",
-      "and-py-2025-c2-n20",
-      "and-py-2025-c3-n20",
-      "and-py-2026-c1-n20",
-      "and-py-2026-c2-n20"
      ],
      "carta": [
       "estima-analitica",
@@ -4852,24 +4360,6 @@
        "explicacion": "En invierno la península lleva TU + 1 aunque esté en el huso 0. En verano sería TU + 2."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n01",
-      "and-py-2020-c3-n01",
-      "and-py-2021-c1-n04",
-      "and-py-2021-c2-n05",
-      "and-py-2022-c1-n01",
-      "and-py-2022-c2-n03",
-      "and-py-2022-c3-n03",
-      "and-py-2023-c1-n02",
-      "and-py-2023-c1-n03",
-      "and-py-2023-c2-n04",
-      "and-py-2023-c3-n02",
-      "and-py-2024-c1-n05",
-      "and-py-2024-c2-n05",
-      "and-py-2025-c3-n02",
-      "and-py-2026-c1-n05",
-      "and-py-2026-c2-n06"
-     ],
      "chuleta": [
       "Horas civiles: Sol medio + meridiano inferior (medianoche = 00:00).",
       "TU: desde Greenwich. HcL: desde tu meridiano; cada meridiano, la suya.",
@@ -5017,25 +4507,6 @@
        "correcta": "c",
        "explicacion": "En la tercera sexta parte sube 3/12 de la amplitud: 3/12 × 2,40 = 0,60 m. Las horas centrales son las de más corriente de marea; la primera y la última, las de menos (1/12 = 0,20 m)."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n19",
-      "and-py-2020-c3-n19",
-      "and-py-2021-c2-n20",
-      "and-py-2022-c1-n19",
-      "and-py-2022-c2-n19",
-      "and-py-2022-c3-n19",
-      "and-py-2023-c1-n19",
-      "and-py-2023-c2-n19",
-      "and-py-2023-c3-n18",
-      "and-py-2024-c1-n19",
-      "and-py-2024-c2-n19",
-      "and-py-2024-c3-n19",
-      "and-py-2025-c1-n19",
-      "and-py-2025-c2-n18",
-      "and-py-2025-c3-n18",
-      "and-py-2026-c1-n18",
-      "and-py-2026-c2-n18"
      ],
      "carta": [
       "marea-sonda"
@@ -5207,22 +4678,6 @@
        "correcta": "a",
        "explicacion": "El derrotero describe la costa, sus peligros, puertos y fondeaderos. El Libro de Faros da las características de las luces."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n08",
-      "and-py-2020-c3-n08",
-      "and-py-2021-c1-n02",
-      "and-py-2022-c1-n08",
-      "and-py-2022-c2-n08",
-      "and-py-2023-c2-n03",
-      "and-py-2024-c1-n04",
-      "and-py-2024-c2-n04",
-      "and-py-2024-c3-n05",
-      "and-py-2025-c1-n04",
-      "and-py-2025-c2-n04",
-      "and-py-2025-c3-n04",
-      "and-py-2026-c1-n04",
-      "and-py-2026-c2-n05"
      ],
      "chuleta": [
       "IHM (Cádiz): cartas, derroteros, Libro de Faros, Anuario de Mareas, Avisos a los Navegantes.",
@@ -5456,30 +4911,6 @@
        "explicacion": "El anti-clutter de mar reduce los ecos cercanos de las olas. Si te pasas, también borra los ecos débiles de barcos pequeños próximos."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n06",
-      "and-py-2020-c3-n06",
-      "and-py-2021-c1-n08",
-      "and-py-2022-c1-n07",
-      "and-py-2022-c3-n09",
-      "and-py-2023-c1-n07",
-      "and-py-2023-c1-n08",
-      "and-py-2023-c2-n05",
-      "and-py-2023-c3-n06",
-      "and-py-2024-c1-n06",
-      "and-py-2024-c2-n06",
-      "and-py-2024-c2-n07",
-      "and-py-2024-c3-n04",
-      "and-py-2024-c3-n06",
-      "and-py-2025-c1-n05",
-      "and-py-2025-c1-n06",
-      "and-py-2025-c2-n05",
-      "and-py-2025-c2-n06",
-      "and-py-2025-c3-n05",
-      "and-py-2025-c3-n06",
-      "and-py-2026-c1-n06",
-      "and-py-2026-c2-n07"
-     ],
      "carta": [
       "situacion-demora-distancia",
       "situacion-dos-demoras"
@@ -5675,34 +5106,6 @@
        "explicacion": "XTE es el error transversal: la distancia a la línea entre el WPT de salida y el de llegada, con la banda (L, izquierda; R, derecha)."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n03",
-      "and-py-2020-c3-n03",
-      "and-py-2021-c1-n10",
-      "and-py-2021-c2-n06",
-      "and-py-2022-c1-n03",
-      "and-py-2022-c2-n05",
-      "and-py-2022-c2-n07",
-      "and-py-2022-c3-n08",
-      "and-py-2023-c1-n10",
-      "and-py-2023-c2-n02",
-      "and-py-2023-c2-n06",
-      "and-py-2023-c3-n08",
-      "and-py-2024-c1-n07",
-      "and-py-2024-c1-n08",
-      "and-py-2024-c2-n08",
-      "and-py-2024-c3-n07",
-      "and-py-2024-c3-n08",
-      "and-py-2025-c1-n07",
-      "and-py-2025-c1-n08",
-      "and-py-2025-c2-n07",
-      "and-py-2025-c2-n08",
-      "and-py-2025-c3-n07",
-      "and-py-2025-c3-n08",
-      "and-py-2026-c1-n07",
-      "and-py-2026-c1-n08",
-      "and-py-2026-c2-n08"
-     ],
      "chuleta": [
       "GNSS: GPS, Galileo, GLONASS, BeiDou. Distancias a ≥ 4 satélites → posición y hora.",
       "WPT punto de ruta · COG rumbo efectivo · SOG velocidad efectiva · HDG proa · BRG demora al WPT · DTG distancia.",
@@ -5880,43 +5283,6 @@
        "correcta": "b",
        "explicacion": "El AIS solo muestra a quien transmite. Por eso no sustituye al radar ni a la vigilancia visual."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n09",
-      "and-py-2020-c3-n09",
-      "and-py-2021-c2-n07",
-      "and-py-2022-c1-n09",
-      "and-py-2022-c2-n09",
-      "and-py-2022-c3-n06",
-      "and-py-2023-c1-n06",
-      "and-py-2023-c2-n10",
-      "and-py-2023-c3-n09",
-      "and-py-2024-c1-n09",
-      "and-py-2024-c2-n09",
-      "and-py-2024-c3-n09",
-      "and-py-2025-c1-n09",
-      "and-py-2025-c2-n09",
-      "and-py-2025-c3-n09",
-      "and-py-2026-c1-n09",
-      "and-py-2026-c2-n09",
-      "and-py-2020-c1-n10",
-      "and-py-2020-c3-n10",
-      "and-py-2021-c2-n01",
-      "and-py-2021-c2-n09",
-      "and-py-2022-c1-n10",
-      "and-py-2022-c2-n10",
-      "and-py-2022-c3-n10",
-      "and-py-2023-c1-n09",
-      "and-py-2023-c2-n09",
-      "and-py-2023-c3-n03",
-      "and-py-2024-c1-n10",
-      "and-py-2024-c2-n10",
-      "and-py-2024-c3-n10",
-      "and-py-2025-c1-n10",
-      "and-py-2025-c2-n10",
-      "and-py-2025-c3-n10",
-      "and-py-2026-c1-n10",
-      "and-py-2026-c2-n10"
      ],
      "chuleta": [
       "Dos tipos: raster (RNC, escaneada, copia de la de papel) y vectorial (ENC, objeto a objeto, con alarmas).",
@@ -6120,27 +5486,6 @@
        "explicacion": "12 años × 6′ = 72′ = 1°12′ hacia el E. 5°10′ W − 1°12′ = 3°58′ W ≈ 4° W (−4°)."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n11",
-      "and-py-2020-c3-n11",
-      "and-py-2021-c1-n12",
-      "and-py-2021-c2-n12",
-      "and-py-2021-c2-n13",
-      "and-py-2022-c1-n11",
-      "and-py-2022-c2-n11",
-      "and-py-2022-c3-n11",
-      "and-py-2023-c1-n11",
-      "and-py-2023-c2-n13",
-      "and-py-2023-c3-n12",
-      "and-py-2024-c1-n11",
-      "and-py-2024-c2-n11",
-      "and-py-2024-c3-n11",
-      "and-py-2025-c1-n11",
-      "and-py-2025-c2-n12",
-      "and-py-2025-c3-n13",
-      "and-py-2026-c1-n13",
-      "and-py-2026-c2-n13"
-     ],
      "carta": [
       "ct-enfilacion",
       "conversion-rumbos"
@@ -6317,20 +5662,6 @@
        "explicacion": "Con proa al E, el N entra por babor (000 − 090 = 270°): Ab +10°. Rv = Rs − Ab = 090° − 10° = 080°: orzas hacia el norte, de donde viene el viento."
       }
      ],
-     "practica": [
-      "and-py-2020-c3-n16",
-      "and-py-2022-c1-n16",
-      "and-py-2024-c3-n16",
-      "and-py-2025-c1-n16",
-      "and-py-2026-c2-n15",
-      "and-py-2021-c1-n13",
-      "and-py-2022-c2-n13",
-      "and-py-2022-c3-n14",
-      "and-py-2023-c3-n11",
-      "and-py-2024-c2-n16",
-      "and-py-2025-c2-n11",
-      "and-py-2025-c3-n12"
-     ],
      "carta": [
       "abatimiento",
       "rumbo-distancia"
@@ -6470,24 +5801,6 @@
        "correcta": "b",
        "explicacion": "Con proa al NE, el NW (315°) entra por babor: 315 − 060 = 255° → Ab +12°. Rv = Rs − Ab = 060° − 12° = 048°."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n12",
-      "and-py-2020-c1-n13",
-      "and-py-2020-c3-n12",
-      "and-py-2021-c2-n14",
-      "and-py-2022-c1-n12",
-      "and-py-2022-c2-n12",
-      "and-py-2022-c3-n12",
-      "and-py-2023-c1-n12",
-      "and-py-2023-c2-n11",
-      "and-py-2023-c3-n13",
-      "and-py-2024-c1-n14",
-      "and-py-2024-c2-n12",
-      "and-py-2024-c3-n12",
-      "and-py-2025-c1-n12",
-      "and-py-2026-c1-n12",
-      "and-py-2026-c2-n12"
      ],
      "carta": [
       "rumbo-pasar-distancia",
@@ -6643,25 +5956,6 @@
        "explicacion": "Una circunferencia se traslada moviendo su centro el rumbo y la distancia navegados, sin cambiar el radio."
       }
      ],
-     "practica": [
-      "and-py-2020-c3-n13",
-      "and-py-2021-c1-n11",
-      "and-py-2021-c1-n17",
-      "and-py-2021-c2-n15",
-      "and-py-2022-c1-n13",
-      "and-py-2022-c2-n17",
-      "and-py-2022-c3-n17",
-      "and-py-2023-c1-n17",
-      "and-py-2023-c2-n16",
-      "and-py-2023-c3-n17",
-      "and-py-2024-c2-n15",
-      "and-py-2024-c3-n15",
-      "and-py-2025-c1-n14",
-      "and-py-2025-c2-n15",
-      "and-py-2025-c3-n15",
-      "and-py-2026-c1-n16",
-      "and-py-2026-c2-n11"
-     ],
      "carta": [
       "situacion-dos-demoras",
       "situacion-demora-distancia",
@@ -6810,25 +6104,6 @@
        "explicacion": "2 h 15 min = 2,25 h; 2 × 2,25 = 4,5 millas en la dirección de la corriente."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n15",
-      "and-py-2020-c3-n15",
-      "and-py-2021-c1-n16",
-      "and-py-2021-c2-n11",
-      "and-py-2021-c2-n16",
-      "and-py-2022-c1-n15",
-      "and-py-2022-c2-n15",
-      "and-py-2023-c1-n14",
-      "and-py-2023-c1-n16",
-      "and-py-2023-c2-n15",
-      "and-py-2023-c2-n17",
-      "and-py-2023-c3-n15",
-      "and-py-2024-c1-n16",
-      "and-py-2024-c3-n17",
-      "and-py-2025-c1-n17",
-      "and-py-2025-c2-n16",
-      "and-py-2026-c1-n15"
-     ],
      "carta": [
       "estima-directa",
       "corriente-efectiva"
@@ -6965,20 +6240,6 @@
        "correcta": "b",
        "explicacion": "El faro empieza a verse cuando entras en su alcance: el primer corte de la derrota con la circunferencia de 9 millas."
       }
-     ],
-     "practica": [
-      "and-py-2022-c3-n15",
-      "and-py-2023-c1-n15",
-      "and-py-2023-c2-n12",
-      "and-py-2023-c3-n14",
-      "and-py-2023-c3-n16",
-      "and-py-2024-c1-n13",
-      "and-py-2024-c2-n14",
-      "and-py-2024-c3-n14",
-      "and-py-2025-c2-n14",
-      "and-py-2025-c3-n14",
-      "and-py-2026-c1-n14",
-      "and-py-2026-c2-n14"
      ],
      "carta": [
       "estima-directa",
@@ -7124,31 +6385,6 @@
        "explicacion": "Vector barco = efectivo − corriente: va del extremo de la corriente al extremo del efectivo."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n16",
-      "and-py-2020-c1-n17",
-      "and-py-2020-c3-n14",
-      "and-py-2020-c3-n17",
-      "and-py-2021-c1-n14",
-      "and-py-2021-c1-n15",
-      "and-py-2022-c1-n14",
-      "and-py-2022-c2-n14",
-      "and-py-2022-c3-n13",
-      "and-py-2023-c1-n13",
-      "and-py-2023-c2-n14",
-      "and-py-2024-c1-n12",
-      "and-py-2024-c1-n15",
-      "and-py-2024-c2-n13",
-      "and-py-2024-c3-n13",
-      "and-py-2025-c1-n13",
-      "and-py-2025-c2-n13",
-      "and-py-2025-c2-n17",
-      "and-py-2025-c3-n11",
-      "and-py-2025-c3-n17",
-      "and-py-2026-c1-n11",
-      "and-py-2026-c1-n17",
-      "and-py-2026-c2-n17"
-     ],
      "carta": [
       "corriente-rumbo-a-dar",
       "corriente-efectiva"
@@ -7291,18 +6527,6 @@
        "correcta": "b",
        "explicacion": "La estima incluye el abatimiento (Rs), pero no la corriente, que es la incógnita. El efectivo no lo conoces todavía."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n14",
-      "and-py-2021-c2-n17",
-      "and-py-2022-c1-n17",
-      "and-py-2022-c2-n16",
-      "and-py-2022-c3-n16",
-      "and-py-2024-c1-n17",
-      "and-py-2024-c2-n17",
-      "and-py-2025-c1-n15",
-      "and-py-2025-c3-n16",
-      "and-py-2026-c2-n16"
      ],
      "carta": [
       "corriente-desconocida"
@@ -7494,43 +6718,6 @@
        "explicacion": "El Anuario da las horas en UT: UT = hora oficial − adelanto = 17:30 − 1 h = 16:30."
       }
      ],
-     "practica": [
-      "and-py-2020-c1-n18",
-      "and-py-2020-c1-n19",
-      "and-py-2020-c3-n18",
-      "and-py-2020-c3-n19",
-      "and-py-2021-c1-n19",
-      "and-py-2021-c1-n20",
-      "and-py-2021-c2-n20",
-      "and-py-2022-c1-n18",
-      "and-py-2022-c1-n19",
-      "and-py-2022-c2-n18",
-      "and-py-2022-c2-n19",
-      "and-py-2022-c3-n18",
-      "and-py-2022-c3-n19",
-      "and-py-2023-c1-n18",
-      "and-py-2023-c1-n19",
-      "and-py-2023-c2-n18",
-      "and-py-2023-c2-n19",
-      "and-py-2023-c3-n18",
-      "and-py-2023-c3-n19",
-      "and-py-2024-c1-n18",
-      "and-py-2024-c1-n19",
-      "and-py-2024-c2-n18",
-      "and-py-2024-c2-n19",
-      "and-py-2024-c3-n18",
-      "and-py-2024-c3-n19",
-      "and-py-2025-c1-n18",
-      "and-py-2025-c1-n19",
-      "and-py-2025-c2-n18",
-      "and-py-2025-c2-n19",
-      "and-py-2025-c3-n18",
-      "and-py-2025-c3-n19",
-      "and-py-2026-c1-n18",
-      "and-py-2026-c1-n19",
-      "and-py-2026-c2-n18",
-      "and-py-2026-c2-n19"
-     ],
      "carta": [
       "marea-sonda"
      ],
@@ -7697,27 +6884,6 @@
        "correcta": "a",
        "explicacion": "Has cruzado el antimeridiano: 360° − 181°10′ = 178°50′ W."
       }
-     ],
-     "practica": [
-      "and-py-2020-c1-n20",
-      "and-py-2020-c3-n20",
-      "and-py-2021-c1-n18",
-      "and-py-2021-c2-n18",
-      "and-py-2021-c2-n19",
-      "and-py-2022-c1-n20",
-      "and-py-2022-c2-n20",
-      "and-py-2022-c3-n20",
-      "and-py-2023-c1-n20",
-      "and-py-2023-c2-n20",
-      "and-py-2023-c3-n20",
-      "and-py-2024-c1-n20",
-      "and-py-2024-c2-n20",
-      "and-py-2024-c3-n20",
-      "and-py-2025-c1-n20",
-      "and-py-2025-c2-n20",
-      "and-py-2025-c3-n20",
-      "and-py-2026-c1-n20",
-      "and-py-2026-c2-n20"
      ],
      "carta": [
       "estima-analitica"

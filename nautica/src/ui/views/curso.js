@@ -3,11 +3,11 @@
 
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
-import { loadCourse, loadTheoryBank, loadMnemonics } from '../../store/datasets.js';
+import { loadMnemonics } from '../../store/datasets.js';
+import { cargarBanco, cargarCurso, rutaResolucion, SOLUCIONES } from '../../bancos/index.js';
 import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosClase, minutosDeTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
-import { resueltasDe, conResuelto } from '../../course/resueltos.js';
-import { SOLUCIONES, bancoResolucion } from '../../exams/solutions/index.js';
-import { tlink, volver } from '../titulacion.js';
+import { conResuelto } from '../../course/resueltos.js';
+import { tlink, volver, currentEje } from '../titulacion.js';
 import { barraActividad } from '../actividad.js';
 import { pintarCierre, cierre, cifrasCierre } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
@@ -50,7 +50,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
 
   // Clase del PER abierta desde una del PY (?desde=<id>): se ofrece volver a ella.
   const desde = route.query?.desde || null;
-  Promise.all([loadCourse(tit), loadTheoryBank(tit), loadMnemonics(), tit === 'py' ? loadCourse('per') : null, desde ? loadCourse('py') : null,
+  const eje = currentEje(progress);
+  Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit), loadMnemonics(), tit === 'py' ? cargarCurso('per', eje) : null, desde ? cargarCurso('py', eje) : null,
     episodiosDeClase(tit, id).catch(() => [])]).then(([curso, bank, mnemo, cursoPer, cursoPy, episodios]) => {
     const todas = curso ? leccionesDe(curso) : [];
     const L = todas.find((l) => l.id === id);
@@ -62,9 +63,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     }
     prepareTheory({ tit, chart: ctx.chart, reglas: bank.reglasDe });
     const reglas = new Map(mnemo.reglas.map((r) => [r.id, r]));
-    const preguntas = new Map(bank.preguntas.map((q) => [q.id, q]));
+    const preguntas = new Map(bank.estudio.map((q) => [q.id, q]));
     const reg = () => progress.leccion(L.id) ?? {};
-    const disponibles = (L.practica ?? []).map((q) => preguntas.get(q)).filter((q) => q && !q.anulada && q.correcta);
+    const disponibles = bank.practicaDe(L.id).map((q) => preguntas.get(q)).filter((q) => q && !q.anulada && q.correcta);
     const nPractica = Math.min(PRACTICA_MAX, disponibles.length);
 
     // Base del PER de una clase del PY (L.refresco): título, si ya se vio y enlace que permite volver aquí.
@@ -93,7 +94,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     const sinExtra = L.pasos.filter((p) => !p.extra);
     // La clase va en tramos de unos 5 minutos, cada uno con su cierre: se puede dejar al acabar cualquiera.
     const k = numTramos(sinExtra.length);
-    const pasosBase = enTramos(conResuelto(sinExtra, resueltasDe(L.id).filter((id) => preguntas.has(id))), k)
+    const pasosBase = enTramos(conResuelto(sinExtra, bank.resueltasDe(L.id).filter((id) => preguntas.has(id))), k)
       .map((p) => (p.tipo === 'ilustracion' ? { ...p, prediccion: pidePrediccion(p.spec) } : p));
     // Ejercicios que no son de elegir opción: tocar las partes de una lámina y emparejar los términos de la clase.
     // Los términos los declara cada clase en sus datos (`terminos`): no se deducen del texto.
@@ -166,7 +167,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             const sinCarta = SOLUCIONES[q.id]?.sinCarta;
             setChildren(box, h('p.muted.small', q.convocatoria ?? ''), h('p', q.enunciado.length > 220 ? `${q.enunciado.slice(0, 220)}…` : q.enunciado),
               h('div.actions',
-                h('a.btn', { href: link(['examenes', bancoResolucion(q), q.id]) }, sinCarta ? '🧮 Verla resuelta paso a paso' : '🗺️ Verla resuelta en la carta'),
+                h('a.btn', { href: link(rutaResolucion(q)) }, sinCarta ? '🧮 Verla resuelta paso a paso' : '🗺️ Verla resuelta en la carta'),
                 p.ids.length > 1 ? h('button.secondary', { type: 'button', onclick: () => { k = (k + 1) % p.ids.length; pinta(); } }, 'Otra pregunta') : null));
           };
           pinta();

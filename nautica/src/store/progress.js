@@ -1,10 +1,11 @@
 // Base de datos local del alumno (localStorage): intentos, aciertos y errores típicos por tipo de ejercicio,
 // respuestas a preguntas de examen, clases, minutos estudiados por día y el examen a medias.
 // Exportable/importable en JSON para no perder el progreso. Los campos nuevos son opcionales: un progreso
-// antiguo (version 1) carga sin migración.
+// antiguo (version 1) carga sin migración (lo que falta se completa al cargar: el eje, p. ej.).
 
 import { siguienteRepaso } from '../course/repaso.js';
 import { diaISO } from '../texto.js';
+import { EJE_POR_DEFECTO } from '../bancos/registro.js';
 const KEY = 'nautica.progress.v1';
 const DIA = 864e5;
 const DIAS_GUARDADOS = 60;
@@ -35,10 +36,14 @@ export function createProgressStore(storage = safeStorage()) {
     const raw = storage?.getItem(KEY);
     if (raw) data = { ...empty(), ...JSON.parse(raw) };
   } catch { /* datos corruptos: empezamos de cero */ }
-  // Usuarios de antes de la bienvenida: no se les muestra.
   const normaliza = () => {
     data.settings ??= {};
+    // Usuarios de antes de la bienvenida: no se les muestra.
     if (data.settings.onboarded == null && tieneProgreso(data)) data.settings.onboarded = true;
+    // Eje (banco de la administración examinadora): lo de antes de que hubiera ejes es del eje por defecto.
+    data.settings.eje ??= EJE_POR_DEFECTO;
+    if (Array.isArray(data.tests)) data.tests = data.tests.map((t) => (t?.eje ? t : { ...t, eje: EJE_POR_DEFECTO }));
+    if (data.testEnCurso && !data.testEnCurso.eje) data.testEnCurso = { ...data.testEnCurso, eje: EJE_POR_DEFECTO };
   };
   normaliza();
 
@@ -121,7 +126,10 @@ export function createProgressStore(storage = safeStorage()) {
       return Object.entries(data.dias ?? {}).filter(([k, v]) => k > desde && v.act > 0).length;
     },
 
-    /** Examen a medias (solo uno): { tit, tipo, conv, seed, respuestas, i, consumidoMs, guardado }. */
+    /**
+     * Examen a medias (solo uno): { tit, eje, tipo, conv, seed, ids, respuestas, i, consumidoMs, guardado }.
+     * `ids`: las preguntas en su orden, para rehacerlo igual aunque cambie el banco (sin ids, con la semilla).
+     */
     testEnCurso: () => data.testEnCurso ?? null,
     saveTestEnCurso(obj) {
       if (obj) data.testEnCurso = { ...obj, guardado: Date.now() };
@@ -137,7 +145,7 @@ export function createProgressStore(storage = safeStorage()) {
 
     export: () => JSON.stringify(data, null, 2),
     import(json) { const d = JSON.parse(json); if (d?.version !== 1) throw new Error('Formato no válido'); data = { ...empty(), ...d }; normaliza(); save(); },
-    reset() { data = empty(); save(); },
+    reset() { data = empty(); normaliza(); save(); },
   };
   return store;
 }

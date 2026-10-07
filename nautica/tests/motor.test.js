@@ -7,6 +7,7 @@ import { estadoAlumno, invariantes } from '../src/course/motor.js';
 import { PER, PY } from '../src/theory/blocks.js';
 import { createRng } from '../src/math/rng.js';
 import { trasPractica, numTramos, leccionesDe } from '../src/course/engine.js';
+import { cursoDe, preguntasDe } from '../tools/bancos/leer.mjs';
 
 const leer = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
 const DIA = 864e5;
@@ -21,8 +22,8 @@ test('ninguna pantalla calcula números por su cuenta: todo sale del motor', () 
 
 /** Una sesión simulada: días de estudio con acciones al azar (preguntas, tramos, clases, prácticas). */
 function simula(tit, estructura, semilla, conFecha) {
-  const curso = leer(`data/curso/${tit}.json`);
-  const preguntas = leer(`data/exams/andalucia-${tit}-teoria.json`).preguntas;
+  const curso = cursoDe(tit);
+  const preguntas = preguntasDe(tit);
   const lecciones = leccionesDe(curso);
   const rng = createRng(semilla);
   const t0 = Date.UTC(2026, 9, 6, 9);
@@ -79,8 +80,8 @@ for (const [tit, E] of [['per', PER], ['py', PY]]) {
 }
 
 test('mensaje del día: con la meta cumplida nunca «toca», y sin cumplirla nunca «hecho»', () => {
-  const curso = leer('data/curso/per.json');
-  const preguntas = leer('data/exams/andalucia-per-teoria.json').preguntas;
+  const curso = cursoDe('per');
+  const preguntas = preguntasDe('per');
   const base = { tit: 'per', estructura: PER, curso, preguntas, regs: {}, respuestas: {}, tests: [], racha: 0, planGuardado: null, ahora: Date.UTC(2026, 9, 6, 9) };
   for (const conFecha of [false, true]) {
     const settings = { minutosDia: 30, ...(conFecha ? { examen_per: '2026-10-20' } : {}) };
@@ -90,8 +91,8 @@ test('mensaje del día: con la meta cumplida nunca «toca», y sin cumplirla nun
 });
 
 test('mensaje del día: si con tus minutos no llegas, se avisa también el día que cumples la meta', () => {
-  const curso = leer('data/curso/per.json');
-  const preguntas = leer('data/exams/andalucia-per-teoria.json').preguntas;
+  const curso = cursoDe('per');
+  const preguntas = preguntasDe('per');
   // Examen en 14 días con 20 minutos: no da tiempo.
   const e = { tit: 'per', estructura: PER, curso, preguntas, regs: {}, respuestas: {}, tests: [], racha: 0, planGuardado: null, ahora: Date.UTC(2026, 9, 6, 9), settings: { minutosDia: 20, examen_per: '2026-10-20' } };
   for (const minutosHoy of [5, 25]) {

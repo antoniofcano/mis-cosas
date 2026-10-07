@@ -1,13 +1,13 @@
 // Valida las soluciones programadas contra la plantilla oficial de cada examen.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { createKit } from '../src/exams/kit.js';
 import { chooseOption } from '../src/exams/options.js';
-import { SOLUCIONES as solutions, bancoResolucion } from '../src/exams/solutions/index.js';
+import { SOLUCIONES as solutions } from '../src/bancos/soluciones.js';
 import { chart } from './helpers.js';
+import { bancosNode, todasLasPreguntas } from '../tools/bancos/leer.mjs';
 
-const preguntas = ['andalucia-per.json', 'andalucia-py-teoria.json'].flatMap((f) => JSON.parse(readFileSync(new URL(`../data/exams/${f}`, import.meta.url))).preguntas);
+const preguntas = todasLasPreguntas();
 const byId = new Map(preguntas.map((q) => [q.id, q]));
 
 for (const [id, sol] of Object.entries(solutions)) {
@@ -23,15 +23,20 @@ for (const [id, sol] of Object.entries(solutions)) {
   });
 }
 
-test('cada pregunta con resolución sabe en qué banco abrirla', () => {
-  for (const id of Object.keys(solutions)) assert.ok(bancoResolucion(byId.get(id)), id);
-  assert.equal(bancoResolucion(byId.get('and-py-2023-c1-n18')), 'andalucia-py-teoria.json');
-  assert.equal(bancoResolucion({ id: 'and-py-2021-c1-n20', ut: 4 }), null); // en DISCREPANCIAS
+test('cada pregunta con resolución sabe dónde abrirla (#/q/<id>)', async () => {
+  const b = bancosNode();
+  for (const tit of ['per', 'py']) await b.cargarBanco('andalucia', tit); // las fichas, cargadas
+  for (const id of Object.keys(solutions)) assert.deepEqual(b.rutaResolucion(byId.get(id)), ['q', id], id);
+  assert.deepEqual(b.rutaResolucion(byId.get('and-py-2023-c1-n18')), ['q', 'and-py-2023-c1-n18']);
+  assert.equal(b.rutaResolucion(byId.get('and-py-2021-c1-n20')), null); // en DISCREPANCIAS: sin resolución
+  // Las de la lista de carta del PER se abren aunque la app no traiga su solución (se resuelven sobre la carta).
+  assert.deepEqual(b.rutaResolucion(byId.get('and-2025-c2-q45')), ['q', 'and-2025-c2-q45']);
+  assert.equal(b.rutaResolucion(byId.get('and-2025-c2-t01')), null);
 });
 
 test('las del PY que no se dibujan en la carta están marcadas «sinCarta»', () => {
   for (const [id, sol] of Object.entries(solutions)) {
-    if (!id.startsWith('and-py')) continue;
+    if (byId.get(id).tit !== 'py') continue;
     const k = createKit(chart);
     sol.solve(k, byId.get(id));
     assert.equal(!k.items.length, !!sol.sinCarta, id);
@@ -42,7 +47,7 @@ test('las del PY que no se dibujan en la carta están marcadas «sinCarta»', ()
 // Las que no lo cumplen se quedan en el bloque DISCREPANCIAS de su fichero, no se fuerzan.
 test('PY: cada resolución llega a la opción oficial con margen', () => {
   for (const [id, sol] of Object.entries(solutions)) {
-    if (!id.startsWith('and-py')) continue;
+    if (byId.get(id).tit !== 'py') continue;
     const q = byId.get(id);
     const values = sol.solve(createKit(chart), q);
     const s = Object.values(chooseOption(q.opciones, values).scores).sort((a, b) => a - b);

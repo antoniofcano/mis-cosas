@@ -6,9 +6,10 @@ import { PER } from '../src/theory/blocks.js';
 import { narrateTheory } from '../src/teacher/theory.js';
 import { validSpec } from '../src/illustrations/index.js';
 
-const dir = new URL('../data/exams/', import.meta.url);
-const bank = JSON.parse(readFileSync(new URL('andalucia-per-teoria.json', dir))).preguntas;
-const expl = JSON.parse(readFileSync(new URL('andalucia-per-teoria-explicaciones.json', dir)));
+const dir = new URL('../data/ejes/andalucia/', import.meta.url);
+// Teoría del PER: las preguntas 1–41 (las de carta, 42–45, se resuelven sobre la carta: tests/exams.test.js).
+const bank = JSON.parse(readFileSync(new URL('per/preguntas.json', dir))).preguntas.filter((q) => !q.requiere.includes('carta'));
+const expl = JSON.parse(readFileSync(new URL('per/explicaciones.json', dir)));
 
 test('banco de teoría PER: 18 convocatorias × 41 preguntas con bloques del RD', () => {
   assert.equal(bank.length, 738);
@@ -41,8 +42,8 @@ test('las ilustraciones asignadas a las preguntas son dibujables', () => {
 });
 
 test('reglas nemotécnicas: asignadas a preguntas que existen', () => {
-  const m = JSON.parse(readFileSync(new URL('mnemotecnias.json', dir)));
-  const py = JSON.parse(readFileSync(new URL('andalucia-py-teoria.json', dir))).preguntas;
+  const m = JSON.parse(readFileSync(new URL('../../comun/mnemotecnias.json', dir)));
+  const py = JSON.parse(readFileSync(new URL('py/preguntas.json', dir))).preguntas;
   const ids = new Set([...bank, ...py].map((q) => q.id));
   for (const r of m.reglas) {
     assert.ok(r.regla && r.significado, r.id);

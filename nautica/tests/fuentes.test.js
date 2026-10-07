@@ -8,7 +8,7 @@ const OFICIALES = ['boe.es', 'armada.defensa.gob.es', 'aemet.es', 'salvamentomar
   'cervantesvirtual.com', 'imo.org', 'iala-aism.org', 'puertos.es', 'mitma.gob.es', 'transportes.gob.es', 'juntadeandalucia.es'];
 
 test('las reglas para recordar solo citan fuentes oficiales', () => {
-  const { reglas } = JSON.parse(readFileSync(new URL('../data/exams/mnemotecnias.json', import.meta.url), 'utf8'));
+  const { reglas } = JSON.parse(readFileSync(new URL('../data/comun/mnemotecnias.json', import.meta.url), 'utf8'));
   for (const r of reglas) {
     for (const u of r.fuentes ?? []) {
       const host = new URL(u).hostname.replace(/^www\./, '');

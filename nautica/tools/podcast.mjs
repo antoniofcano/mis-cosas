@@ -6,6 +6,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { RAIZ } from './precache.mjs';
+import { todasLasPreguntas } from './bancos/leer.mjs';
 
 const leer = (p) => JSON.parse(readFileSync(join(RAIZ, p), 'utf8'));
 export const idEpisodio = (tit, n) => `${tit}-${String(n).replace('.', '-')}`;
@@ -32,7 +33,7 @@ export function preguntasEnPausas(tramos, preguntas, banco) {
 
 export function datosPodcast() {
   const E = leer('podcast/episodios.json');
-  const banco = new Map(['andalucia-per-teoria', 'andalucia-py-teoria', 'andalucia-per'].flatMap((f) => leer(`data/exams/${f}.json`).preguntas).map((q) => [q.id, q]));
+  const banco = new Map(todasLasPreguntas().map((q) => [q.id, q]));
   const lineas = {};
   const out = {};
   for (const tit of ['py', 'per']) {

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { estadoLeccion, trasPractica, hoyToca, INTERVALOS } from '../src/course/engine.js';
 import { validSpec } from '../src/illustrations/index.js';
+import { bancosNode, leerJSON, EJE_POR_DEFECTO } from '../tools/bancos/leer.mjs';
 
 const DIA = 864e5;
 const L = { id: 'per-5-1', practica: ['a', 'b', 'c', 'd', 'e'] };
@@ -53,10 +54,9 @@ for (const tit of ['per', 'py']) {
   const f = new URL(`../data/curso/${tit}.json`, import.meta.url);
   test(`curso ${tit}: lecciones válidas (pasos, ilustraciones, reglas y preguntas reales existentes)`, { skip: !existsSync(f) }, () => {
     const curso = JSON.parse(readFileSync(f));
-    const banco = JSON.parse(readFileSync(new URL(`../data/exams/andalucia-${tit}-teoria.json`, import.meta.url))).preguntas;
-    const carta = tit === 'per' ? JSON.parse(readFileSync(new URL('../data/exams/andalucia-per.json', import.meta.url))).preguntas : [];
-    const ids = new Set([...banco, ...carta].map((q) => q.id));
-    const reglas = new Set(JSON.parse(readFileSync(new URL('../data/exams/mnemotecnias.json', import.meta.url))).reglas.map((r) => r.id));
+    const ids = new Set(leerJSON(`data/ejes/${EJE_POR_DEFECTO}/${tit}/preguntas.json`).preguntas.map((q) => q.id));
+    const practica = leerJSON(`data/ejes/${EJE_POR_DEFECTO}/${tit}/practica.json`);
+    const reglas = new Set(JSON.parse(readFileSync(new URL('../data/comun/mnemotecnias.json', import.meta.url))).reglas.map((r) => r.id));
     const vistos = new Set();
     for (const m of curso.modulos) for (const l of m.lecciones) {
       assert.ok(!vistos.has(l.id), `id repetido ${l.id}`);
@@ -68,7 +68,8 @@ for (const tit of ['per', 'py']) {
         if (p.tipo === 'check') assert.ok(p.opciones?.[p.correcta], `${l.id}: check sin respuesta válida`);
         if (p.tipo === 'texto') assert.ok(!/apuntes|sirocodiez|siroco ?10/i.test(p.texto), `${l.id}: referencia a apuntes`);
       }
-      for (const q of l.practica ?? []) assert.ok(ids.has(q), `${l.id}: pregunta ${q}`);
+      assert.ok(!('practica' in l), `${l.id}: la práctica va en el banco del eje (data/ejes/<eje>/${tit}/practica.json)`);
+      for (const q of practica[l.id] ?? []) assert.ok(ids.has(q), `${l.id}: pregunta ${q}`);
       for (const r of l.profundizar ?? []) assert.match(r.url, /^https:\/\//, l.id);
     }
   });
@@ -78,14 +79,14 @@ test('una clase sin práctica queda aprendida al terminarla y no bloquea su tema
   const { estadoLeccion } = await import('../src/course/engine.js');
   const { planHoy } = await import('../src/course/plan.js');
   const { TITULACIONES } = await import('../src/theory/blocks.js');
-  const fs = await import('node:fs');
   const l = { id: 'x', practica: [] };
   assert.equal(estadoLeccion(l, undefined, {}).estado, 'nueva');
   assert.equal(estadoLeccion(l, { paso: 3 }, {}).estado, 'empezada');
   assert.equal(estadoLeccion(l, { visto: true, paso: 0 }, {}).estado, 'dominada');
   // Yate: todo hecho y la clase de mareas (sin práctica) terminada → Hoy ya no la propone
-  const curso = JSON.parse(fs.readFileSync(new URL('../data/curso/py.json', import.meta.url)));
-  const preguntas = JSON.parse(fs.readFileSync(new URL('../data/exams/andalucia-py-teoria.json', import.meta.url))).preguntas;
+  const b = bancosNode();
+  const curso = await b.cargarCurso('py', EJE_POR_DEFECTO);
+  const preguntas = (await b.cargarBanco(EJE_POR_DEFECTO, 'py')).estudio;
   const regs = {};
   for (const m of curso.modulos) for (const c of m.lecciones) regs[c.id] = c.practica?.length ? { visto: true, caja: 2, proximo: Date.now() + 9e8 } : { visto: true, paso: 0 };
   const respuestas = Object.fromEntries(preguntas.map((q) => [q.id, { ok: true }]));
@@ -109,15 +110,25 @@ test('ninguna clase sin lámina, y todas las láminas de las clases se dibujan',
 });
 
 test('clases de carta (PER y PY): «míralo resuelto» con preguntas reales del mismo tipo', async () => {
-  const { RESUELTOS, resueltasDe, conResuelto } = await import('../src/course/resueltos.js');
-  const { SOLUCIONES } = await import('../src/exams/solutions/index.js');
-  for (const id of Object.keys(RESUELTOS)) {
-    const ids = resueltasDe(id);
-    assert.ok(ids.length >= 5, `${id}: solo ${ids.length}`);
-    assert.ok(ids.every((q) => SOLUCIONES[q]), id);
-    // Cada titulación, con preguntas de su propio banco.
-    assert.ok(ids.every((q) => q.startsWith('and-py') === id.startsWith('py-')), id);
+  const { conResuelto } = await import('../src/course/resueltos.js');
+  const { SOLUCIONES } = await import('../src/bancos/soluciones.js');
+  const b = bancosNode();
+  let reglas = 0;
+  for (const tit of ['per', 'py']) {
+    const banco = await b.cargarBanco(EJE_POR_DEFECTO, tit);
+    const curso = await b.cargarCurso(tit, EJE_POR_DEFECTO);
+    const clases = new Set(curso.modulos.flatMap((m) => m.lecciones.map((l) => l.id)));
+    for (const id of Object.keys(leerJSON(`data/ejes/${EJE_POR_DEFECTO}/${tit}/resueltos.json`))) {
+      reglas += 1;
+      assert.ok(clases.has(id), `${id}: no es una clase del ${tit}`);
+      const ids = banco.resueltasDe(id);
+      assert.ok(ids.length >= 5, `${id}: solo ${ids.length}`);
+      assert.ok(ids.every((q) => SOLUCIONES[q]), id);
+      // Cada titulación, con preguntas de su propio banco.
+      assert.ok(ids.every((q) => banco.porId.get(q)?.tit === tit), id);
+    }
   }
+  assert.equal(reglas, 16);
   const pasos = [{ tipo: 'texto', titulo: 'Problema modelo' }, { tipo: 'texto', titulo: 'Resolución paso a paso' }, { tipo: 'texto', titulo: 'Otro' }, { tipo: 'check' }];
   assert.deepEqual(conResuelto(pasos, ['x']).map((p) => p.tipo), ['texto', 'texto', 'resuelto', 'texto', 'check']);
   assert.deepEqual(conResuelto(pasos.slice(2), ['x']).map((p) => p.tipo), ['texto', 'resuelto', 'check']);

@@ -28,7 +28,7 @@ con una barra de actividad (✕ Salir, «Pregunta 4 de 10», barra de avance). L
 | PER | 45 preguntas · 90 min · apto con 32; máx. 5 errores en RIPA, 2 en Balizamiento y 2 en Carta | 738 de teoría + 72 de carta (18 convocatorias), con explicación del profe y 267 ilustraciones |
 | PY | 40 preguntas en dos módulos (genérico 45 min, navegación 75 min) · apto con 28; máx. 5 errores en Teoría de navegación y 3 en Carta | 720 (18 convocatorias): seguridad, meteorología, teoría de navegación y carta (carta, mareas con tabla y loxodrómica) |
 
-Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`src/theory/blocks.js`) y su banco en `data/exams/`.
+Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`src/theory/blocks.js`) y su banco en cada eje (`data/ejes/<eje>/<tit>/`). Los bancos de preguntas van por eje (administración examinadora); hoy hay uno, Andalucía. Formato y cómo añadir un eje: [`docs/BANCOS.md`](docs/BANCOS.md).
 
 ## Funciones destacadas
 

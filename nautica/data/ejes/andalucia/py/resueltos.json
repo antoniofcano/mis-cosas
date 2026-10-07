@@ -1,0 +1,11 @@
+{
+ "py-4-2": { "ejercicios": ["abatimiento"], "excepto": ["and-py-2020-c1-n12", "and-py-2020-c1-n13", "and-py-2020-c3-n12", "and-py-2021-c1-n14", "and-py-2021-c2-n14", "and-py-2022-c1-n12", "and-py-2022-c2-n12", "and-py-2022-c3-n12", "and-py-2023-c1-n12", "and-py-2023-c2-n11", "and-py-2023-c3-n13", "and-py-2024-c1-n14", "and-py-2024-c2-n12", "and-py-2024-c3-n12", "and-py-2025-c1-n12", "and-py-2026-c1-n12", "and-py-2026-c2-n12", "and-py-2022-c3-n15", "and-py-2023-c1-n15", "and-py-2023-c2-n12", "and-py-2024-c1-n13", "and-py-2024-c2-n14", "and-py-2024-c3-n14", "and-py-2025-c2-n14", "and-py-2025-c3-n14", "and-py-2026-c1-n14", "and-py-2026-c2-n14"] },
+ "py-4-3": { "ids": ["and-py-2020-c1-n12", "and-py-2020-c1-n13", "and-py-2020-c3-n12", "and-py-2021-c1-n14", "and-py-2021-c2-n14", "and-py-2022-c1-n12", "and-py-2022-c2-n12", "and-py-2022-c3-n12", "and-py-2023-c1-n12", "and-py-2023-c2-n11", "and-py-2023-c3-n13", "and-py-2024-c1-n14", "and-py-2024-c2-n12", "and-py-2024-c3-n12", "and-py-2025-c1-n12", "and-py-2026-c1-n12", "and-py-2026-c2-n12"] },
+ "py-4-4": { "ejercicios": ["demoras-no-simultaneas", "situacion-dos-demoras", "situacion-demora-distancia"] },
+ "py-4-5": { "ejercicios": ["corriente-efectiva"] },
+ "py-4-6": { "ids": ["and-py-2022-c3-n15", "and-py-2023-c1-n15", "and-py-2023-c2-n12", "and-py-2024-c1-n13", "and-py-2024-c2-n14", "and-py-2024-c3-n14", "and-py-2025-c2-n14", "and-py-2025-c3-n14", "and-py-2026-c1-n14", "and-py-2026-c2-n14"] },
+ "py-4-7": { "ejercicios": ["corriente-rumbo-a-dar"] },
+ "py-4-8": { "ejercicios": ["corriente-desconocida"] },
+ "py-4-9": { "ejercicios": ["marea-sonda"] },
+ "py-4-10": { "ejercicios": ["estima-analitica"] }
+}

@@ -612,7 +612,7 @@
   ]
  },
  "dgmm-py-2021-02-35": {
-  "explicacion": "La carta da la declinación de un año base y su variación anual: la actualizas a 2021 y le sumas el desvío, Ct = dm + Δ. Para que salga la oficial, la declinación actualizada es de 1º W (−1º), y con un desvío de 3º W (−3º): Ct = −1º − 3º = −4º. Las declinaciones y desvíos hacia el W (NW) son negativos.",
+  "explicacion": "La carta del Estrecho da una declinación de 2º 50′ W en 2005 que disminuye 7′ al año (hacia el E). En 2021 han pasado 16 años: 16 × 7′ = 1º 52′, así que dm = 2º 50′ W − 1º 52′ = 0º 58′ W ≈ 1º W (−1º). Con el desvío de 3º W (−3º): Ct = dm + Δ = −1º − 3º = −4º, la a). Las declinaciones y desvíos hacia el W son negativos.",
   "clave": "Ct = dm (actualizada al año) + Δ; W negativo, E positivo.",
   "trampa": "Olvidar actualizar la declinación al año o restar el desvío en lugar de sumarlo."
  },

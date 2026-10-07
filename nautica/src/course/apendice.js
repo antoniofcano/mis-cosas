@@ -9,6 +9,8 @@
 import { estadoLeccion } from './engine.js';
 
 export const RUTA_APENDICE = 'data/curso/apendice-matematicas.json';
+/** ¿Se enlaza ya desde la interfaz (Biblioteca, «Repasa: …»)? Mientras no, solo se llega por su dirección. */
+export const APENDICE_PUBLICADO = false;
 
 /** Clases del apéndice de una titulación, en orden (PER: 1–3; PY: todas). */
 export function leccionesApendice(apendice, tit) {

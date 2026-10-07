@@ -26,9 +26,11 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { cronometro } from '../../course/cronometro.js';
 import { getExercise } from '../../exercises/registry.js';
 import { cuenta } from '../../texto.js';
-import { leccionesApendice, repasosPara } from '../../course/apendice.js';
+import { leccionesApendice, repasosPara, APENDICE_PUBLICADO } from '../../course/apendice.js';
 import { generaCuenta, corrigeCuenta, EJEMPLO_RESPUESTA } from '../../course/cuentas.js';
 import { botonCalculadora } from '../calculadora.js';
+import { crearAyudas } from '../ayudas.js';
+import { glosar } from '../glosas.js';
 
 const PRACTICA_MAX = 10;
 
@@ -50,9 +52,11 @@ export function leccionView({ ctx, progress, params: route, tit }) {
   const id = route.parts[1];
   const enApendice = route.parts[0] === 'cuentas'; // clase del apéndice de matemáticas
   const salida = enApendice ? tlink(tit, ['cuentas']) : tlink(tit);
-  const barra = barraActividad({ texto: 'Cargando la clase…', onSalir: () => { voice.stop(); location.hash = salida; } });
+  // Chuleta de fórmulas (solo práctica): el tema y la clase se conocen al cargarla.
+  const ayudas = crearAyudas({ modo: 'clase', tit, leccion: id });
+  const barra = barraActividad({ texto: 'Cargando la clase…', onSalir: () => { voice.stop(); location.hash = salida; }, derecha: ayudas.barra });
   const cont = h('div', h('p.muted', 'Cargando la clase…'));
-  const el = h('div.leccion', barra, cont);
+  const el = h('div.leccion', barra, ayudas.panel, cont);
   let summaryText = `VISTA clase ${id} (cargando)`;
 
   // Clase del PER abierta desde una del PY (?desde=<id>): se ofrece volver a ella.
@@ -65,14 +69,19 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     if (!L) {
       document.body.classList.remove('focus');
       barra.remove();
+      ayudas.panel?.remove();
       setChildren(cont, enApendice ? volver('Las cuentas del patrón', salida) : volver('Temario', tlink(tit, ['temario'])), h('p', 'Esta clase no existe (todavía).'));
       return;
     }
     // «Repasa: …»: las clases del apéndice con las cuentas que esta clase da por sabidas (lo dicen los datos del apéndice).
-    const repasos = enApendice ? [] : repasosPara(apendice, tit, { leccion: L.id });
+    const repasos = enApendice || !APENDICE_PUBLICADO ? [] : repasosPara(apendice, tit, { leccion: L.id });
     const enlaceRepasa = () => (repasos.length ? h('p.repasa.small', 'Repasa: ', repasos.map((r, j) => [j ? ' · ' : null,
       h('a', { href: tlink(tit, ['cuentas', r.id], { desde: L.id }) }, r.titulo)])) : null);
     prepareTheory({ tit, chart: ctx.chart, reglas: bank.reglasDe });
+    ayudas.contexto({ ut: L.ut, leccion: L.id, ejercicios: (L.carta ?? []).filter((x) => getExercise(x)) });
+    // Siglas y términos explicados al tocarlos: la primera vez en cada tarjeta.
+    const glosas = { tit, ut: L.ut, leccion: L.id };
+    const glosado = (nodo) => { glosar(nodo, glosas); return nodo; };
     const reglas = new Map(mnemo.reglas.map((r) => [r.id, r]));
     const preguntas = new Map(bank.estudio.map((q) => [q.id, q]));
     const reg = () => progress.leccion(L.id) ?? {};
@@ -160,19 +169,20 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora (🧮).') : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
             h('p.muted.small', 'Antes o después de la clase: Elena y Andrés lo cuentan en voz alta.')) : null);
-        case 'texto': return h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto));
+        case 'texto': return glosado(h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto)));
         case 'ilustracion': {
           // Con predicción, el pie de la clase (que suele dar la respuesta) aparece al responder.
           const pie = p.texto ? h('p.muted', { hidden: pidePrediccion(p.spec) }, p.texto) : null;
           const onRespuesta = () => { if (pie) pie.hidden = false; checkOk.add(i); if (i === paso) refrescaBotones(); };
+          glosar(pie, glosas);
           return h('div.paso.ilu', h('div.il-grid.inline', illustrationEls(p.spec, { modo: 'clase', onRespuesta })), pie);
         }
         case 'regla': {
           const r = reglas.get(p.id);
-          return r ? h('div.paso.regla', h('p.mnemo-big', `🧠 ${r.regla}`), h('p', r.significado)) : null;
+          return r ? glosado(h('div.paso.regla', h('p.mnemo-big', `🧠 ${r.regla}`), h('p', r.significado))) : null;
         }
-        case 'clave': return h('div.paso.clave', h('p', '💡 ', rich(p.texto)));
-        case 'ojo': return h('div.paso.ojo', h('p', '⚠️ ', rich(p.texto)));
+        case 'clave': return glosado(h('div.paso.clave', h('p', '💡 ', rich(p.texto))));
+        case 'ojo': return glosado(h('div.paso.ojo', h('p', '⚠️ ', rich(p.texto))));
         case 'resuelto': {
           // Una pregunta real del mismo tipo, resuelta por la app (dibujada en la carta o paso a paso); «Otra» cambia.
           const box = h('div');
@@ -276,7 +286,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               if (i === paso) refrescaBotones();
               corrige(fb, k === q.correcta, profePanel(q, bank.explicaciones[q.id], k));
             } });
-            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, botonCarta(q, progress), fb);
+            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, botonCarta(q, progress, ayudas.ctx()), fb);
           }
           const q = { id: `${L.id}-chk-${i}-${p.enunciado.length}`, enunciado: p.enunciado, opciones: p.opciones, correcta: p.correcta };
           let card = questionCard(q, { tema: false, onChoose: (k) => {
@@ -440,8 +450,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,
         enlaceRepasa(),
       ];
-      const chuleta = L.chuleta?.length ? h('section.chuleta', h('h2', '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
-        voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null) : null;
+      const chuleta = L.chuleta?.length ? glosado(h('section.chuleta', h('h2', '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
+        voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null)) : null;
       const vuelta = origen ? h('p', volverOrigen('a.btn.grande')) : null;
       if (enApendice) {
         // Apéndice: sin práctica ni plan. Se sigue con la siguiente clase del apéndice o se vuelve a la lista.
@@ -472,7 +482,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       const rng = createRng(randomSeed());
       const ses = rng.shuffle(disponibles).sort((a, b) => orden(a) - orden(b)).slice(0, PRACTICA_MAX);
       setChildren(cont, tandaPreguntas({
-        preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, rotulo: L.titulo,
+        preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, ayudas, rotulo: L.titulo,
         onSummary: (t) => { summaryText = `CLASE ${L.id} práctica\n${t}`; },
         onFin: (ok, total, min) => {
           const acierto = ok / total;

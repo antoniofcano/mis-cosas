@@ -5,6 +5,7 @@
 import { h } from '../dom.js';
 import { link } from '../router.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
+import { APENDICE_PUBLICADO } from '../../course/apendice.js';
 
 export function bibliotecaView({ tit }) {
   const T = TITULACIONES[tit];
@@ -29,8 +30,8 @@ export function bibliotecaView({ tit }) {
       [link(['mesa']), '🧰 Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador.'],
     ]],
     ['Cuentas', [
-      [tlink(tit, ['cuentas']), '➗ Las cuentas del patrón', per ? 'Grados y minutos, horas y signos de los rumbos, con ejercicios para la calculadora.'
-        : 'Grados, horas, signos, trigonometría y regla de tres, con ejercicios para la calculadora.'],
+      ...(!APENDICE_PUBLICADO ? [] : [[tlink(tit, ['cuentas']), '➗ Las cuentas del patrón', per ? 'Grados y minutos, horas y signos de los rumbos, con ejercicios para la calculadora.'
+        : 'Grados, horas, signos, trigonometría y regla de tres, con ejercicios para la calculadora.']]),
       [link(['calculadora']), '🧮 Calculadora científica', 'Con las teclas de la que se permite en el examen: °′″, seno, coseno, tangente y memoria.'],
     ]],
   ];

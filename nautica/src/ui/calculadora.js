@@ -11,6 +11,8 @@
 import { h } from './dom.js';
 import { pulsar, pantalla, restaurar, guardable, teclaDeTeclado } from '../calculadora/motor.js';
 import { avisoBreve } from './actividad.js';
+import { registrarAyuda } from './ayudas.js';
+import { TITULACIONES } from '../theory/blocks.js';
 
 const CLAVE = 'nautica.calculadora.v1';
 const ESTRECHA = '(max-width: 700px)';
@@ -304,8 +306,16 @@ export function calculadoraEnPagina() {
   return pagina;
 }
 
-/** Al arrancar la app: escucha el teclado y, si la calculadora estaba abierta, la vuelve a abrir. */
+/**
+ * ¿Va el botón en la barra de ayudas de esta pantalla de práctica? En los ejercicios y preguntas de carta y en las
+ * tandas del tema de carta (en el PY, también mareas y loxodrómica). Practicando siempre se puede usar.
+ */
+export const calculadoraEnAyudas = (ctx = {}) => ctx.modo === 'ejercicio' || ctx.modo === 'pregunta'
+  || (!!TITULACIONES[ctx.tit] && ctx.ut === TITULACIONES[ctx.tit].cartaUt);
+
+/** Al arrancar la app: el botón en el hueco de la barra de ayudas, el teclado y, si estaba abierta, la calculadora. */
 export function iniciarCalculadora() {
+  registrarAyuda({ id: 'calculadora', crear: (ctx) => (calculadoraEnAyudas(ctx) ? botonCalculadora({ clase: 'secondary.small' }) : null) });
   document.addEventListener('keydown', alTeclear);
   if (leer().abierta === true) { panel = crearPanel(); panel.abre(); }
 }

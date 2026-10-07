@@ -4,6 +4,7 @@
 import { h } from '../dom.js';
 import { tlink, volver, currentTit, TITULACIONES } from '../titulacion.js';
 import { calculadoraEnPagina } from '../calculadora.js';
+import { APENDICE_PUBLICADO } from '../../course/apendice.js';
 
 // Ejemplos de uso: [qué se quiere, teclas, lo que sale]
 const EJEMPLOS = [
@@ -31,7 +32,7 @@ export function calculadoraView({ progress }) {
       h('dl', EJEMPLOS.map(([que, teclas, sale]) => [h('dt', que), h('dd', h('code.calc-teclas-txt', teclas), h('br'), sale)]))),
     h('details.calc-atajos', h('summary', 'Con el teclado del ordenador'),
       h('p.small', 'Cifras, punto o coma, + − * /, paréntesis. Intro o = calcula; Retroceso es DEL y Esc es AC. s, c, t: seno, coseno y tangente (S, C, T en mayúscula: las inversas). r: raíz, q: al cuadrado, i: inverso, p: π, a: Ans, m: MR, g o \': °′″ (G: a decimal), n: signo (−).')),
-    h('p', h('a.btn.secondary', { href: tlink(tit, ['cuentas']) }, '➗ Las cuentas del patrón: grados, horas, signos y trigonometría')),
+    !APENDICE_PUBLICADO ? null : h('p', h('a.btn.secondary', { href: tlink(tit, ['cuentas']) }, '➗ Las cuentas del patrón: grados, horas, signos y trigonometría')),
   );
   return {
     el,

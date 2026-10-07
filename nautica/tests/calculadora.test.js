@@ -7,6 +7,7 @@ import {
   textoExpresion, senoG, cosenoG, tangenteG, restaurar, guardable, teclaDeTeclado, MATH_ERROR, SYNTAX_ERROR, MAX_TECLAS,
 } from '../src/calculadora/motor.js';
 import { calculadoraPermitida } from '../src/calculadora/reglas.js';
+import { readFileSync } from 'node:fs';
 
 /** Teclea una cadena: cifras y signos sueltos; las teclas con nombre entre corchetes: «[sin]30)=». */
 const teclas = (s) => s.match(/\[[^\]]+\]|./g).map((t) => (t.startsWith('[') ? t.slice(1, -1) : t));
@@ -256,4 +257,17 @@ test('dónde se permite la calculadora en un examen: la ficha del eje manda; si 
   assert.equal(calculadoraPermitida('per', { examen: { per: { calculadora: true } } }), true);
   assert.equal(calculadoraPermitida('py', { examen: { py: { calculadora: false } } }), false);
   assert.equal(calculadoraPermitida('xx', null), false);
+});
+
+test('en el examen, la calculadora la decide la ficha de cada eje (con su fuente)', () => {
+  const ficha = (e) => JSON.parse(readFileSync(new URL(`../data/ejes/${e}/eje.json`, import.meta.url), 'utf8'));
+  const esperado = { andalucia: { per: true, py: true }, dgmm: { per: false, py: true }, baleares: { per: true, py: true } };
+  for (const [eje, tits] of Object.entries(esperado)) {
+    const f = ficha(eje);
+    for (const [tit, si] of Object.entries(tits)) {
+      assert.equal(typeof f.examen[tit].calculadora, 'boolean', `${eje} ${tit}: la ficha lo dice`);
+      assert.equal(calculadoraPermitida(tit, f), si, `${eje} ${tit}`);
+    }
+  }
+  for (const eje of ['andalucia', 'dgmm']) for (const tit of ['per', 'py']) assert.ok(ficha(eje).examen[tit].calculadoraFuente, `${eje} ${tit}: fuente`);
 });

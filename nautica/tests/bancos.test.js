@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { TITULACIONES } from '../src/theory/blocks.js';
 import { crearBancos } from '../src/bancos/index.js';
 import { EJE_POR_DEFECTO } from '../src/bancos/registro.js';
+import { validSpec } from '../src/illustrations/index.js';
 import { huella } from '../tools/bancos/migrar-andalucia.mjs';
 import { RAIZ, leerJSON, bancosNode, preguntasDe } from '../tools/bancos/leer.mjs';
 
@@ -88,12 +89,15 @@ for (const r of registro) {
       for (const c of ficha.reserva[tit] ?? []) assert.ok(convs.has(c), `reserva: ${c} no es una convocatoria`);
     });
 
-    test(`eje ${r.id} · ${tit}: explicación del profe para cada pregunta que no es de carta`, () => {
-      const qs = leerJSON(`${dir}/preguntas.json`).preguntas;
-      const expl = leerJSON(`${dir}/explicaciones.json`);
-      const ids = new Set(qs.map((q) => q.id));
-      for (const q of qs) if (!q.requiere.includes('carta')) assert.ok(expl[q.id]?.explicacion && expl[q.id]?.clave, `sin explicación: ${q.id}`);
-      for (const id of Object.keys(expl)) assert.ok(ids.has(id), `explicación de una pregunta que no está: ${id}`);
+    test(`eje ${r.id} · ${tit}: las explicaciones son de preguntas que existen y tienen sus campos`, () => {
+      const ids = new Set(leerJSON(`${dir}/preguntas.json`).preguntas.map((q) => q.id));
+      const expl = existsSync(join(RAIZ, `${dir}/explicaciones.json`)) ? leerJSON(`${dir}/explicaciones.json`) : {};
+      for (const [id, e] of Object.entries(expl)) {
+        assert.ok(ids.has(id), `explicación de una pregunta que no está: ${id}`);
+        assert.ok(e.explicacion && e.clave, `explicación sin texto o sin clave: ${id}`);
+        for (const sp of e.ilustraciones ?? []) assert.ok(validSpec(sp), `${id}: ilustración no dibujable ${JSON.stringify(sp)}`);
+        if (e.defendible) assert.ok(e.discrepancia, `${id}: defendible sin discrepancia`);
+      }
     });
 
     test(`eje ${r.id} · ${tit}: la práctica y los resueltos citan clases y preguntas que existen`, () => {
@@ -183,4 +187,22 @@ test('ningún código de la app nombra un banco ni un eje concretos (todo pasa p
     });
   }
   assert.deepEqual(malos, []);
+});
+
+// Puertas de calidad para publicar un eje (tools/bancos/puertas.mjs): se aplican a todo eje con estado «publicado».
+for (const r of registro.filter((e) => e.estado === 'publicado')) {
+  test(`eje ${r.id} publicado: cumple las puertas de calidad (respuesta, tema, fuentes y norma; explicaciones; carta; práctica; licencia)`, async () => {
+    const { puertasDeCalidad } = await import('../tools/bancos/puertas.mjs');
+    const p = await puertasDeCalidad(r.id);
+    assert.deepEqual(p.fallos, []);
+  });
+}
+
+test('puertas de calidad: un eje con huecos no las pasa y dice qué falta', async () => {
+  const { puertasDeCalidad } = await import('../tools/bancos/puertas.mjs');
+  for (const r of registro.filter((e) => e.estado !== 'publicado')) {
+    const p = await puertasDeCalidad(r.id);
+    assert.equal(p.ok, !p.fallos.length);
+    assert.ok(Object.keys(p.porTit).length);
+  }
 });

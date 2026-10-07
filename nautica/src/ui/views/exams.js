@@ -12,6 +12,8 @@ import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { avisoError } from '../aviso-error.js';
 import { cuenta } from '../../texto.js';
+import { crearAyudas } from '../ayudas.js';
+import { glosar } from '../glosas.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -110,6 +112,10 @@ export function preguntaView({ ctx, progress, params: route }) {
     const eje = banco.eje;
     let choice = progress.get().exams[q.id]?.choice ?? null;
     const run = runSolution(q, ctx.chart);
+    // Practicar una pregunta real suelta (no es un examen): chuleta de lo que pide y siglas explicadas al tocarlas.
+    const enTema = { modo: 'pregunta', tit: q.tit, ut: q.ut, ejercicios: run?.sol.ejercicio ? [run.sol.ejercicio] : [] };
+    const glosas = { tit: q.tit, ut: q.ut };
+    const ayudas = crearAyudas(enTema);
     const result = h('div.diagnosis', { 'aria-live': 'polite' });
     const solution = h('div.solution', { hidden: true });
     const aiPre = h('pre.ai-text');
@@ -136,12 +142,12 @@ export function preguntaView({ ctx, progress, params: route }) {
       solution.hidden = false;
       const computed = run
         ? h('p', h('strong', 'Resultado calculado: '), run.values.map((v) => quantity(v.kind).format(v.value)).join(' · '),
-          ` → opción más próxima: ${run.pick.choice})`, run.pick.choice === q.correcta ? ' ✔ coincide con la plantilla' : '')
+          run.pick.choice ? ` → opción más próxima: ${run.pick.choice})` : '', run.pick.choice === q.correcta ? ' ✔ coincide con la plantilla' : '')
         : null;
       setChildren(solution,
         q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : h('p.warn', 'Pregunta anulada por el tribunal.'),
         computed,
-        run ? [h('ol.steps', profeStepItems(run.k.steps, narrateSteps(run.k.steps, { seed: q.id }))),
+        run ? [h('ol.steps', profeStepItems(run.k.steps, narrateSteps(run.k.steps, { seed: q.id }), glosas)),
           listenAllButton(() => [narrateIntro(q.enunciado).speech, ...narrateSteps(run.k.steps, { seed: q.id }).map((n) => n.speech), examOutro().speech])]
           : h('p.muted', 'Esta pregunta no tiene resolución programada (requiere leer símbolos de la carta).'),
         run?.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus }).el : null,
@@ -160,15 +166,15 @@ export function preguntaView({ ctx, progress, params: route }) {
         h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
       ),
       result);
-    const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}, que corresponde a la opción ${run.pick.choice}`;
-    const examOutro = () => narrateOutro(`${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}, que corresponde a la opción ${run.pick.choice}`);
+    const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}${run.pick.choice ? `, que corresponde a la opción ${run.pick.choice}` : ''}`;
+    const examOutro = () => narrateOutro(examOutroText());
     const openTable = (tab) => {
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({
         chart: ctx.chart, title: `${titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
         steps: run.k.steps, items: run.k.items, focus: run.k.focus, answerNodes: [answerBlock], tab, progress,
         result: examOutroText(),
-        summary: () => summaryText,
+        summary: () => summaryText, ayudas: enTema, glosas,
       });
     };
     const tableButtons = run?.k.items.length
@@ -177,11 +183,14 @@ export function preguntaView({ ctx, progress, params: route }) {
         h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'))
       : null;
 
+    const enunciadoEl = h('p', q.enunciado);
+    glosar(enunciadoEl, glosas);
     setChildren(el, 
       volver(lista.titulo, tlink(q.tit, ['examenes', lista.id])),
-      h('header', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre))),
+      h('header.con-ayudas', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre)), ayudas.barra),
+      ayudas.panel,
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
-      h('section.statement', h('p', q.enunciado), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
+      h('section.statement', enunciadoEl, tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
       answerBlock,
       h('div.actions',
         prev ? h('a.btn.secondary', { href: enLista(prev) }, '← Anterior') : null,

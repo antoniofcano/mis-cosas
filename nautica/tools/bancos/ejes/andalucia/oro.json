@@ -1,0 +1,60 @@
+{
+ "descripcion": "Explicación de cada diferencia entre la salida del proceso y el banco vivo de Andalucía 2020–2026 (clave «id|campo»), erratas del banco vivo ya corregidas («erratasCorregidas») y errores del proceso que la prueba de oro destapó y ya se corrigieron («corregidos»). clase: «banco» = probable error del banco vivo (no se toca el banco: se resuelve en otra fase); «proceso» = error del proceso aún sin arreglar.",
+ "diferencias": {},
+ "erratasCorregidas": [
+  {
+   "id": "and-py-2022-c3-n20",
+   "campo": "opcion d",
+   "fecha": "2026-10-07",
+   "antes": "26° 35,7′ S, 179° 59,4′ W \u0012 \u0013",
+   "despues": "26° 35,7′ S, 179° 59,4′ W",
+   "motivo": "Caracteres de control al final de la opción d en el banco vivo.",
+   "evidencia": "2022-c3_py_navegacion_cuestionario.pdf (https://www.juntadeandalucia.es/…/2022_3C_PY_modulo_navegacion.pdf), pág. 6: «d) 26° 35,7′ S, 179° 59,4′ W» y nada más; la pág. 7 es la tabla para calcular la altura de la marea (imagen con rótulos) y pdftotext saca de ella «(», U+0012 y U+0013, que la extracción antigua pegó a la opción. Solo afecta al texto (la respuesta, c, coincide). PY: un solo modelo, sin hoja B con la que cruzar.",
+   "arreglo": "Se quitan los dos caracteres de control (U+0012 y U+0013) y los espacios que los precedían en data/ejes/andalucia/py/preguntas.json. La huella de la pregunta en tools/bancos/andalucia-huella.json pasa de 05fc60c695c5010a a d1cd1315a857e33b, y tools/bancos/migrar-andalucia.mjs aplica la errata (ERRATAS) antes de calcular la huella, así que repetir la migración da el banco corregido. No cambian ni la respuesta (c) ni el id: el progreso guardado sigue valiendo."
+  }
+ ],
+ "corregidos": [
+  {
+   "titulo": "Peine de columnas desplazado en la hoja óptica",
+   "afectadas": "40 preguntas: PY módulo genérico de la 1ª convocatoria de 2025 y de la 1ª de 2026, 20 cada una; 2 de ellas salían además como anuladas (g09 de 2025, g05 de 2026)",
+   "causa": "En esos escaneos los números impresos de las preguntas salen más intensos que las burbujas, y el ajuste del peine de 4×4 burbujas se corría una columna a la izquierda (sobre los números), con el paso de burbuja en el tope del intervalo de búsqueda: cada respuesta se leía una letra antes (b→a…) y la burbuja d no se miraba.",
+   "arreglo": "py/hoja_optica.py penaliza el hueco a la derecha de la burbuja d de cada bloque (antes de los números del bloque siguiente), que debe estar vacío. Con ello las 72 hojas de 2020–2026 coinciden al 100 % con el banco vivo."
+  },
+  {
+   "titulo": "Guion del número de pregunta dentro del enunciado",
+   "afectadas": "71 enunciados: PER 2ª/2021 (28: t09, t18–t34, t36–t41, q42–q45); PY 1ª/2021 navegación 1–10, 2ª/2021 genérico 1–20 y navegación 1–10, 3ª/2025 navegación 18–20",
+   "causa": "Los cuadernillos numeran «9.- Cual…»; la expresión del número solo consumía el punto y el enunciado empezaba por «- ».",
+   "arreglo": "REGLAS_ANDALUCIA.numero acepta «N.-» seguido de espacio."
+  },
+  {
+   "titulo": "Guiones de final de línea perdidos por pdftotext",
+   "afectadas": "3 preguntas: and-2024-c2-t07 («estriborbabor»), and-2021-c2-t10 («(babor estribor)») y and-2021-c1-q42 («Ct = 8º -» se perdía y la opción c quedaba pegada a la b: la pregunta salía con 2 opciones)",
+   "causa": "El modo normal de pdftotext «deshace» los guiones de final de línea (dehyphenation) y se come el guion. El modo -raw lo conserva pero desordena las tablas de mareas.",
+   "arreglo": "El adaptador lee el texto normal y repone los guiones que -raw tiene al final de línea (reponerGuiones): pegado a la palabra → «estribor-babor»; suelto → guion y salto de línea."
+  },
+  {
+   "titulo": "Rótulos de figura dentro de una opción",
+   "afectadas": "1 pregunta: and-2025-c3-t19 (opción b con «Blanco Azul» en medio)",
+   "causa": "La bandera de la figura es un dibujo vectorial con rótulos de texto que pdftotext intercala con las líneas de la opción.",
+   "arreglo": "py/etiquetas_figura.py localiza (PyMuPDF) las líneas cortas cuyo centro cae dentro de una imagen o de un dibujo relleno, y el adaptador las quita del texto de su página."
+  },
+  {
+   "titulo": "Sigla en mayúsculas tomada por encabezado de bloque",
+   "afectadas": "1 pregunta: and-py-2024-c2-g05 (la opción d perdía «SOLAS»)",
+   "causa": "Cualquier línea en mayúsculas abría un bloque de contexto (pensado para «MAREAS» y «LOXODRÓMICA»).",
+   "arreglo": "Lista cerrada de encabezados de bloque y de cabeceras de tabla (CONTEXTO en el adaptador)."
+  },
+  {
+   "titulo": "Tabla de mareas dentro del enunciado",
+   "afectadas": "1 pregunta: and-py-2021-c2-n20 («… Sc= 3.28m HORAS 1:48 7:48 14:03 20:19»)",
+   "causa": "En ese cuadernillo la columna de horas de la tabla sale entre el enunciado y las opciones.",
+   "arreglo": "separarTabla() pasa al contexto de la pregunta una cola «HORAS hh:mm …» del enunciado."
+  },
+  {
+   "titulo": "Error de tipos en la reparación de opciones",
+   "afectadas": "todas (la etapa extraer se detenía)",
+   "causa": "lib/cuestionario.mjs llamaba a LETRAS.filter con LETRAS = 'abcd' (una cadena).",
+   "arreglo": "[...LETRAS].filter (cambio de una línea en el núcleo común, comunicado al dueño)."
+  }
+ ]
+}

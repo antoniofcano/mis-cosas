@@ -1,0 +1,525 @@
+{
+ "eje": "andalucia",
+ "descripcion": "Correcciones oficiales publicadas por el Tribunal Único (notas informativas, acuerdos y textos de las páginas de cada convocatoria). Se mantiene a mano; cada entrada cita su fuente. Las letras son las del modelo/cuadernillo indicado.",
+ "correcciones": [
+  {
+   "conv": "and-2015-c1",
+   "modelo": "A",
+   "numero": 32,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2015.html",
+   "texto": "PER Examen A: la respuesta correcta de la nº 32 es la b)."
+  },
+  {
+   "conv": "and-2015-c1",
+   "modelo": "B",
+   "numero": 30,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2015.html",
+   "texto": "PER Examen B: la respuesta correcta de la nº 30 es la b)."
+  },
+  {
+   "conv": "and-2015-c2",
+   "modelo": "A",
+   "numero": 3,
+   "accion": "respuesta",
+   "letras": [
+    "a"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2015.html",
+   "texto": "PER A: la correcta de la nº 3 es la a)."
+  },
+  {
+   "conv": "and-2015-c2",
+   "modelo": "A",
+   "numero": 30,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2015.html",
+   "texto": "PER A: la nº 30 queda anulada."
+  },
+  {
+   "conv": "and-2015-c2",
+   "modelo": "B",
+   "numero": 2,
+   "accion": "respuesta",
+   "letras": [
+    "a"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2015.html",
+   "texto": "PER B: la correcta de la nº 2 es la a)."
+  },
+  {
+   "conv": "and-2015-c2",
+   "modelo": "B",
+   "numero": 32,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2015.html",
+   "texto": "PER B: la nº 32 queda anulada."
+  },
+  {
+   "conv": "and-2015-c3",
+   "modelo": "A",
+   "numero": 10,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2015.html",
+   "fecha": "2015-12-09",
+   "texto": "El Tribunal, reunido el 9-12-2015, anula la nº 10 del PER examen A."
+  },
+  {
+   "conv": "and-2015-c3",
+   "modelo": "B",
+   "numero": 7,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2015.html",
+   "fecha": "2015-12-09",
+   "texto": "El Tribunal, reunido el 9-12-2015, anula la nº 7 del PER examen B."
+  },
+  {
+   "conv": "and-py-2016-c1",
+   "modelo": "navegacion",
+   "numero": 18,
+   "accion": "respuesta",
+   "letras": [
+    "a"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2016.html",
+   "texto": "PY módulo de navegación: la correcta de la pregunta 18 es la a)."
+  },
+  {
+   "conv": "and-py-2016-c2",
+   "modelo": "generico",
+   "numero": 18,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2016.html",
+   "texto": "PY módulo genérico, pregunta 18 anulada."
+  },
+  {
+   "conv": "and-2016-c3",
+   "modelo": "A",
+   "numero": 13,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2016.html",
+   "texto": "PER Modelo A, pregunta 13, respuesta correcta c)."
+  },
+  {
+   "conv": "and-2016-c3",
+   "modelo": "B",
+   "numero": 15,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-terceraconvocatoria-2016.html",
+   "texto": "PER Modelo B, pregunta 15, respuesta correcta c)."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "A",
+   "numero": 39,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: se anula la pregunta 39 del PER modelo A."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "B",
+   "numero": 39,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: se anula la pregunta 39 del PER modelo B."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "A",
+   "numero": 11,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo A, pregunta 11: válidas a y b."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "B",
+   "numero": 12,
+   "accion": "aceptar",
+   "letras": [
+    "a",
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo B, pregunta 12: válidas a y b."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "A",
+   "numero": 13,
+   "accion": "aceptar",
+   "letras": [
+    "c",
+    "d"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo A, pregunta 13: válidas c y d."
+  },
+  {
+   "conv": "and-2018-c4",
+   "tit": "per",
+   "modelo": "B",
+   "numero": 14,
+   "accion": "aceptar",
+   "letras": [
+    "c",
+    "d"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/NOTA_INFORMATIVA.pdf",
+   "fecha": "2019-01-21",
+   "texto": "Nota informativa del presidente del Tribunal (Puerto Real, 21-01-2019), 4ª convocatoria 2018: PER modelo B, pregunta 14: válidas c y d."
+  },
+  {
+   "conv": "and-2021-c1",
+   "modelo": "A",
+   "numero": 6,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20210527_nota_informativa_pruebas_teoricas_convocatoria_1_2021.pdf",
+   "fecha": "2021-05-27",
+   "texto": "Nota informativa (27-05-2021): «Todas las respuestas de las preguntas señaladas se dan por CORRECTAS». PER A: preguntas 6 y 43; PER B: preguntas 5 y 45."
+  },
+  {
+   "conv": "and-2021-c1",
+   "modelo": "A",
+   "numero": 43,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20210527_nota_informativa_pruebas_teoricas_convocatoria_1_2021.pdf",
+   "fecha": "2021-05-27",
+   "texto": "Nota informativa (27-05-2021): «Todas las respuestas de las preguntas señaladas se dan por CORRECTAS». PER A: preguntas 6 y 43; PER B: preguntas 5 y 45."
+  },
+  {
+   "conv": "and-2021-c1",
+   "modelo": "B",
+   "numero": 5,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20210527_nota_informativa_pruebas_teoricas_convocatoria_1_2021.pdf",
+   "fecha": "2021-05-27",
+   "texto": "Nota informativa (27-05-2021): «Todas las respuestas de las preguntas señaladas se dan por CORRECTAS». PER A: preguntas 6 y 43; PER B: preguntas 5 y 45."
+  },
+  {
+   "conv": "and-2021-c1",
+   "modelo": "B",
+   "numero": 45,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20210527_nota_informativa_pruebas_teoricas_convocatoria_1_2021.pdf",
+   "fecha": "2021-05-27",
+   "texto": "Nota informativa (27-05-2021): «Todas las respuestas de las preguntas señaladas se dan por CORRECTAS». PER A: preguntas 6 y 43; PER B: preguntas 5 y 45."
+  },
+  {
+   "conv": "and-2021-c1",
+   "modelo": "A",
+   "numero": 23,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2021.html",
+   "texto": "Acuerdo del Tribunal (rectificación de error material): pregunta 23 del modelo A y 22 del modelo B, la respuesta correcta es la C."
+  },
+  {
+   "conv": "and-2021-c1",
+   "modelo": "B",
+   "numero": 22,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2021.html",
+   "texto": "Acuerdo del Tribunal (rectificación de error material): pregunta 23 del modelo A y 22 del modelo B, la respuesta correcta es la C."
+  },
+  {
+   "conv": "and-py-2021-c1",
+   "modelo": "navegacion",
+   "numero": 4,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2021.html",
+   "texto": "Acuerdo del Tribunal (rectificación de error material): Patrón de Yate, módulo de navegación, pregunta 4, la respuesta correcta es la B."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 17,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211122_nota_informativa_pruebas_teoricas_convocatoria_2_2021.pdf",
+   "fecha": "2021-11-22",
+   "texto": "Nota informativa (22-11-2021, exámenes del 20-11-2021): todas las respuestas correctas. PER A: preguntas 17 y 45; PER B: preguntas 14 y 42. (El texto de la página atribuye por error esta nota a los exámenes del 22-05-2021; el PDF firmado dice 20-11-2021.)"
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 45,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211122_nota_informativa_pruebas_teoricas_convocatoria_2_2021.pdf",
+   "fecha": "2021-11-22",
+   "texto": "Nota informativa (22-11-2021, exámenes del 20-11-2021): todas las respuestas correctas. PER A: preguntas 17 y 45; PER B: preguntas 14 y 42. (El texto de la página atribuye por error esta nota a los exámenes del 22-05-2021; el PDF firmado dice 20-11-2021.)"
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 14,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211122_nota_informativa_pruebas_teoricas_convocatoria_2_2021.pdf",
+   "fecha": "2021-11-22",
+   "texto": "Nota informativa (22-11-2021, exámenes del 20-11-2021): todas las respuestas correctas. PER A: preguntas 17 y 45; PER B: preguntas 14 y 42. (El texto de la página atribuye por error esta nota a los exámenes del 22-05-2021; el PDF firmado dice 20-11-2021.)"
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 42,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211122_nota_informativa_pruebas_teoricas_convocatoria_2_2021.pdf",
+   "fecha": "2021-11-22",
+   "texto": "Nota informativa (22-11-2021, exámenes del 20-11-2021): todas las respuestas correctas. PER A: preguntas 17 y 45; PER B: preguntas 14 y 42. (El texto de la página atribuye por error esta nota a los exámenes del 22-05-2021; el PDF firmado dice 20-11-2021.)"
+  },
+  {
+   "conv": "and-py-2021-c2",
+   "modelo": "navegacion",
+   "numero": 17,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211122_nota_informativa_pruebas_teoricas_convocatoria_2_2021.pdf",
+   "fecha": "2021-11-22",
+   "texto": "Nota informativa (22-11-2021): Patrón de Yate, módulo de navegación, pregunta 17: todas las respuestas correctas."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 5,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211125_nota_informativa_errores_en_preguntas_2F.pdf",
+   "fecha": "2021-11-25",
+   "texto": "Nota informativa (25-11-2021), PRIMERO: todas las respuestas correctas. PER A: pregunta 5; PER B: pregunta 6."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 6,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211125_nota_informativa_errores_en_preguntas_2F.pdf",
+   "fecha": "2021-11-25",
+   "texto": "Nota informativa (25-11-2021), PRIMERO: todas las respuestas correctas. PER A: pregunta 5; PER B: pregunta 6."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 44,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211125_nota_informativa_errores_en_preguntas_2F.pdf",
+   "fecha": "2021-11-25",
+   "texto": "Nota informativa (25-11-2021), SEGUNDO: se sustituye la respuesta en plantilla. PER A pregunta 44 y PER B pregunta 45: respuesta correcta b); la d) es incorrecta."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 45,
+   "accion": "respuesta",
+   "letras": [
+    "b"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20211125_nota_informativa_errores_en_preguntas_2F.pdf",
+   "fecha": "2021-11-25",
+   "texto": "Nota informativa (25-11-2021), SEGUNDO: se sustituye la respuesta en plantilla. PER A pregunta 44 y PER B pregunta 45: respuesta correcta b); la d) es incorrecta."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 9,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): todas las respuestas correctas. PER A: preguntas 9, 14 y 34; PER B: preguntas 9, 13 y 33."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 14,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): todas las respuestas correctas. PER A: preguntas 9, 14 y 34; PER B: preguntas 9, 13 y 33."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 34,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): todas las respuestas correctas. PER A: preguntas 9, 14 y 34; PER B: preguntas 9, 13 y 33."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 9,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): todas las respuestas correctas. PER A: preguntas 9, 14 y 34; PER B: preguntas 9, 13 y 33."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 13,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): todas las respuestas correctas. PER A: preguntas 9, 14 y 34; PER B: preguntas 9, 13 y 33."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 33,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): todas las respuestas correctas. PER A: preguntas 9, 14 y 34; PER B: preguntas 9, 13 y 33."
+  },
+  {
+   "conv": "and-py-2021-c2",
+   "modelo": "navegacion",
+   "numero": 12,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/export/drupaljda/20220104_nota_informativa_errores_en_preguntas_4F.pdf",
+   "fecha": "2022-01-04",
+   "texto": "Nota informativa (04-01-2022): Patrón de Yate, módulo de navegación, pregunta 12: todas las respuestas correctas."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "A",
+   "numero": 33,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2021.html",
+   "fecha": "2022-01-21",
+   "texto": "Nota informativa (21-01-2022, solo en el texto de la página): todas las respuestas correctas. PER A: pregunta 33; PER B: pregunta 36."
+  },
+  {
+   "conv": "and-2021-c2",
+   "modelo": "B",
+   "numero": 36,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-segundaconvocatoria-2021.html",
+   "fecha": "2022-01-21",
+   "texto": "Nota informativa (21-01-2022, solo en el texto de la página): todas las respuestas correctas. PER A: pregunta 33; PER B: pregunta 36."
+  },
+  {
+   "conv": "and-py-2022-c1",
+   "modelo": "navegacion",
+   "numero": 2,
+   "accion": "respuesta",
+   "letras": [
+    "d"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/examenes-primeraconvocatoria-2022.html",
+   "fecha": "2022-03-31",
+   "texto": "Nota informativa (31-03-2022): plantilla corregida del módulo de navegación, pregunta 2, respuesta correcta d). La plantilla publicada ya la recoge."
+  },
+  {
+   "conv": "and-2022-c2",
+   "modelo": "A",
+   "numero": 43,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/cuestionarios-segundaconvocatoria-2022.html",
+   "fecha": "2022-06-14",
+   "texto": "Nota informativa (14-06-2022): anulación, considerando cualquier respuesta como correcta. PER Modelo A nº 43; Modelo B nº 45. Las plantillas corregidas ya la recogen (sin marca)."
+  },
+  {
+   "conv": "and-2022-c2",
+   "modelo": "B",
+   "numero": 45,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/cuestionarios-segundaconvocatoria-2022.html",
+   "fecha": "2022-06-14",
+   "texto": "Nota informativa (14-06-2022): anulación, considerando cualquier respuesta como correcta. PER Modelo A nº 43; Modelo B nº 45. Las plantillas corregidas ya la recogen (sin marca)."
+  },
+  {
+   "conv": "and-py-2024-c1",
+   "modelo": "generico",
+   "numero": 20,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/sites/default/files/inline-files/2024/05/20240502_IAD_Anulacion.pdf",
+   "fecha": "2024-05-02",
+   "texto": "Acuerdo del Tribunal (02-05-2024): anulación de la pregunta 20 del módulo genérico; la plantilla dio d) por errata de transcripción, siendo la correcta b)."
+  },
+  {
+   "conv": "and-py-2024-c2",
+   "modelo": "navegacion",
+   "numero": 15,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/sites/default/files/inline-files/2024/08/2024_2_Tribunal_Acuerdo_Anulacion_Pregunta_PY.pdf",
+   "fecha": "2024-07-26",
+   "texto": "Acuerdo del Tribunal (26-07-2024): anulación de la pregunta 15 del módulo de navegación por errata en el enunciado («demora a Punta Carnero de 200º» en vez de 20º)."
+  },
+  {
+   "conv": "and-py-2025-c3",
+   "modelo": "navegacion",
+   "numero": 20,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/sites/default/files/inline-files/2025/11/2025_3_Nota_Informativ_Nautica.pdf",
+   "texto": "Nota informativa: errores en la formulación de la pregunta 20 del módulo de navegación: ANULAR."
+  },
+  {
+   "conv": "and-2025-c3",
+   "modelo": "A",
+   "numero": 11,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/sites/default/files/inline-files/2025/11/2025_3_Nota_Informativ_Nautica.pdf",
+   "texto": "Nota informativa: error al consignar la respuesta en la plantilla del PER; pregunta 11 modelo A y 12 modelo B: la opción c."
+  },
+  {
+   "conv": "and-2025-c3",
+   "modelo": "B",
+   "numero": 12,
+   "accion": "respuesta",
+   "letras": [
+    "c"
+   ],
+   "fuente": "https://www.juntadeandalucia.es/sites/default/files/inline-files/2025/11/2025_3_Nota_Informativ_Nautica.pdf",
+   "texto": "Nota informativa: error al consignar la respuesta en la plantilla del PER; pregunta 11 modelo A y 12 modelo B: la opción c."
+  },
+  {
+   "conv": "and-py-2026-c2",
+   "modelo": "navegacion",
+   "numero": 17,
+   "accion": "anular",
+   "fuente": "https://www.juntadeandalucia.es/sites/default/files/inline-files/2026/06/2026_2_Tribunal_IAD_Anulacion_Pregunta_PY_MN_17.pdf",
+   "fecha": "2026-06-29",
+   "texto": "Acuerdo del Tribunal (29-06-2026): anulación de oficio de la pregunta 17 del módulo de navegación por error material de edición."
+  }
+ ]
+}

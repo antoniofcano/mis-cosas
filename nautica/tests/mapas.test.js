@@ -54,7 +54,7 @@ test('trampaDePregunta: reconoce la trampa del mapa en la respuesta fallada', as
   const { trampaDePregunta } = await import('../src/course/mapas.js');
   const fs = await import('node:fs');
   const mapas = MAPAS.map((id) => JSON.parse(fs.readFileSync(new URL(`../data/mapas/${id}.json`, import.meta.url))));
-  const banco = JSON.parse(fs.readFileSync(new URL('../data/exams/andalucia-per-teoria.json', import.meta.url))).preguntas;
+  const banco = JSON.parse(fs.readFileSync(new URL('../data/ejes/andalucia/per/preguntas.json', import.meta.url))).preguntas;
   // Velero con el motor en marcha: quien contesta «Buque de vela» cae en la trampa vela/motor.
   const q = banco.find((x) => x.id === 'and-2022-c2-t25');
   const t = trampaDePregunta(mapas, 'per', q, 'a');

@@ -112,7 +112,7 @@ function specsReales(tipo) {
   const out = [];
   for (const c of ['per', 'py']) {
     for (const m of leeJson(`data/curso/${c}.json`).modulos) for (const l of m.lecciones) for (const p of l.pasos) if (p.tipo === 'ilustracion' && p.spec.tipo === tipo) out.push(p.spec);
-    for (const e of Object.values(leeJson(`data/exams/andalucia-${c}-teoria-explicaciones.json`))) for (const s of e.ilustraciones ?? []) if (s.tipo === tipo) out.push(s);
+    for (const e of Object.values(leeJson(`data/ejes/andalucia/${c}/explicaciones.json`))) for (const s of e.ilustraciones ?? []) if (s.tipo === tipo) out.push(s);
   }
   return out;
 }

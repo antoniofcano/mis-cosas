@@ -109,14 +109,13 @@ test('vocabulario: los términos básicos no se subrayan salvo que se pida', () 
 
 import { readFileSync } from 'node:fs';
 test('vocabulario publicado: ids únicos, definiciones breves y cada forma aparece en su banco', () => {
-  const lee = (f) => JSON.parse(readFileSync(new URL(`../data/exams/${f}`, import.meta.url)));
+  const lee = (f) => JSON.parse(readFileSync(new URL(`../data/${f}`, import.meta.url)));
   const textos = (qs) => qs.map((q) => `${q.enunciado} ${Object.values(q.opciones ?? {}).join(' ')}`);
-  const bancos = {
-    per: textos([...lee('andalucia-per-teoria.json').preguntas, ...lee('andalucia-per.json').preguntas]),
-    py: textos(lee('andalucia-py-teoria.json').preguntas),
-  };
+  // Los bancos de todos los ejes de cada titulación (teoría y carta).
+  const ejes = lee('ejes/index.json').ejes.map((e) => e.id);
+  const bancos = Object.fromEntries(['per', 'py'].map((tit) => [tit, textos(ejes.flatMap((e) => lee(`ejes/${e}/${tit}/preguntas.json`).preguntas))]));
   for (const tit of ['per', 'py']) {
-    const { terminos } = lee(`vocabulario-${tit}.json`);
+    const { terminos } = lee(`comun/vocabulario-${tit}.json`);
     assert.ok(terminos.length > 100, tit);
     const ids = new Set();
     for (const t of terminos) {

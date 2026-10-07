@@ -14,7 +14,7 @@ import { transicion } from './movimiento.js';
 import { icono } from './iconos.js';
 import { voice } from './voice.js';
 import { exerciseView } from './views/exercise.js';
-import { examsView } from './views/exams.js';
+import { preguntaView, listaView, legadoExamenesView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
 import { examenesView, practiceView, testView } from './views/theory.js';
 import { galleryView } from './views/gallery.js';
@@ -50,7 +50,8 @@ const TIT_ROUTES = {
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
-  examenes: (o) => (o.params.parts[1] ? examsView(o) : examenesView(o)),
+  // #/<tit>/examenes[/<lista>]; con un fichero (.json), dirección antigua de un banco
+  examenes: (o) => (!o.params.parts[1] ? examenesView(o) : /\.json$/.test(o.params.parts[1]) ? legadoExamenesView(o) : listaView(o)),
 };
 
 // Rutas comunes a todas las titulaciones
@@ -58,7 +59,8 @@ const ROUTES = {
   '': hoyView,
   bienvenida: bienvenidaView,
   ej: exerciseView,
-  examenes: examsView, // #/examenes/<banco>/<pregunta>
+  examenes: legadoExamenesView, // #/examenes/<fichero>[/<pregunta>]: direcciones antiguas
+  q: preguntaView, // #/q/<id>[?l=<lista>]: una pregunta real de examen (de cualquier eje)
   mesa: chartView,
   conceptos: theoryView,
   reglas: reglasView,
@@ -93,7 +95,7 @@ export function pestanaDe(parts) {
     if (b === 'examenes' || b === 'test') return 'examen';
     return 'biblioteca'; // biblioteca, laminas, carta
   }
-  if (a === 'ej' || a === 'examenes') return 'temario';
+  if (a === 'ej' || a === 'examenes' || a === 'q') return 'temario';
   if (a === 'ajustes') return null;
   return 'biblioteca'; // reglas, conceptos, mesa
 }

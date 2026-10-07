@@ -28,10 +28,10 @@ export function exerciseSummary({ exercise, seed, params, solution, inputs = {},
   return lines.join('\n');
 }
 
-/** Resumen de una pregunta de examen real. */
-export function examQuestionSummary(q, choice, computed) {
+/** Resumen de una pregunta de examen real (`o`: nombre del eje y sigla de la titulación). */
+export function examQuestionSummary(q, choice, computed, o = {}) {
   const lines = [
-    `PREGUNTA EXAMEN ${[q.id, q.comunidad, q.titulacion, q.convocatoria].filter(Boolean).join(' · ')}${q.numero ? ` · nº ${q.numero}` : ''}`,
+    `PREGUNTA EXAMEN ${[q.id, o.eje, o.titulacion, q.convocatoria].filter(Boolean).join(' · ')}${q.numero ? ` · nº ${q.numero}` : ''}`,
   ];
   if (q.enunciado_comun) lines.push(`ENUNCIADO COMÚN: ${q.enunciado_comun}`);
   lines.push(`ENUNCIADO: ${q.enunciado}`);
@@ -43,6 +43,6 @@ export function examQuestionSummary(q, choice, computed) {
     computed.steps.forEach((s, i) => lines.push(`PASO ${i + 1} ${s.title}: ${s.text}`));
   }
   if (q.notas) lines.push(`NOTAS: ${q.notas}`);
-  if (q.fuente_examen) lines.push(`FUENTE: ${q.fuente_examen}`);
+  if (q.fuentes?.examen) lines.push(`FUENTE: ${q.fuentes.examen}`);
   return lines.join('\n');
 }

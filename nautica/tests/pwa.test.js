@@ -13,7 +13,7 @@ test('sw-lista.js está al día (si falla: npm run precache)', () => {
 test('la lista guarda la app y los datos, y nada de tests, herramientas ni documentación', () => {
   const { app, datos } = listaPrecache();
   for (const imprescindible of ['index.html', 'manifest.webmanifest', 'src/ui/app.js', 'src/ui/pwa.js', 'styles/app.css', 'icons/icono-192.png']) assert.ok(app.includes(imprescindible), imprescindible);
-  for (const d of ['data/curso/per.json', 'data/curso/py.json', 'data/exams/andalucia-per-teoria.json', 'data/chart-105.json']) assert.ok(datos.includes(d), d);
+  for (const d of ['data/curso/per.json', 'data/curso/py.json', 'data/ejes/index.json', 'data/ejes/andalucia/eje.json', 'data/ejes/andalucia/per/preguntas.json', 'data/ejes/andalucia/py/preguntas.json', 'data/chart-105.json']) assert.ok(datos.includes(d), d);
   for (const p of [...app, ...datos]) {
     assert.ok(existsSync(join(RAIZ, p)), p);
     assert.doesNotMatch(p, /^(tests|tools|docs|node_modules)\/|\.md$/);

@@ -65,6 +65,35 @@ test('19. saveTestEnCurso guarda y con null lo borra', () => {
   assert.equal(createProgressStore(mem).testEnCurso(), null);
 });
 
+test('eje: un progreso de antes de los ejes es del eje por defecto (ajustes, tests y examen a medias)', async () => {
+  const { EJE_POR_DEFECTO } = await import('../src/bancos/registro.js');
+  const tc = { tit: 'per', tipo: 'real', conv: 'and-2023-c1', seed: null, respuestas: { 'and-2023-c1-t01': 'a' }, i: 3, consumidoMs: 6e5, guardado: 1 };
+  const antiguo = { version: 1, exercises: {}, exams: {}, settings: { level: 'PER', toleranceFactor: 1 }, tests: [{ tit: 'per', conv: 'and-2023-c2', tipo: 'real', aciertos: 40, total: 45 }], testEnCurso: tc };
+  const p = createProgressStore(memoria({ [KEY]: JSON.stringify(antiguo) }));
+  assert.equal(p.settings().eje, EJE_POR_DEFECTO);
+  assert.equal(p.tests()[0].eje, EJE_POR_DEFECTO);
+  assert.equal(p.tests()[0].conv, 'and-2023-c2');
+  assert.deepEqual(p.testEnCurso(), { ...tc, eje: EJE_POR_DEFECTO }); // sin ids: se rehace con la convocatoria o la semilla
+  // Una copia de seguridad antigua se importa igual; un eje ya elegido se respeta.
+  const q = createProgressStore(memoria());
+  q.import(JSON.stringify(antiguo));
+  assert.equal(q.settings().eje, EJE_POR_DEFECTO);
+  assert.equal(q.testEnCurso().eje, EJE_POR_DEFECTO);
+  const r = createProgressStore(memoria({ [KEY]: JSON.stringify({ ...antiguo, settings: { eje: 'otro' }, tests: [{ eje: 'otro', conv: 'x' }] }) }));
+  assert.equal(r.settings().eje, 'otro');
+  assert.equal(r.tests()[0].eje, 'otro');
+  // Las tarjetas guardadas entre las respuestas no se tocan.
+  const s = createProgressStore(memoria({ [KEY]: JSON.stringify({ ...antiguo, exams: { 'tarjeta:x': { caja: 2 } } }) }));
+  assert.deepEqual(s.get().exams['tarjeta:x'], { caja: 2 });
+});
+
+test('examen a medias: guarda las preguntas (ids) en su orden', () => {
+  const mem = memoria();
+  const p = createProgressStore(mem);
+  p.saveTestEnCurso({ tit: 'py', eje: 'andalucia', tipo: 'simulacro', conv: null, seed: 7, ids: ['b', 'a', 'c'], respuestas: {}, i: 0, consumidoMs: 0 });
+  assert.deepEqual(createProgressStore(mem).testEnCurso().ids, ['b', 'a', 'c']);
+});
+
 test('recordExam acepta choice null («No la sé») y diasConActividadDesde', () => {
   const p = createProgressStore(memoria());
   p.recordExam('x', { choice: null, ok: false });

@@ -40,9 +40,9 @@ export function bloquesEnOrden(estructura) {
   return [...estructura.bloques].sort((a, b) => posEstudio(estructura, a.ut) - posEstudio(estructura, b.ut));
 }
 
-// Patrón de Yate (RD 875/2014, anexo II, ap. 4): 40 preguntas en dos módulos. En Andalucía cada módulo es un
-// cuadernillo de 20 preguntas (genérico: 1–10 Seguridad, 11–20 Meteorología; navegación: 1–10 Teoría,
-// 11–20 Carta: 11–17 carta, 18–19 mareas, 20 loxodrómica).
+// Patrón de Yate (RD 875/2014, anexo II, ap. 4): 40 preguntas en dos módulos de 20 (genérico: Seguridad y
+// Meteorología; navegación: Teoría y Carta). Cómo numera y reparte cada tribunal sus cuadernillos va en los datos
+// de su eje (data/ejes/<eje>/eje.json y el campo `orden` de cada pregunta).
 export const PY = {
   id: 'PY',
   titulo: 'Patrón de Yate',
@@ -63,8 +63,8 @@ export const PY = {
 };
 
 /**
- * Titulaciones disponibles. Cada una: su estructura de examen, el nivel de los ejercicios de carta,
- * la UT de carta y sus ficheros de datos. Añadir otra (PNB, Capitán…) = una entrada más aquí.
+ * Titulaciones disponibles. Cada una: su estructura de examen, el nivel de los ejercicios de carta y la UT de carta.
+ * Sus preguntas están en el banco de cada eje (src/bancos). Añadir otra (PNB, Capitán…) = una entrada más aquí.
  */
 export const TITULACIONES = {
   per: {
@@ -72,14 +72,11 @@ export const TITULACIONES = {
     resumen: '45 preguntas · 90 minutos · apto con 32 aciertos',
     reglas: ['45 preguntas tipo test, 4 opciones, 90 minutos.', 'Apto con al menos 32 aciertos (máximo 13 fallos).',
       'Además, como máximo: 5 errores en Reglamento (RIPA), 2 en Balizamiento y 2 en Carta de navegación.'],
-    datos: { teoria: 'andalucia-per-teoria.json', carta: 'andalucia-per.json', explicaciones: 'andalucia-per-teoria-explicaciones.json' },
   },
   py: {
     id: 'py', sigla: 'PY', nombre: 'Patrón de Yate', icon: '🛥️', estructura: PY, nivel: 'PY', cartaUt: 4,
     resumen: '40 preguntas · 2 módulos (45 + 75 min) · apto con 28 aciertos',
     reglas: ['40 preguntas tipo test en dos módulos: genérico (Seguridad y Meteorología, 45 min) y navegación (Teoría y Carta, 75 min).',
-      'Apto con al menos 28 aciertos (máximo 12 fallos).', 'Además, como máximo: 5 errores en Teoría de navegación y 3 en Carta.',
-      'Carta: 7 ejercicios sobre la carta del Estrecho, 2 de mareas (con anuario y tabla) y 1 de loxodrómica.'],
-    datos: { teoria: 'andalucia-py-teoria.json', explicaciones: 'andalucia-py-teoria-explicaciones.json' },
+      'Apto con al menos 28 aciertos (máximo 12 fallos).', 'Además, como máximo: 5 errores en Teoría de navegación y 3 en Carta.'],
   },
 };

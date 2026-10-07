@@ -8,7 +8,7 @@ import { trampaDePregunta } from '../course/mapas.js';
 /** Hueco que se rellena solo cuando cargan los mapas (vacío si el fallo no es una trampa de ningún mapa). */
 export function enlaceTrampa(q, elegida) {
   const el = h('div.mapa-trampa', { hidden: true });
-  const tit = String(q.titulacion ?? '').toLowerCase();
+  const tit = q.tit ?? '';
   if (!tit || elegida == null || elegida === q.correcta) return el;
   cargarMapas().then((mapas) => {
     const t = trampaDePregunta(mapas, tit, q, elegida);

@@ -6,8 +6,8 @@ import { PY, TITULACIONES, totalPreguntas } from '../src/theory/blocks.js';
 import { convocatorias, buildReal, buildSimulacro, grade } from '../src/theory/engine.js';
 import { createRng } from '../src/math/rng.js';
 
-const dir = new URL('../data/exams/', import.meta.url);
-const bank = JSON.parse(readFileSync(new URL('andalucia-py-teoria.json', dir))).preguntas;
+const dir = new URL('../data/ejes/andalucia/', import.meta.url);
+const bank = JSON.parse(readFileSync(new URL('py/preguntas.json', dir))).preguntas;
 
 test('estructura PY: 40 preguntas, 28 aciertos, límites en navegación y carta', () => {
   assert.equal(totalPreguntas(PY), 40);
@@ -58,7 +58,7 @@ test('simulacro PY: 10 preguntas de cada bloque', () => {
 test('el profe tiene explicación para las 720 preguntas del PY, con ilustraciones dibujables', async () => {
   const { narrateTheory } = await import('../src/teacher/theory.js');
   const { validSpec } = await import('../src/illustrations/index.js');
-  const expl = JSON.parse(readFileSync(new URL('andalucia-py-teoria-explicaciones.json', dir)));
+  const expl = JSON.parse(readFileSync(new URL('py/explicaciones.json', dir)));
   for (const q of bank) {
     const e = expl[q.id];
     assert.ok(e?.explicacion && e.clave, `sin explicación: ${q.id}`);

@@ -8,7 +8,7 @@ import { estadoLeccion } from '../../course/engine.js';
 import { estadoTema, parteTema, TANDA } from '../../course/plan.js';
 import { bloque, bloquesEnOrden } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
-import { TITULACIONES, tlink, volver } from '../titulacion.js';
+import { TITULACIONES, tlink, volver, reglasExamen } from '../titulacion.js';
 import { calcularPlan } from '../cierre.js';
 import { cargarMapas } from './mapas.js';
 import { mapasDeClases } from '../../course/mapas.js';
@@ -53,7 +53,7 @@ export function temarioView({ progress, tit }) {
         h('p', `${cuenta(b.n, 'pregunta')} en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
         h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
         e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))),
-      h('details', h('summary', 'Reglas del examen'), h('ul', T.reglas.map((r) => h('li', r)))),
+      h('details', h('summary', 'Reglas del examen'), h('ul', reglasExamen(T, d.banco.eje).map((r) => h('li', r)))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
   return { el, summary: () => summaryText };

@@ -5,10 +5,10 @@ import { narrateSteps } from '../src/teacher/narrate.js';
 import { EXERCISES } from '../src/exercises/registry.js';
 import { createRng } from '../src/math/rng.js';
 import { createKit } from '../src/exams/kit.js';
-import { SOLUCIONES as solutions } from '../src/exams/solutions/index.js';
-import { readFileSync } from 'node:fs';
+import { SOLUCIONES as solutions } from '../src/bancos/soluciones.js';
+import { todasLasPreguntas } from '../tools/bancos/leer.mjs';
 
-const bancos = ['andalucia-per.json', 'andalucia-py-teoria.json'].flatMap((f) => JSON.parse(readFileSync(new URL(`../data/exams/${f}`, import.meta.url))).preguntas);
+const bancos = todasLasPreguntas();
 const preguntaDe = new Map(bancos.map((q) => [q.id, q]));
 import { ctx, chart } from './helpers.js';
 

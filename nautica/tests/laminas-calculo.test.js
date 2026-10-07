@@ -188,8 +188,8 @@ import { abatimientoSigned } from '../src/nautical/kinematics.js';
 import { chartData } from './helpers.js';
 
 const leeJSON = (ruta) => JSON.parse(readFileSync(new URL(ruta, import.meta.url)));
-const PY_EXPL = leeJSON('../data/exams/andalucia-py-teoria-explicaciones.json');
-const PY_PREG = Object.fromEntries(leeJSON('../data/exams/andalucia-py-teoria.json').preguntas.map((q) => [q.id, q]));
+const PY_EXPL = leeJSON('../data/ejes/andalucia/py/explicaciones.json');
+const PY_PREG = Object.fromEntries(leeJSON('../data/ejes/andalucia/py/preguntas.json').preguntas.map((q) => [q.id, q]));
 
 // Geometría plana en millas (la zona del Estrecho cabe de sobra: 1′ de latitud = 1 milla).
 const FARO = Object.fromEntries(chartData.points.map((p) => [p.id, p]));

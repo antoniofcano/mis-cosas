@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PER, totalPreguntas } from '../src/theory/blocks.js';
-import { buildSimulacro, buildReal, grade, convocatorias } from '../src/theory/engine.js';
+import { buildSimulacro, buildReal, grade, convocatorias, testDesdeIds } from '../src/theory/engine.js';
 import { createRng } from '../src/math/rng.js';
 
 // Banco sintético: 3 convocatorias completas
@@ -10,7 +10,7 @@ for (const conv of ['and-2024-c1', 'and-2024-c2', 'and-2025-c1']) {
   let n = 1;
   for (const b of PER.bloques) {
     for (let i = 0; i < b.n; i++, n++) {
-      banco.push({ id: `${conv}-${b.ut === 11 ? 'q' : 't'}${String(n).padStart(2, '0')}`, ut: b.ut, numero: n, convocatoria: conv, fecha: conv, correcta: 'a', opciones: { a: 'x', b: 'y' } });
+      banco.push({ id: `${conv}-${b.ut === 11 ? 'q' : 't'}${String(n).padStart(2, '0')}`, conv, ut: b.ut, numero: n, convocatoria: conv, fecha: conv, correcta: 'a', opciones: { a: 'x', b: 'y' } });
     }
   }
 }
@@ -53,4 +53,24 @@ test('corrección con reglas oficiales', () => {
   assert.equal(grade(PER, r, rv).aciertos, 44);
   const anul = { ...r, preguntas: r.preguntas.map((q, i) => (i === 0 ? { ...q, anulada: true, correcta: null } : q)) };
   assert.equal(grade(PER, anul, rv).aciertos, 45);
+});
+
+test('la convocatoria de una pregunta es su campo conv (no se deduce del id)', () => {
+  const rara = { ...banco[0], id: 'otro-eje-per-2024-03-01', conv: 'and-2024-c1' };
+  const conRara = [...banco.filter((q) => q.id !== banco[0].id), rara];
+  assert.ok(buildReal(conRara, 'and-2024-c1').preguntas.includes(rara));
+  assert.equal(convocatorias(PER, conRara).find((c) => c.key === 'and-2024-c1').n, 45);
+});
+
+test('examen a medias: se rehace con sus preguntas guardadas, en su orden; si falta alguna, null', () => {
+  const porId = new Map(banco.map((q) => [q.id, q]));
+  const s = buildSimulacro(PER, banco, createRng(5));
+  const ids = s.preguntas.map((q) => q.id);
+  const t = testDesdeIds('simulacro', ids, porId);
+  assert.deepEqual(t.preguntas.map((q) => q.id), ids);
+  assert.equal(t.titulo, s.titulo);
+  const r = buildReal(banco, 'and-2024-c2');
+  assert.equal(testDesdeIds('real', r.preguntas.map((q) => q.id), porId).titulo, r.titulo);
+  assert.equal(testDesdeIds('simulacro', [...ids, 'no-existe'], porId), null);
+  assert.equal(testDesdeIds('simulacro', undefined, porId), null);
 });

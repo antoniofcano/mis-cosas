@@ -6,7 +6,8 @@
 import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { bloque } from '../../theory/blocks.js';
-import { loadPodcast, loadPodcastLinea, loadTheoryBank, loadExamBank } from '../../store/datasets.js';
+import { loadPodcast, loadPodcastLinea } from '../../store/datasets.js';
+import { pregunta } from '../../bancos/index.js';
 import {
   poner, alternar, saltar, ir, cambiarVelocidad, velocidad, suscribir, radio, fmt, estadoEpisodio, ultimoEpisodio,
   enVistaEpisodio, pararEnPreguntas, setPararEnPreguntas, marcarRespondida,
@@ -215,7 +216,7 @@ function episodioView(el, tit, pod, id, de) {
   loadPodcastLinea(ep.id).then(async (linea) => {
     tramos = linea.tramos;
     const ids = tramos.filter((x) => x.p).map((x) => x.p);
-    const banco = ids.length ? await bancoDe(tit) : new Map();
+    const banco = ids.length ? await bancoDe(ids) : new Map();
     filas = tramos.map((x) => {
       if (x.x) {
         return h('li.guion-linea', { class: x.q === 'E' ? 'elena' : 'andres', onclick: () => (suena() ? ir(x.t) : poner(tit, ep, { desde: x.t })) },
@@ -270,11 +271,10 @@ function episodioView(el, tit, pod, id, de) {
   return `VISTA episodio ${ep.n} «${ep.titulo}» (${minutos(ep.duracion)}) · ${suena() ? 'sonando' : 'parado'}\nSINOPSIS: ${ep.sinopsis ?? ''}\nCLASES: ${(ep.lecciones ?? []).join(', ')}`;
 }
 
-/** Preguntas reales por id (teoría y, en el PER, carta), para el minijuego. */
-async function bancoDe(tit) {
-  const { preguntas } = await loadTheoryBank(tit);
-  const extra = tit === 'per' ? (await loadExamBank('andalucia-per.json').catch(() => ({ preguntas: [] }))).preguntas : [];
-  return new Map([...preguntas, ...extra].map((q) => [q.id, q]));
+/** Las preguntas reales que cita el guion (por su id, sean del eje que sean), para el minijuego. */
+async function bancoDe(ids) {
+  const r = await Promise.all(ids.map((id) => pregunta(id).catch(() => null)));
+  return new Map(r.filter(Boolean).map(({ q }) => [q.id, q]));
 }
 
 /** Episodios que tratan una clase (para enlazar desde la clase y desde su tema). */

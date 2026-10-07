@@ -1,12 +1,11 @@
 import { h, copyText, setChildren } from '../dom.js';
-import { loadExamIndex, loadExamBank } from '../../store/datasets.js';
+import { pregunta, cargarBanco, resolverLegado, SOLUCIONES as solutions } from '../../bancos/index.js';
 import { examQuestionSummary } from '../../ai/summary.js';
-import { link } from '../router.js';
-import { tlink, volver, currentTit } from '../titulacion.js';
+import { link, navigate } from '../router.js';
+import { TITULACIONES, tlink, volver, currentTit, currentEje } from '../titulacion.js';
 import { createKit } from '../../exams/kit.js';
 import { chooseOption } from '../../exams/options.js';
 import { quantity } from '../../analysis/quantities.js';
-import { SOLUCIONES as solutions } from '../../exams/solutions/index.js';
 import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
@@ -32,67 +31,83 @@ function runSolution(q, chart) {
   }
 }
 
-/** #/examenes  y  #/examenes/<banco>  y  #/examenes/<banco>/<idPregunta> */
-export function examsView({ ctx, progress, params: route }) {
+/** Lleva (sin dejar rastro en el historial) a otra dirección y la pinta. */
+function redirige(parts, query) {
+  navigate(parts, query, { replace: true });
+  dispatchEvent(new HashChangeEvent('hashchange'));
+}
+
+/**
+ * Direcciones antiguas, con el fichero del banco: #/examenes/<fichero>[/<id>] y #/<tit>/examenes/<fichero>[/<id>].
+ * La pregunta va a #/q/<id>; el banco, a su lista (#/<tit>/examenes/<lista>). Las resuelve el eje (su `legado`).
+ */
+export function legadoExamenesView({ progress, params: route, tit }) {
   const el = h('div.exams', h('p.muted', 'Cargando preguntas…'));
-  let summaryText = 'VISTA exámenes (cargando)';
-  const [, bankFile, qid] = route.parts;
+  const [, fichero, qid] = route.parts;
+  resolverLegado(fichero).then(async (l) => {
+    if (qid) {
+      // La lista del banco antiguo solo se indica si no es ya la de la pregunta.
+      const r = await pregunta(qid);
+      redirige(['q', qid], l?.lista && r && r.banco.listaDe(r.q).id !== l.lista ? { l: l.lista } : undefined);
+    } else if (l) redirige([l.tit, 'examenes', l.lista]);
+    else redirige([tit ?? currentTit(progress), 'examenes']);
+  }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`)));
+  return { el, summary: () => 'VISTA exámenes (dirección antigua, redirigiendo)' };
+}
 
-  (async () => {
-    try {
-      const index = await loadExamIndex();
-      if (!bankFile) return renderIndex(index);
-      const bank = await loadExamBank(bankFile);
-      if (qid) return renderQuestion(bank, bank.preguntas.find((q) => q.id === qid));
-      return renderBank(bank);
-    } catch (e) {
-      setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`));
-    }
-  })();
-
-  function renderIndex(index) {
-    summaryText = `VISTA exámenes · bancos: ${index.map((b) => `${b.file} (${cuenta(b.count, 'pregunta')})`).join(', ')}`;
-    setChildren(el, 
-      volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
-      h('h1', 'Preguntas reales de examen'),
-      h('p', 'Preguntas de carta de convocatorias oficiales con la respuesta de la plantilla oficial. Fuente: publicaciones de la administración convocante (enlace en cada pregunta).'),
-      h('div.cards',
-        h('a.card', { href: tlink(currentTit(progress), ['examenes']) }, h('h3', '📄 Exámenes completos y simulacros'), h('p', 'Las 45 preguntas (teoría + carta) de cada convocatoria, cronometradas y corregidas con las reglas oficiales; y simulacros por temas.')),
-        index.map((b) => h('a.card', { href: link(['examenes', b.file]) },
-        h('h3', b.title), h('p', sinJerga(b.description ?? '')), h('div.meta', h('span.stat', `${cuenta(b.count, 'pregunta')}`))))),
-    );
-  }
-
-  function renderBank(bank) {
+/** #/<tit>/examenes/<lista> — una lista de preguntas reales del eje (p. ej. las de carta), por convocatorias. */
+export function listaView({ progress, params: route, tit }) {
+  const el = h('div.exams', h('p.muted', 'Cargando preguntas…'));
+  let summaryText = 'VISTA lista de preguntas reales (cargando)';
+  const id = route.parts[1];
+  cargarBanco(currentEje(progress), tit).then((banco) => {
+    const lista = banco.lista(id);
+    if (!lista) { setChildren(el, volver('Exámenes', tlink(tit, ['examenes'])), h('p', 'Esta lista de preguntas no existe.')); return; }
     const groups = new Map();
-    for (const q of bank.preguntas) {
+    for (const q of lista.preguntas) {
       if (!groups.has(q.convocatoria)) groups.set(q.convocatoria, []);
       groups.get(q.convocatoria).push(q);
     }
     const answered = (q) => progress.get().exams[q.id];
-    summaryText = `VISTA banco ${bank.meta.title} · ${cuenta(bank.preguntas.length, 'pregunta')}\n` +
-      bank.preguntas.map((q) => `${q.id}: ${(answered(q)?.ok ? '✓' : answered(q) ? '✗' : '·')} ${q.enunciado.slice(0, 80)}`).join('\n');
-    setChildren(el, 
-      volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
-      h('h1', bank.meta.title),
-      bank.meta.description ? h('p', sinJerga(bank.meta.description)) : null,
+    const enlace = (q) => link(['q', q.id], banco.listaDe(q).id === lista.id ? undefined : { l: lista.id });
+    summaryText = `VISTA banco ${lista.titulo} · ${cuenta(lista.preguntas.length, 'pregunta')}\n` +
+      lista.preguntas.map((q) => `${q.id}: ${(answered(q)?.ok ? '✓' : answered(q) ? '✗' : '·')} ${q.enunciado.slice(0, 80)}`).join('\n');
+    setChildren(el,
+      volver('Ejercicios de carta', tlink(tit, ['carta'])),
+      h('h1', lista.titulo),
+      lista.descripcion ? h('p', sinJerga(lista.descripcion)) : null,
       [...groups].map(([conv, qs]) => h('section',
         h('h2', conv),
         h('ol.qlist', qs.map((q) => {
           const a = answered(q);
-          return h('li', h('a', { href: link(['examenes', bankFile, q.id]) },
+          return h('li', h('a', { href: enlace(q) },
             h('span', { class: a ? (a.ok ? 'ok' : 'warn') : 'muted' }, a ? (a.ok ? '✓ ' : '✗ ') : '· '),
             q.numero ? `P${q.numero}: ` : '', q.enunciado.slice(0, 110), q.enunciado.length > 110 ? '…' : ''));
         })),
       )),
     );
-  }
+  }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`)));
+  return { el, summary: () => summaryText };
+}
 
-  function renderQuestion(bank, q) {
-    if (!q) { setChildren(el, h('p', 'Pregunta no encontrada.')); return; }
-    const idx = bank.preguntas.indexOf(q);
-    const prev = bank.preguntas[idx - 1];
-    const next = bank.preguntas[idx + 1];
+/** #/q/<id>[?l=<lista>] — una pregunta real de examen, de cualquier eje: resolverla y verla resuelta en la carta. */
+export function preguntaView({ ctx, progress, params: route }) {
+  const el = h('div.exams', h('p.muted', 'Cargando preguntas…'));
+  let summaryText = 'VISTA exámenes (cargando)';
+  const qid = route.parts[1];
+
+  pregunta(qid).then((r) => {
+    if (!r) { setChildren(el, h('p', 'Pregunta no encontrada.')); return; }
+    const lista = (route.query.l && r.banco.lista(route.query.l)?.preguntas.includes(r.q) ? r.banco.lista(route.query.l) : null) ?? r.banco.listaDe(r.q);
+    renderQuestion(r.banco, lista, r.q);
+  }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`)));
+
+  function renderQuestion(banco, lista, q) {
+    const idx = lista.preguntas.indexOf(q);
+    const prev = lista.preguntas[idx - 1];
+    const next = lista.preguntas[idx + 1];
+    const enLista = (x) => link(['q', x.id], banco.listaDe(x).id === lista.id ? undefined : { l: lista.id });
+    const eje = banco.eje;
     let choice = progress.get().exams[q.id]?.choice ?? null;
     const run = runSolution(q, ctx.chart);
     const result = h('div.diagnosis', { 'aria-live': 'polite' });
@@ -101,7 +116,7 @@ export function examsView({ ctx, progress, params: route }) {
     const refresh = () => {
       summaryText = examQuestionSummary(q, choice, run && {
         steps: run.k.steps, values: run.values.map((v) => quantity(v.kind).format(v.value)), choice: run.pick.choice,
-      });
+      }, { eje: eje.nombre, titulacion: TITULACIONES[q.tit]?.sigla });
       aiPre.textContent = summaryText;
     };
 
@@ -134,8 +149,8 @@ export function examsView({ ctx, progress, params: route }) {
       );
     }
 
-    // Los bancos de teoría del PY no llevan titulación en cada pregunta: se toma del título del banco («PY Andalucía · …»).
-    const titulacion = q.titulacion ?? bank.meta.title.split(' · ')[0];
+    // Titulación y eje de la pregunta (el eje, como distintivo bajo el título).
+    const titulacion = TITULACIONES[q.tit]?.sigla ?? '';
 
     // Bloque de respuesta: se traslada a la mesa de cartas cuando se abre.
     let ws = null;
@@ -163,21 +178,21 @@ export function examsView({ ctx, progress, params: route }) {
       : null;
 
     setChildren(el, 
-      volver(bank.meta.title, link(['examenes', bankFile])),
-      h('header', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), q.comunidad ? h('div.badges', h('span.badge', q.comunidad)) : null),
+      volver(lista.titulo, tlink(q.tit, ['examenes', lista.id])),
+      h('header', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre))),
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
       h('section.statement', h('p', q.enunciado), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
       answerBlock,
       h('div.actions',
-        prev ? h('a.btn.secondary', { href: link(['examenes', bankFile, prev.id]) }, '← Anterior') : null,
-        next ? h('a.btn.secondary', { href: link(['examenes', bankFile, next.id]) }, 'Siguiente →') : null,
+        prev ? h('a.btn.secondary', { href: enLista(prev) }, '← Anterior') : null,
+        next ? h('a.btn.secondary', { href: enLista(next) }, 'Siguiente →') : null,
       ),
       solution,
-      h('p.muted.small', 'Fuente: ', q.fuente_examen ? h('a', { href: q.fuente_examen, target: '_blank', rel: 'noopener' }, 'examen') : '—',
-        q.fuente_plantilla ? [' · ', h('a', { href: q.fuente_plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
+      h('p.muted.small', 'Fuente: ', q.fuentes?.examen ? h('a', { href: q.fuentes.examen, target: '_blank', rel: 'noopener' }, 'examen') : '—',
+        q.fuentes?.plantilla ? [' · ', h('a', { href: q.fuentes.plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
         ''),
       q.notas ? h('details', h('summary', 'Notas sobre la fuente'), h('p.small', q.notas)) : null,
-      h('p.pie-aviso', avisoError(`Pregunta ${q.id} (${q.convocatoria ?? bank.meta.title})`, q.enunciado.slice(0, 120))),
+      h('p.pie-aviso', avisoError(`Pregunta ${q.id} (${q.convocatoria ?? lista.titulo})`, q.enunciado.slice(0, 120))),
       h('details.ai-context#ai-context', h('summary', 'Para asistentes de IA'),
         h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
     );

@@ -79,7 +79,7 @@ test('ejercicios: «Toca» tras láminas con partes y «Empareja» con los térm
 
 test('«Empareja»: cada clase declara 3 o 4 términos que existen y no se delatan entre sí', async () => {
   const { readFileSync } = await import('node:fs');
-  const voc = (t) => JSON.parse(readFileSync(new URL(`../data/exams/vocabulario-${t}.json`, import.meta.url), 'utf8')).terminos;
+  const voc = (t) => JSON.parse(readFileSync(new URL(`../data/comun/vocabulario-${t}.json`, import.meta.url), 'utf8')).terminos;
   const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   for (const tit of ['per', 'py']) {
     const porId = new Map((tit === 'py' ? [...voc('per'), ...voc('py')] : voc('per')).map((x) => [x.id, x]));

@@ -3,8 +3,13 @@
 // La comparación real necesita la caché local (.cache/bancos/andalucia/salida/, que no se sube): sin ella, se salta.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { huella as huellaMigracion } from '../tools/bancos/migrar-andalucia.mjs';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { RAIZ } from '../tools/bancos/lib/comun.mjs';
+import { ERRATAS, huella as huellaMigracion } from '../tools/bancos/migrar-andalucia.mjs';
 import { CRITICOS, clasificar, comparar, ejecutarOro, hayCache, huella, informeOro, normalizar } from '../tools/bancos/ejes/andalucia/oro.mjs';
+
+const leer = (ruta) => JSON.parse(readFileSync(join(RAIZ, ruta), 'utf8'));
 
 const q = (id, extra = {}) => ({
   id, enunciado: 'La Demora es:', opciones: { a: 'uno', b: 'dos', c: 'tres', d: 'cuatro' },
@@ -55,4 +60,24 @@ test('oro: Andalucía 2020–2026 desde la caché de extracción (se salta sin c
     }
   }
   assert.match(informeOro(r), /Prueba de oro/);
+});
+
+test('erratas del banco vivo: corregidas, con su huella al día y reproducibles por la migración', () => {
+  const oro = leer('tools/bancos/ejes/andalucia/oro.json');
+  const huellas = leer('tools/bancos/andalucia-huella.json');
+  const vivo = new Map(['per', 'py'].flatMap((t) => leer(`data/ejes/andalucia/${t}/preguntas.json`).preguntas.map((p) => [p.id, p])));
+  // Ningún carácter de control en lo que ve el alumno.
+  for (const p of vivo.values()) assert.doesNotMatch(`${p.enunciado}${Object.values(p.opciones).join('')}`, /\p{Cc}/u, `${p.id}: carácter de control`);
+  assert.ok(oro.erratasCorregidas.length >= 1);
+  for (const e of oro.erratasCorregidas) {
+    const p = vivo.get(e.id);
+    const opcion = e.campo.startsWith('opcion ') ? e.campo.slice(7) : null;
+    assert.equal(opcion ? p.opciones[opcion] : p[e.campo], e.despues, `${e.id}: ${e.campo}`);
+    assert.equal(huellas[e.id], huella(p), `${e.id}: huella sin actualizar`);
+    assert.equal(typeof ERRATAS[e.id], 'function', `${e.id}: falta en ERRATAS de migrar-andalucia.mjs`);
+    const antigua = structuredClone(p);
+    if (opcion) antigua.opciones[opcion] = e.antes; else antigua[e.campo] = e.antes;
+    assert.notEqual(huella(antigua), huellas[e.id]);
+    assert.equal(huella(ERRATAS[e.id](antigua)), huellas[e.id], `${e.id}: la migración no reproduce la errata corregida`);
+  }
 });

@@ -124,7 +124,7 @@ const celda = (x) => String(x ?? '—').replace(/\|/g, '\\|').replace(/\n/g, ' '
 export function informeOro({ res, explicaciones }, omr = {}) {
   const L = [];
   L.push('# Prueba de oro · Andalucía 2020–2026', '');
-  L.push(`Generado por \`node tools/bancos/ejes/andalucia/oro.mjs\` el ${hoy()}, tras \`npm run bancos -- andalucia\` desde los PDF oficiales (cuestionarios de texto y plantillas escaneadas leídas con el adaptador \`hoja-optica\`). Compara, id a id, la salida del proceso (\`.cache/bancos/andalucia/salida/<tit>/preguntas.json\`) con el banco vivo (\`data/ejes/andalucia/<tit>/preguntas.json\`). El banco vivo NO se modifica.`, '');
+  L.push(`Generado por \`node tools/bancos/ejes/andalucia/oro.mjs\` el ${hoy()}, tras \`npm run bancos -- andalucia\` desde los PDF oficiales (cuestionarios de texto y plantillas escaneadas leídas con el adaptador \`hoja-optica\`). Compara, id a id, la salida del proceso (\`.cache/bancos/andalucia/salida/<tit>/preguntas.json\`) con el banco vivo (\`data/ejes/andalucia/<tit>/preguntas.json\`). La prueba no modifica el banco vivo: las erratas que destapa se corrigen aparte y se listan en «Erratas del banco vivo corregidas».`, '');
   L.push('Normalización de texto antes de comparar: espacios (incluidos los de anchura especial), comillas y apóstrofos tipográficos, y el espacio delante de un signo de puntuación («es :» = «es:»). La huella (`tools/bancos/andalucia-huella.json`) se compara sin normalizar.', '');
   L.push('## Resultado', '');
   L.push('| Campo | PER iguales | PY iguales |', '|---|---|---|');
@@ -143,6 +143,14 @@ export function informeOro({ res, explicaciones }, omr = {}) {
   else {
     L.push('| id | Campo | Banco vivo | Proceso | Clase | Evidencia |', '|---|---|---|---|---|---|');
     for (const d of todas) L.push(`| ${d.id} | ${d.campo} | ${celda(JSON.stringify(d.vivo))} | ${celda(JSON.stringify(d.salida))} | ${d.clase === 'banco' ? 'probable error del banco vivo' : d.clase} | ${celda(d.evidencia ?? d.motivo ?? '')} |`);
+    L.push('');
+  }
+  const erratas = explicaciones.erratasCorregidas ?? [];
+  if (erratas.length) {
+    L.push('## Erratas del banco vivo corregidas', '');
+    L.push('Diferencias que la prueba destapó como errores del banco vivo y que ya se han corregido en `data/ejes/andalucia/` (con su huella en `tools/bancos/andalucia-huella.json` y la errata en `ERRATAS` de `tools/bancos/migrar-andalucia.mjs`). Tras corregirlas, la comparación de arriba ya no las cuenta.', '');
+    L.push('| id | Campo | Antes | Después | Fecha | Evidencia | Arreglo |', '|---|---|---|---|---|---|---|');
+    for (const e of erratas) L.push(`| ${e.id} | ${e.campo} | ${celda(JSON.stringify(e.antes))} | ${celda(JSON.stringify(e.despues))} | ${e.fecha} | ${celda(e.evidencia)} | ${celda(e.arreglo)} |`);
     L.push('');
   }
   if (omr.per || omr.py) {

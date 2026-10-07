@@ -1,12 +1,18 @@
 {
- "descripcion": "Explicación de cada diferencia entre la salida del proceso y el banco vivo de Andalucía 2020–2026 (clave «id|campo»), y errores del proceso que la prueba de oro destapó y ya se corrigieron. clase: «banco» = probable error del banco vivo (no se toca el banco: se resuelve en otra fase); «proceso» = error del proceso aún sin arreglar.",
- "diferencias": {
-  "and-py-2022-c3-n20|opcion d": {
-   "clase": "banco",
+ "descripcion": "Explicación de cada diferencia entre la salida del proceso y el banco vivo de Andalucía 2020–2026 (clave «id|campo»), erratas del banco vivo ya corregidas («erratasCorregidas») y errores del proceso que la prueba de oro destapó y ya se corrigieron («corregidos»). clase: «banco» = probable error del banco vivo (no se toca el banco: se resuelve en otra fase); «proceso» = error del proceso aún sin arreglar.",
+ "diferencias": {},
+ "erratasCorregidas": [
+  {
+   "id": "and-py-2022-c3-n20",
+   "campo": "opcion d",
+   "fecha": "2026-10-07",
+   "antes": "26° 35,7′ S, 179° 59,4′ W \u0012 \u0013",
+   "despues": "26° 35,7′ S, 179° 59,4′ W",
    "motivo": "Caracteres de control al final de la opción d en el banco vivo.",
-   "evidencia": "2022-c3_py_navegacion_cuestionario.pdf (https://www.juntadeandalucia.es/…/2022_3C_PY_modulo_navegacion.pdf), pág. 6: «d) 26° 35,7′ S, 179° 59,4′ W» y nada más; la pág. 7 es la tabla para calcular la altura de la marea (imagen con rótulos) y pdftotext saca de ella «(», U+0012 y U+0013, que la extracción antigua pegó a la opción. Solo afecta al texto (la respuesta, a, coincide). PY: un solo modelo, sin hoja B con la que cruzar."
+   "evidencia": "2022-c3_py_navegacion_cuestionario.pdf (https://www.juntadeandalucia.es/…/2022_3C_PY_modulo_navegacion.pdf), pág. 6: «d) 26° 35,7′ S, 179° 59,4′ W» y nada más; la pág. 7 es la tabla para calcular la altura de la marea (imagen con rótulos) y pdftotext saca de ella «(», U+0012 y U+0013, que la extracción antigua pegó a la opción. Solo afecta al texto (la respuesta, c, coincide). PY: un solo modelo, sin hoja B con la que cruzar.",
+   "arreglo": "Se quitan los dos caracteres de control (U+0012 y U+0013) y los espacios que los precedían en data/ejes/andalucia/py/preguntas.json. La huella de la pregunta en tools/bancos/andalucia-huella.json pasa de 05fc60c695c5010a a d1cd1315a857e33b, y tools/bancos/migrar-andalucia.mjs aplica la errata (ERRATAS) antes de calcular la huella, así que repetir la migración da el banco corregido. No cambian ni la respuesta (c) ni el id: el progreso guardado sigue valiendo."
   }
- },
+ ],
  "corregidos": [
   {
    "titulo": "Peine de columnas desplazado en la hoja óptica",

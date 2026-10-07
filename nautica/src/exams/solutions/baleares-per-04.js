@@ -1,12 +1,9 @@
 // Soluciones programadas de carta del PER de Baleares (lote 04). Ver baleares-per.js para el formato.
-// Resumen del lote: 109 preguntas, todas del PER. Resueltas: 78. En DISCREPANCIAS: 31, por motivo:
-//   - 17 usan un elemento que no está en la carta de la app (isobáticas y sondas, torres, cerros, naufragios,
-//     marcas cardinales, áreas de refugio, el espigón de Piedra Redonda, el río El Liam);
-//   - 9 resueltas a la oficial pero con opciones que el comprobador no lee (hora sin separador «1428», minutos
-//     «52',1», signo «(-)»);
-//   - 1 con respuesta no numérica (nombres de faros), resuelta a la oficial;
-//   - 4 que no llegan a la oficial por la plantilla o el enunciado.
-// Las 31 están también en `documentadas` (export con nombre al final), con tipo y motivo.
+// Resumen del lote: 109 preguntas, todas del PER. Resueltas: 85. En `documentadas` (y en DISCREPANCIAS): 24:
+//   - sin-calculo: 20 (17 usan un elemento que no está en la carta de la app —isobáticas y sondas, torres,
+//     cerros, naufragios, marcas cardinales, áreas de refugio, el espigón de Piedra Redonda, el río El Liam—, 1 cuya
+//     respuesta son nombres de faros y 2 resueltas a la oficial que el lector de opciones aún no lee: «HRB=0927.»);
+//   - discrepancia: 4 en las que el cálculo con la carta lleva a otra opción que la oficial.
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -810,142 +807,161 @@ export default {
       return [{ kind: 'clock', value: k.eta(hrb(2, 43), dist, 12) }];
     },
   },
+  'bal-per-2023-12-e-42': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 06,8 N', '5 57,9 W', 'Situación 11:30');
+      // Vamos hacia el SE costeando: Punta de Gracia (tierra al N) queda por babor.
+      const rv = k.tangent(s, 'punta-gracia', 2, 'babor');
+      k.note('Corrección total', 'Se pide una hora: la dm y el desvío no intervienen.');
+      const op = k.oposicion('punta-alcazar', 'punta-paloma');
+      const p = k.corteRumbo(s, rv, 'punta-paloma', op, 'Oposición Paloma–Alcázar');
+      return [{ kind: 'clock', value: k.eta(hrb(11, 30), k.distanceBetween(s, p), 13) }];
+    },
+  },
+  'bal-per-2023-12-c-44': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 20:00');
+      const { rv, dist } = k.rhumb(s, 'tanger-espigon');
+      const ct = k.ct({ ct: -6 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(20, 0), dist, 7) }];
+    },
+  },
+  'bal-per-2024-07-df-44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Salida');
+      const ct = k.ct({ carta: L105, anyo: 2012, desvio: 10 });
+      const rv = k.rv(210, ct);
+      return latlon(k.run(s, rv, k.distFor(6, 100), 'Situación 1 h 40 min después'));
+    },
+  },
+  'bal-per-2024-12-ce-43': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 16:00');
+      const ct = k.ct({ dm: -2, desvio: 9 });
+      const rv = k.rv(232, ct);
+      return latlon(k.run(s, rv, k.distFor(8, 90), 'Situación 17:30'));
+    },
+  },
+  'bal-per-2025-04-d-43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 12:45');
+      const { rv, dist } = k.rhumb(s, 'tanger-espigon');
+      const ct = k.ct({ ct: -6 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(12, 45), dist, 7) }];
+    },
+  },
+  'bal-per-2025-04-c-45': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // La enfilación mide 078,6° en la carta: Ct = −11,4°, y la opción más próxima es 10° (−).
+      const dv = k.enfilacion('cabo-espartel', 'punta-malabata', 90);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 90) }];
+    },
+  },
+  'bal-per-2025-12-a-44': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: -2, desvio: -5 });
+      const d1 = k.dv(126, ct, 'punta-malabata');
+      const d2 = k.dv(215, ct, 'cabo-espartel');
+      return latlon(k.fix2('punta-malabata', d1, 'cabo-espartel', d2, 'Situación 09:12'));
+    },
+  },
 };
 
 /* DISCREPANCIAS
  *
- * — Elementos que no están en la carta de la app —
- * 'bal-per-2023-09-bf-45' (elemento): la HRB es la del corte del rumbo con la isobática de 200 m, que la carta de la
- *   app no tiene. El Ra sí sale (de 6 M al S del espigón de Barbate a Punta Malabata, Ct = −4°), pero solo con él no se
- *   distingue entre las opciones.
- * 'bal-per-2023-09-c-45' (elemento): enfilación Cabo Trafalgar–Torre de Meca; la Torre de Meca no está en la carta.
- * 'bal-per-2023-12-e-44' (elemento): la situación sale de la isobática de 100 m al NW del banco de Majuán (ni la
+ * — Elementos que no están en la carta, o respuesta que no es un valor (sin cálculo) —
+ * 'bal-per-2023-09-bf-45' (sin cálculo): la HRB es la del corte del rumbo con la isobática de 200 m, que la carta de
+ *   la app no tiene. El Ra sí sale (de 6 M al S del espigón de Barbate a Punta Malabata, Ct = −4°), pero solo con él
+ *   no se distingue entre las opciones.
+ * 'bal-per-2023-09-c-45' (sin cálculo): enfilación Cabo Trafalgar–Torre de Meca; la Torre de Meca no está en la
+ *   carta.
+ * 'bal-per-2023-12-e-44' (sin cálculo): la situación sale de la isobática de 100 m al NW del banco de Majuán (ni la
  *   isobática ni el banco están en la carta).
- * 'bal-per-2023-12-a-45' (elemento): área de refugio de peces, banco de Lajas de Conil y marca cardinal E de Barbate:
- *   nada de eso está en la carta.
- * 'bal-per-2023-12-e-45' (elemento): enfilación de los cerros Gitano y Vacas y sonda de 200 m: no están en la carta.
- * 'bal-per-2024-07-a-44' (elemento): igual que 'bal-per-2023-09-bf-45' (isobática de 200 m). Además, las opciones
+ * 'bal-per-2023-12-a-45' (sin cálculo): área de refugio de peces, banco de Lajas de Conil y marca cardinal E de
+ *   Barbate: nada de eso está en la carta.
+ * 'bal-per-2023-12-e-45' (sin cálculo): enfilación de los cerros Gitano y Vacas y sonda de 200 m: no están en la
+ *   carta.
+ * 'bal-per-2024-07-a-44' (sin cálculo): igual que 'bal-per-2023-09-bf-45' (isobática de 200 m). Además, las opciones
  *   escriben la hora sin separador («HRB= 1428»).
- * 'bal-per-2024-07-c-45' (elemento): la situación de partida es el corte de la oposición Paloma–Malabata con la
+ * 'bal-per-2024-07-c-45' (sin cálculo): la situación de partida es el corte de la oposición Paloma–Malabata con la
  *   isobática de 100 m al N de los bancos del Fénix, que no están en la carta.
- * 'bal-per-2024-09-a-42' (elemento): se pide el paso por el veril de 200 m, que la carta no tiene.
- * 'bal-per-2024-09-d-42' (elemento): oposición del faro de Isla de Tarifa con la desembocadura del río El Liam, que no
- *   está en la carta.
- * 'bal-per-2024-12-df-42' (elemento): la situación de partida es la oposición Trafalgar–Espartel donde la sonda marca
- *   100 m: la carta no tiene isobáticas.
- * 'bal-per-2024-12-b-44' (elemento): faro del espigón de Piedra Redonda y sonda de 500 m: no están en la carta.
- * 'bal-per-2025-07-c-42' (elemento): igual que 'bal-per-2023-12-a-45' (área de refugio de peces, Lajas de Conil,
+ * 'bal-per-2024-09-a-42' (sin cálculo): se pide el paso por el veril de 200 m, que la carta no tiene.
+ * 'bal-per-2024-09-d-42' (sin cálculo): oposición del faro de Isla de Tarifa con la desembocadura del río El Liam,
+ *   que no está en la carta.
+ * 'bal-per-2024-12-df-42' (sin cálculo): la situación de partida es la oposición Trafalgar–Espartel donde la sonda
+ *   marca 100 m: la carta no tiene isobáticas.
+ * 'bal-per-2024-12-b-44' (sin cálculo): faro del espigón de Piedra Redonda y sonda de 500 m: no están en la carta.
+ * 'bal-per-2025-07-c-42' (sin cálculo): igual que 'bal-per-2023-12-a-45' (área de refugio de peces, Lajas de Conil,
  *   marca cardinal E de Barbate y dique exterior de Cabo Roche): no están en la carta.
- * 'bal-per-2025-07-a-43' (elemento): naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata: no están
- *   en la carta.
- * 'bal-per-2025-07-b-43' (elemento): sonda de 500 m en la enfilación Carnero–Europa, espigón de Piedra Redonda e
+ * 'bal-per-2025-07-a-43' (sin cálculo): naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata: no
+ *   están en la carta.
+ * 'bal-per-2025-07-b-43' (sin cálculo): sonda de 500 m en la enfilación Carnero–Europa, espigón de Piedra Redonda e
  *   isobática de 50 m de la Ensenada de Ceuta: no están en la carta.
- * 'bal-per-2025-07-d-43' (elemento): isobática de 30 m del banco de Trafalgar: no está en la carta.
- * 'bal-per-2025-07-d-44' (elemento): la Ct solo sale de la enfilación Isla de Tarifa–monte Gitano, y el monte Gitano no
- *   está en la carta (el enunciado no da dm ni desvío).
- * 'bal-per-2025-09-d-42' (elemento): igual que 'bal-per-2023-12-e-45' (cerros Gitano y Vacas, sonda de 200 m).
+ * 'bal-per-2025-07-d-43' (sin cálculo): isobática de 30 m del banco de Trafalgar: no está en la carta.
+ * 'bal-per-2025-07-d-44' (sin cálculo): la Ct solo sale de la enfilación Isla de Tarifa–monte Gitano, y el monte
+ *   Gitano no está en la carta (el enunciado no da dm ni desvío).
+ * 'bal-per-2025-09-d-42' (sin cálculo): igual que 'bal-per-2023-12-e-45' (cerros Gitano y Vacas, sonda de 200 m).
+ * 'bal-per-2024-09-a-43' (sin cálculo): la respuesta no es un valor sino un par de faros: las opciones son nombres de
+ *   faros. Dos faros en demoras opuestas (326° y 146°) y a 6,4 M cada uno están a 12,8 M uno de otro en la línea
+ *   146°/326°: Punta Carnero → Punta Almina mide en la carta 146,6° y 12,8 M, que es la oficial (d).
  *
- * — Respuesta que el comprobador no puede leer —
- * 'bal-per-2024-09-a-43' (respuesta no numérica): las opciones son nombres de faros. Dos faros en demoras opuestas
- *   (326° y 146°) y a 6,4 M cada uno están a 12,8 M uno de otro en la línea 146°/326°: Punta Carnero → Punta Almina
- *   mide en la carta 146,6° y 12,8 M, que es la oficial (d). No hay tipo de valor para devolverlo.
- * 'bal-per-2023-12-e-42' (formato): sale HRB 12:42 (oficial b, 12:43), pero las opciones escriben la hora sin
- *   separador («HRB=1243») y el comprobador no las lee. Código:
- *     const s = k.pos('36 06,8 N', '5 57,9 W', 'Situación 11:30');
- *     const rv = k.tangent(s, 'punta-gracia', 2, 'babor');
- *     const op = k.oposicion('punta-alcazar', 'punta-paloma');
- *     const p = k.corteRumbo(s, rv, 'punta-paloma', op, 'Oposición Paloma–Alcázar');
- *     return [{ kind: 'clock', value: k.eta(hrb(11, 30), k.distanceBetween(s, p), 13) }];
- * 'bal-per-2023-12-c-44' (formato): sale Ra 147° y HRB 22:18, la oficial (a), pero las opciones escriben la hora sin
- *   separador («HRB= 2218»). Código:
- *     const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 20:00');
- *     const { rv, dist } = k.rhumb(s, 'tanger-espigon');
- *     const ct = k.ct({ ct: -6 });
- *     return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(20, 0), dist, 7) }];
- * 'bal-per-2024-07-df-44' (formato): sale 35° 52,1′ N 005° 57,6′ W, la oficial (a), pero las opciones escriben los
- *   minutos como «52',1» y el comprobador no las lee. Código:
- *     const s = k.pos('36 00,0 N', '5 50,0 W', 'Salida');
- *     const ct = k.ct({ carta: L105, anyo: 2012, desvio: 10 });
- *     return latlon(k.run(s, k.rv(210, ct), k.distFor(6, 100), 'Situación 1 h 40 min después'));
- * 'bal-per-2024-12-ce-43' (formato): sale 35° 53,8′ N 006° 12,7′ W, la oficial (a), con el mismo formato «53',9». Código:
- *     const s = k.pos('36 00,0 N', '6 00,0 W', 'Situación 16:00');
- *     const ct = k.ct({ dm: -2, desvio: 9 });
- *     return latlon(k.run(s, k.rv(232, ct), k.distFor(8, 90), 'Situación 17:30'));
- * 'bal-per-2025-04-ae-43' (formato): sale HRB 09:28 (oficial b, 09:27), pero las opciones escriben la hora sin
- *   separador («HRB=0927»). Código:
- *     const s = k.P('ceuta-bocana');
- *     const { rv, dist } = k.rhumb(s, 'algeciras-espigon');
- *     const v = dist / (70 / 60);
- *     const p = k.corteRumbo(s, rv, 'punta-carnero', 315, 'Al SE de Punta Carnero');
- *     const { dist: d2 } = k.rhumb(p, 'tarifa-espigon');
- *     return [{ kind: 'clock', value: k.eta(hrb(8, 0), k.distanceBetween(s, p) + d2, v) }];
- * 'bal-per-2025-04-c-45' (formato): la enfilación Espartel → Malabata mide 078,6° en la carta: Ct = 078,6° − 090° =
- *   −11,4°, la más próxima es la oficial (c, 10° (−)); pero el comprobador no lee el signo «(-)» y toma las cuatro
- *   opciones como positivas. Código:
- *     const dv = k.enfilacion('cabo-espartel', 'punta-malabata', 90);
- *     return [{ kind: 'signed', value: k.ctFrom(dv, 90) }];
- * 'bal-per-2025-04-d-43' (formato): es 'bal-per-2023-12-c-44' a las 12:45: sale Ra 147° y HRB 15:03, la oficial (a),
- *   pero las opciones escriben la hora como «15.03h» y el comprobador no las lee (y el Ra solo empata a con c).
- * 'bal-per-2025-09-d-45' (formato): sale Ra 174° (175° en las opciones a y d) y HRB 21:34 (oficial a, 21:33), pero las
- *   opciones escriben la hora sin separador («HRB= 2133»). Código:
- *     const s = k.fromMark('punta-europa', 180, 2, 'Situación 20:00');
- *     const { rv, dist } = k.rhumb(s, 'ceuta-bocana');
- *     const ct = k.ct({ carta: L105, anyo: 2025, desvio: -2 });
- *     return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(20, 0), dist, 7) }];
- * 'bal-per-2025-12-a-44' (formato): sale 35° 52,4′ N 005° 52,2′ W, exactamente la oficial (c), pero las opciones
- *   escriben los minutos como «52',4». Código:
- *     const ct = k.ct({ dm: -2, desvio: -5 });
- *     const d1 = k.dv(126, ct, 'punta-malabata');
- *     const d2 = k.dv(215, ct, 'cabo-espartel');
- *     return latlon(k.fix2('punta-malabata', d1, 'cabo-espartel', d2, 'Situación 09:12'));
+ * — El lector de opciones no lee la oficial (resueltas a la oficial, fuera hasta que el lector las lea) —
+ * 'bal-per-2025-04-ae-43' (lector): sale HRB 09:28 (oficial b, 09:27), pero el lector de opciones no lee la hora
+ *   seguida de punto («HRB=0927.»): ninguna opción da una puntuación finita. La solución está escrita (ceuta-bocana →
+ *   espigón de Algeciras en 70 min, corte con la demora 315° de Punta Carnero y de ahí al espigón de Tarifa) y entra
+ *   en cuanto el lector acepte ese punto final.
+ * 'bal-per-2025-09-d-45' (lector): sale Ra 174° y HRB 21:34, la oficial (a: Ra 175°, HRB 21:33), pero el lector de
+ *   opciones no lee la hora seguida de punto («HRB= 2133.»). La solución está escrita (2 M al S de Punta Europa → luz
+ *   verde de Ceuta, dm 2025 y desvío −2°) y entra en cuanto el lector acepte ese punto final.
  *
- * — Plantilla o enunciado —
- * 'bal-per-2024-12-ce-45' (plantilla): tomando la salida en 005° 58,4′ W (el «E» del enunciado es errata), Rv = 315,8°
- *   y 23,4 M → HRB 01:25 del día siguiente, como la oficial (c); pero con Ct = −9° − 3,5° = −12,5° el Ra sale
- *   328°. La oficial (Ra 303°) solo sale sumando la Ct con el signo cambiado (315,8° − 12,5°).
- * 'bal-per-2025-04-ae-44' (plantilla): es el mismo enunciado que 'bal-per-2024-07-be-43' (Pangea): Rv = 148,4°,
+ * — El cálculo con la carta lleva a otra opción que la oficial —
+ * 'bal-per-2024-12-ce-45' (discrepancia): tomando la salida en 005° 58,4′ W (el «E» del enunciado es errata), Rv =
+ *   315,8° y 23,4 M → HRB 01:25 del día siguiente, como la oficial (c); pero con Ct = −9° − 3,5° = −12,5° el Ra sale
+ *   328°. La oficial (Ra 303°) solo sale sumando la Ct con el signo cambiado (315,8° − 12,5°). Con el cálculo de la
+ *   carta la opción más próxima es la b.
+ * 'bal-per-2025-04-ae-44' (discrepancia): es el mismo enunciado que 'bal-per-2024-07-be-43' (Pangea): Rv = 148,4°,
  *   Gracia en Dv 106,4° y Alcázar en Dv 136,4° → 9,7 M a Cabo Trafalgar, que aquí cae en la opción c (9,8 M); la
  *   oficial es la d (10,3 M), y en 2024-07 la oficial era 10,5 M: la plantilla no es coherente entre convocatorias.
- * 'bal-per-2025-12-d-43' (plantilla): Ct = 6,5° − 2,5° = +4° → Rv 151°, Gracia en Dv 109° y Malabata en Dv 166°:
+ * 'bal-per-2025-12-d-43' (discrepancia): Ct = 6,5° − 2,5° = +4° → Rv 151°, Gracia en Dv 109° y Malabata en Dv 166°:
  *   10,9 M a Cabo Trafalgar (opción a, 10,8 M); la oficial es la c (9,2 M). Probando otras bandas y signos de la Ct
  *   salen 8,4, 8,3, 12,6… nunca 9,2: no hay una lectura del enunciado que lleve a la oficial.
- * 'bal-per-2025-12-b-45' (plantilla): los arcos de 5 M de Almina y 11 M de Carnero se cortan en 35° 53,9′ N
- *   005° 23,0′ W (en el mar, al W de Ceuta) y en 35° 58,6′ N 005° 14,2′ W. Con Rv = 264° − 4° = 260° y Alcázar por el
+ * 'bal-per-2025-12-b-45' (discrepancia): los arcos de 5 M de Almina y 11 M de Carnero se cortan en 35° 53,9′ N 005°
+ *   23,0′ W (en el mar, al W de Ceuta) y en 35° 58,6′ N 005° 14,2′ W. Con Rv = 264° − 4° = 260° y Alcázar por el
  *   través de babor (Dv 170°) salen 9,0 M → 1 h 48 min desde el primero o 3 h 22 min desde el segundo; la oficial es
- *   2 h 24 min (b), que no sale con ninguno.
+ *   2 h 24 min (b), que no sale con ninguno. La opción más próxima a lo calculado es la a (2 h 18 min).
  */
 
-// Preguntas del lote que no quedan en export default (el detalle y el código, en DISCREPANCIAS).
+// Preguntas del lote que no quedan en export default (el detalle, en DISCREPANCIAS).
 export const documentadas = {
-  'bal-per-2023-09-bf-45': { tipo: 'discrepancia', texto: "la HRB es la del corte del rumbo con la isobática de 200 m, que la carta de la app no tiene. El Ra sí sale (de 6 M al S del espigón de Barbate a Punta Malabata, Ct = −4°), pero solo con él no se distingue entre las opciones." },
-  'bal-per-2023-09-c-45': { tipo: 'discrepancia', texto: "enfilación Cabo Trafalgar–Torre de Meca; la Torre de Meca no está en la carta." },
-  'bal-per-2023-12-e-44': { tipo: 'discrepancia', texto: "la situación sale de la isobática de 100 m al NW del banco de Majuán (ni la isobática ni el banco están en la carta)." },
-  'bal-per-2023-12-a-45': { tipo: 'discrepancia', texto: "área de refugio de peces, banco de Lajas de Conil y marca cardinal E de Barbate: nada de eso está en la carta." },
-  'bal-per-2023-12-e-45': { tipo: 'discrepancia', texto: "enfilación de los cerros Gitano y Vacas y sonda de 200 m: no están en la carta." },
-  'bal-per-2024-07-a-44': { tipo: 'discrepancia', texto: "igual que 'bal-per-2023-09-bf-45' (isobática de 200 m). Además, las opciones escriben la hora sin separador («HRB= 1428»)." },
-  'bal-per-2024-07-c-45': { tipo: 'discrepancia', texto: "la situación de partida es el corte de la oposición Paloma–Malabata con la isobática de 100 m al N de los bancos del Fénix, que no están en la carta." },
-  'bal-per-2024-09-a-42': { tipo: 'discrepancia', texto: "se pide el paso por el veril de 200 m, que la carta no tiene." },
-  'bal-per-2024-09-d-42': { tipo: 'discrepancia', texto: "oposición del faro de Isla de Tarifa con la desembocadura del río El Liam, que no está en la carta." },
-  'bal-per-2024-12-df-42': { tipo: 'discrepancia', texto: "la situación de partida es la oposición Trafalgar–Espartel donde la sonda marca 100 m: la carta no tiene isobáticas." },
-  'bal-per-2024-12-b-44': { tipo: 'discrepancia', texto: "faro del espigón de Piedra Redonda y sonda de 500 m: no están en la carta." },
-  'bal-per-2025-07-c-42': { tipo: 'discrepancia', texto: "igual que 'bal-per-2023-12-a-45' (área de refugio de peces, Lajas de Conil, marca cardinal E de Barbate y dique exterior de Cabo Roche): no están en la carta." },
-  'bal-per-2025-07-a-43': { tipo: 'discrepancia', texto: "naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata: no están en la carta." },
-  'bal-per-2025-07-b-43': { tipo: 'discrepancia', texto: "sonda de 500 m en la enfilación Carnero–Europa, espigón de Piedra Redonda e isobática de 50 m de la Ensenada de Ceuta: no están en la carta." },
-  'bal-per-2025-07-d-43': { tipo: 'discrepancia', texto: "isobática de 30 m del banco de Trafalgar: no está en la carta." },
-  'bal-per-2025-07-d-44': { tipo: 'discrepancia', texto: "la Ct solo sale de la enfilación Isla de Tarifa–monte Gitano, y el monte Gitano no está en la carta (el enunciado no da dm ni desvío)." },
-  'bal-per-2025-09-d-42': { tipo: 'discrepancia', texto: "igual que 'bal-per-2023-12-e-45' (cerros Gitano y Vacas, sonda de 200 m)." },
-  'bal-per-2024-09-a-43': { tipo: 'sin-calculo', texto: "las opciones son nombres de faros. Dos faros en demoras opuestas (326° y 146°) y a 6,4 M cada uno están a 12,8 M uno de otro en la línea 146°/326°: Punta Carnero → Punta Almina mide en la carta 146,6° y 12,8 M, que es la oficial (d). No hay tipo de valor para devolverlo." },
-  'bal-per-2023-12-e-42': { tipo: 'discrepancia', texto: "sale HRB 12:42 (oficial b, 12:43), pero las opciones escriben la hora sin separador («HRB=1243») y el comprobador no las lee." },
-  'bal-per-2023-12-c-44': { tipo: 'discrepancia', texto: "sale Ra 147° y HRB 22:18, la oficial (a), pero las opciones escriben la hora sin separador («HRB= 2218»)." },
-  'bal-per-2024-07-df-44': { tipo: 'discrepancia', texto: "sale 35° 52,1′ N 005° 57,6′ W, la oficial (a), pero las opciones escriben los minutos como «52',1» y el comprobador no las lee." },
-  'bal-per-2024-12-ce-43': { tipo: 'discrepancia', texto: "sale 35° 53,8′ N 006° 12,7′ W, la oficial (a), con el mismo formato «53',9»." },
-  'bal-per-2025-04-ae-43': { tipo: 'discrepancia', texto: "sale HRB 09:28 (oficial b, 09:27), pero las opciones escriben la hora sin separador («HRB=0927»)." },
-  'bal-per-2025-04-c-45': { tipo: 'discrepancia', texto: "la enfilación Espartel → Malabata mide 078,6° en la carta: Ct = 078,6° − 090° = −11,4°, la más próxima es la oficial (c, 10° (−)); pero el comprobador no lee el signo «(-)» y toma las cuatro opciones como positivas." },
-  'bal-per-2025-04-d-43': { tipo: 'discrepancia', texto: "es 'bal-per-2023-12-c-44' a las 12:45: sale Ra 147° y HRB 15:03, la oficial (a), pero las opciones escriben la hora como «15.03h» y el comprobador no las lee (y el Ra solo empata a con c)." },
-  'bal-per-2025-09-d-45': { tipo: 'discrepancia', texto: "sale Ra 174° (175° en las opciones a y d) y HRB 21:34 (oficial a, 21:33), pero las opciones escriben la hora sin separador («HRB= 2133»)." },
-  'bal-per-2025-12-a-44': { tipo: 'discrepancia', texto: "sale 35° 52,4′ N 005° 52,2′ W, exactamente la oficial (c), pero las opciones escriben los minutos como «52',4»." },
-  'bal-per-2024-12-ce-45': { tipo: 'discrepancia', texto: "tomando la salida en 005° 58,4′ W (el «E» del enunciado es errata), Rv = 315,8° y 23,4 M → HRB 01:25 del día siguiente, como la oficial (c); pero con Ct = −9° − 3,5° = −12,5° el Ra sale 328°. La oficial (Ra 303°) solo sale sumando la Ct con el signo cambiado (315,8° − 12,5°)." },
-  'bal-per-2025-04-ae-44': { tipo: 'discrepancia', texto: "es el mismo enunciado que 'bal-per-2024-07-be-43' (Pangea): Rv = 148,4°, Gracia en Dv 106,4° y Alcázar en Dv 136,4° → 9,7 M a Cabo Trafalgar, que aquí cae en la opción c (9,8 M); la oficial es la d (10,3 M), y en 2024-07 la oficial era 10,5 M: la plantilla no es coherente entre convocatorias." },
+  'bal-per-2023-09-bf-45': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la HRB es la del corte del rumbo con la isobática de 200 m, que la carta de la app no tiene. El Ra sí sale (de 6 M al S del espigón de Barbate a Punta Malabata, Ct = −4°), pero solo con él no se distingue entre las opciones." },
+  'bal-per-2023-09-c-45': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: enfilación Cabo Trafalgar–Torre de Meca; la Torre de Meca no está en la carta." },
+  'bal-per-2023-12-e-44': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la situación sale de la isobática de 100 m al NW del banco de Majuán (ni la isobática ni el banco están en la carta)." },
+  'bal-per-2023-12-a-45': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: área de refugio de peces, banco de Lajas de Conil y marca cardinal E de Barbate: nada de eso está en la carta." },
+  'bal-per-2023-12-e-45': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: enfilación de los cerros Gitano y Vacas y sonda de 200 m: no están en la carta." },
+  'bal-per-2024-07-a-44': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: igual que 'bal-per-2023-09-bf-45' (isobática de 200 m). Además, las opciones escriben la hora sin separador («HRB= 1428»)." },
+  'bal-per-2024-07-c-45': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la situación de partida es el corte de la oposición Paloma–Malabata con la isobática de 100 m al N de los bancos del Fénix, que no están en la carta." },
+  'bal-per-2024-09-a-42': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: se pide el paso por el veril de 200 m, que la carta no tiene." },
+  'bal-per-2024-09-d-42': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: oposición del faro de Isla de Tarifa con la desembocadura del río El Liam, que no está en la carta." },
+  'bal-per-2024-12-df-42': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la situación de partida es la oposición Trafalgar–Espartel donde la sonda marca 100 m: la carta no tiene isobáticas." },
+  'bal-per-2024-12-b-44': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: faro del espigón de Piedra Redonda y sonda de 500 m: no están en la carta." },
+  'bal-per-2025-07-c-42': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: igual que 'bal-per-2023-12-a-45' (área de refugio de peces, Lajas de Conil, marca cardinal E de Barbate y dique exterior de Cabo Roche): no están en la carta." },
+  'bal-per-2025-07-a-43': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: naufragio próximo a Torre Castilobo y marca cardinal N frente a Malabata: no están en la carta." },
+  'bal-per-2025-07-b-43': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: sonda de 500 m en la enfilación Carnero–Europa, espigón de Piedra Redonda e isobática de 50 m de la Ensenada de Ceuta: no están en la carta." },
+  'bal-per-2025-07-d-43': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: isobática de 30 m del banco de Trafalgar: no está en la carta." },
+  'bal-per-2025-07-d-44': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la Ct solo sale de la enfilación Isla de Tarifa–monte Gitano, y el monte Gitano no está en la carta (el enunciado no da dm ni desvío)." },
+  'bal-per-2025-09-d-42': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: igual que 'bal-per-2023-12-e-45' (cerros Gitano y Vacas, sonda de 200 m)." },
+  'bal-per-2024-09-a-43': { tipo: 'sin-calculo', texto: "La respuesta no es un valor sino un par de faros: las opciones son nombres de faros. Dos faros en demoras opuestas (326° y 146°) y a 6,4 M cada uno están a 12,8 M uno de otro en la línea 146°/326°: Punta Carnero → Punta Almina mide en la carta 146,6° y 12,8 M, que es la oficial (d)." },
+  'bal-per-2025-04-ae-43': { tipo: 'sin-calculo', texto: "Resuelta a la oficial, pero sale HRB 09:28 (oficial b, 09:27), pero el lector de opciones no lee la hora seguida de punto («HRB=0927.»): ninguna opción da una puntuación finita. La solución está escrita (ceuta-bocana → espigón de Algeciras en 70 min, corte con la demora 315° de Punta Carnero y de ahí al espigón de Tarifa) y entra en cuanto el lector acepte ese punto final." },
+  'bal-per-2025-09-d-45': { tipo: 'sin-calculo', texto: "Resuelta a la oficial, pero sale Ra 174° y HRB 21:34, la oficial (a: Ra 175°, HRB 21:33), pero el lector de opciones no lee la hora seguida de punto («HRB= 2133.»). La solución está escrita (2 M al S de Punta Europa → luz verde de Ceuta, dm 2025 y desvío −2°) y entra en cuanto el lector acepte ese punto final." },
+  'bal-per-2024-12-ce-45': { tipo: 'discrepancia', texto: "Tomando la salida en 005° 58,4′ W (el «E» del enunciado es errata), Rv = 315,8° y 23,4 M → HRB 01:25 del día siguiente, como la oficial (c); pero con Ct = −9° − 3,5° = −12,5° el Ra sale 328°. La oficial (Ra 303°) solo sale sumando la Ct con el signo cambiado (315,8° − 12,5°). Con el cálculo de la carta la opción más próxima es la b." },
+  'bal-per-2025-04-ae-44': { tipo: 'discrepancia', texto: "Es el mismo enunciado que 'bal-per-2024-07-be-43' (Pangea): Rv = 148,4°, Gracia en Dv 106,4° y Alcázar en Dv 136,4° → 9,7 M a Cabo Trafalgar, que aquí cae en la opción c (9,8 M); la oficial es la d (10,3 M), y en 2024-07 la oficial era 10,5 M: la plantilla no es coherente entre convocatorias." },
   'bal-per-2025-12-d-43': { tipo: 'discrepancia', texto: "Ct = 6,5° − 2,5° = +4° → Rv 151°, Gracia en Dv 109° y Malabata en Dv 166°: 10,9 M a Cabo Trafalgar (opción a, 10,8 M); la oficial es la c (9,2 M). Probando otras bandas y signos de la Ct salen 8,4, 8,3, 12,6… nunca 9,2: no hay una lectura del enunciado que lleve a la oficial." },
-  'bal-per-2025-12-b-45': { tipo: 'discrepancia', texto: "los arcos de 5 M de Almina y 11 M de Carnero se cortan en 35° 53,9′ N 005° 23,0′ W (en el mar, al W de Ceuta) y en 35° 58,6′ N 005° 14,2′ W. Con Rv = 264° − 4° = 260° y Alcázar por el través de babor (Dv 170°) salen 9,0 M → 1 h 48 min desde el primero o 3 h 22 min desde el segundo; la oficial es 2 h 24 min (b), que no sale con ninguno." },
+  'bal-per-2025-12-b-45': { tipo: 'discrepancia', texto: "Los arcos de 5 M de Almina y 11 M de Carnero se cortan en 35° 53,9′ N 005° 23,0′ W (en el mar, al W de Ceuta) y en 35° 58,6′ N 005° 14,2′ W. Con Rv = 264° − 4° = 260° y Alcázar por el través de babor (Dv 170°) salen 9,0 M → 1 h 48 min desde el primero o 3 h 22 min desde el segundo; la oficial es 2 h 24 min (b), que no sale con ninguno. La opción más próxima a lo calculado es la a (2 h 18 min)." },
 };

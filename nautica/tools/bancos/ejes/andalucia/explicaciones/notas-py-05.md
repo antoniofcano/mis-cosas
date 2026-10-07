@@ -14,3 +14,11 @@
 - and-py-2019-c2-g07 · RD 339/2021 · estuche hidrorresistente (Código IDS) sin cambio · sí.
 - and-py-2019-c2-g08 · RD 339/2021, RD 587/2022 · sin cambio (adrizar la balsa) · sí.
 - and-py-2019-c2-g09 · RD 339/2021, RD 587/2022 · sin cambio (supervivencia en la balsa) · sí.
+- and-py-2019-c1-n18 · RD 186/2023 · marcada por detector, pero es un cálculo de mareas: no le afecta ninguna norma · sí.
+- and-py-2019-c2-n08 · RD 339/2021 · marcada por detector («corredera»): la corredera dejó de ser obligatoria, pero la pregunta es qué significa SOG · sí.
+- and-py-2019-c3-g04 · RD 339/2021 · cambió el nº de cohetes por zona, no sus características (bengala del cohete ≥ 40 s) · sí.
+- and-py-2019-c3-g06 · RD 587/2022 · sin cambio en el SART (activación manual, batería limitada) · sí.
+- and-py-2019-c3-g07 · RD 339/2021, RD 587/2022 · balsas ISO 9650 o equivalentes; las dos anclas flotantes son del Código IDS (en ISO 9650 puede variar el equipo según tipo de balsa) · sí, con la balsa SOLAS/IDS que cita la pregunta.
+- and-py-2019-c3-g08 · RD 339/2021, RD 587/2022 · sin cambio (supervivencia en la balsa) · sí.
+- and-py-2019-c3-g09 · RD 339/2021, RD 587/2022 · requisito de adrizado por una persona del Código IDS, sin cambio · sí.
+- and-py-2019-c3-g10 · RD 339/2021, RD 587/2022 · recomendaciones de Salvamento Marítimo, sin cambio · sí.

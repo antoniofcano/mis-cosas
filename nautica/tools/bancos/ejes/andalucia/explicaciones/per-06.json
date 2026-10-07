@@ -600,5 +600,135 @@
   "clave": "Cruzar: perpendicular. Entrar: menor ángulo.",
   "trampa": "La a) y la b) intercambian los ángulos de entrar y de cruzar.",
   "concepto": null
+ },
+ "and-2019-c1-t23": {
+  "explicacion": "La Regla 18 a) dice que el buque de propulsión mecánica se mantendrá apartado de la derrota del buque de vela, así que, navegando a vela, somos el que «sigue a rumbo», venga el otro por estribor o por babor. La regla de estribor de la Regla 15 es solo entre buques de motor. Seguir a rumbo significa mantener rumbo y velocidad, no maniobrar ni parar, salvo que veamos que el otro no actúa (Regla 17).",
+  "clave": "Motor ante vela: cede el motor; el velero sigue a rumbo.",
+  "trampa": "Aplicar a un velero la regla de estribor de los buques de motor.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2019-c1-t24": {
+  "explicacion": "La luz de remolque (Regla 21 d) es una luz amarilla con las mismas características que la de alcance: 135° hacia popa. La lleva el remolcador, encima de su luz de alcance, para avisar de que lleva algo a remolque; el buque remolcado no la lleva. Por eso solo es correcta la a).",
+  "clave": "Remolque: amarilla, como la de alcance, y en el remolcador.",
+  "trampa": "Pensar que la amarilla va en el buque remolcado, que lleva costados y alcance.",
+  "concepto": null
+ },
+ "and-2019-c1-t25": {
+  "explicacion": "Un buque que navega a vela y usa a la vez el motor es, a efectos del Reglamento, de propulsión mecánica (Regla 3), así que lleva las luces de la Regla 23: tope, costados y alcance. Con 14 m no puede acogerse a la alternativa de la blanca todo horizonte con costados, que es solo para menos de 12 m, y costados y alcance solos son las luces de un velero.",
+  "clave": "Vela + motor y 12 m o más: tope, costados y alcance.",
+  "trampa": "La c) es una alternativa válida solo por debajo de 12 m.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "todas"
+   }
+  ],
+  "concepto": "and-2023-c3-t21"
+ },
+ "and-2019-c1-t26": {
+  "explicacion": "La Regla 15 dice que, en un cruce entre buques de propulsión mecánica, el que tiene al otro por su costado de estribor se mantendrá apartado y, si es posible, evitará cortarle la proa (lo normal es pasarle por la popa). Las demás cambian la banda o dicen que evite cortarle la popa, que es justo lo que se debe hacer.",
+  "clave": "Estribor manda; el que cede pasa por la popa del otro.",
+  "trampa": "La c) solo cambia «proa» por «popa»: lee hasta el final.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "and-2024-c3-t18"
+ },
+ "and-2019-c1-t27": {
+  "explicacion": "En visibilidad reducida y sin verse, la Regla 19 no reconoce «sigue a rumbo» y ambos maniobran con antelación. Para un buque a proa del través que no te esté alcanzando, la Regla 19 d) i) manda evitar en lo posible la caída a babor. Por la amura de babor está a proa del través, así que no caigas a babor.",
+  "clave": "Radar en niebla, buque a proa del través: no caigas a babor.",
+  "trampa": "En niebla y sin verse no existe el «sigue a rumbo».",
+  "concepto": "and-2022-c3-t25"
+ },
+ "and-2019-c1-t28": {
+  "explicacion": "Con corriente por la proa el barco tiende a ir hacia atrás, y los cabos que aguantan son el largo de proa y el esprín de popa. Se largan primero los que no trabajan (esprín de proa y largo de popa), luego el largo de proa para que la corriente abra la proa, y el último es el esprín de popa, que sujeta el barco hasta que sales con máquina avante.",
+  "clave": "Corriente de proa: el esprín de popa aguanta hasta el final.",
+  "trampa": "Elegir el largo de proa: si es el último, la corriente no puede abrir la proa.",
+  "concepto": null
+ },
+ "and-2019-c1-t29": {
+  "explicacion": "La curva de evolución se divide en tres periodos: de maniobra (desde que empiezas a meter el timón hasta que la pala llega al ángulo pedido), variable (el giro se va acelerando) y uniforme (el barco describe un círculo constante). El rabeo de la popa es un fenómeno de la evolución, y el traslado y el avance son medidas de la curva, no fases.",
+  "clave": "Fases de la curva: Maniobra, Variable, Uniforme (MVU).",
+  "trampa": "No mezcles distancias de la curva (avance, traslado) con sus fases.",
+  "concepto": "and-2023-c3-t29"
+ },
+ "and-2019-c1-t30": {
+  "explicacion": "Ante una hemorragia externa se aplica presión directa sobre la herida, con gasas o un paño limpio, durante al menos diez minutos, y si está en un brazo o una pierna se eleva por encima del corazón, siempre que no cause un dolor importante. Por eso son correctas la a) y la b). La c) es un error: a la víctima se la tumba o se la deja sentada, nunca de pie, porque puede marearse y caer.",
+  "clave": "Hemorragia: presiona y eleva; el torniquete, último recurso.",
+  "trampa": "La c) va contra lo básico: con pérdida de sangre, nunca de pie.",
+  "concepto": null
+ },
+ "and-2019-c1-t31": {
+  "explicacion": "Los fuegos de aceites y grasas vegetales o animales en aparatos de cocina (sartenes, freidoras) son de clase F. Nunca se apagan con agua, porque proyecta aceite ardiendo: se tapan o se usa un extintor específico. La A es de sólidos, la B de líquidos y la C de gases.",
+  "clave": "F de «Freidora».",
+  "trampa": "El aceite es líquido, pero no es clase B: tiene clase propia.",
+  "concepto": "and-2025-c3-t30"
+ },
+ "and-2019-c1-t32": {
+  "explicacion": "Cada técnica de extinción ataca un lado del tetraedro del fuego: la dispersión o aislamiento del combustible (desalimentación) quita el combustible, el enfriamiento quita calor, la sofocación quita el oxígeno y la inhibición corta la reacción en cadena. La a) dice «calentamiento», que aviva el fuego, y «dilución» o «saturación» no son técnicas de extinción.",
+  "clave": "Combustible → desalimentación; calor → enfriamiento; oxígeno → sofocación; reacción → inhibición.",
+  "trampa": "La a) es casi correcta, pero cuela «calentamiento» en lugar de enfriamiento.",
+  "concepto": null
+ },
+ "and-2019-c1-t33": {
+  "explicacion": "La presión atmosférica normal, al nivel del mar, es de 760 mm de mercurio, que equivalen a 1013,25 mb (hPa). 1000 mb es una cifra redonda, pero no es el valor normal, así que la c) y la d) fallan; 960 mm Hg no corresponde a nada.",
+  "clave": "Presión normal: 760 mm Hg = 1013 mb.",
+  "trampa": "Los 1000 mb parecen «normales» por ser redondos.",
+  "concepto": null
+ },
+ "and-2019-c1-t34": {
+  "explicacion": "Las borrascas o depresiones son áreas de bajas presiones, con la presión mínima en el centro, y en el hemisferio norte sus vientos giran en sentido contrario a las agujas del reloj. Altas presiones con giro horario es un anticiclón (la a), y la c) y la d) mezclan la presión de uno con el giro del otro.",
+  "clave": "Borrasca HN: centro bajo, giro antihorario.",
+  "trampa": "Comprueba los dos datos de cada opción: presión y giro.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2019-c1-t35": {
+  "explicacion": "La extensión rectilínea sobre la que sopla un viento de dirección y fuerza constantes es el fetch. La persistencia es el tiempo que sopla así, y la «zona generadora» es una forma genérica de hablar de donde se forma la mar, no el nombre técnico de esa longitud.",
+  "clave": "Fetch = extensión de mar.",
+  "trampa": "El fetch es una distancia; la persistencia es un tiempo. No los confundas.",
+  "concepto": "and-2024-c2-t34"
+ },
+ "and-2019-c1-t36": {
+  "explicacion": "La virazón es la brisa costera local que sopla del mar hacia la tierra durante el día. La que sopla de tierra al mar es el terral, y las brisas no están asociadas a borrascas ni a los alisios: son circulaciones locales por el distinto calentamiento de tierra y mar.",
+  "clave": "Virazón: del mar a tierra, de día.",
+  "trampa": "Terral viene de «tierra»: sopla desde tierra, de noche. Virazón: del mar, de día.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-mar"
+   }
+  ],
+  "concepto": "and-2022-c3-t35"
+ },
+ "and-2019-c1-t37": {
+  "explicacion": "La demora se mide desde el norte y la marcación desde la proa, así que la demora es el rumbo más la marcación (D = R + M, con la marcación circular o positiva por estribor y negativa por babor). La corrección total sirve para pasar de valores de aguja a verdaderos, no para relacionar demora y marcación.",
+  "clave": "D = R + M  ⇒  M = D − R.",
+  "trampa": "La a) y la d) meten la corrección total, que es otra cosa.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 30,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "concepto": null
  }
 }

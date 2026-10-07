@@ -72,12 +72,13 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
 - **Notas de texto** en la carta con tamaño de letra (S–XXL), editables y movibles.
 - **Tu carta escaneada como fondo** (opcional): carga tu PDF/imagen de la L105 y la app la georreferencia
   con la calibración incluida (error < 0,1′). Se guarda solo en tu navegador (IndexedDB), nunca en el repo.
-- **72 preguntas reales de examen** (PER Andalucía 2020–2026, preguntas de carta) con la respuesta de la
+- **136 preguntas reales de examen** (PER Andalucía 2015–2026, preguntas de carta) con la respuesta de la
   plantilla oficial y **resolución paso a paso calculada por la app** (con dibujo en la carta).
-  La app resuelve 71 de ellas y en las 68 no anuladas elige la opción oficial: es la validación de los motores
-  y de la carta (`tests/exams.test.js`).
-- **180 preguntas de carta del PY Andalucía** (2020–2026: situación, viento, corriente, mareas, estima analítica):
-  la app resuelve 173 paso a paso. Cada resolución está escrita a mano para su pregunta (datos del enunciado →
+  La app resuelve 134 de ellas y en las 131 no anuladas elige la opción oficial: es la validación de los motores
+  y de la carta (`tests/exams.test.js`). Las otras 2 quedan documentadas (`documentadas` de `src/bancos/ejes/andalucia.js`).
+- **340 preguntas de carta del PY Andalucía** (2015–2026: situación, viento, corriente, mareas, estima analítica):
+  la app resuelve 324 paso a paso (de 2015–2019: 151 resueltas, 7 documentadas como discrepancia y 2 de mareas
+  sin la tabla del anuario en el cuadernillo, explicadas con el método). Cada resolución está escrita a mano para su pregunta (datos del enunciado →
   motores de cálculo), y un test comprueba que la opción oficial es la más próxima al resultado, dentro de dos
   veces la tolerancia: valida a la vez los motores y la transcripción de cada pregunta, no el texto de las
   explicaciones. Las 7 restantes (5 anuladas, 1 con errata en la plantilla y 1 por la medida de una enfilación)

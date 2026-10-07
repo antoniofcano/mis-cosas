@@ -24,8 +24,8 @@ import { textoBanco } from '../../etapas/escribir.mjs';
 const EJE = 'andalucia';
 const TITS = ['per', 'py'];
 const CAMPOS = ['explicacion', 'clave', 'trampa', 'ilustraciones', 'discrepancia', 'defendible'];
-// Nada de academias, escuelas ni centros que maquetaron los cuadernillos.
-export const PROHIBIDO = /academia|escuela|sirocodiez|siroco ?10|zaporito|centro integrado/i;
+// Nada de academias, escuelas ni centros de formación (tampoco el que maquetó los cuadernillos de 2015).
+export const PROHIBIDO = /academia|escuela|centro integrado|centro de formaci[oó]n/i;
 const ruta = (tit, f) => join(RAIZ, 'data', 'ejes', EJE, tit, f);
 const DIR = join(BANCOS, 'ejes', EJE, 'explicaciones');
 const respuesta = (q) => (q.anulada ? 'ANULADA (todas las respuestas válidas)' : q.aceptadas.map((l) => `${l}) ${q.opciones[l]}`).join(' | '));

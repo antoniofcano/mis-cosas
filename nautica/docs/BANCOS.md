@@ -67,9 +67,16 @@ Las soluciones programadas de las preguntas de carta de Andalucía siguen en `sr
   `reglas` (líneas que se añaden a «Reglas del examen»); `calculadora` (true/false: si en el examen se permite la
   calculadora científica; la app la enseña en el simulacro solo si es true; `calculadoraFuente`, de dónde sale); más adelante, p. ej.
   `{ "cuadernillos": 2 }`.
-- `reserva`: claves `conv` reservadas como examen final (F1). `modo`: `examen` (se reservan convocatorias: no se
-  ofrecen como examen de convocatoria, pero sus preguntas siguen en la práctica) | `pregunta` (además, sus
-  preguntas —y las que aparecen también en ellas (`apareceEn`)— salen de toda la práctica).
+- `reserva`: claves `conv` reservadas para el examen final (F1). Lo reservado no se estudia por ninguna puerta
+  (clases, tandas, repaso, mezcla, «5 minutos», simulacros, listas, pausas del podcast; `tests/reserva.test.js`).
+  `modo`: `examen` (se reservan convocatorias: no se ofrecen como examen de convocatoria y el examen final es una de
+  ellas entera; salen del estudio las preguntas que solo aparecen en convocatorias reservadas —una que también salió en
+  otra convocatoria ya es pública—) | `pregunta` (salen del estudio todas las que aparecen en ellas, también por
+  `apareceEn`, y el examen final se arma con el reparto oficial por temas). Andalucía y DGMM: `examen`; Baleares:
+  `pregunta`.
+- **Reserva por alumno**: la primera vez que un alumno carga un eje y una titulación, la app guarda la foto de la
+  reserva en sus ajustes (`reserva_<eje>_<tit>` = `{ convs, modo, desde }`, con `fijarReservaAlumno`). Su examen final
+  sale siempre de esa foto; si los datos cambian la reserva, se apartan del estudio las de la foto y las de la ficha.
 - `listas` (opcional): listados de preguntas reales del eje por titulación, con página propia
   (`#/<tit>/examenes/<id>`). Filtro: `requiere` (las que lo requieren) y/o `sinRequiere` (las que no). `tarjeta`
   es el texto de su tarjeta en «Ejercicios de carta» (`{n}` = número de preguntas). Una lista de `id` `carta`
@@ -169,15 +176,19 @@ guardados los bancos. El resto de la app no nombra ningún banco ni ningún eje 
   - `cargarBanco(eje, tit)` → el banco (un eje que no existe cae en el de por defecto):
     - `eje` (la ficha), `tit`, `meta`
     - `todas`: todas sus preguntas; `porId`: `Map` id → pregunta
-    - `estudio`: las que se usan para estudiar (tandas, repasos, simulacros, exámenes de convocatorias, motor de
-      seguimiento); `final`: las reservadas para el examen final. Salen de `ficha.reserva` (en F0, sin reserva:
-      `estudio === todas` y `final = []`).
+    - `reservadas`: `Set` de ids que no se estudian por ser del examen final (ver `reserva`).
+    - `examenes`: las de los exámenes de convocatorias (todas menos las reservadas; las retiradas siguen y se corrigen
+      como anuladas, con su nota en la revisión).
+    - `estudio`: las que se usan para estudiar (práctica, tandas, repaso, mezcla, «5 minutos», simulacros, pausas del
+      podcast, motor de seguimiento): `examenes` sin las retiradas.
+    - `final`: las preguntas de las convocatorias del examen final del alumno (sin retiradas); `reserva` =
+      `{ modo, convs, datos, examenes: [{ key, titulo, fecha, n, completa, ids }] }`.
     - `convocatorias()` → `[{ key, titulo, fecha, n, completa }]` (más recientes primero; sin las reservadas)
     - `explicaciones`, `reglasDe(id)` (reglas nemotécnicas), `vocab`
     - `practicaDe(leccionId)` → ids de práctica de la clase (solo de `estudio`); `resueltasDe(leccionId)` → ids
-      de preguntas resueltas por la app del tipo de la clase
-    - `listas`, `lista(id)` → `{ id, titulo, descripcion, tarjeta?, preguntas }`; `listaDe(q)` → la lista de una
-      pregunta (la primera que la incluye)
+      de preguntas resueltas por la app del tipo de la clase (las dos, solo del estudio)
+    - `listas`, `lista(id)` → `{ id, titulo, descripcion, tarjeta?, preguntas }` (sin las reservadas); `listaDe(q)` → la
+      lista de una pregunta (la primera que la incluye)
   - `cargarCurso(tit, eje)` → el curso nacional con la práctica del eje en cada clase (`leccion.practica`);
     `cargarCursoBase(tit)` → el curso tal cual.
   - `pregunta(id)` → `{ q, banco }` de cualquier eje (por su prefijo), o `null`.
@@ -193,7 +204,25 @@ también el almacén del progreso).
 
 En la interfaz, `currentEje(progress)` / `setEje(progress, eje)` (`src/ui/titulacion.js`) leen y guardan el eje
 en los ajustes (`settings.eje`), como la titulación. Los módulos puros del curso (`motor`, `plan`, `listo`,
-`repaso`, `calendario`) no saben de ejes: reciben las preguntas (`banco.estudio`) y el curso con su práctica.
+`repaso`, `calendario`) no saben de ejes: reciben las preguntas (`banco.estudio`) y el curso con su práctica; el
+motor recibe además `reserva`, `pool` (`banco.final`) y `reservadas` para el examen final (`src/course/final.js`).
+
+### Examen final (F1)
+
+- `src/course/final.js` (puro, lo llama el motor: `st.final`): cerrado hasta que «¿Estás listo?» dice `listo` (y
+  entonces dice qué falta con sus números); abierto, propone una convocatoria reservada que el alumno no haya visto
+  (vista = hecha como examen o con al menos el 20 % de sus preguntas respondidas). Si las ha visto todas, lo dice: ya
+  no es inédito. «Preparado» = el último examen final aprobado con margen (`estructura.margen` en
+  `src/theory/blocks.js`: PER 36 aciertos, RIPA ≤ 3, balizamiento ≤ 1, carta ≤ 1; PY 32, carta ≤ 1, teoría ≤ 3).
+  `planHoy` lo propone cuando estás listo, quedan 21 días o menos y aún no estás preparado.
+- `buildFinal` (`src/theory/engine.js`): la convocatoria entera (una retirada se cambia por otra reservada del mismo
+  tema) o, en modo `pregunta`, el reparto oficial por temas con las reservadas, primero las no vistas. Ruta
+  `#/<tit>/test/final`; se guarda como `tests[]` con `tipo: 'final'` y `conv`.
+- En el examen (simulacro, real y final) la vista marca `document.body.dataset.modoExamen` (`src/ui/modo-examen.js`) y
+  la calculadora sigue la regla de la ficha (`examen.<tit>.calculadora`).
+- «¿Estás listo?» (`src/course/listo.js`) pesa más los exámenes inéditos: el final cuenta 3 y un simulacro o examen
+  real con al menos el 60 % de preguntas nuevas (`nuevas`, guardado al empezar), 2. El simulacro elige primero las
+  preguntas no vistas sin cambiar el reparto oficial y avisa cuando ya has visto el 70 % del estudio.
 
 ### Rutas
 
@@ -235,7 +264,11 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
   `src/theory/engine.js`). Las permutaciones de un mismo juego (T01/T03…) se juntan en una pregunta con `apareceEn`.
 - **Ajustes por id** (`tools/bancos/ejes/<eje>/ajustes.json`): `{ <tit>: { <id>: { norma: { estado, nota } } } }`.
   Es el sitio de la revisión normativa hecha a mano (`vigente` | `actualizada` | `retirada`); la etapa `normativa`
-  la aplica y el informe la resume. Las `retirada` salen del estudio.
+  la aplica y el informe la resume. Las `retirada` salen del estudio y del examen final, pero siguen en los exámenes
+  de convocatorias (se corrigen como anuladas y la revisión lo dice). Andalucía (banco migrado, sin etapas): su
+  revisión de F1 está en `tools/bancos/ejes/andalucia/ajustes.json`, cada pregunta con `revision.motivos`
+  (`{ norma, motivo, fuente }`), y la escribe y aplica `tools/bancos/ejes/andalucia/revision-normativa.mjs --escribir`
+  (pone `norma` en el banco y, en las `actualizada`, la nota en la explicación tras su primera frase).
 - **Explicaciones** (`tools/bancos/explicaciones.mjs`): `lote` saca lotes de preguntas con sus 3 candidatas más
   parecidas del eje de referencia (Andalucía), `revisar` comprueba una explicación y `fusionar` reúne los lotes en
   `explicaciones.json` y pone en cada pregunta su `concepto` = el id de la pregunta de Andalucía cuya explicación se

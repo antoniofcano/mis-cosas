@@ -81,4 +81,43 @@ export default {
     },
   },
 
+  // ---- 3ª Convocatoria 2017
+  'and-2017-c3-q42': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('36 10,0 N', '5 10,0 W', 'Salida');
+      // Bajamos hacia el SW pasando al S de Punta Carnero: el faro queda por estribor.
+      const rv = k.tangent(s, 'punta-carnero', 4, 'estribor');
+      const ct = k.ct({ carta: [7, 2007, -6], anyo: 2017, desvio: -2 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2017-c3-q43': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      k.note('Rumbo', 'El Rv = 330° y la velocidad no intervienen: la Ct sale de la enfilación.');
+      const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 315);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 315) }];
+    },
+  },
+  'and-2017-c3-q44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 00,0 W', 'Situación 13:00');
+      const ct = k.ct({ dm: -5, desvio: -3 });
+      const rv = k.rv(38, ct);
+      const d = k.distFor(8, hrb(14, 30) - hrb(13, 0));
+      return latlon(k.run(s, rv, d, 'Situación 14:30'));
+    },
+  },
+  'and-2017-c3-q45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const ct = k.ct({ dm: 4, desvio: 5 });
+      const rv = k.rv(71, ct);
+      const dv = k.dvM(rv, 30, 'punta-malabata');
+      // Al N verdadero de Espartel: estamos sobre el meridiano del faro (línea 000° que pasa por él).
+      return latlon(k.lineAndBearing('cabo-espartel', 0, 'punta-malabata', dv, 'Situación 12:00'));
+    },
+  },
 };

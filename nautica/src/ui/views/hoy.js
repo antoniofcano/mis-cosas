@@ -14,6 +14,7 @@ import { renderIllustration } from '../../illustrations/index.js';
 import { interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
 import { quieto } from '../movimiento.js';
 import { cuenta } from '../../texto.js';
+import { ejesElegibles, indicadorEje } from '../eje.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -64,7 +65,10 @@ export function hoyView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const s = progress.settings();
   const fecha = s[`examen_${tit}`] || null;
-  const cabecera = [h('h1', saludo()), h('p.muted', lineaExamen(T.sigla, fecha ? diasHasta(fecha) : null, !!s[`examenOrientativo_${tit}`]))];
+  // Si hay más de un banco publicado, un indicador discreto de con qué exámenes se estudia (lleva a Ajustes).
+  const indicador = h('p.indicador-eje-linea', { hidden: true });
+  ejesElegibles().then((ejes) => { const i = indicadorEje(progress, ejes); if (i) { setChildren(indicador, i); indicador.hidden = false; } }).catch(() => {});
+  const cabecera = [h('h1', saludo()), h('p.muted', lineaExamen(T.sigla, fecha ? diasHasta(fecha) : null, !!s[`examenOrientativo_${tit}`])), indicador];
   const el = h('div.hoy', cabecera, h('p.muted', 'Preparando tu plan…'));
   let summaryText = `VISTA hoy ${T.sigla} (cargando)`;
 

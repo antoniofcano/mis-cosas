@@ -29,7 +29,8 @@ export function listaPrecache() {
   const norm = (p) => relative(RAIZ, join(RAIZ, p)).split('\\').join('/');
   const app = ['index.html', 'manifest.webmanifest', 'llms.txt', ...archivos('icons'), ...archivos('styles'), ...archivos('src')]
     .map(norm).filter((p) => !p.endsWith('.md')).sort();
-  const datos = archivos('data').map(norm).sort();
+  // Los .md de data/ (p. ej. la licencia de un eje) son documentación: no se guardan en el móvil.
+  const datos = archivos('data').map(norm).filter((p) => !p.endsWith('.md')).sort();
   const h = createHash('sha256');
   for (const p of [...app, ...datos]) h.update(p).update(readFileSync(join(RAIZ, p)));
   return { version: h.digest('hex').slice(0, 12), app, datos };

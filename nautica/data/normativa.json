@@ -1,0 +1,138 @@
+{
+ "descripcion": "Cambios normativos fechados que pueden dejar obsoleta la respuesta oficial de una pregunta de examen PER/PY. Lo usa la etapa «normativa» de tools/bancos: una pregunta con fecha anterior a la entrada en vigor de un cambio cuyo texto (enunciado u opciones, sin tildes ni mayúsculas) encaja con alguno de sus «detectores» queda en norma.estado = «revisar» con la norma en «normas». Los detectores se escriben anchos a propósito (mejor revisar de más que dejar pasar una respuesta obsoleta). Fuente de cada fecha: el BOE (texto consolidado o diario) citado en «url».",
+ "actualizado": "2026-10-07",
+ "normas": [
+  {
+   "id": "RD 875/2014",
+   "nombre": "Real Decreto 875/2014, de 10 de octubre, por el que se regulan las titulaciones náuticas para el gobierno de las embarcaciones de recreo",
+   "boe": "BOE-A-2014-10344",
+   "url": "https://www.boe.es/eli/es/rd/2014/10/10/875/con",
+   "publicacion": "2014-10-11",
+   "vigor": "2015-01-11",
+   "temas": { "per": [4], "py": [1] },
+   "resumen": "Nuevo marco de títulos (sustituye a la Orden FOM/3200/2007): PNB, PER, PY, CY y licencia de navegación; nueva estructura del examen.",
+   "detectores": ["orden fom/3200", "pemd", "patron de embarcaciones de recreo restringid", "patron de litoral", "titulos? (antiguos|anteriores)"]
+  },
+  {
+   "id": "RIPA enmiendas 2013",
+   "nombre": "Enmiendas de 2013 al Reglamento internacional para prevenir los abordajes (Resolución A.1085(28)): parte F",
+   "boe": "BOE-A-2017-377",
+   "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2017-377",
+   "publicacion": "2017-01-13",
+   "vigor": "2016-01-01",
+   "temas": { "per": [6], "py": [] },
+   "resumen": "Se añade la parte F (verificación del cumplimiento, Código III). Ninguna regla de maniobra, luz ni sonido cambia.",
+   "detectores": ["parte f\\b", "codigo iii", "verificacion del cumplimiento"]
+  },
+  {
+   "id": "RD 238/2019",
+   "nombre": "Real Decreto 238/2019, de 5 de abril, que modifica el RD 875/2014 y el RD 259/2002 (motos náuticas)",
+   "boe": "BOE-A-2019-6481",
+   "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2019-6481",
+   "publicacion": "2019-05-01",
+   "vigor": "2019-07-01",
+   "temas": { "per": [4], "py": [1] },
+   "resumen": "Intercambia los errores máximos del examen de PY (teoría 5, carta 3); añade «incluidas las islas intermedias» a la atribución Península–Baleares; quita las motos «clase C» de la licencia de navegación; crea las habilitaciones anejas y los títulos de moto A/B/C.",
+   "detectores": ["islas intermedias", "peninsula.{0,40}baleares", "baleares.{0,40}peninsula", "clase c\\b", "moto(s)? nautica", "licencia de navegacion", "habilitacion", "errores? (maximo|permitido)", "atribucion"]
+  },
+  {
+   "id": "RD 550/2020",
+   "nombre": "Real Decreto 550/2020, de 2 de junio, por el que se determinan las condiciones de seguridad de las actividades de buceo",
+   "boe": "BOE-A-2020-6745",
+   "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-6745",
+   "publicacion": "2020-06-03",
+   "vigor": "2020-07-01",
+   "temas": { "per": [3, 4, 6], "py": [1] },
+   "resumen": "Boya de señalización con bandera «Alfa»; distancia mínima de 50 m a la zona de buceo; deroga la Orden de 14-10-1997 de normas de seguridad subacuáticas.",
+   "detectores": ["buce", "buzo", "submarinis", "subacuatic", "bandera alfa", "bandera \"a\"", "bandera a\\b", "inmersion"]
+  },
+  {
+   "id": "RD 339/2021",
+   "nombre": "Real Decreto 339/2021, de 18 de mayo, por el que se regula el equipo de seguridad, salvamento, contra incendios, navegación y prevención de vertidos por aguas sucias de las embarcaciones de recreo (deroga la Orden FOM/1144/2003)",
+   "boe": "BOE-A-2021-8268",
+   "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8268",
+   "publicacion": "2021-05-19",
+   "vigor": "2021-07-01",
+   "temas": { "per": [3, 4, 8], "py": [1] },
+   "resumen": "Equipo por zona de navegación: cambian bengalas, cohetes y fumígenas (zona 4: de 6+6+1 a 3+3+0; zona 2: 1 fumígena); chaleco por persona con luz y +1 en zona 1 (antes 110 %); extintores 34B (antes 21B); desaparecen como obligatorios la corredera, el compás de puntas, el transportador y la regla; campana solo si L ≥ 20 m; aguas sucias referidas a la línea de base.",
+   "detectores": ["bengala", "cohete", "fumigen", "pirotecni", "chaleco", "aro salvavidas", "aros salvavidas", "balsa", "extintor", "21 ?b", "34 ?b", "corredera", "compas de puntas", "transportador", "regla de", "campana", "botiquin", "achique", "achicador", "balde", "aguas sucias", "aguas negras", "aguas residuales", "tanque de retencion", "zona de navegacion", "zona [1-7]\\b", "equipo de seguridad", "material nautico", "linterna", "reflector de radar", "prismatico", "sextante", "cronometro", "bocina", "luz de chaleco", "senales de socorro", "orden fom/1144", "categoria de diseno", "marpol", "basura", "plastico", "desmenuz", "vertido", "descarga(r)? (al|en el) mar", "linea de fondeo", "flotabilidad", "inflable", "tablilla de desvios"]
+  },
+  {
+   "id": "RD 587/2022",
+   "nombre": "Real Decreto 587/2022, de 19 de julio (radiocomunicaciones de recreo, balsas salvavidas, instructores británicos)",
+   "boe": "BOE-A-2022-12013",
+   "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-12013",
+   "publicacion": "2022-07-20",
+   "vigor": "2022-07-21",
+   "temas": { "per": [3], "py": [1] },
+   "resumen": "Radio en zona 1: el NAVTEX solo es obligatorio para las embarcaciones de la lista 6.ª; balsas ISO 9650 u otra normativa equivalente homologadas por la DGMM.",
+   "detectores": ["navtex", "balsa", "radiobaliza", "epirb", "respondedor", "vhf", "\\blsd\\b", "llamada selectiva digital", "equipos? de radio", "radiotelefon", "mf/hf", "estacion terrena", "canal(es)? (16|70|6|06|9|13)\\b", "\\bmmsi\\b", "\\bsart\\b", "406 ?mhz", "zafa hidrostatica"]
+  },
+  {
+   "id": "RD 186/2023",
+   "nombre": "Real Decreto 186/2023, de 21 de marzo, Reglamento de Ordenación de la Navegación Marítima (deroga la Orden de 2-7-1964 de zonas para bañistas)",
+   "boe": "BOE-A-2023-7410",
+   "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7410",
+   "publicacion": "2023-03-22",
+   "vigor": "2023-04-11",
+   "temas": { "per": [4], "py": [] },
+   "resumen": "Deroga la Orden de 1964 de zonas para bañistas (la regla de 200 m de playa y 50 m de costa a 3 nudos sigue en el art. 73 del Reglamento General de Costas) y regula el despacho de las embarcaciones de recreo.",
+   "detectores": ["banist", "zona(s)? de bano", "playa", "200 (m|metros)", "50 (m|metros)", "3 nudos", "tres nudos", "despacho", "canal(es)? balizad", "orden de 1964"]
+  },
+  {
+   "id": "RD 1188/2025 (buceo y ROM)",
+   "nombre": "Real Decreto 1188/2025, de 26 de diciembre: cambios en el RD 550/2020 de buceo, en el Reglamento de Ordenación de la Navegación Marítima y en el fondeo del Mar Menor",
+   "boe": "BOE-A-2025-27010",
+   "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-27010",
+   "publicacion": "2025-12-30",
+   "vigor": "2025-12-31",
+   "temas": { "per": [3, 4], "py": [1] },
+   "resumen": "Buceo (ratio 1:1 en bautismos, descompresión, profundidad en puertos), fondeo en el Mar Menor y artículos 43 y 45 del ROM.",
+   "detectores": ["buce", "submarinis", "mar menor", "fondeo (prohibid|en zona)"]
+  },
+  {
+   "id": "RD 191/2026",
+   "nombre": "Real Decreto 191/2026, de 11 de marzo, de conservación de las praderas de fanerógamas marinas en el Mediterráneo",
+   "boe": "BOE-A-2026-5877",
+   "url": "https://www.boe.es/eli/es/rd/2026/03/11/191",
+   "publicacion": "2026-04-01",
+   "vigor": "2026-04-02",
+   "temas": { "per": [2, 4], "py": [1] },
+   "resumen": "Prohibición general de fondear sobre Posidonia oceanica y Cymodocea nodosa (y en arenas próximas si la cadena o el borneo las afectan) en todo el Mediterráneo español, salvo con sistemas de bajo impacto autorizados.",
+   "detectores": ["posidonia", "pradera", "faneroga", "cymodocea", "\\balgas?\\b", "tenedero", "fondo (de|para) fondear", "(lugar|sitio|fondo).{0,30}(fondear|fondeo)", "(fondear|fondeo).{0,30}(lugar|sitio|fondo)", "medio ambiente", "espacio(s)? (natural|protegid)", "reserva marina", "fondeadero", "prohibido fondear", "fondear.{0,30}prohibid", "prohibid.{0,30}fonde", "zona(s)? especialmente protegida", "\\bzepim\\b", "fondos? marinos?", "campos? de boyas"]
+  },
+  {
+   "id": "RD 1188/2025 (gobierno sin título)",
+   "nombre": "Real Decreto 1188/2025, de 26 de diciembre: nueva redacción del art. 10 del RD 875/2014 (navegación sin título)",
+   "boe": "BOE-A-2025-27010",
+   "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-27010",
+   "publicacion": "2025-12-30",
+   "vigor": "2026-10-01",
+   "temas": { "per": [4], "py": [] },
+   "resumen": "Sin título solo para uso privado de embarcaciones a motor de hasta 5 m y 15 CV sin dispositivo reductor (antes 11,26 kW), vela deportiva hasta 6 m y artefactos de playa; a 2 millas del puerto, marina o playa de salida; el alquiler exige título.",
+   "detectores": ["sin titul", "sin necesidad de titul", "no (se )?(requiere|necesita|exige)n? (ningun )?titul", "11[,.]26", "kilovatio", "\\bkw\\b", "15 ?cv", "caballos", "alquiler", "arrendamiento", "arrendatario", "artefactos? (flotante|de playa)", "(^|[^0-9,.])5 metros de eslora", "(^|[^0-9,.])6 metros de eslora", "licencia de navegacion", "lugar de abrigo", "playa de salida", "\\b(2|dos) millas.{0,30}(puerto|marina|abrigo|playa)", "uso privado", "edad minima"]
+  },
+  {
+   "id": "IALA MBS 2022",
+   "nombre": "Sistema de Balizamiento Marítimo de la IALA (Recomendación R1001), edición que cita el tribunal de la DGMM",
+   "boe": "BOE-A-2026-510",
+   "url": "https://www.boe.es/boe/dias/2026/01/09/pdfs/BOE-A-2026-510.pdf",
+   "publicacion": "2026-01-09",
+   "vigor": "2026-01-09",
+   "temas": { "per": [5], "py": [] },
+   "resumen": "La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: no se ha verificado con fuente primaria qué cambió entre ediciones, así que se revisan todas las preguntas de balizamiento anteriores.",
+   "detectores": ["boya", "baliza", "balizamiento", "cardinal", "lateral", "peligro aislado", "aguas navegables", "aguas seguras", "marca especial", "marcas? especiales", "nuevo peligro", "naufragio", "marca de tope", "\\biala\\b", "\\baism\\b", "region a\\b", "centellea", "isofase", "marcas? de (babor|estribor)", "canal preferido"]
+  },
+  {
+   "id": "RD 128/2022",
+   "nombre": "Real Decreto 128/2022, de 15 de febrero, sobre instalaciones portuarias receptoras de desechos de buques",
+   "boe": "BOE-A-2022-2465",
+   "url": "https://www.boe.es/eli/es/rd/2022/02/15/128/con",
+   "publicacion": "2022-02-16",
+   "vigor": "2022-02-17",
+   "temas": { "per": [4], "py": [] },
+   "resumen": "Deroga el RD 1381/2002 y la Orden FOM/1392/2004. Desaparece la notificación reducida de desechos (anexo V del RD 1381/2002) de las embarcaciones de recreo: la notificación previa (art. 16) no se aplica a las embarcaciones y buques de recreo de eslora inferior a 45 m, y todo buque entrega sus desechos en una instalación portuaria receptora antes de dejar el puerto (art. 17).",
+   "detectores": ["1381/2002", "notificacion reducida", "fom/1392", "instalacion(es)? portuaria(s)? (de recepcion|receptora)"]
+  }
+ ]
+}

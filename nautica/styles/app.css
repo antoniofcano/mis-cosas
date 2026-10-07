@@ -422,6 +422,13 @@ a.btn.grande[aria-current] { box-shadow: 0 0 0 3px var(--accent-2); }
 button.tarjeta-opcion { display: flex; align-items: center; gap: 1rem; width: 100%; min-height: 88px; text-align: left; font-size: 1.15rem; background: var(--surface); color: var(--text); border: 2px solid var(--border); border-radius: 14px; padding: 1rem; }
 button.tarjeta-opcion:hover, button.tarjeta-opcion:focus-visible { border-color: var(--accent); }
 .op-icono { font-size: 2.4rem; line-height: 1; }
+/* Dónde te examinas (bienvenida y Ajustes) e indicador del eje en Hoy */
+.selector-eje .op-texto { display: flex; flex-direction: column; gap: .2rem; }
+.op-detalle { font-size: .9rem; color: var(--muted); }
+button.tarjeta-opcion[aria-pressed="true"] { border-color: var(--accent); }
+.indicador-eje-linea { margin: -.3rem 0 .6rem; font-size: .9rem; }
+.indicador-eje { color: var(--muted); text-decoration: none; }
+.indicador-eje:hover, .indicador-eje:focus-visible { text-decoration: underline; }
 .campo-fecha input { font-size: 1.15rem; min-height: 56px; margin-bottom: 1rem; }
 p.centrado { text-align: center; }
 p.centrado a { display: inline-flex; align-items: center; min-height: 48px; font-weight: 600; }

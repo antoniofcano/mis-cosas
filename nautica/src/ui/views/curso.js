@@ -1,9 +1,11 @@
 // Clase: #/<tit>/curso/<lección>[?practica=1] — tarjetas paso a paso (se retoma donde se dejó), chuleta,
 // práctica con preguntas reales y repaso espaciado. Modo concentración con barra de actividad.
+// También las clases del apéndice «Las cuentas del patrón» (#/<tit>/cuentas/<id>): las mismas tarjetas, con ejercicios
+// de cuentas para la calculadora (tarjetas `cuenta`) y sin práctica ni plan.
 
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
-import { loadMnemonics } from '../../store/datasets.js';
+import { loadMnemonics, loadApendice } from '../../store/datasets.js';
 import { cargarBanco, cargarCurso, rutaResolucion, SOLUCIONES } from '../../bancos/index.js';
 import { trasPractica, leccionesDe, APROBADO, conPreguntaFinal, conPreguntasIntercaladas, conEjercicios, pistaParte, estadoLeccion, numTramos, enTramos, minutosClase, minutosDeTramo, nuevoRitmo, SEG_TARJETA } from '../../course/engine.js';
 import { conResuelto } from '../../course/resueltos.js';
@@ -24,6 +26,9 @@ import { createRng, randomSeed } from '../../math/rng.js';
 import { cronometro } from '../../course/cronometro.js';
 import { getExercise } from '../../exercises/registry.js';
 import { cuenta } from '../../texto.js';
+import { leccionesApendice, repasosPara } from '../../course/apendice.js';
+import { generaCuenta, corrigeCuenta, EJEMPLO_RESPUESTA } from '../../course/cuentas.js';
+import { botonCalculadora } from '../calculadora.js';
 
 const PRACTICA_MAX = 10;
 
@@ -43,7 +48,9 @@ const plain = (text = '') => text.replace(/\*\*/g, '').replace(/^\s*[-•]\s/gm,
 
 export function leccionView({ ctx, progress, params: route, tit }) {
   const id = route.parts[1];
-  const barra = barraActividad({ texto: 'Cargando la clase…', onSalir: () => { voice.stop(); location.hash = tlink(tit); } });
+  const enApendice = route.parts[0] === 'cuentas'; // clase del apéndice de matemáticas
+  const salida = enApendice ? tlink(tit, ['cuentas']) : tlink(tit);
+  const barra = barraActividad({ texto: 'Cargando la clase…', onSalir: () => { voice.stop(); location.hash = salida; } });
   const cont = h('div', h('p.muted', 'Cargando la clase…'));
   const el = h('div.leccion', barra, cont);
   let summaryText = `VISTA clase ${id} (cargando)`;
@@ -52,15 +59,19 @@ export function leccionView({ ctx, progress, params: route, tit }) {
   const desde = route.query?.desde || null;
   const eje = currentEje(progress);
   Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit), loadMnemonics(), tit === 'py' ? cargarCurso('per', eje) : null, desde ? cargarCurso('py', eje) : null,
-    episodiosDeClase(tit, id).catch(() => [])]).then(([curso, bank, mnemo, cursoPer, cursoPy, episodios]) => {
-    const todas = curso ? leccionesDe(curso) : [];
+    episodiosDeClase(tit, id).catch(() => []), loadApendice().catch(() => null)]).then(([curso, bank, mnemo, cursoPer, cursoPy, episodios, apendice]) => {
+    const todas = enApendice ? leccionesApendice(apendice, tit) : curso ? leccionesDe(curso) : [];
     const L = todas.find((l) => l.id === id);
     if (!L) {
       document.body.classList.remove('focus');
       barra.remove();
-      setChildren(cont, volver('Temario', tlink(tit, ['temario'])), h('p', 'Esta clase no existe (todavía).'));
+      setChildren(cont, enApendice ? volver('Las cuentas del patrón', salida) : volver('Temario', tlink(tit, ['temario'])), h('p', 'Esta clase no existe (todavía).'));
       return;
     }
+    // «Repasa: …»: las clases del apéndice con las cuentas que esta clase da por sabidas (lo dicen los datos del apéndice).
+    const repasos = enApendice ? [] : repasosPara(apendice, tit, { leccion: L.id });
+    const enlaceRepasa = () => (repasos.length ? h('p.repasa.small', 'Repasa: ', repasos.map((r, j) => [j ? ' · ' : null,
+      h('a', { href: tlink(tit, ['cuentas', r.id], { desde: L.id }) }, r.titulo)])) : null);
     prepareTheory({ tit, chart: ctx.chart, reglas: bank.reglasDe });
     const reglas = new Map(mnemo.reglas.map((r) => [r.id, r]));
     const preguntas = new Map(bank.estudio.map((q) => [q.id, q]));
@@ -76,9 +87,11 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     });
     const enlaceBase = ({ l, vista }) => h('li', h('a', { href: tlink('per', ['curso', l.id], { desde: L.id }) }, l.titulo), vista ? ' ✓' : h('span.muted.small', ' · sin ver'));
     const listaBase = () => h('ul.base-per', base.map(enlaceBase));
-    // Volver a la clase del PY desde la que se abrió esta del PER.
-    const origen = desde && cursoPy ? leccionesDe(cursoPy).find((l) => l.id === desde) : null;
-    const volverOrigen = (cls = 'a.volver-origen') => (origen ? h(cls, { href: tlink('py', ['curso', origen.id]) }, `← Volver a tu clase del PY: ${origen.titulo}`) : null);
+    // Volver a la clase del PY desde la que se abrió esta del PER (o a la clase desde la que se abrió esta del apéndice).
+    const origenCuentas = enApendice && desde && curso ? leccionesDe(curso).find((l) => l.id === desde) : null;
+    const origen = origenCuentas ?? (!enApendice && desde && cursoPy ? leccionesDe(cursoPy).find((l) => l.id === desde) : null);
+    const volverOrigen = (cls = 'a.volver-origen') => (origen ? h(cls, { href: tlink(origenCuentas ? tit : 'py', ['curso', origen.id]) },
+      origenCuentas ? `← Volver a tu clase: ${origen.titulo}` : `← Volver a tu clase del PY: ${origen.titulo}`) : null);
 
     // El podcast de esta clase (si ya tiene audio): en la primera tarjeta, a mano en todas y al terminar.
     const episodio = episodios.find((e) => e.audio) ?? null;
@@ -143,6 +156,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${cuenta(base.length, 'clase', 'clases')})`),
             h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo (luego vuelves aquí):'),
             listaBase()) : null,
+          enlaceRepasa(),
+          enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora (🧮).') : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
             h('p.muted.small', 'Antes o después de la clase: Elena y Andrés lo cuentan en voz alta.')) : null);
         case 'texto': return h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto));
@@ -274,8 +289,47 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           } });
           return h('div.paso.check', h('p.badge', '¿Lo pillas?'), card, fb);
         }
+        case 'cuenta': return pasoCuenta(p, i);
         default: return null;
       }
+    }
+
+    // «Con la calculadora»: una cuenta con números nuevos cada vez (src/course/cuentas.js). Se responde escribiendo;
+    // «Ver cómo se hace» enseña los pasos y las teclas. Comprobarla bien o verla resuelta deja seguir.
+    function pasoCuenta(p, i) {
+      const box = h('div.cuenta-caja');
+      const hecha = () => { checkOk.add(i); if (i === paso) refrescaBotones(); };
+      function nueva() {
+        const ej = generaCuenta(p.generador, createRng(randomSeed()));
+        const input = h('input.cuenta-respuesta', { placeholder: EJEMPLO_RESPUESTA[ej.tipo], autocomplete: 'off', inputmode: 'text', 'aria-label': 'Tu respuesta' });
+        const fb = h('div.cuenta-fb', { 'aria-live': 'polite' });
+        const solucion = h('div.cuenta-solucion', { hidden: true },
+          h('ol.cuenta-pasos', ej.pasos.map((x) => h('li', inline(x)))),
+          h('p.small', h('strong', 'Con la calculadora: '), h('code.calc-teclas-txt', ej.teclas)),
+          h('p', h('strong', 'Solución: '), ej.solucion));
+        const ver = () => { solucion.hidden = false; hecha(); };
+        const comprobar = () => {
+          const r = corrigeCuenta(ej, input.value);
+          input.dataset.status = { ok: 'ok', mal: 'wrong', formato: 'invalid', vacia: 'empty' }[r.estado];
+          vibrar(r.estado === 'ok');
+          setChildren(fb, {
+            ok: h('p.ok', `✅ Correcto: ${ej.solucion}.`),
+            mal: h('p.warn', '❌ No es eso. Repasa la cuenta o pulsa «Ver cómo se hace».'),
+            formato: h('p.warn', `⚠️ No entiendo la respuesta. ${EJEMPLO_RESPUESTA[ej.tipo]}.`),
+            vacia: h('p.muted', 'Escribe tu resultado y pulsa «Comprobar».'),
+          }[r.estado]);
+          if (r.estado === 'ok') hecha();
+        };
+        setChildren(box, h('p.cuenta-enunciado', ej.enunciado),
+          h('form.cuenta-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
+            h('label.field', h('span.lbl', 'Tu respuesta'), input),
+            h('div.actions', h('button', { type: 'submit' }, 'Comprobar'), botonCalculadora(),
+              h('button.secondary', { type: 'button', onclick: ver }, 'Ver cómo se hace'),
+              h('button.secondary', { type: 'button', onclick: () => { nueva(); } }, '🔄 Otra con otros números'))),
+          fb, solucion);
+      }
+      nueva();
+      return h('div.paso.cuenta', h('p.badge', '🧮 Haz la cuenta (con la calculadora)'), box);
     }
     const speechOf = (p) => ({
       intro: `${L.titulo}. En esta clase: ${(L.objetivos ?? []).join('. ')}`,
@@ -283,6 +337,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       resuelto: 'Míralo resuelto con una pregunta real de examen.',
       toca: 'Toca en el dibujo las partes que te pido.', emparejar: `Empareja cada término con su definición: ${(p.pares ?? []).map(([t]) => t).join(', ')}.`,
       regla: reglas.get(p.id) ? `Para recordarlo: ${reglas.get(p.id).regla}. ${reglas.get(p.id).significado}` : '', check: p.enunciado,
+      cuenta: 'Haz la cuenta con la calculadora y escribe el resultado.',
     }[p.tipo] ?? '');
 
     const guardaPaso = () => progress.saveLeccion(L.id, { ...reg(), paso, tramo: tarjetas[paso].tramo, tramos: k });
@@ -321,9 +376,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       siguiente.textContent = paso === n - 1 ? 'Terminar la clase ✓' : 'Siguiente →';
       const t = tarjetas[paso];
       // Un «¿Lo pillas?» o la predicción de una lámina interactiva se responden antes de seguir.
-      siguiente.disabled = (t.tipo === 'check' || t.tipo === 'toca' || t.tipo === 'emparejar' || (t.tipo === 'ilustracion' && pidePrediccion(t.spec))) && !checkOk.has(paso);
+      siguiente.disabled = (t.tipo === 'check' || t.tipo === 'toca' || t.tipo === 'emparejar' || t.tipo === 'cuenta' || (t.tipo === 'ilustracion' && pidePrediccion(t.spec))) && !checkOk.has(paso);
       // Desactivado, el botón dice qué falta (en gris), en vez de no hacer nada sin explicar por qué.
-      if (siguiente.disabled) siguiente.textContent = { check: 'Elige una respuesta', toca: 'Toca las partes', emparejar: 'Empareja los términos' }[t.tipo] ?? 'Elige qué crees que pasará';
+      if (siguiente.disabled) siguiente.textContent = { check: 'Elige una respuesta', toca: 'Toca las partes', emparejar: 'Empareja los términos', cuenta: 'Haz la cuenta' }[t.tipo] ?? 'Elige qué crees que pasará';
       siguiente.classList.toggle('esperando', siguiente.disabled);
     }
 
@@ -383,11 +438,18 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         pasosExtra.length ? h('details.saber-mas', h('summary', `📚 Para saber más (${pasosExtra.length}) · no cae en el examen`), h('div.pasos.todas', pasosExtra.map((p) => pasoEl(p, -1)))) : null,
         L.profundizar?.length ? h('details', h('summary', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
         base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,
+        enlaceRepasa(),
       ];
       const chuleta = L.chuleta?.length ? h('section.chuleta', h('h2', '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
         voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null) : null;
       const vuelta = origen ? h('p', volverOrigen('a.btn.grande')) : null;
-      if (nPractica) {
+      if (enApendice) {
+        // Apéndice: sin práctica ni plan. Se sigue con la siguiente clase del apéndice o se vuelve a la lista.
+        const sig = todas[todas.indexOf(L) + 1] ?? null;
+        setChildren(cont, vuelta, cierre({ icono: '🎉', titulo: 'Clase terminada', tit, lineas: [L.titulo], logros: logrosClase(), stats: cifrasCierre(progress),
+          botones: [sig ? h('a.btn.grande', { href: tlink(tit, ['cuentas', sig.id]) }, `Seguir: ${sig.titulo}`) : null,
+            h('a.btn.secondary.grande', { href: salida }, 'Volver a Las cuentas del patrón')] }), chuleta, extra);
+      } else if (nPractica) {
         // Practicar la afianza; si no, la clase ya cuenta como vista y se puede cerrar o pasar a lo siguiente.
         const hueco = h('div');
         setChildren(cont, vuelta, chuleta,

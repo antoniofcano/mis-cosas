@@ -31,3 +31,6 @@ export const loadMnemonics = cargarMnemotecnias;
 export const loadPodcast = (tit) => loadJSON(`data/podcast-${tit}.json`);
 /** Línea de tiempo de un episodio: cuándo empieza cada intervención y las pausas del minijuego. */
 export const loadPodcastLinea = (id) => loadJSON(`data/podcast/${id}.json`);
+
+/** Apéndice «Las cuentas del patrón» (clases de matemáticas; fuera del temario del examen). */
+export const loadApendice = () => loadJSON('data/curso/apendice-matematicas.json');

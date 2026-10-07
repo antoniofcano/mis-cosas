@@ -49,12 +49,13 @@ let openWs = null;
  * @param {'ejercicio'|'tutorial'} [o.tab]
  * @param {object} [o.progress]
  * @param {() => string} [o.summary] resumen para IA del ejercicio
+ * @param {boolean} [o.calculadora] false: sin el botón de la calculadora (examen en el que no se permite)
  */
 export function openWorkspace(o) {
   openWs?.close();
   let placeholders = [];
 
-  const chartApi = interactiveChart({ chart: o.chart, items: [], focus: o.focus ?? [], step: Infinity, progress: o.progress, fill: true });
+  const chartApi = interactiveChart({ chart: o.chart, items: [], focus: o.focus ?? [], step: Infinity, progress: o.progress, fill: true, calculadora: o.calculadora !== false });
   chartApi.setHighlights(marksInText(o.chart, o.statement));
 
   // --- Panel: ejercicio

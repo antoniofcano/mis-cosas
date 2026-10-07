@@ -37,3 +37,22 @@ test('sw.js lleva la versión en su primera línea (Safari solo mira si cambia s
   const sw = readFileSync(join(RAIZ, 'sw.js'), 'utf8');
   assert.equal(sw.split('\n')[0], `// versión: ${listaPrecache().version}`);
 });
+
+// sw.js y sw-lista.js tienen que ser JavaScript válido: si no, el navegador no instala la versión nueva y el alumno
+// se queda con la vieja sin saberlo (pasó con restos de una fusión de git en sw.js).
+test('sw.js y sw-lista.js son JavaScript válido', async () => {
+  const { execFileSync } = await import('node:child_process');
+  for (const f of ['sw.js', 'sw-lista.js']) execFileSync(process.execPath, ['--check', new URL(`../${f}`, import.meta.url).pathname]);
+});
+
+test('ningún fichero del repositorio tiene marcas de conflicto de git', async () => {
+  const { execFileSync } = await import('node:child_process');
+  const raiz = new URL('..', import.meta.url).pathname;
+  let salida = '';
+  try {
+    salida = execFileSync('git', ['grep', '-n', '-I', '-E', '^(<<<<<<< |>>>>>>> |=======$)', '--', '.'], { cwd: raiz, encoding: 'utf8' });
+  } catch (e) {
+    if (e.status !== 1) throw e; // 1 = sin coincidencias
+  }
+  assert.equal(salida, '', `Marcas de conflicto sin resolver:\n${salida}`);
+});

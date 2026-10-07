@@ -5,8 +5,11 @@
 //   "cache" → .cache/bancos/<eje>/salida/<tit>/preguntas.json (Andalucía: nunca se sobrescribe el banco vivo; Murcia:
 //             la licencia no permite publicarlo).
 // Formato del contrato (bancos-esquema): todas las claves siempre presentes, una pregunta por línea.
+// Ajustes a mano (opcional): tools/bancos/ejes/<eje>/ajustes.json → { "<tit>": { "<id>": { campo: valor } } }, revisados
+// pregunta a pregunta y con su motivo en el propio valor (norma revisada contra el BOE, concepto, requiere…). Se aplican
+// sobre la pregunta ya en el formato del contrato; solo campos del contrato.
 import { join } from 'node:path';
-import { RAIZ, cacheEje, escribirJSON, escribirTexto, hoy, leerJSON, rutaEtapa } from '../lib/comun.mjs';
+import { RAIZ, cacheEje, dirEje, escribirJSON, escribirTexto, hoy, leerJSON, rutaEtapa } from '../lib/comun.mjs';
 
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 export const fechaLarga = (f) => (f ? `${Number(f.slice(8, 10))} de ${MESES[Number(f.slice(5, 7)) - 1]} de ${f.slice(0, 4)}` : null);
@@ -72,7 +75,16 @@ export async function escribir(ctx) {
     const d = leerJSON(rutaEtapa(eje, 'normativa', tit));
     const v = leerJSON(rutaEtapa(eje, 'validar', tit), { errores: ['falta la etapa validar'] });
     if (enData && v.errores.length) throw new Error(`${eje}/${tit}: ${v.errores.length} errores de validación; no se escribe en data/ejes (ver tools/bancos/informes/${eje}.md)`);
-    const preguntas = d.preguntas.map((p) => aContrato(p, { config, eje, tit }));
+    const ajustes = leerJSON(join(dirEje(eje), 'ajustes.json'), {})[tit] ?? {};
+    const preguntas = d.preguntas.map((p) => aContrato(p, { config, eje, tit })).map((q) => {
+      const a = ajustes[q.id];
+      if (!a) return q;
+      const fuera = Object.keys(a).filter((k) => !(k in q));
+      if (fuera.length) throw new Error(`${eje}/${tit} ${q.id}: ajuste de campos que no son del contrato (${fuera.join(', ')})`);
+      return { ...q, ...a };
+    });
+    const sinPregunta = Object.keys(ajustes).filter((id) => !preguntas.some((q) => q.id === id));
+    if (sinPregunta.length) ctx.avisos.add('escribir', `${tit}: ${sinPregunta.length} ajustes de ids que ya no existen (${sinPregunta.slice(0, 5).join(', ')})`);
     const meta = {
       eje, tit, titulo: `${tit.toUpperCase()} · ${config.nombre}`, generado: hoy(), fuente: config.indice ?? null,
       descripcion: config.descripcion?.[tit] ?? `Preguntas de los exámenes oficiales de ${tit === 'per' ? 'Patrón de Embarcaciones de Recreo' : 'Patrón de Yate'} de ${config.organismo}, extraídas con tools/bancos (npm run bancos -- ${eje}).`,

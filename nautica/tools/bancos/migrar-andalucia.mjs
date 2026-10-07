@@ -29,6 +29,16 @@ export function huella(q) {
   return createHash('sha256').update(JSON.stringify(datos)).digest('hex').slice(0, 16);
 }
 
+/**
+ * Erratas del banco antiguo corregidas después de la migración (fase F2), con su evidencia en
+ * tools/bancos/informes/andalucia-oro.md. Se aplican antes de calcular la huella: repetir la migración da el banco vivo.
+ */
+export const ERRATAS = {
+  // Opción d con «U+0012 U+0013» al final: restos de la tabla de mareas (pág. 7) que la extracción antigua pegó a la opción.
+  'and-py-2022-c3-n20': (q) => ({ ...q, opciones: { ...q.opciones, d: q.opciones.d.replace(/[\s\u0000-\u001f]+$/, '') } }),
+};
+const corregir = (q) => (ERRATAS[q.id] ? ERRATAS[q.id](q) : q);
+
 /** Clave de convocatoria a partir del id antiguo (la misma que guardaba el progreso). */
 const convDe = (id) => id.replace(/-[tqgn]\d+$/, '');
 
@@ -86,9 +96,9 @@ export function migrar({ desde = null } = {}) {
   const leer = lector(desde);
   const json = (f) => JSON.parse(leer(f).toString('utf8'));
   const antiguas = {
-    per: [...json('data/exams/andalucia-per-teoria.json').preguntas.map((q) => ({ q, carta: false })),
-      ...json('data/exams/andalucia-per.json').preguntas.map((q) => ({ q, carta: true }))],
-    py: json('data/exams/andalucia-py-teoria.json').preguntas.map((q) => ({ q, carta: false })),
+    per: [...json('data/exams/andalucia-per-teoria.json').preguntas.map((q) => ({ q: corregir(q), carta: false })),
+      ...json('data/exams/andalucia-per.json').preguntas.map((q) => ({ q: corregir(q), carta: true }))],
+    py: json('data/exams/andalucia-py-teoria.json').preguntas.map((q) => ({ q: corregir(q), carta: false })),
   };
   // La página de cada convocatoria del PER solo venía en las preguntas de carta: se da también a las de teoría.
   const paginas = {};

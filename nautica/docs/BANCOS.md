@@ -68,7 +68,7 @@ Las soluciones programadas de las preguntas de carta de Andalucía siguen en `sr
   calculadora científica; la app la enseña en el simulacro solo si es true; `calculadoraFuente`, de dónde sale); más adelante, p. ej.
   `{ "cuadernillos": 2 }`.
 - `reserva`: claves `conv` reservadas para el examen final (F1). Lo reservado no se estudia por ninguna puerta
-  (clases, tandas, repaso, mezcla, «5 minutos», simulacros, listas, pausas del podcast; `tests/reserva.test.js`).
+  (clases, tandas, repaso, mezcla, «5 minutos», simulacros, listas, pausas del podcast; `tests/reserva.test.js`) ni se cita en ningún contenido (cuarentena, más abajo).
   `modo`: `examen` (se reservan convocatorias: no se ofrecen como examen de convocatoria y el examen final es una de
   ellas entera; salen del estudio las preguntas que solo aparecen en convocatorias reservadas —una que también salió en
   otra convocatoria ya es pública—) | `pregunta` (salen del estudio todas las que aparecen en ellas, también por
@@ -223,6 +223,29 @@ motor recibe además `reserva`, `pool` (`banco.final`) y `reservadas` para el ex
 - «¿Estás listo?» (`src/course/listo.js`) pesa más los exámenes inéditos: el final cuenta 3 y un simulacro o examen
   real con al menos el 60 % de preguntas nuevas (`nuevas`, guardado al empezar), 2. El simulacro elige primero las
   preguntas no vistas sin cambiar el reparto oficial y avisa cuando ya has visto el 70 % del estudio.
+
+### Cuarentena
+
+Lo reservado para el examen final no se cita en ningún contenido (detalle, inventario y plan del audio en
+docs/CUARENTENA.md):
+
+- **Regla**: ningún fichero servido (`index.html`, `src/`, `data/`) ni ninguna fuente del audio del podcast
+  (`podcast/episodios.json`, guiones) nombra una pregunta reservada de ningún eje ni titulación, ni por su id ni leyendo
+  su enunciado casi literal. Solo pueden nombrarla sus propios datos (su fila del banco, su explicación, sus
+  conceptos, su solución programada, su figura) y los metadatos que solo se usan cuando ella sale (las reglas
+  nemotécnicas que la ayudan, el `excepto` de los resueltos). Práctica, resueltos, clases, mapas, chuleta, reglas,
+  explicaciones de otras preguntas y ejemplos usan una equivalente del estudio del mismo eje.
+- **Comprobación**: `tools/cuarentena.mjs` hace el inventario y `tests/cuarentena.test.js` falla con cualquier cita
+  nueva. La única excepción es la **deuda del audio** (`tools/cuarentena-deuda.json`): pausas y minijuegos de episodios
+  ya grabados que leen una reservada; no puede crecer y cada entrada se quita al regrabar su episodio. Los falsos
+  positivos revisados a mano van en `permitidas`, con su motivo.
+- **Cuando cambie la reserva** (una convocatoria nueva entra en el examen final): el test señala las citas nuevas;
+  `node tools/cuarentena.mjs --arreglar` quita las reservadas de la práctica (con su equivalente cuando la hay), de los
+  resueltos y de las fuentes de verificación de las clases; los guiones sin audio se reescriben a mano.
+- **En la app**: la pausa del podcast cuya pregunta es reservada para el examen final del alumno enseña su equivalente
+  del estudio o, si no la hay, queda sin pregunta con un aviso discreto; hecho su examen final de ese eje y titulación,
+  enseña la del guion (`equivalente(id, eje, { finalHecho })`). Si el audio del episodio lee una reservada
+  (`reservadaDe(id, eje)` sobre las `preguntas` del episodio), la ficha avisa antes de escucharlo, sin bloquear.
 
 ### Rutas
 

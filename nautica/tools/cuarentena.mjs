@@ -2,7 +2,10 @@
 // (docs/BANCOS.md, «Cuarentena») en el contenido que sirve la app y en las fuentes del audio del podcast.
 //   node tools/cuarentena.mjs              resumen por tipo y lista de referencias
 //   node tools/cuarentena.mjs --json       el inventario entero en JSON
-//   node tools/cuarentena.mjs --escribir   regenera el inventario de docs/CUARENTENA.md (entre sus marcas)
+//   node tools/cuarentena.mjs --escribir   regenera el inventario y el plan de la fase 2 en docs/CUARENTENA.md (entre sus marcas)
+//   node tools/cuarentena.mjs --arreglar   arregla lo barato (práctica, resueltos, fuentes de las clases); --ver-arreglos lo enseña
+//   node tools/cuarentena.mjs --plan       plan de la fase 2 (regrabar audio): fragmentos, caracteres y sustitutas
+//   node tools/cuarentena.mjs --deuda      reescribe la deuda (tools/cuarentena-deuda.json) con lo que queda del audio
 // Una referencia es (a) el id de una pregunta reservada fuera de su propio banco (práctica, clases, reglas, mapas,
 // podcast…) o (b) su enunciado casi literal en un texto (p. ej. Elena leyéndola en el guion). No cuentan los datos
 // de la propia pregunta: su fila del banco, su explicación, sus conceptos, su solución programada y su figura.
@@ -204,18 +207,28 @@ export function resumen(refs) {
   return { total: refs.length, preguntas: new Set(refs.map((r) => r.id)).size, porAlcance: por('alcance'), porTipo: por('tipo'), porVia: por('via'), porBanco: refs.reduce((o, r) => ({ ...o, [`${r.eje}/${r.tit}`]: (o[`${r.eje}/${r.tit}`] ?? 0) + 1 }), {}) };
 }
 
-/** Tabla markdown del inventario (para docs/CUARENTENA.md). */
-export function tablaMarkdown(refs, deuda) {
+/** Tabla markdown del inventario (para docs/CUARENTENA.md): cifras de todo y una fila por cita que no es metadato. */
+export function tablaMarkdown(refs, { deuda = [], permitidas = [] } = {}) {
   const enDeuda = new Set(deuda.map((d) => d.clave));
+  const ok = new Set(permitidas.map((d) => d.clave));
   const s = resumen(refs);
-  const filas = [...refs].sort((a, b) => a.fichero.localeCompare(b.fichero) || a.ruta.localeCompare(b.ruta, 'es', { numeric: true }));
+  const lista = (o) => Object.entries(o).map(([k, v]) => `${k} ${v}`).join(', ') || 'ninguna';
+  const filas = refs.filter((r) => r.alcance !== 'metadato')
+    .sort((a, b) => a.fichero.localeCompare(b.fichero) || a.ruta.localeCompare(b.ruta, 'es', { numeric: true }));
+  const estado = (r) => (enDeuda.has(claveRef(r)) ? 'deuda: regenerar audio' : ok.has(claveRef(r)) ? 'falso positivo revisado' : '**por arreglar**');
   return [
-    `Generado con \`node tools/cuarentena.mjs --escribir\`: ${s.total} referencias a ${s.preguntas} preguntas reservadas`
-      + ` (${Object.entries(s.porTipo).map(([k, v]) => `${k} ${v}`).join(', ') || 'ninguna'}); ${filas.filter((r) => enDeuda.has(claveRef(r))).length} en la deuda de audio.`,
+    `Generado con \`node tools/cuarentena.mjs --escribir\`: **${s.total} citas a ${s.preguntas} preguntas reservadas**.`,
     '',
-    '| Pregunta | Banco | Fichero | Dónde | Tipo | Por | Estado |',
-    '|---|---|---|---|---|---|---|',
-    ...filas.map((r) => `| \`${r.id}\` | ${r.eje}/${r.tit} | \`${r.fichero}\` | ${r.ruta} | ${r.tipo} | ${r.via}${r.parecido ? ` (${r.parecido})` : ''} | ${enDeuda.has(claveRef(r)) ? 'deuda: regenerar audio' : 'por arreglar'} |`),
+    `- Por alcance: ${lista(s.porAlcance)}.`,
+    `- Por tipo de contenido: ${lista(s.porTipo)}.`,
+    `- Por cómo se detectan: ${lista(s.porVia)}. Por banco: ${lista(s.porBanco)}.`,
+    `- En la deuda del audio: ${filas.filter((r) => enDeuda.has(claveRef(r))).length}; falsos positivos revisados: ${filas.filter((r) => ok.has(claveRef(r))).length};`
+      + ` por arreglar: ${filas.filter((r) => !enDeuda.has(claveRef(r)) && !ok.has(claveRef(r))).length}.`,
+    `- Metadato (no se enseña; no se lista abajo): ${s.porAlcance.metadato ?? 0} (reglas nemotécnicas que ayudan a la propia reservada y \`excepto\` de los resueltos).`,
+    '',
+    '| Pregunta | Banco | Fichero | Dónde | Tipo | Alcance | Por | Estado |',
+    '|---|---|---|---|---|---|---|---|',
+    ...filas.map((r) => `| \`${r.id}\` | ${r.eje}/${r.tit} | \`${r.fichero}\` | ${r.ruta} | ${r.tipo} | ${r.alcance} | ${r.via}${r.parecido ? ` (${r.parecido})` : ''} | ${estado(r)} |`),
   ].join('\n');
 }
 
@@ -251,9 +264,77 @@ function motivoDe(r) {
 }
 
 /** La deuda que corresponde al inventario actual: lo del podcast que solo se arregla regenerando el audio. */
-export function deudaDe(refs) {
-  return refs.filter((r) => r.alcance !== 'metadato' && r.tipo.startsWith('podcast-') && conAudio(episodioDe(r)))
+export function deudaDe(refs, permitidas = []) {
+  const ok = new Set(permitidas.map((p) => p.clave));
+  return refs.filter((r) => r.alcance !== 'metadato' && r.tipo.startsWith('podcast-') && conAudio(episodioDe(r)) && !ok.has(claveRef(r)))
     .map((r) => ({ clave: claveRef(r), id: r.id, episodio: episodioDe(r), fichero: r.fichero, ruta: r.ruta, motivo: motivoDe(r), estado: 'pendiente regenerar audio' }));
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// Plan de la fase 2 (regrabar): node tools/cuarentena.mjs --plan
+
+/**
+ * Para cada episodio con audio que lee una reservada: qué fragmentos de su línea de tiempo hay que regrabar (la
+ * intervención que lee la pregunta, la respuesta de Andrés y la confirmación de Elena), cuántos caracteres son, y una
+ * pregunta del estudio que la puede sustituir (gemela o equivalente del mismo eje, que no esté ya en el episodio).
+ */
+export async function planFase2() {
+  const { reservadas, gemela, porId } = await reservas();
+  const B = bancosNode();
+  const { equivalenteEn } = await import('../src/bancos/equivalentes.js');
+  const E = JSON.parse(readFileSync(join(RAIZ, 'podcast/episodios.json'), 'utf8'));
+  const eps = [...new Set(leerDeuda().map((d) => d.episodio))].sort((a, b) => a.localeCompare(b, 'es', { numeric: true }));
+  const out = [];
+  for (const ep of eps) {
+    const linea = JSON.parse(readFileSync(join(RAIZ, `data/podcast/${ep}.json`), 'utf8'));
+    const tit = ep.split('-')[0];
+    const ficha = E[tit].find((x) => `${tit}-${String(x.n).replace('.', '-')}` === ep);
+    const T = linea.tramos;
+    const habla = (desde, paso) => { for (let j = desde; j >= 0 && j < T.length; j += paso) if (T[j].x) return j; return null; };
+    const total = T.reduce((s, x) => s + (x.x?.length ?? 0), 0);
+    const fragmentos = [];
+    T.forEach((x, i) => {
+      if (!x.p || !reservadas.has(x.p)) return;
+      const lee = habla(i - 1, -1);
+      const responde = habla(i + 1, 1);
+      const confirma = responde == null ? null : habla(responde + 1, 1);
+      const idx = [lee, responde, confirma].filter((j) => j != null);
+      fragmentos.push({ id: x.p, tramos: idx, caracteres: idx.reduce((s, j) => s + T[j].x.length, 0) });
+    });
+    // Lo que el audio lee sin pausa propia (detectado por el texto): su tramo, si no está ya en otro fragmento.
+    for (const d of leerDeuda().filter((x) => x.episodio === ep && x.fichero === `data/podcast/${ep}.json` && /^tramos\.\d+\.x$/.test(x.ruta))) {
+      if (fragmentos.some((f) => f.id === d.id)) continue;
+      const j = Number(d.ruta.split('.')[1]);
+      const otro = fragmentos.find((f) => f.tramos.includes(j));
+      fragmentos.push({ id: d.id, tramos: [j], caracteres: otro ? 0 : T[j].x.length, ...(otro ? { nota: `mismo fragmento que ${otro.id}` } : {}) });
+    }
+    for (const f of fragmentos) {
+      const q = porId.get(f.id);
+      const banco = await B.cargarBanco(q.eje, q.tit);
+      const ya = new Set(ficha?.preguntas ?? []);
+      const g = gemela.get(f.id);
+      const otra = g && !ya.has(g) ? porId.get(g) : equivalenteEn(q, banco.estudio.filter((c) => !ya.has(c.id) && c.ut === q.ut));
+      f.sustituta = otra?.id ?? null;
+    }
+    out.push({ episodio: ep, guion: ficha?.archivo ? `podcast/${ficha.archivo}` : null, caracteresEpisodio: total, fragmentos });
+  }
+  return out;
+}
+
+/** Tabla markdown del plan de la fase 2. */
+export function planMarkdown(plan) {
+  const frag = plan.flatMap((e) => e.fragmentos);
+  const cFrag = frag.reduce((s, f) => s + f.caracteres, 0);
+  const cEps = plan.reduce((s, e) => s + e.caracteresEpisodio, 0);
+  return [
+    `Generado con \`node tools/cuarentena.mjs --escribir\`: ${plan.length} episodios con audio, ${frag.length} preguntas reservadas leídas en sus minijuegos.`,
+    `Coste estimado: **${cFrag.toLocaleString('es-ES')} caracteres** si solo se regraban los fragmentos (la caché de \`podcast/audio.py\` reutiliza el resto) y`
+      + ` **${cEps.toLocaleString('es-ES')} caracteres** si se regraban los episodios enteros (sin caché).`,
+    '',
+    '| Episodio | Guion | Reservada | Tramos de la línea de tiempo | Caracteres | Sustituta propuesta |',
+    '|---|---|---|---|---|---|',
+    ...plan.flatMap((e) => e.fragmentos.map((f) => `| ${e.episodio} | \`${e.guion}\` | \`${f.id}\` | ${f.tramos.join(', ')} | ${f.caracteres}${f.nota ? ` (${f.nota})` : ''} | ${f.sustituta ? `\`${f.sustituta}\`` : 'buscar a mano (sin equivalente automática)'} |`)),
+  ].join('\n');
 }
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -340,10 +421,12 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop()
     const cambios = await arreglar({ escribir: process.argv.includes('--arreglar') });
     for (const c of cambios) console.log(JSON.stringify(c));
     console.log(`${cambios.length} cambios${process.argv.includes('--arreglar') ? ' escritos' : ' (sin escribir; --arreglar para escribirlos)'}`);
+  } else if (process.argv.includes('--plan')) {
+    console.log(planMarkdown(await planFase2()));
   } else if (process.argv.includes('--deuda')) {
     // Solo para crear la lista la primera vez o tras regrabar: el test exige que no crezca.
     const viejo = (() => { try { return leerDeudaCompleta(); } catch { return { permitidas: [] }; } })();
-    const deuda = deudaDe(refs);
+    const deuda = deudaDe(refs, viejo.permitidas ?? []);
     writeFileSync(join(RAIZ, 'tools/cuarentena-deuda.json'), `${JSON.stringify({ nota: viejo.nota, deuda, permitidas: viejo.permitidas ?? [] }, null, 1)}\n`);
     console.log(`tools/cuarentena-deuda.json: ${deuda.length} entradas de deuda`);
   } else if (process.argv.includes('--json')) console.log(JSON.stringify(refs, null, 1));
@@ -354,7 +437,10 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop()
     const i = txt.indexOf(ini);
     const j = txt.indexOf(fin);
     if (i < 0 || j < 0) throw new Error('docs/CUARENTENA.md sin las marcas del inventario');
-    writeFileSync(doc, `${txt.slice(0, i + ini.length)}\n${tablaMarkdown(refs, leerDeuda())}\n${txt.slice(j)}`);
+    let nuevo = `${txt.slice(0, i + ini.length)}\n${tablaMarkdown(refs, leerDeudaCompleta())}\n${txt.slice(j)}`;
+    const [pi, pf] = [nuevo.indexOf('<!-- plan -->'), nuevo.indexOf('<!-- /plan -->')];
+    if (pi >= 0 && pf >= 0) nuevo = `${nuevo.slice(0, pi + '<!-- plan -->'.length)}\n${planMarkdown(await planFase2())}\n${nuevo.slice(pf)}`;
+    writeFileSync(doc, nuevo);
     console.log('docs/CUARENTENA.md:', JSON.stringify(resumen(refs)));
   } else {
     console.log(JSON.stringify(resumen(refs), null, 1));

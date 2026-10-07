@@ -7,7 +7,7 @@ import { inventario, claveRef, leerDeudaCompleta, deudaDe, conAudio, idsEn, limp
 import { crearBancos } from '../src/bancos/index.js';
 
 /** Tope de la deuda: el número de entradas cuando se creó (fase 1). Solo puede bajar; si bajas la deuda, bájalo. */
-const MAX_DEUDA = 199;
+const MAX_DEUDA = 197;
 
 const refs = await inventario();
 const { deuda, permitidas } = leerDeudaCompleta();
@@ -30,7 +30,7 @@ test('la deuda no crece, es solo audio del podcast y cada entrada sigue existien
     assert.ok(conAudio(d.episodio), `${d.clave}: el episodio ${d.episodio} no tiene audio; se arregla en el texto, no es deuda`);
   }
   // La deuda es exactamente lo del podcast con audio (nada que se pueda arreglar en texto se cuela en ella).
-  assert.deepEqual(deudaDe(refs).map((d) => d.clave).sort(), deuda.map((d) => d.clave).sort());
+  assert.deepEqual(deudaDe(refs, permitidas).map((d) => d.clave).sort(), deuda.map((d) => d.clave).sort());
   for (const p of permitidas) assert.ok(p.motivo, p.clave);
 });
 

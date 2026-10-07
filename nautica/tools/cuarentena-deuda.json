@@ -479,15 +479,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast/py-2-6.json#tramos.70.x#and-py-2026-c1-g20#texto",
-   "id": "and-py-2026-c1-g20",
-   "episodio": "py-2-6",
-   "fichero": "data/podcast/py-2-6.json",
-   "ruta": "tramos.70.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/py-2-6.json#tramos.71.p#and-py-2025-c1-g17#id",
    "id": "and-py-2025-c1-g17",
    "episodio": "py-2-6",
@@ -1730,15 +1721,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/py/2-6-nieblas.md#párrafo 75#and-py-2026-c1-g20#texto",
-   "id": "and-py-2026-c1-g20",
-   "episodio": "py-2-6",
-   "fichero": "podcast/py/2-6-nieblas.md",
-   "ruta": "párrafo 75",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/py/2-8-corrientes-marinas.md#párrafo 65#and-py-2026-c1-g15#texto",
    "id": "and-py-2026-c1-g15",
    "episodio": "py-2-8",
@@ -1801,6 +1783,14 @@
   {
    "clave": "data/ejes/dgmm/py/explicaciones.json#dgmm-py-2021-07-14.explicacion#dgmm-py-2025-11-14#texto",
    "motivo": "La explicación define el periodo de la ola (tiempo entre dos crestas por un mismo punto): es la definición, no la pregunta reservada."
+  },
+  {
+   "clave": "data/podcast/py-2-6.json#tramos.70.x#and-py-2026-c1-g20#texto",
+   "motivo": "El minijuego lee una pregunta pública (and-py-2025-c1-g17) cuya opción b) repite casi el enunciado corto de la reservada (\"las nieblas de radiación son debidas a…\"): no es la reservada."
+  },
+  {
+   "clave": "podcast/py/2-6-nieblas.md#párrafo 75#and-py-2026-c1-g20#texto",
+   "motivo": "El minijuego lee una pregunta pública (and-py-2025-c1-g17) cuya opción b) repite casi el enunciado corto de la reservada (\"las nieblas de radiación son debidas a…\"): no es la reservada."
   }
  ]
 }

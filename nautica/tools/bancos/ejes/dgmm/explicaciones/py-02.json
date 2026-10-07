@@ -1,0 +1,538 @@
+{
+  "dgmm-py-2023-04-04": {
+    "explicacion": "Subir un peso que ya está a bordo no cambia el desplazamiento ni la carena, pero sí sube el centro de gravedad G. Como el metacentro M no se mueve, la altura metacéntrica GM disminuye y el barco pierde estabilidad. Al moverlo en la misma vertical no aparece escora, y el centro de carena no se eleva por un traslado interno.",
+    "clave": "Subir pesos sube G → GM menor → menos estabilidad.",
+    "trampa": "La b): un traslado vertical no escora; escora el traslado transversal.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-05": {
+    "explicacion": "Las bengalas de mano se ven a menos distancia que un cohete con paracaídas, que sube a unos 300 m, pero arden más tiempo y sirven de día y de noche. El arnés lleva una línea corta, precisamente para que no caigas al agua; los aros se estiban a mano y con zafa rápida, no necesariamente en la proa; y el extintor se dirige a la base de las llamas.",
+    "clave": "Cohete: más alcance. Bengala de mano: menos alcance, más duración.",
+    "trampa": "La a): un arnés largo te deja caer al agua; debe impedirlo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-06": {
+    "explicacion": "Las señales pirotécnicas queman y pueden proyectar escoria, así que se manipulan con guantes o trapos, sosteniéndolas por fuera de la borda y a sotavento para que el humo y las partículas no vuelvan sobre ti. Hay que leer las instrucciones antes de usarlas y dosificarlas: lánzalas cuando haya alguien que pueda verlas, no todas a la vez.",
+    "clave": "Pirotecnia: guantes, a sotavento, leer instrucciones y dosificar.",
+    "trampa": "La b): se encienden a sotavento, nunca a barlovento.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-07": {
+    "explicacion": "Antes de lanzar la balsa, su boza (driza o cabo de disparo) se hace firme a un punto resistente del barco: es la que, al tirar de ella, dispara el inflado y la mantiene junto al costado. El barco debe estar parado, conviene ir abrigado (la ropa aísla del frío) y la radiobaliza se lleva contigo a la balsa.",
+    "clave": "Boza de la balsa firme a bordo antes de lanzarla.",
+    "trampa": "La d): la radiobaliza va contigo; la b): desvestirse acelera la hipotermia.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-08": {
+    "explicacion": "Con el VHF portátil de abandono la llamada de socorro se hace por voz en el canal 16, el de socorro, seguridad y llamada, diciendo MAYDAY tres veces. El canal 70 está reservado a la LSD digital y no admite voz, el 9 es un canal de puertos deportivos y el 12 es de operaciones portuarias.",
+    "clave": "Socorro por voz: canal 16. Canal 70: solo LSD.",
+    "trampa": "Elegir el 70 por ser el de socorro digital: por él no se habla.",
+    "concepto": "and-py-2021-c2-g08"
+  },
+  "dgmm-py-2023-04-09": {
+    "explicacion": "El SART es un respondedor radar que trabaja en la banda X de 9 GHz: al recibir el pulso de un radar de esa banda emite una línea de 12 puntos en la pantalla. Se activa manualmente, y para ganar alcance debe izarse al menos 1 m sobre el agua, no dejarse a nivel del mar. Un reflector radar no sustituye ni complementa al SART en el sentido de la d).",
+    "clave": "SART = banda X (9 GHz), 12 puntos, cuanto más alto, más alcance.",
+    "trampa": "La c): a ras de agua el alcance es mínimo; hay que elevarlo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-10": {
+    "explicacion": "El desplazamiento es el peso total del barco, y todo peso se considera aplicado en el centro de gravedad G, actuando hacia abajo. En el centro de carena (o de empuje) se aplica la fuerza contraria, el empuje del agua, y el metacentro es un punto de referencia para la estabilidad, no el punto de aplicación de ninguna fuerza.",
+    "clave": "Desplazamiento (peso) → G. Empuje → centro de carena.",
+    "trampa": "La a) y la d) son el mismo punto (carena = empuje), donde actúa el empuje, no el peso.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-11": {
+    "explicacion": "El viento geostrófico es un modelo ideal en el que se equilibran solo la fuerza del gradiente de presión y la de Coriolis (debida a la rotación terrestre), y sopla paralelo a las isobaras. No tiene en cuenta el rozamiento con la superficie, que es lo que hace que el viento real cerca del suelo cruce las isobaras hacia las bajas.",
+    "clave": "Geostrófico = gradiente + Coriolis, sin rozamiento.",
+    "trampa": "La b) y la d) son el mismo efecto (Coriolis), que sí entra en el modelo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-12": {
+    "explicacion": "Por su altura, las nubes medias son los altocúmulos y los altoestratos (el prefijo «alto»), entre unos 2 y 6 km. Cirrocúmulos y cirroestratos son nubes altas (prefijo «cirro»), y los estratos son nubes bajas.",
+    "clave": "Alto- = medias; Cirro- = altas; Estratos = bajas.",
+    "trampa": "«Alto» no significa nube alta: las altas son las cirro-.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-13": {
+    "explicacion": "La niebla se disipa de forma natural sobre todo cuando arrecia el viento, que mezcla el aire húmedo de superficie con aire más seco de arriba, o cuando sube la temperatura (por ejemplo, al calentar el sol). Bajar la temperatura o encalmarse el viento la favorece, y los procedimientos químicos no son el mecanismo natural.",
+    "clave": "Niebla se va con más viento o más temperatura.",
+    "trampa": "La c): la calma conserva la niebla, no la dispersa.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-14": {
+    "explicacion": "Las isobaras unen puntos de igual presión atmosférica en una superficie dada (en los mapas, reducida al nivel del mar). Cuanto más juntas están, mayor es el gradiente de presión y más fuerte el viento. Las líneas de igual temperatura son las isotermas.",
+    "clave": "Isobaras juntas = gradiente fuerte = mucho viento.",
+    "trampa": "La d) lo dice al revés: juntas indican cambios de presión mayores.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-15": {
+    "explicacion": "Los parámetros de una ola son su longitud (distancia entre dos crestas), su altura (de seno a cresta) y su periodo (tiempo entre dos crestas). El seno es una parte de la ola, el punto más bajo, no un parámetro que la mida.",
+    "clave": "Parámetros: longitud, altura, periodo. Seno y cresta son partes.",
+    "trampa": "El seno se usa para medir la altura, pero es una parte de la ola.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-16": {
+    "explicacion": "La sudestada es un viento del SE propio del Río de la Plata (Argentina y Uruguay), no del Mediterráneo. El Mistral (NW, Golfo de León), el Gregal (NE, Baleares) y la Tramontana (N, Ampurdán y Baleares) son vientos típicos del Mediterráneo.",
+    "clave": "Sudestada = Río de la Plata, no Mediterráneo.",
+    "trampa": "Su nombre suena a «siroco» o «levante», pero no es mediterráneo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-17": {
+    "explicacion": "La humedad relativa es el cociente, en %, entre la presión del vapor de agua que realmente hay en el aire y la tensión del vapor saturante a la misma temperatura y presión. Las opciones b) y c) dan solo un valor de saturación, no una relación, y la d) mezcla el agua del mar, que no interviene.",
+    "clave": "HR = e / E × 100 (vapor real / vapor saturante).",
+    "trampa": "La d) parece una relación, pero compara dos saturaciones y mete el mar.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-18": {
+    "explicacion": "Un frente es la zona de transición entre dos masas de aire. Cuando el aire cálido avanza y desplaza al frío, que retrocede, el frente es cálido; si es el frío el que avanza y empuja al cálido, es frío. Un anticiclón es una zona de alta presión y la ciclogénesis explosiva es la profundización muy rápida de una borrasca.",
+    "clave": "Avanza el cálido → frente cálido. Avanza el frío → frente frío.",
+    "trampa": "La c) invierte quién avanza.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-19": {
+    "explicacion": "Frente a la costa oeste de Galicia, la rama de la corriente del Golfo que llega a la Península (corriente de Portugal) circula en general hacia el Sur, bajando paralela a la costa. Por eso la respuesta oficial es la c); las demás proponen componentes N, NW o E que no son las generales de esa costa.",
+    "clave": "Costa W de Galicia y Portugal: corriente general hacia el S.",
+    "trampa": "Pensar que la corriente del Golfo «sube» hacia el norte en todo su recorrido.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-20": {
+    "explicacion": "El psicrómetro tiene dos termómetros: uno seco, que da la temperatura del aire, y otro con el bulbo envuelto en una muselina húmeda. La evaporación enfría el húmedo, y la diferencia entre ambos permite calcular con tablas la humedad relativa y el punto de rocío.",
+    "clave": "Psicrómetro = termómetro seco + húmedo → humedad.",
+    "trampa": "La c): con dos termómetros secos no hay diferencia que medir.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-21": {
+    "explicacion": "Un sistema de visualización de cartas electrónicas puede mostrar dos tipos de cartas: ráster (imagen escaneada de la carta de papel) y vectoriales (datos por capas, como las ENC). ECDIS es el equipo, S-57 y S-52 son normas de la OHI para el formato y la presentación, y OMI es la organización.",
+    "clave": "Cartas electrónicas: ráster y vectoriales. ECDIS = el equipo.",
+    "trampa": "La c): ECDIS es el sistema, no un tipo de carta.",
+    "concepto": "and-py-2022-c2-n09"
+  },
+  "dgmm-py-2023-04-22": {
+    "explicacion": "El rumbo verdadero es el ángulo entre el norte verdadero y la línea proa-popa (crujía), medido de 0° a 360° en sentido horario. Desde el norte de aguja sería el rumbo de aguja, y la d) olvida el desvío: Rv = Ra + Ct, con Ct = dm + Δ.",
+    "clave": "Rv desde Nv; Ra desde Na; Rv = Ra + dm + Δ.",
+    "trampa": "La d) se queda a medias: sin desvío solo llegas al rumbo magnético.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-23": {
+    "explicacion": "Una enfilación da en la carta una demora verdadera exacta. Si a la vez la tomas con la aguja, la diferencia entre ambas es la corrección total: Ct = Dv − Da = dm + Δ, es decir, la suma de la declinación magnética y el desvío. Una sola línea no da la posición, solo una línea de posición.",
+    "clave": "Ct = Dv − Da (enfilación) = dm + Δ.",
+    "trampa": "La b): con una enfilación solo tienes una línea de posición, no un punto.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-24": {
+    "explicacion": "La d) es la incorrecta: el rumbo de superficie se obtiene sumando al rumbo de aguja la corrección total y el abatimiento (Rs = Ra + Ct + Ab). Sumarle el rumbo efectivo y la deriva no tiene sentido. Las demás son ciertas: la deriva depende de la corriente, el abatimiento de la presión del viento y el rumbo de superficie del abatimiento.",
+    "clave": "Rs = Ra + Ct + Ab; Ref = Rs + efecto de la corriente.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-25": {
+    "explicacion": "La a) es la incorrecta: los avisos generales dan información de carácter general (normas, servicios, publicaciones) y no corrigen las cartas; las correcciones de carta van en los avisos con la indicación «Carta afectada», que son definitivos y se pasan a tinta. Los avisos preliminares y temporales se anotan a lápiz, y periódicamente se publica la relación de cartas afectadas.",
+    "clave": "«Carta afectada» = corrección definitiva; preliminares y temporales, a lápiz.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-26": {
+    "explicacion": "En el radar, la EBL (Electronic Bearing Line) es la línea electrónica de demora, con la que mides demoras o marcaciones a los ecos. El VRM (Variable Range Marker) es el anillo variable de distancia. EVL y BRM no son mandos estándar del radar.",
+    "clave": "EBL = demora; VRM = distancia.",
+    "trampa": "La c): el VRM mide distancias, no demoras.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-27": {
+    "explicacion": "La corrección total es la suma algebraica de la declinación magnética y el desvío (Ct = dm + Δ). La declinación depende del lugar, pero el desvío cambia con el rumbo, así que la Ct también varía con el rumbo. No se calcula con el rumbo de aguja ni tiene que ver con la deriva.",
+    "clave": "Ct = dm + Δ; el Δ cambia con el rumbo → la Ct también.",
+    "trampa": "La a) y la b) mezclan un ángulo de corrección con un rumbo.",
+    "concepto": "and-py-2024-c2-n03"
+  },
+  "dgmm-py-2023-04-28": {
+    "explicacion": "Los datos AIS de otros buques (posición, rumbo, velocidad, identidad) se pueden superponer en una carta electrónica ECDIS o en el radar. La posición que transmite el AIS sale del GNSS (GPS) del barco, no sirve para tomar demoras como un radar ni lo sustituye, y además de los datos estáticos y del viaje (cada 6 min) emite datos dinámicos cada pocos segundos.",
+    "clave": "AIS: posición del GNSS, se ve en ECDIS, no sustituye al radar.",
+    "trampa": "La c): los datos dinámicos se emiten cada 2 a 10 s, no solo cada 6 min.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-29": {
+    "explicacion": "El GNSS da la posición referida a un datum (normalmente WGS84) y la carta de papel puede estar construida con otro (por ejemplo ED50). Si no coinciden, hay que aplicar la corrección que indica la carta, porque la diferencia puede ser de cientos de metros. La declinación magnética no interviene al pasar coordenadas, y el XTE es el error transversal respecto a la derrota.",
+    "clave": "GNSS → carta: comprueba el datum.",
+    "trampa": "La c): el XTE dice cuánto te has apartado de la derrota, no si la posición vale en la carta.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-30": {
+    "explicacion": "La diferencia de longitud (Δλ) es el arco de ecuador, o el ángulo en el polo, comprendido entre los meridianos de dos lugares. La d) define la longitud de un lugar (desde Greenwich), y la distancia navegada sobre un paralelo es el apartamiento, no la Δλ.",
+    "clave": "Δλ = arco de ecuador entre dos meridianos; longitud = desde Greenwich.",
+    "trampa": "La a) es el apartamiento, que en millas es menor que la Δλ salvo en el ecuador.",
+    "concepto": null
+  },
+  "dgmm-py-2023-04-37": {
+    "explicacion": "Entre la pleamar (06:10; 5,65 m) y la bajamar (12:29; 2,15 m) hay 6 h 19 min = 379 min, y la amplitud es 3,50 m. A las 09:09 han pasado 179 min desde la pleamar: ángulo 179/379 × 180° ≈ 85°. Altura = 2,15 + 1,75 × (1 + cos 85°) ≈ 2,15 + 1,90 = 4,05 m. Sonda = 6 + 4,05 ≈ 10,05 m.",
+    "clave": "Sonda = sonda de la carta + altura de la marea.",
+    "trampa": "La a) y la b) olvidan sumar la marea completa a la sonda de la carta.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-01": {
+    "explicacion": "Con GM positivo el metacentro está por encima del centro de gravedad: en cuanto el barco escora aparece un par adrizante que tiende a devolverlo a la vertical, así que el equilibrio es estable. Si permanece escorado es porque la fuerza externa (viento, carga) sigue actuando y lo compensa el par adrizante. GM = 0 es indiferente y GM negativo, inestable.",
+    "clave": "GM > 0 estable · GM = 0 indiferente · GM < 0 inestable.",
+    "trampa": "La b): quedarse escorado por una fuerza externa no es equilibrio indiferente.",
+    "ilustraciones": [
+      {
+        "tipo": "estabilidad",
+        "caso": "estable"
+      }
+    ],
+    "concepto": "and-py-2022-c2-g01"
+  },
+  "dgmm-py-2023-11-02": {
+    "explicacion": "La zafa hidrostática suelta la balsa sola cuando la presión del agua corresponde a una profundidad de 4 m como máximo, es decir, cuando el barco se hunde. No actúa al mojarse, ni por tiempo, ni con golpes, para que no se dispare con los rociones o la mar en cubierta.",
+    "clave": "Zafa hidrostática: a ≤ 4 m de profundidad, nunca al mojarse.",
+    "trampa": "La b) mezcla un tiempo inventado: la zafa funciona por presión.",
+    "concepto": "and-py-2021-c1-g02"
+  },
+  "dgmm-py-2023-11-03": {
+    "explicacion": "El canal 70 de VHF está reservado exclusivamente a la Llamada Selectiva Digital (LSD): por él no se puede hablar. El socorro por voz va siempre por el canal 16, y la alerta digital se lanza por el 70 pulsando el botón DISTRESS, que es justo lo que hacen las opciones b), c) y d).",
+    "clave": "Canal 70 = solo LSD, nunca voz.",
+    "trampa": "La c) y la d) parecen arriesgadas, pero son la forma correcta de usar el canal 70.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-04": {
+    "explicacion": "El centro de gravedad G depende solo de cómo están repartidos los pesos a bordo; si nadie mueve, añade ni quita pesos, G no cambia aunque el barco escore. Lo que se desplaza al escorar es el centro de carena, hacia la banda que se sumerge. El desplazamiento tampoco cambia, y si el barco es estable, al cesar el viento recupera la vertical.",
+    "clave": "Escorar mueve el centro de carena; G solo se mueve si se mueven pesos.",
+    "trampa": "La c): el que se mueve con la escora es el centro de carena, no G.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-05": {
+    "explicacion": "Cuando el helicóptero ya se aproxima no se lanza un cohete con paracaídas: puede alcanzar la aeronave o deslumbrar al piloto. Para que te localice, en ese momento se usa una bengala de mano o una señal fumígena, que además le indica el viento. Lo demás sí se hace: chaleco y documentación, contacto por canal 16, velas arriadas y motor en marcha.",
+    "clave": "Con el helicóptero cerca: nada de cohetes; bengala de mano o humo.",
+    "trampa": "Piden la que NO debes hacer.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-06": {
+    "explicacion": "Según el RD 339/2021, el reflector de radar se lleva en todas las zonas de navegación si el casco no es metálico. La balsa solo es obligatoria en zonas 1, 2 y 3, no en la 4; la luz del chaleco puede omitirse en zonas 4 a 7 con navegación solo diurna, y el chaleco adicional solo se exige en zona 1. En zona 2 basta un aro con luz y rabiza: el segundo aro es solo para zona 1.",
+    "clave": "Reflector de radar: todas las zonas, si el casco no es metálico.",
+    "trampa": "La d): dos aros solo en zona 1, y el segundo sin luz ni rabiza.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-07": {
+    "explicacion": "Para adrizar una balsa que ha quedado invertida te colocas en el lado donde está la botella de gas, subido sobre ella, y tiras de las cinchas de adrizamiento hacia ti. Hacerlo a sotavento permite que el viento ayude a levantar la balsa, y el peso de la botella, que queda arriba, facilita el giro.",
+    "clave": "Adrizar balsa: sobre la botella, a sotavento, tirando de las cinchas.",
+    "trampa": "Las a) y b) te ponen en el lado opuesto a la botella, el que no ayuda al giro.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-08": {
+    "explicacion": "La boza (driza) de la balsa nunca se suelta antes de lanzarla: se hace firme a un punto resistente del barco, porque es la que, al tirar de ella, dispara el inflado y mantiene la balsa junto al costado. Lo demás sí se hace: parar el barco, dar la llamada de socorro y activar la radiobaliza, y abrigarse con el chaleco puesto.",
+    "clave": "Boza de la balsa firme a bordo, nunca suelta.",
+    "trampa": "Piden la medida que NO se debe tomar.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-09": {
+    "explicacion": "Durante el izado con el arnés (el «estrobo») hay que mantener los brazos pegados al cuerpo o cruzados sobre el pecho para no escurrirse. No se agarra el cable o el arnés antes de que toque el agua, por la electricidad estática; no te quitas el chaleco, y al llegar a la puerta te dejas meter por la tripulación sin agarrarte a nada.",
+    "clave": "Estrobo: brazos abajo, dejar que toque el agua antes, no agarrarse en la puerta.",
+    "trampa": "La a): el gancho o el arnés pueden dar una descarga de estática si no han tocado el agua.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-10": {
+    "explicacion": "El centro de carena es el centro de gravedad del volumen sumergido (la carena) para una flotación dada, y en él se aplica el empuje. El centro de gravedad del buque es G, el de la superficie de flotación es el centro de flotación, y la altura metacéntrica es la distancia GM, no un punto.",
+    "clave": "Centro de carena = centro del volumen sumergido; ahí empuja el agua.",
+    "trampa": "La b): el centro del plano de flotación es el centro de flotación, otro punto.",
+    "concepto": "and-py-2022-c3-g01"
+  },
+  "dgmm-py-2023-11-11": {
+    "explicacion": "La niebla es aire saturado. Se dispersa cuando deja de estarlo, y eso ocurre al calentarse el aire, que aumenta su capacidad de contener vapor, o al quitarle vapor de agua, por ejemplo mezclándolo con aire más seco gracias al viento. Enfriar o añadir vapor produce justo lo contrario: forma niebla.",
+    "clave": "Niebla se va: calentar o secar. Se forma: enfriar o humedecer.",
+    "trampa": "Las a) y b) incluyen el enfriamiento, que forma niebla.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-12": {
+    "explicacion": "El frente cálido es la zona de transición que separa el aire cálido que avanza del aire frío que retrocede. La a) describe una oclusión, la b) un frente frío (avanza el aire frío) y la ciclogénesis explosiva es la profundización muy rápida de una borrasca.",
+    "clave": "Avanza el cálido → frente cálido.",
+    "trampa": "La b) es el frente frío: fíjate en qué masa avanza.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-13": {
+    "explicacion": "La a) es la incorrecta: la relación entre la presión de vapor real y la de saturación es la humedad relativa, no la absoluta. La humedad absoluta es la masa de vapor por volumen de aire (densidad de vapor), se expresa en g/m³ y su valor máximo posible es mayor cuanto más caliente está el aire.",
+    "clave": "Absoluta = g/m³; relativa = e/E en %.",
+    "trampa": "Piden la INCORRECTA: la a) es una definición correcta, pero de la humedad relativa.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-14": {
+    "explicacion": "Las nubes altas son las del prefijo «cirro»: cirros, cirrocúmulos y cirroestratos. El nimboestrato es la nube gruesa de lluvia continua, que se considera de nivel medio o bajo y nunca alta.",
+    "clave": "Altas = cirro-. Nimboestrato = lluvia continua, no alta.",
+    "trampa": "Piden la que NO es alta.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-15": {
+    "explicacion": "El pampero es un viento frío y fuerte del SW propio de la Pampa y del Río de la Plata (Argentina y Uruguay). El Mistral (NW), el Gregal (NE) y el Siroco (SE, cálido africano) sí son vientos característicos del Mediterráneo.",
+    "clave": "Pampero = Río de la Plata, no Mediterráneo.",
+    "trampa": "Piden el que NO es mediterráneo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-16": {
+    "explicacion": "La c) es la incorrecta: las isobaras unen puntos de igual presión, no de igual dirección del viento. Las demás son ciertas: en los mapas de superficie la presión se reduce al nivel del mar, y cuanto más juntas están, mayor es la variación de presión y más fuerte el viento.",
+    "clave": "Isobara = igual presión. Juntas = más viento.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-17": {
+    "explicacion": "El periodo es el tiempo que tarda la ola en recorrer su propia longitud, es decir, el tiempo entre el paso de dos crestas consecutivas por un mismo punto, y se mide en segundos. La distancia vertical seno-cresta es la altura, y la horizontal entre dos senos (o crestas) consecutivos, la longitud.",
+    "clave": "Periodo = tiempo (s); longitud y altura = distancias.",
+    "trampa": "La d) es la longitud de onda: distancia, no tiempo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-18": {
+    "explicacion": "Las olas las genera el viento: sin viento no hay olas, aunque el que las formó sople lejos (la mar de fondo llega desde zonas alejadas). Su tamaño depende de la fuerza del viento, su persistencia (duración) y el fetch, no de la temperatura. La mar de viento es irregular; la de fondo, regular y de periodo largo.",
+    "clave": "Olas = viento (fuerza, duración y fetch). Mar de fondo = regular.",
+    "trampa": "La d) lo dice al revés: la regular es la mar de fondo.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-19": {
+    "explicacion": "La corriente de Portugal circula frente a las costas de Galicia y Portugal hacia el Sur, paralela a la costa, como parte del giro anticiclónico del Atlántico Norte. Después continúa como corriente de Canarias.",
+    "clave": "Corriente de Portugal → hacia el S.",
+    "trampa": "Pensar que, por venir de la corriente del Golfo, «sube» hacia el N.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-20": {
+    "explicacion": "El viento de Euler es un modelo teórico que solo considera la fuerza del gradiente de presión: el aire iría directo de las altas a las bajas. El viento geostrófico añade la fuerza de Coriolis, que lo desvía hasta soplar paralelo a las isobaras. Ninguno de los dos incluye el rozamiento.",
+    "clave": "Euler: solo gradiente. Geostrófico: gradiente + Coriolis.",
+    "trampa": "La a): las diferencias de presión las tienen en cuenta los dos.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-21": {
+    "explicacion": "Con mal tiempo, los ecos de la lluvia se atenúan con el filtro de lluvia (FTC) y los del oleaje cercano con el filtro de mar (STC). Hay que usarlos con moderación, porque si te pasas eliminas también ecos reales, como pequeñas embarcaciones. La a) asigna la lluvia al filtro de mar, y bajar o subir la ganancia sin más no resuelve el problema.",
+    "clave": "Lluvia → FTC; mar → STC; el exceso borra ecos.",
+    "trampa": "La a): el filtro de mar no quita la lluvia.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-22": {
+    "explicacion": "La d) es la incorrecta: al rumbo verdadero no se le suma el desvío para obtener el de aguja; es Ra = Rv − Ct = Rv − dm − Δ. Las demás son ciertas: Rv = Ra + Ct, Rv = Rm + dm y Rm = Ra + Δ.",
+    "clave": "Ra + Δ = Rm; Rm + dm = Rv; Ra + Ct = Rv.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-23": {
+    "explicacion": "La b) es la incorrecta: la declinación magnética depende del lugar y del año, pero no del barco; lo que depende de cada embarcación (y de su rumbo) es el desvío. La c) es cierta en lo del rumbo, pero no en lo del lugar.",
+    "clave": "dm: lugar y año. Δ: barco y rumbo.",
+    "trampa": "La c) también tiene un error (sí varía con el lugar), pero la oficial es la b).",
+    "discrepancia": "La c) también es falsa: la declinación no varía con el rumbo, pero sí con el lugar, como dice la propia a). Por eso la pregunta tiene dos afirmaciones incorrectas; la plantilla da solo la b).",
+    "defendible": "b",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-24": {
+    "explicacion": "Al vector de rumbo y velocidad de superficie (lo que el barco avanza respecto al agua) se le suma el de la corriente (rumbo e intensidad horaria). La resultante es el movimiento respecto al fondo: rumbo efectivo y velocidad efectiva. El rumbo verdadero es el de la proa respecto al norte verdadero, sin viento ni corriente.",
+    "clave": "Superficie + corriente = efectivo.",
+    "trampa": "La b): el verdadero no incluye la corriente.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-25": {
+    "explicacion": "El ETA (hora estimada de llegada) sale de dividir la distancia que falta entre la velocidad respecto al fondo, la SOG, y sumarlo a la hora actual. MOB es la función de hombre al agua, VRM el anillo variable de distancia del radar y WPT el punto de recalada, que da la distancia pero no el tiempo.",
+    "clave": "ETA = ahora + distancia / SOG.",
+    "trampa": "La d): el waypoint da a dónde vas, pero sin SOG no sabes cuándo llegas.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-26": {
+    "explicacion": "El abatimiento es el ángulo entre la proa y la derrota sobre el agua por efecto del viento. Hay que aplicarlo (Rs = Rv + Ab) antes de sumar la corriente para llegar al rumbo efectivo. No da el rumbo verdadero (falta la Ct), el efecto de la corriente es la deriva, no el abatimiento, y es un ángulo, no un rumbo.",
+    "clave": "Viento → abatimiento; corriente → deriva.",
+    "trampa": "La b): lo que causa la corriente es la deriva.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-27": {
+    "explicacion": "Las ENC (Electronic Navigational Charts) son las cartas electrónicas vectoriales oficiales, publicadas por los servicios hidrográficos en formato S-57. Las RNC son también oficiales pero ráster, el ECDIS es el sistema homologado que las muestra y el ECS un sistema de cartas electrónicas no homologado.",
+    "clave": "ENC = vectorial oficial; RNC = ráster; ECDIS = el equipo.",
+    "trampa": "La c): el ECDIS muestra las ENC, pero no es la carta.",
+    "concepto": "and-py-2024-c1-n09"
+  },
+  "dgmm-py-2023-11-28": {
+    "explicacion": "El AIS recibe por VHF la identidad, la posición, el rumbo y la velocidad de los buques cercanos que llevan AIS, así que con niebla te permite identificarlos y situarlos. No maniobra solo, no detecta a quien no lleva AIS (por eso no sustituye al radar) y no es un sistema de voz.",
+    "clave": "AIS: identifica y sitúa solo a quien lleva AIS.",
+    "trampa": "La c): el radar ve todo lo que da eco; el AIS, solo a quien transmite.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-29": {
+    "explicacion": "El derrotero describe la costa y da información para navegarla: régimen de vientos y tiempo, corrientes, mareas, puertos, fondeaderos y peligros. Lo de la a) es el diario de navegación, lo de la b) el libro de faros y señales de niebla, y lo de la d) los avisos a los navegantes.",
+    "clave": "Derrotero: costa, tiempo, corrientes y puertos.",
+    "trampa": "La b): las características de los faros van en el libro de faros.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-30": {
+    "explicacion": "La diferencia de longitud es el arco de ecuador comprendido entre los meridianos de salida y de llegada, y se calcula como longitud de llegada menos longitud de salida (con signo: E positivo, W negativo). El arco de meridiano entre dos paralelos es la diferencia de latitud.",
+    "clave": "Δλ = λ llegada − λ salida, sobre el ecuador.",
+    "trampa": "La b) define la diferencia de latitud.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-33": {
+    "explicacion": "Δl = 42°31′ − 37°54′ = 4°37′ = 277′ al N; Δλ = 24°40′ − 8°49′ = 15°51′ = 951′ al E. Latitud media ≈ 40°12′: apartamiento A = 951 × cos 40,2° ≈ 726′. Rumbo: tg R = 726 / 277 → R ≈ N 69° E = 069°. Distancia = 277 / cos 69,1° ≈ 777 millas. El viento y la velocidad no intervienen en la loxodrómica.",
+    "clave": "A = Δλ · cos lm; tg R = A / Δl; D = Δl / cos R.",
+    "trampa": "Las opciones de 13 millas usan la velocidad, que no pinta nada aquí; 249° es el rumbo inverso.",
+    "concepto": null
+  },
+  "dgmm-py-2023-11-40": {
+    "explicacion": "De pleamar (12:10; 3,3 m) a bajamar (18:20; 0,40 m) hay 6 h 10 min = 370 min y la amplitud es 2,90 m. A las 12:30 han pasado 20 min desde la pleamar: ángulo 20/370 × 180° ≈ 9,7°. Altura = 0,40 + 1,45 × (1 + cos 9,7°) ≈ 0,40 + 2,88 = 3,28 m. Sonda = 6 + 3,28 ≈ 9,28 m.",
+    "clave": "Sonda = sonda de la carta + altura de la marea.",
+    "trampa": "La a) da solo la altura de la marea, sin sumarle la sonda de la carta.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-01": {
+    "explicacion": "Si se consumen agua o combustible situados por debajo de G, se quita peso de abajo y el centro de gravedad sube. KG aumenta, GM = KM − KG disminuye y el barco pierde estabilidad. Además, los tanques a medio vaciar crean superficies libres que también restan GM.",
+    "clave": "Quitar peso de abajo = G sube = menos GM.",
+    "trampa": "La a): eso pasaría al añadir peso abajo, no al quitarlo.",
+    "concepto": "and-py-2023-c1-g02"
+  },
+  "dgmm-py-2024-04-02": {
+    "explicacion": "El AIS-SART no responde a ningún radar: lleva un GNSS integrado y transmite por los canales AIS de VHF un mensaje de socorro con su posición y un número identificativo, que aparece en los equipos AIS y cartas electrónicas cercanos. Las respuestas a un radar de banda X son las del SART radar, y no transmite en HF.",
+    "clave": "AIS-SART: GNSS propio + mensaje AIS con posición.",
+    "trampa": "La a): eso es el SART radar (9 GHz), no el AIS-SART.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-03": {
+    "explicacion": "Una embarcación sin marcado CE lleva los extintores del art. 15 del RD 339/2021, que se suman por eslora y por propulsión. Por eslora (10 ≤ L < 15 m): 1 extintor 34B. Por el motor intraborda de 100 kW (25 < P ≤ 220 kW): 1 más. Total: 2 extintores 34B. Lo del manual del fabricante solo vale para embarcaciones con marcado CE.",
+    "clave": "Sin CE: extintores por eslora + por motor.",
+    "trampa": "La d): el manual del fabricante solo rige si hay marcado CE.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-04": {
+    "explicacion": "La b) es la incorrecta: el RESAR (SART) no aparece como un solo punto, sino como una línea de 12 puntos que parte de su posición hacia fuera del centro de la pantalla, y al acercarte se convierte en arcos y círculos concéntricos. Lo demás es cierto: funciona en 9 GHz con radares de banda X, y puede activarse a mano (quitando el pasador y poniendo ON) o automáticamente según el modelo.",
+    "clave": "SART en el radar: 12 puntos en línea.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-05": {
+    "explicacion": "En el equilibrio indiferente G coincide con el metacentro M (GM = 0). Al escorar, el peso y el empuje siguen actuando en la misma vertical, así que no se forma ningún par: ni adrizante ni escorante, y el barco se queda en la nueva escora. G por encima de M es inestable y M por encima de G es estable.",
+    "clave": "Indiferente: G = M, peso y empuje en la misma vertical, sin par.",
+    "trampa": "La b): si hubiera par, por pequeño que fuera, el equilibrio sería estable.",
+    "ilustraciones": [
+      {
+        "tipo": "estabilidad",
+        "caso": "indiferente"
+      }
+    ],
+    "concepto": null
+  },
+  "dgmm-py-2024-04-06": {
+    "explicacion": "Con el helicóptero ya cerca no se dispara un cohete con paracaídas: puede alcanzar la aeronave o deslumbrar a la tripulación. Sí son útiles el bote de humo (te sitúa y le da la dirección del viento), el espejo de señales y guiarle con el VHF portátil usando la técnica del reloj.",
+    "clave": "Helicóptero cerca: humo, espejo o VHF; cohetes no.",
+    "trampa": "Piden la conducta NO recomendable.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-07": {
+    "explicacion": "Nunca se suelta la boza (driza) de la balsa antes de lanzarla: debe ir firme a un punto resistente del barco, porque al tirar de ella se dispara el inflado y además mantiene la balsa junto al costado; de noche y con mal tiempo la perderías al momento. Parar el barco, abrigarse con el chaleco o traje y llevar una luz sí se recomiendan.",
+    "clave": "Boza de la balsa firme a bordo, nunca suelta.",
+    "trampa": "Piden lo que NO se recomienda.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-08": {
+    "explicacion": "Antes de la llegada del helicóptero hay que seguir las instrucciones del Centro de Coordinación de Salvamento, que es quien coordina el rescate. La documentación imprescindible se lleva encima (no se deja en el puente), el equipaje no se sube a cubierta porque no se evacua y estorba, y el chaleco no se quita nunca.",
+    "clave": "Rescate con helicóptero: obedece a Salvamento y no te quites el chaleco.",
+    "trampa": "La b): la documentación se lleva contigo, no se deja a bordo.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-09": {
+    "explicacion": "En zona 2 se exige un aro salvavidas con luz y rabiza (art. 8 del RD 339/2021). Las otras fallan: por 18 m de eslora corresponden 2 extintores 34B y el fueraborda de 50 kW (más de 25 kW) añade 1, así que son 3; en zona 2 hacen falta 6 bengalas y 6 cohetes, no 3; y en zonas 1 a 3 se llevan dos baldes de al menos 5 litros.",
+    "clave": "Zonas 1 a 4: aro con luz y rabiza; zona 1, otro más.",
+    "trampa": "La b): olvida el extintor del motor.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-10": {
+    "explicacion": "Al escorar, el centro de carena se desplaza hacia la banda que se sumerge; la vertical que pasa por su nueva posición corta al plano de crujía en el metacentro (M). Para escoras pequeñas M es prácticamente fijo, y su posición respecto a G define la estabilidad.",
+    "clave": "Vertical del empuje ∩ crujía = metacentro.",
+    "trampa": "La b): el centro de empuje es el propio centro de carena, que es el que se ha movido.",
+    "ilustraciones": [
+      {
+        "tipo": "estabilidad",
+        "caso": "estable"
+      }
+    ],
+    "concepto": "and-py-2025-c2-g10"
+  },
+  "dgmm-py-2024-04-11": {
+    "explicacion": "El viento de Euler es el modelo más simple: solo considera la fuerza del gradiente horizontal de presión, de modo que el aire iría en línea recta de las altas a las bajas presiones. Al añadir la fuerza de Coriolis se obtiene el viento geostrófico, y si además se añade la aceleración centrífuga (isobaras curvas), el viento del gradiente.",
+    "clave": "Euler: gradiente. Geostrófico: + Coriolis. Gradiente: + centrífuga.",
+    "trampa": "La b) es el geostrófico y la d) el viento del gradiente.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-12": {
+    "explicacion": "El punto de rocío es la temperatura a la que hay que enfriar el aire, sin cambiar su contenido de vapor, para que se sature y el vapor empiece a condensarse. No es un punto de ebullición ni de fusión, y la humedad relativa es un porcentaje, no una temperatura.",
+    "clave": "Punto de rocío = temperatura de saturación.",
+    "trampa": "La b): la humedad relativa se relaciona con el punto de rocío, pero es otra magnitud.",
+    "concepto": "and-py-2022-c1-g16"
+  },
+  "dgmm-py-2024-04-13": {
+    "explicacion": "La fuerza del viento depende de lo rápido que cambia la presión de un lugar a otro, es decir, del gradiente horizontal de presión: isobaras juntas, viento fuerte. El valor de la presión en un punto, por sí solo, no dice nada del viento, y la temperatura y la humedad tampoco.",
+    "clave": "Viento ∝ gradiente de presión, no la presión en sí.",
+    "trampa": "La b): una presión baja no implica viento fuerte si las isobaras están separadas.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-14": {
+    "explicacion": "Los cirrocúmulos, como todas las nubes con el prefijo «cirro» (cirros, cirrocúmulos, cirroestratos), son nubes altas, por encima de unos 6 km y formadas por cristales de hielo. Las medias llevan el prefijo «alto» y las de desarrollo vertical son cúmulos y cumulonimbos.",
+    "clave": "Cirro- = altas; alto- = medias.",
+    "trampa": "La a): el «cúmulo» del nombre no la hace media.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-15": {
+    "explicacion": "La mayor parte de las olas las genera el viento, que transmite energía a la superficie del agua. La Luna y el Sol producen las mareas, que son otra cosa, y la sonda es la profundidad, que influye en cómo rompe la ola pero no la crea.",
+    "clave": "Olas = viento; mareas = astros.",
+    "trampa": "La b) y la d): Luna y mareas mueven el nivel del mar, no forman olas.",
+    "concepto": "and-py-2025-c2-g13"
+  },
+  "dgmm-py-2024-04-16": {
+    "explicacion": "El psicrómetro (el enunciado dice «psicómetro») tiene un termómetro seco y otro húmedo. Con la diferencia de temperaturas entre ambos, las tablas psicrométricas dan la humedad relativa y el punto de rocío. La presión se mide con el barómetro, el viento con el anemómetro y la temperatura del agua con un termómetro en el agua.",
+    "clave": "Psicrómetro + tablas → humedad relativa y punto de rocío.",
+    "trampa": "La c): la presión es cosa del barómetro.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-17": {
+    "explicacion": "En el golfo de Vizcaya la corriente general recorre la costa cantábrica de E a W, es decir, con rumbo Oeste, hasta Finisterre, donde enlaza con la corriente que baja hacia el S por la costa de Galicia y Portugal.",
+    "clave": "Cantábrico: corriente hacia el W; Galicia y Portugal: hacia el S.",
+    "trampa": "La a): confundir el rumbo de la corriente con la dirección de donde viene.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-18": {
+    "explicacion": "El Gregal es el viento del NE que llega desde el continente europeo y es típico de Baleares; en invierno puede ser fuerte y levantar mucha mar. El Siroco es del SE (africano y cálido), el Lebeche del SW y el Mistral del NW, en el golfo de León.",
+    "clave": "Gregal = NE, Baleares.",
+    "trampa": "La d): el Mistral es del NW y del golfo de León.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-19": {
+    "explicacion": "La humedad relativa es el cociente entre la tensión de vapor que hay realmente en el aire y la máxima que podría haber (la de saturación) a esa temperatura; se expresa en porcentaje. La humedad absoluta son los gramos de vapor por m³, y presión absoluta y relativa son conceptos de presión, no de humedad.",
+    "clave": "Relativa = e / E (en %).",
+    "trampa": "La c): la absoluta no es un cociente, son g/m³.",
+    "concepto": "and-py-2022-c3-g17"
+  },
+  "dgmm-py-2024-04-20": {
+    "explicacion": "En una oclusión de tipo frío, el aire frío que empuja por detrás (retaguardia) es más frío que el que va delante (vanguardia), así que se mete por debajo de ambos y levanta el aire cálido y el frío de delante. Si el de detrás es menos frío, la oclusión es de tipo cálido. La d) describe un frente cálido y la c) no define el tipo de oclusión.",
+    "clave": "Retaguardia más fría = oclusión fría; vanguardia más fría = cálida.",
+    "trampa": "La b) es la oclusión cálida: lee qué masa es la más fría.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-21": {
+    "explicacion": "El rumbo verdadero es el ángulo entre el meridiano geográfico (norte verdadero) y la línea de crujía, medido de 0° a 360° en sentido horario. Con el meridiano magnético sería el rumbo magnético, con la línea N-S del compás el de aguja, y el ángulo entre el norte geográfico y el magnético es la declinación.",
+    "clave": "Rv: crujía y meridiano geográfico.",
+    "trampa": "La a) es la declinación magnética, no un rumbo.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-22": {
+    "explicacion": "La d) es la incorrecta: la mitad del meridiano que pasa por el observador es el meridiano superior (o meridiano del lugar), y la mitad opuesta, al otro lado de los polos, es el meridiano inferior. Lo demás es cierto: es un círculo máximo que pasa por los polos, y estos lo dividen en dos mitades.",
+    "clave": "Meridiano superior = el mío; inferior = el opuesto.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-23": {
+    "explicacion": "La hora civil del lugar (HcL) es el tiempo transcurrido desde el paso del sol medio por el meridiano inferior del lugar, es decir, desde la medianoche local. Desde el meridiano de Greenwich (el inferior) sería la hora civil de Greenwich o TU; la que fija el gobierno es la hora oficial, y la que llevan los buques en travesías largas es la hora reloj de bitácora.",
+    "clave": "HcL = sol medio + meridiano inferior del lugar.",
+    "trampa": "La d) cambia el meridiano del lugar por el de Greenwich.",
+    "concepto": "and-py-2024-c2-n05"
+  },
+  "dgmm-py-2024-04-24": {
+    "explicacion": "La d) es la incorrecta: el rumbo verdadero es el de aguja más la corrección total (Rv = Ra + Ct); sumarle el efectivo y el de superficie no tiene sentido. Las demás son ciertas: el de aguja está afectado por declinación y desvío, el de superficie incluye el abatimiento y el efectivo la deriva por corriente.",
+    "clave": "Rv = Ra + Ct; Rs = Rv + Ab; Ref = Rs + corriente.",
+    "trampa": "Piden la INCORRECTA.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-25": {
+    "explicacion": "El ECDIS puede actualizar las ENC automáticamente con las correcciones oficiales que recibe en formato electrónico. Sus elementos esenciales son las ENC y el posicionador, no el AIS; en buques SOLAS un ECDIS homologado con ENC puede sustituir a las cartas de papel; y lo fabrican empresas privadas: los servicios hidrográficos producen las cartas, no el equipo.",
+    "clave": "ECDIS: corrige ENC automáticamente y puede sustituir al papel.",
+    "trampa": "La c) confunde quién hace la carta (servicio hidrográfico) con quién fabrica el equipo.",
+    "concepto": null
+  },
+  "dgmm-py-2024-04-26": {
+    "explicacion": "El abatimiento es el ángulo entre la línea de crujía (proa) y la derrota sobre el agua, causado por el viento, que empuja el barco hacia sotavento, no hacia barlovento. La deriva es el efecto de la corriente, no del viento, y no tiene por qué anular el abatimiento: depende de sus direcciones.",
+    "clave": "Abatimiento = viento, hacia sotavento. Deriva = corriente.",
+    "trampa": "La b) atribuye la deriva al viento.",
+    "concepto": null
+  }
+}

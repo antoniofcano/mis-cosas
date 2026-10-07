@@ -1,0 +1,1483 @@
+{
+ "bal-per-2023-06-d-27": {
+  "explicacion": "La Regla 21 c) indica que la luz de alcance cubre un arco de 135º, 67,5º a cada banda desde la popa. Los 112,5º de la a) son los de cada luz de costado; los 360º serían una luz todo horizonte, y 90º no corresponde a ninguna luz del Reglamento.",
+  "clave": "Alcance 135º; costados 112,5º; tope 225º.",
+  "trampa": "La a) (112,5º) es el arco de cada luz de costado, no el de alcance.",
+  "base": "and-2023-c2-t27",
+  "concepto": "and-2023-c2-t27"
+ },
+ "bal-per-2025-09-c-23": {
+  "explicacion": "La Regla 21 c) indica que la luz de alcance cubre un arco de 135º, 67,5º a cada banda desde la popa. Los 112,5º de la b) son los de cada luz de costado y los 225º de la c) los de la luz de tope, así que la d) sobra.",
+  "clave": "Alcance 135º; costados 112,5º; tope 225º.",
+  "trampa": "La c) (225º) es el arco de la luz de tope.",
+  "base": "and-2023-c2-t27",
+  "concepto": "and-2023-c2-t27"
+ },
+ "bal-per-2023-09-a-21": {
+  "explicacion": "La Regla 7 d) dice que hay riesgo de abordaje si la demora (compás) de un buque que se aproxima no varía de forma apreciable. Si además la distancia disminuye, vamos hacia el mismo punto. Si la demora cambia no hay riesgo claro, y si la distancia no baja tampoco nos acercamos; ver un barco por babor no dice nada por sí solo.",
+  "clave": "Demora constante y distancia que baja = riesgo de abordaje.",
+  "trampa": "La b) habla de demora que disminuye: si la demora cambia, el otro pasará por proa o por popa."
+ },
+ "bal-per-2023-09-a-24": {
+  "explicacion": "La Regla 8 exige que toda maniobra para evitar un abordaje se haga con antelación suficiente y de forma clara, y que los cambios de rumbo o de velocidad sean lo bastante amplios para que el otro los perciba. Por eso falla la c) (pequeños cambios). En vuelta encontrada ambos caen a estribor, no a babor, y es el buque que alcanza, no el alcanzado, quien se aparta.",
+  "clave": "Maniobra con antelación, clara y amplia.",
+  "trampa": "La c) suena prudente, pero el Reglamento pide cambios amplios, no una sucesión de pequeños."
+ },
+ "bal-per-2023-09-a-25": {
+  "explicacion": "La Regla 10 d) reserva la zona de navegación costera de un dispositivo de separación de tráfico al tráfico local, pero permite usarla a los buques de eslora inferior a 20 m, a los de vela y a los dedicados a la pesca. Las cifras de 35, 30 y 25 m de las otras opciones no aparecen en el Reglamento.",
+  "clave": "Zona costera del DST: menores de 20 m, veleros y pesqueros.",
+  "trampa": "La a) mezcla veleros y pesqueros (que sí pueden) con una eslora de 35 m que no existe."
+ },
+ "bal-per-2023-09-c-19": {
+  "explicacion": "Según la Regla 34 a), una pitada corta significa «caigo a estribor». Dos cortas son «caigo a babor» y tres cortas «estoy dando atrás». Ninguna señal de maniobra significa avería.",
+  "clave": "1 corta estribor, 2 babor, 3 atrás.",
+  "trampa": "La d) (caigo a babor) son dos pitadas cortas.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".",
+    "texto": "Pitada corta: ≈ 1 segundo"
+   }
+  ]
+ },
+ "bal-per-2023-09-de-20": {
+  "explicacion": "La Regla 35 a) asigna al buque de propulsión mecánica con arrancada una pitada larga a intervalos que no excedan de 2 minutos. Si está parado y sin arrancada son dos pitadas largas; el buque varado da campana con tres golpes antes y después, y el remolcador una larga seguida de dos cortas.",
+  "clave": "Niebla: 1 larga con arrancada, 2 largas sin arrancada.",
+  "trampa": "La b) (parado y sin arrancada) emite dos largas seguidas, no una.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "-"
+   }
+  ]
+ },
+ "bal-per-2023-12-a-18": {
+  "explicacion": "La definición incorrecta es la c): el Reglamento no define ninguna «nave submarina». Lo que define es la «nave de vuelo rasante», una nave multimodal que en su modalidad principal vuela muy cerca de la superficie aprovechando el efecto superficie. Las definiciones de buque restringido por su calado, hidroavión y buque con capacidad de maniobra restringida son las de la Regla 3.",
+  "clave": "Regla 3: nave de vuelo rasante, no «nave submarina».",
+  "trampa": "La c) copia la definición de la nave de vuelo rasante cambiando «vuela por encima» por «navega por debajo»."
+ },
+ "bal-per-2023-12-a-20": {
+  "explicacion": "La Regla 6 a) enumera los factores que todos los buques deben tener en cuenta: visibilidad, densidad de tráfico y concentraciones de pesca u otros buques, maniobrabilidad, resplandor nocturno de luces de tierra o propias, viento, mar y corrientes, y calado. La d) es inventada: el número de ecos a menos de media milla no figura como factor.",
+  "clave": "Velocidad de seguridad: visibilidad, tráfico, maniobra, resplandor, mar y calado.",
+  "trampa": "La a) parece rebuscada, pero el resplandor nocturno sí está en la Regla 6 a)."
+ },
+ "bal-per-2023-12-a-21": {
+  "explicacion": "La Regla 5 exige una vigilancia visual y auditiva eficaz, utilizando además todos los medios disponibles apropiados a las circunstancias y condiciones del momento. La a) y la d) añaden una vigilancia «fonética» que no existe, la a) cambia además «del momento» por «de navegabilidad», y la c) pone «o» donde la regla exige las dos.",
+  "clave": "Vigilancia: visual Y auditiva, en todo momento.",
+  "trampa": "La c) solo cambia una «y» por una «o»: la vigilancia tiene que ser las dos cosas a la vez."
+ },
+ "bal-per-2023-12-a-22": {
+  "explicacion": "La Regla 4 dice que las reglas de la Sección I (conducta en cualquier condición de visibilidad, Reglas 4 a 10) se aplicarán en cualquier condición de visibilidad. Las otras opciones añaden «navegabilidad» o «estanqueidad», que el texto no menciona.",
+  "clave": "Regla 4: cualquier condición de visibilidad.",
+  "trampa": "La c) suma «navegabilidad», que suena bien pero no está en la regla."
+ },
+ "bal-per-2023-12-a-23": {
+  "explicacion": "La Regla 3 define, entre otros, el buque de propulsión mecánica, el buque de vela, el buque con capacidad de maniobra restringida y el buque restringido por su calado. «Capacidad de maniobra alterada» no es una definición del Reglamento.",
+  "clave": "Regla 3: maniobra «restringida», nunca «alterada».",
+  "trampa": "La c) se parece al buque con capacidad de maniobra restringida, pero cambia la palabra."
+ },
+ "bal-per-2023-12-a-24": {
+  "explicacion": "La Regla 20 a) dice literalmente que las reglas de la Parte C (luces y marcas) deberán cumplirse en todas las condiciones meteorológicas. No hay excepciones según la relevancia del tiempo ni a criterio del capitán.",
+  "clave": "Luces y marcas: en todas las condiciones meteorológicas.",
+  "trampa": "La d) añade una condición («siempre que afecten a la navegación») que no está en la regla."
+ },
+ "bal-per-2023-12-a-25": {
+  "explicacion": "La Regla 13 c) dice que si un buque duda de si está alcanzando o no a otro, considerará que lo está haciendo y actuará como buque que alcanza, es decir, se mantendrá apartado. No existe el «buque al acecho», y la regla habla de alcance, no de rumbo de colisión.",
+  "clave": "¿Dudas si alcanzas? Considera que alcanzas y apártate.",
+  "trampa": "La b) usa la duda correcta pero inventa el «buque al acecho»."
+ },
+ "bal-per-2023-12-a-27": {
+  "explicacion": "La Regla 16 dice que el buque que deba mantenerse apartado maniobrará, en lo posible, con anticipación suficiente y de forma decidida para quedar bien franco del otro. Quedar «al alcance», «atravesado» o «abarloado» es justo lo contrario de evitar el abordaje.",
+  "clave": "Buque que cede: pronto, decidido y bien franco.",
+  "trampa": "Las otras opciones copian toda la regla y solo cambian la última palabra."
+ },
+ "bal-per-2023-12-b-23": {
+  "explicacion": "La Regla 26 b) asigna al arrastrero dos luces todo horizonte en línea vertical, verde la superior y blanca la inferior, además de costados y alcance si tiene arrancada. Roja sobre blanca es la del pesquero que no es de arrastre, y las combinaciones de rojo y verde no corresponden a ningún pesquero.",
+  "clave": "Verde sobre blanco, arrastre; rojo sobre blanco, pesca de otro tipo.",
+  "trampa": "La b) (roja sobre blanca) es la del pesquero que no arrastra.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-arrastre",
+    "vista": "proa"
+   }
+  ],
+  "base": "and-2022-c1-t22",
+  "concepto": "and-2022-c1-t22"
+ },
+ "bal-per-2023-12-b-25": {
+  "explicacion": "La Regla 23 a) exige al buque de propulsión mecánica de menos de 50 m una luz de tope a proa, luces de costado y luz de alcance; la segunda luz de tope a popa solo es obligatoria desde 50 m, por eso falla la a). La luz de alcance es blanca y de 135º, no todo horizonte ni amarilla (la amarilla es la de remolque).",
+  "clave": "Motor de menos de 50 m: tope, costados y alcance.",
+  "trampa": "La a) describe el buque de 50 m o más.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "motor",
+    "vista": "todas"
+   }
+  ],
+  "base": "and-2023-c3-t22",
+  "concepto": "and-2023-c3-t22"
+ },
+ "bal-per-2023-12-c-19": {
+  "explicacion": "Una luz blanca de ocultaciones es uno de los ritmos de la marca de aguas navegables, junto con isofase, Morse «A» y un destello largo cada 10 s. La cardinal Norte es blanca pero centellea sin parar, el peligro aislado da grupos de dos destellos blancos y las marcas especiales llevan luz amarilla.",
+  "clave": "Aguas navegables: blanca isofase, ocultaciones, Mo(A) o LFl 10s.",
+  "trampa": "La d): el peligro aislado también es blanco, pero con destellos de dos en dos.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ]
+ },
+ "bal-per-2023-12-c-20": {
+  "explicacion": "La Regla 9 b) dice que los buques de eslora inferior a 20 m y los de vela no estorbarán el tránsito de un buque que solo pueda navegar con seguridad dentro de un paso o canal angosto. En el canal hay que ir pegado al margen de estribor, no de babor, y estar a sotavento no da ninguna preferencia en el canal.",
+  "clave": "En canal angosto, el velero no estorba al que solo cabe en el canal.",
+  "trampa": "La a) traslada la regla de veleros entre sí a una situación donde lo que manda es la Regla 9."
+ },
+ "bal-per-2023-12-c-22": {
+  "explicacion": "La Regla 30 d) dice que el buque varado exhibe las luces de fondeo y, además, dos luces rojas todo horizonte en línea vertical. Una blanca a proa y otra a popa son las luces de fondeo del buque de 50 m o más, así que es un varado mayor de 50 m. Si fuera menor de 50 m bastaría una sola blanca, y el buque sin gobierno no lleva luces de fondeo.",
+  "clave": "Varado = luces de fondeo + dos rojas en vertical.",
+  "trampa": "La c): el sin gobierno también lleva dos rojas, pero no las blancas de fondeo.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado-50",
+    "vista": "estribor"
+   }
+  ]
+ },
+ "bal-per-2023-12-c-23": {
+  "explicacion": "La Regla 30 a) obliga al buque fondeado a exhibir de día una bola negra en la parte de proa, donde mejor se vea. El pesquero lleva dos conos unidos por el vértice, el remolque con más de 200 m un bicono y el buque sin gobierno dos bolas en vertical.",
+  "clave": "Una bola a proa = fondeado.",
+  "trampa": "La d): el sin gobierno lleva dos bolas, no una.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2023-12-c-24": {
+  "explicacion": "Dos luces blancas, una a proa y otra a popa (más alta), son las dos luces de tope del buque de propulsión mecánica de 50 m o más (Regla 23 a). La roja indica que lo vemos por su costado de babor. Un buque de menos de 50 m mostraría un solo tope, y un velero no lleva luces de tope.",
+  "clave": "Dos topes blancos = motor de 50 m o más.",
+  "trampa": "La d): el de menos de 50 m lleva un único tope.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "motor-50",
+    "vista": "babor"
+   }
+  ]
+ },
+ "bal-per-2023-12-c-27": {
+  "explicacion": "Quien alcanza se acerca desde más de 22,5º a popa del través del otro, es decir, dentro del sector de su luz de alcance (Regla 13 b). Desde ahí no se ven ni los costados ni los topes, que solo alumbran hacia proa hasta 22,5º a popa del través; solo se ve la luz blanca de alcance.",
+  "clave": "Si solo ves la luz de alcance, estás alcanzando.",
+  "trampa": "La a) y la c): los costados no se ven desde el sector de alcance."
+ },
+ "bal-per-2023-12-e-23": {
+  "explicacion": "La Regla 10 no prohíbe a los veleros usar un dispositivo de separación de tráfico: pueden navegar por la vía de circulación correspondiente, aunque no deben estorbar el tránsito de los buques de propulsión mecánica que naveguen por ella (Regla 10 j). Tampoco están limitados a cruzarlo; la obligación de cruzar lo más perpendicular posible es para quien lo cruza.",
+  "clave": "Velero en DST: puede usarlo, sin estorbar a los de la vía.",
+  "trampa": "La c) confunde «no estorbar» con «no poder usar».",
+  "concepto": "bal-per-2023-12-e-23"
+ },
+ "bal-per-2024-12-b-23": {
+  "explicacion": "La Regla 10 no prohíbe a los veleros usar un dispositivo de separación de tráfico: pueden navegar por la vía de circulación correspondiente, aunque no deben estorbar el tránsito de los buques de propulsión mecánica que naveguen por ella (Regla 10 j). No están limitados a cruzarlo (a) ni obligados a ir por la costa (d).",
+  "clave": "Velero en DST: puede usarlo, sin estorbar a los de la vía.",
+  "trampa": "La b) confunde «no estorbar» con «no poder usar».",
+  "concepto": "bal-per-2023-12-e-23"
+ },
+ "bal-per-2023-12-e-24": {
+  "explicacion": "Nosotros alcanzamos al velero, y según la Regla 13 a) todo buque que alcanza a otro se mantendrá apartado de su derrota, cualquiera que sea el tipo de buque. Además, por la Regla 18 a) el buque de propulsión mecánica se aparta del de vela. Que los dos reciban el viento por babor solo importa entre dos veleros.",
+  "clave": "El que alcanza se aparta, siempre.",
+  "trampa": "La b): las amuras solo cuentan entre dos buques de vela.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "bal-per-2023-12-e-24"
+ },
+ "bal-per-2026-03-d-20": {
+  "explicacion": "Nosotros alcanzamos al velero, y según la Regla 13 a) todo buque que alcanza a otro se mantendrá apartado de su derrota, cualquiera que sea el tipo de buque. Además, por la Regla 18 a) el buque de propulsión mecánica se aparta del de vela. Que los dos reciban el viento por babor solo importa entre dos veleros.",
+  "clave": "El que alcanza se aparta, siempre.",
+  "trampa": "La b): las amuras solo cuentan entre dos buques de vela.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "bal-per-2023-12-e-24"
+ },
+ "bal-per-2023-12-e-27": {
+  "explicacion": "La Regla 35 b) asigna al buque de propulsión mecánica parado y sin arrancada dos pitadas largas, separadas unos 2 segundos, a intervalos que no excedan de 2 minutos. Con arrancada es una sola larga; el velero da una larga y dos cortas, y la embarcación de práctico puede añadir cuatro cortas de identificación.",
+  "clave": "Niebla: 1 larga con arrancada, 2 largas sin arrancada.",
+  "trampa": "La a) es una sola pitada larga.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "--"
+   }
+  ]
+ },
+ "bal-per-2024-04-a-18": {
+  "explicacion": "La Regla 23 d) i) permite al buque de propulsión mecánica de eslora inferior a 12 m sustituir las luces de tope y alcance por una luz blanca todo horizonte, junto con las de costado. La luz blanca sola (b) solo se permite a los de menos de 7 m cuya velocidad máxima no supere 7 nudos, y los costados solos no bastan.",
+  "clave": "Menor de 12 m: blanca todo horizonte + costados. Sola, solo si es < 7 m y ≤ 7 nudos.",
+  "trampa": "La b) vale únicamente para menos de 7 m y velocidad máxima de 7 nudos.",
+  "base": "and-2022-c1-t27",
+  "concepto": "and-2022-c1-t27"
+ },
+ "bal-per-2024-04-a-19": {
+  "explicacion": "La Regla 25 c) permite al velero llevar en el tope del palo dos luces todo horizonte, roja la superior y verde la inferior. La blanca de abajo es su luz de alcance, así que lo estamos viendo por la popa. Si lo viéramos por la proa veríamos sus luces de costado, y el práctico lleva blanca sobre roja.",
+  "clave": "Roja sobre verde en el tope = velero (optativas).",
+  "trampa": "La a): por la proa no se ve la luz de alcance blanca, sino los costados."
+ },
+ "bal-per-2024-04-a-21": {
+  "explicacion": "Roja sobre verde en vertical es la señal optativa del velero en el tope del palo (Regla 25 c), y la verde de abajo es su luz de costado de estribor. Somos un buque de propulsión mecánica, así que por la Regla 18 a) debemos apartarnos de la derrota del velero, aunque venga por nuestra babor. Un pesquero lleva roja sobre blanca o verde sobre blanca, y acelerar no es ninguna maniobra reglamentaria.",
+  "clave": "Roja sobre verde en el tope = velero: el motor se aparta.",
+  "trampa": "La a) aplica la regla de cruce entre buques a motor, que aquí no vale porque el otro es un velero."
+ },
+ "bal-per-2024-04-b-18": {
+  "explicacion": "La Regla 25 asigna al buque de vela en navegación luces de costado y de alcance (y, opcionalmente, roja sobre verde en el tope), pero nunca luz de tope. Los buques de propulsión mecánica remolcando y los dragaminas con arrancada sí la llevan, porque exhiben las luces de un buque de propulsión mecánica más las propias.",
+  "clave": "Velero navegando a vela: nunca luz de tope.",
+  "trampa": "La c): el dragaminas añade tres luces verdes, pero conserva sus luces de tope.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "base": "and-2022-c3-t19",
+  "concepto": "and-2022-c3-t19"
+ },
+ "bal-per-2026-03-d-24": {
+  "explicacion": "La Regla 25 asigna al buque de vela en navegación luces de costado y de alcance (y, opcionalmente, roja sobre verde en el tope), pero nunca luz blanca de tope. Los buques de propulsión mecánica remolcando y los dragaminas con arrancada sí la llevan, porque exhiben las luces de un buque de propulsión mecánica más las propias.",
+  "clave": "Velero navegando a vela: nunca luz de tope.",
+  "trampa": "La c): el dragaminas añade tres luces verdes, pero conserva sus luces de tope.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "base": "and-2022-c3-t19",
+  "concepto": "and-2022-c3-t19"
+ },
+ "bal-per-2024-04-ce-18": {
+  "explicacion": "La Regla 27 e) ii) dice que la embarcación dedicada a operaciones de buceo que no pueda exhibir las marcas de maniobra restringida llevará una reproducción rígida de la bandera «A» del Código Internacional de Señales, de al menos 1 m de altura. Indica que hay buzos en el agua y que hay que mantenerse alejado y a poca velocidad.",
+  "clave": "Bandera «A» (blanca y azul) = buzos en el agua.",
+  "trampa": "La b): el dragaminas lleva tres bolas negras, no la «A».",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2024-04-ce-20": {
+  "explicacion": "Las tres afirmaciones están en el Reglamento: la a) es la Regla 15 (en cruce se evitará cortar la proa del otro), la b) la Regla 8 b) (evitar una sucesión de pequeños cambios) y la c) copia la Regla 8 c), que admite el cambio de rumbo solo como maniobra más eficaz si hay espacio, con antelación y sin crear otra aproximación excesiva.",
+  "clave": "Maniobra amplia, a tiempo y sin cortar la proa.",
+  "trampa": "La b) está redactada en negativo, pero dice lo mismo que la Regla 8: nada de pequeños cambios."
+ },
+ "bal-per-2024-04-ce-23": {
+  "explicacion": "Roja sobre verde en vertical, en el tope del palo, es la señal optativa del velero (Regla 25 c), y la blanca de debajo es su luz de alcance: lo vemos por la popa. El buque con maniobra restringida muestra roja, blanca y roja; el remolcador visto por la popa muestra una luz amarilla de remolque sobre la de alcance, y el pesquero que no arrastra, roja sobre blanca.",
+  "clave": "Roja sobre verde en el tope = velero (optativas).",
+  "trampa": "La a) también usa una luz blanca entre colores, pero entre dos rojas."
+ },
+ "bal-per-2024-04-ce-27": {
+  "explicacion": "La Regla 24 b) dice que cuando el buque que empuja y el empujado están unidos por una conexión rígida formando una unidad compuesta, se consideran un buque de propulsión mecánica y exhiben las luces de la Regla 23. No es un remolque ni un buque con maniobra restringida por el simple hecho de empujar.",
+  "clave": "Empujador + empujado rígidos = un buque de propulsión mecánica.",
+  "trampa": "La d): si la unión es rígida, ya no se tratan como remolque."
+ },
+ "bal-per-2024-04-df-21": {
+  "explicacion": "La Regla 35 k) permite a la embarcación de práctico en servicio emitir, además de las señales que le correspondan, una señal de identificación de cuatro pitadas cortas. Cinco cortas es la señal de duda, y dos o tres cortas son señales de maniobra.",
+  "clave": "Práctico en niebla: cuatro cortas para identificarse.",
+  "trampa": "La a) (cinco cortas) es la señal de duda de la Regla 34 d)."
+ },
+ "bal-per-2024-04-df-23": {
+  "explicacion": "La Regla 35 c) asigna al buque sin gobierno (como al de maniobra restringida, al restringido por su calado, al de vela, al pesquero y al que remolca o empuja) tres pitadas consecutivas, una larga seguida de dos cortas, a intervalos que no excedan de 2 minutos. La a) son tres cortas (dando atrás), la b) mezcla otro orden y la c) cambia el intervalo a 1 minuto.",
+  "clave": "Niebla, sin gobierno: larga-corta-corta cada 2 minutos.",
+  "trampa": "La c) tiene las pitadas bien, pero el intervalo es de 2 minutos, no de 1."
+ },
+ "bal-per-2024-07-c-18": {
+  "explicacion": "La Regla 27 d) i) dice que el buque dedicado a dragado o a trabajos submarinos con una obstrucción exhibe dos luces rojas todo horizonte en vertical por la banda de la obstrucción, y dos luces verdes todo horizonte en vertical por la banda por la que puede pasar otro buque. De día, dos bolas y dos bicónicos respectivamente.",
+  "clave": "Dragado: dos rojas, no pases; dos verdes, pasa.",
+  "trampa": "La b) (dos verdes) marca el lado libre, no el de la obstrucción."
+ },
+ "bal-per-2024-07-c-23": {
+  "explicacion": "Con visibilidad reducida todo buque debe navegar a una velocidad de seguridad adaptada a las circunstancias (Reglas 6 y 19 b) y hacer las señales fónicas de la Regla 35. Dar toda máquina es lo contrario, y parar máquina o llamar a la estación costera no es lo que exige el Reglamento.",
+  "clave": "Niebla: velocidad moderada y señales fónicas.",
+  "trampa": "La d): parar no es obligatorio; lo exigido es velocidad de seguridad."
+ },
+ "bal-per-2024-07-c-24": {
+  "explicacion": "La Regla 30 d) ii) dice que el buque varado exhibirá de día tres bolas negras en línea vertical, donde mejor se vean. Dos bolas son las del buque sin gobierno, el cono con el vértice hacia abajo es el del velero que navega también a motor, y el rombo forma parte de otras marcas (remolque, maniobra restringida).",
+  "clave": "Una bola fondeado, dos sin gobierno, tres varado.",
+  "trampa": "La a) (dos bolas) es el buque sin gobierno."
+ },
+ "bal-per-2024-07-c-25": {
+  "explicacion": "La Regla 26 dice que el buque dedicado a la pesca exhibe de día una marca formada por dos conos unidos por sus vértices en línea vertical. El velero a motor lleva un cono con el vértice hacia abajo y el fondeado una bola, cualquiera que sea su eslora.",
+  "clave": "Dos conos unidos por los vértices = pesca.",
+  "trampa": "La b) se confunde con el cono único del velero que también usa el motor.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-no-arrastre",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2024-07-c-27": {
+  "explicacion": "La Regla 3 c) define «buque de vela» como todo buque navegando a vela siempre que su maquinaria propulsora, si la lleva, no se esté utilizando. Si usa el motor (b) o va con las velas arriadas (a) es buque de propulsión mecánica, y un buque fondeado no está navegando.",
+  "clave": "Solo es velero si el motor no empuja.",
+  "trampa": "La b): un velero con el motor en marcha pasa a ser buque de propulsión mecánica.",
+  "base": "and-2022-c3-t21",
+  "concepto": "and-2022-c3-t21"
+ },
+ "bal-per-2024-07-df-21": {
+  "explicacion": "La luz de alcance es una luz blanca situada lo más cerca posible de la popa, visible en un arco de 135º hacia atrás (Regla 21 c). Si la vemos, estamos mirando la popa del otro buque. La proa y las amuras se reconocen por las luces de costado y de tope, y los costados por la roja o la verde.",
+  "clave": "Luz de alcance a la vista = ves su popa.",
+  "trampa": "La c): los costados se identifican por la roja y la verde, no por la blanca de alcance."
+ },
+ "bal-per-2024-09-d-18": {
+  "explicacion": "La Regla 35 h) dice que el buque varado da la señal de campana del fondeado (repique rápido de unos 5 s cada minuto como máximo) y, además, tres golpes de campana separados y claros inmediatamente antes y después del repique. El fondeado da solo el repique, el velero y el remolcador dan una larga y dos cortas con el pito.",
+  "clave": "Varado = campana del fondeado + tres golpes antes y después.",
+  "trampa": "La c): el fondeado da el repique, pero sin los tres golpes."
+ },
+ "bal-per-2024-09-d-21": {
+  "explicacion": "La Regla 9 e) permite adelantar en un canal angosto incluso cuando el buque alcanzado tiene que maniobrar para permitirlo: el que alcanza pide paso con dos largas y una corta (por estribor) o dos largas y dos cortas (por babor), y el alcanzado da su conformidad con larga, corta, larga, corta. No hay límites por eslora ni por tipo de buque.",
+  "clave": "En canal se puede adelantar, pidiendo paso con el pito.",
+  "trampa": "La b): no está prohibido, solo exige acuerdo cuando el alcanzado tiene que maniobrar."
+ },
+ "bal-per-2024-09-f-21": {
+  "explicacion": "La Regla 29 a) asigna a la embarcación de práctico en servicio dos luces todo horizonte en línea vertical, blanca la superior y roja la inferior. Roja sobre blanca es la del pesquero que no arrastra, dos rojas el buque sin gobierno y las verdes no corresponden al práctico.",
+  "clave": "Práctico: blanco sobre rojo («blanca gorra, roja nariz»).",
+  "trampa": "La a) invierte el orden: roja sobre blanca es pesca.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "popa"
+   }
+  ]
+ },
+ "bal-per-2024-12-a-21": {
+  "explicacion": "La Regla 3 d) excluye de «buque dedicado a la pesca» al que pesca con curricán u otros aparejos que no restringen su maniobrabilidad. La embarcación que curricanea es, a efectos del Reglamento, un buque de propulsión mecánica, y por la Regla 18 a) debe apartarse del velero. La posición a sotavento del velero solo importa entre dos veleros.",
+  "clave": "Curricán no es «pesca» en el RIPA: el motor se aparta del velero.",
+  "trampa": "La a): pescar al curricán no le da ninguna preferencia."
+ },
+ "bal-per-2024-12-a-22": {
+  "explicacion": "La Regla 3 b) llama buque de propulsión mecánica a todo buque movido por una máquina: lo son el arrastrero, el aerodeslizador y el velero que navega con el motor en marcha. El de la d) es, por la Regla 3 c), un buque de vela: navega a vela y su motor no se está utilizando.",
+  "clave": "Si el motor empuja, es propulsión mecánica; si no, velero.",
+  "trampa": "La c): con el motor en marcha, el velero ya es buque de propulsión mecánica."
+ },
+ "bal-per-2024-12-a-24": {
+  "explicacion": "Dos pitadas largas a intervalos de no más de 2 minutos son la señal del buque de propulsión mecánica en navegación, pero parado y sin arrancada (Regla 35 b). El buque sin gobierno, el restringido por su calado y el de maniobra restringida dan una larga y dos cortas.",
+  "clave": "Niebla: 1 larga con arrancada, 2 largas sin arrancada.",
+  "trampa": "Las otras tres opciones comparten la señal larga-corta-corta.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "--"
+   }
+  ]
+ },
+ "bal-per-2024-12-ce-24": {
+  "explicacion": "La Regla 8 b) pide evitar una sucesión de pequeños cambios de rumbo o velocidad, porque el otro buque no los percibe. En cambio, maniobrar con antelación y pasar a distancia segura son precisamente lo que exige la Regla 8, así que la d) es falsa.",
+  "clave": "Una maniobra amplia, mejor que muchas pequeñas.",
+  "trampa": "La d): sí hay algo que evitar, los cambios pequeños y sucesivos.",
+  "base": "and-2024-c1-t27",
+  "concepto": "and-2024-c1-t27"
+ },
+ "bal-per-2024-12-df-20": {
+  "explicacion": "Blanca sobre roja en línea vertical es la señal de la embarcación de práctico en servicio (Regla 29 a). El arrastrero lleva verde sobre blanca, el pesquero que no arrastra roja sobre blanca y el buque sin gobierno dos rojas.",
+  "clave": "Práctico: blanco sobre rojo.",
+  "trampa": "La c) invierte el orden: roja sobre blanca es pesca de no arrastre.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "popa"
+   }
+  ]
+ },
+ "bal-per-2025-04-bf-25": {
+  "explicacion": "La Regla 8 b) exige que los cambios de rumbo o velocidad sean lo bastante amplios para que el otro buque los perciba fácilmente, así que hay que evitar maniobras disimuladas o de pocos grados. Caer a estribor, hacer caídas amplias y pasar por la popa del otro son justo lo recomendable.",
+  "clave": "Maniobra que se vea: amplia y franca.",
+  "trampa": "La c): pasar por la popa es lo correcto en un cruce, no algo a evitar."
+ },
+ "bal-per-2025-04-c-19": {
+  "explicacion": "La Regla 3 d) define al buque dedicado a la pesca como el que pesca con redes, líneas, aparejos de arrastre u otros que restrinjan su maniobrabilidad, y excluye expresamente a los que pescan con curricán. Una embarcación curricaneando es un buque normal a efectos de preferencias, sin importar la longitud del aparejo o la velocidad.",
+  "clave": "Curricán no es «pesca» en el RIPA.",
+  "trampa": "La d): pescar no basta; tiene que ser con aparejos que restrinjan la maniobra."
+ },
+ "bal-per-2025-04-c-20": {
+  "explicacion": "La Regla 21 c) define la luz de alcance como una luz blanca colocada lo más cerca posible de la popa, visible en un arco de 135º, 67,5º a cada banda desde la popa. Los 67,5º de la a) son solo la mitad, 112,5º es el arco de cada luz de costado y 225º el de la luz de tope.",
+  "clave": "Alcance 135º; costados 112,5º; tope 225º.",
+  "trampa": "La a): 67,5º es lo que cubre a cada banda, no el arco total."
+ },
+ "bal-per-2025-04-c-21": {
+  "explicacion": "La Regla 35 g) obliga al buque fondeado a dar un repique rápido de campana de unos 5 s a intervalos de no más de 1 minuto, y le permite además emitir tres pitadas, corta, larga y corta, para avisar de su posición a quien se acerque. Dos largas son del buque de motor parado y sin arrancada.",
+  "clave": "Fondeado en niebla: campana; opcional corta-larga-corta.",
+  "trampa": "La c): la campana del fondeado es obligatoria, no opcional.",
+  "discrepancia": "El Reglamento no fija un intervalo para la señal optativa corta-larga-corta; solo dice que se puede dar para advertir a un buque que se aproxima. La oficial la asocia al minuto de la campana, pero «cada dos minutos» no está tampoco en la norma.",
+  "concepto": "bal-per-2025-04-c-21"
+ },
+ "bal-per-2025-07-a-24": {
+  "explicacion": "La Regla 35 g) obliga al buque fondeado a dar un repique rápido de campana de unos 5 s a intervalos de no más de 1 minuto (eso es la c), obligatoria), y le permite además emitir tres pitadas, corta, larga y corta, para avisar de su posición a quien se acerque. Dos largas son del buque de motor parado y sin arrancada.",
+  "clave": "Fondeado en niebla: campana; opcional corta-larga-corta.",
+  "trampa": "La c) es la señal obligatoria del fondeado, no la opcional.",
+  "discrepancia": "El Reglamento no fija un intervalo para la señal optativa corta-larga-corta; solo dice que se puede dar para advertir a un buque que se aproxima. La oficial la asocia al minuto de la campana.",
+  "concepto": "bal-per-2025-04-c-21"
+ },
+ "bal-per-2025-04-c-23": {
+  "explicacion": "La Regla 3 i) dice que un buque está «en navegación» cuando no está fondeado, ni amarrado a tierra, ni varado. Una embarcación parada a la deriva no cumple ninguna de esas tres condiciones, así que está en navegación con la máquina encendida o apagada.",
+  "clave": "En navegación = ni fondeado, ni amarrado, ni varado.",
+  "trampa": "La c): la máquina no tiene nada que ver; estar parado no es estar fondeado."
+ },
+ "bal-per-2025-04-c-27": {
+  "explicacion": "La Regla 25 e) obliga al buque que navega a vela y a la vez propulsado por su máquina a exhibir a proa un cono con el vértice hacia abajo. Sin gobierno serían dos bolas, maniobra restringida bola-bicono-bola, y no existe ninguna marca para indicar que se navega de bolina.",
+  "clave": "Cono con vértice abajo = vela y motor a la vez.",
+  "trampa": "La c): la maniobra restringida tiene su propia marca (bola, bicono, bola).",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2025-04-d-22": {
+  "explicacion": "La Regla 27 d) dice que el buque dedicado a dragado con una obstrucción marca la banda por la que puede pasar otro buque con dos marcas bicónicas en línea vertical de día y dos luces verdes todo horizonte de noche. La banda de la obstrucción lleva dos bolas (día) o dos rojas (noche). Una sola luz verde o roja no es la señal reglamentaria.",
+  "clave": "Dragado: lado libre, dos biconos o dos verdes.",
+  "trampa": "La c): de noche son dos luces verdes, no una."
+ },
+ "bal-per-2025-07-a-18": {
+  "explicacion": "La Regla 1 a) dice que el Reglamento se aplica a todos los buques en alta mar y en todas las aguas que tengan comunicación con ella y sean navegables por los buques de navegación marítima. No distingue entre motor o vela, tamaño ni uso.",
+  "clave": "RIPA: todos los buques, en alta mar y aguas comunicadas.",
+  "trampa": "La a) deja fuera los buques de remo, hidroaviones y demás, que también son «buques»."
+ },
+ "bal-per-2025-07-a-19": {
+  "explicacion": "La Regla 35 c) asigna una pitada larga seguida de dos cortas, cada 2 minutos como máximo, al buque con capacidad de maniobra restringida, entre otros (sin gobierno, restringido por su calado, de vela, pesquero, remolcador). El fondeado de 100 m o más da campana a proa y gong a popa, y el de propulsión mecánica una o dos largas.",
+  "clave": "Larga-corta-corta: buques con alguna limitación, velas y pesqueros.",
+  "trampa": "La c): el buque de propulsión mecánica da una o dos pitadas largas."
+ },
+ "bal-per-2025-07-a-27": {
+  "explicacion": "La Regla 30 a) obliga a todo buque fondeado a exhibir de día una bola negra en la parte de proa, sin distinguir eslora ni tipo de buque. Por eso valen las tres primeras opciones y la oficial es la d). Solo los menores de 7 m quedan exentos si no fondean en un canal, fondeadero o zona de paso habitual.",
+  "clave": "Fondeado de día: una bola a proa, sea cual sea su eslora.",
+  "trampa": "La a) sugiere que la eslora cambia la marca: solo cambia el número de luces de noche."
+ },
+ "bal-per-2025-07-c-20": {
+  "explicacion": "La Regla 30 e) exime al buque de menos de 7 m fondeado de exhibir luces y marcas, salvo que esté en un canal angosto, paso, fondeadero o zona de navegación frecuente, como aquí. Entonces exhibe las luces de fondeo: una blanca a proa y otra más baja a popa (b), o, por ser de menos de 50 m, una sola blanca todo horizonte en el lugar más visible (c).",
+  "clave": "Fondeado menor de 50 m: basta una blanca todo horizonte.",
+  "trampa": "La a): la exención de los menores de 7 m no vale en zona de navegación frecuente."
+ },
+ "bal-per-2025-07-c-23": {
+  "explicacion": "La Regla 23 c) obliga al aerodeslizador que opera sin desplazamiento a exhibir, además de las luces de propulsión mecánica, una luz amarilla centelleante todo horizonte. No es señal de socorro ni la lleva ningún portaaviones.",
+  "clave": "Amarilla centelleante = aerodeslizador.",
+  "trampa": "La b): sí está en el Reglamento, en la Regla 23 c)."
+ },
+ "bal-per-2025-07-c-26": {
+  "explicacion": "La Regla 3 a) define «buque» como toda clase de embarcaciones, incluidas las sin desplazamiento, las naves de vuelo rasante y los hidroaviones, utilizadas o que puedan utilizarse como medio de transporte sobre el agua. La eslora o la distancia de despegue no importan.",
+  "clave": "Buque = todo lo que pueda transportar sobre el agua, hidroavión incluido.",
+  "trampa": "La b): el hidroavión está expresamente incluido en la definición."
+ },
+ "bal-per-2025-07-c-27": {
+  "explicacion": "La Regla 32 b) define la pitada corta como un sonido de una duración aproximada de un segundo, y la c) la pitada larga como un sonido de cuatro a seis segundos. Dos o tres segundos no corresponden a ninguna definición.",
+  "clave": "Corta ≈ 1 s; larga 4–6 s.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".",
+    "texto": "Pitada corta: ≈ 1 segundo"
+   }
+  ]
+ },
+ "bal-per-2025-07-d-20": {
+  "explicacion": "La Regla 14 establece que, cuando dos buques de propulsión mecánica navegan de vuelta encontrada a rumbos opuestos o casi opuestos con riesgo de abordaje, cada uno caerá a estribor para pasar por la banda de babor del otro. Es la única situación en la que maniobran los dos.",
+  "clave": "Vuelta encontrada: los dos a estribor, babor con babor.",
+  "trampa": "La c): no maniobra uno solo, maniobran ambos.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vuelta-encontrada"
+   }
+  ],
+  "base": "and-2022-c1-t25",
+  "concepto": "and-2022-c1-t25"
+ },
+ "bal-per-2025-09-a-19": {
+  "explicacion": "La Regla 34 a) y b) asigna a dos pitadas cortas, que pueden completarse con dos destellos de luz blanca, el significado «caigo a babor». Una corta (o un destello) es «caigo a estribor» y tres «estoy dando atrás». No existe señal de maniobra para «tengo avería».",
+  "clave": "1 estribor, 2 babor, 3 atrás (pitadas o destellos).",
+  "trampa": "La a) es una sola pitada.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".."
+   }
+  ]
+ },
+ "bal-per-2025-09-a-20": {
+  "explicacion": "La Regla 30 e) exime al buque de menos de 7 m fondeado, salvo cuando está en o cerca de un canal angosto, paso, fondeadero o zona de navegación frecuente. En ese caso exhibe las luces de fondeo, y como es de menos de 50 m le basta una luz blanca todo horizonte en el lugar más visible (Regla 30 b). La bola es la marca de día, no de noche.",
+  "clave": "Fondeado pequeño en zona de paso: una blanca todo horizonte.",
+  "trampa": "La a): la exención no vale cerca de canales, fondeaderos o zonas de paso."
+ },
+ "bal-per-2025-09-a-21": {
+  "explicacion": "La Regla 3 g) incluye entre los buques con capacidad de maniobra restringida al dedicado a una operación de remolque que restrinja fuertemente al remolcador y a su remolque en su capacidad para apartarse de la derrota. El que pesca con redes o aparejos que restringen su maniobra es otra categoría, el «buque dedicado a la pesca» (Regla 3 d), y el velero tampoco lo es.",
+  "clave": "Remolque que no puede apartarse = maniobra restringida; pesca, aparte.",
+  "trampa": "La c) es la definición de buque dedicado a la pesca, que el Reglamento separa de la maniobra restringida."
+ },
+ "bal-per-2025-09-b-18": {
+  "explicacion": "El cono con el vértice hacia abajo (Regla 25 e) indica que el velero navega también con su motor, así que a efectos del Reglamento es un buque de propulsión mecánica (Regla 3 c). Por la Regla 18 a) debe apartarse de nosotros, que vamos a vela. Barlovento y amuras solo cuentan entre dos buques de vela.",
+  "clave": "Cono abajo = va a motor: cede al velero.",
+  "trampa": "La c) aplica la regla de amuras entre veleros, pero el otro ya no es un velero."
+ },
+ "bal-per-2025-09-b-19": {
+  "explicacion": "La Regla 13 a) dice que, no obstante lo dispuesto en las demás reglas de preferencia, todo buque que alcance a otro se mantendrá apartado de su derrota. Aunque sea un velero, si nos alcanza es él quien maniobra; la regla del motor que cede a la vela no se aplica al alcance.",
+  "clave": "El que alcanza se aparta, siempre.",
+  "trampa": "La c) aplica la Regla 18, que no se impone a la regla de alcance.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ]
+ },
+ "bal-per-2025-09-b-22": {
+  "explicacion": "La Regla 35 i) dice que el buque de menos de 12 m no está obligado a emitir las señales de niebla normales, pero si no lo hace emitirá otra señal acústica eficaz a intervalos que no excedan de 2 minutos. Por eso la a) es la incorrecta: sí tiene que emitir alguna señal. El silbato, la campana o una pitada larga cada minuto cumplen como señal eficaz.",
+  "clave": "Menor de 12 m en niebla: señal acústica eficaz cada 2 minutos como máximo.",
+  "trampa": "La a): estar dispensado de las señales completas no es estar dispensado de toda señal.",
+  "concepto": "bal-per-2025-09-b-22"
+ },
+ "bal-per-2026-03-d-18": {
+  "explicacion": "La Regla 35 i) dice que el buque de menos de 12 m no está obligado a emitir las señales de niebla normales, pero si no lo hace emitirá otra señal acústica eficaz a intervalos que no excedan de 2 minutos. Por eso la a) es la incorrecta. Las otras tres son las señales completas de la Regla 35, que también puede emitir si quiere.",
+  "clave": "Menor de 12 m en niebla: señal acústica eficaz cada 2 minutos como máximo.",
+  "trampa": "La a): estar dispensado de las señales completas no es estar dispensado de toda señal.",
+  "concepto": "bal-per-2025-09-b-22"
+ },
+ "bal-per-2025-09-b-24": {
+  "explicacion": "La Regla 10 d) dice que los buques no utilizarán la zona de navegación costera cuando puedan navegar con seguridad por la vía de circulación, pero permite usarla a los de menos de 20 m de eslora, a los de vela y a los dedicados a la pesca. No es libre para todos ni hace falta permiso.",
+  "clave": "Zona costera del DST: menores de 20 m, veleros y pesqueros.",
+  "trampa": "La a): para el resto, la zona costera queda reservada al tráfico local."
+ },
+ "bal-per-2025-09-b-27": {
+  "explicacion": "La oficial da por buena solo la configuración normal de la Regla 23 a): luz de tope, de alcance y de costado. La blanca sola (d) solo se permite a los menores de 7 m con velocidad máxima de 7 nudos, y la amarilla centelleante es del aerodeslizador.",
+  "clave": "Menor de 7 m y más de 7 nudos: no basta la blanca sola.",
+  "trampa": "La d) exige que su velocidad máxima no pase de 7 nudos.",
+  "discrepancia": "La Regla 23 d) i) permite a todo buque de propulsión mecánica de menos de 12 m, sin límite de velocidad, sustituir tope y alcance por una blanca todo horizonte con las luces de costado, así que la b) también es reglamentaria y el «únicamente» de la a) no es correcto.",
+  "defendible": "b"
+ },
+ "bal-per-2025-12-b-21": {
+  "explicacion": "La Regla 21 d) define la luz de remolque como una luz amarilla de las mismas características que la luz de alcance (135º, hacia popa). La amarilla centelleante es la del aerodeslizador, y la blanca a popa es la de alcance.",
+  "clave": "Remolque: amarilla fija, sobre la de alcance.",
+  "trampa": "La b): centelleante es la del aerodeslizador."
+ },
+ "bal-per-2025-12-b-22": {
+  "explicacion": "De día el arrastrero exhibe dos conos unidos por sus vértices en línea vertical (Regla 26 b). El buque de menos de 20 m puede sustituirlos por un cesto, no de menos de 25 m. Tres bolas son el buque varado y dos el sin gobierno, así que ninguna es correcta.",
+  "clave": "Pesca de día: dos conos unidos por los vértices (cesto si < 20 m).",
+  "trampa": "La a) cambia el límite de 20 m por 25 m."
+ },
+ "bal-per-2025-12-b-23": {
+  "explicacion": "La Regla 3 i) dice que un buque está «en navegación» cuando no está fondeado, ni amarrado a tierra, ni varado. No hace falta que tenga arrancada: un buque parado a la deriva también está en navegación.",
+  "clave": "En navegación = ni fondeado, ni amarrado, ni varado.",
+  "trampa": "La d) añade la arrancada, que la definición no exige."
+ },
+ "bal-per-2025-12-c-21": {
+  "explicacion": "La Regla 1 b) permite que la autoridad competente dicte reglas especiales para radas, puertos, ríos, lagos o aguas interiores comunicadas con alta mar, pero exige que coincidan en todo lo posible con el Reglamento. Se aplican a aguas comunicadas con la alta mar, no a las que no lo están.",
+  "clave": "Reglas especiales: sí, pero lo más parecidas posible al RIPA.",
+  "trampa": "La a): son para aguas que sí comunican con alta mar."
+ },
+ "bal-per-2025-12-d-20": {
+  "explicacion": "La Regla 30 a) dice que el buque fondeado exhibe de día una bola negra en la parte de proa, sea cual sea su eslora: la eslora solo cambia el número de luces de noche. El cilindro es la marca del buque restringido por su calado y el bicono forma parte de otras marcas.",
+  "clave": "Fondeado de día: una bola a proa.",
+  "trampa": "La c): de noche el de 50 m o más lleva dos luces, pero de día sigue siendo una sola bola.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2025-12-d-26": {
+  "explicacion": "La Regla 21 a) define la luz de tope como una luz blanca colocada sobre el eje longitudinal del buque, visible en un arco de 225º. Verde y roja son las de costado y amarilla la de remolque.",
+  "clave": "Tope: blanca, 225º, en crujía.",
+  "trampa": "La a): la luz de tope siempre es blanca."
+ },
+ "bal-per-2026-03-a-19": {
+  "explicacion": "La Regla 9 a) indica que en un canal angosto se navegará lo más cerca posible del límite exterior del canal que quede por el costado de estribor, siempre que no haya peligro. Así los buques que se cruzan pasan babor con babor. No se navega por el centro ni se elige el lado por la profundidad.",
+  "clave": "Canal angosto: a tu estribor.",
+  "trampa": "La c) añade la coletilla «sin peligro», pero cambia estribor por el centro.",
+  "base": "and-2023-c2-t19",
+  "concepto": "and-2023-c2-t19"
+ },
+ "bal-per-2026-03-a-25": {
+  "explicacion": "La Regla 30 dice que el buque fondeado exhibe de día una bola a proa y de noche luces blancas todo horizonte; si es de menos de 50 m le basta una blanca en el lugar más visible (Regla 30 b). Dos blancas son de los de 50 m o más, y la luz amarilla o las dos bolas no son de fondeo.",
+  "clave": "Fondeado < 50 m: una blanca de noche, una bola de día.",
+  "trampa": "La d): las dos luces blancas son del fondeado de 50 m o más.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2026-03-a-26": {
+  "explicacion": "La Regla 34 b) permite completar las pitadas de maniobra con destellos de luz blanca: uno para «caigo a estribor», dos para «caigo a babor» y tres para «doy atrás», de un segundo aproximadamente. No se usan destellos de colores.",
+  "clave": "Pitadas de maniobra + destellos blancos.",
+  "trampa": "La b): los colores rojo y verde son de las luces de costado, no de las señales de maniobra."
+ },
+ "bal-per-2026-03-b-21": {
+  "explicacion": "La Regla 27 e) obliga a la embarcación dedicada a operaciones de buceo que no pueda exhibir las marcas de maniobra restringida a llevar una reproducción rígida de la bandera «A» del Código Internacional de Señales. El RD 550/2020 también exige la «A» en la boya de superficie del buceador.",
+  "clave": "Buzos en el agua: bandera «A», blanca y azul.",
+  "ilustraciones": [
+   {
+    "tipo": "bandera",
+    "codigo": "A"
+   }
+  ]
+ },
+ "bal-per-2026-03-b-26": {
+  "explicacion": "La Regla 27 a) dice que el buque sin gobierno exhibe dos luces rojas todo horizonte en línea vertical y, si tiene arrancada, además las de costado y alcance. No lleva luces de tope, porque no puede maniobrar como un buque de propulsión mecánica. Las dos rojas solas son del sin gobierno sin arrancada.",
+  "clave": "Sin gobierno: dos rojas; con arrancada, + costados y alcance.",
+  "trampa": "La b) añade los topes, que el sin gobierno no exhibe.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "sin-gobierno",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2026-03-b-27": {
+  "explicacion": "El Anexo IV del RIPA recoge como señales de peligro los disparos a intervalos de un minuto, subir y bajar lentamente los brazos extendidos, la palabra «MAYDAY» por radiotelefonía y las bengalas de mano de luz roja, entre otras. Una bengala verde no es señal de peligro.",
+  "clave": "Socorro: bengala roja, nunca verde.",
+  "trampa": "La b) parece un gesto cualquiera, pero es una señal de peligro reconocida.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2026-03-c-18": {
+  "explicacion": "La Regla 27 f) dice que el buque dedicado a operaciones de limpieza de minas exhibe tres bolas negras (de noche, tres luces verdes): una en el tope del palo trinquete y una en cada penol de la verga de ese palo. Indican que es peligroso acercarse a menos de 1.000 m. El varado lleva tres bolas, pero en línea vertical, y el dragado bolas y biconos por los costados.",
+  "clave": "Tres bolas en triángulo (tope y penoles) = dragaminas.",
+  "trampa": "La c): el varado también lleva tres bolas, pero una encima de otra."
+ },
+ "bal-per-2026-03-c-20": {
+  "explicacion": "La Regla 30 e) exime al buque de eslora inferior a 7 m fondeado de exhibir luces y marcas, siempre que no esté en o cerca de un canal angosto, paso, fondeadero o zona de navegación frecuente. Como está alejado de esas zonas, no tiene obligación. La c) generaliza la exención a cualquier lugar, y eso es falso.",
+  "clave": "Fondeado < 7 m lejos de zonas de paso: sin luces obligatorias.",
+  "trampa": "La c) quita la condición del lugar, que es justo la clave de la exención."
+ },
+ "bal-per-2026-03-c-21": {
+  "explicacion": "La Regla 21 f) define la luz centelleante como la que produce centelleos a intervalos regulares con una frecuencia de 120 o más centelleos por minuto. Las otras cifras no aparecen en el Reglamento.",
+  "clave": "Centelleante: 120 o más por minuto.",
+  "trampa": "La b) (60 por minuto) es la frecuencia del centelleo en las balizas, no la definición del RIPA."
+ },
+ "bal-per-2026-03-c-22": {
+  "explicacion": "La Regla 26 b) asigna al buque dedicado a la pesca de arrastre, de día, una marca de dos conos unidos por sus vértices en línea vertical. El cilindro es del buque restringido por su calado, y el cono con el vértice hacia arriba indica, en el pesquero que no arrastra, el aparejo extendido más de 150 m.",
+  "clave": "Pesca de día: dos conos unidos por los vértices.",
+  "trampa": "La c) añade una bola, que es la marca del fondeado.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-arrastre",
+    "vista": "proa",
+    "dia": true
+   }
+  ]
+ },
+ "bal-per-2026-03-c-24": {
+  "explicacion": "Blanca sobre roja en línea vertical es la señal de la embarcación de práctico en servicio (Regla 29 a). El arrastrero lleva verde sobre blanca, el pesquero que no arrastra roja sobre blanca y el buque sin gobierno dos rojas.",
+  "clave": "Práctico: blanco sobre rojo.",
+  "trampa": "La c) invierte el orden: roja sobre blanca es pesca de no arrastre.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "popa"
+   }
+  ]
+ },
+ "bal-per-2026-03-c-27": {
+  "explicacion": "La Regla 1 b) permite a la autoridad competente dictar reglas especiales para radas, puertos, ríos, lagos o aguas interiores que tengan comunicación con alta mar y sean navegables por los buques de navegación marítima. La a) se queda corta (olvida lagos y aguas interiores) y la d) dice lo contrario.",
+  "clave": "Reglas especiales: radas, puertos, ríos, lagos y aguas interiores comunicadas.",
+  "trampa": "La c) arrastra la a), que limita indebidamente la lista."
+ },
+ "bal-per-2026-03-d-21": {
+  "explicacion": "La Regla 10 h) dice que el buque que no utilice un dispositivo de separación de tráfico se mantendrá apartado de él con el mayor margen posible. Ir en sentido contrario está prohibido, y quien cruza lo hace lo más perpendicular posible, no con un ángulo pequeño.",
+  "clave": "¿No usas el DST? Mantente lejos.",
+  "trampa": "La d) invierte la Regla 10 c): se cruza en ángulo recto, no oblicuo."
+ },
+ "bal-per-2026-03-d-26": {
+  "explicacion": "La Regla 7 d) dice que hay riesgo de abordaje si la demora de un buque que se aproxima no varía de forma apreciable. Con demora constante existe ese riesgo, así que hay que extremar la vigilancia y evaluar quién debe maniobrar. Maniobrar o dar señales depende de la situación concreta.",
+  "clave": "Demora constante y se acerca = riesgo de abordaje.",
+  "trampa": "La c) dice justo lo contrario: demora fija es la señal de riesgo."
+ },
+ "bal-per-2026-03-d-27": {
+  "explicacion": "La Regla 13 b) considera que alcanza todo buque que se aproxima a otro desde una marcación mayor de 22,5º a popa del través de este último, es decir, dentro del sector de su luz de alcance. Desde proa, desde estribor o desde menos de 22,5º a popa del través es una situación de cruce o de vuelta encontrada.",
+  "clave": "Más de 22,5º a popa del través = alcance.",
+  "trampa": "La c) cambia «mayor» por «menor»: lee cada palabra.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "base": "and-2021-c1-t21",
+  "concepto": "and-2021-c1-t21"
+ },
+ "bal-per-2026-06-a-23": {
+  "explicacion": "La Regla 3 f) define el buque sin gobierno como todo buque que, por cualquier circunstancia excepcional, es incapaz de maniobrar en la forma exigida por el Reglamento y, por tanto, no puede apartarse de la derrota de otro. No hay ningún umbral de velocidad de caída.",
+  "clave": "Sin gobierno: incapaz de maniobrar como exige el Reglamento.",
+  "trampa": "La b) inventa una cifra técnica que la definición no contiene."
+ },
+ "bal-per-2026-06-b-18": {
+  "explicacion": "La Regla 34 c) i) dice que en un canal angosto el que pretende alcanzar a otro por su banda de estribor da dos pitadas largas seguidas de una corta; por babor, dos largas y dos cortas. El alcanzado contesta su conformidad con larga, corta, larga, corta. Tres cortas son «estoy dando atrás».",
+  "clave": "Adelantar por estribor: — — ·; por babor: — — · ·.",
+  "trampa": "La a) es la respuesta de conformidad del alcanzado, no la petición."
+ },
+ "bal-per-2026-06-c-18": {
+  "explicacion": "La Regla 13 b) considera que alcanza todo buque que se aproxima a otro desde una marcación mayor de 22,5º a popa del través del alcanzado, es decir, dentro del sector de su luz de alcance. Si además vemos un costado, ya no estamos en ese sector; y ver al otro por nuestra proa no dice nada de su situación.",
+  "clave": "Más de 22,5º a popa del través = alcance.",
+  "trampa": "La a): de noche, el que alcanza solo ve la luz de alcance, sin costados.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ]
+ },
+ "bal-per-2026-06-c-20": {
+  "explicacion": "La Regla 15 dice que, en un cruce entre buques de propulsión mecánica, el que tiene al otro por su costado de estribor se mantendrá apartado y, si es posible, evitará cortarle la proa. El otro sigue a rumbo (Regla 17). No depende del abatimiento ni existen versiones regionales del Reglamento.",
+  "clave": "Estribor manda.",
+  "trampa": "La d) es justo la contraria: el que lo tiene por babor sigue a rumbo.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "base": "and-2024-c3-t18",
+  "concepto": "and-2024-c3-t18"
+ },
+ "bal-per-2026-06-c-22": {
+  "explicacion": "La Regla 19 d) dice que el buque que detecta solo por radar a otro con riesgo de aproximación excesiva tomará medidas con antelación suficiente y, si cambia de rumbo, evitará en lo posible caer a babor si el otro está a proa del través (salvo que lo esté alcanzando). Mantener el rumbo, caer hacia el eco o quedarse sin gobierno son lo contrario.",
+  "clave": "Eco a proa sin verlo: actúa pronto y no caigas a babor.",
+  "trampa": "La a): con visibilidad reducida no hay buque «que sigue a rumbo»; todos deben actuar."
+ },
+ "bal-per-2026-06-c-25": {
+  "explicacion": "La Regla 16 dice que el buque que deba mantenerse apartado maniobrará, en lo posible, con anticipación suficiente y de forma decidida para quedar bien franco del otro, cambiando rumbo, velocidad o ambos. No debe esperar a que el otro maniobre ni limitarse a parar sin más.",
+  "clave": "Buque que cede: pronto, decidido y bien franco.",
+  "trampa": "La c): el que tiene preferencia debe mantener rumbo; esperarlo es un error."
+ },
+ "bal-per-2026-06-c-26": {
+  "explicacion": "El Anexo IV del RIPA incluye como señal de peligro los cohetes o bombas que proyecten estrellas rojas, lanzados uno a uno a cortos intervalos, y las bengalas de mano de luz roja. Una bandera amarilla, tres pitadas largas o una luz verde intermitente no son señales de peligro.",
+  "clave": "Socorro: luz roja (cohete o bengala).",
+  "trampa": "La b): las señales fónicas de peligro son un sonido continuo, no tres pitadas largas.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "cohete-paracaidas",
+    "solo": true
+   }
+  ]
+ },
+ "bal-per-2026-06-c-27": {
+  "explicacion": "La Regla 32 b) define la pitada corta como un sonido de una duración aproximada de un segundo. La de 4 a 6 segundos es la pitada larga, y las demás duraciones no aparecen en el Reglamento.",
+  "clave": "Corta ≈ 1 s; larga 4–6 s.",
+  "trampa": "La c) es la definición de pitada larga.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": ".",
+    "texto": "Pitada corta: ≈ 1 segundo"
+   }
+  ]
+ },
+ "bal-per-2026-06-d-25": {
+  "explicacion": "La Regla 29 a) asigna a la embarcación de práctico en servicio dos luces todo horizonte en la parte superior del palo, blanca la superior y roja la inferior, y con arrancada además las de costado y alcance. Roja sobre blanca es pesca, y roja-blanca-roja es maniobra restringida.",
+  "clave": "Práctico: blanco sobre rojo.",
+  "trampa": "La b) invierte el orden: roja arriba y blanca abajo es pesca.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "popa"
+   }
+  ]
+ },
+ "bal-per-2026-09-a-18": {
+  "explicacion": "La Regla 25 c) permite al velero exhibir, además de los costados y el alcance, dos luces todo horizonte en el tope del palo, roja la superior y verde la inferior. La b) y la c) dicen exactamente lo mismo y por eso se aceptan las dos. La a) añade una luz de tope, que el velero navegando a vela nunca lleva.",
+  "clave": "Velero: costados + alcance; opcional roja sobre verde.",
+  "trampa": "La a): con luz de tope ya sería un buque de propulsión mecánica.",
+  "discrepancia": "La d) (costados y alcance) es la configuración obligatoria del velero, así que también es cierto que «podrá exhibir» esas luces; la oficial se queda con la opción que incluye las luces optativas.",
+  "defendible": "d"
+ },
+ "bal-per-2026-09-a-27": {
+  "explicacion": "La Regla 12 a) i) dice que, si dos veleros reciben el viento por bandas contrarias, el que lo recibe por babor se mantiene apartado del otro. La c) es falsa porque, con el viento por la misma banda, cede el de barlovento, no el de sotavento; y la a) es la regla de vuelta encontrada entre buques de motor.",
+  "clave": "Viento por babor, cedo yo; misma banda, cede barlovento.",
+  "trampa": "La c) invierte barlovento y sotavento.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vela-amuras"
+   }
+  ],
+  "base": "and-2023-c1-t23",
+  "concepto": "and-2023-c1-t23"
+ },
+ "bal-per-2026-09-b-18": {
+  "explicacion": "El buque de propulsión mecánica de 50 m o más lleva dos luces de tope, la de popa más alta que la de proa (Regla 23 a). Visto de frente, su costado de estribor (verde) queda a nuestra izquierda, es decir, a nuestro babor, y su roja a nuestro estribor. La d) cambia los colores de lado y la a) y la b) llevan un solo tope.",
+  "clave": "De frente: su verde a tu babor, su roja a tu estribor.",
+  "trampa": "La d): su estribor queda a tu babor cuando lo miras de frente.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "motor-50",
+    "vista": "proa"
+   }
+  ]
+ },
+ "bal-per-2026-09-b-20": {
+  "explicacion": "Ver a la vez la luz roja y la verde significa que tenemos al otro buque de proa. Si solo vemos las de costado, sin luz de tope, es un velero navegando a vela (Regla 25), que no lleva tope. Una embarcación de motor mostraría además su tope blanco, y las menores de 7 m a vela pueden llevar solo una linterna blanca.",
+  "clave": "Rojo y verde sin tope = velero de proa.",
+  "trampa": "La b): la eslora no explica ver los dos costados.",
+  "discrepancia": "Un velero en navegación pero parado sigue exhibiendo luces de costado (el Reglamento no las condiciona a la arrancada en el velero), así que la c) también describe lo que se vería.",
+  "defendible": "c"
+ },
+ "bal-per-2026-09-c-18": {
+  "explicacion": "La Regla 3 g) incluye en la capacidad de maniobra restringida al dragaminas, al cablero y al buque dedicado a dragado, entre otros. El pesquero faenando es otra categoría, «buque dedicado a la pesca» (Regla 3 d), con sus propias luces y preferencias.",
+  "clave": "Pescando ≠ maniobra restringida: categorías distintas.",
+  "trampa": "La c) parece maniobra restringida, pero el Reglamento lo trata aparte."
+ },
+ "bal-per-2026-09-c-19": {
+  "explicacion": "La Regla 26 b) asigna al arrastrero dos luces todo horizonte en línea vertical, verde la superior y blanca la inferior, además de costados y alcance si tiene arrancada. Roja sobre blanca es la de pesca que no es de arrastre y blanca sobre roja la de práctico.",
+  "clave": "Verde sobre blanco, arrastre; rojo sobre blanco, pesca de otro tipo.",
+  "trampa": "La b) es la del pesquero que no arrastra.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-arrastre",
+    "vista": "proa"
+   }
+  ],
+  "base": "and-2022-c1-t22",
+  "concepto": "and-2022-c1-t22"
+ },
+ "bal-per-2026-09-c-25": {
+  "explicacion": "Blanca sobre roja en línea vertical es la señal de la embarcación de práctico en servicio (Regla 29 a). El buque sin gobierno lleva dos rojas, el pesquero que no arrastra roja sobre blanca y el arrastrero verde sobre blanca.",
+  "clave": "Práctico: blanco sobre rojo.",
+  "trampa": "La b) invierte el orden: roja sobre blanca es pesca de no arrastre.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "practico",
+    "vista": "popa"
+   }
+  ]
+ },
+ "bal-per-2026-09-d-25": {
+  "explicacion": "La Regla 34 a) establece que, con buques a la vista, tres pitadas cortas significan «estoy dando atrás». Una corta es «caigo a estribor» y dos cortas «caigo a babor».",
+  "clave": "1 estribor, 2 babor, 3 atrás.",
+  "trampa": "La b) son dos pitadas cortas.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "..."
+   }
+  ],
+  "base": "and-2023-c1-t26",
+  "concepto": "and-2023-c1-t26"
+ },
+ "bal-per-2017-03-a-28": {
+  "explicacion": "Lascar es soltar un cabo poco a poco, sin perder el control y manteniéndolo con tensión. Largar es soltarlo del todo, y templar es lo contrario: tensarlo.",
+  "clave": "Lascar = soltar poco a poco, controlando.",
+  "trampa": "La a): largar es soltar del todo, no poco a poco."
+ },
+ "bal-per-2017-03-a-29": {
+  "explicacion": "El spring de popa sale de la popa de la embarcación y se hace firme en el muelle hacia proa. Si se vira (se cobra) sin otros cabos, tira de la popa hacia delante y hacia el muelle: la embarcación avanza y la popa se arrima, de modo que la proa se abre.",
+  "clave": "Virar spring de popa: avante, popa al muelle, proa abre.",
+  "trampa": "La b): la popa no se abre; es la que se arrima al muelle."
+ },
+ "bal-per-2017-03-b-28": {
+  "explicacion": "El viento y la corriente son los agentes externos que más afectan a una maniobra de atraque o desatraque, porque desplazan la embarcación mientras va despacio y gobierna mal. La eslora y la manga son características del propio barco, y las altas o bajas presiones por sí solas no dicen nada del viento en el muelle.",
+  "clave": "Antes de atracar: mira el viento y la corriente.",
+  "trampa": "La c): eslora y manga no son agentes externos."
+ },
+ "bal-per-2017-03-b-29": {
+  "explicacion": "La codera es un cabo que sujeta la popa (o la proa) a un muelle, boya o muerto para mantener la embarcación en una posición. Se usa para ayudarse en el desatraque, haciendo de pivote, y para aguantar la embarcación cuando hay mal tiempo de fuera. Por eso son correctas la b) y la c).",
+  "clave": "Codera: aguanta y ayuda a desatracar.",
+  "trampa": "La a): tiene utilidad en maniobra y con mal tiempo."
+ },
+ "bal-per-2017-03-ci-28": {
+  "explicacion": "El timón gira la embarcación gracias al agua que pasa por la pala: cuanto más caudal (hélice a más vueltas y más velocidad) y más ángulo, más fuerza de evolución. Con todo el timón a la banda y máxima máquina la caída se completa en menos tiempo. A poca velocidad el timón apenas tiene efecto.",
+  "clave": "Caída rápida: todo a la banda y mucha máquina.",
+  "trampa": "La c): a mínima velocidad el timón responde poco y la caída tarda más."
+ },
+ "bal-per-2017-03-ci-29": {
+  "explicacion": "El esprin (spring) de popa sale de la popa de la embarcación y se hace firme en tierra hacia proa. Trabaja cuando el barco intenta moverse hacia atrás, así que impide que se desplace hacia popa. El que impide ir hacia proa es el esprin de proa, y separarse o arrimarse lo controlan largos y traveses.",
+  "clave": "Esprin de popa: frena el barco hacia atrás.",
+  "trampa": "La a) es la función del esprin de proa, que va de la proa hacia popa."
+ },
+ "bal-per-2017-03-fa-28": {
+  "explicacion": "La hélice dextrógira gira en el sentido de las agujas del reloj en marcha avante (vista desde popa); en marcha atrás gira al revés y la presión lateral de las palas lleva la popa a babor, con la proa cayendo a estribor. El efecto es más notable al arrancar desde parado, cuando el timón todavía no gobierna.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "La a) da la proa a babor; es al revés, la proa cae a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-28"
+ },
+ "bal-per-2019-04-e-28": {
+  "explicacion": "La hélice dextrógira gira en el sentido de las agujas del reloj en marcha avante (vista desde popa); en marcha atrás gira al revés y la presión lateral de las palas lleva la popa a babor, con la proa cayendo a estribor. El efecto es precisamente más notable a poca velocidad, cuando el timón aún no gobierna.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "La d): a poca velocidad es cuando más se nota, porque el timón apenas actúa.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "bal-per-2017-03-fa-28"
+ },
+ "bal-per-2017-03-fa-29": {
+  "explicacion": "El viento y la corriente son los agentes externos que más influyen en la maniobra, porque empujan la embarcación cuando va despacio y gobierna mal. Las altas o bajas presiones solo indican el tipo de tiempo, y la eslora es una característica del barco, no un agente meteorológico.",
+  "clave": "Maniobra: cuenta siempre con viento y corriente.",
+  "trampa": "La c): la eslora no es un agente externo."
+ },
+ "bal-per-2017-03-ge-29": {
+  "explicacion": "Abarloar es amarrar una embarcación costado con costado a otra (o, por extensión, al muelle). Atracar de punta es arrimar proa o popa, fondear y dar cabo a tierra es amarrar a la mediterránea, y señalizar el ancla con un boyarín es «arinque».",
+  "clave": "Abarloar = costado con costado.",
+  "trampa": "La c) describe el amarre con ancla y cabo a tierra, no el abarloado."
+ },
+ "bal-per-2017-07-b-28": {
+  "explicacion": "A una boya se amarra por seno: se pasa el cabo por la argolla y se vuelve con el chicote a bordo, de modo que se puede largar desde la embarcación sin bajar a la boya y recuperando el cabo. Un as de guía, una vuelta de rezón o un ahorcaperros quedan hechos en la boya y hay que llegar hasta ella para soltarlos.",
+  "clave": "Boya: amarra por seno, larga desde a bordo.",
+  "trampa": "La a): el as de guía es buen nudo, pero obliga a ir a la boya para soltarlo."
+ },
+ "bal-per-2017-07-c-28": {
+  "explicacion": "Con dos hélices, la ciaboga se hace dando avante con una y atrás con la otra: el par de fuerzas hace girar la embarcación sobre sí misma. Para caer a babor, la de estribor empuja avante y la de babor tira atrás. Dar las dos avante solo traza una curva normal, y la d) haría la ciaboga por estribor.",
+  "clave": "Ciaboga a babor: estribor avante, babor atrás.",
+  "trampa": "La d) invierte las máquinas y hace girar hacia estribor."
+ },
+ "bal-per-2017-07-c-29": {
+  "explicacion": "La hélice levógira gira en sentido contrario a las agujas del reloj en marcha avante (vista desde popa). En marcha atrás invierte el giro y la presión lateral de las palas lleva la popa a estribor, justo al revés que la dextrógira.",
+  "clave": "Levógira atrás: popa a estribor.",
+  "trampa": "La a) es lo que hace la dextrógira en marcha atrás.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2017-07-eda-29": {
+  "explicacion": "Abozar es sujetar provisionalmente un cabo o cadena en tensión con otro cabo más fino (la boza), para poder cambiarlo de bita o de tambor sin que se escape. Amordazar es inmovilizar la cadena con la mordaza, orincar es poner un orinque y acuartelar se refiere a las velas.",
+  "clave": "Abozar: aguantar un cabo tenso con una boza.",
+  "trampa": "La a): la mordaza es la pieza que frena la cadena, no un cabo."
+ },
+ "bal-per-2017-07-fc-28": {
+  "explicacion": "Cuando en un noray ya hay gazas, la nuestra se pasa por debajo y por dentro del ojo de las que están puestas. Así cualquiera de los barcos puede sacar su amarra sin tener que levantar las de los demás.",
+  "clave": "Gaza en noray ocupado: por dentro del ojo de las otras.",
+  "trampa": "La b): encima de todo bloquea a quien amarró antes."
+ },
+ "bal-per-2017-07-fc-29": {
+  "explicacion": "El largo de popa sale de la popa hacia atrás y hacia el muelle. Si lo cobramos sin otros cabos dados, tira de la popa hacia el muelle y hacia atrás, que es lo que se busca. El través de proa arrima la proa, el largo de proa lleva el barco hacia delante y el spring de popa, al virarlo, lo mueve avante.",
+  "clave": "Atrás y popa al muelle: cobra el largo de popa.",
+  "trampa": "La d): virar el spring de popa hace avanzar la embarcación.",
+  "concepto": "bal-per-2017-07-fc-29"
+ },
+ "bal-per-2020-07-espf-28": {
+  "explicacion": "El largo de popa sale de la popa hacia atrás y hacia el muelle. Si lo cobramos sin otros cabos dados, tira de la popa hacia el muelle y hacia atrás, que es lo que se busca. Los traveses solo arriman la proa o la popa sin moverla hacia atrás, y el spring de popa, al virarlo, hace avanzar la embarcación.",
+  "clave": "Atrás y popa al muelle: cobra el largo de popa.",
+  "trampa": "La d): el través de popa arrima la popa, pero no mueve el barco hacia atrás.",
+  "concepto": "bal-per-2017-07-fc-29"
+ },
+ "bal-per-2017-09-a-28": {
+  "explicacion": "Si dejamos solo el spring de proa (de la proa hacia popa, a tierra) y damos poca avante con el timón hacia el muelle, el cabo retiene la proa, que hace de pivote pegada al muelle, y la popa se abre. Con el spring de popa ocurre lo contrario, y con toda avante el riesgo de romper el cabo o golpear es mayor.",
+  "clave": "Abrir popa: spring de proa y poca avante.",
+  "trampa": "La a): con el spring de popa la que se abre es la proa."
+ },
+ "bal-per-2017-09-a-29": {
+  "explicacion": "La eficacia del timón depende de la superficie de su pala, de la velocidad del agua que la recorre y de la parte sumergida, ligada al calado. La sonda, es decir, la profundidad del agua bajo la quilla, no cambia la fuerza que hace el timón (salvo en aguas muy someras, que no es lo que se pregunta).",
+  "clave": "Timón: superficie, velocidad y calado.",
+  "trampa": "La b): el calado sí influye, porque determina la parte sumergida de la pala."
+ },
+ "bal-per-2017-09-c-28": {
+  "explicacion": "Con una sola hélice dextrógira, en avante la popa tiende a caer a estribor (proa a babor) y en atrás a babor (proa a estribor). En la ciaboga se alterna avante y atrás, y por estribor ese efecto en marcha atrás ayuda a seguir girando la proa a estribor, así que la maniobra sale más cerrada y fácil.",
+  "clave": "Dextrógira: ciaboga por estribor.",
+  "trampa": "La a): por babor la marcha atrás deshace parte de la caída."
+ },
+ "bal-per-2017-09-c-29": {
+  "explicacion": "Con viento de mar empujando hacia el pantalán, lo primero que hay que hacer firme es la codera o el muerto de popa: es lo que frena la embarcación y evita que el viento la empuje contra el pantalán. Después se dan los largos de proa.",
+  "clave": "Viento de fuera: primero la codera o muerto.",
+  "trampa": "La a): si das primero los largos, el viento te pone la proa contra el pantalán."
+ },
+ "bal-per-2017-09-d-28": {
+  "explicacion": "Como regla práctica se fondea filando cadena de tres a cinco veces la profundidad, para que el tiro sea casi horizontal y el ancla agarre bien. El doble es poco, de siete a diez veces suele hacer falta si se fondea con cabo o con mal tiempo, y arriar toda la cadena no es necesario y aumenta el borneo.",
+  "clave": "Fondeo: cadena de 3 a 5 veces la profundidad.",
+  "trampa": "La c) es el margen para cabo o mal tiempo, no la norma general con cadena."
+ },
+ "bal-per-2017-09-d-29": {
+  "explicacion": "La hélice, al girar, aspira agua por su cara de proa (corriente de aspiración) y la lanza hacia popa (corriente de expulsión); de esa reacción sale el empuje. La estela y la corriente de arrastre son efectos del casco al moverse, y la escora no la produce la hélice.",
+  "clave": "Hélice: corriente de aspiración y de expulsión.",
+  "trampa": "La d): la corriente de arrastre la crea el casco al avanzar, no la hélice.",
+  "concepto": "bal-per-2017-09-d-29"
+ },
+ "bal-per-2025-07-d-28": {
+  "explicacion": "La hélice, al girar, aspira agua por su cara de proa (corriente de aspiración) y la lanza hacia popa (corriente de expulsión); de esa reacción sale el empuje. La ciaboga es una maniobra, la deriva el desplazamiento por la corriente y el abatimiento el que produce el viento.",
+  "clave": "Hélice: corriente de aspiración y de expulsión.",
+  "trampa": "La d): el abatimiento lo produce el viento, no la hélice.",
+  "concepto": "bal-per-2017-09-d-29"
+ },
+ "bal-per-2017-09-e-28": {
+  "explicacion": "Amarrar por seno es pasar el cabo por el noray o la argolla y traer el chicote de vuelta a bordo. Su sentido es poder largar desde la embarcación, sin ayuda de tierra, y recuperar el cabo entero. Que vaya doble es una consecuencia, no el objetivo.",
+  "clave": "Por seno: largas y recoges desde a bordo.",
+  "trampa": "La b): el cabo queda doble, pero lo importante es poder largarlo desde a bordo."
+ },
+ "bal-per-2017-09-e-29": {
+  "explicacion": "La codera sujeta la popa (o la proa) a un muelle, una boya o un muerto. Sirve para aguantar la embarcación cuando entra mal tiempo de fuera y para ayudar en el atraque y en el desatraque, haciendo de punto fijo. Por eso son correctas todas.",
+  "clave": "Codera: aguanta y ayuda a atracar y desatracar.",
+  "trampa": "Elegir solo una de las funciones cuando las tres son ciertas."
+ },
+ "bal-per-2017-12-a-28": {
+  "explicacion": "La dextrógira es la hélice que, en marcha avante y vista desde popa, gira en el sentido de las agujas del reloj (hacia la derecha). La b) es la levógira; en avante la dextrógira lleva la popa a estribor, no a babor, y el sentido de giro no indica por sí solo si se va avante o atrás.",
+  "clave": "Dextrógira = diestra = horario en avante.",
+  "trampa": "La c) invierte el efecto: en avante la dextrógira lleva la popa a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "avante"
+   }
+  ],
+  "base": "and-2023-c2-t01",
+  "concepto": "and-2023-c2-t01"
+ },
+ "bal-per-2017-12-c-28": {
+  "explicacion": "Amarrada a una boya, la embarcación bornea de forma natural, girando alrededor de ella según el viento y la corriente. Es normal y no exige nada especial. Filar más cabo aumentaría el círculo de borneo, y el ancla por la popa o el molinete no tienen sentido en una boya.",
+  "clave": "En boya, bornear es normal.",
+  "trampa": "La c): un ancla por la popa en una boya solo complica el amarre."
+ },
+ "bal-per-2017-12-d-28": {
+  "explicacion": "Si en el noray ya hay una gaza, se pasa la nuestra por el ojo de la que está encapillada antes de colocarla. Así cualquiera de las dos amarras puede sacarse sin tener que soltar la otra. No hace falta soltar la ajena ni renunciar al noray.",
+  "clave": "Gaza en noray ocupado: por dentro del ojo de la otra.",
+  "trampa": "La d): no se suelta la amarra de otro barco."
+ },
+ "bal-per-2017-12-e-28": {
+  "explicacion": "Adujar es recoger un cabo en vueltas o adujas ordenadas para que ocupe poco espacio y quede listo para usarse sin cocas. Dar vueltas a la bita es tomar vueltas, la b) describe el amarre por seno y la d) es dar vueltas al tambor del molinete.",
+  "clave": "Adujar: recoger el cabo en vueltas ordenadas.",
+  "trampa": "La b) es amarrar por seno."
+ },
+ "bal-per-2017-12-e-29": {
+  "explicacion": "Un cabo de amarre en el agua puede acabar enrollado en la hélice, que lo atrapa y deja la embarcación sin propulsión en plena maniobra. Por eso hay que recoger los cabos y no dejarlos colgando. La orza, el codaste o la roda no los atrapan al girar.",
+  "clave": "Cabos fuera del agua: la hélice se los traga.",
+  "trampa": "La b): el codaste está cerca de la hélice, pero el peligro es la hélice que gira.",
+  "concepto": "bal-per-2017-12-e-29"
+ },
+ "bal-per-2022-06-d-29": {
+  "explicacion": "Un cabo de amarre en el agua puede acabar enrollado en la hélice, que lo atrapa y deja la embarcación sin propulsión en plena maniobra. Por eso hay que recoger los cabos y no dejarlos colgando. El espejo de popa, el codaste o la roda no los atrapan al girar.",
+  "clave": "Cabos fuera del agua: la hélice se los traga.",
+  "trampa": "La b): el codaste está cerca de la hélice, pero el peligro es la hélice que gira.",
+  "concepto": "bal-per-2017-12-e-29"
+ },
+ "bal-per-2018-04-a-28": {
+  "explicacion": "Adujar es recoger un cabo o cable en vueltas ordenadas. Filar es soltar o largar cabo o cadena de forma controlada, tesar es ponerlo tenso y acuñar es meter cuñas para fijar algo.",
+  "clave": "Adujar: recoger el cabo en vueltas.",
+  "trampa": "La b): filar es dar cabo, no recogerlo."
+ },
+ "bal-per-2018-04-a-29": {
+  "explicacion": "Con viento de mar empujando hacia el muelle o pantalán, lo primero que hay que hacer firme es la codera o el muerto: frena la embarcación y evita que el viento la lleve contra el muelle. Después se dan los largos.",
+  "clave": "Viento de fuera: primero la codera o muerto.",
+  "trampa": "La b): con los largos primero, el viento te pone contra el muelle."
+ },
+ "bal-per-2018-04-b-28": {
+  "explicacion": "Con hélice dextrógira, en marcha atrás la presión lateral de las palas lleva la popa a babor mientras el barco aún no tiene arrancada y el timón no gobierna. Si la popa va a babor, la proa cae hacia estribor: el barco gira sobre sí mismo, así que proa y popa nunca caen a la misma banda.",
+  "clave": "Dextrógira atrás: popa a babor, proa a estribor.",
+  "trampa": "La d) confunde la caída de la popa con la de la proa.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2018-04-c-29": {
+  "explicacion": "Dar un cabo por seno es pasarlo por el noray o la argolla y traer el chicote de vuelta a bordo. Su ventaja es que se puede largar desde la embarcación, sin nadie en tierra, soltando un chicote y cobrando del otro. Sirve con cualquier tipo de cabo.",
+  "clave": "Por seno: largas desde a bordo.",
+  "trampa": "La a): la ventaja está al largar, no al atracar."
+ },
+ "bal-per-2018-04-d-29": {
+  "explicacion": "El spring de popa sale de la popa y se hace firme en tierra hacia proa. Al cobrarlo tira de la popa hacia delante y hacia el muelle, así que la popa se atraca y la embarcación avanza. El largo de popa, en cambio, la lleva hacia atrás, y el spring de proa trabaja hacia popa.",
+  "clave": "Spring de popa: popa al muelle y barco avante.",
+  "trampa": "La d): el largo de popa arrima la popa, pero mueve el barco hacia atrás."
+ },
+ "bal-per-2018-04-e-28": {
+  "explicacion": "Los largos son las amarras que salen por la proa hacia proa (largo de proa) o por la popa hacia popa (largo de popa). Los traveses salen perpendiculares al costado, los esprines trabajan en sentido contrario a los largos (de proa hacia popa y viceversa) y la codera sujeta la popa a un muerto o boya.",
+  "clave": "Largos: hacia fuera por proa y por popa.",
+  "trampa": "La c): los esprines se cruzan hacia el centro del barco."
+ },
+ "bal-per-2018-04-e-29": {
+  "explicacion": "Los traveses salen perpendiculares al costado y los esprines se cruzan hacia el centro del barco, así que ambos quedan dentro de la eslora. Con ellos se sujeta la embarcación contra el muelle y se impide que avance o retroceda. Los largos, en cambio, salen por fuera de la proa y de la popa.",
+  "clave": "Dentro de la eslora: traveses y esprines.",
+  "trampa": "La a) y la b): los largos se salen de la eslora."
+ },
+ "bal-per-2018-06-b-29": {
+  "explicacion": "Adujar es recoger un cabo en vueltas ordenadas (adujas) para que ocupe poco espacio y quede listo para usarse. Hacer firme es fijarlo, coser con agujas es hacer costuras o empalmes y zafar es soltarlo.",
+  "clave": "Adujar: recoger el cabo en vueltas ordenadas.",
+  "trampa": "La d): zafar es soltar, no recoger."
+ },
+ "bal-per-2018-06-c-28": {
+  "explicacion": "La curva de evolución es la trayectoria que describe el centro de gravedad del buque cuando se mantiene constante el régimen de máquinas y el ángulo de timón. De ella se sacan el avance, el diámetro táctico y el diámetro final. No es la ciaboga, ni depende de la escora ni la traza la pala del timón.",
+  "clave": "Curva de evolución: trayectoria del centro de gravedad, timón y máquina fijos.",
+  "trampa": "La c) cita un ángulo y una velocidad concretos y toma la pala como referencia, en vez del centro de gravedad."
+ },
+ "bal-per-2018-06-h-29": {
+  "explicacion": "La codera es una amarra que se da desde la popa (o proa) a una boya, a otro buque o a un punto de tierra con varios fines, y al virarla ayuda a abrir la embarcación respecto al muelle durante el desatraque. Por eso la a) y la d) son correctas. La b) no describe ninguna amarra concreta.",
+  "clave": "Codera: amarra desde popa a boya, buque o tierra; ayuda a abrirse.",
+  "trampa": "La b): una amarra a una boya proa-popa no es la definición de codera."
+ },
+ "bal-per-2018-06-i-28": {
+  "explicacion": "Con caña la respuesta es más directa y rápida, se usa sobre todo en embarcaciones pequeñas, y la proa cae al lado contrario de la metida: caña a babor, proa a estribor. Con rueda, en cambio, la proa cae hacia donde se gira la rueda. Las tres afirmaciones son ciertas.",
+  "clave": "Caña: la proa va al lado contrario de la caña.",
+  "trampa": "La d) parece un error, pero es justo cómo funciona la caña."
+ },
+ "bal-per-2018-06-i-29": {
+  "explicacion": "Lascar es aflojar un poco un cabo, cable o cadena, de forma controlada y sin perder la tensión del todo. Ponerle tensión es tesar o templar, dejarlo correr es arriar o filar, y soltarlo del todo es largar.",
+  "clave": "Lascar = aflojar un poco, controlando.",
+  "trampa": "La d): soltar del todo es largar."
+ },
+ "bal-per-2018-09-a-28": {
+  "explicacion": "Adujar es recoger un cabo en vueltas ordenadas sin que forme cocas, para que quede listo para usarse. Tesar es ponerlo tenso, amollar es aflojarlo y cobrar es tirar de él para recogerlo, sin la idea de ordenarlo en vueltas.",
+  "clave": "Adujar: vueltas ordenadas, sin cocas.",
+  "trampa": "La d): cobrar es tirar del cabo, no enrollarlo ordenado."
+ },
+ "bal-per-2018-09-b-28": {
+  "explicacion": "Los cabos de amarre a tierra son los largos (por fuera de proa y popa), los traveses (perpendiculares al costado) y los esprines o springs (cruzados hacia el centro). La contra, el amante y el calabrote no son nombres de amarras al muelle (el calabrote es un tipo de cabo grueso).",
+  "clave": "Amarras: largos, traveses y esprines.",
+  "trampa": "La c) incluye el calabrote, que es un tipo de cabo, no una amarra."
+ },
+ "bal-per-2018-09-b-29": {
+  "explicacion": "En el gobierno con rueda la pala del timón cae a la misma banda hacia la que se gira la rueda, y la proa también va hacia esa banda: rueda a estribor, proa a estribor. Al revés funciona la caña, donde la proa cae al lado contrario de la metida.",
+  "clave": "Rueda: la proa va hacia donde giras.",
+  "trampa": "La c) describe el gobierno con caña, no con rueda."
+ },
+ "bal-per-2018-09-d-28": {
+  "explicacion": "Si en el noray ya hay una gaza, la nuestra se pasa por el interior (por el ojo) de la que está encapillada. Así cualquiera de los dos barcos puede sacar su amarra sin tener que levantar la del otro. Ponerla encima bloquea la de abajo.",
+  "clave": "Gaza en noray ocupado: por dentro del ojo de la otra.",
+  "trampa": "La a): encima de la otra, impides que el primero pueda largar."
+ },
+ "bal-per-2018-09-e-29": {
+  "explicacion": "Con viento de proa la embarcación tiende a irse hacia atrás. Los cabos que trabajan contra ese movimiento son los que tiran hacia proa: el largo de proa (sale de proa hacia delante) y el esprin de popa (sale de popa hacia delante). Los cabos que van hacia popa trabajan con viento de popa.",
+  "clave": "Viento de proa: largo de proa y esprin de popa.",
+  "trampa": "La c) son los cabos para viento de popa.",
+  "concepto": "bal-per-2018-09-e-29"
+ },
+ "bal-per-2018-12-d-28": {
+  "explicacion": "Con viento de popa la embarcación tiende a irse hacia delante. Los cabos que trabajan contra ese movimiento son los que tiran hacia popa: el largo de popa (sale de popa hacia atrás) y el esprin de proa (sale de proa hacia atrás). Con viento de proa serían el largo de proa y el esprin de popa.",
+  "clave": "Viento de popa: largo de popa y esprin de proa.",
+  "trampa": "La a) son los cabos para viento de proa.",
+  "concepto": "bal-per-2018-09-e-29"
+ },
+ "bal-per-2018-12-a-29": {
+  "explicacion": "Abarloar es amarrar una embarcación de costado a otra, así que varias embarcaciones amarradas juntas de costado están abarloadas. Ir en conserva es navegar juntas en grupo, atracadas es amarradas al muelle y entangadas no es un término de amarre.",
+  "clave": "Abarloar = costado con costado.",
+  "trampa": "La a): en conserva es navegar en compañía, no amarrar.",
+  "concepto": "bal-per-2018-12-a-29"
+ },
+ "bal-per-2023-03-a-28": {
+  "explicacion": "Abarloar es amarrar una embarcación de costado a otra, así que varias embarcaciones amarradas juntas de costado están abarloadas. Ir en conserva es navegar juntas en grupo, atracadas es amarradas al muelle y amantillar es regular la inclinación de una botavara o verga.",
+  "clave": "Abarloar = costado con costado.",
+  "trampa": "La a): en conserva es navegar en compañía, no amarrar.",
+  "concepto": "bal-per-2018-12-a-29"
+ },
+ "bal-per-2018-12-b-28": {
+  "explicacion": "Templar es dar tensión a los cabos, y templarlos a la vez es repartir la tensión para que trabajen por igual. Amollar es lo contrario (aflojar), encapillar es pasar el ojo de un cabo por un noray o bolardo y virar es cobrar cabo con un medio mecánico, como el molinete o un winche.",
+  "clave": "Templar = tensar.",
+  "trampa": "La b): virar también tensa el cabo, pero significa recogerlo con medios mecánicos.",
+  "base": "and-2023-c2-t28",
+  "concepto": "and-2023-c2-t28"
+ },
+ "bal-per-2018-12-c-29": {
+  "explicacion": "La voz de «hombre al agua» la debe dar inmediatamente cualquier persona que vea caer a alguien, sin esperar al patrón. Cuanto antes se dé, antes se marca la posición, se lanza el aro y se empieza la maniobra de recogida.",
+  "clave": "¿Lo ves caer? Grita «hombre al agua» tú.",
+  "trampa": "La a): esperar al capitán hace perder segundos vitales."
+ },
+ "bal-per-2018-12-d-29": {
+  "explicacion": "El rabeo es el desplazamiento transversal de la popa hacia la banda contraria a la que cae la proa cuando la embarcación evoluciona. Si metemos timón a estribor, la proa cae a estribor y la popa se va a babor; hay que tenerlo en cuenta al maniobrar cerca de muelles o de otros barcos. No es un cabeceo ni un balance.",
+  "clave": "Rabeo: la popa se va al lado contrario de la proa.",
+  "trampa": "La a) lo reduce a la marcha atrás; el rabeo se da en cualquier evolución.",
+  "concepto": "bal-per-2018-12-d-29"
+ },
+ "bal-per-2021-06-bh-28": {
+  "explicacion": "El rabeo es el desplazamiento transversal de la popa hacia la banda contraria a la que cae la proa cuando la embarcación evoluciona. Si metemos timón a estribor, la proa cae a estribor y la popa se va a babor; hay que tenerlo en cuenta al maniobrar cerca de muelles o de otros barcos. No es un cabeceo ni un balance.",
+  "clave": "Rabeo: la popa se va al lado contrario de la proa.",
+  "trampa": "La a) lo reduce a la marcha atrás; el rabeo se da en cualquier evolución.",
+  "concepto": "bal-per-2018-12-d-29"
+ },
+ "bal-per-2018-12-f-28": {
+  "explicacion": "La oficial define la deriva como el ángulo entre la trayectoria real de la embarcación sobre el fondo, es decir, su rumbo efectivo, y la línea proa-popa. La a) y la c) dicen lo mismo con palabras distintas, por eso la respuesta es la d). La b), el ángulo entre rumbo de superficie y línea proa-popa, es el abatimiento que produce el viento.",
+  "clave": "Deriva: proa frente a trayectoria real (rumbo efectivo).",
+  "trampa": "La b) es el abatimiento, que solo tiene en cuenta el viento."
+ },
+ "bal-per-2018-12-f-29": {
+  "explicacion": "La velocidad de gobierno es la mínima a la que el timón es efectivo, o sea, aquella a partir de la cual la embarcación responde al timón. La a) y la b) dicen lo mismo. La c) es falsa porque no hay una cifra fija: depende de cada embarcación.",
+  "clave": "Velocidad de gobierno: la mínima para que el timón obedezca.",
+  "trampa": "La c) inventa un mínimo de 3 nudos que no existe."
+ },
+ "bal-per-2019-04-b-29": {
+  "explicacion": "Con viento de tierra (de proa) y atracando de punta, el viento tiende a separar la proa del pantalán. Lo primero es hacer firmes los largos de proa para no perder el pantalán; después se tensa la codera o el muerto de popa. Con viento de mar se hace al revés.",
+  "clave": "Viento de tierra: primero los largos de proa.",
+  "trampa": "La c) es lo que se hace con viento de mar (de fuera)."
+ },
+ "bal-per-2019-04-c-28": {
+  "explicacion": "Hacer firme un cabo es fijarlo a una bita, cornamusa, noray u otro punto para que no pueda correr. Tirar de él a mano es cobrar, tirar con maquinilla es virar y ponerle tensión es tesar o templar.",
+  "clave": "Hacer firme = fijar, que no corra.",
+  "trampa": "La d): tesar es tensar, no fijar."
+ },
+ "bal-per-2019-04-c-29": {
+  "explicacion": "La velocidad de gobierno es la mínima a la que el barco responde al timón: por debajo de ella el agua no fluye lo suficiente por la pala y no gobierna. No tiene que ver con la velocidad máxima ni con la que proporciona el motor en general, ni es una magnitud de la curva de evolución.",
+  "clave": "Velocidad de gobierno: la mínima para que el timón obedezca.",
+  "trampa": "La b): no es la máxima, sino la mínima.",
+  "base": "and-2025-c2-t29",
+  "concepto": "and-2025-c2-t29"
+ },
+ "bal-per-2019-04-e-29": {
+  "explicacion": "La velocidad mínima a la que el timón es efectivo se llama velocidad de gobierno: por debajo, el agua no fluye lo suficiente por la pala y el barco no responde. La de crucero es la económica de navegación, la de seguridad es la de la Regla 6 del RIPA y la «de puerto» es la que fija cada puerto.",
+  "clave": "Velocidad de gobierno: la mínima para que el timón obedezca.",
+  "trampa": "La d): la velocidad de seguridad es otra cosa, la adecuada para evitar abordajes.",
+  "concepto": "bal-per-2019-04-e-29"
+ },
+ "bal-per-2023-03-e-29": {
+  "explicacion": "La velocidad mínima a la que el timón es efectivo se llama velocidad de gobierno: por debajo, el agua no fluye lo suficiente por la pala y el barco no responde. La de crucero es la económica de navegación y la «de puerto» es la que fija cada puerto, así que sí tiene un nombre concreto.",
+  "clave": "Velocidad de gobierno: la mínima para que el timón obedezca.",
+  "trampa": "La d): tiene nombre propio, velocidad de gobierno.",
+  "concepto": "bal-per-2019-04-e-29"
+ },
+ "bal-per-2019-04-f-28": {
+  "explicacion": "Al abarloarnos a un barco atracado de eslora parecida, los traveses y los esprines se dan a ese barco, pero los largos deben ir a tierra. Así el peso de nuestra embarcación no carga todo sobre las amarras del vecino, sobre todo con viento o corriente.",
+  "clave": "Abarloado: largos a tierra; traveses y esprines al vecino.",
+  "trampa": "La c): traveses y esprines sí van al barco vecino."
+ },
+ "bal-per-2019-04-f-29": {
+  "explicacion": "Amollar es soltar gradualmente o aflojar un cabo (o una escota). Virar es cobrar cabo con un medio mecánico, tesar es ponerlo tenso y adujar es recogerlo en vueltas ordenadas.",
+  "clave": "Amollar = aflojar.",
+  "trampa": "La c): tesar es justo lo contrario."
+ },
+ "bal-per-2019-06-b-28": {
+  "explicacion": "Atracar de punta es arrimar al muelle uno de los extremos de la embarcación, la proa o la popa, sujetando el otro con una codera, un muerto o el ancla. Por eso no es solo dar la proa (b). No tiene que ver con el extremo del muelle ni con amarrarse a un buque fondeado.",
+  "clave": "De punta = proa o popa al muelle.",
+  "trampa": "La b) se queda con la proa, pero también vale la popa.",
+  "concepto": "bal-per-2019-06-b-28"
+ },
+ "bal-per-2020-10-g-28": {
+  "explicacion": "Atracar de punta es arrimar al muelle uno de los extremos de la embarcación, la proa o la popa, sujetando el otro con una codera, un muerto o el ancla. Por eso no es «siempre» dar la proa (b). No tiene que ver con el extremo del muelle ni con amarrarse a un buque fondeado.",
+  "clave": "De punta = proa o popa al muelle.",
+  "trampa": "La b) se queda con la proa, pero también vale la popa.",
+  "concepto": "bal-per-2019-06-b-28"
+ },
+ "bal-per-2019-06-b-29": {
+  "explicacion": "Mientras el barco conserva arrancada avante, el agua sigue pasando por el timón: con timón a estribor empuja la popa a babor. A la vez, la hélice dextrógira en marcha atrás también lleva la popa a babor. Los dos efectos se suman, así que la popa cae a babor.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "La b): timón a estribor y dextrógira atrás no se anulan, se suman.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2019-06-c-28": {
+  "explicacion": "La codera es el cabo que se da a una boya, un muelle o un muerto situados por la banda contraria a la de atraque (o por la popa en el atraque de punta) para aguantar la embarcación y separarla del muelle. No es una gaza, ni un calabrote dado por la proa.",
+  "clave": "Codera: cabo a boya, muerto o muelle por la banda opuesta.",
+  "trampa": "La d) juega con la palabra «codo», sin relación con la codera."
+ },
+ "bal-per-2019-06-c-29": {
+  "explicacion": "Hacer firme un cabo es darle vueltas en la cornamusa, bita o noray para que no pueda correr ni lascar. Hacer una gaza es formar un ojo en el chicote, y dar el spring o dar avante sobre él son maniobras de atraque, no la acción de fijar el cabo.",
+  "clave": "Hacer firme = fijar, que no corra.",
+  "trampa": "La b): la gaza es un ojo en el cabo, no fijarlo."
+ },
+ "bal-per-2019-06-e-28": {
+  "explicacion": "En marcha atrás la hélice dextrógira gira en sentido contrario a las agujas del reloj (vista desde popa) y la presión lateral de las palas lleva la popa a babor. Si la popa va a babor, la proa cae a estribor; por eso son ciertas la b) y la c).",
+  "clave": "Dextrógira atrás: popa a babor, proa a estribor.",
+  "trampa": "La a) es lo que pasa en marcha avante, no atrás.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2019-09-c-28": {
+  "explicacion": "El spring de proa sale de la proa y se hace firme en tierra hacia popa. Al cobrarlo tira de la proa hacia el muelle y hacia atrás, así que atraca la proa y desplaza la embarcación hacia popa. El spring de popa, al contrario, la mueve avante, y el través solo la arrima.",
+  "clave": "Spring de proa: proa al muelle y barco atrás.",
+  "trampa": "La a): el spring de popa lleva el barco hacia delante."
+ },
+ "bal-per-2019-09-d-28": {
+  "explicacion": "Con caña, la pala del timón se mueve al lado contrario de la caña, y la proa cae también al lado contrario de la metida: caña a babor, proa a estribor. Con rueda ocurre al revés, la proa va hacia donde se gira.",
+  "clave": "Caña: la proa va al lado contrario de la caña.",
+  "trampa": "La d) describe el gobierno con rueda."
+ },
+ "bal-per-2019-12-a-28": {
+  "explicacion": "Los esprines salen de proa hacia popa y de popa hacia proa, así que en el muelle quedan firmes cerca de la mitad de la eslora del barco. Los traveses salen perpendiculares y los largos van por fuera de proa y popa, y la codera no se da al muelle por esa banda.",
+  "clave": "Esprines: se cruzan hacia el centro del barco.",
+  "trampa": "La a): los traveses quedan frente a proa y popa, no en el centro."
+ },
+ "bal-per-2019-12-a-29": {
+  "explicacion": "El viento de tierra perpendicular al muelle empuja la embarcación hacia fuera, de forma transversal. Ese esfuerzo lo aguantan los traveses, que salen perpendiculares al costado. Sin corriente ni viento longitudinal, nada empuja hacia proa ni hacia popa, así que quitar largos y esprines no cambia nada.",
+  "clave": "Viento perpendicular: lo aguantan los traveses.",
+  "trampa": "La a): con los traveses dados no te alejas del muelle."
+ },
+ "bal-per-2019-12-b-28": {
+  "explicacion": "Si estás amarrado a una boya no debes fondear: la cadena del ancla se puede enredar con el muerto y la cadena de la boya, y al bornear con distinto radio las dos amarras se cruzan. La boya ya está pensada para aguantar la embarcación y bornear libremente.",
+  "clave": "En una boya, nunca fondear.",
+  "trampa": "La b): dos amarras con radios de borneo distintos se enredan, no sujetan más."
+ },
+ "bal-per-2019-12-c-28": {
+  "explicacion": "Antes de atracar o desatracar hay que valorar el viento y la corriente, el tráfico de otras embarcaciones que pueda estorbar y el espacio de maniobra disponible. Todos son factores externos a la embarcación que condicionan la maniobra.",
+  "clave": "Antes de maniobrar: viento, corriente, tráfico y espacio.",
+  "trampa": "Elegir solo la a), que es la más típica pero no la única."
+ },
+ "bal-per-2019-12-d-29": {
+  "explicacion": "Con la hélice dextrógira, al ciar desde parado la presión lateral de las palas lleva la popa a babor. El viento por la amura de babor empuja la proa a estribor, y con ello la popa también va a babor. Los dos efectos se suman.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "La d): la proa cae a estribor, no a babor.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "bal-per-2019-12-d-29"
+ },
+ "bal-per-2023-03-a-29": {
+  "explicacion": "Con la hélice dextrógira, al dar atrás desde parado la presión lateral de las palas lleva la popa a babor. El viento por la amura de babor empuja la proa a estribor, y con ello la popa también va a babor. Los dos efectos se suman.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "La a): la proa cae a estribor, no a babor.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "bal-per-2019-12-d-29"
+ },
+ "bal-per-2019-12-e-28": {
+  "explicacion": "Sin arrancada el timón no gobierna, así que manda el efecto de la hélice. En marcha atrás la hélice dextrógira lleva la popa a babor por la presión lateral de las palas. Por eso no se anulan los efectos, y la popa no va a estribor.",
+  "clave": "Dextrógira atrás: popa a babor.",
+  "trampa": "La c) es lo que hace la levógira en marcha atrás.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ]
+ },
+ "bal-per-2019-12-e-29": {
+  "explicacion": "Los esprines son las amarras que salen por la proa y trabajan hacia popa (esprin de proa) o salen por la popa y trabajan hacia proa (esprin de popa). Los largos salen por proa hacia proa y por popa hacia popa, los traveses son perpendiculares y la codera va a un muerto o boya.",
+  "clave": "Esprines: se cruzan hacia el centro del barco.",
+  "trampa": "La a): los largos trabajan hacia fuera, no hacia el centro."
+ },
+ "bal-per-2020-07-ah-28": {
+  "explicacion": "La oficial da por mejor recibir la mar por la popa o la aleta: al ir en el mismo sentido que las olas, la velocidad relativa baja y los golpes son menores, siempre con cuidado de no atravesarse. Por el través y la amura los pantocazos y balances son peores, y forzar motor y vela con temporal es un error.",
+  "clave": "Mala mar: por popa o aleta (correr el temporal), sin atravesarse.",
+  "trampa": "La d): forzar máquina y vela con temporal aumenta el riesgo.",
+  "discrepancia": "Con mal tiempo muchos manuales recomiendan capear, es decir, recibir la mar por la amura a poca máquina, sobre todo en embarcaciones con poco francobordo a popa. Correr el temporal es una opción, pero no siempre la mejor.",
+  "defendible": "c"
+ },
+ "bal-per-2020-07-c-29": {
+  "explicacion": "Ciar es dar máquina atrás o remar hacia atrás, es decir, impulsar el buque hacia popa. Caer a sotavento o a barlovento es cambiar de rumbo respecto al viento, y empujar hacia proa es dar avante.",
+  "clave": "Ciar = ir hacia atrás.",
+  "trampa": "La d) es dar avante."
+ },
+ "bal-per-2020-10-b-29": {
+  "explicacion": "Garrear es cuando el ancla no agarra y se arrastra por el fondo, como un arado, y la embarcación se va desplazando. Bornear es girar alrededor del ancla con el viento o la corriente, y arriar es bajar o soltar algo.",
+  "clave": "Garrear: el ancla se arrastra y no agarra.",
+  "trampa": "La a): bornear es girar sobre el ancla, que sigue agarrada."
+ },
+ "bal-per-2020-10-d-28": {
+  "explicacion": "Amarrado por seno, el cabo va y vuelve a bordo, de modo que al desatracar basta con soltar un chicote y cobrar del otro sin bajar al pantalán. Una gaza, unas vueltas o un as de guía hechos en tierra obligan a soltarlos desde el pantalán.",
+  "clave": "Por seno: largas desde a bordo.",
+  "trampa": "La a): la gaza encapillada exige a alguien en tierra para largarla."
+ },
+ "bal-per-2020-10-d-29": {
+  "explicacion": "Para que la embarcación se mueva hacia popa hay que lascar los cabos que lo impiden: el largo de proa (sale de proa hacia delante) y el esprin de popa (sale de popa hacia delante). Los que trabajan hacia popa (largo de popa y esprin de proa) no frenan ese movimiento.",
+  "clave": "Mover a popa: lasca largo de proa y esprin de popa.",
+  "trampa": "La d): el largo de popa no impide ir hacia atrás."
+ },
+ "bal-per-2020-10-e-28": {
+  "explicacion": "El rabeo es el desplazamiento transversal de la popa hacia la banda contraria a la que se mete el timón. Si giramos a estribor, la popa se abre a babor y puede golpear a los barcos de al lado. No es despreciable en espacios reducidos, ni es un balance o cabeceo.",
+  "clave": "Rabeo: la popa se va al lado contrario de la proa.",
+  "trampa": "La b): en un puerto estrecho es justo lo que hay que vigilar."
+ },
+ "bal-per-2020-12-a-29": {
+  "explicacion": "Con viento de tierra (de proa) y atracando de punta, el viento tiende a separar la proa del pantalán. Lo primero es hacer firme el largo de proa para no perder el pantalán; después se tensa la codera o el muerto de popa.",
+  "clave": "Viento de tierra: primero los largos de proa.",
+  "trampa": "La b) es lo que se hace con viento de mar (de fuera)."
+ },
+ "bal-per-2020-12-b-28": {
+  "explicacion": "La hélice levógira gira en sentido contrario a las agujas del reloj en marcha avante (vista desde popa). La presión lateral de las palas lleva la popa a babor, así que la proa cae a estribor. Es justo lo contrario que la dextrógira en avante.",
+  "clave": "Levógira avante: popa a babor, proa a estribor.",
+  "trampa": "La d): la popa a estribor es la dextrógira en avante.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "avante"
+   }
+  ]
+ },
+ "bal-per-2020-12-d-28": {
+  "explicacion": "Al atracar de punta conviene dar primero el cabo de proa de barlovento: es el que impide que el viento se lleve la proa a sotavento mientras se dan los demás. Con él firme, la embarcación queda aguantada contra el viento.",
+  "clave": "Atraque de punta: primero el cabo de barlovento.",
+  "trampa": "La a): el de sotavento no aguanta el empuje del viento."
+ },
+ "bal-per-2020-12-e-29": {
+  "explicacion": "En dos hélices de giro al exterior la de estribor es dextrógira y la de babor levógira, así que sus efectos laterales se compensan y el barco se comporta igual por las dos bandas. Con una sola hélice sí hay una banda preferente. El paso variable no tiene que ver con la banda de atraque.",
+  "clave": "Dos hélices al exterior: efectos compensados, igual por las dos bandas.",
+  "trampa": "La a): la preferencia por una banda es de las embarcaciones de una sola hélice."
+ },
+ "bal-per-2020-12-i-28": {
+  "explicacion": "La curva de evolución avante tiene tres periodos: de maniobra, variable y uniforme. El rabeo de la popa y el diámetro táctico son fenómenos o medidas de la curva, no periodos.",
+  "clave": "Curva de evolución: Maniobra, Variable, Uniforme (MVU).",
+  "trampa": "Las opciones mezclan un periodo real con medidas de la curva.",
+  "base": "and-2025-c1-t29",
+  "concepto": "and-2025-c1-t29"
+ },
+ "bal-per-2021-03-c-28": {
+  "explicacion": "Para coger una boya conviene aproximarse con la corriente (o el viento) por la proa: frena la embarcación, permite ir muy despacio con gobierno y deja la boya bajo la proa sin pasarse. Por popa o aleta la corriente nos empujaría hacia la boya y nos costaría parar.",
+  "clave": "A la boya, proa a la corriente.",
+  "trampa": "La c): con corriente por popa te pasas la boya."
+ },
+ "bal-per-2021-03-d-28": {
+  "explicacion": "El spring de popa sale de la popa y se hace firme en tierra hacia proa. Al cobrarlo tira de la popa hacia el muelle y hacia delante, así que la popa se atraca y la embarcación avanza. El spring de proa la lleva hacia atrás, y el largo de popa también.",
+  "clave": "Spring de popa: popa al muelle y barco avante.",
+  "trampa": "La d): el largo de popa arrima la popa, pero lleva el barco hacia atrás."
+ }
+}

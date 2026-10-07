@@ -16,3 +16,7 @@
 - and-py-2015-c3-g07 · RD 339/2021 / RD 587/2022 · ningún cambio que afecte a las pautas de rescate con helicóptero · sí.
 - and-py-2015-c3-g09 · RD 339/2021 / RD 587/2022 · equipo de la balsa según el RD 339/2021 · sí: las medidas al embarcar en la balsa son de buena práctica.
 - and-py-2015-c3-g10 · RD 339/2021 / RD 587/2022 · equipos radio por zona · sí: el funcionamiento del SART no ha cambiado.
+- and-py-2016-c1-g05 · RD 339/2021 / RD 587/2022 · balsas y su estiba por zona · sí: la zafa se puede soltar a mano y, si no, suelta a ≤ 4 m (Código IDS).
+- and-py-2016-c1-g08 · RD 339/2021 · número de bengalas por zona · sí: la forma de dispararlas (guantes, sotavento) no depende de la norma.
+- and-py-2016-c1-g09 · RD 339/2021 / RD 587/2022 · equipos radio por zona · sí: el SART responde a radares de 9 GHz.
+- and-py-2016-c1-g10 · RD 339/2021 · extintores homologados exigidos hoy por el RD 339/2021 · sí: el uso del extintor de polvo no ha cambiado.

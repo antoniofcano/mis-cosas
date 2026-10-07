@@ -642,5 +642,152 @@
   "clave": "ΔL en tiempo: 15° = 1 h; 1° = 4 min.",
   "trampa": "La d): es la misma magnitud, pero en grados; la pregunta pide horas.",
   "concepto": null
+ },
+ "and-py-2015-c3-n05": {
+  "explicacion": "El alcance del radar depende, entre otras cosas, de la naturaleza del eco: tamaño, forma, material y altura del objeto (un acantilado o un buque de acero devuelven mucho más que una playa baja o un barco de madera). También influyen la potencia, la altura de la antena y las condiciones de propagación. Lo que importa de la antena es su altura, no si está a proa o a popa.",
+  "clave": "Alcance radar: altura de antena + potencia + naturaleza del eco.",
+  "trampa": "La a) y la b): la posición longitudinal de la antena no da alcance; la altura, sí.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n06": {
+  "explicacion": "El círculo polar ártico está en latitud 66° 33′ N, es decir, dista 66° 33′ del Ecuador y 90° − 66° 33′ = 23° 27′ del polo norte. Las opciones con 22° 27′ dan una cifra que no corresponde a ningún paralelo notable, y la d) confunde la distancia al polo con la latitud.",
+  "clave": "Círculo polar: 66° 33′ del Ecuador = 23° 27′ del polo.",
+  "trampa": "La d): 66° 33′ es la latitud, que se cuenta desde el Ecuador, no desde el polo.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n07": {
+  "explicacion": "La estela muestra la dirección real de avance por el agua (rumbo de superficie), y el ángulo entre ella y la línea proa-popa es el abatimiento, que produce el viento. La corrección total y el desvío son errores de la aguja, y «variación» es otro nombre de la declinación magnética.",
+  "clave": "Crujía ↔ estela = abatimiento (viento).",
+  "trampa": "Las demás son ángulos entre nortes, no entre la proa y la estela.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "babor"
+   }
+  ],
+  "concepto": "and-py-2026-c1-n03"
+ },
+ "and-py-2015-c3-n08": {
+  "explicacion": "Con el Sol, la Tierra y la Luna alineados (luna nueva y luna llena, sicigias) las atracciones de la Luna y el Sol se suman y se producen las mareas vivas, de mayor amplitud. Las mareas muertas, de amplitud mínima, se dan en cuadratura (cuarto creciente y menguante), cuando los astros forman ángulo recto. Las mareas no son «cada dos días»: en nuestras costas hay dos pleamares y dos bajamares al día.",
+  "clave": "Sicigias (alineados) → vivas; cuadraturas → muertas.",
+  "trampa": "La a) y la b) son la misma idea (amplitud mínima = marea muerta), que corresponde a la cuadratura.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n09": {
+  "explicacion": "La declinación magnética y su variación anual vienen en la rosa de la carta náutica (por ejemplo, «dm 1° 30′ W 2015 (7′ E)»), y con ellas se actualiza su valor al año en que navegamos. Los derroteros describen la costa, los Avisos a los Navegantes corrigen cartas y publicaciones y el Almanaque Náutico trae efemérides astronómicas.",
+  "clave": "dm actualizada = dm de la carta + variación anual × años.",
+  "trampa": "La b): los Avisos corrigen la carta, pero el dato de la declinación y su variación está en la propia carta.",
+  "concepto": null
+ },
+ "and-py-2015-c3-n10": {
+  "explicacion": "Para la hora legal la Tierra se divide en 24 husos esféricos de 15° de longitud cada uno (360° / 24 h), centrados en un meridiano múltiplo de 15°. La hora legal de cada huso es la hora civil de su meridiano central.",
+  "clave": "24 husos × 15° = 360°; 1 h por huso.",
+  "trampa": "Ninguna otra cifra encaja con 24 horas y 360°.",
+  "concepto": null
+ },
+ "and-py-2016-c1-g01": {
+  "explicacion": "El centro de gravedad solo cambia si se mueven, añaden o quitan pesos. Con los balances y cabezadas cambia la forma del volumen sumergido, así que el centro de carena se desplaza hacia la zona que se sumerge. Ese desplazamiento es el que genera el par adrizante.",
+  "clave": "Mar mueve C; pesos mueven G.",
+  "trampa": "Pensar que G se mueve con el balance: solo se mueve si se mueven pesos.",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "concepto": "and-py-2024-c2-g01"
+ },
+ "and-py-2016-c1-g02": {
+  "explicacion": "El peso del buque (su desplazamiento) se considera aplicado en el centro de gravedad G, hacia abajo, y el empuje del agua en el centro de carena B, hacia arriba. La a) los cruza, y ninguna fuerza comparte punto de aplicación con la otra: si lo hicieran, no habría par adrizante al escorar.",
+  "clave": "G → peso (hacia abajo); B → empuje (hacia arriba).",
+  "trampa": "La a): cambiar los puntos de sitio es el error clásico.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c1-g03": {
+  "explicacion": "En puerto el agua está en reposo, así que estudiamos la estabilidad estática; y como el traslado es de babor a estribor, es la transversal. La estabilidad dinámica entra en juego con mar y viento, la de grandes inclinaciones se usa con escoras importantes y la longitudinal tiene que ver con los traslados de proa a popa.",
+  "clave": "Aguas en reposo + pesos de banda a banda → estática transversal.",
+  "trampa": "Elegir «dinámica» por haber movimiento de pesos: en puerto el agua está en reposo.",
+  "concepto": "and-py-2024-c3-g02"
+ },
+ "and-py-2016-c1-g04": {
+  "explicacion": "Si KM es mayor que KG, el metacentro está por encima del centro de gravedad y GM es positivo: al dar un bandazo, el peso y el empuje forman un par adrizante y el barco vuelve a su posición. Quedarse escorado es propio del equilibrio indiferente (KM = KG) y escorar más, del inestable (KM < KG).",
+  "clave": "KM > KG → GM > 0 → vuelve a adrizarse.",
+  "trampa": "La a) mezcla estable e indiferente: con GM positivo no se queda escorado.",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": "and-py-2023-c2-g03"
+ },
+ "and-py-2016-c1-g05": {
+  "explicacion": "La zafa hidrostática se puede soltar a mano y, si nadie lo hace, se dispara sola por la presión del agua cuando el barco se hunde, a una profundidad de 4 m como máximo. No actúa al simple contacto con el agua en cubierta, para que no la disparen los golpes de mar, y 6 m superan el límite del Código IDS. Hoy las balsas y su estiba las regula el Real Decreto 339/2021 (con los cambios del 587/2022), y el límite de 4 m sigue igual.",
+  "clave": "Zafa: manual o automática a ≤ 4 m.",
+  "trampa": "La d): si saltara en cubierta, la dispararían los golpes de mar.",
+  "concepto": "and-py-2023-c1-g04"
+ },
+ "and-py-2016-c1-g06": {
+  "explicacion": "Para una evacuación con helicóptero, Salvamento Marítimo pide mantener la velocidad y un rumbo que deje el viento entre 20° y 30° por la amura de babor. Así el helicóptero, que se acerca por popa aproado al viento, tiene la grúa (a su derecha) sobre la cubierta del barco. Los 40°–50° o el viento por estribor no son lo que se pide.",
+  "clave": "Helicóptero: viento 20°–30° por la amura de babor.",
+  "trampa": "Las opciones cruzan dos datos (ángulo y banda): hay que acertar los dos.",
+  "concepto": null
+ },
+ "and-py-2016-c1-g07": {
+  "explicacion": "Se pide la afirmación NO correcta, y el tribunal da la d). Las demás son ciertas: la sujeción de cinta plana es preferible al cabo (no rueda bajo el pie y resiste mejor), el arnés debe ajustarse a la talla de cada tripulante y su objetivo es no caer al agua. El tribunal considera que el enganche debe ir preferentemente a la espalda, y mantiene ese criterio en otras convocatorias.",
+  "clave": "Arnés: a tu talla, amarra de cinta y para no caer al agua.",
+  "trampa": "Es una pregunta en negativo: tres afirmaciones son buenas prácticas.",
+  "discrepancia": "La norma ISO 12401 y la práctica habitual ponen el punto de enganche del arnés en el PECHO, no en la espalda: si el tripulante cae y es arrastrado, va boca arriba, puede respirar y alcanzar el mosquetón para soltarse. Con ese criterio la d) sería correcta y ninguna afirmación sería falsa. Para el examen, el tribunal da la d) como incorrecta.",
+  "concepto": null
+ },
+ "and-py-2016-c1-g08": {
+  "explicacion": "La bengala de mano se enciende con guantes, apartando la cara, por sotavento (con el viento a la espalda) y sostenida casi en vertical, algo inclinada hacia fuera de la borda, para que las gotas incandescentes y el humo no caigan sobre nosotros ni sobre el barco. Por barlovento el viento nos echaría encima chispas y humo, y sin guantes nos quemaríamos la mano.",
+  "clave": "Pirotecnia: guantes, cara apartada y por sotavento.",
+  "trampa": "La b) y la c) cambian una sola palabra respecto a la d) (barlovento, sin guantes).",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "bengala",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c1-g09": {
+  "explicacion": "El respondedor de radar (SART), una vez encendido a mano, queda en espera y solo transmite cuando lo barre un radar de 9 GHz (banda X, la de los radares de navegación de 3 cm); entonces aparece en la pantalla como una línea de 12 puntos. Los radares de 3 GHz (banda S) no lo activan, el de 6 GHz no existe en marina y no emite continuamente, lo que agotaría la batería.",
+  "clave": "SART: responde a radares de 9 GHz (banda X).",
+  "trampa": "La b): los radares de 3 GHz (banda S) no disparan el SART.",
+  "ilustraciones": [
+   {
+    "tipo": "socorro",
+    "resaltar": "SART",
+    "solo": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c1-g10": {
+  "explicacion": "Con un extintor de polvo se presuriza antes si es de presión adosada (botellín), se inclina ligeramente hacia delante y se ataca la base del fuego, donde está el combustible, no las llamas. Además conviene agitarlo o invertirlo antes de usarlo, porque el polvo tiende a apelmazarse con el tiempo y las vibraciones. Por eso son correctas la b) y la c). Hoy los extintores obligatorios a bordo los fija el Real Decreto 339/2021, y la forma de usarlos es la misma.",
+  "clave": "Extintor: a la base del fuego, con el viento a la espalda.",
+  "trampa": "La a) es igual que la b), salvo que ataca las llamas en vez de su base.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ],
+  "concepto": null
+ },
+ "and-py-2016-c1-g11": {
+  "explicacion": "El viento antitríptico es aquel en el que el rozamiento con la superficie es determinante: frena el aire y le hace cortar las isobaras hacia las bajas presiones. El geostrófico equilibra gradiente y Coriolis, el ciclostrófico gradiente y fuerza centrífuga, y el de Euler solo tiene en cuenta el gradiente.",
+  "clave": "Antitríptico = con rozamiento.",
+  "trampa": "La a): el geostrófico es el que no tiene rozamiento y va paralelo a las isobaras.",
+  "concepto": null
  }
 }

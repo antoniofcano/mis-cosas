@@ -29,6 +29,14 @@ export const documentadas = {
       + '(355°, la opción a). El cálculo llega a la oficial, pero el lector de opciones no lee un rumbo escrito solo como «N» (sin grados) '
       + 'y no puede comprobarse: se deja documentada.',
   },
+  'and-py-2015-c3-n11': {
+    tipo: 'discrepancia',
+    texto: 'Demoras no simultáneas con corriente. Ct = −3° + 4° = +1°: Rv 136°, Dv 056° y 006° a Trafalgar. Triángulo de '
+      + 'velocidades (136°, 6 nudos + 210°, 3 nudos): Ref 159°, Vef 7,4 nudos; en 45 min, 5,56 millas. Trasladando la 1ª demora '
+      + 'por el Ref y cortándola con la 2ª: 36° 04,0′ N 006° 02,9′ W. La oficial (a: 36° 03,6′ N) es la más próxima, pero '
+      + 'sin claridad frente a la c (36° 05,0′ N): todas las opciones tienen la misma longitud y la latitud del cálculo cae '
+      + 'entre las dos. Diferencia de trazado del tribunal (0,4′).',
+  },
 };
 
 export default {
@@ -215,6 +223,110 @@ export default {
       const { rumbo } = k.rumboDirecto(a, b);
       k.note('Rumbo efectivo', `Para llegar al punto, el rumbo efectivo es el directo entre ambos: Ref = ${fmtBearing(rumbo)}. La corriente y la velocidad solo intervienen para hallar el rumbo a dar, que no se pide.`);
       return [{ kind: 'bearing', value: rumbo }];
+    },
+  },
+
+  // ---- 3ª Convocatoria 2015
+  // c3-n11: ver `documentadas`.
+  'and-py-2015-c3-n12': {
+    ejercicio: 'distancia-faro',
+    solve(k) {
+      const s = k.pos('36 02,6 N', '6 00,8 W', 'Situación 15:40');
+      const ct = k.ct({ dm: -3, desvio: 1 });
+      const rv = k.rv(192, ct);
+      const rs = k.abatimiento(rv, 5, W);
+      // Espartel queda a babor (al E de nuestra derrota hacia el S): por el través, marcación 90° a babor de la proa.
+      const dv = k.dvM(rv, -90, 'cabo-espartel');
+      const p = k.corteRumbo(s, rs, 'cabo-espartel', dv, 'Situación al través');
+      return [{ kind: 'distance', value: k.distanceBetween(p, 'cabo-espartel') }];
+    },
+  },
+  'and-py-2015-c3-n13': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 07,0 N', '5 57,4 W', 'Situación 17:00');
+      const { rv } = k.rhumb(s, 'cabo-espartel');
+      const t = hrb(19) - hrb(17);
+      const est = k.run(s, rv, k.distFor(7, t), 'Situación de estima 19:00');
+      const obs = k.fix2('punta-malabata', 138, 'cabo-espartel', 210, 'Situación observada 19:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'and-py-2015-c3-n14': {
+    sinCarta: true,
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const ct = k.ctPolar(355);
+      return [{ kind: 'bearing', value: k.dv(190, ct, 'punta-malabata') }];
+    },
+  },
+  'and-py-2015-c3-n15': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.oposicion('isla-tarifa', 'punta-alcazar');
+      const ct = k.ctFrom(dv, 173);
+      const desvio = ct + 3;
+      k.note('Desvío', `Δ = Ct − dm = (${fmtSignedNum(ct, 1)}) − (−3°) = ${fmtSignedNum(desvio, 1)}.`);
+      return [{ kind: 'signed', value: desvio }];
+    },
+  },
+  'and-py-2015-c3-n16': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const dvOp = k.oposicion('isla-tarifa', 'punta-alcazar');
+      k.note('Situación de salida', `En la oposición, a 5 millas de Punta Alcázar: desde el faro trazamos la recta hacia la Isla de Tarifa (${fmtBearing(dvOp + 180)}) y medimos 5 millas.`);
+      const s = k.fromMark('punta-alcazar', (dvOp + 180) % 360, 5, 'Situación 21:45');
+      k.note('Rumbo de superficie', 'Sin viento no hay abatimiento: el rumbo de superficie es el mismo Rv.');
+      const { ref } = k.efectivo(70, 6, 95, 3, s);
+      const dv = k.oposicion('punta-almina', 'punta-europa');
+      const p = k.corteRumbo(s, ref, 'punta-europa', dv, 'Corte con la oposición');
+      return [{ kind: 'distance', value: k.distanceBetween(p, 'punta-europa') }];
+    },
+  },
+  'and-py-2015-c3-n17': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const s = punto(k, '35 55,0 N', '5 15,0 W', 'Situación 01:30');
+      const rs1 = k.abatimiento(90, 5, N);
+      const rs2 = k.abatimiento(75, 4, N);
+      k.note('Caída a babor', 'A las 09:30 caemos 20° a babor del Rv 075°: Rv = 055°.');
+      const rs3 = k.abatimiento(55, 3, N);
+      k.note('Distancia navegada', 'A 8 nudos: 01:30–07:30 (6 h, 48 millas), 07:30–09:30 (2 h, 16 millas) y 09:30–11:00 (1h 30m, 12 millas). La corriente actúa las 9h 30m: 070° y 4 × 9,5 = 38 millas.');
+      const p = k.tramos(s, [
+        { rumbo: rs1, millas: 48 }, { rumbo: rs2, millas: 16 }, { rumbo: rs3, millas: 12 }, { rumbo: 70, millas: 38, nombre: 'Corriente 070°' },
+      ], 'Situación 11:00');
+      return latlon(p);
+    },
+  },
+  'and-py-2015-c3-n18': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = punto(k, '35 40,0 N', '5 32,0 W', 'Salida');
+      const b = punto(k, '36 05,0 N', '4 44,0 W', 'Llegada');
+      return [{ kind: 'distance', value: k.rumboDirecto(a, b).dist }];
+    },
+  },
+  'and-py-2015-c3-n19': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const a = punto(k, '35 50,0 N', '6 10,0 W', 'Salida');
+      const b = punto(k, '34 33,0 N', '9 23,0 W', 'Llegada');
+      const { rumbo } = k.rumboDirecto(a, b);
+      k.note('Rumbo efectivo', `Para llegar al punto, el rumbo efectivo es el directo entre ambos: Ref = ${fmtBearing(rumbo)}. La corriente y la velocidad solo intervienen para hallar el rumbo a dar, que no se pide.`);
+      return [{ kind: 'bearing', value: rumbo }];
+    },
+  },
+  'and-py-2015-c3-n20': {
+    sinCarta: true,
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const rv = k.rvConAbatimiento(70, 6, 225);
+      k.note('Marcación', 'El enunciado no dice la banda: el radar da la marcación desde la proa en sentido horario (estribor, +45°).');
+      return [{ kind: 'bearing', value: k.dvM(rv, 45, 'cabo-espartel') }];
     },
   },
 };

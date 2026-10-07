@@ -1,0 +1,581 @@
+{
+ "andalucia/per/and-2015-c2-t09": [
+  "seguridad.equipo.reflector-radar"
+ ],
+ "andalucia/per/and-2015-c2-t10": [
+  "estabilidad.movimientos"
+ ],
+ "andalucia/per/and-2016-c1-t07": [
+  "seguridad.mal-tiempo.gobernar-con-mar"
+ ],
+ "andalucia/per/and-2017-c1-t07": [
+  "estabilidad.definicion"
+ ],
+ "andalucia/per/and-2017-c1-t09": [
+  "emergencia.hipotermia.tratamiento"
+ ],
+ "andalucia/per/and-2017-c1-t30": [
+  "emergencia.incendio.clases"
+ ],
+ "andalucia/per/and-2017-c1-t31": [
+  "emergencia.incendio.tetraedro"
+ ],
+ "andalucia/per/and-2017-c2-t31": [
+  "emergencia.auxilios.quemaduras"
+ ],
+ "andalucia/per/and-2017-c2-t32": [
+  "emergencia.via-agua.medidas"
+ ],
+ "andalucia/per/and-2018-c1-t10": [
+  "seguridad.remolque.dar-tomar"
+ ],
+ "andalucia/per/and-2018-c3-t07": [
+  "estabilidad.movimientos"
+ ],
+ "andalucia/per/and-2019-c2-t30": [
+  "emergencia.auxilios.heridas-contusiones"
+ ],
+ "andalucia/per/and-2022-c1-t08": [
+  "seguridad.hombre-al-agua.boutakow"
+ ],
+ "andalucia/per/and-2022-c1-t09": [
+  "seguridad.antes-de-salir.motor"
+ ],
+ "andalucia/per/and-2022-c2-t11": [
+  "legis.espacios.posidonia"
+ ],
+ "andalucia/per/and-2022-c3-t12": [
+  "legis.marpol.zonas-especiales"
+ ],
+ "andalucia/per/and-2022-c3-t31": [
+  "emergencia.incendio.extincion"
+ ],
+ "andalucia/per/and-2023-c1-t12": [
+  "legis.buceo.banderas"
+ ],
+ "andalucia/per/and-2023-c1-t32": [
+  "emergencia.via-agua.medidas"
+ ],
+ "andalucia/per/and-2024-c1-t31": [
+  "emergencia.incendio.extincion",
+  "emergencia.incendio.agentes"
+ ],
+ "andalucia/per/and-2024-c2-t31": [
+  "emergencia.incendio.prevencion"
+ ],
+ "andalucia/per/and-2024-c3-t11": [
+  "legis.espacios.posidonia",
+  "legis.espacios.zepim"
+ ],
+ "andalucia/per/and-2024-c3-t31": [
+  "emergencia.supervivencia.en-el-agua"
+ ],
+ "andalucia/per/and-2025-c1-t09": [
+  "seguridad.niebla"
+ ],
+ "andalucia/per/and-2025-c1-t12": [
+  "legis.aguas-sucias.descarga"
+ ],
+ "andalucia/per/and-2025-c2-t07": [
+  "seguridad.tormentas.aguja"
+ ],
+ "andalucia/per/and-2025-c2-t32": [
+  "emergencia.abandono.preparacion"
+ ],
+ "andalucia/per/and-2026-c1-t10": [
+  "seguridad.hombre-al-agua.gnss-mob"
+ ],
+ "andalucia/per/and-2026-c2-t30": [
+  "emergencia.auxilios.hemorragias-tratamiento"
+ ],
+ "andalucia/py/and-py-2015-c1-g01": [
+  "estabilidad.centro-carena"
+ ],
+ "andalucia/py/and-py-2015-c1-g03": [
+  "seguridad.equipo.aros-caracteristicas"
+ ],
+ "andalucia/py/and-py-2015-c1-g09": [
+  "estabilidad.centro-gravedad"
+ ],
+ "andalucia/py/and-py-2015-c2-g10": [
+  "estabilidad.desplazamiento"
+ ],
+ "andalucia/py/and-py-2015-c3-g03": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "andalucia/py/and-py-2015-c3-g10": [
+  "seguridad.radio.sart"
+ ],
+ "andalucia/py/and-py-2016-c1-g02": [
+  "estabilidad.centro-carena",
+  "estabilidad.centro-gravedad"
+ ],
+ "andalucia/py/and-py-2016-c1-g10": [
+  "emergencia.incendio.extintores"
+ ],
+ "andalucia/py/and-py-2017-c2-g04": [
+  "seguridad.equipo.pirotecnia-uso"
+ ],
+ "andalucia/py/and-py-2017-c2-g08": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "andalucia/py/and-py-2017-c3-g06": [
+  "estabilidad.equilibrio",
+  "estabilidad.altura-metacentrica"
+ ],
+ "andalucia/py/and-py-2018-c1-g07": [
+  "seguridad.radio.vhf-socorro"
+ ],
+ "andalucia/py/and-py-2018-c1b-g08": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "andalucia/py/and-py-2018-c4-g01": [
+  "estabilidad.equilibrio"
+ ],
+ "andalucia/py/and-py-2018-c4-g04": [
+  "seguridad.equipo.aros-caracteristicas"
+ ],
+ "andalucia/py/and-py-2019-c1-g01": [
+  "estabilidad.traslado-horizontal",
+  "estabilidad.traslado-vertical"
+ ],
+ "andalucia/py/and-py-2019-c1-g08": [
+  "seguridad.radio.epirb"
+ ],
+ "andalucia/py/and-py-2019-c3-g08": [
+  "emergencia.abandono.vida-en-balsa"
+ ],
+ "andalucia/py/and-py-2020-c3-g01": [
+  "estabilidad.centro-carena"
+ ],
+ "andalucia/py/and-py-2020-c3-g10": [
+  "emergencia.abandono.vida-en-balsa"
+ ],
+ "andalucia/py/and-py-2021-c1-g01": [
+  "estabilidad.equilibrio"
+ ],
+ "andalucia/py/and-py-2021-c1-g06": [
+  "seguridad.helicoptero.preparacion"
+ ],
+ "andalucia/py/and-py-2021-c2-g04": [
+  "seguridad.equipo.aros-caracteristicas"
+ ],
+ "andalucia/py/and-py-2021-c2-g06": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "andalucia/py/and-py-2022-c1-g01": [
+  "estabilidad.altura-metacentrica"
+ ],
+ "andalucia/py/and-py-2022-c1-g06": [
+  "emergencia.incendio.extintores"
+ ],
+ "andalucia/py/and-py-2022-c2-g02": [
+  "estabilidad.definicion"
+ ],
+ "andalucia/py/and-py-2022-c2-g07": [
+  "seguridad.helicoptero.maniobra",
+  "seguridad.helicoptero.izado"
+ ],
+ "andalucia/py/and-py-2022-c3-g10": [
+  "seguridad.helicoptero.preparacion"
+ ],
+ "andalucia/py/and-py-2023-c2-g04": [
+  "estabilidad.equilibrio"
+ ],
+ "andalucia/py/and-py-2023-c3-g03": [
+  "estabilidad.traslado-horizontal",
+  "estabilidad.traslado-vertical"
+ ],
+ "andalucia/py/and-py-2024-c1-g01": [
+  "estabilidad.traslado-vertical"
+ ],
+ "andalucia/py/and-py-2024-c1-g04": [
+  "estabilidad.altura-metacentrica"
+ ],
+ "andalucia/py/and-py-2024-c3-g06": [
+  "seguridad.equipo.zafa-hidrostatica"
+ ],
+ "andalucia/py/and-py-2025-c1-g02": [
+  "estabilidad.traslado-vertical"
+ ],
+ "andalucia/py/and-py-2025-c2-g06": [
+  "emergencia.incendio.agentes"
+ ],
+ "andalucia/py/and-py-2025-c2-g08": [
+  "seguridad.equipo.pirotecnia-uso"
+ ],
+ "andalucia/py/and-py-2025-c3-g08": [
+  "seguridad.radio.vhf-socorro"
+ ],
+ "andalucia/py/and-py-2026-c1-g04": [
+  "seguridad.equipo.chalecos-caracteristicas"
+ ],
+ "baleares/per/bal-per-2017-03-ci-10": [
+  "seguridad.hombre-al-agua.recogida"
+ ],
+ "baleares/per/bal-per-2017-03-ge-11": [
+  "legis.aguas-sucias.retencion"
+ ],
+ "baleares/per/bal-per-2017-07-b-32": [
+  "emergencia.incendio.agentes"
+ ],
+ "baleares/per/bal-per-2017-07-eda-12": [
+  "legis.espacios.zepim"
+ ],
+ "baleares/per/bal-per-2017-09-c-32": [
+  "emergencia.varada.reflotar"
+ ],
+ "baleares/per/bal-per-2017-12-a-09": [
+  "seguridad.mal-tiempo.ancla-capa"
+ ],
+ "baleares/per/bal-per-2017-12-c-07": [
+  "seguridad.tormentas.proteccion"
+ ],
+ "baleares/per/bal-per-2017-12-c-11": [
+  "legis.reservas-marinas"
+ ],
+ "baleares/per/bal-per-2017-12-c-12": [
+  "legis.marpol.prohibicion"
+ ],
+ "baleares/per/bal-per-2017-12-e-31": [
+  "emergencia.via-agua.medidas"
+ ],
+ "baleares/per/bal-per-2018-04-a-31": [
+  "emergencia.incendio.clases"
+ ],
+ "baleares/per/bal-per-2018-06-b-11": [
+  "legis.zona-bano.no-balizada"
+ ],
+ "baleares/per/bal-per-2018-06-c-09": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "baleares/per/bal-per-2018-09-b-07": [
+  "seguridad.mal-tiempo.capear",
+  "seguridad.mal-tiempo.ancla-capa"
+ ],
+ "baleares/per/bal-per-2018-09-b-08": [
+  "seguridad.mal-tiempo.aberturas"
+ ],
+ "baleares/per/bal-per-2018-09-d-32": [
+  "emergencia.incendio.extincion"
+ ],
+ "baleares/per/bal-per-2018-12-b-30": [
+  "emergencia.incendio.extincion"
+ ],
+ "baleares/per/bal-per-2018-12-c-09": [
+  "seguridad.equipo.balsa-caracteristicas"
+ ],
+ "baleares/per/bal-per-2018-12-d-10": [
+  "estabilidad.definicion",
+  "estabilidad.movimientos"
+ ],
+ "baleares/per/bal-per-2018-12-f-10": [
+  "seguridad.hombre-al-agua.busqueda"
+ ],
+ "baleares/per/bal-per-2019-04-c-09": [
+  "emergencia.incendio.agentes",
+  "emergencia.incendio.extincion"
+ ],
+ "baleares/per/bal-per-2019-06-b-09": [
+  "seguridad.antes-de-salir.general",
+  "emergencia.incendio.prevencion"
+ ],
+ "baleares/per/bal-per-2019-06-c-05": [
+  "legis.espacios.posidonia"
+ ],
+ "baleares/per/bal-per-2019-09-a-08": [
+  "emergencia.abandono.preparacion",
+  "emergencia.supervivencia.en-el-agua"
+ ],
+ "baleares/per/bal-per-2019-09-a-11": [
+  "legis.espacios.posidonia"
+ ],
+ "baleares/per/bal-per-2019-09-b-12": [
+  "legis.buceo.distancia"
+ ],
+ "baleares/per/bal-per-2019-09-b-31": [
+  "emergencia.auxilios.hemorragias-tratamiento"
+ ],
+ "baleares/per/bal-per-2019-09-c-08": [
+  "estabilidad.sincronismo"
+ ],
+ "baleares/per/bal-per-2019-09-c-10": [
+  "emergencia.hipotermia.tratamiento"
+ ],
+ "baleares/per/bal-per-2019-12-a-30": [
+  "emergencia.abandono.preparacion",
+  "seguridad.radio.vhf-socorro"
+ ],
+ "baleares/per/bal-per-2020-07-c-10": [
+  "emergencia.incendio.agentes"
+ ],
+ "baleares/per/bal-per-2020-10-d-11": [
+  "legis.aguas-sucias.descarga"
+ ],
+ "baleares/per/bal-per-2020-10-e-32": [
+  "seguridad.equipo.pirotecnia-uso"
+ ],
+ "baleares/per/bal-per-2020-10-g-09": [
+  "seguridad.remolque.dar-tomar"
+ ],
+ "baleares/per/bal-per-2020-12-b-07": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "baleares/per/bal-per-2021-03-a-30": [
+  "emergencia.abandono.preparacion"
+ ],
+ "baleares/per/bal-per-2021-03-eg-08": [
+  "seguridad.equipo.arnes"
+ ],
+ "baleares/per/bal-per-2021-03-eg-09": [
+  "seguridad.remolque.dar-tomar"
+ ],
+ "baleares/per/bal-per-2021-03-eg-10": [
+  "seguridad.equipo.balsa-caracteristicas"
+ ],
+ "baleares/per/bal-per-2021-06-bh-11": [
+  "legis.puertos.trafico"
+ ],
+ "baleares/per/bal-per-2021-06-f-09": [
+  "seguridad.hombre-al-agua.boutakow"
+ ],
+ "baleares/per/bal-per-2021-06-f-12": [
+  "legis.puertos.trafico"
+ ],
+ "baleares/per/bal-per-2021-09-a-07": [
+  "seguridad.antes-de-salir.motor"
+ ],
+ "baleares/per/bal-per-2021-09-b-12": [
+  "legis.auxilio"
+ ],
+ "baleares/per/bal-per-2021-09-d-10": [
+  "seguridad.mal-tiempo.ancla-capa"
+ ],
+ "baleares/per/bal-per-2021-09-e-30": [
+  "emergencia.incendio.actuacion"
+ ],
+ "baleares/per/bal-per-2021-12-d-10": [
+  "estabilidad.movimientos"
+ ],
+ "baleares/per/bal-per-2021-12-f-08": [
+  "estabilidad.buque-duro-blando"
+ ],
+ "baleares/per/bal-per-2022-03-c-12": [
+  "legis.auxilio"
+ ],
+ "baleares/per/bal-per-2022-09-a-11": [
+  "legis.espacios.zepim"
+ ],
+ "baleares/per/bal-per-2022-09-b-07": [
+  "seguridad.mal-tiempo.gobernar-con-mar"
+ ],
+ "baleares/per/bal-per-2022-12-be-08": [
+  "seguridad.equipo.arnes"
+ ],
+ "baleares/per/bal-per-2022-12-c-30": [
+  "emergencia.incendio.extintores"
+ ],
+ "baleares/per/bal-per-2023-03-a-10": [
+  "seguridad.hombre-al-agua.gnss-mob"
+ ],
+ "baleares/per/bal-per-2023-06-d-11": [
+  "legis.reservas-marinas"
+ ],
+ "baleares/per/bal-per-2023-12-c-11": [
+  "legis.zona-bano.balizada"
+ ],
+ "baleares/per/bal-per-2024-04-a-08": [
+  "estabilidad.traslado-vertical"
+ ],
+ "baleares/per/bal-per-2024-04-df-31": [
+  "emergencia.incendio.clases"
+ ],
+ "baleares/per/bal-per-2024-07-df-12": [
+  "legis.zona-bano.no-balizada"
+ ],
+ "baleares/per/bal-per-2024-12-b-12": [
+  "seguridad.equipo.zonas"
+ ],
+ "baleares/per/bal-per-2024-12-ce-11": [
+  "legis.espacios.zepim"
+ ],
+ "baleares/per/bal-per-2025-07-d-32": [
+  "emergencia.incendio.actuacion"
+ ],
+ "baleares/per/bal-per-2025-09-b-30": [
+  "emergencia.abandono.preparacion"
+ ],
+ "baleares/per/bal-per-2025-12-d-12": [
+  "legis.espacios.zepim"
+ ],
+ "baleares/py/bal-py-2017-03-a-26": [
+  "seguridad.radio.sart"
+ ],
+ "baleares/py/bal-py-2017-03-cb-06": [
+  "seguridad.radio.vhf-socorro"
+ ],
+ "baleares/py/bal-py-2017-03-cb-07": [
+  "seguridad.equipo.homologacion"
+ ],
+ "baleares/py/bal-py-2017-07-a-01": [
+  "seguridad.radio.epirb"
+ ],
+ "baleares/py/bal-py-2017-07-b-06": [
+  "seguridad.radio.epirb"
+ ],
+ "baleares/py/bal-py-2017-12-a-03": [
+  "seguridad.radio.vhf-socorro"
+ ],
+ "baleares/py/bal-py-2017-12-a-10": [
+  "seguridad.equipo.pirotecnia-caracteristicas"
+ ],
+ "baleares/py/bal-py-2018-06-a-04": [
+  "seguridad.helicoptero.izado"
+ ],
+ "baleares/py/bal-py-2018-12-a-03": [
+  "seguridad.equipo.pirotecnia-uso"
+ ],
+ "baleares/py/bal-py-2019-04-b-02": [
+  "estabilidad.metacentro"
+ ],
+ "baleares/py/bal-py-2020-07-b-01": [
+  "emergencia.abandono.balsa"
+ ],
+ "baleares/py/bal-py-2021-06-ac-07": [
+  "estabilidad.metacentro"
+ ],
+ "baleares/py/bal-py-2022-06-a-02": [
+  "seguridad.radio.epirb"
+ ],
+ "baleares/py/bal-py-2024-04-bc-10": [
+  "emergencia.abandono.preparacion"
+ ],
+ "baleares/py/bal-py-2025-07-b-09": [
+  "seguridad.salvamento.rescate-buque"
+ ],
+ "baleares/py/bal-py-2025-12-b-06": [
+  "estabilidad.equilibrio",
+  "estabilidad.altura-metacentrica"
+ ],
+ "baleares/py/bal-py-2025-12-b-07": [
+  "seguridad.equipo.chalecos-caracteristicas",
+  "seguridad.equipo.homologacion"
+ ],
+ "dgmm/per/dgmm-per-2019-06-07": [
+  "seguridad.remolque.dar-tomar"
+ ],
+ "dgmm/per/dgmm-per-2020-12-145": [
+  "seguridad.equipo.pirotecnia-dotacion"
+ ],
+ "dgmm/per/dgmm-per-2020-12-146": [
+  "legis.zona-bano.no-balizada"
+ ],
+ "dgmm/per/dgmm-per-2020-12-56": [
+  "legis.contaminacion.responsabilidad"
+ ],
+ "dgmm/per/dgmm-per-2020-12-98": [
+  "seguridad.hombre-al-agua.primeras-acciones"
+ ],
+ "dgmm/per/dgmm-per-2021-02-12": [
+  "legis.puertos.trafico"
+ ],
+ "dgmm/per/dgmm-per-2021-10-08": [
+  "emergencia.hipotermia.definicion"
+ ],
+ "dgmm/per/dgmm-per-2021-10-32": [
+  "emergencia.abordaje.medidas"
+ ],
+ "dgmm/per/dgmm-per-2022-04-54": [
+  "emergencia.hipotermia.tratamiento"
+ ],
+ "dgmm/per/dgmm-per-2022-06-10": [
+  "estabilidad.sincronismo"
+ ],
+ "dgmm/per/dgmm-per-2022-06-30": [
+  "emergencia.via-agua.medidas"
+ ],
+ "dgmm/per/dgmm-per-2022-10-11": [
+  "legis.marpol.prohibicion"
+ ],
+ "dgmm/per/dgmm-per-2023-04-08": [
+  "seguridad.tormentas.aguja"
+ ],
+ "dgmm/per/dgmm-per-2023-04-11": [
+  "legis.marpol.zonas-especiales"
+ ],
+ "dgmm/per/dgmm-per-2023-04-53": [
+  "seguridad.equipo.pirotecnia-dotacion"
+ ],
+ "dgmm/per/dgmm-per-2023-04-56": [
+  "legis.embarcacion.seguro"
+ ],
+ "dgmm/per/dgmm-per-2023-06-52": [
+  "seguridad.mal-tiempo.son-de-mar"
+ ],
+ "dgmm/per/dgmm-per-2024-04-52": [
+  "seguridad.equipo.otros"
+ ],
+ "dgmm/per/dgmm-per-2024-11-10": [
+  "estabilidad.par-adrizante"
+ ],
+ "dgmm/per/dgmm-per-2024-11-53": [
+  "seguridad.equipo.reflector-radar"
+ ],
+ "dgmm/per/dgmm-per-2024-11-75": [
+  "emergencia.abordaje.medidas"
+ ],
+ "dgmm/per/dgmm-per-2025-04-76": [
+  "emergencia.auxilios.quemaduras"
+ ],
+ "dgmm/per/dgmm-per-2025-06-07": [
+  "emergencia.abandono.balsa",
+  "seguridad.equipo.balsa-dotacion"
+ ],
+ "dgmm/per/dgmm-per-2025-06-11": [
+  "legis.aguas-sucias.descarga"
+ ],
+ "dgmm/per/dgmm-per-2025-06-32": [
+  "emergencia.incendio.actuacion",
+  "emergencia.incendio.extintores"
+ ],
+ "dgmm/py/dgmm-py-2019-06-10": [
+  "estabilidad.definicion"
+ ],
+ "dgmm/py/dgmm-py-2021-02-02": [
+  "estabilidad.traslado-vertical"
+ ],
+ "dgmm/py/dgmm-py-2021-02-03": [
+  "emergencia.abandono.preparacion"
+ ],
+ "dgmm/py/dgmm-py-2021-02-10": [
+  "seguridad.helicoptero.izado"
+ ],
+ "dgmm/py/dgmm-py-2021-12-02": [
+  "estabilidad.traslado-vertical"
+ ],
+ "dgmm/py/dgmm-py-2021-12-04": [
+  "seguridad.equipo.arnes"
+ ],
+ "dgmm/py/dgmm-py-2021-12-05": [
+  "estabilidad.equilibrio"
+ ],
+ "dgmm/py/dgmm-py-2022-06-10": [
+  "seguridad.equipo.zafa-hidrostatica"
+ ],
+ "dgmm/py/dgmm-py-2022-12-01": [
+  "estabilidad.equilibrio"
+ ],
+ "dgmm/py/dgmm-py-2023-04-02": [
+  "estabilidad.equilibrio"
+ ],
+ "dgmm/py/dgmm-py-2023-04-03": [
+  "seguridad.helicoptero.izado"
+ ],
+ "dgmm/py/dgmm-py-2023-11-04": [
+  "estabilidad.centro-gravedad",
+  "estabilidad.centro-carena"
+ ],
+ "dgmm/py/dgmm-py-2024-04-10": [
+  "estabilidad.metacentro"
+ ]
+}

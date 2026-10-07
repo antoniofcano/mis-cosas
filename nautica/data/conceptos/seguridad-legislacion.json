@@ -1,0 +1,3286 @@
+{
+ "grupo": "seguridad-legislacion",
+ "version": 1,
+ "conceptos": [
+  {
+   "id": "estabilidad",
+   "tipo": "grupo",
+   "etiqueta": "Estabilidad",
+   "nota": "Movimientos del barco y estabilidad estática: en el PER solo definiciones (sin estudio); en el PY, centros, metacentro, equilibrio y traslado de pesos sin cálculos.",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.movimientos",
+   "tipo": "concepto",
+   "etiqueta": "Balance y cabezada",
+   "sinonimos": [
+    "balance",
+    "balanceo",
+    "cabezada",
+    "cabeceo",
+    "oscilación transversal",
+    "oscilación longitudinal",
+    "babor-estribor",
+    "proa-popa"
+   ],
+   "nota": "Definición de los movimientos de balance (transversal, babor-estribor) y cabezada o cabeceo (longitudinal, proa-popa) y qué mar los produce. La forma de gobernar para reducirlos va en seguridad.mal-tiempo.gobernar-con-mar.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad)"
+  },
+  {
+   "id": "estabilidad.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Estabilidad estática: definición y clasificación",
+   "sinonimos": [
+    "estabilidad estática transversal",
+    "estabilidad longitudinal",
+    "recuperar la posición de adrizado",
+    "adrizar",
+    "escora",
+    "escorado",
+    "grandes inclinaciones",
+    "aguas en reposo"
+   ],
+   "nota": "Qué es la estabilidad (propiedad de recobrar la posición de adrizado una vez escorado, en aguas en reposo), estabilidad transversal frente a longitudinal, inicial frente a grandes inclinaciones; escora y adrizado. Qué decide la estabilidad (posición relativa de G y C) va en estabilidad.par-adrizante.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-1",
+    "py-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.sincronismo",
+   "tipo": "concepto",
+   "etiqueta": "Sincronismo transversal y longitudinal",
+   "sinonimos": [
+    "sincronismo",
+    "periodo de balance igual al de la ola",
+    "periodo de cabezada",
+    "zozobrar",
+    "riesgo de vuelco"
+   ],
+   "nota": "Coincidencia del periodo de balance (o de cabezada) con el periodo aparente de la ola, su peligro y cómo se rompe (cambiando rumbo y/o velocidad).",
+   "padre": "estabilidad",
+   "relacionados": [
+    "seguridad.mal-tiempo.gobernar-con-mar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-1",
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad), UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "estabilidad.desplazamiento",
+   "tipo": "concepto",
+   "etiqueta": "Desplazamiento, empuje y flotabilidad",
+   "sinonimos": [
+    "desplazamiento",
+    "principio de Arquímedes",
+    "empuje",
+    "volumen sumergido",
+    "peso del líquido desalojado",
+    "desplazamiento en lastre",
+    "consumos"
+   ],
+   "nota": "Por qué flota un barco: el desplazamiento es el peso del barco e igual al peso del agua desalojada (Arquímedes); el empuje vertical; el desplazamiento varía con los consumos y la carga.",
+   "padre": "estabilidad",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.centro-gravedad",
+   "tipo": "concepto",
+   "etiqueta": "Centro de gravedad (G)",
+   "sinonimos": [
+    "centro de gravedad",
+    "G",
+    "KG",
+    "punto de aplicación del desplazamiento",
+    "resultante de los pesos"
+   ],
+   "nota": "Definición de G como punto de aplicación del peso o desplazamiento; depende de la distribución de pesos y no se mueve con el balance ni la cabezada.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-1",
+    "per-3-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.centro-carena",
+   "tipo": "concepto",
+   "etiqueta": "Centro de carena (C) y empuje",
+   "sinonimos": [
+    "centro de carena",
+    "centro de empuje",
+    "C",
+    "B",
+    "centro de gravedad del volumen sumergido",
+    "obra viva"
+   ],
+   "nota": "Definición del centro de carena como centro de gravedad del volumen sumergido, donde se aplica el empuje; se desplaza al escorar o con el balance y la cabezada.",
+   "padre": "estabilidad",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.metacentro",
+   "tipo": "concepto",
+   "etiqueta": "Metacentro (M)",
+   "sinonimos": [
+    "metacentro",
+    "M",
+    "KM",
+    "intersección del plano de crujía con la vertical del centro de carena",
+    "líneas de empuje"
+   ],
+   "nota": "Definición del metacentro transversal (corte de la vertical que pasa por el centro de carena escorado con el plano diametral) y de KM.",
+   "padre": "estabilidad",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.altura-metacentrica",
+   "tipo": "concepto",
+   "etiqueta": "Altura metacéntrica (GM)",
+   "sinonimos": [
+    "altura metacéntrica",
+    "GM",
+    "GM = KM - KG",
+    "distancia entre G y M",
+    "GM positivo"
+   ],
+   "nota": "GM = KM − KG, signo e influencia en la estabilidad transversal (a más GM, más estabilidad). Lo que GM grande o pequeño supone para el balance va en estabilidad.buque-duro-blando.",
+   "padre": "estabilidad",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-2",
+    "py-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.equilibrio",
+   "tipo": "concepto",
+   "etiqueta": "Tipos de equilibrio: estable, indiferente e inestable",
+   "sinonimos": [
+    "equilibrio estable",
+    "equilibrio indiferente",
+    "equilibrio inestable",
+    "KM = KG",
+    "KG > KM",
+    "metacentro por encima del centro de gravedad",
+    "mantiene la escora"
+   ],
+   "nota": "Clasificación del equilibrio según la posición de M respecto a G (M sobre G estable, M en G indiferente, M bajo G inestable) y comportamiento del barco escorado en cada caso.",
+   "padre": "estabilidad",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.par-adrizante",
+   "tipo": "concepto",
+   "etiqueta": "Par de estabilidad o adrizante",
+   "sinonimos": [
+    "par adrizante",
+    "par de estabilidad",
+    "brazo adrizante",
+    "GZ",
+    "par escorante",
+    "centro de gravedad y centro de carena en la misma vertical"
+   ],
+   "nota": "El peso (en G) y el empuje (en C) forman el par que adriza al barco; adrizado cuando G y C están en la misma vertical; brazo GZ y su relación con GM.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-1",
+    "py-1-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.buque-duro-blando",
+   "tipo": "concepto",
+   "etiqueta": "Buque duro y buque blando",
+   "sinonimos": [
+    "buque duro",
+    "buque blando",
+    "balances rápidos y bruscos",
+    "balances lentos",
+    "frecuencia del balance",
+    "recupera lentamente",
+    "GM muy grande"
+   ],
+   "nota": "Relación entre estabilidad (GM o par adrizante) y el periodo de balance: duro (GM grande, balances rápidos y violentos) frente a blando (GM pequeño, recupera despacio).",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-1",
+    "py-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.traslado-vertical",
+   "tipo": "concepto",
+   "etiqueta": "Traslado vertical de pesos y consumos",
+   "sinonimos": [
+    "elevar un peso",
+    "pesos en cubierta",
+    "subir el centro de gravedad",
+    "bajar pesos",
+    "consumo de combustible y agua",
+    "pesos próximos a la quilla",
+    "aumenta KG"
+   ],
+   "nota": "Efecto de subir o bajar pesos (y de consumir pesos situados bajo G) sobre G, GM y la estabilidad transversal: pesos altos restan estabilidad.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-1",
+    "py-1-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.traslado-horizontal",
+   "tipo": "concepto",
+   "etiqueta": "Traslado transversal de pesos y escora",
+   "sinonimos": [
+    "traslado transversal",
+    "escora permanente",
+    "mala distribución lateral de pesos",
+    "corregir una escora",
+    "trasladar un peso a babor",
+    "a estribor y por debajo"
+   ],
+   "nota": "Un peso movido transversalmente desplaza G a esa banda y produce escora; cómo corregir una escora y a la vez subir o bajar GM eligiendo banda y altura del traslado.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-3",
+    "per-3-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "estabilidad.superficies-libres",
+   "tipo": "concepto",
+   "etiqueta": "Superficies libres",
+   "sinonimos": [
+    "superficies libres",
+    "líquidos libres",
+    "tanques parcialmente llenos",
+    "tanques llenos"
+   ],
+   "nota": "Los líquidos que se mueven en tanques parcialmente llenos suben virtualmente G y reducen GM y la estabilidad.",
+   "padre": "estabilidad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-3",
+    "per-3-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad); PY UT 1.1 (Estabilidad transversal)"
+  },
+  {
+   "id": "seguridad",
+   "tipo": "grupo",
+   "etiqueta": "Seguridad en la mar",
+   "nota": "Navegación segura, equipo de seguridad reglamentario, hombre al agua, remolque, comunicaciones de socorro y Salvamento Marítimo.",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 3 (Seguridad en la mar); PY UT 1 (Seguridad en la mar)"
+  },
+  {
+   "id": "seguridad.navegacion",
+   "tipo": "grupo",
+   "etiqueta": "Navegar con seguridad",
+   "nota": "Comprobaciones previas, mal tiempo, tormentas eléctricas, baja visibilidad y aguas someras (PER UT 3.2–3.6).",
+   "padre": "seguridad",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 3.2 (Comprobaciones antes de hacerse a la mar), UT 3.3 (Medidas a tomar a bordo con mal tiempo), UT 3.4 (Tormentas eléctricas), UT 3.5 (Baja visibilidad), UT 3.6 (Aguas someras)"
+  },
+  {
+   "id": "seguridad.antes-de-salir.motor",
+   "tipo": "concepto",
+   "etiqueta": "Comprobaciones del motor antes de salir",
+   "sinonimos": [
+    "niveles de aceite",
+    "filtro decantador",
+    "filtros de decantación de agua",
+    "líquido refrigerante",
+    "correa del alternador",
+    "grifo de fondo de refrigeración abierto",
+    "chorro testigo del fueraborda",
+    "nivel de combustible",
+    "baterías"
+   ],
+   "nota": "Lista oficial de comprobaciones de propulsión: aceite, filtros decantadores, refrigeración (grifo de fondo abierto, chorro testigo), correa, combustible, baterías y fugas.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.2 (Comprobaciones antes de hacerse a la mar)"
+  },
+  {
+   "id": "seguridad.antes-de-salir.general",
+   "tipo": "concepto",
+   "etiqueta": "Comprobaciones generales antes de salir",
+   "sinonimos": [
+    "parte meteorológico",
+    "plan de navegación",
+    "estanqueidad",
+    "sentina",
+    "gases explosivos",
+    "ventilar",
+    "luces de navegación",
+    "equipo de radio",
+    "sistema de gobierno",
+    "elementos de seguridad"
+   ],
+   "nota": "Resto de comprobaciones previas: parte meteorológico y plan de navegación comunicado, estanqueidad y sentina, ventilación (gases explosivos), luces, radio, gobierno y estado del equipo de seguridad.",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.antes-de-salir.motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.2 (Comprobaciones antes de hacerse a la mar)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.son-de-mar",
+   "tipo": "concepto",
+   "etiqueta": "Estiba y trinca a son de mar",
+   "sinonimos": [
+    "a son de mar",
+    "estibar",
+    "trincar",
+    "estiba",
+    "trinca"
+   ],
+   "nota": "Significado de «a son de mar» y de estibar y trincar: todo lo que pueda moverse, bien colocado y sujeto antes de salir y con mal tiempo.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.aberturas",
+   "tipo": "concepto",
+   "etiqueta": "Cierre de aberturas y grifos de fondo con mal tiempo",
+   "sinonimos": [
+    "grifos de fondo",
+    "válvulas de fondo",
+    "portillos",
+    "escotillas",
+    "tambuchos",
+    "lumbreras",
+    "hermetizar",
+    "aviso de temporal"
+   ],
+   "nota": "Medidas de mal tiempo sobre la estanqueidad: cerrar portillos, escotillas y lumbreras y los grifos de fondo no necesarios (nunca el de refrigeración del motor); qué es un grifo de fondo.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.capear",
+   "tipo": "concepto",
+   "etiqueta": "Capear el temporal",
+   "sinonimos": [
+    "capear",
+    "capeando",
+    "amura a la mar",
+    "proa a la mar",
+    "poca máquina avante",
+    "velocidad de gobierno",
+    "aguantar el temporal"
+   ],
+   "nota": "Capear: recibir la mar por la proa o la amura con la mínima arrancada que permita gobernar, hasta que amaine.",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.mal-tiempo.correr"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.correr",
+   "tipo": "concepto",
+   "etiqueta": "Correr el temporal",
+   "sinonimos": [
+    "correr",
+    "popa a la mar",
+    "aleta a la mar",
+    "mar por la popa",
+    "mar por la aleta"
+   ],
+   "nota": "Correr: llevar la mar y el viento por la popa o la aleta, con una velocidad que evite el sincronismo y el riesgo de atravesarse.",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.mal-tiempo.capear"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.gobernar-con-mar",
+   "tipo": "concepto",
+   "etiqueta": "Gobernar con mala mar: no atravesarse y reducir balances y cabezadas",
+   "sinonimos": [
+    "atravesarse a la mar",
+    "mar de través",
+    "evitar balances",
+    "evitar cabezadas",
+    "reducir velocidad",
+    "modificar el rumbo",
+    "trenes de olas",
+    "estela"
+   ],
+   "nota": "Importancia de no atravesarse a la mar y forma de gobernar: contra la cabezada, moderar la velocidad; contra el balance, cambiar el rumbo; con mar severa, qué hacer si no queda otra que atravesarse.",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "estabilidad.sincronismo",
+    "estabilidad.movimientos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3",
+    "per-3-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.1 (Estabilidad), UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.costa-sotavento",
+   "tipo": "concepto",
+   "etiqueta": "Riesgos de una costa a sotavento",
+   "sinonimos": [
+    "costa a sotavento",
+    "ganar barlovento",
+    "alejarse de la costa",
+    "resaca",
+    "barlovento",
+    "sotavento"
+   ],
+   "nota": "Con mal tiempo y la costa a sotavento hay que ganar barlovento y apartarse de ella; significado de barlovento y sotavento en este contexto.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.mal-tiempo.ancla-capa",
+   "tipo": "concepto",
+   "etiqueta": "Ancla de capa o flotante",
+   "sinonimos": [
+    "ancla de capa",
+    "ancla flotante",
+    "saco troncocónico",
+    "contener la deriva"
+   ],
+   "nota": "Qué es el ancla de capa o flotante (saco troncocónico) y para qué se usa con mal tiempo: mantener la proa a la mar y frenar la deriva. Su uso en la balsa va en emergencia.abandono.vida-en-balsa.",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.mal-tiempo.capear"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.3 (Medidas a tomar a bordo con mal tiempo)"
+  },
+  {
+   "id": "seguridad.tormentas.aguja",
+   "tipo": "concepto",
+   "etiqueta": "Tormenta eléctrica: efecto sobre la aguja",
+   "sinonimos": [
+    "tormenta eléctrica",
+    "rayo",
+    "desvío de la aguja",
+    "compás magnético",
+    "perturbaciones magnéticas",
+    "inducción magnética"
+   ],
+   "nota": "Un rayo cercano puede alterar los desvíos de la aguja de forma temporal o permanente; tras la tormenta hay que comprobar el desvío.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.4 (Tormentas eléctricas)"
+  },
+  {
+   "id": "seguridad.tormentas.proteccion",
+   "tipo": "concepto",
+   "etiqueta": "Protección frente a las tormentas eléctricas",
+   "sinonimos": [
+    "pararrayos",
+    "cable de la jarcia al mar",
+    "toma de masa",
+    "desconectar equipos",
+    "alejarse de la tormenta",
+    "avería por rayo"
+   ],
+   "nota": "Cómo proteger barco y tripulación: pararrayos o cable desde la jarcia al mar, desconectar equipos, no tocar partes metálicas, alejarse de la zona tormentosa.",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.tormentas.aguja"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.4 (Tormentas eléctricas)"
+  },
+  {
+   "id": "seguridad.niebla",
+   "tipo": "concepto",
+   "etiqueta": "Precauciones con niebla y baja visibilidad",
+   "sinonimos": [
+    "niebla",
+    "visibilidad reducida",
+    "baja visibilidad",
+    "niebla cerrada",
+    "reducir la velocidad",
+    "vigilancia visual y auditiva",
+    "evitar el tráfico",
+    "señales fónicas"
+   ],
+   "nota": "Medidas con niebla: velocidad moderada (incluso parar), vigilancia visual y auditiva, luces y señales acústicas, evitar zonas de tráfico, reflector radar izado. Las señales acústicas reglamentarias son del RIPA (otro grupo).",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.equipo.reflector-radar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.5 (Baja visibilidad)"
+  },
+  {
+   "id": "seguridad.nocturna",
+   "tipo": "concepto",
+   "etiqueta": "Precauciones en la navegación nocturna",
+   "sinonimos": [
+    "navegación nocturna",
+    "de noche",
+    "luces de navegación",
+    "visión nocturna",
+    "iluminación de cubierta"
+   ],
+   "nota": "Precauciones propias de la noche: luces de navegación, vigilancia, iluminación de cubierta y prevención de caídas al agua.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.5 (Baja visibilidad)"
+  },
+  {
+   "id": "seguridad.aguas-someras.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Aguas someras: qué son",
+   "sinonimos": [
+    "aguas someras",
+    "aguas poco profundas",
+    "bajos",
+    "poca agua bajo la quilla"
+   ],
+   "nota": "Definición de aguas someras: poco profundas, con riesgo de varada o de tocar fondo.",
+   "padre": "seguridad.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.6 (Aguas someras)"
+  },
+  {
+   "id": "seguridad.aguas-someras.precauciones",
+   "tipo": "concepto",
+   "etiqueta": "Precauciones y efectos al navegar en aguas someras",
+   "sinonimos": [
+    "sonda",
+    "velocidad de seguridad",
+    "veril de seguridad",
+    "serviola a proa",
+    "ancla lista",
+    "pérdida de maniobrabilidad",
+    "aumento de la resistencia",
+    "consultar la carta"
+   ],
+   "nota": "Cómo navegar en aguas someras (carta y sonda, velocidad reducida, vigía a proa, ancla lista, veril de seguridad) y sus efectos sobre el barco (más resistencia, peor maniobra, asentamiento).",
+   "padre": "seguridad.navegacion",
+   "relacionados": [
+    "seguridad.aguas-someras.definicion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.6 (Aguas someras)"
+  },
+  {
+   "id": "seguridad.equipo",
+   "tipo": "grupo",
+   "etiqueta": "Equipo de seguridad",
+   "nota": "Descripción, uso, estiba y dotación reglamentaria del equipo de seguridad de las embarcaciones de recreo. Norma vigente: RD 339/2021 (deroga la Orden FOM/1144/2003 desde el 1-7-2021), modificado por el RD 587/2022 (balsas).",
+   "padre": "seguridad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.zonas",
+   "tipo": "concepto",
+   "etiqueta": "Zonas de navegación y categorías de diseño",
+   "sinonimos": [
+    "zona de navegación",
+    "zona 1",
+    "zona 2",
+    "zona 3",
+    "zona 4",
+    "zona 5",
+    "zona 6",
+    "zona 7",
+    "aguas protegidas",
+    "categoría de diseño",
+    "60 millas",
+    "25 millas",
+    "12 millas",
+    "5 millas",
+    "2 millas"
+   ],
+   "nota": "Las siete zonas de navegación (1 ilimitada, 2 hasta 60 millas, 3 hasta 25, 4 hasta 12, 5 hasta 5 de abrigo o playa accesible, 6 hasta 2, 7 aguas protegidas) y su relación con las categorías de diseño CE. Norma vigente: RD 339/2021, art. 3.",
+   "padre": "seguridad.equipo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.homologacion",
+   "tipo": "concepto",
+   "etiqueta": "Homologación y revisión del equipo de seguridad",
+   "sinonimos": [
+    "homologado",
+    "Dirección General de la Marina Mercante",
+    "rueda de timón",
+    "SOLAS",
+    "marcado CE",
+    "caducidad",
+    "revisión"
+   ],
+   "nota": "Quién homologa el equipo (DGMM), equipo SOLAS o no SOLAS, obligación de mantenerlo vigente y revisado; llevar equipo caducado es infracción grave. Norma vigente: RD 339/2021, arts. 4, 5 y 24.",
+   "padre": "seguridad.equipo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5",
+    "py-1-4"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "seguridad.equipo.chalecos-dotacion",
+   "tipo": "concepto",
+   "etiqueta": "Chalecos salvavidas: dotación por zona",
+   "sinonimos": [
+    "chalecos salvavidas",
+    "flotabilidad",
+    "275 N",
+    "150 N",
+    "100 N",
+    "uno por persona",
+    "chaleco adicional en zona 1",
+    "chalecos de niños",
+    "luz del chaleco"
+   ],
+   "nota": "Número y flotabilidad mínima según la zona (zona 1 275 N; zonas 2–4 150 N; zonas 5–7 100 N), uno por persona más uno en zona 1, chalecos para niños y luz obligatoria. Norma vigente: RD 339/2021, art. 7 (antes, Orden FOM/1144/2003: 110 % en zona 1).",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.zonas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5",
+    "py-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.chalecos-caracteristicas",
+   "tipo": "concepto",
+   "etiqueta": "Chalecos salvavidas: características, uso y estiba",
+   "sinonimos": [
+    "chaleco inflable",
+    "autoinflable",
+    "dar la vuelta en 5 segundos",
+    "saltar desde 4,5 m",
+    "luz blanca",
+    "ponérselo en 1 minuto",
+    "silbato",
+    "tipos de chaleco 50 N 100 N 150 N 275 N",
+    "revisión según el fabricante"
+   ],
+   "nota": "Requisitos de los chalecos homologados (girar a una persona inconsciente boca arriba, resistencia a llamas, salto, luz blanca), tipos por flotabilidad, inflables y su revisión (según el fabricante desde el RD 339/2021), uso y estiba.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.chalecos-dotacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-4",
+    "per-3-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.arnes",
+   "tipo": "concepto",
+   "etiqueta": "Arnés y línea de vida",
+   "sinonimos": [
+    "arnés de seguridad",
+    "línea de vida",
+    "cinta",
+    "afirmarse al pecho",
+    "evitar caer al agua",
+    "estiba del arnés"
+   ],
+   "nota": "Función del arnés y la línea de vida (evitar caer al agua), recomendaciones de uso (cinta mejor que cabo, enganche) y estiba.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.hombre-al-agua.prevencion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5",
+    "per-3-7",
+    "py-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad), UT 3.8 (Hombre al agua); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.aros-dotacion",
+   "tipo": "concepto",
+   "etiqueta": "Aros salvavidas: dotación por zona",
+   "sinonimos": [
+    "aro salvavidas",
+    "guindola",
+    "luz y rabiza",
+    "zonas 1 a 4",
+    "zona 5 ningún aro"
+   ],
+   "nota": "Qué zonas obligan a llevar aro (zonas 1–4: uno con luz y rabiza; zona 1, otro más) y cuáles no (5–7). Norma vigente: RD 339/2021, art. 8.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.zonas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5",
+    "py-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.aros-caracteristicas",
+   "tipo": "concepto",
+   "etiqueta": "Aros salvavidas: características y estiba",
+   "sinonimos": [
+    "guirnalda",
+    "rabiza",
+    "luz de encendido automático",
+    "dos horas",
+    "50 a 70 destellos por minuto",
+    "estiba en las aletas o en popa",
+    "sin trincar",
+    "pérdida del aro"
+   ],
+   "nota": "Características (guirnalda sujeta en cuatro puntos, rabiza, luz automática de 2 h y 50–70 destellos/min), estiba en las bandas o en popa listo para soltarse y aviso a Salvamento si se pierde.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.aros-dotacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5",
+    "py-1-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.balsa-dotacion",
+   "tipo": "concepto",
+   "etiqueta": "Balsa salvavidas: obligación, capacidad y revisión",
+   "sinonimos": [
+    "balsa salvavidas",
+    "zonas 1, 2 y 3",
+    "capacidad para todas las personas",
+    "ISO 9650",
+    "SOLAS",
+    "mínimo 4 personas",
+    "mínimo 6 personas",
+    "revisión cada 24 meses",
+    "estación de servicio autorizada"
+   ],
+   "nota": "Zonas que exigen balsa (1–3), capacidad para todas las personas autorizadas, tipos ISO 9650 o SOLAS (capacidad mínima 4 y 6), homologación por la DGMM y revisiones en estación autorizada. Norma vigente: RD 339/2021, art. 6, modificado por el RD 587/2022.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.zonas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-5",
+    "py-1-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.balsa-caracteristicas",
+   "tipo": "concepto",
+   "etiqueta": "Balsa salvavidas: características y equipo",
+   "sinonimos": [
+    "30 días a la intemperie",
+    "toldo",
+    "bolsas estabilizadoras",
+    "contenedor",
+    "envoltura",
+    "cámaras de flotabilidad",
+    "tejos",
+    "zaguales",
+    "masa máxima 185 kg",
+    "remolcar a 3 nudos",
+    "marcado de la envoltura"
+   ],
+   "nota": "Requisitos constructivos de las balsas homologadas (resistir 30 días, cámaras independientes, toldo con recogida de agua, bolsas estabilizadoras, contenedor y marcado, masa, remolque) y su equipo.",
+   "padre": "seguridad.equipo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-5",
+    "per-3-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.zafa-hidrostatica",
+   "tipo": "concepto",
+   "etiqueta": "Zafa hidrostática",
+   "sinonimos": [
+    "zafa hidrostática",
+    "unidad de destrinca hidrostática",
+    "disparo automático a 4 metros",
+    "disparo manual",
+    "eslabón débil",
+    "cambio cada 2 años",
+    "trincas de la balsa"
+   ],
+   "nota": "Qué es la zafa hidrostática de balsas y radiobalizas, disparo manual y automático (a no más de 4 m de profundidad), estiba y trincado de la balsa con ella, mantenimiento o sustitución.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.balsa-dotacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-5",
+    "per-3-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad), UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "seguridad.equipo.pirotecnia-dotacion",
+   "tipo": "concepto",
+   "etiqueta": "Señales pirotécnicas: dotación por zona",
+   "sinonimos": [
+    "cohetes",
+    "bengalas de mano",
+    "señales fumígenas",
+    "cuántas bengalas",
+    "zona 4: 3 cohetes y 3 bengalas",
+    "aguas protegidas ninguna"
+   ],
+   "nota": "Número de cohetes, bengalas y fumígenas por zona (zona 1: 6+6+2; zonas 2–3: 6+6+1; zona 4: 3+3+0; zonas 5–6: 3 bengalas; zona 7: ninguna). Norma vigente: RD 339/2021, art. 9 (con la Orden FOM/1144/2003, zona 4 llevaba 6+6+1).",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.zonas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-6",
+    "py-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.pirotecnia-caracteristicas",
+   "tipo": "concepto",
+   "etiqueta": "Señales pirotécnicas: características",
+   "sinonimos": [
+    "bengala de mano 1 minuto",
+    "15.000 candelas",
+    "cohete con paracaídas 300 metros",
+    "40 segundos",
+    "luz roja",
+    "fumígena naranja 3 minutos",
+    "estuche hidrorresistente",
+    "sumergida a 100 mm"
+   ],
+   "nota": "Cómo son bengalas (rojo, 1 min, 15 000 cd), cohetes con paracaídas (300 m, 40 s) y fumígenas flotantes (humo naranja 3 min), cuál sirve de día o de noche y su envase.",
+   "padre": "seguridad.equipo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-6",
+    "py-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.pirotecnia-uso",
+   "tipo": "concepto",
+   "etiqueta": "Señales pirotécnicas: uso y estiba",
+   "sinonimos": [
+    "por sotavento",
+    "con guantes",
+    "cuando nos puedan ver",
+    "leer las instrucciones",
+    "caducadas",
+    "estiba estanca",
+    "no apuntar al helicóptero",
+    "tirar al agua por sotavento"
+   ],
+   "nota": "Cuándo y cómo usarlas (solo si pueden vernos, por sotavento, con guantes, brazo fuera, sin mirar), estiba en lugar seco y accesible, caducidad y aviso si se pierden; también desde la balsa.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.pirotecnia-caracteristicas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-6",
+    "per-8-8",
+    "py-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad), UT 8.6 (Abandono de la embarcación); PY UT 1.2 (Equipo de seguridad), UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "seguridad.equipo.senales-no-pirotecnicas",
+   "tipo": "concepto",
+   "etiqueta": "Espejo de señales y bocina de niebla",
+   "sinonimos": [
+    "espejo de señales",
+    "heliógrafo",
+    "bocina de niebla",
+    "bocina a gas",
+    "campana",
+    "mira del espejo"
+   ],
+   "nota": "Espejo de señales o heliógrafo (uso de la mira, ventajas e inconvenientes) y bocina de niebla reglamentaria (manual o de gas con respetos; campana solo desde 20 m de eslora; RD 339/2021, art. 10).",
+   "padre": "seguridad.equipo",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-6",
+    "per-3-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.reflector-radar",
+   "tipo": "concepto",
+   "etiqueta": "Reflector de radar",
+   "sinonimos": [
+    "reflector radar",
+    "reflector pasivo",
+    "octaedro",
+    "tetraedros",
+    "lente de Luneberg",
+    "eco radar",
+    "casco no metálico",
+    "parte alta de la arboladura"
+   ],
+   "nota": "Qué es y para qué sirve el reflector pasivo, tipos, dónde instalarlo (lo más alto posible) y obligación: embarcaciones de casco no metálico. Norma vigente: RD 339/2021, art. 12.",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.niebla"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-4",
+    "py-1-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.5 (Baja visibilidad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.extintores-dotacion",
+   "tipo": "concepto",
+   "etiqueta": "Extintores: dotación reglamentaria",
+   "sinonimos": [
+    "número de extintores",
+    "eficacia 34B",
+    "21B",
+    "según eslora",
+    "según potencia",
+    "manual del fabricante",
+    "sin marcado CE"
+   ],
+   "nota": "Cuántos extintores portátiles y de qué eficacia mínima (34B) según eslora y potencia, o los del manual en embarcaciones CE. Norma vigente: RD 339/2021, art. 15 (la Orden FOM/1144/2003 exigía 21B).",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "emergencia.incendio.extintores"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-6",
+    "py-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "seguridad.equipo.otros",
+   "tipo": "concepto",
+   "etiqueta": "Otro equipo reglamentario: material náutico, botiquín y achique",
+   "sinonimos": [
+    "material náutico",
+    "compás",
+    "prismáticos",
+    "linterna estanca",
+    "botiquín",
+    "bomba de achique",
+    "baldes",
+    "grifos de fondo no es material de seguridad"
+   ],
+   "nota": "Qué elementos se consideran material de seguridad (y cuáles no, p. ej. los grifos de fondo) y el resto de dotación por zona: material náutico, botiquín, medios de achique y baldes. Norma vigente: RD 339/2021, arts. 12, 13 y 20 (desaparecen corredera, compás de puntas y regla).",
+   "padre": "seguridad.equipo",
+   "relacionados": [
+    "seguridad.equipo.zonas"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-6"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "seguridad.hombre-al-agua",
+   "tipo": "grupo",
+   "etiqueta": "Hombre al agua",
+   "nota": "Prevención, primeras acciones, maniobras de aproximación y de búsqueda, GNSS y recogida (PER UT 3.8).",
+   "padre": "seguridad",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.prevencion",
+   "tipo": "concepto",
+   "etiqueta": "Prevenir la caída al agua",
+   "sinonimos": [
+    "prevención",
+    "desplazarse con cuidado",
+    "una mano para el barco",
+    "iluminación de cubierta",
+    "arnés",
+    "cortacorriente",
+    "hombre muerto"
+   ],
+   "nota": "Medidas para evitar caídas: moverse con cuidado, arnés y línea de vida, iluminación; en fuerabordas, el cabo de parada (hombre muerto).",
+   "padre": "seguridad.hombre-al-agua",
+   "relacionados": [
+    "seguridad.equipo.arnes"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.primeras-acciones",
+   "tipo": "concepto",
+   "etiqueta": "Primeras acciones ante un hombre al agua",
+   "sinonimos": [
+    "dar la voz",
+    "meter el timón a la banda de caída",
+    "librar la hélice",
+    "lanzar el aro",
+    "no perderle de vista",
+    "señalizar al náufrago",
+    "bote de humo",
+    "aro con luz"
+   ],
+   "nota": "Qué hacer en el acto: dar la voz, meter el timón a la misma banda de la caída para librar la hélice, lanzar aro y objetos flotantes, señalizar (luz, fumígena), no perderlo de vista; qué no hacer.",
+   "padre": "seguridad.hombre-al-agua",
+   "relacionados": [
+    "seguridad.hombre-al-agua.gnss-mob"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.boutakow",
+   "tipo": "concepto",
+   "etiqueta": "Maniobra de Boutakow",
+   "sinonimos": [
+    "Boutakow",
+    "Boutakov",
+    "70 grados",
+    "timón a la banda contraria",
+    "rumbo opuesto",
+    "curva de evolución"
+   ],
+   "nota": "Maniobra de aproximación con el náufrago a la vista: caer 70° a la banda de la caída y luego todo a la contraria hasta el rumbo opuesto.",
+   "padre": "seguridad.hombre-al-agua",
+   "relacionados": [
+    "seguridad.hombre-al-agua.anderson"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.anderson",
+   "tipo": "concepto",
+   "etiqueta": "Maniobra de Anderson",
+   "sinonimos": [
+    "Anderson",
+    "250 grados",
+    "270 grados",
+    "giro de una vuelta",
+    "timón a la vía"
+   ],
+   "nota": "Maniobra de aproximación con el náufrago a la vista: timón todo a la banda de la caída hasta variar unos 250°–270° y aproximarse.",
+   "padre": "seguridad.hombre-al-agua",
+   "relacionados": [
+    "seguridad.hombre-al-agua.boutakow"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.busqueda",
+   "tipo": "concepto",
+   "etiqueta": "Búsqueda del náufrago que no se ve",
+   "sinonimos": [
+    "espiral cuadrada",
+    "exploración por sectores",
+    "datum",
+    "punto inicial",
+    "búsqueda"
+   ],
+   "nota": "Maniobras de búsqueda cuando no se ve al náufrago: espiral cuadrada y sectores a partir del datum marcado con boya o GNSS; cuál conviene en cada caso.",
+   "padre": "seguridad.hombre-al-agua",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.gnss-mob",
+   "tipo": "concepto",
+   "etiqueta": "Tecla MOB del GNSS",
+   "sinonimos": [
+    "MOB",
+    "man over board",
+    "GPS",
+    "GNSS",
+    "waypoint",
+    "memorizar la posición"
+   ],
+   "nota": "Uso de la función MOB del GNSS: memoriza la posición y la hora de la caída y guía de vuelta.",
+   "padre": "seguridad.hombre-al-agua",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.hombre-al-agua.recogida",
+   "tipo": "concepto",
+   "etiqueta": "Recogida del náufrago",
+   "sinonimos": [
+    "recogida",
+    "aproximación por barlovento",
+    "parar la máquina",
+    "subir a bordo",
+    "precauciones durante la recogida",
+    "el náufrago debe alejarse del barco"
+   ],
+   "nota": "Precauciones al aproximarse y subirlo a bordo (lado y viento, máquina parada cerca del náufrago, medios para izarlo) y conducta del propio náufrago.",
+   "padre": "seguridad.hombre-al-agua",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "seguridad.salvamento",
+   "tipo": "grupo",
+   "etiqueta": "Remolque, comunicaciones de socorro y Salvamento Marítimo",
+   "nota": "Remolque (PER 3.9), contacto con Salvamento Marítimo (PER 3.10), radiobaliza, respondedor y VHF de socorro (PY 1.3) y rescate con helicóptero (PY 1.4).",
+   "padre": "seguridad",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 3.9 (Remolque), UT 3.10 (Salvamento Marítimo); PY UT 1.3 (Abandono de la embarcación), UT 1.4 (Salvamento Marítimo (rescate desde un helicóptero))"
+  },
+  {
+   "id": "seguridad.remolque.dar-tomar",
+   "tipo": "concepto",
+   "etiqueta": "Remolque: aproximación, dar y tomar el remolque",
+   "sinonimos": [
+    "remolque",
+    "remolcador",
+    "remolcado",
+    "aproximación por barlovento",
+    "guía",
+    "pie de gallo",
+    "hacer firme",
+    "nudo que se pueda largar bajo tensión",
+    "señales con los brazos"
+   ],
+   "nota": "Aproximación del remolcador, pase de la guía y del cabo, dónde y cómo hacerlo firme en el remolcado (proa, pie de gallo, nudo que pueda largarse en tensión).",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.remolque.navegar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.9 (Remolque)"
+  },
+  {
+   "id": "seguridad.remolque.navegar",
+   "tipo": "concepto",
+   "etiqueta": "Remolque: navegar remolcador y remolcado",
+   "sinonimos": [
+    "longitud del remolque",
+    "remolque abarloado",
+    "remolque por popa",
+    "timón del remolcado",
+    "evitar tensiones",
+    "velocidad moderada",
+    "ríos y puertos"
+   ],
+   "nota": "Cómo navegan ambos: longitud del cabo según la mar, tensiones, gobierno del remolcado, velocidad; cuándo conviene el remolque abarloado.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.remolque.dar-tomar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.9 (Remolque)"
+  },
+  {
+   "id": "seguridad.salvamento.contacto",
+   "tipo": "concepto",
+   "etiqueta": "Cómo contactar con Salvamento Marítimo",
+   "sinonimos": [
+    "Salvamento Marítimo",
+    "900 202 202",
+    "112",
+    "canal 16",
+    "VHF",
+    "estación de radio de a bordo",
+    "canal 70 no es para voz"
+   ],
+   "nota": "Medios para contactar: estación de radio (VHF canal 16; la LSD en canal 70 no admite voz), teléfono 900 202 202 y 112.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.radio.vhf-socorro"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-3-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.10 (Salvamento Marítimo)"
+  },
+  {
+   "id": "seguridad.radio.epirb",
+   "tipo": "concepto",
+   "etiqueta": "Radiobaliza de localización de siniestros (EPIRB/RLS)",
+   "sinonimos": [
+    "radiobaliza",
+    "EPIRB",
+    "RLS",
+    "406 MHz",
+    "Cospas-Sarsat",
+    "MMSI",
+    "activación manual y automática",
+    "48 horas",
+    "registro de la radiobaliza",
+    "falsa alarma"
+   ],
+   "nota": "Qué es y cómo funciona la radiobaliza (406 MHz, Cospas-Sarsat, código con MMSI), activación manual o automática por zafa, autonomía, registro y pruebas, qué hacer ante una activación accidental y llevarla en el abandono.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.equipo.zafa-hidrostatica"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-9"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "seguridad.radio.sart",
+   "tipo": "concepto",
+   "etiqueta": "Respondedor de radar (SART/RESAR)",
+   "sinonimos": [
+    "SART",
+    "RESAR",
+    "respondedor de radar",
+    "transpondedor",
+    "9 GHz",
+    "banda X",
+    "12 puntos",
+    "AIS-SART",
+    "96 horas",
+    "en espera"
+   ],
+   "nota": "Funcionamiento del respondedor (responde a radares de 9 GHz con 12 puntos en la pantalla, o AIS-SART), activación, autonomía, cómo y dónde colocarlo en la balsa.",
+   "padre": "seguridad.salvamento",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-9"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "seguridad.radio.vhf-socorro",
+   "tipo": "concepto",
+   "etiqueta": "VHF y LSD en socorro y abandono",
+   "sinonimos": [
+    "VHF portátil",
+    "canal 16",
+    "MAYDAY",
+    "MEDÉ",
+    "LSD",
+    "botón de socorro",
+    "canales 16, 6 y 13",
+    "mensaje de socorro",
+    "posición"
+   ],
+   "nota": "Uso del VHF (fijo o portátil) en socorro: llamada MAYDAY en canal 16 con identificación, posición y naturaleza del peligro; alerta LSD con el botón de socorro; canales mínimos del portátil.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.salvamento.contacto"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-9",
+    "per-8-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.6 (Abandono de la embarcación); PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "seguridad.salvamento.rescate-buque",
+   "tipo": "concepto",
+   "etiqueta": "Rescate por otro buque o a otro buque",
+   "sinonimos": [
+    "abarloarse a un buque que se hunde",
+    "distancia de seguridad",
+    "abarloarse a un mercante",
+    "golpes de mar contra el casco",
+    "escala de práctico",
+    "red de rescate"
+   ],
+   "nota": "Cómo se hace el rescate entre barcos: no abarloarse a un buque que se hunde (mantener la distancia) y precauciones al ser recogido por un buque grande.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.helicoptero.maniobra"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-8",
+    "py-1-10"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "seguridad.helicoptero.preparacion",
+   "tipo": "concepto",
+   "etiqueta": "Rescate con helicóptero: antes de su llegada",
+   "sinonimos": [
+    "helicóptero",
+    "tiempo de respuesta",
+    "velocidad del helicóptero",
+    "contacto por canal 16",
+    "chaleco salvavidas puesto",
+    "documentación",
+    "rescate de bienes",
+    "horas del reloj"
+   ],
+   "nota": "Lo que publica Salvamento Marítimo para antes de la llegada: tiempo de respuesta, contacto por VHF, todos con chaleco, solo la documentación imprescindible, guiado por el método del reloj.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.helicoptero.maniobra"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-10"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.4 (Salvamento Marítimo (rescate desde un helicóptero))"
+  },
+  {
+   "id": "seguridad.helicoptero.maniobra",
+   "tipo": "concepto",
+   "etiqueta": "Rescate con helicóptero: maniobra y precauciones",
+   "sinonimos": [
+    "rumbo y velocidad durante la evacuación",
+    "viento por la amura de babor",
+    "arriar las velas",
+    "arrancar el motor",
+    "despejar la cubierta",
+    "no lanzar cohetes con paracaídas",
+    "activar el RESAR",
+    "desde la balsa",
+    "desde el agua"
+   ],
+   "nota": "Maniobra de la embarcación (rumbo y velocidad indicados), veleros (arriar velas y navegar a motor), objetos en cubierta, no lanzar cohetes con paracaídas, RESAR activado y rescate desde el agua o la balsa.",
+   "padre": "seguridad.salvamento",
+   "relacionados": [
+    "seguridad.helicoptero.izado"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-10"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.4 (Salvamento Marítimo (rescate desde un helicóptero))"
+  },
+  {
+   "id": "seguridad.helicoptero.izado",
+   "tipo": "concepto",
+   "etiqueta": "Rescate con helicóptero: cable y arnés de izado",
+   "sinonimos": [
+    "cable de izado",
+    "línea guía",
+    "dejar que toque el agua",
+    "electricidad estática",
+    "no amarrar el cable",
+    "arnés de rescate",
+    "brazos pegados al cuerpo"
+   ],
+   "nota": "El cable o la guía deben tocar el agua o la cubierta antes de cogerlos (descarga estática) y nunca se hacen firmes al barco; cómo colocarse el arnés y qué hacer durante el izado.",
+   "padre": "seguridad.salvamento",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-10"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.4 (Salvamento Marítimo (rescate desde un helicóptero))"
+  },
+  {
+   "id": "legis",
+   "tipo": "grupo",
+   "etiqueta": "Legislación",
+   "nota": "Normas que afectan a la navegación de recreo: puertos, limitaciones, buzos y bañistas, contaminación, pabellón, deber de auxilio y espacios protegidos (PER UT 4), más la documentación, los títulos y el seguro que también se preguntan.",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 4 (Legislación)"
+  },
+  {
+   "id": "legis.embarcacion",
+   "tipo": "grupo",
+   "etiqueta": "Embarcación, título y documentación",
+   "nota": "Registro y matrícula, certificado de navegabilidad, seguro obligatorio, atribuciones de los títulos e infracciones. No figuran en el temario de la UT 4, pero los tribunales los preguntan en ella.",
+   "padre": "legis",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.embarcacion.registro",
+   "tipo": "concepto",
+   "etiqueta": "Registro y matrícula de la embarcación",
+   "sinonimos": [
+    "lista 7ª",
+    "lista séptima",
+    "lista 6ª",
+    "matrícula",
+    "puerto de matrícula",
+    "Registro de Buques",
+    "fines no lucrativos",
+    "inscripción"
+   ],
+   "nota": "Inscripción en el Registro de Buques: lista 7.ª (recreo sin fines lucrativos) y lista 6.ª (con fines lucrativos), matrícula y puerto de matrícula, régimen de inscripción de las pequeñas (RD 1435/2010).",
+   "padre": "legis.embarcacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.embarcacion.certificado-navegabilidad",
+   "tipo": "concepto",
+   "etiqueta": "Certificado de navegabilidad y reconocimientos",
+   "sinonimos": [
+    "certificado de navegabilidad",
+    "número máximo de personas",
+    "reconocimientos periódicos",
+    "plazo para presentar la documentación"
+   ],
+   "nota": "El número máximo de personas lo fija el certificado de navegabilidad; reconocimientos e inspecciones periódicas y excepciones (RD 1434/1999); plazo para justificar documentos requeridos.",
+   "padre": "legis.embarcacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.embarcacion.seguro",
+   "tipo": "concepto",
+   "etiqueta": "Seguro obligatorio de responsabilidad civil",
+   "sinonimos": [
+    "seguro de responsabilidad civil",
+    "seguro obligatorio",
+    "responsabilidad civil extracontractual",
+    "documentación a bordo",
+    "embarcaciones extranjeras",
+    "motos náuticas"
+   ],
+   "nota": "Qué embarcaciones deben tenerlo, qué cubre, que su justificante debe ir a bordo y qué deben acreditar las extranjeras (RD 607/1999 y TRLPEMM).",
+   "padre": "legis.embarcacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.titulos.atribuciones",
+   "tipo": "concepto",
+   "etiqueta": "Títulos: atribuciones y requisitos",
+   "sinonimos": [
+    "atribuciones básicas",
+    "atribuciones complementarias",
+    "15 metros",
+    "12 millas",
+    "entre islas",
+    "24 metros",
+    "Península-Baleares",
+    "reconocimiento psicofísico",
+    "gobierno sin título",
+    "licencia de navegación",
+    "embarcación de otro Estado"
+   ],
+   "nota": "Atribuciones básicas y complementarias del PER y demás títulos, gobierno sin título y licencia de navegación, reconocimiento psicofísico y títulos para embarcaciones extranjeras. Norma vigente: RD 875/2014, arts. 8–11, modificado por el RD 238/2019 y por el RD 1188/2025 (art. 10, desde el 1-10-2026: 15 CV, uso privado).",
+   "padre": "legis.embarcacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.infracciones",
+   "tipo": "concepto",
+   "etiqueta": "Infracciones y sanciones en la náutica de recreo",
+   "sinonimos": [
+    "infracción",
+    "sanción",
+    "procedimiento sancionador",
+    "Capitanía Marítima",
+    "Ley de Puertos del Estado y de la Marina Mercante"
+   ],
+   "nota": "Régimen de infracciones del TRLPEMM aplicado al recreo (por ejemplo, incumplir las normas o instrucciones de la Capitanía, equipo reglamentario ausente o caducado).",
+   "padre": "legis.embarcacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.navegacion",
+   "tipo": "grupo",
+   "etiqueta": "Limitaciones a la navegación",
+   "nota": "Navegación en puertos, cerca de la costa y playas, reservas marinas y zonas de buceo (PER UT 4.1–4.3).",
+   "padre": "legis",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 4.1 (Normas que afectan a las embarcaciones de recreo (tráfico marítimo y navegación interior en los puertos)), UT 4.2 (Limitaciones a la navegación), UT 4.3 (Buzos y bañistas)"
+  },
+  {
+   "id": "legis.puertos.trafico",
+   "tipo": "concepto",
+   "etiqueta": "Navegación en los puertos y sus accesos",
+   "sinonimos": [
+    "interior de los puertos",
+    "canales de acceso",
+    "bocanas",
+    "no estorbarán el tránsito",
+    "eslora inferior a 20 metros",
+    "preferencia de los buques comerciales",
+    "el que sale tiene preferencia",
+    "velocidad en puerto",
+    "Reglamento de Policía de Puertos",
+    "ordenanzas del puerto"
+   ],
+   "nota": "Las embarcaciones de recreo no estorbarán a los buques que solo pueden navegar dentro del puerto o sus canales (menores de 20 m); velocidad y normas según las ordenanzas de cada puerto. Norma vigente: RD 186/2023 (Reglamento de Ordenación de la Navegación Marítima).",
+   "padre": "legis.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.1 (Normas que afectan a las embarcaciones de recreo (tráfico marítimo y navegación interior en los puertos))"
+  },
+  {
+   "id": "legis.zona-bano.no-balizada",
+   "tipo": "concepto",
+   "etiqueta": "Costa y playas sin zona de baño balizada",
+   "sinonimos": [
+    "playa no balizada",
+    "200 metros",
+    "50 metros",
+    "3 nudos",
+    "franja de mar contigua",
+    "acantilado",
+    "fondear cerca de la costa"
+   ],
+   "nota": "Donde no está balizada, la zona de baño ocupa 200 m en playas y 50 m en el resto de la costa; dentro no se navega a más de 3 nudos. Norma vigente: Reglamento General de Costas (RD 876/2014), art. 73 (la Orden de 1964 quedó derogada en 2023).",
+   "padre": "legis.navegacion",
+   "relacionados": [
+    "legis.zona-bano.balizada"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.2 (Limitaciones a la navegación)"
+  },
+  {
+   "id": "legis.zona-bano.balizada",
+   "tipo": "concepto",
+   "etiqueta": "Zonas de baño balizadas y canales de acceso",
+   "sinonimos": [
+    "zona de baño balizada",
+    "prohibida la navegación",
+    "canales de lanzamiento y varada",
+    "canal balizado",
+    "entrar perpendicular a la playa",
+    "mínima velocidad",
+    "motos náuticas en zona de baño"
+   ],
+   "nota": "En las zonas de baño balizadas no se navega; la entrada y salida se hace por canales señalizados o, si no los hay, perpendicular a la playa a mínima velocidad. Norma vigente: RD 876/2014, art. 73.",
+   "padre": "legis.navegacion",
+   "relacionados": [
+    "legis.zona-bano.no-balizada"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.2 (Limitaciones a la navegación)"
+  },
+  {
+   "id": "legis.reservas-marinas",
+   "tipo": "concepto",
+   "etiqueta": "Reservas marinas y otras limitaciones de la Administración",
+   "sinonimos": [
+    "reserva marina",
+    "actividades reguladas",
+    "fondeo en zonas reguladas",
+    "Autoridad Portuaria",
+    "limitaciones por la Administración",
+    "derecho a detenerse o fondear"
+   ],
+   "nota": "Qué son las reservas marinas y qué regulan (pesca, fondeo, navegación), y la facultad de la Administración de limitar zonas, velocidades y fondeos.",
+   "padre": "legis.navegacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.2 (Limitaciones a la navegación)"
+  },
+  {
+   "id": "legis.buceo.banderas",
+   "tipo": "concepto",
+   "etiqueta": "Banderas de buceo: «Alfa» y «Bravo» modificada",
+   "sinonimos": [
+    "bandera Alfa",
+    "bandera A",
+    "blanca y azul",
+    "Bravo modificada",
+    "roja con franja diagonal blanca",
+    "buzo sumergido",
+    "manténgase alejado y a poca velocidad",
+    "capacidad de maniobra restringida"
+   ],
+   "nota": "Significado y aspecto de la bandera «A» del Código Internacional de Señales y de la «Bravo» modificada (roja con diagonal blanca); el barco de buceo se considera de maniobra restringida (RIPA).",
+   "padre": "legis.navegacion",
+   "relacionados": [
+    "legis.buceo.distancia"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.3 (Buzos y bañistas)"
+  },
+  {
+   "id": "legis.buceo.distancia",
+   "tipo": "concepto",
+   "etiqueta": "Resguardo a buceadores y bañistas",
+   "sinonimos": [
+    "50 metros",
+    "boya de señalización",
+    "dispositivo de balizamiento en superficie",
+    "zona de buceo",
+    "embarcación de apoyo",
+    "bañistas"
+   ],
+   "nota": "Distancia mínima de 50 m a la zona de buceo señalizada y precauciones ante bañistas. Norma vigente: RD 550/2020, art. 14 (modificado por el RD 1188/2025).",
+   "padre": "legis.navegacion",
+   "relacionados": [
+    "legis.buceo.banderas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.3 (Buzos y bañistas)"
+  },
+  {
+   "id": "legis.contaminacion",
+   "tipo": "grupo",
+   "etiqueta": "Prevención de la contaminación",
+   "nota": "Aguas sucias, entrega de desechos, basuras (MARPOL V), hidrocarburos, responsabilidad y aviso (PER UT 4.4). Normas vigentes: RD 339/2021 (sustituye a la Orden FOM/1144/2003) y RD 128/2022 (sustituye al RD 1381/2002).",
+   "padre": "legis",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.aguas-sucias.descarga",
+   "tipo": "concepto",
+   "etiqueta": "Aguas sucias: condiciones de descarga",
+   "sinonimos": [
+    "aguas sucias",
+    "más de 3 millas",
+    "más de 12 millas",
+    "desmenuzadas y desinfectadas",
+    "sin tratar",
+    "4 nudos",
+    "régimen moderado",
+    "línea de base",
+    "tierra más próxima",
+    "planta de tratamiento"
+   ],
+   "nota": "Cuándo se pueden descargar: tratadas (desmenuzadas y desinfectadas) a más de 3 millas, sin tratar a más de 12 millas, en ruta a 4 nudos o más y de forma moderada, o con planta de tratamiento homologada. Norma vigente: RD 339/2021, art. 23.",
+   "padre": "legis.contaminacion",
+   "relacionados": [
+    "legis.aguas-sucias.prohibicion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.aguas-sucias.prohibicion",
+   "tipo": "concepto",
+   "etiqueta": "Aguas sucias: dónde está prohibida toda descarga",
+   "sinonimos": [
+    "zonas portuarias",
+    "aguas protegidas",
+    "zona 7",
+    "rías y bahías",
+    "amarrados en puerto",
+    "ni siquiera con tratamiento",
+    "espacios protegidos"
+   ],
+   "nota": "Lugares donde no se puede descargar nada, ni tratado: puertos, aguas protegidas y otros espacios. Norma vigente: RD 339/2021, art. 23 (antes, Orden FOM/1144/2003: rías y bahías).",
+   "padre": "legis.contaminacion",
+   "relacionados": [
+    "legis.aguas-sucias.descarga"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.aguas-sucias.retencion",
+   "tipo": "concepto",
+   "etiqueta": "Aguas sucias: inodoros y sistemas de retención",
+   "sinonimos": [
+    "inodoro",
+    "tanque de retención",
+    "sistema de retención",
+    "conexión universal",
+    "capacidad del tanque",
+    "embarcaciones con marcado CE"
+   ],
+   "nota": "Embarcaciones con inodoro: sistema de retención o tratamiento, conexión universal de descarga y capacidad. Norma vigente: RD 339/2021, art. 22.",
+   "padre": "legis.contaminacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.desechos-puerto",
+   "tipo": "concepto",
+   "etiqueta": "Entrega de desechos en puerto",
+   "sinonimos": [
+    "instalaciones portuarias receptoras",
+    "entrega de desechos",
+    "notificación de desechos",
+    "RD 128/2022",
+    "contenedores del puerto"
+   ],
+   "nota": "Las basuras y desechos se entregan en las instalaciones receptoras del puerto. Norma vigente: RD 128/2022 (deroga el RD 1381/2002; ya no hay notificación reducida anual para el recreo).",
+   "padre": "legis.contaminacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.marpol.ambito",
+   "tipo": "concepto",
+   "etiqueta": "MARPOL anexo V: qué regula y a quién se aplica",
+   "sinonimos": [
+    "MARPOL",
+    "anexo V",
+    "basuras",
+    "regla 2",
+    "todos los buques",
+    "desechos domésticos"
+   ],
+   "nota": "Qué es el convenio MARPOL y sus anexos, qué son «basuras» en el anexo V y su ámbito de aplicación (regla 2: todos los buques).",
+   "padre": "legis.contaminacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.marpol.prohibicion",
+   "tipo": "concepto",
+   "etiqueta": "MARPOL V: prohibición general (plásticos, aceite de cocina)",
+   "sinonimos": [
+    "regla 3",
+    "plásticos",
+    "bolsas de plástico",
+    "aceite de cocina",
+    "prohibición general",
+    "cabos sintéticos"
+   ],
+   "nota": "Regla 3: prohibida la descarga de basuras salvo lo permitido; nunca plásticos (bolsas incluidas) ni aceite de cocina.",
+   "padre": "legis.contaminacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.marpol.fuera-zonas",
+   "tipo": "concepto",
+   "etiqueta": "MARPOL V: descarga fuera de zonas especiales",
+   "sinonimos": [
+    "regla 4",
+    "desechos de alimentos",
+    "triturados",
+    "desmenuzados",
+    "3 millas",
+    "12 millas",
+    "en ruta",
+    "basuras mezcladas"
+   ],
+   "nota": "Regla 4: alimentos triturados a más de 3 millas y sin triturar a más de 12, siempre en ruta; si las basuras están mezcladas se aplica la norma más estricta.",
+   "padre": "legis.contaminacion",
+   "relacionados": [
+    "legis.marpol.zonas-especiales"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.marpol.zonas-especiales",
+   "tipo": "concepto",
+   "etiqueta": "MARPOL V: zonas especiales, el Mediterráneo",
+   "sinonimos": [
+    "regla 6",
+    "zona especial",
+    "Mediterráneo",
+    "12 millas",
+    "desmenuzados o triturados"
+   ],
+   "nota": "Regla 6: en zonas especiales como el Mediterráneo solo restos de comida, triturados, a más de 12 millas y en ruta.",
+   "padre": "legis.contaminacion",
+   "relacionados": [
+    "legis.marpol.fuera-zonas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.hidrocarburos",
+   "tipo": "concepto",
+   "etiqueta": "Hidrocarburos: derrames y aceites de sentina",
+   "sinonimos": [
+    "repostar combustible",
+    "derrame",
+    "aceites de sentina",
+    "hidrocarburos",
+    "MARPOL anexo I"
+   ],
+   "nota": "Prevención de derrames al repostar y prohibición de verter hidrocarburos o aguas oleosas de sentina (MARPOL anexo I, al que remite el RD 339/2021, art. 21).",
+   "padre": "legis.contaminacion",
+   "relacionados": [
+    "legis.contaminacion.aviso"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-4",
+    "per-4-6"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.contaminacion.responsabilidad",
+   "tipo": "concepto",
+   "etiqueta": "Responsabilidad por contaminación",
+   "sinonimos": [
+    "responsabilidad solidaria",
+    "naviero",
+    "propietario",
+    "patrón",
+    "asegurador",
+    "armador",
+    "multa"
+   ],
+   "nota": "De las infracciones por contaminación desde una embarcación responden solidariamente el naviero o propietario, el patrón y el asegurador de la responsabilidad civil (TRLPEMM).",
+   "padre": "legis.contaminacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.contaminacion.aviso",
+   "tipo": "concepto",
+   "etiqueta": "Avistamiento de contaminación: obligación de informar",
+   "sinonimos": [
+    "avistar un vertido",
+    "derrame de hidrocarburos",
+    "informar",
+    "Salvamento Marítimo",
+    "Capitanía Marítima",
+    "estación costera",
+    "Autoridad Portuaria"
+   ],
+   "nota": "Quien avista una contaminación debe informar de inmediato (Salvamento Marítimo o estación costera; en puerto, a la Autoridad Portuaria), con los datos del vertido.",
+   "padre": "legis.contaminacion",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.4 (Prevención de la contaminación)"
+  },
+  {
+   "id": "legis.obligaciones",
+   "tipo": "grupo",
+   "etiqueta": "Deber de auxilio, avisos y pabellón",
+   "nota": "Obligación de auxilio (SOLAS V/33.1), notificación de sucesos y uso del pabellón nacional y autonómico (PER UT 4.5–4.6).",
+   "padre": "legis",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 4.5 (Pabellón nacional), UT 4.6 (Salvamento (SOLAS, cap. V, regla 33.1))"
+  },
+  {
+   "id": "legis.auxilio",
+   "tipo": "concepto",
+   "etiqueta": "Deber de auxilio a personas en peligro (SOLAS V/33.1)",
+   "sinonimos": [
+    "SOLAS",
+    "regla 33",
+    "prestar auxilio",
+    "personas en peligro",
+    "señal de socorro",
+    "diario de navegación",
+    "sin grave peligro para el buque"
+   ],
+   "nota": "El capitán que recibe una señal de socorro debe acudir a toda máquina si puede hacerlo; si no puede o no lo considera razonable, anota el motivo en el diario de navegación e informa.",
+   "padre": "legis.obligaciones",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.6 (Salvamento (SOLAS, cap. V, regla 33.1))"
+  },
+  {
+   "id": "legis.notificacion-sucesos",
+   "tipo": "concepto",
+   "etiqueta": "Notificación de incidentes y accidentes en la mar",
+   "sinonimos": [
+    "notificación de incidentes",
+    "estación costera",
+    "RD 210/2004",
+    "comunicar a la Capitanía"
+   ],
+   "nota": "Qué sucesos hay que comunicar a la Administración marítima o a la estación costera (RD 210/2004, art. 19; Ley 14/2014).",
+   "padre": "legis.obligaciones",
+   "relacionados": [
+    "legis.contaminacion.aviso"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-1",
+    "per-4-6"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "legis.pabellon.nacional",
+   "tipo": "concepto",
+   "etiqueta": "Pabellón nacional",
+   "sinonimos": [
+    "pabellón",
+    "bandera de España",
+    "asta de popa",
+    "pico del palo mayor",
+    "único pabellón",
+    "gallardete del club"
+   ],
+   "nota": "Las embarcaciones matriculadas en España enarbolan el pabellón español, reservado al asta de popa o al pico; sin él izado no se iza otra bandera (salvo el gallardete del club).",
+   "padre": "legis.obligaciones",
+   "relacionados": [
+    "legis.pabellon.autonomica"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.5 (Pabellón nacional)"
+  },
+  {
+   "id": "legis.pabellon.autonomica",
+   "tipo": "concepto",
+   "etiqueta": "Bandera de la comunidad autónoma",
+   "sinonimos": [
+    "bandera autonómica",
+    "un tercio",
+    "junto con la nacional",
+    "no en el asta de popa"
+   ],
+   "nota": "Uso voluntario de la bandera autonómica: siempre con la nacional izada, nunca en el asta de popa ni en el pico, y de tamaño no superior a un tercio de la nacional.",
+   "padre": "legis.obligaciones",
+   "relacionados": [
+    "legis.pabellon.nacional"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.5 (Pabellón nacional)"
+  },
+  {
+   "id": "legis.espacios",
+   "tipo": "grupo",
+   "etiqueta": "Espacios naturales protegidos",
+   "nota": "ZEPIM y praderas de posidonia (PER UT 4.7).",
+   "padre": "legis",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 4.7 (Protección de espacios naturales del medio marino (ZEPIM, posidonia))"
+  },
+  {
+   "id": "legis.espacios.zepim",
+   "tipo": "concepto",
+   "etiqueta": "Zonas Especialmente Protegidas de Importancia para el Mediterráneo (ZEPIM)",
+   "sinonimos": [
+    "ZEPIM",
+    "Cabrera",
+    "Columbretes",
+    "Cabo de Gata",
+    "Alborán",
+    "Maro-Cerro Gordo",
+    "Levante almeriense",
+    "corredor de cetáceos",
+    "Convenio de Barcelona"
+   ],
+   "nota": "Qué son las ZEPIM, su objetivo y cuáles hay en España (nueve más el corredor de migración de cetáceos).",
+   "padre": "legis.espacios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.7 (Protección de espacios naturales del medio marino (ZEPIM, posidonia))"
+  },
+  {
+   "id": "legis.espacios.posidonia",
+   "tipo": "concepto",
+   "etiqueta": "Praderas de posidonia y fondeo",
+   "sinonimos": [
+    "Posidonia oceanica",
+    "pradera de posidonia",
+    "fanerógamas",
+    "fondeo prohibido",
+    "Sg en la carta",
+    "boyas de fondeo",
+    "fondear en arena"
+   ],
+   "nota": "Valor de la posidonia, cómo reconocerla en la carta y prohibición de fondear sobre ella. Norma vigente: RD 191/2026 (prohibición general en el Mediterráneo desde el 2-4-2026) y normas autonómicas (Baleares, Decreto 25/2018).",
+   "padre": "legis.espacios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-4-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 4.7 (Protección de espacios naturales del medio marino (ZEPIM, posidonia))"
+  },
+  {
+   "id": "emergencia",
+   "tipo": "grupo",
+   "etiqueta": "Emergencias en la mar",
+   "nota": "Accidentes personales, varada, abordaje, vías de agua, incendio, abandono y supervivencia (PER UT 8, PY UT 1.3).",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 8 (Emergencias en la mar); PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "emergencia.auxilios",
+   "tipo": "grupo",
+   "etiqueta": "Primeros auxilios y ayuda médica",
+   "nota": "Tratamiento de urgencia de accidentes personales, reanimación y ayuda médica a distancia (PER UT 8.1 y 3.8).",
+   "padre": "emergencia",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales), UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "emergencia.auxilios.heridas-contusiones",
+   "tipo": "concepto",
+   "etiqueta": "Heridas y contusiones",
+   "sinonimos": [
+    "herida",
+    "contusión",
+    "hematoma",
+    "frío local",
+    "limpieza de la herida",
+    "infección",
+    "herida abdominal"
+   ],
+   "nota": "Qué son y cómo se tratan de urgencia heridas (limpiar, cortar la hemorragia, riesgo de infección) y contusiones (frío, reposo, elevación; no pinchar el hematoma).",
+   "padre": "emergencia.auxilios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.hemorragias-tipos",
+   "tipo": "concepto",
+   "etiqueta": "Hemorragias: tipos",
+   "sinonimos": [
+    "hemorragia arterial",
+    "hemorragia venosa",
+    "rojo vivo a borbotones",
+    "rojo oscuro continua",
+    "hemorragia interna",
+    "hemorragia externa"
+   ],
+   "nota": "Cómo distinguir hemorragias arteriales, venosas, externas e internas.",
+   "padre": "emergencia.auxilios",
+   "relacionados": [
+    "emergencia.auxilios.hemorragias-tratamiento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.hemorragias-tratamiento",
+   "tipo": "concepto",
+   "etiqueta": "Hemorragias: cómo detenerlas",
+   "sinonimos": [
+    "presión directa",
+    "elevar el miembro",
+    "torniquete",
+    "aflojar cada cuarto de hora",
+    "hemorragia nasal",
+    "epistaxis",
+    "consejo radio-médico"
+   ],
+   "nota": "Presión directa y elevación, torniquete como último recurso (aflojar cada 15 min), actuación ante hemorragia interna o nasal.",
+   "padre": "emergencia.auxilios",
+   "relacionados": [
+    "emergencia.auxilios.hemorragias-tipos"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-1"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.quemaduras",
+   "tipo": "concepto",
+   "etiqueta": "Quemaduras: grados, gravedad y tratamiento",
+   "sinonimos": [
+    "quemadura",
+    "primer grado",
+    "segundo grado",
+    "ampollas",
+    "vesículas",
+    "tercer grado",
+    "regla de la palma 1 %",
+    "enfriar con agua",
+    "quemadura química",
+    "quemadura solar",
+    "evacuación"
+   ],
+   "nota": "Grados (enrojecimiento, ampollas, destrucción), extensión y gravedad (cuándo evacuar) y tratamiento de urgencia (enfriar, no romper ampollas, cubrir), incluidas químicas y solares.",
+   "padre": "emergencia.auxilios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.insolacion",
+   "tipo": "concepto",
+   "etiqueta": "Insolación y golpe de calor",
+   "sinonimos": [
+    "insolación",
+    "golpe de calor",
+    "lugar fresco",
+    "compresas frías",
+    "suero oral",
+    "temperatura alta"
+   ],
+   "nota": "Síntomas (temperatura alta, cefalea, piel caliente; no hipotermia) y tratamiento (lugar fresco y ventilado, enfriar, beber si está consciente, nada de alcohol).",
+   "padre": "emergencia.auxilios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.mareo",
+   "tipo": "concepto",
+   "etiqueta": "Mal de mar o mareo",
+   "sinonimos": [
+    "mareo",
+    "mal de mar",
+    "cinetosis",
+    "pastillas contra el mareo"
+   ],
+   "nota": "Causas, prevención y tratamiento del mareo a bordo.",
+   "padre": "emergencia.auxilios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-2"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.rcp",
+   "tipo": "concepto",
+   "etiqueta": "Reanimación cardiopulmonar",
+   "sinonimos": [
+    "RCP",
+    "reanimación",
+    "boca a boca",
+    "masaje cardiaco",
+    "30 compresiones y 2 insuflaciones",
+    "decúbito supino",
+    "superficie dura"
+   ],
+   "nota": "Cuándo y cómo hacer la reanimación de un náufrago: respiración boca a boca y masaje cardiaco (30:2), posición del paciente.",
+   "padre": "emergencia.auxilios",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "emergencia.auxilios.valoracion",
+   "tipo": "concepto",
+   "etiqueta": "Valoración del accidentado y posición lateral de seguridad",
+   "sinonimos": [
+    "constantes vitales",
+    "posición lateral de seguridad",
+    "inconsciente que respira",
+    "PAS",
+    "proteger, avisar, socorrer"
+   ],
+   "nota": "Valoración inicial (constantes vitales, pasos ante una emergencia sanitaria) y posición lateral de seguridad del inconsciente que respira.",
+   "padre": "emergencia.auxilios",
+   "relacionados": [
+    "emergencia.auxilios.rcp"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-1"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "emergencia.auxilios.radio-medico",
+   "tipo": "concepto",
+   "etiqueta": "Centro Radio-Médico Español",
+   "sinonimos": [
+    "Radio-Médico",
+    "CRME",
+    "Instituto Social de la Marina",
+    "consulta médica por radio",
+    "teléfono móvil",
+    "horario de consultas no urgentes",
+    "24 horas"
+   ],
+   "nota": "Servicio de consulta médica a distancia del ISM: cómo contactar (radio y teléfono), horarios recomendados y disponibilidad.",
+   "padre": "emergencia.auxilios",
+   "relacionados": [
+    "emergencia.auxilios.guia-sanitaria"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.auxilios.guia-sanitaria",
+   "tipo": "concepto",
+   "etiqueta": "Guía Sanitaria a bordo y botiquín",
+   "sinonimos": [
+    "Guía Sanitaria a Bordo",
+    "guía médica del ISM",
+    "descargar gratis",
+    "botiquín"
+   ],
+   "nota": "Importancia de llevar la Guía Sanitaria del ISM y cómo conseguirla (gratuita, también en línea); botiquín reglamentario (RD 339/2021, art. 13).",
+   "padre": "emergencia.auxilios",
+   "relacionados": [
+    "emergencia.auxilios.radio-medico"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.1 (Accidentes personales)"
+  },
+  {
+   "id": "emergencia.averias",
+   "tipo": "grupo",
+   "etiqueta": "Varada, abordaje y vías de agua",
+   "nota": "Medidas ante varada involuntaria, abordaje e inundación (PER UT 8.2–8.4).",
+   "padre": "emergencia",
+   "tit": [
+    "per"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 8.2 (Varada involuntaria), UT 8.3 (Abordaje), UT 8.4 (Vías de agua e inundación)"
+  },
+  {
+   "id": "emergencia.varada.primeras-medidas",
+   "tipo": "concepto",
+   "etiqueta": "Varada: primeras medidas",
+   "sinonimos": [
+    "varada involuntaria",
+    "embarrancada",
+    "evaluar daños",
+    "tipo de fondo",
+    "sondas alrededor",
+    "vías de agua tras varar"
+   ],
+   "nota": "Tras varar: reconocer averías y vías de agua, tipo de fondo y sondas alrededor antes de intentar salir.",
+   "padre": "emergencia.averias",
+   "relacionados": [
+    "emergencia.varada.reflotar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.2 (Varada involuntaria)"
+  },
+  {
+   "id": "emergencia.varada.reflotar",
+   "tipo": "concepto",
+   "etiqueta": "Varada: cómo reflotar",
+   "sinonimos": [
+    "reflotar",
+    "pleamar",
+    "marea",
+    "trasladar pesos",
+    "trasvasar líquidos",
+    "aligerar",
+    "espiar con el ancla",
+    "no dar atrás rápidamente",
+    "fondo fangoso"
+   ],
+   "nota": "Medidas para salir: esperar la marea, cambiar el asiento trasladando o aligerando pesos, espiarse con un ancla, no dar atrás bruscamente en fango o arena (no lastrar).",
+   "padre": "emergencia.averias",
+   "relacionados": [
+    "emergencia.varada.primeras-medidas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.2 (Varada involuntaria)"
+  },
+  {
+   "id": "emergencia.abordaje.medidas",
+   "tipo": "concepto",
+   "etiqueta": "Abordaje: medidas y reconocimiento de averías",
+   "sinonimos": [
+    "abordaje",
+    "no separar los barcos",
+    "evaluar averías",
+    "proa incrustada",
+    "asistencia a las personas"
+   ],
+   "nota": "Tras un abordaje: atender a las personas y evaluar averías y vías de agua antes de separar los barcos, que pueden estar taponando la brecha.",
+   "padre": "emergencia.averias",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-4"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.3 (Abordaje)"
+  },
+  {
+   "id": "emergencia.abordaje.prevencion",
+   "tipo": "concepto",
+   "etiqueta": "Prevención de abordajes",
+   "sinonimos": [
+    "prevenir abordajes",
+    "hacerse ver",
+    "reflector izado",
+    "avisar por VHF",
+    "no confiar en la preferencia del velero"
+   ],
+   "nota": "Recomendaciones para no ser abordado: vigilancia, hacerse visible en el radar, comunicar por VHF, no confiar en la preferencia. Las reglas de rumbo y gobierno son del RIPA (otro grupo).",
+   "padre": "emergencia.averias",
+   "relacionados": [
+    "seguridad.equipo.reflector-radar"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-4",
+    "per-8-5"
+   ],
+   "temario": "pendiente"
+  },
+  {
+   "id": "emergencia.via-agua.puntos-riesgo",
+   "tipo": "concepto",
+   "etiqueta": "Vías de agua: puntos de mayor riesgo",
+   "sinonimos": [
+    "vía de agua",
+    "bocina",
+    "limera del timón",
+    "grifos de fondo",
+    "manguitos",
+    "abrazaderas",
+    "obra viva",
+    "sentina"
+   ],
+   "nota": "Dónde suelen producirse (bocina, limera, grifos de fondo, manguitos y abrazaderas, en la obra viva) y vigilancia de la sentina para detectarlas.",
+   "padre": "emergencia.averias",
+   "relacionados": [
+    "emergencia.via-agua.medidas"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.4 (Vías de agua e inundación)"
+  },
+  {
+   "id": "emergencia.via-agua.medidas",
+   "tipo": "concepto",
+   "etiqueta": "Vías de agua: achique y taponamiento",
+   "sinonimos": [
+    "achicar",
+    "bomba de achique",
+    "bomba manual",
+    "bomba eléctrica",
+    "motor en marcha",
+    "espiche",
+    "colchonetas",
+    "taponar",
+    "escorar a la banda contraria",
+    "agua salada y caliente"
+   ],
+   "nota": "Actuación: achicar con bombas (mantenimiento, no parar el motor), taponar con espiches y colchonetas, escorar si la brecha está cerca de la flotación, identificar el origen del agua y pedir socorro si no se controla.",
+   "padre": "emergencia.averias",
+   "relacionados": [
+    "emergencia.via-agua.puntos-riesgo"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-5"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.4 (Vías de agua e inundación)"
+  },
+  {
+   "id": "emergencia.incendio",
+   "tipo": "grupo",
+   "etiqueta": "Incendios a bordo",
+   "nota": "Prevención, teoría del fuego, clases, extinción y actuación (PER UT 8.5; extintores, PY UT 1.2).",
+   "padre": "emergencia",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "emergencia.incendio.prevencion",
+   "tipo": "concepto",
+   "etiqueta": "Prevención de incendios y explosiones: lugares de riesgo",
+   "sinonimos": [
+    "lugares de riesgo",
+    "cocina",
+    "cámara de motores",
+    "toma de combustible",
+    "baterías",
+    "hidrógeno",
+    "instalación eléctrica",
+    "pañol de pinturas",
+    "ventilación"
+   ],
+   "nota": "Lugares de riesgo a bordo y medidas de prevención (ventilar cámaras y baterías, cuidado al repostar, instalación eléctrica).",
+   "padre": "emergencia.incendio",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones)"
+  },
+  {
+   "id": "emergencia.incendio.tetraedro",
+   "tipo": "concepto",
+   "etiqueta": "Tetraedro del fuego",
+   "sinonimos": [
+    "tetraedro del fuego",
+    "triángulo del fuego",
+    "combustible",
+    "comburente",
+    "oxígeno",
+    "calor",
+    "energía de activación",
+    "reacción en cadena"
+   ],
+   "nota": "Los cuatro factores que deben concurrir (combustible, comburente, calor o energía de activación y reacción en cadena) y por qué el fuego se mantiene.",
+   "padre": "emergencia.incendio",
+   "relacionados": [
+    "emergencia.incendio.extincion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones)"
+  },
+  {
+   "id": "emergencia.incendio.clases",
+   "tipo": "concepto",
+   "etiqueta": "Clases de fuego (UNE): A, B, C y F",
+   "sinonimos": [
+    "clase A",
+    "clase B",
+    "clase C",
+    "clase F",
+    "sólidos con brasas",
+    "líquidos",
+    "gases",
+    "aceites de cocina",
+    "Alfa",
+    "Bravo",
+    "Charlie",
+    "Foxtrot",
+    "naturaleza del combustible"
+   ],
+   "nota": "Clasificación UNE según el combustible: A sólidos, B líquidos, C gases, F aceites y grasas de cocina (la D, metales, solo de pasada).",
+   "padre": "emergencia.incendio",
+   "relacionados": [
+    "emergencia.incendio.agentes"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones)"
+  },
+  {
+   "id": "emergencia.incendio.extincion",
+   "tipo": "concepto",
+   "etiqueta": "Mecanismos de extinción",
+   "sinonimos": [
+    "enfriamiento",
+    "sofocación",
+    "dispersión",
+    "desalimentación",
+    "aislamiento del combustible",
+    "inhibición de la reacción en cadena"
+   ],
+   "nota": "Las cuatro técnicas y qué factor del tetraedro elimina cada una: enfriamiento (calor), sofocación (comburente), dispersión o desalimentación (combustible), inhibición (reacción en cadena).",
+   "padre": "emergencia.incendio",
+   "relacionados": [
+    "emergencia.incendio.tetraedro"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones)"
+  },
+  {
+   "id": "emergencia.incendio.agentes",
+   "tipo": "concepto",
+   "etiqueta": "Agentes extintores según la clase de fuego",
+   "sinonimos": [
+    "agua",
+    "chorro de agua",
+    "agua pulverizada",
+    "niebla de agua",
+    "espuma",
+    "polvo seco",
+    "polvo polivalente ABC",
+    "CO2",
+    "dióxido de carbono",
+    "fuego eléctrico",
+    "tensión eléctrica",
+    "aceite en combustión"
+   ],
+   "nota": "Qué agente usar en cada caso: agua para A y nunca en eléctrico ni con aceite o combustible; espuma y polvo para B; polvo para C; CO2 en equipos con tensión y cámaras de motores.",
+   "padre": "emergencia.incendio",
+   "relacionados": [
+    "emergencia.incendio.clases",
+    "emergencia.incendio.extintores"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-8-7",
+    "per-8-6",
+    "py-1-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "emergencia.incendio.extintores",
+   "tipo": "concepto",
+   "etiqueta": "Extintores portátiles y baldes: uso y mantenimiento",
+   "sinonimos": [
+    "extintor de polvo seco",
+    "base de las llamas",
+    "a favor del viento",
+    "eficacia del extintor",
+    "113B",
+    "manómetro",
+    "comprobaciones periódicas",
+    "estiba del extintor",
+    "balde contra incendios"
+   ],
+   "nota": "Cómo usar un extintor (a la base de las llamas, de espaldas al viento, en ráfagas), qué indica su eficacia (p. ej. 34B, 113B), comprobaciones periódicas, estiba y usos del balde.",
+   "padre": "emergencia.incendio",
+   "relacionados": [
+    "seguridad.equipo.extintores-dotacion"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-8-7",
+    "py-1-7",
+    "per-3-6"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad), UT 8.5 (Prevención de incendios y explosiones); PY UT 1.2 (Equipo de seguridad)"
+  },
+  {
+   "id": "emergencia.incendio.actuacion",
+   "tipo": "concepto",
+   "etiqueta": "Actuación al declararse un incendio y socairear",
+   "sinonimos": [
+    "socairear el fuego",
+    "viento aparente cero",
+    "incendio a proa: popa al viento",
+    "incendio a popa: proa al viento",
+    "cerrar aberturas",
+    "cortar combustible",
+    "no ventilar",
+    "dar la alarma"
+   ],
+   "nota": "Modo de proceder: alarma, cortar combustible y electricidad, cerrar aberturas, atacar el fuego y gobernar para que el viento aparente sea nulo o deje el fuego a sotavento (socairear).",
+   "padre": "emergencia.incendio",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.5 (Prevención de incendios y explosiones)"
+  },
+  {
+   "id": "emergencia.abandono",
+   "tipo": "grupo",
+   "etiqueta": "Abandono de la embarcación y supervivencia",
+   "nota": "Decisión y preparación del abandono, abandono con y sin balsa, vida en la balsa, supervivencia en el agua e hipotermia (PER UT 8.6 y 3.8; PY UT 1.3).",
+   "padre": "emergencia",
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [],
+   "temario": "RD 875/2014, anexo II: PER UT 8.6 (Abandono de la embarcación), UT 3.8 (Hombre al agua); PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "emergencia.abandono.preparacion",
+   "tipo": "concepto",
+   "etiqueta": "Antes de abandonar la embarcación",
+   "sinonimos": [
+    "abandonar solo si se va a hundir",
+    "llamada de socorro",
+    "MAYDAY",
+    "activar la radiobaliza",
+    "ponerse el chaleco",
+    "ropa de abrigo",
+    "llevar la EPIRB, el SART y el VHF",
+    "agua y víveres"
+   ],
+   "nota": "Cuándo abandonar (solo con la seguridad de que se hunde) y qué hacer antes: socorro por radio, radiobaliza, chalecos y ropa de abrigo, llevar equipos de localización y agua.",
+   "padre": "emergencia.abandono",
+   "relacionados": [
+    "seguridad.radio.vhf-socorro"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-8-8",
+    "py-1-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.6 (Abandono de la embarcación); PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "emergencia.abandono.balsa",
+   "tipo": "concepto",
+   "etiqueta": "Abandonar con balsa: lanzarla, adrizarla y embarcar",
+   "sinonimos": [
+    "lanzar la balsa",
+    "hacer firme la boza",
+    "driza",
+    "tirar de la boza",
+    "balsa invertida",
+    "adrizar la balsa",
+    "cinchas",
+    "embarcar sin mojarse",
+    "cortar la boza el último"
+   ],
+   "nota": "Secuencia de lanzamiento manual (boza firme al barco, lanzar, tirar hasta que se infle), cómo adrizar una balsa invertida, embarcar sin saltar sobre ella y cuándo cortar la boza.",
+   "padre": "emergencia.abandono",
+   "relacionados": [
+    "seguridad.equipo.zafa-hidrostatica"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-1-8",
+    "py-1-5",
+    "per-3-7"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.7 (Material de seguridad); PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "emergencia.abandono.sin-balsa",
+   "tipo": "concepto",
+   "etiqueta": "Abandonar sin balsa",
+   "sinonimos": [
+    "saltar al agua de pie",
+    "sujetar el chaleco",
+    "tapar la nariz",
+    "banda de barlovento",
+    "banda de sotavento",
+    "no nadar",
+    "mantenerse juntos"
+   ],
+   "nota": "Cómo abandonar sin balsa: saltar de pie, sujetando el chaleco y tapándose la nariz, desde poca altura y por la banda adecuada; después no nadar y mantenerse juntos.",
+   "padre": "emergencia.abandono",
+   "relacionados": [
+    "emergencia.supervivencia.en-el-agua"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "per-8-8",
+    "per-8-9",
+    "py-1-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.6 (Abandono de la embarcación)"
+  },
+  {
+   "id": "emergencia.abandono.vida-en-balsa",
+   "tipo": "concepto",
+   "etiqueta": "Permanencia en la balsa salvavidas",
+   "sinonimos": [
+    "organización a bordo",
+    "asignar funciones",
+    "racionar el agua",
+    "no beber agua de mar",
+    "deshidratación",
+    "ancla flotante",
+    "no alejarse de la zona",
+    "pastillas contra el mareo",
+    "guardias"
+   ],
+   "nota": "Organización en la balsa: revisar equipo, ancla flotante para no derivar y quedarse en la zona, racionar agua (nada el primer día, nunca agua de mar), mareo, guardias y vigilancia.",
+   "padre": "emergencia.abandono",
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-1-8"
+   ],
+   "temario": "RD 875/2014, anexo II: PY UT 1.3 (Abandono de la embarcación)"
+  },
+  {
+   "id": "emergencia.supervivencia.en-el-agua",
+   "tipo": "concepto",
+   "etiqueta": "Supervivencia en el agua",
+   "sinonimos": [
+    "permanecer en el agua",
+    "postura fetal",
+    "HELP",
+    "agruparse",
+    "tiempo de supervivencia",
+    "temperatura del agua",
+    "no nadar"
+   ],
+   "nota": "Cómo aumentar la supervivencia en el agua y prevenir la hipotermia (ropa de abrigo antes de saltar, postura fetal o HELP, agruparse, no nadar) y de qué depende el tiempo de supervivencia (temperatura del agua, ropa, chaleco).",
+   "padre": "emergencia.abandono",
+   "relacionados": [
+    "emergencia.hipotermia.definicion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-8-9",
+    "per-3-3"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 8.6 (Abandono de la embarcación), UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "emergencia.hipotermia.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Hipotermia: qué es y cómo se reconoce",
+   "sinonimos": [
+    "hipotermia",
+    "35 ºC",
+    "temperatura corporal",
+    "temblores",
+    "confusión",
+    "principal causa de muerte de náufragos"
+   ],
+   "nota": "Concepto de hipotermia (temperatura corporal por debajo de 35 °C), síntomas y por qué es el mayor riesgo del náufrago.",
+   "padre": "emergencia.abandono",
+   "relacionados": [
+    "emergencia.hipotermia.tratamiento"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-8",
+    "per-8-9"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  },
+  {
+   "id": "emergencia.hipotermia.tratamiento",
+   "tipo": "concepto",
+   "etiqueta": "Hipotermia: qué hacer y qué no",
+   "sinonimos": [
+    "quitar la ropa mojada",
+    "secar sin frotar",
+    "abrigar con mantas",
+    "ambiente cálido",
+    "no dejar que camine",
+    "no frotar",
+    "bebidas calientes sin alcohol"
+   ],
+   "nota": "Medidas ante un hipotérmico: ropa mojada fuera, secar sin frotar, abrigar y calentar poco a poco; no frotar, no hacerle andar ni dar alcohol.",
+   "padre": "emergencia.abandono",
+   "relacionados": [
+    "emergencia.hipotermia.definicion"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-3-8",
+    "per-8-9"
+   ],
+   "temario": "RD 875/2014, anexo II: PER UT 3.8 (Hombre al agua)"
+  }
+ ]
+}

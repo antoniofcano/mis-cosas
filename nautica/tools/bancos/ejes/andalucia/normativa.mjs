@@ -87,9 +87,9 @@ export function marcar(bancos, normas) {
 
 const celda = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 
-export function informe({ normas, comprobacion, marcas, totales }) {
+export function informe({ normas, comprobacion, marcas, totales, resolucion = null }) {
   const L = ['# Andalucía · normativa del banco vivo (solo informe)', ''];
-  L.push(`Generado por \`node tools/bancos/ejes/andalucia/normativa.mjs\` el ${hoy()}. Aplica la etapa \`normativa\` (\`tools/bancos/etapas/normativa.mjs\`, con \`data/normativa.json\`) al banco vivo \`data/ejes/andalucia/<tit>/preguntas.json\` (${totales.per} preguntas de PER y ${totales.py} de PY, 2020–2026) **en modo informe**: el banco no cambia y el campo \`norma\` de cada pregunta sigue en «vigente». La fase F1 resuelve cada pregunta marcada (confirmar, corregir la respuesta, añadir una nota o retirarla).`, '');
+  L.push(`Generado por \`node tools/bancos/ejes/andalucia/normativa.mjs\` el ${hoy()}. Aplica la etapa \`normativa\` (\`tools/bancos/etapas/normativa.mjs\`, con \`data/normativa.json\`) al banco vivo \`data/ejes/andalucia/<tit>/preguntas.json\` (${totales.per} preguntas de PER y ${totales.py} de PY, 2020–2026) **en modo informe** (este guion no escribe en el banco). La fase F1 resolvió cada pregunta marcada contra el texto legal: la resolución, con su motivo y su fuente, está en \`tools/bancos/ejes/andalucia/ajustes.json\` y la aplica al banco \`revision-normativa.mjs --escribir\` (resumen en «Resolución»).`, '');
   L.push('Una pregunta se marca con una norma si su aparición más antigua es anterior a la entrada en vigor y su texto (contexto, enunciado y opciones, sin tildes ni mayúsculas) encaja con algún detector de la norma. Los detectores son anchos a propósito: **se marca de más**, y muchas marcas resultarán ser preguntas que siguen valiendo (el motivo de cada una permite descartarlas deprisa).', '');
 
   L.push('## Comprobación de data/normativa.json', '');
@@ -112,6 +112,15 @@ export function informe({ normas, comprobacion, marcas, totales }) {
   const varias = [...marcas.porPregunta.values()].filter((l) => l.length > 1).length;
   L.push('');
   L.push(`Preguntas distintas marcadas: **${marcas.porPregunta.size}** (${[...marcas.porPregunta.keys()].filter((id) => !id.startsWith('and-py-')).length} de PER y ${[...marcas.porPregunta.keys()].filter((id) => id.startsWith('and-py-')).length} de PY); ${varias} con más de una norma. En negrita, los cambios pedidos para esta revisión; el resto son las demás normas de \`data/normativa.json\` cuya fecha cae dentro del banco.`, '');
+
+  if (resolucion) {
+    const todas = ['per', 'py'].flatMap((t) => Object.entries(resolucion[t] ?? {}));
+    const n = (e) => todas.filter(([, a]) => a.norma.estado === e).length;
+    L.push('## Resolución (fase F1)', '');
+    L.push(`${todas.length} preguntas resueltas: **${n('vigente')} vigentes**, **${n('actualizada')} actualizadas** (la respuesta oficial vale; la explicación dice qué cambió y cuándo) y **${n('retirada')} retiradas**. Cada una lleva en \`ajustes.json\` el motivo por norma y su fuente (BOE consolidado o IALA R1001 ed. 2.0).`, '');
+    for (const [id, a] of todas.filter(([, x]) => x.norma.estado !== 'vigente')) L.push(`- **${id}** (${a.norma.estado}): ${a.norma.nota ?? ''}`);
+    L.push('');
+  }
 
   for (const id of orden) {
     const n = normas.find((x) => x.id === id);
@@ -137,7 +146,9 @@ export function ejecutar() {
   const bancos = Object.fromEntries(['per', 'py'].map((t) => [t, JSON.parse(readFileSync(join(RAIZ, 'data', 'ejes', 'andalucia', t, 'preguntas.json'), 'utf8')).preguntas]));
   const comprobacion = comprobarNormas(normas);
   const marcas = marcar(bancos, normas);
-  return { normas, comprobacion, marcas, totales: { per: bancos.per.length, py: bancos.py.length } };
+  let resolucion = null;
+  try { resolucion = JSON.parse(readFileSync(join(RAIZ, 'tools', 'bancos', 'ejes', 'andalucia', 'ajustes.json'), 'utf8')); } catch { /* aún sin resolver */ }
+  return { normas, comprobacion, marcas, totales: { per: bancos.per.length, py: bancos.py.length }, resolucion };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

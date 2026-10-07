@@ -4,17 +4,73 @@
 import { totalPreguntas } from './blocks.js';
 import { cuenta } from '../texto.js';
 
-/** Simulacro: tantas preguntas de cada bloque como en el examen, al azar (semilla reproducible). */
-export function buildSimulacro(estructura, banco, rng) {
+/** Cuántas preguntas de un examen no había respondido nunca el alumno (para pesar los exámenes inéditos). */
+export const nuevasDe = (preguntas, respuestas = {}) => preguntas.filter((q) => !respuestas[q.id]).length;
+
+/** Fracción del banco ya vista a partir de la cual el simulacro avisa de que repetirá preguntas. */
+export const AVISO_VISTAS = 0.7;
+
+/** Elige `n` de `pool` al azar, primero las que el alumno no ha respondido nunca (orden estable dentro de cada grupo). */
+function elegirIneditas(pool, n, rng, respuestas) {
+  const barajadas = rng.shuffle(pool);
+  if (!respuestas) return barajadas.slice(0, n);
+  return barajadas.map((q, i) => ({ q, i, vista: respuestas[q.id] ? 1 : 0 })).sort((a, b) => a.vista - b.vista || a.i - b.i).slice(0, n).map((x) => x.q);
+}
+
+/**
+ * Simulacro: tantas preguntas de cada bloque como en el examen, al azar (semilla reproducible). Con `respuestas`,
+ * dentro de cada bloque salen primero las que el alumno no ha visto nunca (el reparto por bloques no cambia).
+ * `nuevas` = preguntas del simulacro que el alumno no había respondido; `vistasPool` = fracción del banco ya vista.
+ */
+export function buildSimulacro(estructura, banco, rng, { respuestas = null } = {}) {
   const preguntas = [];
   const faltan = [];
+  let enPool = 0;
+  let vistasPool = 0;
   for (const b of estructura.bloques) {
     const pool = banco.filter((q) => q.ut === b.ut && !q.anulada && q.correcta);
-    const elegidas = rng.shuffle(pool).slice(0, b.n);
+    enPool += pool.length;
+    if (respuestas) vistasPool += pool.filter((q) => respuestas[q.id]).length;
+    const elegidas = elegirIneditas(pool, b.n, rng, respuestas);
     if (elegidas.length < b.n) faltan.push({ ut: b.ut, faltan: b.n - elegidas.length });
     preguntas.push(...elegidas);
   }
-  return { tipo: 'simulacro', titulo: 'Simulacro de examen', preguntas, faltan };
+  const nuevas = respuestas ? preguntas.filter((q) => !respuestas[q.id]).length : null;
+  const vistas = respuestas && enPool ? vistasPool / enPool : null;
+  // Aviso: ya has visto casi todo el banco, así que el simulacro repite preguntas (aprobarlo dice menos).
+  return { tipo: 'simulacro', titulo: 'Simulacro de examen', preguntas, faltan, nuevas, vistas, avisoVistas: vistas != null && vistas >= AVISO_VISTAS };
+}
+
+/**
+ * Examen final (F1): se hace como el real, con preguntas reservadas que no se estudian.
+ * - modo «examen»: la convocatoria reservada `key` en su orden (`examenes` = banco.reserva.examenes, `porId`). Una
+ *   pregunta retirada por la revisión normativa se cambia por otra reservada del mismo tema (mejor no vista).
+ * - modo «pregunta»: tantas de cada bloque como en el examen, de las reservadas (`pool`), primero las no vistas.
+ * @returns {{ tipo: 'final', titulo, preguntas, faltan, key, nuevas }}
+ */
+export function buildFinal(estructura, { modo, key = null, examenes = [], porId, pool = [], respuestas = {}, rng }) {
+  const retirada = (q) => q.norma?.estado === 'retirada';
+  let preguntas;
+  let faltan = [];
+  if (modo === 'examen') {
+    const ex = examenes.find((e) => e.key === key);
+    if (!ex) return { tipo: 'final', titulo: 'Examen final', preguntas: [], faltan: [], key, nuevas: 0 };
+    const usadas = new Set(ex.ids);
+    preguntas = ex.ids.map((id) => porId.get(id)).filter(Boolean).map((q) => {
+      if (!retirada(q)) return q;
+      const otra = elegirIneditas(pool.filter((x) => x.ut === q.ut && !usadas.has(x.id) && !retirada(x) && !x.anulada && x.correcta), 1, rng, respuestas)[0];
+      if (otra) usadas.add(otra.id);
+      return otra ?? null;
+    }).filter(Boolean);
+  } else {
+    preguntas = [];
+    for (const b of estructura.bloques) {
+      const elegidas = elegirIneditas(pool.filter((q) => q.ut === b.ut && !q.anulada && q.correcta && !retirada(q)), b.n, rng, respuestas);
+      if (elegidas.length < b.n) faltan.push({ ut: b.ut, faltan: b.n - elegidas.length });
+      preguntas.push(...elegidas);
+    }
+  }
+  return { tipo: 'final', titulo: 'Examen final', preguntas, faltan, key, nuevas: preguntas.filter((q) => !respuestas[q.id]).length };
 }
 
 /**
@@ -105,7 +161,7 @@ export function testDesdeIds(tipo, ids, porId, conv = null) {
   const preguntas = (ids ?? []).map((id) => porId.get(id));
   if (!preguntas.length || preguntas.some((q) => !q)) return null;
   const propia = preguntas.find((q) => q.conv === conv) ?? preguntas[0];
-  return { tipo, titulo: tipo === 'real' ? propia.convocatoria : 'Simulacro de examen', preguntas, faltan: [] };
+  return { tipo, titulo: tipo === 'real' ? propia.convocatoria : tipo === 'final' ? 'Examen final' : 'Simulacro de examen', preguntas, faltan: [] };
 }
 
 /**
@@ -157,21 +213,24 @@ export function convocatorias(estructura, banco) {
  * Corrige un test con las reglas oficiales.
  * - Apto: aciertos ≥ minAciertos y ningún bloque con más errores que su límite.
  * - Las preguntas en blanco no son aciertos y cuentan como fallo para los límites por bloque.
- * - Las anuladas por el tribunal se dan por correctas (sea cual sea la respuesta).
+ * - Las anuladas por el tribunal se dan por correctas (sea cual sea la respuesta); también las retiradas por la
+ *   revisión normativa (norma.estado «retirada»: la respuesta oficial ya no es correcta).
  * @param {Record<string,string>} respuestas  id → letra
  */
 export function grade(estructura, test, respuestas) {
   const porBloque = new Map(estructura.bloques.map((b) => [b.ut, { ...b, aciertos: 0, errores: 0, blancos: 0, total: 0 }]));
   const detalle = test.preguntas.map((q) => {
     const r = respuestas[q.id] ?? null;
-    const ok = q.anulada ? true : r != null && r === q.correcta;
+    // Una pregunta retirada por la revisión normativa (su respuesta oficial ya no vale) cuenta como las anuladas.
+    const retirada = q.norma?.estado === 'retirada';
+    const ok = q.anulada || retirada ? true : r != null && r === q.correcta;
     const b = porBloque.get(q.ut);
     if (b) {
       b.total += 1;
       if (ok) b.aciertos += 1;
       else { b.errores += 1; if (r == null) b.blancos += 1; }
     }
-    return { id: q.id, ut: q.ut, respuesta: r, correcta: q.correcta, ok, anulada: !!q.anulada };
+    return { id: q.id, ut: q.ut, respuesta: r, correcta: q.correcta, ok, anulada: !!q.anulada, retirada };
   });
   const aciertos = detalle.filter((d) => d.ok).length;
   const bloques = [...porBloque.values()].filter((b) => b.total);

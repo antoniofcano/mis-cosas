@@ -1,6 +1,6 @@
 # Andalucía · normativa del banco vivo (solo informe)
 
-Generado por `node tools/bancos/ejes/andalucia/normativa.mjs` el 2026-10-07. Aplica la etapa `normativa` (`tools/bancos/etapas/normativa.mjs`, con `data/normativa.json`) al banco vivo `data/ejes/andalucia/<tit>/preguntas.json` (810 preguntas de PER y 720 de PY, 2020–2026) **en modo informe**: el banco no cambia y el campo `norma` de cada pregunta sigue en «vigente». La fase F1 resuelve cada pregunta marcada (confirmar, corregir la respuesta, añadir una nota o retirarla).
+Generado por `node tools/bancos/ejes/andalucia/normativa.mjs` el 2026-10-07. Aplica la etapa `normativa` (`tools/bancos/etapas/normativa.mjs`, con `data/normativa.json`) al banco vivo `data/ejes/andalucia/<tit>/preguntas.json` (810 preguntas de PER y 720 de PY, 2020–2026) **en modo informe** (este guion no escribe en el banco). La fase F1 resolvió cada pregunta marcada contra el texto legal: la resolución, con su motivo y su fuente, está en `tools/bancos/ejes/andalucia/ajustes.json` y la aplica al banco `revision-normativa.mjs --escribir` (resumen en «Resolución»).
 
 Una pregunta se marca con una norma si su aparición más antigua es anterior a la entrada en vigor y su texto (contexto, enunciado y opciones, sin tildes ni mayúsculas) encaja con algún detector de la norma. Los detectores son anchos a propósito: **se marca de más**, y muchas marcas resultarán ser preguntas que siguen valiendo (el motivo de cada una permite descartarlas deprisa).
 
@@ -31,8 +31,17 @@ Fechas de entrada en vigor, BOE, URL y detectores imprescindibles de los cambios
 | RD 550/2020 | 2020-07-01 | 0 | 0 | 0 |
 | RD 186/2023 | 2023-04-11 | 9 | 1 | 10 |
 | RD 1188/2025 (buceo y ROM) | 2025-12-31 | 4 | 0 | 4 |
+| RD 128/2022 | 2022-02-17 | 0 | 0 | 0 |
 
 Preguntas distintas marcadas: **195** (142 de PER y 53 de PY); 21 con más de una norma. En negrita, los cambios pedidos para esta revisión; el resto son las demás normas de `data/normativa.json` cuya fecha cae dentro del banco.
+
+## Resolución (fase F1)
+
+195 preguntas resueltas: **192 vigentes**, **3 actualizadas** (la respuesta oficial vale; la explicación dice qué cambió y cuándo) y **0 retiradas**. Cada una lleva en `ajustes.json` el motivo por norma y su fuente (BOE consolidado o IALA R1001 ed. 2.0).
+
+- **and-2022-c2-t11** (actualizada): Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo.
+- **and-2024-c3-t11** (actualizada): Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo.
+- **and-2026-c1-t11** (actualizada): Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo.
 
 ## RD 339/2021
 
@@ -40,7 +49,7 @@ Real Decreto 339/2021, de 18 de mayo, por el que se regula el equipo de segurida
 
 34 preguntas (15 de PER, 19 de PY). Motivo común: la pregunta es anterior al 2021-07-01; abajo, los detectores que encajan y el fragmento (texto canónico) del primero.
 
-**Lectura rápida** (a mano; no resuelve, orienta a la fase F1): Las marcas son todas de 2020-c1, 2020-c3 y 2021-c1 (antes del 1-7-2021). Las más cercanas al cambio: and-2021-c1-t09 (flotabilidad en zona 4: 150 N, sin cambio en el RD), and-py-2021-c1-g04 (chalecos de niños: uno por niño, sin cambio), and-2020-c1-t11 (aguas sucias de tanque a régimen moderado y ≥ 4 nudos: el RD 339/2021 lo mantiene), and-2020-c3-t10 (aros con luz), and-2021-c1-t07 y and-py-2020-c3-g04 (fumígena de 3 minutos) y and-py-2020-c1-g04 (bengala de mano de 60 s). Ninguna pregunta del banco vivo pide el número de bengalas, cohetes o fumígenas por zona, los chalecos de zona 1, el tipo de extintor ni el material náutico, que es lo que cambió. El resto son marcas anchas (corredera como instrumento, «regla de» visibilidad reducida, achique en vías de agua, supervivencia en la balsa).
+**Lectura rápida** (a mano; no resuelve, orienta a la fase F1): Las marcas son todas de 2020-c1, 2020-c3 y 2021-c1 (antes del 1-7-2021). Las más cercanas al cambio: and-2021-c1-t09 (flotabilidad en zona 4: 150 N, sin cambio en el RD), and-py-2021-c1-g04 (chalecos de niños: uno por niño, sin cambio), and-2020-c1-t11 (aguas sucias de tanque a régimen moderado y ≥ 4 nudos: el RD 339/2021 lo mantiene), and-2020-c3-t10 (aros con luz), and-2021-c1-t07 y and-py-2020-c3-g04 (fumígena de 3 minutos) y and-py-2020-c1-g04 (bengala de mano de 60 s). Ninguna de las marcadas pide el número de bengalas, cohetes o fumígenas por zona, los chalecos de zona 1, el tipo de extintor ni el material náutico, que es lo que cambió. El resto son marcas anchas (corredera como instrumento, «regla de» visibilidad reducida, achique en vías de agua, supervivencia en la balsa).
 
 | id | Fecha | UT | Detectores | Fragmento |
 |---|---|---|---|---|
@@ -164,7 +173,7 @@ Real Decreto 191/2026, de 11 de marzo, de conservación de las praderas de faner
 
 ## IALA MBS 2022
 
-Sistema de Balizamiento Marítimo de la IALA (Recomendación R1001), edición que cita el tribunal de la DGMM. En vigor desde el 2026-01-09 ([BOE-A-2026-510](https://www.boe.es/boe/dias/2026/01/09/pdfs/BOE-A-2026-510.pdf)). La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: no se ha verificado con fuente primaria qué cambió entre ediciones, así que se revisan todas las preguntas de balizamiento anteriores.
+Sistema de Balizamiento Marítimo de la IALA (Recomendación R1001), edición que cita el tribunal de la DGMM. En vigor desde el 2026-01-09 ([BOE-A-2026-510](https://www.boe.es/boe/dias/2026/01/09/pdfs/BOE-A-2026-510.pdf)). La convocatoria de la DGMM de 2026 remite al balizamiento IALA-MBS 2022; otras administraciones (Murcia, Melilla, comunidades del norte) siguen citando la edición de 2010 (resolución de Puertos del Estado de 8-6-2010). La fecha es la del BOE que lo cita, no la de la edición de la IALA: cotejada la R1001 ed. 2.0 de la IALA con la MBS 2010 (fase F1), no cambian colores, formas, marcas de tope ni ritmos de las marcas que se preguntan: la ed. 2.0 añade el MAtoN (marca especial móvil con ritmo propio), las boyas de amarre como especiales y el AIS como complemento, y corrige la errata del folleto de 2010 en los ritmos de las cardinales Norte y Este. El detector sigue marcando el balizamiento anterior para revisarlo.
 
 120 preguntas (101 de PER, 19 de PY). Motivo común: la pregunta es anterior al 2026-01-09; abajo, los detectores que encajan y el fragmento (texto canónico) del primero.
 
@@ -348,4 +357,10 @@ Real Decreto 1188/2025, de 26 de diciembre: cambios en el RD 550/2020 de buceo, 
 | and-2023-c3-t18 | 2023-10-21 | 6 | `buce` | …peligro y necesita ayuda que tiene **buce**adores en el agua y debemos darle s… |
 | and-2024-c1-t20 | 2024-04-06 | 6 | `buce` | …nja. ¿que quiere indicar?: que hay **buce**adores en las inmediaciones que est… |
 | and-2024-c1-t22 | 2024-04-06 | 6 | `buce` | …ia un peligro, como por ejemplo un **buce**ador sumergido no entiende las acci… |
+
+## RD 128/2022
+
+Real Decreto 128/2022, de 15 de febrero, sobre instalaciones portuarias receptoras de desechos de buques. En vigor desde el 2022-02-17 ([BOE-A-2022-2465](https://www.boe.es/eli/es/rd/2022/02/15/128/con)). Deroga el RD 1381/2002 y la Orden FOM/1392/2004. Desaparece la notificación reducida de desechos (anexo V del RD 1381/2002) de las embarcaciones de recreo: la notificación previa (art. 16) no se aplica a las embarcaciones y buques de recreo de eslora inferior a 45 m, y todo buque entrega sus desechos en una instalación portuaria receptora antes de dejar el puerto (art. 17).
+
+_Ninguna pregunta marcada._ Ningún texto anterior a su entrada en vigor encaja con sus detectores.
 

@@ -7,7 +7,7 @@
 // los tests, el sistema de ficheros. Las cargas se cachean (una promesa por fichero).
 
 import { TITULACIONES } from '../theory/blocks.js';
-import { convocatorias as convocatoriasDe, convDeClave } from '../theory/engine.js';
+import { convocatorias as convocatoriasDe, convDeClave, ordenEn } from '../theory/engine.js';
 import { compilarVocabulario } from '../theory/vocabulario.js';
 import { resueltasSegun } from '../course/resueltos.js';
 import { SOLUCIONES } from './soluciones.js';
@@ -25,11 +25,43 @@ export function cursoConPractica(curso, banco) {
   return { ...curso, modulos: curso.modulos.map((m) => ({ ...m, lecciones: m.lecciones.map((l) => ({ ...l, practica: banco.practicaDe(l.id) })) })) };
 }
 
+/** Convocatorias en las que sale una pregunta (la suya y las de apareceEn). */
+const convsDe = (q) => new Set([q.conv, ...(q.apareceEn ?? []).map((a) => a.conv)]);
+
+/**
+ * Reparto de la reserva (función pura): `final` = las preguntas que salen en alguna convocatoria del examen final del
+ * alumno (`res.convs`); `reservadas` = los ids que no se estudian. En modo «examen», las que solo salen en
+ * convocatorias apartadas (`res.apartar`); en modo «pregunta», todas las que salen en alguna de ellas.
+ * @param {object[]} todas
+ * @param {{ modo: 'examen'|'pregunta', convs: string[], apartar: string[] }} res
+ */
+export function repartoReserva(todas, res) {
+  const finalConvs = new Set(res.convs ?? []);
+  const apartar = new Set(res.apartar ?? res.convs ?? []);
+  const final = finalConvs.size ? todas.filter((q) => [...convsDe(q)].some((c) => finalConvs.has(c))) : [];
+  const reservadas = new Set();
+  if (apartar.size) {
+    for (const q of todas) {
+      const cs = [...convsDe(q)];
+      if (res.modo === 'pregunta' ? cs.some((c) => apartar.has(c)) : cs.every((c) => apartar.has(c))) reservadas.add(q.id);
+    }
+  }
+  return { final, reservadas };
+}
+
 /**
  * @param {(ruta: string) => Promise<any>} leer  JSON de una ruta relativa a la raíz de la app (data/…)
  */
 export function crearBancos(leer) {
   const cache = new Map();
+  // Dónde se guarda la foto de la reserva de cada alumno (la app la pone con fijarReservaAlumno; en Node no hay).
+  let alumno = null;
+  /**
+   * La app indica cómo leer y guardar la foto de la reserva del alumno ({ convs, modo, desde } por eje y titulación,
+   * en sus ajustes). Sin esto (herramientas, tests), la reserva es la de la ficha.
+   * @param {{ leer: (eje, tit) => object|null, guardar: (eje, tit, foto) => void } | null} a
+   */
+  const fijarReservaAlumno = (a) => { alumno = a; };
   const memo = (k, f) => {
     if (!cache.has(k)) cache.set(k, f());
     return cache.get(k);
@@ -77,56 +109,89 @@ export function crearBancos(leer) {
   const cargarCursoBase = (tit) => memo(`curso:${tit}`, () => leer(`data/curso/${tit}.json`).catch(() => null));
 
   /**
-   * Banco de un eje para una titulación.
-   * - todas: todas sus preguntas; porId: id → pregunta.
-   * - estudio: las que se usan para estudiar (práctica, tandas, simulacros, exámenes de convocatorias): todas menos
-   *   las retiradas por la revisión normativa (norma.estado «retirada») y, en modo «pregunta», las reservadas;
-   *   final: las reservadas para el examen final (ficha.reserva). En modo «examen» se reservan convocatorias
-   *   (no se ofrecen como examen, pero sus preguntas siguen en la práctica); en modo «pregunta», además, sus
-   *   preguntas salen de toda la práctica.
-   * - convocatorias(): exámenes reales que se ofrecen [{ key, titulo, fecha, n, completa }].
-   * - practicaDe(leccionId): preguntas de práctica de una clase; resueltasDe(leccionId): preguntas resueltas por la
-   *   app del tipo de la clase («Míralo resuelto»).
-   * - listas: listados de preguntas reales (p. ej. las de carta), con su título y descripción.
+   * Reserva del alumno para un eje y una titulación: las convocatorias de su examen final (la foto que se guardó la
+   * primera vez que cargó ese banco; sin foto, las de la ficha). Si la ficha cambia después, su examen final no
+   * cambia: se apartan del estudio las de la foto y las de la ficha (que nadie estudie lo reservado).
    */
-  const bancoDe = (eje, tit) => memo(`banco:${eje}:${tit}`, async () => {
+  const reservaEfectiva = (eje, tit, ficha) => {
+    const datos = [...(ficha.reserva?.[tit] ?? [])];
+    let foto = alumno?.leer(eje, tit) ?? null;
+    if (!foto?.convs?.length && alumno && datos.length) {
+      foto = { convs: datos, modo: ficha.reserva?.modo ?? 'examen', desde: new Date().toISOString().slice(0, 10) };
+      try { alumno.guardar(eje, tit, foto); } catch { /* sin almacén: se usa la de la ficha */ }
+    }
+    const convs = foto?.convs?.length ? [...foto.convs] : datos;
+    const apartar = [...new Set([...convs, ...datos])];
+    return { modo: ficha.reserva?.modo ?? 'examen', convs, datos, apartar, firma: `${convs.join(',')}|${apartar.join(',')}` };
+  };
+
+  /**
+   * Banco de un eje para una titulación (con la reserva del alumno, ver reservaEfectiva).
+   * - todas: todas sus preguntas; porId: id → pregunta.
+   * - reservadas: ids que no se estudian porque son del examen final. En modo «examen», las preguntas que solo salen
+   *   en convocatorias reservadas (una que también salió en otra convocatoria ya es pública: sigue en el estudio);
+   *   en modo «pregunta», todas las que salen en ellas.
+   * - examenes: las que forman los exámenes de convocatorias (todas menos las reservadas; las retiradas por la
+   *   revisión normativa siguen en ellos, con su nota, porque el examen fue así).
+   * - estudio: las que se usan para estudiar (práctica de las clases, tandas, repaso, mezcla, «5 minutos»,
+   *   simulacros, pausas del podcast, motor de seguimiento): las de los exámenes menos las retiradas.
+   * - final: las preguntas de las convocatorias del examen final del alumno, sin las retiradas;
+   *   reserva = { modo, convs, datos, examenes: [{ key, titulo, fecha, n, completa, ids }] } (las convocatorias
+   *   reservadas, cada una con sus preguntas en orden).
+   * - convocatorias(): exámenes reales que se ofrecen [{ key, titulo, fecha, n, completa }] (sin las reservadas).
+   * - practicaDe(leccionId): preguntas de práctica de una clase; resueltasDe(leccionId): preguntas resueltas por la
+   *   app del tipo de la clase («Míralo resuelto»). Las dos, solo del estudio.
+   * - listas: listados de preguntas reales (p. ej. las de carta), con su título y descripción (sin las reservadas).
+   */
+  const bancoDe = async (eje, tit) => {
     const ficha = await cargarFicha(eje);
+    const res = reservaEfectiva(eje, tit, ficha);
+    return memo(`banco:${eje}:${tit}:${res.firma}`, () => construirBanco(ficha, eje, tit, res));
+  };
+  const construirBanco = async (ficha, eje, tit, res) => {
     const dir = `data/ejes/${eje}/${tit}`;
+    const lee = (f, porDefecto) => memo(`fichero:${dir}/${f}`, () => (porDefecto === undefined ? leer(`${dir}/${f}`) : leer(`${dir}/${f}`).catch(() => porDefecto)));
     const [datos, explicaciones, practica, resueltos, mnemo, vocab] = await Promise.all([
-      leer(`${dir}/preguntas.json`), leer(`${dir}/explicaciones.json`).catch(() => ({})), leer(`${dir}/practica.json`).catch(() => ({})),
-      leer(`${dir}/resueltos.json`).catch(() => ({})), cargarMnemotecnias(), cargarVocabulario(tit)]);
+      lee('preguntas.json'), lee('explicaciones.json', {}), lee('practica.json', {}), lee('resueltos.json', {}), cargarMnemotecnias(), cargarVocabulario(tit)]);
     const todas = datos.preguntas ?? [];
     const porId = new Map(todas.map((q) => [q.id, q]));
-    const modo = ficha.reserva?.modo ?? 'examen';
-    const reservadas = new Set(ficha.reserva?.[tit] ?? []);
-    const final = reservadas.size ? todas.filter((q) => reservadas.has(q.conv) || (q.apareceEn ?? []).some((a) => reservadas.has(a.conv))) : [];
-    const apartadas = modo === 'pregunta' ? new Set(final.map((q) => q.id)) : new Set();
-    // Las retiradas por la revisión normativa (su respuesta ya no es correcta) no se usan para estudiar.
-    for (const q of todas) if (q.norma?.estado === 'retirada') apartadas.add(q.id);
-    const estudio = apartadas.size ? todas.filter((q) => !apartadas.has(q.id)) : todas;
-    const enEstudio = new Set(estudio.map((q) => q.id));
     const estructura = TITULACIONES[tit].estructura;
+    const r = repartoReserva(todas, res);
+    const examenes = r.reservadas.size ? todas.filter((q) => !r.reservadas.has(q.id)) : todas;
+    // Las retiradas por la revisión normativa (su respuesta ya no es correcta) no se usan para estudiar.
+    const retirada = (q) => q.norma?.estado === 'retirada';
+    const estudio = examenes.some(retirada) ? examenes.filter((q) => !retirada(q)) : examenes;
+    const enEstudio = new Set(estudio.map((q) => q.id));
+    const final = r.final.filter((q) => !retirada(q));
+    const apartar = new Set(res.apartar);
+    const finalConvs = new Set(res.convs);
+    const examenesFinal = convocatoriasDe(estructura, r.final).filter((c) => finalConvs.has(convDeClave(c.key)))
+      .map((c) => ({ ...c, ids: r.final.map((q) => ({ q, o: ordenEn(q, c.key) })).filter((x) => x.o != null).sort((a, b) => a.o - b.o).map((x) => x.q.id) }));
     const listas = (ficha.listas?.[tit] ?? [{ id: 'todas', titulo: datos.meta?.titulo ?? tit, descripcion: datos.meta?.descripcion ?? '' }])
-      .map((l) => ({ ...l, preguntas: todas.filter((q) => enLista(l, q)) }));
+      .map((l) => ({ ...l, preguntas: examenes.filter((q) => enLista(l, q)) }));
     const banco = {
-      eje: ficha, tit, meta: datos.meta ?? {}, todas, estudio, final, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
-      convocatorias: () => convocatoriasDe(estructura, estudio).filter((c) => !reservadas.has(convDeClave(c.key))),
+      eje: ficha, tit, meta: datos.meta ?? {}, todas, examenes, estudio, final, reservadas: r.reservadas, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
+      reserva: { modo: res.modo, convs: res.convs, datos: res.datos, examenes: examenesFinal },
+      convocatorias: () => convocatoriasDe(estructura, examenes).filter((c) => !apartar.has(convDeClave(c.key))),
       practicaDe: (leccionId) => (practica[leccionId] ?? []).filter((id) => enEstudio.has(id)),
-      resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId),
+      resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId).filter((id) => enEstudio.has(id)),
       lista: (id) => listas.find((l) => l.id === id) ?? null,
       /** La lista a la que pertenece una pregunta (la primera que la incluye). */
       listaDe: (q) => listas.find((l) => enLista(l, q)) ?? listas[0],
     };
     return banco;
-  });
+  };
   /** Banco de un eje (si no existe, el de por defecto) para una titulación (si no existe, el PER). */
   const cargarBanco = (eje, tit) => resolverEje(eje).then((e) => bancoDe(e, TITULACIONES[tit] ? tit : 'per'));
 
   /** Curso de una titulación con la práctica del eje en cada clase (lo que usan el motor y las pantallas). */
-  const cursoDe = (tit, eje) => memo(`cursoEje:${eje}:${tit}`, async () => {
+  // Uno por banco (el banco cambia si cambia la reserva del alumno, y con él la práctica de las clases).
+  const cursos = new WeakMap();
+  const cursoDe = async (tit, eje) => {
     const [curso, banco] = await Promise.all([cargarCursoBase(tit), bancoDe(eje, tit)]);
-    return cursoConPractica(curso, banco);
-  });
+    if (!cursos.has(banco)) cursos.set(banco, cursoConPractica(curso, banco));
+    return cursos.get(banco);
+  };
   const cargarCurso = (tit, eje) => resolverEje(eje).then((e) => cursoDe(tit, e));
 
   /** Una pregunta por su id, sea del eje que sea (por el prefijo): { q, banco } o null. */
@@ -152,14 +217,24 @@ export function crearBancos(leer) {
     const r = await pregunta(id);
     if (!r) return null;
     const e = await resolverEje(eje);
-    if (r.q.eje === e) return { q: r.q, propia: true, equivalente: false, ficha: r.banco.eje };
+    // Una pregunta que no se estudia (reservada para el examen final o retirada) no sale en una pausa: se cambia por su
+    // equivalente del estudio del mismo eje o, si no la hay, la pausa se queda sin pregunta (null).
+    const estudiable = (banco, q) => banco.estudio.includes(q);
+    const suplente = (banco, q) => equivalenteEn(q, banco.estudio.filter((x) => x.id !== q.id));
+    if (r.q.eje === e) {
+      if (estudiable(r.banco, r.q)) return { q: r.q, propia: true, equivalente: false, ficha: r.banco.eje };
+      const otra = suplente(r.banco, r.q);
+      return otra ? { q: otra, propia: true, equivalente: true, ficha: r.banco.eje } : null;
+    }
     const ficha = await cargarFicha(e).catch(() => null);
     if (ficha && titsDe(ficha).includes(r.q.tit)) {
       const banco = await bancoDe(e, r.q.tit);
       const otra = equivalenteEn(r.q, banco.estudio);
       if (otra) return { q: otra, propia: true, equivalente: true, ficha: banco.eje };
     }
-    return { q: r.q, propia: false, equivalente: false, ficha: r.banco.eje };
+    if (estudiable(r.banco, r.q)) return { q: r.q, propia: false, equivalente: false, ficha: r.banco.eje };
+    const otra = suplente(r.banco, r.q);
+    return otra ? { q: otra, propia: false, equivalente: true, ficha: r.banco.eje } : null;
   }
 
   /** Dirección antigua de un banco (#/examenes/<fichero>) → { eje, tit, lista } (o null). */
@@ -183,7 +258,7 @@ export function crearBancos(leer) {
     return listas.some((l) => l.requiere === 'carta') && q.requiere?.includes('carta') ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion };
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno };
 }
 
 // ---------------------------------------------------------------------------
@@ -202,4 +277,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cargarMnemotecnias, cargarVocabulario, pregunta, equivalente, resolverLegado, rutaResolucion, fijarReservaAlumno } = bancos;

@@ -100,6 +100,13 @@ export function preguntaView({ ctx, progress, params: route }) {
 
   pregunta(qid).then((r) => {
     if (!r) { setChildren(el, h('p', 'Pregunta no encontrada.')); return; }
+    // Las reservadas para el examen final no se enseñan sueltas (ni con un enlace guardado de antes de la reserva).
+    if (r.banco.reservadas.has(r.q.id)) {
+      summaryText = `VISTA pregunta ${qid}: RESERVADA para el examen final (no se enseña)`;
+      setChildren(el, h('h1', '🔒 Pregunta reservada'), h('p', 'Esta pregunta es de las que la app guarda para tu examen final: no se enseña suelta para que el examen sea de verdad nuevo para ti.'),
+        h('a.btn.grande', { href: tlink(r.q.tit, ['examenes']) }, 'Ir a Examen'));
+      return;
+    }
     const lista = (route.query.l && r.banco.lista(route.query.l)?.preguntas.includes(r.q) ? r.banco.lista(route.query.l) : null) ?? r.banco.listaDe(r.q);
     renderQuestion(r.banco, lista, r.q);
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`)));

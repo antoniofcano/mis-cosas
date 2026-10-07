@@ -12,7 +12,7 @@
   "per": { "calculadora": true, "calculadoraFuente": "BOJA núm. 7 de 2025 (resolución de 2 de enero de 2025), base sexta 5: «Calculadora científica no programable», material para el PER y el módulo de navegación del PY. https://www.juntadeandalucia.es/boja/2025/7/BOJA25-007-00008-137-01_00313750.pdf" },
   "py": { "calculadora": true, "calculadoraFuente": "BOJA núm. 7 de 2025 (resolución de 2 de enero de 2025), base sexta 5: «Calculadora científica no programable», material para el PER y el módulo de navegación del PY. https://www.juntadeandalucia.es/boja/2025/7/BOJA25-007-00008-137-01_00313750.pdf", "reglas": ["Carta: 7 ejercicios sobre la carta del Estrecho, 2 de mareas (con anuario y tabla) y 1 de loxodrómica."] }
  },
- "reserva": { "modo": "examen", "per": [], "py": [] },
+ "reserva": { "modo": "examen", "per": ["and-2025-c1", "and-2025-c2", "and-2025-c3", "and-2026-c1", "and-2026-c2"], "py": ["and-py-2025-c1", "and-py-2025-c2", "and-py-2025-c3", "and-py-2026-c1", "and-py-2026-c2"] },
  "listas": {
   "per": [
    { "id": "carta", "requiere": "carta", "titulo": "PER Andalucía · Carta de navegación",

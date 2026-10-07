@@ -136,10 +136,15 @@ test('motor de bancos: banco, práctica de las clases y preguntas por id (de cua
   const b = bancosNode();
   const per = await b.cargarBanco(EJE_POR_DEFECTO, 'per');
   assert.equal(per.eje.id, EJE_POR_DEFECTO);
-  assert.equal(per.estudio.length, per.todas.length);
-  assert.deepEqual(per.final, []);
+  // Reserva del examen final (F1): las 5 convocatorias más recientes (225 preguntas) no se estudian.
+  assert.equal(per.final.length, 225);
+  assert.equal(per.estudio.length, per.todas.length - 225 - per.todas.filter((q) => q.norma?.estado === 'retirada' && !per.reservadas.has(q.id)).length);
+  assert.ok(per.estudio.every((q) => !per.reservadas.has(q.id)));
+  assert.deepEqual(per.reserva.examenes.map((e) => e.key).sort(), ['and-2025-c1', 'and-2025-c2', 'and-2025-c3', 'and-2026-c1', 'and-2026-c2']);
+  assert.ok(per.reserva.examenes.every((e) => e.ids.length === 45));
+  assert.equal(per.convocatorias().length, 13);
   assert.ok(per.convocatorias().every((c) => c.completa && c.n === 45));
-  assert.equal(per.lista('carta').preguntas.length, 72);
+  assert.equal(per.lista('carta').preguntas.length, 52);
   assert.equal(per.listaDe(per.porId.get('and-2020-c1-q42')).id, 'carta');
   const curso = await b.cargarCurso('per', EJE_POR_DEFECTO);
   const l = curso.modulos[0].lecciones[0];
@@ -152,7 +157,7 @@ test('motor de bancos: banco, práctica de las clases y preguntas por id (de cua
   assert.equal((await b.cargarBanco('no-existe', 'py')).eje.id, EJE_POR_DEFECTO);
 });
 
-test('motor de bancos: la reserva aparta convocatorias (modo examen) y además sus preguntas (modo pregunta)', async () => {
+test('motor de bancos: la reserva aparta convocatorias y sus preguntas del estudio (en los dos modos)', async () => {
   const q = (id, conv, ut) => ({ id, eje: 'x', tit: 'py', conv, convocatoria: conv, fecha: conv, numero: 1, orden: 1, ut, opciones: { a: '1', b: '2' }, correcta: 'a', aceptadas: ['a'], anulada: false, requiere: [], apareceEn: [{ conv }] });
   const preguntas = [q('x-1', 'x-2025-01', 1), q('x-2', 'x-2025-01', 2), q('x-3', 'x-2025-06', 1), q('x-4', 'x-2025-06', 2)];
   const datos = (modo) => ({
@@ -166,8 +171,10 @@ test('motor de bancos: la reserva aparta convocatorias (modo examen) y además s
     const banco = await crearBancos(leer(datos(modo))).cargarBanco('x', 'py');
     assert.deepEqual(banco.final.map((x) => x.id), ['x-3', 'x-4'], modo);
     assert.deepEqual(banco.convocatorias().map((c) => c.key), ['x-2025-01'], modo);
-    assert.deepEqual(banco.estudio.map((x) => x.id), modo === 'examen' ? ['x-1', 'x-2', 'x-3', 'x-4'] : ['x-1', 'x-2'], modo);
-    assert.deepEqual(banco.practicaDe('py-1-1'), modo === 'examen' ? ['x-1', 'x-3'] : ['x-1'], modo);
+    // Lo reservado no se estudia en ningún modo (F1).
+    assert.deepEqual(banco.estudio.map((x) => x.id), ['x-1', 'x-2'], modo);
+    assert.deepEqual(banco.practicaDe('py-1-1'), ['x-1'], modo);
+    assert.deepEqual(banco.reserva.examenes.map((e) => [e.key, e.ids]), [['x-2025-06', ['x-3', 'x-4']]], modo);
   }
 });
 

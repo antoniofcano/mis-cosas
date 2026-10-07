@@ -10,6 +10,7 @@ import { randomSeed } from '../../math/rng.js';
 import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
+import { tarjetaFinal } from './theory.js';
 import { parteTema, lineaAvance, MIN_DIAGNOSTICO_TEMA } from '../../course/plan.js';
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
@@ -47,7 +48,11 @@ export function progressView({ progress, tit }) {
     const filas = d.st.temas;
     const racha = progress.racha();
     resumenTemas = `AVANCE ${T.sigla}: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día\n${filas.map(({ b, e }) => `${b.titulo}: ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}`).join('\n')}`;
+    // El examen final, aparte (del motor): abierto o no, y sus resultados con el criterio de margen.
+    const fin = d.st.final;
+    if (fin.hay) resumenTemas += `\nEXAMEN FINAL: ${fin.desbloqueado ? 'abierto' : 'cerrado'}${fin.preparado ? ' · PREPARADO' : ''} · ${[...fin.lineasResultado, ...fin.lineas].join(' ')}`;
     setChildren(temas,
+      tarjetaFinal(T, fin),
       h('section.avance',
         h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),
@@ -73,7 +78,8 @@ export function progressView({ progress, tit }) {
   }).catch((e) => setChildren(temas, h('p.warn', `No se pudo calcular tu avance: ${e.message}`)));
 
   const examenes = Object.values(TITULACIONES).map((X) => {
-    const tests = progress.tests().filter((t) => (t.tit ?? 'per') === X.id).reverse();
+    // El examen final va aparte (arriba, con su criterio de margen).
+    const tests = progress.tests().filter((t) => (t.tit ?? 'per') === X.id && t.tipo !== 'final').reverse();
     return tests.length ? h('section', h('h2', `${X.icon} Exámenes ${X.sigla}`),
       h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
   });

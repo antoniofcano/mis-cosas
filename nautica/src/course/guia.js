@@ -8,13 +8,24 @@ import { cuenta } from '../texto.js';
 
 const lista = (xs) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}` : xs[0] ?? '');
 
+/** La frase del examen final, con los datos de la reserva (null si el banco no reserva nada). */
+export function lineaFinalGuia(E, final) {
+  if (!final || !(final.modo === 'examen' ? final.convocatorias : final.preguntas)) return null;
+  const que = final.modo === 'examen'
+    ? `${cuenta(final.convocatorias, 'convocatoria reciente', 'convocatorias recientes')} de ${final.eje}`
+    : `${cuenta(final.preguntas, 'pregunta')} de las últimas convocatorias de ${final.eje}`;
+  const margen = E.margen ? `; si lo apruebas con margen (${cuenta(E.margen.minAciertos, 'acierto')} o más), estás preparado` : '';
+  return `La app te guarda ${que} que nunca salen al estudiar: son tu examen final, que se abre cuando estás listo${margen}.`;
+}
+
 /**
  * Las pantallas de la guía de una titulación.
  * @param {{ sigla: string, nombre: string, estructura: object, podcast?: boolean }} T
- * @param {{ minutosDia?: number, fechaExamen?: string|null }} o
+ * @param {{ minutosDia?: number, fechaExamen?: string|null, final?: { modo: string, convocatorias: number, preguntas: number, eje: string }|null }} o
+ *   final: la reserva del banco del alumno (examen final), para contarlo con sus números
  * @returns {{ icono: string, titulo: string, texto: string[], puntos?: string[] }[]}
  */
-export function paginasGuia(T, { minutosDia = 20, fechaExamen = null } = {}) {
+export function paginasGuia(T, { minutosDia = 20, fechaExamen = null, final = null } = {}) {
   const E = T.estructura;
   const total = totalPreguntas(E);
   const maxFallos = total - E.minAciertos;
@@ -59,8 +70,9 @@ export function paginasGuia(T, { minutosDia = 20, fechaExamen = null } = {}) {
     texto: [
       `Cuando has respondido al menos ${cuenta(MIN_RESPUESTAS, 'pregunta')} de cada tema, la app calcula tu probabilidad de aprobar con las reglas de verdad del examen, tema a tema y con sus límites de fallos.`,
       `Con un ${Math.round(LISTO * 100)} % o más, estás listo. Los simulacros completos (cronometrados, como el de verdad) también cuentan: haz varios en las últimas semanas.`,
+      lineaFinalGuia(E, final),
       'Lo ves en «Hoy», dentro de «Ver mi progreso», junto con los temas donde más fallas.',
-    ],
+    ].filter(Boolean),
   };
 
   const consejos = {

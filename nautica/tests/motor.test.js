@@ -7,13 +7,18 @@ import { estadoAlumno, invariantes } from '../src/course/motor.js';
 import { PER, PY } from '../src/theory/blocks.js';
 import { createRng } from '../src/math/rng.js';
 import { trasPractica, numTramos, leccionesDe } from '../src/course/engine.js';
-import { cursoDe, preguntasDe } from '../tools/bancos/leer.mjs';
+import { cursoDe, bancosNode, EJE_POR_DEFECTO } from '../tools/bancos/leer.mjs';
+
+// El banco de estudio de cada titulación (sin lo reservado para el examen final) y su reserva, como en la app.
+const BANCOS = { per: await bancosNode().cargarBanco(EJE_POR_DEFECTO, 'per'), py: await bancosNode().cargarBanco(EJE_POR_DEFECTO, 'py') };
+const preguntasDe = (tit) => BANCOS[tit].estudio;
+const reservaDe = (tit) => ({ reserva: BANCOS[tit].reserva, pool: BANCOS[tit].final, reservadas: BANCOS[tit].reservadas });
 
 const leer = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), 'utf8'));
 const DIA = 864e5;
 
 test('ninguna pantalla calcula números por su cuenta: todo sale del motor', () => {
-  const calculos = /\b(estadoTema|avanceCamino|avance|ritmoEstudio|estoyListo|planHoy|seguimiento|crearPlan|lineaSeguimiento|lineaRitmo|clasesFlojas|temasFlojos)\(/;
+  const calculos = /\b(estadoTema|avanceCamino|avance|ritmoEstudio|estoyListo|planHoy|seguimiento|crearPlan|lineaSeguimiento|lineaRitmo|clasesFlojas|temasFlojos|estadoFinal|margenExamen)\(/;
   for (const f of readdirSync(new URL('../src/ui/views/', import.meta.url))) {
     const src = readFileSync(new URL(`../src/ui/views/${f}`, import.meta.url), 'utf8');
     assert.ok(!calculos.test(src), `${f} calcula por su cuenta: ${src.match(calculos)?.[0]}`);
@@ -34,7 +39,7 @@ function simula(tit, estructura, semilla, conFecha) {
   let planGuardado = null;
   const estado = (ahora) => {
     const hoy = new Date(ahora).toLocaleDateString('sv-SE');
-    const st = estadoAlumno({ tit, estructura, curso, preguntas, regs, respuestas, tests: [], settings, minutosHoy: dias[hoy] ?? 0, racha: 0, planGuardado, ahora });
+    const st = estadoAlumno({ tit, estructura, curso, preguntas, regs, respuestas, tests: [], settings, minutosHoy: dias[hoy] ?? 0, racha: 0, planGuardado, ahora, ...reservaDe(tit) });
     if (st.plan?.nuevo) planGuardado = st.plan.base;
     return st;
   };
@@ -49,6 +54,8 @@ function simula(tit, estructura, semilla, conFecha) {
       if (accion === 0) { // una tanda de preguntas de un tema
         const ut = rng.pick(estructura.bloques).ut;
         for (const q of preguntas.filter((x) => x.ut === ut).slice(0, 10)) respuestas[q.id] = { choice: null, ok: rng.next() < 0.5 };
+        // Un alumno de antes de la reserva también respondió preguntas que ahora son del examen final: no cuentan.
+        for (const q of BANCOS[tit].final.filter((x) => x.ut === ut).slice(0, 3)) respuestas[q.id] = { choice: null, ok: false };
       } else if (accion === 1) { // un tramo de la clase que toca
         const l = lecciones.find((x) => !regs[x.id]?.visto) ?? lecciones[0];
         const k2 = numTramos(l.pasos.filter((p) => !p.extra).length);
@@ -103,3 +110,55 @@ test('mensaje del día: si con tus minutos no llegas, se avisa también el día 
     assert.deepEqual(invariantes(st), []);
   }
 });
+// --- Examen final (F1) ----------------------------------------------------------------------------------------
+
+/** Respuestas de un alumno que acierta todo el estudio de una titulación (estaría listo). */
+const todoBien = (tit) => Object.fromEntries(preguntasDe(tit).map((q) => [q.id, { choice: q.correcta, ok: true, n: 1 }]));
+
+for (const [tit, E] of [['per', PER], ['py', PY]]) {
+  test(`motor (${tit}): examen final cerrado sin estar listo, abierto y propuesto en la recta final, y «preparado» con margen`, () => {
+    const curso = cursoDe(tit);
+    const ahora = Date.UTC(2026, 9, 6, 9);
+    const base = { tit, estructura: E, curso, preguntas: preguntasDe(tit), regs: {}, tests: [], racha: 0, planGuardado: null, ahora, minutosHoy: 0, ...reservaDe(tit) };
+    // Alumno nuevo: cerrado, y dice qué le falta (los temas sin datos de «¿Estás listo?»).
+    const nuevo = estadoAlumno({ ...base, respuestas: {}, settings: { minutosDia: 30 } });
+    assert.equal(nuevo.final.hay, true);
+    assert.equal(nuevo.final.desbloqueado, false);
+    assert.equal(nuevo.final.bloqueo.motivo, 'faltan-datos');
+    assert.equal(nuevo.final.bloqueo.temas.length, E.bloques.length);
+    assert.match(nuevo.final.lineas[0], /te faltan/);
+    assert.ok(!nuevo.actividades.some((a) => a.tipo === 'final'));
+    assert.deepEqual(invariantes(nuevo), []);
+
+    // Listo y con el examen en 10 días: abierto y propuesto en Hoy (antes que el simulacro).
+    const respuestas = todoBien(tit);
+    const settings = { minutosDia: 30, [`examen_${tit}`]: '2026-10-16' };
+    const listo = estadoAlumno({ ...base, respuestas, settings });
+    assert.equal(listo.listo.estado, 'listo');
+    assert.equal(listo.final.desbloqueado, true);
+    assert.equal(listo.final.todasVistas, false);
+    assert.equal(listo.final.ineditas, 5);
+    assert.ok(listo.actividades.some((a) => a.tipo === 'final' && a.ruta.join('/') === 'test/final'));
+    assert.deepEqual(invariantes(listo), []);
+    // Sin fecha (o lejos), no se propone: se ofrece en Examen.
+    assert.ok(!estadoAlumno({ ...base, respuestas, settings: { minutosDia: 30 } }).actividades.some((a) => a.tipo === 'final'));
+
+    // Aprobado justo (sin margen): no está preparado y se sigue proponiendo otro día; con margen, preparado.
+    const total = E.bloques.reduce((n, b) => n + b.n, 0);
+    const porTema = (fallos) => E.bloques.map((b) => ({ ut: b.ut, aciertos: b.n - (fallos[b.ut] ?? 0), total: b.n }));
+    const limite = E.bloques.find((b) => E.margen.maxErrores[b.ut] != null);
+    const justo = { tipo: 'final', tit, conv: listo.final.siguiente.key, aciertos: total - (E.margen.maxErrores[limite.ut] + 1), total, apto: true, porTema: porTema({ [limite.ut]: E.margen.maxErrores[limite.ut] + 1 }), t: new Date(ahora - 864e5).toISOString() };
+    const tras = estadoAlumno({ ...base, respuestas, settings, tests: [justo] });
+    assert.equal(tras.final.preparado, false);
+    assert.match(tras.final.lineasResultado[0], /sin margen/);
+    assert.equal(tras.final.ineditas, 4, 'la convocatoria hecha ya no es inédita');
+    assert.notEqual(tras.final.siguiente.key, justo.conv);
+    assert.deepEqual(invariantes(tras), []);
+    const bien = { ...justo, aciertos: total, porTema: porTema({}) };
+    const prep = estadoAlumno({ ...base, respuestas, settings, tests: [bien] });
+    assert.equal(prep.final.preparado, true);
+    assert.match(prep.final.lineasResultado[0], /estás preparado/);
+    assert.ok(!prep.actividades.some((a) => a.tipo === 'final'));
+    assert.deepEqual(invariantes(prep), []);
+  });
+}

@@ -60,7 +60,7 @@ export function unidades({ estructura, curso, preguntas = [], regs = {}, respues
         hecha: est.hechas >= Math.min(obj, k * TANDA) });
     }
   }
-  const simulacros = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real').length;
+  const simulacros = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real' || t.tipo === 'final').length;
   for (let k = 1; k <= SIMULACROS_RECOMENDADOS; k++) {
     out.push({ id: `simulacro:${k}`, tipo: 'simulacro', titulo: `Simulacro de examen ${k}`, minutos: estructura.duracionMin, ut: null, ruta: ['test', 'simulacro'], hecha: simulacros >= k });
   }

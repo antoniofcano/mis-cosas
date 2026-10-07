@@ -49,7 +49,7 @@ export default {
     'dgmm-per-2023-04-43': {
       ejercicio: 'ct-enfilacion',
       solve(k) {
-        // Ct = −2,8° → 3° (−). El lector de opciones aún lee igual «3° (−)» y «3° (+)» (ver pendientesLector).
+        // Ct = −2,8° → 3° (−). Las opciones escriben el signo entre paréntesis.
         const dv = k.oposicion('punta-almina', 'punta-europa');
         return [{ kind: 'signed', value: k.ctFrom(dv, 349) }];
       },
@@ -216,23 +216,6 @@ export default {
         return latlon(k.run(a, rv2, d2, 'Situación 13:48'));
       },
     },
-  },
-  documentadas: {
-    'dgmm-per-2023-11-89': {
-      tipo: 'sin-calculo',
-      texto: 'La situación de las 14:00 es el corte de la demora de Cabo Espartel (Rv = 085° − 5° = 080°, marcación 63° Er → '
-        + 'Dv = 143°) con el veril de 200 m, que se lee en la carta de papel: la carta de la app no trae sondas ni isobáticas. '
-        + 'El resultado depende mucho de ese corte (cada milla sobre la demora cambia el rumbo unos 5°): la opción oficial, '
-        + 'Ra = 064° (Rv = 066°, Ct = −2° + 4° = +2°) hacia el punto 5 millas al N de Punta Malabata, corresponde a estar a '
-        + 'unas 2,8 millas de Espartel sobre esa demora (≈ 35° 49,8′ N, 5° 57,5′ W).',
-    },
-  },
-};
-
-// Resueltas, pero el lector de opciones (src/exams/options.js) aún no sabe leer su formato y el test no puede
-// comprobarlas: «2º (-)» (el signo entre paréntesis se pierde: 2º (+) y 2º (−) leen igual) y «35º 49'8 N» (décimas
-// de minuto tras el apóstrofo). Se pasarán a `soluciones` cuando el lector las entienda.
-export const pendientesLector = {
     'dgmm-per-2023-04-88': {
       ejercicio: 'ct-enfilacion',
       solve(k) {
@@ -248,4 +231,16 @@ export const pendientesLector = {
         return latlon(k.fixBearingRange('punta-malabata', 94, 'cabo-espartel', 5, 1, 'Situación 12:00'));
       },
     },
+  },
+  documentadas: {
+    'dgmm-per-2023-11-89': {
+      tipo: 'sin-calculo',
+      texto: 'La situación de las 14:00 es el corte de la demora de Cabo Espartel (Rv = 085° − 5° = 080°, marcación 63° Er → '
+        + 'Dv = 143°) con el veril de 200 m, que se lee en la carta de papel: la carta de la app no trae sondas ni isobáticas. '
+        + 'El resultado depende mucho de ese corte (cada milla sobre la demora cambia el rumbo unos 5°): la opción oficial, '
+        + 'Ra = 064° (Rv = 066°, Ct = −2° + 4° = +2°) hacia el punto 5 millas al N de Punta Malabata, corresponde a estar a '
+        + 'unas 2,8 millas de Espartel sobre esa demora (≈ 35° 49,8′ N, 5° 57,5′ W).',
+    },
+  },
 };
+

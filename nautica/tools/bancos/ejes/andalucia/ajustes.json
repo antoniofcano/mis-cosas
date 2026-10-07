@@ -1634,18 +1634,19 @@
   },
   "and-2017-c3-t12": {
    "norma": {
-    "estado": "vigente",
+    "estado": "retirada",
     "normas": [
      "RD 186/2023",
      "RD 191/2026",
      "IALA MBS 2022"
-    ]
+    ],
+    "nota": "Retirada: desde que el Real Decreto 186/2023 derogó la Orden de 1964 de zonas para bañistas (11 de abril de 2023), rige solo el art. 73.2 del Reglamento General de Costas: en un tramo de costa sin balizar la zona de baño ocupa 200 m en las playas y 50 m en el resto, y dentro se puede navegar a 3 nudos como máximo. La afirmación d) es cierta; la falsa es la b)."
    },
    "revision": {
     "motivos": [
      {
       "norma": "RD 186/2023",
-      "motivo": "Zona de baño: la Orden de 1964 (derogada por el RD 186/2023) fijaba 250 m en las playas y 100 m en el resto del litoral; la regla del examen (200 m en las playas, 50 m en el resto de la costa, 3 nudos) es la del art. 73 del Reglamento General de Costas (RD 876/2014), vigente desde 2014. La respuesta oficial sigue valiendo, con el mismo criterio que el tribunal mantiene en 2021 (and-2021-c2-t12).",
+      "motivo": "La oficial (la d), «navegar perpendicularmente a tierra a 3 nudos» como afirmación falsa) respondía a la Orden de 1964, que en la franja de baño con bañistas prohibía las embarcaciones de hélice y llevaba la entrada a tierra por canales. Derogada esa Orden por el RD 186/2023 (11-4-2023), rige solo el art. 73.2 del Reglamento General de Costas: en un tramo no balizado se puede navegar dentro de la franja (200 m en playas, 50 m en el resto) a 3 nudos como máximo, así que la d) es cierta y la falsa es la b). Retirada.",
       "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10345#a73"
      },
      {

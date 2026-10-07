@@ -1,0 +1,775 @@
+{
+ "and-2018-c1-t20": {
+  "explicacion": "La Regla 8 a) pide que, si las circunstancias lo permiten, la maniobra para evitar el abordaje se haga de forma clara, con la debida antelación y respetando las buenas prácticas marineras. La a) es justo lo que la Regla 8 b) manda evitar: una sucesión de pequeños cambios que el otro no percibe. El Reglamento no exige coordinarse por radio (la c) y esperar a que el abordaje sea inevitable (la d) es llegar tarde.",
+  "clave": "Maniobra clara, amplia y a tiempo.",
+  "trampa": "La a) suena prudente, pero los cambios pequeños son lo que hay que evitar.",
+  "concepto": null
+ },
+ "and-2018-c1-t21": {
+  "explicacion": "La Regla 18 a) dice que el buque de propulsión mecánica en navegación se mantendrá apartado de la derrota del buque de vela, así que es el que cede el paso. Con un velero de por medio no se aplica la regla de cruce entre buques de motor (la de «quien tiene al otro por estribor cede»), y menos aún caer los dos a una banda. La única excepción sería que el velero estuviera alcanzando.",
+  "clave": "Motor ante vela: cede el motor.",
+  "trampa": "Que el velero venga por babor no cambia nada: la regla de estribor es solo entre buques de motor.",
+  "concepto": "and-2023-c1-t25"
+ },
+ "and-2018-c1-t22": {
+  "explicacion": "La Regla 9 a) indica que el buque que navegue por un canal angosto se mantendrá lo más cerca posible del límite exterior del canal que quede por su costado de estribor, siempre que pueda hacerlo sin peligro. Así los que se cruzan pasan babor con babor. Ni el centro del canal ni el lado de babor, y desde luego no es indiferente.",
+  "clave": "Canal angosto: pégate a tu estribor.",
+  "concepto": "and-2023-c1-t20"
+ },
+ "and-2018-c1-t23": {
+  "explicacion": "La Regla 10 b) obliga a quien utilice un dispositivo de separación del tráfico a navegar por la vía de circulación apropiada y en el sentido general del tráfico, a mantenerse en lo posible fuera de la línea o zona de separación y, normalmente, a entrar o salir por los extremos de la vía. Si entra o sale por un lateral, lo hará con el menor ángulo posible. Las tres afirmaciones son ciertas, así que la buena es la d).",
+  "clave": "DST: tu vía, fuera de la zona de separación, entrando y saliendo por los extremos.",
+  "trampa": "Cada opción es correcta por separado: no te quedes con una sola.",
+  "concepto": null
+ },
+ "and-2018-c1-t24": {
+  "explicacion": "Por regla general el buque de propulsión mecánica se aparta del de vela (Regla 18 a), pero la Regla 13 prevalece sobre ella: si el velero está alcanzando al buque de motor, es el velero quien debe apartarse. Que el velero tenga al de motor por estribor no cambia nada, porque la regla de estribor solo vale entre buques de propulsión mecánica; por eso fallan la a) y la d), y la c) olvida la excepción del alcance.",
+  "clave": "Velero que alcanza, velero que se aparta.",
+  "trampa": "La a) aplica a un velero la regla de cruce de los buques de motor.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "and-2022-c3-t18"
+ },
+ "and-2018-c1-t25": {
+  "explicacion": "La Regla 34 d) dispone que cinco o más pitadas cortas y rápidas indican duda: el buque no entiende las intenciones o la maniobra del otro que está a la vista, o duda de que esté maniobrando lo suficiente para evitar el abordaje. No es una señal de peligro (esas están en el Anexo IV) ni de buque sin gobierno, que no tiene una señal así en navegación con visibilidad.",
+  "clave": "Cinco cortas = «no te entiendo, ¿qué haces?».",
+  "trampa": "Asociar muchas pitadas seguidas con una emergencia.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "....."
+   }
+  ],
+  "concepto": "and-2020-c1-t25"
+ },
+ "and-2018-c1-t26": {
+  "explicacion": "Dos luces rojas todo horizonte en línea vertical son las del buque sin gobierno (Regla 27 a); si tiene arrancada, añade luces de costado y de alcance. El arrastrero lleva verde sobre blanca, el pesquero que no es de arrastre roja sobre blanca y el velero no lleva ninguna roja todo horizonte (la roja sobre verde en el tope es opcional y es otra combinación).",
+  "clave": "Rojo sobre rojo, sin gobierno.",
+  "trampa": "El pesquero de no arrastre lleva roja, pero sobre blanca, no sobre otra roja.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "sin-gobierno",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t27": {
+  "explicacion": "Si solo ves una luz roja, ves el costado de babor de un buque que no lleva luz de tope ni luces todo horizonte: un velero navegando a vela (Regla 25). El de propulsión mecánica siempre muestra además al menos una blanca de tope, y el pesquero de no arrastre lleva roja sobre blanca todo horizonte, así que en los dos verías más luces.",
+  "clave": "Solo una roja = velero visto por babor.",
+  "trampa": "La d) tienta, pero motor y pesquero siempre enseñan alguna blanca más.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "todas"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c1-t28": {
+  "explicacion": "Con hélice levógira, parado y dando atrás, la presión lateral de las palas lleva la popa a estribor (y, por tanto, la proa tiende a babor). La a) y la c) son coherentes entre sí (proa a estribor, popa a babor), pero describen a una dextrógira, no a una levógira; por eso la d) también es falsa. La levógira es el espejo de la dextrógira.",
+  "clave": "Levógira atrás: popa a estribor, proa a babor.",
+  "trampa": "La a) y la c) encajan entre sí, pero corresponden a una dextrógira.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "and-2022-c1-t28"
+ },
+ "and-2018-c1-t29": {
+  "explicacion": "La curva de evolución con máquina avante tiene tres periodos: de maniobra (mientras la pala llega al ángulo pedido), variable (el giro se va acelerando) y uniforme (el barco describe un círculo constante). El avance es una distancia de la curva y el rabeo de la popa un fenómeno que se produce al empezar a caer, no periodos; por eso fallan la a) y la b).",
+  "clave": "Curva de evolución: Maniobra, Variable, Uniforme (MVU).",
+  "trampa": "Avance y rabeo son conceptos de la curva, pero no son sus periodos.",
+  "concepto": "and-2025-c1-t29"
+ },
+ "and-2018-c1-t30": {
+  "explicacion": "Al Centro Radio-Médico Español se puede llegar por varias vías, y las tres son válidas: llamando directamente al 91 310 34 75, que atiende las 24 horas todos los días; a través del servicio de estaciones costeras españolas pidiendo comunicación para «consulta médica»; o desde el extranjero, pidiendo a una costera de allí que te ponga con ese número de España. Por eso la buena es la d).",
+  "clave": "Radio-Médico: teléfono 91 310 34 75 o por cualquier costera, nacional o extranjera.",
+  "trampa": "Cada opción es una vía correcta; ninguna excluye a las otras.",
+  "concepto": null
+ },
+ "and-2018-c1-t31": {
+  "explicacion": "Inhibir es cortar la reacción en cadena, el cuarto lado del tetraedro del fuego; es como actúa sobre todo el polvo químico seco. La desalimentación quita el combustible, la sofocación el comburente (oxígeno) y el enfriamiento el calor.",
+  "clave": "Inhibición = cortar la reacción en cadena.",
+  "trampa": "Las cuatro opciones son mecanismos reales: asocia cada uno a su lado del tetraedro.",
+  "ilustraciones": [
+   {
+    "tipo": "fuego",
+    "vista": "tetraedro"
+   }
+  ],
+  "concepto": "and-2023-c3-t31"
+ },
+ "and-2018-c1-t32": {
+  "explicacion": "Sin balsa, salta al agua y no nades salvo que haga falta (si lo haces, de espaldas y con calma), porque gastas energía y pierdes calor. Lleva la radiobaliza para que te localicen, mantén agrupada a la tripulación y súbete a cualquier objeto flotante para reducir la hipotermia: todo eso lo reúne la a). La b) se queda corta, la c) habla de «hipertermia» (exceso de calor), y la d) manda alejarse nadando, justo lo contrario.",
+  "clave": "Sin balsa: quietos, juntos, con la radiobaliza y fuera del agua si se puede.",
+  "trampa": "Hipertermia no es hipotermia: una sola palabra invalida la c).",
+  "concepto": null
+ },
+ "and-2018-c1-t33": {
+  "explicacion": "El tiempo que un viento lleva soplando con dirección e intensidad uniformes es la persistencia. Junto con el fetch (la extensión de mar sobre la que sopla) y la intensidad, determina cuánta mar se forma. El periodo es un parámetro de la ola (el tiempo entre dos crestas) y «permanencia» no es el término técnico.",
+  "clave": "Persistencia = cuánto tiempo persiste el viento.",
+  "trampa": "El fetch es una distancia; la persistencia, un tiempo.",
+  "concepto": "and-2023-c1-t35"
+ },
+ "and-2018-c1-t34": {
+  "explicacion": "De noche la tierra se enfría antes que el mar, así que sobre tierra la presión es relativamente más alta y el aire fluye de tierra hacia el mar: ese viento es el terral. La virazón es la brisa diurna, del mar hacia tierra, y «viento costero marítimo» no es ningún nombre técnico.",
+  "clave": "Terral = de noche, de tierra al mar.",
+  "trampa": "Terral viene de «tierra»: sopla desde tierra. Virazón: del mar, de día.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "brisa-tierra"
+   }
+  ],
+  "concepto": "and-2021-c1-t35"
+ },
+ "and-2018-c1-t35": {
+  "explicacion": "En el hemisferio norte, en una depresión o borrasca los vientos giran en sentido contrario a las agujas del reloj, convergiendo hacia el centro de baja presión. Una dirección fija (de oeste a este o de norte a sur) no describe un giro, y el sentido horario de la a) es el del anticiclón.",
+  "clave": "Borrasca HN: antihorario.",
+  "trampa": "Borrasca HN: antihorario y baja en el centro. Anticiclón HN: horario y alta en el centro.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "borrasca"
+   }
+  ],
+  "concepto": "and-2021-c1-t34"
+ },
+ "and-2018-c1-t36": {
+  "explicacion": "Si el viento cambia de dirección, decimos que ha rolado. Refrescar es aumentar de intensidad, caer es disminuir y rachear es que la fuerza suba y baje bruscamente: ninguna habla de dirección.",
+  "clave": "Rola = cambia de dirección.",
+  "trampa": "No confundas rolar (dirección) con refrescar (más fuerza) ni con caer (menos fuerza).",
+  "concepto": "and-2023-c1-t33"
+ },
+ "and-2018-c1-t37": {
+  "explicacion": "El ángulo entre el meridiano (el Norte) y la línea proa-popa es el rumbo. Si el segundo lado fuera la visual a un objeto sería una demora, y si se contara desde la proa hasta el objeto, una marcación; la enfilación es una línea de posición formada por dos objetos alineados.",
+  "clave": "Rumbo: Norte → proa. Demora: Norte → objeto.",
+  "trampa": "No es demora: aquí el segundo lado del ángulo es la crujía, no un objeto.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 60
+   }
+  ],
+  "concepto": "and-2025-c1-t40"
+ },
+ "and-2018-c1-t38": {
+  "explicacion": "Los veriles (o isobatas) son las líneas de la carta que unen puntos de igual sonda, es decir, de igual profundidad; así ves de un vistazo dónde empieza a haber poca agua. El datum es el sistema de referencia de la carta, la amplitud de marea es la diferencia entre pleamar y bajamar y las líneas de igual temperatura (isotermas) son de meteorología.",
+  "clave": "Veril = línea de igual profundidad.",
+  "concepto": null
+ },
+ "and-2018-c1-t40": {
+  "explicacion": "Con alta presión el aire «aprieta» la superficie del mar y la marea queda más baja de lo previsto, en torno a 1 cm por cada hPa por encima de la presión normal. Con baja presión pasa lo contrario: el agua sube. Por eso falla la a), la b) exagera sin fundamento y la d) niega un efecto que existe.",
+  "clave": "Alta presión, agua más baja; baja presión, agua más alta.",
+  "trampa": "La a) es el efecto de las bajas presiones.",
+  "concepto": null
+ },
+ "and-2018-c1-t41": {
+  "explicacion": "La marcación se cuenta desde la proa hasta la popa, por estribor o por babor: de 0° a 180° indicando la banda. Es la forma que da el tribunal. La a) se parece a la marcación circular, que se cuenta de 0° a 360° pero siempre por estribor, y no basta con decir «en sentido horario»; la b) inventa una referencia «hacia proa o popa» y la c) mezcla 360° con la banda, que entonces sobraría.",
+  "clave": "Marcación: de proa a popa, 0°–180° por Er o Br.",
+  "trampa": "Con 360° no hace falta decir la banda; con 180° sí.",
+  "ilustraciones": [
+   {
+    "tipo": "rosa",
+    "rumbo": 0,
+    "demora": 120,
+    "marcacion": true,
+    "etiqueta": "faro"
+   },
+   {
+    "tipo": "rosa",
+    "rumbo": 0,
+    "demora": 240,
+    "marcacion": true,
+    "etiqueta": "faro"
+   }
+  ],
+  "concepto": "and-2021-c1-t40"
+ },
+ "and-2018-c2-t01": {
+  "explicacion": "Los candeleros son los soportes verticales, metálicos o de madera, que sostienen los guardamancebos o pasamanos que rodean la cubierta. Los guardamancebos son los propios cabos, cables o barras horizontales a los que te agarras, y la barandilla es el conjunto; «anchura» o cualquier otro nombre no aplica aquí.",
+  "clave": "Candelero = poste; guardamancebo = cable entre postes.",
+  "trampa": "No confundas el soporte (candelero) con lo que sostiene (guardamancebo).",
+  "concepto": null
+ },
+ "and-2018-c2-t02": {
+  "explicacion": "La manga máxima es la mayor anchura del barco medida por fuera del forro, incluido el espesor de las chapas de ambos costados. La «manga» a secas (o de trazado) se mide por dentro del forro, y «manga con el forro» y «anchura» no son términos técnicos.",
+  "clave": "Manga máxima: la mayor anchura, por fuera del forro.",
+  "trampa": "Manga a secas no incluye el forro; la máxima sí.",
+  "concepto": null
+ },
+ "and-2018-c2-t03": {
+  "explicacion": "En giro al exterior, vistas desde popa y en avante, las palas de arriba se mueven hacia fuera: la de babor gira en sentido antihorario (levógira) y la de estribor en sentido horario (dextrógira). Eso es exactamente lo que describe el enunciado. La b) y la c) no definen el sistema, y «giro abatible» no existe.",
+  "clave": "Giro al exterior: Babor-Levógira, Estribor-Dextrógira.",
+  "trampa": "Las gemelas siempre giran al revés una de otra: el sistema se nombra hacia dónde van las palas de arriba.",
+  "concepto": "and-2026-c1-t02"
+ },
+ "and-2018-c2-t04": {
+  "explicacion": "El núcleo es la pieza central de la hélice: sobre él se montan las palas y es el que se fija al eje para transmitirles el giro. El capacete es la tapa que cierra el extremo del eje y protege la tuerca, la bocina es el tubo por el que el eje atraviesa el casco y el eje es el que trae el giro desde el motor.",
+  "clave": "Núcleo = cubo central donde van las palas.",
+  "trampa": "El capacete también está en el centro, pero es la tapa del extremo, no el soporte de las palas.",
+  "concepto": null
+ },
+ "and-2018-c2-t05": {
+  "explicacion": "Para fondear con orden se destrinca el ancla, se deja a la pendura (colgando fuera del escobén) aguantada con el freno, y cuando llegas al punto elegido quitas el freno y das fondo. Así controlas el momento exacto y la cadena no se dispara. La b) y la d) se saltan pasos y te dejan sin control, y la c) es imposible: con el freno puesto la cadena no sale.",
+  "clave": "Fondear: destrincar, a la pendura con freno, quitar freno, fondo.",
+  "trampa": "La b) confía en que el freno aguante solo, que es lo que no se debe hacer.",
+  "concepto": null
+ },
+ "and-2018-c2-t06": {
+  "explicacion": "El orinque es un cabo amarrado a la cruz del ancla con un boyarín en el otro extremo: señala dónde está el ancla y permite recuperarla tirando de la cruz si se enroca o se pierde. El garreo es que el ancla se arrastre por el fondo y el borneo el giro del barco alrededor del ancla; la a) dice justo lo contrario de balizar el ancla.",
+  "clave": "Orinque: cabo + boyarín en la cruz del ancla.",
+  "trampa": "Garreo y borneo son movimientos, no elementos que se colocan.",
+  "concepto": "and-2026-c1-t05"
+ },
+ "and-2018-c2-t07": {
+  "explicacion": "La estabilidad estática transversal es la propiedad del buque de recuperar su posición de equilibrio una vez escorado, flotando en aguas en reposo. Es «estática» porque se estudia sin mar (aguas tranquilas), por eso fallan la b) y la d); y «mantenerse adrizado» de la c) no es recuperarse de una escora.",
+  "clave": "Estática = aguas en reposo; transversal = escora.",
+  "trampa": "Las opciones solo cambian dos detalles: «recuperar tras escorar» y «aguas en reposo».",
+  "ilustraciones": [
+   {
+    "tipo": "estabilidad",
+    "caso": "estable"
+   }
+  ],
+  "concepto": "and-2022-c2-t07"
+ },
+ "and-2018-c2-t08": {
+  "explicacion": "Se recomienda el arnés con línea de vida de cinta plana y no de cabo: un cabo redondo, al pisarlo, rueda bajo el pie y te puede hacer resbalar. La b) parece lógica, pero el arnés sirve para no caer por la borda (te mantiene unido a la línea de vida), no para quedar remolcado tras caer; la a) es un invento y la d) es falsa, porque los arneses se regulan a la talla.",
+  "clave": "Arnés: para no caer; línea de cinta, no de cabo.",
+  "trampa": "La b) suena bien, pero el objetivo es no caer, no ir colgando del barco.",
+  "concepto": null
+ },
+ "and-2018-c2-t09": {
+  "explicacion": "Ante una hipotermia hay que quitar la ropa mojada, porque sigue robando calor, así que la b) es lo que NO se debe hacer. Lo demás sí es correcto: trasladar al náufrago en horizontal y sin golpes, abrigarlo a resguardo del viento y, si está inconsciente, pedir socorro o consulta radio-médica.",
+  "clave": "Hipotermia: fuera ropa mojada, abrigo y calor despacio; ni frotar ni alcohol.",
+  "trampa": "Pregunta negativa: la b) mezcla algo correcto (no frotar) con algo incorrecto (dejar la ropa mojada).",
+  "concepto": null
+ },
+ "and-2018-c2-t10": {
+  "explicacion": "Aguas someras son las de poca profundidad, cerca de la costa o sobre bajos, donde hay riesgo de varar y hay que navegar con precaución, poca velocidad y vigilando la sonda. «Aguas sondables», «superficiales» o «muertas» no son el término que usa la navegación para esa idea.",
+  "clave": "Somero = poco fondo: precaución, sonda y poca velocidad.",
+  "trampa": "«Superficiales» suena parecido, pero el término náutico es «someras».",
+  "concepto": "and-2020-c3-t07"
+ },
+ "and-2018-c2-t11": {
+  "explicacion": "Navegar hasta 12 millas de la costa, gobernar embarcaciones de hasta 15 m y la navegación interinsular en los archipiélagos balear y canario son atribuciones básicas del PER (RD 875/2014), no complementarias. Las complementarias, que se ganan con prácticas añadidas, son el gobierno de embarcaciones de hasta 24 m y la navegación entre la Península y Baleares (desde el RD 238/2019, «incluidas las islas intermedias»). Por eso ninguna de las tres primeras vale.",
+  "clave": "PER básico: 15 m, 12 millas e interinsular. Complementario: 24 m y Península–Baleares.",
+  "trampa": "Las tres primeras son atribuciones reales del PER, pero de las básicas.",
+  "concepto": null
+ },
+ "and-2018-c2-t12": {
+  "explicacion": "En 2018 el RD 1084/2009 (que modificó el RD 1381/2002) permitía a las embarcaciones de recreo de hasta 12 personas con base en un puerto español hacer una notificación reducida de desechos una vez al año, en lugar de notificar en cada entrada a puerto; por eso el tribunal dio la b). Hoy esa regla no existe: el RD 128/2022 derogó el RD 1381/2002, la notificación previa no se aplica a las embarcaciones de recreo de menos de 45 m y lo que se exige es entregar los desechos en las instalaciones de recepción del puerto.",
+  "clave": "Hoy (RD 128/2022): recreo de menos de 45 m, sin notificación previa; los desechos, al puerto.",
+  "trampa": "La notificación «anual» era la regla de entonces; ya no se aplica.",
+  "concepto": null
+ },
+ "and-2018-c2-t13": {
+  "explicacion": "La marca de tope de las marcas especiales es un aspa amarilla en forma de X, del mismo color amarillo que la propia marca y su luz. Las aguas navegables llevan una esfera roja, el peligro aislado dos esferas negras y las laterales de bifurcación un cilindro o un cono, según el lado del canal principal.",
+  "clave": "Aspa amarilla = marca especial (todo amarillo).",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "especial"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c2-t14": {
+  "explicacion": "El ritmo de 2+1 destellos indica una marca de bifurcación, y el verde dice que es una lateral de estribor modificada: la dejas por estribor entrando, y el canal principal te queda a babor. Una lateral de estribor normal (la d) emitiría luz verde con cualquier ritmo excepto 2+1, y el 2+1 rojo es el de canal principal a estribor.",
+  "clave": "2+1 verde = canal principal a babor; 2+1 rojo = canal principal a estribor.",
+  "trampa": "Asociar verde/estribor con «canal principal a estribor».",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-babor"
+   }
+  ],
+  "concepto": "and-2021-c1-t13"
+ },
+ "and-2018-c2-t15": {
+  "explicacion": "Negro arriba y amarillo abajo es la cardinal Norte: las aguas seguras están al norte de la marca, así que hay que pasarle por su norte. Navegando a rumbo este, el norte queda a tu babor; para pasar por el norte de la marca caes a babor y la dejas por tu estribor. Una cardinal nunca es indiferente.",
+  "clave": "Cardinal: pásala por el lado que indica su nombre.",
+  "trampa": "Pensar en lateral (babor/estribor) en lugar de en el punto cardinal.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-n"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c2-t16": {
+  "explicacion": "Las franjas verticales rojas y blancas son el distintivo de la marca de aguas navegables: es la única que lleva rayas verticales. Las cardinales combinan negro y amarillo en bandas horizontales y el peligro aislado es negro con bandas rojas horizontales.",
+  "clave": "Franjas verticales rojas y blancas = aguas navegables.",
+  "trampa": "El peligro aislado también lleva rojo, pero en bandas horizontales con negro.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables"
+   }
+  ],
+  "concepto": "and-2022-c3-t15"
+ },
+ "and-2018-c2-t18": {
+  "explicacion": "La Regla 13 prevalece sobre la 12: el que alcanza se mantiene apartado del alcanzado aunque ambos sean veleros y reciban el viento por bandas contrarias. Las reglas del viento (babor cede, barlovento cede) solo se aplican cuando no hay alcance, y caer los dos a estribor es cosa de la vuelta encontrada entre buques de motor.",
+  "clave": "Alcance antes que viento.",
+  "trampa": "La a) aplica la regla de las amuras, que aquí no manda.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "and-2023-c3-t23"
+ },
+ "and-2018-c2-t19": {
+  "explicacion": "La Regla 15 dice que, en un cruce entre buques de propulsión mecánica, el que tiene al otro por su costado de estribor se mantendrá apartado y, si puede, evitará cortarle la proa. Caer ambos a estribor es la vuelta encontrada (Regla 14) y la d) invierte la regla.",
+  "clave": "Estribor manda.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "and-2026-c1-t22"
+ },
+ "and-2018-c2-t20": {
+  "explicacion": "Un buque que navega a vela y usa a la vez el motor es, a efectos del Reglamento, de propulsión mecánica (Regla 3), así que lleva las luces de la Regla 23 a): luz de tope, luces de costado y luz de alcance. Con 45 m basta una luz de tope (la segunda es obligatoria a partir de 50 m). La a) y la c) son luces de velero, que ya no le corresponden.",
+  "clave": "Vela + motor = buque de motor: tope, costados y alcance.",
+  "trampa": "La roja sobre verde es opcional para veleros que solo navegan a vela.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela-motor",
+    "vista": "todas"
+   }
+  ],
+  "concepto": "and-2023-c3-t21"
+ },
+ "and-2018-c2-t21": {
+  "explicacion": "La Regla 34 a) establece que, con buques a la vista, una pitada corta significa «caigo a estribor». Dos cortas son «caigo a babor», tres cortas «estoy dando atrás» y cinco o más cortas y rápidas indican duda.",
+  "clave": "1 estribor, 2 babor, 3 atrás, 5 duda.",
+  "ilustraciones": [
+   {
+    "tipo": "sonido",
+    "senal": "."
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c2-t22": {
+  "explicacion": "La Regla 17 a) i) dice que, cuando uno de los dos buques debe apartarse, el otro (el que «sigue a rumbo») mantendrá su rumbo y su velocidad, para que el que cede pueda prever su movimiento. Solo podrá maniobrar por su cuenta cuando sea evidente que el otro no actúa (Regla 17 a) ii), y no «como considere» de entrada, por eso falla la d).",
+  "clave": "Sigue a rumbo = rumbo y velocidad, los dos.",
+  "trampa": "La d) suena colaboradora, pero cambiar de rumbo o velocidad desconcierta al que cede.",
+  "concepto": null
+ },
+ "and-2018-c2-t23": {
+  "explicacion": "En un dispositivo de separación del tráfico se siguen aplicando las reglas de rumbo y gobierno: ir por la vía de circulación no da preferencia de paso. En un cruce rige la Regla 15: si vemos al otro por estribor, nos toca apartarnos y, si podemos, evitar cortarle la proa. Cruzar un dispositivo está permitido (lo más perpendicular posible) y caer los dos a estribor es cosa de la vuelta encontrada.",
+  "clave": "En el DST no hay preferencia de paso: el de estribor sigue mandando.",
+  "trampa": "Creer que ir por la vía de circulación te convierte en «sigue a rumbo».",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "and-2020-c1-t21"
+ },
+ "and-2018-c2-t24": {
+  "explicacion": "Con visibilidad reducida y el otro buque solo en el radar no hay «sigue a rumbo»: rige la Regla 19 y todos deben maniobrar con suficiente antelación, también el alcanzado. La Regla 19 d) ii) manda evitar caer hacia un buque situado por el través o a popa del través; como nos alcanza por la aleta de estribor, debemos evitar caer a estribor. Por eso fallan la a) y la c).",
+  "clave": "Radar en niebla: nunca caigas hacia un buque por el través o a popa de él.",
+  "trampa": "En niebla y sin verse no existe el «buque alcanzado que sigue a rumbo».",
+  "concepto": null
+ },
+ "and-2018-c2-t25": {
+  "explicacion": "La Regla 9 a) indica que en un canal angosto se navegará lo más cerca posible del límite exterior del canal que quede por el costado de estribor, siempre que no haya peligro. Así los buques que se cruzan pasan babor con babor. Ni por babor ni por el centro.",
+  "clave": "Canal angosto: a tu estribor.",
+  "concepto": "and-2023-c2-t19"
+ },
+ "and-2018-c2-t26": {
+  "explicacion": "La Regla 30 a) asigna al buque fondeado, de día, una bola en la parte de proa, sea cual sea su eslora. La d) mezcla esta marca con las luces de fondeo: de noche sí lleva una blanca a proa y otra más baja a popa (los de menos de 50 m pueden llevar solo una). El cilindro es de buque restringido por su calado y la bandera «A» indica buceadores.",
+  "clave": "De día, fondeado: una bola a proa.",
+  "trampa": "La d) confunde la marca de día con las luces de noche.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "fondeado",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "and-2026-c1-t25"
+ },
+ "and-2018-c2-t27": {
+  "explicacion": "La Regla 3 f) define al buque sin gobierno como el que, por cualquier circunstancia excepcional, no puede maniobrar como exige el Reglamento y por tanto no puede apartarse de la derrota de otro buque. El de capacidad de maniobra restringida lo está por la naturaleza de su trabajo, y «buque restringido» o «sin maniobrabilidad» no son términos del Reglamento.",
+  "clave": "Excepcional = sin gobierno. Por su trabajo = restringido.",
+  "trampa": "La b) es la otra categoría: fíjate en «circunstancia excepcional».",
+  "concepto": "and-2024-c3-t21"
+ },
+ "and-2018-c2-t28": {
+  "explicacion": "Los traveses salen perpendiculares al costado hacia el muelle, así que al virarlos acercan el barco al muelle sin moverlo avante ni atrás. Los largos y los esprines trabajan en sentido longitudinal: el largo de proa y el esprín de popa impiden ir atrás, y el largo de popa y el esprín de proa impiden ir avante.",
+  "clave": "Través = perpendicular: acerca, no mueve avante ni atrás.",
+  "concepto": null
+ },
+ "and-2018-c2-t29": {
+  "explicacion": "Con corriente de proa el barco tiende a ir hacia atrás, y los cabos que lo aguantan son el largo de proa y el esprín de popa. Para desatracar se larga todo y se deja para el final el esprín de popa: con la popa sujeta, la corriente entra entre el muelle y la proa y la abre; entonces se larga y se sale avante. Si dejases el largo de proa, la corriente pegaría la proa al muelle.",
+  "clave": "Corriente de proa al desatracar: el último, el esprín de popa.",
+  "trampa": "El largo de proa también trabaja, pero dejarlo el último no abre la proa.",
+  "concepto": null
+ },
+ "and-2018-c2-t30": {
+  "explicacion": "Las tres cosas son correctas con un extintor de polvo seco: agitarlo antes de usarlo para soltar el polvo si está apelmazado, presurizarlo si es de presión adosada (con botellín) y descargarlo inclinado ligeramente hacia delante, atacando la base de las llamas y no el humo. Por eso la buena es la d).",
+  "clave": "Polvo: agitar, presurizar si hace falta y a la base del fuego.",
+  "trampa": "Cada opción es un paso real; ninguna excluye a las otras.",
+  "concepto": null
+ },
+ "and-2018-c2-t31": {
+  "explicacion": "Ante una hemorragia externa, presión directa sobre la herida con gasas o un paño limpio durante al menos diez minutos; si es en un brazo o pierna, elevar el miembro por encima del corazón (salvo dolor importante, por si hay fractura), y no dejar a la víctima de pie, poniéndola en posición antishock si está inconsciente. Las tres medidas son correctas, así que la respuesta es «todas».",
+  "clave": "Hemorragia: presión directa, elevación y víctima tumbada.",
+  "trampa": "Cada opción describe un paso; no te quedes con la primera.",
+  "concepto": null
+ },
+ "and-2018-c2-t32": {
+  "explicacion": "Ante una vía de agua achicas con la bomba y taponas la entrada como puedas, vigilando si el nivel del local se mantiene o baja: así sabes si ganas o pierdes la batalla, y solo si sigue subiendo te preparas para abandonar. La b) y la c) precipitan el abandono: el barco, mientras flote, es tu mejor balsa, y una vía que no se tapona del todo puede controlarse achicando.",
+  "clave": "Vía de agua: achica, tapona y vigila el nivel.",
+  "trampa": "Abandonar a la primera es el error; se abandona solo cuando ya no se puede salvar el barco.",
+  "concepto": "and-2023-c1-t32"
+ },
+ "and-2018-c2-t33": {
+  "explicacion": "La presión atmosférica es el peso de la columna de aire que hay sobre un lugar, por unidad de superficie; se mide con el barómetro en hectopascales (o milibares). La temperatura mide el calor del aire, la isobara es la línea que une puntos de igual presión y la escala Celsius es una escala de temperatura.",
+  "clave": "Presión = peso del aire sobre cada unidad de superficie.",
+  "trampa": "La isobara tiene que ver con la presión, pero es una línea del mapa, no la presión misma.",
+  "concepto": null
+ },
+ "and-2018-c2-t34": {
+  "explicacion": "Cuando la intensidad del viento aumenta, decimos que refresca. Rolar es cambiar de dirección, la racha es un aumento brusco y momentáneo de la fuerza, y la persistencia es el tiempo que el viento lleva soplando igual.",
+  "clave": "Refresca = sube; cae = baja; rola = cambia de dirección.",
+  "trampa": "La racha también es más viento, pero solo un golpe momentáneo.",
+  "concepto": null
+ },
+ "and-2018-c2-t35": {
+  "explicacion": "En un anticiclón del hemisferio norte los vientos giran en sentido horario (anticiclónico) y la presión es mayor en el centro que en la periferia. Hay que comprobar los dos datos de cada opción: la a) tiene bien la presión pero mal el giro, la d) al revés, y la b) describe una borrasca.",
+  "clave": "Anticiclón HN: horario y alta en el centro.",
+  "trampa": "Cada opción combina giro y presión: una sola mitad mal y ya es falsa.",
+  "ilustraciones": [
+   {
+    "tipo": "meteo",
+    "sistema": "anticiclon"
+   }
+  ],
+  "concepto": "and-2023-c1-t34"
+ },
+ "and-2018-c2-t36": {
+  "explicacion": "La extensión de mar sobre la que sopla un viento de fuerza y dirección constantes es el fetch. La persistencia es el tiempo que lleva soplando igual, la intensidad es su fuerza y el periodo es un parámetro de la ola (tiempo entre crestas).",
+  "clave": "Fetch = espacio; persistencia = tiempo; intensidad = fuerza.",
+  "trampa": "El fetch es una distancia; la persistencia, un tiempo.",
+  "concepto": "and-2022-c2-t36"
+ },
+ "and-2018-c2-t37": {
+  "explicacion": "Cuando dos puntos de la costa y tu barco quedan en la misma visual, estás en su enfilación: una línea de posición muy precisa que no necesita ni aguja. La marcación y la demora son ángulos a un solo objeto (desde la proa o desde el Norte), y la oposición es cuando dos objetos quedan en direcciones opuestas, uno a cada lado del barco.",
+  "clave": "Enfilación = dos puntos alineados contigo.",
+  "trampa": "La oposición también usa dos puntos, pero quedan a lados opuestos del barco.",
+  "concepto": null
+ },
+ "and-2018-c2-t38": {
+  "explicacion": "La latitud es el arco de meridiano contado desde el ecuador hasta el paralelo del lugar, de 0° a 90° al N o al S. La longitud se mide sobre el ecuador desde el meridiano de Greenwich, el rumbo es una dirección y el meridiano del lugar es una línea, no una medida.",
+  "clave": "Latitud: por el meridiano desde el ecuador. Longitud: por el ecuador desde Greenwich.",
+  "trampa": "Fíjate en el arco: de meridiano es latitud; de ecuador, longitud.",
+  "concepto": null
+ },
+ "and-2018-c2-t39": {
+  "explicacion": "El desvío es el ángulo entre el Norte magnético y el Norte de aguja, causado por los hierros y equipos del barco. Si es cero, la aguja señala exactamente al Norte magnético, es decir, al meridiano magnético. Para que señalara al meridiano verdadero o geográfico tendría que ser cero la corrección total (declinación más desvío).",
+  "clave": "Desvío 0: aguja = magnético. Ct 0: aguja = verdadero.",
+  "trampa": "El meridiano «de aguja» es lo que marca siempre la aguja; la pregunta es a cuál coincide.",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -3,
+    "desvio": 0
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c2-t40": {
+  "explicacion": "La línea de fe es la marca grabada en el mortero de la aguja que coincide con la línea proa-popa del barco: frente a ella lees el rumbo de aguja. La línea de crujía es el propio plano proa-popa del barco, no la marca de la aguja, y «al medio» o «a la vía» son voces de mando del timón.",
+  "clave": "Línea de fe: la marca del mortero donde se lee el rumbo.",
+  "trampa": "«A la vía» es dejar el timón centrado, no una marca de la aguja.",
+  "concepto": null
+ },
+ "and-2018-c2-t41": {
+  "explicacion": "La Hora Reloj de Bitácora (HRB) es la hora que fija el patrón y por la que se rige la vida a bordo. Puede coincidir con la hora oficial, la legal o la del huso, pero no tiene por qué: es una decisión del patrón.",
+  "clave": "Bitácora = a bordo = patrón.",
+  "trampa": "Coincidir con la hora oficial no significa que lo sea.",
+  "concepto": "and-2022-c2-t37"
+ },
+ "and-2018-c3-t01": {
+  "explicacion": "El embrague acopla el barbotén (la rueda donde encaja la cadena) al motor del molinete: embragado y con el freno quitado, el barbotén gira movido por el motor para virar o filar cadena. Con el freno puesto no gira (por eso falla la a), y el embrague no sirve para quitar el freno ni es un adorno. Desembragado, el barbotén gira loco y la salida de la cadena se controla solo con el freno.",
+  "clave": "Embrague: barbotén al motor. Freno: lo sujeta o lo suelta.",
+  "trampa": "La a) olvida que con el freno puesto el barbotén no puede girar.",
+  "concepto": null
+ },
+ "and-2018-c3-t02": {
+  "explicacion": "Estando fondeados, la cadena está a pique cuando trabaja vertical, justo encima del ancla; es el momento previo a que el ancla zarpe al seguir virando. «A la pendura» es el ancla colgando antes de fondear, «clara y libre» cuando aflora limpia al levar, y «filada completamente» es haber dado toda la cadena.",
+  "clave": "A pique = cadena vertical sobre el ancla.",
+  "trampa": "«A la pendura» también es vertical, pero antes de fondear y sin tocar el fondo.",
+  "concepto": "and-2025-c2-t02"
+ },
+ "and-2018-c3-t03": {
+  "explicacion": "Los baos son los refuerzos transversales, con algo de curvatura (la brusca), que van de banda a banda, se unen a las cuadernas y sostienen la cubierta. La borda es la parte alta del costado, las cuadernas son las costillas verticales del casco y el plan es el fondo interior del barco.",
+  "clave": "Bao = viga transversal bajo la cubierta.",
+  "trampa": "Las cuadernas también son transversales, pero forman el costado, no sostienen la cubierta.",
+  "concepto": "and-2023-c3-t03"
+ },
+ "and-2018-c3-t04": {
+  "explicacion": "La limera es el orificio de la bovedilla, sobre el codaste, por el que la mecha (el eje del timón) atraviesa el casco. La a) define la mecha, la b) la pala o azafrán, y la d) cambia la mecha por los guardines, que son los cables que van de la rueda al timón.",
+  "clave": "Limera = agujero por donde pasa la mecha.",
+  "trampa": "La d) es casi igual que la c): solo cambia mecha por guardines.",
+  "concepto": null
+ },
+ "and-2018-c3-t05": {
+  "explicacion": "El fango duro o compacto es un buen tenedero: el ancla se clava y queda bien sujeta. La piedra no deja que se entierre (además puede enrocarse) y el coral es un fondo malo y, sobre todo, un hábitat que no se debe dañar. Por la misma razón, hoy el RD 191/2026 prohíbe fondear sobre praderas de posidonia y cymodocea en todo el Mediterráneo español.",
+  "clave": "Buen tenedero: arena y fango duro; malo: piedra, coral, algas y fango blando.",
+  "trampa": "La d) mete el coral junto al fango duro para que la marques.",
+  "concepto": "and-2022-c2-t05"
+ },
+ "and-2018-c3-t06": {
+  "explicacion": "Como regla general, con buen tiempo se fondea con una longitud de cadena de tres a cuatro veces el fondo (la profundidad); con mal tiempo, o si se fondea con cabo, se da bastante más. La cadena se calcula siempre sobre la sonda, no sobre la eslora del barco, por eso fallan la a) y la c), y cinco o seis veces el fondo es para condiciones peores.",
+  "clave": "Buen tiempo: 3–4 veces la sonda.",
+  "trampa": "Las opciones con «eslora» usan la referencia equivocada.",
+  "concepto": null
+ },
+ "and-2018-c3-t07": {
+  "explicacion": "El balance es la oscilación transversal del barco, de babor a estribor y viceversa. La cabezada es la oscilación proa-popa, la escora es una inclinación lateral mantenida (no una oscilación) y el adrizamiento es volver a la posición vertical.",
+  "clave": "Balance = de banda a banda; cabezada = proa-popa.",
+  "trampa": "Confundir escora (inclinación mantenida) con balance (oscilación).",
+  "ilustraciones": [
+   {
+    "tipo": "movimiento",
+    "mov": "balance"
+   }
+  ],
+  "concepto": "and-2024-c2-t07"
+ },
+ "and-2018-c3-t08": {
+  "explicacion": "Las señales pirotécnicas duran poco y no hay muchas a bordo, así que conviene leer antes las instrucciones (cada modelo se dispara de una forma) y ensayar los movimientos sin dispararla, para no fallar en el momento crítico. La c) está al revés: se encienden por sotavento, para que el viento aleje las chispas y el humo del barco y de quien la sujeta.",
+  "clave": "Pirotecnia: instrucciones, ensayo y siempre por sotavento.",
+  "trampa": "Barlovento te echaría encima las chispas y el humo.",
+  "concepto": null
+ },
+ "and-2018-c3-t09": {
+  "explicacion": "Antes de salir debes revisar el motor: filtro decantador de agua del combustible, circuito de refrigeración y tensión y estado de la correa del alternador, entre otros. La b) falla porque en los tanques se lleva agua dulce, no salada, y la c) porque no se exige un aro salvavidas por tripulante (eso es con los chalecos); por tanto tampoco vale la d).",
+  "clave": "Antes de zarpar: combustible, filtros, refrigeración y correa.",
+  "trampa": "Confundir aros salvavidas con chalecos (uno por persona).",
+  "concepto": "and-2022-c1-t09"
+ },
+ "and-2018-c3-t10": {
+  "explicacion": "Si ves caer al náufrago y quieres volver rápido al punto de caída, la maniobra de Boutakow (curva de Williamson) te devuelve por tu propia estela: caes unos 70° a la banda de la caída y luego metes todo el timón a la contraria hasta quedar al rumbo opuesto. La búsqueda por sectores es para cuando no lo ves, invertir la marcha cerca de un náufrago es peligroso por la hélice, y timón a la vía no hace nada.",
+  "clave": "Boutakow: 70° a la banda de caída, luego contrario hasta rumbo opuesto.",
+  "trampa": "Sectores es búsqueda, no maniobra de vuelta.",
+  "concepto": "and-2022-c1-t08"
+ },
+ "and-2018-c3-t11": {
+  "explicacion": "Las dos afirmaciones son falsas. En zonas protegidas (y en puertos, rías o bahías) no se permite descargar aguas sucias, ni siquiera tratadas, así que falla la a). Y a menos de tres millas sí se puede descargar si las aguas pasan por una planta de tratamiento homologada, así que la b) también es falsa. Más allá: desmenuzadas y desinfectadas a más de 3 millas y sin tratar a más de 12, en ruta a no menos de 4 nudos.",
+  "clave": "Aguas sucias: zonas protegidas nunca; <3 mn solo con planta homologada; 3–12 mn tratadas; >12 mn en ruta.",
+  "trampa": "La b) suena tajante y correcta, pero olvida la planta de tratamiento homologada.",
+  "concepto": null
+ },
+ "and-2018-c3-t12": {
+  "explicacion": "Quien avista contaminación en la mar tiene la obligación de informar inmediatamente a la Autoridad Marítima (la Capitanía Marítima), que es la competente en la prevención y lucha contra la contaminación del medio marino. Guardia Civil, Salvamento Marítimo o la Comandancia Militar de Marina pueden intervenir o recibir el aviso, pero la obligación legal se refiere a la Autoridad Marítima.",
+  "clave": "Contaminación avistada: aviso inmediato a la Autoridad Marítima.",
+  "trampa": "Salvamento Marítimo es la opción tentadora, pero la norma habla de la Autoridad Marítima.",
+  "concepto": null
+ },
+ "and-2018-c3-t13": {
+  "explicacion": "Un destello largo blanco cada 10 segundos es uno de los ritmos de la marca de aguas navegables (junto con isofase, ocultaciones y Morse «A»). En la cardinal Sur el destello largo solo aparece después de los 6 centelleos, la Norte centellea sin parar y las especiales usan luz amarilla.",
+  "clave": "Destello largo solo = aguas navegables; 6 + largo = Sur.",
+  "trampa": "Asociar cualquier destello largo con la cardinal Sur.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "aguas-navegables",
+    "ritmo": "LFl 10s"
+   }
+  ],
+  "concepto": "and-2025-c1-t14"
+ },
+ "and-2018-c3-t14": {
+  "explicacion": "La cardinal Sur emite luz blanca en grupos de 6 centelleos más un destello largo: las 6 del reloj. El destello largo es lo que la distingue de la Oeste, que da 9. Tres centelleos son de la Este y nunca llevan destello largo.",
+  "clave": "Reloj: N continuo, E 3, S 6 + largo, W 9.",
+  "trampa": "Olvidar el destello largo que distingue a la Sur.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-s"
+   }
+  ],
+  "concepto": "and-2026-c1-t17"
+ },
+ "and-2018-c3-t15": {
+  "explicacion": "Una cardinal indica el cuadrante donde están las aguas más profundas y seguras: la cardinal Este te dice que pases por su este. El peligro está, por tanto, al oeste de la marca. La b) y la c) dicen justo lo contrario, y con ellas cae la d).",
+  "clave": "La cardinal lleva el nombre del lado seguro: Este, pasa por el este.",
+  "trampa": "Creer que la cardinal nombra el lado del peligro.",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2018-c3-t16": {
+  "explicacion": "Roja con una banda verde es una lateral de babor modificada (bifurcación con canal principal a estribor), y lleva el tope de su color de fondo, el de babor: un cilindro rojo. El cono verde sería para la verde con banda roja; el cilindro verde y el cono rojo no existen en la región A.",
+  "clave": "El tope sigue al color de fondo: rojo, cilindro.",
+  "trampa": "Fijarse en la banda verde y elegir el cono.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "concepto": "and-2025-c1-t17"
+ },
+ "and-2018-c3-t17": {
+  "explicacion": "Dos esferas negras superpuestas son el tope de la marca de peligro aislado. Las cardinales llevan dos conos negros (Norte, puntas arriba; Sur, puntas abajo) y la de aguas navegables una esfera roja.",
+  "clave": "Dos esferas negras = peligro aislado.",
+  "trampa": "Confundir esfera roja (aguas navegables) con dos esferas negras.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "and-2023-c1-t14"
+ },
+ "and-2018-c3-t18": {
+  "explicacion": "La Regla 28 permite al buque restringido por su calado exhibir de día un cilindro negro y de noche, además de sus luces normales, tres luces rojas todo horizonte en vertical. Bola-bicónica-bola es la marca del buque con capacidad de maniobra restringida, la d) no existe y la bandera «C» del Código significa «sí».",
+  "clave": "Restringido por calado: cilindro (de noche, tres rojas).",
+  "trampa": "Restringido por calado ≠ maniobra restringida.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "calado",
+    "vista": "proa",
+    "dia": true
+   }
+  ],
+  "concepto": "and-2021-c1-t24"
+ },
+ "and-2018-c3-t19": {
+  "explicacion": "Entre veleros no se aplica la vuelta encontrada de la Regla 14, que es solo para buques de propulsión mecánica: rige la Regla 12. Si reciben el viento por bandas contrarias, cede el que lo recibe por babor, aunque se aproximen de frente.",
+  "clave": "Dos veleros: viento por babor, cedo yo.",
+  "trampa": "La a) aplica a veleros la regla de los motores.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "vela-amuras"
+   }
+  ],
+  "concepto": "and-2026-c1-t19"
+ },
+ "and-2018-c3-t20": {
+  "explicacion": "«· · · – – – · · ·» es SOS en Morse, y emitido por cualquier medio, también con luces, es una señal de peligro y petición de ayuda del Anexo IV del Reglamento. Las señales de adelantamiento en canal angosto son fónicas (dos largas y una o dos cortas) y no existe una señal luminosa específica de «peligro de abordaje con buque fondeado».",
+  "clave": "SOS (· · · – – – · · ·) = socorro, con luz o con sonido.",
+  "trampa": "Pensar que solo cuenta como socorro si se emite por radio.",
+  "concepto": null
+ },
+ "and-2018-c3-t21": {
+  "explicacion": "Ver solo las dos luces de costado, sin luz de tope, indica un buque de vela que viene de frente (Regla 25). Como vas a motor, la Regla 18 te obliga a mantenerte apartado del velero, y él debe mantener rumbo y velocidad (Regla 17). No es una vuelta encontrada de la Regla 14, que solo se da entre dos buques de propulsión mecánica, por eso falla la a).",
+  "clave": "Rojo y verde sin blanca de tope = velero de frente; el motor se aparta.",
+  "trampa": "Pensar en vuelta encontrada y caer «los dos» a estribor.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "vela",
+    "vista": "proa"
+   }
+  ],
+  "concepto": "and-2020-c3-t21"
+ },
+ "and-2018-c3-t22": {
+  "explicacion": "Las tres afirmaciones son parte de la Regla 8: la maniobra para evitar un abordaje se hará de forma clara, con la debida antelación y respetando las buenas prácticas marineras (8 a); se evitará una sucesión de pequeños cambios de rumbo o velocidad (8 b), y será tal que se pase a una distancia segura del otro (8 d). Por eso la respuesta es «todas».",
+  "clave": "Regla 8: clara, a tiempo, amplia y a distancia segura.",
+  "trampa": "Cada opción es correcta por separado; no te quedes con una.",
+  "concepto": null
+ },
+ "and-2018-c3-t23": {
+  "explicacion": "A 105° Er el otro buque está a proa de los 112,5° que marcan el límite del alcance, así que es un cruce. Según la Regla 15, al tenerlo por estribor cedemos el paso y, si las circunstancias lo permiten, evitaremos cortarle la proa. La c) es al revés: lo normal es caer a estribor para pasarle por la popa, así que no hay que evitar esa caída.",
+  "clave": "Menos de 112,5° y por estribor: cruce, me aparto y le paso por la popa.",
+  "trampa": "105° «parece» de popa, pero el límite está en 112,5°.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "cruce"
+   }
+  ],
+  "concepto": "and-2026-c1-t18"
+ },
+ "and-2018-c3-t24": {
+  "explicacion": "La Regla 26 c) asigna al buque dedicado a la pesca que no sea de arrastre dos luces todo horizonte en vertical, roja la superior y blanca la inferior. El arrastrero muestra verde sobre blanca, la embarcación de práctico blanca sobre roja y el de maniobra restringida roja-blanca-roja.",
+  "clave": "Rojo sobre blanco, pesca; blanco sobre rojo, práctico.",
+  "trampa": "Si inviertes el orden, de pesquero pasas a práctico.",
+  "ilustraciones": [
+   {
+    "tipo": "buque",
+    "clase": "pesquero-no-arrastre",
+    "vista": "proa"
+   }
+  ],
+  "concepto": "and-2021-c2-t25"
+ },
+ "and-2018-c3-t25": {
+  "explicacion": "Una marcación de 170° Er está muy a popa de los 112,5° que marcan el límite del alcance, así que el catamarán nos está alcanzando. La Regla 13 prevalece sobre la 18: el que alcanza se aparta aunque sea un velero, y nosotros, como alcanzados, mantenemos rumbo y velocidad (Regla 17).",
+  "clave": "Más de 112,5°: alcance; el que llega por detrás se aparta.",
+  "trampa": "Responder por reflejo que el motor cede a la vela.",
+  "ilustraciones": [
+   {
+    "tipo": "cruce",
+    "situacion": "alcance"
+   }
+  ],
+  "concepto": "and-2026-c2-t22"
+ },
+ "and-2018-c3-t26": {
+  "explicacion": "Con visibilidad reducida y el buque solo en el radar no hay «sigue a rumbo» ni «cede el paso»: rige la Regla 19 y todos deben maniobrar con antelación. Para un buque a proa del través que no te esté alcanzando, la Regla 19 d) i) manda evitar en lo posible la caída a babor. A 55° Br está a proa del través, así que no caigas a babor.",
+  "clave": "Radar en niebla: proa del través → no caigas a babor.",
+  "trampa": "En niebla y sin verse no existe el «sigue a rumbo».",
+  "concepto": "and-2020-c1-t27"
+ },
+ "and-2018-c3-t27": {
+  "explicacion": "La Regla 23 d) ii) permite a un buque de propulsión mecánica de menos de 7 m cuya velocidad máxima no exceda de 7 nudos llevar solo una luz blanca todo horizonte; con 6,5 m y 6 nudos cumple. El velero de menos de 7 m debe llevar, si puede, luces de costado y alcance, y si no, tener a mano una linterna blanca para mostrarla a tiempo. El fondeado de 65 m necesita dos luces blancas (proa y popa), porque solo los de menos de 50 m pueden llevar una.",
+  "clave": "Una sola blanca todo horizonte: motor <7 m y ≤7 nudos (o fondeado <50 m).",
+  "trampa": "El fondeado de 65 m pasa de los 50 m: dos luces.",
+  "concepto": null
+ },
+ "and-2018-c3-t28": {
+  "explicacion": "Para mover el barco hacia popa hay que virar de los cabos que llaman hacia popa y lascar de los que llaman hacia proa. Llaman hacia popa el largo de popa (sale de la popa hacia atrás) y el esprín de proa (sale de la proa hacia atrás); llaman hacia proa el largo de proa y el esprín de popa. Eso es exactamente la c), y la d) es la maniobra para ir hacia proa.",
+  "clave": "Hacia popa: virar largo de popa y esprín de proa.",
+  "trampa": "La d) es la misma maniobra al revés: para ir hacia proa.",
+  "concepto": null
+ },
+ "and-2018-c3-t29": {
+  "explicacion": "Con hélice levógira dando atrás, la hélice gira como una dextrógira en avante: la corriente de expulsión golpea la aleta y lleva la popa a estribor, y la presión lateral de las palas también. Con el barco sin arrancada el timón no gobierna, así que nada compensa ese efecto: no es babor, ni nulo, ni cambia de banda.",
+  "clave": "Levógira atrás: popa a estribor.",
+  "trampa": "La a) es lo que haría una dextrógira.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "levogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": "and-2021-c2-t29"
+ }
+}

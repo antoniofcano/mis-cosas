@@ -125,7 +125,7 @@ const F5 = {
   'and-2016-c1-t11': { 'RD 186/2023': ZONA_BANO_2015 },
   'and-2017-c1-t12': { 'RD 186/2023': ZONA_BANO_2015 },
   'and-2017-c2-t11': { 'RD 186/2023': ZONA_BANO_2015 },
-  'and-2017-c3-t12': { 'RD 186/2023': ZONA_BANO_2015 },
+  'and-2017-c3-t12': { 'RD 186/2023': ['RGC art. 73', 'La oficial (la d), «navegar perpendicularmente a tierra a 3 nudos» como afirmación falsa) respondía a la Orden de 1964, que en la franja de baño con bañistas prohibía las embarcaciones de hélice y llevaba la entrada a tierra por canales. Derogada esa Orden por el RD 186/2023 (11-4-2023), rige solo el art. 73.2 del Reglamento General de Costas: en un tramo no balizado se puede navegar dentro de la franja (200 m en playas, 50 m en el resto) a 3 nudos como máximo, así que la d) es cierta y la falsa es la b). Retirada.'] },
   'and-2019-c2-t11': { 'RD 186/2023': ZONA_BANO_2015 },
   'and-2019-c3-t11': { 'RD 186/2023': ZONA_BANO_2015 },
   'and-2018-c2-t11': { 'RD 238/2019': ['RD 875/2014', 'Atribuciones del PER (arts. 8 y 9 del RD 875/2014): 12 millas, 15 m y navegar entre las islas de Canarias son básicas, en la versión de 2014 y en la vigente. El RD 238/2019 solo añadió «incluidas las islas intermedias» al trayecto Península–Baleares. Sin cambio.'] },
@@ -149,6 +149,7 @@ Object.assign(ACTUALIZADAS, {
   ...Object.fromEntries(AGUAS_IDS.map((id) => [id, { norma: 'RD 339/2021', nota: AGUAS }])),
 });
 Object.assign(RETIRADAS, {
+  'and-2017-c3-t12': { nota: 'Retirada: desde que el Real Decreto 186/2023 derogó la Orden de 1964 de zonas para bañistas (11 de abril de 2023), rige solo el art. 73.2 del Reglamento General de Costas: en un tramo de costa sin balizar la zona de baño ocupa 200 m en las playas y 50 m en el resto, y dentro se puede navegar a 3 nudos como máximo. La afirmación d) es cierta; la falsa es la b).' },
   'and-2018-c2-t12': { nota: 'Retirada: la notificación reducida de desechos de las embarcaciones de recreo (anexo V del Real Decreto 1381/2002) desapareció el 17 de febrero de 2022, cuando el Real Decreto 128/2022 derogó aquel decreto; hoy la notificación previa solo se exige a buques de 300 GT o más, y nunca a embarcaciones de recreo de menos de 45 m (art. 16.1). Ninguna de las periodicidades es correcta.' },
   'and-2018-c4-t11': { nota: 'Retirada: la notificación reducida de residuos del anexo V del Real Decreto 1381/2002 desapareció el 17 de febrero de 2022, cuando el Real Decreto 128/2022 derogó aquel decreto; hoy ninguna embarcación de recreo de menos de 45 m está obligada a notificar sus desechos antes de llegar a puerto (art. 16.1), aunque todas los entregan en la instalación receptora del puerto.' },
   'and-py-2019-c1-g07': { nota: 'Retirada: la revisión anual de las balsas era la de la Orden FOM/1144/2003 (art. 6.2). Desde el 1 de julio de 2021, el art. 6.3 del Real Decreto 339/2021 (redacción del Real Decreto 587/2022, en vigor el 21-7-2022) manda revisarlas según las instrucciones del fabricante en una estación de servicio autorizada, y solo en las de uso comercial fija un máximo de 24 meses: ya no hay una revisión anual obligatoria.' },

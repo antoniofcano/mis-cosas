@@ -1,0 +1,21 @@
+# Notas normativas · lote py 04
+
+- and-py-2018-c1b-g05 · RD 339/2021 (deroga la Orden FOM/1144/2003) · cambia qué señales fumígenas se llevan según la zona, no sus características (Código IDS: humo uniforme ≥ 3 min en aguas tranquilas) · sí, la oficial sigue valiendo.
+- and-py-2018-c1b-g06 · RD 339/2021 · cambia la dotación y eficacia mínima de extintores (34B), no la técnica de uso del extintor de polvo · sí, la oficial sigue valiendo.
+- and-py-2018-c1b-g07 · RD 339/2021, RD 587/2022 · ninguno regula el procedimiento de rescate con helicóptero (recomendaciones de Salvamento Marítimo, sin cambios) · sí, la oficial sigue valiendo.
+- and-py-2018-c1b-g08 · RD 339/2021 · cambia cuántas bengalas por zona, no sus características (Código IDS: roja, estuche hidrorresistente, instrucciones impresas, ignición propia) · sí, la oficial sigue valiendo.
+- and-py-2018-c1b-g09 · RD 339/2021, RD 587/2022 · cambian qué embarcaciones llevan radiobaliza y su homologación, no el procedimiento de activarla y llevarla a la balsa · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g04 · RD 339/2021 · no regula el procedimiento de rescate con helicóptero (recomendaciones de Salvamento Marítimo: velas arriadas y motor en marcha, sin cambios) · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g05 · RD 339/2021, RD 587/2022, IALA MBS 2022 · cambian qué embarcaciones llevan respondedor y su homologación, no su uso (encenderlo cuando pueda ser detectado, batería limitada) · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g06 · RD 339/2021, RD 587/2022 · cambian la dotación y homologación de balsas (y su equipo), no las pautas de supervivencia contra la deshidratación · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g07 · RD 339/2021, RD 587/2022 · ídem: no tocan las pautas de actuación en la balsa (revisar el material primero) · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g08 · RD 339/2021 · cambia cuántas señales pirotécnicas por zona; el estuche hidrorresistente lo sigue exigiendo el Código IDS · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g09 · RD 339/2021 · el aro debe ser homologado; las características del aro SOLAS (guirnalda en 4 puntos, 4 senos) son del Código IDS, sin cambios · sí, la oficial sigue valiendo.
+- and-py-2018-c2-g10 · RD 339/2021 · para recreo admite chalecos ISO 12402 (100/150/275 N según zona, con luz); las prestaciones citadas (vuelta en ≤ 5 s, nadar una distancia corta, boca a 120 mm) son las del chaleco SOLAS del Código IDS, sin cambios · sí, la oficial sigue valiendo.
+- and-py-2018-c2-n09 · IALA MBS 2022 · el nuevo sistema de balizamiento no afecta al ajuste de la ganancia del radar · sí, la oficial sigue valiendo.
+- and-py-2018-c4-g04 · RD 339/2021 · el aro debe ser homologado; la guirnalda exterior en 4 puntos sigue siendo requisito del Código IDS · sí, la oficial sigue valiendo.
+- and-py-2018-c4-g05 · RD 339/2021 · regula cuándo se exigen arneses y líneas de vida, no sus características (amarra de cinta preferible) · sí, la oficial sigue valiendo.
+- and-py-2018-c4-g06 · RD 339/2021 · cambia cuántas bengalas por zona, no su ignición autónoma (Código IDS) · sí, la oficial sigue valiendo.
+- and-py-2018-c4-g07 · RD 587/2022 · cambia la homologación de equipos radioeléctricos, no el funcionamiento del SART (360°, radar de 9 GHz) · sí, la oficial sigue valiendo.
+- and-py-2018-c4-g08 · RD 339/2021, RD 587/2022 · no tocan las pautas de supervivencia en la balsa · sí, la oficial sigue valiendo.
+- and-py-2018-c4-g09 · RD 339/2021, RD 587/2022 · no regulan la técnica de guiado del helicóptero (recomendación de Salvamento Marítimo, sin cambios) · sí, la oficial sigue valiendo.

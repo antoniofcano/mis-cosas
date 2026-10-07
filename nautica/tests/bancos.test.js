@@ -185,3 +185,21 @@ test('ningún código de la app nombra un banco ni un eje concretos (todo pasa p
   }
   assert.deepEqual(malos, []);
 });
+
+// Puertas de calidad para publicar un eje (tools/bancos/puertas.mjs): se aplican a todo eje con estado «publicado».
+for (const r of registro.filter((e) => e.estado === 'publicado')) {
+  test(`eje ${r.id} publicado: cumple las puertas de calidad (respuesta, tema, fuentes y norma; explicaciones; carta; práctica; licencia)`, async () => {
+    const { puertasDeCalidad } = await import('../tools/bancos/puertas.mjs');
+    const p = await puertasDeCalidad(r.id);
+    assert.deepEqual(p.fallos, []);
+  });
+}
+
+test('puertas de calidad: un eje con huecos no las pasa y dice qué falta', async () => {
+  const { puertasDeCalidad } = await import('../tools/bancos/puertas.mjs');
+  for (const r of registro.filter((e) => e.estado !== 'publicado')) {
+    const p = await puertasDeCalidad(r.id);
+    assert.equal(p.ok, !p.fallos.length);
+    assert.ok(Object.keys(p.porTit).length);
+  }
+});

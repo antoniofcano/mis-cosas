@@ -79,7 +79,8 @@ export function crearBancos(leer) {
   /**
    * Banco de un eje para una titulación.
    * - todas: todas sus preguntas; porId: id → pregunta.
-   * - estudio: las que se usan para estudiar (práctica, tandas, simulacros, exámenes de convocatorias);
+   * - estudio: las que se usan para estudiar (práctica, tandas, simulacros, exámenes de convocatorias): todas menos
+   *   las retiradas por la revisión normativa (norma.estado «retirada») y, en modo «pregunta», las reservadas;
    *   final: las reservadas para el examen final (ficha.reserva). En modo «examen» se reservan convocatorias
    *   (no se ofrecen como examen, pero sus preguntas siguen en la práctica); en modo «pregunta», además, sus
    *   preguntas salen de toda la práctica.
@@ -100,6 +101,8 @@ export function crearBancos(leer) {
     const reservadas = new Set(ficha.reserva?.[tit] ?? []);
     const final = reservadas.size ? todas.filter((q) => reservadas.has(q.conv) || (q.apareceEn ?? []).some((a) => reservadas.has(a.conv))) : [];
     const apartadas = modo === 'pregunta' ? new Set(final.map((q) => q.id)) : new Set();
+    // Las retiradas por la revisión normativa (su respuesta ya no es correcta) no se usan para estudiar.
+    for (const q of todas) if (q.norma?.estado === 'retirada') apartadas.add(q.id);
     const estudio = apartadas.size ? todas.filter((q) => !apartadas.has(q.id)) : todas;
     const enEstudio = new Set(estudio.map((q) => q.id));
     const estructura = TITULACIONES[tit].estructura;

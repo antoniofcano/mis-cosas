@@ -14,6 +14,9 @@ const GRADOS = `\\s*(?:[º°oª]\\s*-?|-(?=\\s*\\d))`;
 // Minutos: «53,9'», «53,9», «59'5» y «5º 25’2» (el apóstrofo hace de coma decimal: 59,5′) y «10',8» (apóstrofo y coma);
 // tras los minutos, a veces una errata: «24,0º'».
 const MIN = `\\s*(\\d+(?:[.,]\\d+|${APOS}\\s*[.,]?\\d+(?![\\d.,]))?)\\s*[º°]?${APOS}?`;
+// Rumbos por su nombre (W u O para el oeste).
+const PUNTOS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+const RUMBOS = Object.fromEntries(PUNTOS.flatMap((p, i) => [[p, i * 22.5], [p.replace(/W/g, 'O'), i * 22.5]]));
 const num = (s) => Number(String(s).replace(/\s/g, '').replace(/['′’´\u0092¨][.,]?|,/, '.'));
 
 const PATTERNS = {
@@ -22,6 +25,9 @@ const PATTERNS = {
   bearing: [
     // Por su nombre: «Ev» (Este verdadero), «Nv», «Sv», «Wv»/«Ov».
     { re: /(?<![\p{L}\d])([NSEWO])v(?![\p{L}])/u, val: (m) => ({ N: 0, E: 90, S: 180, W: 270, O: 270 })[m[1]] },
+    // Rumbo de la corriente por su nombre tras un «=» o al empezar la opción: «Rc = SE; Ihc = 1,5′», «NW, 2 nudos»
+    // (cuarta: «NNE», «SSW»/«SSO»…). Nunca seguido de cifras (eso es un cuadrantal: «N 46 W»).
+    { re: /(?:=\s*|^\s*)(N[NE]E|E[NS]E|S[SE]E|S[SW]W|SSO|SO|W[NS]W|O[NS]O|N[NW]W|NNO|NO|NE|SE|SW|NW|N|E|S|W|O)(?![\p{L}\d])(?!\s*\d)/u, val: (m) => RUMBOS[m[1]] },
     // Cuadrantal: «S46,6ºW», «N46W» → circular.
     { re: new RegExp(`\\b([NS])\\s*${NUM}${DEG}\\s*([EW])\\b`, 'i'), val: (m) => {
       const a = num(m[2]); const ns = m[1].toUpperCase(); const ew = m[3].toUpperCase();

@@ -5,9 +5,6 @@ import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const N = 0; const E = 90; const S = 180; const W = 270; const NE = 45; const SE = 135; const SW = 225; const NW = 315;
-// En el cuadernillo de 2018 la «º» de algunas opciones de Ct se lee como un 0 («+100 (más)» = +10°, «-70 (menos)» = −7°):
-// el valor calculado se compara con las opciones en esa misma escala.
-const ctLeidaConCero = (ct) => [{ kind: 'signed', value: ct * 10 }];
 
 // Corriente desconocida con el rumbo de la corriente en las opciones como un cardinal («Rc = NW Ihc = 2,0´»): el lector
 // de opciones (src/exams/options.js) no lee un rumbo sin número, así que no se pueden comparar en el test y quedan en
@@ -80,8 +77,7 @@ export default {
       // El Ra 280º y la velocidad no intervienen. «Faro de Pta. Camarinal» = faro de Punta Gracia.
       const dv = k.oposicion('punta-gracia', 'cabo-trafalgar');
       const ct = k.ctFrom(dv, 287);
-      k.note('Lectura de las opciones', 'En el cuadernillo el símbolo de grado se lee como un 0: «+100 (más)» es +10°.');
-      return ctLeidaConCero(ct);
+      return [{ kind: 'signed', value: ct }];
     },
   },
   'and-py-2018-c1-n12': {
@@ -171,8 +167,7 @@ export default {
       // vemos uno tras otro hacia el NW (Trafalgar detrás de Camarinal), así que la demora de Trafalgar es la de la línea.
       const dv = k.enfilacion('punta-gracia', 'cabo-trafalgar', 307);
       const ct = k.ctFrom(dv, 307);
-      k.note('Lectura de las opciones', 'En el cuadernillo el símbolo de grado se lee como un 0: «-100 (menos)» es −10°.');
-      return ctLeidaConCero(ct);
+      return [{ kind: 'signed', value: ct }];
     },
   },
   'and-py-2018-c1b-n12': {
@@ -260,8 +255,7 @@ export default {
       // demora de Trafalgar es la de la línea.
       const dv = k.enfilacion('cabo-trafalgar', 'cabo-roche', 314);
       const ct = k.ctFrom(dv, 314);
-      k.note('Lectura de las opciones', 'En el cuadernillo el símbolo de grado se lee como un 0: «+90 (más)» es +9°.');
-      return ctLeidaConCero(ct);
+      return [{ kind: 'signed', value: ct }];
     },
   },
   'and-py-2018-c2-n12': {

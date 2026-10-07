@@ -9,7 +9,7 @@ Manifiesto: 283 documentos (136 plantilla, 136 cuestionario, 11 correccion); 282
 
 - Apariciones extraídas: **3060** en 68 exámenes (convocatoria · modelo) de 34 convocatorias.
 - Preguntas distintas: **1530** (1530 aparecen más de una vez).
-- Anuladas: **13** · con varias respuestas aceptadas: **2** · con norma a revisar: **187** · requieren carta: 136 · requieren anuario: 0.
+- Anuladas: **13** · con varias respuestas aceptadas: **2** · con norma a revisar: **9** · requieren carta: 136 · requieren anuario: 0.
 - Puertas de calidad: **0 errores**, 135 avisos.
 
 ### Avisos
@@ -301,31 +301,43 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 
 | Norma | Preguntas | ids |
 |---|---|---|
-| RD 339/2021 | 69 | and-2015-c1-t07, and-2015-c1-t08, and-2015-c1-t09, and-2015-c1-t30, and-2015-c2-t08, and-2015-c2-t12, and-2015-c2-t38, and-2015-c3-t10, and-2015-c3-t11, and-2015-c3-t25, and-2016-c1-t08, and-2016-c1-t12, and-2016-c1-t30, and-2016-c2-t09, and-2016-c2-t12, and-2016-c2-t31, and-2016-c3-t09, and-2016-c3-t10, and-2016-c3-t11, and-2016-c3-t24, and-2016-c3-t30, and-2016-c3-t32, and-2016-c3-t38, and-2017-c1-t07, and-2017-c1-t10, and-2017-c1-t12, and-2017-c1-t31, and-2017-c1-t38, and-2017-c2-t07, and-2017-c2-t08, and-2017-c2-t12, and-2017-c2-t32, and-2017-c2-t40, and-2017-c3-t08, and-2017-c3-t11, and-2017-c3-t30, and-2017-c3-t32, and-2017-c3-t41, and-2018-c1-t08, and-2018-c1-t10, and-2018-c1-t12, and-2018-c1-t32, and-2018-c2-t04, and-2018-c2-t08, and-2018-c2-t30, and-2018-c2-t32, and-2018-c3-t02, and-2018-c3-t08, and-2018-c3-t09, and-2018-c3-t11, and-2018-c3-t32, and-2018-c4-t19, and-2018-c4-t31, and-2018-c4-t41, and-2019-c1-t01, and-2019-c1-t09, and-2019-c1-t12, and-2019-c1-t22, and-2019-c1-t41, and-2019-c2-t07, and-2019-c2-t08, and-2019-c2-t10, and-2019-c2-t12, and-2019-c2-t32, and-2019-c3-t03, and-2019-c3-t18, and-2019-c3-t20, and-2019-c3-t31, and-2019-c3-t38 |
-| RD 186/2023 | 23 | and-2015-c1-t12, and-2015-c2-t08, and-2015-c2-t22, and-2015-c2-t23, and-2015-c3-t24, and-2015-c3-q44, and-2016-c1-t11, and-2016-c1-t14, and-2016-c3-t11, and-2017-c1-t12, and-2017-c1-t24, and-2017-c2-t11, and-2017-c2-t19, and-2017-c2-t24, and-2017-c3-t08, and-2017-c3-t11, and-2017-c3-t12, and-2018-c2-t26, and-2018-c4-t16, and-2019-c2-t11, and-2019-c2-t12, and-2019-c2-t15, and-2019-c3-t11 |
-| IALA MBS 2022 | 95 | and-2015-c1-t12, and-2015-c1-t13, and-2015-c1-t14, and-2015-c1-t15, and-2015-c1-t16, and-2015-c1-t17, and-2015-c2-t03, and-2015-c2-t06, and-2015-c2-t13, and-2015-c2-t15, and-2015-c2-t16, and-2015-c2-t17, and-2015-c2-t34, and-2015-c3-t13, and-2015-c3-t14, and-2015-c3-t15, and-2015-c3-t16, and-2015-c3-t17, and-2015-c3-t19, and-2015-c3-t29, and-2016-c1-t11, and-2016-c1-t13, and-2016-c1-t14, and-2016-c1-t15, and-2016-c1-t16, and-2016-c1-t17, and-2016-c2-t06, and-2016-c2-t13, and-2016-c2-t15, and-2016-c2-t16, and-2016-c2-t17, and-2016-c3-t05, and-2016-c3-t13, and-2016-c3-t14, and-2016-c3-t15, and-2016-c3-t16, and-2016-c3-t17, and-2017-c1-t12, and-2017-c1-t13, and-2017-c1-t14, and-2017-c1-t15, and-2017-c1-t16, and-2017-c1-t17, and-2017-c1-t28, and-2017-c2-t14, and-2017-c2-t15, and-2017-c2-t17, and-2017-c2-t39, and-2017-c3-t12, and-2017-c3-t13, and-2017-c3-t14, and-2017-c3-t15, and-2017-c3-t16, and-2017-c3-t17, and-2018-c1-t13, and-2018-c1-t14, and-2018-c1-t15, and-2018-c1-t16, and-2018-c1-t17, and-2018-c1-t28, and-2018-c1-t32, and-2018-c2-t06, and-2018-c2-t13, and-2018-c2-t14, and-2018-c2-t16, and-2018-c2-t17, and-2018-c3-t13, and-2018-c3-t14, and-2018-c3-t15, and-2018-c3-t16, and-2018-c3-t17, and-2018-c4-t13, and-2018-c4-t14, and-2018-c4-t15, and-2018-c4-t16, and-2018-c4-t17, and-2019-c1-t13, and-2019-c1-t14, and-2019-c1-t15, and-2019-c1-t16, and-2019-c1-t17, and-2019-c1-t22, and-2019-c2-t11, and-2019-c2-t13, and-2019-c2-t14, and-2019-c2-t15, and-2019-c2-t16, and-2019-c2-t17, and-2019-c3-t11, and-2019-c3-t13, and-2019-c3-t14, and-2019-c3-t15, and-2019-c3-t16, and-2019-c3-t17, and-2019-c3-t24 |
-| RD 587/2022 | 6 | and-2015-c2-t09, and-2016-c2-t23, and-2016-c2-t31, and-2017-c2-t08, and-2018-c1-t10, and-2018-c1-t32 |
-| RD 191/2026 | 8 | and-2015-c2-t12, and-2015-c3-t06, and-2016-c3-t12, and-2017-c3-t12, and-2018-c2-t05, and-2018-c2-t06, and-2018-c3-t05, and-2019-c2-t41 |
-| RD 238/2019 | 8 | and-2015-c3-t31, and-2015-c3-t32, and-2016-c2-t32, and-2017-c1-t30, and-2017-c3-t32, and-2018-c2-t11, and-2018-c3-t30, and-2018-c4-t12 |
-| RD 550/2020 | 2 | and-2016-c2-t26, and-2018-c2-t26 |
-| RD 1188/2025 (buceo y ROM) | 1 | and-2016-c2-t26 |
-| RD 128/2022 | 2 | and-2018-c2-t12, and-2018-c4-t11 |
+| RD 339/2021 | 2 | and-2015-c1-t07, and-2015-c1-t08 |
+| IALA MBS 2022 | 6 | and-2015-c1-t13, and-2015-c1-t14, and-2015-c1-t15, and-2015-c1-t16, and-2016-c2-t17, and-2018-c2-t17 |
+| RD 186/2023 | 1 | and-2017-c2-t24 |
 
 ### Normativa: revisión hecha
 
-142 preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): 139 vigente, 3 actualizada, 0 retirada.
+320 preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): 303 vigente, 14 actualizada, 3 retirada.
 
 | Norma | Vigente | Actualizada | Retirada |
 |---|---|---|---|
-| RD 191/2026 | 15 | 3 | 0 |
-| RD 339/2021 | 15 | 0 | 0 |
-| IALA MBS 2022 | 101 | 0 | 0 |
-| RD 186/2023 | 9 | 0 | 0 |
+| RD 339/2021 | 72 | 10 | 0 |
+| RD 186/2023 | 27 | 3 | 1 |
+| IALA MBS 2022 | 188 | 1 | 1 |
+| RD 587/2022 | 6 | 0 | 0 |
+| RD 191/2026 | 21 | 4 | 1 |
+| RD 238/2019 | 8 | 0 | 0 |
+| RD 550/2020 | 2 | 0 | 0 |
+| RD 1188/2025 (buceo y ROM) | 5 | 0 | 0 |
+| RD 128/2022 | 0 | 0 | 2 |
 | RD 1188/2025 (gobierno sin título) | 2 | 0 | 0 |
-| RD 1188/2025 (buceo y ROM) | 4 | 0 | 0 |
 
 | id | Estado | Por qué |
 |---|---|---|
+| and-2015-c1-t09 | actualizada | Actualización: desde el 1 de julio de 2021 los extintores los regula el art. 15 del Real Decreto 339/2021 (antes, la Orden FOM/1144/2003): las embarcaciones con marcado CE llevan los que indique el manual del fabricante y, si no, los de las tablas por eslora y por potencia, ahora de eficacia 34B (antes 21B); con una instalación fija en el motor sigue haciendo falta un extintor portátil junto al compartimento. Una pequeña fueraborda de hasta 25 kW sin cabina no necesita ninguno. La respuesta oficial sigue siendo la única aceptable de las cuatro. |
+| and-2015-c3-t11 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2016-c1-t12 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2016-c3-t12 | actualizada | Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo. |
+| and-2017-c1-t12 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2017-c2-t12 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2017-c3-t11 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2017-c3-t12 | retirada | Retirada: desde que el Real Decreto 186/2023 derogó la Orden de 1964 de zonas para bañistas (11 de abril de 2023), rige solo el art. 73.2 del Reglamento General de Costas: en un tramo de costa sin balizar la zona de baño ocupa 200 m en las playas y 50 m en el resto, y dentro se puede navegar a 3 nudos como máximo. La afirmación d) es cierta; la falsa es la b). |
+| and-2018-c1-t12 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2018-c2-t12 | retirada | Retirada: la notificación reducida de desechos de las embarcaciones de recreo (anexo V del Real Decreto 1381/2002) desapareció el 17 de febrero de 2022, cuando el Real Decreto 128/2022 derogó aquel decreto; hoy la notificación previa solo se exige a buques de 300 GT o más, y nunca a embarcaciones de recreo de menos de 45 m (art. 16.1). Ninguna de las periodicidades es correcta. |
+| and-2018-c3-t11 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2018-c4-t11 | retirada | Retirada: la notificación reducida de residuos del anexo V del Real Decreto 1381/2002 desapareció el 17 de febrero de 2022, cuando el Real Decreto 128/2022 derogó aquel decreto; hoy ninguna embarcación de recreo de menos de 45 m está obligada a notificar sus desechos antes de llegar a puerto (art. 16.1), aunque todas los entregan en la instalación receptora del puerto. |
+| and-2019-c1-t12 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
+| and-2019-c2-t12 | actualizada | Actualización: desde el 1 de julio de 2021 la descarga de aguas sucias la regula el art. 23 del Real Decreto 339/2021 (antes, el art. 24 de la Orden FOM/1144/2003): se mantienen las 3 millas si están desmenuzadas y desinfectadas, las 12 millas si no lo están y los 4 nudos al vaciar el tanque, pero las millas se cuentan desde la línea de base del mar territorial, y con una planta de tratamiento homologada se puede descargar fuera de la zona 7; en puertos, rías, bahías y aguas protegidas (zona 7) sigue prohibida cualquier descarga. La respuesta oficial sigue valiendo. |
 | and-2022-c2-t11 | actualizada | Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo. |
 | and-2024-c3-t11 | actualizada | Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo. |
 | and-2026-c1-t11 | actualizada | Actualización: desde el 2 de abril de 2026 lo regula para todo el Mediterráneo español el Real Decreto 191/2026 (art. 5): se prohíbe con carácter general fondear sobre praderas de posidonia y de cymodocea, y también en la arena próxima si la cadena o el borneo las alcanzan; solo se puede en sistemas de bajo impacto autorizados (boyas) y, como excepción, por fuerza mayor o peligro para la vida humana o la navegación. La respuesta oficial sigue valiendo. |
@@ -335,7 +347,7 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 
 - Apariciones extraídas: **1360** en 66 exámenes (convocatoria · modelo) de 34 convocatorias.
 - Preguntas distintas: **1360** (0 aparecen más de una vez).
-- Anuladas: **7** · con varias respuestas aceptadas: **0** · con norma a revisar: **105** · requieren carta: 248 · requieren anuario: 2.
+- Anuladas: **7** · con varias respuestas aceptadas: **0** · con norma a revisar: **4** · requieren carta: 248 · requieren anuario: 2.
 - Puertas de calidad: **0 errores**, 120 avisos.
 
 ### Avisos
@@ -579,23 +591,24 @@ El tema sale de la posición; estas preguntas suman palabras clave de otro tema 
 
 | Norma | Preguntas | ids |
 |---|---|---|
-| RD 339/2021 | 79 | and-py-2015-c1-g03, and-py-2015-c1-g04, and-py-2015-c1-g06, and-py-2015-c2-g03, and-py-2015-c2-g06, and-py-2015-c2-g07, and-py-2015-c3-g03, and-py-2015-c3-g06, and-py-2015-c3-g07, and-py-2015-c3-g09, and-py-2016-c1-g08, and-py-2016-c1-g10, and-py-2016-c1-n03, and-py-2016-c2-g06, and-py-2016-c2-g07, and-py-2016-c2-g08, and-py-2016-c2-g10, and-py-2016-c3-g04, and-py-2016-c3-g06, and-py-2016-c3-g07, and-py-2016-c3-g08, and-py-2016-c3-g09, and-py-2016-c3-g10, and-py-2017-c1-g06, and-py-2017-c1-g09, and-py-2017-c1-g10, and-py-2017-c2-g04, and-py-2017-c2-g06, and-py-2017-c2-g07, and-py-2017-c2-g08, and-py-2017-c2-g09, and-py-2017-c2-g10, and-py-2017-c2-n02, and-py-2017-c3-g02, and-py-2017-c3-g07, and-py-2017-c3-g09, and-py-2017-c3-g10, and-py-2018-c1-g04, and-py-2018-c1-g06, and-py-2018-c1-g08, and-py-2018-c1-g10, and-py-2018-c1-n03, and-py-2018-c1b-g05, and-py-2018-c1b-g06, and-py-2018-c1b-g07, and-py-2018-c1b-g08, and-py-2018-c1b-g09, and-py-2018-c2-g04, and-py-2018-c2-g05, and-py-2018-c2-g06, and-py-2018-c2-g07, and-py-2018-c2-g08, and-py-2018-c2-g09, and-py-2018-c2-g10, and-py-2018-c4-g04, and-py-2018-c4-g05, and-py-2018-c4-g06, and-py-2018-c4-g08, and-py-2018-c4-g09, and-py-2019-c1-g03, and-py-2019-c1-g04, and-py-2019-c1-g05, and-py-2019-c1-g06, and-py-2019-c1-g07, and-py-2019-c1-g08, and-py-2019-c1-g09, and-py-2019-c2-g04, and-py-2019-c2-g05, and-py-2019-c2-g06, and-py-2019-c2-g07, and-py-2019-c2-g08, and-py-2019-c2-g09, and-py-2019-c2-n08, and-py-2019-c3-g04, and-py-2019-c3-g05, and-py-2019-c3-g07, and-py-2019-c3-g08, and-py-2019-c3-g09, and-py-2019-c3-g10 |
-| RD 186/2023 | 10 | and-py-2015-c1-g06, and-py-2015-c1-n15, and-py-2015-c1-n16, and-py-2015-c3-n11, and-py-2015-c3-n16, and-py-2015-c3-n19, and-py-2018-c1-n16, and-py-2018-c2-n16, and-py-2019-c1-g03, and-py-2019-c1-n18 |
-| RD 587/2022 | 48 | and-py-2015-c1-g08, and-py-2015-c1-g10, and-py-2015-c2-g02, and-py-2015-c2-g04, and-py-2015-c3-g01, and-py-2015-c3-g05, and-py-2015-c3-g07, and-py-2015-c3-g09, and-py-2015-c3-g10, and-py-2016-c1-g05, and-py-2016-c1-g09, and-py-2016-c2-g07, and-py-2016-c2-g08, and-py-2016-c2-g10, and-py-2016-c3-g04, and-py-2016-c3-g07, and-py-2016-c3-g10, and-py-2017-c1-g09, and-py-2017-c1-g10, and-py-2017-c2-g06, and-py-2017-c2-g07, and-py-2017-c2-g09, and-py-2017-c3-g04, and-py-2017-c3-g08, and-py-2018-c1-g05, and-py-2018-c1-g07, and-py-2018-c1-g10, and-py-2018-c1b-g07, and-py-2018-c1b-g09, and-py-2018-c2-g05, and-py-2018-c2-g06, and-py-2018-c2-g07, and-py-2018-c4-g07, and-py-2018-c4-g08, and-py-2018-c4-g09, and-py-2019-c1-g05, and-py-2019-c1-g06, and-py-2019-c1-g07, and-py-2019-c1-g08, and-py-2019-c1-g09, and-py-2019-c1-g10, and-py-2019-c2-g08, and-py-2019-c2-g09, and-py-2019-c3-g06, and-py-2019-c3-g07, and-py-2019-c3-g08, and-py-2019-c3-g09, and-py-2019-c3-g10 |
-| RD 1188/2025 (gobierno sin título) | 1 | and-py-2016-c2-n14 |
-| IALA MBS 2022 | 8 | and-py-2017-c2-g07, and-py-2017-c3-g04, and-py-2018-c1-g05, and-py-2018-c1b-g09, and-py-2018-c2-g05, and-py-2018-c2-n09, and-py-2019-c1-g08, and-py-2019-c1-g10 |
+| RD 587/2022 | 2 | and-py-2015-c2-g02, and-py-2017-c2-g07 |
+| RD 339/2021 | 3 | and-py-2017-c2-g07, and-py-2017-c3-g10, and-py-2019-c3-g05 |
+| IALA MBS 2022 | 1 | and-py-2017-c2-g07 |
 
 ### Normativa: revisión hecha
 
-53 preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): 53 vigente, 0 actualizada, 0 retirada.
+154 preguntas marcadas por los detectores y revisadas contra el texto de la norma (BOE): 153 vigente, 0 actualizada, 1 retirada.
 
 | Norma | Vigente | Actualizada | Retirada |
 |---|---|---|---|
-| RD 339/2021 | 19 | 0 | 0 |
-| RD 587/2022 | 28 | 0 | 0 |
-| IALA MBS 2022 | 19 | 0 | 0 |
+| RD 339/2021 | 95 | 0 | 1 |
+| RD 186/2023 | 11 | 0 | 0 |
+| RD 587/2022 | 74 | 0 | 1 |
+| RD 1188/2025 (gobierno sin título) | 1 | 0 | 0 |
+| IALA MBS 2022 | 26 | 0 | 0 |
 | RD 191/2026 | 2 | 0 | 0 |
-| RD 186/2023 | 1 | 0 | 0 |
 
-_Ninguna._
+| id | Estado | Por qué |
+|---|---|---|
+| and-py-2019-c1-g07 | retirada | Retirada: la revisión anual de las balsas era la de la Orden FOM/1144/2003 (art. 6.2). Desde el 1 de julio de 2021, el art. 6.3 del Real Decreto 339/2021 (redacción del Real Decreto 587/2022, en vigor el 21-7-2022) manda revisarlas según las instrucciones del fabricante en una estación de servicio autorizada, y solo en las de uso comercial fija un máximo de 24 meses: ya no hay una revisión anual obligatoria. |
 

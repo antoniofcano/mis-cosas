@@ -98,17 +98,47 @@ export function leerRotulos(pdfs) {
   return python('etiquetas_figura.py', pdfs);
 }
 
+/** Líneas con un «0» volado que hace de grado («237⁰», «-5⁰ (menos)») de varios PDF → { [pdf]: [línea con ⁰] } */
+export function leerGradosCero(pdfs) {
+  if (!pdfs.length) return {};
+  return python('grado_cero.py', pdfs);
+}
+
+/**
+ * El «0» volado que algunos cuadernillos (2017–2018) usan como símbolo de grado sale en pdftotext como un cero normal:
+ * «a) 2370» (237º), «-50 (menos)» (−5º), «marcación 0900 Estribor», «latitud de 450». Con las líneas que lo llevan
+ * (grado_cero.py, ⁰ en su sitio), se cambia en el texto cada «…dígitos0…» por «…dígitosº…», buscando el trozo de la línea
+ * alrededor del cero (los espacios pueden variar). Exportada para los tests.
+ */
+export function reponerGrados(texto, lineas = []) {
+  const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s*');
+  let t = texto;
+  for (const l of lineas) {
+    // La línea entera (todas sus ⁰ a la vez; dos líneas iguales, las dos).
+    const entera = new RegExp(esc(l.trim().replace(/⁰/g, '0')), 'g');
+    if (entera.test(t)) { t = t.replace(entera, l.trim().replace(/⁰/g, 'º')); continue; }
+    // Si pdftotext la parte de otro modo, cada cero por el trozo que lo rodea.
+    for (const m of l.matchAll(/⁰/g)) {
+      const antes = l.slice(Math.max(0, m.index - 10), m.index).replace(/⁰/g, 'º');
+      const despues = l.slice(m.index + 1, m.index + 7).replace(/⁰/g, '0');
+      const re = new RegExp(`(${esc(antes.trimStart())})0(\\s*${esc(despues.trim())})`);
+      t = t.replace(re, '$1º$2');
+    }
+  }
+  return t;
+}
+
 /**
  * Texto del cuestionario en uno de tres modos de pdftotext:
  *   normal → con los guiones repuestos desde -raw (2020–2026);
  *   raw    → orden del contenido: sirve cuando el normal separa las letras «a) b) c) d)» de sus textos (2015);
  *   layout → disposición física, con el mismo fin.
  */
-export function textoCuestionario(pdf, rotulos, modo = 'normal') {
+export function textoCuestionario(pdf, rotulos, modo = 'normal', grados = []) {
   const r = Array.isArray(rotulos) ? rotulos : [];
-  if (modo === 'raw') return quitarRotulos(unirCompuestos(pdftotextCon(pdf, '-raw')), r);
-  if (modo === 'layout') return quitarRotulos(pdftotextCon(pdf, '-layout'), r);
-  return quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), r);
+  if (modo === 'raw') return reponerGrados(quitarRotulos(unirCompuestos(pdftotextCon(pdf, '-raw')), r), grados);
+  if (modo === 'layout') return reponerGrados(quitarRotulos(pdftotextCon(pdf, '-layout'), r), grados);
+  return reponerGrados(quitarRotulos(reponerGuiones(pdftotextCon(pdf), pdftotextCon(pdf, '-raw')), r), grados);
 }
 
 /**
@@ -166,10 +196,10 @@ export function separarTabla(q) {
  * Preguntas de un cuestionario. Se lee en modo normal y, si no salen las n preguntas completas, se prueban -raw y
  * -layout y se queda la mejor lectura (modo en el resultado, para el informe).
  */
-export function leerCuestionario(pdf, rotulos, n = null) {
+export function leerCuestionario(pdf, rotulos, n = null, grados = []) {
   let mejor = null;
   for (const modo of ['normal', 'raw', 'layout']) {
-    const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo), REGLAS_ANDALUCIA);
+    const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo, grados), REGLAS_ANDALUCIA);
     const ex = examenes[0];
     const r = { preguntas: ex.preguntas.map(separarTabla).map(separarAnuario), fecha: fechaPortada(ex.lineasPrevias), modo };
     r.calidad = n ? calidad(r.preguntas, n) : 0;
@@ -209,13 +239,14 @@ export function extraer(ctx, tit) {
   const nDe = (t) => (tit === 'per' ? 45 : 20);
   const hojas = leerHojas(trabajos.map((t) => ({ pdf: rutaPDF(eje, t.p), n: nDe(t) })));
   const rotulos = leerRotulos(trabajos.map((t) => rutaPDF(eje, t.c)));
+  const grados = leerGradosCero(trabajos.map((t) => rutaPDF(eje, t.c)));
   const apariciones = [];
   const modos = {};
   // Figuras recortadas de los cuestionarios (ejes/<eje>/figuras.json: «<conv>|<modelo o módulo>|<número>» → [rutas]).
   const figuras = leerJSON(join(dirEje(eje), 'figuras.json'), {});
   for (const t of trabajos) {
     const cfgConv = config.convocatorias.find((c) => c.clave === t.clave);
-    const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)], nDe(t));
+    const cu = leerCuestionario(rutaPDF(eje, t.c), rotulos[rutaPDF(eje, t.c)], nDe(t), grados[rutaPDF(eje, t.c)] ?? []);
     if (cu.modo !== 'normal') modos[`${t.clave} ${tit} ${t.modelo}`] = cu.modo;
     const hoja = hojas[rutaPDF(eje, t.p)];
     if (hoja?.error) avisos.add('extraer', `${t.clave} ${tit} ${t.modelo}: hoja óptica ilegible (${hoja.error})`);

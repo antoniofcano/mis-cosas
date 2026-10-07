@@ -83,4 +83,44 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
     },
   },
+  'and-2019-c3-q42': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      // Al Norte verdadero de Punta Almina: estamos sobre la línea 000° que sale del faro.
+      const s = k.lineAndBearing('punta-almina', 0, 'punta-europa', 250, 'Situación');
+      const { rv } = k.rhumb(s, 'ceuta-bocana');
+      const ct = k.ct({ dm: 6, desvio: 4 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2019-c3-q43': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = k.oposicion('isla-tarifa', 'punta-malabata');
+      k.note('Rumbo', 'El Ra = 242° no interviene: la Ct sale de la oposición.');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 224) }];
+    },
+  },
+  'and-2019-c3-q44': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const ct = k.ct({ dm: -3, desvio: -9 });
+      const d1 = k.dv(92, ct, 'isla-tarifa');
+      const d2 = k.dv(342, ct, 'punta-gracia');
+      const s = k.fix2('isla-tarifa', d1, 'punta-gracia', d2);
+      // Hacia el W, Cabo Trafalgar queda al N del rumbo: lo dejamos por estribor.
+      const rv = k.tangent(s, 'cabo-trafalgar', 6, 'estribor');
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2019-c3-q45': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '5 50,0 W', 'Situación 12:00');
+      const ct = k.ct({ carta: [-5.5, 2014, 6], anyo: 2019, desvio: -8 });
+      const rv = k.rv(323, ct);
+      const d = k.distFor(6.5, hrb(13, 42) - hrb(12, 0));
+      return latlon(k.run(s, rv, d, 'Situación 13:42'));
+    },
+  },
 };

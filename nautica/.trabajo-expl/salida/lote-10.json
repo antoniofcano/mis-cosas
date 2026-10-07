@@ -1471,5 +1471,1099 @@
   "clave": "Mismo lugar = misma dm; el desvío es de cada barco.",
   "trampa": "La a): con el mismo rumbo puede parecer que la Ct coincide, pero el desvío de cada barco es distinto.",
   "concepto": "bal-py-2021-12-b-25"
+ },
+ "bal-py-2023-12-b-27": {
+  "explicacion": "La declinación magnética depende solo del lugar (y del año), así que dos barcos en el mismo sitio tienen la misma. El desvío depende de los hierros y equipos de cada barco, de modo que, aunque lleven el mismo rumbo, no tienen por qué tener el mismo desvío ni la misma corrección total; y cada uno deja su propia estela.",
+  "clave": "Mismo lugar = misma dm; el desvío es de cada barco.",
+  "trampa": "La d) con su «siempre»: la Ct solo coincide si coinciden los desvíos.",
+  "concepto": "bal-py-2021-12-b-25"
+ },
+ "bal-py-2021-12-b-26": {
+  "explicacion": "El círculo polar ártico está en la latitud 66° 33' N, así que dista del polo norte 90° − 66° 33' = 23° 27', el mismo valor que la inclinación del eje terrestre. Los 66° 33' de la d) son su latitud, es decir, su distancia al ecuador, no al polo.",
+  "clave": "Círculo polar: 66° 33' de latitud = 23° 27' del polo.",
+  "trampa": "La d) da la distancia al ecuador en lugar de al polo.",
+  "concepto": "bal-py-2021-12-b-26"
+ },
+ "bal-py-2023-12-b-25": {
+  "explicacion": "El círculo polar ártico está en la latitud 66° 33' N, así que dista del polo norte 90° − 66° 33' = 23° 27', el mismo valor que la inclinación del eje terrestre. La a) invierte las cifras y las otras dos no corresponden a ningún paralelo notable.",
+  "clave": "Círculo polar: 66° 33' de latitud = 23° 27' del polo.",
+  "trampa": "La a) (27° 23') cambia el orden de las cifras.",
+  "concepto": "bal-py-2021-12-b-26"
+ },
+ "bal-py-2021-12-b-27": {
+  "explicacion": "Un sistema GNSS tiene tres segmentos: el espacial (la constelación de satélites), el de control (las estaciones terrestres que vigilan y corrigen los satélites) y el de usuarios (los receptores). No se distingue entre usuarios terrestres y marítimos: todos forman un único segmento de usuarios.",
+  "clave": "GNSS: espacial, control y usuarios.",
+  "trampa": "La d) parte el segmento de usuarios en dos, cosa que no se hace."
+ },
+ "bal-py-2021-12-b-29": {
+  "explicacion": "La corrección total sirve para pasar cualquier dirección de aguja a verdadera (y al revés) mientras se mantenga el rumbo, porque el desvío depende del rumbo. Según la oficial, su aplicación es obtener el azimut verdadero de la Polar a partir del que se mida con la aguja. No da el rumbo de superficie (falta el abatimiento) ni la declinación, que exige conocer el desvío.",
+  "clave": "Con la Ct: verdadero = aguja + Ct, al mismo rumbo.",
+  "trampa": "La c): para separar la declinación hay que conocer el desvío (dm = Ct − Δ).",
+  "discrepancia": "La respuesta es rara: la Polar se usa precisamente para obtener la Ct, ya que su azimut verdadero es casi 0° sin necesidad de corregir nada. La Ct obtenida en la enfilación sirve en general para convertir rumbos, demoras o azimutes de aguja en verdaderos.",
+  "concepto": "bal-py-2021-12-b-29"
+ },
+ "bal-py-2024-04-a-23": {
+  "explicacion": "La corrección total sirve para pasar cualquier dirección de aguja a verdadera (y al revés) mientras se mantenga el rumbo, porque el desvío depende del rumbo. Según la oficial, su aplicación es obtener el azimut verdadero de la Polar a partir del que se mida con la aguja. No da el rumbo de superficie (falta el abatimiento) ni la deriva, que depende de la corriente.",
+  "clave": "Con la Ct: verdadero = aguja + Ct, al mismo rumbo.",
+  "trampa": "La c): la deriva es efecto de la corriente y no tiene que ver con la aguja.",
+  "discrepancia": "La respuesta es rara: la Polar se usa precisamente para obtener la Ct, ya que su azimut verdadero es casi 0° sin necesidad de corregir nada. La Ct obtenida en la enfilación sirve en general para convertir rumbos, demoras o azimutes de aguja en verdaderos.",
+  "concepto": "bal-py-2021-12-b-29"
+ },
+ "bal-py-2021-12-b-30": {
+  "explicacion": "El XTE (Cross Track Error) es la distancia perpendicular entre el barco y la línea que une el waypoint de salida con el de llegada. La b) describe el radio de llegada o alarma de arribada, la d) la distancia y el rumbo al destino, y la a) una diferencia de rumbos, no una distancia.",
+  "clave": "XTE = separación lateral respecto a la ruta WPT→WPT.",
+  "trampa": "La b): eso es el radio de llegada, no el XTE.",
+  "base": "and-py-2022-c1-n03",
+  "concepto": "and-py-2022-c1-n03"
+ },
+ "bal-py-2022-03-a-21": {
+  "explicacion": "La marcación es el ángulo entre la proa (la línea de crujía) y la visual al objeto, y la proa apunta siempre al rumbo verdadero, haya viento o corriente. Por eso para pasar de marcación a demora se usa el rumbo verdadero: Dv = Rv + M. El rumbo de superficie y el efectivo no coinciden con la dirección de la proa.",
+  "clave": "Demora = rumbo verdadero + marcación, siempre.",
+  "trampa": "La c): con viento el barco avanza por el rumbo de superficie, pero su proa sigue en el verdadero."
+ },
+ "bal-py-2022-03-a-23": {
+  "explicacion": "La hora del reloj de bitácora es la que fija el patrón para la vida a bordo (guardias, comidas…). Se va ajustando al cambiar de huso y puede hacerse coincidir con la hora legal o con la oficial si así se decide. Todas las afirmaciones son ciertas.",
+  "clave": "HRB = la decide el patrón.",
+  "trampa": "Quedarse solo con una.",
+  "base": "and-py-2023-c1-n03",
+  "concepto": "and-py-2023-c1-n03"
+ },
+ "bal-py-2022-03-a-24": {
+  "explicacion": "Un paralelo es el lugar geométrico de los puntos que tienen la misma latitud. Hay infinitos paralelos (uno por cada latitud), los puntos de igual longitud forman un meridiano y la d) define la longitud.",
+  "clave": "Paralelo = igual latitud; meridiano = igual longitud.",
+  "trampa": "La c) es la definición de meridiano."
+ },
+ "bal-py-2022-03-b-23": {
+  "explicacion": "La hora legal (u hora zona, Hz) es la del huso horario en que uno se encuentra, y la hora oficial es la que establece el Gobierno de cada país, que puede ser distinta. La HRB la decide el patrón y no tiene por qué coincidir con la legal, y sumar el adelanto vigente a la hora de Greenwich da la hora oficial, no la legal.",
+  "clave": "Legal = huso; oficial = Gobierno.",
+  "trampa": "La d) describe la hora oficial y la llama legal."
+ },
+ "bal-py-2022-03-b-27": {
+  "explicacion": "VRM (Variable Range Marker) es el marcador variable de distancia, un anillo que se ajusta sobre el eco para medir su distancia. EBL (Electronic Bearing Line) es la línea electrónica de demora o de marcación, un radio que se gira hasta el eco para leer su dirección. La línea de fe, en cambio, marca la proa.",
+  "clave": "EBL = demora o marcación; VRM = distancia; línea de fe = proa.",
+  "trampa": "La d): la línea de fe existe en el radar, pero no es la EBL.",
+  "base": "and-py-2026-c2-n07",
+  "concepto": "and-py-2026-c2-n07"
+ },
+ "bal-py-2024-04-a-22": {
+  "explicacion": "VRM (Variable Range Marker) es el marcador variable de distancia, un anillo que se ajusta sobre el eco para medir su distancia. EBL (Electronic Bearing Line) es la línea de demora electrónica, un radio que se gira hasta el eco para leer su demora o su marcación. La línea de fe, en cambio, marca la proa.",
+  "clave": "EBL = demora o marcación; VRM = distancia; línea de fe = proa.",
+  "trampa": "La d): la línea de fe existe en el radar, pero no es la EBL.",
+  "base": "and-py-2026-c2-n07",
+  "concepto": "and-py-2026-c2-n07"
+ },
+ "bal-py-2022-06-n-21": {
+  "explicacion": "La Polar está a menos de un grado del polo celeste y describe un pequeño círculo a su alrededor, así que su azimut verdadero va cambiando a lo largo del día: unas veces está algo al este del norte, otras algo al oeste, y solo es exactamente 0° cuando pasa por el meridiano. Ninguna de las tres afirmaciones con «siempre» es cierta.",
+  "clave": "Azimut de la Polar ≈ 0°, pero oscila: solo es 0° exacto en el meridiano.",
+  "trampa": "La a) suena bien, pero el «siempre» la hace falsa."
+ },
+ "bal-py-2022-06-n-22": {
+  "explicacion": "Hacia el este se encuentra antes el Sol, así que la hora local es más tardía: al cruzar un huso navegando hacia el este se adelanta el reloj de bitácora una hora. Hacia el oeste se retrasa. Cada huso son 15° y equivale exactamente a una hora.",
+  "clave": "Este: adelanta. Oeste: retrasa. Una hora por huso.",
+  "trampa": "La c) es lo que se hace navegando hacia el oeste.",
+  "concepto": "bal-py-2022-06-n-22"
+ },
+ "bal-py-2024-04-a-21": {
+  "explicacion": "Hacia el este se encuentra antes el Sol, así que la hora local es más tardía: al cruzar un huso navegando hacia el este se adelanta el reloj de bitácora una hora. Hacia el oeste se retrasa. Cada huso son 15° y equivale exactamente a una hora.",
+  "clave": "Este: adelanta. Oeste: retrasa. Una hora por huso.",
+  "trampa": "La a) es lo que se hace navegando hacia el oeste.",
+  "concepto": "bal-py-2022-06-n-22"
+ },
+ "bal-py-2026-03-b-24": {
+  "explicacion": "Hacia el este se encuentra antes el Sol, así que la hora local es más tardía: al cruzar un huso navegando hacia el este se adelanta el reloj de bitácora una hora de golpe. Lo de 4 minutos por grado es la variación de la hora civil del lugar, pero el reloj de bitácora se ajusta por husos enteros.",
+  "clave": "Este: adelanta. Oeste: retrasa. Una hora por huso.",
+  "trampa": "La c) aplica al reloj de a bordo la variación continua de la hora del lugar.",
+  "concepto": "bal-py-2022-06-n-22"
+ },
+ "bal-py-2022-06-n-24": {
+  "explicacion": "La diferencia de hora entre dos lugares es su diferencia de longitud expresada en tiempo, a razón de 15° por hora (1° = 4 minutos). El apartamiento es una distancia en millas sobre un paralelo, no un ángulo, y la simple resta de longitudes sin pasar a tiempo no da una hora.",
+  "clave": "ΔHora = ΔLongitud / 15 (1° = 4 min).",
+  "trampa": "La a): el apartamiento se mide en millas, no en grados de longitud."
+ },
+ "bal-py-2022-06-n-28": {
+  "explicacion": "La loxodrómica es la línea que corta a todos los meridianos con el mismo ángulo, es decir, la de rumbo constante. En la carta mercatoriana se dibuja como una recta, y la derrota más corta entre dos puntos es la ortodrómica. Tampoco sirve para hallar la corrección total.",
+  "clave": "Loxodrómica = rumbo constante = recta en la Mercator.",
+  "trampa": "La a) describe la ortodrómica.",
+  "concepto": "bal-py-2022-06-n-28",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2024-07-a-30": {
+  "explicacion": "La loxodrómica es la línea que corta a todos los meridianos con el mismo ángulo, es decir, la de rumbo constante, y en la carta mercatoriana es una recta. No es la más corta (esa es la ortodrómica), así que no garantiza llegar antes, y no sirve para hallar la corrección total.",
+  "clave": "Loxodrómica = rumbo constante = recta en la Mercator.",
+  "trampa": "La a) describe la ortodrómica.",
+  "concepto": "bal-py-2022-06-n-28",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2022-12-ac-22": {
+  "explicacion": "Un AIS de clase B emite y recibe datos estáticos (nombre, MMSI, tipo y dimensiones de la embarcación) y dinámicos (posición, velocidad, rumbo y la hora de la posición), y recibe y muestra también los datos de los buques de clase A, como su estado de navegación (fondeado, en navegación…). Por eso se dan todas por buenas.",
+  "clave": "AIS B: datos estáticos y dinámicos; recibe todo lo de los clase A.",
+  "trampa": "Pensar que el clase B no maneja datos estáticos como el nombre o las dimensiones."
+ },
+ "bal-py-2022-12-b-21": {
+  "explicacion": "La HRB la fija el patrón para la vida a bordo y la hora legal es la del huso horario, así que son horas distintas que solo coinciden si el patrón lo decide. La c) añade una condición que no existe: la hora civil del lugar casi nunca coincide con la del huso, y eso no tiene que ver con la HRB.",
+  "clave": "HRB ≠ hora legal salvo que el patrón lo decida.",
+  "trampa": "La a) con su «siempre».",
+  "base": "and-py-2022-c1-n01",
+  "concepto": "and-py-2022-c1-n01"
+ },
+ "bal-py-2022-12-b-22": {
+  "explicacion": "La Polar está a menos de un grado del polo norte celeste, así que señala prácticamente el norte geográfico o verdadero, no el magnético. Una corrección total nula no implica desvío nulo (basta con que desvío y declinación sean iguales y de signo contrario), y el abatimiento depende de cada barco (obra muerta, calado, velocidad).",
+  "clave": "Polar = norte verdadero; Ct = 0 no implica Δ = 0.",
+  "trampa": "La c) cambia el norte geográfico por el magnético.",
+  "concepto": "bal-py-2022-12-b-22"
+ },
+ "bal-py-2024-07-a-25": {
+  "explicacion": "La respuesta oficial es la a), que sitúa la Polar en el norte magnético. Lo cierto es que la Polar está a menos de un grado del polo norte celeste y señala prácticamente el norte geográfico, como dice la c). La b) y la d) son falsas: una corrección total nula solo indica que desvío y declinación se compensan.",
+  "clave": "Polar = norte verdadero; Ct = 0 no implica Δ = 0 ni dm = 0.",
+  "trampa": "Confundir norte magnético y geográfico, que es justo lo que hace la clave oficial.",
+  "discrepancia": "La Polar marca el norte geográfico o verdadero, no el magnético; por eso se usa para hallar la corrección total. En la versión hermana de esta pregunta el tribunal da por buena la opción del norte geográfico, así que la clave de esta parece una errata.",
+  "defendible": "c",
+  "concepto": "bal-py-2022-12-b-22"
+ },
+ "bal-py-2022-12-b-25": {
+  "explicacion": "SOG (Speed Over Ground) es la velocidad sobre el fondo, es decir, la velocidad efectiva respecto a un punto fijo de la Tierra, que incluye el efecto de la corriente. La velocidad respecto al agua es la de corredera (superficie), que es otra. Por eso la a) y la c) dicen lo mismo y son correctas.",
+  "clave": "SOG = velocidad sobre el fondo = efectiva.",
+  "trampa": "La b) es la velocidad de superficie o de corredera.",
+  "concepto": "bal-py-2022-12-b-25"
+ },
+ "bal-py-2025-07-b-22": {
+  "explicacion": "SOG (Speed Over Ground) es la velocidad sobre el fondo, es decir, la velocidad efectiva respecto a la superficie terrestre, que incluye el efecto de la corriente. La velocidad respecto al agua es la de corredera (superficie), que es otra. Por eso la a) y la c) dicen lo mismo y son correctas.",
+  "clave": "SOG = velocidad sobre el fondo = efectiva.",
+  "trampa": "La b) es la velocidad de superficie o de corredera.",
+  "concepto": "bal-py-2022-12-b-25"
+ },
+ "bal-py-2022-12-b-29": {
+  "explicacion": "Los avisos a los navegantes informan de las alteraciones que afectan a la cartografía y de los cambios en las demás publicaciones del Instituto Hidrográfico de la Marina (derroteros, libros de faros…), y sirven precisamente para mantener al día cartas y publicaciones. Las tres afirmaciones son correctas.",
+  "clave": "Avisos a los navegantes: corrigen cartas y publicaciones del IHM.",
+  "trampa": "Quedarse con la a) pensando que solo afectan a las cartas."
+ },
+ "bal-py-2022-12-b-30": {
+  "explicacion": "El AIS ayuda a evitar abordajes y permite intercambiar datos con barcos y estaciones costeras. La b) es falsa por el «siempre … toda»: no todos los barcos llevan AIS, los datos de viaje dependen de lo que haya introducido la tripulación y el AIS no da la tripulación ni la derrota que seguirá el barco.",
+  "clave": "AIS ayuda pero no es infalible ni completo.",
+  "trampa": "El «siempre … toda la información» de la b).",
+  "base": "and-py-2022-c1-n10",
+  "concepto": "and-py-2022-c1-n10"
+ },
+ "bal-py-2023-03-ac-27": {
+  "explicacion": "El norte de aguja forma con el norte magnético un ángulo llamado desvío (Δ), que se debe al magnetismo del propio barco. La declinación magnética, también llamada variación local, es el ángulo entre el norte verdadero y el magnético.",
+  "clave": "Aguja ↔ magnético = desvío.",
+  "trampa": "No confundas con la declinación (o variación local), que no depende de tu barco sino del lugar.",
+  "base": "and-2023-c1-t39",
+  "concepto": "and-2023-c1-t39",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -2,
+    "desvio": 3
+   }
+  ]
+ },
+ "bal-py-2024-07-bc-25": {
+  "explicacion": "El norte de aguja forma con el norte magnético un ángulo llamado desvío (Δ), que se debe al magnetismo del propio barco. La declinación magnética (o variación local) es el ángulo entre el norte verdadero y el magnético, y la corrección total el que hay entre el norte verdadero y el de aguja.",
+  "clave": "Aguja ↔ magnético = desvío.",
+  "trampa": "No confundas con la declinación, que no depende de tu barco sino del lugar.",
+  "base": "and-2023-c1-t39",
+  "concepto": "and-2023-c1-t39",
+  "ilustraciones": [
+   {
+    "tipo": "nortes",
+    "dm": -2,
+    "desvio": 3
+   }
+  ]
+ },
+ "bal-py-2023-06-ac-22": {
+  "explicacion": "En el radar las ondas electromagnéticas de alta frecuencia (microondas) las genera el magnetrón, una válvula que produce los impulsos que luego emite la antena. El magnetófono es una grabadora de sonido, y «electromagnetrón» o «megatrón» no existen.",
+  "clave": "Magnetrón = genera los impulsos del radar.",
+  "trampa": "Los nombres parecidos de la a) y la d) son inventados."
+ },
+ "bal-py-2023-06-ac-24": {
+  "explicacion": "La latitud 0° corresponde al ecuador y la longitud 0° al primer meridiano, el de Greenwich, así que el punto de latitud 0° y longitud 0° está en el cruce del ecuador con el meridiano de Greenwich, en el golfo de Guinea. Las demás opciones no fijan la longitud en 0°.",
+  "clave": "0° de latitud = ecuador; 0° de longitud = Greenwich.",
+  "trampa": "La a): con «cualquier meridiano» la longitud no sería 0°."
+ },
+ "bal-py-2023-06-ac-28": {
+  "explicacion": "El abatimiento es el ángulo entre el rumbo verdadero (la dirección de la proa) y el rumbo de superficie (la que sigue el barco sobre el agua), causado por el viento. La deriva es el ángulo entre el rumbo de superficie y el efectivo, por la corriente, y el desvío es un error de la aguja.",
+  "clave": "Rv → Rs: abatimiento (viento). Rs → Re: deriva (corriente).",
+  "trampa": "La d) (deriva) es el efecto de la corriente, no del viento.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-py-2023-06-b-22": {
+  "explicacion": "El AIS trabaja en la banda de VHF marítimo, en dos canales dedicados (AIS 1 y AIS 2, 161,975 y 162,025 MHz). Por eso su alcance es similar al de la VHF: unas 20-30 millas entre buques.",
+  "clave": "AIS = VHF (canales 87B y 88B).",
+  "trampa": "Pensar en MF o LF por el largo alcance de otros sistemas.",
+  "base": "and-py-2021-c2-n01",
+  "concepto": "and-py-2021-c2-n01"
+ },
+ "bal-py-2023-06-b-23": {
+  "explicacion": "ETA son las siglas de Estimated (o Expected) Time of Arrival: la hora estimada de llegada al destino o al siguiente waypoint, calculada con la distancia y la velocidad sobre el fondo. Las demás opciones inventan significados para las siglas; la distancia transversal a la ruta es el XTE.",
+  "clave": "ETA = hora estimada de llegada.",
+  "trampa": "La d) describe el XTE con una sigla inventada."
+ },
+ "bal-py-2023-06-b-24": {
+  "explicacion": "La ganancia regula la sensibilidad del receptor. Si está muy alta, los ecos parásitos del mar, la lluvia y el ruido llenan la pantalla y pueden saturarla, de modo que cuesta distinguir los ecos reales. La espiral de puntos es la interferencia de otros radares y la luz ambiente no tiene que ver con la ganancia.",
+  "clave": "Ganancia alta = pantalla saturada de ruido.",
+  "trampa": "La b) dice que las perturbaciones desaparecen: es lo contrario.",
+  "concepto": "bal-py-2021-06-ac-24"
+ },
+ "bal-py-2025-07-a-24": {
+  "explicacion": "La ganancia regula la sensibilidad del receptor. Si está muy alta, los ecos parásitos del mar, la lluvia y el ruido llenan la pantalla y pueden saturarla, de modo que cuesta distinguir los ecos reales, sobre todo los más pequeños. La espiral de puntos es la interferencia de otros radares y la luz ambiente no tiene que ver con la ganancia.",
+  "clave": "Ganancia alta = pantalla saturada de ruido.",
+  "trampa": "La b) dice que las perturbaciones desaparecen: es lo contrario.",
+  "concepto": "bal-py-2021-06-ac-24"
+ },
+ "bal-py-2023-06-b-25": {
+  "explicacion": "Las cartas náuticas se mantienen al día corrigiéndolas con los avisos a los navegantes que publica cada semana el Instituto Hidrográfico de la Marina. El libro de faros también se corrige con esos avisos, pero no sirve para corregir cartas, y las otras publicaciones no existen o no tienen esa función.",
+  "clave": "Carta al día = avisos a los navegantes.",
+  "trampa": "El libro de faros (b) es otra publicación que también hay que corregir.",
+  "base": "and-py-2022-c2-n08",
+  "concepto": "and-py-2022-c2-n08"
+ },
+ "bal-py-2023-12-b-26": {
+  "explicacion": "Las cartas náuticas se mantienen al día corrigiéndolas con los avisos a los navegantes que publica cada semana el Instituto Hidrográfico de la Marina. Derroteros, Pilot Charts y libro de faros son otras publicaciones, que tampoco sirven para corregir cartas.",
+  "clave": "Carta al día = avisos a los navegantes.",
+  "trampa": "La a): los derroteros se corrigen con los avisos, no corrigen cartas.",
+  "base": "and-py-2022-c2-n08",
+  "concepto": "and-py-2022-c2-n08"
+ },
+ "bal-py-2023-12-a-21": {
+  "explicacion": "El ecuador es el círculo máximo perpendicular al eje de rotación de la Tierra. Los meridianos pasan por los polos y contienen el eje, así que no son perpendiculares a él; el ecuador no es un meridiano; y las longitudes se cuentan de 0° a 180° hacia el E y hacia el W, no hasta 360°.",
+  "clave": "Ecuador ⟂ eje; meridianos contienen el eje; longitud 0–180° E/W.",
+  "trampa": "La a) acierta en que los meridianos pasan por los polos, pero los hace perpendiculares al eje."
+ },
+ "bal-py-2023-12-a-23": {
+  "explicacion": "COG (Course Over Ground) es el rumbo sobre el fondo, es decir, el rumbo efectivo. SOG es la velocidad sobre el fondo, WPT un punto de paso y ETA la hora estimada de llegada.",
+  "clave": "COG = rumbo efectivo; SOG = velocidad efectiva.",
+  "trampa": "La b) (SOG) es la pareja del COG, pero es velocidad.",
+  "base": "and-py-2025-c1-n07",
+  "concepto": "and-py-2025-c1-n07"
+ },
+ "bal-py-2023-12-a-25": {
+  "explicacion": "Cuando el observador está entre dos objetos y los ve en direcciones opuestas (a 180°), la línea que los une y pasa por él es una oposición. Si los viera uno detrás de otro, por el mismo lado, sería una enfilación. Demora y marcación son ángulos, no líneas entre dos marcas.",
+  "clave": "Oposición: tú en medio. Enfilación: las dos marcas por el mismo lado.",
+  "trampa": "La d) (enfilación) también une dos marcas, pero el observador queda fuera de ellas."
+ },
+ "bal-py-2023-12-a-26": {
+  "explicacion": "El Instituto Hidrográfico de la Marina publica semanalmente los Avisos a los Navegantes, con las correcciones a las cartas náuticas, a los derroteros y a las demás publicaciones.",
+  "clave": "Avisos a los navegantes: semanales.",
+  "trampa": "Las otras periodicidades no corresponden a esta publicación."
+ },
+ "bal-py-2023-12-b-22": {
+  "explicacion": "XTE (cross track error, error transversal) es la distancia más corta, perpendicular, a la que estamos de la línea directa entre los dos waypoints de la ruta, y hacia qué lado nos hemos desviado. La distancia al próximo waypoint es DTW o DTG, el tiempo estimado TTG y el rumbo para llegar BRG o CTS.",
+  "clave": "XTE = cuánto te has salido de la ruta.",
+  "trampa": "La c) es la distancia al waypoint, otro dato del GPS.",
+  "concepto": "bal-py-2017-12-b-24"
+ },
+ "bal-py-2023-12-b-28": {
+  "explicacion": "En la simbología oficial de las cartas náuticas españolas, una cruz representa una iglesia, un punto destacado muy útil para situarse desde el mar. Templos, pagodas, santuarios, mezquitas o aerogeneradores tienen sus propios símbolos.",
+  "clave": "Cruz en la carta = iglesia.",
+  "trampa": "La a) agrupa otros edificios religiosos, que se representan con símbolos distintos."
+ },
+ "bal-py-2024-04-a-27": {
+  "explicacion": "Los paralelos se cuentan por su latitud, de 0° en el ecuador a 90° en cada polo, hacia el norte o el sur. Hay infinitos, los trópicos son solo dos (Cáncer y Capricornio) y la d) define la longitud.",
+  "clave": "Paralelos: de 0° (ecuador) a 90° (polos), N o S.",
+  "trampa": "La c): trópicos hay dos; con los círculos polares son cuatro paralelos notables."
+ },
+ "bal-py-2024-04-bc-24": {
+  "explicacion": "La hora civil en Greenwich es el tiempo transcurrido desde que el sol medio pasó por el meridiano inferior de Greenwich, que es el antimeridiano, de longitud 180°. La a) llama inferior al meridiano 0°, que es el superior, y la b) cuenta desde el superior, es decir, desde el mediodía.",
+  "clave": "HcG: desde el paso del sol medio por el meridiano 180° (medianoche en Greenwich).",
+  "trampa": "La a) mezcla «inferior» con el meridiano 0°, que es el superior de Greenwich."
+ },
+ "bal-py-2024-04-bc-26": {
+  "explicacion": "El segmento espacial del GPS se diseñó con un mínimo de 24 satélites operativos repartidos en seis planos orbitales, de modo que desde cualquier punto de la Tierra haya siempre al menos cuatro a la vista. Hoy hay más en órbita, pero el mínimo de diseño es 24.",
+  "clave": "GPS: al menos 24 satélites, 6 órbitas, 4 siempre visibles.",
+  "trampa": "La d) (32) es el número aproximado de satélites en órbita, no el mínimo operativo."
+ },
+ "bal-py-2024-04-bc-30": {
+  "explicacion": "Las tres afirmaciones son falsas. La RNC es una imagen escaneada (raster) de la carta de papel y su actualización no es automática; la que se representa por vectores es la ENC, no la RNC; y la ENC no es una copia gráfica de la carta de papel y sí se actualiza. Por eso la correcta es la d).",
+  "clave": "ENC vectorial, RNC raster; ambas hay que actualizarlas.",
+  "trampa": "La b) describe la ENC, pero le pone el nombre de RNC."
+ },
+ "bal-py-2024-07-a-22": {
+  "explicacion": "Es falsa la c): ETA es la hora estimada de llegada (Estimated Time of Arrival), no de salida, que sería ETD. COG es el rumbo efectivo, SOG la velocidad sobre el fondo y XTE el desvío lateral respecto a la ruta.",
+  "clave": "ETA = llegada; ETD = salida.",
+  "trampa": "Se pide la falsa: el «desvío lateral» de la d) es correcto para el XTE.",
+  "concepto": "bal-py-2024-07-a-22"
+ },
+ "bal-py-2024-12-a-28": {
+  "explicacion": "Es falsa la c): ETA es la hora estimada de llegada (Estimated Time of Arrival), no de salida, que sería ETD. COG es el rumbo efectivo, MOB la función de hombre al agua y XTE el desvío lateral respecto a la ruta.",
+  "clave": "ETA = llegada; ETD = salida.",
+  "trampa": "Se pide la falsa: el «desvío lateral» de la d) es correcto para el XTE.",
+  "concepto": "bal-py-2024-07-a-22"
+ },
+ "bal-py-2024-07-a-23": {
+  "explicacion": "Las cartas raster (RNC) son una copia exacta, escaneada, de las de papel y tienen más cobertura mundial que las ENC. Un ECDIS puede mostrar también RNC (en modo raster), el ECS no está homologado como el ECDIS y todas las cartas electrónicas hay que actualizarlas.",
+  "clave": "RNC = copia exacta de la de papel, con más cobertura.",
+  "trampa": "La d): una carta electrónica sin actualizar es tan peligrosa como una de papel."
+ },
+ "bal-py-2024-07-a-29": {
+  "explicacion": "Cuando el observador está entre dos objetos y los ve en direcciones opuestas (a 180°), la línea que los une y pasa por él es una oposición. Si los viera uno detrás de otro, por el mismo lado, sería una enfilación. Demora y marcación son ángulos, no líneas entre dos marcas.",
+  "clave": "Oposición: tú en medio. Enfilación: las dos marcas por el mismo lado.",
+  "trampa": "La c) (enfilación) también une dos marcas, pero el observador queda fuera de ellas."
+ },
+ "bal-py-2024-07-bc-23": {
+  "explicacion": "El abatimiento es a estribor cuando el rumbo de superficie queda a la derecha del verdadero (el viento entra por babor), y se considera positivo; a babor, cuando queda a la izquierda, y es negativo. Las demás opciones cambian la banda o el signo.",
+  "clave": "Abatimiento: estribor (+), babor (−). Rs = Rv + Ab.",
+  "trampa": "La a) pone «a babor» con el Rs a la derecha, que es estribor.",
+  "concepto": "bal-py-2024-07-bc-23",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-py-2024-12-a-21": {
+  "explicacion": "La diferencia en longitud es el arco de ecuador comprendido entre los meridianos de dos lugares. La longitud es el arco de ecuador desde Greenwich hasta un lugar, y la diferencia en latitud es arco de meridiano entre dos paralelos.",
+  "clave": "Entre dos meridianos = diferencia en longitud.",
+  "trampa": "La longitud (b) se cuenta desde Greenwich, no entre dos meridianos cualesquiera."
+ },
+ "bal-py-2024-12-a-22": {
+  "explicacion": "El desvío es el error de la aguja causado por el magnetismo del propio barco: los hierros, motores y aparatos eléctricos de a bordo (y varía con el rumbo). Lo que depende del lugar geográfico es la declinación magnética, y el tonelaje o la altura de la aguja no lo determinan.",
+  "clave": "Desvío = hierros de a bordo + rumbo. Declinación = lugar.",
+  "trampa": "La a) es la causa de la declinación, no del desvío."
+ },
+ "bal-py-2024-12-bc-26": {
+  "explicacion": "El apartamiento es la distancia en millas recorrida en sentido este-oeste; en la estima, se mide sobre el paralelo de latitud media entre la salida y la llegada: A = Δλ · cos lm. La b) describe la diferencia en latitud y la d) la diferencia en longitud, que es un ángulo y no una distancia.",
+  "clave": "Apartamiento = Δλ · cos(latitud media), en millas.",
+  "trampa": "La a): sobre el ecuador el apartamiento coincide con la diferencia de longitud, pero solo allí."
+ },
+ "bal-py-2024-12-bc-27": {
+  "explicacion": "El rumbo de superficie es el que sigue el barco sobre el agua y el rumbo efectivo el que sigue sobre el fondo. El ángulo entre ambos se debe a la corriente y se llama deriva. El abatimiento es el ángulo entre rumbo verdadero y rumbo de superficie, causado por el viento.",
+  "clave": "Abatimiento (viento): Rv → Rs. Deriva (corriente): Rs → Re.",
+  "trampa": "El abatimiento (a) es el ángulo debido al viento, no a la corriente.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-py-2025-04-a-28": {
+  "explicacion": "Los AVURNAVES son avisos urgentes a los navegantes (sobre peligros, balizamiento apagado, objetos a la deriva…) que se radian por las estaciones costeras previo anuncio en el canal 16 y precedidos de la señal de seguridad SECURITE. Siguen emitiéndose y no son rutinarios ni «no urgentes».",
+  "clave": "AVURNAVE = aviso urgente, anunciado en el 16 con SECURITE.",
+  "trampa": "La d) es lo contrario: el nombre viene de «aviso urgente a los navegantes»."
+ },
+ "bal-py-2025-04-a-30": {
+  "explicacion": "El magnetrón es la válvula del transmisor del radar que genera los impulsos de microondas que emite la antena. El magnetófono es una grabadora de sonido, y «magnetrónimo» o «megatrón» son nombres inventados.",
+  "clave": "Magnetrón = genera los impulsos del radar.",
+  "trampa": "La a) se parece mucho al nombre real, pero no existe."
+ },
+ "bal-py-2025-04-bc-22": {
+  "explicacion": "Los extremos del eje de rotación de la Tierra son los polos, norte y sur. Los paralelos y los meridianos son circunferencias trazadas sobre la superficie, y los hemisferios son las mitades en que la divide un círculo máximo.",
+  "clave": "Extremos del eje = polos.",
+  "trampa": "Los meridianos (d) pasan por los polos, pero no son sus extremos."
+ },
+ "bal-py-2025-04-bc-25": {
+  "explicacion": "El rumbo verdadero y el de superficie solo difieren por el abatimiento que produce el viento al empujar el costado. Con el viento por la proa no empuja ninguna banda, no hay abatimiento y ambos rumbos coinciden (igual que con el viento justo por la popa). Con viento por la amura o por la aleta sí hay abatimiento.",
+  "clave": "Viento por proa o por popa = sin abatimiento: Rs = Rv.",
+  "trampa": "La b): con viento por la aleta también hay componente lateral y por tanto abatimiento."
+ },
+ "bal-py-2025-04-bc-30": {
+  "explicacion": "EBL (Electronic Bearing Line) es la línea electrónica de demora: un radio que se gira hasta el eco para leer su demora o su marcación. El anillo de distancia es el VRM, y cambiar de escala o adquirir un blanco son otras funciones.",
+  "clave": "EBL = demora; VRM = distancia.",
+  "trampa": "La b) (anillo de distancia) es el VRM.",
+  "base": "and-py-2026-c2-n07",
+  "concepto": "and-py-2026-c2-n07"
+ },
+ "bal-py-2025-07-a-23": {
+  "explicacion": "Los dos puntos están en el ecuador, donde cada minuto de longitud mide una milla. La diferencia de longitud entre 13° W y 6° E es 13 + 6 = 19°, es decir, 19 × 60 = 1.140 minutos, que son 1.140 millas. Si se restaran las longitudes (13 − 6 = 7°) saldrían 420 millas, la a).",
+  "clave": "Sobre el ecuador: distancia (millas) = Δλ en minutos.",
+  "trampa": "La a) resta las longitudes cuando una es W y otra E: hay que sumarlas."
+ },
+ "bal-py-2025-07-a-29": {
+  "explicacion": "El abatimiento es a estribor cuando el rumbo de superficie queda a la derecha del verdadero (el viento entra por babor), y se considera positivo; a babor, cuando queda a la izquierda, y es negativo. Las demás opciones cambian la banda o el signo.",
+  "clave": "Abatimiento: estribor (+), babor (−). Rs = Rv + Ab.",
+  "trampa": "La a) pone «a babor» con el Rs a la derecha, que es estribor.",
+  "concepto": "bal-py-2024-07-bc-23",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-py-2025-07-b-26": {
+  "explicacion": "WPT (waypoint), COG (rumbo sobre el fondo), SOG (velocidad sobre el fondo), ETA (hora estimada de llegada) y MOB (hombre al agua) son siglas habituales de un receptor GNSS. WTE no es ninguna de ellas, así que la b) es la que contiene siglas que no corresponden.",
+  "clave": "Siglas GNSS: WPT, COG, SOG, ETA, XTE, MOB.",
+  "trampa": "WTE se parece a XTE, que sí es una sigla del GPS."
+ },
+ "bal-py-2025-12-a-23": {
+  "explicacion": "La multitud de ecos parásitos en pantalla puede deberse al oleaje (sea clutter, concentrado alrededor del barco) y a las nubes de lluvia o chubascos (rain clutter, en manchas), y se reducen con los controles anti-sea y anti-rain. Un brillo bajo oscurece la imagen, pero no crea ecos.",
+  "clave": "Ecos parásitos: mar (anti-sea) y precipitación (anti-rain).",
+  "trampa": "La d): bajar el brillo no genera ecos.",
+  "discrepancia": "La niebla apenas produce eco en el radar; los ecos atmosféricos los dan sobre todo las nubes con lluvia, granizo o nieve. La b) solo es cierta si se entiende como nubes de precipitación."
+ },
+ "bal-py-2025-12-a-26": {
+  "explicacion": "Si los ecos de la costa son muy débiles con la escala adecuada, el receptor necesita más sensibilidad: hay que aumentar la ganancia hasta que el perfil aparezca bien, sin llegar a saturar la pantalla de ruido. Bajar la ganancia o subir el anti-clutter sea debilitaría todavía más los ecos.",
+  "clave": "Ecos débiles: sube la ganancia (sin saturar).",
+  "trampa": "La c): el anti-clutter sea quita ecos cercanos, no refuerza los débiles."
+ },
+ "bal-py-2025-12-b-30": {
+  "explicacion": "El meridiano de Greenwich, junto con su antimeridiano (180°), divide la Tierra en dos hemisferios: el oriental (longitudes E) y el occidental (longitudes W). El planisferio es un mapa plano y las zonas climáticas las delimitan los trópicos y los círculos polares.",
+  "clave": "Greenwich: hemisferios oriental y occidental. Ecuador: norte y sur.",
+  "trampa": "La b): planisferio es la representación plana de la Tierra, no una mitad."
+ },
+ "bal-py-2026-03-a-23": {
+  "explicacion": "La latitud se mide sobre el meridiano, en grados, desde el ecuador (0°) hasta los polos (90° N o S). La a) describe la longitud, la d) mide la longitud en kilómetros y en línea recta (se mide en grados) y la b) es falsa porque solo el meridiano de Greenwich con su antimeridiano divide la Tierra en hemisferios oriental y occidental.",
+  "clave": "Latitud: grados sobre el meridiano, de 0° a 90° N/S.",
+  "trampa": "La b): cualquier círculo máximo parte la Tierra en dos, pero no en oriental y occidental."
+ },
+ "bal-py-2026-03-a-24": {
+  "explicacion": "Una oposición son dos marcas que se ven en direcciones opuestas cuando el barco está entre ambas. Da una línea de posición cuya demora verdadera se mide en la carta; comparándola con la demora de aguja tomada en ese momento se obtiene la corrección total (Ct = Dv − Da), sin necesidad de otra línea. Para situarse, en cambio, hacen falta dos líneas, y la declinación no sale sola.",
+  "clave": "Oposición u enfilación: Ct = Dv (carta) − Da (aguja).",
+  "trampa": "La b): para la Ct basta una sola línea con demora verdadera conocida; para situarse sí hacen falta dos."
+ },
+ "bal-py-2026-03-a-28": {
+  "explicacion": "COG (Course Over Ground) es el rumbo sobre el fondo, es decir, el rumbo efectivo. SOG es la velocidad sobre el fondo y ETA la hora estimada de llegada; «RSF» no es una sigla estándar de los equipos GNSS.",
+  "clave": "COG = rumbo sobre el fondo; SOG = velocidad sobre el fondo.",
+  "trampa": "La a) traduce «rumbo sobre el fondo» al castellano, pero la sigla que usa el equipo es COG.",
+  "base": "and-py-2025-c1-n07",
+  "concepto": "and-py-2025-c1-n07"
+ },
+ "bal-py-2026-03-a-29": {
+  "explicacion": "El abatimiento es el ángulo entre el rumbo verdadero (hacia donde apunta la proa) y el rumbo de superficie (el que realmente sigue el barco sobre el agua) cuando el viento lo empuja hacia sotavento. El ángulo entre rumbo de superficie y efectivo es la deriva, debida a la corriente, y el abatimiento es un ángulo, no una fuerza.",
+  "clave": "Abatimiento: Rv → Rs (viento). Deriva: Rs → Re (corriente).",
+  "trampa": "La b) describe la deriva, causada por la corriente.",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "estribor"
+   }
+  ]
+ },
+ "bal-py-2026-03-b-22": {
+  "explicacion": "El radar detecta los ecos que reflejan los objetos, sin que estos tengan que emitir nada, pero no ve lo que queda tapado por una isla o un cabo. El AIS, en cambio, recibe por VHF los datos que emiten otros barcos, así que puede mostrar uno oculto tras la costa si tiene el AIS encendido y la señal llega (directa o por repetidores). Todas las afirmaciones son correctas.",
+  "clave": "Radar: ve sin ayuda, pero no tras la costa. AIS: solo ve a quien emite.",
+  "trampa": "Pensar que el AIS sustituye al radar: un barco sin AIS no aparece."
+ },
+ "bal-py-2026-03-b-26": {
+  "explicacion": "La latitud 0° corresponde al ecuador y la longitud 0° al primer meridiano, el de Greenwich, así que el punto está en el cruce del ecuador con ese meridiano, en el golfo de Guinea. El meridiano de cambio de fecha y el meridiano inferior de Greenwich son el de 180°, y el observatorio de Greenwich está a unos 51° 29' N, no en el ecuador.",
+  "clave": "0° de latitud = ecuador; 0° de longitud = Greenwich.",
+  "trampa": "La c): el observatorio está en el meridiano 0°, pero su latitud no es 0°."
+ },
+ "bal-py-2026-06-a-28": {
+  "explicacion": "La longitud es la distancia angular entre un punto y el meridiano de Greenwich, medida respecto al meridiano que pasa por dicho punto (sobre el ecuador o el paralelo, de 0° a 180° E o W). La latitud se mide sobre el meridiano desde el ecuador, no sobre el paralelo ni desde el polo, y la c) da a la longitud la definición de la latitud.",
+  "clave": "Latitud: desde el ecuador por el meridiano. Longitud: desde Greenwich.",
+  "trampa": "La a) define la longitud pero la llama latitud; la c) hace lo contrario."
+ },
+ "bal-py-2026-06-a-30": {
+  "explicacion": "El XTE (Cross Track Error) es la distancia lateral, perpendicular, entre la posición del barco y la derrota prevista entre dos waypoints. No es una distancia de seguridad bajo la quilla, ni la separación entre dos barcos, ni un rumbo.",
+  "clave": "XTE = separación lateral respecto a la ruta prevista.",
+  "trampa": "La d) confunde el XTE con el rumbo para volver a la derrota.",
+  "base": "and-py-2022-c1-n03",
+  "concepto": "and-py-2022-c1-n03"
+ },
+ "bal-py-2026-06-b-21": {
+  "explicacion": "La IMO y la OHI exigen que el ECDIS muestre como mínimo los datos hidrográficos, las ayudas a la navegación y los dispositivos de separación de tráfico, entre otros datos de la carta. Las corrientes de marea no forman parte de esa información mínima obligatoria.",
+  "clave": "ECDIS mínimo: hidrografía, ayudas a la navegación, dispositivos de separación.",
+  "trampa": "Se pide la excepción: las tres primeras sí son obligatorias."
+ },
+ "bal-py-2026-06-b-23": {
+  "explicacion": "Por convenio, las latitudes norte se toman con signo positivo y las sur con signo negativo, igual que las longitudes este (+) y oeste (−) en muchos cálculos. Todos los puntos del ecuador tienen latitud 0°; 90° es la latitud de los polos y 180° es una longitud, no una latitud.",
+  "clave": "Latitud N (+), S (−); ecuador 0°, polos 90°.",
+  "trampa": "La b) cambia los signos; la c) da al ecuador la latitud de los polos."
+ },
+ "bal-py-2026-06-b-26": {
+  "explicacion": "El radar se puede usar con lluvia, con niebla y con baja visibilidad; precisamente es en esas condiciones cuando más útil resulta. La lluvia produce ecos parásitos que se reducen con el anti-rain clutter, y la niebla apenas le afecta, así que ninguna de las tres situaciones impide usarlo.",
+  "clave": "Radar: tu mejor aliado con niebla y poca visibilidad.",
+  "trampa": "La a): la lluvia molesta, pero se filtra y el radar sigue funcionando."
+ },
+ "bal-py-2017-03-a-37": {
+  "explicacion": "Se necesita una altura de marea de 6 − 4,5 = 1,5 m sobre el cero de la carta. Con el anuario de Cádiz del 30 de marzo de 2017 se toman la primera bajamar y la pleamar siguiente (horas y alturas), se calculan la duración y la amplitud de la creciente y, con la tabla del anuario o la fórmula del seno cuadrado, el tiempo que tarda la marea en subir desde la bajamar hasta 1,5 m; sumado a la hora de la bajamar da la oficial, 12:24 UTC. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta; luego tiempo desde la bajamar.",
+  "trampa": "Buscar 6 m de altura de marea en lugar de 6 − 4,5 = 1,5 m.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2017-03-a-40": {
+  "explicacion": "Δl = 35° 52,3' − 36° 00' = 7,7' S y ΔL = 8° 02,4' − 7° 00' = 62,4' W. Con la latitud media (35° 56') el apartamiento es 62,4 · cos 35,9° ≈ 50,5' W. Rumbo: tg R = 50,5 / 7,7 → R = S 81,3° W (261,3°), y distancia D = 7,7 / cos 81,3° ≈ 51 millas, que la opción da como 50,9 por redondeo. La a) y la b) se equivocan de rumbo y la c) de distancia.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La b) (081,5°) es el rumbo de vuelta, de B hacia A.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-32": {
+  "explicacion": "Δl = 7,7' S y ΔL = 62,4' W. Con la latitud media (35° 56') el apartamiento es 62,4 · cos 35,9° ≈ 50,5' W. Rumbo: tg R = 50,5 / 7,7 → R = S 81,3° W = 261,3°; distancia D = 7,7 / cos 81,3° ≈ 51,1 millas. La d) y la b) dan el rumbo opuesto (hacia el NE) y la c) acierta el rumbo pero no la distancia.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) da el rumbo bien pero calcula la distancia sin pasar la ΔL a apartamiento.",
+  "concepto": "bal-py-2017-03-cb-32",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2024-07-bc-39": {
+  "explicacion": "Δl = 7,7' S y ΔL = 62,4' W. Con la latitud media (35° 56') el apartamiento es 62,4 · cos 35,9° ≈ 50,5' W. Rumbo: tg R = 50,5 / 7,7 → R = S 81° W ≈ 261°; distancia D = 7,7 / cos 81,3° ≈ 51,1 millas. La c) da el mismo rumbo en cuadrantal pero con la distancia mal, y la a) y la b) fallan en el rumbo.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La b) (081°) es el rumbo de vuelta, de B hacia A.",
+  "concepto": "bal-py-2017-03-cb-32",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2017-03-cb-33": {
+  "explicacion": "Se necesita una altura de marea de 6 − 4,50 = 1,50 m. Con el anuario de Cádiz del 26 de abril de 2017 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud de la creciente y, con la tabla del anuario o la fórmula del seno cuadrado, el tiempo que tarda la marea en llegar a 1,50 m desde la bajamar; sumado a la hora de la bajamar da la oficial, las 10h 40,1 m TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda deseada − sonda carta.",
+  "trampa": "Contar el tiempo desde la pleamar en lugar de desde la bajamar.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2017-07-a-37": {
+  "explicacion": "Δl = 37° 16' − 37° 36' = 20' S y ΔL = 0° 59' W → 8° 56' E = 9° 55' = 595' E. Con la latitud media (37° 26') el apartamiento es 595 · cos 37,43° ≈ 472,5' E. Rumbo: tg R = 472,5 / 20 → R = S 87,6° E = 092,4°; distancia ≈ 473 millas. La b) y la a) olvidan que hay que pasar la ΔL a apartamiento o calculan mal la ΔL.",
+  "clave": "Si una longitud es W y otra E, la ΔL se suma.",
+  "trampa": "La c) acierta la distancia pero no el rumbo: como B está más al sur, el rumbo pasa de 090°.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2017-12-a-31": {
+  "explicacion": "Δl = 33° 15' − 40° 50' = 7° 35' = 455' S y ΔL = 13° 20' − 11° 15' = 2° 05' = 125' W. Con la latitud media (37° 02,5') el apartamiento es 125 · cos 37,04° ≈ 99,8' W. Rumbo: tg R = 99,8 / 455 → R = S 12,4° W = 192,4°; distancia D = 455 / cos 12,4° ≈ 465,8 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) (177°) iría hacia el SE, pero B está al oeste de A.",
+  "concepto": "bal-py-2017-12-a-31",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2018-04-b-31": {
+  "explicacion": "Δl = 7° 35' = 455' S y ΔL = 2° 05' = 125' W. Con la latitud media (37° 02,5') el apartamiento es 125 · cos 37,04° ≈ 99,8' W. Rumbo: tg R = 99,8 / 455 → R = S 12,4° W = 192,4°; distancia D = 455 / cos 12,4° ≈ 465,8 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) (177°) iría hacia el SE, pero B está al oeste de A.",
+  "concepto": "bal-py-2017-12-a-31",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2019-04-b-33": {
+  "explicacion": "Δl = 7° 35' = 455' S y ΔL = 2° 05' = 125' W. Con la latitud media (37° 02,5') el apartamiento es 125 · cos 37,04° ≈ 99,8' W. Rumbo: tg R = 99,8 / 455 → R = S 12,4° W = 192,4°; distancia D = 455 / cos 12,4° ≈ 465,8 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) (177°) iría hacia el SE, pero B está al oeste de A.",
+  "concepto": "bal-py-2017-12-a-31",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2025-12-a-32": {
+  "explicacion": "Δl = 7° 35' = 455' S y ΔL = 2° 05' = 125' W. Con la latitud media (37° 02,5') el apartamiento es 125 · cos 37,04° ≈ 99,8' W. Rumbo: tg R = 99,8 / 455 → R = S 12,4° W = 192,4°; distancia D = 455 / cos 12,4° ≈ 465,8 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) (177,6°) iría hacia el SE, pero B está al oeste de A.",
+  "concepto": "bal-py-2017-12-a-31",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2017-12-a-37": {
+  "explicacion": "Primero se calcula con el anuario de Conil del 16 de julio de 2017 la altura de la marea a las 15:30 UTC: se toman la bajamar y la pleamar que encierran esa hora, su duración y amplitud, y con la tabla del anuario o la fórmula del seno cuadrado se obtiene la altura. Después se corrige por presión: 1013 − 973 = 40 hPa por debajo de la normal, que suben el nivel unos 0,40 m. La oficial da 1,96 m. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Presión baja sube el mar: +1 cm por cada hPa por debajo de 1013.",
+  "trampa": "Restar la corrección: con 973 hPa la marea es más alta, no más baja.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2018-04-a-33": {
+  "explicacion": "Se resuelve por estima, tramo a tramo. Tramo 1 (080°, 60'): Δl = 60 · cos 80° = 10,4' N y apartamiento 59,1' E. Tramo 2 (200°, 50'): Δl = 47,0' S y apartamiento 17,1' W. En total Δl = 36,6' S y A = 42,0' E; con la latitud media (unos 25° 32') ΔL = 42,0 / cos 25,5° ≈ 46,6' E. Llegada: l = 25° 13,4' N y L ≈ 32° 56,6' E.",
+  "clave": "Δl = D · cos R; A = D · sen R; ΔL = A / cos lm.",
+  "trampa": "La b) acierta casi la latitud, pero la longitud no cuadra con el apartamiento.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2018-06-a-34": {
+  "explicacion": "Δl = 1° 32' = 92' S y ΔL = 2° 06' = 126' W; con la latitud media (37° 16') el apartamiento es 100,3' W, así que el rumbo efectivo es S 47,5° W (227,5°). Para seguirlo con una corriente hacia el norte de 1,5 nudos y 9 nudos de máquina, se resuelve el triángulo de velocidades: la velocidad efectiva sale 7,9 nudos y el rumbo verdadero que hay que poner, 220,5°, corrigiendo hacia el sur la corriente que empuja al norte.",
+  "clave": "Velocidad efectiva = máquina + corriente (vectores); el Rv compensa la corriente.",
+  "trampa": "La b) suma la corriente como si fuera a favor: con corriente al norte y rumbo al SW la velocidad efectiva baja.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo"
+   }
+  ]
+ },
+ "bal-py-2018-06-b-34": {
+  "explicacion": "Δl = 32° 25,4' − 37° 21' = 4° 55,6' = 295,6' S y ΔL = 13° 26' − 7° 56,9' = 5° 29,1' = 329,1' E. Con la latitud media (34° 53') el apartamiento es 329,1 · cos 34,9° ≈ 270' E. Rumbo: tg R = 270 / 295,6 → R = S 42,4° E; distancia D = 295,6 / cos 42,4° ≈ 400 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La d) da el rumbo hacia el oeste, pero B está más al este (longitud W menor).",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2018-12-a-35": {
+  "explicacion": "Δl = 33° 40' − 36° 46' = 3° 06' = 186' S y ΔL = 7° 35' − 6° 30' = 1° 05' = 65' W. Con la latitud media (35° 13') el apartamiento es 65 · cos 35,2° ≈ 53,1' W. Rumbo: tg R = 53,1 / 186 → R = S 15,9° W ≈ 196°; distancia D = 186 / cos 15,9° ≈ 193,4 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) (195°, 199 millas) se acerca, pero la distancia no cuadra con el cálculo.",
+  "concepto": "bal-py-2018-12-a-35",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2023-06-ac-38": {
+  "explicacion": "Δl = 3° 06' = 186' S y ΔL = 1° 05' = 65' W. Con la latitud media (35° 13') el apartamiento es 65 · cos 35,2° ≈ 53,1' W. Rumbo: tg R = 53,1 / 186 → R = S 15,9° W ≈ 196°; distancia D = 186 / cos 15,9° ≈ 193,4 millas. Las opciones mezclan los dos rumbos (187° y 196°) con dos distancias (193,4 y 203,1): solo la d) junta los valores correctos.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La a) acierta el rumbo pero no la distancia.",
+  "concepto": "bal-py-2018-12-a-35",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2019-04-a-36": {
+  "explicacion": "Δl = 44° 53,9' − 43° 22,6' = 1° 31,3' = 91,3' S y ΔL = 3° 03,2' − 2° 42,1' = 21,1' W. Con la latitud media (44° 08') el apartamiento es 21,1 · cos 44,1° ≈ 15,1' W. La distancia es D = √(91,3² + 15,1²) ≈ 92,5 millas (rumbo S 9,4° W).",
+  "clave": "D = √(Δl² + A²), con A = ΔL · cos lm.",
+  "trampa": "Usar la ΔL sin multiplicar por el coseno de la latitud media alarga la distancia."
+ },
+ "bal-py-2019-04-b-38": {
+  "explicacion": "Con el anuario de Rota del 28 de junio de 2019 se calcula la altura de la marea a las 11:15 UT (bajamar y pleamar que encierran esa hora, duración, amplitud y tabla o fórmula del seno cuadrado). Se corrige por presión: con 973 hPa, 40 hPa por debajo de 1013, el nivel sube unos 0,40 m. La sonda en el momento es la sonda de carta más la altura corregida: 5 + altura = 8,07 m según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea (corregida por presión).",
+  "trampa": "Dar solo la altura de marea y olvidar sumar la sonda de carta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2019-06-b-34": {
+  "explicacion": "Se necesita una altura de marea de 11,8 − 10 = 1,8 m. Con el anuario de Vigo del 16 de enero de 2019 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud de la creciente y, con la tabla del anuario o la fórmula del seno cuadrado, el tiempo que tarda la marea en subir hasta 1,8 m; sumado a la hora de la bajamar da las 06h 24 min TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta.",
+  "trampa": "Buscar en el anuario la hora en que la marea mide 11,8 m, olvidando restar la sonda de carta.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2019-12-a-33": {
+  "explicacion": "Primero se pasa la hora oficial a UTC: en abril rige el horario de verano (UTC + 2), así que las 18:30 son las 16:30 UTC. Con el anuario de Algeciras del 4 de abril de 2019 se calcula la altura de la marea a esa hora y se corrige por presión: 1030 hPa son 17 hPa por encima de la normal, así que el nivel baja unos 0,17 m. Sumando la altura corregida a la sonda de carta de 4,6 m se llega a la oficial, 4,88 m. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Hora oficial − adelanto = UTC; presión alta baja el nivel.",
+  "trampa": "Entrar en el anuario con la hora oficial sin restar el adelanto.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2019-12-c-40": {
+  "explicacion": "Se necesita una altura de marea de 11 − 8,7 = 2,30 m (con 1013 mb no hay corrección por presión). En la tabla de Navia del 14 de diciembre de 2019 la primera bajamar es a las 10:42 (0,49 m) y la pleamar siguiente a las 16:49 (3,56 m): duración 6 h 07 min y amplitud 3,07 m. La marea debe subir 2,30 − 0,49 = 1,81 m; con la fórmula del seno cuadrado (o la tabla), 1,81 = 3,07 · sen²(90° · t / 6 h 07 min) da t ≈ 3 h 25 min, y 10:42 + 3:25 ≈ 14:06 UTC.",
+  "clave": "Altura = Sc → Sm; t desde la bajamar con duración y amplitud.",
+  "trampa": "Olvidar restar la altura de la bajamar a la altura necesaria antes de entrar en la tabla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2020-07-a-31": {
+  "explicacion": "Se resuelve por estima, tramo a tramo. Tramo 1 (045°, 50'): Δl = 35,4' N y apartamiento 35,4' E. Tramo 2 (270°, 70'): Δl = 0 y apartamiento 70' W. En total Δl = 35,4' N (l = 43° 42,4' N) y A = 34,6' W; con la latitud media (unos 43° 25') ΔL ≈ 47,6' W, así que L ≈ 6° 26' E.",
+  "clave": "Δl = D · cos R; A = D · sen R; ΔL = A / cos lm.",
+  "trampa": "La a) acierta casi la latitud, pero se queda corta en la longitud por no dividir por el coseno.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2020-12-a-35": {
+  "explicacion": "Se necesita una altura de marea de 11 − 8,7 = 2,30 m, sin corrección por presión (1013 mb). Con el anuario de Cádiz del 11 de noviembre de 2020 se toman la primera bajamar y la pleamar siguiente, se calculan duración y amplitud y, con la tabla del anuario o la fórmula del seno cuadrado, el tiempo que tarda la marea en llegar a 2,30 m desde la bajamar; la hora más próxima es la b), 08:21 UTC. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta.",
+  "trampa": "Contar el tiempo desde la pleamar en lugar de desde la primera bajamar.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-34": {
+  "explicacion": "Para zarpar hace falta agua para el calado y el resguardo: 1,9 + 0,5 = 2,4 m; como la sonda de carta es 0,5 m, la marea debe subir hasta 2,4 − 0,5 = 1,9 m. La presión de 1027 mb (14 por encima de 1013) baja el nivel unos 0,14 m, así que en el anuario hay que buscar una altura de unos 2,04 m. Con la bajamar y la pleamar de Burela del 15 de diciembre de 2020, su duración y amplitud y la tabla o la fórmula del seno cuadrado se obtiene la hora UTC, y sumando el adelanto de 1 h sale la oficial, 13:30. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = calado + resguardo − Sc (+ corrección de presión).",
+  "trampa": "Olvidar el adelanto horario: el anuario da UTC y piden hora oficial.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2020-12-b-39": {
+  "explicacion": "Δl = 34° 42' − 33° 15' = 1° 27' = 87' N y ΔL = 8° 30' − 6° 20' = 2° 10' = 130' W. Con la latitud media (33° 58,5') el apartamiento es 130 · cos 33,98° ≈ 107,8' W. Rumbo: tg R = 107,8 / 87 → R = N 51,1° W (308,9°); distancia D = 87 / cos 51,1° ≈ 138,5 millas.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La c) da el rumbo hacia el este, pero B tiene más longitud W que A.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2021-06-ac-35": {
+  "explicacion": "Primero la estima de A a B: 325 millas al N 38° E dan Δl = 325 · cos 38° = 256,1' N y apartamiento 200,1' E; con la latitud media (unos 31° 19') ΔL ≈ 234,2' E, así que B queda en 33° 27,0' N y 2° 38,8' W. De B a C: Δl = 55' N y ΔL = 71,2' W, apartamiento 71,2 · cos 33,9° ≈ 59,1' W. Rumbo: tg R = 59,1 / 55 → N 47,1° W ≈ 313°; distancia ≈ 80,6 millas.",
+  "clave": "Estima: Δl = D · cos R, A = D · sen R, ΔL = A / cos lm.",
+  "trampa": "Equivocarse de signo al sumar una ΔL hacia el E a una longitud W.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2021-06-ac-40": {
+  "explicacion": "Se necesita una altura de marea de 12,80 − 10,56 = 2,24 m. Con las tablas de Vigo del 16 de abril de 2021 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud de la creciente y, con la tabla del anuario o la fórmula del seno cuadrado, el tiempo que tarda la marea en llegar a 2,24 m desde la bajamar. Como los métodos dan resultados algo distintos, se elige la hora más tardía, la más conservadora: 14h 38 min TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta; si dudas, la hora más tardía.",
+  "trampa": "Elegir la hora más temprana: con marea creciente, salir antes es arriesgar a tener menos agua.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2021-06-b-39": {
+  "explicacion": "Se busca en el anuario de Tarifa del 27 de febrero de 2021 la altura de la primera bajamar. Se corrige por presión: 1003 mb son 10 por debajo de 1013, así que el nivel sube unos 0,10 m. La sonda en el momento es la sonda de carta (6,8 m) más la altura de la bajamar corregida, que según la oficial da 7,10 m. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea; presión baja suma.",
+  "trampa": "Restar la corrección de presión: por debajo de 1013 mb el mar sube.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2021-12-a-40": {
+  "explicacion": "Con el anuario de Rota del 28 de junio de 2021 se calcula la altura de la marea a las 11:15 UT (bajamar y pleamar que encierran esa hora, duración, amplitud y tabla o fórmula del seno cuadrado). Se corrige por presión: con 973 hPa, 40 hPa por debajo de 1013, el nivel sube unos 0,40 m. La sonda en el momento es 5 m más la altura corregida, 6,33 m según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea (corregida por presión).",
+  "trampa": "Copiar el resultado de otro año: las alturas cambian cada día y cada año.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2021-12-b-39": {
+  "explicacion": "Se resuelve por estima sumando los cinco tramos. Δl: +9,4' (N20°E) − 67,5' (S50°W) + 33' (N) − 0,3' (S80°E) + 0 (W) = −25,4', es decir, 25,4' S. Apartamientos: +3,4' − 80,4' + 0 + 2,0' − 25' = −100,0' W. Con la latitud media (unos 45° 17') ΔL ≈ 142,1' W. Llegada: l ≈ 45° 04,6' N y L ≈ 62° 01' E.",
+  "clave": "Estima: suma todas las Δl y todos los apartamientos; luego ΔL = A / cos lm.",
+  "trampa": "La a) acierta casi la longitud pero no la latitud; la b) y la d) se equivocan de signo en la Δl.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2022-06-n-33": {
+  "explicacion": "Si tocamos fondo en la última bajamar con 1,20 m de calado, la sonda de carta más la altura de esa bajamar es 1,20 m: Sc = 1,20 − altura de la bajamar (que se toma del anuario de Tánger del 24 de abril de 2022), lo que da 0,40 m. Para salir con 0,54 m bajo la quilla la marea debe subir 0,54 m sobre esa bajamar; con la duración y la amplitud de la creciente y la tabla o la fórmula del seno cuadrado se obtiene la hora: 19:07 TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Tocar fondo en bajamar: Sc = calado − altura de la bajamar.",
+  "trampa": "Buscar 0,54 m de altura de marea absoluta en vez de 0,54 m por encima de la bajamar.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2022-12-ac-38": {
+  "explicacion": "Se necesita una altura de marea de 11 − 8,7 = 2,30 m, sin corrección por presión (1013 mb). Con el anuario de Navia del 14 de diciembre de 2022 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud y, con la tabla o la fórmula del seno cuadrado, el tiempo que tarda la marea en subir hasta 2,30 m desde la bajamar; sumado a la hora de esta da las 03:58 UTC. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta.",
+  "trampa": "Copiar la hora de otro año del mismo día: la marea de cada fecha cambia de un año a otro.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2022-12-b-35": {
+  "explicacion": "Δl = 43° 49,1' − 43° 20,5' = 28,6' N y ΔL = 1° 54,8' − 1° 26,4' = 28,4' E. Con la latitud media (43° 35') el apartamiento es 28,4 · cos 43,6° ≈ 20,6' E. Rumbo: tg R = 20,6 / 28,6 → R = N 35,7° E.",
+  "clave": "tg R = A / Δl, con A = ΔL · cos lm.",
+  "trampa": "La d) (N 71° E) sale de usar mal los catetos; la b) y la c) se equivocan de cuadrante.",
+  "concepto": "bal-py-2022-12-b-35",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2023-03-ac-37": {
+  "explicacion": "Δl = 4° 55,6' = 295,6' S y ΔL = 5° 29,1' = 329,1' E. Con la latitud media (34° 53') el apartamiento es 329,1 · cos 34,9° ≈ 270' E. Rumbo: tg R = 270 / 295,6 → R = S 42,4° E ≈ 137,5°; distancia D = 295,6 / cos 42,4° ≈ 400 millas, que la opción c) redondea a 401.",
+  "clave": "A = ΔL · cos lm; tg R = A / Δl; D = Δl / cos R.",
+  "trampa": "La a) acierta el rumbo pero no la distancia.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2023-03-ac-39": {
+  "explicacion": "Con el anuario de Rota del 28 de junio de 2023 se calcula la altura de la marea a las 11:15 UT (bajamar y pleamar que encierran esa hora, duración, amplitud y tabla o fórmula del seno cuadrado). Se corrige por presión: con 973 hPa, 40 hPa por debajo de 1013, el nivel sube unos 0,40 m. La sonda en el momento es 5 m más la altura corregida, 7,86 m según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea (corregida por presión).",
+  "trampa": "La c) (5,02 m) apenas suma marea: con la presión baja el nivel sube.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2023-06-b-31": {
+  "explicacion": "Δl = 729 · cos 237° = 397,0' S, así que la latitud de llegada es 36° 08,5' − 6° 37,0' = 29° 31,5' N. Apartamiento = 729 · sen 237° = 611,4' W; con la latitud media (32° 50') ΔL = 611,4 / cos 32,83° ≈ 727,6' = 12° 07,6' W, y la longitud de llegada es 5° 59' + 12° 07,6' = 18° 06,6' W.",
+  "clave": "Δl = D · cos R; A = D · sen R; ΔL = A / cos lm.",
+  "trampa": "La c) olvida ajustar bien la latitud media y se va casi un grado en longitud.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2023-06-b-36": {
+  "explicacion": "Se busca en el anuario de Pasajes del 16 de agosto de 2023 la altura de la segunda bajamar. El agua bajo la quilla es la sonda de carta más la altura de la marea menos el calado: 8 + altura − 3. Con la altura de esa bajamar el resultado es 5,89 m según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Agua bajo la quilla = Sc + altura de marea − calado.",
+  "trampa": "La c) (11,89 m) suma el calado en lugar de restarlo.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2023-12-a-32": {
+  "explicacion": "Δl = 544 · cos 205° = 493,0' S, así que la latitud de llegada es 25° 12,5' − 8° 13,0' = 16° 59,5' N. Apartamiento = 544 · sen 205° = 229,9' W; con la latitud media (21° 06') ΔL = 229,9 / cos 21,1° ≈ 246,4' = 4° 06,4' W, y la longitud de llegada es 8° 24,3' + 4° 06,4' = 12° 30,7' W.",
+  "clave": "Δl = D · cos R; A = D · sen R; ΔL = A / cos lm.",
+  "trampa": "La c) da casi lo mismo pero con longitud E: con rumbo 205° el barco va hacia el oeste.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2023-12-b-31": {
+  "explicacion": "Δl = 7,7' S y ΔL = 62,4' W. Con la latitud media (35° 56') el apartamiento es 62,4 · cos 35,9° ≈ 50,5' W. La distancia es D = √(7,7² + 50,5²) ≈ 51,1 millas (rumbo S 81,3° W).",
+  "clave": "D = √(Δl² + A²), con A = ΔL · cos lm.",
+  "trampa": "Usar la ΔL (62,4') como si fuera el apartamiento da más de 60 millas.",
+  "concepto": "bal-py-2023-12-b-31",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2025-04-a-35": {
+  "explicacion": "Δl = 7,7' S y ΔL = 62,4' W. Con la latitud media (35° 56') el apartamiento es 62,4 · cos 35,9° ≈ 50,5' W. La distancia es D = √(7,7² + 50,5²) ≈ 51,1 millas (rumbo S 81,3° W).",
+  "clave": "D = √(Δl² + A²), con A = ΔL · cos lm.",
+  "trampa": "Usar la ΔL (62,4') como si fuera el apartamiento da más de 60 millas.",
+  "concepto": "bal-py-2023-12-b-31",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2023-12-b-35": {
+  "explicacion": "Δl = 43° 49,1' − 43° 20,5' = 28,6' N y ΔL = 1° 54,8' − 1° 26,4' = 28,4' E. Con la latitud media (43° 35') el apartamiento es 28,4 · cos 43,6° ≈ 20,6' E. Rumbo: tg R = 20,6 / 28,6 → R = N 35,7° E.",
+  "clave": "tg R = A / Δl, con A = ΔL · cos lm.",
+  "trampa": "Sin pasar la ΔL a apartamiento saldría casi N 45° E, cerca de la d).",
+  "concepto": "bal-py-2022-12-b-35",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2024-04-a-39": {
+  "explicacion": "Para tener calado y resguardo hace falta una profundidad de 1,80 + 1,50 = 3,30 m; con sonda de carta de 2,60 m, la marea debe dar al menos 0,70 m. La presión de 1033 hPa (20 por encima de 1013) baja el nivel unos 0,20 m, así que en el anuario hay que buscar 0,90 m. Con la segunda pleamar de Punta Umbría del 7 de febrero de 2024, la bajamar siguiente, su duración y amplitud y la tabla o la fórmula del seno cuadrado se obtiene la hora en que la marea, al bajar, llega a ese valor: 17:25 UTC según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = calado + resguardo − Sc, corregida por presión.",
+  "trampa": "Sumar la corrección de presión: con presión alta hay menos agua, hay que pedir más altura.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2024-04-bc-33": {
+  "explicacion": "Δl = 20' S y ΔL = 0° 59' W → 8° 56' E = 595' E. Con la latitud media (37° 26') el apartamiento es 595 · cos 37,43° ≈ 472,5' E. Rumbo: tg R = 472,5 / 20 → R = S 87,6° E ≈ 092°; distancia ≈ 473 millas. Como B está más al sur que A, el rumbo pasa de 090°, así que 088° no puede ser.",
+  "clave": "Si una longitud es W y otra E, la ΔL se suma.",
+  "trampa": "La d) acierta la distancia, pero 088° iría ligeramente hacia el norte.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2024-07-bc-31": {
+  "explicacion": "Si tocamos fondo en la última bajamar con 1,20 m de calado, la sonda de carta más la altura de esa bajamar es 1,20 m: Sc = 1,20 − altura de la bajamar (que se toma del anuario de Llanes del 24 de agosto de 2024), lo que da 0,40 m. Para tener 0,80 m bajo la quilla la marea debe subir 0,80 m sobre esa bajamar; con la duración y la amplitud de la creciente y la tabla o la fórmula del seno cuadrado se obtiene la hora: 14:47 TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Tocar fondo en bajamar: Sc = calado − altura de la bajamar.",
+  "trampa": "Sumar la altura de la bajamar al calado para hallar la Sc, en lugar de restarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2024-07-bc-33": {
+  "explicacion": "Δl = 304 · cos 193° = 296,2' S, así que la latitud de llegada es 39° 32,5' − 4° 56,2' = 34° 36,3' N. Apartamiento = 304 · sen 193° = 68,4' W; con la latitud media (37° 04') ΔL ≈ 85,7' = 1° 25,7' W, y la longitud de llegada es 18° 18,4' + 1° 25,7' = 19° 44,1' W.",
+  "clave": "Δl = D · cos R; A = D · sen R; ΔL = A / cos lm.",
+  "trampa": "La d) acierta la latitud pero lleva la longitud hacia el este.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2024-12-bc-32": {
+  "explicacion": "Con el anuario de Ribadesella del 25 de octubre de 2024 se toman la bajamar y la pleamar que encierran las 13:38 UTC, se calculan la duración y la amplitud, el tiempo transcurrido desde la bajamar y, con la tabla o la fórmula del seno cuadrado, la altura de la marea en ese instante. La sonda en el momento es la sonda de carta de 4,5 m más esa altura, 7,22 m según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de la marea en ese instante.",
+  "trampa": "Tomar la altura de la pleamar sin interpolar a la hora pedida.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2025-04-a-33": {
+  "explicacion": "Se necesita una sonda de 6 m sobre una sonda de carta de 4,5 m: altura de marea de 1,5 m. Con 987 hPa (26 por debajo de 1013) el nivel sube unos 0,26 m, así que la marea astronómica del anuario solo tiene que llegar a unos 1,24 m. Con la primera bajamar y la pleamar siguiente de Cádiz del 17 de julio de 2025, su duración y amplitud y la tabla o la fórmula del seno cuadrado se obtiene la hora: 02:19 UTC. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Presión baja: necesitas menos marea astronómica.",
+  "trampa": "Sumar la corrección a la altura buscada en lugar de restarla.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2025-07-a-32": {
+  "explicacion": "Se necesita una altura de marea de 11 − 8,7 = 2,30 m, sin corrección por presión (1013 mb). Con el anuario de Navia del 22 de diciembre de 2025 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud y, con la tabla o la fórmula del seno cuadrado, el tiempo que tarda la marea en subir hasta 2,30 m desde la bajamar; sumado a la hora de esta da las 14:09 UTC. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta.",
+  "trampa": "Copiar la hora de otro año del mismo día: la marea de cada fecha cambia de un año a otro.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2025-07-a-34": {
+  "explicacion": "Se resuelve por estima, tramo a tramo. Tramo 1 (245°, 80'): Δl = 33,8' S y apartamiento 72,5' W. Tramo 2 (180°, 20'): Δl = 20' S. En total Δl = 53,8' S, así que l = 38° 45' − 53,8' = 37° 51,2' N; con la latitud media del primer tramo (38° 28') ΔL = 72,5 / cos 38,5° ≈ 92,6' = 1° 32,6' W y L ≈ 8° 48' E.",
+  "clave": "Δl = D · cos R; A = D · sen R; ΔL = A / cos lm.",
+  "trampa": "La a) acierta la latitud pero suma la ΔL hacia el este.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2025-07-b-32": {
+  "explicacion": "Se necesita una altura de marea de 12,80 − 10,50 = 2,30 m. Con el anuario de Vigo del 16 de abril de 2025 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud y, con la tabla o la fórmula del seno cuadrado, el tiempo que tarda la marea en llegar a 2,30 m desde la bajamar; sumado a la hora de esta da las 13h 52 min TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta.",
+  "trampa": "Copiar la hora de otro año del mismo día: la marea cambia de un año a otro.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2025-12-a-39": {
+  "explicacion": "Se necesita una altura de marea de 5,50 − 3,70 = 1,80 m. La presión de 730 mmHg equivale a unos 973 hPa, 40 por debajo de la normal, así que el nivel sube unos 0,40 m y la marea del anuario solo tiene que llegar a 1,40 m. Con la primera bajamar y la pleamar siguiente de Navia del 22 de junio de 2025, su duración y amplitud y la tabla o la fórmula del seno cuadrado se obtiene la hora: 08h 25m TU. Los datos del anuario no vienen en la pregunta.",
+  "clave": "760 mmHg = 1013 hPa; presión baja sube el nivel.",
+  "trampa": "Olvidar pasar los mmHg a hPa antes de corregir.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2026-03-a-37": {
+  "explicacion": "Con el anuario de Navia del 7 de octubre de 2026 se toman la bajamar y la pleamar que encierran las 16:37 UTC y se calcula la altura de la marea en ese instante con la tabla o la fórmula del seno cuadrado. Se corrige por presión: 973 mbar son 40 por debajo de 1013, así que el nivel sube unos 0,40 m. La sonda en el momento es 4,5 m más la altura corregida, 6,72 m según la oficial. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Sm = Sc + altura de marea + corrección de presión.",
+  "trampa": "La c) (6,32 m) es el resultado sin la corrección de presión, o restándola.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
+ },
+ "bal-py-2026-03-b-32": {
+  "explicacion": "Corrección total = declinación + desvío = 14° NE + 9° NE = 23° NE (+23°), así que Rv = 067° + 23° = 090°: rumbo este puro. Distancia = 12 nudos × 14 h 20 min = 172 millas. Navegando al E la latitud no cambia (52° 14,2' S) y ΔL = 172 / cos 52,24° ≈ 280,9' = 4° 40,9' E, de modo que la longitud pasa de 3° 18,2' W a 1° 22,7' E.",
+  "clave": "Rv = Ra + Ct; al rumbo E u W la latitud no cambia.",
+  "trampa": "La d) acierta los números pero deja la longitud en W: al cruzar Greenwich pasa a E.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ]
+ },
+ "bal-py-2026-06-b-31": {
+  "explicacion": "Se necesita una altura de marea de 11 − 8,7 = 2,30 m, sin corrección por presión (1013 mb). Con el anuario de Navia del 22 de diciembre de 2026 se toman la primera bajamar y la pleamar siguiente, se calculan la duración y la amplitud y, con la tabla o la fórmula del seno cuadrado, el tiempo que tarda la marea en subir hasta 2,30 m desde la bajamar; sumado a la hora de esta da las 10:58 UTC. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = sonda momento − sonda carta.",
+  "trampa": "Copiar la hora de otro año del mismo día: la marea de cada fecha cambia de un año a otro.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ]
+ },
+ "bal-py-2026-06-b-40": {
+  "explicacion": "Para zarpar hace falta agua para el calado y el resguardo: 1,9 + 0,5 = 2,4 m; como la sonda de carta es 0,5 m, la marea debe llegar a 1,9 m. La presión de 1027 mb (14 por encima de 1013) baja el nivel unos 0,14 m, así que en el anuario hay que buscar unos 2,04 m. Con la primera bajamar y la pleamar siguiente de Bilbao del 15 de diciembre de 2026, su duración y amplitud y la tabla o la fórmula del seno cuadrado se obtiene la hora UTC, y sumando el adelanto de 1 h sale la oficial, 03:51. Los datos del anuario no vienen en la pregunta.",
+  "clave": "Altura necesaria = calado + resguardo − Sc (+ corrección de presión).",
+  "trampa": "Olvidar el adelanto horario: el anuario da UTC y piden hora oficial.",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ]
  }
 }

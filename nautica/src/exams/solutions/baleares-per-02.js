@@ -1,8 +1,9 @@
 // Soluciones programadas de carta del PER de Baleares (lote 02). Ver baleares-per.js para el formato.
-// Resumen del lote (109 preguntas): 75 resueltas y comprobadas; 34 en DISCREPANCIAS:
-//   18 con opciones que el lector no entiende (15 cuadran con la oficial; en las 2 de la avería de Ceuta y en una
-//      del «Quest» además se desvía la hora), 16 con elementos que no están en la carta de la app (isóbatas, sondas,
-//      naufragios, montes, marcas, DST, puertos) y 1 a la que le falta la hora de salida.
+// Resumen del lote (109 preguntas): 90 resueltas y comprobadas; 19 en `documentadas`:
+//   2 'discrepancia' (sale la oficial, pero el lector de opciones no lee «¨W» ni «Ev»: ver DISCREPANCIAS) y
+//   17 'sin-calculo' (16 usan elementos que no están en la carta de la app: isóbatas, sondas, naufragios, montes,
+//   marcas, DST, puertos; a 1 le falta la hora de salida). En 3 de las resueltas la hora se desvía de la oficial
+//   (4–7 min) aunque el resto cuadra: se indica en cada una.
 import { hrb } from '../kit.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -259,7 +260,7 @@ export default {
       const d = k.distanceBetween(s1, s2);
       const v = d / (80 / 60);
       k.note('Velocidad', `En 1 h 20 min hemos recorrido ${f1(d)} millas: V = ${f1(d)} / 1,33 = ${f1(v)} nudos.`);
-      // Solo se comparan las situaciones: el lector de opciones tomaría el «21» de «(21:20h)» como velocidad.
+      // Solo se comparan las situaciones: el lector de opciones toma el «21» de «(21:20h)» como velocidad.
       // La velocidad (9,9 nudos) también coincide con la oficial (10,1).
       return [...latlon(s1), ...latlon(s2)];
     },
@@ -387,10 +388,7 @@ export default {
       const s = k.fix2('punta-carbonera', d1, 'punta-europa', d2, 'Situación 07:00');
       const { rv: r2, dist } = k.rhumb(s, 'ceuta-bocana');
       const ra = k.ra(r2, k.ct({ dm: -2, desvio: -2 }));
-      k.eta(hrb(7, 0), dist, 11);
-      // Las opciones escriben la hora con punto («08.48»), que el lector no entiende: se compara solo el Ra.
-      // La hora calculada (08:48) es también la oficial.
-      return [{ kind: 'bearing', value: ra }];
+      return [{ kind: 'bearing', value: ra }, { kind: 'clock', value: k.eta(hrb(7, 0), dist, 11) }];
     },
   },
   'bal-per-2020-07-ah-45': {
@@ -750,59 +748,6 @@ export default {
       return latlon(k.fix2('cabo-espartel', d1, 'punta-malabata', d2));
     },
   },
-};
-
-/* DISCREPANCIAS
-
- 1) Opciones que el lector no entiende (18). El cálculo llega a la opción oficial (o casi), pero el comprobador no
-    puede leer las opciones (minutos escritos «58'8», «06',7», «12’0», «¨W», horas «1426» o «16.09», «Ev») y elige
-    al azar: no se publican. El código que las resuelve va al final de este bloque.
- * 'bal-per-2019-06-c-42': sale 36°01,0′ N 5°18,5′ W; oficial c) 36°00'8 N 5°18´6 W.
- * 'bal-per-2019-09-c-43': sale 36°02,8′ N 5°19,7′ W; oficial c) 36°02',8 N 5°19',6 W.
- * 'bal-per-2019-09-b-44': sale 36°10,1′ N 5°12,1′ W; oficial b) 36°10’0 N 5°12’2 W.
- * 'bal-per-2020-07-ah-44': la misma pregunta con la Da a Punta Europa (sobre la enfilación demora igual que Carnero):
-   36°10,1′ N 5°12,1′ W; oficial c) 36°10’0 N 5°12’2 W.
- * 'bal-per-2019-09-b-45': sale 36°00,5′ N 5°27,7′ W; oficial a) 36°00,6´N 05°27,8¨W (la longitud lleva «¨»).
- * 'bal-per-2019-12-d-42': sale 35°59,5′ N 5°41,1′ W; oficial a) 35°59'4N 5°41'0 W.
- * 'bal-per-2019-12-a-45': sale 35°51,1′ N 5°56,5′ W; oficial b) 35°51'0 N 5°56'5 W.
- * 'bal-per-2020-10-d-42': sale 35°59,5′ N 5°31,4′ W; oficial a) 35°59'5 N 5°31'4 W.
- * 'bal-per-2020-12-b-43': sale 36°00,2′ N 5°21,8′ W; oficial d) 36°00'0 N 5°21'8 W.
- * 'bal-per-2020-12-e-43': sale 36°01,7′ N 5°53,3′ W; oficial d) 36°01'6 N 5°53'3 W.
- * 'bal-per-2020-12-a-44': sale 35°52,4′ N 5°52,2′ W; oficial b) 35°52',2 N 5°52',4 W.
- * 'bal-per-2019-12-c-43': Tarifa demora 270° a 12,0 millas (estamos al E del faro); la oficial a) lo escribe
-   «Ev (Este verdadero)» y el lector toma el «12» como demora (la b, 275° y 12,0 millas, sale casi igual de cerca).
- * 'bal-per-2020-10-g-43': sale 12:25; oficial c) «HRB= 1224» (hora sin separador).
- * 'bal-per-2021-03-a-42': sale 16:22; oficial c) «Hrb= 16.23» (hora con punto).
- * 'bal-per-2020-12-i-45': sale Ra 101,5° y 13:37; oficial a) Ra 101,8° y «HRB= 1341». Además de la hora sin
-   separador, hay 4 minutos de diferencia (lo mismo pasa en la versión de 2019, que sí se publica con 13:39).
- * 'bal-per-2019-09-a-44' y 'bal-per-2020-07-c-42' (salida de Ceuta al 000°, avería en la enfilación Gibraltar
-   muelle sur–Punta Europa): sale 36°04,2′ N 5°18,5′ W y 14:33 (10,2 millas a 3,4 nudos + 2 h 30 min); oficial
-   c) 36°03,9′ N 5°18,5′ W a «1426». La situación cuadra, la hora se va 7 min y además está escrita sin separador.
-
- 2) Elemento que no está en la carta de la app (16).
- * 'bal-per-2019-04-b-44': la situación es «sobre la isóbata de 100 m» al W de Punta Alcázar. Tomándola a 7 millas
-   al W verdadero del faro, Malabata demora 230° (opción d); la oficial (213°) exige el punto de la isóbata.
- * 'bal-per-2019-04-a-45': la sonda de 50 m y el naufragio del meridiano 5°40′ W.
- * 'bal-per-2019-04-c-45': la situación se da sobre la isobática de 100 m.
- * 'bal-per-2019-06-b-45': la isobática de 30 m del banco de Trafalgar.
- * 'bal-per-2019-06-c-45': el naufragio próximo a Torre Castilobo y la marca cardinal N frente a Malabata.
- * 'bal-per-2019-09-a-43': la enfilación Punta Malabata–monte Beni Meyimel (el monte no está).
- * 'bal-per-2019-12-d-45': la boya cardinal E de Barbate y los sectores de luz de El Xarf.
- * 'bal-per-2020-07-ah-42': la situación sale del DST y de la sonda de 500 m.
- * 'bal-per-2020-07-c-44': la latitud sale de la sonda de 50 m.
- * 'bal-per-2020-10-b-42': la sonda de 30 m sobre la enfilación Trafalgar–Gracia.
- * 'bal-per-2020-10-g-44': la sonda de 100 m sobre la oposición Trafalgar–Espartel.
- * 'bal-per-2020-10-f-45': la marca especial de La Línea de la Concepción.
- * 'bal-per-2020-12-b-42': la demora al monte Chajchuja (475 m).
- * 'bal-per-2020-12-f-43': la luz verde del puerto de Torre de Guadiaro.
- * 'bal-per-2020-12-g-44': el espigón de Piedra Redonda y la sonda de 500 m.
- * 'bal-per-2021-03-b-43': la enfilación monte Magair–Cabo Espartel.
-
- 3) Falta un dato en el enunciado (1).
- * 'bal-per-2020-12-i-44': «A HRB = en situación…»: no da la hora de salida, así que no se puede calcular lo navegado
-   hasta las 15:30. Con la oficial c) saldrían unas 16,4 millas al Rv 078°, es decir, salida hacia las 13:10.
-
- Código de las del apartado 1 (cuadran con la oficial, salvo las horas indicadas):
   'bal-per-2019-06-c-42': {
     ejercicio: 'situacion-demora-distancia',
     solve(k) {
@@ -830,6 +775,7 @@ export default {
       const p = k.corteRumbo(s, 0, 'punta-europa', enf, 'Avería');
       const t = k.eta(hrb(9, 0), k.distanceBetween(s, p), 3.4);
       k.note('Avería', 'Sin máquina ni arrancada (y sin corriente) seguimos en el mismo punto 2 h 30 min.');
+      // La situación cuadra con la oficial c); la hora sale 14:33 y la oficial da 14:26 (7 min menos).
       return [...latlon(p), { kind: 'clock', value: t + 150 }];
     },
   },
@@ -843,15 +789,6 @@ export default {
       return latlon(k.lineAndBearing('punta-carnero', dvC, 'punta-carbonera', dB));
     },
   },
-  'bal-per-2019-09-b-45': {
-    ejercicio: 'situacion-dos-demoras',
-    solve(k) {
-      const rv = k.rv(256, k.ct({ ct: -10 }));
-      const d1 = k.dvM(rv, 157, 'punta-europa');
-      const d2 = k.dvM(rv, -120, 'punta-almina');
-      return latlon(k.fix2('punta-europa', d1, 'punta-almina', d2));
-    },
-  },
   'bal-per-2019-12-d-42': {
     ejercicio: 'situacion-dos-demoras',
     solve(k) {
@@ -859,16 +796,6 @@ export default {
       const d1 = k.dv(86, ct, 'isla-tarifa');
       const d2 = k.dv(346, ct, 'punta-paloma');
       return latlon(k.fix2('isla-tarifa', d1, 'punta-paloma', d2));
-    },
-  },
-  'bal-per-2019-12-c-43': {
-    ejercicio: 'distancia-faro',
-    solve(k) {
-      const op = k.oposicion('punta-carnero', 'punta-almina');
-      const enf = k.enfilacion('punta-cires', 'punta-alcazar');
-      const s = k.lineAndBearing('punta-carnero', op, 'punta-alcazar', enf, 'Situación 20:00');
-      const { dv, dist } = k.bearingTo(s, 'isla-tarifa');
-      return [{ kind: 'bearing', value: dv }, { kind: 'distance', value: dist }];
     },
   },
   'bal-per-2019-12-a-45': {
@@ -889,6 +816,8 @@ export default {
       const enf = k.enfilacion('gibraltar-muelle-sur', 'punta-europa');
       const p = k.corteRumbo(s, 0, 'punta-europa', enf, 'Avería');
       const t = k.eta(hrb(9, 0), k.distanceBetween(s, p), 3.4);
+      k.note('Avería', 'Sin máquina ni arrancada, y sin viento ni corriente, seguimos en el mismo punto 2 h 30 min.');
+      // La situación cuadra con la oficial c); la hora sale 14:33 y la oficial da 14:26 (7 min menos).
       return [...latlon(p), { kind: 'clock', value: t + 150 }];
     },
   },
@@ -948,6 +877,7 @@ export default {
       const o3 = k.oposicion('punta-alcazar', 'punta-paloma');
       const p = k.fixBearingRange('punta-paloma', o3, 'punta-cires', 6, 0, 'Segunda situación');
       const { rv, dist } = k.rhumb(s, p);
+      // Sale Ra 101,5° y 13:37; la oficial da 101,8° y 13:41.
       return [{ kind: 'bearing', value: k.ra(rv, k.ct({ ct: 2.2 })) }, { kind: 'clock', value: k.eta(hrb(10, 0), dist, 3.5) }];
     },
   },
@@ -975,43 +905,56 @@ export default {
       return latlon(k.lineAndBearing('punta-carnero', dvE, 'punta-carbonera', dB));
     },
   },
+};
+
+/* DISCREPANCIAS
+ * El lector de opciones no lee estas dos (sale la oficial, pero el comprobador no lo puede confirmar):
+ * 'bal-per-2019-09-b-45': sale 36°00,5′ N 5°27,7′ W; oficial a) 36°00,6´N 05°27,8¨W (la longitud lleva «¨»).
+ * 'bal-per-2019-12-c-43': Isla de Tarifa demora 270° a 12,0 millas; la oficial a) dice «Ev (Este verdadero)» y el
+ *   lector toma el «12» como demora, así que gana la b) (275°, 12,0 millas).
+ * El resto (17) no se calcula con la carta de la app: ver `documentadas`.
+ *
+ * Código de las dos primeras:
+  'bal-per-2019-09-b-45': {
+    ejercicio: 'situacion-dos-demoras',
+    solve(k) {
+      const rv = k.rv(256, k.ct({ ct: -10 }));
+      const d1 = k.dvM(rv, 157, 'punta-europa');
+      const d2 = k.dvM(rv, -120, 'punta-almina');
+      return latlon(k.fix2('punta-europa', d1, 'punta-almina', d2));
+    },
+  },
+  'bal-per-2019-12-c-43': {
+    ejercicio: 'distancia-faro',
+    solve(k) {
+      const op = k.oposicion('punta-carnero', 'punta-almina');
+      const enf = k.enfilacion('punta-cires', 'punta-alcazar');
+      const s = k.lineAndBearing('punta-carnero', op, 'punta-alcazar', enf, 'Situación 20:00');
+      const { dv, dist } = k.bearingTo(s, 'isla-tarifa');
+      return [{ kind: 'bearing', value: dv }, { kind: 'distance', value: dist }];
+    },
+  },
 */
 
-const ilegible = 'Las opciones vienen en un formato que el lector no entiende y el comprobador elige al azar';
 const falta = 'Elemento que no está en la carta de la app';
 export const documentadas = {
-  'bal-per-2019-06-c-42': { tipo: 'discrepancia', texto: `${ilegible} («00'8»). Sale 36°01,0′ N 5°18,5′ W; oficial c) 36°00'8 N 5°18´6 W: cuadra.` },
-  'bal-per-2019-09-c-43': { tipo: 'discrepancia', texto: `${ilegible} («02',8»). Sale 36°02,8′ N 5°19,7′ W; oficial c) 36°02',8 N 5°19',6 W: cuadra.` },
-  'bal-per-2019-09-b-44': { tipo: 'discrepancia', texto: `${ilegible} («10’0»). Sale 36°10,1′ N 5°12,1′ W; oficial b) 36°10’0 N 5°12’2 W: cuadra.` },
-  'bal-per-2020-07-ah-44': { tipo: 'discrepancia', texto: `${ilegible} («10’0»). Misma pregunta que 2019-09-b-44 con la Da a Punta Europa: sale 36°10,1′ N 5°12,1′ W; oficial c) 36°10’0 N 5°12’2 W: cuadra.` },
-  'bal-per-2019-09-b-45': { tipo: 'discrepancia', texto: `${ilegible} (la longitud lleva «¨W»). Sale 36°00,5′ N 5°27,7′ W; oficial a) 36°00,6′ N 5°27,8′ W: cuadra.` },
-  'bal-per-2019-12-d-42': { tipo: 'discrepancia', texto: `${ilegible} («59'4N»). Sale 35°59,5′ N 5°41,1′ W; oficial a) 35°59'4 N 5°41'0 W: cuadra.` },
-  'bal-per-2019-12-a-45': { tipo: 'discrepancia', texto: `${ilegible} («51'0 N»). Sale 35°51,1′ N 5°56,5′ W; oficial b) 35°51'0 N 5°56'5 W: cuadra.` },
-  'bal-per-2020-10-d-42': { tipo: 'discrepancia', texto: `${ilegible} («59'5 N»). Sale 35°59,5′ N 5°31,4′ W; oficial a) 35°59'5 N 5°31'4 W: cuadra.` },
-  'bal-per-2020-12-b-43': { tipo: 'discrepancia', texto: `${ilegible} («00'0 N»). Sale 36°00,2′ N 5°21,8′ W; oficial d) 36°00'0 N 5°21'8 W: cuadra.` },
-  'bal-per-2020-12-e-43': { tipo: 'discrepancia', texto: `${ilegible} («01'6 N»). Sale 36°01,7′ N 5°53,3′ W; oficial d) 36°01'6 N 5°53'3 W: cuadra.` },
-  'bal-per-2020-12-a-44': { tipo: 'discrepancia', texto: `${ilegible} («52',2 N»). Sale 35°52,4′ N 5°52,2′ W; oficial b) 35°52',2 N 5°52',4 W: cuadra.` },
-  'bal-per-2019-12-c-43': { tipo: 'discrepancia', texto: `${ilegible}. Isla de Tarifa demora 270° a 12,0 millas; la oficial a) lo escribe «Ev (Este verdadero)» y el lector toma el «12» como demora: cuadra.` },
-  'bal-per-2020-10-g-43': { tipo: 'discrepancia', texto: `${ilegible} (hora sin separador). Sale 12:25; oficial c) HRB 1224: cuadra.` },
-  'bal-per-2021-03-a-42': { tipo: 'discrepancia', texto: `${ilegible} (hora con punto). Sale 16:22; oficial c) Hrb 16.23: cuadra.` },
-  'bal-per-2020-12-i-45': { tipo: 'discrepancia', texto: `${ilegible} (hora sin separador). Sale Ra 101,5° y 13:37; oficial a) Ra 101,8° y HRB 1341: el rumbo cuadra, la hora se va 4 minutos.` },
-  'bal-per-2019-09-a-44': { tipo: 'discrepancia', texto: `${ilegible} (hora sin separador). Salida de Ceuta al 000° hasta la enfilación Gibraltar muelle sur–Punta Europa (10,2 millas a 3,4 nudos) y 2 h 30 min de avería: sale 36°04,2′ N 5°18,5′ W a las 14:33; oficial c) 36°03,9′ N 5°18,5′ W a las 14:26. La situación cuadra, la hora se va 7 minutos.` },
-  'bal-per-2020-07-c-42': { tipo: 'discrepancia', texto: `${ilegible} (hora sin separador). Misma pregunta que 2019-09-a-44: sale 36°04,2′ N 5°18,5′ W a las 14:33; oficial c) 36°03,9′ N 5°18,5′ W a las 14:26. La situación cuadra, la hora se va 7 minutos.` },
-  'bal-per-2019-04-b-44': { tipo: 'discrepancia', texto: `${falta}: la isóbata de 100 m. Tomando el punto a 7 millas al W verdadero de Punta Alcázar, Malabata demora 230° (opción d); la oficial (213°) exige el punto sobre la isóbata.` },
-  'bal-per-2019-04-a-45': { tipo: 'discrepancia', texto: `${falta}: la sonda de 50 m y el naufragio del meridiano 5°40′ W.` },
-  'bal-per-2019-04-c-45': { tipo: 'discrepancia', texto: `${falta}: la situación se da sobre la isobática de 100 m.` },
-  'bal-per-2019-06-b-45': { tipo: 'discrepancia', texto: `${falta}: la isobática de 30 m del banco de Trafalgar.` },
-  'bal-per-2019-06-c-45': { tipo: 'discrepancia', texto: `${falta}: el naufragio próximo a Torre Castilobo y la marca cardinal N frente a Punta Malabata.` },
-  'bal-per-2019-09-a-43': { tipo: 'discrepancia', texto: `${falta}: el monte Beni Meyimel de la enfilación con Punta Malabata.` },
-  'bal-per-2019-12-d-45': { tipo: 'discrepancia', texto: `${falta}: la boya cardinal E de Barbate y los sectores de luz de El Xarf.` },
-  'bal-per-2020-07-ah-42': { tipo: 'discrepancia', texto: `${falta}: la situación sale del DST del Estrecho y de la sonda de 500 m.` },
-  'bal-per-2020-07-c-44': { tipo: 'discrepancia', texto: `${falta}: la latitud sale de la sonda de 50 m.` },
-  'bal-per-2020-10-b-42': { tipo: 'discrepancia', texto: `${falta}: la sonda de 30 m sobre la enfilación Trafalgar–Gracia.` },
-  'bal-per-2020-10-g-44': { tipo: 'discrepancia', texto: `${falta}: la sonda de 100 m sobre la oposición Trafalgar–Espartel.` },
-  'bal-per-2020-10-f-45': { tipo: 'discrepancia', texto: `${falta}: la marca especial de La Línea de la Concepción.` },
-  'bal-per-2020-12-b-42': { tipo: 'discrepancia', texto: `${falta}: la demora al monte Chajchuja (475 m).` },
-  'bal-per-2020-12-f-43': { tipo: 'discrepancia', texto: `${falta}: la luz verde del puerto de Torre de Guadiaro.` },
-  'bal-per-2020-12-g-44': { tipo: 'discrepancia', texto: `${falta}: el espigón de Piedra Redonda y la sonda de 500 m.` },
-  'bal-per-2021-03-b-43': { tipo: 'discrepancia', texto: `${falta}: el monte Magair de la enfilación con Cabo Espartel.` },
-  'bal-per-2020-12-i-44': { tipo: 'discrepancia', texto: 'Falta un dato: «A HRB = en situación…» no da la hora de salida, así que no se puede calcular lo navegado hasta las 15:30. Con la oficial c) saldrían unas 16,4 millas al Rv 078°, salida hacia las 13:10.' },
+  'bal-per-2019-09-b-45': { tipo: 'discrepancia', texto: 'Sale 36°00,5′ N 5°27,7′ W, que es la oficial a) (36°00,6′ N 5°27,8′ W), pero las opciones escriben la longitud con «¨W» y el lector no las lee, así que el comprobador no elige ninguna.' },
+  'bal-per-2019-12-c-43': { tipo: 'discrepancia', texto: 'Isla de Tarifa demora 270° a 12,0 millas, que es la oficial a), escrita «Ev (Este verdadero)». El lector no entiende «Ev» y toma el «12» como demora, así que el comprobador elige la b) (275°, 12,0 millas).' },
+  'bal-per-2019-04-b-44': { tipo: 'sin-calculo', texto: `${falta}: la isóbata de 100 m. Tomando el punto a 7 millas al W verdadero de Punta Alcázar, Malabata demora 230° (opción d); la oficial (213°) exige el punto sobre la isóbata.` },
+  'bal-per-2019-04-a-45': { tipo: 'sin-calculo', texto: `${falta}: la sonda de 50 m y el naufragio del meridiano 5°40′ W.` },
+  'bal-per-2019-04-c-45': { tipo: 'sin-calculo', texto: `${falta}: la situación se da sobre la isobática de 100 m.` },
+  'bal-per-2019-06-b-45': { tipo: 'sin-calculo', texto: `${falta}: la isobática de 30 m del banco de Trafalgar.` },
+  'bal-per-2019-06-c-45': { tipo: 'sin-calculo', texto: `${falta}: el naufragio próximo a Torre Castilobo y la marca cardinal N frente a Punta Malabata.` },
+  'bal-per-2019-09-a-43': { tipo: 'sin-calculo', texto: `${falta}: el monte Beni Meyimel de la enfilación con Punta Malabata.` },
+  'bal-per-2019-12-d-45': { tipo: 'sin-calculo', texto: `${falta}: la boya cardinal E de Barbate y los sectores de luz de El Xarf.` },
+  'bal-per-2020-07-ah-42': { tipo: 'sin-calculo', texto: `${falta}: la situación sale del DST del Estrecho y de la sonda de 500 m.` },
+  'bal-per-2020-07-c-44': { tipo: 'sin-calculo', texto: `${falta}: la latitud sale de la sonda de 50 m.` },
+  'bal-per-2020-10-b-42': { tipo: 'sin-calculo', texto: `${falta}: la sonda de 30 m sobre la enfilación Trafalgar–Gracia.` },
+  'bal-per-2020-10-g-44': { tipo: 'sin-calculo', texto: `${falta}: la sonda de 100 m sobre la oposición Trafalgar–Espartel.` },
+  'bal-per-2020-10-f-45': { tipo: 'sin-calculo', texto: `${falta}: la marca especial de La Línea de la Concepción.` },
+  'bal-per-2020-12-b-42': { tipo: 'sin-calculo', texto: `${falta}: la demora al monte Chajchuja (475 m).` },
+  'bal-per-2020-12-f-43': { tipo: 'sin-calculo', texto: `${falta}: la luz verde del puerto de Torre de Guadiaro.` },
+  'bal-per-2020-12-g-44': { tipo: 'sin-calculo', texto: `${falta}: el espigón de Piedra Redonda y la sonda de 500 m.` },
+  'bal-per-2021-03-b-43': { tipo: 'sin-calculo', texto: `${falta}: el monte Magair de la enfilación con Cabo Espartel.` },
+  'bal-per-2020-12-i-44': { tipo: 'sin-calculo', texto: 'Falta un dato: «A HRB = en situación…» no da la hora de salida, así que no se puede calcular lo navegado hasta las 15:30. Con la oficial c) saldrían unas 16,4 millas al Rv 078°, salida hacia las 13:10.' },
 };

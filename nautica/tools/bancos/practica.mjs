@@ -12,7 +12,7 @@
 // Cada pregunta va a su mejor clase (y a la segunda si puntúa casi igual y la clase la cubre). Después, a cada clase con
 // menos preguntas que su homóloga de referencia se le añaden las que mejor cubre de entre las de su tema, siempre que la
 // clase las explique (cubierta) o sea su segunda mejor clase. Las de carta van por el tipo de ejercicio de su solución
-// programada.
+// programada, y las resueltas de cada clase de carta forman su resueltos.json.
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parecido } from '../../src/bancos/equivalentes.js';
@@ -129,10 +129,16 @@ export function proponer(eje, tit) {
   // En el orden del banco.
   const orden = new Map(qs.map((q, i) => [q.id, i]));
   for (const l of Object.keys(practica)) practica[l] = [...new Set(practica[l])].sort((a, b) => orden.get(a) - orden.get(b));
+  // Resueltos: en cada clase de la unidad de carta, sus preguntas de práctica que la app resuelve (lista exacta).
+  const resueltos = {};
+  for (const l of lecciones.filter((x) => x.ut === cartaUt)) {
+    const ids = practica[l.id].filter((id) => SOLUCIONES[id]);
+    if (ids.length) resueltos[l.id] = { ids };
+  }
   const estudio = qs.filter(estudiable);
   const porTema = (xs) => xs.reduce((m, q) => m.set(q.ut, (m.get(q.ut) ?? 0) + 1), new Map());
   return {
-    practica, faltan, estudio: estudio.length, referencia: ref.length, temas: { eje: porTema(estudio), referencia: porTema(ref) },
+    practica, resueltos, faltan, estudio: estudio.length, referencia: ref.length, temas: { eje: porTema(estudio), referencia: porTema(ref) },
     lecciones: lecciones.map((l) => ({ id: l.id, ut: l.ut, titulo: l.titulo, n: practica[l.id].length, referencia: (practicaRef[l.id] ?? []).length })),
   };
 }
@@ -166,7 +172,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     const r = proponer(eje, tit);
     porTit[tit] = r;
     for (const l of r.lecciones) console.log(`${l.id.padEnd(10)} ${String(l.n).padStart(3)} (ref ${String(l.referencia).padStart(2)})${r.faltan[l.id] ? '  ← faltan' : ''}  ${l.titulo}`);
-    if (opcion === '--escribir') escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'practica.json'), textoPractica(r.practica));
+    if (opcion === '--escribir') {
+      escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'practica.json'), textoPractica(r.practica));
+      if (Object.keys(r.resueltos).length) escribirTexto(join(RAIZ, 'data', 'ejes', eje, tit, 'resueltos.json'), `${JSON.stringify(r.resueltos, null, 1)}\n`);
+    }
   }
   if (opcion === '--escribir') escribirTexto(join(RAIZ, 'tools', 'bancos', 'informes', `${eje}-practica.md`), informePractica(eje, porTit));
 }

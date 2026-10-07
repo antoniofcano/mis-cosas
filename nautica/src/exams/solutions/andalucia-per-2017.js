@@ -44,4 +44,41 @@ export default {
     },
   },
 
+  // ---- 2ª Convocatoria 2017
+  'and-2017-c2-q42': {
+    ejercicio: 'situacion-demora-distancia',
+    solve(k) {
+      const dv = k.dvM(251, 44, 'punta-europa');
+      return latlon(k.fixDist('punta-europa', dv, 4, 'Situación 12:00'));
+    },
+  },
+  'and-2017-c2-q43': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('35 42,2 N', '6 06,8 W', 'Salida');
+      // Subimos hacia el NE pasando al W de Espartel: el faro queda por estribor.
+      const rv = k.tangent(s, 'cabo-espartel', 5, 'estribor');
+      const ct = k.ct({ carta: [-6, 2007, -6], anyo: 2017, desvio: 1 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-2017-c2-q44': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // La Da 127° es la de Punta Cires: la oposición se marca hacia el SE.
+      const dv = k.oposicion('isla-tarifa', 'punta-cires');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 127) }];
+    },
+  },
+  'and-2017-c2-q45': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      const s = k.cardinal2('cabo-trafalgar', 180, 'punta-gracia', 270, 'Situación 08:00');
+      const ct = k.ct({ dm: -4, desvio: -6 });
+      const rv = k.rv(123, ct);
+      const d = k.distFor(6, hrb(9, 30) - hrb(8, 0));
+      return latlon(k.run(s, rv, d, 'Situación 09:30'));
+    },
+  },
+
 };

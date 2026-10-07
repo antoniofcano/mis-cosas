@@ -1269,3 +1269,12 @@ button.glosa:focus-visible { outline: 3px solid var(--accent); outline-offset: 2
 .glosa-pop .glosa-titulo { font-size: 1rem; }
 .glosa-pop .glosa-tit { font-size: .8rem; color: var(--muted); }
 @media print { button.glosa { text-decoration: none; } .glosa-pop, .ayudas, .chuleta-panel { display: none !important; } }
+
+/* ---- Ruta del curso: dependencias entre clases y siguiente clase ---- */
+a.clase .clase-apoyo { flex-basis: 100%; order: 3; font-size: .85rem; color: var(--muted); }
+a.clase.siguiente-ruta { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.badge-ruta { display: inline-block; margin-left: .5rem; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.se-apoya a, .aviso-apoyo a { display: inline-block; min-height: 48px; padding: .65rem 0; }
+.aviso-apoyo ul { padding-left: 1.2rem; }
+.aviso-apoyo-botones { flex-wrap: wrap; }
+.aviso-apoyo-botones > * { flex: 1 1 14rem; }

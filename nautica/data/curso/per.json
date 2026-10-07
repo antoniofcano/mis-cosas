@@ -20,6 +20,7 @@
       "Situar proa, popa, crujía, bandas, amuras, través y aletas",
       "Distinguir barlovento y sotavento de babor y estribor"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -204,6 +205,7 @@
       "Saber qué son los imbornales y para qué sirven",
       "No confundir pasamanos, candeleros y guardamancebos"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -347,6 +349,7 @@
       "Distinguir borda, regala y trancanil",
       "Saber qué son mamparos, plan, sentina y grifos de fondo"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -515,6 +518,9 @@
       "Saber hacia dónde cae la proa con caña y con rueda",
       "Distinguir los tipos de timón"
      ],
+     "requiere": [
+      "per-1-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -637,6 +643,7 @@
       "Distinguir hélice dextrógira y levógira, avante y atrás",
       "Saber cómo giran las hélices gemelas al exterior y al interior"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -795,6 +802,7 @@
       "Saber qué exige la norma para la línea de fondeo",
       "Dominar las voces de la maniobra: filar, virar, a la pendura, a pique, zarpar, clara, levar"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -967,6 +975,9 @@
       "Definir eslora, manga, puntal, calado y francobordo",
       "Calcular el asiento y saber si el barco va aproado o apopado",
       "Saber qué es escorar y adrizar, desplazamiento y arqueo"
+     ],
+     "requiere": [
+      "per-1-1"
      ],
      "pasos": [
       {
@@ -1166,6 +1177,7 @@
       "Saber para qué sirven defensas, bichero, guiacabos, roldana, muerto y boya",
       "Nombrar las partes de un cabo: chicote, seno, firme y gaza"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -1331,6 +1343,9 @@
       "Elegir el nudo correcto para una defensa según el tiempo que vaya a estar puesta",
       "No confundir unir cabos con hacer una gaza o amarrar a una argolla"
      ],
+     "requiere": [
+      "per-2-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -1487,6 +1502,7 @@
       "Ordenar los tenederos de mejor a peor y no confundir fango duro con fango blando",
       "Saber por qué no conviene un fondo con mucha pendiente"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -1642,6 +1658,9 @@
       "Saber cómo se maneja el molinete (embrague y freno) para fondear y para levar",
       "Calcular la cadena que hay que filar según la profundidad y el tiempo",
       "Conocer la señal de buque fondeado"
+     ],
+     "requiere": [
+      "per-1-6"
      ],
      "pasos": [
       {
@@ -1816,6 +1835,9 @@
       "Estimar el círculo de borneo y saber cómo se reduce",
       "Conocer las causas del garreo y cómo vigilar el fondeo: marcas en tierra y alarma de sonda"
      ],
+     "requiere": [
+      "per-2-4"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -1960,6 +1982,9 @@
       "Saber qué es el orinque, dónde se afirma y para qué sirve",
       "Conocer los pasos y los términos de la maniobra de levar: virar, a pique, zarpar, levar, clara",
       "Saber qué hacer si al levar la cadena tira por largo con mucha fuerza"
+     ],
+     "requiere": [
+      "per-2-4"
      ],
      "pasos": [
       {
@@ -2115,6 +2140,7 @@
       "Distinguir balance y cabezada",
       "Saber qué es el sincronismo y cómo se rompe"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2268,6 +2294,7 @@
       "Preparar la salida: meteorología, plan de navegación y tripulación",
       "Reconocer las opciones trampa de las preguntas de «comprobaciones»"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2371,6 +2398,7 @@
       "Saber por qué nunca hay que atravesarse a la mar",
       "Saber dónde conviene dejar la costa con mal tiempo"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2517,6 +2545,7 @@
       "Conocer las medidas con baja visibilidad y para qué sirve el reflector radar",
       "Navegar con seguridad en aguas someras"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2690,6 +2719,7 @@
       "Conocer las siete zonas de navegación y su relación con las categorías de diseño",
       "Saber qué chalecos, aros y balsas exige cada zona"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -2860,6 +2890,9 @@
       "Saber cuántas lleva el barco según la zona",
       "Conocer los extintores obligatorios y su mantenimiento",
       "Distinguir lo obligatorio de lo solo recomendable (arnés, espejo)"
+     ],
+     "requiere": [
+      "per-3-5"
      ],
      "pasos": [
       {
@@ -3047,6 +3080,7 @@
       "Distinguir las maniobras de Anderson y Boutakow",
       "Saber cuándo y cómo se busca en espiral cuadrada y por sectores"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3223,6 +3257,9 @@
       "Conocer la reanimación cardiopulmonar actual en un ahogado",
       "Conocer lo básico de dar y tomar un remolque",
       "Saber cómo contactar con Salvamento Marítimo"
+     ],
+     "requiere": [
+      "per-3-7"
      ],
      "pasos": [
       {
@@ -3430,6 +3467,7 @@
       "Recordar las normas de conducta habituales dentro de un puerto",
       "Saber qué cubre el seguro obligatorio de responsabilidad civil"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3568,6 +3606,7 @@
       "Recordar la velocidad máxima cerca de la costa (3 nudos)",
       "Saber qué limitaciones pueden encontrarse en una reserva marina"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3727,6 +3766,7 @@
       "Saber la distancia mínima que hay que dejar a una zona de buceo (50 m)",
       "Tomar las precauciones correctas cerca de bañistas"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3851,6 +3891,7 @@
       "Recordar cómo se vacía un tanque de retención (régimen moderado, a 4 nudos o más)",
       "Conocer las excepciones a la prohibición de descarga"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -3998,6 +4039,7 @@
       "Saber que el Mediterráneo es zona especial y dónde empieza",
       "Conocer la obligación de entregar los desechos en el puerto"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4138,6 +4180,7 @@
       "Saber qué hacer si ves una mancha de contaminación",
       "Conocer la obligación de auxiliar a personas en peligro y qué hacer si no puedes acudir"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4264,6 +4307,7 @@
       "Conocer las condiciones para izar la bandera de la comunidad autónoma",
       "Recordar cuándo es obligatorio izar el pabellón nacional"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4366,6 +4410,7 @@
       "Reconocer las ZEPIM españolas, en especial las de Andalucía",
       "Conocer la posidonia oceánica y las normas de fondeo sobre ella"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4526,6 +4571,7 @@
       "Reconocer una marca por sus cuatro pistas: color, forma, marca de tope y luz",
       "Deducir la familia de una marca solo por el color de su luz"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -4686,6 +4732,9 @@
       "Conocer color, forma, tope y luz de las laterales de babor y estribor",
       "Interpretar las marcas de bifurcación (laterales modificadas) y su luz 2+1",
       "Saber cómo se numeran las marcas de un canal"
+     ],
+     "requiere": [
+      "per-5-1"
      ],
      "pasos": [
       {
@@ -4863,6 +4912,9 @@
       "Reconocer cada cardinal por su marca de tope y sus colores",
       "Recordar el ritmo de la luz de cada cardinal"
      ],
+     "requiere": [
+      "per-5-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5039,6 +5091,9 @@
       "Saber qué indican las marcas especiales y cómo son",
       "Saber cómo se balizan los peligros nuevos y los pecios"
      ],
+     "requiere": [
+      "per-5-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5204,6 +5259,11 @@
       "Entender la característica de una luz: color, ritmo y periodo",
       "Distinguir destellos, destello largo, ocultaciones, isofase, centelleos y Morse",
       "Identificar una marca de noche solo por su luz"
+     ],
+     "requiere": [
+      "per-5-2",
+      "per-5-3",
+      "per-5-4"
      ],
      "pasos": [
       {
@@ -5375,6 +5435,7 @@
       "Distinguir buque de vela, de propulsión mecánica, dedicado a la pesca, sin gobierno, con capacidad de maniobra restringida y restringido por su calado",
       "Saber qué significan «en navegación», «a la vista» y «visibilidad reducida»"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -5536,6 +5597,9 @@
       "Reconocer el riesgo de abordaje por la demora y sus excepciones",
       "Conocer cómo debe ser la maniobra para evitar el abordaje (Regla 8)"
      ],
+     "requiere": [
+      "per-6-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -5679,6 +5743,9 @@
       "Conocer las señales para adelantar en un canal y la del recodo",
       "Saber cómo se entra, se sale y se cruza un DST y quién usa la zona de navegación costera",
       "Recordar que en un DST no hay preferencia de paso por ir en la vía"
+     ],
+     "requiere": [
+      "per-6-1"
      ],
      "pasos": [
       {
@@ -5867,6 +5934,9 @@
       "Saber quién cede el paso y quién sigue a rumbo en cada situación",
       "Conocer qué debe hacer el que cede el paso y cuándo puede (o debe) maniobrar el que sigue a rumbo"
      ],
+     "requiere": [
+      "per-6-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6033,6 +6103,9 @@
       "Resolver los encuentros entre dos veleros (Regla 12)",
       "Aplicar la jerarquía de la Regla 18 (motor, vela, pesca, maniobra restringida, sin gobierno, calado)",
       "Reconocer de noche un velero por sus luces y saber que el alcance manda sobre todo lo demás"
+     ],
+     "requiere": [
+      "per-6-4"
      ],
      "pasos": [
       {
@@ -6202,6 +6275,10 @@
       "Decidir hacia dónde no caer cuando detectas un buque solo por radar",
       "Saber qué hacer al oír una señal de niebla por la proa"
      ],
+     "requiere": [
+      "per-6-2",
+      "per-6-4"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6333,6 +6410,9 @@
       "Conocer el color y el sector de las luces de tope, costado, alcance y remolque",
       "Saber qué luces lleva un buque de motor según su eslora y velocidad",
       "Saber qué luces lleva un velero (y uno que va también a motor), una embarcación de remo y un remolque"
+     ],
+     "requiere": [
+      "per-6-1"
      ],
      "pasos": [
       {
@@ -6515,6 +6595,9 @@
       "Identificar de día y de noche a los pesqueros de arrastre y de otros tipos",
       "Reconocer al buque sin gobierno, al de maniobra restringida (incluido el buceo) y al restringido por su calado",
       "Conocer las luces del práctico y las de los buques fondeados y varados"
+     ],
+     "requiere": [
+      "per-6-7"
      ],
      "pasos": [
       {
@@ -6703,6 +6786,9 @@
       "Interpretar las señales de maniobra y advertencia entre buques a la vista",
       "Reconocer las señales de niebla de la Regla 35"
      ],
+     "requiere": [
+      "per-6-4"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6871,6 +6957,9 @@
       "Saber cómo se puede llamar la atención de otro buque sin confundir",
       "Reconocer las señales de peligro del anexo IV del RIPA"
      ],
+     "requiere": [
+      "per-6-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -6988,6 +7077,7 @@
       "Saber qué es encapillar, amarrar por seno, tomar vueltas y hacer firme",
       "No confundir cobrar, virar, tesar, templar, amollar, lascar, arriar, largar y adujar"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -7163,6 +7253,9 @@
       "Saber qué hace el barco al cobrar cada amarra estando atracado de costado",
       "Saber qué amarras reforzar según el viento y la corriente"
      ],
+     "requiere": [
+      "per-7-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -7322,6 +7415,9 @@
       "Nombrar las tres fases de la curva de evolución y sus medidas",
       "Entender por qué importa el rabeo de la popa"
      ],
+     "requiere": [
+      "per-1-4"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -7468,6 +7564,10 @@
       "Saber qué son el paso y el sentido de giro de una hélice",
       "Explicar la presión lateral de las palas y la corriente de expulsión al dar atrás",
       "Predecir hacia dónde caen la proa y la popa combinando hélice y timón"
+     ],
+     "requiere": [
+      "per-1-5",
+      "per-7-3"
      ],
      "pasos": [
       {
@@ -7641,6 +7741,9 @@
       "Saber hacia qué banda conviene ciabogar según el sentido de la hélice",
       "Conocer las hélices gemelas de giro al exterior y cómo se ciaboga con ellas"
      ],
+     "requiere": [
+      "per-7-4"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -7780,6 +7883,7 @@
       "Distinguir viento real y aparente, abatimiento y deriva",
       "Saber qué significa estar libre a sotavento"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -7923,6 +8027,11 @@
       "Saber qué cabo dar primero según el viento y la corriente",
       "Atracar de punta con largos y muerto, también con viento de costado",
       "Abarloarse a otro barco y amarrar a una boya"
+     ],
+     "requiere": [
+      "per-7-2",
+      "per-7-4",
+      "per-7-6"
      ],
      "pasos": [
       {
@@ -8121,6 +8230,10 @@
       "Desatracar de costado abriendo la popa o la proa con un esprín",
       "Desatracar de punta en el orden correcto"
      ],
+     "requiere": [
+      "per-7-2",
+      "per-7-6"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -8274,6 +8387,7 @@
       "Saber qué se hace primero ante una hemorragia externa y cuándo un torniquete",
       "Actuar ante una sospecha de hemorragia interna o una herida abdominal"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -8467,6 +8581,7 @@
       "Reconocer y tratar una insolación o un golpe de calor",
       "Prevenir y aliviar el mareo"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -8619,6 +8734,7 @@
       "Saber qué es la Guía Sanitaria a Bordo y cómo conseguirla",
       "Conocer qué botiquín exige la norma a una embarcación de recreo"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -8762,6 +8878,7 @@
       "Saber qué es prioritario tras un abordaje y cuándo separar los barcos",
       "Conocer las obligaciones posteriores a un accidente"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -8925,6 +9042,9 @@
       "Saber qué hacer al descubrir agua en la sentina",
       "Conocer los medios de achique y de taponamiento"
      ],
+     "requiere": [
+      "per-1-3"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -9071,6 +9191,7 @@
       "Clasificar un fuego según la norma UNE-EN 2 (A, B, C, D y F)",
       "Conocer los lugares de riesgo de incendio a bordo y cómo prevenirlo"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -9213,6 +9334,9 @@
       "Elegir el agente extintor adecuado a cada clase de fuego",
       "Usar correctamente un extintor portátil",
       "Saber maniobrar el barco ante un incendio (socairear el fuego)"
+     ],
+     "requiere": [
+      "per-8-6"
      ],
      "pasos": [
       {
@@ -9387,6 +9511,9 @@
       "Ordenar los preparativos antes de abandonar",
       "Usar correctamente bengalas, cohetes y señales de humo"
      ],
+     "requiere": [
+      "per-3-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -9530,6 +9657,7 @@
       "Conservar el calor en el agua con o sin chaleco",
       "Reconocer la hipotermia y saber cómo atender a un rescatado"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -9669,6 +9797,7 @@
       "Saber qué son las isobaras y no confundirlas con isalobaras, isobatas o isotermas",
       "Entender por qué importa más la tendencia del barómetro que su valor"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -9859,6 +9988,9 @@
       "Saber hacia dónde se desplazan las borrascas en nuestras latitudes",
       "Situar la borrasca respecto a ti a partir del viento"
      ],
+     "requiere": [
+      "per-9-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -10032,6 +10164,7 @@
       "Saber qué mide el anemómetro y qué indican la veleta y el catavientos",
       "Nombrar el viento por la dirección de la que viene"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -10159,6 +10292,9 @@
       "Distinguir el viento real, el de avance (relativo) y el aparente",
       "Saber cuándo el aparente es mayor o menor que el real y hacia dónde se desplaza",
       "Resolver el caso del viento por popa a la misma velocidad que el barco"
+     ],
+     "requiere": [
+      "per-9-3"
      ],
      "pasos": [
       {
@@ -10291,6 +10427,9 @@
       "Explicar por qué se forman las brisas costeras",
       "Saber cuándo y hacia dónde soplan la virazón y el terral"
      ],
+     "requiere": [
+      "per-9-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -10404,6 +10543,9 @@
       "Definir intensidad, persistencia y fetch",
       "Distinguir mar de viento y mar de fondo",
       "Saber qué mide la escala Douglas y cuántos grados tiene"
+     ],
+     "requiere": [
+      "per-9-3"
      ],
      "pasos": [
       {
@@ -10568,6 +10710,10 @@
       "Interpretar lo básico de un parte marítimo",
       "Decidir con criterio si salir, cambiar de plan o volver"
      ],
+     "requiere": [
+      "per-9-2",
+      "per-9-6"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -10725,6 +10871,7 @@
       "Saber qué es el meridiano del lugar y el meridiano cero",
       "Escribir y leer una situación en grados, minutos y décimas"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -10878,6 +11025,9 @@
       "Medir distancias en la carta con la escala correcta",
       "Corregir la corredera con su coeficiente",
       "Saber para qué sirve la sonda y qué es la hora de a bordo (HRB)"
+     ],
+     "requiere": [
+      "per-10-1"
      ],
      "pasos": [
       {
@@ -11052,6 +11202,9 @@
       "Interpretar sondas, veriles y las abreviaturas del tipo de fondo",
       "Saber qué contiene cada publicación náutica del IHM"
      ],
+     "requiere": [
+      "per-10-1"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -11225,6 +11378,7 @@
       "Distinguir destellos, ocultaciones, isofase, centelleos y luz fija",
       "Saber cómo se identifica un faro de noche"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -11387,6 +11541,7 @@
       "Actualizar la declinación de la carta al año en curso",
       "Calcular la corrección total y conocer las partes de la aguja náutica"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -11561,6 +11716,9 @@
       "Pasar de rumbo de aguja a verdadero y al revés con la corrección total",
       "Convertir un rumbo cuadrantal en circular (el programa no pide el paso inverso)"
      ],
+     "requiere": [
+      "per-10-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -11679,6 +11837,9 @@
       "Pasar una marcación a demora (D = R + M) y una demora de aguja a verdadera",
       "Saber qué es una línea de posición y cuáles lo son",
       "Conocer enfilaciones y oposiciones, y cuándo una enfilación es fiable"
+     ],
+     "requiere": [
+      "per-10-6"
      ],
      "pasos": [
       {
@@ -11871,6 +12032,7 @@
       "Saber qué es el cero hidrográfico y a qué se refieren las sondas de la carta",
       "Conocer el efecto de la presión y del viento en la altura de la marea"
      ],
+     "requiere": [],
      "pasos": [
       {
        "tipo": "texto",
@@ -12043,6 +12205,9 @@
       "Saber el signo del abatimiento y la relación entre rumbo verdadero y de superficie",
       "Saber cómo afecta una corriente a un barco"
      ],
+     "requiere": [
+      "per-10-6"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -12181,6 +12346,11 @@
       "Medir distancias en la escala correcta",
       "Trazar y medir rumbos y demoras verdaderos con el transportador",
       "Situar un punto definido respecto a uno o dos faros, reconocer los símbolos básicos de la carta y calcular la sonda en pleamar y en bajamar"
+     ],
+     "requiere": [
+      "per-10-2",
+      "per-10-3",
+      "per-10-8"
      ],
      "pasos": [
       {
@@ -12398,6 +12568,9 @@
       "Pasar rumbos y demoras de aguja a verdaderos y al revés",
       "Calcular la corrección total en una enfilación o una oposición"
      ],
+     "requiere": [
+      "per-10-6"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -12582,6 +12755,10 @@
       "Medir la distancia entre dos puntos y calcular la HRB de llegada",
       "Elegir bien el punto de llegada: la luz exacta o un punto definido respecto a un faro"
      ],
+     "requiere": [
+      "per-11-1",
+      "per-11-2"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -12711,6 +12888,9 @@
       "Resolver primero la situación de salida cuando viene dada por faros",
       "Medir después la distancia o la demora a un faro desde la estima"
      ],
+     "requiere": [
+      "per-11-3"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -12835,6 +13015,10 @@
       "Saber qué es una línea de posición y cuáles se usan en la carta",
       "Pasar una marcación a demora verdadera con su signo",
       "Situarte con una demora y una distancia, al mismo faro o a faros distintos"
+     ],
+     "requiere": [
+      "per-10-7",
+      "per-11-2"
      ],
      "pasos": [
       {
@@ -12973,6 +13157,9 @@
       "Combinar una demora de aguja y una marcación en el mismo ejercicio",
       "No aplicar dos veces la corrección total"
      ],
+     "requiere": [
+      "per-11-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -13086,6 +13273,9 @@
       "Cruzarla con una demora o con un «al Sur verdadero de» para situarte",
       "Medir después la distancia al faro que pida el enunciado"
      ],
+     "requiere": [
+      "per-11-5"
+     ],
      "pasos": [
       {
        "tipo": "texto",
@@ -13198,6 +13388,10 @@
       "Entender, como ampliación del Patrón de Yate, cómo se traslada una demora tomada a otra hora",
       "Distinguir un enunciado con observaciones simultáneas de uno con observaciones no simultáneas",
       "Medir la distancia navegada desde la situación anterior hasta el corte de las marcaciones"
+     ],
+     "requiere": [
+      "per-11-4",
+      "per-11-6"
      ],
      "pasos": [
       {
@@ -13326,6 +13520,9 @@
       "Trazar el rumbo tangente para pasar a una distancia dada de un faro",
       "Elegir la tangente correcta según la banda por la que dejas el faro",
       "Distinguir «pasar a X millas de un faro» de «ir a un punto a X millas de un faro»"
+     ],
+     "requiere": [
+      "per-11-3"
      ],
      "pasos": [
       {

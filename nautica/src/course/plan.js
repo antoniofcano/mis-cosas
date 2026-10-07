@@ -4,6 +4,7 @@
 import { estadoLeccion, numTramos, minutosClase, minutosDeTramo, SEG_TARJETA } from './engine.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 import { colaRepaso } from './repaso.js';
+import { pasosRuta } from './ruta.js';
 import { cuenta, diaISO } from '../texto.js';
 
 export const TANDA = 10; // preguntas por tanda
@@ -77,21 +78,39 @@ export function avance(estructura, curso, preguntas, regs = {}, respuestas = {},
   };
 }
 
-/** Actividad «paso 4» para un tema que no está al día: clase a medias, clase nueva o tanda de preguntas. */
-function actividadTema(b, est, curso, regs, respuestas, ahora, segTarjeta = SEG_TARJETA) {
-  const clases = clasesDe(curso, b.ut).map((l) => ({ l, e: estadoLeccion(l, regs[l.id], respuestas, ahora).estado }));
-  const empezada = clases.find((c) => c.e === 'empezada');
-  const nueva = clases.find((c) => c.e === 'nueva');
-  const c = empezada ?? nueva;
-  if (c) {
-    // Se propone un tramo de la clase (unos 5 minutos), no la clase entera.
-    const nPasos = (c.l.pasos ?? []).filter((p) => !p.extra).length || 1;
-    const k = numTramos(nPasos);
-    const t = empezada ? Math.min(k - 1, regs[c.l.id]?.tramo ?? 0) : 0;
-    return { tipo: 'clase', titulo: c.l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: minutosDeTramo(c.l, segTarjeta),
-      tramo: k > 1 ? { i: t + 1, de: k } : null, ruta: ['curso', c.l.id], query: undefined, ut: b.ut };
+/** Actividad para una clase de la ruta: un tramo de la clase (unos 5 minutos), no la clase entera. */
+function actividadClase(l, empezada, regs, segTarjeta = SEG_TARJETA) {
+  const nPasos = (l.pasos ?? []).filter((p) => !p.extra).length || 1;
+  const k = numTramos(nPasos);
+  const t = empezada ? Math.min(k - 1, regs[l.id]?.tramo ?? 0) : 0;
+  return { tipo: 'clase', titulo: l.titulo, verbo: empezada ? 'Continuar' : 'Empezar', minutos: minutosDeTramo(l, segTarjeta),
+    tramo: k > 1 ? { i: t + 1, de: k } : null, ruta: ['curso', l.id], query: undefined, ut: l.ut };
+}
+
+/** Actividad para las preguntas de un tema: una tanda de 10. */
+const actividadTanda = (b, est) => ({ tipo: 'preguntas', titulo: `${est.hechas ? `${cuenta(TANDA, 'pregunta')} más` : `${cuenta(TANDA, 'pregunta')}`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut });
+
+/**
+ * Lo pendiente del camino en el orden de la ruta (course/ruta.js): cada clase sin terminar y, tras la última clase de
+ * cada tema, sus tandas si al tema le faltan preguntas para estar al día. Una clase a medias va siempre la primera
+ * (se termina lo empezado antes de abrir otra).
+ * @returns {{ tipo: 'clase'|'tandas', ut: number, l?: object, empezada?: boolean }[]}
+ */
+export function pendientesRuta(estructura, curso, preguntas, regs = {}, respuestas = {}, ahora = Date.now(), estados = null) {
+  const est = new Map((estados ?? estructura.bloques.map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }))).map((x) => [x.b.ut, x.est]));
+  const out = [];
+  for (const p of pasosRuta(estructura, curso)) {
+    if (p.tipo === 'clase') {
+      const e = estadoLeccion(p.l, regs[p.l.id], respuestas, ahora).estado;
+      if (e === 'nueva' || e === 'empezada') out.push({ ...p, empezada: e === 'empezada' });
+    } else {
+      const e = est.get(p.ut);
+      if (e && e.hechas < Math.min(e.total, OBJETIVO_TEMA)) out.push(p);
+    }
   }
-  return { tipo: 'preguntas', titulo: `${est.hechas ? `${cuenta(TANDA, 'pregunta')} más` : `${cuenta(TANDA, 'pregunta')}`} de ${b.titulo}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'ut', String(b.ut)], query: undefined, ut: b.ut };
+  const i = out.findIndex((p) => p.empezada);
+  if (i > 0) out.unshift(...out.splice(i, 1));
+  return out;
 }
 
 /**
@@ -129,10 +148,12 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   for (const { l } of repasos) lista.push({ tipo: 'repaso', titulo: l.titulo, verbo: 'Repasar', minutos: MIN_TANDA, ruta: ['curso', l.id], query: { practica: '1' }, ut: l.ut });
 
   const estados = bloquesEnOrden(estructura).map((b) => ({ b, est: estadoTema(b, curso, preguntas, regs, respuestas, ahora) }));
-  const pendientes = estados.filter((x) => !x.est.alDia);
+  const porUt = new Map(estados.map((x) => [x.b.ut, x]));
+  const actividad = (p) => (p.tipo === 'clase' ? actividadClase(p.l, p.empezada, regs, segTarjeta) : actividadTanda(porUt.get(p.ut).b, porUt.get(p.ut).est));
+  const pendientes = pendientesRuta(estructura, curso, preguntas, regs, respuestas, ahora, estados);
 
-  // 4. El primer tema que no está al día, en el orden de estudio recomendado
-  if (pendientes[0]) lista.push(actividadTema(pendientes[0].b, pendientes[0].est, curso, regs, respuestas, ahora, segTarjeta));
+  // 4. Lo siguiente de la ruta del curso: la clase a medias, la siguiente clase o las preguntas de un tema ya visto
+  if (pendientes[0]) lista.push(actividad(pendientes[0]));
 
   // 5. Repaso de fallos (B1) si se acumulan muchos para hoy; con pocos basta la línea de Hoy bajo la actividad.
   const cola = colaRepaso(preguntas, respuestas, hoy);
@@ -150,8 +171,9 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
     lista.push({ tipo: 'mezclado', titulo: `Repaso mezclado: ${cuenta(TANDA, 'pregunta')} de ${cuenta(empezados.length, 'tema')}`, verbo: 'Empezar', minutos: MIN_TANDA, ruta: ['teoria', 'mezcla'], query: undefined, ut: null });
   }
 
-  // 7. Con una sola actividad, proponer también el siguiente tema pendiente
-  if (lista.length === 1 && pendientes[1]) lista.push(actividadTema(pendientes[1].b, pendientes[1].est, curso, regs, respuestas, ahora, segTarjeta));
+  // 7. Con una sola actividad, proponer también lo siguiente de la ruta de otro tema
+  const otro = pendientes.find((p) => p.ut !== pendientes[0]?.ut);
+  if (lista.length === 1 && pendientes[0] && otro) lista.push(actividad(otro));
 
   return lista.slice(0, MAX_ACTIVIDADES);
 }

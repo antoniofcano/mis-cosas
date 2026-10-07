@@ -25,6 +25,9 @@ export function cursoConPractica(curso, banco) {
   return { ...curso, modulos: curso.modulos.map((m) => ({ ...m, lecciones: m.lecciones.map((l) => ({ ...l, practica: banco.practicaDe(l.id) })) })) };
 }
 
+/** El curso con su ruta por defecto (los tramos del fichero de ruta) en `ruta` (función pura). */
+export const conRuta = (curso, ruta) => (curso ? { ...curso, ruta: ruta?.tramos ?? null } : null);
+
 /** Convocatorias en las que sale una pregunta (la suya y las de apareceEn). */
 const convsDe = (q) => new Set([q.conv, ...(q.apareceEn ?? []).map((a) => a.conv)]);
 
@@ -105,8 +108,12 @@ export function crearBancos(leer) {
     return compilarVocabulario([...porId.values()]);
   });
 
-  /** Curso nacional de una titulación, tal cual (sin práctica); null si aún no existe. */
-  const cargarCursoBase = (tit) => memo(`curso:${tit}`, () => leer(`data/curso/${tit}.json`).catch(() => null));
+  /**
+   * Curso nacional de una titulación (sin práctica), con su ruta por defecto en `ruta` (los tramos de
+   * data/curso/ruta-<tit>.json; null si no hay); null si el curso aún no existe.
+   */
+  const cargarCursoBase = (tit) => memo(`curso:${tit}`, () => Promise.all([leer(`data/curso/${tit}.json`).catch(() => null), leer(`data/curso/ruta-${tit}.json`).catch(() => null)])
+    .then(([curso, ruta]) => conRuta(curso, ruta)));
 
   /**
    * Reserva del alumno para un eje y una titulación: las convocatorias de su examen final (la foto que se guardó la

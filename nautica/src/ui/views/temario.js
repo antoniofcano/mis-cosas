@@ -5,6 +5,7 @@ import { chuletaView } from './chuleta.js';
 import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { estadoLeccion } from '../../course/engine.js';
+import { requisitos } from '../../course/ruta.js';
 import { estadoTema, parteTema, TANDA } from '../../course/plan.js';
 import { bloque, bloquesEnOrden } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
@@ -46,7 +47,7 @@ export function temarioView({ progress, tit }) {
       `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${cuenta(TANDA, 'pregunta')}`;
     setChildren(el,
       h('h1', `Temario del ${T.sigla}`),
-      h('p.muted', 'En el orden en que te recomendamos estudiarlo: primero la base y los temas en los que se suspende por fallos; el resto, al final.'),
+      h('p.muted', 'Por temas: primero la base y los temas en los que se suspende por fallos. Las clases las vas dando en la ruta del curso, que alterna temas para que no se haga pesado; «Hoy» te dice cuál toca.'),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]) },
         b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null,
         h('h3', `${b.icon} ${b.titulo}`),
@@ -82,8 +83,11 @@ export function temaView({ progress, params: route, tit }) {
     const principal = aMedias ? h('a.btn.grande', { href: tlink(tit, ['curso', aMedias.l.id]) }, `Continuar: ${aMedias.l.titulo}`)
       : nueva ? h('a.btn.grande', { href: tlink(tit, ['curso', nueva.l.id]) }, `Empezar: ${nueva.l.titulo}`)
         : h('a.btn.grande', { href: tanda }, `Hacer ${cuenta(TANDA, 'pregunta')}`);
+    // La siguiente clase de la ruta (del motor) y en qué clases se apoya cada una (sus datos `requiere`).
+    const siguienteRuta = d.st.ruta.siguiente;
+    const apoyos = new Map(clases.map(({ l }) => [l.id, requisitos(l, d.curso)]));
     summaryText = `VISTA tema ${T.sigla} ${b.titulo} · examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · fallos pendientes ${e.fallos}\n` +
-      clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado} → #/${tit}/curso/${l.id}`).join('\n');
+      clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado}${l.id === siguienteRuta ? ' · SIGUIENTE EN LA RUTA' : ''}${apoyos.get(l.id).length ? ` · se apoya en ${apoyos.get(l.id).map((r) => r.id).join(', ')}` : ''} → #/${tit}/curso/${l.id}`).join('\n');
     // Los mapas de conceptos con nodos en las clases del tema (llegan cuando cargan).
     const mapasTema = h('div.cards', { hidden: true });
     cargarMapas().then((mapas) => {
@@ -120,8 +124,9 @@ export function temaView({ progress, params: route, tit }) {
       h('h1', `${b.icon} ${b.titulo}`),
       m?.intro ? h('p', m.intro) : null,
       principal,
-      clases.length ? h('section', h('h2', 'Clases'), h('ol.clases', clases.map(({ l, e: x }) => h('li', h('a.clase', { href: tlink(tit, ['curso', l.id]) },
-        h('span.clase-titulo', l.titulo),
+      clases.length ? h('section', h('h2', 'Clases'), h('ol.clases', clases.map(({ l, e: x }) => h('li', h('a.clase', { href: tlink(tit, ['curso', l.id]), class: l.id === siguienteRuta ? 'siguiente-ruta' : '' },
+        h('span.clase-titulo', l.titulo, l.id === siguienteRuta ? h('span.badge.badge-ruta', 'Siguiente en tu ruta') : null),
+        apoyos.get(l.id).length ? h('span.clase-apoyo', `Se apoya en: ${apoyos.get(l.id).map((r) => r.titulo).join(' · ')}`) : null,
         h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, '🎧'),
           h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado]))))))) : null,
       h('section', h('h2', 'Preguntas de examen'),

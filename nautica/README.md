@@ -34,6 +34,10 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
 
 - **🎧 Radio de a bordo** (`#/<tit>/podcast`): podcasts de diez a quince minutos por tema, con un panorama de cada tema y episodios que profundizan. El reproductor sigue sonando mientras navegas; el guion se ilumina al hilo y se toca para saltar; en el minijuego contestas tú antes que Andrés. Los guiones están en `podcast/` (guía, índice y fichas) y el audio se genera con `podcast/audio.py` (ElevenLabs).
 
+- **🧭 Ruta del curso que intercala temas**: las clases se dan en tramos de dos o tres de un tema y se pasa a otro
+  (en el PY, Teoría, Carta, Seguridad y Meteorología se van alternando), siempre después de las clases en las que se
+  apoyan. Cada clase dice en qué otras se apoya y, si se abre antes de tiempo, lo avisa. Ver [`docs/RUTA.md`](docs/RUTA.md).
+
 - **📌 Chuleta para practicar**: en ejercicios de carta, clases, tandas, repasos y «5 minutos», un botón «Chuleta»
   abre las fórmulas, signos y conversiones de lo que se practica (Ct = dm + Δ, Rv = Ra + Ct, d = V × t, duodécimos,
   estima analítica…) y la chuleta de la clase (`data/comun/chuletario.json`). Nunca en simulacros ni exámenes.

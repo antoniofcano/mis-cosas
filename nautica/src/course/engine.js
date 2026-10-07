@@ -1,6 +1,8 @@
 // Motor del curso: estado de cada lección a partir de lo que el alumno ha visto y respondido, repaso espaciado
 // (cajas de Leitner) y el plan «Hoy toca». Funciones puras: el progreso entra como datos.
 
+import { ordenRuta } from './ruta.js';
+
 /** Días hasta el siguiente repaso según la caja (0 = recién aprendida o fallada). */
 export const INTERVALOS = [1, 3, 7, 14, 30];
 const DIA = 24 * 3600 * 1000;
@@ -48,7 +50,8 @@ export function trasPractica(reg = {}, acierto, ahora = Date.now()) {
 export const leccionesDe = (curso) => curso.modulos.flatMap((m) => m.lecciones.map((l) => ({ ...l, ut: l.ut ?? m.ut, modulo: m.titulo })));
 
 /**
- * Plan del día: repasos pendientes (los más atrasados primero), la siguiente lección nueva y,
+ * Plan del día: repasos pendientes (los más atrasados primero), la siguiente lección nueva de la ruta del curso
+ * (`curso.ruta`, course/ruta.js) y,
  * si hay fecha de examen, cuántas lecciones al día hacen falta para llegar.
  * @param {object} curso
  * @param {Record<string, object>} regs   registros por id de lección
@@ -56,7 +59,7 @@ export const leccionesDe = (curso) => curso.modulos.flatMap((m) => m.lecciones.m
  * @param {{ ahora?: number, fechaExamen?: string, prioridad?: number[] }} o  prioridad: UTs con límite de errores
  */
 export function hoyToca(curso, regs, respuestas, { ahora = Date.now(), fechaExamen = null, prioridad = [] } = {}) {
-  const ls = leccionesDe(curso).map((l) => ({ l, e: estadoLeccion(l, regs[l.id], respuestas, ahora) }));
+  const ls = ordenRuta(curso).map((l) => ({ l, e: estadoLeccion(l, regs[l.id], respuestas, ahora) }));
   const repasos = ls.filter((x) => x.e.estado === 'repasar')
     .sort((a, b) => (prioridad.includes(b.l.ut) - prioridad.includes(a.l.ut)) || ((a.e.proximo ?? 0) - (b.e.proximo ?? 0)));
   const empezadas = ls.filter((x) => x.e.estado === 'empezada');

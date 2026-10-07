@@ -9,7 +9,8 @@ nautica/
 ├── llms.txt              Guía para agentes de IA
 ├── data/                 Base de datos estática (JSON)
 │   ├── chart-105.json    Carta: puntos notables, costa (polígonos de tierra), declinación
-│   ├── curso/            Clases por titulación (per.json; módulos por tema con tarjetas, chuleta y práctica)
+│   ├── curso/            Clases por titulación (per.json; módulos por tema con tarjetas, chuleta y práctica) y su
+│   │                     ruta por defecto (ruta-<tit>.json: tramos que intercalan temas; ver docs/RUTA.md)
 │   └── exams/            Bancos de preguntas reales (index.json + un fichero por banco)
 ├── src/
 │   ├── math/             MOTOR MATEMÁTICO   ángulos, vectores, Mercator/loxodrómica, RNG con semilla, formatos
@@ -22,7 +23,8 @@ nautica/
 │   │                                        instrumentos (transportador, compás, regla) y georreferenciación
 │   │                                        de escaneos (ajuste afín)
 │   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
-│   ├── course/           CURSO              estado de las clases y repaso espaciado (engine.js) y recomendador «Hoy» (plan.js)
+│   ├── course/           CURSO              estado de las clases y repaso espaciado (engine.js), recomendador «Hoy» (plan.js)
+│   │                                        y ruta del curso: dependencias `requiere` y orden de las clases (ruta.js)
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
 │   ├── theory/           MOTOR DE TESTS     estructura de cada titulación (blocks.js: PER, PY, TITULACIONES),
 │   │                                        simulacros, exámenes reales y corrección con las reglas oficiales
@@ -70,6 +72,9 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 - **Recomendador único** (`course/plan.js`, funciones puras con tests): `planHoy` (lista ordenada de
   actividades; la primera es la de Hoy), `estadoTema` y `avance`. Lo usan Hoy, Temario, Mi progreso y las
   pantallas de cierre (`ui/cierre.js`, que recalcula el plan tras guardar el progreso).
+- **Ruta del curso** (`course/ruta.js`, [`RUTA.md`](RUTA.md)): cada clase declara `requiere` (clases del mismo curso
+  en que se apoya) y `data/curso/ruta-<tit>.json` (generada con `tools/ruta.mjs` y retocada a mano) fija el orden en
+  que se dan, intercalando temas. `planHoy`, `unidades` (plan con fecha) y `hoyToca` la siguen; Temario sigue por temas.
 - **Modo concentración**: en clase, tanda o examen, `body.focus` oculta cabecera, barra inferior y pie; la vista
   coloca `barraActividad()` (`ui/actividad.js`) como primer hijo.
 - **Progreso** (`store/progress.js`, `nautica.progress.v1`, `version: 1`; solo campos opcionales nuevos):

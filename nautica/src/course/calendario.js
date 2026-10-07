@@ -1,7 +1,8 @@
 // Calendario hasta el examen (plan de estudio con fecha) y seguimiento. Funciones puras: el progreso entra como datos.
 //
-// Unidades del plan, en el orden de estudio recomendado (el mismo que sigue «Hoy»): por cada tema, sus clases sin
-// terminar y después las tandas de preguntas que le faltan para estar al día; al final, los simulacros.
+// Unidades del plan, en el orden de la ruta del curso (el mismo que sigue «Hoy», course/ruta.js): las clases en el
+// orden de la ruta, que intercala temas, y tras la última clase de cada tema, las tandas de preguntas que le faltan
+// para estar al día; al final, los simulacros.
 //
 // - Plan base: al poner la fecha (o al rehacerlo) se reparte todo lo pendiente día a día y se guarda. Sirve de
 //   referencia: lo que tocaba un día ya pasado y sigue sin hacer es «para recuperar».
@@ -9,9 +10,9 @@
 //   en los minutos al día se dice cuántos hacen falta.
 
 import { estadoLeccion, minutosClase, SEG_TARJETA } from './engine.js';
-import { bloquesEnOrden } from '../theory/blocks.js';
 import { diasHasta, estadoTema, OBJETIVO_TEMA, TANDA, MIN_TANDA, SIMULACROS_RECOMENDADOS } from './plan.js';
 import { cuenta, diaISO } from '../texto.js';
+import { pasosRuta } from './ruta.js';
 
 const DIA = 864e5;
 const diaLocal = diaISO;
@@ -42,15 +43,22 @@ export const temasDePocoPeso = (estructura) => estructura.bloques.filter((b) => 
 export function unidades({ estructura, curso, preguntas = [], regs = {}, respuestas = {}, tests = [], esencial = false, chuletasLeidas = [], segTarjeta = SEG_TARJETA, ahora = Date.now() }) {
   const out = [];
   const pocoPeso = new Set(esencial ? temasDePocoPeso(estructura) : []);
-  for (const b of bloquesEnOrden(estructura)) {
-    if (pocoPeso.has(b.ut)) {
-      const cls = clasesDe(curso, b.ut);
-      const terminadas = cls.every((l) => !sinTerminar(estadoLeccion(l, regs[l.id], respuestas, ahora).estado));
-      out.push({ id: `chuleta:${b.ut}`, tipo: 'chuleta', titulo: `Chuleta de ${b.titulo}`, minutos: MIN_CHULETA * cls.length, ut: b.ut, ruta: ['temario', String(b.ut), 'chuleta'],
-        hecha: terminadas || chuletasLeidas.includes(b.ut) });
-    } else for (const l of clasesDe(curso, b.ut)) {
-      out.push({ id: `clase:${l.id}`, tipo: 'clase', titulo: l.titulo, minutos: minutosClase(l, segTarjeta), ut: b.ut, ruta: ['curso', l.id],
-        hecha: !sinTerminar(estadoLeccion(l, regs[l.id], respuestas, ahora).estado) });
+  const bloques = new Map(estructura.bloques.map((b) => [b.ut, b]));
+  for (const p of pasosRuta(estructura, curso)) {
+    const b = bloques.get(p.ut);
+    if (!b) continue;
+    if (p.tipo === 'clase') {
+      if (!pocoPeso.has(b.ut)) {
+        out.push({ id: `clase:${p.l.id}`, tipo: 'clase', titulo: p.l.titulo, minutos: minutosClase(p.l, segTarjeta), ut: b.ut, ruta: ['curso', p.l.id],
+          hecha: !sinTerminar(estadoLeccion(p.l, regs[p.l.id], respuestas, ahora).estado) });
+      } else if (!out.some((u) => u.id === `chuleta:${b.ut}`)) {
+        // Plan esencial: el tema de poco peso se cambia por su chuleta, donde la ruta pone su primera clase.
+        const cls = clasesDe(curso, b.ut);
+        const terminadas = cls.every((l) => !sinTerminar(estadoLeccion(l, regs[l.id], respuestas, ahora).estado));
+        out.push({ id: `chuleta:${b.ut}`, tipo: 'chuleta', titulo: `Chuleta de ${b.titulo}`, minutos: MIN_CHULETA * cls.length, ut: b.ut, ruta: ['temario', String(b.ut), 'chuleta'],
+          hecha: terminadas || chuletasLeidas.includes(b.ut) });
+      }
+      continue;
     }
     const est = estadoTema(b, curso, preguntas, regs, respuestas, ahora);
     const obj = Math.min(est.total, OBJETIVO_TEMA);

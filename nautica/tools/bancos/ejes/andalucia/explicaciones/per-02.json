@@ -1,0 +1,188 @@
+{
+ "and-2015-c3-t29": {
+  "explicacion": "Con hélice dextrógira dando avante, la presión lateral de las palas empuja la popa a estribor (y la proa cae a babor). Es justo con el barco parado y sin arrancada cuando más se nota, porque el timón todavía no gobierna; por eso la d) es falsa, y la a) es el efecto de una levógira.",
+  "clave": "Dextrógira avante: popa a estribor, proa a babor.",
+  "trampa": "Pensar que sin arrancada no hay efecto evolutivo: es cuando más se nota.",
+  "ilustraciones": [{ "tipo": "helice", "sentido": "dextrogira", "marcha": "avante" }],
+  "concepto": null
+ },
+ "and-2015-c3-t30": {
+  "explicacion": "La asistencia médica por radio la presta el Centro Radio-Médico Español, que depende del Instituto Social de la Marina y atiende consultas de los barcos las 24 horas. No depende de la Dirección General de la Marina Mercante, y ni el 112 ni las Casas del Mar dan este servicio de consulta médica a bordo.",
+  "clave": "Consejo médico por radio: Centro Radio-Médico Español (ISM).",
+  "trampa": "La d) cambia el organismo: es el ISM, no la Marina Mercante.",
+  "concepto": null
+ },
+ "and-2015-c3-t31": {
+  "explicacion": "Los fuegos de combustibles líquidos (gasolina, gasóleo, aceites, disolventes) son de clase B. La A es de sólidos que forman brasa, la C de gases y la F de aceites y grasas de cocina.",
+  "clave": "A sólido, B líquido, C gas, D metal, F cocina.",
+  "trampa": "La F también es de aceites, pero solo de los de cocina.",
+  "concepto": null
+ },
+ "and-2015-c3-t32": {
+  "explicacion": "Los combustibles que en condiciones normales están en estado gaseoso (butano, propano, hidrógeno) dan fuegos de clase C. La A es de sólidos, la B de líquidos y la F de aceites de cocina. La clasificación se basa en el estado físico y la naturaleza del combustible.",
+  "clave": "A sólido, B líquido, C gas, D metal, F cocina.",
+  "concepto": "and-2022-c1-t32"
+ },
+ "and-2015-c3-t33": {
+  "explicacion": "La presión atmosférica en un lugar es el peso, por unidad de superficie, de la columna de aire que hay encima. No es la altura de esa columna (a), y las equivalencias de b) y d) son falsas: la presión normal equivale a 760 mm de mercurio o a unos 10 m de agua, no a 100 mm ni a 5 m.",
+  "clave": "Presión = peso del aire por unidad de superficie (normal: 1013 hPa = 760 mm Hg).",
+  "trampa": "La a) habla de altura, no de peso.",
+  "concepto": null
+ },
+ "and-2015-c3-t34": {
+  "explicacion": "Las borrascas que llegan a Europa nacen en el frente polar del Atlántico, frente a Norteamérica, y los vientos del oeste las arrastran hacia el este, normalmente con componente norte: su trayectoria típica es hacia el NE. Hacia el NW, el S o el SE irían contra la circulación general de latitudes medias.",
+  "clave": "Borrascas atlánticas: de W a E, hacia el NE.",
+  "concepto": null
+ },
+ "and-2015-c3-t35": {
+  "explicacion": "Una racha es un aumento brusco y momentáneo de la velocidad del viento, que enseguida vuelve a su valor medio. Un golpe de viento es un viento fuerte sostenido (fuerza 8 Beaufort), el tiempo que sopla en la misma dirección tiene que ver con la persistencia o el fetch, y el cambio de dirección es rolar.",
+  "clave": "Racha = subidón breve de fuerza.",
+  "trampa": "Golpe de viento suena parecido, pero es un viento fuerte y duradero.",
+  "concepto": null
+ },
+ "and-2015-c3-t36": {
+  "explicacion": "El viento aparente es el que se siente a bordo con el barco en movimiento: la suma del viento real y del viento que genera nuestra propia marcha. No tiene relación con la mar de viento ni con la mar de fondo, que son tipos de oleaje.",
+  "clave": "Aparente = real + el de tu propia velocidad.",
+  "concepto": null
+ },
+ "and-2015-c3-t37": {
+  "explicacion": "Dos demoras dan la mejor situación cuando se cortan cerca de 90º: así un pequeño error en una de ellas apenas desplaza el punto. Por eso se buscan cortes de 60º a 90º; con ángulos agudos, como los de 10º o 20º que admiten las demás opciones, las líneas casi son paralelas y el error en la situación crece mucho.",
+  "clave": "Demoras: cuanto más cerca de 90º, mejor (60º–90º).",
+  "trampa": "Las demás opciones incluyen ángulos muy agudos, que dan cortes poco fiables.",
+  "concepto": null
+ },
+ "and-2015-c3-t38": {
+  "explicacion": "El ángulo entre la línea proa-popa y la visual a un objeto es la marcación, porque se cuenta desde la proa del barco. La demora se mide desde el Norte, el rumbo es el ángulo entre el Norte y la proa, y la enfilación es una línea de posición formada por dos objetos alineados.",
+  "clave": "Si empieza en la proa, es marcación.",
+  "trampa": "«Demora» suena parecido, pero esa se cuenta desde el Norte, no desde la proa.",
+  "ilustraciones": [{ "tipo": "rosa", "rumbo": 30, "demora": 120, "marcacion": true, "etiqueta": "faro" }],
+  "concepto": "and-2020-c3-t38"
+ },
+ "and-2015-c3-t39": {
+  "explicacion": "La aguja da el rumbo de aguja, que es el rumbo verdadero menos la corrección total: Ra = Rv − Ct (con la Ct positiva al E y negativa al W). El rumbo verdadero solo se obtiene después de corregir, y el magnético solo quita la declinación, sin el desvío. La d) aplica la corrección al revés.",
+  "clave": "Rv = Ra + Ct  →  Ra = Rv − Ct.",
+  "trampa": "Confundir el signo: de aguja a verdadero se suma; de verdadero a aguja se resta.",
+  "concepto": null
+ },
+ "and-2015-c3-t40": {
+  "explicacion": "Los puntos que tienen la misma latitud forman un paralelo, un círculo paralelo al ecuador. Los meridianos, el del lugar y el de Greenwich, unen puntos de la misma longitud, no de la misma latitud.",
+  "clave": "Misma latitud → paralelo; misma longitud → meridiano.",
+  "concepto": null
+ },
+ "and-2015-c3-t41": {
+  "explicacion": "La longitud se cuenta desde el meridiano de Greenwich (meridiano cero), de 0º a 180º hacia el E o hacia el W. Desde el ecuador se cuenta la latitud, y el meridiano y el paralelo del lugar son los del propio observador, no el origen.",
+  "clave": "Longitud desde Greenwich; latitud desde el ecuador.",
+  "trampa": "Cruzar el origen de la latitud (ecuador) con el de la longitud.",
+  "concepto": null
+ },
+ "and-2016-c1-t01": {
+  "explicacion": "Con rumbo Norte el costado de babor mira al Oeste y el de estribor al Este. Si el viento viene del Oeste entra por babor (barlovento), así que el costado opuesto, estribor, es sotavento. Proa y popa no son bandas.",
+  "clave": "Sotavento: el costado contrario al que recibe el viento.",
+  "trampa": "El viento «del Oeste» viene del Oeste, no va hacia él.",
+  "concepto": null
+ },
+ "and-2016-c1-t02": {
+  "explicacion": "Una embarcación inclinada de costado, hacia una banda, está escorada. Adrizada es justo lo contrario (derecha, sin escora), y aproada o apopada describen una inclinación longitudinal, con más calado a proa o a popa.",
+  "clave": "Escora = inclinación de costado; asiento = inclinación proa-popa.",
+  "trampa": "Aproada y apopada también son inclinaciones, pero longitudinales.",
+  "concepto": null
+ },
+ "and-2016-c1-t03": {
+  "explicacion": "El calado medio es la semisuma de los calados de proa y popa: (Cpr + Cpp) / 2. La diferencia entre ambos es el asiento, no el calado medio, y el calado en el centro de la eslora es otra medida, que solo coincide con el medio si el casco no tiene quebranto ni arrufo.",
+  "clave": "Calado medio = (proa + popa) / 2; asiento = popa − proa.",
+  "trampa": "La a) es la definición de asiento.",
+  "concepto": null
+ },
+ "and-2016-c1-t04": {
+  "explicacion": "En hélices gemelas de giro al exterior, vistas desde popa en marcha avante, las palas de arriba se separan hacia fuera: la de estribor es dextrógira (horario) y la de babor levógira (antihorario). La a) describe el giro al interior, y si las dos girasen igual no serían «de giro al exterior».",
+  "clave": "Giro al exterior: Estribor-Dextrógira, Babor-Levógira.",
+  "trampa": "La a) es el caso inverso, giro al interior.",
+  "concepto": "and-2024-c3-t03"
+ },
+ "and-2016-c1-t05": {
+  "explicacion": "La vuelta de rezón es la indicada para afirmar un cabo a una argolla: es muy segura y no se afloja con los tirones. El ballestrinque es rápido pero se corre con el movimiento, el llano une dos cabos y el as de guía forma una gaza fija.",
+  "clave": "Argolla: vuelta de rezón.",
+  "trampa": "El ballestrinque también sirve para amarrar, pero se suelta con los tirones.",
+  "concepto": "and-2022-c1-t06"
+ },
+ "and-2016-c1-t07": {
+  "explicacion": "Atravesado a la mar con mal tiempo, la ola golpea de costado: los balances crecen y la estabilidad del barco queda comprometida, hasta el riesgo de zozobrar. Por eso son ciertas a la vez la a) y la b), y la c) es justo lo contrario de lo que hay que hacer.",
+  "clave": "Con mal tiempo, nunca atravesado a la mar.",
+  "concepto": null
+ },
+ "and-2016-c1-t08": {
+  "explicacion": "Con mal tiempo hay que trincar todo lo que pueda moverse, llevar puestos chaleco y arnés, y cerrar todas las aberturas para que no entre agua. Las tres medidas son recomendables a la vez, por eso la respuesta es «todas».",
+  "clave": "Mal tiempo: trincar, cerrar, chaleco y arnés.",
+  "concepto": null
+ },
+ "and-2016-c1-t09": {
+  "explicacion": "El tribunal da por falsa la a), que el arnés deba afirmarse preferentemente al pecho. Las otras tres sí son ciertas: el arnés sirve para no caer al agua, la cinta plana es mejor que el cabo porque no rueda bajo el pie, y debe ajustarse a la talla de quien lo lleva.",
+  "clave": "Arnés: cinta plana, ajustado a la talla, para no caer al agua.",
+  "discrepancia": "La técnica habitual, y los arneses según la norma ISO 12401, llevan el punto de enganche en el pecho: si caes y quedas colgado o arrastrado, vas boca arriba y con la cara fuera del agua. Enganchado a la espalda irías boca abajo. Por eso la a) es en realidad una recomendación correcta, aunque el tribunal la considerase falsa; ninguna otra opción es falsa.",
+  "concepto": null
+ },
+ "and-2016-c1-t10": {
+  "explicacion": "La tecla MOB (Man Overboard, hombre al agua) del GNSS memoriza al instante la posición y la hora de la caída para poder volver al punto. COG es el rumbo efectivo sobre el fondo, SOG la velocidad sobre el fondo y WP1 sería un punto de ruta cualquiera.",
+  "clave": "Hombre al agua: MOB.",
+  "concepto": null
+ },
+ "and-2016-c1-t11": {
+  "explicacion": "En los tramos de playa que no están balizados, la zona de baño se entiende que ocupa una franja de 200 metros desde la costa (50 metros en el resto del litoral). Por eso no se puede navegar «sin restricciones»: dentro de esa franja solo se navega a no más de 3 nudos y con rumbo perpendicular a la costa. Hoy lo recoge el art. 73 del Reglamento General de Costas.",
+  "clave": "Playa sin balizar: 200 m de zona de baño (50 m en el resto de costa), máximo 3 nudos.",
+  "trampa": "La d) usa los 50 m, que valen para la costa que no es playa.",
+  "concepto": null
+ },
+ "and-2016-c1-t12": {
+  "explicacion": "Sin equipo para desmenuzar y desinfectar, las aguas sucias solo pueden descargarse a más de 12 millas de la costa, navegando a no menos de 4 nudos y a régimen moderado. Si estuvieran desmenuzadas y desinfectadas bastaría con más de 3 millas. Hoy lo regula para el recreo el Real Decreto 339/2021 (art. 23).",
+  "clave": "Aguas sucias sin tratar: más de 12 millas y a 4 nudos o más.",
+  "trampa": "Las 3 millas de la d) son para aguas ya tratadas.",
+  "concepto": null
+ },
+ "and-2016-c1-t13": {
+  "explicacion": "Tres segundos de luz y tres de oscuridad es un ritmo isofase (igual duración de luz que de oscuridad), y la isofase blanca es propia de la marca de aguas navegables. El peligro aislado da grupos de dos destellos, las especiales usan luz amarilla y las de bifurcación llevan luz roja o verde.",
+  "clave": "Isofase = «iso», igual luz que oscuridad: aguas navegables.",
+  "trampa": "Fíjate en el color: blanca descarta la especial y la de bifurcación.",
+  "ilustraciones": [{ "tipo": "boya", "clase": "aguas-navegables", "ritmo": "Iso 6s" }],
+  "concepto": "and-2022-c2-t16"
+ },
+ "and-2016-c1-t14": {
+  "explicacion": "En la Región A de IALA, que es la de Europa, entrando en puerto las marcas laterales verdes se dejan por estribor y las rojas por babor. Las amarillas son especiales, no laterales, y pegarse a la marca nunca es indiferente.",
+  "clave": "Región A, entrando: verde a estribor, rojo a babor.",
+  "trampa": "En América (Región B) es al revés: no lo mezcles.",
+  "ilustraciones": [{ "tipo": "boya", "clase": "estribor" }],
+  "concepto": null
+ },
+ "and-2016-c1-t15": {
+  "explicacion": "La cardinal Sur lleva como tope dos conos negros superpuestos con los vértices hacia abajo: apuntan al sur. Los vértices hacia arriba son de la Norte, unidos por las bases de la Este y unidos por los vértices de la Oeste.",
+  "clave": "Los conos apuntan a donde está el agua buena: abajo = Sur.",
+  "trampa": "Cruzar Este (bases unidas, forma de rombo) y Oeste (vértices unidos, forma de reloj de arena).",
+  "ilustraciones": [{ "tipo": "cardinales", "resaltar": "cardinal-s" }],
+  "concepto": null
+ },
+ "and-2016-c1-t16": {
+  "explicacion": "Una marca cardinal se nombra por el cuadrante donde están las aguas navegables: la cardinal Sur indica que las aguas más profundas están al sur de ella, y por tanto el peligro queda al norte. La b) y la c) dicen justo lo contrario.",
+  "clave": "Cardinal Sur: pasa por el sur de ella.",
+  "trampa": "Pensar que la marca señala dónde está el peligro: señala dónde está el agua segura.",
+  "ilustraciones": [{ "tipo": "cardinales", "resaltar": "cardinal-s" }],
+  "concepto": null
+ },
+ "and-2016-c1-t17": {
+  "explicacion": "Las franjas verticales blancas y rojas son el color de la marca de aguas navegables (con tope de una esfera roja, si lo lleva). El peligro aislado es negro con bandas rojas horizontales, la especial amarilla y la de bifurcación roja o verde con una banda ancha horizontal del otro color.",
+  "clave": "Franjas verticales rojas y blancas = aguas navegables.",
+  "trampa": "Las franjas del peligro aislado son horizontales, y en negro y rojo.",
+  "ilustraciones": [{ "tipo": "boya", "clase": "aguas-navegables" }],
+  "concepto": null
+ },
+ "and-2016-c1-t18": {
+  "explicacion": "Un buque que se acerca desde más de 22,5º a popa del través (marcación mayor de 112,5º) nos está dando alcance: de noche solo nos vería la luz de alcance. 120º cae dentro de ese sector, así que es alcance, no cruce ni vuelta encontrada.",
+  "clave": "Marcación > 112,5º (más de 22,5º a popa del través) = alcance.",
+  "trampa": "Pensar que todo lo que viene por el costado es cruce.",
+  "ilustraciones": [{ "tipo": "cruce", "situacion": "alcance" }],
+  "concepto": null
+ },
+ "and-2016-c1-t19": {
+  "explicacion": "Las luces de navegación se encienden desde la puesta hasta la salida del sol y, además, de día siempre que haya visibilidad reducida (Regla 20). Por eso son correctas la a) y la b); esperar a la «noche cerrada» llega tarde.",
+  "clave": "Luces: del ocaso al orto y con visibilidad reducida.",
+  "concepto": null
+ }
+}

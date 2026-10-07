@@ -1,0 +1,213 @@
+{
+  "and-py-2018-c1-n04": {
+    "explicacion": "La latitud se cuenta desde el ecuador (0°) hacia el N o el S hasta los polos, donde vale 90°. En el ecuador la latitud es 0°, y el meridiano de Greenwich es el origen de las longitudes, no de las latitudes. Estar «sobre cualquier paralelo» no fija ningún valor concreto.",
+    "clave": "Latitud: 0° en el ecuador, 90° N/S en los polos.",
+    "trampa": "La a): Greenwich es el origen de la longitud, no da latitud 90°.",
+    "concepto": null
+  },
+  "and-py-2018-c1-n05": {
+    "explicacion": "Si dm = 0, el norte magnético coincide con el verdadero y Rm = Rv, así que la a) es cierta. Como la corrección total es Ct = dm + Δ, con dm = 0 queda Ct = Δ y Rv = Ra + Δ: también la c) es cierta. La b) solo valdría si además el desvío fuera cero.",
+    "clave": "dm = 0 ⇒ Rm = Rv y Ct = Δ (Rv = Ra + Δ).",
+    "trampa": "La b): confundir declinación con desvío; el rumbo de aguja sigue afectado por el desvío.",
+    "ilustraciones": [{ "tipo": "nortes", "dm": 0, "desvio": 2 }],
+    "concepto": null
+  },
+  "and-py-2018-c1-n06": {
+    "explicacion": "Para limpiar los ecos de lluvia se usa el control anti-clutter rain (FTC) y además se retoca la ganancia; ninguno de los dos basta «solo». El anti-clutter sea es para el oleaje cercano, no para la lluvia. Como todas las opciones dicen «solo», la correcta es la d).",
+    "clave": "Lluvia → anti-clutter rain + ganancia; mar → anti-clutter sea + ganancia.",
+    "trampa": "La a) parece la buena, pero el «solo» la deja incompleta.",
+    "concepto": null
+  },
+  "and-py-2018-c1-n07": {
+    "explicacion": "Los tipos de carta electrónica son las vectoriales (ENC) y las raster (RNC). El ECDIS es el sistema o equipo que las muestra, no un tipo de carta, y «aproches» es una escala de carta (de aproximación). Como la a) es falsa, tampoco vale la d).",
+    "clave": "Cartas: vectorial/raster. Equipo: ECDIS/ECS.",
+    "trampa": "El ECDIS es el equipo, no la carta.",
+    "concepto": "and-py-2022-c2-n09"
+  },
+  "and-py-2018-c1-n09": {
+    "explicacion": "El datum es el sistema de referencia geodésico (elipsoide y punto fundamental) respecto al cual se dan las coordenadas, por ejemplo WGS84 o ED50. El ECDIS es un sistema de cartas electrónicas y GPS/GNSS son sistemas de posicionamiento por satélite, no referencias.",
+    "clave": "Datum = referencia de lat/lon (WGS84, ED50).",
+    "trampa": "GPS/GNSS dan la posición, pero referida a un datum: no son el datum.",
+    "concepto": "and-py-2022-c2-n05"
+  },
+  "and-py-2018-c1-n10": {
+    "explicacion": "El AIS transmite la identidad del buque (nombre, MMSI, distintivo) con su posición, rumbo y velocidad, y los equipos que lo reciben lo muestran sobre la carta electrónica o el radar. No siempre da «toda» la información (la tripulación o la carga detallada no van, y los datos estáticos dependen de lo que se haya introducido), sí ayuda a evitar abordajes y precisamente da la identificación.",
+    "clave": "AIS = identidad + posición + rumbo + velocidad, presentado en la carta del otro.",
+    "trampa": "La c): el AIS existe precisamente para identificar al buque.",
+    "concepto": null
+  },
+  "and-py-2018-c1-n18": {
+    "explicacion": "Altura de marea necesaria = 3,30 − 2,32 = 0,98 m. Tramo PM 00:36 UT (2,80 m) y BM 06:52 UT (0,88 m): D = 6h16m, A = 2,80 − 0,88 = 1,92 m. C = 0,98 − 0,88 = 0,10 m → sen²(90°·I/D) = 0,10/1,92 = 0,052 → I = 55 min antes de la BM → 05:57 UT + 1 h = 06:57 hora oficial.",
+    "clave": "Altura necesaria = Sm − Sc; C = altura − h(BM); despeja I = D·asen(√(C/A))/90° y cuéntalo desde la BM; al final suma el adelanto.",
+    "trampa": "La b) (05:57) es la hora UT: falta sumar el adelanto.",
+    "ilustraciones": [{ "tipo": "marea", "modo": "curva" }],
+    "concepto": null
+  },
+  "and-py-2018-c1-n19": {
+    "explicacion": "Pasa a UT: 17:45 − 1 h = 16:45 UT. Estás entre PM 13:01 UT (2,79 m) y BM 19:02 UT (0,89 m): D = 6h01m, A = 2,79 − 0,89 = 1,90 m. Intervalo desde la bajamar I = 2h17m → C = 1,90·sen²(90°·2h17m/6h01m) = 0,60 m; altura de marea = 0,89 + 0,60 = 1,49 m. Sonda = 2,32 + 1,49 = 3,81 m.",
+    "clave": "Sonda del momento = sonda de carta + altura de marea; altura = h(BM) + A·sen²(90°·I/D), con I contado desde la bajamar más próxima.",
+    "trampa": "No pasar la hora oficial a UT antes de entrar en el anuario (el anuario va en UT).",
+    "ilustraciones": [{ "tipo": "marea", "modo": "sonda" }],
+    "concepto": null
+  },
+  "and-py-2018-c1-n20": {
+    "explicacion": "Δl = 25° − 32° = 7° = 420′ S. ΔL = de 178° 50′ W a 179° 35′ E por el antimeridiano: 70′ + 25′ = 95′ W. lm = 28,5° → A = 95·cos 28,5° = 83,5′ W. R = atan(83,5/420) = S 11,2° W → 191°; D = Δl/cos R = 420/cos 11,2° ≈ 428–429 millas.",
+    "clave": "Rumbo directo: Δl en minutos, ΔL en minutos, A = ΔL·cos lm, R = atan(A/Δl) y cuadrante según signos; D = Δl/cos R. Al cruzar el antimeridiano, ΔL por el camino corto (< 180°).",
+    "trampa": "Equivocar el cuadrante: vas hacia el S y hacia el W (pasas de W a E por el antimeridiano); 169° sería S-E. Y 498 millas no sale con Δl = 420′.",
+    "ilustraciones": [{ "tipo": "loxodromica" }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g01": {
+    "explicacion": "El equilibrio es indiferente cuando el metacentro coincide con el centro de gravedad: KM = KG, y por tanto GM = 0. Al escorar no aparece par adrizante ni escorante y el barco se queda en la nueva posición. Con KG < KM (la a) el equilibrio es estable.",
+    "clave": "GM > 0 estable; GM = 0 (KM = KG) indiferente; GM < 0 inestable.",
+    "trampa": "Elegir solo la b) o la c): son la misma condición dicha de dos formas.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g02": {
+    "explicacion": "El metacentro (M) es el punto donde la vertical que pasa por el centro de carena del buque escorado corta al plano de crujía (la «línea vertical del buque»), para escoras pequeñas, de hasta unos 10°. Se define con el centro de carena, que es donde actúa el empuje, no con el centro de gravedad ni con el francobordo.",
+    "clave": "Metacentro = vertical por el centro de carena ∩ crujía, en escoras pequeñas (≤ 10°).",
+    "trampa": "Las opciones con «centro de gravedad»: G es fijo y no se desplaza al escorar; el que se mueve es el centro de carena.",
+    "ilustraciones": [{ "tipo": "estabilidad", "caso": "estable" }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g03": {
+    "explicacion": "La estabilidad estática estudia el buque flotando en aguas tranquilas, en reposo, considerando solo el peso y el empuje. Con olas, mar o viento entran en juego otras fuerzas y se habla de estabilidad dinámica.",
+    "clave": "Estática = aguas en reposo; dinámica = con mar y viento.",
+    "trampa": "Confundir estática (aguas en reposo) con dinámica (mar y viento).",
+    "concepto": "and-py-2024-c2-g03"
+  },
+  "and-py-2018-c1b-g04": {
+    "explicacion": "El empuje se aplica en el centro de carena (B), que es el centro de gravedad del volumen sumergido. En el centro de gravedad (G) se aplica el peso del barco, y la altura metacéntrica (GM) o el KG son distancias, no puntos de aplicación de fuerzas.",
+    "clave": "Peso en G; empuje en B (centro de carena).",
+    "trampa": "La a): el centro de gravedad es el punto del peso, no del empuje.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g05": {
+    "explicacion": "La señal fumígena flotante debe emitir humo de color muy visible (naranja) en cantidad uniforme durante 3 minutos como mínimo, flotando en aguas tranquilas, y no anegarse con mar encrespada. Las demás opciones cambian el tiempo (2 o 4 minutos), lo convierten en máximo o lo exigen «en cualquier estado de la mar». Hoy el equipo de seguridad de recreo lo regula el Real Decreto 339/2021, que exige estas señales homologadas según el Código IDS.",
+    "clave": "Humo flotante: naranja, uniforme y 3 minutos mínimo en aguas tranquilas.",
+    "trampa": "La c) dice «3 minutos como máximo»: es como mínimo.",
+    "ilustraciones": [{ "tipo": "socorro", "resaltar": "humo", "solo": true }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g06": {
+    "explicacion": "Con un extintor de polvo conviene agitarlo antes de usarlo para soltar el polvo si se ha apelmazado, presurizarlo si es de presión adosada y dirigir el chorro a la base del fuego, donde está el combustible. La c) falla al decir que se ataca «directamente las llamas»: así el polvo pasa por encima y no apaga.",
+    "clave": "Extintor de polvo: agitar, presurizar si hace falta y a la base del fuego.",
+    "trampa": "La c) mezcla un paso correcto con «atacar las llamas», que es el error típico.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g07": {
+    "explicacion": "La b) es la incorrecta: el velero arría las velas, pero mantiene el motor en marcha para seguir el rumbo y la velocidad que le pida el helicóptero, como recomienda Salvamento Marítimo. Llevar la documentación imprescindible, guiarle desde la balsa con la técnica del reloj desde el punto de vista del helicóptero y esperar con calma son recomendaciones correctas.",
+    "clave": "Velero ante helicóptero: velas abajo y motor en marcha.",
+    "trampa": "Pregunta en negativo: «apagar el motor» suena prudente, pero es lo contrario de lo que se pide.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g08": {
+    "explicacion": "La c) es la falsa: la bengala de mano no se enciende sola con el agua, se activa a mano con su propio sistema de ignición. Sí va en estuche hidrorresistente, lleva impresas instrucciones o pictogramas de uso y arde con luz roja brillante. Hoy las exige el Real Decreto 339/2021 según la zona de navegación, homologadas según el Código IDS.",
+    "clave": "Bengala de mano: roja, estuche estanco, instrucciones impresas y encendido manual.",
+    "trampa": "Confundirla con la luz de la boya o del aro, que sí se enciende al contacto con el agua.",
+    "ilustraciones": [{ "tipo": "socorro", "resaltar": "bengala", "solo": true }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g09": {
+    "explicacion": "Si hay que abandonar el barco, se activa la radiobaliza manualmente y se lleva a la balsa, sujeta a ella, para que la señal vía satélite marque la posición de los náufragos y no la del barco a la deriva o hundido. La b) falla porque la radiobaliza no es para el radar (eso es el respondedor SART), la c) porque al agua sola se pierde y la d) porque deja la señal lejos de la balsa.",
+    "clave": "Abandono: radiobaliza activada y contigo en la balsa.",
+    "trampa": "La b): la radiobaliza transmite a satélites; quien responde al radar es el SART.",
+    "ilustraciones": [{ "tipo": "socorro", "resaltar": "radiobaliza", "solo": true }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g10": {
+    "explicacion": "El cable o la línea guía del helicóptero acumula electricidad estática: hay que dejar que toque primero el agua (o el casco) para que se descargue y después sujetarlo con las manos. Nunca se hace firme a la embarcación, porque un bandazo del barco podría arrastrar al helicóptero.",
+    "clave": "Cable del helicóptero: primero toca el agua, luego la mano y nunca se hace firme.",
+    "trampa": "La d) parece prudente («que no toque el agua»), pero es justo al revés: debe tocarla para descargarse.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g11": {
+    "explicacion": "Las nubes convectivas se forman cuando el aire calentado desde abajo se vuelve inestable y sube en corrientes ascendentes que se enfrían hasta condensar: son los cúmulos y cumulonimbos. Las orográficas se deben a la subida forzada por una montaña y las frontales a la subida del aire cálido en un frente.",
+    "clave": "Inestabilidad térmica + ascendencias = nubes convectivas (cúmulos, cumulonimbos).",
+    "trampa": "Las de desarrollo vertical «frontales»: lo que define a estas nubes es la convección, no un frente.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g12": {
+    "explicacion": "El viento geostrófico es el modelo teórico en el que la fuerza del gradiente de presión se equilibra solo con la de Coriolis: sopla paralelo a isobaras rectilíneas. El de Euler solo tiene en cuenta el gradiente; el antitríptico equilibra el gradiente con el rozamiento, y el ciclostrófico, con la fuerza centrífuga en giros pequeños e intensos.",
+    "clave": "Geostrófico = gradiente + Coriolis, paralelo a isobaras rectas.",
+    "trampa": "El ciclostrófico también es paralelo a las isobaras, pero curvas y muy cerradas, y sin Coriolis.",
+    "ilustraciones": [{ "tipo": "meteo", "sistema": "isobaras" }],
+    "concepto": "and-py-2020-c1-g17"
+  },
+  "and-py-2018-c1b-g13": {
+    "explicacion": "Hay niebla cuando el aire en contacto con el agua se enfría hasta su punto de rocío y condensa, lo que ocurre si la temperatura del mar está por debajo del punto de rocío del aire. Si el agua está más caliente que el punto de rocío, el aire no llega a saturarse. Que el termómetro seco marque más que el húmedo indica aire no saturado, lo contrario de la niebla.",
+    "clave": "Niebla: el aire se enfría hasta el punto de rocío; mar más frío que el punto de rocío.",
+    "trampa": "La c): seco > húmedo significa aire seco; con niebla los dos termómetros casi coinciden.",
+    "ilustraciones": [{ "tipo": "meteo", "sistema": "niebla-adveccion" }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g14": {
+    "explicacion": "Por delante del frente cálido el aire cálido sube lentamente sobre el frío y da nubes estratiformes con lluvia continua o llovizna; la visibilidad es buena, salvo dentro de la propia lluvia. La visibilidad regular a mala con lluvia ligera corresponde al sector cálido, y la mejoría con chubascos, a la parte de detrás del frente frío.",
+    "clave": "Antes del cálido: lluvia continua y buena visibilidad (salvo en la lluvia); sector cálido: visibilidad regular a mala.",
+    "trampa": "La a) describe el sector cálido, detrás del frente cálido.",
+    "ilustraciones": [{ "tipo": "meteo", "sistema": "frente-calido-corte" }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g15": {
+    "explicacion": "La galerna es un salto brusco de viento propio del Cantábrico: tras un día tranquilo y caluroso con vientos del S o SW, el viento rola de golpe al W-NW, fuerte y racheado, y la temperatura baja. Por eso al paso de la galerna el viento queda del WNW, no del SSW ni del WSW, que son los vientos de antes, ni del ENE.",
+    "clave": "Galerna: Cantábrico, verano, rolada brusca al WNW con rachas.",
+    "trampa": "La c) y la d): son el viento previo del S-SW, no el que entra con la galerna.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g16": {
+    "explicacion": "En un frente cálido es el aire cálido el que avanza y desplaza al frío, subiendo lentamente sobre él. En un frente frío ocurre lo contrario: el aire frío avanza y levanta al cálido. Las oclusiones aparecen cuando el frente frío alcanza al cálido.",
+    "clave": "Avanza el cálido = frente cálido; avanza el frío = frente frío.",
+    "trampa": "Las oclusiones: son el final de la depresión, cuando el frío alcanza al cálido.",
+    "ilustraciones": [{ "tipo": "meteo", "sistema": "frente-calido-corte" }],
+    "concepto": null
+  },
+  "and-py-2018-c1b-g17": {
+    "explicacion": "El agua atlántica entra en superficie por el Estrecho y, al principio, fluye hacia el E por el sur, a lo largo de la costa de África. La a) es falsa porque esa entrada procede de la rama de la corriente de Portugal-Canarias, no de la del Golfo; la c) invierte las capas (el Atlántico entra por arriba y el Mediterráneo, más denso, sale por abajo), y en los mares secundarios los giros son en sentido contrario a las agujas del reloj.",
+    "clave": "Estrecho: entra el Atlántico por arriba (hacia el E, junto a África) y sale el Mediterráneo por abajo.",
+    "trampa": "La c) cambia superficial por profundo: el agua mediterránea, más salada, sale por el fondo.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g18": {
+    "explicacion": "Las diferencias de temperatura y salinidad cambian la densidad del agua y la ponen en movimiento: son las corrientes de densidad o termohalinas. Las de arrastre las produce el viento, las de marea la atracción de Luna y Sol, y las de gradiente los desniveles de la superficie del mar.",
+    "clave": "Termo (temperatura) + halina (sal) = corriente de densidad.",
+    "trampa": "La a): las de gradiente vienen de diferencias de nivel o presión, no de temperatura y sal.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g19": {
+    "explicacion": "El tamaño de las olas crece con tres factores: la fuerza del viento, su persistencia (el tiempo que sopla) y el fetch (la distancia de mar libre sobre la que sopla). La longitud de onda y el periodo son características de la ola resultante, no causas, y la «extensión» es otra forma de decir fetch.",
+    "clave": "Olas grandes = viento fuerte + mucho tiempo + mucho fetch.",
+    "trampa": "Meter el periodo o la longitud de onda: son consecuencia, no causa.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-g20": {
+    "explicacion": "La niebla frontal se forma cuando la lluvia relativamente cálida de un frente cae a través de aire más frío y se evapora, saturándolo: es una niebla de evaporación, como la de vapor sobre el mar. Las de enfriamiento son la de radiación y la de advección, y la de mezcla forma su propio grupo.",
+    "clave": "Enfriamiento: radiación + advección. Evaporación: vapor + frontal.",
+    "trampa": "La b): el frente sugiere enfriamiento, pero lo que satura el aire es la evaporación de la lluvia.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-n01": {
+    "explicacion": "La HRB es la hora que decide el patrón para la vida a bordo (guardias, comidas, cuaderno de bitácora). Puede coincidir con la hora legal, la UTC o la oficial si él lo decide, pero no es ninguna de ellas por definición.",
+    "clave": "HRB = la hora que fija el patrón a bordo.",
+    "trampa": "La a): la hora legal es la del huso; la HRB puede coincidir, pero no es lo mismo.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-n02": {
+    "explicacion": "Los meridianos son circunferencias máximas que pasan por los polos y cortan perpendicularmente a todos los paralelos. Los trópicos y los círculos polares son paralelos (círculos menores), y el eje es una recta, no una circunferencia.",
+    "clave": "Meridianos: máximos, por los polos, ⟂ a los paralelos.",
+    "trampa": "Los trópicos y los círculos polares son paralelos, no perpendiculares a ellos.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-n03": {
+    "explicacion": "COG (Course Over Ground) es el rumbo sobre el fondo, el rumbo efectivo, que el GNSS calcula con posiciones sucesivas. No es el rumbo verdadero (la proa), ni el de aguja, ni el rumbo de la corriente.",
+    "clave": "COG = rumbo efectivo; SOG = velocidad efectiva.",
+    "trampa": "Rumbo verdadero: la proa no coincide con el COG si hay viento o corriente.",
+    "concepto": null
+  },
+  "and-py-2018-c1b-n04": {
+    "explicacion": "El ángulo entre el rumbo verdadero (la proa) y el rumbo de superficie (lo que realmente avanza el barco por el agua, por la estela) es el abatimiento, y lo produce el viento. La deriva es el efecto de la corriente, el desvío es un error de la aguja y la corrección total es la suma de declinación y desvío.",
+    "clave": "Rv → Rs = abatimiento (viento); Rs → Re = deriva (corriente).",
+    "trampa": "La b): la deriva es la de la corriente, no la del viento.",
+    "ilustraciones": [{ "tipo": "abatimiento", "banda": "babor" }],
+    "concepto": "and-py-2026-c1-n03"
+  }
+}

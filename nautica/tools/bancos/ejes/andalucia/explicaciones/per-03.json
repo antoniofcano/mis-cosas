@@ -314,5 +314,234 @@
    }
   ],
   "concepto": "and-2022-c2-t29"
+ },
+ "and-2016-c3-t29": {
+  "explicacion": "Al virar un cabo, el barco se mueve hacia el punto de tierra donde está hecho firme. El largo de popa sale de la popa hacia tierra por detrás del barco, y el esprín de proa sale de la proa y llama hacia popa: los dos tiran del barco hacia atrás. El largo de proa y el esprín de popa llaman hacia proa, así que lo mueven avante.",
+  "clave": "Llaman a popa: largo de popa y esprín de proa.",
+  "trampa": "Pensar que el esprín de proa tira hacia proa por su nombre: el nombre dice dónde está a bordo, no hacia dónde llama.",
+  "concepto": null
+ },
+ "and-2016-c3-t30": {
+  "explicacion": "El agua y la espuma apagan bien los fuegos de clase A (sólidos con brasas), y la espuma es el agente típico de la clase B (líquidos inflamables); además, la norma UNE-EN 2 ya no recoge ninguna «clase E», por eso el tribunal dio por buena la d). Ojo, de todos modos: nunca se echa agua ni espuma sobre un equipo eléctrico en tensión, porque conducen la corriente; primero se corta la electricidad o se usa CO2 o polvo.",
+  "clave": "Agua: A. Espuma: A y B. Con electricidad, ni agua ni espuma.",
+  "trampa": "Elegir la clase A, que es justo la que mejor se apaga con agua.",
+  "discrepancia": "La «clase E» (fuegos eléctricos) desapareció de la clasificación UNE-EN 2, y en eso se apoya la oficial; pero, técnicamente, agua y espuma no son adecuadas sobre equipos eléctricos en tensión, así que la b) es defendible.",
+  "defendible": "b",
+  "concepto": null
+ },
+ "and-2016-c3-t31": {
+  "explicacion": "Eliminar el calor del fuego es el enfriamiento, normalmente con agua, que absorbe mucho calor al evaporarse. La desalimentación quita el combustible, la sofocación quita el comburente (el oxígeno) y la rotura o inhibición de la reacción en cadena actúa sobre el cuarto lado del tetraedro, típico del polvo químico.",
+  "clave": "Calor → enfriamiento; oxígeno → sofocación; combustible → desalimentación.",
+  "trampa": "Confundir sofocación (oxígeno) con enfriamiento (calor).",
+  "concepto": null
+ },
+ "and-2016-c3-t32": {
+  "explicacion": "Ante una vía de agua achicas con la bomba y taponas la entrada como puedas, vigilando si el nivel del agua se mantiene o baja; así sabrás si ganas o pierdes la batalla, y solo si sigue subiendo te preparas para abandonar el barco. Abandonar a la primera, o porque el taponamiento no sea perfectamente estanco, es precipitado: el barco es casi siempre la mejor balsa.",
+  "clave": "Vía de agua: achica, tapona y vigila el nivel.",
+  "trampa": "La a) exige un taponamiento completo y estanco; basta con que el achique gane al agua que entra.",
+  "concepto": "and-2023-c1-t32"
+ },
+ "and-2016-c3-t33": {
+  "explicacion": "Que el viento refresca significa que aumenta su intensidad, que sopla con más fuerza. Si cambia de dirección decimos que rola, si sube y baja de golpe hablamos de rachas, y la temperatura no tiene nada que ver con este término, aunque la palabra «fresco» invite a pensarlo.",
+  "clave": "Refresca = más fuerza.",
+  "trampa": "«Refrescar» no es enfriarse: no tiene que ver con la temperatura del aire.",
+  "concepto": "and-2020-c3-t33"
+ },
+ "and-2016-c3-t34": {
+  "explicacion": "Al navegar a 10 nudos generas un viento de tu propio avance de 10 nudos que te entra por la proa. Si el anemómetro marca cero, el viento real tiene que ser exactamente igual y contrario a ese: de 10 nudos y por la popa. Con viento real de proa, través o amura el aparente nunca podría anularse.",
+  "clave": "Aparente cero = real por popa a tu misma velocidad.",
+  "trampa": "Pensar que si no hay viento aparente no hay viento real.",
+  "concepto": null
+ },
+ "and-2016-c3-t35": {
+  "explicacion": "La extensión rectilínea de mar sobre la que sopla un viento de dirección y fuerza constantes es el fetch. La persistencia es el tiempo que sopla así, la intensidad su fuerza, y la mar de viento es el oleaje que levanta, no la distancia.",
+  "clave": "Fetch = extensión de mar.",
+  "trampa": "El fetch es una distancia (extensión de mar); la persistencia es un tiempo. No los confundas.",
+  "concepto": "and-2024-c2-t34"
+ },
+ "and-2016-c3-t36": {
+  "explicacion": "La presión atmosférica es el peso de la columna de aire que hay sobre un lugar, por unidad de superficie; se mide con el barómetro en milibares o hectopascales. La temperatura mide el calor del aire, la humedad absoluta el vapor de agua que contiene y el punto de rocío la temperatura a la que ese vapor se condensa.",
+  "clave": "Presión = peso de la columna de aire por unidad de superficie.",
+  "trampa": "La humedad también es «cantidad de algo en el aire», pero no es un peso por superficie.",
+  "concepto": null
+ },
+ "and-2016-c3-t37": {
+  "explicacion": "La declinación magnética es el ángulo entre el Norte verdadero (geográfico) y el Norte magnético; depende del lugar y del año y viene en la carta. Entre el magnético y el de aguja está el desvío, entre el verdadero y el de aguja la corrección total, y el ángulo hasta la visual a un objeto es una demora.",
+  "clave": "Tres Nortes: Nv–Nm dm, Nm–Na Δ, Nv–Na Ct.",
+  "trampa": "La b) (verdadero–aguja) es la corrección total, que incluye además el desvío.",
+  "concepto": null
+ },
+ "and-2016-c3-t38": {
+  "explicacion": "Con el coeficiente de corredera obtienes la velocidad verdadera del barco multiplicando: Vv = K × Vc. La a) divide cuando hay que multiplicar, la b) invierte los términos y la d) mezcla la corriente, que la corredera no mide.",
+  "clave": "K multiplica a la corredera y te da lo verdadero.",
+  "trampa": "La a) da la magnitud correcta pero con la operación equivocada.",
+  "concepto": "and-2025-c1-t39"
+ },
+ "and-2016-c3-t39": {
+  "explicacion": "La milla náutica se define precisamente como la longitud de un minuto de arco de meridiano, unos 1852 m; por eso las distancias se miden en la escala de latitudes de la carta. Un minuto de arco de ecuador mide prácticamente lo mismo, así que no son «dos millas», y la c) da como condición algo que no hace falta.",
+  "clave": "1′ de meridiano (de latitud) = 1 milla.",
+  "trampa": "Medir distancias en la escala de longitudes: solo la de latitudes vale.",
+  "concepto": null
+ },
+ "and-2016-c3-t40": {
+  "explicacion": "El ángulo entre el rumbo verdadero y el rumbo efectivo, es decir, entre el movimiento respecto al agua y respecto al fondo, cuando no hay otra causa perturbadora, lo produce la corriente y se llama deriva. El abatimiento lo produce el viento y separa el rumbo verdadero del de superficie; el desvío es un error de la aguja y la marcación se cuenta desde la proa hasta un objeto.",
+  "clave": "Corriente → deriva; viento → abatimiento.",
+  "trampa": "El abatimiento también desvía la derrota, pero lo causa el viento, no la corriente.",
+  "concepto": null
+ },
+ "and-2016-c3-t41": {
+  "explicacion": "La diferencia de altura entre pleamar y bajamar es la amplitud de la marea. La duración de la creciente o vaciante es un tiempo (horas), no una altura; el intervalo hasta la bajamar también es un tiempo, y el cero hidrográfico es la referencia de las sondas.",
+  "clave": "Amplitud = pleamar − bajamar (en metros).",
+  "trampa": "La a) habla de duración: eso son horas, no metros.",
+  "concepto": "and-2024-c3-t41"
+ },
+ "and-2017-c1-t01": {
+  "explicacion": "La diferencia entre el calado de proa y el de popa es el asiento. La semisuma de ambos es el calado medio, «apopante» describe un barco con más calado a popa que a proa y la alteración es la variación del asiento al mover o embarcar pesos.",
+  "clave": "Diferencia = asiento; semisuma = calado medio.",
+  "trampa": "La alteración es un cambio de asiento, no el asiento en sí.",
+  "concepto": null
+ },
+ "and-2017-c1-t02": {
+  "explicacion": "La dextrógira gira avante como las agujas del reloj, mirando de popa a proa; al dar atrás invierte el giro y gira en sentido contrario a las agujas, siempre mirada desde popa. La b) describe su giro avante, y la a) cambia el punto de vista: desde proa ese giro de atrás se ve como el de las agujas, así que también es falsa, y con ella la d).",
+  "clave": "Dextrógira: horario avante, antihorario atrás (vista desde popa).",
+  "trampa": "Atento a la marcha y al punto de vista: cada uno invierte el sentido.",
+  "ilustraciones": [
+   {
+    "tipo": "helice",
+    "sentido": "dextrogira",
+    "marcha": "atras"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t03": {
+  "explicacion": "El ancla ha zarpado cuando se despega del fondo al virar la cadena. Justo antes, con la cadena vertical, está a pique; a la pendura es colgando de la proa lista para fondear, y la expresión correcta cuando aflora limpia es que está «clara», no «libre».",
+  "clave": "Secuencia al levar: a pique, zarpa, clara.",
+  "trampa": "«A pique» es el paso anterior: el ancla aún está en el fondo.",
+  "concepto": "and-2022-c3-t01"
+ },
+ "and-2017-c1-t04": {
+  "explicacion": "Sotavento es el costado contrario a aquel por el que entra el viento; barlovento es el costado que lo recibe. Babor y estribor son las bandas izquierda y derecha mirando a proa, y no dependen del viento.",
+  "clave": "Sota = debajo/protegido del viento.",
+  "trampa": "Babor y estribor no dependen del viento.",
+  "concepto": "and-2023-c1-t02"
+ },
+ "and-2017-c1-t05": {
+  "explicacion": "El nudo llano sirve para unir dos cabos de la misma mena (grosor). Para cabos de distinto grosor se usa la vuelta de escota, para hacer firme un cabo a un palo o una bita el ballestrinque o las vueltas de bita, y para hacer una gaza el as de guía.",
+  "clave": "Llano: cabos iguales. Escota: cabos distintos.",
+  "trampa": "La b): con cabos de distinto grosor el llano se escurre; ahí va la vuelta de escota.",
+  "concepto": null
+ },
+ "and-2017-c1-t06": {
+  "explicacion": "Estando fondeado, el barco gira alrededor del ancla según rolan el viento o la corriente; ese giro es el borneo, y el círculo que describe es el círculo de borneo, que tienes que tener libre de otros barcos y de bajos. Garrear es que el ancla se arrastre por el fondo, y las otras dos expresiones no son términos náuticos.",
+  "clave": "Bornear = girar alrededor del ancla.",
+  "trampa": "Confundir borneo (giro normal) con garreo (el ancla se arrastra).",
+  "concepto": null
+ },
+ "and-2017-c1-t07": {
+  "explicacion": "El cabeceo o cabezada es un movimiento en el sentido proa-popa, así que la propiedad de recuperar la posición tras él es la estabilidad longitudinal. La estabilidad transversal, estática o dinámica, se refiere a las escoras y balances (babor-estribor), y la flotabilidad es la capacidad de mantenerse a flote, no de adrizarse.",
+  "clave": "Cabezada → longitudinal; escora → transversal.",
+  "trampa": "Las c) y d) suenan más técnicas, pero «transversal» es de banda a banda.",
+  "concepto": null
+ },
+ "and-2017-c1-t08": {
+  "explicacion": "Capear el temporal consiste en recibir la mar por la amura, con poca máquina avante para mantener el gobierno. Si recibes la mar por la popa o la aleta estás corriendo el temporal, y recibirla por el través es lo más peligroso, porque los balances fuertes pueden hacer zozobrar el barco.",
+  "clave": "Capear = Amura (las dos con «a» de «adelante»).",
+  "trampa": "Elegir la aleta o la popa, que corresponden a correr el temporal.",
+  "ilustraciones": [
+   {
+    "tipo": "barco",
+    "resaltar": [
+     "amura"
+    ]
+   }
+  ],
+  "concepto": "and-2020-c3-t08"
+ },
+ "and-2017-c1-t09": {
+  "explicacion": "A una persona con hipotermia no se la debe dejar caminar ni hacer ejercicio: al mover los músculos, la sangre fría de las extremidades vuelve al núcleo del cuerpo y puede bajar aún más su temperatura y provocar una arritmia o una parada. Lo correcto es justo lo de las otras opciones: valorar si necesita reanimación, mantenerla en posición horizontal, quitarle la ropa mojada y abrigarla poco a poco.",
+  "clave": "Hipotermia: horizontal, ropa seca, abrigo y quieto.",
+  "trampa": "Se pide la medida que NO es correcta; «entrar en calor con ejercicio» suena lógico y es peligroso.",
+  "concepto": null
+ },
+ "and-2017-c1-t10": {
+  "explicacion": "Las bengalas de mano duran poco (alrededor de un minuto) y se llevan en número limitado, así que solo se encienden cuando tienes la seguridad de que alguien puede verlas: un barco, un avión o la costa a la vista. Encenderlas nada más abandonar el barco, sin nadie cerca, es desperdiciarlas, y la tecla MOB del GPS es para el hombre al agua. Hoy las señales pirotécnicas que hay que llevar según la zona las fija el Real Decreto 339/2021.",
+  "clave": "Pirotecnia solo con alguien a la vista.",
+  "trampa": "Pensar que conviene lanzarlas cuanto antes «por si acaso».",
+  "concepto": "and-2023-c3-t08"
+ },
+ "and-2017-c1-t11": {
+  "explicacion": "La legislación de marina mercante (Ley de Puertos y de la Marina Mercante) hace solidariamente responsables de las infracciones por contaminación desde una embarcación al armador o naviero, al propietario, al asegurador de la responsabilidad civil y al capitán o patrón. Que sea solidaria significa que la Administración puede exigir la sanción a cualquiera de ellos, por eso las opciones de responsabilidad principal y subsidiaria son falsas.",
+  "clave": "Contaminación: responden solidariamente armador, patrón y asegurador.",
+  "trampa": "«Principal» y «subsidiaria» suenan jurídicas, pero aquí la responsabilidad es solidaria.",
+  "concepto": "and-2025-c2-t12"
+ },
+ "and-2017-c1-t12": {
+  "explicacion": "Las aguas sucias desmenuzadas y desinfectadas pueden descargarse a más de 3 millas de la costa, y las almacenadas se descargan con el barco en ruta a no menos de 4 nudos; hoy lo regula para el recreo el Real Decreto 339/2021, siguiendo el Anexo IV de MARPOL. La a) falla en la cifra: en tramos no balizados la franja de baño es de 200 m en playas y 50 m en el resto del litoral. La c) es falsa porque los plásticos, bolsas incluidas, no se tiran nunca, y la d) también: el PER navega hasta 12 millas de la costa, no 20.",
+  "clave": "Aguas sucias tratadas: más de 3 millas, en ruta y a 4 nudos o más.",
+  "trampa": "La a) tiene la estructura correcta, pero son 50 m, no 25.",
+  "concepto": null
+ },
+ "and-2017-c1-t13": {
+  "explicacion": "España está en la región A del balizamiento IALA: entrando en puerto por el canal principal, las marcas laterales rojas se dejan por babor y las verdes por estribor. No depende del puerto; al salir se invierte y las rojas quedan por estribor.",
+  "clave": "Región A, entrando: rojo a babor, verde a estribor.",
+  "trampa": "Aplicar la regla de salida, o la de la región B (rojo a estribor entrando).",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "babor"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t14": {
+  "explicacion": "El tope de la marca de peligro aislado son dos esferas negras superpuestas. Su pintura es negra con bandas horizontales rojas, no amarillas (negro y amarillo es de las cardinales), su luz es blanca en grupos de dos destellos, y el aspa es el tope de las marcas especiales, en amarillo.",
+  "clave": "Peligro aislado: negro y rojo, dos esferas negras, dos destellos blancos.",
+  "trampa": "La a) cambia el rojo por el amarillo de las cardinales.",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "peligro-aislado"
+   }
+  ],
+  "concepto": "and-2024-c3-t17"
+ },
+ "and-2017-c1-t15": {
+  "explicacion": "El ritmo 2+1 indica una marca de bifurcación, y el color rojo dice que es una lateral de babor modificada: el canal principal queda a estribor de la marca. Si sigues el canal principal entrando en puerto, la dejas por babor como cualquier roja. La de canal principal a babor emitiría 2+1 verde.",
+  "clave": "2+1 rojo = canal principal a estribor; 2+1 verde = canal principal a babor.",
+  "trampa": "Asociar rojo/babor con «canal principal a babor».",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "canal-principal-estribor"
+   }
+  ],
+  "discrepancia": "La c) también es cierta en rigor: la marca es una lateral (modificada) y, siguiendo el canal principal hacia el puerto, se deja por babor; la oficial se queda con la b), que es la que define la marca.",
+  "defendible": "c",
+  "concepto": "and-2024-c2-t15"
+ },
+ "and-2017-c1-t16": {
+  "explicacion": "Negra con una banda ancha amarilla en el centro y dos conos unidos por sus bases es la cardinal Este: las aguas seguras están al este de la marca. Navegando al Norte, para pasar por su este la marca tiene que quedarte al oeste, es decir, por babor. Por eso sí importa por qué costado la dejas.",
+  "clave": "Cardinal Este: conos en rombo; se pasa por su este.",
+  "trampa": "Confundirla con la Oeste (amarilla con banda negra, conos unidos por los vértices).",
+  "ilustraciones": [
+   {
+    "tipo": "cardinales",
+    "resaltar": "cardinal-e"
+   }
+  ],
+  "concepto": null
+ },
+ "and-2017-c1-t17": {
+  "explicacion": "Entrando por el canal principal de un puerto español (región A), las marcas verdes deben quedar por estribor, porque señalan el borde derecho del canal. Si las ves por babor, estás al otro lado de ese borde, fuera del canal, y el canal queda a tu babor, detrás de ellas. España no está en la región B.",
+  "clave": "Entrando, verde a estribor; si la ves a babor, te has salido.",
+  "trampa": "Pensar que el canal queda a estribor porque «hay que volver a la derecha».",
+  "ilustraciones": [
+   {
+    "tipo": "boya",
+    "clase": "estribor"
+   }
+  ],
+  "concepto": null
  }
 }

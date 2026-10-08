@@ -2427,7 +2427,7 @@
 "bal-per-2022-09-m-41": ["nav.rumbos.cuadrantal-circular"],
 "bal-per-2022-09-a-42": ["carta.rumbo-distancia", "carta.situacion.enfilacion"],
 "bal-per-2022-09-b-42": ["carta.estima", "carta.situacion.enfilacion"],
-"bal-per-2022-09-c-42": ["nav.ct.convertir"],
+"bal-per-2022-09-c-42": ["nav.ct.dm-desvio"],
 "bal-per-2022-09-m-42": ["carta.rumbo-distancia"],
 "bal-per-2022-09-a-43": ["carta.rumbo-distancia", "carta.situacion.enfilacion"],
 "bal-per-2022-09-b-43": ["carta.situacion.dos-demoras"],

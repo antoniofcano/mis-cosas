@@ -1,3 +1,9 @@
+/* Tipografía propia, alojada en la app (fonts/, OFL; ver fonts/README.md): «Patron Texto» (Source Sans 3, humanista, variable
+   400–700) para leer y «Patron Titulos» (Bitter 700, egipcia sobria, de rótulo de carta) para los títulos. Subconjunto latino.
+   size-adjust lleva la altura de x de Source Sans (0,486) a la de las fuentes del sistema (~0,52): al cambiar de la fuente
+   del sistema a la propia (font-display: swap) el texto no salta de tamaño. */
+@font-face { font-family: "Patron Texto"; src: url("../fonts/patron-texto.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; size-adjust: 107%; }
+@font-face { font-family: "Patron Titulos"; src: url("../fonts/patron-titulos.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 :root {
   --bg: #f6f8fb; --surface: #ffffff; --text: #17212b; --muted: #46525e; --border: #d8dee6;
   --accent: #0b5cad; --accent-2: #e8f1fb; --ok: #1d7a3a; --warn: #b3261e; --close: #a86b00;
@@ -18,6 +24,8 @@
   --trav-bg: #17314d; --trav-fg: #ffffff; --trav-oro: #f5b942; --trav-disco: #0f2338;
   --faro-on-bg: #fff6dc; --faro-on-borde: #d9962b; --faro-on-texto: #8a5a00; --faro-luz: #f5b942;
   --faro-off-bg: #eef1f5; --faro-off-borde: #7b8794; --faro-off-texto: #5b6773;
+  --fuente-texto: "Patron Texto", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-titulos: "Patron Titulos", "Patron Texto", Georgia, "Times New Roman", serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -42,7 +50,10 @@
 [hidden] { display: none !important; }
 * { box-sizing: border-box; }
 html { font-size: 18px; }
-body { margin: 0; font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+body { margin: 0; font: 1rem/1.55 var(--fuente-texto); background: var(--bg); color: var(--text); }
+button, input, select, textarea { font-family: inherit; }
+h1, h2, header.top .brand, .sesion-cab h2, .trav-rango-tx strong { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: -.005em; }
+h2.eti, .eti { font-family: var(--fuente-texto); }
 a { color: var(--accent); }
 header.top { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 1rem; height: 56px; padding: 0 1rem; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
 header.top .brand { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--text); display: inline-flex; align-items: center; min-height: 48px; }

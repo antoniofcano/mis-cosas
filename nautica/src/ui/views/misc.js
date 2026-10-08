@@ -76,7 +76,7 @@ export function progressView({ progress, tit }) {
   const T = TITULACIONES[tit] ?? TITULACIONES.per;
   const s = progress.settings();
   const rows = EXERCISES.map((e) => ({ e, st: progress.stats(e.id) })).filter(({ st }) => st.attempts > 0);
-  const temas = h('div', h('p.muted', 'Cargando…'));
+  const temas = h('div', h('p.muted', 'Situándote en la carta…'));
   let resumenTemas = '';
   calcularPlan(progress, tit).then((d) => {
     // El mismo avance en Hoy, Progreso y Plan: pasos del camino ponderados por minutos (se mueve con cada tramo).

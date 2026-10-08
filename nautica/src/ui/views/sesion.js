@@ -14,7 +14,8 @@ import { conceptosDelBanco, hrefFicha } from '../concepto.js';
 import { cuenta } from '../../texto.js';
 import { calcularTravesia } from '../travesia.js';
 import { parteSesion, paraManana, progresoRango, catalogoInsignias } from '../../course/travesia.js';
-import { parteTravesiaEl } from './travesia.js';
+import { parteTravesiaEl, ambitoFaros, ambitoInsignias } from './travesia.js';
+import { novedades, marcarVistos, efecto } from '../efectos.js';
 
 const MAX_GRUPOS = 10; // en un simulacro salen muchas ideas: las que fallan siempre; de las sabidas, hasta completar
 
@@ -41,7 +42,7 @@ function marcaHecho() {
  * Pinta el parte de travesía en `parteHueco` y guarda lo ganado (rango máximo, insignias). Devuelve su texto para el
  * resumen del agente ('' si no hay parte: banco sin etiquetas o una sesión empezada antes de la travesía).
  */
-function pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco }) {
+function pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco, efectos }) {
   if (!ic || !s.foto) return '';
   const eje = banco.eje.id;
   const ahora = Date.now();
@@ -60,8 +61,29 @@ function pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco }) {
   const vuelve = new Map([...prox].map(([c, p]) => [c, Math.max(1, Math.round((Date.parse(`${p}T12:00`) - Date.parse(`${hoy}T12:00`)) / DIA))]));
   const manana = paraManana({ flojas: parte.flojas, trabajadas: est.ideas.filter((i) => tocadas.has(i.id)), vuelve });
   const sig = progresoRango(est, parte.reg.rango);
-  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.faros) }));
+  // Lo que cambia en este parte se anima (y suena, si los sonidos están activados) solo la primera vez que se enseña:
+  // volver a esta pantalla lo enseña quieto. Las claves llevan el inicio de la sesión.
+  const k = String(s.inicio);
+  const ids = [...parte.faros.map((f) => `${k}:f:${f.id}`), ...parte.insignias.map((id) => `${k}:i:${id}`), ...(parte.rango.sube ? [`${k}:r`] : [])];
+  const nuevos = new Set(novedades(`parte:${eje}/${tit}`, ids, { primeraVezTodo: true }));
+  const animar = { faros: new Set(parte.faros.filter((f) => nuevos.has(`${k}:f:${f.id}`)).map((f) => f.id)),
+    insignias: new Set(parte.insignias.filter((id) => nuevos.has(`${k}:i:${id}`))), rango: nuevos.has(`${k}:r`) };
+  // La carta de la Travesía y la pantalla de insignias ya no lo vuelven a animar: se ha visto aquí.
+  marcarVistos(ambitoFaros(eje, tit), parte.faros.map((f) => f.id));
+  marcarVistos(ambitoInsignias(eje, tit), parte.insignias);
+  efectos.celebra = animar.rango ? 'rango' : animar.faros.size ? 'faro' : null;
+  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.faros), animar }));
   return ` · TRAVESÍA: ${parte.nuevas.length} ideas nuevas, ${parte.rescatadas.length} rescatadas, ${parte.flojas.length} siguen flojas${parte.faros.length ? `, faro encendido: ${parte.faros.map((f) => f.nombre).join(', ')}` : ''}${parte.insignias.length ? `, insignias nuevas: ${parte.insignias.join(', ')}` : ''}. ${sig.texto}`;
+}
+
+/**
+ * Sonidos del final de una sesión (si están activados), solo la primera vez que se enseña su resumen: la campanilla si
+ * se ha encendido un faro o subido de rango y, después, la campana de guardia (dos campanadas).
+ */
+function finDeGuardia(tit, s, celebra) {
+  if (!novedades(`guardia:${tit}`, [String(s.inicio)], { primeraVezTodo: true }).length) return;
+  if (celebra) efecto(celebra);
+  efecto('guardia', { retraso: celebra ? 0.7 : 0.2 });
 }
 
 export function sesionView({ progress, tit }) {
@@ -113,9 +135,11 @@ export function sesionView({ progress, tit }) {
       h('li.pasos-hechos', h('span.muted.small', `Pasos: ${r.hechos} de ${r.pasos} hechos${r.saltados ? ` (${r.saltados} saltado${r.saltados > 1 ? 's' : ''})` : ''}.`)));
     }
     // Parte de travesía: lo que cambió entre la foto del principio y ahora (ideas nuevas, rescatadas, faros, insignias).
-    const textoParte = pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco });
+    const efectos = { celebra: null };
+    const textoParte = pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco, efectos });
+    finDeGuardia(tit, s, efectos.celebra);
     summaryText = `VISTA resumen de la sesión ${T.sigla}: ${linea.textContent}${textoParte} · ${r.grupos.map((g) => `${g.nombre} ${g.bien}/${g.total}${g.concepto ? ` (${detalleGrupo(g)})` : ''}`).join(', ')}`;
-  }).catch(() => { linea.textContent = `${s.pasos.filter((p) => p.estado === 'hecho').length} de ${cuenta(s.pasos.length, 'paso')} hechos.`; });
+  }).catch(() => { finDeGuardia(tit, s, null); linea.textContent = `${s.pasos.filter((p) => p.estado === 'hecho').length} de ${cuenta(s.pasos.length, 'paso')} hechos.`; });
 
   // Mañana: la sesión que tocaría mañana con lo hecho hasta ahora (sin guardar nada del plan).
   const hoy = calcularPlan(progress, tit);

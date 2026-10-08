@@ -16,6 +16,7 @@ import {
 } from '../../course/travesia.js';
 import { lineaListo } from '../../course/listo.js';
 import { cuenta, fechaLarga } from '../../texto.js';
+import { novedades, marcarVistos, claseAnimada } from '../efectos.js';
 
 const ANCHO = 358;
 const ALTO = 320;
@@ -107,24 +108,31 @@ export function travesiaView({ progress, params, tit }) {
       summaryText = `VISTA travesía ${T.sigla}: sin conceptos en este banco`;
       return;
     }
-    if (enInsignias) { const r = pantallaInsignias({ T, tit, sy }); setChildren(el, r.el); summaryText = r.summary; return; }
-    const r = pantallaTravesia({ T, tit, d, sy, query: params.query });
+    if (enInsignias) { const r = pantallaInsignias({ T, tit, sy, eje }); setChildren(el, r.el); summaryText = r.summary; return; }
+    const r = pantallaTravesia({ T, tit, d, sy, eje, query: params.query });
     setChildren(el, r.el);
     summaryText = r.summary;
   }).catch((e) => setChildren(el, volver('Hoy', tlink(tit)), h('p.warn', `No se pudo preparar la travesía: ${e.message}`)));
   return { el, summary: () => summaryText };
 }
 
-function pantallaTravesia({ T, tit, d, sy, query }) {
+/** Ámbitos de «ya visto» de un banco (src/ui/efectos.js): faros encendidos e insignias ganadas. */
+export const ambitoFaros = (eje, tit) => `faros:${eje}/${tit}`;
+export const ambitoInsignias = (eje, tit) => `insignias:${eje}/${tit}`;
+
+function pantallaTravesia({ T, tit, d, sy, eje, query }) {
   const { est, rango } = sy;
   const faros = est.faros;
+  // Un faro que se ha encendido desde la última vez que viste la carta se enciende delante de ti (una vez; los demás,
+  // con su halo de siempre). Solo el cambio: la primera visita no anima nada.
+  const recien = new Set(novedades(ambitoFaros(eje, tit), faros.filter((f) => f.estado === 'on').map((f) => f.id)));
   const pos = posicionesDerrota(faros.length);
   let sel = faros.find((f) => f.id === query?.f)?.id ?? faroInicial(faros);
 
   // La carta
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Faro elegido' });
   const botones = faros.map((f, i) => {
-    const b = h('button.faro', { type: 'button', class: f.estado, 'aria-label': ariaFaro(f), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'));
+    const b = h('button.faro', { type: 'button', class: `${f.estado}${recien.has(f.id) ? ` ${claseAnimada('se-enciende')}` : ''}`.trim(), 'aria-label': ariaFaro(f), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'));
     return h('div.faro-pos', { style: posPct(pos[i]) }, b, h('span.faro-nombre', f.corto));
   });
   const carta = h('div.carta-trav', { role: 'group', 'aria-label': 'Carta de tu derrota: un faro por bloque del temario' },
@@ -190,13 +198,14 @@ function pantallaTravesia({ T, tit, d, sy, query }) {
   return { el, summary };
 }
 
-function pantallaInsignias({ T, tit, sy }) {
+function pantallaInsignias({ T, tit, sy, eje }) {
   const { est, reg, rango } = sy;
   const cat = catalogoInsignias(est.faros);
   const tiene = (x) => !!reg.insignias[x.id];
+  const recien = new Set(novedades(ambitoInsignias(eje, tit), cat.filter(tiene).map((x) => x.id)));
   let sel = (cat.find(tiene) ?? cat[0]).id;
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Insignia elegida' });
-  const botones = cat.map((x) => h('button.insignia', { type: 'button', class: tiene(x) ? 'ganada' : '', 'aria-pressed': String(x.id === sel),
+  const botones = cat.map((x) => h('button.insignia', { type: 'button', class: tiene(x) ? `ganada${recien.has(x.id) ? ` ${claseAnimada('entra')}` : ''}`.trim() : '', 'aria-pressed': String(x.id === sel),
     'aria-label': `${x.nombre}: ${tiene(x) ? 'conseguida' : 'por conseguir'}`, onclick: () => elegir(x.id) },
   h('span.insignia-disco', icono(x.icono)), h('span.insignia-nombre', x.nombre)));
   function pinta() {
@@ -231,7 +240,9 @@ const cajaCifra = (n, uno, varios, suave = false) => h('div.parte-cifra', { clas
  * El parte de travesía al terminar una sesión (src/course/travesia.js, parteSesion). `parte` = su resultado; `manana` =
  * paraManana() o null; `sig` = progresoRango() de ahora.
  */
-export function parteTravesiaEl({ tit, parte, manana, sig, catalogo }) {
+export function parteTravesiaEl({ tit, parte, manana, sig, catalogo, animar = null }) {
+  // `animar` (solo la primera vez que se enseña este parte): { faros: Set, insignias: Set, rango: boolean }. Sin él, quieto.
+  const an = (si, clase) => (si ? claseAnimada(clase) : '');
   if (parte.vacio && !parte.insignias.length && !parte.rango.sube) {
     return h('section.parte-trav.corto', h('h2.eti', 'Parte de travesía'),
       h('p', 'Hoy no ha cambiado el estado de ninguna idea.'), h('a.trav-ficha', { href: tlink(tit, ['travesia']) }, 'Ver mi travesía'));
@@ -243,9 +254,12 @@ export function parteTravesiaEl({ tit, parte, manana, sig, catalogo }) {
       cajaCifra(parte.nuevas.length, 'idea nueva', 'ideas nuevas'),
       cajaCifra(parte.rescatadas.length, 'rescatada', 'rescatadas'),
       cajaCifra(parte.flojas.length, 'sigue floja', 'siguen flojas', true)),
-    ...parte.faros.map((f) => h('div.parte-faro', h('span.parte-faro-disco.encendido', icono('faro')),
+    ...parte.faros.map((f) => h('div.parte-faro', h('span.parte-faro-disco.encendido', { class: an(animar?.faros?.has(f.id), 'se-enciende') }, icono('faro')),
       h('div', h('span.small', 'Faro encendido'), h('strong', f.nombre), h('span.small', `Del ${pct(f.antes)} al ${pct(f.ahora)} de sus ideas dominadas.`)))),
-    ...parte.insignias.map((id) => { const x = nombreIns(id); return h('div.parte-insignia', h('span.insignia-disco.ganada', icono(x.icono)),
+    // Rango nuevo: su propio momento (el disco sube y brilla una vez).
+    parte.rango.sube ? h('div.parte-subida', h('span.trav-disco', { class: an(animar?.rango, 'sube') }, icono('ancla')),
+      h('div', h('span.small', 'Rango nuevo'), h('strong', sig.actual.nombre))) : null,
+    ...parte.insignias.map((id) => { const x = nombreIns(id); return h('div.parte-insignia', h('span.insignia-disco.ganada', { class: an(animar?.insignias?.has(id), 'entra') }, icono(x.icono)),
       h('div', h('span.small.muted', 'Insignia nueva'), h('strong', x.nombre), h('span.small', x.texto))); }),
     parte.rescatadas.length ? h('p.parte-nota', `Rescatada${parte.rescatadas.length > 1 ? 's' : ''}: ${parte.rescatadas.slice(0, 3).map((i) => `«${i.etiqueta}»`).join(', ')}${parte.rescatadas.length > 3 ? ` y ${parte.rescatadas.length - 3} más` : ''}.`) : null,
     parte.flojas.length ? h('p.parte-nota', `Siguen flojas: ${parte.flojas.slice(0, 3).map((i) => `«${i.etiqueta}»`).join(', ')}${parte.flojas.length > 3 ? ` y ${parte.flojas.length - 3} más` : ''}.`) : null,

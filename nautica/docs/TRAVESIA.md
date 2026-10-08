@@ -25,6 +25,7 @@ almacén), `src/ui/views/travesia.js` (pantallas, tarjeta de Hoy y parte). Tests
 | `#/<tit>/travesia/insignias` | Rejilla de insignias con su detalle y la escalera de rangos |
 | Hoy | Tarjeta «Tu travesía» bajo la sesión (las cuatro pestañas no cambian) |
 | Más, Mi progreso | Enlace a la travesía |
+| `#/<tit>/temario` | Un faro por **tema** con el mismo criterio (`luzDeFaro`, `farosPorTema`; ver docs/ICONOS.md) |
 | `#/<tit>/sesion` (al terminar) | Parte de travesía arriba del resumen |
 
 La ficha de una idea abierta desde la travesía vuelve a ella (`?desde=travesia/<faro>`).

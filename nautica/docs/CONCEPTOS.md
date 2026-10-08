@@ -221,3 +221,7 @@ Todo depende de que el banco activo tenga etiquetas (`conceptosDelBanco(eje, tit
 - **Temario**: en cada clase, sus ideas (sabidas, flojas, sin ver); de las flojas, la clase donde se enseñan (`clases`)
   y su mapa o lámina (`dondeSeEnsena`).
 - Pendiente: clases, láminas, mapas, podcast y chuleta etiquetados con los mismos ids.
+
+## Repaso con ficha
+
+En el repaso de fallos (`#/<tit>/teoria/repaso`) cada pregunta con concepto lleva, encima, «Repasar la ficha antes de responder» (sin nombrar la idea: a veces el nombre delata la respuesta; con dos etiquetas, «Ficha 1 · Ficha 2»). Tras responder, la corrección ofrece siempre la ficha con el nombre de la idea, acierte o falle. La ficha vuelve al repaso (`?desde=repaso`) y abrirla cuenta como vista. Los exámenes y simulacros no la enlazan.

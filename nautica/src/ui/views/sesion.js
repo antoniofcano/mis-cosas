@@ -8,8 +8,20 @@ import { cargarBanco } from '../../bancos/index.js';
 import { bloque } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
 import { deducirFase, componerSesion, lineaManana, resumenSesion } from '../../course/sesion.js';
+import { itemsRepaso, diaLocal } from '../../course/repaso.js';
 import { leerSesion } from '../sesion.js';
+import { conceptosDelBanco } from '../concepto.js';
 import { cuenta } from '../../texto.js';
+
+const MAX_GRUPOS = 10; // en un simulacro salen muchas ideas: las que fallan siempre; de las sabidas, hasta completar
+
+/** Detalle de un grupo del resumen: por concepto, si lo sabe y cuándo vuelve (como en la maqueta); por tema, como siempre. */
+export function detalleGrupo(g) {
+  if (!g.concepto) return g.sabido ? `${g.bien} de ${g.total} bien` : `${g.bien} de ${g.total} bien · las falladas vuelven mañana con su repaso`;
+  if (!g.sabido) return 'A repasar: vuelve mañana con otra pregunta';
+  if (g.vuelve) return `Lo sabes: vuelve ${g.vuelve === 1 ? 'mañana' : `dentro de ${cuenta(g.vuelve, 'día')}`} con otra pregunta`;
+  return g.total > 1 ? `Lo sabes: ${g.bien} de ${g.total} bien` : 'Lo sabes';
+}
 
 const DIA = 864e5;
 
@@ -47,19 +59,26 @@ export function sesionView({ progress, tit }) {
     h('span.tx', h('strong', p.titulo), h('span.muted.small', p.estado === 'hecho' ? p.sub : `Saltado · ${p.sub}`))));
   setChildren(trabajado, pasos);
 
-  cargarBanco(currentEje(progress), tit).then((banco) => {
-    const r = resumenSesion(s, { respuestas: progress.get().exams, porId: banco.porId, temaDe: (ut) => bloque(T.estructura, ut)?.titulo ?? `Tema ${ut}`, minutosHoy: progress.minutosHoy() });
+  const eje = currentEje(progress);
+  Promise.all([cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]).then(([banco, ic]) => {
+    // Con conceptos, lo trabajado va por idea (y cuándo vuelve cada una al repaso); sin ellos, por tema.
+    const hoy = diaLocal();
+    const prox = new Map(ic ? itemsRepaso(banco.estudio, progress.get().exams, hoy, { principalDe: ic.principalDe, estado: progress.repasoConceptos(banco.eje.id, tit) })
+      .filter((x) => x.concepto).map((x) => [x.concepto, x.rep.prox]) : []);
+    const r = resumenSesion(s, { respuestas: progress.get().exams, porId: banco.porId, temaDe: (ut) => bloque(T.estructura, ut)?.titulo ?? `Tema ${ut}`, minutosHoy: progress.minutosHoy(),
+      ...(ic ? { conceptoDe: ic.principalDe, etiquetaDe: (c) => ic.concepto(c)?.etiqueta ?? c, proxDe: (c) => prox.get(c) ?? null, hoy } : {}) });
     const tiempo = r.minutos ? `, en ${cuenta(r.minutos, 'minuto')}` : '';
     linea.textContent = r.total ? `${r.aciertos} de ${cuenta(r.total, 'pregunta')} bien${tiempo}.` : `${r.hechos} de ${cuenta(r.pasos, 'paso')} hechos${tiempo}.`;
-    // Por tema (o por concepto, cuando haya etiquetas): lo que sale bien y lo que vuelve mañana.
     if (r.grupos.length) {
-      setChildren(trabajado, r.grupos.map((g) => {
-        const todo = g.bien === g.total;
-        return h('li', { class: todo ? 'ok' : 'mal' }, h('span.punto', { 'aria-hidden': 'true' }),
-          h('span.tx', h('strong', g.nombre), h('span.muted.small', todo ? `${g.bien} de ${g.total} bien` : `${g.bien} de ${g.total} bien · las falladas vuelven mañana con su repaso`)));
-      }), h('li.pasos-hechos', h('span.muted.small', `Pasos: ${r.hechos} de ${r.pasos} hechos${r.saltados ? ` (${r.saltados} saltado${r.saltados > 1 ? 's' : ''})` : ''}.`)));
+      const flojos = r.grupos.filter((g) => !g.sabido);
+      const vistos = [...flojos, ...r.grupos.filter((g) => g.sabido).slice(0, Math.max(0, MAX_GRUPOS - flojos.length))];
+      const resto = r.grupos.filter((g) => !vistos.includes(g));
+      setChildren(trabajado, vistos.map((g) => h('li', { class: g.sabido ? 'ok' : 'mal' }, h('span.punto', { 'aria-hidden': 'true' }),
+        h('span.tx', h('strong', g.nombre), h('span.muted.small', detalleGrupo(g))))),
+      resto.length ? h('li.mas-ideas', h('span.muted.small', `Y ${cuenta(resto.length, ic ? 'idea más, también bien' : 'tema más, también bien', ic ? 'ideas más, todas bien' : 'temas más, todos bien')}.`)) : null,
+      h('li.pasos-hechos', h('span.muted.small', `Pasos: ${r.hechos} de ${r.pasos} hechos${r.saltados ? ` (${r.saltados} saltado${r.saltados > 1 ? 's' : ''})` : ''}.`)));
     }
-    summaryText = `VISTA resumen de la sesión ${T.sigla}: ${linea.textContent} · ${r.grupos.map((g) => `${g.nombre} ${g.bien}/${g.total}`).join(', ')}`;
+    summaryText = `VISTA resumen de la sesión ${T.sigla}: ${linea.textContent} · ${r.grupos.map((g) => `${g.nombre} ${g.bien}/${g.total}${g.concepto ? ` (${detalleGrupo(g)})` : ''}`).join(', ')}`;
   }).catch(() => { linea.textContent = `${s.pasos.filter((p) => p.estado === 'hecho').length} de ${cuenta(s.pasos.length, 'paso')} hechos.`; });
 
   // Mañana: la sesión que tocaría mañana con lo hecho hasta ahora (sin guardar nada del plan).

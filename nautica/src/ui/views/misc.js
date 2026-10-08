@@ -18,6 +18,40 @@ import { resetRaster } from '../chart/raster.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { avanceCamino } from '../../course/calendario.js';
 import { cuenta, fechaLarga } from '../../texto.js';
+import { conceptosPorTema } from '../../course/listo.js';
+import { clasesDeCurso, filaIdea } from '../concepto.js';
+import { cargarMapas } from './mapas.js';
+
+/**
+ * «Ideas por dominar» (con etiquetas de conceptos): en cada tema, cuántas ideas sabe el alumno, cuáles le cuestan (con
+ * la clase donde se enseñan y su mapa o lámina) y cuántas no ha visto. Es apoyo de «¿Estás listo?»: no cambia su
+ * probabilidad, que sigue saliendo de los aciertos por tema. null sin etiquetas.
+ */
+function seccionIdeas(tit, temasOrden, ideas, curso) {
+  if (!ideas?.length) return { el: null, texto: '' };
+  const porUt = new Map(ideas.map((t) => [t.ut, t]));
+  const clases = clasesDeCurso(curso);
+  const listas = [];
+  const el = h('section.ideas-tema', h('h2', 'Ideas por dominar'),
+    h('p.muted.small', 'Apoyo para «¿Estás listo?»: la probabilidad de aprobar se sigue calculando con tus aciertos por tema. Aquí ves qué ideas concretas te faltan en cada uno.'),
+    temasOrden.map(({ b }) => {
+      const t = porUt.get(b.ut);
+      if (!t) return null;
+      const ul = h('ul.ideas-flojas');
+      listas.push([ul, t]);
+      const sinVer = t.sinVer.map((c) => c.etiqueta);
+      return h('details.ideas-de-tema', { open: t.flojas.length > 0 },
+        h('summary', h('span.idea-tema-titulo', `${b.icon} ${b.titulo}`),
+          h('span.idea-tema-dato', [`${t.sabidas} de ${cuenta(t.total, 'idea')} sabidas`, t.flojas.length ? cuenta(t.flojas.length, 'floja', 'flojas') : null, sinVer.length ? `${cuenta(sinVer.length, 'sin ver', 'sin ver')}` : null].filter(Boolean).join(' · '))),
+        t.flojas.length ? ul : h('p.muted.small', t.sabidas === t.total ? 'Todas sabidas.' : 'Ninguna floja.'),
+        sinVer.length ? h('p.muted.small', `Sin ver: ${sinVer.slice(0, 6).join(' · ')}${sinVer.length > 6 ? ` y ${cuenta(sinVer.length - 6, 'más', 'más')}` : ''}.`) : null);
+    }));
+  const pinta = (mapas) => { for (const [ul, t] of listas) ul.replaceChildren(...t.flojas.map((c) => filaIdea(c, tit, clases, mapas))); };
+  pinta([]);
+  cargarMapas().then(pinta).catch(() => {});
+  const texto = `IDEAS POR DOMINAR (apoyo, no cambia la probabilidad): ${ideas.map((t) => `${t.titulo} ${t.sabidas}/${t.total} sabidas, flojas: ${t.flojas.map((c) => c.etiqueta).join('; ') || '—'}, sin ver ${t.sinVer.length}`).join(' | ')}`;
+  return { el, texto };
+}
 
 export function theoryView({ tit }) {
   const el = h('div.theory',
@@ -70,6 +104,7 @@ export function progressView({ progress, tit }) {
               h('span.clase-floja-dato', `aciertas ${c.aciertos} de ${c.hechas} · repasar la clase →`))))) : null]
             : h('p.muted', `Cuando respondas ${cuenta(MIN_DIAGNOSTICO_TEMA, 'pregunta')} de un tema, aquí verás dónde te cuesta más.`));
       })(),
+      (() => { const x = seccionIdeas(T.id, filas, conceptosPorTema(T.estructura, d.indiceConceptos, d.respuestas), d.curso); if (x.texto) resumenTemas += `\n${x.texto}`; return x.el; })(),
       h('h2', `Por temas · ${T.sigla}`),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
         h('h3', `${b.icon} ${b.titulo}`),

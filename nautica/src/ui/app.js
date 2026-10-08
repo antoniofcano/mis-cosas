@@ -13,6 +13,7 @@ import { setSharedProgress } from './chart-widget.js';
 import { transicion } from './movimiento.js';
 import { icono, conIcono } from './iconos.js';
 import { voice } from './voice.js';
+import { configurarEfectos, escucharPrimerGesto } from './efectos.js';
 import { exerciseView } from './views/exercise.js';
 import { preguntaView, listaView, legadoExamenesView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
@@ -40,7 +41,7 @@ import { podcastView } from './views/podcast.js';
 import { calculadoraView } from './views/calculadora.js';
 import { cuentasView } from './views/cuentas.js';
 import { iniciarCalculadora } from './calculadora.js';
-import { iniciarRadio, enVistaEpisodio } from './radio.js';
+import { iniciarRadio, enVistaEpisodio, radio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 import { fijarReservaAlumno, fijarConfigProfe } from '../bancos/index.js';
@@ -188,6 +189,9 @@ async function main() {
   setSharedProgress(progress);
   voice.bind(progress);
   iniciarRadio(progress);
+  // Sonidos y vibración (Ajustes; apagados por defecto): callan mientras habla el profe o suena la radio de a bordo.
+  configurarEfectos({ settings: () => progress.settings(), estaOcupado: () => voice.speaking || (radio().audio ? !radio().audio.paused : false) });
+  escucharPrimerGesto();
   iniciarCalculadora();
   let current = null;
 

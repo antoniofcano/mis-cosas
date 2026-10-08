@@ -37,7 +37,7 @@ export function masMenuView({ progress, tit }) {
       [tlink(tit, ['guia']), 'brujula', 'Cómo funciona el curso', 'El método y cómo aprobar, en 3 minutos.'],
     ]],
     ['Ajustes', [
-      ['#/ajustes', 'ajustes', 'Ajustes', 'Fecha del examen, minutos al día, titulación, letra y voz del profe.'],
+      ['#/ajustes', 'ajustes', 'Ajustes', 'Fecha del examen, minutos al día, titulación, letra, voz del profe, sonidos y vibración.'],
       ['#/profe', 'profe', 'Modo profesor', 'Para profesores: reordenar la ruta y compartir la configuración.'],
     ]],
   ];

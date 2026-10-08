@@ -1,6 +1,7 @@
 // Copia de seguridad del progreso: guardar (descargar JSON), recuperar y el recordatorio de Hoy.
 
 import { h } from './dom.js';
+import { diasParaAviso, estadoProteccion } from '../store/persistencia.js';
 
 const DIA = 864e5;
 
@@ -26,13 +27,22 @@ export function botonRecuperar(progress, texto = 'Recuperar una copia') {
   return [h('button.secondary', { type: 'button', onclick: () => input.click() }, texto), input];
 }
 
-/** Recordatorio en Hoy: ≥ 7 días con actividad desde la última copia; descartable durante 7 días. */
+/**
+ * Recordatorio en Hoy: ≥ 7 días con actividad desde la última copia (≥ 4 si el navegador no protege los datos);
+ * descartable durante 7 días.
+ */
 export function avisoCopia(progress, ahora = Date.now()) {
   const s = progress.settings();
-  if (progress.diasConActividadDesde(s.ultimaCopia) < 7 || ahora < (s.avisoCopiaHasta ?? 0)) return null;
+  if (progress.diasConActividadDesde(s.ultimaCopia) < diasParaAviso(s) || ahora < (s.avisoCopiaHasta ?? 0)) return null;
   const el = h('p.aviso-copia',
-    'Hace tiempo que no guardas una copia de tu progreso. ',
+    estadoProteccion(s).estado === 'protegido' ? 'Hace tiempo que no guardas una copia de tu progreso. ' : 'Tus datos solo están en este aparato y el navegador podría borrarlos: guarda una copia. ',
     h('button.small', { type: 'button', onclick: () => { guardarCopia(progress); el.remove(); } }, 'Guardar ahora'),
     h('button.small.secondary', { type: 'button', onclick: () => { progress.setSetting('avisoCopiaHasta', Date.now() + 7 * DIA); el.remove(); } }, 'Ahora no'));
   return el;
+}
+
+/** Líneas de «Copia de seguridad» (Más y Ajustes): si el navegador protege los datos y qué hacer si no. */
+export function lineaProteccion(progress) {
+  const e = estadoProteccion(progress.settings());
+  return h('p.small.proteccion', { class: e.estado === 'protegido' ? 'ok' : 'aviso' }, e.texto, e.consejo ? ` ${e.consejo}` : null);
 }

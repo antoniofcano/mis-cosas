@@ -10,7 +10,7 @@ import { conceptosDelBanco } from '../concepto.js';
 import { cargarBanco } from '../../bancos/index.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { APENDICE_PUBLICADO } from '../../course/apendice.js';
-import { guardarCopia, botonRecuperar } from '../copia.js';
+import { guardarCopia, botonRecuperar, lineaProteccion } from '../copia.js';
 import { fechaLarga } from '../../texto.js';
 import { icono, conIcono } from '../iconos.js';
 
@@ -69,6 +69,7 @@ export function masMenuView({ progress, tit }) {
     h('section.mas-grupo.mas-copia', h('h2.eti', 'Copia de seguridad'),
       h('p.small', 'Lo que estudias se guarda solo en este aparato. Guarda una copia de vez en cuando.'),
       copiaHecha,
+      lineaProteccion(progress),
       h('div.actions',
         h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
         botonRecuperar(progress))));

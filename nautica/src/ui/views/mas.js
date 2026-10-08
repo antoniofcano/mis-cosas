@@ -7,7 +7,7 @@ import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink, currentEje } from '../titulacion.js';
 import { voice, spanishVoices } from '../voice.js';
 import { botonesMinutos } from './bienvenida.js';
-import { guardarCopia, botonRecuperar } from '../copia.js';
+import { guardarCopia, botonRecuperar, lineaProteccion } from '../copia.js';
 import { puedeInstalar, alCambiarInstalable, instalar } from '../pwa.js';
 import { calcularPlan } from '../cierre.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
@@ -139,6 +139,7 @@ export function masView({ progress, tit, params }) {
     h('section', h('h2', conIcono('descargar', 'Copia de seguridad')),
       h('p', 'Lo que has estudiado se guarda solo en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
       copiaHecha,
+      lineaProteccion(progress),
       h('div.actions',
         h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
         botonRecuperar(progress)),

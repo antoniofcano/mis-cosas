@@ -1392,6 +1392,8 @@ body.en-sesion .barra-actividad .ba-progreso { display: none; }
 /* Encima de una pregunta de práctica: el concepto (si está etiquetada) y la calculadora (si hace falta) */
 .chips-pregunta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 .5rem; }
 .chip-concepto { display: inline-flex; align-items: center; min-height: 32px; padding: .15rem .7rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); font-size: .8rem; font-weight: 600; }
+.tanda:not(.respondida) .chip-concepto { display: none; }
+.tanda:not(.respondida) .chips-pregunta:not(:has(.chip-calculadora)) { display: none; }
 .chips-pregunta .chip-calculadora { min-height: 44px; border-radius: 999px; }
 
 /* Resumen de la sesión */

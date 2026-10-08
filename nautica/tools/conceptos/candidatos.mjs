@@ -175,6 +175,10 @@ export function lotesDeBanco(buscador, catalogo, ctx, { k = 8, tam = 40, todas =
       };
     });
     const conceptos = {};
+    // Siempre disponibles para quien etiqueta: los conceptos de carta y de corrección total (ejercicios compuestos)
+    for (const c of catalogo.conceptos) {
+      if (c.tipo === 'concepto' && !c.sustituidoPor && /^(carta\.|nav\.ct\.)/.test(c.id) && (!ctx.tit || !c.tit?.length || c.tit.includes(ctx.tit))) citados.add(c.id);
+    }
     for (const id of [...citados].sort()) {
       const c = catalogo.concepto(id);
       conceptos[id] = { etiqueta: c.etiqueta, nota: c.nota ?? '', tit: c.tit, ...(c.padre ? { padre: c.padre } : {}) };

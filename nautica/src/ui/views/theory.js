@@ -339,6 +339,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     barra.set(`Pregunta ${i + 1} de ${n}`, i / n);
     ayudas?.contexto({ ut: q.ut });
     let respondida = false;
+    box.classList.remove('respondida'); // el concepto no se enseña antes de responder: a veces delata la respuesta
     const feedback = h('div.feedback-profe', { tabindex: '-1' });
     const siguiente = h('button.grande', { type: 'button', hidden: true, onclick: () => {
       voice.stop();
@@ -349,6 +350,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     const responder = (k) => {
       if (respondida) return;
       respondida = true;
+      box.classList.add('respondida');
       crono.marca();
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;

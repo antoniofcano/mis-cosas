@@ -224,6 +224,10 @@ motor recibe además `reserva`, `pool` (`banco.final`) y `reservadas` para el ex
 - «¿Estás listo?» (`src/course/listo.js`) pesa más los exámenes inéditos: el final cuenta 3 y un simulacro o examen
   real con al menos el 60 % de preguntas nuevas (`nuevas`, guardado al empezar), 2. El simulacro elige primero las
   preguntas no vistas sin cambiar el reparto oficial y avisa cuando ya has visto el 70 % del estudio.
+  Olvido: cada respuesta pierde la mitad de su peso a los 28 días (`VIDA_MEDIA`, por días enteros; sin fecha no se
+  descuenta) y repasar la devuelve a su peso entero; con menos peso hay más incertidumbre. La probabilidad lleva un margen
+  (`margen.bajo`/`alto`, percentiles 10 y 90 de 300 sorteos del nivel real de cada tema, con semilla fija) y la línea
+  de Hoy dice «entre X y Y de cada 10» cuando el margen pasa de 1 punto de 10.
 
 ### Cuarentena
 

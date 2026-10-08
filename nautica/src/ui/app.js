@@ -29,6 +29,7 @@ import { masMenuView } from './views/mas-menu.js';
 import { sesionView } from './views/sesion.js';
 import { nivelView } from './views/nivel.js';
 import { ideaView } from './views/idea.js';
+import { travesiaView } from './views/travesia.js';
 import { pasoEnPantalla, destinoSesion, barraSesion } from './sesion.js';
 import { bibliotecaView } from './views/biblioteca.js';
 import { guiaView } from './views/guia.js';
@@ -57,6 +58,7 @@ const TIT_ROUTES = {
   sesion: sesionView, // #/<tit>/sesion: ejecutor de la sesión de hoy (reenvía al paso actual; al acabar, el resumen)
   nivel: nivelView, // #/<tit>/nivel: test de nivel por conceptos (¿ya sabes algo?) y su resultado
   idea: ideaView, // #/<tit>/idea/<idConcepto>: ficha de una idea que se resiste (nunca desde un examen)
+  travesia: travesiaView, // #/<tit>/travesia[/insignias]: la travesía (faros, rango, semana) y sus insignias; solo con banco etiquetado
   guia: guiaView, // #/<tit>/guia: cómo funciona el curso (guía de bienvenida)
   tarjetas: tarjetasView,
   plan: planView, // #/<tit>/plan: calendario hasta el examen
@@ -107,7 +109,7 @@ export function pestanaDe(parts) {
   const [a, b] = parts;
   if (!a || a === 'bienvenida' || a === 'progreso') return 'hoy';
   if (TITULACIONES[a]) {
-    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel') return 'hoy';
+    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel' || b === 'travesia') return 'hoy';
     if (['temario', 'curso', 'teoria', 'idea'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
     if (b === 'examenes' || b === 'test') return 'examen';
@@ -131,7 +133,7 @@ export function rutaEnTit(parts, id) {
   const b = parts[1];
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
   if (b === 'cuentas') return [id, 'cuentas'];
-  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas'].includes(b)) return [id, b];
+  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia'].includes(b)) return [id, b];
   return [id];
 }
 

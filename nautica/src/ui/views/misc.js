@@ -87,6 +87,7 @@ export function progressView({ progress, tit }) {
     if (fin.hay) resumenTemas += `\nEXAMEN FINAL: ${fin.desbloqueado ? 'abierto' : 'cerrado'}${fin.preparado ? ' · PREPARADO' : ''} · ${[...fin.lineasResultado, ...fin.lineas].join(' ')}`;
     setChildren(temas,
       tarjetaFinal(T, fin),
+      d.indiceConceptos ? h('p.ver-travesia', h('a.btn.secondary', { href: tlink(T.id, ['travesia']) }, 'Ver mi travesía: rango, faros e insignias')) : null,
       h('section.avance',
         h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
         h('p', lineaAvance(a, racha))),

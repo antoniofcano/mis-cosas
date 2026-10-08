@@ -12,6 +12,9 @@ import { itemsRepaso, diaLocal } from '../../course/repaso.js';
 import { leerSesion } from '../sesion.js';
 import { conceptosDelBanco, hrefFicha } from '../concepto.js';
 import { cuenta } from '../../texto.js';
+import { calcularTravesia } from '../travesia.js';
+import { parteSesion, paraManana, progresoRango, catalogoInsignias } from '../../course/travesia.js';
+import { parteTravesiaEl } from './travesia.js';
 
 const MAX_GRUPOS = 10; // en un simulacro salen muchas ideas: las que fallan siempre; de las sabidas, hasta completar
 
@@ -34,6 +37,33 @@ function marcaHecho() {
   return d;
 }
 
+/**
+ * Pinta el parte de travesía en `parteHueco` y guarda lo ganado (rango máximo, insignias). Devuelve su texto para el
+ * resumen del agente ('' si no hay parte: banco sin etiquetas o una sesión empezada antes de la travesía).
+ */
+function pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco }) {
+  if (!ic || !s.foto) return '';
+  const eje = banco.eje.id;
+  const ahora = Date.now();
+  const est = calcularTravesia(progress, eje, tit, ic, { ahora });
+  if (!est) return '';
+  // Las ideas que han salido en la sesión: solo de preguntas del estudio, respondidas desde que empezó.
+  const estudio = new Set(banco.estudio.map((q) => q.id));
+  const desde = new Date(s.inicio).toISOString();
+  const hasta = s.fin ? new Date(s.fin + 1000).toISOString() : null;
+  const tocadas = new Set();
+  for (const [id, r] of Object.entries(progress.get().exams)) if (estudio.has(id) && r?.t && r.t >= desde && (!hasta || r.t <= hasta)) ic.conceptosDe(id).forEach((c) => tocadas.add(c));
+  const guardado = progress.travesia(eje, tit);
+  const parte = parteSesion({ foto: s.foto, est, guardado, tocadas, ahora });
+  if (!parte) return '';
+  if (parte.ganadas.length || parte.reg.rango !== guardado.rango) progress.guardarTravesia(eje, tit, parte.reg);
+  const vuelve = new Map([...prox].map(([c, p]) => [c, Math.max(1, Math.round((Date.parse(`${p}T12:00`) - Date.parse(`${hoy}T12:00`)) / DIA))]));
+  const manana = paraManana({ flojas: parte.flojas, trabajadas: est.ideas.filter((i) => tocadas.has(i.id)), vuelve });
+  const sig = progresoRango(est, parte.reg.rango);
+  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.faros) }));
+  return ` · TRAVESÍA: ${parte.nuevas.length} ideas nuevas, ${parte.rescatadas.length} rescatadas, ${parte.flojas.length} siguen flojas${parte.faros.length ? `, faro encendido: ${parte.faros.map((f) => f.nombre).join(', ')}` : ''}${parte.insignias.length ? `, insignias nuevas: ${parte.insignias.join(', ')}` : ''}. ${sig.texto}`;
+}
+
 export function sesionView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const s = leerSesion(progress, tit);
@@ -45,11 +75,13 @@ export function sesionView({ progress, tit }) {
   }
   const linea = h('p.resumen-linea', '…');
   const trabajado = h('ul.trabajado');
+  const parteHueco = h('div.parte-hueco'); // el parte de travesía (solo con etiquetas de conceptos y la foto del principio)
   const manana = h('p.manana-texto', 'Calculando…');
   setChildren(el,
     marcaHecho(),
     h('h1', 'Sesión hecha'),
     linea,
+    parteHueco,
     h('section.caja-trabajado', h('h2.eti', 'Lo que has trabajado'), trabajado),
     h('section.caja-manana', h('h2.eti', 'Mañana'), manana),
     h('a.btn.grande', { href: tlink(tit) }, 'Volver a Hoy'));
@@ -80,7 +112,9 @@ export function sesionView({ progress, tit }) {
       resto.length ? h('li.mas-ideas', h('span.muted.small', `Y ${cuenta(resto.length, ic ? 'idea más, también bien' : 'tema más, también bien', ic ? 'ideas más, todas bien' : 'temas más, todos bien')}.`)) : null,
       h('li.pasos-hechos', h('span.muted.small', `Pasos: ${r.hechos} de ${r.pasos} hechos${r.saltados ? ` (${r.saltados} saltado${r.saltados > 1 ? 's' : ''})` : ''}.`)));
     }
-    summaryText = `VISTA resumen de la sesión ${T.sigla}: ${linea.textContent} · ${r.grupos.map((g) => `${g.nombre} ${g.bien}/${g.total}${g.concepto ? ` (${detalleGrupo(g)})` : ''}`).join(', ')}`;
+    // Parte de travesía: lo que cambió entre la foto del principio y ahora (ideas nuevas, rescatadas, faros, insignias).
+    const textoParte = pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco });
+    summaryText = `VISTA resumen de la sesión ${T.sigla}: ${linea.textContent}${textoParte} · ${r.grupos.map((g) => `${g.nombre} ${g.bien}/${g.total}${g.concepto ? ` (${detalleGrupo(g)})` : ''}`).join(', ')}`;
   }).catch(() => { linea.textContent = `${s.pasos.filter((p) => p.estado === 'hecho').length} de ${cuenta(s.pasos.length, 'paso')} hechos.`; });
 
   // Mañana: la sesión que tocaría mañana con lo hecho hasta ahora (sin guardar nada del plan).

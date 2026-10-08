@@ -39,9 +39,13 @@ export function masMenuView({ progress, tit }) {
   ];
   // El test de nivel, solo si el banco activo tiene sus preguntas etiquetadas por concepto (llega cuando carga).
   const filaNivel = h('li', { hidden: true });
+  const filaTravesia = h('li', { hidden: true }); // la travesía, también solo con etiquetas
   const eje = currentEje(progress);
   Promise.all([cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]).then(([banco, ic]) => {
     if (!ic) return;
+    setChildren(filaTravesia, h('a.mas-fila', { href: tlink(tit, ['travesia']) }, h('span.mas-fila-tx', h('strong', 'Tu travesía'),
+      h('span.muted.small', 'Tu rango, un faro por bloque del temario, la semana y las insignias.')), h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
+    filaTravesia.hidden = false;
     const hecho = progress.nivel(banco.eje.id, tit);
     setChildren(filaNivel, h('a.mas-fila', { href: tlink(tit, ['nivel'], hecho ? { repetir: '1' } : undefined), onclick: (ev) => {
       if (hecho && !confirm('¿Repetir el test de nivel? El resultado nuevo sustituye al anterior. Lo que respondas cuenta como cualquier respuesta.')) ev.preventDefault();
@@ -53,7 +57,7 @@ export function masMenuView({ progress, tit }) {
   const copiaHecha = h('p.muted.small', progress.settings().ultimaCopia ? `Última copia: ${fechaLarga(progress.settings().ultimaCopia)}.` : 'Aún no has guardado ninguna copia.');
   const el = h('div.mas-menu',
     h('h1', 'Más'),
-    grupos.map(([nombre, rs]) => h('section.mas-grupo', h('h2.eti', nombre), h('ul.mas-lista', rs.map(([href, t, x]) => fila(href, t, x)), nombre === 'Tu estudio' ? filaNivel : null))),
+    grupos.map(([nombre, rs]) => h('section.mas-grupo', h('h2.eti', nombre), h('ul.mas-lista', rs.map(([href, t, x]) => fila(href, t, x)), nombre === 'Tu estudio' ? [filaTravesia, filaNivel] : null))),
     h('section.mas-grupo', h('h2.eti', 'Chuletas para imprimir'),
       h('details.mas-chuletas', h('summary', `📌 La chuleta de cada tema del ${T.sigla}`),
         h('ul.mas-lista.compacta', bloquesEnOrden(T.estructura).map((b) => h('li', h('a.mas-fila', { href: tlink(tit, ['temario', String(b.ut), 'chuleta']) },
@@ -65,5 +69,5 @@ export function masMenuView({ progress, tit }) {
         h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
         botonRecuperar(progress))));
   const enlaces = grupos.flatMap(([, rs]) => rs);
-  return { el, summary: () => `VISTA más ${T.sigla}\n${enlaces.map(([href, t]) => `${t} → ${href}`).join('\n')}\nCHULETAS: #/${tit}/temario/<ut>/chuleta` };
+  return { el, summary: () => `VISTA más ${T.sigla}\n${enlaces.map(([href, t]) => `${t} → ${href}`).join('\n')}${filaTravesia.hidden ? '' : `\nTu travesía → ${tlink(tit, ['travesia'])}`}\nCHULETAS: #/${tit}/temario/<ut>/chuleta` };
 }

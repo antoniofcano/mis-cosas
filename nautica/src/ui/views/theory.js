@@ -632,6 +632,7 @@ function rapidoView({ progress, seed }) {
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
+        progress.ganarInsignia(currentEje(progress), tit0, 'guardia'); // «Guardia de 5 minutos» (src/course/travesia.js): completar la tanda
         barra.remove();
         pintarCierre(cont, progress, tit0, { icono: ok >= n - 1 ? '🎉' : '💪', titulo: `${ok} de ${n}`, lineas: ['Cinco minutos bien aprovechados. Las que has fallado vuelven mañana al repaso.'] });
         summaryText = `VISTA 5 minutos terminado: ${ok} de ${n}`;

@@ -21,6 +21,9 @@ import { episodiosDeClase, episodiosDeTema, enlaceEpisodio } from './podcast.js'
 import { poner, estadoEpisodio } from '../radio.js';
 import { clasesQueSabes, puntoDePartida } from '../../course/nivel.js';
 import { nivelEnCurso, claveNoNivel, saltarClases, empiezaPor } from './nivel.js';
+import { fotoTravesia } from '../../course/travesia.js';
+import { sincronizarTravesia } from '../travesia.js';
+import { tarjetaTravesiaHoy } from './travesia.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -128,6 +131,7 @@ export function hoyView({ progress, tit }) {
     pildora);
   const el = h('div.hoy', cabecera, indicador, h('p.muted', 'Preparando tu sesión…'));
   let summaryText = `VISTA hoy ${T.sigla} (cargando)`;
+  let travesiaTexto = '';
 
   calcularPlan(progress, tit).then((d) => {
     // Todo sale del motor de seguimiento (st) y de la sesión (course/sesion.js): esta pantalla solo pinta.
@@ -162,7 +166,9 @@ export function hoyView({ progress, tit }) {
 
     const empezar = (comp) => {
       const hrefs = comp.pasos.map((p) => hrefActividad(tit, p));
-      guardarSesion(progress, tit, nuevaSesion(tit, comp, { hrefs, minutosAntes: progress.minutosHoy() }));
+      // Foto de la travesía al empezar (solo con etiquetas): con ella se calcula el parte al terminar.
+      const sy = d.indiceConceptos ? sincronizarTravesia(progress, d.banco.eje.id, tit, d.indiceConceptos, { respuestas: progress.get().exams }) : null;
+      guardarSesion(progress, tit, nuevaSesion(tit, comp, { hrefs, minutosAntes: progress.minutosHoy(), foto: sy ? fotoTravesia(sy.est, sy.reg) : null }));
       location.hash = tlink(tit, ['sesion']);
     };
     const descartarExamen = () => h('button.linklike.descartar-examen', { type: 'button', onclick: () => {
@@ -260,6 +266,11 @@ export function hoyView({ progress, tit }) {
     pintaFase();
     pintaSesion();
 
+    // La travesía (solo con etiquetas de conceptos): rango, ideas dominadas y faros; la pantalla entera está en #/<tit>/travesia.
+    const sy = ic ? sincronizarTravesia(progress, eje, tit, ic, { respuestas: d.respuestas, ahora: d.ahora }) : null;
+    const travesiaEl = sy ? tarjetaTravesiaHoy(tit, sy) : null;
+    if (sy) travesiaTexto = `\nTRAVESÍA: rango ${sy.rango.actual.nombre} · ${sy.est.dominadas}/${sy.est.total} ideas dominadas · ${sy.est.faros.filter((f) => f.estado === 'on').length}/${sy.est.faros.length} faros → #/${tit}/travesia`;
+
     // Cómo vas: solo si hay algo que decidir (no llegas a tiempo) o un plan que seguir.
     const ritmo = m.aviso || (ps && m.tipo === 'toca') ? h('div.ritmo', { class: m.aviso ? 'warn' : '' },
       h('p', marcaEstado(m.tipo === 'toca' && ps ? ps.seg.estado : 'al-dia')[0], m.texto, ps && m.tipo === 'toca' ? [' ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan')] : null),
@@ -276,6 +287,7 @@ export function hoyView({ progress, tit }) {
       faseEl,
       ofertaNivel(),
       sesionEl,
+      travesiaEl,
       ritmo,
       podcastHueco,
       meta,
@@ -308,5 +320,5 @@ export function hoyView({ progress, tit }) {
     );
   }).catch((e) => setChildren(el, cabecera, h('p.warn', `No se pudo preparar el plan: ${e.message}`)));
 
-  return { el, summary: () => summaryText };
+  return { el, summary: () => summaryText + travesiaTexto };
 }

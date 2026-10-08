@@ -9,6 +9,7 @@ import { EJE_POR_DEFECTO } from '../bancos/registro.js';
 const KEY = 'nautica.progress.v1';
 const DIA = 864e5;
 const DIAS_GUARDADOS = 60;
+const VERSION_TRAVESIA_GUARDADA = 1; // versión del campo `travesia` (v:1 = { v, bancos: { 'eje/tit': { rango, insignias: { id: ISO } } } })
 
 const empty = () => ({ version: 1, exercises: {}, exams: {}, settings: { level: 'PER', toleranceFactor: 1 } });
 
@@ -44,6 +45,13 @@ export function createProgressStore(storage = safeStorage()) {
     data.settings.eje ??= EJE_POR_DEFECTO;
     if (Array.isArray(data.tests)) data.tests = data.tests.map((t) => (t?.eje ? t : { ...t, eje: EJE_POR_DEFECTO }));
     if (data.testEnCurso && !data.testEnCurso.eje) data.testEnCurso = { ...data.testEnCurso, eje: EJE_POR_DEFECTO };
+    // Travesía (src/course/travesia.js): campo opcional con su propia versión. Sin él (progreso de antes) no hay nada que
+    // migrar: se crea al guardar el primer rango; uno mal formado se descarta (se recalcula solo desde los datos).
+    if (data.travesia != null) {
+      const t = data.travesia;
+      if (typeof t !== 'object' || Array.isArray(t) || typeof t.bancos !== 'object' || t.bancos == null) delete data.travesia;
+      else t.v ??= VERSION_TRAVESIA_GUARDADA;
+    }
   };
   normaliza();
 
@@ -114,6 +122,24 @@ export function createProgressStore(storage = safeStorage()) {
       const k = `${eje}/${tit}`;
       data.repConceptos = { ...(data.repConceptos ?? {}), [k]: { ...(data.repConceptos?.[k] ?? {}), [concepto]: estado } };
       save();
+    },
+
+    /**
+     * Travesía (src/course/travesia.js) de un eje y una titulación: { rango, insignias: { [id]: ISO } }. El rango es el
+     * máximo alcanzado (nunca baja) y las insignias, una vez ganadas, se quedan. Un progreso sin este campo se lee igual.
+     */
+    travesia: (eje, tit) => data.travesia?.bancos?.[`${eje}/${tit}`] ?? { rango: null, insignias: {} },
+    guardarTravesia(eje, tit, reg) {
+      const antes = data.travesia ?? { v: VERSION_TRAVESIA_GUARDADA, bancos: {} };
+      data.travesia = { ...antes, v: antes.v ?? VERSION_TRAVESIA_GUARDADA, bancos: { ...antes.bancos, [`${eje}/${tit}`]: { rango: reg.rango ?? null, insignias: { ...(reg.insignias ?? {}) } } } };
+      save();
+    },
+    /** Apunta una insignia que no sale de ningún otro dato (la «Guardia de 5 minutos»). Idempotente. */
+    ganarInsignia(eje, tit, id, t = new Date().toISOString()) {
+      const r = store.travesia(eje, tit);
+      if (r.insignias[id]) return false;
+      store.guardarTravesia(eje, tit, { rango: r.rango, insignias: { ...r.insignias, [id]: t } });
+      return true;
     },
 
     /** Registra un test completo (simulacro o examen real). */

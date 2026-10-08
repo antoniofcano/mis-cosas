@@ -1869,3 +1869,13 @@ details.entrada-pasos[open] .entrada-pasos-ver::after { transform: rotate(180deg
 .proteccion.ok { border-color: var(--ok); }
 .proteccion.aviso { border-color: var(--warn); }
 /* ---- fin Protección de los datos ---- */
+
+/* ---- Instalar la app ---- */
+.aviso-instalar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .7rem .85rem; display: flex; flex-direction: column; gap: .5rem; }
+.aviso-instalar-cab button { white-space: nowrap; flex: none; }
+.aviso-instalar-cab { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+.instalar-ayuda { display: flex; flex-direction: column; gap: .5rem; }
+.pasos-instalar { margin: 0; padding-left: 1.3rem; line-height: 1.5; }
+.mas-instalar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .6rem .85rem; }
+.mas-instalar > summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+/* ---- fin Instalar la app ---- */

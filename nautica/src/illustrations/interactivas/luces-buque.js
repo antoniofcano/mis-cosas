@@ -52,7 +52,7 @@ export function planta(aspecto, { ocultarObservador = false, situaciones = false
   else out.push(etiqueta(CX, 50, 'TOPE 225°', { color: T.magenta, borde: T.magenta, p: 'tope' }));
   out.push(rotulo(CX, 22, 'PROA · 000°', { size: TXT.min, weight: 700, estilo: 'cap', espacio: 2 }));
   if (situaciones) {
-    out.push(cartela(232, 124, 'SE APARTA', 'él', { color: T.verdeTxt, ancho: 92, p: 'verde' }), cartela(126, 124, 'SE APARTA', 'tú', { color: T.rojoTxt, ancho: 92, p: 'roja' }),
+    out.push(cartela(226, 124, 'SE APARTA', 'él', { color: T.verdeTxt, ancho: 84, size: TXT.min, espacio: 0.4, p: 'verde' }), cartela(132, 124, 'SE APARTA', 'tú', { color: T.rojoTxt, ancho: 84, size: TXT.min, espacio: 0.4, p: 'roja' }),
       cartela(CX, 236, 'ALCANCE', 'te apartas tú', { ancho: 106, p: 'alcance' }));
   } else {
     out.push(cartela(232, 124, 'VERDE', 'estribor', { color: T.verdeTxt, ancho: 84, p: 'verde' }), cartela(126, 124, 'ROJA', 'babor', { color: T.rojoTxt, ancho: 84, p: 'roja' }),

@@ -85,15 +85,15 @@ export function anchoTexto(t, size, estilo = 'sans') {
  * Cartela: rectángulo con doble filete y uno o dos rótulos (título en versalitas, subtítulo en cursiva serif).
  * (cx, cy) es el centro.
  */
-export function cartela(cx, cy, titulo, sub = null, { color = T.tinta, ancho = null, p = null, fondo = T.papel, size = TXT.rotulo } = {}) {
+export function cartela(cx, cy, titulo, sub = null, { color = T.tinta, ancho = null, p = null, fondo = T.papel, size = TXT.rotulo, espacio = 1.4 } = {}) {
   const w = ancho ?? Math.max(anchoTexto(titulo, size, 'cap'), sub ? anchoTexto(sub, TXT.min + 0.5, 'serif') : 0) + 18;
   const h = sub ? 38 : 24;
   const x = cx - w / 2;
   const y = cy - h / 2;
   const o = [`<g${parte(p)}><rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${h}" fill="${fondo}" stroke="${T.tinta}" stroke-width="1.2"/>`,
     `<rect x="${f1(x + 2.5)}" y="${f1(y + 2.5)}" width="${f1(w - 5)}" height="${h - 5}" fill="none" stroke="${T.tinta}" stroke-width=".5"/>`];
-  if (sub) o.push(rotulo(cx, y + 16, titulo, { size, weight: 700, estilo: 'cap', color }), rotulo(cx, y + 30, sub, { size: TXT.min + 0.5, estilo: 'serif', italic: true }));
-  else o.push(rotulo(cx, y + 16.5, titulo, { size, weight: 700, estilo: 'cap', color }));
+  if (sub) o.push(rotulo(cx, y + 16, titulo, { size, weight: 700, estilo: 'cap', color, espacio }), rotulo(cx, y + 30, sub, { size: TXT.min + 0.5, estilo: 'serif', italic: true }));
+  else o.push(rotulo(cx, y + 16.5, titulo, { size, weight: 700, estilo: 'cap', color, espacio }));
   o.push('</g>');
   return o.join('');
 }

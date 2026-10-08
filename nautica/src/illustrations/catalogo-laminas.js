@@ -5,6 +5,7 @@ import { BUOYS } from './buoys.js';
 import { SHIPS } from './ships.js';
 import { SENALES } from './situations.js';
 import { CATALOGO, renderIllustration } from './index.js';
+import { marcoDe } from './marcos.js';
 import { bloquesEnOrden } from '../theory/blocks.js';
 
 const boyas = [{ tipo: 'cardinales' }, ...Object.keys(BUOYS).filter((k) => !k.startsWith('cardinal')).map((clase) => ({ tipo: 'boya', clase }))];
@@ -78,6 +79,9 @@ const sinEtiquetas = (s) => s.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').rep
 export function fichaLamina(spec) {
   const r = renderIllustration(spec);
   if (!r) return null;
+  // Láminas en estilo C: su título y su frase clave están escritos a mano en su marco.
+  const m = marcoDe(spec);
+  if (m) return { titulo: m.titulo, resumen: m.clave, buscar: [m.titulo, m.clave, m.tema, spec.tipo.replace(/-/g, ' '), m.nota ?? '', r.caption ?? ''].join(' ') };
   const rotulo = r.svg.match(/class="il-title[^"]*"[^>]*>([\s\S]*?)<\/text>/)?.[1];
   // Un rótulo muy corto (el «Q» de un ritmo) dice poco: entonces vale más el nombre accesible («Ritmo Q»).
   const nombre = r.svg.match(/aria-label="([^"]*)"/)?.[1];

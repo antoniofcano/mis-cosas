@@ -5,6 +5,7 @@
 import { h, setChildren } from '../dom.js';
 import { renderIllustration } from '../../illustrations/index.js';
 import { catalogoLaminas } from '../../illustrations/catalogo-laminas.js';
+import { marcoDe } from '../../illustrations/marcos.js';
 import { loadCourse } from '../../store/datasets.js';
 import { illustrationEls } from '../illustration.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
@@ -90,9 +91,11 @@ function laminaView({ tit, params }) {
     const l = porId.get(id);
     if (!l) { setChildren(cuerpo, h('h1', 'Lámina no encontrada'), h('p', h('a', { href: tlink(T.id, ['laminas']) }, 'Ver todas las láminas'))); return; }
     const bloque = new Map(T.estructura.bloques.map((b) => [b.ut, b]));
+    // En estilo C, el título de la ficha es el del marco de la lámina (src/illustrations/marcos.js).
+    const conMarco = !!marcoDe(l.spec);
     setChildren(cuerpo,
-      h('h1', l.titulo),
-      h('div.il-grid.una', illustrationEls(l.spec)),
+      conMarco ? null : h('h1', l.titulo),
+      h('div.il-grid.una', illustrationEls(l.spec, { nivel: 1 })),
       h('section', h('h2', 'Dónde aparece'),
         h('div.temas-lamina', l.temas.map((ut) => h('a.chip', { href: tlink(T.id, ['temario', String(ut)]) }, conIcono(bloque.get(ut).ico, bloque.get(ut).titulo)))),
         l.clases.length ? h('ul.clases-lamina', l.clases.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) }, conIcono('clase', c.titulo))))) : null));

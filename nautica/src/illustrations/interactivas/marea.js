@@ -6,6 +6,8 @@ import { svgOpen, texto, num, f1 } from './kit.js';
 
 const BM = { hora: 8 * 60, h: 0.6 };
 const PM = { hora: 14 * 60, h: 3.4 };
+/** La marea del ejemplo (la usa también el marco de la lámina). */
+export const MAREA_EJEMPLO = { bm: BM, pm: PM };
 const A = PM.h - BM.h;
 const D = PM.hora - BM.hora;
 const SONDA = 1.2; // sonda de la carta en el bajo

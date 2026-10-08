@@ -19,6 +19,8 @@ import { ejesElegibles, indicadorEje } from '../eje.js';
 import { leerSesion, guardarSesion } from '../sesion.js';
 import { episodiosDeClase, episodiosDeTema, enlaceEpisodio } from './podcast.js';
 import { poner, estadoEpisodio } from '../radio.js';
+import { clasesQueSabes, puntoDePartida } from '../../course/nivel.js';
+import { nivelEnCurso, claveNoNivel, saltarClases, empiezaPor } from './nivel.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -167,6 +169,41 @@ export function hoyView({ progress, tit }) {
       if (confirm('¿Descartar el examen que tienes a medias? Se perderán sus respuestas.')) { progress.saveTestEnCurso(null); dispatchEvent(new HashChangeEvent('hashchange')); }
     } }, 'Descartar el examen a medias');
 
+    // Test de nivel (solo con etiquetas): la oferta al alumno nuevo, su punto de partida y las clases que ya sabe.
+    const ic = d.indiceConceptos;
+    const eje = d.banco.eje.id;
+    const nivel = ic ? progress.nivel(eje, tit) : null;
+    const nivelMedias = ic ? nivelEnCurso(progress, eje, tit) : null;
+    const respondidas = d.banco.estudio.filter((q) => d.respuestas[q.id]).length;
+    const terminadas = st.temas.reduce((x, t) => x + t.e.clases.terminadas, 0);
+    const nuevo = respondidas < 40 && terminadas < 5;
+    const saltables = ic ? clasesQueSabes({ curso: d.curso, ic, respuestas: d.respuestas, regs: d.regs, nivel, tit, ahora: d.ahora }) : [];
+    const ofertaNivel = () => {
+      if (!ic || nivel || (!nivelMedias && (!nuevo || s[claveNoNivel(eje, tit)]))) return null;
+      const caja = h('section.nivel-oferta',
+        h('p', h('strong', nivelMedias ? 'Tienes el test de nivel a medias.' : '¿Ya sabes algo?'),
+          nivelMedias ? ' Sigue donde lo dejaste.' : ' Haz un test de nivel: unas 20 preguntas, 8 minutos. Te saltas las clases que ya sabes.'),
+        h('div.guia-oferta-botones',
+          h('a.btn', { href: tlink(tit, ['nivel']) }, nivelMedias ? 'Seguir el test' : 'Hacer el test de nivel'),
+          nivelMedias ? null : h('button.secondary', { type: 'button', onclick: () => { progress.setSetting(claveNoNivel(eje, tit), true); caja.remove(); } }, 'Ahora no')));
+      return caja;
+    };
+    const lineaPartida = () => {
+      if (!nivel || real.id !== 'aprender') return null;
+      const p = puntoDePartida(nivel, ic, d.respuestas);
+      const primera = empiezaPor(d.curso, d.regs, d.respuestas, saltables);
+      return h('p.punto-partida', h('strong', 'Tu punto de partida: '), `dominas ${p.sabidas} de ${cuenta(p.total, 'idea')} del test`,
+        primera ? ['; empiezas por ', h('strong', `«${primera.titulo}»`)] : '', '. ', h('a', { href: tlink(tit, ['nivel']) }, 'Ver el resultado'));
+    };
+    // «Ya lo sabes: saltar» en la clase con que empieza la sesión, si ya sabe lo que enseña.
+    const ofertaSaltar = (pasos) => {
+      const p = pasos.find((x) => x.tipo === 'clase');
+      const x = p && saltables.find((y) => y.l.id === p.ruta[1]);
+      if (!x) return null;
+      return h('p.saltar-clase', `«${x.l.titulo}» ya la sabes${x.porTest ? ' (test de nivel)' : ''}. `,
+        h('button.linklike', { type: 'button', onclick: () => { saltarClases(progress, [x.l.id]); dispatchEvent(new HashChangeEvent('hashchange')); } }, 'Ya lo sabes: saltar'));
+    };
+
     // Diagnóstico por concepto (solo con etiquetas y si hay ideas flojas): «Te cuesta: …».
     const cuesta = lineaTeCuesta(st);
     const lineaCuesta = () => (cuesta ? h('p.sesion-cuesta', h('strong', 'Te cuesta: '), cuesta.replace(/^Te cuesta: /, '')) : null);
@@ -204,8 +241,10 @@ export function hoyView({ progress, tit }) {
       } else {
         setChildren(sesionEl,
           h('div.sesion-cab', h('h2#sesion-titulo', comp.titulo), h('span.sesion-min', `${comp.minutos} min`)),
+          lineaPartida(),
           lineaCuesta(),
           listaPasos(comp.pasos),
+          ofertaSaltar(comp.pasos),
           h('button.boton-sesion', { type: 'button', onclick: () => empezar(comp) }, 'Empezar la sesión'),
           h('p.sesion-nota', 'Puedes parar cuando quieras: se guarda por dónde vas.'),
           comp.pasos[0]?.tipo === 'examen-en-curso' ? descartarExamen() : null);
@@ -215,6 +254,7 @@ export function hoyView({ progress, tit }) {
         `SESIÓN${guardada ? ` (${guardada.estado})` : ''}: ${(guardada?.pasos ?? comp.pasos).map((p, j) => `${j + 1}. ${p.titulo} — ${p.sub} (${p.minutos} min)${p.estado && p.estado !== 'pendiente' ? ` [${p.estado}]` : ''} → ${p.href ?? hrefActividad(tit, p)}`).join(' · ')}\n` +
         `EMPEZAR: #/${tit}/sesion (ejecutor) · DÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''}\nLISTO: ${lineaListo(listo)}\n` +
         (cuesta ? `DIAGNÓSTICO: ${cuesta}\n` : '') +
+        (nivel ? `NIVEL: ${nivel.aciertos}/${nivel.total} bien · saltables ${saltables.map((x) => x.l.id).join(', ') || '—'}\n` : ic && nuevo ? `NIVEL: sin hacer (oferta${s[claveNoNivel(eje, tit)] ? ' descartada' : ''}) → #/${tit}/nivel\n` : '') +
         `AVANCE: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${cuenta(racha, 'día')}`;
     };
     pintaFase();
@@ -234,6 +274,7 @@ export function hoyView({ progress, tit }) {
       cabecera,
       indicador,
       faseEl,
+      ofertaNivel(),
       sesionEl,
       ritmo,
       podcastHueco,

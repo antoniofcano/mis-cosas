@@ -7,6 +7,8 @@ import { cargarBanco } from '../bancos/index.js';
 import { cargarConceptos } from '../conceptos/index.js';
 import { nodosDeClase } from '../course/mapas.js';
 import { idLamina } from '../illustrations/catalogo-laminas.js';
+import { resumenDominio } from '../conceptos/conceptos.js';
+import { necesitaFicha, fichaPendiente } from '../course/ficha.js';
 
 const conEtiquetas = new WeakMap(); // banco → Promise<boolean>
 
@@ -73,12 +75,30 @@ export function dondeSeEnsena(concepto, tit, clases, mapas = []) {
 }
 
 /**
- * Una idea floja como fila: su nombre y los enlaces a la clase donde se enseña (salvo que sea `claseActual`) y a su mapa
- * o lámina.
+ * Dirección de la ficha de una idea (#/<tit>/idea/<id>). `desde` dice adónde vuelve: 'repaso', 'sesion' o
+ * 'temario/<ut>' (por defecto, Hoy). La ficha no se enlaza nunca desde un examen ni un simulacro.
  */
-export function filaIdea(c, tit, clases, mapas, { claseActual = null } = {}) {
+export const hrefFicha = (tit, id, desde = null) => tlink(tit, ['idea', id], desde ? { desde } : undefined);
+
+/**
+ * ¿Le toca la ficha a esta idea? `necesita`: está floja por segunda vez; `pendiente`: y no se ha abierto la ficha desde
+ * su último fallo (entonces el repaso no la vuelve a preguntar hasta que la mire).
+ */
+export function estadoFicha(ic, idConcepto, respuestas = {}, vistas = {}) {
+  if (!ic?.concepto(idConcepto)) return { necesita: false, pendiente: false };
+  const qs = ic.preguntasDe(idConcepto, { soloEstudio: false, conDescendientes: false });
+  const d = resumenDominio(qs, respuestas);
+  return { necesita: necesitaFicha(d, qs, respuestas), pendiente: fichaPendiente(d, qs, respuestas, vistas[idConcepto]), d };
+}
+
+/**
+ * Una idea floja como fila: su nombre y los enlaces a su ficha (con `ficha`), a la clase donde se enseña (salvo que sea
+ * `claseActual`) y a su mapa o lámina.
+ */
+export function filaIdea(c, tit, clases, mapas, { claseActual = null, ficha = null } = {}) {
   const d = dondeSeEnsena(c, tit, clases, mapas);
   const enlaces = [
+    ficha ? h('a.enlace-ficha', { href: hrefFicha(tit, c.id, ficha) }, 'Ver la ficha') : null,
     d && d.clase.id !== claseActual ? h('a', { href: d.clase.href }, `Clase: ${d.clase.titulo}`) : null,
     d?.mapa ? h('a', { href: d.mapa.href }, `Mapa: ${d.mapa.titulo}`) : null,
     d?.lamina ? h('a', { href: d.lamina.href }, 'Ver la lámina') : null,

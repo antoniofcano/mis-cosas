@@ -36,7 +36,7 @@ import { calculadoraPermitida } from '../../calculadora/reglas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { botonesSesion } from '../sesion.js';
-import { etiquetaConcepto, conceptosDelBanco } from '../concepto.js';
+import { etiquetaConcepto, conceptosDelBanco, estadoFicha, hrefFicha } from '../concepto.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -328,15 +328,18 @@ export function examenesView({ ctx, progress, tit }) {
  * avisoDe(i, q): un aviso encima de la pregunta i (p. ej. «te la traigo con otra redacción»), o null.
  * alResponder(i, q, ok): se llama tras guardar la respuesta; si devuelve un texto, va al final de la corrección.
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, onFin, onSummary = () => {} }) {
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, registrar = null, contador = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
-  const n = preguntas.length;
+  // La lista puede crecer mientras se responde (test de nivel adaptativo: alResponder añade la siguiente).
+  const total = () => preguntas.length;
+  const cuenta_ = (j) => contador?.(j) ?? { texto: `Pregunta ${j + 1} de ${total()}`, fraccion: j / total() };
   let i = 0;
   const crono = cronometro(); // minutos reales (con tope por pantalla), no estimados
   let ok = 0;
   function show() {
     const q = preguntas[i];
-    barra.set(`Pregunta ${i + 1} de ${n}`, i / n);
+    const c0 = cuenta_(i);
+    barra.set(c0.texto, c0.fraccion);
     ayudas?.contexto({ ut: q.ut });
     let respondida = false;
     box.classList.remove('respondida'); // el concepto no se enseña antes de responder: a veces delata la respuesta
@@ -345,8 +348,8 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       voice.stop();
       i += 1;
       crono.marca();
-      if (i >= n) { barra.set(null, 1); const min = crono.minutos(); transicion(() => onFin(ok, n, min), 'adelante'); } else { transicion(() => { show(); window.scrollTo(0, 0); }, 'adelante'); }
-    } }, i === n - 1 ? 'Ver resultado' : 'Siguiente →');
+      if (i >= total()) { barra.set(null, 1); const min = crono.minutos(); transicion(() => onFin(ok, total(), min), 'adelante'); } else { transicion(() => { show(); window.scrollTo(0, 0); }, 'adelante'); }
+    } }, i === total() - 1 ? 'Ver resultado' : 'Siguiente →');
     const responder = (k) => {
       if (respondida) return;
       respondida = true;
@@ -354,19 +357,21 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       crono.marca();
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
-      progress.recordExam(q.id, { choice: k, ok: good });
+      if (registrar) registrar(q, k, good); else progress.recordExam(q.id, { choice: k, ok: good });
       const extra = alResponder?.(i, q, good) ?? null;
+      const ultima = i === total() - 1;
+      siguiente.textContent = ultima ? 'Ver resultado' : 'Siguiente →';
       const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab });
       card.replaceWith(nueva);
       card = nueva;
       noLaSe.hidden = true;
       siguiente.hidden = false;
-      barra.set(null, (i + 1) / n);
+      barra.set(null, contador ? cuenta_(i + 1).fraccion : (i + 1) / total());
       // La corrección sube en un panel desde abajo, con «Continuar» (que es el mismo «Siguiente»).
       // Opción defendible frente a una plantilla discutible: cuenta como fallo, pero el panel no la pinta de error.
       const defendible = esDefendible(q, explanationFor(q, explicaciones), k);
       hojaRespuesta(box, { ok: k == null || defendible ? null : good, titulo: k == null ? `Era la ${q.correcta})` : defendible ? 'Discutible' : undefined,
-        contenido: extra ? h('div', profePanel(q, explanationFor(q, explicaciones), k), h('p.vuelve-idea', extra)) : profePanel(q, explanationFor(q, explicaciones), k), onContinuar: () => siguiente.click(), boton: i === n - 1 ? 'Ver resultado' : 'Continuar' });
+        contenido: extra ? h('div', profePanel(q, explanationFor(q, explicaciones), k), h('p.vuelve-idea', extra)) : profePanel(q, explanationFor(q, explicaciones), k), onContinuar: () => siguiente.click(), boton: ultima ? 'Ver resultado' : 'Continuar' });
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
@@ -377,7 +382,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, avisoDe?.(i, q) ?? null, chipsPregunta(q, progress, ayudas), card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
-  if (n) show();
+  if (total()) show();
   return box;
 }
 
@@ -530,7 +535,22 @@ function repasoView({ progress }) {
       return;
     }
     const enEstudio = new Set(preguntas.map((q) => q.id));
-    const plan = planRepaso(cola.items.slice(0, TANDA), progress.get().exams, ic, { hoy, enEstudio });
+    // Una idea que sale floja por segunda vez no se vuelve a preguntar hasta que el alumno mire su ficha (src/course/
+    // ficha.js): se le ofrece la ficha en lugar de otra pregunta. Abierta la ficha, vuelve al repaso como siempre.
+    const vistas = progress.fichasVistas(clave, tit0);
+    const conFicha = ic ? cola.items.filter((x) => x.concepto && estadoFicha(ic, x.concepto, progress.get().exams, vistas).pendiente) : [];
+    const avisoFichas = conFicha.length ? h('aside.fichas-antes', { 'aria-label': 'Ideas que se te resisten' },
+      h('p', h('strong', conFicha.length === 1 ? 'Esta idea se te resiste.' : 'Estas ideas se te resisten.'), ' Antes de otra pregunta, mira su ficha: es un minuto.'),
+      h('ul', conFicha.map((x) => h('li', h('a.btn.secondary.small', { href: hrefFicha(tit0, x.concepto, 'repaso') }, `Ficha: ${ic.concepto(x.concepto)?.etiqueta ?? x.concepto}`))))) : null;
+    const items = cola.items.filter((x) => !conFicha.includes(x));
+    if (!items.length) {
+      barra.set('Repaso de fallos', 0);
+      const ses = botonesSesion();
+      setChildren(cont, avisoFichas, ses ? h('div.botones', ses) : h('a.btn.grande', { href: tlink(tit0) }, 'Volver a Hoy'));
+      summaryText = `VISTA repaso de fallos · solo fichas: ${conFicha.map((x) => x.concepto).join(', ')}`;
+      return;
+    }
+    const plan = planRepaso(items.slice(0, TANDA), progress.get().exams, ic, { hoy, enEstudio });
     const tanda = plan.map((x) => x.q);
     const hace = (q) => {
       const t = progress.get().exams[q.id]?.t;
@@ -539,7 +559,8 @@ function repasoView({ progress }) {
     };
     setChildren(cont, tandaPreguntas({
       preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
-      avisoDe: (i) => (plan[i].variante ? h('p.aviso-variante', `${hace(plan[i].item.q)} fallaste una pregunta de esta idea. Te la traigo `, h('strong', 'con otra redacción'), ', para comprobar que la entiendes y no que recuerdas la letra.') : null),
+      avisoDe: (i) => [i === 0 ? avisoFichas : null,
+        plan[i].variante ? h('p.aviso-variante', `${hace(plan[i].item.q)} fallaste una pregunta de esta idea. Te la traigo `, h('strong', 'con otra redacción'), ', para comprobar que la entiendes y no que recuerdas la letra.') : null],
       alResponder: (i, q, ok) => {
         const { item, variante } = plan[i];
         if (!item.concepto) return null;
@@ -547,7 +568,13 @@ function repasoView({ progress }) {
         const nuevo = siguienteRepasoConcepto(item.rep, ok, hoy, new Date().toISOString());
         progress.recordRepasoConcepto(clave, tit0, item.concepto, nuevo);
         const otra = variante ? ', con otra pregunta' : '';
-        if (!ok) return `Esta idea vuelve mañana${variante ? ', con una pregunta distinta' : ''}.`;
+        if (!ok) {
+          // Segundo fallo de la idea: en vez de insistir con más preguntas, su ficha.
+          if (estadoFicha(ic, item.concepto, progress.get().exams, progress.fichasVistas(clave, tit0)).necesita) {
+            return ['Esta idea se te resiste: antes de otra pregunta, mira su ficha. ', h('a.enlace-ficha', { href: hrefFicha(tit0, item.concepto, 'repaso') }, 'Ver la ficha de la idea')];
+          }
+          return `Esta idea vuelve mañana${variante ? ', con una pregunta distinta' : ''}.`;
+        }
         if (nuevo.fuera) return 'Idea repasada: ya no vuelve al repaso.';
         return nuevo.prox > hoy ? `Esta idea vuelve dentro de ${cuenta(Math.round((Date.parse(`${nuevo.prox}T12:00`) - Date.parse(`${hoy}T12:00`)) / 864e5), 'día')}${otra}.` : null;
       },

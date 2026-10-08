@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 7,
+ "version": 8,
  "conceptos": [
   {
    "id": "baliza",
@@ -2529,7 +2529,7 @@
     "motovelero",
     "velas izadas y motor en marcha"
    ],
-   "nota": "De día lleva a proa un cono con el vértice hacia abajo; de noche, las luces de un buque de propulsión mecánica.",
+   "nota": "De día lleva a proa, en el lugar más visible, una marca cónica con el vértice hacia abajo; de noche, las luces de un buque de propulsión mecánica. La Regla 25 e) no exime a ninguna eslora: también los de menos de 12 m deben llevar el cono (texto consolidado BOE-A-1977-15605).",
    "padre": "ripa.luces",
    "relacionados": [
     "ripa.def.vela",
@@ -2608,7 +2608,7 @@
     "dos conos unidos",
     "marca bicónica es característica"
    ],
-   "nota": "De día todo buque dedicado a la pesca (arrastre o no) lleva dos conos unidos por los vértices; si no está pescando, solo las luces y marcas de un buque de su eslora.",
+   "nota": "De día todo buque dedicado a la pesca (arrastre o no) lleva dos conos unidos por los vértices, sea cual sea su eslora; si no está pescando, solo las luces y marcas de un buque de su eslora. La alternativa del cesto para menos de 20 m se suprimió (Res. A.736(18), BOE 18-10-1994, en vigor desde el 4-11-1995): hoy la «cesta» no es una marca del RIPA.",
    "padre": "ripa.luces",
    "relacionados": [
     "ripa.def.pesca"
@@ -2762,7 +2762,7 @@
     "formando triángulo",
     "1000 metros"
    ],
-   "nota": "Tres verdes todo horizonte (o tres bolas) en triángulo: peligroso acercarse a menos de 1000 m.",
+   "nota": "Además de las luces de motor o de fondeado, tres verdes todo horizonte (o tres bolas) en triángulo (tope del palo de proa y penoles de su verga): peligroso acercarse a menos de 1000 m (el texto español del BOE dice «por la popa»).",
    "padre": "ripa.luces",
    "tit": [
     "per"
@@ -2832,7 +2832,7 @@
     "fondear",
     "fondeo"
    ],
-   "nota": "De día una bola a proa; de noche blanca todo horizonte a proa y, si ≥ 50 m, otra más baja a popa; ≥ 100 m, además luces de cubierta; < 7 m fuera de canales y fondeaderos, exento.",
+   "nota": "De día una bola a proa; de noche blanca todo horizonte a proa y, si ≥ 50 m, otra más baja a popa; ≥ 100 m, además luces de cubierta; < 7 m fondeado fuera de canales angostos, pasos, fondeaderos o zonas de navegación frecuente (y no cerca de ellos), exento.",
    "padre": "ripa.luces",
    "relacionados": [
     "ripa.luces.varado"
@@ -3176,7 +3176,7 @@
     "no tendrá obligación",
     "eslora igual o superior a 12 metros pero inferior a 20"
    ],
-   "nota": "Menos de 12 m (35 j)) y de 12 a menos de 20 m (35 i)): no obligados a las señales de campana/gong (los de menos de 12 m, a ninguna de las de la regla); si no las hacen, emitirán otra señal acústica eficaz a intervalos ≤ 2 min.",
+   "nota": "Menos de 12 m (35 j)) y de 12 a menos de 20 m (35 i)): no obligados a las señales de campana de fondeado y varado de 35 g) y h) (los de menos de 12 m, a ninguna de las de la regla); si no las hacen, emitirán otra señal acústica eficaz a intervalos ≤ 2 min.",
    "padre": "ripa.niebla",
    "relacionados": [
     "ripa.senales.equipo"

@@ -1,6 +1,6 @@
 {
  "grupo": "meteorologia",
- "version": 5,
+ "version": 6,
  "conceptos": [
   {
    "id": "meteo",
@@ -2488,7 +2488,7 @@
     "hasta 6 nudos",
     "rama de la corriente de Portugal"
    ],
-   "nota": "En el Estrecho el agua atlántica entra en superficie hacia el E (varios nudos) y la mediterránea sale en profundidad hacia el W. Intensidad: los bancos de Baleares dan «hasta 6 nudos» y «de 4 a 7 nudos» (bal-py-2017-03-a-18, bal-py-2018-04-a-13) y la clase py-2-9 dice «en torno a 2 nudos» (más intensa a la altura de Tarifa, con las corrientes de marea encima): discrepancia documentada; como respuesta de examen vale «hacia el E, puede superar los 4 nudos».",
+   "nota": "En el Estrecho el agua atlántica entra en superficie hacia el E y la mediterránea sale en profundidad hacia el W. Según el derrotero oficial de EE. UU. (NGA Pub. 140, 2025, y Pub. 131, 2025; el Derrotero del IHM no se ha podido consultar): flujo superficial neto hacia el E de en torno a 1 nudo de media, unos 2 nudos al W del umbral y 3,5 al E; corrientes de marea de 1 a 2 nudos en el centro y hasta 3 cerca de las costas, de modo que en mareas vivas se pasa de 3 nudos y en la zona del umbral la superficial llega a invertirse; con levante fuerte y duradero, hasta 5 nudos a favor del viento. Los bancos de Baleares dan «hasta 6» y «de 4 a 7 nudos» (bal-py-2017-03-a-18, bal-py-2018-04-a-13), por encima de esas cifras; la clase py-2-9 dice «puede rondar los 2 nudos» a la altura de Tarifa.",
    "padre": "meteo.corrientes",
    "relacionados": [
     "meteo.corrientes.mediterraneo-occidental",

@@ -1,6 +1,6 @@
 // #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, dónde te
 // examinas (si hay más de un banco publicado), instalar,
-// voz del profe, la configuración del profesor (usarla o quitarla; enlace al modo profesor) y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
+// voz del profe, sonidos y vibración (docs/EFECTOS.md), la configuración del profesor (usarla o quitarla; enlace al modo profesor) y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
 // Biblioteca (#/<tit>/biblioteca).
 
 import { h, setChildren } from '../dom.js';

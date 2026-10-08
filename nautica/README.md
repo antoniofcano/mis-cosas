@@ -66,6 +66,10 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   haría un profesor —qué hacemos y por qué, el cálculo con los números del ejercicio, un truco y el error típico de
   examen— y **con voz** (síntesis del navegador, gratis, en español; voz y velocidad en Más → Voz del profe).
   En el tutorial la carta avanza al ritmo de la explicación.
+- **Sonidos y vibración opcionales** (Ajustes → Sonidos y vibración, apagados por defecto): un tic suave al acertar,
+  una campanilla al encender un faro o subir de rango y dos campanadas al terminar la sesión, sintetizados con
+  WebAudio (sin ficheros). Las animaciones de cambio (faro que se enciende, rango, insignia) solo se ven una vez y
+  respetan «reducir movimiento». Ver [`docs/EFECTOS.md`](docs/EFECTOS.md).
 - **Escalas en los márgenes y guías**: arrastra desde la escala de latitudes o de longitudes para sacar un
   paralelo o un meridiano (se ajusta a la décima de minuto y admite el valor exacto); el cruce de dos guías
   sitúa el punto y todas las herramientas se ajustan a él. Atajo ⌖ para trazar guías (y punto) desde unas coordenadas.

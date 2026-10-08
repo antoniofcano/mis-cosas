@@ -21,6 +21,7 @@
 ## 3. URLs (todo el estado va en el hash; tit = per | py)
 - `#/` y `#/<tit>` Hoy: la fase (Aprender · Mezclar · Comprobar, deducida en `src/course/sesion.js`) y la sesión de hoy (pasos que salen de `src/course/plan.js` y del repaso) · `#/bienvenida` primera vez
 - `#/<tit>/sesion` ejecutor de la sesión: lleva al paso por el que vas (clase, repaso de fallos, mezclado, simulacro…); al acabar, el resumen. La sesión se guarda en el ajuste `sesion_<tit>`
+- `#/<tit>/nivel` test de nivel por conceptos (adaptativo, ~20 preguntas del estudio; `src/course/nivel.js`): resultado por bloques e ideas y «Ya lo sabes: saltar» las clases que ya sabe (quedan «saltadas», no vistas). Solo si el banco tiene etiquetas · `#/<tit>/idea/<idConcepto>` ficha de una idea floja (`src/course/ficha.js`): nota, dónde se enseña, regla, chuleta y «Probar otra pregunta»; se abre desde el repaso, el resumen, el Temario y Progreso, nunca desde un examen
 - `#/<tit>/temario` temas con su estado · `#/<tit>/temario/<n>` un tema (clases, preguntas, carta)
 - `#/<tit>/curso/<clase>[?practica=1]` clase en tarjetas (se retoma en la tarjeta donde se dejó) y su práctica
 - `#/<tit>/teoria/ut/<n>?s=<semilla>[&f=1]` tanda de 10 preguntas de un tema (f=1: solo falladas)

@@ -53,7 +53,7 @@ export function empiezaPor(curso, regs, respuestas, saltables = []) {
   return (ls.find((x) => x.e === 'empezada') ?? ls.find((x) => x.e === 'nueva' && !fuera.has(x.l.id)))?.l ?? null;
 }
 
-const DETALLE = { sabe: 'Lo sabes', 'a-medias': 'Lo básico sí; lo demás, en sus clases', flojo: 'Empieza por aquí' };
+const DETALLE = { sabe: 'Lo sabes', 'a-medias': 'A medias: lo verás en sus clases', flojo: 'Empieza por aquí' };
 
 export function nivelView({ ctx, progress, params: route, tit }) {
   const T = TITULACIONES[tit];
@@ -99,13 +99,14 @@ export function nivelView({ ctx, progress, params: route, tit }) {
           } }, xs.length === 1 ? 'Ya lo sabes: saltar esta clase' : `Ya lo sabes: saltar estas ${cuenta(xs.length, 'clase')}`));
       };
       pintaSaltar();
-      const empieza = h('p.nivel-empieza', primera ? ['Empiezas por ', h('strong', `«${primera.titulo}»`), '.'] : 'Ya has visto todas las clases: toca mezclar temas.');
+      const ofrece = saltables.some((x) => !progress.leccion(x.l.id)?.saltada);
+      const empieza = h('p.nivel-empieza', primera ? [ofrece ? 'Si saltas lo que ya sabes, empiezas por ' : 'Empiezas por ', h('strong', `«${primera.titulo}»`), '.'] : 'Ya has visto todas las clases: toca mezclar temas.');
       setChildren(cont,
         h('h1', recien ? 'Tu punto de partida' : 'Tu test de nivel'),
         h('p.nivel-linea', `Has acertado ${r.aciertos} de ${cuenta(r.total, 'pregunta')}: dominas ${p.sabidas} de ${cuenta(p.total, 'idea')} del test.`),
         empieza,
         h('section.nivel-bloques', h('h2.eti', 'Por bloques'),
-          h('ul.nivel-lista', r.bloques.map((b) => h('li', { class: b.estado === 'sabe' ? 'ok' : b.estado === 'flojo' ? 'mal' : 'medio' },
+          h('ul.nivel-lista', r.bloques.map((b) => h('li', { class: `b-${b.estado}` },
             h('span.punto', { 'aria-hidden': 'true' }),
             h('span.tx', h('strong', b.nombre), h('span.muted.small', `${DETALLE[b.estado]} · ${b.bien} de ${b.total} bien`)))))),
         saltarBox,

@@ -78,8 +78,11 @@ export function ideaView({ ctx, progress, params: route, tit }) {
     const botones = h('div.botones.ficha-botones', h('button.grande', { type: 'button', onclick: () => probar() }, 'Probar otra pregunta'), h('a.btn.secondary.grande', { href: hrefVolver }, `Volver: ${txtVolver}`));
     const probar = () => {
       botones.hidden = true;
+      // Mientras responde, modo concentración (como en una tanda): la hoja de la corrección y «No la sé» van abajo, sin
+      // la barra de pestañas encima. Se quita al terminar (y con cualquier cambio de pantalla, que lo recalcula app.js).
+      document.body.classList.add('focus');
       const q = preguntaParaProbar(ic, id, respuestas(), { excluir: usadas });
-      if (!q) { setChildren(prueba, h('p.muted', 'No quedan más preguntas de esta idea en tus exámenes.')); return; }
+      if (!q) { document.body.classList.remove('focus'); botones.hidden = false; setChildren(prueba, h('p.muted', 'No quedan más preguntas de esta idea en tus exámenes.')); return; }
       usadas.push(q.id);
       const hoy = diaLocal();
       const barra = { set: () => {} };
@@ -91,6 +94,7 @@ export function ideaView({ ctx, progress, params: route, tit }) {
           return ok ? 'Bien: esta vez la tienes.' : 'Vuelve mañana al repaso, con otra pregunta.';
         },
         onFin: (ok) => {
+          document.body.classList.remove('focus');
           setChildren(prueba, h('p.ficha-prueba-fin', ok ? 'Bien: esta vez la tienes.' : 'Todavía no: repasa la ficha y vuelve a probar.'),
             h('div.botones', h('button.grande', { type: 'button', onclick: probar }, 'Probar otra pregunta'), h('a.btn.secondary.grande', { href: hrefVolver }, `Volver: ${txtVolver}`)));
           prueba.scrollIntoView?.({ block: 'start' });

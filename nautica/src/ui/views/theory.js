@@ -540,7 +540,7 @@ function repasoView({ progress }) {
     const vistas = progress.fichasVistas(clave, tit0);
     const conFicha = ic ? cola.items.filter((x) => x.concepto && estadoFicha(ic, x.concepto, progress.get().exams, vistas).pendiente) : [];
     const avisoFichas = conFicha.length ? h('aside.fichas-antes', { 'aria-label': 'Ideas que se te resisten' },
-      h('p', h('strong', conFicha.length === 1 ? 'Esta idea se te resiste.' : 'Estas ideas se te resisten.'), ' Antes de otra pregunta, mira su ficha: es un minuto.'),
+      h('p', h('strong', conFicha.length === 1 ? 'Esta idea se te resiste.' : 'Estas ideas se te resisten.'), ' En vez de otra pregunta, mira su ficha: es un minuto.'),
       h('ul', conFicha.map((x) => h('li', h('a.btn.secondary.small', { href: hrefFicha(tit0, x.concepto, 'repaso') }, `Ficha: ${ic.concepto(x.concepto)?.etiqueta ?? x.concepto}`))))) : null;
     const items = cola.items.filter((x) => !conFicha.includes(x));
     if (!items.length) {
@@ -559,7 +559,8 @@ function repasoView({ progress }) {
     };
     setChildren(cont, tandaPreguntas({
       preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
-      avisoDe: (i) => [i === 0 ? avisoFichas : null,
+      // Las fichas pendientes se ofrecen al final (nombrar ideas antes de responder podría dar pistas).
+      avisoDe: (i) => [
         plan[i].variante ? h('p.aviso-variante', `${hace(plan[i].item.q)} fallaste una pregunta de esta idea. Te la traigo `, h('strong', 'con otra redacción'), ', para comprobar que la entiendes y no que recuerdas la letra.') : null],
       alResponder: (i, q, ok) => {
         const { item, variante } = plan[i];
@@ -587,7 +588,7 @@ function repasoView({ progress }) {
         pintarCierre(cont, progress, tit0, { icono: ok === n ? '🎉' : '💪', titulo: `${ok} de ${n}`,
           lineas: [ok === n ? 'Todas bien: volverán más adelante para afianzarlas.' : ideas ? 'Las ideas que has fallado vuelven mañana, con otra pregunta; las acertadas, dentro de unos días.' : 'Las que has fallado vuelven mañana; las acertadas, dentro de unos días.',
             quedan ? `Te quedan ${quedan} por repasar hoy.` : 'Repaso de hoy terminado.'],
-          extra: remateMapas(tit0, [...new Set(tanda.map((q) => q.ut))]) });
+          extra: h('div', avisoFichas, remateMapas(tit0, [...new Set(tanda.map((q) => q.ut))])) });
         summaryText = `VISTA repaso terminado: ${ok} de ${n} · quedan ${quedan} hoy`;
         window.scrollTo(0, 0);
       },

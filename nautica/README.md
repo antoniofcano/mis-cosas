@@ -14,10 +14,10 @@ Barra inferior con cuatro pestañas (en pantallas anchas, una fila bajo la cabec
 
 | Pestaña | Ruta | Qué hay |
 |---|---|---|
-| 🏠 **Hoy** | `#/` · `#/per` · `#/py` | Lo que toca hoy (una tarjeta, un botón), el avance («temas al día») y lo que viene después. Lo decide un único recomendador (`src/course/plan.js`): examen a medias, simulacro en la recta final, repasos de clases, la siguiente clase o tanda de preguntas del primer tema que no está al día y, si se acumulan, una sesión de fallos. |
+| 🏠 **Hoy** | `#/` · `#/per` · `#/py` | Tu fase (Aprender · Mezclar · Comprobar, deducida de tu estado: temas por ver, temario visto, examen a ≤ 14 días o listo; se puede mirar otra sin cambiar el plan) y la sesión de hoy con un solo botón. Los pasos los decide el recomendador (`src/course/plan.js`) y la cola de fallos; el ejecutor `#/<tit>/sesion` los encadena (barra por tramos, «Parar» guarda por dónde vas) y acaba con un resumen. Debajo, el podcast del tema y el progreso plegado. |
 | 📚 **Temario** | `#/<tit>/temario` · `#/<tit>/temario/<n>` | Los temas del examen con su estado. Cada tema tiene sus clases (tarjetas paso a paso, chuleta y práctica con preguntas reales y repaso espaciado), sus preguntas de examen en tandas de 10 con **el profe** explicando cada respuesta (con voz, ilustraciones y animaciones) y, en el tema de carta, los ejercicios de carta. |
 | 📝 **Examen** | `#/<tit>/examenes` | Simulacros con el número de preguntas y el tiempo del examen y las convocatorias reales completas (Andalucía 2015–2026). Pantalla de inicio, una pregunta por pantalla, guardado continuo (se puede salir y seguir: el reloj se para) y corrección con las reglas oficiales y revisión con el profe. |
-| ☰ **Más** | `#/mas` | Biblioteca (láminas animadas, reglas para recordar, conceptos de carta, mesa de cartas), mi progreso, fecha del examen y minutos al día, titulación, voz del profe y copia de seguridad. |
+| ☰ **Más** | `#/<tit>/mas` (y `#/mas`) | Biblioteca (láminas, mapas, reglas, carta), radio de a bordo, tarjetas, calculadora, las cuentas del patrón, chuletas por tema, mi progreso y mi plan, copia de seguridad, ajustes y modo profesor. Cada cosa sigue en su dirección de siempre. |
 
 Durante una clase, una tanda de preguntas o un examen la app entra en «modo concentración»: sin barra inferior,
 con una barra de actividad (✕ Salir, «Pregunta 4 de 10», barra de avance). Las direcciones antiguas

@@ -31,10 +31,12 @@ import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { narrateSteps } from '../../teacher/narrate.js';
 import { cuenta, fechaLarga } from '../../texto.js';
-import { botonCalculadora, bloquearCalculadora, desbloquearCalculadora } from '../calculadora.js';
+import { botonCalculadora, bloquearCalculadora, desbloquearCalculadora, calculadoraEnAyudas } from '../calculadora.js';
 import { calculadoraPermitida } from '../../calculadora/reglas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
+import { botonesSesion } from '../sesion.js';
+import { etiquetaConcepto } from '../concepto.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -365,11 +367,28 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
     // citados resaltados, y al cerrarla sigues en la pregunta.
     const carta = botonCarta(q, progress, ayudas?.ctx() ?? null);
-    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
+    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, chipsPregunta(q, progress, ayudas), card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
   if (n) show();
   return box;
+}
+
+/**
+ * Lo que va encima de una pregunta de práctica: el concepto que pregunta (solo si el banco tiene sus preguntas
+ * etiquetadas; si no, nada) y la calculadora cuando la pregunta es de cuentas y la barra de ayudas no la trae ya.
+ */
+function chipsPregunta(q, progress, ayudas) {
+  const fila = h('div.chips-pregunta', { hidden: true });
+  const calc = (calculadoraEnAyudas({ tit: T.id, ut: q.ut }) || necesitaCarta(q)) && !ayudas?.barra?.querySelector('.boton-calculadora')
+    ? botonCalculadora({ texto: 'Calculadora', clase: 'secondary.small.chip-calculadora' }) : null;
+  if (calc) { fila.append(calc); fila.hidden = false; }
+  etiquetaConcepto(currentEje(progress), T.id, q.id).then((t) => {
+    if (!t) return;
+    fila.prepend(h('span.chip-concepto', { title: 'Concepto que pregunta' }, t));
+    fila.hidden = false;
+  }).catch(() => {});
+  return fila;
 }
 
 /** Textos del cierre de una tanda según el porcentaje de aciertos (§5.5). */
@@ -764,7 +783,8 @@ export function testView({ ctx, progress, params: route, tit }) {
 
     // --- resultado
     function resultados(test, g, porTiempo) {
-      document.body.classList.remove('focus');
+      // Dentro de una sesión de estudio se sigue en modo concentración (la barra de la sesión manda).
+      if (!document.body.classList.contains('en-sesion')) document.body.classList.remove('focus');
       // Los temas, en el mismo orden que en Temario y Progreso.
       g = { ...g, bloques: [...g.bloques].sort((a, b) => posEstudio(E0, a.ut) - posEstudio(E0, b.ut)) };
       summaryText = `RESULTADO ${test.titulo}: ${g.aciertos}/${g.total} ${g.apto == null ? '' : g.apto ? 'APTO' : 'NO APTO'}\n` +
@@ -802,11 +822,17 @@ export function testView({ ctx, progress, params: route, tit }) {
           summaryText += `\nEXAMEN FINAL: ${st.final.lineasResultado[0] ?? ''}`;
         }).catch(() => {});
       }
+      const ses = botonesSesion();
+      const repasar = g.errores ? h('button.grande', { type: 'button', class: ses ? 'secondary' : '', onclick: () => tituloRevision.scrollIntoView({ behavior: 'smooth' }) }, 'Repasar mis fallos con el profe') : null;
+      // En una sesión de estudio (src/ui/sesion.js), lo primero es seguir con ella (arriba); el repaso de fallos, a mano.
+      const botonesFin = ses ? h('div.botones-columna', ses[0], repasar, ses.slice(1))
+        : h('div.botones-columna', repasar, h('a.btn.grande', { href: tlink(T0.id), class: g.errores ? 'secondary' : '' }, 'Volver a Hoy'));
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : g.apto ? '✅ APTO' : '❌ NO APTO'),
           test.tipo === 'final' ? lineaFinal : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
+        ses ? botonesFin : null,
         conFallos.length
           ? h('table.stats.fallos-tema', h('thead', h('tr', h('th', 'Tema'), h('th', 'Fallos'))),
             h('tbody', conFallos.map((b) => {
@@ -816,9 +842,7 @@ export function testView({ ctx, progress, params: route, tit }) {
                 h('td', String(b.errores)));
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),
-        h('div.botones-columna',
-          g.errores ? h('button.grande', { type: 'button', onclick: () => tituloRevision.scrollIntoView({ behavior: 'smooth' }) }, 'Repasar mis fallos con el profe') : null,
-          h('a.btn.grande', { href: tlink(T0.id), class: g.errores ? 'secondary' : '' }, 'Volver a Hoy')),
+        ses ? null : botonesFin,
         tituloRevision,
         h('label.filtro-revision', 'Ver: ', filterSel),
         review,

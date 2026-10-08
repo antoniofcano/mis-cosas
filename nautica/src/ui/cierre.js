@@ -9,13 +9,14 @@ import { randomSeed } from '../math/rng.js';
 import { contar } from './movimiento.js';
 import { icono as icono_ } from './iconos.js';
 import { cuenta } from '../texto.js';
+import { botonesSesion, pantallaActual } from './sesion.js';
 
 /**
  * El estado del alumno para una titulación (motor de seguimiento, src/course/motor.js): carga los datos, llama al
  * motor y guarda el plan base si el motor ha hecho uno nuevo. Las pantallas leen `st` y nada más.
  * Devuelve también los datos compartidos, el banco del eje y `plan` = las actividades del día.
  */
-export async function calcularPlan(progress, tit, ahora = Date.now()) {
+export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar = true } = {}) {
   const T = TITULACIONES[tit];
   const eje = currentEje(progress);
   // El banco del eje (sus preguntas para estudiar) y el curso con la práctica de cada clase de ese banco.
@@ -29,7 +30,7 @@ export async function calcularPlan(progress, tit, ahora = Date.now()) {
     // El examen final: la reserva del alumno (lo que no se estudia) y sus convocatorias.
     reserva: banco.reserva, pool: banco.final, reservadas: banco.reservadas,
   });
-  if (st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base);
+  if (guardar && st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base); // sin guardar: para mirar otro día (el de mañana)
   return { ...st.datos, banco, plan: st.actividades, st };
 }
 
@@ -71,6 +72,13 @@ function cifras(stats, animar) {
  */
 export function cierre({ icono, titulo, lineas = [], siguiente = null, tit, logros = [], animar = true, stats = null, botones = null, meta = null }) {
   const flojo = icono === '💪';
+  // Dentro de una sesión de estudio (src/ui/sesion.js): este paso queda hecho y lo primero es seguir con la sesión;
+  // los botones propios de la vista (seguir con el tramo…) quedan como secundarios, salvo «Terminar por hoy».
+  const ses = botonesSesion();
+  if (ses) {
+    const hoy = tlink(tit);
+    botones = [...ses, ...(botones ?? []).filter((b) => b && b.getAttribute?.('href') !== hoy).map((b) => { b.classList.add('secondary'); return b; })];
+  }
   return h('section.cierre',
     flojo ? h('div.fin-icono', icono_('repaso')) : marcaHecho(),
     h('h1', titulo),
@@ -98,7 +106,10 @@ export function pintarCierre(cont, progress, tit, o) {
   const extra = o.extra ? [o.extra] : []; // lo que va debajo del cierre (se conserva al repintar)
   const stats = cifrasCierre(progress, o.titulo);
   cont.replaceChildren(cierre({ ...o, tit, stats }), ...extra);
+  const pantalla = pantallaActual();
   calcularPlan(progress, tit).then((d) => {
+    // Si ya se ha ido a otra pantalla (p. ej. al paso siguiente de la sesión), este cierre no se vuelve a pintar.
+    if (pantallaActual() !== pantalla) return;
     const logros = [...(o.logros ?? [])];
     // El avance del tema de la actividad, si se sabe.
     const b = o.ut != null ? d.estructura.bloques.find((x) => x.ut === o.ut) : null;

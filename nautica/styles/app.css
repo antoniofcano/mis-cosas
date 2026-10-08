@@ -1772,7 +1772,7 @@ a.entrada-carta:hover .carta-trav { border-color: var(--accent); }
 a.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
 a.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
 /* La carta compacta: más baja (las capas se estiran, los trazos no), sin rosa, faros sin botón y algo más pequeños. */
-.carta-trav.compacta { aspect-ratio: 358 / 224; max-width: none; }
+.carta-trav.compacta { aspect-ratio: 358 / 232; max-width: none; }
 .carta-trav.compacta :is(.pata, .costa, .ola) { vector-effect: non-scaling-stroke; }
 .carta-trav.compacta .rosa { display: none; }
 .carta-trav.compacta .faro-pos { width: 92px; transform: translate(-50%, -18px); }

@@ -131,9 +131,30 @@ export function contextoBanco(raiz, eje, tit) {
  * Lotes de candidatos de un banco (objetos listos para escribir).
  * @returns {object[]} lotes en formato FORMATO_CANDIDATOS
  */
-export function lotesDeBanco(buscador, catalogo, ctx, { k = 8, tam = 40, todas = false, ids = null, fecha = new Date().toISOString().slice(0, 10) } = {}) {
-  const elegidas = ctx.preguntas.filter((q) => !q.anulada && (ids ? ids.has(q.id) : (todas || !etiquetasDe(ctx.etiquetas, q.id).length)));
+export function lotesDeBanco(buscador, catalogo, ctx, { k = 8, tam = 40, todas = false, ids = null, auto = null, sinExplicacion = false, fecha = new Date().toISOString().slice(0, 10) } = {}) {
+  const todasElegidas = ctx.preguntas.filter((q) => !q.anulada && (ids ? ids.has(q.id) : (todas || !etiquetasDe(ctx.etiquetas, q.id).length)));
   const lotes = [];
+  // Etiquetas automáticas (sin agente): 1) las de carta con solución programada, por tipo de ejercicio; 2) las del buscador
+  // con confianza alta (p del primero ≥ auto.p y margen con el segundo ≥ auto.margen). Solo el concepto principal.
+  const automaticas = {};
+  const elegidas = [];
+  for (const q of todasElegidas) {
+    if (!auto) { elegidas.push(q); continue; }
+    const ej = auto.ejercicioDe?.(q.id);
+    const porTipo = ej ? auto.mapa?.[ej] : null;
+    const c = porTipo ? catalogo.concepto(porTipo) : null;
+    if (c && c.tipo === 'concepto' && !c.sustituidoPor && (!c.tit?.length || !q.tit || c.tit.includes(q.tit))) {
+      automaticas[q.id] = { conceptos: [porTipo], motivo: `auto: ejercicio de carta «${ej}»` };
+      continue;
+    }
+    const cand = buscador.proponer(q, { clases: ctx.clases.get(q.id) ?? [], explicacion: textoExplicacion(ctx.explicaciones[q.id]), k: 2 });
+    if (!ej && cand[0] && cand[0].p >= auto.p && cand[0].p - (cand[1]?.p ?? 0) >= auto.margen) {
+      automaticas[q.id] = { conceptos: [cand[0].id], motivo: `auto: buscador (p ${cand[0].p}, margen ${(cand[0].p - (cand[1]?.p ?? 0)).toFixed(2)})` };
+      continue;
+    }
+    elegidas.push(q);
+  }
+  lotes.auto = automaticas;
   for (let i = 0; i < elegidas.length; i += tam) {
     const trozo = elegidas.slice(i, i + tam);
     const citados = new Set();
@@ -148,7 +169,7 @@ export function lotesDeBanco(buscador, catalogo, ctx, { k = 8, tam = 40, todas =
         enunciado: q.enunciado, opciones: q.opciones, correcta: q.aceptadas?.length > 1 ? q.aceptadas : q.correcta,
         ...(q.contexto ? { contexto: recorta(q.contexto, 400) } : {}),
         ...(e?.clave ? { clave: e.clave } : {}),
-        ...(e?.explicacion ? { explicacion: recorta(e.explicacion, 400) } : {}),
+        ...(e?.explicacion && !sinExplicacion ? { explicacion: recorta(e.explicacion, 400) } : {}),
         ...(ya.length ? { actuales: ya } : {}),
         candidatos,
       };
@@ -156,7 +177,7 @@ export function lotesDeBanco(buscador, catalogo, ctx, { k = 8, tam = 40, todas =
     const conceptos = {};
     for (const id of [...citados].sort()) {
       const c = catalogo.concepto(id);
-      conceptos[id] = { etiqueta: c.etiqueta, nota: c.nota ?? '', ...(c.padre ? { padre: c.padre } : {}) };
+      conceptos[id] = { etiqueta: c.etiqueta, nota: c.nota ?? '', tit: c.tit, ...(c.padre ? { padre: c.padre } : {}) };
     }
     lotes.push({
       formato: FORMATO_CANDIDATOS, eje: ctx.eje, tit: ctx.tit, lote: lotes.length + 1, de: null, k, generado: fecha,
@@ -219,10 +240,19 @@ export function medir(oro, proponerPorId, { ks = [1, 3, 5, 8] } = {}) {
   return r;
 }
 
+/** Tipo de ejercicio de carta (src/exams/solutions) → concepto principal. Los ambiguos (estima-analitica, marea-sonda, distancia-faro) los decide un agente. */
+export const EJERCICIO_A_CONCEPTO = {
+  'situacion-dos-demoras': 'carta.situacion.dos-demoras', 'ct-enfilacion': 'nav.ct.enfilacion', 'estima-directa': 'carta.estima',
+  'rumbo-distancia': 'carta.rumbo-distancia', 'rumbo-pasar-distancia': 'carta.pasar-distancia',
+  'situacion-demora-distancia': 'carta.situacion.demora-distancia', 'demoras-no-simultaneas': 'carta.situacion.no-simultaneas',
+  'corriente-efectiva': 'carta.corriente.efectiva', 'corriente-rumbo-a-dar': 'carta.corriente.rumbo-a-dar',
+  'corriente-desconocida': 'carta.corriente.desconocida', 'abatimiento': 'carta.viento', 'situacion-dos-distancias': 'carta.situacion.distancias',
+};
+
 const fmt = (x) => `${(100 * x).toFixed(1)} %`;
 
 export async function main(argv = process.argv.slice(2)) {
-  const o = leerArgs(argv, ['todas']);
+  const o = leerArgs(argv, ['todas', 'auto', 'sin-explicacion']);
   const raiz = o.raiz ?? RAIZ;
   const libs = await cargarLibrerias();
   if (!libs) {
@@ -262,10 +292,20 @@ export async function main(argv = process.argv.slice(2)) {
   const salida = o.salida ?? join(raiz, '.cache', 'conceptos', 'candidatos');
   const ids = typeof o.ids === 'string' ? new Set(o.ids.split(',')) : null;
   const tam = Number(o.lote ?? 40);
+  let autoCfg = null;
+  if (o.auto) {
+    const { SOLUCIONES } = await import('../../src/bancos/soluciones.js');
+    autoCfg = { p: Number(o['auto-p'] ?? 0.99), margen: Number(o['auto-margen'] ?? 0.4), ejercicioDe: (id) => SOLUCIONES[id]?.ejercicio, mapa: EJERCICIO_A_CONCEPTO };
+  }
   let n = 0; let preguntas = 0;
   for (const b of bancos) {
     const ctx = contextoBanco(raiz, b.eje, b.tit);
-    const lotes = lotesDeBanco(buscador, catalogo, ctx, { k, tam, todas: !!o.todas, ids });
+    const lotes = lotesDeBanco(buscador, catalogo, ctx, { k, tam, todas: !!o.todas, ids, auto: autoCfg, sinExplicacion: !!o['sin-explicacion'] });
+    if (autoCfg) {
+      const na = Object.keys(lotes.auto).length;
+      escribirTexto(join(raiz, '.cache', 'conceptos', 'auto', b.eje, `${b.tit}.json`), `${JSON.stringify({ formato: FORMATO_ETIQUETAS, eje: b.eje, tit: b.tit, autor: 'auto-motor', fecha: new Date().toISOString().slice(0, 10), etiquetas: lotes.auto }, null, 1)}\n`);
+      console.log(`${b.eje}/${b.tit}: ${na} etiquetadas automáticamente → .cache/conceptos/auto/${b.eje}/${b.tit}.json`);
+    }
     for (const l of lotes) {
       escribirTexto(join(salida, b.eje, b.tit, `lote-${String(l.lote).padStart(3, '0')}.json`), textoLote(l));
       n += 1; preguntas += l.preguntas.length;

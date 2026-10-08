@@ -1,6 +1,6 @@
 {
  "grupo": "navegacion",
- "version": 5,
+ "version": 6,
  "conceptos": [
   {
    "id": "nav.esfera",
@@ -1874,7 +1874,7 @@
     "cartas actualizadas a bordo",
     "SOLAS"
    ],
-   "nota": "Qué es un ECDIS frente a un ECS o plotter. SOLAS V/19 acepta el ECDIS como cartas a bordo (con ENC actualizadas y respaldo, p. ej. un juego de cartas de papel), y V/27 exige cartas y publicaciones adecuadas y actualizadas; un ECS o plotter no cumple como ECDIS. Para recreo, el RD 339/2021 (art. 12.2.c) exige llevar las cartas náuticas actualizadas de la zona sin precisar el soporte; el tribunal DGMM da por correcta la carta oficial de papel siempre actualizada (dgmm-py-2020-12-24).",
+   "nota": "Qué es un ECDIS (SIVCE) frente a un ECS o plotter. SOLAS V/19.2.1.4 exige cartas y publicaciones náuticas para planificar la derrota y verificar la situación y acepta un SIVCE para cumplir esa obligación; V/19.2.1.5 pide medios auxiliares (respaldo) si esa función se cumple total o parcialmente por medios electrónicos; V/27: cartas y publicaciones apropiadas y actualizadas. Un ECS o plotter no es un SIVCE. Para recreo, el RD 339/2021, art. 12.2.c), exige «las cartas actualizadas que cubran los mares por los que se navegue y los portulanos de los puertos que se utilicen» (obligatorias en zonas 1 a 4, y en 5 a 7 si tiene espacio habitable cerrado de gobierno y categoría de diseño A o B; art. 12.1), sin precisar el soporte; el tribunal DGMM da por correcta la carta oficial de papel siempre actualizada (dgmm-py-2020-12-24).",
    "padre": "nav.cartas-electronicas",
    "relacionados": [
     "nav.publicaciones.avisos"

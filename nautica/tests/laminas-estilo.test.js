@@ -105,6 +105,7 @@ const PILOTO = [
   // PY, seguridad
   ...['balance', 'cabezada', 'guinada'].map((mov) => ({ tipo: 'movimiento', mov })), { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
   { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' },
+  { tipo: 'viento-aparente' }, ...['cenida', 'traves', 'aleta', 'popa'].map((rumbo) => ({ tipo: 'viento-aparente', rumbo })),
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */

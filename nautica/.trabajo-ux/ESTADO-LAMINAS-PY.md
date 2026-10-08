@@ -35,7 +35,8 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
 | marea fases (vivas y muertas) | C (esta rama) |
 | meteo borrasca / anticiclón | C (piloto) |
 | meteo buys-ballot, isobaras · I, frentes · I, frente-frio-corte, frente-calido-corte, nieblas (3) · I, brisas (2) | C (esta rama) |
-| viento-aparente (5), beaufort, modelos-viento, vientos-regionales (2), humedad, psicrometro, nubes, nubes-pisos, ola (2), corriente-estrecho (2) | pendiente |
+| viento-aparente (5) | C (esta rama) |
+| beaufort, modelos-viento, vientos-regionales (2), humedad, psicrometro, nubes, nubes-pisos, ola (2), corriente-estrecho (2) | pendiente |
 
 ### 3. Seguridad (UT 1)
 
@@ -60,6 +61,15 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
   frente frío y cálido en corte, las tres nieblas y las dos brisas. Fijas en `src/illustrations/meteo-c.js`.
 - Grupo 3 (seguridad): balance, cabezada y guiñada; búsqueda en cuadrado expansivo y por sectores; tetraedro y clases de
   fuego. En `src/illustrations/seguridad-c.js` (el fuego «apagar» del PER, interactivo, sigue sin migrar y sin marco).
+- Grupo 4: viento aparente (general y por rumbos), en `meteo-c.js`.
+
+## Queda por migrar (orden propuesto)
+
+1. coordenadas (3) y husos (4): teoría de navegación, UT 3.
+2. superficies-libres y socorro (la hoja del Anexo IV necesita partirse: 17 señales no caben a 360 px con texto legible).
+3. radar (2), gnss (2), carta raster/vectorial, ais, avisos a los navegantes (2).
+4. beaufort, modelos de viento, vientos regionales (2), humedad, psicrómetro, nubes (2), olas (2), corrientes del Estrecho (2).
+5. arnés (2), balsa (4), extintor (2), helicóptero (3).
 
 ## Verificación
 

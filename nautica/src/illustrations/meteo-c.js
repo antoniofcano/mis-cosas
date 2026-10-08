@@ -4,7 +4,8 @@
 //   marea: { tipo:'marea', modo:'fases' }   (vivas y muertas; curva, duodécimos y sonda son interactivas)
 // Hemisferio norte. Aire frío en azul y cálido en rojo, siempre con su rótulo (nada solo por color).
 
-import { T, TXT, lienzo, rotulo, etiqueta, cartela, flecha, ondas, tierra, arcoD, pol, f1 } from './estilo-c.js';
+import { T, TXT, lienzo, rotulo, etiqueta, cartela, flecha, ondas, tierra, barco, junto, colocaEtiquetas, arcoD, pol, f1 } from './estilo-c.js';
+import { vientoAparente } from '../nautical/viento.js';
 
 /** Nube de carta: festón de papel con su contorno. (x, y) es el centro de la base; s, la escala. */
 function nube(x, y, s = 1, { torre = false } = {}) {
@@ -143,6 +144,86 @@ export function frenteCorte(frio) {
       ? 'El aire frío entra como una cuña bajo el cálido y lo levanta bruscamente: cumulonimbos, chubascos, rachas y tormenta; tras el paso, rola el viento, baja la temperatura, sube la presión y el cielo se limpia.'
       : 'El aire cálido sube despacio por encima del frío: las nubes se anuncian de lejos (cirros, cirrostratos con halo, altostratos) y llega lluvia continua y débil con nimbostratos; baja la presión antes de su paso.',
   };
+}
+
+// ---------------------------------------------------------------------------
+// Viento real, de avance y aparente: a bordo se nota la suma del real y del de avance (igual y contrario a la velocidad
+// del barco: viene siempre de proa). A la izquierda, de dónde entra cada uno, con su ángulo desde la proa acotado; a la
+// derecha, la suma de vectores (hacia dónde sopla cada uno).
+
+const RUMBOS_VIENTO = { cenida: ['Ceñida', 45], traves: ['Través', 90], aleta: ['Aleta', 135], popa: ['Popa', 180] };
+const nf = (n) => String(Math.round(n * 10) / 10).replace('.', ',');
+
+export function vientoAparenteIllustration(spec = {}) {
+  if (spec.rumbo && !RUMBOS_VIENTO[spec.rumbo]) return null;
+  const general = !spec.rumbo;
+  const [nombre, ang] = general ? ['Real + de avance', 90] : RUMBOS_VIENTO[spec.rumbo];
+  const vr = general ? 14 : 12;
+  const vb = general ? 8 : 6;
+  const ap = vientoAparente({ angReal: ang, vr, vb });
+  const angAp = Math.round(ap.ang);
+  const W = 358;
+  const H = 300;
+  const alt = `${nombre}: viento real de ${vr} nudos a ${ang}° de la proa por estribor y barco a ${vb} nudos; el viento de avance viene de proa. El aparente, su suma, es de ${nf(ap.va)} nudos y entra a ${angAp}° de la proa${ap.va > vr ? ', más fuerte que el real' : ', más flojo que el real'}${angAp < ang ? ' y más a proa' : ''}.`;
+  const { out, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
+  // --- izquierda: el barco y de dónde entra cada viento
+  const B = [92, 178];
+  out.push(barco(B[0], B[1], 0, 76, { p: null }));
+  out.push(rotulo(B[0], B[1] - 46, 'proa', { size: TXT.min, estilo: 'serif', italic: true }));
+  const linea = (deg, L, color, w, dash) => { const [x, y] = pol(B[0], B[1], deg, L); return `<line x1="${B[0]}" y1="${B[1]}" x2="${f1(x)}" y2="${f1(y)}" stroke="${color}" stroke-width="${w}" stroke-dasharray="${dash}"/>`; };
+  out.push(`<line x1="${B[0]}" y1="${B[1]}" x2="${B[0]}" y2="${B[1] - 120}" stroke="${T.tinta}" stroke-width=".7" stroke-dasharray="4 3"/>`);
+  out.push(linea(ang, ang > 150 ? 76 : 110, T.azulTxt, 1.4, '7 4'), linea(angAp, angAp > 150 ? 80 : 120, T.magenta, 1.8, '7 4'));
+  if (ang < 180) {
+    out.push(`<path d="${arcoD(B[0], B[1], 58, 0, ang)}" fill="none" stroke="${T.azulTxt}" stroke-width="1.2"/>`, `<path d="${arcoD(B[0], B[1], 84, 0, angAp)}" fill="none" stroke="${T.magenta}" stroke-width="1.6"/>`);
+    const [rx, ry] = pol(B[0], B[1], ang / 2, 58);
+    const [mx, my] = pol(B[0], B[1], angAp / 2, 84);
+    out.push(etiqueta(rx + 6, ry - 4, `${ang}°`, { color: T.azulTxt, size: TXT.min }), etiqueta(mx + 8, my - 8, `${angAp}°`, { color: T.magenta, size: TXT.min }));
+  } else {
+    out.push(etiqueta(B[0] + 52, B[1] + 30, 'los dos', { size: TXT.min }), etiqueta(B[0] + 52, B[1] + 50, 'de popa', { size: TXT.min }));
+  }
+  out.push(rotulo(16, 30, 'DE DÓNDE ENTRA', { size: TXT.min, weight: 700, estilo: 'cap', anchor: 'start', color: T.apagado }));
+  // --- derecha: la suma de vectores (escala común)
+  out.push(`<line x1="196" y1="18" x2="196" y2="${H - 50}" stroke="${T.tinta}" stroke-width=".6"/>`);
+  out.push(rotulo(W - 16, 30, 'LA SUMA', { size: TXT.min, weight: 700, estilo: 'cap', anchor: 'end', color: T.apagado }));
+  const s = 8.2;
+  const real = [-Math.sin((ang * Math.PI) / 180) * vr * s, Math.cos((ang * Math.PI) / 180) * vr * s];
+  const avance = [0, vb * s];
+  const fin = [real[0] + avance[0], real[1] + avance[1]];
+  if (ang === 180) {
+    // en popa los tres van en la misma línea (hacia proa el real, hacia popa el de avance): se dibujan uno junto a otro
+    const [x0, y0] = [232, 70];
+    const yb = y0 + vr * s;
+    out.push(flecha(x0, yb, x0, y0, { color: T.azulTxt, w: 1.6 }), flecha(x0 + 34, y0, x0 + 34, y0 + vb * s, { color: T.tinta, w: 1.6 }), flecha(x0 + 68, yb, x0 + 68, yb - ap.va * s, { color: T.magenta, w: 2.4 }));
+    out.push(etiqueta(x0, yb + 14, `${vr} kn`, { color: T.azulTxt, size: TXT.min }), etiqueta(x0 + 34, y0 + vb * s + 14, `${vb} kn`, { size: TXT.min }), etiqueta(x0 + 68, yb + 14, `${nf(ap.va)} kn`, { color: T.magenta, size: TXT.min }));
+  } else {
+    const xs = [0, real[0], fin[0]];
+    const ys = [0, real[1], fin[1]];
+    const O = [272 - (Math.min(...xs) + Math.max(...xs)) / 2, 142 - (Math.min(...ys) + Math.max(...ys)) / 2];
+    const R1 = [O[0] + real[0], O[1] + real[1]];
+    const F = [O[0] + fin[0], O[1] + fin[1]];
+    out.push(flecha(O[0], O[1], R1[0], R1[1], { color: T.azulTxt, w: 1.6 }), flecha(R1[0], R1[1], F[0], F[1], { color: T.tinta, w: 1.6 }), flecha(O[0], O[1], F[0], F[1], { color: T.magenta, w: 2.4 }));
+    const segs = [[O, R1], [R1, F], [O, F], [[196, 18], [196, H - 50]]];
+    const centro = [(O[0] + R1[0] + F[0]) / 3, (O[1] + R1[1] + F[1]) / 3];
+    const pet = [
+      { t: `${nf(ap.va)} kn`, cands: junto(O, F, `${nf(ap.va)} kn`, { centro }), color: T.magenta },
+      { t: `${vr} kn`, cands: junto(O, R1, `${vr} kn`, { centro }), color: T.azulTxt },
+      { t: `${vb} kn`, cands: junto(R1, F, `${vb} kn`, { centro }) },
+    ];
+    out.push(colocaEtiquetas(pet, { W, H: H - 44, segs, cajas: [{ x0: 8, y0: 8, x1: 196, y1: H - 44 }, { x0: W - 90, y0: 16, x1: W - 8, y1: 40 }] }));
+  }
+  // --- leyenda
+  const ley = (x, y, color, t, w = 1.6) => `<line x1="${x}" y1="${y - 4}" x2="${x + 22}" y2="${y - 4}" stroke="${color}" stroke-width="${w}"/>` + rotulo(x + 28, y, t, { size: TXT.min + 0.5, estilo: 'serif', anchor: 'start', color });
+  out.push(ley(16, H - 30, T.azulTxt, 'real'), ley(104, H - 30, T.tinta, 'de avance'), ley(214, H - 30, T.magenta, 'aparente', 2.4));
+  out.push(rotulo(W / 2, H - 12, `aparente ${nf(ap.va)} kn ${ap.va > vr ? '>' : '<'} real ${vr} kn`, { size: TXT.min, estilo: 'mono', color: T.magenta }));
+  out.push(cierra());
+  const cap = {
+    general: 'A bordo notas el viento aparente: la suma del real y del que produce tu propio avance. Al navegar, el aparente entra más por la proa que el real y, ciñendo, es más fuerte.',
+    cenida: 'Ciñendo, el viento de avance se suma casi de frente: el aparente es más fuerte que el real y entra más cerrado (más a proa). Por eso a bordo parece que sopla más de lo que sopla.',
+    traves: 'Con el real de través, el aparente sigue siendo algo más fuerte que el real y entra por delante del través.',
+    aleta: 'Con el real por la aleta, el aparente es más flojo que el real y entra más a proa: navegando con el viento a favor se nota menos viento.',
+    popa: 'Con el real en popa, el aparente es la diferencia entre el real y tu velocidad: viene de popa y es más flojo. A tu misma velocidad, el aparente sería nulo.',
+  };
+  return { svg: out.join(''), caption: cap[general ? 'general' : spec.rumbo] };
 }
 
 // ---------------------------------------------------------------------------

@@ -448,6 +448,26 @@ const loxoOrto = () => ({
 });
 
 // ---------------------------------------------------------------------------
+// Viento aparente (PER, UT 9; PY, UT 2): la suma del real y del de avance.
+const VA = {
+  general: ['Viento aparente: real más de avance', 'A bordo se nota la suma del viento real y del de avance.'],
+  cenida: ['Viento aparente ciñendo', 'Ciñendo, el aparente es más fuerte que el real y entra más a proa.'],
+  traves: ['Viento aparente con el real de través', 'Con el real de través, el aparente entra por delante del través, algo más fuerte.'],
+  aleta: ['Viento aparente con el real por la aleta', 'Por la aleta, el aparente es más flojo que el real y entra más a proa.'],
+  popa: ['Viento aparente en popa', 'En popa, el aparente es el real menos tu velocidad.'],
+};
+function vientoAparenteMarco(spec) {
+  const v = VA[spec.rumbo ?? 'general'];
+  if (!v) return null;
+  return {
+    tema: MET, titulo: v[0], clave: v[1],
+    datos: [{ cifra: 'de avance', texto: 'igual y contrario a tu velocidad: de proa' }, { cifra: 'aparente', texto: 'el que marcan la veleta y el anemómetro' }, { cifra: 'más a proa', texto: 'que el real, salvo en popa cerrada' }],
+    nota: 'Las velas se ajustan al aparente. Cuanto más rápido vas, más se cierra hacia la proa; en popa, a tu misma velocidad, no notarías viento.',
+    alt: 'A la izquierda, el barco visto desde arriba con las direcciones por las que entran el viento real y el aparente, cada una con su ángulo desde la proa acotado; a la derecha, la suma de vectores: real más de avance igual a aparente, con sus nudos.',
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Seguridad (PY, UT 1): movimientos del barco, patrones de búsqueda y fuego.
 const SEG = 'Seguridad';
 const NOTA_MOV = 'Balance, cabezada y guiñada son giros alrededor de los tres ejes del barco. Si el periodo de las olas coincide con el del barco, el movimiento se amplifica (sincronismo): cambia de rumbo o de velocidad.';
@@ -497,7 +517,7 @@ const MARCOS = {
   cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
   nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
   'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
-  movimiento, busqueda, fuego,
+  movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

@@ -32,9 +32,9 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
 | Lámina | Estado |
 | --- | --- |
 | marea curva / duodécimos / sonda · I | C (piloto) |
-| marea fases (vivas y muertas) | pendiente |
+| marea fases (vivas y muertas) | C (esta rama) |
 | meteo borrasca / anticiclón | C (piloto) |
-| meteo buys-ballot, isobaras · I, frentes · I, frente-frio-corte, frente-calido-corte, nieblas (3) · I, brisas (2) | pendiente |
+| meteo buys-ballot, isobaras · I, frentes · I, frente-frio-corte, frente-calido-corte, nieblas (3) · I, brisas (2) | C (esta rama) |
 | viento-aparente (5), beaufort, modelos-viento, vientos-regionales (2), humedad, psicrometro, nubes, nubes-pisos, ola (2), corriente-estrecho (2) | pendiente |
 
 ### 3. Seguridad (UT 1)
@@ -55,8 +55,10 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
 - Grupo 1b (carta, clases del PY): rumbo para pasar a una distancia con viento, faro por el través y derrota, corriente
   desconocida y loxodrómica frente a ortodrómica. Siguen en sus ficheros de `lecciones/` (mismos `resaltar`), con la cuenta
   paso a paso en filas numeradas (`filaPaso()` de `carta-c.js`).
+- Grupo 2 (mareas y meteorología): mareas vivas y muertas, Buys-Ballot, isobaras, frentes (bloque, mapa y corte),
+  frente frío y cálido en corte, las tres nieblas y las dos brisas. Fijas en `src/illustrations/meteo-c.js`.
 
 ## Verificación
 
 - Capturas en `scratchpad/lpy-capturas/` (`antes-*` y `despues-*`), claro y oscuro, 390 (360/990 en las principales).
-- El único error de consola en las clases es un 404 previo (recurso que no está en el repositorio), igual antes y después.
+- Sin errores de consola ni desbordes (el 404 que salía al principio era el favicon de la página de arranque del script de capturas, no de la app).

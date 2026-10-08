@@ -153,8 +153,74 @@ function meteo(spec) {
       alt: 'Isobaras cerradas alrededor de una A de alta presión (1032, 1028 y 1024 hPa, mayor en el centro). Las flechas del viento giran en sentido horario y cruzan las isobaras hacia fuera.',
     };
   }
-  return null;
+  if (spec.sistema === 'isobaras' && spec.centro === 'A') return { ...METEO.isobaras, titulo: 'Isobaras y viento en un anticiclón' };
+  return METEO[spec.sistema] ?? null;
 }
+
+const MET = 'Meteorología';
+const NOTA_NIEBLA = 'La niebla aparece cuando el aire llega a su punto de rocío (humedad relativa del 100 %). Con el psicrómetro: si el termómetro seco y el húmedo marcan casi lo mismo, el aire está cerca de saturarse.';
+const METEO = {
+  'buys-ballot': {
+    tema: MET, titulo: 'Ley de Buys-Ballot', clave: 'De espaldas al viento, la borrasca queda a la izquierda y algo adelantada.',
+    datos: [{ cifra: 'izquierda', texto: 'la baja presión (hemisferio norte)' }, { cifra: 'derecha', texto: 'la alta, algo atrasada' }, { cifra: 'al revés', texto: 'en el hemisferio sur' }],
+    nota: 'El viento no sopla paralelo a las isobaras: las cruza hacia la baja presión (en la mar, unos 20°). Por eso la borrasca no queda justo a 90°, sino algo adelantada.',
+    alt: 'Isobaras alrededor de una borrasca (B, a la izquierda) y de un anticiclón (A, a la derecha); en medio, tú, con el viento por la espalda: la línea a trazos hacia la B queda a la izquierda y algo por delante de hacia donde miras.',
+  },
+  isobaras: {
+    tema: MET, titulo: 'Isobaras y viento', clave: 'Isobaras juntas, más viento; el viento las cruza hacia la baja.',
+    datos: [{ cifra: '4 hPa', texto: 'entre isobaras, en los mapas' }, { cifra: 'juntas', texto: 'gradiente fuerte: mucho viento' }, { cifra: 'B · A', texto: 'antihorario y hacia dentro; horario y hacia fuera' }],
+    nota: 'El gradiente horizontal de presión es la diferencia de presión por unidad de distancia: cuanto más juntas las isobaras, mayor gradiente y más viento. Hemisferio norte.',
+    alt: 'Isobaras circulares con su presión alrededor de una borrasca o un anticiclón; tu barco en un punto de una de ellas y, en magenta, la flecha del viento, que cruza las isobaras y es más larga y gruesa cuanto más juntas están.',
+  },
+  frentes: {
+    tema: MET, titulo: 'Los frentes de una borrasca', clave: 'El frente frío es una cuña empinada; el cálido, una rampa suave.',
+    datos: [{ cifra: 'triángulos', texto: 'frente frío, hacia donde avanza' }, { cifra: 'semicírculos', texto: 'frente cálido, hacia donde avanza' }, { cifra: 'sector cálido', texto: 'entre los dos frentes' }],
+    nota: 'Al pasar una borrasca por el norte de tu posición, primero llega el frente cálido (lluvia continua), luego el sector cálido y después el frío (chubascos y rachas; el viento rola y el barómetro sube).',
+    alt: 'Un bloque en perspectiva con el mapa del tiempo en el suelo (la borrasca con sus frentes frío y cálido y el sector cálido entre ellos) y el corte A–A′ en la pared del fondo; al lado, el mapa y el corte en plano.',
+  },
+  'frente-frio-corte': {
+    tema: MET, titulo: 'Frente frío, en corte', clave: 'El aire frío entra como una cuña y levanta de golpe el cálido.',
+    datos: [{ cifra: 'Cb', texto: 'cumulonimbos: chubascos, rachas y tormenta' }, { cifra: 'rola', texto: 'el viento, al paso del frente' }, { cifra: 'sube', texto: 'la presión, y el cielo se limpia' }],
+    nota: 'Tras el frente frío bajan la temperatura y la humedad, sube la presión y la visibilidad mejora mucho. En el mapa: línea azul con triángulos hacia donde avanza.',
+    alt: 'Corte vertical de un frente frío que avanza hacia la derecha: la cuña empinada de aire frío por debajo, el aire cálido levantado delante, un cumulonimbo con chubascos sobre el frente y, abajo, el símbolo de triángulos.',
+  },
+  'frente-calido-corte': {
+    tema: MET, titulo: 'Frente cálido, en corte', clave: 'El aire cálido sube despacio sobre el frío: nubes en capas y lluvia continua.',
+    datos: [{ cifra: 'Ci · Cs', texto: 'lo anuncian de lejos (halo)' }, { cifra: 'As · Ns', texto: 'después; lluvia continua y débil' }, { cifra: 'baja', texto: 'la presión antes de su paso' }],
+    nota: 'Las nubes altas llegan cientos de kilómetros por delante del frente: un cielo que se cubre de cirros y cirrostratos con halo avisa de que se acerca. En el mapa: línea roja con semicírculos.',
+    alt: 'Corte vertical de un frente cálido que avanza hacia la derecha: la rampa suave del aire cálido sobre el frío, con cirros, cirrostratos, altostratos y nimbostratos con lluvia continua cerca del frente; abajo, el símbolo de semicírculos.',
+  },
+  'niebla-adveccion': {
+    tema: MET, titulo: 'Niebla de advección', clave: 'Aire templado y húmedo que se enfría al pasar sobre agua fría.',
+    datos: [{ cifra: 'la de la mar', texto: 'la típica de la navegación' }, { cifra: 'días', texto: 'puede durar, aunque sople el viento' }, { cifra: '100 %', texto: 'humedad relativa: aparece la niebla' }],
+    nota: NOTA_NIEBLA,
+    alt: 'Corte con la mar fría abajo y una flecha de aire templado y húmedo que llega sobre ella; un termómetro con la temperatura del aire y, cuando se satura, una banda gris de niebla sobre el agua.',
+  },
+  'niebla-radiacion': {
+    tema: MET, titulo: 'Niebla de radiación', clave: 'En tierra, en noches despejadas y sin viento: el suelo se enfría y enfría el aire.',
+    datos: [{ cifra: 'de noche', texto: 'cielo despejado y calma' }, { cifra: 'por la mañana', texto: 'se disipa al calentar el sol' }, { cifra: 'en tierra', texto: 'afecta poco a la mar abierta' }],
+    nota: NOTA_NIEBLA,
+    alt: 'Corte de noche con la luna: la tierra se enfría por radiación, el termómetro baja y, al saturarse el aire, aparece una banda gris de niebla pegada al suelo.',
+  },
+  'niebla-vapor': {
+    tema: MET, titulo: 'Niebla de vapor', clave: 'Aire muy frío sobre agua más templada: el agua humea.',
+    datos: [{ cifra: '≈ 8 °C', texto: 'o más de diferencia entre agua y aire' }, { cifra: 'evaporación', texto: 'no enfriamiento: satura el aire de abajo' }, { cifra: 'invierno', texto: 'dársenas, rías y mares cerrados' }],
+    nota: 'Es poco espesa y de poca altura, pero puede tapar la visión de cerca en una dársena. Se llama también humo de mar.',
+    alt: 'Corte con agua templada abajo y una flecha de aire muy frío encima; un termómetro con la temperatura del aire y, cuando la diferencia es grande, columnas grises de vapor que suben del agua.',
+  },
+  'brisa-mar': {
+    tema: MET, titulo: 'Brisa marina (virazón)', clave: 'De día, la tierra se calienta más: en superficie el viento entra del mar.',
+    datos: [{ cifra: 'de día', texto: 'máxima por la tarde' }, { cifra: 'mar → tierra', texto: 'en superficie' }, { cifra: 'asciende', texto: 'el aire sobre la tierra caliente' }],
+    nota: 'Es una circulación cerrada: el aire sube sobre la tierra, vuelve hacia el mar en altura y baja sobre él. De noche se invierte: el terral.',
+    alt: 'Corte de la costa de día: el aire asciende sobre la tierra caliente, vuelve en altura hacia el mar, desciende sobre él y en superficie entra del mar a tierra (flecha magenta).',
+  },
+  'brisa-tierra': {
+    tema: MET, titulo: 'Terral', clave: 'De noche, la tierra se enfría más: en superficie el viento sale hacia el mar.',
+    datos: [{ cifra: 'de noche', texto: 'máximo al amanecer' }, { cifra: 'tierra → mar', texto: 'en superficie' }, { cifra: 'desciende', texto: 'el aire sobre la tierra fría' }],
+    nota: 'Suele ser más flojo que la virazón, porque la diferencia de temperatura de noche es menor. De día se invierte: la brisa marina.',
+    alt: 'Corte de la costa de noche: el aire desciende sobre la tierra fría, sale en superficie hacia el mar (flecha magenta), asciende sobre él y vuelve a tierra en altura.',
+  },
+};
 
 const helice = (spec) => {
   const dex = spec.sentido !== 'levogira';
@@ -236,6 +302,14 @@ function marea(spec) {
       datos: [{ cifra: `${amp} m`, texto: 'amplitud: pleamar menos bajamar' }, { cifra: `${horas} h`, texto: 'duración de la creciente' }],
       nota: 'Las horas del anuario vienen en tiempo universal: súmale el adelanto para tener la hora oficial.',
       alt: `Curva de la marea entre la bajamar (${num(bm.h)} m) y la pleamar (${num(pm.h)} m), con la hora marcada y su altura; debajo, el bajo en corte.`,
+    };
+  }
+  if (m === 'fases') {
+    return {
+      tema: 'Mareas', titulo: 'Mareas vivas y mareas muertas', clave: 'Sol y Luna alineados, mareas vivas; en ángulo recto, muertas.',
+      datos: [{ cifra: 'nueva y llena', texto: 'sicigias: mareas vivas, más amplitud' }, { cifra: 'cuartos', texto: 'cuadraturas: mareas muertas' }, { cifra: '≈ 15 días', texto: 'de unas vivas a las siguientes' }],
+      nota: 'En mareas vivas sube más la pleamar y baja más la bajamar: hay más agua en la pleamar, menos en la bajamar y más corriente de marea.',
+      alt: 'El Sol a la izquierda, la Tierra en el centro y la órbita de la Luna con sus cuatro fases: alineadas (nueva y llena) dan mareas vivas; en ángulo recto (cuartos), mareas muertas. Debajo, una curva de marea viva, más alta, y una de marea muerta, más baja.',
     };
   }
   return null;

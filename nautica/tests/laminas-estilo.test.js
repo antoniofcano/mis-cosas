@@ -97,6 +97,11 @@ const PILOTO = [
   { tipo: 'tangente-viento' }, { tipo: 'tangente-viento', banda: 'estribor', viento: 0, dv: 200, resaltar: 'rv' },
   { tipo: 'traves-derrota' }, { tipo: 'traves-derrota', banda: 'estribor', rv: 45, viento: 0, trampa: false },
   { tipo: 'corriente-desconocida' }, { tipo: 'corriente-desconocida', resaltar: 'corriente' }, { tipo: 'loxo-orto' }, { tipo: 'loxo-orto', resaltar: 'orto' },
+  // PY, mareas y meteorología
+  { tipo: 'marea', modo: 'fases' },
+  ...['buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'niebla-vapor', 'brisa-mar', 'brisa-tierra'].map((sistema) => ({ tipo: 'meteo', sistema })),
+  { tipo: 'meteo', sistema: 'isobaras', centro: 'A', posicion: 300, separacion: 14 }, { tipo: 'meteo', sistema: 'isobaras', separacion: 34, posicion: 0 },
+  ...[0, 10, 12, 22].flatMap((t) => ['niebla-adveccion', 'niebla-radiacion', 'niebla-vapor'].map((sistema) => ({ tipo: 'meteo', sistema, t }))),
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */
@@ -177,6 +182,8 @@ test('láminas piloto interactivas: cada parte que se puede resaltar está dibuj
     for (const p of Object.keys(def.partes)) {
       if (p === 'timon' && s.timon === 'via') continue;
       if (p === 'corriente' && Number(s.ic) === 0) continue; // sin corriente no se dibuja su vector
+      // la niebla solo aparece al saturarse el aire, y el agua templada es solo de la niebla de vapor
+      if (s.tipo === 'meteo' && (p === 'niebla' || (p === 'agua' && s.sistema !== 'niebla-vapor') || (p === 'aire' && s.sistema === 'niebla-radiacion'))) continue;
       // una rosa solo de rumbo no tiene demora ni marcación (ni una de demora, rumbo)
       if (s.tipo === 'rosa' && ((p === 'demora' && s.demora == null) || (p === 'rumbo' && s.rumbo == null) || (p === 'marcacion' && (s.rumbo == null || s.demora == null)))) continue;
       assert.ok(todo.includes(`data-parte="${p}"`), `${JSON.stringify(s)}: falta data-parte="${p}"`);

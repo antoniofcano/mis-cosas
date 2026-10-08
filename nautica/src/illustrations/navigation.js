@@ -3,6 +3,7 @@
 // Los colores son de saturación media para leerse en los temas claro y oscuro (el fondo es il-panel).
 
 import { vientoAparente } from '../nautical/viento.js';
+import { mareasVivasMuertas } from './meteo-c.js';
 
 const C = { v: '#2563eb', m: '#16a34a', a: '#d97706', r: '#dc2626', p: '#7c3aed', g: '#64748b' };
 
@@ -131,36 +132,6 @@ export function dstIllustration() {
   return { svg: out.join(''), caption: 'Se navega por la vía en el sentido de la circulación. Si hay que cruzarlo, lo más perpendicular posible a la corriente de tráfico; para entrar o salir, por los extremos o con el menor ángulo. Los buques de menos de 20 m, los de vela y los pesqueros pueden usar la zona de navegación costera.' };
 }
 
-// ---------------------------------------------------------------------------
-// Mareas vivas y muertas: Sol, Tierra y Luna. spec: { tipo:'marea', modo:'fases' }
-
-function mareasVivasMuertas() {
-  const W = 320;
-  const H = 320;
-  const out = open(W, H, 'Mareas vivas y muertas', 'mf');
-  out.push(title(160, 'Mareas vivas y muertas'));
-  const E = [196, 134];
-  const R = 74;
-  const dur = 16;
-  out.push(`<circle cx="-30" cy="${E[1]}" r="62" fill="#facc15" opacity=".9"/>`, lbl(12, E[1] + 4, 'Sol', null, 'start', 'font-weight="700"'));
-  for (let i = 0; i < 4; i++) out.push(`<line x1="40" y1="${E[1] - 30 + i * 20}" x2="70" y2="${E[1] - 30 + i * 20}" stroke="#facc15" stroke-width="1.5" stroke-dasharray="3 3"/>`);
-  out.push(`<circle cx="${E[0]}" cy="${E[1]}" r="${R}" fill="none" stroke="${C.g}" stroke-dasharray="3 4"/>`);
-  // fases en la órbita (la Luna gira en sentido antihorario visto desde el norte)
-  const ph = [['nueva', -R, 0, 'end'], ['cuarto creciente', 0, R, 'middle'], ['llena', R, 0, 'start'], ['cuarto menguante', 0, -R, 'middle']];
-  for (const [t, dx, dy, a] of ph) out.push(lbl(E[0] + dx * 1.18 + (a === 'end' ? 4 : a === 'start' ? -4 : 0), E[1] + dy * 1.18 + (dy > 0 ? 10 : dy < 0 ? -2 : 4), t, 'g', a, 'font-size="9"'));
-  out.push(`<g><animateTransform attributeName="transform" type="rotate" from="0 ${E[0]} ${E[1]}" to="-360 ${E[0]} ${E[1]}" dur="${dur}s" repeatCount="indefinite"/>` +
-    `<ellipse cx="${E[0]}" cy="${E[1]}" rx="34" ry="19" fill="#38bdf8" opacity=".55"><animate attributeName="rx" values="34;24;34;24;34" dur="${dur}s" repeatCount="indefinite"/></ellipse>` +
-    `<circle cx="${E[0] - R}" cy="${E[1]}" r="9" fill="#cbd5e1" stroke="#64748b"/></g>`);
-  out.push(`<circle cx="${E[0]}" cy="${E[1]}" r="15" fill="#2563eb"/><text x="${E[0]}" y="${E[1] + 3.5}" font-size="8" text-anchor="middle" fill="#fff">Tierra</text>`);
-  const vis = (on) => `<animate attributeName="opacity" values="${on ? '1;0;1;0;1' : '0;1;0;1;0'}" keyTimes="0;.125;.375;.625;.875" dur="${dur}s" calcMode="discrete" repeatCount="indefinite"/>`;
-  out.push(`<text x="160" y="${H - 62}" class="il-lbl strong" text-anchor="middle" style="fill:${C.r}" font-size="12">Alineados (sicigias): MAREAS VIVAS${vis(true)}</text>`);
-  out.push(`<text x="160" y="${H - 62}" class="il-lbl strong" text-anchor="middle" style="fill:${C.v}" font-size="12" opacity="0">En ángulo recto (cuadraturas): MAREAS MUERTAS${vis(false)}</text>`);
-  // curvas de marea comparadas
-  const curve = (x0, A, c) => { const p = []; for (let i = 0; i <= 40; i++) p.push(`${(x0 + i * 3).toFixed(1)},${(H - 32 + A * Math.cos((i / 40) * 4 * Math.PI)).toFixed(1)}`); return `<polyline points="${p.join(' ')}" fill="none" stroke="${c}" stroke-width="2"/>`; };
-  out.push(curve(20, 14, C.r), lbl(80, H - 4, 'vivas: más amplitud', 'r', 'middle', 'font-size="9"'));
-  out.push(curve(180, 6, C.v), lbl(240, H - 4, 'muertas: menos amplitud', 'v', 'middle', 'font-size="9"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Con luna nueva y luna llena (sicigias) el Sol, la Tierra y la Luna están alineados y sus atracciones se suman: mareas vivas, de mayor amplitud. En los cuartos creciente y menguante (cuadraturas) se contrarrestan: mareas muertas, de menor amplitud. Ocurren cada unos 15 días.' };
-}
+// Mareas vivas y muertas: ahora en estilo C, en src/illustrations/meteo-c.js.
 
 // Enfilación, situación por dos demoras y loxodrómica: ahora en estilo C, en src/illustrations/carta-c.js.

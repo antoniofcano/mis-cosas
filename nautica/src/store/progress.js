@@ -3,7 +3,7 @@
 // Exportable/importable en JSON para no perder el progreso. Los campos nuevos son opcionales: un progreso
 // antiguo (version 1) carga sin migración (lo que falta se completa al cargar: el eje, p. ej.).
 
-import { siguienteRepaso } from '../course/repaso.js';
+import { siguienteRepaso, repasoDe } from '../course/repaso.js';
 import { diaISO } from '../texto.js';
 import { EJE_POR_DEFECTO } from '../bancos/registro.js';
 const KEY = 'nautica.progress.v1';
@@ -72,14 +72,35 @@ export function createProgressStore(storage = safeStorage()) {
     },
 
     /** Registra la respuesta a una pregunta de examen real (choice null = «No la sé»). */
-    recordExam(questionId, { choice = null, ok }) {
+    recordExam(questionId, { choice = null, ok, nivel = false }) {
       const prev = data.exams[questionId];
       // n: veces respondida; ok1: si se acertó la primera vez (lo que mejor predice una pregunta que no has memorizado).
       const n = (prev?.n ?? (prev ? 1 : 0)) + 1;
       const ok1 = prev ? (prev.ok1 ?? prev.ok) : ok;
-      // rep: repaso espaciado de fallos (src/course/repaso.js); null = fuera de la cola.
-      const rep = siguienteRepaso(prev, ok, diaLocal());
-      data.exams[questionId] = { choice, ok, t: new Date().toISOString(), n, ok1, rep };
+      // rep: repaso espaciado de fallos (src/course/repaso.js); null = fuera de la cola. Una respuesta del test de nivel
+      // (src/course/nivel.js) cuenta como cualquier otra para el dominio, pero no toca la cola: lo que falla un alumno
+      // que aún no ha estudiado no es un fallo que repasar mañana (se lo enseña su clase), y lo que ya estaba en la cola
+      // sigue igual.
+      const rep = nivel ? (prev ? repasoDe(prev, diaLocal()) : null) : siguienteRepaso(prev, ok, diaLocal());
+      data.exams[questionId] = { choice, ok, t: new Date().toISOString(), n, ok1, rep, ...(nivel ? { nivel: true } : {}) };
+      save();
+    },
+
+    /**
+     * Test de nivel (src/course/nivel.js) de un eje y una titulación: el resultado guardado (o null) y el test a medias.
+     * Uno por banco; repetirlo lo sustituye.
+     */
+    nivel: (eje, tit) => data.niveles?.[`${eje}/${tit}`] ?? null,
+    recordNivel(eje, tit, r) {
+      data.niveles = { ...(data.niveles ?? {}), [`${eje}/${tit}`]: r };
+      save();
+    },
+
+    /** Fichas de idea abiertas (src/course/ficha.js): { [concepto]: ISO } por eje y titulación. */
+    fichasVistas: (eje, tit) => data.fichas?.[`${eje}/${tit}`] ?? {},
+    recordFichaVista(eje, tit, concepto, t = new Date().toISOString()) {
+      const k = `${eje}/${tit}`;
+      data.fichas = { ...(data.fichas ?? {}), [k]: { ...(data.fichas?.[k] ?? {}), [concepto]: t } };
       save();
     },
 

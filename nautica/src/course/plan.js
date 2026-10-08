@@ -47,7 +47,7 @@ export function estadoTema(bloque, curso, preguntas, regs = {}, respuestas = {},
   const terminada = (e) => e !== 'nueva' && e !== 'empezada';
   // Lo hecho de las clases a medias (tramos terminados / tramos), para que el avance se mueva al estudiar un tramo.
   const parcial = ls.reduce((s, l, i) => s + (estados[i] === 'empezada' && regs[l.id]?.tramos > 1 ? Math.min(1, (regs[l.id].tramo ?? 0) / regs[l.id].tramos) : 0), 0);
-  const clases = { total: estados.length, vistas: estados.filter((e) => e !== 'nueva').length, terminadas: estados.filter(terminada).length, aprendidas: estados.filter((e) => e === 'dominada').length, parcial };
+  const clases = { total: estados.length, vistas: estados.filter((e) => e !== 'nueva' && e !== 'saltada').length, terminadas: estados.filter(terminada).length, aprendidas: estados.filter((e) => e === 'dominada').length, parcial };
   const alDia = estados.every(terminada) && hechas >= Math.min(total, OBJETIVO_TEMA);
   let estado = 'en-marcha';
   if (!hechas && !clases.vistas) estado = 'sin-empezar';

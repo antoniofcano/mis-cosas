@@ -1692,3 +1692,41 @@ button.calc-boton .ico { width: 20px; height: 20px; }
 .note-bar button .ico { width: 18px; height: 18px; }
 .indicador-eje .ico.ico-t, .marca-config .ico.ico-t { color: var(--muted); }
 .profe-badge > .ico:not(.ico-t) { width: 1.3em; height: 1.3em; vertical-align: -.3em; }
+
+/* Mi progreso (#/progreso): arriba el resumen (rango de la travesía y camino), el examen final en corto y el detalle con
+   el mismo lenguaje que la Travesía (rótulos .eti, superficies de 14 px). */
+.progress > h1 { margin-bottom: .8rem; }
+.prog-resumen { display: grid; gap: .6rem; margin: 0 0 .9rem; }
+.prog-camino { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem .9rem; display: grid; gap: .45rem; }
+.prog-camino p { margin: 0; color: var(--muted); }
+.prog-pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+.prog-enlace-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-2); color: var(--accent); display: grid; place-items: center; flex: none; }
+.ver-travesia.trav-insignias-enlace { margin: 0; }
+.examen-final.compacta { border: 1px solid var(--border); border-radius: 14px; padding: .7rem .9rem; margin: 0 0 .9rem; }
+.ef-fila { display: flex; align-items: center; gap: .75rem; }
+.ef-disco { width: 40px; height: 40px; border-radius: 999px; background: var(--faro-off-bg); color: var(--faro-off-texto); display: grid; place-items: center; flex: none; }
+.ef-tx { min-width: 0; }
+.examen-final.compacta .ef-tx h2 { margin: 0; font-size: 1rem; }
+.examen-final.compacta .ef-tx p { margin: 0; color: var(--muted); }
+details.ef-falta { margin: .1rem 0 0; padding: 0; border: 0; background: none; }
+details.ef-falta > summary { min-height: 44px; display: flex; align-items: center; gap: .3rem; padding: 0 0 0 calc(40px + .75rem); color: var(--accent); font-size: .9rem; list-style: none; }
+details.ef-falta > summary::-webkit-details-marker { display: none; }
+details.ef-falta > summary::after { content: "›"; display: inline-block; transform: rotate(90deg); }
+details.ef-falta[open] > summary::after { transform: rotate(-90deg); }
+.ef-falta-cuerpo { padding-left: calc(40px + .75rem); }
+.ef-falta-cuerpo p { margin: .3rem 0; }
+ul.ef-temas { list-style: none; margin: .4rem 0; padding: 0; display: grid; gap: .25rem; font-size: .88rem; }
+ul.ef-temas li { display: flex; justify-content: space-between; gap: .6rem; padding: .3rem 0; border-bottom: 1px solid var(--border); }
+ul.ef-temas li:last-child { border-bottom: 0; }
+.ef-num { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.prog-sec { margin: 1.1rem 0; }
+.prog-sec > h2.eti, .prog-sec-tit { margin: 1.1rem 0 .5rem; }
+.prog-sec > p.muted.small { margin-top: 0; }
+.prog-temas .tema-card { border-radius: 14px; padding: .75rem .9rem; }
+.prog-temas .tema-card h3 { font-size: 1rem; }
+.prog-temas .tema-card .estado-linea { margin-top: .3rem; font-size: .9rem; }
+.prog-temas .tema-card .bar { height: 8px; border-radius: 999px; margin: .4rem 0 0; }
+.prog-temas .tema-card .bar span { border-radius: 999px; }
+details.prog-carta { margin: 1rem 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0 .9rem; }
+details.prog-carta > summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.progress ul.clases-flojas a { border-radius: 14px; }

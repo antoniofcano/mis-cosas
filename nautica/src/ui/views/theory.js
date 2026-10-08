@@ -239,6 +239,29 @@ export function tarjetaFinal(T0, fin, { titulo = 'h2' } = {}) {
     fin.lineasResultado.length ? [h('h3', 'Tus exámenes finales'), h('ul.resultados-final', fin.lineasResultado.map((l, i) => h('li', { class: i === 0 && fin.preparado ? 'ok' : '' }, l)))] : null);
 }
 
+/**
+ * El examen final en corto (para «Mi progreso»): cerrado, una línea con candado y lo que falta plegado en «Ver qué falta»
+ * (las mismas líneas del motor y la lista de temas). Abierto, es la tarjeta de siempre (lleva el botón para hacerlo).
+ */
+export function tarjetaFinalCompacta(T0, fin) {
+  if (!fin?.hay) return null;
+  if (fin.desbloqueado) return tarjetaFinal(T0, fin);
+  const b = fin.bloqueo;
+  const temas = b?.temas ?? [];
+  const resumen = b?.motivo === 'faltan-datos'
+    ? `Cerrado: te faltan preguntas de ${cuenta(temas.length, 'tema')}.`
+    : `Cerrado: se abre cuando aprobarías unas ${Math.round((b?.objetivo ?? 0) * 10)} de cada 10 veces.`;
+  return h('section.examen-final.compacta.cerrado',
+    h('div.ef-fila', h('span.ef-disco', icono('candado')),
+      h('div.ef-tx', h('h2', 'Examen final'), h('p.small', resumen))),
+    h('details.ef-falta', h('summary', 'Ver qué falta'),
+      h('div.ef-falta-cuerpo',
+        fin.lineas.map((l) => h('p.small', l)),
+        temas.length ? h('ul.ef-temas', temas.map((t) => h('li', h('span', t.titulo), h('span.ef-num', `te faltan ${t.faltan}`)))) : null,
+        h('p.muted.small', 'Preguntas reales reservadas que no salen al estudiar: la mejor prueba de si lo sabes de verdad.'))),
+    fin.lineasResultado.length ? [h('h3', 'Tus exámenes finales'), h('ul.resultados-final', fin.lineasResultado.map((l, i) => h('li', { class: i === 0 && fin.preparado ? 'ok' : '' }, l)))] : null);
+}
+
 export function examenesView({ ctx, progress, tit }) {
   chartRef = ctx.chart;
   useTit(tit);

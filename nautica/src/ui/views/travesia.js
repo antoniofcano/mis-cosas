@@ -68,6 +68,21 @@ export function tarjetaTravesiaHoy(tit, sy) {
     h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'));
 }
 
+/**
+ * La tarjeta del rango (fondo de marca): rango, ideas dominadas y la barra hacia el siguiente. La usan esta pantalla y
+ * «Mi progreso» (#/progreso), con el mismo cálculo (sincronizarTravesia → progresoRango).
+ */
+export function tarjetaRango(sy) {
+  const { est, rango } = sy;
+  return h('section.trav-rango', { 'aria-label': 'Tu rango' },
+    h('div.trav-rango-fila', discoRango(),
+      h('div.trav-rango-tx', h('span.small', 'Tu rango'), h('strong', rango.actual.nombre)),
+      h('div.trav-rango-cifra', h('b', `${est.dominadas} de ${est.total}`), h('span', 'ideas dominadas'))),
+    h('div.barra-trav.sobre-fondo', { role: 'progressbar', 'aria-label': rango.siguiente ? `Camino hacia ${rango.siguiente.nombre}` : 'Camino completado', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(Math.round(rango.fraccion * 100)) },
+      h('span', { style: `width:${Math.round(rango.fraccion * 100)}%` })),
+    h('p.small', rango.texto));
+}
+
 /** Enlace a la pantalla de insignias con la cuenta. */
 const cuentaInsignias = (est, reg) => {
   const cat = catalogoInsignias(est.faros);
@@ -138,13 +153,7 @@ function pantallaTravesia({ T, tit, d, sy, query }) {
   pintaDetalle();
 
   // El rango
-  const rangoEl = h('section.trav-rango', { 'aria-label': 'Tu rango' },
-    h('div.trav-rango-fila', discoRango(),
-      h('div.trav-rango-tx', h('span.small', 'Tu rango'), h('strong', rango.actual.nombre)),
-      h('div.trav-rango-cifra', h('b', `${est.dominadas} de ${est.total}`), h('span', 'ideas dominadas'))),
-    h('div.barra-trav.sobre-fondo', { role: 'progressbar', 'aria-label': rango.siguiente ? `Camino hacia ${rango.siguiente.nombre}` : 'Camino completado', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(Math.round(rango.fraccion * 100)) },
-      h('span', { style: `width:${Math.round(rango.fraccion * 100)}%` })),
-    h('p.small', rango.texto));
+  const rangoEl = tarjetaRango(sy);
 
   // La semana
   const sem = est.semana;

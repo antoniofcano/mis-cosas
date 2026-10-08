@@ -10,7 +10,8 @@ import { conceptosDelBanco } from '../concepto.js';
 import { cargarBanco } from '../../bancos/index.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { APENDICE_PUBLICADO } from '../../course/apendice.js';
-import { guardarCopia, botonRecuperar } from '../copia.js';
+import { guardarCopia, botonRecuperar, lineaProteccion } from '../copia.js';
+import { filaInstalar } from '../instalar.js';
 import { fechaLarga } from '../../texto.js';
 import { icono, conIcono } from '../iconos.js';
 
@@ -66,9 +67,11 @@ export function masMenuView({ progress, tit }) {
       h('details.mas-chuletas', h('summary', conIcono('chincheta', `La chuleta de cada tema del ${T.sigla}`)),
         h('ul.mas-lista.compacta', bloquesEnOrden(T.estructura).map((b) => h('li', h('a.mas-fila', { href: tlink(tit, ['temario', String(b.ut), 'chuleta']) },
           discoFila(b.ico), h('span.mas-fila-tx', h('strong', b.titulo)), h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'))))))),
+    filaInstalar() ? h('section.mas-grupo', h('h2.eti', 'La app'), filaInstalar()) : null,
     h('section.mas-grupo.mas-copia', h('h2.eti', 'Copia de seguridad'),
       h('p.small', 'Lo que estudias se guarda solo en este aparato. Guarda una copia de vez en cuando.'),
       copiaHecha,
+      lineaProteccion(progress),
       h('div.actions',
         h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
         botonRecuperar(progress))));

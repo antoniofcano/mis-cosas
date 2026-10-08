@@ -13,6 +13,7 @@ import { TITULACIONES, tlink } from '../titulacion.js';
 import { icono } from '../iconos.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
+import { tarjetaInstalar } from '../instalar.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
 import { quieto } from '../movimiento.js';
 import { cuenta } from '../../texto.js';
@@ -387,6 +388,7 @@ export function hoyView({ progress, tit }) {
       })(),
       progresoEl,
       avisoCopia(progress),
+      tarjetaInstalar(progress),
       h('p.ver-todo', h('a', { href: tlink(tit, ['temario']) }, 'Ver todo el temario →')),
       marcaConfig(),
     );

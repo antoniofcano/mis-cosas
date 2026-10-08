@@ -1,7 +1,7 @@
 {
   "name": "Patrón · Preparador PER y PY",
   "short_name": "Patrón",
-  "description": "Preparador gratuito del examen de PER y Patrón de Yate (Andalucía).",
+  "description": "Preparador gratuito del examen de PER y Patrón de Yate: preguntas reales con la plantilla oficial, repaso por ideas, simulacros y ejercicios de carta.",
   "lang": "es",
   "start_url": "./#/",
   "scope": "./",
@@ -10,9 +10,78 @@
   "background_color": "#f6f8fb",
   "theme_color": "#0b5cad",
   "icons": [
-    { "src": "icons/icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "icons/icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icono.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Seguir con el PER",
+      "short_name": "PER",
+      "url": "./#/per",
+      "icons": [
+        {
+          "src": "icons/icono-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Seguir con el Patrón de Yate",
+      "short_name": "PY",
+      "url": "./#/py",
+      "icons": [
+        {
+          "src": "icons/icono-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Repaso de fallos (PER)",
+      "short_name": "Repaso PER",
+      "url": "./#/per/teoria/repaso",
+      "icons": [
+        {
+          "src": "icons/icono-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Repaso de fallos (PY)",
+      "short_name": "Repaso PY",
+      "url": "./#/py/teoria/repaso",
+      "icons": [
+        {
+          "src": "icons/icono-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    "education"
   ]
 }

@@ -14,6 +14,8 @@ import { transicion } from './movimiento.js';
 import { icono, conIcono } from './iconos.js';
 import { voice } from './voice.js';
 import { configurarEfectos, escucharPrimerGesto } from './efectos.js';
+import { pedirPersistencia } from '../store/persistencia.js';
+import { escucharInstalacion } from './instalar.js';
 import { exerciseView } from './views/exercise.js';
 import { preguntaView, listaView, legadoExamenesView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
@@ -172,6 +174,7 @@ function renderNav(tit, parts, cambiarTit) {
 }
 
 async function main() {
+  escucharInstalacion();
   const root = document.getElementById('app');
   const chart = createChart(await loadChartData());
   const ctx = { chart };
@@ -192,6 +195,8 @@ async function main() {
   // Sonidos y vibración (Ajustes; apagados por defecto): callan mientras habla el profe o suena la radio de a bordo.
   configurarEfectos({ settings: () => progress.settings(), estaOcupado: () => voice.speaking || (radio().audio ? !radio().audio.paused : false) });
   escucharPrimerGesto();
+  // Protección de los datos: se pide al navegador que los conserve tras el primer toque (algunos navegadores preguntan).
+  addEventListener('pointerdown', () => { pedirPersistencia({ leer: () => progress.settings(), guardar: (k, v) => progress.setSetting(k, v) }); }, { once: true });
   iniciarCalculadora();
   let current = null;
 

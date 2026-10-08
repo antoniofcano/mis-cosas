@@ -452,7 +452,7 @@ button.boton-anterior { flex: none; width: 60px; min-width: 56px; min-height: 60
 p.ver-todas { margin: .4rem 0; }
 p.ver-todas a { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; }
 button.grande.practicar { margin: 1.2rem 0; }
-.tanda .qcard { margin-top: .3rem; }
+.tanda .qcard { margin-top: .3rem; scroll-margin-top: 4.5rem; }
 .feedback-profe:focus { outline: none; }
 p.vacio { font-size: 1.1rem; margin: 1.5rem 0; }
 .tema-card .estado-linea.ok { color: var(--ok); }
@@ -963,6 +963,8 @@ button.emp-ok { border-color: var(--ok) !important; background: color-mix(in srg
 .hoja.plegada .hoja-cuerpo { display: none; }
 body.con-hoja .fila-inferior { visibility: hidden; }
 body.con-hoja main { padding-bottom: 60vh !important; }
+body.con-hoja.hoja-plegada main { padding-bottom: 190px !important; }
+.hoja .hoja-plegar-texto:not(:empty) { font-size: .9rem; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hoja.ok .hoja-continuar, :root:not([data-theme="light"]) .hoja.bad .hoja-continuar { color: #06121f; } }
 /* Opciones como en la maqueta: la buena en verde, la elegida si falla en rojo, el resto atenuado */
 .option.wrong.elegida { border-width: 2px; }

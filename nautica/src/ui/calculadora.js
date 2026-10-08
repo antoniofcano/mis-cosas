@@ -13,6 +13,7 @@ import { pulsar, pantalla, restaurar, guardable, teclaDeTeclado } from '../calcu
 import { avisoBreve } from './actividad.js';
 import { registrarAyuda } from './ayudas.js';
 import { TITULACIONES } from '../theory/blocks.js';
+import { icono, conIcono } from './iconos.js';
 
 const CLAVE = 'nautica.calculadora.v1';
 const ESTRECHA = '(max-width: 700px)';
@@ -149,20 +150,20 @@ function crearPanel() {
     modo = m === 'abajo' ? 'arriba' : 'abajo';
     escribir({ modo });
     coloca();
-  } }, '⇅');
+  } }, icono('arriba-abajo'));
   const cabecera = h('div.calc-cabecera',
     h('span.calc-agarre', { 'aria-hidden': 'true' }, '⠿'),
-    h('strong.calc-titulo', '🧮 Calculadora'),
+    h('strong.calc-titulo', conIcono('calculadora', 'Calculadora')),
     resumen,
     h('span.calc-botones', bMover, bMin,
-      h('button.calc-boton', { type: 'button', title: 'Cerrar la calculadora', 'aria-label': 'Cerrar la calculadora', onclick: () => cerrarCalculadora() }, '✕')));
+      h('button.calc-boton', { type: 'button', title: 'Cerrar la calculadora', 'aria-label': 'Cerrar la calculadora', onclick: () => cerrarCalculadora() }, icono('salir'))));
   const el = h('div.calc-panel', { role: 'dialog', 'aria-label': 'Calculadora científica' }, cabecera, h('div.calc-cuerpo', calcEl.el));
 
   function coloca() {
     const m = modoReal();
     el.dataset.modo = m;
     el.classList.toggle('minimizada', min);
-    bMin.textContent = min ? '▢' : '—';
+    bMin.replaceChildren(icono(min ? 'ventana' : 'minimizar'));
     bMin.title = min ? 'Abrir la calculadora' : 'Minimizar';
     bMin.setAttribute('aria-label', bMin.title);
     bMover.hidden = m === 'libre';
@@ -286,7 +287,7 @@ export const calculadoraAbierta = () => !!panel?.el.isConnected;
 export function botonCalculadora({ texto = 'Calculadora', clase = 'secondary', titulo = 'Calculadora científica' } = {}) {
   const herramienta = clase.split('.').includes('tool');
   return h(`button.boton-calculadora.${clase}`, { type: 'button', title: titulo, 'aria-label': `Abrir la ${titulo.toLowerCase()}`, onclick: () => abrirCalculadora() },
-    herramienta ? [h('span.tool-icon', '🧮'), h('span.tool-name', texto)] : texto ? `🧮 ${texto}` : '🧮');
+    herramienta ? [h('span.tool-icon', icono('calculadora')), h('span.tool-name', texto)] : texto ? conIcono('calculadora', texto) : icono('calculadora'));
 }
 
 /** La calculadora dentro de una página (#/calculadora): la misma, con su memoria y su Ans. */

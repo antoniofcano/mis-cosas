@@ -4,6 +4,7 @@
 import { h, setChildren } from './dom.js';
 import { voice } from './voice.js';
 import { controlador } from './lamina-estado.js';
+import { conIcono } from './iconos.js';
 
 let serie = 0;
 
@@ -90,12 +91,12 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
       if (!ok) ops.find((b) => b.dataset.k === k)?.classList.add('lam-mal');
       fb.hidden = false;
       fb.className = `lam-fb ${ok ? 'ok' : 'warn'}`;
-      fb.textContent = `${ok ? '✅ Eso es.' : `❌ No: es «${p.opciones[p.correcta]}».`} ${p.tras}`;
+      fb.replaceChildren(...conIcono(ok ? 'ok' : 'no', `${ok ? 'Eso es.' : `No: es «${p.opciones[p.correcta]}».`} ${p.tras}`));
       pinta();
       onRespuesta?.(ok);
       if (voice.enabled) voice.speak(fb.textContent);
     } }, t));
-    predEl = h('div.lam-pred', h('p.lam-pregunta', `🤔 ${p.enunciado}`), h('div.lam-opciones', ops), fb);
+    predEl = h('div.lam-pred', h('p.lam-pregunta', conIcono('pregunta', p.enunciado)), h('div.lam-opciones', ops), fb);
   }
 
   for (const m of v0.mandos) ctl.append(mandoEl(m));
@@ -117,13 +118,13 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
 
   // En la explicación de una pregunta, un botón devuelve la lámina al caso de esa pregunta.
   const volver = modo === 'explicacion' && v0.mandos.length
-    ? h('button.secondary.small.lam-volver', { type: 'button', onclick: () => { c.reiniciar(); pinta(); } }, '↩ Volver al caso de la pregunta')
+    ? h('button.secondary.small.lam-volver', { type: 'button', onclick: () => { c.reiniciar(); pinta(); } }, conIcono('deshacer', 'Volver al caso de la pregunta'))
     : null;
   const escuchar = voice.supported ? h('button.secondary.small.lam-voz', { type: 'button', onclick: () => {
     const v = c.vista();
     const pend = v.prediccion && v.prediccion.respuesta == null ? `${v.prediccion.enunciado} ` : '';
     voice.speak(pend + v.lectura);
-  } }, '🔊 Escuchar') : null;
+  } }, conIcono('escuchar', 'Escuchar')) : null;
 
   fig.append(...[
     predEl,

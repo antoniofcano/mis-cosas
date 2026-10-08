@@ -5,6 +5,7 @@
 import { h, setChildren } from './dom.js';
 import { tlink } from './titulacion.js';
 import { loadPodcastLinea } from '../store/datasets.js';
+import { icono } from './iconos.js';
 
 export const VELOCIDADES = [0.8, 1, 1.15, 1.3, 1.5];
 const OIDO = 0.9; // a partir del 90 % cuenta como escuchado
@@ -124,11 +125,11 @@ function pintaBarra() {
   const pct = d ? (100 * audio.currentTime) / d : 0;
   setChildren(barra,
     h('div.radio-barra-progreso', h('span', { style: `width:${pct.toFixed(1)}%` })),
-    h('button.radio-barra-play', { type: 'button', 'aria-label': audio.paused ? 'Reproducir' : 'Pausa', onclick: alternar }, audio.paused ? '▶' : '⏸'),
+    h('button.radio-barra-play', { type: 'button', 'aria-label': audio.paused ? 'Reproducir' : 'Pausa', onclick: alternar }, icono(audio.paused ? 'play' : 'pausa')),
     h('a.radio-barra-txt', { href: tlink(actual.tit, ['podcast', actual.ep.id]) },
       h('span.radio-barra-titulo', `${actual.ep.n} · ${actual.ep.titulo}`),
       h('span.radio-barra-tiempo', `${fmt(audio.currentTime)} / ${fmt(d)}`)),
-    h('button.radio-barra-cerrar', { type: 'button', 'aria-label': 'Cerrar el reproductor', onclick: cerrar }, '✕'));
+    h('button.radio-barra-cerrar', { type: 'button', 'aria-label': 'Cerrar el reproductor', onclick: cerrar }, icono('salir')));
 }
 /** La vista del episodio esconde la barra (ya tiene el reproductor grande). */
 export function enVistaEpisodio(si) { document.body.classList.toggle('en-radio', si); pintaBarra(); }

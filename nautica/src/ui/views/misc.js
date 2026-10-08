@@ -21,6 +21,7 @@ import { cuenta, fechaLarga } from '../../texto.js';
 import { conceptosPorTema } from '../../course/listo.js';
 import { clasesDeCurso, filaIdea } from '../concepto.js';
 import { cargarMapas } from './mapas.js';
+import { icono, conIcono } from '../iconos.js';
 
 /**
  * «Ideas por dominar» (con etiquetas de conceptos): en cada tema, cuántas ideas sabe el alumno, cuáles le cuestan (con
@@ -41,7 +42,7 @@ function seccionIdeas(tit, temasOrden, ideas, curso) {
       listas.push([ul, t]);
       const sinVer = t.sinVer.map((c) => c.etiqueta);
       return h('details.ideas-de-tema', { open: t.flojas.length > 0 },
-        h('summary', h('span.idea-tema-titulo', `${b.icon} ${b.titulo}`),
+        h('summary', h('span.idea-tema-titulo', conIcono(b.ico, b.titulo)),
           h('span.idea-tema-dato', [`${t.sabidas} de ${cuenta(t.total, 'idea')} sabidas`, t.flojas.length ? cuenta(t.flojas.length, 'floja', 'flojas') : null, sinVer.length ? `${cuenta(sinVer.length, 'sin ver', 'sin ver')}` : null].filter(Boolean).join(' · '))),
         t.flojas.length ? ul : h('p.muted.small', t.sabidas === t.total ? 'Todas sabidas.' : 'Ninguna floja.'),
         sinVer.length ? h('p.muted.small', `Sin ver: ${sinVer.slice(0, 6).join(' · ')}${sinVer.length > 6 ? ` y ${cuenta(sinVer.length - 6, 'más', 'más')}` : ''}.`) : null);
@@ -60,7 +61,7 @@ export function theoryView({ tit }) {
     h('section', h('h2', 'Convención de signos'),
       h('p', 'Este (E) = +, Oeste (W) = −. Ct = dm + Δ. Rv = Ra + Ct. Dv = Da + Ct. Dv = Rv + M (estribor +, babor −). Rs = Rv + Ab.')),
     h('section', h('h2', 'Glosario'), h('dl', Object.values(GLOSSARY).map((g) => [h('dt', g.term), h('dd', g.text)]))),
-    exercisesByCategory().map((c) => h('section', h('h2', `${c.icon} ${c.title}`),
+    exercisesByCategory().map((c) => h('section', h('h2', conIcono(c.ico, c.title)),
       c.exercises.map((e) => h('article.method-card', h('h3', h('a', { href: link(['ej', e.id]) }, e.title)), h('ol', e.method.map((m) => h('li', m))))))),
   );
   return {
@@ -98,17 +99,17 @@ export function progressView({ progress, tit }) {
         return h('section.diagnostico', h('h2', 'Dónde fallas más'),
           tf.length || flojas.length ? [
             tf.length ? h('ul.clases-flojas', tf.map((t) => h('li', h('a', { href: tlink(T.id, ['teoria', 'ut', String(t.ut)], { s: randomSeed(), f: '1' }) },
-              h('span.clase-floja-titulo', `${t.icon} ${t.titulo}`),
+              h('span.clase-floja-titulo', conIcono(t.ico, t.titulo)),
               h('span.clase-floja-dato', `aciertas ${t.aciertos} de ${t.hechas} · repasar mis fallos →`))))) : null,
             flojas.length ? h('ul.clases-flojas', flojas.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) },
-              h('span.clase-floja-titulo', `🎓 ${c.titulo}`),
+              h('span.clase-floja-titulo', conIcono('clase', c.titulo)),
               h('span.clase-floja-dato', `aciertas ${c.aciertos} de ${c.hechas} · repasar la clase →`))))) : null]
             : h('p.muted', `Cuando respondas ${cuenta(MIN_DIAGNOSTICO_TEMA, 'pregunta')} de un tema, aquí verás dónde te cuesta más.`));
       })(),
       (() => { const x = seccionIdeas(T.id, filas, conceptosPorTema(T.estructura, d.indiceConceptos, d.respuestas), d.curso); if (x.texto) resumenTemas += `\n${x.texto}`; return x.el; })(),
       h('h2', `Por temas · ${T.sigla}`),
       h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
-        h('h3', `${b.icon} ${b.titulo}`),
+        h('h3', conIcono(b.ico, b.titulo)),
         h('p.estado-linea', { class: { bien: 'ok', repasar: 'warn' }[e.estado] ?? '' }, lineaEstado(e)),
         e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))));
   }).catch((e) => setChildren(temas, h('p.warn', `No se pudo calcular tu avance: ${e.message}`)));
@@ -116,8 +117,8 @@ export function progressView({ progress, tit }) {
   const examenes = Object.values(TITULACIONES).map((X) => {
     // El examen final va aparte (arriba, con su criterio de margen).
     const tests = progress.tests().filter((t) => (t.tit ?? 'per') === X.id && t.tipo !== 'final').reverse();
-    return tests.length ? h('section', h('h2', `${X.icon} Exámenes ${X.sigla}`),
-      h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null;
+    return tests.length ? h('section', h('h2', conIcono(X.ico, `Exámenes ${X.sigla}`)),
+      h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '· APTO' : '· NO APTO'}`)))) : null;
   });
 
   const el = h('div.progress',
@@ -169,12 +170,12 @@ export function chartView({ ctx, progress, tit }) {
     h('h1', `Mesa de cartas · ${chart.name}`),
     h('details.como-se-usa', h('summary', 'Cómo se usa la mesa de cartas'),
       h('ul',
-        h('li', '✋ Mover: la carta, tus puntos, textos, extremos de línea y el transportador (también girar su hilo). Toca un punto para ver u ocultar sus coordenadas.'),
-        h('li', '📏 Regla: rumbo verdadero y distancia.'),
-        h('li', '🧭 Compás: millas en la escala de latitudes.'),
-        h('li', '📐 Transportador cuadrado: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta. Arrastra el centro, gira el hilo dentro del cuadrado y pulsa «Trazar».'),
-        h('li', '📍 Punto · 🔤 Texto · 🧽 Goma.'),
-        h('li', '🏷 Coordenadas: muestra u oculta las de los puntos. ⌖ Situar: traza las guías desde unas coordenadas.'),
+        h('li', icono('mover', 'ico-t'), 'Mover: la carta, tus puntos, textos, extremos de línea y el transportador (también girar su hilo). Toca un punto para ver u ocultar sus coordenadas.'),
+        h('li', icono('regla', 'ico-t'), 'Regla: rumbo verdadero y distancia.'),
+        h('li', icono('compas', 'ico-t'), 'Compás: millas en la escala de latitudes.'),
+        h('li', icono('transportador', 'ico-t'), 'Transportador cuadrado: púlsalo para ponerlo o quitarlo; se queda puesto aunque cambies de herramienta. Arrastra el centro, gira el hilo dentro del cuadrado y pulsa «Trazar».'),
+        h('li', icono('lugar', 'ico-t'), 'Punto · ', icono('texto', 'ico-t'), 'Texto · ', icono('goma', 'ico-t'), 'Goma.'),
+        h('li', icono('etiqueta', 'ico-t'), 'Coordenadas: muestra u oculta las de los puntos. ', icono('mira', 'ico-t'), 'Situar: traza las guías desde unas coordenadas.'),
         h('li', 'Guías: arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba) para sacar un paralelo o un meridiano; tócala para escribir su valor exacto; suéltala sobre la escala para quitarla.'),
         h('li', 'El cruce de dos guías es el punto, y las herramientas se ajustan a él, a los faros y al centro del transportador.'))),
     avisoCartaMovil(progress),
@@ -184,7 +185,7 @@ export function chartView({ ctx, progress, tit }) {
         'Se guarda solo en este navegador: no se sube a ningún sitio. La app la georreferencia con la calibración del escaneo A4 de la L105 (7024×5226 px o la misma proporción).'),
       status,
       h('div.actions',
-        h('button', { type: 'button', onclick: () => fileInput.click() }, '📂 Cargar mi carta (PDF o imagen)'), fileInput,
+        h('button', { type: 'button', onclick: () => fileInput.click() }, conIcono('carpeta', 'Cargar mi carta (PDF o imagen)')), fileInput,
         h('button.secondary', { type: 'button', onclick: async () => { await deleteUserChart(); resetRaster(); location.reload(); } }, 'Quitar'),
       ),
     ),

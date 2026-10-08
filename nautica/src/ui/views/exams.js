@@ -14,6 +14,7 @@ import { avisoError } from '../aviso-error.js';
 import { cuenta } from '../../texto.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
+import { conIcono } from '../iconos.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -103,7 +104,7 @@ export function preguntaView({ ctx, progress, params: route }) {
     // Las reservadas para el examen final no se enseñan sueltas (ni con un enlace guardado de antes de la reserva).
     if (r.banco.reservadas.has(r.q.id)) {
       summaryText = `VISTA pregunta ${qid}: RESERVADA para el examen final (no se enseña)`;
-      setChildren(el, h('h1', '🔒 Pregunta reservada'), h('p', 'Esta pregunta es de las que la app guarda para tu examen final: no se enseña suelta para que el examen sea de verdad nuevo para ti.'),
+      setChildren(el, h('h1', conIcono('candado', 'Pregunta reservada')), h('p', 'Esta pregunta es de las que la app guarda para tu examen final: no se enseña suelta para que el examen sea de verdad nuevo para ti.'),
         h('a.btn.grande', { href: tlink(r.q.tit, ['examenes']) }, 'Ir a Examen'));
       return;
     }
@@ -141,7 +142,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       if (!choice) { setChildren(result, h('p.muted', 'Elige una opción.')); return; }
       const ok = choice === q.correcta;
       progress.recordExam(q.id, { choice, ok });
-      setChildren(result, ok ? h('p.ok', '✅ Correcta') : h('p.warn', `❌ Incorrecta. La correcta es la ${q.correcta}).`));
+      setChildren(result, ok ? h('p.ok', conIcono('ok', 'Correcta')) : h('p.warn', conIcono('no', `Incorrecta. La correcta es la ${q.correcta}).`)));
       showSolution();
       refresh();
     }
@@ -149,7 +150,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       solution.hidden = false;
       const computed = run
         ? h('p', h('strong', 'Resultado calculado: '), run.values.map((v) => quantity(v.kind).format(v.value)).join(' · '),
-          run.pick.choice ? ` → opción más próxima: ${run.pick.choice})` : '', run.pick.choice === q.correcta ? ' ✔ coincide con la plantilla' : '')
+          run.pick.choice ? ` → opción más próxima: ${run.pick.choice})` : '', run.pick.choice === q.correcta ? ' ✓ coincide con la plantilla' : '')
         : null;
       setChildren(solution,
         q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : h('p.warn', 'Pregunta anulada por el tribunal.'),
@@ -158,7 +159,7 @@ export function preguntaView({ ctx, progress, params: route }) {
           listenAllButton(() => [narrateIntro(q.enunciado).speech, ...narrateSteps(run.k.steps, { seed: q.id }).map((n) => n.speech), examOutro().speech])]
           : h('p.muted', 'Esta pregunta no tiene resolución programada (requiere leer símbolos de la carta).'),
         run?.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus }).el : null,
-        run?.sol.ejercicio ? h('p', h('a.btn.secondary', { href: link(['ej', run.sol.ejercicio]) }, '🧭 Practicar este tipo de ejercicio')) : null,
+        run?.sol.ejercicio ? h('p', h('a.btn.secondary', { href: link(['ej', run.sol.ejercicio]) }, conIcono('brujula', 'Practicar este tipo de ejercicio'))) : null,
       );
     }
 
@@ -186,8 +187,8 @@ export function preguntaView({ ctx, progress, params: route }) {
     };
     const tableButtons = run?.k.items.length
       ? h('div.actions.table-actions',
-        h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
-        h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'))
+        h('button', { type: 'button', onclick: () => openTable('ejercicio') }, conIcono('mapa', 'Resolver en la carta')),
+        h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, conIcono('clase', 'Ver la resolución en la carta')))
       : null;
 
     const enunciadoEl = h('p', q.enunciado);

@@ -2,6 +2,7 @@
 // pregunta…), para que quien lo arregle sepa dónde mirar. No envía nada por su cuenta: abre la página de GitHub.
 
 import { h } from './dom.js';
+import { conIcono } from './iconos.js';
 
 export const REPO_ISSUES = 'https://github.com/antoniofcano/mis-cosas/issues/new';
 
@@ -18,7 +19,7 @@ export function urlAviso(donde, extra = '') {
   return `${REPO_ISSUES}?${new URLSearchParams({ title: `Error en la app: ${donde}`, body: cuerpo })}`;
 }
 
-/** Enlace pequeño «⚠️ Avisar de un error». */
+/** Enlace pequeño «Avisar de un error», con el icono de aviso. */
 export function avisoError(donde, extra = '') {
-  return h('a.aviso-error', { href: urlAviso(donde, extra), target: '_blank', rel: 'noopener' }, '⚠️ Avisar de un error');
+  return h('a.aviso-error', { href: urlAviso(donde, extra), target: '_blank', rel: 'noopener' }, conIcono('aviso', 'Avisar de un error'));
 }

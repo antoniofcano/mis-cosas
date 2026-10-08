@@ -18,13 +18,14 @@ import { glosar } from '../glosas.js';
 import { cronometro } from '../../course/cronometro.js';
 import { loadApendice } from '../../store/datasets.js';
 import { repasosPara, APENDICE_PUBLICADO } from '../../course/apendice.js';
+import { conIcono } from '../iconos.js';
 
 const STATUS_TEXT = {
-  [STATUS.OK]: '✅ Correcto',
-  [STATUS.CLOSE]: '🟡 Casi (fuera de tolerancia)',
-  [STATUS.WRONG]: '❌ Incorrecto',
-  [STATUS.INVALID]: '⚠️ No se entiende el formato',
-  [STATUS.EMPTY]: '— Sin responder',
+  [STATUS.OK]: ['ok', 'Correcto'],
+  [STATUS.CLOSE]: ['casi', 'Casi (fuera de tolerancia)'],
+  [STATUS.WRONG]: ['no', 'Incorrecto'],
+  [STATUS.INVALID]: ['aviso', 'No se entiende el formato'],
+  [STATUS.EMPTY]: [null, '— Sin responder'],
 };
 
 export function exerciseView({ ctx, progress, params: route }) {
@@ -55,7 +56,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     input.addEventListener('input', () => { state.inputs[a.key] = input.value; });
     return { a, input, fb: h('div.feedback', { id: `fb-${a.key}` }) };
   });
-  // Situación tomada de la carta: rellena latitud y longitud con el último punto que marcaste (📍 Punto).
+  // Situación tomada de la carta: rellena latitud y longitud con el último punto que marcaste (herramienta Punto).
   const inLat = inputs.find((x) => x.a.kind === 'lat');
   const inLon = inputs.find((x) => x.a.kind === 'lon');
   const avisoPunto = h('p.muted.aviso-punto', { 'aria-live': 'polite' });
@@ -63,18 +64,18 @@ export function exerciseView({ ctx, progress, params: route }) {
     h('button.secondary', { type: 'button', onclick: () => {
       const api = ws?.chart ?? widget;
       const punto = api?.getUserItems().filter((u) => u.t === 'pos').at(-1);
-      if (!punto) { avisoPunto.textContent = 'Marca antes tu situación en la carta con la herramienta 📍 Punto.'; return; }
+      if (!punto) { avisoPunto.textContent = 'Marca antes tu situación en la carta con la herramienta Punto.'; return; }
       for (const [x, v] of [[inLat, fmtLat(punto.at.lat)], [inLon, fmtLon(punto.at.lon)]]) { x.input.value = v; state.inputs[x.a.key] = v; }
       avisoPunto.textContent = `Tomada de tu último punto: ${fmtLat(punto.at.lat)}, ${fmtLon(punto.at.lon)}. Pulsa «Comprobar».`;
-    } }, '📍 Tomar la situación de la carta'), avisoPunto) : null;
+    } }, conIcono('lugar', 'Tomar la situación de la carta')), avisoPunto) : null;
   const form = h('form.answers', { onsubmit: (ev) => { ev.preventDefault(); doCheck(); } },
     inputs.map(({ a, input, fb }) => h('label.field', h('span.lbl', a.label), input, fb)),
     tomarDeCarta,
     h('div.actions',
       h('button', { type: 'submit' }, 'Comprobar'),
-      h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, '💡 Pista'),
+      h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, conIcono('bombilla', 'Pista')),
       h('button.secondary', { type: 'button', onclick: () => { reveal(solution.steps.length); showSolution(); } }, 'Ver solución'),
-      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, '🔄 Otro ejercicio'),
+      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, conIcono('repaso', 'Otro ejercicio')),
     ),
   );
   const diag = h('div.diagnosis', { 'aria-live': 'polite' });
@@ -114,10 +115,10 @@ export function exerciseView({ ctx, progress, params: route }) {
   const tableButtons = solution.drawing
     ? h('div.actions.table-actions',
       pantallaPequena()
-        ? [h('button', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta'),
-          h('button.secondary', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta')]
-        : [h('button', { type: 'button', onclick: () => openTable('ejercicio') }, '🗺️ Resolver en la carta'),
-          h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, '🎓 Ver la resolución en la carta')])
+        ? [h('button', { type: 'button', onclick: () => openTable('tutorial') }, conIcono('clase', 'Ver la resolución en la carta')),
+          h('button.secondary', { type: 'button', onclick: () => openTable('ejercicio') }, conIcono('mapa', 'Resolver en la carta'))]
+        : [h('button', { type: 'button', onclick: () => openTable('ejercicio') }, conIcono('mapa', 'Resolver en la carta')),
+          h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, conIcono('clase', 'Ver la resolución en la carta'))])
     : null;
 
   function reveal(n) {
@@ -139,12 +140,14 @@ export function exerciseView({ ctx, progress, params: route }) {
     for (const { a, input, fb } of inputs) {
       const f = r.fields.find((x) => x.key === a.key);
       input.dataset.status = f.status;
-      fb.textContent = STATUS_TEXT[f.status] + (f.status === STATUS.CLOSE || f.status === STATUS.WRONG ? ` (error ${f.errorText}, tolerancia ${f.tol.toString().replace('.', ',')})` : '')
+      const [ico, txt] = STATUS_TEXT[f.status];
+      const linea = txt + (f.status === STATUS.CLOSE || f.status === STATUS.WRONG ? ` (error ${f.errorText}, tolerancia ${f.tol.toString().replace('.', ',')})` : '')
         + (f.status === STATUS.INVALID ? ` Ejemplo: ${quantity(a.kind).placeholder}` : '');
+      fb.replaceChildren(...(ico ? conIcono(ico, linea) : [linea]));
     }
     diag.replaceChildren(...[
-      r.allOk ? h('p.ok', '🎉 ¡Todo correcto!') : null,
-      ...r.diagnoses.map((d) => h('p.warn', '🔎 ', d.explain)),
+      r.allOk ? h('p.ok', conIcono('ok', '¡Todo correcto!')) : null,
+      ...r.diagnoses.map((d) => h('p.warn', conIcono('lupa', d.explain))),
       !r.allOk && !r.diagnoses.length && r.answeredCount ? h('p.muted', 'Pide una pista para revisar el procedimiento paso a paso.') : null,
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {

@@ -13,8 +13,9 @@ import {
   enVistaEpisodio, pararEnPreguntas, setPararEnPreguntas, marcarRespondida,
 } from '../radio.js';
 import { cuenta } from '../../texto.js';
+import { icono, conIcono } from '../iconos.js';
 
-const MARCA = { bienvenida: '⚓', panorama: '🗼', profundiza: '🛟' };
+const MARCA = { bienvenida: 'ancla', panorama: 'faro', profundiza: 'salvavidas' };
 const TIPO = { bienvenida: 'Bienvenida', panorama: 'Panorama del tema', profundiza: 'Profundiza' };
 const minutos = (s) => `${Math.round(s / 60)} min`;
 
@@ -87,11 +88,11 @@ function travesia(el, tit, pod) {
     const est = estado(ep);
     return h('div.radio-destacado',
       h('p.radio-rotulo', rotulo),
-      h('h2', `${MARCA[ep.tipo]} ${ep.titulo}`),
+      h('h2', conIcono(MARCA[ep.tipo], ep.titulo)),
       ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
       h('div.actions',
         h('button.grande', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } },
-          est.clase === 'medias' ? `▶ Seguir (${fmt(estadoEpisodio(ep.id).t)})` : `▶ Escuchar · ${minutos(ep.duracion)}`)));
+          conIcono('play', est.clase === 'medias' ? `Seguir (${fmt(estadoEpisodio(ep.id).t)})` : `Escuchar · ${minutos(ep.duracion)}`))));
   };
 
   const puertos = pod.temas.map((t) => {
@@ -101,7 +102,7 @@ function travesia(el, tit, pod) {
     const dur = t.episodios.reduce((s, e) => s + (e.duracion ?? 0), 0);
     return h('section.puerto', { id: `tema-${t.tema}` },
       h('header.puerto-cab',
-        h('span.puerto-icono', { 'aria-hidden': 'true' }, t.tema ? b?.icon ?? '⚓' : '⛵'),
+        h('span.puerto-icono', icono(t.tema ? b?.ico ?? 'ancla' : 'velero')),
         h('div',
           h('h2', t.tema ? `Tema ${t.tema} · ${t.titulo}` : 'Zarpamos'),
           h('p.muted.small', listos
@@ -115,12 +116,12 @@ function travesia(el, tit, pod) {
   setChildren(el,
     volver('Biblioteca', tlink(tit, ['biblioteca'])),
     h('header.radio-cab',
-      h('h1', '🎧 Radio de a bordo'),
+      h('h1', conIcono('podcast', 'Radio de a bordo')),
       h('p', `${T.sigla === 'PY' ? 'Patrón de Yate' : 'PER'} en voz alta: Elena, patrona y profesora, y Andrés, que tiene un velero y una duda para cada cosa. Episodios de diez a quince minutos para escuchar donde quieras.`),
       conAudio.length ? h('p.muted.small', `${oidos.length} de ${cuenta(conAudio.length, 'episodio escuchado', 'episodios escuchados')}`) : null),
     seguir ? destacado(seguir, 'Sigue escuchando') : sig ? destacado(sig, oidos.length ? 'Siguiente parada' : 'Para empezar') : null,
     h('div.travesia', puertos),
-    h('p.muted.small.radio-pie', '🗼 Panorama: el tema entero, para situarte antes de estudiarlo y para repasarlo. 🛟 Profundiza: un epígrafe, con sus trampas. Próximamente: episodios que aún se están grabando.'));
+    h('p.muted.small.radio-pie', icono('faro', 'ico-t'), 'Panorama: el tema entero, para situarte antes de estudiarlo y para repasarlo. ', icono('salvavidas', 'ico-t'), 'Profundiza: un epígrafe, con sus trampas. Próximamente: episodios que aún se están grabando.'));
 
   return `VISTA podcast ${T.sigla}: ${cuenta(conAudio.length, 'episodio')} con audio de ${eps.length}, ${oidos.length} escuchados\n` +
     eps.map((e) => `${e.n} ${e.titulo} [${estado(e).clase}]${e.audio ? ` → ${tlink(tit, ['podcast', e.id])}` : ''}`).join('\n');
@@ -137,11 +138,11 @@ function boya(tit, ep) {
     ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
     ep.audio
       ? h('div.actions',
-        h('button', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } }, est.clase === 'medias' ? '▶ Seguir escuchando' : '▶ Escuchar el episodio'),
-        h('a.btn.secondary', { href: tlink(tit, ['podcast', ep.id]) }, '📜 Ver el guion'))
+        h('button', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } }, conIcono('play', est.clase === 'medias' ? 'Seguir escuchando' : 'Escuchar el episodio')),
+        h('a.btn.secondary', { href: tlink(tit, ['podcast', ep.id]) }, conIcono('documento', 'Ver el guion')))
       : h('p.muted.small', 'Próximamente: este episodio aún se está grabando. Mientras, tienes su ficha.', h('br'), h('a', { href: tlink(tit, ['podcast', ep.id]) }, 'Ver la ficha →')));
   return h('li.boya', { class: `${est.clase} ${ep.tipo}`, style: est.clase === 'medias' ? `--pct:${est.pct}` : null },
-    h('span.boya-marca', { 'aria-hidden': 'true' }, est.clase === 'oido' ? '✓' : MARCA[ep.tipo]),
+    h('span.boya-marca', { 'aria-hidden': 'true' }, est.clase === 'oido' ? '✓' : icono(MARCA[ep.tipo])),
     abierto);
 }
 
@@ -169,18 +170,18 @@ function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
   const b = ep.tema ? bloque(T.estructura, ep.tema) : null;
 
   const ficha = h('section.radio-ficha',
-    ep.claves?.length ? h('details', { open: !ep.audio }, h('summary', '🎒 Para llevarse'), h('ul', ep.claves.map((c) => h('li', c)))) : null,
-    ep.trampas?.length ? h('details', h('summary', '⚠️ Trampas del examen'), h('ul', ep.trampas.map((c) => h('li', c)))) : null,
-    ep.lecciones?.length ? h('details', h('summary', `📚 ${ep.lecciones.length === 1 ? 'Su clase' : 'Sus clases'}`),
+    ep.claves?.length ? h('details', { open: !ep.audio }, h('summary', conIcono('lista', 'Para llevarse')), h('ul', ep.claves.map((c) => h('li', c)))) : null,
+    ep.trampas?.length ? h('details', h('summary', conIcono('aviso', 'Trampas del examen')), h('ul', ep.trampas.map((c) => h('li', c)))) : null,
+    ep.lecciones?.length ? h('details', h('summary', conIcono('clase', ep.lecciones.length === 1 ? 'Su clase' : 'Sus clases')),
       h('ul', ep.lecciones.map((l) => h('li', h('a', { href: tlink(tit, ['curso', l]) }, `Clase ${l.replace(/^[a-z]+-/, '')}`))))) : null,
-    ep.relacionados?.length ? h('p.small', '🔗 Escucha también: ', ep.relacionados.map((n, k) => {
+    ep.relacionados?.length ? h('p.small', icono('enlace', 'ico-t'), 'Escucha también: ', ep.relacionados.map((n, k) => {
       const r = eps.find((e) => e.n === n);
       return r ? [k ? ' · ' : '', h('a', { href: tlink(tit, ['podcast', r.id]) }, `${r.n} ${r.titulo}`)] : null;
     })) : null);
 
   const cabecera = [
     vuelta(tit, de),
-    h('p.radio-rotulo', `${MARCA[ep.tipo]} ${TIPO[ep.tipo]}${b ? ` · ${b.icon} Tema ${ep.tema} · ${b.titulo}` : ''}`),
+    h('p.radio-rotulo', conIcono(MARCA[ep.tipo], `${TIPO[ep.tipo]}${b ? ` · Tema ${ep.tema} · ${b.titulo}` : ''}`)),
     h('h1', `${ep.n} · ${ep.titulo}`),
   ];
   const sinopsis = ep.sinopsis ? h('p.radio-sinopsis', ep.sinopsis) : null;
@@ -194,7 +195,7 @@ function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
   enVistaEpisodio(true);
   // Si el audio lee una pregunta reservada para su examen final, se avisa antes de escuchar (sin bloquear).
   const aviso = h('div.aviso-reservada-hueco');
-  leeReservada(ep, eje, finalHecho).then((si) => { if (si) setChildren(aviso, h('p.aviso-reservada', { role: 'note' }, `🎯 ${AVISO_RESERVADA}`)); });
+  leeReservada(ep, eje, finalHecho).then((si) => { if (si) setChildren(aviso, h('p.aviso-reservada', { role: 'note' }, conIcono('candado', AVISO_RESERVADA))); });
   const suena = () => radio().actual?.ep.id === ep.id;
   const btnPlay = h('button.radio-play', { type: 'button', onclick: () => (suena() ? alternar() : poner(tit, ep)) });
   const slider = h('input.radio-slider', { type: 'range', min: 0, max: Math.round(ep.duracion), step: 1, value: estadoEpisodio(ep.id).t ?? 0, 'aria-label': 'Posición' });
@@ -215,7 +216,7 @@ function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
     const { audio } = radio();
     const t = suena() ? audio.currentTime : estadoEpisodio(ep.id).t ?? 0;
     const sonando = suena() && !audio.paused;
-    btnPlay.textContent = sonando ? '⏸' : '▶';
+    btnPlay.replaceChildren(icono(sonando ? 'pausa' : 'play'));
     btnPlay.setAttribute('aria-label', sonando ? 'Pausa' : 'Reproducir');
     if (document.activeElement !== slider) slider.value = String(Math.round(t));
     tiempo.textContent = `${fmt(t)} / ${fmt(ep.duracion)}`;
@@ -257,10 +258,10 @@ function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
     const ops = Object.entries(q.opciones).map(([k, txt]) => h('button.secondary.radio-opcion', { type: 'button', onclick: () => {
       ops.forEach((b) => { b.disabled = true; if (b.dataset.k === q.correcta) b.classList.add('correcta'); else if (b.dataset.k === k) b.classList.add('fallada'); });
       marcarRespondida(idGuion);
-      setChildren(fb, h('p', { class: k === q.correcta ? 'ok' : 'warn' }, k === q.correcta ? '✅ ¡Bien! Ahora escucha cómo lo razona Andrés.' : `❌ Era la ${q.correcta}). Escucha por qué.`),
-        h('button', { type: 'button', onclick: () => { if (suena()) radio().audio.play(); } }, '▶ Seguir escuchando'));
+      setChildren(fb, h('p', { class: k === q.correcta ? 'ok' : 'warn' }, conIcono(k === q.correcta ? 'ok' : 'no', k === q.correcta ? '¡Bien! Ahora escucha cómo lo razona Andrés.' : `Era la ${q.correcta}). Escucha por qué.`)),
+        h('button', { type: 'button', onclick: () => { if (suena()) radio().audio.play(); } }, conIcono('play', 'Seguir escuchando')));
     }, 'data-k': k }, `${k}) ${txt}`));
-    const rotulo = propia ? '🎯 ¿Y tú qué dices?' : `🎯 ¿Y tú qué dices? · Pregunta del examen de ${ficha?.nombre ?? 'otro tribunal'}`;
+    const rotulo = conIcono('pregunta', propia ? '¿Y tú qué dices?' : `¿Y tú qué dices? · Pregunta del examen de ${ficha?.nombre ?? 'otro tribunal'}`);
     return h('div.radio-pregunta', h('p.radio-rotulo', rotulo), h('p.qtext', q.enunciado), h('div.radio-opciones', ops), fb);
   }
 
@@ -274,15 +275,15 @@ function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
     cabecera,
     aviso,
     h('section.radio-reproductor',
-      h('div.radio-fila', h('button.secondary.radio-salto', { type: 'button', 'aria-label': 'Atrás 15 segundos', onclick: () => saltar(-15) }, '↺ 15'),
+      h('div.radio-fila', h('button.secondary.radio-salto', { type: 'button', 'aria-label': 'Atrás 15 segundos', onclick: () => saltar(-15) }, conIcono('retroceder', '15')),
         btnPlay,
-        h('button.secondary.radio-salto', { type: 'button', 'aria-label': 'Adelante 15 segundos', onclick: () => saltar(15) }, '15 ↻')),
+        h('button.secondary.radio-salto', { type: 'button', 'aria-label': 'Adelante 15 segundos', onclick: () => saltar(15) }, conIcono('avanzar', '15'))),
       slider,
       h('div.radio-fila.radio-pie-rep', tiempo, btnVel)),
-    // El reproductor va justo bajo el título (el botón ▶ se ve sin desplazar); de qué va, debajo.
+    // El reproductor va justo bajo el título (el botón de reproducir se ve sin desplazar); de qué va, debajo.
     sinopsis,
     h('section.radio-guion',
-      h('div.radio-guion-cab', h('h2', '📜 El guion, al hilo'),
+      h('div.radio-guion-cab', h('h2', conIcono('documento', 'El guion, al hilo')),
         h('label.small', seguirGuion, ' Seguir lo que suena'),
         h('label.small', parar, ' Pararse en las preguntas')),
       h('p.muted.small', 'Toca cualquier frase para ir a ella. En el minijuego, contesta tú antes que Andrés.'),

@@ -71,10 +71,10 @@ function cifras(stats, animar) {
  * Pantalla de cierre de una actividad, como en la maqueta: marca de hecho (o de «a repasar»), título, cifras que suben,
  * lo ganado y los botones.
  * @param {{ icono: string, titulo: string, lineas?: string[], siguiente?: object, tit: string, stats?: {n:number, txt:string}[],
- *   logros?: string[], botones?: Node[], animar?: boolean }} o  icono '💪' = resultado flojo; cualquier otro, hecho.
+ *   logros?: string[], botones?: Node[], animar?: boolean }} o  icono 'flojo' = resultado flojo (icono de repaso); 'hecho' (o cualquier otro), la marca de hecho.
  */
 export function cierre({ icono, titulo, lineas = [], siguiente = null, tit, logros = [], animar = true, stats = null, botones = null, meta = null }) {
-  const flojo = icono === '💪';
+  const flojo = icono === 'flojo';
   // Dentro de una sesión de estudio (src/ui/sesion.js): este paso queda hecho y lo primero es seguir con la sesión;
   // los botones propios de la vista (seguir con el tramo…) quedan como secundarios, salvo «Terminar por hoy».
   const ses = botonesSesion();

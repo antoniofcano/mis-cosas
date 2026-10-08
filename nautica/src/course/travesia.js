@@ -14,7 +14,7 @@
 //     final, anuladas o retiradas se dejan fuera antes de calcular nada, y no se nombra ni se cuenta ninguna pregunta.
 
 import { bloqueDe } from './nivel.js';
-import { pesoExamen } from './listo.js';
+import { pesoExamen, temaDeIdea } from './listo.js';
 import { UMBRALES } from '../conceptos/conceptos.js';
 import { diaISO, cuenta } from '../texto.js';
 
@@ -116,6 +116,38 @@ export function estadoIdea(d, preguntas) {
 }
 
 /**
+ * La luz de un faro a partir de sus ideas (con su estado de estadoIdea): cuántas hay, cuántas dominadas y vistas, el
+ * porcentaje y el estado 'on' (≥ FARO_ENCENDIDO dominadas) | 'parcial' (alguna vista) | 'off'. La usan los faros de la
+ * carta (por bloque del catálogo) y los del Temario (por tema): un solo criterio.
+ */
+export function luzDeFaro(xs) {
+  const dominadas = xs.filter((i) => i.estado === 'dominado').length;
+  const vistas = xs.filter((i) => i.vistas > 0).length;
+  const pct = xs.length ? dominadas / xs.length : 0;
+  const flojas = xs.filter((i) => i.estado === 'flojo').sort((a, b) => a.tasa - b.tasa || a.etiqueta.localeCompare(b.etiqueta));
+  return { total: xs.length, dominadas, vistas, pct,
+    estado: xs.length && pct >= FARO_ENCENDIDO ? 'on' : vistas > 0 ? 'parcial' : 'off', completo: dominadas === xs.length,
+    faltan: Math.max(0, Math.ceil(FARO_ENCENDIDO * xs.length - 1e-9) - dominadas), flojas, ideas: xs };
+}
+
+/**
+ * Un faro por TEMA del examen (ut) para el Temario, con el mismo criterio que la carta (luzDeFaro). Cada idea va al tema
+ * de la mayoría de sus preguntas (temaDeIdea, como las «ideas por tema» de Mi progreso). `est` = estadoTravesia(…).
+ * @returns {Map<number, ReturnType<typeof luzDeFaro>>}  vacío sin travesía (banco sin etiquetas)
+ */
+export function farosPorTema(est, ic) {
+  const porUt = new Map();
+  if (!est || !ic) return porUt;
+  for (const i of est.ideas) {
+    const ut = temaDeIdea(ic, i.id);
+    if (ut == null) continue;
+    if (!porUt.has(ut)) porUt.set(ut, []);
+    porUt.get(ut).push(i);
+  }
+  return new Map([...porUt].map(([ut, xs]) => [ut, luzDeFaro(xs)]));
+}
+
+/**
  * El estado de la travesía.
  * @param {{ ic: object|null, respuestas?: object, tests?: object[], dias?: object, ahora?: number }} p
  *   `tests`: los exámenes de ESTE banco (examenesDe); `dias`: progress.get().dias.
@@ -139,13 +171,7 @@ export function estadoTravesia({ ic, respuestas = {}, tests = [], dias = {}, aho
   const faros = [...FAROS, OTROS].map((f) => {
     const xs = conEstado.filter((i) => i.faro === f.id);
     if (!xs.length) return null;
-    const dominadas = xs.filter((i) => i.estado === 'dominado').length;
-    const vistas = xs.filter((i) => i.vistas > 0).length;
-    const pct = dominadas / xs.length;
-    const flojas = xs.filter((i) => i.estado === 'flojo').sort((a, b) => a.tasa - b.tasa || a.etiqueta.localeCompare(b.etiqueta));
-    return { id: f.id, nombre: f.nombre, corto: f.corto, total: xs.length, dominadas, vistas, pct,
-      estado: pct >= FARO_ENCENDIDO ? 'on' : vistas > 0 ? 'parcial' : 'off', completo: dominadas === xs.length,
-      faltan: Math.max(0, Math.ceil(FARO_ENCENDIDO * xs.length - 1e-9) - dominadas), flojas, ideas: xs };
+    return { id: f.id, nombre: f.nombre, corto: f.corto, ...luzDeFaro(xs) };
   }).filter(Boolean);
   const total = conEstado.length;
   const dominadas = conEstado.filter((i) => i.estado === 'dominado').length;

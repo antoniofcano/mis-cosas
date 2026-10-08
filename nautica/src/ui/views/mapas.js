@@ -11,6 +11,7 @@ import { renderIllustration } from '../../illustrations/index.js';
 import { MAPAS, vecinos, preguntasMapa } from '../../course/mapas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { cuenta } from '../../texto.js';
+import { icono, conIcono } from '../iconos.js';
 
 const cache = new Map();
 /** Carga un mapa (una sola vez por sesión). */
@@ -34,7 +35,7 @@ export function mapasView({ tit, params: route }) {
       summaryText = `VISTA mapas de conceptos ${T.sigla}\n${mios.map((m) => `${m.titulo} → ${tlink(tit, ['mapas', m.id])}`).join('\n')}`;
       setChildren(el,
         volver('Biblioteca', tlink(tit, ['biblioteca'])),
-        h('h1', '🕸️ Mapas de conceptos'),
+        h('h1', conIcono('red', 'Mapas de conceptos')),
         h('p', 'Cómo se relacionan las ideas que más se confunden. Explora concepto a concepto, mira el mapa entero o juega a encontrar qué falta.'),
         h('div.cards', mios.map((m) => h('a.card', { href: tlink(tit, ['mapas', m.id]) }, h('h3', m.titulo), h('p', m.intro),
           h('div.meta', h('span.stat', `${cuenta(m.nodos.length, 'concepto')}`))))));
@@ -50,8 +51,8 @@ export function mapasView({ tit, params: route }) {
     const rastro = (q.r ? q.r.split(',') : []).filter((x) => nodos.has(x)).slice(-4);
     const ir = (n, v = 'explorar') => navigate([tit, 'mapas', id], { v, n: n.id, ...(v === 'explorar' && n.id !== actual.id ? { r: [...rastro, actual.id].slice(-4).join(',') } : {}) });
 
-    const pestañas = h('div.mapa-pestanas', { role: 'tablist' }, [['explorar', '🔎 Explorar'], ['mapa', '🕸️ Mapa entero'], ['jugar', '🎯 Jugar']].map(([v, txt]) =>
-      h('button', { type: 'button', role: 'tab', 'aria-selected': v === vista ? 'true' : 'false', class: v === vista ? '' : 'secondary', onclick: () => navigate([tit, 'mapas', id], { v, n: actual.id }) }, txt)));
+    const pestañas = h('div.mapa-pestanas', { role: 'tablist' }, [['explorar', 'lupa', 'Explorar'], ['mapa', 'red', 'Mapa entero'], ['jugar', 'diana', 'Jugar']].map(([v, ico, txt]) =>
+      h('button', { type: 'button', role: 'tab', 'aria-selected': v === vista ? 'true' : 'false', class: v === vista ? '' : 'secondary', onclick: () => navigate([tit, 'mapas', id], { v, n: actual.id }) }, conIcono(ico, txt))));
     const cabecera = [volver('Mapas de conceptos', tlink(tit, ['mapas'])), h('h1', mapa.titulo), pestañas];
 
     if (vista === 'mapa') { setChildren(el, cabecera, mapaEntero(mapa, nodos, (n) => ir(n))); summaryText = `VISTA mapa ${mapa.titulo} entero`; return; }
@@ -70,10 +71,10 @@ export function mapasView({ tit, params: route }) {
         h('p', actual.corto),
         // Lámina fija (sin mandos): aquí importa ver el concepto, no manipularlo.
         (() => { const r = renderIllustration(actual.spec); return r ? h('figure.il-figure', h('div.il-svg', { html: r.svg }), r.caption ? h('figcaption', r.caption) : null) : null; })(),
-        h('p', h('a', { href: tlink(claseTit, ['curso', actual.clase]) }, `📖 Verlo en su clase${claseTit !== tit ? ` (${TITULACIONES[claseTit].sigla})` : ''}`))),
+        h('p', h('a', { href: tlink(claseTit, ['curso', actual.clase]) }, conIcono('libro', `Verlo en su clase${claseTit !== tit ? ` (${TITULACIONES[claseTit].sigla})` : ''}`)))),
       v.entran.length ? h('section.mapa-grupo', h('h3', 'Viene de'), v.entran.map((x) => linea(x.arista.rel, x.nodo, 'entra'))) : null,
       v.salen.length ? h('section.mapa-grupo', h('h3', 'Lleva a'), v.salen.map((x) => linea(x.arista.rel, x.nodo, 'sale'))) : null,
-      v.confunde.length ? h('section.mapa-grupo.confunde', h('h3', '⚠️ No lo confundas con'), v.confunde.map((x) => h('button.mapa-vecino', { type: 'button', onclick: () => ir(x.nodo) },
+      v.confunde.length ? h('section.mapa-grupo.confunde', h('h3', conIcono('aviso', 'No lo confundas con')), v.confunde.map((x) => h('button.mapa-vecino', { type: 'button', onclick: () => ir(x.nodo) },
         mini(x.nodo.spec), h('span.mapa-vecino-txt', h('strong', x.nodo.nombre), h('span.small', x.arista.rel))))) : null);
     summaryText = `VISTA mapa ${mapa.titulo} · ${actual.nombre}: ${actual.corto}\nVIENE DE: ${v.entran.map((x) => `${x.nodo.nombre} (${x.arista.rel})`).join('; ') || '—'}\nLLEVA A: ${v.salen.map((x) => `${x.nodo.nombre} (${x.arista.rel})`).join('; ') || '—'}\nNO CONFUNDIR: ${v.confunde.map((x) => `${x.nodo.nombre}: ${x.arista.rel}`).join('; ') || '—'}`;
     window.scrollTo(0, 0);
@@ -124,7 +125,7 @@ function mapaEntero(mapa, nodos, onNodo) {
 /** Juego: ¿qué los une? / ¿qué falta? Una ronda de 8 preguntas. */
 function juego(mapa) {
   return juegoMapa(() => preguntasMapa(mapa, createRng(randomSeed()), 8).map((p) => ({ ...p, mapa })), {
-    fin: (ok, n) => [h('div.icono', ok >= 6 ? '🎉' : '💪'), h('h2', `${ok} de ${n}`),
+    fin: (ok, n) => [h('div.icono', icono(ok >= 6 ? 'ok' : 'repaso')), h('h2', `${ok} de ${n}`),
       h('p', ok >= 6 ? 'Tienes claras las relaciones de este mapa.' : 'Repasa en «Explorar» las que han fallado y vuelve a intentarlo.')],
     otraRonda: true,
   });
@@ -153,7 +154,7 @@ export function juegoMapa(hacer, { fin, otraRonda = false, alTerminar } = {}) {
         botones.forEach((b, j) => { b.disabled = true; if (j === p.correcta) b.classList.add('correcta'); else if (j === k) b.classList.add('fallada'); });
         const bien = k === p.correcta; if (bien) ok += 1;
         const A = nodos.get(p.de); const B = nodos.get(p.a);
-        setChildren(fb, h('p', { class: bien ? 'ok' : 'warn' }, bien ? '✅ ¡Bien!' : '❌ No.'),
+        setChildren(fb, h('p', { class: bien ? 'ok' : 'warn' }, conIcono(bien ? 'ok' : 'no', bien ? '¡Bien!' : 'No.')),
           h('p', `${A.nombre} → ${p.rel} → ${B.nombre}`),
           h('button.grande', { type: 'button', onclick: () => { i += 1; pinta(); } }, i + 1 < qs.length ? 'Siguiente →' : 'Ver resultado'));
       } }, o));

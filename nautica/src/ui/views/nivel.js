@@ -19,6 +19,7 @@ import { ordenRuta } from '../../course/ruta.js';
 import { estadoLeccion } from '../../course/engine.js';
 import { randomSeed } from '../../math/rng.js';
 import { cuenta } from '../../texto.js';
+import { conIcono } from '../iconos.js';
 
 const claveEnCurso = (eje, tit) => `nivelEnCurso_${eje}_${tit}`;
 /** Ajuste de «Ahora no» en la oferta de Hoy. */
@@ -129,7 +130,7 @@ export function nivelView({ ctx, progress, params: route, tit }) {
       const preguntas = [banco.porId.get(actual.q)];
       setChildren(el, barra, cont);
       setChildren(cont, tandaPreguntas({
-        preguntas, explicaciones: banco.explicaciones, progress, barra, temaEnCadaPregunta: true, rotulo: '🎯 Test de nivel',
+        preguntas, explicaciones: banco.explicaciones, progress, barra, temaEnCadaPregunta: true, rotulo: conIcono('diana', 'Test de nivel'),
         registrar: (q, k, ok) => progress.recordExam(q.id, { choice: k, ok, nivel: true }),
         contador: () => {
           const est = Math.max(estimadasNivel(st), st.hechas.length + 1);

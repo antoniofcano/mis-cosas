@@ -8,17 +8,17 @@ export const PER = {
   minAciertos: 32,
   // ut: unidad teórica · n: preguntas en el examen · maxErrores: límite propio del bloque (si lo tiene)
   bloques: [
-    { ut: 1, titulo: 'Nomenclatura náutica', n: 4, icon: '⚓' },
-    { ut: 2, titulo: 'Amarre y fondeo', n: 2, icon: '🪝' },
-    { ut: 3, titulo: 'Seguridad', n: 4, icon: '🦺' },
-    { ut: 4, titulo: 'Legislación', n: 2, icon: '📜' },
-    { ut: 5, titulo: 'Balizamiento', n: 5, maxErrores: 2, icon: '🚩' },
-    { ut: 6, titulo: 'Reglamento (RIPA)', n: 10, maxErrores: 5, icon: '🚢' },
-    { ut: 7, titulo: 'Maniobra y navegación', n: 2, icon: '⛵' },
-    { ut: 8, titulo: 'Emergencias en la mar', n: 3, icon: '🆘' },
-    { ut: 9, titulo: 'Meteorología', n: 4, icon: '🌦️' },
-    { ut: 10, titulo: 'Teoría de navegación', n: 5, icon: '🧭' },
-    { ut: 11, titulo: 'Carta de navegación', n: 4, maxErrores: 2, icon: '🗺️' },
+    { ut: 1, titulo: 'Nomenclatura náutica', n: 4, ico: 'velero' },
+    { ut: 2, titulo: 'Amarre y fondeo', n: 2, ico: 'ancla' },
+    { ut: 3, titulo: 'Seguridad', n: 4, ico: 'chaleco' },
+    { ut: 4, titulo: 'Legislación', n: 2, ico: 'ley' },
+    { ut: 5, titulo: 'Balizamiento', n: 5, maxErrores: 2, ico: 'boya' },
+    { ut: 6, titulo: 'Reglamento (RIPA)', n: 10, maxErrores: 5, ico: 'barco' },
+    { ut: 7, titulo: 'Maniobra y navegación', n: 2, ico: 'timon' },
+    { ut: 8, titulo: 'Emergencias en la mar', n: 3, ico: 'salvavidas' },
+    { ut: 9, titulo: 'Meteorología', n: 4, ico: 'nube' },
+    { ut: 10, titulo: 'Teoría de navegación', n: 5, ico: 'brujula' },
+    { ut: 11, titulo: 'Carta de navegación', n: 4, maxErrores: 2, ico: 'mapa' },
   ],
   // Orden en que se recomienda estudiar: el vocabulario primero y después lo que más pesa y más práctica pide
   // (los temas con límite de fallos y la navegación); el resto al final.
@@ -55,10 +55,10 @@ export const PY = {
     { id: 'navegacion', titulo: 'Módulo de navegación', duracionMin: 75, uts: [3, 4] },
   ],
   bloques: [
-    { ut: 1, titulo: 'Seguridad en la mar', n: 10, icon: '🦺' },
-    { ut: 2, titulo: 'Meteorología', n: 10, icon: '🌦️' },
-    { ut: 3, titulo: 'Teoría de navegación', n: 10, maxErrores: 5, icon: '🧭' },
-    { ut: 4, titulo: 'Carta de navegación', n: 10, maxErrores: 3, icon: '🗺️' },
+    { ut: 1, titulo: 'Seguridad en la mar', n: 10, ico: 'chaleco' },
+    { ut: 2, titulo: 'Meteorología', n: 10, ico: 'nube' },
+    { ut: 3, titulo: 'Teoría de navegación', n: 10, maxErrores: 5, ico: 'brujula' },
+    { ut: 4, titulo: 'Carta de navegación', n: 10, maxErrores: 3, ico: 'mapa' },
   ],
   // Primero el módulo de navegación (límites de fallos y más práctica); después el genérico.
   ordenEstudio: [3, 4, 1, 2],
@@ -72,13 +72,13 @@ export const PY = {
  */
 export const TITULACIONES = {
   per: {
-    id: 'per', sigla: 'PER', nombre: 'Patrón de Embarcaciones de Recreo', icon: '⛵', estructura: PER, nivel: 'PER', cartaUt: 11, calculadora: false,
+    id: 'per', sigla: 'PER', nombre: 'Patrón de Embarcaciones de Recreo', ico: 'velero', estructura: PER, nivel: 'PER', cartaUt: 11, calculadora: false,
     resumen: '45 preguntas · 90 minutos · apto con 32 aciertos',
     reglas: ['45 preguntas tipo test, 4 opciones, 90 minutos.', 'Apto con al menos 32 aciertos (máximo 13 fallos).',
       'Además, como máximo: 5 errores en Reglamento (RIPA), 2 en Balizamiento y 2 en Carta de navegación.'],
   },
   py: {
-    id: 'py', sigla: 'PY', nombre: 'Patrón de Yate', icon: '🛥️', estructura: PY, nivel: 'PY', cartaUt: 4, calculadora: true,
+    id: 'py', sigla: 'PY', nombre: 'Patrón de Yate', ico: 'barco', estructura: PY, nivel: 'PY', cartaUt: 4, calculadora: true,
     resumen: '40 preguntas · 2 módulos (45 + 75 min) · apto con 28 aciertos',
     reglas: ['40 preguntas tipo test en dos módulos: genérico (Seguridad y Meteorología, 45 min) y navegación (Teoría y Carta, 75 min).',
       'Apto con al menos 28 aciertos (máximo 12 fallos).', 'Además, como máximo: 5 errores en Teoría de navegación y 3 en Carta.'],

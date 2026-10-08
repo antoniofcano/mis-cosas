@@ -19,6 +19,8 @@ import { cuenta } from '../../texto.js';
 import { marcaConfig } from '../config-profe.js';
 import { estadoIdea } from '../../course/listo.js';
 import { clasesDeCurso, filaIdea } from '../concepto.js';
+import { estadoTravesia, farosPorTema } from '../../course/travesia.js';
+import { icono, conIcono } from '../iconos.js';
 
 /**
  * Ideas (conceptos) de cada clase con preguntas en este banco y cómo las lleva el alumno: Map claseId → { sabidas,
@@ -62,6 +64,23 @@ const ESTADO_TEMA_CLS = { bien: 'ok', repasar: 'warn' };
 // ---------------------------------------------------------------------------
 // #/<tit>/temario
 
+/** Chip sobrio con el límite de fallos de un tema eliminatorio: «Máx. 2 fallos de 5». */
+const chipLimite = (b) => (b.maxErrores != null ? h('span.chip-limite', conIcono('bandera', `Máx. ${cuenta(b.maxErrores, 'fallo')} de ${b.n}`)) : null);
+
+/**
+ * El faro de un tema en el Temario: mismo dibujo, colores y criterio que los de la Travesía (luzDeFaro de
+ * src/course/travesia.js): apagado, en curso o encendido. Sin ideas etiquetadas, el icono del tema en un disco neutro.
+ */
+const discoTema = (b, f) => (f ? h('span.tema-faro', { class: f.estado }, icono('faro')) : h('span.tema-faro.sin-ideas', icono(b.ico)));
+
+/** «12 de 30 ideas dominadas · faro encendido» y su barra fina (la barra es decorativa: el texto lo dice). */
+function avanceIdeas(f) {
+  const pct = Math.round(f.pct * 100);
+  return h('div.tema-ideas',
+    h('span.barra-trav.tema-ideas-barra', { class: f.estado, 'aria-hidden': 'true' }, h('span', { style: `width:${pct}%` })),
+    h('span.tema-ideas-tx', `${f.dominadas} de ${cuenta(f.total, 'idea')} dominadas${f.estado === 'on' ? ' · faro encendido' : ''}`));
+}
+
 export function temarioView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const el = h('div.temario', h('h1', `Temario del ${T.sigla}`), h('p.muted', 'Cargando…'));
@@ -69,18 +88,25 @@ export function temarioView({ progress, tit }) {
   calcularPlan(progress, tit).then((d) => {
     const hoyUt = d.plan[0]?.ut ?? null;
     const filas = d.st.temas; // del motor
-    summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`).join('\n')}` +
+    // Los faros por tema (solo si el banco tiene sus preguntas etiquetadas por idea); si no, el aspecto de siempre.
+    const est = d.indiceConceptos ? estadoTravesia({ ic: d.indiceConceptos, respuestas: d.respuestas, ahora: d.ahora }) : null;
+    const faros = farosPorTema(est, d.indiceConceptos);
+    summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => { const f = faros.get(b.ut); return `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${f ? ` · ideas dominadas ${f.dominadas}/${f.total} · faro ${f.estado}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`; }).join('\n')}` +
       `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${cuenta(TANDA, 'pregunta')}`;
     setChildren(el,
       h('h1', `Temario del ${T.sigla}`),
       marcaConfig(),
       h('p.muted', 'Por temas: primero la base y los temas en los que se suspende por fallos. Las clases las vas dando en la ruta del curso, que alterna temas para que no se haga pesado; «Hoy» te dice cuál toca.'),
-      h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]) },
-        b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null,
-        h('h3', `${b.icon} ${b.titulo}`),
-        h('p', `${cuenta(b.n, 'pregunta')} en el examen${b.maxErrores != null ? ` · ¡ojo!, solo se pueden fallar ${b.maxErrores}` : ''}`),
-        h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
-        e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))),
+      h('div.lista-temas', filas.map(({ b, e }) => {
+        const f = faros.get(b.ut) ?? null;
+        return h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]), class: f ? `con-faro faro-${f.estado}` : '' },
+          h('div.tema-cab', discoTema(b, f),
+            h('div.tema-cab-tx', b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null, h('h3', b.titulo),
+              h('p.tema-examen', h('span', `${cuenta(b.n, 'pregunta')} en el examen`), chipLimite(b)))),
+          h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),
+          f ? avanceIdeas(f)
+            : e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null);
+      })),
       h('details', h('summary', 'Reglas del examen'), h('ul', reglasExamen(T, d.banco.eje).map((r) => h('li', r)))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
@@ -98,7 +124,7 @@ export function temaView({ progress, params: route, tit }) {
   const ut = Number(route.parts[1]);
   const b = bloque(T.estructura, ut);
   if (!b) return { el: h('div.tema', volver('Temario', tlink(tit, ['temario'])), h('p', 'Este tema no existe.')), summary: () => 'ERROR tema no encontrado' };
-  const el = h('div.tema', volver('Temario', tlink(tit, ['temario'])), h('h1', `${b.icon} ${b.titulo}`), h('p.muted', 'Cargando…'));
+  const el = h('div.tema', volver('Temario', tlink(tit, ['temario'])), h('h1', conIcono(b.ico, b.titulo)), h('p.muted', 'Cargando…'));
   let summaryText = `VISTA tema ${T.sigla} ${b.titulo} (cargando)`;
   calcularPlan(progress, tit).then((d) => {
     const m = d.curso?.modulos?.find((x) => x.ut === ut);
@@ -130,7 +156,7 @@ export function temaView({ progress, params: route, tit }) {
       const xs = mapasDeClases(mapas, clases.map((c) => c.l.id), tit);
       if (!xs.length) return;
       setChildren(mapasTema, xs.map(({ mapa, nodos }) => h('a.card', { href: tlink(tit, ['mapas', mapa.id], { v: 'mapa', n: nodos[0].id }) },
-        h('h3', `🕸️ Mapa del tema: ${mapa.titulo}`), h('p', `Cómo se relacionan ${lista(nodos.map((n) => n.nombre))} con lo demás.`))));
+        h('h3', conIcono('red', `Mapa del tema: ${mapa.titulo}`)), h('p', `Cómo se relacionan ${lista(nodos.map((n) => n.nombre))} con lo demás.`))));
       mapasTema.hidden = false;
       summaryText += `\nMAPAS: ${xs.map((x) => x.mapa.titulo).join('; ')}`;
     }).catch(() => {});
@@ -142,13 +168,13 @@ export function temaView({ progress, params: route, tit }) {
       const pan = conAudio.find((e) => e.tipo === 'panorama');
       const resto = conAudio.filter((e) => e !== pan);
       const fila = (e) => h('a.radio-tema-ep', { href: enlaceEpisodio(tit, e, `temario/${ut}`) },
-        h('span', { 'aria-hidden': 'true' }, estadoEpisodio(e.id).oido ? '✓' : e.tipo === 'panorama' ? '🗼' : '🛟'),
+        h('span.radio-tema-marca', { 'aria-hidden': 'true' }, estadoEpisodio(e.id).oido ? icono('ok') : icono(e.tipo === 'panorama' ? 'faro' : 'salvavidas')),
         h('span', h('strong', `${e.n} · ${e.titulo}`), h('span.muted.small', ` · ${Math.round(e.duracion / 60)} min`)));
       // En la lista de clases, unos auriculares en las que tienen su episodio.
       for (const e of conAudio.filter((x) => x.tipo === 'profundiza')) {
         for (const lid of e.lecciones) { const m = el.querySelector(`.clase-podcast[data-clase="${lid}"]`); if (m) m.hidden = false; }
       }
-      setChildren(radioTema, h('h2', '🎧 Escúchalo'),
+      setChildren(radioTema, h('h2', conIcono('podcast', 'Escúchalo')),
         h('p.muted.small', pan ? 'Empieza por el panorama para situarte; luego, cada episodio va con sus clases.' : 'Cada episodio va con sus clases.'),
         pan ? fila(pan) : null, resto.map(fila),
         conAudio.length < eps.length ? h('p.muted.small', `${cuenta(eps.length - conAudio.length, 'episodio')} más de este tema en el astillero.`) : null);
@@ -157,13 +183,13 @@ export function temaView({ progress, params: route, tit }) {
     }).catch(() => {});
     setChildren(el,
       volver('Temario', tlink(tit, ['temario'])),
-      h('h1', `${b.icon} ${b.titulo}`),
+      h('h1', conIcono(b.ico, b.titulo)),
       m?.intro ? h('p', m.intro) : null,
       principal,
       clases.length ? h('section', h('h2', 'Clases'), h('ol.clases', clases.map(({ l, e: x }) => h('li', h('a.clase', { href: tlink(tit, ['curso', l.id]), class: l.id === siguienteRuta ? 'siguiente-ruta' : '' },
         h('span.clase-titulo', l.titulo, l.id === siguienteRuta ? h('span.badge.badge-ruta', 'Siguiente en tu ruta') : null),
         apoyos.get(l.id).length ? h('span.clase-apoyo', `Se apoya en: ${apoyos.get(l.id).map((r) => r.titulo).join(' · ')}`) : null,
-        h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, '🎧'),
+        h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, icono('podcast', '', 'Tiene podcast')),
           h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado])),
         ideas.has(l.id) ? h('span.clase-ideas', { class: ideas.get(l.id).flojas.length ? 'con-flojas' : '' }, lineaIdeasClase(ideas.get(l.id))) : null),
       flojasDe.get(l.id) ?? null)))) : null,
@@ -173,14 +199,14 @@ export function temaView({ progress, params: route, tit }) {
           h('a.btn.secondary', { href: tanda }, `Hacer ${cuenta(TANDA, 'pregunta')}`),
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
       radioTema,
-      h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, '🖨️ Chuleta del tema para imprimir')),
+      h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, conIcono('imprimir', 'Chuleta del tema para imprimir'))),
       mapasTema,
-      ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', '🗺️ Ejercicios de carta'), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
+      ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', conIcono('mapa', 'Ejercicios de carta')), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
       h('section', h('h2', 'Para ayudarte'),
         h('div.cards',
-          h('a.card', { href: tlink(tit, ['laminas']) }, h('h3', '🎞️ Láminas'), h('p', 'Todas las láminas, ordenadas por temas.')),
-          h('a.card', { href: link(['reglas']) }, h('h3', '🧠 Reglas para recordar'), h('p', 'Trucos que funcionan, con su explicación.')),
-          ut === T.cartaUt ? h('a.card', { href: link(['conceptos']) }, h('h3', '📘 Conceptos de carta')) : null)),
+          h('a.card', { href: tlink(tit, ['laminas']) }, h('h3', conIcono('lamina', 'Láminas')), h('p', 'Todas las láminas, ordenadas por temas.')),
+          h('a.card', { href: link(['reglas']) }, h('h3', conIcono('nudo', 'Reglas para recordar')), h('p', 'Trucos que funcionan, con su explicación.')),
+          ut === T.cartaUt ? h('a.card', { href: link(['conceptos']) }, h('h3', conIcono('libro', 'Conceptos de carta'))) : null)),
     );
   }).catch((err) => setChildren(el, h('p.warn', `No se pudo cargar el tema: ${err.message}`)));
   return { el, summary: () => summaryText };

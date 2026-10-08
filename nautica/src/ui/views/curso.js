@@ -18,7 +18,7 @@ import { pidePrediccion, interactivaDe, dibujoFijo } from '../../illustrations/i
 import { questionCard, prepareTheory, tandaPreguntas, profePanel, botonCarta } from './theory.js';
 import { voice } from '../voice.js';
 import { transicion, deslizar, vibrar } from '../movimiento.js';
-import { icono } from '../iconos.js';
+import { icono, conIcono } from '../iconos.js';
 import { hojaRespuesta } from '../hoja.js';
 import { avisoError } from '../aviso-error.js';
 import { dondeEncaja } from '../encaja.js';
@@ -174,12 +174,12 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           h('p.muted', k > 1 ? `Este tramo: unos ${minutosDeTramo(L, ritmo())} min · Clase completa (${cuenta(k, 'tramo')}): unos ${minutosClase(L, ritmo())} min.`
             : `Unos ${cuenta(minutosClase(L, ritmo()), 'minuto')}.`),
           // Lo que esta clase del PY da por sabido del PER, plegado: no saca de la clase salvo que el alumno lo pida.
-          base.length ? h('details.viene-per', h('summary', `🔁 ¿Te falta base del PER? (${cuenta(base.length, 'clase', 'clases')})`),
+          base.length ? h('details.viene-per', h('summary', conIcono('repaso', `¿Te falta base del PER? (${cuenta(base.length, 'clase', 'clases')})`)),
             h('p.small', base.every((b) => b.vista) ? 'Esta clase da por sabido lo del PER que ya viste:' : 'Esta clase da por sabido esto del PER. Si no lo tienes fresco, repásalo (luego vuelves aquí):'),
             listaBase()) : null,
           lineaApoyos(),
           enlaceRepasa(),
-          enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora (🧮).') : null,
+          enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora.') : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
             h('p.muted.small', 'Antes o después de la clase: Elena y Andrés lo cuentan en voz alta.')) : null);
         case 'texto': return glosado(h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto)));
@@ -192,10 +192,10 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         }
         case 'regla': {
           const r = reglas.get(p.id);
-          return r ? glosado(h('div.paso.regla', h('p.mnemo-big', `🧠 ${r.regla}`), h('p', r.significado))) : null;
+          return r ? glosado(h('div.paso.regla', h('p.mnemo-big', conIcono('nudo', r.regla)), h('p', r.significado))) : null;
         }
-        case 'clave': return glosado(h('div.paso.clave', h('p', '💡 ', rich(p.texto))));
-        case 'ojo': return glosado(h('div.paso.ojo', h('p', '⚠️ ', rich(p.texto))));
+        case 'clave': return glosado(h('div.paso.clave', h('p', icono('bombilla', 'ico-t'), rich(p.texto))));
+        case 'ojo': return glosado(h('div.paso.ojo', h('p', icono('aviso', 'ico-t'), rich(p.texto))));
         case 'resuelto': {
           // Una pregunta real del mismo tipo, resuelta por la app (dibujada en la carta o paso a paso); «Otra» cambia.
           const box = h('div');
@@ -205,7 +205,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             const sinCarta = SOLUCIONES[q.id]?.sinCarta;
             setChildren(box, h('p.muted.small', q.convocatoria ?? ''), h('p', q.enunciado.length > 220 ? `${q.enunciado.slice(0, 220)}…` : q.enunciado),
               h('div.actions',
-                h('a.btn', { href: link(rutaResolucion(q)) }, sinCarta ? '🧮 Verla resuelta paso a paso' : '🗺️ Verla resuelta en la carta'),
+                h('a.btn', { href: link(rutaResolucion(q)) }, sinCarta ? conIcono('calculadora', 'Verla resuelta paso a paso') : conIcono('mapa', 'Verla resuelta en la carta')),
                 p.ids.length > 1 ? h('button.secondary', { type: 'button', onclick: () => { k = (k + 1) % p.ids.length; pinta(); } }, 'Otra pregunta') : null));
           };
           pinta();
@@ -237,7 +237,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               marca(parte, 'toca-ok');
               k += 1;
               fallos = 0;
-              fb.textContent = k < orden.length ? `✅ Bien: es ${nombre}.` : `✅ Bien: es ${nombre}. Las has encontrado todas.`;
+              fb.replaceChildren(...conIcono('ok', k < orden.length ? `Bien: es ${nombre}.` : `Bien: es ${nombre}. Las has encontrado todas.`));
               pinta();
               if (k >= orden.length) { checkOk.add(i); if (i === paso) refrescaBotones(); }
             } else {
@@ -248,7 +248,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             }
           });
           pinta();
-          return h('div.paso.toca', h('p.badge', '👆 Toca en el dibujo'), pregunta, dib, fb);
+          return h('div.paso.toca', h('p.badge', conIcono('toque', 'Toca en el dibujo')), pregunta, dib, fb);
         }
         case 'emparejar': {
           // «Empareja»: toca un término y después su definición.
@@ -272,7 +272,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
                 bTer[j].disabled = true; bTer[j].classList.add('emp-ok'); bTer[j].setAttribute('aria-pressed', 'false');
                 sel = null;
                 hechos += 1;
-                fb.textContent = hechos === p.pares.length ? '✅ Todas emparejadas.' : '✅ Bien.';
+                fb.replaceChildren(...conIcono('ok', hechos === p.pares.length ? 'Todas emparejadas.' : 'Bien.'));
                 if (hechos === p.pares.length) { checkOk.add(i); if (i === paso) refrescaBotones(); }
               } else {
                 vibrar(false);
@@ -282,7 +282,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             } }, d);
             return b;
           });
-          return h('div.paso.emparejar', h('p.badge', '🔗 Empareja cada término con su definición'), h('div.emp-terminos', bTer), h('div.emp-defs', bDef), fb);
+          return h('div.paso.emparejar', h('p.badge', conIcono('enlace', 'Empareja cada término con su definición')), h('div.emp-terminos', bTer), h('div.emp-defs', bDef), fb);
         }
         case 'check': {
           const fb = h('div');
@@ -336,9 +336,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           input.dataset.status = { ok: 'ok', mal: 'wrong', formato: 'invalid', vacia: 'empty' }[r.estado];
           vibrar(r.estado === 'ok');
           setChildren(fb, {
-            ok: h('p.ok', `✅ Correcto: ${ej.solucion}.`),
-            mal: h('p.warn', '❌ No es eso. Repasa la cuenta o pulsa «Ver cómo se hace».'),
-            formato: h('p.warn', `⚠️ No entiendo la respuesta. ${EJEMPLO_RESPUESTA[ej.tipo]}.`),
+            ok: h('p.ok', conIcono('ok', `Correcto: ${ej.solucion}.`)),
+            mal: h('p.warn', conIcono('no', 'No es eso. Repasa la cuenta o pulsa «Ver cómo se hace».')),
+            formato: h('p.warn', conIcono('aviso', `No entiendo la respuesta. ${EJEMPLO_RESPUESTA[ej.tipo]}.`)),
             vacia: h('p.muted', 'Escribe tu resultado y pulsa «Comprobar».'),
           }[r.estado]);
           if (r.estado === 'ok') hecha();
@@ -348,11 +348,11 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             h('label.field', h('span.lbl', 'Tu respuesta'), input),
             h('div.actions', h('button', { type: 'submit' }, 'Comprobar'), botonCalculadora(),
               h('button.secondary', { type: 'button', onclick: ver }, 'Ver cómo se hace'),
-              h('button.secondary', { type: 'button', onclick: () => { nueva(); } }, '🔄 Otra con otros números'))),
+              h('button.secondary', { type: 'button', onclick: () => { nueva(); } }, conIcono('repaso', 'Otra con otros números')))),
           fb, solucion);
       }
       nueva();
-      return h('div.paso.cuenta', h('p.badge', '🧮 Haz la cuenta (con la calculadora)'), box);
+      return h('div.paso.cuenta', h('p.badge', conIcono('calculadora', 'Haz la cuenta (con la calculadora)')), box);
     }
     const speechOf = (p) => ({
       intro: `${L.titulo}. En esta clase: ${(L.objetivos ?? []).join('. ')}`,
@@ -381,7 +381,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       apuntaTramo(hecho);
       barra.set(`Tramo ${hecho + 1} de ${k} hecho`, paso / n);
       const titulo = `Tramo ${hecho + 1} de ${k} hecho`;
-      setChildren(cont, cierre({ icono: '✅', titulo, tit, lineas: [L.titulo], logros: logrosClase().slice(1), stats: cifrasCierre(progress),
+      setChildren(cont, cierre({ icono: 'hecho', titulo, tit, lineas: [L.titulo], logros: logrosClase().slice(1), stats: cifrasCierre(progress),
         botones: [h('button.grande', { type: 'button', onclick: () => transicion(tarjeta, 'adelante') }, `Seguir con el tramo ${hecho + 2} (unos ${minutosDeTramo(L, ritmo())} min)`),
           h('a.btn.secondary.grande', { href: tlink(tit) }, 'Terminar por hoy')] }));
       summaryText = `CLASE ${L.id} · tramo ${hecho + 1}/${k} hecho`;
@@ -418,7 +418,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           h('span.paso-botones', episodio && paso ? h('a.btn.secondary.small.escuchar', { href: enlacePodcast, title: 'Escuchar el podcast de esta clase', 'aria-label': 'Podcast de esta clase' }, icono('podcast')) : null, escuchar)),
           pasoEl(p, paso)),
         // A mano durante toda la clase (salvo en la primera tarjeta, que ya la enseña): la base del PER.
-        paso && base.length ? h('details.base-per-chip', h('summary', `🔁 Base del PER (${base.length})`), listaBase()) : null,
+        paso && base.length ? h('details.base-per-chip', h('summary', conIcono('repaso', `Base del PER (${base.length})`)), listaBase()) : null,
         // Lo secundario, junto y plegado. «Terminar ya» solo pasada la mitad: al principio daría la clase por vista sin leerla.
         h('details.mas-opciones', h('summary', '⋯ Más opciones'),
           h('ul',
@@ -453,23 +453,23 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       apuntaTramo(tarjetas[n - 1].tramo); // el último tramo (los anteriores se apuntaron al cerrarlos)
       barra.set('Clase terminada', 1);
       // El podcast que trata esta clase, si ya tiene audio.
-      const escucha = episodio ? h('p.radio-clase', h('a.btn.secondary', { href: enlacePodcast }, `🎧 Escúchalo: «${episodio.titulo}» (${minPodcast} min)`)) : null;
+      const escucha = episodio ? h('p.radio-clase', h('a.btn.secondary', { href: enlacePodcast }, conIcono('podcast', `Escúchalo: «${episodio.titulo}» (${minPodcast} min)`))) : null;
       const extra = [
         escucha,
         dondeEncaja(tit, L.id),
-        L.carta?.length ? h('details', h('summary', '🗺️ En la carta'), h('ul', L.carta.map((x) => (getExercise(x) ? h('li', h('a', { href: link(['ej', x]) }, getExercise(x).title)) : null)))) : null,
-        pasosExtra.length ? h('details.saber-mas', h('summary', `📚 Para saber más (${pasosExtra.length}) · no cae en el examen`), h('div.pasos.todas', pasosExtra.map((p) => pasoEl(p, -1)))) : null,
-        L.profundizar?.length ? h('details', h('summary', '📚 Para profundizar'), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
-        base.length ? h('details', h('summary', '🔁 Repaso del PER'), listaBase()) : null,
+        L.carta?.length ? h('details', h('summary', conIcono('mapa', 'En la carta')), h('ul', L.carta.map((x) => (getExercise(x) ? h('li', h('a', { href: link(['ej', x]) }, getExercise(x).title)) : null)))) : null,
+        pasosExtra.length ? h('details.saber-mas', h('summary', conIcono('libro', `Para saber más (${pasosExtra.length}) · no cae en el examen`)), h('div.pasos.todas', pasosExtra.map((p) => pasoEl(p, -1)))) : null,
+        L.profundizar?.length ? h('details', h('summary', conIcono('libro', 'Para profundizar')), h('ul', L.profundizar.map((r) => h('li', h('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.titulo))))) : null,
+        base.length ? h('details', h('summary', conIcono('repaso', 'Repaso del PER')), listaBase()) : null,
         enlaceRepasa(),
       ];
-      const chuleta = L.chuleta?.length ? glosado(h('section.chuleta', h('h2', L.chuletaProfe ? '📌 Chuleta de tu profesor' : '📌 Chuleta'), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
-        voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, '🔊 Escuchar la chuleta') : null)) : null;
+      const chuleta = L.chuleta?.length ? glosado(h('section.chuleta', h('h2', conIcono('chincheta', L.chuletaProfe ? 'Chuleta de tu profesor' : 'Chuleta')), h('ul', L.chuleta.map((c) => h('li', inline(c)))),
+        voice.supported ? h('button.small.secondary', { type: 'button', onclick: () => voice.speak(L.chuleta.map(plain).join('. ')) }, conIcono('escuchar', 'Escuchar la chuleta')) : null)) : null;
       const vuelta = origen ? h('p', volverOrigen('a.btn.grande')) : null;
       if (enApendice) {
         // Apéndice: sin práctica ni plan. Se sigue con la siguiente clase del apéndice o se vuelve a la lista.
         const sig = todas[todas.indexOf(L) + 1] ?? null;
-        setChildren(cont, vuelta, cierre({ icono: '🎉', titulo: 'Clase terminada', tit, lineas: [L.titulo], logros: logrosClase(), stats: cifrasCierre(progress),
+        setChildren(cont, vuelta, cierre({ icono: 'hecho', titulo: 'Clase terminada', tit, lineas: [L.titulo], logros: logrosClase(), stats: cifrasCierre(progress),
           botones: [sig ? h('a.btn.grande', { href: tlink(tit, ['cuentas', sig.id]) }, `Seguir: ${sig.titulo}`) : null,
             h('a.btn.secondary.grande', { href: salida }, 'Volver a Las cuentas del patrón')] }), chuleta, extra);
       } else if (nPractica) {
@@ -478,11 +478,11 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         setChildren(cont, vuelta, chuleta,
           h('button.grande.practicar', { type: 'button', onclick: () => practicar() }, `Practicar con ${cuenta(nPractica, 'pregunta')} de examen`),
           hueco, extra);
-        pintarCierre(hueco, progress, tit, { icono: '✅', titulo: 'Clase terminada', lineas: ['Cuando la practiques quedará aprendida.'], ut: L.ut, logros: logrosClase() });
+        pintarCierre(hueco, progress, tit, { icono: 'hecho', titulo: 'Clase terminada', lineas: ['Cuando la practiques quedará aprendida.'], ut: L.ut, logros: logrosClase() });
       } else {
         const hueco = h('div');
         setChildren(cont, vuelta, hueco, chuleta, extra);
-        pintarCierre(hueco, progress, tit, { icono: '🎉', titulo: 'Clase terminada', ut: L.ut, logros: logrosClase() });
+        pintarCierre(hueco, progress, tit, { icono: 'hecho', titulo: 'Clase terminada', ut: L.ut, logros: logrosClase() });
       }
       summaryText = `CLASE ${L.id} «${L.titulo}» terminada · chuleta: ${(L.chuleta ?? []).map(plain).join(' | ')}`;
       window.scrollTo(0, 0);
@@ -504,8 +504,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           barra.remove();
           const logros = [`${ok} de ${cuenta(total, 'pregunta', 'preguntas')} de examen bien`, acierto >= APROBADO ? `Clase aprendida: ${L.titulo}` : null].filter(Boolean);
           pintarCierre(cont, progress, tit, acierto >= APROBADO
-            ? { icono: '🎉', titulo: 'Clase aprendida', lineas: ['Volverá dentro de unos días para afianzarla.'], ut: L.ut, logros }
-            : { icono: '💪', titulo: `${ok} de ${total}`, lineas: ['Casi. Mañana la repasamos.'], ut: L.ut, logros });
+            ? { icono: 'hecho', titulo: 'Clase aprendida', lineas: ['Volverá dentro de unos días para afianzarla.'], ut: L.ut, logros }
+            : { icono: 'flojo', titulo: `${ok} de ${total}`, lineas: ['Casi. Mañana la repasamos.'], ut: L.ut, logros });
           summaryText = `CLASE ${L.id} práctica terminada ${ok}/${total}`;
           window.scrollTo(0, 0);
         },

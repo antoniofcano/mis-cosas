@@ -7,6 +7,7 @@ import { h } from './dom.js';
 import { ejesParaElegir } from '../bancos/index.js';
 import { currentEje, setEje } from './titulacion.js';
 import { fechaLarga } from '../texto.js';
+import { icono, conIcono } from './iconos.js';
 
 /** Ejes que el alumno puede elegir, con su ficha (nombre, ámbito, descripción). [] si hay uno solo: no hay que elegir. */
 export const ejesElegibles = () => ejesParaElegir();
@@ -28,15 +29,15 @@ export function selectorEje(progress, ejes, alElegir, { marcar = true } = {}) {
       type: 'button', 'aria-pressed': String(e.id === actual), class: e.id === actual ? 'activo' : '',
       onclick: () => { setEje(progress, e.id); alElegir?.(e.id); },
     },
-    h('span.op-icono', { 'aria-hidden': 'true' }, '📍'),
+    h('span.op-icono', icono('lugar')),
     h('span.op-texto', h('strong', e.nombre), ambitoTexto(e.ficha) && ambitoTexto(e.ficha) !== e.nombre ? h('span.op-detalle', ambitoTexto(e.ficha)) : null))));
 }
 
-/** Indicador discreto del eje que se estudia («📍 Madrid (Marina Mercante)»), con enlace a Ajustes. Null si no hay que elegir. */
+/** Indicador discreto del eje que se estudia («Exámenes de Madrid (Marina Mercante)», con el icono de lugar), con enlace a Ajustes. Null si no hay que elegir. */
 export function indicadorEje(progress, ejes) {
   if (!ejes?.length) return null;
   const e = ejes.find((x) => x.id === currentEje(progress)) ?? ejes[0];
-  return h('a.indicador-eje', { href: '#/ajustes', title: 'Cambiar dónde te examinas' }, `📍 Exámenes de ${e.nombre}`);
+  return h('a.indicador-eje', { href: '#/ajustes', title: 'Cambiar dónde te examinas' }, conIcono('lugar', `Exámenes de ${e.nombre}`));
 }
 
 /** Cita de la fuente cuando la licencia del eje la exige (p. ej. «Origen de los datos: …», con la fecha de actualización). */

@@ -15,6 +15,7 @@ import { DIAS_ESTUDIO } from '../../course/calendario.js';
 import { fechaLarga } from '../../texto.js';
 import { ejesElegibles, selectorEje, citaFuente } from '../eje.js';
 import { seccionConfigAlumno } from '../config-profe.js';
+import { conIcono } from '../iconos.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -63,7 +64,7 @@ export function masView({ progress, tit, params }) {
   const ejeEl = h('section.ajuste-eje', { hidden: true });
   const pintaEje = (ejes) => {
     const ficha = ejes.find((e) => e.id === currentEje(progress))?.ficha;
-    setChildren(ejeEl, h('h2', '📍 Dónde te examinas'),
+    setChildren(ejeEl, h('h2', conIcono('lugar', 'Dónde te examinas')),
       h('p.muted', 'Estudias con los exámenes reales de tu tribunal. Si cambias, lo que ya has estudiado se queda guardado, y la fecha del examen no cambia.'),
       selectorEje(progress, ejes, () => { pintaEje(ejes); pintaAviso(); }),
       citaFuente(ficha));
@@ -72,7 +73,7 @@ export function masView({ progress, tit, params }) {
   ejesElegibles().then((ejes) => { if (ejes.length) pintaEje(ejes); }).catch(() => {});
 
   // Instalar la app (Android/Chrome): solo aparece si el navegador lo ofrece y no está ya instalada.
-  const instalarEl = h('section.instalar', { hidden: !puedeInstalar() }, h('h2', '📲 Instalar la app'),
+  const instalarEl = h('section.instalar', { hidden: !puedeInstalar() }, h('h2', conIcono('instalar', 'Instalar la app')),
     h('p', 'Ponla en la pantalla de inicio: abre como una app y funciona sin conexión.'),
     h('button.grande', { type: 'button', onclick: () => instalar() }, 'Instalar la app'));
   alCambiarInstalable((si) => { instalarEl.hidden = !si; });
@@ -80,22 +81,22 @@ export function masView({ progress, tit, params }) {
   const el = h('div.mas',
     h('h1', 'Ajustes'),
     h('section', h('h2', 'Tu estudio'),
-      h('h3.ajuste', h('label', { for: 'fecha-examen' }, `📅 Fecha del examen de ${T.sigla}`)),
+      h('h3.ajuste', h('label', { for: 'fecha-examen' }, conIcono('calendario', `Fecha del examen de ${T.sigla}`))),
       fecha,
-      h('h3.ajuste', '⏱ Minutos al día'),
+      h('h3.ajuste', conIcono('reloj', 'Minutos al día')),
       minutos,
-      h('h3.ajuste', '🗓 Días que estudias'),
+      h('h3.ajuste', conIcono('calendario', 'Días que estudias')),
       diasEl,
       avisoPlan,
-      h('p', h('a', { href: tlink(tit, ['plan']) }, '🗓 Ver mi plan día a día hasta el examen →')),
-      h('p', h('a', { href: tlink(tit, ['guia']) }, '🧭 Cómo funciona el curso y cómo aprobar →'))),
+      h('p', h('a', { href: tlink(tit, ['plan']) }, conIcono('calendario', 'Ver mi plan día a día hasta el examen →'))),
+      h('p', h('a', { href: tlink(tit, ['guia']) }, conIcono('brujula', 'Cómo funciona el curso y cómo aprobar →')))),
     h('section', h('h2', 'Tamaño de letra'),
       letraEl),
     h('section', h('h2', 'Titulación'),
       h('div.titulaciones', Object.values(TITULACIONES).map((X) => h('a.btn.grande', { href: tlink(X.id), class: X.id === tit ? '' : 'secondary', 'aria-current': X.id === tit ? 'true' : null },
         `${X.id === tit ? '✓ ' : ''}${X.id === 'per' ? 'PER' : X.nombre}`)))),
     ejeEl,
-    voice.supported ? h('section', h('h2', '👨‍🏫 Voz del profe'),
+    voice.supported ? h('section', h('h2', conIcono('profe', 'Voz del profe')),
       h('p.muted', 'Usa las voces de tu navegador o sistema (gratis). En Chrome y en Android suelen estar las de Google; en iPhone/Mac, las de Apple. Si no oyes nada, revisa que haya una voz en español instalada.'),
       h('label.check', h('input', { type: 'checkbox', checked: voice.enabled, onchange: (ev) => voice.setEnabled(ev.target.checked) }), 'Voz activada'),
       h('label.check', h('input', { type: 'checkbox', checked: s.vozAuto === true, onchange: (ev) => progress.setSetting('vozAuto', ev.target.checked) }), 'Leer las tarjetas en voz alta automáticamente'),
@@ -108,12 +109,12 @@ export function masView({ progress, tit, params }) {
       })(),
       h('label.field', h('span.lbl', 'Velocidad'), h('select', { onchange: (ev) => voice.setRate(Number(ev.target.value)) },
         [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)))),
-      h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, '▶ Probar la voz')),
+      h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, conIcono('play', 'Probar la voz'))),
     ) : null,
     instalarEl,
     // Configuración del profesor (usarla o quitarla) y el modo profesor.
     seccionConfigAlumno(progress),
-    h('section', h('h2', '💾 Copia de seguridad'),
+    h('section', h('h2', conIcono('descargar', 'Copia de seguridad')),
       h('p', 'Lo que has estudiado se guarda solo en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
       copiaHecha,
       h('div.actions',

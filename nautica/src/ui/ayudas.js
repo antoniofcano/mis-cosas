@@ -9,7 +9,7 @@
 // nunca la respuesta que se está escribiendo. Abierta o cerrada se recuerda durante la sesión.
 
 import { h, setChildren } from './dom.js';
-import { icono } from './iconos.js';
+import { icono, conIcono } from './iconos.js';
 import { chuletaPermitida, esRutaDeExamen, fichasPara, chuletasDeClases } from '../course/chuletario.js';
 import { loadChuletario, loadCourse } from '../store/datasets.js';
 import { glosar } from './glosas.js';
@@ -53,7 +53,7 @@ export function crearAyudas(ctx) {
   const id = `chuleta-${++nPaneles}`;
   const cuerpo = h('div.chuleta-cuerpo', { 'aria-live': 'polite' });
   const cerrarBtn = h('button.secondary.small.chuleta-cerrar', { type: 'button', 'aria-label': 'Cerrar la chuleta', title: 'Cerrar la chuleta', onclick: () => pon(false, true) }, icono('salir'));
-  const titulo = h('h2.chuleta-titulo', { tabindex: '-1' }, '📌 Chuleta');
+  const titulo = h('h2.chuleta-titulo', { tabindex: '-1' }, conIcono('chincheta', 'Chuleta'));
   const panel = h('section.chuleta-panel', { id, role: 'region', 'aria-label': 'Chuleta', hidden: true, class: actual.flotante ? 'flotante' : '' },
     h('div.chuleta-cabecera', titulo, cerrarBtn),
     h('p.chuleta-aviso', 'Solo para practicar: en el examen no la tendrás.'),

@@ -177,7 +177,8 @@ ol.qlist li { margin: .3rem 0; }
 }
 .ichart-toolbar select { width: auto; padding: .15rem .3rem; font-size: .9rem; }
 button.tool { min-width: 56px; min-height: 56px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: .2rem .4rem; font-size: .9rem; font-weight: 600; line-height: 1.15; white-space: nowrap; background: transparent; color: var(--text); border-color: var(--border); flex: none; }
-button.tool .tool-icon { font-size: 1.2rem; line-height: 1; }
+button.tool .tool-icon { font-size: 1.2rem; line-height: 1; display: inline-flex; }
+button.tool .tool-icon .ico { width: 22px; height: 22px; }
 button.tool[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
 svg.chart.interactive { display: block; width: 100%; touch-action: none; user-select: none; background: var(--sea); }
 svg.chart.interactive[data-tool="move"] { cursor: grab; }
@@ -397,16 +398,33 @@ nav.temas a.chip.secondary { background: transparent; border: 1px solid var(--bo
 .avance p { margin: .3rem 0; }
 .cierre { text-align: center; padding: 1.5rem 0; }
 .cierre .icono { font-size: 3rem; line-height: 1.2; }
+.icono .ico { width: 56px; height: 56px; color: var(--accent); }
 .cierre h1 { margin: .4rem 0; }
 .cierre ul, .cierre .lineas { list-style: none; padding: 0; margin: .5rem 0 1.5rem; }
 .cierre .botones { display: grid; gap: .75rem; text-align: center; }
 
 /* Temario */
 .lista-temas { display: grid; gap: .75rem; }
-.tema-card h3 { font-size: 1.15rem; }
+.tema-card h3 { font-size: 1.15rem; margin: 0; line-height: 1.3; }
 .tema-card p { margin: .15rem 0; }
-.tema-card .estado-linea { color: var(--text); font-weight: 600; }
-.tema-card .hoy-toca { float: right; }
+.tema-card .estado-linea { color: var(--text); font-weight: 600; margin-top: .6rem; }
+/* Cabecera de la tarjeta: el faro del tema (mismos colores que la Travesía), el título con las preguntas y «Hoy toca» */
+.tema-cab { display: flex; align-items: flex-start; gap: .75rem; }
+.tema-cab-tx { flex: 1 1 auto; min-width: 0; }
+.tema-card .hoy-toca { display: inline-block; margin: 0 0 .25rem; padding: .1rem .6rem; border: 0; border-radius: 999px; overflow: visible; background: var(--accent-2); color: var(--accent); font-size: .85rem; font-weight: 700; }
+.tema-examen { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .6rem; color: var(--muted); font-size: .95rem; }
+.chip-limite { display: inline-flex; align-items: center; padding: .05rem .55rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: .85rem; font-weight: 600; white-space: nowrap; }
+.chip-limite .ico.ico-t { width: 1.05em; height: 1.05em; margin-right: .3em; color: var(--muted); }
+.tema-faro { width: 44px; height: 44px; flex: none; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid var(--faro-off-borde); background: var(--faro-off-bg); color: var(--faro-off-texto); }
+.tema-faro .ico { width: 24px; height: 24px; }
+.tema-faro.parcial { border-color: var(--accent); background: var(--accent-2); color: var(--accent); }
+.tema-faro.on { border-color: var(--faro-on-borde); background: var(--faro-on-bg); color: var(--faro-on-texto); }
+.tema-faro.on .lampara { fill: var(--faro-luz); }
+.tema-faro .lampara { fill: none; }
+.tema-faro.sin-ideas { border-color: transparent; background: var(--accent-2); color: var(--accent); }
+.tema-ideas { margin-top: .5rem; display: grid; gap: .3rem; }
+.tema-ideas-barra { display: block; height: 6px; }
+.tema-ideas-tx { font-size: .9rem; color: var(--muted); }
 ol.clases { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; counter-reset: clase; }
 ol.clases li { counter-increment: clase; }
 a.clase { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .3rem .8rem; min-height: 56px; padding: .6rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); }
@@ -434,7 +452,8 @@ a.btn.grande[aria-current] { box-shadow: 0 0 0 3px var(--accent-2); }
 .opciones-grandes { display: grid; gap: .8rem; }
 button.tarjeta-opcion { display: flex; align-items: center; gap: 1rem; width: 100%; min-height: 88px; text-align: left; font-size: 1.15rem; background: var(--surface); color: var(--text); border: 2px solid var(--border); border-radius: 14px; padding: 1rem; }
 button.tarjeta-opcion:hover, button.tarjeta-opcion:focus-visible { border-color: var(--accent); }
-.op-icono { font-size: 2.4rem; line-height: 1; }
+.op-icono { font-size: 2.4rem; line-height: 1; color: var(--accent); display: inline-flex; }
+.op-icono .ico { width: 36px; height: 36px; }
 /* Dónde te examinas (bienvenida y Ajustes) e indicador del eje en Hoy */
 .selector-eje .op-texto { display: flex; flex-direction: column; gap: .2rem; }
 .op-detalle { font-size: .9rem; color: var(--muted); }
@@ -924,6 +943,14 @@ html[data-letra="muy-grande"] { font-size: 22px; }
 /* Iconos de línea */
 .ico { display: inline-flex; width: 1.4em; height: 1.4em; flex: none; }
 .ico svg { width: 100%; height: 100%; }
+/* Icono delante de un texto (conIcono): del tamaño de la letra, en la línea base óptica y un poco separado */
+.ico.ico-t { display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -.2em; margin-right: .4em; }
+.ico.ico-t svg { display: block; }
+h1 .ico.ico-t, h2 .ico.ico-t, h3 .ico.ico-t, summary .ico.ico-t { color: var(--accent); }
+.btn .ico.ico-t, button .ico.ico-t { margin-right: .35em; }
+/* Botón con solo un icono (reproductor, calculadora, tutorial): el icono centrado, a 22 px */
+.solo-icono { display: inline-flex; align-items: center; justify-content: center; }
+.solo-icono .ico { width: 22px; height: 22px; }
 .tab-icon .ico { width: 26px; height: 26px; }
 header.top a.ajustes .ico { width: 28px; height: 28px; }
 .paso-botones .ico { width: 24px; height: 24px; }
@@ -1508,6 +1535,10 @@ a.mas-fila:hover { background: var(--accent-2); }
 .mas-fila-tx { display: flex; flex-direction: column; gap: 1px; flex: 1 1 auto; min-width: 0; }
 .mas-fila-flecha { color: var(--muted); font-size: 1.4rem; line-height: 1; }
 ul.mas-lista.compacta a.mas-fila { min-height: 48px; }
+.mas-fila-ico { width: 40px; height: 40px; flex: none; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-2); color: var(--accent); }
+.mas-fila-ico .ico { width: 22px; height: 22px; }
+ul.mas-lista.compacta .mas-fila-ico { width: 34px; height: 34px; border-radius: 10px; }
+ul.mas-lista.compacta .mas-fila-ico .ico { width: 20px; height: 20px; }
 details.mas-chuletas { margin-top: 0; }
 details.mas-chuletas ul.mas-lista { margin: .3rem 0 .4rem; }
 .mas-copia { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem .9rem; }
@@ -1641,3 +1672,23 @@ a.trav-ficha.grande { width: 100%; font-size: .95rem; }
   .parte-faro-disco.encendido { animation: faro-enciende .7s ease-out both, faro-pulso 2.6s ease-out .7s infinite; }
   .trav-detalle, .parte-trav > * { animation: trav-sube .35s ease-out both; }
 }
+
+/* Iconos de línea en los sitios que antes llevaban emoji (docs/ICONOS.md) */
+.puerto-icono { color: var(--accent); }
+.puerto-icono .ico { width: 28px; height: 28px; }
+.boya-marca .ico { width: 18px; height: 18px; }
+.boya.panorama .boya-marca .ico { width: 22px; height: 22px; }
+.radio-play, .radio-salto, .radio-barra-play, .radio-barra-cerrar, button.calc-boton { display: inline-flex; align-items: center; justify-content: center; }
+.radio-play .ico { width: 32px; height: 32px; }
+.radio-barra-play .ico, .radio-barra-cerrar .ico { width: 22px; height: 22px; }
+button.calc-boton .ico { width: 20px; height: 20px; }
+.radio-tema-marca { display: inline-flex; color: var(--accent); }
+.radio-tema-marca .ico { width: 22px; height: 22px; }
+.clase-podcast { display: inline-flex; color: var(--accent); }
+.clase-podcast .ico { width: 18px; height: 18px; }
+.ws-controls button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; }
+.ws-controls button .ico:not(.ico-t) { width: 20px; height: 20px; }
+.note-bar > .ico { width: 20px; height: 20px; color: var(--muted); }
+.note-bar button .ico { width: 18px; height: 18px; }
+.indicador-eje .ico.ico-t, .marca-config .ico.ico-t { color: var(--muted); }
+.profe-badge > .ico:not(.ico-t) { width: 1.3em; height: 1.3em; vertical-align: -.3em; }

@@ -12,11 +12,12 @@ import { ordenRuta, tramosDe, violacionesRuta, requisitos } from '../../course/r
 import { crearConfig, aplicarConfigCurso, aplicarConfigReglas, resumenConfig, lineasChuleta, LIMITES } from '../../course/config-profe.js';
 import { descargar } from '../copia.js';
 import { cuenta, diaISO } from '../../texto.js';
+import { conIcono } from '../iconos.js';
 
 const vacio = () => ({ autor: '', nombre: '', tit: 'py', ruta: null, reglas: { añadir: [], cambiar: {}, quitar: [] }, chuletas: {} });
 
 export function profeView({ progress, tit: titActual }) {
-  const el = h('div.profe-modo', h('h1', '🧑‍🏫 Modo profesor'), h('p.muted', 'Cargando el curso…'));
+  const el = h('div.profe-modo', h('h1', conIcono('profe', 'Modo profesor')), h('p.muted', 'Cargando el curso…'));
   let summaryText = 'VISTA modo profesor (cargando)';
   // Borrador: lo que el profesor va preparando (se guarda solo, en este aparato).
   const leido = progress.settings().borradorProfe;
@@ -96,7 +97,7 @@ export function profeView({ progress, tit: titActual }) {
           ondrop: (ev) => { ev.preventDefault(); fila.classList.remove('destino'); if (arrastrando != null) mover(arrastrando, i); arrastrando = null; } },
           h('span.ruta-asa', { 'aria-hidden': 'true', title: 'Arrastra para mover' }, '⠿'),
           h('span.ruta-texto',
-            h('span.ruta-tema', `${t.icon} ${t.titulo}`),
+            h('span.ruta-tema', conIcono(t.ico, t.titulo)),
             h('span.ruta-titulo', l.titulo),
             apoyo.length ? h('span.ruta-apoyo', `Se apoya en: ${apoyo.map((r) => r.titulo).join(' · ')}`) : null),
           h('span.ruta-botones',
@@ -129,7 +130,7 @@ export function profeView({ progress, tit: titActual }) {
         const visibles = reglasApp.filter((r) => !q || `${r.regla} ${r.significado} ${r.tema}`.toLowerCase().includes(q));
         setChildren(lista,
           b.reglas.añadir.map((r, i) => h('div.profe-regla.nueva',
-            h('p', h('strong', `🧠 ${r.regla}`)), r.significado ? h('p.small', r.significado) : null, h('p.muted.small', 'Regla tuya'),
+            h('p', h('strong', conIcono('nudo', r.regla))), r.significado ? h('p.small', r.significado) : null, h('p.muted.small', 'Regla tuya'),
             h('div.actions', h('button.secondary', { type: 'button', onclick: () => { b.reglas.añadir.splice(i, 1); guarda(); pintaReglas(); pintaVista(); pintaExportar(); } }, 'Quitar')))),
           visibles.map((r) => filaRegla(r)));
       };
@@ -139,7 +140,7 @@ export function profeView({ progress, tit: titActual }) {
         const actual = { ...r, ...(cambio ?? {}) };
         const caja = h('div.profe-regla', { class: oculta ? 'oculta' : cambio ? 'cambiada' : '' });
         const ver = () => setChildren(caja,
-          h('p', h('strong', `🧠 ${actual.regla}`)), h('p.small', actual.significado),
+          h('p', h('strong', conIcono('nudo', actual.regla))), h('p.small', actual.significado),
           h('p.muted.small', `${r.tema}${oculta ? ' · oculta para tus alumnos' : cambio ? ' · cambiada por ti' : ''}`),
           h('div.actions',
             oculta ? null : h('button.secondary', { type: 'button', onclick: editar }, 'Editar'),
@@ -172,7 +173,7 @@ export function profeView({ progress, tit: titActual }) {
       setChildren(reglasSec,
         h('h2', '3. Reglas para recordar'),
         h('p', 'Las que ven tus alumnos en «Reglas para recordar», en las clases y cuando el profe explica una pregunta. Puedes añadir las tuyas, cambiar el texto de una u ocultarla.'),
-        h('details.profe-nueva-regla', h('summary', '➕ Añadir una regla'),
+        h('details.profe-nueva-regla', h('summary', conIcono('anadir', 'Añadir una regla')),
           h('label.field', h('span.lbl', 'Regla'), nRegla), h('label.field', h('span.lbl', 'Explicación'), nSig),
           h('div.actions', h('button', { type: 'button', onclick: () => {
             if (!nRegla.value.trim()) { alert('Escribe la regla.'); return; }
@@ -191,8 +192,8 @@ export function profeView({ progress, tit: titActual }) {
       const cl = clases();
       if (!elegida || !cl.has(elegida)) elegida = cl.keys().next().value;
       const sel = h('select', { 'aria-label': 'Clase', onchange: (ev) => { elegida = ev.target.value; pintaChuletas(); } },
-        E().bloques.map((t) => h('optgroup', { label: `${t.icon} ${t.titulo}` },
-          [...cl.values()].filter((l) => l.ut === t.ut).map((l) => h('option', { value: l.id, selected: l.id === elegida }, `${b.chuletas[l.id] ? '✎ ' : ''}${l.titulo}`)))));
+        E().bloques.map((t) => h('optgroup', { label: t.titulo },
+          [...cl.values()].filter((l) => l.ut === t.ut).map((l) => h('option', { value: l.id, selected: l.id === elegida }, `${l.titulo}${b.chuletas[l.id] ? ' (editada)' : ''}`)))));
       const l = cl.get(elegida);
       const area = h('textarea.profe-chuleta', { rows: 8, 'aria-label': `Chuleta de ${l.titulo}` }, b.chuletas[l.id] ?? (l.chuleta ?? []).join('\n'));
       setChildren(chuSec,
@@ -226,12 +227,12 @@ export function profeView({ progress, tit: titActual }) {
       const chuletas = Object.keys(c.chuletas ?? {}).map((id) => clases().get(id)).filter(Boolean);
       setChildren(vistaSec,
         h('h2', '5. Vista previa'),
-        h('p.marca-config', `🧑‍🏫 Ruta de: ${c.autor}`),
+        h('p.marca-config', conIcono('profe', `Ruta de: ${c.autor}`)),
         h('ul.resumen-config', resumenConfig(c, cursos).map((x) => h('li', x))),
         h('details', h('summary', `La ruta, por tramos (${TITULACIONES[b.tit].sigla})`),
-          h('ol.vista-tramos', tramosDe(ls).map((t) => h('li', h('strong', `${tema(t.ut).icon} ${tema(t.ut).titulo}: `), t.lecciones.map((l) => l.titulo).join(' · '))))),
-        reglas.length ? h('details', h('summary', 'Reglas nuevas o cambiadas'), reglas.map((x) => h('div.profe-regla', h('p', h('strong', `🧠 ${x.regla}`)), h('p.small', x.significado)))) : null,
-        chuletas.length ? h('details', h('summary', 'Chuletas cambiadas'), chuletas.map((l) => h('section.chuleta', h('h3', `📌 ${l.titulo}`),
+          h('ol.vista-tramos', tramosDe(ls).map((t) => h('li', h('strong', conIcono(tema(t.ut).ico, `${tema(t.ut).titulo}: `)), t.lecciones.map((l) => l.titulo).join(' · '))))),
+        reglas.length ? h('details', h('summary', 'Reglas nuevas o cambiadas'), reglas.map((x) => h('div.profe-regla', h('p', h('strong', conIcono('nudo', x.regla))), h('p.small', x.significado)))) : null,
+        chuletas.length ? h('details', h('summary', 'Chuletas cambiadas'), chuletas.map((l) => h('section.chuleta', h('h3', conIcono('chincheta', l.titulo)),
           h('ul', c.chuletas[l.id].split('\n').map((x) => h('li', x.replace(/\*\*/g, ''))))))) : null);
     }
 
@@ -266,7 +267,7 @@ export function profeView({ progress, tit: titActual }) {
     }
     setChildren(el,
       h('p', h('a.volver', { href: link(['ajustes']) }, '← Ajustes')),
-      h('h1', '🧑‍🏫 Modo profesor'),
+      h('h1', conIcono('profe', 'Modo profesor')),
       h('p', 'Prepara la ruta del curso, las reglas para recordar y las chuletas a tu manera y compártelas con tus alumnos en un fichero. A ti no te cambia nada: lo que preparas se guarda aquí como borrador.'),
       datos, rutaSec, reglasSec, chuSec, vistaSec, expSec);
     pintaTodo();

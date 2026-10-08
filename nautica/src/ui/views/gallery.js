@@ -9,6 +9,7 @@ import { loadCourse } from '../../store/datasets.js';
 import { illustrationEls } from '../illustration.js';
 import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { cuenta } from '../../texto.js';
+import { conIcono } from '../iconos.js';
 
 export { LAMINAS } from '../../illustrations/catalogo-laminas.js';
 
@@ -41,7 +42,7 @@ export function galleryView(o) {
   let summaryText = `VISTA láminas ${T.sigla}`;
   const el = h('div.gallery',
     volver('Biblioteca', tlink(T.id, ['biblioteca'])),
-    h('h1', `🎞️ Láminas · ${T.sigla}`),
+    h('h1', conIcono('lamina', `Láminas · ${T.sigla}`)),
     filtro, contador, cuerpo,
     otro ? h('p', h('a', { href: tlink(otro.id, ['laminas']) }, `Láminas del ${otro.sigla} →`)) : null);
 
@@ -49,11 +50,11 @@ export function galleryView(o) {
     const bloque = new Map(T.estructura.bloques.map((b) => [b.ut, b]));
     const secciones = temas.map(({ ut, ids }) => {
       const b = bloque.get(ut);
-      return h('section.tema-laminas', { id: `ut${ut}` }, h('h2', `${b.icon} ${b.titulo}`),
+      return h('section.tema-laminas', { id: `ut${ut}` }, h('h2', conIcono(b.ico, b.titulo)),
         h('div.rejilla-laminas', ids.map((id) => miniatura(porId.get(id), tlink(T.id, ['laminas', id])))));
     });
     setChildren(cuerpo,
-      h('nav.temas', temas.map(({ ut, ids }) => { const b = bloque.get(ut); return h('a.chip', { href: `#ut${ut}`, onclick: (ev) => { ev.preventDefault(); document.getElementById(`ut${ut}`)?.scrollIntoView({ behavior: 'smooth' }); } }, `${b.icon} ${b.titulo} (${ids.length})`); })),
+      h('nav.temas', temas.map(({ ut, ids }) => { const b = bloque.get(ut); return h('a.chip', { href: `#ut${ut}`, onclick: (ev) => { ev.preventDefault(); document.getElementById(`ut${ut}`)?.scrollIntoView({ behavior: 'smooth' }); } }, conIcono(b.ico, `${b.titulo} (${ids.length})`)); })),
       secciones,
       h('p.vacio', { hidden: true }, 'Ninguna lámina con ese título.'));
     // Dibujo perezoso: solo las miniaturas que se ven (con 200 láminas, dibujarlas todas de golpe pesa).
@@ -93,8 +94,8 @@ function laminaView({ tit, params }) {
       h('h1', l.titulo),
       h('div.il-grid.una', illustrationEls(l.spec)),
       h('section', h('h2', 'Dónde aparece'),
-        h('div.temas-lamina', l.temas.map((ut) => h('a.chip', { href: tlink(T.id, ['temario', String(ut)]) }, `${bloque.get(ut).icon} ${bloque.get(ut).titulo}`))),
-        l.clases.length ? h('ul.clases-lamina', l.clases.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) }, `🎓 ${c.titulo}`)))) : null));
+        h('div.temas-lamina', l.temas.map((ut) => h('a.chip', { href: tlink(T.id, ['temario', String(ut)]) }, conIcono(bloque.get(ut).ico, bloque.get(ut).titulo)))),
+        l.clases.length ? h('ul.clases-lamina', l.clases.map((c) => h('li', h('a', { href: tlink(T.id, ['curso', c.id]) }, conIcono('clase', c.titulo))))) : null));
     summaryText = `VISTA lámina «${l.titulo}» (${claveTexto(l.spec)}) · temas ${l.temas.join(', ')} · clases ${l.clases.map((c) => c.id).join(', ') || '—'}\n${l.resumen}`;
   });
   return { el, summary: () => summaryText };

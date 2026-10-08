@@ -20,23 +20,23 @@ const puntos = (s) => s.replace(/\./g, '•').replace(/-/g, '▬');
 /** Mazos de cada titulación. Anverso: una lámina (sin sus rótulos), un texto o un sonido. Reverso: título y texto. */
 export function mazos(tit) {
   const todos = [
-    { id: 'buques', titulo: 'Luces y marcas de buques', icon: '🚢', tits: ['per'], cartas: Object.entries(SHIPS).map(([k, b]) => ({
+    { id: 'buques', titulo: 'Luces y marcas de buques', ico: 'barco', tits: ['per'], cartas: Object.entries(SHIPS).map(([k, b]) => ({
       id: k, anverso: { spec: { tipo: 'buque', clase: k, vista: 'todas', dia: true }, quitar: 'titulo', pregunta: '¿Qué buque es?' }, reverso: { titulo: b.nombre } })) },
-    { id: 'balizamiento', titulo: 'Balizamiento', icon: '🛟', tits: ['per'], cartas: Object.entries(BUOYS).map(([k, b]) => ({
+    { id: 'balizamiento', titulo: 'Balizamiento', ico: 'boya', tits: ['per'], cartas: Object.entries(BUOYS).map(([k, b]) => ({
       id: k, anverso: { spec: { tipo: 'boya', clase: k, reloj: false }, pregunta: '¿Qué marca es y cómo se pasa?' }, reverso: { titulo: b.nombre, texto: [b.nota, b.ritmo ? `Luz: ${b.ritmo}.` : ''].filter(Boolean).join(' ') } })) },
-    { id: 'sonidos', titulo: 'Señales acústicas', icon: '🔊', tits: ['per'], cartas: Object.entries(SENALES).map(([k, t]) => ({
+    { id: 'sonidos', titulo: 'Señales acústicas', ico: 'campana', tits: ['per'], cartas: Object.entries(SENALES).map(([k, t]) => ({
       id: k, anverso: { sonido: k, texto: /^[.-]+$/.test(k) ? puntos(k) : null, pregunta: '¿Qué significa esta señal?' }, reverso: { titulo: t } })) },
-    { id: 'socorro', titulo: 'Señales de peligro', icon: '🆘', tits: ['per', 'py'], cartas: Object.entries(SOCORRO).map(([k, x]) => ({
+    { id: 'socorro', titulo: 'Señales de peligro', ico: 'salvavidas', tits: ['per', 'py'], cartas: Object.entries(SOCORRO).map(([k, x]) => ({
       id: k, anverso: { spec: { tipo: 'socorro', resaltar: k, solo: true }, pregunta: '¿Qué señal es?' }, reverso: { titulo: x.t.replace('|', ' '), texto: x.nota } })) },
-    { id: 'banderas', titulo: 'Banderas', icon: '🚩', tits: ['per'], cartas: Object.entries(FLAGS).map(([k, f]) => ({
+    { id: 'banderas', titulo: 'Banderas', ico: 'bandera', tits: ['per'], cartas: Object.entries(FLAGS).map(([k, f]) => ({
       id: k, anverso: { spec: { tipo: 'bandera', codigo: k }, pregunta: '¿Qué significa esta bandera?' }, reverso: { titulo: f.nombre, texto: f.nota } })) },
-    { id: 'beaufort', titulo: 'Escala Beaufort', icon: '💨', tits: ['per', 'py'], cartas: BEAUFORT.map(([n, kn], i) => ({
+    { id: 'beaufort', titulo: 'Escala Beaufort', ico: 'viento', tits: ['per', 'py'], cartas: BEAUFORT.map(([n, kn], i) => ({
       id: String(i), anverso: { texto: `Fuerza ${i}`, pregunta: '¿Cómo se llama y cuántos nudos son?' }, reverso: { titulo: n, texto: `${kn} nudos.` } })) },
-    { id: 'douglas', titulo: 'Escala Douglas', icon: '🌊', tits: ['per', 'py'], cartas: DOUGLAS.map(([n, m], i) => ({
+    { id: 'douglas', titulo: 'Escala Douglas', ico: 'ola', tits: ['per', 'py'], cartas: DOUGLAS.map(([n, m], i) => ({
       id: String(i), anverso: { texto: `Grado ${i}`, pregunta: '¿Cómo se llama el estado de la mar y qué altura de ola tiene?' }, reverso: { titulo: n, texto: `Olas de ${m} m.` } })) },
-    { id: 'fuego', titulo: 'Clases de fuego', icon: '🔥', tits: ['per', 'py'], cartas: CLASES_FUEGO.map(([k, t]) => ({
+    { id: 'fuego', titulo: 'Clases de fuego', ico: 'racha', tits: ['per', 'py'], cartas: CLASES_FUEGO.map(([k, t]) => ({
       id: k, anverso: { texto: `Clase ${k}`, pregunta: '¿Qué arde?' }, reverso: { titulo: t } })) },
-    { id: 'gnss', titulo: 'Siglas del GNSS', icon: '🛰️', tits: ['py'], cartas: Object.entries(SIGLAS_GNSS).map(([k, t]) => ({
+    { id: 'gnss', titulo: 'Siglas del GNSS', ico: 'satelite', tits: ['py'], cartas: Object.entries(SIGLAS_GNSS).map(([k, t]) => ({
       id: k, anverso: { texto: t.split(':')[0], pregunta: '¿Qué significa?' }, reverso: { titulo: sinPrefijo(t) } })) },
   ];
   return todos.filter((m) => m.tits.includes(tit)).map((m) => ({ ...m, cartas: m.cartas.map((c) => ({ ...c, clave: `${PREFIJO}${m.id}:${c.id}`, mazo: m.id })) }));

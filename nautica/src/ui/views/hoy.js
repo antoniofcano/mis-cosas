@@ -308,7 +308,7 @@ export function hoyView({ progress, tit }) {
           h('div.bar', { role: 'progressbar', 'aria-label': 'Avance del camino', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(a.fraccion * 100) }, h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
           h('p', lineaAvance(a, racha))),
         !ritmo ? h('p.muted', m.texto, m.detalle ? ` ${m.detalle}` : '') : null,
-        h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo)),
+        h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', listo.estado === 'listo' ? icono('ok', 'ico-t') : null, lineaListo(listo)),
           lineaIdeas(conceptosPorTema(T.estructura, d.indiceConceptos, d.respuestas)),
           h('p.ver-progreso', h('a.btn.secondary.boton-icono', { href: '#/progreso' }, icono('progreso'), 'Ver mi progreso por temas'))),
         resto.length ? [h('h2', 'Si te sobra tiempo'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },

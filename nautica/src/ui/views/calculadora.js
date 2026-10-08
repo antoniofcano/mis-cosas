@@ -5,6 +5,7 @@ import { h } from '../dom.js';
 import { tlink, volver, currentTit, TITULACIONES } from '../titulacion.js';
 import { calculadoraEnPagina } from '../calculadora.js';
 import { APENDICE_PUBLICADO } from '../../course/apendice.js';
+import { conIcono } from '../iconos.js';
 
 // Ejemplos de uso: [qué se quiere, teclas, lo que sale]
 const EJEMPLOS = [
@@ -23,7 +24,7 @@ export function calculadoraView({ progress }) {
   const T = TITULACIONES[tit];
   const el = h('div.calculadora-vista',
     volver('Biblioteca', tlink(tit, ['biblioteca'])),
-    h('h1', '🧮 Calculadora científica'),
+    h('h1', conIcono('calculadora', 'Calculadora científica')),
     h('p', 'Con las teclas y la forma de trabajar de la que se permite en el examen: dos líneas (la cuenta arriba y el resultado abajo), siempre en grados. Practica aquí las cuentas para llevarlas hechas al examen.'),
     h('p.muted.small', `${T.calculadora ? `En el examen del ${T.sigla} se permite: en los simulacros la tienes a mano.` : `En el examen del ${T.sigla} depende del tribunal: en los simulacros aparece solo si el tuyo la permite.`} Usa punto decimal: 12.5 es 12,5.`),
     calculadoraEnPagina(),
@@ -32,7 +33,7 @@ export function calculadoraView({ progress }) {
       h('dl', EJEMPLOS.map(([que, teclas, sale]) => [h('dt', que), h('dd', h('code.calc-teclas-txt', teclas), h('br'), sale)]))),
     h('details.calc-atajos', h('summary', 'Con el teclado del ordenador'),
       h('p.small', 'Cifras, punto o coma, + − * /, paréntesis. Intro o = calcula; Retroceso es DEL y Esc es AC. s, c, t: seno, coseno y tangente (S, C, T en mayúscula: las inversas). r: raíz, q: al cuadrado, i: inverso, p: π, a: Ans, m: MR, g o \': °′″ (G: a decimal), n: signo (−).')),
-    !APENDICE_PUBLICADO ? null : h('p', h('a.btn.secondary', { href: tlink(tit, ['cuentas']) }, '➗ Las cuentas del patrón: grados, horas, signos y trigonometría')),
+    !APENDICE_PUBLICADO ? null : h('p', h('a.btn.secondary', { href: tlink(tit, ['cuentas']) }, conIcono('cuentas', 'Las cuentas del patrón: grados, horas, signos y trigonometría'))),
   );
   return {
     el,

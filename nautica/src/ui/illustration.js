@@ -7,6 +7,7 @@ import { renderIllustration } from '../illustrations/index.js';
 import { interactivaDe } from '../illustrations/interactivas.js';
 import { playSignal } from '../illustrations/situations.js';
 import { laminaEl } from './lamina.js';
+import { conIcono } from './iconos.js';
 
 export function illustrationEls(specs, { modo = 'galeria', onRespuesta = null } = {}) {
   const list = (Array.isArray(specs) ? specs : [specs]).filter(Boolean);
@@ -19,6 +20,6 @@ export function illustrationEls(specs, { modo = 'galeria', onRespuesta = null } 
     const box = h('div.il-svg', { html: r.svg });
     return h('figure.il-figure', box,
       r.caption ? h('figcaption', r.caption) : null,
-      r.sound ? h('button.small.secondary', { type: 'button', onclick: () => playSignal(r.sound) }, '▶ Escuchar la señal') : null);
+      r.sound ? h('button.small.secondary', { type: 'button', onclick: () => playSignal(r.sound) }, conIcono('play', 'Escuchar la señal')) : null);
   }).filter(Boolean);
 }

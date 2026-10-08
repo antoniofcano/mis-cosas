@@ -245,7 +245,7 @@ export function temasFlojos(estructura, preguntas, respuestas = {}) {
     if (hechas.length < MIN_DIAGNOSTICO_TEMA) continue;
     const aciertos = hechas.filter((q) => respuestas[q.id].ok).length;
     const pct = Math.round((100 * aciertos) / hechas.length);
-    if (pct < 70) out.push({ ut: b.ut, titulo: b.titulo, icon: b.icon, hechas: hechas.length, aciertos, fallos: hechas.length - aciertos, pct });
+    if (pct < 70) out.push({ ut: b.ut, titulo: b.titulo, ico: b.ico, hechas: hechas.length, aciertos, fallos: hechas.length - aciertos, pct });
   }
   return out.sort((a, b) => a.pct - b.pct);
 }

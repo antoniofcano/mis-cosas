@@ -8,6 +8,7 @@ import { cuenta, diaISO } from '../../texto.js';
 import { loadCourse } from '../../store/datasets.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { ejesElegibles, selectorEje } from '../eje.js';
+import { icono } from '../iconos.js';
 
 /** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
@@ -55,7 +56,7 @@ export function bienvenidaView({ progress }) {
       setChildren(el, cab, h('h1', '¿Qué título vas a sacarte?'),
         h('div.opciones-grandes',
           Object.values(TITULACIONES).map((T) => h('button.tarjeta-opcion', { type: 'button', onclick: () => { tit = T.id; progress.setSetting('level', T.nivel); paso = 2; render(); } },
-            h('span.op-icono', { 'aria-hidden': 'true' }, T.icon), h('span.op-texto', T.id === 'per' ? `PER — ${T.nombre}` : T.nombre)))));
+            h('span.op-icono', icono(T.ico)), h('span.op-texto', T.id === 'per' ? `PER — ${T.nombre}` : T.nombre)))));
     } else if (paso < pasoFecha) {
       // Dónde te examinas: cada tribunal tiene su banco de preguntas (los exámenes reales de ese tribunal).
       setChildren(el, cab, h('h1', '¿Dónde te examinas?'),

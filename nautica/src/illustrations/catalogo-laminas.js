@@ -53,8 +53,9 @@ export const LAMINAS = {
 
 
 // Lo que no cambia la lámina, solo cómo se presenta en una clase: lo resaltado, el texto, cifras concretas, la vista
-// de un buque o si es de día. Dos specs que solo difieren en eso son la misma lámina.
-const SOLO_PRESENTACION = new Set(['resaltar', 'texto', 'solo', 'dia']);
+// de un buque o si es de día. Dos specs que solo difieren en eso son la misma lámina. («luz: todas» de los sectores de
+// luces no cambia nada del dibujo: es la misma lámina que la de la galería.)
+const SOLO_PRESENTACION = new Set(['resaltar', 'texto', 'solo', 'dia', 'luz']);
 
 /** Clave de una lámina: su tipo y sus parámetros de texto que la definen. */
 export function claveLamina(spec) {

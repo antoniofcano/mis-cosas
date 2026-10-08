@@ -24,8 +24,9 @@ const ALT_CARD = 'Las cuatro marcas cardinales en fichas, cada una con su reloj 
 
 function cardinales(spec) {
   if (spec.marca) {
+    const n = { n: 'Norte', e: 'Este', s: 'Sur', w: 'Oeste' }[spec.marca] ?? 'Norte';
     return {
-      tema: BAL, titulo: 'Cardinales alrededor de un peligro', clave: 'Cada cardinal está en el cuadrante de su nombre: pásala por ese lado.',
+      tema: BAL, titulo: `Cardinal ${n} junto a un peligro: por dónde se pasa`, clave: 'Cada cardinal está en el cuadrante de su nombre: pásala por ese lado.',
       datos: [{ cifra: '4', texto: 'cuadrantes, separados por NE, SE, SW y NW' }, { cifra: 'blanca', texto: 'la luz de todas las cardinales' }],
       nota: 'La cardinal no está encima del peligro: te dice dónde está el agua segura. Una cardinal Oeste se pasa por el oeste, dejándola entre tú y el peligro.',
       alt: 'Un peligro en el centro, los cuatro cuadrantes y una cardinal en el suyo; una flecha magenta muestra por dónde se pasa.',
@@ -116,10 +117,12 @@ function cruce(spec) {
   return { tema: RIPA, ...m, alt: m.alt ?? 'Buque de motor visto desde arriba con sus sectores; cada sector dice qué situación es si lo ves desde ahí: por su verde se aparta él, por su roja te apartas tú, por su popa lo alcanzas y te apartas tú, de proa es vuelta encontrada. Debajo, sus luces de noche.' };
 }
 
+const ZONA = { proa: 'la proa', 'amura-er': 'la amura de estribor', 'traves-er': 'el través de estribor', 'aleta-er': 'la aleta de estribor', popa: 'la popa', 'aleta-br': 'la aleta de babor', 'traves-br': 'el través de babor', 'amura-br': 'la amura de babor' };
+
 function barco(spec) {
   if (spec.modo === 'viento') {
     return {
-      tema: 'Nomenclatura náutica', titulo: 'Barlovento y sotavento', clave: 'Barlovento es por donde entra el viento; babor y estribor no cambian.',
+      tema: 'Nomenclatura náutica', titulo: `Barlovento y sotavento: viento por ${ZONA[spec.viento] ?? ZONA['traves-er']}`, clave: 'Barlovento es por donde entra el viento; babor y estribor no cambian.',
       datos: [{ cifra: 'babor', texto: 'a la izquierda, mirando a proa' }, { cifra: 'estribor', texto: 'a la derecha, mirando a proa' }],
       nota: 'Babor y estribor son del barco; barlovento y sotavento dependen del viento. Con el viento por la amura de estribor, estribor es barlovento.',
       alt: 'Barco visto desde arriba con la flecha del viento entrando por una de sus zonas (amura, través, aleta); se sombrea la banda de barlovento.',
@@ -165,12 +168,18 @@ const helice = (spec) => {
   };
 };
 
-const heliceTimon = () => ({
-  tema: 'Maniobra', titulo: 'Hélice y timón: hacia dónde cae la popa', clave: 'Dextrógira: avante la popa cae a estribor; atrás, a babor.',
-  datos: [{ cifra: 'atrás', texto: 'con poca arrancada manda la hélice' }, { cifra: 'avante', texto: 'con arrancada manda el timón' }],
-  nota: 'La proa cae siempre a la banda contraria de la popa. Con hélice levógira, todo al revés.',
-  alt: 'Barco en planta con la proa arriba, su hélice y su timón; flechas a la altura de la popa: el empuje lateral de la hélice, el del timón y, más gruesa, hacia dónde cae la popa.',
-});
+function heliceTimon(spec) {
+  const e = { marcha: spec.marcha === 'atras' ? 'atras' : 'avante', sentido: spec.sentido === 'levogira' ? 'levogira' : 'dextrogira', timon: ['br', 'er', 'via'].includes(spec.timon) ? spec.timon : 'via' };
+  const r = caidaPopa(e);
+  const timon = { br: 'timón a babor', er: 'timón a estribor', via: 'timón a la vía' }[e.timon];
+  return {
+    tema: 'Maniobra', titulo: `Hélice y timón: ${e.marcha === 'atras' ? 'dando atrás' : 'avante'}, ${timon}${e.sentido === 'levogira' ? ', hélice levógira' : ''}`,
+    clave: `La popa cae a ${r.popa}; la proa, a ${r.proa}.`,
+    datos: [{ cifra: 'atrás', texto: 'con poca arrancada manda la hélice' }, { cifra: 'avante', texto: 'con arrancada manda el timón' }],
+    nota: 'Hélice dextrógira: avante la popa cae a estribor y atrás a babor; levógira, al revés. La proa cae siempre a la banda contraria de la popa.',
+    alt: 'Barco en planta con la proa arriba, su hélice y su timón; flechas a la altura de la popa: el empuje lateral de la hélice, el del timón y, más gruesa, hacia dónde cae la popa.',
+  };
+}
 
 function hombreAlAgua(spec) {
   if ((spec.maniobra ?? 'boutakow') === 'anderson') {

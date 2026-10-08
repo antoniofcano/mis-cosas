@@ -6,7 +6,7 @@
 
 import { h } from './dom.js';
 import { renderIllustration } from '../illustrations/index.js';
-import { interactivaDe } from '../illustrations/interactivas.js';
+import { interactivaDe, pidePrediccion } from '../illustrations/interactivas.js';
 import { marcoDe } from '../illustrations/marcos.js';
 import { playSignal } from '../illustrations/situations.js';
 import { laminaEl } from './lamina.js';
@@ -23,11 +23,16 @@ export function illustrationEls(specs, { modo = 'galeria', onRespuesta = null, n
     const r = renderIllustration(spec);
     if (!r) return null;
     const def = interactivaDe(spec);
+    const m = modo === 'explicacion' ? null : marcoDe(spec);
+    // En clase, si la lámina pide predecir, el marco no enseña la frase clave ni la nota hasta que se responde.
+    const espera = !!m && modo === 'clase' && pidePrediccion(spec);
+    let marco = null;
+    const responde = espera ? (ok) => { marco?.revelar(); onRespuesta?.(ok); } : onRespuesta;
     // La lectura de la lámina ya explica el estado: el pie fijo sobraría.
-    const fig = def ? laminaEl(def, spec, { modo, onRespuesta }) : h('figure.il-figure', h('div.il-svg', { html: r.svg }),
+    const fig = def ? laminaEl(def, spec, { modo, onRespuesta: responde }) : h('figure.il-figure', h('div.il-svg', { html: r.svg }),
       r.caption ? h('figcaption', r.caption) : null,
       r.sound ? h('button.small.secondary', { type: 'button', onclick: () => playSignal(r.sound) }, conIcono('play', 'Escuchar la señal')) : null);
-    const m = modo === 'explicacion' ? null : marcoDe(spec);
-    return m ? marcoEl(m, [fig], { nivel }) : fig;
+    marco = m ? marcoEl(m, [fig], { nivel, oculta: espera }) : null;
+    return marco ?? fig;
   }).filter(Boolean);
 }

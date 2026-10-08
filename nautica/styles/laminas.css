@@ -48,7 +48,7 @@ h1.lc-titulo { font-size: 1.75rem; }
 .lc-figura { margin: 0; min-width: 0; display: flex; flex-direction: column; gap: .6rem; }
 .lc-figura .il-figure, .lc-figura .lamina { background: transparent; border: 0; padding: 0; }
 .lc-figura figcaption { font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); font-size: .95rem; }
-.lc-datos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(96px, 100%), 1fr)); gap: .5rem; }
+.lc-datos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(88px, 100%), 1fr)); gap: .45rem; }
 .lc-datos li { background: var(--lc-papel); border: 1.5px solid var(--lc-tinta); padding: .45rem .35rem; text-align: center; display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
 .lc-cifra { font-family: var(--lc-serif); font-size: 1.25rem; font-weight: 700; line-height: 1.15; color: var(--lc-tinta); overflow-wrap: anywhere; }
 .lc-cifra.larga { font-size: 1.05rem; } .lc-cifra.muy-larga { font-size: .92rem; }
@@ -61,4 +61,10 @@ h1.lc-titulo { font-size: 1.75rem; }
 .lc-marco .lam-lectura, .lc-marco .lam-casillas div, .lc-marco .lam-cadena li { background: var(--lc-papel); border: 1px solid var(--lc-tinta); border-radius: 0; color: var(--lc-tinta); }
 .lc-marco .lam-nota, .lc-marco .lam-vista figcaption { font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); }
 .paso.ilu .lc-marco { border-radius: 0; border-left: 0; border-right: 0; }
+/* En el móvil la figura llega a los bordes del marco: a 360 px se dibuja a ~328 px (la regla del texto mínimo) */
+@media (max-width: 560px) {
+  .lc-marco { padding-inline: .75rem; }
+  .lc-figura .il-svg, .lc-figura .lam-dibujo { margin-inline: calc(-.75rem + 1px); }
+  .ficha-donde .lc-marco { margin-inline: calc(-.9rem + 1px); }
+}
 .paso.ilu .lc-marco .il-figure svg { width: 100%; }

@@ -6,6 +6,7 @@
 // spec riesgo: { tipo:'riesgo', caso:'comparar'|'constante'|'variable' }   (Regla 7: demora constante)
 
 import { open, title, lbl, C, bearing, deg3, boatGlyph, fx } from './kit.js';
+import { T, TXT, lienzo, rotulo, ondaCurva, barquito, flecha as flechaC } from './estilo-c.js';
 
 const SITUACIONES = {
   cruce: {
@@ -50,29 +51,31 @@ function boatPath(v) {
   return `M${v.from[0]},${v.from[1]} L${v.to[0]},${v.to[1]}`;
 }
 
-function movingBoat(v, dur) {
+// Estilo C (docs/ESTILO-LAMINAS.md): agua de carta, derrotas a trazos (la del que cede, en magenta) y una cartela por
+// barco que dice qué hace; el viento, con su flecha y su rótulo.
+function movingBoat(v, dur, cede) {
   const path = boatPath(v);
   const d = dur / (v.speed ?? 1);
-  return `<path d="${path}" fill="none" stroke="${v.color}" stroke-width="1.5" stroke-dasharray="5 5" opacity=".6"/>` +
-    `<g><path d="M0,-12 L6,6 L0,3 L-6,6Z" fill="${v.color}" stroke="#fff" stroke-width="1"/>` +
-    `<animateMotion dur="${d}s" repeatCount="indefinite" rotate="auto" path="${path}" keyPoints="0;1" keyTimes="0;1"/></g>`;
+  return `<path d="${path}" fill="none" stroke="${cede ? T.magenta : T.tinta}" stroke-width="1.4" stroke-dasharray="6 4"/>` +
+    `<g>${barquito(1.25, cede ? T.magenta : T.tinta)}<animateMotion dur="${d}s" repeatCount="indefinite" rotate="auto" path="${path}" keyPoints="0;1" keyTimes="0;1"/></g>`;
 }
 
 export function crossingIllustration(spec) {
   const s = SITUACIONES[spec.situacion];
   if (!s) return null;
   const W = 360;
-  const H = 360;
-  const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="${s.titulo}">`, `<rect width="${W}" height="${H}" rx="10" class="il-sea"/>`];
-  out.push(`<text x="${W / 2}" y="22" class="il-title on-dark">${s.titulo}</text>`);
-  if (s.viento) out.push(`<g class="il-wind"><path d="M330,40 L330,90" stroke="#fff" stroke-width="3" marker-end="url(#il-arr)"/><text x="322" y="36" font-size="11" fill="#fff" text-anchor="end">viento</text></g>`);
-  out.push('<defs><marker id="il-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#fff"/></marker></defs>');
-  // los barcos se dibujan "de proa hacia arriba" (rotate=auto los orienta según la trayectoria: path apunta hacia +x)
-  out.push(movingBoat({ ...s.a }, 7).replace('M0,-12 L6,6 L0,3 L-6,6Z', 'M12,0 L-6,6 L-3,0 L-6,-6Z'));
-  out.push(movingBoat({ ...s.b }, 7).replace('M0,-12 L6,6 L0,3 L-6,6Z', 'M12,0 L-6,6 L-3,0 L-6,-6Z'));
-  out.push(`<text x="12" y="${H - 28}" class="il-lbl strong" style="fill:${s.a.color === '#e11d48' ? '#fda4af' : '#93c5fd'}">● ${s.a.label}</text>`);
-  out.push(`<text x="12" y="${H - 12}" class="il-lbl strong" style="fill:${s.b.color === '#e11d48' ? '#fda4af' : '#93c5fd'}">● ${s.b.label}</text>`);
-  out.push('</svg>');
+  const H = 400;
+  const alt = `${s.titulo}: ${s.nota}`;
+  const { out, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
+  out.push(ondaCurva(0, W, 342, { amp: 5 }));
+  if (s.viento) out.push(flechaC(316, 34, 316, 92, { color: T.tinta, w: 2.4, p: 'viento' }), rotulo(306, 40, 'viento', { size: TXT.nota, estilo: 'serif', italic: true, anchor: 'end' }));
+  const cedeA = s.a.color === '#e11d48';
+  const cedeB = s.b.color === '#e11d48';
+  out.push(movingBoat({ ...s.a }, 7, cedeA), movingBoat({ ...s.b }, 7, cedeB));
+  const fila = (y, v, cede) => `<g><rect x="14" y="${y - 13}" width="18" height="18" fill="${cede ? T.magenta : T.papel}" stroke="${cede ? T.magenta : T.tinta}" stroke-width="1.2"/>` +
+    rotulo(40, y + 1, v.label, { size: TXT.nota, estilo: 'serif', weight: cede ? 700 : 400, color: cede ? T.magenta : T.tinta, anchor: 'start' }) + '</g>';
+  out.push(`<rect x="8" y="350" width="${W - 16}" height="44" fill="${T.papel}"/>`, fila(368, s.a, cedeA), fila(388, s.b, cedeB));
+  out.push(cierra());
   return { svg: out.join(''), caption: s.nota };
 }
 

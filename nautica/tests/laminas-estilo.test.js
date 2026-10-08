@@ -4,6 +4,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import * as C from '../src/illustrations/estilo-c.js';
+import { renderIllustration, validSpec } from '../src/illustrations/index.js';
+import { marcoDe } from '../src/illustrations/marcos.js';
+import { BUOYS } from '../src/illustrations/buoys.js';
+import { interactivaDe } from '../src/illustrations/interactivas.js';
+import { controlador } from '../src/ui/lamina-estado.js';
+import { idLamina } from '../src/illustrations/catalogo-laminas.js';
 
 const CSS = readFileSync(new URL('../styles/laminas.css', import.meta.url), 'utf8');
 /** Variables --lc-* de un bloque de CSS. */
@@ -56,4 +62,107 @@ test('estilo C: las piezas de dibujo solo usan variables --lc-* y dan ids establ
   for (const v of piezas.match(/var\(--[a-z0-9-]+\)/g)) assert.ok(v.slice(6, -1) in CLARO, `${v} no está en styles/laminas.css`);
   assert.equal(C.lienzo(358, 300, 'Prueba').id, C.lienzo(358, 300, 'Prueba').id);
   assert.notEqual(C.lienzo(358, 300, 'Otra').id, C.lienzo(358, 300, 'Prueba').id);
+});
+
+// ---------------------------------------------------------------------------
+// Las diez láminas piloto en estilo C: todas sus variantes.
+
+const PILOTO = [
+  { tipo: 'cardinales' }, ...Object.keys(BUOYS).filter((k) => k.startsWith('cardinal')).map((resaltar) => ({ tipo: 'cardinales', resaltar })),
+  ...['n', 'e', 's', 'w'].map((marca) => ({ tipo: 'cardinales', marca })),
+  ...Object.keys(BUOYS).map((clase) => ({ tipo: 'boya', clase })), { tipo: 'boya', clase: 'cardinal-e', reloj: false }, { tipo: 'boya', clase: 'cardinal-w', reloj: false },
+  { tipo: 'canal', sentido: 'entrando' }, { tipo: 'canal', sentido: 'saliendo' },
+  ...['canal-principal-estribor', 'canal-principal-babor'].flatMap((marca) => ['principal', 'secundario'].map((ruta) => ({ tipo: 'bifurcacion', marca, ruta }))),
+  { tipo: 'sectores-luces' }, { tipo: 'sectores-luces', luz: 'todas' }, ...[0, 90, 180, 250, 300].map((aspecto) => ({ tipo: 'sectores-luces', aspecto })),
+  ...['cruce', 'vuelta-encontrada', 'alcance', 'vela-amuras', 'vela-barlovento'].map((situacion) => ({ tipo: 'cruce', situacion })), { tipo: 'cruce', situacion: 'cruce', aspecto: 60 },
+  { tipo: 'barco' }, { tipo: 'barco', resaltar: ['manga'] }, { tipo: 'barco', resaltar: ['calado', 'francobordo', 'puntal', 'linea-flotacion'] },
+  { tipo: 'barco', resaltar: ['proa', 'popa', 'crujia', 'babor', 'estribor'], solo: ['proa', 'popa', 'crujia', 'babor', 'estribor'] }, { tipo: 'barco', modo: 'viento', viento: 'amura-er' }, { tipo: 'barco', modo: 'viento', viento: 'aleta-br' },
+  { tipo: 'meteo', sistema: 'borrasca' }, { tipo: 'meteo', sistema: 'anticiclon' },
+  ...['dextrogira', 'levogira'].flatMap((sentido) => ['avante', 'atras'].map((marcha) => ({ tipo: 'helice', sentido, marcha }))),
+  ...['avante', 'atras'].flatMap((marcha) => ['er', 'br', 'via'].flatMap((timon) => ['dextrogira', 'levogira'].map((sentido) => ({ tipo: 'helice-timon', marcha, timon, sentido })))),
+  { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' },
+  ...['estable', 'indiferente', 'inestable'].map((caso) => ({ tipo: 'estabilidad', caso })), { tipo: 'estabilidad', caso: 'estable', traslado: 2 },
+  ...['curva', 'duodecimos', 'sonda'].flatMap((modo) => [480, 600, 720, 840].map((hora) => ({ tipo: 'marea', modo, hora }))), { tipo: 'marea', modo: 'curva' },
+];
+
+/** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */
+function svgsDe(spec) {
+  const out = [renderIllustration(spec).svg];
+  const def = interactivaDe(spec);
+  if (def) {
+    const v = controlador(def, spec, 'clase').vista();
+    out.push(v.svg ?? v.vistas.map((x) => x.svg).join(''));
+  }
+  return out.flatMap((s) => s.split(/(?=<svg\b)/)).filter((s) => s.startsWith('<svg'));
+}
+
+test('láminas piloto: se dibujan y siguen siendo specs válidas, con los mismos identificadores', () => {
+  for (const s of PILOTO) {
+    assert.ok(validSpec(s), JSON.stringify(s));
+    for (const svg of svgsDe(s)) assert.ok(!/NaN|undefined|null/.test(svg), `${JSON.stringify(s)}: NaN o undefined`);
+  }
+  // los identificadores de la galería no cambian (las direcciones #/<tit>/laminas/<id> siguen valiendo)
+  assert.equal(idLamina({ tipo: 'cardinales' }), 'cardinales-f38ix9');
+  assert.equal(idLamina({ tipo: 'sectores-luces' }), 'sectores-luces-1m2ncby');
+  assert.equal(idLamina({ tipo: 'marea', modo: 'curva' }), 'marea-rpre3o');
+});
+
+test('láminas piloto: ningún texto del SVG baja de 10,5 px efectivos a 360 px de ancho', () => {
+  const malos = [];
+  for (const s of PILOTO) for (const svg of svgsDe(s)) {
+    const [w, h] = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/).slice(1).map(Number);
+    const escala = Math.min(328 / w, 430 / h);
+    for (const t of svg.match(/<text\b[^>]*>/g) ?? []) {
+      const fs = Number(t.match(/font-size="([\d.]+)"/)?.[1]);
+      if (!(fs * escala >= 10.5)) malos.push(`${JSON.stringify(s)} ${w}×${h}: ${t.slice(0, 90)} → ${(fs * escala).toFixed(1)} px`);
+    }
+  }
+  assert.deepEqual(malos.slice(0, 10), []);
+});
+
+test('láminas piloto: solo colores --lc-* (ninguno fijo) y todos definidos en claro y en oscuro', () => {
+  for (const s of PILOTO) for (const svg of svgsDe(s)) {
+    const sinUrl = svg.replace(/url\(#[^)]*\)/g, 'var(--lc-url)');
+    const fijo = sinUrl.match(/(?:fill|stroke|stop-color|color)="(?!none"|var\(--lc-)[^"]*"|(?:fill|stroke):\s*(?!var\(--lc-)[#a-z]/);
+    assert.ok(!fijo, `${JSON.stringify(s)}: color fijo ${fijo?.[0]} en …${sinUrl.slice(Math.max(0, (fijo?.index ?? 0) - 80), (fijo?.index ?? 0) + 20)}`);
+    for (const v of new Set(svg.match(/var\(--[a-z0-9-]+\)/g))) {
+      const k = v.slice(6, -1);
+      assert.ok(k in CLARO || k === 'lc-url', `${v} no está en styles/laminas.css`);
+      if (k === 'lc-url') continue;
+      assert.ok(k in OSCURO || k.startsWith('lc-luz-') || !CLARO[k].startsWith('#'), `${v} sin versión oscura`);
+    }
+  }
+});
+
+test('láminas piloto: marco completo (título, frase clave, nota, datos, texto alternativo) y nombre accesible en el SVG', () => {
+  const PICTO = /\p{Extended_Pictographic}/u;
+  const titulos = new Map();
+  for (const s of PILOTO) {
+    const m = marcoDe(s);
+    assert.ok(m, `${JSON.stringify(s)} sin marco`);
+    for (const k of ['tema', 'titulo', 'clave', 'nota', 'alt']) assert.ok(typeof m[k] === 'string' && m[k].trim().length > 2, `${JSON.stringify(s)}: falta ${k}`);
+    assert.ok(m.alt.length >= 60, `${JSON.stringify(s)}: texto alternativo demasiado pobre`);
+    assert.ok(m.datos?.length >= 1 && m.datos.length <= 3 && m.datos.every((d) => d.cifra && d.texto), `${JSON.stringify(s)}: datos`);
+    assert.ok(!/ · |undefined/.test(m.titulo), `${JSON.stringify(s)}: título torpe «${m.titulo}»`);
+    assert.ok(![m.titulo, m.clave, m.nota, m.alt, ...m.datos.flatMap((d) => [d.cifra, d.texto])].some((t) => PICTO.test(t)), 'sin emojis');
+    assert.ok(/[.!?]$/.test(m.clave), `${JSON.stringify(s)}: la frase clave termina en punto`);
+    for (const svg of svgsDe(s)) assert.ok((svg.match(/aria-label="([^"]*)"/)?.[1] ?? '').length >= 30, `${JSON.stringify(s)}: aria-label pobre`);
+    // una lámina, un título: dos láminas distintas de la galería no comparten título
+    const id = idLamina(s);
+    assert.ok(!titulos.has(m.titulo) || titulos.get(m.titulo) === id, `«${m.titulo}» repetido en ${id} y ${titulos.get(m.titulo)}`);
+    titulos.set(m.titulo, id);
+  }
+});
+
+test('láminas piloto interactivas: cada parte que se puede resaltar está dibujada (clases «toca en el dibujo»)', () => {
+  for (const s of PILOTO) {
+    const def = interactivaDe(s);
+    if (!def?.partes) continue;
+    const v = controlador(def, s, 'galeria').vista();
+    const todo = v.svg ?? v.vistas.map((x) => x.svg).join('');
+    for (const p of Object.keys(def.partes)) {
+      if (p === 'timon' && s.timon === 'via') continue;
+      assert.ok(todo.includes(`data-parte="${p}"`), `${JSON.stringify(s)}: falta data-parte="${p}"`);
+    }
+  }
 });

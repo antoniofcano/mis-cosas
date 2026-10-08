@@ -11,6 +11,7 @@ export const sectoresLuces = {
   dibujar(e, v) {
     return {
       vistas: [{ svg: planta(e.aspecto), pie: PIE_PLANTA }, { svg: noche(e.aspecto), pie: 'Lo que ves tú, de noche' }],
+      apiladas: true,
       nota: NOTA_BUQUE,
       lectura: `Lo miras ${desde(e.aspecto)}: ves ${lucesTexto(v)}.`,
     };

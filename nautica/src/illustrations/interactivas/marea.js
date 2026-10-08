@@ -2,7 +2,8 @@
 // = sonda del momento; menos el calado, agua bajo la quilla. Valores con la fórmula de la tabla oficial
 // (C = A·sen²(90°·I/D)). Variantes curva, duodecimos y sonda; «fases» (vivas y muertas) sigue fija.
 import { correccionTabla, aguaBajoQuilla, twelfthsFraction } from '../../nautical/tides.js';
-import { svgOpen, texto, num, f1 } from './kit.js';
+import { num } from './kit.js';
+import { T, TXT, lienzo, rotulo, etiqueta, cartela, cota, tierra, f1 } from '../estilo-c.js';
 
 const BM = { hora: 8 * 60, h: 0.6 };
 const PM = { hora: 14 * 60, h: 3.4 };
@@ -19,53 +20,73 @@ const PIES = {
   sonda: 'Las sondas de la carta se miden desde el cero hidrográfico. El agua que tienes en un momento es esa sonda más la altura de la marea a esa hora; restando tu calado sabes cuánto queda bajo la quilla.',
 };
 
+// Estilo C (docs/ESTILO-LAMINAS.md): papel cuadriculado como el de una tabla, horas y alturas en monoespaciada,
+// la hora elegida en magenta y las cotas de la sonda, la marea y el agua bajo la quilla.
 function curva(e, r) {
-  const W = 320;
-  const H = 190;
-  const x = (m) => 30 + ((m - BM.hora) / D) * 270;
-  const y = (h) => 160 - (h / 4) * 140;
-  const o = [svgOpen(W, H, 'Curva de la marea entre la bajamar y la pleamar')];
-  o.push(`<line x1="30" y1="${y(0)}" x2="300" y2="${y(0)}" stroke="var(--l-p)" stroke-dasharray="6 4" data-parte="cero"/>`);
+  const W = 358;
+  const H = 236;
+  const X0 = 56;
+  const X1 = 334;
+  const x = (m) => X0 + ((m - BM.hora) / D) * (X1 - X0);
+  const y = (h) => 186 - (h / 4) * 150;
+  const alt = e.modo === 'duodecimos'
+    ? `Curva de la marea de la bajamar de las ${hhmm(BM.hora)} (${num(BM.h)} m) a la pleamar de las ${hhmm(PM.hora)} (${num(PM.h)} m), con una franja por hora: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud. A las ${hhmm(e.hora)}, ${num(r.altura, 2)} m.`
+    : `Curva de la marea de la bajamar de las ${hhmm(BM.hora)} (${num(BM.h)} m) a la pleamar de las ${hhmm(PM.hora)} (${num(PM.h)} m). A las ${hhmm(e.hora)}, ${num(r.altura, 2)} m.`;
+  const { out: o, ray, cierra } = lienzo(W, H, alt);
+  // cuadrícula: metros y horas
+  for (let h = 1; h <= 4; h++) o.push(`<line x1="${X0}" y1="${y(h)}" x2="${X1}" y2="${y(h)}" stroke="${T.apagado}" stroke-width=".5" stroke-dasharray="2 3"/>`, rotulo(X0 - 6, y(h) + 4, `${h} m`, { size: TXT.min, estilo: 'mono', anchor: 'end', color: T.apagado }));
+  for (let m = BM.hora; m <= PM.hora; m += 60) {
+    o.push(`<line x1="${f1(x(m))}" y1="${y(4)}" x2="${f1(x(m))}" y2="${y(0)}" stroke="${T.apagado}" stroke-width=".5" stroke-dasharray="2 3"/>`);
+    if ((m - BM.hora) % 120 === 0) o.push(rotulo(x(m), 204, hhmm(m), { size: TXT.min, estilo: 'mono', color: T.apagado }));
+  }
+  o.push(`<line data-parte="cero" x1="${X0}" y1="${y(0)}" x2="${X1}" y2="${y(0)}" stroke="${T.magenta}" stroke-width="1.2" stroke-dasharray="6 4"/>`, rotulo(X0 - 6, y(0) + 4, '0 m', { size: TXT.min, estilo: 'mono', anchor: 'end', color: T.magenta, p: 'cero' }));
   if (e.modo === 'duodecimos') {
     for (let i = 1; i <= 6; i++) {
       const h0 = BM.h + A * twelfthsFraction(i - 1);
       const h1 = BM.h + A * twelfthsFraction(i);
-      o.push(`<rect x="${f1(x(BM.hora + (i - 1) * 60) + 3)}" y="${f1(y(h1))}" width="${f1(270 / 6 - 6)}" height="${f1(y(h0) - y(h1))}" fill="var(--l-v)" opacity=".25"/>`, texto(x(BM.hora + (i - 0.5) * 60), y(h1) - 4, `${[1, 2, 3, 3, 2, 1][i - 1]}/12`, { size: 12, color: 'var(--l-v)' }));
+      const xa = x(BM.hora + (i - 1) * 60) + 3;
+      const w = (X1 - X0) / 6 - 6;
+      o.push(`<g data-parte="doceavos"><rect x="${f1(xa)}" y="${f1(y(h1))}" width="${f1(w)}" height="${f1(y(h0) - y(h1))}" fill="${T.agua}" stroke="${T.tinta}" stroke-width=".8"/><rect x="${f1(xa)}" y="${f1(y(h1))}" width="${f1(w)}" height="${f1(y(h0) - y(h1))}" fill="${ray}" opacity=".4"/>` +
+        rotulo(xa + w / 2, y(h1) - 5, `${[1, 2, 3, 3, 2, 1][i - 1]}/12`, { size: TXT.min, estilo: 'mono', weight: 700 }) + '</g>');
     }
   }
   const pts = [];
   for (let m = BM.hora; m <= PM.hora; m += 10) pts.push(`${f1(x(m))},${f1(y(BM.h + correccionTabla(A, m - BM.hora, D)))}`);
-  o.push(`<polyline data-parte="curva" points="${pts.join(' ')}" fill="none" stroke="var(--l-v)" stroke-width="3"/>`);
-  o.push(`<line x1="${f1(x(e.hora))}" y1="16" x2="${f1(x(e.hora))}" y2="${y(0)}" stroke="var(--l-r)" stroke-width="2"/>`, `<circle data-parte="altura" cx="${f1(x(e.hora))}" cy="${f1(y(r.altura))}" r="6" fill="var(--l-r)"/>`);
-  o.push(texto(x(BM.hora), H - 8, `BM ${hhmm(BM.hora)} · ${num(BM.h)} m`, { anchor: 'start', size: 12 }), texto(x(PM.hora), H - 8, `PM ${hhmm(PM.hora)} · ${num(PM.h)} m`, { anchor: 'end', size: 12 }));
-  o.push(texto(x(e.hora) + (e.hora > 12 * 60 ? -8 : 8), 30, `${hhmm(e.hora)} · ${num(r.altura, 2)} m`, { anchor: e.hora > 12 * 60 ? 'end' : 'start', size: 15, weight: 700, color: 'var(--l-r)', p: 'altura' }));
-  o.push('</svg>');
+  o.push(`<polyline data-parte="curva" points="${pts.join(' ')}" fill="none" stroke="${T.tinta}" stroke-width="2.2" stroke-linejoin="round"/>`);
+  // amplitud acotada
+  if (e.modo !== 'duodecimos') o.push(cota(X1 - 10, y(PM.h), X1 - 10, y(BM.h), `A ${num(A)} m`, { desplaza: [-44, 18], p: 'curva' }));
+  o.push(etiqueta(x(BM.hora) + 46, y(BM.h) + 16, `BM ${num(BM.h)} m`), etiqueta(x(PM.hora) - 46, y(PM.h) - 14, `PM ${num(PM.h)} m`));
+  // la hora elegida
+  o.push(`<line x1="${f1(x(e.hora))}" y1="${y(4) - 6}" x2="${f1(x(e.hora))}" y2="${y(0)}" stroke="${T.magenta}" stroke-width="1.6"/>`, `<circle data-parte="altura" cx="${f1(x(e.hora))}" cy="${f1(y(r.altura))}" r="6" fill="${T.magenta}" stroke="${T.papel}" stroke-width="1.5"/>`);
+  const tx = Math.min(Math.max(x(e.hora), X0 + 60), X1 - 60);
+  o.push(etiqueta(tx, 18, `${hhmm(e.hora)} · ${num(r.altura, 2)} m`, { color: T.magenta, p: 'altura' }));
+  o.push(cierra());
   return o.join('');
 }
 
 function corte(e, r) {
-  const W = 320;
-  const H = 200;
+  const W = 358;
+  const H = 216;
   const k = 30; // px por metro
   const cero = 150;
   const fondoY = cero + SONDA * k;
   const nivel = cero - r.altura * k;
-  const o = [svgOpen(W, H, 'Corte: sonda de la carta, marea y calado')];
-  o.push(`<rect x="0" y="${f1(nivel)}" width="${W}" height="${f1(fondoY - nivel)}" fill="var(--l-mar)"/>`);
-  o.push(`<path d="M0,${f1(fondoY)} Q160,${f1(fondoY - 8)} 320,${f1(fondoY)} L320,${H} L0,${H}Z" fill="var(--land)"/>`);
-  o.push(`<line data-parte="cero" x1="0" y1="${cero}" x2="${W}" y2="${cero}" stroke="var(--l-p)" stroke-dasharray="6 4"/>`, texto(6, cero - 5, 'cero hidrográfico', { anchor: 'start', size: 13, color: 'var(--l-p)', p: 'cero' }));
+  const alt = `Corte del bajo: sonda de la carta ${num(SONDA)} m, marea ${num(r.altura, 2)} m, calado ${num(CALADO)} m; ${r.bajoQuilla > 0.02 ? `quedan ${num(r.bajoQuilla, 2)} m bajo la quilla` : 'el barco toca fondo'}.`;
+  const { out: o, pt, cierra } = lienzo(W, H, alt, { fondo: T.papel });
+  o.push(`<rect x="0" y="${f1(nivel)}" width="${W}" height="${f1(fondoY - nivel)}" fill="${T.agua}"/>`, `<line x1="0" y1="${f1(nivel)}" x2="${W}" y2="${f1(nivel)}" stroke="${T.lineaAgua}" stroke-width="1.4"/>`);
+  o.push(tierra(`M0,${f1(fondoY)} Q179,${f1(fondoY - 8)} ${W},${f1(fondoY)} L${W},${H} L0,${H}Z`, pt));
+  o.push(`<line data-parte="cero" x1="0" y1="${cero}" x2="${W}" y2="${cero}" stroke="${T.magenta}" stroke-width="1.2" stroke-dasharray="6 4"/>`, rotulo(W - 12, cero - 6, 'cero hidrográfico', { size: TXT.min, estilo: 'serif', italic: true, anchor: 'end', color: T.magenta, p: 'cero' }));
   // barco con su calado
-  const qx = 210;
+  const qx = 214;
   const quilla = nivel + CALADO * k;
-  o.push(`<path d="M${qx - 40},${f1(nivel - 14)} L${qx + 40},${f1(nivel - 14)} L${qx + 28},${f1(quilla)} L${qx - 28},${f1(quilla)}Z" fill="var(--l-casco)" stroke="var(--text)"/>`);
+  o.push(`<path d="M${qx - 40},${f1(nivel - 14)} L${qx + 40},${f1(nivel - 14)} L${qx + 28},${f1(quilla)} L${qx - 28},${f1(quilla)}Z" fill="${T.casco}" stroke="${T.tinta}" stroke-width="1.4" stroke-linejoin="round"/>`);
+  o.push(rotulo(qx, nivel - 22, `calado ${num(CALADO)} m`, { size: TXT.min, estilo: 'mono' }));
   // cotas
-  const cota = (xx, y0, y1, t, color, p) => `<line data-parte="${p}" x1="${xx}" y1="${f1(y0)}" x2="${xx}" y2="${f1(y1)}" stroke="${color}" stroke-width="3"/>` + texto(xx + 6, (y0 + y1) / 2 + 5, t, { anchor: 'start', size: 13, color, p });
-  o.push(cota(40, cero, fondoY, `sonda carta ${num(SONDA)} m`, 'var(--l-a)', 'sonda'));
-  if (r.altura > 0.05) o.push(cota(110, nivel, cero, `marea ${num(r.altura, 2)} m`, 'var(--l-v)', 'altura'));
-  if (r.bajoQuilla > 0.02) o.push(cota(qx + 48, quilla, fondoY, `${num(r.bajoQuilla, 2)} m`, 'var(--l-m)', 'quilla'));
-  else o.push(texto(qx, fondoY + 22, '¡tocas fondo!', { size: 15, weight: 700, color: 'var(--l-r)', p: 'quilla' }));
-  o.push(texto(qx, nivel - 20, `calado ${num(CALADO)} m`, { size: 13 }));
-  o.push('</svg>');
+  o.push(cota(30, cero, 30, fondoY, `sonda ${num(SONDA)} m`, { color: T.tinta, p: 'sonda', desplaza: [52, 0] }));
+  if (r.altura > 0.05) o.push(cota(118, nivel, 118, cero, `marea ${num(r.altura, 2)} m`, { color: T.tinta, p: 'altura', desplaza: [-2, 0] }));
+  if (r.bajoQuilla > 0.02) o.push(cota(qx + 52, quilla, qx + 52, fondoY, `${num(r.bajoQuilla, 2)} m`, { color: T.verdeTxt, p: 'quilla', desplaza: [-58, 0] }));
+  else o.push(cartela(qx, fondoY + 14, 'TOCAS FONDO', null, { color: T.rojoTxt, p: 'quilla' }));
+  o.push(cierra());
   return o.join('');
 }
 

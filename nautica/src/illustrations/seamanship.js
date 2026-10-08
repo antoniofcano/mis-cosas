@@ -118,32 +118,7 @@ export function busquedaIllustration(spec) {
   };
 }
 
-// ---------------------------------------------------------------------------
-// Hombre al agua. spec: { tipo:'hombre-al-agua', maniobra:'boutakow'|'anderson' }
-
-export function hombreAlAguaIllustration(spec) {
-  const bout = (spec.maniobra ?? 'boutakow') === 'boutakow';
-  const W = 300;
-  const H = 280;
-  const out = open(W, H, 'Hombre al agua', 'ha');
-  out.push(title(150, bout ? 'Curva de Boutakow (Williamson)' : 'Maniobra de Anderson (una vuelta)'));
-  const x0 = 100;
-  const d = bout
-    ? `M${x0},250 L${x0},170 C${x0},140 ${x0 + 40},120 ${x0 + 62},110 C${x0 + 90},96 ${x0 + 70},40 ${x0 + 20},46 C${x0 - 10},50 ${x0},80 ${x0},110 L${x0},200`
-    : `M${x0},250 L${x0},170 C${x0},120 ${x0 + 90},110 ${x0 + 90},170 C${x0 + 90},215 ${x0 + 30},225 ${x0 + 10},205`;
-  out.push(`<path d="${d}" fill="none" stroke="${C.v}" stroke-width="2" stroke-dasharray="6 4"/>`);
-  out.push(`<g><path d="M12,0 L-6,6 L-6,-6Z" fill="${C.v}"/><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="${d}"/></g>`);
-  out.push(`<circle cx="${x0 + 6}" cy="${bout ? 205 : 200}" r="6" fill="#f97316" stroke="#7c2d12"/>`, lbl(x0 + 14, bout ? 222 : 218, 'náufrago', 'a'));
-  if (bout) out.push(lbl(x0 + 70, 124, '① todo a su banda', 'r'), lbl(x0 + 70, 138, '② a 60°: todo a la otra', 'r'), lbl(x0 - 8, 70, '③ rumbo opuesto', 'r', 'end'));
-  else out.push(lbl(x0 + 96, 150, 'todo a su banda', 'r'), lbl(x0 + 96, 164, 'giro de ~250°', 'r'));
-  out.push('</svg>');
-  return {
-    svg: out.join(''),
-    caption: bout
-      ? 'Todo el timón a la banda por la que cayó (la popa se aparta de él). Al separarte unos 60° del rumbo inicial, todo el timón a la banda contraria hasta quedar al rumbo opuesto: vuelves sobre tu estela.'
-      : 'Todo el timón a la banda del náufrago y se completa una vuelta de unos 250° hasta aproximarse a él. Es rápida y útil cuando se ha visto caer a la persona.',
-  };
-}
+// Hombre al agua: en estilo C, en src/illustrations/laminas-c.js.
 
 // ---------------------------------------------------------------------------
 // Fuego. spec: { tipo:'fuego', vista:'tetraedro'|'clases' }

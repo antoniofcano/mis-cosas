@@ -102,6 +102,9 @@ const PILOTO = [
   ...['buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'niebla-vapor', 'brisa-mar', 'brisa-tierra'].map((sistema) => ({ tipo: 'meteo', sistema })),
   { tipo: 'meteo', sistema: 'isobaras', centro: 'A', posicion: 300, separacion: 14 }, { tipo: 'meteo', sistema: 'isobaras', separacion: 34, posicion: 0 },
   ...[0, 10, 12, 22].flatMap((t) => ['niebla-adveccion', 'niebla-radiacion', 'niebla-vapor'].map((sistema) => ({ tipo: 'meteo', sistema, t }))),
+  // PY, seguridad
+  ...['balance', 'cabezada', 'guinada'].map((mov) => ({ tipo: 'movimiento', mov })), { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
+  { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' },
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */

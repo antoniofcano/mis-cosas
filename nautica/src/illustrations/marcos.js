@@ -447,10 +447,57 @@ const loxoOrto = () => ({
   alt: 'La misma travesía en el globo y en la carta Mercator: la loxodrómica, en magenta y continua, corta todos los meridianos con el mismo ángulo α y en la Mercator es una recta; la ortodrómica, a trazos, sale curvada hacia el polo.',
 });
 
+// ---------------------------------------------------------------------------
+// Seguridad (PY, UT 1): movimientos del barco, patrones de búsqueda y fuego.
+const SEG = 'Seguridad';
+const NOTA_MOV = 'Balance, cabezada y guiñada son giros alrededor de los tres ejes del barco. Si el periodo de las olas coincide con el del barco, el movimiento se amplifica (sincronismo): cambia de rumbo o de velocidad.';
+const MOVS = {
+  balance: { titulo: 'Balance', clave: 'El barco se escora a una y otra banda: sobre todo con mar de través.', datos: [{ cifra: 'proa-popa', texto: 'el eje alrededor del que gira' }, { cifra: 'de través', texto: 'la mar que más lo provoca' }], alt: 'Barco visto de proa sobre el agua, escorado a una banda; a trazos, sus dos posiciones extremas y, en magenta, el vaivén alrededor del eje proa-popa.' },
+  cabezada: { titulo: 'Cabezada', clave: 'Proa y popa suben y bajan: con mar de proa o de popa.', datos: [{ cifra: 'babor-estribor', texto: 'el eje alrededor del que gira' }, { cifra: 'de proa', texto: 'o de popa: la mar que la provoca' }], alt: 'Barco visto de costado sobre el agua; a trazos, la proa arriba y la popa abajo y al revés; en magenta, el vaivén alrededor del eje de babor a estribor.' },
+  guinada: { titulo: 'Guiñada', clave: 'La proa se va a uno y otro lado del rumbo: típica con mar de popa o de aleta.', datos: [{ cifra: 'vertical', texto: 'el eje alrededor del que gira' }, { cifra: 'de popa', texto: 'o de aleta: la mar que la provoca' }], alt: 'Barco visto desde arriba sobre la línea de su rumbo; a trazos, la proa desviada a una y otra banda y, en magenta, el vaivén alrededor del eje vertical.' },
+};
+const movimiento = (spec) => { const m = MOVS[spec.mov] ?? MOVS.balance; return { tema: SEG, ...m, nota: NOTA_MOV }; };
+
+function busqueda(spec) {
+  if (spec.patron === 'sectores') {
+    return {
+      tema: SEG, titulo: 'Búsqueda por sectores', clave: 'Tramos radiales que pasan por el datum, con giros de 120° a estribor.',
+      datos: [{ cifra: '120°', texto: 'cada giro, a estribor' }, { cifra: 'R', texto: 'el radio: igual en cada tramo' }, { cifra: '3 triángulos', texto: 'barren el círculo' }],
+      nota: 'Es la mejor cuando el objeto está cerca del datum: se pasa por él muchas veces. Si no aparece, se repite con el patrón girado unos 30°.',
+      alt: 'Búsqueda por sectores vista desde arriba: desde el datum, en magenta, tramos radiales de radio R con giros de 120° a estribor (acotado en el primer vértice) que forman tres triángulos dentro del círculo.',
+    };
+  }
+  return {
+    tema: SEG, titulo: 'Búsqueda en cuadrado expansivo', clave: 'Desde el datum, giros de 90° a estribor y tramos que crecen cada dos.',
+    datos: [{ cifra: 'S, S, 2S, 2S…', texto: 'la longitud de los tramos' }, { cifra: '90°', texto: 'cada giro, a estribor' }, { cifra: 'datum', texto: 'la posición más probable' }],
+    nota: 'Sirve cuando se conoce bastante bien la posición del objeto y el área es pequeña. La separación S depende de la visibilidad y de lo que se busca.',
+    alt: 'Búsqueda en cuadrado expansivo vista desde arriba: desde el datum, en magenta, la derrota en espiral cuadrada con giros de 90° a estribor y tramos acotados que crecen cada dos (S, 2S, 3S, 4S).',
+  };
+}
+
+function fuego(spec) {
+  if (spec.modo) return null; // «apagar» es la lámina interactiva del PER, aún sin migrar
+  if (spec.vista === 'clases') {
+    return {
+      tema: SEG, titulo: 'Clases de fuego', clave: 'A sólidos, B líquidos, C gases, D metales y F aceites de cocina.',
+      datos: [{ cifra: 'ABC', texto: 'polvo polivalente: el extintor habitual a bordo' }, { cifra: 'agua', texto: 'solo en la A: nunca en líquidos ni con tensión' }, { cifra: 'E', texto: 'ya no es una clase' }],
+      nota: 'Cada clase pide su agente. El agua a chorro esparce los líquidos inflamables y conduce la electricidad; en un fuego eléctrico, corta antes la corriente.',
+      alt: 'Las cinco clases de fuego en una lista: A, sólidos como madera, tela o papel; B, líquidos como combustible o pintura; C, gases como butano o propano; D, metales; F, aceites de cocina. Debajo, que la E ya no es una clase.',
+    };
+  }
+  return {
+    tema: SEG, titulo: 'Tetraedro del fuego', clave: 'Si falta uno de los cuatro, el fuego se apaga.',
+    datos: [{ cifra: 'enfriar', texto: 'quita el calor (agua)' }, { cifra: 'sofocar', texto: 'quita el oxígeno (CO₂, manta)' }, { cifra: 'inhibir', texto: 'corta la reacción (polvo)' }],
+    nota: 'Quitar el combustible (cerrar el paso del gas o del combustible) también lo apaga. Para elegir el agente, mira la clase de fuego.',
+    alt: 'Un tetraedro con sus caras y cuatro cartelas: combustible (se retira), oxígeno (se sofoca), calor (se enfría) y reacción en cadena (se inhibe).',
+  };
+}
+
 const MARCOS = {
   cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
   nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
   'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
+  movimiento, busqueda, fuego,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

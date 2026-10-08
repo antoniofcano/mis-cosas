@@ -44,7 +44,8 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
 | estabilidad estable / inestable · I | C (piloto) |
 | hombre-al-agua boutakow / anderson | C (piloto) |
 | barco (partes) | C (piloto) |
-| busqueda cuadrado / sectores, fuego tetraedro / clases, movimiento (3), socorro, superficies-libres | pendiente |
+| busqueda cuadrado / sectores, fuego tetraedro / clases, movimiento (3) | C (esta rama) |
+| socorro (hoja del Anexo IV y señales sueltas), superficies-libres | pendiente |
 | arnes (2), balsa (4), extintor (2), helicoptero (3) | pendiente |
 
 ## Hecho
@@ -57,6 +58,8 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
   paso a paso en filas numeradas (`filaPaso()` de `carta-c.js`).
 - Grupo 2 (mareas y meteorología): mareas vivas y muertas, Buys-Ballot, isobaras, frentes (bloque, mapa y corte),
   frente frío y cálido en corte, las tres nieblas y las dos brisas. Fijas en `src/illustrations/meteo-c.js`.
+- Grupo 3 (seguridad): balance, cabezada y guiñada; búsqueda en cuadrado expansivo y por sectores; tetraedro y clases de
+  fuego. En `src/illustrations/seguridad-c.js` (el fuego «apagar» del PER, interactivo, sigue sin migrar y sin marco).
 
 ## Verificación
 

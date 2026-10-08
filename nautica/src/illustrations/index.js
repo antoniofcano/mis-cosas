@@ -16,7 +16,8 @@ import { bifurcacionIllustration, regionesIllustration, canalIllustration } from
 import { evolucionIllustration, ciabogaIllustration } from './maniobra.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { LAMINAS_LECCIONES } from './lecciones/index.js';
-import { movimientoIllustration, amarrasIllustration, busquedaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
+import { amarrasIllustration, jerarquiaIllustration } from './seamanship.js';
+import { movimientoIllustration, busquedaIllustration, fuegoIllustration } from './seguridad-c.js';
 
 function rhythmIllustration(spec) {
   const r = parseRhythm(spec.ritmo);

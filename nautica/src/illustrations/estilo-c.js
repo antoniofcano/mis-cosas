@@ -206,3 +206,82 @@ export function barco(cx, cy, rumbo, L = 40, { p = 'barco', crujia = true, relle
 
 /** Silueta pequeña de barco (para animateMotion con rotate="auto": apunta hacia +x). */
 export const barquito = (s = 1, color = T.tinta) => `<path d="M${f1(13 * s)},0 C${f1(6 * s)},${f1(-5 * s)} ${f1(-4 * s)},${f1(-5 * s)} ${f1(-7 * s)},${f1(-4.5 * s)} L${f1(-7 * s)},${f1(4.5 * s)} C${f1(-4 * s)},${f1(5 * s)} ${f1(6 * s)},${f1(5 * s)} ${f1(13 * s)},0Z" fill="${T.casco}" stroke="${color}" stroke-width="1.3" stroke-linejoin="round"/>`;
+
+// ---------------------------------------------------------------------------
+// Colocación de etiquetas sin pisarse (láminas de carta con muchas cotas): cada etiqueta tiene varias posiciones
+// candidatas y se queda con la primera que cabe en el dibujo, no tapa otra etiqueta ni corta ninguna línea.
+
+/** Caja de una etiqueta (la de etiqueta()) centrada en (x, y). */
+export function cajaEtiqueta(t, x, y, size = TXT.cota) {
+  const w = anchoTexto(t, size, 'mono') + 10;
+  const h = size + 6;
+  return { x0: x - w / 2, y0: y - h / 2, x1: x + w / 2, y1: y + h / 2, w, h };
+}
+
+const dentroCaja = (p, c) => p[0] >= c.x0 && p[0] <= c.x1 && p[1] >= c.y0 && p[1] <= c.y1;
+function cruza(a, b, c, d) {
+  const o = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]));
+  return o(a, b, c) !== o(a, b, d) && o(c, d, a) !== o(c, d, b);
+}
+/** ¿El segmento a–b toca la caja c? */
+export function segmentoEnCaja(a, b, c) {
+  if (dentroCaja(a, c) || dentroCaja(b, c)) return true;
+  const e = [[c.x0, c.y0], [c.x1, c.y0], [c.x1, c.y1], [c.x0, c.y1]];
+  return e.some((p, i) => cruza(a, b, p, e[(i + 1) % 4]));
+}
+const solapan = (a, b) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+
+/**
+ * Posiciones candidatas de la etiqueta `t` junto al segmento a–b: a lo largo de él (fracciones `ks`) y a los dos lados,
+ * primero el que se aleja de `centro`, pegada a la línea sin pisarla.
+ */
+export function junto(a, b, t, { centro = null, ks = [0.5, 0.35, 0.65, 0.22, 0.8], size = TXT.cota } = {}) {
+  const [dx, dy] = [b[0] - a[0], b[1] - a[1]];
+  const L = Math.hypot(dx, dy) || 1;
+  let [nx, ny] = [-dy / L, dx / L];
+  const { w, h } = cajaEtiqueta(t, 0, 0, size);
+  if (centro) {
+    const m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    if (Math.hypot(m[0] + nx * 20 - centro[0], m[1] + ny * 20 - centro[1]) < Math.hypot(m[0] - nx * 20 - centro[0], m[1] - ny * 20 - centro[1])) { nx = -nx; ny = -ny; }
+  }
+  const d = Math.abs(nx) * (w / 2) + Math.abs(ny) * (h / 2) + 5;
+  const out = [];
+  // primero pegada a la línea; si no cabe, algo más apartada
+  for (const lado of [1, -1]) for (const k of ks) out.push([a[0] + dx * k + nx * d * lado, a[1] + dy * k + ny * d * lado]);
+  // pasada la punta, en la prolongación de la línea
+  const dt = Math.abs(dx / L) * (w / 2) + Math.abs(dy / L) * (h / 2) + 8;
+  out.push([b[0] + (dx / L) * dt, b[1] + (dy / L) * dt]);
+  for (const lado of [1, -1]) for (const k of ks) out.push([a[0] + dx * k + nx * d * 1.9 * lado, a[1] + dy * k + ny * d * 1.9 * lado]);
+  return out;
+}
+
+/**
+ * Coloca las etiquetas. peticiones: [{ t, cands: [[x, y], …], color?, borde?, p?, ref?: [x, y], rotulo?: bool }] (en orden
+ * de importancia). ref: punto al que se une la etiqueta con una línea de referencia; rotulo: texto suelto en cursiva
+ * (serifa), sin recuadro.
+ * segs: segmentos que no deben cortar ([[x1, y1], [x2, y2]]); cajas: zonas ocupadas ({ x0, y0, x1, y1 }), a las que se
+ * añaden las de las etiquetas colocadas. Devuelve el SVG de las etiquetas.
+ */
+export function colocaEtiquetas(peticiones, { W, H, segs = [], cajas = [], margen = 8 } = {}) {
+  const out = [];
+  for (const q of peticiones) {
+    let mejor = null;
+    for (const [x, y] of q.cands) {
+      const c = cajaEtiqueta(q.t, x, y, q.size);
+      const g = { x0: c.x0 - 2, y0: c.y0 - 2, x1: c.x1 + 2, y1: c.y1 + 2 };
+      let pena = 0;
+      if (c.x0 < margen || c.x1 > W - margen || c.y0 < margen || c.y1 > H - margen) pena += 100;
+      pena += cajas.filter((b) => solapan(g, b)).length * 10;
+      pena += segs.filter(([a, b]) => segmentoEnCaja(a, b, g)).length;
+      if (!mejor || pena < mejor.pena) mejor = { pena, x: Math.min(Math.max(x, margen + c.w / 2), W - margen - c.w / 2), y: Math.min(Math.max(y, margen + c.h / 2), H - margen - c.h / 2) };
+      if (pena === 0) break;
+    }
+    if (!mejor) continue;
+    cajas.push(cajaEtiqueta(q.t, mejor.x, mejor.y, q.size));
+    const color = q.color ?? T.tinta;
+    if (q.ref) out.push(referencia(q.ref[0], q.ref[1], mejor.x, mejor.y, { color }));
+    out.push(q.rotulo ? rotulo(mejor.x, mejor.y + 4, q.t, { size: q.size ?? TXT.cota, estilo: 'serif', italic: true, color, p: q.p ?? null })
+      : etiqueta(mejor.x, mejor.y, q.t, { color, borde: q.borde ?? null, p: q.p ?? null, size: q.size ?? TXT.cota }));
+  }
+  return out.join('');
+}

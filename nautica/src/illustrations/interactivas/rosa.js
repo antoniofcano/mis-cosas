@@ -1,19 +1,45 @@
 // Rosa: rumbo, demora y marcación del mismo faro. Mandos: rumbo y demora. Se ve cambiar la marcación.
 import { marcacionBanda } from '../../nautical/compass.js';
 import { norm360 } from '../../math/angles.js';
-import { svgOpen, rosa as rosaSvg, flecha, arco, texto, barcoPlanta, pol, pad3 } from './kit.js';
+import { pad3 } from './kit.js';
+import { T, TXT, lienzo, rotulo, etiqueta, cartela, barco, pol, f1, arcoD, parte } from '../estilo-c.js';
 
-const W = 320;
-const H = 344;
-const C = 160;
+// Estilo C (docs/ESTILO-LAMINAS.md): una rosa de carta graduada de 0° a 360° (cifras cada 30°, en monoespaciada);
+// el rumbo y la demora se miden desde el norte, en el sentido de las agujas del reloj; la marcación, desde la proa (magenta).
+const W = 358;
+const H = 352;
+const C = [179, 170];
 const R = 118;
 
-/** Rótulo junto a una flecha, desplazado a un lado para no pisarla. */
-function rotulo(dir, lado, t, color, p) {
-  const [x0, y0] = pol(C, C, dir, R * 0.58);
-  const [x, y] = pol(x0, y0, dir + 90 * lado, 16);
-  const s = Math.sin(((dir + 90 * lado) * Math.PI) / 180);
-  return texto(x, y + 6, t, { color, p, size: 17, anchor: s > 0.3 ? 'start' : s < -0.3 ? 'end' : 'middle' });
+function rosaCarta() {
+  const o = [`<circle cx="${C[0]}" cy="${C[1]}" r="${R}" fill="${T.agua2}" stroke="${T.tinta}" stroke-width="1.4"/>`, `<circle cx="${C[0]}" cy="${C[1]}" r="${R - 9}" fill="none" stroke="${T.tinta}" stroke-width=".6"/>`];
+  const d = [];
+  for (let g = 0; g < 360; g += 5) {
+    const [x1, y1] = pol(C[0], C[1], g, R);
+    const [x2, y2] = pol(C[0], C[1], g, g % 30 === 0 ? R - 13 : g % 10 === 0 ? R - 9 : R - 5);
+    d.push(`M${f1(x1)},${f1(y1)}L${f1(x2)},${f1(y2)}`);
+  }
+  o.push(`<path d="${d.join('')}" stroke="${T.tinta}" stroke-width=".8" fill="none"/>`);
+  for (let g = 0; g < 360; g += 30) {
+    const [x, y] = pol(C[0], C[1], g, R + 13);
+    o.push(rotulo(x, y + 4, pad3(g), { size: TXT.min, estilo: 'mono', color: T.apagado }));
+  }
+  // cardinales dentro de la rosa
+  for (const [t, g] of [['N', 0], ['E', 90], ['S', 180], ['W', 270]]) {
+    const [x, y] = pol(C[0], C[1], g, R - 26);
+    o.push(rotulo(x, y + 5, t, { size: TXT.nombre, weight: 700, estilo: 'serif', color: g ? T.apagado : T.tinta }));
+  }
+  return o.join('');
+}
+
+/** Etiqueta junto a una línea, a la altura `k` del radio, pegada a un lado (sin pisarla). */
+function etiquetaLinea(dir, k, lado, t, color, p) {
+  const [x0, y0] = pol(C[0], C[1], dir, R * k);
+  const [px, py] = pol(0, 0, dir + 90 * lado, 1);
+  const w = t.length * TXT.cota * 0.62 + 10;
+  const d = Math.abs(px) * (w / 2) + Math.abs(py) * 9 + 5;
+  const x = Math.min(Math.max(x0 + px * d, w / 2 + 8), W - w / 2 - 8);
+  return etiqueta(x, y0 + py * d, t, { color, p });
 }
 
 const marcTexto = ({ grados, banda }) => (banda === 'proa' ? 'por la proa' : banda === 'popa' ? 'por la popa' : `${grados}° por ${banda}`);
@@ -32,24 +58,39 @@ export const rosa = {
   calcular: (e) => (e.demora == null || e.rumbo == null ? { marcacion: null } : { marcacion: marcacionBanda(e.demora, e.rumbo) }),
   pie: () => 'Rumbo y demora se miden desde el norte, en el sentido de las agujas del reloj; la marcación se mide desde la proa.',
   dibujar(e, r) {
-    const out = [svgOpen(W, H, [e.rumbo != null ? `Rumbo ${pad3(e.rumbo)}°` : '', e.demora != null ? `demora ${pad3(e.demora)}°` : ''].filter(Boolean).join(', ')), rosaSvg(C, C, R)];
-    if (e.rumbo != null) {
-      const [rx, ry] = pol(C, C, e.rumbo, R - 18);
-      out.push(barcoPlanta(C, C, e.rumbo, 40, 'rumbo'));
-      out.push(flecha(C, C, rx, ry, 'var(--l-v)', 3.5, 'rumbo'));
-      out.push(rotulo(e.rumbo, -1, `rumbo ${pad3(e.rumbo)}°`, 'var(--l-v)', 'rumbo'));
-    }
+    const alt = [e.rumbo != null ? `Rosa graduada con el barco en el centro y la proa al ${pad3(e.rumbo)}°` : 'Rosa graduada',
+      e.demora != null ? `${e.rumbo != null ? '; ' : ' con '}el ${e.etiqueta} en la demora ${pad3(e.demora)}°` : '',
+      r.marcacion ? `: lo ves ${marcTexto(r.marcacion)}, la marcación, medida desde la proa.` : '. Se mide desde el norte, en el sentido de las agujas del reloj.'].join('');
+    const { out, cierra } = lienzo(W, H, alt);
+    out.push(rosaCarta());
+    // a qué lado de cada línea va su etiqueta: el rumbo y la demora, cada uno por fuera del ángulo entre los dos
+    const ladoR = r.marcacion && r.marcacion.banda === 'estribor' ? -1 : 1;
     if (e.demora != null) {
-      const [fx, fy] = pol(C, C, e.demora, R - 6);
-      out.push(flecha(C, C, fx, fy, 'var(--l-p)', 2.5, 'demora', 'stroke-dasharray="6 5"'));
-      out.push(`<circle data-parte="demora" cx="${fx.toFixed(1)}" cy="${fy.toFixed(1)}" r="8" fill="var(--l-faro)" stroke="var(--text)" stroke-width="1"/>`);
-      out.push(rotulo(e.demora, 1, `${e.etiqueta} ${pad3(e.demora)}°`, 'var(--l-p)', 'demora'));
-      if (r.marcacion && r.marcacion.banda !== 'proa') {
-        out.push(arco(C, C, 46, e.rumbo, e.demora, 'var(--l-r)', 3, 'marcacion'));
-        out.push(texto(C, H - 12, `marcación ${marcTexto(r.marcacion)}`, { color: 'var(--l-r)', p: 'marcacion', size: 18, weight: 700 }));
-      }
+      const [fx, fy] = pol(C[0], C[1], e.demora, R - 18);
+      out.push(`<g${parte('demora')}><line x1="${C[0]}" y1="${C[1]}" x2="${f1(fx)}" y2="${f1(fy)}" stroke="${T.tinta}" stroke-width="1.5" stroke-dasharray="7 4"/>` +
+        `<circle cx="${f1(fx)}" cy="${f1(fy)}" r="7" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1.2"/><circle cx="${f1(fx)}" cy="${f1(fy)}" r="2" fill="${T.tinta}"/></g>`);
+      out.push(etiquetaLinea(e.demora, 0.5, -ladoR, `${e.etiqueta} ${pad3(e.demora)}°`, T.tinta, 'demora'));
     }
-    out.push('</svg>');
+    if (e.rumbo != null) {
+      const [rx, ry] = pol(C[0], C[1], e.rumbo, R - 16);
+      out.push(`<g${parte('rumbo')}><line x1="${C[0]}" y1="${C[1]}" x2="${f1(rx)}" y2="${f1(ry)}" stroke="${T.tinta}" stroke-width="1.8"/>` +
+        `<polygon points="${[pol(rx, ry, e.rumbo, 4), pol(rx, ry, e.rumbo + 150, 12), pol(rx, ry, e.rumbo - 150, 12)].map((q) => q.map(f1).join(',')).join(' ')}" fill="${T.tinta}"/></g>`);
+      out.push(barco(C[0], C[1], e.rumbo, 44, { p: 'rumbo' }));
+      out.push(etiquetaLinea(e.rumbo, 0.5, ladoR, `rumbo ${pad3(e.rumbo)}°`, T.tinta, 'rumbo'));
+    } else {
+      out.push(`<circle cx="${C[0]}" cy="${C[1]}" r="4" fill="${T.tinta}"/>`);
+    }
+    // el ángulo que se mide: desde el norte (rumbo o demora) o, si hay los dos, la marcación desde la proa
+    if (r.marcacion && r.marcacion.banda !== 'proa') {
+      const [a, b] = r.marcacion.banda === 'estribor' ? [e.rumbo, e.demora] : [e.demora, e.rumbo];
+      out.push(`<path${parte('marcacion')} d="${arcoD(C[0], C[1], 40, a, b)}" fill="none" stroke="${T.magenta}" stroke-width="2.2"/>`);
+      out.push(cartela(C[0], H - 22, 'MARCACIÓN', marcTexto(r.marcacion), { color: T.magenta, ancho: 164, p: 'marcacion' }));
+    } else {
+      const g = e.rumbo ?? e.demora;
+      if (g) out.push(`<path${parte(e.rumbo != null ? 'rumbo' : 'demora')} d="${arcoD(C[0], C[1], 40, 0, g)}" fill="none" stroke="${T.magenta}" stroke-width="2.2"/>`);
+      out.push(cartela(C[0], H - 22, e.rumbo != null ? 'RUMBO' : 'DEMORA', 'desde el norte, en horario', { color: T.magenta, ancho: 196 }));
+    }
+    out.push(cierra());
     const lectura = e.rumbo == null
       ? `Demora del ${e.etiqueta} ${pad3(e.demora)}°: el ángulo desde el norte hasta el ${e.etiqueta}, en el sentido de las agujas del reloj.`
       : e.demora == null

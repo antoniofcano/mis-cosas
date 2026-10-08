@@ -241,8 +241,113 @@ function marea(spec) {
   return null;
 }
 
+// ---------------------------------------------------------------------------
+// Carta (PY, UT 3 y 4): nortes, rosa, abatimiento, corriente, enfilación, demoras y estima. Convenio del examen:
+// E (+), W (−); Ct = dm + Δ; Rv = Ra + Ct; Rs = Rv + Ab (Ab + con el viento por babor); la corriente, hacia donde va.
+const NAV = 'Navegación';
+
+const nortes = () => ({
+  tema: NAV, titulo: 'Corrección total: los tres nortes', clave: 'Ct = dm + Δ: lo que es E suma y lo que es W resta.',
+  datos: [{ cifra: 'Ct = dm + Δ', texto: 'corrección total, cada una con su signo' }, { cifra: 'Rv = Ra + Ct', texto: 'de aguja a verdadero, se suma la Ct' }, { cifra: 'E + · W −', texto: 'el convenio de signos' }],
+  nota: 'La declinación (dm) viene en la carta y cambia con los años; el desvío (Δ) sale de la tablilla y depende del rumbo de aguja. Si el norte de aguja queda al W del verdadero, la Ct es negativa.',
+  alt: 'Los tres nortes salen de un mismo punto: el verdadero (Nv), el magnético (Nm), separado del verdadero por la declinación, y el de aguja (Na), separado del magnético por el desvío. Cada ángulo va acotado; en magenta, la corrección total, del verdadero al de aguja.',
+});
+
+function rosa(spec) {
+  if (spec.rumbo != null && spec.demora != null) {
+    return {
+      tema: NAV, titulo: 'Rumbo, demora y marcación', clave: 'Rumbo y demora, desde el norte; la marcación, desde la proa.',
+      datos: [{ cifra: '000°–359°', texto: 'rumbo y demora: desde el norte, en sentido horario' }, { cifra: '0°–180°', texto: 'marcación: por estribor o por babor' }, { cifra: 'Dv = Rv + M', texto: 'M positiva a estribor, negativa a babor' }],
+      nota: 'La demora de un objeto no cambia al cambiar de rumbo; su marcación sí. Al caer a estribor, lo que ves por estribor se acerca a la proa y su marcación baja.',
+      alt: 'Rosa graduada de 000° a 359° con el barco en el centro: la flecha del rumbo, la línea a trazos de la demora hasta el faro y, en magenta, el arco de la marcación, de la proa al faro.',
+    };
+  }
+  if (spec.rumbo != null) {
+    return {
+      tema: NAV, titulo: 'El rumbo', clave: 'Del norte a la proa, en el sentido de las agujas del reloj.',
+      datos: [{ cifra: '000°–359°', texto: 'siempre con tres cifras' }, { cifra: '090°', texto: 'proa al este; 180°, al sur; 270°, al oeste' }],
+      nota: 'El rumbo se cuenta de 000° a 359° desde el norte; no hay rumbos negativos ni «a babor». Lo que va por bandas es la marcación.',
+      alt: 'Rosa graduada de 000° a 359° con el barco en el centro y la flecha de su rumbo; en magenta, el arco que se mide desde el norte hasta la proa en el sentido de las agujas del reloj.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'La demora', clave: 'Del norte al objeto, en el sentido de las agujas del reloj.',
+    datos: [{ cifra: '000°–359°', texto: 'siempre con tres cifras' }, { cifra: 'Dv ± 180°', texto: 'la opuesta: la que se traza desde el objeto' }],
+    nota: 'La demora no depende de hacia dónde apunte tu proa: si cambias de rumbo, el faro sigue en la misma demora.',
+    alt: 'Rosa graduada de 000° a 359° con el observador en el centro y una línea a trazos hasta el faro; en magenta, el arco que se mide desde el norte hasta el faro en el sentido de las agujas del reloj.',
+  };
+}
+
+function abatimiento(spec) {
+  const br = spec.banda !== 'estribor';
+  return {
+    tema: NAV, titulo: `Abatimiento: viento por ${br ? 'babor' : 'estribor'}`, clave: `Rs = Rv + Ab, con el Ab ${br ? 'positivo' : 'negativo'}: el viento entra por ${br ? 'babor' : 'estribor'}.`,
+    datos: [{ cifra: 'Rs = Rv + Ab', texto: 'rumbo de superficie' }, { cifra: 'Ab +', texto: 'viento por babor: abate a estribor' }, { cifra: 'Ab −', texto: 'viento por estribor: abate a babor' }],
+    nota: 'El viento empuja el barco a sotavento, al lado contrario al que entra. En el problema inverso (qué rumbo dar) la proa se mete hacia el viento: Rv = Rs − Ab.',
+    alt: `El barco en la carta, con la proa (Rv, a trazos) y, separado por el ángulo acotado del abatimiento, el rumbo de superficie (Rs); tres flechas de viento le entran por ${br ? 'babor' : 'estribor'}.`,
+  };
+}
+
+function corriente(spec) {
+  const inversa = spec.caso === 'rumbo-a-dar';
+  const datos = [{ cifra: 'Rc', texto: 'la corriente: hacia dónde va el agua' }, { cifra: 'Ihc', texto: 'su intensidad, en nudos' }];
+  const nota = 'La corriente se nombra por hacia dónde va, al revés que el viento, que se nombra por de dónde viene. En la carta se dibuja el efectivo: es por donde pasa de verdad el barco.';
+  if (inversa) {
+    return {
+      tema: NAV, titulo: 'Corriente: rumbo a dar para llegar', clave: 'Primero la corriente; desde su extremo, la velocidad del barco corta la línea al destino.',
+      datos: [...datos, { cifra: 'Rs', texto: 'el rumbo a dar sale hacia el lado de donde viene la corriente' }], nota,
+      alt: 'Construcción en la carta: desde la salida, el vector de la corriente (tres puntas); con centro en su extremo, un arco de radio la velocidad del barco corta la línea al destino; esa dirección es el rumbo de superficie, y de la salida al corte, el efectivo en magenta.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'Corriente: rumbo y velocidad efectivos', clave: 'El efectivo es la suma del vector del barco y el de la corriente.',
+    datos: [...datos, { cifra: 'Ref · Vef', texto: 'rumbo y velocidad sobre el fondo' }], nota,
+    alt: 'Triángulo de velocidades en la carta, una hora de navegación: el rumbo de superficie del barco (una punta), a continuación la corriente (tres puntas) y, en magenta, el rumbo efectivo de la salida al final (dos puntas).',
+  };
+}
+
+const enfilacion = () => ({
+  tema: NAV, titulo: 'Enfilación y corrección total', clave: 'Ct = Dv − Da: la demora de la carta menos la de la aguja.',
+  datos: [{ cifra: 'Dv', texto: 'la de la enfilación, medida en la carta' }, { cifra: 'Da', texto: 'con la aguja, al verlas enfiladas' }, { cifra: 'Δ = Ct − dm', texto: 'y de ahí, el desvío' }],
+  nota: 'Una enfilación da una demora verdadera exacta sin calcular nada: por eso sirve para hallar la corrección total. Si la Da es mayor que la Dv, la Ct es negativa.',
+  alt: 'A la izquierda, dos faros en la costa vistos uno detrás de otro y el barco sobre su enfilación, con la demora verdadera acotada desde el norte. A la derecha, el norte verdadero y el de aguja separados por la corrección total, y la cuenta Ct = Dv − Da.',
+});
+
+function demoras(spec) {
+  if (spec.modo === 'traslado') {
+    return {
+      tema: NAV, titulo: spec.linea === 'segunda' ? 'Demoras no simultáneas: trasladar la segunda' : 'Demoras no simultáneas: el traslado', clave: 'Se traslada la primera lo navegado; el corte es la situación a la hora de la segunda.',
+      datos: [{ cifra: '1.ª', texto: 'la línea que viaja contigo' }, { cifra: 'rumbo y millas', texto: 'lo navegado entre las dos' }, { cifra: '2.ª hora', texto: 'la hora de la situación' }],
+      nota: 'El traslado es lo navegado de verdad: el Rv sin viento, el Rs con viento y el efectivo con corriente. Si trasladas la segunda hacia atrás, el corte sale bien, pero es la situación de la primera hora.',
+      alt: 'Dos faros con sus líneas de demora; la primera se traslada paralela a sí misma el rumbo y la distancia navegados (flecha magenta acotada) y su corte con la segunda, en magenta, es la situación.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'Situación por dos demoras simultáneas', clave: 'Cada demora se traza desde su faro con la opuesta; el barco está en el corte.',
+    datos: [{ cifra: 'Dv = Da + Ct', texto: 'cada demora, pasada a verdadera' }, { cifra: 'Dv ± 180°', texto: 'lo que se traza desde el faro' }, { cifra: '≈ 90°', texto: 'el mejor corte: casi perpendiculares' }],
+    nota: 'Toma las dos demoras a la vez y pásalas a verdaderas con la Ct del rumbo que llevas. Si las líneas se cortan muy agudas, un error pequeño en una demora mueve mucho la situación.',
+    alt: 'Costa con dos faros, A y B; desde cada uno sale su línea de demora hacia la mar (una continua y otra a trazos) y su corte, en magenta, es la situación del barco.',
+  };
+}
+
+function loxodromica(spec) {
+  const datos = [{ cifra: 'Δl = D · cos R', texto: 'minutos de latitud (= millas)' }, { cifra: 'A = D · sen R', texto: 'apartamiento, en millas' }, { cifra: 'ΔL = A / cos lm', texto: 'minutos de longitud' }];
+  const nota = 'Una milla es un minuto de latitud, pero no de longitud: los meridianos se juntan hacia los polos. Por eso el apartamiento se divide por el coseno de la latitud media.';
+  if (spec.modo === 'triangulo') {
+    return {
+      tema: NAV, titulo: 'Estima: del apartamiento a la longitud', clave: 'Cuanto más lejos del ecuador, más minutos de longitud por cada milla.', datos, nota,
+      alt: 'Triángulo de estima con sus catetos acotados (diferencia de latitud y apartamiento) y la distancia y el rumbo en magenta; debajo, dos barras a la misma escala comparan el apartamiento en millas con la diferencia de longitud en minutos.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'Estima loxodrómica: el triángulo', clave: 'Δl = D · cos R y A = D · sen R; luego, ΔL = A / cos lm.', datos, nota,
+    alt: 'Triángulo rectángulo de estima: de la salida a la llegada, la distancia D al rumbo R (en magenta); el cateto norte-sur es la diferencia de latitud y el este-oeste, el apartamiento; al lado, ΔL = A / cos lm.',
+  };
+}
+
 const MARCOS = {
   cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
+  nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

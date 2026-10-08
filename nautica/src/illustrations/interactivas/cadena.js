@@ -1,30 +1,26 @@
 // Dibujo común de abatimiento y corriente: la cadena rumbo verdadero → rumbo de superficie → rumbo efectivo,
 // en planta (norte arriba) y siempre con los mismos colores: proa azul, superficie naranja, corriente violeta,
 // efectivo rojo.
-import { svgOpen, flecha, arco, texto, barcoPlanta, encaja, vec, suma, pad3, num, f1, rad } from './kit.js';
+import { encaja, vec, suma, pad3, num } from './kit.js';
+import { T, TXT, lienzo, rotulo, cotaArco, flecha, rosaNorte, barco, arcoD, junto, colocaEtiquetas, f1, pol, parte } from '../estilo-c.js';
 
-const W = 320;
-const H = 300;
+// Estilo C (docs/ESTILO-LAMINAS.md), como se traza en la carta: el rumbo de superficie con una punta, el efectivo con
+// dos (en magenta: es la línea que se dibuja en la carta) y la corriente con tres; la proa (Rv), a trazos con el barco.
+// El abatimiento va acotado con su arco entre el Rv y el Rs.
+const W = 358;
+const H = 320;
 
-/** Rótulo junto al punto medio de un segmento, por el lado que se aleja de `centro` (fuera del triángulo). */
-function rotuloSeg(a, b, t, color, p, centro) {
-  const dx = b[0] - a[0];
-  const dy = b[1] - a[1];
-  const n = Math.hypot(dx, dy) || 1;
-  // en un segmento corto el rótulo va pasada la punta, para no taparla
-  const corto = n < 80;
-  const mx = corto ? b[0] + (dx / n) * 10 : (a[0] + b[0]) / 2;
-  const my = corto ? b[1] + (dy / n) * 10 : (a[1] + b[1]) / 2;
-  let nx = (-dy / n) * 14;
-  let ny = (dx / n) * 14;
-  if (Math.hypot(mx + nx - centro[0], my + ny - centro[1]) < Math.hypot(mx - nx - centro[0], my - ny - centro[1])) { nx = -nx; ny = -ny; }
-  const anchor = nx > 4 ? 'start' : nx < -4 ? 'end' : 'middle';
-  // que no se salga por los lados: se estima el ancho del texto
-  const ancho = t.length * 8.6;
-  let x = mx + nx;
-  if (anchor === 'start') x = Math.min(x, W - 8 - ancho);
-  if (anchor === 'end') x = Math.max(x, 8 + ancho);
-  return texto(x, my + ny + 5, t, { color, p, size: 16, anchor });
+/** Vector con `n` puntas (1, 2 o 3) junto a su extremo. */
+function vector(a, b, color, w, n, p) {
+  const [dx, dy] = [b[0] - a[0], b[1] - a[1]];
+  const L = Math.hypot(dx, dy) || 1;
+  const [ux, uy] = [dx / L, dy / L];
+  const out = [flecha(a[0], a[1], b[0], b[1], { color, w })];
+  for (let i = 1; i < n; i++) {
+    const [cx, cy] = [b[0] - ux * (10 + 7 * i), b[1] - uy * (10 + 7 * i)];
+    out.push(`<polyline points="${f1(cx - uy * 5 - ux * 6)},${f1(cy + ux * 5 - uy * 6)} ${f1(cx)},${f1(cy)} ${f1(cx + uy * 5 - ux * 6)},${f1(cy - ux * 5 - uy * 6)}" fill="none" stroke="${color}" stroke-width="1.4"/>`);
+  }
+  return `<g${parte(p)}>${out.join('')}</g>`;
 }
 
 /**
@@ -47,53 +43,118 @@ export function dibujaCadena(c, { ocultar = [], viento = null } = {}) {
     E = suma(S, vec(c.rc, c.ic));
   }
   const destino = c.inversa ? vec(c.ref, c.vef * 1.25) : null;
-  const proa = vec(c.rv, c.vb * 0.55);
+  const proa = vec(c.rv, c.vb * 0.6);
   const pts = [O, S, E, proa, ...(Cc ? [Cc] : []), ...(destino ? [destino] : [])];
-  const T = encaja(pts, 50, 50, W - 100, H - 100);
-  const o = T(O);
-  const px = pts.map(T);
+  const P = encaja(pts, 60, 60, W - 120, H - 126);
+  const o = P(O);
+  const px = pts.map(P);
   const centro = [px.reduce((a, q) => a + q[0], 0) / px.length, px.reduce((a, q) => a + q[1], 0) / px.length];
-  const out = [svgOpen(W, H, c.inversa ? 'Rumbo a dar con corriente' : 'Rumbo verdadero, de superficie y efectivo')];
-  out.push(texto(W - 12, 22, 'N ↑', { anchor: 'end', size: 15 }));
-  out.push(texto(12, H - 10, 'escala: 1 hora de navegación', { anchor: 'start', size: 13, weight: 400, color: 'var(--muted)' }));
-  if (viento) {
-    // tres flechas de viento en la banda de barlovento, hacia sotavento, repartidas a lo largo de la proa
-    const hacia = c.rv + (viento === 'babor' ? 90 : -90);
-    const cx = W / 2;
-    const cy = H / 2;
-    for (let i = -1; i <= 1; i++) {
-      const bx = cx - Math.sin(rad(hacia)) * 105 + Math.sin(rad(c.rv)) * i * 55;
-      const by = cy + Math.cos(rad(hacia)) * 105 - Math.cos(rad(c.rv)) * i * 55;
-      out.push(flecha(bx, by, bx + Math.sin(rad(hacia)) * 34, by - Math.cos(rad(hacia)) * 34, 'var(--l-g)', 2.5, 'viento'));
-    }
-  }
+  const corr = c.ic ? `corriente hacia el ${pad3(c.rc)}° a ${num(c.ic)} nudos` : 'sin corriente';
+  const alt = c.inversa
+    ? `Rumbo a dar con corriente, como se traza en la carta: desde la salida, la corriente (${corr}); con centro en su extremo y radio la velocidad del barco se corta la línea al destino; esa dirección es el rumbo de superficie${ve('rs') ? ` (${pad3(c.rs)}°)` : ''}.`
+    : `Cadena de rumbos en la carta: proa al ${pad3(c.rv)}°${c.ab ? `, el viento por ${c.ab > 0 ? 'babor' : 'estribor'} abate ${Math.abs(c.ab)}°` : ''}${ve('rs') ? ` y el rumbo de superficie es ${pad3(c.rs)}°` : ''}; ${corr}${ve('ref') && c.ic ? `: rumbo efectivo ${pad3(c.ref)}° a ${num(c.vef)} nudos` : ''}.`;
+  const { out, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
+  // la rosa del norte, en la esquina más despejada del dibujo
+  const esquinas = [[W - 30, 36], [30, 36], [W - 30, H - 46]];
+  const [rx, ry] = esquinas.map((q) => [q, Math.min(...px.map((p) => Math.hypot(p[0] - q[0], p[1] - q[1])))]).sort((a, b) => b[1] - a[1])[0][0];
+  out.push(rosaNorte(rx, ry));
+  out.push(rotulo(14, H - 14, 'escala: una hora de navegación', { size: TXT.min, estilo: 'serif', italic: true, anchor: 'start', color: T.apagado }));
+  // lo que las etiquetas no deben tapar: la rosa, la escala y las líneas
+  const cajas = [{ x0: rx - 22, y0: ry - 28, x1: rx + 22, y1: ry + 22 }, { x0: 8, y0: H - 30, x1: 200, y1: H - 8 }];
+  const segs = [];
+  const pet = [];
+  const s = P(S);
+  const e = P(E);
   if (destino) {
-    const d = T(destino);
-    out.push(`<line data-parte="ref" x1="${f1(o[0])}" y1="${f1(o[1])}" x2="${f1(d[0])}" y2="${f1(d[1])}" stroke="var(--l-g)" stroke-width="1.5" stroke-dasharray="6 5"/>`);
-    out.push(`<circle data-parte="ref" cx="${f1(d[0])}" cy="${f1(d[1])}" r="6" fill="var(--l-faro)" stroke="var(--text)"/>`, texto(d[0], d[1] - 12, 'destino', { size: 15 }));
+    const d = P(destino);
+    segs.push([o, d]);
+    out.push(`<g${parte('ref')}><line x1="${f1(o[0])}" y1="${f1(o[1])}" x2="${f1(d[0])}" y2="${f1(d[1])}" stroke="${T.tinta}" stroke-width="1" stroke-dasharray="6 4"/>` +
+      `<circle cx="${f1(d[0])}" cy="${f1(d[1])}" r="7" fill="${T.papel}" stroke="${T.tinta}" stroke-width="1.4"/><circle cx="${f1(d[0])}" cy="${f1(d[1])}" r="2" fill="${T.tinta}"/>` +
+      rotulo(d[0], d[1] - 13, 'destino', { size: TXT.nota, estilo: 'serif', italic: true, weight: 700 }) + '</g>');
+    cajas.push({ x0: d[0] - 30, y0: d[1] - 26, x1: d[0] + 30, y1: d[1] + 8 });
   }
-  const s = T(S);
-  const e = T(E);
   if (c.inversa) {
-    const cc = T(Cc);
-    out.push(flecha(o[0], o[1], cc[0], cc[1], 'var(--l-p)', 3, 'corriente'), rotuloSeg(o, cc, `1 · corriente ${num(c.ic)} kn`, 'var(--l-p)', 'corriente', centro));
-    if (ve('rs')) out.push(flecha(cc[0], cc[1], s[0], s[1], 'var(--l-a)', 3, 'rs'), rotuloSeg(cc, s, `2 · Rs ${pad3(c.rs)}°`, 'var(--l-a)', 'rs', centro));
-    if (ve('ref')) out.push(flecha(o[0], o[1], e[0], e[1], 'var(--l-r)', 3.5, 'ref'), rotuloSeg(o, e, `Ref ${pad3(c.ref)}°`, 'var(--l-r)', 'ref', centro));
+    const cc = P(Cc);
+    segs.push([o, cc]);
+    out.push(vector(o, cc, T.azulTxt, 1.6, 3, 'corriente'));
+    pet.push({ t: `1 · Rc ${pad3(c.rc)}° ${num(c.ic)} kn`, cands: junto(o, cc, `1 · Rc ${pad3(c.rc)}° ${num(c.ic)} kn`, { centro }), color: T.azulTxt, p: 'corriente' });
+    if (ve('rs')) {
+      // el compás: arco de radio la velocidad del barco, con centro en el extremo de la corriente, que corta la línea al destino
+      const R = Math.hypot(s[0] - cc[0], s[1] - cc[1]);
+      const ang = (Math.atan2(s[0] - cc[0], -(s[1] - cc[1])) * 180) / Math.PI;
+      out.push(`<path${parte('rs')} d="${arcoD(cc[0], cc[1], R, ang - 14, ang + 14)}" fill="none" stroke="${T.tinta}" stroke-width="1" stroke-dasharray="3 3"/>`);
+      segs.push([cc, s]);
+      out.push(vector(cc, s, T.tinta, 1.6, 1, 'rs'));
+      pet.push({ t: `2 · Rs ${pad3(c.rs)}°`, cands: junto(cc, s, `2 · Rs ${pad3(c.rs)}°`, { centro }), p: 'rs' });
+    }
+    if (ve('ref')) {
+      segs.push([o, e]);
+      out.push(vector(o, e, T.magenta, 2.2, 2, 'ref'));
+      pet.unshift({ t: `Ref ${pad3(c.ref)}° ${num(c.vef)} kn`, cands: junto(o, e, `Ref ${pad3(c.ref)}° ${num(c.vef)} kn`, { centro, ks: [0.6, 0.45, 0.75, 0.3] }), color: T.magenta, p: 'ref' });
+    }
   } else {
-    if (ve('rs')) out.push(flecha(o[0], o[1], s[0], s[1], 'var(--l-a)', 3, 'rs'), rotuloSeg(o, s, `Rs ${pad3(c.rs)}°`, 'var(--l-a)', 'rs', centro));
-    if (c.ic && ve('ref')) out.push(flecha(s[0], s[1], e[0], e[1], 'var(--l-p)', 3, 'corriente'), rotuloSeg(s, e, `corriente ${num(c.ic)} kn`, 'var(--l-p)', 'corriente', centro));
-    if (c.ic && ve('ref')) out.push(flecha(o[0], o[1], e[0], e[1], 'var(--l-r)', 3.5, 'ref'), rotuloSeg(o, e, `Ref ${pad3(c.ref)}°`, 'var(--l-r)', 'ref', centro));
+    if (ve('rs')) {
+      segs.push([o, s]);
+      // sin corriente, el rumbo de superficie es también el efectivo
+      const sinC = !c.ic && ve('ref');
+      out.push(sinC ? `<g${parte('ref')}>${vector(o, s, T.tinta, 1.6, 1, 'rs')}</g>` : vector(o, s, T.tinta, 1.6, 1, 'rs'));
+      const t = sinC ? `Rs = Ref ${pad3(c.rs)}°` : `Rs ${pad3(c.rs)}°`;
+      pet.push({ t, cands: junto(o, s, t, { centro, ks: c.ic ? [0.5, 0.35, 0.65, 0.8] : [0.7, 0.55, 0.85, 0.4] }), p: 'rs' });
+    }
+    if (c.ic && ve('ref')) {
+      segs.push([s, e], [o, e]);
+      out.push(vector(s, e, T.azulTxt, 1.6, 3, 'corriente'), vector(o, e, T.magenta, 2.2, 2, 'ref'));
+      pet.unshift({ t: `Ref ${pad3(c.ref)}° ${num(c.vef)} kn`, cands: junto(o, e, `Ref ${pad3(c.ref)}° ${num(c.vef)} kn`, { centro, ks: [0.6, 0.45, 0.75, 0.3] }), color: T.magenta, p: 'ref' });
+      pet.push({ t: `Rc ${pad3(c.rc)}° ${num(c.ic)} kn`, cands: junto(s, e, `Rc ${pad3(c.rc)}° ${num(c.ic)} kn`, { centro }), color: T.azulTxt, p: 'corriente' });
+    }
   }
   // la proa: el barco apunta a su rumbo verdadero
   if (ve('rv')) {
-    const p = T(proa);
+    const p = P(proa);
     // con abatimiento la proa no apunta por donde va el barco: se dibuja su dirección (sin él coincidiría con el Rs)
-    if (c.ab || ocultar.includes('rs')) out.push(flecha(o[0], o[1], p[0], p[1], 'var(--l-v)', 2.5, 'rv', 'stroke-dasharray="2 4"'), rotuloSeg(o, p, `Rv ${pad3(c.rv)}°`, 'var(--l-v)', 'rv', centro));
-    out.push(barcoPlanta(o[0], o[1], c.rv, 34, 'rv'));
+    if (c.ab || ocultar.includes('rs')) {
+      segs.push([o, p]);
+      out.push(`<line${parte('rv')} x1="${f1(o[0])}" y1="${f1(o[1])}" x2="${f1(p[0])}" y2="${f1(p[1])}" stroke="${T.tinta}" stroke-width="1.2" stroke-dasharray="2 4"/>`);
+      pet.push({ t: `Rv ${pad3(c.rv)}°`, cands: junto(o, p, `Rv ${pad3(c.rv)}°`, { centro, ks: [0.9, 0.75, 1.05, 0.6, 0.45] }), p: 'rv' });
+    }
+    out.push(barco(o[0], o[1], c.rv, 30, { p: 'rv' }));
+    cajas.push({ x0: o[0] - 16, y0: o[1] - 16, x1: o[0] + 16, y1: o[1] + 16 });
+    // el abatimiento, acotado entre la proa y el rumbo de superficie
+    if (c.ab && ve('rs')) {
+      const [a, b] = c.ab > 0 ? [c.rv, c.rs] : [c.rs, c.rv];
+      const r0 = 62;
+      out.push(cotaArco(o[0], o[1], r0, a, b, '', { color: T.tinta, p: 'rs' }));
+      const [mx, my] = pol(o[0], o[1], c.rv + c.ab / 2, r0);
+      const t = `Ab ${c.ab > 0 ? '+' : '−'}${Math.abs(c.ab)}°`;
+      // la etiqueta del abatimiento, por fuera del ángulo, unida al arco con una línea de referencia
+      const cands = [];
+      for (const dist of [44, 60, 78]) for (const lado of [c.ab > 0 ? -90 : 90, c.ab > 0 ? 90 : -90]) cands.push(pol(mx, my, c.rv + c.ab / 2 + lado, dist));
+      pet.splice(1, 0, { t, cands, p: 'rs', ref: [mx, my] });
+    }
   } else {
-    out.push(`<circle cx="${f1(o[0])}" cy="${f1(o[1])}" r="5" fill="var(--text)"/>`);
+    out.push(`<circle cx="${f1(o[0])}" cy="${f1(o[1])}" r="4" fill="${T.tinta}"/>`);
   }
-  out.push('</svg>');
+  if (viento) {
+    // tres flechas de viento por la banda de barlovento, hacia sotavento, a lo largo de la proa
+    const hacia = c.rv + (viento === 'babor' ? 90 : -90);
+    const m = P(vec(c.rv, c.vb * 0.45));
+    const base = pol(m[0], m[1], hacia + 180, 92);
+    const fl = [];
+    for (let i = -1; i <= 1; i++) {
+      const [bx, by] = pol(base[0], base[1], c.rv, i * 44);
+      const [ex, ey] = pol(bx, by, hacia, 28);
+      fl.push(flecha(bx, by, ex, ey, { color: T.apagado, w: 1.4 }));
+      segs.push([[bx, by], [ex, ey]]);
+    }
+    out.push(`<g${parte('viento')}>${fl.join('')}</g>`);
+    // su rótulo, en cursiva junto a las flechas (se coloca como una etiqueta más)
+    const t = `viento por ${viento}`;
+    const cands = [pol(base[0], base[1], hacia + 180, 16), pol(base[0], base[1], hacia, 44), pol(base[0], base[1], c.rv, 70), pol(base[0], base[1], c.rv + 180, 70)];
+    pet.push({ t, cands, rotulo: true, p: 'viento' });
+  }
+  // las etiquetas, sin pisarse
+  out.push(colocaEtiquetas(pet, { W, H, segs, cajas }));
+  out.push(cierra());
   return out.join('');
 }
 

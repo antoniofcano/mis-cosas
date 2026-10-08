@@ -16,6 +16,8 @@ gradual: nada se rompe si una lámina no tiene marco).
 | --- | --- |
 | Colores (claro y oscuro) y tipografías | `styles/laminas.css` (variables `--lc-*`) |
 | Piezas de dibujo (marco, cartela, cotas, ondas, tierra, reloj, rosa, barco…) | `src/illustrations/estilo-c.js` |
+| Etiquetas que no se pisan (láminas de carta con muchas cotas) | `junto()` y `colocaEtiquetas()` de `src/illustrations/estilo-c.js` |
+| Láminas fijas de carta del PY (enfilación, dos demoras, estima) | `src/illustrations/carta-c.js` |
 | Luz que destella y cronograma del ritmo | `luzC()` y `cronoC()` de `src/illustrations/lights.js` |
 | Marca de balizamiento (castillete, tope, franjas) | `marcaC()` de `src/illustrations/buoys.js` |
 | Textos del marco de cada lámina (`titulo`, `clave`, `nota`, `datos`, `alt`) | `src/illustrations/marcos.js` |
@@ -96,6 +98,21 @@ out.push(cierra());                                // marco con graduación y </
 - `lienzo()` da ids estables a los patrones (el mismo dibujo, el mismo id): la imagen fija de una lámina interactiva
   sigue siendo idéntica a su dibujo en el estado inicial.
 - `p` en cualquier pieza le pone `data-parte` (resaltado y «toca en el dibujo»).
+- En las láminas de carta, donde las líneas salen en cualquier dirección (rumbos, demoras, corrientes), las etiquetas no
+  se colocan a mano: `junto(a, b, texto)` da posiciones candidatas pegadas a un segmento (a los dos lados, a lo largo y
+  pasada la punta) y `colocaEtiquetas(peticiones, { W, H, segs, cajas })` elige para cada una la primera que cabe, no
+  corta ninguna línea de `segs` ni tapa otra etiqueta o una zona de `cajas` (la rosa del norte, una cartela). Con `ref`
+  la etiqueta se une a su punto con una línea de referencia; con `rotulo` es texto suelto en cursiva.
+
+### Convenios de las láminas de carta
+
+- Rumbos, demoras y ángulos en monoespaciada y con tres cifras (`Rv 040°`, `Dv 147°`); los nortes y ángulos pequeños
+  se exageran (×3, o menos si no caben) y la lámina lo dice (`ángulos ×3`).
+- Signos del examen: E (+), W (−); `Ct = dm + Δ`; `Rv = Ra + Ct`; `Dv = Da + Ct`; `Rs = Rv + Ab` con el abatimiento
+  positivo si el viento entra por babor; la corriente se nombra por hacia dónde va (Rc) y el viento por de dónde viene.
+- Vectores como en el trazado en la carta: rumbo de superficie con una punta, efectivo con dos (en magenta: es la línea
+  que se dibuja) y corriente con tres; la proa (Rv), a trazos con el barco. Las líneas de posición se trazan desde el
+  objeto con la demora opuesta (Dv ± 180°); la situación es un círculo con punto.
 
 ## El marco de la lámina (HTML)
 
@@ -131,3 +148,11 @@ out.push(cierra());                                // marco con graduación y </
 | Hombre al agua | Boutakow (Williamson): todo el timón a la banda de la caída; separado unos 60° del rumbo inicial, todo a la banda contraria hasta el rumbo opuesto; vuelve por su estela. Anderson: todo a la banda del náufrago y una vuelta de unos 250° hasta acercarse. | IAMSAR, vol. III, sección 2 (maniobras de recogida de persona al agua); RD 875/2014, anexo II (PER, UT 3) |
 | Estabilidad | Estable si M está por encima de G (GM > 0): el par adriza; GZ = GM · sen(escora) en pequeñas escoras. Subir pesos sube G y reduce GM y GZ; con G por encima de M el par vuelca. | Teoría del buque, estabilidad inicial (metacentro transversal); RD 875/2014, anexo II (PER, UT 3) |
 | Marea: curva y doceavos | La altura sigue una curva aproximadamente senoidal entre bajamar y pleamar; regla de los doceavos para ~6 h: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud cada hora (a las 3 h, la mitad: sen²(45°) = 0,5). Sonda del momento = sonda de la carta + altura de la marea; agua bajo la quilla = sonda − calado. | Anuario de mareas del Instituto Hidrográfico de la Marina (tabla de corrección C = A · sen²(90° · I / D)); RD 875/2014, anexo II (PER, UT 10; PY, UT 3) |
+| Corrección total: los tres nortes | Ct = dm + Δ, cada uno con su signo (E +, W −); Rv = Ra + Ct; el norte de aguja queda al E del verdadero si la Ct es positiva y al W si es negativa. La declinación viene en la carta; el desvío, en la tablilla. | RD 875/2014, anexo II (PY, UT 3.2 y 4.1: corrección total por declinación y desvío); convenio del examen en `src/nautical/compass.js` |
+| Rumbo, demora y marcación | Rumbo y demora se miden desde el norte de 000° a 359° en el sentido de las agujas del reloj; la marcación, desde la proa, de 0° a 180° por cada banda: Dv = Rv + M (M + a estribor, − a babor). | RD 875/2014, anexo II (PER, UT 10; PY, UT 3.3) |
+| Abatimiento (babor y estribor) | Rs = Rv + Ab; Ab positivo con el viento por babor (el barco abate a estribor) y negativo por estribor; en el problema inverso Rv = Rs − Ab. | RD 875/2014, anexo II (PY, UT 3.3 «Rumbos: verdadero, de superficie y efectivo; abatimiento y deriva» y UT 4.2) |
+| Corriente: efectivo y rumbo a dar | La corriente se nombra por hacia dónde va (Rc) y su intensidad en nudos; efectivo = vector superficie + vector corriente; rumbo a dar: corriente desde la salida y, con centro en su extremo y radio la velocidad del barco, corte con la línea al destino. | RD 875/2014, anexo II (PY, UT 4.5 «Corriente conocida, resolución gráfica»); triángulo de velocidades (`src/nautical/kinematics.js`) |
+| Enfilación y corrección total | Ct = Dv − Da (demora verdadera de la carta menos la de aguja de la enfilación); Δ = Ct − dm. | RD 875/2014, anexo II (PY, UT 3.2 y 4.1 «Demora de aguja a una enfilación») |
+| Situación por dos demoras simultáneas | Cada demora, pasada a verdadera (Dv = Da + Ct), se traza desde el objeto con la opuesta (Dv ± 180°); la situación es el corte; mejor cuanto más cerca de 90°. | RD 875/2014, anexo II (PY, UT 4.3 «Situación simultánea con dos líneas de posición») |
+| Demoras no simultáneas: el traslado | Se traslada la primera línea paralela a sí misma el rumbo y la distancia navegados (Rv, Rs o efectivo, según haya viento o corriente); su corte con la segunda es la situación a la hora de la segunda. | RD 875/2014, anexo II (PY, UT 4.4 «Situación no simultánea») |
+| Estima loxodrómica | Δl = D · cos R (minutos de latitud = millas); A = D · sen R (millas); ΔL = A / cos lm (minutos de longitud); tg R = A / Δl. | RD 875/2014, anexo II (PY, UT 4.8 «Derrota loxodrómica, resolución analítica»); estima por latitud media |

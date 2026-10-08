@@ -83,6 +83,17 @@ const PILOTO = [
   { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' },
   ...['estable', 'indiferente', 'inestable'].map((caso) => ({ tipo: 'estabilidad', caso })), { tipo: 'estabilidad', caso: 'estable', traslado: 2 },
   ...['curva', 'duodecimos', 'sonda'].flatMap((modo) => [480, 600, 720, 840].map((hora) => ({ tipo: 'marea', modo, hora }))), { tipo: 'marea', modo: 'curva' },
+  // PY, carta: nortes, rosa, abatimiento, corriente, enfilación, demoras y estima (con sus casos extremos)
+  ...[[-4, 2], [3, -5], [15, 10], [-15, -10], [-15, 10], [0, 0], [0, 3]].map(([dm, desvio]) => ({ tipo: 'nortes', dm, desvio })),
+  { tipo: 'rosa', rumbo: 170, demora: 80, marcacion: true, etiqueta: 'faro' }, { tipo: 'rosa', rumbo: 30, demora: 120, marcacion: true, etiqueta: 'faro' }, { tipo: 'rosa', rumbo: 0, demora: 240, marcacion: true, etiqueta: 'faro' },
+  { tipo: 'rosa', rumbo: 225 }, { tipo: 'rosa', rumbo: 0 }, { tipo: 'rosa', demora: 60, etiqueta: 'faro' },
+  ...['babor', 'estribor'].flatMap((banda) => [{ tipo: 'abatimiento', banda }, { tipo: 'abatimiento', banda, ab: 0 }, { tipo: 'abatimiento', banda, ab: 20, rv: 300 }]),
+  { tipo: 'corriente', caso: 'efectivo' }, { tipo: 'corriente', caso: 'rumbo-a-dar' }, { tipo: 'corriente', caso: 'efectivo', rumbo: 200, rc: 300, ic: 3, ab: -8 },
+  { tipo: 'corriente', caso: 'rumbo-a-dar', ab: 6, rc: 0, ic: 4 }, { tipo: 'corriente', caso: 'efectivo', ic: 0 },
+  ...[[40, 44], [147, 152], [227, 238], [346, 338], [80, 78], [32, 26]].map(([dv, da]) => ({ tipo: 'enfilacion', dv, da })),
+  { tipo: 'demoras' }, { tipo: 'demoras', d1: 320, d2: 20 }, { tipo: 'demoras', d1: 320, d2: 40 },
+  { tipo: 'demoras', modo: 'traslado', d1: 30, d2: 118, rumbo: 75, millas: 7.5 }, { tipo: 'demoras', modo: 'traslado', d1: 30, d2: 118, rumbo: 75, millas: 7.5, linea: 'segunda' },
+  { tipo: 'loxodromica' }, ...[[60, 100, 20], [0, 50, 40], [90, 60, 60], [225, 200, 70]].map(([rumbo, dist, lm]) => ({ tipo: 'loxodromica', modo: 'triangulo', rumbo, dist, lm })),
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */
@@ -162,6 +173,9 @@ test('láminas piloto interactivas: cada parte que se puede resaltar está dibuj
     const todo = v.svg ?? v.vistas.map((x) => x.svg).join('');
     for (const p of Object.keys(def.partes)) {
       if (p === 'timon' && s.timon === 'via') continue;
+      if (p === 'corriente' && Number(s.ic) === 0) continue; // sin corriente no se dibuja su vector
+      // una rosa solo de rumbo no tiene demora ni marcación (ni una de demora, rumbo)
+      if (s.tipo === 'rosa' && ((p === 'demora' && s.demora == null) || (p === 'rumbo' && s.rumbo == null) || (p === 'marcacion' && (s.rumbo == null || s.demora == null)))) continue;
       assert.ok(todo.includes(`data-parte="${p}"`), `${JSON.stringify(s)}: falta data-parte="${p}"`);
     }
   }

@@ -1,9 +1,8 @@
-// Ilustraciones de navegación: nortes y corrección total, enfilación, triángulos de corriente, abatimiento,
+// Ilustraciones de navegación: triángulos de corriente, abatimiento,
 // viento aparente (también según el rumbo), loxodrómica, mareas (y vivas/muertas), situación por dos demoras, sectores de las luces, canal balizado y dispositivo de separación del tráfico.
 // Los colores son de saturación media para leerse en los temas claro y oscuro (el fondo es il-panel).
 
 import { vientoAparente } from '../nautical/viento.js';
-import { deg3 } from './kit.js';
 
 const C = { v: '#2563eb', m: '#16a34a', a: '#d97706', r: '#dc2626', p: '#7c3aed', g: '#64748b' };
 
@@ -26,35 +25,6 @@ function arc(x, y, r, a, b, c) {
 const fmt = (n) => `${n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n)}°`;
 
 // Nortes (verdadero, magnético y de aguja): ahora es interactiva, en src/illustrations/interactivas/nortes.js.
-
-// ---------------------------------------------------------------------------
-// Enfilación: dos marcas alineadas dan una demora verdadera exacta. spec: { tipo:'enfilacion', dv: 40, da: 44 }
-
-export function enfilacionIllustration(spec) {
-  const dvv = Number(spec.dv ?? 40);
-  const da = Number(spec.da ?? 44);
-  const ct = dvv - da;
-  const W = 320;
-  const H = 240;
-  const out = open(W, H, 'Enfilación', 'en');
-  out.push(title(160, 'Enfilación: Ct = Dv − Da'));
-  const b = [70, 200];
-  const f1 = pol(b[0], b[1], dvv, 150);
-  const f2 = pol(b[0], b[1], dvv, 200);
-  out.push(`<line x1="${b[0]}" y1="${b[1]}" x2="${f2[0]}" y2="${f2[1]}" stroke="${C.v}" stroke-width="1.5" stroke-dasharray="6 4"/>`);
-  for (const [x, y, t] of [[...f1, 'A'], [...f2, 'B']]) out.push(`<circle cx="${x}" cy="${y}" r="7" fill="#facc15" stroke="#92400e"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>`, lbl(x + 10, y + 4, `faro ${t}`));
-  out.push(`<path d="M${b[0]},${b[1] - 10} l6,16 l-12,0z" fill="${C.g}"/>`);
-  const n = pol(b[0], b[1], 0, 70);
-  out.push(arrow(b[0], b[1], n[0], n[1], 'v', 'en'), lbl(n[0] + (ct < 0 ? 6 : -6), n[1] - 5, 'Nv', 'v', ct < 0 ? 'start' : 'end'));
-  // Ct = Dv − Da: con Ct negativa el norte de aguja queda al W (izquierda) del verdadero (ángulo exagerado ×3)
-  const na = pol(b[0], b[1], ct * 3, 60);
-  out.push(arrow(b[0], b[1], na[0], na[1], 'a', 'en', 1.8), lbl(na[0] + (ct < 0 ? -4 : 4), na[1] - 5, 'Na', 'a', ct < 0 ? 'end' : 'start'));
-  out.push(arc(b[0], b[1], 30, Math.min(ct * 3, dvv), Math.max(ct * 3, dvv), 'a'));
-  out.push(arc(b[0], b[1], 40, 0, dvv, 'v'), lbl(b[0] + 26, b[1] - 46, `Dv ${dvv}° (carta)`, 'v'));
-  out.push(lbl(150, 200, `Da ${da}° (aguja)`, 'a'), lbl(150, 216, `Ct = ${dvv}° − ${da}° = ${fmt(ct)}`, 'r', 'start', 'font-weight="700"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Cuando dos marcas se ven una detrás de otra estás sobre su enfilación: la demora verdadera la mides en la carta y la de aguja con la aguja. La diferencia es la corrección total.' };
-}
 
 // Corriente y abatimiento: ahora son interactivas, en src/illustrations/interactivas/ (cadena.js, corriente.js, abatimiento.js).
 
@@ -132,28 +102,6 @@ export function vientoAparenteIllustration(spec = {}) {
 }
 
 // ---------------------------------------------------------------------------
-// Loxodrómica: triángulo Δl, apartamiento y rumbo. spec: { tipo:'loxodromica' }
-
-export function loxodromicaIllustration() {
-  const W = 320;
-  const H = 260;
-  const out = open(W, H, 'Loxodrómica', 'lx');
-  out.push(title(160, 'Estima: Δl, apartamiento y rumbo'));
-  const a = [70, 220];
-  const b = [250, 70];
-  out.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${a[0]}" y2="${b[1]}" stroke="${C.v}" stroke-width="2"/>`, lbl(a[0] + 6, (a[1] + b[1]) / 2 - 20, 'Δl = D · cos R', 'v', 'start'));
-  out.push(`<line x1="${a[0]}" y1="${b[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${C.m}" stroke-width="2"/>`, lbl((a[0] + b[0]) / 2, b[1] - 8, 'A = D · sen R', 'm', 'middle'));
-  out.push(arrow(a[0], a[1], b[0], b[1], 'r', 'lx', 2.8), lbl((a[0] + b[0]) / 2 + 10, (a[1] + b[1]) / 2 + 18, 'D (millas)', 'r'));
-  out.push(arc(a[0], a[1], 40, 0, Math.atan2(b[0] - a[0], a[1] - b[1]) * (180 / Math.PI), 'a'), lbl(a[0] + 16, a[1] - 46, 'R', 'a', 'start', 'font-weight="700"'));
-  out.push(`<circle cx="${a[0]}" cy="${a[1]}" r="4" fill="currentColor"/><circle cx="${b[0]}" cy="${b[1]}" r="4" fill="currentColor"/>`);
-  out.push(lbl(a[0] + 8, a[1] + 14, 'salida'), lbl(b[0] - 4, b[1] - 10, 'llegada', null, 'end'));
-  out.push(lbl(180, 200, 'ΔL = A / cos lm', 'p', 'start', 'font-weight="700"'), lbl(180, 216, 'lm = latitud media', 'p'));
-  out.push(lbl(14, H - 12, 'tg R = A / Δl · D = Δl / cos R'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'La distancia y el rumbo forman un triángulo rectángulo con la diferencia de latitud (Δl) y el apartamiento (A, en millas). El apartamiento se pasa a diferencia de longitud dividiendo por el coseno de la latitud media.' };
-}
-
-// ---------------------------------------------------------------------------
 // Mareas. spec: { tipo:'marea', modo:'curva'|'duodecimos'|'sonda' }
 
 export function mareaIllustration(spec) {
@@ -215,42 +163,4 @@ function mareasVivasMuertas() {
   return { svg: out.join(''), caption: 'Con luna nueva y luna llena (sicigias) el Sol, la Tierra y la Luna están alineados y sus atracciones se suman: mareas vivas, de mayor amplitud. En los cuartos creciente y menguante (cuadraturas) se contrarrestan: mareas muertas, de menor amplitud. Ocurren cada unos 15 días.' };
 }
 
-// ---------------------------------------------------------------------------
-// Situación por dos demoras simultáneas. spec: { tipo:'demoras', d1?: Dv al faro A, d2?: Dv al faro B }
-
-export function demorasIllustration(spec) {
-  const d1 = Number(spec.d1 ?? 330);
-  const d2 = Number(spec.d2 ?? 34);
-  const A = [70, 86];
-  const B = [252, 74];
-  // desde cada faro, la demora opuesta; el barco está en el corte
-  const u = pol(0, 0, d1 + 180, 1);
-  const v = pol(0, 0, d2 + 180, 1);
-  const den = u[0] * v[1] - u[1] * v[0];
-  if (Math.abs(den) < 0.2) return null; // líneas casi paralelas: mala situación
-  const t = ((B[0] - A[0]) * v[1] - (B[1] - A[1]) * v[0]) / den;
-  const P = [A[0] + u[0] * t, A[1] + u[1] * t];
-  if (!(t > 20 && P[0] > 20 && P[0] < 300 && P[1] > 110 && P[1] < 260)) return null;
-  const W = 320;
-  const H = 300;
-  const out = open(W, H, 'Situación por dos demoras', 'dm');
-  out.push(title(160, 'Situación por dos demoras simultáneas'));
-  out.push(`<path d="M0,32 L320,32 L320,70 Q280,92 252,82 Q200,64 160,92 Q110,108 70,94 Q30,84 0,100Z" fill="#a16207" opacity=".55"/>`);
-  for (const [p, n] of [[A, 'A'], [B, 'B']]) out.push(`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#facc15" stroke="#92400e"><animate attributeName="opacity" values="1;.35;1" dur="2s" repeatCount="indefinite"/></circle>`, lbl(p[0], p[1] - 10, `faro ${n}`, null, 'middle', 'font-weight="700"'));
-  const ext = (p, dir, len) => [p[0] + dir[0] * len, p[1] + dir[1] * len];
-  const la = ext(A, u, t + 22);
-  const lb = ext(B, v, Math.hypot(P[0] - B[0], P[1] - B[1]) + 22);
-  const line = (p, q, c, begin) => `<line x1="${p[0].toFixed(1)}" y1="${p[1].toFixed(1)}" x2="${q[0].toFixed(1)}" y2="${q[1].toFixed(1)}" stroke="${C[c]}" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="400"><animate attributeName="stroke-dashoffset" values="400;400;0;0" keyTimes="0;${begin};${begin + 0.3};1" dur="8s" repeatCount="indefinite"/></line>`;
-  out.push(line(A, la, 'v', 0), line(B, lb, 'p', 0.3));
-  const ma = ext(A, u, t * 0.45);
-  const mb = ext(B, v, Math.hypot(P[0] - B[0], P[1] - B[1]) * 0.45);
-  out.push(lbl(ma[0] + (u[0] < 0 ? 8 : -8), ma[1], `Dv ${deg3(d1)}`, 'v', u[0] < 0 ? 'start' : 'end', 'font-weight="700"'));
-  out.push(lbl(mb[0] + (v[0] < 0 ? 8 : -8), mb[1], `Dv ${deg3(d2)}`, 'p', v[0] < 0 ? 'start' : 'end', 'font-weight="700"'));
-  out.push(`<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.62;.66;1" dur="8s" repeatCount="indefinite"/><circle cx="${P[0].toFixed(1)}" cy="${P[1].toFixed(1)}" r="7" fill="none" stroke="${C.r}" stroke-width="2"/><circle cx="${P[0].toFixed(1)}" cy="${P[1].toFixed(1)}" r="2.5" fill="${C.r}"/>${lbl(P[0] + 11, P[1] + 4, 'situación', 'r', 'start', 'font-weight="700"')}</g>`);
-  const n = [298, 214];
-  out.push(arrow(n[0], n[1] + 16, n[0], n[1] - 18, 'g', 'dm', 1.6), lbl(n[0], n[1] - 22, 'Nv', 'g', 'middle', 'font-size="9"'));
-  out.push(lbl(14, H - 24, 'Dv = Da + Ct de cada faro, tomadas a la vez', null, 'start', 'font-size="9.5"'));
-  out.push(lbl(14, H - 10, 'Se trazan desde el faro con la demora opuesta (Dv ± 180°)', null, 'start', 'font-size="9.5"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Se toman a la vez las demoras de dos puntos de la costa, se pasan a verdaderas y se trazan en la carta desde cada punto (la línea de demora pasa por el faro). El barco está en el corte. Es más fiable cuanto más se acerque a 90° el ángulo entre las dos líneas.' };
-}
+// Enfilación, situación por dos demoras y loxodrómica: ahora en estilo C, en src/illustrations/carta-c.js.

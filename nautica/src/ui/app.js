@@ -27,6 +27,8 @@ import { temarioView, temaView } from './views/temario.js';
 import { masView } from './views/mas.js';
 import { masMenuView } from './views/mas-menu.js';
 import { sesionView } from './views/sesion.js';
+import { nivelView } from './views/nivel.js';
+import { ideaView } from './views/idea.js';
 import { pasoEnPantalla, destinoSesion, barraSesion } from './sesion.js';
 import { bibliotecaView } from './views/biblioteca.js';
 import { guiaView } from './views/guia.js';
@@ -53,6 +55,8 @@ const TIT_ROUTES = {
   biblioteca: bibliotecaView,
   mas: masMenuView, // #/<tit>/mas: la pestaña «Más» (biblioteca, podcast, tarjetas, calculadora, ajustes…)
   sesion: sesionView, // #/<tit>/sesion: ejecutor de la sesión de hoy (reenvía al paso actual; al acabar, el resumen)
+  nivel: nivelView, // #/<tit>/nivel: test de nivel por conceptos (¿ya sabes algo?) y su resultado
+  idea: ideaView, // #/<tit>/idea/<idConcepto>: ficha de una idea que se resiste (nunca desde un examen)
   guia: guiaView, // #/<tit>/guia: cómo funciona el curso (guía de bienvenida)
   tarjetas: tarjetasView,
   plan: planView, // #/<tit>/plan: calendario hasta el examen
@@ -103,8 +107,8 @@ export function pestanaDe(parts) {
   const [a, b] = parts;
   if (!a || a === 'bienvenida' || a === 'progreso') return 'hoy';
   if (TITULACIONES[a]) {
-    if (!b || b === 'hoy' || b === 'sesion') return 'hoy';
-    if (['temario', 'curso', 'teoria'].includes(b)) return 'temario';
+    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel') return 'hoy';
+    if (['temario', 'curso', 'teoria', 'idea'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
     if (b === 'examenes' || b === 'test') return 'examen';
     return 'mas'; // mas, biblioteca, laminas, carta, podcast, tarjetas, cuentas, plan, mapas, guia
@@ -118,7 +122,7 @@ function esFoco(parts) {
   if (parts[0] === 'bienvenida') return true;
   if (!TITULACIONES[parts[0]]) return false;
   const [, b, c] = parts;
-  return b === 'guia' || b === 'sesion' || ((b === 'curso' || b === 'cuentas') && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c);
+  return b === 'guia' || b === 'sesion' || b === 'nivel' || ((b === 'curso' || b === 'cuentas') && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c);
 }
 
 /** Misma sección en la otra titulación (una clase o un tema concreto no existen en la otra: se va a su apartado). */

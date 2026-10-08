@@ -46,7 +46,7 @@ function seccionIdeas(tit, temasOrden, ideas, curso) {
         t.flojas.length ? ul : h('p.muted.small', t.sabidas === t.total ? 'Todas sabidas.' : 'Ninguna floja.'),
         sinVer.length ? h('p.muted.small', `Sin ver: ${sinVer.slice(0, 6).join(' · ')}${sinVer.length > 6 ? ` y ${cuenta(sinVer.length - 6, 'más', 'más')}` : ''}.`) : null);
     }));
-  const pinta = (mapas) => { for (const [ul, t] of listas) ul.replaceChildren(...t.flojas.map((c) => filaIdea(c, tit, clases, mapas))); };
+  const pinta = (mapas) => { for (const [ul, t] of listas) ul.replaceChildren(...t.flojas.map((c) => filaIdea(c, tit, clases, mapas, { ficha: 'progreso' }))); };
   pinta([]);
   cargarMapas().then(pinta).catch(() => {});
   const texto = `IDEAS POR DOMINAR (apoyo, no cambia la probabilidad): ${ideas.map((t) => `${t.titulo} ${t.sabidas}/${t.total} sabidas, flojas: ${t.flojas.map((c) => c.etiqueta).join('; ') || '—'}, sin ver ${t.sinVer.length}`).join(' | ')}`;

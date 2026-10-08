@@ -43,8 +43,8 @@ function ideasPorClase(ic, respuestas) {
 /** «Ideas: 3 sabidas · 1 floja · 2 sin ver». */
 export const lineaIdeasClase = (x) => `Ideas: ${[x.sabidas ? cuenta(x.sabidas, 'sabida', 'sabidas') : null, x.flojas.length ? cuenta(x.flojas.length, 'floja', 'flojas') : null, x.sinVer ? cuenta(x.sinVer, 'sin ver', 'sin ver') : null].filter(Boolean).join(' · ')}`;
 
-const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', vista: 'vista · falta practicarla', repasar: 'toca repasar', dominada: 'aprendida' };
-const ESTADO_CLS = { dominada: 'ok', vista: 'ok', repasar: 'warn', empezada: 'close' };
+const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', saltada: 'ya lo sabes: saltada', vista: 'vista · falta practicarla', repasar: 'toca repasar', dominada: 'aprendida' };
+const ESTADO_CLS = { dominada: 'ok', vista: 'ok', saltada: 'saltada', repasar: 'warn', empezada: 'close' };
 
 /** Línea de estado de un tema (§4.2): cuántas clases lleva y, con datos suficientes, cuánto acierta (no es el avance). */
 export function lineaEstado(e) {
@@ -120,7 +120,7 @@ export function temaView({ progress, params: route, tit }) {
     const clasesCurso = clasesDeCurso(d.curso);
     const flojasDe = new Map();
     for (const { l } of clases) if (ideas.get(l.id)?.flojas.length) flojasDe.set(l.id, h('ul.ideas-flojas.ideas-clase'));
-    const pintaFlojas = (mapas) => { for (const [id, ul] of flojasDe) ul.replaceChildren(...ideas.get(id).flojas.map((c) => filaIdea(c, tit, clasesCurso, mapas, { claseActual: id }))); };
+    const pintaFlojas = (mapas) => { for (const [id, ul] of flojasDe) ul.replaceChildren(...ideas.get(id).flojas.map((c) => filaIdea(c, tit, clasesCurso, mapas, { claseActual: id, ficha: `temario/${ut}` }))); };
     pintaFlojas([]);
     if (ideas.size) summaryText += `\n${clases.filter(({ l }) => ideas.has(l.id)).map(({ l }) => `IDEAS ${l.id}: ${lineaIdeasClase(ideas.get(l.id))}${ideas.get(l.id).flojas.length ? ` (flojas: ${ideas.get(l.id).flojas.map((c) => c.etiqueta).join('; ')})` : ''}`).join('\n')}`;
     // Los mapas de conceptos con nodos en las clases del tema (llegan cuando cargan).

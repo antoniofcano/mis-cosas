@@ -16,7 +16,7 @@ export const APROBADO = 0.8;
  * @param {object} reg       registro guardado { visto, caja, proximo, ultimo, paso } (o undefined)
  * @param {object} respuestas mapa idPregunta → { ok }
  * @param {number} ahora     ms
- * @returns {{ estado: 'nueva'|'empezada'|'vista'|'repasar'|'dominada', hechas: number, aciertos: number, total: number, pct: number|null, proximo: number|null }}
+ * @returns {{ estado: 'nueva'|'empezada'|'saltada'|'vista'|'repasar'|'dominada', hechas: number, aciertos: number, total: number, pct: number|null, proximo: number|null }}
  *   'vista': terminada (cuenta como hecha para avanzar), pero aún sin afianzar con su práctica.
  */
 export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
@@ -25,8 +25,10 @@ export function estadoLeccion(leccion, reg, respuestas, ahora = Date.now()) {
   const aciertos = hechas.filter((id) => respuestas[id].ok).length;
   const pct = hechas.length ? aciertos / hechas.length : null;
   const base = { hechas: hechas.length, aciertos, total: ids.length, pct, proximo: reg?.proximo ?? null };
-  // Terminar la clase (o practicarla) es lo que la da por hecha; abrirla y dejarla a medias, no.
-  if (!reg?.visto && reg?.caja == null) return { ...base, estado: reg?.paso ? 'empezada' : 'nueva' };
+  // Terminar la clase (o practicarla) es lo que la da por hecha; abrirla y dejarla a medias, no. Una clase que el alumno
+  // ha saltado porque ya la sabe (test de nivel, src/course/nivel.js) no está vista: queda «saltada», que para el plan
+  // cuenta como hecha (no se propone) y en cuanto la abre vuelve a ser una clase como las demás.
+  if (!reg?.visto && reg?.caja == null) return { ...base, estado: reg?.paso ? 'empezada' : reg?.saltada ? 'saltada' : 'nueva' };
   // Sin práctica: una clase sin preguntas propias (de concepto; su práctica está en otro tema) queda aprendida al
   // terminarla; con preguntas, queda vista hasta practicarla.
   if (reg.caja == null) return { ...base, estado: ids.length ? 'vista' : 'dominada' };

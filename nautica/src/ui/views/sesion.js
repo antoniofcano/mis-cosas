@@ -10,7 +10,7 @@ import { calcularPlan } from '../cierre.js';
 import { deducirFase, componerSesion, lineaManana, resumenSesion } from '../../course/sesion.js';
 import { itemsRepaso, diaLocal } from '../../course/repaso.js';
 import { leerSesion } from '../sesion.js';
-import { conceptosDelBanco } from '../concepto.js';
+import { conceptosDelBanco, hrefFicha } from '../concepto.js';
 import { cuenta } from '../../texto.js';
 
 const MAX_GRUPOS = 10; // en un simulacro salen muchas ideas: las que fallan siempre; de las sabidas, hasta completar
@@ -74,7 +74,9 @@ export function sesionView({ progress, tit }) {
       const vistos = [...flojos, ...r.grupos.filter((g) => g.sabido).slice(0, Math.max(0, MAX_GRUPOS - flojos.length))];
       const resto = r.grupos.filter((g) => !vistos.includes(g));
       setChildren(trabajado, vistos.map((g) => h('li', { class: g.sabido ? 'ok' : 'mal' }, h('span.punto', { 'aria-hidden': 'true' }),
-        h('span.tx', h('strong', g.nombre), h('span.muted.small', detalleGrupo(g))))),
+        h('span.tx', h('strong', g.nombre), h('span.muted.small', detalleGrupo(g)),
+          // Una idea en rojo: su ficha (la sesión ya ha terminado; nunca dentro de un examen).
+          g.concepto && !g.sabido ? h('a.enlace-ficha.small', { href: hrefFicha(tit, g.concepto, 'sesion') }, 'Ver la ficha de la idea') : null))),
       resto.length ? h('li.mas-ideas', h('span.muted.small', `Y ${cuenta(resto.length, ic ? 'idea más, también bien' : 'tema más, también bien', ic ? 'ideas más, todas bien' : 'temas más, todos bien')}.`)) : null,
       h('li.pasos-hechos', h('span.muted.small', `Pasos: ${r.hechos} de ${r.pasos} hechos${r.saltados ? ` (${r.saltados} saltado${r.saltados > 1 ? 's' : ''})` : ''}.`)));
     }

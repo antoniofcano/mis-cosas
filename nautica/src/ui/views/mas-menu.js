@@ -3,9 +3,11 @@
 // progreso y plan, la copia de seguridad, los ajustes y el modo profesor. Solo enlaza: cada cosa sigue en su dirección
 // de siempre (#/<tit>/biblioteca, #/<tit>/podcast, #/calculadora, #/ajustes, #/profe…).
 
-import { h } from '../dom.js';
+import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
-import { TITULACIONES, tlink } from '../titulacion.js';
+import { TITULACIONES, tlink, currentEje } from '../titulacion.js';
+import { conceptosDelBanco } from '../concepto.js';
+import { cargarBanco } from '../../bancos/index.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { APENDICE_PUBLICADO } from '../../course/apendice.js';
 import { guardarCopia, botonRecuperar } from '../copia.js';
@@ -35,10 +37,23 @@ export function masMenuView({ progress, tit }) {
       ['#/profe', '🧑‍🏫 Modo profesor', 'Para profesores: reordenar la ruta y compartir la configuración.'],
     ]],
   ];
+  // El test de nivel, solo si el banco activo tiene sus preguntas etiquetadas por concepto (llega cuando carga).
+  const filaNivel = h('li', { hidden: true });
+  const eje = currentEje(progress);
+  Promise.all([cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]).then(([banco, ic]) => {
+    if (!ic) return;
+    const hecho = progress.nivel(banco.eje.id, tit);
+    setChildren(filaNivel, h('a.mas-fila', { href: tlink(tit, ['nivel'], hecho ? { repetir: '1' } : undefined), onclick: (ev) => {
+      if (hecho && !confirm('¿Repetir el test de nivel? El resultado nuevo sustituye al anterior. Lo que respondas cuenta como cualquier respuesta.')) ev.preventDefault();
+    } }, h('span.mas-fila-tx', h('strong', hecho ? '🎯 Repetir el test de nivel' : '🎯 Test de nivel'),
+      h('span.muted.small', hecho ? `Lo hiciste: ${hecho.aciertos} de ${hecho.total} bien. Repítelo si ha pasado tiempo.` : '¿Ya sabes algo? Unas 20 preguntas para saltarte lo que ya sabes.')),
+    h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
+    filaNivel.hidden = false;
+  }).catch(() => {});
   const copiaHecha = h('p.muted.small', progress.settings().ultimaCopia ? `Última copia: ${fechaLarga(progress.settings().ultimaCopia)}.` : 'Aún no has guardado ninguna copia.');
   const el = h('div.mas-menu',
     h('h1', 'Más'),
-    grupos.map(([nombre, rs]) => h('section.mas-grupo', h('h2.eti', nombre), h('ul.mas-lista', rs.map(([href, t, x]) => fila(href, t, x))))),
+    grupos.map(([nombre, rs]) => h('section.mas-grupo', h('h2.eti', nombre), h('ul.mas-lista', rs.map(([href, t, x]) => fila(href, t, x)), nombre === 'Tu estudio' ? filaNivel : null))),
     h('section.mas-grupo', h('h2.eti', 'Chuletas para imprimir'),
       h('details.mas-chuletas', h('summary', `📌 La chuleta de cada tema del ${T.sigla}`),
         h('ul.mas-lista.compacta', bloquesEnOrden(T.estructura).map((b) => h('li', h('a.mas-fila', { href: tlink(tit, ['temario', String(b.ut), 'chuleta']) },

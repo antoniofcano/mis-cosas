@@ -557,10 +557,26 @@ function repasoView({ progress }) {
       const dias = t ? Math.round((Date.parse(`${hoy}T12:00`) - Date.parse(`${diaLocal(Date.parse(t))}T12:00`)) / 864e5) : null;
       return dias == null || dias > 30 ? 'Hace un tiempo' : dias <= 0 ? 'Hoy' : dias === 1 ? 'Ayer' : `Hace ${cuenta(dias, 'día')}`;
     };
+    // Fichas de las ideas de una pregunta (la que se repasa primero, luego la segunda etiqueta): solo conceptos de este
+    // temario con preguntas de estudio. Antes de responder no se nombran (a veces el nombre delata la respuesta).
+    const fichasDe = (q, principal) => {
+      if (!ic) return [];
+      const ids = [...new Set([principal, ...ic.conceptosDe(q.id)].filter(Boolean))];
+      return ids.filter((id) => { const c = ic.concepto(id); return c?.tipo === 'concepto' && (c.tit ?? []).includes(tit0); });
+    };
+    const enlacesFicha = (q, principal, conNombre) => {
+      const ids = fichasDe(q, principal);
+      if (!ids.length) return null;
+      const enlace = (id, k) => h('a.enlace-ficha', { href: hrefFicha(tit0, id, 'repaso') },
+        conNombre ? `Ficha: ${ic.concepto(id)?.etiqueta ?? id}` : ids.length === 1 ? '📖 Repasar la ficha antes de responder' : `📖 Ficha ${k + 1}`);
+      return h(conNombre ? 'span.ficha-despues' : 'p.ficha-antes', conNombre ? null : ids.length > 1 ? 'Repasar antes de responder: ' : null, ids.flatMap((id, k) => (k ? [' · ', enlace(id, k)] : [enlace(id, k)])));
+    };
     setChildren(cont, tandaPreguntas({
       preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
       // Las fichas pendientes se ofrecen al final (nombrar ideas antes de responder podría dar pistas).
-      avisoDe: (i) => [
+      avisoDe: (i, q) => [
+        // Repasar de verdad: la ficha de la idea (sin nombrarla, para no dar pistas) antes de responder.
+        enlacesFicha(q, plan[i].item.concepto, false),
         plan[i].variante ? h('p.aviso-variante', `${hace(plan[i].item.q)} fallaste una pregunta de esta idea. Te la traigo `, h('strong', 'con otra redacción'), ', para comprobar que la entiendes y no que recuerdas la letra.') : null],
       alResponder: (i, q, ok) => {
         const { item, variante } = plan[i];
@@ -569,15 +585,16 @@ function repasoView({ progress }) {
         const nuevo = siguienteRepasoConcepto(item.rep, ok, hoy, new Date().toISOString());
         progress.recordRepasoConcepto(clave, tit0, item.concepto, nuevo);
         const otra = variante ? ', con otra pregunta' : '';
+        const fichas = enlacesFicha(q, item.concepto, true);
+        let msg = null;
         if (!ok) {
           // Segundo fallo de la idea: en vez de insistir con más preguntas, su ficha.
-          if (estadoFicha(ic, item.concepto, progress.get().exams, progress.fichasVistas(clave, tit0)).necesita) {
-            return ['Esta idea se te resiste: antes de otra pregunta, mira su ficha. ', h('a.enlace-ficha', { href: hrefFicha(tit0, item.concepto, 'repaso') }, 'Ver la ficha de la idea')];
-          }
-          return `Esta idea vuelve mañana${variante ? ', con una pregunta distinta' : ''}.`;
-        }
-        if (nuevo.fuera) return 'Idea repasada: ya no vuelve al repaso.';
-        return nuevo.prox > hoy ? `Esta idea vuelve dentro de ${cuenta(Math.round((Date.parse(`${nuevo.prox}T12:00`) - Date.parse(`${hoy}T12:00`)) / 864e5), 'día')}${otra}.` : null;
+          msg = estadoFicha(ic, item.concepto, progress.get().exams, progress.fichasVistas(clave, tit0)).necesita
+            ? 'Esta idea se te resiste: antes de otra pregunta, mira su ficha.'
+            : `Esta idea vuelve mañana${variante ? ', con una pregunta distinta' : ''}.`;
+        } else if (nuevo.fuera) msg = 'Idea repasada: ya no vuelve al repaso.';
+        else if (nuevo.prox > hoy) msg = `Esta idea vuelve dentro de ${cuenta(Math.round((Date.parse(`${nuevo.prox}T12:00`) - Date.parse(`${hoy}T12:00`)) / 864e5), 'día')}${otra}.`;
+        return msg || fichas ? [msg, msg && fichas ? ' ' : null, fichas] : null;
       },
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {

@@ -1422,6 +1422,8 @@ ul.trabajado .tx { display: flex; flex-direction: column; gap: 1px; }
 .sesion-cuesta { margin: -.2rem 0 0; font-size: .84rem; line-height: 1.45; overflow-wrap: anywhere; }
 .aviso-variante { margin: 0 0 .6rem; padding: .6rem .75rem; border-radius: 12px; background: var(--accent-2); color: var(--text); font-size: .86rem; line-height: 1.45; }
 .vuelve-idea { margin: .6rem 0 0; font-size: .84rem; font-weight: 600; }
+.ficha-antes { margin: 0 0 .5rem; font-size: .86rem; }
+.ficha-despues { display: block; margin-top: .3rem; font-weight: 500; }
 .listo-ideas { font-size: .9rem; }
 li.mas-ideas { border-top: 1px solid var(--border); }
 .ideas-tema { margin: 1rem 0; }

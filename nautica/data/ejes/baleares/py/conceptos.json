@@ -891,7 +891,7 @@
 "bal-py-2024-04-a-27": ["nav.esfera.circulos"],
 "bal-py-2024-04-a-30": ["nav.esfera.tropicos-polares"],
 "bal-py-2024-04-bc-30": ["nav.cartas-electronicas.tipos"],
-"bal-py-2024-04-a-31": ["nav.ct.convertir"],
+"bal-py-2024-04-a-31": ["nav.ct.dm-desvio"],
 "bal-py-2024-04-bc-31": ["carta.rumbo-distancia"],
 "bal-py-2024-04-a-32": ["carta.situacion.no-simultaneas"],
 "bal-py-2024-04-bc-32": ["carta.situacion.no-simultaneas"],

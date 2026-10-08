@@ -19,7 +19,11 @@ export function barraActividad({ texto, fraccion = 0, onSalir, derecha = null })
     h('div.ba-progreso', fill));
   el.set = (t, f) => {
     if (t != null) label.textContent = t;
-    if (f != null) fill.style.width = `${Math.round(Math.max(0, Math.min(1, f)) * 100)}%`;
+    if (f != null) {
+      fill.style.width = `${Math.round(Math.max(0, Math.min(1, f)) * 100)}%`;
+      // La barra de la sesión de estudio (src/ui/sesion.js), si la hay, llena su tramo con este avance.
+      if (typeof dispatchEvent === 'function') dispatchEvent(new CustomEvent('nautica-avance', { detail: { fraccion: f } }));
+    }
   };
   el.set(texto, fraccion);
   return el;

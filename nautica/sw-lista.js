@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '4ccd50fbcae9';
+self.VERSION = '9990d2573190';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -295,10 +295,12 @@ self.DATOS = [
  "data/ejes/andalucia/img/and-py-2016-c1-g17.png",
  "data/ejes/andalucia/img/and-py-2021-c1-g12.png",
  "data/ejes/andalucia/img/py-tabla-mareas.png",
+ "data/ejes/andalucia/per/conceptos.json",
  "data/ejes/andalucia/per/explicaciones.json",
  "data/ejes/andalucia/per/practica.json",
  "data/ejes/andalucia/per/preguntas.json",
  "data/ejes/andalucia/per/resueltos.json",
+ "data/ejes/andalucia/py/conceptos.json",
  "data/ejes/andalucia/py/explicaciones.json",
  "data/ejes/andalucia/py/practica.json",
  "data/ejes/andalucia/py/preguntas.json",
@@ -332,10 +334,12 @@ self.DATOS = [
  "data/ejes/baleares/img/bal-351393-28.jpg",
  "data/ejes/baleares/img/bal-351399-33.jpg",
  "data/ejes/baleares/img/bal-368749-41.jpg",
+ "data/ejes/baleares/per/conceptos.json",
  "data/ejes/baleares/per/explicaciones.json",
  "data/ejes/baleares/per/practica.json",
  "data/ejes/baleares/per/preguntas.json",
  "data/ejes/baleares/per/resueltos.json",
+ "data/ejes/baleares/py/conceptos.json",
  "data/ejes/baleares/py/explicaciones.json",
  "data/ejes/baleares/py/practica.json",
  "data/ejes/baleares/py/preguntas.json",

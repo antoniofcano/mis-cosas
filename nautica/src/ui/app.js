@@ -15,6 +15,7 @@ import { icono, conIcono } from './iconos.js';
 import { voice } from './voice.js';
 import { configurarEfectos, escucharPrimerGesto } from './efectos.js';
 import { pedirPersistencia } from '../store/persistencia.js';
+import { escucharInstalacion } from './instalar.js';
 import { exerciseView } from './views/exercise.js';
 import { preguntaView, listaView, legadoExamenesView } from './views/exams.js';
 import { theoryView, progressView, chartView } from './views/misc.js';
@@ -173,6 +174,7 @@ function renderNav(tit, parts, cambiarTit) {
 }
 
 async function main() {
+  escucharInstalacion();
   const root = document.getElementById('app');
   const chart = createChart(await loadChartData());
   const ctx = { chart };

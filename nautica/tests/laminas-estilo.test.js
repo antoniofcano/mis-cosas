@@ -94,6 +94,9 @@ const PILOTO = [
   { tipo: 'demoras' }, { tipo: 'demoras', d1: 320, d2: 20 }, { tipo: 'demoras', d1: 320, d2: 40 },
   { tipo: 'demoras', modo: 'traslado', d1: 30, d2: 118, rumbo: 75, millas: 7.5 }, { tipo: 'demoras', modo: 'traslado', d1: 30, d2: 118, rumbo: 75, millas: 7.5, linea: 'segunda' },
   { tipo: 'loxodromica' }, ...[[60, 100, 20], [0, 50, 40], [90, 60, 60], [225, 200, 70]].map(([rumbo, dist, lm]) => ({ tipo: 'loxodromica', modo: 'triangulo', rumbo, dist, lm })),
+  { tipo: 'tangente-viento' }, { tipo: 'tangente-viento', banda: 'estribor', viento: 0, dv: 200, resaltar: 'rv' },
+  { tipo: 'traves-derrota' }, { tipo: 'traves-derrota', banda: 'estribor', rv: 45, viento: 0, trampa: false },
+  { tipo: 'corriente-desconocida' }, { tipo: 'corriente-desconocida', resaltar: 'corriente' }, { tipo: 'loxo-orto' }, { tipo: 'loxo-orto', resaltar: 'orto' },
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */

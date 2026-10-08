@@ -212,9 +212,9 @@ export const barquito = (s = 1, color = T.tinta) => `<path d="M${f1(13 * s)},0 C
 // candidatas y se queda con la primera que cabe en el dibujo, no tapa otra etiqueta ni corta ninguna línea.
 
 /** Caja de una etiqueta (la de etiqueta()) centrada en (x, y). */
-export function cajaEtiqueta(t, x, y, size = TXT.cota) {
-  const w = anchoTexto(t, size, 'mono') + 10;
-  const h = size + 6;
+export function cajaEtiqueta(t, x, y, size = TXT.cota, rotuloSuelto = false) {
+  const w = rotuloSuelto ? anchoTexto(t, size, 'serif') + 4 : anchoTexto(t, size, 'mono') + 10;
+  const h = rotuloSuelto ? size + 3 : size + 6;
   return { x0: x - w / 2, y0: y - h / 2, x1: x + w / 2, y1: y + h / 2, w, h };
 }
 
@@ -267,7 +267,7 @@ export function colocaEtiquetas(peticiones, { W, H, segs = [], cajas = [], marge
   for (const q of peticiones) {
     let mejor = null;
     for (const [x, y] of q.cands) {
-      const c = cajaEtiqueta(q.t, x, y, q.size);
+      const c = cajaEtiqueta(q.t, x, y, q.size, q.rotulo);
       const g = { x0: c.x0 - 2, y0: c.y0 - 2, x1: c.x1 + 2, y1: c.y1 + 2 };
       let pena = 0;
       if (c.x0 < margen || c.x1 > W - margen || c.y0 < margen || c.y1 > H - margen) pena += 100;
@@ -277,7 +277,7 @@ export function colocaEtiquetas(peticiones, { W, H, segs = [], cajas = [], marge
       if (pena === 0) break;
     }
     if (!mejor) continue;
-    cajas.push(cajaEtiqueta(q.t, mejor.x, mejor.y, q.size));
+    cajas.push(cajaEtiqueta(q.t, mejor.x, mejor.y, q.size, q.rotulo));
     const color = q.color ?? T.tinta;
     if (q.ref) out.push(referencia(q.ref[0], q.ref[1], mejor.x, mejor.y, { color }));
     out.push(q.rotulo ? rotulo(mejor.x, mejor.y + 4, q.t, { size: q.size ?? TXT.cota, estilo: 'serif', italic: true, color, p: q.p ?? null })

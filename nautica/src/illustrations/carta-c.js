@@ -5,19 +5,47 @@
 //   loxodromica: { tipo:'loxodromica' }                         (con modo:'triangulo' es interactiva)
 // Convenio del examen: E (+), W (−); las demoras se trazan desde el punto de la costa con la demora opuesta (Dv ± 180°).
 
-import { T, TXT, lienzo, rotulo, etiqueta, cartela, cotaArco, flecha, rosaNorte, tierra, ondas, junto, colocaEtiquetas, arcoD, pol, f1 } from './estilo-c.js';
+import { T, TXT, lienzo, rotulo, etiqueta, cartela, cotaArco, flecha, rosaNorte, tierra, ondas, paso, junto, colocaEtiquetas, arcoD, pol, f1 } from './estilo-c.js';
 
 const pad3 = (d) => String(Math.round(((d % 360) + 360) % 360)).padStart(3, '0');
 const conSigno = (d) => `${d > 0 ? '+' : d < 0 ? '−' : ''}${String(Math.abs(d)).replace('.', ',')}°`;
 
 /** Faro de carta: círculo amarillo con punto, que destella (la animación que ya tenía la lámina). */
-const faro = (x, y, { p = null, destella = true, dur = 2 } = {}) =>
+export const faro = (x, y, { p = null, destella = true, dur = 2 } = {}) =>
   `<g${p ? ` data-parte="${p}"` : ''}><circle cx="${f1(x)}" cy="${f1(y)}" r="6.5" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1.2">` +
   (destella ? `<animate attributeName="opacity" values="1;.35;1" dur="${dur}s" repeatCount="indefinite"/>` : '') + `</circle><circle cx="${f1(x)}" cy="${f1(y)}" r="1.8" fill="${T.tinta}"/></g>`;
 
 /** Situación observada: círculo con punto (como en la carta). */
-const situacion = (x, y, { color = T.magenta, p = null } = {}) =>
+export const situacion = (x, y, { color = T.magenta, p = null } = {}) =>
   `<g${p ? ` data-parte="${p}"` : ''}><circle cx="${f1(x)}" cy="${f1(y)}" r="8" fill="none" stroke="${color}" stroke-width="1.8"/><circle cx="${f1(x)}" cy="${f1(y)}" r="2.4" fill="${color}"/></g>`;
+
+/** Situación de estima: triángulo con punto (como en la carta). */
+export const estima = (x, y, { color = T.tinta, p = null } = {}) =>
+  `<g${p ? ` data-parte="${p}"` : ''}><path d="M${f1(x)},${f1(y - 9)} L${f1(x + 8)},${f1(y + 5)} L${f1(x - 8)},${f1(y + 5)}Z" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round"/><circle cx="${f1(x)}" cy="${f1(y)}" r="2.2" fill="${color}"/></g>`;
+
+/** Posiciones candidatas alrededor de un punto: a varias distancias y en doce direcciones (para etiquetas con `ref`). */
+export function alrededor([x, y], distancias = [26, 40, 56], primero = null) {
+  const dirs = Array.from({ length: 12 }, (_, i) => i * 30);
+  if (primero != null) dirs.sort((a, b) => Math.abs(((a - primero + 540) % 360) - 180) - Math.abs(((b - primero + 540) % 360) - 180)).reverse();
+  return distancias.flatMap((d) => dirs.map((g) => pol(x, y, g, d)));
+}
+
+/** De las esquinas candidatas, la más alejada de los puntos del dibujo (para la rosa del norte). */
+export function esquinaLibre(pts, esquinas) {
+  return esquinas.map((q) => [q, Math.min(...pts.map((p) => Math.hypot(p[0] - q[0], p[1] - q[1])))]).sort((a, b) => b[1] - a[1])[0][0];
+}
+
+/** Fila de una cuenta, con su número de paso: texto en serifa (las cifras se leen igual) y, si es la clave, en magenta. */
+export const filaPaso = (x, y, n, texto, { clave = false, p = null, extra = '' } = {}) =>
+  `<g${p ? ` data-parte="${p}"` : ''}${extra}>${paso(x, y - 4, n, { color: clave ? T.magenta : T.tinta })}${rotulo(x + 16, y, texto, { size: TXT.min + 0.5, estilo: 'serif', anchor: 'start', weight: clave ? 700 : 400, color: clave ? T.magenta : T.tinta })}</g>`;
+
+/** Flechas de viento (dos, paralelas) que soplan desde `de` hacia sotavento, centradas en (x, y), con su rótulo. */
+export function vientoC(x, y, de, texto, { p = null, extra = '' } = {}) {
+  const hacia = de + 180;
+  const [nx, ny] = pol(0, 0, hacia + 90, 6);
+  const fl = [-1, 1].map((s) => { const [ax, ay] = pol(x + nx * s, y + ny * s, de, 15); const [bx, by] = pol(x + nx * s, y + ny * s, hacia, 15); return flecha(ax, ay, bx, by, { color: T.apagado, w: 1.4 }); });
+  return `<g${p ? ` data-parte="${p}"` : ''}${extra}>${fl.join('')}${rotulo(x, y + 30, texto, { size: TXT.min, estilo: 'serif', italic: true, color: T.apagado })}</g>`;
+}
 
 /** Mancha de costa (un cabo o un islote) centrada en (x, y), con su punteado. */
 function islote(x, y, r, pt, giro = 0) {

@@ -345,9 +345,38 @@ function loxodromica(spec) {
   };
 }
 
+const tangenteViento = (spec) => ({
+  tema: NAV, titulo: spec.banda === 'estribor' ? 'Rumbo para pasar a una distancia, con viento, dejándolo por estribor' : 'Rumbo para pasar a una distancia, con viento', clave: 'La tangente es el Rs; la proa se mete hacia el viento: Rv = Rs − Ab.',
+  datos: [{ cifra: 'sen α = d / D', texto: 'α: de la visual al faro a la tangente' }, { cifra: 'Rs = Dv ± α', texto: '+ si dejas el faro por babor' }, { cifra: 'Ra = Rv − Ct', texto: 'y al final, a la aguja' }],
+  nota: 'Primero la derrota sobre el agua (la tangente, Rs); después el viento (Rv) y al final la aguja (Ra). Si tomas la tangente como proa, el viento te saca de ella y no pasas a la distancia que querías.',
+  alt: 'Desde la situación, la visual al faro y la tangente a la circunferencia de la distancia de paso, con el ángulo α acotado; la tangente es el rumbo de superficie y, en magenta y a trazos, la proa metida hacia el viento con el abatimiento acotado. Debajo, la cuenta en cinco pasos.',
+});
+
+const travesDerrota = (spec) => ({
+  tema: NAV, titulo: spec.banda === 'estribor' ? 'Faro por el través de estribor y derrota' : 'Faro por el través y derrota', clave: 'El través se mide con la proa (Rv ± 90°) y se corta con la derrota (Rs).',
+  datos: [{ cifra: 'Rv ± 90°', texto: 'el través: + estribor, − babor' }, { cifra: 'Dv + 180°', texto: 'lo que se traza desde el faro' }, { cifra: 'Rs', texto: 'la derrota con la que se corta' }],
+  nota: 'Con viento, la proa y la derrota no coinciden. El través es perpendicular a la proa; hacerlo con el Rs da un punto muy cercano, pero erróneo.',
+  alt: 'La derrota (Rs) desde la salida; del faro sale la línea del través, perpendicular a la proa (Rv, a trazos, con su ángulo recto), y su corte con la derrota es la situación, en magenta. Apagada, la trampa: el través trazado con el Rs. Debajo, la cuenta.',
+});
+
+const corrienteDesconocida = () => ({
+  tema: NAV, titulo: 'Corriente desconocida: de la estima a la observada', clave: 'La corriente va de la situación estimada a la observada, a la misma hora.',
+  datos: [{ cifra: 'Se → So', texto: 'el rumbo de la corriente (Rc)' }, { cifra: 'Ihc = d / t', texto: 'millas entre las dos, entre las horas' }, { cifra: '2 nudos', texto: 'en el ejemplo: 3,0 millas en 1,5 h' }],
+  nota: 'La estima se hace sin corriente (rumbo y velocidad, con el viento si lo hay). La diferencia con la situación observada es lo que ha hecho la corriente desde la última situación fiable.',
+  alt: 'Carta del Estrecho: de la salida de las 10:00, la estima (Rv 100°, 9 millas) hasta la situación estimada de las 11:30; las demoras de Punta Paloma y Punta Cires dan la observada; la corriente, en magenta, va de la estimada a la observada. Debajo, la resolución.',
+});
+
+const loxoOrto = () => ({
+  tema: NAV, titulo: 'Loxodrómica y ortodrómica', clave: 'La loxodrómica mantiene el rumbo; la ortodrómica es la más corta.',
+  datos: [{ cifra: 'α constante', texto: 'loxodrómica: el mismo rumbo con cada meridiano' }, { cifra: 'recta', texto: 'la loxodrómica, en la Mercator' }, { cifra: 'círculo máximo', texto: 'ortodrómica: la distancia más corta' }],
+  nota: 'En costa y en el examen se navega por loxodrómica: en distancias cortas la diferencia con la ortodrómica es despreciable. En las travesías oceánicas la ortodrómica se sigue por tramos loxodrómicos.',
+  alt: 'La misma travesía en el globo y en la carta Mercator: la loxodrómica, en magenta y continua, corta todos los meridianos con el mismo ángulo α y en la Mercator es una recta; la ortodrómica, a trazos, sale curvada hacia el polo.',
+});
+
 const MARCOS = {
   cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
   nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
+  'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

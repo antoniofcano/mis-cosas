@@ -19,10 +19,10 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
 | demoras modo traslado · I | C (esta rama) |
 | loxodromica (triángulo) | C (esta rama) |
 | loxodromica modo triangulo · I | C (esta rama) |
-| tangente-viento | pendiente |
-| traves-derrota | pendiente |
-| corriente-desconocida | pendiente |
-| loxo-orto | pendiente |
+| tangente-viento | C (esta rama) |
+| traves-derrota | C (esta rama) |
+| corriente-desconocida | C (esta rama) |
+| loxo-orto | C (esta rama) |
 | coordenadas (esfera, lugar, diferencias) | pendiente |
 | husos (husos, cálculo e/w, oficial) | pendiente |
 | radar-pantalla, radar-respondedores, gnss, gnss-calculos, carta-raster-vectorial, ais, avisos-navegantes | pendiente (UT 3, no de carta) |
@@ -52,6 +52,9 @@ Orden de migración por rentabilidad para el alumno de PY. `C` = en estilo C; `I
 - Grupo 1a (carta): nortes, rosa, abatimiento, corriente, enfilación, dos demoras, traslado de demoras y estima
   loxodrómica (fija e interactiva). Piezas nuevas en `estilo-c.js`: `junto()` y `colocaEtiquetas()`. Láminas fijas en
   `src/illustrations/carta-c.js`; las interactivas siguen en `src/illustrations/interactivas/`.
+- Grupo 1b (carta, clases del PY): rumbo para pasar a una distancia con viento, faro por el través y derrota, corriente
+  desconocida y loxodrómica frente a ortodrómica. Siguen en sus ficheros de `lecciones/` (mismos `resaltar`), con la cuenta
+  paso a paso en filas numeradas (`filaPaso()` de `carta-c.js`).
 
 ## Verificación
 

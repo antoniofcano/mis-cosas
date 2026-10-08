@@ -5,6 +5,8 @@
 // Funciones puras spec → { svg, caption }. Admiten `resaltar` (una parte o lista) para destacar la que trata cada paso.
 
 import { C, open, title, pol, arrow, deg3, fx } from '../kit.js';
+import { T, lienzo, flecha, cota, rosaNorte, arcoD, junto, colocaEtiquetas } from '../estilo-c.js';
+import { faro as faroC, situacion, esquinaLibre, filaPaso, vientoC, alrededor } from '../carta-c.js';
 
 const nf = (n, d = 1) => (+n).toFixed(d).replace('.', ',');
 const n0 = (n) => nf(n, Number.isInteger(+n) ? 0 : 1);
@@ -261,10 +263,13 @@ function tangenteViento(spec = {}) {
   const ab = bv === 'babor' ? abG : -abG;
   const rv = norm(rs - ab);
   const ra = norm(rv - ct);
-  const W = 320;
-  const H = 306;
-  const out = open(W, H, 'Rumbo para pasar a una distancia de un faro, con viento', id);
-  out.push(title(160, 'Con viento, la tangente es el Rs'));
+  // Estilo C (docs/ESTILO-LAMINAS.md): la tangente (Rs) con una punta, la proa (Rv) a trazos con el barco, los ángulos
+  // α y Ab acotados y la cuenta, paso a paso, debajo.
+  const W = 358;
+  const H = 352;
+  const dvTxt = Number.isInteger(dv) ? deg3(dv) : `${nf(dv)}°`.padStart(6, '0');
+  const alt = `Rumbo para pasar a ${n0(dp)} millas de un faro, con viento. Desde la situación, la visual al faro (Dv ${dvTxt}, ${n0(D)} millas) y la tangente a la circunferencia de ${n0(dp)} millas, que es el rumbo de superficie (${deg3(rs)}); el viento del ${nombreViento(viento)} abate ${abG}°, así que la proa va metida hacia él: Rv ${deg3(rv)}.`;
+  const { out, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
   // geometría en millas (x al E, y al S, como la pantalla)
   const S0 = [0, 0];
   const F0 = pol(0, 0, dv, D);
@@ -272,65 +277,65 @@ function tangenteViento(spec = {}) {
   const T0 = pol(0, 0, rs, Lt);
   const E0 = pol(0, 0, rs, Lt * 1.18);
   const pts = [S0, E0, [F0[0] - dp, F0[1] - dp], [F0[0] + dp, F0[1] + dp]];
-  const { k, P } = encaja(pts, [40, 50, 270, 168]);
+  const { k, P } = encaja(pts, [52, 44, 306, 200]);
   const S = P(S0);
   const F = P(F0);
-  const T = P(T0);
+  const Tg = P(T0);
   const E = P(E0);
   const r = dp * k;
-  // circunferencia de la distancia de paso
-  out.push(`<g${m.dim('circulo')}><circle cx="${fx(F[0])}" cy="${fx(F[1])}" r="${fx(r)}" fill="none" stroke="${C.a}" stroke-width="${m.on('circulo') ? 2.6 : 1.6}" stroke-dasharray="5 3"/>${seg(F, T, 'a', 1.2)}</g>`);
-  // visual al faro
-  out.push(`<g${m.dim('visual')}>${seg(S, F, 'g', m.on('visual') ? 2.4 : 1.4, 'stroke-dasharray="3 3"')}</g>`);
-  // tangente = Rs
-  out.push(`<g${m.dim('tangente')}>${arrow(S[0], S[1], E[0], E[1], 'v', id, m.on('tangente') || !m.activo ? 3.2 : 2.4)}${punto(T, 'v', 2.5)}</g>`);
-  // Rv: la proa, metida hacia el viento
-  const Lrv = Math.hypot(E[0] - S[0], E[1] - S[1]) * 0.55;
+  const Lrv = Math.hypot(E[0] - S[0], E[1] - S[1]) * 0.5;
   const V = pol(S[0], S[1], rv, Lrv);
-  out.push(`<g${m.dim('rv')}>${arrow(S[0], S[1], V[0], V[1], 'r', id, m.on('rv') ? 3.2 : 2.4)}</g>`);
-  // arco del abatimiento entre Rv y Rs, con su etiqueta por fuera del lado del Rv
-  const [a0, a1] = norm(rs - rv) < 180 ? [rv, rs] : [rs, rv];
-  const lado = norm180(rs - rv) > 0 ? 1 : -1; // el Rs queda a la derecha (+1) o a la izquierda (−1) del Rv
-  out.push(`<g${m.dim('viento')}>${arco(S, 40, a0, a1, 'currentColor', m.on('viento') ? 2.4 : 1.4)}`);
-  const pAb = pol(S[0], S[1], rv - lado * 22, 42);
-  out.push(t(pAb[0], pAb[1] + 4, `Ab ${abG}°`, { a: pAb[0] < S[0] - 4 ? 'end' : pAb[0] > S[0] + 4 ? 'start' : 'middle', b: true, s: 10 }));
-  // flecha del viento (sopla de `viento` hacia viento+180), en la esquina inferior izquierda
-  const hacia = u(viento + 180);
-  const wc = [40, 170];
-  const w0 = mas(wc, hacia, -14);
-  const w1 = mas(wc, hacia, 14);
-  const nrm = [-hacia[1] * 4, hacia[0] * 4];
-  out.push(arrow(w0[0] + nrm[0], w0[1] + nrm[1], w1[0] + nrm[0], w1[1] + nrm[1], 'g', id, 2.2), arrow(w0[0] - nrm[0], w0[1] - nrm[1], w1[0] - nrm[0], w1[1] - nrm[1], 'g', id, 2.2));
-  out.push(t(wc[0], 198, `viento ${nombreViento(viento)}`, { c: 'g', a: 'middle', b: true, s: 10 }), '</g>');
-  // etiquetas de Rs y Rv, cada una más allá de la punta de su flecha
-  const punta = (q, deg, txt1, txt2, c, p, dy0 = 0) => {
-    const n = u(deg);
-    const a = n[0] > 0.35 ? 'start' : n[0] < -0.35 ? 'end' : 'middle';
-    const r0 = mas(q, n, 8);
-    const dy = (n[1] > 0.5 ? 12 : n[1] < -0.5 ? -16 : 4) + dy0;
-    out.push(`<g${m.dim(p)}>${t(r0[0], r0[1] + dy, txt1, { c, a, b: true, s: 10.5 })}${t(r0[0], r0[1] + dy + 12, txt2, { a, s: 9.5 })}</g>`);
-  };
-  punta(E, rs, `Rs ${deg3(rs)}`, 'la tangente', 'v', 'tangente');
-  punta(V, rv, `Rv ${deg3(rv)}`, 'la proa', 'r', 'rv');
-  // faro, situación y norte
-  const ufs = u(dv);
-  const lf = mas(F, ufs, 0);
-  out.push(faro(F), t(lf[0], lf[1] - 10, 'faro', { a: 'middle', b: true, s: 9.5 }));
-  const mr = [(F[0] + T[0]) / 2, (F[1] + T[1]) / 2];
-  const nr = u(rs); // perpendicular al radio, hacia fuera de la situación
-  out.push(`<g${m.dim('circulo')}>${t(mr[0] + nr[0] * 7, mr[1] + nr[1] * 7 + 4, `d = ${n0(dp)} M`, { c: 'a', a: nr[0] >= 0 ? 'start' : 'end', b: true, s: 10 })}</g>`);
-  const ns = u(dv + 180);
-  out.push(`<g${m.dim('situacion')}>${obs(S, 'currentColor', m.on('situacion') ? 2.6 : 1.8)}${t(S[0] + ns[0] * 4, S[1] - 13, 'situación', { a: 'middle', b: m.on('situacion'), s: 10 })}</g>`);
-  out.push(norte(298, 186, id));
+  const segs = [[S, F], [S, E], [F, Tg], [S, V]];
+  const cajas = [];
+  const pet = [];
+  // circunferencia de la distancia de paso, con su radio acotado
+  out.push(`<g${m.dim('circulo')}><circle cx="${fx(F[0])}" cy="${fx(F[1])}" r="${fx(r)}" fill="none" stroke="${T.tinta}" stroke-width="${m.on('circulo') ? 1.8 : 1.2}" stroke-dasharray="6 4"/>${cota(F[0], F[1], Tg[0], Tg[1], '', { tope: 4 })}</g>`);
+  pet.push({ t: `d ${n0(dp)} M`, cands: junto(F, Tg, `d ${n0(dp)} M`, { centro: S }), p: 'circulo', extra: m.dim('circulo') });
+  // visual al faro
+  out.push(`<g${m.dim('visual')}><line x1="${fx(S[0])}" y1="${fx(S[1])}" x2="${fx(F[0])}" y2="${fx(F[1])}" stroke="${T.apagado}" stroke-width="${m.on('visual') ? 1.6 : 1.1}" stroke-dasharray="3 3"/></g>`);
+  const tVis = `Dv ${dvTxt} · ${n0(D)} M`;
+  pet.push({ t: tVis, cands: junto(S, F, tVis, { centro: E, ks: [0.6, 0.45, 0.75, 0.3] }), p: 'visual' });
+  // α: de la visual a la tangente
+  const [b0, b1] = norm180(rs - dv) > 0 ? [dv, rs] : [rs, dv];
+  out.push(`<g${m.dim('tangente')}><path d="${arcoD(S[0], S[1], 58, b0, b1)}" fill="none" stroke="${T.tinta}" stroke-width="1"/></g>`);
+  const [ax, ay] = pol(S[0], S[1], (b0 + norm180(b1 - b0) / 2), 58);
+  pet.push({ t: `α ${nf(alfa)}°`, cands: alrededor([ax, ay]), ref: [ax, ay], p: 'tangente' });
+  // la tangente = Rs (una punta) y el punto de tangencia
+  out.push(`<g${m.dim('tangente')}>${flecha(S[0], S[1], E[0], E[1], { color: T.tinta, w: m.on('tangente') || !m.activo ? 1.8 : 1.5 })}<circle cx="${fx(Tg[0])}" cy="${fx(Tg[1])}" r="2.6" fill="${T.tinta}"/></g>`);
+  pet.unshift({ t: `Rs ${deg3(rs)}`, cands: junto(S, E, `Rs ${deg3(rs)}`, { centro: F, ks: [0.85, 0.7, 0.95] }), p: 'tangente' });
+  // la proa (Rv), metida hacia el viento, con el abatimiento acotado
+  out.push(`<g${m.dim('rv')}><line x1="${fx(S[0])}" y1="${fx(S[1])}" x2="${fx(V[0])}" y2="${fx(V[1])}" stroke="${T.magenta}" stroke-width="${m.on('rv') ? 2.2 : 1.8}" stroke-dasharray="6 3"/></g>`);
+  pet.unshift({ t: `Rv ${deg3(rv)}`, cands: junto(S, V, `Rv ${deg3(rv)}`, { centro: F, ks: [0.95, 0.8, 1.1, 0.65] }), color: T.magenta, p: 'rv' });
+  const [c0, c1] = norm180(rs - rv) > 0 ? [rv, rs] : [rs, rv];
+  out.push(`<g${m.dim('viento')}><path d="${arcoD(S[0], S[1], 38, c0, c1)}" fill="none" stroke="${T.magenta}" stroke-width="1.2"/></g>`);
+  const [bx, by] = pol(S[0], S[1], c0 + norm180(c1 - c0) / 2, 38);
+  pet.push({ t: `Ab ${ab > 0 ? '+' : '−'}${abG}°`, cands: alrededor([bx, by]), ref: [bx, by], color: T.magenta, p: 'viento' });
+  // faro y situación
+  out.push(faroC(F[0], F[1], { destella: false }));
+  cajas.push({ x0: F[0] - 9, y0: F[1] - 9, x1: F[0] + 9, y1: F[1] + 9 }, { x0: S[0] - 16, y0: S[1] - 16, x1: S[0] + 16, y1: S[1] + 16 });
+  pet.push({ t: 'faro', cands: [[F[0], F[1] - 16], [F[0] + 26, F[1]], [F[0] - 26, F[1]], [F[0], F[1] + 20]], rotulo: true });
+  out.push(`<g${m.dim('situacion')}>${situacion(S[0], S[1], { color: T.tinta })}</g>`);
+  pet.push({ t: 'situación', cands: [[S[0], S[1] - 18], [S[0], S[1] + 24], [S[0] - 40, S[1]], [S[0] + 40, S[1]]], rotulo: true, p: 'situacion' });
+  // viento y norte, en las esquinas libres
+  const esq = esquinaLibre([S, F, E, Tg, V], [[W - 34, 36], [34, 36], [W - 34, 186], [34, 186]]);
+  out.push(rosaNorte(esq[0], esq[1]));
+  cajas.push({ x0: esq[0] - 20, y0: esq[1] - 30, x1: esq[0] + 20, y1: esq[1] + 18 });
+  const esqV = esquinaLibre([S, F, E, Tg, V, esq], [[W - 40, 40], [40, 40], [W - 40, 178], [40, 178]]);
+  out.push(vientoC(esqV[0], esqV[1] - 6, viento, `viento del ${nombreViento(viento)}`, { p: 'viento', extra: m.dim('viento') }));
+  cajas.push({ x0: esqV[0] - 40, y0: esqV[1] - 26, x1: esqV[0] + 40, y1: esqV[1] + 30 });
+  out.push(colocaEtiquetas(pet, { W, H: 222, segs, cajas }));
   // cálculo, en el orden de la lección
-  const fila = (yy, s, b, p) => out.push(`<g${m.dim(p)}>${t(14, yy, s, { s: 10.5, b: b || m.on(p) })}</g>`);
+  out.push(`<line x1="14" y1="222" x2="${W - 14}" y2="222" stroke="${T.tinta}" stroke-width=".6"/>`);
   const sgn = banda === 'babor' ? '+' : '−';
-  fila(H - 84, `1. Al faro: Dv ${Number.isInteger(dv) ? deg3(dv) : `${nf(dv)}°`}, D = ${n0(D)} M; sen α = ${n0(dp)} / ${n0(D)}`, false, 'visual');
-  fila(H - 68, `2. α ≈ ${nf(alfa)}° → por ${banda}: Rs = Dv ${sgn} α ≈ ${deg3(rs)}`, false, 'tangente');
-  fila(H - 52, `3. Viento del ${nombreViento(viento)} por ${bv} → Ab = ${ab > 0 ? '+' : '−'}${abG}°`, false, 'viento');
-  fila(H - 36, `4. Rv = Rs − Ab = ${deg3(rs)} ${ab > 0 ? '−' : '+'} ${abG}° = ${deg3(rv)}`, true, 'rv');
-  fila(H - 20, `5. Ra = Rv − Ct = ${deg3(rv)} ${ct >= 0 ? '−' : '+'} ${n0(Math.abs(ct))}° = ${deg3(ra)}`, false, 'ra');
-  out.push('</svg>');
+  const filas = [
+    ['visual', `Al faro: Dv ${dvTxt}, D = ${n0(D)} M; sen α = ${n0(dp)} / ${n0(D)}`],
+    ['tangente', `α ≈ ${nf(alfa)}°; por ${banda}: Rs = Dv ${sgn} α ≈ ${deg3(rs)}`],
+    ['viento', `Viento del ${nombreViento(viento)}, por ${bv}: Ab = ${ab > 0 ? '+' : '−'}${abG}°`],
+    ['rv', `Rv = Rs − Ab = ${deg3(rs)} ${ab > 0 ? '−' : '+'} ${abG}° = ${deg3(rv)}`],
+    ['ra', `Ra = Rv − Ct = ${deg3(rv)} ${ct >= 0 ? '−' : '+'} ${n0(Math.abs(ct))}° = ${deg3(ra)}`],
+  ];
+  filas.forEach(([p, txt], i) => out.push(filaPaso(22, 244 + i * 22, i + 1, txt, { clave: p === 'rv' || m.on(p), extra: m.dim(p) })));
+  out.push(cierra());
   const cap = `La tangente a la circunferencia de ${n0(dp)} millas es la derrota que quieres hacer sobre el agua: el rumbo de superficie (Rs ${deg3(rs)}). Como el viento del ${nombreViento(viento)} te abate ${abG}°, la proa va metida hacia el viento: Rv = Rs − Ab = ${deg3(rv)}, y luego Ra = Rv − Ct.`;
   return { svg: out.join(''), caption: cap };
 }
@@ -364,10 +369,12 @@ function travesDerrota(spec = {}) {
   const sg = banda === 'estribor' ? 1 : -1;
   const dvT = norm(rv + 90 * sg); // través con el Rv
   const dvMal = norm(rs + 90 * sg); // trampa: con el Rs
-  const W = 320;
-  const H = 306;
-  const out = open(W, H, 'Faro por el través y corte con la derrota', id);
-  out.push(title(160, 'El través, con el Rv; la derrota, con el Rs'));
+  // Estilo C (docs/ESTILO-LAMINAS.md): la derrota (Rs) con una punta; el través, del faro al corte, perpendicular a la
+  // PROA (Rv, a trazos, con su ángulo recto); el corte en magenta y la trampa (través con el Rs) apagada.
+  const W = 358;
+  const H = trampa ? 394 : 372;
+  const alt = `Faro por el través: con el Rv ${deg3(rv)} y el viento del ${nombreViento(viento)}, la derrota es el Rs ${deg3(rs)}. El través de ${banda} es la Dv ${deg3(dvT)}, perpendicular a la proa; trazada desde el faro, se corta con la derrota: esa es la situación de las ${hhmm(hora(hi) + (millas / v) * 60)}.`;
+  const { out, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
   // geometría en millas
   const S0 = [0, 0];
   const mDib = Math.min(millas, dfaro * 1.6); // la derrota se acorta en el dibujo: es un esquema, no la carta
@@ -376,65 +383,65 @@ function travesDerrota(spec = {}) {
   const Q0 = corte(S0, u(rs), F0, u(dvMal));
   const E0 = pol(0, 0, rs, mDib + 0.9);
   const pts = [S0, E0, F0, pol(P0[0], P0[1], rv, 1.2)];
-  const { k, P } = encaja(pts, [56, 50, 210, 200], 44);
+  const { k, P } = encaja(pts, [66, 44, 292, 222], 64);
   const S = P(S0);
   const Pc = P(P0);
   const F = P(F0);
   const E = P(E0);
-  const derecha = F[0] >= Pc[0];
+  const Pv = pol(Pc[0], Pc[1], rv, 1.6 * k);
+  const segs = [[S, E], [F, Pc], [Pc, Pv]];
+  const cajas = [];
+  const pet = [];
   // derrota (Rs) desde la salida
-  out.push(`<g${m.dim('derrota')}>${arrow(S[0], S[1], E[0], E[1], 'v', id, m.on('derrota') || !m.activo ? 3 : 2.2)}</g>`);
+  out.push(`<g${m.dim('derrota')}>${flecha(S[0], S[1], E[0], E[1], { color: T.tinta, w: m.on('derrota') || !m.activo ? 1.8 : 1.5 })}</g>`);
+  pet.push({ t: `Rs ${deg3(rs)}`, cands: junto(S, E, `Rs ${deg3(rs)}`, { centro: F, ks: [0.35, 0.5, 0.2, 0.65] }), p: 'derrota' });
   // trampa: el través con el Rs
   if (trampa && Q0) {
     const Q = P(Q0);
-    out.push(`<g${m.on('trampa') ? '' : ' opacity=".55"'}>${seg(F, Q, 'g', m.on('trampa') ? 1.8 : 1.2, 'stroke-dasharray="2 3"')}<circle cx="${fx(Q[0])}" cy="${fx(Q[1])}" r="4" fill="none" stroke="${C.g}" stroke-width="1.4"/></g>`);
+    segs.push([F, Q]);
+    out.push(`<g data-parte="trampa"${m.on('trampa') ? '' : ' opacity=".7"'}><line x1="${fx(F[0])}" y1="${fx(F[1])}" x2="${fx(Q[0])}" y2="${fx(Q[1])}" stroke="${T.apagado}" stroke-width="1.2" stroke-dasharray="2 3"/><circle cx="${fx(Q[0])}" cy="${fx(Q[1])}" r="4.5" fill="none" stroke="${T.apagado}" stroke-width="1.4"/></g>`);
+    pet.push({ t: `trampa ${deg3(dvMal)}`, cands: alrededor(Q, [30, 46, 62]), rotulo: true, color: T.apagado, p: 'trampa' });
+    cajas.push({ x0: Q[0] - 6, y0: Q[1] - 6, x1: Q[0] + 6, y1: Q[1] + 6 });
   }
   // línea del través: desde el faro, Dv + 180°
-  out.push(`<g${m.dim('traves')}>${seg(F, Pc, 'r', m.on('traves') ? 3 : 2.2)}</g>`);
+  out.push(`<g${m.dim('traves')}><line x1="${fx(F[0])}" y1="${fx(F[1])}" x2="${fx(Pc[0])}" y2="${fx(Pc[1])}" stroke="${T.tinta}" stroke-width="${m.on('traves') ? 2 : 1.6}"/></g>`);
+  pet.unshift({ t: `Dv ${deg3(dvT)}`, cands: junto(F, Pc, `Dv ${deg3(dvT)}`, { centro: S }), p: 'traves' });
   // la proa (Rv) en el punto de corte, con el ángulo recto entre la proa y el faro
-  const Pv = pol(Pc[0], Pc[1], rv, 1.6 * k);
   const a1 = pol(Pc[0], Pc[1], rv, 10);
   const a2 = pol(Pc[0], Pc[1], dvT, 10);
   const a3 = [a1[0] + a2[0] - Pc[0], a1[1] + a2[1] - Pc[1]];
-  out.push(`<g${m.dim('proa')}>${seg(Pc, Pv, 'currentColor', m.on('proa') ? 2.4 : 1.6, 'stroke-dasharray="5 3"')}<path d="M${fx(a1[0])},${fx(a1[1])} L${fx(a3[0])},${fx(a3[1])} L${fx(a2[0])},${fx(a2[1])}" fill="none" stroke="currentColor" stroke-width="1.2"/></g>`);
-  // situación de corte
-  out.push(`<g${m.dim('corte')}>${obs(Pc, 'r', m.on('corte') ? 2.8 : 2)}</g>`);
-  // faro
-  out.push(faro(F));
-  // etiquetas a la derecha del dibujo (o a la izquierda si el faro queda a la izquierda)
-  const lx = derecha ? Math.max(F[0], Pc[0]) + 12 : Math.min(F[0], Pc[0]) - 12;
-  const la = derecha ? 'start' : 'end';
-  out.push(t(F[0] + (derecha ? 10 : -10), F[1] - 8, 'faro', { a: la, b: true, s: 10 }));
-  out.push(`<g${m.dim('traves')}>${t(lx, F[1] + 14, `Dv ${deg3(dvT)}`, { c: 'r', a: la, b: true, s: 11 })}${t(lx, F[1] + 27, 'por el través', { a: la, s: 9.5 })}${t(lx, F[1] + 39, `desde el faro: ${deg3(dvT + 180)}`, { a: la, s: 9.5 })}</g>`);
+  out.push(`<g${m.dim('proa')}><line x1="${fx(Pc[0])}" y1="${fx(Pc[1])}" x2="${fx(Pv[0])}" y2="${fx(Pv[1])}" stroke="${T.tinta}" stroke-width="${m.on('proa') ? 1.8 : 1.3}" stroke-dasharray="6 3"/>` +
+    `<path d="M${fx(a1[0])},${fx(a1[1])} L${fx(a3[0])},${fx(a3[1])} L${fx(a2[0])},${fx(a2[1])}" fill="none" stroke="${T.tinta}" stroke-width="1"/></g>`);
+  pet.push({ t: `proa: Rv ${deg3(rv)}`, cands: junto(Pc, Pv, `proa: Rv ${deg3(rv)}`, { centro: F, ks: [0.9, 1.05, 0.7] }), p: 'proa' });
+  // situación de corte, faro y salida
+  out.push(`<g${m.dim('corte')}>${situacion(Pc[0], Pc[1])}</g>`, faroC(F[0], F[1], { destella: false }));
+  cajas.push({ x0: Pc[0] - 10, y0: Pc[1] - 10, x1: Pc[0] + 10, y1: Pc[1] + 10 }, { x0: F[0] - 9, y0: F[1] - 9, x1: F[0] + 9, y1: F[1] + 9 }, { x0: S[0] - 6, y0: S[1] - 6, x1: S[0] + 6, y1: S[1] + 6 });
   const hora1 = hhmm(hora(hi) + (millas / v) * 60);
-  out.push(`<g${m.dim('corte')}>${t(Pc[0] + (derecha ? -12 : 12), Pc[1] - 6, `situación ${hora1}`, { a: derecha ? 'end' : 'start', b: true, s: 10, c: 'r' })}</g>`);
-  const pv = pol(Pc[0], Pc[1], rv, 1.6 * k + 4);
-  out.push(`<g${m.dim('proa')}>${t(pv[0] + (derecha ? 6 : -6), pv[1] + 8, `proa: Rv ${deg3(rv)}`, { a: la, s: 10 })}</g>`);
-  const pm = pol(S[0], S[1], rs, mDib * 0.45 * k);
-  out.push(`<g${m.dim('derrota')}>${t(pm[0] + (derecha ? -10 : 10), pm[1], `Rs ${deg3(rs)}`, { c: 'v', a: derecha ? 'end' : 'start', b: true, s: 10.5 })}${t(pm[0] + (derecha ? -10 : 10), pm[1] + 12, 'derrota', { a: derecha ? 'end' : 'start', s: 9.5 })}</g>`);
-  out.push(`<g${m.dim('salida')}>${punto(S, 'currentColor', 3.5)}${t(S[0] + (derecha ? -8 : 8), S[1] - 6, `salida ${hi}`, { a: derecha ? 'end' : 'start', b: m.on('salida'), s: 10 })}</g>`);
-  if (trampa && Q0) {
-    const Q = P(Q0);
-    out.push(`<g${m.on('trampa') ? '' : ' opacity=".7"'}>${t(Q[0] + (derecha ? -12 : 12), Q[1] + 14, 'trampa: través', { c: 'g', a: derecha ? 'end' : 'start', s: 9.5 })}${t(Q[0] + (derecha ? -12 : 12), Q[1] + 26, `con el Rs (${deg3(dvMal)})`, { c: 'g', a: derecha ? 'end' : 'start', s: 9.5 })}</g>`);
-  }
-  // viento, en la esquina superior derecha
-  const hacia = u(viento + 180);
-  const wc = [236, 64];
-  const w0 = mas(wc, hacia, -13);
-  const w1 = mas(wc, hacia, 13);
-  const nrm = [-hacia[1] * 5, hacia[0] * 5];
-  out.push(arrow(w0[0] + nrm[0], w0[1] + nrm[1], w1[0] + nrm[0], w1[1] + nrm[1], 'g', id, 2), arrow(w0[0] - nrm[0], w0[1] - nrm[1], w1[0] - nrm[0], w1[1] - nrm[1], 'g', id, 2));
-  out.push(t(wc[0], wc[1] + 28, `viento ${nombreViento(viento)}`, { c: 'g', a: 'middle', s: 9.5 }));
-  out.push(norte(298, 70, id));
+  pet.unshift({ t: `situación ${hora1}`, cands: alrededor(Pc, [34, 50, 66]), color: T.magenta, p: 'corte', ref: Pc });
+  pet.push({ t: 'faro', cands: alrededor(F, [18, 26]), rotulo: true });
+  out.push(`<g${m.dim('salida')}><circle cx="${fx(S[0])}" cy="${fx(S[1])}" r="3.5" fill="${T.tinta}"/></g>`);
+  pet.push({ t: `salida ${hi}`, cands: alrededor(S, [26, 40]), rotulo: true, p: 'salida' });
+  // viento y norte, en las esquinas libres
+  const esq = esquinaLibre([S, Pc, F, E, Pv], [[W - 34, 36], [34, 36], [W - 34, 214], [34, 214]]);
+  out.push(rosaNorte(esq[0], esq[1]));
+  cajas.push({ x0: esq[0] - 20, y0: esq[1] - 30, x1: esq[0] + 20, y1: esq[1] + 18 });
+  const esqV = esquinaLibre([S, Pc, F, E, Pv, esq], [[W - 40, 40], [40, 40], [W - 40, 204], [40, 204]]);
+  out.push(vientoC(esqV[0], esqV[1] - 6, viento, `viento del ${nombreViento(viento)}`));
+  cajas.push({ x0: esqV[0] - 40, y0: esqV[1] - 26, x1: esqV[0] + 40, y1: esqV[1] + 30 });
+  out.push(colocaEtiquetas(pet, { W, H: 250, segs, cajas }));
   // cálculo
+  out.push(`<line x1="14" y1="250" x2="${W - 14}" y2="250" stroke="${T.tinta}" stroke-width=".6"/>`);
   const mins = Math.round((millas / v) * 60);
-  const fila = (yy, s, b, p) => out.push(`<g${m.dim(p)}>${t(14, yy, s, { s: 10.5, b: b || m.on(p) })}</g>`);
-  const abTxt = abG ? `Viento del ${nombreViento(viento)} por ${bv} → Ab ${ab > 0 ? '+' : '−'}${abG}° → Rs ${deg3(rs)}` : `Sin abatimiento: Rs = Rv = ${deg3(rs)}`;
-  fila(H - 68, `1. ${abTxt}`, false, 'derrota');
-  fila(H - 52, `2. Través de ${banda}: Dv = Rv ${sg > 0 ? '+' : '−'} 90° = ${deg3(dvT)}`, true, 'traves');
-  fila(H - 36, `3. Desde el faro, ${deg3(dvT + 180)}; su corte con el Rs = situación`, false, 'corte');
-  fila(H - 20, `4. ${n0(millas)} M / ${n0(v)} nudos ≈ ${Math.floor(mins / 60)} h ${String(mins % 60).padStart(2, '0')} min → HRB ${hora1}`, false, 'hora');
-  out.push('</svg>');
+  const abTxt = abG ? `Viento del ${nombreViento(viento)}, por ${bv}: Ab ${ab > 0 ? '+' : '−'}${abG}°; Rs ${deg3(rs)}` : `Sin abatimiento: Rs = Rv = ${deg3(rs)}`;
+  const filas = [
+    ['derrota', abTxt],
+    ['traves', `Través de ${banda}: Dv = Rv ${sg > 0 ? '+' : '−'} 90° = ${deg3(dvT)}`],
+    ['corte', `Trazada desde el faro: ${deg3(dvT + 180)}; su corte con el Rs, la situación`],
+    ['hora', `${n0(millas)} M / ${n0(v)} nudos ≈ ${Math.floor(mins / 60)} h ${String(mins % 60).padStart(2, '0')} min → HRB ${hora1}`],
+    ...(trampa ? [['trampa', `Trampa: el través con el Rs (${deg3(dvMal)}) da otro punto`]] : []),
+  ];
+  filas.forEach(([p, txt], i) => out.push(filaPaso(22, 274 + i * 24, i + 1, txt, { clave: p === 'traves' || m.on(p), extra: m.dim(p) })));
+  out.push(cierra());
   const cap = `El través se mide desde la proa: con el Rv ${deg3(rv)}, el faro por ${banda} está en Dv ${deg3(dvT)}. Esa línea, trazada desde el faro (${deg3(dvT + 180)}), se corta con la derrota que de verdad sigues, el Rs ${deg3(rs)}: ese corte es la situación.${trampa ? ` Calcularlo con el Rs (${deg3(dvMal)}) da un punto muy cercano pero erróneo.` : ''}`;
   return { svg: out.join(''), caption: cap };
 }

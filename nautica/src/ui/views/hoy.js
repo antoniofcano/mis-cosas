@@ -169,7 +169,7 @@ export function hoyView({ progress, tit }) {
 
     // Diagnóstico por concepto (solo con etiquetas y si hay ideas flojas): «Te cuesta: …».
     const cuesta = lineaTeCuesta(st);
-    const lineaCuesta = () => (cuesta ? h('p.sesion-cuesta', cuesta) : null);
+    const lineaCuesta = () => (cuesta ? h('p.sesion-cuesta', h('strong', 'Te cuesta: '), cuesta.replace(/^Te cuesta: /, '')) : null);
     const pintaSesion = () => {
       const guardada = leerSesion(progress, tit);
       const comp = componerSesion(st, mirando);

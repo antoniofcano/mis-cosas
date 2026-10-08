@@ -126,9 +126,9 @@ export function soundIllustration(spec) {
     x += w + 10;
   }
   const leyenda = campana ? (pattern === 'varado' ? '● golpe de campana · repique rápido ~5 s · cada ≤ 1 min' : 'repique rápido de ~5 s · cada ≤ 1 min') : 'corta ≈ 1 s · larga 4–6 s';
-  const svg = `<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Señal acústica">` +
+  const svg = `<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="${(campana ? 'Señal de campana: ' : 'Señal acústica: ') + (SENALES[pattern] ?? '').split(':')[0].toLowerCase()}">` +
     `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>` +
-    `<text x="20" y="32" class="il-title left">${campana ? '🔔' : '🔊'} ${spec.texto ?? (campana ? 'Señal de campana' : 'Señal acústica')}</text>${bars.join('')}` +
+    `<text x="20" y="32" class="il-title left">${spec.texto ?? (campana ? 'Señal de campana' : 'Señal acústica')}</text>${bars.join('')}` +
     `<text x="20" y="${campana ? 108 : 100}" class="il-lbl">${leyenda}</text></svg>`;
   return { svg, caption: SENALES[pattern] ?? '', sound: pattern };
 }
@@ -209,7 +209,7 @@ function riesgoPanel(x, y, w, constante, id) {
   out.push(lbl(A0[0] + 8, A0[1] - 2, 'tú', 'v', 'start', 'font-weight="700"'), lbl(B0[0] - 4, B0[1] + 22, 'el otro', 'a', 'end', 'font-weight="700"'));
   out.push(`<text x="${x + w / 2}" y="${y + 14}" class="il-lbl strong" text-anchor="middle" style="fill:${col}">${constante ? 'La demora no cambia' : 'La demora cambia'}</text>`);
   out.push(lbl(x + w / 2, y + 272, `demoras: ${dem.map(deg3).join(' · ')}`, null, 'middle', 'font-size="9"'));
-  out.push(`<text x="${x + w / 2}" y="${y + 288}" class="il-lbl strong" text-anchor="middle" style="fill:${col}">${constante ? '⇒ HAY riesgo de abordaje' : '⇒ en principio, sin riesgo'}</text>`);
+  out.push(`<text x="${x + w / 2}" y="${y + 288}" class="il-lbl strong" text-anchor="middle" style="fill:${col}">${constante ? '→ HAY riesgo de abordaje' : '→ en principio, sin riesgo'}</text>`);
   return out.join('');
 }
 

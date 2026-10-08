@@ -36,6 +36,18 @@ test('no hay emojis en src/ui (fuera de la lista blanca de signos tipográficos)
   assert.deepEqual(malos, [], 'usa icono()/conIcono() de src/ui/iconos.js en vez de un emoji');
 });
 
+test('no hay emojis en las láminas (src/illustrations): el SVG se ve igual en todos los móviles', () => {
+  // En los dibujos se admiten además signos de notación: ▬ (pitada larga, junto a • la corta) y × (aspa de «no»).
+  const SIGNOS = new Set([...PERMITIDOS, '▬']);
+  const malos = [];
+  for (const f of ficheros(join(RAIZ, 'src/illustrations'))) {
+    readFileSync(f, 'utf8').split('\n').forEach((linea, i) => {
+      for (const c of linea.match(PICTO) ?? []) if (!SIGNOS.has(c)) malos.push(`${f.slice(RAIZ.length)}:${i + 1} ${c} U+${c.codePointAt(0).toString(16).toUpperCase()}`);
+    });
+  }
+  assert.deepEqual(malos, [], 'dibuja el signo en el SVG (flecha(), paso()…) o escríbelo con palabras');
+});
+
 test('index.html: la cabecera lleva los SVG de la brújula y los ajustes (sin emoji que parpadee antes del JS)', () => {
   const html = readFileSync(join(RAIZ, 'index.html'), 'utf8');
   const cab = html.slice(html.indexOf('<header'), html.indexOf('</header>'));

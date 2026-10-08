@@ -386,7 +386,7 @@ function ripaVelaMotor(hl) {
   out.push(velero(22, ys, false), velero(176, ys, true));
   // cono con el vértice hacia abajo, a proa
   out.push(`<path d="M${176 + 8},${ys - 56} L${176 + 24},${ys - 56} L${176 + 16},${ys - 40}Z" fill="currentColor"/>`);
-  out.push(bold(164, ys - 74, 'cono ▼'), lbl(164, ys - 62, 'de día'));
+  out.push(bold(164, ys - 74, 'cono, punta abajo'), lbl(164, ys - 62, 'de día'));
   out.push(bold(140, ys + 30, 'motor parado', null, 'end'), bold(300, ys + 30, 'motor en marcha', 'r', 'end'));
   const onV = hl.has('vela');
   const onM = hl.has('motor');

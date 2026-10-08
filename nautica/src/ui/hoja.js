@@ -12,9 +12,10 @@ let nPlegables = 0;
  * chuleta): alterna la clase `plegada` del panel y dice su estado con `aria-expanded`. El mismo botón en toda la app.
  * @param {HTMLElement} panel
  * @param {{ plegar?: string, desplegar?: string, plegado?: boolean, onCambio?: (plegado: boolean) => void }} [o]
- *   plegar / desplegar: lo que hace el botón en cada estado (para el lector de pantalla y el texto visible)
+ *   plegar / desplegar: lo que hace el botón en cada estado (para el lector de pantalla y el texto visible);
+ *   textoPlegar: texto visible también con el panel abierto (por defecto solo la raya)
  */
-export function botonPlegar(panel, { plegar = 'Plegar la explicación para ver la pregunta', desplegar = 'Desplegar la explicación', plegado = false, onCambio } = {}) {
+export function botonPlegar(panel, { plegar = 'Plegar la explicación para ver la pregunta', desplegar = 'Desplegar la explicación', textoPlegar = '', plegado = false, onCambio } = {}) {
   if (!panel.id) panel.id = `plegable-${++nPlegables}`;
   const texto = h('span.hoja-plegar-texto');
   const b = h('button.hoja-plegar', { type: 'button', 'aria-controls': panel.id }, texto);
@@ -23,7 +24,7 @@ export function botonPlegar(panel, { plegar = 'Plegar la explicación para ver l
     b.setAttribute('aria-expanded', String(!p));
     b.setAttribute('aria-label', p ? desplegar : plegar);
     b.title = p ? desplegar : plegar;
-    texto.textContent = p ? desplegar : '';
+    texto.textContent = p ? desplegar : textoPlegar;
   };
   pinta(plegado);
   b.addEventListener('click', () => { const p = !panel.classList.contains('plegada'); pinta(p); onCambio?.(p); });
@@ -43,13 +44,21 @@ export function hojaRespuesta(donde, { ok, titulo, contenido, onContinuar, boton
     h('h3.hoja-titulo', icono(ok ? 'ok' : ok === false ? 'no' : 'bombilla'), tit),
     h('div.hoja-cuerpo', contenido),
     h('button.grande.hoja-continuar', { type: 'button', onclick: () => { el.remove(); onContinuar(); } }, boton));
-  el.prepend(botonPlegar(el));
+  // El asa dice qué hace también con la corrección abierta («Ver la pregunta»): la raya sola no se descubre. Al plegar,
+  // la pregunta sube a la vista con sus opciones marcadas, y con la hoja plegada el resto de la página no queda tapado.
+  el.prepend(botonPlegar(el, {
+    desplegar: 'Ver la explicación', textoPlegar: 'Ver la pregunta',
+    onCambio: (p) => {
+      document.body.classList.toggle('hoja-plegada', p);
+      if (p) donde.querySelector('.qcard')?.scrollIntoView?.({ block: 'start', behavior: 'smooth' });
+    },
+  }));
   donde.append(el);
   document.body.classList.add('con-hoja');
   // Entra desde abajo en el siguiente fotograma (la transición está en el CSS; nada con «reducir movimiento»).
   const sube = () => el.classList.add('arriba');
   if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => requestAnimationFrame(sube)); else sube();
-  const quita = () => { if (!document.querySelector('.hoja')) document.body.classList.remove('con-hoja'); };
+  const quita = () => { if (!document.querySelector('.hoja')) document.body.classList.remove('con-hoja', 'hoja-plegada'); };
   new MutationObserver((_, obs) => { if (!el.isConnected) { quita(); obs.disconnect(); } }).observe(document.body, { childList: true, subtree: true });
   // El foco va al panel (el lector de pantalla lee el resultado y la explicación); con Tab se llega a «Continuar».
   el.focus({ preventScroll: true });

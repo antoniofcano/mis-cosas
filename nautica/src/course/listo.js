@@ -139,3 +139,42 @@ export function lineaListo(r) {
   }
   return txt;
 }
+
+// ---------------------------------------------------------------------------------------------------------------
+// Apoyo por concepto (docs/CONCEPTOS.md). NO cambia la probabilidad de arriba: es una vista de qué ideas faltan por
+// dominar en cada tema. Sustituir el cálculo por uno por concepto exige calibrarlo con resultados reales de examen
+// (cuántas ideas flojas se pueden tener y aprobar); mientras tanto, la probabilidad oficial sigue siendo la del tema.
+
+/** Estado de una idea para el alumno: «sabida» (vista y no floja), «floja» o «sin-ver» (de dominio() del motor de conceptos). */
+export const estadoIdea = (d) => (!d || !d.vistas ? 'sin-ver' : d.estado === 'flojo' ? 'floja' : 'sabida');
+
+/**
+ * Ideas de cada tema del examen y cómo las lleva el alumno. El tema de una idea es el de la mayoría de sus preguntas en
+ * este banco. `ic` = índice de conceptos del banco (src/conceptos) o null (sin etiquetas → null).
+ * @returns {{ ut, titulo, maxErrores, total, sabidas, flojas: object[], sinVer: object[] }[] | null}
+ *   flojas y sinVer: { id, etiqueta, clases, tasa, vistas } (las flojas, la peor primero)
+ */
+export function conceptosPorTema(estructura, ic, respuestas = {}) {
+  if (!ic) return null;
+  const dom = ic.dominio(respuestas);
+  const porUt = new Map(estructura.bloques.map((b) => [b.ut, { ut: b.ut, titulo: b.titulo, maxErrores: b.maxErrores ?? null, total: 0, sabidas: 0, flojas: [], sinVer: [] }]));
+  for (const c of ic.conceptosConPreguntas()) {
+    if (c.tipo !== 'concepto') continue;
+    const qs = ic.preguntasDe(c.id, { soloEstudio: false, conDescendientes: false });
+    if (!qs.length) continue;
+    const n = new Map();
+    for (const q of qs) n.set(q.ut, (n.get(q.ut) ?? 0) + 1);
+    const ut = [...n].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0][0];
+    const t = porUt.get(ut);
+    if (!t) continue;
+    const d = dom[c.id];
+    const x = { id: c.id, etiqueta: c.etiqueta, clases: c.clases ?? [], tasa: d?.tasa ?? null, vistas: d?.vistas ?? 0 };
+    t.total += 1;
+    const e = estadoIdea(d);
+    if (e === 'sabida') t.sabidas += 1;
+    else if (e === 'floja') t.flojas.push(x);
+    else t.sinVer.push(x);
+  }
+  for (const t of porUt.values()) t.flojas.sort((a, b) => a.tasa - b.tasa || a.etiqueta.localeCompare(b.etiqueta));
+  return [...porUt.values()].filter((t) => t.total);
+}

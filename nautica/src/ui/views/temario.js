@@ -17,6 +17,31 @@ import { episodiosDeTema, enlaceEpisodio } from './podcast.js';
 import { estadoEpisodio } from '../radio.js';
 import { cuenta } from '../../texto.js';
 import { marcaConfig } from '../config-profe.js';
+import { estadoIdea } from '../../course/listo.js';
+import { clasesDeCurso, filaIdea } from '../concepto.js';
+
+/**
+ * Ideas (conceptos) de cada clase con preguntas en este banco y cómo las lleva el alumno: Map claseId → { sabidas,
+ * flojas: concepto[], sinVer }. Vacío sin etiquetas.
+ */
+function ideasPorClase(ic, respuestas) {
+  const r = new Map();
+  if (!ic) return r;
+  const dom = ic.dominio(respuestas);
+  for (const c of ic.conceptosConPreguntas()) {
+    if (c.tipo !== 'concepto' || !dom[c.id]) continue;
+    const e = estadoIdea(dom[c.id]);
+    for (const id of c.clases ?? []) {
+      const x = r.get(id) ?? { sabidas: 0, flojas: [], sinVer: 0 };
+      if (e === 'sabida') x.sabidas += 1; else if (e === 'floja') x.flojas.push(c); else x.sinVer += 1;
+      r.set(id, x);
+    }
+  }
+  return r;
+}
+
+/** «Ideas: 3 sabidas · 1 floja · 2 sin ver». */
+export const lineaIdeasClase = (x) => `Ideas: ${[x.sabidas ? cuenta(x.sabidas, 'sabida', 'sabidas') : null, x.flojas.length ? cuenta(x.flojas.length, 'floja', 'flojas') : null, x.sinVer ? cuenta(x.sinVer, 'sin ver', 'sin ver') : null].filter(Boolean).join(' · ')}`;
 
 const ESTADO_TXT = { nueva: 'sin empezar', empezada: 'a medias', vista: 'vista · falta practicarla', repasar: 'toca repasar', dominada: 'aprendida' };
 const ESTADO_CLS = { dominada: 'ok', vista: 'ok', repasar: 'warn', empezada: 'close' };
@@ -90,9 +115,18 @@ export function temaView({ progress, params: route, tit }) {
     const apoyos = new Map(clases.map(({ l }) => [l.id, requisitos(l, d.curso)]));
     summaryText = `VISTA tema ${T.sigla} ${b.titulo} · examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · fallos pendientes ${e.fallos}\n` +
       clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado}${l.id === siguienteRuta ? ' · SIGUIENTE EN LA RUTA' : ''}${apoyos.get(l.id).length ? ` · se apoya en ${apoyos.get(l.id).map((r) => r.id).join(', ')}` : ''} → #/${tit}/curso/${l.id}`).join('\n');
+    // Las ideas de cada clase (con etiquetas): sabidas, flojas y sin ver; las flojas, con su mapa o lámina.
+    const ideas = ideasPorClase(d.indiceConceptos, d.respuestas);
+    const clasesCurso = clasesDeCurso(d.curso);
+    const flojasDe = new Map();
+    for (const { l } of clases) if (ideas.get(l.id)?.flojas.length) flojasDe.set(l.id, h('ul.ideas-flojas.ideas-clase'));
+    const pintaFlojas = (mapas) => { for (const [id, ul] of flojasDe) ul.replaceChildren(...ideas.get(id).flojas.map((c) => filaIdea(c, tit, clasesCurso, mapas, { claseActual: id }))); };
+    pintaFlojas([]);
+    if (ideas.size) summaryText += `\n${clases.filter(({ l }) => ideas.has(l.id)).map(({ l }) => `IDEAS ${l.id}: ${lineaIdeasClase(ideas.get(l.id))}${ideas.get(l.id).flojas.length ? ` (flojas: ${ideas.get(l.id).flojas.map((c) => c.etiqueta).join('; ')})` : ''}`).join('\n')}`;
     // Los mapas de conceptos con nodos en las clases del tema (llegan cuando cargan).
     const mapasTema = h('div.cards', { hidden: true });
     cargarMapas().then((mapas) => {
+      pintaFlojas(mapas);
       const xs = mapasDeClases(mapas, clases.map((c) => c.l.id), tit);
       if (!xs.length) return;
       setChildren(mapasTema, xs.map(({ mapa, nodos }) => h('a.card', { href: tlink(tit, ['mapas', mapa.id], { v: 'mapa', n: nodos[0].id }) },
@@ -130,7 +164,9 @@ export function temaView({ progress, params: route, tit }) {
         h('span.clase-titulo', l.titulo, l.id === siguienteRuta ? h('span.badge.badge-ruta', 'Siguiente en tu ruta') : null),
         apoyos.get(l.id).length ? h('span.clase-apoyo', `Se apoya en: ${apoyos.get(l.id).map((r) => r.titulo).join(' · ')}`) : null,
         h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, '🎧'),
-          h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado]))))))) : null,
+          h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado])),
+        ideas.has(l.id) ? h('span.clase-ideas', { class: ideas.get(l.id).flojas.length ? 'con-flojas' : '' }, lineaIdeasClase(ideas.get(l.id))) : null),
+      flojasDe.get(l.id) ?? null)))) : null,
       h('section', h('h2', 'Preguntas de examen'),
         e.hechas ? h('p', `${e.hechas} de ${e.total} hechas`) : null,
         h('div.actions',

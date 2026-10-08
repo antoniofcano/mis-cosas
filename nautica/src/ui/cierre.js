@@ -10,6 +10,7 @@ import { contar } from './movimiento.js';
 import { icono as icono_ } from './iconos.js';
 import { cuenta } from '../texto.js';
 import { botonesSesion, pantallaActual } from './sesion.js';
+import { conceptosDelBanco, entradaConceptos } from './concepto.js';
 
 /**
  * El estado del alumno para una titulación (motor de seguimiento, src/course/motor.js): carga los datos, llama al
@@ -20,7 +21,8 @@ export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar 
   const T = TITULACIONES[tit];
   const eje = currentEje(progress);
   // El banco del eje (sus preguntas para estudiar) y el curso con la práctica de cada clase de ese banco.
-  const [curso, banco] = await Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit)]);
+  // Y sus conceptos, si el banco está etiquetado (null si no: entonces todo va como siempre, por pregunta y tema).
+  const [curso, banco, conceptos] = await Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]);
   const delEje = (x) => (x.tit ?? 'per') === tit && x.eje === banco.eje.id;
   const tc = progress.testEnCurso();
   const st = estadoAlumno({
@@ -29,9 +31,10 @@ export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar 
     settings: progress.settings(), minutosHoy: progress.minutosHoy(ahora), racha: progress.racha(ahora), planGuardado: progress.planEstudio(tit), ahora,
     // El examen final: la reserva del alumno (lo que no se estudia) y sus convocatorias.
     reserva: banco.reserva, pool: banco.final, reservadas: banco.reservadas,
+    conceptos: entradaConceptos(conceptos, progress, banco.eje.id, tit, progress.get().exams),
   });
   if (guardar && st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base); // sin guardar: para mirar otro día (el de mañana)
-  return { ...st.datos, banco, plan: st.actividades, st };
+  return { ...st.datos, banco, indiceConceptos: conceptos, plan: st.actividades, st };
 }
 
 /** Enlace a una actividad del plan (las tandas de preguntas llevan su semilla para poder recargarlas). */

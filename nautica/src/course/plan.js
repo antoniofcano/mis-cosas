@@ -118,7 +118,7 @@ export function pendientesRuta(estructura, curso, preguntas, regs = {}, respuest
  * @param {object} o  { estructura, curso, preguntas, regs, respuestas, tests, testEnCurso, fechaExamen, ahora }
  * @returns {{ tipo, titulo, verbo, minutos, ruta: string[], query?: object, ut: number|null }[]}
  */
-export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, final = null, ahora = Date.now() }) {
+export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, final = null, conceptos = null, ahora = Date.now() }) {
   const lista = [];
   const simulacro = () => ({ tipo: 'simulacro', titulo: 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: undefined, ut: null });
 
@@ -156,9 +156,9 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
   if (pendientes[0]) lista.push(actividad(pendientes[0]));
 
   // 5. Repaso de fallos (B1) si se acumulan muchos para hoy; con pocos basta la línea de Hoy bajo la actividad.
-  const cola = colaRepaso(preguntas, respuestas, hoy);
+  const cola = colaRepaso(preguntas, respuestas, hoy, conceptos);
   if (cola.hoy.length >= UMBRAL_FALLOS) {
-    lista.push({ tipo: 'fallos', titulo: `Repasar ${cuenta(cola.hoy.length, 'pregunta fallada', 'preguntas falladas')}`, verbo: 'Repasar', minutos: Math.min(MIN_TANDA, cola.minutosHoy), ruta: ['teoria', 'repaso'], query: undefined, ut: null });
+    lista.push({ tipo: 'fallos', titulo: cola.porConcepto ? `Repasar ${cuenta(cola.hoy.length, 'idea fallada', 'ideas falladas')}` : `Repasar ${cuenta(cola.hoy.length, 'pregunta fallada', 'preguntas falladas')}`, verbo: 'Repasar', minutos: Math.min(MIN_TANDA, cola.minutosHoy), ruta: ['teoria', 'repaso'], query: undefined, ut: null });
   }
 
   // 6. Todo al día: simulacro
@@ -196,7 +196,7 @@ const fechaISO = diaISO;
  * @returns {{ minutosPendientes, diasNecesarios, fechaFin: string|null, diasDisponibles: number|null,
  *   llega: boolean|null, minutosNecesarios: number|null, desglose: { clases, preguntas, simulacros, repaso } }}
  */
-export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, minutosHoy = 0, segTarjeta = SEG_TARJETA, ahora = Date.now() }) {
+export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], fechaExamen = null, minutosDia = 20, minutosHoy = 0, segTarjeta = SEG_TARJETA, conceptos = null, ahora = Date.now() }) {
   let clases = 0;
   let tandas = 0;
   for (const b of estructura.bloques) {
@@ -209,7 +209,7 @@ export function ritmoEstudio({ estructura, curso = null, preguntas = [], regs = 
   }
   const hechos = tests.filter((t) => t.tipo === 'simulacro' || t.tipo === 'real' || t.tipo === 'final').length;
   // El repaso de fallos también ocupa tiempo: cada pregunta de la cola, las veces que le faltan para salir.
-  const repaso = colaRepaso(preguntas, respuestas, diaLocal(ahora)).minutosPendientes;
+  const repaso = colaRepaso(preguntas, respuestas, diaLocal(ahora), conceptos).minutosPendientes;
   const desglose = { clases, preguntas: tandas * MIN_TANDA, simulacros: Math.max(0, SIMULACROS_RECOMENDADOS - hechos) * estructura.duracionMin, repaso };
   const minutosPendientes = desglose.clases + desglose.preguntas + desglose.simulacros + desglose.repaso;
   const md = Math.max(5, minutosDia);

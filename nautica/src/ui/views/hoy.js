@@ -6,8 +6,8 @@
 import { h, setChildren } from '../dom.js';
 import { marcaConfig } from '../config-profe.js';
 import { lineaAvance } from '../../course/plan.js';
-import { lineaListo } from '../../course/listo.js';
-import { FASES, deducirFase, textoFase, componerSesion, nuevaSesion, indiceActual, terminada, pausar, resumenSesion } from '../../course/sesion.js';
+import { lineaListo, conceptosPorTema } from '../../course/listo.js';
+import { FASES, deducirFase, textoFase, componerSesion, nuevaSesion, indiceActual, terminada, pausar, resumenSesion, lineaTeCuesta } from '../../course/sesion.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { icono } from '../iconos.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
@@ -94,6 +94,22 @@ function tarjetaPodcast(tit, p) {
   return el;
 }
 
+/**
+ * Apoyo por concepto bajo «¿Estás listo?» (no cambia la probabilidad): cuántas ideas lleva sabidas y cuántas faltan.
+ * null sin etiquetas.
+ */
+function lineaIdeas(temas) {
+  if (!temas?.length) return null;
+  const total = temas.reduce((x, t) => x + t.total, 0);
+  const sabidas = temas.reduce((x, t) => x + t.sabidas, 0);
+  const flojas = temas.reduce((x, t) => x + t.flojas.length, 0);
+  const sinVer = total - sabidas - flojas;
+  const peor = [...temas].sort((a, b) => b.flojas.length - a.flojas.length || (b.maxErrores != null) - (a.maxErrores != null))[0];
+  const faltan = [flojas ? cuenta(flojas, 'floja', 'flojas') : null, sinVer ? `${sinVer} sin ver` : null].filter(Boolean).join(' y ');
+  return h('p.listo-ideas', `Por ideas: llevas ${sabidas} de ${cuenta(total, 'idea')} sabidas${faltan ? `; te faltan ${faltan}` : ''}.`,
+    peor?.flojas.length ? ` Las flojas, sobre todo en ${peor.titulo}.` : '');
+}
+
 export function hoyView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const s = progress.settings();
@@ -151,6 +167,9 @@ export function hoyView({ progress, tit }) {
       if (confirm('¿Descartar el examen que tienes a medias? Se perderán sus respuestas.')) { progress.saveTestEnCurso(null); dispatchEvent(new HashChangeEvent('hashchange')); }
     } }, 'Descartar el examen a medias');
 
+    // Diagnóstico por concepto (solo con etiquetas y si hay ideas flojas): «Te cuesta: …».
+    const cuesta = lineaTeCuesta(st);
+    const lineaCuesta = () => (cuesta ? h('p.sesion-cuesta', h('strong', 'Te cuesta: '), cuesta.replace(/^Te cuesta: /, '')) : null);
     const pintaSesion = () => {
       const guardada = leerSesion(progress, tit);
       const comp = componerSesion(st, mirando);
@@ -177,6 +196,7 @@ export function hoyView({ progress, tit }) {
         const min = guardada.pasos.filter((p) => p.estado === 'pendiente').reduce((x, p) => x + p.minutos, 0);
         setChildren(sesionEl,
           h('div.sesion-cab', h('h2#sesion-titulo', 'Sesión a medias'), h('span.sesion-min', `quedan ${min} min`)),
+          lineaCuesta(),
           listaPasos(guardada.pasos, i),
           h('a.boton-sesion', { href: tlink(tit, ['sesion']) }, `Seguir: ${guardada.pasos[i].titulo}`),
           h('p.sesion-nota', 'Se guardó por dónde ibas.'),
@@ -184,6 +204,7 @@ export function hoyView({ progress, tit }) {
       } else {
         setChildren(sesionEl,
           h('div.sesion-cab', h('h2#sesion-titulo', comp.titulo), h('span.sesion-min', `${comp.minutos} min`)),
+          lineaCuesta(),
           listaPasos(comp.pasos),
           h('button.boton-sesion', { type: 'button', onclick: () => empezar(comp) }, 'Empezar la sesión'),
           h('p.sesion-nota', 'Puedes parar cuando quieras: se guarda por dónde vas.'),
@@ -193,6 +214,7 @@ export function hoyView({ progress, tit }) {
       summaryText = `VISTA hoy ${T.sigla} · FASE ${real.id}${mirando !== real.id ? ` (mirando ${mirando})` : ''}: ${real.detalle}. ${real.porque}\n` +
         `SESIÓN${guardada ? ` (${guardada.estado})` : ''}: ${(guardada?.pasos ?? comp.pasos).map((p, j) => `${j + 1}. ${p.titulo} — ${p.sub} (${p.minutos} min)${p.estado && p.estado !== 'pendiente' ? ` [${p.estado}]` : ''} → ${p.href ?? hrefActividad(tit, p)}`).join(' · ')}\n` +
         `EMPEZAR: #/${tit}/sesion (ejecutor) · DÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''}\nLISTO: ${lineaListo(listo)}\n` +
+        (cuesta ? `DIAGNÓSTICO: ${cuesta}\n` : '') +
         `AVANCE: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${cuenta(racha, 'día')}`;
     };
     pintaFase();
@@ -234,6 +256,7 @@ export function hoyView({ progress, tit }) {
           h('p', lineaAvance(a, racha))),
         !ritmo ? h('p.muted', m.texto, m.detalle ? ` ${m.detalle}` : '') : null,
         h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', lineaListo(listo)),
+          lineaIdeas(conceptosPorTema(T.estructura, d.indiceConceptos, d.respuestas)),
           h('p.ver-progreso', h('a.btn.secondary.boton-icono', { href: '#/progreso' }, icono('progreso'), 'Ver mi progreso por temas'))),
         resto.length ? [h('h2', 'Si te sobra tiempo'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },
           h('h3', x.titulo), h('p', TIPO_TXT[x.tipo] ? icono(TIPO_TXT[x.tipo][0]) : null, ` unos ${cuenta(x.minutos, 'minuto')}`))))] : null,

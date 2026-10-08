@@ -34,6 +34,9 @@ import { siguienteEnRuta } from './ruta.js';
  * @property {object|null} [reserva]  banco.reserva: { modo, examenes: [{ key, titulo, fecha, n, ids }] } (examen final)
  * @property {object[]} [pool]  banco.final: las preguntas del examen final del alumno
  * @property {Set<string>} [reservadas]  banco.reservadas: ids que no se estudian (son del examen final)
+ * @property {object|null} [conceptos]  solo si el banco tiene sus preguntas etiquetadas (docs/CONCEPTOS.md):
+ *   { principalDe(id), estado (progress.repasoConceptos), etiqueta(idConcepto), flojos: [{ id, etiqueta, … }] }.
+ *   Con él, el repaso de fallos va por concepto (src/course/repaso.js); sin él, todo es como siempre.
  */
 
 /** El estado del alumno: lo único que leen las pantallas. @param {Entrada} e */
@@ -50,6 +53,7 @@ export function estadoAlumno(e) {
     estructura: e.estructura, curso: e.curso, preguntas: e.preguntas, regs: e.regs ?? {}, respuestas: e.respuestas ?? {}, tests: e.tests ?? [],
     testEnCurso: e.testEnCurso ?? null, fechaExamen, ultimoMezclado: s[`mezclado_${tit}`] || null, segTarjeta, minutosDia: objetivo,
     minutosHoy: e.minutosHoy ?? 0, esencial, chuletasLeidas, ahora: e.ahora ?? Date.now(), reservadas: e.reservadas ?? new Set(),
+    conceptos: e.conceptos ?? null,
   };
 
   // Día: minutos y meta.
@@ -89,11 +93,15 @@ export function estadoAlumno(e) {
 
   // Repaso espaciado visible: cuántas falladas vuelven hoy y cuántas mañana.
   const hoyISO = diaISO(d.ahora);
-  const cola = colaRepaso(d.preguntas, d.respuestas, hoyISO);
-  const repaso = { hoy: cola.hoy.length, manana: repasoDelDia(d.preguntas, d.respuestas, sumaDias(hoyISO, 1), hoyISO), total: cola.total };
+  // Con conceptos, una entrada por idea (y `conceptos`, las ideas que vuelven hoy, para nombrarlas).
+  const cola = colaRepaso(d.preguntas, d.respuestas, hoyISO, d.conceptos);
+  const etiqueta = (c) => d.conceptos?.etiqueta?.(c) ?? null;
+  const repaso = { hoy: cola.hoy.length, manana: repasoDelDia(d.preguntas, d.respuestas, sumaDias(hoyISO, 1), hoyISO, d.conceptos), total: cola.total,
+    porConcepto: cola.porConcepto, conceptos: cola.items.filter((x) => x.concepto && etiqueta(x.concepto)).map((x) => ({ id: x.concepto, etiqueta: etiqueta(x.concepto) })) };
 
-  // Dónde fallas más: por tema en cuanto hay 5 respuestas; por clase, con 3 de la misma clase.
-  const flojos = { temas: temasFlojos(d.estructura, d.preguntas, d.respuestas), clases: clasesFlojas(d.curso, d.respuestas) };
+  // Dónde fallas más: por tema en cuanto hay 5 respuestas; por clase, con 3 de la misma clase; y, con etiquetas, las
+  // ideas (conceptos) que más te cuestan.
+  const flojos = { temas: temasFlojos(d.estructura, d.preguntas, d.respuestas), clases: clasesFlojas(d.curso, d.respuestas), conceptos: d.conceptos?.flojos ?? [] };
 
   // La ruta del curso: la siguiente clase que toca en ella (Temario la marca).
   const ruta = { siguiente: siguienteEnRuta(d.estructura, d.curso, d.regs, d.respuestas, d.ahora)?.id ?? null };

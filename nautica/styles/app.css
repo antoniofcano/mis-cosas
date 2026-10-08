@@ -1392,6 +1392,8 @@ body.en-sesion .barra-actividad .ba-progreso { display: none; }
 /* Encima de una pregunta de práctica: el concepto (si está etiquetada) y la calculadora (si hace falta) */
 .chips-pregunta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 .5rem; }
 .chip-concepto { display: inline-flex; align-items: center; min-height: 32px; padding: .15rem .7rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); font-size: .8rem; font-weight: 600; }
+.tanda:not(.respondida) .chip-concepto { display: none; }
+.tanda:not(.respondida) .chips-pregunta:not(:has(.chip-calculadora)) { display: none; }
 .chips-pregunta .chip-calculadora { min-height: 44px; border-radius: 999px; }
 
 /* Resumen de la sesión */
@@ -1404,7 +1406,7 @@ body.en-sesion .barra-actividad .ba-progreso { display: none; }
 .caja-trabajado { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .4rem .9rem; }
 .caja-trabajado .eti { padding: .6rem 0 .2rem; }
 ul.trabajado { list-style: none; margin: 0; padding: 0; }
-ul.trabajado li { display: flex; gap: .7rem; align-items: flex-start; padding: .6rem 0; border-top: 1px solid var(--border); }
+ul.trabajado li { display: flex; gap: .7rem; align-items: flex-start; padding: .6rem 0; border-top: 1px solid var(--border); color: var(--text); font-weight: 400; }
 ul.trabajado .punto { width: 12px; height: 12px; border-radius: 999px; margin-top: .4rem; flex: none; background: var(--muted); }
 ul.trabajado li.ok .punto { background: var(--ok); }
 ul.trabajado li.mal .punto { background: var(--warn); }
@@ -1415,6 +1417,27 @@ ul.trabajado .tx { display: flex; flex-direction: column; gap: 1px; }
 @media (prefers-reduced-motion: no-preference) {
   .resumen-sesion .fin-tick { animation: .5s rebote; }
 }
+
+/* Conceptos en el método: diagnóstico en Hoy, aviso de la variante en el repaso, ideas por tema y por clase */
+.sesion-cuesta { margin: -.2rem 0 0; font-size: .84rem; line-height: 1.45; overflow-wrap: anywhere; }
+.aviso-variante { margin: 0 0 .6rem; padding: .6rem .75rem; border-radius: 12px; background: var(--accent-2); color: var(--text); font-size: .86rem; line-height: 1.45; }
+.vuelve-idea { margin: .6rem 0 0; font-size: .84rem; font-weight: 600; }
+.listo-ideas { font-size: .9rem; }
+li.mas-ideas { border-top: 1px solid var(--border); }
+.ideas-tema { margin: 1rem 0; }
+.ideas-tema > p { margin-top: 0; }
+details.ideas-de-tema { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin: .4rem 0; padding: 0 .8rem; }
+details.ideas-de-tema > summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .1rem .8rem; min-height: 52px; align-items: center; cursor: pointer; padding: .4rem 0; }
+.idea-tema-titulo { font-weight: 600; }
+.idea-tema-dato { font-size: .8rem; color: var(--muted); }
+ul.ideas-flojas { list-style: none; margin: 0 0 .4rem; padding: 0; display: grid; gap: .3rem; }
+li.idea-floja { display: flex; flex-direction: column; gap: .1rem; padding: .45rem .7rem; border-left: 4px solid var(--warn); background: var(--bg); border-radius: 6px; }
+.idea-nombre { font-size: .88rem; font-weight: 600; overflow-wrap: anywhere; }
+.idea-enlaces { font-size: .8rem; overflow-wrap: anywhere; }
+.idea-enlaces a { display: inline-block; min-height: 32px; line-height: 32px; }
+a.clase .clase-ideas { flex-basis: 100%; font-size: .8rem; color: var(--muted); }
+a.clase .clase-ideas.con-flojas { color: var(--warn); font-weight: 600; }
+ul.ideas-clase { margin: .3rem 0 0 1rem; }
 
 /* «Más» */
 .mas-menu { max-width: 720px; margin: 0 auto; }

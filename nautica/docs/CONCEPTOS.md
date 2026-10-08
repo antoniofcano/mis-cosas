@@ -199,16 +199,25 @@ Las dos librerías son `devDependencies` y solo las usa `tools/`: la app no tien
 
 Tests: `tests/conceptos.test.js` (catálogo y banco de juguete).
 
-## Cómo se usará en el método
+## Cómo se usa en el método
 
-Hoy la app **no cambia de comportamiento**: el módulo está listo y probado, pero ninguna pantalla lo usa todavía.
-Previsto, cuando la cobertura de un eje lo permita:
+Todo depende de que el banco activo tenga etiquetas (`conceptosDelBanco(eje, tit)` en `src/ui/concepto.js` devuelve
+`null` si no): sin ellas (hoy, DGMM), la app se comporta exactamente como antes.
 
-- **Repaso de fallos**: al tocar repasar una pregunta fallada, se ofrece `variante(id, progress.exams)`: otra pregunta
-  del mismo concepto y del mismo tribunal. La original vuelve más tarde; acertar la variante cuenta para el concepto.
-- **Diagnóstico**: `dominio()` y `conceptosFlojos()` sustituyen (o afinan) el diagnóstico por clase y tema: qué
-  conceptos fallas, con qué clase se enseñan (`clases`) y qué preguntas los practican.
-- **¿Estás listo?**: además de los aciertos por tema, exigir que no queden conceptos flojos en los temas que
-  penalizan (RIPA, balizamiento, carta).
-- **Contenido**: clases, láminas, mapas, podcast y chuleta se etiquetarán con los mismos ids para enlazar «lo que
-  fallas» con «dónde se explica».
+- **Repaso de fallos** (`src/course/repaso.js`, vista `#/<tit>/teoria/repaso`): las preguntas de la cola se agrupan
+  por su concepto principal (una entrada por idea) y, al tocar, se pregunta **otra** del mismo concepto y del mismo
+  banco (`planRepaso` → `variante`, con `excluir` = las falladas de esa idea y las ya elegidas; nunca reservadas,
+  anuladas ni retiradas), con el aviso «Hace N días fallaste una pregunta de esta idea…». El estado de la idea se
+  guarda aparte, en `progress.repConceptos["<eje>/<tit>"][concepto] = { racha, prox, t }` o `{ fuera: true, t }`
+  (intervalos 1-3-7, tres aciertos y sale); el de cada pregunta sigue en su registro como siempre. Mientras una idea
+  no tenga estado propio, o tenga un fallo posterior a él, su fecha sale de sus preguntas (un progreso antiguo se lee
+  sin migrar). Si la idea no tiene otra pregunta, vuelve la misma.
+- **Diagnóstico** (Hoy): «Te cuesta: …» con `conceptosFlojos` (motor: `st.flojos.conceptos`); el paso «Tus fallos»
+  nombra las ideas que vuelven (`st.repaso.conceptos`).
+- **Resumen de la sesión**: por concepto (sabido y cuándo vuelve / a repasar, vuelve mañana); sin etiquetas, por tema.
+- **¿Estás listo?**: `conceptosPorTema` (`src/course/listo.js`) da, por tema, ideas sabidas, flojas y sin ver
+  («Ideas por dominar» en Progreso y una línea en Hoy). **No cambia la probabilidad**: sustituirla por un cálculo por
+  concepto exige calibrarlo con resultados reales de examen.
+- **Temario**: en cada clase, sus ideas (sabidas, flojas, sin ver); de las flojas, la clase donde se enseñan (`clases`)
+  y su mapa o lámina (`dondeSeEnsena`).
+- Pendiente: clases, láminas, mapas, podcast y chuleta etiquetados con los mismos ids.

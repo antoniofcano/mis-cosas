@@ -83,6 +83,18 @@ export function createProgressStore(storage = safeStorage()) {
       save();
     },
 
+    /**
+     * Repaso por concepto (src/course/repaso.js): estado de cada concepto en el banco de un eje y una titulación,
+     * { [concepto]: { racha, prox, t } | { fuera: true, t } }. Va aparte de las respuestas (que no cambian): un progreso
+     * sin este campo se lee igual y sus fallos se repasan con la fecha de cada pregunta.
+     */
+    repasoConceptos: (eje, tit) => data.repConceptos?.[`${eje}/${tit}`] ?? {},
+    recordRepasoConcepto(eje, tit, concepto, estado) {
+      const k = `${eje}/${tit}`;
+      data.repConceptos = { ...(data.repConceptos ?? {}), [k]: { ...(data.repConceptos?.[k] ?? {}), [concepto]: estado } };
+      save();
+    },
+
     /** Registra un test completo (simulacro o examen real). */
     recordTest(entry) {
       data.tests = [...(data.tests ?? []), { ...entry, t: new Date().toISOString() }].slice(-50);

@@ -33,7 +33,7 @@ const FONDO = `<svg class="carta-fondo" viewBox="0 0 ${ANCHO} ${ALTO}" aria-hidd
 <g class="rosa"><circle cx="322" cy="290" r="14"/><path d="M322 279 L325 290 L322 301 L319 290 Z"/><text x="322" y="276" text-anchor="middle">N</text></g>
 </svg>`;
 
-const posPct = ([x, y]) => `left:clamp(48px, ${(100 * x / ANCHO).toFixed(2)}%, calc(100% - 48px)); top:${(100 * y / ALTO).toFixed(2)}%`;
+const posPct = ([x, y]) => `left:clamp(52px, ${(100 * x / ANCHO).toFixed(2)}%, calc(100% - 52px)); top:${(100 * y / ALTO).toFixed(2)}%`;
 
 /** Las patas de la derrota entre faros (la última llega a la bandera del examen). */
 function patas(faros, pos) {

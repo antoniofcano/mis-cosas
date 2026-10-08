@@ -1552,10 +1552,10 @@ details.mas-chuletas ul.mas-lista { margin: .3rem 0 .4rem; }
 .pata.on { stroke: var(--faro-on-borde); }
 .pata.parcial { stroke: var(--accent); stroke-dasharray: 9 7; }
 .pata.off { stroke: var(--faro-off-borde); stroke-dasharray: 3 8; }
-.faro-pos, .bandera-pos { position: absolute; width: 96px; transform: translate(-50%, -24px); display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.faro-nombre { font-size: .72rem; font-weight: 700; line-height: 1.15; text-align: center; color: var(--text); text-shadow: 0 0 3px var(--sea), 0 0 3px var(--sea); }
+.faro-pos, .bandera-pos { position: absolute; width: 104px; transform: translate(-50%, -24px); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.faro-nombre { font-size: .7rem; font-weight: 700; line-height: 1.15; text-align: center; color: var(--text); text-shadow: 0 0 3px var(--sea), 0 0 3px var(--sea); }
 .bandera-pos { transform: translate(-50%, -22px); }
-.bandera-disco { width: 44px; height: 44px; border-radius: 999px; background: var(--surface); border: 2px solid var(--trav-bg); color: var(--trav-bg); display: inline-flex; align-items: center; justify-content: center; }
+.bandera-disco { width: 44px; height: 44px; border-radius: 999px; background: var(--surface); border: 2px solid var(--text); color: var(--text); display: inline-flex; align-items: center; justify-content: center; }
 .bandera-disco .ico { width: 22px; height: 22px; }
 .carta-trav button.faro { width: 48px; min-width: 48px; height: 48px; min-height: 48px; padding: 0; border-radius: 999px; border: 2px solid var(--faro-off-borde); background: var(--faro-off-bg); color: var(--faro-off-texto); display: inline-flex; align-items: center; justify-content: center; }
 .carta-trav button.faro .ico { width: 26px; height: 26px; }

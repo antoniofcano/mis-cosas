@@ -368,7 +368,7 @@ export function paraManana({ flojas = [], trabajadas = [], vuelve = new Map() })
 // --- la carta ------------------------------------------------------------------------------------------------------------
 
 /** Puntos de la derrota en la carta (358 × 320) y la bandera del examen al final. Con seis faros, uno en cada punto. */
-export const PUNTOS_DERROTA = [[52, 280], [150, 250], [260, 214], [200, 160], [110, 128], [180, 84]];
+export const PUNTOS_DERROTA = [[52, 280], [150, 250], [274, 228], [188, 150], [110, 128], [180, 84]];
 export const BANDERA = [290, 44];
 
 /** Dónde va cada uno de `n` faros: con seis, en los puntos de la carta; con otro número, repartidos a lo largo de la derrota. */

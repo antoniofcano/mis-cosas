@@ -97,3 +97,46 @@ export function rhythmTimeline(x, y, w, h, rhythmText) {
   out.push(`<text x="${x}" y="${y + h + 12}" font-size="9" fill="#334155">0 s</text><text x="${x + w}" y="${y + h + 12}" font-size="9" text-anchor="end" fill="#334155">${rh.period} s</text>`);
   return out.join('');
 }
+
+// ---------------------------------------------------------------------------
+// Estilo C (docs/ESTILO-LAMINAS.md): la misma luz y el mismo cronograma, con los colores de styles/laminas.css.
+
+const LUZ_C = { [COLORS.W]: 'var(--lc-luz-blanca)', [COLORS.R]: 'var(--lc-luz-roja)', [COLORS.G]: 'var(--lc-luz-verde)', [COLORS.Y]: 'var(--lc-luz-amarilla)', [COLORS.Bu]: 'var(--lc-luz-azul)' };
+/** Nombre del color de una luz, para decirlo también con palabras. */
+export const NOMBRE_LUZ = { [COLORS.W]: 'blanca', [COLORS.R]: 'roja', [COLORS.G]: 'verde', [COLORS.Y]: 'amarilla', [COLORS.Bu]: 'azul' };
+export const luzToken = (hex) => LUZ_C[hex] ?? LUZ_C[COLORS.W];
+
+/** <animate> de opacidad: encendida cuando el paso está encendido (y es de ese color, si se da). */
+function animOpacidad(rh, color = null) {
+  let t = 0;
+  const times = [];
+  const ops = [];
+  for (const s of rh.steps) {
+    times.push((t / rh.period).toFixed(4));
+    ops.push(s.on && (!color || (s.color ?? rh.colors[0]) === color) ? 1 : 0.08);
+    t += s.d;
+  }
+  return `<animate attributeName="opacity" values="${ops.join(';')}" keyTimes="${times.join(';')}" dur="${rh.period}s" calcMode="discrete" repeatCount="indefinite"/>`;
+}
+
+/** Luz que destella con su ritmo (estilo C): un círculo por color, con borde de tinta para que se vea sobre el papel. */
+export function luzC(cx, cy, r, ritmo) {
+  const rh = parseRhythm(ritmo);
+  const cols = [...new Set(rh.steps.filter((s) => s.on).map((s) => s.color ?? rh.colors[0]))];
+  return `<g class="il-light">${cols.map((c) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${luzToken(c)}" stroke="var(--lc-tinta)" stroke-width=".8">${animOpacidad(rh, cols.length > 1 ? c : null)}</circle>`).join('')}</g>`;
+}
+
+/** Cronograma del ritmo (estilo C): franja de noche con los destellos, cursor que la recorre y los segundos debajo. */
+export function cronoC(x, y, w, h, ritmo) {
+  const rh = parseRhythm(ritmo);
+  let t = 0;
+  const out = [`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--lc-noche)" stroke="var(--lc-tinta)" stroke-width="1"/>`];
+  for (const s of rh.steps) {
+    if (s.on) out.push(`<rect x="${(x + (t / rh.period) * w).toFixed(1)}" y="${y + 3}" width="${Math.max(2, (s.d / rh.period) * w).toFixed(1)}" height="${h - 6}" fill="${luzToken(s.color ?? rh.colors[0])}"/>`);
+    t += s.d;
+  }
+  out.push(`<line x1="${x}" y1="${y - 3}" x2="${x}" y2="${y + h + 3}" stroke="var(--lc-magenta)" stroke-width="1.6"><animate attributeName="x1" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/><animate attributeName="x2" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/></line>`);
+  const seg = String(rh.period).replace('.', ',');
+  out.push(`<text x="${x}" y="${y + h + 15}" font-size="11.5" fill="var(--lc-apagado)" class="lc-mono">0 s</text><text x="${x + w}" y="${y + h + 15}" font-size="11.5" text-anchor="end" fill="var(--lc-apagado)" class="lc-mono">${seg} s</text>`);
+  return out.join('');
+}

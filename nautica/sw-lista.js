@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '5490f523c9bb';
+self.VERSION = '9090980b5ce1';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -129,6 +129,7 @@ self.APP = [
  "src/illustrations/balizamiento.js",
  "src/illustrations/buoys.js",
  "src/illustrations/catalogo-laminas.js",
+ "src/illustrations/estilo-c.js",
  "src/illustrations/index.js",
  "src/illustrations/interactivas.js",
  "src/illustrations/interactivas/abatimiento.js",
@@ -273,7 +274,8 @@ self.APP = [
  "src/ui/views/titulacion.js",
  "src/ui/views/travesia.js",
  "src/ui/voice.js",
- "styles/app.css"
+ "styles/app.css",
+ "styles/laminas.css"
 ];
 self.DATOS = [
  "data/carta-l105-calibracion.json",

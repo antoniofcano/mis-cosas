@@ -11,7 +11,7 @@ import { createProgressStore } from '../store/progress.js';
 import { installApi } from '../ai/api.js';
 import { setSharedProgress } from './chart-widget.js';
 import { transicion } from './movimiento.js';
-import { icono } from './iconos.js';
+import { icono, conIcono } from './iconos.js';
 import { voice } from './voice.js';
 import { exerciseView } from './views/exercise.js';
 import { preguntaView, listaView, legadoExamenesView } from './views/exams.js';
@@ -148,7 +148,7 @@ function renderSelectorTit(tit, parts, cambiarTit) {
     const destino = rutaEnTit(parts, X.id);
     return h('a.opcion-tit', { href: destino ? link(destino) : location.hash || '#/', 'aria-current': actual ? 'true' : null,
       onclick: (ev) => { det.open = false; if (actual) { ev.preventDefault(); return; } if (!destino) { ev.preventDefault(); cambiarTit(X.id); } } },
-    h('span.opcion-tit-sigla', `${X.icon} ${X.sigla}`), h('span.opcion-tit-nombre', X.nombre), actual ? h('span.opcion-tit-marca', { 'aria-hidden': 'true' }, '✓') : null);
+    h('span.opcion-tit-sigla', conIcono(X.ico, X.sigla)), h('span.opcion-tit-nombre', X.nombre), actual ? h('span.opcion-tit-marca', { 'aria-hidden': 'true' }, '✓') : null);
   }));
 }
 
@@ -194,12 +194,10 @@ async function main() {
   const session = { summary: () => current?.summary?.() ?? '' };
   installApi({ ctx, session });
 
-  // Tamaño de letra elegido en Ajustes (normal, grande, muy grande) e icono de ajustes de la cabecera.
+  // Tamaño de letra elegido en Ajustes (normal, grande, muy grande). Los iconos de la cabecera ya vienen en index.html.
   const aplicaLetra = () => { document.documentElement.dataset.letra = progress.settings().letra ?? 'normal'; };
   aplicaLetra();
   window.addEventListener('ajustes-letra', aplicaLetra);
-  document.querySelector('header.top a.ajustes')?.replaceChildren(icono('ajustes'));
-  document.querySelector('header.top a.brand')?.replaceChildren(icono('brujula'), ' Patrón');
 
   function render() {
     const route = parseHash();

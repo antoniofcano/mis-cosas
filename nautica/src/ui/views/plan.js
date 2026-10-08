@@ -1,7 +1,7 @@
 // #/<tit>/plan — Mi plan hasta el examen: qué toca cada día, lo que hay que recuperar y si llegas.
 
 import { h, setChildren } from '../dom.js';
-import { icono } from '../iconos.js';
+import { icono, conIcono } from '../iconos.js';
 import { TITULACIONES, tlink } from '../titulacion.js';
 import { calcularPlan, hrefActividad } from '../cierre.js';
 import { planConSeguimiento, rehacerPlan, botonSubirMinutos, marcaEstado, avisoEsencial } from '../plan-estudio.js';
@@ -14,23 +14,24 @@ import { cuenta, fechaLarga } from '../../texto.js';
 
 const DIAS_MAPAS = 14; // en la recta final, repaso de los temas eliminatorios con los mapas
 
-/** «🕸️ Repaso con los mapas»: en las dos últimas semanas, una ronda del juego de los mapas de los temas eliminatorios. */
+/** «Repaso con los mapas»: en las dos últimas semanas, una ronda del juego de los mapas de los temas eliminatorios. */
 function repasoMapas(tit, estructura, quedan) {
   const el = h('section.plan-mapas', { hidden: true });
   cargarMapas().then((mapas) => {
     const xs = mapasEliminatorios(mapas, tit, estructura);
     if (!xs.length) return;
     const temas = [...new Map(xs.flatMap((x) => x.temas).map((b) => [b.ut, b])).values()].sort((a, b) => a.ut - b.ut);
-    setChildren(el, h('h2', '🕸️ Repaso con los mapas'),
+    setChildren(el, h('h2', conIcono('red', 'Repaso con los mapas')),
       h('p', `${quedan === 1 ? 'Queda 1 día' : `Quedan ${cuenta(quedan, 'día')}`}. En los temas eliminatorios (${temas.map((b) => b.titulo).join(', ')}) se suspende por confundir conceptos: haz cada día una ronda del juego de uno de estos mapas.`),
       h('div.cards', xs.map(({ mapa, temas: ts }) => h('a.card', { href: tlink(tit, ['mapas', mapa.id], { v: 'jugar' }) },
-        h('h3', `🎯 ${mapa.titulo}`), h('p.muted.small', ts.map((b) => b.titulo).join(' · '))))));
+        h('h3', conIcono('diana', mapa.titulo)), h('p.muted.small', ts.map((b) => b.titulo).join(' · '))))));
     el.hidden = false;
   }).catch(() => {});
   return el;
 }
 
-const ICONO = { clase: '🎓', chuleta: '📌', tanda: '✏️', simulacro: '📝' };
+const ICONO = { clase: 'clase', chuleta: 'chincheta', tanda: 'lapiz', simulacro: 'examen' };
+const conMarca = (u) => (ICONO[u.tipo] ? conIcono(ICONO[u.tipo], u.titulo) : u.titulo);
 const lunes = (iso) => { const [y, m, d] = iso.split('-').map(Number); const dow = (new Date(y, m - 1, d).getDay() + 6) % 7; return sumaDiasISO(iso, -dow); };
 
 export function planView({ progress, tit }) {
@@ -50,7 +51,7 @@ export function planView({ progress, tit }) {
     const { plan, seg } = ps;
     const hoy = diaLocal(d.ahora);
     const unidad = (u, enlace) => h('li', { class: u.hecha ? 'hecha' : '' },
-      enlace && !u.hecha ? h('a', { href: hrefActividad(tit, u) }, `${ICONO[u.tipo] ?? ''} ${u.titulo}`) : `${ICONO[u.tipo] ?? ''} ${u.titulo}`,
+      enlace && !u.hecha ? h('a', { href: hrefActividad(tit, u) }, conMarca(u)) : conMarca(u),
       h('span.muted.small', ` · ${u.minutos} min`), u.hecha ? ' ✓' : null);
 
     // Futuro (desde hoy), por semanas.
@@ -102,7 +103,7 @@ export function planView({ progress, tit }) {
       }),
       seg.futuro.fuera.length ? h('details.plan-fuera', h('summary', `Sin hueco antes del examen: ${describir(seg.futuro.fuera)}`),
         h('ul.plan-unidades', seg.futuro.fuera.map((u) => h('li', `${ICONO[u.tipo] ?? ''} ${u.titulo}`, h('span.muted.small', ` · ${u.minutos} min`))))) : null,
-      h('div.plan-dia.examen', h('h3', `🏁 Examen: ${fechaLarga(plan.fechaExamen)}`)),
+      h('div.plan-dia.examen', h('h3', conIcono('bandera', `Examen: ${fechaLarga(plan.fechaExamen)}`))),
       pasados.length ? h('details.plan-pasados', h('summary', `Días pasados (${pasados.length})`),
         pasados.map(([f, xs]) => h('div.plan-dia', h('h3', fechaLarga(f)),
           h('ul.plan-unidades', xs.map((x) => h('li', { class: atrasadas.has(x.id) ? 'saltada' : 'hecha' }, `${x.titulo}${atrasadas.has(x.id) ? ' — sin hacer' : ' ✓'}`)))))) : null,

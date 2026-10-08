@@ -15,6 +15,7 @@ import { cronometro } from '../../course/cronometro.js';
 import { cuenta } from '../../texto.js';
 import { glosar } from '../glosas.js';
 import { delata } from '../../theory/vocabulario.js';
+import { conIcono } from '../iconos.js';
 
 export function tarjetasView(o) {
   return o.params.parts[1] ? sesionView(o) : listaView(o);
@@ -27,14 +28,14 @@ function listaView({ progress, tit }) {
   const tocan = tarjetasPorRepasar(ms, resp);
   const el = h('div.mas',
     volver('Biblioteca', tlink(tit, ['biblioteca'])),
-    h('h1', `🃏 Tarjetas de memoria · ${T.sigla}`),
+    h('h1', conIcono('tarjetas', `Tarjetas de memoria · ${T.sigla}`)),
     h('p.muted', 'Para lo que solo se aprende repitiendo. Mira la tarjeta, piensa la respuesta y dale la vuelta. Las que no sepas volverán mañana.'),
-    tocan.length ? h('a.btn.grande', { href: tlink(tit, ['tarjetas', 'repaso']) }, `🔁 Repasar ${cuenta(tocan.length, 'tarjeta', 'tarjetas')} de hoy`) : null,
+    tocan.length ? h('a.btn.grande', { href: tlink(tit, ['tarjetas', 'repaso']) }, conIcono('repaso', `Repasar ${cuenta(tocan.length, 'tarjeta', 'tarjetas')} de hoy`)) : null,
     h('div.cards', ms.map((m) => {
       const vistas = m.cartas.filter((c) => resp[c.clave]).length;
       const hoy = tarjetasPorRepasar([m], resp).length;
       return h('a.card', { href: tlink(tit, ['tarjetas', m.id], { s: randomSeed() }) },
-        h('h3', `${m.icon} ${m.titulo}`),
+        h('h3', conIcono(m.ico, m.titulo)),
         h('div.meta', h('span.stat', `${cuenta(m.cartas.length, 'tarjeta')}`), vistas ? h('span.stat', `${vistas} vistas`) : null, hoy ? h('span.stat.warn', `${hoy} por repasar`) : null));
     })));
   return { el, summary: () => `VISTA tarjetas ${T.sigla} · ${tocan.length} por repasar hoy\n${ms.map((m) => `${m.id}: ${m.titulo} (${m.cartas.length}) → ${tlink(tit, ['tarjetas', m.id])}`).join('\n')}` };
@@ -58,7 +59,7 @@ function anversoEl(c, tit) {
   }
   if (a.sonido) {
     const r = renderIllustration({ tipo: 'sonido', senal: a.sonido });
-    partes.push(h('button.grande.secondary', { type: 'button', onclick: () => playSignal(r?.sound ?? a.sonido) }, '▶ Escuchar la señal'));
+    partes.push(h('button.grande.secondary', { type: 'button', onclick: () => playSignal(r?.sound ?? a.sonido) }, conIcono('play', 'Escuchar la señal')));
   }
   if (a.texto) partes.push(h('p.tarjeta-texto', a.texto));
   // En el anverso, lo que se pregunta (a.texto) no se explica; en la pregunta, nada que delate la respuesta.
@@ -76,7 +77,7 @@ function sesionView({ progress, tit, params }) {
   const repaso = id === 'repaso';
   const mazo = ms.find((m) => m.id === id);
   const cartas = repaso ? tarjetasPorRepasar(ms, resp).slice(0, 20) : mazo ? sesionMazo(mazo, resp, createRng(Number(params.query.s) || randomSeed())) : [];
-  const titulo = repaso ? '🔁 Tarjetas de hoy' : mazo ? `${mazo.icon} ${mazo.titulo}` : 'Tarjetas';
+  const titulo = repaso ? 'Tarjetas de hoy' : mazo ? mazo.titulo : 'Tarjetas';
   const barra = barraActividad({ texto: titulo, onSalir: () => { location.hash = tlink(tit, ['tarjetas']); } });
   const cont = h('div.tarjeta-sesion');
   const el = h('div.practice', barra, cont);
@@ -101,14 +102,14 @@ function sesionView({ progress, tit, params }) {
       if (i < cartas.length) { mostrar(false); return; }
       progress.logActividad(crono.minutos());
       barra.remove();
-      pintarCierre(cont, progress, tit, { icono: bien === cartas.length ? '🎉' : '💪', titulo: `${bien} de ${cartas.length}`,
+      pintarCierre(cont, progress, tit, { icono: bien === cartas.length ? 'hecho' : 'flojo', titulo: `${bien} de ${cartas.length}`,
         lineas: [bien === cartas.length ? 'Todas sabidas: volverán más adelante para afianzarlas.' : 'Las que no sabías vuelven mañana al repaso.'] });
       summaryText = `VISTA tarjetas terminadas: ${bien} de ${cartas.length}`;
     };
     setChildren(cont,
       h('div.tarjeta', anversoEl(c, tit), reverso),
       h('div.fila-inferior', vuelta
-        ? [h('button.secondary.grande', { type: 'button', onclick: () => responder(false) }, '✗ No lo sabía'), h('button.grande', { type: 'button', onclick: () => responder(true) }, '✓ Lo sabía')]
+        ? [h('button.secondary.grande', { type: 'button', onclick: () => responder(false) }, conIcono('no', 'No lo sabía')), h('button.grande', { type: 'button', onclick: () => responder(true) }, conIcono('ok', 'Lo sabía'))]
         : h('button.grande', { type: 'button', onclick: () => mostrar(true) }, 'Ver la respuesta')));
     summaryText = `TARJETA ${c.clave} (${i + 1}/${cartas.length}) · ${c.anverso.texto ?? c.anverso.pregunta}${vuelta ? ` → ${c.reverso.titulo}${c.reverso.texto ? `. ${c.reverso.texto}` : ''}` : ' (sin dar la vuelta: no reveles la respuesta)'}`;
     window.scrollTo(0, 0);

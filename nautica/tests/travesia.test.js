@@ -13,8 +13,9 @@ import { nuevaSesion, sesionDeHoy } from '../src/course/sesion.js';
 import {
   FAROS, RANGOS, FARO_ENCENDIDO, DIAS_SEMANA, estadoTravesia, rangoPara, ideasParaRango, progresoRango, requisitoRango, resumenExamenes, examenesDe,
   semanaDe, hayUnaSemana, insigniasGanadas, catalogoInsignias, faltaInsignia, fusionar, fotoTravesia, parteSesion, paraManana,
-  posicionesDerrota, PUNTOS_DERROTA, faroInicial, ideasDelBanco, faroDe,
+  posicionesDerrota, PUNTOS_DERROTA, faroInicial, ideasDelBanco, faroDe, luzDeFaro, farosPorTema,
 } from '../src/course/travesia.js';
+import { conceptosPorTema } from '../src/course/listo.js';
 import { bancosNode, ejes, titsDeEje } from '../tools/bancos/leer.mjs';
 
 const AHORA = new Date(2026, 9, 8, 10, 0).getTime(); // jueves 8 de octubre de 2026, hora local
@@ -480,4 +481,38 @@ test('la travesía no menciona ids de preguntas ni nombres propios: sus textos s
   const src = ['../src/course/travesia.js', '../src/ui/travesia.js', '../src/ui/views/travesia.js'].map((f) => readFileSync(new URL(f, import.meta.url), 'utf8')).join('\n');
   assert.doesNotMatch(src, /\b(?:and|dgmm|bal)-[a-z0-9]+-\d{4}/, 'ningún id de pregunta');
   assert.doesNotMatch(src, /[\u{1F300}-\u{1FAFF}]/u, 'sin emojis en la interfaz');
+});
+
+// ---------------------------------------------------------------------------------------------------------------
+// Faros por tema (Temario): el mismo criterio que la carta, agrupando las ideas por el tema (ut) de sus preguntas.
+
+test('luzDeFaro: el criterio de la carta (80 % dominadas = encendido; alguna vista = en curso; si no, apagado)', () => {
+  const x = (estado, vistas = 1) => ({ estado, vistas, tasa: 0, etiqueta: estado });
+  assert.equal(luzDeFaro([x('sin-datos', 0), x('sin-datos', 0)]).estado, 'off');
+  assert.equal(luzDeFaro([x('dominado'), x('sin-datos', 0)]).estado, 'parcial');
+  const on = luzDeFaro([x('dominado'), x('dominado'), x('dominado'), x('dominado'), x('flojo')]);
+  assert.equal(on.estado, 'on');
+  assert.equal(on.pct, FARO_ENCENDIDO);
+  assert.equal(on.flojas.length, 1);
+  assert.equal(luzDeFaro([]).estado, 'off', 'sin ideas no hay luz (y no divide por cero)');
+});
+
+test('farosPorTema: un faro por tema con el tema de la mayoría de sus preguntas; sin etiquetas, vacío', () => {
+  const { ic, ideas, banco } = juguete({ nomen: 5, baliza: 5 });
+  // Las ideas de balizamiento, al tema 5; una de ellas con dos preguntas del 5 y una del 6 (va al 5).
+  for (const q of banco.todas) if (q.id.startsWith('baliza')) q.ut = 5;
+  banco.porId.get(`${ideas.baliza[0]}#3`).ut = 6;
+  const resp = juntar(...ideas.nomen.slice(0, 4).map((i) => dominada(i)), dominada(ideas.baliza[0]));
+  const est = estadoTravesia({ ic, respuestas: resp, ahora: AHORA });
+  const fs = farosPorTema(est, ic);
+  assert.deepEqual([...fs.keys()].sort((a, b) => a - b), [1, 5]);
+  assert.equal(fs.get(1).estado, 'on');
+  assert.equal(fs.get(1).dominadas, 4);
+  assert.equal(fs.get(5).estado, 'parcial');
+  assert.equal(fs.get(5).total, 5);
+  // Las mismas ideas por tema que «Mi progreso» (conceptosPorTema): mismo reparto.
+  const E = { bloques: [{ ut: 1, titulo: 'Uno', n: 4 }, { ut: 5, titulo: 'Cinco', n: 5 }, { ut: 6, titulo: 'Seis', n: 2 }] };
+  assert.deepEqual(conceptosPorTema(E, ic, resp).map((t) => [t.ut, t.total]), [[1, 5], [5, 5]]);
+  assert.equal(farosPorTema(null, ic).size, 0);
+  assert.equal(farosPorTema(estadoTravesia({ ic: null }), null).size, 0);
 });

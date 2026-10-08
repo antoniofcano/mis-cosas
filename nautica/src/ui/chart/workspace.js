@@ -1,8 +1,8 @@
 // Mesa de cartas: la carta a pantalla completa con un panel lateral (o inferior en el móvil) que trae el
 // ejercicio a la carta para resolverlo sin cambiar de pantalla:
-//   · 📋 Ejercicio: enunciado troceado en fichas que se envían a la carta como notas, faros citados
+//   · Ejercicio: enunciado troceado en fichas que se envían a la carta como notas, faros citados
 //     resaltados, y el formulario de respuesta del propio ejercicio (se mueve aquí mientras está abierta).
-//   · 🎓 Tutorial: la resolución reproducida sobre la carta, paso a paso, con instrumentos y explicación.
+//   · Tutorial: la resolución reproducida sobre la carta, paso a paso, con instrumentos y explicación.
 
 import { h, setChildren } from '../dom.js';
 import { interactiveChart } from './interactive-chart.js';
@@ -12,6 +12,8 @@ import { voice } from '../voice.js';
 import { botonPlegar } from '../hoja.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
+import { lineaProfe, rotuloProfe } from '../profe-steps.js';
+import { icono, conIcono } from '../iconos.js';
 
 const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -72,11 +74,11 @@ export function openWorkspace(o) {
       if (sel) chartApi.addNote(sel);
       else chartApi.setReadout('Selecciona primero un trozo del enunciado (o toca una ficha).');
     },
-  }, '📌 Enviar lo seleccionado');
+  }, conIcono('chincheta', 'Enviar lo seleccionado'));
   const answersBox = h('div.ws-answers');
   const tabEjercicio = h('section.ws-tab',
     h('h2', 'Enunciado'), statementEl,
-    h('p.muted.small', 'Toca una ficha para ponerla en la carta como nota (luego la mueves con ✋). Los faros citados aparecen resaltados.'),
+    h('p.muted.small', 'Toca una ficha para ponerla en la carta como nota (luego la mueves con Mover). Los faros citados aparecen resaltados.'),
     chips, h('div.actions', sendSel),
     o.answerNodes?.length ? [h('h2', 'Tu respuesta'), answersBox] : null,
   );
@@ -87,17 +89,17 @@ export function openWorkspace(o) {
     steps: narrateSteps(o.steps ?? [], { seed: o.title }),
     outro: o.result ? narrateOutro(o.result) : null,
   };
-  const caption = h('div.ws-caption', h('p.muted', 'Pulsa ▶ para ver la resolución trazada sobre la carta, paso a paso.'));
+  const caption = h('div.ws-caption', h('p.muted', 'Pulsa «Reproducir» para ver la resolución trazada sobre la carta, paso a paso.'));
   const voiceBtn = h('button.small.secondary', { type: 'button', title: 'Voz del profe', onclick: () => { voice.setEnabled(!voice.enabled); syncVoice(); } });
   const rateSel = h('select.small', { 'aria-label': 'Velocidad de la voz', onchange: (ev) => voice.setRate(Number(ev.target.value)) },
     [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)));
-  const syncVoice = () => { voiceBtn.textContent = voice.enabled ? '🔊 Voz' : '🔇 Voz'; voiceBtn.setAttribute('aria-pressed', String(voice.enabled)); rateSel.hidden = !voice.enabled; };
+  const syncVoice = () => { voiceBtn.replaceChildren(...conIcono(voice.enabled ? 'escuchar' : 'silencio', 'Voz')); voiceBtn.setAttribute('aria-pressed', String(voice.enabled)); rateSel.hidden = !voice.enabled; };
   syncVoice();
   if (!voice.supported) { voiceBtn.hidden = true; rateSel.hidden = true; }
-  const profeText = (txt) => txt.split('\n').map((line) => h('p', { class: /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : '' }, line));
+  const profeText = (txt) => txt.split('\n').map((line) => lineaProfe(line).el);
   const stepList = h('ol.ws-steps', (o.steps ?? []).map((s, i) => h('li', h('button.linklike', { type: 'button', onclick: () => tutorial.goTo(i + 1) }, s.title))));
   const counter = h('span.ws-counter', `0 / ${o.steps?.length ?? 0}`);
-  const playBtn = h('button.small', { type: 'button', onclick: () => togglePlay() }, '▶ Reproducir');
+  const playBtn = h('button.small', { type: 'button', onclick: () => togglePlay() }, conIcono('play', 'Reproducir'));
   const tutorial = createTutorial(chartApi, o.steps ?? [], o.items ?? [], {
     narration,
     voice,
@@ -105,45 +107,45 @@ export function openWorkspace(o) {
       counter.textContent = `${n} / ${o.steps.length}`;
       [...stepList.children].forEach((li, i) => li.classList.toggle('current', i === n - 1));
       setChildren(caption,
-        n ? [h('h3', `Paso ${n}. ${info.step.title}`), h('div.profe', h('span.profe-badge', '👨‍🏫 El profe'), profeText(info.narration?.display ?? info.step.text)),
-          info.drawing ? h('p.ws-instrument', '✍️ ', info.drawing) : null]
-          : h('div.profe', h('span.profe-badge', '👨‍🏫 El profe'), profeText(narration.intro.display)),
+        n ? [h('h3', `Paso ${n}. ${info.step.title}`), h('div.profe', rotuloProfe(), profeText(info.narration?.display ?? info.step.text)),
+          info.drawing ? h('p.ws-instrument', icono('lapiz'), ' ', info.drawing) : null]
+          : h('div.profe', rotuloProfe(), profeText(narration.intro.display)),
       );
       glosar(caption.querySelector('.profe'), o.glosas);
       chartApi.setReadout(n ? `Paso ${n}: ${info.step.title}` : 'Tutorial al principio.');
     },
   });
   async function togglePlay() {
-    if (tutorial.playing) { tutorial.stop(); playBtn.textContent = '▶ Reproducir'; return; }
-    playBtn.textContent = '⏸ Pausa';
+    if (tutorial.playing) { tutorial.stop(); playBtn.replaceChildren(...conIcono('play', 'Reproducir')); return; }
+    playBtn.replaceChildren(...conIcono('pausa', 'Pausa'));
     if (tutorial.step >= tutorial.total) await tutorial.goTo(0, { animate: false });
     await tutorial.play();
-    playBtn.textContent = '▶ Reproducir';
+    playBtn.replaceChildren(...conIcono('play', 'Reproducir'));
   }
   // El enunciado, a mano también en el tutorial: para comprobar lo que dice el profe contra lo que pide la pregunta.
-  const enunciadoTutorial = h('details.ws-enunciado', h('summary', '📋 Ver el enunciado'), h('p.ws-statement', o.statement));
+  const enunciadoTutorial = h('details.ws-enunciado', h('summary', conIcono('portapapeles', 'Ver el enunciado')), h('p.ws-statement', o.statement));
   glosar(enunciadoTutorial.querySelector('p'), o.glosas);
   const tabTutorial = h('section.ws-tab',
     enunciadoTutorial,
     h('div.ws-controls',
-      h('button.small.secondary', { type: 'button', title: 'Al principio', onclick: () => tutorial.first() }, '⏮'),
-      h('button.small.secondary', { type: 'button', title: 'Paso anterior', onclick: () => tutorial.prev() }, '◀'),
+      h('button.small.secondary', { type: 'button', title: 'Al principio', 'aria-label': 'Al principio', onclick: () => tutorial.first() }, icono('inicio')),
+      h('button.small.secondary', { type: 'button', title: 'Paso anterior', 'aria-label': 'Paso anterior', onclick: () => tutorial.prev() }, icono('atras')),
       playBtn,
-      h('button.small.secondary', { type: 'button', title: 'Paso siguiente', onclick: () => tutorial.next() }, '▶'),
-      h('button.small.secondary', { type: 'button', title: 'Solución completa', onclick: () => tutorial.last() }, '⏭'),
+      h('button.small.secondary', { type: 'button', title: 'Paso siguiente', 'aria-label': 'Paso siguiente', onclick: () => tutorial.next() }, icono('adelante')),
+      h('button.small.secondary', { type: 'button', title: 'Solución completa', 'aria-label': 'Solución completa', onclick: () => tutorial.last() }, icono('fin')),
       counter,
     ),
     h('div.ws-controls', voiceBtn, rateSel,
-      h('button.small.secondary', { type: 'button', title: 'Repetir la explicación de este paso', onclick: () => voice.speak(tutorial.step ? narration.steps[tutorial.step - 1].speech : narration.intro.speech) }, '🔁 Repetir'),
-      h('button.small.secondary', { type: 'button', title: 'Callar', onclick: () => voice.stop() }, '⏹')),
+      h('button.small.secondary', { type: 'button', title: 'Repetir la explicación de este paso', onclick: () => voice.speak(tutorial.step ? narration.steps[tutorial.step - 1].speech : narration.intro.speech) }, conIcono('repaso', 'Repetir')),
+      h('button.small.secondary', { type: 'button', title: 'Callar', 'aria-label': 'Callar', onclick: () => voice.stop() }, icono('parar'))),
     caption,
     h('h3', 'Pasos'), stepList,
-    h('p.muted.small', 'Tus trazos y notas no se borran: el tutorial se dibuja aparte. Pulsa ⏮ para quitarlo.'),
+    h('p.muted.small', 'Tus trazos y notas no se borran: el tutorial se dibuja aparte. Pulsa «Al principio» para quitarlo.'),
   );
 
   const tabs = { ejercicio: tabEjercicio, tutorial: tabTutorial };
-  const tabButtons = Object.entries({ ejercicio: '📋 Ejercicio', tutorial: '🎓 Tutorial' }).map(([id, label]) =>
-    h('button.ws-tabbtn', { type: 'button', 'data-tab': id, onclick: () => showTab(id) }, label));
+  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], tutorial: ['clase', 'Tutorial'] }).map(([id, [ico, label]]) =>
+    h('button.ws-tabbtn', { type: 'button', 'data-tab': id, onclick: () => showTab(id) }, conIcono(ico, label)));
   const panelBody = h('div.ws-panel-body');
   // El panel (abajo en el móvil, a la derecha en pantallas anchas) tapa parte de la carta: se pliega y se despliega con
   // la misma asa que la corrección; tocar una pestaña lo vuelve a abrir.
@@ -156,17 +158,17 @@ export function openWorkspace(o) {
     if (panel.classList.contains('plegada')) { plegar.pliega(false); ws.classList.remove('panel-plegado'); }
     setChildren(panelBody, tabs[id]);
     tabButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === id)));
-    if (id !== 'tutorial') { tutorial.stop(); playBtn.textContent = '▶ Reproducir'; }
+    if (id !== 'tutorial') { tutorial.stop(); playBtn.replaceChildren(...conIcono('play', 'Reproducir')); }
   }
 
   // Ayudas de práctica (chuleta y el hueco de la calculadora): solo si la vista que abre la mesa las pide.
   const ayudas = o.ayudas ? crearAyudas({ ...o.ayudas, flotante: true }) : null;
   const ws = h('div.workspace', { role: 'dialog', 'aria-modal': 'true', 'aria-label': `Carta: ${o.title}` },
     h('header.ws-head',
-      h('strong.ws-title', `🗺️ ${o.title}`),
+      h('strong.ws-title', conIcono('mapa', o.title)),
       h('span.spacer'),
       ayudas?.barra,
-      h('button.small.secondary', { type: 'button', title: 'Cerrar la carta (Esc)', onclick: () => close() }, '✕ Cerrar'),
+      h('button.small.secondary', { type: 'button', title: 'Cerrar la carta (Esc)', onclick: () => close() }, conIcono('salir', 'Cerrar')),
     ),
     h('div.ws-main',
       h('div.ws-chart', chartApi.el, ayudas?.panel),

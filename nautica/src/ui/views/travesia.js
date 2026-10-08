@@ -156,7 +156,7 @@ function pantallaTravesia({ T, tit, d, sy, query }) {
     h('p.muted.small', `Cuenta cualquier día con estudio. El día de descanso no rompe nada: con ${cuenta(DIAS_SEMANA, 'día')} de estudio en la semana ya es una buena semana.`));
 
   // La nota real, tal cual la da «¿Estás listo?»
-  const nota = lineaListo(d.st.listo).replace(/^✅\s*/, '');
+  const nota = lineaListo(d.st.listo);
   const notaEl = h('section.trav-nota', h('h2.eti', '¿Estás listo? · tu nota real'), h('p.trav-nota-linea', nota),
     h('p.small', 'Los rangos, los faros y las insignias no la cambian: solo la cambia lo que sabes.'));
 

@@ -14,15 +14,16 @@ import { getRaster } from './raster.js';
 import { rulersLayer, RULER_LEFT, RULER_TOP } from '../../graphics/rulers.js';
 import { parseAngle } from '../../math/format.js';
 import { botonCalculadora } from '../calculadora.js';
+import { icono } from '../iconos.js';
 
 const TOOLS = [
-  { id: 'move', icon: '✋', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías y el transportador. Un trazo: por un extremo (asa redonda) lo alargas o giras; por el medio lo trasladas paralelo; un círculo, por el centro lo mueves y por el borde cambias el radio. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
-  { id: 'ruler', icon: '📏', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros. Si empiezas sobre el extremo (asa) de un trazo tuyo, lo mueves.' },
-  { id: 'compass', icon: '🧭', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
-  { id: 'protractor', icon: '📐', label: 'Transportador', corto: 'Transpor\u00ADtador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
-  { id: 'point', icon: '📍', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
-  { id: 'text', icon: '🔤', label: 'Texto', help: 'Toca donde quieras poner una nota y escríbela en la barra de abajo (también su tamaño). Con ✋ Mover se arrastra.' },
-  { id: 'erase', icon: '🧽', label: 'Goma', help: 'Toca un trazo, punto o texto tuyo para borrarlo.' },
+  { id: 'move', icon: 'mover', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías y el transportador. Un trazo: por un extremo (asa redonda) lo alargas o giras; por el medio lo trasladas paralelo; un círculo, por el centro lo mueves y por el borde cambias el radio. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
+  { id: 'ruler', icon: 'regla', label: 'Regla', help: 'Arrastra de un punto a otro: traza la línea y lee Rv y distancia. Se ajusta a los faros. Si empiezas sobre el extremo (asa) de un trazo tuyo, lo mueves.' },
+  { id: 'compass', icon: 'compas', label: 'Compás', help: 'Pincha en el centro y arrastra hasta el radio: lee las millas y traza la circunferencia.' },
+  { id: 'protractor', icon: 'transportador', label: 'Transportador', corto: 'Transpor\u00ADtador', help: 'Interruptor: púlsalo para poner o quitar el transportador. Arrastra el agujero central para moverlo (se ajusta a los faros) y arrastra dentro del cuadrado para girar el hilo. Luego «Trazar». Se queda puesto aunque uses otras herramientas.' },
+  { id: 'point', icon: 'lugar', label: 'Punto', help: 'Toca para marcar un punto y leer sus coordenadas.' },
+  { id: 'text', icon: 'texto', label: 'Texto', help: 'Toca donde quieras poner una nota y escríbela en la barra de abajo (también su tamaño). Con Mover se arrastra.' },
+  { id: 'erase', icon: 'goma', label: 'Goma', help: 'Toca un trazo, punto o texto tuyo para borrarlo.' },
 ];
 const NOTE_SIZES = [[11, 'S'], [14, 'M'], [18, 'L'], [24, 'XL'], [32, 'XXL']];
 const LAYERS = [['vectorial', 'Vectorial'], ['escaneada', 'Mi carta'], ['ambas', 'Ambas']];
@@ -70,7 +71,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
 
   // En móvil la ayuda va en dos líneas (CSS); tocándola se despliega entera y se vuelve a plegar.
   const readout = h('div.readout', { onclick: () => readout.classList.toggle('abierta') }, TOOLS[0].help);
-  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, h('span.tool-icon', t.icon), h('span.tool-name', t.corto ?? t.label)));
+  const toolButtons = TOOLS.map((t) => h('button.tool', { type: 'button', title: `${t.label}: ${t.help}`, 'aria-pressed': 'false', onclick: () => (t.id === 'protractor' ? toggleProtractor() : setTool(t.id)) }, h('span.tool-icon', icono(t.icon)), h('span.tool-name', t.corto ?? t.label)));
   const layerSelect = h('select.small', { 'aria-label': 'Capa de la carta', onchange: (ev) => setLayer(ev.target.value) },
     LAYERS.map(([v, t]) => h('option', { value: v }, t)));
   const bearingInput = h('input.bearing', { type: 'number', min: 0, max: 359, step: 1, 'aria-label': 'Rumbo del transportador', onchange: () => { if (state.protractor) { state.protractor.bearing = norm360(Number(bearingInput.value) || 0); render(); } } });
@@ -96,10 +97,10 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   noteInput.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); selectNote(null); } });
   const sizeButtons = NOTE_SIZES.map(([px, lbl]) => h('button.small.secondary.size', { type: 'button', 'data-size': px, title: `Tamaño ${lbl}`, onclick: () => setNoteSize(px) }, lbl));
   const noteBar = h('div.note-bar', { hidden: true },
-    h('span.muted', '🔤'), noteInput,
+    icono('texto', 'muted'), noteInput,
     h('span.sizes', h('button.small.secondary', { type: 'button', title: 'Letra más pequeña', onclick: () => stepNoteSize(-1) }, 'A−'), sizeButtons,
       h('button.small.secondary', { type: 'button', title: 'Letra más grande', onclick: () => stepNoteSize(1) }, 'A+')),
-    h('button.small.secondary', { type: 'button', title: 'Borrar la nota', onclick: () => { const id = state.selectedNote; selectNote(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, '🗑'),
+    h('button.small.secondary', { type: 'button', title: 'Borrar la nota', onclick: () => { const id = state.selectedNote; selectNote(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, icono('papelera')),
     h('button.small', { type: 'button', onclick: () => selectNote(null) }, 'Listo'),
   );
   // Barra de la guía seleccionada (valor exacto) y barra «ir a coordenadas»
@@ -118,17 +119,17 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   guideInput.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); applyGuide(); selectGuide(null); } });
   const guideLbl = h('span.muted');
   const guideBar = h('div.note-bar.guide-bar', { hidden: true }, guideLbl, guideInput,
-    h('button.small.secondary', { type: 'button', title: 'Borrar la guía', onclick: () => { const id = state.selectedGuide; selectGuide(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, '🗑'),
+    h('button.small.secondary', { type: 'button', title: 'Borrar la guía', onclick: () => { const id = state.selectedGuide; selectGuide(null); state.history.push(state.user); state.user = state.user.filter((u) => u.id !== id); render(); } }, icono('papelera')),
     h('button.small', { type: 'button', onclick: () => { applyGuide(); selectGuide(null); } }, 'Listo'));
   const latIn = h('input', { type: 'text', placeholder: '36 05,2 N', 'aria-label': 'Latitud' });
   const lonIn = h('input', { type: 'text', placeholder: '5 36,4 W', 'aria-label': 'Longitud' });
   const coordBar = h('div.note-bar.coord-bar', { hidden: true },
-    h('span.muted', '⌖'), latIn, lonIn,
+    icono('mira', 'muted'), latIn, lonIn,
     h('button.small.secondary', { type: 'button', onclick: () => guidesFromInputs(false) }, 'Trazar guías'),
     h('button.small', { type: 'button', onclick: () => guidesFromInputs(true) }, 'Guías + punto'),
-    h('button.small.secondary', { type: 'button', title: 'Cerrar', onclick: () => { coordBar.hidden = true; } }, '✕'));
-  const coordBtn = h('button.tool', { type: 'button', title: 'Situar por coordenadas: traza las guías de latitud y longitud', onclick: () => { coordBar.hidden = !coordBar.hidden; if (!coordBar.hidden) latIn.focus(); } }, h('span.tool-icon', '⌖'), h('span.tool-name', 'Situar'));
-  const coordsBtn = h('button.tool', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, h('span.tool-icon', '🏷'), h('span.tool-name', 'Coorde\u00ADnadas'));
+    h('button.small.secondary', { type: 'button', title: 'Cerrar', 'aria-label': 'Cerrar', onclick: () => { coordBar.hidden = true; } }, icono('salir')));
+  const coordBtn = h('button.tool', { type: 'button', title: 'Situar por coordenadas: traza las guías de latitud y longitud', onclick: () => { coordBar.hidden = !coordBar.hidden; if (!coordBar.hidden) latIn.focus(); } }, h('span.tool-icon', icono('mira')), h('span.tool-name', 'Situar'));
+  const coordsBtn = h('button.tool', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, h('span.tool-icon', icono('etiqueta')), h('span.tool-name', 'Coorde\u00ADnadas'));
 
 
   const el = h('div.ichart',
@@ -142,15 +143,15 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
           const bar = ev.currentTarget.closest('.ichart-toolbar');
           const abierta = bar.classList.toggle('abierta');
           ev.currentTarget.setAttribute('aria-expanded', String(abierta));
-        } }, h('span.tool-icon', '⋯'), h('span.tool-name', 'Más'))),
+        } }, h('span.tool-icon', icono('mas')), h('span.tool-name', 'Más'))),
       h('div.tools.edicion', { role: 'group', 'aria-label': 'Edición' },
-        h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', '↶'), h('span.tool-name', 'Deshacer')),
+        h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', icono('deshacer')), h('span.tool-name', 'Deshacer')),
         coordsBtn, coordBtn,
-        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', '🗑'), h('span.tool-name', 'Borrar todo'))),
+        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', icono('papelera')), h('span.tool-name', 'Borrar todo'))),
       h('div.tools.vista', { role: 'group', 'aria-label': 'Vista' },
-        h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', '+'), h('span.tool-name', 'Acercar')),
-        h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', '−'), h('span.tool-name', 'Alejar')),
-        h('button.tool', { type: 'button', title: 'Encuadrar toda la zona de trabajo', onclick: () => { fit(); render(); } }, h('span.tool-icon', '⤢'), h('span.tool-name', 'Encuadrar')),
+        h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', icono('acercar')), h('span.tool-name', 'Acercar')),
+        h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', icono('alejar')), h('span.tool-name', 'Alejar')),
+        h('button.tool', { type: 'button', title: 'Encuadrar toda la zona de trabajo', onclick: () => { fit(); render(); } }, h('span.tool-icon', icono('encuadrar')), h('span.tool-name', 'Encuadrar')),
         layerSelect,
       ),
     ),
@@ -491,7 +492,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
         if (g?.kind === 'item-move' && state.user.find((u) => u.id === g.id)?.t === 'text') { state.drag = g; break; }
         addUser({ t: 'text', at: s.geo, text: '', size: state.noteSize, style: 'user' });
         selectNote(state.user[state.user.length - 1].id, { focus: true });
-        readout.textContent = 'Escribe la nota en la barra; elige el tamaño con S/M/L/XL. Con ✋ Mover la arrastras.';
+        readout.textContent = 'Escribe la nota en la barra; elige el tamaño con S/M/L/XL. Con Mover la arrastras.';
         break;
       }
       case 'erase': eraseAt(w); break;
@@ -655,7 +656,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       if (d.left && d.value != null) {
         addUser({ t: 'guide', axis: d.axis, value: d.value });
         selectGuide(state.user[state.user.length - 1].id);
-        readout.textContent = `Guía en ${d.axis === 'lat' ? fmtLat(d.value) : fmtLon(d.value)}. Escribe el valor exacto en la barra o arrástrala con ✋.`;
+        readout.textContent = `Guía en ${d.axis === 'lat' ? fmtLat(d.value) : fmtLon(d.value)}. Escribe el valor exacto en la barra o arrástrala con Mover.`;
       }
     }
     if (d.kind === 'guide-move') {
@@ -800,7 +801,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
       const v = viewRect();
       const at = fromWorld({ x: v.x + v.w * 0.05, y: v.y + v.h * 0.1 + ((noteOffset++ % 12) * 30) / state.z });
       addUser({ t: 'text', at, text, size, style: 'user' });
-      readout.textContent = 'Nota añadida a la carta. Con ✋ Mover la colocas donde quieras.';
+      readout.textContent = 'Nota añadida a la carta. Con Mover la colocas donde quieras.';
     },
     focusPoints: (pts) => { fit(pts); render(); },
     setStep(s) { step = s; render(); },

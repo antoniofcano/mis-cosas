@@ -8,6 +8,7 @@ import { link } from './router.js';
 import { configActiva, cursoPorDefecto, cargarMnemotecnias } from '../bancos/index.js';
 import { leerConfigTexto, resumenConfig, nombreConfig } from '../course/config-profe.js';
 import { fechaLarga } from '../texto.js';
+import { conIcono } from './iconos.js';
 
 /** Los datos por defecto con los que se compara una configuración (cursos con su ruta y reglas de la app). */
 export async function contextoConfig() {
@@ -15,10 +16,10 @@ export async function contextoConfig() {
   return { cursos: { per, py }, reglas: mnemo.porDefecto ?? mnemo.reglas };
 }
 
-/** «🧑‍🏫 Ruta de: Marta Ruiz» (enlace a Ajustes), o null sin configuración. */
+/** «Ruta de: Marta Ruiz» (con el icono del profe) (enlace a Ajustes), o null sin configuración. */
 export function marcaConfig() {
   const c = configActiva();
-  return c ? h('p.marca-config', h('a', { href: link(['ajustes'], { campo: 'profe' }), title: `Configuración «${c.nombre}»` }, `🧑‍🏫 ${nombreConfig(c)}`)) : null;
+  return c ? h('p.marca-config', h('a', { href: link(['ajustes'], { campo: 'profe' }), title: `Configuración «${c.nombre}»` }, conIcono('profe', nombreConfig(c)))) : null;
 }
 
 /** Sección de Ajustes: «Usar la configuración de mi profesor» y el enlace al modo profesor. */
@@ -29,7 +30,7 @@ export function seccionConfigAlumno(progress) {
   const pinta = () => {
     const c = configActiva();
     if (c) {
-      setChildren(sec, h('h2', '🧑‍🏫 La configuración de tu profesor'),
+      setChildren(sec, h('h2', conIcono('profe', 'La configuración de tu profesor')),
         h('p', 'Usas «', h('strong', c.nombre), '», de ', h('strong', c.autor), ` (${fechaLarga(c.fecha)}).`),
         estado,
         h('div.actions', h('button.secondary.grande', { type: 'button', onclick: quitar }, 'Quitarla y volver a la ruta por defecto')),
@@ -37,7 +38,7 @@ export function seccionConfigAlumno(progress) {
       contextoConfig().then((ctx) => setChildren(estado, h('ul.resumen-config', resumenConfig(c, ctx.cursos).map((x) => h('li', x))))).catch(() => {});
       return;
     }
-    setChildren(sec, h('h2', '🧑‍🏫 Tu profesor'),
+    setChildren(sec, h('h2', conIcono('profe', 'Tu profesor')),
       h('p', 'Si tu profesor te ha pasado un fichero con su ruta del curso, sus reglas para recordar o sus chuletas, úsalo aquí. Solo cambia lo que ves tú; puedes quitarlo cuando quieras.'),
       h('div.actions', h('button.grande', { type: 'button', onclick: abrir }, 'Usar la configuración de mi profesor')),
       estado,

@@ -31,13 +31,13 @@ export function defineExercise(def) {
 }
 
 export const CATEGORIES = [
-  { id: 'aguja', title: 'Aguja y corrección total', icon: '🧭', blurb: 'Rv, Ra, Rm, dm, Δ y Ct.' },
-  { id: 'estima', title: 'Navegación de estima', icon: '📐', blurb: 'Rumbo, distancia, velocidad y tiempo entre puntos.' },
-  { id: 'situacion', title: 'Situación', icon: '📍', blurb: 'Demoras, distancias y enfilaciones.' },
-  { id: 'corrientes', title: 'Corrientes', icon: '🌊', blurb: 'Rumbo efectivo, rumbo a dar y corriente desconocida.' },
-  { id: 'viento', title: 'Viento y abatimiento', icon: '💨', blurb: 'Viento aparente, rumbo de superficie y abatimiento.' },
-  { id: 'mareas', title: 'Mareas', icon: '🌙', blurb: 'Altura de la marea, sonda y hora para pasar por un bajo.' },
-  { id: 'hora', title: 'La hora a bordo', icon: '🕰️', blurb: 'TU, huso, hora legal, civil del lugar y oficial.' },
+  { id: 'aguja', title: 'Aguja y corrección total', ico: 'brujula', blurb: 'Rv, Ra, Rm, dm, Δ y Ct.' },
+  { id: 'estima', title: 'Navegación de estima', ico: 'compas', blurb: 'Rumbo, distancia, velocidad y tiempo entre puntos.' },
+  { id: 'situacion', title: 'Situación', ico: 'lugar', blurb: 'Demoras, distancias y enfilaciones.' },
+  { id: 'corrientes', title: 'Corrientes', ico: 'ola', blurb: 'Rumbo efectivo, rumbo a dar y corriente desconocida.' },
+  { id: 'viento', title: 'Viento y abatimiento', ico: 'viento', blurb: 'Viento aparente, rumbo de superficie y abatimiento.' },
+  { id: 'mareas', title: 'Mareas', ico: 'luna', blurb: 'Altura de la marea, sonda y hora para pasar por un bajo.' },
+  { id: 'hora', title: 'La hora a bordo', ico: 'reloj', blurb: 'TU, huso, hora legal, civil del lugar y oficial.' },
 ];
 
 /** Las respuestas pueden depender de la variante del ejercicio: `answers` puede ser lista o función(params). */

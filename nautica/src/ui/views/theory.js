@@ -18,7 +18,8 @@ import { narrateTheory, esDefendible } from '../../teacher/theory.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { voice } from '../voice.js';
 import { hojaRespuesta } from '../hoja.js';
-import { icono } from '../iconos.js';
+import { icono, conIcono } from '../iconos.js';
+import { lineaProfe, rotuloProfe } from '../profe-steps.js';
 import { vibrar, quieto, transicion } from '../movimiento.js';
 import { avisoError } from '../aviso-error.js';
 import { enlaceTrampa } from '../mapa-trampa.js';
@@ -98,12 +99,12 @@ export function questionCard(q, o = {}) {
       h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: urlFigura(q, fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
   return h('article.qcard', { class: o.reveal ? 'revelada' : '' },
-    h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', `${b.icon} ${b.titulo}`) : null,
+    h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', conIcono(b.ico, b.titulo)) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
     h('p.qtext', enunciado),
     (q.figuras ?? []).map((f) => (/tabla-mareas/.test(f)
-      ? h('details.qtable', h('summary', '📊 Tabla para calcular la altura de la marea'), h('img.qfig.wide', { src: urlFigura(q, f), alt: 'Tabla de corrección de la altura de la marea', loading: 'lazy' }))
+      ? h('details.qtable', h('summary', conIcono('tabla', 'Tabla para calcular la altura de la marea')), h('img.qfig.wide', { src: urlFigura(q, f), alt: 'Tabla de corrección de la altura de la marea', loading: 'lazy' }))
       : h('img.qfig', { src: urlFigura(q, f), alt: 'Figura de la pregunta', loading: 'lazy' }))),
     defBox,
     h('div.options', opts),
@@ -151,19 +152,15 @@ export function profePanel(q, expl, chosen) {
     if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => panel.isConnected && panel.scrollIntoView({ block: 'nearest', behavior: quieto() ? 'auto' : 'smooth' }));
   }
   const panel = h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
-    h('span.profe-badge', '👨‍🏫 El profe'),
+    rotuloProfe(),
     // Pregunta retirada por la revisión normativa: se ve en la revisión del examen real, pero ya no se estudia.
     q.norma?.estado === 'retirada' ? h('p.nota-retirada', h('strong', 'Pregunta retirada. '),
       `${q.norma.nota ?? 'La norma ha cambiado y la respuesta oficial ya no es correcta.'} No cuenta en la nota del examen y ya no sale al estudiar.`) : null,
     voice.supported ? h('button.small.secondary.speak', { type: 'button', title: 'Escuchar al profe', 'aria-label': 'Escuchar al profe', onclick: () => voice.speak(n.speech) }, icono('escuchar')) : null,
     // Al acertar, solo el truco (o la idea clave) y el resto bajo «Ver por qué»; al fallar, todo a la vista.
     (() => {
-      const lineas = n.display.map((line) => {
-        const tipo = /^💡/.test(line) ? 'tip' : /^⚠️/.test(line) ? 'trap' : /^🧠/.test(line) ? 'mnemo' : '';
-        const ico = { tip: 'bombilla', trap: 'aviso', mnemo: 'temario' }[tipo];
-        // Clave, trampa y regla con su icono de línea (no con emoji).
-        return { tipo, el: h('p', { class: tipo }, ico ? [icono(ico), ' ', line.replace(/^(💡|⚠️|🧠)\uFE0F?\s*/u, '')] : line) };
-      });
+      // Clave, trampa y regla con su icono de línea (src/ui/profe-steps.js).
+      const lineas = n.display.map(lineaProfe);
       const resto = [expl?.ilustraciones ? h('div.il-grid.inline', illustrationEls(expl.ilustraciones, { modo: 'explicacion' })) : null, enlaceResolucion(q)];
       // Con plantilla discutible (nota del profe), todo a la vista: la versión corta podría parecer contradictoria.
       if (!(chosen != null && ok && !q.anulada) || expl?.discrepancia) return [lineas.map((x) => x.el), resto];
@@ -184,7 +181,7 @@ function enlaceResolucion(q) {
   const ruta = rutaResolucion(q);
   if (!ruta) return null;
   const sinCarta = cartaSolutions[q.id]?.sinCarta;
-  return h('p', h('a.btn.secondary', { href: link(ruta) }, sinCarta ? '🧮 Ver la resolución paso a paso' : '🗺️ Ver la resolución en la carta'));
+  return h('p', h('a.btn.secondary', { href: link(ruta) }, sinCarta ? conIcono('calculadora', 'Ver la resolución paso a paso') : conIcono('mapa', 'Ver la resolución en la carta')));
 }
 
 // ---------------------------------------------------------------------------
@@ -233,7 +230,7 @@ const deTitEje = (x, tit, eje) => (x?.tit ?? 'per') === tit && x?.eje === eje;
 export function tarjetaFinal(T0, fin, { titulo = 'h2' } = {}) {
   if (!fin?.hay) return null;
   return h('section.examen-final', { class: fin.desbloqueado ? 'abierto' : 'cerrado' },
-    h(titulo, fin.desbloqueado ? '🎯 Examen final' : '🔒 Examen final'),
+    h(titulo, conIcono(fin.desbloqueado ? 'diana' : 'candado', 'Examen final')),
     h('p.muted.small', 'Preguntas reales reservadas que no salen al estudiar: la mejor prueba de si lo sabes de verdad.'),
     fin.lineas.map((l) => h('p', l)),
     fin.desbloqueado
@@ -283,19 +280,19 @@ export function examenesView({ ctx, progress, tit }) {
       (() => {
         const n = st.repaso.hoy; // del motor (con conceptos, una por idea)
         return h('section.repaso-examen',
-          n ? h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'repaso']) }, `🔁 Repasar mis fallos (${n} para hoy)`) : null,
-          h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
+          n ? h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'repaso']) }, conIcono('repaso', `Repasar mis fallos (${n} para hoy)`)) : null,
+          h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'rapido'], { s: randomSeed() }) }, conIcono('reloj', 'Tengo 5 minutos')));
       })(),
       h('section.test-tema', h('h2', 'Test por tema'),
         h('p.muted', `${cuenta(TANDA, 'pregunta')} de un tema, con la explicación del profe en cada una.`),
         h('ul.lista-tests', bloquesEnOrden(E0).map((b) => {
           const fallos = preguntas.filter((q) => q.ut === b.ut && progress.get().exams[q.id]?.ok === false).length;
           return h('li',
-            h('a.test-tema-enlace', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) }, h('span', `${b.icon} ${b.titulo}`), b.maxErrores != null ? h('span.limite-tema', `eliminatorio: máximo ${cuenta(b.maxErrores, 'fallo')}`) : null),
+            h('a.test-tema-enlace', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed() }) }, h('span', conIcono(b.ico, b.titulo)), b.maxErrores != null ? h('span.limite-tema', `eliminatorio: máximo ${cuenta(b.maxErrores, 'fallo')}`) : null),
             fallos ? h('a.fallos-tema', { href: tlink(T0.id, ['teoria', 'ut', String(b.ut)], { s: randomSeed(), f: '1' }) }, `Mis fallos (${fallos})`) : null);
         })),
         h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'mezcla'], { s: randomSeed() }) }, 'Repaso mezclado de varios temas')),
-      tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.tipo === 'final' ? '🎯 ' : ''}${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '✅ APTO' : '❌ NO APTO'}`)))) : null,
+      tests.length ? h('section', h('h2', 'Tus últimos exámenes'), h('ul.ultimos', tests.map((t) => h('li', `${fechaLarga(t.t)} · ${t.tipo === 'final' ? 'Examen final · ' : ''}${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '· APTO' : '· NO APTO'}`)))) : null,
       h('details', h('summary', 'Exámenes de convocatorias anteriores'),
         h('p.muted', `Las preguntas de una convocatoria oficial de ${eje.nombre}, en su orden, con el tiempo y las reglas del examen.`),
         citaFuente(eje),
@@ -304,7 +301,7 @@ export function examenesView({ ctx, progress, tit }) {
           return h('a.card', { href: tlink(T0.id, ['test', 'real', c.key]) },
             h('h3', c.titulo ?? c.key),
             h('div.meta', h('span.stat', `${cuenta(c.n, 'pregunta')}`), c.completa ? null : h('span.stat.warn', 'incompleto'),
-              hecho ? h('span.stat', { class: hecho.apto ? 'ok' : 'warn' }, `${hecho.aciertos} de ${hecho.total} ${hecho.apto ? '✅' : '❌'}`) : null));
+              hecho ? h('span.stat', { class: hecho.apto ? 'ok' : 'warn' }, icono(hecho.apto ? 'ok' : 'no', 'ico-t', hecho.apto ? 'Apto' : 'No apto'), `${hecho.aciertos} de ${hecho.total}`) : null));
         }))),
       h('details', h('summary', 'Reglas del examen'),
         h('ul', reglasExamen(T0, eje).map((r) => h('li', r)), h('li', 'En la app, las preguntas en blanco cuentan como fallo y las anuladas por el tribunal como acierto.'))),
@@ -409,7 +406,7 @@ export function cierreTanda(ok, n) {
   const linea = p >= 0.8 ? 'Muy bien. Este tema lo llevas encaminado.'
     : p >= 0.5 ? 'Bien. Las que has fallado volverán a salir.'
       : 'Este tema cuesta al principio. Las que has fallado volverán a salir.';
-  return { icono: p >= 0.5 ? '🎉' : '💪', titulo: `${ok} de ${n}`, lineas: [linea] };
+  return { icono: p >= 0.5 ? 'hecho' : 'flojo', titulo: `${ok} de ${n}`, lineas: [linea] };
 }
 
 // ---------------------------------------------------------------------------
@@ -460,7 +457,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: `${b.icon} ${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: conIcono(b.ico, `${b.titulo}${soloFalladas ? ' · tus fallos' : ''}`),
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -494,7 +491,7 @@ function mezclaView({ progress, seed }) {
       return;
     }
     setChildren(cont, tandaPreguntas({
-      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔀 Repaso mezclado · ${cuenta(empezados.length, 'tema')}`, temaEnCadaPregunta: true,
+      preguntas: sesion.preguntas, explicaciones, progress, barra, vocab, ayudas, rotulo: conIcono('mezclar', `Repaso mezclado · ${cuenta(empezados.length, 'tema')}`), temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
@@ -568,11 +565,11 @@ function repasoView({ progress }) {
       const ids = fichasDe(q, principal);
       if (!ids.length) return null;
       const enlace = (id, k) => h('a.enlace-ficha', { href: hrefFicha(tit0, id, 'repaso') },
-        conNombre ? `Ficha: ${ic.concepto(id)?.etiqueta ?? id}` : ids.length === 1 ? '📖 Repasar la ficha antes de responder' : `📖 Ficha ${k + 1}`);
+        conNombre ? `Ficha: ${ic.concepto(id)?.etiqueta ?? id}` : ids.length === 1 ? conIcono('libro', 'Repasar la ficha antes de responder') : conIcono('libro', `Ficha ${k + 1}`));
       return h(conNombre ? 'span.ficha-despues' : 'p.ficha-antes', conNombre ? null : ids.length > 1 ? 'Repasar antes de responder: ' : null, ids.flatMap((id, k) => (k ? [' · ', enlace(id, k)] : [enlace(id, k)])));
     };
     setChildren(cont, tandaPreguntas({
-      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
+      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: conIcono('repaso', `Repaso de fallos · ${cola.hoy.length} para hoy`), temaEnCadaPregunta: true,
       // Las fichas pendientes se ofrecen al final (nombrar ideas antes de responder podría dar pistas).
       avisoDe: (i, q) => [
         // Repasar de verdad: la ficha de la idea (sin nombrarla, para no dar pistas) antes de responder.
@@ -602,7 +599,7 @@ function repasoView({ progress }) {
         barra.remove();
         const quedan = colaRepaso(preguntas, progress.get().exams, diaLocal(), conc()).hoy.length;
         const ideas = plan.some((x) => x.item.concepto);
-        pintarCierre(cont, progress, tit0, { icono: ok === n ? '🎉' : '💪', titulo: `${ok} de ${n}`,
+        pintarCierre(cont, progress, tit0, { icono: ok === n ? 'hecho' : 'flojo', titulo: `${ok} de ${n}`,
           lineas: [ok === n ? 'Todas bien: volverán más adelante para afianzarlas.' : ideas ? 'Las ideas que has fallado vuelven mañana, con otra pregunta; las acertadas, dentro de unos días.' : 'Las que has fallado vuelven mañana; las acertadas, dentro de unos días.',
             quedan ? `Te quedan ${quedan} por repasar hoy.` : 'Repaso de hoy terminado.'],
           extra: h('div', avisoFichas, remateMapas(tit0, [...new Set(tanda.map((q) => q.ut))])) });
@@ -628,13 +625,13 @@ function rapidoView({ progress, seed }) {
     reglasDe = rd;
     const tanda = tandaRapida(preguntas, progress.get().exams, createRng(seed));
     setChildren(cont, tandaPreguntas({
-      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: '⏱ 5 minutos', temaEnCadaPregunta: true,
+      preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: conIcono('reloj', '5 minutos'), temaEnCadaPregunta: true,
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
         progress.ganarInsignia(currentEje(progress), tit0, 'guardia'); // «Guardia de 5 minutos» (src/course/travesia.js): completar la tanda
         barra.remove();
-        pintarCierre(cont, progress, tit0, { icono: ok >= n - 1 ? '🎉' : '💪', titulo: `${ok} de ${n}`, lineas: ['Cinco minutos bien aprovechados. Las que has fallado vuelven mañana al repaso.'] });
+        pintarCierre(cont, progress, tit0, { icono: ok >= n - 1 ? 'hecho' : 'flojo', titulo: `${ok} de ${n}`, lineas: ['Cinco minutos bien aprovechados. Las que has fallado vuelven mañana al repaso.'] });
         summaryText = `VISTA 5 minutos terminado: ${ok} de ${n}`;
         window.scrollTo(0, 0);
       },
@@ -699,7 +696,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       const respuestasAntes = progress.get().exams;
       if (tipo === 'final' && !fin?.desbloqueado) {
         summaryText = `VISTA examen final ${T0.sigla}: CERRADO · ${fin?.lineas.join(' ') ?? 'este eje no reserva exámenes'}`;
-        setChildren(el, h('div.inicio-examen', h('h1', '🔒 Examen final'), (fin?.hay ? fin.lineas : ['Este tribunal no tiene exámenes reservados en la app.']).map((l) => h('p', l)),
+        setChildren(el, h('div.inicio-examen', h('h1', conIcono('candado', 'Examen final')), (fin?.hay ? fin.lineas : ['Este tribunal no tiene exámenes reservados en la app.']).map((l) => h('p', l)),
           h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver a Examen')));
         return;
       }
@@ -723,8 +720,8 @@ export function testView({ ctx, progress, params: route, tit }) {
             h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
             h('li', `${cuenta(E0.duracionMin, 'minuto')}`),
             h('li', `Apruebas con ${cuenta(E0.minAciertos, 'acierto')}`),
-            limites.map((b) => h('li', `${b.icon} ${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`)),
-            h('li', permitida ? '🧮 Con calculadora científica (botón arriba, junto al reloj)' : 'Sin calculadora')),
+            limites.map((b) => h('li', conIcono(b.ico, `${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
+            h('li', permitida ? conIcono('calculadora', 'Con calculadora científica (botón arriba, junto al reloj)') : 'Sin calculadora')),
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E0, f.ut)?.titulo ?? f.ut).join(', ')}; el ${tipo === 'final' ? 'examen' : 'simulacro'} no está completo.`) : null,
           tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', 'Como el día del examen: solo tú, el reloj y las reglas del tribunal. Al terminar, el profe te explica tus fallos.')] : null,
           test.avisoVistas ? h('p.aviso-vistas', `Ya has respondido el ${Math.round(test.vistas * 100)} % de las preguntas de estudio: este simulacro repetirá muchas que ya has visto y aprobarlo dice menos. La prueba de verdad es el examen final, con preguntas reservadas.`) : null,
@@ -773,10 +770,10 @@ export function testView({ ctx, progress, params: route, tit }) {
         if (!el.isConnected) { dejar(); return; }
         contar();
         const resto = limite - consumido;
-        if (resto <= 0) { reloj.textContent = '⏱ 00:00'; finish(true); return; }
+        if (resto <= 0) { reloj.replaceChildren(icono('reloj', 'ico-t'), '00:00'); finish(true); return; }
         const m = Math.floor(resto / 60000);
         const s = Math.floor((resto % 60000) / 1000);
-        reloj.textContent = `⏱ ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        reloj.replaceChildren(icono('reloj', 'ico-t'), `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`);
         reloj.classList.toggle('warn', resto < 5 * 60000);
         if (Date.now() - ultimoGuardado >= GUARDAR_CADA_MS) guardar();
       }
@@ -827,7 +824,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       }
       function abrirPanel() {
         setChildren(panel,
-          h('div.panel-cabecera', h('h2', 'Todas las preguntas'), h('button.secondary', { type: 'button', onclick: () => { panel.hidden = true; } }, '✕ Cerrar')),
+          h('div.panel-cabecera', h('h2', 'Todas las preguntas'), h('button.secondary', { type: 'button', onclick: () => { panel.hidden = true; } }, conIcono('salir', 'Cerrar'))),
           h('p.muted', `${n - sinResponder()} de ${cuenta(n, 'respondida')}`),
           h('div.rejilla', test.preguntas.map((q, j) => h('button.celda', { type: 'button', class: [respuestas[q.id] ? 'hecha' : '', j === i ? 'actual' : ''].join(' '), 'aria-label': `Pregunta ${j + 1}${respuestas[q.id] ? ', respondida' : ''}`,
             onclick: () => { panel.hidden = true; ir(j); } }, String(j + 1)))),
@@ -885,7 +882,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         } },
         h('summary',
           h('span.revision-num', String(j + 1)),
-          h('span.revision-texto', h('span.revision-tema', b ? `${b.icon} ${b.titulo}` : ''), h('span.revision-enunciado', (q.enunciado ?? '').slice(0, 90) + ((q.enunciado ?? '').length > 90 ? '…' : '')),
+          h('span.revision-texto', h('span.revision-tema', b ? conIcono(b.ico, b.titulo) : ''), h('span.revision-enunciado', (q.enunciado ?? '').slice(0, 90) + ((q.enunciado ?? '').length > 90 ? '…' : '')),
             h('span.revision-dato', d.retirada ? 'Retirada: la norma ha cambiado y no cuenta en la nota' : d.ok ? `Bien: la ${d.correcta})` : d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`))),
         cuerpo);
         return det;
@@ -910,7 +907,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       const botonesFin = ses ? h('div.botones-columna', ses[0], repasar, ses.slice(1))
         : h('div.botones-columna', repasar, h('a.btn.grande', { href: tlink(T0.id), class: g.errores ? 'secondary' : '' }, 'Volver a Hoy'));
       setChildren(el,
-        h('header.resultado', h('h1', g.apto == null ? 'Resultado' : g.apto ? '✅ APTO' : '❌ NO APTO'),
+        h('header.resultado', h('h1', g.apto == null ? 'Resultado' : conIcono(g.apto ? 'ok' : 'no', g.apto ? 'APTO' : 'NO APTO')),
           test.tipo === 'final' ? lineaFinal : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
@@ -920,7 +917,7 @@ export function testView({ ctx, progress, params: route, tit }) {
             h('tbody', conFallos.map((b) => {
               const suspenso = b.maxErrores != null && b.errores > b.maxErrores;
               return h('tr', { class: suspenso ? 'bad' : '' },
-                h('td', `${b.icon} ${b.titulo}`, suspenso ? h('div.suspenso', `Aquí está el suspenso: máximo ${cuenta(b.maxErrores, 'fallo')}`) : null),
+                h('td', conIcono(b.ico, b.titulo), suspenso ? h('div.suspenso', `Aquí está el suspenso: máximo ${cuenta(b.maxErrores, 'fallo')}`) : null),
                 h('td', String(b.errores)));
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),

@@ -75,7 +75,7 @@ function parar(progress, tit) {
   const s = leerSesion(progress, tit);
   const i = indiceActual(s);
   if (s) guardarSesion(progress, tit, pausar(s));
-  // La salida de la vista (✕) guarda su estado (un examen a medias, la tarjeta de la clase) y lleva a Hoy.
+  // La salida de la vista (la X) guarda su estado (un examen a medias, la tarjeta de la clase) y lleva a Hoy.
   const salir = document.querySelector('main .barra-actividad .ba-salir');
   if (salir && salir.isConnected) salir.click();
   else location.hash = tlink(tit);

@@ -183,7 +183,7 @@ export function lineaListo(r) {
     return `Para saber si estás listo necesito que respondas al menos ${cuenta(MIN_RESPUESTAS, 'pregunta')} de cada tema. Te faltan: ${lista}.`;
   }
   const de10 = Math.round(r.prob * 10);
-  const base = r.estado === 'listo' ? '✅ Estás listo' : r.estado === 'casi' ? 'Casi' : 'Todavía no';
+  const base = r.estado === 'listo' ? 'Estás listo' : r.estado === 'casi' ? 'Casi' : 'Todavía no';
   const bajo = Math.round(r.margen.bajo * 10), alto = Math.round(r.margen.alto * 10);
   const rango = alto - bajo >= 2 && bajo !== alto ? `entre ${bajo} y ${alto}` : `unas ${de10}`;
   let txt = `${base}: con lo que aciertas ahora aprobarías ${rango} de cada 10 veces${alto - bajo >= 4 ? ' (todavía hay poco dato reciente: el margen es ancho)' : ''}.`;
@@ -206,6 +206,18 @@ export function lineaListo(r) {
 export const estadoIdea = (d) => (!d || !d.vistas ? 'sin-ver' : d.estado === 'flojo' ? 'floja' : 'sabida');
 
 /**
+ * El tema (ut) de una idea: el de la mayoría de sus preguntas en este banco (a igualdad, el de número menor); null si
+ * no tiene preguntas. Lo usan las ideas por tema de aquí y los faros por tema del Temario (src/course/travesia.js).
+ */
+export function temaDeIdea(ic, id) {
+  const qs = ic.preguntasDe(id, { soloEstudio: false, conDescendientes: false });
+  if (!qs.length) return null;
+  const n = new Map();
+  for (const q of qs) n.set(q.ut, (n.get(q.ut) ?? 0) + 1);
+  return [...n].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0][0];
+}
+
+/**
  * Ideas de cada tema del examen y cómo las lleva el alumno. El tema de una idea es el de la mayoría de sus preguntas en
  * este banco. `ic` = índice de conceptos del banco (src/conceptos) o null (sin etiquetas → null).
  * @returns {{ ut, titulo, maxErrores, total, sabidas, flojas: object[], sinVer: object[] }[] | null}
@@ -217,11 +229,8 @@ export function conceptosPorTema(estructura, ic, respuestas = {}) {
   const porUt = new Map(estructura.bloques.map((b) => [b.ut, { ut: b.ut, titulo: b.titulo, maxErrores: b.maxErrores ?? null, total: 0, sabidas: 0, flojas: [], sinVer: [] }]));
   for (const c of ic.conceptosConPreguntas()) {
     if (c.tipo !== 'concepto') continue;
-    const qs = ic.preguntasDe(c.id, { soloEstudio: false, conDescendientes: false });
-    if (!qs.length) continue;
-    const n = new Map();
-    for (const q of qs) n.set(q.ut, (n.get(q.ut) ?? 0) + 1);
-    const ut = [...n].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0][0];
+    const ut = temaDeIdea(ic, c.id);
+    if (ut == null) continue;
     const t = porUt.get(ut);
     if (!t) continue;
     const d = dom[c.id];

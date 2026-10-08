@@ -8,6 +8,7 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { loadApendice } from '../../store/datasets.js';
 import { estadoApendice } from '../../course/apendice.js';
 import { cuenta } from '../../texto.js';
+import { conIcono } from '../iconos.js';
 
 const MARCA = { nueva: '', empezada: ' · a medias', vista: ' · vista ✓', dominada: ' · vista ✓', repasar: ' · vista ✓' };
 
@@ -25,11 +26,11 @@ export function cuentasView({ progress, tit }) {
   }).catch((e) => setChildren(lista, h('p.warn', `No se pudo cargar: ${e.message}`)));
   const el = h('div.mas.cuentas',
     volver('Biblioteca', tlink(tit, ['biblioteca'])),
-    h('h1', '➗ Las cuentas del patrón'),
+    h('h1', conIcono('cuentas', 'Las cuentas del patrón')),
     h('p', `Las cuentas que piden los ejercicios de carta${tit === 'py' ? ', las mareas y la estima analítica' : ''}, paso a paso y practicadas con la calculadora. Cada ejercicio sale con números nuevos.`),
     h('p.muted.small', 'Es un repaso de matemáticas, no un tema del examen: no cuenta en tu plan ni en «¿Estás listo?».'),
     lista,
-    h('p', h('a.btn.secondary', { href: link(['calculadora']) }, '🧮 Abrir la calculadora científica')),
+    h('p', h('a.btn.secondary', { href: link(['calculadora']) }, conIcono('calculadora', 'Abrir la calculadora científica'))),
   );
   return { el, summary: () => resumen };
 }

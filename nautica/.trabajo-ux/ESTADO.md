@@ -5,16 +5,18 @@ Mezclar · Comprobar), una sesión con un botón, ejecutor de sesión (#/<tit>/s
 
 ## Hecho
 - [x] `src/course/sesion.js` (puro): deducirFase, componerSesion, estado de la sesión, resumen. Tests: `tests/sesion.test.js`.
+- [x] `src/ui/sesion.js`: sesión guardada en el ajuste `sesion_<tit>`, barra de tramos (Parar/Saltar), botones de cierre.
+- [x] Ejecutor `#/<tit>/sesion` (app.js reenvía al paso actual; al acabar, resumen en `src/ui/views/sesion.js`).
+- [x] Hoy nueva (`src/ui/views/hoy.js`): fase, tarjeta de sesión (nueva / a medias / hecha), podcast, progreso plegado.
+- [x] Más (`#/<tit>/mas`, `src/ui/views/mas-menu.js`) y barra Hoy · Temario · Examen · Más. `#/mas` lleva a Más.
+- [x] Etiqueta de concepto (`src/ui/concepto.js`, solo con conceptos.json) y calculadora en la pregunta (theory.js).
+- [x] Gancho de cierre: `cierre()` (cierre.js) y resultado del examen (theory.js) marcan el paso hecho.
+- [x] CSS (tokens --sesion-*, --on-accent, claro y oscuro). Flujo probado en Playwright (scripts en el scratchpad).
 
 ## Pendiente
-- [ ] UI: `src/ui/sesion.js` (guardar/leer sesión en ajuste `sesion_<tit>`, barra de tramos, gancho de cierres)
-- [ ] Ejecutor `#/<tit>/sesion` (reenvía al paso actual; resumen al acabar)
-- [ ] Hoy nueva (fase, tarjeta de sesión, podcast)
-- [ ] Más (`#/<tit>/mas`) y barra Hoy · Temario · Examen · Más
-- [ ] Etiqueta de concepto en preguntas (solo si hay etiquetas) y calculadora en la pregunta
-- [ ] CSS claro/oscuro, precache, capturas Playwright, repaso adversarial
+- [ ] Capturas completas (390×844 y 1280×800, claro/oscuro) de cada fase, cada tipo de paso, resumen y Más
+- [ ] Prueba sin conexión (service worker) y repaso adversarial del diff
+- [ ] README/llms.txt: rutas nuevas
 
 ## Cómo seguir
-`cd nautica && npm test`. Diseño del ejecutor: la sesión se guarda en progress.settings().sesion_<tit>; app.js pinta
-una barra de sesión encima de la vista cuando la ruta coincide con el paso actual; `cierre()` (src/ui/cierre.js) y
-el resultado del examen marcan el paso hecho y ofrecen «Siguiente».
+`cd nautica && npm test`; tras tocar ficheros servidos: `git add` + `npm run precache` (solo entra lo que está en git).

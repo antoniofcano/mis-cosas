@@ -188,7 +188,7 @@ test('resumen: lo respondido durante la sesión, por tema, y los minutos', () =>
 test('la línea de «Mañana» dice lo que toca', () => {
   const st = estado('per');
   const t = lineaManana(componerSesion(st, 'aprender'), { fallosManana: 3 });
-  assert.match(t, /^Clase nueva: /);
+  assert.match(t, /^Clase nueva \(/);
   assert.match(t, /Vuelven 3 preguntas falladas\.$/);
   assert.equal(lineaManana({ pasos: [] }), 'Lo que proponga tu plan.');
 });

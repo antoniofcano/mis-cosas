@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '28b7112ba6b9';
+self.VERSION = '6a0544bd1184';
 self.APP = [
  "icons/apple-touch-icon.png",
  "icons/icono-192.png",
@@ -41,6 +41,7 @@ self.APP = [
  "src/course/repaso.js",
  "src/course/resueltos.js",
  "src/course/ruta.js",
+ "src/course/sesion.js",
  "src/course/tarjetas.js",
  "src/exams/kit.js",
  "src/exams/options.js",
@@ -211,6 +212,7 @@ self.APP = [
  "src/ui/chart/tutorial.js",
  "src/ui/chart/workspace.js",
  "src/ui/cierre.js",
+ "src/ui/concepto.js",
  "src/ui/config-profe.js",
  "src/ui/copia.js",
  "src/ui/dom.js",
@@ -231,6 +233,7 @@ self.APP = [
  "src/ui/radio.js",
  "src/ui/remate-mapas.js",
  "src/ui/router.js",
+ "src/ui/sesion.js",
  "src/ui/titulacion.js",
  "src/ui/views/biblioteca.js",
  "src/ui/views/bienvenida.js",
@@ -244,12 +247,14 @@ self.APP = [
  "src/ui/views/guia.js",
  "src/ui/views/hoy.js",
  "src/ui/views/mapas.js",
+ "src/ui/views/mas-menu.js",
  "src/ui/views/mas.js",
  "src/ui/views/misc.js",
  "src/ui/views/plan.js",
  "src/ui/views/podcast.js",
  "src/ui/views/profe.js",
  "src/ui/views/reglas.js",
+ "src/ui/views/sesion.js",
  "src/ui/views/tarjetas.js",
  "src/ui/views/temario.js",
  "src/ui/views/theory.js",

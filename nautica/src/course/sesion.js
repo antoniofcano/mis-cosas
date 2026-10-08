@@ -139,9 +139,9 @@ export function componerSesion(st, fase, { objetivo = st.dia?.objetivo ?? 20 } =
 /** Lo que dice «Mañana»: los pasos que tocarían, en una línea. */
 export function lineaManana(sesion, { fallosManana = 0 } = {}) {
   const pasos = sesion?.pasos ?? [];
-  const t = pasos.map((p) => (p.tipo === 'clase' ? `${p.titulo.toLowerCase()}: ${p.sub}` : p.titulo.toLowerCase()));
+  const t = pasos.map((p) => (['clase', 'preguntas', 'repaso', 'chuleta'].includes(p.tipo) ? `${p.titulo.toLowerCase()} (${p.sub})` : p.titulo.toLowerCase()));
   const base = t.length ? `${t[0][0].toUpperCase()}${t[0].slice(1)}${t.length > 1 ? `; después, ${t.slice(1).join(' y ')}` : ''}.` : 'Lo que proponga tu plan.';
-  return fallosManana ? `${base} Vuelven ${cuenta(fallosManana, 'pregunta fallada', 'preguntas falladas')}.` : base;
+  return fallosManana && !pasos.some((p) => p.tipo === 'fallos') ? `${base} Vuelven ${cuenta(fallosManana, 'pregunta fallada', 'preguntas falladas')}.` : base;
 }
 
 // --- estado de una sesión en marcha --------------------------------------------------------------------------------

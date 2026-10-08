@@ -1,4 +1,4 @@
-// #/<tit>/idea/<idConcepto>[?desde=repaso|sesion|temario/<ut>|progreso] — ficha de una idea que se le resiste al alumno
+// #/<tit>/idea/<idConcepto>[?desde=repaso|sesion|temario/<ut>|progreso|travesia[/<faro>]] — ficha de una idea que se le resiste al alumno
 // (src/course/ficha.js): qué es (la nota del catálogo, sin lo que solo sirve para etiquetar), dónde se enseña (clase,
 // mapa y lámina), la regla para recordar si la hay, la chuleta de su clase y «Probar otra pregunta» (del estudio de este
 // banco: nunca reservada, anulada ni retirada). Se abre desde el repaso de fallos, el resumen de la sesión, el Temario
@@ -29,6 +29,7 @@ export function volverDe(tit, desde) {
   if (a === 'temario' && /^\d+$/.test(b ?? '')) return ['El tema', tlink(tit, ['temario', b])];
   if (a === 'temario') return ['Temario', tlink(tit, ['temario'])];
   if (a === 'progreso') return ['Mi progreso', link(['progreso'])];
+  if (a === 'travesia') return ['Tu travesía', tlink(tit, ['travesia'], b ? { f: b } : undefined)];
   return ['Hoy', tlink(tit)];
 }
 

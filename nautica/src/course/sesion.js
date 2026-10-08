@@ -175,11 +175,13 @@ export const VERSION_SESION = 1;
 
 /**
  * Sesión nueva a partir de la compuesta. `hrefs` (opcional) fija la dirección de cada paso (con su semilla, para que
- * al recargar salga la misma tanda).
+ * al recargar salga la misma tanda). `foto` (opcional): el estado de la travesía al empezar, para el parte final.
  */
-export function nuevaSesion(tit, sesion, { ahora = Date.now(), hrefs = [], minutosAntes = 0 } = {}) {
+export function nuevaSesion(tit, sesion, { ahora = Date.now(), hrefs = [], minutosAntes = 0, foto = null } = {}) {
   return {
     v: VERSION_SESION, tit, fase: sesion.fase, dia: diaISO(ahora), inicio: ahora, fin: null, estado: 'en-curso', minutosAntes,
+    // Foto de la travesía al empezar (src/course/travesia.js, fotoTravesia): con ella se calcula el parte al terminar.
+    ...(foto ? { foto } : {}),
     pasos: sesion.pasos.map((p, i) => ({ ...p, href: hrefs[i] ?? null, estado: 'pendiente', inicio: null, fin: null })),
   };
 }

@@ -26,7 +26,7 @@ import { remateMapas } from '../remate-mapas.js';
 import { illustrationEls } from '../illustration.js';
 import { createKit } from '../../exams/kit.js';
 import { openWorkspace } from '../chart/workspace.js';
-import { colaRepaso, tandaRapida } from '../../course/repaso.js';
+import { colaRepaso, tandaRapida, planRepaso, siguienteRepasoConcepto, diaLocal } from '../../course/repaso.js';
 import { cronometro } from '../../course/cronometro.js';
 import { segmentar, delata } from '../../theory/vocabulario.js';
 import { narrateSteps } from '../../teacher/narrate.js';
@@ -36,7 +36,7 @@ import { calculadoraPermitida } from '../../calculadora/reglas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { botonesSesion } from '../sesion.js';
-import { etiquetaConcepto } from '../concepto.js';
+import { etiquetaConcepto, conceptosDelBanco } from '../concepto.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -281,9 +281,9 @@ export function examenesView({ ctx, progress, tit }) {
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`)),
       (() => {
-        const cola = colaRepaso(preguntas, progress.get().exams);
+        const n = st.repaso.hoy; // del motor (con conceptos, una por idea)
         return h('section.repaso-examen',
-          cola.hoy.length ? h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'repaso']) }, `🔁 Repasar mis fallos (${cola.hoy.length} para hoy)`) : null,
+          n ? h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'repaso']) }, `🔁 Repasar mis fallos (${n} para hoy)`) : null,
           h('a.btn.secondary', { href: tlink(T0.id, ['teoria', 'rapido'], { s: randomSeed() }) }, '⏱ Tengo 5 minutos'));
       })(),
       h('section.test-tema', h('h2', 'Test por tema'),
@@ -324,7 +324,11 @@ export function examenesView({ ctx, progress, tit }) {
 /**
  * ayudas: la de la vista (crearAyudas), para que la chuleta siga el tema de cada pregunta y la carta la lleve también.
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, onFin, onSummary = () => {} }) {
+/**
+ * avisoDe(i, q): un aviso encima de la pregunta i (p. ej. «te la traigo con otra redacción»), o null.
+ * alResponder(i, q, ok): se llama tras guardar la respuesta; si devuelve un texto, va al final de la corrección.
+ */
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   const n = preguntas.length;
   let i = 0;
@@ -349,6 +353,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       progress.recordExam(q.id, { choice: k, ok: good });
+      const extra = alResponder?.(i, q, good) ?? null;
       const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab });
       card.replaceWith(nueva);
       card = nueva;
@@ -359,7 +364,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       // Opción defendible frente a una plantilla discutible: cuenta como fallo, pero el panel no la pinta de error.
       const defendible = esDefendible(q, explanationFor(q, explicaciones), k);
       hojaRespuesta(box, { ok: k == null || defendible ? null : good, titulo: k == null ? `Era la ${q.correcta})` : defendible ? 'Discutible' : undefined,
-        contenido: profePanel(q, explanationFor(q, explicaciones), k), onContinuar: () => siguiente.click(), boton: i === n - 1 ? 'Ver resultado' : 'Continuar' });
+        contenido: extra ? h('div', profePanel(q, explanationFor(q, explicaciones), k), h('p.vuelve-idea', extra)) : profePanel(q, explanationFor(q, explicaciones), k), onContinuar: () => siguiente.click(), boton: i === n - 1 ? 'Ver resultado' : 'Continuar' });
       onSummary(practiceSummary(q, explanationFor(q, explicaciones), k));
     };
     const noLaSe = h('button.secondary.grande', { type: 'button', onclick: () => responder(null) }, 'No la sé');
@@ -367,7 +372,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
     // citados resaltados, y al cerrarla sigues en la pregunta.
     const carta = botonCarta(q, progress, ayudas?.ctx() ?? null);
-    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, chipsPregunta(q, progress, ayudas), card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
+    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, avisoDe?.(i, q) ?? null, chipsPregunta(q, progress, ayudas), card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
   if (n) show();
@@ -497,7 +502,10 @@ function mezclaView({ progress, seed }) {
   return { el, summary: () => summaryText };
 }
 
-// #/<tit>/teoria/repaso — repaso espaciado de fallos (B1): las preguntas que tocan hoy, de 10 en 10
+// #/<tit>/teoria/repaso — repaso espaciado de fallos (B1): las preguntas que tocan hoy, de 10 en 10. Si el banco tiene
+// sus preguntas etiquetadas por concepto, lo que vuelve es la IDEA: otra pregunta del mismo concepto y del mismo banco
+// (nunca reservada para el examen final, anulada ni retirada), y el concepto solo se da por repasado al acertar esa
+// otra. Sin etiquetas, o si la idea no tiene otra pregunta, vuelve la misma, como siempre.
 function repasoView({ progress }) {
   const tit0 = T.id;
   const ayudas = crearAyudas({ modo: 'repaso', tit: tit0 });
@@ -505,32 +513,58 @@ function repasoView({ progress }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA repaso de fallos';
-  cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  const eje = currentEje(progress);
+  Promise.all([cargarBanco(eje, tit0), conceptosDelBanco(eje, tit0)]).then(([banco, ic]) => {
+    const { estudio: preguntas, explicaciones, reglasDe: rd, vocab } = banco;
     reglasDe = rd;
-    const cola = colaRepaso(preguntas, progress.get().exams);
+    const clave = banco.eje.id;
+    const hoy = diaLocal();
+    const conc = () => (ic ? { principalDe: ic.principalDe, estado: progress.repasoConceptos(clave, tit0) } : null);
+    const cola = colaRepaso(preguntas, progress.get().exams, hoy, conc());
     if (!cola.hoy.length) {
       barra.set('Repaso de fallos', 0);
-      setChildren(cont, h('p.vacio', cola.total ? `Hoy no te toca repasar nada. Tienes ${cuenta(cola.total, 'pregunta', 'preguntas')} en la cola para los próximos días.` : 'No tienes fallos por repasar. Las preguntas que falles volverán aquí al día siguiente.'),
+      setChildren(cont, h('p.vacio', cola.total ? `Hoy no te toca repasar nada. Tienes ${cuenta(cola.total, cola.porConcepto ? 'fallo' : 'pregunta', cola.porConcepto ? 'fallos' : 'preguntas')} en la cola para los próximos días.` : 'No tienes fallos por repasar. Las preguntas que falles volverán aquí al día siguiente.'),
         h('a.btn.grande', { href: tlink(tit0) }, 'Volver a Hoy'));
       return;
     }
-    const tanda = cola.hoy.slice(0, TANDA);
+    const enEstudio = new Set(preguntas.map((q) => q.id));
+    const plan = planRepaso(cola.items.slice(0, TANDA), progress.get().exams, ic, { hoy, enEstudio });
+    const tanda = plan.map((x) => x.q);
+    const hace = (q) => {
+      const t = progress.get().exams[q.id]?.t;
+      const dias = t ? Math.round((Date.parse(`${hoy}T12:00`) - Date.parse(`${diaLocal(Date.parse(t))}T12:00`)) / 864e5) : null;
+      return dias == null || dias > 30 ? 'Hace un tiempo' : dias <= 0 ? 'Hoy' : dias === 1 ? 'Ayer' : `Hace ${cuenta(dias, 'día')}`;
+    };
     setChildren(cont, tandaPreguntas({
       preguntas: tanda, explicaciones, progress, barra, vocab, ayudas, rotulo: `🔁 Repaso de fallos · ${cola.hoy.length} para hoy`, temaEnCadaPregunta: true,
+      avisoDe: (i) => (plan[i].variante ? h('p.aviso-variante', `${hace(plan[i].item.q)} fallaste una pregunta de esta idea. Te la traigo `, h('strong', 'con otra redacción'), ', para comprobar que la entiendes y no que recuerdas la letra.') : null),
+      alResponder: (i, q, ok) => {
+        const { item, variante } = plan[i];
+        if (!item.concepto) return null;
+        // El estado de la idea, aparte del de la pregunta (que ya ha guardado recordExam).
+        const nuevo = siguienteRepasoConcepto(item.rep, ok, hoy, new Date().toISOString());
+        progress.recordRepasoConcepto(clave, tit0, item.concepto, nuevo);
+        const otra = variante ? ', con otra pregunta' : '';
+        if (!ok) return `Esta idea vuelve mañana${variante ? ', con una pregunta distinta' : ''}.`;
+        if (nuevo.fuera) return 'Idea repasada: ya no vuelve al repaso.';
+        return nuevo.prox > hoy ? `Esta idea vuelve dentro de ${cuenta(Math.round((Date.parse(`${nuevo.prox}T12:00`) - Date.parse(`${hoy}T12:00`)) / 864e5), 'día')}${otra}.` : null;
+      },
       onSummary: (t) => { summaryText = t; },
       onFin: (ok, n, min) => {
         progress.logActividad(min);
         barra.remove();
-        const quedan = colaRepaso(preguntas, progress.get().exams).hoy.length;
+        const quedan = colaRepaso(preguntas, progress.get().exams, diaLocal(), conc()).hoy.length;
+        const ideas = plan.some((x) => x.item.concepto);
         pintarCierre(cont, progress, tit0, { icono: ok === n ? '🎉' : '💪', titulo: `${ok} de ${n}`,
-          lineas: [ok === n ? 'Todas bien: volverán más adelante para afianzarlas.' : 'Las que has fallado vuelven mañana; las acertadas, dentro de unos días.',
+          lineas: [ok === n ? 'Todas bien: volverán más adelante para afianzarlas.' : ideas ? 'Las ideas que has fallado vuelven mañana, con otra pregunta; las acertadas, dentro de unos días.' : 'Las que has fallado vuelven mañana; las acertadas, dentro de unos días.',
             quedan ? `Te quedan ${quedan} por repasar hoy.` : 'Repaso de hoy terminado.'],
           extra: remateMapas(tit0, [...new Set(tanda.map((q) => q.ut))]) });
         summaryText = `VISTA repaso terminado: ${ok} de ${n} · quedan ${quedan} hoy`;
         window.scrollTo(0, 0);
       },
     }));
-    summaryText = `VISTA repaso de fallos · ${cola.hoy.length} tocan hoy · ${cola.total} en la cola`;
+    summaryText = `VISTA repaso de fallos · ${cola.hoy.length} tocan hoy · ${cola.total} en la cola${cola.porConcepto ? ' · por concepto' : ''}\n` +
+      `TANDA: ${plan.map((x) => `${x.q.id}${x.variante ? ` (variante de ${x.item.q.id}, concepto ${x.item.concepto})` : x.item.concepto ? ` (concepto ${x.item.concepto}, sin variante)` : ''}`).join(' · ')}`;
   }).catch((e) => setChildren(cont, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
   return { el, summary: () => summaryText };
 }

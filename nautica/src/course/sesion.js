@@ -63,13 +63,38 @@ export function textoFase(id, real) {
 const rutaClave = (ruta) => ruta.join('/');
 const paso = (tipo, titulo, sub, minutos, a) => ({ id: `${tipo}:${rutaClave(a.ruta)}`, tipo, titulo, sub, minutos: Math.max(1, Math.round(minutos)), ruta: a.ruta, query: a.query, ut: a.ut ?? null });
 
-/** Paso de repaso de fallos: las preguntas falladas que vuelven hoy (como mucho una tanda). */
+/** Primera letra en minúscula para una etiqueta dentro de una frase («Luces de…» → «luces de…»; «RIPA…» se queda). */
+export const enFrase = (t) => (/^\p{Lu}\p{Ll}/u.test(t ?? '') ? t[0].toLowerCase() + t.slice(1) : t ?? '');
+
+/** «a · b · c y 2 más» con como mucho `max` nombres. */
+export function listaIdeas(nombres, { max = 3, total = nombres.length } = {}) {
+  const xs = nombres.slice(0, max);
+  const resto = total - xs.length;
+  return `${xs.join(' · ')}${resto > 0 ? ` y ${resto} más` : ''}`;
+}
+
+/**
+ * Paso de repaso de fallos: las que vuelven hoy (como mucho una tanda). Con conceptos, nombra las ideas y avisa de que
+ * vuelven con otra pregunta; sin ellos, «N preguntas que fallaste, otra vez» como siempre.
+ */
 function pasoFallos(st, titulo = 'Tus fallos') {
   const n = st.repaso?.hoy ?? 0;
   if (!n) return null;
   const k = Math.min(n, TANDA_REPASO);
-  return paso('fallos', titulo, `${cuenta(k, 'pregunta que fallaste', 'preguntas que fallaste')}, otra vez`, Math.min(MIN_TANDA, Math.ceil(k * MIN_POR_PREGUNTA)),
-    { ruta: ['teoria', 'repaso'], ut: null });
+  const ideas = (st.repaso?.conceptos ?? []).slice(0, k).map((c) => enFrase(c.etiqueta));
+  const sub = st.repaso?.porConcepto && ideas.length
+    ? `${listaIdeas(ideas, { max: 2, total: k })}, con otra pregunta`
+    : `${cuenta(k, 'pregunta que fallaste', 'preguntas que fallaste')}, otra vez`;
+  return paso('fallos', titulo, sub, Math.min(MIN_TANDA, Math.ceil(k * MIN_POR_PREGUNTA)), { ruta: ['teoria', 'repaso'], ut: null });
+}
+
+/**
+ * «Te cuesta: luces de arrastre · rumbo con corriente · …»: las ideas más flojas del alumno (st.flojos.conceptos), o
+ * null si no hay ninguna (o el banco no tiene etiquetas).
+ */
+export function lineaTeCuesta(st, max = 3) {
+  const xs = st.flojos?.conceptos ?? [];
+  return xs.length ? `Te cuesta: ${listaIdeas(xs.map((c) => enFrase(c.etiqueta)), { max })}` : null;
 }
 
 /** Una actividad de planHoy, como paso de la sesión. */
@@ -214,8 +239,11 @@ export const pasoEnRuta = (s, parts) => (s?.pasos ?? []).findIndex((p) => rutaDe
 /**
  * Resumen de la sesión: lo respondido desde que empezó (última respuesta de cada pregunta), agrupado por tema, y los
  * minutos. `respuestas` = progress.exams; `porId` = Map id → pregunta; `temaDe(ut)` → título del tema.
+ * Con conceptos (`conceptoDe(id)` → concepto principal o null, `etiquetaDe(c)` → su nombre), agrupa por concepto (las
+ * preguntas sin concepto, por tema): cada grupo lleva `concepto`, `sabido` (todas bien) y, con `proxDe(c)` → la fecha
+ * en que vuelve al repaso ('YYYY-MM-DD' o null) y `hoy`, `vuelve` = días hasta entonces (null si no vuelve).
  */
-export function resumenSesion(s, { respuestas = {}, porId = new Map(), temaDe = (ut) => `Tema ${ut}`, minutosHoy = 0, conceptoDe = null } = {}) {
+export function resumenSesion(s, { respuestas = {}, porId = new Map(), temaDe = (ut) => `Tema ${ut}`, minutosHoy = 0, conceptoDe = null, etiquetaDe = (c) => c, proxDe = null, hoy = null } = {}) {
   const desde = new Date(s.inicio).toISOString();
   const hasta = s.fin ? new Date(s.fin + 1000).toISOString() : null;
   const resp = Object.entries(respuestas).filter(([id, r]) => r?.t && r.t >= desde && (!hasta || r.t <= hasta) && porId.has(id));
@@ -224,10 +252,15 @@ export function resumenSesion(s, { respuestas = {}, porId = new Map(), temaDe = 
     const q = porId.get(id);
     const c = conceptoDe?.(id) ?? null;
     const clave = c ? `c:${c}` : `t:${q.ut}`;
-    const g = grupos.get(clave) ?? { nombre: c ?? temaDe(q.ut), bien: 0, total: 0 };
+    const g = grupos.get(clave) ?? { nombre: c ? etiquetaDe(c) ?? c : temaDe(q.ut), concepto: c, bien: 0, total: 0 };
     g.total += 1;
     if (r.ok) g.bien += 1;
     grupos.set(clave, g);
+  }
+  for (const g of grupos.values()) {
+    g.sabido = g.bien === g.total;
+    const prox = g.concepto && proxDe ? proxDe(g.concepto) : null;
+    g.vuelve = prox && hoy ? Math.max(1, Math.round((Date.parse(`${prox}T12:00`) - Date.parse(`${hoy}T12:00`)) / 864e5)) : null;
   }
   const aciertos = resp.filter(([, r]) => r.ok).length;
   return {

@@ -122,9 +122,10 @@ export function crearIndiceConceptos({ catalogo, etiquetas = {}, banco }) {
    *      las respondidas hoy (`hoy`, 'YYYY-MM-DD'), al final;
    *   3. las casi iguales a la fallada (mismo enunciado o equivalentes por `concepto` de origen), solo si no hay otra.
    * Con `rng` (() => [0,1)) elige al azar entre las del mejor nivel; sin él, la primera en el orden del banco.
+   * `excluir` (ids): preguntas que no valen (p. ej. otras falladas de la misma idea o ya elegidas en la tanda).
    * @returns {object|null} la pregunta, o null si la fallada no tiene concepto o no hay otra.
    */
-  function variante(idPregunta, respuestas = {}, { rng = null, hoy = null } = {}) {
+  function variante(idPregunta, respuestas = {}, { rng = null, hoy = null, excluir = null } = {}) {
     const principal = principalDe(idPregunta);
     if (!principal) return null;
     const q0 = banco.porId.get(idPregunta);
@@ -140,7 +141,8 @@ export function crearIndiceConceptos({ catalogo, etiquetas = {}, banco }) {
       if (hoy && t.slice(0, 10) === hoy) return casi + sec + 3;
       return casi + sec + (r.ok ? 2 : 1);
     };
-    const cands = preguntasDe(principal, { soloEstudio: true, conDescendientes: false }).filter((q) => q.id !== idPregunta);
+    const fuera = new Set(excluir ?? []);
+    const cands = preguntasDe(principal, { soloEstudio: true, conDescendientes: false }).filter((q) => q.id !== idPregunta && !fuera.has(q.id));
     if (!cands.length) return null;
     const conNivel = cands.map((q) => ({ q, n: nivel(q), t: String(respuestas[q.id]?.t ?? '') }));
     const mejor = Math.min(...conNivel.map((x) => x.n));

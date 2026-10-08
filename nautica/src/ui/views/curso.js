@@ -17,7 +17,8 @@ import { illustrationEls } from '../illustration.js';
 import { pidePrediccion, interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
 import { questionCard, prepareTheory, tandaPreguntas, profePanel, botonCarta } from './theory.js';
 import { voice } from '../voice.js';
-import { transicion, deslizar, vibrar } from '../movimiento.js';
+import { transicion, deslizar } from '../movimiento.js';
+import { respuesta as efectoRespuesta } from '../efectos.js';
 import { icono, conIcono } from '../iconos.js';
 import { hojaRespuesta } from '../hoja.js';
 import { avisoError } from '../aviso-error.js';
@@ -233,7 +234,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             if (!parte) return;
             const nombre = p.partes.find((x) => x[0] === parte)?.[1];
             if (parte === orden[k][0]) {
-              vibrar(true);
+              efectoRespuesta(true);
               marca(parte, 'toca-ok');
               k += 1;
               fallos = 0;
@@ -241,7 +242,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               pinta();
               if (k >= orden.length) { checkOk.add(i); if (i === paso) refrescaBotones(); }
             } else {
-              vibrar(false);
+              efectoRespuesta(false);
               fallos += 1;
               if (fallos >= 2) marca(orden[k][0], 'toca-pista');
               fb.textContent = `${nombre ? `Eso es ${nombre}.` : 'Ahí no está.'} ${fallos >= 2 ? `Es ${orden[k][1]}: te lo resalto, tócalo.` : 'Prueba otra vez.'}`;
@@ -267,7 +268,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               if (b.disabled) return;
               if (sel == null) { fb.textContent = 'Primero toca un término de arriba.'; return; }
               if (sel === j) {
-                vibrar(true);
+                efectoRespuesta(true);
                 b.disabled = true; b.classList.add('emp-ok');
                 bTer[j].disabled = true; bTer[j].classList.add('emp-ok'); bTer[j].setAttribute('aria-pressed', 'false');
                 sel = null;
@@ -275,7 +276,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
                 fb.replaceChildren(...conIcono('ok', hechos === p.pares.length ? 'Todas emparejadas.' : 'Bien.'));
                 if (hechos === p.pares.length) { checkOk.add(i); if (i === paso) refrescaBotones(); }
               } else {
-                vibrar(false);
+                efectoRespuesta(false);
                 b.classList.remove('emp-mal'); void b.offsetWidth; b.classList.add('emp-mal');
                 fb.textContent = 'Esa no es. Prueba con otra.';
               }
@@ -292,7 +293,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               progress.recordExam(q.id, { choice: k, ok: k === q.correcta });
               enClase.respondidas += 1;
               if (k === q.correcta) enClase.aciertos += 1;
-              const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false });
+              const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false, recien: true });
               card.replaceWith(nuevo);
               card = nuevo;
               checkOk.add(i);
@@ -303,7 +304,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           }
           const q = { id: `${L.id}-chk-${i}-${p.enunciado.length}`, enunciado: p.enunciado, opciones: p.opciones, correcta: p.correcta };
           let card = questionCard(q, { tema: false, onChoose: (k) => {
-            const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false });
+            const nuevo = questionCard(q, { chosen: k, reveal: true, lock: true, tema: false, recien: true });
             card.replaceWith(nuevo);
             card = nuevo;
             checkOk.add(i);
@@ -334,7 +335,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         const comprobar = () => {
           const r = corrigeCuenta(ej, input.value);
           input.dataset.status = { ok: 'ok', mal: 'wrong', formato: 'invalid', vacia: 'empty' }[r.estado];
-          vibrar(r.estado === 'ok');
+          if (r.estado === 'ok' || r.estado === 'mal') efectoRespuesta(r.estado === 'ok');
           setChildren(fb, {
             ok: h('p.ok', conIcono('ok', `Correcto: ${ej.solucion}.`)),
             mal: h('p.warn', conIcono('no', 'No es eso. Repasa la cuenta o pulsa «Ver cómo se hace».')),

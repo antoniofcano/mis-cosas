@@ -26,6 +26,11 @@
   --faro-off-bg: #eef1f5; --faro-off-borde: #7b8794; --faro-off-texto: #5b6773;
   --fuente-texto: "Patron Texto", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --fuente-titulos: "Patron Titulos", "Patron Texto", Georgia, "Times New Roman", serif;
+  /* Movimiento (docs/EFECTOS.md): todas las duraciones y curvas de las animaciones salen de aquí. Cortas (150–450 ms);
+     solo el momento de subir de rango llega a --dur-momento. Con «reducir movimiento» no se anima nada de esto. */
+  --dur-rapida: 150ms; --dur-corta: 200ms; --dur-media: 260ms; --dur-respuesta: 320ms; --dur-larga: 450ms; --dur-momento: 850ms;
+  --dur-vt: 200ms; --dur-vt-sale: 80ms; --dur-vt-entra: 160ms;
+  --ease-sale: cubic-bezier(.2, .8, .2, 1); --ease-suave: ease-out; --ease-entra: ease-in;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -85,7 +90,7 @@ body.focus main:has(.fila-inferior) { padding-bottom: calc(108px + env(safe-area
 .ba-derecha { min-width: 48px; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
 .ba-derecha .warn { color: var(--warn); }
 .ba-progreso { height: 6px; background: var(--accent-2); margin: .3rem -1rem 0; }
-.ba-progreso span { display: block; height: 100%; background: var(--accent); transition: width .2s; }
+.ba-progreso span { display: block; height: 100%; background: var(--accent); transition: width var(--dur-corta); }
 .crumbs a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; }
 footer { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; color: var(--muted); font-size: .9rem; }
 h1 { font-size: 1.6rem; line-height: 1.25; margin: .5rem 0; }
@@ -911,22 +916,25 @@ main#app { view-transition-name: contenido; }
 .fila-inferior { view-transition-name: botonera; }
 .barra-actividad { view-transition-name: barra; }
 .tabbar { view-transition-name: pestanas; }
-.ba-progreso > span { transition: width .3s ease-out; }
+.ba-progreso > span { transition: width var(--dur-media) var(--ease-suave); }
 @media (prefers-reduced-motion: no-preference) {
-  ::view-transition-group(*) { animation-duration: .2s; }
-  html[data-vt="adelante"]::view-transition-old(contenido) { animation: .2s ease-in both vt-sale-izq; }
-  html[data-vt="adelante"]::view-transition-new(contenido) { animation: .2s ease-out both vt-entra-der; }
-  html[data-vt="atras"]::view-transition-old(contenido) { animation: .2s ease-in both vt-sale-der; }
-  html[data-vt="atras"]::view-transition-new(contenido) { animation: .2s ease-out both vt-entra-izq; }
-  html[data-vt="pantalla"]::view-transition-old(contenido) { animation: .12s ease-in both vt-fuera; }
-  html[data-vt="pantalla"]::view-transition-new(contenido) { animation: .18s ease-out both vt-dentro; }
-  /* La opción pulsada reacciona: rebote si acierta, sacudida corta si falla. */
-  label.option.elegida.correct { animation: .32s ease-out rebote; }
-  label.option.elegida.wrong { animation: .32s ease-out sacudida; }
+  ::view-transition-group(*) { animation-duration: var(--dur-vt); }
+  html[data-vt="adelante"]::view-transition-old(contenido) { animation: var(--dur-vt) var(--ease-entra) both vt-sale-izq; }
+  html[data-vt="adelante"]::view-transition-new(contenido) { animation: var(--dur-vt) var(--ease-suave) both vt-entra-der; }
+  html[data-vt="atras"]::view-transition-old(contenido) { animation: var(--dur-vt) var(--ease-entra) both vt-sale-der; }
+  html[data-vt="atras"]::view-transition-new(contenido) { animation: var(--dur-vt) var(--ease-suave) both vt-entra-izq; }
+  /* Al cambiar de pantalla, la vieja se va antes de que entre la nueva (sin textos superpuestos). */
+  html[data-vt="pantalla"]::view-transition-old(contenido) { animation: var(--dur-vt-sale) var(--ease-entra) both vt-fuera; }
+  html[data-vt="pantalla"]::view-transition-new(contenido) { animation: var(--dur-vt-entra) var(--dur-vt-sale) var(--ease-suave) both vt-dentro; }
+  /* La opción recién corregida reacciona: un pulso suave si acierta; si falla, un temblor leve y la correcta se revela
+     con calma, un instante después. Solo en la tarjeta que se acaba de responder (.recien), no al repasar un examen. */
+  .qcard.recien label.option.elegida.correct { animation: var(--dur-respuesta) var(--ease-suave) rebote; }
+  .qcard.recien label.option.elegida.wrong { animation: var(--dur-respuesta) var(--ease-suave) sacudida; }
+  .qcard.recien label.option.correct:not(.elegida) { animation: var(--dur-larga) var(--ease-suave) var(--dur-rapida) both revela; }
   /* La explicación del profe sube desde abajo. */
-  .profe { animation: .26s ease-out both subir; }
-  /* Las barras de avance se rellenan al aparecer. */
-  .bar > span { transform-origin: left center; animation: .7s cubic-bezier(.2, .8, .2, 1) both crecer; }
+  .profe { animation: var(--dur-media) var(--ease-suave) both subir; }
+  /* Las barras de avance se rellenan al aparecer y se deslizan al cambiar. */
+  .bar > span, .barra-trav > span, .barra-fina > span { transform-origin: left center; animation: var(--dur-larga) var(--ease-sale) both crecer; transition: width var(--dur-larga) var(--ease-sale); }
 }
 @keyframes vt-sale-izq { to { transform: translateX(-24%); opacity: 0; } }
 @keyframes vt-entra-der { from { transform: translateX(24%); opacity: 0; } }
@@ -935,7 +943,8 @@ main#app { view-transition-name: contenido; }
 @keyframes vt-fuera { to { opacity: 0; } }
 @keyframes vt-dentro { from { opacity: 0; transform: translateY(8px); } }
 @keyframes rebote { 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
-@keyframes sacudida { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+@keyframes sacudida { 20%, 60% { transform: translateX(-3px); } 40%, 80% { transform: translateX(3px); } }
+@keyframes revela { from { border-color: var(--border); background-color: var(--surface); } }
 @keyframes subir { from { transform: translateY(28px); opacity: 0; } }
 @keyframes crecer { from { transform: scaleX(0); } }
 /* La explicación del profe, como un panel que sube: esquinas superiores redondeadas y sombra hacia arriba. */
@@ -985,7 +994,8 @@ p.ver-progreso a.btn { width: 100%; }
 .toca-dibujo [data-parte] { cursor: pointer; }
 .toca-dibujo .toca-ok { filter: drop-shadow(0 0 3px var(--ok)); }
 .toca-dibujo .toca-ok, .toca-dibujo .toca-ok * { stroke: var(--ok) !important; }
-.toca-dibujo .toca-pista { animation: 1s ease-in-out 2 pista; }
+.toca-dibujo .toca-pista { filter: drop-shadow(0 0 3px var(--accent)); }
+@media (prefers-reduced-motion: no-preference) { .toca-dibujo .toca-pista { animation: 1s ease-in-out 2 pista; } }
 @keyframes pista { 50% { opacity: .35; } }
 .toca-fb { min-height: 1.6em; margin: .4rem 0; }
 .emp-terminos { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 .8rem; }
@@ -994,11 +1004,11 @@ p.ver-progreso a.btn { width: 100%; }
 .emp-defs { display: grid; gap: .5rem; }
 .emp-defs button { text-align: left; min-height: 52px; padding: .5rem .8rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-weight: 400; }
 button.emp-ok { border-color: var(--ok) !important; background: color-mix(in srgb, var(--ok) 14%, var(--surface)) !important; opacity: .85; }
-@media (prefers-reduced-motion: no-preference) { button.emp-mal { animation: .3s ease-out sacudida; } }
+@media (prefers-reduced-motion: no-preference) { button.emp-mal { animation: var(--dur-respuesta) var(--ease-suave) sacudida; } }
 /* ---- Panel inferior de corrección (hoja) ---- */
 .hoja { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-height: 72vh; display: flex; flex-direction: column;
   padding: .4rem max(1.1rem, calc((100vw - 720px) / 2)) calc(1rem + env(safe-area-inset-bottom)); background: var(--surface);
-  border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(10, 30, 60, .22); transform: translateY(105%); transition: transform .32s cubic-bezier(.2, .8, .2, 1); }
+  border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(10, 30, 60, .22); transform: translateY(105%); transition: transform var(--dur-respuesta) var(--ease-sale); }
 .hoja.arriba { transform: none; }
 /* Asa para plegar y desplegar (corrección, panel de la mesa de cartas): la raya se ve pequeña, pero se toca en 48 px. */
 .hoja-plegar { align-self: center; min-width: 96px; min-height: 48px; height: auto; padding: 20px .8rem 4px; margin: -.4rem 0 -.2rem; border: 0; border-radius: 12px; background: none; color: var(--accent); font-size: .95rem; font-weight: 600; cursor: pointer; position: relative; }
@@ -1037,8 +1047,8 @@ body.con-hoja.hoja-plegada main { padding-bottom: 190px !important; }
 .cierre ul.logros li .ico { color: var(--ok); width: 1.2em; height: 1.2em; margin-top: .15em; }
 .cierre .botones { display: grid; gap: .6rem; }
 @media (prefers-reduced-motion: no-preference) {
-  .cierre .fin-tick { animation: .5s rebote; }
-  .cierre .fin-tick path { stroke-dasharray: 50; stroke-dashoffset: 50; animation: .5s .25s forwards dibuja; }
+  .cierre .fin-tick { animation: var(--dur-larga) rebote; }
+  .cierre .fin-tick path { stroke-dasharray: 50; stroke-dashoffset: 50; animation: var(--dur-larga) var(--dur-corta) forwards dibuja; }
 }
 @keyframes dibuja { to { stroke-dashoffset: 0; } }
 .tarjeta-hoy .linea .ico, .despues .ico { width: 1.2em; height: 1.2em; vertical-align: -.2em; color: var(--accent); }
@@ -1061,7 +1071,7 @@ button.speak .ico { width: 20px; height: 20px; }
 .anillo svg { transform: rotate(-90deg); }
 .anillo circle { fill: none; stroke-width: 9; stroke-linecap: round; }
 .anillo .fondo { stroke: var(--surface); }
-.anillo .valor { stroke: var(--accent); transition: stroke-dashoffset 1s cubic-bezier(.2, .8, .2, 1); }
+.anillo .valor { stroke: var(--accent); transition: stroke-dashoffset 1s var(--ease-sale); }
 .meta-hoy.hecho .anillo .valor { stroke: var(--ok); }
 .anillo b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.05rem; }
 .hoy-toca { border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); margin: 0 0 1rem; }
@@ -1096,11 +1106,6 @@ button.speak .ico { width: 20px; height: 20px; }
 .hoja { max-height: 92vh; max-height: 92dvh; }
 html:has(body.con-hoja), body.con-hoja { overflow: hidden; }
 .hoja-cuerpo { overscroll-behavior: contain; }
-/* B6: al cambiar de pantalla, la vieja se va antes de que entre la nueva (sin textos superpuestos) */
-@media (prefers-reduced-motion: no-preference) {
-  html[data-vt="pantalla"]::view-transition-old(contenido) { animation: .08s ease-in both vt-fuera; }
-  html[data-vt="pantalla"]::view-transition-new(contenido) { animation: .16s .08s ease-out both vt-dentro; }
-}
 .hoja-cuerpo .profe > button.speak { float: right; margin: 0 0 .3rem .6rem; }
 .hoja:not(.ok):not(.bad) .hoja-titulo { color: var(--accent); }
 
@@ -1437,7 +1442,7 @@ button.sb-saltar { color: var(--muted); font-weight: 600; }
 .sb-contador { font-size: .74rem; color: var(--muted); }
 .sb-tramos { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; margin-top: .3rem; }
 .sb-tramo { height: 6px; border-radius: 999px; background: var(--border); overflow: hidden; }
-.sb-tramo > span { display: block; height: 100%; background: var(--accent); transition: width .25s ease; }
+.sb-tramo > span { display: block; height: 100%; background: var(--accent); transition: width var(--dur-media) var(--ease-suave); }
 .sb-tramo.saltado { background: repeating-linear-gradient(90deg, var(--border) 0 4px, transparent 4px 7px); }
 body.en-sesion .barra-actividad { position: static; margin-top: 0; }
 html:has(body.en-sesion) { scroll-padding-top: 96px; }
@@ -1471,7 +1476,7 @@ ul.trabajado .tx { display: flex; flex-direction: column; gap: 1px; }
 .caja-manana .eti { color: var(--accent); text-transform: none; letter-spacing: 0; font-size: .82rem; }
 .manana-texto { margin: .2rem 0 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .resumen-sesion .fin-tick { animation: .5s rebote; }
+  .resumen-sesion .fin-tick { animation: var(--dur-larga) rebote; }
 }
 
 /* Conceptos en el método: diagnóstico en Hoy, aviso de la variante en el repaso, ideas por tema y por clase */
@@ -1690,13 +1695,36 @@ a.trav-ficha.grande { width: 100%; font-size: .95rem; }
 .parte-manana { display: grid; gap: .4rem; }
 .parte-rango { font-size: .85rem; line-height: 1.4; background: var(--accent-2); border-radius: 12px; padding: .6rem .75rem; }
 .parte-trav.corto { gap: .4rem; }
+.parte-subida { display: flex; align-items: center; gap: .75rem; border-radius: 14px; padding: .75rem; background: var(--trav-bg); color: var(--trav-fg); }
+.parte-subida > div { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+.parte-subida .trav-disco { background: var(--trav-disco); }
+/* Efectos de cambio (docs/EFECTOS.md): solo cuando algo pasa a encendido o se gana, una vez (clases .se-enciende,
+   .sube y .entra, que pone src/ui/efectos.js). El halo suave de los faros encendidos es el de siempre. */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes faro-pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(245,185,66,.55); } 50% { box-shadow: 0 0 0 10px rgba(245,185,66,0); } }
-  @keyframes faro-enciende { 0% { transform: scale(.6); opacity: .2; } 60% { transform: scale(1.12); opacity: 1; } 100% { transform: scale(1); } }
+  /* El faro se enciende: crece un poco, destella con un halo y vuelve a su sitio; la lámpara pasa de apagada a luz. */
+  @keyframes faro-enciende {
+    0% { transform: scale(.75); box-shadow: 0 0 0 0 rgba(245,185,66,0); }
+    45% { transform: scale(1.1); box-shadow: 0 0 0 4px rgba(245,185,66,.55), 0 0 18px 6px rgba(245,185,66,.4); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245,185,66,0); }
+  }
+  @keyframes lampara-enciende { from { fill-opacity: 0; } }
+  /* Rango nuevo: el disco sube desde abajo y brilla una vez. */
+  @keyframes rango-sube {
+    0% { transform: translateY(14px) scale(.85); opacity: 0; box-shadow: 0 0 0 0 rgba(245,185,66,0); }
+    45% { transform: translateY(-3px) scale(1.06); opacity: 1; box-shadow: 0 0 0 3px rgba(245,185,66,.6), 0 0 22px 8px rgba(245,185,66,.35); }
+    100% { transform: none; opacity: 1; box-shadow: 0 0 0 0 rgba(245,185,66,0); }
+  }
+  @keyframes insignia-entra { from { transform: scale(.6); opacity: 0; } }
   @keyframes trav-sube { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
   .carta-trav button.faro.on { animation: faro-pulso 2.6s ease-out infinite; }
-  .parte-faro-disco.encendido { animation: faro-enciende .7s ease-out both, faro-pulso 2.6s ease-out .7s infinite; }
-  .trav-detalle, .parte-trav > * { animation: trav-sube .35s ease-out both; }
+  .parte-faro-disco.encendido { animation: faro-pulso 2.6s ease-out infinite; }
+  .carta-trav button.faro.on.se-enciende, .parte-faro-disco.encendido.se-enciende { animation: faro-enciende var(--dur-larga) var(--ease-sale) both, faro-pulso 2.6s ease-out var(--dur-larga) infinite; }
+  .tema-faro.on.se-enciende { animation: faro-enciende var(--dur-larga) var(--ease-sale) both; }
+  .se-enciende .lampara { animation: lampara-enciende var(--dur-larga) var(--ease-suave) both; }
+  .trav-disco.sube { animation: rango-sube var(--dur-momento) var(--ease-sale) both; }
+  .insignia-disco.entra, .insignia.entra .insignia-disco { animation: insignia-entra var(--dur-larga) var(--ease-sale) both; }
+  .trav-detalle, .parte-trav > * { animation: trav-sube .35s var(--ease-suave) both; }
 }
 
 /* Iconos de línea en los sitios que antes llevaban emoji (docs/ICONOS.md) */

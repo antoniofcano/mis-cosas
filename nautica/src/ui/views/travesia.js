@@ -19,6 +19,7 @@ import { cuenta, fechaLarga } from '../../texto.js';
 import { deducirFase, componerSesion, terminada } from '../../course/sesion.js';
 import { leerSesion } from '../sesion.js';
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
+import { novedades, marcarVistos, claseAnimada } from '../efectos.js';
 
 const ANCHO = 358;
 const ALTO = 320;
@@ -54,13 +55,13 @@ function patas(faros, pos) {
  * examen; null: sin marcador).
  * @returns {{ carta: HTMLElement, botones: HTMLElement[] }}  `botones` = los contenedores de cada faro
  */
-export function cartaDerrota(faros, { sel = null, elegir = null, marca = null, compacta = false } = {}) {
+export function cartaDerrota(faros, { sel = null, elegir = null, marca = null, compacta = false, recien = new Set() } = {}) {
   const pos = posicionesDerrota(faros.length);
   const alto = compacta ? ALTO_COMPACTA : ALTO;
   const marcaAqui = () => h('span.marca-aqui', { 'aria-hidden': 'true' }, icono('barco-marca'));
   const botones = faros.map((f, i) => {
     const disco = elegir
-      ? h('button.faro', { type: 'button', class: f.estado, 'aria-label': ariaFaro(f) + (i === marca ? '. Estás aquí' : ''), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'))
+      ? h('button.faro', { type: 'button', class: `${f.estado}${recien.has(f.id) ? ` ${claseAnimada('se-enciende')}` : ''}`.trim(), 'aria-label': ariaFaro(f) + (i === marca ? '. Estás aquí' : ''), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'))
       : h('span.faro', { class: f.estado }, icono('faro'));
     return h('div.faro-pos', { style: posPct(pos[i], alto), class: i === marca ? 'aqui' : '' }, i === marca ? marcaAqui() : null, disco, h('span.faro-nombre', f.corto));
   });
@@ -125,8 +126,8 @@ export function travesiaView({ progress, params, tit }) {
       summaryText = `VISTA travesía ${T.sigla}: sin conceptos en este banco`;
       return;
     }
-    if (enInsignias) { const r = pantallaInsignias({ T, tit, sy }); setChildren(el, r.el); summaryText = r.summary; return; }
-    const r = pantallaTravesia({ T, tit, d, sy, query: params.query, progress });
+    if (enInsignias) { const r = pantallaInsignias({ T, tit, sy, eje }); setChildren(el, r.el); summaryText = r.summary; return; }
+    const r = pantallaTravesia({ T, tit, d, sy, eje, query: params.query, progress });
     setChildren(el, r.el);
     summaryText = r.summary;
   }).catch((e) => setChildren(el, volver('Hoy', tlink(tit)), h('p.warn', `No se pudo preparar la travesía: ${e.message}`)));
@@ -144,15 +145,22 @@ function botonSeguir(progress, tit, d) {
   return h('button.boton-sesion.trav-seguir', { type: 'button', onclick: () => empezarSesion(progress, tit, d, componerSesion(d.st, deducirFase(d.st).id)) }, 'Seguir la derrota');
 }
 
-function pantallaTravesia({ T, tit, d, sy, query, progress }) {
+/** Ámbitos de «ya visto» de un banco (src/ui/efectos.js): faros encendidos e insignias ganadas. */
+export const ambitoFaros = (eje, tit) => `faros:${eje}/${tit}`;
+export const ambitoInsignias = (eje, tit) => `insignias:${eje}/${tit}`;
+
+function pantallaTravesia({ T, tit, d, sy, eje, query, progress }) {
   const { est, rango } = sy;
   const faros = est.faros;
+  // Un faro que se ha encendido desde la última vez que viste la carta se enciende delante de ti (una vez; los demás,
+  // con su halo de siempre). Solo el cambio: la primera visita no anima nada.
+  const recien = new Set(novedades(ambitoFaros(eje, tit), faros.filter((f) => f.estado === 'on').map((f) => f.id)));
   let sel = faros.find((f) => f.id === query?.f)?.id ?? faroInicial(faros);
 
   // La carta (con el marcador «estás aquí» en la siguiente parada, como en Hoy)
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Faro elegido' });
   const aqui = d.indiceConceptos ? marcaDerrota(sy, d.indiceConceptos, pasosQueTocan(progress ? leerSesion(progress, tit) : null, componerSesion(d.st, deducirFase(d.st).id))) : null;
-  const { carta, botones } = cartaDerrota(faros, { sel, elegir: (id) => elegir(id), marca: aqui });
+  const { carta, botones } = cartaDerrota(faros, { sel, elegir: (id) => elegir(id), marca: aqui, recien });
 
   function pintaDetalle() {
     const f = faros.find((x) => x.id === sel);
@@ -214,13 +222,14 @@ function pantallaTravesia({ T, tit, d, sy, query, progress }) {
   return { el, summary };
 }
 
-function pantallaInsignias({ T, tit, sy }) {
+function pantallaInsignias({ T, tit, sy, eje }) {
   const { est, reg, rango } = sy;
   const cat = catalogoInsignias(est.faros);
   const tiene = (x) => !!reg.insignias[x.id];
+  const recien = new Set(novedades(ambitoInsignias(eje, tit), cat.filter(tiene).map((x) => x.id)));
   let sel = (cat.find(tiene) ?? cat[0]).id;
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Insignia elegida' });
-  const botones = cat.map((x) => h('button.insignia', { type: 'button', class: tiene(x) ? 'ganada' : '', 'aria-pressed': String(x.id === sel),
+  const botones = cat.map((x) => h('button.insignia', { type: 'button', class: tiene(x) ? `ganada${recien.has(x.id) ? ` ${claseAnimada('entra')}` : ''}`.trim() : '', 'aria-pressed': String(x.id === sel),
     'aria-label': `${x.nombre}: ${tiene(x) ? 'conseguida' : 'por conseguir'}`, onclick: () => elegir(x.id) },
   h('span.insignia-disco', icono(x.icono)), h('span.insignia-nombre', x.nombre)));
   function pinta() {
@@ -255,7 +264,9 @@ const cajaCifra = (n, uno, varios, suave = false) => h('div.parte-cifra', { clas
  * El parte de travesía al terminar una sesión (src/course/travesia.js, parteSesion). `parte` = su resultado; `manana` =
  * paraManana() o null; `sig` = progresoRango() de ahora.
  */
-export function parteTravesiaEl({ tit, parte, manana, sig, catalogo }) {
+export function parteTravesiaEl({ tit, parte, manana, sig, catalogo, animar = null }) {
+  // `animar` (solo la primera vez que se enseña este parte): { faros: Set, insignias: Set, rango: boolean }. Sin él, quieto.
+  const an = (si, clase) => (si ? claseAnimada(clase) : '');
   if (parte.vacio && !parte.insignias.length && !parte.rango.sube) {
     return h('section.parte-trav.corto', h('h2.eti', 'Parte de travesía'),
       h('p', 'Hoy no ha cambiado el estado de ninguna idea.'), h('a.trav-ficha', { href: tlink(tit, ['travesia']) }, 'Ver mi travesía'));
@@ -267,9 +278,12 @@ export function parteTravesiaEl({ tit, parte, manana, sig, catalogo }) {
       cajaCifra(parte.nuevas.length, 'idea nueva', 'ideas nuevas'),
       cajaCifra(parte.rescatadas.length, 'rescatada', 'rescatadas'),
       cajaCifra(parte.flojas.length, 'sigue floja', 'siguen flojas', true)),
-    ...parte.faros.map((f) => h('div.parte-faro', h('span.parte-faro-disco.encendido', icono('faro')),
+    ...parte.faros.map((f) => h('div.parte-faro', h('span.parte-faro-disco.encendido', { class: an(animar?.faros?.has(f.id), 'se-enciende') }, icono('faro')),
       h('div', h('span.small', 'Faro encendido'), h('strong', f.nombre), h('span.small', `Del ${pct(f.antes)} al ${pct(f.ahora)} de sus ideas dominadas.`)))),
-    ...parte.insignias.map((id) => { const x = nombreIns(id); return h('div.parte-insignia', h('span.insignia-disco.ganada', icono(x.icono)),
+    // Rango nuevo: su propio momento (el disco sube y brilla una vez).
+    parte.rango.sube ? h('div.parte-subida', h('span.trav-disco', { class: an(animar?.rango, 'sube') }, icono('ancla')),
+      h('div', h('span.small', 'Rango nuevo'), h('strong', sig.actual.nombre))) : null,
+    ...parte.insignias.map((id) => { const x = nombreIns(id); return h('div.parte-insignia', h('span.insignia-disco.ganada', { class: an(animar?.insignias?.has(id), 'entra') }, icono(x.icono)),
       h('div', h('span.small.muted', 'Insignia nueva'), h('strong', x.nombre), h('span.small', x.texto))); }),
     parte.rescatadas.length ? h('p.parte-nota', `Rescatada${parte.rescatadas.length > 1 ? 's' : ''}: ${parte.rescatadas.slice(0, 3).map((i) => `«${i.etiqueta}»`).join(', ')}${parte.rescatadas.length > 3 ? ` y ${parte.rescatadas.length - 3} más` : ''}.`) : null,
     parte.flojas.length ? h('p.parte-nota', `Siguen flojas: ${parte.flojas.slice(0, 3).map((i) => `«${i.etiqueta}»`).join(', ')}${parte.flojas.length > 3 ? ` y ${parte.flojas.length - 3} más` : ''}.`) : null,

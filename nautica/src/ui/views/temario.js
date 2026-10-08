@@ -21,6 +21,7 @@ import { estadoIdea } from '../../course/listo.js';
 import { clasesDeCurso, filaIdea } from '../concepto.js';
 import { estadoTravesia, farosPorTema } from '../../course/travesia.js';
 import { icono, conIcono } from '../iconos.js';
+import { novedades, claseAnimada } from '../efectos.js';
 
 /**
  * Ideas (conceptos) de cada clase con preguntas en este banco y cómo las lleva el alumno: Map claseId → { sabidas,
@@ -71,7 +72,7 @@ const chipLimite = (b) => (b.maxErrores != null ? h('span.chip-limite', conIcono
  * El faro de un tema en el Temario: mismo dibujo, colores y criterio que los de la Travesía (luzDeFaro de
  * src/course/travesia.js): apagado, en curso o encendido. Sin ideas etiquetadas, el icono del tema en un disco neutro.
  */
-const discoTema = (b, f) => (f ? h('span.tema-faro', { class: f.estado }, icono('faro')) : h('span.tema-faro.sin-ideas', icono(b.ico)));
+const discoTema = (b, f, recien = false) => (f ? h('span.tema-faro', { class: `${f.estado}${recien ? ` ${claseAnimada('se-enciende')}` : ''}`.trim() }, icono('faro')) : h('span.tema-faro.sin-ideas', icono(b.ico)));
 
 /** «12 de 30 ideas dominadas · faro encendido» y su barra fina (la barra es decorativa: el texto lo dice). */
 function avanceIdeas(f) {
@@ -91,6 +92,8 @@ export function temarioView({ progress, tit }) {
     // Los faros por tema (solo si el banco tiene sus preguntas etiquetadas por idea); si no, el aspecto de siempre.
     const est = d.indiceConceptos ? estadoTravesia({ ic: d.indiceConceptos, respuestas: d.respuestas, ahora: d.ahora }) : null;
     const faros = farosPorTema(est, d.indiceConceptos);
+    // El faro de un tema que se ha encendido desde la última visita se enciende una vez (src/ui/efectos.js).
+    const recien = new Set(est ? novedades(`temario:${d.banco.eje.id}/${tit}`, filas.filter(({ b }) => faros.get(b.ut)?.estado === 'on').map(({ b }) => String(b.ut))) : []);
     summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => { const f = faros.get(b.ut); return `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${f ? ` · ideas dominadas ${f.dominadas}/${f.total} · faro ${f.estado}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`; }).join('\n')}` +
       `\nRUTAS: #/${tit}/temario/<n> tema · #/${tit}/teoria/ut/<n>?s=<semilla>[&f=1] tanda de ${cuenta(TANDA, 'pregunta')}`;
     setChildren(el,
@@ -100,7 +103,7 @@ export function temarioView({ progress, tit }) {
       h('div.lista-temas', filas.map(({ b, e }) => {
         const f = faros.get(b.ut) ?? null;
         return h('a.card.tema-card', { href: tlink(tit, ['temario', String(b.ut)]), class: f ? `con-faro faro-${f.estado}` : '' },
-          h('div.tema-cab', discoTema(b, f),
+          h('div.tema-cab', discoTema(b, f, recien.has(String(b.ut))),
             h('div.tema-cab-tx', b.ut === hoyUt ? h('span.badge.hoy-toca', 'Hoy toca') : null, h('h3', b.titulo),
               h('p.tema-examen', h('span', `${cuenta(b.n, 'pregunta')} en el examen`), chipLimite(b)))),
           h('p.estado-linea', { class: ESTADO_TEMA_CLS[e.estado] ?? '' }, lineaEstado(e)),

@@ -1863,3 +1863,9 @@ details.entrada-pasos[open] .entrada-pasos-ver::after { transform: rotate(180deg
 /* La Travesía: «Seguir» arriba si la sesión de hoy no está hecha. */
 .travesia-pantalla .boton-sesion.trav-seguir { background: var(--accent); color: var(--on-accent); margin: .1rem 0 .9rem; min-height: 52px; }
 /* ---- fin Entrada única ---- */
+
+/* ---- Protección de los datos (copia de seguridad) ---- */
+.proteccion { margin: .4rem 0 .6rem; padding: .5rem .7rem; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); line-height: 1.45; }
+.proteccion.ok { border-color: var(--ok); }
+.proteccion.aviso { border-color: var(--warn); }
+/* ---- fin Protección de los datos ---- */

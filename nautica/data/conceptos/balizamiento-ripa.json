@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 6,
+ "version": 7,
  "conceptos": [
   {
    "id": "baliza",
@@ -3342,6 +3342,31 @@
     "per-6-4"
    ],
    "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 15"
+  },
+  {
+   "id": "ripa.marcas.diurnas",
+   "tipo": "concepto",
+   "etiqueta": "Marcas diurnas: formas reconocidas y qué significa una no prevista",
+   "sinonimos": [
+    "marcas diurnas",
+    "triángulos negros",
+    "cuatro triángulos",
+    "forma que no está en el RIPA",
+    "marca no reglamentaria",
+    "no significa nada"
+   ],
+   "nota": "Las marcas diurnas del RIPA son las formas (bolas, conos, cilindros, rombos) que las Reglas prevén para cada situación. Una forma que el reglamento no contempla no tiene significado reglamentario.",
+   "padre": "ripa.luces",
+   "relacionados": [
+    "ripa.marcas.pesca"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-8"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas (Reglas 20, 21 y 23 a 31); RIPA, Regla 26 b), c) y e)"
   }
  ]
 }

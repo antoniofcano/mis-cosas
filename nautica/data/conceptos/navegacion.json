@@ -1,6 +1,6 @@
 {
  "grupo": "navegacion",
- "version": 4,
+ "version": 5,
  "conceptos": [
   {
    "id": "nav.esfera",
@@ -2727,6 +2727,34 @@
     "per-10-5"
    ],
    "temario": "pendiente (el anexo II habla de aguja náutica y campo magnético terrestre; la pregunta de Baleares es sobre el campo de un imán)"
+  },
+  {
+   "id": "nav.radar.racon",
+   "tipo": "concepto",
+   "etiqueta": "Racon: baliza de respuesta radar y su señal en pantalla",
+   "sinonimos": [
+    "racon",
+    "baliza radar",
+    "respuesta radar",
+    "señal morse en pantalla",
+    "eco de racon",
+    "transpondedor radar",
+    "AIS y racon en el balizamiento"
+   ],
+   "nota": "El racon es una baliza que, al recibir el impulso del radar del buque, responde con una señal (una letra Morse) que aparece en la pantalla como una línea radial que arranca en la posición de la marca. Se usa para identificar marcas y peligros, también como complemento electrónico del balizamiento (racon, AIS).",
+   "padre": "nav.radar",
+   "relacionados": [
+    "nav.radar.principio",
+    "baliza.nuevo-peligro"
+   ],
+   "tit": [
+    "per",
+    "py"
+   ],
+   "clases": [
+    "py-3-8"
+   ],
+   "temario": "pendiente (el anexo II cita el radar y las ayudas electrónicas; el racon se pregunta en PER y PY)"
   }
  ]
 }

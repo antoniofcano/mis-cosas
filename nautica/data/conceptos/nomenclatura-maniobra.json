@@ -1,6 +1,6 @@
 {
  "grupo": "nomenclatura-maniobra",
- "version": 3,
+ "version": 4,
  "conceptos": [
   {
    "id": "nomen",
@@ -2931,6 +2931,32 @@
     "per-7-8"
    ],
    "temario": "RD 875/2014, anexo II, 3.A (temario del PER), UT 7 Maniobra y navegación, 7.3 Maniobras: «Desamarrar … para desatracar»"
+  },
+  {
+   "id": "nomen.aparejo.jarcia",
+   "tipo": "concepto",
+   "etiqueta": "Jarcia firme: obenques, estay y burdas",
+   "sinonimos": [
+    "jarcia",
+    "jarcia firme",
+    "obenque",
+    "obenques",
+    "estay",
+    "burda",
+    "burdas",
+    "aparejo",
+    "cable del mástil"
+   ],
+   "nota": "La jarcia firme (obenques, estay, burdas) sujeta el mástil y no se maniobra; se distingue de la jarcia de labor (drizas, escotas), que sí se maniobra. Los obenques no son elementos de amarre.",
+   "padre": "nomen.terminos",
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-1-1",
+    "per-1-7"
+   ],
+   "temario": "pendiente (el anexo II cita nomenclatura del aparejo; las preguntas de jarcia se hacen en el PER)"
   }
  ]
 }

@@ -5,7 +5,7 @@ Rama `feat/pulido-2`. Cuatro puntos, un commit cada uno.
 | # | Punto | Estado |
 |---|-------|--------|
 | 1 | Mi progreso: resumen arriba (rango de la travesía + camino), examen final compacto, detalle con el lenguaje de la Travesía | hecho |
-| 2 | Tarjeta del test de nivel en Hoy, discreta | pendiente |
+| 2 | Tarjeta del test de nivel en Hoy, discreta | hecho |
 | 3 | Radio de a bordo: tarjetas de episodio, guion plegado | pendiente |
 | 4 | Identidad tipográfica (fuente propia, sin conexión) | pendiente |
 
@@ -16,3 +16,9 @@ Rama `feat/pulido-2`. Cuatro puntos, un commit cada uno.
 - `tarjetaFinalCompacta()` en `src/ui/views/theory.js`: cerrado → candado + una línea; las líneas del motor y la lista de temas con lo que falta, plegadas en «Ver qué falta». Abierto → la tarjeta de siempre (con su botón). La lógica de `estadoFinal` no cambia.
 - Secciones con rótulo `.eti`; «Ideas por dominar» plegadas por tema (antes se abrían las que tenían flojas y la página medía 6500 px); «Ejercicios de carta» igual que antes, con icono.
 - Capturas: `scratchpad/pul-capturas/antes|despues/progreso-*`.
+
+## 2. Tarjeta del test de nivel (Hoy)
+
+- Superficie normal (borde fino, sin azul), icono `diana` en disco, una línea, «Hacer el test» como botón secundario y «Ahora no» como enlace pequeño subrayado (44 px de alto).
+- Va DEBAJO de «Sesión de hoy» (antes iba encima): así es claramente secundaria. A revisar si se prefiere arriba.
+- Texto condensado: «¿Ya sabes algo? Test de nivel: 20 preguntas, 8 min; te saltas las clases que ya sabes.» A medias: «Test de nivel a medias. Sigue donde lo dejaste.» + «Seguir el test».

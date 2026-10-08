@@ -1495,8 +1495,14 @@ ul.nivel-clases { margin: 0; padding-left: 1.2rem; font-size: .9rem; overflow-wr
 .nivel-saltar p { margin: 0; }
 .nivel-saltar button { width: 100%; }
 button.linklike.nivel-repetir { justify-self: center; min-height: 44px; }
-.nivel-oferta { border: 2px solid var(--accent); background: var(--accent-2); border-radius: var(--radius); padding: .9rem 1rem; margin: 0 0 .9rem; }
-.nivel-oferta p { margin: 0 0 .7rem; }
+.nivel-oferta { border: 1px solid var(--border); background: var(--surface); border-radius: 14px; padding: .7rem .8rem; margin: 0 0 .9rem; display: grid; gap: .5rem; }
+.nivel-oferta-fila { display: flex; gap: .7rem; align-items: center; }
+.nivel-oferta-fila p { margin: 0; font-size: .86rem; line-height: 1.4; color: var(--muted); }
+.nivel-oferta-fila strong { color: var(--text); }
+.nivel-oferta-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-2); color: var(--accent); display: grid; place-items: center; flex: none; }
+.nivel-oferta-botones { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; padding-left: calc(40px + .7rem); }
+.nivel-oferta-botones .btn { min-height: 44px; font-size: .9rem; padding: .4rem 1rem; }
+button.linklike.nivel-ahora-no { min-height: 44px; padding: 0 .4rem; font-size: .85rem; color: var(--muted); text-decoration: underline; }
 .punto-partida, .saltar-clase { margin: -.2rem 0 0; font-size: .84rem; line-height: 1.45; overflow-wrap: anywhere; }
 .sesion-hoy .punto-partida a { color: var(--sesion-fg); }
 .sesion-hoy .saltar-clase button.linklike { display: inline; min-height: 44px; padding: 0 .2rem; font-size: .84rem; font-weight: 600; }

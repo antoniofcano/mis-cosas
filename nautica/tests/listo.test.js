@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PER, PY } from '../src/theory/blocks.js';
-import { fallosBloque, probAprobar, estoyListo, lineaListo, aciertoPonderado, PESO_MODELO } from '../src/course/listo.js';
+import { fallosBloque, probAprobar, estoyListo, lineaListo, aciertoPonderado, pesoReciente, VIDA_MEDIA, PESO_MODELO } from '../src/course/listo.js';
 import { buildMezcla } from '../src/theory/engine.js';
 import { planHoy } from '../src/course/plan.js';
 import { createRng } from '../src/math/rng.js';
@@ -165,4 +165,34 @@ test('¿Estás listo?: los simulacros completos recientes corrigen el resultado 
   assert.ok(con.prob < sin.prob);
   assert.match(lineaListo(con), /últimos 3 simulacros aprobaste 0/);
   assert.match(lineaListo(sin), /Haz un simulacro completo/);
+});
+
+test('olvido: una respuesta pierde la mitad de su peso a los VIDA_MEDIA días y las viejas bajan la probabilidad', () => {
+  const ahora = Date.parse('2026-10-08T12:00:00Z');
+  const dias = (d) => new Date(ahora - d * 86400000).toISOString();
+  assert.equal(pesoReciente({ t: dias(0) }, ahora), 1);
+  assert.ok(Math.abs(pesoReciente({ t: dias(VIDA_MEDIA) }, ahora) - 0.5) < 1e-9);
+  assert.equal(pesoReciente({ ok: true }, ahora), 1); // sin fecha no se descuenta
+  const qs = banco(PER);
+  const con = (d) => Object.fromEntries(Object.entries(responder(qs, PER, 30, 0.95)).map(([id, r]) => [id, { ...r, t: dias(d) }]));
+  const hoy = estoyListo(PER, qs, con(0), [], ahora);
+  const viejo = estoyListo(PER, qs, con(120), [], ahora);
+  assert.ok(viejo.prob < hoy.prob);
+  assert.ok(viejo.margen.alto - viejo.margen.bajo > hoy.margen.alto - hoy.margen.bajo); // más incertidumbre
+  // repasar devuelve el peso: una respuesta de hoy sobre la misma pregunta vuelve a contar entera
+  assert.ok(Math.abs(estoyListo(PER, qs, con(0), [], ahora).prob - hoy.prob) < 1e-12);
+});
+
+test('margen de la probabilidad: rodea la estimación, se estrecha con datos y es reproducible', () => {
+  const ahora = Date.parse('2026-10-08T12:00:00Z');
+  const qs = banco(PER);
+  const pocos = estoyListo(PER, qs, responder(qs, PER, 10, 0.9), [], ahora);
+  const muchos = estoyListo(PER, qs, responder(qs, PER, 40, 0.9), [], ahora);
+  for (const r of [pocos, muchos]) {
+    assert.ok(r.margen.bajo <= r.prob + 1e-9 && r.prob <= r.margen.alto + 1e-9, 'la estimación cae dentro del margen');
+    assert.ok(r.margen.bajo >= 0 && r.margen.alto <= 1);
+  }
+  assert.ok(pocos.margen.alto - pocos.margen.bajo > muchos.margen.alto - muchos.margen.bajo);
+  assert.deepEqual(estoyListo(PER, qs, responder(qs, PER, 10, 0.9), [], ahora).margen, pocos.margen);
+  assert.match(lineaListo(pocos), /entre \d+ y \d+ de cada 10/);
 });

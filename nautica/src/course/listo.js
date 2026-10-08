@@ -22,6 +22,16 @@ export const SIMULACROS = 5; // simulacros completos recientes que se tienen en 
 export const PESO_FINAL = 3; // el examen final (preguntas reservadas, nunca estudiadas)
 export const PESO_INEDITO = 2; // simulacro o examen real con la mayoría de preguntas nuevas
 export const INEDITO = 0.6; // fracción de preguntas nuevas para que un examen cuente como inédito
+export const VIDA_MEDIA = 28; // días en los que una respuesta pierde la mitad de su peso (olvido)
+export const MUESTRAS = 300; // sorteos para el margen de la probabilidad
+const DIA = 86400000;
+
+/** Peso de una respuesta según su antigüedad en días: 1 si es de hoy, 1/2 a los VIDA_MEDIA días… Sin fecha, 1. */
+export function pesoReciente(r, ahora = Date.now()) {
+  const t = r?.t ? Date.parse(r.t) : NaN;
+  if (!Number.isFinite(t)) return 1;
+  return 0.5 ** (Math.floor(Math.max(0, ahora - t) / DIA) / VIDA_MEDIA); // por días enteros: estable durante el día
+}
 
 /** Peso de un examen completo en «¿Estás listo?». */
 export function pesoExamen(t) {
@@ -76,6 +86,44 @@ export function probAprobar(estructura, distribuciones) {
  * @returns {{ estado: 'faltan-datos'|'listo'|'casi'|'aun-no', prob: number|null, temasSinDatos: object[],
  *   limitante: object|null, temas: { ut, titulo, hechas, aciertos, pct, maxErrores, pFallaLimite }[] }}
  */
+// Generador con semilla (mismo alumno, mismos datos → mismo margen) y sorteo de una Beta(a, b) con gammas de Marsaglia-Tsang.
+function mulberry32(semilla) {
+  let a = semilla >>> 0;
+  return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+function normal(rnd) { return Math.sqrt(-2 * Math.log(1 - rnd())) * Math.cos(2 * Math.PI * rnd()); }
+function gamma(k, rnd) {
+  if (k < 1) return gamma(k + 1, rnd) * rnd() ** (1 / k);
+  const d = k - 1 / 3, c = 1 / Math.sqrt(9 * d);
+  for (;;) {
+    const x = normal(rnd), v = (1 + c * x) ** 3;
+    if (v > 0 && Math.log(1 - rnd()) < 0.5 * x * x + d - d * v + d * Math.log(v)) return d * v;
+  }
+}
+const beta = (a, b, rnd) => { const x = gamma(a, rnd), y = gamma(b, rnd); return x / (x + y); };
+
+/**
+ * Margen de la probabilidad de aprobar: se sortea el nivel real de cada tema según lo observado (Beta con los
+ * aciertos y fallos vivos) y se calcula con cada sorteo la probabilidad de aprobar. Devuelve el percentil 10 y el 90.
+ * Con pocos datos o respuestas viejas el margen es ancho; con muchos datos recientes, estrecho.
+ */
+export function margenProb(estructura, temas, muestras = MUESTRAS) {
+  const rnd = mulberry32(temas.reduce((x, t) => (x * 31 + Math.round(t.aciertosVivos * 100) + Math.round(t.hechasVivas * 10)) >>> 0, 7));
+  const res = [];
+  for (let m = 0; m < muestras; m++) {
+    const dists = temas.map((t) => {
+      const q = beta(1 + (t.hechasVivas - t.aciertosVivos), 1 + t.aciertosVivos, rnd); // probabilidad de fallar
+      const lq = Math.log(Math.max(q, 1e-12)), lp = Math.log(Math.max(1 - q, 1e-12));
+      const d = [];
+      for (let k = 0; k <= t.n; k++) d.push(Math.exp(lcomb(t.n, k) + k * lq + (t.n - k) * lp));
+      return d;
+    });
+    res.push(probAprobar(estructura, dists));
+  }
+  res.sort((x, y) => x - y);
+  return { bajo: res[Math.floor(0.1 * (muestras - 1))], alto: res[Math.ceil(0.9 * (muestras - 1))] };
+}
+
 /** Aciertos que cuenta una respuesta: entera si es la primera vez; si se repitió, mitad primer intento y mitad último. */
 export function aciertoPonderado(r) {
   if (!r) return 0;
@@ -89,17 +137,21 @@ export function simulacrosRecientes(tests = [], max = SIMULACROS) {
   return tests.filter((t) => t.apto === true || t.apto === false).slice(-max);
 }
 
-export function estoyListo(estructura, preguntas, respuestas = {}, tests = []) {
+export function estoyListo(estructura, preguntas, respuestas = {}, tests = [], ahora = Date.now()) {
   const temas = estructura.bloques.map((b) => {
     const qs = preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta && respuestas[q.id]);
     const hechas = qs.length;
     const aciertosReales = qs.filter((q) => respuestas[q.id].ok).length;
     const aciertos = qs.reduce((s, q) => s + aciertoPonderado(respuestas[q.id]), 0);
     const total = preguntas.filter((q) => q.ut === b.ut && !q.anulada && q.correcta).length;
-    const dist = fallosBloque(b.n, aciertos, hechas - aciertos);
+    // Olvido: cada respuesta pesa menos cuanto más antigua; con menos peso hay más incertidumbre (vuelve al a priori).
+    const pesos = qs.map((q) => pesoReciente(respuestas[q.id], ahora));
+    const aciertosVivos = qs.reduce((x, q, i) => x + pesos[i] * aciertoPonderado(respuestas[q.id]), 0);
+    const hechasVivas = pesos.reduce((x, y) => x + y, 0);
+    const dist = fallosBloque(b.n, aciertosVivos, hechasVivas - aciertosVivos);
     const pFallaLimite = b.maxErrores == null ? null : dist.slice(b.maxErrores + 1).reduce((x, y) => x + y, 0);
     const necesarias = Math.min(MIN_RESPUESTAS, total);
-    return { ut: b.ut, titulo: b.titulo, n: b.n, hechas, necesarias, aciertos, aciertosReales, pct: hechas ? Math.round((100 * aciertos) / hechas) : null, maxErrores: b.maxErrores ?? null, pFallaLimite, suficiente: hechas >= necesarias, dist };
+    return { ut: b.ut, titulo: b.titulo, n: b.n, hechas, necesarias, aciertos, aciertosReales, pct: hechas ? Math.round((100 * aciertos) / hechas) : null, maxErrores: b.maxErrores ?? null, pFallaLimite, suficiente: hechas >= necesarias, dist, aciertosVivos, hechasVivas };
   });
   const temasSinDatos = temas.filter((t) => !t.suficiente);
   const sims = simulacrosRecientes(tests);
@@ -116,8 +168,11 @@ export function estoyListo(estructura, preguntas, respuestas = {}, tests = []) {
     const delta = probAprobar(estructura, d) - probModelo;
     if (delta > mejora + 1e-9) { mejora = delta; limitante = { ...t, mejora: delta }; }
   });
+  const m = margenProb(estructura, temas);
+  const mezcla = (x) => (PESO_MODELO * x + simulacros.pesoAprobados) / (PESO_MODELO + simulacros.peso);
+  const margen = { bajo: mezcla(m.bajo), alto: mezcla(m.alto) };
   const estado = prob >= LISTO ? 'listo' : prob >= CASI ? 'casi' : 'aun-no';
-  return { estado, prob, probModelo, simulacros, temasSinDatos, limitante: mejora >= 0.02 ? limitante : null, temas };
+  return { estado, prob, margen, probModelo, simulacros, temasSinDatos, limitante: mejora >= 0.02 ? limitante : null, temas };
 }
 
 /** En palabras, para la pantalla Hoy. */
@@ -129,7 +184,9 @@ export function lineaListo(r) {
   }
   const de10 = Math.round(r.prob * 10);
   const base = r.estado === 'listo' ? '✅ Estás listo' : r.estado === 'casi' ? 'Casi' : 'Todavía no';
-  let txt = `${base}: con lo que aciertas ahora aprobarías unas ${de10} de cada 10 veces.`;
+  const bajo = Math.round(r.margen.bajo * 10), alto = Math.round(r.margen.alto * 10);
+  const rango = alto - bajo >= 2 && bajo !== alto ? `entre ${bajo} y ${alto}` : `unas ${de10}`;
+  let txt = `${base}: con lo que aciertas ahora aprobarías ${rango} de cada 10 veces${alto - bajo >= 4 ? ' (todavía hay poco dato reciente: el margen es ancho)' : ''}.`;
   const s = r.simulacros;
   if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${cuenta(s.hechos, 'simulacro')}`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta${s.ineditos ? ' (más los exámenes con preguntas que no habías visto)' : ''}.`;
   else txt += ' Haz un simulacro completo: es la mejor prueba.';

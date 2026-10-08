@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 5,
+ "version": 6,
  "conceptos": [
   {
    "id": "baliza",
@@ -846,23 +846,29 @@
    "tipo": "concepto",
    "etiqueta": "Ritmos de las luces: destello, destello largo, ocultaciones, isofase, centelleo y Morse",
    "sinonimos": [
-    "destello",
-    "destello largo",
-    "ocultaciones",
-    "isofase",
+    "Morse",
+    "alternativa",
+    "característica de la luz",
     "centelleo",
     "centelleo rápido",
-    "periodo",
-    "Morse",
+    "destello",
+    "destello largo",
+    "fase",
+    "isofase",
     "luz de destellos largos",
-    "característica de la luz"
+    "luz fija",
+    "ocultaciones",
+    "ocultación",
+    "periodo",
+    "periodo y fase"
    ],
-   "nota": "Definiciones de los ritmos y del periodo (p. ej. destello largo ≥ 2 s, centelleo 50–60/min, rápido 100–120/min). Identificar una marca por su luz va al concepto de luz de esa familia. Ojo: en el RIPA (Regla 21 f)) una luz centelleante da 120 o más centelleos por minuto; en el balizamiento IALA la luz centelleante (Q) da 50-60 y la centelleante rápida (VQ), 100-120. No son lo mismo.",
+   "nota": "Definiciones de los ritmos y del periodo (p. ej. destello largo ≥ 2 s, centelleo 50–60/min, rápido 100–120/min). Identificar una marca por su luz va al concepto de luz de esa familia. Ojo: en el RIPA (Regla 21 f)) una luz centelleante da 120 o más centelleos por minuto; en el balizamiento IALA la luz centelleante (Q) da 50-60 y la centelleante rápida (VQ), 100-120. No son lo mismo. También: luz fija, alternativa, fase y periodo de una luz rítmica.",
    "padre": "baliza.luz",
    "tit": [
     "per"
    ],
    "clases": [
+    "per-10-4",
     "per-5-5"
    ],
    "temario": "RD 875/2014, anexo II, PER, UT5 Balizamiento, 5.1 Normativa IALA: marcas laterales región A, marcas cardinales, marcas de peligro aislado, marcas de aguas navegables y marcas especiales",
@@ -3286,6 +3292,56 @@
     "per-6-10"
    ],
    "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.5 Señales de peligro (anexo IV); RIPA, Regla 37 y anexo IV 2 y 3"
+  },
+  {
+   "id": "ripa.visibilidad.luces-senales",
+   "tipo": "concepto",
+   "etiqueta": "Luces de día y señales acústicas en visibilidad reducida (Reglas 20 y 35)",
+   "sinonimos": [
+    "luces encendidas de día",
+    "luces en visibilidad reducida",
+    "señales fónicas de niebla",
+    "señales acústicas obligatorias",
+    "niebla señales",
+    "aunque sea de día"
+   ],
+   "nota": "En visibilidad reducida las luces se muestran también de día (Regla 20) y se emiten siempre las señales acústicas de niebla (Regla 35), con independencia de la conducta general del buque (Regla 19).",
+   "padre": "ripa.visibilidad",
+   "relacionados": [
+    "ripa.visibilidad.conducta",
+    "ripa.niebla.motor"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-6"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.3 Luces y marcas y 6.4 Señales acústicas y luminosas (Reglas 20 y 35)"
+  },
+  {
+   "id": "ripa.cruce.definicion",
+   "tipo": "concepto",
+   "etiqueta": "Cuándo hay situación de cruce (Regla 15)",
+   "sinonimos": [
+    "situación de cruce",
+    "cuándo se cruzan",
+    "dos buques de propulsión mecánica cuyos rumbos se cruzan",
+    "riesgo de abordaje cruce",
+    "ni alcance ni vuelta encontrada"
+   ],
+   "nota": "Hay situación de cruce cuando dos buques de propulsión mecánica navegan con rumbos que se cruzan con riesgo de abordaje y no están ni en vuelta encontrada ni uno alcanza al otro. Quién se aparta se trata en ripa.cruce.",
+   "padre": "ripa.vista",
+   "relacionados": [
+    "ripa.cruce"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-4"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 15"
   }
  ]
 }

@@ -18,11 +18,12 @@ export const cruce = {
   },
   pie: () => 'Por las luces que ves del otro sabes la situación: las dos de costado, vuelta encontrada; solo la blanca de alcance, lo alcanzas tú; su roja, te apartas tú; su verde, se aparta él.',
   dibujar(e, r, { pendiente = false } = {}) {
-    const vistas = [{ svg: planta(e.aspecto), pie: PIE_PLANTA }, { svg: noche(e.aspecto), pie: 'Lo que ves tú, de noche' }];
+    const vistas = [{ svg: planta(e.aspecto, { situaciones: !pendiente }), pie: pendiente ? PIE_PLANTA : 'Desde arriba: quién se aparta según por dónde lo ves' }, { svg: noche(e.aspecto), pie: 'Lo que ves tú, de noche' }];
     const nota = NOTA_BUQUE;
-    if (pendiente) return { vistas, nota, lectura: 'Responde la pregunta y verás qué situación es y quién se aparta.', casillas: [['Situación', '?'], ['Se aparta', '?']] };
+    if (pendiente) return { vistas, apiladas: true, nota, lectura: 'Responde la pregunta y verás qué situación es y quién se aparta.', casillas: [['Situación', '?'], ['Se aparta', '?']] };
     return {
       vistas,
+      apiladas: true,
       nota,
       lectura: `Lo ves ${desde(e.aspecto)} y ves ${lucesTexto(r.v)}. ${r.texto}`,
       casillas: [['Situación', NOMBRE[r.situacion]], ['Se aparta', QUIEN[r.maniobra]], ['Regla', r.regla]],

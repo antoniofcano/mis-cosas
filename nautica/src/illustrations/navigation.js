@@ -163,30 +163,7 @@ export function mareaIllustration(spec) {
 
 // Sectores de las luces: ahora es interactiva, en src/illustrations/interactivas/sectores-luces.js.
 
-// ---------------------------------------------------------------------------
-// Canal balizado visto desde arriba. spec: { tipo:'canal', sentido:'entrando'|'saliendo' }
-
-export function canalIllustration(spec) {
-  const entrando = (spec.sentido ?? 'entrando') === 'entrando';
-  const W = 320;
-  const H = 280;
-  const out = open(W, H, 'Canal balizado', 'cn');
-  out.push(title(160, `Canal balizado · ${entrando ? 'entrando' : 'saliendo'}`));
-  out.push(`<rect x="0" y="34" width="320" height="40" fill="#a16207" opacity=".75"/>`, lbl(160, 58, 'PUERTO', null, 'middle', 'style="fill:#fff" font-weight="700"'));
-  out.push(`<rect x="90" y="74" width="140" height="206" fill="#38bdf8" opacity=".3"/>`);
-  for (let i = 0; i < 3; i++) {
-    const y = 250 - i * 66;
-    const n = i * 2 + 1;
-    out.push(`<rect x="76" y="${y - 14}" width="12" height="16" fill="#dc2626"/>`, lbl(70, y, String(n + 1), 'r', 'end'));
-    out.push(`<path d="M238,${y + 2} L244,${y - 14} L250,${y + 2}Z" fill="#16a34a"/>`, lbl(256, y, String(n), 'm'));
-  }
-  const path = entrando ? 'M160,280 L160,80' : 'M160,80 L160,280';
-  out.push(`<line x1="160" y1="270" x2="160" y2="84" stroke="${C.g}" stroke-dasharray="6 5"/>`);
-  out.push(`<g><path d="M14,0 L-6,7 L-6,-7Z" fill="${C.v}" stroke="#fff"/><animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="${path}"/></g>`);
-  out.push(lbl(14, H - 8, entrando ? 'Rojas a babor, verdes a estribor' : 'Saliendo: rojas a estribor, verdes a babor', null, 'start', 'font-weight="700"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'El sentido convencional del balizamiento es entrando a puerto (de la mar hacia tierra). Entrando, las rojas (cilíndricas, numeración par) quedan a babor y las verdes (cónicas, impar) a estribor; saliendo, al revés.' };
-}
+// Canal balizado: ahora en estilo C, en src/illustrations/balizamiento.js.
 
 // ---------------------------------------------------------------------------
 // Dispositivo de separación del tráfico (Regla 10). spec: { tipo:'dst' }

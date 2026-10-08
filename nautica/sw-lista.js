@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '5490f523c9bb';
+self.VERSION = '476ef2b30748';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -129,6 +129,7 @@ self.APP = [
  "src/illustrations/balizamiento.js",
  "src/illustrations/buoys.js",
  "src/illustrations/catalogo-laminas.js",
+ "src/illustrations/estilo-c.js",
  "src/illustrations/index.js",
  "src/illustrations/interactivas.js",
  "src/illustrations/interactivas/abatimiento.js",
@@ -150,6 +151,7 @@ self.APP = [
  "src/illustrations/interactivas/rosa.js",
  "src/illustrations/interactivas/sectores-luces.js",
  "src/illustrations/kit.js",
+ "src/illustrations/laminas-c.js",
  "src/illustrations/lecciones/carta.js",
  "src/illustrations/lecciones/casco.js",
  "src/illustrations/lecciones/costa.js",
@@ -171,6 +173,7 @@ self.APP = [
  "src/illustrations/lecciones/tierra.js",
  "src/illustrations/lights.js",
  "src/illustrations/maniobra.js",
+ "src/illustrations/marcos.js",
  "src/illustrations/meteo.js",
  "src/illustrations/misc.js",
  "src/illustrations/navigation.js",
@@ -232,6 +235,7 @@ self.APP = [
  "src/ui/iconos.js",
  "src/ui/illustration.js",
  "src/ui/lamina-estado.js",
+ "src/ui/lamina-marco.js",
  "src/ui/lamina.js",
  "src/ui/mapa-trampa.js",
  "src/ui/modo-examen.js",
@@ -273,7 +277,8 @@ self.APP = [
  "src/ui/views/titulacion.js",
  "src/ui/views/travesia.js",
  "src/ui/voice.js",
- "styles/app.css"
+ "styles/app.css",
+ "styles/laminas.css"
 ];
 self.DATOS = [
  "data/carta-l105-calibracion.json",

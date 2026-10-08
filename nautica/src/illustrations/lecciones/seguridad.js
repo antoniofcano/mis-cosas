@@ -100,7 +100,7 @@ export function hipotermiaIllustration(spec) {
     out.push(lead(138, 150, 176, 146), tx(180, 144, 'piernas juntas', { bold: true }), tx(180, 157, 'y estiradas', { bold: true }));
     out.push(tx(140, 186, 'nadie ni nada debajo'));
     out.push(notas(14, 236, ['Salta desde la menor altura posible, lejos de', 'combustible derramado. Mejor aún: pasa a la balsa', 'desde cubierta sin mojarte.'], 14.5));
-    out.push(`<text x="14" y="${H - 6}" class="il-lbl" style="fill:${RED};font-weight:700;font-size:10.5px">✕ No: piernas plegadas (eso es para flotar).</text>`);
+    out.push(`<text x="14" y="${H - 6}" class="il-lbl" style="fill:${RED};font-weight:700;font-size:10.5px">× No: piernas plegadas (eso es para flotar).</text>`);
     out.push('</svg>');
     return { svg: out.join(''), caption: 'Si hay que saltar: comprueba que no hay nadie ni nada debajo, salta desde la menor altura posible, de pie, con las piernas juntas y estiradas, tapando nariz y boca con una mano y sujetando el chaleco con el otro brazo.' };
   }
@@ -367,7 +367,7 @@ export function helicopteroIllustration(spec) {
     out.push(`<g transform="translate(${cx + R + 30} ${cy})">${hullPlan(34, 13, HULL)}</g>`);
     out.push(tx(W - 12, cy + 34, '«Estamos', { anchor: 'end', bold: true, c: RED }), tx(W - 12, cy + 47, 'a sus 3»', { anchor: 'end', bold: true, c: RED }));
     out.push(notas(14, 240, ['Desde el punto de vista del helicóptero, no del barco.', 'Señala con humo de día, espejo, bengala de mano con', 'cuidado o VHF portátil.']));
-    out.push(`<text x="14" y="${H - 8}" class="il-lbl" style="fill:${RED};font-weight:700;font-size:10.5px">✕ Nunca un cohete con paracaídas cerca de él.</text>`);
+    out.push(`<text x="14" y="${H - 8}" class="il-lbl" style="fill:${RED};font-weight:700;font-size:10.5px">× Nunca un cohete con paracaídas cerca de él.</text>`);
     out.push('</svg>');
     return { svg: out.join(''), caption: 'Para guiarlo por radio se usan las horas del reloj desde el punto de vista del helicóptero: su proa son las 12, y «estamos a sus 3» es a su derecha. Con el helicóptero cerca, nunca un cohete con paracaídas.' };
   }

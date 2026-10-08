@@ -1,58 +1,109 @@
-// Dibujo común de «sectores-luces» y «cruce»: el buque visto desde arriba con los sectores de sus luces y lo que
-// ve de noche un observador que lo mira desde un punto. Colores de styles/app.css (--l-*).
+// Dibujo común de «sectores-luces» y «cruce», en estilo C (docs/ESTILO-LAMINAS.md): el buque visto desde arriba con
+// los sectores de sus luces acotados (Regla 21: tope 225°, costados 112,5°, alcance 135°) y lo que ve de noche un
+// observador que lo mira desde un punto. En «cruce», las cartelas dicen además qué situación es desde cada sector.
 import { lucesVisibles } from '../../nautical/luces.js';
-import { f1, rad, parte } from './kit.js';
+import { T, TXT, lienzo, rotulo, cartela, etiqueta, cotaArco, referencia, arcoD, tierra, ondaCurva, f1, pol, parte } from '../estilo-c.js';
 
-const S = 170;
-const C = 85;
-const pol = (deg, r) => [C + r * Math.sin(rad(deg)), C - r * Math.cos(rad(deg))];
+const W = 358;
+const H = 330;
+const CX = 179;
+const CY = 172;
+const RS = 110; // radio de los sectores
+const P = (deg, r) => pol(CX, CY, deg, r);
 
-function arcoSector(a, b, r, color, w, p) {
-  const [x1, y1] = pol(a, r);
-  const [x2, y2] = pol(b, r);
-  return `<path${parte(p)} d="M${f1(x1)},${f1(y1)} A${r},${r} 0 ${b - a > 180 ? 1 : 0} 1 ${f1(x2)},${f1(y2)}" fill="none" stroke="${color}" stroke-width="${w}"/>`;
+function sector(a, b, color, p, { rayado = null } = {}) {
+  const [x1, y1] = P(a, RS);
+  const d = `M${CX},${CY} L${f1(x1)},${f1(y1)} ${arcoD(CX, CY, RS, a, b).replace(/^M[^A]*/, '')}Z`;
+  return `<g${parte(p)}><path d="${d}" fill="${color}" fill-opacity="${rayado ? 1 : 0.78}" stroke="${T.tinta}" stroke-width="1.4" stroke-linejoin="round"/>` +
+    (rayado ? `<path d="${d}" fill="${rayado}" opacity=".35"/>` : '') + '</g>';
 }
-function cuna(a, b, r, color, p) {
-  const [x1, y1] = pol(a, r);
-  const [x2, y2] = pol(b, r);
-  return `<path${parte(p)} d="M${C},${C} L${f1(x1)},${f1(y1)} A${r},${r} 0 ${b - a > 180 ? 1 : 0} 1 ${f1(x2)},${f1(y2)}Z" fill="${color}" opacity=".18"/>`;
-}
 
-/** Vista cenital: sectores y el observador en `aspecto`. */
-export function planta(aspecto, { ocultarObservador = false } = {}) {
-  const o = [`<svg viewBox="0 0 ${S} ${S}" class="il lam-svg" role="img" aria-label="Vista desde arriba con los sectores de cada luz"><rect width="${S}" height="${S}" rx="10" fill="var(--l-mar)"/>`];
-  o.push(cuna(-112.5, 0, 70, 'var(--l-roja)', 'roja'), cuna(0, 112.5, 70, 'var(--l-verde)', 'verde'), cuna(112.5, 247.5, 70, 'var(--l-alcance)', 'alcance'));
-  o.push(arcoSector(-112.5, 112.5, 74, 'var(--l-tope)', 4, 'tope'));
-  o.push(arcoSector(0, 112.5, 62, 'var(--l-verde)', 6, 'verde'), arcoSector(-112.5, 0, 62, 'var(--l-roja)', 6, 'roja'), arcoSector(112.5, 247.5, 62, 'var(--l-alcance)', 6, 'alcance'));
-  o.push(`<path d="M85 58c8 9 9 20 9 30v20h-18v-20c0-10 1-21 9-30z" fill="var(--l-casco)" stroke="var(--text)" stroke-width="1"/>`);
-  o.push(`<text x="85" y="14" font-size="13" text-anchor="middle" fill="var(--text)" style="font-family:inherit">proa ↑</text>`);
-  if (!ocultarObservador) {
-    const [x, y] = pol(aspecto, 78);
-    o.push(`<line x1="85" y1="85" x2="${f1(x)}" y2="${f1(y)}" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="${f1(x)}" cy="${f1(y)}" r="7" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>`);
+/**
+ * Vista cenital: sectores acotados y el observador («tú») en `aspecto`.
+ * @param {{ ocultarObservador?: boolean, situaciones?: boolean }} o  situaciones: rotula cada sector con la situación
+ *   de cruce que se deduce si ves al otro desde ahí (Reglas 13 a 15)
+ */
+export function planta(aspecto, { ocultarObservador = false, situaciones = false } = {}) {
+  const alt = situaciones
+    ? 'Buque de motor visto desde arriba con sus sectores. Si lo ves por su verde, se aparta él; por su roja, te apartas tú; si solo ves su blanca de alcance, lo alcanzas y te apartas tú; de proa, vuelta encontrada.'
+    : 'Buque de motor visto desde arriba con sus sectores: verde a estribor y roja a babor, de 112,5° cada una; blanca de alcance a popa, de 135°; y, por fuera, el arco de 225° de la luz de tope.';
+  const { out, pt, ray, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
+  // costa y agua, como en una carta
+  out.push(tierra('M0,0 H64 C56,40 38,72 20,104 L0,124 Z', pt));
+  out.push(ondaCurva(0, W, 286, { amp: 5 }), ondaCurva(0, W, 306, { amp: 4, fina: true }));
+  // graduación de la rosa
+  out.push(`<circle cx="${CX}" cy="${CY}" r="131" fill="none" stroke="${T.tinta}" stroke-width="5" stroke-dasharray="1 ${f1((2 * Math.PI * 131) / 36 - 1)}" transform="rotate(-90.2 ${CX} ${CY})"/>`,
+    `<circle cx="${CX}" cy="${CY}" r="128" fill="none" stroke="${T.tinta}" stroke-width=".6"/>`);
+  // arcos de tope (225°, magenta) y de alcance (135°, a trazos)
+  out.push(`<path${parte('tope')} d="${arcoD(CX, CY, 122, 247.5, 112.5)}" fill="none" stroke="${T.magenta}" stroke-width="6"/>`);
+  out.push(`<path${parte('alcance')} d="${arcoD(CX, CY, 122, 112.5, 247.5)}" fill="none" stroke="${T.tinta}" stroke-width="1.6" stroke-dasharray="6 3"/>`);
+  // sectores de costado y alcance
+  out.push(sector(0, 112.5, T.verde, 'verde'), sector(247.5, 360, T.rojo, 'roja'), sector(112.5, 247.5, T.papel, 'alcance', { rayado: ray }));
+  // el buque
+  out.push(`<path d="M${CX},${CY - 34} C${CX + 14},${CY - 19} ${CX + 16},${CY + 16} ${CX + 12},${CY + 37} L${CX - 12},${CY + 37} C${CX - 16},${CY + 16} ${CX - 14},${CY - 19} ${CX},${CY - 34}Z" fill="${T.casco}" stroke="${T.tinta}" stroke-width="1.4" stroke-linejoin="round"/>`,
+    `<line x1="${CX}" y1="${CY - 28}" x2="${CX}" y2="${CY + 34}" stroke="${T.tinta}" stroke-width=".6"/>`,
+    `<circle${parte('tope')} cx="${CX}" cy="${CY - 10}" r="3.5" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1"/>`);
+  // cotas: líneas de referencia y arcos con el ángulo de cada sector
+  for (const d of [0, 112.5, 247.5]) { const [x1, y1] = P(d, RS); const [x2, y2] = P(d, 150); out.push(referencia(x1, y1, x2, y2)); }
+  out.push(cotaArco(CX, CY, 141, 0, 112.5, '112,5°', { p: 'verde', rEt: 152 }), cotaArco(CX, CY, 141, 247.5, 360, '112,5°', { p: 'roja', rEt: 152 }),
+    cotaArco(CX, CY, 141, 112.5, 247.5, '135°', { p: 'alcance' }));
+  // rótulos: tope arriba; cartelas de cada sector
+  if (situaciones) out.push(etiqueta(CX, 50, 'VUELTA ENCONTRADA', { color: T.magenta, borde: T.magenta, p: 'tope' }));
+  else out.push(etiqueta(CX, 50, 'TOPE 225°', { color: T.magenta, borde: T.magenta, p: 'tope' }));
+  out.push(rotulo(CX, 22, 'PROA · 000°', { size: TXT.min, weight: 700, estilo: 'cap', espacio: 2 }));
+  if (situaciones) {
+    out.push(cartela(226, 124, 'SE APARTA', 'él', { color: T.verdeTxt, ancho: 84, size: TXT.min, espacio: 0.4, p: 'verde' }), cartela(132, 124, 'SE APARTA', 'tú', { color: T.rojoTxt, ancho: 84, size: TXT.min, espacio: 0.4, p: 'roja' }),
+      cartela(CX, 236, 'ALCANCE', 'te apartas tú', { ancho: 106, p: 'alcance' }));
+  } else {
+    out.push(cartela(232, 124, 'VERDE', 'estribor', { color: T.verdeTxt, ancho: 84, p: 'verde' }), cartela(126, 124, 'ROJA', 'babor', { color: T.rojoTxt, ancho: 84, p: 'roja' }),
+      cartela(CX, 236, 'ALCANCE', 'blanca · popa', { ancho: 106, p: 'alcance' }));
   }
-  o.push('</svg>');
-  return o.join('');
+  // el observador, sobre la rosa
+  if (!ocultarObservador) {
+    const [x, y] = P(aspecto, 116);
+    out.push(`<g data-parte="tu"><line x1="${CX}" y1="${CY}" x2="${f1(x)}" y2="${f1(y)}" stroke="${T.magenta}" stroke-width="1.4" stroke-dasharray="4 3"/>` +
+      `<circle cx="${f1(x)}" cy="${f1(y)}" r="12" fill="${T.magenta}" stroke="${T.papel}" stroke-width="2"/>` +
+      `${rotulo(x, y + 4.2, 'tú', { size: TXT.rotulo, weight: 700, estilo: 'serif', color: T.papel })}</g>`);
+  }
+  out.push(cierra());
+  return out.join('');
 }
 
-/** Lo que ve de noche el observador situado en `aspecto`. */
+/** Lo que ve de noche el observador situado en `aspecto`: las luces, rotuladas con su nombre. */
 export function noche(aspecto, { ocultar = false } = {}) {
   const v = lucesVisibles(aspecto);
-  const sn = Math.sin(rad(aspecto));
-  const cs = Math.cos(rad(aspecto));
-  const sx = (along, side) => C + along * sn - side * cs;
-  const w = Math.max(18, 110 * Math.abs(sn) + 22 * Math.abs(cs));
-  const o = [`<svg viewBox="0 0 ${S} ${S}" class="il lam-svg" role="img" aria-label="${ocultar ? 'Lo que ves de noche' : 'Lo que ves de noche: luces visibles'}"><rect width="${S}" height="${S}" rx="10" fill="var(--l-noche)"/>`];
-  o.push(`<rect x="${f1(C - w / 2)}" y="100" width="${f1(w)}" height="14" rx="4" fill="var(--l-casco-noche)"/><rect y="118" width="${S}" height="52" fill="var(--l-mar-noche)"/>`);
-  const luz = (x, y, color, p) => `<g${parte(p)}><circle cx="${f1(x)}" cy="${y}" r="10" fill="${color}" opacity=".25"/><circle cx="${f1(x)}" cy="${y}" r="5" fill="${color}"/></g>`;
-  if (ocultar) o.push(`<text x="85" y="70" font-size="40" text-anchor="middle" fill="var(--l-luz-blanca)" style="font-family:inherit">?</text>`);
-  else {
-    if (v.tope) o.push(luz(sx(14, 0), 58, 'var(--l-luz-blanca)', 'tope'));
-    if (v.verde) o.push(luz(sx(8, 9), 92, 'var(--l-luz-verde)', 'verde'));
-    if (v.roja) o.push(luz(sx(8, -9), 92, 'var(--l-luz-roja)', 'roja'));
-    if (v.alcance) o.push(luz(sx(-50, 0), 94, 'var(--l-luz-blanca)', 'alcance'));
+  const S = 1.8;
+  const C = W / 2;
+  const sn = Math.sin((aspecto * Math.PI) / 180);
+  const cs = Math.cos((aspecto * Math.PI) / 180);
+  const sx = (along, side) => C + (along * sn - side * cs) * S;
+  const hw = Math.max(22, (110 * Math.abs(sn) + 22 * Math.abs(cs)) * S * 0.9);
+  const nombres = { tope: 'tope', verde: 'verde', roja: 'roja', alcance: 'alcance' };
+  const alt = ocultar ? 'Lo que ves de noche: ¿qué luces?' : `Lo que ves de noche: ${['tope', 'verde', 'roja', 'alcance'].filter((k) => v[k]).map((k) => `la ${k === 'tope' ? 'blanca de tope' : k === 'alcance' ? 'blanca de alcance' : k}`).join(', ')}.`;
+  const { out, cierra } = lienzo(W, 150, alt, { fondo: T.noche });
+  out.push(`<rect y="106" width="${W}" height="44" fill="${T.nocheMar}"/>`);
+  out.push(`<rect x="${f1(C - hw / 2)}" y="92" width="${f1(hw)}" height="13" rx="3" fill="${T.nocheMar}" stroke="${T.nocheTxt}" stroke-width=".6" opacity=".8"/>`);
+  if (ocultar) {
+    out.push(rotulo(C, 78, '?', { size: 40, weight: 700, estilo: 'serif', color: T.luzBlanca }));
+  } else {
+    const luces = [];
+    if (v.tope) luces.push(['tope', sx(14, 0), 50, T.luzBlanca]);
+    if (v.verde) luces.push(['verde', sx(8, 9), 84, T.luzVerde]);
+    if (v.roja) luces.push(['roja', sx(8, -9), 84, T.luzRoja]);
+    if (v.alcance) luces.push(['alcance', sx(-50, 0), 86, T.luzBlanca]);
+    // los rótulos, debajo, sin pisarse
+    const et = luces.map(([k, x]) => ({ k, x })).sort((a, b) => a.x - b.x);
+    for (let i = 1; i < et.length; i++) if (et[i].x - et[i - 1].x < 56) et[i].x = et[i - 1].x + 56;
+    const desplaza = et.length ? Math.max(0, et[et.length - 1].x - (W - 40)) : 0;
+    for (const [k, x, y, col] of luces) {
+      const lx = et.find((e) => e.k === k).x - desplaza;
+      out.push(`<g${parte(k)}><circle cx="${f1(x)}" cy="${y}" r="11" fill="${col}" opacity=".25"/><circle cx="${f1(x)}" cy="${y}" r="5.5" fill="${col}"/>` +
+        `<line x1="${f1(x)}" y1="${y + 8}" x2="${f1(lx)}" y2="124" stroke="${T.nocheTxt}" stroke-width=".6" opacity=".6"/>` +
+        `${rotulo(lx, 138, nombres[k], { size: TXT.rotulo, estilo: 'serif', italic: true, color: T.nocheTxt })}</g>`);
+    }
   }
-  o.push('</svg>');
-  return o.join('');
+  out.push(cierra());
+  return out.join('');
 }
 
 /** Desde dónde lo miras, en palabras. */
@@ -75,5 +126,5 @@ export const PARTES_LUCES = {
   alcance: 'Luz de alcance: blanca, en la popa, se ve en 135° hacia popa. Si es la única que ves, lo estás alcanzando.',
 };
 export const BOTONES_LUCES = [['tope', 'Tope'], ['verde', 'Verde'], ['roja', 'Roja'], ['alcance', 'Alcance']];
-export const PIE_PLANTA = 'Desde arriba';
+export const PIE_PLANTA = 'Desde arriba: sus sectores';
 export const NOTA_BUQUE = 'Buque de propulsión mecánica de menos de 50 m, en navegación.';

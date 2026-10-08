@@ -1,40 +1,45 @@
 // Hélice y timón: marcha, sentido de giro y timón → hacia dónde cae la popa. Vista desde arriba, proa arriba.
+// Estilo C (docs/ESTILO-LAMINAS.md): agua de carta, cada efecto con su flecha y su rótulo (hélice a trazos, timón fino,
+// la popa en magenta y más gruesa).
 import { caidaPopa } from '../../nautical/helice.js';
-import { svgOpen, flecha, texto, barcoPlanta, f1, rad } from './kit.js';
+import { T, TXT, lienzo, rotulo, cartela, flecha, ondas, barco, f1, rad } from '../estilo-c.js';
 
-const W = 320;
-const H = 300;
-const CX = 160;
-const CY = 140;
+const W = 358;
+const H = 330;
+const CX = 179;
+const CY = 146;
 const L = 150;
 const TIMON = { br: 'a babor', via: 'a la vía', er: 'a estribor' };
 export const GIRO = { dextrogira: 'dextrógira', levogira: 'levógira' };
 const sg = (b) => (b === 'estribor' ? 1 : -1);
 
-/** Dibujo y frase de una combinación; lo reutiliza la lámina de desatraque. */
+/** Dibujo y frase de una combinación. */
 export function dibujoHelice(e, r, { pendiente = false, alto = H } = {}) {
   const atras = e.marcha === 'atras';
-  const out = [svgOpen(W, alto, `${atras ? 'Atrás' : 'Avante'}, hélice ${GIRO[e.sentido]}, timón ${TIMON[e.timon]}`)];
-  out.push(texto(CX - 70, 28, 'Br', { size: 18, weight: 700 }), texto(CX + 70, 28, 'Er', { size: 18, weight: 700 }), texto(CX, 24, 'proa ↑', { size: 15 }));
+  const alt = `${atras ? 'Dando atrás' : 'Avante'}, hélice ${GIRO[e.sentido]}, timón ${TIMON[e.timon]}` + (pendiente ? '.' : `: la popa cae a ${r.popa} y la proa a ${r.proa}.`);
+  const { out, cierra } = lienzo(W, alto, alt, { fondo: T.agua2 });
+  out.push(ondas(10, W - 10, alto - 30, { sep: 9 }));
+  out.push(rotulo(CX - 86, 32, 'BABOR', { size: TXT.rotulo, weight: 700, estilo: 'cap', color: T.rojoTxt }), rotulo(CX + 86, 32, 'ESTRIBOR', { size: TXT.rotulo, weight: 700, estilo: 'cap', color: T.verdeTxt }),
+    rotulo(CX, 32, 'PROA', { size: TXT.min, weight: 700, estilo: 'cap', color: T.apagado }));
   // el barco gira hacia donde cae la proa (alrededor de su punto de giro)
   const giro = pendiente ? 0 : sg(r.proa) * (r.dominante === 'ambos' ? 16 : 9);
   const piv = atras ? L / 6 : -L / 6;
   const tim = e.timon === 'via' ? 0 : (e.timon === 'er' ? -1 : 1) * 32; // la pala hacia la banda del timón (visto desde arriba, popa abajo)
   const rb = [Math.sin(rad(tim)) * 22, Math.cos(rad(tim)) * 22];
   out.push(`<g transform="rotate(${f1(giro)} ${CX} ${f1(CY + piv)})">`);
-  out.push(barcoPlanta(CX, CY, 0, L, 'barco'));
-  out.push(`<line data-parte="timon" x1="${CX}" y1="${CY + L / 2}" x2="${f1(CX - rb[0])}" y2="${f1(CY + L / 2 + rb[1])}" stroke="var(--l-v)" stroke-width="5" stroke-linecap="round"/>`);
-  out.push(`<rect data-parte="helice" x="${CX - 12}" y="${CY + L / 2 - 10}" width="24" height="5" rx="2" fill="var(--l-a)"/>`);
-  out.push(atras ? flecha(CX, CY + L / 2 + 34, CX, CY + L / 2 + 4, 'var(--l-g)', 2.5) : flecha(CX, CY + L / 2 + 2, CX, CY + L / 2 + 34, 'var(--l-g)', 2.5));
-  out.push(`<circle cx="${CX}" cy="${CY + piv}" r="4" fill="var(--l-p)"/></g>`);
+  out.push(barco(CX, CY, 0, L, { p: 'barco' }));
+  out.push(`<line data-parte="timon" x1="${CX}" y1="${CY + L / 2}" x2="${f1(CX - rb[0])}" y2="${f1(CY + L / 2 + rb[1])}" stroke="${T.tinta}" stroke-width="5" stroke-linecap="round"/>`);
+  out.push(`<rect data-parte="helice" x="${CX - 13}" y="${CY + L / 2 - 11}" width="26" height="6" rx="2" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1"/>`);
+  out.push(atras ? flecha(CX, CY + L / 2 + 36, CX, CY + L / 2 + 6, { color: T.apagado, w: 1.4, discontinua: true }) : flecha(CX, CY + L / 2 + 4, CX, CY + L / 2 + 36, { color: T.apagado, w: 1.4, discontinua: true }));
+  out.push(`<circle cx="${CX}" cy="${CY + piv}" r="4" fill="${T.magenta}"/></g>`);
   // efectos sobre la popa
   const y0 = CY + L / 2 + 20;
-  const ef = (lado, y, color, t, p, w = 3) => (lado ? flecha(CX + sg(lado) * 26, y, CX + sg(lado) * 96, y, color, w, p) + texto(CX + sg(lado) * 100, y + 5, t, { color, p, size: 15, anchor: lado === 'estribor' ? 'start' : 'end' }) : '');
-  out.push(ef(r.popaHelice, y0 - 34, 'var(--l-a)', 'hélice', 'helice'));
-  if (r.popaTimon) out.push(ef(r.popaTimon, y0 - 4, 'var(--l-v)', 'timón', 'timon'));
-  if (!pendiente) out.push(ef(r.popa, y0 + 26, 'var(--l-r)', 'popa', 'popa', 5));
-  out.push(texto(14, alto - 10, `${atras ? 'dando atrás' : 'avante'} · flecha gris: corriente de la hélice`, { anchor: 'start', size: 13, weight: 400, color: 'var(--muted)' }));
-  out.push('</svg>');
+  const ef = (lado, y, t, p, o) => (lado ? flecha(CX + sg(lado) * 28, y, CX + sg(lado) * 96, y, { p, ...o }) + rotulo(CX + sg(lado) * 102, y + 4.5, t, { size: TXT.nota, estilo: 'serif', italic: p !== 'popa', weight: p === 'popa' ? 700 : 400, color: o.color, p, anchor: lado === 'estribor' ? 'start' : 'end' }) : '');
+  out.push(ef(r.popaHelice, y0 - 36, 'hélice', 'helice', { color: T.tinta, w: 1.6, discontinua: true }));
+  if (r.popaTimon) out.push(ef(r.popaTimon, y0 - 8, 'timón', 'timon', { color: T.tinta, w: 1.6 }));
+  if (!pendiente) out.push(ef(r.popa, y0 + 22, 'popa', 'popa', { color: T.magenta, w: 3 }));
+  out.push(rotulo(16, alto - 12, `${atras ? 'dando atrás' : 'avante'} · flecha gris: corriente de la hélice`, { size: TXT.min, estilo: 'serif', italic: true, anchor: 'start', color: T.apagado }));
+  out.push(cierra());
   return out.join('');
 }
 

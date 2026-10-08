@@ -1,0 +1,133 @@
+# Estilo de las láminas («estilo C»)
+
+Las láminas son la explicación dibujada de **una idea**. Se presentan como en un material didáctico —una frase clave
+grande, una figura que muestra la regla, cifras en recuadros y una nota para recordar— con la **piel gráfica de una carta
+náutica**: papel crema, tinta azul marino, magenta de carta, marco con graduación, punteado y rayado, líneas de agua
+discontinuas, rotulación con serifa, ritmos de luz y ángulos en monoespaciada, cartelas con doble filete y cotas de
+ángulo y distancia con sus líneas de referencia.
+
+La referencia visual son las maquetas «C» (marcas cardinales y luces de un buque de motor). Las láminas piloto ya
+migradas están en la tabla del final; las demás siguen con su dibujo antiguo hasta que se rehagan (la migración es
+gradual: nada se rompe si una lámina no tiene marco).
+
+## Dónde está cada cosa
+
+| Pieza | Fichero |
+| --- | --- |
+| Colores (claro y oscuro) y tipografías | `styles/laminas.css` (variables `--lc-*`) |
+| Piezas de dibujo (marco, cartela, cotas, ondas, tierra, reloj, rosa, barco…) | `src/illustrations/estilo-c.js` |
+| Luz que destella y cronograma del ritmo | `luzC()` y `cronoC()` de `src/illustrations/lights.js` |
+| Marca de balizamiento (castillete, tope, franjas) | `marcaC()` de `src/illustrations/buoys.js` |
+| Textos del marco de cada lámina (`titulo`, `clave`, `nota`, `datos`, `alt`) | `src/illustrations/marcos.js` |
+| Marco HTML (eyebrow, título, frase clave, figura, datos, nota) | `src/ui/lamina-marco.js` |
+| Tests del estilo | `tests/laminas-estilo.test.js` |
+
+## Paleta (variables `--lc-*`)
+
+| Variable | Claro | Oscuro | Uso |
+| --- | --- | --- | --- |
+| `--lc-fondo` | `#f3efe2` | `#0f1b2b` | fondo del marco |
+| `--lc-papel` | `#f8f5ea` | `#14263c` | papel de la figura, cartelas, recuadros |
+| `--lc-tinta` | `#1b2a41` | `#d7e4f3` | trazos y texto |
+| `--lc-apagado` | `#5a6678` | `#9fb3c9` | texto secundario |
+| `--lc-magenta` | `#a8265f` | `#e47aae` | lo que hay que mirar: arco de tope, flecha del reloj, frase clave |
+| `--lc-amarillo` / `--lc-negro` | `#e0b63a` / `#1b2a41` | `#e2b43a` / `#05090f` | colores de marca IALA |
+| `--lc-agua` / `--lc-agua-2` / `--lc-linea-agua` | `#cfe0ea` / `#dbe8ef` / `#7fa6c4` | `#173653` / `#1b3d5c` / `#4f7aa0` | mar y líneas de agua |
+| `--lc-tierra` | `#e8dcb8` | `#3a3622` | tierra (con punteado) |
+| `--lc-verde` / `--lc-verde-texto` | `#46a877` / `#17663c` | `#2f9e6a` / `#6fe0a2` | sector o marca verde / texto verde |
+| `--lc-rojo` / `--lc-rojo-texto` | `#d9605a` / `#a32019` | `#c24a4a` / `#ff9a9a` | sector o marca roja / texto rojo |
+| `--lc-casco` | `#e9e3d0` | `#2a4261` | casco en planta |
+| `--lc-noche`, `--lc-luz-*` | | | escenas de noche y luces (siempre oscuras) |
+
+- El oscuro sigue a `prefers-color-scheme` salvo que la app fuerce el claro (`data-theme="light"`), como
+  `styles/app.css`; `data-theme="dark"` también lo fuerza.
+- **Nunca un color fijo** dentro de un dibujo en estilo C: siempre `T.*` de `estilo-c.js` (que son `var(--lc-*)`). El
+  test lo comprueba en las láminas piloto.
+- Contraste AA (4,5:1) del texto sobre su fondo en los dos modos: tinta, apagado, magenta, verde-texto y rojo-texto
+  sobre papel y fondo. Lo comprueba el test. Los colores de relleno (verde, rojo de un sector) no llevan texto encima:
+  el texto va en una cartela de papel.
+
+## Tipografía
+
+- **Serifa** (`--lc-serif`: Georgia y sus equivalentes): títulos, nombres, notas y subtítulos de cartela (cursiva).
+- **Monoespaciada** (`--lc-mono`): ritmos de luz (`Q(6)+LFl 15 s`), ángulos (`112,5°`), horas, alturas y cifras.
+- **Versalitas espaciadas** (`estilo: 'cap'`): la primera línea de una cartela (`VERDE`, `ALCANCE`) y el eyebrow.
+- Dentro del SVG, la familia se pone con clase (`lc-serif`, `lc-mono`, `lc-sans`) y el tamaño con `font-size`.
+
+## Reglas
+
+1. **Una idea por lámina.** Si una lámina quiere enseñar dos cosas, son dos láminas (o dos vistas de una interactiva).
+   El título dice de qué es; la frase clave dice la regla en una línea.
+2. **Texto mínimo dentro del SVG: 10,5 px efectivos a 360 px de ancho.** En el móvil la figura se dibuja a unos 328 px
+   (360 menos 16 px de margen a cada lado) y nunca más alta de unos 430 px. Tamaño efectivo =
+   `font-size × min(328 / anchoViewBox, 430 / altoViewBox)`. Con el viewBox de referencia (358 de ancho) eso pide
+   `font-size ≥ 11,5`: usa `TXT.min` o más. El test mide todos los `<text>` de las láminas piloto.
+3. **Trazos de 1 a 1,6 px.** Los filetes finos de 0,5–0,7 son solo decoración (doble filete, líneas de referencia,
+   graduación); lo que se mira (un sector, una derrota, una flecha) va a 1,4–1,6, y solo lo protagonista más grueso.
+4. **Qué va en el SVG y qué en el HTML.** En el SVG, solo lo que necesita estar en su sitio: rótulos de partes, cotas,
+   cartelas, ritmos, números de paso. Todo lo demás —título, frase clave, cifras, nota, explicación larga— va en el
+   marco HTML (se lee mejor, se agranda con el zoom del sistema y lo lee el lector de pantalla).
+5. **Nada importante solo por color.** Las marcas laterales se distinguen por forma (cilindro / cono) y rótulo; los
+   sectores de luz llevan su cartela («VERDE · estribor»); las cardinales, sus conos y su reloj.
+6. **Texto alternativo obligatorio**, útil y concreto: qué se ve y qué enseña («Buque de motor visto desde arriba con
+   sus sectores: verde a estribor, roja a babor…»), no «Ilustración». Es el `aria-label` del SVG y el `alt` del marco.
+7. **Nada de emojis** (ni en el SVG ni en los textos): números de paso con `paso()`, flechas dibujadas con `flecha()`.
+   `tests/iconos.test.js` vigila `src/ui` y `src/illustrations`.
+8. **Animación**: se conservan las que había (luces que destellan, barcos que se mueven, hélice que gira); no se añaden
+   efectos nuevos. Ninguna información depende de la animación: el dibujo parado (miniatura) se entiende igual.
+9. **Corrección**: la verdad es la norma y la matemática. Cada lámina se comprueba contra su fuente (apéndice).
+10. **Parametrización**: al rehacer una lámina se conservan su `tipo`, sus parámetros, sus variantes, sus `data-parte`
+    (los usan las clases «toca en el dibujo» y el resaltado) y su interacción. `validSpec` sigue aceptando las specs.
+
+## Piezas de `estilo-c.js`
+
+```js
+import { T, TXT, lienzo, cartela, etiqueta, cota, cotaArco, referencia, flecha, ondas, tierra, reloj, rosaNorte, paso, barco, rotulo } from './estilo-c.js';
+
+const { out, pt, ray, cierra } = lienzo(358, 300, 'Texto alternativo útil');   // abre el SVG con patrones y papel
+out.push(tierra('M0 0 H70 …Z', pt));              // tierra con punteado
+out.push(ondas(6, 352, 240));                      // líneas de agua discontinua y punteada
+out.push(cotaArco(179, 160, 141, 0, 112.5, '112,5°'));  // arco de cota con topes y etiqueta mono
+out.push(cartela(229, 119, 'VERDE', 'estribor', { color: T.verdeTxt, p: 'verde' }));
+out.push(reloj(124, 58, 25, 90));                  // esfera con flecha magenta al este
+out.push(cierra());                                // marco con graduación y </svg>
+```
+
+- `lienzo()` da ids estables a los patrones (el mismo dibujo, el mismo id): la imagen fija de una lámina interactiva
+  sigue siendo idéntica a su dibujo en el estado inicial.
+- `p` en cualquier pieza le pone `data-parte` (resaltado y «toca en el dibujo»).
+
+## El marco de la lámina (HTML)
+
+`src/illustrations/marcos.js` da, para cada spec migrada, `{ tema, titulo, clave, nota, datos: [{ cifra, texto }], alt }`.
+`src/ui/lamina-marco.js` lo pinta alrededor de la figura (estática o interactiva):
+
+- **eyebrow** «Lámina · tema» (magenta, versalitas) · **título** en serifa · **frase clave** en cursiva serif magenta con
+  doble filete · la **figura** · **datos** en recuadros (cifra grande + subtítulo) · **Nota** con borde discontinuo.
+- En la galería el título es el `h1` de la ficha; en una clase o en la ficha de una idea, un `h3`. En la explicación de
+  una pregunta solo se ve la figura (la pregunta ya da el contexto).
+- Si una lámina no tiene marco, se ve como siempre.
+- Los textos se escriben a mano, en buen español, sin abreviaturas raras y con la cifra exacta de la norma.
+
+## Cómo migrar una lámina
+
+1. Comprueba el hecho contra la fuente y anótalo en el apéndice.
+2. Redibuja con `estilo-c.js` y solo `T.*`; conserva `tipo`, parámetros, variantes, `data-parte` e interacción.
+3. Escribe su marco en `marcos.js` (`titulo`, `clave`, `nota`, `datos`, `alt`).
+4. Añade su spec a `PILOTO` de `tests/laminas-estilo.test.js` (texto mínimo, colores, marco, claro y oscuro).
+5. Míralo a 360, 390 y 990 px, en claro y en oscuro.
+
+## Apéndice: verificación de cada lámina
+
+| Lámina | Hecho comprobado | Fuente |
+| --- | --- | --- |
+| Marcas cardinales | N: conos con la punta arriba, negro sobre amarillo, Q o VQ continuo. E: conos base con base, negro-amarillo-negro, Q(3) 10 s / VQ(3) 5 s. S: conos con la punta abajo, amarillo sobre negro, Q(6)+LFl 15 s / VQ(6)+LFl 10 s. W: conos punta con punta, amarillo-negro-amarillo, Q(9) 15 s / VQ(9) 10 s. Se pasa por el lado de su nombre; luz blanca. | Sistema de balizamiento marítimo IALA-AISM (región A), cap. 3 «Marcas cardinales»; RD 875/2014, anexo II (PER, UT 5) |
+| Marcas laterales, canal y bifurcación | Región A, entrando desde la mar: babor roja, cilíndrica (o castillete con tope cilíndrico), luz roja; estribor verde, cónica (tope cónico con la punta arriba), luz verde. Numeración: impares las verdes, pares las rojas, desde la mar. Bifurcación con canal principal a estribor: roja con una banda verde ancha, tope cilíndrico rojo, Fl(2+1) R; con canal principal a babor: verde con banda roja, tope cónico verde, Fl(2+1) G. | IALA-AISM, cap. 2 «Marcas laterales» (2.1 sentido convencional, 2.2 región A, 2.3 marcas laterales modificadas) |
+| Luces de un buque de motor | Tope blanca 225° (de proa a 22,5° a popa del través por cada banda); costados verde (Er) y roja (Br) de 112,5° cada una; alcance blanca 135° hacia popa. | RIPA (COLREG 72), regla 21 a, b y c; regla 23 a; anexo I §9 (corte de los sectores) |
+| Cruce, alcance y vuelta encontrada | Alcance: quien viene desde más de 22,5° a popa del través del otro se mantiene apartado. Vuelta encontrada: los dos caen a estribor (babor con babor). Cruce de buques de motor: se aparta el que tiene al otro por su estribor (ves su roja), evitando cortarle la proa; el otro mantiene rumbo y velocidad. Veleros: amura distinta, se aparta el amurado a babor; misma amura, el de barlovento. | RIPA, reglas 12, 13, 14, 15, 16 y 17 |
+| Partes del barco | Eslora (longitud), manga (anchura máxima), puntal (de la quilla a la cubierta principal), calado (de la flotación a la quilla), francobordo (de la flotación a la cubierta); obra viva bajo la flotación, obra muerta encima; babor a la izquierda mirando a proa, estribor a la derecha; amura (proa), través (90°), aleta (popa). | RD 875/2014, anexo II (PER, UT 1 Nomenclatura náutica) |
+| Borrasca y anticiclón | Hemisferio norte: alrededor de la borrasca el viento gira en sentido antihorario y converge hacia el centro (cruza las isobaras hacia la baja presión); alrededor del anticiclón, horario y divergente. Presión menor en el centro de la borrasca, mayor en el del anticiclón. | Ley de Buys-Ballot; efecto de Coriolis y rozamiento (OMM, Manual de meteorología marina); RD 875/2014, anexo II (PER, UT 9) |
+| Hélice y timón | Hélice dextrógira (gira a la derecha avante, vista desde popa): avante la popa cae a estribor (poco), atrás a babor (mucho); levógira, al revés. Timón con arrancada avante: timón a estribor, proa a estribor y popa a babor. Atrás con poca arrancada manda la hélice. | RD 875/2014, anexo II (PER, UT 7 Maniobra); presión lateral de las palas |
+| Hombre al agua | Boutakow (Williamson): todo el timón a la banda de la caída; separado unos 60° del rumbo inicial, todo a la banda contraria hasta el rumbo opuesto; vuelve por su estela. Anderson: todo a la banda del náufrago y una vuelta de unos 250° hasta acercarse. | IAMSAR, vol. III, sección 2 (maniobras de recogida de persona al agua); RD 875/2014, anexo II (PER, UT 3) |
+| Estabilidad | Estable si M está por encima de G (GM > 0): el par adriza; GZ = GM · sen(escora) en pequeñas escoras. Subir pesos sube G y reduce GM y GZ; con G por encima de M el par vuelca. | Teoría del buque, estabilidad inicial (metacentro transversal); RD 875/2014, anexo II (PER, UT 3) |
+| Marea: curva y doceavos | La altura sigue una curva aproximadamente senoidal entre bajamar y pleamar; regla de los doceavos para ~6 h: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud cada hora (a las 3 h, la mitad: sen²(45°) = 0,5). Sonda del momento = sonda de la carta + altura de la marea; agua bajo la quilla = sonda − calado. | Anuario de mareas del Instituto Hidrográfico de la Marina (tabla de corrección C = A · sen²(90° · I / D)); RD 875/2014, anexo II (PER, UT 10; PY, UT 3) |

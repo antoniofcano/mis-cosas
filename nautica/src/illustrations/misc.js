@@ -1,4 +1,5 @@
-// Ilustraciones: meteorología, partes del barco, efecto de la hélice, rosa (rumbo/demora/marcación) y banderas.
+// Ilustraciones: meteorología y banderas (borrasca, anticiclón, partes del barco y hélice: laminas-c.js).
+import { borrascaAnticiclon } from './laminas-c.js';
 
 const arrowDefs = (id, color) => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="${color}"/></marker></defs>`;
 
@@ -13,30 +14,8 @@ export function meteoIllustration(spec) {
   const cy = 140;
   const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Meteorología">`, `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>`, arrowDefs('mt-a', '#2563eb')];
   const sys = spec.sistema;
-  if (sys === 'borrasca' || sys === 'anticiclon') {
-    const B = sys === 'borrasca';
-    out.push(`<text x="${cx}" y="22" class="il-title">${B ? 'Borrasca (B) · hemisferio norte' : 'Anticiclón (A) · hemisferio norte'}</text>`);
-    [36, 64, 92].forEach((r, i) => out.push(`<ellipse cx="${cx}" cy="${cy}" rx="${r * 1.35}" ry="${r}" fill="none" stroke="#64748b" stroke-width="1"/><text x="${cx + r * 1.35 + 2}" y="${cy - 2}" font-size="8" fill="#64748b">${B ? 996 + i * 4 : 1032 - i * 4}</text>`));
-    out.push(`<text x="${cx}" y="${cy + 9}" font-size="26" font-weight="700" text-anchor="middle" fill="${B ? '#dc2626' : '#2563eb'}">${B ? 'B' : 'A'}</text>`);
-    // flechas de viento: en la borrasca giran en sentido antihorario y convergen; en el anticiclón, horario y divergen
-    const arrows = [];
-    for (let k = 0; k < 8; k++) {
-      const a = (k * Math.PI) / 4;
-      const r = 78;
-      const x = cx + Math.cos(a) * r * 1.35;
-      const y = cy + Math.sin(a) * r;
-      const tang = B ? a - Math.PI / 2 : a + Math.PI / 2; // dirección del giro (y hacia abajo)
-      const radial = B ? -0.35 : 0.35;
-      const dx = Math.cos(tang) + Math.cos(a) * radial;
-      const dy = Math.sin(tang) + Math.sin(a) * radial;
-      const n = Math.hypot(dx, dy);
-      arrows.push(`<line x1="${x - (dx / n) * 12}" y1="${y - (dy / n) * 12}" x2="${x + (dx / n) * 12}" y2="${y + (dy / n) * 12}" stroke="#2563eb" stroke-width="2.4" marker-end="url(#mt-a)"/>`);
-    }
-    out.push(`<g>${arrows.join('')}<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="${B ? -360 : 360} ${cx} ${cy}" dur="24s" repeatCount="indefinite"/></g>`);
-    out.push(`<text x="${cx}" y="${H - 10}" class="il-lbl" text-anchor="middle">${B ? 'Giro antihorario y hacia el centro · baja presión · mal tiempo' : 'Giro horario y hacia fuera · alta presión · buen tiempo'}</text>`);
-    out.push('</svg>');
-    return { svg: out.join(''), caption: B ? 'En el hemisferio norte el viento gira alrededor de la borrasca en sentido contrario a las agujas del reloj, entrando hacia el centro.' : 'En el hemisferio norte el viento gira alrededor del anticiclón en el sentido de las agujas del reloj, saliendo hacia fuera.' };
-  }
+  // borrasca y anticiclón: en estilo C, en src/illustrations/laminas-c.js
+  if (sys === 'borrasca' || sys === 'anticiclon') return borrascaAnticiclon(sys === 'borrasca');
   if (sys === 'buys-ballot') {
     out.push(`<text x="${cx}" y="22" class="il-title">Ley de Buys-Ballot (hemisferio norte)</text>`);
     out.push(`<circle cx="${cx}" cy="${cy}" r="14" fill="#334155"/><text x="${cx}" y="${cy + 4}" font-size="10" fill="#fff" text-anchor="middle">tú</text>`);
@@ -91,82 +70,7 @@ export function meteoIllustration(spec) {
   return null;
 }
 
-// ---------------------------------------------------------------------------
-// Partes del barco
-// spec: { tipo:'barco', resaltar:[...] }  partes: proa, popa, babor, estribor, crujia, eslora, manga, puntal, calado,
-//        obra-viva, obra-muerta, francobordo, amura, aleta, traves, linea-flotacion
-
-export function boatIllustration(spec) {
-  const hl = new Set(spec.resaltar ?? []);
-  // `solo`: dibuja solo esas partes (para no enseñar nombres que la clase aún no ha explicado).
-  const solo = spec.solo ? new Set(spec.solo) : null;
-  const ver = (...ks) => !solo || ks.some((k) => solo.has(k));
-  const SECCION = ['linea-flotacion', 'obra-muerta', 'obra-viva', 'puntal', 'calado', 'francobordo'];
-  const conSeccion = ver(...SECCION);
-  const W = 360;
-  const H = conSeccion ? 300 : 195;
-  const on = (k) => (hl.size === 0 || hl.has(k) ? 'il-part on' : 'il-part');
-  const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Partes del barco">`, `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>`, arrowDefs('bt-a', '#475569')];
-  const si = (k, txt) => { if (ver(k)) out.push(txt); };
-  // Planta
-  out.push(`<text x="12" y="20" class="il-lbl strong">Planta</text>`);
-  out.push(`<path d="M40,80 L250,80 Q320,95 320,105 Q320,115 250,130 L40,130 Z" class="il-hull-plan"/>`);
-  si('crujia', `<line x1="30" y1="105" x2="335" y2="105" class="${on('crujia')}" stroke-dasharray="6 4"/><text x="150" y="101" class="${on('crujia')} t">crujía</text>`);
-  si('proa', `<text x="322" y="78" class="${on('proa')} t">proa</text>`);
-  si('popa', `<text x="10" y="110" class="${on('popa')} t">popa</text>`);
-  si('babor', `<text x="140" y="70" class="${on('babor')} t">babor (rojo)</text>`);
-  si('estribor', `<text x="140" y="148" class="${on('estribor')} t">estribor (verde)</text>`);
-  si('amura', `<text x="262" y="70" class="${on('amura')} t">amura</text>`);
-  si('aleta', `<text x="44" y="70" class="${on('aleta')} t">aleta</text>`);
-  si('traves', `<text x="196" y="160" class="${on('traves')} t">través ↓</text>`);
-  si('eslora', `<line x1="40" y1="168" x2="320" y2="168" class="${on('eslora')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="180" y="182" class="${on('eslora')} t">eslora</text>`);
-  si('manga', `<line x1="225" y1="80" x2="225" y2="130" class="${on('manga')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="230" y="120" class="${on('manga')} t">manga</text>`);
-  if (conSeccion) {
-    // Sección
-    out.push(`<text x="12" y="205" class="il-lbl strong">Sección</text>`);
-    out.push(`<rect x="120" y="230" width="120" height="16" class="il-water-cut"/>`);
-    out.push(`<path d="M110,210 L250,210 L240,262 L120,262 Z" class="il-hull-plan"/>`);
-    si('linea-flotacion', `<line x1="100" y1="232" x2="262" y2="232" class="${on('linea-flotacion')}" stroke="#0ea5e9"/><text x="104" y="244" class="${on('linea-flotacion')} t">flotación</text>`);
-    si('obra-muerta', `<text x="150" y="226" class="${on('obra-muerta')} t">obra muerta</text>`);
-    si('obra-viva', `<text x="152" y="256" class="${on('obra-viva')} t">obra viva</text>`);
-    si('puntal', `<line x1="96" y1="210" x2="96" y2="262" class="${on('puntal')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="40" y="240" class="${on('puntal')} t">puntal</text>`);
-    si('calado', `<line x1="300" y1="232" x2="300" y2="262" class="${on('calado')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="306" y="252" class="${on('calado')} t">calado</text>`);
-    si('francobordo', `<line x1="282" y1="210" x2="282" y2="232" class="${on('francobordo')}" marker-start="url(#bt-a)" marker-end="url(#bt-a)"/><text x="288" y="222" class="${on('francobordo')} t">francobordo</text>`);
-  }
-  out.push('</svg>');
-  const NOMBRE = { crujia: 'crujía', 'obra-viva': 'obra viva', 'obra-muerta': 'obra muerta' };
-  return { svg: out.join(''), caption: hl.size ? `Fíjate en: ${[...hl].map((x) => NOMBRE[x] ?? x.replace(/-/g, ' ')).join(', ')}.` : 'Partes principales del barco.' };
-}
-
-// ---------------------------------------------------------------------------
-// Efecto de la hélice
-// spec: { tipo:'helice', sentido:'dextrogira'|'levogira', marcha:'avante'|'atras' }
-
-export function propellerIllustration(spec) {
-  const dex = spec.sentido !== 'levogira';
-  const atras = spec.marcha === 'atras';
-  // giro visto desde popa: dextrógira avante = horario. Dando atrás invierte.
-  const cw = dex !== atras;
-  // Dando atrás: dextrógira → la popa cae a babor; levógira → a estribor. Avante (efecto menor): al revés.
-  const caida = atras ? (dex ? 'babor' : 'estribor') : (dex ? 'estribor' : 'babor');
-  const W = 320;
-  const H = 230;
-  const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Efecto de la hélice">`, `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>`, arrowDefs('pr-a', '#e11d48')];
-  out.push(`<text x="${W / 2}" y="22" class="il-title">Hélice ${dex ? 'dextrógira' : 'levógira'} dando ${atras ? 'atrás' : 'avante'}</text>`);
-  out.push(`<text x="80" y="44" class="il-lbl" text-anchor="middle">vista desde popa</text>`);
-  out.push(`<circle cx="80" cy="120" r="50" fill="none" stroke="#94a3b8"/>`);
-  out.push(`<g><path d="M80,120 C70,90 76,74 80,70 C84,74 90,90 80,120 M80,120 C110,130 122,126 126,122 C120,116 104,112 80,120 M80,120 C64,140 56,154 54,160 C62,158 74,148 80,120" fill="#94a3b8" stroke="#475569"/>` +
-    `<animateTransform attributeName="transform" type="rotate" from="0 80 120" to="${cw ? 360 : -360} 80 120" dur="1.6s" repeatCount="indefinite"/></g>`);
-  out.push(`<text x="80" y="190" class="il-lbl" text-anchor="middle">gira ${cw ? 'a la derecha (horario)' : 'a la izquierda (antihorario)'}</text>`);
-  // planta con la caída de popa
-  const dir = caida === 'babor' ? -1 : 1; // en planta con proa hacia arriba: babor = izquierda
-  out.push(`<g transform="translate(230 120)"><g><path d="M0,-60 Q16,-40 16,0 L16,50 L-16,50 L-16,0 Q-16,-40 0,-60Z" class="il-hull-plan"/>` +
-    `<animateTransform attributeName="transform" type="rotate" values="0 0 0; ${-dir * 14} 0 0; 0 0 0" dur="3s" repeatCount="indefinite"/></g>` +
-    `<path d="M${dir * 22},40 L${dir * 46},40" stroke="#e11d48" stroke-width="3" marker-end="url(#pr-a)"/>` +
-    `<text x="0" y="78" class="il-lbl" text-anchor="middle">la popa cae a ${caida}</text><text x="0" y="-68" class="il-lbl" text-anchor="middle">proa</text></g>`);
-  out.push('</svg>');
-  return { svg: out.join(''), caption: `Con hélice ${dex ? 'dextrógira' : 'levógira'}, dando ${atras ? 'atrás' : 'avante'} la popa tiende a caer a ${caida}${atras ? ' (efecto muy marcado al dar atrás)' : ''}.` };
-}
+// Partes del barco y efecto de la hélice: en estilo C, en src/illustrations/laminas-c.js.
 
 // Rosa (rumbo, demora y marcación): ahora es interactiva, en src/illustrations/interactivas/rosa.js.
 

@@ -3,7 +3,8 @@
 //   (Emergencias). Las cifras y reglas son las de las clases (Reglamento General de Costas, art. 73; IALA región A;
 //   UNE-EN 2 y los cuatro métodos de extinción).
 import { svgOpen, flecha, texto, barcoPlanta, pol, f1, parte } from './kit.js';
-import { buoySvg } from '../buoys.js';
+import { marcaC } from '../buoys.js';
+import { T, TXT, lienzo, rotulo, cartela, referencia, ondas, flecha as flechaC, pol as polC, barco as barcoC } from '../estilo-c.js';
 
 // ---------------------------------------------------------------------------
 // Barco y viento: babor/estribor no cambian; barlovento/sotavento dependen de por dónde entra el viento.
@@ -26,31 +27,36 @@ export const barcoViento = {
   calcular: (e) => bandas(e.viento),
   pie: () => 'Babor y estribor no cambian nunca; barlovento es la banda por la que entra el viento y sotavento la contraria.',
   dibujar(e, r, { pendiente = false } = {}) {
-    const W = 320; const H = 320; const CX = 160; const CY = 165; const L = 170;
-    const out = [svgOpen(W, H, `Barco visto desde arriba con el viento por ${NOMBRE_ZONA[e.viento]}`)];
-    // las bandas, sombreadas: barlovento azul claro, sotavento sin color
+    // Estilo C (docs/ESTILO-LAMINAS.md): barco en planta sobre el agua de la carta; barlovento rayado.
+    const W = 358; const H = 340; const CX = 179; const CY = 176; const L = 176;
+    const alt = `Barco visto desde arriba con el viento entrando por ${NOMBRE_ZONA[e.viento]}` + (pendiente || !r.barlovento ? '.' : `: barlovento a ${r.barlovento}, sotavento a ${r.sotavento}.`);
+    const { out, ray, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
+    out.push(ondas(10, W - 10, H - 28, { sep: 9 }));
+    // las bandas: barlovento rayado
     if (!pendiente && r.barlovento) {
-      const x = r.barlovento === 'estribor' ? CX : CX - 40;
-      out.push(`<rect x="${x}" y="${CY - L / 2 + 6}" width="40" height="${L - 12}" fill="var(--l-cielo)" opacity=".75"/>`);
+      const x = r.barlovento === 'estribor' ? CX : CX - 44;
+      out.push(`<rect x="${x}" y="${CY - L / 2 + 8}" width="44" height="${L - 16}" fill="${T.papel}" opacity=".7"/><rect x="${x}" y="${CY - L / 2 + 8}" width="44" height="${L - 16}" fill="${ray}" opacity=".6"/>`);
     }
-    out.push(barcoPlanta(CX, CY, 0, L, 'barco'));
-    out.push(`<line x1="${CX}" y1="${CY - L / 2}" x2="${CX}" y2="${CY + L / 2}" stroke="var(--l-g)" stroke-dasharray="5 4"/>`);
+    out.push(barcoC(CX, CY, 0, L, { p: 'barco', crujia: false, relleno: 'none' }));
+    out.push(`<line x1="${CX}" y1="${CY - L / 2}" x2="${CX}" y2="${CY + L / 2}" stroke="${T.tinta}" stroke-width="1" stroke-dasharray="6 4"/>`);
     // zonas que se pueden tocar
-    const z = (id, x, y, t, anchor) => texto(x, y, t, { size: 13, anchor, p: id });
+    const z = (id, x, y, t, anchor) => rotulo(x, y, t, { size: TXT.nota, estilo: 'serif', italic: true, anchor, p: id });
     out.push(z('proa', CX, CY - L / 2 - 8, 'proa', 'middle'), z('popa', CX, CY + L / 2 + 18, 'popa', 'middle'));
-    out.push(z('amura-er', CX + 34, CY - 52, 'amura', 'start'), z('traves-er', CX + 36, CY + 4, 'través', 'start'), z('aleta-er', CX + 34, CY + 58, 'aleta', 'start'));
-    out.push(z('amura-br', CX - 34, CY - 52, 'amura', 'end'), z('traves-br', CX - 36, CY + 4, 'través', 'end'), z('aleta-br', CX - 34, CY + 58, 'aleta', 'end'));
-    out.push(texto(CX - 92, CY + 96, 'BABOR', { size: 13, weight: 700, color: 'var(--l-roja)', p: 'babor' }), texto(CX + 92, CY + 96, 'ESTRIBOR', { size: 13, weight: 700, color: 'var(--l-verde)', p: 'estribor' }));
+    out.push(z('amura-er', CX + 36, CY - 52, 'amura', 'start'), z('traves-er', CX + 38, CY + 4, 'través', 'start'), z('aleta-er', CX + 36, CY + 58, 'aleta', 'start'));
+    out.push(z('amura-br', CX - 36, CY - 52, 'amura', 'end'), z('traves-br', CX - 38, CY + 4, 'través', 'end'), z('aleta-br', CX - 36, CY + 58, 'aleta', 'end'));
+    out.push(rotulo(CX - 112, CY + 30, 'BABOR', { size: TXT.rotulo, weight: 700, estilo: 'cap', color: T.rojoTxt, p: 'babor' }), rotulo(CX + 112, CY + 30, 'ESTRIBOR', { size: TXT.rotulo, weight: 700, estilo: 'cap', color: T.verdeTxt, p: 'estribor' }));
     // el viento: flecha que llega desde fuera hacia el barco
     const a = ZONAS_VIENTO[e.viento];
-    const [x1, y1] = pol(CX, CY, a, 150);
-    const [x2, y2] = pol(CX, CY, a, 98);
-    out.push(flecha(x1, y1, x2, y2, 'var(--l-a)', 5, 'viento'), texto(...pol(CX, CY, a, 132).map((v, i) => v + (i ? -10 : 0)), 'viento', { size: 12, color: 'var(--l-a)' }));
+    const [x1, y1] = pol(CX, CY, a, 158);
+    const [x2, y2] = pol(CX, CY, a, 104);
+    out.push(flechaC(x1, y1, x2, y2, { color: T.magenta, w: 3, p: 'viento' }));
+    const [tx, ty] = pol(CX, CY, a, 140);
+    out.push(rotulo(tx + (Math.sin(a * Math.PI / 180) >= 0 ? -10 : 10), ty - 8, 'viento', { size: TXT.nota, estilo: 'serif', italic: true, weight: 700, color: T.magenta, anchor: Math.sin(a * Math.PI / 180) >= 0 ? 'end' : 'start' }));
     if (!pendiente && r.barlovento) {
       const xb = r.barlovento === 'estribor' ? CX + 112 : CX - 112;
-      out.push(texto(xb, 26, 'barlovento', { size: 13, weight: 700, color: 'var(--l-a)' }), texto(r.barlovento === 'estribor' ? CX - 112 : CX + 112, 26, 'sotavento', { size: 13, weight: 400, color: 'var(--muted)' }));
+      out.push(cartela(xb, 28, 'BARLOVENTO', null, { color: T.magenta, ancho: 118 }), rotulo(r.barlovento === 'estribor' ? CX - 112 : CX + 112, 32, 'sotavento', { size: TXT.nota, estilo: 'serif', italic: true, color: T.apagado }));
     }
-    out.push('</svg>');
+    out.push(cierra());
     const svg = out.join('');
     const base = `El viento entra por ${NOMBRE_ZONA[e.viento]}.`;
     if (pendiente) return { svg, lectura: `${base} Responde y verás cuál es cada banda.` };
@@ -100,28 +106,33 @@ export const cardinales = {
   calcular: (e) => ({ ...CARD[e.marca], aspecto: ASPECTO[e.marca] }),
   pie: () => 'Cada cardinal está en el cuadrante de su nombre y se pasa por ese lado. La luz se lee como un reloj: E las 3, S las 6, W las 9; la N centellea sin parar.',
   dibujar(e, r, { pendiente = false } = {}) {
-    const W = 320; const H = 320; const CX = 160; const CY = 168; const R = 100;
-    const out = [svgOpen(W, H, `Cardinal ${r.nombre} alrededor de un peligro`)];
-    out.push(`<rect x="0" y="0" width="${W}" height="${H}" rx="10" fill="var(--l-mar)"/>`);
+    // Estilo C (docs/ESTILO-LAMINAS.md): el peligro en el centro, los cuatro cuadrantes y la marca en el suyo.
+    const W = 358; const H = 392; const CX = 179; const CY = 222; const R = 112;
+    const alt = pendiente ? `Una marca ${r.aspecto}, junto a un peligro. ¿Por dónde la pasas?` : `Cardinal ${r.nombre} en el cuadrante ${r.nombre.toLowerCase()} del peligro: se pasa por ${r.lado}.`;
+    const { out, pt, cierra } = lienzo(W, H, alt, { fondo: T.agua });
+    out.push(ondas(10, W - 10, 52, { sep: 9 }));
     // cuadrantes: separados por las demoras NE, SE, SW y NW desde el peligro
-    for (const d of [45, 135, 225, 315]) { const [x, y] = pol(CX, CY, d, 150); out.push(`<line x1="${CX}" y1="${CY}" x2="${f1(x)}" y2="${f1(y)}" stroke="var(--l-g)" stroke-dasharray="4 5"/>`); }
-    out.push(`<circle${parte('peligro')} cx="${CX}" cy="${CY}" r="17" fill="#92400e"/>`, texto(CX, CY + 32, 'peligro', { size: 12 }));
+    for (const d of [45, 135, 225, 315]) { const [x, y] = polC(CX, CY, d, 172); out.push(referencia(CX, CY, x, y)); }
+    for (const [t, d] of [['N', 0], ['E', 90], ['S', 180], ['W', 270]]) { const [x, y] = polC(CX, CY, d, 150); out.push(rotulo(x + (d % 180 ? 0 : 30), y + 6 + (d % 180 ? 26 : 0), t, { size: 17, weight: 700, estilo: 'serif', color: T.apagado })); }
+    out.push(`<g data-parte="peligro"><path d="M${CX - 20},${CY + 4} C${CX - 22},${CY - 12} ${CX - 4},${CY - 20} ${CX + 10},${CY - 15} C${CX + 24},${CY - 10} ${CX + 22},${CY + 10} ${CX + 8},${CY + 16} C${CX - 4},${CY + 20} ${CX - 18},${CY + 16} ${CX - 20},${CY + 4}Z" fill="${T.tierra}" stroke="${T.tinta}" stroke-width="1.4"/>` +
+      `<path d="M${CX - 20},${CY + 4} C${CX - 22},${CY - 12} ${CX - 4},${CY - 20} ${CX + 10},${CY - 15} C${CX + 24},${CY - 10} ${CX + 22},${CY + 10} ${CX + 8},${CY + 16} C${CX - 4},${CY + 20} ${CX - 18},${CY + 16} ${CX - 20},${CY + 4}Z" fill="${pt}"/>` +
+      `${rotulo(CX, CY + 36, 'peligro', { size: TXT.rotulo, estilo: 'serif', italic: true })}</g>`);
     for (const [k, c] of Object.entries(CARD)) {
-      const [x, y] = pol(CX, CY, c.a, R);
+      const [x, y] = polC(CX, CY, c.a, R);
       const sel = k === e.marca;
-      out.push(`<g${parte(sel ? 'marca' : null)} opacity="${sel ? 1 : 0.35}">${buoySvg(c.clase, x, y + 24, sel ? 1.1 : 0.75)}</g>`);
+      out.push(`<g${parte(sel ? 'marca' : null)} opacity="${sel ? 1 : 0.4}">${marcaC(c.clase, x, y + 20, sel ? 0.7 : 0.55, { pt })}</g>`);
     }
     // el lado seguro: un barco que pasa por fuera de la marca, por su lado
     if (!pendiente) {
-      const [mx, my] = pol(CX, CY, r.a, R + 42);
-      const [ax, ay] = pol(mx, my, r.a + 90, 52);
-      const [bx, by] = pol(mx, my, r.a - 90, 52);
-      out.push(flecha(ax, ay, bx, by, 'var(--l-verde)', 4, 'paso'));
-      out.push(texto(CX, 22, `Cardinal ${r.nombre}: pasa por ${r.lado}`, { size: 14, weight: 700 }));
+      const [mx, my] = polC(CX, CY, r.a, R + { 0: 66, 90: 50, 180: 40, 270: 50 }[r.a]);
+      const [ax, ay] = polC(mx, my, r.a + 90, 52);
+      const [bx, by] = polC(mx, my, r.a - 90, 52);
+      out.push(flechaC(ax, ay, bx, by, { color: T.magenta, w: 2.4, p: 'paso' }));
+      out.push(cartela(CX, 24, `CARDINAL ${r.nombre.toUpperCase()}`, null, { color: T.magenta }));
     } else {
-      out.push(texto(CX, 22, '¿Por dónde la pasas?', { size: 14, weight: 700 }));
+      out.push(cartela(CX, 24, '¿POR DÓNDE LA PASAS?'));
     }
-    out.push('</svg>');
+    out.push(cierra());
     const svg = out.join('');
     if (pendiente) return { svg, lectura: `Una marca ${r.aspecto}. Responde y verás por dónde se pasa.` };
     return { svg, lectura: `Cardinal ${r.nombre}: ${r.aspecto}. Está al ${r.nombre.toLowerCase()} del peligro y se pasa por ${r.lado}. Su luz, blanca: ${r.luz}.` };

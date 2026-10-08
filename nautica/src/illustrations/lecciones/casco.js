@@ -175,7 +175,7 @@ export function estructuraIllustration(spec = {}) {
       const y = 152 + i * 20;
       out.push(`<circle cx="26" cy="${y - 4}" r="7" fill="${C.r}"/><text x="26" y="${y - 0.4}" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">${n}</text>`, lbl(40, y, t, null, 'start', 'font-size="11"'));
     });
-    out.push(`<text x="21" y="${152 + 4 * 20}" font-size="12" font-weight="700" fill="${C.g}">✕</text>`, lbl(40, 232, 'La hélice no: está fuera del casco', null, 'start', 'font-size="11"'));
+    out.push(`<text x="21" y="${152 + 4 * 20}" font-size="12" font-weight="700" fill="${C.g}">×</text>`, lbl(40, 232, 'La hélice no: está fuera del casco', null, 'start', 'font-size="11"'));
     out.push('</svg>');
     return { svg: out.join(''), caption: 'El agua entra casi siempre por donde algo atraviesa el casco: la bocina del eje, la limera del timón, los grifos de fondo y pasacascos, y el escape. Cierra los grifos de fondo que no uses.' };
   }

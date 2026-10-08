@@ -5,16 +5,17 @@
 import { buoyIllustration, cardinalClock, BUOYS } from './buoys.js';
 import { shipIllustration, SHIPS } from './ships.js';
 import { crossingIllustration, soundIllustration, riesgoIllustration, SENALES } from './situations.js';
-import { meteoIllustration, boatIllustration, propellerIllustration, flagIllustration } from './misc.js';
+import { meteoIllustration, flagIllustration } from './misc.js';
+import { boatIllustration, propellerIllustration, hombreAlAguaIllustration } from './laminas-c.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
-import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, canalIllustration, dstIllustration, demorasIllustration } from './navigation.js';
+import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, dstIllustration, demorasIllustration } from './navigation.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
-import { bifurcacionIllustration, regionesIllustration } from './balizamiento.js';
+import { bifurcacionIllustration, regionesIllustration, canalIllustration } from './balizamiento.js';
 import { evolucionIllustration, ciabogaIllustration } from './maniobra.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { LAMINAS_LECCIONES } from './lecciones/index.js';
-import { movimientoIllustration, amarrasIllustration, busquedaIllustration, hombreAlAguaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
+import { movimientoIllustration, amarrasIllustration, busquedaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
 
 function rhythmIllustration(spec) {
   const r = parseRhythm(spec.ritmo);

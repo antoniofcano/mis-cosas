@@ -6,7 +6,7 @@ banco activo (eje y titulación) tiene sus preguntas etiquetadas por concepto (d
 aparece nada y la app es la de siempre.
 
 Código: `src/course/travesia.js` (todo el cálculo, puro y con la hora inyectada), `src/ui/travesia.js` (cálculo con el
-almacén), `src/ui/views/travesia.js` (pantallas, tarjeta de Hoy y parte). Tests: `tests/travesia.test.js`.
+almacén), `src/ui/views/travesia.js` (pantallas, la carta `cartaDerrota` que también usa Hoy y el parte). Tests: `tests/travesia.test.js`.
 
 ## Lo que NO cambia
 
@@ -21,9 +21,9 @@ almacén), `src/ui/views/travesia.js` (pantallas, tarjeta de Hoy y parte). Tests
 
 | Ruta | Qué es |
 |---|---|
-| `#/<tit>/travesia` | Rango, carta con los faros, detalle del faro elegido (ideas por reforzar con «Ver ficha»), semana, nota «¿Estás listo?» |
+| `#/<tit>/travesia` | «← Hoy» y «Seguir» (si la sesión de hoy no está hecha), rango, carta con los faros y el marcador «estás aquí», detalle del faro elegido (ideas por reforzar con «Ver ficha»), semana, nota «¿Estás listo?» |
 | `#/<tit>/travesia/insignias` | Rejilla de insignias con su detalle y la escalera de rangos |
-| Hoy | Tarjeta «Tu travesía» bajo la sesión (las cuatro pestañas no cambian) |
+| Hoy | La carta en compacto como héroe (toda ella abre la travesía) y rango y semana en la fila de estado: docs/ENTRADA.md (las cuatro pestañas no cambian) |
 | Más, Mi progreso | Enlace a la travesía |
 | `#/<tit>/temario` | Un faro por **tema** con el mismo criterio (`luzDeFaro`, `farosPorTema`; ver docs/ICONOS.md) |
 | `#/<tit>/sesion` (al terminar) | Parte de travesía arriba del resumen |

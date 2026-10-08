@@ -95,6 +95,8 @@ const P = {
   bandera: '<path d="M5 21V4"/><path d="M5 4h12l-2.5 4 2.5 4H5"/>',
   velero: '<path d="M12 3v14"/><path d="M12 4.5 18.5 15H12M10 7.5 5.5 15H10"/><path d="M3 17.5h18l-2.5 3.5h-13z"/>',
   barco: '<path d="M3 15.5h18l-2.5 5h-13z"/><path d="M6 15.5V11h11v4.5M9 11V7.5h5V11M11.5 7.5V4"/>',
+  // barco-marca: «estás aquí» en la carta de la derrota (Hoy y la Travesía): una marca de posición con un velero dentro
+  'barco-marca': '<path d="M12 21.5s-7-5.9-7-11.5a7 7 0 0 1 14 0c0 5.6-7 11.5-7 11.5z"/><path d="M11 5.5v6h4z"/><path d="M8.5 13.5h7"/>',
   timon: '<circle cx="12" cy="12" r="6.25"/><circle cx="12" cy="12" r="1.75"/><path d="M12 2.5v7.75M12 13.75v7.75M3.8 7.25l6.7 3.9M13.5 12.9l6.7 3.85M20.2 7.25l-6.7 3.9M10.5 12.9 3.8 16.75"/>',
   boya: '<path d="m9.75 7 2.25-4 2.25 4z"/><path d="M12 7v3.5"/><path d="M6.5 16a5.5 5.5 0 0 1 11 0z"/><path d="M2.5 19.5c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1"/>',
   salvavidas: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m5.6 5.6 3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/>',

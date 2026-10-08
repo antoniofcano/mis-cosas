@@ -1754,3 +1754,84 @@ ul.ef-temas li:last-child { border-bottom: 0; }
 details.prog-carta { margin: 1rem 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0 .9rem; }
 details.prog-carta > summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
 .progress ul.clases-flojas a { border-radius: 14px; }
+
+/* ---- Entrada única ---- (Hoy: docs/ENTRADA.md). Cabecera mínima, la carta de la derrota en compacto (héroe), la
+   tarjeta «Siguiente parada» con su botón, la fila de estado y lo secundario debajo. Sin animaciones propias. */
+.entrada .entrada-cab { display: block; margin: .2rem 0 .7rem; }
+.entrada .entrada-saludo { margin: 0; font-size: 1.4rem; white-space: normal; }
+.entrada-contexto { margin: .15rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: .1rem .7rem; }
+.entrada-contexto .indicador-eje { display: inline-flex; align-items: center; min-height: 44px; font-size: .85rem; }
+.entrada-arriba { display: grid; gap: .9rem; margin-bottom: .9rem; }
+@media (min-width: 760px) { .entrada-arriba:not(.sin-carta) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+.entrada-heroe-hueco:empty { display: none; }
+.entrada-heroe { display: grid; gap: .3rem; }
+.entrada-heroe-cab, .entrada-cta-cab { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+.entrada-cta-eti, .entrada-dato-eti { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+a.entrada-carta { display: block; border-radius: 16px; color: inherit; text-decoration: none; }
+a.entrada-carta:hover .carta-trav { border-color: var(--accent); }
+a.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
+a.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
+/* La carta compacta: más baja (las capas se estiran, los trazos no), sin rosa, faros sin botón y algo más pequeños. */
+.carta-trav.compacta { aspect-ratio: 358 / 224; max-width: none; }
+.carta-trav.compacta :is(.pata, .costa, .ola) { vector-effect: non-scaling-stroke; }
+.carta-trav.compacta .rosa { display: none; }
+.carta-trav.compacta .faro-pos { width: 92px; transform: translate(-50%, -18px); }
+.carta-trav.compacta .bandera-pos { transform: translate(-50%, -17px); }
+.carta-trav.compacta .bandera-disco { width: 34px; height: 34px; }
+.carta-trav.compacta .bandera-disco .ico { width: 18px; height: 18px; }
+.carta-trav.compacta .faro-nombre { font-size: .66rem; }
+.carta-trav span.faro { width: 36px; height: 36px; border-radius: 999px; border: 2px solid var(--faro-off-borde); background: var(--faro-off-bg); color: var(--faro-off-texto); display: inline-flex; align-items: center; justify-content: center; }
+.carta-trav span.faro .ico { width: 20px; height: 20px; }
+.carta-trav span.faro.parcial { border-color: var(--accent); background: var(--accent-2); color: var(--accent); }
+.carta-trav span.faro.on { border-color: var(--faro-on-borde); background: var(--faro-on-bg); color: var(--faro-on-texto); }
+/* «Estás aquí»: el icono barco-marca encima del faro de la siguiente parada (en Hoy y en la Travesía). */
+.marca-aqui { position: absolute; left: 50%; top: 0; transform: translate(-50%, -88%); color: var(--c-effective); pointer-events: none; line-height: 0; z-index: 1; }
+.marca-aqui .ico { width: 34px; height: 34px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+.marca-aqui svg path:first-child { fill: var(--surface); }
+.carta-trav.compacta .marca-aqui .ico { width: 30px; height: 30px; }
+/* La fase, pequeña sobre la tarjeta; su explicación, plegada. */
+.entrada-principal { display: grid; gap: .35rem; min-width: 0; }
+details.entrada-fase { margin: 0; padding: 0; border: 0; background: none; }
+details.entrada-fase > summary, details.entrada-pasos > summary { list-style: none; min-height: 44px; display: flex; align-items: center; gap: .6rem; padding: 0; }
+details.entrada-fase > summary::-webkit-details-marker, details.entrada-pasos > summary::-webkit-details-marker { display: none; }
+.entrada-fase-eti { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); background: var(--accent-2); border-radius: 999px; padding: .2rem .65rem; }
+.entrada-fase-ayuda { font-size: .84rem; font-weight: 600; color: var(--accent); text-decoration: underline; }
+.entrada-fase-cuerpo { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem; display: grid; gap: .6rem; margin: 0 0 .4rem; }
+.entrada-fase-cuerpo p { margin: 0; }
+/* La tarjeta «Siguiente parada» (mismos colores que la sesión de siempre) y su botón grande. */
+.sesion-hoy.entrada-cta { margin: 0; gap: .6rem; }
+.entrada-cta .entrada-cta-eti { color: var(--sesion-fg); opacity: .92; }
+.entrada-cta .sesion-min .ico svg { width: 22px; height: 22px; }
+.entrada-parada { margin: 0; font-size: 1.35rem; line-height: 1.25; color: inherit; overflow-wrap: anywhere; }
+.entrada-parada-tipo { margin: -.35rem 0 0; font-size: .86rem; opacity: .92; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.boton-sesion.entrada-seguir { min-height: 56px; font-size: 1.15rem; }
+details.entrada-pasos { margin: 0; padding: 0; border: 0; background: none; color: inherit; }
+details.entrada-pasos > summary { justify-content: space-between; font-size: .86rem; font-weight: 600; }
+.entrada-pasos-ver { text-decoration: underline; }
+.entrada-pasos-ver::after { content: " \25BE"; display: inline-block; }
+details.entrada-pasos[open] .entrada-pasos-ver::after { transform: rotate(180deg); }
+.entrada-pasos-cuerpo { display: grid; gap: .6rem; }
+.entrada-pasos-cuerpo p { margin: 0; font-size: .84rem; }
+.sesion-hoy summary:focus-visible { outline: 3px solid var(--sesion-fg); outline-offset: 2px; }
+.entrada-manana { margin: 0; font-size: .9rem; line-height: 1.45; }
+.entrada-acciones { display: grid; gap: .5rem; }
+@media (min-width: 420px) { .entrada-acciones { grid-template-columns: 1fr 1fr; } }
+/* La fila de estado: rango (o camino), semana y «¿Estás listo?»; cada dato es un enlace (o botón) de 44 px o más. */
+.entrada-estado { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin: 0 0 .9rem; }
+.entrada-dato, button.entrada-dato { display: flex; flex-direction: column; justify-content: center; gap: .15rem; min-height: 44px; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .55rem .75rem; color: var(--text); text-decoration: none; font: inherit; font-weight: 400; text-align: left; }
+.entrada-dato:hover { border-color: var(--accent); }
+.entrada-dato strong { font-size: 1rem; line-height: 1.25; }
+.entrada-dato .barra-fina { margin-top: .2rem; }
+.entrada-dato-pie { font-size: .78rem; color: var(--muted); line-height: 1.3; }
+.entrada-dias { display: flex; gap: 5px; margin: .2rem 0 .05rem; }
+.entrada-dia { width: 12px; height: 12px; border-radius: 999px; background: var(--accent-2); border: 1.5px solid var(--border); flex: none; }
+.entrada-dia.estudio { background: var(--accent); border-color: var(--accent); }
+.entrada-dia.descanso { background: transparent; border: 1.5px dashed var(--faro-off-borde); }
+.entrada-dia.hoy { background: transparent; border: 2px solid var(--accent); }
+.entrada-dato.entrada-listo { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: .6rem; }
+.entrada-listo-tx { flex: 1 1 auto; min-width: 0; font-weight: 600; font-size: .9rem; line-height: 1.3; }
+.entrada-listo.listo-listo { border-color: var(--ok); }
+@media (min-width: 760px) { .entrada-estado { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr); } .entrada-dato.entrada-listo { grid-column: auto; } }
+/* La Travesía: «Seguir» arriba si la sesión de hoy no está hecha. */
+.travesia-pantalla .boton-sesion.trav-seguir { background: var(--accent); color: var(--on-accent); margin: .1rem 0 .9rem; min-height: 52px; }
+/* ---- fin Entrada única ---- */

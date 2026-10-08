@@ -1,6 +1,6 @@
 // #/<tit>/travesia — la Travesía: tu progreso como una derrota con faros (un faro por bloque del temario, se enciende con
 // el 80 % de sus ideas dominadas), tu rango, la semana, lo que falta por reforzar y, aparte, las insignias
-// (#/<tit>/travesia/insignias). También aquí: la tarjeta de Hoy y el parte que se enseña al terminar una sesión.
+// (#/<tit>/travesia/insignias). También aquí: la carta de la derrota (cartaDerrota, que Hoy usa en compacto) y el parte que se enseña al terminar una sesión.
 // Todo se calcula en src/course/travesia.js; esta pantalla solo pinta. «¿Estás listo?» y el dominio de cada idea son los
 // de siempre: la travesía los lee, no los cambia. Sin etiquetas de conceptos en el banco activo no hay travesía.
 
@@ -9,13 +9,16 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { icono } from '../iconos.js';
 import { calcularPlan } from '../cierre.js';
 import { hrefFicha } from '../concepto.js';
-import { sincronizarTravesia, farosEncendidos } from '../travesia.js';
+import { sincronizarTravesia } from '../travesia.js';
 import {
   RANGOS, FARO_ENCENDIDO, DIAS_SEMANA, BANDERA, catalogoInsignias, faltaInsignia, requisitoRango,
   posicionesDerrota, faroInicial,
 } from '../../course/travesia.js';
 import { lineaListo } from '../../course/listo.js';
 import { cuenta, fechaLarga } from '../../texto.js';
+import { deducirFase, componerSesion, terminada } from '../../course/sesion.js';
+import { leerSesion } from '../sesion.js';
+import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 
 const ANCHO = 358;
 const ALTO = 320;
@@ -33,13 +36,42 @@ const FONDO = `<svg class="carta-fondo" viewBox="0 0 ${ANCHO} ${ALTO}" aria-hidd
 <g class="rosa"><circle cx="322" cy="290" r="14"/><path d="M322 279 L325 290 L322 301 L319 290 Z"/><text x="322" y="276" text-anchor="middle">N</text></g>
 </svg>`;
 
-const posPct = ([x, y]) => `left:clamp(52px, ${(100 * x / ANCHO).toFixed(2)}%, calc(100% - 52px)); top:${(100 * y / ALTO).toFixed(2)}%`;
+const posPct = ([x, y], alto = ALTO) => `left:clamp(52px, ${(100 * x / ANCHO).toFixed(2)}%, calc(100% - 52px)); top:${(100 * y / alto).toFixed(2)}%`;
+/** En la carta compacta de Hoy las capas llegan hasta y = 360 (un poco de mar más abajo): caben los nombres de abajo. */
+const ALTO_COMPACTA = 360;
 
 /** Las patas de la derrota entre faros (la última llega a la bandera del examen). */
 function patas(faros, pos) {
   const puntos = [...pos, BANDERA];
   const lineas = faros.map((f, i) => `<line class="pata ${f.estado}" x1="${puntos[i][0]}" y1="${puntos[i][1]}" x2="${puntos[i + 1][0]}" y2="${puntos[i + 1][1]}"/>`);
   return `<svg class="carta-patas" viewBox="0 0 ${ANCHO} ${ALTO}" aria-hidden="true" focusable="false">${lineas.join('')}</svg>`;
+}
+
+/**
+ * La carta de la derrota: fondo, patas, un faro por bloque y la bandera del examen. La usan esta pantalla (faros que se
+ * eligen: `elegir(id)`, con `sel` el elegido) y la entrada de Hoy (`compacta`: más baja, faros sin botón y la carta
+ * entera es un enlace; docs/ENTRADA.md). `marca` = índice del faro con el marcador «estás aquí» (-1: en la bandera del
+ * examen; null: sin marcador).
+ * @returns {{ carta: HTMLElement, botones: HTMLElement[] }}  `botones` = los contenedores de cada faro
+ */
+export function cartaDerrota(faros, { sel = null, elegir = null, marca = null, compacta = false } = {}) {
+  const pos = posicionesDerrota(faros.length);
+  const alto = compacta ? ALTO_COMPACTA : ALTO;
+  const marcaAqui = () => h('span.marca-aqui', { 'aria-hidden': 'true' }, icono('barco-marca'));
+  const botones = faros.map((f, i) => {
+    const disco = elegir
+      ? h('button.faro', { type: 'button', class: f.estado, 'aria-label': ariaFaro(f) + (i === marca ? '. Estás aquí' : ''), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'))
+      : h('span.faro', { class: f.estado }, icono('faro'));
+    return h('div.faro-pos', { style: posPct(pos[i], alto), class: i === marca ? 'aqui' : '' }, i === marca ? marcaAqui() : null, disco, h('span.faro-nombre', f.corto));
+  });
+  const carta = h('div.carta-trav', elegir ? { role: 'group', 'aria-label': 'Carta de tu derrota: un faro por bloque del temario' } : { 'aria-hidden': 'true', class: compacta ? 'compacta' : '' },
+    h('div.carta-capas', { html: FONDO + patas(faros, pos) }),
+    h('div.bandera-pos', { style: posPct(BANDERA, alto), class: marca === -1 ? 'aqui' : '' }, marca === -1 ? marcaAqui() : null, h('span.bandera-disco', icono('bandera')), h('span.faro-nombre', 'Examen')),
+    ...botones);
+  // En compacto la carta es más baja que la de 358 × 320: el fondo y las patas se estiran (los faros van en %, no se
+  // deforman) y llegan hasta ALTO_COMPACTA.
+  if (compacta) carta.querySelectorAll('.carta-capas svg').forEach((s) => { s.setAttribute('viewBox', `0 0 ${ANCHO} ${ALTO_COMPACTA}`); s.setAttribute('preserveAspectRatio', 'none'); });
+  return { carta, botones };
 }
 
 /** Disco con el icono del rango. */
@@ -52,20 +84,6 @@ function textoFaro(f) {
   if (f.estado === 'on') return `Faro encendido: llevas el ${pct(f.pct)} de las ideas de este bloque dominadas.`;
   if (!f.vistas) return 'Todavía sin empezar. Cuando trabajes sus ideas, el faro irá cogiendo luz.';
   return `Vas por el ${pct(f.pct)}. ${f.faltan === 1 ? 'Te falta 1 idea dominada' : `Te faltan ${cuenta(f.faltan, 'idea dominada', 'ideas dominadas')}`} para encender el faro (hace falta el ${pct(FARO_ENCENDIDO)}).`;
-}
-
-/** Tarjeta de Hoy: el rango, las ideas dominadas y los faros encendidos; lleva a la pantalla. */
-export function tarjetaTravesiaHoy(tit, sy) {
-  const { est, rango } = sy;
-  return h('a.travesia-hoy', { href: tlink(tit, ['travesia']) },
-    discoRango(),
-    h('span.travesia-hoy-tx',
-      h('span.muted.small', 'Tu travesía'),
-      h('strong', rango.actual.nombre),
-      h('span.small', `${cuenta(est.dominadas, 'idea dominada', 'ideas dominadas')} de ${est.total} · ${cuenta(farosEncendidos(est), 'faro encendido', 'faros encendidos')} de ${est.faros.length}`),
-      h('span.barra-fina', { role: 'progressbar', 'aria-label': rango.siguiente ? `Camino hacia ${rango.siguiente.nombre}` : 'Camino completado', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(Math.round(rango.fraccion * 100)) },
-        h('span', { style: `width:${Math.round(rango.fraccion * 100)}%` }))),
-    h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'));
 }
 
 /**
@@ -108,29 +126,33 @@ export function travesiaView({ progress, params, tit }) {
       return;
     }
     if (enInsignias) { const r = pantallaInsignias({ T, tit, sy }); setChildren(el, r.el); summaryText = r.summary; return; }
-    const r = pantallaTravesia({ T, tit, d, sy, query: params.query });
+    const r = pantallaTravesia({ T, tit, d, sy, query: params.query, progress });
     setChildren(el, r.el);
     summaryText = r.summary;
   }).catch((e) => setChildren(el, volver('Hoy', tlink(tit)), h('p.warn', `No se pudo preparar la travesía: ${e.message}`)));
   return { el, summary: () => summaryText };
 }
 
-function pantallaTravesia({ T, tit, d, sy, query }) {
+/**
+ * «Seguir» en la Travesía si la sesión de hoy no está hecha: retoma la que va a medias o arranca la de hoy (la misma que
+ * ofrece Hoy, en la fase del alumno). null si ya está hecha.
+ */
+function botonSeguir(progress, tit, d) {
+  const ses = leerSesion(progress, tit);
+  if (ses?.estado === 'hecha') return null;
+  if (ses && !terminada(ses)) return h('a.boton-sesion.trav-seguir', { href: tlink(tit, ['sesion']) }, 'Seguir la sesión');
+  return h('button.boton-sesion.trav-seguir', { type: 'button', onclick: () => empezarSesion(progress, tit, d, componerSesion(d.st, deducirFase(d.st).id)) }, 'Seguir la derrota');
+}
+
+function pantallaTravesia({ T, tit, d, sy, query, progress }) {
   const { est, rango } = sy;
   const faros = est.faros;
-  const pos = posicionesDerrota(faros.length);
   let sel = faros.find((f) => f.id === query?.f)?.id ?? faroInicial(faros);
 
-  // La carta
+  // La carta (con el marcador «estás aquí» en la siguiente parada, como en Hoy)
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Faro elegido' });
-  const botones = faros.map((f, i) => {
-    const b = h('button.faro', { type: 'button', class: f.estado, 'aria-label': ariaFaro(f), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'));
-    return h('div.faro-pos', { style: posPct(pos[i]) }, b, h('span.faro-nombre', f.corto));
-  });
-  const carta = h('div.carta-trav', { role: 'group', 'aria-label': 'Carta de tu derrota: un faro por bloque del temario' },
-    h('div.carta-capas', { html: FONDO + patas(faros, pos) }),
-    h('div.bandera-pos', { style: posPct(BANDERA) }, h('span.bandera-disco', icono('bandera')), h('span.faro-nombre', 'Examen')),
-    ...botones);
+  const aqui = d.indiceConceptos ? marcaDerrota(sy, d.indiceConceptos, pasosQueTocan(progress ? leerSesion(progress, tit) : null, componerSesion(d.st, deducirFase(d.st).id))) : null;
+  const { carta, botones } = cartaDerrota(faros, { sel, elegir: (id) => elegir(id), marca: aqui });
 
   function pintaDetalle() {
     const f = faros.find((x) => x.id === sel);
@@ -170,12 +192,14 @@ function pantallaTravesia({ T, tit, d, sy, query }) {
     h('p.small', 'Los rangos, los faros y las insignias no la cambian: solo la cambia lo que sabes.'));
 
   const ins = cuentaInsignias(est, sy.reg);
+  const seguirEl = progress ? botonSeguir(progress, tit, d) : null;
   const dias = d.st.diasAlExamen;
   const pildora = dias != null && dias >= 0 ? h('a.pildora-examen', { href: '#/ajustes?campo=fecha', title: 'Fecha del examen' }, dias === 0 ? 'Examen hoy' : dias === 1 ? 'Examen mañana' : `${cuenta(dias, 'día')} al examen`) : null;
 
   const el = h('div.travesia-pantalla',
     volver('Hoy', tlink(tit)),
     h('header.trav-cab', h('div', h('p.muted.small', `Tu travesía · ${T.sigla}`), h('h1', 'De Grumete a Patrón')), pildora),
+    seguirEl,
     rangoEl,
     h('section.trav-carta', h('div.trav-fila-cab', h('h2.eti', 'Tu derrota'), h('span.muted.small', 'Toca un faro')), carta),
     detalle,
@@ -186,7 +210,7 @@ function pantallaTravesia({ T, tit, d, sy, query }) {
     h('p.muted.small.trav-pie', `Cada faro agrupa los bloques del temario: ${faros.map((f) => f.corto.toLowerCase()).join(', ')}. Se enciende con el ${pct(FARO_ENCENDIDO)} de sus ideas dominadas.`));
   const summary = `VISTA travesía ${T.sigla} · rango ${rango.actual.nombre}: ${est.dominadas}/${est.total} ideas dominadas. ${rango.texto}\n` +
     `FAROS: ${faros.map((f) => `${f.nombre} ${f.dominadas}/${f.total}${f.estado === 'on' ? ' (encendido)' : ''}`).join(' · ')}\n` +
-    `SEMANA: ${sem.texto}\nINSIGNIAS: ${ins.hechas}/${ins.total} → #/${tit}/travesia/insignias\nNOTA: ${nota}`;
+    `SEGUIR: ${seguirEl ? `${seguirEl.textContent} → #/${tit}/sesion` : 'sesión de hoy hecha'}\nSEMANA: ${sem.texto}\nINSIGNIAS: ${ins.hechas}/${ins.total} → #/${tit}/travesia/insignias\nNOTA: ${nota}`;
   return { el, summary };
 }
 

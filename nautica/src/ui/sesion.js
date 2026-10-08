@@ -53,6 +53,10 @@ export function destinoSesion(progress, tit) {
 // --- el paso en pantalla ------------------------------------------------------------------------------------------
 
 let enPantalla = null; // { progress, tit, i }
+let pintadas = 0; // pantallas pintadas: un cierre que llega tarde (asíncrono) de otra pantalla no toca la sesión
+
+/** Número de la pantalla actual (cambia con cada dirección que pinta app.js). */
+export const pantallaActual = () => pintadas;
 
 /**
  * Lo fija app.js al pintar cada dirección: el paso de la sesión en curso que corresponde a esta dirección, o nada.
@@ -61,6 +65,7 @@ let enPantalla = null; // { progress, tit, i }
 export function pasoEnPantalla(progress, tit, parts) {
   const s = leerSesion(progress, tit);
   const i = s && s.estado === 'en-curso' ? pasoEnRuta(s, parts) : -1;
+  pintadas += 1;
   enPantalla = i >= 0 && i === indiceActual(s) ? { progress, tit, i } : null;
   return enPantalla;
 }

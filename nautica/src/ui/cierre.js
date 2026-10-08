@@ -9,7 +9,7 @@ import { randomSeed } from '../math/rng.js';
 import { contar } from './movimiento.js';
 import { icono as icono_ } from './iconos.js';
 import { cuenta } from '../texto.js';
-import { botonesSesion } from './sesion.js';
+import { botonesSesion, pantallaActual } from './sesion.js';
 
 /**
  * El estado del alumno para una titulación (motor de seguimiento, src/course/motor.js): carga los datos, llama al
@@ -106,7 +106,10 @@ export function pintarCierre(cont, progress, tit, o) {
   const extra = o.extra ? [o.extra] : []; // lo que va debajo del cierre (se conserva al repintar)
   const stats = cifrasCierre(progress, o.titulo);
   cont.replaceChildren(cierre({ ...o, tit, stats }), ...extra);
+  const pantalla = pantallaActual();
   calcularPlan(progress, tit).then((d) => {
+    // Si ya se ha ido a otra pantalla (p. ej. al paso siguiente de la sesión), este cierre no se vuelve a pintar.
+    if (pantallaActual() !== pantalla) return;
     const logros = [...(o.logros ?? [])];
     // El avance del tema de la actividad, si se sabe.
     const b = o.ut != null ? d.estructura.bloques.find((x) => x.ut === o.ut) : null;

@@ -13,10 +13,13 @@ Mezclar · Comprobar), una sesión con un botón, ejecutor de sesión (#/<tit>/s
 - [x] Gancho de cierre: `cierre()` (cierre.js) y resultado del examen (theory.js) marcan el paso hecho.
 - [x] CSS (tokens --sesion-*, --on-accent, claro y oscuro). Flujo probado en Playwright (scripts en el scratchpad).
 
-## Pendiente
-- [ ] Capturas completas (390×844 y 1280×800, claro/oscuro) de cada fase, cada tipo de paso, resumen y Más
-- [ ] Prueba sin conexión (service worker) y repaso adversarial del diff
-- [ ] README/llms.txt: rutas nuevas
+- [x] Capturas 390×844 y 1280×800, claro y oscuro (scratchpad ux-capturas): fases, pasos (fallos, preguntas, mezclado, clase, simulacro), resumen, Más.
+- [x] Comprobaciones en navegador: desborde horizontal, texto fuera de botones, objetivos táctiles, contraste de la barra inferior; sin conexión con el service worker.
+- [x] README y llms.txt con las rutas nuevas. Repaso adversarial (cierre asíncrono tardío no marca otro paso).
+
+## Pendiente (fuera del encargo)
+- Repaso de fallos por variantes de concepto (otro trabajo).
+- Resumen por concepto cuando haya etiquetas (resumenSesion ya acepta conceptoDe; la vista agrupa por tema).
 
 ## Cómo seguir
 `cd nautica && npm test`; tras tocar ficheros servidos: `git add` + `npm run precache` (solo entra lo que está en git).

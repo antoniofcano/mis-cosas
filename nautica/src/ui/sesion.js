@@ -25,8 +25,17 @@ export function guardarSesion(progress, tit, s) {
   if (typeof dispatchEvent === 'function') dispatchEvent(new CustomEvent(EVENTO, { detail: { tit } }));
 }
 
-/** Dirección de un paso: la que se fijó al empezar (con su semilla) o la de su ruta. */
-export const hrefPaso = (tit, p) => p.href ?? tlink(tit, p.ruta, p.query);
+/**
+ * Dirección de un paso: la que se fijó al empezar (con su semilla) o la de su ruta. Un examen ya empezado en este paso
+ * se retoma con su semilla (el simulacro la pone al empezar; sin ella, la vista ofrecería empezar otro).
+ */
+export function hrefPaso(tit, p, tc = null) {
+  if (p.ruta[0] === 'test' && tc && (tc.tit ?? 'per') === tit && tc.tipo === p.ruta[1]) {
+    if (tc.tipo === 'simulacro' && tc.seed != null) return tlink(tit, ['test', 'simulacro'], { s: String(tc.seed) });
+    if (tc.tipo === 'real' && String(tc.conv) === String(p.ruta[2])) return tlink(tit, ['test', 'real', String(tc.conv)]);
+  }
+  return p.href ?? tlink(tit, p.ruta, p.query);
+}
 
 /**
  * #/<tit>/sesion: adónde ir. La dirección del paso actual (y la sesión queda en curso), la de Hoy si no hay sesión,
@@ -38,7 +47,7 @@ export function destinoSesion(progress, tit) {
   if (terminada(s)) { if (s.estado !== 'hecha') guardarSesion(progress, tit, cerrar(s)); return null; }
   const r = arrancar(s);
   guardarSesion(progress, tit, r);
-  return hrefPaso(tit, r.pasos[indiceActual(r)]);
+  return hrefPaso(tit, r.pasos[indiceActual(r)], progress.testEnCurso());
 }
 
 // --- el paso en pantalla ------------------------------------------------------------------------------------------

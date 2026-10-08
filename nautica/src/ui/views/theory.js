@@ -783,7 +783,8 @@ export function testView({ ctx, progress, params: route, tit }) {
 
     // --- resultado
     function resultados(test, g, porTiempo) {
-      document.body.classList.remove('focus');
+      // Dentro de una sesión de estudio se sigue en modo concentración (la barra de la sesión manda).
+      if (!document.body.classList.contains('en-sesion')) document.body.classList.remove('focus');
       // Los temas, en el mismo orden que en Temario y Progreso.
       g = { ...g, bloques: [...g.bloques].sort((a, b) => posEstudio(E0, a.ut) - posEstudio(E0, b.ut)) };
       summaryText = `RESULTADO ${test.titulo}: ${g.aciertos}/${g.total} ${g.apto == null ? '' : g.apto ? 'APTO' : 'NO APTO'}\n` +
@@ -821,11 +822,17 @@ export function testView({ ctx, progress, params: route, tit }) {
           summaryText += `\nEXAMEN FINAL: ${st.final.lineasResultado[0] ?? ''}`;
         }).catch(() => {});
       }
+      const ses = botonesSesion();
+      const repasar = g.errores ? h('button.grande', { type: 'button', class: ses ? 'secondary' : '', onclick: () => tituloRevision.scrollIntoView({ behavior: 'smooth' }) }, 'Repasar mis fallos con el profe') : null;
+      // En una sesión de estudio (src/ui/sesion.js), lo primero es seguir con ella (arriba); el repaso de fallos, a mano.
+      const botonesFin = ses ? h('div.botones-columna', ses[0], repasar, ses.slice(1))
+        : h('div.botones-columna', repasar, h('a.btn.grande', { href: tlink(T0.id), class: g.errores ? 'secondary' : '' }, 'Volver a Hoy'));
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : g.apto ? '✅ APTO' : '❌ NO APTO'),
           test.tipo === 'final' ? lineaFinal : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
+        ses ? botonesFin : null,
         conFallos.length
           ? h('table.stats.fallos-tema', h('thead', h('tr', h('th', 'Tema'), h('th', 'Fallos'))),
             h('tbody', conFallos.map((b) => {
@@ -835,13 +842,7 @@ export function testView({ ctx, progress, params: route, tit }) {
                 h('td', String(b.errores)));
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),
-        (() => {
-          // En una sesión de estudio (src/ui/sesion.js), lo primero es seguir con ella; el repaso de fallos, a mano.
-          const ses = botonesSesion();
-          const repasar = g.errores ? h('button.grande', { type: 'button', class: ses ? 'secondary' : '', onclick: () => tituloRevision.scrollIntoView({ behavior: 'smooth' }) }, 'Repasar mis fallos con el profe') : null;
-          return ses ? h('div.botones-columna', ses[0], repasar, ses.slice(1))
-            : h('div.botones-columna', repasar, h('a.btn.grande', { href: tlink(T0.id), class: g.errores ? 'secondary' : '' }, 'Volver a Hoy'));
-        })(),
+        ses ? null : botonesFin,
         tituloRevision,
         h('label.filtro-revision', 'Ver: ', filterSel),
         review,

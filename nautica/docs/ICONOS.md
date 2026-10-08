@@ -32,7 +32,8 @@ h('button', { 'aria-label': 'Pausa' }, icono('pausa'))  // botón con solo icono
 - Trazo **1,75 px**, `stroke-linecap` y `stroke-linejoin` redondeados, `fill="none"`, `stroke="currentColor"` (los pone
   `svgIcono()`; el dibujo solo lleva `path`, `circle`, `rect` y, si hace falta, un `g` con `transform`).
 - **Sin colores fijos.** Los estados los pone el CSS con una clase dentro del dibujo: la lámpara del faro
-  (`rect.lampara`) se rellena con `--faro-luz` cuando el faro está encendido (`.faro.on`, `.tema-faro.on`…).
+  (`rect.lampara`) se rellena con `--faro-luz` cuando el faro está encendido (`.faro.on`, `.tema-faro.on`…). El
+  `barco-marca` de la carta rellena su silueta con `--surface` desde el CSS (`.marca-aqui`) para leerse sobre el mar.
 - Pocas piezas y nada menor de 2 px: se tienen que leer a **16–24 px**. Estilo náutico sobrio, ópticamente equilibrado
   (los círculos llegan a r = 9; los cuadrados, a 3…21).
 
@@ -53,7 +54,7 @@ h('button', { 'aria-label': 'Pausa' }, icono('pausa'))  // botón con solo icono
 | Estados | `ok` `no` `casi` `aviso` `racha` |
 | Sonido y reproducción | `escuchar` `silencio` `podcast` `play` `pausa` `parar` `inicio` `fin` `atras` `adelante` `retroceder` `avanzar` `deshacer` |
 | Mesa de cartas | `mapa` `brujula` `compas` `regla` `transportador` `lugar` `texto` `goma` `mover` `etiqueta` `mira` `papelera` `acercar` `alejar` `encuadrar` `arriba-abajo` `minimizar` `ventana` |
-| Náutica | `faro` `ancla` `bandera` `velero` `barco` `timon` `boya` `salvavidas` `chaleco` `ley` `nube` `viento` `ola` `luna` `campana` `satelite` |
+| Náutica | `faro` `ancla` `bandera` `velero` `barco` `barco-marca` (estás aquí, en la carta de la derrota) `timon` `boya` `salvavidas` `chaleco` `ley` `nube` `viento` `ola` `luna` `campana` `satelite` |
 | Insignias (Travesía) | `ins-guardia` `ins-semana` `ins-rescate` `ins-bloque` `ins-simulacro` `ins-inedito` |
 
 ### De qué emoji viene cada uno (para leer el código antiguo)

@@ -27,7 +27,7 @@ function archivos(dir) {
 /** App (se guarda al instalar) y datos (se guardan después, en segundo plano). Rutas relativas a nautica/. */
 export function listaPrecache() {
   const norm = (p) => relative(RAIZ, join(RAIZ, p)).split('\\').join('/');
-  const app = ['index.html', 'manifest.webmanifest', 'llms.txt', ...archivos('icons'), ...archivos('styles'), ...archivos('src')]
+  const app = ['index.html', 'manifest.webmanifest', 'llms.txt', ...archivos('icons'), ...archivos('styles'), ...archivos('fonts').filter((p) => p.endsWith('.woff2')), ...archivos('src')]
     .map(norm).filter((p) => !p.endsWith('.md')).sort();
   // Los .md de data/ (p. ej. la licencia de un eje) son documentación: no se guardan en el móvil.
   const datos = archivos('data').map(norm).filter((p) => !p.endsWith('.md')).sort();

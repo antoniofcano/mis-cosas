@@ -1,3 +1,9 @@
+/* Tipografía propia, alojada en la app (fonts/, OFL; ver fonts/README.md): «Patron Texto» (Source Sans 3, humanista, variable
+   400–700) para leer y «Patron Titulos» (Bitter 700, egipcia sobria, de rótulo de carta) para los títulos. Subconjunto latino.
+   size-adjust lleva la altura de x de Source Sans (0,486) a la de las fuentes del sistema (~0,52): al cambiar de la fuente
+   del sistema a la propia (font-display: swap) el texto no salta de tamaño. */
+@font-face { font-family: "Patron Texto"; src: url("../fonts/patron-texto.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; size-adjust: 107%; }
+@font-face { font-family: "Patron Titulos"; src: url("../fonts/patron-titulos.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 :root {
   --bg: #f6f8fb; --surface: #ffffff; --text: #17212b; --muted: #46525e; --border: #d8dee6;
   --accent: #0b5cad; --accent-2: #e8f1fb; --ok: #1d7a3a; --warn: #b3261e; --close: #a86b00;
@@ -18,6 +24,8 @@
   --trav-bg: #17314d; --trav-fg: #ffffff; --trav-oro: #f5b942; --trav-disco: #0f2338;
   --faro-on-bg: #fff6dc; --faro-on-borde: #d9962b; --faro-on-texto: #8a5a00; --faro-luz: #f5b942;
   --faro-off-bg: #eef1f5; --faro-off-borde: #7b8794; --faro-off-texto: #5b6773;
+  --fuente-texto: "Patron Texto", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-titulos: "Patron Titulos", "Patron Texto", Georgia, "Times New Roman", serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -42,7 +50,10 @@
 [hidden] { display: none !important; }
 * { box-sizing: border-box; }
 html { font-size: 18px; }
-body { margin: 0; font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+body { margin: 0; font: 1rem/1.55 var(--fuente-texto); background: var(--bg); color: var(--text); }
+button, input, select, textarea { font-family: inherit; }
+h1, h2, header.top .brand, .sesion-cab h2, .trav-rango-tx strong { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: -.005em; }
+h2.eti, .eti { font-family: var(--fuente-texto); }
 a { color: var(--accent); }
 header.top { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 1rem; height: 56px; padding: 0 1rem; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
 header.top .brand { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--text); display: inline-flex; align-items: center; min-height: 48px; }
@@ -799,36 +810,45 @@ body.con-radio main { padding-bottom: calc(96px + 60px); }
 .radio-barra-cerrar { min-width: 48px; min-height: 48px; padding: 0; background: transparent; border: 0; color: var(--muted); font-size: 1.1rem; }
 
 .radio-cab h1 { margin-bottom: .2rem; }
+.radio-cab p { font-size: .92rem; }
 .radio-rotulo { margin: 0; font-size: .85rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--accent); }
 .radio-gancho { font-style: italic; color: var(--muted); }
-.radio-destacado { border: 2px solid var(--accent); border-radius: var(--radius); padding: .8rem 1rem; margin: 1rem 0 1.4rem; background: linear-gradient(160deg, var(--accent-2), var(--surface) 70%); }
-.radio-destacado h2 { margin: .2rem 0 .3rem; }
+.radio-destacado { border: 1px solid var(--grid); border-radius: 18px; padding: .7rem .7rem .2rem; margin: 1rem 0 1.2rem; background: var(--accent-2); display: grid; gap: .4rem; }
+.radio-destacado .radio-rotulo { padding-left: .1rem; font-size: .75rem; letter-spacing: .06em; }
+.radio-destacado .ep-card { border-color: var(--grid); }
 
-/* La travesía: cada tema un puerto; los episodios, boyas sobre una ruta a trazos */
+/* La travesía: cada tema un puerto; los episodios, tarjetas con su botón, estado y el guion plegado */
 .puerto { margin: 1.4rem 0 .4rem; }
 .puerto-cab { display: flex; gap: .7rem; align-items: center; }
 .puerto-cab h2 { margin: 0; font-size: 1.15rem; }
 .puerto-cab p { margin: 0; }
 .puerto-icono { display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 52px; border-radius: 14px; background: var(--l-mar); font-size: 1.6rem; }
-.ruta { list-style: none; margin: .3rem 0 0; padding: 0 0 0 18px; position: relative; }
-.ruta::before { content: ""; position: absolute; left: 17px; top: 0; bottom: 14px; border-left: 3px dashed var(--accent); opacity: .45; }
-.boya { position: relative; padding: .25rem 0 .25rem 26px; }
-.boya-marca { position: absolute; left: -14px; top: .55rem; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; font-size: 1rem;
-  background: var(--surface); border: 2px solid var(--accent); z-index: 1; }
-.boya.panorama .boya-marca { width: 40px; height: 40px; left: -17px; top: .4rem; font-size: 1.2rem; }
-.boya.oido .boya-marca { background: var(--ok); border-color: var(--ok); color: #fff; font-weight: 700; }
-.boya.medias .boya-marca { background: conic-gradient(var(--accent) calc(var(--pct) * 1%), var(--surface) 0); }
-.boya.astillero .boya-marca { border-style: dashed; border-color: var(--muted); opacity: .7; }
-.boya.astillero .boya-titulo { color: var(--muted); }
-.boya-ficha { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
-.boya-ficha[open] { border-color: var(--accent); }
-.boya-ficha > summary { display: grid; grid-template-columns: auto 1fr; gap: .1rem .5rem; align-items: baseline; min-height: 56px; padding: .4rem .7rem; cursor: pointer; list-style: none; }
-.boya-ficha > summary::-webkit-details-marker { display: none; }
-.boya-ficha > :not(summary) { margin-left: .8rem; margin-right: .8rem; }
-.boya-ficha > :last-child { margin-bottom: .8rem; }
-.boya-n { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
-.boya-titulo { font-weight: 600; }
-.boya-meta { grid-column: 2; font-size: .85rem; color: var(--muted); }
+.ep-lista { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: .45rem; }
+.ep-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .55rem .7rem; display: grid; gap: .35rem; min-width: 0; }
+.ep-card.oido { border-color: var(--border); }
+.ep-fila { display: flex; gap: .65rem; align-items: center; min-width: 0; }
+button.ep-play { width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 999px; display: grid; place-items: center; flex: none; background: var(--accent); color: var(--on-accent); border: 0; }
+.ep-card.oido button.ep-play { background: var(--surface); color: var(--accent); border: 1px solid var(--border); }
+button.ep-play .ico { width: 20px; height: 20px; }
+span.ep-sin-audio { width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; flex: none; border: 1px dashed var(--muted); color: var(--muted); }
+.ep-tx { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+a.ep-titulo { color: var(--text); text-decoration: none; font-weight: 600; font-size: .95rem; min-height: 24px; overflow-wrap: anywhere; }
+a.ep-titulo:hover { color: var(--accent); }
+.ep-n { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.ep-card.astillero a.ep-titulo { color: var(--muted); }
+.ep-meta { font-size: .8rem; color: var(--muted); }
+.ep-meta .ico-t { margin-right: .2em; }
+.ep-estado { white-space: nowrap; }
+.ep-card.oido .ep-estado { color: var(--ok); font-weight: 600; }
+.ep-card.medias .ep-estado { color: var(--accent); font-weight: 600; }
+.ep-barra { height: 6px; margin-left: calc(44px + .65rem); }
+details.ep-guion { margin: 0 0 0 calc(44px + .65rem); padding: 0; border: 0; background: none; }
+details.ep-guion > summary { min-height: 44px; display: flex; align-items: center; padding: 0; font-size: .85rem; color: var(--accent); list-style: none; }
+details.ep-guion > summary::-webkit-details-marker { display: none; }
+details.ep-guion > summary::after { content: "›"; display: inline-block; margin-left: .3rem; transform: rotate(90deg); }
+details.ep-guion[open] > summary::after { transform: rotate(-90deg); }
+details.ep-guion p { margin: 0 0 .5rem; font-size: .9rem; }
+a.ep-abrir { display: inline-flex; align-items: center; min-height: 44px; font-size: .88rem; font-weight: 600; }
 .radio-pie { margin-top: 1.2rem; }
 
 /* El episodio */
@@ -1495,8 +1515,14 @@ ul.nivel-clases { margin: 0; padding-left: 1.2rem; font-size: .9rem; overflow-wr
 .nivel-saltar p { margin: 0; }
 .nivel-saltar button { width: 100%; }
 button.linklike.nivel-repetir { justify-self: center; min-height: 44px; }
-.nivel-oferta { border: 2px solid var(--accent); background: var(--accent-2); border-radius: var(--radius); padding: .9rem 1rem; margin: 0 0 .9rem; }
-.nivel-oferta p { margin: 0 0 .7rem; }
+.nivel-oferta { border: 1px solid var(--border); background: var(--surface); border-radius: 14px; padding: .7rem .8rem; margin: 0 0 .9rem; display: grid; gap: .5rem; }
+.nivel-oferta-fila { display: flex; gap: .7rem; align-items: center; }
+.nivel-oferta-fila p { margin: 0; font-size: .86rem; line-height: 1.4; color: var(--muted); }
+.nivel-oferta-fila strong { color: var(--text); }
+.nivel-oferta-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-2); color: var(--accent); display: grid; place-items: center; flex: none; }
+.nivel-oferta-botones { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; padding-left: calc(40px + .7rem); }
+.nivel-oferta-botones .btn { min-height: 44px; font-size: .9rem; padding: .4rem 1rem; }
+button.linklike.nivel-ahora-no { min-height: 44px; padding: 0 .4rem; font-size: .85rem; color: var(--muted); text-decoration: underline; }
 .punto-partida, .saltar-clase { margin: -.2rem 0 0; font-size: .84rem; line-height: 1.45; overflow-wrap: anywhere; }
 .sesion-hoy .punto-partida a { color: var(--sesion-fg); }
 .sesion-hoy .saltar-clase button.linklike { display: inline; min-height: 44px; padding: 0 .2rem; font-size: .84rem; font-weight: 600; }
@@ -1676,8 +1702,6 @@ a.trav-ficha.grande { width: 100%; font-size: .95rem; }
 /* Iconos de línea en los sitios que antes llevaban emoji (docs/ICONOS.md) */
 .puerto-icono { color: var(--accent); }
 .puerto-icono .ico { width: 28px; height: 28px; }
-.boya-marca .ico { width: 18px; height: 18px; }
-.boya.panorama .boya-marca .ico { width: 22px; height: 22px; }
 .radio-play, .radio-salto, .radio-barra-play, .radio-barra-cerrar, button.calc-boton { display: inline-flex; align-items: center; justify-content: center; }
 .radio-play .ico { width: 32px; height: 32px; }
 .radio-barra-play .ico, .radio-barra-cerrar .ico { width: 22px; height: 22px; }
@@ -1692,3 +1716,41 @@ button.calc-boton .ico { width: 20px; height: 20px; }
 .note-bar button .ico { width: 18px; height: 18px; }
 .indicador-eje .ico.ico-t, .marca-config .ico.ico-t { color: var(--muted); }
 .profe-badge > .ico:not(.ico-t) { width: 1.3em; height: 1.3em; vertical-align: -.3em; }
+
+/* Mi progreso (#/progreso): arriba el resumen (rango de la travesía y camino), el examen final en corto y el detalle con
+   el mismo lenguaje que la Travesía (rótulos .eti, superficies de 14 px). */
+.progress > h1 { margin-bottom: .8rem; }
+.prog-resumen { display: grid; gap: .6rem; margin: 0 0 .9rem; }
+.prog-camino { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .8rem .9rem; display: grid; gap: .45rem; }
+.prog-camino p { margin: 0; color: var(--muted); }
+.prog-pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+.prog-enlace-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-2); color: var(--accent); display: grid; place-items: center; flex: none; }
+.ver-travesia.trav-insignias-enlace { margin: 0; }
+.examen-final.compacta { border: 1px solid var(--border); border-radius: 14px; padding: .7rem .9rem; margin: 0 0 .9rem; }
+.ef-fila { display: flex; align-items: center; gap: .75rem; }
+.ef-disco { width: 40px; height: 40px; border-radius: 999px; background: var(--faro-off-bg); color: var(--faro-off-texto); display: grid; place-items: center; flex: none; }
+.ef-tx { min-width: 0; }
+.examen-final.compacta .ef-tx h2 { margin: 0; font-size: 1rem; }
+.examen-final.compacta .ef-tx p { margin: 0; color: var(--muted); }
+details.ef-falta { margin: .1rem 0 0; padding: 0; border: 0; background: none; }
+details.ef-falta > summary { min-height: 44px; display: flex; align-items: center; gap: .3rem; padding: 0 0 0 calc(40px + .75rem); color: var(--accent); font-size: .9rem; list-style: none; }
+details.ef-falta > summary::-webkit-details-marker { display: none; }
+details.ef-falta > summary::after { content: "›"; display: inline-block; transform: rotate(90deg); }
+details.ef-falta[open] > summary::after { transform: rotate(-90deg); }
+.ef-falta-cuerpo { padding-left: calc(40px + .75rem); }
+.ef-falta-cuerpo p { margin: .3rem 0; }
+ul.ef-temas { list-style: none; margin: .4rem 0; padding: 0; display: grid; gap: .25rem; font-size: .88rem; }
+ul.ef-temas li { display: flex; justify-content: space-between; gap: .6rem; padding: .3rem 0; border-bottom: 1px solid var(--border); }
+ul.ef-temas li:last-child { border-bottom: 0; }
+.ef-num { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.prog-sec { margin: 1.1rem 0; }
+.prog-sec > h2.eti, .prog-sec-tit { margin: 1.1rem 0 .5rem; }
+.prog-sec > p.muted.small { margin-top: 0; }
+.prog-temas .tema-card { border-radius: 14px; padding: .75rem .9rem; }
+.prog-temas .tema-card h3 { font-size: 1rem; }
+.prog-temas .tema-card .estado-linea { margin-top: .3rem; font-size: .9rem; }
+.prog-temas .tema-card .bar { height: 8px; border-radius: 999px; margin: .4rem 0 0; }
+.prog-temas .tema-card .bar span { border-radius: 999px; }
+details.prog-carta { margin: 1rem 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0 .9rem; }
+details.prog-carta > summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.progress ul.clases-flojas a { border-radius: 14px; }

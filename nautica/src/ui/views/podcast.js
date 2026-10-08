@@ -1,5 +1,5 @@
 // #/<tit>/podcast — «Radio de a bordo»: los podcasts de Elena y Andrés como una travesía. Cada tema es un puerto
-// y cada episodio una boya en la ruta: el faro es el panorama del tema; las boyas, los que profundizan.
+// y cada episodio una tarjeta (número, título, duración, estado y el arranque del guion plegado en «Ver el guion»).
 // #/<tit>/podcast/<id> — el episodio: reproductor grande, el guion al hilo (se ilumina lo que suena y se toca para
 // saltar), las preguntas del minijuego para contestar en la pausa, y su ficha con las clases.
 
@@ -33,7 +33,7 @@ export function siguienteRecomendado(podcast, estructura) {
   return null;
 }
 
-/** Estado de un episodio para pintar su boya: 'oido', 'medias' (con %), 'nuevo' o 'astillero' (sin audio). */
+/** Estado de un episodio para pintar su tarjeta: 'oido', 'medias' (con %), 'nuevo' o 'astillero' (sin audio). */
 function estado(ep) {
   if (!ep.audio) return { clase: 'astillero', pct: 0 };
   const e = estadoEpisodio(ep.id);
@@ -84,15 +84,13 @@ function travesia(el, tit, pod) {
   const seguir = ult?.tit === tit ? eps.find((e) => e.id === ult.id && e.audio && !estadoEpisodio(e.id).oido && estadoEpisodio(e.id).t > 5) : null;
   const sig = siguienteRecomendado(pod, T.estructura);
 
-  const destacado = (ep, rotulo) => {
-    const est = estado(ep);
-    return h('div.radio-destacado',
+  // El recomendado: la misma tarjeta, destacada pero compacta, con su tema.
+  const destacado = (ep0, rotulo) => {
+    const ep = eps.find((e) => e.id === ep0.id) ?? ep0; // con su tema (siguienteRecomendado da el episodio sin él)
+    const b = ep.tema ? bloque(T.estructura, ep.tema) : null;
+    return h('section.radio-destacado', { 'aria-label': rotulo },
       h('p.radio-rotulo', rotulo),
-      h('h2', conIcono(MARCA[ep.tipo], ep.titulo)),
-      ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
-      h('div.actions',
-        h('button.grande', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } },
-          conIcono('play', est.clase === 'medias' ? `Seguir (${fmt(estadoEpisodio(ep.id).t)})` : `Escuchar · ${minutos(ep.duracion)}`))));
+      tarjetaEpisodio(tit, ep, { tema: b ? [icono(b.ico ?? 'ancla', 'ico-t'), `Tema ${ep.tema} · ${b.titulo}`] : [icono('velero', 'ico-t'), 'Zarpamos'], etiqueta: 'div' }));
   };
 
   const puertos = pod.temas.map((t) => {
@@ -109,8 +107,8 @@ function travesia(el, tit, pod) {
             ? `${hechos} de ${listos} escuchados · ${minutos(dur)}${listos < t.episodios.length ? ` · ${t.episodios.length - listos} en preparación` : ''}`
             : `${cuenta(t.episodios.length, 'episodio')} en preparación`))),
       // Un tema sin ningún episodio grabado se queda en una línea plegada: la lista no se llena de lo que aún no se oye.
-      listos ? h('ol.ruta', t.episodios.map((ep) => boya(tit, ep)))
-        : h('details.puerto-astillero', h('summary', `Próximamente: ver sus ${cuenta(t.episodios.length, 'episodio')}`), h('ol.ruta', t.episodios.map((ep) => boya(tit, ep)))));
+      listos ? h('ol.ep-lista', t.episodios.map((ep) => tarjetaEpisodio(tit, ep)))
+        : h('details.puerto-astillero', h('summary', `Próximamente: ver sus ${cuenta(t.episodios.length, 'episodio')}`), h('ol.ep-lista', t.episodios.map((ep) => tarjetaEpisodio(tit, ep)))));
   });
 
   setChildren(el,
@@ -127,23 +125,36 @@ function travesia(el, tit, pod) {
     eps.map((e) => `${e.n} ${e.titulo} [${estado(e).clase}]${e.audio ? ` → ${tlink(tit, ['podcast', e.id])}` : ''}`).join('\n');
 }
 
-function boya(tit, ep) {
+const ESTADO_TXT = { oido: 'Escuchado', nuevo: 'Sin escuchar', astillero: 'Próximamente' };
+
+/**
+ * Tarjeta de un episodio: botón de reproducir (44 px), número y título (enlace al episodio), tipo o tema con su icono,
+ * duración y estado (sin escuchar, escuchado, en curso con barra). El arranque del guion y la sinopsis, plegados en
+ * «Ver el guion». `tema` sustituye al tipo en la meta (en el destacado).
+ */
+function tarjetaEpisodio(tit, ep, { tema = null, etiqueta = 'li' } = {}) {
   const est = estado(ep);
-  const abierto = h('details.boya-ficha',
-    h('summary',
-      h('span.boya-n', ep.n),
-      h('span.boya-titulo', ep.titulo),
-      h('span.boya-meta', ep.audio ? (est.clase === 'medias' ? `${est.pct} % · ${minutos(ep.duracion)}` : minutos(ep.duracion)) : 'Próximamente')),
+  const href = tlink(tit, ['podcast', ep.id]);
+  const estadoTxt = est.clase === 'medias' ? `En curso · ${est.pct} %` : ESTADO_TXT[est.clase];
+  const play = ep.audio
+    ? h('button.ep-play', { type: 'button', 'aria-label': `${est.clase === 'medias' ? 'Seguir escuchando' : 'Escuchar'} «${ep.titulo}»`, onclick: () => { poner(tit, ep); location.hash = href; } }, icono('play'))
+    : h('span.ep-play.ep-sin-audio', { 'aria-hidden': 'true' }, icono('reloj'));
+  const guion = ep.sinopsis || ep.gancho ? h('details.ep-guion',
+    h('summary', 'Ver el guion'),
     ep.sinopsis ? h('p', ep.sinopsis) : null,
     ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
-    ep.audio
-      ? h('div.actions',
-        h('button', { type: 'button', onclick: () => { poner(tit, ep); location.hash = tlink(tit, ['podcast', ep.id]); } }, conIcono('play', est.clase === 'medias' ? 'Seguir escuchando' : 'Escuchar el episodio')),
-        h('a.btn.secondary', { href: tlink(tit, ['podcast', ep.id]) }, conIcono('documento', 'Ver el guion')))
-      : h('p.muted.small', 'Próximamente: este episodio aún se está grabando. Mientras, tienes su ficha.', h('br'), h('a', { href: tlink(tit, ['podcast', ep.id]) }, 'Ver la ficha →')));
-  return h('li.boya', { class: `${est.clase} ${ep.tipo}`, style: est.clase === 'medias' ? `--pct:${est.pct}` : null },
-    h('span.boya-marca', { 'aria-hidden': 'true' }, est.clase === 'oido' ? '✓' : icono(MARCA[ep.tipo])),
-    abierto);
+    h('a.ep-abrir', { href }, ep.audio ? 'Abrir el episodio con el guion entero →' : 'Ver la ficha →')) : null;
+  return h(`${etiqueta}.ep-card`, { class: `${est.clase} ${ep.tipo}` },
+    h('div.ep-fila', play,
+      h('div.ep-tx',
+        h('a.ep-titulo', { href }, h('span.ep-n', ep.n), ' ', ep.titulo),
+        h('span.ep-meta',
+          tema ?? [icono(MARCA[ep.tipo], 'ico-t'), TIPO[ep.tipo]],
+          ep.audio ? ` · ${minutos(ep.duracion)}` : '',
+          ' · ', h('span.ep-estado', est.clase === 'oido' ? icono('ok', 'ico-t') : null, estadoTxt)))),
+    est.clase === 'medias' ? h('div.barra-trav.ep-barra', { role: 'progressbar', 'aria-label': `Escuchado de «${ep.titulo}»`, 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(est.pct) },
+      h('span', { style: `width:${est.pct}%` })) : null,
+    guion);
 }
 
 // ---------------------------------------------------------------------------------------------------------------

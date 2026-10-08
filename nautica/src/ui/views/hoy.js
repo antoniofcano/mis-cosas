@@ -186,12 +186,14 @@ export function hoyView({ progress, tit }) {
     const saltables = ic ? clasesQueSabes({ curso: d.curso, ic, respuestas: d.respuestas, regs: d.regs, nivel, tit, ahora: d.ahora }) : [];
     const ofertaNivel = () => {
       if (!ic || nivel || (!nivelMedias && (!nuevo || s[claveNoNivel(eje, tit)]))) return null;
-      const caja = h('section.nivel-oferta',
-        h('p', h('strong', nivelMedias ? 'Tienes el test de nivel a medias.' : '¿Ya sabes algo?'),
-          nivelMedias ? ' Sigue donde lo dejaste.' : ' Haz un test de nivel: unas 20 preguntas, 8 minutos. Te saltas las clases que ya sabes.'),
-        h('div.guia-oferta-botones',
-          h('a.btn', { href: tlink(tit, ['nivel']) }, nivelMedias ? 'Seguir el test' : 'Hacer el test de nivel'),
-          nivelMedias ? null : h('button.secondary', { type: 'button', onclick: () => { progress.setSetting(claveNoNivel(eje, tit), true); caja.remove(); } }, 'Ahora no')));
+      // Secundaria frente a la sesión del día: superficie normal, icono, una línea, botón secundario y «Ahora no» como enlace.
+      const caja = h('section.nivel-oferta', { 'aria-label': 'Test de nivel' },
+        h('div.nivel-oferta-fila', h('span.nivel-oferta-ico', icono('diana')),
+          h('p', h('strong', nivelMedias ? 'Test de nivel a medias.' : '¿Ya sabes algo?'),
+            nivelMedias ? ' Sigue donde lo dejaste.' : ' Test de nivel: 20 preguntas, 8 min; te saltas las clases que ya sabes.')),
+        h('div.nivel-oferta-botones',
+          h('a.btn.secondary', { href: tlink(tit, ['nivel']) }, nivelMedias ? 'Seguir el test' : 'Hacer el test'),
+          nivelMedias ? null : h('button.linklike.nivel-ahora-no', { type: 'button', onclick: () => { progress.setSetting(claveNoNivel(eje, tit), true); caja.remove(); } }, 'Ahora no')));
       return caja;
     };
     const lineaPartida = () => {
@@ -285,8 +287,8 @@ export function hoyView({ progress, tit }) {
       cabecera,
       indicador,
       faseEl,
-      ofertaNivel(),
       sesionEl,
+      ofertaNivel(),
       travesiaEl,
       ritmo,
       podcastHueco,

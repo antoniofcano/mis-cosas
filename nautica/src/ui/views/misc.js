@@ -10,7 +10,9 @@ import { randomSeed } from '../../math/rng.js';
 import { volver, tlink } from '../titulacion.js';
 import { TITULACIONES } from '../../theory/blocks.js';
 import { calcularPlan } from '../cierre.js';
-import { tarjetaFinal } from './theory.js';
+import { tarjetaFinalCompacta } from './theory.js';
+import { tarjetaRango } from './travesia.js';
+import { sincronizarTravesia } from '../travesia.js';
 import { parteTema, lineaAvance, MIN_DIAGNOSTICO_TEMA } from '../../course/plan.js';
 import { lineaEstado } from './temario.js';
 import { saveUserChart, loadUserChart, deleteUserChart } from '../../store/user-chart.js';
@@ -33,7 +35,7 @@ function seccionIdeas(tit, temasOrden, ideas, curso) {
   const porUt = new Map(ideas.map((t) => [t.ut, t]));
   const clases = clasesDeCurso(curso);
   const listas = [];
-  const el = h('section.ideas-tema', h('h2', 'Ideas por dominar'),
+  const el = h('section.ideas-tema.prog-sec', h('h2.eti', 'Ideas por dominar'),
     h('p.muted.small', 'Apoyo para «¿Estás listo?»: la probabilidad de aprobar se sigue calculando con tus aciertos por tema. Aquí ves qué ideas concretas te faltan en cada uno.'),
     temasOrden.map(({ b }) => {
       const t = porUt.get(b.ut);
@@ -41,7 +43,7 @@ function seccionIdeas(tit, temasOrden, ideas, curso) {
       const ul = h('ul.ideas-flojas');
       listas.push([ul, t]);
       const sinVer = t.sinVer.map((c) => c.etiqueta);
-      return h('details.ideas-de-tema', { open: t.flojas.length > 0 },
+      return h('details.ideas-de-tema',
         h('summary', h('span.idea-tema-titulo', conIcono(b.ico, b.titulo)),
           h('span.idea-tema-dato', [`${t.sabidas} de ${cuenta(t.total, 'idea')} sabidas`, t.flojas.length ? cuenta(t.flojas.length, 'floja', 'flojas') : null, sinVer.length ? `${cuenta(sinVer.length, 'sin ver', 'sin ver')}` : null].filter(Boolean).join(' · '))),
         t.flojas.length ? ul : h('p.muted.small', t.sabidas === t.total ? 'Todas sabidas.' : 'Ninguna floja.'),
@@ -74,7 +76,7 @@ export function progressView({ progress, tit }) {
   const T = TITULACIONES[tit] ?? TITULACIONES.per;
   const s = progress.settings();
   const rows = EXERCISES.map((e) => ({ e, st: progress.stats(e.id) })).filter(({ st }) => st.attempts > 0);
-  const temas = h('div', h('p.muted', 'Cargando…'));
+  const temas = h('div', h('p.muted', 'Situándote en la carta…'));
   let resumenTemas = '';
   calcularPlan(progress, tit).then((d) => {
     // El mismo avance en Hoy, Progreso y Plan: pasos del camino ponderados por minutos (se mueve con cada tramo).
@@ -86,17 +88,29 @@ export function progressView({ progress, tit }) {
     // El examen final, aparte (del motor): abierto o no, y sus resultados con el criterio de margen.
     const fin = d.st.final;
     if (fin.hay) resumenTemas += `\nEXAMEN FINAL: ${fin.desbloqueado ? 'abierto' : 'cerrado'}${fin.preparado ? ' · PREPARADO' : ''} · ${[...fin.lineasResultado, ...fin.lineas].join(' ')}`;
+    // Arriba, el resumen visual: el rango de la travesía (el mismo cálculo y la misma tarjeta que en #/<tit>/travesia) y
+    // el avance del camino; después el examen final en corto; luego el detalle.
+    const sy = d.indiceConceptos ? sincronizarTravesia(progress, d.banco.eje.id, T.id, d.indiceConceptos, { respuestas: d.respuestas, ahora: d.ahora }) : null;
+    if (sy) resumenTemas += `\nRANGO: ${sy.rango.actual.nombre} · ${sy.est.dominadas}/${sy.est.total} ideas dominadas → #/${T.id}/travesia`;
+    const pctCamino = Math.round(a.fraccion * 100);
     setChildren(temas,
-      tarjetaFinal(T, fin),
-      d.indiceConceptos ? h('p.ver-travesia', h('a.btn.secondary', { href: tlink(T.id, ['travesia']) }, 'Ver mi travesía: rango, faros e insignias')) : null,
-      h('section.avance',
-        h('div.bar', h('span', { style: `width:${Math.round(a.fraccion * 100)}%` })),
-        h('p', lineaAvance(a, racha))),
+      h('div.prog-resumen',
+        sy ? tarjetaRango(sy) : null,
+        h('section.avance.prog-camino', { 'aria-label': 'Avance del camino' },
+          h('div.trav-fila-cab', h('h2.eti', 'Tu camino'), h('span.prog-pct', `${pctCamino} %`)),
+          h('div.barra-trav', { role: 'progressbar', 'aria-label': 'Avance del camino', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(pctCamino) },
+            h('span', { style: `width:${pctCamino}%` })),
+          h('p.small', lineaAvance(a, racha))),
+        sy ? h('a.trav-insignias-enlace.ver-travesia', { href: tlink(T.id, ['travesia']) },
+          h('span.prog-enlace-ico', icono('faro')),
+          h('span.trav-insignias-tx', h('strong', 'Ver mi travesía'), h('span.muted.small', 'Rango, faros e insignias')),
+          h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')) : null),
+      tarjetaFinalCompacta(T, fin),
       (() => {
         // Dónde fallas más (del motor): por tema en cuanto hay 5 respuestas, y las clases flojas cuando las hay.
         const { temas: tf, clases: flojas } = d.st.flojos;
         resumenTemas += `\nTEMAS FLOJOS: ${tf.map((t) => `${t.titulo} ${t.aciertos}/${t.hechas}`).join(' · ') || '—'}\nCLASES FLOJAS: ${flojas.map((c) => `${c.id} ${c.titulo} ${c.aciertos}/${c.hechas}`).join(' · ') || '—'}`;
-        return h('section.diagnostico', h('h2', 'Dónde fallas más'),
+        return h('section.diagnostico.prog-sec', h('h2.eti', 'Dónde fallas más'),
           tf.length || flojas.length ? [
             tf.length ? h('ul.clases-flojas', tf.map((t) => h('li', h('a', { href: tlink(T.id, ['teoria', 'ut', String(t.ut)], { s: randomSeed(), f: '1' }) },
               h('span.clase-floja-titulo', conIcono(t.ico, t.titulo)),
@@ -107,8 +121,8 @@ export function progressView({ progress, tit }) {
             : h('p.muted', `Cuando respondas ${cuenta(MIN_DIAGNOSTICO_TEMA, 'pregunta')} de un tema, aquí verás dónde te cuesta más.`));
       })(),
       (() => { const x = seccionIdeas(T.id, filas, conceptosPorTema(T.estructura, d.indiceConceptos, d.respuestas), d.curso); if (x.texto) resumenTemas += `\n${x.texto}`; return x.el; })(),
-      h('h2', `Por temas · ${T.sigla}`),
-      h('div.lista-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
+      h('h2.eti.prog-sec-tit', `Por temas · ${T.sigla}`),
+      h('div.lista-temas.prog-temas', filas.map(({ b, e }) => h('a.card.tema-card', { href: tlink(T.id, ['temario', String(b.ut)]) },
         h('h3', conIcono(b.ico, b.titulo)),
         h('p.estado-linea', { class: { bien: 'ok', repasar: 'warn' }[e.estado] ?? '' }, lineaEstado(e)),
         e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null))));
@@ -117,7 +131,7 @@ export function progressView({ progress, tit }) {
   const examenes = Object.values(TITULACIONES).map((X) => {
     // El examen final va aparte (arriba, con su criterio de margen).
     const tests = progress.tests().filter((t) => (t.tit ?? 'per') === X.id && t.tipo !== 'final').reverse();
-    return tests.length ? h('section', h('h2', conIcono(X.ico, `Exámenes ${X.sigla}`)),
+    return tests.length ? h('section.prog-sec', h('h2.eti', `Exámenes ${X.sigla}`),
       h('ul.ultimos', tests.slice(0, 20).map((t) => h('li', `${fechaLarga(t.t)} · ${t.titulo}: ${t.aciertos} de ${t.total} ${t.apto == null ? '' : t.apto ? '· APTO' : '· NO APTO'}`)))) : null;
   });
 
@@ -126,7 +140,7 @@ export function progressView({ progress, tit }) {
     h('h1', 'Mi progreso'),
     temas,
     examenes,
-    h('details', h('summary', 'Ejercicios de carta'),
+    h('details.prog-carta', h('summary', conIcono('mapa', 'Ejercicios de carta')),
       rows.length
         ? h('table.stats', h('thead', h('tr', h('th', 'Ejercicio'), h('th', 'Bien'), h('th', 'Errores frecuentes'))),
           h('tbody', rows.map(({ e, st }) => h('tr',

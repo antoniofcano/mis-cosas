@@ -43,6 +43,9 @@ export function createProgressStore(storage = safeStorage()) {
     if (data.settings.onboarded == null && tieneProgreso(data)) data.settings.onboarded = true;
     // Eje (banco de la administración examinadora): lo de antes de que hubiera ejes es del eje por defecto.
     data.settings.eje ??= EJE_POR_DEFECTO;
+    // Sonidos y vibración (src/ui/efectos.js): opcionales y apagados por defecto. Un progreso de antes (sin ellos) o con
+    // un valor raro se queda con todo apagado; nada más cambia.
+    for (const k of ['sonidos', 'vibracion']) if (typeof data.settings[k] !== 'boolean') data.settings[k] = false;
     if (Array.isArray(data.tests)) data.tests = data.tests.map((t) => (t?.eje ? t : { ...t, eje: EJE_POR_DEFECTO }));
     if (data.testEnCurso && !data.testEnCurso.eje) data.testEnCurso = { ...data.testEnCurso, eje: EJE_POR_DEFECTO };
     // Travesía (src/course/travesia.js): campo opcional con su propia versión. Sin él (progreso de antes) no hay nada que

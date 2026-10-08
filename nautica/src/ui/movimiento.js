@@ -1,6 +1,7 @@
-// Movimiento que confirma lo que ha pasado (no adorna): transiciones cortas entre tarjetas y pantallas, vibración
-// breve al corregir, números que suben hasta su valor y pasar tarjeta deslizando el dedo. Sin dependencias: API de
-// View Transitions, Vibration y Pointer Events. Todo respeta «reducir movimiento» del sistema.
+// Movimiento que confirma lo que ha pasado (no adorna): transiciones cortas entre tarjetas y pantallas, números que
+// suben hasta su valor y pasar tarjeta deslizando el dedo. Sin dependencias: API de View Transitions y Pointer Events.
+// Todo respeta «reducir movimiento» del sistema. La vibración y los sonidos (opcionales) están en efectos.js; las
+// duraciones y curvas de las animaciones CSS, en las variables --dur-* y --ease-* de styles/app.css.
 
 /** ¿El sistema pide reducir el movimiento? */
 export const quieto = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -15,11 +16,6 @@ export function transicion(cambiar, sentido = 'pantalla') {
   raiz.dataset.vt = sentido;
   const t = document.startViewTransition(cambiar);
   t.finished.finally(() => { if (raiz.dataset.vt === sentido) delete raiz.dataset.vt; });
-}
-
-/** Vibración breve al corregir: un toque si acierta, dos si falla. Solo en móviles que la tienen. */
-export function vibrar(ok) {
-  try { navigator.vibrate?.(ok ? 15 : [30, 50, 30]); } catch { /* sin vibración */ }
 }
 
 /** Hace subir el número de `el` desde 0 hasta `hasta` (texto con `formato`). */

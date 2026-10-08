@@ -16,6 +16,7 @@ import { fechaLarga } from '../../texto.js';
 import { ejesElegibles, selectorEje, citaFuente } from '../eje.js';
 import { seccionConfigAlumno } from '../config-profe.js';
 import { conIcono } from '../iconos.js';
+import { soportaSonido, soportaVibracion, desbloquearSonido, efecto } from '../efectos.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -78,6 +79,26 @@ export function masView({ progress, tit, params }) {
     h('button.grande', { type: 'button', onclick: () => instalar() }, 'Instalar la app'));
   alCambiarInstalable((si) => { instalarEl.hidden = !si; });
 
+  // Sonidos y vibración (src/ui/efectos.js): opcionales, apagados por defecto. Encender los sonidos es un gesto del
+  // usuario: ahí se crea el AudioContext y suena un tic de muestra. Sin vibración en el aparato, se dice en una línea.
+  const probar = h('button.secondary', { type: 'button', hidden: s.sonidos !== true, onclick: () => { desbloquearSonido(); efecto('guardia'); } }, conIcono('campana', 'Escuchar la campana'));
+  const efectosEl = h('section.ajuste-efectos', h('h2', conIcono('campana', 'Sonidos y vibración')),
+    h('p.muted', 'Opcionales. Acompañan, no avisan: un tic suave al acertar, una campanilla cuando se enciende un faro o subes de rango y dos campanadas al terminar la sesión. Al fallar, nada que suene a castigo. Nunca al navegar, y callan mientras habla el profe.'),
+    soportaSonido()
+      ? h('label.check', h('input', { type: 'checkbox', id: 'ajuste-sonidos', checked: s.sonidos === true, onchange: (ev) => {
+        progress.setSetting('sonidos', ev.target.checked);
+        probar.hidden = !ev.target.checked;
+        if (ev.target.checked && desbloquearSonido()) efecto('acierto');
+      } }), 'Sonidos')
+      : h('p.small', 'Este navegador no puede reproducir los sonidos de la app.'),
+    soportaVibracion()
+      ? h('label.check', h('input', { type: 'checkbox', id: 'ajuste-vibracion', checked: s.vibracion === true, onchange: (ev) => {
+        progress.setSetting('vibracion', ev.target.checked);
+        if (ev.target.checked) efecto('acierto');
+      } }), 'Vibración')
+      : h('p.small', 'Vibración: este aparato no deja vibrar desde el navegador (en iPhone no se puede).'),
+    h('div.actions', probar));
+
   const el = h('div.mas',
     h('h1', 'Ajustes'),
     h('section', h('h2', 'Tu estudio'),
@@ -111,6 +132,7 @@ export function masView({ progress, tit, params }) {
         [[0.85, 'Lenta'], [1, 'Normal'], [1.15, 'Rápida']].map(([v, t]) => h('option', { value: v, selected: voice.rate === v }, t)))),
       h('div.actions', h('button.secondary', { type: 'button', onclick: () => voice.speak('Hola, soy tu profe de navegación. Recuerda: corrección total igual a declinación más desvío. Este suma, oeste resta.') }, conIcono('play', 'Probar la voz'))),
     ) : null,
+    efectosEl,
     instalarEl,
     // Configuración del profesor (usarla o quitarla) y el modo profesor.
     seccionConfigAlumno(progress),

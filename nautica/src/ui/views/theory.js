@@ -20,7 +20,8 @@ import { voice } from '../voice.js';
 import { hojaRespuesta } from '../hoja.js';
 import { icono, conIcono } from '../iconos.js';
 import { lineaProfe, rotuloProfe } from '../profe-steps.js';
-import { vibrar, quieto, transicion } from '../movimiento.js';
+import { quieto, transicion } from '../movimiento.js';
+import { respuesta as efectoRespuesta } from '../efectos.js';
 import { avisoError } from '../aviso-error.js';
 import { enlaceTrampa } from '../mapa-trampa.js';
 import { remateMapas } from '../remate-mapas.js';
@@ -98,7 +99,8 @@ export function questionCard(q, o = {}) {
       h('input', { type: 'radio', name: `q-${q.id}`, value: k, checked: o.chosen === k, disabled: o.reveal && o.lock, onchange: () => o.onChoose?.(k) }),
       h('span', h('strong', `${k}) `), o.reveal ? conVocab(v) : v, fig ? h('img.qfig.opt', { src: urlFigura(q, fig), alt: `Figura de la opción ${k}`, loading: 'lazy' }) : null));
   });
-  return h('article.qcard', { class: o.reveal ? 'revelada' : '' },
+  // `recien`: la tarjeta que se acaba de corregir (la opción reacciona, ver CSS); al repasar un examen, quieta.
+  return h('article.qcard', { class: o.reveal ? `revelada${o.recien ? ' recien' : ''}` : '' },
     h('div.qmeta', o.number ? h('span.badge', `${o.number}`) : null, b && o.tema !== false ? h('span.badge.muted', conIcono(b.ico, b.titulo)) : null,
       h('span.muted.small', [q.convocatoria, q.modulo ? `módulo ${q.modulo === 'generico' ? 'genérico' : 'de navegación'}` : null, q.bloque && q.bloque !== 'carta' ? ({ loxodromica: 'loxodrómica' }[q.bloque] ?? q.bloque) : null].filter(Boolean).join(' · ')), q.anulada ? h('span.badge.warn', 'Anulada') : null),
     q.contexto ? h('pre.qcontext', q.contexto) : null,
@@ -143,12 +145,13 @@ export function botonCarta(q, progress, ayudas = null, { calculadora = true } = 
 }
 
 /** Panel del profe para una pregunta respondida. */
-export function profePanel(q, expl, chosen) {
+export function profePanel(q, expl, chosen, { efectos = true } = {}) {
   const n = narrateTheory(q, expl, chosen, reglasDe(q.id));
   const ok = q.anulada || q.norma?.estado === 'retirada' || chosen === q.correcta;
-  // Al corregir: vibración breve y la explicación sube a la vista (el panel entra desde abajo, ver CSS).
+  // Al corregir: el efecto de la respuesta (sonido y vibración, si están activados en Ajustes; nunca al repasar un
+  // examen ya hecho) y la explicación sube a la vista (el panel entra desde abajo, ver CSS).
   if (chosen != null) {
-    vibrar(ok);
+    if (efectos) efectoRespuesta(ok);
     if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => panel.isConnected && panel.scrollIntoView({ block: 'nearest', behavior: quieto() ? 'auto' : 'smooth' }));
   }
   const panel = h('div.profe', { class: chosen == null ? '' : ok ? 'ok-border' : 'bad-border' },
@@ -381,7 +384,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const extra = alResponder?.(i, q, good) ?? null;
       const ultima = i === total() - 1;
       siguiente.textContent = ultima ? 'Ver resultado' : 'Siguiente →';
-      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab });
+      const nueva = questionCard(q, { chosen: k ?? undefined, reveal: true, lock: true, tema: temaEnCadaPregunta, vocab, recien: true });
       card.replaceWith(nueva);
       card = nueva;
       noLaSe.hidden = true;
@@ -901,7 +904,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         const b = bloque(E0, q.ut);
         const cuerpo = h('div.revision-cuerpo');
         const det = h('details.revision-pregunta', { class: d.retirada ? 'retirada' : d.ok ? 'ok' : 'bad', ontoggle: () => {
-          if (det.open && !cuerpo.childElementCount) cuerpo.append(questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta));
+          if (det.open && !cuerpo.childElementCount) cuerpo.append(questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta, { efectos: false }));
         } },
         h('summary',
           h('span.revision-num', String(j + 1)),

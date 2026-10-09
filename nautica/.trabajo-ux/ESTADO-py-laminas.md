@@ -128,6 +128,33 @@ láminas entran en la galería desde las clases).
 - **Psicrómetro**: «algo más del 70 %» y «unos 13 °C» salen de la ecuación psicrométrica (71–73 %, 12,6–13,1 °C según el
   aparato sea ventilado o no); no he visto las tablas concretas que usa la clase.
 
+## Tanda de cierre (rama `feat/laminas-cierre`)
+
+Hecho (fichero `src/illustrations/py-cierre-c.js`, marcos en `marcos-cierre-b.js`, tests en `tests/laminas-cierre.test.js`):
+
+- `extintor` (py-1-7): vistas `co2`, `uso`, `ambas` (por defecto, como antes) y una nueva, `norma`: tablas del RD 339/2021,
+  art. 15 (sin marcado CE, extintores de 34 B y 2 kg como mínimo, por eslora y por potencia; con más de 220 kW,
+  B = 0,3 · P) y la revisión del Reglamento de instalaciones de protección contra incendios (RD 513/2017): tú cada
+  3 meses, una empresa cada año, prueba de presión cada 5 años. **Paso nuevo** en `data/curso/py.json` (py-1-7, tras
+  «Suma y ubicación») con esa vista.
+- `avisos-navegantes` (py-3-7): `correccion` (permanentes a tinta; temporales y preliminares a lápiz; registro
+  «año: grupo/aviso(orden)», ejemplo 2024: 32/127(1); 44/203(2)) y `radioavisos` (NAVAREA, 21 zonas, España coordina la
+  III; costeros por Salvamento Marítimo; locales; NAVTEX 518 kHz en inglés y 490 kHz en el idioma del país).
+
+Cambios de contenido (anotados): en `radioavisos` se quitó «Francia» (no comprobado quién emite qué en cada estación) y
+«gratis»; el NAVTEX nacional se dice «en el idioma del país».
+
+Queda:
+- `vientos-regionales` (py-2-4): sin fuente. El glosario de AEMET no trae los vientos regionales; haría falta el
+  derrotero del IHM o una publicación de AEMET con la rosa y las direcciones. No se ha dibujado nada.
+- `corriente-estrecho` (py-2-9), torniquete y la carta L105: fuera de la tanda por falta de fuentes (como estaba).
+
+Dudas:
+- **«Tinta indeleble»** para los avisos permanentes: el aviso general 3(G) del IHM dice que los temporales y preliminares
+  van a lápiz; lo de la tinta indeleble para los permanentes no lo he visto escrito tal cual.
+- **El de CO₂ no lleva manómetro**: viene de una guía de la Diputación Foral de Bizkaia y es lo habitual; la norma de
+  producto (UNE-EN 3-7) no la he podido consultar. Por lo mismo, no se dibuja ninguna tabla agente × clase de fuego.
+
 ## Dudas abiertas
 
 - **Adrizar la balsa desde sotavento**: lo dicen la clase y las instrucciones habituales de los fabricantes (botella a

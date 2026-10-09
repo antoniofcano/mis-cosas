@@ -1,9 +1,10 @@
-// Láminas de normativa y preparación de la salida: revisión antes de zarpar, puerto comercial,
+// Láminas de normativa y preparación de la salida: revisión antes de zarpar y previsión (dibujo antiguo); puerto comercial,
 // seguro obligatorio, contaminación (responsables y aviso), deber de auxilio y previsión meteorológica.
 // Cada función es pura: spec → { svg, caption }. Estilo del kit: fondo il-panel, textos en currentColor
 // y superficies con las variables --l-* del tema.
 
-import { C, open, title, arrow, hullPlan, fx } from '../kit.js';
+import { open, title, arrow, hullPlan, fx } from '../kit.js';
+import { puertoComercialC, seguroRcC, contaminacionC, deberAuxilioC, PARTES_PUERTO, RESPONSABLES } from '../per-cola-normativa-b-c.js';
 
 const RED = 'var(--l-r)';
 const OK = 'var(--l-m)';
@@ -31,7 +32,6 @@ function mar(x0, y, x1, y2) {
 /** Casco en planta girado `rot` grados (0 = proa arriba) en (x, y). */
 const barco = (x, y, rot, L, B, extra = '') => `<g transform="translate(${fx(x)},${fx(y)}) rotate(${rot})">${hullPlan(L, B, extra)}</g>`;
 /** Ancla esquemática centrada en (x, y). */
-const ancla = (x, y, s = 1) => `<g transform="translate(${x},${y}) scale(${s})" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="0" cy="-10" r="3"/><line x1="0" y1="-7" x2="0" y2="10"/><line x1="-6" y1="-3" x2="6" y2="-3"/><path d="M-10,3 Q-9,11 0,11 Q9,11 10,3"/></g>`;
 
 // ---------------------------------------------------------------------------
 // Revisión antes de salir. spec: { tipo:'revision-salida', vista:'resumen'|'motor', resaltar? }
@@ -158,180 +158,7 @@ export function revisionSalidaIllustration(spec) {
   return spec.vista === 'motor' ? revisionMotor(hl) : revisionResumen(hl);
 }
 
-// ---------------------------------------------------------------------------
-// Puerto comercial. spec: { tipo:'puerto-comercial', resaltar?: 'recreo'|'salida'|'fondeo' }
-
-export function puertoComercialIllustration(spec) {
-  const hl = hlSet(spec.resaltar);
-  const W = 320;
-  const H = 296;
-  const out = open(W, H, 'Navegar en un puerto comercial', 'pc');
-  out.push(title(160, 'En un puerto comercial'));
-  // mar exterior, dársena y muelle
-  out.push(mar(8, 32, 312, 240));
-  out.push(`<rect x="8" y="92" width="190" height="10" style="fill:var(--l-g)" stroke="currentColor" stroke-width="1"/><rect x="246" y="92" width="66" height="10" style="fill:var(--l-g)" stroke="currentColor" stroke-width="1"/>`);
-  out.push(`<rect x="8" y="226" width="304" height="16" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1"/>`);
-  out.push(tx(160, 238, 'MUELLE', { anchor: 'middle', bold: true, size: 9.5 }));
-  out.push(tx(14, 88, 'dique', { size: 9.5 }), tx(222, 116, 'bocana', { anchor: 'middle', size: 9.5 }));
-  // canal de acceso
-  out.push(`<path d="M200,102 L200,150 M244,102 L244,150" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity=".6"/>`);
-  // salida: el que sale tiene preferencia
-  const sOn = hl.has('salida');
-  out.push(barco(222, 74, 0, 24, 10, `style="fill:var(--l-casco);stroke:${sOn ? RED : 'currentColor'};stroke-width:${sOn ? 2.4 : 1.2}"`));
-  out.push(arrow(222, 60, 222, 42, 'm', 'pc', 2.2));
-  out.push(barco(286, 52, 225, 24, 10, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.2"'));
-  out.push(tx(194, 48, 'sale:', { anchor: 'end', bold: true, c: sOn ? RED : null }), tx(194, 61, 'pasa primero', { anchor: 'end', bold: sOn, c: sOn ? RED : null }));
-  out.push(tx(306, 78, 'entra:', { anchor: 'end', bold: true, c: sOn ? RED : null }), tx(306, 89, 'espera', { anchor: 'end', bold: sOn, c: sOn ? RED : null }));
-  // fondeo prohibido en el canal
-  const fOn = hl.has('fondeo');
-  out.push(ancla(222, 136, 0.9), tache(222, 136, 10, fOn ? 3.2 : 2.4));
-  out.push(tx(254, 128, 'no fondear', { bold: true, c: fOn ? RED : null }), tx(254, 141, 'en canales', { bold: fOn, c: fOn ? RED : null }), tx(254, 154, 'y bocanas', { bold: fOn, c: fOn ? RED : null }));
-  // mercante maniobrando con remolcador (avanza hacia la izquierda)
-  out.push(barco(170, 196, 270, 110, 24, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.4"'));
-  out.push(tx(176, 200, 'mercante', { anchor: 'middle', bold: true, size: 10 }));
-  out.push(barco(238, 196, 270, 22, 10, 'style="fill:var(--l-a);stroke:currentColor;stroke-width:1.2"'));
-  out.push(tx(254, 200, 'remolcador', { size: 10 }));
-  // velero de recreo que estaba en su camino y se aparta
-  const rOn = hl.has('recreo');
-  out.push(`<path d="M100,200 Q58,202 52,170" fill="none" style="stroke:var(--l-v)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#pc-v)"/>`);
-  out.push(barco(50, 150, 350, 26, 10, `style="fill:${CARD};stroke:${rOn ? RED : 'currentColor'};stroke-width:${rOn ? 2.6 : 1.2}"`));
-  out.push(tx(14, 120, 'recreo de menos de 20 m:', { bold: true, c: rOn ? RED : null }));
-  out.push(lineas(72, 142, ['se aparta y no', 'estorba, vaya a', 'vela o a motor'], { bold: rOn, c: rOn ? RED : null }));
-  // normas
-  out.push(lineas(14, 260, ['Velocidad reducida y sin levantar ola. Ningún vertido.', 'Obedece a la autoridad portuaria y a Capitanía.'], { size: 10.5 }, 14));
-  out.push('</svg>');
-  const CAP = {
-    recreo: 'En las aguas de un puerto comercial, la embarcación de recreo de menos de 20 m no estorba el tránsito de los buques: se aparta, vaya a vela o a motor.',
-    salida: 'Regla general en puerto: el que sale tiene preferencia sobre el que entra, salvo que la autoridad portuaria indique otra cosa.',
-    fondeo: 'Prohibido fondear en canales de acceso, bocanas y zonas de maniobra, también a las embarcaciones de recreo, salvo emergencia.',
-  };
-  const caption = [...hl].map((k) => CAP[k]).filter(Boolean).join('\n') || 'En un puerto comercial la embarcación de recreo se aparta y no estorba a los buques, el que sale pasa antes que el que entra y no se fondea en canales ni bocanas.';
-  return { svg: out.join(''), caption };
-}
-
-// ---------------------------------------------------------------------------
-// Seguro obligatorio de responsabilidad civil. spec: { tipo:'seguro-rc' }
-
-export function seguroRcIllustration() {
-  const W = 320;
-  const H = 286;
-  const out = open(W, H, 'Seguro obligatorio de responsabilidad civil', 'src');
-  out.push(title(160, 'Seguro obligatorio de RC'));
-  out.push(tx(160, 42, 'Obligatorio: a motor (también motos náuticas)', { anchor: 'middle', size: 10.5 }));
-  out.push(tx(160, 56, 'y sin motor de más de 6 m de eslora.', { anchor: 'middle', size: 10.5 }));
-  // dos columnas
-  out.push(card(8, 66, 148, 140, false, OK), card(164, 66, 148, 140, false, RED));
-  out.push(check(24, 84), tx(36, 88, 'SÍ cubre: terceros', { bold: true, size: 11, c: OK }));
-  out.push(tache(180, 84, 5), tx(192, 88, 'NO cubre', { bold: true, size: 11, c: RED }));
-  // dibujos: dos barcos que chocan / tu barco
-  out.push(barco(56, 112, 90, 34, 12, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.2"'), barco(104, 112, 270, 34, 12, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.2"'));
-  out.push(`<path d="M80,104 l3,5 5,-2 -2,5 5,3 -5,2 2,5 -5,-2 -3,5 -3,-5 -5,2 2,-5 -5,-3 5,-2 -2,-5 5,2 Z" style="fill:var(--l-faro)" stroke="currentColor" stroke-width=".8"/>`);
-  out.push(barco(238, 112, 90, 40, 14, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.2"'), tx(238, 116, 'tuyo', { anchor: 'middle', size: 9.5, bold: true }));
-  out.push(lineas(18, 144, ['muerte o lesiones', 'daños materiales', 'daños a otros buques', 'por colisión o', 'sin contacto'], { size: 10.5 }, 13));
-  out.push(lineas(174, 144, ['los daños de tu barco', 'los del propietario', 'o del tomador', 'los del patrón'], { size: 10.5 }, 13));
-  // límites
-  out.push(tx(14, 226, 'Límites:', { bold: true, size: 10.5 }));
-  out.push(lineas(14, 240, ['daños personales: 120.202,42 € por víctima', '(240.404,84 € por siniestro); daños materiales:', '96.161,94 € por siniestro. Regatas: seguro especial.'], { size: 10.5 }, 13));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'El seguro obligatorio cubre la responsabilidad civil frente a terceros (personas, bienes y otros buques), no los daños de tu propio barco ni los del propietario, el tomador o el patrón.' };
-}
-
-// ---------------------------------------------------------------------------
-// Contaminación. spec: { tipo:'contaminacion', vista:'responsables'|'aviso', resaltar? (responsables: 'naviero'|'propietario'|'asegurador'|'patron') }
-
-function mancha(x, y, s = 1) {
-  return `<path transform="translate(${x},${y}) scale(${s})" d="M-34,4 C-40,-8 -20,-16 -4,-12 C10,-20 34,-12 36,0 C42,12 20,18 4,14 C-10,20 -32,16 -34,4 Z" style="fill:var(--l-a)" fill-opacity=".55" stroke="currentColor" stroke-width=".8" stroke-opacity=".6"/>`;
-}
-
-function contaminacionResponsables(hl) {
-  const W = 320;
-  const H = 252;
-  const out = open(W, H, 'Contaminación: responsables solidarios', 'ctr');
-  out.push(title(160, 'Contaminar desde un barco'));
-  out.push(mar(112, 96, 208, 142));
-  out.push(mancha(160, 126, 0.9), barco(160, 110, 90, 34, 12, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.2"'));
-  out.push(tx(160, 74, 'infracción por', { anchor: 'middle', bold: true }), tx(160, 87, 'contaminación', { anchor: 'middle', bold: true }));
-  const P = [
-    ['naviero', 'naviero', 8, 30],
-    ['propietario', 'propietario', 192, 30],
-    ['asegurador', 'asegurador de RC', 8, 150],
-    ['patron', 'patrón (capitán)', 192, 150],
-  ];
-  for (const [k, t, x, y] of P) {
-    const on = hl.has(k);
-    out.push(card(x, y, 120, 28, on), tx(x + 60, y + 18, t, { anchor: 'middle', bold: true, c: on ? RED : null, size: 10.5 }));
-  }
-  // uniones
-  out.push(line(68, 58, 124, 104, 'currentColor', 1.2), line(252, 58, 196, 104, 'currentColor', 1.2), line(68, 150, 124, 124, 'currentColor', 1.2), line(252, 150, 196, 124, 'currentColor', 1.2));
-  out.push(lineas(14, 202, ['Responden solidariamente: se puede exigir la', 'responsabilidad entera a cualquiera de los cuatro.'], { size: 10.5, bold: true }, 13.5));
-  out.push(tache(20, 236, 4.5, 2), tx(30, 240, 'Falso: «solo» el patrón, el propietario o el asegurador.', { size: 10.5, c: RED }));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'De las infracciones por contaminación desde un barco responden solidariamente el naviero, el propietario, el asegurador de la responsabilidad civil y el patrón: la Administración puede exigir la responsabilidad entera a cualquiera de ellos.' };
-}
-
-function contaminacionAviso() {
-  const W = 320;
-  const H = 266;
-  const out = open(W, H, 'Si ves contaminación, avisa', 'cta');
-  out.push(title(160, 'Si ves contaminación: avisa ya'));
-  out.push(mar(8, 70, 312, 134));
-  out.push(mancha(222, 102, 1.2));
-  out.push(barco(286, 92, 270, 44, 14, 'style="fill:var(--l-g);stroke:currentColor;stroke-width:1.2"'), tx(290, 120, 'buque', { anchor: 'middle', size: 9.5 }));
-  out.push(barco(56, 104, 90, 36, 12, 'style="fill:var(--l-casco);stroke:currentColor;stroke-width:1.2"'), tx(56, 126, 'tú', { anchor: 'middle', bold: true }));
-  // ondas de radio
-  for (const r of [8, 14]) out.push(`<path d="M${56 - r * 0.7},${88 - r * 0.7} A${r},${r} 0 0 1 ${56 + r * 0.7},${88 - r * 0.7}" fill="none" style="stroke:var(--l-v)" stroke-width="1.6"/>`);
-  out.push(line(56, 98, 56, 88, 'currentColor', 1.4));
-  out.push(tx(14, 44, 'Avisa a Salvamento Marítimo:', { bold: true, size: 11 }), tx(14, 60, 'VHF canal 16 · 900 202 202 · 112', { size: 11, bold: true, c: RED }));
-  out.push(tx(222, 106, 'mancha', { anchor: 'middle', size: 10, bold: true }));
-  out.push(tx(14, 154, 'Da sin demora:', { bold: true, size: 11 }));
-  const datos = [['tu posición y la hora', 1], ['aspecto y extensión de la mancha', 2], ['nombre o descripción del buque', 3]];
-  datos.forEach(([t], i) => {
-    const y = 174 + i * 20;
-    out.push(`<circle cx="22" cy="${y - 4}" r="7" class="il-panel" stroke="currentColor" stroke-width="1.2"/>`, tx(22, y, String(i + 1), { anchor: 'middle', bold: true }));
-    out.push(tx(36, y, t, { size: 10.5 }));
-  });
-  out.push(tx(36, 227, '(si lo sabes)', { size: 10 }));
-  out.push(tx(14, 254, 'Informar a la autoridad marítima es obligatorio.', { size: 10.5, bold: true }));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Si ves una mancha o un vertido, avisa sin demora a Salvamento Marítimo (VHF canal 16, 900 202 202 o 112) con tu posición y la hora, el aspecto y la extensión de la mancha y, si lo sabes, el buque que la ha causado.' };
-}
-
-export function contaminacionIllustration(spec) {
-  return spec.vista === 'aviso' ? contaminacionAviso() : contaminacionResponsables(hlSet(spec.resaltar));
-}
-
-// ---------------------------------------------------------------------------
-// Deber de auxilio. spec: { tipo:'deber-auxilio', resaltar?: 'acudir'|'no-acudir' }
-
-export function deberAuxilioIllustration(spec) {
-  const hl = hlSet(spec.resaltar);
-  const W = 320;
-  const H = 300;
-  const out = open(W, H, 'Deber de auxilio (SOLAS V/33.1)', 'da');
-  out.push(title(160, 'Deber de auxilio (SOLAS V/33.1)'));
-  out.push(card(30, 34, 260, 40));
-  out.push(tx(160, 50, 'Sabes, por cualquier medio, que hay', { anchor: 'middle', size: 10.5 }), tx(160, 65, 'personas en peligro en el mar', { anchor: 'middle', size: 10.5, bold: true }));
-  out.push(arrow(160, 74, 160, 84, 'g', 'da', 2));
-  out.push(`<path d="M160,86 L300,114 L160,142 L20,114 Z" style="fill:${CARD}" stroke="currentColor" stroke-width="1.2"/>`);
-  out.push(tx(160, 112, '¿Puedes ayudar sin grave', { anchor: 'middle', size: 10.5, bold: true }), tx(160, 126, 'peligro y hace falta?', { anchor: 'middle', size: 10.5, bold: true }));
-  out.push(arrow(80, 132, 80, 156, 'g', 'da', 2), arrow(240, 132, 240, 156, 'g', 'da', 2));
-  out.push(tx(72, 150, 'sí', { anchor: 'end', bold: true }), tx(248, 150, 'no', { bold: true }));
-  const a = hl.has('acudir');
-  const n = hl.has('no-acudir');
-  out.push(card(8, 158, 148, 80, a, a ? null : OK), card(164, 158, 148, 80, n));
-  out.push(lineas(16, 175, ['Acude a toda velocidad,', 'informa a las víctimas', 'o a salvamento y', 'anótalo en el diario', 'de navegación'], { size: 10.5, c: a ? RED : null, bold: a }, 13));
-  out.push(lineas(172, 175, ['No basta con seguir', 'tu rumbo: anota el', 'motivo en el diario', 'e informa al servicio', 'de salvamento'], { size: 10.5, c: n ? RED : null, bold: n }, 13));
-  out.push(tx(14, 256, 'Sea cual sea su nacionalidad o condición,', { size: 10.5, bold: true }));
-  out.push(tx(14, 270, 'aunque no te lo pida ningún centro de salvamento.', { size: 10.5, bold: true }));
-  out.push(tache(19, 285, 4, 2), tx(28, 289, 'Falso: «solo si es de mi bandera» o «si me lo piden».', { size: 10, c: RED }));
-  out.push('</svg>');
-  const CAP = {
-    acudir: 'Si puedes ayudar, acudes a toda velocidad, informas a las víctimas o al servicio de salvamento y lo dejas anotado en el diario de navegación.',
-    'no-acudir': 'Si no puedes acudir, o no es razonable porque otro barco mejor preparado ya está allí, anotas el motivo en el diario de navegación e informas al servicio de salvamento.',
-  };
-  const caption = [...hl].map((k) => CAP[k]).filter(Boolean).join('\n') || 'Quien sabe que hay personas en peligro en el mar debe acudir a toda velocidad si puede hacerlo sin grave peligro, sea cual sea su nacionalidad; si no acude, anota el motivo en el diario e informa a salvamento.';
-  return { svg: out.join(''), caption };
-}
+// Puerto comercial, seguro obligatorio, contaminación y deber de auxilio: en estilo C, per-cola-normativa-b-c.js.
 
 // ---------------------------------------------------------------------------
 // Previsión meteorológica. spec: { tipo:'prevision-salida', vista:'fuentes'|'decidir', resaltar? (fuentes: 'aemet'|'vhf'|'navtex'|'apps') }
@@ -409,9 +236,9 @@ export const LAMINAS = {
     params: { vista: ['resumen', 'motor'], resaltar: ['tiempo', 'barco', 'personas', 'tierra', 'aceite', 'refrigeracion', 'correa', 'decantador', 'combustible', 'fugas', 'baterias'] },
     ejemplo: { tipo: 'revision-salida', vista: 'resumen' },
   },
-  'puerto-comercial': { fn: puertoComercialIllustration, params: { resaltar: ['recreo', 'salida', 'fondeo'] }, ejemplo: { tipo: 'puerto-comercial' } },
-  'seguro-rc': { fn: seguroRcIllustration, params: {}, ejemplo: { tipo: 'seguro-rc' } },
-  contaminacion: { fn: contaminacionIllustration, params: { vista: ['responsables', 'aviso'], resaltar: ['naviero', 'propietario', 'asegurador', 'patron'] }, ejemplo: { tipo: 'contaminacion', vista: 'responsables' } },
-  'deber-auxilio': { fn: deberAuxilioIllustration, params: { resaltar: ['acudir', 'no-acudir'] }, ejemplo: { tipo: 'deber-auxilio' } },
+  'puerto-comercial': { fn: puertoComercialC, params: { resaltar: PARTES_PUERTO }, ejemplo: { tipo: 'puerto-comercial' } },
+  'seguro-rc': { fn: seguroRcC, params: {}, ejemplo: { tipo: 'seguro-rc' } },
+  contaminacion: { fn: contaminacionC, params: { vista: ['responsables', 'aviso'], resaltar: RESPONSABLES }, ejemplo: { tipo: 'contaminacion', vista: 'responsables' } },
+  'deber-auxilio': { fn: deberAuxilioC, params: { resaltar: ['acudir', 'no-acudir'] }, ejemplo: { tipo: 'deber-auxilio' } },
   'prevision-salida': { fn: previsionSalidaIllustration, params: { vista: ['fuentes', 'decidir'], resaltar: ['aemet', 'vhf', 'navtex', 'apps'] }, ejemplo: { tipo: 'prevision-salida', vista: 'fuentes' } },
 };

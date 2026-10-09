@@ -67,7 +67,7 @@ test('cifras de las lecciones', () => {
   assert.match(da.svg, /2026 − 2016 = 10/);
   assert.match(da.svg, /10 × 9′ E = 90′ = 1° 30′ E/);
   assert.match(da.svg, /−2° 30′ \+ 1° 30′ = −1°/);
-  assert.match(da.svg, />1° W</);
+  assert.match(da.svg, /→ 1° W</);
   // per-10-6
   for (const [q, c] of [['S65E', 115], ['S45W', 225], ['N64W', 296], ['N20E', 20], ['N70W', 290], ['S76W', 256]]) assert.equal(cuadrantalACircular(q).circ, c, q);
   assert.match(LAMINAS['rumbo-cuadrantal'].fn({ tipo: 'rumbo-cuadrantal', rumbo: 'N64W' }).svg, /360° − 64° = 296°/);

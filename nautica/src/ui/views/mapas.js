@@ -12,6 +12,7 @@ import { TITULACIONES, tlink, volver, currentEje } from '../titulacion.js';
 import { navigate } from '../router.js';
 import { renderIllustration } from '../../illustrations/index.js';
 import { mapaSvg } from '../../illustrations/mapa-c.js';
+import { miniaturaBuque } from '../../illustrations/buques-c.js';
 import { MAPAS, vecinos, preguntasMapa } from '../../course/mapas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { cuenta } from '../../texto.js';
@@ -26,7 +27,13 @@ export const cargar = (id) => {
 };
 /** Todos los mapas registrados. */
 export const cargarMapas = () => Promise.all(MAPAS.map(cargar));
-export const mini = (spec) => h('div.mapa-mini', { 'aria-hidden': 'true', html: renderIllustration(spec)?.svg ?? '' });
+/**
+ * Miniatura de un concepto (unos 64 px). Los buques llevan la suya (src/illustrations/buques-c.js): la lámina entera,
+ * con varias vistas, a ese tamaño era un cuadro oscuro con puntitos.
+ */
+export const mini = (spec) => (spec?.tipo === 'buque' && miniaturaBuque(spec)
+  ? h('div.mapa-mini.mini-buque', { 'aria-hidden': 'true', html: miniaturaBuque(spec) })
+  : h('div.mapa-mini', { 'aria-hidden': 'true', html: renderIllustration(spec)?.svg ?? '' }));
 
 /**
  * Las ideas del catálogo que se enseñan en la clase de un concepto del mapa y tienen ficha en el banco activo (como

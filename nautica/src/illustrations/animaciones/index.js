@@ -10,8 +10,16 @@ import { pistaCirculacion } from './circulacion.js';
 import { caidaPopa } from '../../nautical/helice.js';
 import { MANIOBRAS_HAA } from '../../nautical/maniobra.js';
 import { pistaCiaboga } from './ciaboga.js';
+import { pistaCiabogaDos, PARTES_CIABOGA2 } from './ciaboga-dos.js';
 
 export const ANIMACIONES = {
+  'ciaboga-dos-helices': {
+    aplica: (s) => ['er', 'br'].includes(s.banda ?? 'er') && [].concat(s.resaltar ?? []).every((k) => PARTES_CIABOGA2.includes(k)),
+    pista: (s) => pistaCiabogaDos(s),
+    pie: (s) => (s.banda === 'br'
+      ? 'Con dos hélices se ciaboga con un motor avante y el otro atrás: la proa cae hacia la banda del que va atrás. A babor: babor atrás y estribor avante. Con giro al exterior, las presiones laterales de las dos palas ayudan.'
+      : 'Con dos hélices se ciaboga con un motor avante y el otro atrás: la proa cae hacia la banda del que va atrás. A estribor: estribor atrás y babor avante. Con giro al exterior, las presiones laterales de las dos palas ayudan.'),
+  },
   ciaboga: {
     pista: () => pistaCiaboga(),
     pie: 'Para girar en poco espacio con una hélice dextrógira, la ciaboga se hace cayendo a estribor: al dar atrás la hélice lleva la popa a babor y ayuda al giro. Con hélice levógira, al revés: se cae a babor.',

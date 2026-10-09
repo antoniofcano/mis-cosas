@@ -14,6 +14,7 @@ import { SENALES } from './situations.js';
 import { BANDERA_C, patronSonido, SECUENCIA_SONIDO } from './senales-c.js';
 import { MARCOS_PY } from './marcos-py.js';
 import { MARCOS_PER } from './marcos-per.js';
+import { MARCOS_CIERRE } from './marcos-cierre.js';
 
 const num = (n) => String(n).replace('.', ',');
 const BAL = 'Balizamiento';
@@ -523,7 +524,15 @@ function busqueda(spec) {
 }
 
 function fuego(spec) {
-  if (spec.modo) return null; // «apagar» es la lámina interactiva del PER, aún sin migrar
+  if (spec.modo === 'apagar') {
+    return {
+      tema: SEG, titulo: 'Apagar el fuego: quita un elemento', clave: 'Enfriar quita el calor; sofocar, el oxígeno; desalimentar, el combustible; inhibir, la reacción.',
+      datos: [{ cifra: 'enfriar', texto: 'el calor: sobre todo el agua' }, { cifra: 'sofocar', texto: 'el oxígeno: tapa, manta, espuma, CO₂' }, { cifra: 'inhibir', texto: 'la reacción: el polvo químico' }],
+      nota: 'Desalimentar es quitar el combustible: cerrar la llave del gas o del combustible, apartar lo que pueda arder. Prueba cada uno: con los cuatro elementos, el fuego se mantiene solo.',
+      alt: 'Tetraedro del fuego interactivo: eliges qué elemento quitas (combustible, oxígeno, calor o reacción en cadena); ese vértice se atenúa, sus aristas pasan a trazos y la llama del centro se convierte en humo.',
+    };
+  }
+  if (spec.modo) return null;
   if (spec.vista === 'clases') {
     return {
       tema: SEG, titulo: 'Clases de fuego', clave: 'A sólidos, B líquidos, C gases, D metales y F aceites de cocina.',
@@ -634,6 +643,7 @@ const MARCOS = {
   movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco, bandera, sonido,
   ...MARCOS_PY,
   ...MARCOS_PER,
+  ...MARCOS_CIERRE,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

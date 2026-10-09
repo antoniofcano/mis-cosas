@@ -4,6 +4,7 @@
 
 import { open, title, pol, fx } from '../kit.js';
 import { nubesC, olaC, GENEROS_C, PARTES_OLA_C, PISOS_NUBES } from '../py-cola-meteo-c.js';
+import { rolarC, PALABRAS_VIENTO } from '../per-cola-c.js';
 
 // Acentos que se adaptan al tema (texto, trazos y puntas de flecha).
 const K = { v: 'var(--l-v)', r: 'var(--l-r)', a: 'var(--l-a)', m: 'var(--l-m)', p: 'var(--l-p)', g: 'var(--l-g)', t: 'currentColor' };
@@ -134,7 +135,6 @@ export function vientosRegionalesIllustration(spec) {
 
 export const GENEROS = GENEROS_C;
 export const PARTES_OLA = PARTES_OLA_C;
-const linea = (p) => p.map(([x, y], i) => `${i ? 'L' : 'M'}${fx(x)},${fx(y)}`).join('');
 
 // ===========================================================================
 // 4. Corrientes en el Estrecho (py-2-9). spec: { tipo:'corriente-estrecho', vista:'corte'|'tipos', resaltar? (tipos): 'densidad'|'arrastre'|'gradiente'|'marea' }
@@ -229,120 +229,6 @@ export function corrienteEstrechoIllustration(spec) {
 // 5. El viento: rolar, refrescar, caer… e instrumentos (per-9-3).
 // spec: { tipo:'rolar', vista:'vocabulario'|'instrumentos', resaltar? (vocabulario): 'rolar'|'refrescar'|'caer'|'calmar'|'racha'|'racheado' }
 
-export const PALABRAS_VIENTO = {
-  refrescar: ['Refrescar', 'sube y se mantiene', [[0, 9], [40, 9], [52, 22], [100, 22]]],
-  caer: ['Caer (amainar)', 'baja y se mantiene', [[0, 22], [40, 22], [52, 9], [100, 9]]],
-  calmar: ['Calmar', 'cesa del todo o casi', [[0, 16], [40, 16], [56, 1], [100, 1]]],
-  racha: ['Racha', 'subida brusca y breve', [[0, 10], [42, 10], [48, 25], [54, 10], [100, 10]]],
-  racheado: ['Racheado', 'sube y baja sin parar', [[0, 10], [10, 22], [20, 8], [30, 20], [40, 12], [50, 24], [60, 9], [70, 21], [80, 11], [90, 23], [100, 10]]],
-};
-
-function vocabulario(hl) {
-  const W = 320;
-  const H = 330;
-  const id = 'rov';
-  const out = start(W, H, 'El viento: dirección e intensidad', id);
-  out.push(title(160, 'El viento: dirección e intensidad'));
-  // Dirección: rolar del SW al W en una rosa pequeña.
-  const ron = !hl.size || hl.has('rolar');
-  const fr = hl.has('rolar');
-  out.push(`<g opacity="${ron ? 1 : 0.35}">`);
-  out.push(`<rect x="8" y="32" width="304" height="112" rx="8" fill="none" style="stroke:${fr ? 'var(--l-r)' : 'currentColor'}" stroke-opacity="${fr ? 1 : 0.3}" stroke-width="${fr ? 2.4 : 1}"/>`);
-  out.push(tx(128, 52, 'DIRECCIÓN', { b: true, s: 11 }));
-  const cx = 68;
-  const cy = 92;
-  out.push(`<circle cx="${cx}" cy="${cy}" r="38" fill="none" stroke="currentColor" stroke-opacity=".35"/>`);
-  for (const [d, t] of [[0, 'N'], [90, 'E'], [180, 'S'], [270, 'W']]) {
-    const [x, y] = pol(cx, cy, d, 46);
-    out.push(tx(x, y + 4, t, { a: 'middle', b: true, s: 10 }));
-  }
-  const [a1, b1] = pol(cx, cy, 225, 37);
-  const [a2, b2] = pol(cx, cy, 270, 37);
-  out.push(flecha(a1, b1, cx - 3, cy - 3, 'g', id, 2, { extra: 'stroke-dasharray="4 3"' }));
-  out.push(flecha(a2, b2, cx - 4, cy, 'v', id, 3));
-  const p1 = pol(cx, cy, 236, 28);
-  const p2 = pol(cx, cy, 258, 28);
-  out.push(`<path d="M${fx(p1[0])},${fx(p1[1])} A28,28 0 0 1 ${fx(p2[0])},${fx(p2[1])}" fill="none" style="stroke:${K[fr ? 'r' : 'a']}" stroke-width="1.8" marker-end="url(#${id}-k${fr ? 'r' : 'a'})"/>`);
-  out.push(tx(128, 70, 'Rolar: cambia de dirección', { b: true, c: fr ? 'r' : null, s: 11 }), tx(128, 83, 'y se mantiene en la nueva.', { s: 10.5 }), tx(128, 96, 'Aquí rola del SW (gris) al W (azul).', { s: 10.5 }));
-  out.push(tx(128, 118, 'Se nombra por de dónde viene:', { s: 10.5, b: true }), tx(128, 131, 'un poniente viene del W.', { s: 10.5 }));
-  out.push('</g>');
-  // Intensidad: gráficas de fuerza frente a tiempo.
-  out.push(tx(16, 166, 'INTENSIDAD', { b: true, s: 11 }), tx(306, 166, 'fuerza ↑ · tiempo →', { a: 'end', s: 10 }));
-  Object.entries(PALABRAS_VIENTO).forEach(([k, [nom, desc, pts]], i) => {
-    const x = 8 + (i % 2) * 154;
-    const y = 174 + Math.floor(i / 2) * 46;
-    const on = !hl.size || hl.has(k);
-    const f = hl.has(k);
-    out.push(`<g opacity="${on ? 1 : 0.35}"><rect x="${x}" y="${y}" width="150" height="42" rx="6" fill="none" style="stroke:${f ? 'var(--l-r)' : 'currentColor'}" stroke-opacity="${f ? 1 : 0.3}" stroke-width="${f ? 2.4 : 1}"/>`);
-    out.push(tx(x + 7, y + 16, nom, { b: true, c: f ? 'r' : null, s: 11 }), tx(x + 7, y + 34, desc, { s: 10 }));
-    const gx = x + 104;
-    const gy = y + 22;
-    out.push(`<line x1="${gx}" y1="${gy}" x2="${gx + 40}" y2="${gy}" stroke="currentColor" stroke-opacity=".4"/><line x1="${gx}" y1="${gy}" x2="${gx}" y2="${gy - 18}" stroke="currentColor" stroke-opacity=".4"/>`);
-    out.push(`<path d="${linea(pts.map(([px, py]) => [gx + 2 + px * 0.38, gy - 1 - py * 0.65]))}" fill="none" style="stroke:${K[f ? 'r' : 'v']}" stroke-width="2" stroke-linejoin="round"/>`);
-    out.push('</g>');
-  });
-  const lx = 8 + 154;
-  const ly = 174 + 2 * 46;
-  out.push(tx(lx + 7, ly + 15, '«Refrescar» no habla', { s: 10 }), tx(lx + 7, ly + 28, 'de temperatura.', { s: 10 }));
-  out.push(tx(14, H - 9, 'Rolar es dirección; lo demás, intensidad.', { b: true, s: 10.5 }));
-  return close(out);
-}
-
-function instrumentos() {
-  const W = 320;
-  const H = 250;
-  const id = 'roi';
-  const out = start(W, H, 'Instrumentos del viento', id);
-  out.push(title(160, 'Instrumentos del viento'));
-  out.push(flecha(24, 44, 120, 44, 'v', id, 2.4), tx(128, 48, 'viento (del W)', { c: 'v', s: 10.5 }));
-  const base = 160;
-  // Anemómetro de cazoletas: gira más deprisa cuanto más sopla.
-  const ax = 54;
-  const ay = 100;
-  out.push(`<line x1="${ax}" y1="${ay}" x2="${ax}" y2="${base}" stroke="currentColor" stroke-width="2"/>`);
-  out.push(`<g><g>${[0, 120, 240].map((d) => { const [x, y] = pol(ax, ay, d, 22); return `<line x1="${ax}" y1="${ay}" x2="${fx(x)}" y2="${fx(y)}" stroke="currentColor" stroke-width="1.6"/><circle cx="${fx(x)}" cy="${fx(y)}" r="6" style="fill:var(--l-a)" stroke="currentColor"/>`; }).join('')}<animateTransform attributeName="transform" type="rotate" from="0 ${ax} ${ay}" to="360 ${ax} ${ay}" dur="1.6s" repeatCount="indefinite"/></g></g>`);
-  out.push(`<circle cx="${ax}" cy="${ay}" r="3" style="fill:currentColor"/>`);
-  out.push(tx(ax, 182, 'Anemómetro', { a: 'middle', b: true, s: 11 }), tx(ax, 196, 'mide la velocidad', { a: 'middle', s: 10, c: 'a' }), tx(ax, 208, '(nudos)', { a: 'middle', s: 10 }));
-  // Veleta: la punta señala de dónde viene.
-  const vx = 160;
-  const vy = 100;
-  out.push(`<line x1="${vx}" y1="${vy}" x2="${vx}" y2="${base}" stroke="currentColor" stroke-width="2"/>`);
-  out.push(`<path d="M${vx - 30},${vy} L${vx - 20},${vy - 6} L${vx - 20},${vy + 6}Z" style="fill:var(--l-v)"/><line x1="${vx - 22}" y1="${vy}" x2="${vx + 22}" y2="${vy}" stroke="currentColor" stroke-width="2"/><path d="M${vx + 14},${vy} L${vx + 30},${vy - 12} L${vx + 30},${vy + 12}Z" style="fill:var(--l-g)"/><circle cx="${vx}" cy="${vy}" r="3" style="fill:currentColor"/>`);
-  out.push(tx(vx - 30, vy - 12, 'apunta al W', { s: 10, c: 'v' }));
-  out.push(tx(vx, 182, 'Veleta', { a: 'middle', b: true, s: 11 }), tx(vx, 196, 'indica la dirección', { a: 'middle', s: 10, c: 'v' }), tx(vx, 208, '(de dónde viene)', { a: 'middle', s: 10 }));
-  // Catavientos: manga de tela que se llena con el viento.
-  const cx = 266;
-  const cy = 96;
-  out.push(`<line x1="${cx - 14}" y1="${cy - 6}" x2="${cx - 14}" y2="${base}" stroke="currentColor" stroke-width="2"/>`);
-  out.push(`<path d="M${cx - 12},${cy - 10} L${cx + 36},${cy - 4} L${cx + 36},${cy + 6} L${cx - 12},${cy + 12}Z" style="fill:var(--l-roja)"/><path d="M${cx + 4},${cy - 8} L${cx + 4},${cy + 10} M${cx + 20},${cy - 6} L${cx + 20},${cy + 8}" stroke="#fff" stroke-width="4"/><ellipse cx="${cx - 12}" cy="${cy + 1}" rx="3" ry="11" fill="none" stroke="currentColor" stroke-width="1.5"/>`);
-  out.push(tx(cx, 182, 'Catavientos', { a: 'middle', b: true, s: 11 }), tx(cx, 196, 'indica la dirección', { a: 'middle', s: 10, c: 'v' }), tx(cx, 208, '(manga o cintas)', { a: 'middle', s: 10 }));
-  out.push(`<line x1="14" y1="${base}" x2="306" y2="${base}" stroke="currentColor" stroke-opacity=".35"/>`);
-  out.push(tx(14, 230, 'Navegando, el anemómetro mide el viento aparente.', { s: 10 }), tx(14, 243, 'Ninguno mide la presión: eso es el barómetro.', { s: 10, b: true }));
-  return close(out);
-}
-
-export function rolarIllustration(spec) {
-  const vista = spec.vista ?? 'vocabulario';
-  if (vista === 'vocabulario') {
-    const hl = new Set(lista(spec.resaltar));
-    for (const k of hl) if (k !== 'rolar' && !PALABRAS_VIENTO[k]) return null;
-    const CAP = {
-      rolar: 'Rolar: el viento cambia de dirección y se mantiene en la nueva, por ejemplo del SW al W.',
-      refrescar: 'Refrescar: la intensidad del viento aumenta y se mantiene. No tiene nada que ver con la temperatura.',
-      caer: 'Caer (o amainar): la intensidad del viento disminuye y se mantiene.',
-      calmar: 'Calmar: el viento cesa del todo o casi.',
-      racha: 'Racha: aumento brusco y breve de la intensidad.',
-      racheado: 'Viento racheado: la intensidad sube y baja continuamente, a golpes.',
-    };
-    const caption = hl.size === 1 ? CAP[[...hl][0]] : 'Rolar habla de dirección: el viento cambia de dónde viene. Refrescar, caer, calmar, racha y racheado hablan de intensidad.';
-    return { svg: vocabulario(hl), caption };
-  }
-  if (vista === 'instrumentos') {
-    return { svg: instrumentos(), caption: 'El anemómetro mide la velocidad del viento y no da la dirección; la veleta y el catavientos indican de dónde viene, pero no su fuerza.' };
-  }
-  return null;
-}
-
 // ===========================================================================
 
 export const LAMINAS = {
@@ -367,7 +253,7 @@ export const LAMINAS = {
     ejemplo: { tipo: 'corriente-estrecho', vista: 'corte' },
   },
   rolar: {
-    fn: rolarIllustration,
+    fn: rolarC,
     params: { vista: ['vocabulario', 'instrumentos'], resaltar: ['rolar', ...Object.keys(PALABRAS_VIENTO)] },
     ejemplo: { tipo: 'rolar', vista: 'vocabulario' },
   },

@@ -4,6 +4,7 @@
 // variables --l-* (y --land para tierra y fondo), para que se lean igual en los temas claro y oscuro.
 
 import { C, open, title, lbl as kitLbl, arrow, hullPlan, fx as f } from '../kit.js';
+import { capearCorrerC, ripaDefinicionesC, PARTES_CAPEAR, PARTES_RIPA } from '../per-cola-c.js';
 
 // Los textos de color usan las variables del tema (más contraste en oscuro); el gris pasa a currentColor.
 const TXT = { r: 'var(--l-r)', v: 'var(--l-v)', p: 'var(--l-p)', m: 'var(--l-m)', a: 'var(--l-a)', g: null };
@@ -284,169 +285,10 @@ export function fondeoGiraIllustration(spec = {}) {
 // ---------------------------------------------------------------------------
 // Capear y correr. spec: { tipo:'capear-correr', vista:'rumbos'|'costa', resaltar? }
 
-function capearRumbos(hl) {
-  const W = 320;
-  const H = 268;
-  const out = open(W, H, 'Capear o correr, nunca atravesado', 'cr');
-  out.push(title(160, 'Capear o correr, nunca atravesado'));
-  out.push(clipRect('cr-mapa', 8, 30, 304, 150), `<g clip-path="url(#cr-mapa)">${sea(8, 30, 304, 150)}`);
-  for (let y = 46; y < 180; y += 24) out.push(crestas(4, 316, y));
-  out.push('</g>');
-  out.push(arrow(22, 36, 22, 66, 'v', 'cr', 2.6), arrow(298, 36, 298, 66, 'v', 'cr', 2.6));
-  out.push(`<rect x="94" y="34" width="132" height="16" rx="4" class="il-panel" opacity=".9"/>`, bold(160, 46, 'mar y viento', 'v', 'middle'));
-  const barcos = [
-    ['capear', 58, -35, 'Capear', ['mar por la amura,', 'poca máquina avante']],
-    ['correr', 160, 155, 'Correr', ['mar por la aleta', 'o la popa']],
-    ['traves', 262, 90, 'Atravesado', ['mar por el través:', 'puede zozobrar']],
-  ];
-  for (const [k, x, rot, nom, notas] of barcos) {
-    const on = hl.has(k);
-    const y = 118;
-    out.push(hp(x, y, rot, 50, 18, on ? `stroke="${C.r}" stroke-width="2.6"` : ''));
-    if (k === 'capear') out.push(arrow(x + Math.sin(rot * Math.PI / 180) * 30, y - Math.cos(rot * Math.PI / 180) * 30, x + Math.sin(rot * Math.PI / 180) * 44, y - Math.cos(rot * Math.PI / 180) * 44, 'm', 'cr', 2));
-    if (k === 'correr') out.push(arrow(x + Math.sin(rot * Math.PI / 180) * 30, y - Math.cos(rot * Math.PI / 180) * 30, x + Math.sin(rot * Math.PI / 180) * 46, y - Math.cos(rot * Math.PI / 180) * 46, 'm', 'cr', 2));
-    if (k === 'traves') out.push(tache(x, y, 14));
-    const col = k === 'traves' ? 'r' : 'm';
-    out.push(on ? bold(x, 200, (k === 'traves' ? '✗ ' : '✓ ') + nom, 'r', 'middle') : bold(x, 200, (k === 'traves' ? '✗ ' : '✓ ') + nom, col, 'middle'));
-    notas.forEach((n, i) => out.push(lbl(x, 214 + i * 12, n, null, 'middle')));
-  }
-  out.push(lbl(160, 256, 'Parado tampoco: sin arrancada no hay gobierno.', null, 'middle', 'font-style="italic"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Con mala mar, ajusta rumbo y velocidad: capear es recibirla por la amura con poca máquina avante; correr el temporal, por la aleta o la popa. Recibirla por el través es lo más peligroso: balances violentos y riesgo de zozobrar.' };
-}
-
-function capearCosta(hl) {
-  const W = 320;
-  const H = 262;
-  const out = open(W, H, 'La costa, a barlovento', 'cc');
-  out.push(title(160, 'La costa, mejor a barlovento'));
-  const onB = hl.has('barlovento');
-  const onS = hl.has('sotavento');
-  out.push(clipRect('cc-mapa', 8, 30, 304, 158), `<g clip-path="url(#cc-mapa)">${sea(8, 30, 304, 158)}`);
-  // olas que crecen hacia sotavento (la tierra de barlovento da abrigo)
-  for (let i = 0; i < 6; i += 1) {
-    const x = 92 + i * 30;
-    const a = 3 + i * 1.6;
-    out.push(`<path d="M${x},70 q${a},12 0,24 t0,24 t0,24 t0,24" fill="none" style="stroke:var(--l-v)" stroke-width="1.5" opacity=".75"/>`);
-  }
-  out.push(tierra('M0,0 L62,0 Q74,60 58,110 Q70,150 60,200 L0,200Z', onB ? `stroke-width="2.6" style="fill:var(--land);stroke:${C.r}"` : ''));
-  out.push(tierra('M330,0 L272,0 Q262,60 276,110 Q262,150 274,200 L330,200Z', onS ? `stroke-width="2.6" style="fill:var(--land);stroke:${C.r}"` : ''));
-  // rocas en la costa de sotavento
-  for (const [x, y] of [[268, 66], [262, 100], [270, 138], [262, 168]]) out.push(`<path d="M${x - 8},${y + 5} L${x - 4},${y - 4} L${x + 2},${y - 6} L${x + 6},${y + 5}Z" style="fill:var(--l-casco)" stroke="currentColor"/>`);
-  out.push('</g>', `<rect x="8" y="30" width="304" height="158" rx="6" fill="none" stroke="currentColor" opacity=".3"/>`);
-  // viento de tierra (barlovento) hacia la mar
-  for (const y of [44, 60]) out.push(arrow(84, y, 136, y, 'g', 'cc', 2.4));
-  out.push(bold(146, 56, 'viento y mar', null, 'start'));
-  // barco y su deriva si algo falla
-  out.push(hp(150, 128, 0, 40, 14));
-  out.push(arrow(166, 128, 248, 128, 'r', 'cc', 2.4, 'stroke-dasharray="6 4"'), `<rect x="170" y="108" width="74" height="15" rx="4" class="il-panel" opacity=".9"/>`, lbl(207, 119, 'avería: deriva', 'r', 'middle', 'font-weight="700"'));
-  out.push(arrow(134, 128, 96, 128, 'm', 'cc', 2.2), `<rect x="88" y="138" width="50" height="15" rx="4" class="il-panel" opacity=".9"/>`, lbl(113, 149, 'aléjate', 'm', 'middle', 'font-weight="700"'));
-  // rótulos
-  out.push(pt(onB, 12, 208, '✓ Costa a barlovento', 'start', true), lbl(12, 222, 'el viento viene de tierra:'), lbl(12, 235, 'te aleja y da abrigo'));
-  out.push(pt(onS, 308, 208, '✗ Costa a sotavento', 'end', true), lbl(308, 222, 'viento y mar te echan', null, 'end'), lbl(308, 235, 'contra ella: aléjate', null, 'end'));
-  out.push(lbl(160, 254, 'Derrota hacia un puerto de abrigo, lejos de los peligros.', null, 'middle', 'font-style="italic"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Con mal tiempo, la costa peligrosa es la de sotavento: viento y mar te empujan hacia ella y cualquier avería te lleva contra las rocas. Mejor dejar la costa a barlovento, que te aleja y te da abrigo, y buscar mar abierta.' };
-}
-
-export function capearCorrerIllustration(spec = {}) {
-  const hl = sel(spec.resaltar);
-  return spec.vista === 'costa' ? capearCosta(hl) : capearRumbos(hl);
-}
-
 // ---------------------------------------------------------------------------
 // Definiciones del RIPA. spec: { tipo:'ripa-definiciones', vista:'vela-motor'|'categorias', resaltar? }
 
 /** Velero de perfil con proa a la izquierda; (x, y) es la flotación en la proa. */
-function velero(x, y, motor) {
-  const o = [`<path d="M${x},${y - 8} L${x + 96},${y - 6} L${x + 92},${y + 4} Q${x + 44},${y + 10} ${x + 12},${y + 3}Z" ${casco}/>`];
-  o.push(`<path d="M${x + 50},${y + 7} l-4,14 h12 l-2,-12" ${casco}/>`); // quilla
-  o.push(`<line x1="${x + 46}" y1="${y - 8}" x2="${x + 46}" y2="${y - 92}" stroke="currentColor" stroke-width="2"/>`);
-  o.push(`<path d="M${x + 49},${y - 90} L${x + 49},${y - 14} L${x + 88},${y - 14}Z" style="fill:var(--l-nube);stroke:currentColor" stroke-width="1"/>`);
-  o.push(`<path d="M${x + 43},${y - 86} L${x + 43},${y - 14} L${x + 6},${y - 11}Z" style="fill:var(--l-nube);stroke:currentColor" stroke-width="1"/>`);
-  if (motor) {
-    // hélice girando y estela, humo de escape
-    o.push(`<g transform="translate(${x + 84} ${y + 10})"><ellipse rx="2.5" ry="6" fill="${C.r}"/><circle r="1.6" fill="currentColor"/></g>`);
-    o.push(`<path d="M${x + 92},${y + 10} q6,-3 12,0 t12,0 M${x + 92},${y + 15} q6,-3 12,0 t12,0" fill="none" style="stroke:var(--l-v)" stroke-width="1.3"/>`);
-    for (const [dx, dy, r] of [[102, -10, 3], [108, -16, 4], [116, -22, 5]]) o.push(`<circle cx="${x + dx}" cy="${y + dy}" r="${r}" fill="currentColor" opacity=".25"/>`);
-  } else {
-    o.push(`<g transform="translate(${x + 84} ${y + 10})"><path d="M0,-6 V6" stroke="currentColor" stroke-width="2"/></g>`);
-  }
-  return o.join('');
-}
-
-function ripaVelaMotor(hl) {
-  const W = 320;
-  const H = 262;
-  const out = open(W, H, 'Vela o motor: decide la máquina', 'rv');
-  out.push(title(160, 'Vela o motor: decide la máquina'));
-  const ys = 154;
-  out.push(clipRect('rv-mapa', 8, 30, 304, 150), `<g clip-path="url(#rv-mapa)">${sea(8, ys, 304, 40)}</g>`, surf(8, 312, ys));
-  out.push(linea(160, 34, 160, 248));
-  out.push(velero(22, ys, false), velero(176, ys, true));
-  // cono con el vértice hacia abajo, a proa
-  out.push(`<path d="M${176 + 8},${ys - 56} L${176 + 24},${ys - 56} L${176 + 16},${ys - 40}Z" fill="currentColor"/>`);
-  out.push(bold(164, ys - 74, 'cono, punta abajo'), lbl(164, ys - 62, 'de día'));
-  out.push(bold(140, ys + 30, 'motor parado', null, 'end'), bold(300, ys + 30, 'motor en marcha', 'r', 'end'));
-  const onV = hl.has('vela');
-  const onM = hl.has('motor');
-  out.push(marco(12, ys + 40, 140, 58, onV), marco(168, ys + 40, 140, 58, onM));
-  out.push(pt(onV, 82, ys + 58, 'Buque de vela', 'middle', true), lbl(82, ys + 72, 'navega a vela y su', null, 'middle'), lbl(82, ys + 84, 'máquina no se usa', null, 'middle'));
-  out.push(pt(onM, 238, ys + 58, 'Propulsión mecánica', 'middle', true), lbl(238, ys + 72, 'aunque lleve velas', null, 'middle'), lbl(238, ys + 84, 'y sea cual sea su eslora', null, 'middle'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Para el RIPA decide la máquina, no el aparejo: un velero es buque de vela solo si su maquinaria no se está usando. Con las velas izadas y el motor en marcha es buque de propulsión mecánica, sea cual sea su eslora, y de día lo anuncia con un cono con el vértice hacia abajo a proa.' };
-}
-
-function iconoCategoria(k, cx, cy) {
-  if (k === 'sin-gobierno') {
-    // barco con el timón roto
-    return hp(cx - 6, cy, 90, 46, 16) + `<path d="M${cx - 31},${cy - 2} l-8,-6 M${cx - 31},${cy + 2} l-9,7" stroke="${C.r}" stroke-width="2.6" stroke-linecap="round"/>` +
-      `<path d="M${cx + 26},${cy - 12} l-5,8 h6 l-5,9" fill="none" stroke="${C.a}" stroke-width="2" stroke-linejoin="round"/>`;
-  }
-  if (k === 'maniobra-restringida') {
-    // buque con grúa colocando una boya / cable
-    return hp(cx - 10, cy, 90, 46, 16) + `<path d="M${cx},${cy - 4} L${cx + 24},${cy - 16} L${cx + 24},${cy + 12}" fill="none" stroke="currentColor" stroke-width="1.6"/>` +
-      `<circle cx="${cx + 24}" cy="${cy + 15}" r="4" style="fill:var(--l-a)" stroke="currentColor"/><path d="M${cx + 30},${cy + 6} q6,4 12,0" fill="none" stroke="currentColor" stroke-dasharray="3 2"/>`;
-  }
-  if (k === 'pesca') {
-    // pesquero arrastrando una red
-    return hp(cx - 18, cy - 4, 90, 40, 14) + `<path d="M${cx - 38},${cy - 2} L${cx - 2},${cy + 10} M${cx - 38},${cy - 6} L${cx - 2},${cy + 2}" stroke="currentColor" stroke-width="1"/>` +
-      `<path d="M${cx - 2},${cy} L${cx + 36},${cy - 6} L${cx + 36},${cy + 16} Z" fill="none" stroke="currentColor" stroke-width="1.4"/>` +
-      `<path d="M${cx + 8},${cy - 1} V${cy + 11} M${cx + 18},${cy - 3} V${cy + 13} M${cx + 28},${cy - 5} V${cy + 15} M${cx},${cy + 5} H${cx + 36}" stroke="currentColor" stroke-width=".7"/>`;
-  }
-  // restringido por su calado: casco hondo en un canal estrecho
-  return `<path d="M${cx - 60},${cy - 8} H${cx + 60}" style="stroke:var(--l-v)" stroke-width="1.4"/>` +
-    `<path d="M${cx - 60},${cy + 2} Q${cx - 34},${cy + 2} ${cx - 26},${cy + 18} H${cx + 26} Q${cx + 34},${cy + 2} ${cx + 60},${cy + 2} V${cy + 22} H${cx - 60}Z" style="fill:var(--land);stroke:var(--land-stroke)"/>` +
-    `<path d="M${cx - 22},${cy - 14} H${cx + 22} L${cx + 14},${cy + 15} H${cx - 14}Z" ${casco}/>`;
-}
-
-function ripaCategorias(hl) {
-  const W = 320;
-  const H = 288;
-  const out = open(W, H, 'Pesca, sin gobierno, maniobra restringida y calado', 'rc');
-  out.push(title(160, '¿Por qué no puede apartarse?'));
-  const tarjetas = [
-    ['sin-gobierno', 'Sin gobierno', 'por avería', ['circunstancia excepcional:', 'no puede maniobrar']],
-    ['maniobra-restringida', 'Maniobra restringida', 'por su trabajo', ['boyas, cables, dragados,', 'aprovisionar, remolques…']],
-    ['pesca', 'Dedicado a la pesca', 'por sus artes', ['redes, líneas, arrastre;', 'curricán o sin arte: no']],
-    ['calado', 'Restringido por calado', 'por su calado', ['de propulsión mecánica;', 'poco fondo y poca anchura']],
-  ];
-  tarjetas.forEach(([k, nom, porque, notas], i) => {
-    const x0 = i % 2 ? 164 : 8;
-    const y0 = 32 + Math.floor(i / 2) * 128;
-    const on = hl.has(k);
-    out.push(marco(x0, y0, 148, 122, on), iconoCategoria(k, x0 + 74, y0 + 30));
-    out.push(pt(on, x0 + 74, y0 + 68, nom, 'middle', true), bold(x0 + 74, y0 + 83, porque, on ? 'r' : 'v', 'middle'));
-    notas.forEach((n, j) => out.push(lbl(x0 + 74, y0 + 99 + j * 12, n, null, 'middle')));
-  });
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Sin gobierno: no puede maniobrar por una circunstancia excepcional (una avería). Maniobra restringida: no puede apartarse por la naturaleza de su trabajo. Dedicado a la pesca: con artes que le restringen la maniobra (no con curricán). Restringido por su calado: de propulsión mecánica, por su calado frente al agua navegable.' };
-}
-
-export function ripaDefinicionesIllustration(spec = {}) {
-  const hl = sel(spec.resaltar);
-  return spec.vista === 'categorias' ? ripaCategorias(hl) : ripaVelaMotor(hl);
-}
 
 // ---------------------------------------------------------------------------
 // Varada y abordaje. spec: { tipo:'varada-abordaje', vista:'varada'|'abordaje', resaltar? }
@@ -539,13 +381,13 @@ export const LAMINAS = {
     ejemplo: { tipo: 'fondeo-gira', vista: 'maniobra' },
   },
   'capear-correr': {
-    fn: capearCorrerIllustration,
-    params: { vista: ['rumbos', 'costa'], resaltar: ['capear', 'correr', 'traves', 'barlovento', 'sotavento'] },
+    fn: capearCorrerC,
+    params: { vista: ['rumbos', 'costa'], resaltar: PARTES_CAPEAR },
     ejemplo: { tipo: 'capear-correr', vista: 'rumbos' },
   },
   'ripa-definiciones': {
-    fn: ripaDefinicionesIllustration,
-    params: { vista: ['vela-motor', 'categorias'], resaltar: ['vela', 'motor', 'sin-gobierno', 'maniobra-restringida', 'pesca', 'calado'] },
+    fn: ripaDefinicionesC,
+    params: { vista: ['vela-motor', 'categorias'], resaltar: PARTES_RIPA },
     ejemplo: { tipo: 'ripa-definiciones', vista: 'vela-motor' },
   },
   'varada-abordaje': {

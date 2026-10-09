@@ -38,7 +38,8 @@ dibujos era «Tarjeta: ¿qué es?».
 5. **Anversos** (`src/illustrations/tarjetas-c.js`, `anversoTarjeta(mazo, carta)` → `{ svg | texto, alt, estiloC }`):
    - balizamiento: la marca grande en el agua (`marcaC`) con su luz, el ritmo en mono y el cronograma (`cronoC`);
    - banderas y sonidos: las láminas nuevas sin rótulos (ver 6);
-   - Beaufort y Douglas: «Fuerza 6» en serifa grande y una regla graduada con el grado en magenta;
+   - Beaufort y Douglas: «Fuerza 6» en serifa grande y una regla graduada con el grado en magenta (la regla se
+     repite en el reverso);
    - fuego: «Clase B»; GNSS: la sigla en mono;
    - buques y señales de peligro: su lámina antigua sin rótulos dentro del marco de la tarjeta.
    Texto alternativo de cada anverso: cómo es, nunca qué es (la marca y su luz; las luces y marcas del buque, de
@@ -51,12 +52,19 @@ dibujos era «Tarjeta: ¿qué es?».
 7. **Correcciones de contenido**: la bandera N decía «con la C encima» (NC es N encima de C); la tarjeta de la ETA
    enseñaba la respuesta en el anverso (ahora pregunta «ETA y TTG»); la bandera ya no enseña su significado.
 
+También: `docs/ESTILO-LAMINAS.md` (dónde está cada pieza y apéndice de verificación de banderas y señales acústicas).
+
 Tests nuevos: `tests/tarjetas-c.test.js` (cada mazo con anverso, texto alternativo y reverso; el anverso no enseña la
 respuesta; colores `--lc-*` en claro y oscuro y texto ≥ 10,5 px en los dibujos nuevos; CSS sin colores fijos y volteo
 solo sin «reducir movimiento»; accesibilidad; mismos mazos, claves e intervalos 1/3/7) y las 26 láminas nuevas en
 `PILOTO` de `tests/laminas-estilo.test.js`.
 
-Capturas: scratchpad `tar-capturas/` (`antes-*`, `d*-*`, `despues-*`).
+Capturas: scratchpad `tar-capturas/` (`antes-*`, `d*-*`, `despues-*`; láminas `*-lamina-*`; volteo animado
+`volteo-medio.png` y `volteo-fin.png`). Scripts: `tar-captura.mjs`, `tar-laminas.mjs`, `tar-volteo.mjs`. Sin desborde a
+360, 390 ni 990 px, en claro ni en oscuro; el único error de consola es el 404 de `favicon.ico` del servidor de
+desarrollo (también antes). Teclado comprobado: Tab hasta «Ver la respuesta», Intro voltea y el foco pasa a la
+respuesta (el anverso queda `inert`), Tab llega a «No la sabía» / «La sabía» y, al responder, el aviso se actualiza y el
+foco va al anverso de la siguiente.
 
 ## Pendiente (fuera de esta tarea)
 

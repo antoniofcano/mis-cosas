@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '7facb2becbdb';
+self.VERSION = '40aec36fbbbb';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -30,6 +30,7 @@ self.APP = [
  "src/conceptos/index.js",
  "src/course/apendice.js",
  "src/course/calendario.js",
+ "src/course/carta-pasos.js",
  "src/course/chuletario.js",
  "src/course/config-profe.js",
  "src/course/cronometro.js",
@@ -129,6 +130,7 @@ self.APP = [
  "src/illustrations/balizamiento.js",
  "src/illustrations/buoys.js",
  "src/illustrations/carta-c.js",
+ "src/illustrations/carta-pasos-c.js",
  "src/illustrations/catalogo-laminas.js",
  "src/illustrations/estilo-c.js",
  "src/illustrations/index.js",
@@ -245,6 +247,7 @@ self.APP = [
  "src/ui/mapa-trampa.js",
  "src/ui/modo-examen.js",
  "src/ui/movimiento.js",
+ "src/ui/pasos.js",
  "src/ui/plan-estudio.js",
  "src/ui/profe-steps.js",
  "src/ui/pwa.js",
@@ -257,6 +260,7 @@ self.APP = [
  "src/ui/views/biblioteca.js",
  "src/ui/views/bienvenida.js",
  "src/ui/views/calculadora.js",
+ "src/ui/views/carta-pasos.js",
  "src/ui/views/chuleta.js",
  "src/ui/views/cuentas.js",
  "src/ui/views/curso.js",

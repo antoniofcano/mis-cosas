@@ -301,6 +301,15 @@ test('dibujos: el extracto no cambia de escala entre pasos y no usa la carta esc
   }
 });
 
+test('enlaces: ni el examen ni su revisión enlazan los resueltos (solo la práctica, la ficha y los ejercicios)', () => {
+  const theory = readFileSync(new URL('../src/ui/views/theory.js', import.meta.url), 'utf8');
+  // la revisión del examen pinta el panel del profe sin el enlace, y el enlace se calla con un examen en marcha
+  assert.match(theory, /profePanel\(q, explanationFor\(q, explicaciones\), d\.respuesta, \{ efectos: false, pasos: false \}\)/);
+  assert.match(theory, /if \(!tipo \|\| modoExamen\(\)\) return null;/);
+  const app = readFileSync(new URL('../src/ui/app.js', import.meta.url), 'utf8');
+  assert.match(app, /'carta-pasos': cartaPasosView/);
+});
+
 test('posición por dos distancias (motor): los dos cortes están a las distancias pedidas', () => {
   const A = P('punta-almina');
   const B = P('punta-europa');

@@ -57,6 +57,17 @@ contenido vive ahora en la carta y en la fila de estado.
 
 ## Accesibilidad y reglas
 
+Hoy y la Travesía llevan la piel de las láminas en estilo C (docs/ESTILO-LAMINAS.md): la carta de la derrota es una
+lámina de carta (`src/illustrations/derrota-c.js`: papel, tierra con punteado y veriles, líneas de agua, marco graduado;
+en la grande, rosa y cartela «DERROTA · PER · 6 faros»), la derrota hecha en magenta continua, la que está en camino a
+trazos y la que falta punteada; los faros, encendido con doble filete magenta y la lámpara con luz, en camino a trazos,
+apagado con filete gris (se distinguen por la forma, no solo por el color). Si otro faro queda justo debajo, el nombre va
+al lado (`ladoNombre`). Las tarjetas son cartelas de papel con doble filete, los rótulos van en versalitas magenta, los
+títulos en la serifa de la app (Bitter), las cifras en monoespaciada y los botones son de tinta. Dentro de `.entrada` y
+`.travesia-pantalla` los colores de la app se reasignan a los `--lc-*` (bloque «Hoy y la Travesía en estilo C» al final
+de `styles/laminas.css`), así que los avisos, el podcast, la copia y la instalación siguen la misma paleta en claro y en
+oscuro. Tests: `tests/hoy-travesia-c.test.js`.
+
 Botones y enlaces reales de 44 px o más; la carta es un único enlace con texto alternativo útil (los faros, dentro, no son
 interactivos); orden de tabulación: cabecera, carta, «Ver mi derrota», fase, Seguir, pasos, estado, secundario. Claro y
 oscuro con los tokens de siempre. Sin animaciones nuevas.

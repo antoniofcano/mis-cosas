@@ -6,7 +6,8 @@ banco activo (eje y titulación) tiene sus preguntas etiquetadas por concepto (d
 aparece nada y la app es la de siempre.
 
 Código: `src/course/travesia.js` (todo el cálculo, puro y con la hora inyectada), `src/ui/travesia.js` (cálculo con el
-almacén), `src/ui/views/travesia.js` (pantallas, la carta `cartaDerrota` que también usa Hoy y el parte). Tests: `tests/travesia.test.js`.
+almacén), `src/ui/views/travesia.js` (pantallas, la carta `cartaDerrota` que también usa Hoy y el parte). Tests: `tests/travesia.test.js`. La carta se
+dibuja en estilo C con `src/illustrations/derrota-c.js` (ver docs/ENTRADA.md, «Accesibilidad y reglas»).
 
 ## Lo que NO cambia
 

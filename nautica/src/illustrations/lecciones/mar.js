@@ -3,6 +3,7 @@
 // Los colores de superficies y acentos van con variables CSS de styles/app.css para leerse en claro y oscuro.
 
 import { open, title, pol, fx } from '../kit.js';
+import { nubesC, olaC, GENEROS_C, PARTES_OLA_C, PISOS_NUBES } from '../py-cola-meteo-c.js';
 
 // Acentos que se adaptan al tema (texto, trazos y puntas de flecha).
 const K = { v: 'var(--l-v)', r: 'var(--l-r)', a: 'var(--l-a)', m: 'var(--l-m)', p: 'var(--l-p)', g: 'var(--l-g)', t: 'currentColor' };
@@ -129,222 +130,11 @@ export function vientosRegionalesIllustration(spec) {
 }
 
 // ===========================================================================
-// 2. Nubes (py-2-6). spec: { tipo:'nubes', resaltar?: género, piso ('altas'|'medias'|'bajas'|'vertical') o lista }
+// 2 y 3. Nubes (py-2-6) y olas (py-2-8): en estilo C, en src/illustrations/py-cola-meteo-c.js.
 
-export const GENEROS = {
-  cirros: { nombre: 'cirros', ab: 'Ci', piso: 'altas' },
-  cirrocumulos: { nombre: 'cirrocúmulos', ab: 'Cc', piso: 'altas' },
-  cirrostratos: { nombre: 'cirrostratos', ab: 'Cs', piso: 'altas' },
-  altocumulos: { nombre: 'altocúmulos', ab: 'Ac', piso: 'medias' },
-  altostratos: { nombre: 'altostratos', ab: 'As', piso: 'medias' },
-  estratos: { nombre: 'estratos', ab: 'St', piso: 'bajas' },
-  estratocumulos: { nombre: 'estratocúmulos', ab: 'Sc', piso: 'bajas' },
-  nimbostratos: { nombre: 'nimbostratos', ab: 'Ns', piso: 'bajas' },
-  cumulos: { nombre: 'cúmulos', ab: 'Cu', piso: 'vertical' },
-  cumulonimbos: { nombre: 'cumulonimbos', ab: 'Cb', piso: 'vertical' },
-};
-const NUBE = 'style="fill:var(--l-nube);stroke:currentColor;stroke-opacity:.45"';
-const NUBE_GRIS = 'style="fill:var(--l-niebla);stroke:currentColor;stroke-opacity:.45"';
-const NUBE_OSCURA = 'style="fill:var(--l-g);stroke:currentColor;stroke-opacity:.5"';
-const puff = (pts, st = NUBE) => pts.map(([x, y, r]) => `<circle cx="${fx(x)}" cy="${fx(y)}" r="${r}" ${st}/>`).join('');
-
-const g = (s, x, y) => s.map(([dx, dy, r]) => [x + dx, y + dy, r]);
-
-/** Dibujo esquemático de cada género centrado en (x, y). */
-function glifo(k, x, y) {
-  switch (k) {
-    case 'cirros':
-      return [[-22, 6, 10, -14, 30, -10], [-18, -2, 12, -16, 26, -16], [-12, 10, 14, -6, 28, 0]].map(([a, b, c, d, e, f]) => `<path d="M${x + a},${y + b} q${c},${d} ${e},${f} q4,-1 6,3" fill="none" stroke="currentColor" stroke-opacity=".7" stroke-width="1.4"/>`).join('');
-    case 'cirrocumulos': {
-      let s = '';
-      for (let r = 0; r < 3; r++) for (let c = 0; c < 8; c++) s += `<circle cx="${fx(x - 21 + c * 6 + (r % 2) * 3)}" cy="${fx(y - 6 + r * 5)}" r="2" ${NUBE}/>`;
-      return s;
-    }
-    case 'cirrostratos':
-      return `<ellipse cx="${x}" cy="${y}" rx="30" ry="6" ${NUBE} fill-opacity=".75"/><circle cx="${x + 12}" cy="${y}" r="3.5" style="fill:var(--l-faro)"/><circle cx="${x + 12}" cy="${y}" r="10" fill="none" style="stroke:var(--l-faro)" stroke-width="1.2" stroke-dasharray="3 2"/>`;
-    case 'altocumulos':
-      return puff(g([[-20, -3, 5], [-9, -4, 6], [3, -3, 5], [15, -4, 6], [-14, 7, 5], [-2, 6, 6], [10, 7, 5], [21, 6, 4]], x, y));
-    case 'altostratos':
-      return `<circle cx="${x + 8}" cy="${y - 1}" r="5" style="fill:var(--l-faro)" opacity=".5"/><rect x="${x - 30}" y="${y - 7}" width="60" height="14" rx="7" ${NUBE_GRIS} opacity=".85"/>`;
-    case 'estratos':
-      return `<rect x="${x - 30}" y="${y - 4}" width="60" height="9" rx="4" ${NUBE_GRIS}/>`;
-    case 'estratocumulos':
-      return puff(g([[-23, 0, 7], [-10, -1, 8], [5, 0, 7], [19, -1, 8]], x, y), NUBE_GRIS);
-    case 'nimbostratos':
-      return `<rect x="${x - 30}" y="${y - 9}" width="60" height="13" rx="5" ${NUBE_OSCURA}/>${[-24, -14, -4, 6, 16, 26].map((d) => `<line x1="${x + d}" y1="${y + 7}" x2="${x + d - 3}" y2="${y + 15}" style="stroke:var(--l-v)" stroke-width="1.3"/>`).join('')}`;
-    default:
-      return '';
-  }
-}
-
-export function nubesIllustration(spec) {
-  const hl = new Set(lista(spec.resaltar));
-  for (const k of hl) if (!GENEROS[k] && !['altas', 'medias', 'bajas', 'vertical'].includes(k)) return null;
-  const on = (k) => !hl.size || hl.has(k) || hl.has(GENEROS[k].piso);
-  const fuerte = (k) => hl.size && (hl.has(k) || hl.has(GENEROS[k].piso));
-  const W = 320;
-  const H = 300;
-  const id = 'nub';
-  const out = start(W, H, 'Los diez géneros de nubes por pisos', id);
-  out.push(title(160, 'Las nubes por pisos (altura de la base)'));
-  const top = 34;
-  const bh = 74;
-  const pisos = [['altas', 'ALTAS', 'más de 6000 m · hielo'], ['medias', 'MEDIAS', '2000 a 6000 m'], ['bajas', 'BAJAS', 'menos de 2000 m']];
-  const x0 = 8;
-  const xc = 238;
-  out.push(`<rect x="${x0}" y="${top}" width="${W - 6 - x0}" height="${3 * bh}" rx="4" style="fill:var(--l-cielo)" opacity=".6"/>`);
-  out.push(`<rect x="${x0}" y="${top + 3 * bh}" width="${W - 6 - x0}" height="8" style="fill:var(--l-mar)"/>`);
-  pisos.forEach(([p, nom, sub], i) => {
-    const y = top + i * bh;
-    const pon = !hl.size || [...hl].some((k) => k === p || GENEROS[k]?.piso === p);
-    const f = hl.has(p);
-    out.push(tx(x0 + 5, y + 14, nom, { b: true, s: 11, c: f ? 'r' : null, extra: pon ? '' : 'opacity=".45"' }));
-    out.push(tx(x0 + 5 + nom.length * 8.4, y + 14, sub, { s: 10, b: f, extra: pon ? '' : 'opacity=".45"' }));
-    if (i) out.push(`<line x1="${x0}" y1="${y}" x2="${xc}" y2="${y}" stroke="currentColor" stroke-opacity=".45" stroke-dasharray="4 3"/>`);
-  });
-  // Géneros en sus pisos: [clave, x del centro, piso (fila)]
-  const pos = [['cirros', 32, 0], ['cirrocumulos', 102, 0], ['cirrostratos', 186, 0], ['altocumulos', 70, 1], ['altostratos', 170, 1], ['estratos', 34, 2], ['estratocumulos', 105, 2], ['nimbostratos', 188, 2]];
-  for (const [k, x, fila] of pos) {
-    const y = top + fila * bh;
-    const G = GENEROS[k];
-    const o = on(k) ? 1 : 0.3;
-    const cfill = fuerte(k) ? 'r' : null;
-    const bw = Math.max(68, G.nombre.length * 6.2 + 8);
-    out.push(`<g opacity="${o}">${glifo(k, x, y + (k === 'cirros' ? 37 : 33))}${fuerte(k) ? `<rect x="${fx(x - bw / 2)}" y="${y + 19}" width="${fx(bw)}" height="54" rx="6" fill="none" style="stroke:var(--l-r)" stroke-width="2"/>` : ''}${tx(x, y + 58, G.nombre, { a: 'middle', b: fuerte(k), c: cfill, s: 10 })}${tx(x, y + 70, G.ab, { a: 'middle', b: true, c: cfill, s: 10 })}</g>`);
-  }
-  // Columna de desarrollo vertical: cúmulo pequeño y cumulonimbo de base baja a cima muy alta.
-  out.push(`<line x1="${xc}" y1="${top}" x2="${xc}" y2="${top + 3 * bh}" stroke="currentColor" stroke-opacity=".45"/>`);
-  const vOn = !hl.size || hl.has('vertical') || hl.has('cumulos') || hl.has('cumulonimbos');
-  out.push(tx(277, top + 13, 'DESARROLLO', { a: 'middle', b: true, s: 10, c: hl.has('vertical') ? 'r' : null, extra: vOn ? '' : 'opacity=".45"' }), tx(277, top + 25, 'VERTICAL', { a: 'middle', b: true, s: 10, c: hl.has('vertical') ? 'r' : null, extra: vOn ? '' : 'opacity=".45"' }));
-  const yb = top + 3 * bh - 14;
-  const cb = on('cumulonimbos');
-  const cbx = 296;
-  out.push(`<g opacity="${cb ? 1 : 0.3}"><path d="M${cbx - 10},${yb} L${cbx - 10},${top + 92} Q${cbx - 9},${top + 70} ${cbx - 16},${top + 62} L${cbx + 14},${top + 60} Q${cbx + 9},${top + 70} ${cbx + 10},${top + 92} L${cbx + 10},${yb}Z" ${NUBE_GRIS} stroke-width="${fuerte('cumulonimbos') ? 2.4 : 1}"/>`);
-  out.push(puff(g([[-6, -2, 5], [0, -6, 6], [6, -1, 5], [-6, -40, 4], [5, -44, 4], [-5, -90, 4], [5, -95, 4]], cbx, yb - 10), NUBE_GRIS));
-  out.push(`<path d="M${cbx - 16},${top + 60} L${cbx - 26},${top + 56} L${cbx + 18},${top + 54} L${cbx + 14},${top + 60}Z" ${NUBE_GRIS}/>`);
-  out.push(`<path d="M${cbx + 2},${yb + 2} l-4,7 l4,0 l-4,7" fill="none" style="stroke:var(--l-a)" stroke-width="1.6"/>`);
-  out.push(tx(277, top + 40, 'cumulonimbos', { a: 'middle', b: fuerte('cumulonimbos'), c: fuerte('cumulonimbos') ? 'r' : null, s: 10 }), tx(277, top + 51, 'Cb · yunque', { a: 'middle', b: true, c: fuerte('cumulonimbos') ? 'r' : null, s: 10 }), '</g>');
-  const cu = on('cumulos');
-  const cux = 260;
-  out.push(`<g opacity="${cu ? 1 : 0.3}"><rect x="${cux - 13}" y="${yb - 4}" width="26" height="8" rx="2" ${NUBE}/>${puff(g([[-8, -4, 6], [0, -10, 8], [8, -5, 6]], cux, yb), NUBE)}<rect x="${cux - 13}" y="${yb - 3}" width="26" height="6" style="fill:var(--l-nube)"/><line x1="${cux - 13}" y1="${yb + 4}" x2="${cux + 13}" y2="${yb + 4}" stroke="currentColor" stroke-opacity=".45"/>`);
-  out.push(tx(cux, yb - 36, 'cúmulos', { a: 'middle', b: fuerte('cumulos'), c: fuerte('cumulos') ? 'r' : null, s: 10 }), tx(cux, yb - 24, 'Cu', { a: 'middle', b: true, c: fuerte('cumulos') ? 'r' : null, s: 10 }), '</g>');
-  out.push(tx(14, H - 26, 'Alturas aproximadas del examen (latitudes medias).', { s: 10 }), tx(14, H - 12, '«Cirro-» = alta · «alto-» = media · sin prefijo = baja.', { s: 10, b: true }));
-  const sel = [...hl].filter((k) => GENEROS[k]);
-  const caption = sel.length === 1
-    ? `${GENEROS[sel[0]].nombre[0].toUpperCase()}${GENEROS[sel[0]].nombre.slice(1)} (${GENEROS[sel[0]].ab}): ${{ altas: 'nube alta, por encima de unos 6000 m', medias: 'nube media, entre unos 2000 y 6000 m', bajas: 'nube baja, por debajo de unos 2000 m', vertical: 'nube de desarrollo vertical, de base baja y cima muy alta' }[GENEROS[sel[0]].piso]}.`
-    : 'Diez géneros en cuatro grupos: altas (más de unos 6000 m) Ci, Cc y Cs; medias (2000–6000 m) Ac y As; bajas (menos de 2000 m) St, Sc y Ns; y de desarrollo vertical Cu y Cb. Son las cifras del examen; la OMM usa tres pisos y otros márgenes.';
-  return { svg: close(out), caption };
-}
-
-// ===========================================================================
-// 3. Olas (py-2-8). spec: { tipo:'ola', vista:'partes'|'mar-de-fondo', resaltar?: parte o lista (vista partes) }
-
-export const PARTES_OLA = ['cresta', 'seno', 'longitud', 'altura', 'amplitud', 'periodo'];
-
-/** Trazo de ola y = y0 − A·cos(2π(x − xc)/L) entre xa y xb. */
-const ondaPts = (xa, xb, y0, A, L, xc, f = Math.cos) => {
-  const p = [];
-  for (let x = xa; x <= xb + 0.01; x += 2) p.push([x, y0 - A * f((2 * Math.PI * (x - xc)) / L)]);
-  return p;
-};
+export const GENEROS = GENEROS_C;
+export const PARTES_OLA = PARTES_OLA_C;
 const linea = (p) => p.map(([x, y], i) => `${i ? 'L' : 'M'}${fx(x)},${fx(y)}`).join('');
-
-function olaPartes(hl) {
-  const W = 320;
-  const H = 250;
-  const id = 'olp';
-  const out = start(W, H, 'Partes de una ola', id);
-  out.push(title(160, 'Partes de una ola'));
-  const y0 = 128;
-  const A = 32;
-  const L = 150;
-  const xc = 82;
-  const pts = ondaPts(10, 310, y0, A, L, xc);
-  const on = (k) => !hl.size || hl.has(k);
-  const col = (k) => (hl.has(k) ? 'r' : null);
-  const kk = (k, d) => (hl.has(k) ? 'r' : d);
-  const op = (k) => (on(k) ? 1 : 0.3);
-  out.push(`<path d="${linea(pts)}L310,200L10,200Z" style="fill:var(--l-mar)"/>`, `<path d="${linea(pts)}" fill="none" style="stroke:var(--l-v)" stroke-width="2.2"/>`);
-  out.push(`<line x1="10" y1="${y0}" x2="310" y2="${y0}" stroke="currentColor" stroke-opacity=".55" stroke-dasharray="5 4"/>`);
-  const yc = y0 - A;
-  const ys = y0 + A;
-  const c2 = xc + L;
-  const sx = xc + L / 2;
-  // Longitud de onda: de cresta a cresta.
-  out.push(`<g opacity="${op('longitud')}"><line x1="${xc}" y1="${yc - 4}" x2="${xc}" y2="${yc - 24}" stroke="currentColor" stroke-opacity=".5"/><line x1="${c2}" y1="${yc - 4}" x2="${c2}" y2="${yc - 24}" stroke="currentColor" stroke-opacity=".5"/>${flecha(xc + 2, yc - 18, c2 - 2, yc - 18, kk('longitud', 'm'), id, hl.has('longitud') ? 3 : 1.8, { doble: true })}${tx(sx, yc - 24, 'longitud de onda (m): cresta a cresta', { a: 'middle', b: true, c: kk('longitud', 'm') })}</g>`);
-  // Cresta y seno.
-  out.push(`<g opacity="${op('cresta')}"><circle cx="${xc}" cy="${yc}" r="${hl.has('cresta') ? 5 : 3.5}" style="fill:${K[kk('cresta', 't')]}"/>${tx(xc - 10, yc - 6, 'cresta', { a: 'end', b: true, c: col('cresta') })}</g>`);
-  out.push(`<g opacity="${op('seno')}"><circle cx="${sx}" cy="${ys}" r="${hl.has('seno') ? 5 : 3.5}" style="fill:${K[kk('seno', 't')]}"/>${tx(sx, ys + 16, 'seno (valle)', { a: 'middle', b: true, c: col('seno') })}</g>`);
-  // Altura: del seno a la cresta (a la derecha).
-  const xa = 268;
-  out.push(`<g opacity="${op('altura')}"><line x1="${c2}" y1="${yc}" x2="${xa + 8}" y2="${yc}" stroke="currentColor" stroke-opacity=".5" stroke-dasharray="2 2"/><line x1="${sx}" y1="${ys}" x2="${xa + 8}" y2="${ys}" stroke="currentColor" stroke-opacity=".5" stroke-dasharray="2 2"/>${flecha(xa, ys - 2, xa, yc + 2, kk('altura', 'a'), id, hl.has('altura') ? 3 : 1.8, { doble: true })}${tx(xa + 6, y0 - 6, 'altura', { b: true, c: kk('altura', 'a') })}</g>`);
-  // Amplitud: del nivel en calma a la cresta (la mitad de la altura).
-  out.push(`<g opacity="${op('amplitud')}">${flecha(xc, y0 - 1, xc, yc + 5, kk('amplitud', 'p'), id, hl.has('amplitud') ? 3 : 1.8, { doble: true })}${tx(xc, y0 + 14, 'amplitud', { a: 'middle', b: true, c: kk('amplitud', 'p') })}</g>`);
-  // Periodo: una boya fija por la que pasan las crestas.
-  const bx = 34;
-  const by = y0 - A * Math.cos((2 * Math.PI * (bx - xc)) / L);
-  out.push(`<g opacity="${op('periodo')}"><line x1="${bx}" y1="${by - 16}" x2="${bx}" y2="${by + 2}" stroke="currentColor" stroke-width="1.5"/><path d="M${bx - 6},${by + 2} L${bx + 6},${by + 2} L${bx + 4},${by - 6} L${bx - 4},${by - 6}Z" style="fill:var(--l-a)"/><circle cx="${bx}" cy="${by - 17}" r="2.5" style="fill:var(--l-a)"/>${tx(bx, by + 30, 'boya', { a: 'middle', s: 10 })}</g>`);
-  const yt = 216;
-  out.push(tx(14, yt, 'Altura = de seno a cresta = 2 × amplitud.', { b: true, c: hl.has('altura') || hl.has('amplitud') ? 'r' : null }));
-  out.push(`<g opacity="${op('periodo')}">${tx(14, yt + 14, 'Periodo (s): tiempo entre dos crestas que pasan', { b: hl.has('periodo'), c: col('periodo') })}${tx(14, yt + 27, 'por un punto fijo, como la boya.', { b: hl.has('periodo'), c: col('periodo') })}</g>`);
-  out.push(`<line x1="214" y1="${yt + 23}" x2="234" y2="${yt + 23}" stroke="currentColor" stroke-opacity=".55" stroke-dasharray="5 4"/>`, tx(238, yt + 27, 'mar en calma', { s: 10 }));
-  return close(out);
-}
-
-function olaMarDeFondo() {
-  const W = 320;
-  const H = 316;
-  const id = 'olf';
-  const out = start(W, H, 'Mar de viento y mar de fondo', id);
-  out.push(title(160, 'Mar de viento y mar de fondo'));
-  // Panel 1: mar de viento, olas cortas y agudas con borreguillos, viento encima en su misma dirección.
-  out.push(tx(14, 46, 'MAR DE VIENTO', { b: true, s: 11 }), tx(108, 46, 'la levanta el viento que sopla ahí', { s: 10 }));
-  out.push(flecha(40, 60, 150, 60, 'v', id, 2.4), flecha(170, 60, 280, 60, 'v', id, 2.4), tx(160, 74, 'viento reinante', { a: 'middle', c: 'v', s: 10 }));
-  const y1 = 100;
-  let d = `M14,${y1}`;
-  const pk = [];
-  for (let x = 14, i = 0; x < 300; x += 22, i++) {
-    const h = [12, 18, 9, 16, 20, 11, 15, 8, 19, 13, 17, 10, 14][i % 13];
-    d += ` Q${x + 13},${y1 - h * 0.6} ${x + 16},${y1 - h} L${x + 22},${y1}`;
-    pk.push([x + 16, y1 - h]);
-  }
-  out.push(`<path d="${d} L306,${y1 + 14} L14,${y1 + 14}Z" style="fill:var(--l-mar)"/><path d="${d}" fill="none" style="stroke:var(--l-v)" stroke-width="1.8" stroke-linejoin="miter"/>`);
-  for (const [x, y] of pk.filter((_, i) => i % 2 === 0)) out.push(`<path d="M${x - 1},${y + 1} l4,3 l-3,1 l4,3" fill="none" stroke="currentColor" stroke-width="1.2"/>`);
-  out.push(tx(14, 128, 'crestas agudas y rotas (borreguillos) · longitud corta', { s: 10 }), tx(14, 141, 'altura irregular · misma dirección que el viento', { s: 10 }));
-  out.push(`<line x1="14" y1="152" x2="306" y2="152" stroke="currentColor" stroke-opacity=".25"/>`);
-  // Panel 2: mar de fondo, olas largas, redondeadas y regulares; el viento local va por otro lado.
-  out.push(tx(14, 170, 'MAR DE FONDO', { b: true, s: 11 }), tx(106, 170, 'viene de un temporal lejano', { s: 10 }));
-  out.push(flecha(270, 198, 246, 180, 'v', id, 1.8), tx(242, 184, 'viento local', { a: 'end', c: 'v', s: 10 }));
-  const y2 = 214;
-  const p2 = ondaPts(14, 306, y2, 9, 140, 60);
-  out.push(`<path d="${linea(p2)}L306,${y2 + 20}L14,${y2 + 20}Z" style="fill:var(--l-mar)"/><path d="${linea(p2)}" fill="none" style="stroke:var(--l-v)" stroke-width="2"/>`);
-  out.push(flecha(30, 190, 110, 190, 't', id, 1.8), tx(30, 184, 'avance de las olas', { s: 10 }));
-  out.push(tx(14, 248, 'crestas redondeadas que no rompen · longitud', { s: 10 }), tx(14, 261, 'muy larga (≫ altura) · regulares · su dirección', { s: 10 }), tx(14, 274, 'no tiene por qué ser la del viento local', { s: 10 }));
-  out.push(tx(14, 294, 'La altura crece con la intensidad del viento,', { b: true, s: 10 }), tx(14, 307, 'su persistencia (tiempo) y el fetch.', { b: true, s: 10 }));
-  return close(out);
-}
-
-export function olaIllustration(spec) {
-  const vista = spec.vista ?? 'partes';
-  if (vista === 'partes') {
-    const hl = new Set(lista(spec.resaltar));
-    for (const k of hl) if (!PARTES_OLA.includes(k)) return null;
-    const CAP = {
-      cresta: 'La cresta es la parte más alta de la ola.',
-      seno: 'El seno (o valle) es la parte más baja de la ola.',
-      longitud: 'Longitud de onda: distancia horizontal entre dos crestas (o dos senos) consecutivos, en metros.',
-      altura: 'Altura: distancia vertical del fondo del seno a lo alto de la cresta; vale el doble de la amplitud.',
-      amplitud: 'Amplitud: del nivel del mar en calma a la cresta, la mitad de la altura.',
-      periodo: 'Periodo: tiempo, en segundos, entre el paso de dos crestas consecutivas por un mismo punto fijo.',
-    };
-    const caption = hl.size === 1 ? CAP[[...hl][0]] : 'Longitud de onda: distancia entre dos crestas. Periodo: tiempo entre dos crestas por un punto fijo. Altura: del seno a la cresta, el doble de la amplitud.';
-    return { svg: olaPartes(hl), caption };
-  }
-  if (vista === 'mar-de-fondo') {
-    return { svg: olaMarDeFondo(), caption: 'La mar de viento tiene crestas agudas y rotas, es corta e irregular y va con el viento. La mar de fondo llega de un temporal lejano: olas largas, redondeadas y regulares, en una dirección que puede no ser la del viento local.' };
-  }
-  return null;
-}
 
 // ===========================================================================
 // 4. Corrientes en el Estrecho (py-2-9). spec: { tipo:'corriente-estrecho', vista:'corte'|'tipos', resaltar? (tipos): 'densidad'|'arrastre'|'gradiente'|'marea' }
@@ -562,12 +352,12 @@ export const LAMINAS = {
     ejemplo: { tipo: 'vientos-regionales', vista: 'rosa' },
   },
   nubes: {
-    fn: nubesIllustration,
-    params: { resaltar: [...Object.keys(GENEROS), 'altas', 'medias', 'bajas', 'vertical'] },
+    fn: nubesC,
+    params: { resaltar: [...Object.keys(GENEROS), ...PISOS_NUBES] },
     ejemplo: { tipo: 'nubes' },
   },
   ola: {
-    fn: olaIllustration,
+    fn: olaC,
     params: { vista: ['partes', 'mar-de-fondo'], resaltar: PARTES_OLA },
     ejemplo: { tipo: 'ola', vista: 'partes' },
   },

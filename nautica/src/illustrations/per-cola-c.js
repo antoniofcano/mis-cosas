@@ -8,10 +8,11 @@
 //   rolar:             { vista: 'vocabulario'|'instrumentos', resaltar? }                                  (per-9-3)
 //   cabo:              { vista: 'partes'|'cornamusa'|'por-seno'|'encapillar', resaltar? }                 (per-7-1)
 //   remolque:          { vista: 'largo'|'abarloado'|'naufrago' }                                           (per-3-8)
-//   hipotermia:        { postura: 'help'|'saltar'|'grupo' }                                                (per-3-8, 8-9)
+//   hipotermia:        { postura: 'help'|'saltar'|'grupo'|'atender' } ('atender', en sanidad-c.js)          (per-3-8, 8-9)
 
 import { T, TXT, lienzo, rotulo, etiqueta, cota, flecha, referencia, paso, barco, tierra, arcoD, pol, f1 } from './estilo-c.js';
 import { W, serif, cap, linea, filete, panelNotas, marHasta, tacha, bien, punto, pts, lista } from './kit-lecciones-c.js';
+import { hipotermiaAtenderC } from './sanidad-c.js';
 
 /** Resaltado permisivo: las partes que no son de la vista no cambian nada. */
 function marca(spec, validas) {
@@ -789,6 +790,7 @@ function posturaGrupo() {
 
 export function hipotermiaC(spec = {}) {
   const postura = spec.postura ?? 'help';
+  if (postura === 'atender') return hipotermiaAtenderC();
   if (postura === 'grupo') return { svg: posturaGrupo(), caption: 'Si sois varios en el agua, agrupaos en piña, abrazados y con los más débiles en el centro: conserváis el calor, os dais ánimo y es más fácil que os encuentren.' };
   if (postura === 'saltar') return { svg: posturaSaltar(), caption: 'Si hay que saltar: comprueba que no hay nadie ni nada debajo, salta desde la menor altura posible, de pie, con las piernas juntas y estiradas, tapando nariz y boca con una mano y sujetando el chaleco con el otro brazo.' };
   return { svg: posturaHelp(), caption: 'Con chaleco, quieto en postura fetal (HELP): rodillas al pecho y brazos cruzados, para proteger cabeza, cuello, axilas, costados e ingles. Sin chaleco, vertical y con movimientos lentos, lo justo para flotar.' };

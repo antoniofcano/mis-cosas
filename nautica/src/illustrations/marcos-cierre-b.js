@@ -163,6 +163,11 @@ const hipotermia = porVista(hipotermiaC, SEG, {
     datos: [{ cifra: 'en piña', texto: 'abrazados, con el chaleco' }, { cifra: 'centro', texto: 'el más débil' }],
     nota: 'Juntos conserváis el calor y os dais ánimo. No nadéis hacia la costa salvo que esté muy cerca y sea segura.',
   },
+  atender: {
+    titulo: 'Atender al rescatado con hipotermia', clave: 'Cálido, seco y abrigado poco a poco: nunca frotarle ni darle alcohol.',
+    datos: [{ cifra: '< 35 °C', texto: 'temperatura de la hipotermia' }, { cifra: 'horizontal', texto: 'y con el mínimo movimiento' }, { cifra: 'caliente y dulce', texto: 'la bebida, si está consciente' }],
+    nota: 'El calor, gradual y sobre todo en cabeza, cuello, pecho e ingles: mantas, botellas de agua caliente bajo la manta o el calor de otro cuerpo. Si está inconsciente, comprueba pulso y respiración; la reanimación se mantiene al menos 30 minutos.',
+  },
 }, 'postura', 'help');
 
 function ciabogaDos(spec) {

@@ -4,6 +4,7 @@
 
 import { MARCOS_CIERRE_B } from './marcos-cierre-b.js';
 import { MARCOS_NORMATIVA } from './marcos-normativa.js';
+import { MARCOS_SANIDAD } from './marcos-sanidad.js';
 import { declinacionC, cuentaDeclinacion, gm, rumboCuadrantalC, cuadrantalACircular, demoraMarcacionC, calidadCorteC } from './per-cola-calculo-c.js';
 import { cartaMargenesC, transportadorC, millaC, rumboDirectoC, estimaC, trasladoDemoraC, tangenteC, verilesC, oposicionC } from './per-cola-carta-c.js';
 
@@ -190,4 +191,5 @@ export const MARCOS_CIERRE = {
   'carta-margenes': cartaMargenes, transportador, milla, 'rumbo-directo': rumboDirecto, estima, 'traslado-demora': trasladoDemora, tangente, veriles,
   ...MARCOS_CIERRE_B,
   ...MARCOS_NORMATIVA,
+  ...MARCOS_SANIDAD,
 };

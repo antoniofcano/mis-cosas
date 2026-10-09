@@ -178,7 +178,7 @@ test('cierre: ninguna lámina de las clases del PER sigue con el dibujo antiguo 
   // Las que quedan sin migrar, con su motivo, están en .trabajo-ux/ESTADO-per-laminas.md.
   const PENDIENTES = new Set([
     'cubierta', 'timon', 'muerto-boya', 'nudos', 'tenedero', 'fondeo-gira', 'revision-salida', 'reflector-tormenta', 'gobierno-rabeo', 'atraque',
-    'hemorragia', 'quemadura', 'radio-medico', 'botiquin', 'varada-abordaje', 'achique-sentina', 'barometro-tendencia', 'mar-crece', 'prevision-salida',
+    'varada-abordaje', 'achique-sentina', 'barometro-tendencia', 'mar-crece', 'prevision-salida',
   ]);
   const viejas = [];
   for (const m of curso('per').modulos) for (const l of m.lecciones) for (const p of l.pasos) {

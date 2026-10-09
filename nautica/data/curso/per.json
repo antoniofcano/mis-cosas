@@ -8465,6 +8465,14 @@
        "texto": "Primero presión directa; el torniquete solo si la presión no controla una hemorragia que amenaza la vida."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hemorragia",
+        "vista": "torniquete"
+       },
+       "texto": "El torniquete, solo como último recurso: en el brazo o el muslo, entre la herida y el tronco, y con la hora anotada."
+      },
+      {
        "tipo": "ojo",
        "texto": "Dos trampas fijas: «bajar el brazo por debajo del corazón» (falso: se **eleva**) y «siempre aplicaremos un torniquete» (falso: primero **presión directa**). Aflojar el torniquete cada cierto tiempo es un consejo antiguo: hoy no se hace."
       },
@@ -8617,6 +8625,14 @@
        "texto": "En quemaduras graves, **controla periódicamente las constantes vitales** (respiración, pulso) y el **nivel de conciencia**, y pide Radio-Médico."
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "quemadura",
+        "vista": "gravedad"
+       },
+       "texto": "La palma del herido es el 1 % de su piel: según el grado y la extensión, se trata a bordo o se evacúa."
+      },
+      {
        "tipo": "ojo",
        "texto": "El examen da por buena la frase «enfriaremos el área quemada con agua fría durante unos minutos, **evitando enfriar grandes áreas** para que la temperatura corporal no baje a niveles peligrosos». Es correcta en lo importante: enfría la quemadura, no al paciente entero."
       },
@@ -8655,6 +8671,13 @@
        "tipo": "texto",
        "titulo": "Insolación: qué hacer",
        "texto": "Qué hacer:\n- Llévalo a un lugar **fresco, a la sombra y ventilado** y **quítale ropa**.\n- **Enfríalo ya**: ducha o paños de agua fría (unos 20 °C sirve), abanicando; lo más rápido es sumergirlo hasta el cuello.\n- Si está consciente, dale **agua a sorbos**.\n- Para de enfriar cuando la temperatura **baje de unos 39 °C**, sin llegar a 37 °C (riesgo de hipotermia)."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "golpe-calor"
+       },
+       "texto": "Golpe de calor: a la sombra, sin ropa y con agua fría hasta bajar a 39 °C, controlando cada 10 minutos."
       },
       {
        "tipo": "ojo",
@@ -9726,6 +9749,14 @@
        "tipo": "texto",
        "titulo": "Bebida caliente, nunca alcohol",
        "texto": "- Si está consciente, dale **bebidas calientes y dulces**. **Nunca alcohol** (aumenta la pérdida de calor) ni frotarle la piel.\n- Si está inconsciente: comprueba si respira, posición lateral de seguridad y **Radio-Médico** o Salvamento ya."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "hipotermia",
+        "postura": "atender"
+       },
+       "texto": "Al rescatado: cálido, seco y abrigado, bebidas calientes y dulces si está consciente; nunca frotarle ni darle alcohol."
       },
       {
        "tipo": "check",

@@ -19,7 +19,7 @@ function mar(y, W, H, x0 = 0) {
 const miembro = (pts, w = 6) => `<polyline points="${pts.map((p) => p.map(fx).join(',')).join(' ')}" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>`;
 
 // ---------------------------------------------------------------------------
-// Supervivencia en el agua. spec: { tipo:'hipotermia', postura:'saltar'|'help'|'grupo' }
+// Supervivencia en el agua. spec: { tipo:'hipotermia', postura:'saltar'|'help'|'grupo'|'atender' }
 
 // ---------------------------------------------------------------------------
 // Balsa salvavidas (zafa, inflado, adrizar, lanzar): en estilo C, en src/illustrations/balsa-c.js.
@@ -30,7 +30,7 @@ const miembro = (pts, w = 6) => `<polyline points="${pts.map((p) => p.map(fx).jo
 // ---------------------------------------------------------------------------
 
 export const LAMINAS = {
-  hipotermia: { fn: hipotermiaC, params: { postura: ['saltar', 'help', 'grupo'] }, ejemplo: { tipo: 'hipotermia', postura: 'help' } },
+  hipotermia: { fn: hipotermiaC, params: { postura: ['saltar', 'help', 'grupo', 'atender'] }, ejemplo: { tipo: 'hipotermia', postura: 'help' } },
   balsa: { fn: balsaC, params: { vista: ['zafa', 'inflado', 'adrizar', 'lanzar'], resaltar: ['contenedor', 'zafa', 'trinca', 'boza', 'union-debil'] }, ejemplo: { tipo: 'balsa', vista: 'zafa' } },
   helicoptero: { fn: helicopteroC, params: { vista: ['rumbo', 'cable', 'senales'] }, ejemplo: { tipo: 'helicoptero', vista: 'rumbo' } },
   arnes: { fn: arnesC, params: { vista: ['chaleco', 'arnes'], resaltar: [...PARTES_CHALECO, ...PARTES_ARNES] }, ejemplo: { tipo: 'arnes', vista: 'chaleco' } },

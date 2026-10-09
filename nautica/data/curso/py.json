@@ -1150,6 +1150,14 @@
        "extra": true
       },
       {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "extintor",
+        "vista": "norma"
+       },
+       "texto": "Sin marcado CE: extintores de 34 B y 2 kg, por eslora y por motor; uno, a mano desde el puesto de gobierno."
+      },
+      {
        "tipo": "texto",
        "titulo": "Dónde se estiban",
        "texto": "Un extintor que no se encuentra o no se alcanza a tiempo no sirve:\n- **Siempre a mano**, en un sitio **visible** y señalizado.\n- **Cerca de las zonas de riesgo**: cámara de motores, cocina, cuadro eléctrico.\n- Todos a bordo deben saber dónde están.\n\nNunca bajo llave, escondidos ni expuestos a la intemperie en la proa."

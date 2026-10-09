@@ -2,8 +2,9 @@
 //   barco + viento (Nomenclatura) · cardinales (Balizamiento) · playa sin balizar (Legislación) · tetraedro del fuego
 //   (Emergencias). Las cifras y reglas son las de las clases (Reglamento General de Costas, art. 73; IALA región A;
 //   UNE-EN 2 y los cuatro métodos de extinción).
-import { svgOpen, flecha, texto, barcoPlanta, pol, f1, parte } from './kit.js';
+import { pol, parte } from './kit.js';
 import { marcaC } from '../buoys.js';
+import { playaDistanciaC } from '../per-cola-normativa-c.js';
 import { T, TXT, lienzo, rotulo, cartela, referencia, ondas, flecha as flechaC, pol as polC, barco as barcoC } from '../estilo-c.js';
 
 // ---------------------------------------------------------------------------
@@ -172,21 +173,7 @@ export const playaDistancia = {
   calcular: (e) => zonaBano(e.costa, e.dist),
   pie: () => 'Sin boyas, la zona de baño son 200 m en las playas y 50 m en el resto de la costa: dentro se navega, a 3 nudos como máximo.',
   dibujar(e, r, { pendiente = false } = {}) {
-    const W = 320; const H = 300; const Y0 = 262; const K = 0.75; // 1 m = 0,75 px
-    const out = [svgOpen(W, H, `${e.costa === 'playa' ? 'Playa' : 'Costa'} sin balizar, barco a ${e.dist} m de la orilla`)];
-    out.push(`<rect x="0" y="0" width="${W}" height="${Y0}" rx="10" fill="var(--l-mar)"/>`);
-    out.push(`<rect${parte('orilla')} x="0" y="${Y0}" width="${W}" height="${H - Y0}" fill="${e.costa === 'playa' ? '#e9d8a6' : '#8d8d8d'}"/>`);
-    out.push(texto(W / 2, Y0 + 24, e.costa === 'playa' ? 'playa' : 'rocas, acantilado…', { size: 13, color: '#1f2937' }));
-    const yl = Y0 - r.limite * K;
-    if (!pendiente) out.push(`<rect${parte('franja')} x="0" y="${f1(yl)}" width="${W}" height="${f1(r.limite * K)}" fill="#fde68a" opacity=".35"/>`);
-    out.push(`<line x1="0" y1="${f1(yl)}" x2="${W}" y2="${f1(yl)}" stroke="var(--l-a)" stroke-width="2" stroke-dasharray="7 5"/>`);
-    out.push(texto(W - 8, yl - 6, `${r.limite} m`, { size: 13, anchor: 'end' }));
-    const yb = Y0 - e.dist * K;
-    out.push(barcoPlanta(110, yb, 90, 44, 'barco'));
-    out.push(`<line x1="70" y1="${f1(yb)}" x2="70" y2="${Y0}" stroke="var(--text)" stroke-width="1.5"/>`, texto(64, (yb + Y0) / 2 + 4, `${e.dist} m`, { size: 12, anchor: 'end' }));
-    if (!pendiente) out.push(texto(W / 2, 24, r.dentro ? 'Zona de baño: máximo 3 nudos' : 'Fuera de la zona de baño', { size: 14, weight: 700 }));
-    out.push('</svg>');
-    const svg = out.join('');
+    const svg = playaDistanciaC(e, r, { pendiente });
     const donde = `${e.costa === 'playa' ? 'Playa' : 'Costa'} sin balizar, a ${e.dist} m de la orilla.`;
     if (pendiente) return { svg, lectura: `${donde} Responde y verás si estás en la zona de baño.` };
     return { svg, lectura: r.dentro ? `${donde} Estás dentro de la franja de ${r.limite} m: puedes navegar, pero a 3 nudos como máximo y sin vertidos.` : `${donde} Estás fuera de la franja de ${r.limite} m: no se aplica el límite de 3 nudos.` };
@@ -224,22 +211,29 @@ export const fuegoApagar = {
   calcular: (e) => apagado(e.quita),
   pie: () => 'Enfriar quita el calor; sofocar, el oxígeno; desalimentar, el combustible; inhibir, la reacción en cadena.',
   dibujar(e, r) {
-    const W = 320; const H = 290;
-    const out = [svgOpen(W, H, r.arde ? 'Tetraedro del fuego: arde' : `Tetraedro del fuego sin ${r.elemento}: se apaga`)];
-    const V = { combustible: [60, 230], comburente: [260, 230], calor: [160, 60], reaccion: [160, 175] };
-    const NOM = { combustible: 'combustible', comburente: 'oxígeno', calor: 'calor', reaccion: 'reacción en cadena' };
+    // Estilo C (docs/ESTILO-LAMINAS.md): el tetraedro en perspectiva, como la lámina fija (seguridad-c.js); el elemento que
+    // se quita, atenuado y con sus aristas a trazos; la llama en el centro o, apagado, el humo.
+    const W = 358; const H = 330;
+    const NOM = { combustible: 'COMBUSTIBLE', comburente: 'OXÍGENO', calor: 'CALOR', reaccion: 'REACCIÓN' };
+    const SUB = { combustible: 'se retira', comburente: 'se sofoca', calor: 'se enfría', reaccion: 'se inhibe' };
+    const alt = r.arde ? 'Tetraedro del fuego con sus cuatro vértices, combustible, oxígeno, calor y reacción en cadena, y una llama en el centro: con los cuatro, arde.'
+      : `Tetraedro del fuego al que le falta ${r.elemento}: ese vértice y sus aristas, atenuados y a trazos, y en el centro solo humo. Se apaga por ${r.metodo}.`;
+    const { out, cierra } = lienzo(W, H, alt);
+    const V = { calor: [179, 74], combustible: [84, 236], comburente: [274, 236], reaccion: [196, 180] };
     const on = (k) => e.quita !== k;
-    const lado = (a, b) => `<line x1="${V[a][0]}" y1="${V[a][1]}" x2="${V[b][0]}" y2="${V[b][1]}" stroke="var(--text)" stroke-width="2" ${on(a) && on(b) ? '' : 'stroke-dasharray="4 5" opacity=".35"'}/>`;
+    const lado = (a, b) => `<line x1="${V[a][0]}" y1="${V[a][1]}" x2="${V[b][0]}" y2="${V[b][1]}" stroke="${T.tinta}" stroke-width="${on(a) && on(b) ? 1.6 : 1}"${on(a) && on(b) ? '' : ' stroke-dasharray="4 5" opacity=".4"'}/>`;
+    if (on('calor') && on('combustible') && on('comburente')) out.push(`<path d="M${V.calor} L${V.combustible} L${V.comburente}Z" fill="${T.amarillo}" fill-opacity=".22"/>`);
     out.push(lado('combustible', 'comburente'), lado('comburente', 'calor'), lado('calor', 'combustible'), lado('reaccion', 'combustible'), lado('reaccion', 'comburente'), lado('reaccion', 'calor'));
-    // la llama (o el humo si se ha apagado), en el centro
     out.push(r.arde
-      ? `<path d="M160,150 C140,128 150,110 160,92 C162,110 182,118 172,140 C178,132 180,124 178,118 C192,134 186,156 160,160 C138,158 132,140 142,126 C142,138 150,146 160,150Z" fill="var(--l-r)" opacity=".9"/>`
-      : `<path d="M150,160 C140,140 165,130 152,110 M168,160 C158,140 182,130 170,108" stroke="var(--l-g)" stroke-width="3" fill="none" stroke-linecap="round"/>`);
+      ? `<path d="M179,196 C157,172 168,152 179,132 C181,152 203,160 192,184 C199,176 201,166 199,160 C214,178 208,202 179,206 C155,204 149,184 160,168 C160,182 168,190 179,196Z" fill="${T.rojo}" stroke="${T.tinta}" stroke-width="1"/><path d="M179,198 C170,188 174,178 179,170 C182,180 190,186 184,196Z" fill="${T.amarillo}"/>`
+      : `<path d="M168,204 C156,182 184,172 170,150 M190,204 C178,182 206,170 192,146" stroke="${T.apagado}" stroke-width="3" fill="none" stroke-linecap="round"/>`);
+    const POS = { calor: [179, 44], combustible: [76, 280], comburente: [282, 280], reaccion: [296, 150] };
     for (const [k, [x, y]] of Object.entries(V)) {
-      out.push(`<g${parte(k)} opacity="${on(k) ? 1 : 0.35}"><circle cx="${x}" cy="${y}" r="9" fill="${on(k) ? 'var(--l-a)' : 'var(--l-g)'}"/>${texto(x, k === 'calor' ? y - 16 : y + 28, NOM[k], { size: 13 })}</g>`);
+      out.push(`<g${parte(k)} opacity="${on(k) ? 1 : 0.4}"><circle cx="${x}" cy="${y}" r="8" fill="${on(k) ? T.naranja : T.papel}" stroke="${T.tinta}" stroke-width="1.2"/>${cartela(POS[k][0], POS[k][1], NOM[k], SUB[k], { color: on(k) ? T.tinta : T.magenta })}</g>`);
     }
-    out.push(texto(W / 2, 22, r.arde ? 'Con los cuatro, arde' : `Sin ${NOM[e.quita]}: se apaga (${r.metodo})`, { size: 14, weight: 700 }));
-    out.push('</svg>');
+    out.push(referencia(V.reaccion[0] + 8, V.reaccion[1] - 4, POS.reaccion[0] - 40, POS.reaccion[1] + 10));
+    out.push(rotulo(W / 2, 316, r.arde ? 'Con los cuatro, arde' : `Sin ${r.elemento}: se apaga (${r.metodo})`, { size: TXT.nota, estilo: 'serif', italic: true, weight: 700, color: r.arde ? T.tinta : T.magenta }));
+    out.push(cierra());
     return { svg: out.join(''), lectura: r.arde ? 'Combustible, oxígeno, calor y reacción en cadena: con los cuatro, el fuego se mantiene solo. Quita uno.' : `Has quitado ${r.elemento}: es la ${r.metodo} (${r.ej}). El fuego se apaga.` };
   },
   prediccion: () => ({

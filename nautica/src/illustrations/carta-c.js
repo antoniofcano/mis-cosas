@@ -12,7 +12,7 @@ const conSigno = (d) => `${d > 0 ? '+' : d < 0 ? '−' : ''}${String(Math.abs(d)
 
 /** Faro de carta: círculo amarillo con punto, que destella (la animación que ya tenía la lámina). */
 export const faro = (x, y, { p = null, destella = true, dur = 2 } = {}) =>
-  `<g${p ? ` data-parte="${p}"` : ''}><circle cx="${f1(x)}" cy="${f1(y)}" r="6.5" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1.2">` +
+  `<g${p ? ` data-parte="${p}"` : ''}><circle${destella ? ' class="lc-destello"' : ''} cx="${f1(x)}" cy="${f1(y)}" r="6.5" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1.2">` +
   (destella ? `<animate attributeName="opacity" values="1;.35;1" dur="${dur}s" repeatCount="indefinite"/>` : '') + `</circle><circle cx="${f1(x)}" cy="${f1(y)}" r="1.8" fill="${T.tinta}"/></g>`;
 
 /** Situación observada: círculo con punto (como en la carta). */

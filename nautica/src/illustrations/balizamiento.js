@@ -5,17 +5,9 @@
 // spec regiones:    { tipo:'regiones' }
 // Fuente: IALA-AISM región A, marcas laterales y laterales modificadas (apéndice de docs/ESTILO-LAMINAS.md).
 
-import { lbl, C, boatGlyph, open, title } from './kit.js';
+import { C } from './kit.js';
 import { marcaC } from './buoys.js';
 import { T, TXT, lienzo, rotulo, cartela, etiqueta, tierra, ondas, barquito, f1 } from './estilo-c.js';
-
-const ROJO = '#dc2626';
-const VERDE = '#16a34a';
-/** Marca lateral vista de lado, pequeña: cilíndrica (lata) o cónica (solo la lámina antigua de regiones). */
-const can = (x, y, c) => `<rect x="${x - 6}" y="${y - 14}" width="12" height="14" fill="${c}" stroke="#0006"/><rect x="${x - 8}" y="${y - 1}" width="16" height="3" rx="1.5" fill="${c}"/>`;
-const cone = (x, y, c) => `<path d="M${x - 7},${y} L${x},${y - 16} L${x + 7},${y}Z" fill="${c}" stroke="#0006"/><rect x="${x - 8}" y="${y - 1}" width="16" height="3" rx="1.5" fill="${c}"/>`;
-const AGUA = '#38bdf8';
-const TIERRA = '#a16207';
 
 /**
  * Lateral pequeña, como el símbolo de la carta: lata (babor, roja) o cono con la punta arriba (estribor, verde), con su
@@ -105,28 +97,3 @@ export function bifurcacionIllustration(spec) {
 
 // ---------------------------------------------------------------------------
 // Regiones A y B
-
-export function regionesIllustration() {
-  const W = 340;
-  const H = 316;
-  const out = open(W, H, 'Regiones A y B', 'rg');
-  out.push(title(W / 2, 'Regiones de balizamiento A y B (entrando)'));
-  const panel = (x0, reg) => {
-    const izq = reg === 'A' ? ROJO : VERDE; // babor, entrando
-    const der = reg === 'A' ? VERDE : ROJO;
-    const o = [];
-    o.push(`<rect x="${x0}" y="44" width="160" height="196" fill="${TIERRA}" opacity=".3"/><rect x="${x0 + 34}" y="44" width="92" height="196" fill="${AGUA}" opacity=".45"/>`);
-    o.push(`<text x="${x0 + 80}" y="62" font-size="15" font-weight="700" text-anchor="middle" fill="currentColor">Región ${reg}</text>`);
-    for (const y of [130, 200]) o.push(can(x0 + 28, y, izq), cone(x0 + 132, y, der));
-    const path = `M${x0 + 80},240 L${x0 + 80},74`;
-    o.push(`<g>${boatGlyph(C.v)}<animateMotion dur="5s" repeatCount="indefinite" rotate="auto" path="${path}"/></g>`);
-    o.push(lbl(x0 + 30, 254, 'babor', null, 'middle', 'font-size="9.5"'), lbl(x0 + 30, 266, izq === ROJO ? 'roja' : 'verde', izq === ROJO ? 'r' : 'm', 'middle', 'font-weight="700"'));
-    o.push(lbl(x0 + 130, 254, 'estribor', null, 'middle', 'font-size="9.5"'), lbl(x0 + 130, 266, der === ROJO ? 'roja' : 'verde', der === ROJO ? 'r' : 'm', 'middle', 'font-weight="700"'));
-    return o.join('');
-  };
-  out.push(panel(6, 'A'), panel(174, 'B'));
-  out.push(lbl(W / 2, 288, 'Las formas no cambian: cilíndrica a babor, cónica a estribor', null, 'middle', 'font-size="9.5"'));
-  out.push(lbl(W / 2, 304, 'B: América, Japón, Corea del Sur y Filipinas · A: el resto', 'g', 'middle', 'font-size="9.5"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Entrando a puerto, en la región A (Europa, España incluida) las laterales de babor son rojas y las de estribor verdes; en la región B, al revés. Las formas (cilíndrica a babor, cónica a estribor) y las demás marcas (cardinales, peligro aislado, aguas navegables, especiales) son iguales en las dos regiones.' };
-}

@@ -51,10 +51,10 @@ test('cifras de las lecciones', () => {
   const dz = LAMINAS['dotacion-zonas'].fn({ tipo: 'dotacion-zonas' }).svg;
   for (const n of ['275 N', '150 N', '100 N', '2 aros', '1 aro', 'y rabiza', 'para todos']) assert.match(dz, new RegExp(n));
   const tm = LAMINAS['tanque-retencion'].fn({ tipo: 'tanque-retencion', vista: 'mar' }).svg;
-  for (const n of ['&gt; 3 mn|> 3 mn', '&gt; 12 mn|> 12 mn', '4 nudos', 'línea de base']) assert.match(tm, new RegExp(n));
+  for (const n of ['&gt; 3 M|> 3 M', '&gt; 12 M|> 12 M', '4 nudos', 'línea de base']) assert.match(tm, new RegExp(n));
   assert.match(LAMINAS['tanque-retencion'].fn({ tipo: 'tanque-retencion' }).svg, /conexión universal/);
   const mb = LAMINAS['marpol-basuras'].fn({ tipo: 'marpol-basuras' }).svg;
-  for (const n of ["5° 36' W", 'a más de 3 mn', 'a más de 12 mn', '25 mm', 'Trafalgar', 'Málaga']) assert.match(mb, new RegExp(n));
+  for (const n of ['5° 36′ W', 'a más de 3 M', 'a más de 12 M', '25 mm', 'Atlántico', 'Mediterráneo']) assert.match(mb, new RegExp(n));
   const mu = LAMINAS['muerto-boya'].fn({ tipo: 'muerto-boya' }).svg;
   for (const n of ['muerto', 'cadena', 'boya', 'gaza', 'firme', 'seno', 'chicote']) assert.match(mu, new RegExp(`>${n}<`));
   assert.match(LAMINAS['reflector-tormenta'].fn({ tipo: 'reflector-tormenta' }).svg, /RD 339\/2021/);

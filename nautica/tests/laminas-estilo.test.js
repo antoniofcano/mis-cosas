@@ -10,6 +10,8 @@ import { BUOYS } from '../src/illustrations/buoys.js';
 import { interactivaDe } from '../src/illustrations/interactivas.js';
 import { controlador } from '../src/ui/lamina-estado.js';
 import { idLamina } from '../src/illustrations/catalogo-laminas.js';
+import { FLAGS } from '../src/illustrations/misc.js';
+import { SENALES } from '../src/illustrations/situations.js';
 
 const CSS = readFileSync(new URL('../styles/laminas.css', import.meta.url), 'utf8');
 /** Variables --lc-* de un bloque de CSS. */
@@ -106,6 +108,8 @@ const PILOTO = [
   ...['balance', 'cabezada', 'guinada'].map((mov) => ({ tipo: 'movimiento', mov })), { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
   { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' },
   { tipo: 'viento-aparente' }, ...['cenida', 'traves', 'aleta', 'popa'].map((rumbo) => ({ tipo: 'viento-aparente', rumbo })),
+  // Señales: banderas del Código Internacional y señales acústicas
+  ...Object.keys(FLAGS).map((codigo) => ({ tipo: 'bandera', codigo })), ...Object.keys(SENALES).map((senal) => ({ tipo: 'sonido', senal })),
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */

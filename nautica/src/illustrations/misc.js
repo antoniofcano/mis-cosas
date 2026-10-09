@@ -1,5 +1,6 @@
 // Ilustraciones: meteorología y banderas (borrasca, anticiclón, partes del barco y hélice: laminas-c.js).
 import { borrascaAnticiclon } from './laminas-c.js';
+import { buysBallot, brisa, frenteCorte } from './meteo-c.js';
 
 const arrowDefs = (id, color) => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="${color}"/></marker></defs>`;
 
@@ -8,65 +9,14 @@ const arrowDefs = (id, color) => `<defs><marker id="${id}" viewBox="0 0 10 10" r
 // spec: { tipo:'meteo', sistema:'borrasca'|'anticiclon'|'buys-ballot'|'brisa-mar'|'brisa-tierra'|'frentes' }
 
 export function meteoIllustration(spec) {
-  const W = 320;
-  const H = 260;
-  const cx = 160;
-  const cy = 140;
-  const out = [`<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Meteorología">`, `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>`, arrowDefs('mt-a', '#2563eb')];
   const sys = spec.sistema;
   // borrasca y anticiclón: en estilo C, en src/illustrations/laminas-c.js
   if (sys === 'borrasca' || sys === 'anticiclon') return borrascaAnticiclon(sys === 'borrasca');
-  if (sys === 'buys-ballot') {
-    out.push(`<text x="${cx}" y="22" class="il-title">Ley de Buys-Ballot (hemisferio norte)</text>`);
-    out.push(`<circle cx="${cx}" cy="${cy}" r="14" fill="#334155"/><text x="${cx}" y="${cy + 4}" font-size="10" fill="#fff" text-anchor="middle">tú</text>`);
-    out.push(`<line x1="${cx}" y1="${cy + 90}" x2="${cx}" y2="${cy + 22}" stroke="#2563eb" stroke-width="4" marker-end="url(#mt-a)"/><text x="${cx + 8}" y="${cy + 80}" font-size="11" fill="#2563eb">viento por la espalda</text>`);
-    out.push(`<text x="${cx - 110}" y="${cy - 46}" font-size="30" font-weight="700" fill="#dc2626">B</text><text x="${cx - 122}" y="${cy - 26}" font-size="10" fill="#dc2626">a tu izquierda,</text><text x="${cx - 122}" y="${cy - 14}" font-size="10" fill="#dc2626">algo adelantada</text>`);
-    out.push(`<text x="${cx + 92}" y="${cy - 6}" font-size="30" font-weight="700" fill="#2563eb">A</text><text x="${cx + 80}" y="${cy + 14}" font-size="10" fill="#2563eb">a tu derecha</text>`);
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Con el viento de espaldas, en el hemisferio norte la baja presión queda a tu izquierda (algo adelantada) y la alta a tu derecha.' };
-  }
-  if (sys === 'brisa-mar' || sys === 'brisa-tierra') {
-    const mar = sys === 'brisa-mar';
-    out.push(`<text x="${cx}" y="22" class="il-title">${mar ? 'Brisa marina (de día)' : 'Terral (de noche)'}</text>`);
-    out.push(`<rect x="0" y="180" width="160" height="80" fill="#38bdf8"/><rect x="160" y="170" width="160" height="90" fill="#a16207"/>`);
-    out.push(`<circle cx="${mar ? 280 : 40}" cy="54" r="16" fill="${mar ? '#facc15' : '#e5e7eb'}"/>`);
-    const p = mar ? 'M60,160 L250,160 L250,80 L60,80 Z' : 'M250,150 L60,150 L60,80 L250,80 Z';
-    out.push(`<path d="${p}" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 6"><animate attributeName="stroke-dashoffset" from="28" to="0" dur="1.2s" repeatCount="indefinite"/></path>`);
-    // flechas fijas: en superficie el viento va del mar a tierra (virazón) o de tierra al mar (terral)
-    out.push(mar ? `<line x1="90" y1="160" x2="200" y2="160" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/><line x1="250" y1="130" x2="250" y2="100" stroke="#dc2626" stroke-width="3" marker-end="url(#mt-a)"/><line x1="60" y1="100" x2="60" y2="130" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/>`
-      : `<line x1="220" y1="150" x2="110" y2="150" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/><line x1="60" y1="110" x2="60" y2="80" stroke="#dc2626" stroke-width="3" marker-end="url(#mt-a)"/><line x1="250" y1="90" x2="250" y2="120" stroke="#2563eb" stroke-width="3" marker-end="url(#mt-a)"/>`);
-    out.push(`<text x="${mar ? 262 : 72}" y="112" class="il-lbl" style="fill:#dc2626">asciende</text><text x="${mar ? 72 : 262}" y="112" class="il-lbl">desciende</text>`);
-    out.push(`<text x="160" y="40" class="il-lbl" text-anchor="middle">${mar ? 'La tierra se calienta más: el aire sube y entra el del mar' : 'La tierra se enfría más: el aire baja y sale hacia el mar'}</text>`);
-    out.push('</svg>');
-    return { svg: out.join(''), caption: mar ? 'De día, en superficie, el viento sopla del mar hacia tierra.' : 'De noche, en superficie, el viento sopla de tierra hacia el mar.' };
-  }
-  // frentes: ahora es interactiva y en perspectiva (src/illustrations/interactivas/frentes.js)
-  // isobaras: ahora es interactiva (src/illustrations/interactivas/isobaras.js)
-  if (sys === 'frente-frio-corte' || sys === 'frente-calido-corte') {
-    const frio = sys === 'frente-frio-corte';
-    out.push(`<text x="${cx}" y="22" class="il-title">${frio ? 'Frente frío (en corte)' : 'Frente cálido (en corte)'}</text>`);
-    out.push(`<rect x="0" y="230" width="${W}" height="30" fill="#38bdf8" opacity=".5"/>`);
-    if (frio) {
-      out.push(`<path d="M10,230 L10,90 Q120,100 190,230Z" fill="#2563eb" opacity=".3"/><text x="40" y="200" class="il-lbl" style="fill:#2563eb" font-weight="700">aire frío</text>`);
-      out.push(`<text x="230" y="200" class="il-lbl" style="fill:#dc2626" font-weight="700">aire cálido</text>`);
-      out.push(`<path d="M150,140 q-16,-6 -10,-24 q-6,-24 20,-28 q8,-28 40,-16 q30,-6 32,22 q20,8 6,30Z" fill="#94a3b8" stroke="#475569"/><text x="190" y="128" class="il-lbl" text-anchor="middle">Cb</text>`);
-      for (let i = 0; i < 5; i++) out.push(`<line x1="${160 + i * 10}" y1="146" x2="${154 + i * 10}" y2="170" stroke="#2563eb"/>`);
-      out.push(`<line x1="190" y1="240" x2="260" y2="240" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="186" y="244" class="il-lbl" text-anchor="end">avanza</text>`);
-    } else {
-      out.push(`<path d="M10,230 L310,230 L310,200 Q160,170 10,60Z" fill="#dc2626" opacity=".18"/><text x="30" y="110" class="il-lbl" style="fill:#dc2626" font-weight="700">aire cálido (sube despacio)</text>`);
-      out.push(`<path d="M120,230 Q220,200 310,200 L310,230Z" fill="#2563eb" opacity=".3"/><text x="230" y="222" class="il-lbl" style="fill:#2563eb" font-weight="700">aire frío</text>`);
-      out.push(`<text x="130" y="196" class="il-lbl">Ns: lluvia continua</text><text x="200" y="150" class="il-lbl">As</text><text x="226" y="120" class="il-lbl">Ci · Cs (halo)</text>`);
-      out.push(`<line x1="60" y1="244" x2="130" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#mt-a)"/><text x="136" y="248" class="il-lbl">avanza</text>`);
-    }
-    out.push('</svg>');
-    return {
-      svg: out.join(''),
-      caption: frio
-        ? 'El aire frío entra como una cuña bajo el cálido y lo levanta bruscamente: cumulonimbos, chubascos, rachas y tormenta; tras el paso, rola el viento, baja la temperatura, sube la presión y el cielo se limpia.'
-        : 'El aire cálido sube despacio por encima del frío: las nubes se anuncian de lejos (cirros, cirrostratos con halo, altostratos) y llega lluvia continua y débil con nimbostratos; baja la presión antes de su paso.',
-    };
-  }
-  // nieblas: ahora son interactivas (src/illustrations/interactivas/nieblas.js)
+  // Buys-Ballot, brisas y frentes en corte: en estilo C, en src/illustrations/meteo-c.js
+  if (sys === 'buys-ballot') return buysBallot();
+  if (sys === 'brisa-mar' || sys === 'brisa-tierra') return brisa(sys === 'brisa-mar');
+  if (sys === 'frente-frio-corte' || sys === 'frente-calido-corte') return frenteCorte(sys === 'frente-frio-corte');
+  // frentes, isobaras y nieblas: interactivas (src/illustrations/interactivas/)
   return null;
 }
 

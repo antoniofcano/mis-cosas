@@ -1,7 +1,11 @@
 // Láminas interactivas de las clases de carta del PY que no tenían manipulable:
 //   demoras no simultáneas (traslado de la primera línea de posición) · triángulo de estima de la loxodrómica.
 // Geometría plana en millas (x al E, y al N), la misma que se traza en la carta.
-import { svgOpen, flecha, texto, f1, pad3, num, parte } from './kit.js';
+import { pad3, num } from './kit.js';
+import { T, TXT, lienzo, rotulo, cartela, flecha, rosaNorte, junto, colocaEtiquetas, arcoD, f1, parte } from '../estilo-c.js';
+
+// Estilo C (docs/ESTILO-LAMINAS.md): como en la carta, la primera demora con trazo continuo y la segunda a trazos; la
+// línea trasladada, más gruesa; el traslado (rumbo y distancia navegados) en magenta y acotado.
 
 const rad = (d) => (d * Math.PI) / 180;
 /** Vector de `m` millas al rumbo `r` (x al E, y al N). */
@@ -67,32 +71,59 @@ export const demorasTraslado = {
   },
   pie: () => 'Demoras a horas distintas: traza la primera, trasládala paralela el rumbo y la distancia navegados y córtala con la segunda. El corte es tu situación a la hora de la segunda.',
   dibujar(e, r, { pendiente = false } = {}) {
-    const W = 320; const H = 320;
+    const W = 358; const H = 330;
     const { caso } = r;
     // encaje: los puntos importantes dentro de la caja
     const pts = [caso.A, caso.B, caso.S1, caso.S2, r.desplazada.p, r.corte].filter(Boolean);
     const xs = pts.map((p) => p[0]); const ys = pts.map((p) => p[1]);
     const cx = (Math.min(...xs) + Math.max(...xs)) / 2; const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
-    const k = Math.min(230 / Math.max(1, Math.max(...xs) - Math.min(...xs)), 210 / Math.max(1, Math.max(...ys) - Math.min(...ys)), 22);
-    const P = (p) => [W / 2 + (p[0] - cx) * k, 175 - (p[1] - cy) * k];
-    const recta = (p, d, color, extra = '', id = null) => { const [x1, y1] = P(mas(p, vec(d, -30))); const [x2, y2] = P(mas(p, vec(d, 30))); return `<line${parte(id)} x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="${color}" stroke-width="2.5" ${extra}/>`; };
-    const out = [svgOpen(W, H, 'Demoras no simultáneas: traslado de la línea de posición')];
-    out.push(`<clipPath id="clip-ldp"><rect x="8" y="34" width="${W - 16}" height="${H - 42}" rx="8"/></clipPath><g clip-path="url(#clip-ldp)">`);
-    out.push(recta(caso.A, e.d1, 'var(--l-v)', r.linea === 'primera' ? 'stroke-dasharray="6 5" opacity=".55"' : '', 'primera'));
-    out.push(recta(caso.B, e.d2, 'var(--l-r)', r.linea === 'segunda' ? 'stroke-dasharray="6 5" opacity=".55"' : '', 'segunda'));
-    out.push(recta(r.desplazada.p, r.desplazada.d, r.linea === 'primera' ? 'var(--l-v)' : 'var(--l-r)', '', 'trasladada'));
+    const k = Math.min(250 / Math.max(1, Math.max(...xs) - Math.min(...xs)), 180 / Math.max(1, Math.max(...ys) - Math.min(...ys)), 24);
+    const P = (p) => [W / 2 + (p[0] - cx) * k, 156 - (p[1] - cy) * k];
+    const alt = `Demoras no simultáneas: la primera demora (${pad3(e.d1)}°, del faro A) y la segunda (${pad3(e.d2)}°, del faro B). Se traslada la ${r.linea} ${num(e.millas)} millas al ${pad3(r.linea === 'primera' ? e.rumbo : e.rumbo + 180)}°${pendiente || !r.corte ? '' : `; el corte da la situación a la hora de la ${r.hora}`}.`;
+    const { out, id, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
+    const segs = [];
+    const recta = (p, d, { dash = '', w = 1.5, color = T.tinta, idp = null } = {}) => {
+      const a = P(mas(p, vec(d, -40))); const b = P(mas(p, vec(d, 40)));
+      segs.push([a, b]);
+      return `<line${parte(idp)} x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}" stroke="${color}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ''}/>`;
+    };
+    out.push(`<clipPath id="${id}-ldp"><rect x="7" y="7" width="${W - 14}" height="${H - 14}"/></clipPath><g clip-path="url(#${id}-ldp)">`);
+    // la línea que se mueve queda en su sitio, apagada; la trasladada, más gruesa
+    const movida = r.linea === 'primera';
+    out.push(recta(caso.A, e.d1, movida ? { color: T.apagado, w: 1, dash: '3 4', idp: 'primera' } : { idp: 'primera' }));
+    out.push(recta(caso.B, e.d2, !movida ? { color: T.apagado, w: 1, dash: '3 4', idp: 'segunda' } : { dash: '8 4', idp: 'segunda' }));
+    out.push(recta(r.desplazada.p, r.desplazada.d, { w: 2.2, dash: movida ? '' : '8 4', idp: 'trasladada' }));
     // el traslado: desde el faro de la línea movida
-    const origen = r.linea === 'primera' ? caso.A : caso.B;
-    if (e.millas > 0) { const [x1, y1] = P(origen); const [x2, y2] = P(r.desplazada.p); out.push(flecha(x1, y1, x2, y2, 'var(--l-a)', 3, 'traslado')); }
+    const origen = movida ? caso.A : caso.B;
+    const [x1, y1] = P(origen); const [x2, y2] = P(r.desplazada.p);
+    if (e.millas > 0) { out.push(flecha(x1, y1, x2, y2, { color: T.magenta, w: 1.8, p: 'traslado' })); segs.push([[x1, y1], [x2, y2]]); }
     out.push('</g>');
-    for (const [nombre, p] of [['faro A', caso.A], ['faro B', caso.B]]) { const [x, y] = P(p); out.push(`<circle cx="${f1(x)}" cy="${f1(y)}" r="6" fill="var(--l-faro)" stroke="var(--text)"/>`, texto(x, y - 10, nombre, { size: 12 })); }
+    const cajas = [{ x0: W - 52, y0: 8, x1: W - 8, y1: 58 }, { x0: W / 2 - 120, y0: H - 46, x1: W / 2 + 120, y1: H - 4 }];
+    for (const [nombre, p, idp] of [['faro A', caso.A, 'primera'], ['faro B', caso.B, 'segunda']]) {
+      const [x, y] = P(p);
+      out.push(`<g${parte(idp)}><circle cx="${f1(x)}" cy="${f1(y)}" r="6.5" fill="${T.amarillo}" stroke="${T.tinta}" stroke-width="1.2"/><circle cx="${f1(x)}" cy="${f1(y)}" r="1.8" fill="${T.tinta}"/></g>`);
+      cajas.push({ x0: x - 9, y0: y - 9, x1: x + 9, y1: y + 9 });
+      out.push(colocaEtiquetas([{ t: nombre, cands: [[x, y - 16], [x, y + 20], [x + 34, y], [x - 34, y]], rotulo: true, p: idp }], { W, H, segs, cajas }));
+    }
+    out.push(rosaNorte(W - 30, 36));
+    const pet = [];
     if (!pendiente && r.corte) {
       const [x, y] = P(r.corte);
-      out.push(`<circle${parte('corte')} cx="${f1(x)}" cy="${f1(y)}" r="7" fill="none" stroke="var(--text)" stroke-width="2.5"/>`);
-      out.push(texto(x > W / 2 ? x - 10 : x + 10, y + 20, r.hora === 'segunda' ? 'situación 2.ª hora' : 'situación 1.ª hora', { size: 12, anchor: x > W / 2 ? 'end' : 'start' }));
+      out.push(`<g${parte('corte')}><circle cx="${f1(x)}" cy="${f1(y)}" r="8" fill="none" stroke="${T.magenta}" stroke-width="1.8"/><circle cx="${f1(x)}" cy="${f1(y)}" r="2.4" fill="${T.magenta}"/></g>`);
+      cajas.push({ x0: x - 10, y0: y - 10, x1: x + 10, y1: y + 10 });
+      const t = r.hora === 'segunda' ? 'situación 2.ª hora' : 'situación 1.ª hora';
+      const cs = []; for (const rr of [26, 40]) for (const g of [90, 270, 180, 0, 135, 225, 45, 315]) { const q = [x + Math.sin((g * Math.PI) / 180) * (rr + 40), y - Math.cos((g * Math.PI) / 180) * rr]; cs.push(q); }
+      pet.push({ t, cands: cs, color: T.magenta, p: 'corte' });
     }
-    out.push(texto(W / 2, 22, `Demoras ${pad3(e.d1)}° (A) y ${pad3(e.d2)}° (B)`, { size: 14, weight: 700 }));
-    out.push('</svg>');
+    const tTras = `${pad3(movida ? e.rumbo : e.rumbo + 180)}° · ${num(e.millas)} M`;
+    if (e.millas > 0) pet.push({ t: tTras, cands: junto([x1, y1], [x2, y2], tTras, { centro: [W / 2, 170] }), color: T.magenta, p: 'traslado' });
+    const t1 = `1.ª Dv ${pad3(e.d1)}°`;
+    const t2 = `2.ª Dv ${pad3(e.d2)}°`;
+    pet.push({ t: t1, cands: junto(P(caso.A), P(mas(caso.A, vec(e.d1 + 180, 6))), t1, { centro: [W / 2, 170], ks: [0.5, 0.75, 0.3, 0.9] }), p: 'primera' });
+    pet.push({ t: t2, cands: junto(P(caso.B), P(mas(caso.B, vec(e.d2 + 180, 6))), t2, { centro: [W / 2, 170], ks: [0.5, 0.75, 0.3, 0.9] }), p: 'segunda' });
+    out.push(colocaEtiquetas(pet, { W, H: H - 40, segs, cajas }));
+    out.push(cartela(W / 2, H - 24, movida ? 'SE TRASLADA LA PRIMERA' : 'SE TRASLADA LA SEGUNDA', movida ? 'el corte: situación a la 2.ª hora' : 'el corte: situación a la 1.ª hora', { ancho: 236, size: TXT.min, p: 'trasladada' }));
+    out.push(cierra());
     const svg = out.join('');
     const mueves = r.linea === 'primera' ? `Trasladas la primera demora ${num(e.millas)} millas al ${pad3(e.rumbo)}°` : `Trasladas la segunda demora ${num(e.millas)} millas hacia atrás (al ${pad3(e.rumbo + 180)}°)`;
     if (pendiente) return { svg, lectura: `${mueves}. Responde y verás dónde cae el corte.` };
@@ -142,30 +173,48 @@ export const loxoTriangulo = {
   calcular: (e) => estimaLoxo(e),
   pie: () => 'Δl = D · cos R y A = D · sen R. El apartamiento son millas; para pasarlo a minutos de longitud se divide por cos lm: cuanto más lejos del ecuador, más minutos de longitud por cada milla.',
   dibujar(e, r, { pendiente = false } = {}) {
-    const W = 320; const H = 320;
+    const W = 358; const H = 340;
     // el triángulo ocupa siempre lo mismo (escala según la distancia); la salida, en la esquina opuesta al rumbo
-    const k = 105 / Math.max(e.dist, 1);
-    const O = [160 - (r.A * k) / 2, 160 + (r.dl * k) / 2];
+    const k = 120 / Math.max(e.dist, 1);
+    const O = [179 - (r.A * k) / 2, 138 + (r.dl * k) / 2];
     const fin = [O[0] + r.A * k, O[1] - r.dl * k];
-    const out = [svgOpen(W, H, `Triángulo de estima: ${e.dist} millas al ${pad3(e.rumbo)}°`)];
-    out.push(`<line x1="${f1(O[0])}" y1="52" x2="${f1(O[0])}" y2="250" stroke="var(--l-g)" stroke-dasharray="3 4"/>`, texto(O[0] + 8, 62, 'N', { size: 12, anchor: 'start' }));
-    // catetos
-    out.push(`<line${parte('dl')} x1="${f1(O[0])}" y1="${f1(O[1])}" x2="${f1(O[0])}" y2="${f1(fin[1])}" stroke="var(--l-v)" stroke-width="3"/>`);
-    out.push(`<line${parte('A')} x1="${f1(O[0])}" y1="${f1(fin[1])}" x2="${f1(fin[0])}" y2="${f1(fin[1])}" stroke="var(--l-r)" stroke-width="3"/>`);
-    out.push(flecha(O[0], O[1], fin[0], fin[1], 'var(--text)', 3, 'D'));
-    out.push(`<circle cx="${f1(O[0])}" cy="${f1(O[1])}" r="4" fill="var(--text)"/>`, texto(O[0] - 8, O[1] + 16, 'salida', { size: 11, anchor: 'end' }));
-    out.push(texto(O[0] + (r.A >= 0 ? -6 : 6), (O[1] + fin[1]) / 2, `Δl ${num(Math.abs(r.dl))}′ ${NS(r.dl)}`, { size: 12, anchor: r.A >= 0 ? 'end' : 'start', color: 'var(--l-v)', p: 'dl' }));
-    out.push(texto((O[0] + fin[0]) / 2, fin[1] + (r.dl >= 0 ? -8 : 18), `A ${num(Math.abs(r.A))} M ${EW(r.A)}`, { size: 12, color: 'var(--l-r)', p: 'A' }));
-    // ΔL frente a A: misma «distancia» en millas, más minutos de longitud cuanto mayor es la latitud
-    const y = 296;
-    // las dos barras con la misma escala: se ve cuánto más larga es ΔL que A
-    const kb = 150 / Math.max(Math.abs(r.A), Math.abs(r.dL), 1);
+    const esq = [O[0], fin[1]];
+    const alt = `Triángulo de estima: ${e.dist} millas al ${pad3(e.rumbo)}° desde la salida. Diferencia de latitud ${num(Math.abs(r.dl))}′ al ${NS(r.dl)}, apartamiento ${num(Math.abs(r.A))} millas al ${EW(r.A)}${pendiente ? '' : ` y, con latitud media ${e.lm}°, diferencia de longitud ${num(Math.abs(r.dL))}′ al ${EW(r.dL)}`}.`;
+    const { out, cierra } = lienzo(W, H, alt);
+    out.push(`<line x1="${f1(O[0])}" y1="34" x2="${f1(O[0])}" y2="236" stroke="${T.apagado}" stroke-width=".7" stroke-dasharray="4 3"/>`, rotulo(O[0], 28, 'N', { size: TXT.min, weight: 700, estilo: 'serif', color: T.apagado }));
+    const segs = [[O, esq], [esq, fin], [O, fin], [[O[0], 34], [O[0], 236]]];
+    // catetos: Δl (norte-sur) y A (este-oeste), con el ángulo recto
+    out.push(`<line${parte('dl')} x1="${f1(O[0])}" y1="${f1(O[1])}" x2="${f1(esq[0])}" y2="${f1(esq[1])}" stroke="${T.tinta}" stroke-width="1.8"/>`);
+    out.push(`<line${parte('A')} x1="${f1(esq[0])}" y1="${f1(esq[1])}" x2="${f1(fin[0])}" y2="${f1(fin[1])}" stroke="${T.tinta}" stroke-width="1.8" stroke-dasharray="7 3"/>`);
+    if (Math.abs(r.A) * k > 14 && Math.abs(r.dl) * k > 14) {
+      const sx = Math.sign(r.A); const sy = Math.sign(r.dl);
+      out.push(`<path d="M${f1(esq[0] + sx * 9)},${f1(esq[1])} v${f1(sy * 9)} h${f1(-sx * 9)}" fill="none" stroke="${T.tinta}" stroke-width=".8"/>`);
+    }
+    out.push(flecha(O[0], O[1], fin[0], fin[1], { color: T.magenta, w: 2, p: 'D' }));
+    if (e.rumbo % 360) out.push(`<path${parte('D')} d="${arcoD(O[0], O[1], 30, 0, e.rumbo)}" fill="none" stroke="${T.magenta}" stroke-width="1.2"/>`);
+    out.push(`<circle cx="${f1(O[0])}" cy="${f1(O[1])}" r="3.5" fill="${T.tinta}"/>`);
+    const cajas = [{ x0: O[0] - 8, y0: O[1] - 8, x1: O[0] + 8, y1: O[1] + 8 }];
+    const centro = [(O[0] + fin[0] + esq[0]) / 3, (O[1] + fin[1] + esq[1]) / 3];
+    const tdl = `Δl ${num(Math.abs(r.dl))}′ ${NS(r.dl)}`;
+    const tA = `A ${num(Math.abs(r.A))} M ${EW(r.A)}`;
+    const tD = `D ${e.dist} M · R ${pad3(e.rumbo)}°`;
+    const pet = [{ t: tD, cands: junto(O, fin, tD, { centro, ks: [0.55, 0.4, 0.7] }), color: T.magenta, p: 'D' }];
+    if (Math.abs(r.dl) > 0.05) pet.push({ t: tdl, cands: junto(O, esq, tdl, { centro }), p: 'dl' });
+    if (Math.abs(r.A) > 0.05) pet.push({ t: tA, cands: junto(esq, fin, tA, { centro }), p: 'A' });
+    pet.push({ t: 'salida', cands: [[O[0], O[1] + 18], [O[0] - 34, O[1]], [O[0] + 34, O[1]], [O[0], O[1] - 18]], rotulo: true });
+    out.push(colocaEtiquetas(pet, { W, H: 250, segs, cajas }));
+    // ΔL frente a A, con la misma escala: más minutos de longitud cuanto mayor es la latitud
+    out.push(`<line x1="16" y1="248" x2="${W - 16}" y2="248" stroke="${T.tinta}" stroke-width=".6"/>`);
+    const kb = 190 / Math.max(Math.abs(r.A), Math.abs(r.dL), 1);
     const wA = Math.abs(r.A) * kb;
     const wL = Math.abs(r.dL) * kb;
-    out.push(`<rect x="20" y="${y - 30}" width="${f1(wA)}" height="9" fill="var(--l-r)"/>`, texto(24 + wA, y - 22, `A: ${num(Math.abs(r.A))} millas`, { size: 11, anchor: 'start' }));
-    if (!pendiente) out.push(`<rect${parte('dL')} x="20" y="${y - 14}" width="${f1(wL)}" height="9" fill="var(--l-a)"/>`, texto(24 + wL, y - 6, `ΔL: ${num(Math.abs(r.dL))}′ ${EW(r.dL)}`, { size: 11, anchor: 'start' }));
-    out.push(texto(W / 2, 22, `${e.dist} millas al ${pad3(e.rumbo)}° · lm ${e.lm}°`, { size: 14, weight: 700 }));
-    out.push('</svg>');
+    out.push(rotulo(18, 270, 'A', { size: TXT.rotulo, weight: 700, estilo: 'mono', anchor: 'start', p: 'A' }), `<rect${parte('A')} x="44" y="260" width="${f1(Math.max(wA, 1))}" height="12" fill="${T.tinta}"/>`,
+      rotulo(50 + wA, 270, `${num(Math.abs(r.A))} millas`, { size: TXT.min, estilo: 'mono', anchor: 'start', p: 'A' }));
+    out.push(rotulo(18, 294, 'ΔL', { size: TXT.rotulo, weight: 700, estilo: 'mono', anchor: 'start', color: T.magenta, p: 'dL' }));
+    if (!pendiente) out.push(`<rect${parte('dL')} x="44" y="284" width="${f1(Math.max(wL, 1))}" height="12" fill="${T.magenta}"/>`, rotulo(50 + wL, 294, `${num(Math.abs(r.dL))}′ ${EW(r.dL)}`, { size: TXT.min, estilo: 'mono', anchor: 'start', color: T.magenta, p: 'dL' }));
+    else out.push(rotulo(50, 294, '?', { size: TXT.rotulo, weight: 700, estilo: 'mono', anchor: 'start', color: T.magenta }));
+    out.push(rotulo(W / 2, 324, `ΔL = A / cos lm · lm ${e.lm}°`, { size: TXT.min, estilo: 'mono', color: T.apagado }));
+    out.push(cierra());
     const svg = out.join('');
     const tri = `Δl = ${e.dist} · cos ${pad3(e.rumbo)}° = ${num(r.dl)}′ (${NS(r.dl)}); A = ${e.dist} · sen ${pad3(e.rumbo)}° = ${num(r.A)} millas (${EW(r.A)}).`;
     if (pendiente) return { svg, lectura: `${tri} Responde y verás la diferencia de longitud.` };

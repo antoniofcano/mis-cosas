@@ -153,8 +153,74 @@ function meteo(spec) {
       alt: 'Isobaras cerradas alrededor de una A de alta presión (1032, 1028 y 1024 hPa, mayor en el centro). Las flechas del viento giran en sentido horario y cruzan las isobaras hacia fuera.',
     };
   }
-  return null;
+  if (spec.sistema === 'isobaras' && spec.centro === 'A') return { ...METEO.isobaras, titulo: 'Isobaras y viento en un anticiclón' };
+  return METEO[spec.sistema] ?? null;
 }
+
+const MET = 'Meteorología';
+const NOTA_NIEBLA = 'La niebla aparece cuando el aire llega a su punto de rocío (humedad relativa del 100 %). Con el psicrómetro: si el termómetro seco y el húmedo marcan casi lo mismo, el aire está cerca de saturarse.';
+const METEO = {
+  'buys-ballot': {
+    tema: MET, titulo: 'Ley de Buys-Ballot', clave: 'De espaldas al viento, la borrasca queda a la izquierda y algo adelantada.',
+    datos: [{ cifra: 'izquierda', texto: 'la baja presión (hemisferio norte)' }, { cifra: 'derecha', texto: 'la alta, algo atrasada' }, { cifra: 'al revés', texto: 'en el hemisferio sur' }],
+    nota: 'El viento no sopla paralelo a las isobaras: las cruza hacia la baja presión (en la mar, unos 20°). Por eso la borrasca no queda justo a 90°, sino algo adelantada.',
+    alt: 'Isobaras alrededor de una borrasca (B, a la izquierda) y de un anticiclón (A, a la derecha); en medio, tú, con el viento por la espalda: la línea a trazos hacia la B queda a la izquierda y algo por delante de hacia donde miras.',
+  },
+  isobaras: {
+    tema: MET, titulo: 'Isobaras y viento', clave: 'Isobaras juntas, más viento; el viento las cruza hacia la baja.',
+    datos: [{ cifra: '4 hPa', texto: 'entre isobaras, en los mapas' }, { cifra: 'juntas', texto: 'gradiente fuerte: mucho viento' }, { cifra: 'B · A', texto: 'antihorario y hacia dentro; horario y hacia fuera' }],
+    nota: 'El gradiente horizontal de presión es la diferencia de presión por unidad de distancia: cuanto más juntas las isobaras, mayor gradiente y más viento. Hemisferio norte.',
+    alt: 'Isobaras circulares con su presión alrededor de una borrasca o un anticiclón; tu barco en un punto de una de ellas y, en magenta, la flecha del viento, que cruza las isobaras y es más larga y gruesa cuanto más juntas están.',
+  },
+  frentes: {
+    tema: MET, titulo: 'Los frentes de una borrasca', clave: 'El frente frío es una cuña empinada; el cálido, una rampa suave.',
+    datos: [{ cifra: 'triángulos', texto: 'frente frío, hacia donde avanza' }, { cifra: 'semicírculos', texto: 'frente cálido, hacia donde avanza' }, { cifra: 'sector cálido', texto: 'entre los dos frentes' }],
+    nota: 'Al pasar una borrasca por el norte de tu posición, primero llega el frente cálido (lluvia continua), luego el sector cálido y después el frío (chubascos y rachas; el viento rola y el barómetro sube).',
+    alt: 'Un bloque en perspectiva con el mapa del tiempo en el suelo (la borrasca con sus frentes frío y cálido y el sector cálido entre ellos) y el corte A–A′ en la pared del fondo; al lado, el mapa y el corte en plano.',
+  },
+  'frente-frio-corte': {
+    tema: MET, titulo: 'Frente frío, en corte', clave: 'El aire frío entra como una cuña y levanta de golpe el cálido.',
+    datos: [{ cifra: 'Cb', texto: 'cumulonimbos: chubascos, rachas y tormenta' }, { cifra: 'rola', texto: 'el viento, al paso del frente' }, { cifra: 'sube', texto: 'la presión, y el cielo se limpia' }],
+    nota: 'Tras el frente frío bajan la temperatura y la humedad, sube la presión y la visibilidad mejora mucho. En el mapa: línea azul con triángulos hacia donde avanza.',
+    alt: 'Corte vertical de un frente frío que avanza hacia la derecha: la cuña empinada de aire frío por debajo, el aire cálido levantado delante, un cumulonimbo con chubascos sobre el frente y, abajo, el símbolo de triángulos.',
+  },
+  'frente-calido-corte': {
+    tema: MET, titulo: 'Frente cálido, en corte', clave: 'El aire cálido sube despacio sobre el frío: nubes en capas y lluvia continua.',
+    datos: [{ cifra: 'Ci · Cs', texto: 'lo anuncian de lejos (halo)' }, { cifra: 'As · Ns', texto: 'después; lluvia continua y débil' }, { cifra: 'baja', texto: 'la presión antes de su paso' }],
+    nota: 'Las nubes altas llegan cientos de kilómetros por delante del frente: un cielo que se cubre de cirros y cirrostratos con halo avisa de que se acerca. En el mapa: línea roja con semicírculos.',
+    alt: 'Corte vertical de un frente cálido que avanza hacia la derecha: la rampa suave del aire cálido sobre el frío, con cirros, cirrostratos, altostratos y nimbostratos con lluvia continua cerca del frente; abajo, el símbolo de semicírculos.',
+  },
+  'niebla-adveccion': {
+    tema: MET, titulo: 'Niebla de advección', clave: 'Aire templado y húmedo que se enfría al pasar sobre agua fría.',
+    datos: [{ cifra: 'la de la mar', texto: 'la típica de la navegación' }, { cifra: 'días', texto: 'puede durar, aunque sople el viento' }, { cifra: '100 %', texto: 'humedad relativa: aparece la niebla' }],
+    nota: NOTA_NIEBLA,
+    alt: 'Corte con la mar fría abajo y una flecha de aire templado y húmedo que llega sobre ella; un termómetro con la temperatura del aire y, cuando se satura, una banda gris de niebla sobre el agua.',
+  },
+  'niebla-radiacion': {
+    tema: MET, titulo: 'Niebla de radiación', clave: 'En tierra, en noches despejadas y sin viento: el suelo se enfría y enfría el aire.',
+    datos: [{ cifra: 'de noche', texto: 'cielo despejado y calma' }, { cifra: 'por la mañana', texto: 'se disipa al calentar el sol' }, { cifra: 'en tierra', texto: 'afecta poco a la mar abierta' }],
+    nota: NOTA_NIEBLA,
+    alt: 'Corte de noche con la luna: la tierra se enfría por radiación, el termómetro baja y, al saturarse el aire, aparece una banda gris de niebla pegada al suelo.',
+  },
+  'niebla-vapor': {
+    tema: MET, titulo: 'Niebla de vapor', clave: 'Aire muy frío sobre agua más templada: el agua humea.',
+    datos: [{ cifra: '≈ 8 °C', texto: 'o más de diferencia entre agua y aire' }, { cifra: 'evaporación', texto: 'no enfriamiento: satura el aire de abajo' }, { cifra: 'invierno', texto: 'dársenas, rías y mares cerrados' }],
+    nota: 'Es poco espesa y de poca altura, pero puede tapar la visión de cerca en una dársena. Se llama también humo de mar.',
+    alt: 'Corte con agua templada abajo y una flecha de aire muy frío encima; un termómetro con la temperatura del aire y, cuando la diferencia es grande, columnas grises de vapor que suben del agua.',
+  },
+  'brisa-mar': {
+    tema: MET, titulo: 'Brisa marina (virazón)', clave: 'De día, la tierra se calienta más: en superficie el viento entra del mar.',
+    datos: [{ cifra: 'de día', texto: 'máxima por la tarde' }, { cifra: 'mar → tierra', texto: 'en superficie' }, { cifra: 'asciende', texto: 'el aire sobre la tierra caliente' }],
+    nota: 'Es una circulación cerrada: el aire sube sobre la tierra, vuelve hacia el mar en altura y baja sobre él. De noche se invierte: el terral.',
+    alt: 'Corte de la costa de día: el aire asciende sobre la tierra caliente, vuelve en altura hacia el mar, desciende sobre él y en superficie entra del mar a tierra (flecha magenta).',
+  },
+  'brisa-tierra': {
+    tema: MET, titulo: 'Terral', clave: 'De noche, la tierra se enfría más: en superficie el viento sale hacia el mar.',
+    datos: [{ cifra: 'de noche', texto: 'máximo al amanecer' }, { cifra: 'tierra → mar', texto: 'en superficie' }, { cifra: 'desciende', texto: 'el aire sobre la tierra fría' }],
+    nota: 'Suele ser más flojo que la virazón, porque la diferencia de temperatura de noche es menor. De día se invierte: la brisa marina.',
+    alt: 'Corte de la costa de noche: el aire desciende sobre la tierra fría, sale en superficie hacia el mar (flecha magenta), asciende sobre él y vuelve a tierra en altura.',
+  },
+};
 
 const helice = (spec) => {
   const dex = spec.sentido !== 'levogira';
@@ -238,11 +304,220 @@ function marea(spec) {
       alt: `Curva de la marea entre la bajamar (${num(bm.h)} m) y la pleamar (${num(pm.h)} m), con la hora marcada y su altura; debajo, el bajo en corte.`,
     };
   }
+  if (m === 'fases') {
+    return {
+      tema: 'Mareas', titulo: 'Mareas vivas y mareas muertas', clave: 'Sol y Luna alineados, mareas vivas; en ángulo recto, muertas.',
+      datos: [{ cifra: 'nueva y llena', texto: 'sicigias: mareas vivas, más amplitud' }, { cifra: 'cuartos', texto: 'cuadraturas: mareas muertas' }, { cifra: '≈ 15 días', texto: 'de unas vivas a las siguientes' }],
+      nota: 'En mareas vivas sube más la pleamar y baja más la bajamar: hay más agua en la pleamar, menos en la bajamar y más corriente de marea.',
+      alt: 'El Sol a la izquierda, la Tierra en el centro y la órbita de la Luna con sus cuatro fases: alineadas (nueva y llena) dan mareas vivas; en ángulo recto (cuartos), mareas muertas. Debajo, una curva de marea viva, más alta, y una de marea muerta, más baja.',
+    };
+  }
   return null;
+}
+
+// ---------------------------------------------------------------------------
+// Carta (PY, UT 3 y 4): nortes, rosa, abatimiento, corriente, enfilación, demoras y estima. Convenio del examen:
+// E (+), W (−); Ct = dm + Δ; Rv = Ra + Ct; Rs = Rv + Ab (Ab + con el viento por babor); la corriente, hacia donde va.
+const NAV = 'Navegación';
+
+const nortes = () => ({
+  tema: NAV, titulo: 'Corrección total: los tres nortes', clave: 'Ct = dm + Δ: lo que es E suma y lo que es W resta.',
+  datos: [{ cifra: 'Ct = dm + Δ', texto: 'corrección total, cada una con su signo' }, { cifra: 'Rv = Ra + Ct', texto: 'de aguja a verdadero, se suma la Ct' }, { cifra: 'E + · W −', texto: 'el convenio de signos' }],
+  nota: 'La declinación (dm) viene en la carta y cambia con los años; el desvío (Δ) sale de la tablilla y depende del rumbo de aguja. Si el norte de aguja queda al W del verdadero, la Ct es negativa.',
+  alt: 'Los tres nortes salen de un mismo punto: el verdadero (Nv), el magnético (Nm), separado del verdadero por la declinación, y el de aguja (Na), separado del magnético por el desvío. Cada ángulo va acotado; en magenta, la corrección total, del verdadero al de aguja.',
+});
+
+function rosa(spec) {
+  if (spec.rumbo != null && spec.demora != null) {
+    return {
+      tema: NAV, titulo: 'Rumbo, demora y marcación', clave: 'Rumbo y demora, desde el norte; la marcación, desde la proa.',
+      datos: [{ cifra: '000°–359°', texto: 'rumbo y demora: desde el norte, en sentido horario' }, { cifra: '0°–180°', texto: 'marcación: por estribor o por babor' }, { cifra: 'Dv = Rv + M', texto: 'M positiva a estribor, negativa a babor' }],
+      nota: 'La demora de un objeto no cambia al cambiar de rumbo; su marcación sí. Al caer a estribor, lo que ves por estribor se acerca a la proa y su marcación baja.',
+      alt: 'Rosa graduada de 000° a 359° con el barco en el centro: la flecha del rumbo, la línea a trazos de la demora hasta el faro y, en magenta, el arco de la marcación, de la proa al faro.',
+    };
+  }
+  if (spec.rumbo != null) {
+    return {
+      tema: NAV, titulo: 'El rumbo', clave: 'Del norte a la proa, en el sentido de las agujas del reloj.',
+      datos: [{ cifra: '000°–359°', texto: 'siempre con tres cifras' }, { cifra: '090°', texto: 'proa al este; 180°, al sur; 270°, al oeste' }],
+      nota: 'El rumbo se cuenta de 000° a 359° desde el norte; no hay rumbos negativos ni «a babor». Lo que va por bandas es la marcación.',
+      alt: 'Rosa graduada de 000° a 359° con el barco en el centro y la flecha de su rumbo; en magenta, el arco que se mide desde el norte hasta la proa en el sentido de las agujas del reloj.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'La demora', clave: 'Del norte al objeto, en el sentido de las agujas del reloj.',
+    datos: [{ cifra: '000°–359°', texto: 'siempre con tres cifras' }, { cifra: 'Dv ± 180°', texto: 'la opuesta: la que se traza desde el objeto' }],
+    nota: 'La demora no depende de hacia dónde apunte tu proa: si cambias de rumbo, el faro sigue en la misma demora.',
+    alt: 'Rosa graduada de 000° a 359° con el observador en el centro y una línea a trazos hasta el faro; en magenta, el arco que se mide desde el norte hasta el faro en el sentido de las agujas del reloj.',
+  };
+}
+
+function abatimiento(spec) {
+  const br = spec.banda !== 'estribor';
+  return {
+    tema: NAV, titulo: `Abatimiento: viento por ${br ? 'babor' : 'estribor'}`, clave: `Rs = Rv + Ab, con el Ab ${br ? 'positivo' : 'negativo'}: el viento entra por ${br ? 'babor' : 'estribor'}.`,
+    datos: [{ cifra: 'Rs = Rv + Ab', texto: 'rumbo de superficie' }, { cifra: 'Ab +', texto: 'viento por babor: abate a estribor' }, { cifra: 'Ab −', texto: 'viento por estribor: abate a babor' }],
+    nota: 'El viento empuja el barco a sotavento, al lado contrario al que entra. En el problema inverso (qué rumbo dar) la proa se mete hacia el viento: Rv = Rs − Ab.',
+    alt: `El barco en la carta, con la proa (Rv, a trazos) y, separado por el ángulo acotado del abatimiento, el rumbo de superficie (Rs); tres flechas de viento le entran por ${br ? 'babor' : 'estribor'}.`,
+  };
+}
+
+function corriente(spec) {
+  const inversa = spec.caso === 'rumbo-a-dar';
+  const datos = [{ cifra: 'Rc', texto: 'la corriente: hacia dónde va el agua' }, { cifra: 'Ihc', texto: 'su intensidad, en nudos' }];
+  const nota = 'La corriente se nombra por hacia dónde va, al revés que el viento, que se nombra por de dónde viene. En la carta se dibuja el efectivo: es por donde pasa de verdad el barco.';
+  if (inversa) {
+    return {
+      tema: NAV, titulo: 'Corriente: rumbo a dar para llegar', clave: 'Primero la corriente; desde su extremo, la velocidad del barco corta la línea al destino.',
+      datos: [...datos, { cifra: 'Rs', texto: 'el rumbo a dar sale hacia el lado de donde viene la corriente' }], nota,
+      alt: 'Construcción en la carta: desde la salida, el vector de la corriente (tres puntas); con centro en su extremo, un arco de radio la velocidad del barco corta la línea al destino; esa dirección es el rumbo de superficie, y de la salida al corte, el efectivo en magenta.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'Corriente: rumbo y velocidad efectivos', clave: 'El efectivo es la suma del vector del barco y el de la corriente.',
+    datos: [...datos, { cifra: 'Ref · Vef', texto: 'rumbo y velocidad sobre el fondo' }], nota,
+    alt: 'Triángulo de velocidades en la carta, una hora de navegación: el rumbo de superficie del barco (una punta), a continuación la corriente (tres puntas) y, en magenta, el rumbo efectivo de la salida al final (dos puntas).',
+  };
+}
+
+const enfilacion = () => ({
+  tema: NAV, titulo: 'Enfilación y corrección total', clave: 'Ct = Dv − Da: la demora de la carta menos la de la aguja.',
+  datos: [{ cifra: 'Dv', texto: 'la de la enfilación, medida en la carta' }, { cifra: 'Da', texto: 'con la aguja, al verlas enfiladas' }, { cifra: 'Δ = Ct − dm', texto: 'y de ahí, el desvío' }],
+  nota: 'Una enfilación da una demora verdadera exacta sin calcular nada: por eso sirve para hallar la corrección total. Si la Da es mayor que la Dv, la Ct es negativa.',
+  alt: 'A la izquierda, dos faros en la costa vistos uno detrás de otro y el barco sobre su enfilación, con la demora verdadera acotada desde el norte. A la derecha, el norte verdadero y el de aguja separados por la corrección total, y la cuenta Ct = Dv − Da.',
+});
+
+function demoras(spec) {
+  if (spec.modo === 'traslado') {
+    return {
+      tema: NAV, titulo: spec.linea === 'segunda' ? 'Demoras no simultáneas: trasladar la segunda' : 'Demoras no simultáneas: el traslado', clave: 'Se traslada la primera lo navegado; el corte es la situación a la hora de la segunda.',
+      datos: [{ cifra: '1.ª', texto: 'la línea que viaja contigo' }, { cifra: 'rumbo y millas', texto: 'lo navegado entre las dos' }, { cifra: '2.ª hora', texto: 'la hora de la situación' }],
+      nota: 'El traslado es lo navegado de verdad: el Rv sin viento, el Rs con viento y el efectivo con corriente. Si trasladas la segunda hacia atrás, el corte sale bien, pero es la situación de la primera hora.',
+      alt: 'Dos faros con sus líneas de demora; la primera se traslada paralela a sí misma el rumbo y la distancia navegados (flecha magenta acotada) y su corte con la segunda, en magenta, es la situación.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'Situación por dos demoras simultáneas', clave: 'Cada demora se traza desde su faro con la opuesta; el barco está en el corte.',
+    datos: [{ cifra: 'Dv = Da + Ct', texto: 'cada demora, pasada a verdadera' }, { cifra: 'Dv ± 180°', texto: 'lo que se traza desde el faro' }, { cifra: '≈ 90°', texto: 'el mejor corte: casi perpendiculares' }],
+    nota: 'Toma las dos demoras a la vez y pásalas a verdaderas con la Ct del rumbo que llevas. Si las líneas se cortan muy agudas, un error pequeño en una demora mueve mucho la situación.',
+    alt: 'Costa con dos faros, A y B; desde cada uno sale su línea de demora hacia la mar (una continua y otra a trazos) y su corte, en magenta, es la situación del barco.',
+  };
+}
+
+function loxodromica(spec) {
+  const datos = [{ cifra: 'Δl = D · cos R', texto: 'minutos de latitud (= millas)' }, { cifra: 'A = D · sen R', texto: 'apartamiento, en millas' }, { cifra: 'ΔL = A / cos lm', texto: 'minutos de longitud' }];
+  const nota = 'Una milla es un minuto de latitud, pero no de longitud: los meridianos se juntan hacia los polos. Por eso el apartamiento se divide por el coseno de la latitud media.';
+  if (spec.modo === 'triangulo') {
+    return {
+      tema: NAV, titulo: 'Estima: del apartamiento a la longitud', clave: 'Cuanto más lejos del ecuador, más minutos de longitud por cada milla.', datos, nota,
+      alt: 'Triángulo de estima con sus catetos acotados (diferencia de latitud y apartamiento) y la distancia y el rumbo en magenta; debajo, dos barras a la misma escala comparan el apartamiento en millas con la diferencia de longitud en minutos.',
+    };
+  }
+  return {
+    tema: NAV, titulo: 'Estima loxodrómica: el triángulo', clave: 'Δl = D · cos R y A = D · sen R; luego, ΔL = A / cos lm.', datos, nota,
+    alt: 'Triángulo rectángulo de estima: de la salida a la llegada, la distancia D al rumbo R (en magenta); el cateto norte-sur es la diferencia de latitud y el este-oeste, el apartamiento; al lado, ΔL = A / cos lm.',
+  };
+}
+
+const tangenteViento = (spec) => ({
+  tema: NAV, titulo: spec.banda === 'estribor' ? 'Rumbo para pasar a una distancia, con viento, dejándolo por estribor' : 'Rumbo para pasar a una distancia, con viento', clave: 'La tangente es el Rs; la proa se mete hacia el viento: Rv = Rs − Ab.',
+  datos: [{ cifra: 'sen α = d / D', texto: 'α: de la visual al faro a la tangente' }, { cifra: 'Rs = Dv ± α', texto: '+ si dejas el faro por babor' }, { cifra: 'Ra = Rv − Ct', texto: 'y al final, a la aguja' }],
+  nota: 'Primero la derrota sobre el agua (la tangente, Rs); después el viento (Rv) y al final la aguja (Ra). Si tomas la tangente como proa, el viento te saca de ella y no pasas a la distancia que querías.',
+  alt: 'Desde la situación, la visual al faro y la tangente a la circunferencia de la distancia de paso, con el ángulo α acotado; la tangente es el rumbo de superficie y, en magenta y a trazos, la proa metida hacia el viento con el abatimiento acotado. Debajo, la cuenta en cinco pasos.',
+});
+
+const travesDerrota = (spec) => ({
+  tema: NAV, titulo: spec.banda === 'estribor' ? 'Faro por el través de estribor y derrota' : 'Faro por el través y derrota', clave: 'El través se mide con la proa (Rv ± 90°) y se corta con la derrota (Rs).',
+  datos: [{ cifra: 'Rv ± 90°', texto: 'el través: + estribor, − babor' }, { cifra: 'Dv + 180°', texto: 'lo que se traza desde el faro' }, { cifra: 'Rs', texto: 'la derrota con la que se corta' }],
+  nota: 'Con viento, la proa y la derrota no coinciden. El través es perpendicular a la proa; hacerlo con el Rs da un punto muy cercano, pero erróneo.',
+  alt: 'La derrota (Rs) desde la salida; del faro sale la línea del través, perpendicular a la proa (Rv, a trazos, con su ángulo recto), y su corte con la derrota es la situación, en magenta. Apagada, la trampa: el través trazado con el Rs. Debajo, la cuenta.',
+});
+
+const corrienteDesconocida = () => ({
+  tema: NAV, titulo: 'Corriente desconocida: de la estima a la observada', clave: 'La corriente va de la situación estimada a la observada, a la misma hora.',
+  datos: [{ cifra: 'Se → So', texto: 'el rumbo de la corriente (Rc)' }, { cifra: 'Ihc = d / t', texto: 'millas entre las dos, entre las horas' }, { cifra: '2 nudos', texto: 'en el ejemplo: 3,0 millas en 1,5 h' }],
+  nota: 'La estima se hace sin corriente (rumbo y velocidad, con el viento si lo hay). La diferencia con la situación observada es lo que ha hecho la corriente desde la última situación fiable.',
+  alt: 'Carta del Estrecho: de la salida de las 10:00, la estima (Rv 100°, 9 millas) hasta la situación estimada de las 11:30; las demoras de Punta Paloma y Punta Cires dan la observada; la corriente, en magenta, va de la estimada a la observada. Debajo, la resolución.',
+});
+
+const loxoOrto = () => ({
+  tema: NAV, titulo: 'Loxodrómica y ortodrómica', clave: 'La loxodrómica mantiene el rumbo; la ortodrómica es la más corta.',
+  datos: [{ cifra: 'α constante', texto: 'loxodrómica: el mismo rumbo con cada meridiano' }, { cifra: 'recta', texto: 'la loxodrómica, en la Mercator' }, { cifra: 'círculo máximo', texto: 'ortodrómica: la distancia más corta' }],
+  nota: 'En costa y en el examen se navega por loxodrómica: en distancias cortas la diferencia con la ortodrómica es despreciable. En las travesías oceánicas la ortodrómica se sigue por tramos loxodrómicos.',
+  alt: 'La misma travesía en el globo y en la carta Mercator: la loxodrómica, en magenta y continua, corta todos los meridianos con el mismo ángulo α y en la Mercator es una recta; la ortodrómica, a trazos, sale curvada hacia el polo.',
+});
+
+// ---------------------------------------------------------------------------
+// Viento aparente (PER, UT 9; PY, UT 2): la suma del real y del de avance.
+const VA = {
+  general: ['Viento aparente: real más de avance', 'A bordo se nota la suma del viento real y del de avance.'],
+  cenida: ['Viento aparente ciñendo', 'Ciñendo, el aparente es más fuerte que el real y entra más a proa.'],
+  traves: ['Viento aparente con el real de través', 'Con el real de través, el aparente entra por delante del través, algo más fuerte.'],
+  aleta: ['Viento aparente con el real por la aleta', 'Por la aleta, el aparente es más flojo que el real y entra más a proa.'],
+  popa: ['Viento aparente en popa', 'En popa, el aparente es el real menos tu velocidad.'],
+};
+function vientoAparenteMarco(spec) {
+  const v = VA[spec.rumbo ?? 'general'];
+  if (!v) return null;
+  return {
+    tema: MET, titulo: v[0], clave: v[1],
+    datos: [{ cifra: 'de avance', texto: 'igual y contrario a tu velocidad: de proa' }, { cifra: 'aparente', texto: 'el que marcan la veleta y el anemómetro' }, { cifra: 'más a proa', texto: 'que el real, salvo en popa cerrada' }],
+    nota: 'Las velas se ajustan al aparente. Cuanto más rápido vas, más se cierra hacia la proa; en popa, a tu misma velocidad, no notarías viento.',
+    alt: 'A la izquierda, el barco visto desde arriba con las direcciones por las que entran el viento real y el aparente, cada una con su ángulo desde la proa acotado; a la derecha, la suma de vectores: real más de avance igual a aparente, con sus nudos.',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Seguridad (PY, UT 1): movimientos del barco, patrones de búsqueda y fuego.
+const SEG = 'Seguridad';
+const NOTA_MOV = 'Balance, cabezada y guiñada son giros alrededor de los tres ejes del barco. Si el periodo de las olas coincide con el del barco, el movimiento se amplifica (sincronismo): cambia de rumbo o de velocidad.';
+const MOVS = {
+  balance: { titulo: 'Balance', clave: 'El barco se escora a una y otra banda: sobre todo con mar de través.', datos: [{ cifra: 'proa-popa', texto: 'el eje alrededor del que gira' }, { cifra: 'de través', texto: 'la mar que más lo provoca' }], alt: 'Barco visto de proa sobre el agua, escorado a una banda; a trazos, sus dos posiciones extremas y, en magenta, el vaivén alrededor del eje proa-popa.' },
+  cabezada: { titulo: 'Cabezada', clave: 'Proa y popa suben y bajan: con mar de proa o de popa.', datos: [{ cifra: 'babor-estribor', texto: 'el eje alrededor del que gira' }, { cifra: 'de proa', texto: 'o de popa: la mar que la provoca' }], alt: 'Barco visto de costado sobre el agua; a trazos, la proa arriba y la popa abajo y al revés; en magenta, el vaivén alrededor del eje de babor a estribor.' },
+  guinada: { titulo: 'Guiñada', clave: 'La proa se va a uno y otro lado del rumbo: típica con mar de popa o de aleta.', datos: [{ cifra: 'vertical', texto: 'el eje alrededor del que gira' }, { cifra: 'de popa', texto: 'o de aleta: la mar que la provoca' }], alt: 'Barco visto desde arriba sobre la línea de su rumbo; a trazos, la proa desviada a una y otra banda y, en magenta, el vaivén alrededor del eje vertical.' },
+};
+const movimiento = (spec) => { const m = MOVS[spec.mov] ?? MOVS.balance; return { tema: SEG, ...m, nota: NOTA_MOV }; };
+
+function busqueda(spec) {
+  if (spec.patron === 'sectores') {
+    return {
+      tema: SEG, titulo: 'Búsqueda por sectores', clave: 'Tramos radiales que pasan por el datum, con giros de 120° a estribor.',
+      datos: [{ cifra: '120°', texto: 'cada giro, a estribor' }, { cifra: 'R', texto: 'el radio: igual en cada tramo' }, { cifra: '3 triángulos', texto: 'barren el círculo' }],
+      nota: 'Es la mejor cuando el objeto está cerca del datum: se pasa por él muchas veces. Si no aparece, se repite con el patrón girado unos 30°.',
+      alt: 'Búsqueda por sectores vista desde arriba: desde el datum, en magenta, tramos radiales de radio R con giros de 120° a estribor (acotado en el primer vértice) que forman tres triángulos dentro del círculo.',
+    };
+  }
+  return {
+    tema: SEG, titulo: 'Búsqueda en cuadrado expansivo', clave: 'Desde el datum, giros de 90° a estribor y tramos que crecen cada dos.',
+    datos: [{ cifra: 'S, S, 2S, 2S…', texto: 'la longitud de los tramos' }, { cifra: '90°', texto: 'cada giro, a estribor' }, { cifra: 'datum', texto: 'la posición más probable' }],
+    nota: 'Sirve cuando se conoce bastante bien la posición del objeto y el área es pequeña. La separación S depende de la visibilidad y de lo que se busca.',
+    alt: 'Búsqueda en cuadrado expansivo vista desde arriba: desde el datum, en magenta, la derrota en espiral cuadrada con giros de 90° a estribor y tramos acotados que crecen cada dos (S, 2S, 3S, 4S).',
+  };
+}
+
+function fuego(spec) {
+  if (spec.modo) return null; // «apagar» es la lámina interactiva del PER, aún sin migrar
+  if (spec.vista === 'clases') {
+    return {
+      tema: SEG, titulo: 'Clases de fuego', clave: 'A sólidos, B líquidos, C gases, D metales y F aceites de cocina.',
+      datos: [{ cifra: 'ABC', texto: 'polvo polivalente: el extintor habitual a bordo' }, { cifra: 'agua', texto: 'solo en la A: nunca en líquidos ni con tensión' }, { cifra: 'E', texto: 'ya no es una clase' }],
+      nota: 'Cada clase pide su agente. El agua a chorro esparce los líquidos inflamables y conduce la electricidad; en un fuego eléctrico, corta antes la corriente.',
+      alt: 'Las cinco clases de fuego en una lista: A, sólidos como madera, tela o papel; B, líquidos como combustible o pintura; C, gases como butano o propano; D, metales; F, aceites de cocina. Debajo, que la E ya no es una clase.',
+    };
+  }
+  return {
+    tema: SEG, titulo: 'Tetraedro del fuego', clave: 'Si falta uno de los cuatro, el fuego se apaga.',
+    datos: [{ cifra: 'enfriar', texto: 'quita el calor (agua)' }, { cifra: 'sofocar', texto: 'quita el oxígeno (CO₂, manta)' }, { cifra: 'inhibir', texto: 'corta la reacción (polvo)' }],
+    nota: 'Quitar el combustible (cerrar el paso del gas o del combustible) también lo apaga. Para elegir el agente, mira la clase de fuego.',
+    alt: 'Un tetraedro con sus caras y cuatro cartelas: combustible (se retira), oxígeno (se sofoca), calor (se enfría) y reacción en cadena (se inhibe).',
+  };
 }
 
 const MARCOS = {
   cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
+  nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
+  'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
+  movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

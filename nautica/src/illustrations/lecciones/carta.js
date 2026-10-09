@@ -4,6 +4,8 @@
 // Funciones puras spec → { svg, caption }. Admiten `resaltar` (una parte o lista) para destacar la que trata cada paso.
 
 import { C, open, title, pol, bearing, arrow, deg3, fx } from '../kit.js';
+import { T, lienzo, flecha, rosaNorte, tierra, junto as juntoC, colocaEtiquetas } from '../estilo-c.js';
+import { faro as faroC, situacion, estima as estimaC, filaPaso, alrededor } from '../carta-c.js';
 
 const nf = (n, d = 1) => (+n).toFixed(d).replace('.', ',');
 const col = (c) => C[c] ?? c;
@@ -393,17 +395,18 @@ function gnss(spec = {}) {
 // Dv Punta Cires 101°. Estima 35°54,4′N 005°44,1′W; observada 35°56,6′N 005°41,5′W; Rc ≈ 044°, 3,0 M, Ihc 2 nudos.
 
 function corrienteDesconocida(spec = {}) {
-  NID = 'cc';
+  // Estilo C (docs/ESTILO-LAMINAS.md): la estima con una punta, la corriente (de la estimada a la observada) con tres y
+  // en magenta; la estimada es un triángulo y la observada un círculo, como en la carta.
   const m = marcas(spec);
-  const W = 320;
-  const H = 332;
-  const out = open(W, H, 'Corriente desconocida', NID);
-  out.push(title(160, 'Corriente desconocida: de Se a So'));
+  const W = 358;
+  const H = 388;
+  const alt = 'Corriente desconocida: desde la salida de las 10:00, la estima sin corriente (Rv 100°, 9 millas) lleva a la situación estimada de las 11:30; las demoras de Punta Paloma (350°) y Punta Cires (101°) dan la observada. La corriente va de la estimada a la observada: rumbo 044°, 3,0 millas en 1,5 horas, intensidad 2 nudos.';
+  const { out, pt, cierra } = lienzo(W, H, alt, { fondo: T.agua2 });
   // millas en la carta (x al E, y al N) desde la salida, con cos(35,9°) para las longitudes
   const cl = Math.cos((35.92 * Math.PI) / 180);
   const mi = (lat, lon) => [(-(lon - (5 + 55 / 60)) * 60) * cl, (lat - (35 + 56 / 60)) * 60];
-  const k = 20;
-  const O = [18, 172];
+  const k = 22;
+  const O = [22, 168];
   const px = ([x, y]) => [O[0] + x * k, O[1] - y * k];
   const S = px([0, 0]);
   const Se = px(mi(35 + 54.4 / 60, 5 + 44.1 / 60));
@@ -411,36 +414,54 @@ function corrienteDesconocida(spec = {}) {
   // líneas de posición desde los faros (opuestas a las Dv: 170° desde Paloma y 281° desde Cires)
   const uP = pol(0, 0, 350, 1);
   const uC = pol(0, 0, 101, 1);
-  const Pal = mas(So, uP, 98);
-  const Cir = mas(So, uC, 64);
-  out.push(`<g${m.dim('observada')}>${seg(Pal, mas(So, uP, -14), 'p', m.on('observada') ? 2.6 : 1.8)}${seg(Cir, mas(So, uC, -40), 'p', m.on('observada') ? 2.6 : 1.8)}</g>`);
-  out.push(faro(Pal), t(Pal[0] - 9, Pal[1] + 4, 'Pta. Paloma', { a: 'end', b: true }));
-  out.push(faro(Cir), t(Cir[0] + 6, Cir[1] + 20, 'Pta. Cires', { a: 'end', b: true }));
-  const lp = mas(So, uP, 62);
-  out.push(`<g${m.dim('observada')}>${t(lp[0] - 7, lp[1], 'Dv 350°', { c: 'p', a: 'end', b: m.on('observada') })}</g>`);
-  const lc = mas(So, uC, 34);
-  out.push(`<g${m.dim('observada')}>${t(lc[0] + 4, lc[1] - 10, 'Dv 101°', { c: 'p', a: 'middle', b: m.on('observada') })}</g>`);
+  const Pal = mas(So, uP, 118);
+  const Cir = mas(So, uC, 56);
+  // costa: la de Paloma al norte y la de Cires al este
+  out.push(tierra(`M${fx(Pal[0] - 120)},0 H${fx(Pal[0] + 70)} C${fx(Pal[0] + 40)},${fx(Pal[1] - 6)} ${fx(Pal[0] + 16)},${fx(Pal[1] - 2)} ${fx(Pal[0])},${fx(Pal[1] - 4)} C${fx(Pal[0] - 40)},${fx(Pal[1] - 18)} ${fx(Pal[0] - 80)},${fx(Pal[1] - 10)} ${fx(Pal[0] - 120)},${fx(Pal[1] - 16)} Z`, pt));
+  out.push(tierra(`M${W},${fx(Cir[1] - 70)} C${fx(Cir[0] + 20)},${fx(Cir[1] - 50)} ${fx(Cir[0] + 6)},${fx(Cir[1] - 18)} ${fx(Cir[0] + 4)},${fx(Cir[1])} C${fx(Cir[0] + 8)},${fx(Cir[1] + 30)} ${fx(Cir[0] + 24)},${fx(Cir[1] + 50)} ${W},${fx(Cir[1] + 60)} Z`, pt));
+  const fP = mas(So, uP, -16);
+  const fC = mas(So, uC, -60);
+  out.push(`<g data-parte="observada"${m.dim('observada')}><line x1="${fx(Pal[0])}" y1="${fx(Pal[1])}" x2="${fx(fP[0])}" y2="${fx(fP[1])}" stroke="${T.tinta}" stroke-width="${m.on('observada') ? 1.9 : 1.5}"/>` +
+    `<line x1="${fx(Cir[0])}" y1="${fx(Cir[1])}" x2="${fx(fC[0])}" y2="${fx(fC[1])}" stroke="${T.tinta}" stroke-width="${m.on('observada') ? 1.9 : 1.5}" stroke-dasharray="8 4"/></g>`);
+  out.push(faroC(Pal[0], Pal[1], { destella: false }), faroC(Cir[0], Cir[1], { destella: false }));
+  const segs = [[Pal, fP], [Cir, fC], [S, Se], [Se, So]];
+  const cajas = [{ x0: Pal[0] - 9, y0: Pal[1] - 9, x1: Pal[0] + 9, y1: Pal[1] + 9 }, { x0: Cir[0] - 9, y0: Cir[1] - 9, x1: Cir[0] + 9, y1: Cir[1] + 9 }];
+  const pet = [];
+  pet.push({ t: 'Pta. Paloma', cands: [[Pal[0] - 46, Pal[1] + 4], [Pal[0] + 46, Pal[1] + 4], [Pal[0], Pal[1] + 20]], rotulo: true });
+  pet.push({ t: 'Pta. Cires', cands: [[Cir[0] - 8, Cir[1] + 22], [Cir[0] - 8, Cir[1] - 16], [Cir[0] - 44, Cir[1]]], rotulo: true });
+  pet.push({ t: 'Dv 350°', cands: juntoC(So, Pal, 'Dv 350°', { centro: S, ks: [0.6, 0.45, 0.75] }), p: 'observada' });
+  pet.push({ t: 'Dv 101°', cands: juntoC(So, Cir, 'Dv 101°', { centro: S, ks: [0.55, 0.4, 0.7] }), p: 'observada' });
   // estima sin corriente
-  out.push(`<g${m.dim('estima')}>${arrow(S[0], S[1], ...mas(Se, dir(S, Se), -9), 'v', NID, m.on('estima') ? 3.2 : 2.4)}</g>`);
-  const le = mas(S, dir(S, Se), 74);
-  out.push(`<g${m.dim('estima')}>${t(le[0], le[1] + 18, 'Rv 100° · 6 kn × 1,5 h = 9 M', { c: 'v', a: 'middle', b: m.on('estima') })}</g>`);
-  out.push(`<g${m.dim('salida')}>${obs(S, 'currentColor', m.on('salida') ? 2.6 : 1.8)}${t(S[0] - 6, S[1] - 12, 'salida 10:00', { b: m.on('salida') })}</g>`);
-  out.push(`<g${m.dim('estima')}>${tri(Se, 'v', m.on('estima') ? 2.8 : 2)}${t(Se[0] - 2, Se[1] + 20, 'Se 11:30', { c: 'v', a: 'middle', b: true })}</g>`);
-  out.push(`<g${m.dim('observada')}>${obs(So, 'p', m.on('observada') ? 2.8 : 2)}${t(So[0] - 10, So[1] - 12, 'So 11:30', { c: 'p', a: 'end', b: true })}</g>`);
-  // corriente: de la estimada a la observada
-  out.push(`<g${m.dim('corriente')}>${arrow(...mas(Se, dir(Se, So), 8), ...mas(So, dir(Se, So), -9), 'r', NID, m.on('corriente') ? 3.6 : 3)}${t(Se[0] + 30, Se[1] + 2, 'Rc ≈ 044°', { c: 'r', b: true })}${t(Se[0] + 30, Se[1] + 14, '3,0 M', { c: 'r', b: true })}</g>`);
-  out.push(norte(28, 80));
+  out.push(`<g data-parte="estima"${m.dim('estima')}>${flecha(S[0], S[1], ...mas(Se, dir(S, Se), -10), { color: T.tinta, w: m.on('estima') ? 1.9 : 1.6 })}</g>`);
+  pet.push({ t: 'Rv 100° · 9 M', cands: juntoC(S, Se, 'Rv 100° · 9 M', { centro: So, ks: [0.45, 0.3, 0.6] }), p: 'estima' });
+  out.push(`<g data-parte="salida"${m.dim('salida')}>${situacion(S[0], S[1], { color: T.tinta })}</g>`);
+  pet.push({ t: 'salida 10:00', cands: [[S[0] + 14, S[1] - 18], [S[0] + 20, S[1] + 22]], rotulo: true, p: 'salida' });
+  out.push(`<g${m.dim('estima')}>${estimaC(Se[0], Se[1], { p: 'estima' })}</g>`);
+  pet.push({ t: 'Se 11:30', cands: [[Se[0], Se[1] + 24], [Se[0] + 44, Se[1] + 16], ...alrededor(Se, [30, 44])], p: 'estima' });
+  out.push(`<g${m.dim('observada')}>${situacion(So[0], So[1], { color: T.tinta, p: 'observada' })}</g>`);
+  pet.push({ t: 'So 11:30', cands: [[So[0] - 38, So[1] - 16], [So[0] + 38, So[1] - 18], [So[0] - 44, So[1] + 4]], p: 'observada' });
+  // la corriente: de la estimada a la observada (tres puntas, magenta)
+  const e0 = mas(Se, dir(Se, So), 9);
+  const e1 = mas(So, dir(Se, So), -10);
+  const d = Math.hypot(e1[0] - e0[0], e1[1] - e0[1]) || 1;
+  const [ux, uy] = [(e1[0] - e0[0]) / d, (e1[1] - e0[1]) / d];
+  const chev = [1, 2].map((i) => { const c = [e1[0] - ux * (10 + 6 * i), e1[1] - uy * (10 + 6 * i)]; return `<polyline points="${fx(c[0] - uy * 4.5 - ux * 5)},${fx(c[1] + ux * 4.5 - uy * 5)} ${fx(c[0])},${fx(c[1])} ${fx(c[0] + uy * 4.5 - ux * 5)},${fx(c[1] - ux * 4.5 - uy * 5)}" fill="none" stroke="${T.magenta}" stroke-width="1.4"/>`; }).join('');
+  out.push(`<g data-parte="corriente"${m.dim('corriente')}>${flecha(e0[0], e0[1], e1[0], e1[1], { color: T.magenta, w: m.on('corriente') ? 2.4 : 2 })}${chev}</g>`);
+  pet.push({ t: 'Rc 044° · 3,0 M', cands: juntoC(Se, So, 'Rc 044° · 3,0 M', { centro: Cir, ks: [0.5, 0.3, 0.7] }), color: T.magenta, p: 'corriente', ref: [(Se[0] + So[0]) / 2, (Se[1] + So[1]) / 2] });
+  out.push(rosaNorte(34, 54));
+  cajas.push({ x0: 12, y0: 26, x1: 56, y1: 74 }, { x0: S[0] - 10, y0: S[1] - 10, x1: S[0] + 10, y1: S[1] + 10 }, { x0: Se[0] - 10, y0: Se[1] - 11, x1: Se[0] + 10, y1: Se[1] + 8 }, { x0: So[0] - 10, y0: So[1] - 10, x1: So[0] + 10, y1: So[1] + 10 });
+  out.push(colocaEtiquetas(pet, { W, H: 246, segs, cajas }));
   // resolución
-  const y0 = 256;
+  out.push(`<line x1="14" y1="246" x2="${W - 14}" y2="246" stroke="${T.tinta}" stroke-width=".6"/>`);
   const filas = [
-    ['salida', '1. Salida 10:00: 35°56,0′ N 005°55,0′ W'],
-    ['estima', '2. Se 11:30 (sin corriente): 35°54,4′ N 005°44,1′ W'],
-    ['observada', '3. So 11:30 (Dv 350° y 101°): 35°56,6′ N 005°41,5′ W'],
-    ['corriente', '4. Se → So: Rc ≈ 044°, 3,0 millas'],
-    ['corriente', '5. Ihc = 3,0 / 1,5 h = 2 nudos'],
+    ['salida', 'Salida 10:00: 35°56,0′ N 005°55,0′ W'],
+    ['estima', 'Se 11:30, sin corriente: 35°54,4′ N 005°44,1′ W'],
+    ['observada', 'So 11:30 (Dv 350° y 101°): 35°56,6′ N 005°41,5′ W'],
+    ['corriente', 'De Se a So: Rc ≈ 044°, 3,0 millas'],
+    ['corriente', 'Ihc = 3,0 M / 1,5 h = 2 nudos'],
   ];
-  filas.forEach(([p, s], i) => out.push(`<g${m.dim(p)}>${t(14, y0 + i * 16, s, { s: 10.5, b: m.on(p) || (!m.activo && i >= 3), c: i >= 3 ? 'r' : null })}</g>`));
-  out.push('</svg>');
+  filas.forEach(([p, txt], i) => out.push(filaPaso(22, 268 + i * 23, i + 1, txt, { clave: i >= 3, extra: m.dim(p) })));
+  out.push(cierra());
   return {
     svg: out.join(''),
     caption: 'La corriente es el vector que va de la situación de estima (Se, calculada sin corriente) a la observada (So) a la misma hora: su dirección es el rumbo de la corriente y su longitud, dividida por las horas desde la salida fiable, la intensidad horaria. En el problema modelo: 3,0 millas al 044° en 1,5 h, Ihc 2 nudos.',

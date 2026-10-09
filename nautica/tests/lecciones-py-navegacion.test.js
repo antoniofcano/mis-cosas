@@ -52,7 +52,7 @@ test('cifras de las lecciones', () => {
   const td = LAMINAS['traves-derrota'].fn({ tipo: 'traves-derrota' }).svg;
   assert.match(td, /Rs 160°/);
   assert.match(td, /Dv = Rv − 90° = 080°/);
-  assert.match(td, /desde el faro: 260°/);
+  assert.match(td, /desde el faro: 260°/i);
   assert.match(td, /1 h 03 min → HRB 11:03/);
   assert.match(td, /070°/);
   // check: Rv 205 con viento del W, través de estribor → 295

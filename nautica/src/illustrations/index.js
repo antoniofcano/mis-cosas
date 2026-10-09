@@ -9,13 +9,16 @@ import { meteoIllustration, flagIllustration } from './misc.js';
 import { boatIllustration, propellerIllustration, hombreAlAguaIllustration } from './laminas-c.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
-import { enfilacionIllustration, vientoAparenteIllustration, loxodromicaIllustration, mareaIllustration, dstIllustration, demorasIllustration } from './navigation.js';
+import { mareaIllustration, dstIllustration } from './navigation.js';
+import { vientoAparenteIllustration } from './meteo-c.js';
+import { enfilacionIllustration, demorasIllustration, loxodromicaIllustration } from './carta-c.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration, canalIllustration } from './balizamiento.js';
 import { evolucionIllustration, ciabogaIllustration } from './maniobra.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { LAMINAS_LECCIONES } from './lecciones/index.js';
-import { movimientoIllustration, amarrasIllustration, busquedaIllustration, fuegoIllustration, jerarquiaIllustration } from './seamanship.js';
+import { amarrasIllustration, jerarquiaIllustration } from './seamanship.js';
+import { movimientoIllustration, busquedaIllustration, fuegoIllustration } from './seguridad-c.js';
 
 function rhythmIllustration(spec) {
   const r = parseRhythm(spec.ritmo);

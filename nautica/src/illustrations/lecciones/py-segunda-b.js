@@ -4,6 +4,7 @@
 // Funciones puras spec → { svg, caption }. Admiten `resaltar` (una parte o lista) para destacar la que trata cada paso.
 
 import { C, open, title, pol, arrow, fx, rad } from '../kit.js';
+import { T, TXT, lienzo, rotulo, arcoD } from '../estilo-c.js';
 
 const nf = (n, d = 1) => (+n).toFixed(d).replace('.', ',');
 const col = (c) => C[c] ?? c;
@@ -62,23 +63,24 @@ function travesia(A, B, n = 40) {
 }
 
 function loxoOrto(spec = {}) {
-  const ID = 'lo2';
+  // Estilo C (docs/ESTILO-LAMINAS.md): la loxodrómica en magenta, continua; la ortodrómica en tinta, a trazos; la
+  // retícula fina. En la Mercator, el mismo ángulo α en cada meridiano que corta la loxodrómica.
   const m = marcas(spec, PARTES_LOXO);
   if (!m) return null;
-  const W = 320;
-  const H = 318;
-  const out = open(W, H, 'Loxodrómica y ortodrómica', ID);
-  out.push(title(160, 'Loxodrómica y ortodrómica'));
+  const W = 358;
+  const H = 336;
+  const alt = 'La misma travesía de 40° N 074° W a 50° N 005° W de dos maneras, en el globo y en la carta Mercator: la loxodrómica (continua) corta todos los meridianos con el mismo ángulo y en la Mercator es una recta; la ortodrómica (a trazos), arco de círculo máximo, es la más corta y en la Mercator sale curvada hacia el polo.';
+  const { out, cierra } = lienzo(W, H, alt);
   const A = [40, -74];
   const B = [50, -5];
   const { orto, loxo } = travesia(A, B);
-  const wL = m.on('loxo') ? 3.4 : 2.6;
-  const wO = m.on('orto') ? 3.4 : 2.6;
-  const estiloO = 'stroke-dasharray="7 4"';
+  const wL = m.on('loxo') ? 2.4 : 2;
+  const wO = m.on('orto') ? 2.2 : 1.8;
+  const linC = (pts, color, w, extra = '') => `<polyline points="${pts.map((q) => `${fx(q[0])},${fx(q[1])}`).join(' ')}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"${extra}/>`;
 
   // --- globo (proyección ortográfica centrada en 42° N 040° W)
-  const G = [82, 124];
-  const R = 70;
+  const G = [90, 124];
+  const R = 72;
   const lat0 = rad(42);
   const lon0 = -40;
   const orto2 = ([la, lo]) => {
@@ -93,27 +95,26 @@ function loxoOrto(spec = {}) {
     const vis = pts.map(orto2).filter((q) => q.vis).map((q) => q.p);
     return vis.length > 1 ? vis : null;
   };
-  out.push(t(G[0], 46, 'En el globo', { a: 'middle', b: true }));
-  out.push(`<circle cx="${G[0]}" cy="${G[1]}" r="${R}" style="fill:var(--l-mar);stroke:currentColor" stroke-width="1.2"/>`);
+  out.push(rotulo(G[0], 34, 'EN EL GLOBO', { size: TXT.min, weight: 700, estilo: 'cap', color: T.apagado }));
+  out.push(`<circle cx="${G[0]}" cy="${G[1]}" r="${R}" fill="${T.agua}" stroke="${T.tinta}" stroke-width="1.2"/>`);
   for (let lo = -180; lo < 180; lo += 20) {
     const pts = tramo(Array.from({ length: 37 }, (_, i) => [-90 + i * 5, lo]));
-    if (pts) out.push(linea(pts, 'g', 0.8));
+    if (pts) out.push(linC(pts, T.lineaAgua, 0.8));
   }
   for (let la = -60; la <= 80; la += 20) {
     const pts = tramo(Array.from({ length: 73 }, (_, i) => [la, -180 + i * 5]));
-    if (pts) out.push(linea(pts, 'g', la === 0 ? 1.2 : 0.6, la === 0 ? '' : 'stroke-dasharray="2 3"'));
+    if (pts) out.push(linC(pts, T.lineaAgua, la === 0 ? 1.2 : 0.7, la === 0 ? '' : ' stroke-dasharray="2 3"'));
   }
-  out.push(`<g${m.dim('loxo')}>${linea(tramo(loxo), 'r', wL)}</g>`);
-  out.push(`<g${m.dim('orto')}>${linea(tramo(orto), 'v', wO, estiloO)}</g>`);
+  out.push(`<g data-parte="loxo"${m.dim('loxo')}>${linC(tramo(loxo), T.magenta, wL)}</g>`);
+  out.push(`<g data-parte="orto"${m.dim('orto')}>${linC(tramo(orto), T.tinta, wO, ' stroke-dasharray="7 4"')}</g>`);
   const gA = orto2(A).p;
   const gB = orto2(B).p;
-  out.push(punto(gA), punto(gB));
-  out.push(t(G[0] - 30, 206, 'meridianos', { c: 'g', a: 'middle', s: 9 }));
+  out.push(`<circle cx="${fx(gA[0])}" cy="${fx(gA[1])}" r="3.5" fill="${T.tinta}"/><circle cx="${fx(gB[0])}" cy="${fx(gB[1])}" r="3.5" fill="${T.tinta}"/>`);
 
   // --- carta Mercator (conforme: la misma escala en longitud y en latitud creciente)
-  const X0 = 168;
-  const X1 = 312;
-  const Y0 = 56;
+  const X0 = 184;
+  const X1 = 344;
+  const Y0 = 52;
   const Y1 = 196;
   const lonA = -82;
   const lonB = 2;
@@ -121,49 +122,44 @@ function loxoOrto(spec = {}) {
   const psiMid = (psi(38) + psi(56)) / 2;
   const yMid = (Y0 + Y1) / 2;
   const merc = ([la, lo]) => [X0 + (lo - lonA) * k, yMid - (psi(la) - psiMid) * k];
-  out.push(t((X0 + X1) / 2, 46, 'En la carta Mercator', { a: 'middle', b: true }));
-  out.push(`<rect x="${X0}" y="${Y0}" width="${X1 - X0}" height="${Y1 - Y0}" style="fill:var(--l-mar);stroke:currentColor" stroke-width="1.2"/>`);
+  out.push(rotulo((X0 + X1) / 2, 34, 'EN LA MERCATOR', { size: TXT.min, weight: 700, estilo: 'cap', color: T.apagado }));
+  out.push(`<rect x="${X0}" y="${Y0}" width="${X1 - X0}" height="${Y1 - Y0}" fill="${T.agua}" stroke="${T.tinta}" stroke-width="1.2"/>`);
   for (let lo = -75; lo <= -15; lo += 15) {
     const x = merc([0, lo])[0];
-    out.push(seg([x, Y0], [x, Y1], 'g', 0.8));
+    out.push(`<line x1="${fx(x)}" y1="${Y0}" x2="${fx(x)}" y2="${Y1}" stroke="${T.lineaAgua}" stroke-width=".8"/>`);
   }
   for (const la of [20, 30, 40, 50, 60]) {
     const y = merc([la, 0])[1];
-    if (y > Y0 && y < Y1) out.push(seg([X0, y], [X1, y], 'g', 0.6, 'stroke-dasharray="2 3"'));
+    if (y > Y0 && y < Y1) out.push(`<line x1="${X0}" y1="${fx(y)}" x2="${X1}" y2="${fx(y)}" stroke="${T.lineaAgua}" stroke-width=".7" stroke-dasharray="2 3"/>`);
   }
-  out.push(`<g${m.dim('orto')}>${linea(orto.map(merc), 'v', wO, estiloO)}</g>`);
+  out.push(`<g data-parte="orto"${m.dim('orto')}>${linC(orto.map(merc), T.tinta, wO, ' stroke-dasharray="7 4"')}</g>`);
   const mA = merc(A);
   const mB = merc(B);
-  out.push(`<g${m.dim('loxo')}>${seg(mA, mB, 'r', wL)}`);
+  out.push(`<g data-parte="loxo"${m.dim('loxo')}><line x1="${fx(mA[0])}" y1="${fx(mA[1])}" x2="${fx(mB[0])}" y2="${fx(mB[1])}" stroke="${T.magenta}" stroke-width="${wL}"/>`);
   // el mismo ángulo con cada meridiano que corta
   const rumbo = (Math.atan2(mB[0] - mA[0], -(mB[1] - mA[1])) * 180) / Math.PI;
   for (const lo of [-55, -25]) {
     const f = (lo - A[1]) / (B[1] - A[1]);
     const c = [mA[0] + f * (mB[0] - mA[0]), mA[1] + f * (mB[1] - mA[1])];
-    const p0 = pol(c[0], c[1], 0, 13);
-    const p1 = pol(c[0], c[1], rumbo, 13);
-    out.push(`<path d="M${fx(p0[0])},${fx(p0[1])} A13,13 0 0 1 ${fx(p1[0])},${fx(p1[1])}" fill="none" stroke="${C.a}" stroke-width="1.6"/>`);
-    out.push(t(c[0] - 4, c[1] - 4, 'α', { c: 'a', a: 'end', b: true, s: 10 }));
+    out.push(`<path d="${arcoD(c[0], c[1], 14, 0, rumbo)}" fill="none" stroke="${T.magenta}" stroke-width="1.4"/>`);
+    out.push(rotulo(c[0] - 5, c[1] - 6, 'α', { size: TXT.rotulo, weight: 700, estilo: 'serif', color: T.magenta, anchor: 'end' }));
   }
   out.push('</g>');
-  out.push(punto(mA), punto(mB));
-  out.push(t(X0 + 6, mA[1] + 14, 'salida', { s: 9 }), t(X1 - 4, mB[1] + 14, 'llegada', { a: 'end', s: 9 }));
-  out.push(t((X0 + X1) / 2, 206, 'el mismo ángulo α en todos', { c: 'a', a: 'middle', s: 9 }));
+  out.push(`<circle cx="${fx(mA[0])}" cy="${fx(mA[1])}" r="3.5" fill="${T.tinta}"/><circle cx="${fx(mB[0])}" cy="${fx(mB[1])}" r="3.5" fill="${T.tinta}"/>`);
+  out.push(rotulo(X0 + 4, Y1 + 16, 'salida', { size: TXT.min, estilo: 'serif', italic: true, anchor: 'start' }), rotulo(X1, Y1 + 16, 'llegada', { size: TXT.min, estilo: 'serif', italic: true, anchor: 'end' }));
 
-  // --- leyenda y doctrina
-  const y0 = 226;
-  out.push(`<g${m.dim('loxo')}>${seg([12, y0 - 4], [34, y0 - 4], 'r', wL)}`);
-  out.push(t(40, y0, 'Loxodrómica: rumbo constante', { c: 'r', b: true }));
-  out.push(t(40, y0 + 14, 'corta todos los meridianos con el mismo'));
-  out.push(t(40, y0 + 27, 'ángulo; en la Mercator es una recta.'));
-  out.push('</g>');
-  const y1 = y0 + 46;
-  out.push(`<g${m.dim('orto')}>${seg([12, y1 - 4], [34, y1 - 4], 'v', wO, estiloO)}`);
-  out.push(t(40, y1, 'Ortodrómica: arco de círculo máximo', { c: 'v', b: true }));
-  out.push(t(40, y1 + 14, 'la más corta, pero el rumbo cambia siempre.'));
-  out.push('</g>');
-  out.push(t(160, H - 8, 'En costa y en el examen: la loxodrómica.', { a: 'middle', c: 'g', s: 9.5 }));
-  out.push('</svg>');
+  // --- leyenda
+  out.push(`<line x1="14" y1="222" x2="${W - 14}" y2="222" stroke="${T.tinta}" stroke-width=".6"/>`);
+  const y0 = 244;
+  out.push(`<g data-parte="loxo"${m.dim('loxo')}><line x1="16" y1="${y0 - 4}" x2="40" y2="${y0 - 4}" stroke="${T.magenta}" stroke-width="2.2"/>` +
+    rotulo(48, y0, 'Loxodrómica: rumbo constante', { size: TXT.nota, weight: 700, estilo: 'serif', anchor: 'start', color: T.magenta }) +
+    rotulo(48, y0 + 16, 'el mismo ángulo con todos los meridianos;', { size: TXT.min + 0.5, estilo: 'serif', anchor: 'start' }) +
+    rotulo(48, y0 + 31, 'en la Mercator es una recta.', { size: TXT.min + 0.5, estilo: 'serif', anchor: 'start' }) + '</g>');
+  const y1 = y0 + 52;
+  out.push(`<g data-parte="orto"${m.dim('orto')}><line x1="16" y1="${y1 - 4}" x2="40" y2="${y1 - 4}" stroke="${T.tinta}" stroke-width="2" stroke-dasharray="7 4"/>` +
+    rotulo(48, y1, 'Ortodrómica: círculo máximo', { size: TXT.nota, weight: 700, estilo: 'serif', anchor: 'start' }) +
+    rotulo(48, y1 + 16, 'la más corta, pero el rumbo cambia siempre.', { size: TXT.min + 0.5, estilo: 'serif', anchor: 'start' }) + '</g>');
+  out.push(cierra());
   const cap = {
     loxo: 'La loxodrómica corta todos los meridianos con el mismo ángulo: es navegar a rumbo constante, y en la carta Mercator se dibuja como una recta. No es el camino más corto, pero en distancias cortas la diferencia es despreciable.',
     orto: 'La ortodrómica es el arco de círculo máximo entre los dos puntos: la distancia más corta. En la Mercator sale curvada hacia el polo y el rumbo cambia continuamente; en travesías oceánicas se sigue por tramos loxodrómicos.',

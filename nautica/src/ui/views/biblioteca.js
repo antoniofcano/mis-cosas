@@ -26,6 +26,7 @@ export function bibliotecaView({ tit }) {
       [link(['reglas']), 'nudo', 'Reglas para recordar', 'Trucos que funcionan, con su explicación.'],
     ]],
     ['Carta', [
+      [tlink(tit, ['carta-pasos']), 'transportador', 'Ejercicios de carta resueltos', 'Un ejemplo de cada tipo, resuelto paso a paso con su dibujo, su cuenta y su trampa.'],
       [tlink(tit, ['carta']), 'mapa', 'Ejercicios de carta', 'Problemas con datos nuevos cada vez, corregidos paso a paso.'],
       [link(['conceptos']), 'libro', 'Conceptos de carta', 'Signos, glosario y el método de cada ejercicio.'],
       [link(['mesa']), 'compas', 'Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador.'],

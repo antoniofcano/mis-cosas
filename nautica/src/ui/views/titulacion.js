@@ -29,6 +29,7 @@ export function cartaView({ progress, tit }) {
     h('h1', conIcono('mapa', `Carta de navegación · ${T.sigla}`)),
     h('p', 'Cada tipo de ejercicio con datos nuevos cada vez sobre la carta del Estrecho (L105). Compruebas tus respuestas, pides pistas, ves la construcción en la carta y el tutorial te lo resuelve como en el examen, con el profe explicándolo.'),
     h('div.cards',
+      h('a.card', { href: tlink(T.id, ['carta-pasos']) }, h('h3', conIcono('transportador', 'Resueltos paso a paso')), h('p', 'Un ejemplo de cada tipo, resuelto paso a paso con su dibujo, su cuenta y su trampa.')),
       h('a.card', { href: link(['mesa']) }, h('h3', conIcono('compas', 'Mesa de cartas libre')), h('p', 'La carta con todos los instrumentos para trazar a tu aire.')),
       reales),
     cats.map((c) => h('section.category',

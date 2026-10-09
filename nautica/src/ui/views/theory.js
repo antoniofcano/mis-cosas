@@ -11,7 +11,8 @@ import { TITULACIONES, tlink, currentEje, reglasExamen } from '../titulacion.js'
 import { citaFuente } from '../eje.js';
 import { TANDA } from '../../course/plan.js';
 import { pintarCierre, calcularPlan } from '../cierre.js';
-import { fijarModoExamen } from '../modo-examen.js';
+import { fijarModoExamen, modoExamen } from '../modo-examen.js';
+import { TIPO_DE_EJERCICIO, TITULO_TIPO } from '../../course/carta-pasos.js';
 import { barraActividad, avisoBreve } from '../actividad.js';
 import { buildSimulacro, buildReal, buildFinal, buildPractica, buildMezcla, testDesdeIds, grade, nuevasDe } from '../../theory/engine.js';
 import { narrateTheory, esDefendible } from '../../teacher/theory.js';
@@ -145,7 +146,7 @@ export function botonCarta(q, progress, ayudas = null, { calculadora = true } = 
 }
 
 /** Panel del profe para una pregunta respondida. */
-export function profePanel(q, expl, chosen, { efectos = true } = {}) {
+export function profePanel(q, expl, chosen, { efectos = true, pasos = true } = {}) {
   const n = narrateTheory(q, expl, chosen, reglasDe(q.id));
   const ok = q.anulada || q.norma?.estado === 'retirada' || chosen === q.correcta;
   // Al corregir: el efecto de la respuesta (sonido y vibración, si están activados en Ajustes; nunca al repasar un
@@ -172,11 +173,22 @@ export function profePanel(q, expl, chosen, { efectos = true } = {}) {
       return [corto.map((x) => x.el), largo.length || resto.some(Boolean) ? h('details.ver-por-que', h('summary', 'Ver por qué'), largo.map((x) => x.el), resto) : null];
     })(),
     ok ? null : enlaceTrampa(q, chosen),
+    ok || !pasos ? null : enlacePasos(q),
     h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
   // Las siglas de la explicación (Ct, HRB, MMSI…) se explican al tocarlas. La pregunta ya está respondida.
   glosar(panel, { tit: T.id, ut: q.ut });
   return panel;
+}
+
+/**
+ * Pregunta de carta fallada (en la práctica, nunca en un examen ni en su revisión): el ejemplo resuelto de su tipo,
+ * dibujado paso a paso (#/<tit>/carta-pasos/<tipo>).
+ */
+function enlacePasos(q) {
+  const tipo = TIPO_DE_EJERCICIO[cartaSolutions[q.id]?.ejercicio];
+  if (!tipo || modoExamen()) return null;
+  return h('p.enlace-resuelto', h('a', { href: tlink(T.id, ['carta-pasos', tipo]) }, conIcono('transportador', `Ver cómo se resuelve este tipo: ${TITULO_TIPO[tipo]}, paso a paso`)));
 }
 
 /** «Ver la resolución»: en la carta, o paso a paso si la pregunta se resuelve sin ella (mareas, estima analítica). */
@@ -904,7 +916,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         const b = bloque(E0, q.ut);
         const cuerpo = h('div.revision-cuerpo');
         const det = h('details.revision-pregunta', { class: d.retirada ? 'retirada' : d.ok ? 'ok' : 'bad', ontoggle: () => {
-          if (det.open && !cuerpo.childElementCount) cuerpo.append(questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta, { efectos: false }));
+          if (det.open && !cuerpo.childElementCount) cuerpo.append(questionCard(q, { number: j + 1, chosen: d.respuesta, reveal: true, lock: true, vocab: vocabBanco }), profePanel(q, explanationFor(q, explicaciones), d.respuesta, { efectos: false, pasos: false }));
         } },
         h('summary',
           h('span.revision-num', String(j + 1)),

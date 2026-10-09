@@ -19,6 +19,8 @@ import { cronometro } from '../../course/cronometro.js';
 import { loadApendice } from '../../store/datasets.js';
 import { repasosPara, APENDICE_PUBLICADO } from '../../course/apendice.js';
 import { conIcono } from '../iconos.js';
+import { TIPO_DE_EJERCICIO, TITULO_TIPO } from '../../course/carta-pasos.js';
+import { hrefPasos } from './carta-pasos.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: ['ok', 'Correcto'],
@@ -149,6 +151,9 @@ export function exerciseView({ ctx, progress, params: route }) {
       r.allOk ? h('p.ok', conIcono('ok', '¡Todo correcto!')) : null,
       ...r.diagnoses.map((d) => h('p.warn', conIcono('lupa', d.explain))),
       !r.allOk && !r.diagnoses.length && r.answeredCount ? h('p.muted', 'Pide una pista para revisar el procedimiento paso a paso.') : null,
+      // fallado: el ejemplo resuelto de este tipo, dibujado paso a paso (vuelve a este mismo ejercicio)
+      !r.allOk && r.answeredCount && TIPO_DE_EJERCICIO[exercise.id] ? h('p.enlace-resuelto', h('a', { href: hrefPasos(tit, TIPO_DE_EJERCICIO[exercise.id], `ej:${exercise.id}:${seed}`) },
+        conIcono('transportador', `Ver cómo se resuelve: ${TITULO_TIPO[TIPO_DE_EJERCICIO[exercise.id]]}, paso a paso`))) : null,
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {
       progress.recordAttempt(exercise.id, { ok: r.allOk, seed, mistakes: r.diagnoses.map((d) => d.id) });

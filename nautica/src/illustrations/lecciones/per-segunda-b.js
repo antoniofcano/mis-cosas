@@ -6,6 +6,8 @@
 // una parte desconocida devuelve null.
 
 import { C, open, title, fx, pol, hullPlan } from '../kit.js';
+import { dibujoAnimado } from '../animaciones/index.js';
+import { pabellonObligatorioC, PABELLON } from '../per-cola-normativa-c.js';
 
 /** Colores de texto y trazo que se adaptan al tema (las variables de styles/app.css). */
 const VAR = { v: 'var(--l-v)', m: 'var(--l-m)', a: 'var(--l-a)', r: 'var(--l-r)', p: 'var(--l-p)', g: 'var(--muted)' };
@@ -43,102 +45,7 @@ const flecha = (x1, y1, x2, y2, c, id, w = 2.2, extra = '') => `<line x1="${fx(x
 const curva = (d, c, id, w = 2.2, extra = '') => `<path d="${d}" fill="none" stroke="${col(c)}" stroke-width="${w}" marker-end="url(#${id}-${c})" ${extra}/>`;
 const badge = (x, y, n, c = 'r', on = false) => `<circle cx="${fx(x)}" cy="${fx(y)}" r="7.5" fill="${on ? C[c] : 'var(--bg)'}" stroke="${C[c]}" stroke-width="${on ? 2.4 : 1.6}"/><text x="${fx(x)}" y="${fx(y + 3.6)}" text-anchor="middle" font-size="10.5" font-weight="700" style="fill:${on ? '#fff' : col(c)}">${n}</text>`;
 
-const espana = (x, y, w, h) => `<rect x="${fx(x)}" y="${fx(y)}" width="${fx(w)}" height="${fx(h)}" fill="#c60b1e"/><rect x="${fx(x)}" y="${fx(y + h / 4)}" width="${fx(w)}" height="${fx(h / 2)}" fill="#ffc400"/><rect x="${fx(x)}" y="${fx(y)}" width="${fx(w)}" height="${fx(h)}" fill="none" stroke="#7f1d1d" stroke-width=".6"/>`;
-const andalucia = (x, y, w, h) => `<rect x="${fx(x)}" y="${fx(y)}" width="${fx(w)}" height="${fx(h)}" fill="#fff" stroke="#14532d" stroke-width=".6"/><rect x="${fx(x)}" y="${fx(y)}" width="${fx(w)}" height="${fx(h / 3)}" fill="#15803d"/><rect x="${fx(x)}" y="${fx(y + (2 * h) / 3)}" width="${fx(w)}" height="${fx(h / 3)}" fill="#15803d"/>`;
-
-// ---------------------------------------------------------------------------
-// 1. Cuándo es obligatorio izar el pabellón nacional (per-4-7, RD 2335/1980).
-// spec: { tipo:'pabellon-obligatorio', resaltar?: 'guerra'|'puerto'|'festivos'|'autoridad'|'extranjero'|'otras' }
-
-const PABELLON = {
-  guerra: ['A la vista de un **buque de guerra**', 'o de una fortaleza'],
-  puerto: ['Al **entrar y salir** de puerto'],
-  festivos: ['En puerto, **de sol a sol**,', 'en los días festivos'],
-  autoridad: ['Cuando lo disponga la **autoridad**', 'competente'],
-  extranjero: ['Cuando lo exijan la **costumbre**', '**internacional** o las normas de aguas', 'extranjeras'],
-};
-const CAP_PABELLON = {
-  guerra: 'A la vista de un buque de guerra o de una fortaleza hay que tener izado el pabellón nacional.',
-  puerto: 'Al entrar y al salir de puerto hay que llevar izado el pabellón nacional.',
-  festivos: 'En puerto, los días festivos, el pabellón nacional se iza de sol a sol.',
-  autoridad: 'También es obligatorio izarlo cuando lo disponga la autoridad competente.',
-  extranjero: 'Y cuando lo exijan la costumbre internacional o las normas de las aguas extranjeras en que navegas.',
-  otras: 'Cualquier otra bandera, como la autonómica, solo puede ir izada con la de España izada y como mucho con un tercio de su área.',
-};
-
-/** Pictograma de 56 × 34 centrado en (x, y). */
-function icono(k, x, y) {
-  const o = [];
-  if (k === 'guerra') {
-    // buque de guerra gris y una torre de fortaleza
-    o.push(`<path d="M${x - 27},${y + 4} L${x + 9},${y + 4} L${x + 5},${y + 11} L${x - 24},${y + 11} Z" fill="#64748b" stroke="currentColor" stroke-width=".8"/>`);
-    o.push(`<rect x="${x - 15}" y="${y - 4}" width="12" height="8" fill="#64748b" stroke="currentColor" stroke-width=".6"/><line x1="${x - 9}" y1="${y - 4}" x2="${x - 9}" y2="${y - 13}" stroke="currentColor" stroke-width="1.2"/>`);
-    o.push(`<rect x="${x - 1}" y="${y}" width="6" height="4" fill="#64748b"/><line x1="${x + 2}" y1="${y + 1}" x2="${x + 10}" y2="${y - 2}" stroke="currentColor" stroke-width="1.4"/>`);
-    o.push(`<path d="M${x + 14},${y + 11} L${x + 14},${y - 8} L${x + 17},${y - 8} L${x + 17},${y - 11} L${x + 20},${y - 11} L${x + 20},${y - 8} L${x + 23},${y - 8} L${x + 23},${y - 11} L${x + 26},${y - 11} L${x + 26},${y + 11} Z" style="fill:var(--l-casco)" stroke="currentColor" stroke-width=".8"/>`);
-    o.push(`<line x1="${x - 30}" y1="${y + 11}" x2="${x + 29}" y2="${y + 11}" stroke="${C.v}" stroke-width="1.2"/>`);
-  } else if (k === 'puerto') {
-    o.push(`<path d="M${x - 28},${y - 12} L${x - 6},${y - 12} L${x - 6},${y - 2}" fill="none" stroke="currentColor" stroke-width="3.4"/>`);
-    o.push(`<path d="M${x - 28},${y + 12} L${x - 6},${y + 12} L${x - 6},${y + 4}" fill="none" stroke="currentColor" stroke-width="3.4"/>`);
-    o.push(`<path d="M${x - 22},${y} L${x + 26},${y}" fill="none" stroke="${C.v}" stroke-width="1.6" marker-start="url(#po-v)" marker-end="url(#po-v)"/>`);
-  } else if (k === 'festivos') {
-    o.push(`<line x1="${x - 28}" y1="${y + 10}" x2="${x + 28}" y2="${y + 10}" stroke="currentColor" stroke-width="1.2"/>`);
-    o.push(`<path d="M${x - 20},${y + 10} Q${x},${y - 24} ${x + 20},${y + 10}" fill="none" stroke="${C.a}" stroke-width="1.4" stroke-dasharray="3 2"/>`);
-    for (const sx of [x - 20, x + 20]) o.push(`<path d="M${sx - 6},${y + 10} A6,6 0 0 1 ${sx + 6},${y + 10} Z" fill="#f59e0b" stroke="${C.a}" stroke-width=".8"/>`);
-    o.push(`<line x1="${x}" y1="${y + 10}" x2="${x}" y2="${y - 6}" stroke="currentColor" stroke-width="1"/>`, espana(x, y - 6, 9, 6));
-  } else if (k === 'autoridad') {
-    o.push(`<rect x="${x - 12}" y="${y - 14}" width="22" height="28" rx="1.5" style="fill:var(--bg)" stroke="currentColor" stroke-width="1"/>`);
-    for (const dy of [-8, -3, 2]) o.push(`<line x1="${x - 8}" y1="${y + dy}" x2="${x + 6}" y2="${y + dy}" stroke="currentColor" stroke-width=".8"/>`);
-    o.push(`<circle cx="${x + 9}" cy="${y + 9}" r="6" fill="${C.r}" stroke="#fff" stroke-width="1"/>`);
-  } else if (k === 'extranjero') {
-    o.push(`<circle cx="${x}" cy="${y}" r="14" style="fill:var(--l-mar)" stroke="currentColor" stroke-width="1"/>`);
-    o.push(`<ellipse cx="${x}" cy="${y}" rx="6" ry="14" fill="none" stroke="currentColor" stroke-width=".7"/>`);
-    o.push(`<line x1="${x - 14}" y1="${y}" x2="${x + 14}" y2="${y}" stroke="currentColor" stroke-width=".7"/><path d="M${x - 12},${y - 7} Q${x},${y - 4} ${x + 12},${y - 7} M${x - 12},${y + 7} Q${x},${y + 4} ${x + 12},${y + 7}" fill="none" stroke="currentColor" stroke-width=".7"/>`);
-  }
-  return o.join('');
-}
-
-function pabellonObligatorio(spec = {}) {
-  const ID = 'po';
-  const m = marcas(spec, [...Object.keys(PABELLON), 'otras']);
-  if (!m) return null;
-  const W = 320;
-  const H = 304;
-  const out = open(W, H, 'Cuándo izar el pabellón nacional', ID);
-  out.push(title(160, 'Cuándo izar el pabellón nacional'));
-  out.push(t(160, 39, 'Es obligatorio llevar izada la bandera de España:', { a: 'middle', c: 'g' }));
-  let y = 48;
-  for (const [k, lineas] of Object.entries(PABELLON)) {
-    const h = lineas.length === 3 ? 46 : 38;
-    const on = m.on(k);
-    out.push(`<g${m.dim(k)}>`);
-    if (on) out.push(`<rect x="5" y="${y}" width="310" height="${h - 3}" rx="7" fill="none" stroke="${C.r}" stroke-width="2"/>`);
-    out.push(icono(k, 40, y + (h - 3) / 2));
-    const y0 = y + (h - 3) / 2 - ((lineas.length - 1) * 13) / 2 + 4;
-    lineas.forEach((l, i) => out.push(t(80, y0 + i * 13, l, { s: 10.5 })));
-    out.push('</g>');
-    y += h;
-  }
-  // las demás banderas: solo con la de España izada y como mucho un tercio de su área
-  const yo = y + 6;
-  const on = m.on('otras');
-  out.push(`<g${m.dim('otras')}>`);
-  out.push(`<line x1="10" y1="${yo - 3}" x2="310" y2="${yo - 3}" stroke="currentColor" stroke-width=".6" opacity=".5"/>`);
-  if (on) out.push(`<rect x="5" y="${yo}" width="310" height="${H - yo - 6}" rx="7" fill="none" stroke="${C.r}" stroke-width="2"/>`);
-  const [fw, fh] = [42, 28];
-  const k3 = 1 / Math.sqrt(3); // un tercio del área
-  out.push(espana(14, yo + 8, fw, fh));
-  out.push(`<line x1="${14 + fw / 3}" y1="${yo + 8}" x2="${14 + fw / 3}" y2="${yo + 8 + fh}" stroke="#111" stroke-width=".7" stroke-dasharray="2 2"/><line x1="${14 + (2 * fw) / 3}" y1="${yo + 8}" x2="${14 + (2 * fw) / 3}" y2="${yo + 8 + fh}" stroke="#111" stroke-width=".7" stroke-dasharray="2 2"/>`);
-  out.push(andalucia(62, yo + 8 + fh - fh * k3, fw * k3, fh * k3));
-  out.push(t(96, yo + 14, '**Las demás** (autonómica, club…):', { s: 10.5 }));
-  out.push(t(96, yo + 27, 'solo con la de España izada y', { s: 10.5 }));
-  out.push(t(96, yo + 40, 'como mucho **1/3 de su área**', { s: 10.5, c: on ? 'r' : null }));
-  out.push('</g>');
-  out.push('</svg>');
-  const caption = m.lista.length === 1
-    ? CAP_PABELLON[m.lista[0]]
-    : 'El pabellón nacional se iza a la vista de un buque de guerra o de una fortaleza, al entrar y salir de puerto, en puerto de sol a sol los días festivos, cuando lo disponga la autoridad y cuando lo exijan la costumbre internacional o las normas extranjeras. Las demás banderas, solo con la de España izada y con un tercio de su área como máximo.';
-  return { svg: out.join(''), caption };
-}
+// 1. Cuándo es obligatorio izar el pabellón nacional (per-4-7, RD 2335/1980): en estilo C, per-cola-normativa-c.js.
 
 // ---------------------------------------------------------------------------
 // 2. Velocidad de gobierno, arrancada y rabeo de la popa (per-7-3).
@@ -252,90 +159,7 @@ function gobiernoRabeo(spec = {}) {
 // ---------------------------------------------------------------------------
 // 3. Dos hélices: giro al exterior y al interior, y la ciaboga (per-7-5).
 // spec: { tipo:'ciaboga-dos-helices', banda?: 'er'|'br', resaltar?: 'exterior'|'interior'|'ciaboga' }
-
-/** Hélice vista desde popa en (x, y) con la flecha de giro dando avante: horario (cw) o antihorario. */
-function heliceDesdePopa(x, y, cw, c, ID) {
-  const o = [];
-  for (const a of [0, 120, 240]) o.push(`<ellipse cx="${x}" cy="${y - 7}" rx="3.6" ry="7" transform="rotate(${a + 20} ${x} ${y})" style="fill:var(--l-g)" stroke="currentColor" stroke-width=".7"/>`);
-  o.push(`<circle cx="${x}" cy="${y}" r="2.6" fill="currentColor"/>`);
-  const r = 18;
-  const [a, b] = cw ? [-55, 55] : [55, -55];
-  const p = pol(x, y, a, r);
-  const q = pol(x, y, b, r);
-  o.push(`<path d="M${fx(p[0])},${fx(p[1])} A${r},${r} 0 0 ${cw ? 1 : 0} ${fx(q[0])},${fx(q[1])}" fill="none" stroke="${col(c)}" stroke-width="2" marker-end="url(#${ID}-${c})"/>`);
-  return o.join('');
-}
-
-function ciabogaDosHelices(spec = {}) {
-  const ID = 'c2';
-  const banda = spec.banda ?? 'er';
-  if (!['er', 'br'].includes(banda)) return null;
-  const m = marcas(spec, ['exterior', 'interior', 'ciaboga']);
-  if (!m) return null;
-  const W = 320;
-  const H = 316;
-  const out = open(W, H, 'Ciaboga con dos hélices', ID);
-  out.push(title(160, 'Dos hélices: montaje y ciaboga'));
-  // --- montajes, vistos desde popa (Br a la izquierda, Er a la derecha)
-  const panel = (cx, nombre, sub, ext) => {
-    const k = ext ? 'exterior' : 'interior';
-    const on = m.on(k);
-    const o = [`<g${m.dim(k)}>`];
-    if (on) o.push(`<rect x="${cx - 76}" y="31" width="152" height="128" rx="7" fill="none" stroke="${C.r}" stroke-width="2"/>`);
-    o.push(t(cx, 46, nombre, { a: 'middle', b: true }), t(cx, 59, sub, { a: 'middle', c: 'g' }));
-    o.push(`<path d="M${cx - 52},70 L${cx + 52},70 L${cx + 42},94 L${cx - 42},94 Z" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.2"/>`);
-    o.push(t(cx - 50, 86, 'Br', { a: 'end', c: 'g' }), t(cx + 50, 86, 'Er', { c: 'g' }));
-    for (const s of [-1, 1]) o.push(seg(cx + s * 24, 94, cx + s * 24, 110, 'g', 1.6));
-    // exterior: levógira a babor y dextrógira a estribor (por arriba giran hacia fuera)
-    o.push(heliceDesdePopa(cx - 24, 116, !ext, ext ? 'm' : 'p', ID), heliceDesdePopa(cx + 24, 116, ext, ext ? 'm' : 'p', ID));
-    o.push(t(cx - 8, 147, ext ? 'levógira' : 'dextrógira', { a: 'end' }), t(cx + 8, 147, ext ? 'dextrógira' : 'levógira'));
-    o.push('</g>');
-    return o.join('');
-  };
-  out.push(panel(82, 'Giro al exterior', 'supradivergentes', true), panel(238, 'Giro al interior', 'supraconvergentes', false));
-  out.push(t(160, 172, 'Vistas desde popa. La de giro al exterior es la habitual.', { a: 'middle', c: 'g' }));
-  out.push(seg(10, 180, 310, 180, 'g', 0.6, 'opacity=".6"'));
-  // --- ciaboga en planta
-  const on = m.on('ciaboga');
-  const s = banda === 'er' ? 1 : -1; // +1: cae a estribor (derecha)
-  const [bx, by] = [80, 246];
-  const L = 92;
-  out.push(`<g${m.dim('ciaboga')}>`);
-  out.push(`<g transform="translate(${bx} ${by})">${hullPlan(L, 32, 'style="fill:var(--l-casco);stroke:currentColor"')}<line x1="0" y1="${L / 2}" x2="${s * 7}" y2="${L / 2 + 11}" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></g>`);
-  const xer = bx + 26;
-  const xbr = bx - 26;
-  const xAtras = s > 0 ? xer : xbr;
-  const xAvante = s > 0 ? xbr : xer;
-  out.push(flecha(xAvante, by + 40, xAvante, by + 12, 'v', ID, 3));
-  out.push(flecha(xAtras, by + 12, xAtras, by + 40, 'r', ID, 3));
-  out.push(t(xAvante - s * 8, by + 30, 'avante', { a: s > 0 ? 'end' : 'start', c: 'v', b: true }));
-  out.push(t(xAtras + s * 8, by + 30, 'atrás', { a: s > 0 ? 'start' : 'end', c: 'r', b: true }));
-  out.push(t(bx - 24, by - 8, 'Br', { a: 'end', c: 'g' }), t(bx + 24, by - 8, 'Er', { c: 'g' }));
-  // la proa cae hacia la banda del motor que va atrás
-  out.push(curva(`M${bx},${by - L / 2 - 8} Q${bx + s * 30},${by - L / 2 - 12} ${bx + s * 40},${by - L / 2 + 6}`, 'a', ID, 2.6));
-  const tx = 156;
-  const B = banda === 'er' ? 'estribor' : 'babor';
-  const O = banda === 'er' ? 'babor' : 'estribor';
-  out.push(t(tx, 200, `**Ciaboga a ${B}**`, { s: 11 }));
-  out.push(t(tx, 216, `Motor de **${B} atrás**`, { c: 'r' }));
-  out.push(t(tx, 230, `Motor de **${O} avante**`, { c: 'v' }));
-  out.push(t(tx, 244, `Timón a ${B}: ayuda`));
-  out.push(t(tx, 264, '**La proa cae hacia la banda**', { c: on ? 'a' : null }));
-  out.push(t(tx, 277, '**del motor que va atrás.**', { c: on ? 'a' : null }));
-  out.push(t(tx, 296, 'Con giro al exterior, las dos', { c: 'g' }));
-  out.push(t(tx, 309, 'presiones laterales ayudan.', { c: 'g' }));
-  out.push('</g>');
-  out.push('</svg>');
-  const CAP = {
-    exterior: 'Giro al exterior (supradivergentes): dextrógira a estribor y levógira a babor; vistas desde popa, por arriba giran hacia fuera. Es el montaje más habitual.',
-    interior: 'Giro al interior (supraconvergentes): levógira a estribor y dextrógira a babor; vistas desde popa, por arriba giran hacia dentro.',
-    ciaboga: `Con dos hélices se ciaboga con un motor avante y el otro atrás: la proa cae hacia la banda del que va atrás. A ${B}: ${B} atrás y ${O} avante.`,
-  };
-  const caption = m.lista.length === 1
-    ? CAP[m.lista[0]]
-    : `Las hélices gemelas giran en sentidos contrarios: al exterior (dextrógira a estribor, levógira a babor, la habitual) o al interior. Para ciabogar a ${B}, motor de ${B} atrás y de ${O} avante: la proa cae hacia la banda del que va atrás.`;
-  return { svg: out.join(''), caption };
-}
+// Animada y en estilo C: src/illustrations/animaciones/ciaboga-dos.js.
 
 // ---------------------------------------------------------------------------
 // 4. Agua en la sentina: el achique (per-8-5, RD 339/2021).
@@ -566,7 +390,7 @@ function barometros(spec = {}) {
 
 export const LAMINAS = {
   'pabellon-obligatorio': {
-    fn: pabellonObligatorio,
+    fn: pabellonObligatorioC,
     params: { resaltar: [...Object.keys(PABELLON), 'otras'] },
     ejemplo: { tipo: 'pabellon-obligatorio' },
   },
@@ -576,7 +400,7 @@ export const LAMINAS = {
     ejemplo: { tipo: 'gobierno-rabeo', vista: 'gobierno' },
   },
   'ciaboga-dos-helices': {
-    fn: ciabogaDosHelices,
+    fn: dibujoAnimado, // animada, en estilo C: src/illustrations/animaciones/ciaboga-dos.js
     params: { banda: ['er', 'br'], resaltar: ['exterior', 'interior', 'ciaboga'] },
     ejemplo: { tipo: 'ciaboga-dos-helices', banda: 'er' },
   },

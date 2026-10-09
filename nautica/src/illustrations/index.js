@@ -1,44 +1,30 @@
 // Motor de ilustraciones de teoría: { tipo, ...parámetros } → { svg, caption, sound? }.
 // Dibujos SVG generados al vuelo: ligeros y nítidos. Las láminas animadas (src/illustrations/animaciones/) dan aquí su
-// fotograma fijo; el reproductor (src/ui/animacion.js) las mueve. Algunas láminas antiguas aún se animan con SMIL.
+// fotograma fijo; el reproductor (src/ui/animacion.js) las mueve. Las luces que destellan (boyas, ritmos) usan SMIL,
+// que se para con «reducir movimiento» (styles/laminas.css).
 // Para añadir una ilustración nueva: crea su función y regístrala en RENDERERS y en CATALOGO.
 
 import { buoyIllustration, cardinalClock, BUOYS } from './buoys.js';
-import { shipIllustration, SHIPS } from './ships.js';
-import { crossingIllustration, riesgoIllustration, SENALES } from './situations.js';
+import { SHIPS } from './ships.js';
+import { crossingIllustration, SENALES } from './situations.js';
 import { meteoIllustration } from './misc.js';
 import { banderaIllustration, sonidoIllustration } from './senales-c.js';
 import { boatIllustration } from './laminas-c.js';
-import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
-import { mareaIllustration, dstIllustration } from './navigation.js';
+import { mareaIllustration } from './navigation.js';
 import { vientoAparenteIllustration } from './meteo-c.js';
 import { enfilacionIllustration, demorasIllustration, loxodromicaIllustration } from './carta-c.js';
 import { socorroIllustration, SOCORRO, HOJAS_SOCORRO } from './socorro.js';
-import { bifurcacionIllustration, regionesIllustration, canalIllustration } from './balizamiento.js';
-import { ciabogaIllustration } from './maniobra.js';
+import { bifurcacionIllustration, canalIllustration } from './balizamiento.js';
 import { dibujoAnimado } from './animaciones/index.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { LAMINAS_LECCIONES } from './lecciones/index.js';
-import { amarrasIllustration, jerarquiaIllustration } from './seamanship.js';
 import { movimientoIllustration, busquedaIllustration, fuegoIllustration } from './seguridad-c.js';
 import { RENDERERS_PER } from './per-renderers.js';
-
-function rhythmIllustration(spec) {
-  const r = parseRhythm(spec.ritmo);
-  const W = 300;
-  const H = 120;
-  const svg = `<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="Ritmo ${spec.ritmo}"><rect width="${W}" height="${H}" rx="10" class="il-night"/>` +
-    blinkingLight(50, 58, 9, spec.ritmo) +
-    `<text x="96" y="34" class="il-title left night">${spec.ritmo}</text>` + rhythmTimeline(96, 50, 184, 16, spec.ritmo) + '</svg>';
-  return { svg, caption: spec.texto ?? `Periodo de ${r.period} s: el tiempo que tarda en repetirse la secuencia completa.` };
-}
 
 const RENDERERS = {
   boya: buoyIllustration,
   cardinales: (s) => cardinalClock(s.resaltar),
-  ritmo: rhythmIllustration,
-  buque: shipIllustration,
   cruce: crossingIllustration,
   sonido: sonidoIllustration,
   meteo: meteoIllustration,
@@ -55,26 +41,20 @@ const RENDERERS = {
   marea: mareaIllustration,
   'sectores-luces': (s) => dibujoFijo(INTERACTIVAS['sectores-luces'], s),
   canal: canalIllustration,
-  dst: dstIllustration,
-  jerarquia: jerarquiaIllustration,
   estabilidad: (s) => dibujoFijo(INTERACTIVAS.estabilidad, s),
   movimiento: movimientoIllustration,
-  amarras: amarrasIllustration,
   busqueda: busquedaIllustration,
   'hombre-al-agua': dibujoAnimado,
   fuego: fuegoIllustration,
   socorro: socorroIllustration,
-  riesgo: riesgoIllustration,
   'helice-timon': (s) => dibujoFijo(INTERACTIVAS['helice-timon'], s),
   evolucion: dibujoAnimado,
-  ciaboga: ciabogaIllustration,
   desatraque: (s) => dibujoFijo(INTERACTIVAS.desatraque, s),
   bifurcacion: bifurcacionIllustration,
-  regiones: regionesIllustration,
   beaufort: beaufortIllustration,
   demoras: demorasIllustration,
   ...Object.fromEntries(Object.entries(LAMINAS_LECCIONES).map(([k, l]) => [k, l.fn])),
-  // PER en estilo C (ritmos, buques, regiones, amarras, riesgo, jerarquía, DST y ciaboga): sustituyen a las antiguas
+  // PER en estilo C: ritmos, buques, regiones, amarras, riesgo, jerarquía, DST y ciaboga
   ...RENDERERS_PER,
 };
 

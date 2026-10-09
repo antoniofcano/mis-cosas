@@ -77,26 +77,8 @@ export function rhythmAnimation(rh) {
 }
 
 /** Luz que parpadea con su ritmo, con halo. */
-export function blinkingLight(cx, cy, r, rhythmText) {
-  const rh = parseRhythm(rhythmText);
-  const anim = rhythmAnimation(rh);
-  return `<g class="il-light"><circle cx="${cx}" cy="${cy}" r="${r * 2.4}" fill="${rh.colors[0]}" opacity=".25">${anim}</circle>` +
-    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${rh.colors[0]}" stroke="#0005" stroke-width=".6">${anim}</circle></g>`;
-}
 
 /** Cronograma del ritmo (barra con los destellos y un cursor animado). */
-export function rhythmTimeline(x, y, w, h, rhythmText) {
-  const rh = parseRhythm(rhythmText);
-  let t = 0;
-  const out = [`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="#0f172a"/>`];
-  for (const s of rh.steps) {
-    if (s.on) out.push(`<rect x="${x + (t / rh.period) * w}" y="${y + 2}" width="${Math.max(1.5, (s.d / rh.period) * w)}" height="${h - 4}" fill="${s.color ?? rh.colors[0]}"/>`);
-    t += s.d;
-  }
-  out.push(`<line x1="${x}" y1="${y - 3}" x2="${x}" y2="${y + h + 3}" stroke="#e11d48" stroke-width="1.5"><animate attributeName="x1" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/><animate attributeName="x2" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/></line>`);
-  out.push(`<text x="${x}" y="${y + h + 12}" font-size="9" fill="#334155">0 s</text><text x="${x + w}" y="${y + h + 12}" font-size="9" text-anchor="end" fill="#334155">${rh.period} s</text>`);
-  return out.join('');
-}
 
 // ---------------------------------------------------------------------------
 // Estilo C (docs/ESTILO-LAMINAS.md): la misma luz y el mismo cronograma, con los colores de styles/laminas.css.
@@ -123,7 +105,9 @@ function animOpacidad(rh, color = null) {
 export function luzC(cx, cy, r, ritmo) {
   const rh = parseRhythm(ritmo);
   const cols = [...new Set(rh.steps.filter((s) => s.on).map((s) => s.color ?? rh.colors[0]))];
-  return `<g class="il-light">${cols.map((c) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${luzToken(c)}" stroke="var(--lc-tinta)" stroke-width=".8">${animOpacidad(rh, cols.length > 1 ? c : null)}</circle>`).join('')}</g>`;
+  // Con «reducir movimiento» la luz se queda encendida (CSS de .lc-destello en styles/laminas.css): se ve la primera
+  // fase del ritmo, que siempre es de luz, y el cronograma de al lado da el ritmo entero.
+  return `<g class="il-light">${cols.map((c, i) => `<circle class="lc-destello${i ? ' lc-destello-otro' : ''}" cx="${cx}" cy="${cy}" r="${r}" fill="${luzToken(c)}" stroke="var(--lc-tinta)" stroke-width=".8">${animOpacidad(rh, cols.length > 1 ? c : null)}</circle>`).join('')}</g>`;
 }
 
 /** Cronograma del ritmo (estilo C): franja de noche con los destellos, cursor que la recorre y los segundos debajo. */
@@ -135,7 +119,7 @@ export function cronoC(x, y, w, h, ritmo) {
     if (s.on) out.push(`<rect x="${(x + (t / rh.period) * w).toFixed(1)}" y="${y + 3}" width="${Math.max(2, (s.d / rh.period) * w).toFixed(1)}" height="${h - 6}" fill="${luzToken(s.color ?? rh.colors[0])}"/>`);
     t += s.d;
   }
-  out.push(`<line x1="${x}" y1="${y - 3}" x2="${x}" y2="${y + h + 3}" stroke="var(--lc-magenta)" stroke-width="1.6"><animate attributeName="x1" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/><animate attributeName="x2" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/></line>`);
+  out.push(`<line class="lc-cursor" x1="${x}" y1="${y - 3}" x2="${x}" y2="${y + h + 3}" stroke="var(--lc-magenta)" stroke-width="1.6"><animate attributeName="x1" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/><animate attributeName="x2" from="${x}" to="${x + w}" dur="${rh.period}s" repeatCount="indefinite"/></line>`);
   const seg = String(rh.period).replace('.', ',');
   out.push(`<text x="${x}" y="${y + h + 15}" font-size="11.5" fill="var(--lc-apagado)" class="lc-mono">0 s</text><text x="${x + w}" y="${y + h + 15}" font-size="11.5" text-anchor="end" fill="var(--lc-apagado)" class="lc-mono">${seg} s</text>`);
   return out.join('');

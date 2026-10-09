@@ -65,16 +65,23 @@ export function lucesVista(s, vista, o = {}) {
 /** Una luz de noche: halo y foco del color de la luz (siempre sobre la noche). */
 const luz = (x, y, c, r = 4.4) => `<g data-luz="${NOMBRE_LUZ[c]}"><circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r * 1.75)}" fill="${LUZ[c]}" opacity=".25"/><circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}" fill="${LUZ[c]}"/></g>`;
 
-/** Celda de noche: silueta apenas visible, palo y luces, con el rótulo de la vista. */
-function celdaNoche(s, vista, x, y, w, h, o, rotulos) {
+/**
+ * Celda de noche: silueta apenas visible, palo y luces, con el rótulo de la vista. mini: miniatura (mapas de conceptos):
+ * las luces más grandes y repartidas por su orden de altura (qué va encima de qué), no a escala, para que no se peguen.
+ */
+function celdaNoche(s, vista, x, y, w, h, o, rotulos, mini = false) {
   const out = [`<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${T.noche}" stroke="${T.tinta}" stroke-width=".8"/>`];
-  const pie = rotulos ? 22 : 8;
-  const base = y + h - pie - 12; // flotación
+  const pie = rotulos ? 22 : mini ? 2 : 8;
+  const base = y + h - pie - (mini ? 6 : 12); // flotación
   out.push(`<rect x="${f1(x + 0.5)}" y="${f1(base + 4)}" width="${f1(w - 1)}" height="${f1(y + h - base - 4.5)}" fill="${T.nocheMar}"/>`);
   const alto = base - (y + 16);
-  // altura de cada luz: de 0,2 (sobre la cubierta) a 1 (el tope del palo), estirada para que no se peguen
-  const yOf = (l) => base - 8 - ((Math.max(0.2, l.h) - 0.2) / 0.8) * (alto - 8);
   const L = lucesVista(s, vista, o);
+  // altura de cada luz: de 0,2 (sobre la cubierta) a 1 (el tope del palo), estirada para que no se peguen
+  const alturas = [...new Set(L.map((l) => Math.max(0.2, l.h)))].sort((a, b) => a - b);
+  const yOf = mini
+    ? (l) => base - 5 - (alturas.length > 1 ? (alturas.indexOf(Math.max(0.2, l.h)) / (alturas.length - 1)) * (base - y - 12) : 0)
+    : (l) => base - 8 - ((Math.max(0.2, l.h) - 0.2) / 0.8) * (alto - 8);
+  const rLuz = mini ? 3.4 : 4.4;
   const sil = `fill="${T.nocheMar}" stroke="${T.nocheTxt}" stroke-width=".8" stroke-opacity=".55"`;
   const cx = x + w / 2;
   if (vista === 'babor' || vista === 'estribor') {
@@ -91,7 +98,7 @@ function celdaNoche(s, vista, x, y, w, h, o, rotulos) {
       const ls = L.filter((l) => l.at === at && l.t !== 'costado');
       if (ls.length) out.push(`<line x1="${f1(xDe(ls[0]))}" y1="${f1(base - 12)}" x2="${f1(xDe(ls[0]))}" y2="${f1(Math.min(...ls.map(yOf)) + 4)}" stroke="${T.nocheTxt}" stroke-width=".8" stroke-opacity=".4"/>`);
     }
-    for (const l of L) out.push(luz(xDe(l), yOf(l), l.c));
+    for (const l of L) out.push(luz(xDe(l), yOf(l), l.c, rLuz));
   } else {
     const m = w * 0.2;
     out.push(`<path d="M${f1(cx - m)},${f1(base - 12)} L${f1(cx + m)},${f1(base - 12)} L${f1(cx + m * 0.7)},${f1(base + 4)} L${f1(cx - m * 0.7)},${f1(base + 4)}Z" ${sil}/>`,
@@ -110,7 +117,7 @@ function celdaNoche(s, vista, x, y, w, h, o, rotulos) {
     }
     for (const l of L) {
       const lx = l.lado ? cx + l.lado * w * 0.3 : l.at === 'izq' ? cx - m : l.at === 'der' ? cx + m : l.at === 'popa' && vista === 'proa' ? cx + 3 : cx;
-      out.push(luz(lx + (l.dx ?? 0), yOf(l), l.c, l.dx ? 3.4 : 4.4));
+      out.push(luz(lx + (l.dx ?? 0), yOf(l), l.c, l.dx ? rLuz * 0.78 : rLuz));
     }
   }
   if (rotulos) out.push(rotulo(cx, y + h - 8, NOMBRE_VISTA[vista], { size: TXT.min, weight: 700, estilo: 'cap', color: T.nocheTxt, espacio: 1 }));
@@ -132,23 +139,23 @@ function marcaDia(m, cx, cy, k) {
   return '';
 }
 
-/** Celda de día: el buque visto de proa con sus marcas en el palo (y a una banda, si las lleva). */
-function celdaDia(s, x, y, w, h, o, rotulos) {
+/** Celda de día: el buque visto de proa con sus marcas en el palo (y a una banda, si las lleva). mini: miniatura. */
+function celdaDia(s, x, y, w, h, o, rotulos, mini = false) {
   const out = [`<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${T.papel}" stroke="${T.tinta}" stroke-width=".8"/>`];
-  const pie = rotulos ? 22 : 8;
-  const base = y + h - pie - 10;
+  const pie = rotulos ? 22 : mini ? 2 : 8;
+  const base = y + h - pie - (mini ? 6 : 10);
   out.push(`<rect x="${f1(x + 0.5)}" y="${f1(base + 4)}" width="${f1(w - 1)}" height="${f1(y + h - base - 4.5)}" fill="${T.agua}"/>`);
   const cx = x + w / 2;
   const m = Math.min(w * 0.2, 46);
   out.push(`<path d="M${f1(cx - m)},${f1(base - 10)} L${f1(cx + m)},${f1(base - 10)} L${f1(cx + m * 0.7)},${f1(base + 4)} L${f1(cx - m * 0.7)},${f1(base + 4)}Z" fill="${T.casco}" stroke="${T.tinta}" stroke-width="1.2" stroke-linejoin="round"/>`,
-    `<line x1="${f1(cx)}" y1="${f1(base - 10)}" x2="${f1(cx)}" y2="${f1(y + (s.dia.length ? 8 : 40))}" stroke="${T.tinta}" stroke-width="2"/>`);
+    `<line x1="${f1(cx)}" y1="${f1(base - 10)}" x2="${f1(cx)}" y2="${f1(y + (s.dia.length ? (mini ? 3 : 8) : 40))}" stroke="${T.tinta}" stroke-width="${mini ? 1.4 : 2}"/>`);
   const n = s.dia.length;
   const dl = s.diaLados;
   // filas de marcas: las del palo y, si cuelgan de la verga, las de las bandas debajo de su marca «desde»
   const filas = Math.max(n, dl ? dl.desde + 1 + Math.max(...Object.entries(dl).filter(([kk]) => kk !== 'desde').map(([, v]) => v.length)) : 0);
-  const k = Math.min(9, (base - y - 22) / Math.max(1, filas * 2.7));
+  const k = mini ? Math.min(5.5, (base - y - 14) / Math.max(1, filas * 2.6)) : Math.min(9, (base - y - 22) / Math.max(1, filas * 2.7));
   const ys = [];
-  let yy = y + 14 + k * 1.3;
+  let yy = y + (mini ? 4 : 14) + k * 1.3;
   for (const d of s.dia) { ys.push(yy); out.push(marcaDia(d, cx, yy, k)); yy += k * 2.7; }
   if (dl) {
     const y0 = ys[dl.desde] + k * 3;
@@ -223,6 +230,26 @@ export function buqueSvg(clase, spec = {}, { rotulos = true, alt = null } = {}) 
   const { out, cierra } = lienzo(W, H, texto, { fondo: T.fondo });
   for (const [t, v, x, yy, w, h] of celdas) out.push(t === 'n' ? celdaNoche(s, v, x, yy, w, h, o, rotulos) : celdaDia(s, x, yy, w, h, o, rotulos));
   out.push(cierra());
+  return out.join('');
+}
+
+/**
+ * Miniatura legible del buque para los mapas de conceptos («Jugar», «Viene de», «No lo confundas con»): una celda de
+ * noche (la vista de la spec si es una sola; si no, de proa) con las luces grandes y, si la spec es de día y el buque
+ * tiene marca, su celda de día al lado. Sin rótulos: es decorativa (aria-hidden), el nombre va al lado.
+ */
+export function miniaturaBuque(spec) {
+  const s = SHIPS[spec?.clase];
+  if (!s) return null;
+  const o = { arrancada: spec.arrancada !== false, obstruccion: spec.obstruccion, aparejo: spec.aparejo };
+  const vs = vistasDe(s, spec);
+  const vista = vs.length === 1 ? vs[0] : vs.includes('proa') ? 'proa' : vs[0];
+  const dia = !!spec.dia && s.dia.length > 0;
+  const [W, H] = [88, 60];
+  const out = [`<svg viewBox="0 0 ${W} ${H}" class="il lc mini-buque" aria-hidden="true" focusable="false">`];
+  out.push(celdaNoche(s, vista, 0, 0, dia ? W / 2 : W, H, o, false, true));
+  if (dia) out.push(celdaDia(s, W / 2, 0, W / 2, H, o, false, true));
+  out.push('</svg>');
   return out.join('');
 }
 

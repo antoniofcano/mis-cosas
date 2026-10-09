@@ -75,9 +75,62 @@ No se han añadido láminas genéricas a esas clases: todas tienen ya una lámin
 cualquiera de la galería); lo que les falta es el estilo C. Prioridad propuesta: las cuatro de carta (11-1, 11-3,
 11-4, 11-8; pueden reutilizar `carta-c.js` y `colocaEtiquetas`), definiciones del RIPA y fondeo.
 
+## Tanda de cierre (rama `feat/laminas-cierre`)
+
+Hecho, todo con marco completo, `data-parte` y parámetros de antes, y una fila en el apéndice de la guía con su fuente
+(tests en `tests/laminas-cierre.test.js`):
+
+| Clases | Láminas (spec) | Fichero |
+| --- | --- | --- |
+| per-10-2, 10-3, 11-1, 11-3, 11-4, 11-8, 11-9 | `carta-margenes`, `transportador`, `milla`, `rumbo-directo`, `estima`, `traslado-demora`, `tangente`, `veriles` (esquemas propios, nunca la carta escaneada) | `per-cola-carta-c.js` |
+| per-11-7 | `oposicion` (`oposicion` y `enfilacion`; ahora con `resaltar`: recta, demora, situación) | `per-cola-carta-c.js` |
+| per-10-5, 10-6, 11-5, 11-6 | `declinacion-anual`, `rumbo-cuadrantal`, `demora-marcacion`, `calidad-corte` | `per-cola-calculo-c.js` |
+| per-1-3, 1-6, 2-5, 2-6, 3-3, 3-8, 6-1, 7-1, 8-5, 8-9, 9-3 | `ripa-definiciones`, `capear-correr`, `fondeo` (6 vistas), `estructura`, `rolar`, `cabo`, `remolque`, `hipotermia` | `per-cola-c.js` |
+| per-3-5, 4-2, 4-4, 4-5, 4-7, 4-8 | `zonas`, `dotacion-zonas`, `playa`, `vertidos`, `tanque-retencion`, `marpol-basuras`, `posidonia`, `banderas-a-bordo`, `pabellon-obligatorio`; el dibujo de la interactiva `playa` (`modo: 'distancia'`) | `per-cola-normativa-c.js` |
+| per-4-1, 4-6 | `puerto-comercial`, `seguro-rc`, `contaminacion`, `deber-auxilio` | `per-cola-normativa-b-c.js` |
+| per-8-7 | `fuego` `modo: 'apagar'` (interactiva, con su marco) | `interactivas/per-basicas.js` |
+| per-7-5 | `ciaboga-dos-helices`, animada (hipótesis en la guía) | `animaciones/ciaboga-dos.js` |
+| mapas | miniatura propia de los buques en «Jugar», «Viene de» y «No lo confundas con» (88 × 60, celda de noche y de día) | `miniaturaBuque()` en `buques-c.js` |
+| todas | las luces SMIL (faros de `ritmo`, `luzC`, `carta-c`) se quedan fijas con «reducir movimiento», y el cursor del cronograma se oculta | `styles/laminas.css`, `lights.js`, `carta-c.js` |
+
+Limpieza: borrados los dibujos antiguos que ya no se usaban (`maniobra.js` entero; `amarrasIllustration` y demás de
+`seamanship.js`, que se queda con `CLASES_FUEGO`; `riesgoIllustration`, `dstIllustration`, `regionesIllustration`,
+`shipIllustration`, `blinkingLight`, `rhythmTimeline`, `rhythmIllustration`) y los de las lecciones migradas, con sus
+ayudas sin uso. Lo que sigue en `index.js` llega solo por `per-renderers.js`.
+
+### Cambios de contenido (anotados, no en silencio)
+
+- `playa` balizada: quitado el rótulo «canal de acceso 25 a 50 m»: no está en el art. 73 del Reglamento de Costas.
+- `puerto-comercial`: no se dibuja «el que sale pasa primero» (ni su `resaltar: 'salida'`, que ahora no resalta nada):
+  no aparece en el RD 186/2023 ni en el RIPA; es costumbre u ordenanza de cada puerto. El texto del paso de per-4-1 lo
+  sigue diciendo: **duda para el autor del temario**. «En el canal no se fondea» se dibuja como «evita fondear en el
+  canal (RIPA 9 g)», que es lo que dice la regla. Quitados «velocidad reducida», «sin levantar ola» y «obedece a la
+  autoridad portuaria y a Capitanía» por no tener fuente comprobada aquí.
+- `tanque-retencion`: «con marcado CE, el barco ya cumple por construcción» pasa a «las reglas del artículo 22 no son
+  para los de marcado CE», que es lo que dice el art. 22.1.
+- `marpol-basuras`: el esquema del Estrecho ya no lleva los nombres de Huelva, Cádiz, Trafalgar, Málaga y Almería
+  (siguen en el pie); unidades «M» en lugar de «mn» en todas las láminas nuevas.
+- `deber-auxilio`: «deja constancia en el diario» al acudir viene de la Ley 14/2014, art. 183.3 (SOLAS V/33.1 solo pide
+  anotar el motivo cuando no se acude).
+- `contaminacion` `aviso`: «informar es obligatorio» se apoya ahora en la Ley 14/2014, art. 186.1 (el capitán comunica
+  a la Capitanía todo episodio de contaminación observado).
+- `rolar`: AEMET define rolar como «cambiar de dirección»; el «y se mantiene» de la clase no está ahí: no se dibuja.
+- `calidad-corte`: el texto alternativo da la razón de longitudes calculada (1 / (√2 · sen(α/2)), unas 4 veces a 20°).
+
+### Lo que queda con el dibujo antiguo (19 tipos; lista en el test «ninguna lámina… sigue con el dibujo antiguo»)
+
+Sin fuente comprobable en esta tanda (no se ha dibujado nada nuevo de ellas):
+
+| Lámina | Clase | Por qué queda |
+| --- | --- | --- |
+| `hemorragia`, `quemadura`, `radio-medico`, `botiquin` | per-8-1, 8-2, 8-3 | primeros auxilios: hace falta la Guía Médica Internacional de a Bordo (OMS/OMI) o la del Instituto Social de la Marina, y la norma del botiquín de recreo, para comprobar cada paso y cada número de teléfono |
+| `cubierta`, `timon`, `nudos`, `estructura` del tenedero (`tenedero`), `fondeo-gira`, `muerto-boya`, `atraque`, `gobierno-rabeo` | per-1-2, 1-4, 2-1, 2-2, 2-3, 2-4, 7-3, 7-7 | vocabulario y maniobra sin cifras de norma; se pueden migrar con el RD 875/2014 (anexo II) como única fuente, pero no se ha hecho en esta tanda |
+| `revision-salida`, `prevision-salida` | per-3-2, 9-7 | listas de buena práctica (motor, fuentes de la previsión); el «hasta 20 millas» de las aguas costeras de AEMET y los canales de trabajo de Salvamento Marítimo están por comprobar |
+| `reflector-tormenta` | per-3-4 | el reflector (RD 339/2021) se puede comprobar; lo de la tormenta eléctrica y el desvío de la aguja, no |
+| `varada-abordaje`, `achique-sentina` | per-8-4, 8-5 | procedimiento de emergencia sin fuente normativa a mano |
+| `barometro-tendencia`, `mar-crece` | per-9-1, 9-6 | física (tendencia barométrica, fetch y persistencia): hace falta OMM-N.º 702 / N.º 8; el glosario de AEMET no lo cubre |
+
 ## Pendiente
 
-- La cola de lecciones de arriba (y `fuego` con `modo: 'apagar'`, la interactiva del PER en per-8-7, aún sin marco).
-- Ciaboga con dos hélices (`ciaboga-dos-helices`, lección per-7-5): sin animar.
-- Capturas: scratchpad `lper-capturas/` (galería de la app a 360 px claro y oscuro de las 46 láminas, una a 990,
-  tarjetas, mapas, chuletas, fotogramas de las animaciones y hoja de contacto).
+- Los 19 tipos de arriba.
+- Capturas de esta tanda: scratchpad `lcierre-capturas/`.

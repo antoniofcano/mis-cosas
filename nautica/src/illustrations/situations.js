@@ -5,7 +5,7 @@
 //   (. corta ≈1 s, - larga 4–6 s; campana y gong de la Regla 35 g/h)
 // spec riesgo: { tipo:'riesgo', caso:'comparar'|'constante'|'variable' }   (Regla 7: demora constante)
 
-import { open, title, lbl, C, bearing, deg3, boatGlyph, fx } from './kit.js';
+import { C } from './kit.js';
 import { T, TXT, lienzo, rotulo, ondaCurva, barquito, flecha as flechaC } from './estilo-c.js';
 
 const SITUACIONES = {
@@ -153,56 +153,3 @@ export function playSignal(pattern) {
 
 // ---------------------------------------------------------------------------
 // Riesgo de abordaje por demora constante (Regla 7 d). spec: { tipo:'riesgo', caso:'comparar'|'constante'|'variable' }
-
-function riesgoPanel(x, y, w, constante, id) {
-  const out = [];
-  const T = 0.8; // la animación se corta antes de que lleguen al punto de cruce
-  const P = [x + w * 0.36, y + 70];
-  const A0 = [P[0], y + 250];
-  const B0 = [x + w * 0.95, y + 150];
-  const vB = constante ? 1 : 0.62; // fracción del camino de B hasta P cuando A llega a P
-  const at = (t) => [[A0[0] + (P[0] - A0[0]) * t, A0[1] + (P[1] - A0[1]) * t], [B0[0] + (P[0] - B0[0]) * t * vB, B0[1] + (P[1] - B0[1]) * t * vB]];
-  const col = constante ? C.r : C.m;
-  out.push(`<line x1="${A0[0]}" y1="${A0[1]}" x2="${P[0]}" y2="${P[1] - 14}" stroke="${C.v}" stroke-dasharray="4 4" opacity=".5"/>`);
-  out.push(`<line x1="${B0[0]}" y1="${B0[1]}" x2="${fx(P[0] - 16)}" y2="${fx(P[1] - 9)}" stroke="${C.a}" stroke-dasharray="4 4" opacity=".5"/>`);
-  if (constante) out.push(`<circle cx="${P[0]}" cy="${P[1]}" r="9" fill="none" stroke="${C.r}" stroke-width="1.5" stroke-dasharray="3 2"/>`, lbl(P[0] - 12, P[1] + 4, '¿abordaje?', 'r', 'end', 'font-size="9"'));
-  const dem = [];
-  [0, 0.25, 0.5, 0.75].forEach((t, i) => {
-    const [a, b] = at(t);
-    dem.push(bearing(a[0], a[1], b[0], b[1]));
-    out.push(`<line x1="${fx(a[0])}" y1="${fx(a[1])}" x2="${fx(b[0])}" y2="${fx(b[1])}" stroke="${col}" stroke-width="1.3" opacity=".75"/>`);
-    out.push(`<circle cx="${fx(a[0])}" cy="${fx(a[1])}" r="2.6" fill="${C.v}"/><circle cx="${fx(b[0])}" cy="${fx(b[1])}" r="2.6" fill="${C.a}"/>`);
-    out.push(`<text x="${fx(b[0] + 5)}" y="${fx(b[1] + 12)}" font-size="8.5" fill="${C.a}">${i + 1}</text>`);
-  });
-  const [a1, b1] = at(T);
-  const mv = (p0, p1, c) => `<g>${boatGlyph(c, 0.9)}<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="M${fx(p0[0])},${fx(p0[1])} L${fx(p1[0])},${fx(p1[1])}"/></g>`;
-  const [a0, b0] = at(0);
-  out.push(`<line stroke="${col}" stroke-width="2.2" stroke-dasharray="5 3"><animate attributeName="x1" from="${fx(a0[0])}" to="${fx(a1[0])}" dur="6s" repeatCount="indefinite"/><animate attributeName="y1" from="${fx(a0[1])}" to="${fx(a1[1])}" dur="6s" repeatCount="indefinite"/><animate attributeName="x2" from="${fx(b0[0])}" to="${fx(b1[0])}" dur="6s" repeatCount="indefinite"/><animate attributeName="y2" from="${fx(b0[1])}" to="${fx(b1[1])}" dur="6s" repeatCount="indefinite"/></line>`);
-  out.push(mv(a0, a1, C.v), mv(b0, b1, C.a));
-  out.push(lbl(A0[0] + 8, A0[1] - 2, 'tú', 'v', 'start', 'font-weight="700"'), lbl(B0[0] - 4, B0[1] + 22, 'el otro', 'a', 'end', 'font-weight="700"'));
-  out.push(`<text x="${x + w / 2}" y="${y + 14}" class="il-lbl strong" text-anchor="middle" style="fill:${col}">${constante ? 'La demora no cambia' : 'La demora cambia'}</text>`);
-  out.push(lbl(x + w / 2, y + 272, `demoras: ${dem.map(deg3).join(' · ')}`, null, 'middle', 'font-size="9"'));
-  out.push(`<text x="${x + w / 2}" y="${y + 288}" class="il-lbl strong" text-anchor="middle" style="fill:${col}">${constante ? '→ HAY riesgo de abordaje' : '→ en principio, sin riesgo'}</text>`);
-  return out.join('');
-}
-
-export function riesgoIllustration(spec) {
-  const caso = spec.caso ?? 'comparar';
-  if (!['comparar', 'constante', 'variable'].includes(caso)) return null;
-  const dos = caso === 'comparar';
-  const W = dos ? 380 : 200;
-  const H = 330;
-  const out = open(W, H, 'Riesgo de abordaje', 'rg');
-  out.push(title(W / 2, dos ? 'Riesgo de abordaje (Regla 7)' : 'Regla 7: demora'));
-  if (dos) {
-    out.push(riesgoPanel(4, 30, 180, true), riesgoPanel(196, 30, 180, false));
-    out.push(`<line x1="${W / 2}" y1="36" x2="${W / 2}" y2="${H - 12}" stroke="#94a3b8" stroke-dasharray="3 4"/>`);
-  } else out.push(riesgoPanel(10, 30, 180, caso === 'constante'));
-  out.push('</svg>');
-  const cap = {
-    comparar: 'Toma demoras sucesivas al otro buque. Si la demora no varía de forma apreciable y la distancia disminuye, existe riesgo de abordaje: las líneas de marcación se mantienen paralelas. Aunque la demora cambie, puede haber riesgo con un buque grande, un remolque o a muy corta distancia; ante la duda, el riesgo existe (Regla 7).',
-    constante: 'Demora constante y distancia que disminuye: hay riesgo de abordaje (Regla 7 d i). Las líneas de marcación sucesivas son paralelas.',
-    variable: 'Si la demora cambia de forma apreciable, en principio no hay riesgo; pero puede existir con un buque grande, un remolque o a muy corta distancia (Regla 7 d ii).',
-  };
-  return { svg: out.join(''), caption: cap[caso] };
-}

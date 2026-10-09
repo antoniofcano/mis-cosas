@@ -74,10 +74,13 @@ test('señales de peligro: solo las vigentes del Anexo IV', async () => {
 test('draga: dos rojas en la banda de la obstrucción y dos verdes en la otra (visto de proa)', () => {
   const svg = (obstruccion) => renderIllustration({ tipo: 'buque', clase: 'draga', vista: 'proa', obstruccion, arrancada: false }).svg;
   // de proa, la banda de babor del buque queda a nuestra derecha: con obstrucción a babor, las rojas a la derecha
-  const xs = (s, color) => [...s.matchAll(new RegExp(`cx="([\\d.]+)" cy="[\\d.]+" r="4.6" fill="${color}"`, 'g'))].map((m) => +m[1]);
-  const centro = 180; // lámina de 360 de ancho con una sola vista centrada
-  assert.ok(xs(svg('babor'), '#22c55e').every((x) => x < centro));
-  assert.ok(xs(svg('estribor'), '#22c55e').every((x) => x > centro));
+  // cada luz es un <g data-luz="verde|roja|blanca…"> con su halo y su foco (estilo C, src/illustrations/buques-c.js)
+  const xs = (s, color) => [...s.matchAll(new RegExp(`data-luz="${color}"><circle cx="([\\d.]+)"`, 'g'))].map((m) => +m[1]);
+  const centro = 179; // lámina de 358 de ancho con una sola vista centrada
+  assert.equal(xs(svg('babor'), 'verde').length, 2);
+  assert.ok(xs(svg('babor'), 'verde').every((x) => x < centro));
+  assert.ok(xs(svg('estribor'), 'verde').every((x) => x > centro));
+  assert.ok(xs(svg('estribor'), 'roja').filter((x) => Math.abs(x - centro) > 1).every((x) => x < centro));
 });
 
 test('hélice y timón: dextrógira atrás con timón a babor, la proa cae a estribor y suman', () => {

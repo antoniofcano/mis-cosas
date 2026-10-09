@@ -22,6 +22,7 @@ import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { LAMINAS_LECCIONES } from './lecciones/index.js';
 import { amarrasIllustration, jerarquiaIllustration } from './seamanship.js';
 import { movimientoIllustration, busquedaIllustration, fuegoIllustration } from './seguridad-c.js';
+import { RENDERERS_PER } from './per-renderers.js';
 
 function rhythmIllustration(spec) {
   const r = parseRhythm(spec.ritmo);
@@ -73,6 +74,8 @@ const RENDERERS = {
   beaufort: beaufortIllustration,
   demoras: demorasIllustration,
   ...Object.fromEntries(Object.entries(LAMINAS_LECCIONES).map(([k, l]) => [k, l.fn])),
+  // PER en estilo C (ritmos, buques, regiones, amarras, riesgo, jerarquía, DST y ciaboga): sustituyen a las antiguas
+  ...RENDERERS_PER,
 };
 
 /** Catálogo documentado (lo usan los editores de contenido y la validación). */

@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '1dc63ec98e83';
+self.VERSION = '4805c29c30a6';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -127,6 +127,7 @@ self.APP = [
  "src/graphics/georef.js",
  "src/graphics/instruments.js",
  "src/graphics/rulers.js",
+ "src/illustrations/animaciones/ciaboga.js",
  "src/illustrations/animaciones/circulacion.js",
  "src/illustrations/animaciones/evolucion.js",
  "src/illustrations/animaciones/helice.js",
@@ -136,6 +137,7 @@ self.APP = [
  "src/illustrations/balizamiento.js",
  "src/illustrations/balsa-c.js",
  "src/illustrations/buoys.js",
+ "src/illustrations/buques-c.js",
  "src/illustrations/carta-c.js",
  "src/illustrations/carta-pasos-c.js",
  "src/illustrations/catalogo-laminas.js",
@@ -187,12 +189,15 @@ self.APP = [
  "src/illustrations/lights.js",
  "src/illustrations/maniobra.js",
  "src/illustrations/mapa-c.js",
+ "src/illustrations/marcos-per.js",
  "src/illustrations/marcos-py.js",
  "src/illustrations/marcos.js",
  "src/illustrations/meteo-c.js",
  "src/illustrations/meteo.js",
  "src/illustrations/misc.js",
  "src/illustrations/navigation.js",
+ "src/illustrations/per-c.js",
+ "src/illustrations/per-renderers.js",
  "src/illustrations/seamanship.js",
  "src/illustrations/seguridad-c.js",
  "src/illustrations/senales-c.js",
@@ -213,6 +218,7 @@ self.APP = [
  "src/nautical/hora.js",
  "src/nautical/kinematics.js",
  "src/nautical/luces.js",
+ "src/nautical/maniobra-puerto.js",
  "src/nautical/maniobra.js",
  "src/nautical/meteo.js",
  "src/nautical/positioning.js",

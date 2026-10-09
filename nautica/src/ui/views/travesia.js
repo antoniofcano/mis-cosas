@@ -20,42 +20,23 @@ import { deducirFase, componerSesion, terminada } from '../../course/sesion.js';
 import { leerSesion } from '../sesion.js';
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 import { novedades, marcarVistos, claseAnimada } from '../efectos.js';
+import { cartaDerrotaSvg, ladoNombre, ANCHO, ALTO, ALTO_COMPACTA } from '../../illustrations/derrota-c.js';
 
-const ANCHO = 358;
-const ALTO = 320;
 const MAX_FLOJAS = 4;
 const pct = (x) => `${Math.round(x * 100)} %`;
 const ideas = (n) => cuenta(n, 'idea');
 
-/** Fondo de la carta: mar, dos costas y la rosa de los vientos (decorativo). */
-const FONDO = `<svg class="carta-fondo" viewBox="0 0 ${ANCHO} ${ALTO}" aria-hidden="true" focusable="false">
-<path class="costa" d="M0 0 H66 C58 58 38 96 30 146 C22 196 4 214 0 240 Z"/>
-<path class="costa" d="M236 0 H358 V126 C330 108 300 102 280 82 C262 64 248 38 236 0 Z"/>
-<path class="ola" d="M70 300 C130 286 190 306 250 292 C300 281 330 292 358 284"/>
-<path class="ola" d="M92 268 C150 254 200 270 260 256 C300 247 330 256 358 248"/>
-<path class="ola" d="M120 140 C150 150 170 140 210 156"/>
-<g class="rosa"><circle cx="322" cy="290" r="14"/><path d="M322 279 L325 290 L322 301 L319 290 Z"/><text x="322" y="276" text-anchor="middle">N</text></g>
-</svg>`;
-
 const posPct = ([x, y], alto = ALTO) => `left:clamp(52px, ${(100 * x / ANCHO).toFixed(2)}%, calc(100% - 52px)); top:${(100 * y / alto).toFixed(2)}%`;
-/** En la carta compacta de Hoy las capas llegan hasta y = 360 (un poco de mar más abajo): caben los nombres de abajo. */
-const ALTO_COMPACTA = 360;
-
-/** Las patas de la derrota entre faros (la última llega a la bandera del examen). */
-function patas(faros, pos) {
-  const puntos = [...pos, BANDERA];
-  const lineas = faros.map((f, i) => `<line class="pata ${f.estado}" x1="${puntos[i][0]}" y1="${puntos[i][1]}" x2="${puntos[i + 1][0]}" y2="${puntos[i + 1][1]}"/>`);
-  return `<svg class="carta-patas" viewBox="0 0 ${ANCHO} ${ALTO}" aria-hidden="true" focusable="false">${lineas.join('')}</svg>`;
-}
 
 /**
- * La carta de la derrota: fondo, patas, un faro por bloque y la bandera del examen. La usan esta pantalla (faros que se
- * eligen: `elegir(id)`, con `sel` el elegido) y la entrada de Hoy (`compacta`: más baja, faros sin botón y la carta
- * entera es un enlace; docs/ENTRADA.md). `marca` = índice del faro con el marcador «estás aquí» (-1: en la bandera del
- * examen; null: sin marcador).
+ * La carta de la derrota en estilo C (src/illustrations/derrota-c.js: papel de carta, tierra, veriles, la derrota en
+ * magenta, marco graduado), con un faro por bloque y la bandera del examen encima, en HTML. La usan esta pantalla (faros
+ * que se eligen: `elegir(id)`, con `sel` el elegido) y la entrada de Hoy (`compacta`: más baja, faros sin botón y la
+ * carta entera es un enlace; docs/ENTRADA.md). `marca` = índice del faro con el marcador «estás aquí» (-1: en la
+ * bandera del examen; null: sin marcador). `rotulo` = la cartela de la carta grande ({ titulo, sub }).
  * @returns {{ carta: HTMLElement, botones: HTMLElement[] }}  `botones` = los contenedores de cada faro
  */
-export function cartaDerrota(faros, { sel = null, elegir = null, marca = null, compacta = false, recien = new Set() } = {}) {
+export function cartaDerrota(faros, { sel = null, elegir = null, marca = null, compacta = false, recien = new Set(), rotulo = null } = {}) {
   const pos = posicionesDerrota(faros.length);
   const alto = compacta ? ALTO_COMPACTA : ALTO;
   const marcaAqui = () => h('span.marca-aqui', { 'aria-hidden': 'true' }, icono('barco-marca'));
@@ -63,16 +44,16 @@ export function cartaDerrota(faros, { sel = null, elegir = null, marca = null, c
     const disco = elegir
       ? h('button.faro', { type: 'button', class: `${f.estado}${recien.has(f.id) ? ` ${claseAnimada('se-enciende')}` : ''}`.trim(), 'aria-label': ariaFaro(f) + (i === marca ? '. Estás aquí' : ''), 'aria-pressed': String(f.id === sel), onclick: () => elegir(f.id) }, icono('faro'))
       : h('span.faro', { class: f.estado }, icono('faro'));
-    return h('div.faro-pos', { style: posPct(pos[i], alto), class: i === marca ? 'aqui' : '' }, i === marca ? marcaAqui() : null, disco, h('span.faro-nombre', f.corto));
+    const clases = [i === marca ? 'aqui' : '', ladoNombre(pos, i, BANDERA)].filter(Boolean).join(' ');
+    return h('div.faro-pos', { style: posPct(pos[i], alto), class: clases }, i === marca ? marcaAqui() : null, disco, h('span.faro-nombre', f.corto));
   });
-  const carta = h('div.carta-trav', elegir ? { role: 'group', 'aria-label': 'Carta de tu derrota: un faro por bloque del temario' } : { 'aria-hidden': 'true', class: compacta ? 'compacta' : '' },
-    h('div.carta-capas', { html: FONDO + patas(faros, pos) }),
-    h('div.bandera-pos', { style: posPct(BANDERA, alto), class: marca === -1 ? 'aqui' : '' }, marca === -1 ? marcaAqui() : null, h('span.bandera-disco', icono('bandera')), h('span.faro-nombre', 'Examen')),
-    ...botones);
-  // En compacto la carta es más baja que la de 358 × 320: el fondo y las patas se estiran (los faros van en %, no se
-  // deforman) y llegan hasta ALTO_COMPACTA.
-  if (compacta) carta.querySelectorAll('.carta-capas svg').forEach((s) => { s.setAttribute('viewBox', `0 0 ${ANCHO} ${ALTO_COMPACTA}`); s.setAttribute('preserveAspectRatio', 'none'); });
-  return { carta, botones };
+  return {
+    carta: h('div.carta-trav', elegir ? { role: 'group', 'aria-label': 'Carta de tu derrota: un faro por bloque del temario' } : { 'aria-hidden': 'true', class: compacta ? 'compacta' : '' },
+      h('div.carta-capas', { html: cartaDerrotaSvg(faros, pos, BANDERA, { compacta, rotulo }) }),
+      h('div.bandera-pos', { style: posPct(BANDERA, alto), class: marca === -1 ? 'aqui' : '' }, marca === -1 ? marcaAqui() : null, h('span.bandera-disco', icono('bandera')), h('span.faro-nombre', 'Examen')),
+      ...botones),
+    botones,
+  };
 }
 
 /** Disco con el icono del rango. */
@@ -160,7 +141,7 @@ function pantallaTravesia({ T, tit, d, sy, eje, query, progress }) {
   // La carta (con el marcador «estás aquí» en la siguiente parada, como en Hoy)
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Faro elegido' });
   const aqui = d.indiceConceptos ? marcaDerrota(sy, d.indiceConceptos, pasosQueTocan(progress ? leerSesion(progress, tit) : null, componerSesion(d.st, deducirFase(d.st).id))) : null;
-  const { carta, botones } = cartaDerrota(faros, { sel, elegir: (id) => elegir(id), marca: aqui, recien });
+  const { carta, botones } = cartaDerrota(faros, { sel, elegir: (id) => elegir(id), marca: aqui, recien, rotulo: { titulo: 'DERROTA', sub: `${T.sigla} · ${cuenta(faros.length, 'faro')}` } });
 
   function pintaDetalle() {
     const f = faros.find((x) => x.id === sel);

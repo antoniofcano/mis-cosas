@@ -306,3 +306,135 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
   .mc-hoja .mc-rotulo { font-size: 7pt; }
   .mc-hoja .mc-rotulo .ico { width: 9pt; height: 9pt; }
 }
+
+/* ---- Hoy y la Travesía en estilo C (src/ui/views/hoy.js, src/ui/views/travesia.js; la carta, src/illustrations/derrota-c.js) ----
+   La entrada con el lenguaje de las láminas: tarjetas de papel de carta con doble filete (cartelas), rótulos en versalitas
+   magenta, títulos en la serifa de la app (Bitter), cifras en monoespaciada y botones de tinta. Dentro de .entrada y
+   .travesia-pantalla los colores de la app se reasignan a los --lc-*: lo de siempre (enlaces, avisos, tarjetas
+   secundarias) se pinta con la paleta de la carta en claro y en oscuro. Sin animaciones nuevas: las de siempre (faros,
+   rango, insignias, barras) siguen igual y con «reducir movimiento» no se mueven. Ningún texto por debajo de .68rem
+   (12 px con la raíz de 18 px). */
+.entrada, .travesia-pantalla {
+  --surface: var(--lc-fondo); --bg: var(--lc-papel); --text: var(--lc-tinta); --muted: var(--lc-apagado); --border: var(--lc-linea-agua);
+  --accent: var(--lc-azul-texto); --accent-2: var(--lc-agua-2); --ok: var(--lc-verde-texto); --warn: var(--lc-rojo-texto); --close: var(--lc-magenta);
+  --sesion-bg: var(--lc-fondo); --sesion-fg: var(--lc-tinta); --sesion-fila: var(--lc-papel); --sesion-boton: var(--lc-tinta); --sesion-boton-fg: var(--lc-papel);
+  --trav-bg: var(--lc-fondo); --trav-fg: var(--lc-tinta); --trav-oro: var(--lc-magenta); --trav-disco: var(--lc-papel);
+  --faro-on-bg: var(--lc-papel); --faro-on-borde: var(--lc-magenta); --faro-on-texto: var(--lc-tinta); --faro-luz: var(--lc-amarillo);
+  --faro-off-bg: var(--lc-papel); --faro-off-borde: var(--lc-apagado); --faro-off-texto: var(--lc-apagado);
+  --on-accent: var(--lc-papel);
+}
+/* Cartela: filete de tinta y otro fino por dentro (como las cartelas de las láminas y las tarjetas de los mapas) */
+.entrada :is(.sesion-hoy, .entrada-dato, .nivel-oferta, .podcast-hoy, .guia-oferta, details.mas-progreso, .aviso-copia, .aviso-instalar, .entrada-fase-cuerpo),
+.travesia-pantalla :is(.trav-rango, .trav-detalle, .trav-semana, .trav-insignias-enlace, .insignia, .rangos-lista li.actual) {
+  background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0;
+  box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta);
+}
+/* Rótulos (eyebrow): versalitas espaciadas en magenta */
+.entrada :is(.entrada-cta-eti, .entrada-dato-eti, .entrada-fase-eti), .travesia-pantalla :is(h2.eti, h3.eti, .trav-cab p, .trav-rango-tx .small),
+.entrada .entrada-cta .entrada-cta-eti {
+  font-family: var(--fuente-texto); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); opacity: 1;
+}
+/* Títulos en la serifa de la app; cifras en monoespaciada */
+.entrada :is(.entrada-saludo, .entrada-parada, .entrada-dato strong, .meta-hoy p strong, .listo h2, h2),
+.travesia-pantalla :is(h1, h2:not(.eti), .trav-rango-tx strong, .rango-tx strong, .trav-insignias-tx strong) { font-family: var(--fuente-titulos); color: var(--lc-tinta); }
+.entrada :is(.sesion-min, .ps-min), .travesia-pantalla :is(.trav-cuenta, .trav-rango-cifra b, .rango-num) {
+  font-family: var(--lc-mono); font-variant-numeric: tabular-nums;
+}
+.entrada :is(button, a, summary):focus-visible, .travesia-pantalla :is(button, a, summary):focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* Botones: de tinta (el principal) o con filete de tinta (los secundarios); esquinas de carta */
+.entrada :is(.btn, button.secondary, button.small), .travesia-pantalla .btn { border-radius: 0; background: var(--lc-tinta); color: var(--lc-papel); border: 1.5px solid var(--lc-tinta); }
+.entrada :is(.btn.secondary, button.secondary, button.small.secondary), .travesia-pantalla .btn.secondary { background: var(--lc-papel); color: var(--lc-tinta); }
+.entrada .boton-sesion, .travesia-pantalla .boton-sesion { border-radius: 0; box-shadow: 0 0 0 2px var(--lc-fondo), 0 0 0 3px var(--lc-tinta); }
+.entrada .boton-sesion.secundario, .travesia-pantalla .boton-sesion.secundario { background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); box-shadow: none; }
+.travesia-pantalla .boton-sesion.trav-seguir { background: var(--lc-tinta); color: var(--lc-papel); margin: .2rem 3px .9rem; }
+.entrada .sesion-hoy .boton-sesion:focus-visible, .travesia-pantalla .boton-sesion:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+
+/* Cabecera: la línea de contexto en una cartela pequeña */
+.entrada .pildora-examen, .travesia-pantalla .pildora-examen { border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1px solid var(--lc-tinta); font-size: .8rem; font-weight: 600; }
+.entrada .pildora-examen:hover, .travesia-pantalla .pildora-examen:hover { border-color: var(--lc-magenta); }
+/* La carta en Hoy: rótulo, cuenta de faros y el enlace */
+.entrada-heroe-cab .muted.small { font-size: .8rem; color: var(--lc-apagado); }
+.entrada a.entrada-ver-derrota { color: var(--lc-tinta); text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; }
+.entrada a.entrada-ver-derrota .mas-fila-flecha { color: var(--lc-magenta); }
+/* La fase: rótulo con filete magenta; su ayuda plegada, una cartela */
+.entrada .entrada-fase-eti { background: none; border: 1px solid var(--lc-magenta); border-radius: 0; padding: .1rem .5rem; }
+.entrada .entrada-fase-ayuda { color: var(--lc-azul-texto); }
+.entrada button.fase { border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1px solid var(--lc-tinta); }
+.entrada button.fase[aria-pressed="true"] { background: var(--lc-tinta); color: var(--lc-papel); border-color: var(--lc-tinta); }
+.entrada button.fase.real:not([aria-pressed="true"]) { border: 1.5px dashed var(--lc-magenta); }
+.entrada button.fase .fase-num { opacity: 1; }
+/* «Siguiente parada»: la cartela grande de la entrada */
+.entrada .sesion-hoy.entrada-cta { padding: 1rem 1rem 1.05rem; gap: .65rem; }
+.entrada .entrada-parada { font-size: 1.45rem; line-height: 1.2; }
+.entrada :is(.entrada-parada-tipo, .sesion-linea, .sesion-nota) { opacity: 1; color: var(--lc-apagado); }
+.entrada .sesion-min { color: var(--lc-tinta); opacity: 1; }
+.entrada .entrada-cta details.entrada-pasos > summary { border-top: 1px dashed var(--lc-linea-agua); padding-top: .2rem; }
+.entrada .entrada-pasos-ver, .entrada .sesion-hoy button.linklike, .entrada .sesion-hoy .punto-partida a { color: var(--lc-azul-texto); }
+.entrada .paso-sesion { border-radius: 0; border: 1px solid var(--lc-linea-agua); }
+.entrada .paso-sesion.actual { box-shadow: none; border: 1.5px solid var(--lc-magenta); }
+/* Número de paso: el círculo de paso() de las láminas (papel, filete magenta) */
+.entrada .ps-num { background: var(--lc-papel); color: var(--lc-magenta); box-shadow: inset 0 0 0 1.5px var(--lc-magenta); font-family: var(--lc-mono); font-size: .78rem; }
+.entrada :is(.paso-sesion.hecho, .paso-sesion.saltado) .ps-num { color: var(--lc-tinta); box-shadow: inset 0 0 0 1.5px var(--lc-tinta); }
+.entrada :is(.entrada-manana, .sesion-cuesta) strong { color: var(--lc-magenta); }
+/* Fila de estado: tres cartelas pequeñas */
+.entrada :is(.entrada-dato, .nivel-oferta):hover, .travesia-pantalla .trav-insignias-enlace:hover { border-color: var(--lc-magenta); }
+.entrada .entrada-dato { padding: .6rem .8rem; }
+.entrada .entrada-dato .mas-fila-flecha { color: var(--lc-magenta); }
+.entrada .entrada-listo.listo-listo { border-color: var(--lc-verde-texto); }
+/* Barras finas de avance: regla de papel con filete y el avance en magenta */
+.entrada :is(.barra-fina, .bar), .travesia-pantalla .barra-trav { height: 8px; border-radius: 0; background: var(--lc-papel); border: 1px solid var(--lc-tinta); }
+.entrada :is(.barra-fina, .bar) span, .travesia-pantalla .barra-trav span { border-radius: 0; background: var(--lc-magenta); }
+.travesia-pantalla .barra-trav.on span { background: var(--lc-tinta); }
+/* La semana en siete marcas: estudiaste (tinta llena), hoy (filete magenta), descanso (a trazos), sin estudiar (papel) */
+.entrada .entrada-dia { background: var(--lc-papel); border: 1.5px solid var(--lc-apagado); }
+.entrada .entrada-dia.estudio { background: var(--lc-tinta); border-color: var(--lc-tinta); }
+.entrada .entrada-dia.hoy { background: var(--lc-papel); border: 2.5px solid var(--lc-magenta); }
+.entrada .entrada-dia.descanso { background: transparent; border: 1.5px dashed var(--lc-apagado); }
+.entrada .entrada-dia.futuro { border-style: dotted; }
+/* Lo secundario: cartelas de papel; el aviso del plan, con borde de aviso (como la «Trampa» de las chuletas) */
+.entrada :is(.nivel-oferta-ico, .podcast-hoy-ico) { border-radius: 999px; background: var(--lc-papel); border: 1px solid var(--lc-tinta); color: var(--lc-tinta); }
+.entrada button.podcast-hoy-play { background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.entrada a.podcast-hoy-tx { color: var(--lc-tinta); }
+.hoy.entrada .ritmo { border-radius: 0; background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.hoy.entrada .ritmo.warn { border: 1.5px dashed var(--lc-rojo-texto); border-left: 5px solid var(--lc-rojo-texto); }
+.entrada .meta-linea { font-size: .8rem; color: var(--lc-apagado); }
+.entrada .meta-linea .ico { color: var(--lc-tinta); }
+.entrada .meta-linea .racha .ico { color: var(--lc-magenta); }
+.entrada details.mas-progreso { padding: 0 .9rem; }
+.entrada details.mas-progreso > summary { font-family: var(--fuente-titulos); }
+.entrada .meta-hoy { border-radius: 0; background: var(--lc-papel); border: 1px solid var(--lc-linea-agua); }
+.entrada .anillo .fondo { stroke: var(--lc-agua); }
+.entrada .anillo .valor { stroke: var(--lc-magenta); }
+.entrada .meta-hoy.hecho .anillo .valor { stroke: var(--lc-verde-texto); }
+.entrada .anillo b { font-family: var(--lc-mono); color: var(--lc-tinta); }
+.hoy.entrada .listo { border-radius: 0; background: var(--lc-papel); border: 1px dashed var(--lc-tinta); }
+.hoy.entrada .listo.listo-listo { border: 2px solid var(--lc-verde-texto); }
+.hoy.entrada .listo.listo-aun-no { border: 2px dashed var(--lc-rojo-texto); }
+.entrada .card.compacta { border-radius: 0; background: var(--lc-papel); border: 1px solid var(--lc-tinta); }
+
+/* La Travesía: rango, faro elegido, semana, nota real e insignias */
+.travesia-pantalla .trav-rango-cifra { color: var(--lc-apagado); }
+.travesia-pantalla .trav-rango-cifra b { color: var(--lc-tinta); }
+.travesia-pantalla .trav-disco { background: var(--lc-papel); color: var(--lc-magenta); border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.2px var(--lc-tinta); }
+.travesia-pantalla .trav-fila-cab .muted.small { color: var(--lc-apagado); }
+.travesia-pantalla .trav-flojas li { border-radius: 0; background: var(--lc-papel); border: 1px solid var(--lc-linea-agua); }
+.travesia-pantalla a.trav-ficha { border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.travesia-pantalla a.trav-ficha:hover { border-color: var(--lc-magenta); }
+.travesia-pantalla .trav-dias .dia-marca { background: var(--lc-papel); color: var(--lc-apagado); border: 1.5px solid var(--lc-apagado); font-family: var(--lc-mono); }
+.travesia-pantalla .trav-dias .estudio .dia-marca { background: var(--lc-tinta); color: var(--lc-papel); border-color: var(--lc-tinta); }
+.travesia-pantalla .trav-dias .descanso .dia-marca { background: transparent; border: 1.5px dashed var(--lc-apagado); }
+.travesia-pantalla .trav-dias .hoy .dia-marca { border: 2.5px solid var(--lc-magenta); color: var(--lc-magenta); }
+.travesia-pantalla .dia-letra { font-family: var(--lc-mono); color: var(--lc-apagado); }
+/* La nota real: la «Nota» de las láminas (filete a trazos) */
+.travesia-pantalla .trav-nota { background: var(--lc-fondo); color: var(--lc-tinta); border: 1px dashed var(--lc-tinta); border-radius: 0; }
+.travesia-pantalla :is(.trav-insignias-tx .muted.small, .trav-pie) { color: var(--lc-apagado); }
+.travesia-pantalla .trav-insignias-enlace .mas-fila-flecha { color: var(--lc-magenta); }
+/* Insignias y rangos */
+.travesia-pantalla .insignias-grid button.insignia[aria-pressed="true"] { border: 2.5px solid var(--lc-magenta); }
+.travesia-pantalla .insignia-disco { background: var(--lc-papel); color: var(--lc-apagado); border: 1.5px dashed var(--lc-apagado); }
+.travesia-pantalla :is(.insignia.ganada .insignia-disco, .insignia-disco.ganada) { background: var(--lc-papel); color: var(--lc-magenta); border: 4px double var(--lc-magenta); }
+.travesia-pantalla .rangos-lista li { border-radius: 0; background: var(--lc-papel); border: 1px solid var(--lc-linea-agua); }
+.travesia-pantalla .rango-num { background: var(--lc-papel); color: var(--lc-apagado); border: 1.5px solid var(--lc-apagado); }
+.travesia-pantalla :is(.rangos-lista li.actual, .rangos-lista li.superado) .rango-num { color: var(--lc-magenta); border-color: var(--lc-magenta); }
+.travesia-pantalla .rango-marca { color: var(--lc-apagado); }
+/* ---- fin Hoy y la Travesía en estilo C ---- */

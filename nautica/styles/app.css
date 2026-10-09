@@ -1341,7 +1341,7 @@ textarea.config-pegar, textarea.profe-chuleta, .profe-modo textarea { width: 100
 .fases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; }
 button.fase { min-height: 56px; padding: .3rem .2rem; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: var(--bg); color: var(--text); border: 1px solid var(--border); font-weight: 400; line-height: 1.2; }
 button.fase[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-button.fase .fase-num { font-size: min(.68rem, 3.2vw); opacity: .85; }
+button.fase .fase-num { font-size: .68rem; opacity: .85; }
 button.fase .fase-nombre { font-size: min(.86rem, 3.8vw); font-weight: 700; max-width: 100%; overflow-wrap: anywhere; }
 button.fase.real:not([aria-pressed="true"]) { border-color: var(--accent); border-style: dashed; }
 .fase-porque { margin: 0; font-size: .82rem; line-height: 1.45; }
@@ -1550,31 +1550,25 @@ details.mas-chuletas ul.mas-lista { margin: .3rem 0 .4rem; }
 .trav-fila-cab h2 { margin: 0; }
 .trav-carta { display: grid; gap: .4rem; }
 /* La carta: mar con costas, patas de la derrota y un faro (botón) por bloque. Las coordenadas son las de una carta de 358 x 320. */
-.carta-trav { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 358 / 320; border-radius: 16px; background: var(--sea); border: 1px solid var(--grid); overflow: hidden; }
+.carta-trav { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 358 / 320; background: var(--lc-papel); color: var(--lc-tinta); overflow: hidden; }
 .carta-capas { position: absolute; inset: 0; }
 .carta-capas svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.carta-fondo .costa { fill: var(--land); stroke: var(--land-stroke); stroke-width: 1.5; }
-.carta-fondo .ola { fill: none; stroke: var(--grid); stroke-width: 1.5; }
-.carta-fondo .rosa circle { fill: var(--surface); fill-opacity: .7; stroke: var(--faro-off-borde); }
-.carta-fondo .rosa path { fill: var(--muted); }
-.carta-fondo .rosa text { fill: var(--muted); font-size: 9px; font-weight: 700; }
-.pata { stroke-width: 4; stroke-linecap: round; fill: none; }
-.pata.on { stroke: var(--faro-on-borde); }
-.pata.parcial { stroke: var(--accent); stroke-dasharray: 9 7; }
-.pata.off { stroke: var(--faro-off-borde); stroke-dasharray: 3 8; }
 .faro-pos, .bandera-pos { position: absolute; width: 104px; transform: translate(-50%, -24px); display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.faro-nombre { font-size: .7rem; font-weight: 700; line-height: 1.15; text-align: center; color: var(--text); text-shadow: 0 0 3px var(--sea), 0 0 3px var(--sea); }
+.faro-nombre { font-size: .7rem; font-weight: 700; line-height: 1.15; text-align: center; color: var(--lc-tinta); text-shadow: 0 0 2px var(--lc-papel), 0 0 2px var(--lc-papel), 0 0 4px var(--lc-papel); }
 .bandera-pos { transform: translate(-50%, -22px); }
-.bandera-disco { width: 44px; height: 44px; border-radius: 999px; background: var(--surface); border: 2px solid var(--text); color: var(--text); display: inline-flex; align-items: center; justify-content: center; }
+.bandera-disco { width: 44px; height: 44px; border-radius: 999px; background: var(--lc-papel); border: 4px double var(--lc-tinta); color: var(--lc-tinta); display: inline-flex; align-items: center; justify-content: center; }
 .bandera-disco .ico { width: 22px; height: 22px; }
-.carta-trav button.faro { width: 48px; min-width: 48px; height: 48px; min-height: 48px; padding: 0; border-radius: 999px; border: 2px solid var(--faro-off-borde); background: var(--faro-off-bg); color: var(--faro-off-texto); display: inline-flex; align-items: center; justify-content: center; }
+/* Faros como luces de carta: apagado (filete continuo gris), en camino (a trazos, tinta) y encendido (doble filete magenta y la
+   lámpara con luz): se distinguen por la forma del borde, no solo por el color. */
+.carta-trav button.faro { width: 48px; min-width: 48px; height: 48px; min-height: 48px; padding: 0; border-radius: 999px; border: 2px solid var(--lc-apagado); background: var(--lc-papel); color: var(--lc-apagado); display: inline-flex; align-items: center; justify-content: center; }
 .carta-trav button.faro .ico { width: 26px; height: 26px; }
-.carta-trav button.faro.parcial { border-color: var(--accent); background: var(--accent-2); color: var(--accent); }
-.carta-trav button.faro.on { border-color: var(--faro-on-borde); background: var(--faro-on-bg); color: var(--faro-on-texto); }
+.carta-trav :is(button, span).faro.parcial { border: 2px dashed var(--lc-tinta); background: var(--lc-papel); color: var(--lc-tinta); }
+.carta-trav :is(button, span).faro.on { border: 4px double var(--lc-magenta); background: var(--lc-papel); color: var(--lc-tinta); }
+.carta-trav .faro.on .lampara { fill: var(--lc-amarillo); }
 .faro .lampara { fill: none; }
 .faro.on .lampara, .parte-faro-disco.encendido .lampara { fill: var(--faro-luz); }
-.carta-trav button.faro[aria-pressed="true"] { outline: 3px solid var(--text); outline-offset: 2px; }
-.carta-trav button.faro:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+.carta-trav button.faro[aria-pressed="true"] { outline: 3px solid var(--lc-tinta); outline-offset: 2px; }
+.carta-trav button.faro:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .trav-detalle, .trav-semana, .trav-nota, .parte-trav { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .9rem; display: grid; gap: .55rem; }
 .trav-detalle h2, .trav-detalle h3, .trav-semana h2, .trav-nota h2, .parte-trav h2, .parte-trav h3 { margin: 0; }
 .trav-detalle p, .trav-semana p, .trav-nota p, .parte-trav p { margin: 0; }
@@ -1743,27 +1737,30 @@ details.prog-carta > summary { min-height: 48px; display: flex; align-items: cen
 .entrada-heroe { display: grid; gap: .3rem; }
 .entrada-heroe-cab, .entrada-cta-cab { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
 .entrada-cta-eti, .entrada-dato-eti { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-a.entrada-carta { display: block; border-radius: 16px; color: inherit; text-decoration: none; }
-a.entrada-carta:hover .carta-trav { border-color: var(--accent); }
+a.entrada-carta { display: block; color: inherit; text-decoration: none; }
+a.entrada-carta:hover .carta-trav { box-shadow: 0 0 0 2px var(--lc-magenta); }
 a.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
 a.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
 /* La carta compacta: más baja (las capas se estiran, los trazos no), sin rosa, faros sin botón y algo más pequeños. */
 .carta-trav.compacta { aspect-ratio: 358 / 232; max-width: none; }
-.carta-trav.compacta :is(.pata, .costa, .ola) { vector-effect: non-scaling-stroke; }
-.carta-trav.compacta .rosa { display: none; }
 .carta-trav.compacta .faro-pos { width: 92px; transform: translate(-50%, -18px); }
 .carta-trav.compacta .bandera-pos { transform: translate(-50%, -17px); }
 .carta-trav.compacta .bandera-disco { width: 34px; height: 34px; }
 .carta-trav.compacta .bandera-disco .ico { width: 18px; height: 18px; }
-.carta-trav.compacta .faro-nombre { font-size: .66rem; }
-.carta-trav span.faro { width: 36px; height: 36px; border-radius: 999px; border: 2px solid var(--faro-off-borde); background: var(--faro-off-bg); color: var(--faro-off-texto); display: inline-flex; align-items: center; justify-content: center; }
+.carta-trav.compacta .faro-nombre { font-size: .68rem; }
+/* Nombre al lado del faro cuando otro queda justo debajo (ladoNombre en src/ui/views/travesia.js) */
+.faro-pos:is(.nombre-izq, .nombre-der) .faro-nombre { position: absolute; top: 24px; transform: translateY(-50%); white-space: nowrap; }
+.faro-pos.nombre-izq .faro-nombre { right: calc(50% + 28px); }
+.faro-pos.nombre-der .faro-nombre { left: calc(50% + 28px); }
+.carta-trav.compacta .faro-pos:is(.nombre-izq, .nombre-der) .faro-nombre { top: 18px; }
+.carta-trav.compacta .faro-pos.nombre-izq .faro-nombre { right: calc(50% + 22px); }
+.carta-trav.compacta .faro-pos.nombre-der .faro-nombre { left: calc(50% + 22px); }
+.carta-trav span.faro { width: 36px; height: 36px; border-radius: 999px; border: 2px solid var(--lc-apagado); background: var(--lc-papel); color: var(--lc-apagado); display: inline-flex; align-items: center; justify-content: center; }
 .carta-trav span.faro .ico { width: 20px; height: 20px; }
-.carta-trav span.faro.parcial { border-color: var(--accent); background: var(--accent-2); color: var(--accent); }
-.carta-trav span.faro.on { border-color: var(--faro-on-borde); background: var(--faro-on-bg); color: var(--faro-on-texto); }
 /* «Estás aquí»: el icono barco-marca encima del faro de la siguiente parada (en Hoy y en la Travesía). */
-.marca-aqui { position: absolute; left: 50%; top: 0; transform: translate(-50%, -88%); color: var(--c-effective); pointer-events: none; line-height: 0; z-index: 1; }
+.marca-aqui { position: absolute; left: 50%; top: 0; transform: translate(-50%, -88%); color: var(--lc-magenta); pointer-events: none; line-height: 0; z-index: 1; }
 .marca-aqui .ico { width: 34px; height: 34px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
-.marca-aqui svg path:first-child { fill: var(--surface); }
+.marca-aqui svg path:first-child { fill: var(--lc-papel); }
 .carta-trav.compacta .marca-aqui .ico { width: 30px; height: 30px; }
 /* La fase, pequeña sobre la tarjeta; su explicación, plegada. */
 .entrada-principal { display: grid; gap: .35rem; min-width: 0; }

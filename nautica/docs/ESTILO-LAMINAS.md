@@ -29,6 +29,7 @@ gradual: nada se rompe si una lámina no tiene marco).
 | Balsa salvavidas (zafa, inflado, adrizar, lanzar) | `src/illustrations/balsa-c.js` |
 | Marcos de esas láminas del PY (los demás, en `marcos.js`) | `src/illustrations/marcos-py.js` |
 | Anverso de las tarjetas de memoria (y su CSS `.tc-*`, al final de `styles/laminas.css`) | `src/illustrations/tarjetas-c.js` |
+| La carta de la derrota de Hoy y la Travesía (fondo, veriles, patas, marco, rosa y cartela; los faros son HTML encima) y el CSS de las dos pantallas (bloque «Hoy y la Travesía en estilo C» de `styles/laminas.css`) | `src/illustrations/derrota-c.js` (tests en `tests/hoy-travesia-c.test.js`) |
 | Luz que destella y cronograma del ritmo | `luzC()` y `cronoC()` de `src/illustrations/lights.js` |
 | Marca de balizamiento (castillete, tope, franjas) | `marcaC()` de `src/illustrations/buoys.js` |
 | Textos del marco de cada lámina (`titulo`, `clave`, `nota`, `datos`, `alt`) | `src/illustrations/marcos.js` |

@@ -84,7 +84,8 @@ test('tarjetas C: los dibujos antiguos que quedan son solo los de buques y seña
 });
 
 test('tarjetas C: el CSS de las tarjetas no tiene colores fijos y cada variable existe en claro y en oscuro', () => {
-  const tc = CSS.slice(CSS.indexOf('/* ---- Tarjetas de memoria'));
+  // Hasta el bloque de Hoy y la Travesía (tiene su propio test en tests/hoy-travesia-c.test.js: usa también las fuentes de la app)
+  const tc = CSS.slice(CSS.indexOf('/* ---- Tarjetas de memoria'), CSS.indexOf('/* ---- Hoy y la Travesía en estilo C'));
   assert.ok(tc.length > 500, 'falta el bloque de las tarjetas en styles/laminas.css');
   assert.ok(!/#[0-9a-f]{3,8}\b|rgba?\(/i.test(tc), 'sin colores fijos en las tarjetas');
   const oscuroApp = APP.slice(APP.indexOf('@media (prefers-color-scheme: dark)'));

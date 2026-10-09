@@ -14,7 +14,7 @@ import { beaufortIllustration } from './meteo.js';
 import { mareaIllustration, dstIllustration } from './navigation.js';
 import { vientoAparenteIllustration } from './meteo-c.js';
 import { enfilacionIllustration, demorasIllustration, loxodromicaIllustration } from './carta-c.js';
-import { socorroIllustration, SOCORRO } from './socorro.js';
+import { socorroIllustration, SOCORRO, HOJAS_SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration, canalIllustration } from './balizamiento.js';
 import { ciabogaIllustration } from './maniobra.js';
 import { dibujoAnimado } from './animaciones/index.js';
@@ -105,7 +105,7 @@ export const CATALOGO = {
   busqueda: { params: { patron: ['cuadrado', 'sectores'] }, ejemplo: { tipo: 'busqueda', patron: 'cuadrado' } },
   'hombre-al-agua': { params: { maniobra: ['boutakow', 'anderson', 'scharnow'] }, ejemplo: { tipo: 'hombre-al-agua', maniobra: 'boutakow' } },
   fuego: { params: { vista: ['tetraedro', 'clases'] }, ejemplo: { tipo: 'fuego', vista: 'tetraedro' } },
-  socorro: { params: { resaltar: Object.keys(SOCORRO), solo: 'bool: dibuja solo la resaltada, en grande' }, ejemplo: { tipo: 'socorro', resaltar: 'cohete-paracaidas' } },
+  socorro: { params: { hoja: Object.keys(HOJAS_SOCORRO), resaltar: Object.keys(SOCORRO), solo: 'bool: dibuja solo la resaltada, en grande' }, ejemplo: { tipo: 'socorro', resaltar: 'cohete-paracaidas' } },
   riesgo: { params: { caso: ['comparar', 'constante', 'variable'] }, ejemplo: { tipo: 'riesgo', caso: 'comparar' } },
   'helice-timon': { params: { marcha: ['avante', 'atras'], timon: ['er', 'br'], sentido: ['dextrogira', 'levogira'] }, ejemplo: { tipo: 'helice-timon', marcha: 'atras', timon: 'br', sentido: 'dextrogira' } },
   evolucion: { params: {}, ejemplo: { tipo: 'evolucion' } },
@@ -113,7 +113,7 @@ export const CATALOGO = {
   desatraque: { params: { abrir: ['popa', 'proa'] }, ejemplo: { tipo: 'desatraque', abrir: 'popa' } },
   bifurcacion: { params: { marca: ['canal-principal-estribor', 'canal-principal-babor'], ruta: ['principal', 'secundario'] }, ejemplo: { tipo: 'bifurcacion', marca: 'canal-principal-estribor', ruta: 'principal' } },
   regiones: { params: {}, ejemplo: { tipo: 'regiones' } },
-  beaufort: { params: { fuerza: '0–12 opcional (resalta esa fila)' }, ejemplo: { tipo: 'beaufort' } },
+  beaufort: { params: { escala: ['beaufort', 'douglas'], fuerza: '0–12 opcional (Beaufort: resalta esa fila)', grado: '0–9 opcional (Douglas: resalta esa fila)' }, ejemplo: { tipo: 'beaufort' } },
   demoras: { params: { d1: 'Dv al faro A (por defecto 330)', d2: 'Dv al faro B (por defecto 034)' }, ejemplo: { tipo: 'demoras', d1: 330, d2: 34 } },
   ...Object.fromEntries(Object.entries(LAMINAS_LECCIONES).map(([k, l]) => [k, { params: l.params, ejemplo: l.ejemplo }])),
 };

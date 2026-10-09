@@ -6,6 +6,7 @@
 import { C, open, title, pol, bearing, arrow, deg3, fx } from '../kit.js';
 import { T, lienzo, flecha, rosaNorte, tierra, junto as juntoC, colocaEtiquetas } from '../estilo-c.js';
 import { faro as faroC, situacion, estima as estimaC, filaPaso, alrededor } from '../carta-c.js';
+import { gnssC } from '../electronica-c.js';
 
 const nf = (n, d = 1) => (+n).toFixed(d).replace('.', ',');
 const col = (c) => C[c] ?? c;
@@ -327,67 +328,8 @@ export const SIGLAS_GNSS = {
   eta: 'TTG = DTG / SOG; ETA (hora estimada de llegada) = hora + TTG.',
 };
 
-function gnss(spec = {}) {
-  NID = 'cs';
-  const r = spec.resaltar;
-  const lista = r == null || r === '' ? [] : [].concat(r);
-  if (lista.some((p) => !SIGLAS_GNSS[p])) return null;
-  const m = marcas(spec);
-  const W = 320;
-  const H = 338;
-  const out = open(W, H, 'Siglas del GNSS en una ruta', NID);
-  out.push(title(160, 'GNSS: la ruta entre dos waypoints'));
-  const W1 = [22, 62];
-  const W2 = [298, 62];
-  const P = [70, 192]; // barco, a la derecha (estribor) de la ruta
-  const on = (...ps) => ps.some((p) => m.on(p));
-  // ruta
-  out.push(`<g${m.dim('wpt')}>${seg(W1, W2, 'g', 1.6, 'stroke-dasharray="6 4"')}`);
-  for (const [p, s, a] of [[W1, 'WPT salida', 'start'], [W2, 'WPT llegada', 'end']]) out.push(`<rect x="${fx(p[0] - 5)}" y="${fx(p[1] - 5)}" width="10" height="10" style="fill:var(--bg);stroke:currentColor" stroke-width="2"/>`, t(p[0] + (a === 'start' ? -6 : 6), p[1] - 12, s, { a, b: m.on('wpt') }));
-  out.push(t(160, 50, 'ruta', { c: 'g', a: 'middle', s: 9.5 }), '</g>');
-  // XTE: del barco a la línea de la ruta
-  out.push(`<g${m.dim('xte')}>${seg([P[0], W1[1]], [P[0], P[1] - 14], 'a', m.on('xte') ? 3 : 2)}${seg([P[0] - 5, W1[1]], [P[0] + 5, W1[1]], 'a', 2)}${t(P[0] - 8, 116, 'XTE', { c: 'a', a: 'end', b: true })}${t(P[0] - 8, 128, '0,05 R', { c: 'a', a: 'end' })}</g>`);
-  // BRG y DTG: del barco al WPT
-  const ub = dir(P, W2);
-  const nb = [ub[1], -ub[0]]; // hacia la ruta (arriba a la izquierda)
-  const brg = bearing(P[0], P[1], W2[0], W2[1]);
-  const Lb = Math.hypot(W2[0] - P[0], W2[1] - P[1]);
-  out.push(`<g${m.activo && !on('brg', 'dtg') ? ' opacity=".35"' : ''}>${seg(P, mas(W2, ub, -7), 'v', on('brg', 'dtg') ? 3 : 1.8)}</g>`);
-  const lb = mas(mas(P, ub, Lb * 0.74), nb, 8);
-  out.push(`<g${m.activo && !on('brg', 'dtg') ? ' opacity=".35"' : ''}>${t(lb[0], lb[1] - 13, 'BRG: demora al WPT', { c: 'v', a: 'end', b: on('brg') })}${t(lb[0], lb[1], 'DTG 18,0 M: lo que falta', { c: 'v', a: 'end', b: on('dtg') })}</g>`);
-  // COG / SOG (20° a la derecha del BRG) y VMG (proyección sobre el BRG)
-  const cog = brg + 20;
-  const Lc = 150;
-  const Ec = pol(P[0], P[1], cog, Lc);
-  out.push(`<g${m.activo && !on('cog', 'sog') ? ' opacity=".35"' : ''}>${arrow(P[0], P[1], Ec[0], Ec[1], 'r', NID, on('cog', 'sog') ? 3.4 : 2.6)}${t(Ec[0] + 2, Ec[1] + 22, 'COG · SOG 6,0 kn', { c: 'r', a: 'end', b: true })}${t(Ec[0] + 2, Ec[1] + 34, 'sobre el fondo', { c: 'r', a: 'end', s: 9 })}</g>`);
-  const Lv = Lc * Math.cos((20 * Math.PI) / 180);
-  const Ev = mas(P, ub, Lv);
-  const lv = mas(mas(P, ub, Lv * 0.6), nb, 8);
-  out.push(`<g${m.dim('vmg')}>${seg(Ec, Ev, 'g', 1.2, 'stroke-dasharray="2 3"')}${arrow(P[0], P[1], Ev[0], Ev[1], 'm', NID, m.on('vmg') ? 3.6 : 2.8)}${t(lv[0], lv[1], 'VMG 5,6 kn', { c: 'm', a: 'end', b: true })}</g>`);
-  const [a1x, a1y] = pol(P[0], P[1], brg, 54);
-  const [a2x, a2y] = pol(P[0], P[1], cog, 54);
-  const ang = pol(P[0], P[1], brg + 10, 66);
-  out.push(`<g${m.dim('vmg')}><path d="M${fx(a1x)},${fx(a1y)} A54,54 0 0 1 ${fx(a2x)},${fx(a2y)}" fill="none" stroke="currentColor" stroke-width="1.2"/>${t(ang[0], ang[1] + 4, '20°', { s: 9 })}</g>`);
-  // HDG: la proa apunta algo a la izquierda del COG (el viento y la corriente lo desvían)
-  const hdg = cog - 14;
-  out.push(`<g${m.dim('hdg')}><g transform="translate(${fx(P[0])} ${fx(P[1])}) rotate(${fx(hdg)})"><path d="M0,-14 C5,-7 5,0 4.5,9 L-4.5,9 C-5,0 -5,-7 0,-14Z" style="fill:var(--l-casco);stroke:currentColor" stroke-width="1.2"/></g>`);
-  out.push(t(P[0] - 40, P[1] + 26, 'HDG: hacia donde apunta la proa', { b: m.on('hdg'), s: 9.5 }), '</g>');
-  // pantalla con los cálculos de la lección
-  const y0 = 248;
-  out.push(`<rect x="10" y="${y0 - 15}" width="300" height="${H - y0 + 7}" rx="8" fill="none" stroke="${C.g}" stroke-width="1"/>`);
-  const filas = [
-    ['eta', 'TTG = DTG / SOG = 18,0 / 6,0 = 3 h'],
-    ['eta', 'ETA = 10:20 + 3 h = 13:20'],
-    ['xte', 'XTE 0,05 R = medio cable (≈ 93 m) a estribor'],
-    ['vmg', 'VMG = 6 · cos 20° ≈ 5,6 kn'],
-    [null, 'COG y SOG: sobre el fondo, con viento y corriente'],
-    [null, 'No a escala: el XTE está muy exagerado'],
-  ];
-  filas.forEach(([p, s], i) => out.push(`<g${p ? m.dim(p) : (m.activo ? ' opacity=".35"' : '')}>${t(20, y0 + 4 + i * 15, s, { s: 10.5, b: p ? m.on(p) : false, c: i === 5 ? 'g' : null })}</g>`));
-  out.push('</svg>');
-  const cap = lista.length ? lista.map((p) => SIGLAS_GNSS[p]).join('\n') : 'Con una ruta cargada, el GNSS da la demora (BRG) y la distancia (DTG) al siguiente waypoint, el error transversal (XTE) respecto a la línea entre los dos waypoints, el rumbo y la velocidad sobre el fondo (COG, SOG) y, con ellos, el tiempo que falta (TTG), la hora de llegada (ETA) y la velocidad con la que te acercas (VMG).';
-  return { svg: out.join(''), caption: cap };
-}
+/** En estilo C, en src/illustrations/electronica-c.js. */
+const gnss = (spec = {}) => gnssC(spec, SIGLAS_GNSS);
 
 // ---------------------------------------------------------------------------
 // 5. Corriente desconocida (py-4-8). spec: { tipo:'corriente-desconocida', resaltar? }

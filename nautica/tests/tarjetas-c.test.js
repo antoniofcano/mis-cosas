@@ -80,7 +80,7 @@ test('tarjetas C: los dibujos nuevos solo usan --lc-* (definidas en claro y en o
 
 test('tarjetas C: los dibujos antiguos que quedan son solo los de buques y señales de peligro (pendientes de migrar)', () => {
   const antiguos = new Set(todas().filter(({ m, c }) => !anversoTarjeta(m.id, c).estiloC).map(({ m }) => m.id));
-  assert.deepEqual([...antiguos].sort(), ['buques', 'socorro']);
+  assert.deepEqual([...antiguos].sort(), ['buques']);
 });
 
 test('tarjetas C: el CSS de las tarjetas no tiene colores fijos y cada variable existe en claro y en oscuro', () => {

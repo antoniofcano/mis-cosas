@@ -3,6 +3,7 @@
 
 import { open, title, lbl, arrow, pol, C } from '../kit.js';
 import { tensionSaturacion } from '../../nautical/meteo.js';
+import { aisC } from '../electronica-c.js';
 
 const f = (n) => (+n).toFixed(1);
 const linea = (a, b, c, w = 2, extra = '') => `<line x1="${f(a[0])}" y1="${f(a[1])}" x2="${f(b[0])}" y2="${f(b[1])}" stroke="${C[c] ?? c}" stroke-width="${w}" ${extra}/>`;
@@ -117,40 +118,8 @@ function humedad(spec) {
   return { svg: out.join(''), caption: `El aire a ${t} °C lleva el vapor que satura el aire a ${td} °C: su humedad relativa es del ${hr} %. Si se enfría sin añadir vapor, la HR sube hasta el 100 % al llegar a ${td} °C, su punto de rocío, y empieza a condensarse.` };
 }
 
-/** py-3-10: lo que enseña el AIS y lo que no (un velero sin AIS no aparece). */
-function ais() {
-  const W = 320;
-  const H = 270;
-  const out = open(W, H, 'AIS', 'ai');
-  out.push(title(160, 'AIS: solo ves a quien lo lleva'));
-  out.push(tierra('M0,30 L90,30 Q100,60 70,80 Q40,96 0,92Z'));
-  out.push(`<rect x="34" y="42" width="16" height="12" fill="${C.p}"/>`, lbl(14, 108, 'estación costera', 'p', 'start'));
-  const yo = [160, 200];
-  const tri = (p, rumbo, c, fill = true) => {
-    const a = pol(p[0], p[1], rumbo, 11);
-    const b = pol(p[0], p[1], rumbo + 140, 8);
-    const d = pol(p[0], p[1], rumbo - 140, 8);
-    return `<path d="M${f(a[0])},${f(a[1])} L${f(b[0])},${f(b[1])} L${f(d[0])},${f(d[1])}Z" ${fill ? `fill="${C[c]}"` : 'fill="none"'} stroke="${C[c]}" stroke-width="1.6"/>`;
-  };
-  // mi barco
-  out.push(tri(yo, 0, 'g'), lbl(yo[0] + 14, yo[1] + 14, 'tú', null, 'start', 'font-weight="700"'));
-  // VHF
-  for (const r of [26, 44]) out.push(`<path d="M${yo[0] - r * 0.7},${yo[1] - r * 0.7} A${r},${r} 0 0,1 ${yo[0] + r * 0.7},${yo[1] - r * 0.7}" fill="none" stroke="${C.g}" stroke-dasharray="2 3"/>`);
-  // buque con AIS y su vector
-  const b1 = [250, 96];
-  out.push(tri(b1, 235, 'v'), arrow(b1[0], b1[1], ...pol(b1[0], b1[1], 235, 46), 'v', 'ai', 1.8));
-  out.push(lbl(306, b1[1] - 24, 'mercante con AIS', 'v', 'end', 'font-weight="700"'));
-  out.push(lbl(306, b1[1] - 12, 'nombre, rumbo, velocidad', 'v', 'end', 'font-size="9.5"'));
-  // boya con AIS
-  out.push(`<rect x="244" y="190" width="10" height="16" fill="${C.a}"/>`, lbl(238, 222, 'boya con AIS', 'a', 'middle'));
-  // velero sin AIS (no sale en pantalla)
-  const v = [90, 158];
-  out.push(`<g opacity=".55">${tri(v, 60, 'g', false)}</g>`, lbl(v[0] - 4, v[1] + 22, 'velero sin AIS:', null, 'middle', 'font-weight="700"'), lbl(v[0] - 4, v[1] + 34, 'no aparece', null, 'middle'));
-  out.push(lbl(14, H - 24, 'Por VHF (canales 87B y 88B), unas 20–30 millas.', null, 'start', 'font-size="9.5"'));
-  out.push(lbl(14, H - 10, 'No sustituye al radar ni a la vigilancia visual.', null, 'start', 'font-size="9.5"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'El AIS emite y recibe por VHF la identidad, el rumbo y la velocidad de los barcos, estaciones costeras y ayudas a la navegación que lo llevan. Quien no lo lleva o lo tiene apagado no aparece: por eso no sustituye al radar ni a la vigilancia.' };
-}
+/** py-3-10: lo que enseña el AIS y lo que no; en estilo C, en src/illustrations/electronica-c.js. */
+const ais = aisC;
 
 export const LAMINAS = {
   'rumbo-directo': { fn: rumboDirecto, params: {}, ejemplo: { tipo: 'rumbo-directo' } },

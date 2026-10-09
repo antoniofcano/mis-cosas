@@ -6,7 +6,7 @@
   --lc-fondo: #f3efe2; --lc-papel: #f8f5ea; --lc-tinta: #1b2a41; --lc-apagado: #5a6678; --lc-magenta: #a8265f;
   --lc-amarillo: #e0b63a; --lc-negro: #1b2a41; --lc-blanco: #ffffff; --lc-azul: #2f5fa8; --lc-azul-texto: #1f4f96;
   --lc-agua: #cfe0ea; --lc-agua-2: #dbe8ef; --lc-linea-agua: #7fa6c4; --lc-tierra: #e8dcb8; --lc-casco: #e9e3d0;
-  --lc-verde: #46a877; --lc-verde-texto: #17663c; --lc-rojo: #d9605a; --lc-rojo-texto: #a32019;
+  --lc-verde: #46a877; --lc-verde-texto: #17663c; --lc-rojo: #d9605a; --lc-rojo-texto: #a32019; --lc-naranja: #e07b2a;
   /* De noche (lo que ve el observador, ritmos de luz): siempre oscuro */
   --lc-noche: #1b2a41; --lc-noche-mar: #14213a; --lc-noche-texto: #e8eef6;
   --lc-luz-blanca: #fff6d0; --lc-luz-verde: #5be39a; --lc-luz-roja: #ff6b5e; --lc-luz-amarilla: #f3cf4a; --lc-luz-azul: #7fb0ff;
@@ -18,7 +18,7 @@
     --lc-fondo: #0f1b2b; --lc-papel: #14263c; --lc-tinta: #d7e4f3; --lc-apagado: #9fb3c9; --lc-magenta: #e47aae;
     --lc-amarillo: #e2b43a; --lc-negro: #05090f; --lc-blanco: #e9eef5; --lc-azul: #4f7fc8; --lc-azul-texto: #9cc0ff;
     --lc-agua: #173653; --lc-agua-2: #1b3d5c; --lc-linea-agua: #4f7aa0; --lc-tierra: #3a3622; --lc-casco: #2a4261;
-    --lc-verde: #2f9e6a; --lc-verde-texto: #6fe0a2; --lc-rojo: #c24a4a; --lc-rojo-texto: #ff9a9a;
+    --lc-verde: #2f9e6a; --lc-verde-texto: #6fe0a2; --lc-rojo: #c24a4a; --lc-rojo-texto: #ff9a9a; --lc-naranja: #cf6f26;
     --lc-noche: #05090f; --lc-noche-mar: #0a1626; --lc-noche-texto: #e8eef6;
   }
 }
@@ -26,7 +26,7 @@
   --lc-fondo: #0f1b2b; --lc-papel: #14263c; --lc-tinta: #d7e4f3; --lc-apagado: #9fb3c9; --lc-magenta: #e47aae;
   --lc-amarillo: #e2b43a; --lc-negro: #05090f; --lc-blanco: #e9eef5; --lc-azul: #4f7fc8; --lc-azul-texto: #9cc0ff;
   --lc-agua: #173653; --lc-agua-2: #1b3d5c; --lc-linea-agua: #4f7aa0; --lc-tierra: #3a3622; --lc-casco: #2a4261;
-  --lc-verde: #2f9e6a; --lc-verde-texto: #6fe0a2; --lc-rojo: #c24a4a; --lc-rojo-texto: #ff9a9a;
+  --lc-verde: #2f9e6a; --lc-verde-texto: #6fe0a2; --lc-rojo: #c24a4a; --lc-rojo-texto: #ff9a9a; --lc-naranja: #cf6f26;
   --lc-noche: #05090f; --lc-noche-mar: #0a1626; --lc-noche-texto: #e8eef6;
 }
 

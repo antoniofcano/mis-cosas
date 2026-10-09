@@ -57,15 +57,76 @@ de más peso en el examen, elegidas cruzando las clases con las etiquetas de con
 3. Trópicos y círculos polares a 23° 27′ y 66° 33′: es el valor del temario y del examen; la oblicuidad actual es de
    unos 23° 26′ (la clase py-3-1 ya lo explica). Se dibuja el del temario y la nota del marco lo aclara.
 
-## Lo que queda (orden propuesto por peso en el examen)
+## Cola (rama `feat/py-laminas-cola`)
 
-1. `humedad` y `psicrometro` (py-2-5, 91 preguntas).
-2. `helicoptero` (3 vistas; py-1-10, 84).
-3. `nubes`, `nubes-pisos` (py-2-6, 79) y `ola` (2 vistas; py-2-8, 77).
-4. `husos` (4 vistas; py-3-5, 73): las cuentas de la lección están en `tests/lecciones-tierra.test.js`.
-5. `superficies-libres` (py-1-3, 68), `vientos-regionales` (2; py-2-4, 67), `arnes` (2; py-1-4, 66),
-   `modelos-viento` (py-2-3, 63), `avisos-navegantes` (2; py-3-7, 52), `extintor` (2; py-1-7, 28).
-6. No se hacen por falta de fuentes: `corriente-estrecho` (py-2-9), torniquete y la carta L105.
+Pesos comprobados de nuevo (preguntas de los tres bancos del PY cuyos conceptos se enseñan en la clase): py-2-5 91,
+py-1-10 84, py-2-6 80, py-2-8 77, py-3-5 73, py-1-3 72, py-2-4 67, py-1-4 66, py-2-3 63, py-3-7 52, py-1-7 28.
+
+Hechas en estilo C (10 tipos, 17 láminas de clase), con sus marcos en `marcos-py.js`, el dibujo en
+`src/illustrations/py-cola-meteo-c.js` (UT 2) y `src/illustrations/py-cola-c.js` (UT 1 y 3), y sus pruebas en
+`tests/laminas-py-cola.test.js` (lista `PILOTO_COLA`: texto ≥ 10,5 px, solo `--lc-*`, marco completo, título único, partes
+resaltables, galería del PY y las cifras). Mismos tipos, parámetros y `resaltar`; las funciones antiguas se han quitado
+de `lecciones/*.js` y su registro apunta a las nuevas.
+
+| Lámina | Variantes | Clase |
+| --- | --- | --- |
+| `humedad` | `t`, `td` | py-2-5 |
+| `psicrometro` | `caso` ejemplo / humedo / seco | py-2-5 |
+| `nubes` | `resaltar` género o piso | py-2-6 |
+| `nubes-pisos` | `resaltar` piso | py-2-6 |
+| `ola` | `vista` partes (con `resaltar`) / mar-de-fondo | py-2-8 |
+| `modelos-viento` | `modelo` todos / geostrofico / gradiente / antitriptico | py-2-3 |
+| `helicoptero` | `vista` rumbo / cable / senales | py-1-10 |
+| `arnes` | `vista` chaleco / arnes, con `resaltar` | py-1-4 |
+| `superficies-libres` | `resaltar` lleno / medias / vacio / mamparo | py-1-3 |
+| `husos` | `vista` husos / calculo (`ejemplo`, `lon`, `tu`) / oficial | py-3-5 |
+
+Ninguna de estas clases existe en el PER, así que no se ha tocado el bloque `per:` del catálogo (ni el del PY: las
+láminas entran en la galería desde las clases).
+
+### Cambios de contenido (no silenciosos)
+
+- **Chaleco**: la lámina antigua citaba en la práctica la Orden FOM/1144/2003, **derogada** por el Real Decreto 339/2021
+  (en vigor desde el 1 de julio de 2021). Las cifras que se dibujan (275 / 150 / 100 N, uno por persona y uno más en la
+  zona 1, la luz que se omite solo de día en las zonas 4 a 7) son las del art. 7 del RD 339/2021 y coinciden con las de
+  antes. Se han quitado del dibujo «se pone sin ayuda en 1 minuto» (exigencia del Código IDS para los chalecos SOLAS, no
+  del RD para los CE) y «la radiobaliza personal no es obligatoria» (no lo he podido comprobar en el RD). El silbato y el
+  material retrorreflectante no los exige el RD: vienen de la norma del chaleco (UNE-EN ISO 12402).
+- **Flotabilidad**: la lámina antigua decía que todo chaleco «da la vuelta al inconsciente». La nota dice ahora que lo
+  hace mejor cuanta más flotabilidad y que el de 100 N puede no hacerlo (alcance de la ISO 12402-4).
+- **Modelos de viento**: la fila «Antitríptico» antigua dibujaba el viento real de superficie (gradiente, Coriolis y
+  rozamiento). Se dibuja lo mismo, ahora con las fuerzas a escala, con el título «Con rozamiento (antitríptico)», y la
+  nota explica que en sentido estricto el antitríptico equilibra solo gradiente y rozamiento (ver dudas).
+- **Husos, cálculo con una longitud E en el meridiano central**: el pie antiguo decía siempre «Al W la hora va atrasada»;
+  ahora dice «Al E … adelantada» cuando la longitud es E (solo afecta a specs con `lon` propia; las de la clase no
+  cambian).
+- **Hora oficial**: la tabla decía «Península y Baleares: huso 0»; el extremo W de Galicia (más de 7° 30′ W) está en el
+  huso 1 W. Se dibuja «huso 0*» con la nota al pie. Se añaden Ceuta y Melilla (TU + 1 / TU + 2).
+- **Nubes**: alturas del examen como antes; la nota del marco añade que la OMM da márgenes que se solapan y pone el Ns en
+  el piso medio.
+
+### Lo que queda (por peso)
+
+1. `vientos-regionales` (2 vistas; py-2-4, 67): no la he hecho porque los nombres y las direcciones de la rosa
+   mediterránea y del mapa (galerna, vendaval, alisios…) son tradicionales y no he encontrado una fuente normativa contra
+   la que comprobarlos (el glosario de AEMET sería la candidata). Hay que verificarlos antes de dibujarlos.
+2. `avisos-navegantes` (2 vistas; py-3-7, 52): pide comprobar NAVAREA (zonas y coordinadores), NAVTEX (518 / 490 kHz, quién
+   emite en España) y las clases de avisos del Instituto Hidrográfico de la Marina; queda para otra tanda.
+3. `extintor` (2 vistas; py-1-7, 28): la de menos peso. Para el RD 339/2021, art. 15 (34 B, 2 kg, eslora y potencia) ya
+   está anotado lo comprobado en esta rama: sirve de punto de partida.
+4. No se hacen por falta de fuentes: `corriente-estrecho` (py-2-9), torniquete y la carta L105.
+
+### Dudas abiertas de esta tanda
+
+- **Helicóptero, 30° por la amura de babor y la grúa a la derecha**: es lo que dice la clase y lo habitual en la
+  práctica (IAMSAR, vol. III, operaciones con helicóptero); no he podido consultar el texto literal del IAMSAR en línea.
+  La grúa a la derecha es lo normal en los helicópteros de rescate, no una regla: la frase clave dice «normalmente» y la nota del marco, «suele».
+- **Las horas del reloj desde el helicóptero** («a sus 3»): convenio habitual de la aviación, no he encontrado un texto
+  normativo marítimo que lo fije.
+- **Antitríptico**: la clase py-2-3 y las preguntas lo definen como «el modelo con rozamiento»; en el glosario de
+  meteorología es el equilibrio gradiente-rozamiento sin Coriolis. Habría que decidir si la clase lo matiza.
+- **Psicrómetro**: «algo más del 70 %» y «unos 13 °C» salen de la ecuación psicrométrica (71–73 %, 12,6–13,1 °C según el
+  aparato sea ventilado o no); no he visto las tablas concretas que usa la clase.
 
 ## Dudas abiertas
 

@@ -2,7 +2,7 @@
 // y AIS (py-3-10). Dibujos fijos, con las cifras de cada lección.
 
 import { open, title, lbl, arrow, pol, C } from '../kit.js';
-import { tensionSaturacion } from '../../nautical/meteo.js';
+import { humedadC } from '../py-cola-meteo-c.js';
 import { aisC } from '../electronica-c.js';
 
 const f = (n) => (+n).toFixed(1);
@@ -82,41 +82,8 @@ function oposicion(spec) {
   };
 }
 
-/** py-2-5: curva de saturación. Mismo vapor; al enfriar el aire, la HR sube hasta el 100 % en el punto de rocío. */
-function humedad(spec) {
-  const t = Number(spec.t ?? 20);
-  const td = Number(spec.td ?? 12);
-  const W = 320;
-  const H = 270;
-  const out = open(W, H, 'Humedad relativa y punto de rocío', 'hu');
-  out.push(title(160, 'Humedad relativa y punto de rocío'));
-  const x0 = 30;
-  const y0 = 220;
-  const xs = (T) => x0 + (T / 30) * 230;
-  const ys = (e) => y0 - (e / 45) * 170;
-  out.push(linea([x0, y0], [x0 + 256, y0], 'currentColor', 1), linea([x0, y0], [x0, y0 - 176], 'currentColor', 1));
-  for (const T of [0, 10, 20, 30]) out.push(lbl(xs(T), y0 + 14, `${T} °C`, null, 'middle'));
-  out.push(lbl(x0 + 252, y0 + 28, 'temperatura del aire', null, 'end', 'font-size="9.5"'));
-  out.push(lbl(x0 - 4, y0 - 180, 'vapor de agua', null, 'start', 'font-size="9.5"'));
-  let d = '';
-  for (let T = 0; T <= 30; T += 1) d += `${T ? 'L' : 'M'}${f(xs(T))},${f(ys(tensionSaturacion(T)))}`;
-  out.push(`<path d="${d}" fill="none" stroke="${C.v}" stroke-width="2.4"/>`);
-  out.push(lbl(xs(23), ys(tensionSaturacion(27)) - 4, 'saturado (HR 100 %)', 'v', 'end', 'font-weight="700"'));
-  const e = tensionSaturacion(td);
-  const hr = Math.round((100 * e) / tensionSaturacion(t));
-  const A = [xs(t), ys(e)];
-  const R = [xs(td), ys(e)];
-  out.push(linea([A[0], A[1]], [A[0], ys(tensionSaturacion(t))], 'g', 1.2, 'stroke-dasharray="3 3"'));
-  out.push(lbl(A[0] + 6, (A[1] + ys(tensionSaturacion(t))) / 2 + 4, 'le cabría más', 'g', 'start', 'font-size="9.5"'));
-  out.push(`<line x1="${f(A[0] - 8)}" y1="${f(A[1])}" x2="${f(R[0] + 9)}" y2="${f(R[1])}" stroke="${C.a}" stroke-width="2.4" marker-end="url(#hu-a)"/>`);
-  out.push(lbl((A[0] + R[0]) / 2 + 20, A[1] + 34, 'enfriar sin añadir vapor', 'a', 'middle', 'font-weight="700"'));
-  out.push(`<circle cx="${f(A[0])}" cy="${f(A[1])}" r="5" fill="${C.r}"/>`, lbl(A[0] + 8, A[1] + 4, `aire ${t} °C`, 'r', 'start', 'font-weight="700"'), lbl(A[0] + 8, A[1] + 17, `HR ${hr} %`, 'r', 'start', 'font-weight="700"'));
-  out.push(`<circle cx="${f(R[0])}" cy="${f(R[1])}" r="5" fill="none" stroke="${C.v}" stroke-width="2.4"/>`);
-  out.push(linea([R[0], R[1] + 6], [R[0], y0], 'v', 1.2, 'stroke-dasharray="3 3"'), lbl(R[0] - 4, R[1] - 12, `punto de rocío ${td} °C`, 'v', 'middle', 'font-weight="700"'));
-  out.push(lbl(14, H - 12, 'Temperatura cerca del punto de rocío: niebla fácil.', null, 'start', 'font-size="9.5"'));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: `El aire a ${t} °C lleva el vapor que satura el aire a ${td} °C: su humedad relativa es del ${hr} %. Si se enfría sin añadir vapor, la HR sube hasta el 100 % al llegar a ${td} °C, su punto de rocío, y empieza a condensarse.` };
-}
+/** py-2-5: humedad relativa y punto de rocío; en estilo C, en src/illustrations/py-cola-meteo-c.js. */
+const humedad = humedadC;
 
 /** py-3-10: lo que enseña el AIS y lo que no; en estilo C, en src/illustrations/electronica-c.js. */
 const ais = aisC;

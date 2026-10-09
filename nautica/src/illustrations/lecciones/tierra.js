@@ -2,9 +2,9 @@
 // la milla en la escala de latitudes, sondas y veriles con su corte del fondo, y los husos horarios.
 // Funciones puras spec → { svg, caption }. Colores con las variables --l-* para que se lean en claro y en oscuro.
 
-import { husoDe, horaLegal, horaCivilLugar } from '../../nautical/hora.js';
 import { open, title, lbl, rad, fx } from '../kit.js';
 import { coordenadasC, COORD_PARTES } from '../coordenadas-c.js';
+import { husosC } from '../py-cola-c.js';
 
 // Colores que se adaptan al tema (las variables están en styles/app.css).
 const K = { v: 'var(--l-v)', r: 'var(--l-r)', m: 'var(--l-m)', a: 'var(--l-a)', p: 'var(--l-p)', g: 'var(--l-g)' };
@@ -289,119 +289,7 @@ function fondosIllustration(spec) {
 }
 
 // ---------------------------------------------------------------------------
-// Husos horarios. spec: { tipo:'husos', vista:'husos'|'calculo'|'oficial', ejemplo?:'e'|'w', lon?, tu? }
-
-const EJEMPLOS_HUSO = { e: { lon: 69 + 25 / 60, tu: '10:30', txt: '069° 25′ E' }, w: { lon: -75, tu: '08:00', txt: '075° W' } };
-const hm = (min) => { const m = ((min % 1440) + 1440) % 1440; const h = Math.floor(m / 60); const r = m - h * 60; const ent = Math.abs(r - Math.round(r)) < 0.05; return `${String(h).padStart(2, '0')}:${ent ? String(Math.round(r)).padStart(2, '0') : coma(r).padStart(4, '0')}`; };
-const aMin = (s) => { const [h, m] = String(s).split(':').map(Number); return h * 60 + (m || 0); };
-const lonTxt = (L) => { const a = Math.abs(L); const g = Math.floor(a + 1e-9); const m = Math.round((a - g) * 60); return `${String(g).padStart(3, '0')}°${m ? ` ${m}′` : ''} ${L >= 0 ? 'E' : 'W'}`; };
-
-/** Franja de husos de −6 a +6 con su hora legal para un TU dado. */
-function franja(out, id, y, tuMin, marca) {
-  const x0 = 17;
-  const w = 22;
-  const n = 13;
-  for (let i = 0; i < n; i++) {
-    const h = i - 6;
-    const x = x0 + i * w;
-    const sel = marca && marca.huso === h;
-    out.push(`<rect x="${x}" y="${y}" width="${w}" height="70" style="fill:${h === 0 || sel || !(i % 2) ? 'var(--l-mar)' : 'var(--bg)'};stroke:${sel ? K.r : h === 0 ? 'currentColor' : K.g}" stroke-width="${sel ? 2.4 : h === 0 ? 1.6 : 0.8}"/>`);
-    if (h !== 0) out.push(line(x + w / 2, y + 2, x + w / 2, y + 26, K.g, 0.7, 'stroke-dasharray="2 2"'), line(x + w / 2, y + 48, x + w / 2, y + 68, K.g, 0.7, 'stroke-dasharray="2 2"'));
-    out.push(`<text x="${x + w / 2}" y="${y + 42}" text-anchor="middle" font-size="10" font-weight="700" style="fill:${sel ? K.r : 'currentColor'}">${h === 0 ? '0' : `${Math.abs(h)}${h > 0 ? 'E' : 'W'}`}</text>`);
-    out.push(`<text x="${x + w / 2}" y="${y + 86}" text-anchor="middle" font-size="9.5" ${sel || h === 0 ? B : ''} style="fill:${sel ? K.r : 'currentColor'}">${hm(tuMin + h * 60).slice(0, 2)}h</text>`);
-  }
-  // meridiano de Greenwich en el centro del huso 0
-  const xg = x0 + 6 * w + w / 2;
-  out.push(line(xg, y - 2, xg, y + 28, K.p, 2), line(xg, y + 47, xg, y + 72, K.p, 2));
-  if (marca) {
-    const xm = xg + (marca.lon / 15) * w;
-    out.push(line(xm, y - 8, xm, y + 28, K.r, 2.6), line(xm, y + 47, xm, y + 70, K.r, 2.6), `<circle cx="${fx(xm)}" cy="${y - 8}" r="4" style="fill:${K.r}"/>`);
-  }
-  return { x0, w, xg };
-}
-
-export function husosIllustration(spec = {}) {
-  const vista = spec.vista ?? 'husos';
-  if (vista === 'oficial') return horaOficial();
-  const id = 'hu';
-  const W = 320;
-  if (vista === 'husos') {
-    const H = 250;
-    const out = open(W, H, 'Husos horarios', id);
-    out.push(marks(id), title(160, '24 husos de 15°: 1 h por huso'));
-    const tu = spec.tu ?? '12:00';
-    const y = 70;
-    const { x0, w, xg } = franja(out, id, y, aMin(tu));
-    out.push(tag(xg, y - 6, 'Greenwich', 'p', 'middle', B));
-    out.push(tag(14, 44, 'huso 0: de 7° 30′ W a 7° 30′ E', null, 'start', B));
-    out.push(tag(x0 - 2, y + 100, `hora legal cuando son las ${tu} TU`, null, 'start', 'font-size="9"'));
-    out.push(arr(xg + 16, y + 118, W - 22, y + 118, 'r', id, 2.2), tag(W - 20, y + 134, 'hacia el E: + 1 h por huso', 'r', 'end', B));
-    out.push(arr(xg - 16, y + 118, 22, y + 118, 'v', id, 2.2), tag(20, y + 150, 'hacia el W: − 1 h por huso', 'v', 'start', B));
-    out.push(tag(14, H - 12, 'Hz = TU ± huso (E suma, W resta)', null, 'start', `${B} font-size="12"`));
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'La Tierra gira 360° en 24 h: 15° = 1 h. Cada huso abarca 15° y está centrado en un meridiano múltiplo de 15°; su hora legal es la civil de ese meridiano central, la misma en todo el huso. Hacia el E se adelanta y hacia el W se atrasa.' };
-  }
-  // cálculo con un ejemplo de la lección (o lon/tu propios)
-  const ej = EJEMPLOS_HUSO[spec.ejemplo ?? 'e'] ?? EJEMPLOS_HUSO.e;
-  const lon = spec.lon != null ? Number(spec.lon) : ej.lon;
-  const tu = spec.tu ?? (spec.lon != null ? '12:00' : ej.tu);
-  const tuMin = aMin(tu);
-  const txt = spec.lon != null ? lonTxt(lon) : ej.txt;
-  const q = Math.abs(lon) / 15;
-  const huso = husoDe(lon);
-  const lonMin = horaCivilLugar(0, lon); // 1° = 4 min
-  const H = 270;
-  const out = open(W, H, 'Hora legal y hora civil del lugar', id);
-  out.push(marks(id), title(160, `TU ${tu} en ${txt}`));
-  const y = 52;
-  franja(out, id, y, tuMin, { lon, huso });
-  const sg = lon >= 0 ? '+' : '−';
-  const hus = huso === 0 ? 'huso 0' : `huso ${Math.abs(huso)} ${huso > 0 ? 'E' : 'W'}`;
-  const hz = horaLegal(tuMin, lon);
-  const hcl = tuMin + lonMin;
-  const lt = Math.abs(lonMin);
-  const ltTxt = `${Math.floor(lt / 60)} h${lt % 60 > 0.05 ? ` ${coma(lt % 60)} min` : ''}`.replace(',0 min', ' min');
-  let yy = y + 112;
-  out.push(tag(14, yy, `${coma(Math.abs(lon), 2)} / 15 = ${coma(q, 2)} → ${hus}`, null, 'start', B));
-  yy += 22;
-  out.push(tag(14, yy, 'Hora legal (del huso):', 'r', 'start', B));
-  out.push(tag(14, yy + 15, `Hz = ${tu} ${sg} ${Math.abs(huso)} h = ${hm(hz)}`, 'r', 'start', `${B} font-size="12"`));
-  yy += 40;
-  out.push(tag(14, yy, 'Hora civil del lugar (su longitud en tiempo):', 'v', 'start', B));
-  out.push(tag(14, yy + 15, `HcL = ${tu} ${sg} ${ltTxt} = ${hm(hcl)}`, 'v', 'start', `${B} font-size="12"`));
-  const central = Math.abs(lon - huso * 15) < 1e-6;
-  out.push(tag(14, H - 12, central ? 'Meridiano central: Hz y HcL coinciden.' : 'Fuera del meridiano central: Hz ≠ HcL.', null, 'start', 'font-size="10"'));
-  out.push('</svg>');
-  const cap = central
-    ? `En ${txt}, ${Math.abs(lon)} / 15 = ${Math.round(q)}: ${hus}. Al W la hora va atrasada, así que con TU ${tu} la hora legal es ${hm(hz)}, igual a la civil del lugar porque ${txt} es el meridiano central del huso.`
-    : `En ${txt}, ${coma(Math.abs(lon), 2)} / 15 = ${coma(q, 2)}: ${hus}. La hora legal es la del meridiano central del huso (${hm(hz)}); la civil del lugar usa la longitud exacta (${hm(hcl)}). Hacia el E se suma, hacia el W se resta.`;
-  return { svg: out.join(''), caption: cap };
-}
-
-function horaOficial() {
-  const W = 320;
-  const H = 268;
-  const out = open(W, H, 'Hora oficial en España', 'ho');
-  out.push(title(160, 'Hora oficial en España'));
-  const cols = [['', 14], ['huso', 134], ['invierno', 192], ['verano', 256]];
-  const y0 = 50;
-  out.push(...cols.slice(1).map(([t, x]) => lbl(x, y0, t, null, 'start', B)));
-  const rows = [['Península y Baleares', 'huso 0', 'TU + 1', 'TU + 2'], ['Canarias', 'huso 1 W', 'TU', 'TU + 1']];
-  rows.forEach((r, i) => {
-    const y = y0 + 30 + i * 38;
-    out.push(`<rect x="10" y="${y - 18}" width="${W - 20}" height="30" rx="6" style="fill:var(--l-mar)"/>`);
-    if (i === 0) out.push(lbl(16, y - 4, 'Península', null, 'start', `${B} font-size="11"`), lbl(16, y + 8, 'y Baleares', null, 'start', `${B} font-size="11"`));
-    else out.push(lbl(16, y + 1, r[0], null, 'start', `${B} font-size="11"`));
-    out.push(lbl(134, y + 1, r[1], null, 'start', 'font-size="10"'), lbl(192, y + 1, r[2], K.v, 'start', `${B} font-size="12"`), lbl(256, y + 1, r[3], K.r, 'start', `${B} font-size="12"`));
-  });
-  out.push(lbl(14, 168, 'Verano: del último domingo de marzo', null, 'start'), lbl(14, 182, 'al último domingo de octubre (cambio a la 01:00 TU).', null, 'start'));
-  out.push(`<line x1="14" y1="194" x2="${W - 14}" y2="194" style="stroke:${K.g}" stroke-width=".8"/>`);
-  out.push(lbl(14, 212, 'Legal (Hz): la del huso, TU ± huso.', null, 'start', B));
-  out.push(lbl(14, 228, 'Oficial (Ho): la fija el Gobierno.', null, 'start', B));
-  out.push(lbl(14, 244, 'HRB: la fija el patrón. Puede coincidir', null, 'start', B), lbl(14, 258, 'con la legal o la oficial, pero no tiene por qué.', null, 'start', B));
-  out.push('</svg>');
-  return { svg: out.join(''), caption: 'Casi toda la península está en el huso 0 y Canarias en el 1 W, pero la hora oficial la fija el Gobierno: por eso la española no coincide con la legal ni siquiera en invierno.' };
-}
+// Husos horarios (husos, cálculo y hora oficial): en estilo C, en src/illustrations/py-cola-c.js.
 
 // ---------------------------------------------------------------------------
 
@@ -422,7 +310,7 @@ export const LAMINAS = {
     ejemplo: { tipo: 'veriles', vista: 'carta' },
   },
   husos: {
-    fn: husosIllustration,
+    fn: husosC,
     params: { vista: ['husos', 'calculo', 'oficial'], ejemplo: ['e', 'w'], lon: 'opcional, longitud en grados (E +, W −)', tu: 'opcional, "HH:MM"' },
     ejemplo: { tipo: 'husos', vista: 'calculo', ejemplo: 'e' },
   },

@@ -4,6 +4,7 @@
 // Los hechos y cifras están comprobados contra su fuente en el apéndice de la guía. Sin DOM.
 
 import { SOCORRO, HOJAS_SOCORRO } from './socorro.js';
+import { tensionSaturacion } from '../nautical/meteo.js';
 
 const SEG = 'Seguridad';
 const SEN = 'Señales de peligro';
@@ -283,4 +284,155 @@ const BALSA = {
 };
 const balsa = (spec) => { const m = BALSA[spec.vista ?? 'zafa']; return m ? { tema: SEG, ...m } : null; };
 
-export const MARCOS_PY = { socorro, beaufort, coordenadas, balsa, 'radar-pantalla': radarPantalla, 'radar-respondedores': radarRespondedores, gnss, 'gnss-calculos': gnssCalculos, 'carta-raster-vectorial': cartaRaster, ais };
+// ---------------------------------------------------------------------------
+// Cola de láminas del PY: humedad y psicrómetro, nubes, olas y modelos de viento (UT 2); helicóptero, chaleco y arnés y
+// superficies libres (UT 1); husos horarios (UT 3). Dibujos en py-cola-meteo-c.js y py-cola-c.js.
+
+const humedadM = (spec) => {
+  const t = Number(spec.t ?? 20);
+  const td = Number(spec.td ?? 12);
+  const hr = Math.round((100 * tensionSaturacion(td)) / tensionSaturacion(t));
+  const propio = t !== 20 || td !== 12;
+  return {
+    tema: MET, titulo: `Humedad relativa y punto de rocío${propio ? `: aire a ${t} °C y rocío a ${td} °C` : ''}`, clave: 'Al enfriarse sin ganar vapor, la humedad relativa sube hasta el 100 % en el punto de rocío.',
+    datos: [{ cifra: `${hr} %`, texto: `HR del aire a ${t} °C con el rocío a ${td} °C` }, { cifra: '100 %', texto: 'en el punto de rocío: el vapor condensa' }, { cifra: 'T ≈ Td', texto: 'temperatura cerca del rocío: niebla fácil' }],
+    nota: 'La humedad relativa compara el vapor que lleva el aire con el que le cabría a su temperatura, y el aire caliente admite más. Con el mismo vapor, la HR baja al calentarse de día y sube al enfriarse de noche.',
+    alt: `Gráfica con la curva del vapor que satura el aire según la temperatura. El aire a ${t} °C, con una humedad relativa del ${hr} %, queda por debajo de la curva; una flecha magenta lo enfría sin añadir vapor hasta tocarla a ${td} °C, su punto de rocío.`,
+  };
+};
+
+const PSICRO = {
+  ejemplo: ['El psicrómetro: termómetro seco y húmedo', 'El húmedo marca menos porque su agua se evapora; la diferencia da la humedad.', [{ cifra: '18 / 15 °C', texto: 'seco y húmedo, en el ejemplo' }, { cifra: '> 70 %', texto: 'humedad relativa, en las tablas' }, { cifra: '≈ 13 °C', texto: 'punto de rocío' }]],
+  humedo: ['El psicrómetro con el aire casi saturado', 'Si el seco y el húmedo marcan casi lo mismo, la humedad relativa es alta.', [{ cifra: '0,5 °C', texto: 'de diferencia: casi no se evapora' }, { cifra: 'HR alta', texto: 'cerca del 100 %' }, { cifra: 'T ≈ Td', texto: 'niebla o rocío probables' }]],
+  seco: ['El psicrómetro con el aire seco', 'Mucha diferencia entre el seco y el húmedo: aire seco, humedad relativa baja.', [{ cifra: '7 °C', texto: 'de diferencia en el dibujo' }, { cifra: 'HR baja', texto: 'mucha evaporación en la muselina' }, { cifra: 'Td ≪ T', texto: 'lejos de la niebla' }]],
+};
+const psicrometroM = (spec) => {
+  const c = PSICRO[spec.caso ?? 'ejemplo'];
+  if (!c) return null;
+  return {
+    tema: MET, titulo: c[0], clave: c[1], datos: c[2],
+    nota: 'Se lee a la sombra y con aire que corra junto al bulbo húmedo. Con la temperatura del seco y la diferencia, las tablas psicrométricas dan la humedad relativa y el punto de rocío.',
+    alt: 'Psicrómetro: dos termómetros iguales; el húmedo lleva el bulbo envuelto en una muselina mojada por una mecha desde un depósito de agua y marca menos que el seco. Al lado, la diferencia acotada y lo que se lee en las tablas.',
+  };
+};
+
+const nubesM = () => ({
+  tema: MET, titulo: 'Los diez géneros de nubes por pisos', clave: '«Cirro-» son las altas, «alto-» las medias y sin prefijo las bajas; Cu y Cb crecen en vertical.',
+  datos: [{ cifra: '> 6000 m', texto: 'altas: Ci, Cc y Cs, de hielo' }, { cifra: '2000–6000 m', texto: 'medias: Ac y As' }, { cifra: '< 2000 m', texto: 'bajas: St, Sc y Ns' }],
+  nota: 'Son las alturas del examen, aproximadas. La OMM da márgenes más amplios y que se solapan, y pone el nimbostrato en el piso medio aunque su base baje mucho; el examen lo cuenta entre las bajas.',
+  alt: 'El cielo en tres pisos sobre el mar, con el dibujo de cada género: altas, cirros, cirrocúmulos y cirrostratos con su halo; medias, altocúmulos y altostratos; bajas, estratos, estratocúmulos y nimbostratos con lluvia. A la derecha, el cúmulo y el cumulonimbo, que sube hasta el piso alto con su yunque.',
+});
+
+const nubesPisosM = () => ({
+  tema: MET, titulo: 'Cada piso, sus nubes', clave: 'Altas Ci, Cc y Cs; medias Ac y As; bajas St, Sc y Ns; verticales Cu y Cb.',
+  datos: [{ cifra: 'cirro-', texto: 'prefijo de las altas' }, { cifra: 'alto-', texto: 'prefijo de las medias, no de las altas' }, { cifra: 'Cb', texto: 'cumulonimbo: tormenta, granizo y rachas' }],
+  nota: 'El halo alrededor del Sol o de la Luna es de los cirrostratos; el sol «esmerilado», tras un velo gris, de los altostratos. Los nimbostratos dan lluvia continua; los cumulonimbos, chubascos y tormenta.',
+  alt: 'Tabla de las nubes por pisos, con la abreviatura, el nombre y cómo se reconoce cada género: altas (cirro-), medias (alto-), bajas (sin prefijo) y de desarrollo vertical.',
+});
+
+const olaM = (spec) => {
+  if ((spec.vista ?? 'partes') === 'mar-de-fondo') {
+    return {
+      tema: MET, titulo: 'Mar de viento y mar de fondo', clave: 'La mar de viento la levanta el viento que sopla ahí; la de fondo viene de un temporal lejano.',
+      datos: [{ cifra: 'agudas', texto: 'crestas de la mar de viento, que rompen' }, { cifra: 'largas', texto: 'y regulares, las olas de la mar de fondo' }, { cifra: 'fetch', texto: 'la mar crece con él, el viento y su duración' }],
+      nota: 'La mar de fondo puede llegar con calma o con un viento local de otra dirección. En los partes se da aparte de la mar de viento.',
+      alt: 'Dos cortes del mar: arriba, la mar de viento, con olas cortas, irregulares y de crestas rotas bajo el viento que las levanta; abajo, la mar de fondo, con olas largas y redondeadas que avanzan en otra dirección que el viento local.',
+    };
+  }
+  return {
+    tema: MET, titulo: 'Partes de una ola', clave: 'La altura va del seno a la cresta; la longitud de onda, de cresta a cresta.',
+    datos: [{ cifra: 'H = 2 · A', texto: 'la altura, el doble de la amplitud' }, { cifra: 'metros', texto: 'la longitud de onda: de cresta a cresta' }, { cifra: 'segundos', texto: 'el periodo: entre dos crestas por un punto' }],
+    nota: 'La amplitud se mide desde el nivel del mar en calma, no desde el seno. El periodo se mide en un punto fijo (una boya): el tiempo que pasa entre dos crestas.',
+    alt: 'Perfil de una ola sobre el nivel en calma, a trazos, con la cresta y el seno rotulados y tres cotas: la longitud de onda de cresta a cresta, la altura del seno a la cresta y la amplitud del nivel en calma a la cresta. Una boya fija sirve para medir el periodo.',
+  };
+};
+
+const MODELOS = {
+  todos: ['Modelos de viento y sus fuerzas', 'Sin rozamiento el viento sigue las isobaras; con rozamiento, las corta hacia las bajas.'],
+  geostrofico: ['El viento geostrófico', 'Gradiente y Coriolis se equilibran: el viento sigue las isobaras rectas, con las altas a su derecha.'],
+  gradiente: ['El viento de gradiente', 'Con isobaras curvas se suma la centrífuga: el viento sigue las isobaras curvas.'],
+  antitriptico: ['El viento con rozamiento (antitríptico)', 'El rozamiento frena el viento y lo hace cortar las isobaras hacia las bajas.'],
+};
+const modelosVientoM = (spec) => {
+  const m = MODELOS[spec.modelo ?? 'todos'];
+  if (!m) return null;
+  return {
+    tema: MET, titulo: m[0], clave: m[1],
+    datos: [{ cifra: 'G = C', texto: 'geostrófico: gradiente igual a Coriolis' }, { cifra: 'G = C + Cf', texto: 'de gradiente, alrededor de una baja' }, { cifra: '10–20°', texto: 'lo que corta las isobaras sobre el mar' }],
+    nota: 'Geostrófico y de gradiente son teóricos y soplan desde unos 1000 m, por encima del rozamiento. En sentido estricto el antitríptico equilibra solo gradiente y rozamiento; el viento real de superficie suma las tres fuerzas, y es el que se dibuja aquí.',
+    alt: 'Modelos de viento en el hemisferio norte: el geostrófico entre isobaras rectas, el de gradiente alrededor de una baja y el viento con rozamiento, que corta las isobaras 20° hacia la baja; en cada uno, las fuerzas dibujadas y rotuladas.',
+  };
+};
+
+const HELI = {
+  rumbo: ['Helicóptero: el rumbo para el izado', 'Normalmente te pedirán el viento unos 30° por la amura de babor, a rumbo y velocidad constantes.', [{ cifra: '30°', texto: 'el viento, por la amura de babor' }, { cifra: 'por popa', texto: 'se acerca el helicóptero' }, { cifra: 'canal 16', texto: 'escucha y sigue sus instrucciones' }],
+    'El helicóptero se mantiene aproado al viento y suele llevar la grúa a su derecha: así ve tu barco a su lado. Velas arriadas, motor en marcha y la cubierta despejada de todo lo que pueda volar.',
+    'El barco visto desde arriba con el viento a 30° por la amura de babor y el helicóptero llegando por su popa, aproado al viento, con la grúa a su derecha.'],
+  cable: ['Helicóptero: el cable de izado', 'Deja que el cable toque el agua antes de cogerlo y nunca lo hagas firme al barco.', [{ cifra: 'estática', texto: 'la descarga al tocar el agua o el casco' }, { cifra: 'nunca', texto: 'firme a la cornamusa ni a nada del barco' }, { cifra: 'brazos abajo', texto: 'en el arnés de izado' }],
+    'Si el barco da un bandazo con el cable amarrado, puede arrastrar al helicóptero. La línea guía, si la bajan, solo se cobra para orientar la carga, sin amarrarla.',
+    'El helicóptero de costado baja el cable hasta tocar el agua junto al barco; una línea tachada del cable a una cornamusa recuerda que nunca se hace firme.'],
+  senales: ['Helicóptero: guiarlo y hacerse ver', 'Las horas se cuentan desde el helicóptero: su morro son las 12.', [{ cifra: 'a sus 3', texto: 'a su derecha' }, { cifra: 'humo', texto: 'de día, para que te encuentre' }, { cifra: 'nunca', texto: 'un cohete con paracaídas cerca de él' }],
+    'El cohete con paracaídas puede alcanzar al helicóptero o deslumbrar al piloto; cuando ya te ha visto, basta el humo, el espejo, la bengala de mano con cuidado y el VHF.',
+    'Esfera de reloj centrada en el helicóptero visto desde arriba, con el morro a las 12; el barco está a su derecha, a las 3.'],
+};
+const helicopteroM = (spec) => { const h = HELI[spec.vista ?? 'rumbo']; return h ? { tema: SEG, titulo: h[0], clave: h[1], datos: h[2], nota: h[3], alt: h[4] } : null; };
+
+const arnesM = (spec) => {
+  if ((spec.vista ?? 'chaleco') === 'arnes') {
+    return {
+      tema: SEG, titulo: 'Arnés y línea de vida', clave: 'Engánchate a la línea de vida antes de salir de la bañera: el arnés es para no caer.',
+      datos: [{ cifra: '≤ 2 m', texto: 'la línea de amarre, de cinta' }, { cifra: 'pecho', texto: 'donde va el enganche del arnés' }, { cifra: 'proa-popa', texto: 'la línea de vida, tensa por cubierta' }],
+      nota: 'Con mosquetones de seguridad, que no se abren solos. Si caes enganchado, el barco te arrastra: por eso se busca no llegar al agua. Guárdalo seco y lejos del combustible y de los productos de limpieza.',
+      alt: 'Velero de costado con la línea de vida tensa de popa a proa; un tripulante a proa, con el arnés enganchado por el pecho a la línea de vida con una línea de amarre de 2 m como máximo.',
+    };
+  }
+  return {
+    tema: SEG, titulo: 'El chaleco salvavidas', clave: 'Luz, silbato y bandas retrorreflectantes; y flotabilidad para dar la vuelta al que cae inconsciente.',
+    datos: [{ cifra: '275 N', texto: 'zona 1' }, { cifra: '150 N', texto: 'zonas 2, 3 y 4' }, { cifra: '100 N', texto: 'zonas 5, 6 y 7' }],
+    nota: 'Uno por persona y uno más en la zona 1; los de los niños, a su peso y talla. La luz se puede omitir solo navegando de día en las zonas 4 a 7. Cuanta más flotabilidad, mejor da la vuelta a quien está inconsciente: el de 100 N puede no hacerlo.',
+    alt: 'Chaleco salvavidas de frente con la luz, el silbato, las bandas retrorreflectantes y los flotadores rotulados; debajo, la flotabilidad mínima de cada zona de navegación.',
+  };
+};
+
+const superficiesLibresM = () => ({
+  tema: SEG, titulo: 'Superficies libres', clave: 'Un tanque a medias sube G a G virtual: se pierde altura metacéntrica.',
+  datos: [{ cifra: 'GM menor', texto: 'con el tanque a medias' }, { cifra: '0', texto: 'lleno del todo o vacío: no resta' }, { cifra: '¼', texto: 'la pérdida, con un mamparo en medio' }],
+  nota: 'La pérdida depende de la manga del tanque al cubo, no de la cantidad de líquido: un mamparo longitudinal deja dos superficies de media manga y la pérdida baja a la cuarta parte. Mejor tanques llenos o vacíos.',
+  alt: 'Sección del barco escorado con un tanque a medias: el líquido corre a la banda baja y G sube hasta G virtual, más cerca de M. Debajo, cuatro tanques: lleno, a medias, vacío y con mamparo.',
+});
+
+const husosM = (spec) => {
+  const vista = spec.vista ?? 'husos';
+  if (vista === 'oficial') {
+    return {
+      tema: TIERRA, titulo: 'Hora oficial en España', clave: 'La hora oficial la fija el Gobierno: no es la del huso.',
+      datos: [{ cifra: 'TU + 1', texto: 'Península y Baleares, en invierno (+ 2 en verano)' }, { cifra: 'TU', texto: 'Canarias, en invierno (+ 1 en verano)' }, { cifra: '01:00 TU', texto: 'el cambio, el último domingo de marzo y de octubre' }],
+      nota: 'La Península está casi toda en el huso 0, pero su hora oficial va una hora por delante incluso en invierno. A bordo, la hora del reloj de bitácora la decide el patrón.',
+      alt: 'Tabla con el huso y la hora oficial de invierno y de verano de la Península, Baleares, Ceuta y Melilla y de Canarias; debajo, el horario de verano y las tres horas: legal, oficial y del reloj de bitácora.',
+    };
+  }
+  if (vista === 'calculo') {
+    const e = { e: ['10:30', '069° 25′ E'], w: ['08:00', '075° W'] }[spec.ejemplo ?? 'e'] ?? ['10:30', '069° 25′ E'];
+    const tu = spec.tu ?? (spec.lon != null ? '12:00' : e[0]);
+    const lugar = spec.lon != null ? `${String(Math.floor(Math.abs(spec.lon))).padStart(3, '0')}° ${spec.lon >= 0 ? 'E' : 'W'}` : e[1];
+    return {
+      tema: TIERRA, titulo: `Hora legal y civil: TU ${tu} en ${lugar}`, clave: 'La hora legal es la del meridiano central del huso; la civil del lugar, la de su longitud exacta.',
+      datos: [{ cifra: '15° = 1 h', texto: 'longitud / 15, redondeada: el huso' }, { cifra: '1° = 4 min', texto: 'la longitud en tiempo' }, { cifra: 'E + · W −', texto: 'hacia el E se suma, hacia el W se resta' }],
+      nota: 'Las dos coinciden solo en el meridiano central del huso. En el examen, cuidado con el signo: al E la hora va adelantada respecto al TU; al W, atrasada.',
+      alt: `Franja de husos con el meridiano de ${lugar} marcado en su huso; debajo, el huso, la hora legal y la hora civil del lugar, paso a paso, para el TU ${tu}.`,
+    };
+  }
+  const tu = spec.tu ?? '12:00';
+  return {
+    tema: TIERRA, titulo: `Husos horarios${tu !== '12:00' ? `: a las ${tu} TU` : ''}`, clave: '24 husos de 15°: una hora más por huso hacia el E y una menos hacia el W.',
+    datos: [{ cifra: '15°', texto: 'cada huso, centrado en un múltiplo de 15°' }, { cifra: '7° 30′', texto: 'a cada lado de Greenwich: el huso 0' }, { cifra: 'Hz = TU ± huso', texto: 'E suma, W resta' }],
+    nota: 'La Tierra gira 360° en 24 horas: 15° por hora. Todo el huso usa la hora de su meridiano central, la hora legal.',
+    alt: `Franja de trece husos, del 6 W al 6 E, con Greenwich en el centro y, debajo de cada uno, su hora legal cuando son las ${tu} TU; flechas: + 1 h por huso hacia el E y − 1 h hacia el W.`,
+  };
+};
+
+export const MARCOS_PY = {
+  socorro, beaufort, coordenadas, balsa, 'radar-pantalla': radarPantalla, 'radar-respondedores': radarRespondedores, gnss, 'gnss-calculos': gnssCalculos, 'carta-raster-vectorial': cartaRaster, ais,
+  humedad: humedadM, psicrometro: psicrometroM, nubes: nubesM, 'nubes-pisos': nubesPisosM, ola: olaM, 'modelos-viento': modelosVientoM,
+  helicoptero: helicopteroM, arnes: arnesM, 'superficies-libres': superficiesLibresM, husos: husosM,
+};

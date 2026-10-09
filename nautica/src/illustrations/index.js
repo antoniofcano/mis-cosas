@@ -1,5 +1,6 @@
 // Motor de ilustraciones de teoría: { tipo, ...parámetros } → { svg, caption, sound? }.
-// Dibujos SVG generados al vuelo y animados con SMIL (sin JavaScript ni imágenes): ligeros y nítidos.
+// Dibujos SVG generados al vuelo: ligeros y nítidos. Las láminas animadas (src/illustrations/animaciones/) dan aquí su
+// fotograma fijo; el reproductor (src/ui/animacion.js) las mueve. Algunas láminas antiguas aún se animan con SMIL.
 // Para añadir una ilustración nueva: crea su función y regístrala en RENDERERS y en CATALOGO.
 
 import { buoyIllustration, cardinalClock, BUOYS } from './buoys.js';
@@ -7,7 +8,7 @@ import { shipIllustration, SHIPS } from './ships.js';
 import { crossingIllustration, riesgoIllustration, SENALES } from './situations.js';
 import { meteoIllustration } from './misc.js';
 import { banderaIllustration, sonidoIllustration } from './senales-c.js';
-import { boatIllustration, propellerIllustration, hombreAlAguaIllustration } from './laminas-c.js';
+import { boatIllustration } from './laminas-c.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
 import { mareaIllustration, dstIllustration } from './navigation.js';
@@ -15,7 +16,8 @@ import { vientoAparenteIllustration } from './meteo-c.js';
 import { enfilacionIllustration, demorasIllustration, loxodromicaIllustration } from './carta-c.js';
 import { socorroIllustration, SOCORRO } from './socorro.js';
 import { bifurcacionIllustration, regionesIllustration, canalIllustration } from './balizamiento.js';
-import { evolucionIllustration, ciabogaIllustration } from './maniobra.js';
+import { ciabogaIllustration } from './maniobra.js';
+import { dibujoAnimado } from './animaciones/index.js';
 import { INTERACTIVAS, interactivaDe, dibujoFijo } from './interactivas.js';
 import { LAMINAS_LECCIONES } from './lecciones/index.js';
 import { amarrasIllustration, jerarquiaIllustration } from './seamanship.js';
@@ -40,7 +42,7 @@ const RENDERERS = {
   sonido: sonidoIllustration,
   meteo: meteoIllustration,
   barco: boatIllustration,
-  helice: propellerIllustration,
+  helice: dibujoAnimado,
   rosa: (s) => dibujoFijo(INTERACTIVAS.rosa, s),
   bandera: banderaIllustration,
   nortes: (s) => dibujoFijo(INTERACTIVAS.nortes, s),
@@ -58,12 +60,12 @@ const RENDERERS = {
   movimiento: movimientoIllustration,
   amarras: amarrasIllustration,
   busqueda: busquedaIllustration,
-  'hombre-al-agua': hombreAlAguaIllustration,
+  'hombre-al-agua': dibujoAnimado,
   fuego: fuegoIllustration,
   socorro: socorroIllustration,
   riesgo: riesgoIllustration,
   'helice-timon': (s) => dibujoFijo(INTERACTIVAS['helice-timon'], s),
-  evolucion: evolucionIllustration,
+  evolucion: dibujoAnimado,
   ciaboga: ciabogaIllustration,
   desatraque: (s) => dibujoFijo(INTERACTIVAS.desatraque, s),
   bifurcacion: bifurcacionIllustration,
@@ -101,7 +103,7 @@ export const CATALOGO = {
   movimiento: { params: { mov: ['balance', 'cabezada', 'guinada'] }, ejemplo: { tipo: 'movimiento', mov: 'balance' } },
   amarras: { params: { resaltar: ['largo-proa', 'esprin-proa', 'traves', 'esprin-popa', 'largo-popa'] }, ejemplo: { tipo: 'amarras' } },
   busqueda: { params: { patron: ['cuadrado', 'sectores'] }, ejemplo: { tipo: 'busqueda', patron: 'cuadrado' } },
-  'hombre-al-agua': { params: { maniobra: ['boutakow', 'anderson'] }, ejemplo: { tipo: 'hombre-al-agua', maniobra: 'boutakow' } },
+  'hombre-al-agua': { params: { maniobra: ['boutakow', 'anderson', 'scharnow'] }, ejemplo: { tipo: 'hombre-al-agua', maniobra: 'boutakow' } },
   fuego: { params: { vista: ['tetraedro', 'clases'] }, ejemplo: { tipo: 'fuego', vista: 'tetraedro' } },
   socorro: { params: { resaltar: Object.keys(SOCORRO), solo: 'bool: dibuja solo la resaltada, en grande' }, ejemplo: { tipo: 'socorro', resaltar: 'cohete-paracaidas' } },
   riesgo: { params: { caso: ['comparar', 'constante', 'variable'] }, ejemplo: { tipo: 'riesgo', caso: 'comparar' } },

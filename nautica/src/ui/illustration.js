@@ -1,6 +1,7 @@
 // Componente: muestra una o varias ilustraciones de teoría (con botón de sonido si la ilustración lo tiene).
 // Si la lámina tiene versión interactiva (src/illustrations/interactivas.js), monta el componente compartido en el modo
 // que corresponde a dónde aparece: 'clase' (curso), 'explicacion' (panel del profe) o 'galeria' (por defecto).
+// Si la lámina está animada (src/illustrations/animaciones/), monta el reproductor (src/ui/animacion.js).
 // Si la lámina ya está en estilo C (src/illustrations/marcos.js), la envuelve en su marco: tema, título, frase clave,
 // datos y nota (docs/ESTILO-LAMINAS.md). En la explicación de una pregunta solo va la figura.
 
@@ -10,6 +11,8 @@ import { interactivaDe, pidePrediccion } from '../illustrations/interactivas.js'
 import { marcoDe } from '../illustrations/marcos.js';
 import { playSignal } from '../illustrations/situations.js';
 import { laminaEl } from './lamina.js';
+import { animacionEl } from './animacion.js';
+import { animacionDe } from '../illustrations/animaciones/index.js';
 import { marcoEl } from './lamina-marco.js';
 import { conIcono } from './iconos.js';
 
@@ -29,7 +32,8 @@ export function illustrationEls(specs, { modo = 'galeria', onRespuesta = null, n
     let marco = null;
     const responde = espera ? (ok) => { marco?.revelar(); onRespuesta?.(ok); } : onRespuesta;
     // La lectura de la lámina ya explica el estado: el pie fijo sobraría.
-    const fig = def ? laminaEl(def, spec, { modo, onRespuesta: responde }) : h('figure.il-figure', h('div.il-svg', { html: r.svg }),
+    const an = def ? null : animacionDe(spec);
+    const fig = def ? laminaEl(def, spec, { modo, onRespuesta: responde }) : an ? animacionEl(an.pista(), { modo }) : h('figure.il-figure', h('div.il-svg', { html: r.svg }),
       r.caption ? h('figcaption', r.caption) : null,
       r.sound ? h('button.small.secondary', { type: 'button', onclick: () => playSignal(r.sound) }, conIcono('play', 'Escuchar la señal')) : null);
     marco = m ? marcoEl(m, [fig], { nivel, oculta: espera }) : null;

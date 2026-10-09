@@ -2,7 +2,8 @@
 // Conmutador: «adónde voy» (rumbo efectivo) o «qué rumbo doy para llegar» (problema inverso).
 import { cadenaDirecta, cadenaInversa, ladoDe } from '../../nautical/kinematics.js';
 import { norm360 } from '../../math/angles.js';
-import { dibujaCadena, casillasCadena } from './cadena.js';
+import { dibujaCadena, casillasCadena, cambiosCadena, DUR_CADENA, HITOS_CADENA } from './cadena.js';
+import { pista } from '../animaciones/pista.js';
 import { pad3, num } from './kit.js';
 
 /** Velocidad del barco si la spec no la trae (nudos). */
@@ -34,9 +35,9 @@ export const corriente = {
   pie: (e) => (e.modo === 'inversa'
     ? 'Primero la corriente desde la salida; con centro en su extremo y radio la velocidad del barco cortas la línea al destino: esa dirección es el rumbo a dar. La salida-corte es el efectivo.'
     : 'El barco avanza con su rumbo y velocidad y la corriente lo arrastra: la suma de los dos vectores es el rumbo y la velocidad efectivos (sobre el fondo).'),
-  dibujar(e, r, { pendiente = false } = {}) {
+  dibujar(e, r, { pendiente = false, t = null } = {}) {
     const ocultar = pendiente ? (r.inversa ? ['rv', 'rs'] : ['ref']) : [];
-    const svg = dibujaCadena(r, { ocultar });
+    const svg = dibujaCadena(r, { ocultar, t: pendiente ? null : t });
     const cadena = casillasCadena(r, ocultar);
     const corr = r.ic ? `la corriente (hacia el ${pad3(e.rc)}°, ${num(e.ic)} nudos)` : null;
     if (pendiente) return { svg, cadena, lectura: r.inversa ? `Quieres ir al ${pad3(e.rumbo)}°. Responde la pregunta y verás el rumbo que tienes que dar.` : `Proa al ${pad3(e.rumbo)}° a ${num(e.vb)} nudos. Responde la pregunta y verás tu rumbo efectivo.` };
@@ -51,6 +52,21 @@ export const corriente = {
         : `Sin corriente, el rumbo efectivo es el de superficie: ${pad3(r.ref)}° a ${num(r.vb)} nudos.`;
     }
     return { svg, cadena, lectura };
+  },
+  // Una hora de navegación animada: el barco va con la proa al Rv y el agua lo arrastra; al final, el triángulo.
+  animacion: {
+    pista(e, r) {
+      const H = HITOS_CADENA;
+      const deriva = num(r.ic / 2);
+      const hitos = [
+        { t: 0, nombre: r.inversa ? `Rumbo a dar: proa al ${pad3(r.rv)}°` : `Salida: proa al ${pad3(r.rv)}°`, texto: r.inversa ? `Para llegar al destino, que está al ${pad3(r.ref)}°, das proa al ${pad3(r.rv)}° a ${num(r.vb)} nudos, hacia el lado del que viene la corriente.` : `El barco da proa al ${pad3(r.rv)}° a ${num(r.vb)} nudos.${r.ic ? ` El agua va hacia el ${pad3(r.rc)}° a ${num(r.ic)} nudos.` : ''}` },
+        { t: H.sale, nombre: r.ic ? 'Avanza y el agua lo arrastra' : 'Avanza', texto: r.ic ? 'Mientras avanza por el agua (a trazos, hasta el barco fantasma), el agua entera lo lleva (en azul): va de lado, con la proa a su Rv.' : 'Sin corriente, el barco avanza por donde apunta su rumbo de superficie.' },
+        { t: H.media, nombre: 'Media hora', texto: r.ic ? `La corriente ya lo ha apartado ${deriva} millas de donde estaría sin ella (el fantasma).` : `Ha navegado ${num(r.vb / 2)} millas.` },
+        { t: H.hora, nombre: 'Una hora: el efectivo', texto: `Sobre el fondo ha recorrido ${num(r.vef)} millas al ${pad3(r.ref)}°: la suma de su avance y de la corriente.` },
+        { t: H.carta, nombre: 'En la carta', texto: r.inversa ? 'Así se traza: la corriente desde la salida, el compás con la velocidad del barco hasta la línea al destino, y el rumbo de superficie.' : 'Así se traza: superficie (una punta), corriente (tres) y efectivo (dos, en magenta), en una hora de navegación.' },
+      ];
+      return pista({ duracion: DUR_CADENA, hitos, svg: (t) => dibujaCadena(r, { t }), cambios: (t) => cambiosCadena(r, t) });
+    },
   },
   prediccion(e) {
     const r = corriente.calcular(e);

@@ -1,5 +1,5 @@
-// Ilustraciones: meteorología y banderas (borrasca, anticiclón, partes del barco y hélice: laminas-c.js).
-import { borrascaAnticiclon } from './laminas-c.js';
+// Ilustraciones: meteorología y banderas (borrasca y anticiclón: animaciones/circulacion.js; partes del barco: laminas-c.js).
+import { dibujoAnimado } from './animaciones/index.js';
 import { buysBallot, brisa, frenteCorte } from './meteo-c.js';
 
 const arrowDefs = (id, color) => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="${color}"/></marker></defs>`;
@@ -10,8 +10,8 @@ const arrowDefs = (id, color) => `<defs><marker id="${id}" viewBox="0 0 10 10" r
 
 export function meteoIllustration(spec) {
   const sys = spec.sistema;
-  // borrasca y anticiclón: en estilo C, en src/illustrations/laminas-c.js
-  if (sys === 'borrasca' || sys === 'anticiclon') return borrascaAnticiclon(sys === 'borrasca');
+  // borrasca y anticiclón: animadas, en src/illustrations/animaciones/circulacion.js
+  if (sys === 'borrasca' || sys === 'anticiclon') return dibujoAnimado(spec);
   // Buys-Ballot, brisas y frentes en corte: en estilo C, en src/illustrations/meteo-c.js
   if (sys === 'buys-ballot') return buysBallot();
   if (sys === 'brisa-mar' || sys === 'brisa-tierra') return brisa(sys === 'brisa-mar');

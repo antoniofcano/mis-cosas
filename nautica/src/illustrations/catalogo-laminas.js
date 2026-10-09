@@ -44,7 +44,7 @@ export const LAMINAS = {
   },
   py: {
     1: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'estabilidad', caso: 'inestable' }, ...movimientos, { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
-      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }, { tipo: 'socorro' }, ...pirotecnia],
+      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'hombre-al-agua', maniobra: 'scharnow' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }, { tipo: 'socorro' }, ...pirotecnia],
     2: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'niebla-vapor', 'brisa-mar', 'brisa-tierra'), ...vientos, { tipo: 'beaufort' }],
     3: [{ tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'loxodromica' }, ...mareas],
     4: [{ tipo: 'corriente', caso: 'efectivo' }, { tipo: 'corriente', caso: 'rumbo-a-dar' }, { tipo: 'abatimiento', banda: 'babor' }, { tipo: 'abatimiento', banda: 'estribor' }, { tipo: 'enfilacion' }, { tipo: 'demoras' }, { tipo: 'marea', modo: 'sonda' }],

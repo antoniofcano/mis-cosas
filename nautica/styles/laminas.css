@@ -68,3 +68,80 @@ h1.lc-titulo { font-size: 1.75rem; }
   .ficha-donde .lc-marco { margin-inline: calc(-.9rem + 1px); }
 }
 .paso.ilu .lc-marco .il-figure svg { width: 100%; }
+
+/* ---- Tarjetas de memoria en estilo C (src/ui/views/tarjetas.js; anverso en src/illustrations/tarjetas-c.js) ----
+   Papel de carta con doble filete y graduación; respuesta en serifa, dato en monoespaciada, nombre en versalitas y
+   «Nota»; el avance con los faros de la Travesía. El volteo solo se anima sin «reducir movimiento». */
+.tc-mazos { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: .75rem; }
+a.tc-mazo { display: flex; gap: .8rem; align-items: flex-start; min-height: 44px; padding: .9rem 1rem; background: var(--lc-fondo); color: var(--lc-tinta); text-decoration: none;
+  border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); }
+a.tc-mazo:hover { border-color: var(--lc-magenta); }
+a.tc-mazo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.tc-mazo-ico { flex: none; width: 40px; height: 40px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--lc-papel); border: 1px solid var(--lc-tinta); color: var(--lc-tinta); }
+.tc-mazo-ico .ico { width: 22px; height: 22px; }
+.tc-mazo-tx { display: flex; flex-direction: column; gap: .25rem; min-width: 0; flex: 1; }
+.tc-mazo-eti { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.tc-mazo-titulo { font-family: var(--lc-serif); font-size: 1.2rem; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.tc-mazo-barra { margin-top: .3rem; height: 6px; }
+.tc-mazo-pie { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .1rem .8rem; font-family: var(--lc-serif); font-style: italic; font-size: .95rem; color: var(--lc-apagado); }
+.tc-hoy { color: var(--lc-magenta); font-style: normal; font-weight: 700; }
+
+.tc-sesion { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: .55rem; }
+.tc-cab { display: flex; align-items: center; gap: .7rem; min-width: 0; }
+.tc-faros { list-style: none; margin: 0; padding: 2px; display: flex; gap: 4px; flex: 1; min-width: 0; }
+.tc-faro { flex: 1 1 0; max-width: 16px; min-width: 6px; aspect-ratio: 1; border-radius: 999px; background: var(--faro-off-bg); border: 2px solid var(--faro-off-borde); box-sizing: border-box; }
+.tc-faro.on { background: var(--faro-luz); border-color: var(--faro-on-borde); }
+.tc-faro.parcial { background: var(--accent-2); border-color: var(--accent); }
+.tc-faro.actual { outline: 2px solid var(--text); outline-offset: 1px; }
+.tc-cuenta { font-family: var(--lc-mono); font-size: .9rem; color: var(--muted); white-space: nowrap; }
+.tc-aviso { margin: 0; font-family: var(--lc-serif); font-style: italic; font-size: .95rem; line-height: 1.35; color: var(--muted); }
+.tc-aviso:empty { display: none; }
+
+.tc-volteo { perspective: 1400px; }
+.tc-caras { display: grid; transform-style: preserve-3d; }
+.tc-cara { grid-area: 1 / 1; display: flex; flex-direction: column; min-width: 0; outline: none; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.tc-reverso, .tc-caras.vuelta { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: no-preference) { .tc-caras { transition: transform var(--dur-larga) var(--ease-sale); } }
+.tc-cara:focus-visible .tc-marco { outline: 3px solid var(--accent); outline-offset: 3px; }
+.tc-anverso { cursor: pointer; }
+
+/* Marco de carta: filete exterior, graduación alterna entre los dos filetes y filete interior */
+.tc-marco { flex: 1; display: flex; padding: 5px; border: 1.5px solid var(--lc-tinta); min-width: 0;
+  background:
+    repeating-linear-gradient(90deg, var(--lc-tinta) 0 14px, transparent 14px 28px) top left / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--lc-tinta) 0 14px, transparent 14px 28px) bottom left / 100% 2px no-repeat,
+    repeating-linear-gradient(180deg, var(--lc-tinta) 0 14px, transparent 14px 28px) top left / 2px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--lc-tinta) 0 14px, transparent 14px 28px) top right / 2px 100% no-repeat,
+    var(--lc-fondo); }
+.tc-papel { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .7rem; padding: .9rem .9rem 1rem; background: var(--lc-fondo); color: var(--lc-tinta); border: 1px solid var(--lc-tinta); }
+.tc-anverso .tc-papel { min-height: 19rem; justify-content: space-between; }
+.tc-eti { margin: 0; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.tc-figura { min-width: 0; display: flex; justify-content: center; }
+.tc-dibujo { width: 100%; min-width: 0; }
+.tc-dibujo svg { display: block; width: 100%; height: auto; max-height: 52vh; margin: 0 auto; }
+.tc-pregunta { margin: 0; font-family: var(--lc-serif); font-style: italic; font-weight: 700; font-size: 1.15rem; line-height: 1.3; color: var(--lc-tinta); text-align: center; }
+.tc-escuchar { align-self: center; min-height: 48px; }
+.tc-estimulo { width: 100%; display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1.4rem .6rem 1rem; background: var(--lc-papel); border: 1px solid var(--lc-tinta); box-sizing: border-box; }
+.tc-estimulo-eti { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-apagado); }
+.tc-estimulo-grande { margin: 0; font-family: var(--lc-serif); font-size: clamp(2.4rem, 12vw, 3.6rem); font-weight: 700; line-height: 1.05; color: var(--lc-tinta); text-align: center; overflow-wrap: anywhere; }
+.tc-estimulo-grande.mono { font-family: var(--lc-mono); letter-spacing: .06em; }
+.tc-regla-caja { width: 100%; max-width: 440px; }
+.tc-regla-caja svg { display: block; width: 100%; height: auto; }
+
+.tc-rev-cuerpo { display: flex; flex-direction: column; gap: .75rem; }
+.tc-rev-cab { display: flex; gap: .8rem; align-items: flex-start; justify-content: space-between; }
+.tc-rev-tx { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: .35rem; }
+.tc-nombre { margin: 0; font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lc-apagado); overflow-wrap: anywhere; }
+.tc-respuesta { margin: 0; font-family: var(--lc-serif); font-size: 1.55rem; line-height: 1.2; font-weight: 700; color: var(--lc-tinta); overflow-wrap: anywhere; }
+.tc-respuesta.larga { font-size: 1.3rem; }
+.tc-respuesta.muy-larga { font-size: 1.1rem; line-height: 1.35; }
+.tc-mini { flex: none; width: 34%; max-width: 150px; }
+.tc-estimulo.tc-mini { padding: .45rem .3rem; }
+.tc-estimulo.tc-mini .tc-estimulo-grande { font-size: 1.15rem; }
+.tc-dato { align-self: flex-start; max-width: 100%; margin: 0; padding: .35rem .7rem; font-family: var(--lc-mono); font-variant-numeric: tabular-nums; font-size: 1.15rem; font-weight: 600;
+  color: var(--lc-magenta); background: var(--lc-papel); border: 1.5px solid var(--lc-tinta); overflow-wrap: anywhere; box-sizing: border-box; }
+.tc-sesion .fila-inferior .grande { min-height: 52px; }
+@media (max-width: 560px) {
+  .tc-papel { padding: .75rem .6rem .85rem; }
+  .tc-anverso .tc-dibujo { margin-inline: -.35rem; width: calc(100% + .7rem); }
+}

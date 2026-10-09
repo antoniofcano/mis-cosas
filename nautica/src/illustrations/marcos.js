@@ -8,6 +8,9 @@
 import { BUOYS } from './buoys.js';
 import { caidaPopa } from '../nautical/helice.js';
 import { MAREA_EJEMPLO } from './interactivas/marea.js';
+import { FLAGS } from './misc.js';
+import { SENALES } from './situations.js';
+import { BANDERA_C, patronSonido, SECUENCIA_SONIDO } from './senales-c.js';
 
 const num = (n) => String(n).replace('.', ',');
 const BAL = 'Balizamiento';
@@ -513,11 +516,98 @@ function fuego(spec) {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Señales: banderas del Código Internacional y señales acústicas (RIPA, reglas 32 a 35)
+
+const SEN = 'Señales';
+const BANDERAS = {
+  A: ['Bandera A (Alfa)', 'Alfa: tengo un buzo sumergido; manténgase alejado y a poca velocidad.', 'cola de golondrina: el corte en V del batiente',
+    'Blanca junto al asta y azul con cola de golondrina. No es la de buceo recreativo (roja con diagonal blanca): las dos piden lo mismo, apartarse y moderar la velocidad.'],
+  buceo: ['Bandera de buceo', 'Roja con una diagonal blanca: hay buceadores en inmersión.', 'roja con una franja diagonal blanca',
+    'Es la señal del buceo deportivo y recreativo; la del Código Internacional es la Alfa. Con cualquiera de las dos, da resguardo y navega despacio.'],
+  O: ['Bandera O (Oscar)', 'Oscar: ¡hombre al agua!', 'roja y amarilla, partida en diagonal',
+    'Roja la mitad de arriba, hacia el batiente, y amarilla la de abajo, junto al asta. Se iza para que los demás sepan que hay alguien en el agua.'],
+  N: ['Bandera N (November)', 'November: no (negativo).', 'damero azul y blanco de cuatro por cuatro',
+    'Izada encima de la C forma NC, una señal de peligro del Anexo IV del RIPA. Para recordarla: N de «no», a cuadros como un tablero.'],
+  C: ['Bandera C (Charlie)', 'Charlie: sí (afirmativo).', 'franjas azul, blanca, roja, blanca y azul',
+    'Debajo de la N forma NC, señal de peligro. C de «confirmo»: sí.'],
+  B: ['Bandera B (Bravo)', 'Bravo: cargo, descargo o transporto mercancías peligrosas.', 'toda roja, con cola de golondrina',
+    'Roja como el fuego: lleva mercancías peligrosas. Se ve en los barcos que cargan combustible.'],
+  H: ['Bandera H (Hotel)', 'Hotel: tengo práctico a bordo.', 'blanca junto al asta y roja al batiente',
+    'Mitad blanca y mitad roja, en vertical. El práctico ya está a bordo; no confundir con la que lo pide.'],
+  U: ['Bandera U (Uniform)', 'Uniform: se dirige usted hacia un peligro.', 'cuatro cuarteles rojos y blancos',
+    'Rojo arriba junto al asta y abajo al batiente. Es un aviso al otro barco: va hacia un bajo, una piedra u otro peligro.'],
+  V: ['Bandera V (Victor)', 'Victor: necesito asistencia.', 'blanca con un aspa roja',
+    'Pide ayuda, pero no es una señal de peligro del Anexo IV. La W pide asistencia médica.'],
+  W: ['Bandera W (Whiskey)', 'Whiskey: necesito asistencia médica.', 'azul, recuadro blanco y centro rojo',
+    'Tres recuadros, uno dentro de otro, como una diana. V pide ayuda; W, ayuda médica.'],
+};
+
+function bandera(spec) {
+  const b = BANDERAS[spec.codigo];
+  const c = BANDERA_C[spec.codigo];
+  if (!b || !c) return null;
+  const [titulo, clave, como, nota] = b;
+  return {
+    tema: SEN, titulo, clave,
+    datos: [{ cifra: c.letra ?? 'roja', texto: c.letra ? `${c.fonetica.toLowerCase().replace(/^./, (x) => x.toUpperCase())}, del Código Internacional de Señales: ${como}` : `${como}; no es una letra del Código Internacional` }],
+    nota, alt: `${titulo}, izada en su asta. ${c.forma} Significa: ${FLAGS[spec.codigo].nota}`,
+  };
+}
+
+// [título, frase clave, datos, nota]
+const SONIDOS = {
+  '.': ['Una pitada corta', 'Una corta: caigo a estribor.', [['≈ 1 s', 'dura la pitada corta'], ['regla 34', 'maniobra, entre buques que se ven']],
+    'Solo vale entre buques que se ven. Se puede reforzar con un destello de luz blanca por cada pitada.'],
+  '..': ['Dos pitadas cortas', 'Dos cortas: caigo a babor.', [['≈ 1 s', 'cada pitada corta'], ['regla 34', 'maniobra, entre buques que se ven']],
+    'Una, estribor; dos, babor; tres, atrás: se aprenden juntas y en ese orden.'],
+  '...': ['Tres pitadas cortas', 'Tres cortas: estoy dando atrás.', [['≈ 1 s', 'cada pitada corta'], ['regla 34', 'maniobra, entre buques que se ven']],
+    'Dando atrás es la máquina, aunque el barco todavía avance por su arrancada.'],
+  '.....': ['Cinco pitadas cortas o más', 'Cinco o más cortas y rápidas: no entiendo sus intenciones o dudo de su maniobra.', [['≥ 5', 'pitadas cortas y rápidas'], ['regla 34 d', 'señal de duda']],
+    'Es la señal de duda: se puede completar con al menos cinco destellos cortos y rápidos.'],
+  '-': ['Una pitada larga', 'Una larga: me acerco a un recodo; en niebla, buque de motor con arrancada.', [['4–6 s', 'dura la pitada larga'], ['≤ 2 min', 'entre señales, en niebla']],
+    'En el recodo, quien la oye al otro lado contesta con otra larga.'],
+  '--': ['Dos pitadas largas', 'Dos largas cada 2 minutos: buque de motor parado, sin arrancada, en niebla.', [['≈ 2 s', 'entre las dos largas'], ['≤ 2 min', 'entre señales']],
+    'Una larga, motor que avanza; dos largas, motor parado. Las dos solo en visibilidad reducida.'],
+  '-..': ['Una larga y dos cortas', 'Una larga y dos cortas cada 2 minutos: buque que no puede apartarse con facilidad, en niebla.', [['≤ 2 min', 'entre señales'], ['regla 35 c', 'visibilidad reducida']],
+    'La dan el buque sin gobierno, el de maniobra restringida, el restringido por su calado, el de vela, el que pesca y el que remolca o empuja.'],
+  '--.': ['Dos largas y una corta', 'Dos largas y una corta: en un canal angosto, quiero alcanzarle por su estribor.', [['regla 34 c', 'canal o paso angosto'], ['1 corta', 'estribor, como al caer']],
+    'Las cortas del final dicen la banda: una corta, estribor; dos cortas, babor.'],
+  '--..': ['Dos largas y dos cortas', 'Dos largas y dos cortas: en un canal angosto, quiero alcanzarle por su babor.', [['regla 34 c', 'canal o paso angosto'], ['2 cortas', 'babor, como al caer']],
+    'Las cortas del final dicen la banda: una corta, estribor; dos cortas, babor.'],
+  '-.-.': ['Larga, corta, larga y corta', 'Larga, corta, larga, corta: el buque alcanzado está conforme.', [['regla 34 c', 'canal o paso angosto'], ['4', 'pitadas alternas']],
+    'Si no está conforme, contesta con la señal de duda: cinco o más cortas y rápidas.'],
+  '-...': ['Una larga y tres cortas', 'Una larga y tres cortas: el buque remolcado, en niebla, justo después del remolcador.', [['≤ 2 min', 'entre señales'], ['regla 35 e', 'el último del tren, si va tripulado']],
+    'El remolcador da una larga y dos cortas; el remolcado contesta enseguida con una larga y tres cortas.'],
+  '.-.': ['Corta, larga y corta', 'Corta, larga, corta: buque fondeado que avisa de su posición a quien se acerca.', [['regla 35 g', 'fondeado'], ['además', 'de la campana']],
+    'Es opcional y se suma a la campana: advierte del riesgo de abordaje a un buque que se aproxima.'],
+  '....': ['Cuatro pitadas cortas', 'Cuatro cortas: la embarcación del práctico se identifica.', [['regla 35 k', 'práctico en servicio'], ['además', 'de su señal de niebla']],
+    'Cuatro cortas, la H del Morse: H de Hotel, la bandera de «tengo práctico a bordo».'],
+  campana: ['Repique de campana', 'Repique rápido de unos 5 segundos cada minuto: buque fondeado en niebla.', [['≈ 5 s', 'de repique'], ['≤ 1 min', 'entre repiques']],
+    'Se da a proa. Los menores de 20 m no están obligados a la campana, pero deben hacer otra señal eficaz como mucho cada 2 minutos.'],
+  'campana-gong': ['Campana a proa y gong a popa', 'Campana a proa y, enseguida, gong a popa cada minuto: fondeado de 100 m o más en niebla.', [['≥ 100 m', 'de eslora'], ['≤ 1 min', 'entre señales']],
+    'El gong solo lo llevan los de 100 m o más; con él se sabe que el fondeado es grande.'],
+  varado: ['Golpes y repique de campana', 'Tres golpes, repique y tres golpes: buque varado en niebla.', [['3 + 3', 'golpes claros y separados'], ['≤ 1 min', 'entre señales']],
+    'Es la campana del fondeado con tres golpes antes y tres después. Con 100 m o más, además el gong.'],
+};
+
+function sonido(spec) {
+  const x = SONIDOS[spec.senal ?? '.'];
+  if (!x || !SENALES[spec.senal ?? '.']) return null;
+  const [titulo, clave, datos, nota] = x;
+  const campana = !!SECUENCIA_SONIDO[spec.senal];
+  return {
+    tema: RIPA, titulo: spec.texto ? spec.texto.split(':')[0] : titulo, clave,
+    datos: datos.map(([cifra, texto]) => ({ cifra, texto })), nota,
+    alt: `Cronograma de una señal ${campana ? 'de campana' : 'de pito'}: ${patronSonido(spec.senal ?? '.')}. ${SENALES[spec.senal ?? '.']}`,
+  };
+}
+
 const MARCOS = {
   cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
   nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
   'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
-  movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco,
+  movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco, bandera, sonido,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

@@ -4,8 +4,9 @@
 
 import { buoyIllustration, cardinalClock, BUOYS } from './buoys.js';
 import { shipIllustration, SHIPS } from './ships.js';
-import { crossingIllustration, soundIllustration, riesgoIllustration, SENALES } from './situations.js';
-import { meteoIllustration, flagIllustration } from './misc.js';
+import { crossingIllustration, riesgoIllustration, SENALES } from './situations.js';
+import { meteoIllustration } from './misc.js';
+import { banderaIllustration, sonidoIllustration } from './senales-c.js';
 import { boatIllustration, propellerIllustration, hombreAlAguaIllustration } from './laminas-c.js';
 import { parseRhythm, rhythmTimeline, blinkingLight } from './lights.js';
 import { beaufortIllustration } from './meteo.js';
@@ -36,12 +37,12 @@ const RENDERERS = {
   ritmo: rhythmIllustration,
   buque: shipIllustration,
   cruce: crossingIllustration,
-  sonido: soundIllustration,
+  sonido: sonidoIllustration,
   meteo: meteoIllustration,
   barco: boatIllustration,
   helice: propellerIllustration,
   rosa: (s) => dibujoFijo(INTERACTIVAS.rosa, s),
-  bandera: flagIllustration,
+  bandera: banderaIllustration,
   nortes: (s) => dibujoFijo(INTERACTIVAS.nortes, s),
   enfilacion: enfilacionIllustration,
   corriente: (s) => dibujoFijo(INTERACTIVAS.corriente, s),

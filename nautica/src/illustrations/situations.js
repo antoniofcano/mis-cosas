@@ -104,34 +104,7 @@ export const SENALES = {
 /** Señales que no son de pito: b golpe de campana · B repique de campana (~5 s) · G gong (~5 s). */
 const SECUENCIA = { campana: 'B', 'campana-gong': 'BG', varado: 'bbbBbbb' };
 
-export function soundIllustration(spec) {
-  const pattern = spec.senal ?? '.';
-  const seq = SECUENCIA[pattern] ?? pattern;
-  const campana = !!SECUENCIA[pattern];
-  const W = 340;
-  const H = 120;
-  let x = 20;
-  const bars = [];
-  const ticks = (x0, w, step, c) => Array.from({ length: Math.floor(w / step) }, (_, i) => `<line x1="${x0 + 3 + i * step}" y1="54" x2="${x0 + 3 + i * step}" y2="72" stroke="${c}" stroke-width="1.4"/>`).join('');
-  for (const c of seq) {
-    if (c === 'b') { bars.push(`<circle cx="${x + 6}" cy="63" r="6" fill="#a855f7"/>`); x += 18; continue; }
-    if (c === 'B' || c === 'G') {
-      const col = c === 'B' ? '#a855f7' : '#0d9488';
-      bars.push(`<rect x="${x}" y="52" width="86" height="22" rx="4" fill="${col}" opacity=".35"/>${ticks(x, 86, c === 'B' ? 5 : 9, col)}<text x="${x + 43}" y="88" font-size="9" text-anchor="middle" fill="${col}" font-weight="700">${c === 'B' ? 'campana a proa' : 'gong a popa'}</text>`);
-      x += 96;
-      continue;
-    }
-    const w = c === '-' ? 70 : 18;
-    bars.push(`<rect x="${x}" y="52" width="${w}" height="22" rx="4" fill="${c === '-' ? '#f59e0b' : '#38bdf8'}"/>`);
-    x += w + 10;
-  }
-  const leyenda = campana ? (pattern === 'varado' ? '● golpe de campana · repique rápido ~5 s · cada ≤ 1 min' : 'repique rápido de ~5 s · cada ≤ 1 min') : 'corta ≈ 1 s · larga 4–6 s';
-  const svg = `<svg viewBox="0 0 ${W} ${H}" class="il" role="img" aria-label="${(campana ? 'Señal de campana: ' : 'Señal acústica: ') + (SENALES[pattern] ?? '').split(':')[0].toLowerCase()}">` +
-    `<rect width="${W}" height="${H}" rx="10" class="il-panel"/>` +
-    `<text x="20" y="32" class="il-title left">${spec.texto ?? (campana ? 'Señal de campana' : 'Señal acústica')}</text>${bars.join('')}` +
-    `<text x="20" y="${campana ? 108 : 100}" class="il-lbl">${leyenda}</text></svg>`;
-  return { svg, caption: SENALES[pattern] ?? '', sound: pattern };
-}
+// El cronograma de una señal acústica (lámina `sonido`) está en estilo C, en src/illustrations/senales-c.js.
 
 /** Un golpe de campana o de gong: parciales inarmónicos con caída exponencial. */
 function strike(ctx, t, base, parts, decay, vol) {

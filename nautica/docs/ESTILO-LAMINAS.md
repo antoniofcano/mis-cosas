@@ -180,6 +180,32 @@ cualquier instante, alimenta los tests y da la imagen fija.
   se llenan con la curva. **Corriente**: el barco está en cada instante en t·(superficie + corriente): velocidad
   constante y triángulo que crece sin deformarse.
 
+## Mapas de conceptos y chuletas
+
+Los mapas de conceptos (`#/<tit>/mapas`) y la chuleta de cada tema (`#/<tit>/temario/<ut>/chuleta`) llevan la misma
+piel: tokens `--lc-*`, títulos en serifa, cifras en monoespaciada, cartelas con doble filete. CSS `.mc-*` y `.mapa-*` al
+final de `styles/laminas.css`; tests en `tests/mapas-chuletas-c.test.js`.
+
+- **Mapa entero** (`mapaSvg()` de `src/illustrations/mapa-c.js`): fondo de carta con su marco; cada concepto, una
+  cartela que es un enlace (`<a>` con `aria-label` «nombre: qué es») para explorarlo; el que se mira, en magenta
+  (`aria-current`). Cada relación es una flecha con su **número** en una etiqueta de cota; cada confusión, una línea
+  magenta a trazos con su **letra**. El texto de las relaciones (largo) va debajo, en HTML, con el mismo número o letra:
+  el dibujo cabe y el texto se lee. Dos aristas entre los mismos conceptos van en paralelo. El SVG es `role="group"`
+  (con `role="img"` los enlaces desaparecerían del lector de pantalla).
+- **Texto mínimo en el mapa**: se pinta a escala 1 (`width` = ancho del viewBox) en un recuadro que se desplaza con el
+  dedo; en el escritorio se agranda hasta 1,25 veces, nunca se encoge. Así el texto efectivo es su `font-size` (13,5 los
+  nombres, 11,5 los números) también a 360 px. Al abrirlo, el concepto actual queda centrado.
+- **Explorar**: el concepto en un marco de lámina (eyebrow, título, qué es, su lámina) con enlaces a su clase, al mapa
+  entero y a la **ficha de la idea** (`hrefFicha(tit, id, 'mapas/<mapa>')`) cuando el banco activo tiene etiquetas y la
+  idea se enseña en esa clase; sus vecinos («Viene de», «Lleva a», «No lo confundas con», este a trazos magenta).
+- **Chuleta**: una hoja de papel con cabecera (eyebrow, título del tema) y cada clase numerada; «Para recordar» en
+  cartela y «Trampa» con borde magenta a trazos (rótulo con icono, no solo color). Botón «Imprimir / guardar PDF»
+  (`window.print()`).
+- **Impresión** (`@media print`): A4; todos los `--lc-*` pasan a blanco y negro en cualquier tema (también con el
+  oscuro del sistema o forzado); dos columnas; nunca se parte un punto, una regla ni una trampa, y el título de la clase
+  no se queda al pie; arriba, la titulación (nombre y sigla), «Chuleta del tema N» y la fecha. Ningún nombre de centro
+  de formación.
+
 ## El marco de la lámina (HTML)
 
 `src/illustrations/marcos.js` da, para cada spec migrada, `{ tema, titulo, clave, nota, datos: [{ cifra, texto }], alt }`.

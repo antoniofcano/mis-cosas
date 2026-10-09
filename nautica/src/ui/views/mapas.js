@@ -1,17 +1,22 @@
 // #/<tit>/mapas — mapas de conceptos.  #/<tit>/mapas/<id>?n=<nodo>&v=explorar|mapa|jugar
-//   explorar: un concepto en el centro (su lámina, qué es y su clase) y sus vecinos con la relación; tocas un vecino
-//             y pasa al centro (con un rastro para volver).
-//   mapa:     el mapa entero, para verlo de un vistazo (se desplaza con el dedo); tocar un concepto lo explora.
+//   explorar: un concepto en el centro (su lámina, qué es, su clase y la ficha de su idea si la hay) y sus vecinos con
+//             la relación; tocas un vecino y pasa al centro (con un rastro para volver).
+//   mapa:     el mapa entero (src/illustrations/mapa-c.js), para verlo de un vistazo (se desplaza con el dedo); tocar un
+//             concepto lo explora. Debajo, las relaciones escritas con su número y las confusiones con su letra.
 //   jugar:    «¿qué los une?» y «¿qué falta?» con las relaciones del mapa.
+// En estilo C, como las láminas (docs/ESTILO-LAMINAS.md, «Mapas de conceptos y chuletas»): papel, tinta y magenta de
+// carta (variables --lc-*), cartelas con doble filete, cifras en etiquetas de cota y rótulos en serifa.
 
 import { h, setChildren } from '../dom.js';
-import { TITULACIONES, tlink, volver } from '../titulacion.js';
+import { TITULACIONES, tlink, volver, currentEje } from '../titulacion.js';
 import { navigate } from '../router.js';
 import { renderIllustration } from '../../illustrations/index.js';
+import { mapaSvg } from '../../illustrations/mapa-c.js';
 import { MAPAS, vecinos, preguntasMapa } from '../../course/mapas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { cuenta } from '../../texto.js';
 import { icono, conIcono } from '../iconos.js';
+import { conceptosDelBanco, hrefFicha } from '../concepto.js';
 
 const cache = new Map();
 /** Carga un mapa (una sola vez por sesión). */
@@ -23,10 +28,23 @@ export const cargar = (id) => {
 export const cargarMapas = () => Promise.all(MAPAS.map(cargar));
 export const mini = (spec) => h('div.mapa-mini', { 'aria-hidden': 'true', html: renderIllustration(spec)?.svg ?? '' });
 
-export function mapasView({ tit, params: route }) {
+/**
+ * Las ideas del catálogo que se enseñan en la clase de un concepto del mapa y tienen ficha en el banco activo (como
+ * mucho `max`). Sin etiquetas en el banco (ic null), ninguna.
+ */
+export function fichasDeNodo(ic, nodo, tit, max = 2) {
+  if (!ic?.catalogo?.conceptos || !nodo?.clase) return [];
+  return ic.catalogo.conceptos.filter((c) => c.tipo === 'concepto' && (c.tit ?? []).includes(tit) && (c.clases ?? []).includes(nodo.clase)
+    && ic.preguntasDe(c.id, { soloEstudio: false }).length).slice(0, max);
+}
+
+/** Cabecera de un mapa (o de la lista): eyebrow, título en serifa y la entradilla. */
+const cabeceraC = (eti, titulo, intro) => h('header.mc-cab', h('p.lc-eti', eti), h('h1.lc-titulo', titulo), intro ? h('p.mc-intro', intro) : null);
+
+export function mapasView({ tit, params: route, progress = null }) {
   const T = TITULACIONES[tit];
   const [, id] = route.parts;
-  const el = h('div.mapas', h('p.muted', 'Cargando…'));
+  const el = h('div.mapas.mc', h('p.muted', 'Cargando…'));
   let summaryText = `VISTA mapas ${T.sigla}`;
 
   if (!id) {
@@ -35,10 +53,17 @@ export function mapasView({ tit, params: route }) {
       summaryText = `VISTA mapas de conceptos ${T.sigla}\n${mios.map((m) => `${m.titulo} → ${tlink(tit, ['mapas', m.id])}`).join('\n')}`;
       setChildren(el,
         volver('Biblioteca', tlink(tit, ['biblioteca'])),
-        h('h1', conIcono('red', 'Mapas de conceptos')),
-        h('p', 'Cómo se relacionan las ideas que más se confunden. Explora concepto a concepto, mira el mapa entero o juega a encontrar qué falta.'),
-        h('div.cards', mios.map((m) => h('a.card', { href: tlink(tit, ['mapas', m.id]) }, h('h3', m.titulo), h('p', m.intro),
-          h('div.meta', h('span.stat', `${cuenta(m.nodos.length, 'concepto')}`))))));
+        cabeceraC(`Biblioteca · ${T.sigla}`, 'Mapas de conceptos', 'Cómo se relacionan las ideas que más se confunden. Explora concepto a concepto, mira el mapa entero o juega a encontrar qué falta.'),
+        h('ul.mc-lista', mios.map((m) => {
+          const rels = m.aristas.filter((a) => a.tipo !== 'confunde').length;
+          const conf = m.aristas.length - rels;
+          return h('li', h('a.mc-tarjeta', { href: tlink(tit, ['mapas', m.id]) },
+            h('span.mc-tarjeta-ico', icono('red')),
+            h('span.mc-tarjeta-tx',
+              h('span.mc-tarjeta-eti', `${cuenta(m.nodos.length, 'concepto')} · ${cuenta(rels, 'relación', 'relaciones')}${conf ? ` · ${cuenta(conf, 'trampa')}` : ''}`),
+              h('span.mc-tarjeta-titulo', m.titulo),
+              h('span.mc-tarjeta-intro', m.intro))));
+        })));
     }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los mapas: ${e.message}`)));
     return { el, summary: () => summaryText };
   }
@@ -49,33 +74,55 @@ export function mapasView({ tit, params: route }) {
     const vista = ['mapa', 'jugar'].includes(q.v) ? q.v : 'explorar';
     const actual = nodos.get(q.n) ?? mapa.nodos[0];
     const rastro = (q.r ? q.r.split(',') : []).filter((x) => nodos.has(x)).slice(-4);
-    const ir = (n, v = 'explorar') => navigate([tit, 'mapas', id], { v, n: n.id, ...(v === 'explorar' && n.id !== actual.id ? { r: [...rastro, actual.id].slice(-4).join(',') } : {}) });
+    /** Dirección para explorar un concepto (desde el actual, que pasa al rastro). */
+    const hrefExplorar = (n) => tlink(tit, ['mapas', id], { v: 'explorar', n: n.id, ...(n.id !== actual.id ? { r: [...rastro, actual.id].slice(-4).join(',') } : {}) });
 
-    const pestañas = h('div.mapa-pestanas', { role: 'tablist' }, [['explorar', 'lupa', 'Explorar'], ['mapa', 'red', 'Mapa entero'], ['jugar', 'diana', 'Jugar']].map(([v, ico, txt]) =>
+    const pestañas = h('div.mapa-pestanas', { role: 'tablist', 'aria-label': 'Cómo ver el mapa' }, [['explorar', 'lupa', 'Explorar'], ['mapa', 'red', 'Mapa entero'], ['jugar', 'diana', 'Jugar']].map(([v, ico, txt]) =>
       h('button', { type: 'button', role: 'tab', 'aria-selected': v === vista ? 'true' : 'false', class: v === vista ? '' : 'secondary', onclick: () => navigate([tit, 'mapas', id], { v, n: actual.id }) }, conIcono(ico, txt))));
-    const cabecera = [volver('Mapas de conceptos', tlink(tit, ['mapas'])), h('h1', mapa.titulo), pestañas];
+    const cabecera = [volver('Mapas de conceptos', tlink(tit, ['mapas'])), cabeceraC(`Mapa de conceptos · ${T.sigla}`, mapa.titulo, vista === 'explorar' ? null : mapa.intro), pestañas];
 
-    if (vista === 'mapa') { setChildren(el, cabecera, mapaEntero(mapa, nodos, (n) => ir(n))); summaryText = `VISTA mapa ${mapa.titulo} entero`; return; }
+    if (vista === 'mapa') {
+      setChildren(el, cabecera, mapaEntero(mapa, nodos, actual, hrefExplorar));
+      summaryText = `VISTA mapa ${mapa.titulo} entero`;
+      return;
+    }
     if (vista === 'jugar') { setChildren(el, cabecera, juego(mapa)); summaryText = `VISTA mapa ${mapa.titulo}: juego`; return; }
 
     // --- Explorar
     const v = vecinos(mapa, actual.id);
-    const linea = (txt, n, dir) => h('button.mapa-vecino', { type: 'button', onclick: () => ir(n) },
+    const vecino = (n, rel, dir) => h('li', h(`a.mapa-vecino${dir === 'confunde' ? '.confunde' : ''}`, { href: hrefExplorar(n) },
       mini(n.spec),
-      h('span.mapa-vecino-txt', dir === 'sale' ? [h('span.mapa-rel', `→ ${txt} →`), h('strong', n.nombre)] : [h('strong', n.nombre), h('span.mapa-rel', `→ ${txt} →`)]));
+      h('span.mapa-vecino-txt',
+        h('strong.mc-vecino-nombre', n.nombre),
+        h('span.mapa-rel', dir === 'sale' ? `${actual.nombre} → ${rel} → ${n.nombre}` : dir === 'entra' ? `${n.nombre} → ${rel} → ${actual.nombre}` : rel)),
+      icono('adelante', 'mc-ir')));
+    const grupo = (titulo, ico, xs, dir) => (xs.length ? h(`section.mapa-grupo${dir === 'confunde' ? '.confunde' : ''}`, h('h3.mc-grupo-tit', conIcono(ico, titulo)),
+      h('ul.mc-vecinos', xs.map((x) => vecino(x.nodo, x.arista.rel, dir)))) : null);
     const claseTit = actual.tit ?? tit;
+    const fichas = h('span.mc-fichas');
+    const lamina = (() => { const r = renderIllustration(actual.spec); return r ? h('figure.il-figure', h('div.il-svg', { html: r.svg }), r.caption ? h('figcaption', r.caption) : null) : null; })();
     setChildren(el, cabecera,
-      rastro.length ? h('p.mapa-rastro', 'Venías de: ', rastro.map((rid, i) => [i ? ' › ' : '', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); navigate([tit, 'mapas', id], { v: 'explorar', n: rid, r: rastro.slice(0, i).join(',') }); } }, nodos.get(rid).nombre)])) : null,
-      h('section.mapa-centro',
-        h('h2', actual.nombre, actual.tit && actual.tit !== tit ? h('span.badge.muted', ` ${TITULACIONES[actual.tit].sigla}`) : null),
-        h('p', actual.corto),
+      rastro.length ? h('nav.mapa-rastro', { 'aria-label': 'Conceptos por los que has pasado' }, 'Venías de: ', rastro.map((rid, i) => [i ? ' › ' : '',
+        h('a', { href: tlink(tit, ['mapas', id], { v: 'explorar', n: rid, ...(i ? { r: rastro.slice(0, i).join(',') } : {}) }) }, nodos.get(rid).nombre)])) : null,
+      h('section.lc-marco.mapa-centro', { 'aria-label': `Concepto: ${actual.nombre}` },
+        h('div.lc-cab', h('p.lc-eti', 'Concepto', actual.tit && actual.tit !== tit ? ` · del ${TITULACIONES[actual.tit].sigla}` : ''),
+          h('h2.lc-titulo', actual.nombre), h('p.mc-corto', actual.corto)),
         // Lámina fija (sin mandos): aquí importa ver el concepto, no manipularlo.
-        (() => { const r = renderIllustration(actual.spec); return r ? h('figure.il-figure', h('div.il-svg', { html: r.svg }), r.caption ? h('figcaption', r.caption) : null) : null; })(),
-        h('p', h('a', { href: tlink(claseTit, ['curso', actual.clase]) }, conIcono('libro', `Verlo en su clase${claseTit !== tit ? ` (${TITULACIONES[claseTit].sigla})` : ''}`)))),
-      v.entran.length ? h('section.mapa-grupo', h('h3', 'Viene de'), v.entran.map((x) => linea(x.arista.rel, x.nodo, 'entra'))) : null,
-      v.salen.length ? h('section.mapa-grupo', h('h3', 'Lleva a'), v.salen.map((x) => linea(x.arista.rel, x.nodo, 'sale'))) : null,
-      v.confunde.length ? h('section.mapa-grupo.confunde', h('h3', conIcono('aviso', 'No lo confundas con')), v.confunde.map((x) => h('button.mapa-vecino', { type: 'button', onclick: () => ir(x.nodo) },
-        mini(x.nodo.spec), h('span.mapa-vecino-txt', h('strong', x.nodo.nombre), h('span.small', x.arista.rel))))) : null);
+        lamina ? h('div.lc-figura', lamina) : null,
+        h('p.mc-enlaces',
+          h('a.btn.secondary', { href: tlink(claseTit, ['curso', actual.clase]) }, conIcono('libro', `Verlo en su clase${claseTit !== tit ? ` (${TITULACIONES[claseTit].sigla})` : ''}`)),
+          h('a.btn.secondary', { href: tlink(tit, ['mapas', id], { v: 'mapa', n: actual.id }) }, conIcono('red', 'Verlo en el mapa entero')),
+          fichas)),
+      grupo('Viene de', 'atras', v.entran, 'entra'),
+      grupo('Lleva a', 'adelante', v.salen, 'sale'),
+      grupo('No lo confundas con', 'aviso', v.confunde, 'confunde'));
+    // La ficha de la idea (src/ui/views/idea.js), si el banco activo tiene etiquetas y la idea se enseña en esta clase.
+    if (progress) {
+      conceptosDelBanco(currentEje(progress), tit).then((ic) => {
+        const fs = fichasDeNodo(ic, actual, tit);
+        if (fs.length && fichas.isConnected) setChildren(fichas, fs.map((c) => h('a.btn.secondary.enlace-ficha', { href: hrefFicha(tit, c.id, `mapas/${id}`) }, conIcono('bombilla', `Ficha: ${c.etiqueta}`))));
+      }).catch(() => {});
+    }
     summaryText = `VISTA mapa ${mapa.titulo} · ${actual.nombre}: ${actual.corto}\nVIENE DE: ${v.entran.map((x) => `${x.nodo.nombre} (${x.arista.rel})`).join('; ') || '—'}\nLLEVA A: ${v.salen.map((x) => `${x.nodo.nombre} (${x.arista.rel})`).join('; ') || '—'}\nNO CONFUNDIR: ${v.confunde.map((x) => `${x.nodo.nombre}: ${x.arista.rel}`).join('; ') || '—'}`;
     window.scrollTo(0, 0);
   }).catch((e) => setChildren(el, h('p.warn', `No se pudo cargar el mapa: ${e.message}`)));
@@ -83,43 +130,35 @@ export function mapasView({ tit, params: route }) {
   return { el, summary: () => summaryText };
 }
 
-/** El mapa entero: nodos donde dice el mapa (x, y), flechas con su relación; los «confunde», a trazos. */
-function mapaEntero(mapa, nodos, onNodo) {
-  const W = 150; const H = 96; const nw = 128; const nh = 52; const m = 20;
-  const px = (n) => m + n.x * W; const py = (n) => m + n.y * H;
-  const ancho = m * 2 + Math.max(...mapa.nodos.map((n) => n.x)) * W + nw;
-  const alto = m * 2 + Math.max(...mapa.nodos.map((n) => n.y)) * H + nh;
-  const ns = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(ns, 'svg');
-  svg.setAttribute('viewBox', `0 0 ${ancho} ${alto}`);
-  svg.setAttribute('width', ancho); svg.setAttribute('height', alto);
-  svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `Mapa de conceptos: ${mapa.titulo}`);
-  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  // Punto del borde del rectángulo de un nodo en la dirección (dx, dy) desde su centro.
-  const borde = (n, dx, dy) => {
-    const cx = px(n) + nw / 2; const cy = py(n) + nh / 2;
-    const t = Math.min(Math.abs((nw / 2 + 4) / (dx || 1e-9)), Math.abs((nh / 2 + 4) / (dy || 1e-9)));
-    return [cx + dx * t, cy + dy * t];
+/**
+ * El mapa entero: el dibujo en estilo C (cada concepto es un enlace a explorarlo) en un recuadro que se desplaza, y
+ * debajo las relaciones numeradas y las confusiones con su letra, escritas.
+ */
+function mapaEntero(mapa, nodos, actual, hrefExplorar) {
+  const r = mapaSvg(mapa, { actual: actual.id, href: hrefExplorar });
+  const lienzo = h('div.mc-lienzo', { tabindex: '0', role: 'region', 'aria-label': `Mapa entero: ${mapa.titulo}. Se desplaza.`, html: r.svg });
+  // Al abrir, el concepto que se estaba mirando queda a la vista.
+  const centra = () => {
+    const n = lienzo.querySelector('[aria-current]');
+    const svg = lienzo.querySelector('svg');
+    if (!n || !svg || !lienzo.isConnected) return;
+    const k = svg.getBoundingClientRect().width / r.W || 1; // en el escritorio el mapa se agranda
+    lienzo.scrollLeft = Math.max(0, Number(n.getAttribute('data-cx')) * k - lienzo.clientWidth / 2);
+    lienzo.scrollTop = Math.max(0, Number(n.getAttribute('data-cy')) * k - lienzo.clientHeight / 2);
   };
-  let html = `<defs><marker id="mapa-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>`;
-  for (const a of mapa.aristas) {
-    const A = nodos.get(a.de); const B = nodos.get(a.a);
-    const dx = (px(B) - px(A)); const dy = (py(B) - py(A)); const d = Math.hypot(dx, dy) || 1;
-    const [x1, y1] = borde(A, dx / d, dy / d); const [x2, y2] = borde(B, -dx / d, -dy / d);
-    const conf = a.tipo === 'confunde';
-    html += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${conf ? 'mapa-linea confunde' : 'mapa-linea'}" ${conf ? '' : 'marker-end="url(#mapa-flecha)"'}/>`;
-    if (!conf) html += `<text x="${(x1 + x2) / 2}" y="${(y1 + y2) / 2 - 3}" class="mapa-etiqueta" text-anchor="middle">${esc(a.rel)}</text>`;
-  }
-  for (const n of mapa.nodos) {
-    const palabras = n.nombre.split(' '); const lineas = [''];
-    for (const w of palabras) { if ((lineas.at(-1) + ' ' + w).trim().length > 18) lineas.push(w); else lineas[lineas.length - 1] = (lineas.at(-1) + ' ' + w).trim(); }
-    html += `<g class="mapa-nodo" data-id="${n.id}" tabindex="0" role="button" aria-label="${esc(n.nombre)}"><rect x="${px(n)}" y="${py(n)}" width="${nw}" height="${nh}" rx="10"/>` +
-      lineas.slice(0, 3).map((l, i) => `<text x="${px(n) + nw / 2}" y="${py(n) + nh / 2 + (i - (Math.min(lineas.length, 3) - 1) / 2) * 15 + 5}" text-anchor="middle">${esc(l)}</text>`).join('') + '</g>';
-  }
-  svg.innerHTML = html;
-  svg.addEventListener('click', (ev) => { const g = ev.target.closest('.mapa-nodo'); if (g) onNodo(nodos.get(g.dataset.id)); });
-  svg.addEventListener('keydown', (ev) => { const g = ev.target.closest('.mapa-nodo'); if (g && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); onNodo(nodos.get(g.dataset.id)); } });
-  return [h('p.muted.small', 'Desliza para recorrerlo. Toca un concepto para explorarlo. A trazos, lo que se suele confundir.'), h('div.mapa-entero', svg)];
+  requestAnimationFrame(() => requestAnimationFrame(centra));
+  const nombre = (nid) => h('a', { href: hrefExplorar(nodos.get(nid)) }, nodos.get(nid).nombre);
+  return [
+    h('p.mc-ayuda', 'Desliza para recorrerlo y toca un concepto para explorarlo. Cada flecha lleva un número: su relación está escrita debajo. A trazos y con letra, lo que se suele confundir.'),
+    lienzo,
+    h('section.mc-leyenda', { 'aria-label': 'Relaciones del mapa' },
+      h('h2.mc-leyenda-tit', 'Relaciones'),
+      h('ol.mc-rels', r.relaciones.map((x) => h('li', h('span.mc-num', { 'aria-hidden': 'true' }, x.marca),
+        h('span.mc-rel-tx', nombre(x.de), h('span.mc-flecha', ' → '), h('em', x.rel), h('span.mc-flecha', ' → '), nombre(x.a))))),
+      r.confusiones.length ? [h('h2.mc-leyenda-tit', conIcono('aviso', 'No lo confundas')),
+        h('ol.mc-rels.confunde', r.confusiones.map((x) => h('li', h('span.mc-num', { 'aria-hidden': 'true' }, x.marca),
+          h('span.mc-rel-tx', nombre(x.de), ' y ', nombre(x.a), ': ', h('em', x.rel)))))] : null),
+  ];
 }
 
 /** Juego: ¿qué los une? / ¿qué falta? Una ronda de 8 preguntas. */
@@ -151,11 +190,15 @@ export function juegoMapa(hacer, { fin, otraRonda = false, alTerminar } = {}) {
       const nodos = new Map(p.mapa.nodos.map((n) => [n.id, n]));
       const fb = h('div', { 'aria-live': 'polite' });
       const botones = p.opciones.map((o, k) => h('button.secondary.mapa-opcion', { type: 'button', onclick: () => {
-        botones.forEach((b, j) => { b.disabled = true; if (j === p.correcta) b.classList.add('correcta'); else if (j === k) b.classList.add('fallada'); });
+        botones.forEach((b, j) => {
+          b.disabled = true;
+          // Bien o mal también con un icono, no solo con el color del borde.
+          if (j === p.correcta) { b.classList.add('correcta'); b.prepend(icono('ok', 'ico-t', 'Correcta: ')); } else if (j === k) { b.classList.add('fallada'); b.prepend(icono('no', 'ico-t', 'Tu respuesta: ')); }
+        });
         const bien = k === p.correcta; if (bien) ok += 1;
         const A = nodos.get(p.de); const B = nodos.get(p.a);
         setChildren(fb, h('p', { class: bien ? 'ok' : 'warn' }, conIcono(bien ? 'ok' : 'no', bien ? '¡Bien!' : 'No.')),
-          h('p', `${A.nombre} → ${p.rel} → ${B.nombre}`),
+          h('p.mc-solucion', `${A.nombre} → ${p.rel} → ${B.nombre}`),
           h('button.grande', { type: 'button', onclick: () => { i += 1; pinta(); } }, i + 1 < qs.length ? 'Siguiente →' : 'Ver resultado'));
       } }, o));
       const de = nodos.get(p.de);

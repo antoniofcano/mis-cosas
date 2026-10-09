@@ -672,30 +672,13 @@ ul.clases-flojas a { display: flex; flex-direction: column; gap: .15rem; min-hei
 .clase-floja-titulo { font-weight: 600; }
 .clase-floja-dato { color: var(--muted); font-size: .95rem; }
 
-/* Chuleta del tema (B6): en pantalla, compacta; al imprimir, solo el contenido en blanco y negro */
-.chuleta-tema { max-width: 760px; margin: 0 auto; }
-.chuleta-tema .no-imprimir { display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; }
-.chuleta-clase { break-inside: avoid; border-top: 1px solid var(--border); padding: .4rem 0 .2rem; }
-.chuleta-clase h2 { font-size: 1.1rem; margin: .3rem 0; }
-.chuleta-clase ul { margin: .2rem 0 .4rem; padding-left: 1.2rem; }
-.chuleta-clase li > p, .chuleta-trampa p { margin: 0; display: inline; }
-.chuleta-regla { margin: .2rem 0; }
-.chuleta-trampa { margin: .2rem 0; padding: .2rem .5rem; border-left: 3px solid var(--close); background: color-mix(in srgb, var(--close) 10%, transparent); }
+/* Chuleta del tema (B6) y mapas de conceptos: en estilo C, en styles/laminas.css (.mc-*). Aquí, lo común a cualquier
+   página impresa: sin la cabecera ni la barra de la app, papel blanco y tinta negra. */
 @media print {
   header.top, .tabbar, body > footer, .no-imprimir, .aviso-version { display: none !important; }
   html, body { background: #fff !important; color: #000 !important; }
   main { padding: 0 !important; max-width: none !important; }
-  @page { size: A4; margin: 9mm; }
-  .chuleta-tema { max-width: none; font-size: 8.5pt; line-height: 1.25; }
-  .chuleta-tema h1 { font-size: 11pt; margin: 0 0 .2rem; }
-  .chuleta-tema > div:last-child { column-count: 2; column-gap: 6mm; }
-  .chuleta-clase { padding: .15rem 0 0; }
-  .chuleta-clase h2 { font-size: 9.5pt; margin: .1rem 0; }
-  .chuleta-clase ul { margin: 0 0 .1rem; padding-left: .9rem; }
-  .chuleta-regla, .chuleta-trampa { margin: .05rem 0; padding: 0 .3rem; }
-  .chuleta-trampa { background: none; border-left-color: #000; }
 }
-.chuleta-tema.sin-trampas .chuleta-trampa { display: none; }
 
 /* Tarjetas de memoria (B4) */
 /* Tarjetas de memoria: en estilo C, en styles/laminas.css (.tc-*) */
@@ -761,39 +744,9 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .pie-aviso { margin: .6rem 0 0; text-align: right; }
 .aviso-error { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; color: var(--muted); }
 
-/* Mapas de conceptos */
-.mapa-pestanas { display: flex; gap: .4rem; flex-wrap: wrap; margin: .4rem 0 1rem; }
-.mapa-pestanas button { flex: 1 1 0; min-height: 44px; padding: 0 .4rem; }
-.mapa-rastro { font-size: .95rem; }
-.mapa-rastro a { display: inline-flex; align-items: center; min-height: 44px; }
-.mapa-centro { border: 2px solid var(--accent); border-radius: var(--radius); padding: .6rem .8rem; background: var(--surface); }
-.mapa-centro h2 { margin: .2rem 0; }
-.mapa-grupo h3 { margin: 1.2rem 0 .4rem; font-size: 1.05rem; }
-.mapa-vecino { display: flex; align-items: center; gap: .6rem; width: 100%; text-align: left; padding: .4rem .6rem; margin: .35rem 0; min-height: 64px;
-  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font: inherit; cursor: pointer; }
-.mapa-grupo.confunde .mapa-vecino { border: 2px dashed var(--close); }
-.mapa-vecino-txt { display: flex; flex-direction: column; gap: .15rem; }
-.mapa-rel { color: var(--muted); font-size: .92rem; }
+/* Mapas de conceptos: en estilo C, en styles/laminas.css (.mc-*, .mapa-*) */
 .encaja { margin: 1.2rem 0; }
 .encaja-nodo + .encaja-nodo { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: .6rem; }
-a.mapa-vecino { text-decoration: none; }
-.mapa-mini { flex: 0 0 64px; width: 64px; height: 48px; overflow: hidden; border-radius: 6px; background: var(--l-fondo); }
-.mapa-mini svg { width: 100%; height: 100%; }
-.mapa-entero { overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); max-height: 70vh; -webkit-overflow-scrolling: touch; }
-.mapa-entero svg { display: block; color: var(--text); }
-.mapa-linea { stroke: currentColor; stroke-width: 1.5; opacity: .7; }
-.mapa-linea.confunde { stroke: var(--close); stroke-dasharray: 6 5; opacity: .9; }
-.mapa-etiqueta { font-size: 11px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
-.mapa-nodo rect { fill: var(--accent-2); stroke: var(--accent); stroke-width: 1.5; }
-.mapa-nodo text { font-size: 13px; font-weight: 700; fill: var(--text); }
-.mapa-nodo { cursor: pointer; }
-.mapa-nodo:focus rect, .mapa-nodo:hover rect { stroke-width: 3; }
-.mapa-pregunta { display: flex; gap: .6rem; align-items: center; }
-.mapa-opciones { display: grid; gap: .5rem; margin: .8rem 0; }
-.mapa-opcion { min-height: 52px; text-align: left; }
-.mapa-opcion:disabled { opacity: 1; }
-.mapa-opcion.correcta { border: 2px solid var(--ok); color: var(--ok); font-weight: 700; }
-.mapa-opcion.fallada { border: 2px solid var(--warn); color: var(--warn); }
 
 /* Radio de a bordo (podcasts) */
 .radio-barra { position: fixed; left: 0; right: 0; bottom: calc(64px + env(safe-area-inset-bottom)); z-index: 19; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .3rem;

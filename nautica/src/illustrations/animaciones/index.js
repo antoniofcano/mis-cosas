@@ -9,8 +9,13 @@ import { pistaHelice } from './helice.js';
 import { pistaCirculacion } from './circulacion.js';
 import { caidaPopa } from '../../nautical/helice.js';
 import { MANIOBRAS_HAA } from '../../nautical/maniobra.js';
+import { pistaCiaboga } from './ciaboga.js';
 
 export const ANIMACIONES = {
+  ciaboga: {
+    pista: () => pistaCiaboga(),
+    pie: 'Para girar en poco espacio con una hélice dextrógira, la ciaboga se hace cayendo a estribor: al dar atrás la hélice lleva la popa a babor y ayuda al giro. Con hélice levógira, al revés: se cae a babor.',
+  },
   evolucion: {
     pista: () => pistaEvolucion(),
     pie: 'Trayectoria con todo el timón a estribor: la popa abre, el barco avanza y traslada, y acaba girando en un círculo algo menor que el diámetro táctico.',

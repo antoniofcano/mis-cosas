@@ -1,7 +1,7 @@
 // Anverso de las tarjetas de memoria en estilo C (docs/ESTILO-LAMINAS.md): el estímulo (marca, bandera, señal acústica,
 // escala…) dibujado a buen tamaño y sin ningún rótulo que delate la respuesta, con su texto alternativo, que dice cómo
-// es y nunca qué es. El mazo sin dibujo en estilo C todavía (buques) reutiliza su lámina de
-// siempre sin rótulos (sinRotulos), dentro del mismo marco de tarjeta. Sin DOM.
+// es y nunca qué es. Los buques usan su lámina en estilo C (src/illustrations/buques-c.js), que no lleva el nombre; un
+// mazo sin dibujo propio reutilizaría su lámina sin rótulos (sinRotulos). Sin DOM.
 
 import { T, TXT, f1, lienzo, rotulo, etiqueta, anchoTexto, ondas } from './estilo-c.js';
 import { BUOYS, marcaC } from './buoys.js';
@@ -12,6 +12,7 @@ import { BEAUFORT, DOUGLAS } from './meteo.js';
 import { renderIllustration } from './index.js';
 import { sinRotulos } from '../course/tarjetas.js';
 import { SOCORRO, pictoSocorro } from './socorro.js';
+import { buqueSvg } from './buques-c.js';
 
 // ---------------------------------------------------------------------------
 // Balizamiento: la marca grande, en el agua, con su luz y el cronograma del ritmo
@@ -46,7 +47,7 @@ function anversoBoya(clase) {
 }
 
 // ---------------------------------------------------------------------------
-// Buques (dibujo antiguo, pendiente de migrar): el texto alternativo describe sus luces y marcas
+// Buques: el texto alternativo describe sus luces y marcas, sin decir qué buque es
 
 const LUZ_BUQUE = { tope: 'blanca de tope', 'todo-W': 'blanca todo horizonte', 'todo-R': 'roja todo horizonte', 'todo-G': 'verde todo horizonte', remolque: 'amarilla de remolque', linterna: 'linterna blanca', tricolor: 'farol tricolor en el tope' };
 const MARCA_DIA = { 'cono-abajo': 'un cono con el vértice abajo', bicono: 'un bicono (rombo)', diabolo: 'dos conos unidos por el vértice', bola: 'una bola', 'bandera-A': 'una bandera A rígida', cilindro: 'un cilindro' };
@@ -126,17 +127,24 @@ export function anversoTarjeta(mazo, carta) {
       return r && { svg: r.svg, alt: altSonido(id), estiloC: true, sonido: id };
     }
     case 'socorro': return anversoSocorro(id);
+    case 'buques': {
+      // el buque de noche (de proa, por sus bandas y de popa) y de día, en estilo C: sin su nombre
+      const descripcion = altBuque(id);
+      const alt = `Un buque visto de proa, por sus dos bandas y de popa, y de día. ${descripcion}`;
+      const svg = buqueSvg(id, carta.anverso.spec ?? { vista: 'todas', dia: true }, { alt });
+      return svg && { svg, alt, descripcion, estiloC: true };
+    }
     case 'beaufort': return { alt: `Fuerza ${id} de la escala Beaufort, de 0 a ${BEAUFORT.length - 1}.`, estiloC: true, texto: { eti: 'Escala Beaufort', grande: `Fuerza ${id}` }, regla: regla(Number(id), BEAUFORT.length - 1) };
     case 'douglas': return { alt: `Grado ${id} de la escala Douglas, de 0 a ${DOUGLAS.length - 1}.`, estiloC: true, texto: { eti: 'Escala Douglas', grande: `Grado ${id}` }, regla: regla(Number(id), DOUGLAS.length - 1) };
     case 'fuego': return { alt: `Clase ${id} de fuego.`, estiloC: true, texto: { eti: 'Clases de fuego', grande: `Clase ${id}` } };
     case 'gnss': return { alt: `Sigla ${carta.anverso.texto} de la pantalla del GNSS.`, estiloC: true, texto: { eti: 'Pantalla del GNSS', grande: carta.anverso.texto, mono: true } };
     default: {
-      // dibujo antiguo sin rótulos (buques): pendiente de migrar al estilo C
+      // un mazo sin dibujo propio en estilo C: su lámina sin rótulos
       const a = carta.anverso;
       const r = a.spec ? renderIllustration(a.spec) : null;
       if (!r) return a.texto ? { alt: a.texto, estiloC: false, texto: { eti: '', grande: a.texto } } : null;
-      const descripcion = mazo === 'buques' ? altBuque(id) : null;
-      const alt = mazo === 'buques' ? `Un buque visto de proa, por sus dos bandas y de popa. ${descripcion}` : 'Lámina sin rótulos.';
+      const descripcion = null;
+      const alt = 'Lámina sin rótulos.';
       const esc = alt.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       return { svg: sinRotulos(r.svg, a.quitar).replace(/aria-label="[^"]*"/, `aria-label="${esc}"`), alt, descripcion, estiloC: false };
     }

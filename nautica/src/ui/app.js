@@ -41,6 +41,7 @@ import { planView } from './views/plan.js';
 import { mapasView } from './views/mapas.js';
 import { podcastView } from './views/podcast.js';
 import { calculadoraView } from './views/calculadora.js';
+import { cartaPasosView } from './views/carta-pasos.js';
 import { cuentasView } from './views/cuentas.js';
 import { iniciarCalculadora } from './calculadora.js';
 import { iniciarRadio, enVistaEpisodio, radio } from './radio.js';
@@ -71,6 +72,7 @@ const TIT_ROUTES = {
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   carta: cartaView,
+  'carta-pasos': cartaPasosView, // #/<tit>/carta-pasos[/<tipo>]: ejercicios de carta resueltos paso a paso (nunca desde un examen)
   // #/<tit>/examenes[/<lista>]; con un fichero (.json), dirección antigua de un banco
   examenes: (o) => (!o.params.parts[1] ? examenesView(o) : /\.json$/.test(o.params.parts[1]) ? legadoExamenesView(o) : listaView(o)),
 };
@@ -137,6 +139,7 @@ export function rutaEnTit(parts, id) {
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
   if (b === 'cuentas') return [id, 'cuentas'];
   if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia'].includes(b)) return [id, b];
+  if (b === 'carta-pasos') return [id, ...parts.slice(1, 3)];
   return [id];
 }
 

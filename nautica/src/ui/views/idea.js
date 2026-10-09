@@ -20,6 +20,9 @@ import { illustrationEls } from '../illustration.js';
 import { tandaPreguntas, prepareTheory } from './theory.js';
 import { rich } from './curso.js';
 import { cuenta } from '../../texto.js';
+import { conIcono } from '../iconos.js';
+import { TIPO_DE_CONCEPTO, TITULO_TIPO } from '../../course/carta-pasos.js';
+import { hrefPasos } from './carta-pasos.js';
 
 /** Adónde vuelve la ficha según de dónde se abrió. */
 export function volverDe(tit, desde) {
@@ -112,12 +115,15 @@ export function ideaView({ ctx, progress, params: route, tit }) {
       nota ? h('section.ficha-nota', h('h2.eti', 'Qué es'), h('p', nota)) : null,
       h('section.ficha-donde', h('h2.eti', 'Dónde se enseña'),
         clase ? h('p', h('a', { href: tlink(tit, ['curso', clase.id]) }, `Clase: ${clase.titulo}`), mapaHueco) : h('p.muted', 'No tiene una clase propia: sale en las preguntas de examen.'),
+        // ideas de carta: el ejercicio resuelto paso a paso de su tipo
+        TIPO_DE_CONCEPTO[id] ? h('p.ficha-resuelto', h('a.btn.secondary', { href: hrefPasos(tit, TIPO_DE_CONCEPTO[id], `idea:${id}`) }, conIcono('transportador', 'Ver cómo se resuelve')),
+          h('span.muted.small', ` ${TITULO_TIPO[TIPO_DE_CONCEPTO[id]]}, paso a paso.`)) : null,
         spec ? h('div.ficha-lamina', illustrationEls(spec)) : null),
       reglas.length ? h('section.ficha-reglas', h('h2.eti', 'Para recordar'), h('ul', reglas.map((r) => h('li', h('strong', r.regla), r.significado ? h('span.muted.small', ` ${r.significado}`) : null)))) : null,
       chuleta?.lineas?.length ? h('section.ficha-chuleta', h('h2.eti', 'Chuleta de la clase'), h('ul', chuleta.lineas.map((x) => h('li', rich(x))))) : null,
       prueba,
       botones);
-    summaryText = `VISTA ficha de la idea ${id} «${c.etiqueta}» (${T.sigla}, ${clave}) · ${como}\nNOTA: ${nota ?? '—'}\nCLASE: ${clase ? `${clase.id} ${clase.titulo}` : '—'}${spec ? ' · con lámina' : ''}\nREGLAS: ${reglas.map((r) => r.id).join(', ') || '—'} · CHULETA: ${chuleta ? 'sí' : 'no'}`;
+    summaryText = `VISTA ficha de la idea ${id} «${c.etiqueta}» (${T.sigla}, ${clave}) · ${como}\nNOTA: ${nota ?? '—'}\nCLASE: ${clase ? `${clase.id} ${clase.titulo}` : '—'}${spec ? ' · con lámina' : ''}${TIPO_DE_CONCEPTO[id] ? `\nRESUELTO: ${hrefPasos(tit, TIPO_DE_CONCEPTO[id], `idea:${id}`)}` : ''}\nREGLAS: ${reglas.map((r) => r.id).join(', ') || '—'} · CHULETA: ${chuleta ? 'sí' : 'no'}`;
   }).catch((e) => setChildren(el, volver(txtVolver, hrefVolver), h('p.warn', `No se pudo abrir la ficha: ${e.message}`)));
   return { el, summary: () => summaryText };
 }

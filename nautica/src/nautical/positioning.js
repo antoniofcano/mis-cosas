@@ -37,6 +37,29 @@ export function fixBearingAndRange(markBearing, dv, markRange, dist) {
 }
 
 /**
+ * Situación por dos distancias (dos arcos de compás, por ejemplo dos distancias de radar).
+ * Los radios se pasan al plano con la escala de la latitud media de los dos puntos (la escala de latitudes de la zona).
+ * @returns {{lat:number, lon:number}[]} los dos cortes (uno si los arcos son tangentes, ninguno si no se cortan),
+ *   ordenados de más cerca a más lejos de `cerca` si se da
+ */
+export function fixTwoRanges(markA, distA, markB, distB, cerca = null) {
+  const pa = toPlane(markA);
+  const pb = toPlane(markB);
+  const k = unitsPerMile((markA.lat + markB.lat) / 2);
+  const ra = distA * k;
+  const rb = distB * k;
+  const w = sub(pb, pa);
+  const d = Math.hypot(w.x, w.y);
+  if (d < 1e-9 || d > ra + rb + 1e-9 || d < Math.abs(ra - rb) - 1e-9) return [];
+  const x = (ra * ra - rb * rb + d * d) / (2 * d);
+  const hh = Math.sqrt(Math.max(0, ra * ra - x * x));
+  const base = add(pa, scale(w, x / d));
+  const n = { x: -w.y / d, y: w.x / d };
+  const cortes = (hh < 1e-9 ? [base] : [add(base, scale(n, hh)), sub(base, scale(n, hh))]).map(fromPlane);
+  return cerca ? cortes.sort((u, v) => rhumbTo(u, cerca).distance - rhumbTo(v, cerca).distance) : cortes;
+}
+
+/**
  * Situación por dos demoras NO simultáneas (traslado de la primera línea de posición).
  * Entre la primera y la segunda demora el barco navega `run` millas al rumbo efectivo `course`.
  * La primera línea de posición se traslada paralela a sí misma ese vector y se corta con la segunda.

@@ -18,6 +18,7 @@ gradual: nada se rompe si una lámina no tiene marco).
 | Piezas de dibujo (marco, cartela, cotas, ondas, tierra, reloj, rosa, barco…) | `src/illustrations/estilo-c.js` |
 | Etiquetas que no se pisan (láminas de carta con muchas cotas) | `junto()` y `colocaEtiquetas()` de `src/illustrations/estilo-c.js` |
 | Láminas fijas de carta del PY (enfilación, dos demoras, estima) | `src/illustrations/carta-c.js` |
+| Ejercicios de carta resueltos paso a paso (extracto de carta y los tres nortes, un dibujo por paso) | `src/illustrations/carta-pasos-c.js` (ver docs/CARTA-RESUELTOS.md, con su apéndice de fuentes) |
 | Láminas fijas de meteorología y mareas del PY (Buys-Ballot, brisas, frentes en corte, vivas y muertas) | `src/illustrations/meteo-c.js` |
 | Láminas fijas de seguridad del PY (movimientos, búsqueda, fuego) | `src/illustrations/seguridad-c.js` |
 | Luz que destella y cronograma del ritmo | `luzC()` y `cronoC()` de `src/illustrations/lights.js` |

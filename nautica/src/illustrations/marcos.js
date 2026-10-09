@@ -13,6 +13,7 @@ import { FLAGS } from './misc.js';
 import { SENALES } from './situations.js';
 import { BANDERA_C, patronSonido, SECUENCIA_SONIDO } from './senales-c.js';
 import { MARCOS_PY } from './marcos-py.js';
+import { MARCOS_PER } from './marcos-per.js';
 
 const num = (n) => String(n).replace('.', ',');
 const BAL = 'Balizamiento';
@@ -632,6 +633,7 @@ const MARCOS = {
   'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
   movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco, bandera, sonido,
   ...MARCOS_PY,
+  ...MARCOS_PER,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

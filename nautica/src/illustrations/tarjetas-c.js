@@ -1,6 +1,6 @@
 // Anverso de las tarjetas de memoria en estilo C (docs/ESTILO-LAMINAS.md): el estímulo (marca, bandera, señal acústica,
 // escala…) dibujado a buen tamaño y sin ningún rótulo que delate la respuesta, con su texto alternativo, que dice cómo
-// es y nunca qué es. Los mazos sin dibujo en estilo C todavía (buques, señales de peligro) reutilizan su lámina de
+// es y nunca qué es. El mazo sin dibujo en estilo C todavía (buques) reutiliza su lámina de
 // siempre sin rótulos (sinRotulos), dentro del mismo marco de tarjeta. Sin DOM.
 
 import { T, TXT, f1, lienzo, rotulo, etiqueta, anchoTexto, ondas } from './estilo-c.js';
@@ -11,6 +11,7 @@ import { banderaC, BANDERA_C, sonidoC, altSonido } from './senales-c.js';
 import { BEAUFORT, DOUGLAS } from './meteo.js';
 import { renderIllustration } from './index.js';
 import { sinRotulos } from '../course/tarjetas.js';
+import { SOCORRO, pictoSocorro } from './socorro.js';
 
 // ---------------------------------------------------------------------------
 // Balizamiento: la marca grande, en el agua, con su luz y el cronograma del ritmo
@@ -70,28 +71,17 @@ export function altBuque(clase) {
 }
 
 // ---------------------------------------------------------------------------
-// Señales de peligro (dibujo antiguo, pendiente de migrar): qué se ve en el pictograma
+// Señales de peligro: el pictograma de la lámina, en grande y sin rótulos (src/illustrations/socorro.js)
 
-const ALT_SOCORRO = {
-  canon: 'Un cañón en la cubierta de un barco, con el fogonazo de un disparo.',
-  'niebla-continua': 'Una bocina de niebla con ondas de sonido que no se interrumpen.',
-  'estrellas-rojas': 'Un cohete que sube y estalla en estrellas rojas.',
-  SOS: 'Una luz que destella con un ritmo de tres destellos cortos, tres largos y tres cortos.',
-  MAYDAY: 'Un equipo de radio del que sale la misma palabra tres veces.',
-  NC: 'Dos banderas izadas una encima de otra: arriba, un damero azul y blanco; abajo, franjas azul, blanca, roja, blanca y azul.',
-  'cuadrado-bola': 'Una bandera cuadrada y, encima o debajo, una bola.',
-  llamaradas: 'Llamas a bordo, como de un barril de brea o de aceite ardiendo.',
-  'cohete-paracaidas': 'Una luz roja que baja colgada de un paracaídas.',
-  bengala: 'Una mano que sostiene una bengala de luz roja.',
-  humo: 'Un bote del que sale una densa humareda naranja.',
-  brazos: 'Una persona que sube y baja despacio los brazos extendidos a los lados.',
-  LSD: 'Un equipo de radio VHF con el botón de alerta.',
-  satelite: 'Un satélite que recibe una alerta enviada desde un barco.',
-  radiobaliza: 'Un aparato pequeño con antena que flota en el agua y emite una señal hacia los satélites.',
-  SART: 'Un respondedor de radar y, en la pantalla del radar, una línea de puntos.',
-  lona: 'Un paño de color naranja con un cuadrado y un círculo negros dibujados.',
-  colorante: 'Una gran mancha de color alrededor de una balsa, vista desde el aire.',
-};
+function anversoSocorro(id) {
+  const s = SOCORRO[id];
+  if (!s) return null;
+  const W = 358;
+  const H = 230;
+  const { out, cierra } = lienzo(W, H, s.forma);
+  out.push(`<rect x="74" y="30" width="210" height="170" fill="${T.fondo}" stroke="${T.tinta}" stroke-width=".7"/>`, pictoSocorro(id, 179, 115, 2.3), cierra());
+  return { svg: out.join(''), alt: s.forma, estiloC: true };
+}
 
 // ---------------------------------------------------------------------------
 // Escalas (Beaufort y Douglas): una regla graduada con el grado marcado en magenta (adorno: la cifra va en el texto)
@@ -135,17 +125,18 @@ export function anversoTarjeta(mazo, carta) {
       const r = sonidoC(id, { alt: altSonido(id) });
       return r && { svg: r.svg, alt: altSonido(id), estiloC: true, sonido: id };
     }
+    case 'socorro': return anversoSocorro(id);
     case 'beaufort': return { alt: `Fuerza ${id} de la escala Beaufort, de 0 a ${BEAUFORT.length - 1}.`, estiloC: true, texto: { eti: 'Escala Beaufort', grande: `Fuerza ${id}` }, regla: regla(Number(id), BEAUFORT.length - 1) };
     case 'douglas': return { alt: `Grado ${id} de la escala Douglas, de 0 a ${DOUGLAS.length - 1}.`, estiloC: true, texto: { eti: 'Escala Douglas', grande: `Grado ${id}` }, regla: regla(Number(id), DOUGLAS.length - 1) };
     case 'fuego': return { alt: `Clase ${id} de fuego.`, estiloC: true, texto: { eti: 'Clases de fuego', grande: `Clase ${id}` } };
     case 'gnss': return { alt: `Sigla ${carta.anverso.texto} de la pantalla del GNSS.`, estiloC: true, texto: { eti: 'Pantalla del GNSS', grande: carta.anverso.texto, mono: true } };
     default: {
-      // dibujo antiguo sin rótulos (buques, señales de peligro): pendiente de migrar al estilo C
+      // dibujo antiguo sin rótulos (buques): pendiente de migrar al estilo C
       const a = carta.anverso;
       const r = a.spec ? renderIllustration(a.spec) : null;
       if (!r) return a.texto ? { alt: a.texto, estiloC: false, texto: { eti: '', grande: a.texto } } : null;
       const descripcion = mazo === 'buques' ? altBuque(id) : null;
-      const alt = mazo === 'buques' ? `Un buque visto de proa, por sus dos bandas y de popa. ${descripcion}` : mazo === 'socorro' ? ALT_SOCORRO[id] ?? 'Pictograma de una señal.' : 'Lámina sin rótulos.';
+      const alt = mazo === 'buques' ? `Un buque visto de proa, por sus dos bandas y de popa. ${descripcion}` : 'Lámina sin rótulos.';
       const esc = alt.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       return { svg: sinRotulos(r.svg, a.quitar).replace(/aria-label="[^"]*"/, `aria-label="${esc}"`), alt, descripcion, estiloC: false };
     }

@@ -12,6 +12,26 @@ import { controlador } from '../src/ui/lamina-estado.js';
 import { idLamina } from '../src/illustrations/catalogo-laminas.js';
 import { FLAGS } from '../src/illustrations/misc.js';
 import { SENALES } from '../src/illustrations/situations.js';
+import { SOCORRO, HOJAS_SOCORRO } from '../src/illustrations/socorro.js';
+import { catalogoLaminas } from '../src/illustrations/catalogo-laminas.js';
+import { PER, PY } from '../src/theory/blocks.js';
+
+/** Láminas del PY de la última tanda (electrónica, coordenadas, balsa y humedad), con sus variantes. */
+const PILOTO_PY = [
+  // radar, GNSS, cartas electrónicas y AIS (UT 3)
+  ...['ambas', 'proa-arriba', 'norte-arriba'].map((presentacion) => ({ tipo: 'radar-pantalla', presentacion })), { tipo: 'radar-pantalla', presentacion: 'proa-arriba', rumbo: 80, marcacion: 310 },
+  { tipo: 'radar-pantalla', presentacion: 'ambas', rumbo: 210, marcacion: 90, resaltar: ['ebl', 'calculo'] }, { tipo: 'radar-pantalla', presentacion: 'norte-arriba', rumbo: 0, marcacion: 0, resaltar: 'vrm' },
+  { tipo: 'radar-respondedores' }, { tipo: 'radar-respondedores', sart: 'cerca', resaltar: 'sart' }, { tipo: 'radar-respondedores', resaltar: ['racon', 'reflector'] },
+  { tipo: 'gnss' }, { tipo: 'gnss', resaltar: ['xte', 'brg'] }, { tipo: 'gnss', resaltar: 'eta' },
+  { tipo: 'gnss-calculos' }, { tipo: 'gnss-calculos', xte: 0.2, banda: 'L', dtg: 13, sog: 5.2, hora: '09:45', angulo: 35 }, { tipo: 'gnss-calculos', angulo: 0, dtg: 60, sog: 5, resaltar: 'eta' },
+  { tipo: 'carta-raster-vectorial' }, ...['raster', 'vectorial', 'sistemas'].map((resaltar) => ({ tipo: 'carta-raster-vectorial', resaltar })), { tipo: 'ais' },
+  // coordenadas (UT 3.1)
+  { tipo: 'coordenadas', vista: 'esfera' }, ...['eje', 'ecuador', 'paralelos', 'meridianos', 'greenwich', 'maximos', 'tropicos'].map((resaltar) => ({ tipo: 'coordenadas', vista: 'esfera', resaltar })),
+  { tipo: 'coordenadas', vista: 'latitud', lat: 40, lon: -50 }, { tipo: 'coordenadas', vista: 'latitud', lat: -30, lon: -60 }, { tipo: 'coordenadas', vista: 'longitud' }, { tipo: 'coordenadas', vista: 'longitud', lon: 40, lat: 20 },
+  { tipo: 'coordenadas', vista: 'lugar', lon: -40 }, { tipo: 'coordenadas', vista: 'lugar', lon: 60 }, { tipo: 'coordenadas', vista: 'diferencias' },
+  // balsa salvavidas (UT 1)
+  ...['zafa', 'inflado', 'adrizar', 'lanzar'].map((vista) => ({ tipo: 'balsa', vista })), ...['contenedor', 'zafa', 'trinca', 'boza', 'union-debil'].map((resaltar) => ({ tipo: 'balsa', vista: 'zafa', resaltar })),
+];
 
 const CSS = readFileSync(new URL('../styles/laminas.css', import.meta.url), 'utf8');
 /** Variables --lc-* de un bloque de CSS. */
@@ -110,6 +130,12 @@ const PILOTO = [
   { tipo: 'viento-aparente' }, ...['cenida', 'traves', 'aleta', 'popa'].map((rumbo) => ({ tipo: 'viento-aparente', rumbo })),
   // Señales: banderas del Código Internacional y señales acústicas
   ...Object.keys(FLAGS).map((codigo) => ({ tipo: 'bandera', codigo })), ...Object.keys(SENALES).map((senal) => ({ tipo: 'sonido', senal })),
+  // Señales de peligro del Anexo IV: índice, las cuatro hojas, cada señal resaltada en su hoja y cada una sola, en grande
+  { tipo: 'socorro' }, ...Object.keys(HOJAS_SOCORRO).map((hoja) => ({ tipo: 'socorro', hoja })),
+  ...Object.keys(SOCORRO).flatMap((resaltar) => [{ tipo: 'socorro', resaltar }, { tipo: 'socorro', resaltar, solo: true }]),
+  // Escalas Beaufort y Douglas (PER, UT 9, y PY, UT 2)
+  { tipo: 'beaufort' }, ...[0, 6, 8, 12].map((fuerza) => ({ tipo: 'beaufort', fuerza })), { tipo: 'beaufort', escala: 'douglas' }, ...[0, 3, 9].map((grado) => ({ tipo: 'beaufort', escala: 'douglas', grado })),
+  ...PILOTO_PY,
 ];
 
 /** Todos los SVG de una spec: el dibujo fijo y, si es interactiva, también en clase antes de responder. */
@@ -178,6 +204,18 @@ test('láminas piloto: marco completo (título, frase clave, nota, datos, texto 
     const id = idLamina(s);
     assert.ok(!titulos.has(m.titulo) || titulos.get(m.titulo) === id, `«${m.titulo}» repetido en ${id} y ${titulos.get(m.titulo)}`);
     titulos.set(m.titulo, id);
+  }
+});
+
+test('Beaufort, Douglas y las señales de peligro: en la galería del PER y en la del PY, con su marco', () => {
+  const curso = (t) => JSON.parse(readFileSync(new URL(`../data/curso/${t}.json`, import.meta.url)));
+  for (const [tit, E] of [['per', PER], ['py', PY]]) {
+    const { porId } = catalogoLaminas(tit, E, curso(tit));
+    for (const s of [{ tipo: 'beaufort' }, { tipo: 'beaufort', escala: 'douglas' }, { tipo: 'socorro' }, ...Object.keys(HOJAS_SOCORRO).map((hoja) => ({ tipo: 'socorro', hoja }))]) {
+      const l = porId.get(idLamina(s));
+      assert.ok(l, `${tit}: falta ${JSON.stringify(s)} en la galería`);
+      assert.equal(l.titulo, marcoDe(s).titulo, `${tit}: ${JSON.stringify(s)} sin el título de su marco`);
+    }
   }
 });
 

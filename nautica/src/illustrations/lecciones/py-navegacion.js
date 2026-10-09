@@ -7,6 +7,7 @@
 import { C, open, title, pol, arrow, deg3, fx } from '../kit.js';
 import { T, lienzo, flecha, cota, rosaNorte, arcoD, junto, colocaEtiquetas } from '../estilo-c.js';
 import { faro as faroC, situacion, esquinaLibre, filaPaso, vientoC, alrededor } from '../carta-c.js';
+import { radarPantalla, radarRespondedores } from '../electronica-c.js';
 
 const nf = (n, d = 1) => (+n).toFixed(d).replace('.', ',');
 const n0 = (n) => nf(n, Number.isInteger(+n) ? 0 : 1);
@@ -75,166 +76,10 @@ const hhmm = (min) => { const m = ((Math.round(min) % 1440) + 1440) % 1440; retu
 const hora = (h) => { const [a, b] = String(h).split(':').map(Number); return a * 60 + (b || 0); };
 
 // ---------------------------------------------------------------------------
-// 1. Pantalla del radar: presentaciones, EBL y VRM, y de marcación a demora (py-3-8).
-// spec: { tipo:'radar-pantalla', presentacion?:'ambas'|'proa-arriba'|'norte-arriba', rumbo?, marcacion?, resaltar? }
-// Cifras de la lección: Rv 210°, eco a 40° por babor (marcación circular 320°) → Dv 170°.
-
+// 1 y 2. Pantalla del radar (EBL, VRM, de marcación a demora) y racon, SART y reflector (py-3-8): en estilo C, en
+// src/illustrations/electronica-c.js.
 const PARTES_RADAR = ['proa', 'ebl', 'vrm', 'anillos', 'calculo'];
-
-/** Una pantalla de radar centrada en (x, y) de radio R. `arriba` es el rumbo verdadero que queda arriba. */
-function pantalla(out, m, id, [x, y], R, arriba, rv, dv, { leyendas = false, norteMarca = true } = {}) {
-  const sc = (b) => norm(b - arriba); // ángulo en pantalla de un rumbo verdadero
-  out.push(`<circle cx="${x}" cy="${y}" r="${R}" style="fill:var(--l-mar)" fill-opacity=".22" stroke="currentColor" stroke-width="1.6"/>`);
-  // escala de grados del borde (de la pantalla: 000 arriba)
-  for (let a = 0; a < 360; a += 10) {
-    const [p, q] = [pol(x, y, a, R), pol(x, y, a, R - (a % 30 ? 3 : 6))];
-    out.push(seg(p, q, 'currentColor', 1));
-  }
-  // anillos fijos
-  out.push(`<g${m.dim('anillos')}>`);
-  for (const f of [1 / 3, 2 / 3]) out.push(`<circle cx="${x}" cy="${y}" r="${fx(R * f)}" fill="none" stroke="${C.g}" stroke-width="${m.on('anillos') ? 1.8 : 0.9}"/>`);
-  out.push('</g>');
-  const dEco = R * 0.56;
-  const aEco = sc(dv);
-  const eco = pol(x, y, aEco, dEco);
-  // VRM: anillo variable hasta el borde más próximo del eco
-  out.push(`<g${m.dim('vrm')}><circle cx="${x}" cy="${y}" r="${fx(dEco - 3)}" fill="none" stroke="${C.m}" stroke-width="${m.on('vrm') ? 3 : 2}" stroke-dasharray="6 3"/></g>`);
-  // EBL: línea electrónica desde el centro, pasando por el eco
-  const fin = pol(x, y, aEco, R - 1);
-  out.push(`<g${m.dim('ebl')}>${seg([x, y], fin, 'v', m.on('ebl') ? 3 : 2, 'stroke-dasharray="7 3"')}</g>`);
-  // línea de proa (línea de fe)
-  const pr = pol(x, y, sc(rv), R);
-  out.push(`<g${m.dim('proa')}>${seg([x, y], pr, 'currentColor', m.on('proa') ? 3.2 : 2.4)}</g>`);
-  // eco y barco propio
-  out.push(`<ellipse cx="${fx(eco[0])}" cy="${fx(eco[1])}" rx="5" ry="3.5" transform="rotate(${fx(aEco)} ${fx(eco[0])} ${fx(eco[1])})" fill="${C.a}" stroke="currentColor" stroke-width=".8"/>`);
-  out.push(punto([x, y], 'currentColor', 2.6));
-  // marcas fuera del borde: proa y norte
-  const lp = pol(x, y, sc(rv), R + 9);
-  out.push(t(lp[0], lp[1] + 4, 'proa', { a: 'middle', b: true, s: 10 }));
-  if (norteMarca) {
-    const ln = pol(x, y, sc(0), R + 9);
-    if (Math.abs(norm180(sc(0) - sc(rv))) > 20) out.push(t(ln[0], ln[1] + 4, 'N', { c: 'g', a: 'middle', b: true, s: 10 }));
-  }
-  // etiquetas dentro: EBL junto a su extremo, VRM en el anillo, lejos de la EBL y de la proa
-  const lado = norm180(aEco - sc(rv)) > 0 ? -1 : 1;
-  const pe = mas(pol(x, y, aEco, R * 0.84), u(aEco + 90 * lado), 9);
-  out.push(`<g${m.dim('ebl')}>${t(pe[0], pe[1] + 4, 'EBL', { c: 'v', a: 'middle', b: true, s: 10 })}</g>`);
-  const libres = [45, 135, 225, 315].map((a) => [a, Math.min(Math.abs(norm180(a - aEco)), Math.abs(norm180(a - sc(rv))))]).sort((p, q) => q[1] - p[1]);
-  const pv = pol(x, y, libres[0][0], dEco + 9);
-  out.push(`<g${m.dim('vrm')}>${t(pv[0], pv[1] + 4, 'VRM', { c: 'm', a: 'middle', b: true, s: 10 })}</g>`);
-  if (leyendas) {
-    const pa = pol(x, y, libres[1][0], R * 0.86);
-    out.push(`<g${m.dim('anillos')}>${t(pa[0], pa[1] + 4, 'anillos', { c: 'g', a: 'middle', s: 9 })}</g>`);
-    out.push(t(eco[0], eco[1] + (Math.cos((aEco * Math.PI) / 180) < 0 ? 16 : -9), 'eco', { a: 'middle', s: 9.5, b: true }));
-  }
-}
-
-function radarPantalla(spec = {}) {
-  const id = 'rp';
-  const m = marcas(spec, PARTES_RADAR);
-  const pres = spec.presentacion ?? 'ambas';
-  if (!m || !['ambas', 'proa-arriba', 'norte-arriba'].includes(pres)) return null;
-  const rv = norm(Number(spec.rumbo ?? 210));
-  const M = norm(Number(spec.marcacion ?? 320));
-  if (!Number.isFinite(rv) || !Number.isFinite(M)) return null;
-  const dv = norm(rv + M);
-  const mb = M > 180 ? 360 - M : M; // marcación por banda
-  const banda = M === 0 ? 'proa' : M === 180 ? 'popa' : M > 180 ? 'babor' : 'estribor';
-  const W = 320;
-  const H = 276;
-  const out = open(W, H, 'Pantalla del radar: EBL, VRM y presentaciones', id);
-  const sumaTxt = `Dv = Rv + M = ${deg3(rv)} + ${deg3(M)}${rv + M >= 360 ? ' − 360°' : ''} = ${deg3(dv)}`;
-  const bandaTxt = banda === 'babor' ? `${n0(mb)}° por babor: ${deg3(rv)} − ${n0(mb)}° = ${deg3(dv)}` : banda === 'estribor' ? `${n0(mb)}° por estribor: ${deg3(rv)} + ${n0(mb)}° = ${deg3(dv)}` : `eco por la ${banda}`;
-  if (pres === 'ambas') {
-    out.push(title(160, 'Mismo eco, dos presentaciones'));
-    out.push(t(82, 44, 'Proa arriba (H-UP)', { a: 'middle', b: true, s: 11 }), t(238, 44, 'Norte arriba (N-UP)', { a: 'middle', b: true, s: 11 }));
-    pantalla(out, m, id, [82, 124], 58, rv, rv, dv);
-    pantalla(out, m, id, [238, 124], 58, 0, rv, dv);
-    out.push(`<g${m.dim('ebl')}>`);
-    out.push(t(82, 210, `EBL ${deg3(M)}`, { c: 'v', a: 'middle', b: true, s: 11 }), t(82, 224, '= marcación', { a: 'middle', s: 10 }));
-    out.push(t(238, 210, `EBL ${deg3(dv)}`, { c: 'v', a: 'middle', b: true, s: 11 }), t(238, 224, '= demora (Dv)', { a: 'middle', s: 10 }));
-    out.push('</g>');
-    out.push(`<g${m.dim('calculo')}>${t(160, 248, sumaTxt, { a: 'middle', b: true, s: 11 })}${t(160, 264, `(${bandaTxt})`, { a: 'middle', s: 10 })}</g>`);
-  } else {
-    const hup = pres === 'proa-arriba';
-    out.push(title(160, hup ? 'Radar en proa arriba (H-UP)' : 'Radar en norte arriba (N-UP)'));
-    pantalla(out, m, id, [104, 130], 82, hup ? rv : 0, rv, dv, { leyendas: true });
-    const x = 202;
-    const fila = (y, linea, txt1, txt2, p, c) => out.push(`<g${m.dim(p)}>${linea}${t(x + 26, y + 4, txt1, { c, b: true, s: 10.5 })}${t(x + 26, y + 17, txt2, { s: 9.5 })}</g>`);
-    fila(52, seg([x, 52], [x + 20, 52], 'currentColor', m.on('proa') ? 3.2 : 2.4), 'Línea de proa', hup ? 'arriba, en la crujía' : `al ${deg3(rv)} (el Rv)`, 'proa', null);
-    fila(88, seg([x, 88], [x + 20, 88], 'v', m.on('ebl') ? 3 : 2, 'stroke-dasharray="7 3"'), `EBL ${deg3(hup ? M : dv)}`, hup ? '= marcación' : '= demora (Dv)', 'ebl', 'v');
-    fila(124, seg([x, 124], [x + 20, 124], 'm', m.on('vrm') ? 3 : 2, 'stroke-dasharray="6 3"'), 'VRM', '= distancia al eco', 'vrm', 'm');
-    fila(160, seg([x, 160], [x + 20, 160], 'g', m.on('anillos') ? 1.8 : 1), 'Anillos fijos', 'solo de referencia', 'anillos', 'g');
-    out.push(t(x, 196, hup ? 'Al cambiar de rumbo,' : 'Al cambiar de rumbo,', { s: 9.5 }), t(x, 208, hup ? 'toda la imagen gira.' : 'la imagen no gira.', { s: 9.5, b: true }));
-    out.push(`<g${m.dim('calculo')}>${t(160, 248, sumaTxt, { a: 'middle', b: true, s: 11 })}${t(160, 264, `(${bandaTxt})`, { a: 'middle', s: 10 })}</g>`);
-  }
-  out.push('</svg>');
-  const cap = {
-    ambas: `El mismo eco en las dos presentaciones. En proa arriba la línea de proa va arriba y la EBL da la marcación (${deg3(M)}); en norte arriba el norte va arriba y la EBL da la demora. Para pasar de una a otra: Dv = Rv + M = ${deg3(dv)}.`,
-    'proa-arriba': 'En proa arriba la línea de proa va arriba, sobre la crujía: la EBL da la marcación del eco y el VRM su distancia. Para trazarla en la carta necesitas el rumbo: Dv = Rv + M.',
-    'norte-arriba': 'En norte arriba el norte va arriba y la imagen no gira al cambiar de rumbo: la EBL da directamente la demora del eco y el VRM su distancia.',
-  };
-  return { svg: out.join(''), caption: cap[pres] };
-}
-
-// ---------------------------------------------------------------------------
-// 2. Racon, SART y reflector de radar en la pantalla (py-3-8). spec: { tipo:'radar-respondedores', sart?:'lejos'|'cerca', resaltar? }
-
 const PARTES_RESP = ['racon', 'sart', 'reflector'];
-
-function radarRespondedores(spec = {}) {
-  const id = 'rr';
-  const m = marcas(spec, PARTES_RESP);
-  const sart = spec.sart ?? 'lejos';
-  if (!m || !['lejos', 'cerca'].includes(sart)) return null;
-  const W = 320;
-  const H = 262;
-  const out = open(W, H, 'Racon, SART y reflector en el radar', id);
-  out.push(title(160, 'Racon, SART y reflector en el radar'));
-  const [x, y, R] = [94, 134, 82];
-  out.push(`<circle cx="${x}" cy="${y}" r="${R}" style="fill:var(--l-mar)" fill-opacity=".22" stroke="currentColor" stroke-width="1.6"/>`);
-  for (const f of [1 / 3, 2 / 3]) out.push(`<circle cx="${x}" cy="${y}" r="${fx(R * f)}" fill="none" stroke="${C.g}" stroke-width=".9"/>`);
-  out.push(seg([x, y], [x, y - R], 'currentColor', 2), punto([x, y], 'currentColor', 2.6));
-  const num = (p, n, on) => `<circle cx="${fx(p[0])}" cy="${fx(p[1])}" r="7.5" fill="currentColor"/><text x="${fx(p[0])}" y="${fx(p[1] + 3.6)}" text-anchor="middle" font-size="10" font-weight="700" style="fill:var(--bg)">${n}</text>${on ? '' : ''}`;
-  // 1. Racon: eco de la boya y, detrás, la letra Morse en línea radial («D» = − · ·)
-  const aR = 50;
-  const g1 = [`<g${m.dim('racon')}>`];
-  const eR = pol(x, y, aR, R * 0.4);
-  g1.push(`<circle cx="${fx(eR[0])}" cy="${fx(eR[1])}" r="3.5" fill="${C.a}" stroke="currentColor" stroke-width=".8"/>`);
-  const wR = m.on('racon') ? 5 : 4;
-  let r0 = R * 0.4 + 9;
-  for (const [lng, gap] of [[16, 5], [4, 5], [4, 0]]) { g1.push(seg(pol(x, y, aR, r0), pol(x, y, aR, r0 + lng), 'a', wR, 'stroke-linecap="butt"')); r0 += lng + gap; }
-  g1.push(num(pol(x, y, aR - 13, R * 0.4 + 6), 1), '</g>');
-  out.push(g1.join(''));
-  // 2. SART: 12 puntos alejándose del centro desde su posición; de cerca, arcos
-  const aS = 140;
-  const g2 = [`<g${m.dim('sart')}>`];
-  const rS = R * 0.22;
-  if (sart === 'lejos') {
-    for (let i = 0; i < 12; i++) { const p = pol(x, y, aS, rS + (i * (R * 0.96 - rS)) / 11); g2.push(punto(p, 'r', m.on('sart') ? 2.6 : 2.2)); }
-    g2.push(num(pol(x, y, aS - 14, R * 0.5), 2));
-  } else {
-    for (let i = 0; i < 12; i++) { const rr = rS + (i * (R * 0.9 - rS)) / 11; g2.push(arco([x, y], fx(rr), aS - 18 - i * 3, aS + 18 + i * 3, 'r', m.on('sart') ? 2.4 : 1.8)); }
-    g2.push(num(pol(x, y, aS - 40, R * 0.5), 2));
-  }
-  g2.push('</g>');
-  out.push(g2.join(''));
-  // 3. Reflector: un barco pequeño no metálico que, con reflector, da un eco claro
-  const eB = pol(x, y, 290, R * 0.62);
-  out.push(`<g${m.dim('reflector')}><ellipse cx="${fx(eB[0])}" cy="${fx(eB[1])}" rx="5" ry="3.5" fill="${C.a}" stroke="currentColor" stroke-width=".8"/>${num(pol(x, y, 290, R * 0.62 + 16), 3)}</g>`);
-  // leyenda
-  const lx = 184;
-  const ley = (yy, n, p, tit, lineas, c) => out.push(`<g${m.dim(p)}>${num([lx + 7, yy - 4], n)}${t(lx + 19, yy, tit, { b: true, s: 11, c })}${lineas.map((l, i) => t(lx + 19, yy + 14 + 12 * i, l, { s: 9.5 })).join('')}</g>`);
-  ley(52, 1, 'racon', 'Racon', ['letra Morse detrás', 'de su eco (D = −··)'], 'a');
-  ley(106, 2, 'sart', 'SART', sart === 'lejos' ? ['12 puntos que se', 'alejan del centro', '(radar de banda X)'] : ['de cerca, los', 'puntos se vuelven', 'arcos'], 'r');
-  ley(172, 3, 'reflector', 'Reflector', ['hace visible un', 'barco pequeño', 'no metálico'], null);
-  out.push(t(160, 238, 'Racon: baliza respondedora en faros, boyas o puentes.', { a: 'middle', s: 10 }), t(160, 252, 'SART: respondedor de socorro (lo interroga tu radar).', { a: 'middle', s: 10 }));
-  out.push('</svg>');
-  const cap = sart === 'lejos'
-    ? 'El racon responde a tu pulso con una letra Morse en línea radial detrás de su eco; la «D» marca un nuevo peligro o pecio. El SART aparece como una línea de 12 puntos que se aleja del centro desde su posición. El reflector hace visible un barco pequeño no metálico.'
-    : 'De cerca, los 12 puntos del SART se convierten en arcos alrededor del centro de la pantalla. El racon sigue mostrando su letra Morse detrás del eco.';
-  return { svg: out.join(''), caption: cap };
-}
 
 // ---------------------------------------------------------------------------
 // 3. Rumbo para pasar a una distancia de un faro, con viento (py-4-3).

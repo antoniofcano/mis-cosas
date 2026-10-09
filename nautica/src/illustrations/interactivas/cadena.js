@@ -2,7 +2,8 @@
 // en planta (norte arriba) y siempre con los mismos colores: proa azul, superficie naranja, corriente violeta,
 // efectivo rojo.
 import { encaja, vec, suma, pad3, num } from './kit.js';
-import { T, TXT, lienzo, rotulo, cotaArco, flecha, rosaNorte, barco, arcoD, junto, colocaEtiquetas, f1, pol, parte } from '../estilo-c.js';
+import { T, TXT, lienzo, rotulo, cotaArco, flecha, rosaNorte, barco, arcoD, junto, colocaEtiquetas, cascoPlanta, f1, pol, parte } from '../estilo-c.js';
+import { el, tramo } from '../animaciones/pista.js';
 
 // Estilo C (docs/ESTILO-LAMINAS.md), como se traza en la carta: el rumbo de superficie con una punta, el efectivo con
 // dos (en magenta: es la línea que se dibuja en la carta) y la corriente con tres; la proa (Rv), a trazos con el barco.
@@ -23,13 +24,8 @@ function vector(a, b, color, w, n, p) {
   return `<g${parte(p)}>${out.join('')}</g>`;
 }
 
-/**
- * @param {object} c  { rv, rs, ref, vef, vb, rc, ic, ab, inversa }
- * @param {{ ocultar?: string[], viento?: 'babor'|'estribor'|null }} o  partes que no se enseñan todavía
- */
-export function dibujaCadena(c, { ocultar = [], viento = null } = {}) {
-  const ve = (p) => !ocultar.includes(p);
-  // puntos en nudos (1 hora de navegación)
+/** Puntos de la cadena en nudos (una hora de navegación) y su encaje en el dibujo. */
+export function geometria(c) {
   const O = [0, 0];
   let S; // extremo del vector superficie
   let E; // extremo del efectivo
@@ -45,7 +41,75 @@ export function dibujaCadena(c, { ocultar = [], viento = null } = {}) {
   const destino = c.inversa ? vec(c.ref, c.vef * 1.25) : null;
   const proa = vec(c.rv, c.vb * 0.6);
   const pts = [O, S, E, proa, ...(Cc ? [Cc] : []), ...(destino ? [destino] : [])];
-  const P = encaja(pts, 60, 60, W - 120, H - 126);
+  // lo que el agua lleva al barco en una hora (la corriente) y lo que avanza él sobre el agua (el resto)
+  const agua = vec(c.rc, c.ic);
+  return { O, S, E, Cc, destino, proa, pts, agua, P: encaja(pts, 60, 60, W - 120, H - 126) };
+}
+
+// ---------------------------------------------------------------------------
+// Animación (src/ui/animacion.js): una hora de navegación. El barco avanza a velocidad constante con la proa a su Rv;
+// el «fantasma» es donde estaría solo con su avance sobre el agua (sin corriente) y la línea azul, lo que el agua lo
+// ha arrastrado: en cada instante el barco está en t·(superficie + corriente), así que el triángulo crece sin
+// deformarse. Al final aparece la construcción de la carta (la imagen fija).
+export const DUR_CADENA = 10;
+const T_SALE = 0.8;
+const T_HORA = 7.8;
+export const T_CARTA = 8.4;
+/** Fracción de la hora navegada en el instante t. */
+export const horaNavegada = (t) => Math.min(1, Math.max(0, (t - T_SALE) / (T_HORA - T_SALE)));
+export const HITOS_CADENA = { sale: T_SALE, media: (T_SALE + T_HORA) / 2, hora: T_HORA, carta: T_CARTA };
+
+export function cambiosCadena(c, t) {
+  const { P, E, agua, O } = geometria(c);
+  const o = P(O);
+  const k = horaNavegada(t);
+  const e = P(E);
+  const g = P([E[0] - agua[0], E[1] - agua[1]]);
+  const b = [o[0] + (e[0] - o[0]) * k, o[1] + (e[1] - o[1]) * k];
+  const f = [o[0] + (g[0] - o[0]) * k, o[1] + (g[1] - o[1]) * k];
+  const [px, py] = pol(b[0], b[1], c.rv, 34);
+  const carta = tramo(t, T_CARTA, T_CARTA + 0.6);
+  const min = Math.round(k * 60);
+  const conC = c.ic ? {
+    'a-sup': { x2: f1(f[0]), y2: f1(f[1]) },
+    'a-corr': { x1: f1(f[0]), y1: f1(f[1]), x2: f1(b[0]), y2: f1(b[1]) },
+    'a-fantasma': { transform: `translate(${f1(f[0])} ${f1(f[1])}) rotate(${f1(c.rv)})` },
+  } : {};
+  return {
+    ...conC,
+    fin: { opacity: f1(carta) },
+    mov: { opacity: f1(1 - carta) },
+    'a-ef': { x2: f1(b[0]), y2: f1(b[1]) },
+    'a-barco': { transform: `translate(${f1(b[0])} ${f1(b[1])}) rotate(${f1(c.rv)})` },
+    'a-proa': { x1: f1(b[0]), y1: f1(b[1]), x2: f1(px), y2: f1(py) },
+    'a-hora': { texto: min >= 60 ? '1 h navegada' : `${min} min navegados` },
+  };
+}
+
+/** Lo que se mueve en la animación: estela sobre el fondo, avance sobre el agua, arrastre, fantasma y barco. */
+function capaMovil(c, cc) {
+  const hull = (L, extra) => `<path d="${cascoPlanta(L, L * 0.34)}" ${extra}/>`;
+  const conC = !!c.ic;
+  const { P, O } = geometria(c);
+  const [ox, oy] = P(O).map(f1);
+  return el('mov', 'g', {}, cc,
+    (conC ? el('a-sup', 'line', { x1: ox, y1: oy, stroke: T.tinta, 'stroke-width': 1.2, 'stroke-dasharray': '5 4' }, cc) : '') +
+    el('a-ef', 'line', { x1: ox, y1: oy, stroke: T.magenta, 'stroke-width': 2.2, 'stroke-linecap': 'round' }, cc) +
+    (conC ? el('a-corr', 'line', { stroke: T.azulTxt, 'stroke-width': 1.8, 'stroke-linecap': 'round' }, cc) : '') +
+    (conC ? el('a-fantasma', 'g', {}, cc, hull(30, `fill="none" stroke="${T.apagado}" stroke-width="1.2" stroke-dasharray="3 3"`)) : '') +
+    el('a-proa', 'line', { stroke: T.tinta, 'stroke-width': 1.2, 'stroke-dasharray': '2 4' }, cc) +
+    el('a-barco', 'g', {}, cc, hull(30, `fill="${T.casco}" stroke="${T.tinta}" stroke-width="1.4" stroke-linejoin="round"`)) +
+    el('a-hora', 'text', { x: W - 14, y: H - 14, 'font-size': TXT.min, 'font-weight': 600, 'text-anchor': 'end', fill: T.tinta, class: 'lc-mono' }, cc));
+}
+
+/**
+ * @param {object} c  { rv, rs, ref, vef, vb, rc, ic, ab, inversa }
+ * @param {{ ocultar?: string[], viento?: 'babor'|'estribor'|null, t?: number }} o  partes que no se enseñan todavía;
+ *   t: instante de la animación (sin él, la imagen fija: la construcción de la carta)
+ */
+export function dibujaCadena(c, { ocultar = [], viento = null, t = null } = {}) {
+  const ve = (p) => !ocultar.includes(p);
+  const { O, S, E, Cc, destino, proa, pts, P } = geometria(c);
   const o = P(O);
   const px = pts.map(P);
   const centro = [px.reduce((a, q) => a + q[0], 0) / px.length, px.reduce((a, q) => a + q[1], 0) / px.length];
@@ -59,6 +123,9 @@ export function dibujaCadena(c, { ocultar = [], viento = null } = {}) {
   const [rx, ry] = esquinas.map((q) => [q, Math.min(...px.map((p) => Math.hypot(p[0] - q[0], p[1] - q[1])))]).sort((a, b) => b[1] - a[1])[0][0];
   out.push(rosaNorte(rx, ry));
   out.push(rotulo(14, H - 14, 'escala: una hora de navegación', { size: TXT.min, estilo: 'serif', italic: true, anchor: 'start', color: T.apagado }));
+  // a partir de aquí, lo que se construye (en la animación aparece al final) y lo que está siempre (destino y viento)
+  const iRes = out.length;
+  const fijo = [];
   // lo que las etiquetas no deben tapar: la rosa, la escala y las líneas
   const cajas = [{ x0: rx - 22, y0: ry - 28, x1: rx + 22, y1: ry + 22 }, { x0: 8, y0: H - 30, x1: 200, y1: H - 8 }];
   const segs = [];
@@ -68,7 +135,7 @@ export function dibujaCadena(c, { ocultar = [], viento = null } = {}) {
   if (destino) {
     const d = P(destino);
     segs.push([o, d]);
-    out.push(`<g${parte('ref')}><line x1="${f1(o[0])}" y1="${f1(o[1])}" x2="${f1(d[0])}" y2="${f1(d[1])}" stroke="${T.tinta}" stroke-width="1" stroke-dasharray="6 4"/>` +
+    fijo.push(`<g${parte('ref')}><line x1="${f1(o[0])}" y1="${f1(o[1])}" x2="${f1(d[0])}" y2="${f1(d[1])}" stroke="${T.tinta}" stroke-width="1" stroke-dasharray="6 4"/>` +
       `<circle cx="${f1(d[0])}" cy="${f1(d[1])}" r="7" fill="${T.papel}" stroke="${T.tinta}" stroke-width="1.4"/><circle cx="${f1(d[0])}" cy="${f1(d[1])}" r="2" fill="${T.tinta}"/>` +
       rotulo(d[0], d[1] - 13, 'destino', { size: TXT.nota, estilo: 'serif', italic: true, weight: 700 }) + '</g>');
     cajas.push({ x0: d[0] - 30, y0: d[1] - 26, x1: d[0] + 30, y1: d[1] + 8 });
@@ -146,14 +213,20 @@ export function dibujaCadena(c, { ocultar = [], viento = null } = {}) {
       fl.push(flecha(bx, by, ex, ey, { color: T.apagado, w: 1.4 }));
       segs.push([[bx, by], [ex, ey]]);
     }
-    out.push(`<g${parte('viento')}>${fl.join('')}</g>`);
+    fijo.push(`<g${parte('viento')}>${fl.join('')}</g>`);
     // su rótulo, en cursiva junto a las flechas (se coloca como una etiqueta más)
     const t = `viento por ${viento}`;
     const cands = [pol(base[0], base[1], hacia + 180, 16), pol(base[0], base[1], hacia, 44), pol(base[0], base[1], c.rv, 70), pol(base[0], base[1], c.rv + 180, 70)];
     pet.push({ t, cands, rotulo: true, p: 'viento' });
   }
   // las etiquetas, sin pisarse
-  out.push(colocaEtiquetas(pet, { W, H, segs, cajas }));
+  const etq = colocaEtiquetas(pet, { W, H, segs, cajas });
+  const res = out.splice(iRes);
+  if (t == null) out.push(...fijo, ...res, etq);
+  else {
+    const cc = cambiosCadena(c, t);
+    out.push(...fijo, el('fin', 'g', {}, cc, res.join('') + etq), capaMovil(c, cc));
+  }
   out.push(cierra());
   return out.join('');
 }

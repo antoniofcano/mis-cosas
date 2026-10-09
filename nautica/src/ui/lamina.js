@@ -1,10 +1,14 @@
 // Componente compartido de las láminas interactivas: predicción (en clase), dibujo, mandos, lectura, voz y
 // resaltado entre vistas. Toda la lógica está en el controlador (lamina-estado.js); aquí solo se pinta.
+// Si la definición trae `animacion`, debajo del dibujo va el reproductor (src/ui/animacion.js): mover un mando carga la
+// pista del nuevo estado; con un mando de tiempo (la hora de la marea), la animación y el mando van a la par.
 
 import { h, setChildren } from './dom.js';
 import { voice } from './voice.js';
 import { controlador } from './lamina-estado.js';
 import { conIcono } from './iconos.js';
+import { reproductor } from './animacion.js';
+import { quieto } from './movimiento.js';
 
 let serie = 0;
 
@@ -25,6 +29,27 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
   const aviso = h('p.lam-aviso', 'Responde primero para poder mover los mandos.');
   const fig = h('figure.il-figure.lamina', { 'data-modo': modo });
   const entradas = new Map();
+  const anim = def.animacion ?? null;
+  let rep = null;
+  const autoplay = !!anim && modo !== 'explicacion' && !quieto();
+  const pistaActual = () => { const e = c.estado(); return anim.pista(e, def.calcular(e)); };
+  const mandoTiempo = () => anim?.mando && (typeof def.mandos === 'function' ? def.mandos(c.estado()) : def.mandos).find((m) => m.id === anim.mando);
+  // con un mando de tiempo, el estado sigue a la animación (al pararla) y el mando se mueve con ella (cada fotograma)
+  const sincroniza = (t) => { if (anim?.mando && rep) c.mover(anim.mando, rep.pista.valor(t)); };
+  function alFotograma(t) {
+    const m = mandoTiempo();
+    const e = m && entradas.get(m.id);
+    if (!e?.input) return;
+    const v = rep?.pista.valor(t) ?? null;
+    if (v == null) return;
+    e.input.value = v;
+    e.valor.textContent = m.texto ? m.texto(Math.round(v / m.paso) * m.paso, c.estado()) : String(v);
+  }
+  function alParar(t) {
+    if (!anim?.mando) return;
+    sincroniza(t);
+    pinta({ desdeMando: true });
+  }
 
   function pintaDibujo(v) {
     const vistas = v.vistas ?? [{ svg: v.svg }];
@@ -34,8 +59,17 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
     for (const el of dibujo.querySelectorAll('[data-parte]')) el.classList.toggle('lam-sel', el.dataset.parte === v.parte);
   }
 
-  function pinta() {
-    const v = c.vista();
+  function pinta({ desdeMando = false, inicio = false } = {}) {
+    let p = null;
+    let t = null;
+    if (anim) {
+      if (anim.mando && rep && !desdeMando) sincroniza(rep.t);
+      // al arrancar sola, la marea empieza en la bajamar
+      if (inicio && anim.mando && autoplay && !c.bloqueado) c.mover(anim.mando, pistaActual().valor(0));
+      p = pistaActual();
+      t = anim.mando ? p.tiempo(c.estado()[anim.mando]) : rep ? rep.t : autoplay && !c.bloqueado ? 0 : p.tFijo;
+    }
+    const v = anim ? c.vista({ t }) : c.vista();
     pintaDibujo(v);
     nota.textContent = v.nota ?? '';
     nota.hidden = !v.nota;
@@ -60,18 +94,26 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
     }
     for (const b of partesBtns) b.setAttribute('aria-pressed', String(b.dataset.parte === v.parte));
     if (volver) volver.disabled = !c.cambiado;
+    if (anim) {
+      if (!rep) {
+        rep = reproductor(dibujo, p, { autoplay: autoplay && !v.bloqueado, tInicial: t, alFotograma, alParar });
+        dibujo.after(rep.el);
+        fig.animacion = rep;
+      } else rep.cargar(p, t);
+      rep.el.hidden = v.bloqueado;
+    }
   }
 
   function mandoEl(m) {
     const id = `${uid}-${m.id}`;
     if (m.tipo === 'rango') {
       const valor = h('span.lam-valor');
-      const input = h('input', { id, type: 'range', min: m.min, max: m.max, step: m.paso, value: c.estado()[m.id], oninput: (ev) => { c.mover(m.id, ev.target.value); pinta(); } });
+      const input = h('input', { id, type: 'range', min: m.min, max: m.max, step: m.paso, value: c.estado()[m.id], oninput: (ev) => { c.mover(m.id, ev.target.value); pinta({ desdeMando: true }); } });
       entradas.set(m.id, { input, valor });
       return h('div.lam-mando', h('label', { for: id }, `${m.etiqueta}: `, valor), input,
         m.extremos ? h('div.lam-extremos', { 'aria-hidden': 'true' }, m.extremos.map((t) => h('span', t))) : null);
     }
-    const botones = m.opciones.map(([val, txt]) => h('button.secondary', { type: 'button', 'data-valor': String(val), 'aria-pressed': 'false', onclick: () => { c.mover(m.id, val); pinta(); } }, txt));
+    const botones = m.opciones.map(([val, txt]) => h('button.secondary', { type: 'button', 'data-valor': String(val), 'aria-pressed': 'false', onclick: () => { c.mover(m.id, val); pinta({ desdeMando: true }); } }, txt));
     entradas.set(m.id, { botones });
     return h('div.lam-mando', h('p.lam-etiqueta', { id }, m.etiqueta), h('div.lam-seg', { role: 'group', 'aria-labelledby': id }, botones));
   }
@@ -92,7 +134,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
       fb.hidden = false;
       fb.className = `lam-fb ${ok ? 'ok' : 'warn'}`;
       fb.replaceChildren(...conIcono(ok ? 'ok' : 'no', `${ok ? 'Eso es.' : `No: es «${p.opciones[p.correcta]}».`} ${p.tras}`));
-      pinta();
+      pinta({ desdeMando: true });
       onRespuesta?.(ok);
       if (voice.enabled) voice.speak(fb.textContent);
     } }, t));
@@ -118,7 +160,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
 
   // En la explicación de una pregunta, un botón devuelve la lámina al caso de esa pregunta.
   const volver = modo === 'explicacion' && v0.mandos.length
-    ? h('button.secondary.small.lam-volver', { type: 'button', onclick: () => { c.reiniciar(); pinta(); } }, conIcono('deshacer', 'Volver al caso de la pregunta'))
+    ? h('button.secondary.small.lam-volver', { type: 'button', onclick: () => { c.reiniciar(); pinta({ desdeMando: true }); } }, conIcono('deshacer', 'Volver al caso de la pregunta'))
     : null;
   const escuchar = voice.supported ? h('button.secondary.small.lam-voz', { type: 'button', onclick: () => {
     const v = c.vista();
@@ -138,7 +180,7 @@ export function laminaEl(def, spec, { modo = 'galeria', caption = null, onRespue
     volver || escuchar ? h('div.lam-botones', volver, escuchar) : null,
     caption ? h('figcaption', caption) : null,
   ].filter(Boolean));
-  pinta();
+  pinta({ inicio: true });
   fig.controlador = c;
   return fig;
 }

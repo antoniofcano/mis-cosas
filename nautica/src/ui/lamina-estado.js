@@ -14,6 +14,9 @@
 //   partes?: { id: texto } para el resaltado entre vistas
 //   conmutador?: { id, etiqueta, opciones } cambia la pregunta que responde la lámina (no es un mando de la física)
 //   ajustar?(estado, id) → estado: normaliza el estado después de mover un mando o el conmutador
+//   animacion?: { pista(estado, resultado) → pista (src/illustrations/animaciones/pista.js), mando?: id }
+//           la lámina también se reproduce como animación (src/ui/animacion.js); dibujar(…, { t }) pinta el instante t.
+//           Con `mando`, el tiempo es ese mando (la hora de la marea): la pista da tiempo(valor) y valor(t).
 
 export const MODOS = ['clase', 'explicacion', 'galeria'];
 export const MAX_MANDOS = 3;
@@ -42,10 +45,11 @@ export function controlador(def, spec, modo = 'galeria') {
     estado: () => ({ ...estado }),
     get bloqueado() { return bloqueado(); },
     get respondida() { return !pred || respuesta != null; },
-    vista() {
+    /** Lo que se pinta. `t`: instante de la animación (solo las láminas con `animacion`; sin él, la imagen fija). */
+    vista({ t = null } = {}) {
       const r = def.calcular(estado);
       // pendiente: en clase, antes de responder, la lámina no enseña la respuesta (cada definición decide qué oculta).
-      const d = def.dibujar(estado, r, { pendiente: bloqueado() });
+      const d = def.dibujar(estado, r, t == null ? { pendiente: bloqueado() } : { pendiente: bloqueado(), t });
       const mandos = listaMandos().map((m) => ({ ...m, valor: estado[m.id], texto: m.texto ? m.texto(estado[m.id], estado) : null }));
       return {
         ...d,

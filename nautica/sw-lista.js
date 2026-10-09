@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '58b4e2302425';
+self.VERSION = '3947fdac8723';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -127,6 +127,12 @@ self.APP = [
  "src/graphics/georef.js",
  "src/graphics/instruments.js",
  "src/graphics/rulers.js",
+ "src/illustrations/animaciones/circulacion.js",
+ "src/illustrations/animaciones/evolucion.js",
+ "src/illustrations/animaciones/helice.js",
+ "src/illustrations/animaciones/hombre-al-agua.js",
+ "src/illustrations/animaciones/index.js",
+ "src/illustrations/animaciones/pista.js",
  "src/illustrations/balizamiento.js",
  "src/illustrations/buoys.js",
  "src/illustrations/carta-c.js",
@@ -201,6 +207,7 @@ self.APP = [
  "src/nautical/hora.js",
  "src/nautical/kinematics.js",
  "src/nautical/luces.js",
+ "src/nautical/maniobra.js",
  "src/nautical/meteo.js",
  "src/nautical/positioning.js",
  "src/nautical/sailing.js",
@@ -220,6 +227,7 @@ self.APP = [
  "src/theory/glosas.js",
  "src/theory/vocabulario.js",
  "src/ui/actividad.js",
+ "src/ui/animacion.js",
  "src/ui/app.js",
  "src/ui/aviso-error.js",
  "src/ui/ayudas.js",

@@ -8,6 +8,7 @@
 import { BUOYS } from './buoys.js';
 import { caidaPopa } from '../nautical/helice.js';
 import { MAREA_EJEMPLO } from './interactivas/marea.js';
+import { curvaEvolucion, hombreAlAgua as hombreAlAguaManiobra, MANIOBRAS_HAA, YATE } from '../nautical/maniobra.js';
 import { FLAGS } from './misc.js';
 import { SENALES } from './situations.js';
 import { BANDERA_C, patronSonido, SECUENCIA_SONIDO } from './senales-c.js';
@@ -250,20 +251,41 @@ function heliceTimon(spec) {
   };
 }
 
+function evolucion() {
+  const c = curvaEvolucion();
+  const esl = (v) => `${num(Math.round((v / YATE.eslora) * 10) / 10)} esloras`;
+  return {
+    tema: 'Maniobra', titulo: 'Curva de evolución', clave: 'Con todo el timón a una banda, la popa abre y el barco traza un círculo: no gira en el sitio.',
+    datos: [{ cifra: esl(c.avance), texto: 'avance: lo que adelanta hasta caer 90°' }, { cifra: esl(c.diametroTactico), texto: 'diámetro táctico, al caer 180°' }, { cifra: esl(c.diametroFinal), texto: 'diámetro final, ya estabilizado' }],
+    nota: 'Al meter el timón, la popa abre hacia la banda contraria y el barco se desplaza un poco hacia ella antes de caer: cuidado con la popa al separarte de un muelle o de otro barco. El diámetro táctico es algo mayor que el final.',
+    alt: `Animación vista desde arriba de un yate de ${YATE.eslora} m a 6 nudos que mete todo el timón a estribor: la popa abre hacia babor (línea magenta), a los 90° de caída se acotan el avance y el traslado, a los 180° el diámetro táctico (${Math.round(c.diametroTactico)} m) y al completar la vuelta el diámetro final (${Math.round(c.diametroFinal)} m).`,
+  };
+}
+
 function hombreAlAgua(spec) {
-  if ((spec.maniobra ?? 'boutakow') === 'anderson') {
+  const h = hombreAlAguaManiobra(MANIOBRAS_HAA.includes(spec.maniobra) ? spec.maniobra : 'boutakow');
+  const seg = `${Math.round(h.momentos.recogida)} s`;
+  if (h.maniobra === 'anderson') {
     return {
       tema: 'Seguridad', titulo: 'Hombre al agua: maniobra de Anderson', clave: 'Todo a la banda del náufrago y una vuelta de unos 250°.',
-      datos: [{ cifra: '≈ 250°', texto: 'de caída antes de enfilarlo' }, { cifra: '1 vuelta', texto: 'la más rápida si lo has visto caer' }],
-      nota: 'Al meter el timón a su banda, la popa (y la hélice) se aparta de la persona. Grita «¡hombre al agua!», lanza el aro y no la pierdas de vista.',
-      alt: 'Derrota vista desde arriba: el barco mete todo el timón a la banda del náufrago, da una vuelta de unos 250° y se acerca a él por su proa.',
+      datos: [{ cifra: '≈ 250°', texto: 'de caída antes de poner el timón a la vía' }, { cifra: '1 vuelta', texto: 'la más rápida si lo has visto caer' }, { cifra: seg, texto: 'hasta recogerlo, en el yate de ejemplo' }],
+      nota: 'Al meter el timón a su banda, la popa (y la hélice) se aparta de la persona. Grita «¡hombre al agua!», lanza el aro y no la pierdas de vista. Pide un barco que gire bien.',
+      alt: 'Animación vista desde arriba: la persona cae por estribor, el yate mete todo el timón a estribor, da una sola vuelta de unos 250° con su estela detrás, pone el timón a la vía y se acerca despacio hasta tenerla por el costado.',
+    };
+  }
+  if (h.maniobra === 'scharnow') {
+    return {
+      tema: 'Seguridad', titulo: 'Hombre al agua: curva de Scharnow', clave: 'Todo a una banda; a 240°, todo a la otra: vuelves a tu derrota, más atrás.',
+      datos: [{ cifra: '240°', texto: 'de caída, cambias el timón a la otra banda' }, { cifra: '20°', texto: 'antes del rumbo opuesto, a la vía' }, { cifra: 'retrasada', texto: 'para cuando la persona cayó hace un rato' }],
+      nota: 'Vuelve a la derrota más atrás que la de Boutakow y recorre menos camino hasta donde cayó la persona. Si acaba de caer no sirve: la deja por la popa.',
+      alt: 'Animación vista desde arriba: la persona cayó hace un rato y está lejos por la popa, en la estela; el yate mete todo el timón a una banda, a 240° todo a la otra, a 20° del rumbo opuesto a la vía, y vuelve sobre su derrota hasta llegar a ella.',
     };
   }
   return {
     tema: 'Seguridad', titulo: 'Hombre al agua: curva de Boutakow', clave: 'Todo a su banda; a 60°, todo a la otra: vuelves por tu estela.',
-    datos: [{ cifra: '60°', texto: 'separado del rumbo inicial, cambias el timón' }, { cifra: '180°', texto: 'acabas al rumbo opuesto, sobre tu estela' }],
+    datos: [{ cifra: '60°', texto: 'separado del rumbo inicial, cambias el timón' }, { cifra: '20°', texto: 'antes del rumbo opuesto, a la vía' }, { cifra: '180°', texto: 'acabas al rumbo opuesto, sobre tu estela' }],
     nota: 'Es la maniobra de Williamson. Va bien de noche, con poca visibilidad o si no has visto caer a la persona: te devuelve por donde has pasado.',
-    alt: 'Derrota vista desde arriba: el barco cae a una banda hasta separarse 60° de su rumbo, mete todo el timón a la otra y da la vuelta hasta el rumbo opuesto, sobre su propia estela, hasta el náufrago.',
+    alt: 'Animación vista desde arriba: la persona cae por estribor; el yate mete todo el timón a estribor, al separarse 60° de su rumbo todo a babor, a 20° del rumbo opuesto a la vía, y vuelve al rumbo opuesto sobre su propia estela hasta recoger a la persona.',
   };
 }
 
@@ -604,7 +626,7 @@ function sonido(spec) {
 }
 
 const MARCOS = {
-  cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea,
+  cardinales, boya, canal, bifurcacion, 'sectores-luces': sectoresLuces, cruce, barco, meteo, helice, 'helice-timon': heliceTimon, 'hombre-al-agua': hombreAlAgua, estabilidad, marea, evolucion,
   nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
   'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
   movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco, bandera, sonido,

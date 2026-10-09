@@ -144,3 +144,24 @@ a.tc-mazo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px;
   .tc-papel { padding: .75rem .6rem .85rem; }
   .tc-anverso .tc-dibujo { margin-inline: -.35rem; width: calc(100% + .7rem); }
 }
+
+/* ---- Láminas animadas (src/ui/animacion.js; pistas en src/illustrations/animaciones/) ----
+   Debajo del dibujo: anterior, reproducir/pausa y siguiente; la velocidad; el deslizador de tiempo con las marcas de los
+   pasos; y el paso vigente escrito (y leído en voz alta). Botones de 44 px como mínimo. */
+.ani-ctl { display: flex; flex-direction: column; gap: .45rem; margin-top: .5rem; text-align: left; }
+.ani-fila { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.ani-ctl button.ani-boton { min-width: 44px; min-height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; }
+.ani-ctl button.ani-boton .ico { width: 22px; height: 22px; }
+.ani-ctl button.ani-boton:disabled { opacity: .4; cursor: default; }
+.ani-vels { display: flex; gap: .25rem; margin-left: auto; }
+.ani-ctl button.ani-vel { min-width: 44px; min-height: 44px; padding: 0 .55rem; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.ani-ctl button.ani-vel[aria-pressed="true"] { border: 2px solid var(--accent); background: var(--accent-2); color: var(--accent); }
+.ani-ctl button:focus-visible, .ani-tiempo:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.ani-pista { position: relative; }
+.ani-tiempo { display: block; width: 100%; height: 44px; margin: 0; accent-color: var(--lc-magenta); }
+.ani-marcas { position: absolute; left: 8px; right: 8px; bottom: 2px; height: 7px; pointer-events: none; }
+.ani-marcas span { position: absolute; top: 0; width: 2px; height: 7px; margin-left: -1px; background: var(--lc-tinta); }
+.ani-paso { margin: 0; min-height: 4.2em; font-family: var(--lc-serif); font-size: 1rem; line-height: 1.4; color: var(--lc-tinta); }
+.ani-paso b { font-weight: 700; }
+.ani-num { display: inline-block; min-width: 2.6em; padding: 0 .3em; margin-right: .15em; font-family: var(--lc-mono); font-size: .9rem; font-weight: 700; text-align: center; color: var(--lc-magenta); border: 1px solid var(--lc-magenta); }
+.il-figure.ani { background: transparent; }

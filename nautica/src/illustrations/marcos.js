@@ -12,6 +12,7 @@ import { curvaEvolucion, hombreAlAgua as hombreAlAguaManiobra, MANIOBRAS_HAA, YA
 import { FLAGS } from './misc.js';
 import { SENALES } from './situations.js';
 import { BANDERA_C, patronSonido, SECUENCIA_SONIDO } from './senales-c.js';
+import { MARCOS_PY } from './marcos-py.js';
 
 const num = (n) => String(n).replace('.', ',');
 const BAL = 'Balizamiento';
@@ -630,6 +631,7 @@ const MARCOS = {
   nortes, rosa, abatimiento, corriente, enfilacion, demoras, loxodromica,
   'tangente-viento': tangenteViento, 'traves-derrota': travesDerrota, 'corriente-desconocida': corrienteDesconocida, 'loxo-orto': loxoOrto,
   movimiento, busqueda, fuego, 'viento-aparente': vientoAparenteMarco, bandera, sonido,
+  ...MARCOS_PY,
 };
 
 /** Marco de una spec, o null si su lámina aún no está migrada al estilo C. */

@@ -3,6 +3,7 @@
 // Estilo común del kit: fondo il-panel, textos en currentColor y superficies con las variables --l-* del tema.
 
 import { open, title, arrow, pol, hullPlan, fx } from '../kit.js';
+import { balsaC } from '../balsa-c.js';
 
 const RED = 'var(--l-r)';
 const MAR = 'style="fill:var(--l-mar)"';
@@ -134,179 +135,7 @@ export function hipotermiaIllustration(spec) {
 }
 
 // ---------------------------------------------------------------------------
-// Balsa salvavidas. spec: { tipo:'balsa', vista:'zafa'|'inflado'|'adrizar'|'lanzar', resaltar? (zafa) }
-
-/** Balsa inflada vista de costado, centrada en (x, y = flotación), ancho w. */
-function balsaPerfil(x, y, w = 70) {
-  const h = w * 0.16;
-  return `<path d="M${fx(x - w / 2 + 6)},${fx(y - h)} Q${fx(x)},${fx(y - h - w * 0.5)} ${fx(x + w / 2 - 6)},${fx(y - h)}Z" style="fill:${CHAL}" stroke="currentColor" stroke-width="1.2"/>` +
-    `<rect x="${fx(x - w / 2)}" y="${fx(y - h - 2)}" width="${fx(w)}" height="${fx(h * 1.1)}" rx="${fx(h * 0.55)}" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.2"/>` +
-    `<rect x="${fx(x - w / 2 + 2)}" y="${fx(y - 2)}" width="${fx(w - 4)}" height="${fx(h)}" rx="${fx(h * 0.5)}" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.2"/>`;
-}
-/** Contenedor cilíndrico visto de costado. */
-const contenedor = (x, y, w, h, extra = '') => `<rect x="${fx(x)}" y="${fx(y)}" width="${fx(w)}" height="${fx(h)}" rx="${fx(h / 2.4)}" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.4" ${extra}/><line x1="${fx(x + w / 2)}" y1="${fx(y)}" x2="${fx(x + w / 2)}" y2="${fx(y + h)}" stroke="currentColor" stroke-width="1" opacity=".5"/>`;
-/** Casco de un velero de costado, para la secuencia de hundimiento. */
-const cascoPerfil = (x, y, ang, s = 1) => `<g transform="translate(${fx(x)} ${fx(y)}) rotate(${ang}) scale(${s})"><path d="M-30,-6 L30,-6 L24,6 L-22,6Z" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="-6" x2="0" y2="-40" stroke="currentColor" stroke-width="1.6"/></g>`;
-
-export function balsaIllustration(spec) {
-  const vista = spec.vista ?? 'zafa';
-  const W = 320;
-  if (vista === 'inflado') {
-    const H = 330;
-    const out = open(W, H, 'Balsa salvavidas: cómo se infla sola', 'bi');
-    out.push(title(160, 'Cómo se infla sola'));
-    const pasos = [
-      ['① Antes de 4 m, la zafa', 'suelta la trinca'],
-      ['② El contenedor sube', 'por su flotabilidad'],
-      ['③ El barco tensa la boza:', 'se dispara la botella'],
-      ['④ La unión débil se', 'rompe: balsa libre'],
-    ];
-    pasos.forEach(([a, b], i) => {
-      const x0 = 8 + (i % 2) * 156;
-      const y0 = 32 + Math.floor(i / 2) * 138;
-      const w = 148;
-      out.push(tx(x0 + 4, y0 + 12, a, { bold: true }), tx(x0 + 4, y0 + 25, b));
-      const ys = y0 + 56; // superficie
-      out.push(`<rect x="${x0}" y="${ys}" width="${w}" height="76" rx="4" ${MAR}/>`, `<line x1="${x0}" y1="${ys}" x2="${x0 + w}" y2="${ys}" style="stroke:var(--l-v)" stroke-width="1.4"/>`);
-      const bx = x0 + 96;
-      if (i === 0) {
-        out.push(cascoPerfil(bx, ys + 54, 14, 0.9));
-        out.push(contenedor(bx - 14, ys + 18, 24, 11));
-        out.push(`<line x1="${x0 + 18}" y1="${ys}" x2="${x0 + 18}" y2="${ys + 60}" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2"/>`, `<line x1="${x0 + 13}" y1="${ys + 60}" x2="${x0 + 23}" y2="${ys + 60}" stroke="currentColor" stroke-width="1.2"/>`);
-        out.push(tx(x0 + 26, ys + 63, '4 m', { bold: true, c: RED }));
-      } else if (i === 1) {
-        out.push(cascoPerfil(bx + 6, ys + 66, 18, 0.8));
-        out.push(contenedor(bx - 46, ys - 6, 26, 12));
-        out.push(`<path d="M${bx - 20},${ys + 2} Q${bx - 22},${ys + 40} ${bx + 4},${ys + 60}" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 2"/>`);
-        out.push(tx(x0 + 6, ys + 74, 'boza floja'));
-      } else if (i === 2) {
-        out.push(cascoPerfil(bx + 14, ys + 70, 22, 0.7));
-        out.push(balsaPerfil(x0 + 46, ys, 52));
-        out.push(`<line x1="${x0 + 72}" y1="${ys + 2}" x2="${bx + 12}" y2="${ys + 64}" stroke="${RED}" stroke-width="2.2"/>`);
-        out.push(tx(x0 + 6, ys + 74, 'boza tensa', { c: RED, bold: true }));
-      } else {
-        out.push(cascoPerfil(bx + 20, ys + 74, 26, 0.6));
-        out.push(balsaPerfil(x0 + 46, ys, 52));
-        out.push(`<line x1="${x0 + 72}" y1="${ys + 2}" x2="${x0 + 86}" y2="${ys + 24}" stroke="currentColor" stroke-width="1.4"/>`);
-        out.push(tache(x0 + 92, ys + 32, 5));
-        out.push(tx(x0 + 100, ys + 36, 'rota', { c: RED, bold: true }));
-      }
-    });
-    out.push(notas(14, H - 10, ['Zafa: suelta la balsa. Unión débil: rompe la boza.']));
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Si el barco se hunde, antes de 4 m la zafa hidrostática suelta la trinca, el contenedor sube a flote y el barco, al seguir bajando, tensa la boza y dispara la botella. Ya inflada, la unión débil se rompe y la balsa queda libre.' };
-  }
-  if (vista === 'adrizar') {
-    const H = 290;
-    const out = open(W, H, 'Balsa salvavidas: adrizar una balsa volcada', 'ba');
-    out.push(title(160, 'Balsa inflada boca abajo: adrizarla'));
-    const yA = 150;
-    out.push(mar(yA, W, H - 50));
-    // viento de izquierda a derecha
-    out.push(arrow(116, 52, 184, 52, 'v', 'ba', 2.6), tx(116, 44, 'viento', { c: 'var(--l-v)', bold: true }));
-    out.push(tx(14, H - 58, 'barlovento'), tx(W - 14, H - 58, 'sotavento', { anchor: 'end', bold: true }));
-    // balsa volcada: suelo arriba, toldo bajo el agua
-    out.push(`<path d="M66,${yA + 10} Q140,${yA + 82} 214,${yA + 10}Z" style="fill:${CHAL}" opacity=".45" stroke="currentColor" stroke-dasharray="4 3"/>`);
-    out.push(tx(140, yA + 34, 'toldo, bajo el agua', { anchor: 'middle' }));
-    out.push(`<rect x="60" y="${yA - 14}" width="160" height="14" rx="7" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.3"/>`, `<rect x="60" y="${yA}" width="160" height="12" rx="6" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.3"/>`);
-    // cinchas de la parte inferior (ahora arriba)
-    out.push(`<path d="M76,${yA - 15} Q140,${yA - 26} 204,${yA - 15}" fill="none" stroke="${RED}" stroke-width="3"/>`);
-    out.push(lead(112, 100, 118, yA - 22, RED), tx(66, 82, 'cinchas de adrizamiento', { c: RED, bold: true }), tx(66, 95, '(parte inferior)', { c: RED }));
-    // botella en el lado de sotavento
-    out.push(`<rect x="196" y="${yA - 24}" width="22" height="10" rx="4" style="fill:var(--l-g)" stroke="currentColor"/>`);
-    out.push(lead(218, yA - 16, 258, yA + 16), tx(W - 14, yA + 28, 'botella', { bold: true, anchor: 'end' }), tx(W - 14, yA + 41, 'de gas', { bold: true, anchor: 'end' }));
-    // persona de pie sobre la botella, echándose atrás
-    const pie = [208, yA - 26];
-    const cad = [222, yA - 56];
-    const hom = [240, yA - 88];
-    out.push(miembro([pie, [222, yA - 40], cad], 6));
-    out.push(tronco(cad, hom, 18));
-    out.push(cabeza(248, yA - 104, 10));
-    out.push(miembro([[hom[0] - 2, hom[1] + 4], [196, yA - 50], [176, yA - 20]], 4.5));
-    out.push(tx(W - 14, yA - 48, 'tira', { bold: true, anchor: 'end' }), tx(W - 14, yA - 35, 'echándote', { bold: true, anchor: 'end' }), tx(W - 14, yA - 22, 'atrás', { bold: true, anchor: 'end' }));
-    // el borde de barlovento se levanta y la balsa gira hacia la persona
-    out.push(`<path d="M58,${yA - 18} Q28,${yA - 70} 74,${yA - 96}" fill="none" stroke="#16a34a" stroke-width="2.4" marker-end="url(#ba-m)"/>`);
-    out.push(notas(14, H - 34, ['A sotavento, de pie sobre la botella, tira de las cinchas:', 'el viento la voltea hacia ti. Luego apártate nadando.']));
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Si se infla volcada: nada hasta el lado de la botella, a sotavento; súbete a la botella, agarra las cinchas de la parte inferior y échate atrás tirando. El viento ayuda a voltearla hacia ti; después apártate nadando.' };
-  }
-  if (vista === 'lanzar') {
-    const H = 320;
-    const out = open(W, H, 'Balsa salvavidas: lanzarla a mano y embarcar', 'bl');
-    out.push(title(160, 'Lanzarla a mano y embarcar'));
-    out.push(`<rect x="10" y="34" width="${W - 20}" height="160" rx="8" ${MAR}/>`);
-    out.push(arrow(18, 70, 62, 70, 'v', 'bl', 2.6), tx(18, 60, 'viento', { c: 'var(--l-v)', bold: true }));
-    out.push(tx(18, 186, 'barlovento'), tx(W - 18, 186, 'sotavento', { anchor: 'end', bold: true }));
-    out.push(`<g transform="translate(120 112)">${hullPlan(130, 50, HULL)}</g>`);
-    out.push(tx(112, 150, 'barco', { anchor: 'middle' }));
-    // punto fuerte en el costado de sotavento y boza hasta la balsa
-    const pf = [140, 120];
-    out.push(`<circle cx="${pf[0]}" cy="${pf[1]}" r="4" style="fill:currentColor"/>`);
-    const bx = 222;
-    const by = 122;
-    out.push(`<line x1="${pf[0]}" y1="${pf[1]}" x2="${bx - 32}" y2="${by + 2}" stroke="${RED}" stroke-width="2.4"/>`);
-    out.push(`<circle cx="${bx}" cy="${by}" r="32" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.4"/><circle cx="${bx}" cy="${by}" r="24" style="fill:${CHAL}" stroke="currentColor" stroke-width="1"/>`);
-    out.push(`<path d="M${bx - 24},${by - 6} L${bx - 24},${by + 6}" stroke="currentColor" stroke-width="3"/>`);
-    out.push(tx(bx, by + 4, 'balsa', { anchor: 'middle', bold: true }));
-    const num = (x, y, n) => `<circle cx="${x}" cy="${y}" r="8" style="fill:var(--l-fondo)" stroke="currentColor"/><text x="${x}" y="${y + 3.5}" class="il-lbl" text-anchor="middle" style="font-weight:700">${n}</text>`;
-    out.push(num(146, 104, 1), num(176, 140, 2), num(bx, by - 44, 3), num(bx + 44, by, 4));
-    const pasos = [
-      '① Amarra la boza a un punto fuerte antes de lanzarla.',
-      '② Suelta las trincas y lánzala por sotavento.',
-      '③ Saca toda la boza y da un tirón: se infla.',
-      '④ Con la boza amarrada, la balsa sigue al costado.',
-      '⑤ Solo con todos dentro se suelta o se corta la boza.',
-      'Embarca sin mojarte y sin saltar encima de la balsa;',
-      'que entre primero alguien fuerte o de más peso.',
-    ];
-    out.push(notas(14, 212, pasos, 14.5));
-    out.push('</svg>');
-    return { svg: out.join(''), caption: 'Amarra la boza a un punto fuerte, lanza el contenedor por sotavento, saca toda la boza y da un tirón. La balsa queda al costado mientras se embarca, sin mojarse ni saltar encima, y la boza solo se corta cuando todos están dentro.' };
-  }
-  // contenedor, trinca, zafa y boza
-  const hl = hlSet(spec.resaltar);
-  const m = marcador(hl);
-  const H = 290;
-  const out = open(W, H, 'Balsa salvavidas: contenedor y zafa hidrostática', 'bz');
-  out.push(title(160, 'Contenedor, zafa y boza'));
-  const yC = 150; // cubierta
-  out.push(`<rect x="10" y="${yC}" width="${W - 20}" height="10" style="fill:var(--l-casco)" stroke="currentColor" stroke-width="1.2"/>`);
-  out.push(tx(14, yC + 22, 'cubierta'));
-  // cuna
-  out.push(`<path d="M74,${yC} L88,${yC - 18} L182,${yC - 18} L196,${yC}Z" fill="none" stroke="currentColor" stroke-width="1.4"/>`);
-  // contenedor
-  const cx0 = 60;
-  const cy0 = 76;
-  const cw = 150;
-  const ch = 52;
-  out.push(`<g stroke-width="${m.w('contenedor')}">${contenedor(cx0, cy0, cw, ch, `style="fill:var(--l-casco);stroke:${m.col('contenedor')}" stroke-width="${m.w('contenedor')}"`)}</g>`);
-  [90, 120, 150, 180].forEach((x) => out.push(`<circle cx="${x}" cy="${cy0 + ch - 5}" r="2.2" style="fill:currentColor"/>`));
-  out.push(m.t(cx0 + cw / 2, cy0 + 22, 'contenedor', 'contenedor', 'middle'), tx(cx0 + cw / 2, cy0 + 35, '(flota; desagües abajo)', { anchor: 'middle' }));
-  // trinca: de un cáncamo de cubierta, por encima del contenedor, hasta la zafa
-  const zx = 236;
-  out.push(`<path d="M40,${yC} L54,${cy0 + 10} Q135,${cy0 - 30} 214,${cy0 + 10} L${zx},${yC - 14}" fill="none" stroke="${m.on('trinca') ? RED : 'var(--l-g)'}" stroke-width="${m.on('trinca') ? 4 : 3}"/>`);
-  out.push(`<circle cx="40" cy="${yC - 2}" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/>`);
-  out.push(m.t(40, 46, 'trinca (pasa por la zafa)', 'trinca'), lead(96, 50, 104, cy0 - 6, m.col('trinca')));
-  // zafa hidrostática
-  out.push(`<rect x="${zx - 6}" y="${yC - 16}" width="22" height="16" rx="3" style="fill:${m.on('zafa') ? RED : 'var(--l-g)'}" stroke="currentColor" stroke-width="${m.w('zafa')}"/>`);
-  // boza: del contenedor a la unión débil junto a la zafa
-  out.push(`<path d="M${cx0 + cw},${cy0 + 30} Q${zx + 20},${cy0 + 30} ${zx + 32},${yC - 22}" fill="none" stroke="${m.on('boza') ? RED : 'currentColor'}" stroke-width="${m.w('boza', 1.6)}" stroke-dasharray="${m.on('boza') ? '' : '5 2'}"/>`);
-  out.push(`<circle cx="${zx + 32}" cy="${yC - 17}" r="5" fill="none" stroke="${m.col('union-debil')}" stroke-width="${m.w('union-debil', 1.6)}"/>`, `<line x1="${zx + 16}" y1="${yC - 8}" x2="${zx + 28}" y2="${yC - 14}" stroke="currentColor" stroke-width="1.4"/>`);
-  out.push(lead(zx + 5, yC + 10, zx - 34, yC + 36, m.col('zafa')), m.t(zx - 36, yC + 46, 'zafa hidrostática', 'zafa', 'end'));
-  out.push(lead(zx + 34, yC - 12, W - 30, yC + 36, m.col('union-debil')), m.t(W - 14, yC + 46, 'unión débil', 'union-debil', 'end'));
-  out.push(lead(zx + 18, cy0 + 34, W - 40, cy0 + 4, m.col('boza')), m.t(W - 14, cy0, 'boza', 'boza', 'end'));
-  out.push(notas(14, 222, ['La zafa suelta la trinca por la presión del agua,', 'antes de 4 m; no con las olas, ni al mojarse ni con', 'un golpe. La mayoría se cambia cada 2 años.', 'Trinca solo la que pasa por la zafa.'], 14.5));
-  out.push('</svg>');
-  const CAP = {
-    contenedor: 'El contenedor es robusto y flota con la balsa dentro; es estanco en lo posible, pero lleva orificios de desagüe en el fondo.',
-    zafa: 'La zafa hidrostática sujeta la balsa y la suelta sola por la presión del agua antes de 4 m de profundidad, no cuando pasan las olas. Se puede soltar a mano.',
-    trinca: 'La balsa se trinca solo con la trinca que pasa por la zafa: con trincas de más, la zafa suelta pero la balsa se hunde atada al barco.',
-    boza: 'La boza es el cabo que une la balsa al barco: al tensarse dispara la botella de inflado.',
-    'union-debil': 'La unión débil es un eslabón de la boza que se rompe cuando la balsa ya está inflada, para que no se vaya al fondo con el barco.',
-  };
-  const caption = [...hl].map((k) => CAP[k]).filter(Boolean).join('\n') || 'La balsa va en un contenedor que flota, trincado con una sola trinca que pasa por la zafa hidrostática. La boza une la balsa al barco a través de la zafa y su unión débil.';
-  return { svg: out.join(''), caption };
-}
+// Balsa salvavidas (zafa, inflado, adrizar, lanzar): en estilo C, en src/illustrations/balsa-c.js.
 
 // ---------------------------------------------------------------------------
 // Rescate con helicóptero. spec: { tipo:'helicoptero', vista:'rumbo'|'cable'|'senales' }
@@ -492,7 +321,7 @@ export function arnesIllustration(spec) {
 
 export const LAMINAS = {
   hipotermia: { fn: hipotermiaIllustration, params: { postura: ['saltar', 'help', 'grupo'] }, ejemplo: { tipo: 'hipotermia', postura: 'help' } },
-  balsa: { fn: balsaIllustration, params: { vista: ['zafa', 'inflado', 'adrizar', 'lanzar'], resaltar: ['contenedor', 'zafa', 'trinca', 'boza', 'union-debil'] }, ejemplo: { tipo: 'balsa', vista: 'zafa' } },
+  balsa: { fn: balsaC, params: { vista: ['zafa', 'inflado', 'adrizar', 'lanzar'], resaltar: ['contenedor', 'zafa', 'trinca', 'boza', 'union-debil'] }, ejemplo: { tipo: 'balsa', vista: 'zafa' } },
   helicoptero: { fn: helicopteroIllustration, params: { vista: ['rumbo', 'cable', 'senales'] }, ejemplo: { tipo: 'helicoptero', vista: 'rumbo' } },
   arnes: { fn: arnesIllustration, params: { vista: ['chaleco', 'arnes'], resaltar: ['luz', 'silbato', 'reflectante', 'flotabilidad', 'linea-vida', 'amarre', 'pecho'] }, ejemplo: { tipo: 'arnes', vista: 'chaleco' } },
 };

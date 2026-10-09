@@ -10564,7 +10564,7 @@
         "tipo": "beaufort",
         "fuerza": 6
        },
-       "texto": "La tabla completa: Beaufort (viento) a la izquierda y Douglas (mar) a la derecha."
+       "texto": "La escala Beaufort entera, con la fuerza 6 (fresco) resaltada: desde la fuerza 8, 34 nudos, es temporal."
       },
       {
        "tipo": "regla",
@@ -10619,6 +10619,14 @@
        "tipo": "texto",
        "titulo": "Alturas de referencia",
        "texto": "Como referencia: marejadilla, olas de hasta 0,5 m; marejada, hasta 1,25 m; fuerte marejada, hasta 2,5 m; y a partir de gruesa, más de 2,5 m. Esta es la escala de la mar de viento; la mar de fondo se describe aparte."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "beaufort",
+        "escala": "douglas"
+       },
+       "texto": "La escala Douglas: el estado de la mar por la altura de las olas, del 0 al 9."
       },
       {
        "tipo": "regla",

@@ -25,6 +25,8 @@ const bifurcaciones = [
   { tipo: 'bifurcacion', marca: 'canal-principal-babor', ruta: 'principal' },
 ];
 const pirotecnia = ['bengala', 'cohete-paracaidas', 'humo'].map((resaltar) => ({ tipo: 'socorro', resaltar, solo: true }));
+const socorro = [{ tipo: 'socorro' }, ...['pirotecnia', 'sonido', 'radio', 'vista'].map((hoja) => ({ tipo: 'socorro', hoja }))];
+const escalas = [{ tipo: 'beaufort' }, { tipo: 'beaufort', escala: 'douglas' }];
 
 /** Qué láminas van en cada tema. Las claves son las UT de la estructura oficial de cada titulación. */
 export const LAMINAS = {
@@ -34,18 +36,18 @@ export const LAMINAS = {
     3: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }],
     4: banderas,
     5: [...boyas, { tipo: 'canal', sentido: 'entrando' }, { tipo: 'canal', sentido: 'saliendo' }, ...bifurcaciones, { tipo: 'regiones' }, ...ritmos],
-    6: [...cruces, { tipo: 'riesgo', caso: 'comparar' }, { tipo: 'jerarquia' }, { tipo: 'sectores-luces' }, { tipo: 'dst' }, ...buques, ...sonidos, { tipo: 'socorro' }],
+    6: [...cruces, { tipo: 'riesgo', caso: 'comparar' }, { tipo: 'jerarquia' }, { tipo: 'sectores-luces' }, { tipo: 'dst' }, ...buques, ...sonidos, ...socorro],
     7: [{ tipo: 'helice', sentido: 'dextrogira', marcha: 'atras' }, { tipo: 'helice', sentido: 'levogira', marcha: 'atras' }, ...heliceTimon, { tipo: 'evolucion' }, { tipo: 'ciaboga' },
       { tipo: 'desatraque', abrir: 'popa' }, { tipo: 'desatraque', abrir: 'proa' }],
-    8: [{ tipo: 'socorro' }, ...pirotecnia, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }],
-    9: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'brisa-mar', 'brisa-tierra', 'frentes'), ...vientos, { tipo: 'beaufort' }],
+    8: [...socorro, ...pirotecnia, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }],
+    9: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'brisa-mar', 'brisa-tierra', 'frentes'), ...vientos, ...escalas],
     10: [CATALOGO.rosa.ejemplo, { tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'marea', modo: 'fases' }],
     11: [{ tipo: 'enfilacion' }, { tipo: 'nortes', dm: 3, desvio: -5 }, { tipo: 'demoras' }],
   },
   py: {
     1: [{ tipo: 'estabilidad', caso: 'estable' }, { tipo: 'estabilidad', caso: 'inestable' }, ...movimientos, { tipo: 'busqueda', patron: 'cuadrado' }, { tipo: 'busqueda', patron: 'sectores' },
-      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'hombre-al-agua', maniobra: 'scharnow' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }, { tipo: 'socorro' }, ...pirotecnia],
-    2: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'niebla-vapor', 'brisa-mar', 'brisa-tierra'), ...vientos, { tipo: 'beaufort' }],
+      { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'hombre-al-agua', maniobra: 'scharnow' }, { tipo: 'fuego', vista: 'tetraedro' }, { tipo: 'fuego', vista: 'clases' }, ...socorro, ...pirotecnia],
+    2: [...meteo('borrasca', 'anticiclon', 'buys-ballot', 'isobaras', 'frentes', 'frente-frio-corte', 'frente-calido-corte', 'niebla-adveccion', 'niebla-radiacion', 'niebla-vapor', 'brisa-mar', 'brisa-tierra'), ...vientos, ...escalas],
     3: [{ tipo: 'nortes', dm: -4, desvio: 2 }, { tipo: 'loxodromica' }, ...mareas],
     4: [{ tipo: 'corriente', caso: 'efectivo' }, { tipo: 'corriente', caso: 'rumbo-a-dar' }, { tipo: 'abatimiento', banda: 'babor' }, { tipo: 'abatimiento', banda: 'estribor' }, { tipo: 'enfilacion' }, { tipo: 'demoras' }, { tipo: 'marea', modo: 'sonda' }],
   },

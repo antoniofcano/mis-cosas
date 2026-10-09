@@ -12,7 +12,7 @@ export const T = {
   fondo: 'var(--lc-fondo)', papel: 'var(--lc-papel)', tinta: 'var(--lc-tinta)', apagado: 'var(--lc-apagado)', magenta: 'var(--lc-magenta)',
   amarillo: 'var(--lc-amarillo)', negro: 'var(--lc-negro)', blanco: 'var(--lc-blanco)', azul: 'var(--lc-azul)', azulTxt: 'var(--lc-azul-texto)',
   agua: 'var(--lc-agua)', agua2: 'var(--lc-agua-2)', lineaAgua: 'var(--lc-linea-agua)', tierra: 'var(--lc-tierra)', casco: 'var(--lc-casco)',
-  verde: 'var(--lc-verde)', verdeTxt: 'var(--lc-verde-texto)', rojo: 'var(--lc-rojo)', rojoTxt: 'var(--lc-rojo-texto)',
+  verde: 'var(--lc-verde)', verdeTxt: 'var(--lc-verde-texto)', rojo: 'var(--lc-rojo)', rojoTxt: 'var(--lc-rojo-texto)', naranja: 'var(--lc-naranja)',
   noche: 'var(--lc-noche)', nocheMar: 'var(--lc-noche-mar)', nocheTxt: 'var(--lc-noche-texto)',
   luzBlanca: 'var(--lc-luz-blanca)', luzVerde: 'var(--lc-luz-verde)', luzRoja: 'var(--lc-luz-roja)', luzAmarilla: 'var(--lc-luz-amarilla)', luzAzul: 'var(--lc-luz-azul)',
 };

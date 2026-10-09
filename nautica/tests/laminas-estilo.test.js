@@ -82,7 +82,7 @@ const PILOTO = [
   { tipo: 'meteo', sistema: 'borrasca' }, { tipo: 'meteo', sistema: 'anticiclon' },
   ...['dextrogira', 'levogira'].flatMap((sentido) => ['avante', 'atras'].map((marcha) => ({ tipo: 'helice', sentido, marcha }))),
   ...['avante', 'atras'].flatMap((marcha) => ['er', 'br', 'via'].flatMap((timon) => ['dextrogira', 'levogira'].map((sentido) => ({ tipo: 'helice-timon', marcha, timon, sentido })))),
-  { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' },
+  { tipo: 'hombre-al-agua', maniobra: 'boutakow' }, { tipo: 'hombre-al-agua', maniobra: 'anderson' }, { tipo: 'hombre-al-agua', maniobra: 'scharnow' }, { tipo: 'evolucion' },
   ...['estable', 'indiferente', 'inestable'].map((caso) => ({ tipo: 'estabilidad', caso })), { tipo: 'estabilidad', caso: 'estable', traslado: 2 },
   ...['curva', 'duodecimos', 'sonda'].flatMap((modo) => [480, 600, 720, 840].map((hora) => ({ tipo: 'marea', modo, hora }))), { tipo: 'marea', modo: 'curva' },
   // PY, carta: nortes, rosa, abatimiento, corriente, enfilación, demoras y estima (con sus casos extremos)

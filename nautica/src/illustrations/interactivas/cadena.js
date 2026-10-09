@@ -70,13 +70,16 @@ export function cambiosCadena(c, t) {
   const [px, py] = pol(b[0], b[1], c.rv, 34);
   const carta = tramo(t, T_CARTA, T_CARTA + 0.6);
   const min = Math.round(k * 60);
-  return {
-    fin: { opacity: f1(carta) },
-    mov: { opacity: f1(1 - carta) },
-    'a-ef': { x2: f1(b[0]), y2: f1(b[1]) },
+  const conC = c.ic ? {
     'a-sup': { x2: f1(f[0]), y2: f1(f[1]) },
     'a-corr': { x1: f1(f[0]), y1: f1(f[1]), x2: f1(b[0]), y2: f1(b[1]) },
     'a-fantasma': { transform: `translate(${f1(f[0])} ${f1(f[1])}) rotate(${f1(c.rv)})` },
+  } : {};
+  return {
+    ...conC,
+    fin: { opacity: f1(carta) },
+    mov: { opacity: f1(1 - carta) },
+    'a-ef': { x2: f1(b[0]), y2: f1(b[1]) },
     'a-barco': { transform: `translate(${f1(b[0])} ${f1(b[1])}) rotate(${f1(c.rv)})` },
     'a-proa': { x1: f1(b[0]), y1: f1(b[1]), x2: f1(px), y2: f1(py) },
     'a-hora': { texto: min >= 60 ? '1 h navegada' : `${min} min navegados` },

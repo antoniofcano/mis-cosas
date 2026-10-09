@@ -42,6 +42,9 @@ export function reproductor(dibujo, p, { autoplay = true, tInicial = null, alFot
   let visible = typeof IntersectionObserver !== 'function';
   let raf = 0;
   let ultimo = 0;
+  // Hasta que la lámina entra en la página no se sabe si se ve; si sale de ella después, el reproductor se apaga.
+  let conectado = false;
+  const fuera = () => { if (dibujo.isConnected) { conectado = true; return false; } return conectado; };
   let hito = -1;
   let indice = new Map();
   const cache = new WeakMap();
@@ -50,7 +53,7 @@ export function reproductor(dibujo, p, { autoplay = true, tInicial = null, alFot
   const anterior = btn('inicio', 'Paso anterior', () => { pausa(); ir(destinoAnterior()); avisaParada(); });
   const play = btn('play', 'Reproducir', () => (corriendo() || quiere ? (pausa(), avisaParada()) : reproducir()));
   const siguiente = btn('fin', 'Paso siguiente', () => { pausa(); ir(destinoSiguiente()); avisaParada(); });
-  const slider = h('input.ani-tiempo', { type: 'range', min: 0, max: pista.duracion, step: 0.05, value: t, 'aria-label': 'Momento de la animación', id: `${uid}-t`,
+  const slider = h('input.ani-tiempo', { type: 'range', min: 0, max: pista.duracion, step: pista.paso ?? 0.05, value: t, 'aria-label': 'Momento de la animación', id: `${uid}-t`,
     oninput: (ev) => { pausa(); ir(Number(ev.target.value)); },
     onchange: () => avisaParada() });
   const marcas = h('div.ani-marcas', { 'aria-hidden': 'true' });
@@ -65,6 +68,7 @@ export function reproductor(dibujo, p, { autoplay = true, tInicial = null, alFot
   function pintaMarcas() {
     marcas.replaceChildren(...pista.hitos.map((x) => h('span', { style: `left:${((x.t / pista.duracion) * 100).toFixed(2)}%` })));
     slider.max = String(pista.duracion);
+    slider.step = String(pista.paso ?? 0.05);
   }
 
   function reindexa() {
@@ -129,13 +133,10 @@ export function reproductor(dibujo, p, { autoplay = true, tInicial = null, alFot
     play.title = etq;
   }
 
-  let conectado = false;
   function bucle(ts) {
     raf = 0;
-    // Hasta que la lámina entra en la página no se sabe si se ve; si sale de ella, el reproductor se apaga.
-    if (dibujo.isConnected) conectado = true;
-    else if (conectado) { destruir(); return; }
-    else { raf = requestAnimationFrame(bucle); return; }
+    if (fuera()) { destruir(); return; }
+    if (!conectado) { raf = requestAnimationFrame(bucle); return; }
     if (!corriendo()) { estado(); return; }
     const dt = ultimo ? Math.min(0.1, (ts - ultimo) / 1000) : 0;
     ultimo = ts;
@@ -157,6 +158,8 @@ export function reproductor(dibujo, p, { autoplay = true, tInicial = null, alFot
   function reproducir() {
     if (t >= pista.duracion - 0.001 && !pista.bucle) { t = 0; aplica(); }
     quiere = true;
+    // si se pide desde los controles con el dibujo fuera de la vista, se trae el dibujo (si no, esperaría a verse)
+    if (!visible && typeof dibujo.scrollIntoView === 'function') dibujo.scrollIntoView({ block: 'nearest', behavior: reducido ? 'auto' : 'smooth' });
     arranca();
   }
   function pausa() {
@@ -175,13 +178,13 @@ export function reproductor(dibujo, p, { autoplay = true, tInicial = null, alFot
   let io = null;
   if (typeof IntersectionObserver === 'function') {
     io = new IntersectionObserver((es) => {
+      if (fuera()) { destruir(); return; }
       for (const e of es) visible = e.isIntersecting;
-      if (!dibujo.isConnected) { destruir(); return; }
       arranca();
     }, { threshold: 0.2 });
     io.observe(dibujo);
   }
-  const alOcultar = () => { if (!dibujo.isConnected) { destruir(); return; } arranca(); };
+  const alOcultar = () => { if (fuera()) { destruir(); return; } arranca(); };
   if (typeof document !== 'undefined') document.addEventListener('visibilitychange', alOcultar);
   function destruir() {
     quiere = false;

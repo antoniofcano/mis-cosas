@@ -27,7 +27,11 @@ gradual: nada se rompe si una lámina no tiene marco).
 | Marca de balizamiento (castillete, tope, franjas) | `marcaC()` de `src/illustrations/buoys.js` |
 | Textos del marco de cada lámina (`titulo`, `clave`, `nota`, `datos`, `alt`) | `src/illustrations/marcos.js` |
 | Marco HTML (eyebrow, título, frase clave, figura, datos, nota) | `src/ui/lamina-marco.js` |
+| Láminas animadas: pistas puras (evolución, hombre al agua, hélice, borrasca y anticiclón) | `src/illustrations/animaciones/` (registro en `index.js`, piezas comunes en `pista.js`) |
+| Reproductor de las animaciones (controles, reloj, pausa fuera de pantalla) | `src/ui/animacion.js` (CSS `.ani-*` al final de `styles/laminas.css`) |
+| Modelo de maniobra (curva de evolución, hombre al agua, andar de la hélice) | `src/nautical/maniobra.js` |
 | Tests del estilo | `tests/laminas-estilo.test.js` |
+| Tests de las animaciones (física, fotogramas, reproductor) | `tests/animaciones.test.js` |
 
 ## Paleta (variables `--lc-*`)
 
@@ -80,8 +84,10 @@ gradual: nada se rompe si una lámina no tiene marco).
    sus sectores: verde a estribor, roja a babor…»), no «Ilustración». Es el `aria-label` del SVG y el `alt` del marco.
 7. **Nada de emojis** (ni en el SVG ni en los textos): números de paso con `paso()`, flechas dibujadas con `flecha()`.
    `tests/iconos.test.js` vigila `src/ui` y `src/illustrations`.
-8. **Animación**: se conservan las que había (luces que destellan, barcos que se mueven, hélice que gira); no se añaden
-   efectos nuevos. Ninguna información depende de la animación: el dibujo parado (miniatura) se entiende igual.
+8. **Animación**: solo donde el movimiento es la idea (una maniobra, un fenómeno), con el reproductor común (ver
+   «Láminas animadas»). Ninguna información depende de la animación: el dibujo parado (miniatura, «reducir movimiento»)
+   es su fotograma final, con todas las cotas, y los pasos se leen escritos. Las animaciones SMIL antiguas (luces que
+   destellan…) se conservan.
 9. **Corrección**: la verdad es la norma y la matemática. Cada lámina se comprueba contra su fuente (apéndice).
 10. **Parametrización**: al rehacer una lámina se conservan su `tipo`, sus parámetros, sus variantes, sus `data-parte`
     (los usan las clases «toca en el dibujo» y el resaltado) y su interacción. `validSpec` sigue aceptando las specs.
@@ -119,6 +125,61 @@ out.push(cierra());                                // marco con graduación y </
   que se dibuja) y corriente con tres; la proa (Rv), a trazos con el barco. Las líneas de posición se trazan desde el
   objeto con la demora opuesta (Dv ± 180°); la situación es un círculo con punto.
 
+## Láminas animadas
+
+El equivalente a un vídeo corto, pero dibujado, controlable y calculado: cada animación sale de una **función pura del
+tiempo** con la física del dominio (`src/nautical/*`), no de fotogramas clave pintados a ojo. La misma función dibuja
+cualquier instante, alimenta los tests y da la imagen fija.
+
+- **Pista** (`src/illustrations/animaciones/pista.js`): `{ duracion, hitos: [{ t, nombre, texto }], tFijo, svg(t),
+  cambios(t) }`. Los elementos que se mueven llevan `data-ani="clave"` y `cambios(t)` da sus atributos en el instante t
+  (`texto` para el contenido de un `<text>`); `svg(t)` se construye con esos mismos cambios (`el()`), así que no
+  pueden desacompasarse. `ritmo()` hace tramos a cámara lenta (el timón, la popa que abre) y deprisa (navegar).
+- **Reproductor** (`src/ui/animacion.js`): `requestAnimationFrame`; en cada fotograma solo escribe los atributos que
+  cambian (con caché: nunca rehace el SVG). Controles de 44 px: paso anterior, reproducir/pausa, paso siguiente,
+  velocidad 0,5×/1×/2× (`aria-pressed`) y deslizador de tiempo con `aria-valuetext` («Paso 3 de 6: 90°: avance y
+  traslado, a los 18 s»), con marcas de los pasos; debajo, el paso vigente escrito y anunciado (`aria-live`).
+  `bucle: true` en la pista la hace volver a empezar.
+- **Arranque y pausa**: en la galería y en clase arranca sola cuando se ve; en la explicación de una pregunta, no. Se
+  para sola cuando la lámina sale de la pantalla (`IntersectionObserver`) o la pestaña se oculta, y sigue al volver si
+  estaba en marcha (pausada a mano, no). Con **«reducir movimiento»** no arranca: enseña el fotograma fijo (el final,
+  con todos sus rótulos) y el control paso a paso; se puede reproducir a mano.
+- **Láminas con mandos**: la definición interactiva lleva `animacion: { pista(estado, resultado), mando? }` y su
+  `dibujar(…, { t })` pinta el instante t. Mover un mando carga la pista del nuevo estado. Con `mando` (la hora de la
+  marea) el tiempo es ese mando: se mueven a la par y, al parar, la lectura y las casillas se ponen al día.
+- **Imagen fija**: `renderIllustration` da `svg(tFijo)` (galería, miniaturas, tarjetas). En las interactivas, la de
+  siempre (el estado de la spec).
+
+| Lámina | Qué se mueve | Hitos |
+| --- | --- | --- |
+| `evolucion` | el yate (a escala, con su pala del timón), su estela y la de la popa | rumbo inicial · todo a estribor · la popa abre · 90°: avance y traslado · 180°: diámetro táctico · 360°: diámetro final |
+| `hombre-al-agua` (`boutakow`, `anderson`, `scharnow`) | el yate con su estela (banda de agua batida), el timón rotulado, el náufrago | caída y timón a su banda · 60° / 240°: a la otra · 20° antes del opuesto: a la vía · rumbo opuesto sobre la estela · recogida |
+| `helice` | la hélice vista desde popa girando y el barco que cae, con las estelas de proa y popa | máquina · la popa cae · la proa ha caído |
+| `meteo` `borrasca` / `anticiclon` | 16 partículas de aire en espiral con su cola | gira · cruza las isobaras 25° · converge y asciende (o desciende y diverge) |
+| `marea` (`curva`, `duodecimos`, `sonda`) | el agua bajo la curva, las franjas de los doceavos que se llenan, el agua del corte, el barco que flota y las cotas | una por hora, de la bajamar a la pleamar |
+| `corriente`, `abatimiento` | el barco con la proa al Rv, el fantasma sin corriente, la corriente y el efectivo que crecen | salida · avanza y lo arrastra · media hora · una hora · en la carta |
+
+### Hipótesis físicas (para comprobar contra el temario)
+
+- **Yate de ejemplo**: 12 m de eslora a 6 nudos (3,09 m/s). Rumbo con el modelo de Nomoto de primer orden
+  (T·ṙ + r = δ·U/R, T = 3,5 s; R = 1,5 esloras con todo el timón), ángulo de deriva de hasta 15° que se desarrolla en
+  6 s, pérdida de velocidad del 30 % en el giro y desplazamiento lateral inicial hacia fuera que se apaga en 3 s; el
+  timón va de la vía a la banda en 1,7 s. Resultado: avance ≈ 2,7 esloras, traslado ≈ 1,2, diámetro táctico ≈ 3,1 y
+  final ≈ 2,9 (el táctico, algo mayor, como dice el temario); la popa abre hacia la banda contraria.
+- **Hombre al agua**: con ese mismo modelo, la curva de Boutakow con el cambio a 60° y la de Scharnow con el cambio a
+  240°, a la vía 20° antes del rumbo opuesto, vuelven solas a menos de media eslora de la derrota inicial al rumbo
+  opuesto (en un barco real el ángulo se ajusta en pruebas). Anderson: a la vía a los 250° y aproximación con poco
+  timón. La persona queda donde cayó, porque la referencia es el agua (la corriente los arrastra igual a los dos).
+  Boutakow y Anderson: acción inmediata, cae por la aleta de estribor; Scharnow: acción retrasada, cayó unos 25 s antes.
+- **Hélice**: la banda es la de `src/nautical/helice.js` (dextrógira: avante la popa a estribor, atrás a babor). El
+  barco gira alrededor de su punto de giro (a un tercio de la eslora desde la proa avante, desde la popa atrás). Avante
+  la popa cae a 1,2°/s y menos con arrancada; atrás, a 4,5°/s: en 12 s, unos 40°. Son valores cualitativos.
+- **Borrasca y anticiclón**: espirales logarítmicas que cortan las isobaras con el ángulo de rozamiento de
+  `src/nautical/meteo.js` (25°), a velocidad constante (las isobaras del dibujo están igual de separadas).
+- **Marea**: altura con la fórmula de la tabla (`correccionTabla`), dos segundos por hora; las franjas de los doceavos
+  se llenan con la curva. **Corriente**: el barco está en cada instante en t·(superficie + corriente): velocidad
+  constante y triángulo que crece sin deformarse.
+
 ## El marco de la lámina (HTML)
 
 `src/illustrations/marcos.js` da, para cada spec migrada, `{ tema, titulo, clave, nota, datos: [{ cifra, texto }], alt }`.
@@ -150,9 +211,11 @@ out.push(cierra());                                // marco con graduación y </
 | Partes del barco | Eslora (longitud), manga (anchura máxima), puntal (de la quilla a la cubierta principal), calado (de la flotación a la quilla), francobordo (de la flotación a la cubierta); obra viva bajo la flotación, obra muerta encima; babor a la izquierda mirando a proa, estribor a la derecha; amura (proa), través (90°), aleta (popa). | RD 875/2014, anexo II (PER, UT 1 Nomenclatura náutica) |
 | Borrasca y anticiclón | Hemisferio norte: alrededor de la borrasca el viento gira en sentido antihorario y converge hacia el centro (cruza las isobaras hacia la baja presión); alrededor del anticiclón, horario y divergente. Presión menor en el centro de la borrasca, mayor en el del anticiclón. | Ley de Buys-Ballot; efecto de Coriolis y rozamiento (OMM, Manual de meteorología marina); RD 875/2014, anexo II (PER, UT 9) |
 | Hélice y timón | Hélice dextrógira (gira a la derecha avante, vista desde popa): avante la popa cae a estribor (poco), atrás a babor (mucho); levógira, al revés. Timón con arrancada avante: timón a estribor, proa a estribor y popa a babor. Atrás con poca arrancada manda la hélice. | RD 875/2014, anexo II (PER, UT 7 Maniobra); presión lateral de las palas |
-| Hombre al agua | Boutakow (Williamson): todo el timón a la banda de la caída; separado unos 60° del rumbo inicial, todo a la banda contraria hasta el rumbo opuesto; vuelve por su estela. Anderson: todo a la banda del náufrago y una vuelta de unos 250° hasta acercarse. | IAMSAR, vol. III, sección 2 (maniobras de recogida de persona al agua); RD 875/2014, anexo II (PER, UT 3) |
+| Hombre al agua (animada) | Boutakow (Williamson): todo el timón a la banda de la caída; separado unos 60° del rumbo inicial, todo a la banda contraria; unos 20° antes del rumbo opuesto, a la vía y gobernar al opuesto; vuelve por su estela. Anderson (una vuelta): todo a la banda del náufrago; tras unos 250°, a la vía y parar o moderar para acercarse; la más rápida, para acción inmediata. Scharnow: todo a una banda; a unos 240°, todo a la otra; 20° antes del opuesto, a la vía; vuelve a la derrota más atrás, con menos camino recorrido: para acción retrasada, no para inmediata. Los ángulos dependen del barco; el modelo de `src/nautical/maniobra.js` los cumple. | IAMSAR, vol. III, sección 2 (persona al agua: maniobras de Williamson, de una vuelta o Anderson y de Scharnow); RD 875/2014, anexo II (PER, UT 3; PY, UT 1) |
+| Curva de evolución (animada) | Al meter el timón la popa abre hacia la banda contraria y el barco se desplaza un poco hacia ella antes de caer; avance: lo que adelanta en la dirección inicial al caer 90°; traslado: lo que se separa de ella a los 90°; diámetro táctico: la separación al caer 180°; diámetro final: el del círculo ya estabilizado, algo menor que el táctico. | RD 875/2014, anexo II (PER, UT 7 «Maniobra»: curva de evolución); tratados de maniobra del buque (modelo de Nomoto de primer orden, ángulo de deriva) |
+| Efecto de la hélice (animada) | Además del timón, la hélice de un barco de una hélice desvía la popa por la presión lateral de sus palas: dextrógira, avante a estribor (poco) y atrás a babor (mucho, sobre todo sin arrancada); levógira, al revés. El barco gira alrededor de su punto de giro. | RD 875/2014, anexo II (PER, UT 7 «Maniobra»: efecto evolutivo de la hélice); tratados de maniobra del buque |
 | Estabilidad | Estable si M está por encima de G (GM > 0): el par adriza; GZ = GM · sen(escora) en pequeñas escoras. Subir pesos sube G y reduce GM y GZ; con G por encima de M el par vuelca. | Teoría del buque, estabilidad inicial (metacentro transversal); RD 875/2014, anexo II (PER, UT 3) |
-| Marea: curva y doceavos | La altura sigue una curva aproximadamente senoidal entre bajamar y pleamar; regla de los doceavos para ~6 h: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud cada hora (a las 3 h, la mitad: sen²(45°) = 0,5). Sonda del momento = sonda de la carta + altura de la marea; agua bajo la quilla = sonda − calado. | Anuario de mareas del Instituto Hidrográfico de la Marina (tabla de corrección C = A · sen²(90° · I / D)); RD 875/2014, anexo II (PER, UT 10; PY, UT 3) |
+| Marea: curva y doceavos (animada) | La altura sigue una curva aproximadamente senoidal entre bajamar y pleamar; regla de los doceavos para ~6 h: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud cada hora (a las 3 h, la mitad: sen²(45°) = 0,5). Sonda del momento = sonda de la carta + altura de la marea; agua bajo la quilla = sonda − calado. | Anuario de mareas del Instituto Hidrográfico de la Marina (tabla de corrección C = A · sen²(90° · I / D)); RD 875/2014, anexo II (PER, UT 10; PY, UT 3) |
 | Corrección total: los tres nortes | Ct = dm + Δ, cada uno con su signo (E +, W −); Rv = Ra + Ct; el norte de aguja queda al E del verdadero si la Ct es positiva y al W si es negativa. La declinación viene en la carta; el desvío, en la tablilla. | RD 875/2014, anexo II (PY, UT 3.2 y 4.1: corrección total por declinación y desvío); convenio del examen en `src/nautical/compass.js` |
 | Rumbo, demora y marcación | Rumbo y demora se miden desde el norte de 000° a 359° en el sentido de las agujas del reloj; la marcación, desde la proa, de 0° a 180° por cada banda: Dv = Rv + M (M + a estribor, − a babor). | RD 875/2014, anexo II (PER, UT 10; PY, UT 3.3) |
 | Abatimiento (babor y estribor) | Rs = Rv + Ab; Ab positivo con el viento por babor (el barco abate a estribor) y negativo por estribor; en el problema inverso Rv = Rs − Ab. | RD 875/2014, anexo II (PY, UT 3.3 «Rumbos: verdadero, de superficie y efectivo; abatimiento y deriva» y UT 4.2) |

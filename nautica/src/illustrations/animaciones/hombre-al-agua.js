@@ -21,7 +21,7 @@ function guion(man, h) {
   const dur = Math.round(M.recogida);
   if (man === 'anderson') {
     return {
-      ritmo: ritmo([[0, 0], [8, 3], [M.via, 8.5], [M.recogida, 12.5], [M.recogida + 1, 13.5]]),
+      ritmo: ritmo([[0, 0], [8, 3], [M.via, 8.5], [M.recogida, 12.5], [M.recogida, 13.5]]),
       hitos: [
         [0, '¡Hombre al agua por estribor!', 'Grita, lanza el aro y no lo pierdas de vista. Todo el timón a estribor, la banda del náufrago: la popa y la hélice se apartan de él.'],
         [M.via, `A unos ${REGLA_HAA.anderson}°: a la vía`, `Tras una sola vuelta de unos ${REGLA_HAA.anderson}°, timón a la vía y moderar la máquina: el barco termina de caer y el náufrago queda por la proa.`],
@@ -33,7 +33,7 @@ function guion(man, h) {
   }
   if (man === 'scharnow') {
     return {
-      ritmo: ritmo([[0, 0], [M.cambio, 6.5], [M.via, 9.5], [M.opuesto, 10.5], [M.recogida, 15.5], [M.recogida + 1, 16.5]]),
+      ritmo: ritmo([[0, 0], [M.cambio, 6.5], [M.via, 9.5], [M.opuesto, 10.5], [M.recogida, 15.5], [M.recogida, 16.5]]),
       hitos: [
         [0, 'Alarma: cayó hace un rato', 'La persona cayó hace un rato y está en la estela, lejos por la popa. Todo el timón a una banda.'],
         [M.cambio, `A ${REGLA_HAA.scharnow}°: todo a la otra banda`, `Caídos ${REGLA_HAA.scharnow}° del rumbo inicial, todo el timón a la banda contraria.`],
@@ -45,7 +45,7 @@ function guion(man, h) {
     };
   }
   return {
-    ritmo: ritmo([[0, 0], [M.cambio, 3.5], [M.via, 10], [M.opuesto, 11], [M.recogida, 16], [M.recogida + 1, 17]]),
+    ritmo: ritmo([[0, 0], [M.cambio, 3.5], [M.via, 10], [M.opuesto, 11], [M.recogida, 16], [M.recogida, 17]]),
     hitos: [
       [0, '¡Hombre al agua por estribor!', 'Grita, lanza el aro y señálalo. Todo el timón a la banda por la que ha caído: la popa y la hélice se apartan de él.'],
       [M.cambio, `A ${REGLA_HAA.boutakow}°: todo a la otra banda`, `Separado ${REGLA_HAA.boutakow}° del rumbo inicial, todo el timón a babor.`],

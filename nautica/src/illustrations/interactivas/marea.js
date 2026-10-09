@@ -225,6 +225,7 @@ export const marea = {
       return pista({
         duracion: DUR,
         momento: (t) => `a las ${hhmm(horaDe(t))}`,
+        paso: (15 / D) * DUR, // el deslizador va de 15 en 15 minutos, como el mando de la hora
         hitos: hitosMarea(e.modo),
         svg: (t) => curva(ea, marea.calcular({ hora: horaDe(t) }), horaDe(t)) + corte(ea, marea.calcular({ hora: horaDe(t) }), horaDe(t)),
         cambios: (t) => ({ ...cambiosCurva(ea, horaDe(t)), ...cambiosCorte(horaDe(t)) }),

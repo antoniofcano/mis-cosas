@@ -165,3 +165,144 @@ a.tc-mazo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px;
 .ani-paso b { font-weight: 700; }
 .ani-num { display: inline-block; min-width: 2.6em; padding: 0 .3em; margin-right: .15em; font-family: var(--lc-mono); font-size: .9rem; font-weight: 700; text-align: center; color: var(--lc-magenta); border: 1px solid var(--lc-magenta); }
 .il-figure.ani { background: transparent; }
+
+/* ---- Mapas de conceptos y chuletas en estilo C (src/ui/views/mapas.js, src/illustrations/mapa-c.js,
+   src/ui/views/chuleta.js) ----
+   Papel y tinta de carta, títulos en serifa, cifras y números en monoespaciada (etiquetas de cota), cartelas con doble
+   filete. Ningún texto por debajo de .72rem (13 px con la raíz de 18 px). Botones y enlaces de 44 px como mínimo. */
+.mc-cab { display: flex; flex-direction: column; gap: .35rem; margin: .2rem 0 .9rem; min-width: 0; }
+.mc-cab .lc-eti, .mc-hoja-cab .lc-eti { display: flex; align-items: center; gap: .4em; }
+.mc-intro { margin: 0; font-family: var(--lc-serif); font-size: 1.02rem; line-height: 1.45; color: var(--lc-apagado); max-width: 62ch; }
+.mc-ayuda { margin: 0 0 .5rem; font-family: var(--lc-serif); font-style: italic; font-size: .95rem; line-height: 1.4; color: var(--lc-apagado); }
+/* Lista de mapas: tarjetas de papel con doble filete */
+.mc-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: .75rem; }
+a.mc-tarjeta { display: flex; gap: .8rem; align-items: flex-start; height: 100%; min-height: 44px; padding: .9rem 1rem; background: var(--lc-fondo); color: var(--lc-tinta); text-decoration: none;
+  border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); }
+a.mc-tarjeta:hover { border-color: var(--lc-magenta); }
+a.mc-tarjeta:focus-visible, a.mapa-vecino:focus-visible, .mc-lienzo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.mc-tarjeta-ico { flex: none; width: 40px; height: 40px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--lc-papel); border: 1px solid var(--lc-tinta); }
+.mc-tarjeta-ico .ico { width: 22px; height: 22px; }
+.mc-tarjeta-tx { display: flex; flex-direction: column; gap: .25rem; min-width: 0; }
+.mc-tarjeta-eti { font-family: var(--lc-mono); font-size: .78rem; font-weight: 600; color: var(--lc-magenta); }
+.mc-tarjeta-titulo { font-family: var(--lc-serif); font-size: 1.2rem; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.mc-tarjeta-intro { font-family: var(--lc-serif); font-style: italic; font-size: .95rem; line-height: 1.4; color: var(--lc-apagado); }
+/* Pestañas: un mando segmentado de tinta */
+.mc .mapa-pestanas { display: flex; margin: 0 0 1rem; padding: 3px; gap: 3px; border: 1.5px solid var(--lc-tinta); background: var(--lc-papel); }
+.mc .mapa-pestanas button { flex: 1 1 0; min-width: 0; min-height: 44px; padding: 0 .35rem; border: 0; border-radius: 0; background: transparent; color: var(--lc-tinta); font-size: .95rem; white-space: nowrap; }
+.mc .mapa-pestanas button[aria-selected="true"] { background: var(--lc-tinta); color: var(--lc-papel); }
+.mc .mapa-pestanas button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.mapa-rastro { margin: 0 0 .6rem; font-size: .95rem; color: var(--lc-apagado); }
+.mapa-rastro a { display: inline-flex; align-items: center; min-height: 44px; }
+/* Explorar: el concepto en un marco de lámina; sus vecinos, cartelas que se tocan */
+.mapa-centro .lc-titulo { font-size: 1.45rem; }
+.mc-corto { margin: 0; font-family: var(--lc-serif); font-size: 1.05rem; line-height: 1.45; color: var(--lc-tinta); }
+.mc-enlaces { margin: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.mc-enlaces .btn, .mc-fichas .btn { display: inline-flex; align-items: center; min-height: 44px; padding: .45rem .8rem; font-size: .95rem; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; }
+.mc-enlaces .btn:hover { border-color: var(--lc-magenta); }
+.mc-fichas { display: contents; }
+.mc-fichas .btn { border-color: var(--lc-magenta); color: var(--lc-magenta); }
+.mapa-grupo { margin-top: 1.1rem; }
+.mapa-grupo h3, .mc-grupo-tit { margin: 0 0 .4rem; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); display: flex; align-items: center; gap: .3em; }
+.mc-vecinos { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.mapa-vecino { display: flex; align-items: center; gap: .7rem; width: 100%; min-height: 64px; margin: .35rem 0; padding: .45rem .6rem; text-align: left; text-decoration: none;
+  background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); font: inherit; cursor: pointer; }
+.mc-vecinos .mapa-vecino { margin: 0; }
+a.mapa-vecino { text-decoration: none; }
+a.mapa-vecino:hover { border-color: var(--lc-magenta); }
+.mapa-grupo.confunde .mapa-vecino { border: 1.5px dashed var(--lc-magenta); box-shadow: none; }
+.mapa-vecino-txt { display: flex; flex-direction: column; gap: .15rem; min-width: 0; flex: 1; }
+.mapa-vecino-txt strong, .mc-vecino-nombre { font-family: var(--lc-serif); font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+.mapa-rel { font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); font-size: .92rem; line-height: 1.35; }
+.mc-ir { flex: none; width: 20px; height: 20px; color: var(--lc-apagado); }
+.mapa-mini { flex: 0 0 64px; width: 64px; height: 48px; overflow: hidden; background: var(--lc-fondo); border: 1px solid var(--lc-tinta); }
+.mapa-mini svg { display: block; width: 100%; height: 100%; }
+/* El mapa entero: a escala 1 (el texto nunca baja de 11,5 px), en un recuadro que se desplaza */
+.mc-lienzo { overflow: auto; max-height: 72vh; max-height: 72dvh; border: 1.5px solid var(--lc-tinta); background: var(--lc-fondo); -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+/* El SVG lleva en línea su min-width (escala 1) y su max-width (×1,25): en el móvil se ve a escala 1 y se desplaza; en
+   pantallas anchas ocupa el recuadro, sin pasar de 1,25 veces su tamaño */
+.mc-lienzo svg { display: block; }
+@media (min-width: 900px) { .mc-lienzo svg { width: 100%; height: auto; margin: 0 auto; } }
+/* A 360 px las tres pestañas caben sin sus iconos */
+@media (max-width: 420px) { .mc .mapa-pestanas .ico { display: none; } .mc .mapa-pestanas button { flex: 1 1 auto; padding: 0 .25rem; } }
+.mc-nodo { cursor: pointer; }
+.mc-nodo:hover .mc-borde { stroke: var(--lc-magenta); }
+.mc-nodo:focus { outline: none; }
+.mc-nodo:focus-visible .mc-borde { stroke: var(--accent); stroke-width: 3.5; }
+.mc-leyenda { margin-top: 1rem; }
+.mc-leyenda-tit { margin: 1rem 0 .4rem; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); display: flex; align-items: center; gap: .3em; }
+.mc-rels { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: .1rem 1.2rem; }
+.mc-rels li { display: flex; gap: .55rem; align-items: baseline; padding: .35rem 0; border-bottom: 1px dotted var(--lc-linea-agua); }
+.mc-num { flex: none; min-width: 1.9em; padding: 0 .3em; font-family: var(--lc-mono); font-variant-numeric: tabular-nums; font-size: .85rem; font-weight: 700; text-align: center; color: var(--lc-tinta); background: var(--lc-papel); border: 1px solid var(--lc-tinta); }
+.mc-rels.confunde .mc-num { color: var(--lc-magenta); border-color: var(--lc-magenta); }
+.mc-rel-tx { font-family: var(--lc-serif); font-size: 1rem; line-height: 1.4; color: var(--lc-tinta); min-width: 0; }
+.mc-rel-tx a { color: var(--lc-tinta); font-weight: 700; text-decoration-color: var(--lc-linea-agua); text-underline-offset: 2px; }
+.mc-rel-tx em { color: var(--lc-apagado); }
+.mc-flecha { color: var(--lc-magenta); }
+/* Juego del mapa (también en el remate de un repaso y en el plan) */
+.mapa-pregunta { display: flex; gap: .7rem; align-items: center; }
+.mapa-pregunta .qtext { font-family: var(--lc-serif); font-size: 1.1rem; }
+.mapa-opciones { display: grid; gap: .5rem; margin: .8rem 0; }
+button.mapa-opcion { display: flex; align-items: center; gap: .4rem; min-height: 52px; text-align: left; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; font-weight: 600; }
+button.mapa-opcion:disabled { opacity: 1; cursor: default; }
+button.mapa-opcion.correcta { border: 2.5px solid var(--lc-verde-texto); color: var(--lc-verde-texto); font-weight: 700; }
+button.mapa-opcion.fallada { border: 2.5px dashed var(--lc-rojo-texto); color: var(--lc-rojo-texto); }
+.mc-solucion { font-family: var(--lc-serif); font-style: italic; }
+
+/* Chuleta del tema: una hoja de papel de carta en pantalla; en A4 al imprimir */
+.mc-hoja { max-width: 820px; margin: 0 auto; }
+.mc-acciones { display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .6rem; }
+.mc-botones { display: flex; align-items: center; gap: .4rem 1rem; flex-wrap: wrap; }
+.mc-botones label.check { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
+button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; background: var(--lc-tinta); color: var(--lc-papel); border-color: var(--lc-tinta); border-radius: 0; }
+.mc-hoja-cab { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1rem .9rem; background: var(--lc-fondo); color: var(--lc-tinta);
+  border: 1.5px solid var(--lc-tinta); border-bottom: 0; box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); }
+.mc-impresion { display: none; }
+.mc-clases { background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-top: 3px double var(--lc-tinta); padding: .2rem 1rem 1rem; }
+.mc-clase { break-inside: avoid; padding: .7rem 0 .5rem; border-bottom: 1px dashed var(--lc-linea-agua); }
+.mc-clase:last-of-type { border-bottom: 0; }
+.mc-clase-tit { display: flex; align-items: baseline; gap: .5rem; margin: 0 0 .35rem; font-family: var(--lc-serif); font-size: 1.15rem; line-height: 1.25; color: var(--lc-tinta); break-after: avoid; }
+.mc-clase-tit .mc-num { font-size: .8rem; color: var(--lc-magenta); border-color: var(--lc-magenta); }
+.mc-claves { margin: .2rem 0 .4rem; padding-left: 1.2rem; }
+.mc-claves li { margin: .15rem 0; line-height: 1.45; }
+.mc-claves li::marker { color: var(--lc-magenta); }
+.mc-claves li > p, .mc-trampa p { margin: 0; display: inline; }
+.mc-claves strong { font-variant-numeric: tabular-nums; }
+.mc-hoja .mc-rotulo { display: flex; align-items: center; gap: .3em; margin: 0 0 .15rem; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.mc-regla { margin: .45rem 0; padding: .45rem .6rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); }
+.mc-regla p { margin: 0; font-family: var(--lc-serif); line-height: 1.4; }
+.mc-trampa { margin: .45rem 0; padding: .4rem .6rem; border: 1px dashed var(--lc-magenta); border-left: 4px solid var(--lc-magenta); background: transparent; }
+.mc-hoja.sin-trampas .mc-trampa { display: none; }
+@media (max-width: 560px) {
+  .mc-hoja-cab { padding: .8rem .75rem .7rem; }
+  .mc-clases { padding-inline: .75rem; }
+}
+
+/* Al imprimir: A4, blanco y negro (cualquier tema), sin fondos, la tinta y el magenta en negro. Dos columnas, cada
+   clase sin partir y su título pegado a ella; arriba, la titulación y la fecha. */
+@media print {
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --lc-fondo: white; --lc-papel: white; --lc-tinta: black; --lc-apagado: black; --lc-magenta: black;
+    --lc-linea-agua: gray; --lc-verde-texto: black; --lc-rojo-texto: black; color-scheme: light;
+  }
+  @page { size: A4; margin: 10mm 10mm 11mm; }
+  .mc-hoja { max-width: none; margin: 0; font-size: 9pt; line-height: 1.28; color: black; }
+  .mc-hoja-cab { padding: 0 0 2mm; border: 0; border-bottom: 1.5pt solid black; box-shadow: none; background: none; gap: 1mm; break-after: avoid; }
+  .mc-impresion { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 4mm; margin: 0; font-family: var(--lc-mono); font-size: 8pt; color: black; }
+  .mc-eti-pantalla, .mc-hoja .mc-intro { display: none; }
+  .mc-hoja h1.lc-titulo { font-size: 14pt; margin: 0; }
+  .mc-clases { border: 0; padding: 2mm 0 0; background: none; column-count: 2; column-gap: 7mm; column-rule: .5pt solid darkgray; }
+  /* Una clase larga puede seguir en la otra columna (si no, quedan medias páginas en blanco), pero nunca se parte un
+     punto, una regla ni una trampa, y el título no se queda solo al pie */
+  .mc-clase { padding: 1.2mm 0 1.4mm; border-bottom: .5pt solid darkgray; break-inside: auto; }
+  .mc-claves li { break-inside: avoid; page-break-inside: avoid; }
+  .mc-clase-tit { font-size: 10pt; margin: 0 0 .8mm; break-after: avoid; page-break-after: avoid; }
+  .mc-clase-tit .mc-num { font-size: 8pt; }
+  .mc-claves { margin: 0 0 .6mm; padding-left: 4mm; }
+  .mc-claves li { margin: .2mm 0; line-height: 1.28; }
+  .mc-regla, .mc-trampa { margin: .8mm 0; padding: .6mm 1.6mm; box-shadow: none; break-inside: avoid; page-break-inside: avoid; }
+  .mc-clase-tit + .mc-claves > li:first-child { break-before: avoid; }
+  .mc-regla { border: .8pt solid black; }
+  .mc-trampa { border: .6pt dashed black; border-left: 2pt solid black; }
+  .mc-hoja .mc-rotulo { font-size: 7pt; }
+  .mc-hoja .mc-rotulo .ico { width: 9pt; height: 9pt; }
+}

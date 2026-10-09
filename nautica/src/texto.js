@@ -19,11 +19,14 @@ export function cuenta(n, uno, varios = uno.includes(' ') ? null : plural(uno)) 
 
 const aFecha = (x) => (x instanceof Date ? x : typeof x === 'number' ? new Date(x) : (() => { const [y, m, d] = String(x).slice(0, 10).split('-').map(Number); return new Date(y, m - 1, d); })());
 
-/** «domingo, 4 de octubre» (con el año solo si no es el actual). Acepta 'AAAA-MM-DD', milisegundos o Date. */
-export function fechaLarga(x, { ahora = Date.now() } = {}) {
+/**
+ * «domingo, 4 de octubre» (con el año solo si no es el actual). Acepta 'AAAA-MM-DD', milisegundos o Date.
+ * Para papel (una hoja impresa se guarda): { diaSemana: false, año: true } → «4 de octubre de 2026».
+ */
+export function fechaLarga(x, { ahora = Date.now(), diaSemana = true, año = null } = {}) {
   const f = aFecha(x);
-  const otroAño = f.getFullYear() !== new Date(ahora).getFullYear();
-  return f.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', ...(otroAño ? { year: 'numeric' } : {}) });
+  const conAño = año ?? f.getFullYear() !== new Date(ahora).getFullYear();
+  return f.toLocaleDateString('es-ES', { ...(diaSemana ? { weekday: 'long' } : {}), day: 'numeric', month: 'long', ...(conAño ? { year: 'numeric' } : {}) });
 }
 
 /** Día local en formato ISO ('AAAA-MM-DD'), para guardar y comparar fechas (no para enseñar). */

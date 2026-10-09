@@ -69,7 +69,6 @@ function estimuloEl(a, { mini = false } = {}) {
   if (!a) return null;
   if (a.svg) return h(`div.il-svg.tc-dibujo${a.estiloC ? '' : '.tc-antiguo'}${mini ? '.tc-mini' : ''}`, { html: mini ? a.svg.replace(/role="img"[^>]*?aria-label="[^"]*"/, 'aria-hidden="true" focusable="false"') : a.svg });
   return h(`div.tc-estimulo${mini ? '.tc-mini' : ''}`, mini ? { 'aria-hidden': 'true' } : {},
-    a.texto.eti && !mini ? h('p.tc-estimulo-eti', a.texto.eti) : null,
     h(`p.tc-estimulo-grande${a.texto.mono ? '.mono' : ''}`, a.texto.grande),
     a.regla && !mini ? h('div.tc-regla-caja', { html: a.regla }) : null);
 }
@@ -99,9 +98,11 @@ function reversoEl(c, tit, a) {
     h('div.tc-rev-cab',
       h('div.tc-rev-tx', nombre ? h('p.tc-nombre', nombre) : null, resp),
       // la miniatura del dibujo, para unir respuesta y estímulo (los dibujos antiguos, muy anchos, no se leen en pequeño;
-      // si el estímulo es una palabra, ya está en el nombre)
-      a?.estiloC && a.svg ? estimuloEl(a, { mini: true }) : null),
+      // si el estímulo es una palabra, ya está en el nombre; el de una señal acústica ya está en su dato, los puntos y rayas)
+      a?.estiloC && a.svg && !a.sonido ? estimuloEl(a, { mini: true }) : null),
     r.dato ? h('p.tc-dato', h('span.visualmente-oculto', 'Dato: '), r.dato) : null,
+    // en las escalas, la regla con el grado marcado: dónde cae en la escala
+    a?.regla ? h('div.tc-regla-caja', { html: a.regla }) : null,
     notaTx ? h('aside.lc-nota.tc-nota', h('p.lc-nota-eti', 'Nota'), notaTx) : null);
   // Se explican los términos de la respuesta y de la nota (no los del nombre en versalitas ni los del dato).
   const usados = new Set();

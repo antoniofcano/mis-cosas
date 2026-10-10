@@ -2837,7 +2837,7 @@
      ],
      "chuleta": [
       "RD 339/2021: recreo de 2,5 a 24 m y hasta 12 pasajeros (no motos náuticas, kayaks ni tablas).",
-      "Zonas: 1 ilimitada · 2: 60 mn · 3: 25 mn · 4: 12 mn · 5: 5 mn de abrigo · 6: 2 mn de abrigo · 7: aguas protegidas.",
+      "Zonas: 1 ilimitada · 2: 60 M · 3: 25 M · 4: 12 M · 5: 5 M de abrigo · 6: 2 M de abrigo · 7: aguas protegidas.",
       "Categorías CE: A 1-7 · B 2-7 · C 4-7 · D 7.",
       "Chalecos: 1 por persona con luz (+1 en zona 1). 275 N / 150 N / 100 N.",
       "Aro con luz y rabiza en zonas 1-4 (otro más en zona 1), a popa o en las aletas. Balsa en zonas 1-3."
@@ -2854,7 +2854,7 @@
        "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022; cotejado el 07/10/2026), arts. 1.2 y 2"
       },
       {
-       "dato": "Zonas 1 ilimitada · 2: 60 mn · 3: 25 mn · 4: 12 mn · 5: 5 mn de abrigo · 6: 2 mn de abrigo · 7: aguas protegidas; categorías A 1-7, B 2-7, C 4-7, D 7",
+       "dato": "Zonas 1 ilimitada · 2: 60 M · 3: 25 M · 4: 12 M · 5: 5 M de abrigo · 6: 2 M de abrigo · 7: aguas protegidas; categorías A 1-7, B 2-7, C 4-7, D 7",
        "fuente": "RD 339/2021 (BOE-A-2021-8268, texto consolidado tras RD 587/2022; cotejado el 07/10/2026), art. 3"
       },
       {
@@ -8448,12 +8448,12 @@
       {
        "tipo": "texto",
        "titulo": "Cómo parar una hemorragia externa",
-       "texto": "1. **Presión directa** y firme sobre la herida con gasas estériles o, si no hay, un paño limpio. Si se empapa, pon más encima sin quitar las primeras.\n2. Si es un brazo o una pierna, **eleva el miembro** por encima del corazón mientras presionas (si no hay fractura). **Nunca lo bajes**: sangraría más.\n3. Cuando ceda, mantén un **vendaje compresivo**."
+       "texto": "1. **Presión directa** y firme sobre la herida con gasas estériles o, si no hay, un paño limpio. Si se empapa, pon más encima sin quitar las primeras.\n2. Si es un brazo o una pierna, **eleva el miembro** por encima del corazón mientras presionas (si no hay fractura y no le duele mucho al subirlo). **Nunca lo bajes**: sangraría más.\n3. Mantén la presión **10 minutos como mínimo**, sin levantar las gasas: así lo pide la Guía Sanitaria a Bordo del ISM. La DGMM ha dado por buena «al menos 4 o 5 minutos, pudiendo aplicar después un **vendaje compresivo**»; la Guía no habla de vendaje compresivo, sino de añadir gasas encima."
       },
       {
        "tipo": "texto",
        "titulo": "El torniquete, el último recurso",
-       "texto": "El **torniquete** no es lo primero: solo si la hemorragia de un miembro **amenaza la vida** y la presión directa **no la controla**; entonces, **sin demora**. Va **5–7 cm por encima** de la herida (nunca sobre una articulación), con material ancho; se **anota la hora** y **no se afloja**: lo retira el personal sanitario."
+       "texto": "El **torniquete** no es lo primero: solo si la hemorragia de un miembro **amenaza la vida** y la presión directa **no la controla**; entonces, **sin demora**. Va **entre la herida y el tronco**: la Guía del ISM lo pone donde el miembro tiene un solo hueso (brazo o muslo); las guías actuales, a 5–7 cm por encima de la herida y nunca sobre una articulación, con material ancho. Se **anota la hora** y, según la Guía, se mantiene fría la parte de debajo. La Guía del ISM recomendaba aflojarlo cada 15 minutos (y volver a apretar a los 30 segundos si sigue sangrando) y es lo que da por bueno el examen de la DGMM (pregunta dgmm-per-2021-04-75); la práctica actual es no aflojarlo salvo indicación médica.\n\nEntre la presión directa y el torniquete, la Guía pone la presión sobre la arteria en sus puntos de compresión, difícil sin práctica, y admite el torniquete como primera medida solo ante una hemorragia muy profusa, como la amputación de un miembro."
       },
       {
        "tipo": "ilustracion",
@@ -8474,7 +8474,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Dos trampas fijas: «bajar el brazo por debajo del corazón» (falso: se **eleva**) y «siempre aplicaremos un torniquete» (falso: primero **presión directa**). Aflojar el torniquete cada cierto tiempo es un consejo antiguo: hoy no se hace."
+       "texto": "Dos trampas fijas: «bajar el brazo por debajo del corazón» (falso: se **eleva**) y «siempre aplicaremos un torniquete» (falso: primero **presión directa**). Y el aflojado: la DGMM pregunta «según la Guía del ISM, ¿cada cuánto se afloja un torniquete?» y la buena es **cada cuarto de hora**; fuera del examen, hoy no se afloja salvo indicación médica."
       },
       {
        "tipo": "ojo",
@@ -8498,7 +8498,7 @@
       {
        "tipo": "texto",
        "titulo": "Sangrado por la nariz",
-       "texto": "**Sangrado nasal (epistaxis)**: siéntalo con la **cabeza ligeramente hacia delante** (no hacia atrás: tragaría la sangre) y **pinza la parte blanda de la nariz** **10–15 minutos** seguidos. Si no cede, consulta.",
+       "texto": "**Sangrado nasal (epistaxis)**: siéntalo con la **cabeza ligeramente hacia delante** (no hacia atrás: tragaría la sangre) y aprieta la nariz con los dedos sin soltar. La Guía del ISM dice apretar los dos orificios, **cerca del hueso de la nariz**, **unos 10 minutos** (así lo pregunta la DGMM); Baleares da por buena «entre 5 y 10 minutos», y las guías actuales de la Cruz Roja, pinzar la parte blanda 10–15 minutos. Si no cede, consulta.",
        "extra": true
       },
       {
@@ -8527,10 +8527,10 @@
      "chuleta": [
       "Contusión: inmovilizar, elevar, frío (nunca directo), pomada de heparina. NO pinchar el hematoma ni dar calor.",
       "Arterial: rojo vivo, a borbotones. Venosa: rojo oscuro, continua y con poca presión.",
-      "Hemorragia externa: presión directa + elevar el miembro. Torniquete solo si la presión no basta y la hemorragia del miembro amenaza la vida (5–7 cm por encima, anotar hora, no aflojar).",
+      "Hemorragia externa: presión directa + elevar el miembro. Torniquete solo si la presión no basta y la hemorragia del miembro amenaza la vida: entre la herida y el tronco, anotar la hora. Guía del ISM y examen de la DGMM: aflojarlo cada 15 min; hoy, no aflojarlo salvo indicación médica.",
       "Hemorragia interna: Radio-Médico ya, abrigo, nada por la boca.",
       "Herida abdominal: boca arriba con piernas flexionadas, paño húmedo sin comprimir, no reintroducir el intestino.",
-      "Nariz: sentado, cabeza algo hacia delante, pinzar la parte blanda 10–15 min."
+      "Nariz: sentado, cabeza algo hacia delante, apretar la nariz unos 10 min (Guía del ISM; Baleares: 5–10 min)."
      ],
      "profundizar": [
       {
@@ -8560,8 +8560,8 @@
        "fuente": "ERC Guidelines 2025 First Aid (Resuscitation 215:110752), https://www.erc.edu/media/i2vllpae/gl2025-12-faid-e.pdf (no la incluye; desaconseja puntos de presión); plantillas and-2024-c1-t30 (b no es la incorrecta) y [pregunta reservada] (b)"
       },
       {
-       "dato": "Torniquete: si la presión directa no controla una hemorragia de miembro que amenaza la vida; 5–7 cm por encima, no sobre articulación; anotar hora; no aflojar",
-       "fuente": "ERC Guidelines 2025 First Aid (Resuscitation 215:110752), https://www.erc.edu/media/i2vllpae/gl2025-12-faid-e.pdf (Tourniquets)"
+       "dato": "Torniquete: si la presión directa no controla una hemorragia de miembro que amenaza la vida; 5–7 cm por encima, no sobre articulación; anotar hora; no aflojar (práctica actual). La Guía del ISM: en el miembro con un solo hueso, frío por debajo y aflojarlo cada 15 min (respuesta de dgmm-per-2021-04-75)",
+       "fuente": "ERC Guidelines 2025 First Aid (Resuscitation 215:110752), https://www.erc.edu/media/i2vllpae/gl2025-12-faid-e.pdf (Tourniquets); Guía Sanitaria a Bordo, Instituto Social de la Marina, 2013, cap. 7, págs. 146-149"
       },
       {
        "dato": "Hemorragia interna: consejo radio-médico cuanto antes; nada por boca",
@@ -8572,7 +8572,7 @@
        "fuente": "Plantillas and-2024-c1-t30 (a), and-2023-c3-t30 (a falsa), and-2023-c2-t32 (b falsa)"
       },
       {
-       "dato": "Epistaxis: sentado, cabeza algo hacia delante, pinzar parte blanda 10–15 min",
+       "dato": "Epistaxis: sentado, cabeza algo hacia delante, apretar la nariz; Guía del ISM: los dos orificios cerca del hueso, unos 10 min (dgmm-per-2024-04-31); Cruz Roja: parte blanda 10–15 min",
        "fuente": "IFRC (Cruz Roja) International First Aid, Resuscitation and Education Guidelines 2025 (Nosebleeds, key action)"
       }
      ]
@@ -8594,7 +8594,7 @@
       {
        "tipo": "texto",
        "titulo": "Quemaduras: los tres grados",
-       "texto": "Según su **profundidad**:\n- **1.er grado**: solo la capa superficial. Piel **roja** y dolorosa, **sin ampollas** (la quemadura solar típica).\n- **2.º grado**: más profunda, con **ampollas** y mucho dolor. El gran riesgo es la **infección**.\n- **3.er grado**: destruye todas las capas. Piel **blanquecina, amarillenta o negruzca**, y puede **no doler** porque los nervios están dañados. Es grave siempre."
+       "texto": "Según su **profundidad**:\n- **1.er grado**: solo la capa superficial. Piel **roja** y dolorosa, **sin ampollas** (la quemadura solar típica).\n- **2.º grado**: más profunda, con **ampollas** y mucho dolor. El gran riesgo es la **infección**.\n- **3.er grado**: destruye todas las capas. La Guía del ISM la describe como una lesión **negruzca** que **no duele** (también puede verse blanquecina o amarillenta), porque los nervios están destruidos. Es la más grave: según la Guía, a bordo solo se trata si ocupa menos del 1 % del cuerpo y no hay lesión por inhalación."
       },
       {
        "tipo": "texto",
@@ -8607,12 +8607,12 @@
         "tipo": "quemadura",
         "vista": "grados"
        },
-       "texto": "Cuanto más hondo llega la quemadura, más grave: la de 3.er grado puede no doler y es grave siempre."
+       "texto": "Cuanto más hondo llega la quemadura, más grave: la de 3.er grado no duele y, a bordo, solo se trata si es muy pequeña."
       },
       {
        "tipo": "texto",
        "titulo": "Quemadura térmica: retirar y enfriar",
-       "texto": "1. Aleja la causa y **retira ropa, anillos y relojes** de la zona antes de que se hinche (lo que esté pegado a la piel, no lo arranques).\n2. **Enfría con agua fresca**, mejor corriente, **no helada ni con hielo**. Las guías actuales piden **al menos 10 minutos y, mejor, 20**."
+       "texto": "1. Aleja la causa y **retira ropa, anillos y relojes** de la zona antes de que se hinche (lo que esté pegado a la piel, no lo arranques).\n2. **Enfría con agua fresca**, mejor corriente, **no helada ni con hielo**. La Guía del ISM dice «unos minutos» (y es lo que da por bueno el examen); las guías actuales piden **al menos 10 minutos y, mejor, 20**."
       },
       {
        "tipo": "texto",
@@ -8648,7 +8648,7 @@
       {
        "tipo": "texto",
        "titulo": "Química en el ojo",
-       "texto": "- En el **ojo**: lava con agua limpia abundante, también **15 minutos como mínimo**, con el párpado abierto y dejando correr el agua desde el lado de la nariz hacia fuera.\n- **No tapes primero** la quemadura química ni intentes «neutralizarla» con otro producto. **Nunca agua oxigenada** en el ojo.\n\nDespués, Radio-Médico."
+       "texto": "- En el **ojo**: lava con agua limpia abundante, también **15 minutos como mínimo** (la Guía del ISM dice de 15 a 20), con el párpado abierto y dejando correr el agua desde el lado de la nariz hacia fuera; si son los dos ojos, alternando cada 10 segundos.\n- **No tapes primero** la quemadura química ni intentes «neutralizarla» con otro producto. **Nunca agua oxigenada** en el ojo.\n\nDespués, Radio-Médico."
       },
       {
        "tipo": "ilustracion",
@@ -8670,7 +8670,7 @@
       {
        "tipo": "texto",
        "titulo": "Insolación: qué hacer",
-       "texto": "Qué hacer:\n- Llévalo a un lugar **fresco, a la sombra y ventilado** y **quítale ropa**.\n- **Enfríalo ya**: ducha o paños de agua fría (unos 20 °C sirve), abanicando; lo más rápido es sumergirlo hasta el cuello.\n- Si está consciente, dale **agua a sorbos**.\n- Para de enfriar cuando la temperatura **baje de unos 39 °C**, sin llegar a 37 °C (riesgo de hipotermia)."
+       "texto": "Qué hacer:\n- Llévalo a un lugar **fresco, a la sombra y ventilado** y **quítale ropa**.\n- **Enfríalo ya**: ducha o paños de agua fría (a unos 20 °C), como dice la Guía del ISM. Las guías actuales (ERC 2025) añaden que lo más rápido es sumergirlo en agua fría hasta el cuello.\n- Si está consciente, dale **agua fresca a sorbos** (la Guía: con las sales de rehidratación del botiquín).\n- **Baja la temperatura hasta unos 39 °C**, mídela cada 10 minutos y **no sigas enfriando al llegar a 38,5 °C** (Guía del ISM; así lo pregunta la DGMM). Nunca hasta 37 °C ni menos: riesgo de hipotermia."
       },
       {
        "tipo": "ilustracion",
@@ -8681,7 +8681,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Pregunta trampa: «descenso de la temperatura corporal» **no** es síntoma de insolación; eso es hipotermia. Y «enfriar hasta que alcance 37 °C» no es lo correcto: se para antes, al bajar de unos 39 °C."
+       "texto": "Pregunta trampa: «descenso de la temperatura corporal» **no** es síntoma de insolación; eso es hipotermia. Y «enfriar hasta que alcance 37 °C» no es lo correcto: se baja hasta unos 39 °C y se deja de enfriar a 38,5 °C."
       },
       {
        "tipo": "texto",
@@ -8706,10 +8706,10 @@
       }
      ],
      "chuleta": [
-      "1.er grado: rojo sin ampollas; 2.º: ampollas (riesgo de infección); 3.º: blanco/negro, puede no doler.",
+      "1.er grado: rojo sin ampollas; 2.º: ampollas (riesgo de infección); 3.º: negruzca, no duele; a bordo, solo si ocupa menos del 1 %.",
       "Térmica: agua fresca (no hielo) 10–20 min; no reventar ampollas; si es extensa, no enfriar a todo el cuerpo.",
       "Química: agua abundante 15 minutos mínimo (también en el ojo). Nunca agua oxigenada.",
-      "Insolación: cefalea, vértigo, vómitos, temperatura ALTA. Sombra, quitar ropa, enfriar con agua (≈20 °C), parar al bajar de ~39 °C (no llegar a 37 °C).",
+      "Insolación: cefalea, vértigo, vómitos, temperatura ALTA. Sombra, quitar ropa, enfriar con agua (≈20 °C) hasta 39 °C, medir cada 10 min y no seguir por debajo de 38,5 °C (nunca hasta 37 °C).",
       "Mareo: aire libre, centro y abajo, mirar el horizonte, comida seca; antihistamínicos antes de salir (dan sueño)."
      ],
      "profundizar": [
@@ -8736,7 +8736,7 @@
        "fuente": "Plantillas and-2024-c3-t30 (d), and-2024-c1-t30 (c incorrecta), and-2023-c2-t32 (a falsa); IFRC 2025 (aclarar con agua corriente)"
       },
       {
-       "dato": "Golpe de calor: sombra, quitar ropa, enfriar (agua ≈20 °C válida; inmersión 1–26 °C la más rápida) hasta bajar de 39 °C",
+       "dato": "Golpe de calor: sombra, quitar ropa, enfriar (agua ≈20 °C válida; inmersión 1–26 °C la más rápida) hasta 39 °C, sin seguir por debajo de 38,5 °C (Guía Sanitaria a Bordo, Instituto Social de la Marina, 2013, cap. 2, pág. 49)",
        "fuente": "ERC Guidelines 2025 First Aid (Resuscitation 215:110752), https://www.erc.edu/media/i2vllpae/gl2025-12-faid-e.pdf (Heat stroke); plantillas and-2023-c2-t32 (d), and-2024-c2-t30 (b), and-2024-c3-t30 (b falsa)"
       },
       {
@@ -8762,12 +8762,12 @@
       {
        "tipo": "texto",
        "titulo": "El Centro Radio-Médico Español (CRME)",
-       "texto": "Es un servicio del **Instituto Social de la Marina (ISM)**, con sede en Madrid, en el que médicos atienden consultas desde la mar **las 24 horas, todos los días del año**, de forma **gratuita**. Está coordinado con Salvamento Marítimo por si hay que evacuar al paciente."
+       "texto": "Es un servicio del **Instituto Social de la Marina (ISM)**, con sede en Madrid, en el que médicos atienden consultas desde la mar **las 24 horas, todos los días del año**, de forma **gratuita** y **en español**. Si hay que evacuar al paciente, interviene Salvamento Marítimo: el examen de Baleares da por buena que el servicio «puede coordinarse con Salvamento Marítimo», aunque la Guía del ISM no lo detalla."
       },
       {
        "tipo": "texto",
        "titulo": "Por radio o por teléfono",
-       "texto": "Puedes contactar de dos formas, y las dos valen:\n- **Por radio**, a través de una **estación costera** (en VHF, llamada por el canal 16), indicando que es para **«consulta médica»**; la costera te pasa con el centro.\n- **Por teléfono**, directamente al CRME: **91 310 34 75**."
+       "texto": "Puedes contactar de dos formas, y las dos valen:\n- **Por radio**, a través de una **estación costera**, indicando que es para **«consulta médica»** (gratuita y con prioridad); la costera te pasa con el centro. La Guía del ISM no fija el canal: Baleares da por buena «por el canal 16 de VHF» y la DGMM, «por radiotelefonía (onda corta o media)».\n- **Por teléfono**, directamente al CRME: **91 310 34 75**."
       },
       {
        "tipo": "ilustracion",
@@ -8798,7 +8798,7 @@
       {
        "tipo": "texto",
        "titulo": "Dónde se consigue la Guía",
-       "texto": "Se **descarga gratis desde la web del ISM** (Seguridad Social). No se compra en librerías ni se recoge en Capitanía."
+       "texto": "Es **gratuita**: la propia Guía dice que se distribuye de forma gratuita, y el examen de Andalucía da por buena «descargarla gratuitamente desde la web del Instituto Social de la Marina». No se compra en librerías ni se recoge en Capitanía, y la DGMM da por falso que «sólo se pueda adquirir en sus direcciones provinciales»."
       },
       {
        "tipo": "texto",
@@ -8809,7 +8809,7 @@
       {
        "tipo": "texto",
        "titulo": "Botiquín en las demás zonas",
-       "texto": "- Las que llevan **tripulación profesional** siguen la norma de los trabajadores del mar (RD 258/1999).\n- En **zonas 5, 6 y 7** no es obligatorio, pero es muy recomendable llevar uno.\n\nRevisa caducidades cada temporada y guárdalo en un lugar seco y conocido por todos.",
+       "texto": "- Las que llevan **tripulación profesional** siguen la norma de los trabajadores del mar (RD 258/1999).\n- En **zonas 5, 6 y 7** la norma no lo exige; llevar uno es buena práctica.\n\nRevisa caducidades cada temporada y guárdalo en un lugar seco y conocido por todos.",
        "extra": true
       },
       {
@@ -8839,7 +8839,7 @@
         "c": "En librerías náuticas, es de pago"
        },
        "correcta": "a",
-       "explicacion": "La publica el ISM y se descarga gratuitamente de su web (Seguridad Social)."
+       "explicacion": "La publica el Instituto Social de la Marina y es gratuita: el examen de Andalucía da por buena descargarla de su web."
       }
      ],
      "chuleta": [
@@ -9690,7 +9690,7 @@
       {
        "tipo": "texto",
        "titulo": "Cómo saltar",
-       "texto": "- **Inspira hondo**, tapa nariz y boca con una mano y **sujeta el chaleco** con el otro brazo cruzado sobre el pecho.\n- Salta de pie, con las **piernas juntas y estiradas**, mirando al frente.\n\nEn el agua, si hay que nadar, mejor **de espaldas** y despacio."
+       "texto": "- **Inspira hondo**, tapa nariz y boca con una mano y **sujeta el chaleco** con el otro brazo cruzado sobre el pecho.\n- Salta de pie, con las **piernas juntas y estiradas**, mirando al frente.\n\nAsí lo da por bueno el examen. La Guía del ISM (anexo 10) lo describe con los codos pegados al cuerpo, una mano tapando nariz y boca y la otra sujetando firme esa muñeca o ese codo, y desde no más de 5 metros si se puede evitar.\n\nEn el agua, si hay que nadar, mejor **de espaldas** y despacio."
       },
       {
        "tipo": "ilustracion",
@@ -9748,7 +9748,7 @@
       {
        "tipo": "texto",
        "titulo": "Bebida caliente, nunca alcohol",
-       "texto": "- Si está consciente, dale **bebidas calientes y dulces**. **Nunca alcohol** (aumenta la pérdida de calor) ni frotarle la piel.\n- Si está inconsciente: comprueba si respira, posición lateral de seguridad y **Radio-Médico** o Salvamento ya."
+       "texto": "- Si está consciente, dale **bebidas calientes y dulces**. **Nunca alcohol** (aumenta la pérdida de calor) **ni café**, como dice la Guía del ISM para la hipotermia (para las congelaciones, en cambio, admite café caliente muy azucarado), ni frotarle la piel.\n- Si está inconsciente: comprueba si respira, posición lateral de seguridad y **Radio-Médico** o Salvamento ya."
       },
       {
        "tipo": "ilustracion",

@@ -608,7 +608,7 @@
   {
    "id": "py-seg-08",
    "regla": "Zonas SMSSM: A1 → A4 de menos a más lejos (VHF → onda media → satélite/HF → polos)",
-   "significado": "A1: cobertura VHF de una estación costera con LSD (unas 20–40 mn; canal 70). A2: onda media (MF), unas 100–150 mn (2187,5 kHz LSD). A3: cobertura de satélite geoestacionario Inmarsat, aproximadamente entre 70°N y 70°S (también HF). A4: zonas polares fuera de A1–A3 (solo HF). Cuanto mayor es el número, mayor la distancia y menor la frecuencia (salvo el satélite).",
+   "significado": "A1: cobertura VHF de una estación costera con LSD (unas 20–40 M; canal 70). A2: onda media (MF), unas 100–150 M (2187,5 kHz LSD). A3: cobertura de satélite geoestacionario Inmarsat, aproximadamente entre 70°N y 70°S (también HF). A4: zonas polares fuera de A1–A3 (solo HF). Cuanto mayor es el número, mayor la distancia y menor la frecuencia (salvo el satélite).",
    "tema": "PY UT1 Seguridad",
    "fuentes": [
     "https://es.wikipedia.org/wiki/Sistema_mundial_de_socorro_y_seguridad_mar%C3%ADtimos",

@@ -1,6 +1,6 @@
 {
  "grupo": "seguridad-legislacion",
- "version": 4,
+ "version": 5,
  "conceptos": [
   {
    "id": "estabilidad",
@@ -2520,7 +2520,7 @@
     "epistaxis",
     "consejo radio-médico"
    ],
-   "nota": "Presión directa y elevación, torniquete como último recurso (aflojar cada 15 min), actuación ante hemorragia interna o nasal.",
+   "nota": "Presión directa y elevación; torniquete como último recurso (la Guía del ISM manda aflojarlo cada 15 min, que es la respuesta del examen; hoy no se afloja salvo indicación médica); hemorragia interna o nasal.",
    "padre": "emergencia.auxilios",
    "relacionados": [
     "emergencia.auxilios.hemorragias-tipos"

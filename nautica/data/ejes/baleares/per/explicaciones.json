@@ -4818,7 +4818,7 @@
   "trampa": "La b): el agente causante no define los tipos de quemadura."
  },
  "bal-per-2018-04-e-31": {
-  "explicacion": "España tiene un Centro Radio-Médico (Instituto Social de la Marina) que atiende gratis las 24 horas. Se contacta por radio, a través del canal 16 de VHF y las estaciones costeras o Salvamento Marítimo, o por teléfono. Se puede pedir en cualquier idioma y no hace falta esperar a tierra.",
+  "explicacion": "España tiene un Centro Radio-Médico (Instituto Social de la Marina) que atiende gratis las 24 horas, en español. Se contacta por radio, a través de las estaciones costeras (este tribunal da por buena la llamada por el canal 16 de VHF), o por teléfono. Que la consulta sea en español no obliga a esperar a tierra: la b) es falsa.",
   "clave": "Consulta médica: Centro Radio-Médico, por VHF 16 o teléfono.",
   "trampa": "La c): no es solo por teléfono; también por radio."
  },
@@ -7268,7 +7268,7 @@
   ]
  },
  "bal-per-2019-04-e-10": {
-  "explicacion": "Ante una hipotermia hay que evitar que siga perdiendo calor llevándole a un ambiente cálido y sin corrientes, quitarle la ropa mojada y abrigarle. No se le frota ni sacude, no se le da alcohol (dilata los vasos y hace perder más calor) y no se le calienta de forma agresiva, porque se pueden provocar arritmias.",
+  "explicacion": "Ante una hipotermia hay que evitar que siga perdiendo calor llevándole a un ambiente cálido y sin corrientes, quitarle la ropa mojada y abrigarle. No se le frota ni sacude, no se le da alcohol (dilata los vasos y hace perder más calor) ni café y no se le calienta de forma agresiva, porque se pueden provocar arritmias.",
   "clave": "Hipotermia: calor suave, abrigo, sin frotar ni alcohol.",
   "trampa": "La d) busca rapidez, pero el recalentamiento brusco es peligroso."
  },

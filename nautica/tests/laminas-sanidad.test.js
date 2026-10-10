@@ -127,10 +127,12 @@ test('sanidad: los hechos son los de la Guía Sanitaria a Bordo y el RD 339/2021
   // Hemorragias (cap. 1 V y cap. 7): presión 10 min como mínimo, más gasas sin retirar, elevar sobre el corazón
   const parar = textoDe({ tipo: 'hemorragia', vista: 'parar' });
   for (const t of ['10 min como', 'más gasas encima', 'corazón', 'ÚLTIMO RECURSO']) assert.ok(parar.includes(t), t);
-  // Torniquete: lo que comparten la Guía y el curso, nunca la pauta de aflojarlo (divergencia anotada en ESTADO)
+  // Torniquete: el dibujo, lo que comparten la Guía y la práctica actual; la nota dice las dos pautas de aflojarlo (la
+  // de la Guía, que es la del examen de la DGMM, y la actual), como la clase (cierre del PER, divergencia 1)
   const torn = svgDe({ tipo: 'hemorragia', vista: 'torniquete' }) + marcoDe({ tipo: 'hemorragia', vista: 'torniquete' }).nota + renderIllustration({ tipo: 'hemorragia', vista: 'torniquete' }).caption;
   for (const t of ['un hueso', 'entre la herida y el tronco', '14:35', 'consejo médico por radio']) assert.ok(torn.includes(t), t);
-  assert.ok(!/afloj|15 minutos|cuarto de hora/i.test(torn), 'el torniquete no dice cuándo aflojarlo');
+  assert.ok(!/afloj|15 minutos|cuarto de hora/i.test(svgDe({ tipo: 'hemorragia', vista: 'torniquete' })), 'el dibujo no dice cuándo aflojarlo');
+  assert.match(marcoDe({ tipo: 'hemorragia', vista: 'torniquete' }).nota, /aflojarlo cada 15 minutos.*DGMM.*no aflojarlo salvo indicación médica/);
   // Quemaduras (cap. 2 y cap. 7): química 15–20 min; gravedad: palma 1 %, límites 20/10/1 %
   assert.ok(textoDe({ tipo: 'quemadura', vista: 'enfriar' }).includes('15–20 min'));
   const grav = textoDe({ tipo: 'quemadura', vista: 'gravedad' });

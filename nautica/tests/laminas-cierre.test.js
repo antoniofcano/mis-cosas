@@ -175,11 +175,9 @@ test('cierre: las clases del PER enseñan estas láminas en la galería con el t
 });
 
 test('cierre: ninguna lámina de las clases del PER sigue con el dibujo antiguo (salvo las anotadas)', () => {
-  // Las que quedan sin migrar, con su motivo, están en .trabajo-ux/ESTADO-per-laminas.md.
-  const PENDIENTES = new Set([
-    'cubierta', 'timon', 'muerto-boya', 'nudos', 'tenedero', 'fondeo-gira', 'revision-salida', 'reflector-tormenta', 'gobierno-rabeo', 'atraque',
-    'varada-abordaje', 'achique-sentina', 'barometro-tendencia', 'mar-crece', 'prevision-salida',
-  ]);
+  // Ya no queda ninguna: las últimas se migraron en el cierre del PER (.trabajo-ux/ESTADO-per-cierre.md). Si vuelve a
+  // aparecer un dibujo antiguo en una clase del PER, este test falla.
+  const PENDIENTES = new Set([]);
   const viejas = [];
   for (const m of curso('per').modulos) for (const l of m.lecciones) for (const p of l.pasos) {
     if (p.tipo !== 'ilustracion' || !LAMINAS_LECCIONES[p.spec?.tipo]) continue;

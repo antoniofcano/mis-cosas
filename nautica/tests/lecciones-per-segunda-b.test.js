@@ -57,5 +57,6 @@ test('cifras de las lecciones', () => {
   for (const s of ['RD 339/2021', 'bomba de motor \\+ manual \\+ 2 baldes', 'bomba manual o eléctrica \\+ 1 balde', '5 litros']) assert.match(a, new RegExp(s));
   const b = LAMINAS['barometro-tendencia'].fn({ tipo: 'barometro-tendencia' }).svg;
   for (const s of ['760', '1013,25 hPa', 'elásticas', 'con vacío', 'capilar']) assert.match(b, new RegExp(s));
-  assert.match(LAMINAS['barometro-tendencia'].fn({ tipo: 'barometro-tendencia', vista: 'tendencia' }).svg, /más de 3 hPa en 3 h/);
+  // la bajada rápida, sin umbral en hPa: no hay fuente oficial a mano que lo fije (cierre del PER)
+  assert.match(LAMINAS['barometro-tendencia'].fn({ tipo: 'barometro-tendencia', vista: 'tendencia' }).svg, />Bajada rápida</);
 });

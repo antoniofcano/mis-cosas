@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '2931bd715459';
+self.VERSION = '636eafa0ba36';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -192,6 +192,7 @@ self.APP = [
  "src/illustrations/mapa-c.js",
  "src/illustrations/marcos-cierre-b.js",
  "src/illustrations/marcos-cierre.js",
+ "src/illustrations/marcos-final.js",
  "src/illustrations/marcos-normativa.js",
  "src/illustrations/marcos-per.js",
  "src/illustrations/marcos-py.js",
@@ -207,6 +208,8 @@ self.APP = [
  "src/illustrations/per-cola-carta-c.js",
  "src/illustrations/per-cola-normativa-b-c.js",
  "src/illustrations/per-cola-normativa-c.js",
+ "src/illustrations/per-final-b-c.js",
+ "src/illustrations/per-final-c.js",
  "src/illustrations/per-renderers.js",
  "src/illustrations/py-cierre-c.js",
  "src/illustrations/py-cola-c.js",

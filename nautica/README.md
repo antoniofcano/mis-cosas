@@ -137,7 +137,7 @@ Los enunciados generados imitan los de Andalucía: declinación «4º NW» o «d
 (con actualización al año), desvío «+4º (más)», situaciones «a 4 millas al Sur verdadero del faro…», «al Sur
 verdadero de A y al Oeste verdadero de B», coordenadas, puertos (Barbate, Algeciras, Ceuta, Tánger)…
 
-Ver [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) para la arquitectura y cómo añadir tipos nuevos.
+Ver [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) para la arquitectura y cómo añadir tipos nuevos. Qué está hecho, qué viene y qué está parado: [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Aviso
 

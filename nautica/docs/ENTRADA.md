@@ -55,6 +55,44 @@ insignias). Arriba: «← Hoy» y, si la sesión de hoy no está hecha, **Seguir
 derrota** (arranca la de hoy, la misma que ofrece Hoy). La tarjeta «Tu travesía» que había en Hoy desaparece: su
 contenido vive ahora en la carta y en la fila de estado.
 
+## Pantalla encendida y compartir el parte
+
+**Pantalla encendida** (`src/ui/pantalla-encendida.js`, Screen Wake Lock API; tests `tests/pantalla-encendida.test.js`).
+Mientras el alumno está en un paso de la sesión de hoy (la pantalla lleva la barra de la sesión), en una clase abierta
+(`#/<tit>/curso/<id>`) o en un examen o simulacro a medias (`#/<tit>/test/…` con un examen en curso), la pantalla no se
+apaga. Es invisible: ni botón, ni ajuste, ni aviso.
+
+| Momento | Qué hace |
+|---|---|
+| Se pinta una de esas pantallas (`app.js` → `revisar()`) | Pide el bloqueo (`navigator.wakeLock.request('screen')`) |
+| Se empieza el examen (el toque en «Empezar») | Cada toque vuelve a mirar: con el examen ya en curso, lo pide |
+| La app pasa a segundo plano | El navegador lo suelta solo |
+| La app vuelve a primer plano (`visibilitychange`) | Cuenta como actividad y lo vuelve a pedir |
+| Se sale a otra pantalla (Hoy, el resumen de la sesión, el resultado del examen tras el siguiente toque) | Lo suelta |
+| **10 minutos sin tocar nada** (`INACTIVIDAD_MS`) | Lo suelta: una app olvidada encendida no vacía la batería. El siguiente toque lo vuelve a pedir |
+| Sin la API, petición negada (ahorro de batería, sin permiso) o un fallo | Nada: ni error ni aviso; se reintenta en el siguiente toque |
+
+Diez minutos: una pregunta larga de carta o la lectura de una clase rara vez pasan de unos minutos sin tocar la
+pantalla; con más, lo probable es que el móvil se haya quedado olvidado. Cuentan como actividad `pointerdown`,
+`keydown`, `click` y `wheel`. El módulo recibe el navegador por parámetro (`nav`, `doc`, `reloj`) y no lanza nunca.
+
+**Compartir mi parte** (`src/ui/compartir.js`; tests `tests/compartir.test.js`). Un botón «Compartir mi parte» (icono
+`compartir`) debajo del parte de travesía al terminar una sesión (`#/<tit>/sesion`) y al final de la Travesía, tras las
+insignias. Usa el menú de compartir del sistema (`navigator.share`: título, texto y la dirección de la app); si no lo
+hay, copia texto y dirección al portapapeles y avisa «Copiado» (aviso breve). Sin ninguna de las dos, el botón no sale.
+Cerrar el menú sin elegir no es un error (no se avisa ni se copia); si el menú falla por otra causa, se copia.
+
+El texto lo hace `textoParte()` (pura): la titulación, el rango, los faros encendidos, la racha (solo con 2 días o más)
+y los minutos de hoy (si hay), y la dirección pública `https://antoniofcano.github.io/mis-cosas/nautica/`. Nunca el
+nombre, el código de alumno, el enlace de vinculación de la copia ni nada que identifique; sin emojis. Ejemplo:
+
+> Preparo el teórico de Patrón de Embarcaciones de Recreo. En mi travesía soy Marinero y tengo 2 de 6 faros
+> encendidos. Llevo 3 días seguidos estudiando y hoy he estudiado 25 minutos. Estudio con esta app:
+> https://antoniofcano.github.io/mis-cosas/nautica/
+
+Estilo C: botón de tinta sobre papel con doble filete (como «Ver ficha»), icono en magenta, 44 px de alto, foco
+visible y los mismos tokens `--lc-*` en claro y en oscuro (`styles/laminas.css`, «Compartir mi parte»).
+
 ## Accesibilidad y reglas
 
 Hoy y la Travesía llevan la piel de las láminas en estilo C (docs/ESTILO-LAMINAS.md): la carta de la derrota es una

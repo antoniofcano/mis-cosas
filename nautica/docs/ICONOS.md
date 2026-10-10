@@ -49,7 +49,7 @@ h('button', { 'aria-label': 'Pausa' }, icono('pausa'))  // botón con solo icono
 
 | Grupo | Iconos |
 |---|---|
-| Navegación y estructura | `hoy` `temario` `examen` `biblioteca` `ajustes` `mas` `progreso` `calendario` `reloj` `candado` `diana` `instalar` `descargar` `carpeta` `imprimir` `enlace` `lupa` `anadir` `salir` |
+| Navegación y estructura | `hoy` `temario` `examen` `biblioteca` `ajustes` `mas` `progreso` `calendario` `reloj` `candado` `diana` `instalar` `descargar` `carpeta` `imprimir` `compartir` `enlace` `lupa` `anadir` `salir` |
 | Estudio | `clase` `libro` `documento` `portapapeles` `lista` `tabla` `tarjetas` `lamina` `red` (mapa de conceptos) `nudo` (reglas para recordar) `bombilla` `lapiz` `chincheta` (chuleta) `repaso` `mezclar` `pregunta` `toque` `calculadora` `cuentas` `profe` |
 | Estados | `ok` `no` `casi` `aviso` `racha` |
 | Sonido y reproducción | `escuchar` `silencio` `podcast` `play` `pausa` `parar` `inicio` `fin` `atras` `adelante` `retroceder` `avanzar` `deshacer` |

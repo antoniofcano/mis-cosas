@@ -439,6 +439,16 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 .travesia-pantalla .rango-num { background: var(--lc-papel); color: var(--lc-apagado); border: 1.5px solid var(--lc-apagado); }
 .travesia-pantalla :is(.rangos-lista li.actual, .rangos-lista li.superado) .rango-num { color: var(--lc-magenta); border-color: var(--lc-magenta); }
 .travesia-pantalla .rango-marca { color: var(--lc-apagado); }
+/* «Compartir mi parte» (src/ui/compartir.js): botón de tinta sobre papel, como «Ver ficha»; en el parte de la sesión y
+   en la Travesía. 44 px de alto, foco visible y los mismos tokens en claro y en oscuro. */
+.compartir-fila { display: flex; justify-content: flex-start; margin: .2rem 3px .6rem; }
+button.boton-compartir { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .45rem 1rem;
+  border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 2px var(--lc-papel), inset 0 0 0 2.7px var(--lc-tinta);
+  font-size: 1rem; font-weight: 700; line-height: 1.2; cursor: pointer; }
+button.boton-compartir .ico { width: 20px; height: 20px; color: var(--lc-magenta); }
+button.boton-compartir:hover { border-color: var(--lc-magenta); }
+button.boton-compartir:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+button.boton-compartir[data-ocupado] { opacity: .7; }
 /* ---- fin Hoy y la Travesía en estilo C ---- */
 
 /* Luces que destellan (SMIL de las boyas, los ritmos y los faros de las láminas de carta): con «reducir movimiento»,

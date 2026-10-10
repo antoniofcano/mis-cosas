@@ -46,6 +46,7 @@ import { cuentasView } from './views/cuentas.js';
 import { iniciarCalculadora } from './calculadora.js';
 import { iniciarRadio, enVistaEpisodio, radio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
+import { crearPantallaEncendida, quierePantallaEncendida } from './pantalla-encendida.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 import { fijarReservaAlumno, fijarConfigProfe } from '../bancos/index.js';
 import { profeView } from './views/profe.js';
@@ -202,6 +203,9 @@ async function main() {
   addEventListener('pointerdown', () => { pedirPersistencia({ leer: () => progress.settings(), guardar: (k, v) => progress.setSetting(k, v) }); }, { once: true });
   iniciarCalculadora();
   let current = null;
+  // Pantalla encendida mientras se estudia (paso de la sesión, examen a medias, clase abierta); invisible y sin ajuste.
+  let quiereEncendida = () => false;
+  const pantallaEncendida = crearPantallaEncendida({ quiere: () => quiereEncendida() });
 
   const session = { summary: () => current?.summary?.() ?? '' };
   installApi({ ctx, session });
@@ -237,6 +241,9 @@ async function main() {
     // ¿Es esta pantalla el paso actual de la sesión de hoy? Entonces lleva encima la barra de la sesión.
     const pasoSesion = pasoEnPantalla(progress, tit, TITULACIONES[route.parts[0]] ? route.parts : []);
     document.body.classList.toggle('en-sesion', !!pasoSesion);
+    const partesTit = TITULACIONES[route.parts[0]] ? route.parts : [];
+    quiereEncendida = () => quierePantallaEncendida(partesTit, { enSesion: !!pasoSesion, examenAMedias: !!progress.testEnCurso() });
+    pantallaEncendida.revisar();
     const footer = document.querySelector('body > footer');
     if (footer) footer.hidden = route.parts[0] !== 'ajustes';
     renderNav(tit, route.parts, (id) => { setTit(progress, id); render(); });

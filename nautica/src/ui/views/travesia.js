@@ -9,7 +9,7 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { icono } from '../iconos.js';
 import { calcularPlan } from '../cierre.js';
 import { hrefFicha } from '../concepto.js';
-import { sincronizarTravesia } from '../travesia.js';
+import { sincronizarTravesia, farosEncendidos } from '../travesia.js';
 import {
   RANGOS, FARO_ENCENDIDO, DIAS_SEMANA, BANDERA, catalogoInsignias, faltaInsignia, requisitoRango,
   posicionesDerrota, faroInicial,
@@ -21,6 +21,7 @@ import { leerSesion } from '../sesion.js';
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 import { novedades, marcarVistos, claseAnimada } from '../efectos.js';
 import { cartaDerrotaSvg, ladoNombre, ANCHO, ALTO, ALTO_COMPACTA } from '../../illustrations/derrota-c.js';
+import { botonCompartir } from '../compartir.js';
 
 const MAX_FLOJAS = 4;
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -183,6 +184,9 @@ function pantallaTravesia({ T, tit, d, sy, eje, query, progress }) {
   const ins = cuentaInsignias(est, sy.reg);
   const seguirEl = progress ? botonSeguir(progress, tit, d) : null;
   const dias = d.st.diasAlExamen;
+  // «Compartir mi parte»: rango, faros, racha y minutos de hoy, sin nada personal (src/ui/compartir.js).
+  const compartir = progress ? botonCompartir(() => ({ titulacion: T.nombre, rango: rango.actual.nombre, faros: { encendidos: farosEncendidos(est), total: faros.length },
+    racha: progress.racha(), minutosHoy: progress.minutosHoy() })) : null;
   const pildora = dias != null && dias >= 0 ? h('a.pildora-examen', { href: '#/ajustes?campo=fecha', title: 'Fecha del examen' }, dias === 0 ? 'Examen hoy' : dias === 1 ? 'Examen mañana' : `${cuenta(dias, 'día')} al examen`) : null;
 
   const el = h('div.travesia-pantalla',
@@ -196,6 +200,7 @@ function pantallaTravesia({ T, tit, d, sy, eje, query, progress }) {
     notaEl,
     h('a.trav-insignias-enlace', { href: tlink(tit, ['travesia', 'insignias']) },
       h('span.trav-insignias-tx', h('strong', 'Insignias'), h('span.muted.small', `${ins.hechas} de ${ins.total} conseguidas`)), h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')),
+    compartir ? h('div.compartir-fila', compartir) : null,
     h('p.muted.small.trav-pie', `Cada faro agrupa los bloques del temario: ${faros.map((f) => f.corto.toLowerCase()).join(', ')}. Se enciende con el ${pct(FARO_ENCENDIDO)} de sus ideas dominadas.`));
   const summary = `VISTA travesía ${T.sigla} · rango ${rango.actual.nombre}: ${est.dominadas}/${est.total} ideas dominadas. ${rango.texto}\n` +
     `FAROS: ${faros.map((f) => `${f.nombre} ${f.dominadas}/${f.total}${f.estado === 'on' ? ' (encendido)' : ''}`).join(' · ')}\n` +

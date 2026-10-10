@@ -62,7 +62,7 @@ _Última revisión: 10 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y hay citas a preguntas reservadas que revisar |
-| R-10 | Pulido de PWA: Media Session, bloqueo de pantalla, insignia de la app, notificaciones, pantalla de arranque iOS | Después | Plan en el documento de PWA; valorado como no urgente |
+| R-10 | Pulido de PWA: Media Session, ~~bloqueo de pantalla~~, insignia de la app, notificaciones, pantalla de arranque iOS | Después | **Hecho** (rama `feat/pwa-tanda1`, falta el visto bueno): pantalla encendida durante la sesión y «Compartir mi parte» (docs/ENTRADA.md). El resto sigue igual: plan en el documento de PWA; valorado como no urgente |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |

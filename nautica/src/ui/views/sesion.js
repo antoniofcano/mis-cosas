@@ -16,6 +16,7 @@ import { calcularTravesia } from '../travesia.js';
 import { parteSesion, paraManana, progresoRango, catalogoInsignias } from '../../course/travesia.js';
 import { parteTravesiaEl, ambitoFaros, ambitoInsignias } from './travesia.js';
 import { novedades, marcarVistos, efecto } from '../efectos.js';
+import { botonCompartir } from '../compartir.js';
 
 const MAX_GRUPOS = 10; // en un simulacro salen muchas ideas: las que fallan siempre; de las sabidas, hasta completar
 
@@ -72,7 +73,10 @@ function pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco, efecto
   marcarVistos(ambitoFaros(eje, tit), parte.faros.map((f) => f.id));
   marcarVistos(ambitoInsignias(eje, tit), parte.insignias);
   efectos.celebra = animar.rango ? 'rango' : animar.faros.size ? 'faro' : null;
-  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.faros), animar }));
+  // «Compartir mi parte» (sin nada personal: rango, faros, racha y minutos de hoy). No sale si el aparato no puede.
+  const compartir = botonCompartir(() => ({ titulacion: TITULACIONES[tit].nombre, rango: sig.actual.nombre, racha: progress.racha(), minutosHoy: progress.minutosHoy(),
+    faros: { encendidos: est.faros.filter((f) => f.estado === 'on').length, total: est.faros.length } }));
+  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.faros), animar }), compartir ? h('div.compartir-fila', compartir) : null);
   return ` · TRAVESÍA: ${parte.nuevas.length} ideas nuevas, ${parte.rescatadas.length} rescatadas, ${parte.flojas.length} siguen flojas${parte.faros.length ? `, faro encendido: ${parte.faros.map((f) => f.nombre).join(', ')}` : ''}${parte.insignias.length ? `, insignias nuevas: ${parte.insignias.join(', ')}` : ''}. ${sig.texto}`;
 }
 

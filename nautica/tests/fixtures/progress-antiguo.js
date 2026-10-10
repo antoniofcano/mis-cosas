@@ -1,28 +1,23 @@
-// Base de datos local del alumno (localStorage): intentos, aciertos y errores típicos por tipo de ejercicio,
-// respuestas a preguntas de examen, clases, minutos estudiados por día y el examen a medias. Los campos nuevos son
-// opcionales: un progreso antiguo (version 1) carga sin migración (lo que falta se completa al cargar: el eje, p. ej.).
-//
-// Sincronización (docs/SYNC.md): cada escritura se apunta como una OPERACIÓN en un registro aparte (src/store/sync/,
-// clave `nautica.sync.v1`) y el progreso que devuelve get() sale de plegar ese registro (plegar.js), con exactamente
-// la forma de siempre. El registro se sube al servidor y trae lo de los otros aparatos del alumno (motor.js), sin que
-// el alumno haga nada; sin conexión todo sigue igual en local. El progreso plegado se sigue guardando en
-// `nautica.progress.v1` (como siempre), y la primera vez que arranca esta versión ese progreso se convierte en una
-// operación «base» (la migración: nada que hacer a mano y nada se pierde).
+// Copia LITERAL del almacén de progreso de antes de la sincronización (solo cambian las rutas de los import). Las
+// pruebas de equivalencia (tests/sync-plegar.test.js) comprueban que el almacén nuevo da el mismo progress.get().
 
-import { diaISO } from '../texto.js';
-import { EJE_POR_DEFECTO } from '../bancos/registro.js';
-import { crearRegistro, CLAVE_SYNC } from './sync/registro.js';
-import { plegarConEstado, aplicar, compararOps } from './sync/plegar.js';
-import { separar, crearBase } from './sync/fusion.js';
-import { esAjusteCompartido } from './sync/operaciones.js';
+// Base de datos local del alumno (localStorage): intentos, aciertos y errores típicos por tipo de ejercicio,
+// respuestas a preguntas de examen, clases, minutos estudiados por día y el examen a medias.
+// Exportable/importable en JSON para no perder el progreso. Los campos nuevos son opcionales: un progreso
+// antiguo (version 1) carga sin migración (lo que falta se completa al cargar: el eje, p. ej.).
+
+import { siguienteRepaso, repasoDe } from '../../src/course/repaso.js';
+import { diaISO } from '../../src/texto.js';
+import { EJE_POR_DEFECTO } from '../../src/bancos/registro.js';
 const KEY = 'nautica.progress.v1';
+const DIA = 864e5;
+const DIAS_GUARDADOS = 60;
 const VERSION_TRAVESIA_GUARDADA = 1; // versión del campo `travesia` (v:1 = { v, bancos: { 'eje/tit': { rango, insignias: { id: ISO } } } })
 
 const empty = () => ({ version: 1, exercises: {}, exams: {}, settings: { level: 'PER', toleranceFactor: 1 } });
 
 /** Fecha local 'YYYY-MM-DD' de un instante. */
 export const diaLocal = diaISO;
-const DIA = 864e5;
 
 function safeStorage() {
   try {
@@ -39,27 +34,12 @@ function safeStorage() {
 /** ¿Hay progreso previo (de antes de la bienvenida)? */
 export const tieneProgreso = (d) => Object.keys(d.exams ?? {}).length > 0 || Object.keys(d.lecciones ?? {}).length > 0;
 
-/** ¿Hay algo que llevar a una base? (un progreso recién creado y sin tocar no la necesita) */
-const hayAlgo = (c) => Object.entries(c).some(([k, v]) => k !== 'version' && (Array.isArray(v) ? v.length : v && typeof v === 'object' ? Object.keys(v).length : v != null));
-
 export function createProgressStore(storage = safeStorage()) {
-  const reg = crearRegistro(storage);
-  if (!reg.existia()) {
-    // Migración automática: el progreso de antes (si lo hay) pasa a ser la base de este aparato.
-    let antiguo = null;
-    try {
-      const raw = storage?.getItem(KEY);
-      if (raw) antiguo = { ...empty(), ...JSON.parse(raw) };
-    } catch { /* datos corruptos: empezamos de cero */ }
-    if (antiguo) {
-      const { compartido, local } = separar(antiguo);
-      reg.cambiarLocal((l) => { Object.assign(l, local); });
-      if (hayAlgo(compartido)) reg.agregar(crearBase(compartido, { siguienteId: reg.siguienteId }));
-    }
-    reg.guardar();
-  }
-  let data;
-  let est;
+  let data = empty();
+  try {
+    const raw = storage?.getItem(KEY);
+    if (raw) data = { ...empty(), ...JSON.parse(raw) };
+  } catch { /* datos corruptos: empezamos de cero */ }
   const normaliza = () => {
     data.settings ??= {};
     // Usuarios de antes de la bienvenida: no se les muestra.
@@ -79,58 +59,45 @@ export function createProgressStore(storage = safeStorage()) {
       else t.v ??= VERSION_TRAVESIA_GUARDADA;
     }
   };
+  normaliza();
 
   const save = () => { try { storage?.setItem(KEY, JSON.stringify(data)); } catch { /* sin espacio o bloqueado */ } };
-  /** Vuelve a plegar el registro entero (al cargar, al llegar operaciones de otros aparatos o de otra pestaña). */
-  const repliega = () => {
-    const r = plegarConEstado(reg.ops, reg.local);
-    est = r.est;
-    data = r.prog;
-    normaliza();
-  };
-  repliega();
-  /** Apunta una operación y la aplica al progreso (sin volver a plegar todo si va detrás de la última). */
-  const registra = (campos) => {
-    const op = JSON.parse(JSON.stringify({ i: reg.siguienteId(), ...campos }));
-    reg.agregar([op]);
-    if (est.ultimo && compararOps(op, est.ultimo) < 0) repliega();
-    else aplicar(est, op);
-    save();
-    return op;
-  };
-  // Lo que llega de los otros aparatos (motor.js) se pliega en cuanto llega.
-  reg.on('nuevas', () => { repliega(); save(); });
   // Con la app abierta en dos pestañas, cada una guardaba su copia entera y la última pisaba las respuestas de la
-  // otra. Ahora las operaciones de la otra pestaña se unen (por id) a las de esta en cuanto se guardan.
+  // otra. Ahora, cuando otra pestaña guarda, esta se pone al día antes de su próximo cambio.
+  const alDia = (raw) => { try { if (raw) { data = { ...empty(), ...JSON.parse(raw) }; normaliza(); } } catch { /* ignorar */ } };
   if (storage && typeof globalThis.addEventListener === 'function') {
-    globalThis.addEventListener('storage', (ev) => { if (ev.key === CLAVE_SYNC && ev.newValue && reg.deFuera(ev.newValue)) repliega(); });
+    globalThis.addEventListener('storage', (ev) => { if (ev.key === KEY && ev.newValue) alDia(ev.newValue); });
   }
 
   const store = {
     get: () => data,
     settings: () => data.settings,
-    setSetting(k, v) {
-      // Los ajustes de estudio se comparten entre aparatos; los del aparato (letra, sonidos, voz, avisos…) no salen de él.
-      if (esAjusteCompartido(k)) { registra({ k: 'v', t: Date.now(), c: 'settings', p: [k], v }); return; }
-      reg.cambiarLocal((l) => { l.settings[k] = v; });
-      data.settings[k] = v;
-      save();
-    },
+    setSetting(k, v) { data.settings[k] = v; save(); },
 
     /** Registra el resultado de un intento de ejercicio generado. */
     recordAttempt(typeId, { ok, seed, mistakes = [] }) {
-      registra({ k: 'e', t: Date.now(), y: typeId, o: !!ok, s: seed, m: [...mistakes] });
+      const e = (data.exercises[typeId] ??= { attempts: 0, correct: 0, streak: 0, mistakes: {}, last: null, history: [] });
+      e.attempts += 1;
+      if (ok) { e.correct += 1; e.streak += 1; } else { e.streak = 0; }
+      for (const m of mistakes) e.mistakes[m] = (e.mistakes[m] ?? 0) + 1;
+      e.last = new Date().toISOString();
+      e.history = [...e.history, { t: e.last, ok, seed }].slice(-30);
+      save();
     },
 
     /** Registra la respuesta a una pregunta de examen real (choice null = «No la sé»). */
     recordExam(questionId, { choice = null, ok, nivel = false }) {
+      const prev = data.exams[questionId];
       // n: veces respondida; ok1: si se acertó la primera vez (lo que mejor predice una pregunta que no has memorizado).
+      const n = (prev?.n ?? (prev ? 1 : 0)) + 1;
+      const ok1 = prev ? (prev.ok1 ?? prev.ok) : ok;
       // rep: repaso espaciado de fallos (src/course/repaso.js); null = fuera de la cola. Una respuesta del test de nivel
       // (src/course/nivel.js) cuenta como cualquier otra para el dominio, pero no toca la cola: lo que falla un alumno
       // que aún no ha estudiado no es un fallo que repasar mañana (se lo enseña su clase), y lo que ya estaba en la cola
-      // sigue igual. Todo eso lo calcula el pliegue (src/store/sync/plegar.js) a partir de la respuesta y su día local.
-      const t = Date.now();
-      registra({ k: 'r', t, q: questionId, c: choice, o: !!ok, d: diaLocal(t), ...(nivel ? { n: true } : {}) });
+      // sigue igual.
+      const rep = nivel ? (prev ? repasoDe(prev, diaLocal()) : null) : siguienteRepaso(prev, ok, diaLocal());
+      data.exams[questionId] = { choice, ok, t: new Date().toISOString(), n, ok1, rep, ...(nivel ? { nivel: true } : {}) };
+      save();
     },
 
     /**
@@ -138,13 +105,17 @@ export function createProgressStore(storage = safeStorage()) {
      * Uno por banco; repetirlo lo sustituye.
      */
     nivel: (eje, tit) => data.niveles?.[`${eje}/${tit}`] ?? null,
-    recordNivel(eje, tit, r) { registra({ k: 'v', t: Date.now(), c: 'niveles', p: [`${eje}/${tit}`], v: r }); },
+    recordNivel(eje, tit, r) {
+      data.niveles = { ...(data.niveles ?? {}), [`${eje}/${tit}`]: r };
+      save();
+    },
 
     /** Fichas de idea abiertas (src/course/ficha.js): { [concepto]: ISO } por eje y titulación. */
     fichasVistas: (eje, tit) => data.fichas?.[`${eje}/${tit}`] ?? {},
     recordFichaVista(eje, tit, concepto, t = new Date().toISOString()) {
-      // Entre aparatos gana la vista más reciente (lo mismo que hacía este almacén al volver a abrirla).
-      registra({ k: 'v', t: Date.now(), c: 'fichas', p: [`${eje}/${tit}`, concepto], v: t });
+      const k = `${eje}/${tit}`;
+      data.fichas = { ...(data.fichas ?? {}), [k]: { ...(data.fichas?.[k] ?? {}), [concepto]: t } };
+      save();
     },
 
     /**
@@ -154,7 +125,9 @@ export function createProgressStore(storage = safeStorage()) {
      */
     repasoConceptos: (eje, tit) => data.repConceptos?.[`${eje}/${tit}`] ?? {},
     recordRepasoConcepto(eje, tit, concepto, estado) {
-      registra({ k: 'v', t: Date.now(), c: 'repConceptos', p: [`${eje}/${tit}`, concepto], v: estado });
+      const k = `${eje}/${tit}`;
+      data.repConceptos = { ...(data.repConceptos ?? {}), [k]: { ...(data.repConceptos?.[k] ?? {}), [concepto]: estado } };
+      save();
     },
 
     /**
@@ -162,9 +135,10 @@ export function createProgressStore(storage = safeStorage()) {
      * máximo alcanzado (nunca baja) y las insignias, una vez ganadas, se quedan. Un progreso sin este campo se lee igual.
      */
     travesia: (eje, tit) => data.travesia?.bancos?.[`${eje}/${tit}`] ?? { rango: null, insignias: {} },
-    guardarTravesia(eje, tit, r) {
-      // Entre aparatos: el rango más alto y las insignias de todos (con la fecha más antigua de cada una).
-      registra({ k: 'g', t: Date.now(), b: `${eje}/${tit}`, r: r.rango ?? null, s: { ...(r.insignias ?? {}) } });
+    guardarTravesia(eje, tit, reg) {
+      const antes = data.travesia ?? { v: VERSION_TRAVESIA_GUARDADA, bancos: {} };
+      data.travesia = { ...antes, v: antes.v ?? VERSION_TRAVESIA_GUARDADA, bancos: { ...antes.bancos, [`${eje}/${tit}`]: { rango: reg.rango ?? null, insignias: { ...(reg.insignias ?? {}) } } } };
+      save();
     },
     /** Apunta una insignia que no sale de ningún otro dato (la «Guardia de 5 minutos»). Idempotente. */
     ganarInsignia(eje, tit, id, t = new Date().toISOString()) {
@@ -176,8 +150,8 @@ export function createProgressStore(storage = safeStorage()) {
 
     /** Registra un test completo (simulacro o examen real). */
     recordTest(entry) {
-      const t = Date.now();
-      registra({ k: 'x', t, e: { ...entry, t: new Date(t).toISOString() } });
+      data.tests = [...(data.tests ?? []), { ...entry, t: new Date().toISOString() }].slice(-50);
+      save();
     },
     tests: () => data.tests ?? [],
 
@@ -186,13 +160,21 @@ export function createProgressStore(storage = safeStorage()) {
     lecciones: () => data.lecciones ?? {},
     /** Plan de estudio con fecha (calendario base de src/course/calendario.js), por titulación. Opcional. */
     planEstudio: (tit) => data.planes?.[tit] ?? null,
-    setPlanEstudio(tit, plan) { registra({ k: 'v', t: Date.now(), c: 'planes', p: [tit], v: plan }); },
-    saveLeccion(id, r) { registra({ k: 'v', t: Date.now(), c: 'lecciones', p: [id], v: r }); },
+    setPlanEstudio(tit, plan) { data.planes = { ...(data.planes ?? {}), [tit]: plan }; save(); },
+    saveLeccion(id, reg) {
+      data.lecciones = { ...(data.lecciones ?? {}), [id]: reg };
+      save();
+    },
 
     /** Suma minutos de estudio al día de hoy (y una actividad); conserva los últimos 60 días. */
     logActividad(minutos, ahora = Date.now()) {
-      // Cada aparato suma sus minutos; el pliegue suma los de todos y se queda con los últimos 60 días.
-      registra({ k: 'a', t: ahora, d: diaLocal(ahora), m: Math.min(1440, Math.max(0, Math.round(minutos || 0))) });
+      const hoy = diaLocal(ahora);
+      const dias = { ...(data.dias ?? {}) };
+      const d = dias[hoy] ?? { min: 0, act: 0 };
+      dias[hoy] = { min: d.min + Math.max(0, Math.round(minutos || 0)), act: d.act + 1 };
+      const limite = diaLocal(ahora - (DIAS_GUARDADOS - 1) * DIA);
+      data.dias = Object.fromEntries(Object.entries(dias).filter(([k]) => k >= limite));
+      save();
     },
     minutosHoy: (ahora = Date.now()) => data.dias?.[diaLocal(ahora)]?.min ?? 0,
     /** Días seguidos con actividad, contando hoy o ayer como el último. */
@@ -215,10 +197,8 @@ export function createProgressStore(storage = safeStorage()) {
      */
     testEnCurso: () => data.testEnCurso ?? null,
     saveTestEnCurso(obj) {
-      // Del aparato: no se sincroniza (un examen a medias se termina donde se empezó).
       if (obj) data.testEnCurso = { ...obj, guardado: Date.now() };
       else delete data.testEnCurso;
-      reg.cambiarLocal((l) => { if (data.testEnCurso) l.testEnCurso = data.testEnCurso; else delete l.testEnCurso; });
       save();
     },
 
@@ -228,28 +208,9 @@ export function createProgressStore(storage = safeStorage()) {
       return { attempts: e.attempts, correct: e.correct, rate: e.correct / e.attempts, streak: e.streak, mistakes: e.mistakes };
     },
 
-    // Herramientas internas (Ajustes → Avanzado). Con la sincronización:
-    //   import  SUMA la copia al progreso (entra como una base más: se fusiona, no sustituye) y la parte del aparato
-    //           (ajustes del aparato, examen a medias) se toma de la copia.
-    //   reset   borra el progreso de ESTE aparato y lo desune de los otros (código nuevo en la próxima subida): los
-    //           otros aparatos y el servidor conservan lo suyo, y nadie más pierde nada por un toque equivocado.
     export: () => JSON.stringify(data, null, 2),
-    import(json) {
-      const d = JSON.parse(json);
-      if (d?.version !== 1) throw new Error('Formato no válido');
-      const { compartido, local } = separar({ ...empty(), ...d });
-      reg.cambiarLocal((l) => { Object.assign(l.settings, local.settings); if (local.testEnCurso) l.testEnCurso = local.testEnCurso; });
-      reg.agregar(crearBase(compartido, { siguienteId: reg.siguienteId }));
-      repliega();
-      save();
-    },
-    reset() {
-      reg.reiniciar();
-      repliega();
-      save();
-    },
-    /** El registro de operaciones (para el motor de sincronización, src/store/sync/motor.js). */
-    registro: reg,
+    import(json) { const d = JSON.parse(json); if (d?.version !== 1) throw new Error('Formato no válido'); data = { ...empty(), ...d }; normaliza(); save(); },
+    reset() { data = empty(); normaliza(); save(); },
   };
   return store;
 }

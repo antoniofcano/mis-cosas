@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '2931bd715459';
+self.VERSION = '9391e713aee4';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -242,6 +242,13 @@ self.APP = [
  "src/store/datasets.js",
  "src/store/persistencia.js",
  "src/store/progress.js",
+ "src/store/sync/codigo.js",
+ "src/store/sync/config.js",
+ "src/store/sync/fusion.js",
+ "src/store/sync/motor.js",
+ "src/store/sync/operaciones.js",
+ "src/store/sync/plegar.js",
+ "src/store/sync/registro.js",
  "src/store/user-chart.js",
  "src/teacher/lessons.js",
  "src/teacher/narrate.js",
@@ -267,6 +274,7 @@ self.APP = [
  "src/ui/concepto.js",
  "src/ui/config-profe.js",
  "src/ui/copia.js",
+ "src/ui/dispositivos.js",
  "src/ui/dom.js",
  "src/ui/efectos.js",
  "src/ui/eje.js",
@@ -287,10 +295,12 @@ self.APP = [
  "src/ui/plan-estudio.js",
  "src/ui/profe-steps.js",
  "src/ui/pwa.js",
+ "src/ui/qr.js",
  "src/ui/radio.js",
  "src/ui/remate-mapas.js",
  "src/ui/router.js",
  "src/ui/sesion.js",
+ "src/ui/sync.js",
  "src/ui/titulacion.js",
  "src/ui/travesia.js",
  "src/ui/views/biblioteca.js",
@@ -321,7 +331,9 @@ self.APP = [
  "src/ui/views/theory.js",
  "src/ui/views/titulacion.js",
  "src/ui/views/travesia.js",
+ "src/ui/views/vincular.js",
  "src/ui/voice.js",
+ "src/vendor/qrcode-generator.js",
  "styles/app.css",
  "styles/laminas.css"
 ];

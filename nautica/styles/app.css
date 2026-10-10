@@ -1876,3 +1876,33 @@ details.entrada-pasos[open] .entrada-pasos-ver::after { transform: rotate(180deg
   .cps-paso > .cps-figura { grid-column: 2; grid-row: 1 / span 6; }
 }
 /* ---- fin Ejercicios de carta resueltos ---- */
+
+/* ---- Mis dispositivos (Ajustes) y unir un aparato (#/vincular): sincronización del progreso, docs/SYNC.md ---- */
+.dispositivos .sync-codigo { display: inline-block; margin: .2rem 0 .5rem; padding: .5rem .9rem; border-radius: var(--radius); background: var(--accent-2); color: var(--text);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: min(2.1rem, 6.6vw); font-weight: 700; letter-spacing: .08em; line-height: 1.2; user-select: all; white-space: nowrap; max-width: 100%; }
+.qr-figura { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1rem; margin: .4rem 0 1rem; }
+/* El QR siempre negro sobre blanco, también en modo oscuro (un QR invertido no lo leen todas las cámaras). */
+.qr-vincular { flex: none; width: min(208px, 62vw); line-height: 0; background: #fff; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.qr-vincular svg { display: block; width: 100%; height: auto; }
+.qr-figura figcaption { flex: 1 1 12rem; margin: 0; line-height: 1.45; }
+.sync-otro { display: flex; flex-wrap: wrap; gap: .5rem; align-items: stretch; }
+.sync-otro input { flex: 1 1 13rem; width: auto; min-height: 48px; font-size: 1.15rem; letter-spacing: .06em; text-transform: uppercase;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+.sync-otro button { flex: 0 0 auto; }
+#sync-otro-resultado.ok { color: var(--ok); }
+#sync-otro-resultado.aviso { color: var(--warn); }
+.sync-diagnostico { margin-top: 1rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.sync-diagnostico .sync-estado { margin: 0 0 .4rem; color: var(--muted); overflow-wrap: anywhere; }
+.sync-diagnostico .sync-estado.ok { color: var(--ok); }
+.sync-diagnostico .sync-estado.aviso { color: var(--warn); }
+details.avanzado { margin-top: 1.5rem; }
+details.avanzado > summary { min-height: 44px; display: flex; align-items: center; }
+/* Punto discreto en el engranaje de la cabecera: más de un día sin lograr sincronizar. */
+header.top a.ajustes.sync-aviso { position: relative; }
+header.top a.ajustes.sync-aviso::after { content: ""; position: absolute; top: 8px; right: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--close); box-shadow: 0 0 0 2px var(--surface); }
+.vincular .vincular-cuerpo { max-width: 34rem; }
+.vincular .vincular-cuerpo .actions { display: grid; gap: .6rem; margin-top: 1rem; }
+.vincular .aviso { color: var(--warn); font-weight: 600; }
+/* Botones llenos de estas pantallas: texto con contraste también en oscuro (el acento claro pide texto oscuro). */
+.dispositivos button:not(.secondary), .vincular button:not(.secondary), .vincular a.btn:not(.secondary) { color: var(--on-accent); }
+.vincular h1[tabindex="-1"]:focus, .vincular h2[tabindex="-1"]:focus { outline: none; }

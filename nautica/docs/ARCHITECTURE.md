@@ -22,7 +22,7 @@ nautica/
 │   ├── graphics/         MOTOR GRÁFICO      carta en coordenadas mundo (Mercator) por capas, construcciones,
 │   │                                        instrumentos (transportador, compás, regla) y georreferenciación
 │   │                                        de escaneos (ajuste afín)
-│   ├── store/            DATOS              progreso del alumno (localStorage) y carga de datasets
+│   ├── store/            DATOS              progreso del alumno (localStorage), su sincronización (sync/) y carga de datasets
 │   ├── course/           CURSO              estado de las clases y repaso espaciado (engine.js), recomendador «Hoy» (plan.js)
 │   │                                        y ruta del curso: dependencias `requiere` y orden de las clases (ruta.js)
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
@@ -84,6 +84,14 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   `settings.{onboarded, minutosDia, vozAuto, avisoCartaVisto, ultimaCopia, avisoCopiaHasta}`, `lecciones[id].paso`
   (tarjeta donde se dejó la clase), `dias` (minutos y actividades por día, 60 días) y `testEnCurso` (examen a
   medias: respuestas, pregunta actual y tiempo consumido solo con la pestaña visible). Copia de seguridad en `ui/copia.js`.
+- **Sincronización entre aparatos** (`store/sync/`, [`SYNC.md`](SYNC.md)): cada escritura de `progress.js` se apunta
+  como una operación (`nautica.sync.v1`) y `progress.get()` sale de `plegar(operaciones, local)`, función pura con la
+  forma de siempre (la API del almacén no cambia). `motor.js` sube y trae operaciones de un Worker de Cloudflare + D1
+  (`sync-worker/`, fuera de `nautica/`, no se precarga) que solo guarda y reenvía; sin red, todo sigue en local. La
+  primera vez, el progreso de antes se convierte en una operación «base» (migración automática). Interfaz: Ajustes →
+  «Mis dispositivos» (`ui/dispositivos.js`: código, QR, unir otro aparato, estado), `#/vincular/<código>`
+  (`views/vincular.js`) y un punto en el engranaje si lleva más de un día sin sincronizar (`ui/sync.js`). Código de
+  terceros en `src/vendor/` (con su licencia en `src/vendor/README.md`).
 
 ## Flujo de un ejercicio
 

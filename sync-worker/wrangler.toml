@@ -1,0 +1,19 @@
+# patron-sync: sincronización del progreso de la app Patrón (ver nautica/docs/SYNC.md, «Despliegue»).
+# El secreto PEPPER NO va aquí: se pone con `wrangler secret put PEPPER` (y, en local, con `--var PEPPER:…` o un
+# .dev.vars que nunca se sube a git).
+name = "patron-sync"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "patron-sync"
+database_id = "4dc24eaf-443f-4e30-9061-d2a02abae437"
+migrations_dir = "migrations"
+
+# Registros de Cloudflare apagados: la cabecera Authorization lleva el código del alumno y no debe acabar en ningún
+# registro. Para depurar un rato, `npx wrangler tail` (y no dejar registros permanentes con cabeceras).
+[observability]
+enabled = false

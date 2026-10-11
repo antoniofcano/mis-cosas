@@ -70,6 +70,10 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   una campanilla al encender un faro o subir de rango y dos campanadas al terminar la sesión, sintetizados con
   WebAudio (sin ficheros). Las animaciones de cambio (faro que se enciende, rango, insignia) solo se ven una vez y
   respetan «reducir movimiento». Ver [`docs/EFECTOS.md`](docs/EFECTOS.md).
+- **Tu progreso en todos tus aparatos**, sin hacer nada: se copia solo entre móvil, tableta y ordenador (y sin
+  conexión todo sigue igual; se sube después). En Ajustes → «Mis dispositivos» está tu código y un QR para abrirlo en
+  otro móvil. Servidor propio en Cloudflare (`sync-worker/`), que no guarda ni el código ni nada que te identifique.
+  Ver [`docs/SYNC.md`](docs/SYNC.md).
 - **Escalas en los márgenes y guías**: arrastra desde la escala de latitudes o de longitudes para sacar un
   paralelo o un meridiano (se ajusta a la décima de minuto y admite el valor exacto); el cruce de dos guías
   sitúa el punto y todas las herramientas se ajustan a él. Atajo ⌖ para trazar guías (y punto) desde unas coordenadas.

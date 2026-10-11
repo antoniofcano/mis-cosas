@@ -1,7 +1,10 @@
-// Copia de seguridad del progreso: guardar (descargar JSON), recuperar y el recordatorio de Hoy.
+// Copia de seguridad del progreso: guardar (descargar JSON), recuperar y el recordatorio de Hoy. Con la sincronización
+// sana (docs/SYNC.md: con código y sincronizada hace menos de 3 días) el progreso ya está fuera del aparato y el
+// recordatorio no sale; si lleva días sin sincronizar o no está vinculada, vuelve como siempre.
 
 import { h } from './dom.js';
 import { diasParaAviso, estadoProteccion } from '../store/persistencia.js';
+import { syncSana } from './sync.js';
 
 const DIA = 864e5;
 
@@ -31,7 +34,8 @@ export function botonRecuperar(progress, texto = 'Recuperar una copia') {
  * Recordatorio en Hoy: ≥ 7 días con actividad desde la última copia (≥ 4 si el navegador no protege los datos);
  * descartable durante 7 días.
  */
-export function avisoCopia(progress, ahora = Date.now()) {
+export function avisoCopia(progress, ahora = Date.now(), sana = syncSana(ahora)) {
+  if (sana) return null;
   const s = progress.settings();
   if (progress.diasConActividadDesde(s.ultimaCopia) < diasParaAviso(s) || ahora < (s.avisoCopiaHasta ?? 0)) return null;
   const el = h('p.aviso-copia',

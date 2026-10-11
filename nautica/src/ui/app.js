@@ -49,6 +49,8 @@ import { iniciarPwa } from './pwa.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
 import { fijarReservaAlumno, fijarConfigProfe } from '../bancos/index.js';
 import { profeView } from './views/profe.js';
+import { vincularView } from './views/vincular.js';
+import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
@@ -91,6 +93,7 @@ const ROUTES = {
   progreso: progressView,
   ajustes: masView,
   profe: profeView, // #/profe: modo profesor (preparar y compartir una configuración)
+  vincular: vincularView, // #/vincular/<código>: unir este aparato al progreso de un código (el enlace del QR de Ajustes)
 };
 
 // Direcciones antiguas → nuevas (enlaces guardados)
@@ -182,6 +185,17 @@ async function main() {
   const chart = createChart(await loadChartData());
   const ctx = { chart };
   const progress = createProgressStore();
+  // Sincronización del progreso entre los aparatos del alumno (docs/SYNC.md): sola y sin estorbar; sin red, todo
+  // sigue en local. El punto discreto de la cabecera solo aparece si lleva más de un día sin lograrlo.
+  iniciarSincronizacion(progress);
+  const marcaCabecera = () => {
+    const a = document.querySelector('header.top a.ajustes');
+    if (!a) return;
+    const aviso = syncAvisoCabecera();
+    a.classList.toggle('sync-aviso', aviso);
+    a.setAttribute('aria-label', aviso ? 'Ajustes (tu progreso lleva más de un día sin copiarse a tus otros aparatos)' : 'Ajustes');
+  };
+  alCambiarSync(marcaCabecera);
   // Examen final: la reserva de cada eje y titulación se fija para el alumno la primera vez que carga ese banco
   // (ajuste reserva_<eje>_<tit>); si después cambian los datos, su examen final no cambia.
   fijarReservaAlumno({
@@ -240,6 +254,7 @@ async function main() {
     const footer = document.querySelector('body > footer');
     if (footer) footer.hidden = route.parts[0] !== 'ajustes';
     renderNav(tit, route.parts, (id) => { setTit(progress, id); render(); });
+    marcaCabecera();
     enVistaEpisodio(false); // la vista del episodio lo vuelve a poner
     if (modoExamen()) fijarModoExamen(null); // el examen en marcha lo vuelve a poner
     try {

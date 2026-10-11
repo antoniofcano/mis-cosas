@@ -1,7 +1,10 @@
 // #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, dónde te
 // examinas (si hay más de un banco publicado), instalar,
-// voz del profe, sonidos y vibración (docs/EFECTOS.md), la configuración del profesor (usarla o quitarla; enlace al modo profesor) y copia de seguridad. Es la única pantalla con el pie de página. Los recursos de estudio están en
-// Biblioteca (#/<tit>/biblioteca).
+// voz del profe, sonidos y vibración (docs/EFECTOS.md), la configuración del profesor (usarla o quitarla; enlace al modo profesor),
+// «Mis dispositivos» (el código del alumno, el QR para otro móvil y el estado de la sincronización, docs/SYNC.md) y, plegado en
+// «Avanzado», guardar o recuperar una copia y empezar de cero. Mientras la sincronización esté sana no se insiste en guardar
+// copias; si no lo está, el aviso de la copia vuelve como siempre. Es la única pantalla con el pie de página. Los recursos de
+// estudio están en Biblioteca (#/<tit>/biblioteca).
 
 import { h, setChildren } from '../dom.js';
 import { TITULACIONES, tlink, currentEje } from '../titulacion.js';
@@ -17,6 +20,8 @@ import { ejesElegibles, selectorEje, citaFuente } from '../eje.js';
 import { seccionConfigAlumno } from '../config-profe.js';
 import { conIcono } from '../iconos.js';
 import { soportaSonido, soportaVibracion, desbloquearSonido, efecto } from '../efectos.js';
+import { seccionDispositivos } from '../dispositivos.js';
+import { syncSana } from '../sync.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -136,23 +141,30 @@ export function masView({ progress, tit, params }) {
     instalarEl,
     // Configuración del profesor (usarla o quitarla) y el modo profesor.
     seccionConfigAlumno(progress),
-    h('section', h('h2', conIcono('descargar', 'Copia de seguridad')),
-      h('p', 'Lo que has estudiado se guarda solo en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
+    seccionDispositivos(),
+    // Sin sincronización sana (sin código, o días sin lograrla), el aviso de guardar una copia vuelve como siempre.
+    syncSana() ? null : h('section.copia-aviso', h('h2', conIcono('descargar', 'Copia de seguridad')),
+      h('p', 'Ahora mismo lo que has estudiado solo está seguro en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
       copiaHecha,
       lineaProteccion(progress),
+      h('div.actions', h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'))),
+    h('details.avanzado', h('summary', 'Avanzado'),
+      h('h3.ajuste', 'Copia en un archivo'),
+      h('p.small', 'Guarda todo lo que has estudiado en un archivo, o recupera uno que guardaste. Lo recuperado se suma a lo que ya tienes.'),
+      syncSana() ? copiaHecha : null,
       h('div.actions',
-        h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
+        h('button.secondary', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
         botonRecuperar(progress)),
-      h('details.empezar-de-cero', h('summary', 'Empezar de cero'),
-        h('p', 'Se borrará todo lo que has estudiado. No se puede deshacer.'),
-        h('button.peligro', { type: 'button', onclick: () => { if (confirm('¿Borrar todo lo que has estudiado? No se puede deshacer.')) { progress.reset(); location.hash = '#/'; location.reload(); } } }, 'Borrar todo'))),
+      h('details.empezar-de-cero', h('summary', 'Empezar de cero en este aparato'),
+        h('p', 'Se borrará lo que has estudiado en este aparato y dejará de compartir el progreso con tus otros aparatos (ellos conservan lo suyo). No se puede deshacer.'),
+        h('button.peligro', { type: 'button', onclick: () => { if (confirm('¿Borrar lo que has estudiado en este aparato? No se puede deshacer.')) { progress.reset(); location.hash = '#/'; location.reload(); } } }, 'Borrar todo'))),
   );
   // Desde Hoy, «Poner fecha de examen» o «Cambiar minutos al día» llevan directo a su campo.
   const campo = params?.query?.campo;
   // Se espera a que la pantalla esté puesta (la transición la monta un poco después).
   let intentos = 0;
   const lleva = () => {
-    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : minutos;
+    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : minutos;
     if (!destino.isConnected) { if (intentos++ < 60) setTimeout(lleva, 30); return; }
     destino.scrollIntoView({ block: 'center' });
     if (campo === 'fecha') { fecha.focus(); try { fecha.showPicker?.(); } catch { /* sin gesto del usuario */ } }

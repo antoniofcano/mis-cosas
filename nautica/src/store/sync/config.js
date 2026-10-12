@@ -12,6 +12,22 @@ export function urlServidor(storage = globalThis.localStorage) {
   return URL_PRODUCCION;
 }
 
+/**
+ * Clave pública VAPID del recordatorio diario (docs/AVISOS.md). La escribe `npm run vapid -- --escribir` en
+ * sync-worker/ (la privada nunca está en el repositorio: es un secreto de Cloudflare). Vacía = el servidor aún no tiene
+ * avisos: la app ofrece solo el recordatorio en el calendario.
+ */
+export const VAPID_PUBLICA = '';
+
+/** La clave VAPID: la de producción, salvo que el navegador tenga otra puesta para pruebas (nautica.avisos.vapid). */
+export function clavePublicaAvisos(storage = globalThis.localStorage) {
+  try {
+    const k = storage?.getItem('nautica.avisos.vapid');
+    if (k && /^B[A-Za-z0-9_-]{86}$/.test(k)) return k;
+  } catch { /* sin almacenamiento */ }
+  return VAPID_PUBLICA;
+}
+
 /** Cada cuánto se sincroniza con la app abierta y en primer plano. */
 export const CADA_MS = 4 * 60e3;
 /** Espera tras una escritura antes de subirla (junta varias respuestas seguidas en una subida). */

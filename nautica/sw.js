@@ -1,10 +1,12 @@
-// versión: af53ca7f83bd
+// versión: 85b9d5c197bd
 // Service worker: guarda la app en el móvil para que abra sin conexión y rápido.
 // La lista de archivos y la versión salen de sw-lista.js (npm run precache).
 //   - Al instalar se guarda la app (código, estilos, iconos); los datos (exámenes, carta, cursos) se guardan
 //     después, al activarse, sin bloquear.
 //   - Se sirve primero lo guardado; lo que falte se pide a la red y se guarda.
 //   - Una versión nueva espera a que el alumno pulse «Actualizar» (nunca cambia a mitad de un examen).
+//   - El aviso diario (docs/AVISOS.md): el servidor manda un mensaje mínimo; el texto, el icono y la etiqueta (para que
+//     no se apilen) están aquí. Al tocarlo se abre la app en Hoy.
 importScripts('sw-lista.js');
 
 const APP = `app-${self.VERSION}`;
@@ -65,3 +67,29 @@ async function responder(req, r) {
     throw err;
   }
 }
+
+self.addEventListener('push', (e) => {
+  e.waitUntil(self.registration.showNotification('Patrón', {
+    body: 'Hoy toca un repaso de 10 minutos.',
+    icon: 'icons/icono-192.png',
+    badge: 'icons/icono-192.png',
+    tag: 'recordatorio-diario', // el de hoy sustituye al de ayer si sigue ahí: nunca se apilan
+    lang: 'es',
+    data: { url: './#/' },
+  }));
+});
+
+self.addEventListener('notificationclick', (e) => {
+  e.notification.close();
+  const url = new URL('./#/', self.registration.scope).href;
+  e.waitUntil((async () => {
+    const abiertas = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    const app = abiertas.find((c) => c.url.startsWith(self.registration.scope));
+    if (app) {
+      await app.focus();
+      if (app.url !== url && 'navigate' in app) await app.navigate(url).catch(() => {});
+      return;
+    }
+    await self.clients.openWindow(url);
+  })());
+});

@@ -74,6 +74,10 @@ Añadir otra titulación (PNB, Capitán…) es una entrada en `TITULACIONES` (`s
   conexión todo sigue igual; se sube después). En Ajustes → «Mis dispositivos» está tu código y un QR para abrirlo en
   otro móvil. Servidor propio en Cloudflare (`sync-worker/`), que no guarda ni el código ni nada que te identifique.
   Ver [`docs/SYNC.md`](docs/SYNC.md).
+- **Aviso diario, si quieres**: en Ajustes (o en Hoy) eliges una hora (9:00, 13:00, 18:00 o 21:00) y, si ese día aún
+  no has estudiado, el móvil te recuerda «Hoy toca un repaso de 10 minutos». Uno al día como mucho; tras 5 avisos
+  seguidos sin estudiar se pausa solo, hasta que vuelvas. En iPhone sin instalar la app, se añade a tu calendario. Ver
+  [`docs/AVISOS.md`](docs/AVISOS.md).
 - **Escalas en los márgenes y guías**: arrastra desde la escala de latitudes o de longitudes para sacar un
   paralelo o un meridiano (se ajusta a la décima de minuto y admite el valor exacto); el cruce de dos guías
   sitúa el punto y todas las herramientas se ajustan a él. Atajo ⌖ para trazar guías (y punto) desde unas coordenadas.

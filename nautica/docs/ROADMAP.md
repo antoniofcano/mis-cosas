@@ -39,12 +39,13 @@ _Última revisión: 12 de octubre de 2026._
 | Carta | Mesa de cartas, carta resuelta paso a paso, ejercicios de examen PER y PY |
 | Animaciones | Reproductor común y animaciones con física (evolución, hombre al agua, hélice, marea, borrasca y anticiclón, corriente, ciaboga, desatraque) |
 | Sanidad | Guía Sanitaria a Bordo (ISM, 2013) como fuente; las divergencias con el curso están resueltas |
-| PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia |
+| PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia; recordatorio diario en revisión (R-10) |
 
 ## Ahora
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
+| R-10 | Recordatorio diario opcional (push web a las 9, 13, 18 o 21 h, solo si ese día no se ha estudiado; calendario `.ics` donde no hay push) | En revisión | Rama `feat/recordatorio-diario`. Falta que el dueño despliegue: migración `0002`, claves VAPID, Worker con la tarea por hora (`docs/AVISOS.md`, «Despliegue») y probarlo en móviles de verdad |
 
 ## Siguiente
 
@@ -60,7 +61,8 @@ _Última revisión: 12 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
-| R-10 | Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17). El recordatorio diario se apoya en el Worker de sincronización |
+| ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se parte: las notificaciones (recordatorio diario) siguen como R-10 en «Ahora»; la insignia y la pantalla de arranque pasan a R-18 |
+| R-18 | Pulido de PWA: insignia de la app y pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17) |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |

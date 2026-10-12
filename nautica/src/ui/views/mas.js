@@ -1,7 +1,7 @@
 // #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, dónde te
 // examinas (si hay más de un banco publicado), instalar,
 // voz del profe, sonidos y vibración (docs/EFECTOS.md), la configuración del profesor (usarla o quitarla; enlace al modo profesor),
-// «Mis dispositivos» (el código del alumno, el QR para otro móvil y el estado de la sincronización, docs/SYNC.md) y, plegado en
+// el aviso diario (docs/AVISOS.md), «Mis dispositivos» (el código del alumno, el QR para otro móvil y el estado de la sincronización, docs/SYNC.md) y, plegado en
 // «Avanzado», guardar o recuperar una copia y empezar de cero. Mientras la sincronización esté sana no se insiste en guardar
 // copias; si no lo está, el aviso de la copia vuelve como siempre. Es la única pantalla con el pie de página. Los recursos de
 // estudio están en Biblioteca (#/<tit>/biblioteca).
@@ -21,6 +21,7 @@ import { seccionConfigAlumno } from '../config-profe.js';
 import { conIcono } from '../iconos.js';
 import { soportaSonido, soportaVibracion, desbloquearSonido, efecto } from '../efectos.js';
 import { seccionDispositivos } from '../dispositivos.js';
+import { seccionAvisos } from '../recordatorio.js';
 import { syncSana } from '../sync.js';
 
 export function masView({ progress, tit, params }) {
@@ -141,6 +142,7 @@ export function masView({ progress, tit, params }) {
     instalarEl,
     // Configuración del profesor (usarla o quitarla) y el modo profesor.
     seccionConfigAlumno(progress),
+    seccionAvisos(),
     seccionDispositivos(),
     // Sin sincronización sana (sin código, o días sin lograrla), el aviso de guardar una copia vuelve como siempre.
     syncSana() ? null : h('section.copia-aviso', h('h2', conIcono('descargar', 'Copia de seguridad')),
@@ -164,7 +166,7 @@ export function masView({ progress, tit, params }) {
   // Se espera a que la pantalla esté puesta (la transición la monta un poco después).
   let intentos = 0;
   const lleva = () => {
-    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : minutos;
+    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : campo === 'avisos' ? el.querySelector('#aviso-diario') : minutos;
     if (!destino.isConnected) { if (intentos++ < 60) setTimeout(lleva, 30); return; }
     destino.scrollIntoView({ block: 'center' });
     if (campo === 'fecha') { fecha.focus(); try { fecha.showPicker?.(); } catch { /* sin gesto del usuario */ } }

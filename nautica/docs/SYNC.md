@@ -20,6 +20,9 @@ Piezas (pocas, a propósito):
 | `src/ui/sync.js`, `src/ui/dispositivos.js`, `src/ui/views/vincular.js`, `src/ui/qr.js` | Interfaz: Ajustes → «Mis dispositivos», `#/vincular/<código>`, punto de la cabecera. |
 | `sync-worker/` (fuera de `nautica/`) | El servidor: Cloudflare Worker + D1. No entra en la precarga ni en Pages. |
 
+El mismo Worker lleva también el **recordatorio diario** opcional por push (rutas `/v1/avisos`, una tarea programada
+por hora y la tabla `avisos`): ver [`AVISOS.md`](AVISOS.md).
+
 ## Modelo: registro de operaciones y pliegue
 
 Antes, el progreso era un JSON único que se sobrescribía. Con dos aparatos eso no se puede fusionar: `exams[pregunta]`
@@ -122,6 +125,8 @@ Inserta las operaciones ignorando duplicados y, en la misma ida y vuelta, devuel
 
 `GET /v1/salud` → `{ ok, version }` (comprueba la base de datos).
 
+`POST /v1/avisos` y `POST /v1/avisos/baja`: el recordatorio diario (ver [`AVISOS.md`](AVISOS.md)).
+
 Errores (JSON `{ error, motivo }`): `400 json|esquema`, `401 codigo-invalido`, `403 origen`, `404 codigo-desconocido`
 (el código no existe y no se pidió crear), `405`, `409 tope`, `413 demasiado-grande` (el motor parte el lote a la
 mitad), `429 limite` (con `Retry-After`), `500 configuracion|servidor`.
@@ -135,7 +140,9 @@ El servidor es tonto a propósito: no fusiona, guarda y reenvía. La fusión es 
 - `alumnos(id, hash UNIQUE, creado, ultimo, seq)`: un alumno = el hash de su código; `seq` = última operación (sin
   huecos, así que también es cuántas tiene).
 - `operaciones(alumno, seq, op_id, tipo, instante, json, recibido)`, clave `(alumno, seq)` y única `(alumno, op_id)`.
-- `limites(clave, ventana, n)`: contadores de peticiones.
+- `limites(clave, ventana, n)`: contadores de peticiones (y el de avisos enviados en el día, `avisos:dia`).
+- `avisos(…)`: una fila por aparato con el recordatorio diario activado (migración `0002_avisos.sql`, ver
+  [`AVISOS.md`](AVISOS.md)).
 
 Un lote entra con **un solo INSERT** (`json_each` + `row_number()`, saltando los ids que ya están) dentro de un
 `batch` (transacción) con la actualización de `seq`: unas 7 consultas por petición aunque el lote sea de 500.
@@ -157,7 +164,8 @@ Un lote entra con **un solo INSERT** (`json_each` + `row_number()`, saltando los
 
 Los contadores van en la tabla `limites` de D1 (ventanas fijas de minuto, hora o día; la clave lleva el hash de la IP
 o el id del alumno). Es sencillo y suficiente para dos alumnos; no es un limitador distribuido exacto (D1 serializa
-las escrituras, así que no se pierden cuentas). Las ventanas pasadas se borran de vez en cuando (2 % de peticiones).
+las escrituras, así que no se pierden cuentas). Las ventanas pasadas se borran de vez en cuando (2 % de peticiones) y,
+con los avisos encendidos, también una vez al día en la tarea programada.
 Si hiciera falta más, Cloudflare tiene reglas de limitación en el panel, sin tocar el código.
 
 En el cliente: lotes de 500 o 200 KB; espera creciente tras cada fallo (15 s, 30 s, 1 min… hasta 30 min, con algo de
@@ -232,6 +240,8 @@ errores (código y motivo). Nada del alumno. Para probar contra un servidor loca
   duplicados, cursor, troceo, validación, cuerpo, tope, límites, intentos fallidos, CORS, rutas, consultas por petición.
 - `sync-worker/tests/integracion.test.js`: el Worker de verdad (`wrangler dev --local`, workerd y D1 local) en el
   puerto 4811; se salta si no hay `node_modules`.
+- Del recordatorio diario: `sync-worker/tests/webpush.test.js`, `sync-worker/tests/avisos.test.js` y
+  `nautica/tests/recordatorio.test.js` (ver [`AVISOS.md`](AVISOS.md)).
 
 ## Despliegue (lo hace el dueño, a mano)
 
@@ -246,7 +256,7 @@ npx wrangler d1 create patron-sync               # copia el database_id que impr
 npx wrangler d1 migrations apply patron-sync --remote
 openssl rand -base64 32 | npx wrangler secret put PEPPER   # o escribe uno largo a mano; guárdalo en tu gestor
 npx wrangler deploy
-curl https://patron-sync.antoniofcano.workers.dev/v1/salud   # → {"ok":true,"version":"1.0.0"}
+curl https://patron-sync.antoniofcano.workers.dev/v1/salud   # → {"ok":true,"version":"1.1.0"}
 ```
 
 - Si el subdominio de workers.dev de la cuenta no es `antoniofcano`, la URL será otra: cámbiala en
@@ -261,5 +271,8 @@ curl https://patron-sync.antoniofcano.workers.dev/v1/salud   # → {"ok":true,"v
   `.gitignore`).
 - Copia de la base de datos: `npx wrangler d1 export patron-sync --remote --output copia.sql` (no la subas a git).
 - Borrar un alumno (si lo pide): con su código, calcula el hash (ver `hashCodigo` en `src/servidor.js`) y
-  `DELETE FROM operaciones WHERE alumno = (SELECT id FROM alumnos WHERE hash = '…'); DELETE FROM alumnos WHERE hash = '…';`
-  con `npx wrangler d1 execute patron-sync --remote --command "…"`.
+  `DELETE FROM avisos WHERE alumno = (SELECT id FROM alumnos WHERE hash = '…'); DELETE FROM operaciones WHERE alumno = (SELECT id FROM alumnos WHERE hash = '…'); DELETE FROM alumnos WHERE hash = '…';`
+  con `npx wrangler d1 execute patron-sync --remote --command "…"` (primero `avisos` y `operaciones`: D1 hace cumplir
+  las claves ajenas).
+- Recordatorio diario (migración `0002`, claves VAPID, `PUSH_ACTIVO`, la tarea programada): pasos en
+  [`AVISOS.md`](AVISOS.md), «Despliegue».

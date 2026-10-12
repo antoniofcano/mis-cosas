@@ -144,7 +144,10 @@ export function openWorkspace(o) {
   );
 
   const tabs = { ejercicio: tabEjercicio, tutorial: tabTutorial };
-  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], tutorial: ['clase', 'Tutorial'] }).map(([id, [ico, label]]) =>
+  // Sin pasos (un examen, o una pregunta sin resolución programada) no hay tutorial que enseñar: no se ofrece la pestaña
+  // en vez de abrir una carta vacía con «0 / 0».
+  const hayTutorial = (o.steps ?? []).length > 0;
+  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], ...(hayTutorial ? { tutorial: ['clase', 'Tutorial'] } : {}) }).map(([id, [ico, label]]) =>
     h('button.ws-tabbtn', { type: 'button', 'data-tab': id, onclick: () => showTab(id) }, conIcono(ico, label)));
   const panelBody = h('div.ws-panel-body');
   // El panel (abajo en el móvil, a la derecha en pantallas anchas) tapa parte de la carta: se pliega y se despliega con
@@ -155,6 +158,7 @@ export function openWorkspace(o) {
   plegar.classList.add('ws-plegar');
   panel.append(h('div.ws-tabs', plegar, tabButtons), panelBody);
   function showTab(id) {
+    if (!tabs[id] || (id === 'tutorial' && !hayTutorial)) id = 'ejercicio';
     if (panel.classList.contains('plegada')) { plegar.pliega(false); ws.classList.remove('panel-plegado'); }
     setChildren(panelBody, tabs[id]);
     tabButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === id)));
@@ -207,7 +211,7 @@ export function openWorkspace(o) {
     openWs = api;
     requestAnimationFrame(() => {
       if (firstShow) { chartApi.focusPoints(o.focus ?? []); firstShow = false; }
-      if (tab === 'tutorial' && tutorial.step === 0) tutorial.goTo(0, { animate: false });
+      if (tab === 'tutorial' && hayTutorial && tutorial.step === 0) tutorial.goTo(0, { animate: false });
     });
   }
 

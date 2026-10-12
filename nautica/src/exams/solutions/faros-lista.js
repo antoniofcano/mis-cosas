@@ -18,14 +18,19 @@ const NOTA = 'Entre los símbolos de los dos faros en la carta de la app la rect
   + 'enfilación tan corta (8,7 millas) gira la recta más de un grado. Si mides en tu carta te saldrá entre 078° y 080°: '
   + 'la plantilla usa 080°.';
 
-/** Dv de la enfilación Cabo Espartel–Punta Malabata (en el sentido más próximo a `approx`), con la nota. */
+/**
+ * Dv de la enfilación Cabo Espartel–Punta Malabata (en el sentido más próximo a `approx`), con la nota. Primero el
+ * dibujo y después la nota: el tutorial no debe empezar con la carta vacía.
+ */
 export function enfilacionEspartelMalabata(k, approx = 80) {
-  k.note('Enfilación Espartel–Malabata', NOTA);
-  return k.enfilacion('cabo-espartel', MALABATA_LISTA, approx);
+  const dv = k.enfilacion('cabo-espartel', MALABATA_LISTA, approx);
+  k.note('Enfilación Espartel–Malabata: la medida', NOTA);
+  return dv;
 }
 
 /** Dv a Punta Malabata estando en la oposición Cabo Espartel–Punta Malabata (entre los dos faros), con la nota. */
 export function oposicionEspartelMalabata(k) {
-  k.note('Oposición Espartel–Malabata', NOTA);
-  return k.oposicion('cabo-espartel', MALABATA_LISTA);
+  const dv = k.oposicion('cabo-espartel', MALABATA_LISTA);
+  k.note('Oposición Espartel–Malabata: la medida', NOTA);
+  return dv;
 }

@@ -27,7 +27,7 @@ dibuja en estilo C con `src/illustrations/derrota-c.js` (ver docs/ENTRADA.md, «
 | Hoy | La carta en compacto como héroe (toda ella abre la travesía) y rango y semana en la fila de estado: docs/ENTRADA.md (las cuatro pestañas no cambian) |
 | Más, Mi progreso | Enlace a la travesía |
 | `#/<tit>/temario` | Un faro por **tema** con el mismo criterio (`luzDeFaro`, `farosPorTema`; ver docs/ICONOS.md) |
-| `#/<tit>/sesion` (al terminar) | Parte de travesía arriba del resumen |
+| `#/<tit>/sesion` (al terminar) | Parte de travesía arriba del resumen, con «Compartir mi parte» (docs/ENTRADA.md) |
 
 La ficha de una idea abierta desde la travesía vuelve a ella (`?desde=travesia/<faro>`).
 

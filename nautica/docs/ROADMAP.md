@@ -60,7 +60,7 @@ _Última revisión: 12 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
-| R-10 | Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS | Después | Media Session ya hecha; pantalla encendida y compartir el parte, en rama `feat/pwa-tanda1` a la espera de visto bueno. El recordatorio diario se apoya en el Worker de sincronización |
+| R-10 | Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17). El recordatorio diario se apoya en el Worker de sincronización |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
@@ -109,6 +109,7 @@ _Última revisión: 12 de octubre de 2026._
 | H-13 | Cierre de láminas: carta, cálculo, normativa y sanidad del PER; extintores y avisos del PY | PR #125 |
 | H-14 | Sincronización automática del progreso entre dispositivos (código de alumno, QR, Cloudflare Worker + D1) | PR #128 |
 | H-16 | Cierre de PER: 15 láminas, sanidad coherente con la Guía del ISM y auditoría; retirados los canales 10/74 y las «20 millas» de `per-9-7` | PR de cierre de PER |
+| H-17 | Pantalla encendida durante la sesión y botón «Compartir mi parte» | PR de la tanda 1 de PWA |
 | H-15 | Preguntas de carta sin solución: motivo a la vista, fuera de la práctica y discrepancias revisadas (R-22) | PR #129 |
 
 ## Mantenimiento recurrente

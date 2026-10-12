@@ -14,6 +14,9 @@ export function seccionDispositivos() {
       h('p', 'En este navegador no se puede guardar tu progreso fuera del aparato (por ejemplo, en una ventana privada).'));
   }
   const codigo = codigoAlumno(); // el primer uso lo crea en silencio
+  const avisoRegistro = h('p.small.aviso', 'Este código aún no está registrado en el servicio. Espera a que abajo ponga «Sincronizado» antes de usarlo en otro aparato.');
+  const pintaRegistro = () => { avisoRegistro.hidden = !!estadoSync()?.registrado; };
+  pintaRegistro();
   const enlace = enlaceVincular(codigo);
   const qr = h('div.qr-vincular');
   qr.innerHTML = svgQR(enlace, { etiqueta: `Código QR para abrir tu progreso en otro móvil (código ${codigo})` });
@@ -41,7 +44,7 @@ export function seccionDispositivos() {
   // Estado (para diagnóstico) y «Copiar diagnóstico».
   const estado = h('p.small.sync-estado', { 'aria-live': 'polite' });
   let ver = '?';
-  const pinta = () => { const l = lineaEstado(estadoSync(), ver); estado.className = `small sync-estado ${l.tipo}`; estado.textContent = l.texto; };
+  const pinta = () => { pintaRegistro(); const l = lineaEstado(estadoSync(), ver); estado.className = `small sync-estado ${l.tipo}`; estado.textContent = l.texto; };
   versionApp().then((v) => { ver = v; pinta(); });
   pinta();
   let montado = false; // la pantalla se monta un poco después (transición): hasta entonces no se da de baja
@@ -62,6 +65,7 @@ export function seccionDispositivos() {
     h('h3.ajuste', 'Tu código'),
     h('p.sync-codigo', codigo),
     h('p', 'Apúntalo en un papel y guárdalo. Con él puedes seguir en otro aparato o recuperar tu progreso si cambias de móvil.'),
+    avisoRegistro,
     h('h3.ajuste', 'Abrirlo en otro móvil'),
     h('figure.qr-figura', qr, h('figcaption.small', 'En el otro móvil, abre la cámara y apunta a este dibujo. Se abrirá la app y te preguntará si quieres unirlo.')),
     h('h3.ajuste', h('label', { for: 'sync-codigo-otro' }, 'Usar el código de otro aparato')),

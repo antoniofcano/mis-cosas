@@ -314,6 +314,61 @@ test('vincular: un código que no existe se dice claro y deja el aparato como es
   });
 });
 
+test('el servicio pierde los datos de un alumno: sus aparatos vuelven a darlo de alta con el mismo código y todo se recompone', async () => {
+  await conReloj(T0, async () => {
+    const srv = servidor();
+    const A = aparato(srv);
+    const B = aparato(srv);
+    A.progress.recordExam('q1', { choice: 'a', ok: true });
+    A.progress.recordExam('q2', { choice: 'b', ok: false });
+    await A.motor.sincronizar();
+    const codigo = A.progress.registro.codigo;
+    B.progress.recordExam('q3', { choice: 'c', ok: true });
+    assert.equal((await B.motor.vincular(formatearCodigo(codigo))).ok, true);
+    await A.motor.sincronizar();
+    const antes = compartido(A);
+    assert.deepEqual(compartido(B), antes);
+    // El servicio pierde todo (base de datos nueva).
+    srv.env.DB = d1Memoria();
+    // A y B siguen estudiando; la primera sincronización de A se encuentra con un código que ya no existe.
+    A.progress.recordExam('q4', { choice: 'd', ok: true });
+    const eA = await A.motor.sincronizar();
+    assert.equal(eA.estado, 'al-dia');
+    assert.equal(eA.recreados, 1);
+    assert.equal(eA.registrado, true);
+    assert.equal(A.progress.registro.codigo, codigo);
+    assert.equal(srv.env.DB.sqlite.prepare('SELECT COUNT(*) n FROM alumnos').get().n, 1);
+    // B no necesita nada especial: su primera sincronización recompone lo que falte en un sentido y en otro.
+    const eB = await B.motor.sincronizar();
+    assert.equal(eB.estado, 'al-dia');
+    await A.motor.sincronizar();
+    await B.motor.sincronizar();
+    assert.deepEqual(compartido(A), compartido(B));
+    for (const q of ['q1', 'q2', 'q3', 'q4']) assert.ok(compartido(A).exams[q], q);
+    const filas = srv.env.DB.sqlite.prepare('SELECT op_id FROM operaciones').all().map((f) => f.op_id);
+    assert.equal(new Set(filas).size, filas.length);
+    // Sin duplicados en los aparatos tras recrear.
+    for (const x of [A, B]) {
+      const ids = JSON.parse(x.mem.m.get(CLAVE_SYNC)).ops.map((o) => o.i);
+      assert.equal(new Set(ids).size, ids.length);
+    }
+  });
+});
+
+test('un código que nunca funcionó en este aparato no se «recrea»: se dice que no existe', async () => {
+  await conReloj(T0, async () => {
+    const srv = servidor();
+    const A = aparato(srv);
+    A.progress.recordExam('q1', { choice: 'a', ok: true });
+    A.motor.asegurarCodigo();
+    // Un código tecleado mal (que ninguna otra cuenta tiene): vincular lo rechaza y no da de alta nada.
+    const n0 = srv.env.DB.sqlite.prepare('SELECT COUNT(*) n FROM alumnos').get().n;
+    const v = await A.motor.vincular(generarCodigo());
+    assert.equal(v.ok, false);
+    assert.equal(srv.env.DB.sqlite.prepare('SELECT COUNT(*) n FROM alumnos').get().n, n0);
+  });
+});
+
 test('un aparato nuevo sin nada que subir no crea alumno; al pedir el código (Ajustes) se crea en silencio', async () => {
   await conReloj(T0, async () => {
     const srv = servidor();

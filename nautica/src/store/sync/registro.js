@@ -130,6 +130,18 @@ export function crearRegistro(storage, { rnd } = {}) {
       return () => { Object.assign(st, antes); guardar(); };
     },
 
+    /**
+     * El servicio ya no conoce el código de este aparato (se perdieron sus datos allí): este aparato guarda todo su
+     * registro, así que se vuelve a dar de alta el mismo código y se resube todo (el resto de aparatos lo recuperan
+     * al sincronizar). Es lo único que hace falta para que el servicio se recomponga solo.
+     */
+    recrear() {
+      st.creador = true;
+      st.cursor = 0;
+      st.pend = st.ops.map((o) => o.i);
+      guardar();
+    },
+
     /** Empezar de cero: registro vacío, sin código (este aparato deja de estar unido a los otros). */
     reiniciar() {
       const dev = st.dev;

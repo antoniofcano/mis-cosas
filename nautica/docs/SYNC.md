@@ -276,3 +276,16 @@ curl https://patron-sync.antoniofcano.workers.dev/v1/salud   # → {"ok":true,"v
   las claves ajenas).
 - Recordatorio diario (migración `0002`, claves VAPID, `PUSH_ACTIVO`, la tarea programada): pasos en
   [`AVISOS.md`](AVISOS.md), «Despliegue».
+
+
+## Si el servicio pierde los datos de un alumno
+
+Cada aparato guarda su registro completo de operaciones, así que el servicio se recompone solo. Si un aparato que ya
+había sincronizado con éxito con su código recibe `codigo-desconocido`, da de alta el mismo código otra vez
+(`registro.recrear()`: `creador` activo, cursor a 0 y todo el registro como pendiente) y lo resube; los demás aparatos
+traen y suben lo que les falte en su siguiente sincronización. Un código que nunca funcionó en ese aparato (uno mal
+escrito al vincular) no entra por este camino: se dice que no existe. El diagnóstico muestra cuántas veces ha pasado
+(`recreados`). En Ajustes, un código que el servicio aún no ha confirmado lleva un aviso para no usarlo en otro aparato.
+
+**Mantenimiento de la base de datos:** nunca se vacían tablas de producción a ciegas. Para limpiar pruebas se borra
+por la clave de lo que se creó (el hash del código de prueba), no con `DELETE` sin condición.

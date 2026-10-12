@@ -393,6 +393,15 @@ export function createKit(chart) {
       if (dist == null) items.push({ t: 'vec', from: P(from), bearing: ref, length: sol.vef, label: `Ref ${fmtBearing(ref)}`, style: 'effective', step: n });
       return { rs: sol.rs, vef: sol.vef, ref, dist };
     },
+    /**
+     * Rumbo nombrado como en las opciones («Rc = SE», «Rc = N»): el punto de la rosa de 8 (cada 45°) en que cae `r`.
+     * Solo para preguntas cuyas opciones dan el rumbo por su nombre.
+     */
+    porNombre(r) {
+      const v = norm360(Math.round(norm360(r) / 45) * 45);
+      step('Rumbo por su nombre', `Las opciones dan el rumbo por su nombre (N, NE, E, SE…, uno cada 45°): ${fmtBearing(r)} cae en el ${DIR_NAME[v]} (${fmtBearing(v)}), que abarca de ${fmtBearing(norm360(v - 22.5), 1)} a ${fmtBearing(norm360(v + 22.5), 1)}.`);
+      return v;
+    },
     /** Ct por la Polar: su azimut verdadero es prácticamente 000°, así que Ct = 0° − Za. */
     ctPolar(za) {
       const ct = norm180(-za);

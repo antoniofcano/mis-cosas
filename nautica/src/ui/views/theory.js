@@ -5,7 +5,8 @@
 
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
-import { cargarBanco, cargarCurso, urlFigura, rutaResolucion, SOLUCIONES as cartaSolutions } from '../../bancos/index.js';
+import { cargarBanco, cargarCurso, urlFigura, rutaResolucion, esDeCarta, SOLUCIONES as cartaSolutions } from '../../bancos/index.js';
+import { avisoDePregunta } from '../motivo-carta.js';
 import { bloque, bloquesEnOrden, totalPreguntas, posEstudio } from '../../theory/blocks.js';
 import { TITULACIONES, tlink, currentEje, reglasExamen } from '../titulacion.js';
 import { citaFuente } from '../eje.js';
@@ -194,7 +195,8 @@ function enlacePasos(q) {
 /** «Ver la resolución»: en la carta, o paso a paso si la pregunta se resuelve sin ella (mareas, estima analítica). */
 function enlaceResolucion(q) {
   const ruta = rutaResolucion(q);
-  if (!ruta) return null;
+  // Una de carta sin resolución programada no ofrece un enlace que se abriría vacío: dice por qué no se resuelve.
+  if (!ruta) return esDeCarta(q) ? avisoDePregunta(q) : null;
   const sinCarta = cartaSolutions[q.id]?.sinCarta;
   return h('p', h('a.btn.secondary', { href: link(ruta) }, sinCarta ? conIcono('calculadora', 'Ver la resolución paso a paso') : conIcono('mapa', 'Ver la resolución en la carta')));
 }
@@ -469,7 +471,7 @@ export function practiceView({ ctx, progress, params: route, tit }) {
   let summaryText = `VISTA tanda de preguntas · ${b.titulo}${soloFalladas ? ' (solo falladas)' : ''}`;
 
   const eje = currentEje(progress);
-  Promise.all([cargarBanco(eje, tit0), cargarCurso(tit0, eje)]).then(([{ estudio: preguntas, explicaciones, reglasDe: rd, vocab }, curso]) => {
+  Promise.all([cargarBanco(eje, tit0), cargarCurso(tit0, eje)]).then(([{ practica: preguntas, explicaciones, reglasDe: rd, vocab }, curso]) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     // Tema sin empezar (ni clases ni preguntas): se avisa antes de preguntar lo que aún no se ha explicado.
@@ -517,7 +519,7 @@ function mezclaView({ progress, seed }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA repaso mezclado';
-  cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  cargarBanco(currentEje(progress), tit0).then(({ practica: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const respuestas = progress.get().exams;
     const empezados = bloquesEnOrden(E).filter((x) => preguntas.some((q) => q.ut === x.ut && respuestas[q.id])).map((x) => x.ut);
@@ -557,7 +559,7 @@ function repasoView({ progress }) {
   let summaryText = 'VISTA repaso de fallos';
   const eje = currentEje(progress);
   Promise.all([cargarBanco(eje, tit0), conceptosDelBanco(eje, tit0)]).then(([banco, ic]) => {
-    const { estudio: preguntas, explicaciones, reglasDe: rd, vocab } = banco;
+    const { practica: preguntas, explicaciones, reglasDe: rd, vocab } = banco;
     reglasDe = rd;
     const clave = banco.eje.id;
     const hoy = diaLocal();
@@ -659,7 +661,7 @@ function rapidoView({ progress, seed }) {
   const cont = h('div', h('p.muted', 'Cargando…'));
   const el = h('div.practice', barra, ayudas.panel, cont);
   let summaryText = 'VISTA 5 minutos';
-  cargarBanco(currentEje(progress), tit0).then(({ estudio: preguntas, explicaciones, reglasDe: rd, vocab }) => {
+  cargarBanco(currentEje(progress), tit0).then(({ practica: preguntas, explicaciones, reglasDe: rd, vocab }) => {
     reglasDe = rd;
     const tanda = tandaRapida(preguntas, progress.get().exams, createRng(seed));
     setChildren(cont, tandaPreguntas({

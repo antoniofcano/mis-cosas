@@ -173,6 +173,19 @@ export default {
     },
   },
   // c2-n17 (anulada): ver DISCREPANCIAS al final.
+  'and-py-2021-c2-n17': {
+    // Anulada (todas las respuestas válidas). Se resuelve para practicar: ninguna opción se acerca a la cuenta.
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('35 50,0 N', '6 10,0 W', 'Situación 11:15');
+      const t = hrb(13, 30) - hrb(11, 15);
+      const est = k.run(s, 85, k.distFor(7.5, t), 'Situación de estima 13:30');
+      const obs = k.fix2('punta-malabata', 99, 'cabo-espartel', 242, 'Situación observada 13:30');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      k.note('Las opciones', 'Sale Rc 200° e Ihc 0,8 nudos, y ninguna opción se acerca: todas llevan la corriente hacia el NNE (010°–020°). La a (020°, 1 nudo) es casi la corriente al revés, la que sale uniendo la observada con la estima: es el error típico de trazar el vector en sentido contrario.');
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
   'and-py-2021-c2-n18': {
     sinCarta: true,
     ejercicio: 'estima-analitica',

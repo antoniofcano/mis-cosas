@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '9391e713aee4';
+self.VERSION = 'f83204e23605';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -52,6 +52,7 @@ self.APP = [
  "src/course/tarjetas.js",
  "src/course/travesia.js",
  "src/exams/kit.js",
+ "src/exams/motivo.js",
  "src/exams/options.js",
  "src/exams/solutions/andalucia-per-0.js",
  "src/exams/solutions/andalucia-per-1.js",
@@ -101,6 +102,7 @@ self.APP = [
  "src/exams/solutions/dgmm-py-2024.js",
  "src/exams/solutions/dgmm-py-2025.js",
  "src/exams/solutions/dgmm-py-2026.js",
+ "src/exams/solutions/faros-lista.js",
  "src/exercises/compass-data.js",
  "src/exercises/define.js",
  "src/exercises/helpers.js",
@@ -290,6 +292,7 @@ self.APP = [
  "src/ui/lamina.js",
  "src/ui/mapa-trampa.js",
  "src/ui/modo-examen.js",
+ "src/ui/motivo-carta.js",
  "src/ui/movimiento.js",
  "src/ui/pasos.js",
  "src/ui/plan-estudio.js",

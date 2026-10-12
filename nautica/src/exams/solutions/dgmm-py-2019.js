@@ -90,6 +90,6 @@ export default {
     // 06-39: ver documentadas (la enfilación mide 243,5°: Ct +1,5°, la opción d).
   },
   documentadas: {
-    'dgmm-py-2019-06-39': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Europa–Carnero (vemos Europa con Carnero detrás, al SW) mide 243,5°: con la Da 242° la Ct es +1,5°, exactamente la opción d. La oficial (c, +2°) queda a 0,5°, en el límite de la tolerancia, y la opción d la iguala: el tribunal debió medir la enfilación en 244°.' },
+    'dgmm-py-2019-06-39': { tipo: 'discrepancia', texto: 'La enfilación Punta Europa–Punta Carnero (vemos Europa con Carnero detrás, al SW) va al 243,5° entre los símbolos de la carta (243,7° con la situación oficial de los faros). Con la Da 242°: Ct = 243,5° − 242° = +1,5°, que es justo la opción d. La oficial (c, +2°) sale midiendo la enfilación al grado entero, 244°, como hace el tribunal con el transportador. Si mides 244° en tu carta, Ct = +2°: en el examen vale la c.' },
   },
 };

@@ -1,5 +1,6 @@
 // Soluciones programadas PY Andalucía, convocatorias de 2022. Ver andalucia-py.js para el formato.
 import { hrb } from '../kit.js';
+import { enfilacionEspartelMalabata } from './faros-lista.js';
 import { fmtBearing } from '../../math/format.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
@@ -105,6 +106,14 @@ export default {
   },
 
   // ---- 2ª Convocatoria 2022
+  'and-py-2022-c2-n11': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // El Rv 072° y la velocidad no intervienen.
+      const dv = enfilacionEspartelMalabata(k, 80);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 78) }];
+    },
+  },
   'and-py-2022-c2-n12': {
     ejercicio: 'abatimiento',
     solve(k) {

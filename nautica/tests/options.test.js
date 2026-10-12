@@ -59,8 +59,19 @@ test('horas: «21h 34m», «21:34», «13.45» y sin separador «0924»', () => 
 test('chooseOption no elige ninguna por defecto, y avisa de empates y de opciones repetidas', () => {
   const ilegibles = chooseOption({ a: 'Ninguna', b: 'A ninguna hora' }, [{ kind: 'bearing', value: 10 }]);
   assert.equal(ilegibles.choice, null);
-  const empate = chooseOption({ a: '3º', b: '3º+', c: '20º-' }, [{ kind: 'signed', value: 3 }]);
+  // El mismo valor con y sin signo: vale la que escribe el signo (una Ct se da con su signo); la otra queda detrás.
+  const signo = chooseOption({ a: '3º', b: '3º+', c: '20º-' }, [{ kind: 'signed', value: 3 }]);
+  assert.equal(signo.choice, 'b');
+  assert.deepEqual(signo.empate, []);
+  assert.ok(signo.scores.a >= signo.scores.b + 1);
+  // Si las dos lo escriben (o ninguna), el empate se queda.
+  const empate = chooseOption({ a: '3º (+)', b: '3º+', c: '20º-' }, [{ kind: 'signed', value: 3 }]);
   assert.deepEqual([empate.choice, ...empate.empate].sort(), ['a', 'b']);
+  const sinSigno = chooseOption({ a: '3º', b: '3', c: '20º-' }, [{ kind: 'signed', value: 3 }]);
+  // Y si el signo escrito no es el del resultado, tampoco se desempata con él.
+  const otroSigno = chooseOption({ a: '3º', b: '3º+', c: '20º-' }, [{ kind: 'signed', value: -3 }]);
+  assert.notEqual(otroSigno.choice, 'b');
+  assert.deepEqual([sinSigno.choice, ...sinSigno.empate].sort(), ['a', 'b']);
   const repetida = chooseOption({ a: 'Ref = 054º, 5,73 nudos', b: 'Ref = 054º, 11,45 nudos', c: 'Ref = 054º, 11,45 nudos.' },
     [{ kind: 'bearing', value: 54 }, { kind: 'speed', value: 11.4 }]);
   assert.equal(repetida.choice, 'b');

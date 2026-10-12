@@ -234,10 +234,7 @@ export default {
       tipo: 'sin-calculo',
       texto: 'La salida es la marca especial al E de La Línea de la Concepción, que no está entre los puntos de la carta de la app y cuya posición no da ningún enunciado ni respuesta oficial: hay que leerla en la carta. Con la declinación de la carta para 2021 (0°58′ W) y desvío 3,5° E, Ct = +2,5°; la oficial (b, Ra = 155°) supone un Rv ≈ 157,5° para pasar a 4,2 millas de Punta Almina.',
     },
-    'dgmm-per-2021-02-44': {
-      tipo: 'discrepancia',
-      texto: 'En la oposición Punta Europa–Punta Carnero la demora verdadera a Carnero es la de la recta Europa → Carnero, que en la carta sale 243,5°. Ct = Dv − Da = 243,5° − 255° = −11,5°. La oficial es c, «10º» sin signo, frente a b «10º +»: el tribunal toma la Ct negativa y mide la recta como 245°. El sentido coincide; el valor difiere 1,5° y la opción, escrita sin signo, se lee como +10°, así que la comparación automática no puede llegar a ella. Es la misma pregunta que dgmm-per-2020-12-177 con otra Da.',
-    },
+    'dgmm-per-2021-02-44': { tipo: 'discrepancia', texto: 'Es dgmm-per-2020-12-177 con otra Da. En la oposición Europa–Carnero la Dv a Carnero es 243,5°: Ct = 243,5° − 255° = −11,5°, negativa. La oficial es la c, «10º» sin signo (frente a la b, «10º +»): el tribunal escribe así la negativa y mide la recta en 245°. En el examen vale la c; tu cuenta dará unos −11° o −12°.' },
     'dgmm-per-2021-02-45': {
       tipo: 'sin-calculo',
       texto: 'El rumbo verdadero es el del dispositivo de separación de tráfico del Estrecho en sentido NE, que se lee en la carta; el trazado del dispositivo no está en los datos de la carta de la app. Con la declinación de la carta para 2021 (2°50′ W − 16 × 7′ = 0°58′ W) y desvío 1° W, Ct = −2°; la oficial (c, Ra = 074,5°) corresponde a un Rv del dispositivo de 072,5°.',

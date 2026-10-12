@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 10 de octubre de 2026._
+_Última revisión: 12 de octubre de 2026._
 
 ## Cómo se mantiene
 
@@ -46,6 +46,7 @@ _Última revisión: 10 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-01 | Cierre del PER: 15 láminas pendientes, sanidad coherente, auditoría de punta a punta | En revisión | Rama `feat/per-cierre`; falta el visto bueno |
+| R-22 | Preguntas de carta sin solución: el motivo a la vista (anulada, se resuelve mirando la carta, no coincide con la plantilla), fuera de la práctica, y revisión de cada discrepancia | En revisión | Rama `feat/carta-sin-solucion`. PY programadas de nuevo: Andalucía 8 de 8 discrepancias y 2 anuladas; DGMM 2 discrepancias y 4 anuladas; Baleares 6 de 11. PER: 2 anuladas de DGMM. Quedan documentadas con su cuenta 22 discrepancias y 6 anuladas (5 sin reservar); salen de la práctica 139 preguntas (todas siguen en sus exámenes). Informe en `.trabajo-ux/ESTADO-carta-sin-solucion.md`; recuento con `node tools/auditoria-carta.mjs` |
 | R-02 | Decidir `per-9-7`: «hasta 20 millas» y canales 10/74 no verificados | Bloqueado | Decisión del autor: retirar los canales; dejar la cifra solo si una pregunta la exige |
 
 ## Siguiente

@@ -10,7 +10,7 @@ import { fmtBearing, fmtKnots } from '../../math/format.js';
 const L105 = [-(2 + 50 / 60), 2005, 7];
 const anyo = (q) => Number(q.fecha.slice(0, 4));
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
-const N = 0; const SW = 225; const NW = 315;
+const N = 0; const SW = 225; const W = 270; const NW = 315;
 
 // Marca cardinal E de la granja acuícola de Barbate (al S de Barbate): 36° 09′ N 005° 55,3′ W, la opción oficial (d) de
 // la pregunta dgmm-per-2021-02-42 («¿cuál es la que más se aproxima a la marca cardinal Este situada al sur de Barbate?»).
@@ -30,6 +30,20 @@ export default {
       },
     },
     // 06-34, 06-36: anuladas.
+    'dgmm-py-2022-06-34': {
+      // Anulada: la latitud «025º 49´N» es una errata (fuera de la carta). Se resuelve con 35° 49′ N.
+      ejercicio: 'corriente-desconocida',
+      solve(k) {
+        const dv = k.oposicion('punta-gracia', 'cabo-espartel');
+        const s = k.fixDist('cabo-espartel', dv, 3, 'Situación 08:30');
+        const t = hrb(10) - hrb(8, 30);
+        const est = k.run(s, W, k.distFor(4, t), 'Situación de estima 10:00');
+        k.note('Errata del enunciado', 'La situación de las 10:00 dice «latitud 025º 49´N», a 600 millas de la carta: es una errata por 35° 49′ N.');
+        const obs = k.pos('35 49,0 N', '6 01,0 W', 'Situación observada 10:00');
+        const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+        return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+      },
+    },
     'dgmm-py-2022-06-37': {
       ejercicio: 'corriente-desconocida',
       solve(k, q) {
@@ -56,6 +70,16 @@ export default {
       },
     },
     // 06-39: anulada.
+    'dgmm-py-2022-06-39': {
+      // Anulada (sin acuerdo publicado en la fuente). Se resuelve para practicar: la cuenta cae en la c.
+      ejercicio: 'situacion-dos-demoras',
+      solve(k, q) {
+        const dv = k.oposicion('punta-alcazar', 'punta-cires');
+        const ct = k.ct({ carta: L105, anyo: anyo(q), desvio: 3 });
+        const dvT = k.dv(134, ct, 'isla-tarifa');
+        return latlon(k.lineAndBearing('punta-cires', dv, 'isla-tarifa', dvT, 'Situación'));
+      },
+    },
     'dgmm-py-2022-06-40': {
       ejercicio: 'rumbo-pasar-distancia',
       solve(k, q) {
@@ -122,6 +146,19 @@ export default {
       },
     },
     // 12-37: anulada.
+    'dgmm-py-2022-12-37': {
+      // Anulada (todas las respuestas válidas). Se resuelve para practicar, con la hora en UTC de las dos situaciones.
+      ejercicio: 'corriente-efectiva',
+      solve(k, q) {
+        const ct = k.ct({ carta: L105, anyo: anyo(q), desvio: -3 });
+        const s = k.fix2('cabo-trafalgar', k.dv(330, ct, 'cabo-trafalgar'), 'cabo-espartel', k.dv(204, ct, 'cabo-espartel'), 'Situación 17:15 UTC');
+        const rv = k.rv(284, ct);
+        const rs = k.abatimiento(rv, 3, NW);
+        const { ref, vef } = k.efectivo(rs, 4.5, 180, 2, s);
+        k.note('Tiempo navegado', 'La primera hora viene en UTC y la segunda en HRB. En diciembre la hora oficial de la Península es UTC + 1: las 20:15 HRB son las 19:15 UTC, es decir, 2 horas de navegación. Esta mezcla de horas es lo más probable que llevara a anularla.');
+        return latlon(k.estimaEfectiva(s, ref, vef, 120, 'Situación 20:15 HRB'));
+      },
+    },
     'dgmm-py-2022-12-38': {
       ejercicio: 'corriente-rumbo-a-dar',
       solve(k, q) {
@@ -165,5 +202,10 @@ export default {
       },
     },
   },
-  documentadas: {},
+  documentadas: {
+    'dgmm-py-2022-06-36': {
+      tipo: 'anulada',
+      texto: 'No la resolvemos: la situación de salida del enunciado, 36° 40′ N 005° 15′ W, está en tierra, en la serranía de Ronda, 20′ al N del borde de la carta. Con ese dato no hay rumbo a Punta Almina que calcular.',
+    },
+  },
 };

@@ -15,21 +15,6 @@ const punto = (k, lat, lon, label) => {
 };
 
 export const documentadas = {
-  'and-py-2015-c2-n13': {
-    tipo: 'discrepancia',
-    texto: 'Corriente desconocida. Estima 17:40 → 19:20 (Rv 074°, Ct 0°, 8 nudos, 13,33 millas): 35° 55,7′ N 005° 32,2′ W. '
-      + 'Observada por Dv 227° a Punta Cires y 124° a Punta Almina: 35° 58,1′ N 005° 24,2′ W. Corriente: Rc 069°, 6,88 millas '
-      + 'en 1h 40m → Ihc 4,1 nudos. La oficial (d: 071°, 4,0 nudos) es la más próxima, pero no con claridad: por el rumbo '
-      + 'está más cerca la b (068°, 3,1 nudos) y solo la intensidad las separa. Diferencia de trazado del tribunal (2°).',
-  },
-  'and-py-2015-c3-n11': {
-    tipo: 'discrepancia',
-    texto: 'Demoras no simultáneas con corriente. Ct = −3° + 4° = +1°: Rv 136°, Dv 056° y 006° a Trafalgar. Triángulo de '
-      + 'velocidades (136°, 6 nudos + 210°, 3 nudos): Ref 159°, Vef 7,4 nudos; en 45 min, 5,56 millas. Trasladando la 1ª demora '
-      + 'por el Ref y cortándola con la 2ª: 36° 04,0′ N 006° 02,9′ W. La oficial (a: 36° 03,6′ N) es la más próxima, pero '
-      + 'sin claridad frente a la c (36° 05,0′ N): todas las opciones tienen la misma longitud y la latitud del cálculo cae '
-      + 'entre las dos. Diferencia de trazado del tribunal (0,4′).',
-  },
 };
 
 export default {
@@ -155,7 +140,22 @@ export default {
       return latlon(p);
     },
   },
-  // c2-n13: ver `documentadas`.
+  'and-py-2015-c2-n13': {
+    ejercicio: 'corriente-desconocida',
+    sinMargen: 'Sale Rc 069° e Ihc 4,1 nudos: la opción más próxima es la oficial (d: 071°, 4,0 nudos). La b (068°, 3,1 nudos) '
+      + 'está 1° más cerca por el rumbo, pero se aleja 1 nudo en la intensidad; con un vector de corriente de casi 7 millas, '
+      + '2° de diferencia en el rumbo son 0,2 millas de trazado en la carta.',
+    solve(k) {
+      const s = k.pos('35 52,0 N', '5 48,0 W', 'Situación 17:40');
+      const ct = k.ct({ dm: -3, desvio: 3 });
+      const rv = k.rv(74, ct);
+      const t = hrb(19, 20) - hrb(17, 40);
+      const est = k.run(s, rv, k.distFor(8, t), 'Situación de estima 19:20');
+      const obs = k.fix2('punta-cires', k.dv(227, ct, 'punta-cires'), 'punta-almina', k.dv(124, ct, 'punta-almina'), 'Situación observada 19:20');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
   'and-py-2015-c2-n14': {
     ejercicio: 'rumbo-distancia',
     solve(k) {
@@ -230,7 +230,23 @@ export default {
   },
 
   // ---- 3ª Convocatoria 2015
-  // c3-n11: ver `documentadas`.
+  'and-py-2015-c3-n11': {
+    ejercicio: 'demoras-no-simultaneas',
+    sinMargen: 'Sale 36° 04,0′ N 006° 02,9′ W. Las cuatro opciones tienen la misma longitud, así que solo decide la latitud: la '
+      + 'más próxima es la oficial (a: 36° 03,6′ N, a 0,4′), pero la c (36° 05,0′ N) queda a 1,0′. Es una diferencia de '
+      + 'trazado del traslado con corriente.',
+    solve(k) {
+      const ct = k.ct({ dm: -3, desvio: 4 });
+      const rv = k.rv(135, ct);
+      // Entre las dos demoras nos mueve el efectivo (barco + corriente): la 1ª se traslada por el Ref y la distancia efectiva.
+      const { ref, vef } = k.efectivo(rv, 6, 210, 3);
+      const t = hrb(15, 10) - hrb(14, 25);
+      const d = k.distFor(vef, t);
+      const d1 = k.dv(55, ct, 'cabo-trafalgar');
+      const d2 = k.dv(5, ct, 'cabo-trafalgar');
+      return latlon(k.traslado('cabo-trafalgar', d1, 'cabo-trafalgar', d2, ref, d, 'Situación 15:10'));
+    },
+  },
   'and-py-2015-c3-n12': {
     ejercicio: 'distancia-faro',
     solve(k) {

@@ -2,13 +2,12 @@
 // andalucia-py.js para el formato. `documentadas`: las de carta sin solución programada, con su motivo
 // ({ tipo: 'discrepancia' | 'sin-calculo', texto }).
 import { hrb } from '../kit.js';
+import { enfilacionEspartelMalabata } from './faros-lista.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 const N = 0; const E = 90; const S = 180; const W = 270; const NE = 45; const SE = 135; const SW = 225; const NW = 315;
 
 export const documentadas = {
-  'and-py-2018-c1b-n14': { tipo: 'discrepancia', texto: 'Corriente desconocida. Estima a las 14:00 tras 4,8 millas al 300° desde 36° 00′ N, 5° 50′ W: 36° 02,4′ N, 5° 55,1′ W; situación observada al S verdadero del faro de Barbate y al W verdadero del de Punta Paloma: 36° 03,9′ N, 5° 55,3′ W. Corriente: Rc = 355,2°, 1,54 millas en 1 h → Ihc = 1,5′. La oficial (d: «Rc = N Ihc = 1,6´», 000°) es la más próxima, pero queda a 4,8° en el rumbo: fuera del margen de examen. El tribunal debió redondear el rumbo al cardinal.' },
-  'and-py-2018-c4-n13': { tipo: 'discrepancia', texto: 'La enfilación Cabo Espartel–Punta Malabata medida en la carta de la app da Dv = 078,6°: Ct = 078,6° − 087° = −8,4°. La más próxima es la oficial (b, −7°), pero a 1,4° y fuera de la tolerancia: la oficial supone la enfilación en 080°. Con los faros de la carta (Espartel 35° 47,5′ N, 5° 55,4′ W; Malabata 35° 49,2′ N, 5° 45,0′ W) no sale 080°.' },
 };
 
 export default {
@@ -141,6 +140,18 @@ export default {
       const rv = k.rv(60, ct);
       const rs = k.abatimiento(rv, 10, NW);
       return latlon(k.run(s, rs, k.distFor(6, hrb(10, 30) - hrb(9)), 'Situación 10:30'));
+    },
+  },
+  'and-py-2018-c1b-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('36 00,0 N', '5 50,0 W', 'Situación 13:00');
+      const t = hrb(14) - hrb(13);
+      const est = k.run(s, 300, k.distFor(4.8, t), 'Situación de estima 14:00');
+      const obs = k.cardinal2('barbate-faro', S, 'punta-paloma', W, 'Situación observada 14:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      // Las opciones nombran el rumbo de la corriente (N o S): 355° es el N.
+      return [{ kind: 'bearing', value: k.porNombre(rc) }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2018-c1b-n15': {
@@ -324,6 +335,14 @@ export default {
       const rs = k.abatimiento(rv, 10, SE);
       const { ref, vef } = k.efectivo(rs, 8, SE, 3, s);
       return latlon(k.estimaEfectiva(s, ref, vef, hrb(10, 30) - hrb(9), 'Situación 10:30'));
+    },
+  },
+  'and-py-2018-c4-n13': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // El Rv 070° y la velocidad no intervienen.
+      const dv = enfilacionEspartelMalabata(k, 80);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 87) }];
     },
   },
   'and-py-2018-c4-n14': {

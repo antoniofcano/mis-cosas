@@ -132,7 +132,18 @@ export function crearMotor({
       return motor.estado();
     }
     try {
-      await vuelta();
+      try {
+        await vuelta();
+      } catch (e) {
+        // El servicio ya no conoce un código que este aparato sí había usado con éxito (p. ej. se vaciaron sus datos):
+        // este aparato guarda todo su registro, así que da de alta el mismo código otra vez y lo resube. Un código que
+        // nunca funcionó aquí (vincular uno mal escrito) no entra por este camino.
+        if (e?.codigo !== 'codigo-desconocido' || !diag.ultimoExito || registro.creador) throw e;
+        diag.recreados = (diag.recreados ?? 0) + 1;
+        registro.recrear();
+        loteOps = C.LOTE_OPS;
+        await vuelta();
+      }
       diag.ultimoExito = ahora();
       diag.fallos = 0;
       diag.estado = registro.pendientes() ? 'pendiente' : 'al-dia';
@@ -238,7 +249,7 @@ export function crearMotor({
       else if (estado === 'al-dia' && pendientes) estado = 'pendiente';
       else if (!estado) estado = pendientes || !diag.ultimoExito ? 'pendiente' : 'al-dia';
       return {
-        estado, codigo: registro.codigo, pendientes, cursor: registro.cursor, ultimoExito: diag.ultimoExito, ultimoIntento: diag.ultimoIntento,
+        estado, codigo: registro.codigo, registrado: !!diag.ultimoExito && !registro.creador, recreados: diag.recreados ?? 0, pendientes, cursor: registro.cursor, ultimoExito: diag.ultimoExito, ultimoIntento: diag.ultimoIntento,
         fallos: diag.fallos, errores: diag.errores, ultimoError: diag.errores.at(-1) ?? null, operaciones: registro.ops.length,
         recibidas: diag.recibidas, subidas: diag.subidas, ignoradas: diag.ignoradas, sinEspacio: registro.errorGuardar?.() ?? null,
       };

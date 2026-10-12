@@ -46,7 +46,7 @@ export function resumenDominio(qs, respuestas = {}, enEstudio = null) {
  */
 export function crearIndiceConceptos({ catalogo, etiquetas = {}, banco }) {
   const orden = new Map(banco.todas.map((q, i) => [q.id, i]));
-  const enEstudio = new Set(banco.estudio.map((q) => q.id));
+  const enEstudio = new Set((banco.practica ?? banco.estudio).map((q) => q.id));
   // concepto → [{ id, principal }] (solo preguntas de este banco y conceptos del catálogo), en el orden del banco
   const porConcepto = new Map();
   const deCadaPregunta = new Map();

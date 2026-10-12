@@ -914,5 +914,5 @@ export const documentadas = {
   'bal-per-2018-12-a-44': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: enfilaciones con Cima Órganos y Cima Beni Meyimel, y sonda de 30 m; nada de eso está.' },
   'bal-per-2018-12-a-45': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: situación por oposición Trafalgar–Espartel y sonda de 100 m; sin sondas.' },
   'bal-per-2018-04-c-43': { tipo: 'sin-calculo', texto: 'La oficial es «A ninguna hora»: desde 36°02,0′ N 6°10,0′ W al Rv 162,8° Punta Malabata queda siempre por babor, nunca a 65° por estribor. Es correcta, pero no es un valor que se pueda comparar con las opciones.' },
-  'bal-per-2018-06-c-44': { tipo: 'discrepancia', texto: 'La enfilación Europa–Carnero mide Dv 243,5° en la carta; con Da 250° sale Ct −6,5° y desvío −4,5°, justo entre la oficial (c, −3°) y la d (−6°). La oficial supone la enfilación a 245°.' },
+  'bal-per-2018-06-c-44': { tipo: 'discrepancia', texto: 'Da de Punta Europa = S 70 W = 250°. La enfilación Europa–Carnero va al 243,5° en la carta (243,7° con la situación oficial de los faros): Ct = 243,5° − 250° = −6,5°; desvío = Ct − variación = −6,5° − (−2°) = −4,5°, justo entre la oficial (c, −3°) y la d (−6°). La oficial supone la enfilación al 245°. En el examen vale la c.' },
 };

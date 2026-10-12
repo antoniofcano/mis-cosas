@@ -7,7 +7,6 @@ const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lo
 const N = 0; const NE = 45; const E = 90; const SE = 135; const S = 180; const SW = 225; const W = 270; const NW = 315;
 
 export const documentadas = {
-  'and-py-2017-c3-n14': { tipo: 'discrepancia', texto: 'Corriente desconocida. Estima a las 22:00 tras 8 millas al 045° desde 35° 45′ N, 6° 10′ W: 35° 50,7′ N, 6° 03,0′ W; situación observada a 4 millas de Espartel con Dv 097°: 35° 48,0′ N, 6° 00,3′ W. Corriente: Rc = 140,3°, 3,44 millas en 1 h → Ihc = 3,4′. La oficial (d: «Rc = SE Ihc = 3,6´», 135°) es la más próxima, pero queda a 5,3° en el rumbo y 0,2′ en la intensidad: fuera del margen de examen. El tribunal debió redondear el rumbo al cuadrantal y la intensidad al alza.' },
 };
 
 export default {
@@ -237,6 +236,18 @@ export default {
       k.note('Primera línea de posición', 'Al N verdadero del faro de Punta Cires: vemos el faro al S, Dv = 180°. Es el meridiano del faro.');
       const d = k.distFor(6, hrb(11, 30) - hrb(10));
       return latlon(k.traslado('punta-cires', S, 'punta-almina', 165, 70, d, 'Situación 11:30'));
+    },
+  },
+  'and-py-2017-c3-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.pos('35 45,0 N', '6 10,0 W', 'Situación 21:00');
+      const t = hrb(22) - hrb(21);
+      const est = k.run(s, NE, k.distFor(8, t), 'Situación de estima 22:00');
+      const obs = k.fixDist('cabo-espartel', 97, 4, 'Situación observada 22:00');
+      const { rc, ic } = k.corrienteDesconocida(est, obs, t);
+      // Las opciones nombran el rumbo de la corriente (SE o NW): 140° es el SE.
+      return [{ kind: 'bearing', value: k.porNombre(rc) }, { kind: 'speed', value: ic }];
     },
   },
   'and-py-2017-c3-n15': {

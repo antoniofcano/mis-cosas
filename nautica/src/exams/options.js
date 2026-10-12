@@ -76,6 +76,9 @@ export function parseOption(text, kinds) {
   return out;
 }
 
+/** ¿La opción escribe el signo? (+, −, más, menos, NE/NW, E/W, babor/estribor). */
+const SIGNO = /[+\-–‒−]|\b(?:más|menos|NE|NW|E|W|babor|estribor|Br|Er)\b/i;
+
 /** Texto de una opción para comparar repeticiones exactas (sin espacios, puntos finales ni mayúsculas). */
 const textoOpcion = (t) => String(t).toLowerCase().replace(/\s+/g, '').replace(/\.$/, '');
 
@@ -104,8 +107,21 @@ export function chooseOption(opciones, values) {
   }
   const orden = Object.entries(scores).filter(([, s]) => Number.isFinite(s)).sort((a, b) => a[1] - b[1]);
   if (!orden.length) return { choice: null, scores, parsed, repetidas: [], empate: [] };
-  const [choice, mejor] = orden[0];
-  const repetidas = Object.keys(opciones).filter((k) => k !== choice && textoOpcion(opciones[k]) === textoOpcion(opciones[choice]));
-  const empate = orden.slice(1).filter(([k, s]) => !repetidas.includes(k) && Math.abs(s - mejor) < 1e-9).map(([k]) => k);
+  let [choice, mejor] = orden[0];
+  let repetidas = Object.keys(opciones).filter((k) => k !== choice && textoOpcion(opciones[k]) === textoOpcion(opciones[choice]));
+  let empate = orden.slice(1).filter(([k, s]) => !repetidas.includes(k) && Math.abs(s - mejor) < 1e-9).map(([k]) => k);
+  // Empate entre el mismo valor con y sin signo («3º+» y «3º»): una corrección con signo se da con su signo, así que vale
+  // la única que lo escribe (y solo si es el del resultado). Si no hay exactamente una, el empate se queda.
+  if (empate.length && kinds.includes('signed')) {
+    const i = kinds.indexOf('signed');
+    const conSigno = [choice, ...empate].filter((k) => SIGNO.test(opciones[k]) && Math.sign(parsed[k][i]) === Math.sign(values[i].value));
+    if (conSigno.length === 1) {
+      // Las que no escriben el signo quedan una tolerancia por detrás (no son la respuesta completa).
+      for (const k of [choice, ...empate]) if (k !== conSigno[0]) scores[k] += 1;
+      choice = conSigno[0];
+      repetidas = Object.keys(opciones).filter((k) => k !== choice && textoOpcion(opciones[k]) === textoOpcion(opciones[choice]));
+      empate = [];
+    }
+  }
   return { choice, scores, parsed, repetidas, empate };
 }

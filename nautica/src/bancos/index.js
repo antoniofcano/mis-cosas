@@ -18,6 +18,16 @@ import { RUTA_INDICE, rutaGrupo } from '../conceptos/catalogo.js';
 
 export { EJE_POR_DEFECTO, SOLUCIONES };
 
+/** ¿Es una pregunta de carta? (`requiere` «carta» o, en el PY, `bloque` «carta»). */
+export const esDeCarta = (q) => (q.requiere ?? []).includes('carta') || q.bloque === 'carta';
+
+/**
+ * ¿Se puede practicar? Una pregunta de carta sin resolución programada (anulada o con su motivo documentado) no:
+ * en la práctica se quedaría sin solución que enseñar. Sigue en los exámenes de convocatoria, en los simulacros y en
+ * su vista por enlace directo (#/q/<id>), donde se explica por qué no se resuelve.
+ */
+export const practicable = (q) => !esDeCarta(q) || !!SOLUCIONES[q.id];
+
 /** ¿La pregunta entra en una lista? Filtros: `requiere` (lo necesita) y `sinRequiere` (no lo necesita). */
 const enLista = (l, q) => (!l.requiere || q.requiere.includes(l.requiere)) && (!l.sinRequiere || !q.requiere.includes(l.sinRequiere));
 
@@ -85,7 +95,6 @@ export function crearBancos(leer) {
     if (!cache.has(k)) cache.set(k, f());
     return cache.get(k);
   };
-  const fichas = new Map(); // fichas ya cargadas, para las consultas síncronas (rutaResolucion)
 
   /** Registro de ejes (data/ejes/index.json). */
   const registro = () => memo('registro', () => leer('data/ejes/index.json').then((d) => d.ejes ?? []));
@@ -104,7 +113,7 @@ export function crearBancos(leer) {
   const resolverEje = async (eje) => ((await registro()).some((e) => e.id === eje) ? eje : EJE_POR_DEFECTO);
 
   /** Ficha del eje (data/ejes/<eje>/eje.json). */
-  const cargarFicha = (eje) => memo(`ficha:${eje}`, () => leer(`data/ejes/${eje}/eje.json`).then((f) => { fichas.set(eje, f); return f; }));
+  const cargarFicha = (eje) => memo(`ficha:${eje}`, () => leer(`data/ejes/${eje}/eje.json`));
   /** Titulaciones que tiene el banco de un eje. */
   const titsDe = (ficha) => Object.keys(ficha.examen ?? {}).filter((t) => TITULACIONES[t]);
 
@@ -178,9 +187,12 @@ export function crearBancos(leer) {
    *   reserva = { modo, convs, datos, examenes: [{ key, titulo, fecha, n, completa, ids }] } (las convocatorias
    *   reservadas, cada una con sus preguntas en orden).
    * - convocatorias(): exámenes reales que se ofrecen [{ key, titulo, fecha, n, completa }] (sin las reservadas).
-   * - practicaDe(leccionId): preguntas de práctica de una clase; resueltasDe(leccionId): preguntas resueltas por la
-   *   app del tipo de la clase («Míralo resuelto»). Las dos, solo del estudio.
-   * - listas: listados de preguntas reales (p. ej. las de carta), con su título y descripción (sin las reservadas).
+   * - practica: las que se practican (clases, tandas, repaso, mezcla, «5 minutos», sesiones, motor): el estudio sin las
+   *   preguntas de carta que no tienen resolución programada (`practicable`).
+   * - practicaDe(leccionId): preguntas de práctica de una clase (solo de `practica`); resueltasDe(leccionId): preguntas
+   *   resueltas por la app del tipo de la clase («Míralo resuelto»), solo del estudio.
+   * - listas: listados de preguntas reales (p. ej. las de carta), con su título y descripción (sin las reservadas; las
+   *   de carta, sin las que no tienen resolución programada).
    */
   const bancoDe = async (eje, tit) => {
     const ficha = await cargarFicha(eje);
@@ -190,7 +202,7 @@ export function crearBancos(leer) {
   const construirBanco = async (ficha, eje, tit, res) => {
     const dir = `data/ejes/${eje}/${tit}`;
     const lee = (f, porDefecto) => memo(`fichero:${dir}/${f}`, () => (porDefecto === undefined ? leer(`${dir}/${f}`) : leer(`${dir}/${f}`).catch(() => porDefecto)));
-    const [datos, explicaciones, practica, resueltos, mnemo, vocab] = await Promise.all([
+    const [datos, explicaciones, practicaClases, resueltos, mnemo, vocab] = await Promise.all([
       lee('preguntas.json'), lee('explicaciones.json', {}), lee('practica.json', {}), lee('resueltos.json', {}), cargarMnemotecnias(), cargarVocabulario(tit)]);
     const todas = datos.preguntas ?? [];
     const porId = new Map(todas.map((q) => [q.id, q]));
@@ -201,18 +213,23 @@ export function crearBancos(leer) {
     const retirada = (q) => q.norma?.estado === 'retirada';
     const estudio = examenes.some(retirada) ? examenes.filter((q) => !retirada(q)) : examenes;
     const enEstudio = new Set(estudio.map((q) => q.id));
+    // Lo que se practica (clases, tandas, repaso, mezcla, «5 minutos», sesiones, motor): el estudio sin las preguntas
+    // de carta que no tienen resolución programada (practicable).
+    const practica = estudio.every(practicable) ? estudio : estudio.filter(practicable);
+    const enPractica = new Set(practica.map((q) => q.id));
     const final = r.final.filter((q) => !retirada(q));
     const apartar = new Set(res.apartar);
     const finalConvs = new Set(res.convs);
     const examenesFinal = convocatoriasDe(estructura, r.final).filter((c) => finalConvs.has(convDeClave(c.key)))
       .map((c) => ({ ...c, ids: r.final.map((q) => ({ q, o: ordenEn(q, c.key) })).filter((x) => x.o != null).sort((a, b) => a.o - b.o).map((x) => x.q.id) }));
     const listas = (ficha.listas?.[tit] ?? [{ id: 'todas', titulo: datos.meta?.titulo ?? tit, descripcion: datos.meta?.descripcion ?? '' }])
-      .map((l) => ({ ...l, preguntas: examenes.filter((q) => enLista(l, q)) }));
+      // Las listas de carta («Preguntas reales de carta») son para practicar: sin las que no tienen resolución.
+      .map((l) => ({ ...l, preguntas: examenes.filter((q) => enLista(l, q) && (l.requiere !== 'carta' || practicable(q))) }));
     const banco = {
-      eje: ficha, tit, meta: datos.meta ?? {}, todas, examenes, estudio, final, reservadas: r.reservadas, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
+      eje: ficha, tit, meta: datos.meta ?? {}, todas, examenes, estudio, practica, final, reservadas: r.reservadas, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
       reserva: { modo: res.modo, convs: res.convs, datos: res.datos, examenes: examenesFinal },
       convocatorias: () => convocatoriasDe(estructura, examenes).filter((c) => !apartar.has(convDeClave(c.key))),
-      practicaDe: (leccionId) => (practica[leccionId] ?? []).filter((id) => enEstudio.has(id)),
+      practicaDe: (leccionId) => (practicaClases[leccionId] ?? []).filter((id) => enPractica.has(id)),
       resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId).filter((id) => enEstudio.has(id)),
       lista: (id) => listas.find((l) => l.id === id) ?? null,
       /** Conceptos de cada pregunta ({ id: [principal, secundario?] }, docs/CONCEPTOS.md); se lee la primera vez que se pide. */
@@ -304,15 +321,12 @@ export function crearBancos(leer) {
   }
 
   /**
-   * Ruta donde ver resuelta una pregunta (['q', id]) o null: las que tienen solución programada y las de una lista
-   * de carta del eje (se pueden resolver sobre la carta aunque la app no traiga la solución).
-   * Síncrona: la pregunta viene de un banco ya cargado.
+   * Ruta donde ver resuelta una pregunta (['q', id]) o null: solo las que tienen solución programada. Una de carta
+   * sin ella no ofrece «Ver la resolución» (se abriría vacía): quien la enseña dice el motivo (src/exams/motivo.js).
+   * Síncrona.
    */
   function rutaResolucion(q) {
-    if (!q) return null;
-    if (SOLUCIONES[q.id]) return ['q', q.id];
-    const listas = fichas.get(q.eje)?.listas?.[q.tit] ?? [];
-    return listas.some((l) => l.requiere === 'carta') && q.requiere?.includes('carta') ? ['q', q.id] : null;
+    return q && SOLUCIONES[q.id] ? ['q', q.id] : null;
   }
 
   return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };

@@ -843,10 +843,28 @@ export default {
       return latlon(k.run(s, rs, k.distFor(6, 120), 'Situación 17:30'));
     },
   },
-
+  'bal-py-2018-12-a-34': {
+    ejercicio: 'corriente-desconocida',
+    sinMargen: 'Sale Rc 069,8° e Ihc 2,6 nudos: la intensidad es la de la oficial (a: 072°, 2,6 nudos) y el rumbo queda a 2°. '
+      + 'La c (070°, 1,5 nudos) acierta el rumbo, pero se queda en poco más de la mitad de la intensidad. La Ct «3º» viene sin '
+      + 'signo y la tomamos positiva (+3°).',
+    solve(k) {
+      const s = k.pos('35 54,0 N', '5 40,0 W', 'Situación 16:15');
+      // «Corrección total = 3º», sin signo: la tomamos positiva.
+      const ct = k.ct({ ct: 3 });
+      const rv = k.rv(68, ct);
+      const t = hrb(18, 0) - hrb(16, 15);
+      const e = k.run(s, rv, k.distFor(11, t), 'Situación de estima 18:00');
+      const o = k.fix2('punta-europa', k.dv(303, ct, 'punta-europa'), 'punta-almina', k.dv(202, ct, 'punta-almina'), 'Situación verdadera 18:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
 };
 
 /* DISCREPANCIAS
+ * Revisión de 2026-10: bal-py-2018-12-a-34 ya están en export default, con `sinMargen` (llegan a la oficial,
+ *   pero otra opción queda casi igual de cerca; la vista lo explica). Lo que sigue de ellas es el análisis de antes.
  * 'bal-py-2017-03-cb-34' (faltan datos: tabla de mareas): sonda en Mazagón el 23-04-2017 a las 11:00 UT; la pregunta no trae la tabla del Anuario (bajamares y pleamares de ese día), así que no se puede calcular. Oficial: a (7,89 m).
  * 'bal-py-2017-03-cb-35' (elemento que no está en la carta de la app): la salida es «al SW/v de Cabo Roche sobre la isobática de 20 m», y las isobáticas no están en la carta de la app; sin ella no hay situación de estima para la corriente. Oficial: a (Rc 195°, Ic 2,1).
  * 'bal-py-2017-07-b-31' (elemento que no está en la carta de la app): la Ct sale de la enfilación «Magair – Cabo Espartel», y ese punto no está en la carta de la app ni el enunciado da sus coordenadas. Oficial: b (35° 51,9′ N 5° 50,0′ W).
@@ -949,9 +967,5 @@ export const documentadas = {
   'bal-py-2018-06-b-37': {
     tipo: 'sin-calculo',
     texto: '(elemento que no está en la carta de la app): la situación a las 12:00 sale (36° 00′ N 6° 00,0′ W, la de la oficial a), pero la pregunta también pide cuántas veces pasamos por sondas de más de 100 m, y las isobáticas no están en la carta de la app; no publicamos media respuesta.',
-  },
-  'bal-py-2018-12-a-34': {
-    tipo: 'discrepancia',
-    texto: '(sin margen frente a otra opción): sale Rc 069,8° e Ihc 2,6 nudos. La oficial a (072°, 2,6) es la más próxima, pero la c (070°, 1,5) queda a menos del doble de distancia y el comprobador del PY exige que la oficial gane con claridad. Puede deberse a la Ct (dato «3º» sin signo, tomado como +3°).',
   },
 };

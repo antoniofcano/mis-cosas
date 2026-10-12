@@ -1082,6 +1082,45 @@ export default {
       return [{ kind: 'signed', value: k.ct({ carta: L105, anyo: 2035, desvio: -0.8 }) }];
     },
   },
+  'bal-py-2021-12-b-37': {
+    ejercicio: 'corriente-desconocida',
+    sinMargen: 'La situación de las 05:00 sale 35° 58,6′ N 005° 21,3′ W, la de la oficial (d). La corriente sale Rc 139,5° e Ihc '
+      + '2,4 nudos frente a 135° y 2,5 nudos de la d; la b (139°, 2,1 nudos) acierta el rumbo pero no la situación. La '
+      + 'diferencia de Rc sale de cómo se traza el rumbo para pasar a 3 millas de Isla de Tarifa.',
+    solve(k) {
+      const ct = k.ct({ dm: -3.5, desvio: 1.5 });
+      const rv = k.rv(180, ct);
+      const enf = k.enfilacion('punta-europa', 'punta-carnero', 243);
+      const s = k.lineAndBearing('punta-carnero', enf, 'punta-almina', k.dvM(rv, 17, 'punta-almina'), 'Situación 03:00');
+      const rs = k.abatimiento(rv, 8, SE);
+      const p = k.run(s, rs, k.distFor(8, hrb(3, 45) - hrb(3)), 'Situación 03:45');
+      // Al W, pasando al S de Isla de Tarifa: la dejamos por estribor. El viento del SE nos abate 15°: se compensa.
+      const rs2 = k.tangent(p, 'isla-tarifa', 3, 'estribor');
+      const rv2 = k.rvConAbatimiento(rs2, 15, SE);
+      k.ra(rv2, k.ct({ dm: -3.5, desvio: -2.5 }));
+      const t = hrb(5) - hrb(3, 45);
+      const e = k.run(p, rs2, k.distFor(8, t), 'Situación de estima 05:00');
+      const o = k.fix2('punta-cires', k.dvM(rv2, 3, 'punta-cires'), 'punta-almina', k.dvM(rv2, -93, 'punta-almina'), 'Situación verdadera 05:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [...latlon(o), { kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2021-12-b-38': {
+    ejercicio: 'corriente-desconocida',
+    sinMargen: 'Sale Rc 035,7° e Ihc 2,47 nudos: la oficial (c: 038°, 2,4 nudos) es la única con esa intensidad; la b (035°, 3,1 '
+      + 'nudos) acierta el rumbo pero no la intensidad, y queda casi igual de cerca. El corte de Punta Leona y Punta Cires es '
+      + 'muy agudo: poco error de trazado mueve la situación de las 09:30.',
+    solve(k) {
+      const ct = k.ct({ dm: -3.5, desvio: 1 });
+      const rv = k.rv(253, ct);
+      const s = k.fixDist('punta-europa', k.dvM(rv, 80, 'punta-europa'), 6, 'Situación 08:00');
+      const t = hrb(9, 30) - hrb(8, 0);
+      const e = k.run(s, rv, k.distFor(8.33, t), 'Situación de estima 09:30');
+      const o = k.fix2('punta-cires', k.dv(183, ct, 'punta-cires'), 'punta-leona', k.dvM(rv, -109, 'punta-leona'), 'Situación verdadera 09:30');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
 };
 
 // Preguntas del lote que no quedan en export default, con su motivo.
@@ -1099,11 +1138,11 @@ export const documentadas = {
   'bal-py-2023-12-b-40': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
   'bal-py-2024-04-bc-35': { tipo: 'anuario', texto: "Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa." },
   'bal-py-2022-12-ac-35': { tipo: 'sin-calculo', texto: "Elemento que no está en la carta de la app: la situación de las 04:00 es el corte de la enfilación Malabata–El Xarf con la isobática de 100 m, y la carta de la app no tiene isobáticas; sin esa situación no se puede trazar el rumbo para pasar a 1 milla de Punta Cires." },
-  'bal-py-2021-12-b-37': { tipo: 'discrepancia', texto: "Elige la oficial d, pero sin margen: la situación de las 05:00 sale 35° 58,6′ N 5° 21,3′ W (la de la d), pero la corriente da Rc 139,5° e Ihc 2,4 nudos frente a 135° y 2,5 nudos de la d; la b (Rc 139°, 2,1 nudos) queda casi empatada. La diferencia de Rc sale de cómo se traza el rumbo para pasar a 3 millas de Isla de Tarifa." },
-  'bal-py-2021-12-b-38': { tipo: 'discrepancia', texto: "Elige la oficial c, pero sin margen: sale Rc 035,7° e Ihc 2,47 nudos, a medio camino entre la c (038°, 2,4 nudos) y la b (035°, 3,1 nudos). Probablemente diferencias de trazado en la situación de las 09:30 (Punta Leona y Punta Cires dan un corte muy agudo)." },
 };
 
 /* DISCREPANCIAS
+ * Revisión de 2026-10: bal-py-2021-12-b-37 y bal-py-2021-12-b-38 ya están en export default, con `sinMargen` (llegan a la oficial,
+ *   pero otra opción queda casi igual de cerca; la vista lo explica). Lo que sigue de ellas es el análisis de antes.
  * 'bal-py-2021-12-b-40' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de
  * Mareas y la pregunta no trae el extracto (pleamares y bajamares del día); no se inventa.
  * 'bal-py-2022-03-a-37' (anuario): Marea sin tabla: pide una sonda o una hora de marea en un puerto del Anuario de

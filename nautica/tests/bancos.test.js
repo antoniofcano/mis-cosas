@@ -160,7 +160,8 @@ test('motor de bancos: banco, práctica de las clases y preguntas por id (de cua
   assert.ok([...per.reservadas].every((id) => /^and-202[56]-/.test(id)));
   assert.equal(per.convocatorias().length, 13 + 16); // 2020–2024 y 2015–2019
   assert.ok(per.convocatorias().every((c) => c.completa && c.n === 45));
-  assert.equal(per.lista('carta').preguntas.length, 52 + 64);
+  // Sin las de carta que no tienen resolución programada (no se practican: src/bancos/index.js, practicable).
+  assert.equal(per.lista('carta').preguntas.length, 52 + 64 - 1);
   assert.equal(per.listaDe(per.porId.get('and-2020-c1-q42')).id, 'carta');
   const curso = await b.cargarCurso('per', EJE_POR_DEFECTO);
   const l = curso.modulos[0].lecciones[0];

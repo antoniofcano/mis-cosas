@@ -975,9 +975,42 @@ export default {
       return latlon(k.traslado('punta-europa', d1, 'punta-carnero', d2, rs, k.distFor(7, 60), 'Situación 08:30'));
     },
   },
+  'bal-py-2021-03-b-33': {
+    ejercicio: 'corriente-desconocida',
+    sinMargen: 'Sale Rc 069,8° e Ihc 2,6 nudos: la intensidad es la de la oficial (b: 072°, 2,6 nudos) y el rumbo queda a 2°. '
+      + 'La a (070°, 1,5 nudos) acierta el rumbo, pero se queda en poco más de la mitad de la intensidad. La Ct «3º» viene sin '
+      + 'signo y la tomamos positiva (+3°).',
+    solve(k) {
+      const s = k.pos('35 54,0 N', '5 40,0 W', 'Situación 16:15');
+      // «Corrección total = 3º», sin signo: la tomamos positiva.
+      const ct = k.ct({ ct: 3 });
+      const rv = k.rv(68, ct);
+      const t = hrb(18, 0) - hrb(16, 15);
+      const e = k.run(s, rv, k.distFor(11, t), 'Situación de estima 18:00');
+      const o = k.fix2('punta-europa', k.dv(303, ct, 'punta-europa'), 'punta-almina', k.dv(202, ct, 'punta-almina'), 'Situación verdadera 18:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'bal-py-2021-03-b-40': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    sinMargen: 'Sale Ra 199,3° y Vb 10,7 nudos: la más próxima es la oficial (a: 200°, 10,2 nudos), pero la b (195°, 10,8 nudos) '
+      + 'acierta mejor la velocidad. Con Ct +1° no hay más que ajustar; en la misma pregunta de 2019 (bal-py-2019-06-a-37) la '
+      + 'plantilla daba 10,4 nudos.',
+    solve(k) {
+      const s = k.cardinal2('tanger-espigon', N, 'punta-cires', W, 'Situación 06:00');
+      const dest = k.fromMark('tanger-espigon', N, 2, 'Destino');
+      const { rs, vb } = k.rumboYVelocidad(s, dest, 30, E, 3);
+      const rv = k.rvConAbatimiento(rs, 4, W);
+      const ct = k.ct({ dm: -2, desvio: 3 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
 };
 
 /* DISCREPANCIAS
+ * Revisión de 2026-10: bal-py-2021-03-b-33 y bal-py-2021-03-b-40 ya están en export default, con `sinMargen` (llegan a la oficial,
+ *   pero otra opción queda casi igual de cerca; la vista lo explica). Lo que sigue de ellas es el análisis de antes.
  * 'bal-py-2018-12-b-39' (falta la tabla de mareas): hora con sonda ≥ 10 m en Santander el 23-05-2018; el banco no
  *   trae el Anuario de mareas (tabla_mareas vacía). Oficial: b (07:01).
  * 'bal-py-2018-12-b-40' (falta la tabla de mareas): sonda en Barbate el 17-12-2018 a las 10:00 GMT corregida por
@@ -1048,10 +1081,7 @@ export const documentadas = {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: sonda en Llanes el 02-07-2019 a las 13:15 UTC con 1009 mb. Oficial: c (7,53 m).',
   },
-  'bal-py-2019-12-a-32': {
-    tipo: 'discrepancia',
-    texto: 'No llega a la oficial: Rv 297°, Rs 301° (viento del W por babor), corriente 045°/2,5 nudos durante 2 h: sale 35° 54,9′ N, 6° 08,8′ W (la d). La oficial (a, 35° 51,1′ N, 6° 10,6′ W) supone un desplazamiento de unas 10 millas al 306°, que no sale ni sin corriente ni con el abatimiento al otro lado. El mismo enunciado vuelve en \'bal-py-2020-12-a-31\' con la oficial d (la que sale aquí): probable errata de la plantilla de 2019.',
-  },
+  'bal-py-2019-12-a-32': { tipo: 'discrepancia', texto: 'Ct −3°: Rv = 300° − 3° = 297°. El viento del W entra por babor y nos abate 4° a estribor: Rs = 301°. Con la corriente (045°, 2,5 nudos) el efectivo sale y en 2 h llegamos a 35° 54,9′ N 006° 08,8′ W: es la opción d, no la oficial a (35° 51,1′ N 006° 10,6′ W). La a supone unas 10 millas al 306° y no sale ni sin corriente ni con el abatimiento al otro lado. El mismo enunciado volvió en bal-py-2020-12-a-31 con la oficial d, la que sale aquí: la plantilla de 2019 tiene una errata.' },
   'bal-py-2020-07-a-33': {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: hora de salida en Santander el 09-05-2020. Oficial: b (13:43).',
@@ -1088,18 +1118,7 @@ export const documentadas = {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: sonda en Llanes el 12-03-2021 a las 11:45 UT. Oficial: c (5,44 m).',
   },
-  'bal-py-2021-03-b-33': {
-    tipo: 'discrepancia',
-    texto: 'Sin margen frente a otra opción: Rv 071°, 19,25 millas de estima y situación verdadera por Europa (Dv 306°) y Almina (Dv 205°): sale Rc = 069,8° e Ihc = 2,56 nudos. Elige la oficial (b, 072°/2,5) pero la a (070°/1,5) queda casi empatada por el rumbo, y el comprobador del PY exige que la segunda quede al doble.',
-  },
-  'bal-py-2021-03-b-40': {
-    tipo: 'discrepancia',
-    texto: 'Sin margen frente a otra opción: Ct = +1°, sale Ra = 199,3° y Vb = 10,7 nudos. Elige la oficial (a, 200°/10,2) pero sin el margen del PY frente a la b (195°/10,8). En la misma pregunta de 2019 (\'bal-py-2019-06-a-37\', Ct +0,8°) la oficial daba 10,4 nudos.',
-  },
-  'bal-py-2021-06-ac-31': {
-    tipo: 'discrepancia',
-    texto: 'No llega a la oficial con margen: en la carta de la app la enfilación Alcázar–Cires va al 046,7° / 226,7°; con Da de Cires = Ra − 60° = 243° sale Ct = −16,4° (16,4° NW). La más próxima es la oficial (d, 15° NW), pero a 1,4° y fuera del margen del PY: la plantilla mide la enfilación al 228°.',
-  },
+  'bal-py-2021-06-ac-31': { tipo: 'discrepancia', texto: 'Da de Punta Cires = Ra − marcación por babor = 303° − 60° = 243°. Estamos en la enfilación Alcázar–Cires, viendo Cires delante de Alcázar: la Dv a Cires es la de esa recta, 226,6° entre los símbolos de la carta (227,2° con la situación oficial de los dos faros). Ct = Dv − Da = 226,6° − 243° = −16,4° (−15,8° con la oficial). La más próxima es la oficial (d, 15° NW), pero a más de medio grado: la plantilla mide la enfilación al 228°. Midiendo en tu carta te saldrá entre 227° y 228°, es decir, Ct de unos 15°–16° NW: marca la d.' },
   'bal-py-2021-06-b-40': {
     tipo: 'anuario',
     texto: 'Falta la tabla de mareas: hora con 8,50 m de sonda en Camariñas el 05-01-2021 con 998 mb. Oficial: a (11:34 TU).',

@@ -4,6 +4,8 @@
 // 2°50′ W 2005 (7′ E); «la del año en curso» es la del año de la convocatoria (q.fecha).
 // `documentadas`: preguntas de carta sin solución programada y por qué (tipo «discrepancia» o «sin-calculo»).
 import { hrb } from '../kit.js';
+import { norm360 } from '../../math/angles.js';
+import { fmtBearing, fmtMiles } from '../../math/format.js';
 
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 // Declinación de la carta L105: 2°50′ W 2005 (7′ E).
@@ -143,6 +145,21 @@ export default {
       },
     },
     // ---- Octubre 2022
+    'dgmm-per-2022-06-90': {
+      // Anulada. Se resuelve para practicar: la cuenta cae en la c (Punta Cires, 075° y 3,5 millas).
+      ejercicio: 'estima-directa',
+      solve(k) {
+        // «Marca cardinal Este de la Bahía de Algeciras»: la boya cardinal E de la ensenada de Getares.
+        const s = k.fromMark('boya-getares', 135, 1.5, 'Situación 08:24');
+        // El Rv ya viene dado: la Ct no interviene.
+        const p = k.run(s, 186.5, k.distFor(6.5, hrb(10) - hrb(8, 24)), 'Situación de estima 10:00');
+        const { dv, dist } = k.bearingTo(p, 'punta-cires');
+        const desde = norm360(dv + 180);
+        k.bearingTo(p, 'punta-almina');
+        k.note('Situación desde el faro', `Las opciones dan la situación por la demora y la distancia desde el faro: desde Punta Cires estamos al ${fmtBearing(desde)} y a ${fmtMiles(dist)}. Las opciones mezclan dos faros, así que solo se puede comparar con las de Punta Cires (a y c): es la c. Probablemente por eso la anularon.`);
+        return [{ kind: 'bearing', value: desde }, { kind: 'distance', value: dist }];
+      },
+    },
     'dgmm-per-2022-10-87': {
       ejercicio: 'situacion-dos-distancias',
       solve(k) {
@@ -288,6 +305,5 @@ export default {
 };
 
 /* ANULADAS SIN SOLUCIÓN PROGRAMADA
-- dgmm-per-2022-06-90: las opciones son situaciones dadas por demora y distancia a dos faros distintos (Punta Cires y Punta
-  Almina), que no se comparan como una sola magnitud; anulada.
+- (ninguna: dgmm-per-2022-06-90 se resuelve para practicar.)
 */

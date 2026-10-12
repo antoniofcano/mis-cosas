@@ -117,7 +117,7 @@ export function sesionView({ progress, tit }) {
   Promise.all([cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]).then(([banco, ic]) => {
     // Con conceptos, lo trabajado va por idea (y cuándo vuelve cada una al repaso); sin ellos, por tema.
     const hoy = diaLocal();
-    const prox = new Map(ic ? itemsRepaso(banco.estudio, progress.get().exams, hoy, { principalDe: ic.principalDe, estado: progress.repasoConceptos(banco.eje.id, tit) })
+    const prox = new Map(ic ? itemsRepaso(banco.practica, progress.get().exams, hoy, { principalDe: ic.principalDe, estado: progress.repasoConceptos(banco.eje.id, tit) })
       .filter((x) => x.concepto).map((x) => [x.concepto, x.rep.prox]) : []);
     const r = resumenSesion(s, { respuestas: progress.get().exams, porId: banco.porId, temaDe: (ut) => bloque(T.estructura, ut)?.titulo ?? `Tema ${ut}`, minutosHoy: progress.minutosHoy(),
       ...(ic ? { conceptoDe: ic.principalDe, etiquetaDe: (c) => ic.concepto(c)?.etiqueta ?? c, proxDe: (c) => prox.get(c) ?? null, hoy } : {}) });

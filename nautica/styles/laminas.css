@@ -449,3 +449,16 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
   .lc-destello-otro { opacity: 0 !important; }
   .lc-cursor { display: none; }
 }
+
+/* Aviso de una pregunta de carta sin resolución programada o anulada (src/ui/views/exams.js, avisoMotivo; motivo de
+   src/exams/motivo.js). Estilo C: papel, tinta y una etiqueta que dice el tipo con palabras (no solo con el color). */
+.motivo-carta { margin: .75rem 0; padding: .7rem .85rem .8rem; background: var(--lc-papel); color: var(--lc-tinta);
+  border: 1.5px solid var(--lc-tinta); border-left-width: 5px; border-radius: 4px; display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
+.motivo-carta p { margin: 0; overflow-wrap: anywhere; }
+.motivo-eti { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--lc-magenta); }
+.motivo-titulo { font-family: var(--lc-serif); font-weight: 700; font-size: 1.08rem; line-height: 1.3; color: var(--lc-tinta); }
+.motivo-texto { line-height: 1.5; color: var(--lc-tinta); }
+.motivo-carta.motivo-anulada { border-style: dashed; border-left-style: solid; }
+.motivo-carta.motivo-discrepancia { border-left-color: var(--lc-magenta); }
+.motivo-carta.motivo-sin-calculo { border-left-color: var(--lc-linea-agua); }
+.motivo-carta.motivo-por-poco { border-left-color: var(--lc-apagado); }

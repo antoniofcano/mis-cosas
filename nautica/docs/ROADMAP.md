@@ -46,7 +46,6 @@ _Última revisión: 12 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-01 | Cierre del PER: 15 láminas pendientes, sanidad coherente, auditoría de punta a punta | En revisión | Rama `feat/per-cierre`; falta el visto bueno |
-| R-22 | Preguntas de carta sin solución: el motivo a la vista (anulada, se resuelve mirando la carta, no coincide con la plantilla), fuera de la práctica, y revisión de cada discrepancia | En revisión | Rama `feat/carta-sin-solucion`. PY programadas de nuevo: Andalucía 8 de 8 discrepancias y 2 anuladas; DGMM 2 discrepancias y 4 anuladas; Baleares 6 de 11. PER: 2 anuladas de DGMM. Quedan documentadas con su cuenta 22 discrepancias y 6 anuladas (5 sin reservar); salen de la práctica 139 preguntas (todas siguen en sus exámenes). Informe en `.trabajo-ux/ESTADO-carta-sin-solucion.md`; recuento con `node tools/auditoria-carta.mjs` |
 | R-02 | Decidir `per-9-7`: «hasta 20 millas» y canales 10/74 no verificados | Bloqueado | Decisión del autor: retirar los canales; dejar la cifra solo si una pregunta la exige |
 
 ## Siguiente
@@ -63,7 +62,7 @@ _Última revisión: 12 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y hay citas a preguntas reservadas que revisar |
-| R-10 | Pulido de PWA: Media Session, bloqueo de pantalla, insignia de la app, notificaciones, pantalla de arranque iOS | Después | Plan en el documento de PWA; valorado como no urgente |
+| R-10 | Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS | Después | Media Session ya hecha; pantalla encendida y compartir el parte, en rama `feat/pwa-tanda1` a la espera de visto bueno. El recordatorio diario se apoya en el Worker de sincronización |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
@@ -111,6 +110,8 @@ _Última revisión: 12 de octubre de 2026._
 | H-11 | Cola del PY: humedad, nubes, olas, viento, helicóptero, arnés, superficies libres, husos | PR #123 |
 | H-12 | PER en estilo C: láminas, 32 buques y animaciones de ciaboga y desatraque | PR #124 |
 | H-13 | Cierre de láminas: carta, cálculo, normativa y sanidad del PER; extintores y avisos del PY | PR #125 |
+| H-14 | Sincronización automática del progreso entre dispositivos (código de alumno, QR, Cloudflare Worker + D1) | PR #128 |
+| H-15 | Preguntas de carta sin solución: motivo a la vista, fuera de la práctica y discrepancias revisadas (R-22) | PR #129 |
 
 ## Mantenimiento recurrente
 

@@ -139,11 +139,28 @@ export function necesitaCarta(q) {
  */
 export function botonCarta(q, progress, ayudas = null, { calculadora = true } = {}) {
   if (!necesitaCarta(q) || !chartRef) return null;
-  return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => openWorkspace({
-    chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: [], items: [], focus: [], answerNodes: [], tab: 'ejercicio', progress,
+  return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => {
+    // Al practicar, la mesa lleva también la resolución (pestaña Tutorial); en un examen no (sin ayudas), para no dar la respuesta.
+    const k = ayudas ? resolucionDe(q) : null;
+    openWorkspace({
+    chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: k?.steps ?? [], items: k?.items ?? [], focus: k?.focus ?? [], answerNodes: [], tab: 'ejercicio', progress,
     result: '', summary: () => `CARTA abierta para ${q.id}`, calculadora,
     ayudas: ayudas ? { ...ayudas, ut: q.ut } : null, glosas: ayudas ? { tit: T.id, ut: q.ut } : null,
-  }) }, icono('mapa'), 'Abrir la carta');
+    }); } }, icono('mapa'), 'Abrir la carta');
+}
+
+/** La resolución programada de una pregunta de carta (pasos, dibujo y encuadre), o null si no la tiene o falla. */
+function resolucionDe(q) {
+  const sol = cartaSolutions[q.id];
+  if (!sol || !chartRef) return null;
+  try {
+    const k = createKit(chartRef);
+    sol.solve(k, q);
+    return k;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }
 
 /** Panel del profe para una pregunta respondida. */

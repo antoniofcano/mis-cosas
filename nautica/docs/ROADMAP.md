@@ -67,9 +67,12 @@ _Última revisión: 12 de octubre de 2026._
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
 | R-14 | Calibrar los umbrales de «estoy listo» con datos reales de uso | Después | Hoy son hipótesis razonadas, no medidas |
-| R-15 | Vista de profesor y cuentas | Después | Solo si hay un grupo que la use; implica backend y protección de datos |
+| R-15 | Vista de profesor y cuentas | Después | Solo si hay un grupo que la use; implica backend y protección de datos. Diseño en `docs/VERSION-2.md` (V2-F4 y V2-F5) |
 | R-16 | Fotografías con licencia clara para identificar elementos reales | Después | Cada foto con su autoría y licencia en el apéndice |
 | R-17 | Más titulaciones (PNB, Capitán…) | Después | Una entrada en `TITULACIONES` y su banco por eje |
+| R-23 | Versión 2.0: refactorización por fases (cimientos, contenido, núcleo, cliente, servicio, aula, operación) | Después | `docs/VERSION-2.md`; se decide con la puerta de 90 días de `docs/PRODUCTO.md` §10 |
+| R-24 | Producto como servicio: planes de particulares y canon de academias, a validar con un piloto | Después | `docs/PRODUCTO.md`; precios son hipótesis; antes de cobrar, aclarar derechos de preguntas y carta (IHM) |
+| R-25 | Aula virtual: mesa compartida con carta, láminas y test en clase | Después | `docs/PRODUCTO.md` §7 y `docs/VERSION-2.md` V2-F6; prototipo de sala sobre Durable Objects primero |
 
 ## Bloqueado por fuente
 

@@ -35,18 +35,16 @@ _Última revisión: 12 de octubre de 2026._
 | Curso y ruta | PER y PY enlazados, ruta intercalada con dependencias, test de nivel, plan hasta el examen |
 | Estudio | «Estoy listo» con olvido y margen, repaso con fichas, hoja de corrección plegable, tarjetas de memoria |
 | Entrada | Hoy y Travesía en estilo C (derrota como carta náutica, faros, rangos, insignias) |
-| Material gráfico | Láminas en estilo C: PY completo salvo 2 tipos; PER completo salvo lo que cierre `R-01` |
+| Material gráfico | Láminas en estilo C: PY completo salvo 2 tipos; PER completo |
 | Carta | Mesa de cartas, carta resuelta paso a paso, ejercicios de examen PER y PY |
 | Animaciones | Reproductor común y animaciones con física (evolución, hombre al agua, hélice, marea, borrasca y anticiclón, corriente, ciaboga, desatraque) |
-| Sanidad | Guía Sanitaria a Bordo (ISM, 2013) como fuente; las divergencias con el curso se resuelven en `R-01` |
+| Sanidad | Guía Sanitaria a Bordo (ISM, 2013) como fuente; las divergencias con el curso están resueltas |
 | PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia |
 
 ## Ahora
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-01 | Cierre del PER: 15 láminas pendientes, sanidad coherente, auditoría de punta a punta | En revisión | Rama `feat/per-cierre`; falta el visto bueno |
-| R-02 | Decidir `per-9-7`: «hasta 20 millas» y canales 10/74 no verificados | Bloqueado | Decisión del autor: retirar los canales; dejar la cifra solo si una pregunta la exige |
 
 ## Siguiente
 
@@ -61,7 +59,7 @@ _Última revisión: 12 de octubre de 2026._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y hay citas a preguntas reservadas que revisar |
+| R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
 | R-10 | Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS | Después | Media Session ya hecha; pantalla encendida y compartir el parte, en rama `feat/pwa-tanda1` a la espera de visto bueno. El recordatorio diario se apoya en el Worker de sincronización |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
@@ -82,11 +80,10 @@ _Última revisión: 12 de octubre de 2026._
 
 ## Decisiones abiertas (del autor)
 
-- `R-02`: el contenido no verificable de `per-9-7`.
 - Qué hacer con los conceptos sin preguntas en un banco (109 en Andalucía, 57 en DGMM, 22 en Baleares): ¿se dejan
   sin repasar o se redactan preguntas de práctica propias, marcadas como tales?
-- Luces de boyas y ritmos con «reducir movimiento»: propuesta (en `R-01`) de dejarlas fijas encendidas; falta tu
-  confirmación.
+- Luces de boyas y ritmos con «reducir movimiento»: hoy se quedan fijas encendidas (decidido así; avísame si prefieres
+  que sigan destellando).
 
 ## Fuera de alcance (proyecto aparte)
 
@@ -111,6 +108,7 @@ _Última revisión: 12 de octubre de 2026._
 | H-12 | PER en estilo C: láminas, 32 buques y animaciones de ciaboga y desatraque | PR #124 |
 | H-13 | Cierre de láminas: carta, cálculo, normativa y sanidad del PER; extintores y avisos del PY | PR #125 |
 | H-14 | Sincronización automática del progreso entre dispositivos (código de alumno, QR, Cloudflare Worker + D1) | PR #128 |
+| H-16 | Cierre de PER: 15 láminas, sanidad coherente con la Guía del ISM y auditoría; retirados los canales 10/74 y las «20 millas» de `per-9-7` | PR de cierre de PER |
 | H-15 | Preguntas de carta sin solución: motivo a la vista, fuera de la práctica y discrepancias revisadas (R-22) | PR #129 |
 
 ## Mantenimiento recurrente

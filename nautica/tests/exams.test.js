@@ -33,8 +33,8 @@ test('cada pregunta con resolución sabe dónde abrirla (#/q/<id>)', async () =>
   for (const id of Object.keys(solutions)) assert.deepEqual(b.rutaResolucion(byId.get(id)), ['q', id], id);
   assert.deepEqual(b.rutaResolucion(byId.get('and-py-2023-c1-n18')), ['q', 'and-py-2023-c1-n18']);
   assert.equal(b.rutaResolucion(byId.get('and-py-2021-c1-n20')), null); // en DISCREPANCIAS: sin resolución
-  // Las de la lista de carta del PER se abren aunque la app no traiga su solución (se resuelven sobre la carta).
-  assert.deepEqual(b.rutaResolucion(byId.get('and-2025-c2-q45')), ['q', 'and-2025-c2-q45']);
+  // Una de carta sin solución programada no ofrece «Ver la resolución» (se abriría vacía): se dice su motivo.
+  assert.equal(b.rutaResolucion(byId.get('and-2025-c2-q45')), null);
   assert.equal(b.rutaResolucion(byId.get('and-2025-c2-t01')), null);
 });
 
@@ -48,16 +48,23 @@ test('las del PY que no se dibujan en la carta están marcadas «sinCarta»', ()
 });
 
 // PY: la oficial tiene que ganar con claridad y caer cerca (como mucho el doble de la tolerancia de examen por valor).
-// Las que no lo cumplen se quedan en el bloque DISCREPANCIAS de su fichero, no se fuerzan.
-test('PY: cada resolución llega a la opción oficial con margen', () => {
+// Las que no llegan cerca se quedan en el bloque DISCREPANCIAS de su fichero, no se fuerzan. Las que llegan cerca a la
+// oficial pero con otra opción casi igual de próxima llevan `sinMargen` (el porqué, que la vista enseña junto a la
+// resolución); un `sinMargen` que ya no hace falta falla, para que no quede un aviso de más.
+test('PY: cada resolución llega a la opción oficial con margen (o lo avisa con sinMargen)', () => {
   for (const [id, sol] of Object.entries(solutions)) {
     if (byId.get(id).tit !== 'py') continue;
     const q = byId.get(id);
+    if (q.anulada) continue; // sin respuesta oficial: se resuelve para practicar (la vista lo dice)
     const values = sol.solve(createKit(chart), q);
     // Las opciones repetidas (mismo texto que la elegida) no cuentan como rivales.
     const r = chooseOption(q.opciones, values);
     const s = Object.entries(r.scores).filter(([k]) => !r.repetidas.includes(k)).map(([, v]) => v).sort((a, b) => a - b);
     assert.ok(s[0] / values.length <= 2, `${id}: lejos de la opción (${s[0].toFixed(2)})`);
-    assert.ok(s[1] >= 2 * s[0], `${id}: dos opciones casi empatadas (${s[0].toFixed(2)} / ${s[1].toFixed(2)})`);
+    if (sol.sinMargen) {
+      assert.ok(q.correcta && r.choice === q.correcta, `${id}: sinMargen, pero no elige la oficial`);
+      assert.ok(s[1] < 2 * s[0], `${id}: lleva sinMargen y ya gana con claridad (${s[0].toFixed(2)} / ${s[1].toFixed(2)}): quítalo`);
+      assert.ok(sol.sinMargen.length > 40, `${id}: sinMargen sin explicación`);
+    } else assert.ok(s[1] >= 2 * s[0], `${id}: dos opciones casi empatadas (${s[0].toFixed(2)} / ${s[1].toFixed(2)})`);
   }
 });

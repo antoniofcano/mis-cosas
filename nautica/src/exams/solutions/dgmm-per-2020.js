@@ -119,10 +119,7 @@ export default {
     },
   },
   documentadas: {
-    'dgmm-per-2020-12-177': {
-      tipo: 'discrepancia',
-      texto: 'En la oposición Punta Europa–Punta Carnero la demora verdadera a Carnero es la de la recta Europa → Carnero, que en la carta sale 243,5°. Ct = Dv − Da = 243,5° − 250° = −6,5°. La oficial es a, «5º» sin signo, frente a b «5º+»: el tribunal toma la Ct negativa (como 5° (−)) y mide la recta como 245°. El sentido (negativa) coincide; el valor difiere 1,5° y la opción, escrita sin signo, se lee como +5°, así que la comparación automática no puede llegar a ella. Lo mismo pasa en dgmm-per-2021-02-44 con Da = 255° (sale −11,5°, oficial «10º»).',
-    },
+    'dgmm-per-2020-12-177': { tipo: 'discrepancia', texto: 'En la oposición Punta Europa–Punta Carnero la demora verdadera a Carnero es la de la recta Europa → Carnero: 243,5° en la carta (243,7° con la situación oficial de los faros). Ct = Dv − Da = 243,5° − 250° = −6,5°: negativa. La única opción que no es positiva es la oficial, a, «5º» sin signo: el tribunal la escribe sin el signo menos y mide la recta en 245°. En el examen vale la a; tu cuenta dará unos −6° o −7°.' },
     'dgmm-per-2020-12-88': {
       tipo: 'sin-calculo',
       texto: 'La situación sale de cortar el arco de 2,2 millas del faro del dique de Tánger con la línea isobática de 50 m, comprobando que se ve el sector blanco de El Xarf. Ni la isóbata ni los sectores de la luz de El Xarf están en los datos de la carta de la app: se resuelve leyendo la carta. La oficial (b, 35°49,6′ N 5°46,5′ W) queda a 2,25 millas del dique de Tánger, al 010° del faro de El Xarf.',

@@ -2,6 +2,7 @@
 // andalucia-py.js para el formato. `documentadas`: las de carta sin solución programada, con su motivo
 // ({ tipo: 'discrepancia' | 'sin-calculo', texto }).
 import { hrb } from '../kit.js';
+import { enfilacionEspartelMalabata, oposicionEspartelMalabata } from './faros-lista.js';
 import { rhumbDestination } from '../../math/mercator.js';
 import { fmtBearing, fmtPos } from '../../math/format.js';
 
@@ -9,8 +10,6 @@ const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lo
 const N = 0; const NE = 45; const E = 90; const S = 180; const SE = 135; const SW = 225; const W = 270; const NW = 315;
 
 export const documentadas = {
-  'and-py-2016-c2-n11': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Espartel–Malabata mide 078,6° (como en and-py-2022-c2-n11): con la Da 093° la Ct es −14,4°. La oficial (−13°) es la más próxima, pero queda a 1,4° del cálculo, fuera de la tolerancia: el tribunal debió medir 080°. (El enunciado dice «Punta Malabata Carnero»: es Malabata.)' },
-  'and-py-2016-c3-n12': { tipo: 'discrepancia', texto: 'En la carta, la recta Espartel → Malabata mide 078,6°: en la oposición, con la Da 071° la Ct es +7,6°, más cerca de c (+7°) que de la oficial d (+9°). El tribunal debió medir 080° (la misma medida que en and-py-2016-c2-n11 y and-py-2022-c2-n11).' },
 };
 
 // ---- Operaciones locales
@@ -118,6 +117,14 @@ export default {
   },
 
   // ---- 2ª Convocatoria 2016
+  'and-py-2016-c2-n11': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // «Punta Malabata Carnero» en el enunciado: es Punta Malabata.
+      const dv = enfilacionEspartelMalabata(k, 80);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 93) }];
+    },
+  },
   'and-py-2016-c2-n12': {
     ejercicio: 'abatimiento',
     solve(k) {
@@ -222,6 +229,13 @@ export default {
       // 7º W 2006 con variación 6′ E anual.
       const ct = k.ct({ carta: [-7, 2006, 6], anyo: 2016, desvio: -4 });
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2016-c3-n12': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      const dv = oposicionEspartelMalabata(k);
+      return [{ kind: 'signed', value: k.ctFrom(dv, 71) }];
     },
   },
   'and-py-2016-c3-n13': {

@@ -1,5 +1,6 @@
 import { h, copyText, setChildren } from '../dom.js';
 import { pregunta, cargarBanco, resolverLegado, SOLUCIONES as solutions } from '../../bancos/index.js';
+import { avisoDePregunta } from '../motivo-carta.js';
 import { examQuestionSummary } from '../../ai/summary.js';
 import { link, navigate } from '../router.js';
 import { TITULACIONES, tlink, volver, currentTit, currentEje } from '../titulacion.js';
@@ -113,9 +114,10 @@ export function preguntaView({ ctx, progress, params: route }) {
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`)));
 
   function renderQuestion(banco, lista, q) {
+    // Una de carta sin resolución no está en la lista de carta (no se practica): se abre sola, sin anterior ni siguiente.
     const idx = lista.preguntas.indexOf(q);
-    const prev = lista.preguntas[idx - 1];
-    const next = lista.preguntas[idx + 1];
+    const prev = idx < 0 ? null : lista.preguntas[idx - 1];
+    const next = idx < 0 ? null : lista.preguntas[idx + 1];
     const enLista = (x) => link(['q', x.id], banco.listaDe(x).id === lista.id ? undefined : { l: lista.id });
     const eje = banco.eje;
     let choice = progress.get().exams[q.id]?.choice ?? null;
@@ -140,24 +142,30 @@ export function preguntaView({ ctx, progress, params: route }) {
 
     function verify() {
       if (!choice) { setChildren(result, h('p.muted', 'Elige una opción.')); return; }
-      const ok = choice === q.correcta;
+      // Anulada por el tribunal: cualquier respuesta vale (como en los exámenes de la app).
+      const ok = q.anulada || choice === q.correcta;
       progress.recordExam(q.id, { choice, ok });
-      setChildren(result, ok ? h('p.ok', conIcono('ok', 'Correcta')) : h('p.warn', conIcono('no', `Incorrecta. La correcta es la ${q.correcta}).`)));
+      setChildren(result, q.anulada ? h('p.ok', conIcono('ok', 'Pregunta anulada: en el examen valía cualquier respuesta.'))
+        : ok ? h('p.ok', conIcono('ok', 'Correcta')) : h('p.warn', conIcono('no', `Incorrecta. La correcta es la ${q.correcta}).`)));
       showSolution();
       refresh();
     }
     function showSolution() {
       solution.hidden = false;
+      // En una anulada la cuenta puede no acercarse a ninguna opción (a veces por eso se anuló): se dice.
+      const lejos = run?.pick.choice && run.pick.scores[run.pick.choice] / run.values.length > 2;
       const computed = run
         ? h('p', h('strong', 'Resultado calculado: '), run.values.map((v) => quantity(v.kind).format(v.value)).join(' · '),
-          run.pick.choice ? ` → opción más próxima: ${run.pick.choice})` : '', run.pick.choice === q.correcta ? ' ✓ coincide con la plantilla' : '')
+          run.pick.choice ? (q.anulada && lejos ? ` → ninguna opción se acerca de verdad (la más próxima es la ${run.pick.choice})` : ` → opción más próxima: ${run.pick.choice})`) : '',
+          run.pick.choice === q.correcta ? ' ✓ coincide con la plantilla' : '')
         : null;
       setChildren(solution,
-        q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : h('p.warn', 'Pregunta anulada por el tribunal.'),
+        q.correcta ? h('p', h('strong', 'Respuesta oficial: '), `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}`) : null,
+        avisoDePregunta(q, { programada: !!run, sinMargen: run?.sol.sinMargen }),
         computed,
         run ? [h('ol.steps', profeStepItems(run.k.steps, narrateSteps(run.k.steps, { seed: q.id }), glosas)),
           listenAllButton(() => [narrateIntro(q.enunciado).speech, ...narrateSteps(run.k.steps, { seed: q.id }).map((n) => n.speech), examOutro().speech])]
-          : h('p.muted', 'Esta pregunta no tiene resolución programada (requiere leer símbolos de la carta).'),
+          : null,
         run?.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus }).el : null,
         run?.sol.ejercicio ? h('p', h('a.btn.secondary', { href: link(['ej', run.sol.ejercicio]) }, conIcono('brujula', 'Practicar este tipo de ejercicio'))) : null,
       );
@@ -195,7 +203,7 @@ export function preguntaView({ ctx, progress, params: route }) {
     glosar(enunciadoEl, glosas);
     setChildren(el, 
       volver(lista.titulo, tlink(q.tit, ['examenes', lista.id])),
-      h('header.con-ayudas', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre)), ayudas.barra),
+      h('header.con-ayudas', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre), q.anulada ? h('span.badge.warn', 'Anulada') : null), ayudas.barra),
       ayudas.panel,
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
       h('section.statement', enunciadoEl, tableButtons ? avisoCartaMovil(progress) : null, tableButtons),

@@ -10,7 +10,8 @@ export default {
   documentadas: {
     ...perDoc,
     ...pyDoc,
+    // Anulada sin solución programada (la vista dice además el acuerdo del tribunal, de sus notas).
+    'and-py-2021-c2-n12': { tipo: 'anulada', texto: 'No la resolvemos porque el dato no encaja: en la oposición de Isla de Tarifa y Punta Alcázar estamos entre los dos faros, y Punta Alcázar queda al S (Dv 165,7°). Con una Da de 351° a ella la Ct saldría de casi 180°, imposible. Solo tendría sentido como demora a Isla de Tarifa (Dv 345,7°: Ct = −5,3°), pero eso sería cambiar el enunciado.' },
     'and-2025-c2-q45': { tipo: 'sin-calculo', texto: 'Identificar en la carta una situación donde está prohibido fondear: no hay cálculo, se comprueba mirando la carta (zonas de fondeo prohibido).' },
-    'and-py-2022-c2-n11': { tipo: 'discrepancia', texto: 'En la carta, la enfilación Espartel–Malabata mide 078,6°: con la Da 078° la Ct es +0,6°, y la oficial (+2°) queda fuera de la tolerancia. El tribunal debió medir 080°.' },
-  },
+    },
 };

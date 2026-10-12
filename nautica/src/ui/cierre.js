@@ -26,7 +26,7 @@ export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar 
   const delEje = (x) => (x.tit ?? 'per') === tit && x.eje === banco.eje.id;
   const tc = progress.testEnCurso();
   const st = estadoAlumno({
-    tit, estructura: T.estructura, curso, preguntas: banco.estudio, regs: progress.lecciones(), respuestas: progress.get().exams,
+    tit, estructura: T.estructura, curso, preguntas: banco.practica, regs: progress.lecciones(), respuestas: progress.get().exams,
     tests: progress.tests().filter(delEje), testEnCurso: tc && delEje(tc) ? tc : null,
     settings: progress.settings(), minutosHoy: progress.minutosHoy(ahora), racha: progress.racha(ahora), planGuardado: progress.planEstudio(tit), ahora,
     // El examen final: la reserva del alumno (lo que no se estudia) y sus convocatorias.

@@ -80,8 +80,8 @@ Las soluciones programadas de las preguntas de carta de Andalucía siguen en `sr
   sale siempre de esa foto; si los datos cambian la reserva, se apartan del estudio las de la foto y las de la ficha.
 - `listas` (opcional): listados de preguntas reales del eje por titulación, con página propia
   (`#/<tit>/examenes/<id>`). Filtro: `requiere` (las que lo requieren) y/o `sinRequiere` (las que no). `tarjeta`
-  es el texto de su tarjeta en «Ejercicios de carta» (`{n}` = número de preguntas). Una lista de `id` `carta`
-  hace que sus preguntas se puedan abrir resueltas en la carta aunque la app no traiga su solución programada.
+  es el texto de su tarjeta en «Ejercicios de carta» (`{n}` = número de preguntas). Una lista con `requiere: "carta"`
+  es para practicar: no lleva las preguntas de carta sin solución programada (ver «Soluciones de carta»).
   Sin listas, el eje tiene una implícita, `todas`.
 - `legado` (opcional): ficheros de banco antiguos → `{ tit, lista }`, para que los enlaces viejos
   (`#/examenes/<fichero>[/<id>]`) sigan funcionando.
@@ -186,16 +186,20 @@ guardados los bancos. El resto de la app no nombra ningún banco ni ningún eje 
       `{ modo, convs, datos, examenes: [{ key, titulo, fecha, n, completa, ids }] }`.
     - `convocatorias()` → `[{ key, titulo, fecha, n, completa }]` (más recientes primero; sin las reservadas)
     - `explicaciones`, `reglasDe(id)` (reglas nemotécnicas), `vocab`
-    - `practicaDe(leccionId)` → ids de práctica de la clase (solo de `estudio`); `resueltasDe(leccionId)` → ids
-      de preguntas resueltas por la app del tipo de la clase (las dos, solo del estudio)
+    - `practica`: las que se practican (clases, tandas, repaso, mezcla, «5 minutos», sesiones y motor): `estudio`
+      sin las preguntas de carta que no tienen solución programada (`practicable(q)`; anuladas o documentadas). Siguen
+      en los exámenes de convocatoria, en los simulacros y en su vista por enlace (`#/q/<id>`), que dice el motivo.
+    - `practicaDe(leccionId)` → ids de práctica de la clase (solo de `practica`); `resueltasDe(leccionId)` → ids
+      de preguntas resueltas por la app del tipo de la clase (solo del estudio)
     - `listas`, `lista(id)` → `{ id, titulo, descripcion, tarjeta?, preguntas }` (sin las reservadas); `listaDe(q)` → la
       lista de una pregunta (la primera que la incluye)
   - `cargarCurso(tit, eje)` → el curso nacional con la práctica del eje en cada clase (`leccion.practica`);
     `cargarCursoBase(tit)` → el curso tal cual.
   - `pregunta(id)` → `{ q, banco }` de cualquier eje (por su prefijo), o `null`.
   - `resolverLegado(fichero)` → `{ eje, tit, lista }` de un fichero de banco antiguo.
-  - `rutaResolucion(q)` → `['q', id]` si la pregunta se puede ver resuelta, o `null` (síncrona: la pregunta viene
-    de un banco ya cargado).
+  - `rutaResolucion(q)` → `['q', id]` si la pregunta tiene solución programada, o `null` (síncrona). Una de carta sin
+    ella no ofrece «Ver la resolución»: quien la enseña dice el motivo (`src/ui/motivo-carta.js`).
+  - `esDeCarta(q)` (`requiere` «carta» o `bloque` «carta») y `practicable(q)` (no es de carta o tiene solución).
   - `cargarMnemotecnias()`, `cargarVocabulario(tit)` (comunes).
 - `cursoConPractica(curso, banco)` (pura), `urlFigura(q, f)`, `SOLUCIONES`, `EJE_POR_DEFECTO`.
 
@@ -308,7 +312,16 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
   de las de carta) y avisa de las clases que no llegan a las preguntas de su homóloga.
 - **Soluciones de carta**: el módulo de cada eje (`src/bancos/ejes/<eje>.js`) exporta `{ id, soluciones,
   documentadas }`. `documentadas` = las de carta que no se resuelven, con su motivo: `{ tipo: 'discrepancia' |
-  'sin-calculo', texto }`.
+  'sin-calculo' | 'anulada', texto }`. `discrepancia`: la cuenta no llega a la opción oficial; el texto da la cuenta
+  correcta, a qué llegaría el alumno midiendo y si la oficial es defendible (una medida o un redondeo concretos) o
+  errónea. `sin-calculo`: se resuelve mirando la carta (o falta un elemento que la carta de la app no tiene). `anulada`:
+  anulada por el tribunal y sin cálculo posible con su enunciado. Una anulada que sí se puede calcular se programa
+  para practicar (la vista la marca «Anulada» y, si la cuenta no se acerca a ninguna opción, lo dice).
+  Una solución puede llevar `sinMargen` (texto): llega a la oficial dentro de la tolerancia, pero otra opción queda casi
+  igual de cerca (el PY exige que la oficial gane por el doble; `tests/exams.test.js` comprueba que el aviso hace
+  falta). La vista de la pregunta (`showSolution`, `src/ui/views/exams.js`) enseña siempre el motivo con
+  `src/exams/motivo.js` (estilo C, `src/ui/motivo-carta.js`). Ninguna de carta sin solución se practica
+  (`practicable`, arriba). Recuento: `node tools/auditoria-carta.mjs [--detalle|--json]`.
 - **Puertas de calidad** (`tools/bancos/puertas.mjs <eje>`): lo que tiene que cumplir un eje para publicarse
   (explicación para toda pregunta que no es de carta, solución o motivo documentado para toda la de carta, práctica
   en cada clase, revisión normativa hecha, licencia citada). `tests/bancos.test.js` las exige a todo eje

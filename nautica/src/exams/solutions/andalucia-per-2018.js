@@ -5,7 +5,7 @@ import { hrb } from '../kit.js';
 const latlon = (p) => [{ kind: 'lat', value: p.lat }, { kind: 'lon', value: p.lon }];
 
 export const documentadas = {
-  'and-2018-c3-q45': { tipo: 'discrepancia', texto: 'Rv 250° con Punta Carnero a 55° Er (Dv 305°) y Punta Almina a 88° Br (Dv 162°): situación 36° 01,5′ N, 005° 19,7′ W. La oficial (d) dice «36º 01,4\' N; 006º 19,6\' W»: los minutos coinciden, pero el grado de longitud es una errata (006° por 005°; a 006° 19,6′ W estaríamos en el borde W de la carta, a más de 50 millas de Punta Almina). El cálculo cae en la a (36° 01,4′ N, 005° 18,0′ W) por la errata, así que no se compara.' },
+  'and-2018-c3-q45': { tipo: 'discrepancia', texto: 'Rv 250°: Punta Carnero a 55° por estribor (Dv 305°) y Punta Almina a 88° por babor (Dv 162°). Situación: 36° 01,5′ N 005° 19,7′ W. La oficial (d) dice «36º 01,4\' N; 006º 19,6\' W»: los minutos cuadran con la cuenta, pero el grado de longitud es una errata de imprenta (006° por 005°; a 006° 19,6′ W estaríamos en el borde W de la carta, a más de 50 millas de Almina). Leída con 005°, la d es la buena; la a (005° 18,0′ W) queda 1,7′ más al E.' },
 };
 
 export default {

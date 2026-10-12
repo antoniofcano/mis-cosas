@@ -146,6 +146,15 @@ export default {
     },
   },
   // c2-n15 (anulada): ver DISCREPANCIAS al final.
+  'and-py-2024-c2-n15': {
+    // Anulada por la errata «demora a Punta Carnero de 200º» (el dato correcto era 20º). Se resuelve con el dato correcto.
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      k.note('Errata del enunciado', 'El enunciado dice «demora verdadera al faro de Punta Carnero = 200º». El tribunal anuló la pregunta por esa errata: el dato correcto era 020°. Lo resolvemos con 020°.');
+      const d = k.distFor(8, hrb(12, 15) - hrb(11));
+      return latlon(k.traslado('punta-europa', 310, 'punta-carnero', 20, 240, d, 'Situación 12:15'));
+    },
+  },
   'and-py-2024-c2-n16': {
     ejercicio: 'abatimiento',
     solve(k) {

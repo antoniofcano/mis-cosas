@@ -178,31 +178,8 @@ export default {
     },
   },
   documentadas: {
-    'dgmm-py-2023-04-36': {
-      tipo: 'discrepancia',
-      texto: 'Corriente desconocida. Ct = −1° + 2° = +1°, Rv 084°, 4,5 nudos durante 2h 20m (10,5 millas): estima 07:05 en '
-        + '35° 52,1′ N 5° 58,1′ W. Con las Dv 036° (Punta de Gracia) y 151° (Cabo Espartel) la verdadera es 35° 53,4′ N '
-        + '5° 59,4′ W. Corriente: Rc 320°, Ihc 0,71 nudos. La oficial (c) da Rc 330° e Ihc 0,70: la intensidad coincide, '
-        + 'pero el rumbo difiere 10°, fuera de la tolerancia. El abatimiento total es de solo 1,65 millas, así que 0,3 '
-        + 'millas de error de trazado en la carta bastan para girar el rumbo 10°: lo más probable es que la plantilla salga '
-        + 'de un trazado a mano. La c es la única opción próxima.',
-    },
-    'dgmm-py-2023-04-79': {
-      tipo: 'discrepancia',
-      texto: 'Estima con viento y corriente. Rv = 190° − 2,5° = 187,5°; viento del SE por babor → Rs 192,5°. En 54 min: '
-        + '6,75 millas al 192,5° (Δl −6,6′, A −1,5′) y la corriente de rumbo 090° 2,25 millas al E. Llegada: 36° 08,4′ N '
-        + '5° 11,0′ W. La oficial (b) es 36° 08,5′ N 5° 16,6′ W: la latitud coincide, pero la longitud solo sale si la '
-        + 'corriente va hacia el 270° (A = −1,5 − 2,25 = −3,7′ → ΔL −4,6′ → 5° 16,6′ W). La plantilla toma la corriente '
-        + 'al revés («de rumbo 090°» es hacia donde va el agua, el E). Ninguna opción encaja con el dato tal como viene.',
-    },
-    'dgmm-py-2023-11-39': {
-      tipo: 'discrepancia',
-      texto: 'Falta un dato: la situación de la «marca cardinal norte cercana a Punta Malabata». No está entre los puntos de '
-        + 'la carta de la app ni la da ningún enunciado o solución oficial de la DGMM (en dgmm-per-2022-10-89 solo se sabe '
-        + 'que está en la oposición con Punta de Gracia, Dv ≈ 172° desde ella). El rumbo pedido depende mucho de ella: '
-        + 'cada media milla a lo largo de esa línea mueve el Ra unos 3,5°. Una marca en ≈ 35° 49,6′ N 5° 45,5′ W daría la '
-        + 'oficial (Ra 269°), pero esa posición sale de ajustarla a la respuesta, no de la carta: no se programa hasta '
-        + 'tener la situación de la marca en la carta L105.',
-    },
+    'dgmm-py-2023-04-36': { tipo: 'discrepancia', texto: 'Ct = −1° + 2° = +1°: Rv 084°, 4,5 nudos durante 2 h 20 min (10,5 millas): estima de las 07:05 en 35° 52,1′ N 005° 58,1′ W. Con las Dv 036° (Punta de Gracia) y 151° (Cabo Espartel) la situación verdadera es 35° 53,4′ N 005° 59,4′ W. Corriente: Rc 320°, Ihc 0,71 nudos. La oficial (c: 330°, 0,70 nudos) acierta la intensidad y el sentido (hacia el NW; las demás van al SE o son más del doble de fuertes), pero no el rumbo: entre la estima y la observada hay solo 1,65 millas, y 0,3 millas de trazado giran el rumbo 10°. Es la única opción coherente con la cuenta.' },
+    'dgmm-py-2023-04-79': { tipo: 'discrepancia', texto: 'Rv = 190° − 2,5° = 187,5°; el viento del SE entra por babor y nos abate 5° a estribor: Rs = 192,5°. En 54 min: 6,75 millas al 192,5° (Δl −6,6′, A −1,5′). La corriente «de rumbo 090°» va hacia el E (el rumbo de una corriente es hacia donde va el agua): 2,25 millas al E (A +2,25′). Llegada: 36° 08,4′ N 005° 11,0′ W, y ninguna opción se acerca. La oficial (b, 36° 08,5′ N 005° 16,6′ W) acierta la latitud, pero su longitud solo sale llevando la corriente al W (A = −1,5′ − 2,25′ = −3,7′ → ΔL −4,6′): la plantilla toma la corriente al revés.' },
+    'dgmm-py-2023-11-39': { tipo: 'sin-calculo', texto: 'Hay que leer en tu carta la situación de la marca cardinal norte cercana a Punta Malabata, que la carta de la app no tiene. Desde ella: rumbo tangente a 3 millas de Cabo Espartel, viento del S que nos abate 6° (se compensa metiendo la proa al viento), Ct = dm de la carta para el año + 2° E. El resultado depende mucho de dónde esté la marca: media milla a lo largo de la costa mueve el Ra unos 3,5°. La oficial es la c (269°).' },
   },
 };

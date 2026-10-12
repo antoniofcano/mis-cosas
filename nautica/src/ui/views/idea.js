@@ -94,7 +94,7 @@ export function ideaView({ ctx, progress, params: route, tit }) {
       setChildren(prueba, h('h2', 'Otra pregunta de esta idea'), tandaPreguntas({
         preguntas: [q], explicaciones: banco.explicaciones, progress, barra, vocab: banco.vocab,
         alResponder: (i, q2, ok) => {
-          const item = colaRepaso(banco.estudio, progress.get().exams, hoy, { principalDe: ic.principalDe, estado: progress.repasoConceptos(clave, tit) }).items.find((x) => x.concepto === id);
+          const item = colaRepaso(banco.practica, progress.get().exams, hoy, { principalDe: ic.principalDe, estado: progress.repasoConceptos(clave, tit) }).items.find((x) => x.concepto === id);
           if (item && item.rep.prox <= hoy) progress.recordRepasoConcepto(clave, tit, id, siguienteRepasoConcepto(item.rep, ok, hoy, new Date().toISOString()));
           return ok ? 'Bien: esta vez la tienes.' : 'Vuelve mañana al repaso, con otra pregunta.';
         },

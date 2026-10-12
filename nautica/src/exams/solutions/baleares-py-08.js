@@ -974,19 +974,31 @@ export default {
       return latlon(k.traslado('punta-cires', d1, 'isla-tarifa', d2, rs, k.distFor(6, 45), 'Situación 22:15'));
     },
   },
+  'bal-py-2025-07-a-33': {
+    ejercicio: 'rumbo-pasar-distancia',
+    sinMargen: 'Sale Ra 241,8° (dm 2019 de la carta = 1° 12′ W; Ct = +1,8°), entre la b (240°) y la oficial d (243°), algo más '
+      + 'cerca de la d. En la gemela bal-py-2024-07-a-32 la plantilla también da casi 1° más que el trazado.',
+    solve(k) {
+      const ct = k.ct({ carta: L105, anyo: 2019, desvio: 3 });
+      const s = k.fix2('punta-carnero', k.dv(280, ct, 'punta-carnero'), 'punta-europa', k.dv(14, ct, 'punta-europa'), 'Situación 21:12');
+      // Navegamos al W y pasamos por el S de Isla de Tarifa: la dejamos por estribor.
+      const rs = k.tangent(s, 'isla-tarifa', 2.5, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 3, W);
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
 };
 
 // Preguntas del lote que no quedan en export default, con el motivo (detalle y código en DISCREPANCIAS).
 export const documentadas = {
-  'bal-py-2024-07-a-33': { tipo: 'discrepancia', texto: 'El cálculo llega a la a: Rc = 035,7°, Ihc = 2,47 nudos; la oficial es la d (037°, 2,4). La intensidad cuadra con las dos; los 1,3° de rumbo que las separan son precisión de trazado.' },
+  'bal-py-2024-07-a-33': { tipo: 'discrepancia', texto: 'Ct = −3,5° + 1° = −2,5°: Rv 250,5°. Situación de las 08:00 a 6 millas de Punta Europa marcada 80° por estribor; estima de las 09:30 (12,5 millas al 250,5°); situación verdadera por la Da 183° a Punta Cires y Punta Leona 109° por babor. Corriente: Rc 035,7°, Ihc 2,47 nudos. Las dos opciones con esa intensidad son la a (035°) y la oficial d (037°): la cuenta cae más cerca de la a. El corte de Leona y Cires es muy agudo y un poco de trazado mueve el rumbo un par de grados: en el examen vale la d.' },
   'bal-py-2024-07-a-37': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en Barbate el 17-12-2024 con corrección barométrica: el enunciado no trae la tabla de mareas del Anuario y Barbate no tiene datos de marea en la app.' },
   'bal-py-2024-07-a-40': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la enfilación «Magair/cabo Espartel» necesita la marca de Magair, que no está en la carta de la app ni el enunciado da sus coordenadas.' },
   'bal-py-2024-12-a-33': { tipo: 'sin-calculo', texto: 'Respuesta cualitativa / DST: se pregunta en qué vía del DST estaremos a las 16:15; la respuesta no es un valor numérico y los límites del DST no están en la carta de la app.' },
   'bal-py-2024-12-a-35': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la salida es «al SW verdadero de Cabo Roche sobre la isobática de 20 m»: la carta de la app no tiene isobáticas.' },
   'bal-py-2024-12-a-40': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 27-10-2024 por tabla: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
-  'bal-py-2025-04-a-36': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d, 15° NW) pero lejos: la enfilación Alcázar–Cires en la carta de la app da Dv = 226,6° y, con Da = 303° − 60° = 243°, Ct = −16,4°, a 1,4° de la opción, fuera del margen del PY.' },
-  'bal-py-2025-04-a-39': { tipo: 'discrepancia', texto: 'El cálculo llega a la c (10:46 es la más próxima; sale 10:36): el corte en el mar de los arcos de 5 M (Paloma) y 7 M (Tarifa) está en 35° 59,2′ N y al Rv 180° (la corriente al W no cambia la latitud) los 4,2′ hasta 35° 55′ N se recorren en 36 min. La oficial (b, 10:53) supone salir unas 2′ más al N; posible errata.' },
-  'bal-py-2025-07-a-33': { tipo: 'discrepancia', texto: 'El cálculo llega a la oficial (d, 243°) sin margen: sale Ra = 241,8° (dm 2019 = 1° 12′ W, Ct = +1,8°), entre la b (240°) y la d. En la gemela bal-py-2024-07-a-32 la plantilla también da ~0,9° más que el trazado de la app.' },
+  'bal-py-2025-04-a-36': { tipo: 'discrepancia', texto: 'Es la pregunta bal-py-2021-06-ac-31 con otra fecha. Da de Punta Cires = 303° − 60° = 243°; en la enfilación Alcázar–Cires la Dv a Cires es 226,6° (227,2° con la situación oficial de los faros): Ct = −16,4° (−15,8°). La más próxima es la oficial (d, 15° NW), a más de medio grado: la plantilla mide la enfilación al 228°. Midiendo en tu carta saldrá una Ct de unos 15°–16° NW: marca la d.' },
+  'bal-py-2025-04-a-39': { tipo: 'discrepancia', texto: 'Los arcos de 5 millas (Punta Paloma) y 7 millas (Isla de Tarifa) se cortan en el mar en 35° 59,2′ N 005° 45,1′ W (el otro corte cae en tierra). Ct = 5° + 4° = +9°: Rv 180°. La corriente al W no cambia la latitud: bajamos a unos 7 nudos y los 4,2′ hasta 35° 55′ N se recorren en 36 min: 10:36. La más próxima es la c (10:46); la oficial (b, 10:53) supone salir unas 2′ más al N, y desde la situación del enunciado no sale. En la gemela bal-py-2022-12-b-31 la cuenta sí llega a la oficial: aquí parece una errata de la plantilla.' },
   'bal-py-2025-04-bc-40': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 18-04-2025 por el método exacto: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
   'bal-py-2025-07-b-31': { tipo: 'sin-calculo', texto: 'Elemento que no está en la carta de la app: la enfilación del faro de Punta Cires con la cumbre del monte «Loma El Garrób» necesita ese monte, que no está en la carta de la app ni el enunciado da sus coordenadas.' },
   'bal-py-2025-07-b-37': { tipo: 'anuario', texto: 'Cálculo de mareas sin tabla: sonda en el puerto de Cádiz el 09-04-2025 con corrección barométrica: fuera de la carta y sin la tabla de mareas del Anuario en el enunciado.' },
@@ -1000,6 +1012,8 @@ export const documentadas = {
 };
 
 /* DISCREPANCIAS
+ * Revisión de 2026-10: bal-py-2025-07-a-33 ya están en export default, con `sinMargen` (llegan a la oficial,
+ *   pero otra opción queda casi igual de cerca; la vista lo explica). Lo que sigue de ellas es el análisis de antes.
  * 'bal-py-2024-07-a-33': (trazado al límite) sale Rc = 035,7°, Ihc = 2,47 nudos: el comprobador elige la a (035°, 2,4) y la oficial es la d (037°, 2,4). La intensidad cuadra; los 1,3° de rumbo son precisión de trazado y no se fuerzan.
  *
  *     'bal-py-2024-07-a-33': {

@@ -36,6 +36,16 @@ export default {
       },
     },
     // 12-35: anulada.
+    'dgmm-py-2020-12-35': {
+      // Anulada. Se resuelve para practicar: sin corriente, el rumbo efectivo es la recta a Cabo Espartel.
+      ejercicio: 'abatimiento',
+      solve(k) {
+        const s = k.fromMark('isla-tarifa', 140, 2.4, 'Situación');
+        const { rv: ref } = k.rhumb(s, 'cabo-espartel', 'Rumbo efectivo');
+        k.note('Rumbo efectivo', `Sin corriente, el rumbo efectivo es el que nos lleva al cabo: la recta de la salida a Cabo Espartel, ${fmtBearing(ref)}. El viento no lo cambia: cambia el Rv que hay que dar. El viento del SSE entra por babor y nos abate 10° a estribor, así que hay que dar Rv = ${fmtBearing(ref)} − 10° = ${fmtBearing(norm360(ref - 10))}, que es la opción b: pregunta y opciones mezclan los dos rumbos, y por eso se anuló.`);
+        return [{ kind: 'bearing', value: ref }];
+      },
+    },
     'dgmm-py-2020-12-36': {
       ejercicio: 'demoras-no-simultaneas',
       solve(k) {

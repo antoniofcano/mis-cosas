@@ -233,6 +233,10 @@ export default {
     },
   },
   documentadas: {
+    'dgmm-per-2023-06-89': {
+      tipo: 'anulada',
+      texto: 'No la resolvemos porque el dato no encaja: en la oposición de Punta Paloma y Punta Malabata estamos entre los dos faros, y Malabata queda al S (Dv 185,9°). Con una Da de 003,5° a ella la Ct saldría de casi 180°, imposible. Solo tendría sentido como demora a Punta Paloma (Dv 005,9°: Ct = +2,4°, la opción c), pero eso sería cambiar el enunciado.',
+    },
     'dgmm-per-2023-11-89': {
       tipo: 'sin-calculo',
       texto: 'La situación de las 14:00 es el corte de la demora de Cabo Espartel (Rv = 085° − 5° = 080°, marcación 63° Er → '

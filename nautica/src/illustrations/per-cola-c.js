@@ -21,7 +21,7 @@ function marca(spec, validas) {
   return { hl, on, activo: hl.size > 0, c: (k, base = T.tinta) => (on(k) ? T.magenta : base), w: (k, b = 1.4, f = 2.4) => (on(k) ? f : b), texto: (cap, def) => (hl.size ? [...hl].map((k) => cap[k]).filter(Boolean).join(' ') || def : def) };
 }
 /** Casco de perfil: (x, y) es la proa en la flotación; L la eslora; proa a la izquierda (o a la derecha con haciaDerecha). */
-function cascoPerfil(x, y, L, { haciaDerecha = false, cabina = true, p = null } = {}) {
+export function cascoPerfil(x, y, L, { haciaDerecha = false, cabina = true, p = null } = {}) {
   const s = haciaDerecha ? -1 : 1;
   const X = (d) => f1(x + s * d);
   const h = L * 0.17;
@@ -29,24 +29,24 @@ function cascoPerfil(x, y, L, { haciaDerecha = false, cabina = true, p = null } 
     (cabina ? `<rect x="${f1(Math.min(x + s * L * 0.42, x + s * L * 0.72))}" y="${f1(y - h * 1.6)}" width="${f1(L * 0.3)}" height="${f1(h * 0.62)}" rx="2" fill="${T.casco}" stroke="${T.tinta}" stroke-width="1.1"/>` : '') + '</g>';
 }
 /** Ancla pequeña: (x, y) es el arganeo; sin girar, la caña baja y la cruz queda abajo. */
-function anclaG(x, y, s = 1, rot = 0, color = T.tinta) {
+export function anclaG(x, y, s = 1, rot = 0, color = T.tinta) {
   return `<g transform="translate(${f1(x)} ${f1(y)}) rotate(${f1(rot)}) scale(${s})" fill="none" stroke="${color}" stroke-width="${f1(2 / Math.sqrt(s))}" stroke-linecap="round">` +
     `<circle cx="0" cy="-2.5" r="2.5"/><path d="M0,0 L0,21 M-10,11 Q-9,21 0,21 Q9,21 10,11"/><path d="M-10,8 L-13,15 L-7,14Z M10,8 L13,15 L7,14Z" fill="${color}"/></g>`;
 }
 const cruzDe = (x, y, s, rot) => { const a = (rot * Math.PI) / 180; return [x - 21 * s * Math.sin(a), y + 21 * s * Math.cos(a)]; };
 /** Cadena: trazo grueso discontinuo. */
-const cadena = (d, { color = T.tinta, w = 3 } = {}) => `<path d="${d}" fill="none" stroke="${color}" stroke-width="${w}" stroke-dasharray="3.5 1.8"/>`;
+export const cadena = (d, { color = T.tinta, w = 3 } = {}) => `<path d="${d}" fill="none" stroke="${color}" stroke-width="${w}" stroke-dasharray="3.5 1.8"/>`;
 /** Cabo: contorno de tinta y alma amarilla (magenta si está resaltado). */
-const cuerda = (d, { on = false, w = 3.6, alma = T.amarillo } = {}) =>
+export const cuerda = (d, { on = false, w = 3.6, alma = T.amarillo } = {}) =>
   `<path d="${d}" fill="none" stroke="${T.tinta}" stroke-width="${w + 2}" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${on ? T.magenta : alma}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
 /** Fondo marino con su punteado, de y a yFin. */
 /** Crestas de olas en planta entre x1 y x2, a la altura y. */
-const crestas = (x1, x2, y, paso = 24, amp = 4) => {
+export const crestas = (x1, x2, y, paso = 24, amp = 4) => {
   let d = `M${f1(x1)},${f1(y)}`;
   for (let x = x1; x < x2; x += paso) d += ` q${f1(paso / 4)},${-amp} ${f1(paso / 2)},0 t${f1(paso / 2)},0`;
   return `<path d="${d}" fill="none" stroke="${T.lineaAgua}" stroke-width="1.3"/>`;
 };
-const recuadro = (x, y, w, h, { on = false, fondo = 'none' } = {}) => `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${fondo}" stroke="${on ? T.magenta : T.tinta}" stroke-width="${on ? 2.2 : 0.8}"/>`;
+export const recuadro = (x, y, w, h, { on = false, fondo = 'none' } = {}) => `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${fondo}" stroke="${on ? T.magenta : T.tinta}" stroke-width="${on ? 2.2 : 0.8}"/>`;
 const centrado = (x, y, t, o = {}) => serif(x, y, t, { anchor: 'middle', ...o });
 
 // ===========================================================================

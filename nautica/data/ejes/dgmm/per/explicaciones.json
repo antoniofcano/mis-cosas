@@ -1839,7 +1839,7 @@
   "clave": "Tetraedro: combustible, comburente, calor y reacción en cadena."
  },
  "dgmm-per-2021-02-75": {
-  "explicacion": "El Centro Radio-Médico Español, del Instituto Social de la Marina, atiende consultas médicas desde la mar por radiotelefonía (onda media o corta, a través de las radiocosteras) o por teléfono. No es obligatorio el teléfono ni se limita a quien hable castellano.",
+  "explicacion": "El Centro Radio-Médico Español, del Instituto Social de la Marina, atiende consultas médicas desde la mar por radiotelefonía (onda media o corta, a través de las radiocosteras) o por teléfono. No es obligatorio el teléfono, y la b) es falsa: la asistencia se presta en español, pero eso no obliga a esperar a llegar a tierra para pedir consejo médico.",
   "clave": "Consulta médica en la mar: Centro Radio-Médico Español."
  },
  "dgmm-per-2021-02-31": {
@@ -2333,8 +2333,9 @@
   "clave": "A sólido, B líquido, C gas, D metal, F cocina."
  },
  "dgmm-per-2021-04-75": {
-  "explicacion": "La Guía Médica del Instituto Social de la Marina indica aflojar el torniquete cada 15 minutos, durante unos segundos, para que llegue sangre a los tejidos que están por debajo. Es un último recurso para hemorragias que no paran con presión directa. Mantenerlo apretado una o dos horas, o sin aflojar, puede destruir el miembro.",
-  "clave": "Torniquete: aflojar cada cuarto de hora."
+  "explicacion": "La Guía Sanitaria a Bordo del Instituto Social de la Marina, la que cita la pregunta, manda aflojar el torniquete cada 15 minutos para que circule la sangre por el resto del miembro y, si sigue sangrando, volver a apretar a los 30 segundos: es la respuesta de este examen. El torniquete es el último recurso, cuando la presión directa no basta. Fuera del examen, la práctica actual de primeros auxilios es no aflojarlo salvo indicación médica.",
+  "clave": "Torniquete, según la Guía del ISM: aflojar cada cuarto de hora.",
+  "trampa": "La d) es la práctica actual fuera del examen, pero la pregunta pide lo que dice la Guía."
  },
  "dgmm-per-2021-04-31": {
   "explicacion": "La llamada selectiva digital (LSD) del VHF se transmite siempre por el canal 70; después las comunicaciones de voz siguen por el 16. El canal 16 es el de socorro en voz, no el de LSD, y el 07 y el 77 son canales de trabajo.",
@@ -3872,8 +3873,8 @@
   "trampa": "La c) se parece al número de Salvamento Marítimo, pero no es el del Radio Médico."
  },
  "dgmm-per-2021-12-77": {
-  "explicacion": "Ante una insolación hay que llevar al afectado a la sombra y enfriarlo poco a poco, con paños húmedos o agua templada, sin bajar bruscamente su temperatura: sumergirlo en agua fría hasta 35º es peligroso, así que la c) es la incorrecta. Las demás son ciertas: reposo y consulta radiomédica en contusiones abdominales, la sangre arterial sale a impulsos y la costra de una quemadura de tercer grado no se destruye.",
-  "clave": "Insolación: sombra y enfriar poco a poco, nunca de golpe.",
+  "explicacion": "Ante una insolación o un golpe de calor se lleva al afectado a la sombra y se le enfría con ducha o paños de agua fría hasta unos 39 °C, sin seguir por debajo de 38,5 °C (Guía Sanitaria a Bordo): bajarle hasta 35 °C sería provocarle una hipotermia, así que la c) es la incorrecta. Las demás son ciertas: reposo y consulta radiomédica en contusiones abdominales, la sangre arterial sale a impulsos y la costra de una quemadura de tercer grado no se destruye.",
+  "clave": "Golpe de calor: enfriar hasta 39 °C, nunca hasta 35 °C.",
   "trampa": "Pregunta negativa: busca la falsa."
  },
  "dgmm-per-2021-12-33": {
@@ -4466,8 +4467,8 @@
   "trampa": "Pregunta negativa: dar atrás es el reflejo instintivo, y aquí es el error."
  },
  "dgmm-per-2022-04-77": {
-  "explicacion": "Una quemadura de segundo grado que afecta al 20 % del cuerpo es ya extensa: a bordo solo se tratan las quemaduras leves y poco extensas, y las demás requieren consulta radiomédica y evacuación. Por eso la b) es la incorrecta. Las demás son ciertas: anotar la hora del torniquete, inmovilizar las articulaciones quemadas y tener al mareado en un lugar fresco, reclinado y comiendo poco y seco.",
-  "clave": "Quemadura extensa: consulta radiomédica y evacuación.",
+  "explicacion": "Según la Guía Sanitaria a Bordo, a bordo solo se tratan las quemaduras de segundo grado de menos del 10 % de la superficie corporal (las de primero, de menos del 20 %; las de tercero, de menos del 1 %); las demás se evacúan. Por eso la b) es la incorrecta. Las demás son ciertas: anotar la hora del torniquete, inmovilizar las articulaciones quemadas y tener al mareado en un lugar fresco, reclinado y comiendo poco y seco.",
+  "clave": "A bordo, 2.º grado solo por debajo del 10 %.",
   "trampa": "Pregunta negativa: busca el porcentaje demasiado alto."
  },
  "dgmm-per-2022-04-33": {
@@ -4980,7 +4981,7 @@
   "trampa": "Dar atrás enseguida es el reflejo que el examen penaliza."
  },
  "dgmm-per-2022-06-32": {
-  "explicacion": "En las quemaduras de brazos o piernas conviene elevar el miembro para reducir la inflamación. Al mareado no se le tiene en ayunas ni en un camarote de proa, donde más se mueve el barco: mejor en cubierta, al aire, mirando el horizonte y comiendo poco y seco. La pauta de aflojar y volver a apretar el torniquete de la a) y los datos de contacto de la d) no son correctos.",
+  "explicacion": "En las quemaduras de brazos o piernas conviene elevar el miembro para reducir la inflamación. Al mareado no se le tiene en ayunas ni en un camarote de proa, donde más se mueve el barco: mejor en cubierta, al aire, mirando el horizonte y comiendo poco y seco. La a) cambia las cifras de la Guía Sanitaria a Bordo, que manda aflojar el torniquete cada 15 minutos y volver a apretar a los 30 segundos (no cada 20 y al minuto), y la d) cambia los datos del Centro Radio-Médico, que atiende en español en el 91 310 34 75.",
   "clave": "Quemadura en una extremidad: elévala.",
   "trampa": "La c) manda al mareado a proa, el peor sitio del barco."
  },
@@ -6538,7 +6539,7 @@
   "trampa": "Los absolutos «siempre» y «en cuanto» delatan la c) y la d)."
  },
  "dgmm-per-2023-04-31": {
-  "explicacion": "La Guía Sanitaria a Bordo la edita el Instituto Social de la Marina, pero no es cierto que solo se pueda conseguir en sus direcciones provinciales: se distribuye por otras vías y puede descargarse gratis. Por eso la d) es la incorrecta. Las otras son ciertas: el Centro Radio-Médico atiende gratis 24 horas, la limitación del tratamiento a bordo de quemaduras profundas y la postura ante una hemorragia interna.",
+  "explicacion": "La Guía Sanitaria a Bordo la edita el Instituto Social de la Marina, pero no es cierto que solo se pueda conseguir en sus direcciones provinciales: se distribuye gratis por otras vías. Por eso la d) es la incorrecta. Las otras son ciertas: el Centro Radio-Médico atiende gratis 24 horas, la limitación del tratamiento a bordo de quemaduras profundas y la postura ante una hemorragia interna.",
   "clave": "Centro Radio-Médico: gratis, 24 h, todo el año.",
   "trampa": "Te piden la INCORRECTA; el «sólo» es la pista."
  },
@@ -8149,7 +8150,7 @@
   "clave": "Vía de agua: localiza, tapona, achica; abandonar es lo último."
  },
  "dgmm-per-2024-04-31": {
-  "explicacion": "Ante una hemorragia nasal hay que inclinar la cabeza hacia delante y presionar las fosas nasales, cerca del hueso, durante unos minutos. Echar la cabeza atrás hace que la sangre vaya a la garganta y al estómago, y el calor dilata los vasos y aumenta el sangrado.",
+  "explicacion": "Ante una hemorragia nasal hay que inclinar la cabeza hacia delante y presionar los dos orificios nasales, cerca del hueso de la nariz, unos 10 minutos (Guía Sanitaria a Bordo). Echar la cabeza atrás hace que la sangre vaya a la garganta y al estómago, y el calor dilata los vasos y aumenta el sangrado.",
   "clave": "Nariz que sangra: cabeza adelante y apretar.",
   "trampa": "La a), echar la cabeza atrás, es el error clásico."
  },
@@ -10004,7 +10005,7 @@
   "trampa": "La b) y la c) anteponen el parte a la seguridad."
  },
  "dgmm-per-2025-06-31": {
-  "explicacion": "Ante una hemorragia externa en zona compresible lo correcto es presionar con fuerza sobre gasas limpias durante varios minutos y después poner un vendaje compresivo. Las ampollas no se recortan ni se comprime una quemadura; una herida no se frota con algodón, que deja fibras; y en el golpe de calor no se dan bebidas estimulantes.",
+  "explicacion": "Ante una hemorragia externa en zona compresible lo correcto es presionar con fuerza sobre gasas limpias, al menos 4 o 5 minutos como dice la opción, y después, si hace falta, poner un vendaje compresivo. Las ampollas no se recortan ni se comprime una quemadura; una herida no se frota con algodón, que deja fibras; y en el golpe de calor no se dan bebidas estimulantes.",
   "clave": "Hemorragia: presión directa sobre gasas y luego vendaje compresivo.",
   "trampa": "Cada opción falsa mete un detalle dañino: recortar, frotar, estimulantes."
  },

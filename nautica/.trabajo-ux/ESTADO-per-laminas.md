@@ -217,8 +217,6 @@ alcohol»), cada una con su pie. El texto de las clases no se ha tocado.
 
 ## Pendiente
 
-- Los 15 tipos que siguen en `PENDIENTES` (`cubierta`, `timon`, `muerto-boya`, `nudos`, `tenedero`, `fondeo-gira`,
-  `revision-salida`, `reflector-tormenta`, `gobierno-rabeo`, `atraque`, `varada-abordaje`, `achique-sentina`,
-  `barometro-tendencia`, `mar-crece`, `prevision-salida`).
-- Las divergencias de sanidad de arriba, para el autor.
-- Capturas: scratchpad `lcierre-capturas/` (tanda de cierre) y `lsan-capturas/` (sanidad).
+Hecho en `feat/per-cierre` (`.trabajo-ux/ESTADO-per-cierre.md`): los 15 tipos que quedaban en `PENDIENTES` están en
+estilo C y las 16 divergencias de sanidad, resueltas en la clase, las láminas, las fichas y las explicaciones.
+Capturas: scratchpad `lcierre-capturas/`, `lsan-capturas/` y `lpercierre-capturas/`.

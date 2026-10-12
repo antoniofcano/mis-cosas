@@ -25,7 +25,7 @@ const hemorragia = porVista(hemorragiaC, SAN, {
   torniquete: {
     titulo: 'El torniquete, el último recurso', clave: 'Solo si la presión no controla una hemorragia que amenaza la vida: entre la herida y el tronco, con la hora anotada.',
     datos: [{ cifra: '1 hueso', texto: 'en el brazo o en el muslo' }, { cifra: 'la hora', texto: 'anotada al ponerlo' }, { cifra: 'radio', texto: 'consejo médico cuanto antes' }],
-    nota: 'Corta la sangre a todo el miembro: mantenido demasiado tiempo puede causar gangrena o lesiones de los nervios. Se puede hacer con el manguito del tensiómetro inflado por encima de la tensión del herido, o con un paño (o la venda triangular) apretado con un palo, sin nudos sobre la piel.',
+    nota: 'Corta la sangre a todo el miembro: mantenido demasiado tiempo puede causar gangrena o lesiones de los nervios. Se puede hacer con el manguito del tensiómetro inflado por encima de la tensión del herido, o con un paño (o la venda triangular) apretado con un palo, sin nudos sobre la piel. La Guía manda además aflojarlo cada 15 minutos, y es la respuesta del examen de la DGMM; la práctica actual es no aflojarlo salvo indicación médica.',
   },
 }, 'vista', 'tipos');
 

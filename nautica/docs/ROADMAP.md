@@ -47,7 +47,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-26 | Probar en móviles reales el recordatorio diario y la sincronización (vincular el iPhone con el código del alumno) | En curso | Desplegados y verificados en producción; falta confirmar en dispositivos del dueño tras la recomposición del servicio (H-19) |
+| R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
 | R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 
 ## Siguiente

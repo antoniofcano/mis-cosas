@@ -14,6 +14,7 @@ import { icono } from '../iconos.js';
 import { calcularPlan, hrefActividad, TIPO_TXT } from '../cierre.js';
 import { avisoCopia } from '../copia.js';
 import { tarjetaInstalar } from '../instalar.js';
+import { tarjetaAvisos } from '../recordatorio.js';
 import { planConSeguimiento, botonSubirMinutos, marcaEstado } from '../plan-estudio.js';
 import { quieto } from '../movimiento.js';
 import { cuenta } from '../../texto.js';
@@ -388,7 +389,8 @@ export function hoyView({ progress, tit }) {
       })(),
       progresoEl,
       avisoCopia(progress),
-      tarjetaInstalar(progress),
+      // Una sola invitación a la vez: instalar la app y, si no toca, el aviso diario (src/ui/recordatorio.js).
+      tarjetaInstalar(progress) ?? tarjetaAvisos(progress),
       h('p.ver-todo', h('a', { href: tlink(tit, ['temario']) }, 'Ver todo el temario →')),
       marcaConfig(),
     );

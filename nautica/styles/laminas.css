@@ -326,7 +326,7 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
   --on-accent: var(--lc-papel);
 }
 /* Cartela: filete de tinta y otro fino por dentro (como las cartelas de las láminas y las tarjetas de los mapas) */
-.entrada :is(.sesion-hoy, .entrada-dato, .nivel-oferta, .podcast-hoy, .guia-oferta, details.mas-progreso, .aviso-copia, .aviso-instalar, .entrada-fase-cuerpo),
+.entrada :is(.sesion-hoy, .entrada-dato, .nivel-oferta, .podcast-hoy, .guia-oferta, details.mas-progreso, .aviso-copia, .aviso-instalar, .aviso-diario-hoy, .entrada-fase-cuerpo),
 .travesia-pantalla :is(.trav-rango, .trav-detalle, .trav-semana, .trav-insignias-enlace, .insignia, .rangos-lista li.actual) {
   background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0;
   box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta);

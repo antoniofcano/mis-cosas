@@ -92,6 +92,11 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   «Mis dispositivos» (`ui/dispositivos.js`: código, QR, unir otro aparato, estado), `#/vincular/<código>`
   (`views/vincular.js`) y un punto en el engranaje si lleva más de un día sin sincronizar (`ui/sync.js`). Código de
   terceros en `src/vendor/` (con su licencia en `src/vendor/README.md`).
+- **Recordatorio diario** ([`AVISOS.md`](AVISOS.md)): `store/recordatorio.js` (lógica sin DOM: push o calendario
+  `.ics`, activar, desactivar, comprobación local al abrir), `ui/recordatorio.js` (Ajustes y tarjeta de Hoy),
+  `store/sync/avisos.js` (horas, zonas y validación, compartido con el Worker) y los eventos `push` y
+  `notificationclick` de `sw.js`. En el Worker, `src/webpush.js` (RFC 8291 y 8292 con WebCrypto) y `src/avisos.js`
+  (una tarea por hora).
 
 ## Flujo de un ejercicio
 

@@ -33,3 +33,24 @@ CREATE TABLE IF NOT EXISTS limites (
   ventana  INTEGER NOT NULL,
   n        INTEGER NOT NULL
 );
+
+-- Recordatorio diario por push (nautica/docs/AVISOS.md): una fila por aparato con el aviso activado.
+-- endpoint, p256dh, auth: la suscripción de push del navegador (el endpoint es una URL secreta del servicio de push).
+-- zona: zona horaria IANA (lista cerrada) · hora: 9, 13, 18 o 21 (local) · renovado: última alta o cambio (ms)
+-- aviso: instante del último aviso enviado (ms) · dia: día local de ese aviso (nunca dos el mismo día)
+-- seguidos: avisos seguidos sin que el alumno estudie (a los 5 se pausa hasta que vuelva).
+CREATE TABLE IF NOT EXISTS avisos (
+  id        INTEGER PRIMARY KEY,
+  alumno    INTEGER NOT NULL REFERENCES alumnos(id),
+  endpoint  TEXT    NOT NULL UNIQUE,
+  p256dh    TEXT    NOT NULL,
+  auth      TEXT    NOT NULL,
+  zona      TEXT    NOT NULL,
+  hora      INTEGER NOT NULL,
+  renovado  INTEGER NOT NULL,
+  aviso     INTEGER NOT NULL DEFAULT 0,
+  dia       TEXT    NOT NULL DEFAULT '',
+  seguidos  INTEGER NOT NULL DEFAULT 0
+);
+CREATE INDEX IF NOT EXISTS avisos_franja ON avisos(hora, zona);
+CREATE INDEX IF NOT EXISTS avisos_alumno ON avisos(alumno);

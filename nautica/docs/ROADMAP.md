@@ -35,10 +35,10 @@ _Última revisión: 12 de octubre de 2026._
 | Curso y ruta | PER y PY enlazados, ruta intercalada con dependencias, test de nivel, plan hasta el examen |
 | Estudio | «Estoy listo» con olvido y margen, repaso con fichas, hoja de corrección plegable, tarjetas de memoria |
 | Entrada | Hoy y Travesía en estilo C (derrota como carta náutica, faros, rangos, insignias) |
-| Material gráfico | Láminas en estilo C: PY completo salvo 2 tipos; PER completo salvo lo que cierre `R-01` |
+| Material gráfico | Láminas en estilo C: PY completo salvo 2 tipos; PER completo |
 | Carta | Mesa de cartas, carta resuelta paso a paso, ejercicios de examen PER y PY |
 | Animaciones | Reproductor común y animaciones con física (evolución, hombre al agua, hélice, marea, borrasca y anticiclón, corriente, ciaboga, desatraque) |
-| Sanidad | Guía Sanitaria a Bordo (ISM, 2013) como fuente; las divergencias con el curso se resuelven en `R-01` |
+| Sanidad | Guía Sanitaria a Bordo (ISM, 2013) como fuente; las divergencias con el curso están resueltas |
 | PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia |
 
 ## Ahora
@@ -82,8 +82,8 @@ _Última revisión: 12 de octubre de 2026._
 
 - Qué hacer con los conceptos sin preguntas en un banco (109 en Andalucía, 57 en DGMM, 22 en Baleares): ¿se dejan
   sin repasar o se redactan preguntas de práctica propias, marcadas como tales?
-- Luces de boyas y ritmos con «reducir movimiento»: propuesta (en `R-01`) de dejarlas fijas encendidas; falta tu
-  confirmación.
+- Luces de boyas y ritmos con «reducir movimiento»: hoy se quedan fijas encendidas (decidido así; avísame si prefieres
+  que sigan destellando).
 
 ## Fuera de alcance (proyecto aparte)
 

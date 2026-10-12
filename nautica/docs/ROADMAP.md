@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 12 de octubre de 2026._
+_Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 ## Cómo se mantiene
 
@@ -39,13 +39,16 @@ _Última revisión: 12 de octubre de 2026._
 | Carta | Mesa de cartas, carta resuelta paso a paso, ejercicios de examen PER y PY |
 | Animaciones | Reproductor común y animaciones con física (evolución, hombre al agua, hélice, marea, borrasca y anticiclón, corriente, ciaboga, desatraque) |
 | Sanidad | Guía Sanitaria a Bordo (ISM, 2013) como fuente; las divergencias con el curso están resueltas |
-| PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia; recordatorio diario en revisión (R-10) |
+| PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia, pantalla encendida, compartir el parte |
+| Servicio | Sincronización por código de alumno (Worker + D1, registro de operaciones), recordatorio diario por push con tarea horaria, recomposición automática si el servicio pierde un alumno |
+| Negocio | Estudio de mercado y planes definidos como hipótesis (`docs/PRODUCTO.md`); refactorización 2.0 planificada y condicionada a la validación (`docs/VERSION-2.md`) |
 
 ## Ahora
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-10 | Recordatorio diario opcional (push web a las 9, 13, 18 o 21 h, solo si ese día no se ha estudiado; calendario `.ics` donde no hay push) | En revisión | Rama `feat/recordatorio-diario`. Falta que el dueño despliegue: migración `0002`, claves VAPID, Worker con la tarea por hora (`docs/AVISOS.md`, «Despliegue») y probarlo en móviles de verdad |
+| R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
+| R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 
 ## Siguiente
 
@@ -61,15 +64,18 @@ _Última revisión: 12 de octubre de 2026._
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
-| ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se parte: las notificaciones (recordatorio diario) siguen como R-10 en «Ahora»; la insignia y la pantalla de arranque pasan a R-18 |
+| ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se partió: las notificaciones (recordatorio diario) están hechas (H-18); la insignia y la pantalla de arranque pasan a R-18 |
 | R-18 | Pulido de PWA: insignia de la app y pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17) |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
 | R-14 | Calibrar los umbrales de «estoy listo» con datos reales de uso | Después | Hoy son hipótesis razonadas, no medidas |
-| R-15 | Vista de profesor y cuentas | Después | Solo si hay un grupo que la use; implica backend y protección de datos |
+| R-15 | Vista de profesor y cuentas | Después | Solo si hay un grupo que la use; implica backend y protección de datos. Diseño en `docs/VERSION-2.md` (V2-F4 y V2-F5) |
 | R-16 | Fotografías con licencia clara para identificar elementos reales | Después | Cada foto con su autoría y licencia en el apéndice |
 | R-17 | Más titulaciones (PNB, Capitán…) | Después | Una entrada en `TITULACIONES` y su banco por eje |
+| R-23 | Versión 2.0: refactorización por fases (cimientos, contenido, núcleo, cliente, servicio, aula, operación) | Después | `docs/VERSION-2.md`; se decide con la puerta de 90 días de `docs/PRODUCTO.md` §10 |
+| R-24 | Producto como servicio: planes de particulares y canon de academias, a validar con un piloto | Después | `docs/PRODUCTO.md`; precios son hipótesis; antes de cobrar, aclarar derechos de preguntas y carta (IHM) |
+| R-25 | Aula virtual: mesa compartida con carta, láminas y test en clase | Después | `docs/PRODUCTO.md` §7 y `docs/VERSION-2.md` V2-F6; prototipo de sala sobre Durable Objects primero |
 
 ## Bloqueado por fuente
 
@@ -86,10 +92,14 @@ _Última revisión: 12 de octubre de 2026._
   sin repasar o se redactan preguntas de práctica propias, marcadas como tales?
 - Luces de boyas y ritmos con «reducir movimiento»: hoy se quedan fijas encendidas (decidido así; avísame si prefieres
   que sigan destellando).
+- Modelo de negocio: precios de los pases y tramos del canon de academias (hipótesis en `docs/PRODUCTO.md`), a
+  contrastar con el piloto.
+- Proveedor de PostgreSQL gestionado (UE) y de comerciante de registro, al llegar a V2-F4 (`docs/VERSION-2.md`).
+- Presupuesto de tiempo y dinero para V2, y si se contrata revisión externa o un segundo desarrollador.
 
 ## Fuera de alcance (proyecto aparte)
 
-- Vídeo y avatares de profesor.
+- Vídeo y avatares de profesor. El aula virtual (R-25) no aloja vídeo: la voz y el vídeo van por un enlace externo.
 - Una app nativa: la PWA cubre el caso; solo se reconsidera si falla la instalación en un dispositivo concreto.
 
 ## Hecho
@@ -113,6 +123,9 @@ _Última revisión: 12 de octubre de 2026._
 | H-16 | Cierre de PER: 15 láminas, sanidad coherente con la Guía del ISM y auditoría; retirados los canales 10/74 y las «20 millas» de `per-9-7` | PR de cierre de PER |
 | H-17 | Pantalla encendida durante la sesión y botón «Compartir mi parte» | PR de la tanda 1 de PWA |
 | H-15 | Preguntas de carta sin solución: motivo a la vista, fuera de la práctica y discrepancias revisadas (R-22) | PR #129 |
+| H-18 | Recordatorio diario opcional: push web (9, 13, 18 o 21 h) solo si ese día no se ha estudiado, `.ics` donde no hay push; Worker con tarea horaria, migración `0002` y claves VAPID desplegados | PR #133 |
+| H-19 | Sincronización: recomponer el servicio si pierde un alumno y avisar de un código aún sin registrar | PR #134 |
+| H-20 | Investigación de mercado y diseño del producto como servicio, y plan de la versión 2.0 | PR de documentos de producto |
 
 ## Mantenimiento recurrente
 

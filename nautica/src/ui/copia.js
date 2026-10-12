@@ -8,8 +8,8 @@ import { syncSana } from './sync.js';
 
 const DIA = 864e5;
 
-export function descargar(name, text) {
-  const a = h('a', { href: URL.createObjectURL(new Blob([text], { type: 'application/json' })), download: name });
+export function descargar(name, text, type = 'application/json') {
+  const a = h('a', { href: URL.createObjectURL(new Blob([text], { type })), download: name });
   document.body.append(a);
   a.click();
   a.remove();

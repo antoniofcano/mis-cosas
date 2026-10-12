@@ -8,6 +8,8 @@ import { existsSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { generarCodigo } from '../../nautica/src/store/sync/codigo.js';
+import { VAPID_PRUEBA, susPrueba } from './claves-prueba.js';
+import { parejas } from '../src/avisos.js';
 
 const RAIZ = new URL('..', import.meta.url).pathname;
 const WRANGLER = join(RAIZ, 'node_modules/.bin/wrangler');
@@ -17,12 +19,16 @@ const hay = existsSync(WRANGLER);
 const ENTORNO = { ...process.env, WRANGLER_SEND_METRICS: 'false', CI: '1', NO_PROXY: '127.0.0.1,localhost', no_proxy: '127.0.0.1,localhost' };
 let proc = null;
 let dir = null;
+let salida = '';
 
 before(async () => {
   if (!hay) return;
   dir = mkdtempSync(join(tmpdir(), 'patron-sync-'));
   execFileSync(WRANGLER, ['d1', 'migrations', 'apply', 'patron-sync', '--local', '--persist-to', dir], { cwd: RAIZ, env: ENTORNO, stdio: 'pipe' });
-  proc = spawn(WRANGLER, ['dev', '--local', '--port', String(PUERTO), '--ip', '127.0.0.1', '--persist-to', dir, '--var', 'PEPPER:pepper-de-integracion-0123456789'], { cwd: RAIZ, env: ENTORNO, stdio: 'pipe' });
+  proc = spawn(WRANGLER, ['dev', '--local', '--port', String(PUERTO), '--ip', '127.0.0.1', '--persist-to', dir, '--var', 'PEPPER:pepper-de-integracion-0123456789',
+    '--var', `VAPID_PUBLIC:${VAPID_PRUEBA.publica}`, '--var', `VAPID_PRIVATE:${VAPID_PRUEBA.privada}`, '--test-scheduled'], { cwd: RAIZ, env: ENTORNO, stdio: 'pipe' });
+  proc.stderr.on('data', (d) => { salida += d; });
+  proc.stdout.on('data', (d) => { salida += d; });
   for (let i = 0; i < 120; i += 1) {
     try { if ((await fetch(`${URL0}/v1/salud`)).ok) return; } catch { /* aún arrancando */ }
     await new Promise((r) => setTimeout(r, 500));
@@ -73,4 +79,23 @@ test('workerd: un lote de 500 operaciones entra de una vez (un solo INSERT con j
   const otro = await (await sync(c, { v: 1, cursor: 0, ops: [] })).json();
   assert.equal(otro.ops.length, 500);
   assert.deepEqual(otro.ops.map((o) => o.i), ops.map((o) => o.i), 'en el orden en que llegaron');
+});
+
+test('workerd: recordatorio diario (alta con WebCrypto de workerd, cambio de hora, baja) y el cron programado', { skip: !hay && 'sin node_modules (npm install)' }, async () => {
+  const c = generarCodigo();
+  assert.equal((await sync(c, { v: 1, cursor: 0, ops: [op('dddddddddd', 1)], crear: true })).status, 200);
+  // Una franja que no toca ni ahora ni en la próxima hora: el cron no enviará nada (las pruebas no salen a la red).
+  const ocupadas = new Set([...parejas(Date.now()), ...parejas(Date.now() + 3600e3)].map(([h, z]) => `${h}|${z}`));
+  const [hora, zona] = [[9, 'Europe/Madrid'], [13, 'Europe/Madrid'], [21, 'Europe/Madrid'], [9, 'America/Lima']].find(([h, z]) => !ocupadas.has(`${h}|${z}`));
+  const alta = (cuerpo) => fetch(`${URL0}/v1/avisos`, { method: 'POST', headers: { authorization: `Bearer ${c}`, 'content-type': 'application/json', origin: 'http://localhost:5100' }, body: JSON.stringify(cuerpo) });
+  const r = await alta({ v: 1, sus: susPrueba(7), zona, hora });
+  assert.equal(r.status, 200);
+  assert.deepEqual(await r.json(), { ok: true, hora, zona });
+  assert.equal((await alta({ v: 1, sus: { ...susPrueba(7), keys: { ...susPrueba(7).keys, p256dh: `B${'A'.repeat(86)}` } }, zona, hora })).status, 400, 'punto fuera de la curva (WebCrypto de workerd)');
+  const prog = await fetch(`${URL0}/__scheduled?cron=${encodeURIComponent('0 * * * *')}`);
+  assert.equal(prog.status, 200);
+  await new Promise((res) => setTimeout(res, 300));
+  assert.doesNotMatch(salida, /avisos .*(error|Error)|Uncaught/);
+  const baja = await fetch(`${URL0}/v1/avisos/baja`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ v: 1, endpoint: susPrueba(7).endpoint }) });
+  assert.deepEqual(await baja.json(), { ok: true, borradas: 1 });
 });

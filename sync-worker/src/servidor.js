@@ -6,14 +6,20 @@
 //   POST /v1/sync   Authorization: Bearer <código>   { v: 1, cursor, ops: [...], crear? }
 //                   → { v: 1, cursor, ops: [...], mas, aceptadas, duplicadas, rechazadas: [{ i, motivo }], total }
 //   GET  /v1/salud  → { ok: true, version }
+//   POST /v1/avisos       Authorization: Bearer <código>   { v: 1, sus: { endpoint, keys }, zona, hora, anterior? }
+//                         → { ok: true, hora, zona }   (recordatorio diario: alta o cambio de hora; ver avisos.js)
+//   POST /v1/avisos/baja  { v: 1, endpoint } → { ok: true, borradas }
 //
 // Identidad: el código del alumno (12 símbolos) viaja en la cabecera Authorization y aquí solo se guarda su hash
 // SHA-256 con un «pepper» secreto (env.PEPPER). El código nunca se guarda ni se escribe en los registros.
 
 import { validarOperacion } from '../../nautica/src/store/sync/operaciones.js';
 import { validarCodigo } from '../../nautica/src/store/sync/codigo.js';
+import { HORAS, zonaValida, validarSuscripcion, MAX_ENDPOINT } from '../../nautica/src/store/sync/avisos.js';
+import { LIMITES_AVISOS, pushActivo, vapidConfigurado } from './avisos.js';
+import { importarPublicaEcdh, deB64u } from './webpush.js';
 
-export const VERSION = '1.0.0';
+export const VERSION = '1.1.0';
 
 export const LIMITES = {
   cuerpoBytes: 256 * 1024, // por petición
@@ -66,7 +72,7 @@ async function sha256(texto) {
 export const hashCodigo = (codigo, pepper) => sha256(`patron-sync:v1:${pepper}:${codigo}`);
 
 /** Suma uno al contador `clave` en su ventana (ms) y devuelve el total de la ventana. */
-async function contar(db, clave, ventana, ahora) {
+export async function contar(db, clave, ventana, ahora) {
   const fin = (Math.floor(ahora / ventana) + 1) * ventana;
   const r = await db.prepare(`INSERT INTO limites (clave, ventana, n) VALUES (?1, ?2, 1)
     ON CONFLICT(clave) DO UPDATE SET n = CASE WHEN limites.ventana = ?2 THEN limites.n + 1 ELSE 1 END, ventana = ?2
@@ -97,16 +103,111 @@ export async function manejar(req, env, { ahora = Date.now() } = {}) {
     try { db = (await env.DB.prepare('SELECT 1 AS uno').first())?.uno === 1; } catch { db = false; }
     return json({ ok: db, version: VERSION }, db ? 200 : 503, cors);
   }
-  if (url.pathname !== '/v1/sync') return fallo(404, 'ruta', 'No existe.', cors);
+  const ruta = { '/v1/sync': sincronizar, '/v1/avisos': avisosAlta, '/v1/avisos/baja': avisosBaja }[url.pathname];
+  if (!ruta) return fallo(404, 'ruta', 'No existe.', cors);
   if (req.method !== 'POST') return fallo(405, 'metodo', 'Usa POST.', { ...cors, allow: 'POST, OPTIONS' });
   if (!env.PEPPER || String(env.PEPPER).length < 16) return fallo(500, 'configuracion', 'Falta configurar el servidor.', cors);
 
   try {
-    return await sincronizar(req, env, ahora, cors);
+    return await ruta(req, env, ahora, cors);
   } catch (e) {
-    console.error('sync', e?.message);
+    console.error(url.pathname, e?.message);
     return fallo(500, 'servidor', 'Error interno.', cors);
   }
+}
+
+/** Hash de la IP (ni la IP se guarda tal cual) y el límite por IP y minuto. null si se puede seguir. */
+async function limiteIp(req, env, db, ahora, cors) {
+  const ip = req.headers.get('cf-connecting-ip') ?? 'sin-ip';
+  const ipH = (await sha256(`ip:${env.PEPPER}:${ip}`)).slice(0, 24);
+  if (await contar(db, `ip:${ipH}`, MIN, ahora) > LIMITES.porIpMinuto) return { ipH, corte: fallo(429, 'limite', 'Demasiadas peticiones.', { ...cors, 'retry-after': '60' }) };
+  return { ipH, corte: null };
+}
+
+/** Lee un cuerpo JSON de `max` bytes como mucho: { cuerpo } o { corte } con el error. */
+async function leerJson(req, max, cors) {
+  if (Number(req.headers.get('content-length') ?? 0) > max) return { corte: fallo(413, 'demasiado-grande', 'Petición demasiado grande.', cors) };
+  const texto = await req.text();
+  if (new TextEncoder().encode(texto).length > max) return { corte: fallo(413, 'demasiado-grande', 'Petición demasiado grande.', cors) };
+  try { return { cuerpo: JSON.parse(texto) }; } catch { return { corte: fallo(400, 'json', 'JSON no válido.', cors) }; }
+}
+
+const esObjeto = (x) => !!x && typeof x === 'object' && !Array.isArray(x);
+
+/**
+ * Alta o cambio del recordatorio diario de un aparato: guarda (o actualiza, por endpoint) su suscripción de push con
+ * la zona horaria y la hora elegida. Topes: 3 por alumno (se sustituye la más antigua) y 500 en total (409).
+ */
+async function avisosAlta(req, env, ahora, cors) {
+  if (!pushActivo(env)) return fallo(503, 'avisos-apagados', 'Los avisos diarios están desactivados por ahora. Prueba más adelante.', cors);
+  if (!vapidConfigurado(env)) return fallo(503, 'avisos-sin-configurar', 'Los avisos diarios aún no están disponibles.', cors);
+  const db = env.DB;
+  const { ipH, corte } = await limiteIp(req, env, db, ahora, cors);
+  if (corte) return corte;
+  if (await leer(db, `fallo:${ipH}`, HORA, ahora) >= LIMITES.fallosIpHora) return fallo(429, 'limite', 'Demasiados intentos con códigos que no existen.', { ...cors, 'retry-after': '3600' });
+  const m = /^Bearer\s+(\S+)$/i.exec(req.headers.get('authorization') ?? '');
+  const v = m ? validarCodigo(m[1]) : { ok: false };
+  if (!v.ok) {
+    await contar(db, `fallo:${ipH}`, HORA, ahora);
+    return fallo(401, 'codigo-invalido', 'Código no válido.', cors);
+  }
+  const { cuerpo, corte: malo } = await leerJson(req, LIMITES_AVISOS.cuerpoBytes, cors);
+  if (malo) return malo;
+  if (!esObjeto(cuerpo) || cuerpo.v !== 1 || Object.keys(cuerpo).some((k) => !['v', 'sus', 'zona', 'hora', 'anterior'].includes(k))
+    || (cuerpo.anterior !== undefined && (typeof cuerpo.anterior !== 'string' || cuerpo.anterior.length > MAX_ENDPOINT))) {
+    return fallo(400, 'esquema', 'Petición mal formada.', cors);
+  }
+  if (!HORAS.includes(cuerpo.hora)) return fallo(400, 'hora', 'Hora no válida.', cors);
+  if (!zonaValida(cuerpo.zona)) return fallo(400, 'zona', 'Zona horaria no admitida.', cors);
+  const sus = cuerpo.sus;
+  if (validarSuscripcion(sus) || Object.keys(sus).some((k) => !['endpoint', 'keys', 'expirationTime'].includes(k))
+    || Object.keys(sus.keys).some((k) => !['p256dh', 'auth'].includes(k))) {
+    return fallo(400, 'suscripcion', 'Suscripción no válida.', cors);
+  }
+  try { await importarPublicaEcdh(deB64u(sus.keys.p256dh)); } catch { return fallo(400, 'suscripcion', 'Suscripción no válida.', cors); }
+
+  const alumno = await db.prepare('SELECT id FROM alumnos WHERE hash = ?1').bind(await hashCodigo(v.codigo, env.PEPPER)).first();
+  if (!alumno) {
+    await contar(db, `fallo:${ipH}`, HORA, ahora);
+    return fallo(404, 'codigo-desconocido', 'Ese código no existe.', cors);
+  }
+  if (await contar(db, `al:${alumno.id}`, MIN, ahora) > LIMITES.porAlumnoMinuto) return fallo(429, 'limite', 'Demasiadas peticiones.', { ...cors, 'retry-after': '60' });
+
+  const { endpoint } = sus;
+  const ya = await db.prepare('SELECT (SELECT COUNT(*) FROM avisos) AS total, (SELECT 1 FROM avisos WHERE endpoint = ?1) AS existe').bind(endpoint).first();
+  if (!ya?.existe && (ya?.total ?? 0) >= LIMITES_AVISOS.total) return fallo(409, 'tope-avisos', 'El servidor ha llegado al máximo de avisos. Prueba más adelante.', cors);
+
+  const pasos = [];
+  // El navegador cambió la suscripción: la anterior de este alumno sobra.
+  if (cuerpo.anterior && cuerpo.anterior !== endpoint) pasos.push(db.prepare('DELETE FROM avisos WHERE endpoint = ?1 AND alumno = ?2').bind(cuerpo.anterior, alumno.id));
+  pasos.push(
+    // Alta o cambio (por endpoint). Cambiar de hora o volver a darse de alta reanuda los avisos (seguidos = 0); el día
+    // del último aviso se conserva: nunca dos el mismo día.
+    db.prepare(`INSERT INTO avisos (alumno, endpoint, p256dh, auth, zona, hora, renovado) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+      ON CONFLICT(endpoint) DO UPDATE SET alumno = excluded.alumno, p256dh = excluded.p256dh, auth = excluded.auth, zona = excluded.zona,
+        hora = excluded.hora, renovado = excluded.renovado, seguidos = 0`)
+      .bind(alumno.id, endpoint, sus.keys.p256dh, sus.keys.auth, cuerpo.zona, cuerpo.hora, ahora),
+    // Como mucho porAlumno por alumno: se quedan las más recientes.
+    db.prepare(`DELETE FROM avisos WHERE alumno = ?1 AND id NOT IN (SELECT id FROM avisos WHERE alumno = ?1 ORDER BY renovado DESC, id DESC LIMIT ?2)`)
+      .bind(alumno.id, LIMITES_AVISOS.porAlumno),
+  );
+  await db.batch(pasos);
+  return json({ ok: true, hora: cuerpo.hora, zona: cuerpo.zona }, 200, cors);
+}
+
+/** Baja del recordatorio de un aparato: borra su suscripción (el endpoint, secreto y al azar, basta como prueba). */
+async function avisosBaja(req, env, ahora, cors) {
+  const db = env.DB;
+  const { corte } = await limiteIp(req, env, db, ahora, cors);
+  if (corte) return corte;
+  const { cuerpo, corte: malo } = await leerJson(req, LIMITES_AVISOS.cuerpoBytes, cors);
+  if (malo) return malo;
+  if (!esObjeto(cuerpo) || cuerpo.v !== 1 || typeof cuerpo.endpoint !== 'string' || cuerpo.endpoint.length > MAX_ENDPOINT
+    || Object.keys(cuerpo).some((k) => !['v', 'endpoint'].includes(k))) {
+    return fallo(400, 'esquema', 'Petición mal formada.', cors);
+  }
+  const r = await db.prepare('DELETE FROM avisos WHERE endpoint = ?1').bind(cuerpo.endpoint).run();
+  return json({ ok: true, borradas: r?.meta?.changes ?? 0 }, 200, cors);
 }
 
 async function sincronizar(req, env, ahora, cors) {

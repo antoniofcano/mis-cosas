@@ -52,6 +52,7 @@ import { fijarReservaAlumno, fijarConfigProfe } from '../bancos/index.js';
 import { profeView } from './views/profe.js';
 import { vincularView } from './views/vincular.js';
 import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
+import { iniciarRecordatorio } from './recordatorio.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
 
 // Rutas de una titulación: #/<tit>/<sección>/…  (tit = per | py)
@@ -189,6 +190,7 @@ async function main() {
   // Sincronización del progreso entre los aparatos del alumno (docs/SYNC.md): sola y sin estorbar; sin red, todo
   // sigue en local. El punto discreto de la cabecera solo aparece si lleva más de un día sin lograrlo.
   iniciarSincronizacion(progress);
+  iniciarRecordatorio(); // comprobación local del aviso diario (sin red salvo que el navegador lo haya cambiado)
   const marcaCabecera = () => {
     const a = document.querySelector('header.top a.ajustes');
     if (!a) return;

@@ -1825,6 +1825,28 @@ details.entrada-pasos[open] .entrada-pasos-ver::after { transform: rotate(180deg
 .mas-instalar > summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
 /* ---- fin Instalar la app ---- */
 
+/* ---- Aviso diario (src/ui/recordatorio.js, docs/AVISOS.md): cuatro horas fijas con los tokens de las láminas (papel y
+   tinta) en claro y en oscuro; la elegida, en tinta llena (y aria-pressed). Objetivos de 48 px, texto ≥ 12 px, sin
+   animaciones. */
+.aviso-diario { display: flex; flex-direction: column; gap: .55rem; }
+.aviso-diario-estado { margin: 0; font-weight: 600; }
+.aviso-diario-estado.activo { color: var(--lc-verde-texto); }
+.aviso-diario-estado.denegado { color: var(--lc-rojo-texto); }
+.aviso-diario-ayuda, .aviso-diario-nota { margin: 0; }
+.aviso-diario-nota:empty { display: none; }
+.aviso-horas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .45rem; max-width: 30rem; }
+button.aviso-hora { min-height: 48px; padding: .4rem .2rem; border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); font-family: var(--lc-mono); font-variant-numeric: tabular-nums; font-size: 1rem; }
+button.aviso-hora.elegida { box-shadow: inset 0 0 0 2px var(--lc-papel), inset 0 0 0 3.5px var(--lc-magenta); }
+button.aviso-hora[aria-pressed="true"] { background: var(--lc-tinta); color: var(--lc-papel); box-shadow: inset 0 0 0 2px var(--lc-tinta), inset 0 0 0 3.5px var(--lc-papel); }
+button.aviso-hora:hover:not(:disabled) { border-color: var(--lc-magenta); }
+button.aviso-hora:focus-visible, button.aviso-quitar:focus-visible { outline: 3px solid var(--lc-azul-texto); outline-offset: 2px; }
+button.aviso-quitar { align-self: flex-start; border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.aviso-diario-hoy { background: var(--surface); border: 1px solid var(--border); padding: .7rem .85rem; display: flex; flex-direction: column; gap: .5rem; }
+.aviso-diario-cab { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+.aviso-diario-cab button { white-space: nowrap; flex: none; }
+.aviso-diario-cab .ico { color: var(--lc-magenta); }
+/* ---- fin Aviso diario ---- */
+
 /* ---- Ejercicios de carta resueltos paso a paso (#/<tit>/carta-pasos; src/ui/pasos.js, src/ui/views/carta-pasos.js) ---- */
 .cps-tipo { display: flex; flex-direction: column; gap: .9rem; min-width: 0; }
 .cps-tipo h1 { margin: 0; font-family: var(--lc-serif); line-height: 1.15; overflow-wrap: anywhere; }

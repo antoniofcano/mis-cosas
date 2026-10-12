@@ -183,7 +183,7 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora.') : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
             h('p.muted.small', 'Antes o después de la clase: Elena y Andrés lo cuentan en voz alta.')) : null);
-        case 'texto': return glosado(h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto)));
+        case 'texto': return glosado(h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto), /^Problema modelo/.test(p.titulo ?? '') ? accionesModelo(p) : null));
         case 'ilustracion': {
           // Con predicción, el pie de la clase (que suele dar la respuesta) aparece al responder.
           const pie = p.texto ? h('p.muted', { hidden: pidePrediccion(p.spec) }, p.texto) : null;
@@ -316,6 +316,15 @@ export function leccionView({ ctx, progress, params: route, tit }) {
         case 'cuenta': return pasoCuenta(p, i);
         default: return null;
       }
+    }
+
+    // «Problema modelo»: el enunciado va solo y la resolución en las tarjetas siguientes. Para que no parezca un ejercicio
+    // roto, se dice y se da con qué intentarlo: la carta (con el enunciado) y la calculadora.
+    function accionesModelo(p) {
+      const carta = botonCarta({ id: `modelo-${L.id}`, convocatoria: 'Problema modelo', enunciado: plain(p.texto), requiere: ['carta'], ut: L.ut }, progress, null);
+      return h('div.modelo-acciones',
+        h('p.muted.small', 'Inténtalo tú antes de seguir: la solución está en las tarjetas siguientes.'),
+        h('div.actions', carta, botonCalculadora()));
     }
 
     // «Con la calculadora»: una cuenta con números nuevos cada vez (src/course/cuentas.js). Se responde escribiendo;

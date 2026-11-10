@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
+_Última revisión: 10 de noviembre de 2026._
 
 ## Cómo se mantiene
 
@@ -158,6 +158,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-38 | Lista del día del examen por tribunal, tu convocatoria (hora, sede, enlace) y recordatorio de admitidos (R-44) | Noviembre 2026 |
 | H-39 | Repaso exprés de la víspera, paso del penúltimo día de «la semana antes» (R-45) | Noviembre 2026 |
 | H-40 | En local la app no sincroniza con el servidor real (las pruebas daban de alta alumnos de prueba) | Noviembre 2026 |
+| H-41 | Lista de ramas remotas regenerada (182 ramas: 7 a conservar, el resto clasificado para borrar) y copias de trabajo locales de los agentes retiradas | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

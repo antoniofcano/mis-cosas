@@ -108,6 +108,27 @@ desvío (76) y de la declinación (76); en el PY, el abatimiento al lado contrar
 (47), olvidar el abatimiento (39) y la corriente (31 sin ella, 31 al revés). Andalucía construye sus distractores con
 errores típicos bastante más que Baleares y la DGMM.
 
+### Simulacro de tus errores (R-43)
+
+Con lo mismo se arma un simulacro a propósito: preguntas cuyos distractores son los errores que el alumno repite.
+Para no resolver 1.380 preguntas en el móvil, `node tools/indice-errores.mjs` guarda por banco
+`data/ejes/<eje>/<tit>/distractores.json` (pregunta → { opción: error único }), solo con preguntas del estudio (sin
+las reservadas del examen final). Preguntas del índice por error típico (noviembre de 2026; una pregunta cuenta en cada
+error que tiene de distractor):
+
+| Banco | Preguntas | Tamaño | Errores (preguntas) |
+| --- | ---: | ---: | --- |
+| andalucia/per | 69 | 3,7 kB | signo de la Ct 47 · declinación 22 · desvío 15 · sin Ct 5 · minutos/décimas 5 · banda de la marcación 4 · marcación como demora 2 · olvidar el desvío 2 · rumbo directo 1 · demora sin opuesta 1 |
+| andalucia/py | 184 | 10,5 kB | signo de la Ct 50 · pleamar por bajamar 38 · abatimiento al revés 35 · declinación 22 · sin corriente 19 · corriente al revés 17 · sin abatimiento 15 · desvío 14 · sin hora oficial 13 · signo de ΔL 12 · adelanto al revés 7 · sin traslado 5 · y 10 más con 1–3 |
+| baleares/per | 117 | 6,2 kB | signo de la Ct 63 · desvío 19 · minutos/décimas 14 · banda de la marcación 12 · declinación 12 · sin Ct 7 · rumbo directo 5 · olvidar el desvío 5 · lado del faro 4 · y 4 más con 1–2 |
+| baleares/py | 93 | 5,3 kB | signo de la Ct 28 · abatimiento al revés 23 · sin abatimiento 19 · desvío 14 · sin Ct 10 · declinación 6 · minutos/décimas 5 · sin corriente 5 · olvidar el desvío 4 · y 8 más con 1–2 |
+| dgmm/per | 36 | 2,1 kB | signo de la Ct 21 · desvío 8 · sin Ct 6 · minutos/décimas 5 · declinación 4 · y 4 más con 1 |
+| dgmm/py | 19 | 1,3 kB | corriente al revés 6 · abatimiento al revés 5 · signo de la Ct 4 · sin corriente 3 · y 5 más con 1 |
+
+Cómo se elige, qué pasa sin errores registrados y cómo baja el contador: `docs/ARCHITECTURE.md` («Simulacro de tus
+errores»). Tras cambiar bancos, soluciones o el diagnóstico: `node tools/indice-errores.mjs` y `npm run precache` (el
+test avisa si no está al día).
+
 ## Apéndice: verificación (fuente de cada convenio y fórmula)
 
 | Hecho | Fuente |

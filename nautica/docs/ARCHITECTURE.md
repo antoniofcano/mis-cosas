@@ -169,7 +169,35 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   profe (práctica y revisión de un examen terminado) y al final del modo guiado; «Tus errores más repetidos» en Mi progreso.
 - **Errores del alumno** (`store/errores.js`, `localStorage` `nautica.errores.v1`): pasos fallados en el modo guiado y
   errores diagnosticados (también los de los ejercicios generados), una vez por pregunta y día, 400 anotaciones y 180
-  días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia.
+  días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia. Los `sup` (superado) restan uno al
+  error al resumir (ver abajo).
+
+### Simulacro de tus errores (R-43)
+
+- **Índice estático** (`tools/indice-errores.mjs` → `data/ejes/<eje>/<tit>/distractores.json`, en el precaché):
+  `{ id: { letra: error } }` con las opciones erróneas que explica un **único** error típico
+  (`distractoresUnicos()` de `exams/diagnostico.js`, el mismo rigor que el diagnóstico). Solo preguntas del estudio
+  (sin reservadas —cuarentena—, retiradas ni anuladas). Lo carga `cargarDistractores(eje, tit)` de `bancos/index.js`.
+  `tests/simulacro-errores.test.js` comprueba que está al día, que coincide con `diagnosticar()` en vivo en una muestra
+  (una de cada cuatro preguntas con resolución, todas sus opciones) y que no trae ninguna reservada.
+- **Selección** (`course/simulacro-errores.js`, pura): con los errores vivos del alumno (`store/errores.js`) que salen
+  como distractor en su banco; si tiene menos de `MIN_VECES` (2) registrados, si casi no salen en su banco o si no
+  juntan `MINIMO` (5) preguntas, dice por qué y usa los errores que más ponen los tribunales en ese banco (los de más
+  preguntas en el índice). Hasta `MAX_ERRORES` (5) errores; `OBJETIVO` (10) preguntas o las que haya; solo del
+  `banco.estudio` del alumno; primero las no vistas, luego las falladas; una por error y el resto por D'Hondt sobre
+  cuántas veces lo comete; sin repetir. Tiempo: el presupuesto de la estrategia (`presupuestoTiempo`: carta a su ritmo,
+  el resto al ritmo medio de su parte del examen).
+- **En la app:** entrada en Examen (`examenesView`) y en «Tus errores más repetidos» (Mi progreso), `ui/simulacro-errores.js`.
+  Se hace en `testView` (`#/<tit>/test/errores?s=<semilla>`): reloj, modo examen, sin ayudas. El examen a medias guarda
+  `errores: { modo, motivo, min, objetivos, tuyos, errores }` para corregirlo igual. `recordTest` con `tipo: 'errores'`
+  y `apto: null` (no cuenta en «¿Estás listo?», la travesía ni la estrategia). En la corrección, cada fallada dice
+  «Has vuelto a…» (`ERRORES[e].otraVez`) si cayó en uno de sus errores, o el error típico en que cayó, y enlaza
+  `#/q/<id>?guiado=1` («Resolver paso a paso»).
+- **El contador baja:** acertar en este simulacro una pregunta cuyo distractor era tu error apunta un `sup`; al resumir,
+  en orden de tiempo, cada error diagnosticado suma uno y cada `sup` resta uno (nunca por debajo de cero: no da crédito
+  por adelantado). A cero, el error sale como «superado»; si lo vuelves a cometer, vuelve. Caer en él en el simulacro lo
+  apunta como cualquier diagnóstico (una vez por pregunta y día). Solo este simulacro resta: es donde la trampa está
+  puesta a propósito.
 
 ## Añadir preguntas de examen
 

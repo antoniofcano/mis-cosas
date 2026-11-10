@@ -48,6 +48,11 @@ citas nuevas: `node tools/cuarentena.mjs --arreglar` arregla las baratas.
   episodio avisa antes de escucharlo, sin bloquear: «Este episodio comenta una pregunta del examen final; mejor
   escúchalo después de hacerlo».
 
+- **Simulacro de tus errores** (R-43): su índice (`data/ejes/<eje>/<tit>/distractores.json`, `tools/indice-errores.mjs`)
+  solo lleva preguntas del estudio según la ficha (ninguna reservada: lo comprueba `tests/simulacro-errores.test.js`) y
+  la app vuelve a filtrar con el estudio del alumno (`banco.estudio`, que aparta también las de su foto de la reserva).
+  Cuando la reserva de un eje cambie, el test de «al día» pide regenerarlo.
+
 ## Fase 1 (hecha): lo barato, en texto
 
 Antes de la fase 1 había **1066 citas a 426 preguntas reservadas** (todas de Andalucía salvo una de DGMM): práctica 441,

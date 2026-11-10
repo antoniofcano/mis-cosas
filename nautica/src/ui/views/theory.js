@@ -5,7 +5,7 @@
 
 import { h, setChildren, copyText } from '../dom.js';
 import { link, navigate } from '../router.js';
-import { cargarBanco, cargarCurso, urlFigura, rutaResolucion, esDeCarta, SOLUCIONES as cartaSolutions } from '../../bancos/index.js';
+import { cargarBanco, cargarDistractores, cargarCurso, urlFigura, rutaResolucion, esDeCarta, SOLUCIONES as cartaSolutions } from '../../bancos/index.js';
 import { avisoDePregunta } from '../motivo-carta.js';
 import { bloque, bloquesEnOrden, totalPreguntas, posEstudio, estructuraModulo } from '../../theory/blocks.js';
 import { TITULACIONES, tlink, currentEje, reglasExamen } from '../titulacion.js';
@@ -47,6 +47,7 @@ import { etiquetaConcepto, conceptosDelBanco, estadoFicha, hrefFicha } from '../
 import { guiadoPanel, guiadoDisponible } from '../guiado.js';
 import { diagnosticoEl } from '../diagnostico.js';
 import { chartWidget } from '../chart-widget.js';
+import { entradaSimulacroErrores, armarParaTest, estructuraErrores, introErrores, registrarErrores, resultadoErrores, avisoFallada, textoErrores } from '../simulacro-errores.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -283,7 +284,7 @@ const pct = (s) => (s.hechas ? Math.round((100 * s.ok) / s.hechas) : null);
 /** Enlace para continuar un examen guardado. */
 export function rutaTest(tc) {
   if (tc.tipo === 'final') return tlink(tc.tit, ['test', 'final']);
-  return tlink(tc.tit, tc.tipo === 'real' ? ['test', 'real', String(tc.conv)] : ['test', 'simulacro'], tc.tipo === 'real' || tc.seed == null ? undefined : { s: String(tc.seed), ...(tc.modulo ? { m: tc.modulo } : {}) });
+  return tlink(tc.tit, tc.tipo === 'real' ? ['test', 'real', String(tc.conv)] : ['test', tc.tipo === 'errores' ? 'errores' : 'simulacro'], tc.tipo === 'real' || tc.seed == null ? undefined : { s: String(tc.seed), ...(tc.modulo ? { m: tc.modulo } : {}) });
 }
 
 /** La estructura con la que se hace y se corrige un examen: la del módulo si es un simulacro de un solo módulo. */
@@ -300,7 +301,7 @@ function construirTest(estructura, banco, tipo, conv, seed, respuestas = null) {
 
 /** Rehace un examen guardado: con sus preguntas guardadas (ids) o, si es de antes de guardarlas, con la semilla. */
 function rehacerTest(estructura, banco, tc) {
-  const t = testDesdeIds(tc.tipo, tc.ids, banco.oficial?.porId ?? banco.porId, tc.conv) ?? (tc.tipo === 'final' ? { tipo: 'final', titulo: 'Examen final', preguntas: [], faltan: [] } : construirTest(estructura, banco, tc.tipo, tc.conv, tc.seed));
+  const t = testDesdeIds(tc.tipo, tc.ids, banco.oficial?.porId ?? banco.porId, tc.conv) ?? (tc.tipo === 'final' || tc.tipo === 'errores' ? { tipo: tc.tipo, titulo: tc.tipo === 'final' ? 'Examen final' : 'Simulacro de tus errores', preguntas: [], faltan: [] } : construirTest(estructura, banco, tc.tipo, tc.conv, tc.seed));
   return estructura.modulo ? { ...t, modulo: estructura.modulo, titulo: `Simulacro del ${estructura.titulo.toLowerCase()}` } : t;
 }
 
@@ -365,7 +366,7 @@ export function examenesView({ ctx, progress, tit }) {
     if (aMedias) {
       const total = rehacerTest(E0, banco, aMedias).preguntas.length;
       const resp = Object.keys(aMedias.respuestas ?? {}).length;
-      const quedan = Math.max(1, Math.round(E0.duracionMin - (aMedias.consumidoMs ?? 0) / 60000));
+      const quedan = Math.max(1, Math.round((aMedias.errores?.min ?? E0.duracionMin) - (aMedias.consumidoMs ?? 0) / 60000));
       aviso = h('section.tarjeta-hoy.examen-medias',
         h('h2', 'Tienes un examen a medias'),
         h('p.linea', `${resp} de ${cuenta(total, 'respondida')} · quedan ${quedan} min`),
@@ -388,7 +389,9 @@ export function examenesView({ ctx, progress, tit }) {
         // Por módulos (PY): practicar uno mientras se aprende el otro.
         E0.modulos?.length ? h('div.simulacro-modulos', h('p.muted.small', 'O solo un módulo, para practicarlo mientras aprendes el otro:'),
           E0.modulos.map((m) => { const Em = estructuraModulo(E0, m.id);
-            return h('a.btn.secondary', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed(), m: m.id }) }, h('span.modulo-titulo', m.titulo), h('span.modulo-datos', `${cuenta(totalPreguntas(Em), 'pregunta')} · ${m.duracionMin} min`)); })) : null),
+            return h('a.btn.secondary', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed(), m: m.id }) }, h('span.modulo-titulo', m.titulo), h('span.modulo-datos', `${cuenta(totalPreguntas(Em), 'pregunta')} · ${m.duracionMin} min`)); })) : null,
+        // R-43: preguntas cuyas opciones falsas son los errores que repites (src/ui/simulacro-errores.js).
+        entradaSimulacroErrores(T0.id)),
       (() => {
         const n = st.repaso.hoy; // del motor (con conceptos, una por idea)
         return h('section.repaso-examen',
@@ -781,7 +784,7 @@ export function testView({ ctx, progress, params: route, tit }) {
   useTit(tit);
   const T0 = T;
   const E0 = E;
-  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : 'simulacro';
+  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : route.parts[1] === 'errores' ? 'errores' : 'simulacro';
   const conv = tipo === 'real' ? route.parts[2] : null;
   const seedQ = Number(route.query.s) || null;
   // Simulacro de un solo módulo (PY): ?m=generico | navegacion; sin él, el examen completo.
@@ -794,7 +797,7 @@ export function testView({ ctx, progress, params: route, tit }) {
   if (!permitida) bloquearCalculadora(el);
 
   // El examen final necesita el estado del motor (si está abierto y qué convocatoria toca).
-  Promise.all([cargarBanco(currentEje(progress), T0.id), tipo === 'final' ? calcularPlan(progress, T0.id) : null]).then(([banco, plan]) => {
+  Promise.all([cargarBanco(currentEje(progress), T0.id), tipo === 'final' ? calcularPlan(progress, T0.id) : null, tipo === 'errores' ? cargarDistractores(currentEje(progress), T0.id) : null]).then(([banco, plan, indice]) => {
     const { explicaciones, reglasDe: rd, vocab: vocabBanco } = banco;
     permitida = calculadoraPermitida(T0.id, banco.eje);
     if (permitida) desbloquearCalculadora(el); else bloquearCalculadora(el);
@@ -816,16 +819,18 @@ export function testView({ ctx, progress, params: route, tit }) {
           h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver a Examen')));
         return;
       }
-      const test = tipo === 'final'
+      // Simulacro de tus errores (R-43): su selección, su tiempo y su estructura sin apto (src/ui/simulacro-errores.js).
+      const armado = tipo === 'errores' ? armarParaTest({ banco, indice, respuestas: respuestasAntes, seed, T: T0 }) : null;
+      const test = armado ? armado.test : tipo === 'final'
         ? buildFinal(E0, { modo: banco.reserva.modo, key: fin.siguiente?.key, examenes: banco.reserva.examenes, porId: banco.oficial?.porId ?? banco.porId, pool: banco.final, respuestas: respuestasAntes, rng: createRng(seed) })
         : construirTest(estructuraDe(E0, moduloQ), banco, tipo, conv, seed, respuestasAntes);
-      const E1 = estructuraDe(E0, moduloQ);
+      const E1 = armado ? armado.estructura : estructuraDe(E0, moduloQ);
       if (!test.preguntas.length) { setChildren(el, h('p.warn', 'No hay preguntas para este examen.'), h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver')); return; }
       const empezar = () => {
         // nuevas: las que no había respondido nunca (un examen inédito pesa más en «¿Estás listo?»).
-        const nuevo = { tit: T0.id, eje, tipo, conv: tipo === 'final' ? test.key : conv, seed: tipo === 'simulacro' ? seed : null, ...(moduloQ ? { modulo: moduloQ } : {}), ids: test.preguntas.map((q) => q.id), nuevas: nuevasDe(test.preguntas, respuestasAntes), respuestas: {}, i: 0, consumidoMs: 0 };
+        const nuevo = { tit: T0.id, eje, tipo, conv: tipo === 'final' ? test.key : conv, seed: tipo === 'simulacro' || armado ? seed : null, ...(moduloQ ? { modulo: moduloQ } : {}), ...(armado ? { errores: armado.guardar } : {}), ids: test.preguntas.map((q) => q.id), nuevas: nuevasDe(test.preguntas, respuestasAntes), respuestas: {}, i: 0, consumidoMs: 0 };
         progress.saveTestEnCurso(nuevo);
-        if (tipo === 'simulacro' && seedQ !== seed) navigate([T0.id, 'test', 'simulacro'], { s: String(seed), ...(moduloQ ? { m: moduloQ } : {}) }, { replace: true });
+        if ((tipo === 'simulacro' || armado) && seedQ !== seed) navigate([T0.id, 'test', tipo], { s: String(seed), ...(moduloQ ? { m: moduloQ } : {}) }, { replace: true });
         correr(progress.testEnCurso());
       };
       const limites = E1.bloques.filter((b) => b.maxErrores != null);
@@ -836,9 +841,10 @@ export function testView({ ctx, progress, params: route, tit }) {
           h('ul.datos-examen',
             h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
             h('li', `${cuenta(E1.duracionMin, 'minuto')}`),
-            E1.modulo ? h('li', 'Apruebas el módulo si no pasas de los fallos permitidos en cada una de sus dos materias') : h('li', `Apruebas con ${cuenta(E1.minAciertos, 'acierto')}`),
+            E1.sinApto ? h('li', 'Sin nota de aprobado: no cuenta como simulacro aprobado') : E1.modulo ? h('li', 'Apruebas el módulo si no pasas de los fallos permitidos en cada una de sus dos materias') : h('li', `Apruebas con ${cuenta(E1.minAciertos, 'acierto')}`),
             limites.map((b) => h('li', conIcono(b.ico, `${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
             h('li', permitida ? conIcono('calculadora', 'Con calculadora científica (botón arriba, junto al reloj)') : 'Sin calculadora')),
+          armado ? introErrores(test) : null,
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E1, f.ut)?.titulo ?? f.ut).join(', ')}; el ${tipo === 'final' ? 'examen' : 'simulacro'} no está completo.`) : null,
           tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', 'Como el día del examen: solo tú, el reloj y las reglas del tribunal. Al terminar, el profe te explica tus fallos.')] : null,
           E1.modulo ? h('p.aviso-modulo', 'En el examen de verdad, si no apruebas el conjunto, puedes aprobar un módulo y conservarlo dos convocatorias de la misma administración. Aquí se corrige con ese criterio; en tu travesía y en «¿Estás listo?» solo cuenta el examen completo.') : null,
@@ -859,7 +865,7 @@ export function testView({ ctx, progress, params: route, tit }) {
 
     // --- examen en marcha: una pregunta por pantalla
     function correr(guardado) {
-      const E1 = estructuraDe(E0, guardado.modulo);
+      const E1 = guardado.tipo === 'errores' ? estructuraErrores(E0, guardado.errores?.min ?? E0.duracionMin) : estructuraDe(E0, guardado.modulo);
       const test = rehacerTest(E1, banco, guardado);
       // Un examen guardado sin sus preguntas (de antes de guardarlas) las guarda desde ya.
       const estado = { ...guardado, eje: guardado.eje ?? eje, ids: test.preguntas.map((q) => q.id) };
@@ -974,12 +980,14 @@ export function testView({ ctx, progress, params: route, tit }) {
         const minutos = Math.max(1, Math.round(consumido / 60000));
         progress.recordTest({ tit: T0.id, eje, conv: test.tipo === 'real' || test.tipo === 'final' ? estado.conv : undefined, tipo: E1.modulo ? 'modulo' : test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, minutos,
           // Un simulacro de módulo no es un examen completo: su apto es orientativo y no cuenta en «¿Estás listo?» ni en la travesía.
-          ...(E1.modulo ? { modulo: E1.modulo, apto: null, aptoModulo: g.apto } : { apto: g.apto }),
+          ...(E1.modulo ? { modulo: E1.modulo, apto: null, aptoModulo: g.apto } : { apto: E1.sinApto ? null : g.apto }),
           nuevas: estado.nuevas ?? undefined,
           porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
+        // Simulacro de tus errores: lo que caíste y lo que esquivaste, a tus errores (src/store/errores.js).
+        const ce = test.tipo === 'errores' ? registrarErrores({ test, respuestas, indice, guardado: estado.errores }) : null;
         progress.saveTestEnCurso(null);
         progress.logActividad(minutos);
-        resultados(test, g, porTiempo, E1);
+        resultados(test, g, porTiempo, E1, ce);
       }
 
       setChildren(el, barra, cuerpo, panel);
@@ -988,14 +996,15 @@ export function testView({ ctx, progress, params: route, tit }) {
     }
 
     // --- resultado
-    function resultados(test, g, porTiempo, E1 = E0) {
+    function resultados(test, g, porTiempo, E1 = E0, ce = null) {
       // Dentro de una sesión de estudio se sigue en modo concentración (la barra de la sesión manda).
       if (!document.body.classList.contains('en-sesion')) document.body.classList.remove('focus');
       // Los temas, en el mismo orden que en Temario y Progreso.
       g = { ...g, bloques: [...g.bloques].sort((a, b) => posEstudio(E1, a.ut) - posEstudio(E1, b.ut)) };
       summaryText = `RESULTADO ${test.titulo}: ${g.aciertos}/${g.total} ${g.apto == null ? '' : g.apto ? 'APTO' : 'NO APTO'}\n` +
         g.bloques.map((b) => `${b.titulo}: ${b.aciertos}/${b.total}${b.maxErrores != null ? ` (máx. errores ${b.maxErrores})` : ''}`).join('\n') +
-        `\nFALLADAS: ${g.detalle.filter((d) => !d.ok).map((d) => `${d.id} (marcó ${d.respuesta ?? '—'}, correcta ${d.correcta})`).join(', ')}`;
+        `\nFALLADAS: ${g.detalle.filter((d) => !d.ok).map((d) => `${d.id} (marcó ${d.respuesta ?? '—'}, correcta ${d.correcta})`).join(', ')}` +
+        (ce ? `\n${textoErrores(ce)}` : '');
       const filtro = { value: 'falladas' };
       const review = h('div.review');
       const renderReview = () => setChildren(review, test.preguntas.map((q, j) => {
@@ -1012,7 +1021,7 @@ export function testView({ ctx, progress, params: route, tit }) {
           h('span.revision-texto', h('span.revision-tema', b ? conIcono(b.ico, b.titulo) : ''), h('span.revision-enunciado', (q.enunciado ?? '').slice(0, 90) + ((q.enunciado ?? '').length > 90 ? '…' : '')),
             h('span.revision-dato', d.retirada ? 'Retirada: la norma ha cambiado y no cuenta en la nota' : d.ok ? `Bien: la ${d.correcta})` : d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`))),
         cuerpo);
-        return det;
+        return ce && !d.ok ? [det, avisoFallada(q, ce.porPregunta[q.id])] : det;
       }));
       const filterSel = h('select', { onchange: (ev) => { filtro.value = ev.target.value; renderReview(); } },
         h('option', { value: 'falladas' }, 'Solo las falladas'), h('option', { value: 'todas' }, 'Todas'));
@@ -1036,6 +1045,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : conIcono(g.apto ? 'ok' : 'no', g.apto ? 'APTO' : 'NO APTO')),
           test.tipo === 'final' ? lineaFinal : null,
+          ce ? resultadoErrores(ce) : null,
           E1.modulo ? h('p.muted', `${E1.titulo}: corregido como el aprobado por módulos del examen (fallos máximos en cada materia). En tu travesía solo cuenta el examen completo.`) : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),

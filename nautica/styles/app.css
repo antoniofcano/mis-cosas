@@ -2340,3 +2340,24 @@ a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
 .errores-repetidos .error-n { font-variant-numeric: tabular-nums; color: var(--muted); }
 .errores-repetidos .error-si { grid-column: 1 / -1; }
 .errores-repetidos .ico { color: var(--accent); }
+
+/* Simulacro de tus errores (R-43; src/ui/simulacro-errores.js) */
+.sim-errores-entrada { display: grid; gap: .3rem; margin-top: .9rem; }
+.sim-errores-entrada .btn { display: flex; align-items: center; justify-content: center; gap: .4rem; min-height: 48px; }
+.sim-errores-entrada p { margin: 0; text-align: center; }
+.sim-errores-entrada.progreso { margin: .7rem 0 .4rem; }
+.sim-errores-entrada.progreso p { text-align: left; }
+.aviso-sim-errores { border-left: 4px solid var(--accent); padding-left: .6rem; }
+.sim-errores-lista { list-style: none; padding: 0; margin: .4rem 0; display: grid; gap: .4rem; }
+.sim-errores-lista li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .1rem .6rem; padding: .45rem .6rem; border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.sim-errores-lista li.esquivado { border-left-color: var(--ok); }
+.sim-errores-lista li.caido { border-left-color: var(--warn); }
+.sim-errores-lista .error-nombre { font-weight: 600; overflow-wrap: anywhere; }
+.sim-errores-lista .error-n { font-variant-numeric: tabular-nums; color: var(--muted); }
+.sim-errores-lista .error-si { grid-column: 1 / -1; }
+.sim-errores-resultado { margin: .6rem 0; }
+.vuelta-error { margin: -.3rem 0 .6rem; padding: .4rem .7rem; border: 1px solid var(--border); border-top: 0; border-left: 4px solid var(--close); border-radius: 0 0 10px 10px; background: color-mix(in srgb, var(--close) 9%, var(--surface)); }
+.vuelta-error p { margin: .3rem 0; }
+.vuelta-error .ico { color: var(--close); }
+.vuelta-error .btn { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
+.errores-superados .ico { color: var(--ok); }

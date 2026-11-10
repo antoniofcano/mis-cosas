@@ -61,6 +61,53 @@ La ruta se llama `carta-pasos` (y no `resueltos`) para no confundirla con los «
 Queda fuera: las mareas (`marea-sonda`, no es de carta), la estrella Polar (`nav.ct.polar`) y la situación por sonda o
 veril (parte de `carta.situacion.distancias`).
 
+## Preguntas reales: paso a paso y diagnóstico por tipo de error (R-35, R-36)
+
+Las preguntas reales con resolución programada (`src/exams/kit.js`) se pueden **resolver paso a paso**: la app pide
+cada valor que el kit marca como preguntable (`steps[i].pide`) y lo corrige al momento con la tolerancia de examen (el
+doble en lo que se mide en la carta). Y cuando el alumno marca una opción equivocada, la app dice **por qué** si lo
+sabe: repite la resolución con un kit «con un error típico» (`createKit(chart, { error })`) y, si un único error lleva
+a la opción marcada, lo nombra («Has marcado la a). Es lo que sale si aplicas la Ct con el signo cambiado»). Detalle
+en `docs/ARCHITECTURE.md` («Modo guiado y diagnóstico por tipo de error»).
+
+**Operaciones que se preguntan:** `ct` (Ct y, con carta, la dm del año), `ctFrom`, `ctPolar`, `rv`, `ra`, `dv`, `dvM`,
+`oposicion`, `enfilacion`, todas las de situación (`fix2`, `fixDist`, `fixBearingRange`, `fix2Ranges`, `fromMark`,
+`cardinal2`, `lineAndBearing`, `corteRumbo`, el corte final de `traslado`, `trasladoArco` y `trasladoDosArcos`), `run`,
+`estimaEfectiva`, `distFor`, `eta`, `rhumb`, `bearingTo`, `distanceBetween`, `tangent`, `abatimiento`,
+`rvConAbatimiento`, `efectivo`, `rumboYVelocidad`, `rumboConCorriente`, `corrienteDesconocida`, `tramos` (latitud y
+situación de llegada), `rumboDirecto`, `tramoMarea`, `horaUT`, `sondaA` y `horaParaSonda`. **No se preguntan:** `pos`
+(dato), `note` (nota libre de cada solución), la Ct dato, `porNombre`, el traslado de la 1ª línea (construcción) y los
+pasos intermedios de `tramos` y `rumboDirecto` (Δl, apartamiento, ΔL: no hay magnitud con signo para ellos).
+
+**Errores típicos modelados** (`src/exams/taxonomia.js`): signo de la Ct (calculada o aplicada al revés, «siempre suma»
+o «siempre resta»), sin corregir la Ct, signo de la declinación, signo del desvío, olvidar el desvío, declinación sin
+actualizar, variación anual al revés, banda de la marcación, marcación tomada como demora, oposición o enfilación al
+revés (±180°), demora trazada sin la opuesta, al otro lado del faro, tangente por la otra banda, rumbo directo al faro,
+abatimiento al lado contrario, sin abatimiento, rumbo de superficie por efectivo (sin corriente), corriente al revés,
+corriente sumada, sin trasladar la primera línea, minutos por décimas de hora, latitud de salida por la media, ΔL sin
+cos lm, cos lm al revés, signo de ΔL, seno y coseno cambiados, sin la sonda de la carta, sonda de la carta al revés,
+pleamar por bajamar, marea en línea recta y hora oficial (sin adelanto o al revés).
+Se quedan fuera, por no poder modelarse con rigor desde el kit: la escala equivocada (las distancias se miden en la
+carta, no hay escala que cambiar) y la demora tomada como marcación al revés (el kit no tiene el rumbo en `dv`).
+
+**Cobertura** (`node tools/diagnostico-cobertura.mjs --md`, noviembre de 2026): de las opciones erróneas de las
+preguntas con resolución, en cuántas se identifica un único error típico.
+
+| Tribunal | Titulación | Preguntas | Opciones erróneas | Error único | Dos posibles | Tres o más | Ninguno | % único |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| andalucia | PER | 131 | 393 | 115 | 13 | 10 | 255 | 29,3 % |
+| andalucia | PY | 332 | 996 | 321 | 32 | 6 | 637 | 32,2 % |
+| baleares | PER | 369 | 1107 | 154 | 35 | 18 | 900 | 13,9 % |
+| baleares | PY | 344 | 1032 | 135 | 25 | 18 | 854 | 13,1 % |
+| dgmm | PER | 106 | 316 | 51 | 14 | 5 | 246 | 16,1 % |
+| dgmm | PY | 98 | 293 | 36 | 8 | 6 | 243 | 12,3 % |
+| total |  | 1380 | 4137 | 812 | 127 | 63 | 3135 | 19,6 % |
+
+Los distractores que el tribunal pone «a propósito» (explicados por un único error): el signo de la Ct (241), del
+desvío (76) y de la declinación (76); en el PY, el abatimiento al lado contrario (75), contar la marea desde la pleamar
+(47), olvidar el abatimiento (39) y la corriente (31 sin ella, 31 al revés). Andalucía construye sus distractores con
+errores típicos bastante más que Baleares y la DGMM.
+
 ## Apéndice: verificación (fuente de cada convenio y fórmula)
 
 | Hecho | Fuente |

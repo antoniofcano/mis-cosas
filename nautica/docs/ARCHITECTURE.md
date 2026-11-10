@@ -132,6 +132,31 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 pedidos. `src/exams/options.js` lee las opciones del examen y elige la más próxima; `tests/exams.test.js`
 exige que coincida con la plantilla oficial. Si cambias la carta o un motor, este test avisa.
 
+### Modo guiado y diagnóstico por tipo de error (R-35, R-36)
+
+- **Paso preguntable.** Cada operación del kit que da un valor que el alumno puede calcular o medir lo deja junto a su
+  paso: `steps[i].pide = { paso, pregunta, campos: [{ kind, value, label, medido? }] }` (`kind` = magnitud de
+  `analysis/quantities.js`; `medido` = se mide en la carta). Las notas, los datos y las construcciones no llevan `pide`.
+  Las soluciones no cambian: el dato sale del kit.
+- **Taxonomía común** (`exams/taxonomia.js`): `PASOS` (Ct, declinación, aguja, marcación, oposición/enfilación,
+  situación, medida, tiempo, tangente, abatimiento, corriente, traslado, estima, loxodrómica, marea, sonda, hora oficial),
+  `ERRORES` (cada error típico con su paso y su frase «Es lo que sale si…»; ids iguales a los de los ejercicios
+  generados, con `ALIAS` para los que no) y `VARIANTES` (cómo se comete cada error en el kit).
+- **Kit con un error típico:** `createKit(chart, { error: 'signo-ct:aplicacion' })` calcula igual salvo donde ese error
+  se comete. `exams/diagnostico.js` resuelve la pregunta con cada variante y dice qué error lleva a la opción marcada
+  (mismo criterio que `chooseOption`, cada valor dentro de la tolerancia de examen, sin empate, nunca la oficial ni la
+  que sale sin error; un solo error = diagnóstico; dos = «puede ser A o B»; más, nada). Cobertura medida con
+  `node tools/diagnostico-cobertura.mjs` ([`CARTA-RESUELTOS.md`](CARTA-RESUELTOS.md)).
+- **Modo guiado:** lógica en `exams/guiado.js` (corrección con tolerancia de examen, ×2 en lo medido, × el factor de
+  Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
+  en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
+  que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Diagnóstico en la interfaz:** `ui/diagnostico.js` (`diagnosticoEl`) en la corrección de `#/q/<id>`, en el panel del
+  profe (práctica y revisión de un examen terminado) y al final del modo guiado; «Tus errores más repetidos» en Mi progreso.
+- **Errores del alumno** (`store/errores.js`, `localStorage` `nautica.errores.v1`): pasos fallados en el modo guiado y
+  errores diagnosticados (también los de los ejercicios generados), una vez por pregunta y día, 400 anotaciones y 180
+  días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia.
+
 ## Añadir preguntas de examen
 
 Las preguntas van en el banco de su eje (`data/ejes/<eje>/<tit>/preguntas.json`), con el formato normalizado y

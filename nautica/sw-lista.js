@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '2709ca4f3f65';
+self.VERSION = 'f523dc6ab3b8';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -53,6 +53,8 @@ self.APP = [
  "src/course/sesion.js",
  "src/course/tarjetas.js",
  "src/course/travesia.js",
+ "src/exams/diagnostico.js",
+ "src/exams/guiado.js",
  "src/exams/kit.js",
  "src/exams/motivo.js",
  "src/exams/options.js",
@@ -105,6 +107,7 @@ self.APP = [
  "src/exams/solutions/dgmm-py-2025.js",
  "src/exams/solutions/dgmm-py-2026.js",
  "src/exams/solutions/faros-lista.js",
+ "src/exams/taxonomia.js",
  "src/exercises/compass-data.js",
  "src/exercises/define.js",
  "src/exercises/helpers.js",
@@ -247,6 +250,7 @@ self.APP = [
  "src/nautical/tides.js",
  "src/nautical/viento.js",
  "src/store/datasets.js",
+ "src/store/errores.js",
  "src/store/persistencia.js",
  "src/store/progress.js",
  "src/store/recordatorio.js",
@@ -285,6 +289,7 @@ self.APP = [
  "src/ui/concepto.js",
  "src/ui/config-profe.js",
  "src/ui/copia.js",
+ "src/ui/diagnostico.js",
  "src/ui/dispositivos.js",
  "src/ui/dom.js",
  "src/ui/efectos.js",
@@ -292,6 +297,7 @@ self.APP = [
  "src/ui/encaja.js",
  "src/ui/entrada.js",
  "src/ui/glosas.js",
+ "src/ui/guiado.js",
  "src/ui/hoja.js",
  "src/ui/iconos.js",
  "src/ui/illustration.js",

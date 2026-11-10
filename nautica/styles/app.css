@@ -1928,3 +1928,84 @@ header.top a.ajustes.sync-aviso::after { content: ""; position: absolute; top: 8
 /* Botones llenos de estas pantallas: texto con contraste también en oscuro (el acento claro pide texto oscuro). */
 .dispositivos button:not(.secondary), .vincular button:not(.secondary), .vincular a.btn:not(.secondary) { color: var(--on-accent); }
 .vincular h1[tabindex="-1"]:focus, .vincular h2[tabindex="-1"]:focus { outline: none; }
+/* ---- Bloc de notas (src/ui/bloc.js): el enunciado con sus datos, las notas del alumno y la calculadora a mano ---- */
+.boton-bloc { white-space: nowrap; }
+.bloc-punto { display: none; }
+.boton-bloc.con-notas .bloc-punto { display: inline-block; width: 9px; height: 9px; margin-left: .4em; border-radius: 50%; background: var(--close); vertical-align: middle; }
+.chips-pregunta .chip-bloc { min-height: 44px; border-radius: 999px; }
+button.bloc-examen { margin: .6rem 0; }
+.bloc-acciones { margin-top: .5rem; }
+.tanda:not(.respondida) .chips-pregunta:has(.chip-bloc) { display: flex; }
+.bloc { display: flex; flex-direction: column; gap: .4rem; min-height: 0; }
+.bloc-cabecera { display: flex; align-items: center; gap: .4rem; min-height: 48px; flex: none; }
+.bloc-nombre { white-space: nowrap; flex: none; font-family: var(--fuente-titulos); font-size: 1.1rem; }
+.bloc-titulo { flex: 1; min-width: 0; color: var(--muted); font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bloc-aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+button.bloc-boton { min-width: 48px; min-height: 48px; padding: 0; display: grid; place-items: center; flex: none; background: transparent; color: var(--text); border: 1px solid var(--border); }
+.bloc button:focus-visible, .boton-bloc:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.bloc-enunciado { flex: 0 1 auto; min-height: 3.4rem; max-height: 48%; overflow-y: auto; background: var(--bg); border-left: 4px solid var(--accent); border-radius: 6px; padding: .4rem .7rem; font-size: .95rem; line-height: 1.45; user-select: text; -webkit-user-select: text; }
+.bloc-enunciado:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+.bloc-enunciado p { margin: 0 0 .3rem; }
+.bloc-enunciado p:last-child { margin-bottom: 0; }
+.bloc-comun { color: var(--muted); }
+.bloc-contexto { white-space: pre-wrap; font-variant-numeric: tabular-nums; border-top: 1px dashed var(--border); padding-top: .3rem; }
+.bloc-marca { font-weight: 700; background: var(--accent-2); border-radius: 4px; padding: 0 .15em; white-space: nowrap; }
+.bloc-opciones { list-style: none; margin: .3rem 0 0; padding: .3rem 0 0; border-top: 1px dashed var(--border); display: grid; gap: .1rem; }
+.bloc-tira { display: flex; gap: .35rem; align-items: center; overflow-x: auto; flex: none; padding: 3px; margin: 0 -3px; scrollbar-width: thin; }
+.bloc-tira > * { flex: none; }
+.bloc-tira-rotulo { font-size: .78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+button.bloc-dato { min-height: 44px; min-width: 48px; padding: .2rem .75rem; border-radius: 999px; background: var(--accent-2); color: var(--accent); border-color: transparent; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+button.bloc-dato:active, button.bloc-signo:active { transform: translateY(1px); }
+textarea.bloc-notas { flex: 1 1 6rem; min-height: 4.6rem; width: 100%; resize: none; font: inherit; line-height: 1.5; padding: .5rem .6rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font-variant-numeric: tabular-nums; }
+textarea.bloc-notas::placeholder { color: var(--muted); opacity: .85; }
+textarea.bloc-notas:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+textarea.bloc-notas.apuntado { border-color: var(--ok); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 35%, transparent); }
+.bloc-herramientas button { min-height: 44px; padding-top: .2rem; padding-bottom: .2rem; }
+button.bloc-signo { min-width: 44px; padding: .2rem .7rem; font-size: 1.05rem; font-weight: 700; color: var(--text); border-color: var(--border); }
+button.bloc-pegar { white-space: nowrap; max-width: 15rem; overflow: hidden; text-overflow: ellipsis; }
+.bloc-pegar-valor { font-variant-numeric: tabular-nums; white-space: pre; }
+/* La hoja: pantalla completa en el móvil (se ajusta al teclado y a la calculadora acoplada: --bloc-arriba y --bloc-alto
+   los pone bloc.js); columna a la izquierda en pantallas anchas, que aparta la página en vez de taparla. */
+.bloc-hoja { position: fixed; z-index: 52; display: flex; flex-direction: column; background: var(--surface); color: var(--text); outline: none; }
+.bloc-hoja > .bloc { flex: 1; padding: .3rem .7rem .6rem; }
+@media (max-width: 700px) {
+  .bloc-hoja { left: 0; right: 0; top: var(--bloc-arriba, 0px); height: var(--bloc-alto, 100dvh); }
+  .bloc-hoja > .bloc { overflow-y: auto; }
+  body.con-bloc { overflow: hidden; }
+  /* Con sitio, las herramientas en dos filas; apretada (teclado o calculadora abiertos), en una tira que se desplaza. */
+  .bloc-hoja:not(.apretada) .bloc-herramientas { flex-wrap: wrap; overflow: visible; }
+  .bloc-hoja.muy-apretada .bloc-datos, .bloc-hoja.con-calc .bloc-calculadora { display: none; }
+  .bloc-hoja.muy-apretada .bloc-enunciado { flex: 1 1 2.9rem; min-height: 2.9rem; max-height: none; }
+  .bloc-hoja.muy-apretada textarea.bloc-notas { flex: none; height: 3.7rem; min-height: 3.7rem; padding-top: .25rem; padding-bottom: .25rem; }
+  .bloc-hoja.muy-apretada > .bloc { gap: .3rem; padding-bottom: .3rem; }
+  /* Con la calculadora desplegada, el sitio es para el enunciado: la cabecera vuelve al minimizarla o cerrarla. */
+  .bloc-hoja.muy-apretada.con-calc .bloc-cabecera { display: none; }
+  .bloc-hoja.muy-apretada.con-calc > .bloc { padding-top: .5rem; }
+}
+@media (min-width: 701px) {
+  :root { --bloc-ancho: min(400px, 46vw); }
+  .bloc-hoja { left: 0; top: 0; bottom: 0; width: var(--bloc-ancho); border-right: 1px solid var(--border); box-shadow: 4px 0 18px rgba(0, 0, 0, .12); }
+  body.con-bloc { padding-left: var(--bloc-ancho); }
+  body.con-bloc .fila-inferior, body.con-bloc .hoja, body.con-bloc .tabbar { left: var(--bloc-ancho); }
+  body.con-bloc .fila-inferior { padding-left: 1rem; padding-right: 1rem; }
+  body.con-bloc .layout { grid-template-columns: minmax(0, 1fr); }
+  .bloc-hoja .bloc-herramientas { flex-wrap: wrap; overflow: visible; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bloc-hoja { animation: var(--dur-media) var(--ease-sale) bloc-entra; }
+  @keyframes bloc-entra { from { opacity: 0; transform: translateY(14px); } }
+  textarea.bloc-notas { transition: border-color var(--dur-corta) var(--ease-suave), box-shadow var(--dur-corta) var(--ease-suave); }
+}
+/* Incrustado en el panel de la mesa de cartas (pestaña «Bloc»): en el flujo del panel, que ya se desplaza. */
+.ws-bloc .bloc-enunciado { max-height: 9rem; }
+.ws-bloc textarea.bloc-notas { flex: none; min-height: 7.5rem; }
+.ws-bloc .bloc-herramientas { flex-wrap: wrap; overflow: visible; }
+@media (max-width: 860px) {
+  .ws-bloc .bloc-enunciado { max-height: 5.6rem; }
+  .ws-bloc textarea.bloc-notas { min-height: 5.5rem; }
+  .ws-tabbtn { padding-left: .2rem; padding-right: .2rem; }
+}
+/* Con tres pestañas en un móvil estrecho no caben los iconos: solo el texto. */
+@media (max-width: 480px) { .ws-tabs:has([data-tab="bloc"]) .ws-tabbtn .ico { display: none; } }
+.ws-bloc { padding-top: .5rem; }
+.ws-bloc .bloc-boton { margin-left: auto; }

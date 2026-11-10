@@ -156,9 +156,9 @@ test('cambio de día: a las 23:59 y a las 00:01 locales cuentan días distintos 
 });
 
 test('el ajuste: normalizado, con los días hechos (30 días como mucho) y compartido entre aparatos', () => {
-  assert.deepEqual(leerAjuste(null), { manual: null, fuera: null, hechos: {}, fue: {} });
+  assert.deepEqual(leerAjuste(null), { manual: null, fuera: null, hechos: {}, fue: {}, fotos: {}, resultados: {}, moduloFuera: null });
   assert.deepEqual(leerAjuste({ manual: 'mañana', hechos: { '2026-11-10': 'ideas', x: 'ideas', '2026-11-11': 'raro' }, fue: { '2026-11-12': 'nope' } }),
-    { manual: null, fuera: null, hechos: { '2026-11-10': 'ideas' }, fue: {} });
+    { manual: null, fuera: null, hechos: { '2026-11-10': 'ideas' }, fue: {}, fotos: {}, resultados: {}, moduloFuera: null });
   let aj = apuntarHecho(null, '2026-10-01', 'ideas');
   aj = apuntarHecho(aj, '2026-11-10', 'simulacro');
   assert.deepEqual(aj.hechos, { '2026-11-10': 'simulacro' });

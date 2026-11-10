@@ -13,6 +13,8 @@ import {
 } from '../course/semana.js';
 import { MINUTOS_VISPERA, temasConLimite, clasesConTrampas } from '../course/vispera.js';
 import { cuenta, diaISO, fechaLarga } from '../texto.js';
+import { estructuraModulo } from '../theory/blocks.js';
+import { tarjetaResultado } from './tras-examen.js';
 
 /** El ajuste del modo, normalizado. */
 export const ajusteSemana = (progress, tit) => leerAjuste(progress.settings()[claveSemana(tit)]);
@@ -36,7 +38,10 @@ export function calcularSemana(progress, tit, d, ahora = Date.now()) {
   const { st } = d;
   const ajuste = ajusteSemana(progress, tit);
   const estado = estadoModo({ ajuste, fechaExamen: st.fechaExamen, orientativa: st.orientativa, ahora });
-  const base = { estructura: T.estructura, preguntas: d.banco.practica, respuestas: d.respuestas, reservadas: d.banco.reservadas };
+  // Con un módulo aprobado (PY), la semana prepara solo el que queda: sus temas y su simulacro.
+  const solo = st.moduloPendiente?.id ?? null;
+  const Em = solo ? estructuraModulo(T.estructura, solo) : T.estructura;
+  const base = { estructura: Em, preguntas: d.banco.practica, respuestas: d.respuestas, reservadas: d.banco.reservadas };
   const ideas = ideasPriorizadas({ ic: d.indiceConceptos, ...base });
   const temas = temasPriorizados(base);
   if (!estado.activo) return { estado, ajuste, ideas, temas, plan: null, comp: null };
@@ -44,7 +49,7 @@ export function calcularSemana(progress, tit, d, ahora = Date.now()) {
   const plan = planSemana({
     estructura: T.estructura, dias: estado.dias, hoy, fecha: estado.fecha, minutosDia: st.dia.objetivo, ideas, temas,
     fallosHoy: st.repaso.hoy, tarjetasHoy: tarjetasPorRepasar(mazos(tit), d.respuestas, hoy).length, mazo: mazoSugerido(tit, d.respuestas),
-    cartaUt: T.cartaUt ?? null, tests: d.tests, hechos: ajuste.hechos, finalSugerido: !!(st.final?.desbloqueado && st.final?.sugerir),
+    cartaUt: Em.bloques.some((b) => b.ut === T.cartaUt) ? T.cartaUt : null, tests: d.tests, soloModulo: solo, hechos: ajuste.hechos, finalSugerido: !!(st.final?.desbloqueado && st.final?.sugerir),
     // La víspera es el repaso exprés (#/<tit>/vispera) si el curso tiene trampas en los temas con límite de fallos.
     repasoExpres: hayRepasoExpres(T.estructura, d.curso) ? { minutos: MINUTOS_VISPERA } : null,
   });
@@ -103,7 +108,10 @@ export function tarjetaComoFue(progress, tit, { fecha }) {
   const responder = (r) => {
     guardar(progress, tit, responderComoFue(ajusteSemana(progress, tit), fecha, r));
     setChildren(caja, h('p.semana-fue-gracias', { role: 'status' }, textoTrasExamen(r)),
-      r === 'suspenso' ? h('p', h('a', { href: '#/ajustes?campo=fecha' }, 'Poner la fecha del próximo examen')) : null);
+      r === 'suspenso' ? h('p', h('a', { href: '#/ajustes?campo=fecha' }, 'Poner la fecha del próximo examen')) : null,
+      // El resultado por materia (voluntario), para compararlo con lo que predecía la app (src/ui/tras-examen.js).
+      r === 'aprobado' || r === 'suspenso' ? tarjetaResultado(progress, tit, fecha, r) : null,
+      r === 'no-se' ? h('p.small', 'Cuando lo sepas, apúntalo en ', h('a', { href: tlink(tit, ['semana']) }, 'La semana del examen'), ': allí puedes cambiar la respuesta y poner los fallos por materia.') : null);
   };
   setChildren(caja,
     h('h2', { id: `semana-fue-${tit}` }, `¿Cómo te fue el examen de ${T.sigla}?`),

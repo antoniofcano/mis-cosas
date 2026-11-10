@@ -2459,6 +2459,7 @@ div.dx-texto { cursor: default; font-weight: 400; }
   .vs-limite, .vs-si { font-size: 8pt; color: black; }
   .vs-cuesta { color: black; }
   .vs-cierre { display: none; }
+}
 
 /* ---- Ensayo general en papel (R-41: src/ui/views/ensayo.js, src/ui/ensayo.js) y tu velocidad en carta (R-42) ----
    La preparación y la hoja de respuestas con el sistema de siempre (tarjetas, botones de 48 px); el cuadernillo en
@@ -2566,3 +2567,38 @@ table.ep-hoja-papel th, table.ep-hoja-papel td { padding: .2rem .7rem; border-bo
   .ensayo-papel table.ep-hoja-papel th, .ensayo-papel table.ep-hoja-papel td { padding: .9mm 4mm; border-bottom: .5pt solid gray; }
   .ensayo-papel .ep-casilla { width: 4mm; height: 4mm; border: .8pt solid black; }
 }
+
+/* Antes y después del examen real (src/ui/tras-examen.js): fallos por materia, resultado y comparación, módulo pendiente */
+.fallos-materia { display: flex; flex-direction: column; gap: .4rem; margin-top: .75rem; min-width: 0; }
+.fallos-materia h3 { margin: 0; font-size: 1rem; }
+.fallos-materia p, .resultado-examen p, .modulo-pendiente p { margin: 0; overflow-wrap: anywhere; }
+.fxm-tabla-caja { overflow-x: auto; max-width: 100%; }
+.fxm-tabla { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.fxm-tabla th, .fxm-tabla td { text-align: left; padding: .35rem .3rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.fxm-tabla thead th { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.fxm-tabla .fxm-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fxm-nota { display: block; font-size: .75rem; color: var(--muted); white-space: normal; }
+.fxm-tabla tr.fxm-justo td:last-child { color: var(--warn); font-weight: 600; }
+.fxm-tabla tr.fxm-pasado td:last-child { color: var(--warn); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.fxm-tabla tr.fxm-holgado td:last-child { color: var(--ok); }
+.resultado-examen, .modulo-pendiente {
+  display: flex; flex-direction: column; gap: .6rem; min-width: 0; padding: .9rem 1rem 1rem;
+  border: 1.5px solid var(--border); border-radius: var(--radius, 0); background: var(--surface); color: var(--text);
+}
+.resultado-examen h2, .modulo-pendiente h2 { margin: 0; font-size: 1.2rem; line-height: 1.25; }
+.semana-fue .resultado-examen { padding: 0; border: 0; background: transparent; }
+.res-form { display: flex; flex-direction: column; gap: .6rem; }
+.res-materias { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .5rem .75rem; }
+.res-materia { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.res-materia label { font-weight: 600; font-size: .9rem; }
+.res-materia select { min-height: 44px; font: inherit; }
+.res-modulos { border: 1px solid var(--border); padding: .5rem .75rem; margin: 0; display: flex; flex-direction: column; gap: .1rem; }
+.res-radio { display: flex; align-items: center; gap: .4rem; min-height: 44px; }
+.modulo-pendiente .btn { min-height: 44px; display: inline-flex; align-items: center; }
+/* La tabla de fallos dentro de la nota de la travesía: que no ensanche la columna (el desbordamiento va en su caja). */
+.travesia-pantalla, .trav-nota { grid-template-columns: minmax(0, 1fr); }
+.fxm-tabla th, .fxm-tabla td { overflow-wrap: normal; word-break: normal; hyphens: manual; }
+.fxm-tabla th, .fxm-tabla td, .fxm-tabla thead th { text-transform: none; letter-spacing: 0; font-family: var(--fuente-texto); padding: .3rem .25rem; }
+.fxm-tabla td.fxm-num { font-family: var(--fuente-texto); }
+.res-radio { justify-content: flex-start; text-align: left; font-weight: 400; }
+.res-radio input { width: 22px; height: 22px; flex: none; margin: 0; }

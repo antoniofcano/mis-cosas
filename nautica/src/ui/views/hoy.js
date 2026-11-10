@@ -31,6 +31,7 @@ import { esNuevo, estadoEntrada, siguienteParada, paradaDeSesion, resumenPasos, 
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, tarjetaComoFue, enlaceSemana } from '../semana.js';
 import { rotuloSemana } from '../../course/semana.js';
+import { fotografiar, tablaFallos, avisoModulo } from '../tras-examen.js';
 import { momentoExamen, recordatorioAdmitidos, claveConvocatoria } from '../../course/convocatoria.js';
 import { convocatoriaDe, tarjetaExamenCerca, tarjetaAdmitidos, lineaConvocatoria } from '../convocatoria.js';
 
@@ -162,6 +163,8 @@ export function hoyView({ progress, tit }) {
     // mano), la sesión de hoy es la del plan de la semana. Un examen a medias va antes: se termina primero.
     apuntarSemana(progress, tit);
     const sx = calcularSemana(progress, tit, d);
+    // La foto de lo que predice la app, una vez al día hasta la víspera (src/ui/tras-examen.js).
+    fotografiar(progress, tit, st, sx.estado);
     const enSemana = sx.estado.activo && st.principal?.tipo !== 'examen-en-curso';
     let mirando = real.id; // la fase que se enseña (el alumno puede mirar otra en la ayuda; su plan no cambia)
     setChildren(contexto, h('a.pildora-examen', { href: '#/ajustes?campo=fecha', title: 'Fecha del examen' }, lineaContexto(T.sigla, st.diasAlExamen)));
@@ -395,8 +398,9 @@ export function hoyView({ progress, tit }) {
         h('div.bar', { role: 'progressbar', 'aria-label': 'Avance del camino', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': pctCamino }, h('span', { style: `width:${pctCamino}%` })),
         h('p', lineaAvance(a, racha))),
       !ritmo ? h('p.muted', m.texto, m.detalle ? ` ${m.detalle}` : '') : null,
-      h('section.listo', { class: `listo-${listo.estado}` }, h('h2', '¿Estás listo para el examen?'), h('p', listo.estado === 'listo' ? icono('ok', 'ico-t') : null, lineaListo(listo)),
+      h('section.listo', { class: `listo-${listo.estado}` }, h('h2', st.moduloPendiente ? `¿Estás listo para el ${st.moduloPendiente.titulo.replace(/^Módulo/, 'módulo')}?` : '¿Estás listo para el examen?'), h('p', listo.estado === 'listo' ? icono('ok', 'ico-t') : null, lineaListo(listo)),
         lineaIdeas(conceptosPorTema(T.estructura, d.indiceConceptos, d.respuestas)),
+        tablaFallos(tit, st),
         h('p.ver-progreso', h('a.btn.secondary.boton-icono', { href: '#/progreso' }, icono('progreso'), 'Ver mi progreso por temas'))),
       resto.length ? [h('h2', 'Si te sobra tiempo'), h('div.despues', resto.map((x) => h('a.card.compacta', { href: hrefActividad(tit, x) },
         h('h3', x.titulo), h('p', TIPO_TXT[x.tipo] ? icono(TIPO_TXT[x.tipo][0]) : null, ` unos ${cuenta(x.minutos, 'minuto')}`))))] : null,
@@ -410,6 +414,7 @@ export function hoyView({ progress, tit }) {
         h('div.entrada-principal', faseEl, sesionEl)),
       // Pasado el examen, cómo fue (sin obligar); si salió del modo semana, volver a él.
       sx.estado.preguntar ? tarjetaComoFue(progress, tit, sx.estado.preguntar) : null,
+      sx.estado.activo ? null : avisoModulo(progress, tit, st),
       sx.estado.salido ? h('p.semana-volver', 'Tu examen está cerca. ', botonVolver(progress, tit)) : null,
       momento ? tarjetaExamenCerca(progress, tit, { momento, dias: st.diasAlExamen, fecha: st.fechaExamen, conv, ficha, ahora: d.ahora }) : null,
       aviso.mostrar ? tarjetaAdmitidos(progress, tit, { dias: aviso.dias, conv, ficha, ahora: d.ahora }) : null,

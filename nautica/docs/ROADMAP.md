@@ -71,7 +71,7 @@ _Última revisión: 10 de noviembre de 2026._
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
-| R-14 | Calibrar los umbrales de «estoy listo» con datos reales de uso | Después | Hoy son hipótesis razonadas, no medidas |
+| R-14 | Calibrar los umbrales de «estoy listo» con datos reales de uso | Después | Hoy son hipótesis razonadas, no medidas; la comparación predicción–resultado tras el examen (H-43) es la primera fuente, ver R-51 |
 | R-15 | Vista de profesor y cuentas | Después | Solo si hay un grupo que la use; implica backend y protección de datos. Diseño en `docs/VERSION-2.md` (V2-F4 y V2-F5) |
 | R-16 | Fotografías con licencia clara para identificar elementos reales | Después | Cada foto con su autoría y licencia en el apéndice |
 | R-17 | Más titulaciones (PNB, Capitán…) | Después | Una entrada en `TITULACIONES` y su banco por eje |
@@ -87,6 +87,7 @@ _Última revisión: 10 de noviembre de 2026._
 | R-40 | Vídeos del PY: contrastar los 8 hechos «por verificar» antes de dibujarlos y sustituir en el podcast las preguntas reservadas que leen sus minijuegos | Después | `docs/VIDEOS-PY.md` |
 | R-46 | Revisar la lista del día del examen y la estrategia con la convocatoria vigente de cada tribunal (Baleares sin leer; Andalucía 2026) y confirmar dónde publica cada uno las listas de admitidos y la sede | Después | Hoy el enlace por defecto es la página oficial del banco |
 | R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
+| R-51 | Calibrar «¿Estás listo?» y los avisos por materia con las comparaciones predicción–resultado que vayan apuntando los alumnos | Después | Hoy solo en el aparato o la cuenta de cada alumno; juntarlas pide su consentimiento y la versión 2 (complementa R-14) |
 
 ## Bloqueado por fuente
 
@@ -159,6 +160,10 @@ _Última revisión: 10 de noviembre de 2026._
 | H-39 | Repaso exprés de la víspera, paso del penúltimo día de «la semana antes» (R-45) | Noviembre 2026 |
 | H-40 | En local la app no sincroniza con el servidor real (las pruebas daban de alta alumnos de prueba) | Noviembre 2026 |
 | H-41 | Lista de ramas remotas regenerada (182 ramas: 7 a conservar, el resto clasificado para borrar) y copias de trabajo locales de los agentes retiradas | Noviembre 2026 |
+| H-42 | Tus fallos por materia frente a su límite, en «¿Estás listo?» y la semana del examen (R-48) | Noviembre 2026 |
+| H-43 | Foto de la predicción en la semana del examen y, tras él, el resultado por materia comparado con ella (R-49) | Noviembre 2026 |
+| H-44 | Recuperar un solo módulo del PY: «¿Estás listo?» y la semana del examen del módulo que queda (R-50; BOE-A-2026-510, anexo III C) | Noviembre 2026 |
+| H-45 | Estilos de pantalla del ensayo en papel y de la velocidad en carta, que una llave sin cerrar dejaba solo para imprimir desde #140; prueba que vigila las llaves | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

@@ -87,8 +87,10 @@ El alumno puede cambiar el tema (y, si quiere, la clase) en que cuenta una pregu
 `level`, `toleranceFactor`, `minutosDia`, `diasEstudio`, `eje`, `onboarded`, `segTarjeta` (ritmo de lectura del
 alumno), `configProfe`, `podcasts` y `podcastUltimo` (por dónde va en la radio), y los que empiezan por `examen_`,
 `examenOrientativo_`, `guiaVista_`, `planEsencial_`, `mezclado_`, `reserva_`, `chuletasLeidas_`, `nivelNo_`,
-`semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; `src/course/semana.js`).
+`convocatoria_`, `listadia_` (tu convocatoria y la lista del día del examen), `semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; `src/course/semana.js`).
 Es una clave más de `settings`: el Worker desplegado la acepta sin tocarlo.
+
+También `convocatoria_<tit>` (`{ para, hora, sede, enlace, admitidos }`: hora `HH:MM`, sede texto ≤ 120, enlace http(s) ≤ 300, día en que marcó la lista de admitidos) y `listadia_<tit>` (`{ para, marcadas: [id…] }`: casillas de la lista del día del examen), R-44. `para` es la fecha del examen para la que se guardó: si la fecha cambia cuando esa ya pasó, hora, sede, admitidos y casillas se ignoran (el enlace se conserva); si cambia antes del examen, se conservan. Dos claves y no una para que marcar una casilla en un aparato y editar la hora en otro no se pisen. Comprobado contra `validarOperacion` de `origin/main` (el desplegado): colección `settings` con clave `[\w\-./:]{1,120}` y cualquier valor ≤ 64 KB, aceptadas; sin tocar el Worker.
 
 Del aparato (no viajan): letra, sonidos, vibración, voz (`voz`, `vozAuto`, `vozNombre`, `vozVelocidad`),
 `podcastPreguntas`, avisos descartados (`avisoCopiaHasta`, `avisoInstalarHasta`, `avisoCartaVisto`), `ultimaCopia`,

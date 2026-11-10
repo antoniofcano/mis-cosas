@@ -31,6 +31,8 @@ import { esNuevo, estadoEntrada, siguienteParada, paradaDeSesion, resumenPasos, 
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, tarjetaComoFue, enlaceSemana } from '../semana.js';
 import { rotuloSemana } from '../../course/semana.js';
+import { momentoExamen, recordatorioAdmitidos, claveConvocatoria } from '../../course/convocatoria.js';
+import { convocatoriaDe, tarjetaExamenCerca, tarjetaAdmitidos, lineaConvocatoria } from '../convocatoria.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -144,6 +146,7 @@ export function hoyView({ progress, tit }) {
   const el = h('div.hoy.entrada', cabecera, h('p.muted', 'Preparando tu sesión…'));
   let summaryText = `VISTA hoy ${T.sigla} (cargando)`;
   let travesiaTexto = '';
+  let convTexto = '';
 
   calcularPlan(progress, tit).then((d) => {
     // Todo sale del motor de seguimiento (st), de la sesión (course/sesion.js) y de la entrada (course/entrada.js):
@@ -347,6 +350,16 @@ export function hoyView({ progress, tit }) {
     faseEl.hidden = enSemana; // en la semana del examen no hay fases: manda el plan de la semana
     pintaSesion();
 
+    // --- tu convocatoria (R-44): la semana del examen, hora y sede con el acceso a la lista del día del examen (y, la víspera,
+    // al repaso exprés); y, desde unas semanas antes, el recordatorio de comprobar la lista de admitidos.
+    const momento = momentoExamen({ fechaExamen: st.fechaExamen, orientativa: st.orientativa, ahora: d.ahora });
+    const aviso = recordatorioAdmitidos({ fechaExamen: st.fechaExamen, orientativa: st.orientativa, convocatoria: s[claveConvocatoria(tit)], ahora: d.ahora });
+    const conv = convocatoriaDe(progress, tit, d.ahora);
+    const ficha = d.banco.eje;
+    if (momento || aviso.mostrar) {
+      convTexto = `\nEXAMEN: ${lineaConvocatoria({ fecha: st.fechaExamen, conv, ahora: d.ahora })} · faltan ${cuenta(st.diasAlExamen, 'día')} → lista #/${tit}/dia-examen${momento === 'vispera' ? ` · repaso exprés #/${tit}/vispera` : ''}${aviso.mostrar ? '\nRECORDATORIO: ¿Ya has comprobado que estás en la lista de admitidos y el lugar del examen? (la app no puede consultar el boletín: lo mira el alumno en su convocatoria)' : ''}`;
+    }
+
     // --- la fila de estado: rango (o camino), semana y «¿Estás listo?» en una línea; cada una lleva a su detalle
     const progresoEl = h('details.mas-progreso');
     const sem = sy?.est.semana ?? semanaDe(progress.get().dias ?? {}, d.ahora);
@@ -398,6 +411,8 @@ export function hoyView({ progress, tit }) {
       // Pasado el examen, cómo fue (sin obligar); si salió del modo semana, volver a él.
       sx.estado.preguntar ? tarjetaComoFue(progress, tit, sx.estado.preguntar) : null,
       sx.estado.salido ? h('p.semana-volver', 'Tu examen está cerca. ', botonVolver(progress, tit)) : null,
+      momento ? tarjetaExamenCerca(progress, tit, { momento, dias: st.diasAlExamen, fecha: st.fechaExamen, conv, ficha, ahora: d.ahora }) : null,
+      aviso.mostrar ? tarjetaAdmitidos(progress, tit, { dias: aviso.dias, conv, ficha, ahora: d.ahora }) : null,
       estadoEl,
       // Lo secundario, debajo: nada compite con «Seguir».
       ofertaNivel(),
@@ -422,6 +437,6 @@ export function hoyView({ progress, tit }) {
     );
   }).catch((e) => setChildren(el, cabecera, h('p.warn', `No se pudo preparar el plan: ${e.message}`)));
 
-  return { el, summary: () => summaryText + travesiaTexto };
+  return { el, summary: () => summaryText + travesiaTexto + convTexto };
 }
 

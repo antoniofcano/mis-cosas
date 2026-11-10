@@ -16,6 +16,8 @@ export function bibliotecaView({ tit }) {
     ['Empezar', [
       [tlink(tit, ['guia']), 'brujula', 'Cómo funciona el curso', 'El método y cómo aprobar, en cinco pantallas (3 minutos).'],
       [tlink(tit, ['estrategia']), 'diana', 'Estrategia de examen', 'Cómo hacer el examen: tiempo, límites de fallos, orden, el día antes y tus datos.'],
+      [tlink(tit, ['dia-examen']), 'lista', 'Lista del día del examen', 'Documentación, material y hora y lugar de tu tribunal, con casillas para marcar la víspera.'],
+      [tlink(tit, ['vispera']), 'luna', 'Repaso exprés de la víspera', 'Las trampas más repetidas de los temas con límite de fallos, en una pantalla y 15 minutos.'],
     ]],
     ['Escuchar', [
       [tlink(tit, ['podcast']), 'podcast', 'Radio de a bordo', 'Episodios cortos del temario, con el guion y preguntas reales.'],

@@ -1,0 +1,68 @@
+{
+ "meta": {
+  "descripcion": "Errores típicos que más explican las opciones erróneas de las preguntas de carta y cuentas de cada banco (eje/titulación): n = opciones erróneas que encajan con ese único error. Sale de tools/errores-frecuentes.mjs (no se edita a mano) y solo cuenta las preguntas que se estudian, no las reservadas.",
+  "nombres": "src/exams/taxonomia.js (ERRORES)"
+ },
+ "porBanco": {
+  "andalucia/per": [
+   { "id": "signo-ct", "n": 48 },
+   { "id": "signo-dm", "n": 22 },
+   { "id": "signo-desvio", "n": 15 },
+   { "id": "horas-decimales", "n": 5 },
+   { "id": "sin-ct", "n": 5 },
+   { "id": "banda-marcacion", "n": 4 },
+   { "id": "marcacion-como-demora", "n": 2 },
+   { "id": "olvida-desvio", "n": 2 }
+  ],
+  "andalucia/py": [
+   { "id": "signo-ct", "n": 50 },
+   { "id": "pleamar-bajamar", "n": 38 },
+   { "id": "signo-abatimiento", "n": 35 },
+   { "id": "signo-dm", "n": 22 },
+   { "id": "sin-corriente", "n": 19 },
+   { "id": "corriente-invertida", "n": 17 },
+   { "id": "sin-abatimiento", "n": 15 },
+   { "id": "signo-desvio", "n": 14 }
+  ],
+  "dgmm/per": [
+   { "id": "signo-ct", "n": 21 },
+   { "id": "signo-desvio", "n": 8 },
+   { "id": "sin-ct", "n": 6 },
+   { "id": "horas-decimales", "n": 5 },
+   { "id": "signo-dm", "n": 4 },
+   { "id": "banda-marcacion", "n": 1 },
+   { "id": "dm-sin-actualizar", "n": 1 },
+   { "id": "marcacion-como-demora", "n": 1 }
+  ],
+  "dgmm/py": [
+   { "id": "corriente-invertida", "n": 6 },
+   { "id": "signo-abatimiento", "n": 5 },
+   { "id": "signo-ct", "n": 4 },
+   { "id": "sin-corriente", "n": 3 },
+   { "id": "corriente-sumada", "n": 1 },
+   { "id": "horas-decimales", "n": 1 },
+   { "id": "olvida-desvio", "n": 1 },
+   { "id": "signo-dm", "n": 1 }
+  ],
+  "baleares/per": [
+   { "id": "signo-ct", "n": 63 },
+   { "id": "signo-desvio", "n": 19 },
+   { "id": "horas-decimales", "n": 14 },
+   { "id": "banda-marcacion", "n": 12 },
+   { "id": "signo-dm", "n": 12 },
+   { "id": "sin-ct", "n": 7 },
+   { "id": "directo", "n": 5 },
+   { "id": "olvida-desvio", "n": 5 }
+  ],
+  "baleares/py": [
+   { "id": "signo-ct", "n": 28 },
+   { "id": "signo-abatimiento", "n": 23 },
+   { "id": "sin-abatimiento", "n": 19 },
+   { "id": "signo-desvio", "n": 14 },
+   { "id": "sin-ct", "n": 10 },
+   { "id": "signo-dm", "n": 6 },
+   { "id": "horas-decimales", "n": 5 },
+   { "id": "sin-corriente", "n": 5 }
+  ]
+ }
+}

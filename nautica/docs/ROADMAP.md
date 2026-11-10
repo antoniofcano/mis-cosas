@@ -49,6 +49,10 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
+| R-31 | Estrategia de examen: cómo repartir el tiempo, por dónde empezar, los límites de fallos por tema y qué hacer con lo que no se sabe, por titulación y tribunal y con los datos del alumno | En curso | Rama `feat/examen-formulas-semana`; solo afirmaciones con fuente (reglas del examen de cada eje) o deducidas de los datos del alumno |
+| R-32 | Fórmulas y tablas en una hoja (mareas, loxodrómica, husos, Ct…) con un ejemplo resuelto de cada una, imprimible | En curso | Parte del chuletario existente; nunca visible en un examen |
+| R-33 | Modo «la semana antes»: repaso comprimido de lo que más cae y de las ideas flojas, día a día hasta el examen | En curso | Se activa con la fecha del examen a 7 días o a mano; se apoya en la fase «Comprobar» |
+| R-34 | Fichas de vídeo de las ideas difíciles del PY (`docs/VIDEOS-PY.md`): objetivo, error típico, guion gráfico y preguntas reales de ejemplo | En curso | Los vídeos en sí quedan fuera de alcance (proyecto aparte) |
 | R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
 | R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 
@@ -104,6 +108,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 ## Fuera de alcance (proyecto aparte)
 
+- Ideas sin planificar: `docs/IDEAS.md`.
 - Vídeo y avatares de profesor. El aula virtual (R-25) no aloja vídeo: la voz y el vídeo van por un enlace externo.
 - Una app nativa: la PWA cubre el caso; solo se reconsidera si falla la instalación en un dispositivo concreto.
 

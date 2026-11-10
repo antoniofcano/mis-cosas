@@ -143,6 +143,12 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
 - Instrumentos (`graphics/instruments.js`) son dibujo puro; la interacción está en `ui/chart/interactive-chart.js`.
 - Mesa de cartas (`ui/chart/workspace.js`): carta a pantalla completa + panel. Traslada el formulario de respuesta
   del ejercicio al panel mientras está abierta y lo devuelve al cerrar; conserva lo dibujado entre aperturas.
+- Carta a pantalla completa (móvil; `setCompleta` en `ui/chart/interactive-chart.js`, estilos al final de `styles/app.css`):
+  botón «Ampliar» en la barra de cualquier carta y «Salir» siempre a la vista. Es diseño propio (clase `completa`), no la
+  Fullscreen API (el iPhone no la tiene para elementos; donde existe y la pantalla es táctil se pide además, como
+  mejora). Barra compacta de iconos abajo (vertical) o a la derecha (móvil tumbado), «Más» desplegable, zonas seguras
+  con `env()` (se añade `viewport-fit=cover` solo mientras dura). Incrustada en una página, la carta pasa a `<body>` y
+  vuelve a su hueco al salir; en la mesa, el panel se abre encima con «Enunciado». Lo dibujado no se toca.
 - Tutorial (`ui/chart/tutorial.js`): a partir de las primitivas con `step` de cualquier solución deduce el
   instrumento de cada trazo (`ray`/`line` → transportador, `arc`/`circle` → compás, `seg` → regla, `vec` →
   transportador + compás) y lo reproduce con encuadre automático. Cualquier tipo de ejercicio nuevo que dibuje

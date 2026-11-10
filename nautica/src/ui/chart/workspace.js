@@ -60,7 +60,7 @@ export function openWorkspace(o) {
   openWs?.close();
   let placeholders = [];
 
-  const chartApi = interactiveChart({ chart: o.chart, items: [], focus: o.focus ?? [], step: Infinity, progress: o.progress, fill: true, calculadora: o.calculadora !== false && !o.ayudas }); // con barra de ayudas, la calculadora va en su hueco
+  const chartApi = interactiveChart({ chart: o.chart, items: [], focus: o.focus ?? [], step: Infinity, progress: o.progress, fill: true, calculadora: o.calculadora !== false && !o.ayudas, onCompleta: (on) => alCompleta(on) }); // con barra de ayudas, la calculadora va en su hueco
   chartApi.setHighlights(marksInText(o.chart, o.statement));
 
   // --- Panel: ejercicio
@@ -154,12 +154,12 @@ export function openWorkspace(o) {
   // la misma asa que la corrección; tocar una pestaña lo vuelve a abrir.
   const panel = h('aside.ws-panel', { 'aria-label': 'Ejercicio y tutorial' });
   const plegar = botonPlegar(panel, { plegar: 'Plegar el panel para ver la carta', desplegar: 'Desplegar el panel',
-    onCambio: (p) => ws.classList.toggle('panel-plegado', p) });
+    onCambio: (p) => plegarPanel(p) });
   plegar.classList.add('ws-plegar');
   panel.append(h('div.ws-tabs', plegar, tabButtons), panelBody);
   function showTab(id) {
     if (!tabs[id] || (id === 'tutorial' && !hayTutorial)) id = 'ejercicio';
-    if (panel.classList.contains('plegada')) { plegar.pliega(false); ws.classList.remove('panel-plegado'); }
+    if (panel.classList.contains('plegada')) plegarPanel(false);
     setChildren(panelBody, tabs[id]);
     tabButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === id)));
     if (id !== 'tutorial') { tutorial.stop(); playBtn.replaceChildren(...conIcono('play', 'Reproducir')); }
@@ -181,6 +181,26 @@ export function openWorkspace(o) {
     h('details.ai-context#ai-context-ws', { hidden: true }),
   );
 
+  // --- Carta a pantalla completa (móvil): sin cabecera y con el panel recogido; «Enunciado» lo abre encima de la carta
+  // y lo vuelve a quitar. Las ayudas (chuleta, calculadora) pasan a «Más» mientras dura. Nada de lo dibujado se toca.
+  const cabecera = ws.querySelector('.ws-head');
+  const verPanel = h('button.small.secondary.ws-ver-panel', { type: 'button', title: 'Enunciado, tutorial y tu respuesta', 'aria-controls': panel.id, 'aria-expanded': 'true',
+    onclick: () => plegarPanel(!panel.classList.contains('plegada')) }, conIcono('portapapeles', 'Enunciado'));
+  chartApi.accionesCompleta.prepend(verPanel);
+  function plegarPanel(p) {
+    plegar.pliega(p);
+    ws.classList.toggle('panel-plegado', p);
+    verPanel.setAttribute('aria-expanded', String(!p));
+  }
+  function alCompleta(on) {
+    ws.classList.toggle('carta-completa', on);
+    plegarPanel(on);
+    if (ayudas?.barra) { if (on) chartApi.extrasCompleta.append(ayudas.barra); else cabecera.querySelector('.spacer').after(ayudas.barra); }
+  }
+  // Con el móvil tumbado, la mesa normal no deja sitio a la carta: pasa sola a pantalla completa (nunca sale sola).
+  const tumbado = typeof matchMedia === 'function' ? matchMedia('(orientation: landscape) and (max-height: 500px) and (min-width: 480px)') : null;
+  const alTumbar = () => { if (tumbado?.matches && ws.isConnected) chartApi.setCompleta(true); };
+
   const onKey = (ev) => {
     // Esc cierra antes lo que está encima (la explicación de una sigla, la chuleta) que la mesa.
     if (ev.key !== 'Escape' || ev.defaultPrevented || ev.target.closest?.('input, .chuleta-panel, .glosa-pop')) return;
@@ -189,6 +209,8 @@ export function openWorkspace(o) {
   /** Oculta la mesa (se conserva lo dibujado) y devuelve el formulario de respuesta a su sitio. */
   function close() {
     if (!ws.isConnected) return;
+    chartApi.setCompleta(false);
+    tumbado?.removeEventListener('change', alTumbar);
     tutorial.stop();
     for (const [n, ph] of placeholders) ph.replaceWith(n);
     placeholders = [];
@@ -208,6 +230,8 @@ export function openWorkspace(o) {
     document.body.classList.add('ws-open');
     document.addEventListener('keydown', onKey);
     showTab(tab);
+    tumbado?.addEventListener('change', alTumbar);
+    alTumbar();
     openWs = api;
     requestAnimationFrame(() => {
       if (firstShow) { chartApi.focusPoints(o.focus ?? []); firstShow = false; }

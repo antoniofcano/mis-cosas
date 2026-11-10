@@ -53,7 +53,7 @@ h('button', { 'aria-label': 'Pausa' }, icono('pausa'))  // botón con solo icono
 | Estudio | `clase` `libro` `documento` `portapapeles` `lista` `tabla` `tarjetas` `lamina` `red` (mapa de conceptos) `nudo` (reglas para recordar) `bombilla` `lapiz` `chincheta` (chuleta) `repaso` `mezclar` `pregunta` `toque` `calculadora` `cuentas` `profe` |
 | Estados | `ok` `no` `casi` `aviso` `racha` |
 | Sonido y reproducción | `escuchar` `silencio` `podcast` `play` `pausa` `parar` `inicio` `fin` `atras` `adelante` `retroceder` `avanzar` `deshacer` |
-| Mesa de cartas | `mapa` `brujula` `compas` `regla` `transportador` `lugar` `texto` `goma` `mover` `etiqueta` `mira` `papelera` `acercar` `alejar` `encuadrar` `arriba-abajo` `minimizar` `ventana` |
+| Mesa de cartas | `mapa` `brujula` `compas` `regla` `transportador` `lugar` `texto` `goma` `mover` `etiqueta` `mira` `papelera` `acercar` `alejar` `encuadrar` `arriba-abajo` `minimizar` `ventana` `pantalla-completa` `pantalla-reducir` (entrar y salir de la carta a pantalla completa) |
 | Náutica | `faro` `ancla` `bandera` `velero` `barco` `barco-marca` (estás aquí, en la carta de la derrota) `timon` `boya` `salvavidas` `chaleco` `ley` `nube` `viento` `ola` `luna` `campana` `satelite` |
 | Insignias (Travesía) | `ins-guardia` `ins-semana` `ins-rescate` `ins-bloque` `ins-simulacro` `ins-inedito` |
 

@@ -49,12 +49,6 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-31 | Estrategia de examen: cómo repartir el tiempo, por dónde empezar, los límites de fallos por tema y qué hacer con lo que no se sabe, por titulación y tribunal y con los datos del alumno | En curso | Rama `feat/examen-formulas-semana`; solo afirmaciones con fuente (reglas del examen de cada eje) o deducidas de los datos del alumno |
-| R-32 | Fórmulas y tablas en una hoja (mareas, loxodrómica, husos, Ct…) con un ejemplo resuelto de cada una, imprimible | En curso | Parte del chuletario existente; nunca visible en un examen |
-| R-33 | Modo «la semana antes»: repaso comprimido de lo que más cae y de las ideas flojas, día a día hasta el examen | En curso | Se activa con la fecha del examen a 7 días o a mano; se apoya en la fase «Comprobar» |
-| R-34 | Fichas de vídeo de las ideas difíciles del PY (`docs/VIDEOS-PY.md`): objetivo, error típico, guion gráfico y preguntas reales de ejemplo | En curso | Los vídeos en sí quedan fuera de alcance (proyecto aparte) |
-| R-35 | Modo guiado «paso a paso» en las preguntas con resolución: la app pide y corrige cada paso | En curso | El kit de resoluciones expone el valor de cada paso; nunca en un examen |
-| R-36 | Diagnóstico por tipo de error en las preguntas reales («es lo que sale si restas la Ct») y «Tus errores más repetidos» | En curso | Solo se afirma cuando un único error típico lleva a la opción marcada; con medida de cobertura |
 | R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
 | R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 
@@ -87,6 +81,10 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | R-28 | Pantalla «Novedades» en la app y número de versión legible, alimentados por `CHANGELOG.md` | Después | Hoy la versión es el identificador del service worker; el registro ya existe (H-22) |
 | R-29 | Revisar las 102 preguntas que siguen en la práctica de una clase de otro tema (54 de tema dudoso y 48 de clases que se quedarían cortas) y las 281 candidatas de la auditoría de temas | Después | `.trabajo-ux/AUDITORIA-temas.md` y `tools/bancos/practica-excepciones.json`; decidir si la clase del Anuario del PY pasa al tema de carta |
 | R-30 | Probar en iPhone real el bloc (teclado) y la carta a pantalla completa (bordes, gestos del sistema, giro con la app instalada) | Siguiente | Solo probado en un navegador que lo simula; decidir si el manifiesto deja de fijar la orientación vertical |
+| R-37 | Estrategia de examen: verificar lo pendiente (convocatoria de Baleares; tiempo por módulo del PY en Andalucía y Baleares; documento en Madrid) y calibrar los umbrales de «Tu estrategia» | Después | La página lo muestra como «pendiente de verificar» |
+| R-38 | Hoja de fórmulas: resolver las discrepancias anotadas entre curso, chuletario y motores (signo de la deriva, redondeo de la dm, huso en 7° 30′ exactos, ejemplo de `per-11-9`) y revisar los ejemplos nuevos | Después | Lista en `.trabajo-ux/ESTADO-formulas.md` |
+| R-39 | Sincronizar y copiar «Tus errores más repetidos» (hoy solo en el aparato) | Después | Pide un tipo de dato nuevo en el servidor: con la versión 2 |
+| R-40 | Vídeos del PY: contrastar los 8 hechos «por verificar» antes de dibujarlos y sustituir en el podcast las preguntas reservadas que leen sus minijuegos | Después | `docs/VIDEOS-PY.md` |
 
 ## Bloqueado por fuente
 
@@ -144,6 +142,12 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-24 | Bloc de notas en ejercicios y preguntas de cuentas; carta a pantalla completa en el móvil | Noviembre 2026 |
 | H-25 | «¿No es de este tema?»: corrección del tema por el alumno, auditoría de temas y práctica de cada clase con preguntas de su tema | Noviembre 2026 |
 | H-26 | Simulacro por módulos en el PY y arreglo de la pregunta equivalente del minijuego del podcast | Noviembre 2026 |
+| H-27 | Estrategia de examen por titulación y tribunal, con normas con fuente y «Tu estrategia» (R-31) | Noviembre 2026 |
+| H-28 | Fórmulas y tablas en una hoja, con ejemplos comprobados por test (R-32) | Noviembre 2026 |
+| H-29 | Modo «la semana antes» (R-33) | Noviembre 2026 |
+| H-30 | Fichas de vídeo de las ideas difíciles del PY, `docs/VIDEOS-PY.md` (R-34) | Noviembre 2026 |
+| H-31 | Resolver paso a paso y diagnóstico por tipo de error en las preguntas reales (R-35, R-36) | Noviembre 2026 |
+| H-32 | Simulacro por módulos del PY corregido con el criterio oficial por materias (RD 875/2014) | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

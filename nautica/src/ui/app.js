@@ -46,6 +46,7 @@ import { calculadoraView } from './views/calculadora.js';
 import { cartaPasosView } from './views/carta-pasos.js';
 import { cuentasView } from './views/cuentas.js';
 import { formulasView } from './views/formulas.js';
+import { chuletasView } from './views/chuleta.js';
 import { iniciarCalculadora } from './calculadora.js';
 import { iniciarRadio, enVistaEpisodio, radio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
@@ -80,6 +81,7 @@ const TIT_ROUTES = {
   podcast: podcastView, // #/<tit>/podcast[/<id>]: la radio de a bordo (podcasts)
   cuentas: (o) => (o.params.parts[1] ? leccionView(o) : cuentasView(o)), // #/<tit>/cuentas[/<id>]: apéndice de matemáticas
   formulas: formulasView, // #/<tit>/formulas[?t=<tema>]: fórmulas y tablas en una hoja (nunca en un examen)
+  chuletas: chuletasView, // #/<tit>/chuletas: todas las chuletas de la titulación en una hoja, por temas, para imprimir
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   estrategia: estrategiaView, // #/<tit>/estrategia: estrategia de examen (cómo hacerlo); nunca enlazada desde un examen en marcha
@@ -153,7 +155,7 @@ export function rutaEnTit(parts, id) {
   const b = parts[1];
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
   if (b === 'cuentas') return [id, 'cuentas'];
-  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'formulas'].includes(b)) return [id, b];
+  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'chuletas', 'formulas'].includes(b)) return [id, b];
   if (b === 'carta-pasos') return [id, ...parts.slice(1, 3)];
   return [id];
 }

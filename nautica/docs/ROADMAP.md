@@ -149,6 +149,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-31 | Resolver paso a paso y diagnóstico por tipo de error en las preguntas reales (R-35, R-36) | Noviembre 2026 |
 | H-32 | Simulacro por módulos del PY corregido con el criterio oficial por materias (RD 875/2014) | Noviembre 2026 |
 | H-33 | Discrepancias entre curso, chuleta, hoja de fórmulas y motores resueltas (deriva, Polar, redondeo de la declinación, ΔL, presión, tangente, huso límite) | Noviembre 2026 |
+| H-34 | Todas las chuletas en una hoja, por temas, imprimible (`#/<tit>/chuletas`) | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

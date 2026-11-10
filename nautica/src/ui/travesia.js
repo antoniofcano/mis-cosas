@@ -3,16 +3,18 @@
 // todo devuelve null y la app es la de siempre.
 
 import { estadoTravesia, examenesDe, semanaDe, fusionar, progresoRango } from '../course/travesia.js';
+import { TITULACIONES } from '../theory/blocks.js';
 
 /**
- * El estado de la travesía de un banco con los datos de hoy (sin guardar nada), o null sin conceptos.
+ * El estado de la travesía de un banco con los datos de hoy (sin guardar nada), o null sin conceptos. Los faros son los
+ * temas del temario de la titulación (su estructura da el nombre y el orden): los mismos que pinta el Temario.
  * @param {object} progress  el almacén (createProgressStore)
  * @param {string} eje  id del eje del banco (banco.eje.id)
  */
 export function calcularTravesia(progress, eje, tit, ic, { respuestas = progress.get().exams, ahora = Date.now() } = {}) {
   if (!ic) return null;
   const dias = progress.get().dias ?? {};
-  const est = estadoTravesia({ ic, respuestas, tests: examenesDe(progress.tests(), eje, tit), dias, ahora });
+  const est = estadoTravesia({ ic, estructura: TITULACIONES[tit]?.estructura ?? null, respuestas, tests: examenesDe(progress.tests(), eje, tit), dias, ahora });
   if (!est) return null;
   est.semana = semanaDe(dias, ahora);
   return est;

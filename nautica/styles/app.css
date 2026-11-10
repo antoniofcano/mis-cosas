@@ -1591,7 +1591,9 @@ details.mas-chuletas ul.mas-lista { margin: .3rem 0 .4rem; }
 .trav-fila-cab { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; }
 .trav-fila-cab h2 { margin: 0; }
 .trav-carta { display: grid; gap: .4rem; }
-/* La carta: mar con costas, patas de la derrota y un faro (botón) por bloque. Las coordenadas son las de una carta de 358 x 320. */
+/* La carta general: mar con costas, patas de la derrota y un faro (botón) por tramo (cinco en la PER; uno por tema en el PY). Las
+   coordenadas son las de una carta de 358 x 320; la carta densa (más de seis faros) y la de aproximación (el zoom a un faro, con
+   boyas) son más altas: su proporción la pone la pantalla (trazadoDerrota, trazadoAproximacion). */
 .carta-trav { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 358 / 320; background: var(--lc-papel); color: var(--lc-tinta); overflow: hidden; }
 .carta-capas { position: absolute; inset: 0; }
 .carta-capas svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -1705,6 +1707,11 @@ a.trav-ficha.grande { width: 100%; font-size: .95rem; }
   .parte-faro-disco.encendido { animation: faro-pulso 2.6s ease-out infinite; }
   .carta-trav button.faro.on.se-enciende, .parte-faro-disco.encendido.se-enciende { animation: faro-enciende var(--dur-larga) var(--ease-sale) both, faro-pulso 2.6s ease-out var(--dur-larga) infinite; }
   .tema-faro.on.se-enciende { animation: faro-enciende var(--dur-larga) var(--ease-sale) both; }
+  /* El zoom de la derrota: la carta de aproximación se acerca y la general se aleja, una vez (con «reducir movimiento», cambio directo). */
+  @keyframes carta-acerca { 0% { transform: scale(.86); opacity: .3; } 100% { transform: none; opacity: 1; } }
+  @keyframes carta-aleja { 0% { transform: scale(1.1); opacity: .3; } 100% { transform: none; opacity: 1; } }
+  .carta-trav.acerca { animation: carta-acerca var(--dur-larga) var(--ease-sale) both; }
+  .carta-trav.aleja { animation: carta-aleja var(--dur-larga) var(--ease-sale) both; }
   .se-enciende .lampara { animation: lampara-enciende var(--dur-larga) var(--ease-suave) both; }
   .trav-disco.sube { animation: rango-sube var(--dur-momento) var(--ease-sale) both; }
   .insignia-disco.entra, .insignia.entra .insignia-disco { animation: insignia-entra var(--dur-larga) var(--ease-sale) both; }
@@ -1804,6 +1811,33 @@ a.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
 .marca-aqui .ico { width: 34px; height: 34px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
 .marca-aqui svg path:first-child { fill: var(--lc-papel); }
 .carta-trav.compacta .marca-aqui .ico { width: 30px; height: 30px; }
+/* Carta densa (más de seis faros): cada faro tiene su hueco y su nombre va en una sola línea, sobre papel (la pata que sube a
+   la fila de arriba pasa por detrás del nombre). */
+.carta-trav.densa .faro-nombre { white-space: nowrap; background: var(--lc-papel); padding: 0 3px; }
+/* Carta de aproximación (el zoom a un faro): una boya por tema o por clase, enlace de 48 px, con las mismas tres luces que los
+   faros (apagada: filete gris; a medias: a trazos; encendida: doble filete magenta y un punto de luz). Cuadrada de esquinas
+   redondeadas para que no se confunda con un faro. Decorativa: no es ninguna marca del balizamiento. */
+.carta-trav :is(a, span).boya { position: relative; width: 48px; height: 48px; border-radius: 12px; border: 2px solid var(--lc-apagado); background: var(--lc-papel); color: var(--lc-apagado); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.carta-trav .boya .ico { width: 26px; height: 26px; }
+.carta-trav :is(a, span).boya.parcial { border: 2px dashed var(--lc-tinta); color: var(--lc-tinta); }
+.carta-trav :is(a, span).boya.on { border: 4px double var(--lc-magenta); color: var(--lc-tinta); }
+.carta-trav .boya.on::after { content: ""; position: absolute; top: -7px; right: -7px; width: 12px; height: 12px; border-radius: 999px; background: var(--lc-amarillo); border: 1.5px solid var(--lc-tinta); }
+.carta-trav a.boya:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.carta-trav .boya-cuenta { font-weight: 600; }
+.carta-trav.aprox { max-width: 420px; }
+.aprox-cab { align-items: center; flex-wrap: wrap; }
+.travesia-pantalla button.ver-derrota { min-height: 44px; padding: 0 .85rem; border: 1.5px solid var(--lc-tinta); border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); font-size: .85rem; font-weight: 600; white-space: nowrap; flex: none; }
+.travesia-pantalla button.ver-derrota:hover { border-color: var(--lc-magenta); }
+ol.aprox-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border: 1px solid var(--lc-tinta); background: var(--lc-papel); }
+ol.aprox-lista li + li { border-top: 1px solid var(--lc-apagado); }
+ol.aprox-lista li > :is(a, span) { display: flex; justify-content: space-between; align-items: center; gap: .75rem; min-height: 44px; padding: .35rem .7rem; color: var(--lc-tinta); text-decoration: none; }
+ol.aprox-lista .aprox-nombre { font-weight: 600; font-size: .85rem; }
+ol.aprox-lista .aprox-cuenta { font-size: .8rem; color: var(--lc-apagado); text-align: right; flex: none; max-width: 55%; }
+ol.aprox-lista a:hover .aprox-nombre { text-decoration: underline; }
+/* «Estás aquí» sobre la bandera del examen: al lado del disco (encima se saldría de la carta). */
+.bandera-pos .marca-aqui { left: -6px; top: 5px; transform: none; }
+.carta-trav.compacta .bandera-pos .marca-aqui { left: 3px; top: 2px; }
+.carta-trav.densa .bandera-pos .marca-aqui { left: 50%; top: 0; transform: translate(-50%, -88%); }
 /* La fase, pequeña sobre la tarjeta; su explicación, plegada. */
 .entrada-principal { display: grid; gap: .35rem; min-width: 0; }
 details.entrada-fase { margin: 0; padding: 0; border: 0; background: none; }

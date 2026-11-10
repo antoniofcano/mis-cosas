@@ -40,7 +40,7 @@ un id al azar de 10 símbolos; el contador nunca se repite en un aparato; el aza
 | `a` | `logActividad` | `d` día, `m` minutos | Cada aparato suma lo suyo; el pliegue suma los de todos y guarda 60 días. |
 | `v` | `saveLeccion`, `recordNivel`, `setPlanEstudio`, `recordFichaVista`, `recordRepasoConcepto`, `setSetting` (compartidos) | `c` colección, `p` ruta, `v` valor | Gana el más reciente (instante y, si empatan, id). Excepción: `reserva_*` (la reserva del examen final) gana el **primero**, porque se fija una vez y no debe cambiar. Fichas vistas: gana la vista más reciente (lo mismo que hacía el almacén al volver a abrirla). |
 | `v` (clave `corr.<pregunta>` de `settings`) | `corregirTema`, `quitarCorreccion` | `c: 'settings'`, `p: ['corr.<id de la pregunta>']`, `v: { ut, clase?, de?, t }` (sin `v` = deshacer) | Gana la más reciente por pregunta; se pliega en `correcciones[<id>]`, no en los ajustes. Ver «Correcciones de tema». |
-| `g` | `guardarTravesia`, `ganarInsignia` | `b` banco, `r` rango, `s` insignias | Rango: el máximo alcanzado (nunca baja). Insignias: unión, con la fecha más antigua de cada una. |
+| `g` | `guardarTravesia`, `ganarInsignia` | `b` banco, `r` rango, `s` insignias | Rango: el máximo alcanzado (nunca baja). Insignias: unión, con la fecha más antigua de cada una (las `bloque:*` de los faros antiguos se conservan junto a las `tema:*`: docs/TRAVESIA.md). |
 | `x` | `recordTest` | `e` el test | Unión por id; los últimos 50. |
 | `b` | migración e `import` | `g` grupo, `c` trozo, `h` instante de los datos, `p` trozo del progreso | Ver «Bases». |
 

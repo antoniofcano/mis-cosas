@@ -229,6 +229,9 @@ export function conceptosPorTema(estructura, ic, respuestas = {}) {
   const porUt = new Map(estructura.bloques.map((b) => [b.ut, { ut: b.ut, titulo: b.titulo, maxErrores: b.maxErrores ?? null, total: 0, sabidas: 0, flojas: [], sinVer: [] }]));
   for (const c of ic.conceptosConPreguntas()) {
     if (c.tipo !== 'concepto') continue;
+    // Solo las ideas con alguna pregunta del estudio, como el Temario y la Travesía (ideasDelBanco): una idea cuyas únicas
+    // preguntas están reservadas para el examen final no se estudia ni cuenta en ningún total por tema.
+    if (!ic.preguntasDe(c.id, { soloEstudio: true, conDescendientes: false }).length) continue;
     const ut = temaDeIdea(ic, c.id);
     if (ut == null) continue;
     const t = porUt.get(ut);

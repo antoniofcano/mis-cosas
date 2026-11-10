@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { cartaDerrotaSvg, ladoNombre, escalaY, ANCHO, ALTO, ALTO_COMPACTA_SVG, ALTO_COMPACTA } from '../src/illustrations/derrota-c.js';
-import { posicionesDerrota, BANDERA, PUNTOS_DERROTA } from '../src/course/travesia.js';
+import { posicionesDerrota, trazadoDerrota, trazadoAproximacion, BANDERA, PUNTOS_DERROTA } from '../src/course/travesia.js';
 
 const leer = (f) => readFileSync(new URL(`../${f}`, import.meta.url), 'utf8');
 const LAM = leer('styles/laminas.css');
@@ -79,6 +79,57 @@ test('carta: vale para la PER, el PY y bancos con otro número de faros', () => 
     const fs = faros(Array.from({ length: n }, (_, i) => ['on', 'parcial', 'off'][i % 3]));
     for (const compacta of [false, true]) assert.equal((svgDe(fs, { compacta }).match(/class="pata /g) ?? []).length, n);
   }
+});
+
+test('carta densa (la PER, un faro por tema: once): más alta, mismas reglas de dibujo, rosa y cartela sobre la costa del sur', () => {
+  const once = faros(['on', 'on', 'parcial', 'parcial', 'off', 'on', 'parcial', 'off', 'off', 'off', 'off']);
+  for (const compacta of [false, true]) {
+    const t = trazadoDerrota(once.length, { compacta });
+    const s = cartaDerrotaSvg(once, t.pos, t.bandera, { compacta, alto: t.alto, rotulo: { titulo: 'DERROTA', sub: 'PER · 11 faros' } });
+    assert.ok(s.startsWith(`<svg class="carta-svg lc" viewBox="0 0 358 ${t.alto}" aria-hidden="true" focusable="false">`));
+    assert.ok(!/#[0-9a-f]{3,8}\b(?!-)|rgba?\(|hsl/i.test(s.replace(/url\(#[^)]+\)/g, '')), 'sin colores fijos');
+    for (const m of s.matchAll(/(?:fill|stroke)="([^"]+)"/g)) assert.match(m[1], /^(var\(--lc-[a-z0-9-]+\)|none|url\(#lc[a-z0-9]+-pt\))$/, m[1]);
+    assert.equal((s.match(/class="pata /g) ?? []).length, 11, 'una pata por faro');
+    // Las patas unen los huecos tal cual (sin escalar): la primera sale del primer faro y la última llega a la bandera.
+    const patas = [...s.matchAll(/class="pata [a-z]+" x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)" y2="([\d.]+)"/g)].map((m) => m.slice(1).map(Number));
+    assert.deepEqual(patas[0].slice(0, 2), t.pos[0]);
+    assert.deepEqual(patas[10].slice(2), t.bandera);
+    assert.equal(ladoNombre(t.pos, 3, t.bandera, { densa: true }), '', 'cada nombre, debajo de su faro');
+    if (compacta) assert.doesNotMatch(s, /<text/, 'la compacta no lleva texto en el SVG');
+    else {
+      const tam = [...s.matchAll(/<text[^>]*font-size="([\d.]+)"/g)].map((m) => Number(m[1]));
+      assert.ok(tam.length >= 3 && tam.every((x) => x * 324 / ANCHO >= 10.5), 'texto mínimo de la rosa y la cartela');
+      assert.match(s, />DERROTA<\/text>/);
+    }
+  }
+  const APP_CSS = leer('styles/app.css');
+  assert.match(APP_CSS, /\.carta-trav\.densa \.faro-nombre \{ white-space: nowrap; background: var\(--lc-papel\);/);
+});
+
+test('carta de aproximación (el zoom a un faro): el mismo dibujo C sin bandera, boyas de 48 px y zoom solo sin «reducir movimiento»', () => {
+  const tres = faros(['on', 'parcial', 'off']);
+  const t = trazadoAproximacion(3);
+  const s = cartaDerrotaSvg(tres, t.pos, null, { alto: t.alto, rotulo: { titulo: 'APROXIMACIÓN', sub: 'Nomenclatura · 3 temas', cx: 268 } });
+  assert.ok(s.startsWith(`<svg class="carta-svg lc" viewBox="0 0 358 ${t.alto}" aria-hidden="true" focusable="false">`));
+  for (const m of s.matchAll(/(?:fill|stroke)="([^"]+)"/g)) assert.match(m[1], /^(var\(--lc-[a-z0-9-]+\)|none|url\(#lc[a-z0-9]+-pt\))$/, m[1]);
+  assert.equal((s.match(/class="pata /g) ?? []).length, 2, 'una pata entre cada dos boyas; la última no sigue (no hay bandera)');
+  assert.match(s, />APROXIMACIÓN<\/text>/);
+  const tam = [...s.matchAll(/<text[^>]*font-size="([\d.]+)"/g)].map((m) => Number(m[1]));
+  assert.ok(tam.every((x) => x * 324 / ANCHO >= 10.5), 'texto mínimo');
+  assert.equal((cartaDerrotaSvg(faros(['off']), trazadoAproximacion(1).pos, null, { alto: trazadoAproximacion(1).alto }).match(/class="pata /g) ?? []).length, 0);
+  const css = leer('styles/app.css');
+  assert.match(css, /\.carta-trav :is\(a, span\)\.boya \{ position: relative; width: 48px; height: 48px; border-radius: 12px;/, 'boya: enlace de 48 px, cuadrada (no se confunde con un faro)');
+  assert.match(css, /\.boya\.parcial \{ border: 2px dashed var\(--lc-tinta\)/);
+  assert.match(css, /\.boya\.on \{ border: 4px double var\(--lc-magenta\)/);
+  assert.match(css, /\.carta-trav a\.boya:focus-visible \{ outline: 3px solid/);
+  assert.match(css, /button\.ver-derrota \{ min-height: 44px;/);
+  // El zoom solo se anima dentro del bloque «sin reducir movimiento»; fuera no hay ninguna animación de la carta.
+  const i = css.indexOf('@keyframes carta-acerca');
+  const bloque = css.lastIndexOf('@media (prefers-reduced-motion: no-preference) {', i);
+  assert.ok(i > 0 && bloque > 0 && !css.slice(bloque, i).includes('\n}\n'), 'las animaciones del zoom, dentro de prefers-reduced-motion: no-preference');
+  assert.match(leer('src/ui/views/travesia.js'), /claseAnimada\('acerca'\)/);
+  // El marcador sobre la bandera va al lado del disco (encima se salía de la carta).
+  assert.match(css, /\.bandera-pos \.marca-aqui \{ left: -6px; top: 5px; transform: none; \}/);
 });
 
 test('nombres de los faros: al lado cuando otro faro queda justo debajo (Carta sobre Balizamiento en la PER)', () => {

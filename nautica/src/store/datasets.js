@@ -30,6 +30,9 @@ export const loadMnemonics = cargarMnemotecnias;
 /** Chuleta de la práctica: fórmulas, signos y conversiones por tema y por tipo de ejercicio. */
 export const loadChuletario = () => loadJSON('data/comun/chuletario.json');
 
+/** Estrategia de examen: textos (normas con su fuente y consejos) por titulación y tribunal. */
+export const loadEstrategia = () => loadJSON('data/comun/estrategia.json');
+
 /** Siglas y abreviaturas con su significado (se explican al tocarlas). */
 export const loadAbreviaturas = () => loadJSON('data/comun/abreviaturas.json');
 
@@ -37,6 +40,9 @@ export const loadAbreviaturas = () => loadJSON('data/comun/abreviaturas.json');
 export const loadPodcast = (tit) => loadJSON(`data/podcast-${tit}.json`);
 /** Línea de tiempo de un episodio: cuándo empieza cada intervención y las pausas del minijuego. */
 export const loadPodcastLinea = (id) => loadJSON(`data/podcast/${id}.json`);
+
+/** «Fórmulas y tablas en una hoja» (#/<tit>/formulas): por bloques, cada fórmula con su ejemplo resuelto. */
+export const loadFormulas = () => loadJSON('data/comun/formulas.json');
 
 /** Apéndice «Las cuentas del patrón» (clases de matemáticas; fuera del temario del examen). */
 export const loadApendice = () => loadJSON('data/curso/apendice-matematicas.json');

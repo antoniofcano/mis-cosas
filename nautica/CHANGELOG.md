@@ -17,6 +17,35 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 10 de noviembre de 2026, segunda publicación · versión `98fdf4ab1de6`
+
+### Novedades
+
+- **Estrategia de examen:** cómo repartir el tiempo, los temas con límite de fallos, el orden para contestar y qué llevar,
+  según tu titulación y tu tribunal, con las normas separadas de los consejos y su fuente. Con tus simulacros, además,
+  dónde estás más cerca de suspender y cómo vas de tiempo. Imprimible; nunca se ve durante un examen.
+- **La semana antes:** cuando faltan siete días o menos para tu examen (o activándolo a mano), un plan día a día con tus
+  ideas más flojas de lo que más cae, un simulacro a mitad de semana y el último día sin nada nuevo.
+- **Fórmulas y tablas en una hoja:** todas las del examen por bloques (corrección total, rumbos y demoras, viento y
+  corriente, mareas, estima analítica, la hora, estabilidad, y las tablas que se memorizan), cada una con qué es cada
+  letra, cuándo se usa, su trampa y un ejemplo resuelto con las teclas de la calculadora. Con buscador e imprimible, con
+  o sin ejemplos. No se abre durante un examen.
+- **Resolver paso a paso:** en las preguntas de carta y de cuentas que la app sabe resolver, un modo que te pide cada paso
+  (la corrección total, el rumbo verdadero, la situación…), lo corrige en el momento y al final te dice en cuáles has
+  fallado. «Dímelo» no cuenta como fallo.
+- **Por qué has fallado:** si la opción que marcas es la que sale de un error típico (por ejemplo, aplicar la corrección
+  total con el signo cambiado), la app te lo dice. Solo cuando hay un único error que lo explica: ocurre en una de cada
+  cinco opciones erróneas. «Mi progreso» muestra tus errores más repetidos (se guardan solo en ese aparato).
+
+### Correcciones
+
+- El curso, la chuleta y la hoja de fórmulas dicen ahora lo mismo en siete puntos donde no coincidían: el signo de la
+  deriva, la Ct por la Polar, cuándo redondear la declinación (lo que diga el enunciado), ΔL, la presión normal, el
+  ejemplo de la tangente del PER y el huso justo en el límite. La chuleta de mareas del PY incluye la corrección por presión.
+- Simulacro por módulos del Patrón de Yate: se corrige como el aprobado por módulos oficial (RD 875/2014): no pasar de 5
+  fallos en Seguridad ni de 5 en Meteorología en el genérico, y de 5 en Teoría ni de 3 en Carta en el de navegación. Antes
+  pedía 14 aciertos de 20, que no es el criterio del examen.
+
 ## 10 de noviembre de 2026 · versión `2709ca4f3f65`
 
 ### Novedades

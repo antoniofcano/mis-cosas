@@ -2155,3 +2155,188 @@ button.bloc-pegar { white-space: nowrap; max-width: 15rem; overflow: hidden; tex
 @media (max-width: 480px) { .ws-tabs:has([data-tab="bloc"]) .ws-tabbtn .ico { display: none; } }
 .ws-bloc { padding-top: .5rem; }
 .ws-bloc .bloc-boton { margin-left: auto; }
+
+/* ---- La semana antes del examen (src/ui/views/semana.js, src/ui/semana.js; tarjeta en Hoy) ----
+   Estilo C como Hoy y la Travesía: la pantalla reasigna los colores de la app a los --lc-* (claro y oscuro), cartelas de
+   papel con doble filete, rótulos en versalitas magenta, títulos en serifa y minutos en monoespaciada. Sin animaciones. */
+.semana-pantalla {
+  --surface: var(--lc-fondo); --bg: var(--lc-papel); --text: var(--lc-tinta); --muted: var(--lc-apagado); --border: var(--lc-linea-agua);
+  --accent: var(--lc-azul-texto); --accent-2: var(--lc-agua-2); --ok: var(--lc-verde-texto); --warn: var(--lc-rojo-texto);
+  --sesion-boton: var(--lc-tinta); --sesion-boton-fg: var(--lc-papel); --sesion-fg: var(--lc-tinta); --on-accent: var(--lc-papel);
+  display: flex; flex-direction: column; gap: 1rem; min-width: 0;
+}
+.semana-cuerpo { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.semana-cab h1 { margin: .1rem 0 .2rem; font-family: var(--fuente-titulos); color: var(--lc-tinta); }
+.semana-eti { margin: 0; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.semana-fecha { margin: 0; color: var(--lc-tinta); }
+.semana-pantalla :is(.semana-hoy, .semana-intro, .semana-fue),
+.entrada .semana-fue {
+  background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; padding: .9rem 1rem 1rem;
+  box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); display: flex; flex-direction: column; gap: .6rem; min-width: 0;
+}
+.semana-pantalla .semana-hoy h2, .semana-fue h2 { margin: 0; font-family: var(--fuente-titulos); font-size: 1.35rem; line-height: 1.2; color: var(--lc-tinta); }
+.semana-pantalla .semana-hoy p, .semana-intro p, .semana-fue p { margin: 0; overflow-wrap: anywhere; }
+.semana-pantalla .boton-sesion { border-radius: 0; box-shadow: 0 0 0 2px var(--lc-fondo), 0 0 0 3px var(--lc-tinta); }
+.semana-pantalla .boton-sesion:focus-visible, .semana-pantalla :is(a, button, select, summary):focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.semana-pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
+.semana-pasos li { display: flex; align-items: center; gap: .6rem; padding: .45rem .6rem; border: 1px solid var(--lc-linea-agua); background: var(--lc-papel); min-width: 0; }
+.semana-paso-tx { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.semana-min { font-family: var(--lc-mono); font-variant-numeric: tabular-nums; color: var(--lc-tinta); white-space: nowrap; }
+.semana-hecho { display: flex; align-items: center; gap: .4rem; color: var(--lc-verde-texto); font-weight: 600; }
+.semana-pantalla h2.eti { margin: 0 0 .5rem; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.semana-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.semana-dia { display: flex; flex-direction: column; gap: .15rem; padding: .6rem .75rem; background: var(--lc-papel); border: 1px solid var(--lc-tinta); border-left-width: 4px; min-width: 0; }
+.semana-dia.tipo-simulacro { border-left-color: var(--lc-magenta); }
+.semana-dia.tipo-vispera, .semana-dia.tipo-examen { border-style: dashed; border-left-style: solid; }
+.semana-dia-cab { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.semana-dia-nombre { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lc-apagado); }
+.semana-dia-cab .semana-min { margin-left: auto; }
+.semana-dia-hecho { display: inline-flex; align-items: center; gap: .25rem; color: var(--lc-verde-texto); font-weight: 600; font-size: .85rem; }
+.semana-dia-titulo { font-family: var(--fuente-titulos); color: var(--lc-tinta); }
+.semana-ideas { margin: 0; padding-left: 1.4rem; display: flex; flex-direction: column; gap: .2rem; }
+a.semana-idea { display: flex; flex-direction: column; min-height: 44px; justify-content: center; color: var(--lc-tinta); text-decoration: none; padding: .25rem 0; }
+a.semana-idea .semana-idea-nombre { text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; font-weight: 600; }
+.semana-accesos .mas-lista { margin-top: 0; }
+.semana-salir-fila { margin: 0; }
+button.linklike.semana-salir, .semana-volver button.linklike, .semana-enlaces button.linklike, .semana-fue button.linklike { min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+.semana-enlaces { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1.25rem; }
+a.semana-ver { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; color: var(--lc-tinta); font-weight: 600; text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; }
+a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
+.semana-activar { display: flex; flex-direction: column; gap: .4rem; }
+.semana-activar label { font-weight: 600; }
+.semana-activar-fila { display: flex; flex-wrap: wrap; gap: .5rem; }
+.semana-activar select { min-height: 44px; flex: 1 1 10rem; min-width: 0; border-radius: 0; border: 1.5px solid var(--lc-tinta); background: var(--lc-papel); color: var(--lc-tinta); font: inherit; padding: 0 .5rem; }
+.semana-activar button { min-height: 44px; border-radius: 0; background: var(--lc-tinta); color: var(--lc-papel); border: 1.5px solid var(--lc-tinta); }
+.semana-fue-botones { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.semana-fue-botones button.secondary { min-height: 44px; border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.semana-volver { margin: 0; }
+.chuleta-sesion { margin: 1rem 0; display: flex; flex-direction: column; gap: .5rem; }
+.chuleta-sesion .botones { display: flex; flex-direction: column; gap: .5rem; }
+@media (min-width: 760px) {
+  .semana-cuerpo { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+  .semana-cuerpo > :is(.semana-cab, .semana-hoy, .semana-intro, .semana-fue, .semana-salir-fila) { grid-column: 1 / -1; }
+}
+/* ---- fin La semana antes del examen ---- */
+
+/* ---- Estrategia de examen (#/<tit>/estrategia, src/ui/views/estrategia.js) ----
+   Hoja en estilo C como las chuletas (.mc-* de styles/laminas.css): aquí solo lo propio. Cada línea dice si es «Norma»
+   (con su fuente) o «Consejo». Tablas sin desplazamiento lateral a 360 px. Sin animaciones. Al imprimir, A4 en blanco y
+   negro con el mismo patrón de las chuletas; «Incluir mis datos» quita la sección personal. */
+.enlace-estrategia { margin: .4rem 0 0; }
+.enlace-estrategia a { display: inline-flex; align-items: center; gap: .3em; min-height: 44px; }
+.estrategia .est-seccion { padding: .9rem 0 .8rem; }
+.estrategia .mc-clase-tit .ico { color: var(--lc-magenta); }
+.est-sub { margin: 0 0 .5rem; font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); }
+.est-datos { margin: .3rem 0 .7rem; }
+.est-lista { list-style: none; margin: .3rem 0; padding: 0; display: grid; gap: .45rem; }
+.est-item { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .5rem; line-height: 1.45; }
+.est-eti { flex: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 0 .35rem; border: 1px solid currentColor; }
+.est-item[data-tipo="norma"] .est-eti { color: var(--lc-azul-texto); }
+.est-item[data-tipo="consejo"] .est-eti { color: var(--lc-magenta); border-style: dashed; }
+.est-texto { flex: 1 1 16rem; min-width: 0; }
+.est-rotulo { margin: .5rem 0 .2rem; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.est-rotulo[data-tipo="norma"] { color: var(--lc-azul-texto); }
+.est-rotulo[data-tipo="consejo"] { color: var(--lc-magenta); }
+.est-lista:has(> .est-item:not(:has(.est-eti))) { padding-left: 1.1rem; list-style: disc; }
+.est-lista:has(> .est-item:not(:has(.est-eti))) > .est-item { display: list-item; }
+.est-lista:has(> .est-item:not(:has(.est-eti))) .est-fuente { display: block; }
+.est-tabla abbr { text-decoration: none; }
+.est-tabla td + td { padding-left: .8rem; }
+.est-limites tbody th { white-space: nowrap; }
+.est-fuente { flex-basis: 100%; font-family: var(--lc-serif); font-style: italic; font-size: .9rem; color: var(--lc-apagado); overflow-wrap: anywhere; }
+.est-tabla { width: 100%; max-width: 36rem; border-collapse: collapse; margin: .4rem 0 .6rem; font-variant-numeric: tabular-nums; }
+.est-tabla caption { text-align: left; font-family: var(--lc-serif); font-weight: 700; padding-bottom: .25rem; }
+.est-tabla th, .est-tabla td { padding: .35rem .3rem; border-bottom: 1px solid var(--lc-linea-agua); text-align: right; vertical-align: top; }
+.est-tabla th:first-child { text-align: left; font-weight: 600; overflow-wrap: anywhere; }
+.est-tabla thead th { font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; color: var(--lc-apagado); border-bottom: 1.5px solid var(--lc-tinta); }
+.est-tabla td { font-family: var(--lc-mono); white-space: nowrap; }
+.est-tabla .est-fila-repaso th, .est-tabla .est-fila-margen th { font-weight: 400; font-style: italic; }
+.est-hitos { margin: 0 0 .5rem; padding-left: 1.1rem; }
+.est-colchon { padding: .45rem .6rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); }
+.est-pendiente, .est-aviso { display: flex; gap: .4rem; align-items: baseline; padding: .4rem .6rem; border: 1px dashed var(--lc-magenta); border-left: 4px solid var(--lc-magenta); }
+.est-tuya .est-seccion { margin: .4rem 0; padding: .8rem .8rem .7rem; background: var(--lc-papel); border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 3px var(--lc-papel), inset 0 0 0 3.7px var(--lc-tinta); }
+.est-consejos { margin: .3rem 0 .6rem; padding-left: 1.3rem; display: grid; gap: .45rem; line-height: 1.45; }
+.est-consejos a { white-space: nowrap; }
+.estrategia.sin-tuya .est-tuya { display: none; }
+.est-nota { font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); }
+.est-fuentes { padding: .8rem 0 0; }
+.est-fuentes ul { padding-left: 1.1rem; overflow-wrap: anywhere; }
+@media (max-width: 400px) {
+  .est-tabla th, .est-tabla td { padding: .3rem .15rem; font-size: .9rem; }
+  .est-tabla thead th { font-size: .72rem; letter-spacing: 0; }
+}
+@media print {
+  .estrategia .mc-clases { column-count: 1; }
+  .estrategia .est-seccion, .est-tabla, .est-colchon { break-inside: avoid; page-break-inside: avoid; }
+  .est-tuya .est-seccion { box-shadow: none; border: .8pt solid black; }
+  .est-eti, .est-rotulo { border-color: black; color: black !important; font-size: 7pt; }
+  .estrategia .est-fuente, .estrategia .est-sub, .estrategia .est-nota { font-size: 7.5pt; }
+  .est-tabla { max-width: 120mm; margin: 1mm 0 2mm; }
+  .est-tabla th, .est-tabla td { font-size: 8.5pt; padding: .6mm 1.2mm; }
+  .est-tabla thead th { font-size: 7pt; }
+  .estrategia .est-seccion { padding: 2mm 0 1.5mm; }
+  .estrategia .lc-cifra { font-size: 13pt; }
+  .estrategia .lc-dato-txt { font-size: 7.5pt; }
+  .est-fuente a, .est-fuentes a { color: black; text-decoration: none; }
+  .est-fuentes a::after { content: " (" attr(href) ")"; font-size: 7pt; }
+}
+
+/* ---- Modo guiado «Paso a paso» y diagnóstico por tipo de error (src/ui/guiado.js, src/ui/diagnostico.js) ---- */
+.guiado-box { margin: 1rem 0; display: grid; gap: 1rem; }
+.guiado-box.en-profe { margin: .6rem 0; }
+.guiado { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .8rem .9rem; min-width: 0; }
+.guiado-cab { display: flex; align-items: center; gap: .5rem; justify-content: space-between; }
+.guiado-cab h2 { margin: 0; font-size: 1.15rem; }
+.guiado-progreso { margin: .3rem 0 .6rem; }
+.guiado-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.guiado-paso { border-left: 4px solid var(--border); padding: .35rem 0 .35rem .7rem; min-width: 0; overflow-wrap: anywhere; }
+.guiado-paso.actual { border-left-color: var(--accent); background: var(--accent-2); border-radius: 0 var(--radius) var(--radius) 0; padding-right: .6rem; }
+.guiado-paso.r-ok { border-left-color: var(--ok); }
+.guiado-paso.r-casi { border-left-color: var(--close); }
+.guiado-paso.r-mal { border-left-color: var(--warn); }
+.guiado-paso.r-dimelo { border-left-color: var(--c-construction); }
+.guiado-tit { margin: 0 0 .2rem; font-size: 1rem; }
+.guiado-tit:focus { outline: none; }
+.guiado-tit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.guiado-paso.r-ok .guiado-tit .ico { color: var(--ok); }
+.guiado-paso.r-mal .guiado-tit .ico { color: var(--warn); }
+.guiado-paso.r-casi .guiado-tit .ico { color: var(--close); }
+.guiado-paso.nota .guiado-tit { font-weight: 600; color: var(--muted); }
+.guiado-era { margin: .15rem 0 .3rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.guiado-pregunta { margin: .2rem 0 .5rem; font-weight: 600; }
+.guiado-form .actions button, .boton-guiado { min-height: 44px; }
+.guiado-form input { font-variant-numeric: tabular-nums; }
+.guiado-aviso:empty { display: none; }
+.guiado-aviso { margin: .3rem 0; font-size: .92rem; }
+.guiado-profe { font-size: .93rem; }
+.guiado-final:not(:empty) { margin-top: .9rem; border-top: 1px solid var(--border); padding-top: .7rem; }
+.guiado-final .guiado-tit { font-size: 1.05rem; }
+.guiado-resumen { margin-top: .8rem; }
+.guiado-resumen h3 { margin: 0 0 .3rem; font-size: 1rem; }
+.guiado-resumen-lista { list-style: none; padding: 0; margin: .3rem 0; display: grid; gap: .2rem; }
+.guiado-resumen-lista .r-ok .ico { color: var(--ok); }
+.guiado-resumen-lista .r-mal .ico { color: var(--warn); }
+.guiado-resumen-lista .r-casi .ico { color: var(--close); }
+.guiado-carta { min-width: 0; }
+@media (min-width: 900px) {
+  .guiado-box:has(.guiado-carta) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
+  .guiado-box .guiado-carta { position: sticky; top: .5rem; }
+}
+.ws-guiado .guiado { border: 0; padding: .4rem 0; background: none; }
+/* Con cuatro pestañas en la mesa (Ejercicio, Bloc, Paso a paso, Tutorial) no caben los iconos en un móvil. */
+@media (max-width: 600px) {
+  .ws-tabs:has([data-tab="guiado"]) .ws-tabbtn .ico { display: none; }
+  .ws-tabs:has([data-tab="guiado"]) .ws-tabbtn { font-size: .86rem; }
+}
+
+.diagnostico-error { border-left: 4px solid var(--close); background: color-mix(in srgb, var(--close) 9%, var(--surface)); border-radius: 0 var(--radius) var(--radius) 0; padding: .4rem .7rem; margin: .5rem 0; }
+.diagnostico-error p { margin: .25rem 0; }
+.diagnostico-error .ico { color: var(--close); }
+.profe .diagnostico-error { background: color-mix(in srgb, var(--close) 12%, transparent); }
+
+.errores-repetidos .errores-lista { list-style: none; padding: 0; margin: .4rem 0; display: grid; gap: .45rem; }
+.errores-repetidos .errores-lista li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .1rem .6rem; padding: .45rem .6rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.errores-repetidos .error-nombre { font-weight: 600; }
+.errores-repetidos .error-n { font-variant-numeric: tabular-nums; color: var(--muted); }
+.errores-repetidos .error-si { grid-column: 1 / -1; }
+.errores-repetidos .ico { color: var(--accent); }

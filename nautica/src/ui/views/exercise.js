@@ -23,6 +23,7 @@ import { TIPO_DE_EJERCICIO, TITULO_TIPO } from '../../course/carta-pasos.js';
 import { hrefPasos } from './carta-pasos.js';
 import { botonBloc } from '../bloc.js';
 import { ID_BLOC } from '../../bloc/notas.js';
+import { erroresAlumno } from '../../store/errores.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: ['ok', 'Correcto'],
@@ -161,6 +162,8 @@ export function exerciseView({ ctx, progress, params: route }) {
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {
       progress.recordAttempt(exercise.id, { ok: r.allOk, seed, mistakes: r.diagnoses.map((d) => d.id) });
+      // Los errores típicos de la taxonomía común, también en «Tus errores más repetidos» (src/store/errores.js).
+      for (const d of r.diagnoses) erroresAlumno().error(`ej:${exercise.id}:${seed}`, d.id);
       if (r.allOk) progress.logActividad(crono.minutos());
       state.recorded = true;
     }

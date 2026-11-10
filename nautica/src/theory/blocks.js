@@ -61,7 +61,8 @@ export const PY = {
   duracionMin: 120,
   minAciertos: 28,
   modulos: [
-    { id: 'generico', titulo: 'Módulo genérico', duracionMin: 45, uts: [1, 2] },
+    // maxErrores: límites «solo en caso de corrección por módulos» (RD 875/2014, anexo II, cuadro del patrón de yate).
+    { id: 'generico', titulo: 'Módulo genérico', duracionMin: 45, uts: [1, 2], maxErrores: { 1: 5, 2: 5 } },
     { id: 'navegacion', titulo: 'Módulo de navegación', duracionMin: 75, uts: [3, 4] },
   ],
   bloques: [
@@ -76,18 +77,19 @@ export const PY = {
 };
 
 /**
- * Estructura de un solo módulo del examen (p. ej. el genérico del PY), para practicarlo por separado: sus temas, su
- * tiempo y, como el examen oficial no tiene nota de módulo, los aciertos en la misma proporción que el examen completo
- * (PY: 28 de 40 → 14 de 20) más los límites de fallos de sus temas. Orientativo; null si la titulación no tiene ese módulo.
+ * Estructura de un solo módulo del examen (p. ej. el genérico del PY), para practicarlo por separado: sus temas y su
+ * tiempo. El aprobado por módulos es oficial y se decide por materias (RD 875/2014, anexo II): hay que superar el
+ * criterio de las dos materias del módulo, es decir, no pasar de sus errores máximos (genérico: 5 en Seguridad y 5 en
+ * Meteorología; navegación: 5 en Teoría y 3 en Carta). No hay nota global de módulo: `minAciertos` es la suma de los
+ * mínimos de sus materias, que se cumple siempre que se cumplan los límites. null si la titulación no tiene ese módulo.
  */
 export function estructuraModulo(estructura, id) {
   const m = estructura.modulos?.find((x) => x.id === id);
   if (!m) return null;
-  const bloques = estructura.bloques.filter((b) => m.uts.includes(b.ut));
-  const n = bloques.reduce((s, b) => s + b.n, 0);
+  const bloques = estructura.bloques.filter((b) => m.uts.includes(b.ut)).map((b) => ({ ...b, maxErrores: m.maxErrores?.[b.ut] ?? b.maxErrores }));
   return {
     ...estructura, modulos: undefined, modulo: m.id, titulo: m.titulo, duracionMin: m.duracionMin, bloques,
-    minAciertos: Math.ceil((estructura.minAciertos * n) / totalPreguntas(estructura)),
+    minAciertos: bloques.reduce((s, b) => s + (b.n - (b.maxErrores ?? b.n)), 0),
     ordenEstudio: (estructura.ordenEstudio ?? []).filter((ut) => m.uts.includes(ut)),
   };
 }

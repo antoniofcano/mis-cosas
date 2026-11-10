@@ -24,6 +24,7 @@ import { conceptosPorTema } from '../../course/listo.js';
 import { clasesDeCurso, filaIdea } from '../concepto.js';
 import { cargarMapas } from './mapas.js';
 import { icono, conIcono } from '../iconos.js';
+import { seccionErrores, erroresTexto } from '../diagnostico.js';
 
 /**
  * «Ideas por dominar» (con etiquetas de conceptos): en cada tema, cuántas ideas sabe el alumno, cuáles le cuestan (con
@@ -139,6 +140,7 @@ export function progressView({ progress, tit }) {
     volver('Hoy', tlink(tit)),
     h('h1', 'Mi progreso'),
     temas,
+    seccionErrores(),
     examenes,
     h('details.prog-carta', h('summary', conIcono('mapa', 'Ejercicios de carta')),
       rows.length
@@ -153,7 +155,7 @@ export function progressView({ progress, tit }) {
   );
   return {
     el,
-    summary: () => `VISTA progreso\n${resumenTemas}\nEJERCICIOS DE CARTA:\n${rows.map(({ e, st }) => `${e.id}: ${st.correct}/${st.attempts}${st.mistakes ? ` errores=${JSON.stringify(st.mistakes)}` : ''}`).join('\n') || '(ninguno)'}`,
+    summary: () => `VISTA progreso\n${resumenTemas}${erroresTexto() ? `\n${erroresTexto()}` : ''}\nEJERCICIOS DE CARTA:\n${rows.map(({ e, st }) => `${e.id}: ${st.correct}/${st.attempts}${st.mistakes ? ` errores=${JSON.stringify(st.mistakes)}` : ''}`).join('\n') || '(ninguno)'}`,
   };
 }
 

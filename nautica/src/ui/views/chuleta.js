@@ -13,6 +13,7 @@ import { rich } from './curso.js';
 import { glosar } from '../glosas.js';
 import { icono, conIcono } from '../iconos.js';
 import { fechaLarga } from '../../texto.js';
+import { enPasoDeSesion, botonesSesion } from '../sesion.js';
 
 /** Contenido de la chuleta de un tema, sin DOM: por clase, sus puntos clave, reglas y trampas. */
 export function contenidoChuleta(curso, ut, reglas = new Map()) {
@@ -79,6 +80,13 @@ export function chuletaView({ tit, params: route, progress = null }) {
       return s;
     }));
     if (marca) cuerpo.append(marca);
+    // Como paso de una sesión (p. ej. el repaso ligero de «la semana antes»): «Ya la he repasado» lo da por hecho y
+    // ofrece seguir con la sesión (la chuleta no tiene cierre propio).
+    if (enPasoDeSesion()) {
+      const fin = h('div.no-imprimir.chuleta-sesion');
+      setChildren(fin, h('button.grande', { type: 'button', onclick: () => { const b = botonesSesion(); if (b) setChildren(fin, h('div.botones', b)); } }, conIcono('ok', 'Ya la he repasado')));
+      cuerpo.append(fin);
+    }
     summaryText = `VISTA chuleta ${T.sigla} ${b?.titulo}\n${clases.map((c) => `## ${c.titulo}\n${c.claves.join('\n')}${c.reglas.map((r) => `\nREGLA: ${r.regla} — ${r.significado}`).join('')}${c.trampas.map((t) => `\nTRAMPA: ${t}`).join('')}`).join('\n')}`;
   }).catch((e) => setChildren(cuerpo, h('p.warn', `No se pudo preparar la chuleta: ${e.message}`)));
   return { el, summary: () => summaryText };

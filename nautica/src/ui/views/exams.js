@@ -19,6 +19,8 @@ import { glosar } from '../glosas.js';
 import { conIcono } from '../iconos.js';
 import { botonBloc } from '../bloc.js';
 import { ID_BLOC } from '../../bloc/notas.js';
+import { guiadoPanel, guiadoDisponible } from '../guiado.js';
+import { diagnosticoEl, diagnosticoTexto } from '../diagnostico.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -134,10 +136,16 @@ export function preguntaView({ ctx, progress, params: route }) {
     const result = h('div.diagnosis', { 'aria-live': 'polite' });
     const solution = h('div.solution', { hidden: true });
     const aiPre = h('pre.ai-text');
+    // Modo guiado «Paso a paso» (src/ui/guiado.js): se abre con el botón o con ?guiado=1.
+    const conGuiado = !!run && guiadoDisponible(q, run.sol, ctx.chart);
+    const guiadoBox = h('div.guiado-box', { hidden: true });
+    let guiado = null;
     const refresh = () => {
       summaryText = examQuestionSummary(q, choice, run && {
         steps: run.k.steps, values: run.values.map((v) => quantity(v.kind).format(v.value)), choice: run.pick.choice,
       }, { eje: eje.nombre, titulacion: TITULACIONES[q.tit]?.sigla });
+      if (choice && result.childElementCount) { const d = diagnosticoTexto(q, choice, ctx.chart); if (d) summaryText += `\n${d}`; }
+      if (guiado) summaryText += `\n${guiado.summary()}`;
       aiPre.textContent = summaryText;
     };
 
@@ -151,7 +159,9 @@ export function preguntaView({ ctx, progress, params: route }) {
       const ok = q.anulada || choice === q.correcta;
       progress.recordExam(q.id, { choice, ok });
       setChildren(result, q.anulada ? h('p.ok', conIcono('ok', 'Pregunta anulada: en el examen valía cualquier respuesta.'))
-        : ok ? h('p.ok', conIcono('ok', 'Correcta')) : h('p.warn', conIcono('no', `Incorrecta. La correcta es la ${q.correcta}).`)));
+        : ok ? h('p.ok', conIcono('ok', 'Correcta')) : h('p.warn', conIcono('no', `Incorrecta. La correcta es la ${q.correcta}).`)),
+        // Por qué (si se sabe): el error típico que lleva a la opción marcada (src/exams/diagnostico.js).
+        ok ? null : diagnosticoEl(q, choice, { chart: ctx.chart }));
       showSolution();
       refresh();
     }
@@ -185,17 +195,46 @@ export function preguntaView({ ctx, progress, params: route }) {
       h('div.actions',
         h('button', { type: 'button', onclick: verify }, 'Comprobar'),
         h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
+        conGuiado ? h('button.secondary.boton-guiado', { type: 'button', onclick: () => abrirGuiado(true) }, conIcono('diana', 'Resolver paso a paso')) : null,
       ),
       result);
+    const factor = () => progress.settings().toleranceFactor ?? 1;
+    const alElegir = (letra, ok) => { choice = letra; progress.recordExam(q.id, { choice: letra, ok }); refresh(); };
+    /** Abre el paso a paso en la página (con su carta, si la pregunta se dibuja) en lugar del bloque de respuesta. */
+    function abrirGuiado(enfocar) {
+      if (!conGuiado) return;
+      if (ws && currentWorkspace() === ws) ws.close();
+      const w = run.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus, step: 0 }) : null;
+      guiado = guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar: (n) => w?.setStep(n), carta: () => w, factor: factor(), glosas,
+        onOpcion: alElegir, onCerrar: cerrarGuiado });
+      setChildren(guiadoBox, guiado.el, w ? h('div.guiado-carta', w.el) : null);
+      guiadoBox.hidden = false;
+      answerBlock.hidden = true;
+      navigate(['q', q.id], { ...route.query, guiado: '1' }, { replace: true });
+      refresh();
+      if (enfocar) requestAnimationFrame(() => { guiadoBox.scrollIntoView({ block: 'start' }); guiadoBox.querySelector('input, h2')?.focus({ preventScroll: true }); });
+    }
+    function cerrarGuiado() {
+      guiado = null;
+      guiadoBox.replaceChildren();
+      guiadoBox.hidden = true;
+      answerBlock.hidden = false;
+      const { guiado: _g, ...resto } = route.query;
+      navigate(['q', q.id], Object.keys(resto).length ? resto : undefined, { replace: true });
+      refresh();
+    }
     const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}${run.pick.choice ? `, que corresponde a la opción ${run.pick.choice}` : ''}`;
     const examOutro = () => narrateOutro(examOutroText());
     const openTable = (tab) => {
+      if (guiado) cerrarGuiado(); // en la mesa, el paso a paso va en su pestaña
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({
         chart: ctx.chart, title: `${titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
         steps: run.k.steps, items: run.k.items, focus: run.k.focus, answerNodes: [answerBlock], tab, progress,
         result: examOutroText(),
         summary: () => summaryText, ayudas: enTema, glosas, bloc,
+        // Pestaña «Paso a paso»: el mismo modo guiado, dibujando cada paso en la carta de la mesa.
+        guiado: conGuiado ? ({ chart: api, dibujar }) => guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar, carta: () => api, factor: factor(), glosas, onOpcion: alElegir }).el : null,
       });
     };
     const tableButtons = run?.k.items.length
@@ -212,6 +251,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       ayudas.panel,
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
       h('section.statement', enunciadoEl, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
+      guiadoBox,
       answerBlock,
       h('div.actions',
         prev ? h('a.btn.secondary', { href: enLista(prev) }, '← Anterior') : null,
@@ -227,6 +267,7 @@ export function preguntaView({ ctx, progress, params: route }) {
         h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
     );
     refresh();
+    if (route.query.guiado === '1') abrirGuiado(false);
   }
 
   return { el, summary: () => (currentWorkspace() ? currentWorkspace().summary() : summaryText) };

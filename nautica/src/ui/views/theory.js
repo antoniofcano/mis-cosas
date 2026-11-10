@@ -44,6 +44,9 @@ import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { botonesSesion } from '../sesion.js';
 import { etiquetaConcepto, conceptosDelBanco, estadoFicha, hrefFicha } from '../concepto.js';
+import { guiadoPanel, guiadoDisponible } from '../guiado.js';
+import { diagnosticoEl } from '../diagnostico.js';
+import { chartWidget } from '../chart-widget.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -209,6 +212,9 @@ export function profePanel(q, expl, chosen, { efectos = true, pasos = true } = {
       return [corto.map((x) => x.el), largo.length || resto.some(Boolean) ? h('details.ver-por-que', h('summary', 'Ver por qué'), largo.map((x) => x.el), resto) : null];
     })(),
     ok ? null : enlaceTrampa(q, chosen),
+    // Por qué has fallado (si se sabe) y el paso a paso (R-35, R-36): nunca con un examen en marcha.
+    ok || chosen == null ? null : diagnosticoEl(q, chosen, { chart: chartRef }),
+    pasos ? botonGuiado(q) : null,
     ok || !pasos ? null : enlacePasos(q),
     // «¿No es de este tema?» (nunca con un examen en curso: accionTema devuelve null) y «Avisar de un error».
     h('p.pie-aviso', accionTema(q), avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
@@ -216,6 +222,26 @@ export function profePanel(q, expl, chosen, { efectos = true, pasos = true } = {
   // Las siglas de la explicación (Ct, HRB, MMSI…) se explican al tocarlas. La pregunta ya está respondida.
   glosar(panel, { tit: T.id, ut: q.ut });
   return panel;
+}
+
+/**
+ * «Resolver paso a paso» (src/ui/guiado.js) para una pregunta con resolución programada, en la práctica (clases y
+ * tandas): abre el modo guiado ahí mismo, con su carta si la pregunta se dibuja. null si no hay pasos que preguntar.
+ */
+function botonGuiado(q) {
+  const sol = cartaSolutions[q.id];
+  if (!guiadoDisponible(q, sol, chartRef)) return null;
+  const caja = h('div.guiado-box.en-profe');
+  const abrir = () => {
+    const w = (() => { const k = resolucionDe(q); return k?.items.length ? chartWidget(chartRef, { items: k.items, focus: k.focus, step: 0 }) : null; })();
+    const g = guiadoPanel({ q, sol, chart: chartRef, dibujar: (n) => w?.setStep(n), carta: () => w, factor: 1, glosas: { tit: T.id, ut: q.ut },
+      onCerrar: () => caja.replaceChildren(boton) });
+    caja.replaceChildren(g.el, w ? h('div.guiado-carta', w.el) : null);
+    requestAnimationFrame(() => caja.querySelector('input, h2')?.focus());
+  };
+  const boton = h('p', h('button.secondary.boton-guiado', { type: 'button', onclick: abrir }, conIcono('diana', 'Resolver paso a paso')));
+  caja.append(boton);
+  return caja;
 }
 
 /**
@@ -358,6 +384,7 @@ export function examenesView({ ctx, progress, tit }) {
       h('section.simulacro',
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`),
+        h('p.centrado.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Cómo hacer el examen: tu estrategia'))),
         // Por módulos (PY): practicar uno mientras se aprende el otro.
         E0.modulos?.length ? h('div.simulacro-modulos', h('p.muted.small', 'O solo un módulo, para practicarlo mientras aprendes el otro:'),
           E0.modulos.map((m) => { const Em = estructuraModulo(E0, m.id);
@@ -809,14 +836,16 @@ export function testView({ ctx, progress, params: route, tit }) {
           h('ul.datos-examen',
             h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
             h('li', `${cuenta(E1.duracionMin, 'minuto')}`),
-            h('li', `Apruebas con ${cuenta(E1.minAciertos, 'acierto')}${E1.modulo ? ` (la misma proporción que los ${E0.minAciertos} de ${totalPreguntas(E0)} del examen completo)` : ''}`),
+            E1.modulo ? h('li', 'Apruebas el módulo si no pasas de los fallos permitidos en cada una de sus dos materias') : h('li', `Apruebas con ${cuenta(E1.minAciertos, 'acierto')}`),
             limites.map((b) => h('li', conIcono(b.ico, `${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
             h('li', permitida ? conIcono('calculadora', 'Con calculadora científica (botón arriba, junto al reloj)') : 'Sin calculadora')),
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E1, f.ut)?.titulo ?? f.ut).join(', ')}; el ${tipo === 'final' ? 'examen' : 'simulacro'} no está completo.`) : null,
           tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', 'Como el día del examen: solo tú, el reloj y las reglas del tribunal. Al terminar, el profe te explica tus fallos.')] : null,
-          E1.modulo ? h('p.aviso-modulo', 'Simulacro de un solo módulo: sirve para practicarlo, pero no cuenta como simulacro aprobado en tu travesía ni en «¿Estás listo?». Para eso, el examen completo.') : null,
+          E1.modulo ? h('p.aviso-modulo', 'En el examen de verdad, si no apruebas el conjunto, puedes aprobar un módulo y conservarlo dos convocatorias de la misma administración. Aquí se corrige con ese criterio; en tu travesía y en «¿Estás listo?» solo cuenta el examen completo.') : null,
           test.avisoVistas ? h('p.aviso-vistas', `Ya has respondido el ${Math.round(test.vistas * 100)} % de las preguntas de estudio: este simulacro repetirá muchas que ya has visto y aprobarlo dice menos. La prueba de verdad es el examen final, con preguntas reservadas.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
+          // Antes de que corra el reloj (nunca con el examen en marcha): cómo hacerlo.
+          h('p.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Antes de empezar: cómo hacer el examen'))),
           otro
             ? [h('p.aviso-medias', 'Tienes otro examen a medias.'),
               h('div.botones-columna',
@@ -1007,7 +1036,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : conIcono(g.apto ? 'ok' : 'no', g.apto ? 'APTO' : 'NO APTO')),
           test.tipo === 'final' ? lineaFinal : null,
-          E1.modulo ? h('p.muted', `${E1.titulo}: orientativo, con ${cuenta(E1.minAciertos, 'acierto')} de ${totalPreguntas(E1)} y los límites de fallos de sus temas. No cuenta como simulacro aprobado.`) : null,
+          E1.modulo ? h('p.muted', `${E1.titulo}: corregido como el aprobado por módulos del examen (fallos máximos en cada materia). En tu travesía solo cuenta el examen completo.`) : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
         ses ? botonesFin : null,

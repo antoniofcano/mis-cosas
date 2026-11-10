@@ -16,7 +16,7 @@ export default defineExercise({
     'Para cada tramo: d = V · t; Δl = d · cos R (N +, S −) y A = d · sen R (E +, W −).',
     'Suma los Δl y los A de todos los tramos.',
     'Latitud de llegada = l salida + Δl total. Latitud media lm = l salida + Δl / 2.',
-    'Δλ = A / cos lm. Longitud de llegada = L salida + Δλ (E +, W −).',
+    'ΔL = A / cos lm. Longitud de llegada = L salida + ΔL (E +, W −).',
     'Rumbo directo = arctg(A / Δl) en su cuadrante; distancia directa = √(Δl² + A²).',
   ],
 
@@ -56,7 +56,7 @@ export default defineExercise({
         { title: 'Tramos', text: rows.join('. ') + '.' },
         { title: 'Totales', text: `Δl = ${n1(r.dLat)}′ (${r.dLat >= 0 ? 'N' : 'S'}); A = ${n1(r.dep)} M (${r.dep >= 0 ? 'E' : 'W'}).` },
         { title: 'Latitud de llegada', text: `${fmtLat(p.start.lat)} ${r.dLat >= 0 ? '+' : '−'} ${Math.abs(r.dLat).toFixed(1).replace('.', ',')}′ = ${fmtLat(r.end.lat)}.` },
-        { title: 'Diferencia de longitud', text: `lm = ${fmtLat(r.lm)}; Δλ = A / cos lm = ${n1(r.dep)} / ${Math.cos((r.lm * Math.PI) / 180).toFixed(4).replace('.', ',')} = ${n1(r.dLon)}′ (${r.dLon >= 0 ? 'E' : 'W'}).` },
+        { title: 'Diferencia de longitud', text: `lm = ${fmtLat(r.lm)}; ΔL = A / cos lm = ${n1(r.dep)} / ${Math.cos((r.lm * Math.PI) / 180).toFixed(4).replace('.', ',')} = ${n1(r.dLon)}′ (${r.dLon >= 0 ? 'E' : 'W'}).` },
         { title: 'Longitud de llegada', text: `${fmtLon(p.start.lon)} ${r.dLon >= 0 ? '+' : '−'} ${Math.abs(r.dLon).toFixed(1).replace('.', ',')}′ = ${fmtLon(r.end.lon)}.` },
         { title: 'Rumbo y distancia directos', text: `R = arctg(${n1(r.dep)} / ${n1(r.dLat)}) → ${fmtBearing(r.course)}; D = √(${n1(r.dLat)}² + ${n1(r.dep)}²) = ${fmtMiles(r.distance)}.` },
       ],
@@ -64,7 +64,7 @@ export default defineExercise({
   },
 
   mistakes: [
-    { id: 'sin-cos-lm', explain: 'Has tomado el apartamiento como diferencia de longitud. Hay que dividir por cos lm: Δλ = A / cos lm.', results: (p, ctx, ok) => {
+    { id: 'sin-cos-lm', explain: 'Has tomado el apartamiento como diferencia de longitud. Hay que dividir por cos lm: ΔL = A / cos lm.', results: (p, ctx, ok) => {
       const legs = p.legs.map((l) => ({ rv: l.rv, dist: (l.v * (l.t1 - l.t0)) / 60 }));
       const r = deadReckoning(p.start, legs);
       return { lat: ok.lat, lon: p.start.lon + r.dep / 60 };

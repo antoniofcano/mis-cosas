@@ -31,6 +31,7 @@ export function cuentasView({ progress, tit }) {
     h('p.muted.small', 'Es un repaso de matemáticas, no un tema del examen: no cuenta en tu plan ni en «¿Estás listo?».'),
     lista,
     h('p', h('a.btn.secondary', { href: link(['calculadora']) }, conIcono('calculadora', 'Abrir la calculadora científica'))),
+    h('p', h('a.btn.secondary', { href: tlink(tit, ['formulas']) }, conIcono('cuentas', 'Fórmulas y tablas en una hoja'))),
   );
   return { el, summary: () => resumen };
 }

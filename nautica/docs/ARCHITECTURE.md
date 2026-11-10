@@ -69,11 +69,25 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 | `#/q/<id>`, `#/<tit>/examenes/<lista>` (antes `#/examenes/<fichero>/<id>`, que redirige) | `views/exams.js` → `preguntaView`, `listaView` |
 | `#/<tit>/laminas`, `#/reglas`, `#/conceptos`, `#/mas`, `#/progreso` | biblioteca, «Más» y mi progreso |
 | `#/calculadora` | `views/calculadora.js`: calculadora científica (lógica en `src/calculadora/motor.js`) |
+| `#/<tit>/estrategia` | `views/estrategia.js`: estrategia de examen (R-31). Lógica pura en `src/course/estrategia.js` (`cifrasExamen`, `presupuestoTiempo`, `textosEstrategia`, `tuEstrategia` con `progress.tests()` y `st.listo`); textos en `data/comun/estrategia.json` (normas con fuente: RD 875/2014 y convocatorias; consejos; pendientes por tribunal). Enlazada desde Examen, la Biblioteca y la pantalla de inicio de un simulacro; nunca con un examen en marcha (`estrategiaPermitida`, `tests/estrategia.test.js`). Imprimible con el patrón de las chuletas (`.mc-*`) |
+| `#/<tit>/formulas[?t=<tema>]` | `views/formulas.js`: «Fórmulas y tablas en una hoja» (`data/comun/formulas.json`, `src/course/formulas.js`). Por bloques, cada fórmula con su ejemplo resuelto; imprimible. Nunca en un examen (ver «Ayudas del alumno») |
 | `#/<tit>/cuentas[/<id>]` | `views/cuentas.js` y `leccionView`: apéndice «Las cuentas del patrón» (`data/curso/apendice-matematicas.json`, `src/course/apendice.js` y `cuentas.js`). Fuera del curso: no entra en temas, plan ni «¿Estás listo?». Sus enlaces «Repasa: …» salen de `usadoEn` en los datos |
 
 - **Recomendador único** (`course/plan.js`, funciones puras con tests): `planHoy` (lista ordenada de
   actividades; la primera es la de Hoy), `estadoTema` y `avance`. Lo usan Hoy, Temario, Mi progreso y las
   pantallas de cierre (`ui/cierre.js`, que recalcula el plan tras guardar el progreso).
+- **La semana antes** (`course/semana.js`, funciones puras con `ahora`/`hoy` inyectados; tests `tests/semana.test.js`):
+  modo de los últimos 7 días antes del examen. `estadoModo` (automático con la fecha no orientativa a ≤ 7 días, a mano
+  con `activarManual`, `salirDelModo`, y pasada la fecha `preguntar` cómo fue), `ideasPriorizadas` (prioridad = peso del
+  tema × límite de fallos × (1 − tasa) × convocatorias en que sale / convocatorias del banco; solo preguntas que se
+  practican), `repartoDias` y `planSemana` (ideas, simulacro, repaso del simulacro, ligero, víspera sin nada nuevo,
+  examen) y `sesionDeSemana` (la sesión de hoy, `fase: 'semana'`, que guarda el tipo del día). La interfaz:
+  `ui/semana.js` (calcula con el resultado de `calcularPlan`, guarda el ajuste compartido `semana_<tit>` y apunta el día
+  hecho), la tarjeta de Hoy (`views/hoy.js`), `views/semana.js` (`#/<tit>/semana` y la tanda `#/<tit>/semana/ideas/<n>`) y
+  la Travesía («Seguir» arranca la misma sesión, `composicionDeHoy`).
+- **Rutas existentes en tiempo de ejecución** (`ui/rutas.js`): `app.js` publica las claves de `TIT_ROUTES`
+  (`fijarRutasTit`) y una vista enlaza otra sección solo si `hayRuta('<sección>')`. Es el punto de extensión de la
+  semana para la página «Estrategia de examen»: al registrar `estrategia` en `TIT_ROUTES`, sus accesos la enlazan solos.
 - **Ruta del curso** (`course/ruta.js`, [`RUTA.md`](RUTA.md)): cada clase declara `requiere` (clases del mismo curso
   en que se apoya) y `data/curso/ruta-<tit>.json` (generada con `tools/ruta.mjs` y retocada a mano) fija el orden en
   que se dan, intercalando temas. `planHoy`, `unidades` (plan con fecha) y `hoyToca` la siguen; Temario sigue por temas.
@@ -132,6 +146,31 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 pedidos. `src/exams/options.js` lee las opciones del examen y elige la más próxima; `tests/exams.test.js`
 exige que coincida con la plantilla oficial. Si cambias la carta o un motor, este test avisa.
 
+### Modo guiado y diagnóstico por tipo de error (R-35, R-36)
+
+- **Paso preguntable.** Cada operación del kit que da un valor que el alumno puede calcular o medir lo deja junto a su
+  paso: `steps[i].pide = { paso, pregunta, campos: [{ kind, value, label, medido? }] }` (`kind` = magnitud de
+  `analysis/quantities.js`; `medido` = se mide en la carta). Las notas, los datos y las construcciones no llevan `pide`.
+  Las soluciones no cambian: el dato sale del kit.
+- **Taxonomía común** (`exams/taxonomia.js`): `PASOS` (Ct, declinación, aguja, marcación, oposición/enfilación,
+  situación, medida, tiempo, tangente, abatimiento, corriente, traslado, estima, loxodrómica, marea, sonda, hora oficial),
+  `ERRORES` (cada error típico con su paso y su frase «Es lo que sale si…»; ids iguales a los de los ejercicios
+  generados, con `ALIAS` para los que no) y `VARIANTES` (cómo se comete cada error en el kit).
+- **Kit con un error típico:** `createKit(chart, { error: 'signo-ct:aplicacion' })` calcula igual salvo donde ese error
+  se comete. `exams/diagnostico.js` resuelve la pregunta con cada variante y dice qué error lleva a la opción marcada
+  (mismo criterio que `chooseOption`, cada valor dentro de la tolerancia de examen, sin empate, nunca la oficial ni la
+  que sale sin error; un solo error = diagnóstico; dos = «puede ser A o B»; más, nada). Cobertura medida con
+  `node tools/diagnostico-cobertura.mjs` ([`CARTA-RESUELTOS.md`](CARTA-RESUELTOS.md)).
+- **Modo guiado:** lógica en `exams/guiado.js` (corrección con tolerancia de examen, ×2 en lo medido, × el factor de
+  Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
+  en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
+  que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Diagnóstico en la interfaz:** `ui/diagnostico.js` (`diagnosticoEl`) en la corrección de `#/q/<id>`, en el panel del
+  profe (práctica y revisión de un examen terminado) y al final del modo guiado; «Tus errores más repetidos» en Mi progreso.
+- **Errores del alumno** (`store/errores.js`, `localStorage` `nautica.errores.v1`): pasos fallados en el modo guiado y
+  errores diagnosticados (también los de los ejercicios generados), una vez por pregunta y día, 400 anotaciones y 180
+  días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia.
+
 ## Añadir preguntas de examen
 
 Las preguntas van en el banco de su eje (`data/ejes/<eje>/<tit>/preguntas.json`), con el formato normalizado y
@@ -172,6 +211,17 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
   barra (botón «Chuleta») y el panel, que va en el flujo de la página (no tapa la respuesta) o flotando sobre la
   carta en la mesa. Abierta o cerrada se recuerda en `sessionStorage`. **Solo en práctica** (`MODOS_PRACTICA`):
   nunca en simulacro, examen real ni examen final; `tests/chuletario.test.js` lo comprueba en las vistas.
+- **Fórmulas y tablas en una hoja** (`data/comun/formulas.json`, `course/formulas.js`, `ui/views/formulas.js`): las
+  fórmulas del examen por bloques y titulación (`tits`, `temas`), cada una con su expresión, letras y signos, cuándo se
+  usa, la trampa y un ejemplo resuelto; y las tablas que se memorizan (Beaufort y Douglas salen de
+  `illustrations/meteo.js`, las mismas de las láminas). Cada fórmula cita sus clases, su ficha de la chuleta y el motor
+  (`origen`), y una `cita` que debe estar escrita igual en ellas. Los ejemplos no se escriben a mano: `CALCULOS` los
+  resuelve con los motores (`nautical/`, `math/`) y `tests/formulas.test.js` exige que cada número publicado coincida
+  con el cálculo y esté escrito en el ejemplo, y pulsa cada secuencia de teclas en `calculadora/motor.js`. Buscador y
+  filtro por tema (`?t=`); al imprimir, A4 en dos columnas (estilos al final de «Fórmulas y tablas» en
+  `styles/laminas.css`), con o sin ejemplos. Se enlaza desde el panel de la chuleta (solo existe en práctica), la
+  Biblioteca, el tema y las cuentas; nunca desde un examen, y la vista no se abre con el modo examen puesto
+  (`formulasPermitidas`).
 - **Hueco para otras ayudas** (calculadora, apéndice de matemáticas): `registrarAyuda({ id, crear(ctx) })` en
   `ui/ayudas.js` añade un botón a la barra de ayudas de todas las pantallas de práctica (`.ayudas-hueco[data-hueco]`).
   La barra no existe en los exámenes: si una ayuda debe estar también allí, que la vista del examen la pinte aparte.

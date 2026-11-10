@@ -81,8 +81,11 @@ test('simulacro por módulos del PY: genérico y navegación, con su tiempo, su 
   assert.deepEqual(gen.bloques.map((b) => b.ut), [1, 2]);
   assert.deepEqual(nav.bloques.map((b) => b.ut), [3, 4]);
   assert.equal(totalPreguntas(gen), 20);
-  assert.equal(gen.minAciertos, 14); // 28 de 40 → 14 de 20
-  assert.equal(nav.minAciertos, 14);
+  // Aprobado por módulos (RD 875/2014, anexo II): por materias, sin nota global.
+  assert.deepEqual(gen.bloques.map((b) => b.maxErrores), [5, 5]);
+  assert.deepEqual(nav.bloques.map((b) => b.maxErrores), [5, 3]);
+  assert.equal(gen.minAciertos, 10);
+  assert.equal(nav.minAciertos, 12);
   assert.equal(gen.duracionMin, 45);
   assert.equal(nav.duracionMin, 75);
   const s = buildSimulacro(nav, bank, createRng(3));
@@ -90,6 +93,13 @@ test('simulacro por módulos del PY: genérico y navegación, con su tiempo, su 
   assert.ok(s.preguntas.every((q) => q.ut === 3 || q.ut === 4));
   assert.equal(s.modulo, 'navegacion');
   assert.match(s.titulo, /módulo de navegación/);
+  // Genérico: 5 fallos en cada materia aprueba (10 de 20); 6 en una, no.
+  const sg = buildSimulacro(gen, bank, createRng(5));
+  const falla = (qs, n, base) => { const r = { ...base }; for (const q of qs.filter((x) => !x.anulada).slice(0, n)) r[q.id] = q.correcta === 'a' ? 'b' : 'a'; return r; };
+  const bien = Object.fromEntries(sg.preguntas.map((q) => [q.id, q.correcta]));
+  const cinco = falla(sg.preguntas.filter((q) => q.ut === 2), 5, falla(sg.preguntas.filter((q) => q.ut === 1), 5, bien));
+  assert.equal(grade(gen, sg, cinco).apto, true);
+  assert.equal(grade(gen, sg, falla(sg.preguntas.filter((q) => q.ut === 1), 6, bien)).apto, false);
   // Todo bien salvo 4 fallos en carta (máximo 3): no apto aunque tenga 16 aciertos.
   const resp = Object.fromEntries(s.preguntas.map((q) => [q.id, q.correcta]));
   for (const q of s.preguntas.filter((x) => x.ut === 4 && !x.anulada).slice(0, 4)) resp[q.id] = q.correcta === 'a' ? 'b' : 'a';

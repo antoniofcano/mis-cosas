@@ -236,7 +236,8 @@ export function grade(estructura, test, respuestas) {
   const aciertos = detalle.filter((d) => d.ok).length;
   const bloques = [...porBloque.values()].filter((b) => b.total);
   const motivos = [];
-  if (test.preguntas.length === totalPreguntas(estructura) && aciertos < estructura.minAciertos) {
+  // En un módulo suelto no hay nota global: mandan los límites de cada materia.
+  if (!estructura.modulo && test.preguntas.length === totalPreguntas(estructura) && aciertos < estructura.minAciertos) {
     motivos.push(`Necesitas ${cuenta(estructura.minAciertos, 'acierto')} y tienes ${aciertos}.`);
   }
   for (const b of bloques) {

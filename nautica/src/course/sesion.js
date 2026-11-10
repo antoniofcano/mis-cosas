@@ -180,6 +180,8 @@ export const VERSION_SESION = 1;
 export function nuevaSesion(tit, sesion, { ahora = Date.now(), hrefs = [], minutosAntes = 0, foto = null } = {}) {
   return {
     v: VERSION_SESION, tit, fase: sesion.fase, dia: diaISO(ahora), inicio: ahora, fin: null, estado: 'en-curso', minutosAntes,
+    // La sesión de un día de «la semana antes» (src/course/semana.js) lleva el tipo de ese día, para apuntarlo hecho.
+    ...(sesion.semana ? { semana: sesion.semana } : {}),
     // Foto de la travesía al empezar (src/course/travesia.js, fotoTravesia): con ella se calcula el parte al terminar.
     ...(foto ? { foto } : {}),
     pasos: sesion.pasos.map((p, i) => ({ ...p, href: hrefs[i] ?? null, estado: 'pendiente', inicio: null, fin: null })),

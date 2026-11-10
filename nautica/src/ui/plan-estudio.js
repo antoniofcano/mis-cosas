@@ -32,7 +32,7 @@ export function botonSubirMinutos(progress, ps, alCambiar, tit) {
   const m = seg.futuro.minutosNecesarios;
   const md = ps.plan.minutosDia;
   return h('div.alternativas',
-    h('button.secondary.subir-minutos', { type: 'button', onclick: () => { progress.setSetting('minutosDia', m); alCambiar(); } }, `Subir a ${cuenta(m, 'minuto')} al día`),
+    Number.isFinite(m) ? h('button.secondary.subir-minutos', { type: 'button', onclick: () => { progress.setSetting('minutosDia', m); alCambiar(); } }, `Subir a ${cuenta(m, 'minuto')} al día`) : null,
     alt ? h('button.secondary.plan-esencial', { type: 'button', onclick: () => { progress.setSetting(`planEsencial_${tit}`, true); alCambiar(); } },
       `Plan esencial: ${alt.llega ? `llegas con tus ${cuenta(md, 'minuto')}` : `llegas con ${cuenta(alt.minutosNecesarios, 'minuto')}`}`) : null,
     alt ? h('p.muted.small', `El plan esencial estudia enteros los temas que más pesan en el examen; en los de poco peso cambia las clases por la chuleta del tema y sus preguntas (ahorras unas ${cuenta(Math.round(alt.ahorro / 60), 'hora')}).`) : null);

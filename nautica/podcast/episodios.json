@@ -728,7 +728,7 @@
         "Declinación (dm): de Nv a Nm; depende de la zona geográfica y del paso del tiempo, no del barco. Desvío (Δ): de Nm a Na; depende del propio barco y del rumbo de aguja.",
         "Ct = dm + Δ, cada una con su signo (E +, W −); Rv = Ra + Ct y Ra = Rv − Ct.",
         "La dm de la carta se actualiza sumando, con su signo, la variación anual multiplicada por los años: dm 1° 40′ W de 2016 con variación 7′ E da 0° 30′ W en 2026.",
-        "La Polar está prácticamente en el norte verdadero: Ct = 0° − Da, así que una Da de 357° da Ct +3°.",
+        "La Polar está prácticamente en el norte verdadero: Ct = 000° − Za (su azimut o demora de aguja), así que un Za de 357° da Ct +3°.",
         "En una enfilación o una oposición (demoras que difieren 180°), Ct = Dv medida en la carta menos Da, y el desvío es Δ = Ct − dm.",
         "Si el desvío es 0, el rumbo de aguja es igual al magnético y Rv = Rm + dm.",
         "Navegando al Ra 000°, si la Ct es positiva el norte verdadero queda por babor; si es negativa, por estribor."
@@ -3370,7 +3370,7 @@
         "Las millas de paso son la distancia mínima a la que pasarás del faro: el rumbo buscado es la recta tangente a la circunferencia de ese radio con centro en el faro.",
         "Orden: situarse, trazar con centro en el faro la circunferencia del radio pedido (medido en la escala de latitudes), trazar desde la situación la tangente correcta, medir su Rv y dar Ra = Rv − Ct.",
         "Dejar el faro por estribor es pasar con el faro a la derecha: se toma la tangente que queda a la izquierda de la visual al faro, Rv = Dv − α. Por babor, la de la derecha, Rv = Dv + α.",
-        "El ángulo de la tangente cumple seno de alfa = distancia de paso ÷ distancia al faro: a 10 millas de un faro en Dv 004°, pasar a 2,5 millas por babor da alfa ≈ 14,5° y Rv ≈ 019°.",
+        "El ángulo de la tangente cumple seno de alfa = distancia de paso ÷ distancia al faro: a 10 millas de un faro en Dv 004°, pasar a 2,6 millas por babor da alfa ≈ 15° y Rv = 019°.",
         "Si no dicen la banda, la tangente buena es la que pasa por fuera, por el lado del mar: para pasar a 4 millas de Cabo Trafalgar hacia el WNW desde Tarifa, o a 5 de Cabo Roche hacia el NW, se deja el faro por estribor.",
         "Situarse por dos distancias da dos puntos de corte: el enunciado siempre trae una pista para elegir («al este de la bahía de Algeciras», «más al este que Punta Paloma»)."
       ],

@@ -33,6 +33,8 @@ import { sesionView } from './views/sesion.js';
 import { nivelView } from './views/nivel.js';
 import { ideaView } from './views/idea.js';
 import { travesiaView } from './views/travesia.js';
+import { semanaView } from './views/semana.js';
+import { fijarRutasTit } from './rutas.js';
 import { pasoEnPantalla, destinoSesion, barraSesion } from './sesion.js';
 import { bibliotecaView } from './views/biblioteca.js';
 import { guiaView } from './views/guia.js';
@@ -43,6 +45,7 @@ import { podcastView } from './views/podcast.js';
 import { calculadoraView } from './views/calculadora.js';
 import { cartaPasosView } from './views/carta-pasos.js';
 import { cuentasView } from './views/cuentas.js';
+import { formulasView } from './views/formulas.js';
 import { iniciarCalculadora } from './calculadora.js';
 import { iniciarRadio, enVistaEpisodio, radio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
@@ -52,6 +55,7 @@ import { fijarReservaAlumno, fijarConfigProfe, fijarCorreccionesAlumno } from '.
 import { iniciarTemaPregunta } from './tema-pregunta.js';
 import { profeView } from './views/profe.js';
 import { vincularView } from './views/vincular.js';
+import { estrategiaView } from './views/estrategia.js';
 import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
 import { iniciarRecordatorio } from './recordatorio.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
@@ -68,19 +72,24 @@ const TIT_ROUTES = {
   nivel: nivelView, // #/<tit>/nivel: test de nivel por conceptos (¿ya sabes algo?) y su resultado
   idea: ideaView, // #/<tit>/idea/<idConcepto>: ficha de una idea que se resiste (nunca desde un examen)
   travesia: travesiaView, // #/<tit>/travesia[/insignias]: la travesía (faros, rango, semana) y sus insignias; solo con banco etiquetado
+  semana: semanaView, // #/<tit>/semana[/ideas/<n>]: «la semana antes» del examen (plan día a día) y su tanda de ideas flojas
   guia: guiaView, // #/<tit>/guia: cómo funciona el curso (guía de bienvenida)
   tarjetas: tarjetasView,
   plan: planView, // #/<tit>/plan: calendario hasta el examen
   mapas: mapasView, // #/<tit>/mapas[/<id>]: mapas de conceptos
   podcast: podcastView, // #/<tit>/podcast[/<id>]: la radio de a bordo (podcasts)
   cuentas: (o) => (o.params.parts[1] ? leccionView(o) : cuentasView(o)), // #/<tit>/cuentas[/<id>]: apéndice de matemáticas
+  formulas: formulasView, // #/<tit>/formulas[?t=<tema>]: fórmulas y tablas en una hoja (nunca en un examen)
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
+  estrategia: estrategiaView, // #/<tit>/estrategia: estrategia de examen (cómo hacerlo); nunca enlazada desde un examen en marcha
   carta: cartaView,
   'carta-pasos': cartaPasosView, // #/<tit>/carta-pasos[/<tipo>]: ejercicios de carta resueltos paso a paso (nunca desde un examen)
   // #/<tit>/examenes[/<lista>]; con un fichero (.json), dirección antigua de un banco
   examenes: (o) => (!o.params.parts[1] ? examenesView(o) : /\.json$/.test(o.params.parts[1]) ? legadoExamenesView(o) : listaView(o)),
 };
+// Qué secciones existen (src/ui/rutas.js): una vista enlaza otra solo si su ruta está (p. ej. #/<tit>/estrategia).
+fijarRutasTit(Object.keys(TIT_ROUTES));
 
 // Rutas comunes a todas las titulaciones
 const ROUTES = {
@@ -120,10 +129,10 @@ export function pestanaDe(parts) {
   const [a, b] = parts;
   if (!a || a === 'bienvenida' || a === 'progreso') return 'hoy';
   if (TITULACIONES[a]) {
-    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel' || b === 'travesia') return 'hoy';
+    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel' || b === 'travesia' || b === 'semana') return 'hoy';
     if (['temario', 'curso', 'teoria', 'idea'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
-    if (b === 'examenes' || b === 'test') return 'examen';
+    if (b === 'examenes' || b === 'test' || b === 'estrategia') return 'examen';
     return 'mas'; // mas, biblioteca, laminas, carta, podcast, tarjetas, cuentas, plan, mapas, guia
   }
   if (a === 'ej' || a === 'examenes' || a === 'q') return 'temario';
@@ -135,7 +144,7 @@ function esFoco(parts) {
   if (parts[0] === 'bienvenida') return true;
   if (!TITULACIONES[parts[0]]) return false;
   const [, b, c] = parts;
-  return b === 'guia' || b === 'sesion' || b === 'nivel' || ((b === 'curso' || b === 'cuentas') && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c);
+  return b === 'guia' || b === 'sesion' || b === 'nivel' || ((b === 'curso' || b === 'cuentas') && !!c) || (b === 'teoria' && ['ut', 'mezcla', 'repaso', 'rapido'].includes(c)) || b === 'test' || (b === 'tarjetas' && !!c) || (b === 'semana' && c === 'ideas');
 }
 
 /** Misma sección en la otra titulación (una clase o un tema concreto no existen en la otra: se va a su apartado). */
@@ -144,7 +153,7 @@ export function rutaEnTit(parts, id) {
   const b = parts[1];
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
   if (b === 'cuentas') return [id, 'cuentas'];
-  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia'].includes(b)) return [id, b];
+  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'formulas'].includes(b)) return [id, b];
   if (b === 'carta-pasos') return [id, ...parts.slice(1, 3)];
   return [id];
 }

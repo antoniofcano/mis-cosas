@@ -15,6 +15,7 @@ export function bibliotecaView({ tit }) {
   const grupos = [
     ['Empezar', [
       [tlink(tit, ['guia']), 'brujula', 'Cómo funciona el curso', 'El método y cómo aprobar, en cinco pantallas (3 minutos).'],
+      [tlink(tit, ['estrategia']), 'diana', 'Estrategia de examen', 'Cómo hacer el examen: tiempo, límites de fallos, orden, el día antes y tus datos.'],
     ]],
     ['Escuchar', [
       [tlink(tit, ['podcast']), 'podcast', 'Radio de a bordo', 'Episodios cortos del temario, con el guion y preguntas reales.'],
@@ -32,6 +33,8 @@ export function bibliotecaView({ tit }) {
       [link(['mesa']), 'compas', 'Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador.'],
     ]],
     ['Cuentas', [
+      [tlink(tit, ['formulas']), 'cuentas', 'Fórmulas y tablas', per ? 'Las del examen en una hoja para imprimir, cada fórmula con su ejemplo resuelto.'
+        : 'Corrección total, mareas, estima, husos, estabilidad y tablas, en una hoja para imprimir y con ejemplos resueltos.'],
       ...(!APENDICE_PUBLICADO ? [] : [[tlink(tit, ['cuentas']), 'cuentas', 'Las cuentas del patrón', per ? 'Grados y minutos, horas y signos de los rumbos, con ejercicios para la calculadora.'
         : 'Grados, horas, signos, trigonometría y regla de tres, con ejercicios para la calculadora.']]),
       [link(['calculadora']), 'calculadora', 'Calculadora científica', 'Con las teclas de la que se permite en el examen: °′″, seno, coseno, tangente y memoria.'],

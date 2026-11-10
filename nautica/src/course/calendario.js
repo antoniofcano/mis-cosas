@@ -267,7 +267,7 @@ export function lineaSeguimiento(s, minutosDia) {
   if (s.estado === 'terminado') return 'Has terminado tu plan: ahora, simulacros y repasar tus fallos.';
   if (s.estado === 'no-llega') {
     const falta = s.futuro.fuera.reduce((t, u) => t + u.minutos, 0);
-    return `Con ${cuenta(minutosDia, 'minuto')} al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}). Para llegar, unos ${cuenta(s.futuro.minutosNecesarios, 'minuto')} al día.`;
+    return `Con ${cuenta(minutosDia, 'minuto')} al día no te da tiempo: se quedarían fuera ${describir(s.futuro.fuera)} (${duracion(falta)}).${Number.isFinite(s.futuro.minutosNecesarios) ? ` Para llegar, unos ${cuenta(s.futuro.minutosNecesarios, 'minuto')} al día.` : ''}`;
   }
   if (s.estado === 'atrasado') return `Tienes ${describir(s.atrasadas)} por recuperar (${duracion(s.minutosAtraso)}): empieza por ahí y llegas a tiempo.${deHoy}`;
   return `Vas al día con tu plan.${s.descansoHoy ? ' Hoy es día de descanso.' : deHoy}`;

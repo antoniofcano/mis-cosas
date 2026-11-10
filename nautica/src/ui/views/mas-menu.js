@@ -36,6 +36,7 @@ export function masMenuView({ progress, tit }) {
     ['Tu estudio', [
       ['#/progreso', 'progreso', 'Mi progreso', 'Cómo vas en cada tema y si estás listo para el examen.'],
       [tlink(tit, ['plan']), 'calendario', 'Mi plan', 'Día a día hasta el examen.'],
+      [tlink(tit, ['semana']), 'diana', 'La semana antes del examen', 'Repaso de los últimos días: lo que más cae y tus ideas flojas.'],
       [tlink(tit, ['guia']), 'brujula', 'Cómo funciona el curso', 'El método y cómo aprobar, en 3 minutos.'],
     ]],
     ['Ajustes', [

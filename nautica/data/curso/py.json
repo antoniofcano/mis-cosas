@@ -1891,7 +1891,7 @@
       {
        "tipo": "texto",
        "titulo": "Valores y nombres parecidos",
-       "texto": "- Presión normal: **1013 hPa** (= 1013 mb = 760 mmHg).\n- En los mapas las isobaras suelen trazarse **cada 4 hPa**.\n- Dos isobaras **nunca se cortan**: cada una tiene un único valor.\n\nNo las confundas con isotermas (temperatura), isobatas (profundidad) ni isalobaras (igual tendencia barométrica)."
+       "texto": "- Presión normal: **1013 hPa** (= 1013 mb = 760 mmHg; el valor exacto es 1013,25 hPa, y en el examen se usa 1013).\n- En los mapas las isobaras suelen trazarse **cada 4 hPa**.\n- Dos isobaras **nunca se cortan**: cada una tiene un único valor.\n\nNo las confundas con isotermas (temperatura), isobatas (profundidad) ni isalobaras (igual tendencia barométrica)."
       },
       {
        "tipo": "texto",
@@ -2001,7 +2001,7 @@
        "fuente": "AEMET, mapa de análisis de superficie; plantillas [pregunta reservada] (d)"
       },
       {
-       "dato": "Presión normal 1013 hPa = 760 mmHg; cerca del suelo ≈ 1 hPa cada 8 m",
+       "dato": "Presión normal 1013 hPa (1013,25 exactos) = 760 mmHg; cerca del suelo ≈ 1 hPa cada 8 m",
        "fuente": "Atmósfera estándar OACI/OMM (1013,25 hPa); ρ≈1,225 kg/m³ → Δz = Δp/(ρg) ≈ 8,3 m/hPa"
       },
       {
@@ -3849,7 +3849,7 @@
       {
        "tipo": "texto",
        "titulo": "Carta, tablilla y Polar",
-       "texto": "1. **Carta y tablilla**: dm actualizada + Δ del rumbo de aguja.\n2. **Estrella Polar**: está prácticamente en el **norte verdadero** (error menor de 1° en nuestras latitudes). Tomas su demora (o azimut) de aguja y **Ct = 0° − Da**, y si la Da pasa de 180° usa 360° en vez de 0°: Da 357° → 360° − 357° = **+3°**; Da 004° → 0° − 4° = **−4°**."
+       "texto": "1. **Carta y tablilla**: dm actualizada + Δ del rumbo de aguja.\n2. **Estrella Polar**: está prácticamente en el **norte verdadero** (error menor de 1° en nuestras latitudes). Tomas su azimut de aguja (Za, que es su demora de aguja) y **Ct = Zv − Za = 000° − Za**; si el Za pasa de 180° usa 360° en vez de 000°: Za 357° → 360° − 357° = **+3°**; Za 004° → 000° − 004° = **−4°**."
       },
       {
        "tipo": "texto",
@@ -3913,7 +3913,7 @@
       "dm: lugar y año (carta). Δ: tu barco y tu rumbo de aguja (tablilla). Ct = dm + Δ (E +, W −).",
       "dm actual = dm carta + años × variación anual, con signo.",
       "Ct = Rv − Ra = Dv − Da. Rv = Ra + Ct; Ra = Rv − Ct.",
-      "Polar ≈ norte verdadero: Ct = 0° − Da (Da 357° → +3°).",
+      "Polar ≈ norte verdadero: Ct = Zv − Za = 000° − Za (Za 357° → +3°).",
       "Enfilación u oposición (demoras a 180°): Ct = Dv (carta) − Da; Δ = Ct − dm, válido solo para ese Ra.",
       "Ra 000° con Ct + → el norte verdadero queda por babor."
      ],
@@ -3933,7 +3933,7 @@
        "fuente": "Plantillas PY 2021-c1-n03/n07, 2023-c3-n10, 2024-c1-n02, 2026-c1-n02, 2026-c2-n03, 2023-c2-n07"
       },
       {
-       "dato": "Polar a menos de 1° del polo (distancia polar ≈ 0,64° en 2026; error de azimut ≤ 0,9° hasta 44° N): Ct = 0° − Da",
+       "dato": "Polar a menos de 1° del polo (distancia polar ≈ 0,64° en 2026; error de azimut ≤ 0,9° hasta 44° N): Ct = 000° − Za",
        "fuente": "Coordenadas de Polaris (catálogo Hipparcos, precesión a 2026); plantillas 2022-c3-n02 y 2026-c2-n02; coherente con py-4-1"
       },
       {
@@ -4096,7 +4096,7 @@
      "chuleta": [
       "Viento → abatimiento → rumbo de superficie. Corriente → deriva → rumbo efectivo (también con viento y corriente juntos).",
       "Abatimiento: estela-crujía = Rv-Rs. Viento por babor +, por estribor −. Rs = Rv + Ab; Rv = Rs − Ab.",
-      "Deriva: Rv (o Rs) − Ref; superficie frente a fondo.",
+      "Deriva = Ref − Rs (sin viento, Ref − Rv): + a estribor, − a babor; superficie frente a fondo.",
       "Viento: distinto para cada barco. Corriente: igual para todos.",
       "El viento no cambia la velocidad (convenio); la corriente sí: Vef = SOG.",
       "Orden: Rs → quitar Ab → Rv → quitar Ct → Ra."
@@ -5450,7 +5450,7 @@
       {
        "tipo": "texto",
        "titulo": "Actualizar la declinación",
-       "texto": "La rosa de la carta trae algo como **«4° W 2014 (6′ E)»**: valor, año y variación anual.\n\n1. Años transcurridos × variación anual.\n2. Si la variación tiene **el mismo sentido** que la declinación, la aumenta; si es **contraria**, la disminuye.\n3. Quédate con el valor exacto, o como mucho redondea al medio grado. El examen da declinaciones y desvíos en medios grados (1,5° NE, −7,5°) y suele cuadrar la Ct en grados enteros."
+       "texto": "La rosa de la carta trae algo como **«4° W 2014 (6′ E)»**: valor, año y variación anual.\n\n1. Años transcurridos × variación anual.\n2. Si la variación tiene **el mismo sentido** que la declinación, la aumenta; si es **contraria**, la disminuye.\n3. Haz lo que diga el enunciado: si pide redondear la declinación al grado más próximo, redondéala; si no dice nada, quédate con el valor exacto (como mucho, al medio grado) y redondea solo el resultado final. El examen da declinaciones y desvíos en medios grados (1,5° NE, −7,5°) y suele cuadrar la Ct en grados enteros."
       },
       {
        "tipo": "texto",

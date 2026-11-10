@@ -38,6 +38,17 @@ En pantallas anchas (≥ 760 px) la carta y la tarjeta van lado a lado; la fila 
 Mirando otra fase (desde la ayuda plegada), la tarjeta enseña «Así sería en …» con sus pasos y «Volver a mi sesión».
 Un examen a medias sale como primer paso, con «Descartar el examen a medias», como siempre.
 
+## La semana del examen (`src/course/semana.js`, `src/ui/semana.js`)
+
+Con la fecha del examen (no orientativa) a 7 días o menos, o con el modo activado a mano en `#/<tit>/semana` (cuántos
+días quedan, de 1 a 7), la tarjeta principal pasa a ser **«Semana del examen · faltan N días»**: el título de lo de hoy
+(«Tus ideas flojas», «Simulacro completo», «Repaso ligero», «Nada nuevo: repaso corto y descanso»…), una línea de qué es,
+**Empezar** (arranca la sesión de la semana con el ejecutor de siempre), los pasos plegados, «Ver la semana» y «Salir del
+modo semana». La etiqueta de la fase y el aviso del ritmo del plan largo no salen mientras dura. El día del examen: «Hoy
+es el examen», ánimo y ningún botón. Pasada la fecha, el modo se apaga solo y una cartela pregunta, sin obligar, «¿Cómo te
+fue el examen?» (Aprobé · No aprobé · Aún no lo sé · Ahora no). Si el alumno salió del modo, una línea ofrece volver. Un
+examen a medias va antes: mientras lo haya, Hoy es la de siempre.
+
 ## El marcador «estás aquí»
 
 Cada faro de la carta general agrupa temas del temario (docs/TRAVESIA.md, «Faros»). `faroDeParada(faros, ut)`: el faro

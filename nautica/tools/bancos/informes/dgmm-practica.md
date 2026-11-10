@@ -81,13 +81,13 @@ Preguntas de estudio: 1704 (referencia: 810). Por tema: UT1 154 (ref 72) · UT2 
 | per-10-2 Distancia, velocidad y tiempo a bordo | 27 | 14 |  |
 | per-10-3 La carta náutica y las publicaciones | 22 | 12 |  |
 | per-10-4 Faros y luces en la carta | 7 | 7 |  |
-| per-10-5 Los tres nortes: declinación, desvío y corrección total | 57 | 13 |  |
+| per-10-5 Los tres nortes: declinación, desvío y corrección total | 55 | 13 |  |
 | per-10-6 Rumbos: verdadero, magnético y de aguja | 8 | 5 |  |
-| per-10-7 Demora, marcación y líneas de posición | 40 | 13 |  |
-| per-10-8 Mareas | 37 | 12 |  |
+| per-10-7 Demora, marcación y líneas de posición | 39 | 13 |  |
+| per-10-8 Mareas | 13 | 12 |  |
 | per-10-9 Viento y corriente: abatimiento y deriva | 15 | 4 |  |
-| per-11-1 La carta del Estrecho: coordenadas, distancias y rumbos | 8 | 4 |  |
-| per-11-2 Corrección total y conversión de rumbos | 13 | 13 |  |
+| per-11-1 La carta del Estrecho: coordenadas, distancias y rumbos | 31 | 4 |  |
+| per-11-2 Corrección total y conversión de rumbos | 14 | 13 |  |
 | per-11-3 Rumbo directo, distancia y hora de llegada | 28 | 20 |  |
 | per-11-4 Situación de estima | 29 | 16 |  |
 | per-11-5 Líneas de posición: demora, marcación y distancia | 5 | 3 |  |
@@ -123,15 +123,15 @@ Preguntas de estudio: 387 (referencia: 720). Por tema: UT1 99 (ref 180) · UT2 9
 | py-2-7 Nieblas: tipos, previsión y disipación | 19 | 19 |  |
 | py-2-8 Las olas: partes, formación, mar de viento y mar de fondo | 22 | 22 |  |
 | py-2-9 Corrientes marinas: tipos y corrientes de nuestras costas | 26 | 27 | no llega |
-| py-3-1 La esfera terrestre: círculos, latitud y longitud | 20 | 22 | no llega |
-| py-3-2 Corrección total: de dónde sale y cómo se calcula | 25 | 25 |  |
+| py-3-1 La esfera terrestre: círculos, latitud y longitud | 19 | 22 | no llega |
+| py-3-2 Corrección total: de dónde sale y cómo se calcula | 22 | 25 |  |
 | py-3-3 Viento y corriente: abatimiento, deriva y rumbo efectivo | 19 | 19 |  |
-| py-3-4 Loxodrómica y estima analítica: los conceptos | 10 | 20 | no llega |
+| py-3-4 Loxodrómica y estima analítica: los conceptos | 6 | 20 | no llega |
 | py-3-5 La hora en la mar: TU, hora civil, legal, oficial y HRB | 11 | 16 | no llega |
-| py-3-6 Mareas: el Anuario y la curva de la marea | 12 | 17 | no llega |
+| py-3-6 Mareas: el Anuario y la curva de la marea | 3 | 17 | no llega |
 | py-3-7 Publicaciones náuticas: derroteros, Avisos a los Navegantes y radioavisos | 14 | 14 |  |
 | py-3-8 El radar: ajustes, presentaciones, demoras y distancias | 22 | 22 |  |
-| py-3-9 GNSS: las siglas de la pantalla y el datum | 24 | 26 | no llega |
+| py-3-9 GNSS: las siglas de la pantalla y el datum | 22 | 26 | no llega |
 | py-3-10 Cartas electrónicas y AIS | 30 | 35 | no llega |
 | py-4-1 Corrección total: declinación, enfilaciones, oposiciones y la Polar | 9 | 19 | no llega |
 | py-4-2 Viento y abatimiento: rumbo de superficie y rumbo a dar | 9 | 12 | no llega |
@@ -142,4 +142,4 @@ Preguntas de estudio: 387 (referencia: 720). Por tema: UT1 99 (ref 180) · UT2 9
 | py-4-7 Corriente conocida: rumbo a dar, velocidad y hora de llegada | 9 | 23 | no llega |
 | py-4-8 Corriente desconocida: rumbo e intensidad | 10 | 10 |  |
 | py-4-9 Mareas: sonda en un momento y hora para tener una sonda | 9 | 35 | no llega. El PY de la DGMM tiene 14 preguntas de marea con anuario en total, contando las de convocatorias reservadas |
-| py-4-10 Estima analítica: derrota loxodrómica | 8 | 19 | no llega |
+| py-4-10 Estima analítica: derrota loxodrómica | 10 | 19 | no llega |

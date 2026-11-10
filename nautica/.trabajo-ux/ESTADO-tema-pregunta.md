@@ -111,3 +111,69 @@ fechadas el 1 de octubre de 2026; el peso de las acertadas crece con los días).
   regenerado (necesita las etapas de extracción).
 - Las otras 383 candidatas, y en particular las 230 de `practica.json` con clase de otro tema, esperan decisión.
 - El minijuego del podcast no ofrece la acción (no usa el panel del profe).
+
+---
+
+# Segunda parte: la práctica de cada clase, solo con preguntas de su tema
+
+10 de noviembre de 2026, segundo commit de la rama. Decisión del dueño: corregir las ~230 preguntas que `practica.json`
+asignaba a la clase de otro tema.
+
+## Causa
+
+No era un fallo accidental: los generadores lo hacían a propósito.
+
+- `tools/bancos/ejes/baleares/practica.mjs`: «si una clase de otro tema puntúa más del doble [por contenido], la pregunta
+  va a esa clase» (incendios o primeros auxilios que el tribunal pone en el bloque de seguridad…), y las mareas con
+  anuario del bloque de carta iban a la clase de mareas del tema anterior (`per-10-8`, `py-3-6`).
+- `tools/bancos/practica.mjs` (DGMM y la ampliación de Andalucía): las de la unidad de carta que no se hacen sobre la
+  carta (mareas, estima analítica) «pueden ir también a las clases de la teoría de navegación».
+- Andalucía: práctica revisada a mano que ponía la misma pregunta en dos clases (la de su tema y otra), más
+  `practica-extra.json` (la bandera «A» del RIPA en la clase de buzos).
+
+Los dos generadores eligen ahora solo entre las clases del tema y terminan con `recolocar`
+(`tools/bancos/lib/practica-tema.mjs`). Comprobado: ejecutados los tres (DGMM, Baleares, Andalucía `--ampliar`), el
+resultado pasa `tests/practica-tema.test.js` (0 fuera de tema). **No he dejado su salida**: regenerar del todo no
+reproduce la práctica publicada ni antes de mi cambio (cambia cientos de asignaciones que no tienen que ver, porque los
+textos de las clases y las explicaciones han cambiado desde que se generó). Los `practica.json` se han corregido con la
+herramienta dirigida `node tools/bancos/practica-tema.mjs --excepciones --escribir`, que es reproducible.
+
+## Qué se hizo con las 230
+
+| Eje | Tit. | Quitadas (ya estaban en una clase de su tema) | A la clase de su tema, por idea | Fuera de las clases (solo en su tema) | Excepción «tema-dudoso» | Excepción «clase-corta» |
+|---|---|---|---|---|---|---|
+| andalucia | per | 4 | 0 | 0 | 0 | 2 |
+| andalucia | py | 14 | 0 | 0 | 0 | 13 |
+| dgmm | per | 2 | 24 | 0 | 0 | 0 |
+| dgmm | py | 15 | 2 | 0 | 0 | 0 |
+| baleares | per | 0 | 43 | 24 | 51 | 1 |
+| baleares | py | 0 | 0 | 0 | 3 | 32 (y además a `py-4-9`) |
+| Total | | 35 | 69 | 24 | 54 | 48 |
+
+Ninguna salió por «parecido» ni por «hermanas». Detalle de cada una en `.trabajo-ux/PRACTICA-temas.md`.
+
+- **tema-dudoso (54)**: su idea vive en el tema de la clase donde está (al menos 4 hermanas y el 80 % allí): lo dudoso
+  es el `ut`. No se fuerzan a una clase que no las explica; siguen donde estaban y como candidatas de la auditoría.
+- **clase-corta (48)**: la clase se quedaría con menos de 3 preguntas de su tema. Sobre todo `py-3-6` (el Anuario y la
+  curva de marea): en Baleares **toda** su práctica (32) son mareas del bloque de carta, y sin ellas la clase no pasa las
+  puertas de calidad; en Andalucía, 13. Y `per-4-3` de Andalucía (2, la bandera «A», revisión a mano anterior) y
+  `per-7-8` de Baleares (1).
+- **Fuera de las clases (24, PER de Baleares)**: ninguna clase de su tema enseña su idea (p. ej. las 9 de «peligro nuevo»
+  que el tribunal pone en Teoría de navegación). Siguen en las tandas por tema, el repaso y los exámenes.
+
+## Para revisar
+
+- Las 24 mareas «sonda en la pleamar o la bajamar» del PER de DGMM (y 23 de Baleares) pasan de `per-10-8` Mareas a
+  `per-11-1` La carta del Estrecho, porque el catálogo dice que esa idea se enseña también ahí. `per-11-1` de DGMM pasa
+  de 8 a 31 preguntas y `per-10-8` de 37 a 13.
+- Las excepciones «clase-corta» de `py-3-6` son en el fondo una decisión pendiente: o la clase es del tema 4, o se acepta
+  que practica con preguntas del bloque de carta.
+
+## Comprobado y sin comprobar (segunda parte)
+
+- `npm test` y las puertas de calidad de los tres ejes: ver el informe de entrega.
+- Informes derivados: `practica-informe.json` de Baleares y las cuentas de `informes/dgmm-practica.md`, puestos al día con
+  `practica-tema.mjs --informes`. `informes/baleares.md` lo he corregido **a mano** (la fila de `bal-per-2017-03-b-25`, el
+  párrafo y las cifras de la práctica): su generador necesita la caché de la extracción (`.cache/bancos`), que no está.
+- No he mirado en el navegador las clases afectadas (el cambio es solo de datos y lo cubren los tests).
+- Los criterios son automáticos: no he leído una a una las 128 recolocadas ni las 102 excepciones.

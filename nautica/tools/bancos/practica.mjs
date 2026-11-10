@@ -14,7 +14,8 @@
 //     src/course/engine.js), pesando más las propias de la clase dentro de su tema (las que salen en pocas clases).
 // Cada pregunta va a su mejor clase (y a la segunda si puntúa casi igual y la clase la cubre). Después, a cada clase con
 // menos preguntas que su homóloga de referencia se le añaden las que mejor cubre de entre las de su tema, siempre que la
-// clase las explique (cubierta) o sea su segunda mejor clase. Las de carta van por el tipo de ejercicio de su solución
+// clase las explique (cubierta) o sea su segunda mejor clase. Una pregunta solo va a clases de SU tema (su bloque del
+// examen); las excepciones revisadas están en tools/bancos/practica-excepciones.json. Las de carta van por el tipo de ejercicio de su solución
 // programada, y las resueltas de cada clase de carta forman su resueltos.json.
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,6 +24,7 @@ import { cubierta, palabrasClave, textoDePaso } from '../../src/course/engine.js
 import { SOLUCIONES } from '../../src/bancos/soluciones.js';
 import { TITULACIONES } from '../../src/theory/blocks.js';
 import { RAIZ, escribirTexto, leerJSON } from './lib/comun.mjs';
+import { contexto, recolocar } from './lib/practica-tema.mjs';
 
 const REFERENCIA = 'andalucia';
 
@@ -110,11 +112,11 @@ export function proponer(eje, tit, { ampliar = false } = {}) {
   const yaEnPractica = new Set(Object.values(previa).flat());
   const estudio0 = new Set(qs.filter(estudiable).map((q) => q.id));
   for (const q of qs.filter((x) => estudiable(x) && !yaEnPractica.has(x.id))) {
-    // Las de la unidad de carta que no se hacen sobre la carta (mareas, estima analítica) pueden ir también a las clases
-    // de la teoría de navegación (la unidad anterior).
-    const deCartaSinCarta = q.ut === cartaUt && !q.requiere.includes('carta');
-    const ls = [...(porUt.get(q.ut) ?? []), ...(deCartaSinCarta ? porUt.get(cartaUt - 1) ?? [] : [])];
-    const vecinas = [...(refPorUt.get(q.ut) ?? []), ...(deCartaSinCarta ? refPorUt.get(cartaUt - 1) ?? [] : [])]
+    // Solo las clases de su tema (el bloque del examen en que salió): la práctica de una clase no lleva preguntas de
+    // otro tema (tools/bancos/lib/practica-tema.mjs). Antes, las de la unidad de carta que no se hacen sobre la carta
+    // (mareas, estima analítica) podían ir a las clases de la teoría de navegación: el alumno las veía fuera de sitio.
+    const ls = [...(porUt.get(q.ut) ?? [])];
+    const vecinas = [...(refPorUt.get(q.ut) ?? [])]
       .map((r) => ({ r, s: parecido(q, r) })).sort((a, b) => b.s - a.s).slice(0, 5);
     // Tipo de ejercicio: el de su solución o, si no la tiene, el de la pregunta de referencia más parecida que la tenga.
     const vecinaResuelta = vecinas.find((v) => v.s >= 0.3 && SOLUCIONES[v.r.id]?.ejercicio);
@@ -182,6 +184,12 @@ export function proponer(eje, tit, { ampliar = false } = {}) {
     const extra = leerJSON(join(RAIZ, 'tools', 'bancos', 'ejes', eje, 'practica-extra.json'), {})[tit] ?? {};
     for (const [l, ids] of Object.entries(extra)) if (practica[l]) practica[l].push(...ids.filter((id) => estudio0.has(id) && !practica[l].includes(id)));
   }
+  // Excepciones revisadas (tools/bancos/practica-excepciones.json): las que siguen en una clase de otro tema, con su motivo.
+  const ctxTema = contexto(eje, tit);
+  for (const [id, e] of Object.entries(ctxTema.excepciones)) if (estudio0.has(id) && practica[e.clase] && !practica[e.clase].includes(id)) practica[e.clase].push(id);
+  // Y la red de seguridad: ninguna otra pregunta queda en una clase de otro tema (p. ej., por un practica-extra.json).
+  const recolocada = recolocar(ctxTema, practica);
+  for (const l of Object.keys(practica)) practica[l] = recolocada.practica[l] ?? [];
   // En el orden del banco.
   const orden = new Map(qs.map((q, i) => [q.id, i]));
   for (const l of Object.keys(practica)) practica[l] = [...new Set(practica[l])].sort((a, b) => orden.get(a) - orden.get(b));

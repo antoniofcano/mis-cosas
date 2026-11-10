@@ -33,6 +33,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ### Correcciones
 
+- Práctica de las clases: 82 preguntas que salían al practicar una clase de otro tema pasan a una clase de su tema (o
+  quedan solo en las tandas del tema si ninguna clase lo enseña). Quedan a propósito en su clase las de mareas y las
+  dudosas, anotadas una a una.
 - PER de Baleares: una pregunta sobre una luz de sectores estaba en RIPA; pasa a Teoría de navegación, donde la
   puso el tribunal en cuatro de sus cinco apariciones.
 - Podcast, minijuego: cuando una pregunta del episodio está reservada para el examen final, la que la sustituye tiene que

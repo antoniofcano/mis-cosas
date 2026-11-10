@@ -14,14 +14,15 @@
 //                miran las de todos los ejes de esa titulación) están casi todas en otro tema (al menos MIN_VECINAS y
 //                el UMBRAL_CONCEPTO de ellas). También si todas las clases donde se enseña la idea son de otro tema.
 //   practica     Sale en la práctica (practica.json) de una clase de otro tema: estudiando esa clase, el alumno la ve
-//                «fuera de sitio». Puede estar mal el tema o la clase: lo decide quien revisa.
+//                «fuera de sitio». Desde la recolocación (tools/bancos/practica-tema.mjs) solo quedan las excepciones
+//                revisadas de tools/bancos/practica-excepciones.json; tests/practica-tema.test.js no deja entrar más.
 //   vocabulario  Su texto se parece mucho más al de otro tema: clasificador bayesiano ingenuo entrenado con las demás
 //                preguntas de la titulación (de todos los ejes, sin la propia), con un margen amplio (MARGEN_VOCAB).
 //
 // Nivel: «fuerte» si la posición mayoritaria es otro bloque, o si al menos dos señales distintas proponen el mismo tema;
 // «candidata» en otro caso. Los bancos no se mezclan en la app; aquí los demás ejes solo se usan como evidencia.
 // Las preguntas reservadas para el examen final (docs/CUARENTENA.md) se listan por su id, SIN enunciado.
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { TITULACIONES, totalPreguntas } from '../src/theory/blocks.js';
 import { ejes, titsDeEje, leerJSON, practicaDe, bancosNode, RAIZ } from './bancos/leer.mjs';
@@ -123,6 +124,9 @@ export async function auditar() {
     try { for (const m of leerJSON(`data/curso/${tit}.json`).modulos) for (const l of m.lecciones) utDeClase[tit].set(l.id, l.ut ?? m.ut); } catch { /* sin curso */ }
   }
 
+  // Excepciones revisadas de la práctica (tools/bancos/practica-excepciones.json): se dicen en la señal.
+  let excepciones = {};
+  try { excepciones = leerJSON('tools/bancos/practica-excepciones.json'); } catch { /* sin excepciones */ }
   const filas = [];
   for (const tit of Object.keys(TITULACIONES)) {
     const E = TITULACIONES[tit].estructura;
@@ -169,17 +173,18 @@ export async function auditar() {
           const n = Object.values(cuenta).reduce((s, v) => s + v, 0);
           const [utMay, nMay] = Object.entries(cuenta).sort((a, z) => z[1] - a[1])[0] ?? [];
           if (n >= MIN_VECINAS && Number(utMay) !== q.ut && nMay / n >= UMBRAL_CONCEPTO) {
-            senales.push({ tipo: 'concepto', propuesto: Number(utMay), texto: `${nMay} de las otras ${n} preguntas de su idea${reservada ? '' : ` (${c})`} están en ${titulo(Number(utMay))}` });
+            senales.push({ tipo: 'concepto', base: 'vecinas', propuesto: Number(utMay), texto: `${nMay} de las otras ${n} preguntas de su idea${reservada ? '' : ` (${c})`} están en ${titulo(Number(utMay))}` });
           } else {
             const uts = [...new Set((catalogo.get(c)?.clases ?? []).map((id) => utDeClase[tit].get(id)).filter((u) => u != null))];
-            if (uts.length === 1 && uts[0] !== q.ut) senales.push({ tipo: 'concepto', propuesto: uts[0], texto: `su idea${reservada ? '' : ` (${c})`} solo se enseña en clases de ${titulo(uts[0])}` });
+            if (uts.length === 1 && uts[0] !== q.ut) senales.push({ tipo: 'concepto', base: 'clases', propuesto: uts[0], texto: `su idea${reservada ? '' : ` (${c})`} solo se enseña en clases de ${titulo(uts[0])}` });
           }
         }
         // 3. Práctica de una clase de otro tema.
         const fuera = (clasesDe.get(q.id) ?? []).filter((id) => utDeClase[tit].has(id) && utDeClase[tit].get(id) !== q.ut);
         if (fuera.length) {
           const uts = [...new Set(fuera.map((id) => utDeClase[tit].get(id)))];
-          senales.push({ tipo: 'practica', propuesto: uts[0], clases: fuera, texto: `sale en la práctica de ${fuera.join(', ')} (${uts.map(titulo).join(', ')})` });
+          const ex = excepciones[x.eje]?.[tit]?.[q.id];
+          senales.push({ tipo: 'practica', propuesto: uts[0], clases: fuera, ...(ex ? { excepcion: ex.tipo } : {}), texto: `sale en la práctica de ${fuera.join(', ')} (${uts.map(titulo).join(', ')})${ex ? ` · excepción revisada «${ex.tipo}»` : ''}` });
         }
         // 4. Vocabulario.
         const { puntos, n } = modelo.puntuar(q);
@@ -209,6 +214,7 @@ export async function auditar() {
 }
 
 const TIPOS = ['posicion', 'concepto', 'practica', 'vocabulario'];
+const MARCA_NOTAS = '<!-- notas -->';
 
 /** El informe en Markdown (resumen y, con `detalle`, cada candidata). */
 export function informe({ filas, bancos }, { detalle = true } = {}) {
@@ -250,7 +256,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (args.includes('--escribir')) {
     const dir = join(RAIZ, '.trabajo-ux');
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, 'AUDITORIA-temas.md'), `${informe(r)}\n`);
+    // Lo que haya escrito a mano tras la marca (el antes y el después de una corrección) se conserva.
+    const ruta = join(dir, 'AUDITORIA-temas.md');
+    let notas = '';
+    try { const antes = readFileSync(ruta, 'utf8'); if (antes.includes(MARCA_NOTAS)) notas = antes.slice(antes.indexOf(MARCA_NOTAS)); } catch { /* aún no existe */ }
+    writeFileSync(ruta, `${informe(r)}\n${notas}`);
     console.log(`Escrito .trabajo-ux/AUDITORIA-temas.md (${r.filas.length} candidatas).`);
   }
   console.log(informe(r, { detalle: args.includes('--detalle') }));

@@ -30,6 +30,9 @@ export const loadMnemonics = cargarMnemotecnias;
 /** Chuleta de la práctica: fórmulas, signos y conversiones por tema y por tipo de ejercicio. */
 export const loadChuletario = () => loadJSON('data/comun/chuletario.json');
 
+/** Estrategia de examen: textos (normas con su fuente y consejos) por titulación y tribunal. */
+export const loadEstrategia = () => loadJSON('data/comun/estrategia.json');
+
 /** Siglas y abreviaturas con su significado (se explican al tocarlas). */
 export const loadAbreviaturas = () => loadJSON('data/comun/abreviaturas.json');
 

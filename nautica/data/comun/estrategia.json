@@ -1,0 +1,128 @@
+{
+ "meta": {
+  "descripcion": "Estrategia de examen (#/<tit>/estrategia): cómo hacer el examen teórico. Las cifras (preguntas, tiempo, aciertos, límites de fallos) salen del código (src/theory/blocks.js) y de la ficha del eje; aquí van los textos. Cada «norma» cita su fuente; cada «consejo» es método, no norma. Lo que no se ha podido comprobar para un tribunal va en «pendientes» y no se afirma.",
+  "revisado": "2026-11-10"
+ },
+ "fuentes": {
+  "rd875": { "corto": "RD 875/2014, anexo II", "titulo": "Real Decreto 875/2014, anexo II (examen teórico de cada titulación; texto consolidado)", "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344" },
+  "boja2025": { "corto": "BOJA 2025, convocatoria", "titulo": "Convocatoria 2025 de Andalucía (Resolución de 2 de enero de 2025, BOJA núm. 7, de 13 de enero de 2025)", "url": "https://www.juntadeandalucia.es/boja/2025/7/BOJA25-007-00008-137-01_00313750.pdf" },
+  "boe2026": { "corto": "BOE-A-2026-510, convocatoria", "titulo": "Convocatoria 2026 de la Marina Mercante (Resolución de 19 de diciembre de 2025, BOE-A-2026-510)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-510" },
+  "ficha": { "corto": "ficha del tribunal en la app", "titulo": "Ficha del tribunal en la app (data/ejes/<eje>/eje.json)" },
+  "app": { "corto": "corrección de la app", "titulo": "Corrección de la app (src/theory/engine.js, grade)" }
+ },
+ "tiempo": {
+  "minTeoria": 1.2,
+  "repasoFraccion": 0.1,
+  "nota": "Reparto orientativo: unos 70 segundos por pregunta de teoría, una décima parte del tiempo para el repaso final y el resto para las de carta, que llevan dibujo y cuenta. Ajústalo con tus simulacros."
+ },
+ "correccion": {
+  "app": "En los simulacros de la app, una pregunta en blanco cuenta como fallo y una anulada por el tribunal, como acierto.",
+  "verificado": [
+   { "tipo": "norma", "fuente": "rd875", "texto": "Solo cuentan las respuestas correctas: para aprobar hace falta un mínimo en total y, en los temas con límite, un mínimo en cada uno. Los criterios no descuentan nada por fallar." },
+   { "tipo": "norma", "fuente": "rd875", "texto": "Una pregunta en blanco no es una respuesta correcta: para la nota y para los límites por tema pesa lo mismo que una fallada." }
+  ],
+  "pendiente": "Si una respuesta errónea resta o si dejarla en blanco cambia algo en tu tribunal está sin comprobar en la app: míralo en su convocatoria antes del examen."
+ },
+ "noSabes": {
+  "verificado": [
+   { "tipo": "consejo", "texto": "No la dejes en blanco: en tu tribunal una en blanco vale lo mismo que una fallada, así que contestar nunca te perjudica." },
+   { "tipo": "consejo", "texto": "Antes de elegir, tacha las que sabes que son falsas: con dos fuera, eliges entre dos." },
+   { "tipo": "consejo", "texto": "Si no la sabes ni descartando, márcala, elige una y sigue: no le regales minutos que necesitas para las que sí sabes." }
+  ],
+  "pendiente": [
+   { "tipo": "consejo", "texto": "Antes de elegir, tacha las que sabes que son falsas: con dos fuera, eliges entre dos." },
+   { "tipo": "consejo", "texto": "Si no la sabes ni descartando, márcala y sigue: no le regales minutos que necesitas para las que sí sabes. Vuelve a ella en el repaso." }
+  ]
+ },
+ "orden": [
+  { "tipo": "consejo", "texto": "Primera pasada: contesta lo que sabes seguro, sin pararte. La que dudes, márcala en el cuadernillo y sigue." },
+  { "tipo": "consejo", "texto": "Las de los temas con límite, con calma desde la primera pasada: ahí un despiste suspende aunque llegues a la nota." },
+  { "tipo": "consejo", "texto": "La carta, después de la primera pasada de teoría: así no se te va el reloj en un dibujo antes de asegurar lo rápido. Si en tus simulacros te sobra tiempo y la carta es tu fuerte, puedes empezar por ella; pruébalo antes en un simulacro." },
+  { "tipo": "consejo", "texto": "Segunda pasada: las marcadas. Muchas se resuelven solas porque otra pregunta te ha recordado el dato." },
+  { "tipo": "consejo", "texto": "Mira el reloj en los hitos de la tabla, no a cada pregunta." }
+ ],
+ "leer": [
+  { "tipo": "consejo", "texto": "Lee el enunciado entero antes que las opciones. Subraya lo que piden y las palabras que le dan la vuelta: «no», «excepto», «incorrecta»." },
+  { "tipo": "consejo", "texto": "En las de carta y de cuentas, apunta los datos y qué te piden (¿rumbo verdadero o de aguja?, ¿demora o marcación?, ¿hora reloj?). Si un dato no te hace falta, no te empeñes en usarlo." },
+  { "tipo": "consejo", "texto": "Antes de calcular, estima: hacia qué cuadrante va el rumbo, si la distancia es de 5 o de 15 millas. Con eso ya descartas opciones." },
+  { "tipo": "consejo", "texto": "Si tu resultado no se parece a ninguna opción, revisa los signos (declinación, desvío, abatimiento, corriente) antes de elegir; si se parece a una, márcala y sigue." }
+ ],
+ "repaso": [
+  { "tipo": "consejo", "texto": "Con el tiempo de repaso: primero las marcadas; después, comprueba que no queda ninguna sin contestar." },
+  { "tipo": "consejo", "texto": "Cambia una respuesta solo si encuentras un motivo (un dato mal leído, una cuenta mal hecha), no por un pálpito." },
+  { "tipo": "consejo", "texto": "Si hay hoja de respuestas aparte, pásalas con tiempo, no en el último minuto, y comprueba número a número que cada respuesta va en su casilla. Sigue las instrucciones del tribunal para marcar y para corregir una marca." }
+ ],
+ "diaAntes": [
+  { "tipo": "consejo", "texto": "El día antes, nada nuevo: repasa tus chuletas, los límites de fallos y tus fallos marcados. Haz, como mucho, una tanda corta." },
+  { "tipo": "consejo", "texto": "Prepara la víspera el material y la documentación (lo que pide tu tribunal, en «El día del examen») y comprueba el horario y el lugar publicados." },
+  { "tipo": "consejo", "texto": "Duerme: rinde más una noche entera que dos horas más de estudio." }
+ ],
+ "diaExamen": [
+  { "tipo": "consejo", "texto": "Llega con tiempo, con margen para aparcar, encontrar el aula y que te identifiquen." },
+  { "tipo": "consejo", "texto": "Come algo antes y lleva agua si te dejan: son hasta dos horas de concentración." },
+  { "tipo": "consejo", "texto": "Al sentarte, antes de empezar, apunta en el borrador los límites de fallos y los hitos del reloj." }
+ ],
+ "calculadora": {
+  "si": "Lleva calculadora científica no programable y que la conozcas: grados y minutos, seno, coseno y tangente.",
+  "no": "Sin calculadora: las cuentas de grados y horas, a mano. Practícalas con «Las cuentas del patrón»."
+ },
+ "py": {
+  "modulos": [
+   { "tipo": "norma", "fuente": "rd875", "texto": "Dos módulos: el genérico (Seguridad y Meteorología, 20 preguntas, 45 minutos) y el de navegación (Teoría y Carta, 20 preguntas, 1 hora y 15 minutos)." },
+   { "tipo": "norma", "fuente": "rd875", "texto": "Si no apruebas el examen entero, puedes aprobar un módulo: el genérico, con al menos 5 bien en Seguridad y 5 en Meteorología; el de navegación, con al menos 5 bien en Teoría y 7 en Carta. El módulo aprobado se conserva en las dos convocatorias siguientes de PY de esa administración y solo vale en ella." }
+  ],
+  "consejos": [
+   { "tipo": "consejo", "texto": "El módulo de navegación es donde se suspende: tiene los dos límites de fallos (Teoría y Carta) y casi toda la cuenta. Dale tu mejor cabeza." },
+   { "tipo": "consejo", "texto": "El genérico no tiene límite por tema en la nota global: ve a ritmo, marca las dudosas y no te atasques." },
+   { "tipo": "consejo", "texto": "Si te presentas con un módulo ya aprobado, lo que te falta es el otro: practícalo con los simulacros de un solo módulo («Examen», «O solo un módulo»)." }
+  ],
+  "unReloj": "Tu tribunal da los dos módulos en un solo cuadernillo y con un solo tiempo: lo que ahorres en el genérico te sirve para la carta.",
+  "relojPendiente": "Si tu tribunal cronometra cada módulo por separado o da un solo tiempo para los dos está sin comprobar en la app: míralo en la convocatoria. Si es uno solo, lo que ahorres en el genérico te sirve para la carta."
+ },
+ "tribunales": {
+  "andalucia": {
+   "correccion": { "verificado": true, "fuente": "boja2025", "texto": "La convocatoria remite a los criterios de evaluación del Real Decreto 875/2014 (base quinta 3)." },
+   "unReloj": null,
+   "dia": [
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "texto": "Material para cualquier titulación: lápiz 2 HB, goma de borrar y bolígrafo azul o negro." },
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "per", "texto": "Además, en el PER: calculadora científica no programable y cartabón, escuadra, regla, transportador de ángulos y compás." },
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "py", "texto": "Además, en el módulo de navegación del PY: calculadora científica no programable y cartabón, escuadra, regla, transportador de ángulos y compás." },
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 6", "texto": "La carta del Estrecho te la da el tribunal (un facsímil para cada aspirante)." },
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base séptima 1", "texto": "Durante el examen no puedes tener el móvil ni otro soporte de información (calculadora programable, PDA o similares)." },
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base séptima 2", "texto": "Hay un solo llamamiento. Al entrar acreditas tu identidad con el mismo documento de la inscripción: con nacionalidad española, DNI, permiso de conducción o pasaporte, en físico (no valen fotocopias, fotos ni aplicaciones). Sin acreditarla no entras al aula." },
+    { "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 2", "texto": "El horario y demás información de cada examen se publican en la web del Instituto Andaluz del Deporte." }
+   ],
+   "nota": "Es la convocatoria de 2025: comprueba la del año de tu examen.",
+   "pendientes": [
+    "Si cada módulo del PY lleva su propio tiempo o hay uno solo para los dos."
+   ]
+  },
+  "dgmm": {
+   "correccion": { "verificado": true, "fuente": "boe2026", "texto": "Sus normas de corrección (anexo III) son las del Real Decreto 875/2014." },
+   "unReloj": { "fuente": "ficha", "texto": "Un solo cuadernillo de 40 preguntas en dos horas." },
+   "dia": [
+    { "tipo": "norma", "fuente": "boe2026", "ref": "apartado 14", "texto": "La carta y lo que haga falta del Anuario de Mareas o del Almanaque Náutico te lo dan con el cuadernillo." },
+    { "tipo": "norma", "fuente": "boe2026", "ref": "apartado 14", "texto": "Tú llevas bolígrafo azul o negro, lápiz y el material de dibujo que necesites para los ejercicios del temario." },
+    { "tipo": "norma", "fuente": "boe2026", "ref": "apartado 14", "texto": "La calculadora solo se permite en los exámenes de PY y de Capitán de Yate." },
+    { "tipo": "norma", "fuente": "boe2026", "ref": "apartado 5", "texto": "Al entrar te pueden pedir el justificante de pago de la tasa: llévalo." },
+    { "tipo": "norma", "fuente": "boe2026", "ref": "apartado 11", "texto": "Fecha, horario y lugar se publican con la lista definitiva de admitidos, en la web del Ministerio." }
+   ],
+   "nota": "Es la convocatoria de 2026: comprueba la del año de tu examen.",
+   "pendientes": [
+    "Qué documento de identidad piden al entrar (la convocatoria no lo detalla)."
+   ]
+  },
+  "baleares": {
+   "correccion": { "verificado": false },
+   "unReloj": null,
+   "dia": [
+    { "tipo": "norma", "fuente": "ficha", "texto": "El extracto del Anuario de Mareas para los cálculos de marea te lo da el tribunal." }
+   ],
+   "nota": "La convocatoria de Baleares no está revisada en la app: material, documentación y horario, en la que publique el Govern.",
+   "pendientes": [
+    "Qué material y qué documento de identidad hay que llevar.",
+    "Si cada módulo del PY lleva su propio tiempo o hay uno solo para los dos."
+   ]
+  }
+ }
+}

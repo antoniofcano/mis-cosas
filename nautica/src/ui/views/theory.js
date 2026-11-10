@@ -358,6 +358,7 @@ export function examenesView({ ctx, progress, tit }) {
       h('section.simulacro',
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`),
+        h('p.centrado.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Cómo hacer el examen: tu estrategia'))),
         // Por módulos (PY): practicar uno mientras se aprende el otro.
         E0.modulos?.length ? h('div.simulacro-modulos', h('p.muted.small', 'O solo un módulo, para practicarlo mientras aprendes el otro:'),
           E0.modulos.map((m) => { const Em = estructuraModulo(E0, m.id);
@@ -817,6 +818,8 @@ export function testView({ ctx, progress, params: route, tit }) {
           E1.modulo ? h('p.aviso-modulo', 'Simulacro de un solo módulo: sirve para practicarlo, pero no cuenta como simulacro aprobado en tu travesía ni en «¿Estás listo?». Para eso, el examen completo.') : null,
           test.avisoVistas ? h('p.aviso-vistas', `Ya has respondido el ${Math.round(test.vistas * 100)} % de las preguntas de estudio: este simulacro repetirá muchas que ya has visto y aprobarlo dice menos. La prueba de verdad es el examen final, con preguntas reservadas.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
+          // Antes de que corra el reloj (nunca con el examen en marcha): cómo hacerlo.
+          h('p.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Antes de empezar: cómo hacer el examen'))),
           otro
             ? [h('p.aviso-medias', 'Tienes otro examen a medias.'),
               h('div.botones-columna',

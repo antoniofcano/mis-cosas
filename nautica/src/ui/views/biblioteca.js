@@ -15,6 +15,7 @@ export function bibliotecaView({ tit }) {
   const grupos = [
     ['Empezar', [
       [tlink(tit, ['guia']), 'brujula', 'Cómo funciona el curso', 'El método y cómo aprobar, en cinco pantallas (3 minutos).'],
+      [tlink(tit, ['estrategia']), 'diana', 'Estrategia de examen', 'Cómo hacer el examen: tiempo, límites de fallos, orden, el día antes y tus datos.'],
     ]],
     ['Escuchar', [
       [tlink(tit, ['podcast']), 'podcast', 'Radio de a bordo', 'Episodios cortos del temario, con el guion y preguntas reales.'],

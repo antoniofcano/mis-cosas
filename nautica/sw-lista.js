@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '2709ca4f3f65';
+self.VERSION = 'ad1bfeafddeb';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -39,6 +39,7 @@ self.APP = [
  "src/course/cuentas.js",
  "src/course/engine.js",
  "src/course/entrada.js",
+ "src/course/estrategia.js",
  "src/course/ficha.js",
  "src/course/final.js",
  "src/course/guia.js",
@@ -325,6 +326,7 @@ self.APP = [
  "src/ui/views/chuleta.js",
  "src/ui/views/cuentas.js",
  "src/ui/views/curso.js",
+ "src/ui/views/estrategia.js",
  "src/ui/views/exams.js",
  "src/ui/views/exercise.js",
  "src/ui/views/gallery.js",
@@ -357,6 +359,7 @@ self.DATOS = [
  "data/chart-105.json",
  "data/comun/abreviaturas.json",
  "data/comun/chuletario.json",
+ "data/comun/estrategia.json",
  "data/comun/mnemotecnias.json",
  "data/comun/vocabulario-per.json",
  "data/comun/vocabulario-py.json",

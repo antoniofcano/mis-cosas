@@ -12642,7 +12642,7 @@
       {
        "tipo": "texto",
        "titulo": "Ejemplo y redondeo",
-       "texto": "Ejemplo para 2024: han pasado 19 años, y 19 × 7′ = 133′ = 2°13′ hacia el E. Queda −2°50′ + 2°13′ = −0°37′, que se redondea a **−1° (1° W)**. En 2026 serían 21 × 7′ = 147′ = 2°27′, queda −0°23′ y se redondea a **0°**.\n\nRedondea al **grado más próximo**: lo piden los enunciados recientes y así salen las plantillas."
+       "texto": "Ejemplo para 2024: han pasado 19 años, y 19 × 7′ = 133′ = 2°13′ hacia el E. Queda −2°50′ + 2°13′ = −0°37′, que se redondea a **−1° (1° W)**. En 2026 serían 21 × 7′ = 147′ = 2°27′, queda −0°23′ y se redondea a **0°**.\n\nHaz lo que diga el enunciado: si pide redondear la declinación al **grado más próximo** (los recientes lo piden), redondéala; si no dice nada, sigue con el valor exacto y redondea solo el resultado final."
       },
       {
        "tipo": "ojo",
@@ -12735,7 +12735,7 @@
      ],
      "chuleta": [
       "Ct = dm + Δ. E o NE positivo; W o NW negativo.",
-      "dm del año = dm de la carta + variación anual × años. Redondea al grado más próximo (−0°37′ → −1°; −0°23′ → 0°).",
+      "dm del año = dm de la carta + variación anual × años. Si el enunciado lo pide, redondea al grado más próximo (−0°37′ → −1°; −0°23′ → 0°); si no, valor exacto.",
       "Rv = Ra + Ct; Ra = Rv − Ct; Dv = Da + Ct.",
       "Enfilación (uno detrás de otro) u oposición (uno a cada lado): la recta te da la Dv.",
       "Ct = Dv − Da. Si sale más de 180°, suma o resta 360°. El rumbo no interviene."
@@ -13580,7 +13580,7 @@
         "tipo": "tangente",
         "banda": "babor"
        },
-       "texto": "Faro a 10 millas en Dv 004°, pasar a 2,5 millas dejándolo por babor: sen α = 2,5/10, α ≈ 14,5° y Rv ≈ 019°."
+       "texto": "Faro a 10 millas en Dv 004°, pasar a 2,6 millas dejándolo por babor: sen α = 2,6/10, α ≈ 15° y Rv = 004° + 15° = 019°."
       },
       {
        "tipo": "texto",
@@ -13614,14 +13614,14 @@
       },
       {
        "tipo": "check",
-       "enunciado": "Estás a 10 millas de un faro que ves en Dv 004°. Quieres pasar a 2,5 millas dejándolo por babor, y el ángulo de la tangente te sale de unos 14,5°. ¿Qué Rv das?",
+       "enunciado": "Estás a 10 millas de un faro que ves en Dv 004°. Quieres pasar a 2,6 millas dejándolo por babor, y el ángulo de la tangente te sale de unos 15°. ¿Qué Rv das?",
        "opciones": {
         "a": "350°",
         "b": "019°",
         "c": "004°"
        },
        "correcta": "b",
-       "explicacion": "Por babor, el faro queda a tu izquierda y la derrota pasa a la derecha de la visual: Rv = Dv + α ≈ 004° + 14,5° ≈ 019°."
+       "explicacion": "Por babor, el faro queda a tu izquierda y la derrota pasa a la derecha de la visual: Rv = Dv + α = 004° + 15° = 019°."
       },
       {
        "tipo": "check",

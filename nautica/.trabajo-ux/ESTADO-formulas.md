@@ -58,3 +58,31 @@ Estado: hecho en la rama, pendiente del visto bueno (capturas en el resumen de l
   examen está abierta. Si se quiere bloquear también con `testEnCurso`, es una línea en la vista.
 - El alcance de las luces de navegación (RIPA, anexo I) no está en el curso con cifras: no se ha añadido.
 - Con ejemplos, la versión impresa ocupa 5 páginas en el PER y 9 en el PY; sin ejemplos, 3 y 5.
+
+## Discrepancias resueltas al integrar (10 de noviembre de 2026)
+
+Decisión del dueño: no publicar con discrepancias abiertas. Cómo queda cada una, igual en el curso, la chuleta, la hoja y
+los motores:
+
+1. **Deriva:** `Deriva = Ref − Rs` (sin viento, `Ref − Rv`), + a estribor y − a babor. Corregida la chuleta de `py-3-3`
+   (decía lo contrario que su propio ejemplo) y añadida a la hoja.
+2. **Polar:** `Ct = Zv − Za = 000° − Za` en `py-3-2`, `py-4-1`, la chuleta, la hoja y las claves del podcast. Se dice
+   expresamente que el examen llama a veces al Za «demora de aguja de la Polar» (por eso las explicaciones de preguntas
+   reales siguen escribiendo `0° − Da`: es lo mismo).
+3. **Redondeo de la declinación:** una sola regla en PER y PY: *haz lo que diga el enunciado*; si pide el grado más
+   próximo, se redondea; si no, valor exacto y se redondea solo el resultado final. Comprobado en los bancos: los
+   enunciados que lo piden lo dicen, y sus resoluciones programadas ya usan la declinación redondeada.
+4. **ΔL / Δλ:** el ejercicio de estima analítica pasa a ΔL, como las clases. Las abreviaturas y la hoja dicen que Δλ es lo
+   mismo (aparece en explicaciones de preguntas reales).
+5. **Presión normal:** 1013,25 hPa es el valor exacto y 1013 el que usa el examen; `py-2-1` lo dice así.
+6. **Tangente de `per-11-9`:** el ejemplo pasa a 2,6 millas (α ≈ 15°, Rv = 019°), sin el medio grado que daba 018° o 019°
+   según se redondeara. Cambiado en la lámina, la pregunta de la clase, su explicación y las claves del podcast.
+7. **Huso en el límite:** `husoDe` deja 7° 30′ exactos en el huso menor, como dice la clase («si el resto pasa de 7° 30′»).
+8. **Viento aparente:** la fórmula sale solo en la hoja del PER (el PY no lo trata), con su nota.
+9. **Estima inversa:** la hoja explica que el método del examen es la latitud media y que medir en la carta difiere en
+   décimas.
+10. **Chuleta de mareas del PY:** añadida la corrección por presión.
+11. **Impresión de la chuleta del tema:** el rótulo de pantalla ya no sale en el papel.
+
+Queda para la regeneración del podcast (R-09): el audio del PER dice el ejemplo antiguo de la tangente (2,5 millas, 14,5°,
+019°); el texto del episodio ya está al día.

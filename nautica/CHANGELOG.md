@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 11 de noviembre de 2026 · versión `98fdf4ab1de6`
+
 ### Novedades
 
 - **Estrategia de examen:** cómo repartir el tiempo, los temas con límite de fallos, el orden para contestar y qué llevar,
@@ -35,6 +39,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ### Correcciones
 
+- El curso, la chuleta y la hoja de fórmulas dicen ahora lo mismo en siete puntos donde no coincidían: el signo de la
+  deriva, la Ct por la Polar, cuándo redondear la declinación (lo que diga el enunciado), ΔL, la presión normal, el
+  ejemplo de la tangente del PER y el huso justo en el límite. La chuleta de mareas del PY incluye la corrección por presión.
 - Simulacro por módulos del Patrón de Yate: se corrige como el aprobado por módulos oficial (RD 875/2014): no pasar de 5
   fallos en Seguridad ni de 5 en Meteorología en el genérico, y de 5 en Teoría ni de 3 en Carta en el de navegación. Antes
   pedía 14 aciertos de 20, que no es el criterio del examen.

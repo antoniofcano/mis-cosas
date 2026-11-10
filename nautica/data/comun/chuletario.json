@@ -45,7 +45,7 @@
       "titulo": "Ct por la Polar",
       "lineas": [
         "La Polar está casi en el norte verdadero: **Zv ≈ 000°**.",
-        "**Ct = Zv − Za = 000° − Za** (Za 357° → Ct = +3°)."
+        "**Ct = Zv − Za = 000° − Za** (Za 357° → Ct = +3°). Za es el azimut de aguja de la Polar; el examen lo llama a veces su demora de aguja."
       ]
     },
     "cuadrantales": {
@@ -153,7 +153,8 @@
         "**C = A · sen² (90° · I / D)** · **h = altura BM + C**",
         "**Sonda = sonda de la carta + h** · agua bajo la quilla = sonda − calado.",
         "Inverso: C = h necesaria − altura BM; **I = D · arcsen √(C / A) / 90°**. Hora: BM + I si sube, BM − I si baja.",
-        "Regla de los duodécimos (comprobación): en cada sexto de la duración sube o baja **1, 2, 3, 3, 2 y 1 doceavos** de la amplitud."
+        "Regla de los duodécimos (comprobación): en cada sexto de la duración sube o baja **1, 2, 3, 3, 2 y 1 doceavos** de la amplitud.",
+        "Presión: unos 1 cm menos de agua por cada hPa por encima de 1013 y 1 cm más por cada hPa por debajo."
       ]
     },
     "mareas-per": {

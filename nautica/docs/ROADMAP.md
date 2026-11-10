@@ -65,7 +65,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el podcast PER aún dice «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
+| R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el audio del PER aún dice el ejemplo antiguo de la tangente (2,5 millas, 14,5°, 019°; el curso usa ya 2,6 millas y 15°), «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
 | ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se partió: las notificaciones (recordatorio diario) están hechas (H-18); la insignia y la pantalla de arranque pasan a R-18 |
 | R-18 | Pulido de PWA: insignia de la app y pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17) |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
@@ -82,7 +82,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | R-29 | Revisar las 102 preguntas que siguen en la práctica de una clase de otro tema (54 de tema dudoso y 48 de clases que se quedarían cortas) y las 281 candidatas de la auditoría de temas | Después | `.trabajo-ux/AUDITORIA-temas.md` y `tools/bancos/practica-excepciones.json`; decidir si la clase del Anuario del PY pasa al tema de carta |
 | R-30 | Probar en iPhone real el bloc (teclado) y la carta a pantalla completa (bordes, gestos del sistema, giro con la app instalada) | Siguiente | Solo probado en un navegador que lo simula; decidir si el manifiesto deja de fijar la orientación vertical |
 | R-37 | Estrategia de examen: verificar lo pendiente (convocatoria de Baleares; tiempo por módulo del PY en Andalucía y Baleares; documento en Madrid) y calibrar los umbrales de «Tu estrategia» | Después | La página lo muestra como «pendiente de verificar» |
-| R-38 | Hoja de fórmulas: resolver las discrepancias anotadas entre curso, chuletario y motores (signo de la deriva, redondeo de la dm, huso en 7° 30′ exactos, ejemplo de `per-11-9`) y revisar los ejemplos nuevos | Después | Lista en `.trabajo-ux/ESTADO-formulas.md` |
+| R-38 | Hoja de fórmulas: revisar la redacción didáctica de los ejemplos nuevos (hora, estabilidad, humedad, radar) | Después | Calculados y comprobados por test; las discrepancias entre curso, chuleta y motores quedaron resueltas (H-33) |
 | R-39 | Sincronizar y copiar «Tus errores más repetidos» (hoy solo en el aparato) | Después | Pide un tipo de dato nuevo en el servidor: con la versión 2 |
 | R-40 | Vídeos del PY: contrastar los 8 hechos «por verificar» antes de dibujarlos y sustituir en el podcast las preguntas reservadas que leen sus minijuegos | Después | `docs/VIDEOS-PY.md` |
 
@@ -148,6 +148,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-30 | Fichas de vídeo de las ideas difíciles del PY, `docs/VIDEOS-PY.md` (R-34) | Noviembre 2026 |
 | H-31 | Resolver paso a paso y diagnóstico por tipo de error en las preguntas reales (R-35, R-36) | Noviembre 2026 |
 | H-32 | Simulacro por módulos del PY corregido con el criterio oficial por materias (RD 875/2014) | Noviembre 2026 |
+| H-33 | Discrepancias entre curso, chuleta, hoja de fórmulas y motores resueltas (deriva, Polar, redondeo de la declinación, ΔL, presión, tangente, huso límite) | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

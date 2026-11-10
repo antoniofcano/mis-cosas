@@ -2,7 +2,8 @@
 // longitudes en grados, E positivas y W negativas. Lo usan la lámina de husos y el ejercicio de la hora.
 
 /** Huso horario de una longitud: 15° por huso, centrado en los meridianos múltiplos de 15° (E +, W −). */
-export const husoDe = (lon) => Math.sign(lon) * Math.round(Math.abs(lon) / 15);
+// Justo en el límite (7° 30′, 22° 30′…) se queda en el huso menor: solo «si el resto pasa de 7° 30′» se va al siguiente (py-3-5).
+export const husoDe = (lon) => Math.sign(lon) * Math.max(0, Math.ceil(Math.abs(lon) / 15 - 0.5 - 1e-9));
 /** Hora legal o del huso: Hz = TU + huso (E suma, W resta). */
 export const horaLegal = (tuMin, lon) => tuMin + husoDe(lon) * 60;
 /** Hora civil del lugar: HcL = TU + longitud en tiempo (1° = 4 min). */

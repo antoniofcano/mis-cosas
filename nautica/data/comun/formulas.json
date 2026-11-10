@@ -48,8 +48,8 @@
           "signos": "Cada término con su signo. Una dm W que disminuye (decremento) varía hacia el E: suma.",
           "cuando": "Antes de calcular la Ct: la declinación de la rosa es de otro año.",
           "trampa": {
-            "per": "Redondea solo al final y al grado más próximo (−0°37′ → −1°; −0°23′ → 0°).",
-            "py": "Usa el valor exacto o al medio grado, como pida el enunciado; redondea solo al final."
+            "per": "Haz lo que diga el enunciado: si pide redondear la declinación al grado más próximo, redondéala (−0°37′ → −1°; −0°23′ → 0°); si no dice nada, sigue con el valor exacto y redondea solo el resultado final.",
+            "py": "Haz lo que diga el enunciado: si pide redondear la declinación al grado más próximo, redondéala (−0°37′ → −1°; −0°23′ → 0°); si no dice nada, sigue con el valor exacto y redondea solo el resultado final."
           },
           "cita": "dm del año = dm de la carta + variación anual × años",
           "origen": { "clases": ["per-10-5", "per-11-2", "py-3-2", "py-4-1"], "chuletario": "ct", "motor": "src/nautical/compass.js · updateDeclination" },
@@ -58,10 +58,10 @@
             "pasos": [
               "Años: 2026 − 2010 = **16**.",
               "Variación: 16 × 8′ = 128′ = **2°08′** hacia el E (+).",
-              "dm = −4°10′ + 2°08′ = **−2°02′** (2°02′ W); al grado, **2° W**."
+              "dm = −4°10′ + 2°08′ = **−2°02′** (2°02′ W); si el enunciado pide el grado más próximo, **2° W**."
             ],
             "calculadora": [{ "teclas": "(−) 4 °′″ 10 °′″ + 16 × 0 °′″ 8 °′″ =", "da": -2.0333, "tol": 0.0005, "pantalla": "−2°2′0″" }],
-            "resultado": "dm = 2°02′ W (−2°02′); al grado, 2° W",
+            "resultado": "dm = 2°02′ W (−2°02′); si piden el grado más próximo, 2° W",
             "comprobar": { "calculo": "dmDelAno", "datos": { "dmCarta": { "g": 4, "m": 10, "ew": "W" }, "ano": 2010, "variacionMin": 8, "hacia": "E", "anoActual": 2026 }, "esperado": { "dm": { "valor": -2.0333, "tol": 0.0005, "texto": "−2°02′" } } }
           }
         },
@@ -99,7 +99,7 @@
           "temas": { "py": [3, 4] },
           "expresion": ["Ct = 000° − Za"],
           "letras": [
-            ["Za", "azimut de aguja de la Polar: lo que marca la aguja"],
+            ["Za", "azimut de aguja de la Polar: lo que marca la aguja (el examen lo llama a veces su demora de aguja, Da: es lo mismo)"],
             ["000°", "la Polar está casi en el norte verdadero (Zv ≈ 000°)"]
           ],
           "signos": "Za cerca de 360°: Ct positiva (Za 357° → +3°). Za cerca de 0°: Ct negativa.",
@@ -265,7 +265,7 @@
             ["Rc, Ihc", "rumbo de la corriente (hacia donde va) e intensidad horaria, en nudos"],
             ["Ref, Vef", "rumbo y velocidad efectivos, sobre el fondo (la Vef es la SOG del GNSS)"]
           ],
-          "signos": "La corriente se nombra por hacia dónde va; el viento, por de dónde viene.",
+          "signos": "La corriente se nombra por hacia dónde va; el viento, por de dónde viene. Deriva = Ref − Rs: + si la corriente te lleva a estribor, − si a babor.",
           "cuando": "Estima con corriente: dónde estarás y a qué velocidad avanzas sobre el fondo.",
           "trampa": "Primero el viento (del Rv al Rs) y luego la corriente. La hora de llegada, con la Vef, nunca con la Vb.",
           "cita": "Primero el viento, luego la corriente",
@@ -613,7 +613,7 @@
           "letras": [
             ["Δl, A", "las sumas de todos los tramos, con su signo"],
             ["lm", "latitud media"],
-            ["ΔL", "diferencia de longitud, en minutos"]
+            ["ΔL", "diferencia de longitud, en minutos (algunas explicaciones la escriben Δλ: es lo mismo)"]
           ],
           "signos": "N y E (+) · S y W (−). En longitud W, un ΔL hacia el W la hace mayor.",
           "cuando": "Directa: la situación de llegada tras uno o varios tramos (y la corriente).",
@@ -649,7 +649,7 @@
           ],
           "signos": "Δl N y A E: N x E. Δl S y A E: 180° − x. Δl S y A W: 180° + x. Δl N y A W: 360° − x.",
           "cuando": "Inversa: rumbo directo y distancia entre dos situaciones.",
-          "trampa": "No tomes la arcotangente como rumbo sin mirar el cuadrante. Y aproxima (al medio grado, si lo piden) solo al final.",
+          "trampa": "No tomes la arcotangente como rumbo sin mirar el cuadrante. Y aproxima (al medio grado, si lo piden) solo al final. Este es el método de la latitud media, el del examen; medir en la carta (mercatoriana) da el mismo rumbo con diferencias de décimas.",
           "cita": "D = √(Δl² + A²)",
           "origen": { "clases": ["py-3-4", "py-4-10"], "chuletario": "estima-analitica", "motor": "src/course/formulas.js · estimaInversa (latitud media); la carta mide en Mercator: src/math/mercator.js · rhumbTo" },
           "ejemplo": {
@@ -963,8 +963,8 @@
         {
           "id": "viento-aparente",
           "titulo": "Viento aparente",
-          "tits": ["per", "py"],
-          "temas": { "per": [9], "py": [2] },
+          "tits": ["per"],
+          "temas": { "per": [9] },
           "expresion": ["de proa = Vr · cos α + Vb", "de costado = Vr · sen α", "Va = √(proa² + costado²)", "ángulo con la proa = arctg (costado / proa)"],
           "letras": [
             ["Vr, α", "viento real y su ángulo con la proa (0° proa, 90° través, 180° popa)"],
@@ -975,7 +975,7 @@
           "cuando": "Para saber por dónde y con qué fuerza notas el viento a bordo.",
           "trampa": "El aparente entra más a proa que el real, pero no siempre es más fuerte: ciñendo, más; en popa, más flojo.",
           "cita": "aparente = suma de los dos",
-          "fueraDelCurso": "Las clases enseñan el viento aparente sin cuentas (la suma de real y de avance). La cuenta es la de la chuleta de la práctica y la del ejercicio «Viento aparente» de la app, que se practica en el PER y en el PY.",
+          "fueraDelCurso": "Las clases enseñan el viento aparente sin cuentas (la suma de real y de avance). La cuenta es la de la chuleta de la práctica y la del ejercicio «Viento aparente» de la app, que se practica sobre todo en el PER.",
           "origen": { "clases": ["per-9-4"], "chuletario": "viento-aparente", "motor": "src/nautical/viento.js · vientoAparente" },
           "ejemplo": {
             "enunciado": "Navegas a 6 nudos con un viento real de 12 nudos que entra a 60° de la proa por estribor. ¿Cómo es el aparente?",

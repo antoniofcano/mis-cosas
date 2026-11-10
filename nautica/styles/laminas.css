@@ -290,7 +290,7 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
   .mc-hoja { max-width: none; margin: 0; font-size: 9pt; line-height: 1.28; color: black; }
   .mc-hoja-cab { padding: 0 0 2mm; border: 0; border-bottom: 1.5pt solid black; box-shadow: none; background: none; gap: 1mm; break-after: avoid; }
   .mc-impresion { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 4mm; margin: 0; font-family: var(--lc-mono); font-size: 8pt; color: black; }
-  .mc-eti-pantalla, .mc-hoja .mc-intro { display: none; }
+  .mc-eti-pantalla, .mc-hoja-cab .mc-eti-pantalla, .mc-hoja .mc-intro { display: none; }
   .mc-hoja h1.lc-titulo { font-size: 14pt; margin: 0; }
   .mc-clases { border: 0; padding: 2mm 0 0; background: none; column-count: 2; column-gap: 7mm; column-rule: .5pt solid darkgray; }
   /* Una clase larga puede seguir en la otra columna (si no, quedan medias páginas en blanco), pero nunca se parte un

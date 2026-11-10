@@ -460,6 +460,111 @@ button.boton-compartir[data-ocupado] { opacity: .7; }
   .lc-cursor { display: none; }
 }
 
+/* ---- Fórmulas y tablas en una hoja (src/ui/views/formulas.js; datos en data/comun/formulas.json) ----
+   La misma hoja de papel de carta que la chuleta del tema (.mc-hoja): la expresión en una cartela de doble filete, las
+   letras en una lista de dos columnas, la trampa con su rótulo y el ejemplo resuelto en un recuadro con las teclas de la
+   calculadora. En el móvil, todo en una columna (nada desborda a 360 px: las expresiones parten donde haga falta y las
+   tablas se desplazan dentro de su caja). Al imprimir: A4, blanco y negro, dos columnas, sin buscador ni índice. */
+.formulas .mc-hoja-cab { border-bottom: 1.5px solid var(--lc-tinta); }
+.formulas .fm-herramientas { display: grid; gap: .45rem; margin: .7rem 0; min-width: 0; }
+.fm-filtro { margin: 0; font-family: var(--lc-serif); }
+.fm-filtro a { display: inline-flex; align-items: center; min-height: 44px; }
+.fm-buscar-eti { display: flex; align-items: center; gap: .3em; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+input.fm-buscar { width: 100%; box-sizing: border-box; min-height: 44px; padding: .4rem .7rem; font-size: 1rem; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; }
+input.fm-buscar:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fm-indice { display: flex; flex-wrap: wrap; gap: .35rem; }
+button.fm-ir { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; padding: .3rem .6rem; font-size: .9rem; font-weight: 600; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; }
+button.fm-ir:hover { border-color: var(--lc-magenta); }
+button.fm-ir:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fm-nada { margin: .6rem 0; font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); }
+.fm-cuerpo { background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-top: 3px double var(--lc-tinta); padding: .2rem 1rem 1rem; }
+.fm-bloque { padding: .5rem 0 .2rem; border-bottom: 2px solid var(--lc-tinta); }
+.fm-bloque:last-child { border-bottom: 0; }
+.fm-bloque-tit { display: flex; align-items: center; gap: .4rem; margin: .5rem 0 .2rem; font-family: var(--lc-serif); font-size: 1.3rem; line-height: 1.2; color: var(--lc-tinta); scroll-margin-top: 1rem; }
+.fm-bloque-tit .ico, .fm-bloque-tit .ico.ico-t { color: var(--lc-magenta); }
+.fm-bloque-tit:focus { outline: none; }
+.fm-bloque-tit:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fm-formula { min-width: 0; padding: .6rem 0 .7rem; border-bottom: 1px dashed var(--lc-linea-agua); }
+.fm-bloque > .fm-formula:last-child { border-bottom: 0; }
+.fm-tit { margin: 0 0 .35rem; font-family: var(--lc-serif); font-size: 1.12rem; line-height: 1.25; color: var(--lc-tinta); }
+.fm-expr { margin: .2rem 0 .45rem; padding: .45rem .65rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); }
+.fm-linea { margin: .12rem 0; font-family: var(--lc-serif); font-size: 1.1rem; font-weight: 700; line-height: 1.35; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; color: var(--lc-tinta); }
+.fm-letras { display: grid; grid-template-columns: fit-content(40%) 1fr; align-items: baseline; gap: .2rem .65rem; margin: .35rem 0; font-size: .95rem; line-height: 1.4; }
+.fm-letras dt { font-family: var(--lc-serif); font-weight: 700; overflow-wrap: anywhere; }
+.fm-letras dd { margin: 0; min-width: 0; }
+.fm-signos, .fm-cuando { margin: .3rem 0; line-height: 1.45; }
+.fm-eti { font-weight: 700; color: var(--lc-magenta); }
+.fm-trampa p { margin: 0; line-height: 1.4; }
+.fm-ejemplo { margin: .55rem 0 .3rem; padding: .5rem .65rem; background: var(--lc-papel); border: 1px solid var(--lc-tinta); }
+.fm-enunciado { margin: 0 0 .3rem; font-family: var(--lc-serif); font-style: italic; line-height: 1.45; }
+.fm-pasos { margin: .2rem 0 .35rem; padding-left: 1.3rem; }
+.fm-pasos li { margin: .15rem 0; line-height: 1.45; }
+.fm-pasos li::marker { color: var(--lc-magenta); font-weight: 700; }
+.fm-pasos strong, .fm-resultado strong { font-variant-numeric: tabular-nums; }
+.fm-calc { margin: .35rem 0; }
+.fm-calc > .fm-eti { display: flex; align-items: center; gap: .3em; margin: 0 0 .15rem; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+.fm-teclas { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .45rem; margin: .2rem 0; }
+.fm-kbds { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .2rem; }
+.fm-kbds kbd { display: inline-block; min-width: 1.5em; padding: .05rem .35rem; font-family: var(--lc-mono); font-size: .85rem; line-height: 1.5; text-align: center; color: var(--lc-tinta); background: var(--lc-fondo); border: 1px solid var(--lc-tinta); border-bottom-width: 2px; border-radius: 3px; }
+.fm-num { font-family: var(--lc-mono); font-size: .9rem; font-weight: 600; padding: 0 .1rem; }
+.fm-da { font-family: var(--lc-mono); font-size: .9rem; font-weight: 700; color: var(--lc-magenta); }
+.fm-resultado { margin: .35rem 0 0; }
+.formulas.sin-ejemplos .fm-ejemplo { display: none; }
+.fm-fuera { margin: .35rem 0 0; font-size: .88rem; font-style: italic; color: var(--lc-apagado); }
+.fm-origen { margin: .35rem 0 0; font-size: .85rem; line-height: 1.5; color: var(--lc-apagado); }
+.fm-origen a { color: var(--lc-tinta); text-decoration-color: var(--lc-linea-agua); text-underline-offset: 2px; }
+.fm-tabla-caja { max-width: 100%; overflow-x: auto; margin: .3rem 0; }
+.fm-tabla-caja:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fm-tabla { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.35; }
+.fm-tabla th, .fm-tabla td { padding: .3rem .45rem; text-align: left; vertical-align: top; border: 1px solid var(--lc-linea-agua); }
+.fm-tabla thead th { font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--lc-magenta); background: var(--lc-papel); }
+.fm-tabla tbody th { font-weight: 700; }
+.fm-tabla tbody th.fm-cifra { font-family: var(--lc-mono); }
+.fm-nota { margin: .3rem 0 0; font-family: var(--lc-serif); font-style: italic; font-size: .95rem; line-height: 1.4; }
+.chuleta-todas { margin: .6rem 0 0; }
+.chuleta-todas a { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; font-weight: 600; }
+@media (max-width: 560px) {
+  .fm-cuerpo { padding-inline: .75rem; }
+  .fm-expr, .fm-ejemplo { padding-inline: .55rem; }
+  /* El índice, en una tira que se desliza (no ocupa media pantalla) */
+  .fm-indice { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .3rem; scrollbar-width: thin; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  button.fm-ir { flex: none; }
+  /* Tablas anchas (zonas y equipo): cada fila, una ficha con el nombre de cada dato */
+  .fm-tabla.fm-ancha thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .fm-tabla.fm-ancha, .fm-ancha tbody, .fm-ancha tr, .fm-ancha th, .fm-ancha td { display: block; }
+  .fm-ancha tr { margin: 0 0 .4rem; padding: .3rem .55rem; border: 1px solid var(--lc-linea-agua); background: var(--lc-papel); }
+  .fm-ancha tbody th, .fm-ancha td { padding: .08rem 0; border: 0; }
+  .fm-ancha tbody th::before, .fm-ancha td::before { content: attr(data-col) ": "; font-family: var(--fuente-texto, system-ui, sans-serif); font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lc-magenta); }
+}
+@media print {
+  .formulas .fm-cuerpo { border: 0; padding: 2mm 0 0; background: none; column-count: 2; column-gap: 7mm; column-rule: .5pt solid darkgray; }
+  .fm-bloque { padding: 0; border: 0; break-inside: auto; }
+  .fm-bloque-tit { margin: 1.6mm 0 .6mm; padding-bottom: .4mm; font-size: 11pt; border-bottom: 1pt solid black; break-after: avoid; page-break-after: avoid; }
+  .fm-bloque-tit .ico { width: 10pt; height: 10pt; }
+  .fm-formula { padding: 1mm 0 1.3mm; border-bottom: .5pt solid darkgray; break-inside: avoid; page-break-inside: avoid; }
+  .fm-tit { margin: 0 0 .5mm; font-size: 9.5pt; }
+  .fm-expr { margin: .4mm 0 .8mm; padding: .5mm 1.5mm; box-shadow: none; border: .8pt solid black; }
+  .fm-linea { margin: .2mm 0; font-size: 9.5pt; line-height: 1.25; }
+  .formulas .mc-hoja-cab { border-bottom: 1.5pt solid black; }
+  .formulas .mc-hoja-cab .mc-eti-pantalla { display: none; }
+  /* Las letras, seguidas en un párrafo: «Ct: corrección total · dm: …» */
+  .fm-letras { display: block; margin: .5mm 0; font-size: 8pt; line-height: 1.25; }
+  .fm-letras dt, .fm-letras dd { display: inline; }
+  .fm-letras dt::after { content: ": "; }
+  .fm-letras dd:not(:last-child)::after { content: " · "; }
+  .fm-signos, .fm-cuando, .fm-trampa p, .fm-enunciado, .fm-pasos li, .fm-resultado, .fm-nota { margin-top: .3mm; margin-bottom: .3mm; font-size: 8.5pt; line-height: 1.28; }
+  .fm-ejemplo { margin: .8mm 0 .3mm; padding: .6mm 1.5mm; background: none; border: .5pt solid black; }
+  .fm-pasos { padding-left: 4mm; }
+  .fm-calc > .fm-eti { font-size: 7pt; }
+  .fm-kbds kbd { padding: 0 .8mm; font-size: 7.5pt; border: .5pt solid black; border-bottom-width: .8pt; }
+  .fm-num, .fm-da { font-size: 8pt; }
+  .fm-origen, .fm-fuera { display: none; }
+  .fm-tabla-caja { overflow: visible; }
+  .fm-tabla { font-size: 8pt; }
+  .fm-tabla th, .fm-tabla td { padding: .3mm 1mm; border: .5pt solid black; }
+  .fm-tabla thead th { font-size: 7pt; background: none; }
+}
+
 /* Aviso de una pregunta de carta sin resolución programada o anulada (src/ui/views/exams.js, avisoMotivo; motivo de
    src/exams/motivo.js). Estilo C: papel, tinta y una etiqueta que dice el tipo con palabras (no solo con el color). */
 .motivo-carta { margin: .75rem 0; padding: .7rem .85rem .8rem; background: var(--lc-papel); color: var(--lc-tinta);

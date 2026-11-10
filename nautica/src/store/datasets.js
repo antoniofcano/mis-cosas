@@ -41,5 +41,8 @@ export const loadPodcast = (tit) => loadJSON(`data/podcast-${tit}.json`);
 /** Línea de tiempo de un episodio: cuándo empieza cada intervención y las pausas del minijuego. */
 export const loadPodcastLinea = (id) => loadJSON(`data/podcast/${id}.json`);
 
+/** «Fórmulas y tablas en una hoja» (#/<tit>/formulas): por bloques, cada fórmula con su ejemplo resuelto. */
+export const loadFormulas = () => loadJSON('data/comun/formulas.json');
+
 /** Apéndice «Las cuentas del patrón» (clases de matemáticas; fuera del temario del examen). */
 export const loadApendice = () => loadJSON('data/curso/apendice-matematicas.json');

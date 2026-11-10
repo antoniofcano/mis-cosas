@@ -70,6 +70,7 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 | `#/<tit>/laminas`, `#/reglas`, `#/conceptos`, `#/mas`, `#/progreso` | biblioteca, «Más» y mi progreso |
 | `#/calculadora` | `views/calculadora.js`: calculadora científica (lógica en `src/calculadora/motor.js`) |
 | `#/<tit>/estrategia` | `views/estrategia.js`: estrategia de examen (R-31). Lógica pura en `src/course/estrategia.js` (`cifrasExamen`, `presupuestoTiempo`, `textosEstrategia`, `tuEstrategia` con `progress.tests()` y `st.listo`); textos en `data/comun/estrategia.json` (normas con fuente: RD 875/2014 y convocatorias; consejos; pendientes por tribunal). Enlazada desde Examen, la Biblioteca y la pantalla de inicio de un simulacro; nunca con un examen en marcha (`estrategiaPermitida`, `tests/estrategia.test.js`). Imprimible con el patrón de las chuletas (`.mc-*`) |
+| `#/<tit>/formulas[?t=<tema>]` | `views/formulas.js`: «Fórmulas y tablas en una hoja» (`data/comun/formulas.json`, `src/course/formulas.js`). Por bloques, cada fórmula con su ejemplo resuelto; imprimible. Nunca en un examen (ver «Ayudas del alumno») |
 | `#/<tit>/cuentas[/<id>]` | `views/cuentas.js` y `leccionView`: apéndice «Las cuentas del patrón» (`data/curso/apendice-matematicas.json`, `src/course/apendice.js` y `cuentas.js`). Fuera del curso: no entra en temas, plan ni «¿Estás listo?». Sus enlaces «Repasa: …» salen de `usadoEn` en los datos |
 
 - **Recomendador único** (`course/plan.js`, funciones puras con tests): `planHoy` (lista ordenada de
@@ -210,6 +211,17 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
   barra (botón «Chuleta») y el panel, que va en el flujo de la página (no tapa la respuesta) o flotando sobre la
   carta en la mesa. Abierta o cerrada se recuerda en `sessionStorage`. **Solo en práctica** (`MODOS_PRACTICA`):
   nunca en simulacro, examen real ni examen final; `tests/chuletario.test.js` lo comprueba en las vistas.
+- **Fórmulas y tablas en una hoja** (`data/comun/formulas.json`, `course/formulas.js`, `ui/views/formulas.js`): las
+  fórmulas del examen por bloques y titulación (`tits`, `temas`), cada una con su expresión, letras y signos, cuándo se
+  usa, la trampa y un ejemplo resuelto; y las tablas que se memorizan (Beaufort y Douglas salen de
+  `illustrations/meteo.js`, las mismas de las láminas). Cada fórmula cita sus clases, su ficha de la chuleta y el motor
+  (`origen`), y una `cita` que debe estar escrita igual en ellas. Los ejemplos no se escriben a mano: `CALCULOS` los
+  resuelve con los motores (`nautical/`, `math/`) y `tests/formulas.test.js` exige que cada número publicado coincida
+  con el cálculo y esté escrito en el ejemplo, y pulsa cada secuencia de teclas en `calculadora/motor.js`. Buscador y
+  filtro por tema (`?t=`); al imprimir, A4 en dos columnas (estilos al final de «Fórmulas y tablas» en
+  `styles/laminas.css`), con o sin ejemplos. Se enlaza desde el panel de la chuleta (solo existe en práctica), la
+  Biblioteca, el tema y las cuentas; nunca desde un examen, y la vista no se abre con el modo examen puesto
+  (`formulasPermitidas`).
 - **Hueco para otras ayudas** (calculadora, apéndice de matemáticas): `registrarAyuda({ id, crear(ctx) })` en
   `ui/ayudas.js` añade un botón a la barra de ayudas de todas las pantallas de práctica (`.ayudas-hueco[data-hueco]`).
   La barra no existe en los exámenes: si una ayuda debe estar también allí, que la vista del examen la pinte aparte.

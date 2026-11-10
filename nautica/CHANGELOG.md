@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 10 de noviembre de 2026, quinta publicación · versión `7f43f6e77be8`
+
 ### Novedades
 
 - **Tus fallos por materia:** bajo «¿Estás listo?» y en la semana del examen, cuántas fallaste en cada materia en tus

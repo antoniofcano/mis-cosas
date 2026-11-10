@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 10 de noviembre de 2026 · versión `2709ca4f3f65`
+
 ### Novedades
 
 - **Simulacro por módulos en el Patrón de Yate:** además del examen completo, se puede hacer solo el módulo genérico
@@ -30,6 +34,13 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 - **«¿No es de este tema?»:** tras responder una pregunta, puedes cambiarla de tema (y de clase) si crees que está
   mal colocada. Cambia en tu estudio al momento, se sincroniza entre tus dispositivos, se deshace en Ajustes → «Mis
   correcciones» y puedes enviarnos el aviso para corregirla para todos. No cambia los exámenes ni los simulacros.
+
+### Mejoras
+
+- **La derrota coincide con el Temario y se puede acercar:** en el PER la carta general tiene cinco faros (cada uno suma
+  sus temas) y al tocar uno se abre su carta de aproximación, con una boya por tema y las mismas cuentas que el Temario.
+  En el Patrón de Yate hay un faro por tema y al tocarlo se ven sus clases. Las insignias ya ganadas se conservan y hay
+  una nueva por tema completo. «Mi progreso» cuenta las ideas igual que el Temario.
 
 ### Correcciones
 

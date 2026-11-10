@@ -34,9 +34,36 @@ _Última revisión: 10 de noviembre de 2026._
 ### Vídeos con infografías de las ideas difíciles
 - Ver `docs/VIDEOS-PY.md`: una ficha por vídeo de las ideas del Patrón de Yate que peor se asimilan.
 
+## Simulación y 3D (a largo plazo, fuera del alcance actual)
+
+Ideas del autor, anotadas el 10 de noviembre de 2026. Son un salto de tecnología (motor 3D, física, modelos) respecto a
+la app actual, que es 2D y sin dependencias: cada una sería un proyecto propio, y encajan mejor en la versión 2 o en un
+producto hermano que comparta contenido y progreso.
+
+### Barco en 3D con despiece interactivo
+- **Problema:** la nomenclatura (casco, jarcia, aparejo, elementos de amarre y fondeo) se aprende hoy con láminas planas.
+- **Idea:** un modelo 3D del barco que se gira, se acerca y se «despieza» por capas; tocar una pieza da su nombre y su
+  función, y un modo juego pide «toca la botavara». Sustituiría al glosario visual plano.
+- **A resolver:** modelos propios o con licencia clara, peso de descarga en móvil y que funcione sin conexión.
+
+### Simulador de radio
+- **Problema:** las prácticas de radio y los procedimientos de socorro (MAYDAY, PAN PAN, SÉCURITÉ, llamada selectiva
+  digital) se memorizan sin practicarlos.
+- **Idea:** un equipo VHF simulado con sus mandos, el botón de socorro y guiones de llamada que el alumno completa o dice
+  en voz alta, con corrección del procedimiento.
+- **Nota:** es el más asequible de los tres: no necesita 3D y casa con el apoyo a las prácticas obligatorias.
+
+### Mundo 3D con mar abierto y puerto, y física
+- **Problema:** maniobra, gobierno, reglas de rumbo y balizamiento se entienden de verdad al verlos en movimiento.
+- **Idea:** un pequeño mundo con puerto y mar abierto y física del barco (viento, corriente, inercia, efecto de la hélice)
+  para practicar atraque, fondeo, hombre al agua o un cruce según el RIPA, eligiendo el tipo de barco (vela, motor) y el
+  modo: **observador** (la app lo hace y lo explica), **asistido** (lo haces con ayudas) o **solitario** (sin ayudas).
+- **A resolver:** fidelidad de la física frente a la complejidad, rendimiento en móviles, y que lo simulado sea correcto
+  (la app ya tiene animaciones 2D con física de evolución, ciaboga, desatraque y hombre al agua como punto de partida).
+
 ## Consulta rápida
 
-- **Glosario visual** del barco y de la jarcia, con buscador.
+- **Glosario visual** del barco y de la jarcia, con buscador (ver arriba la alternativa en 3D con despiece).
 - **Simulacros con el formato exacto de cada tribunal:** orden, numeración y hoja de respuestas.
 - **Novedades normativas** que cambian respuestas: ya está en la hoja de ruta (R-13).
 

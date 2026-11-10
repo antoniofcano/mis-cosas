@@ -94,6 +94,10 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   «Mis dispositivos» (`ui/dispositivos.js`: código, QR, unir otro aparato, estado), `#/vincular/<código>`
   (`views/vincular.js`) y un punto en el engranaje si lleva más de un día sin sincronizar (`ui/sync.js`). Código de
   terceros en `src/vendor/` (con su licencia en `src/vendor/README.md`).
+- **Correcciones de tema del alumno** ([`BANCOS.md`](BANCOS.md), «Correcciones del alumno»): «¿No es de este tema?»
+  bajo la explicación de una pregunta (`ui/tema-pregunta.js`) guarda en el progreso (`correcciones`, sincronizado) el
+  tema y la clase que elige el alumno; `bancos/correcciones.js` las aplica como una vista del banco para estudiar, sin
+  tocar los datos ni los exámenes. Se ven y se deshacen en Ajustes → «Mis correcciones».
 - **Recordatorio diario** ([`AVISOS.md`](AVISOS.md)): `store/recordatorio.js` (lógica sin DOM: push o calendario
   `.ics`, activar, desactivar, comprobación local al abrir), `ui/recordatorio.js` (Ajustes y tarjeta de Hoy),
   `store/sync/avisos.js` (horas, zonas y validación, compartido con el Worker) y los eventos `push` y

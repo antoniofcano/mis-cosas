@@ -48,7 +48,8 @@ import { iniciarRadio, enVistaEpisodio, radio } from './radio.js';
 import { iniciarPwa } from './pwa.js';
 import { crearPantallaEncendida, quierePantallaEncendida } from './pantalla-encendida.js';
 import { TITULACIONES, currentTit, setTit, tlink } from './titulacion.js';
-import { fijarReservaAlumno, fijarConfigProfe } from '../bancos/index.js';
+import { fijarReservaAlumno, fijarConfigProfe, fijarCorreccionesAlumno } from '../bancos/index.js';
+import { iniciarTemaPregunta } from './tema-pregunta.js';
 import { profeView } from './views/profe.js';
 import { vincularView } from './views/vincular.js';
 import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
@@ -207,6 +208,10 @@ async function main() {
   });
   // Configuración del profesor que el alumno ha importado (Ajustes): se aplica al cargar el curso y las reglas.
   fijarConfigProfe(() => progress.settings().configProfe ?? null);
+  // Correcciones de tema del alumno («¿No es de este tema?», src/ui/tema-pregunta.js): se aplican a su estudio al
+  // cargar el banco (src/bancos/correcciones.js); los datos del banco no cambian.
+  fijarCorreccionesAlumno(() => progress.correcciones());
+  iniciarTemaPregunta(progress);
   // Una versión nueva se aplica sola al abrir la app, salvo con un examen a medias (entonces se pregunta).
   iniciarPwa({ puedeActualizarSolo: () => !progress.testEnCurso() });
   setSharedProgress(progress);

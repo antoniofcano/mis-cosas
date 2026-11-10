@@ -23,6 +23,7 @@ import { soportaSonido, soportaVibracion, desbloquearSonido, efecto } from '../e
 import { seccionDispositivos } from '../dispositivos.js';
 import { seccionAvisos } from '../recordatorio.js';
 import { syncSana } from '../sync.js';
+import { seccionCorrecciones } from '../tema-pregunta.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -144,6 +145,8 @@ export function masView({ progress, tit, params }) {
     seccionConfigAlumno(progress),
     seccionAvisos(),
     seccionDispositivos(),
+    // «Mis correcciones»: las preguntas que el alumno ha cambiado de tema (verlas, deshacerlas, enviarlas al autor).
+    seccionCorrecciones(progress),
     // Sin sincronización sana (sin código, o días sin lograrla), el aviso de guardar una copia vuelve como siempre.
     syncSana() ? null : h('section.copia-aviso', h('h2', conIcono('descargar', 'Copia de seguridad')),
       h('p', 'Ahora mismo lo que has estudiado solo está seguro en este aparato. Si cambias de móvil o borras los datos del navegador, se pierde. Guarda una copia de vez en cuando.'),
@@ -166,7 +169,7 @@ export function masView({ progress, tit, params }) {
   // Se espera a que la pantalla esté puesta (la transición la monta un poco después).
   let intentos = 0;
   const lleva = () => {
-    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : campo === 'avisos' ? el.querySelector('#aviso-diario') : minutos;
+    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : campo === 'avisos' ? el.querySelector('#aviso-diario') : campo === 'correcciones' ? el.querySelector('#mis-correcciones') : minutos;
     if (!destino.isConnected) { if (intentos++ < 60) setTimeout(lleva, 30); return; }
     destino.scrollIntoView({ block: 'center' });
     if (campo === 'fecha') { fecha.focus(); try { fecha.showPicker?.(); } catch { /* sin gesto del usuario */ } }

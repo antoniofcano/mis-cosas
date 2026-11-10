@@ -749,8 +749,42 @@ details.plan-semana > summary { min-height: 44px; display: flex; flex-wrap: wrap
 .volver-origen { display: flex; align-items: center; min-height: 44px; font-weight: 600; margin-bottom: .4rem; }
 
 /* Avisar de un error */
-.pie-aviso { margin: .6rem 0 0; text-align: right; }
+.pie-aviso { margin: .6rem 0 0; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 0 1.2rem; }
 .aviso-error { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; color: var(--muted); }
+
+/* «¿No es de este tema?» (src/ui/tema-pregunta.js): la acción discreta junto a «Avisar de un error», su diálogo y la
+   lista «Mis correcciones» de Ajustes. Sin animaciones (nada que quitar con «reducir movimiento»). */
+button.linklike.tema-accion { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+button.linklike.tema-accion.corregida { color: var(--accent); font-weight: 600; }
+dialog.dialogo-tema { width: min(34rem, calc(100vw - 24px)); max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); padding: 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--text); box-shadow: 0 12px 40px rgba(0,0,0,.3); overflow: auto; }
+dialog.dialogo-tema::backdrop { background: rgba(8, 16, 26, .6); }
+.dialogo-tema-cuerpo { padding: 1.1rem 1rem 0; }
+.dialogo-tema h2 { margin: 0 0 .3rem; font-size: 1.25rem; }
+.dialogo-tema h2:focus { outline: none; }
+.dialogo-tema p { margin: .4rem 0; }
+.tema-opciones { border: 0; padding: 0; margin: .8rem 0 .6rem; min-width: 0; display: grid; gap: .4rem; }
+.tema-opciones legend { padding: 0; margin-bottom: .4rem; font-weight: 700; font-size: .95rem; }
+.option.tema-opcion { min-height: 48px; padding: .3rem .8rem; font-size: 1rem; background: var(--bg); }
+.option.tema-opcion:has(input:checked) { border-color: var(--accent); background: var(--accent-2); box-shadow: inset 0 0 0 1px var(--accent); }
+.option.tema-opcion:focus-within { outline: 3px solid var(--accent); outline-offset: 1px; }
+.tema-nombre { min-width: 0; }
+.tema-oficial { display: block; color: var(--muted); font-size: .82rem; line-height: 1.2; }
+@media (min-width: 560px) { .tema-opciones { grid-template-columns: 1fr 1fr; } .tema-opciones legend { grid-column: 1 / -1; } }
+label.field.tema-clase { grid-template-columns: 1fr; margin: .6rem 0; }
+label.field.tema-clase select { width: 100%; min-height: 48px; font-size: 1rem; }
+.tema-botones, .tema-final { position: sticky; bottom: 0; margin: .6rem -1rem 0; padding: .7rem 1rem .9rem; background: var(--surface); border-top: 1px solid var(--border); }
+.tema-botones .grande, .tema-final .grande { flex: 1 1 0; width: auto; min-width: 0; min-height: 52px; margin: 0; }
+button.linklike.tema-quitar { flex: 1 1 100%; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--warn); text-decoration: underline; }
+.tema-final a { flex: 1 1 100%; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; font-weight: 600; }
+.tema-envio .actions { margin-top: .4rem; }
+.lista-correcciones { list-style: none; padding: 0; margin: .7rem 0; display: grid; gap: .6rem; }
+.lista-correcciones li { display: flex; flex-wrap: wrap; gap: .5rem .8rem; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .7rem .8rem; }
+.corr-texto { flex: 1 1 14rem; min-width: 0; }
+.corr-texto p { margin: 0; overflow-wrap: anywhere; }
+.corr-texto .corr-cambio { margin: .2rem 0; }
+.corr-enunciado a { display: inline-block; padding: .3rem 0; }
+.lista-correcciones li > button { flex: none; margin-left: auto; }
+.corr-enviar summary { min-height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--accent); cursor: pointer; }
 
 /* Mapas de conceptos: en estilo C, en styles/laminas.css (.mc-*, .mapa-*) */
 .encaja { margin: 1.2rem 0; }

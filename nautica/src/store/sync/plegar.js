@@ -15,7 +15,7 @@
 // La parte del aparato (ajustes que no se comparten y el examen a medias) no viaja: entra como `local`.
 
 import { siguienteRepaso, repasoDe, sumaDias } from '../../course/repaso.js';
-import { dispositivoDe, PREFIJOS_PRIMERO } from './operaciones.js';
+import { dispositivoDe, PREFIJOS_PRIMERO, esClaveCorreccion, preguntaDeCorreccion, correccionValida, claveCorreccion } from './operaciones.js';
 import { unirOps } from './fusion.js';
 
 /** Orden de los rangos de la travesía (src/course/travesia.js, RANGOS; un test comprueba que coincide). */
@@ -159,16 +159,17 @@ export function aplicarBases(est, bases) {
   // Valores con nombre: el de la base con datos más recientes (o el primero, para la reserva del examen final).
   for (const b of bases) {
     const marca = [b.h, b.g];
-    for (const [c, prof] of [['lecciones', 1], ['niveles', 1], ['planes', 1], ['fichas', 2], ['repConceptos', 2], ['settings', 1]]) {
+    for (const [c, prof] of [['lecciones', 1], ['niveles', 1], ['planes', 1], ['fichas', 2], ['repConceptos', 2], ['correcciones', 1], ['settings', 1]]) {
       const sec = b.p[c];
       if (!esObj(sec)) continue;
       const entradas = prof === 1 ? Object.entries(sec).map(([k, v]) => [[k], v]) : Object.entries(sec).flatMap(([k, o]) => (esObj(o) ? Object.entries(o).map(([k2, v]) => [[k, k2], v]) : []));
       if (c !== 'settings') prog[c] ??= {};
-      for (const [p, v] of entradas) ponerKV(est, c, p, v, marca, true);
+      // Las correcciones de una base entran con la misma clave que las de las operaciones (para que compitan entre sí).
+      for (const [p, v] of entradas) ponerKV(est, c === 'correcciones' ? 'settings' : c, c === 'correcciones' ? [claveCorreccion(p[0])] : p, v, marca, true);
     }
     // Lo que no se conoce (campos de una versión futura): el de la base más reciente.
     for (const [k, v] of Object.entries(b.p)) {
-      if (['version', 'exams', 'exercises', 'dias', 'tests', 'travesia', 'lecciones', 'niveles', 'planes', 'fichas', 'repConceptos', 'settings', 'testEnCurso'].includes(k)) continue;
+      if (['version', 'exams', 'exercises', 'dias', 'tests', 'travesia', 'lecciones', 'niveles', 'planes', 'fichas', 'repConceptos', 'correcciones', 'settings', 'testEnCurso'].includes(k)) continue;
       prog[k] = clon(v);
     }
   }
@@ -176,6 +177,14 @@ export function aplicarBases(est, bases) {
 }
 
 function ponerKV(est, c, p, v, marca, presente) {
+  // Correcciones de tema: en el registro son valores de `settings` con la clave «corr.<pregunta>» (así el servidor las
+  // acepta tal cual); en el progreso van aparte, en `correcciones[<pregunta>]`. Gana la más reciente; una operación
+  // sin valor (o con uno que no vale) la deshace.
+  if (c === 'settings' && esClaveCorreccion(p[0])) {
+    c = 'correcciones';
+    p = [preguntaDeCorreccion(p[0])];
+    presente = presente && correccionValida(v);
+  }
   const clave = claveKV(c, p);
   const antes = est.kv.get(clave);
   const gana = primeroGana(c, p) ? (!antes || marca[0] < antes[0] || (marca[0] === antes[0] && marca[1] < antes[1])) : masNueva(antes, marca);

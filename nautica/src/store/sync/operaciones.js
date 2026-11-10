@@ -9,6 +9,9 @@
 //                                           d: día local 'YYYY-MM-DD' de la respuesta · n: true si era del test de nivel
 //   e  intento de un ejercicio generado     y: tipo · o: acierto · s: semilla · m: errores típicos (lista)
 //   v  valor con nombre (gana el último)    c: colección · p: ruta (1 o 2 claves) · v: valor (sin v = borrar)
+//      Las correcciones de tema del alumno (docs/SYNC.md, «Correcciones de tema») viajan como un valor con nombre de
+//      la colección `settings` con la clave «corr.<id de la pregunta>» y el valor { ut, clase?, de?, t }: así el
+//      servidor ya desplegado las acepta sin cambiar nada. El pliegue las saca a `progreso.correcciones`.
 //   a  minutos de estudio                   d: día local · m: minutos
 //   x  test completo (simulacro o examen)   e: el registro del test
 //   g  travesía de un banco                 b: 'eje/tit' · r: rango · s: insignias { id: ISO }
@@ -38,6 +41,26 @@ export const AJUSTES_COMPARTIDOS = ['level', 'toleranceFactor', 'minutosDia', 'd
 export const PREFIJOS_COMPARTIDOS = ['examen_', 'examenOrientativo_', 'guiaVista_', 'planEsencial_', 'mezclado_', 'reserva_', 'chuletasLeidas_', 'nivelNo_'];
 /** Ajustes en los que gana el PRIMER valor, no el último: la reserva del examen final se fija una vez y no cambia. */
 export const PREFIJOS_PRIMERO = ['reserva_'];
+
+/**
+ * Correcciones de tema del alumno («esta pregunta no es de este tema», src/bancos/correcciones.js): un registro por
+ * pregunta en el que gana el último (deshacer = una operación sin valor). En el registro son valores con nombre de la
+ * colección `settings` con este prefijo en la clave; en el progreso plegado van aparte, en `correcciones[<id>]`.
+ */
+export const PREFIJO_CORRECCION = 'corr.';
+export const claveCorreccion = (idPregunta) => `${PREFIJO_CORRECCION}${idPregunta}`;
+export const esClaveCorreccion = (k) => typeof k === 'string' && k.startsWith(PREFIJO_CORRECCION) && k.length > PREFIJO_CORRECCION.length;
+export const preguntaDeCorreccion = (k) => String(k).slice(PREFIJO_CORRECCION.length);
+
+/** ¿Vale como corrección de tema? { ut: entero 1–99, clase?: id de clase, de?: tema que tenía en el banco, t?: ISO } */
+export function correccionValida(v) {
+  if (!esObj(v)) return false;
+  if (!Number.isInteger(v.ut) || v.ut < 1 || v.ut > 99) return false;
+  if (v.clase != null && !(typeof v.clase === 'string' && CLAVE_RE.test(v.clase))) return false;
+  if (v.de != null && !(Number.isInteger(v.de) && v.de >= 1 && v.de <= 99)) return false;
+  if (v.t != null && !(typeof v.t === 'string' && v.t.length <= 40)) return false;
+  return Object.keys(v).every((k) => ['ut', 'clase', 'de', 't'].includes(k));
+}
 
 export const esAjusteCompartido = (k) => AJUSTES_COMPARTIDOS.includes(k) || PREFIJOS_COMPARTIDOS.some((p) => k.startsWith(p));
 
@@ -94,6 +117,8 @@ export function validarOperacion(op, ahora = Date.now()) {
       const n = COLECCIONES[op.c];
       if (!n || !Object.hasOwn(COLECCIONES, op.c)) return 'coleccion';
       if (!Array.isArray(op.p) || op.p.length !== n || !op.p.every((x) => typeof x === 'string' && CLAVE_RE.test(x))) return 'ruta';
+      // Corrección de tema: con valor, tiene que tener su forma (sin valor = deshacerla).
+      if (op.c === 'settings' && esClaveCorreccion(op.p[0]) && Object.hasOwn(op, 'v') && !correccionValida(op.v)) return 'correccion';
       return null;
     }
     case 'a':

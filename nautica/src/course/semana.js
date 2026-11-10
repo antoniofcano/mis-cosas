@@ -507,3 +507,23 @@ export function textoTrasExamen(r) {
 export function resumenPlan(plan) {
   return (plan?.dias ?? []).map((x) => `${x.k === 0 ? 'examen' : `k=${x.k}`} ${x.fecha} ${x.tipo}${x.hecho ? ' [hecho]' : ''}: ${x.titulo} (${x.minutos} min)${x.pasos.length ? ` — ${x.pasos.map((p) => `${p.titulo}: ${p.sub}`).join(' · ')}` : ''}`).join('\n');
 }
+
+// ---------------------------------------------------------------------------------------------------------------
+// Ensayo general en papel (R-41, src/theory/ensayo.js): antes del examen se recomienda haber hecho al menos dos. No es un
+// día del plan (el plan no cambia): es un recordatorio con la cuenta de los hechos y el enlace, en la página de la
+// semana. Con días de trabajo por delante (k ≥ 3) se propone hacer el que falte; después, solo se cuenta.
+
+/**
+ * @param {object[]} tests  exámenes de la titulación y el eje (los ensayos llevan tipo 'ensayo')
+ * @param {{ dias: number, recomendados?: number }} o  dias: los que faltan; recomendados: ENSAYOS_RECOMENDADOS
+ * @returns {{ hechos: number, recomendados: number, faltan: number, texto: string, proponer: boolean }}
+ */
+export function recordatorioEnsayos(tests = [], { dias, recomendados = 2 }) {
+  const hechos = tests.filter((t) => t?.tipo === 'ensayo').length;
+  const faltan = Math.max(0, recomendados - hechos);
+  const proponer = faltan > 0 && dias >= 3;
+  const texto = !faltan ? `Llevas ${cuenta(hechos, 'ensayo')} en papel: ya sabes cómo te va con la carta de papel y el reloj.`
+    : proponer ? `Llevas ${hechos} de ${recomendados} ensayos en papel. Antes del examen, haz ${faltan === 1 ? 'otro' : faltan} con la carta de papel, el transportador, el compás y el reloj: mejor en uno de los días de trabajo que en la víspera.`
+      : `Llevas ${hechos} de ${recomendados} ensayos en papel. A estas alturas, mejor no empezar otro: descansa y repasa lo ligero.`;
+  return { hechos, recomendados, faltan, texto, proponer };
+}

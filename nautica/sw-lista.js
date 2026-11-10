@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'd22db0a4bfe9';
+self.VERSION = 'f5cafd2feb48';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -59,6 +59,7 @@ self.APP = [
  "src/course/simulacro-errores.js",
  "src/course/tarjetas.js",
  "src/course/travesia.js",
+ "src/course/velocidad.js",
  "src/course/vispera.js",
  "src/exams/diagnostico.js",
  "src/exams/guiado.js",
@@ -269,6 +270,7 @@ self.APP = [
  "src/store/sync/operaciones.js",
  "src/store/sync/plegar.js",
  "src/store/sync/registro.js",
+ "src/store/tiempos.js",
  "src/store/user-chart.js",
  "src/teacher/lessons.js",
  "src/teacher/narrate.js",
@@ -277,6 +279,7 @@ self.APP = [
  "src/texto.js",
  "src/theory/blocks.js",
  "src/theory/engine.js",
+ "src/theory/ensayo.js",
  "src/theory/glosas.js",
  "src/theory/vocabulario.js",
  "src/ui/actividad.js",
@@ -303,6 +306,7 @@ self.APP = [
  "src/ui/efectos.js",
  "src/ui/eje.js",
  "src/ui/encaja.js",
+ "src/ui/ensayo.js",
  "src/ui/entrada.js",
  "src/ui/glosas.js",
  "src/ui/guiado.js",
@@ -325,6 +329,7 @@ self.APP = [
  "src/ui/qr.js",
  "src/ui/radio.js",
  "src/ui/recordatorio.js",
+ "src/ui/reloj-visible.js",
  "src/ui/remate-mapas.js",
  "src/ui/router.js",
  "src/ui/rutas.js",
@@ -343,6 +348,7 @@ self.APP = [
  "src/ui/views/cuentas.js",
  "src/ui/views/curso.js",
  "src/ui/views/dia-examen.js",
+ "src/ui/views/ensayo.js",
  "src/ui/views/estrategia.js",
  "src/ui/views/exams.js",
  "src/ui/views/exercise.js",

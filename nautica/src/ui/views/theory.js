@@ -48,6 +48,11 @@ import { guiadoPanel, guiadoDisponible } from '../guiado.js';
 import { diagnosticoEl } from '../diagnostico.js';
 import { chartWidget } from '../chart-widget.js';
 import { entradaSimulacroErrores, armarParaTest, estructuraErrores, introErrores, registrarErrores, resultadoErrores, avisoFallada, textoErrores } from '../simulacro-errores.js';
+import { tipoDePregunta, tiemposDelTest, tiempoDelExamen, duracion } from '../../course/velocidad.js';
+import { relojVisible } from '../reloj-visible.js';
+import { tiemposAlumno } from '../../store/tiempos.js';
+import { estructuraEnsayo, parteValida, tituloEnsayo, corregirHoja, cuentaEnsayos } from '../../theory/ensayo.js';
+import { correrEnsayo } from '../ensayo.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -161,6 +166,11 @@ export function botonCarta(q, progress, ayudas = null, { calculadora = true, blo
  * carta y las que traen datos y piden calcular (src/bloc/notas.js). En ellas se ofrece el bloc de notas.
  */
 export const esDeCuentas = (q) => calculadoraEnAyudas({ tit: T.id, ut: q.ut }) || necesitaCarta(q) || preguntaDeCuentas(q);
+
+/** Tipo de problema de una pregunta (R-42, src/course/velocidad.js): el ejercicio de su solución, «carta» o «teoria». */
+export const tipoDe = (q) => tipoDePregunta(q, cartaSolutions[q.id], { cartaUt: T.cartaUt, deCarta: necesitaCarta(q) });
+/** ¿Se le toma el tiempo en la práctica? Las de carta (y las de cuentas de carta del PY: mareas, loxodrómica). */
+const esDeCartaParaTiempo = (q) => tipoDe(q) !== 'teoria';
 
 /**
  * El bloc (hoja de borrador, src/ui/bloc.js) de una pregunta: su enunciado, sus opciones y las notas del alumno.
@@ -284,6 +294,7 @@ const pct = (s) => (s.hechas ? Math.round((100 * s.ok) / s.hechas) : null);
 /** Enlace para continuar un examen guardado. */
 export function rutaTest(tc) {
   if (tc.tipo === 'final') return tlink(tc.tit, ['test', 'final']);
+  if (tc.tipo === 'ensayo') return tlink(tc.tit, ['test', 'ensayo'], { p: tc.parte, s: String(tc.seed) });
   return tlink(tc.tit, tc.tipo === 'real' ? ['test', 'real', String(tc.conv)] : ['test', tc.tipo === 'errores' ? 'errores' : 'simulacro'], tc.tipo === 'real' || tc.seed == null ? undefined : { s: String(tc.seed), ...(tc.modulo ? { m: tc.modulo } : {}) });
 }
 
@@ -366,9 +377,9 @@ export function examenesView({ ctx, progress, tit }) {
     if (aMedias) {
       const total = rehacerTest(E0, banco, aMedias).preguntas.length;
       const resp = Object.keys(aMedias.respuestas ?? {}).length;
-      const quedan = Math.max(1, Math.round((aMedias.errores?.min ?? E0.duracionMin) - (aMedias.consumidoMs ?? 0) / 60000));
+      const quedan = Math.max(1, Math.round((aMedias.errores?.min ?? aMedias.duracionMin ?? E0.duracionMin) - (aMedias.consumidoMs ?? 0) / 60000));
       aviso = h('section.tarjeta-hoy.examen-medias',
-        h('h2', 'Tienes un examen a medias'),
+        h('h2', aMedias.tipo === 'ensayo' ? 'Tienes un ensayo en papel a medias' : 'Tienes un examen a medias'),
         h('p.linea', `${resp} de ${cuenta(total, 'respondida')} · quedan ${quedan} min`),
         h('a.btn.grande', { href: rutaTest(aMedias) }, 'Continuar →'),
         h('p.centrado', h('button.linklike.descartar', { type: 'button', onclick: () => {
@@ -392,6 +403,14 @@ export function examenesView({ ctx, progress, tit }) {
             return h('a.btn.secondary', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed(), m: m.id }) }, h('span.modulo-titulo', m.titulo), h('span.modulo-datos', `${cuenta(totalPreguntas(Em), 'pregunta')} · ${m.duracionMin} min`)); })) : null,
         // R-43: preguntas cuyas opciones falsas son los errores que repites (src/ui/simulacro-errores.js).
         entradaSimulacroErrores(T0.id)),
+      // Ensayo general en papel (R-41): el examen con la carta de papel y el material real; la app, solo enunciados y reloj.
+      (() => {
+        const ce = cuentaEnsayos(progress.tests().filter((t) => deTitEje(t, T0.id, eje.id)));
+        return h('section.ensayo-tarjeta', { 'aria-labelledby': 'ensayo-tarjeta-t' },
+          h('a.mas-fila', { href: tlink(T0.id, ['ensayo']) }, h('span.mas-fila-ico', icono('lapiz')),
+            h('span.mas-fila-tx', h('strong#ensayo-tarjeta-t', 'Ensayo general en papel'), h('span.muted.small', `Con tu carta, transportador, compás y reloj. ${ce.hechos} de ${ce.recomendados} recomendados.`)),
+            h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
+      })(),
       (() => {
         const n = st.repaso.hoy; // del motor (con conceptos, una por idea)
         return h('section.repaso-examen',
@@ -450,6 +469,8 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
   let ok = 0;
   function show() {
     const q = preguntas[i];
+    // Tu velocidad en carta (R-42): el tiempo de cada pregunta de carta, solo con la pestaña visible (en el aparato).
+    const reloj = esDeCartaParaTiempo(q) ? relojVisible({ vivo: () => box.isConnected }) : null;
     const c0 = cuenta_(i);
     barra.set(c0.texto, c0.fraccion);
     ayudas?.contexto({ ut: q.ut });
@@ -470,6 +491,8 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       if (registrar) registrar(q, k, good); else progress.recordExam(q.id, { choice: k, ok: good });
+      if (reloj && k != null) tiemposAlumno().anota({ y: tipoDe(q), s: reloj.parar(), o: good, q: q.id });
+      else reloj?.parar();
       const extra = alResponder?.(i, q, good) ?? null;
       const ultima = i === total() - 1;
       siguiente.textContent = ultima ? 'Ver resultado' : 'Siguiente →';
@@ -784,9 +807,11 @@ export function testView({ ctx, progress, params: route, tit }) {
   useTit(tit);
   const T0 = T;
   const E0 = E;
-  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : route.parts[1] === 'errores' ? 'errores' : 'simulacro';
+  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : route.parts[1] === 'errores' ? 'errores' : route.parts[1] === 'ensayo' ? 'ensayo' : 'simulacro';
   const conv = tipo === 'real' ? route.parts[2] : null;
   const seedQ = Number(route.query.s) || null;
+  // Ensayo en papel (R-41, src/theory/ensayo.js): ?p=navegacion | carta | completo.
+  const parteQ = tipo === 'ensayo' ? parteValida(T0, route.query.p) : null;
   // Simulacro de un solo módulo (PY): ?m=generico | navegacion; sin él, el examen completo.
   const moduloQ = tipo === 'simulacro' && estructuraModulo(E0, route.query.m) ? route.query.m : null;
   const el = h('div.test', h('p.muted', 'Preparando el examen…'));
@@ -805,13 +830,15 @@ export function testView({ ctx, progress, params: route, tit }) {
     const fin = plan?.st.final ?? null;
     reglasDe = rd;
     const tc = progress.testEnCurso();
-    const mismo = deTitEje(tc, T0.id, eje) && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : tipo === 'final' ? true : seedQ != null && tc.seed === seedQ && (tc.modulo ?? null) === moduloQ);
+    const mismo = deTitEje(tc, T0.id, eje) && tc.tipo === tipo && (tipo === 'real' ? tc.conv === conv : tipo === 'final' ? true : seedQ != null && tc.seed === seedQ && (tipo === 'ensayo' ? tc.parte === parteQ : (tc.modulo ?? null) === moduloQ));
     if (mismo) correr(tc);
     else inicio(tc);
 
     // --- pantalla de inicio
     function inicio(otro) {
       const seed = seedQ ?? randomSeed();
+      // El ensayo en papel se prepara en su pantalla (material, carta de papel): sin empezar, se va allí.
+      if (tipo === 'ensayo') { navigate([T0.id, 'ensayo'], { p: parteQ, s: String(seed) }, { replace: true }); dispatchEvent(new HashChangeEvent('hashchange')); return; }
       const respuestasAntes = progress.get().exams;
       if (tipo === 'final' && !fin?.desbloqueado) {
         summaryText = `VISTA examen final ${T0.sigla}: CERRADO · ${fin?.lineas.join(' ') ?? 'este eje no reserva exámenes'}`;
@@ -865,6 +892,7 @@ export function testView({ ctx, progress, params: route, tit }) {
 
     // --- examen en marcha: una pregunta por pantalla
     function correr(guardado) {
+      if (tipo === 'ensayo') { correrPapel(guardado); return; }
       const E1 = guardado.tipo === 'errores' ? estructuraErrores(E0, guardado.errores?.min ?? E0.duracionMin) : estructuraDe(E0, guardado.modulo);
       const test = rehacerTest(E1, banco, guardado);
       // Un examen guardado sin sus preguntas (de antes de guardarlas) las guarda desde ya.
@@ -877,6 +905,9 @@ export function testView({ ctx, progress, params: route, tit }) {
       const respuestas = { ...(estado.respuestas ?? {}) };
       let i = Math.min(Math.max(0, estado.i ?? 0), n - 1);
       let consumido = estado.consumidoMs ?? 0;
+      // Tiempo de cada pregunta (R-42): lo que corre el reloj mientras está en pantalla (ms por id), con el mismo criterio.
+      const msPregunta = { ...(estado.tiempos ?? {}) };
+      let enPantalla = null;
       const limite = E1.duracionMin * 60000;
       let ultimo = Date.now();
       let ultimoGuardado = Date.now();
@@ -887,10 +918,13 @@ export function testView({ ctx, progress, params: route, tit }) {
       const cuerpo = h('div');
       const panel = h('div.panel-preguntas', { hidden: true, role: 'dialog', 'aria-label': 'Todas las preguntas' });
 
-      const guardar = () => { if (!terminado) progress.saveTestEnCurso({ ...estado, respuestas, i, consumidoMs: Math.round(consumido) }); ultimoGuardado = Date.now(); };
+      const guardar = () => { if (!terminado) progress.saveTestEnCurso({ ...estado, respuestas, i, consumidoMs: Math.round(consumido), tiempos: Object.fromEntries(Object.entries(msPregunta).map(([k, v]) => [k, Math.round(v)])) }); ultimoGuardado = Date.now(); };
       function contar() {
         const ahora = Date.now();
-        if (activo && document.visibilityState === 'visible') consumido += ahora - ultimo;
+        if (activo && document.visibilityState === 'visible') {
+          consumido += ahora - ultimo;
+          if (enPantalla) msPregunta[enPantalla] = (msPregunta[enPantalla] ?? 0) + (ahora - ultimo);
+        }
         ultimo = ahora;
       }
       function tick() {
@@ -937,6 +971,8 @@ export function testView({ ctx, progress, params: route, tit }) {
       function ir(j) { i = Math.min(Math.max(0, j), n - 1); guardar(); mostrar(); window.scrollTo(0, 0); }
       function mostrar() {
         const q = test.preguntas[i];
+        contar(); // lo que llevaba la anterior es suyo; desde aquí, de esta
+        enPantalla = q.id;
         barra.set(`Pregunta ${i + 1} de ${n}`, (i + 1) / n);
         const ultima = i === n - 1;
         setChildren(cuerpo,
@@ -978,16 +1014,19 @@ export function testView({ ctx, progress, params: route, tit }) {
         // Las retiradas no se guardan: no se estudian y su respuesta oficial ya no vale.
         for (const d of g.detalle) if (d.respuesta && !d.retirada) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
         const minutos = Math.max(1, Math.round(consumido / 60000));
+        const tq = tiemposDelTest({ preguntas: test.preguntas, ms: msPregunta, detalle: g.detalle, tipoDe });
         progress.recordTest({ tit: T0.id, eje, conv: test.tipo === 'real' || test.tipo === 'final' ? estado.conv : undefined, tipo: E1.modulo ? 'modulo' : test.tipo, titulo: test.titulo, aciertos: g.aciertos, total: g.total, minutos,
           // Un simulacro de módulo no es un examen completo: su apto es orientativo y no cuenta en «¿Estás listo?» ni en la travesía.
           ...(E1.modulo ? { modulo: E1.modulo, apto: null, aptoModulo: g.apto } : { apto: E1.sinApto ? null : g.apto }),
           nuevas: estado.nuevas ?? undefined,
-          porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
+          porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })),
+          // Tiempo por pregunta (R-42): [[id, segundos, acierto, tipo]], ver src/course/velocidad.js y docs/SYNC.md.
+          tq });
         // Simulacro de tus errores: lo que caíste y lo que esquivaste, a tus errores (src/store/errores.js).
         const ce = test.tipo === 'errores' ? registrarErrores({ test, respuestas, indice, guardado: estado.errores }) : null;
         progress.saveTestEnCurso(null);
         progress.logActividad(minutos);
-        resultados(test, g, porTiempo, E1, ce);
+        resultados(test, g, porTiempo, E1, { tq, ce });
       }
 
       setChildren(el, barra, cuerpo, panel);
@@ -995,8 +1034,37 @@ export function testView({ ctx, progress, params: route, tit }) {
       tick();
     }
 
+    // --- ensayo en papel (R-41): solo los enunciados y el reloj; al terminar, la hoja de respuestas (src/ui/ensayo.js)
+    function correrPapel(guardado) {
+      const E1 = { ...estructuraEnsayo(T0, guardado.parte), ...(guardado.duracionMin ? { duracionMin: guardado.duracionMin } : {}) };
+      const test = { ...rehacerTest(E1, banco, { ...guardado, tipo: 'simulacro' }), tipo: 'ensayo', titulo: tituloEnsayo(E1) };
+      const estado = { ...guardado, eje: guardado.eje ?? eje, ids: test.preguntas.map((q) => q.id) };
+      if (!test.preguntas.length) { progress.saveTestEnCurso(null); setChildren(el, h('p.warn', 'No hay preguntas para este ensayo.')); return; }
+      // Como en el examen: modo examen y sin la calculadora de la app (la de mano, si el tribunal la permite).
+      fijarModoExamen('examen', { calculadora: false });
+      bloquearCalculadora(el);
+      summaryText = `ENSAYO EN PAPEL EN CURSO · ${test.titulo} · ${cuenta(test.preguntas.length, 'pregunta')} · el alumno lo resuelve en papel (sin corregir: no des respuestas)`;
+      correrEnsayo({ el, test, estado, duracionMin: E1.duracionMin, progress, alSalir: () => { fijarModoExamen(null); location.hash = tlink(T0.id); },
+        onCorregir: ({ hoja, consumidoMs, porTiempo }) => {
+          fijarModoExamen(null);
+          const g = corregirHoja(E1, test, hoja);
+          for (const d of g.detalle) if (d.respuesta && !d.retirada) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
+          const minutos = consumidoMs == null ? null : Math.max(1, Math.round(consumidoMs / 60000));
+          progress.recordTest({ tit: T0.id, eje, tipo: 'ensayo', parte: E1.parte, titulo: test.titulo, aciertos: g.aciertos, total: g.total, minutos: minutos ?? undefined,
+            // Una parte suelta no es un examen completo: su apto es orientativo (como un módulo) y no cuenta en «¿Estás listo?».
+            ...(E1.parte === 'completo' ? { apto: g.apto } : { apto: null, aptoParte: g.apto }),
+            ...(guardado.impreso ? { impreso: true } : {}),
+            nuevas: estado.nuevas ?? undefined,
+            porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
+          progress.saveTestEnCurso(null);
+          if (minutos) progress.logActividad(minutos);
+          resultados(test, g, porTiempo, E1, { ensayo: { minutos, duracionMin: E1.duracionMin, oficial: E1.oficial, enBlanco: g.enBlanco } });
+        } });
+    }
+
     // --- resultado
-    function resultados(test, g, porTiempo, E1 = E0, ce = null) {
+    function resultados(test, g, porTiempo, E1 = E0, extra = {}) {
+      const ce = extra.ce ?? null;
       // Dentro de una sesión de estudio se sigue en modo concentración (la barra de la sesión manda).
       if (!document.body.classList.contains('en-sesion')) document.body.classList.remove('focus');
       // Los temas, en el mismo orden que en Temario y Progreso.
@@ -1037,6 +1105,28 @@ export function testView({ ctx, progress, params: route, tit }) {
           summaryText += `\nEXAMEN FINAL: ${st.final.lineasResultado[0] ?? ''}`;
         }).catch(() => {});
       }
+      // Ensayo en papel: cada fallo, a revisarlo con «Resolver paso a paso» (o su resolución, si no tiene pasos).
+      const ens = extra.ensayo ?? null;
+      const fallosPaso = ens ? test.preguntas.map((q, j) => ({ q, j, d: g.detalle[j], pasos: guiadoDisponible(q, cartaSolutions[q.id], chartRef) })).filter((x) => !x.d.ok && !x.d.retirada) : [];
+      const revisarPaso = fallosPaso.length ? h('section.ensayo-revisar', { 'aria-labelledby': 'ensayo-revisar-t' },
+        h('h2#ensayo-revisar-t', conIcono('diana', 'Revisa cada fallo paso a paso')),
+        h('p.muted', 'Abre cada problema fallado y resuélvelo otra vez, paso a paso: la app te pide cada dato (la Ct, el rumbo, la situación…) y te dice en cuál te equivocas.'),
+        h('ul.ensayo-revisar-lista', fallosPaso.map(({ q, j, d, pasos: conPasos }) => {
+          return h('li', h('a.ensayo-revisar-enlace', { href: link(['q', q.id], conPasos ? { guiado: '1' } : undefined) },
+            h('span.revision-num', String(j + 1)),
+            h('span.ensayo-revisar-tx', h('span', (q.enunciado ?? '').slice(0, 80) + ((q.enunciado ?? '').length > 80 ? '…' : '')),
+              h('span.muted.small', `${d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`} · ${conPasos ? 'Resolver paso a paso' : rutaResolucion(q) ? 'Ver la resolución' : 'Ver la explicación'}`)),
+            h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
+        }))) : null;
+      // Tu tiempo en este examen por tipo de problema (R-42), si se midió pregunta a pregunta.
+      const filasT = extra.tq?.length ? tiempoDelExamen(extra.tq) : [];
+      const tiempoTipos = filasT.some((f) => f.carta) ? h('section.tiempo-examen', { 'aria-labelledby': 'tiempo-examen-t' },
+        h('h2#tiempo-examen-t', conIcono('reloj', 'Tu tiempo por tipo de problema')),
+        h('table.stats.tiempo-tipos', h('thead', h('tr', h('th', { scope: 'col' }, 'Tipo'), h('th', { scope: 'col' }, 'Preg.'), h('th', { scope: 'col' }, 'Media'), h('th', { scope: 'col' }, 'Bien'))),
+          h('tbody', filasT.map((f) => h('tr', h('th', { scope: 'row' }, f.nombre), h('td', String(f.n)), h('td', duracion(f.mediaS)), h('td', `${f.aciertos}/${f.n}`))))),
+        h('p.small', h('a', { href: tlink(T0.id, ['estrategia']) }, 'Tu velocidad en carta, con todos tus exámenes →'))) : null;
+      if (ens) summaryText += `\nENSAYO EN PAPEL${ens.minutos ? ` · ${ens.minutos} de ${ens.duracionMin} min` : ''} · REVISAR FALLOS: ${fallosPaso.map(({ q, pasos }) => `#/q/${q.id}${pasos ? '?guiado=1 (paso a paso)' : ''}`).join(' · ') || 'nada'}`;
+      if (filasT.length) summaryText += `\nTIEMPO POR TIPO: ${filasT.map((f) => `${f.nombre} ${duracion(f.mediaS)} (${f.n})`).join(' · ')}`;
       const ses = botonesSesion();
       const repasar = g.errores ? h('button.grande', { type: 'button', class: ses ? 'secondary' : '', onclick: () => tituloRevision.scrollIntoView({ behavior: 'smooth' }) }, 'Repasar mis fallos con el profe') : null;
       // En una sesión de estudio (src/ui/sesion.js), lo primero es seguir con ella (arriba); el repaso de fallos, a mano.
@@ -1046,8 +1136,10 @@ export function testView({ ctx, progress, params: route, tit }) {
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : conIcono(g.apto ? 'ok' : 'no', g.apto ? 'APTO' : 'NO APTO')),
           test.tipo === 'final' ? lineaFinal : null,
           ce ? resultadoErrores(ce) : null,
-          E1.modulo ? h('p.muted', `${E1.titulo}: corregido como el aprobado por módulos del examen (fallos máximos en cada materia). En tu travesía solo cuenta el examen completo.`) : null,
+          ens ? h('p.lc-eti', icono('lapiz', 'ico-t'), test.titulo) : null,
+          E1.modulo ? h('p.muted', `${E1.titulo}: corregido ${ens && !E1.oficial ? 'con el límite de fallos de cada materia (el de Carta es el del examen)' : 'como el aprobado por módulos del examen (fallos máximos en cada materia)'}. En tu travesía solo cuenta el examen completo.`) : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
+          ens?.minutos ? h('p.muted', `Has tardado ${cuenta(ens.minutos, 'minuto')} de ${ens.duracionMin}${ens.oficial ? '' : ' (tiempo orientativo)'}.`) : null,
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
         ses ? botonesFin : null,
         conFallos.length
@@ -1059,6 +1151,8 @@ export function testView({ ctx, progress, params: route, tit }) {
                 h('td', String(b.errores)));
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),
+        revisarPaso,
+        tiempoTipos,
         ses ? null : botonesFin,
         tituloRevision,
         h('label.filtro-revision', 'Ver: ', filterSel),

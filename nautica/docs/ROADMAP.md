@@ -49,11 +49,6 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-41 | Ensayo general con material real: simulacro del módulo de carta en papel (carta, transportador, compás y reloj) con la app solo para dar enunciados, tiempo y corrección | En curso | Rama `feat/examen-dia` |
-| R-42 | Tu velocidad en carta: tiempo por tipo de problema en simulacros y práctica, y su uso en la estrategia | En curso | Rama `feat/examen-dia` |
-| R-43 | Simulacro de tus errores: preguntas cuyos distractores coinciden con los errores que repites | En curso | Rama `feat/examen-dia`; se apoya en el diagnóstico (R-36) |
-| R-44 | Lista del día del examen marcable, y fecha, hora y sede de la convocatoria con aviso de listas de admitidos | En curso | Rama `feat/examen-dia` |
-| R-45 | Repaso exprés de la víspera (15 minutos): las trampas más repetidas de tus temas con límite de fallos | En curso | Rama `feat/examen-dia`; encaja en el penúltimo día de «la semana antes» |
 | R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
 | R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 
@@ -90,6 +85,8 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | R-38 | Hoja de fórmulas: revisar la redacción didáctica de los ejemplos nuevos (hora, estabilidad, humedad, radar) | Después | Calculados y comprobados por test; las discrepancias entre curso, chuleta y motores quedaron resueltas (H-33) |
 | R-39 | Sincronizar y copiar «Tus errores más repetidos» (hoy solo en el aparato) | Después | Pide un tipo de dato nuevo en el servidor: con la versión 2 |
 | R-40 | Vídeos del PY: contrastar los 8 hechos «por verificar» antes de dibujarlos y sustituir en el podcast las preguntas reservadas que leen sus minijuegos | Después | `docs/VIDEOS-PY.md` |
+| R-46 | Revisar la lista del día del examen y la estrategia con la convocatoria vigente de cada tribunal (Baleares sin leer; Andalucía 2026) y confirmar dónde publica cada uno las listas de admitidos y la sede | Después | Hoy el enlace por defecto es la página oficial del banco |
+| R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
 
 ## Bloqueado por fuente
 
@@ -155,6 +152,12 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-32 | Simulacro por módulos del PY corregido con el criterio oficial por materias (RD 875/2014) | Noviembre 2026 |
 | H-33 | Discrepancias entre curso, chuleta, hoja de fórmulas y motores resueltas (deriva, Polar, redondeo de la declinación, ΔL, presión, tangente, huso límite) | Noviembre 2026 |
 | H-34 | Todas las chuletas en una hoja, por temas, imprimible (`#/<tit>/chuletas`) | Noviembre 2026 |
+| H-35 | Ensayo general en papel: cuadernillo imprimible, reloj del tribunal, hoja de respuestas y corrección real (R-41) | Noviembre 2026 |
+| H-36 | Tu velocidad en carta: tiempo por pregunta en los exámenes y por tipo de problema en «Tu estrategia» (R-42) | Noviembre 2026 |
+| H-37 | Simulacro de tus errores, con índice de distractores por banco (R-43) | Noviembre 2026 |
+| H-38 | Lista del día del examen por tribunal, tu convocatoria (hora, sede, enlace) y recordatorio de admitidos (R-44) | Noviembre 2026 |
+| H-39 | Repaso exprés de la víspera, paso del penúltimo día de «la semana antes» (R-45) | Noviembre 2026 |
+| H-40 | En local la app no sincroniza con el servidor real (las pruebas daban de alta alumnos de prueba) | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

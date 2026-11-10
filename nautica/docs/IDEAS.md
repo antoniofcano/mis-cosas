@@ -74,3 +74,4 @@ producto hermano que comparta contenido y progreso.
 - ~~Modo «la semana antes»~~ → R-33.
 - ~~Entrenar el procedimiento, no solo el resultado~~ → R-35 (se conserva arriba la explicación).
 - ~~Diagnóstico por tipo de error~~ → R-36 (ídem).
+- ~~Ensayo general con material real, velocidad en carta, simulacro de tus errores, lista del día del examen, tu convocatoria y repaso de la víspera~~ → R-41 a R-45 (hechas, H-35 a H-39).

@@ -124,12 +124,13 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 
   // 1. Examen a medias
   if (testEnCurso) {
-    // El simulacro de tus errores (R-43) lleva su propio tiempo.
-    const restante = Math.max(1, Math.round((testEnCurso.errores?.min ?? estructura.duracionMin) - (testEnCurso.consumidoMs ?? 0) / 60000));
+    // El simulacro de tus errores (R-43) lleva su propio tiempo; el ensayo en papel (R-41), el de su parte.
+    const restante = Math.max(1, Math.round((testEnCurso.errores?.min ?? testEnCurso.duracionMin ?? estructura.duracionMin) - (testEnCurso.consumidoMs ?? 0) / 60000));
     const real = testEnCurso.tipo === 'real';
-    lista.push({ tipo: 'examen-en-curso', titulo: 'Examen a medias', verbo: 'Continuar', minutos: restante,
-      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ['test', testEnCurso.tipo === 'errores' ? 'errores' : 'simulacro'],
-      query: real || testEnCurso.tipo === 'final' || testEnCurso.seed == null ? undefined : { s: String(testEnCurso.seed) }, ut: null });
+    const ensayo = testEnCurso.tipo === 'ensayo'; // ensayo en papel (src/theory/ensayo.js): su parte va en la dirección
+    lista.push({ tipo: 'examen-en-curso', titulo: ensayo ? 'Ensayo en papel a medias' : 'Examen a medias', verbo: 'Continuar', minutos: restante,
+      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ensayo ? ['test', 'ensayo'] : ['test', testEnCurso.tipo === 'errores' ? 'errores' : 'simulacro'],
+      query: real || testEnCurso.tipo === 'final' || testEnCurso.seed == null ? undefined : { s: String(testEnCurso.seed), ...(ensayo ? { p: testEnCurso.parte } : testEnCurso.modulo ? { m: testEnCurso.modulo } : {}) }, ut: null });
   }
 
   // 2. Examen final (F1) si estás listo, el examen se acerca y aún no lo has aprobado con margen (lo decide final.js);

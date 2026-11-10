@@ -11,7 +11,10 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { link } from '../router.js';
 import { calcularPlan } from '../cierre.js';
 import { loadEstrategia } from '../../store/datasets.js';
-import { cifrasExamen, presupuestoTiempo, textosEstrategia, tuEstrategia, estrategiaPermitida, resumenEstrategia, num } from '../../course/estrategia.js';
+import { cifrasExamen, presupuestoTiempo, textosEstrategia, tuEstrategia, estrategiaPermitida, resumenEstrategia, num, tiempoDisponible } from '../../course/estrategia.js';
+import { velocidadPorTipo, consejoVelocidad, duracion, mmssCorto, resumenVelocidad } from '../../course/velocidad.js';
+import { tiemposAlumno } from '../../store/tiempos.js';
+import { cuentaEnsayos } from '../../theory/ensayo.js';
 import { modoExamen } from '../modo-examen.js';
 import { randomSeed } from '../../math/rng.js';
 import { icono, conIcono } from '../iconos.js';
@@ -78,6 +81,39 @@ function tuya(T, c, tu) {
     !tu.simulacros || tu.simulacros < 2 ? h('p.no-imprimir', h('a.btn.grande', { href: tlink(T.id, ['test', 'simulacro'], { s: randomSeed() }) }, conIcono('reloj', 'Hacer un simulacro'))) : null);
 }
 
+const TENDENCIA = { baja: ['↓', 'más rápido'], sube: ['↑', 'más lento'], estable: ['=', 'igual'] };
+const ESTADO = { cabe: 'Cabe', justo: 'Justo', 'se-pasa': 'Te pasas' };
+
+/**
+ * «Tu tiempo por tipo de problema de carta» (R-42): tu media en cada tipo (exámenes y práctica), su tendencia y si cabe
+ * en el tiempo que te deja el examen por pregunta de carta; debajo, por dónde empezar.
+ */
+function velocidad(T, disp, filas, consejo) {
+  const carta = filas.filter((f) => f.carta);
+  const teoria = filas.find((f) => !f.carta);
+  return seccion('velocidad', 'reloj', 'Tu tiempo por tipo de problema de carta',
+    h('p.est-sub', `Con tus exámenes y tu práctica de carta (solo cuenta el tiempo con la app a la vista). Tienes unos ${duracion(disp.cartaS)} por pregunta de carta${disp.tramo ? ` en el ${disp.tramo.toLowerCase()}` : ''} según el reparto de arriba; la media del examen es ${duracion(disp.mediaS)} por pregunta.`),
+    carta.length ? h('table.est-tabla.est-velocidad',
+      h('caption', 'Tu media por tipo, de las más lentas a las más rápidas'),
+      h('thead', h('tr', h('th', { scope: 'col' }, 'Tipo'), h('th', { scope: 'col' }, h('abbr', { title: 'Media en minutos y segundos' }, 'Media')), h('th', { scope: 'col' }, 'Tiempo'))),
+      h('tbody', [...carta, ...(teoria ? [teoria] : [])].map((f) => h('tr', { class: f.estado ? `est-vel-${f.estado}` : '' },
+        h('th', { scope: 'row' }, h('span.est-vel-nombre', f.nombre),
+          h('span.est-vel-dato', cuenta(f.n, 'vez', 'veces'), f.tendencia ? [' · ', h('span', { 'aria-hidden': 'true' }, TENDENCIA[f.tendencia][0]), ` ${TENDENCIA[f.tendencia][1]}`] : '')),
+        h('td', { 'aria-label': duracion(f.mediaS) }, mmssCorto(f.mediaS)),
+        h('td.est-vel-estado', f.estado ? ESTADO[f.estado] : '—'))))) : null,
+    consejo ? h('p.est-colchon', h('strong', 'Por dónde empezar: '), consejo.texto) : null,
+    !carta.length ? h('p.est-aviso', icono('aviso', 'ico-t'), 'Aún no hay tiempos tuyos de carta: haz un simulacro o practica las preguntas y los ejercicios de carta, y aquí verás cuánto tardas en cada tipo.') : null,
+    h('p.no-imprimir', h('a', { href: tlink(T.id, ['carta']) }, 'Ejercicios de carta →')));
+}
+
+/** Ensayo general en papel (R-41): cuántos llevas de los recomendados y el enlace. */
+function ensayos(T, ce) {
+  return seccion('ensayo', 'lapiz', 'Ensayo general en papel',
+    h('p', ce.texto),
+    h('p.est-sub', 'La app solo te da los enunciados y el reloj; tú lo resuelves con la carta de papel, el transportador, el compás y el lápiz, y al final pasas las respuestas a la hoja.'),
+    h('p.no-imprimir', h('a.btn.secondary', { href: tlink(T.id, ['ensayo']) }, conIcono('lapiz', ce.hechos ? 'Hacer otro ensayo en papel' : 'Preparar un ensayo en papel'))));
+}
+
 export function estrategiaView({ progress, tit }) {
   const T = TITULACIONES[tit];
   let summaryText = `VISTA estrategia de examen ${T.sigla} (cargando)`;
@@ -105,6 +141,10 @@ export function estrategiaView({ progress, tit }) {
     const tx = textosEstrategia(datos, { tit, eje: ficha.id, calculadora: c.calculadora.permitida });
     const pres = presupuestoTiempo(T, tx.tiempo);
     const tu = tuEstrategia({ estructura: T.estructura, tests: st.datos.tests, listo: st.listo });
+    const disp = tiempoDisponible(T, tx.tiempo);
+    const filasVel = velocidadPorTipo({ tests: st.datos.tests, practica: tiemposAlumno().lista(), disponibleCartaS: disp.cartaS, disponibleTeoriaS: disp.teoriaS });
+    const consejoVel = consejoVelocidad(filasVel, { disponibleCartaS: disp.cartaS });
+    const ce = cuentaEnsayos(st.datos.tests);
     eti.replaceChildren(icono('diana', 'ico-t'), `Estrategia · ${T.sigla} · ${ficha.nombre}`);
     impresion.children[1].textContent = `Estrategia de examen · ${ficha.nombre}`;
 
@@ -152,9 +192,10 @@ export function estrategiaView({ progress, tit }) {
 
     setChildren(cuerpo,
       cifras,
-      h('div.est-tuya', tuya(T, c, tu)),
+      h('div.est-tuya', tuya(T, c, tu), velocidad(T, disp, filasVel, consejoVel)),
       limites,
       tiempo,
+      ensayos(T, ce),
       seccion('orden', 'lista', 'Orden para contestar', lista(tx.orden)),
       seccion('leer', 'lupa', 'Leer el enunciado y descartar', lista(tx.leer)),
       seccion('nosabes', 'pregunta', 'Si no la sabes', lista(tx.noSabes)),
@@ -166,7 +207,7 @@ export function estrategiaView({ progress, tit }) {
       pend.length ? seccion('pendiente', 'aviso', 'Pendiente de verificar', h('p.est-sub', 'Esto no está comprobado para tu tribunal y por eso no se afirma arriba. Míralo en su convocatoria.'), h('ul', pend.map((p) => h('li', p)))) : null,
       h('section.est-fuentes', h('h2.mc-clase-tit', 'Fuentes'), h('ul', [...citadas.values()].map((f) => h('li', f.url ? h('a', { href: f.url, target: '_blank', rel: 'noopener' }, f.titulo) : f.titulo))),
         h('p.est-sub.no-imprimir', 'Reglas del examen y exámenes de convocatorias anteriores, en ', h('a', { href: tlink(tit, ['examenes']) }, 'Examen'), '. Trucos para recordar, en ', h('a', { href: link(['reglas']) }, 'Reglas para recordar'), '.')));
-    summaryText = `VISTA estrategia de examen ${T.sigla} · ${ficha.nombre}\n${resumenEstrategia(c, pres, tu)}\nRUTAS: #/${tit}/test/simulacro?s=<semilla> · #/${tit}/examenes`;
+    summaryText = `VISTA estrategia de examen ${T.sigla} · ${ficha.nombre}\n${resumenEstrategia(c, pres, tu)}\n${resumenVelocidad(filasVel, consejoVel)}\nENSAYOS EN PAPEL: ${ce.hechos} de ${ce.recomendados} → #/${tit}/ensayo\nRUTAS: #/${tit}/test/simulacro?s=<semilla> · #/${tit}/examenes`;
   }).catch((e) => setChildren(cuerpo, h('p.warn', `No se pudo preparar la estrategia: ${e.message}`)));
   return { el, summary: () => summaryText };
 }

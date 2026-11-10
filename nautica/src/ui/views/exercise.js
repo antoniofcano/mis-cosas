@@ -24,6 +24,8 @@ import { hrefPasos } from './carta-pasos.js';
 import { botonBloc } from '../bloc.js';
 import { ID_BLOC } from '../../bloc/notas.js';
 import { erroresAlumno } from '../../store/errores.js';
+import { tiemposAlumno } from '../../store/tiempos.js';
+import { relojVisible } from '../reloj-visible.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: ['ok', 'Correcto'],
@@ -46,6 +48,9 @@ export function exerciseView({ ctx, progress, params: route }) {
   const answers = answersFor(exercise, params);
   const state = { inputs: {}, revealed: 0, result: null, recorded: false };
   const crono = cronometro(() => Date.now(), 20 * 60000); // un ejercicio de carta: tiempo real, como mucho 20 min
+  // Tu velocidad en carta (R-42): hasta la primera corrección completa, solo con la pestaña visible (en el aparato).
+  let el = null;
+  const reloj = relojVisible({ vivo: () => !el || el.isConnected });
   let ws = null; // mesa de cartas a pantalla completa (se abre al resolver en la carta)
   let widget = null;
   // Ayudas de la práctica (chuleta de fórmulas) y siglas explicadas al tocarlas, en el contexto del tema de carta.
@@ -165,6 +170,7 @@ export function exerciseView({ ctx, progress, params: route }) {
       // Los errores típicos de la taxonomía común, también en «Tus errores más repetidos» (src/store/errores.js).
       for (const d of r.diagnoses) erroresAlumno().error(`ej:${exercise.id}:${seed}`, d.id);
       if (r.allOk) progress.logActividad(crono.minutos());
+      tiemposAlumno().anota({ y: exercise.id, s: reloj.parar(), o: r.allOk, q: `ej:${exercise.id}:${seed}` });
       state.recorded = true;
     }
     refreshAi();
@@ -179,7 +185,7 @@ export function exerciseView({ ctx, progress, params: route }) {
 
   const statementEl = h('p', statement);
   glosar(statementEl, glosas);
-  const el = h('div.exercise',
+  el = h('div.exercise',
     volver('Ejercicios de carta', tlink(currentTit(progress), ['carta'])),
     h('header.con-ayudas',
       h('h1', exercise.title),

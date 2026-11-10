@@ -22,7 +22,8 @@ import { hayRuta } from '../rutas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { cuenta, diaISO, fechaLarga } from '../../texto.js';
 import { sumaDiasISO } from '../../course/calendario.js';
-import { ideasFlojas, tandaDeIdeas, rotuloSemana, lineaFaltan, resumenPlan, DIAS_MODO } from '../../course/semana.js';
+import { ideasFlojas, tandaDeIdeas, rotuloSemana, lineaFaltan, resumenPlan, DIAS_MODO, recordatorioEnsayos } from '../../course/semana.js';
+import { ENSAYOS_RECOMENDADOS } from '../../theory/ensayo.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, activarAMano, tarjetaComoFue } from '../semana.js';
 
 export function semanaView(o) {
@@ -76,6 +77,15 @@ function seccionFlojas(tit, sem) {
       h('span.muted.small', `Aciertas el ${Math.round(t.tasa * 100)} %${t.conLimite ? ' · tema con límite de fallos' : ''}`))))));
 }
 
+/** Ensayo general en papel (R-41): cuántos llevas de los recomendados y, si aún toca, el enlace para prepararlo. */
+function seccionEnsayos(tit, tests, dias) {
+  const r = recordatorioEnsayos(tests, { dias, recomendados: ENSAYOS_RECOMENDADOS });
+  return h('section.semana-ensayos', { 'aria-labelledby': 'semana-ensayos-t' },
+    h('h2.eti#semana-ensayos-t', 'Ensayo general en papel'),
+    h('p', r.texto),
+    r.proponer ? h('a.btn.secondary', { href: tlink(tit, ['ensayo']) }, conIcono('lapiz', 'Preparar un ensayo en papel')) : null);
+}
+
 function planSemanaView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const cuerpo = h('div.semana-cuerpo', h('p.muted', 'Preparando tu semana…'));
@@ -99,6 +109,7 @@ function planSemanaView({ progress, tit }) {
             : dExamen == null || d.st.orientativa ? h('p', 'No tienes puesta la fecha del examen (o es orientativa). Elige cuántos días quedan o ', h('a', { href: '#/ajustes?campo=fecha' }, 'pon la fecha en Ajustes'), '.') : null,
           estado.salido ? null : activarAMano(progress, tit)),
         seccionFlojas(tit, sem),
+        seccionEnsayos(tit, d.st.datos.tests, dExamen ?? DIAS_MODO),
         accesos(tit));
       summaryText = `VISTA semana ${T.sigla}: modo inactivo${estado.salido ? ' (salido)' : ''}${dExamen != null ? ` · examen en ${cuenta(dExamen, 'día')}` : ' · sin fecha'}${estado.preguntar ? ` · PREGUNTA cómo fue (${estado.preguntar.fecha})` : ''}`;
       return;
@@ -133,6 +144,7 @@ function planSemanaView({ progress, tit }) {
           x.pasos.length ? h('span.muted.small', x.pasos.map((p) => p.titulo).join(' · ')) : h('span.muted.small', x.k === 0 ? 'Sin tarea: solo el examen.' : '')))),
         h('p.muted.small', 'Si un día no puedes, no pasa nada: el plan se rehace con los días que quedan.')) : null,
       seccionFlojas(tit, sem),
+      seccionEnsayos(tit, d.st.datos.tests, estado.dias),
       accesos(tit),
       h('p.semana-salir-fila', botonSalir(progress, tit, estado)));
     summaryText = `VISTA semana ${T.sigla}: ${rotuloSemana(estado.dias)} · examen ${estado.fecha} (${estado.modo}) · ${cuenta(hechos, 'día hecho', 'días hechos')}\n` +

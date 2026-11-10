@@ -55,6 +55,27 @@ Al escribir, el almacén aplica la operación sobre el estado ya plegado (no vue
 **No se sincroniza** (se queda en el aparato, en `local` del registro): el examen a medias (`testEnCurso`), los ajustes
 del aparato y la carta escaneada (IndexedDB `user-chart.js`, que nunca sale del aparato por los derechos del IHM).
 
+### Tiempo por pregunta (R-42, «Tu velocidad en carta»)
+
+- **Exámenes** (simulacro, módulo, convocatoria real, examen final): el registro del test (`recordTest`, operación `x`)
+  lleva un campo nuevo y opcional `tq: [[id, segundos, acierto 1|0, tipo], …]` (`tiemposDelTest` en
+  `src/course/velocidad.js`): el tiempo que cada pregunta estuvo en pantalla, contado con el mismo criterio que el reloj
+  del examen (solo con la pestaña visible), con tope de 30 minutos y sin las de menos de 1 s. `tipo` es el `ejercicio`
+  de la solución programada (`src/bancos/soluciones.js`), `carta` o `teoria`. **El servidor no cambia:** el validador
+  desplegado (el de `origin/main`, idéntico al de esta rama) solo exige que `e` sea un objeto y que la operación no pase
+  de `MAX_OP` (64 KiB); un examen de 45 preguntas con ids largos ocupa unos 3,7 KB (`tests/velocidad.test.js`). Un
+  registro antiguo sin `tq` se lee igual (no tiene tiempos). El examen a medias guarda lo que lleva en
+  `testEnCurso.tiempos` (ms por id; del aparato, como todo el examen a medias).
+- **Ensayo en papel** (R-41): también es un `x`, con `tipo: 'ensayo'`, `parte`, `aptoParte` y, si se hizo con el
+  cuadernillo impreso, `impreso: true` (todo dentro de `e`, que el servidor no mira). No lleva `tq`: se resuelve en
+  papel.
+- **Práctica** (preguntas de carta de las tandas y ejercicios de carta): **no se sincroniza**. Las operaciones `r` y `e`
+  tienen sus campos cerrados (el validador rechaza uno nuevo con `campos`) y la colección de `v` es una lista cerrada,
+  así que no hay sitio sin cambiar el servidor. Se guarda en el aparato, como los errores del alumno: `localStorage`
+  `nautica.tiempos.v1` (`src/store/tiempos.js`: `{ t, y tipo, s segundos, o acierto, q }`, 400 anotaciones, 180 días,
+  una vez por pregunta y día). No va al progreso, ni a la sincronización, ni a la copia de seguridad. «Tu velocidad en
+  carta» junta las dos fuentes; en otro aparato solo se ven los tiempos de los exámenes.
+
 ### Correcciones de tema («¿No es de este tema?»)
 
 El alumno puede cambiar el tema (y, si quiere, la clase) en que cuenta una pregunta en su estudio

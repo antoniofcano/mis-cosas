@@ -22,6 +22,8 @@ import { clasesDeCurso, filaIdea } from '../concepto.js';
 import { estadoTravesia, farosPorTema } from '../../course/travesia.js';
 import { icono, conIcono } from '../iconos.js';
 import { novedades, claseAnimada } from '../efectos.js';
+import { loadFormulas } from '../../store/datasets.js';
+import { temasConFormulas } from '../../course/formulas.js';
 
 /**
  * Ideas (conceptos) de cada clase con preguntas en este banco y cómo las lleva el alumno: Map claseId → { sabidas,
@@ -164,6 +166,13 @@ export function temaView({ progress, params: route, tit }) {
       mapasTema.hidden = false;
       summaryText += `\nMAPAS: ${xs.map((x) => x.mapa.titulo).join('; ')}`;
     }).catch(() => {});
+    // Las fórmulas y tablas del tema (#/<tit>/formulas?t=<ut>), si las tiene.
+    const formulasTema = h('p', { hidden: true });
+    loadFormulas().then((f) => {
+      if (!temasConFormulas(f, tit).includes(ut)) return;
+      setChildren(formulasTema, h('a.btn.secondary', { href: tlink(tit, ['formulas'], { t: String(ut) }) }, conIcono('cuentas', 'Fórmulas y tablas del tema')));
+      formulasTema.hidden = false;
+    }).catch(() => {});
     // Los podcasts del tema: el panorama primero y los que profundizan (los que ya tienen audio).
     const radioTema = h('section.radio-tema', { hidden: true });
     episodiosDeTema(tit, ut).then((eps) => {
@@ -204,6 +213,7 @@ export function temaView({ progress, params: route, tit }) {
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
       radioTema,
       h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, conIcono('imprimir', 'Chuleta del tema para imprimir'))),
+      formulasTema,
       mapasTema,
       ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', conIcono('mapa', 'Ejercicios de carta')), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
       h('section', h('h2', 'Para ayudarte'),

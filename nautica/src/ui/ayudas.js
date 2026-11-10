@@ -13,6 +13,7 @@ import { icono, conIcono } from './iconos.js';
 import { chuletaPermitida, esRutaDeExamen, fichasPara, chuletasDeClases } from '../course/chuletario.js';
 import { loadChuletario, loadCourse } from '../store/datasets.js';
 import { glosar } from './glosas.js';
+import { tlink } from './titulacion.js';
 
 const CLAVE = 'nautica.chuleta.abierta';
 const leeAbierta = () => { try { return sessionStorage.getItem(CLAVE) === '1'; } catch { return false; } };
@@ -57,7 +58,9 @@ export function crearAyudas(ctx) {
   const panel = h('section.chuleta-panel', { id, role: 'region', 'aria-label': 'Chuleta', hidden: true, class: actual.flotante ? 'flotante' : '' },
     h('div.chuleta-cabecera', titulo, cerrarBtn),
     h('p.chuleta-aviso', 'Solo para practicar: en el examen no la tendrás.'),
-    cuerpo);
+    cuerpo,
+    // Todas las fórmulas y tablas de la titulación, en una hoja (#/<tit>/formulas). Solo aquí, en la práctica.
+    actual.tit ? h('p.chuleta-todas', h('a', { href: tlink(actual.tit, ['formulas']) }, conIcono('cuentas', 'Ver todas las fórmulas'))) : null);
   panel.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { ev.preventDefault(); pon(false, true); boton.focus(); } });
   const boton = h('button.secondary.small.boton-chuleta', { type: 'button', 'aria-label': 'Chuleta', title: 'Chuleta: fórmulas y signos', 'aria-expanded': 'false', 'aria-controls': id, onclick: () => pon(panel.hidden, true) },
     icono('temario'), h('span.boton-chuleta-texto', 'Chuleta'));

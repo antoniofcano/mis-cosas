@@ -1,0 +1,1127 @@
+{
+  "nota": "Fórmulas y tablas en una hoja (#/<tit>/formulas): las del examen por bloques, cada fórmula con lo que es cada letra y su signo, cuándo se usa, la trampa típica y un ejemplo resuelto. Nada nuevo: cada fórmula cita las clases que la enseñan (origen.clases), la ficha de la chuleta de la práctica (origen.chuletario) y el motor que resuelve igual (origen.motor); `cita` es el texto que debe estar en una de esas clases o fichas. Los ejemplos se calculan con los motores (src/course/formulas.js, CALCULOS) y tests/formulas.test.js comprueba cada número publicado y cada secuencia de teclas. Signos de la app: E y NE (+), W y NW (−); N (+), S (−); viento por babor Ab (+). Nunca en un examen.",
+  "bloques": [
+    {
+      "id": "aguja",
+      "corto": "Aguja y rumbos",
+      "titulo": "Corrección total, rumbos y demoras",
+      "ico": "brujula",
+      "formulas": [
+        {
+          "id": "ct",
+          "titulo": "Corrección total",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["Ct = dm + Δ"],
+          "letras": [
+            ["Ct", "corrección total: del norte verdadero al de aguja"],
+            ["dm", "declinación magnética: del norte verdadero al magnético; la da la rosa de la carta (del año)"],
+            ["Δ", "desvío: del norte magnético al de aguja; lo da la tablilla de tu barco para tu rumbo de aguja"]
+          ],
+          "signos": "E o NE (+) · W o NW (−).",
+          "cuando": "Siempre que pases un rumbo o una demora de aguja a verdadero (o al revés) y te den la declinación y el desvío.",
+          "trampa": "El desvío es de tu barco y de tu rumbo de aguja: si cambias de rumbo, cambia Δ y cambia la Ct.",
+          "cita": "Ct = dm + Δ",
+          "origen": { "clases": ["per-10-5", "per-11-2", "py-3-2", "py-4-1"], "chuletario": "ct", "motor": "src/nautical/compass.js · correccionTotal" },
+          "ejemplo": {
+            "enunciado": "La declinación del año es 3° W y la tablilla da un desvío de 5° NE para tu rumbo. ¿Cuánto vale la Ct?",
+            "pasos": [
+              "Pasa cada uno a número: dm = 3° W = **−3°**; Δ = 5° NE = **+5°**.",
+              "Ct = dm + Δ = (−3°) + (+5°) = **+2°** (2° NE)."
+            ],
+            "calculadora": [{ "teclas": "(−) 3 + 5 =", "da": 2 }],
+            "resultado": "Ct = +2° (2° NE)",
+            "comprobar": { "calculo": "ct", "datos": { "dm": -3, "desvio": 5 }, "esperado": { "ct": { "valor": 2, "texto": "+2°" } } }
+          }
+        },
+        {
+          "id": "dm-del-ano",
+          "titulo": "Declinación del año",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["dm del año = dm de la carta + variación anual × años"],
+          "letras": [
+            ["dm de la carta", "la que trae la rosa, con su año"],
+            ["variación anual", "minutos por año, con su sentido: hacia el E (+) o hacia el W (−)"],
+            ["años", "año del ejercicio − año de la rosa"]
+          ],
+          "signos": "Cada término con su signo. Una dm W que disminuye (decremento) varía hacia el E: suma.",
+          "cuando": "Antes de calcular la Ct: la declinación de la rosa es de otro año.",
+          "trampa": {
+            "per": "Redondea solo al final y al grado más próximo (−0°37′ → −1°; −0°23′ → 0°).",
+            "py": "Usa el valor exacto o al medio grado, como pida el enunciado; redondea solo al final."
+          },
+          "cita": "dm del año = dm de la carta + variación anual × años",
+          "origen": { "clases": ["per-10-5", "per-11-2", "py-3-2", "py-4-1"], "chuletario": "ct", "motor": "src/nautical/compass.js · updateDeclination" },
+          "ejemplo": {
+            "enunciado": "La rosa de la carta dice «4°10′ W 2010 (8′ E)». ¿Qué declinación usas en 2026?",
+            "pasos": [
+              "Años: 2026 − 2010 = **16**.",
+              "Variación: 16 × 8′ = 128′ = **2°08′** hacia el E (+).",
+              "dm = −4°10′ + 2°08′ = **−2°02′** (2°02′ W); al grado, **2° W**."
+            ],
+            "calculadora": [{ "teclas": "(−) 4 °′″ 10 °′″ + 16 × 0 °′″ 8 °′″ =", "da": -2.0333, "tol": 0.0005, "pantalla": "−2°2′0″" }],
+            "resultado": "dm = 2°02′ W (−2°02′); al grado, 2° W",
+            "comprobar": { "calculo": "dmDelAno", "datos": { "dmCarta": { "g": 4, "m": 10, "ew": "W" }, "ano": 2010, "variacionMin": 8, "hacia": "E", "anoActual": 2026 }, "esperado": { "dm": { "valor": -2.0333, "tol": 0.0005, "texto": "−2°02′" } } }
+          }
+        },
+        {
+          "id": "ct-enfilacion",
+          "titulo": "Ct por enfilación u oposición",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["Ct = Dv − Da", "Δ = Ct − dm"],
+          "letras": [
+            ["Dv", "demora verdadera de la recta entre los dos faros, medida en la carta (enfilación: del cercano al lejano; oposición: del otro faro hacia el que marcas)"],
+            ["Da", "demora de aguja que lees con la aguja de marcar"],
+            ["Δ", "desvío para el rumbo de aguja que llevas en ese momento"]
+          ],
+          "signos": "Si la Ct sale de más de 180° (en valor absoluto), suma o resta 360°.",
+          "cuando": "Cuando el enunciado te pone en la enfilación o la oposición de dos faros y te da su demora de aguja.",
+          "trampa": "El rumbo y la velocidad no intervienen en la Ct: el rumbo solo dice a qué desvío corresponde.",
+          "cita": "Ct = Dv − Da",
+          "origen": { "clases": ["per-10-7", "per-11-2", "py-3-2", "py-4-1"], "chuletario": "enfilacion", "motor": "src/nautical/compass.js · ctFrom, desvioFrom" },
+          "ejemplo": {
+            "enunciado": "En la carta, la enfilación de dos faros da Dv 312°. La aguja la marca en Da 318°. La dm del año es 2° W. ¿Ct y desvío?",
+            "pasos": [
+              "Ct = Dv − Da = 312° − 318° = **−6°** (6° NW).",
+              "Δ = Ct − dm = (−6°) − (−2°) = **−4°** (4° NW): el desvío para el rumbo de aguja que llevas."
+            ],
+            "calculadora": [{ "teclas": "312 − 318 =", "da": -6 }, { "teclas": "(−) 6 − (−) 2 =", "da": -4 }],
+            "resultado": "Ct = −6°; Δ = −4° (4° NW)",
+            "comprobar": { "calculo": "ctEnfilacion", "datos": { "dv": 312, "da": 318, "dm": -2 }, "esperado": { "ct": { "valor": -6, "texto": "−6°" }, "desvio": { "valor": -4, "texto": "−4°" } } }
+          }
+        },
+        {
+          "id": "polar",
+          "titulo": "Ct por la Polar",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["Ct = 000° − Za"],
+          "letras": [
+            ["Za", "azimut de aguja de la Polar: lo que marca la aguja"],
+            ["000°", "la Polar está casi en el norte verdadero (Zv ≈ 000°)"]
+          ],
+          "signos": "Za cerca de 360°: Ct positiva (Za 357° → +3°). Za cerca de 0°: Ct negativa.",
+          "cuando": "De noche, cuando el enunciado da el azimut de aguja de la Polar.",
+          "trampa": "Con Za 357° la Ct es +3°, no −357°: si pasa de 180°, suma 360°.",
+          "cita": "Ct = 000° − Za",
+          "origen": { "clases": ["py-3-2", "py-4-1"], "chuletario": "polar", "motor": "src/nautical/compass.js · ctFrom" },
+          "ejemplo": {
+            "enunciado": "Marcas la Polar con la aguja en Za 003°. ¿Cuánto vale la Ct?",
+            "pasos": ["Ct = 000° − Za = 000° − 003° = **−3°** (3° NW)."],
+            "calculadora": [{ "teclas": "0 − 3 =", "da": -3 }],
+            "resultado": "Ct = −3°",
+            "comprobar": { "calculo": "ctPolar", "datos": { "za": 3 }, "esperado": { "ct": { "valor": -3, "texto": "−3°" } } }
+          }
+        },
+        {
+          "id": "rumbos",
+          "titulo": "Rumbo verdadero y de aguja",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["Rv = Ra + Ct", "Ra = Rv − Ct"],
+          "letras": [
+            ["Rv", "rumbo verdadero: el que se traza en la carta"],
+            ["Ra", "rumbo de aguja: el que se da al timón"],
+            ["Ct", "corrección total, con su signo"]
+          ],
+          "signos": "Si sale negativo, suma 360°; si pasa de 360°, resta 360°.",
+          "cuando": "De la aguja a la carta (Rv) o de la carta al timón (Ra).",
+          "trampa": "En la carta nunca se traza un rumbo de aguja: primero pásalo a verdadero.",
+          "cita": "Rv = Ra + Ct",
+          "origen": { "clases": ["per-10-6", "per-11-2", "py-3-2", "py-4-1"], "chuletario": "rumbos", "motor": "src/nautical/compass.js · rvFromRa, raFromRv" },
+          "ejemplo": {
+            "enunciado": "Gobiernas al Ra 357° con una Ct de +6°. ¿Qué rumbo verdadero trazas en la carta?",
+            "pasos": [
+              "Rv = Ra + Ct = 357° + 6° = 363°.",
+              "Pasa de 360°: resta 360°. **Rv = 003°**."
+            ],
+            "calculadora": [{ "teclas": "357 + 6 − 360 =", "da": 3 }],
+            "resultado": "Rv = 003°",
+            "comprobar": { "calculo": "rvDeRa", "datos": { "ra": 357, "ct": 6 }, "esperado": { "rv": { "valor": 3, "texto": "003°" } } }
+          }
+        },
+        {
+          "id": "demoras",
+          "titulo": "Demora verdadera y de aguja",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["Dv = Da + Ct", "Da = Dv − Ct"],
+          "letras": [
+            ["Dv", "demora verdadera: del norte verdadero al objeto"],
+            ["Da", "demora de aguja: la que lees con la aguja"],
+            ["Ct", "la del rumbo que llevas"]
+          ],
+          "signos": "Para trazarla desde el faro, la opuesta: Dv ± 180°.",
+          "cuando": "Cuando marcas un faro con la aguja y quieres llevar la demora a la carta.",
+          "trampa": "La Ct es la de tu rumbo, no la del faro: el desvío depende del rumbo de aguja que llevas.",
+          "cita": "Dv = Da + Ct",
+          "origen": { "clases": ["per-10-7", "per-11-2", "py-3-2"], "chuletario": "demoras", "motor": "src/nautical/compass.js · rvFromRa (la misma cuenta); src/math/angles.js · reciprocal" },
+          "ejemplo": {
+            "enunciado": "Navegando con Ct −4°, marcas un faro en Da 128°. ¿Qué demora trazas en la carta?",
+            "pasos": [
+              "Dv = Da + Ct = 128° + (−4°) = **124°**.",
+              "Desde el faro se traza la opuesta: 124° + 180° = **304°**."
+            ],
+            "calculadora": [{ "teclas": "128 − 4 =", "da": 124 }],
+            "resultado": "Dv = 124° (desde el faro, 304°)",
+            "comprobar": { "calculo": "dvDeDa", "datos": { "da": 128, "ct": -4 }, "esperado": { "dv": { "valor": 124, "texto": "124°" }, "opuesta": { "valor": 304, "texto": "304°" } } }
+          }
+        },
+        {
+          "id": "marcacion",
+          "titulo": "Marcación",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["Dv = Rv + M", "M = Dv − Rv"],
+          "letras": [
+            ["M", "marcación: ángulo de la proa al objeto, por estribor o por babor"],
+            ["Rv", "rumbo verdadero"],
+            ["Dv", "demora verdadera del objeto"]
+          ],
+          "signos": "Por estribor (+) · por babor (−). Través por estribor: Dv = Rv + 90°; por babor: Dv = Rv − 90°.",
+          "cuando": "Cuando el enunciado da el faro «por la amura», «por el través» o a tantos grados de la proa.",
+          "trampa": "Con marcación circular (de 0° a 360°, desde la proa hacia estribor) se suma sin signo: 300° circular son 60° por babor.",
+          "cita": "Dv = Rv + M",
+          "origen": { "clases": ["per-10-7", "per-11-5", "py-4-4"], "chuletario": "demoras", "motor": "src/nautical/compass.js · dvFromMarcacion" },
+          "ejemplo": {
+            "enunciado": "Navegas al Rv 250° y ves un faro 60° por babor. ¿Cuál es su demora verdadera?",
+            "pasos": [
+              "Por babor, la marcación es negativa: M = **−60°**.",
+              "Dv = Rv + M = 250° + (−60°) = **190°**."
+            ],
+            "calculadora": [{ "teclas": "250 − 60 =", "da": 190 }],
+            "resultado": "Dv = 190°",
+            "comprobar": { "calculo": "dvDeMarcacion", "datos": { "rv": 250, "m": -60 }, "esperado": { "dv": { "valor": 190, "texto": "190°" } } }
+          }
+        },
+        {
+          "id": "cuadrantales",
+          "titulo": "Rumbos cuadrantales a circulares",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["N x E = x", "S x E = 180° − x", "S x W = 180° + x", "N x W = 360° − x"],
+          "letras": [["x", "ángulo desde el N o el S hacia el E o el W (de 0° a 90°)"]],
+          "cuando": "Cuando el enunciado (o la arcotangente de la estima analítica) te da un rumbo por cuadrantes.",
+          "trampa": "Desde el S, hacia el E se resta de 180° y hacia el W se suma: S 40° W son 220°, no 140°.",
+          "cita": "S x W = 180° + x",
+          "origen": { "clases": ["per-10-6", "py-4-10"], "chuletario": "cuadrantales", "motor": null },
+          "ejemplo": {
+            "enunciado": "Pasa el rumbo S 35° E a circular.",
+            "pasos": ["Cuadrante SE: S x E = 180° − x.", "180° − 35° = **145°**."],
+            "calculadora": [{ "teclas": "180 − 35 =", "da": 145 }],
+            "resultado": "145°",
+            "comprobar": { "calculo": "cuadrantal", "datos": { "ns": "S", "x": 35, "ew": "E" }, "esperado": { "rumbo": { "valor": 145, "texto": "145°" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "viento-corriente",
+      "corto": "Viento y corriente",
+      "titulo": "Viento y corriente",
+      "ico": "viento",
+      "formulas": [
+        {
+          "id": "abatimiento",
+          "titulo": "Abatimiento: rumbo de superficie",
+          "tits": ["per", "py"],
+          "temas": { "per": [10], "py": [3, 4] },
+          "expresion": ["Rs = Rv + Ab", "Rv = Rs − Ab"],
+          "letras": [
+            ["Rs", "rumbo de superficie: el que sigue el barco sobre el agua (su estela)"],
+            ["Rv", "rumbo verdadero: hacia donde apunta la proa"],
+            ["Ab", "abatimiento: ángulo entre la proa y la estela que causa el viento"]
+          ],
+          "signos": "Viento por babor: Ab (+) · por estribor: Ab (−). Banda: viento − Rv; de 0° a 180°, estribor; de 180° a 360°, babor.",
+          "cuando": {
+            "per": "Cuando el enunciado da viento y abatimiento (en la carta del PER no los hay: sale en la teoría).",
+            "py": "Siempre que haya viento. Del timón a la carta: Rv = Ra + Ct y Rs = Rv + Ab. De la carta al timón: Rv = Rs − Ab y Ra = Rv − Ct."
+          },
+          "trampa": "El viento se nombra por de dónde viene y el Rs queda siempre a sotavento del Rv: si te sale a barlovento, has cambiado el signo.",
+          "cita": "Rs = Rv + Ab",
+          "origen": { "clases": ["per-10-9", "py-3-3", "py-4-2"], "chuletario": "abatimiento", "motor": "src/nautical/kinematics.js · windSide, abatimientoSigned, cadenaInversa" },
+          "ejemplo": {
+            "enunciado": "Quieres ir por el Rs 200° (la línea que trazas en la carta) con poniente, viento del 270°, que te abate 6°. La Ct es −3°. ¿Qué Ra das?",
+            "pasos": [
+              "Banda del viento (con el Rs, porque el Rv aún no lo sabes): 270° − 200° = 70°, entre 0° y 180° → **estribor** → Ab = **−6°**.",
+              "Rv = Rs − Ab = 200° − (−6°) = **206°**: orzas hacia el viento lo que abates.",
+              "Ra = Rv − Ct = 206° − (−3°) = **209°**."
+            ],
+            "calculadora": [{ "teclas": "200 − (−) 6 =", "da": 206 }, { "teclas": "206 − (−) 3 =", "da": 209 }],
+            "resultado": "Ra = 209°",
+            "comprobar": { "calculo": "abatimientoInverso", "datos": { "rs": 200, "viento": 270, "ab": 6, "ct": -3 }, "esperado": { "ab": { "valor": -6, "texto": "−6°" }, "rv": { "valor": 206, "texto": "206°" }, "ra": { "valor": 209, "texto": "209°" } } }
+          }
+        },
+        {
+          "id": "corriente-efectiva",
+          "titulo": "Rumbo y velocidad efectivos",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["Ref y Vef = (Vb al Rs) + (Ihc al Rc), en 1 hora", "Vef = d / t"],
+          "letras": [
+            ["Rs, Vb", "rumbo de superficie y velocidad del barco"],
+            ["Rc, Ihc", "rumbo de la corriente (hacia donde va) e intensidad horaria, en nudos"],
+            ["Ref, Vef", "rumbo y velocidad efectivos, sobre el fondo (la Vef es la SOG del GNSS)"]
+          ],
+          "signos": "La corriente se nombra por hacia dónde va; el viento, por de dónde viene.",
+          "cuando": "Estima con corriente: dónde estarás y a qué velocidad avanzas sobre el fondo.",
+          "trampa": "Primero el viento (del Rv al Rs) y luego la corriente. La hora de llegada, con la Vef, nunca con la Vb.",
+          "cita": "Primero el viento, luego la corriente",
+          "origen": { "clases": ["py-3-3", "py-4-5", "py-4-7"], "chuletario": "corriente", "motor": "src/nautical/kinematics.js · effectiveCourse" },
+          "ejemplo": {
+            "enunciado": "Rs 100° a 6 nudos con una corriente de Rc 200° e Ihc 2 nudos. ¿Ref y Vef?",
+            "pasos": [
+              "En la carta: desde la salida, 6 millas al 100°; desde ese extremo, 2 millas al 200°. De la salida al último extremo, el Ref; su longitud, la Vef (triángulo de 1 hora).",
+              "Para comprobarlo, por componentes: norte = 6 · cos 100° + 2 · cos 200° = **−2,92**; este = 6 · sen 100° + 2 · sen 200° = **5,22**.",
+              "Norte negativo y este positivo: cuadrante SE. x = arctg (5,22 / 2,92) = 60,8° → Ref = 180° − 60,8° = **119°**.",
+              "Vef = √(2,92² + 5,22²) = **6,0 nudos**. La corriente te lleva 19° hacia estribor."
+            ],
+            "calculadora": [
+              { "teclas": "6 × cos 100 ) + 2 × cos 200 ) =", "da": -2.921, "tol": 0.001 },
+              { "teclas": "6 × sin 100 ) + 2 × sin 200 ) =", "da": 5.225, "tol": 0.001 },
+              { "teclas": "SHIFT tan 5.22 ÷ 2.92 ) =", "da": 60.78, "tol": 0.02 },
+              { "teclas": "√ 2.92 x² + 5.22 x² ) =", "da": 5.98, "tol": 0.01 }
+            ],
+            "resultado": "Ref ≈ 119°; Vef ≈ 6,0 nudos",
+            "comprobar": { "calculo": "efectivo", "datos": { "rs": 100, "vb": 6, "rc": 200, "ic": 2 }, "esperado": { "norte": { "valor": -2.92, "tol": 0.006, "texto": "−2,92" }, "este": { "valor": 5.22, "tol": 0.006, "texto": "5,22" }, "ref": { "valor": 119, "tol": 0.5, "texto": "119°" }, "vef": { "valor": 6.0, "tol": 0.05, "texto": "6,0 nudos" } } }
+          }
+        },
+        {
+          "id": "rumbo-a-dar",
+          "titulo": "Rumbo a dar con corriente (triángulo de velocidades)",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["Ref = la línea de la salida al destino", "corriente de 1 hora desde la salida; desde su extremo, arco de radio Vb que corta el Ref", "Rs = del extremo de la corriente al corte · Vef = de la salida al corte"],
+          "letras": [
+            ["Ref", "rumbo efectivo que quieres hacer (al destino, o la tangente si hay que pasar a distancia)"],
+            ["Rc, Ihc", "la corriente conocida"],
+            ["Vb", "la velocidad del barco: el radio del arco"],
+            ["Rs", "el rumbo a dar (con viento, luego Rv = Rs − Ab y Ra = Rv − Ct)"]
+          ],
+          "cuando": "Cuando te piden qué rumbo dar para llegar a un punto con una corriente conocida, y a qué hora llegas.",
+          "trampa": "El rumbo a dar va del extremo de la corriente al corte, no de la salida al corte (ese es el Ref). Y la hora, con la Vef.",
+          "cita": "Hora de llegada con la Vef, nunca con la Vb",
+          "origen": { "clases": ["py-3-3", "py-4-7"], "chuletario": "corriente", "motor": "src/nautical/kinematics.js · courseToSteer" },
+          "ejemplo": {
+            "enunciado": "Tu destino está a 18 millas en el 060°. Navegas a 6 nudos y hay una corriente de Rc 150° e Ihc 2 nudos, sin viento. ¿Rumbo a dar, Vef y tiempo?",
+            "pasos": [
+              "Ref: la línea al destino, **060°**.",
+              "Desde la salida, el vector corriente de 1 hora: 2 millas al 150°. Desde su extremo, con el compás abierto 6 millas (la Vb), cortas la línea del Ref.",
+              "Del extremo de la corriente al corte: **Rs ≈ 040,5°**. De la salida al corte: **Vef ≈ 5,66 nudos**.",
+              "Tiempo = 18 / 5,66 = **3,18 h** = 3 h 11 min. Sin viento, Rv = Rs; después, Ra = Rv − Ct."
+            ],
+            "calculadora": [{ "teclas": "18 ÷ 5.66 =", "da": 3.18, "tol": 0.005 }],
+            "resultado": "Rs ≈ 040,5°; Vef ≈ 5,66 nudos; 3 h 11 min",
+            "comprobar": { "calculo": "rumboADar", "datos": { "ref": 60, "vb": 6, "rc": 150, "ic": 2, "d": 18 }, "esperado": { "rs": { "valor": 40.5, "tol": 0.05, "texto": "040,5°" }, "vef": { "valor": 5.66, "tol": 0.005, "texto": "5,66 nudos" }, "horas": { "valor": 3.18, "tol": 0.005, "texto": "3,18 h" } } }
+          }
+        },
+        {
+          "id": "corriente-desconocida",
+          "titulo": "Corriente desconocida",
+          "tits": ["py"],
+          "temas": { "py": [4] },
+          "expresion": ["Rc = de la situación estimada a la observada", "Ihc = distancia entre ellas / horas"],
+          "letras": [
+            ["situación estimada", "la de la estima sin corriente (con viento, si lo hay) a la hora de la observación"],
+            ["situación observada", "la de las líneas de posición a esa misma hora"],
+            ["horas", "desde la última situación fiable"]
+          ],
+          "cuando": "Cuando te sitúas a una hora y no coincides con la estima: la diferencia es la corriente.",
+          "trampa": "El Rc va de la estimada a la observada (al revés saldría el opuesto) y las horas se cuentan desde la última situación fiable.",
+          "cita": "Rc = dirección de la estimada a la observada",
+          "origen": { "clases": ["py-4-8"], "chuletario": "corriente", "motor": "src/nautical/kinematics.js · currentFromDrift" },
+          "ejemplo": {
+            "enunciado": "A las 09:00 sales de una situación fiable. A las 10:30, la situación observada está a 2,4 millas al 075° de la estimada. ¿Rc e Ihc?",
+            "pasos": [
+              "Rc: de la estimada a la observada, **075°**.",
+              "Tiempo: 10:30 − 09:00 = 1 h 30 min = 1,5 h.",
+              "Ihc = 2,4 / 1,5 = **1,6 nudos**."
+            ],
+            "calculadora": [{ "teclas": "2.4 ÷ 1 °′″ 30 °′″ =", "da": 1.6, "tol": 0.0005 }],
+            "resultado": "Rc 075°; Ihc 1,6 nudos",
+            "comprobar": { "calculo": "corrienteDesconocida", "datos": { "rumbo": 75, "d": 2.4, "h": 1.5 }, "esperado": { "rc": { "valor": 75, "texto": "075°" }, "ic": { "valor": 1.6, "tol": 0.0005, "texto": "1,6 nudos" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tiempo",
+      "corto": "Tiempo y distancia",
+      "titulo": "Distancia, velocidad y tiempo",
+      "ico": "reloj",
+      "formulas": [
+        {
+          "id": "dvt",
+          "titulo": "Distancia, velocidad y tiempo",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [4] },
+          "expresion": ["d = V × t", "t = d / V", "V = d / t"],
+          "letras": [
+            ["d", "distancia, en millas (en la carta, siempre en la escala de latitudes)"],
+            ["V", "velocidad, en nudos: 1 nudo = 1 milla por hora"],
+            ["t", "tiempo, en horas con decimales"]
+          ],
+          "signos": "1 milla = 1852 m · 1 cable = 0,1 millas. La HRB de llegada = HRB de salida + tiempo.",
+          "cuando": "Hora de llegada, distancia navegada o velocidad, en la carta y en las cuentas.",
+          "trampa": "El tiempo, en horas con decimales: 40 min son 0,67 h, no 0,40 h. Si la HRB pasa de 24 h, es del día siguiente.",
+          "cita": "Tiempo = d / V",
+          "origen": { "clases": ["per-10-2", "per-11-3", "py-4-7"], "chuletario": "dvt", "motor": "src/nautical/kinematics.js · timeFor" },
+          "ejemplo": {
+            "enunciado": "A las 22:50 (HRB) te quedan 13,6 millas y navegas a 6,5 nudos. ¿A qué hora llegas?",
+            "pasos": [
+              "t = d / V = 13,6 / 6,5 = **2,09 h**.",
+              "La parte decimal, por 60, son minutos: 0,092 × 60 = 5,5 min → 2 h 05 min 32 s.",
+              "22:50 + 2 h 05 min = 24:55 → pasa de 24 h: llegas a las **00:56 HRB** del día siguiente."
+            ],
+            "calculadora": [
+              { "teclas": "13.6 ÷ 6.5 =", "da": 2.0923, "tol": 0.0005 },
+              { "teclas": "13.6 ÷ 6.5 + 22 °′″ 50 °′″ − 24 =", "da": 0.9256, "tol": 0.0005, "pantalla": "0°55′32.31″" }
+            ],
+            "resultado": "Llegada a las 00:56 HRB (del día siguiente)",
+            "comprobar": { "calculo": "llegada", "datos": { "d": 13.6, "v": 6.5, "salida": "22:50" }, "esperado": { "t": { "valor": 2.09, "tol": 0.005, "texto": "2,09 h" }, "llegada": { "valor": 56, "tol": 0.5, "texto": "00:56" } } }
+          }
+        },
+        {
+          "id": "corredera",
+          "titulo": "Coeficiente de corredera",
+          "tits": ["per"],
+          "temas": { "per": [10] },
+          "expresion": ["k = distancia verdadera / distancia de corredera", "distancia verdadera = k × distancia de corredera"],
+          "letras": [["k", "coeficiente de corredera: cuánto hay que multiplicar lo que marca la corredera"]],
+          "cuando": "Cuando la corredera no marca exacto y te dan su coeficiente (o lo sacas navegando entre dos puntos conocidos).",
+          "trampa": "Siempre se multiplica por k: no dividas lo que marca la corredera entre k.",
+          "cita": "k = D verdadera ÷ D corredera",
+          "origen": { "clases": ["per-10-2"], "chuletario": "dvt", "motor": null },
+          "ejemplo": {
+            "enunciado": "Entre dos boyas que en la carta distan 6,3 millas, la corredera marca 6,0. Más tarde marca 8,0 millas. ¿Cuánto has navegado de verdad?",
+            "pasos": ["k = 6,3 / 6,0 = **1,05**.", "Distancia verdadera = 1,05 × 8,0 = **8,4 millas**."],
+            "calculadora": [{ "teclas": "6.3 ÷ 6 × 8 =", "da": 8.4, "tol": 0.0005 }],
+            "resultado": "8,4 millas",
+            "comprobar": { "calculo": "corredera", "datos": { "verdadera": 6.3, "corredera": 6, "lectura": 8 }, "esperado": { "k": { "valor": 1.05, "tol": 0.0005, "texto": "1,05" }, "d": { "valor": 8.4, "tol": 0.0005, "texto": "8,4 millas" } } }
+          }
+        },
+        {
+          "id": "sexagesimal",
+          "titulo": "Grados, minutos y horas con decimales",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["1° = 60′ · 1′ = 60″", "1 h = 60 min · 1 min = 60 s", "decimales = minutos / 60 + segundos / 3600"],
+          "letras": [["°′″", "la tecla de la calculadora que entra y saca grados (u horas), minutos y segundos"]],
+          "cuando": "Siempre que pases minutos a decimales para multiplicar o dividir: tiempos, latitudes y longitudes.",
+          "trampa": "1 h 40 min no son 1,40 h sino 1,67 h; 36° 07,3′ no son 36,73°.",
+          "cita": "1° = 60′",
+          "origen": { "clases": ["per-10-1", "per-10-2", "py-3-5"], "chuletario": "angulos", "motor": "src/calculadora/motor.js · deSexagesimal" },
+          "ejemplo": {
+            "enunciado": "Pasa 2 h 15 min 36 s a horas con decimales y 36° 07′ 18″ a grados y minutos con décimas.",
+            "pasos": ["2 + 15 / 60 + 36 / 3600 = **2,26 h**.", "18″ = 18 / 60 = **0,3′** → 36° 07,3′."],
+            "calculadora": [{ "teclas": "2 °′″ 15 °′″ 36 °′″ =", "da": 2.26, "tol": 0.0005, "pantalla": "2°15′36″ (y con °′″ otra vez, 2.26)" }],
+            "resultado": "2,26 h; 36° 07,3′",
+            "comprobar": { "calculo": "sexagesimal", "datos": { "h": 2, "m": 15, "s": 36, "gs": 18 }, "esperado": { "horas": { "valor": 2.26, "tol": 0.0005, "texto": "2,26 h" }, "decimas": { "valor": 0.3, "tol": 0.0005, "texto": "0,3′" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "faro",
+      "corto": "Pasar un faro",
+      "titulo": "Pasar a una distancia de un faro",
+      "ico": "faro",
+      "formulas": [
+        {
+          "id": "tangente",
+          "titulo": "Rumbo para pasar a una distancia",
+          "tits": ["per", "py"],
+          "temas": { "per": [11], "py": [4] },
+          "expresion": ["sen α = d / D", "faro por estribor: R = Dv − α", "faro por babor: R = Dv + α"],
+          "letras": [
+            ["d", "distancia a la que quieres pasar"],
+            ["D", "distancia a la que está el faro ahora"],
+            ["α", "ángulo entre la visual al faro y la tangente"],
+            ["Dv", "demora verdadera del faro"],
+            ["R", "el Rv (con viento, el Rs)"]
+          ],
+          "cuando": "Para comprobar con la calculadora la tangente que trazas en la carta.",
+          "trampa": {
+            "per": "Sin banda en el enunciado, la tangente que pasa por fuera (por el lado del mar).",
+            "py": "Sin banda en el enunciado, la tangente que pasa por fuera. Con viento, la tangente es el Rs: luego Rv = Rs − Ab y Ra = Rv − Ct."
+          },
+          "cita": "sen α = distancia de paso / distancia al faro",
+          "origen": { "clases": ["per-11-9", "py-4-3"], "chuletario": "tangente", "motor": "src/exercises/types/rumbo-pasar-distancia.js (la misma cuenta)" },
+          "ejemplo": {
+            "enunciado": "Ves un faro en Dv 040° a 8 millas y quieres pasar a 3 millas dejándolo por estribor. ¿Qué Rv das?",
+            "pasos": ["sen α = 3 / 8 = 0,375 → α = **22,0°**.", "Por estribor: Rv = Dv − α = 040° − 22° = **018°**."],
+            "calculadora": [{ "teclas": "SHIFT sin 3 ÷ 8 ) =", "da": 22.02, "tol": 0.005 }],
+            "resultado": "Rv = 018°",
+            "comprobar": { "calculo": "tangente", "datos": { "dv": 40, "D": 8, "d": 3, "banda": "estribor" }, "esperado": { "alfa": { "valor": 22.0, "tol": 0.05, "texto": "22,0°" }, "rv": { "valor": 18, "tol": 0.5, "texto": "018°" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "mareas",
+      "corto": "Mareas",
+      "titulo": "Mareas",
+      "ico": "ola",
+      "formulas": [
+        {
+          "id": "sonda-duodecimos",
+          "titulo": "Amplitud, sonda y regla de los duodécimos",
+          "tits": ["per", "py"],
+          "temas": { "per": [10, 11], "py": [3, 4] },
+          "expresion": ["Amplitud = altura PM − altura BM", "Sonda = sonda de la carta + altura de la marea", "Duodécimos: 1, 2, 3, 3, 2 y 1 doceavos de la amplitud en cada sexto de la duración"],
+          "letras": [
+            ["PM, BM", "pleamar y bajamar"],
+            ["sonda de la carta", "profundidad bajo el cero hidrográfico (la bajamar más baja)"],
+            ["duración", "tiempo entre la BM y la PM (unas 6 h 12 min, variable)"]
+          ],
+          "cuando": {
+            "per": "Para saber cuánta agua hay a una hora: la carta da la sonda en el cero hidrográfico y la marea se suma.",
+            "py": "Para comprobar de cabeza el resultado de la fórmula del seno cuadrado."
+          },
+          "trampa": "Amplitud son alturas (metros) y duración son tiempos (horas). Y la altura de la marea se suma a la sonda de la carta, no se resta.",
+          "cita": "Sonda = sonda de la carta + altura de la marea",
+          "origen": { "clases": ["per-10-8", "per-11-1", "py-3-6"], "chuletario": "mareas-per", "motor": "src/nautical/tides.js · twelfthsFraction, aguaBajoQuilla" },
+          "ejemplo": {
+            "enunciado": "BM 0,60 m y PM 3,00 m, con unas 6 horas entre ellas. Un bajo tiene 2,50 m de sonda en la carta. ¿Cuánta agua hay 3 horas después de la bajamar?",
+            "pasos": [
+              "Amplitud = 3,00 − 0,60 = **2,40 m**.",
+              "En 3 horas (tres sextos) sube 1 + 2 + 3 = 6 doceavos: 6 / 12 × 2,40 = **1,20 m**.",
+              "Altura de la marea = 0,60 + 1,20 = **1,80 m**; sonda = 2,50 + 1,80 = **4,30 m**."
+            ],
+            "calculadora": [{ "teclas": "6 ÷ 12 × 2.4 + 0.6 + 2.5 =", "da": 4.3, "tol": 0.0005 }],
+            "resultado": "Sonda = 4,30 m",
+            "comprobar": { "calculo": "duodecimos", "datos": { "bm": 0.6, "pm": 3, "horas": 3, "sondaCarta": 2.5 }, "esperado": { "amplitud": { "valor": 2.4, "tol": 0.0005, "texto": "2,40 m" }, "subida": { "valor": 1.2, "tol": 0.0005, "texto": "1,20 m" }, "altura": { "valor": 1.8, "tol": 0.0005, "texto": "1,80 m" }, "sonda": { "valor": 4.3, "tol": 0.0005, "texto": "4,30 m" } } }
+          }
+        },
+        {
+          "id": "marea-altura",
+          "titulo": "Altura de la marea y sonda en un instante",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["UT = hora oficial − adelanto", "C = A · sen²(90° · I / D)", "h = altura BM + C", "Sonda = sonda de la carta + h"],
+          "letras": [
+            ["D", "duración del tramo BM–PM que encierra tu hora"],
+            ["A", "amplitud: altura PM − altura BM"],
+            ["I", "intervalo entre tu hora y la BM del tramo"],
+            ["C", "lo que la marea ha subido sobre la bajamar"],
+            ["h", "altura de la marea sobre el cero hidrográfico"]
+          ],
+          "cuando": "Directo: qué sonda habrá a una hora.",
+          "trampa": "Entra en el Anuario en UT y vuelve a la hora oficial al final. Con la marea bajando, I va de tu hora a la BM siguiente. Calculadora en grados (DEG).",
+          "cita": "C = A · sen²(90° · I / D)",
+          "origen": { "clases": ["py-3-6", "py-4-9"], "chuletario": "mareas", "motor": "src/nautical/tides.js · correccionTabla, tideHeight" },
+          "ejemplo": {
+            "enunciado": "Anuario (en UT): BM 04:52 → 0,45 m; PM 11:04 → 2,85 m. Adelanto +2 h. ¿Qué sonda habrá a las 09:30 de hora oficial en un bajo de 1,80 m en la carta?",
+            "pasos": [
+              "A UT: 09:30 − 2 h = **07:30 UT**, entre la BM de 04:52 y la PM de 11:04 (sube).",
+              "D = 11:04 − 04:52 = 6 h 12 min = **372 min**; A = 2,85 − 0,45 = **2,40 m**; I = 07:30 − 04:52 = 2 h 38 min = **158 min**.",
+              "C = 2,40 · sen²(90° · 158 / 372) = 2,40 · sen²(38,2°) = **0,92 m**.",
+              "h = 0,45 + 0,92 = **1,37 m**; sonda = 1,80 + 1,37 = **3,17 m**."
+            ],
+            "calculadora": [{ "teclas": "2.4 × sin 90 × 158 ÷ 372 ) x² =", "da": 0.9189, "tol": 0.0005 }],
+            "resultado": "Sonda ≈ 3,17 m",
+            "comprobar": { "calculo": "mareaDirecta", "datos": { "bm": { "hora": "04:52", "h": 0.45 }, "pm": { "hora": "11:04", "h": 2.85 }, "oficial": "09:30", "adelanto": 2, "sondaCarta": 1.8 }, "esperado": { "D": { "valor": 372, "texto": "372 min" }, "I": { "valor": 158, "texto": "158 min" }, "C": { "valor": 0.92, "tol": 0.005, "texto": "0,92 m" }, "h": { "valor": 1.37, "tol": 0.005, "texto": "1,37 m" }, "sonda": { "valor": 3.17, "tol": 0.005, "texto": "3,17 m" } } }
+          }
+        },
+        {
+          "id": "marea-hora",
+          "titulo": "Hora para tener una sonda",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["h = sonda que quieres − sonda de la carta", "C = h − altura BM", "I = D · arcsen √(C / A) / 90°", "hora = BM + I (si sube) · BM − I (si baja)"],
+          "letras": [
+            ["C", "lo que tiene que subir la marea sobre la bajamar"],
+            ["I", "tiempo desde (o hasta) la bajamar"],
+            ["D, A", "duración y amplitud del tramo"]
+          ],
+          "cuando": "Inverso: a qué hora habrá una sonda (para pasar un bajo o entrar en puerto).",
+          "trampa": "El resultado sale en UT: súmale el adelanto. Y elige bien el tramo: «entre la primera BM y la primera PM» fija cuál es.",
+          "cita": "I = D · arcsen √(C / A) / 90°",
+          "origen": { "clases": ["py-3-6", "py-4-9"], "chuletario": "mareas", "motor": "src/nautical/tides.js · timeForHeight" },
+          "ejemplo": {
+            "enunciado": "Con el mismo Anuario (BM 04:52 → 0,45 m; PM 11:04 → 2,85 m; adelanto +2 h), ¿desde qué hora oficial tendrás 4,00 m de agua en el bajo de 1,80 m?",
+            "pasos": [
+              "Altura necesaria: 4,00 − 1,80 = 2,20 m; C = 2,20 − 0,45 = **1,75 m**.",
+              "C / A = 1,75 / 2,40 = 0,729 → √ = 0,854 → arcsen = **58,6°**.",
+              "I = 372 · 58,6 / 90 = **242 min** = 4 h 02 min después de la BM.",
+              "04:52 + 4:02 = 08:54 UT → **10:54** de hora oficial."
+            ],
+            "calculadora": [{ "teclas": "372 × SHIFT sin √ 1.75 ÷ 2.4 ) ) ÷ 90 =", "da": 242.38, "tol": 0.05 }],
+            "resultado": "Desde las 10:54 (hora oficial)",
+            "comprobar": { "calculo": "mareaInversa", "datos": { "bm": { "hora": "04:52", "h": 0.45 }, "pm": { "hora": "11:04", "h": 2.85 }, "sondaQuerida": 4, "sondaCarta": 1.8, "adelanto": 2 }, "esperado": { "C": { "valor": 1.75, "tol": 0.0005, "texto": "1,75 m" }, "angulo": { "valor": 58.6, "tol": 0.05, "texto": "58,6°" }, "I": { "valor": 242, "tol": 0.5, "texto": "242 min" }, "oficial": { "valor": 654, "tol": 0.5, "texto": "10:54" } } }
+          }
+        },
+        {
+          "id": "presion-marea",
+          "titulo": "Corrección de la marea por la presión",
+          "tits": ["per", "py"],
+          "temas": { "per": [10], "py": [3, 4] },
+          "expresion": ["corrección ≈ 1 cm por hPa de diferencia con 1013 hPa", "presión alta: menos agua · presión baja: más agua"],
+          "letras": [["1013 hPa", "la presión normal que suponen las alturas del Anuario"]],
+          "cuando": "Si el enunciado da la presión atmosférica (y no dice que no la tengas en cuenta): la corrección se suma a la sonda calculada.",
+          "trampa": "Con alta presión hay menos agua, no más; con una borrasca (presión baja), más.",
+          "cita": "1 cm por hPa",
+          "origen": { "clases": ["per-10-8", "py-3-6", "py-4-9"], "chuletario": "mareas-per", "motor": null },
+          "ejemplo": {
+            "enunciado": "La sonda calculada para una hora es 3,17 m, pero la presión es de 1028 hPa. ¿Qué sonda esperas?",
+            "pasos": ["1028 − 1013 = 15 hPa por encima de la normal → **15 cm** menos de agua.", "Sonda = 3,17 − 0,15 = **3,02 m**."],
+            "calculadora": [{ "teclas": "3.17 − ( 1028 − 1013 ) ÷ 100 =", "da": 3.02, "tol": 0.0005 }],
+            "resultado": "Sonda ≈ 3,02 m",
+            "comprobar": { "calculo": "presionMarea", "datos": { "sonda": 3.17, "presion": 1028 }, "esperado": { "correccion": { "valor": -0.15, "tol": 0.0005, "texto": "15 cm" }, "sonda": { "valor": 3.02, "tol": 0.0005, "texto": "3,02 m" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "estima",
+      "corto": "Estima",
+      "titulo": "Estima analítica (loxodrómica)",
+      "ico": "mapa",
+      "formulas": [
+        {
+          "id": "estima-tramo",
+          "titulo": "Diferencia de latitud y apartamiento de un tramo",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["Δl = D · cos R", "A = D · sen R"],
+          "letras": [
+            ["Δl", "diferencia de latitud, en minutos (1′ = 1 milla)"],
+            ["A", "apartamiento: millas recorridas sobre el paralelo"],
+            ["D, R", "distancia y rumbo (circular) del tramo; la corriente es un tramo más"]
+          ],
+          "signos": "N y E (+) · S y W (−). Con el rumbo circular, la calculadora pone sola los signos.",
+          "cuando": "Cada tramo navegado de la estima analítica, y la corriente (Rc, Ihc × horas).",
+          "trampa": "No cambies seno y coseno: la latitud va con el coseno y el apartamiento con el seno.",
+          "cita": "Δl = D · cos R",
+          "origen": { "clases": ["py-3-4", "py-4-10"], "chuletario": "estima-analitica", "motor": "src/nautical/sailing.js · legComponents" },
+          "ejemplo": {
+            "enunciado": "Navegas 32 millas al 215°. ¿Δl y A?",
+            "pasos": ["Δl = 32 · cos 215° = **−26,2′** (al S).", "A = 32 · sen 215° = **−18,4 millas** (al W)."],
+            "calculadora": [{ "teclas": "32 × cos 215 ) =", "da": -26.213, "tol": 0.001 }, { "teclas": "32 × sin 215 ) =", "da": -18.354, "tol": 0.001 }],
+            "resultado": "Δl = 26,2′ S; A = 18,4 millas W",
+            "comprobar": { "calculo": "tramo", "datos": { "rumbo": 215, "d": 32 }, "esperado": { "dl": { "valor": -26.2, "tol": 0.05, "texto": "−26,2′" }, "a": { "valor": -18.4, "tol": 0.05, "texto": "−18,4 millas" } } }
+          }
+        },
+        {
+          "id": "estima-directa",
+          "titulo": "Latitud media y diferencia de longitud",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["l llegada = l salida + Δl", "lm = l salida + Δl / 2", "ΔL = A / cos lm", "L llegada = L salida + ΔL"],
+          "letras": [
+            ["Δl, A", "las sumas de todos los tramos, con su signo"],
+            ["lm", "latitud media"],
+            ["ΔL", "diferencia de longitud, en minutos"]
+          ],
+          "signos": "N y E (+) · S y W (−). En longitud W, un ΔL hacia el W la hace mayor.",
+          "cuando": "Directa: la situación de llegada tras uno o varios tramos (y la corriente).",
+          "trampa": "ΔL siempre es mayor o igual que A: si te sale menor, has multiplicado por cos lm en vez de dividir.",
+          "cita": "ΔL = A / cos lm",
+          "origen": { "clases": ["py-3-4", "py-4-10"], "chuletario": "estima-analitica", "motor": "src/nautical/sailing.js · deadReckoning" },
+          "ejemplo": {
+            "enunciado": "Sales de 36° 20,0′ N 007° 45,0′ W y navegas 24 millas al 230°; la corriente te lleva 6 millas al 090° en ese tiempo. ¿Situación de llegada?",
+            "pasos": [
+              "Tramo 230° · 24: Δl = −15,4′; A = −18,4. Corriente 090° · 6: Δl = 0; A = +6,0.",
+              "Suma: **Δl = −15,4′** (S); **A = −12,4 millas** (W).",
+              "l llegada = 36° 20,0′ − 15,4′ = **36° 04,6′ N**. lm = 36° 20,0′ − 7,7′ = 36° 12,3′ = **36,20°**.",
+              "ΔL = −12,4 / cos 36,20° = **−15,3′** (W). L llegada = 007° 45,0′ + 15,3′ = **008° 00,3′ W**."
+            ],
+            "calculadora": [
+              { "teclas": "24 × cos 230 ) =", "da": -15.427, "tol": 0.001 },
+              { "teclas": "24 × sin 230 ) + 6 =", "da": -12.385, "tol": 0.001 },
+              { "teclas": "(−) 12.385 ÷ cos 36.2 ) =", "da": -15.348, "tol": 0.002 }
+            ],
+            "resultado": "Llegada: 36° 04,6′ N 008° 00,3′ W",
+            "comprobar": { "calculo": "estimaDirecta", "datos": { "lat": { "g": 36, "m": 20, "ns": "N" }, "lon": { "g": 7, "m": 45, "ew": "W" }, "tramos": [{ "rumbo": 230, "d": 24 }, { "rumbo": 90, "d": 6 }] }, "esperado": { "dl": { "valor": -15.4, "tol": 0.05, "texto": "−15,4′" }, "a": { "valor": -12.4, "tol": 0.05, "texto": "−12,4 millas" }, "lat": { "valor": 36.0767, "tol": 0.001, "texto": "36° 04,6′ N" }, "lm": { "valor": 36.2, "tol": 0.005, "texto": "36,20°" }, "dL": { "valor": -15.3, "tol": 0.05, "texto": "−15,3′" }, "lon": { "valor": -8.005, "tol": 0.001, "texto": "008° 00,3′ W" } } }
+          }
+        },
+        {
+          "id": "estima-inversa",
+          "titulo": "Rumbo y distancia directos (inversa)",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["Δl = l llegada − l salida · ΔL = L llegada − L salida", "lm = l salida + Δl / 2", "A = ΔL · cos lm", "tan R = A / Δl", "D = √(Δl² + A²)"],
+          "letras": [
+            ["R", "rumbo directo: la arcotangente da un ángulo cuadrantal; el cuadrante, por los signos de Δl y A"],
+            ["D", "distancia, en millas"]
+          ],
+          "signos": "Δl N y A E: N x E. Δl S y A E: 180° − x. Δl S y A W: 180° + x. Δl N y A W: 360° − x.",
+          "cuando": "Inversa: rumbo directo y distancia entre dos situaciones.",
+          "trampa": "No tomes la arcotangente como rumbo sin mirar el cuadrante. Y aproxima (al medio grado, si lo piden) solo al final.",
+          "cita": "D = √(Δl² + A²)",
+          "origen": { "clases": ["py-3-4", "py-4-10"], "chuletario": "estima-analitica", "motor": "src/course/formulas.js · estimaInversa (latitud media); la carta mide en Mercator: src/math/mercator.js · rhumbTo" },
+          "ejemplo": {
+            "enunciado": "Rumbo directo y distancia de 36° 00,0′ N 006° 00,0′ W a 35° 20,0′ N 007° 10,0′ W.",
+            "pasos": [
+              "Δl = 35° 20′ − 36° 00′ = **−40,0′** (S). ΔL = 7° 10′ − 6° 00′ = **70,0′ W** (−70,0′).",
+              "lm = 36° 00′ − 20′ = 35° 40′ = **35,67°**. A = 70,0 · cos 35,67° = **56,9 millas** W.",
+              "tan x = 56,9 / 40,0 → x = **54,9°**: S 54,9° W → R = 180° + 54,9° = **234,9°**.",
+              "D = √(40,0² + 56,9²) = **69,5 millas**."
+            ],
+            "calculadora": [
+              { "teclas": "70 × cos 35 °′″ 40 °′″ ) =", "da": 56.87, "tol": 0.001 },
+              { "teclas": "SHIFT tan 56.87 ÷ 40 ) =", "da": 54.88, "tol": 0.005 },
+              { "teclas": "√ 40 x² + 56.87 x² ) =", "da": 69.53, "tol": 0.005 }
+            ],
+            "resultado": "R = 234,9°; D = 69,5 millas",
+            "comprobar": { "calculo": "estimaInversa", "datos": { "salida": { "lat": { "g": 36, "m": 0, "ns": "N" }, "lon": { "g": 6, "m": 0, "ew": "W" } }, "llegada": { "lat": { "g": 35, "m": 20, "ns": "N" }, "lon": { "g": 7, "m": 10, "ew": "W" } } }, "esperado": { "dl": { "valor": -40, "tol": 0.05, "texto": "−40,0′" }, "dL": { "valor": -70, "tol": 0.05, "texto": "70,0′ W" }, "lm": { "valor": 35.67, "tol": 0.005, "texto": "35,67°" }, "a": { "valor": -56.9, "tol": 0.05, "texto": "56,9 millas" }, "rumbo": { "valor": 234.9, "tol": 0.05, "texto": "234,9°" }, "d": { "valor": 69.5, "tol": 0.05, "texto": "69,5 millas" } } }
+          }
+        },
+        {
+          "id": "meridiano-180",
+          "titulo": "Paso por el meridiano de 180°",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["si L > 180°: L = 360° − L y cambia E por W", "si ΔL > 180°: ΔL = 360° − ΔL y cambia su sentido"],
+          "letras": [["L, ΔL", "longitud y diferencia de longitud (de 0° a 180°, E o W)"]],
+          "cuando": "Cuando la estima cruza el antimeridiano: las preguntas lo buscan a propósito.",
+          "trampa": "Una longitud nunca pasa de 180°. Y entre 179° E y 179° W hay 2°, no 358°.",
+          "cita": "Longitud > 180°: 360° − L y cambia E por W",
+          "origen": { "clases": ["py-3-1", "py-4-10"], "chuletario": "estima-analitica", "motor": "src/course/formulas.js · longitudNormal (sobre src/math/angles.js · norm180)" },
+          "ejemplo": {
+            "enunciado": "a) Estás en 179° 40,0′ W y la estima da ΔL = 45,0′ W. ¿Longitud de llegada? b) ¿Qué ΔL hay de 179° 15,0′ E a 178° 30,0′ W?",
+            "pasos": [
+              "a) 179° 40,0′ + 45,0′ = 180° 25,0′ W: pasa de 180°. 360° − 180° 25,0′ = **179° 35,0′ E**.",
+              "b) Restando sale 357° 45,0′: pasa de 180°. 360° − 357° 45,0′ = 2° 15,0′ = **135,0′** hacia el E, por el meridiano de 180°."
+            ],
+            "calculadora": [
+              { "teclas": "360 − 180 °′″ 25 °′″ =", "da": 179.5833, "tol": 0.0005 },
+              { "teclas": "360 − ( 179 °′″ 15 °′″ + 178 °′″ 30 °′″ ) =", "da": 2.25, "tol": 0.0005 }
+            ],
+            "resultado": "a) 179° 35,0′ E; b) ΔL = 135,0′ E",
+            "comprobar": { "calculo": "meridiano180", "datos": { "lon": { "g": 179, "m": 40, "ew": "W" }, "dL": { "m": 45, "ew": "W" }, "de": { "g": 179, "m": 15, "ew": "E" }, "a": { "g": 178, "m": 30, "ew": "W" } }, "esperado": { "llegada": { "valor": 179.5833, "tol": 0.0005, "texto": "179° 35,0′ E" }, "llegadaE": { "valor": 1, "texto": "35,0′ E" }, "dL": { "valor": 135, "tol": 0.05, "texto": "135,0′" }, "haciaE": { "valor": 1, "texto": "hacia el E" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hora",
+      "corto": "La hora",
+      "titulo": "La hora en la mar",
+      "ico": "calendario",
+      "formulas": [
+        {
+          "id": "longitud-tiempo",
+          "titulo": "Longitud en tiempo",
+          "tits": ["py"],
+          "temas": { "py": [3] },
+          "expresion": ["15° = 1 h · 1° = 4 min · 15′ = 1 min · 1′ = 4 s", "longitud en tiempo = longitud / 15"],
+          "letras": [["L", "longitud del lugar, con sus minutos"]],
+          "cuando": "Para pasar de longitud a horas (hora civil del lugar) o de horas a longitud.",
+          "trampa": "Divide la longitud entera, con sus minutos, entre 15: 52° 37′ no son 52,37°.",
+          "cita": "15° = 1 h; 1° = 4 min",
+          "origen": { "clases": ["py-3-5"], "chuletario": "hora", "motor": "src/nautical/hora.js · horaCivilLugar" },
+          "ejemplo": {
+            "enunciado": "Pasa la longitud 052° 37,0′ W a tiempo.",
+            "pasos": ["52° 37′ / 15 = 3,5078 h = **3 h 30 min 28 s** (al W: se restará al TU)."],
+            "calculadora": [{ "teclas": "52 °′″ 37 °′″ ÷ 15 =", "da": 3.5078, "tol": 0.0005, "pantalla": "3°30′28″" }],
+            "resultado": "3 h 30 min 28 s al W",
+            "comprobar": { "calculo": "longitudTiempo", "datos": { "g": 52, "m": 37 }, "esperado": { "horas": { "valor": 3.5078, "tol": 0.0005, "texto": "3,5078 h" } } }
+          }
+        },
+        {
+          "id": "hcl",
+          "titulo": "Hora civil del lugar",
+          "tits": ["py"],
+          "temas": { "py": [3] },
+          "expresion": ["HcL = TU + L (en tiempo)"],
+          "letras": [
+            ["TU", "tiempo universal: hora civil de Greenwich (en el Anuario, UT)"],
+            ["HcL", "hora del Sol medio en tu meridiano: cada meridiano, la suya"]
+          ],
+          "signos": "Longitud E suma, W resta.",
+          "cuando": "Cuando piden la hora civil en un meridiano concreto.",
+          "trampa": "Si pasas de 24 h o bajas de 0 h, cambia la fecha.",
+          "cita": "HcL = TU + L",
+          "origen": { "clases": ["py-3-5"], "chuletario": "hora", "motor": "src/nautical/hora.js · horaCivilLugar" },
+          "ejemplo": {
+            "enunciado": "Son las 06:15 TU y estás en 052° 37,0′ W. ¿Qué hora civil del lugar tienes?",
+            "pasos": ["Longitud en tiempo: 3 h 30 min 28 s, al W: se resta.", "HcL = 06:15:00 − 3:30:28 = **02:44:32**."],
+            "calculadora": [{ "teclas": "6 °′″ 15 °′″ − 52 °′″ 37 °′″ ÷ 15 =", "da": 2.7422, "tol": 0.0005, "pantalla": "2°44′32″" }],
+            "resultado": "HcL = 02:44:32",
+            "comprobar": { "calculo": "hcl", "datos": { "tu": "06:15", "lon": { "g": 52, "m": 37, "ew": "W" } }, "esperado": { "hcl": { "valor": 164.53, "tol": 0.05, "texto": "02:44:32" } } }
+          }
+        },
+        {
+          "id": "hora-legal",
+          "titulo": "Huso y hora legal",
+          "tits": ["py"],
+          "temas": { "py": [3] },
+          "expresion": ["huso = L / 15, redondeado al entero más próximo", "Hz = TU ± huso"],
+          "letras": [
+            ["huso", "franja de 15° centrada en un meridiano múltiplo de 15° (el huso 0 va de 7° 30′ W a 7° 30′ E)"],
+            ["Hz", "hora legal: la hora civil del meridiano central del huso"]
+          ],
+          "signos": "E suma, W resta. Si el resto de dividir pasa de 7° 30′, es el huso siguiente.",
+          "cuando": "Cuando piden la hora legal (o del huso) de un lugar.",
+          "trampa": "El huso se redondea, no se trunca: 52° 37′ / 15 = 3,51 → huso 4, no 3.",
+          "cita": "TU ± huso",
+          "origen": { "clases": ["py-3-5"], "chuletario": "hora", "motor": "src/nautical/hora.js · husoDe, horaLegal" },
+          "ejemplo": {
+            "enunciado": "En el mismo momento (06:15 TU, en 052° 37,0′ W), ¿qué huso y qué hora legal tienes?",
+            "pasos": ["52° 37′ / 15 = 3,51: el resto (7° 37′) pasa de 7° 30′ → **huso 4 W**.", "Hz = 06:15 − 4 h = **02:15**."],
+            "calculadora": [{ "teclas": "52 °′″ 37 °′″ ÷ 15 =", "da": 3.5078, "tol": 0.0005 }],
+            "resultado": "Huso 4 W; Hz = 02:15",
+            "comprobar": { "calculo": "horaLegal", "datos": { "tu": "06:15", "lon": { "g": 52, "m": 37, "ew": "W" } }, "esperado": { "huso": { "valor": -4, "texto": "huso 4 W" }, "hz": { "valor": 135, "texto": "02:15" } } }
+          }
+        },
+        {
+          "id": "hora-oficial",
+          "titulo": "Hora oficial y HRB",
+          "tits": ["py"],
+          "temas": { "py": [3, 4] },
+          "expresion": ["Ho = TU + adelanto", "TU = Ho − adelanto"],
+          "letras": [
+            ["Ho", "hora oficial: la que fija el Gobierno"],
+            ["HRB", "hora reloj de bitácora: la que fija el patrón; puede coincidir con la legal o la oficial, pero no tiene por qué"]
+          ],
+          "signos": "Península y Baleares: TU + 1 en invierno, TU + 2 en verano. Canarias: TU en invierno, TU + 1 en verano.",
+          "cuando": "Para entrar en el Anuario de Mareas (en UT) y volver a la hora del reloj.",
+          "trampa": "La hora oficial española no coincide con la legal: la península está en el huso 0 y lleva TU + 1 o TU + 2.",
+          "cita": "hora oficial − adelanto",
+          "origen": { "clases": ["py-3-5", "py-4-9"], "chuletario": "hora", "motor": "src/nautical/hora.js · horaOficial, tuDesdeOficial" },
+          "ejemplo": {
+            "enunciado": "El Anuario da una pleamar a las 23:10 UT de un día de julio. ¿A qué hora oficial es, en la península?",
+            "pasos": ["En verano, adelanto +2 h.", "23:10 + 2 h = 25:10 → pasa de 24 h: **01:10** del día siguiente (hora oficial)."],
+            "calculadora": [{ "teclas": "23 °′″ 10 °′″ + 2 − 24 =", "da": 1.1667, "tol": 0.0005, "pantalla": "1°10′0″" }],
+            "resultado": "01:10 del día siguiente",
+            "comprobar": { "calculo": "horaOficial", "datos": { "tu": "23:10", "adelanto": 2 }, "esperado": { "ho": { "valor": 70, "texto": "01:10" } } }
+          }
+        },
+        {
+          "id": "cambio-fecha",
+          "titulo": "Cambio de fecha en el meridiano de 180°",
+          "tits": ["py"],
+          "temas": { "py": [3] },
+          "expresion": ["cruzar el 180° hacia el W: + 1 día", "cruzar el 180° hacia el E: − 1 día"],
+          "letras": [["180°", "el antimeridiano: la línea de cambio de fecha"]],
+          "cuando": "Cuando la derrota cruza el meridiano de 180°.",
+          "trampa": "Hacia el W se suma un día (no se resta): hacia el W los relojes se atrasan, pero la fecha avanza.",
+          "cita": "Cruzando 180° hacia el W, +1 día",
+          "origen": { "clases": ["py-3-5"], "chuletario": "hora", "motor": null },
+          "ejemplo": {
+            "enunciado": "Navegas hacia el W y cruzas el meridiano de 180° el martes 3 de marzo. ¿Qué fecha pones a bordo?",
+            "pasos": ["Hacia el W se suma un día: **miércoles 4 de marzo** (la hora del reloj no cambia)."],
+            "resultado": "Miércoles 4 de marzo",
+            "comprobar": { "calculo": "cambioFecha", "datos": { "hacia": "W", "dia": 3 }, "esperado": { "dia": { "valor": 4, "texto": "4 de marzo" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "estabilidad",
+      "corto": "Estabilidad",
+      "titulo": "Estabilidad",
+      "ico": "barco",
+      "formulas": [
+        {
+          "id": "gm",
+          "titulo": "Altura metacéntrica",
+          "tits": ["py"],
+          "temas": { "py": [1] },
+          "expresion": ["GM = KM − KG", "KM = KB + BM"],
+          "letras": [
+            ["K, G, B, M", "quilla, centro de gravedad, centro de carena (empuje) y metacentro"],
+            ["GM", "altura metacéntrica: de G a M"],
+            ["BM", "radio metacéntrico: del centro de carena al metacentro"]
+          ],
+          "signos": "Estable: GM > 0 (KM > KG) · indiferente: GM = 0 · inestable: GM < 0 (KG > KM).",
+          "cuando": "Para saber si el barco es estable y cuánto (estabilidad inicial, escoras pequeñas).",
+          "trampa": "GM va de G a M; del centro de carena al metacentro es el radio metacéntrico (BM), y de la quilla al metacentro, KM.",
+          "cita": "GM = KM − KG",
+          "origen": { "clases": ["py-1-2", "py-1-3"], "chuletario": "estabilidad", "motor": "src/nautical/estabilidad.js · estabilidad" },
+          "ejemplo": {
+            "enunciado": "Las curvas hidrostáticas dan KB = 0,85 m y BM = 1,30 m. El centro de gravedad está a KG = 1,90 m. ¿GM? ¿Es estable?",
+            "pasos": ["KM = KB + BM = 0,85 + 1,30 = **2,15 m**.", "GM = KM − KG = 2,15 − 1,90 = **0,25 m**: positiva, el barco es **estable**."],
+            "calculadora": [{ "teclas": "0.85 + 1.3 − 1.9 =", "da": 0.25, "tol": 0.0005 }],
+            "resultado": "GM = 0,25 m (estable)",
+            "comprobar": { "calculo": "gm", "datos": { "KB": 0.85, "BM": 1.3, "KG": 1.9 }, "esperado": { "KM": { "valor": 2.15, "tol": 0.0005, "texto": "2,15 m" }, "GM": { "valor": 0.25, "tol": 0.0005, "texto": "0,25 m" } } }
+          }
+        },
+        {
+          "id": "gz",
+          "titulo": "Brazo y momento adrizantes",
+          "tits": ["py"],
+          "temas": { "py": [1] },
+          "expresion": ["GZ = GM · sen θ", "momento adrizante = D × GZ"],
+          "letras": [
+            ["GZ", "brazo adrizante: distancia horizontal entre la vertical del peso y la del empuje"],
+            ["θ", "ángulo de escora"],
+            ["D", "desplazamiento, en toneladas"]
+          ],
+          "cuando": "Para ver cuánto empuja el barco a adrizarse con una escora pequeña.",
+          "trampa": "Solo vale para escoras pequeñas (la estabilidad inicial, hasta unos 10–15°).",
+          "cita": "GZ = GM · sen θ",
+          "origen": { "clases": ["py-1-2"], "chuletario": "estabilidad", "motor": "src/nautical/estabilidad.js · estabilidad" },
+          "ejemplo": {
+            "enunciado": "Con GM = 0,25 m y un desplazamiento de 9 t, el barco escora 12°. ¿GZ y momento adrizante?",
+            "pasos": ["GZ = 0,25 · sen 12° = **0,052 m**.", "Momento adrizante = 9 × 0,052 = **0,47 t·m**."],
+            "calculadora": [{ "teclas": "0.25 × sin 12 ) × 9 =", "da": 0.4678, "tol": 0.0005 }],
+            "resultado": "GZ = 0,052 m; momento = 0,47 t·m",
+            "comprobar": { "calculo": "gz", "datos": { "GM": 0.25, "escora": 12, "D": 9 }, "esperado": { "GZ": { "valor": 0.052, "tol": 0.0005, "texto": "0,052 m" }, "momento": { "valor": 0.47, "tol": 0.005, "texto": "0,47 t·m" } } }
+          }
+        },
+        {
+          "id": "traslado-peso",
+          "titulo": "Traslado de un peso",
+          "tits": ["py"],
+          "temas": { "py": [1] },
+          "expresion": ["GG′ = p · d / D"],
+          "letras": [
+            ["GG′", "lo que se mueve el centro de gravedad"],
+            ["p", "el peso que trasladas"],
+            ["d", "la distancia a la que lo llevas"],
+            ["D", "el desplazamiento del barco"]
+          ],
+          "signos": "G se mueve paralelo al traslado y en su mismo sentido.",
+          "cuando": "Al trasladar un peso a bordo: de banda a banda (escora), de proa a popa (asiento) o en altura (GM).",
+          "trampa": "D es el desplazamiento total, no el peso que mueves. Un traslado solo horizontal no cambia GM, pero escora el barco hacia el peso.",
+          "cita": "GG′ = p·d/D",
+          "origen": { "clases": ["py-1-3"], "chuletario": "estabilidad", "motor": "src/nautical/estabilidad.js · estabilidad (GGt)" },
+          "ejemplo": {
+            "enunciado": "En un barco de 8 t trasladas 0,4 t de pertrechos 2,5 m hacia estribor. ¿Cuánto se mueve G?",
+            "pasos": ["GG′ = 0,4 × 2,5 / 8 = **0,125 m** hacia estribor: el barco queda escorado a estribor."],
+            "calculadora": [{ "teclas": "0.4 × 2.5 ÷ 8 =", "da": 0.125, "tol": 0.0005 }],
+            "resultado": "GG′ = 0,125 m hacia estribor",
+            "comprobar": { "calculo": "gg", "datos": { "p": 0.4, "d": 2.5, "D": 8 }, "esperado": { "gg": { "valor": 0.125, "tol": 0.0005, "texto": "0,125 m" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "meteo",
+      "corto": { "per": "Meteo", "py": "Meteo y radar" },
+      "titulo": { "per": "Meteorología", "py": "Meteorología y radar" },
+      "ico": "nube",
+      "formulas": [
+        {
+          "id": "presion",
+          "titulo": "Presión y viento: unidades",
+          "tits": ["per", "py"],
+          "temas": { "per": [9], "py": [2] },
+          "expresion": ["1 atm = 1013,25 hPa = 1013,25 mb = 760 mmHg", "1 nudo = 1,852 km/h ≈ 0,51 m/s"],
+          "letras": [["hPa, mb", "hectopascales y milibares: son lo mismo"]],
+          "cuando": "Para pasar presiones entre unidades y vientos entre nudos y km/h.",
+          "trampa": "760 son mmHg, no hPa. Y la presión se mide con barómetro, no con manómetro.",
+          "cita": "1 atm = 1013,25 hPa = 1013,25 mb = 760 mmHg",
+          "origen": { "clases": ["per-9-1", "py-2-1"], "chuletario": "presion", "motor": null },
+          "ejemplo": {
+            "enunciado": "Un barómetro antiguo marca 750 mmHg. ¿Cuántos hPa son? ¿Y 25 nudos de viento, en km/h?",
+            "pasos": ["750 × 1013,25 / 760 = **999,9 hPa** (por debajo de la normal).", "25 × 1,852 = **46,3 km/h**."],
+            "calculadora": [{ "teclas": "750 × 1013.25 ÷ 760 =", "da": 999.918, "tol": 0.001 }, { "teclas": "25 × 1.852 =", "da": 46.3, "tol": 0.0005 }],
+            "resultado": "999,9 hPa; 46,3 km/h",
+            "comprobar": { "calculo": "presion", "datos": { "mmhg": 750, "nudos": 25 }, "esperado": { "hpa": { "valor": 999.9, "tol": 0.05, "texto": "999,9 hPa" }, "kmh": { "valor": 46.3, "tol": 0.05, "texto": "46,3 km/h" } } }
+          }
+        },
+        {
+          "id": "gradiente",
+          "titulo": "Gradiente horizontal de presión",
+          "tits": ["py"],
+          "temas": { "py": [2] },
+          "expresion": ["gradiente = Δp / distancia"],
+          "letras": [
+            ["Δp", "diferencia de presión entre dos isobaras (hPa)"],
+            ["distancia", "medida en perpendicular a las isobaras, en grados (1° = 60 millas)"]
+          ],
+          "cuando": "Para comparar la fuerza del viento entre dos zonas de un mapa de isobaras.",
+          "trampa": "Isobaras juntas = más gradiente = viento más fuerte. La distancia, perpendicular a las isobaras.",
+          "cita": "Gradiente horizontal = Δp ÷ distancia",
+          "origen": { "clases": ["py-2-1"], "chuletario": "gradiente", "motor": null },
+          "ejemplo": {
+            "enunciado": "Entre las isobaras de 1020 y 1008 hPa hay 180 millas, medidas en perpendicular. ¿Cuál es el gradiente?",
+            "pasos": ["Δp = 1020 − 1008 = 12 hPa; 180 millas = 3° (60 millas por grado).", "Gradiente = 12 / 3 = **4 hPa por grado**."],
+            "calculadora": [{ "teclas": "( 1020 − 1008 ) ÷ ( 180 ÷ 60 ) =", "da": 4 }],
+            "resultado": "4 hPa por grado",
+            "comprobar": { "calculo": "gradiente", "datos": { "p1": 1020, "p2": 1008, "millas": 180 }, "esperado": { "g": { "valor": 4, "texto": "4 hPa por grado" } } }
+          }
+        },
+        {
+          "id": "humedad",
+          "titulo": "Humedad relativa",
+          "tits": ["py"],
+          "temas": { "py": [2] },
+          "expresion": ["HR = e / E × 100"],
+          "letras": [
+            ["e", "tensión de vapor del aire (la saturante de su punto de rocío)"],
+            ["E", "tensión saturante a la temperatura del aire"],
+            ["Td", "punto de rocío: con T = Td, HR = 100 % (saturación, niebla)"]
+          ],
+          "cuando": "Con la temperatura y el punto de rocío (o con el psicrómetro y sus tablas).",
+          "trampa": "La HR es un porcentaje: la humedad absoluta va en g/m³. Poca diferencia entre T y Td = HR alta.",
+          "cita": "HR = tensión de vapor / tensión saturante × 100",
+          "origen": { "clases": ["py-2-5"], "chuletario": "gradiente", "motor": "src/nautical/meteo.js · tensionSaturacion, humedadRelativa" },
+          "ejemplo": {
+            "enunciado": "Temperatura 20 °C y punto de rocío 12 °C. La tabla da 23,4 hPa de tensión saturante a 20 °C y 14,0 hPa a 12 °C. ¿HR?",
+            "pasos": ["La tensión de vapor es la saturante del punto de rocío: e = **14,0 hPa**; E = **23,4 hPa**.", "HR = 14,0 / 23,4 × 100 = **60 %**."],
+            "calculadora": [{ "teclas": "14 ÷ 23.4 × 100 =", "da": 59.83, "tol": 0.005 }],
+            "resultado": "HR ≈ 60 %",
+            "comprobar": { "calculo": "humedad", "datos": { "t": 20, "td": 12 }, "esperado": { "E": { "valor": 23.4, "tol": 0.1, "texto": "23,4 hPa" }, "e": { "valor": 14.0, "tol": 0.05, "texto": "14,0 hPa" }, "hr": { "valor": 60, "tol": 0.5, "texto": "60 %" } } }
+          }
+        },
+        {
+          "id": "viento-aparente",
+          "titulo": "Viento aparente",
+          "tits": ["per", "py"],
+          "temas": { "per": [9], "py": [2] },
+          "expresion": ["de proa = Vr · cos α + Vb", "de costado = Vr · sen α", "Va = √(proa² + costado²)", "ángulo con la proa = arctg (costado / proa)"],
+          "letras": [
+            ["Vr, α", "viento real y su ángulo con la proa (0° proa, 90° través, 180° popa)"],
+            ["Vb", "velocidad del barco: el viento de avance, siempre de proa"],
+            ["Va", "viento aparente: el que notas a bordo y mide el anemómetro"]
+          ],
+          "signos": "Si la componente de proa sale negativa, el ángulo es 180° menos el de la arcotangente.",
+          "cuando": "Para saber por dónde y con qué fuerza notas el viento a bordo.",
+          "trampa": "El aparente entra más a proa que el real, pero no siempre es más fuerte: ciñendo, más; en popa, más flojo.",
+          "cita": "aparente = suma de los dos",
+          "fueraDelCurso": "Las clases enseñan el viento aparente sin cuentas (la suma de real y de avance). La cuenta es la de la chuleta de la práctica y la del ejercicio «Viento aparente» de la app, que se practica en el PER y en el PY.",
+          "origen": { "clases": ["per-9-4"], "chuletario": "viento-aparente", "motor": "src/nautical/viento.js · vientoAparente" },
+          "ejemplo": {
+            "enunciado": "Navegas a 6 nudos con un viento real de 12 nudos que entra a 60° de la proa por estribor. ¿Cómo es el aparente?",
+            "pasos": [
+              "De proa: 12 · cos 60° + 6 = **12,0**; de costado: 12 · sen 60° = **10,4**.",
+              "Va = √(12,0² + 10,4²) = **15,9 nudos**; ángulo = arctg (10,4 / 12,0) = **40,9°** por estribor: más a proa que el real."
+            ],
+            "calculadora": [{ "teclas": "√ 12 x² + 10.392 x² ) =", "da": 15.874, "tol": 0.001 }, { "teclas": "SHIFT tan 10.392 ÷ 12 ) =", "da": 40.893, "tol": 0.001 }],
+            "resultado": "15,9 nudos a 40,9° de la proa por estribor",
+            "comprobar": { "calculo": "vientoAparente", "datos": { "ang": 60, "vr": 12, "vb": 6 }, "esperado": { "proa": { "valor": 12, "tol": 0.05, "texto": "12,0" }, "costado": { "valor": 10.4, "tol": 0.05, "texto": "10,4" }, "va": { "valor": 15.9, "tol": 0.05, "texto": "15,9 nudos" }, "ang": { "valor": 40.9, "tol": 0.05, "texto": "40,9°" } } }
+          }
+        },
+        {
+          "id": "horizonte-radar",
+          "titulo": "Alcance del radar",
+          "tits": ["py"],
+          "temas": { "py": [3] },
+          "expresion": ["alcance ≈ 2,2 · (√h + √H) millas"],
+          "letras": [["h", "altura de la antena, en metros"], ["H", "altura del blanco, en metros"]],
+          "cuando": "Hasta qué distancia puede detectar el radar una costa o un barco, por la curvatura de la Tierra.",
+          "trampa": "Las alturas van en metros y el resultado sale en millas. Una costa baja aparece mucho más tarde que un acantilado.",
+          "cita": "Horizonte radar ≈ 2,2 · (√h + √H) millas",
+          "origen": { "clases": ["py-3-8"], "chuletario": null, "motor": null },
+          "ejemplo": {
+            "enunciado": "Tu antena está a 9 m y la costa es un acantilado de 36 m. ¿A qué distancia lo detectas como máximo?",
+            "pasos": ["√9 = 3; √36 = 6.", "2,2 · (3 + 6) = **19,8 millas**."],
+            "calculadora": [{ "teclas": "2.2 × ( √ 9 ) + √ 36 ) ) =", "da": 19.8, "tol": 0.0005 }],
+            "resultado": "Unas 19,8 millas",
+            "comprobar": { "calculo": "horizonteRadar", "datos": { "h": 9, "H": 36 }, "esperado": { "d": { "valor": 19.8, "tol": 0.0005, "texto": "19,8 millas" } } }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tablas",
+      "corto": "Tablas",
+      "titulo": "Cifras y tablas que se memorizan",
+      "ico": "tabla",
+      "tablas": [
+        {
+          "id": "beaufort",
+          "titulo": "Escala Beaufort (viento)",
+          "tits": ["per", "py"],
+          "temas": { "per": [9], "py": [2] },
+          "desde": "beaufort",
+          "columnas": ["Fuerza", "Nombre", "Nudos"],
+          "nota": "13 grados, del 0 al 12. Desde la fuerza 8 (34 nudos), temporal. Beaufort mide el viento; Douglas, la mar.",
+          "origen": { "clases": ["per-9-6", "py-2-8"], "fuente": "src/illustrations/meteo.js · BEAUFORT (la misma tabla de las láminas y las tarjetas)" }
+        },
+        {
+          "id": "douglas",
+          "titulo": "Escala Douglas (estado de la mar)",
+          "tits": ["per", "py"],
+          "temas": { "per": [9], "py": [2] },
+          "desde": "douglas",
+          "columnas": ["Grado", "Nombre", "Altura de ola (m)"],
+          "nota": "10 grados, del 0 al 9, por la altura de las olas (mar de viento).",
+          "origen": { "clases": ["per-9-6"], "fuente": "src/illustrations/meteo.js · DOUGLAS (la misma tabla de las láminas y las tarjetas)" }
+        },
+        {
+          "id": "visibilidad",
+          "titulo": "Visibilidad en los partes de AEMET",
+          "tits": ["py"],
+          "temas": { "py": [2] },
+          "columnas": ["Parte", "Visibilidad"],
+          "filas": [["Niebla", "menos de 1 km"], ["Mala", "de 1 a 4 km"], ["Regular", "de 4 a 10 km"], ["Buena", "más de 10 km"]],
+          "nota": "Con más de 1 km y por humedad, neblina o bruma; por partículas secas, calima.",
+          "origen": { "clases": ["py-2-7"] }
+        },
+        {
+          "id": "zonas",
+          "titulo": "Zonas de navegación y equipo",
+          "tits": ["per"],
+          "temas": { "per": [3] },
+          "columnas": ["Zona", "Hasta", "Chalecos", "Pirotecnia"],
+          "filas": [
+            ["1", "sin límite", "275 N", "6 bengalas, 6 cohetes y 2 fumígenas"],
+            ["2", "60 millas de la costa", "150 N", "6 bengalas, 6 cohetes y 1 fumígena"],
+            ["3", "25 millas de la costa", "150 N", "6 bengalas, 6 cohetes y 1 fumígena"],
+            ["4", "12 millas de la costa", "150 N", "3 bengalas y 3 cohetes"],
+            ["5", "5 millas de un abrigo", "100 N", "3 bengalas"],
+            ["6", "2 millas de un abrigo", "100 N", "3 bengalas"],
+            ["7", "aguas protegidas", "100 N", "ninguna"]
+          ],
+          "nota": "Chaleco: uno por persona (en zona 1, uno más). Aro con luz y rabiza en las zonas 1 a 4; balsa en las zonas 1 a 3 (RD 339/2021).",
+          "origen": { "clases": ["per-3-5", "per-3-6"] }
+        },
+        {
+          "id": "pirotecnia",
+          "titulo": "Señales pirotécnicas",
+          "tits": ["per", "py"],
+          "temas": { "per": [3, 8], "py": [1] },
+          "columnas": ["Señal", "Cifras"],
+          "filas": {
+            "per": [
+              ["Bengala de mano", "luz roja durante al menos 1 min"],
+              ["Cohete con paracaídas", "luz roja, sube al menos 300 m y luce al menos 40 s"],
+              ["Fumígena flotante", "humo naranja durante al menos 3 min; solo de día"]
+            ],
+            "py": [
+              ["Bengala de mano", "roja, al menos 15.000 cd durante 1 min; aguanta 10 s a 100 mm bajo el agua"],
+              ["Cohete con paracaídas", "rojo, sube al menos 300 m, al menos 30.000 cd durante 40 s; baja a 5 m/s como mucho"],
+              ["Fumígena flotante", "humo naranja durante al menos 3 min en aguas tranquilas, sin llama; de día"]
+            ]
+          },
+          "nota": "Solo en una emergencia y cuando alguien pueda verlas, por sotavento y de espaldas al viento. Nunca un cohete con un helicóptero cerca.",
+          "origen": { "clases": ["per-3-6", "per-8-8", "py-1-6"] }
+        },
+        {
+          "id": "sonidos",
+          "titulo": "Señales acústicas (RIPA)",
+          "tits": ["per"],
+          "temas": { "per": [6] },
+          "columnas": ["Señal", "Qué es"],
+          "filas": [
+            ["Pitada corta", "unos 1 s"],
+            ["Pitada larga", "de 4 a 6 s"],
+            ["1 corta", "caigo a estribor"],
+            ["2 cortas", "caigo a babor"],
+            ["3 cortas", "doy atrás"],
+            ["5 o más cortas", "duda"],
+            ["Niebla: 1 larga cada 2 min o menos", "motor con arrancada"],
+            ["Niebla: 2 largas cada 2 min o menos", "motor parado y sin arrancada"],
+            ["Niebla: 1 larga y 2 cortas", "vela, pesca, sin gobierno, maniobra restringida y remolcador"],
+            ["Niebla: 1 larga y 3 cortas", "remolcado"]
+          ],
+          "nota": "Fondeado: campana 5 s cada minuto o menos. Varado: 3 golpes, repique y 3 golpes.",
+          "origen": { "clases": ["per-6-9"] }
+        },
+        {
+          "id": "costa-fondeo",
+          "titulo": "Cerca de la costa y fondeo",
+          "tits": ["per"],
+          "temas": { "per": [2, 4] },
+          "columnas": ["Qué", "Cifra"],
+          "filas": [
+            ["Zona de baño sin balizar, en playas", "200 m"],
+            ["Zona de baño sin balizar, en el resto de la costa", "50 m"],
+            ["Velocidad dentro de esa franja", "3 nudos como máximo"],
+            ["Resguardo de una zona de buceo", "50 m como mínimo"],
+            ["Cadena, con buen tiempo", "unas 3 veces la profundidad"],
+            ["Cadena, con mal tiempo", "5 veces la profundidad o más"]
+          ],
+          "origen": { "clases": ["per-2-4", "per-4-2", "per-4-3"], "chuletario": ["costa", "fondeo"] }
+        }
+      ]
+    }
+  ]
+}

@@ -32,6 +32,8 @@ export function bibliotecaView({ tit }) {
       [link(['mesa']), 'compas', 'Mesa de cartas', 'La carta del Estrecho con regla, compás y transportador.'],
     ]],
     ['Cuentas', [
+      [tlink(tit, ['formulas']), 'cuentas', 'Fórmulas y tablas', per ? 'Las del examen en una hoja para imprimir, cada fórmula con su ejemplo resuelto.'
+        : 'Corrección total, mareas, estima, husos, estabilidad y tablas, en una hoja para imprimir y con ejemplos resueltos.'],
       ...(!APENDICE_PUBLICADO ? [] : [[tlink(tit, ['cuentas']), 'cuentas', 'Las cuentas del patrón', per ? 'Grados y minutos, horas y signos de los rumbos, con ejercicios para la calculadora.'
         : 'Grados, horas, signos, trigonometría y regla de tres, con ejercicios para la calculadora.']]),
       [link(['calculadora']), 'calculadora', 'Calculadora científica', 'Con las teclas de la que se permite en el examen: °′″, seno, coseno, tangente y memoria.'],

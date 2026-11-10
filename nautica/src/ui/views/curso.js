@@ -15,7 +15,7 @@ import { barraActividad } from '../actividad.js';
 import { pintarCierre, cierre, cifrasCierre } from '../cierre.js';
 import { illustrationEls } from '../illustration.js';
 import { pidePrediccion, interactivaDe, dibujoFijo } from '../../illustrations/interactivas.js';
-import { questionCard, prepareTheory, tandaPreguntas, profePanel, botonCarta } from './theory.js';
+import { questionCard, prepareTheory, tandaPreguntas, profePanel, botonCarta, esDeCuentas, blocDePregunta } from './theory.js';
 import { voice } from '../voice.js';
 import { transicion, deslizar } from '../movimiento.js';
 import { respuesta as efectoRespuesta } from '../efectos.js';
@@ -31,6 +31,8 @@ import { cuenta } from '../../texto.js';
 import { leccionesApendice, repasosPara, APENDICE_PUBLICADO } from '../../course/apendice.js';
 import { generaCuenta, corrigeCuenta, EJEMPLO_RESPUESTA } from '../../course/cuentas.js';
 import { botonCalculadora } from '../calculadora.js';
+import { botonBloc } from '../bloc.js';
+import { ID_BLOC } from '../../bloc/notas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 
@@ -300,7 +302,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
               if (i === paso) refrescaBotones();
               corrige(fb, k === q.correcta, profePanel(q, bank.explicaciones[q.id], k));
             } });
-            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card, botonCarta(q, progress, ayudas.ctx()), fb);
+            return h('div.paso.check', h('p.badge', '¿Lo pillas? Pregunta de examen'), card,
+              esDeCuentas(q) ? h('div.actions.bloc-acciones', botonBloc(blocDePregunta(q))) : null, botonCarta(q, progress, ayudas.ctx()), fb);
           }
           const q = { id: `${L.id}-chk-${i}-${p.enunciado.length}`, enunciado: p.enunciado, opciones: p.opciones, correcta: p.correcta };
           let card = questionCard(q, { tema: false, onChoose: (k) => {
@@ -321,19 +324,31 @@ export function leccionView({ ctx, progress, params: route, tit }) {
     // «Problema modelo»: el enunciado va solo y la resolución en las tarjetas siguientes. Para que no parezca un ejercicio
     // roto, se dice y se da con qué intentarlo: la carta (con el enunciado) y la calculadora.
     function accionesModelo(p) {
-      const carta = botonCarta({ id: `modelo-${L.id}`, convocatoria: 'Problema modelo', enunciado: plain(p.texto), requiere: ['carta'], ut: L.ut }, progress, null);
+      const modelo = { id: `modelo-${L.id}`, convocatoria: 'Problema modelo', enunciado: plain(p.texto), requiere: ['carta'], ut: L.ut };
+      const carta = botonCarta(modelo, progress, null);
       return h('div.modelo-acciones',
         h('p.muted.small', 'Inténtalo tú antes de seguir: la solución está en las tarjetas siguientes.'),
-        h('div.actions', carta, botonCalculadora()));
+        h('div.actions', carta, botonCalculadora(), botonBloc({ id: ID_BLOC.pregunta(modelo.id), titulo: `Problema modelo · ${L.titulo}`, enunciado: modelo.enunciado })));
     }
 
     // «Con la calculadora»: una cuenta con números nuevos cada vez (src/course/cuentas.js). Se responde escribiendo;
     // «Ver cómo se hace» enseña los pasos y las teclas. Comprobarla bien o verla resuelta deja seguir.
     function pasoCuenta(p, i) {
       const box = h('div.cuenta-caja');
-      const hecha = () => { checkOk.add(i); if (i === paso) refrescaBotones(); };
-      function nueva() {
-        const ej = generaCuenta(p.generador, createRng(randomSeed()));
+      // Hecha (comprobada bien o vista resuelta): la próxima vez que se entre saldrá con números nuevos.
+      const hecha = () => { checkOk.add(i); try { sessionStorage.removeItem(claveSemilla); } catch { /* sin almacenamiento */ } if (i === paso) refrescaBotones(); };
+      // La semilla de la cuenta se recuerda mientras dure la sesión: al recargar sale la misma cuenta, con sus notas
+      // del bloc. «Otra con otros números» la cambia (y el bloc de la nueva empieza en blanco).
+      const claveSemilla = `nautica.cuenta.${L.id}.${i}`;
+      function semilla(otra) {
+        let s = null;
+        try { s = otra ? null : Number(sessionStorage.getItem(claveSemilla)) || null; } catch { /* sin almacenamiento */ }
+        if (!s) { s = randomSeed(); try { sessionStorage.setItem(claveSemilla, String(s)); } catch { /* no se recuerda */ } }
+        return s;
+      }
+      function nueva(otra = false) {
+        const s = semilla(otra);
+        const ej = generaCuenta(p.generador, createRng(s));
         const input = h('input.cuenta-respuesta', { placeholder: EJEMPLO_RESPUESTA[ej.tipo], autocomplete: 'off', inputmode: 'text', 'aria-label': 'Tu respuesta' });
         const fb = h('div.cuenta-fb', { 'aria-live': 'polite' });
         const solucion = h('div.cuenta-solucion', { hidden: true },
@@ -357,8 +372,9 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           h('form.cuenta-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
             h('label.field', h('span.lbl', 'Tu respuesta'), input),
             h('div.actions', h('button', { type: 'submit' }, 'Comprobar'), botonCalculadora(),
+              botonBloc({ id: ID_BLOC.cuenta(L.id, i, s), titulo: L.titulo, enunciado: ej.enunciado }),
               h('button.secondary', { type: 'button', onclick: ver }, 'Ver cómo se hace'),
-              h('button.secondary', { type: 'button', onclick: () => { nueva(); } }, conIcono('repaso', 'Otra con otros números')))),
+              h('button.secondary', { type: 'button', onclick: () => { nueva(true); } }, conIcono('repaso', 'Otra con otros números')))),
           fb, solucion);
       }
       nueva();

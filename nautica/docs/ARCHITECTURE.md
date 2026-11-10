@@ -26,6 +26,8 @@ nautica/
 │   ├── course/           CURSO              estado de las clases y repaso espaciado (engine.js), recomendador «Hoy» (plan.js)
 │   │                                        y ruta del curso: dependencias `requiere` y orden de las clases (ruta.js)
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
+│   ├── bloc/             BLOC DE NOTAS      hoja de borrador de cada ejercicio (notas.js: guardar en el aparato, datos del
+│   │                                        enunciado, insertar en la nota); sin DOM ni dependencias
 │   ├── theory/           MOTOR DE TESTS     estructura de cada titulación (blocks.js: PER, PY, TITULACIONES),
 │   │                                        simulacros, exámenes reales y corrección con las reglas oficiales
 │   ├── illustrations/    ILUSTRACIONES      SVG paramétrico animado (boyas, luces, maniobras, meteo…) por spec
@@ -169,6 +171,17 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
 - **Hueco para otras ayudas** (calculadora, apéndice de matemáticas): `registrarAyuda({ id, crear(ctx) })` en
   `ui/ayudas.js` añade un botón a la barra de ayudas de todas las pantallas de práctica (`.ayudas-hueco[data-hueco]`).
   La barra no existe en los exámenes: si una ayuda debe estar también allí, que la vista del examen la pinte aparte.
+- **Bloc de notas** (`src/bloc/notas.js`, `ui/bloc.js`): hoja de borrador de un ejercicio de cuentas, con el enunciado
+  a la vista (sus datos marcados y en fichas que se apuntan con un toque), las notas del alumno (texto libre) y la
+  calculadora a mano («Apuntar <resultado>» la lleva a la nota). `botonBloc({ id, titulo, enunciado, comun, contexto,
+  opciones, calculadora })` se pone en cualquier barra: ejercicios generados, «Haz la cuenta» y problema modelo de las
+  clases, preguntas reales de cuentas (tandas, pregunta suelta, exámenes) y, con `crearBloc`, la pestaña «Bloc» del panel
+  de la mesa de cartas (`openWorkspace({ bloc })`). En el móvil es una hoja a pantalla completa que se ajusta al teclado
+  (`visualViewport`) y a la calculadora acoplada; en pantallas anchas, una columna a la izquierda que aparta la página.
+  Las notas son de ese ejercicio (`ID_BLOC`: tipo y semilla, pregunta, o pregunta dentro de un examen) y se guardan
+  solas en el aparato (`localStorage`, `nautica.bloc.v1`, las 40 más recientes, 60 días): **no** van al progreso ni al
+  registro de sincronización. Es papel de borrador: también en los exámenes, sin glosas ni pistas y sin calculadora si
+  el examen no la permite.
 - **Siglas y términos al tocarlos** (`data/comun/abreviaturas.json`, `theory/glosas.js`, `ui/glosas.js`):
   `glosar(raiz, { tit, ut, leccion })` convierte, en el texto ya pintado, la primera aparición de cada sigla y de
   cada término del vocabulario (`vocabulario-*.json`, los de ese tema y sus afines) en un botón con una explicación

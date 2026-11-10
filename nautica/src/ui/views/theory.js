@@ -37,6 +37,8 @@ import { narrateSteps } from '../../teacher/narrate.js';
 import { cuenta, fechaLarga } from '../../texto.js';
 import { botonCalculadora, bloquearCalculadora, desbloquearCalculadora, calculadoraEnAyudas } from '../calculadora.js';
 import { calculadoraPermitida } from '../../calculadora/reglas.js';
+import { botonBloc } from '../bloc.js';
+import { ID_BLOC, preguntaDeCuentas } from '../../bloc/notas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { botonesSesion } from '../sesion.js';
@@ -137,16 +139,31 @@ export function necesitaCarta(q) {
  * pantalla completa con el enunciado y, al cerrarla, sigues en la pregunta. null si la pregunta no la necesita.
  * @param {object} [ayudas]  contexto de práctica ({ modo, tit… }) para tener la chuleta en la carta; nunca en un examen
  */
-export function botonCarta(q, progress, ayudas = null, { calculadora = true } = {}) {
+export function botonCarta(q, progress, ayudas = null, { calculadora = true, bloc = null } = {}) {
   if (!necesitaCarta(q) || !chartRef) return null;
   return h('button.secondary.grande.boton-icono.abrir-carta', { type: 'button', onclick: () => {
     // Al practicar, la mesa lleva también la resolución (pestaña Tutorial); en un examen no (sin ayudas), para no dar la respuesta.
     const k = ayudas ? resolucionDe(q) : null;
     openWorkspace({
     chart: chartRef, title: `Carta · ${q.convocatoria ?? ''}`, statement: q.enunciado, steps: k?.steps ?? [], items: k?.items ?? [], focus: k?.focus ?? [], answerNodes: [], tab: 'ejercicio', progress,
-    result: '', summary: () => `CARTA abierta para ${q.id}`, calculadora,
+    result: '', summary: () => `CARTA abierta para ${q.id}`, calculadora, bloc: bloc ?? blocDePregunta(q, { calculadora }),
     ayudas: ayudas ? { ...ayudas, ut: q.ut } : null, glosas: ayudas ? { tit: T.id, ut: q.ut } : null,
     }); } }, icono('mapa'), 'Abrir la carta');
+}
+
+/**
+ * ¿Se resuelve haciendo cuentas? Las del tema de carta (en el PY, también mareas y loxodrómica), las que piden la
+ * carta y las que traen datos y piden calcular (src/bloc/notas.js). En ellas se ofrece el bloc de notas.
+ */
+export const esDeCuentas = (q) => calculadoraEnAyudas({ tit: T.id, ut: q.ut }) || necesitaCarta(q) || preguntaDeCuentas(q);
+
+/**
+ * El bloc (hoja de borrador, src/ui/bloc.js) de una pregunta: su enunciado, sus opciones y las notas del alumno.
+ * `examen`: clave del examen en marcha; así sus notas son de ese examen y no traen lo apuntado al practicar.
+ */
+export function blocDePregunta(q, { examen = null, calculadora = true } = {}) {
+  return { id: examen ? ID_BLOC.examen(examen, q.id) : ID_BLOC.pregunta(q.id), titulo: [q.convocatoria, q.numero ? `pregunta ${q.numero}` : null].filter(Boolean).join(' · '),
+    enunciado: q.enunciado, comun: q.enunciado_comun, contexto: q.contexto, opciones: q.opciones, calculadora };
 }
 
 /** La resolución programada de una pregunta de carta (pasos, dibujo y encuadre), o null si no la tiene o falla. */
@@ -457,6 +474,8 @@ function chipsPregunta(q, progress, ayudas) {
   const calc = (calculadoraEnAyudas({ tit: T.id, ut: q.ut }) || necesitaCarta(q)) && !ayudas?.barra?.querySelector('.boton-calculadora')
     ? botonCalculadora({ texto: 'Calculadora', clase: 'secondary.small.chip-calculadora' }) : null;
   if (calc) { fila.append(calc); fila.hidden = false; }
+  // El bloc de notas, en las preguntas de cuentas: papel de borrador con el enunciado y sus datos.
+  if (esDeCuentas(q)) { fila.append(botonBloc(blocDePregunta(q), { clase: 'secondary.small.chip-bloc' })); fila.hidden = false; }
   etiquetaConcepto(currentEje(progress), T.id, q.id).then((t) => {
     if (!t) return;
     fila.prepend(h('span.chip-concepto', { title: 'Concepto que pregunta' }, t));
@@ -725,7 +744,7 @@ function practiceSummary(q, ex, chosen) {
 const GUARDAR_CADA_MS = 10000;
 
 /** «Abrir la carta» en un examen: sin ayudas de práctica y, si no se permite, sin el botón de la calculadora. */
-const cartaDeExamen = (q, progress, calculadora) => botonCarta(q, progress, null, { calculadora });
+const cartaDeExamen = (q, progress, calculadora, bloc) => botonCarta(q, progress, null, { calculadora, bloc });
 
 export function testView({ ctx, progress, params: route, tit }) {
   chartRef = ctx.chart;
@@ -876,6 +895,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       }
 
       const sinResponder = () => test.preguntas.filter((q) => !respuestas[q.id]).length;
+      const blocExamen = (q) => blocDePregunta(q, { examen: `${tipo}:${estado.conv ?? estado.seed ?? ''}`, calculadora: permitida });
       function ir(j) { i = Math.min(Math.max(0, j), n - 1); guardar(); mostrar(); window.scrollTo(0, 0); }
       function mostrar() {
         const q = test.preguntas[i];
@@ -883,7 +903,10 @@ export function testView({ ctx, progress, params: route, tit }) {
         const ultima = i === n - 1;
         setChildren(cuerpo,
           questionCard(q, { number: i + 1, chosen: respuestas[q.id], onChoose: (k) => { respuestas[q.id] = k; guardar(); resumen(); } }),
-          cartaDeExamen(q, progress, permitida),
+          // Papel de borrador, como en el examen de verdad: el enunciado y las notas de esta pregunta en este examen
+          // (sin pistas ni soluciones; con calculadora solo si el examen la permite).
+          esDeCuentas(q) ? botonBloc(blocExamen(q), { texto: 'Bloc de notas', clase: 'secondary.grande.bloc-examen' }) : null,
+          cartaDeExamen(q, progress, permitida, blocExamen(q)),
           h('p.ver-todas', h('a', { href: '#', onclick: (ev) => { ev.preventDefault(); abrirPanel(); } }, 'Ver todas las preguntas')),
           h('div.fila-inferior',
             h('button.secondary.boton-anterior', { type: 'button', 'aria-label': 'Anterior', disabled: i === 0, onclick: () => ir(i - 1) }, '←'),

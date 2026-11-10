@@ -14,6 +14,7 @@ import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { lineaProfe, rotuloProfe } from '../profe-steps.js';
 import { icono, conIcono } from '../iconos.js';
+import { crearBloc } from '../bloc.js';
 
 const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -55,6 +56,7 @@ let openWs = null;
  * @param {object} [o.progress]
  * @param {() => string} [o.summary] resumen para IA del ejercicio
  * @param {boolean} [o.calculadora] false: sin el botón de la calculadora (examen en el que no se permite)
+ * @param {{ id: string, comun?: string, contexto?: string, opciones?: object }} [o.bloc] pestaña «Bloc»: las notas de ese ejercicio (src/ui/bloc.js)
  */
 export function openWorkspace(o) {
   openWs?.close();
@@ -143,11 +145,13 @@ export function openWorkspace(o) {
     h('p.muted.small', 'Tus trazos y notas no se borran: el tutorial se dibuja aparte. Pulsa «Al principio» para quitarlo.'),
   );
 
-  const tabs = { ejercicio: tabEjercicio, tutorial: tabTutorial };
+  // Bloc (src/ui/bloc.js): el enunciado con sus datos y las notas del alumno, las mismas que fuera de la carta.
+  const bloc = o.bloc ? crearBloc({ ...o.bloc, enunciado: o.statement, variante: 'panel', calculadora: o.calculadora !== false }) : null;
+  const tabs = { ejercicio: tabEjercicio, ...(bloc ? { bloc: h('section.ws-tab.ws-bloc', bloc.el) } : {}), tutorial: tabTutorial };
   // Sin pasos (un examen, o una pregunta sin resolución programada) no hay tutorial que enseñar: no se ofrece la pestaña
   // en vez de abrir una carta vacía con «0 / 0».
   const hayTutorial = (o.steps ?? []).length > 0;
-  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], ...(hayTutorial ? { tutorial: ['clase', 'Tutorial'] } : {}) }).map(([id, [ico, label]]) =>
+  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], ...(bloc ? { bloc: ['lapiz', 'Bloc'] } : {}), ...(hayTutorial ? { tutorial: ['clase', 'Tutorial'] } : {}) }).map(([id, [ico, label]]) =>
     h('button.ws-tabbtn', { type: 'button', 'data-tab': id, onclick: () => showTab(id) }, conIcono(ico, label)));
   const panelBody = h('div.ws-panel-body');
   // El panel (abajo en el móvil, a la derecha en pantallas anchas) tapa parte de la carta: se pliega y se despliega con

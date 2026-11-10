@@ -21,6 +21,8 @@ import { repasosPara, APENDICE_PUBLICADO } from '../../course/apendice.js';
 import { conIcono } from '../iconos.js';
 import { TIPO_DE_EJERCICIO, TITULO_TIPO } from '../../course/carta-pasos.js';
 import { hrefPasos } from './carta-pasos.js';
+import { botonBloc } from '../bloc.js';
+import { ID_BLOC } from '../../bloc/notas.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: ['ok', 'Correcto'],
@@ -50,6 +52,8 @@ export function exerciseView({ ctx, progress, params: route }) {
   const enTema = { modo: 'ejercicio', tit, ut: TITULACIONES[tit].cartaUt, ejercicios: [exercise.id] };
   const glosas = { tit, ut: enTema.ut };
   const ayudas = crearAyudas(enTema);
+  // Bloc (hoja de borrador): el enunciado con sus datos y las notas de este ejercicio (de esta semilla).
+  const bloc = { id: ID_BLOC.ejercicio(exercise.id, seed), titulo: exercise.title, enunciado: statement };
 
   // --- Respuestas
   const inputs = answers.map((a) => {
@@ -111,7 +115,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ws = openWorkspace({
       chart: ctx.chart, title: exercise.title, statement, steps: solution.steps,
       items: solution.drawing.items, focus: solution.drawing.focus, kind: exercise.title, result: resultText,
-      answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(), ayudas: enTema, glosas,
+      answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(), ayudas: enTema, glosas, bloc,
     });
   };
   const tableButtons = solution.drawing
@@ -182,7 +186,7 @@ export function exerciseView({ ctx, progress, params: route }) {
     ayudas.panel,
     h('div.layout',
       h('div.col',
-        h('section.statement', h('h2', 'Enunciado'), statementEl, repasa, solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
+        h('section.statement', h('h2', 'Enunciado'), statementEl, repasa, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
         h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
         h('section', h('h2', 'Resolución paso a paso'), stepsList,
           listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),

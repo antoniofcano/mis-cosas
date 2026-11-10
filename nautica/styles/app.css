@@ -1928,3 +1928,72 @@ header.top a.ajustes.sync-aviso::after { content: ""; position: absolute; top: 8
 /* Botones llenos de estas pantallas: texto con contraste también en oscuro (el acento claro pide texto oscuro). */
 .dispositivos button:not(.secondary), .vincular button:not(.secondary), .vincular a.btn:not(.secondary) { color: var(--on-accent); }
 .vincular h1[tabindex="-1"]:focus, .vincular h2[tabindex="-1"]:focus { outline: none; }
+
+/* ---- Carta a pantalla completa (móvil) ----
+   Diseño propio, sin Fullscreen API (el iPhone no la tiene para elementos): la carta ocupa la ventana, las herramientas
+   quedan en una barra compacta de iconos (abajo en vertical, a la derecha con el móvil tumbado), «Más» despliega el
+   resto encima y la línea de lectura comparte fila con «Salir». En la mesa, el panel se abre encima de la carta. */
+.tools-mas { display: contents; }
+.completa-acciones, .ichart-toolbar .tools.extras { display: none; }
+body.carta-completa { overflow: hidden; overscroll-behavior: none; }
+.ichart.completa { padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); touch-action: none; -webkit-touch-callout: none; }
+.ichart.completa.fija { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; border: 0; border-radius: 0; }
+.ichart.completa.fija svg.chart.interactive { flex: 1; min-height: 0; height: auto !important; }
+body.con-calc-abajo .ichart.completa.fija { bottom: var(--calc-alto, 0px); }
+body.con-calc-arriba .ichart.completa.fija { top: var(--calc-alto, 0px); }
+.ichart.completa .ichart-toolbar, .ichart.completa .ichart-pie { -webkit-user-select: none; user-select: none; }
+.ichart.completa button.entrar-completa { display: none; }
+.ichart.completa .ichart-pie { display: flex; align-items: center; gap: .3rem; border-top: 1px solid var(--border); padding-right: .3rem; padding-bottom: env(safe-area-inset-bottom); }
+.ichart.completa .ichart-pie .readout { flex: 1; min-width: 0; border-top: 0; }
+.ichart.completa .completa-acciones { display: flex; flex: none; gap: .3rem; padding: .2rem 0; }
+.completa-acciones button { min-height: 44px; min-width: 44px; padding: .3rem .6rem; white-space: nowrap; }
+.completa-acciones button[aria-expanded="true"] { background: var(--accent-2); }
+.workspace.carta-completa .ws-head { display: none; }
+.ichart.completa .tools.extras:not(:empty) { display: flex; flex-wrap: wrap; gap: .3rem; align-items: center; }
+
+/* Barra compacta abajo: móvil en vertical (y ventanas estrechas). */
+@media (max-width: 860px) and (min-height: 501px), (max-width: 860px) and (orientation: portrait), (max-width: 479px) {
+  /* De arriba abajo: carta, herramientas y, al fondo, lectura + «Salir» (así «Más», que se abre hacia arriba, no los tapa). */
+  .ichart.completa .ichart-toolbar { order: 10; position: relative; display: block; padding: .2rem 0; border-bottom: 0; border-top: 1px solid var(--border); }
+  .ichart.completa .ichart-pie { order: 11; }
+  .ichart.completa .tools-mas { left: .3rem; right: .3rem; bottom: calc(100% + .3rem); max-height: 60vh; }
+}
+/* Barra compacta a la derecha: móvil tumbado. La carta se queda con todo el alto. */
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 480px) {
+  .ichart.completa, .ichart.completa.fija { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: minmax(0, 1fr) auto auto auto auto; }
+  .ichart.completa svg.chart.interactive, .ichart.completa.fija svg.chart.interactive { grid-column: 1; grid-row: 1; height: 100% !important; min-height: 0; border-right: 1px solid var(--border); }
+  .ichart.completa .note-bar, .ichart.completa .protractor-bar { grid-column: 1; }
+  .ichart.completa .ichart-toolbar { grid-column: 2; grid-row: 1 / -1; align-self: start; position: relative; display: block; padding: .2rem; border: 0; }
+  .ichart.completa .ichart-pie { display: contents; }
+  .ichart.completa .ichart-pie .readout { grid-column: 1; grid-row: 1; align-self: end; justify-self: start; z-index: 1; flex: none; max-width: calc(100% - 4.5rem); min-height: 0; margin: 0 0 calc(.4rem + env(safe-area-inset-bottom)) 3.6rem; padding: .25rem .6rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+  .ichart.completa .ichart-pie .readout.abierta { display: block; -webkit-line-clamp: unset; max-height: 70%; overflow-y: auto; touch-action: pan-y; }
+  .ichart.completa .completa-acciones { grid-column: 2; grid-row: 1 / -1; align-self: end; flex-direction: column; align-items: stretch; padding: .2rem .2rem calc(.2rem + env(safe-area-inset-bottom)); }
+  .ichart.completa .completa-acciones button { padding: .2rem .3rem; font-size: .8rem; }
+  .ichart.completa .tools-mas { right: calc(100% + .3rem); top: .3rem; width: min(23rem, 62vw); max-height: calc(100vh - .6rem); max-height: calc(100dvh - .6rem); }
+}
+/* Lo común a las dos barras compactas: solo iconos (el nombre sigue para el lector de pantalla) y «Más» desplegable. */
+@media (max-width: 860px), (max-height: 500px) {
+  .ichart.completa .ichart-toolbar .tools.dibujo { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-auto-flow: row; gap: 1px; flex: none; }
+  .ichart.completa .ichart-toolbar .tools.dibujo button.tool { position: relative; min-width: 0; width: 100%; min-height: 48px; padding: 0; }
+  .ichart.completa .ichart-toolbar .tools.dibujo button.tool .tool-icon .ico { width: 24px; height: 24px; }
+  .ichart.completa .ichart-toolbar .tools.dibujo .tool-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .ichart.completa .ichart-toolbar button.mas-herramientas { display: inline-flex; }
+  .ichart.completa .ichart-toolbar.abierta button.mas-herramientas { background: var(--accent-2); }
+  .ichart.completa .tools-mas { display: none; position: absolute; z-index: 6; flex-direction: column; gap: .3rem; padding: .4rem; overflow-y: auto; touch-action: pan-y;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 8px 30px rgba(10, 30, 60, .25); }
+  .ichart.completa .ichart-toolbar.abierta .tools-mas { display: flex; }
+  .ichart.completa .ichart-toolbar .tools-mas .tools.edicion, .ichart.completa .ichart-toolbar .tools-mas .tools.vista { display: grid; grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); gap: .25rem; flex: none; max-width: none; margin: 0; padding: 0; border: 0; overflow: visible; }
+  .ichart.completa .ichart-toolbar .tools-mas button.tool { min-width: 0; width: 100%; min-height: 50px; white-space: normal; hyphens: manual; text-align: center; padding: .15rem .1rem; font-size: .76rem; flex-direction: column; }
+  .ichart.completa .ichart-toolbar .tools-mas select { min-height: 44px; width: 100%; }
+  /* En la mesa: el panel (enunciado, tutorial, respuesta) es una hoja que se abre encima de la carta y se vuelve a quitar. */
+  .workspace.carta-completa .ws-main, .workspace.carta-completa.panel-plegado .ws-main { position: relative; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+  .workspace.carta-completa .ws-panel { position: absolute; z-index: 5; top: 0; left: 0; right: 0; max-height: 58%; padding-top: env(safe-area-inset-top); border: 0; border-bottom: 1px solid var(--border); border-radius: 0 0 14px 14px; box-shadow: 0 8px 30px rgba(10, 30, 60, .3); }
+  .workspace.carta-completa .ws-panel.plegada { display: none; }
+}
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 480px) {
+  .ichart.completa .ichart-toolbar .tools.dibujo { grid-template-columns: repeat(2, 46px); gap: .15rem; }
+  .ichart.completa .ichart-toolbar .tools.dibujo button.tool { min-height: 44px; }
+  .workspace.carta-completa .ws-panel { right: auto; bottom: 0; width: min(380px, 55%); max-height: none; padding-top: 0; padding-left: env(safe-area-inset-left); border-bottom: 0; border-right: 1px solid var(--border); border-radius: 0; }
+}

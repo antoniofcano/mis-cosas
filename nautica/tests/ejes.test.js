@@ -93,6 +93,10 @@ test('preguntas equivalentes entre ejes: por concepto, por parecido del texto o 
   assert.equal(equivalenteEn(base, [otra]), null);
   // Una anulada no sirve para el minijuego.
   assert.equal(equivalenteEn(base, [{ ...porConcepto, anulada: true, correcta: null }]), null);
+  // Un enunciado genérico idéntico no basta: las opciones tienen que parecerse (nieblas ≠ corrientes).
+  const nieblas = { id: 'a-2', eje: 'a', ut: 2, concepto: null, enunciado: 'De las siguientes afirmaciones marque la opción correcta.', opciones: { a: 'Las nieblas de advección son debidas a procesos de evaporación.', b: 'Las nieblas de radiación son debidas al calentamiento del terreno.', c: 'Las nieblas de mezcla se forman con dos corrientes de aire de naturaleza distinta.', d: 'El viento favorece la persistencia de las nieblas.' }, correcta: 'c', anulada: false };
+  const corrientes = { id: 'a-3', eje: 'a', ut: 2, concepto: null, enunciado: 'De las siguientes afirmaciones marque la opción correcta.', opciones: { a: 'Las corrientes de gradiente son debidas a la acción directa del viento.', b: 'Las corrientes de marea son periódicas.', c: 'La corriente de arrastre es de densidad.', d: 'Ninguna.' }, correcta: 'b', anulada: false };
+  assert.equal(equivalenteEn(nieblas, [corrientes]), null);
 });
 
 test('pausas del podcast: la pregunta del eje del alumno, o la original con su tribunal si no hay equivalente', async () => {

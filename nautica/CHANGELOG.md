@@ -15,7 +15,19 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+### Novedades
+
+- **Estrategia de examen:** cómo repartir el tiempo, los temas con límite de fallos, el orden para contestar y qué llevar,
+  según tu titulación y tu tribunal, con las normas separadas de los consejos y su fuente. Con tus simulacros, además,
+  dónde estás más cerca de suspender y cómo vas de tiempo. Imprimible; nunca se ve durante un examen.
+- **La semana antes:** cuando faltan siete días o menos para tu examen (o activándolo a mano), un plan día a día con tus
+  ideas más flojas de lo que más cae, un simulacro a mitad de semana y el último día sin nada nuevo.
+
+### Correcciones
+
+- Simulacro por módulos del Patrón de Yate: se corrige como el aprobado por módulos oficial (RD 875/2014): no pasar de 5
+  fallos en Seguridad ni de 5 en Meteorología en el genérico, y de 5 en Teoría ni de 3 en Carta en el de navegación. Antes
+  pedía 14 aciertos de 20, que no es el criterio del examen.
 
 ## 10 de noviembre de 2026 · versión `2709ca4f3f65`
 

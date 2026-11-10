@@ -358,6 +358,7 @@ export function examenesView({ ctx, progress, tit }) {
       h('section.simulacro',
         h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
         h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`),
+        h('p.centrado.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Cómo hacer el examen: tu estrategia'))),
         // Por módulos (PY): practicar uno mientras se aprende el otro.
         E0.modulos?.length ? h('div.simulacro-modulos', h('p.muted.small', 'O solo un módulo, para practicarlo mientras aprendes el otro:'),
           E0.modulos.map((m) => { const Em = estructuraModulo(E0, m.id);
@@ -809,14 +810,16 @@ export function testView({ ctx, progress, params: route, tit }) {
           h('ul.datos-examen',
             h('li', `${cuenta(test.preguntas.length, 'pregunta')}`),
             h('li', `${cuenta(E1.duracionMin, 'minuto')}`),
-            h('li', `Apruebas con ${cuenta(E1.minAciertos, 'acierto')}${E1.modulo ? ` (la misma proporción que los ${E0.minAciertos} de ${totalPreguntas(E0)} del examen completo)` : ''}`),
+            E1.modulo ? h('li', 'Apruebas el módulo si no pasas de los fallos permitidos en cada una de sus dos materias') : h('li', `Apruebas con ${cuenta(E1.minAciertos, 'acierto')}`),
             limites.map((b) => h('li', conIcono(b.ico, `${b.titulo}: como mucho ${cuenta(b.maxErrores, 'fallo')}`))),
             h('li', permitida ? conIcono('calculadora', 'Con calculadora científica (botón arriba, junto al reloj)') : 'Sin calculadora')),
           test.faltan.length ? h('p.warn', `Aviso: faltan preguntas en el banco para ${test.faltan.map((f) => bloque(E1, f.ut)?.titulo ?? f.ut).join(', ')}; el ${tipo === 'final' ? 'examen' : 'simulacro'} no está completo.`) : null,
           tipo === 'final' ? [fin.lineas.map((l) => h('p', l)), h('p.aviso-final', 'Como el día del examen: solo tú, el reloj y las reglas del tribunal. Al terminar, el profe te explica tus fallos.')] : null,
-          E1.modulo ? h('p.aviso-modulo', 'Simulacro de un solo módulo: sirve para practicarlo, pero no cuenta como simulacro aprobado en tu travesía ni en «¿Estás listo?». Para eso, el examen completo.') : null,
+          E1.modulo ? h('p.aviso-modulo', 'En el examen de verdad, si no apruebas el conjunto, puedes aprobar un módulo y conservarlo dos convocatorias de la misma administración. Aquí se corrige con ese criterio; en tu travesía y en «¿Estás listo?» solo cuenta el examen completo.') : null,
           test.avisoVistas ? h('p.aviso-vistas', `Ya has respondido el ${Math.round(test.vistas * 100)} % de las preguntas de estudio: este simulacro repetirá muchas que ya has visto y aprobarlo dice menos. La prueba de verdad es el examen final, con preguntas reservadas.`) : null,
           h('p', 'Puedes salir y seguir más tarde: se guarda solo. El reloj se para mientras no estés.'),
+          // Antes de que corra el reloj (nunca con el examen en marcha): cómo hacerlo.
+          h('p.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Antes de empezar: cómo hacer el examen'))),
           otro
             ? [h('p.aviso-medias', 'Tienes otro examen a medias.'),
               h('div.botones-columna',
@@ -1007,7 +1010,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       setChildren(el,
         h('header.resultado', h('h1', g.apto == null ? 'Resultado' : conIcono(g.apto ? 'ok' : 'no', g.apto ? 'APTO' : 'NO APTO')),
           test.tipo === 'final' ? lineaFinal : null,
-          E1.modulo ? h('p.muted', `${E1.titulo}: orientativo, con ${cuenta(E1.minAciertos, 'acierto')} de ${totalPreguntas(E1)} y los límites de fallos de sus temas. No cuenta como simulacro aprobado.`) : null,
+          E1.modulo ? h('p.muted', `${E1.titulo}: corregido como el aprobado por módulos del examen (fallos máximos en cada materia). En tu travesía solo cuenta el examen completo.`) : null,
           h('p', `${cuenta(g.aciertos, 'acierto')} de ${g.total}${porTiempo ? ' · se acabó el tiempo' : ''}.`),
           g.motivos.length ? h('ul.warn', g.motivos.map((m) => h('li', m))) : null),
         ses ? botonesFin : null,

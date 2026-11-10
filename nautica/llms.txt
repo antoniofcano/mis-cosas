@@ -27,6 +27,7 @@
 - `#/<tit>/curso/<clase>[?practica=1]` clase en tarjetas (se retoma en la tarjeta donde se dejó) y su práctica
 - `#/<tit>/teoria/ut/<n>?s=<semilla>[&f=1]` tanda de 10 preguntas de un tema (f=1: solo falladas)
 - `#/<tit>/examenes` examen a medias, simulacro y convocatorias · `#/<tit>/test/simulacro?s=<semilla>` · `#/<tit>/test/real/<convocatoria>`
+- `#/<tit>/estrategia` estrategia de examen: cómo HACER el examen de esa titulación en el tribunal del alumno (cifras, límites de fallos y colchón, presupuesto de tiempo, orden, leer y descartar, si no la sabes, repaso, el día antes y el del examen, módulos del PY) y «Tu estrategia» con sus simulacros (`src/course/estrategia.js`, textos en `data/comun/estrategia.json`: cada «norma» con su fuente, los «consejos» son método, y lo no comprobado para un tribunal va como pendiente). Imprimible. Nunca durante un examen en curso
 - `#/<tit>/carta` ejercicios de carta · `#/ej/<tipo>?s=<semilla>` ejercicio reproducible
 - `#/q/<idPregunta>` pregunta real resuelta (en la carta o paso a paso) · `#/<tit>/examenes/<lista>` lista de preguntas reales (p. ej. `#/per/examenes/carta`) · `#/mesa` mesa de cartas. Los enlaces antiguos `#/examenes/<fichero>/<id>` redirigen.
 - `#/<tit>/podcast` radio de a bordo: podcasts por tema (Elena y Andrés), en ruta de travesía · `#/<tit>/podcast/<id>` episodio con reproductor, guion sincronizado (data/podcast/<id>.json) y minijuego; el audio está en podcast/audio/<id>.mp3 y el índice en data/podcast-<tit>.json

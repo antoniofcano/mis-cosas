@@ -53,6 +53,8 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | R-32 | Fórmulas y tablas en una hoja (mareas, loxodrómica, husos, Ct…) con un ejemplo resuelto de cada una, imprimible | En curso | Parte del chuletario existente; nunca visible en un examen |
 | R-33 | Modo «la semana antes»: repaso comprimido de lo que más cae y de las ideas flojas, día a día hasta el examen | En curso | Se activa con la fecha del examen a 7 días o a mano; se apoya en la fase «Comprobar» |
 | R-34 | Fichas de vídeo de las ideas difíciles del PY (`docs/VIDEOS-PY.md`): objetivo, error típico, guion gráfico y preguntas reales de ejemplo | En curso | Los vídeos en sí quedan fuera de alcance (proyecto aparte) |
+| R-35 | Modo guiado «paso a paso» en las preguntas con resolución: la app pide y corrige cada paso | En curso | El kit de resoluciones expone el valor de cada paso; nunca en un examen |
+| R-36 | Diagnóstico por tipo de error en las preguntas reales («es lo que sale si restas la Ct») y «Tus errores más repetidos» | En curso | Solo se afirma cuando un único error típico lleva a la opción marcada; con medida de cobertura |
 | R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
 | R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 

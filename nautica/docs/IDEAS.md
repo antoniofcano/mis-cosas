@@ -45,3 +45,5 @@ _Última revisión: 10 de noviembre de 2026._
 - ~~Estrategia de examen~~ → R-31.
 - ~~Fórmulas y tablas en una hoja, con ejemplo resuelto~~ → R-32.
 - ~~Modo «la semana antes»~~ → R-33.
+- ~~Entrenar el procedimiento, no solo el resultado~~ → R-35 (se conserva arriba la explicación).
+- ~~Diagnóstico por tipo de error~~ → R-36 (ídem).

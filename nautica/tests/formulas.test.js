@@ -211,3 +211,17 @@ test('nunca en un examen: la hoja no se abre en modo examen ni se enlaza desde e
   // La vista comprueba el modo examen.
   assert.match(leer('src/ui/views/formulas.js'), /formulasPermitidas\(/);
 });
+
+test('todas las chuletas en una hoja: por tema, en el orden del examen y con las mismas clases que la chuleta de cada tema', async () => {
+  const { contenidoChuletas, contenidoChuleta } = await import('../src/ui/views/chuleta.js');
+  const { TITULACIONES } = await import('../src/theory/blocks.js');
+  const { readFileSync } = await import('node:fs');
+  for (const tit of ['per', 'py']) {
+    const curso = JSON.parse(readFileSync(new URL(`../data/curso/${tit}.json`, import.meta.url)));
+    const E = TITULACIONES[tit].estructura;
+    const temas = contenidoChuletas(curso, E);
+    assert.ok(temas.length >= 4, tit);
+    assert.deepEqual(temas.map((t) => t.ut), E.bloques.map((b) => b.ut).filter((ut) => contenidoChuleta(curso, ut).length));
+    for (const t of temas) assert.deepEqual(t.clases, contenidoChuleta(curso, t.ut), `${tit} tema ${t.ut}`);
+  }
+});

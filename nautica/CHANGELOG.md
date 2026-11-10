@@ -17,6 +17,14 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 10 de noviembre de 2026, tercera publicación · versión `e630b7f4c754`
+
+### Novedades
+
+- **Todas las chuletas en una hoja:** Biblioteca → «Todas las chuletas» reúne las de todos los temas, agrupadas por
+  tema, para imprimir o guardar en PDF de una vez (cada tema empieza en una página). También se llega desde la chuleta
+  de cualquier tema.
+
 ## 10 de noviembre de 2026, segunda publicación · versión `98fdf4ab1de6`
 
 ### Novedades

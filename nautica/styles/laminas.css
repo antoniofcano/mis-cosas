@@ -281,6 +281,12 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 
 /* Al imprimir: A4, blanco y negro (cualquier tema), sin fondos, la tinta y el magenta en negro. Dos columnas, cada
    clase sin partir y su título pegado a ella; arriba, la titulación y la fecha. */
+/* Todas las chuletas en una hoja (#/<tit>/chuletas): un bloque por tema */
+.mc-tema { margin-top: 1.4rem; }
+.mc-tema-tit { font-family: var(--lc-serif, Georgia, serif); font-size: 1.25rem; margin: 0 0 .5rem; color: var(--lc-tinta); display: flex; align-items: center; gap: .4rem; scroll-margin-top: 4.5rem; }
+.mc-indice { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0 0; }
+.mc-indice a { border: 1.5px solid var(--lc-tinta); border-radius: 999px; padding: .35rem .8rem; min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; color: var(--lc-tinta); background: var(--lc-fondo); font-size: .95rem; }
+.mc-todas { align-self: center; font-size: .95rem; }
 @media print {
   :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
     --lc-fondo: white; --lc-papel: white; --lc-tinta: black; --lc-apagado: black; --lc-magenta: black;
@@ -292,6 +298,9 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
   .mc-impresion { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 4mm; margin: 0; font-family: var(--lc-mono); font-size: 8pt; color: black; }
   .mc-eti-pantalla, .mc-hoja-cab .mc-eti-pantalla, .mc-hoja .mc-intro { display: none; }
   .mc-hoja h1.lc-titulo { font-size: 14pt; margin: 0; }
+  .mc-tema { margin-top: 0; break-before: page; }
+  .mc-tema:first-of-type { break-before: auto; }
+  .mc-tema-tit { font-size: 13pt; margin: 0 0 2mm; border-bottom: 1pt solid black; padding-bottom: 1mm; }
   .mc-clases { border: 0; padding: 2mm 0 0; background: none; column-count: 2; column-gap: 7mm; column-rule: .5pt solid darkgray; }
   /* Una clase larga puede seguir en la otra columna (si no, quedan medias páginas en blanco), pero nunca se parte un
      punto, una regla ni una trampa, y el título no se queda solo al pie */

@@ -26,6 +26,8 @@ nautica/
 │   ├── course/           CURSO              estado de las clases y repaso espaciado (engine.js), recomendador «Hoy» (plan.js)
 │   │                                        y ruta del curso: dependencias `requiere` y orden de las clases (ruta.js)
 │   ├── exams/            EXÁMENES REALES    kit de resolución (kit.js), lector de opciones y soluciones por banco
+│   ├── bloc/             BLOC DE NOTAS      hoja de borrador de cada ejercicio (notas.js: guardar en el aparato, datos del
+│   │                                        enunciado, insertar en la nota); sin DOM ni dependencias
 │   ├── theory/           MOTOR DE TESTS     estructura de cada titulación (blocks.js: PER, PY, TITULACIONES),
 │   │                                        simulacros, exámenes reales y corrección con las reglas oficiales
 │   ├── illustrations/    ILUSTRACIONES      SVG paramétrico animado (boyas, luces, maniobras, meteo…) por spec
@@ -92,6 +94,10 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   «Mis dispositivos» (`ui/dispositivos.js`: código, QR, unir otro aparato, estado), `#/vincular/<código>`
   (`views/vincular.js`) y un punto en el engranaje si lleva más de un día sin sincronizar (`ui/sync.js`). Código de
   terceros en `src/vendor/` (con su licencia en `src/vendor/README.md`).
+- **Correcciones de tema del alumno** ([`BANCOS.md`](BANCOS.md), «Correcciones del alumno»): «¿No es de este tema?»
+  bajo la explicación de una pregunta (`ui/tema-pregunta.js`) guarda en el progreso (`correcciones`, sincronizado) el
+  tema y la clase que elige el alumno; `bancos/correcciones.js` las aplica como una vista del banco para estudiar, sin
+  tocar los datos ni los exámenes. Se ven y se deshacen en Ajustes → «Mis correcciones».
 - **Recordatorio diario** ([`AVISOS.md`](AVISOS.md)): `store/recordatorio.js` (lógica sin DOM: push o calendario
   `.ics`, activar, desactivar, comprobación local al abrir), `ui/recordatorio.js` (Ajustes y tarjeta de Hoy),
   `store/sync/avisos.js` (horas, zonas y validación, compartido con el Worker) y los eventos `push` y
@@ -143,6 +149,12 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
 - Instrumentos (`graphics/instruments.js`) son dibujo puro; la interacción está en `ui/chart/interactive-chart.js`.
 - Mesa de cartas (`ui/chart/workspace.js`): carta a pantalla completa + panel. Traslada el formulario de respuesta
   del ejercicio al panel mientras está abierta y lo devuelve al cerrar; conserva lo dibujado entre aperturas.
+- Carta a pantalla completa (móvil; `setCompleta` en `ui/chart/interactive-chart.js`, estilos al final de `styles/app.css`):
+  botón «Ampliar» en la barra de cualquier carta y «Salir» siempre a la vista. Es diseño propio (clase `completa`), no la
+  Fullscreen API (el iPhone no la tiene para elementos; donde existe y la pantalla es táctil se pide además, como
+  mejora). Barra compacta de iconos abajo (vertical) o a la derecha (móvil tumbado), «Más» desplegable, zonas seguras
+  con `env()` (se añade `viewport-fit=cover` solo mientras dura). Incrustada en una página, la carta pasa a `<body>` y
+  vuelve a su hueco al salir; en la mesa, el panel se abre encima con «Enunciado». Lo dibujado no se toca.
 - Tutorial (`ui/chart/tutorial.js`): a partir de las primitivas con `step` de cualquier solución deduce el
   instrumento de cada trazo (`ray`/`line` → transportador, `arc`/`circle` → compás, `seg` → regla, `vec` →
   transportador + compás) y lo reproduce con encuadre automático. Cualquier tipo de ejercicio nuevo que dibuje
@@ -163,6 +175,17 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
 - **Hueco para otras ayudas** (calculadora, apéndice de matemáticas): `registrarAyuda({ id, crear(ctx) })` en
   `ui/ayudas.js` añade un botón a la barra de ayudas de todas las pantallas de práctica (`.ayudas-hueco[data-hueco]`).
   La barra no existe en los exámenes: si una ayuda debe estar también allí, que la vista del examen la pinte aparte.
+- **Bloc de notas** (`src/bloc/notas.js`, `ui/bloc.js`): hoja de borrador de un ejercicio de cuentas, con el enunciado
+  a la vista (sus datos marcados y en fichas que se apuntan con un toque), las notas del alumno (texto libre) y la
+  calculadora a mano («Apuntar <resultado>» la lleva a la nota). `botonBloc({ id, titulo, enunciado, comun, contexto,
+  opciones, calculadora })` se pone en cualquier barra: ejercicios generados, «Haz la cuenta» y problema modelo de las
+  clases, preguntas reales de cuentas (tandas, pregunta suelta, exámenes) y, con `crearBloc`, la pestaña «Bloc» del panel
+  de la mesa de cartas (`openWorkspace({ bloc })`). En el móvil es una hoja a pantalla completa que se ajusta al teclado
+  (`visualViewport`) y a la calculadora acoplada; en pantallas anchas, una columna a la izquierda que aparta la página.
+  Las notas son de ese ejercicio (`ID_BLOC`: tipo y semilla, pregunta, o pregunta dentro de un examen) y se guardan
+  solas en el aparato (`localStorage`, `nautica.bloc.v1`, las 40 más recientes, 60 días): **no** van al progreso ni al
+  registro de sincronización. Es papel de borrador: también en los exámenes, sin glosas ni pistas y sin calculadora si
+  el examen no la permite.
 - **Siglas y términos al tocarlos** (`data/comun/abreviaturas.json`, `theory/glosas.js`, `ui/glosas.js`):
   `glosar(raiz, { tit, ut, leccion })` convierte, en el texto ya pintado, la primera aparición de cada sigla y de
   cada término del vocabulario (`vocabulario-*.json`, los de ese tema y sus afines) en un botón con una explicación

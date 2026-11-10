@@ -76,7 +76,7 @@ function pintaParte({ s, ic, banco, progress, tit, prox, hoy, parteHueco, efecto
   // «Compartir mi parte» (sin nada personal: rango, faros, racha y minutos de hoy). No sale si el aparato no puede.
   const compartir = botonCompartir(() => ({ titulacion: TITULACIONES[tit].nombre, rango: sig.actual.nombre, racha: progress.racha(), minutosHoy: progress.minutosHoy(),
     faros: { encendidos: est.faros.filter((f) => f.estado === 'on').length, total: est.faros.length } }));
-  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.faros), animar }), compartir ? h('div.compartir-fila', compartir) : null);
+  setChildren(parteHueco, parteTravesiaEl({ tit, parte, manana, sig, catalogo: catalogoInsignias(est.temas, parte.reg.insignias), animar }), compartir ? h('div.compartir-fila', compartir) : null);
   return ` · TRAVESÍA: ${parte.nuevas.length} ideas nuevas, ${parte.rescatadas.length} rescatadas, ${parte.flojas.length} siguen flojas${parte.faros.length ? `, faro encendido: ${parte.faros.map((f) => f.nombre).join(', ')}` : ''}${parte.insignias.length ? `, insignias nuevas: ${parte.insignias.join(', ')}` : ''}. ${sig.texto}`;
 }
 

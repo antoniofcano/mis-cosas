@@ -1,6 +1,8 @@
 # La Travesía
 
-Gamificación sobria del progreso: la derrota hacia el examen con un **faro por bloque del temario**, un **rango**, una
+Gamificación sobria del progreso: la derrota hacia el examen en una **carta general** con pocos faros (cada faro, un
+tramo que agrupa temas enteros del temario) y, al tocar un faro, su **carta de aproximación** con una boya por tema y
+las mismas cuentas que enseña el Temario; un **rango**, una
 **semana** con día de descanso, unas **insignias** y un **parte de travesía** al terminar cada sesión. Solo existe si el
 banco activo (eje y titulación) tiene sus preguntas etiquetadas por concepto (docs/CONCEPTOS.md); sin `conceptos.json` no
 aparece nada y la app es la de siempre.
@@ -22,32 +24,82 @@ dibuja en estilo C con `src/illustrations/derrota-c.js` (ver docs/ENTRADA.md, «
 
 | Ruta | Qué es |
 |---|---|
-| `#/<tit>/travesia` | «← Hoy» y «Seguir» (si la sesión de hoy no está hecha), rango, carta con los faros y el marcador «estás aquí», detalle del faro elegido (ideas por reforzar con «Ver ficha»), semana, nota «¿Estás listo?» |
+| `#/<tit>/travesia` | «← Hoy» y «Seguir» (si la sesión de hoy no está hecha), rango, carta general con los faros y el marcador «estás aquí»; al tocar un faro, su carta de aproximación (boyas) con «Ver toda la derrota»; detalle del faro elegido (ideas por reforzar con «Ver ficha»), semana, nota «¿Estás listo?» |
 | `#/<tit>/travesia/insignias` | Rejilla de insignias con su detalle y la escalera de rangos |
 | Hoy | La carta en compacto como héroe (toda ella abre la travesía) y rango y semana en la fila de estado: docs/ENTRADA.md (las cuatro pestañas no cambian) |
 | Más, Mi progreso | Enlace a la travesía |
-| `#/<tit>/temario` | Un faro por **tema** con el mismo criterio (`luzDeFaro`, `farosPorTema`; ver docs/ICONOS.md) |
+| `#/<tit>/temario` | Un faro por **tema**: los mismos objetos que las boyas de la carta de aproximación (`farosPorTema`; ver docs/ICONOS.md) |
 | `#/<tit>/sesion` (al terminar) | Parte de travesía arriba del resumen, con «Compartir mi parte» (docs/ENTRADA.md) |
 
-La ficha de una idea abierta desde la travesía vuelve a ella (`?desde=travesia/<faro>`).
+La ficha de una idea abierta desde la travesía vuelve a ella (`?desde=travesia/<faro>`; el id de un faro es el de su
+tramo, o `t<n>` si es un tema).
 
 ## Faros
 
-Un faro se enciende con **≥ 80 %** de las ideas de su bloque dominadas (`FARO_ENCENDIDO`). «Dominada» es el estado
-`dominado` de `dominio()`. Los bloques del catálogo (`bloqueDe` de `src/course/nivel.js`) son 13 en el PER y 6 en el PY;
-para la carta se agrupan en seis faros, en el orden de estudio:
+### Carta general: faros de tramo
 
-| Faro | Bloques del catálogo |
-|---|---|
-| Nomenclatura náutica | `nomen` |
-| Maniobra y marinería | `amarre`, `maniobra` |
-| Seguridad y legislación | `estabilidad`, `seguridad`, `legis`, `emergencia` |
-| Balizamiento y RIPA | `baliza`, `ripa` |
-| Meteorología | `meteo` |
-| Navegación y carta | `nav`, `mareas`, `carta` |
+Los faros de la carta general son **tramos**: cada uno agrupa temas enteros del temario. La agrupación es un dato de la
+estructura de la titulación (`tramos` en `src/theory/blocks.js`, junto a los bloques); sin `tramos` hay un faro por tema.
 
-En el PY solo hay ideas en tres faros (seguridad, meteorología, navegación): se dibujan tres. Un bloque nuevo del catálogo
-sin faro cae en «Otras ideas» y un test lo detecta para que se asigne.
+| Titulación | Faros de la carta general | Temas de cada uno |
+|---|---|---|
+| PER (5) | Nomenclatura y maniobra | 1 Nomenclatura · 2 Amarre y fondeo · 7 Maniobra y navegación |
+| | Seguridad y emergencias | 3 Seguridad · 4 Legislación · 8 Emergencias |
+| | Balizamiento y RIPA | 5 Balizamiento · 6 RIPA |
+| | Meteorología | 9 Meteorología |
+| | Navegación y carta | 10 Teoría de navegación · 11 Carta |
+| PY (4) | Uno por tema, en el orden del Temario | Navegación · Carta · Seguridad · Meteorología |
+
+**La cuenta de un faro es la suma exacta de las de sus temas** (ideas dominadas / ideas totales) y se enciende con
+**≥ 80 %** de esas ideas dominadas (`FARO_ENCENDIDO`). «Dominada» es el estado `dominado` de `dominio()`.
+
+**Una sola fuente.** `farosDeTemas(ideas, estructura)` reparte las ideas por tema (cada idea, al tema de la mayoría de
+sus preguntas: `temaDeIdea` de `src/course/listo.js`; la luz, `luzDeFaro`) y da `estadoTravesia().temas`: un faro por
+tema con ideas, en el orden del Temario, con `id` `t<n>`, el título del tema y un nombre corto (`corto`, en la estructura).
+`farosDeTramos(temas, estructura)` los agrupa y da `estadoTravesia().faros` (la carta general, Hoy, el parte).
+`farosPorTema(est)` devuelve esos mismos temas al Temario. Un test comprueba, en la PER y el PY de todos los bancos, que
+faro de tramo = suma de sus temas = Temario, contra un cálculo aparte. «Mi progreso» (`conceptosPorTema`) cuenta las mismas
+ideas por tema (solo las que tienen alguna pregunta del estudio).
+
+### Carta de aproximación: el zoom a un faro
+
+Tocar un faro de la carta general lo elige (su detalle, debajo) y abre su **carta de aproximación** en el mismo sitio:
+
+- **Un faro con varios temas** (los tramos de la PER): una **boya por tema**, con su luz (apagada, a medias, encendida)
+  y su cuenta («19/21»), que son las del Temario (el mismo objeto). Tocar una boya lleva al tema (`#/<tit>/temario/<n>`).
+- **Un faro de un solo tema** (los cuatro del PY; Meteorología en la PER): una **boya por clase** del tema, con el estado
+  de la clase (sin empezar, a medias, vista, a repasar, saltada, aprendida: `estadoLeccion`, el mismo de la página del
+  tema). Solo una clase aprendida enciende su boya. Tocar una boya abre la clase (`#/<tit>/curso/<id>`). **No lleva
+  cuenta de ideas**: el reparto de ideas por clase que usa la página del tema tiene otro criterio («sabida», y una idea
+  puede estar en varias clases) y no cuadraría con los faros. Así el PY baja de tema a clases y la PER tiene ya el segundo
+  nivel donde el tramo es un solo tema; bajar de tema a clases en los demás tramos de la PER queda para la página del tema.
+- El barco («estás aquí») va sobre la boya de lo que toca: el tema de la sesión de hoy o, entre clases, la siguiente
+  clase de la ruta. Debajo de la carta, la misma lista en texto (nombre completo y cuenta o estado), con los mismos enlaces.
+- **«← Ver toda la derrota»** vuelve a la carta general (el foco va al botón al acercarse y al faro al volver).
+- Con «reducir movimiento» el cambio es directo; sin él, la carta se acerca o se aleja una vez (docs/EFECTOS.md).
+- En Hoy no hay zoom: la carta compacta entera es un enlace a la Travesía.
+
+**Las boyas son decorativas.** Se dibujan con el icono genérico `boya` de la app, en tinta sobre papel, dentro de un
+recuadro de esquinas redondeadas (para que no se confundan con un faro, que es redondo). No llevan color, forma ni marca
+de tope de ninguna marca del sistema de balizamiento (ni laterales ni cardinales): no enseñan balizamiento, y por eso no
+se usa ninguna marca con significado. Sus tres estados se distinguen por el filete, como los faros, y la encendida lleva un
+punto de luz.
+
+Antes los faros eran seis fijos que agrupaban los bloques del catálogo y sus porcentajes no coincidían con los del
+Temario, que ya iba por tema. Los cinco tramos de la PER se parecen a aquellos seis pero no son los mismos (aquellos
+agrupaban bloques del catálogo; estos, temas del examen), y `FAROS_ANTIGUOS` solo da nombre a sus insignias guardadas.
+
+**Ideas sin tema.** Toda idea de la travesía tiene alguna pregunta del estudio, así que `temaDeIdea` siempre le da un tema;
+hoy, en todos los bancos, todas caen en un tema del temario. Si alguna vez una idea quedara sin tema (o con un tema que la
+estructura no tiene), iría a «Otras ideas» (`otras`), un faro propio al final que solo existe si hace falta: así los faros
+siempre suman todas las ideas (las del rango). El Temario no lo pinta (no es un tema) y un test avisa si aparece.
+
+**El trazado.** La carta general es la de siempre, de 358 × 320 (`trazadoDerrota`), con puntos propios para cuatro faros
+(PY) y para cinco (PER); en Hoy, compacta (≈ 210 px de alto a 360 px en las dos titulaciones). La carta de aproximación
+(`trazadoAproximacion`) pone las boyas en una, dos o tres columnas, en filas recorridas en zigzag de abajo arriba, con
+la rosa y la cartela «APROXIMACIÓN» sobre la costa del sur; es más alta cuantas más boyas tenga (≈ 200 px con tres temas,
+≈ 550 px con las diez clases de un tema del PY, a 360 px). `trazadoDerrota` conserva una carta «densa» para más de seis
+faros, que hoy no usa ninguna titulación. Los tests miden las cajas de discos, rótulos y marcador a 360 px en las tres.
 
 **Extensión del criterio de dominio**: `dominio()` exige al menos 3 preguntas respondidas, y entre el 15 y el 30 % de las
 ideas de cada banco tienen 1 o 2 preguntas: nunca llegarían a «dominadas» y habría faros imposibles de encender. Una idea con
@@ -75,16 +127,34 @@ De lunes a domingo. Cuenta como día de estudio cualquier día con actividad (`l
 pasado sin estudiar después del primer día de estudio de la semana (uno por semana); los demás días sin estudiar son
 «libres». Nada se «rompe» ni hay contador que se pierda.
 
-## Insignias (primera versión)
+## Insignias
 
 | Insignia | Se consigue con |
 |---|---|
 | Guardia de 5 minutos | completar una sesión de «5 minutos» (la apunta esa pantalla al terminar) |
 | Una semana de travesía | ≥ 4 días de estudio en una misma semana (lunes a domingo), seguidos o no |
 | Idea rescatada | una idea que estaba floja deja de estarlo en una sesión, o una idea dominada cuyo primer intento fue fallo |
-| Bloque completo (una por faro) | todas las ideas del faro dominadas (el faro se enciende al 80 %; esta pide el 100 %) |
+| Tema completo (una por tema, `tema:<n>`) | todas las ideas del tema dominadas (el faro se enciende al 80 %; esta pide el 100 %) |
 | Primer simulacro aprobado | un simulacro o examen real aprobado |
 | Examen inédito aprobado | un examen inédito aprobado |
+
+**Migración de las «Bloque completo».** Con los seis faros antiguos había una insignia por faro, `bloque:<faro>`
+(`bloque:nomenclatura`, `bloque:maniobra`…). Ahora hay una por tema, `tema:<n>` (n = número del tema, estable). Reglas:
+
+- **Nada se borra ni se renombra.** Las `bloque:*` que alguien ya tenía siguen guardadas con su fecha y se siguen
+  enseñando en la rejilla, detrás de las de tema, como «Bloque completo: …» con una nota que explica el cambio
+  (`catalogoInsignias(faros, ganadas)`). Cuentan entre las conseguidas.
+- Las `bloque:*` que no se ganaron dejan de existir: no salen en la rejilla ni se pueden ganar.
+- **No hay insignia por tramo.** Las insignias siguen yendo por tema (`tema:<n>`, con el 100 % de sus ideas). Los cinco
+  tramos de la PER no coinciden con los seis faros antiguos, así que reutilizar las `bloque:*` para ellos sería dar por
+  ganado algo distinto de lo que se ganó.
+- Las nuevas `tema:*` no se regalan: salen de los datos de hoy con la regla de siempre (todas las ideas del tema
+  dominadas) y se apuntan al abrir Hoy, la Travesía o el parte. Quien tenía un bloque completo y conserva sus ideas
+  dominadas gana enseguida las de sus temas.
+- **Entre aparatos** (docs/SYNC.md) nada cambia: las insignias son una unión por id con la fecha más antigua; un aparato
+  con la versión anterior y otro con la nueva solo se suman ids. Los ids nuevos caben en las claves de una operación.
+- El recuerdo de «faros ya vistos» (`src/ui/efectos.js`, fuera del progreso) cambia de nombre (`faros-tema:<eje>/<tit>`):
+  la primera visita con los faros nuevos no anima nada.
 
 ## Parte de travesía
 

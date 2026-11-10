@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '90d75c6ee175';
+self.VERSION = '2709ca4f3f65';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -15,6 +15,7 @@ self.APP = [
  "src/analysis/checker.js",
  "src/analysis/quantities.js",
  "src/audio/efectos.js",
+ "src/bancos/correcciones.js",
  "src/bancos/ejes/andalucia.js",
  "src/bancos/ejes/baleares.js",
  "src/bancos/ejes/dgmm.js",
@@ -22,6 +23,7 @@ self.APP = [
  "src/bancos/index.js",
  "src/bancos/registro.js",
  "src/bancos/soluciones.js",
+ "src/bloc/notas.js",
  "src/calculadora/motor.js",
  "src/calculadora/reglas.js",
  "src/chart/chart.js",
@@ -271,6 +273,7 @@ self.APP = [
  "src/ui/app.js",
  "src/ui/aviso-error.js",
  "src/ui/ayudas.js",
+ "src/ui/bloc.js",
  "src/ui/calculadora.js",
  "src/ui/chart-widget.js",
  "src/ui/chart/interactive-chart.js",
@@ -312,6 +315,7 @@ self.APP = [
  "src/ui/router.js",
  "src/ui/sesion.js",
  "src/ui/sync.js",
+ "src/ui/tema-pregunta.js",
  "src/ui/titulacion.js",
  "src/ui/travesia.js",
  "src/ui/views/biblioteca.js",

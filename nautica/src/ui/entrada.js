@@ -6,7 +6,6 @@ import { hrefActividad } from './cierre.js';
 import { guardarSesion } from './sesion.js';
 import { nuevaSesion, indiceActual } from '../course/sesion.js';
 import { fotoTravesia } from '../course/travesia.js';
-import { temaDeIdea } from '../course/listo.js';
 import { faroDeParada, paradaDeSesion } from '../course/entrada.js';
 import { sincronizarTravesia } from './travesia.js';
 
@@ -22,16 +21,16 @@ export function empezarSesion(progress, tit, d, comp) {
 }
 
 /**
- * Dónde va el marcador «estás aquí» de la carta: el faro del tema de lo que toca (faroDeParada). `pasos` = los de la
- * sesión que toca (o los pendientes de la que va a medias, empezando por el actual).
+ * Dónde va el marcador «estás aquí» de la carta: el faro del tema de lo que toca (faroDeParada; cada faro es un tema).
+ * `pasos` = los de la sesión que toca (o los pendientes de la que va a medias, empezando por el actual).
  * @returns {number}  índice del faro, o -1 (la bandera del examen)
  */
-export function marcaDerrota(sy, ic, pasos = []) {
-  const p = paradaDeSesion(pasos);
-  const cache = new Map();
-  const temaDe = (id) => { if (!cache.has(id)) cache.set(id, temaDeIdea(ic, id)); return cache.get(id); };
-  return faroDeParada(sy.est.faros, p?.paso?.ut ?? null, temaDe);
+export function marcaDerrota(sy, pasos = []) {
+  return faroDeParada(sy.est.faros, paradaDeSesion(pasos)?.paso?.ut ?? null);
 }
+
+/** El tema (ut) de lo que toca, o null (repaso de fallos, mezclado…): para la boya «estás aquí» de la carta de aproximación. */
+export const temaQueToca = (pasos = []) => paradaDeSesion(pasos)?.paso?.ut ?? null;
 
 /** Los pasos que tocan ahora: los pendientes de la sesión a medias o, si no hay, los de `comp`. */
 export function pasosQueTocan(guardada, comp) {

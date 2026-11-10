@@ -38,7 +38,8 @@ export function buildSimulacro(estructura, banco, rng, { respuestas = null } = {
   const nuevas = respuestas ? preguntas.filter((q) => !respuestas[q.id]).length : null;
   const vistas = respuestas && enPool ? vistasPool / enPool : null;
   // Aviso: ya has visto casi todo el banco, así que el simulacro repite preguntas (aprobarlo dice menos).
-  return { tipo: 'simulacro', titulo: 'Simulacro de examen', preguntas, faltan, nuevas, vistas, avisoVistas: vistas != null && vistas >= AVISO_VISTAS };
+  const titulo = estructura.modulo ? `Simulacro del ${estructura.titulo.toLowerCase()}` : 'Simulacro de examen';
+  return { tipo: 'simulacro', titulo, modulo: estructura.modulo ?? null, preguntas, faltan, nuevas, vistas, avisoVistas: vistas != null && vistas >= AVISO_VISTAS };
 }
 
 /**

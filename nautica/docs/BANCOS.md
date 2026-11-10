@@ -189,13 +189,16 @@ guardados los bancos. El resto de la app no nombra ningún banco ni ningún eje 
     - `practica`: las que se practican (clases, tandas, repaso, mezcla, «5 minutos», sesiones y motor): `estudio`
       sin las preguntas de carta que no tienen solución programada (`practicable(q)`; anuladas o documentadas). Siguen
       en los exámenes de convocatoria, en los simulacros y en su vista por enlace (`#/q/<id>`), que dice el motivo.
+    - `oficial` = `{ porId, estudio }` con el tema oficial de cada pregunta (para armar y corregir exámenes),
+      `correcciones` (`Map`) y `correccionDe(id)`: ver «Correcciones del alumno». Sin correcciones, `oficial` es lo mismo.
     - `practicaDe(leccionId)` → ids de práctica de la clase (solo de `practica`); `resueltasDe(leccionId)` → ids
       de preguntas resueltas por la app del tipo de la clase (solo del estudio)
     - `listas`, `lista(id)` → `{ id, titulo, descripcion, tarjeta?, preguntas }` (sin las reservadas); `listaDe(q)` → la
       lista de una pregunta (la primera que la incluye)
   - `cargarCurso(tit, eje)` → el curso nacional con la práctica del eje en cada clase (`leccion.practica`);
     `cargarCursoBase(tit)` → el curso tal cual.
-  - `pregunta(id)` → `{ q, banco }` de cualquier eje (por su prefijo), o `null`.
+  - `pregunta(id)` → `{ q, banco }` de cualquier eje (por su prefijo), o `null` (`q`, la del banco; `banco`, el del alumno).
+  - `fijarCorreccionesAlumno(f)` → de dónde leer las correcciones de tema del alumno (la app: su progreso).
   - `resolverLegado(fichero)` → `{ eje, tit, lista }` de un fichero de banco antiguo.
   - `rutaResolucion(q)` → `['q', id]` si la pregunta tiene solución programada, o `null` (síncrona). Una de carta sin
     ella no ofrece «Ver la resolución»: quien la enseña dice el motivo (`src/ui/motivo-carta.js`).
@@ -256,6 +259,50 @@ docs/CUARENTENA.md):
   enseña la del guion (`equivalente(id, eje, { finalHecho })`). Si el audio del episodio lee una reservada
   (`reservadaDe(id, eje)` sobre las `preguntas` del episodio), la ficha avisa antes de escucharlo, sin bloquear.
 
+### Correcciones del alumno («¿No es de este tema?»)
+
+El `ut` de una pregunta es el **bloque del examen oficial en que salió** (por su número; etapa `clasificar`). Casi
+nunca «está mal» respecto al examen, pero a veces el tribunal pone en un bloque una pregunta que por su contenido el
+alumno espera en otro, o la práctica de una clase trae una de otro tema. El alumno que lo ve puede corregirlo:
+
+- **Dónde**: bajo la explicación del profe, junto a «Avisar de un error» (`accionTema(q)` de
+  `src/ui/tema-pregunta.js`, que pinta `profePanel`): tras responder en tandas por tema, mezcla, repaso, «5 minutos» y
+  la práctica de las clases; en la vista de la pregunta (`#/q/<id>`) y en la revisión de un examen ya terminado.
+  **Nunca con un examen en curso**: con el modo examen puesto (`src/ui/modo-examen.js`) ni se pinta ni se abre (y en un
+  examen en curso no hay panel del profe). Tampoco antes de responder (no distrae ni da pistas).
+- **Qué elige**: uno de los temas de la titulación (`TITULACIONES[tit].estructura.bloques`) y, opcional, una clase de
+  ese tema. Elegir el tema del banco sin clase es quitar la corrección.
+- **Dónde se guarda**: con su progreso (`progress.correcciones()`), sincronizado entre sus aparatos (docs/SYNC.md,
+  «Correcciones de tema»). **No modifica ningún fichero del banco ni el banco que el motor tiene en memoria.**
+- **Cómo se aplica** (`src/bancos/correcciones.js`, funciones puras): la app dice de dónde leerlas con
+  `fijarCorreccionesAlumno(() => progress.correcciones())` y `cargarBanco` devuelve **una vista** del banco (el mismo
+  banco si no hay correcciones para él). En la vista, la pregunta corregida es una copia con `ut` y `ut_titulo` nuevos,
+  `utBanco` (el del banco) y `temaCorregido: true`. Solo valen las correcciones de preguntas de ese banco a un tema que
+  existe; una clase que no existe o no es del tema elegido se ignora.
+
+| Cambia (el estudio del alumno, al momento) | No cambia (el examen sigue siendo el oficial) |
+|---|---|
+| `banco.estudio`, `banco.practica`, `banco.porId`: tandas por tema, «Mis fallos», Temario, mezcla, repaso, «5 minutos», plan, «¿Estás listo?» y el motor la cuentan en el tema elegido y deja de salir en el otro | `banco.todas`, `examenes`, `final`, `listas`, `convocatorias()`, `reserva`: los exámenes de convocatoria y el examen final llevan la pregunta en su tema oficial y se corrigen con él (reparto y límites de fallos del tribunal) |
+| `banco.practicaDe(clase)` y el curso (`cargarCurso`): sale de la práctica de las clases de otro tema (o de las que no son la clase elegida) y entra en la de la clase elegida | **Simulacros**: se arman con `banco.oficial.estudio` (tema oficial), así que el reparto por temas es el del examen; `banco.oficial.porId` rehace los exámenes guardados y el examen final |
+| La insignia de tema de la pregunta en las tandas y la chuleta que la acompaña | La **idea** (concepto) de la pregunta y los faros de la Travesía (salen del catálogo, no del tema). «Ideas por tema» pone cada idea en el tema de la mayoría de sus preguntas: una corrección suelta no la mueve |
+| | Las respuestas ya guardadas, las explicaciones, las reglas, las pausas del podcast y `pregunta(id)` (devuelve la pregunta del banco; la corrección está en `banco.correccionDe(id)`) |
+
+- **Verlas y deshacerlas**: Ajustes → «Mis correcciones» (`seccionCorrecciones`, `#/ajustes?campo=correcciones`), con
+  «Deshacer» en cada una. Una pregunta reservada para el examen final (corregida en la revisión de ese examen) se
+  nombra sin enseñar su enunciado.
+- **Que llegue al autor** (opcional): tras corregir, y en «Mis correcciones» para todas a la vez, «Avisar al autor» abre
+  la incidencia de GitHub de «Avisar de un error» ya escrita (id de la pregunta, eje y titulación, tema actual, tema
+  propuesto y clase; nunca el enunciado) y «Copiar el aviso» copia ese mismo texto para mandarlo por otro medio. La app
+  no envía nada por su cuenta. GitHub exige cuenta: un canal sin cuenta necesitaría un servicio que hoy no existe.
+- **Arreglarlo para todos**: en el banco, con `ut` y `ut_titulo` en los ajustes por id del eje
+  (`tools/bancos/ejes/<eje>/ajustes.json`) y en `preguntas.json`, y moviendo la pregunta en `practica.json`. Cuando el
+  banco ya tiene la pregunta en el tema que eligió el alumno, su corrección deja de aplicarse sola.
+- **Auditoría** (`node tools/auditoria-temas.mjs [--detalle|--json|--escribir]`): lista las preguntas sospechosas de
+  estar en el tema equivocado por cuatro señales (el tribunal la puso en bloques distintos, su idea está en otro tema,
+  sale en la práctica de una clase de otro tema —ya solo las excepciones revisadas, ver «Práctica y tema»—, su
+  vocabulario es de otro tema). No cambia datos.
+- Tests: `tests/correcciones-tema.test.js`.
+
 ### Rutas
 
 - `#/q/<id>[?l=<lista>]`: una pregunta real (de cualquier eje), para resolverla y verla resuelta en la carta;
@@ -309,7 +356,24 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
   buscar la pregunta equivalente de otro eje (`equivalente(id, eje)` del motor: las pausas del podcast).
 - **Práctica** (`tools/bancos/practica.mjs <eje> [--escribir]`): propone `practica.json` con la práctica de
   Andalucía como guía (concepto, vecinas, reglas del RIPA citadas, palabras propias de la clase y tipo de ejercicio
-  de las de carta) y avisa de las clases que no llegan a las preguntas de su homóloga.
+  de las de carta) y avisa de las clases que no llegan a las preguntas de su homóloga. Solo entre las clases del tema
+  de la pregunta (ver «Práctica y tema»). Ojo: regenerar del todo no reproduce la práctica publicada (los textos de las
+  clases y las explicaciones han cambiado desde que se generó); para corregir algo concreto, mejor una herramienta
+  dirigida como `practica-tema.mjs`.
+- **Práctica y tema**: la práctica de una clase solo lleva preguntas de **su tema** (el `ut` de la pregunta, que es el
+  bloque del examen en que salió, igual al `ut` de la clase). Los generadores mandaban a propósito algunas preguntas a
+  clases de otro tema (en Baleares, cuando una clase de otro tema puntuaba más del doble por contenido, y las mareas con
+  anuario del bloque de carta; en el genérico, las de la unidad de carta que no se hacen sobre la carta podían ir a las
+  clases de la teoría de navegación) y el alumno las veía fuera de sitio. Ya no: los dos generadores eligen solo entre
+  las clases del tema y acaban con `recolocar` (`tools/bancos/lib/practica-tema.mjs`), y `tests/practica-tema.test.js`
+  falla con cualquier pregunta en una clase de otro tema. `node tools/bancos/practica-tema.mjs [--detalle|--escribir|
+  --excepciones|--informes]` recoloca la práctica ya escrita: quita la pregunta de la clase de otro tema y la lleva a la
+  de su tema donde se enseña su idea (`clases` del concepto), a la que ya tiene al menos 3 de su idea o a la de sus
+  vecinas más parecidas; si ninguna la explica, se queda solo en su tema (tandas por tema, repaso y exámenes).
+  **Excepciones** (`tools/bancos/practica-excepciones.json`, una a una y con motivo): `tema-dudoso` (su idea vive en el
+  tema de esa clase: lo dudoso es su `ut`, que no se fuerza; sigue como candidata en `tools/auditoria-temas.mjs`) y
+  `clase-corta` (la clase se quedaría con menos de 3 preguntas de su tema, p. ej. la del Anuario del PY, que el tribunal
+  pregunta en el bloque de carta; la pregunta va además a la clase de su tema).
 - **Soluciones de carta**: el módulo de cada eje (`src/bancos/ejes/<eje>.js`) exporta `{ id, soluciones,
   documentadas }`. `documentadas` = las de carta que no se resuelven, con su motivo: `{ tipo: 'discrepancia' |
   'sin-calculo' | 'anulada', texto }`. `discrepancia`: la cuenta no llega a la opción oficial; el texto da la cuenta

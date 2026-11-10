@@ -664,7 +664,7 @@ El tema sale de la posición de la primera aparición (reparto 4-2-4-2-5-10-2-3-
 
 | id | ut | Posiciones | Enunciado |
 |---|---|---|---|
-| bal-per-2017-03-b-25 | 6 | 25, 40, 37, 37, 37 | Si vemos un faro de color verde y de golpe, cambia a color rojo, nos indica, |
+| bal-per-2017-03-b-25 | 10 (corregido a mano: `ajustes.json`; era 6 por su primera aparición) | 25, 40, 37, 37, 37 | Si vemos un faro de color verde y de golpe, cambia a color rojo, nos indica, |
 | bal-per-2017-03-ci-38 | 10 | 38, 17, 17, 41, 15, 41, 15, 37, 40, 40 | Si navegando de noche en direccion Norte o Sur entre Mallorca e Isla Dragonera ( Es Freu) observamos |
 | bal-per-2017-07-c-05 | 2 | 5, 5, 2 | Que nombre recibe el asta larga con un gancho en un extremo que utilizamos para ayudarnos a atracar  |
 | bal-per-2020-07-d-40 | 10 | 40, 40, 36 | ¿Qué efecto tiene la presión atmosférica sobre el nivel de las aguas? |
@@ -731,9 +731,9 @@ Soluciones programadas en `src/exams/solutions/baleares-{per,py}-NN.js` (por lot
 
 ### Práctica por clase
 
-`practica.mjs` asigna cada pregunta del estudio (sin anuladas, retiradas ni reservadas, ni las que aparecen también en una convocatoria reservada) a una clase: por el concepto revisado del otro banco, por el tipo de ejercicio de su solución de carta, las de mareas con anuario a su clase de mareas y, el resto, por contenido (TF-IDF del enunciado, la respuesta y la explicación frente al texto de cada clase, más el voto de las 7 preguntas más parecidas del otro banco). Medido sobre el otro banco, dejando cada pregunta fuera, acierta su clase revisada en el 93 % (PER) y el 97 % (PY); el método por palabras clave, en el 83 % y el 86 %. Si una clase de otro tema puntúa más del doble (incendios, primeros auxilios o hipotermia que el tribunal pone entre las de seguridad), la pregunta va a esa clase. `resueltos.json` lista, por clase de carta, hasta 12 preguntas resueltas del estudio.
+`practica.mjs` asigna cada pregunta del estudio (sin anuladas, retiradas ni reservadas, ni las que aparecen también en una convocatoria reservada) a una clase: por el concepto revisado del otro banco, por el tipo de ejercicio de su solución de carta, las de mareas con anuario a su clase de mareas y, el resto, por contenido (TF-IDF del enunciado, la respuesta y la explicación frente al texto de cada clase, más el voto de las 7 preguntas más parecidas del otro banco). Medido sobre el otro banco, dejando cada pregunta fuera, acierta su clase revisada en el 93 % (PER) y el 97 % (PY); el método por palabras clave, en el 83 % y el 86 %. Una pregunta solo va a clases de su tema (el bloque del examen en que salió): antes, si una clase de otro tema puntuaba más del doble (incendios, primeros auxilios o hipotermia que el tribunal pone entre las de seguridad), iba a esa clase, y las mareas con anuario del bloque de carta, a la clase de mareas del tema anterior; el alumno las veía fuera de sitio. Las que estaban así se han recolocado (`node tools/bancos/practica-tema.mjs`: 43 del PER a la clase de su tema donde se enseña su idea y 24 fuera de la práctica de las clases, solo en su tema; 32 del PY, además, a su clase de mareas). Las excepciones (PER 52, PY 35: su idea vive en el otro tema, o la clase se quedaría sin práctica) están una a una en `tools/bancos/practica-excepciones.json`. `resueltos.json` lista, por clase de carta, hasta 12 preguntas resueltas del estudio.
 
-- PER: 3223 preguntas en 86 clases (mínimo 2, mediana 28, máximo 148); ninguna clase sin práctica; ninguna reservada.
+- PER: 3199 preguntas en 86 clases (mínimo 2, mediana 28, máximo 148); ninguna clase sin práctica; ninguna reservada. Otras 24 del estudio no están en ninguna clase (solo en su tema).
 - PY: 1039 preguntas en 39 clases (mínimo 2, mediana 24, máximo 68); ninguna clase sin práctica; ninguna reservada.
 - Clases con poca práctica propia del banco: per-7-8 (desatracar), per-11-8 (marcaciones no simultáneas), py-3-4 (loxodrómica: conceptos), con 2 preguntas cada una.
 

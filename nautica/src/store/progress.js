@@ -14,7 +14,7 @@ import { EJE_POR_DEFECTO } from '../bancos/registro.js';
 import { crearRegistro, CLAVE_SYNC } from './sync/registro.js';
 import { plegarConEstado, aplicar, compararOps } from './sync/plegar.js';
 import { separar, crearBase } from './sync/fusion.js';
-import { esAjusteCompartido } from './sync/operaciones.js';
+import { esAjusteCompartido, claveCorreccion, correccionValida } from './sync/operaciones.js';
 const KEY = 'nautica.progress.v1';
 const VERSION_TRAVESIA_GUARDADA = 1; // versión del campo `travesia` (v:1 = { v, bancos: { 'eje/tit': { rango, insignias: { id: ISO } } } })
 
@@ -155,6 +155,25 @@ export function createProgressStore(storage = safeStorage()) {
     repasoConceptos: (eje, tit) => data.repConceptos?.[`${eje}/${tit}`] ?? {},
     recordRepasoConcepto(eje, tit, concepto, estado) {
       registra({ k: 'v', t: Date.now(), c: 'repConceptos', p: [`${eje}/${tit}`, concepto], v: estado });
+    },
+
+    /**
+     * Correcciones de tema del alumno (src/bancos/correcciones.js): { [idPregunta]: { ut, clase?, de?, t } }. «Esta
+     * pregunta no es de este tema»: cambia en qué tema (y, si se elige, en qué clase) cuenta la pregunta en SU estudio;
+     * no toca los datos del banco. Una por pregunta; entre aparatos gana la última, y quitarla también se sincroniza.
+     * `de` = el tema que tenía en el banco cuando se corrigió (para enseñarlo y para avisar al autor).
+     */
+    correcciones: () => data.correcciones ?? {},
+    correccionDe: (idPregunta) => data.correcciones?.[idPregunta] ?? null,
+    corregirTema(idPregunta, { ut, clase = null, de = null }) {
+      const t = Date.now();
+      const v = { ut, ...(clase ? { clase } : {}), ...(de != null ? { de } : {}), t: new Date(t).toISOString() };
+      if (!correccionValida(v)) throw new Error('Corrección no válida');
+      registra({ k: 'v', t, c: 'settings', p: [claveCorreccion(idPregunta)], v });
+    },
+    quitarCorreccion(idPregunta) {
+      if (!data.correcciones?.[idPregunta]) return;
+      registra({ k: 'v', t: Date.now(), c: 'settings', p: [claveCorreccion(idPregunta)] }); // sin valor = borrar
     },
 
     /**

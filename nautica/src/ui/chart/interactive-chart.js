@@ -14,7 +14,7 @@ import { getRaster } from './raster.js';
 import { rulersLayer, RULER_LEFT, RULER_TOP } from '../../graphics/rulers.js';
 import { parseAngle } from '../../math/format.js';
 import { botonCalculadora } from '../calculadora.js';
-import { icono } from '../iconos.js';
+import { icono, conIcono } from '../iconos.js';
 
 const TOOLS = [
   { id: 'move', icon: 'mover', label: 'Mover', help: 'Arrastra la carta para desplazarla, o arrastra tus puntos, notas, guías y el transportador. Un trazo: por un extremo (asa redonda) lo alargas o giras; por el medio lo trasladas paralelo; un círculo, por el centro lo mueves y por el borde cambias el radio. Para una guía, arrastra desde la escala de latitudes (izquierda) o de longitudes (arriba). Toca un punto para mostrar u ocultar sus coordenadas; toca una nota para editarla o cambiar su tamaño. Rueda o dos dedos: zoom.' },
@@ -42,8 +42,9 @@ let nextId = 1;
  * @param {object} [opts.progress] almacén de ajustes (capa preferida)
  * @param {number} [opts.height]
  * @param {boolean} [opts.calculadora]  botón de la calculadora científica en la barra (no en un examen que no la permite)
+ * @param {(activa: boolean) => void} [opts.onCompleta]  avisa al entrar y al salir de la carta a pantalla completa
  */
-export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480, fill = false, calculadora = true }) {
+export function interactiveChart({ chart, items = [], focus = [], step = Infinity, progress, height = 480, fill = false, calculadora = true, onCompleta }) {
   const state = {
     tool: 'move', z: 1, cx: 0, cy: 0, w: 640, h: height,
     user: [], history: [], protractor: null, protractorVisible: false, showCoords: true, drag: null, pointers: new Map(), preview: '', raster: null,
@@ -132,37 +133,121 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   const coordsBtn = h('button.tool', { type: 'button', title: 'Mostrar u ocultar las coordenadas de los puntos', 'aria-pressed': 'true', onclick: () => { state.showCoords = !state.showCoords; render(); } }, h('span.tool-icon', icono('etiqueta')), h('span.tool-name', 'Coorde\u00ADnadas'));
 
 
-  const el = h('div.ichart',
-    // Tres grupos: las herramientas de dibujo (siempre enteras, también en el móvil), las de edición y las de vista.
-    h('div.ichart-toolbar',
-      h('div.tools.dibujo', { role: 'group', 'aria-label': 'Herramientas de dibujo' }, toolButtons,
-        // La calculadora va con las de dibujo: siempre a la vista, también en el móvil (no escondida en «Más»).
-        calculadora ? botonCalculadora({ clase: 'tool', texto: 'Calcu\u00ADladora' }) : null,
-        // Solo en pantallas estrechas: muestra u oculta edición y vista para que la carta conserve su alto.
-        h('button.tool.mas-herramientas', { type: 'button', 'aria-expanded': 'false', title: 'Más herramientas: deshacer, coordenadas, zoom…', onclick: (ev) => {
-          const bar = ev.currentTarget.closest('.ichart-toolbar');
-          const abierta = bar.classList.toggle('abierta');
-          ev.currentTarget.setAttribute('aria-expanded', String(abierta));
-        } }, h('span.tool-icon', icono('mas')), h('span.tool-name', 'Más'))),
-      h('div.tools.edicion', { role: 'group', 'aria-label': 'Edición' },
-        h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', icono('deshacer')), h('span.tool-name', 'Deshacer')),
-        coordsBtn, coordBtn,
-        h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', icono('papelera')), h('span.tool-name', 'Borrar todo'))),
+  // Carta a pantalla completa (pensada para el móvil): un botón para entrar en la barra y otro, siempre a la vista, para
+  // salir. Las «acciones» van junto a la línea de lectura; quien incrusta la carta puede añadir las suyas (la mesa pone
+  // ahí el botón del enunciado) y sus ayudas en `extras` (se ven al desplegar «Más»).
+  const calcBtn = calculadora ? botonCalculadora({ clase: 'tool', texto: 'Calcu\u00ADladora' }) : null;
+  const entrarBtn = h('button.tool.entrar-completa', { type: 'button', title: 'Ampliar: carta a pantalla completa, con las herramientas en una barra', 'aria-label': 'Ampliar: carta a pantalla completa', onclick: () => setCompleta(true) },
+    h('span.tool-icon', icono('pantalla-completa')), h('span.tool-name', 'Ampliar'));
+  const salirBtn = h('button.small.salir-completa', { type: 'button', title: 'Salir de la pantalla completa (Esc)', 'aria-label': 'Salir de la pantalla completa', onclick: () => setCompleta(false) }, conIcono('pantalla-reducir', 'Salir'));
+  const accionesCompleta = h('div.completa-acciones', salirBtn);
+  const extrasCompleta = h('div.tools.extras');
+  const masBtn = h('button.tool.mas-herramientas', { type: 'button', 'aria-expanded': 'false', title: 'Más herramientas: deshacer, coordenadas, zoom…', onclick: () => ponMas(!toolbar.classList.contains('abierta')) },
+    h('span.tool-icon', icono('mas')), h('span.tool-name', 'Más'));
+  const ponMas = (abierta) => { toolbar.classList.toggle('abierta', abierta); masBtn.setAttribute('aria-expanded', String(abierta)); };
+  const grupoDibujo = h('div.tools.dibujo', { role: 'group', 'aria-label': 'Herramientas de dibujo' }, toolButtons,
+    // La calculadora va con las de dibujo: siempre a la vista, también en el móvil (no escondida en «Más»).
+    calcBtn, entrarBtn,
+    // Solo en pantallas estrechas: muestra u oculta edición y vista para que la carta conserve su alto.
+    masBtn);
+  const grupoEdicion = h('div.tools.edicion', { role: 'group', 'aria-label': 'Edición' },
+    h('button.tool', { type: 'button', title: 'Deshacer', onclick: undo }, h('span.tool-icon', icono('deshacer')), h('span.tool-name', 'Deshacer')),
+    coordsBtn, coordBtn,
+    h('button.tool', { type: 'button', title: 'Borrar todo lo dibujado', onclick: clearUser }, h('span.tool-icon', icono('papelera')), h('span.tool-name', 'Borrar todo')));
+  // Tres grupos: las herramientas de dibujo (siempre enteras, también en el móvil), las de edición y las de vista.
+  // (edición, vista y extras van en una caja que normalmente no pinta nada —display: contents— y a pantalla completa en
+  // el móvil es el desplegable de «Más»)
+  const toolbar = h('div.ichart-toolbar',
+    grupoDibujo,
+    h('div.tools-mas',
+      grupoEdicion,
       h('div.tools.vista', { role: 'group', 'aria-label': 'Vista' },
         h('button.tool', { type: 'button', title: 'Acercar', onclick: () => zoomBy(1.6) }, h('span.tool-icon', icono('acercar')), h('span.tool-name', 'Acercar')),
         h('button.tool', { type: 'button', title: 'Alejar', onclick: () => zoomBy(1 / 1.6) }, h('span.tool-icon', icono('alejar')), h('span.tool-name', 'Alejar')),
         h('button.tool', { type: 'button', title: 'Encuadrar toda la zona de trabajo', onclick: () => { fit(); render(); } }, h('span.tool-icon', icono('encuadrar')), h('span.tool-name', 'Encuadrar')),
         layerSelect,
       ),
+      extrasCompleta,
     ),
+  );
+  const el = h('div.ichart',
+    toolbar,
     svg,
     coordBar,
     guideBar,
     noteBar,
     protractorBar,
-    readout,
+    h('div.ichart-pie', readout, accionesCompleta),
   );
   if (fill) el.classList.add('fill');
+  // A pantalla completa, «Más» se recoge al abrir una ayuda (calculadora, chuleta): si no, taparía lo que se abre.
+  extrasCompleta.parentElement.addEventListener('click', (ev) => { if (completa && ev.target.closest('.boton-calculadora, .boton-chuleta')) ponMas(false); });
+
+  // ---------- Pantalla completa
+  // La base es diseño propio (clases y CSS): en el iPhone no hay Fullscreen API para elementos. Dentro de la mesa de
+  // cartas, que ya ocupa la ventana, solo cambia la disposición; incrustada en una página, la carta pasa al final de
+  // <body> (deja un hueco para volver) y se fija a la ventana. Lo dibujado vive en `state`: no se toca.
+  let completa = false;
+  let hueco = null;
+  let vistaPrevia = null;
+  let pidioPantalla = false;
+  const metaVista = () => document.querySelector('meta[name="viewport"]');
+  const alEscape = (ev) => {
+    if (ev.key !== 'Escape' || ev.defaultPrevented || ev.target.closest?.('input, .chuleta-panel, .glosa-pop')) return;
+    ev.preventDefault(); // antes que la mesa: Esc sale de la pantalla completa, no cierra la carta
+    setCompleta(false);
+  };
+  const alNavegar = () => setCompleta(false);
+  const alCambiarPantalla = () => { if (!document.fullscreenElement && pidioPantalla) { pidioPantalla = false; setCompleta(false); } };
+  function setCompleta(on) {
+    on = !!on;
+    if (on === completa) return;
+    completa = on;
+    ponMas(false);
+    const enMesa = !!el.closest('.workspace');
+    if (on) {
+      if (!enMesa) {
+        hueco = document.createComment('carta a pantalla completa');
+        el.replaceWith(hueco);
+        document.body.append(el);
+        el.classList.add('fija');
+        el.setAttribute('role', 'dialog');
+        el.setAttribute('aria-modal', 'true');
+        el.setAttribute('aria-label', 'Carta a pantalla completa');
+      }
+      if (calcBtn) grupoEdicion.prepend(calcBtn); // en la barra compacta solo caben las de dibujo: la calculadora, en «Más»
+      el.classList.add('completa');
+      document.body.classList.add('carta-completa');
+      // Con el iPhone tumbado, la carta llega hasta los bordes (el CSS respeta las zonas seguras con env()).
+      const meta = metaVista();
+      if (meta && !/viewport-fit/.test(meta.content)) { vistaPrevia = meta.content; meta.content = `${meta.content}, viewport-fit=cover`; }
+      document.addEventListener('keydown', alEscape, true);
+      addEventListener('hashchange', alNavegar);
+      // Mejora donde exista (Android): la pantalla completa de verdad, que además quita la barra del navegador.
+      const raiz = document.documentElement;
+      if (raiz.requestFullscreen && document.fullscreenEnabled && !document.fullscreenElement && matchMedia('(pointer: coarse)').matches) {
+        pidioPantalla = true;
+        document.addEventListener('fullscreenchange', alCambiarPantalla);
+        Promise.resolve(raiz.requestFullscreen({ navigationUI: 'hide' })).catch(() => { pidioPantalla = false; });
+      }
+    } else {
+      el.classList.remove('completa', 'fija');
+      if (calcBtn) entrarBtn.before(calcBtn);
+      if (hueco) {
+        for (const a of ['role', 'aria-modal', 'aria-label']) el.removeAttribute(a);
+        if (hueco.isConnected) hueco.replaceWith(el); else el.remove(); // la página ya es otra: no hay adónde volver
+        hueco = null;
+      }
+      document.body.classList.remove('carta-completa');
+      if (vistaPrevia !== null) { const meta = metaVista(); if (meta) meta.content = vistaPrevia; vistaPrevia = null; }
+      document.removeEventListener('keydown', alEscape, true);
+      removeEventListener('hashchange', alNavegar);
+      document.removeEventListener('fullscreenchange', alCambiarPantalla);
+      if (pidioPantalla) { pidioPantalla = false; if (document.fullscreenElement) Promise.resolve(document.exitFullscreen()).catch(() => {}); }
+    }
+    onCompleta?.(on);
+    (on ? salirBtn : entrarBtn).focus({ preventScroll: true });
+  }
 
   // ---------- Vista
   function fit(geoPoints = focus) {
@@ -446,6 +531,7 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
   }
 
   svg.addEventListener('pointerdown', (ev) => {
+    if (completa) ponMas(false); // al volver a la carta, «Más» se recoge solo
     svg.setPointerCapture(ev.pointerId);
     state.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
     if (state.pointers.size === 2) { state.drag = { kind: 'pinch', ...pinchInfo() }; state.preview = ''; return; }
@@ -807,6 +893,11 @@ export function interactiveChart({ chart, items = [], focus = [], step = Infinit
     setStep(s) { step = s; render(); },
     setItems(newItems, newFocus) { items = newItems; if (newFocus) { focus = newFocus; fit(); } render(); },
     getUserItems: () => state.user,
+    /** Carta a pantalla completa: entrar o salir, saber si lo está y dónde añadir botones propios mientras dura. */
+    setCompleta,
+    enCompleta: () => completa,
+    accionesCompleta,
+    extrasCompleta,
     /** Resumen textual de lo dibujado por el alumno (para asistentes IA). */
     summary() {
       return state.user.map((it) => {

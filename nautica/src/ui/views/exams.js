@@ -12,10 +12,13 @@ import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
 import { avisoError } from '../aviso-error.js';
+import { accionTema } from '../tema-pregunta.js';
 import { cuenta } from '../../texto.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { conIcono } from '../iconos.js';
+import { botonBloc } from '../bloc.js';
+import { ID_BLOC } from '../../bloc/notas.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -126,6 +129,8 @@ export function preguntaView({ ctx, progress, params: route }) {
     const enTema = { modo: 'pregunta', tit: q.tit, ut: q.ut, ejercicios: run?.sol.ejercicio ? [run.sol.ejercicio] : [] };
     const glosas = { tit: q.tit, ut: q.ut };
     const ayudas = crearAyudas(enTema);
+    // Bloc (hoja de borrador): el enunciado, las opciones y las notas de esta pregunta.
+    const bloc = { id: ID_BLOC.pregunta(q.id), titulo: `${q.convocatoria ?? ''}${q.numero ? ` · pregunta ${q.numero}` : ''}`, enunciado: q.enunciado, comun: q.enunciado_comun, contexto: q.contexto, opciones: q.opciones };
     const result = h('div.diagnosis', { 'aria-live': 'polite' });
     const solution = h('div.solution', { hidden: true });
     const aiPre = h('pre.ai-text');
@@ -190,7 +195,7 @@ export function preguntaView({ ctx, progress, params: route }) {
         chart: ctx.chart, title: `${titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
         steps: run.k.steps, items: run.k.items, focus: run.k.focus, answerNodes: [answerBlock], tab, progress,
         result: examOutroText(),
-        summary: () => summaryText, ayudas: enTema, glosas,
+        summary: () => summaryText, ayudas: enTema, glosas, bloc,
       });
     };
     const tableButtons = run?.k.items.length
@@ -206,7 +211,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       h('header.con-ayudas', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre), q.anulada ? h('span.badge.warn', 'Anulada') : null), ayudas.barra),
       ayudas.panel,
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
-      h('section.statement', enunciadoEl, tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
+      h('section.statement', enunciadoEl, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
       answerBlock,
       h('div.actions',
         prev ? h('a.btn.secondary', { href: enLista(prev) }, '← Anterior') : null,
@@ -217,7 +222,7 @@ export function preguntaView({ ctx, progress, params: route }) {
         q.fuentes?.plantilla ? [' · ', h('a', { href: q.fuentes.plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
         ''),
       q.notas ? h('details', h('summary', 'Notas sobre la fuente'), h('p.small', q.notas)) : null,
-      h('p.pie-aviso', avisoError(`Pregunta ${q.id} (${q.convocatoria ?? lista.titulo})`, q.enunciado.slice(0, 120))),
+      h('p.pie-aviso', accionTema(q), avisoError(`Pregunta ${q.id} (${q.convocatoria ?? lista.titulo})`, q.enunciado.slice(0, 120))),
       h('details.ai-context#ai-context', h('summary', 'Para asistentes de IA'),
         h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
     );

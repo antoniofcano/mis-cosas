@@ -69,8 +69,8 @@ const ESTADO_TEMA_CLS = { bien: 'ok', repasar: 'warn' };
 const chipLimite = (b) => (b.maxErrores != null ? h('span.chip-limite', conIcono('bandera', `Máx. ${cuenta(b.maxErrores, 'fallo')} de ${b.n}`)) : null);
 
 /**
- * El faro de un tema en el Temario: mismo dibujo, colores y criterio que los de la Travesía (luzDeFaro de
- * src/course/travesia.js): apagado, en curso o encendido. Sin ideas etiquetadas, el icono del tema en un disco neutro.
+ * El faro de un tema en el Temario: es el mismo faro de la carta de la derrota (farosDeTemas de
+ * src/course/travesia.js: un faro por tema), con su dibujo y sus colores: apagado, en curso o encendido. Sin ideas etiquetadas, el icono del tema en un disco neutro.
  */
 const discoTema = (b, f, recien = false) => (f ? h('span.tema-faro', { class: `${f.estado}${recien ? ` ${claseAnimada('se-enciende')}` : ''}`.trim() }, icono('faro')) : h('span.tema-faro.sin-ideas', icono(b.ico)));
 
@@ -90,8 +90,9 @@ export function temarioView({ progress, tit }) {
     const hoyUt = d.plan[0]?.ut ?? null;
     const filas = d.st.temas; // del motor
     // Los faros por tema (solo si el banco tiene sus preguntas etiquetadas por idea); si no, el aspecto de siempre.
-    const est = d.indiceConceptos ? estadoTravesia({ ic: d.indiceConceptos, respuestas: d.respuestas, ahora: d.ahora }) : null;
-    const faros = farosPorTema(est, d.indiceConceptos);
+    // Son los mismos faros de la carta de la derrota (estadoTravesia().faros), con las mismas cuentas.
+    const est = d.indiceConceptos ? estadoTravesia({ ic: d.indiceConceptos, estructura: T.estructura, respuestas: d.respuestas, ahora: d.ahora }) : null;
+    const faros = farosPorTema(est);
     // El faro de un tema que se ha encendido desde la última visita se enciende una vez (src/ui/efectos.js).
     const recien = new Set(est ? novedades(`temario:${d.banco.eje.id}/${tit}`, filas.filter(({ b }) => faros.get(b.ut)?.estado === 'on').map(({ b }) => String(b.ut))) : []);
     summaryText = `VISTA temario ${T.sigla}\n${filas.map(({ b, e }) => { const f = faros.get(b.ut); return `${b.ut} ${b.titulo}: examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · acierto ${e.pct ?? '—'}${e.clases.total ? ` · clases ${e.clases.vistas}/${e.clases.total}` : ''}${f ? ` · ideas dominadas ${f.dominadas}/${f.total} · faro ${f.estado}` : ''}${b.ut === hoyUt ? ' · HOY TOCA' : ''}`; }).join('\n')}` +

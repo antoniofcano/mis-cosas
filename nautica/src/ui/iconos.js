@@ -89,6 +89,8 @@ const P = {
   encuadrar: '<path d="M4 9V5.5A1.5 1.5 0 0 1 5.5 4H9M15 4h3.5A1.5 1.5 0 0 1 20 5.5V9M20 15v3.5a1.5 1.5 0 0 1-1.5 1.5H15M9 20H5.5A1.5 1.5 0 0 1 4 18.5V15"/>',
   minimizar: '<path d="M5 18h14"/>',
   ventana: '<rect x="4.5" y="4.5" width="15" height="15" rx="2"/>',
+  'pantalla-completa': '<path d="M14 4h6v6M20 4l-6.5 6.5M10 20H4v-6M4 20l6.5-6.5"/>',
+  'pantalla-reducir': '<path d="M20 10h-6V4M14 10l6-6M4 14h6v6M10 14l-6 6"/>',
   // --- náutica (temas, mazos, ejercicios) ------------------------------------------------------------------------------
   // faro: la lámpara se enciende con CSS (.lampara); ancla (rango), bandera (examen), insignias: la Travesía
   faro: '<path d="M9 21l1.5-11h3L15 21z"/><rect class="lampara" x="10" y="6" width="4" height="4"/><path d="M9.5 6 12 3.5 14.5 6M7 21h10M4.5 8H8M16 8h3.5"/>',

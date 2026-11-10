@@ -15,6 +15,7 @@ import { EJE_POR_DEFECTO } from './registro.js';
 import { equivalenteEn } from './equivalentes.js';
 import { validarConfig, aplicarConfigCurso, aplicarConfigReglas, aplicarConfigReglasDe } from '../course/config-profe.js';
 import { RUTA_INDICE, rutaGrupo } from '../conceptos/catalogo.js';
+import { correccionesValidas, firmaCorrecciones, temasDeClases, aplicarCorrecciones } from './correcciones.js';
 
 export { EJE_POR_DEFECTO, SOLUCIONES };
 
@@ -91,6 +92,29 @@ export function crearBancos(leer) {
   /** @param {() => object|null} f  devuelve la configuración guardada (o null) */
   const fijarConfigProfe = (f) => { leerConfig = typeof f === 'function' ? f : () => null; };
   const conConfig = (curso, tit) => aplicarConfigCurso(curso, configActiva(), tit);
+  // Correcciones de tema del alumno («esta pregunta no es de este tema», src/bancos/correcciones.js): la app dice de
+  // dónde leerlas (su progreso) con fijarCorreccionesAlumno. Se aplican encima del banco ya cargado, que no cambia:
+  // cargarBanco devuelve una vista con las preguntas corregidas en el tema que eligió el alumno (solo para estudiar;
+  // los exámenes siguen con el tema oficial). En Node (herramientas, tests) no hay: el banco es el de los datos.
+  let leerCorrecciones = () => null;
+  /** @param {() => Record<string, { ut: number, clase?: string }>|null} f  devuelve las correcciones guardadas */
+  const fijarCorreccionesAlumno = (f) => { leerCorrecciones = typeof f === 'function' ? f : () => null; };
+  const vistas = new WeakMap(); // banco → { firma, vista }
+  /** El banco como lo estudia el alumno (con sus correcciones); sin correcciones para este banco, el mismo banco. */
+  const bancoDelAlumno = async (banco) => {
+    const guardadas = leerCorrecciones();
+    if (!guardadas || !Object.keys(guardadas).some((id) => banco.porId.has(id))) return banco;
+    const estructura = TITULACIONES[banco.tit].estructura;
+    const clases = temasDeClases(await cursoPorDefecto(banco.tit).catch(() => null));
+    const validas = correccionesValidas(guardadas, banco, estructura, clases);
+    if (!validas.size) return banco;
+    const firma = firmaCorrecciones(validas);
+    const v = vistas.get(banco);
+    if (v?.firma === firma) return v.vista;
+    const vista = aplicarCorrecciones(banco, validas, { estructura, clases });
+    vistas.set(banco, { firma, vista });
+    return vista;
+  };
   const memo = (k, f) => {
     if (!cache.has(k)) cache.set(k, f());
     return cache.get(k);
@@ -226,7 +250,10 @@ export function crearBancos(leer) {
       // Las listas de carta («Preguntas reales de carta») son para practicar: sin las que no tienen resolución.
       .map((l) => ({ ...l, preguntas: examenes.filter((q) => enLista(l, q) && (l.requiere !== 'carta' || practicable(q))) }));
     const banco = {
-      eje: ficha, tit, meta: datos.meta ?? {}, todas, examenes, estudio, practica, final, reservadas: r.reservadas, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
+      eje: ficha, tit, meta: datos.meta ?? {}, todas, examenes, estudio, practica, final,
+      // Las preguntas con el tema oficial (el del banco): con ellas se arman y se corrigen los exámenes. En el banco
+      // sin correcciones del alumno son las mismas; en su vista (src/bancos/correcciones.js) no.
+      oficial: { porId, estudio }, correcciones: new Map(), correccionDe: () => null, reservadas: r.reservadas, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
       reserva: { modo: res.modo, convs: res.convs, datos: res.datos, examenes: examenesFinal },
       convocatorias: () => convocatoriasDe(estructura, examenes).filter((c) => !apartar.has(convDeClave(c.key))),
       practicaDe: (leccionId) => (practicaClases[leccionId] ?? []).filter((id) => enPractica.has(id)),
@@ -240,20 +267,28 @@ export function crearBancos(leer) {
     return banco;
   };
   /** Banco de un eje (si no existe, el de por defecto) para una titulación (si no existe, el PER). */
-  const cargarBanco = (eje, tit) => resolverEje(eje).then((e) => bancoDe(e, TITULACIONES[tit] ? tit : 'per'));
+  const cargarBanco = (eje, tit) => resolverEje(eje).then((e) => bancoDe(e, TITULACIONES[tit] ? tit : 'per')).then(bancoDelAlumno);
 
   /** Curso de una titulación con la práctica del eje en cada clase (lo que usan el motor y las pantallas). */
   // Uno por banco (el banco cambia si cambia la reserva del alumno, y con él la práctica de las clases).
   const cursos = new WeakMap();
   const cursoDe = async (tit, eje) => {
-    const [curso, banco] = await Promise.all([cursoPorDefecto(tit), bancoDe(eje, tit)]);
+    const [curso, banco] = await Promise.all([cursoPorDefecto(tit), bancoDe(eje, tit).then(bancoDelAlumno)]);
     if (!cursos.has(banco)) cursos.set(banco, cursoConPractica(curso, banco));
     return conConfig(cursos.get(banco), tit);
   };
   const cargarCurso = (tit, eje) => resolverEje(eje).then((e) => cursoDe(tit, e));
 
-  /** Una pregunta por su id, sea del eje que sea (por el prefijo): { q, banco } o null. */
+  /**
+   * Una pregunta por su id, sea del eje que sea (por el prefijo): { q, banco } o null. `q` es la del banco (con su tema
+   * oficial) y `banco`, el del alumno: su corrección de tema, si la tiene, está en banco.correccionDe(id).
+   */
   async function pregunta(id) {
+    const r = await preguntaBase(id);
+    return r ? { q: r.q, banco: await bancoDelAlumno(r.banco) } : null;
+  }
+  /** Lo mismo con el banco tal cual (sin las correcciones del alumno): para comparar preguntas entre sí. */
+  async function preguntaBase(id) {
     const candidatos = (await registro()).filter((e) => String(id).startsWith(`${e.prefijo}-`)).sort((a, b) => b.prefijo.length - a.prefijo.length);
     for (const e of candidatos) {
       const ficha = await cargarFicha(e.id);
@@ -274,7 +309,7 @@ export function crearBancos(leer) {
    * su eje ya no hay que guardarla: la pausa enseña la del guion (con `reservada: true`).
    */
   async function equivalente(id, eje, opciones = {}) {
-    const r = await pregunta(id);
+    const r = await preguntaBase(id);
     if (!r) return null;
     const e = await resolverEje(eje);
     // Una pregunta que no se estudia (reservada para el examen final o retirada) no sale en una pausa: se cambia por su
@@ -306,7 +341,7 @@ export function crearBancos(leer) {
    * que la lee.
    */
   async function reservadaDe(id, eje) {
-    const r = await pregunta(id);
+    const r = await preguntaBase(id);
     if (!r || r.q.eje !== await resolverEje(eje)) return null;
     return r.banco.reservadas.has(id) ? { eje: r.q.eje, tit: r.q.tit } : null;
   }
@@ -329,7 +364,7 @@ export function crearBancos(leer) {
     return q && SOLUCIONES[q.id] ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva };
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva, fijarCorreccionesAlumno };
 }
 
 // ---------------------------------------------------------------------------
@@ -348,4 +383,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva, fijarCorreccionesAlumno } = bancos;

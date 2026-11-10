@@ -24,8 +24,17 @@ export function parecido(p, q) {
     + 0.5 * jaccard(palabras(Object.values(p.opciones ?? {}).join(' ')), palabras(Object.values(q.opciones ?? {}).join(' ')));
 }
 
+/** Parecido (0–1) solo de las opciones. */
+export const parecidoOpciones = (p, q) => jaccard(palabras(Object.values(p.opciones ?? {}).join(' ')), palabras(Object.values(q.opciones ?? {}).join(' ')));
+
 /** Umbral de parecido para dar por equivalentes dos preguntas sin concepto común. */
 export const UMBRAL_PARECIDO = 0.5;
+/**
+ * Y además las opciones tienen que parecerse: un enunciado genérico («De las siguientes afirmaciones marque la opción
+ * correcta») es idéntico en preguntas de temas distintos y por sí solo ya llegaba al umbral (una de nieblas salía
+ * sustituida por una de corrientes).
+ */
+export const UMBRAL_OPCIONES = 0.25;
 
 /**
  * La pregunta de `candidatas` (un banco de otro eje, misma titulación) equivalente a `q`, o null.
@@ -37,6 +46,6 @@ export function equivalenteEn(q, candidatas) {
   const mejor = (lista) => lista.map((c) => ({ c, s: parecido(q, c) })).sort((a, b) => b.s - a.s)[0]?.c ?? null;
   const porConcepto = utiles.filter((c) => c.concepto && conceptos.has(c.concepto));
   if (porConcepto.length) return mejor(porConcepto);
-  const mismas = utiles.filter((c) => c.ut === q.ut).map((c) => ({ c, s: parecido(q, c) })).sort((a, b) => b.s - a.s);
+  const mismas = utiles.filter((c) => c.ut === q.ut && parecidoOpciones(q, c) >= UMBRAL_OPCIONES).map((c) => ({ c, s: parecido(q, c) })).sort((a, b) => b.s - a.s);
   return mismas[0]?.s >= UMBRAL_PARECIDO ? mismas[0].c : null;
 }

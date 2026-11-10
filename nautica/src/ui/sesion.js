@@ -31,7 +31,7 @@ export function guardarSesion(progress, tit, s) {
  */
 export function hrefPaso(tit, p, tc = null) {
   if (p.ruta[0] === 'test' && tc && (tc.tit ?? 'per') === tit && tc.tipo === p.ruta[1]) {
-    if (tc.tipo === 'simulacro' && tc.seed != null) return tlink(tit, ['test', 'simulacro'], { s: String(tc.seed) });
+    if (tc.tipo === 'simulacro' && tc.seed != null && !tc.modulo) return tlink(tit, ['test', 'simulacro'], { s: String(tc.seed) });
     if (tc.tipo === 'real' && String(tc.conv) === String(p.ruta[2])) return tlink(tit, ['test', 'real', String(tc.conv)]);
   }
   return p.href ?? tlink(tit, p.ruta, p.query);

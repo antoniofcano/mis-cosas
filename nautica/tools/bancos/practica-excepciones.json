@@ -1,0 +1,759 @@
+{
+ "descripcion": "Preguntas que siguen en la práctica de una clase de otro tema porque lo dudoso es su tema (ut), no su clase: su idea vive en el tema de esa clase. Lo escribe node tools/bancos/practica-tema.mjs --excepciones; lo leen los generadores de la práctica y tests/practica-tema.test.js. Quitar una entrada = recolocarla en su tema con --escribir.",
+ "baleares": {
+  "per": {
+   "bal-per-2018-04-e-07": {
+    "clase": "per-2-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 17 preguntas de su idea (amarre.elementos.bita) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-04-c-10": {
+    "clase": "per-8-9",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 12 de las otras 13 preguntas de su idea (emergencia.abandono.sin-balsa) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-04-d-10": {
+    "clase": "per-4-8",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 17 preguntas de su idea (legis.espacios.posidonia) están en Legislación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-04-c-36": {
+    "clase": "per-10-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (9 · Meteorología): 33 de las otras 33 preguntas de su idea (nav.aguja.desvio) están en Teoría de navegación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-06-h-08": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 23 de las otras 26 preguntas de su idea (emergencia.incendio.agentes) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-06-i-22": {
+    "clase": "per-5-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (6 · Reglamento (RIPA)): 35 de las otras 38 preguntas de su idea (baliza.lateral.banda) están en Balizamiento. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-12-f-28": {
+    "clase": "per-10-9",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 45 de las otras 51 preguntas de su idea (nav.viento-corriente.abatimiento) están en Teoría de navegación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2018-12-c-29": {
+    "clase": "per-3-7",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 27 de las otras 27 preguntas de su idea (seguridad.hombre-al-agua.primeras-acciones) están en Seguridad. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2019-04-c-09": {
+    "clase": "per-8-7",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 23 de las otras 26 preguntas de su idea (emergencia.incendio.agentes) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2019-06-c-05": {
+    "clase": "per-4-8",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (2 · Amarre y fondeo): 16 de las otras 17 preguntas de su idea (legis.espacios.posidonia) están en Legislación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2019-09-a-08": {
+    "clase": "per-8-9",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 14 de las otras 15 preguntas de su idea (emergencia.abandono.preparacion) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2020-07-c-10": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 23 de las otras 26 preguntas de su idea (emergencia.incendio.agentes) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2020-07-ah-28": {
+    "clase": "per-3-3",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 15 de las otras 15 preguntas de su idea (seguridad.mal-tiempo.correr) están en Seguridad. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2020-07-espf-33": {
+    "clase": "per-10-3",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (9 · Meteorología): 15 de las otras 16 preguntas de su idea (nav.publicaciones.derroteros) están en Teoría de navegación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2020-10-b-29": {
+    "clase": "per-2-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 17 de las otras 18 preguntas de su idea (amarre.fondeo.garreo) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2020-12-c-22": {
+    "clase": "per-5-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (6 · Reglamento (RIPA)): 35 de las otras 38 preguntas de su idea (baliza.lateral.banda) están en Balizamiento. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2021-03-h-09": {
+    "clase": "per-4-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 20 de las otras 21 preguntas de su idea (legis.auxilio) están en Legislación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2021-09-d-07": {
+    "clase": "per-8-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 4 de las otras 4 preguntas de su idea (emergencia.auxilios.valoracion) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2021-09-d-28": {
+    "clase": "per-2-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 17 de las otras 18 preguntas de su idea (amarre.fondeo.garreo) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2022-03-a-07": {
+    "clase": "per-8-8",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 14 de las otras 15 preguntas de su idea (emergencia.abandono.preparacion) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2022-03-b-07": {
+    "clase": "per-1-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 19 preguntas de su idea (nomen.cubierta.imbornales) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2022-03-c-07": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 17 de las otras 18 preguntas de su idea (emergencia.incendio.tetraedro) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2022-06-a-07": {
+    "clase": "per-1-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 21 de las otras 24 preguntas de su idea (nomen.terminos.barlovento) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2022-06-a-28": {
+    "clase": "per-1-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 21 de las otras 24 preguntas de su idea (nomen.terminos.barlovento) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2022-09-b-33": {
+    "clase": "per-10-3",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (9 · Meteorología): 15 de las otras 16 preguntas de su idea (nav.publicaciones.derroteros) están en Teoría de navegación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2023-03-e-28": {
+    "clase": "per-2-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 20 de las otras 22 preguntas de su idea (amarre.fondeo.borneo) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2023-06-d-08": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 44 de las otras 48 preguntas de su idea (emergencia.incendio.clases) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2023-06-c-09": {
+    "clase": "per-8-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 32 de las otras 33 preguntas de su idea (emergencia.via-agua.medidas) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2023-12-a-09": {
+    "clase": "per-8-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 8 de las otras 10 preguntas de su idea (emergencia.auxilios.heridas-contusiones) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2023-12-c-19": {
+    "clase": "per-5-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (6 · Reglamento (RIPA)): 37 de las otras 37 preguntas de su idea (baliza.aguas-navegables.luz) están en Balizamiento. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-04-ce-08": {
+    "clase": "per-8-3",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 15 de las otras 15 preguntas de su idea (emergencia.auxilios.radio-medico) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-04-a-09": {
+    "clase": "per-1-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 19 preguntas de su idea (nomen.cubierta.imbornales) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-07-be-07": {
+    "clase": "per-8-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 7 de las otras 7 preguntas de su idea (emergencia.auxilios.hemorragias-tipos) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-07-be-08": {
+    "clase": "per-2-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 17 preguntas de su idea (amarre.elementos.bita) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-07-a-09": {
+    "clase": "per-8-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 8 de las otras 10 preguntas de su idea (emergencia.auxilios.heridas-contusiones) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-07-be-28": {
+    "clase": "per-2-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 20 de las otras 22 preguntas de su idea (amarre.fondeo.borneo) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-07-df-29": {
+    "clase": "per-2-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 9 de las otras 10 preguntas de su idea (amarre.nudos.ballestrinque) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-09-e-07": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 17 de las otras 18 preguntas de su idea (emergencia.incendio.tetraedro) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-09-f-10": {
+    "clase": "per-1-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 19 preguntas de su idea (nomen.cubierta.imbornales) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-09-e-11": {
+    "clase": "per-5-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (4 · Legislación): 35 de las otras 38 preguntas de su idea (baliza.lateral.banda) están en Balizamiento. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-09-f-28": {
+    "clase": "per-3-7",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 17 de las otras 17 preguntas de su idea (seguridad.hombre-al-agua.boutakow) están en Seguridad. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-12-ce-09": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 44 de las otras 48 preguntas de su idea (emergencia.incendio.clases) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-12-b-10": {
+    "clase": "per-8-7",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 23 de las otras 24 preguntas de su idea (emergencia.incendio.extincion) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2025-04-c-34": {
+    "clase": "per-1-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (9 · Meteorología): 21 de las otras 24 preguntas de su idea (nomen.terminos.barlovento) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2025-07-b-28": {
+    "clase": "per-2-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 9 de las otras 10 preguntas de su idea (amarre.nudos.ballestrinque) están en Amarre y fondeo. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2025-09-d-07": {
+    "clase": "per-8-4",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 19 de las otras 19 preguntas de su idea (emergencia.abordaje.medidas) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2025-09-c-10": {
+    "clase": "per-1-2",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 16 de las otras 19 preguntas de su idea (nomen.cubierta.imbornales) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2025-09-c-28": {
+    "clase": "per-1-5",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (7 · Maniobra y navegación): 4 de las otras 4 preguntas de su idea (nomen.helice.paso) están en Nomenclatura náutica. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2025-12-d-10": {
+    "clase": "per-8-7",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 23 de las otras 26 preguntas de su idea (emergencia.incendio.agentes) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2026-03-b-08": {
+    "clase": "per-8-1",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 8 de las otras 10 preguntas de su idea (emergencia.auxilios.heridas-contusiones) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2026-03-a-10": {
+    "clase": "per-8-6",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Seguridad): 44 de las otras 48 preguntas de su idea (emergencia.incendio.clases) están en Emergencias en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-per-2024-07-a-04": {
+    "clase": "per-7-8",
+    "tipo": "clase-corta",
+    "motivo": "La clase per-7-8 se quedaría con 1 pregunta de su tema (Maniobra y navegación): el tribunal pregunta lo que enseña en el bloque 1. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-per-2017-03-ci-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2017-09-d-43": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2017-09-e-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2017-12-e-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2018-04-d-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2018-12-d-43": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2018-12-c-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2019-06-e-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2021-06-g-43": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2021-06-espa-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2021-12-a-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2022-03-c-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2022-06-d-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2022-09-m-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2023-09-c-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2023-12-c-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2023-12-e-43": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2023-12-b-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2024-04-df-43": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2024-07-df-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2025-07-b-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2025-07-a-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "bal-per-2025-09-b-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   }
+  },
+  "py": {
+   "bal-py-2017-03-a-26": {
+    "clase": "py-1-9",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Teoría de navegación): 43 de las otras 44 preguntas de su idea (seguridad.radio.sart) están en Seguridad en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-py-2017-12-b-23": {
+    "clase": "py-1-9",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (3 · Teoría de navegación): 43 de las otras 44 preguntas de su idea (seguridad.radio.sart) están en Seguridad en la mar. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-py-2022-06-n-10": {
+    "clase": "py-3-10",
+    "tipo": "tema-dudoso",
+    "motivo": "Tema dudoso (1 · Seguridad en la mar): 37 de las otras 37 preguntas de su idea (nav.ais.sistema) están en Teoría de navegación. Se queda en su clase hasta decidir su tema."
+   },
+   "bal-py-2017-03-cb-34": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2017-12-a-37": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2018-04-a-31": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2018-04-b-38": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2018-12-b-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2019-04-b-38": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2019-04-a-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2019-06-a-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2020-07-a-33": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2020-12-a-36": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2020-12-b-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2021-03-ac-31": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2021-03-b-35": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2021-06-b-39": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2021-12-a-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2021-12-b-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2022-03-a-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2022-06-a-37": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2022-06-n-37": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2022-12-b-34": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2023-03-ac-39": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2023-06-b-36": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2023-06-ac-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2023-12-b-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2024-04-bc-35": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2024-07-a-37": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2024-12-bc-32": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2024-12-a-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2025-04-bc-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2025-07-b-37": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2025-07-a-40": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "bal-py-2025-12-b-35": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 0 preguntas de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   }
+  }
+ },
+ "andalucia": {
+  "per": {
+   "and-2016-c2-t26": {
+    "clase": "per-4-3",
+    "tipo": "clase-corta",
+    "motivo": "La clase per-4-3 se quedaría con 2 preguntas de su tema (Legislación): el tribunal pregunta lo que enseña en el bloque 6. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-2019-c2-t21": {
+    "clase": "per-4-3",
+    "tipo": "clase-corta",
+    "motivo": "La clase per-4-3 se quedaría con 2 preguntas de su tema (Legislación): el tribunal pregunta lo que enseña en el bloque 6. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   }
+  },
+  "py": {
+   "and-py-2020-c1-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2020-c3-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2021-c2-n20": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2022-c1-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2022-c2-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2022-c3-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2023-c1-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2023-c2-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2023-c3-n18": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2024-c1-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2024-c2-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2024-c3-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   },
+   "and-py-2018-c2-n19": {
+    "clase": "py-3-6",
+    "tipo": "clase-corta",
+    "motivo": "La clase py-3-6 se quedaría con 1 pregunta de su tema (Teoría de navegación): el tribunal pregunta lo que enseña en el bloque 4. Conserva las que tenía (y van además a la clase de su tema que las explique)."
+   }
+  }
+ },
+ "dgmm": {
+  "per": {
+   "dgmm-per-2020-12-134": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2021-07-43": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2021-10-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2021-10-87": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2021-12-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2022-04-90": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2022-10-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2022-10-88": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2022-12-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2022-12-87": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2023-04-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2023-04-90": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2023-06-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2023-11-42": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2023-11-88": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2024-04-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2024-06-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2024-06-90": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2024-11-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2024-11-90": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2025-04-87": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2025-04-44": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   },
+   "dgmm-per-2025-06-45": {
+    "clase": "per-10-8",
+    "tipo": "contenido-de-la-clase",
+    "motivo": "Problema de mareas (sonda en pleamar o bajamar): el tribunal lo pone en el bloque de Carta (tema 11), pero se enseña en la clase de mareas del tema 10, que es donde tiene sentido practicarlo."
+   }
+  }
+ }
+}

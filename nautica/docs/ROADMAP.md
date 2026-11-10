@@ -14,6 +14,8 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 - Una línea bloqueada dice **qué desbloquea** y quién lo aporta; si no lo dice, no está bloqueada, está sin pensar.
 - Si cambia el alcance, se tacha y se abre una línea nueva; no se reescribe el pasado.
 - Revisión: al cerrar cada tanda de trabajo y, como mínimo, una vez al mes.
+- Lo que el alumno puede notar se apunta además en `CHANGELOG.md` (registro de cambios, base de las notas de versión),
+  en el mismo commit: una línea en «Sin publicar», que al desplegar pasa a su fecha y versión.
 
 ## Principios que no se negocian
 
@@ -76,6 +78,9 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | R-23 | Versión 2.0: refactorización por fases (cimientos, contenido, núcleo, cliente, servicio, aula, operación) | Después | `docs/VERSION-2.md`; se decide con la puerta de 90 días de `docs/PRODUCTO.md` §10 |
 | R-24 | Producto como servicio: planes de particulares y canon de academias, a validar con un piloto | Después | `docs/PRODUCTO.md`; precios son hipótesis; antes de cobrar, aclarar derechos de preguntas y carta (IHM) |
 | R-25 | Aula virtual: mesa compartida con carta, láminas y test en clase | Después | `docs/PRODUCTO.md` §7 y `docs/VERSION-2.md` V2-F6; prototipo de sala sobre Durable Objects primero |
+| R-28 | Pantalla «Novedades» en la app y número de versión legible, alimentados por `CHANGELOG.md` | Después | Hoy la versión es el identificador del service worker; el registro ya existe (H-22) |
+| R-29 | Revisar las 102 preguntas que siguen en la práctica de una clase de otro tema (54 de tema dudoso y 48 de clases que se quedarían cortas) y las 281 candidatas de la auditoría de temas | Después | `.trabajo-ux/AUDITORIA-temas.md` y `tools/bancos/practica-excepciones.json`; decidir si la clase del Anuario del PY pasa al tema de carta |
+| R-30 | Probar en iPhone real el bloc (teclado) y la carta a pantalla completa (bordes, gestos del sistema, giro con la app instalada) | Siguiente | Solo probado en un navegador que lo simula; decidir si el manifiesto deja de fijar la orientación vertical |
 
 ## Bloqueado por fuente
 
@@ -125,7 +130,13 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-15 | Preguntas de carta sin solución: motivo a la vista, fuera de la práctica y discrepancias revisadas (R-22) | PR #129 |
 | H-18 | Recordatorio diario opcional: push web (9, 13, 18 o 21 h) solo si ese día no se ha estudiado, `.ics` donde no hay push; Worker con tarea horaria, migración `0002` y claves VAPID desplegados | PR #133 |
 | H-19 | Sincronización: recomponer el servicio si pierde un alumno y avisar de un código aún sin registrar | PR #134 |
-| H-20 | Investigación de mercado y diseño del producto como servicio, y plan de la versión 2.0 | PR de documentos de producto |
+| H-20 | Investigación de mercado y diseño del producto como servicio, y plan de la versión 2.0 | PR #136 |
+| H-21 | Carta: tutorial desde la práctica, oposición Espartel–Malabata desde el primer paso y «Problema modelo» con carta y calculadora | PR #135 |
+| H-22 | Registro de cambios (`CHANGELOG.md`), rellenado hacia atrás desde el 8 de octubre | Noviembre 2026 |
+| H-23 | Derrota con faros por tramos (PER) o por tema (PY), zoom a temas y clases, y cuentas iguales en Temario, Travesía y Mi progreso | Noviembre 2026 |
+| H-24 | Bloc de notas en ejercicios y preguntas de cuentas; carta a pantalla completa en el móvil | Noviembre 2026 |
+| H-25 | «¿No es de este tema?»: corrección del tema por el alumno, auditoría de temas y práctica de cada clase con preguntas de su tema | Noviembre 2026 |
+| H-26 | Simulacro por módulos en el PY y arreglo de la pregunta equivalente del minijuego del podcast | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

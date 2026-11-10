@@ -15,6 +15,7 @@ import { glosar } from '../glosas.js';
 import { lineaProfe, rotuloProfe } from '../profe-steps.js';
 import { icono, conIcono } from '../iconos.js';
 import { crearBloc } from '../bloc.js';
+import { quieto } from '../movimiento.js';
 
 const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -57,6 +58,8 @@ let openWs = null;
  * @param {() => string} [o.summary] resumen para IA del ejercicio
  * @param {boolean} [o.calculadora] false: sin el botón de la calculadora (examen en el que no se permite)
  * @param {{ id: string, comun?: string, contexto?: string, opciones?: object }} [o.bloc] pestaña «Bloc»: las notas de ese ejercicio (src/ui/bloc.js)
+ * @param {(m: { chart: object, dibujar: (n: number) => void }) => HTMLElement} [o.guiado] pestaña «Paso a paso» (src/ui/guiado.js):
+ *   se crea al abrirla por primera vez, con la carta de la mesa y una función que dibuja la construcción hasta el paso n
  */
 export function openWorkspace(o) {
   openWs?.close();
@@ -147,11 +150,14 @@ export function openWorkspace(o) {
 
   // Bloc (src/ui/bloc.js): el enunciado con sus datos y las notas del alumno, las mismas que fuera de la carta.
   const bloc = o.bloc ? crearBloc({ ...o.bloc, enunciado: o.statement, variante: 'panel', calculadora: o.calculadora !== false }) : null;
-  const tabs = { ejercicio: tabEjercicio, ...(bloc ? { bloc: h('section.ws-tab.ws-bloc', bloc.el) } : {}), tutorial: tabTutorial };
+  // Paso a paso (modo guiado): se crea la primera vez que se abre; dibuja cada paso en la carta de la mesa.
+  const tabGuiado = o.guiado ? h('section.ws-tab.ws-guiado') : null;
+  const dibujarGuiado = (n) => { tutorial.stop(); tutorial.goTo(n, { animate: n > 0 && !quieto(), speak: false }); };
+  const tabs = { ejercicio: tabEjercicio, ...(bloc ? { bloc: h('section.ws-tab.ws-bloc', bloc.el) } : {}), ...(tabGuiado ? { guiado: tabGuiado } : {}), tutorial: tabTutorial };
   // Sin pasos (un examen, o una pregunta sin resolución programada) no hay tutorial que enseñar: no se ofrece la pestaña
   // en vez de abrir una carta vacía con «0 / 0».
   const hayTutorial = (o.steps ?? []).length > 0;
-  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], ...(bloc ? { bloc: ['lapiz', 'Bloc'] } : {}), ...(hayTutorial ? { tutorial: ['clase', 'Tutorial'] } : {}) }).map(([id, [ico, label]]) =>
+  const tabButtons = Object.entries({ ejercicio: ['portapapeles', 'Ejercicio'], ...(bloc ? { bloc: ['lapiz', 'Bloc'] } : {}), ...(tabGuiado ? { guiado: ['diana', 'Paso a paso'] } : {}), ...(hayTutorial ? { tutorial: ['clase', 'Tutorial'] } : {}) }).map(([id, [ico, label]]) =>
     h('button.ws-tabbtn', { type: 'button', 'data-tab': id, onclick: () => showTab(id) }, conIcono(ico, label)));
   const panelBody = h('div.ws-panel-body');
   // El panel (abajo en el móvil, a la derecha en pantallas anchas) tapa parte de la carta: se pliega y se despliega con
@@ -164,9 +170,10 @@ export function openWorkspace(o) {
   function showTab(id) {
     if (!tabs[id] || (id === 'tutorial' && !hayTutorial)) id = 'ejercicio';
     if (panel.classList.contains('plegada')) plegarPanel(false);
+    if (id === 'guiado' && !tabGuiado.childElementCount) tabGuiado.append(o.guiado({ chart: chartApi, dibujar: dibujarGuiado }));
     setChildren(panelBody, tabs[id]);
     tabButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === id)));
-    if (id !== 'tutorial') { tutorial.stop(); playBtn.replaceChildren(...conIcono('play', 'Reproducir')); }
+    if (id !== 'tutorial' && id !== 'guiado') { tutorial.stop(); playBtn.replaceChildren(...conIcono('play', 'Reproducir')); }
   }
 
   // Ayudas de práctica (chuleta y el hueco de la calculadora): solo si la vista que abre la mesa las pide.

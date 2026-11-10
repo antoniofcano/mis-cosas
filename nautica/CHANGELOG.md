@@ -22,6 +22,12 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
   dónde estás más cerca de suspender y cómo vas de tiempo. Imprimible; nunca se ve durante un examen.
 - **La semana antes:** cuando faltan siete días o menos para tu examen (o activándolo a mano), un plan día a día con tus
   ideas más flojas de lo que más cae, un simulacro a mitad de semana y el último día sin nada nuevo.
+- **Resolver paso a paso:** en las preguntas de carta y de cuentas que la app sabe resolver, un modo que te pide cada paso
+  (la corrección total, el rumbo verdadero, la situación…), lo corrige en el momento y al final te dice en cuáles has
+  fallado. «Dímelo» no cuenta como fallo.
+- **Por qué has fallado:** si la opción que marcas es la que sale de un error típico (por ejemplo, aplicar la corrección
+  total con el signo cambiado), la app te lo dice. Solo cuando hay un único error que lo explica: ocurre en una de cada
+  cinco opciones erróneas. «Mi progreso» muestra tus errores más repetidos (se guardan solo en ese aparato).
 
 ### Correcciones
 

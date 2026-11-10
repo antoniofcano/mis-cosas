@@ -44,6 +44,9 @@ import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
 import { botonesSesion } from '../sesion.js';
 import { etiquetaConcepto, conceptosDelBanco, estadoFicha, hrefFicha } from '../concepto.js';
+import { guiadoPanel, guiadoDisponible } from '../guiado.js';
+import { diagnosticoEl } from '../diagnostico.js';
+import { chartWidget } from '../chart-widget.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -209,6 +212,9 @@ export function profePanel(q, expl, chosen, { efectos = true, pasos = true } = {
       return [corto.map((x) => x.el), largo.length || resto.some(Boolean) ? h('details.ver-por-que', h('summary', 'Ver por qué'), largo.map((x) => x.el), resto) : null];
     })(),
     ok ? null : enlaceTrampa(q, chosen),
+    // Por qué has fallado (si se sabe) y el paso a paso (R-35, R-36): nunca con un examen en marcha.
+    ok || chosen == null ? null : diagnosticoEl(q, chosen, { chart: chartRef }),
+    pasos ? botonGuiado(q) : null,
     ok || !pasos ? null : enlacePasos(q),
     // «¿No es de este tema?» (nunca con un examen en curso: accionTema devuelve null) y «Avisar de un error».
     h('p.pie-aviso', accionTema(q), avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
@@ -216,6 +222,26 @@ export function profePanel(q, expl, chosen, { efectos = true, pasos = true } = {
   // Las siglas de la explicación (Ct, HRB, MMSI…) se explican al tocarlas. La pregunta ya está respondida.
   glosar(panel, { tit: T.id, ut: q.ut });
   return panel;
+}
+
+/**
+ * «Resolver paso a paso» (src/ui/guiado.js) para una pregunta con resolución programada, en la práctica (clases y
+ * tandas): abre el modo guiado ahí mismo, con su carta si la pregunta se dibuja. null si no hay pasos que preguntar.
+ */
+function botonGuiado(q) {
+  const sol = cartaSolutions[q.id];
+  if (!guiadoDisponible(q, sol, chartRef)) return null;
+  const caja = h('div.guiado-box.en-profe');
+  const abrir = () => {
+    const w = (() => { const k = resolucionDe(q); return k?.items.length ? chartWidget(chartRef, { items: k.items, focus: k.focus, step: 0 }) : null; })();
+    const g = guiadoPanel({ q, sol, chart: chartRef, dibujar: (n) => w?.setStep(n), carta: () => w, factor: 1, glosas: { tit: T.id, ut: q.ut },
+      onCerrar: () => caja.replaceChildren(boton) });
+    caja.replaceChildren(g.el, w ? h('div.guiado-carta', w.el) : null);
+    requestAnimationFrame(() => caja.querySelector('input, h2')?.focus());
+  };
+  const boton = h('p', h('button.secondary.boton-guiado', { type: 'button', onclick: abrir }, conIcono('diana', 'Resolver paso a paso')));
+  caja.append(boton);
+  return caja;
 }
 
 /**

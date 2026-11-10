@@ -17,7 +17,7 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
-## 11 de noviembre de 2026 · versión `98fdf4ab1de6`
+## 10 de noviembre de 2026, segunda publicación · versión `98fdf4ab1de6`
 
 ### Novedades
 

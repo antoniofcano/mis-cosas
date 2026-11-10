@@ -66,6 +66,23 @@ export const PY = {
 };
 
 /**
+ * Estructura de un solo módulo del examen (p. ej. el genérico del PY), para practicarlo por separado: sus temas, su
+ * tiempo y, como el examen oficial no tiene nota de módulo, los aciertos en la misma proporción que el examen completo
+ * (PY: 28 de 40 → 14 de 20) más los límites de fallos de sus temas. Orientativo; null si la titulación no tiene ese módulo.
+ */
+export function estructuraModulo(estructura, id) {
+  const m = estructura.modulos?.find((x) => x.id === id);
+  if (!m) return null;
+  const bloques = estructura.bloques.filter((b) => m.uts.includes(b.ut));
+  const n = bloques.reduce((s, b) => s + b.n, 0);
+  return {
+    ...estructura, modulos: undefined, modulo: m.id, titulo: m.titulo, duracionMin: m.duracionMin, bloques,
+    minAciertos: Math.ceil((estructura.minAciertos * n) / totalPreguntas(estructura)),
+    ordenEstudio: (estructura.ordenEstudio ?? []).filter((ut) => m.uts.includes(ut)),
+  };
+}
+
+/**
  * Titulaciones disponibles. Cada una: su estructura de examen, el nivel de los ejercicios de carta y la UT de carta.
  * `calculadora`: si en su examen se permite la calculadora científica cuando la ficha del eje no lo dice
  * (src/calculadora/reglas.js). Sus preguntas están en el banco de cada eje (src/bancos). Añadir otra (PNB, Capitán…) = una entrada más aquí.

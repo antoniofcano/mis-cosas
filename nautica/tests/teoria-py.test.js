@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { PY, TITULACIONES, totalPreguntas } from '../src/theory/blocks.js';
+import { PY, TITULACIONES, totalPreguntas, estructuraModulo } from '../src/theory/blocks.js';
 import { convocatorias, buildReal, buildSimulacro, grade } from '../src/theory/engine.js';
 import { createRng } from '../src/math/rng.js';
 
@@ -72,4 +72,31 @@ test('el profe tiene explicación para todas las preguntas del PY (también las 
     const n = narrateTheory(q, e, 'a');
     assert.ok(n.speech.length > 40 && !/undefined/.test(n.speech), q.id);
   }
+});
+
+test('simulacro por módulos del PY: genérico y navegación, con su tiempo, su proporción de aciertos y sus límites', () => {
+  const gen = estructuraModulo(PY, 'generico');
+  const nav = estructuraModulo(PY, 'navegacion');
+  assert.equal(estructuraModulo(PY, 'otro'), null);
+  assert.deepEqual(gen.bloques.map((b) => b.ut), [1, 2]);
+  assert.deepEqual(nav.bloques.map((b) => b.ut), [3, 4]);
+  assert.equal(totalPreguntas(gen), 20);
+  assert.equal(gen.minAciertos, 14); // 28 de 40 → 14 de 20
+  assert.equal(nav.minAciertos, 14);
+  assert.equal(gen.duracionMin, 45);
+  assert.equal(nav.duracionMin, 75);
+  const s = buildSimulacro(nav, bank, createRng(3));
+  assert.equal(s.preguntas.length, 20);
+  assert.ok(s.preguntas.every((q) => q.ut === 3 || q.ut === 4));
+  assert.equal(s.modulo, 'navegacion');
+  assert.match(s.titulo, /módulo de navegación/);
+  // Todo bien salvo 4 fallos en carta (máximo 3): no apto aunque tenga 16 aciertos.
+  const resp = Object.fromEntries(s.preguntas.map((q) => [q.id, q.correcta]));
+  for (const q of s.preguntas.filter((x) => x.ut === 4 && !x.anulada).slice(0, 4)) resp[q.id] = q.correcta === 'a' ? 'b' : 'a';
+  const g = grade(nav, s, resp);
+  assert.equal(g.apto, false);
+  assert.ok(g.motivos.some((m) => /Carta/.test(m)));
+  assert.equal(grade(nav, s, Object.fromEntries(s.preguntas.map((q) => [q.id, q.correcta]))).apto, true);
+  // El PER no tiene módulos.
+  assert.equal(estructuraModulo(TITULACIONES.per.estructura, 'generico'), null);
 });

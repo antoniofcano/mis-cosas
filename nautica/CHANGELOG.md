@@ -15,6 +15,13 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+### Novedades
+
+- **Simulacro por módulos en el Patrón de Yate:** además del examen completo, se puede hacer solo el módulo genérico
+  (Seguridad y Meteorología, 20 preguntas, 45 min) o solo el de navegación (Teoría y Carta, 20 preguntas, 75 min), para
+  practicar uno mientras se aprende el otro. Se corrige con 14 aciertos de 20 (la misma proporción que el examen) y los
+  límites de fallos de sus temas; es orientativo y no cuenta como simulacro aprobado.
+
 ### Correcciones
 
 - Podcast, minijuego: cuando una pregunta del episodio está reservada para el examen final, la que la sustituye tiene que

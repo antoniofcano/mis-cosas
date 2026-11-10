@@ -518,6 +518,14 @@ p.nota-retirada { border-left: 4px solid var(--warn); padding-left: .6rem; }
 details.revision-pregunta.retirada summary { opacity: .85; }
 details.revision-pregunta.retirada .revision-dato { color: var(--close); }
 .simulacro p { margin: .4rem 0; }
+/* Simulacro por módulos (PY): dos botones iguales bajo el del examen completo; en pantallas anchas, uno al lado del otro */
+.simulacro-modulos { display: grid; gap: .5rem; margin-top: .9rem; }
+.simulacro-modulos p { text-align: center; }
+.simulacro-modulos .btn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: .1rem; min-height: 56px; }
+.simulacro-modulos .modulo-titulo { font-weight: 700; }
+.simulacro-modulos .modulo-datos { font-size: .9rem; font-weight: 400; opacity: .85; }
+@media (min-width: 560px) { .simulacro-modulos { grid-template-columns: 1fr 1fr; } .simulacro-modulos p { grid-column: 1 / -1; } }
+p.aviso-modulo { border-left: 4px solid var(--accent); padding-left: .6rem; }
 ul.ultimos { padding-left: 1.2rem; }
 button.linklike.descartar { min-height: 44px; font-weight: 600; text-decoration: underline; }
 .inicio-examen { padding-top: 1rem; }

@@ -26,6 +26,7 @@ import { ideasFlojas, tandaDeIdeas, rotuloSemana, lineaFaltan, resumenPlan, DIAS
 import { ENSAYOS_RECOMENDADOS } from '../../theory/ensayo.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, activarAMano, tarjetaComoFue } from '../semana.js';
 import { convocatoriaDe, lineaConvocatoria } from '../convocatoria.js';
+import { fotografiar, resultadosRecientes, avisoModulo, tablaFallos } from '../tras-examen.js';
 
 export function semanaView(o) {
   return o.params.parts[1] === 'ideas' ? ideasView(o) : planSemanaView(o);
@@ -110,6 +111,9 @@ function planSemanaView({ progress, tit }) {
       setChildren(cuerpo,
         h('header.semana-cab', h('p.semana-eti', `${T.sigla} · la semana antes`), h('h1', 'La semana antes del examen')),
         estado.preguntar ? tarjetaComoFue(progress, tit, estado.preguntar) : null,
+        // Tras el examen: el resultado por materia frente a la predicción, y el módulo que queda (src/ui/tras-examen.js).
+        resultadosRecientes(progress, tit, ahora),
+        avisoModulo(progress, tit, d.st),
         h('section.semana-intro',
           h('p', 'Un repaso comprimido para los últimos días: lo que más cae en tu examen y las ideas que más te cuestan, repartido día a día hasta la fecha. A mitad, un simulacro; el penúltimo día, un repaso ligero; y la víspera, nada nuevo.'),
           estado.salido ? h('p', 'Saliste del modo para este examen. ', botonVolver(progress, tit)) : null,
@@ -122,6 +126,8 @@ function planSemanaView({ progress, tit }) {
       summaryText = `VISTA semana ${T.sigla}: modo inactivo${estado.salido ? ' (salido)' : ''}${dExamen != null ? ` · examen en ${cuenta(dExamen, 'día')}` : ' · sin fecha'}${estado.preguntar ? ` · PREGUNTA cómo fue (${estado.preguntar.fecha})` : ''}`;
       return;
     }
+    // La foto de lo que predice la app, una vez al día hasta la víspera (para compararla con el resultado).
+    fotografiar(progress, tit, d.st, estado, ahora);
     const hoyDia = plan.dias[0];
     const guardada = leerSesion(progress, tit);
     const deSemana = guardada?.semana ? guardada : null;
@@ -144,6 +150,8 @@ function planSemanaView({ progress, tit }) {
         listaPasos(hoyDia.pasos),
         accion,
         enlacesUltimosDias(tit, hoyDia.k)),
+      avisoModulo(progress, tit, d.st),
+      hoyDia.k >= 1 ? tablaFallos(tit, d.st) : null,
       plan.dias.length > 1 ? h('section.semana-dias', { 'aria-labelledby': 'semana-dias-t' },
         h('h2.eti#semana-dias-t', 'Los días que quedan'),
         h('ol.semana-lista', plan.dias.slice(1).map((x) => h('li.semana-dia', { class: `tipo-${x.tipo}${x.hecho ? ' hecho' : ''}` },

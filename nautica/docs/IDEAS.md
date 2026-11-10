@@ -34,6 +34,35 @@ _Última revisión: 10 de noviembre de 2026._
 ### Vídeos con infografías de las ideas difíciles
 - Ver `docs/VIDEOS-PY.md`: una ficha por vídeo de las ideas del Patrón de Yate que peor se asimilan.
 
+### Que el banco no se aprenda de memoria
+- **Problema:** el banco es finito; tras varias vueltas se acierta por reconocer la pregunta, no por saber resolverla, y
+  «¿Estás listo?» sube más de lo que debería.
+- **Idea:** variantes de los ejercicios de cálculo con otros números (carta, mareas, loxodrómica), generadas y
+  comprobadas con los mismos motores que las resoluciones; y que una pregunta vista muchas veces pese menos en la
+  preparación que una vista pocas.
+- **Qué se gana:** la nota mide lo que sabes hacer, que es lo que pide el examen. Es la mejora de fondo más grande que
+  queda; pide planificarla aparte.
+
+### El calendario administrativo de la convocatoria
+- **Problema:** se suspende también por papeleo: plazo de matrícula cerrado, tasa sin pagar, documentación que falta.
+- **Idea:** plazos de matrícula, tasa, documentación y dónde se publican las listas de cada tribunal, con aviso antes de
+  que cierre el plazo. Depende de tener las convocatorias vigentes (R-46): es mantenimiento continuo.
+
+### La plantilla provisional y las alegaciones
+- **Problema:** casi nadie sabe que puede impugnar una pregunta mal planteada, ni en qué plazo.
+- **Idea:** al salir la plantilla, comparar con lo que marcaste y, si una pregunta es discutible, explicar plazo y forma.
+  Una pregunta anulada puede valer un aprobado. Encaja con el resultado por materia que ya se apunta (H-43).
+
+### «Y ahora qué» al aprobar
+- **Idea:** prácticas, radio, reconocimiento médico y expedición del título, paso a paso; enlaza con el salto al nivel
+  siguiente (PER → PY → CY) y con la promoción «¡Aprobé!» de `docs/PRODUCTO.md`.
+
+### El tono de «Para recuperar»
+- **Ya existe:** el plan con fecha se rehace cada día con lo hecho de verdad y, si no cabe, dice cuántos minutos hacen
+  falta o propone el plan esencial (`src/course/calendario.js`).
+- **Duda:** lo atrasado se lista aparte y va primero; tras varios días sin estudiar esa lista crece y puede desanimar.
+  Alternativa: repartirlo en silencio en los días que quedan. Decidir solo si un alumno de verdad dice que agobia.
+
 ## Simulación y 3D (a largo plazo, fuera del alcance actual)
 
 Ideas del autor, anotadas el 10 de noviembre de 2026. Son un salto de tecnología (motor 3D, física, modelos) respecto a
@@ -75,3 +104,4 @@ producto hermano que comparta contenido y progreso.
 - ~~Entrenar el procedimiento, no solo el resultado~~ → R-35 (se conserva arriba la explicación).
 - ~~Diagnóstico por tipo de error~~ → R-36 (ídem).
 - ~~Ensayo general con material real, velocidad en carta, simulacro de tus errores, lista del día del examen, tu convocatoria y repaso de la víspera~~ → R-41 a R-45 (hechas, H-35 a H-39).
+- ~~Fallos por materia, comparar la predicción con el examen real y recuperar un solo módulo~~ → R-48 a R-50 (hechas, H-42 a H-44).

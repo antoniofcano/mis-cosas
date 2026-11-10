@@ -189,7 +189,7 @@ export function lineaListo(r) {
   let txt = `${base}: con lo que aciertas ahora aprobarías ${rango} de cada 10 veces${alto - bajo >= 4 ? ' (todavía hay poco dato reciente: el margen es ancho)' : ''}.`;
   const s = r.simulacros;
   if (s?.hechos) txt += ` En tus últimos ${s.hechos === 1 ? 'simulacro' : `${cuenta(s.hechos, 'simulacro')}`} ${s.hechos === 1 ? (s.aprobados ? 'aprobaste' : 'no aprobaste') : `aprobaste ${s.aprobados}`}, y eso ya cuenta${s.ineditos ? ' (más los exámenes con preguntas que no habías visto)' : ''}.`;
-  else txt += ' Haz un simulacro completo: es la mejor prueba.';
+  else txt += r.modulo ? ' Haz un simulacro del módulo: es la mejor prueba.' : ' Haz un simulacro completo: es la mejor prueba.';
   if (r.limitante) {
     const t = r.limitante;
     txt += ` Lo que más te puede tumbar: ${t.titulo} (aciertas el ${t.pct} %${t.maxErrores != null ? `, y solo se pueden fallar ${t.maxErrores} de ${t.n}` : ''}).`;

@@ -17,6 +17,24 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 10 de noviembre de 2026, quinta publicación · versión `7f43f6e77be8`
+
+### Novedades
+
+- **Tus fallos por materia:** bajo «¿Estás listo?» y en la semana del examen, cuántas fallaste en cada materia en tus
+  últimos exámenes frente a su límite, y si vas holgado, justo o te has pasado alguna vez. Se suspende por pasarse en
+  una sola materia, y aquí se ve de un vistazo dónde.
+- **Lo que dijo la app y lo que pasó:** en la semana del examen la app guarda sola lo que predice. Después, al contestar
+  «¿Cómo te fue?», puedes apuntar cuántas fallaste en cada materia y ver si la app acertó contigo; un botón lo copia
+  para enviarlo.
+- **Te queda un módulo (PY):** si suspendes pero apruebas un módulo, «¿Estás listo?» y la semana del examen se centran
+  en el que queda, con su simulacro. Te recuerda que el aprobado se guarda dos convocatorias más y solo en tu tribunal.
+
+### Correcciones
+
+- La pantalla del ensayo en papel y la de tu velocidad en carta salían sin su diseño en pantalla (solo se veía bien al
+  imprimir).
+
 ## 10 de noviembre de 2026, cuarta publicación · versión `f5cafd2feb48`
 
 ### Novedades

@@ -88,6 +88,18 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   `ui/semana.js` (calcula con el resultado de `calcularPlan`, guarda el ajuste compartido `semana_<tit>` y apunta el día
   hecho), la tarjeta de Hoy (`views/hoy.js`), `views/semana.js` (`#/<tit>/semana` y la tanda `#/<tit>/semana/ideas/<n>`) y
   la Travesía («Seguir» arranca la misma sesión, `composicionDeHoy`).
+- **Antes y después del examen real** (R-48 a R-50; `course/tras-examen.js`, funciones puras; tests
+  `tests/tras-examen.test.js`): `fallosPorMateria` (los 3 últimos exámenes con `porTema` completo de cada materia:
+  simulacro, real, final, módulo y ensayo; nunca el simulacro de tus errores ni las tandas) con `estadoFrente` (holgado,
+  justo a uno o menos del límite, pasado); `fotoPrediccion`/`tocaFoto` (una foto al día de «¿Estás listo?» y de la media
+  de fallos por materia, hasta la víspera); `leerResultado`, `modulosAprobados`, `aptoCompleto` y `compararPrediccion`
+  (avisó de ir justo donde fue justo); `moduloPendiente` (el último examen con resultado manda: «No aprobé» y un módulo
+  aprobado) y `testsDelModulo`. Todo se guarda en el ajuste compartido `semana_<tit>` (`fotos`, `resultados`,
+  `moduloFuera`; `guardarFoto`, `apuntarResultado` y `descartarModulo` en `course/semana.js`, como mucho 6 exámenes).
+  Con un módulo pendiente, `estadoAlumno` (`course/motor.js`) calcula `listo` con `estructuraModulo` y devuelve
+  `moduloPendiente`, y `planSemana` recibe `soloModulo` (el simulacro es solo el de ese módulo). La interfaz,
+  `ui/tras-examen.js`: `tablaFallos` (Hoy, Travesía y semana), `fotografiar` (Hoy y semana), `tarjetaResultado` (tras
+  «¿Cómo te fue?» y en `#/<tit>/semana`), `avisoModulo`. Norma de la conservación del módulo: BOE-A-2026-510, anexo III C.
 - **Tu convocatoria** (R-44, `course/convocatoria.js` puro, `ui/convocatoria.js`): hora, sede y enlace opcionales (ajuste compartido `convocatoria_<tit>`, que junto a `listadia_<tit>` se reinicia con la convocatoria siguiente: la fecha cambia cuando la anterior ya pasó), editables y borrables en Ajustes → «Tu convocatoria»; Hoy enseña «Tu examen» la semana del examen (`momentoExamen`) y, de 21 días a la víspera, «¿Ya has comprobado que estás en la lista de admitidos…?» (`recordatorioAdmitidos`; la app no consulta el boletín). El push diario no se toca: su texto es fijo en `sw.js` y no conoce la fecha.
 - **Tu velocidad en carta** (R-42; `course/velocidad.js`, funciones puras; tests `tests/velocidad.test.js`): tipo de
   problema de cada pregunta (`tipoDePregunta`: el `ejercicio` de su solución, `carta` o `teoria`), acumulador de tiempo con

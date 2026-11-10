@@ -40,6 +40,7 @@ import { sumaDiasISO } from './calendario.js';
 import { temaDeIdea } from './listo.js';
 import { totalPreguntas } from '../theory/blocks.js';
 import { cuenta, diaISO } from '../texto.js';
+import { leerFoto, leerResultado } from './tras-examen.js';
 
 export const DIAS_MODO = 7; // con el examen a estos días o menos, el modo se activa solo
 export const DIAS_PREGUNTAR = 14; // días tras el examen en que se pregunta cómo fue
@@ -73,8 +74,35 @@ export function leerAjuste(v) {
     fuera: ISO.test(a.fuera ?? '') ? a.fuera : null,
     hechos: fechas(a.hechos, (x) => TIPOS_DIA.includes(x)),
     fue: fechas(a.fue, (x) => Object.hasOwn(RESPUESTAS_FUE, x)),
+    // Antes y después del examen real (src/course/tras-examen.js): la foto de la predicción, el resultado apuntado y el
+    // examen cuyo módulo pendiente se descartó.
+    fotos: Object.fromEntries(Object.entries(esObj(a.fotos) ? a.fotos : {}).filter(([f]) => ISO.test(f)).map(([f, x]) => [f, leerFoto(x)]).filter(([, x]) => x)),
+    resultados: Object.fromEntries(Object.entries(esObj(a.resultados) ? a.resultados : {}).filter(([f]) => ISO.test(f)).map(([f, x]) => [f, leerResultado(x)]).filter(([, x]) => x)),
+    moduloFuera: ISO.test(a.moduloFuera ?? '') ? a.moduloFuera : null,
   };
 }
+
+const MAX_GUARDADOS = 6; // exámenes de los que se guardan foto y resultado
+const ultimos = (o) => Object.fromEntries(Object.entries(o).sort(([a], [b]) => a.localeCompare(b)).slice(-MAX_GUARDADOS));
+
+/** Guarda la foto de la predicción para el examen de `fecha` (sustituye la de un día anterior). */
+export function guardarFoto(ajuste, fecha, foto) {
+  const a = leerAjuste(ajuste);
+  const f = leerFoto(foto);
+  if (!ISO.test(fecha ?? '') || !f) return a;
+  return { ...a, fotos: ultimos({ ...a.fotos, [fecha]: f }) };
+}
+
+/** Apunta (o cambia) el resultado del examen de `fecha`: fallos por materia y módulo aprobado. */
+export function apuntarResultado(ajuste, fecha, resultado) {
+  const a = leerAjuste(ajuste);
+  const r = leerResultado(resultado);
+  if (!ISO.test(fecha ?? '') || !r) return a;
+  return { ...a, resultados: ultimos({ ...a.resultados, [fecha]: r }), moduloFuera: a.moduloFuera === fecha ? null : a.moduloFuera };
+}
+
+/** Deja de centrarse en el módulo pendiente del examen de `fecha`. */
+export const descartarModulo = (ajuste, fecha) => ({ ...leerAjuste(ajuste), moduloFuera: ISO.test(fecha ?? '') ? fecha : null });
 
 /**
  * ¿Está el modo activo hoy, y con qué fecha?
@@ -351,16 +379,19 @@ const TEXTO = {
  * @param {boolean} [p.finalSugerido]  el examen final está abierto y toca (estadoFinal().sugerir): el simulacro es él
  * @param {{ minutos: number }|null} [p.repasoExpres]  con él, el paso de la víspera es el repaso exprés (#/<tit>/vispera, de
  *   `minutos` minutos); sin él, el repaso corto de siempre (tarjetas o chuleta)
+ * @param {string|null} [p.soloModulo]  id del módulo que queda, si ya aprobaste el otro: el simulacro es solo ese
  * @returns {{ dias: object[], simulacro: { hecho: boolean, pendientes: string[] }, porModulos: boolean }}
  */
-export function planSemana({ estructura, dias, hoy, fecha, minutosDia = 20, ideas = [], temas = [], fallosHoy = 0, tarjetasHoy = 0, mazo = null, cartaUt = null, tests = [], hechos = {}, finalSugerido = false, repasoExpres = null }) {
+export function planSemana({ estructura, dias, hoy, fecha, minutosDia = 20, ideas = [], temas = [], fallosHoy = 0, tarjetasHoy = 0, mazo = null, cartaUt = null, tests = [], hechos = {}, finalSugerido = false, repasoExpres = null, soloModulo = null }) {
   const d = Math.max(0, Math.min(DIAS_MODO, Math.round(dias)));
   const inicio = sumaDiasISO(fecha, -DIAS_MODO);
   const ex = examenesDeLaSemana(tests, { desde: inicio, hasta: hoy });
-  const modulos = ordenModulos(estructura);
-  const porModulos = !finalSugerido && modulos.length > 1 && minutosDia < estructura.duracionMin;
-  const simHecho = ex.completo || (porModulos && modulos.every((m) => ex.modulos.has(m.id)));
-  const pendientes = simHecho ? [] : finalSugerido ? ['final'] : porModulos ? modulos.filter((m) => !ex.modulos.has(m.id)).map((m) => m.id) : ['completo'];
+  // Con un módulo ya aprobado (src/course/tras-examen.js, moduloPendiente), el simulacro es solo el del que queda.
+  const solo = soloModulo && (estructura.modulos ?? []).some((m) => m.id === soloModulo) ? soloModulo : null;
+  const modulos = ordenModulos(estructura).filter((m) => !solo || m.id === solo);
+  const porModulos = !!solo || (!finalSugerido && modulos.length > 1 && minutosDia < estructura.duracionMin);
+  const simHecho = (!solo && ex.completo) || (porModulos && modulos.every((m) => ex.modulos.has(m.id)));
+  const pendientes = simHecho ? [] : finalSugerido && !solo ? ['final'] : porModulos ? modulos.filter((m) => !ex.modulos.has(m.id)).map((m) => m.id) : ['completo'];
   // El repaso del simulacro: hecho el examen, falta un día de repaso hecho después (hoy no, si el examen fue hoy).
   const repasoHecho = !!ex.ultimo && Object.entries(hechos).some(([f, t]) => (t === 'repaso-simulacro' || t === 'ligero') && f > ex.ultimo);
   const repasoPendiente = simHecho && !!ex.ultimo && !repasoHecho && ex.ultimo < hoy;

@@ -10,6 +10,9 @@ import { bloquesEnOrden } from '../theory/blocks.js';
 import { estadoTema, avance, planHoy, ritmoEstudio, diasHasta, temasFlojos, clasesFlojas } from './plan.js';
 import { avanceCamino, unidades, temasDePocoPeso, crearPlan, planCaducado, seguimiento, alternativaEsencial, describir, duracion } from './calendario.js';
 import { estoyListo } from './listo.js';
+import { moduloPendiente, testsDelModulo } from './tras-examen.js';
+import { leerAjuste, claveSemana } from './semana.js';
+import { estructuraModulo } from '../theory/blocks.js';
 import { estadoFinal } from './final.js';
 import { SEG_TARJETA } from './engine.js';
 import { cuenta, fechaLarga, diaISO } from '../texto.js';
@@ -78,7 +81,11 @@ export function estadoAlumno(e) {
   }
 
   // ¿Listo? y examen final (antes que las actividades: Hoy propone el final cuando toca).
-  const listo = estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
+  // Con un módulo aprobado y el otro pendiente (PY, src/course/tras-examen.js), «¿Estás listo?» es el del módulo que queda.
+  const pendiente = moduloPendiente(leerAjuste(s[claveSemana(tit)]), d.estructura);
+  const listo = pendiente
+    ? { ...estoyListo(estructuraModulo(d.estructura, pendiente.id), d.preguntas, d.respuestas, testsDelModulo(d.tests, pendiente.id)), modulo: pendiente.id }
+    : estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
   const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
   const final = estadoFinal({ estructura: d.estructura, reserva: e.reserva ?? null, pool: e.pool ?? [], respuestas: d.respuestas, tests: d.tests, listo, diasAlExamen, ahora: d.ahora });
   d.final = final;
@@ -109,7 +116,7 @@ export function estadoAlumno(e) {
   const ritmo = ritmoEstudio(d);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
 
-  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ruta, ritmo, listo, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**

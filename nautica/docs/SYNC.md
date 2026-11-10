@@ -86,7 +86,9 @@ El alumno puede cambiar el tema (y, si quiere, la clase) en que cuenta una pregu
 
 `level`, `toleranceFactor`, `minutosDia`, `diasEstudio`, `eje`, `onboarded`, `segTarjeta` (ritmo de lectura del
 alumno), `configProfe`, `podcasts` y `podcastUltimo` (por dónde va en la radio), y los que empiezan por `examen_`,
-`examenOrientativo_`, `guiaVista_`, `planEsencial_`, `mezclado_`, `reserva_`, `chuletasLeidas_`, `nivelNo_`.
+`examenOrientativo_`, `guiaVista_`, `planEsencial_`, `mezclado_`, `reserva_`, `chuletasLeidas_`, `nivelNo_`,
+`semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; `src/course/semana.js`).
+Es una clave más de `settings`: el Worker desplegado la acepta sin tocarlo.
 
 Del aparato (no viajan): letra, sonidos, vibración, voz (`voz`, `vozAuto`, `vozNombre`, `vozVelocidad`),
 `podcastPreguntas`, avisos descartados (`avisoCopiaHasta`, `avisoInstalarHasta`, `avisoCartaVisto`), `ultimaCopia`,

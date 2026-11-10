@@ -2155,3 +2155,65 @@ button.bloc-pegar { white-space: nowrap; max-width: 15rem; overflow: hidden; tex
 @media (max-width: 480px) { .ws-tabs:has([data-tab="bloc"]) .ws-tabbtn .ico { display: none; } }
 .ws-bloc { padding-top: .5rem; }
 .ws-bloc .bloc-boton { margin-left: auto; }
+
+/* ---- La semana antes del examen (src/ui/views/semana.js, src/ui/semana.js; tarjeta en Hoy) ----
+   Estilo C como Hoy y la Travesía: la pantalla reasigna los colores de la app a los --lc-* (claro y oscuro), cartelas de
+   papel con doble filete, rótulos en versalitas magenta, títulos en serifa y minutos en monoespaciada. Sin animaciones. */
+.semana-pantalla {
+  --surface: var(--lc-fondo); --bg: var(--lc-papel); --text: var(--lc-tinta); --muted: var(--lc-apagado); --border: var(--lc-linea-agua);
+  --accent: var(--lc-azul-texto); --accent-2: var(--lc-agua-2); --ok: var(--lc-verde-texto); --warn: var(--lc-rojo-texto);
+  --sesion-boton: var(--lc-tinta); --sesion-boton-fg: var(--lc-papel); --sesion-fg: var(--lc-tinta); --on-accent: var(--lc-papel);
+  display: flex; flex-direction: column; gap: 1rem; min-width: 0;
+}
+.semana-cuerpo { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.semana-cab h1 { margin: .1rem 0 .2rem; font-family: var(--fuente-titulos); color: var(--lc-tinta); }
+.semana-eti { margin: 0; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.semana-fecha { margin: 0; color: var(--lc-tinta); }
+.semana-pantalla :is(.semana-hoy, .semana-intro, .semana-fue),
+.entrada .semana-fue {
+  background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; padding: .9rem 1rem 1rem;
+  box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); display: flex; flex-direction: column; gap: .6rem; min-width: 0;
+}
+.semana-pantalla .semana-hoy h2, .semana-fue h2 { margin: 0; font-family: var(--fuente-titulos); font-size: 1.35rem; line-height: 1.2; color: var(--lc-tinta); }
+.semana-pantalla .semana-hoy p, .semana-intro p, .semana-fue p { margin: 0; overflow-wrap: anywhere; }
+.semana-pantalla .boton-sesion { border-radius: 0; box-shadow: 0 0 0 2px var(--lc-fondo), 0 0 0 3px var(--lc-tinta); }
+.semana-pantalla .boton-sesion:focus-visible, .semana-pantalla :is(a, button, select, summary):focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.semana-pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
+.semana-pasos li { display: flex; align-items: center; gap: .6rem; padding: .45rem .6rem; border: 1px solid var(--lc-linea-agua); background: var(--lc-papel); min-width: 0; }
+.semana-paso-tx { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.semana-min { font-family: var(--lc-mono); font-variant-numeric: tabular-nums; color: var(--lc-tinta); white-space: nowrap; }
+.semana-hecho { display: flex; align-items: center; gap: .4rem; color: var(--lc-verde-texto); font-weight: 600; }
+.semana-pantalla h2.eti { margin: 0 0 .5rem; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
+.semana-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.semana-dia { display: flex; flex-direction: column; gap: .15rem; padding: .6rem .75rem; background: var(--lc-papel); border: 1px solid var(--lc-tinta); border-left-width: 4px; min-width: 0; }
+.semana-dia.tipo-simulacro { border-left-color: var(--lc-magenta); }
+.semana-dia.tipo-vispera, .semana-dia.tipo-examen { border-style: dashed; border-left-style: solid; }
+.semana-dia-cab { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.semana-dia-nombre { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lc-apagado); }
+.semana-dia-cab .semana-min { margin-left: auto; }
+.semana-dia-hecho { display: inline-flex; align-items: center; gap: .25rem; color: var(--lc-verde-texto); font-weight: 600; font-size: .85rem; }
+.semana-dia-titulo { font-family: var(--fuente-titulos); color: var(--lc-tinta); }
+.semana-ideas { margin: 0; padding-left: 1.4rem; display: flex; flex-direction: column; gap: .2rem; }
+a.semana-idea { display: flex; flex-direction: column; min-height: 44px; justify-content: center; color: var(--lc-tinta); text-decoration: none; padding: .25rem 0; }
+a.semana-idea .semana-idea-nombre { text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; font-weight: 600; }
+.semana-accesos .mas-lista { margin-top: 0; }
+.semana-salir-fila { margin: 0; }
+button.linklike.semana-salir, .semana-volver button.linklike, .semana-enlaces button.linklike, .semana-fue button.linklike { min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+.semana-enlaces { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1.25rem; }
+a.semana-ver { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; color: var(--lc-tinta); font-weight: 600; text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; }
+a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
+.semana-activar { display: flex; flex-direction: column; gap: .4rem; }
+.semana-activar label { font-weight: 600; }
+.semana-activar-fila { display: flex; flex-wrap: wrap; gap: .5rem; }
+.semana-activar select { min-height: 44px; flex: 1 1 10rem; min-width: 0; border-radius: 0; border: 1.5px solid var(--lc-tinta); background: var(--lc-papel); color: var(--lc-tinta); font: inherit; padding: 0 .5rem; }
+.semana-activar button { min-height: 44px; border-radius: 0; background: var(--lc-tinta); color: var(--lc-papel); border: 1.5px solid var(--lc-tinta); }
+.semana-fue-botones { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.semana-fue-botones button.secondary { min-height: 44px; border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.semana-volver { margin: 0; }
+.chuleta-sesion { margin: 1rem 0; display: flex; flex-direction: column; gap: .5rem; }
+.chuleta-sesion .botones { display: flex; flex-direction: column; gap: .5rem; }
+@media (min-width: 760px) {
+  .semana-cuerpo { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+  .semana-cuerpo > :is(.semana-cab, .semana-hoy, .semana-intro, .semana-fue, .semana-salir-fila) { grid-column: 1 / -1; }
+}
+/* ---- fin La semana antes del examen ---- */

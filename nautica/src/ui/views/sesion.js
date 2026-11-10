@@ -17,6 +17,7 @@ import { parteSesion, paraManana, progresoRango, catalogoInsignias } from '../..
 import { parteTravesiaEl, ambitoFaros, ambitoInsignias } from './travesia.js';
 import { novedades, marcarVistos, efecto } from '../efectos.js';
 import { botonCompartir } from '../compartir.js';
+import { calcularSemana, apuntarSemana } from '../semana.js';
 
 const MAX_GRUPOS = 10; // en un simulacro salen muchas ideas: las que fallan siempre; de las sabidas, hasta completar
 
@@ -150,7 +151,10 @@ export function sesionView({ progress, tit }) {
   const man = calcularPlan(progress, tit, Date.now() + DIA, { guardar: false });
   Promise.all([hoy, man]).then(([dh, dm]) => {
     const st = dm.st;
-    manana.textContent = lineaManana(componerSesion(st, deducirFase(st).id), { fallosManana: dh.st.repaso.manana });
+    // En «la semana antes», mañana es el día siguiente del plan de la semana (y el de hoy queda apuntado como hecho).
+    apuntarSemana(progress, tit);
+    const x = s.semana ? calcularSemana(progress, tit, dh).plan?.dias[1] : null;
+    manana.textContent = x ? `${x.titulo}${x.minutos ? ` (${x.minutos} min)` : ''}.` : lineaManana(componerSesion(st, deducirFase(st).id), { fallosManana: dh.st.repaso.manana });
     summaryText += `\nMAÑANA: ${manana.textContent}`;
   }).catch(() => { manana.textContent = 'Lo que proponga tu plan.'; });
 

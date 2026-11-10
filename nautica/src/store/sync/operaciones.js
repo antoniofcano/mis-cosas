@@ -38,7 +38,7 @@ export const MARGEN_FUTURO = 2 * 864e5;
  * hoy a medias, el test de nivel a medias, el borrador del modo profesor…
  */
 export const AJUSTES_COMPARTIDOS = ['level', 'toleranceFactor', 'minutosDia', 'diasEstudio', 'eje', 'onboarded', 'segTarjeta', 'configProfe', 'podcasts', 'podcastUltimo'];
-export const PREFIJOS_COMPARTIDOS = ['examen_', 'examenOrientativo_', 'guiaVista_', 'planEsencial_', 'mezclado_', 'reserva_', 'chuletasLeidas_', 'nivelNo_'];
+export const PREFIJOS_COMPARTIDOS = ['examen_', 'examenOrientativo_', 'guiaVista_', 'planEsencial_', 'mezclado_', 'reserva_', 'chuletasLeidas_', 'nivelNo_', 'semana_'];
 /** Ajustes en los que gana el PRIMER valor, no el último: la reserva del examen final se fija una vez y no cambia. */
 export const PREFIJOS_PRIMERO = ['reserva_'];
 

@@ -21,6 +21,7 @@ import { cuenta, fechaLarga } from '../../texto.js';
 import { deducirFase, componerSesion, terminada } from '../../course/sesion.js';
 import { leerSesion } from '../sesion.js';
 import { empezarSesion, marcaDerrota, pasosQueTocan, temaQueToca } from '../entrada.js';
+import { composicionDeHoy } from '../semana.js';
 import { novedades, marcarVistos, claseAnimada } from '../efectos.js';
 import { cartaDerrotaSvg, ladoNombre, ANCHO, ALTO } from '../../illustrations/derrota-c.js';
 import { botonCompartir } from '../compartir.js';
@@ -152,7 +153,7 @@ function botonSeguir(progress, tit, d) {
   const ses = leerSesion(progress, tit);
   if (ses?.estado === 'hecha') return null;
   if (ses && !terminada(ses)) return h('a.boton-sesion.trav-seguir', { href: tlink(tit, ['sesion']) }, 'Seguir la sesión');
-  return h('button.boton-sesion.trav-seguir', { type: 'button', onclick: () => empezarSesion(progress, tit, d, componerSesion(d.st, deducirFase(d.st).id)) }, 'Seguir la derrota');
+  return h('button.boton-sesion.trav-seguir', { type: 'button', onclick: () => empezarSesion(progress, tit, d, composicionDeHoy(progress, tit, d)) }, 'Seguir la derrota');
 }
 
 /**
@@ -175,7 +176,7 @@ function pantallaTravesia({ T, tit, d, sy, eje, query, progress }) {
 
   // La carta general (con el marcador «estás aquí» en la siguiente parada, como en Hoy)
   const detalle = h('section.trav-detalle', { 'aria-live': 'polite', 'aria-label': 'Faro elegido' });
-  const pasos = pasosQueTocan(progress ? leerSesion(progress, tit) : null, componerSesion(d.st, deducirFase(d.st).id));
+  const pasos = pasosQueTocan(progress ? leerSesion(progress, tit) : null, progress ? composicionDeHoy(progress, tit, d) : componerSesion(d.st, deducirFase(d.st).id));
   const aqui = d.indiceConceptos ? marcaDerrota(sy, pasos) : null;
   const general = () => cartaDerrota(faros, { sel, elegir: (id) => acercar(id), marca: aqui, recien, rotulo: { titulo: 'DERROTA', sub: `${T.sigla} · ${cuenta(faros.length, 'faro')}` } });
   // Las clases de un tema con su estado (el de la página del tema), para las boyas de un faro de un solo tema.

@@ -29,6 +29,8 @@ import { sincronizarTravesia } from '../travesia.js';
 import { cartaDerrota } from './travesia.js';
 import { esNuevo, estadoEntrada, siguienteParada, paradaDeSesion, resumenPasos, lineaContexto, listoCorto, textoCarta } from '../../course/entrada.js';
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
+import { calcularSemana, apuntarSemana, botonSalir, botonVolver, tarjetaComoFue, enlaceSemana } from '../semana.js';
+import { rotuloSemana } from '../../course/semana.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -153,6 +155,11 @@ export function hoyView({ progress, tit }) {
     const ps = planConSeguimiento(progress, tit, d);
     const m = st.mensaje;
     const real = deducirFase(st);
+    // «La semana antes» (src/course/semana.js, src/ui/semana.js): con el examen a 7 días o menos (o el modo activado a
+    // mano), la sesión de hoy es la del plan de la semana. Un examen a medias va antes: se termina primero.
+    apuntarSemana(progress, tit);
+    const sx = calcularSemana(progress, tit, d);
+    const enSemana = sx.estado.activo && st.principal?.tipo !== 'examen-en-curso';
     let mirando = real.id; // la fase que se enseña (el alumno puede mirar otra en la ayuda; su plan no cambia)
     setChildren(contexto, h('a.pildora-examen', { href: '#/ajustes?campo=fecha', title: 'Fecha del examen' }, lineaContexto(T.sigla, st.diasAlExamen)));
 
@@ -242,7 +249,8 @@ export function hoyView({ progress, tit }) {
 
     const pintaSesion = () => {
       const guardada = leerSesion(progress, tit);
-      const comp = componerSesion(st, mirando);
+      const normal = componerSesion(st, mirando);
+      const comp = enSemana && mirando === real.id && sx.comp ? sx.comp : normal;
       let tema = pasoConTema(comp.pasos);
       entrada = estadoEntrada({ sesion: guardada, terminada: terminada(guardada), nuevo: recien, carta: !!sy });
       if (mirando !== real.id) {
@@ -260,7 +268,7 @@ export function hoyView({ progress, tit }) {
         parada = null;
         const manana = h('p.entrada-manana', h('strong', 'Mañana: '), 'calculando…');
         // Lo que toca mañana: la sesión que se compondría mañana con lo hecho hasta ahora (como el resumen de la sesión).
-        calcularPlan(progress, tit, Date.now() + DIA, { guardar: false })
+        if (enSemana && sx.plan.dias[1]) { const x = sx.plan.dias[1]; const t = `${x.titulo}${x.minutos ? ` (${x.minutos} min)` : ''}.`; setChildren(manana, h('strong', 'Mañana: '), t); summaryText += `\nMAÑANA: ${t}`; } else calcularPlan(progress, tit, Date.now() + DIA, { guardar: false })
           .then((dm) => { const t = lineaManana(componerSesion(dm.st, deducirFase(dm.st).id), { fallosManana: st.repaso.manana }); setChildren(manana, h('strong', 'Mañana: '), t); summaryText += `\nMAÑANA: ${t}`; })
           .catch(() => setChildren(manana, h('strong', 'Mañana: '), 'lo que proponga tu plan.'));
         setChildren(sesionEl,
@@ -270,7 +278,8 @@ export function hoyView({ progress, tit }) {
           manana,
           h('div.entrada-acciones',
             h('a.boton-sesion', { href: tlink(tit, ['sesion']) }, 'Ver el parte de hoy'),
-            h('button.boton-sesion.secundario', { type: 'button', onclick: () => empezar(comp) }, 'Repaso extra')),
+            h('button.boton-sesion.secundario', { type: 'button', onclick: () => empezar(normal) }, 'Repaso extra')),
+          enSemana ? h('div.semana-enlaces', enlaceSemana(tit)) : null,
           plegarPasos(guardada.pasos, listaPasos(guardada.pasos)));
       } else if (entrada.estado === 'a-medias') {
         const i = indiceActual(guardada);
@@ -278,11 +287,22 @@ export function hoyView({ progress, tit }) {
         parada = paradaDeSesion(guardada.pasos.slice(i), { actual: true });
         const min = guardada.pasos.filter((p) => p.estado === 'pendiente').reduce((x, p) => x + p.minutos, 0);
         setChildren(sesionEl,
-          cabTarjeta('Sesión a medias', `quedan ${min} min`),
+          cabTarjeta(guardada.semana && enSemana ? `${rotuloSemana(sx.estado.dias)} · a medias` : 'Sesión a medias', `quedan ${min} min`),
           nombreParada(parada),
           h('a.boton-sesion.entrada-seguir', { href: tlink(tit, ['sesion']) }, 'Seguir'),
           plegarPasos(guardada.pasos, lineaCuesta(), listaPasos(guardada.pasos, i), h('p.sesion-nota', 'Se guardó por dónde ibas.')),
           h('button.linklike.otra-sesion', { type: 'button', onclick: () => { if (confirm('¿Dejar esta sesión y empezar una nueva con lo que toca ahora?')) empezar(comp); } }, 'Empezar una sesión nueva'));
+      } else if (enSemana) {
+        // La tarjeta de la semana: lo de hoy (o, el día del examen, solo ánimo), su botón, ver la semana y salir del modo.
+        const dia = sx.plan.dias[0];
+        parada = sx.comp ? paradaDeSesion(sx.comp.pasos) : null;
+        setChildren(sesionEl,
+          cabTarjeta(rotuloSemana(sx.estado.dias), dia.minutos ? `${dia.minutos} min` : null),
+          h('h2#sesion-titulo.entrada-parada', dia.titulo),
+          h('p.sesion-linea', dia.texto),
+          sx.comp ? h('button.boton-sesion.entrada-seguir', { type: 'button', onclick: () => empezar(sx.comp) }, 'Empezar') : null,
+          sx.comp ? plegarPasos(sx.comp.pasos, listaPasos(sx.comp.pasos), h('p.sesion-nota', 'Puedes parar cuando quieras: se guarda por dónde vas.')) : null,
+          h('div.semana-enlaces', enlaceSemana(tit), botonSalir(progress, tit, sx.estado)));
       } else {
         parada = paradaDeSesion(comp.pasos);
         setChildren(sesionEl,
@@ -294,7 +314,7 @@ export function hoyView({ progress, tit }) {
           comp.pasos[0]?.tipo === 'examen-en-curso' ? descartarExamen() : null);
       }
       setChildren(podcastHueco, tarjetaPodcast(tit, tema));
-      pasosMarca = pasosQueTocan(mirando === real.id ? guardada : null, componerSesion(st, real.id));
+      pasosMarca = pasosQueTocan(mirando === real.id ? guardada : null, enSemana && sx.comp ? sx.comp : componerSesion(st, real.id));
       pintaHeroe();
       summaryText = `VISTA hoy ${T.sigla} · ENTRADA ${entrada.modo}${parada ? ` · SIGUIENTE PARADA: ${parada.nombre}${parada.tipo ? ` (${parada.tipo})` : ''}` : ''}\n` +
         `FASE ${real.id}${mirando !== real.id ? ` (mirando ${mirando})` : ''}: ${real.detalle}. ${real.porque}\n` +
@@ -302,6 +322,7 @@ export function hoyView({ progress, tit }) {
         `SEGUIR: #/${tit}/sesion (ejecutor) · DÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''}\nLISTO: ${lineaListo(listo)}\n` +
         (cuesta ? `DIAGNÓSTICO: ${cuesta}\n` : '') +
         (nivel ? `NIVEL: ${nivel.aciertos}/${nivel.total} bien · saltables ${saltables.map((x) => x.l.id).join(', ') || '—'}\n` : ic && nuevo ? `NIVEL: sin hacer (oferta${s[claveNoNivel(eje, tit)] ? ' descartada' : ''}) → #/${tit}/nivel\n` : '') +
+        (enSemana ? `SEMANA: ${rotuloSemana(sx.estado.dias)} · hoy ${sx.plan.dias[0].tipo} (${sx.plan.dias[0].titulo}) → #/${tit}/semana\n` : '') +
         `AVANCE: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${cuenta(racha, 'día')}`;
     };
 
@@ -323,6 +344,7 @@ export function hoyView({ progress, tit }) {
     }
 
     pintaFase();
+    faseEl.hidden = enSemana; // en la semana del examen no hay fases: manda el plan de la semana
     pintaSesion();
 
     // --- la fila de estado: rango (o camino), semana y «¿Estás listo?» en una línea; cada una lleva a su detalle
@@ -343,7 +365,8 @@ export function hoyView({ progress, tit }) {
           h('span.entrada-dato-eti', '¿Estás listo?'), h('span.entrada-listo-tx', listoCorto(listo)), flecha()));
 
     // Cómo vas con el plan: solo si hay algo que decidir (no llegas a tiempo) o un plan que seguir.
-    const ritmo = m.aviso || (ps && m.tipo === 'toca') ? h('div.ritmo', { class: m.aviso ? 'warn' : '' },
+    // En la semana del examen no se habla del ritmo del plan largo (no hay tiempo de recuperarlo): manda la semana.
+    const ritmo = !enSemana && (m.aviso || (ps && m.tipo === 'toca')) ? h('div.ritmo', { class: m.aviso ? 'warn' : '' },
       h('p', marcaEstado(m.tipo === 'toca' && ps ? ps.seg.estado : 'al-dia')[0], m.texto, ps && m.tipo === 'toca' ? [' ', h('a', { href: tlink(tit, ['plan']) }, 'Ver mi plan')] : null),
       m.detalle ? h('p.muted.small', m.detalle) : null,
       m.aviso && ps ? botonSubirMinutos(progress, ps, () => window.dispatchEvent(new HashChangeEvent('hashchange')), tit) : null) : null;
@@ -372,6 +395,9 @@ export function hoyView({ progress, tit }) {
       h('div.entrada-arriba', { class: sy ? '' : 'sin-carta' },
         heroeEl,
         h('div.entrada-principal', faseEl, sesionEl)),
+      // Pasado el examen, cómo fue (sin obligar); si salió del modo semana, volver a él.
+      sx.estado.preguntar ? tarjetaComoFue(progress, tit, sx.estado.preguntar) : null,
+      sx.estado.salido ? h('p.semana-volver', 'Tu examen está cerca. ', botonVolver(progress, tit)) : null,
       estadoEl,
       // Lo secundario, debajo: nada compite con «Seguir».
       ofertaNivel(),

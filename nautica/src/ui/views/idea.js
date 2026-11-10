@@ -29,6 +29,7 @@ export function volverDe(tit, desde) {
   const [a, b] = String(desde ?? '').split('/');
   if (a === 'repaso') return ['Repaso de fallos', tlink(tit, ['teoria', 'repaso'])];
   if (a === 'sesion') return ['Resumen de la sesión', tlink(tit, ['sesion'])];
+  if (a === 'semana') return ['La semana del examen', tlink(tit, ['semana'])];
   if (a === 'temario' && /^\d+$/.test(b ?? '')) return ['El tema', tlink(tit, ['temario', b])];
   if (a === 'temario') return ['Temario', tlink(tit, ['temario'])];
   if (a === 'progreso') return ['Mi progreso', link(['progreso'])];

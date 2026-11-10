@@ -70,6 +70,9 @@ export function pasoEnPantalla(progress, tit, parts) {
   return enPantalla;
 }
 
+/** ¿Es la pantalla actual el paso por el que va la sesión de hoy? (sin marcar nada) */
+export const enPasoDeSesion = () => !!enPantalla;
+
 /** Parar: se guarda por dónde vas y se vuelve a Hoy (con la salida de la propia vista, que guarda lo suyo). */
 function parar(progress, tit) {
   const s = leerSesion(progress, tit);

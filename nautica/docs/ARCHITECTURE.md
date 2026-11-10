@@ -74,6 +74,18 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 - **Recomendador único** (`course/plan.js`, funciones puras con tests): `planHoy` (lista ordenada de
   actividades; la primera es la de Hoy), `estadoTema` y `avance`. Lo usan Hoy, Temario, Mi progreso y las
   pantallas de cierre (`ui/cierre.js`, que recalcula el plan tras guardar el progreso).
+- **La semana antes** (`course/semana.js`, funciones puras con `ahora`/`hoy` inyectados; tests `tests/semana.test.js`):
+  modo de los últimos 7 días antes del examen. `estadoModo` (automático con la fecha no orientativa a ≤ 7 días, a mano
+  con `activarManual`, `salirDelModo`, y pasada la fecha `preguntar` cómo fue), `ideasPriorizadas` (prioridad = peso del
+  tema × límite de fallos × (1 − tasa) × convocatorias en que sale / convocatorias del banco; solo preguntas que se
+  practican), `repartoDias` y `planSemana` (ideas, simulacro, repaso del simulacro, ligero, víspera sin nada nuevo,
+  examen) y `sesionDeSemana` (la sesión de hoy, `fase: 'semana'`, que guarda el tipo del día). La interfaz:
+  `ui/semana.js` (calcula con el resultado de `calcularPlan`, guarda el ajuste compartido `semana_<tit>` y apunta el día
+  hecho), la tarjeta de Hoy (`views/hoy.js`), `views/semana.js` (`#/<tit>/semana` y la tanda `#/<tit>/semana/ideas/<n>`) y
+  la Travesía («Seguir» arranca la misma sesión, `composicionDeHoy`).
+- **Rutas existentes en tiempo de ejecución** (`ui/rutas.js`): `app.js` publica las claves de `TIT_ROUTES`
+  (`fijarRutasTit`) y una vista enlaza otra sección solo si `hayRuta('<sección>')`. Es el punto de extensión de la
+  semana para la página «Estrategia de examen»: al registrar `estrategia` en `TIT_ROUTES`, sus accesos la enlazan solos.
 - **Ruta del curso** (`course/ruta.js`, [`RUTA.md`](RUTA.md)): cada clase declara `requiere` (clases del mismo curso
   en que se apoya) y `data/curso/ruta-<tit>.json` (generada con `tools/ruta.mjs` y retocada a mano) fija el orden en
   que se dan, intercalando temas. `planHoy`, `unidades` (plan con fecha) y `hoyToca` la siguen; Temario sigue por temas.

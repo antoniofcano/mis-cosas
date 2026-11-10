@@ -124,10 +124,11 @@ export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, r
 
   // 1. Examen a medias
   if (testEnCurso) {
-    const restante = Math.max(1, Math.round(estructura.duracionMin - (testEnCurso.consumidoMs ?? 0) / 60000));
+    // El simulacro de tus errores (R-43) lleva su propio tiempo.
+    const restante = Math.max(1, Math.round((testEnCurso.errores?.min ?? estructura.duracionMin) - (testEnCurso.consumidoMs ?? 0) / 60000));
     const real = testEnCurso.tipo === 'real';
     lista.push({ tipo: 'examen-en-curso', titulo: 'Examen a medias', verbo: 'Continuar', minutos: restante,
-      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ['test', 'simulacro'],
+      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ['test', testEnCurso.tipo === 'errores' ? 'errores' : 'simulacro'],
       query: real || testEnCurso.tipo === 'final' || testEnCurso.seed == null ? undefined : { s: String(testEnCurso.seed) }, ut: null });
   }
 

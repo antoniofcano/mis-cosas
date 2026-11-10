@@ -85,5 +85,22 @@ export function diagnosticar(q, marcada, { sol, chart }) {
   return { estado, marcada, tipos, valores };
 }
 
+/**
+ * Distractores de una pregunta que explica un único error típico: { letra: error }. Mismo criterio que diagnosticar()
+ * (estado «unico»); con él se genera el índice estático del simulacro de tus errores (tools/indice-errores.mjs, R-43).
+ * {} si no tiene resolución, está anulada o no tiene respuesta oficial.
+ */
+export function distractoresUnicos(q, { sol, chart }) {
+  if (!sol || q.anulada || !q.correcta) return {};
+  const r = resolverVariantes(q, sol, chart);
+  if (!r) return {};
+  const out = {};
+  for (const x of Object.keys(q.opciones ?? {}).sort()) {
+    const tipos = [...new Set(variantesQueLlevanA(q, r, x).map((v) => v.tipo))];
+    if (tipos.length === 1) out[x] = tipos[0];
+  }
+  return out;
+}
+
 /** ¿Se puede enseñar? Único, o ambiguo entre dos errores. */
 export const diagnosticoUtil = (d) => d.estado === 'unico' || (d.estado === 'ambiguo' && d.tipos.length === 2);

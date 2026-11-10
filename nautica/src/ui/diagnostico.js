@@ -11,6 +11,7 @@ import { quantity } from '../analysis/quantities.js';
 import { SOLUCIONES } from '../bancos/soluciones.js';
 import { erroresAlumno } from '../store/errores.js';
 import { cuenta } from '../texto.js';
+import { entradaSimulacroErrores } from './simulacro-errores.js';
 
 const valores = (vs) => vs.map((v) => quantity(v.kind).format(v.value)).join(' · ');
 
@@ -50,20 +51,23 @@ export function diagnosticoTexto(q, marcada, chart) {
 
 /**
  * Sección «Tus errores más repetidos» (Mi progreso): errores típicos diagnosticados y pasos del modo guiado que más
- * fallas. null si aún no hay nada apuntado.
+ * fallas, los superados en el simulacro de tus errores y la entrada a ese simulacro (R-43, con `tit`). null si aún no
+ * hay nada apuntado.
  */
-export function seccionErrores() {
+export function seccionErrores(tit = null) {
   const r = erroresAlumno().resumen();
-  if (r.vacio || (!r.errores.length && !r.pasos.length)) return null;
+  if (r.vacio || (!r.errores.length && !r.pasos.length && !r.superados.length)) return null;
   return h('section.prog-sec.errores-repetidos',
     h('h2.eti', 'Tus errores más repetidos'),
     r.peorPaso ? h('p', conIcono('diana', `Fallas sobre todo ${r.peorPaso.al}.`)) : null,
     r.errores.length ? h('ul.errores-lista', r.errores.slice(0, 5).map((e) => h('li',
       h('span.error-nombre', e.nombre), h('span.error-n', cuenta(e.n, 'vez')),
       h('span.error-si.small.muted', `Te pasa cuando ${e.si}.`)))) : null,
+    r.superados.length ? h('p.small.errores-superados', conIcono('ok', `Superados en el simulacro de tus errores: ${r.superados.map((e) => e.nombre).join(', ')}.`)) : null,
     r.pasos.length ? h('p.small.muted', 'Pasos con fallos (modo paso a paso y errores reconocidos): ',
       r.pasos.slice(0, 4).map((p) => `${p.nombre} ${p.fallos}/${p.intentos}`).join(' · '), '.') : null,
-    h('p.small.muted', 'Se guarda solo en este aparato.'));
+    h('p.small.muted', 'Se guarda solo en este aparato.'),
+    tit ? entradaSimulacroErrores(tit, { donde: 'progreso' }) : null);
 }
 
 /** Línea para el resumen de IA de Mi progreso. */

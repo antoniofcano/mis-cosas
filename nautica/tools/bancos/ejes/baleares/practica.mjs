@@ -6,6 +6,8 @@
 //      clase de su mismo tema → esa clase (la misma decisión ya revisada allí);
 //   2. carta: por el tipo de ejercicio de su solución programada (las reglas de resueltos.json del otro banco); las
 //      mareas que necesitan anuario, a la clase de mareas; las de carta sin solución, a la clase de la carta;
+//   (Siempre una clase de SU tema, el bloque del examen en que salió: tools/bancos/lib/practica-tema.mjs. Las únicas
+//   que van a una clase de otro tema son las excepciones revisadas de tools/bancos/practica-excepciones.json.)
 //   3. contenido: la clase de su tema cuyo texto (título, objetivos, pasos, chuleta y términos) más se parece a la
 //      pregunta, su respuesta y su explicación del profe (TF-IDF, coseno), sumando el voto de las 7 preguntas más
 //      parecidas del otro banco que ya tienen clase. Medido sobre el otro banco (dejando cada pregunta fuera), acierta
@@ -18,6 +20,7 @@ import { RAIZ, dirEje, escribirJSON, leerJSON } from '../../lib/comun.mjs';
 import { clave } from '../../lib/texto.mjs';
 import { textoDePaso } from '../../../../src/course/engine.js';
 import { SOLUCIONES } from '../../../../src/bancos/soluciones.js';
+import { contexto, recolocar } from '../../lib/practica-tema.mjs';
 
 const EJE = 'baleares';
 const L = (r) => leerJSON(join(RAIZ, r), null);
@@ -97,6 +100,9 @@ for (const tit of ['per', 'py']) {
       if (tit === 'per') lid = enExtremo && !pideHora ? 'per-11-1' : MAREAS.per;
       else lid = pideHora ? MAREAS.py : 'py-3-6';
       por = 'mareas con anuario';
+      // Solo si esa clase es de su tema (su bloque del examen): si no, a la clase de mareas de su tema o, sin ella, por
+      // contenido entre las de su tema (más abajo). Una clase no lleva preguntas de otro tema.
+      if (porId.get(lid)?.ut !== q.ut) lid = porId.get(MAREAS[tit])?.ut === q.ut ? MAREAS[tit] : tit === 'per' && q.ut === 11 ? 'per-11-1' : null;
     }
     if (!lid && q.requiere.includes('carta')) {
       const ej = SOLUCIONES[q.id]?.ejercicio;
@@ -112,18 +118,32 @@ for (const tit of ['per', 'py']) {
         return [...sc].sort((x, y) => y[1] - x[1])[0];
       };
       const [mejor, s] = puntua(mismas, andQs.filter((a) => a.ut === q.ut));
-      // El tema sale de la posición en el examen, y el tribunal mezcla a veces (incendios entre las de seguridad):
-      // si una clase de otro tema puntúa más del doble, la pregunta va a esa clase (sobre el otro banco, este cambio
-      // casi no toca nada: allí el tema de cada pregunta está revisado).
-      const [otra, s2] = puntua(lecciones, andQs);
-      if (!q.requiere.includes('carta') && porId.get(otra).ut !== q.ut && s2 > 2 * s) { lid = otra; por = `contenido, de otro tema (${s2.toFixed(2)} frente a ${s.toFixed(2)})`; }
-      else { lid = mejor; por = `contenido (${s.toFixed(2)})`; }
+      // El tema sale de la posición en el examen, y el tribunal mezcla a veces (incendios entre las de seguridad). Antes,
+      // si una clase de otro tema puntuaba más del doble, la pregunta iba a esa clase: el alumno la veía fuera de sitio
+      // al estudiarla. Ahora una pregunta solo va a clases de su tema; las que por su idea son de otro (lo dudoso es su
+      // tema) están, revisadas una a una, en tools/bancos/practica-excepciones.json y se colocan al final.
+      lid = mejor;
+      por = `contenido (${s.toFixed(2)})`;
     }
     if (!lid && q.requiere.includes('carta') && CARTA_GENERAL[tit]) { lid = CARTA_GENERAL[tit]; por = 'carta sin solución'; }
     if (!lid) return;
     practica[lid].push(q.id);
     motivo[q.id] = `${lid} · ${por}`;
   });
+  // Excepciones revisadas (siguen en una clase de otro tema, con su motivo) y red de seguridad: ninguna otra pregunta
+  // queda en una clase de otro tema (tools/bancos/lib/practica-tema.mjs).
+  const ctxTema = contexto(EJE, tit);
+  const estudiables = new Set(estudio.map((q) => q.id));
+  for (const [id, e] of Object.entries(ctxTema.excepciones)) {
+    if (!estudiables.has(id) || !practica[e.clase]) continue;
+    // «tema-dudoso»: solo en la clase de la excepción; «clase-corta»: además de la de su tema.
+    if (e.tipo === 'tema-dudoso') for (const l of Object.keys(practica)) practica[l] = practica[l].filter((x) => x !== id);
+    if (!practica[e.clase].includes(id)) practica[e.clase].push(id);
+    motivo[id] = `${e.clase} · excepción (${e.tipo})`;
+  }
+  const recolocada = recolocar(ctxTema, practica);
+  const ordenBanco = new Map(qs.map((q, i) => [q.id, i]));
+  for (const l of Object.keys(practica)) practica[l] = [...new Set(recolocada.practica[l] ?? [])].sort((a, b) => ordenBanco.get(a) - ordenBanco.get(b));
   escribirJSON(join(RAIZ, 'data', 'ejes', EJE, tit, 'practica.json'), practica);
   // Resueltos: las de estudio con solución programada del tipo de la clase (las más recientes primero).
   const enEstudio = new Set(estudio.map((q) => q.id));

@@ -107,7 +107,7 @@ L.push('');
 // Práctica
 const pinf = leerJSON(join(dirEje(EJE), 'practica-informe.json'), null);
 if (pinf) {
-  L.push('### Práctica por clase', '', 'practica.mjs asigna cada pregunta del estudio a una clase (concepto revisado del otro banco, tipo de ejercicio de carta, mareas con anuario o contenido: TF-IDF con la explicación del profe y vecinas del otro banco); el motivo de cada una está en `practica-informe.json`.', '');
+  L.push('### Práctica por clase', '', 'practica.mjs asigna cada pregunta del estudio a una clase (concepto revisado del otro banco, tipo de ejercicio de carta, mareas con anuario o contenido: TF-IDF con la explicación del profe y vecinas del otro banco), siempre de su tema (las excepciones, en `tools/bancos/practica-excepciones.json`); el motivo de cada una está en `practica-informe.json`.', '');
   for (const t of ['per', 'py']) L.push(`- ${t.toUpperCase()}: ${pinf[t].asignadas} preguntas en ${Object.keys(pinf[t].porClase).length} clases; por motivo: ${Object.entries(pinf[t].motivos).map(([k, v]) => `${k} ${v}`).join(', ')}; clases sin práctica: ${pinf[t].sinPractica.length ? pinf[t].sinPractica.join(', ') : 'ninguna'}.`);
   L.push('');
 }

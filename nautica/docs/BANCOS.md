@@ -299,7 +299,8 @@ alumno espera en otro, o la práctica de una clase trae una de otro tema. El alu
   banco ya tiene la pregunta en el tema que eligió el alumno, su corrección deja de aplicarse sola.
 - **Auditoría** (`node tools/auditoria-temas.mjs [--detalle|--json|--escribir]`): lista las preguntas sospechosas de
   estar en el tema equivocado por cuatro señales (el tribunal la puso en bloques distintos, su idea está en otro tema,
-  sale en la práctica de una clase de otro tema, su vocabulario es de otro tema). No cambia datos.
+  sale en la práctica de una clase de otro tema —ya solo las excepciones revisadas, ver «Práctica y tema»—, su
+  vocabulario es de otro tema). No cambia datos.
 - Tests: `tests/correcciones-tema.test.js`.
 
 ### Rutas
@@ -355,7 +356,24 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
   buscar la pregunta equivalente de otro eje (`equivalente(id, eje)` del motor: las pausas del podcast).
 - **Práctica** (`tools/bancos/practica.mjs <eje> [--escribir]`): propone `practica.json` con la práctica de
   Andalucía como guía (concepto, vecinas, reglas del RIPA citadas, palabras propias de la clase y tipo de ejercicio
-  de las de carta) y avisa de las clases que no llegan a las preguntas de su homóloga.
+  de las de carta) y avisa de las clases que no llegan a las preguntas de su homóloga. Solo entre las clases del tema
+  de la pregunta (ver «Práctica y tema»). Ojo: regenerar del todo no reproduce la práctica publicada (los textos de las
+  clases y las explicaciones han cambiado desde que se generó); para corregir algo concreto, mejor una herramienta
+  dirigida como `practica-tema.mjs`.
+- **Práctica y tema**: la práctica de una clase solo lleva preguntas de **su tema** (el `ut` de la pregunta, que es el
+  bloque del examen en que salió, igual al `ut` de la clase). Los generadores mandaban a propósito algunas preguntas a
+  clases de otro tema (en Baleares, cuando una clase de otro tema puntuaba más del doble por contenido, y las mareas con
+  anuario del bloque de carta; en el genérico, las de la unidad de carta que no se hacen sobre la carta podían ir a las
+  clases de la teoría de navegación) y el alumno las veía fuera de sitio. Ya no: los dos generadores eligen solo entre
+  las clases del tema y acaban con `recolocar` (`tools/bancos/lib/practica-tema.mjs`), y `tests/practica-tema.test.js`
+  falla con cualquier pregunta en una clase de otro tema. `node tools/bancos/practica-tema.mjs [--detalle|--escribir|
+  --excepciones|--informes]` recoloca la práctica ya escrita: quita la pregunta de la clase de otro tema y la lleva a la
+  de su tema donde se enseña su idea (`clases` del concepto), a la que ya tiene al menos 3 de su idea o a la de sus
+  vecinas más parecidas; si ninguna la explica, se queda solo en su tema (tandas por tema, repaso y exámenes).
+  **Excepciones** (`tools/bancos/practica-excepciones.json`, una a una y con motivo): `tema-dudoso` (su idea vive en el
+  tema de esa clase: lo dudoso es su `ut`, que no se fuerza; sigue como candidata en `tools/auditoria-temas.mjs`) y
+  `clase-corta` (la clase se quedaría con menos de 3 preguntas de su tema, p. ej. la del Anuario del PY, que el tribunal
+  pregunta en el bloque de carta; la pregunta va además a la clase de su tema).
 - **Soluciones de carta**: el módulo de cada eje (`src/bancos/ejes/<eje>.js`) exporta `{ id, soluciones,
   documentadas }`. `documentadas` = las de carta que no se resuelven, con su motivo: `{ tipo: 'discrepancia' |
   'sin-calculo' | 'anulada', texto }`. `discrepancia`: la cuenta no llega a la opción oficial; el texto da la cuenta

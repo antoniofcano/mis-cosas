@@ -25,6 +25,7 @@ import { lineaProfe, rotuloProfe } from '../profe-steps.js';
 import { quieto, transicion } from '../movimiento.js';
 import { respuesta as efectoRespuesta } from '../efectos.js';
 import { avisoError } from '../aviso-error.js';
+import { accionTema } from '../tema-pregunta.js';
 import { enlaceTrampa } from '../mapa-trampa.js';
 import { remateMapas } from '../remate-mapas.js';
 import { illustrationEls } from '../illustration.js';
@@ -192,7 +193,8 @@ export function profePanel(q, expl, chosen, { efectos = true, pasos = true } = {
     })(),
     ok ? null : enlaceTrampa(q, chosen),
     ok || !pasos ? null : enlacePasos(q),
-    h('p.pie-aviso', avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
+    // «¿No es de este tema?» (nunca con un examen en curso: accionTema devuelve null) y «Avisar de un error».
+    h('p.pie-aviso', accionTema(q), avisoError(`Pregunta ${q.id}${q.convocatoria ? ` (${q.convocatoria})` : ''}`, (q.enunciado ?? '').slice(0, 120))),
   );
   // Las siglas de la explicación (Ct, HRB, MMSI…) se explican al tocarlas. La pregunta ya está respondida.
   glosar(panel, { tit: T.id, ut: q.ut });
@@ -246,12 +248,13 @@ export function rutaTest(tc) {
  * o simulacro con su semilla (del estudio; con `respuestas`, primero las no vistas).
  */
 function construirTest(estructura, banco, tipo, conv, seed, respuestas = null) {
-  return tipo === 'real' ? buildReal(banco.examenes, conv) : buildSimulacro(estructura, banco.estudio, createRng(seed), { respuestas });
+  // El simulacro reparte por el tema oficial de cada pregunta (banco.oficial), no por las correcciones del alumno.
+  return tipo === 'real' ? buildReal(banco.examenes, conv) : buildSimulacro(estructura, banco.oficial?.estudio ?? banco.estudio, createRng(seed), { respuestas });
 }
 
 /** Rehace un examen guardado: con sus preguntas guardadas (ids) o, si es de antes de guardarlas, con la semilla. */
 function rehacerTest(estructura, banco, tc) {
-  return testDesdeIds(tc.tipo, tc.ids, banco.porId, tc.conv) ?? (tc.tipo === 'final' ? { tipo: 'final', titulo: 'Examen final', preguntas: [], faltan: [] } : construirTest(estructura, banco, tc.tipo, tc.conv, tc.seed));
+  return testDesdeIds(tc.tipo, tc.ids, banco.oficial?.porId ?? banco.porId, tc.conv) ?? (tc.tipo === 'final' ? { tipo: 'final', titulo: 'Examen final', preguntas: [], faltan: [] } : construirTest(estructura, banco, tc.tipo, tc.conv, tc.seed));
 }
 
 /** ¿El examen guardado (o hecho) es de esta titulación y este eje? (los antiguos, sin titulación, son del PER) */
@@ -758,7 +761,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         return;
       }
       const test = tipo === 'final'
-        ? buildFinal(E0, { modo: banco.reserva.modo, key: fin.siguiente?.key, examenes: banco.reserva.examenes, porId: banco.porId, pool: banco.final, respuestas: respuestasAntes, rng: createRng(seed) })
+        ? buildFinal(E0, { modo: banco.reserva.modo, key: fin.siguiente?.key, examenes: banco.reserva.examenes, porId: banco.oficial?.porId ?? banco.porId, pool: banco.final, respuestas: respuestasAntes, rng: createRng(seed) })
         : construirTest(E0, banco, tipo, conv, seed, respuestasAntes);
       if (!test.preguntas.length) { setChildren(el, h('p.warn', 'No hay preguntas para este examen.'), h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver')); return; }
       const empezar = () => {

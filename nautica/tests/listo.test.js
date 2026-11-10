@@ -58,14 +58,17 @@ test('estoy listo: sin datos, buen alumno, tema que tumba', () => {
 test('repaso mezclado: varios temas por turnos, más peso a los fallos y solo de lo empezado', () => {
   const qs = banco(PER);
   const r = responder(qs, PER, 10, 0.5);
-  const m = buildMezcla(qs, [1, 5, 6], createRng(7), { respuestas: r, limite: 10 });
+  // «ahora» fijo (el día de las respuestas): el peso de las acertadas crece con los días sin verlas, y con la hora real el
+  // test dejaba de cumplirse al pasar unas semanas.
+  const ahora = new Date('2026-10-01T12:00:00Z').getTime();
+  const m = buildMezcla(qs, [1, 5, 6], createRng(7), { respuestas: r, limite: 10, ahora });
   assert.equal(m.preguntas.length, 10);
   assert.ok(m.preguntas.every((q) => [1, 5, 6].includes(q.ut)));
   assert.equal(new Set(m.preguntas.map((q) => q.id)).size, 10);
   for (let i = 1; i < m.preguntas.length; i++) assert.notEqual(m.preguntas[i].ut, m.preguntas[i - 1].ut, 'no salen dos seguidas del mismo tema');
   // las falladas pesan más que las acertadas y que las no vistas
   let falladas = 0;
-  for (let s = 1; s <= 30; s++) falladas += buildMezcla(qs, [1, 5, 6], createRng(s), { respuestas: r, limite: 6 }).preguntas.filter((q) => r[q.id] && !r[q.id].ok).length;
+  for (let s = 1; s <= 30; s++) falladas += buildMezcla(qs, [1, 5, 6], createRng(s), { respuestas: r, limite: 6, ahora }).preguntas.filter((q) => r[q.id] && !r[q.id].ok).length;
   assert.ok(falladas / (30 * 6) > 0.5, `falladas ${falladas}`);
 });
 

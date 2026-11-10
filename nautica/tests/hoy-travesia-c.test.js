@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { cartaDerrotaSvg, ladoNombre, escalaY, ANCHO, ALTO, ALTO_COMPACTA_SVG, ALTO_COMPACTA } from '../src/illustrations/derrota-c.js';
-import { posicionesDerrota, BANDERA, PUNTOS_DERROTA } from '../src/course/travesia.js';
+import { posicionesDerrota, trazadoDerrota, BANDERA, PUNTOS_DERROTA } from '../src/course/travesia.js';
 
 const leer = (f) => readFileSync(new URL(`../${f}`, import.meta.url), 'utf8');
 const LAM = leer('styles/laminas.css');
@@ -79,6 +79,31 @@ test('carta: vale para la PER, el PY y bancos con otro número de faros', () => 
     const fs = faros(Array.from({ length: n }, (_, i) => ['on', 'parcial', 'off'][i % 3]));
     for (const compacta of [false, true]) assert.equal((svgDe(fs, { compacta }).match(/class="pata /g) ?? []).length, n);
   }
+});
+
+test('carta densa (la PER, un faro por tema: once): más alta, mismas reglas de dibujo, rosa y cartela sobre la costa del sur', () => {
+  const once = faros(['on', 'on', 'parcial', 'parcial', 'off', 'on', 'parcial', 'off', 'off', 'off', 'off']);
+  for (const compacta of [false, true]) {
+    const t = trazadoDerrota(once.length, { compacta });
+    const s = cartaDerrotaSvg(once, t.pos, t.bandera, { compacta, alto: t.alto, rotulo: { titulo: 'DERROTA', sub: 'PER · 11 faros' } });
+    assert.ok(s.startsWith(`<svg class="carta-svg lc" viewBox="0 0 358 ${t.alto}" aria-hidden="true" focusable="false">`));
+    assert.ok(!/#[0-9a-f]{3,8}\b(?!-)|rgba?\(|hsl/i.test(s.replace(/url\(#[^)]+\)/g, '')), 'sin colores fijos');
+    for (const m of s.matchAll(/(?:fill|stroke)="([^"]+)"/g)) assert.match(m[1], /^(var\(--lc-[a-z0-9-]+\)|none|url\(#lc[a-z0-9]+-pt\))$/, m[1]);
+    assert.equal((s.match(/class="pata /g) ?? []).length, 11, 'una pata por faro');
+    // Las patas unen los huecos tal cual (sin escalar): la primera sale del primer faro y la última llega a la bandera.
+    const patas = [...s.matchAll(/class="pata [a-z]+" x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)" y2="([\d.]+)"/g)].map((m) => m.slice(1).map(Number));
+    assert.deepEqual(patas[0].slice(0, 2), t.pos[0]);
+    assert.deepEqual(patas[10].slice(2), t.bandera);
+    assert.equal(ladoNombre(t.pos, 3, t.bandera, { densa: true }), '', 'cada nombre, debajo de su faro');
+    if (compacta) assert.doesNotMatch(s, /<text/, 'la compacta no lleva texto en el SVG');
+    else {
+      const tam = [...s.matchAll(/<text[^>]*font-size="([\d.]+)"/g)].map((m) => Number(m[1]));
+      assert.ok(tam.length >= 3 && tam.every((x) => x * 324 / ANCHO >= 10.5), 'texto mínimo de la rosa y la cartela');
+      assert.match(s, />DERROTA<\/text>/);
+    }
+  }
+  const APP_CSS = leer('styles/app.css');
+  assert.match(APP_CSS, /\.carta-trav\.densa \.faro-nombre \{ white-space: nowrap; background: var\(--lc-papel\);/);
 });
 
 test('nombres de los faros: al lado cuando otro faro queda justo debajo (Carta sobre Balizamiento en la PER)', () => {

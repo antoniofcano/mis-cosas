@@ -89,10 +89,9 @@ Beaufort `viento`, Douglas `ola`, fuego `racha`, GNSS `satelite`. Ejercicios: ag
 
 ## Temario: el faro de cada tema
 
-En `#/<tit>/temario` cada tarjeta lleva el faro del tema con el mismo dibujo, colores y criterio que la Travesía
-(`luzDeFaro` de `src/course/travesia.js`: encendido con ≥ 80 % de las ideas dominadas, en curso si hay alguna vista,
-apagado si no), la barra fina de ideas dominadas y el límite de fallos como chip («Máx. 2 fallos de 5»). Las ideas se
-reparten por tema con `farosPorTema`: cada idea va al tema de la mayoría de sus preguntas (`temaDeIdea` de
-`src/course/listo.js`, el mismo reparto que las «ideas por tema» de Mi progreso), porque los faros de la carta agrupan por
-bloque del catálogo y no por tema del examen. Sin conceptos etiquetados en el banco, la tarjeta es la de siempre con el
+En `#/<tit>/temario` cada tarjeta lleva el faro del tema, que es el mismo faro de la carta de la derrota
+(`farosDeTemas` de `src/course/travesia.js`, con `luzDeFaro`: encendido con ≥ 80 % de las ideas dominadas, en curso si hay
+alguna vista, apagado si no), la barra fina de ideas dominadas y el límite de fallos como chip («Máx. 2 fallos de 5»).
+`farosPorTema(est)` devuelve esos mismos faros por número de tema: cada idea va al tema de la mayoría de sus preguntas
+(`temaDeIdea` de `src/course/listo.js`) y las cuentas son las de la Travesía (docs/TRAVESIA.md, «Faros»). Sin conceptos etiquetados en el banco, la tarjeta es la de siempre con el
 icono del tema.

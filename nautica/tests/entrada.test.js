@@ -8,7 +8,7 @@ import {
 } from '../src/course/entrada.js';
 import { lineaListo } from '../src/course/listo.js';
 
-const faro = (id, estado, corto = id, ideas = []) => ({ id, nombre: `Faro ${corto}`, corto, estado, ideas });
+const faro = (id, estado, corto = id, ut = null) => ({ id, ut, nombre: `Faro ${corto}`, corto, estado, ideas: [] });
 const FAROS = [faro('nomenclatura', 'on', 'Nomenclatura'), faro('maniobra', 'on', 'Maniobra'), faro('seguridad', 'parcial', 'Seguridad'),
   faro('balizamiento', 'parcial', 'Balizamiento'), faro('meteorologia', 'off', 'Meteorología'), faro('navegacion', 'off', 'Carta')];
 const paso = (tipo, titulo, sub, minutos, ut = null) => ({ id: `${tipo}:x`, tipo, titulo, sub, minutos, ruta: ['x'], ut });
@@ -46,18 +46,17 @@ test('siguienteParada: el primer faro sin encender; con todos encendidos, el exa
   assert.equal(siguienteParada([]).alExamen, false);
 });
 
-test('faroDeParada: el faro con más ideas del tema que toca; sin tema, la siguiente parada', () => {
-  const faros = [faro('a', 'on', 'A', [{ id: 'i1' }, { id: 'i2' }]), faro('b', 'off', 'B', [{ id: 'i3' }, { id: 'i4' }, { id: 'i5' }]), faro('c', 'off', 'C', [{ id: 'i6' }])];
-  const temas = { i1: 1, i2: 1, i3: 1, i4: 2, i5: 2, i6: 3 };
-  const temaDe = (id) => temas[id];
-  assert.equal(faroDeParada(faros, 1, temaDe), 0, 'tema 1: dos ideas en A, una en B');
-  assert.equal(faroDeParada(faros, 2, temaDe), 1);
-  assert.equal(faroDeParada(faros, 3, temaDe), 2);
-  assert.equal(faroDeParada(faros, null, temaDe), 1, 'sin tema: el primer faro sin encender');
-  assert.equal(faroDeParada(faros, 9, temaDe), 1, 'tema sin ideas: el primer faro sin encender');
-  assert.equal(faroDeParada(faros.map((f) => ({ ...f, estado: 'on' })), null, temaDe), -1, 'todos encendidos: la bandera');
-  // A igualdad, el primero de la derrota.
-  assert.equal(faroDeParada([faro('x', 'off', 'X', [{ id: 'k1' }]), faro('y', 'off', 'Y', [{ id: 'k2' }])], 5, () => 5), 0);
+test('faroDeParada: el faro del tema que toca (cada faro es un tema); sin tema, la siguiente parada', () => {
+  // En el orden del Temario (el de estudio), que no es el de los números de tema.
+  const faros = [faro('t1', 'on', 'A', 1), faro('t5', 'off', 'B', 5), faro('t2', 'off', 'C', 2)];
+  assert.equal(faroDeParada(faros, 1), 0);
+  assert.equal(faroDeParada(faros, 5), 1);
+  assert.equal(faroDeParada(faros, 2), 2);
+  assert.equal(faroDeParada(faros, null), 1, 'sin tema: el primer faro sin encender');
+  assert.equal(faroDeParada(faros, 9), 1, 'tema sin faro (sin ideas): el primer faro sin encender');
+  assert.equal(faroDeParada(faros.map((f) => ({ ...f, estado: 'on' })), null), -1, 'todos encendidos: la bandera');
+  assert.equal(faroDeParada(faros.map((f) => ({ ...f, estado: 'on' })), 5), 1, 'con tema, su faro aunque ya esté encendido');
+  assert.equal(faroDeParada([...faros, faro('otras', 'off', 'Otras', null)], null), 1, '«Otras ideas» no es el faro de «sin tema»');
 });
 
 test('paradaDeSesion: la clase de la sesión (sin el tramo en el nombre); si no hay, el primer paso', () => {

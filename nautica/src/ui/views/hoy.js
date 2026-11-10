@@ -311,7 +311,7 @@ export function hoyView({ progress, tit }) {
       const faros = sy.est.faros;
       const sig = siguienteParada(faros);
       const hecho = entrada?.estado === 'hecho-hoy';
-      const marca = marcaDerrota(sy, ic, pasosMarca);
+      const marca = marcaDerrota(sy, pasosMarca);
       const alt = `${textoCarta({ faros, parada: hecho ? null : parada?.nombre, nuevo: recien, marca })}${hecho ? ' Hoy ya has navegado.' : ''} Abre tu derrota completa.`;
       const { carta } = cartaDerrota(faros, { marca, compacta: true });
       setChildren(heroeEl, h('section.entrada-heroe', { 'aria-label': 'Tu derrota' },

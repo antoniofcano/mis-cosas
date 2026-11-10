@@ -6,6 +6,10 @@
 // Coordenadas: las de la carta de 358 × 320 (PUNTOS_DERROTA y BANDERA de src/course/travesia.js). En compacto (Hoy) la
 // carta es más baja (358 × 232) y las capas HTML cubren hasta y = 360: aquí cada y se multiplica por 232 / 360, de modo
 // que el dibujo no se estira (el texto y los trazos conservan su forma).
+//
+// Hay un faro por tema del temario: con más de seis (la PER tiene once) la carta es la «densa» (trazadoDerrota de
+// src/course/travesia.js): más alta, con los faros en filas en zigzag, mar abierto entre una costa al norte y otra al
+// sur y, en la grande, la rosa y la cartela sobre la costa del sur. Sus coordenadas son ya las del SVG (sin escalar).
 
 import { T, TRAZO, marco, tierra, ondaCurva, cartela, rotulo, idDe, f1 } from './estilo-c.js';
 
@@ -40,29 +44,43 @@ function rosa(cx, cy, r = 14) {
     rotulo(0, -r - 4, 'N', { size: 12, weight: 700, estilo: 'serif' }) + '</g>';
 }
 
+/** Costas de la carta densa (de alto H): una franja al norte y otra al sur (más ancha en la grande: lleva la rosa y la cartela). */
+function costasDensas(H, compacta) {
+  const s = compacta ? 12 : 44; // lo que sube la costa del sur
+  return [
+    'M0 0 L358 0 L358 13 C300 21 246 9 186 15 C120 22 62 10 0 16 Z',
+    `M0 ${H} L0 ${H - s} C56 ${H - s - 9} 118 ${H - s + 5} 176 ${H - s - 3} C236 ${H - s - 11} 300 ${H - s + 4} 358 ${H - s - 5} L358 ${H} Z`,
+  ];
+}
+
 /**
  * El SVG de la carta (decorativo: el nombre accesible lo lleva la carta HTML o su enlace).
  * @param {{ estado: string }[]} faros  en orden de la derrota
  * @param {[number, number][]} pos  posiciones de los faros (posicionesDerrota) y `bandera` la del examen
- * @param {{ compacta?: boolean, rotulo?: { titulo: string, sub?: string } | null }} [o]  rotulo: la cartela (solo en grande)
+ * @param {{ compacta?: boolean, rotulo?: { titulo: string, sub?: string } | null, alto?: number | null }} [o]
+ *   rotulo: la cartela (solo en grande); alto: el de la carta densa (trazadoDerrota().alto), con `pos` y `bandera` ya en
+ *   sus coordenadas; sin él, la carta de siempre.
  */
-export function cartaDerrotaSvg(faros, pos, bandera, { compacta = false, rotulo: cart = null } = {}) {
-  const H = compacta ? ALTO_COMPACTA_SVG : ALTO;
-  const k = compacta ? ALTO_COMPACTA_SVG / ALTO_COMPACTA : 1;
+export function cartaDerrotaSvg(faros, pos, bandera, { compacta = false, rotulo: cart = null, alto = null } = {}) {
+  const densa = alto != null;
+  const H = densa ? alto : compacta ? ALTO_COMPACTA_SVG : ALTO;
+  const k = densa ? 1 : compacta ? ALTO_COMPACTA_SVG / ALTO_COMPACTA : 1;
   const W = ANCHO;
-  const id = idDe(`derrota|${compacta ? 'c' : 'g'}`);
+  const id = idDe(`derrota|${compacta ? 'c' : 'g'}${densa ? `|${H}` : ''}`);
   const pt = `url(#${id}-pt)`;
   const y = (v) => f1(v * k);
   const o = [`<svg class="carta-svg lc" viewBox="0 0 ${W} ${H}" aria-hidden="true" focusable="false">`,
     `<defs><pattern id="${id}-pt" width="3" height="3" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".55" fill="${T.tinta}"/></pattern></defs>`,
     `<rect width="${W}" height="${H}" fill="${T.papel}"/>`];
   // Veriles: el agua somera sigue la costa (dos bandas de azul)
-  const costas = [...COSTAS, ISLOTE].map((d) => escalaY(d, k));
+  const costas = densa ? costasDensas(H, compacta) : [...COSTAS, ISLOTE].map((d) => escalaY(d, k));
   for (const d of costas) o.push(`<path d="${d}" fill="none" stroke="${T.agua2}" stroke-width="40" stroke-linejoin="round"/>`);
   for (const d of costas) o.push(`<path d="${d}" fill="none" stroke="${T.agua}" stroke-width="20" stroke-linejoin="round"/>`);
   // Líneas de agua en mar abierto
-  for (const [x1, x2, yy, fina] of [[96, 226, 200, true], [160, 352, 300, false], [70, 200, 312, true], [212, 338, 262, true]]) {
-    if (!compacta || yy < 300) o.push(ondaCurva(x1, x2, Number(y(yy)), { amp: 4, fina }));
+  if (!densa) {
+    for (const [x1, x2, yy, fina] of [[96, 226, 200, true], [160, 352, 300, false], [70, 200, 312, true], [212, 338, 262, true]]) {
+      if (!compacta || yy < 300) o.push(ondaCurva(x1, x2, Number(y(yy)), { amp: 4, fina }));
+    }
   }
   for (const d of costas) o.push(tierra(d, pt));
   // La derrota: una pata por faro, la última hasta la bandera del examen
@@ -72,8 +90,8 @@ export function cartaDerrotaSvg(faros, pos, bandera, { compacta = false, rotulo:
     o.push(`<line class="pata ${f.estado}" x1="${a[0]}" y1="${y(a[1])}" x2="${b[0]}" y2="${y(b[1])}" ${PATA[f.estado] ?? PATA.off} stroke-linecap="round" fill="none"/>`);
   });
   if (!compacta) {
-    o.push(rosa(38, 40));
-    if (cart) o.push(cartela(298, 293, cart.titulo, cart.sub ?? null));
+    o.push(densa ? rosa(34, H - 24, 11) : rosa(38, 40));
+    if (cart) o.push(cartela(298, densa ? H - 27 : 293, cart.titulo, cart.sub ?? null));
   }
   o.push(marco(W, H), '</svg>');
   return o.join('');
@@ -82,9 +100,10 @@ export function cartaDerrotaSvg(faros, pos, bandera, { compacta = false, rotulo:
 /**
  * Dónde va el nombre de un faro: debajo (lo normal) o al lado ('nombre-izq' / 'nombre-der') cuando otro faro o la
  * bandera queda justo debajo y el nombre lo taparía (en la carta compacta de Hoy, más baja, pasa entre Carta y
- * Balizamiento). Al lado que da al centro de la carta. Solo presentación. `pos` y `bandera`, en la carta de 358 × 320.
+ * los dos últimos faros). Al lado que da al centro de la carta. Solo presentación. `pos` y `bandera`, en la carta de 358 × 320.
  */
-export function ladoNombre(pos, i, bandera) {
+export function ladoNombre(pos, i, bandera, { densa = false } = {}) {
+  if (densa) return ''; // en la carta densa cada faro tiene su hueco: el nombre cabe siempre debajo
   const [x, y] = pos[i];
   const debajo = [...pos, bandera].some((p, j) => j !== i && Math.abs(p[0] - x) < 70 && p[1] - y > 0 && p[1] - y < 90);
   return debajo ? (x >= ANCHO * 0.42 ? 'nombre-izq' : 'nombre-der') : '';

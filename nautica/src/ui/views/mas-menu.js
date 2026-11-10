@@ -50,7 +50,7 @@ export function masMenuView({ progress, tit }) {
   Promise.all([cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]).then(([banco, ic]) => {
     if (!ic) return;
     setChildren(filaTravesia, h('a.mas-fila', { href: tlink(tit, ['travesia']) }, discoFila('faro'), h('span.mas-fila-tx', h('strong', 'Tu travesía'),
-      h('span.muted.small', 'Tu rango, un faro por bloque del temario, la semana y las insignias.')), h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
+      h('span.muted.small', 'Tu rango, un faro por tema del temario, la semana y las insignias.')), h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
     filaTravesia.hidden = false;
     const hecho = progress.nivel(banco.eje.id, tit);
     setChildren(filaNivel, h('a.mas-fila', { href: tlink(tit, ['nivel'], hecho ? { repetir: '1' } : undefined), onclick: (ev) => {

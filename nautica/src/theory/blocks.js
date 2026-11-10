@@ -6,19 +6,20 @@ export const PER = {
   titulo: 'Patrón de Embarcaciones de Recreo',
   duracionMin: 90,
   minAciertos: 32,
-  // ut: unidad teórica · n: preguntas en el examen · maxErrores: límite propio del bloque (si lo tiene)
+  // ut: unidad teórica · corto: nombre de una palabra (el rótulo de su faro en la carta de la derrota) · n: preguntas en el
+  // examen · maxErrores: límite propio del bloque (si lo tiene)
   bloques: [
-    { ut: 1, titulo: 'Nomenclatura náutica', n: 4, ico: 'velero' },
-    { ut: 2, titulo: 'Amarre y fondeo', n: 2, ico: 'ancla' },
-    { ut: 3, titulo: 'Seguridad', n: 4, ico: 'chaleco' },
-    { ut: 4, titulo: 'Legislación', n: 2, ico: 'ley' },
-    { ut: 5, titulo: 'Balizamiento', n: 5, maxErrores: 2, ico: 'boya' },
-    { ut: 6, titulo: 'Reglamento (RIPA)', n: 10, maxErrores: 5, ico: 'barco' },
-    { ut: 7, titulo: 'Maniobra y navegación', n: 2, ico: 'timon' },
-    { ut: 8, titulo: 'Emergencias en la mar', n: 3, ico: 'salvavidas' },
-    { ut: 9, titulo: 'Meteorología', n: 4, ico: 'nube' },
-    { ut: 10, titulo: 'Teoría de navegación', n: 5, ico: 'brujula' },
-    { ut: 11, titulo: 'Carta de navegación', n: 4, maxErrores: 2, ico: 'mapa' },
+    { ut: 1, titulo: 'Nomenclatura náutica', corto: 'Nomenclatura', n: 4, ico: 'velero' },
+    { ut: 2, titulo: 'Amarre y fondeo', corto: 'Amarre', n: 2, ico: 'ancla' },
+    { ut: 3, titulo: 'Seguridad', corto: 'Seguridad', n: 4, ico: 'chaleco' },
+    { ut: 4, titulo: 'Legislación', corto: 'Legislación', n: 2, ico: 'ley' },
+    { ut: 5, titulo: 'Balizamiento', corto: 'Balizamiento', n: 5, maxErrores: 2, ico: 'boya' },
+    { ut: 6, titulo: 'Reglamento (RIPA)', corto: 'RIPA', n: 10, maxErrores: 5, ico: 'barco' },
+    { ut: 7, titulo: 'Maniobra y navegación', corto: 'Maniobra', n: 2, ico: 'timon' },
+    { ut: 8, titulo: 'Emergencias en la mar', corto: 'Emergencias', n: 3, ico: 'salvavidas' },
+    { ut: 9, titulo: 'Meteorología', corto: 'Meteorología', n: 4, ico: 'nube' },
+    { ut: 10, titulo: 'Teoría de navegación', corto: 'Navegación', n: 5, ico: 'brujula' },
+    { ut: 11, titulo: 'Carta de navegación', corto: 'Carta', n: 4, maxErrores: 2, ico: 'mapa' },
   ],
   // Orden en que se recomienda estudiar: el vocabulario primero y después lo que más pesa y más práctica pide
   // (los temas con límite de fallos y la navegación); el resto al final.
@@ -55,10 +56,10 @@ export const PY = {
     { id: 'navegacion', titulo: 'Módulo de navegación', duracionMin: 75, uts: [3, 4] },
   ],
   bloques: [
-    { ut: 1, titulo: 'Seguridad en la mar', n: 10, ico: 'chaleco' },
-    { ut: 2, titulo: 'Meteorología', n: 10, ico: 'nube' },
-    { ut: 3, titulo: 'Teoría de navegación', n: 10, maxErrores: 5, ico: 'brujula' },
-    { ut: 4, titulo: 'Carta de navegación', n: 10, maxErrores: 3, ico: 'mapa' },
+    { ut: 1, titulo: 'Seguridad en la mar', corto: 'Seguridad', n: 10, ico: 'chaleco' },
+    { ut: 2, titulo: 'Meteorología', corto: 'Meteorología', n: 10, ico: 'nube' },
+    { ut: 3, titulo: 'Teoría de navegación', corto: 'Navegación', n: 10, maxErrores: 5, ico: 'brujula' },
+    { ut: 4, titulo: 'Carta de navegación', corto: 'Carta', n: 10, maxErrores: 3, ico: 'mapa' },
   ],
   // Primero el módulo de navegación (límites de fallos y más práctica); después el genérico.
   ordenEstudio: [3, 4, 1, 2],

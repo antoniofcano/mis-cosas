@@ -45,21 +45,14 @@ export function siguienteParada(faros = []) {
 }
 
 /**
- * El faro de la siguiente parada: el bloque de la carta donde cae el tema (ut) de lo que toca (la clase de la sesión).
- * Cada idea va a un tema con `temaDe(id)` (temaDeIdea de src/course/listo.js); gana el faro con más ideas de ese tema
- * (a igualdad, el primero de la derrota). Sin tema (repaso de fallos, mezclado) o sin ideas de ese tema: el primer faro
- * sin encender (siguienteParada), y -1 si están todos encendidos (el marcador va a la bandera del examen).
+ * El faro de la siguiente parada: el del tema (ut) de lo que toca (la clase de la sesión); cada faro de la carta es un
+ * tema del temario (`faro.ut`). Sin tema (repaso de fallos, mezclado) o si ese tema no tiene faro (no tiene ideas): el
+ * primer faro sin encender (siguienteParada), y -1 si están todos encendidos (el marcador va a la bandera del examen).
  * @returns {number}  índice del faro en `faros`, o -1
  */
-export function faroDeParada(faros = [], ut = null, temaDe = () => null) {
-  if (ut != null) {
-    const n = new Map();
-    for (const f of faros) for (const i of f.ideas ?? []) if (temaDe(i.id) === ut) n.set(f.id, (n.get(f.id) ?? 0) + 1);
-    let mejor = -1;
-    faros.forEach((f, k) => { if ((n.get(f.id) ?? 0) > (mejor < 0 ? 0 : n.get(faros[mejor].id))) mejor = k; });
-    if (mejor >= 0) return mejor;
-  }
-  return siguienteParada(faros).indice;
+export function faroDeParada(faros = [], ut = null) {
+  const k = ut == null ? -1 : faros.findIndex((f) => f.ut === ut);
+  return k >= 0 ? k : siguienteParada(faros).indice;
 }
 
 /**
@@ -111,7 +104,7 @@ export function listoCorto(r) {
 
 /**
  * Texto alternativo de la carta de Hoy: dónde estás y cuál es la siguiente parada.
- * «Tu derrota: 2 de 6 faros encendidos. Estás en Seguridad, faro 3 de 6; siguiente parada: «El casco…».»
+ * «Tu derrota: 2 de 11 faros encendidos. Estás en RIPA, faro 3 de 11; siguiente parada: «Luces…».»
  */
 export function textoCarta({ faros = [], parada = null, nuevo = false, marca = null } = {}) {
   const s = siguienteParada(faros);

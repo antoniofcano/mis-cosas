@@ -17,7 +17,7 @@ insignias: solo la presentación y la composición.
 | # | Elemento | Qué enseña | Qué abre |
 |---|---|---|---|
 | 1 | Cabecera | Saludo y una línea de contexto: `PER · 38 días al examen` (`lineaContexto`), y el banco con que estudias si hay varios | La píldora, Ajustes → fecha del examen; el banco, Ajustes |
-| 2 | **Héroe: la carta** | La carta de la derrota en compacto (≈ 200–225 px de alto): mismos faros, patas, colores y bandera que la Travesía, faros sin botón, con el marcador **«estás aquí»** (icono `barco-marca`) en el faro de la siguiente parada | Toda la carta es un enlace a `#/<tit>/travesia`; debajo, el enlace explícito «Ver mi derrota» |
+| 2 | **Héroe: la carta** | La carta de la derrota en compacto (≈ 200–225 px de alto con los cuatro faros del PY; ≈ 300 px con los once de la PER, en tres filas): mismos faros, patas, colores y bandera que la Travesía, faros sin botón, con el marcador **«estás aquí»** (icono `barco-marca`) en el faro de la siguiente parada | Toda la carta es un enlace a `#/<tit>/travesia`; debajo, el enlace explícito «Ver mi derrota» |
 | 3 | Fase (etiqueta) | `Fase 1 · Aprender` y «¿Qué es esto?», plegado: el porqué de la fase y los tres botones para **mirar** otra fase (la de siempre: el plan no cambia) | — |
 | 3 | **Tarjeta principal** | «Siguiente parada»: el nombre de la clase (o del tema) que toca, su tipo («Clase nueva · tramo 1 de 3»), los minutos y el botón grande **Seguir** (o **Empezar**). Debajo, `3 pasos · 21 min` con «Ver los pasos» plegado (te cuesta, punto de partida, pasos, «Ya lo sabes: saltar») | «Seguir» arranca la sesión de hoy (`empezarSesion` → `#/<tit>/sesion`, el ejecutor de siempre) |
 | 4 | Fila de estado | Rango (nombre + barra fina) o, sin carta, «Tu camino» (%); la semana en 7 puntos con el día de descanso; «¿Estás listo?» en una línea con su margen (`listoCorto`) | Rango y semana → Travesía (sin carta, `#/progreso`); ¿Estás listo? → Travesía (nota real) o, sin carta, despliega «Ver mi progreso» |
@@ -40,12 +40,12 @@ Un examen a medias sale como primer paso, con «Descartar el examen a medias», 
 
 ## El marcador «estás aquí»
 
-`faroDeParada(faros, ut, temaDe)`: el faro de la carta donde cae el tema (`ut`) de lo que toca (la clase de la sesión o,
-a medias, de sus pasos pendientes). Cada idea va a un tema con `temaDeIdea` (el mismo reparto que el Temario y Mi
-progreso) y gana el faro con más ideas de ese tema. Sin tema (repaso de fallos, mezclado, simulacro): el primer faro sin
-encender (`siguienteParada`); con todos encendidos, la bandera del examen. La Travesía pone el marcador en el mismo sitio.
+Cada faro de la carta es un tema del temario (docs/TRAVESIA.md, «Faros»). `faroDeParada(faros, ut)`: el faro del tema
+(`ut`) de lo que toca (la clase de la sesión o, a medias, de sus pasos pendientes). Sin tema (repaso de fallos, mezclado,
+simulacro) o si ese tema no tiene faro: el primer faro sin encender en el orden de la derrota, que es el del Temario
+(`siguienteParada`); con todos encendidos, la bandera del examen. La Travesía pone el marcador en el mismo sitio.
 
-Texto alternativo de la carta (`textoCarta`): «Tu derrota: 2 de 6 faros encendidos. Estás en Seguridad, faro 3 de 6;
+Texto alternativo de la carta (`textoCarta`): «Tu derrota: 3 de 11 faros encendidos. Estás en RIPA, faro 3 de 11;
 siguiente parada: «…». Abre tu derrota completa.»
 
 ## La Travesía (`#/<tit>/travesia`)
@@ -86,7 +86,7 @@ El texto lo hace `textoParte()` (pura): la titulación, el rango, los faros ence
 y los minutos de hoy (si hay), y la dirección pública `https://antoniofcano.github.io/mis-cosas/nautica/`. Nunca el
 nombre, el código de alumno, el enlace de vinculación de la copia ni nada que identifique; sin emojis. Ejemplo:
 
-> Preparo el teórico de Patrón de Embarcaciones de Recreo. En mi travesía soy Marinero y tengo 2 de 6 faros
+> Preparo el teórico de Patrón de Embarcaciones de Recreo. En mi travesía soy Marinero y tengo 2 de 11 faros
 > encendidos. Llevo 3 días seguidos estudiando y hoy he estudiado 25 minutos. Estudio con esta app:
 > https://antoniofcano.github.io/mis-cosas/nautica/
 
@@ -97,10 +97,11 @@ visible y los mismos tokens `--lc-*` en claro y en oscuro (`styles/laminas.css`,
 
 Hoy y la Travesía llevan la piel de las láminas en estilo C (docs/ESTILO-LAMINAS.md): la carta de la derrota es una
 lámina de carta (`src/illustrations/derrota-c.js`: papel, tierra con punteado y veriles, líneas de agua, marco graduado;
-en la grande, rosa y cartela «DERROTA · PER · 6 faros»), la derrota hecha en magenta continua, la que está en camino a
+en la grande, rosa y cartela «DERROTA · PER · 11 faros»), la derrota hecha en magenta continua, la que está en camino a
 trazos y la que falta punteada; los faros, encendido con doble filete magenta y la lámpara con luz, en camino a trazos,
 apagado con filete gris (se distinguen por la forma, no solo por el color). Si otro faro queda justo debajo, el nombre va
-al lado (`ladoNombre`). Las tarjetas son cartelas de papel con doble filete, los rótulos van en versalitas magenta, los
+al lado (`ladoNombre`). Con más de seis faros (la PER tiene once temas) la carta es la «densa» (`trazadoDerrota`): más
+alta, con los faros en filas en zigzag y cada nombre en una línea bajo su faro, sin solapes a 360 px. Las tarjetas son cartelas de papel con doble filete, los rótulos van en versalitas magenta, los
 títulos en la serifa de la app (Bitter), las cifras en monoespaciada y los botones son de tinta. Dentro de `.entrada` y
 `.travesia-pantalla` los colores de la app se reasignan a los `--lc-*` (bloque «Hoy y la Travesía en estilo C» al final
 de `styles/laminas.css`), así que los avisos, el podcast, la copia y la instalación siguen la misma paleta en claro y en

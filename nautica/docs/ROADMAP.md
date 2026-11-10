@@ -49,6 +49,11 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
+| R-41 | Ensayo general con material real: simulacro del módulo de carta en papel (carta, transportador, compás y reloj) con la app solo para dar enunciados, tiempo y corrección | En curso | Rama `feat/examen-dia` |
+| R-42 | Tu velocidad en carta: tiempo por tipo de problema en simulacros y práctica, y su uso en la estrategia | En curso | Rama `feat/examen-dia` |
+| R-43 | Simulacro de tus errores: preguntas cuyos distractores coinciden con los errores que repites | En curso | Rama `feat/examen-dia`; se apoya en el diagnóstico (R-36) |
+| R-44 | Lista del día del examen marcable, y fecha, hora y sede de la convocatoria con aviso de listas de admitidos | En curso | Rama `feat/examen-dia` |
+| R-45 | Repaso exprés de la víspera (15 minutos): las trampas más repetidas de tus temas con límite de fallos | En curso | Rama `feat/examen-dia`; encaja en el penúltimo día de «la semana antes» |
 | R-26 | Probar en móviles reales el recordatorio diario (la sincronización ya está confirmada: iPhone vinculado el 12 de octubre de 2026) | En curso | Falta activar el aviso en un móvil y comprobar que llega a la hora elegida solo si ese día no se ha estudiado |
 | R-27 | Validación comercial: transparencia (presentados y aprobados por convocatoria, listado de escuelas), 5–10 conversaciones con autónomos y escuelas, piloto de un mes con 2–3 centros | Siguiente | Antes de fijar precios (`docs/PRODUCTO.md` §10); aclarar derechos de preguntas y carta (IHM) |
 

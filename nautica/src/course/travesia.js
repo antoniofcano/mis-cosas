@@ -1,5 +1,7 @@
-// La Travesía: el progreso del alumno contado como una derrota con faros (uno por TEMA del temario de la titulación, los
-// mismos y con las mismas cuentas que enseña el Temario), un rango y unas insignias (docs/TRAVESIA.md).
+// La Travesía: el progreso del alumno contado como una derrota con faros, un rango y unas insignias (docs/TRAVESIA.md).
+// Los faros de la carta general son TRAMOS: cada uno agrupa temas enteros del temario de la titulación (en la PER, cinco
+// tramos para once temas; en el PY, un faro por tema) y su cuenta es la suma exacta de las de sus temas, que son las que
+// enseña el Temario. Al acercarse a un faro (la «carta de aproximación») se ven sus temas, cada uno con su boya.
 // Funciones puras: reciben el índice de conceptos del banco (src/conceptos), las respuestas, los exámenes hechos y los
 // días de actividad, y devuelven el estado de cada faro, el rango, las insignias, la semana y el parte de una sesión.
 // Nunca leen la hora ni el almacén: `ahora` (ms) se inyecta.
@@ -22,15 +24,16 @@ import { diaISO, cuenta } from '../texto.js';
 
 export const VERSION_TRAVESIA = 1;
 
-/** Un faro se enciende con este porcentaje de las ideas de su tema dominadas. */
+/** Un faro (de tramo o de tema) se enciende con este porcentaje de sus ideas dominadas. */
 export const FARO_ENCENDIDO = 0.8;
 
 /** Días de estudio en una semana (lunes a domingo) para la insignia «Una semana de travesía». */
 export const DIAS_SEMANA = 4;
 
 /**
- * Los faros de la derrota son los TEMAS del temario de la titulación (estructura.bloques de src/theory/blocks.js), uno por
- * tema con ideas, en el orden del Temario (el de estudio, bloquesEnOrden). Cada idea va al tema de la mayoría de sus
+ * La unidad de la derrota son los TEMAS del temario de la titulación (estructura.bloques de src/theory/blocks.js), uno por
+ * tema con ideas, en el orden del Temario (el de estudio, bloquesEnOrden); los faros de la carta general los agrupan en
+ * tramos (estructura.tramos; farosDeTramos). Cada idea va al tema de la mayoría de sus
  * preguntas (temaDeIdea, el mismo reparto que «Mi progreso»). Una idea sin tema, o con un tema que la estructura no
  * tiene, va al faro «Otras ideas», que solo existe si hace falta (hoy en ningún banco: un test lo vigila).
  */
@@ -158,12 +161,32 @@ export function farosDeTemas(ideas, estructura = null) {
 }
 
 /**
- * Los faros del Temario, por tema (ut): los mismos objetos que los de la carta (est.faros), sin «Otras ideas» (no es un
- * tema). `est` = estadoTravesia(…) calculado con la estructura de la titulación.
+ * Los faros de la carta general: los TRAMOS de la titulación (estructura.tramos), cada uno con sus temas (los de
+ * farosDeTemas, tal cual) y con la luz de TODAS las ideas de esos temas: sus dominadas y su total son la suma exacta de los
+ * de sus temas, así que nunca descuadra con el Temario. Sin tramos (el PY), un faro por tema. Un tema que no esté en
+ * ningún tramo (o «Otras ideas») va solo, al final.
+ * @param {object[]} temas  los de farosDeTemas
+ * @returns {object[]}  { id, nombre, corto, uts, temas, …luzDeFaro }; con un solo tema y sin tramos, además su `ut`
+ */
+export function farosDeTramos(temas, estructura = null) {
+  const sueltos = (fs) => fs.map((f) => ({ ...f, uts: f.ut == null ? [] : [f.ut], temas: [f] }));
+  const tramos = estructura?.tramos;
+  if (!tramos?.length) return sueltos(temas);
+  const enTramo = new Set(tramos.flatMap((t) => t.uts));
+  const faros = tramos.map((t) => {
+    const fs = temas.filter((f) => t.uts.includes(f.ut));
+    return fs.length ? { id: t.id, ut: fs.length === 1 ? fs[0].ut : null, nombre: t.nombre, corto: t.corto ?? t.nombre, uts: fs.map((f) => f.ut), temas: fs, ...luzDeFaro(fs.flatMap((f) => f.ideas)) } : null;
+  }).filter(Boolean);
+  return [...faros, ...sueltos(temas.filter((f) => !enTramo.has(f.ut)))];
+}
+
+/**
+ * Los faros del Temario, por tema (ut): los mismos objetos que los temas de la travesía (est.temas, las boyas de la carta
+ * de aproximación), sin «Otras ideas» (no es un tema). `est` = estadoTravesia(…) con la estructura de la titulación.
  * @returns {Map<number, object>}  vacío sin travesía (banco sin etiquetas)
  */
 export function farosPorTema(est) {
-  return new Map((est?.faros ?? []).filter((f) => f.ut != null).map((f) => [f.ut, f]));
+  return new Map((est?.temas ?? []).filter((f) => f.ut != null).map((f) => [f.ut, f]));
 }
 
 /**
@@ -171,8 +194,9 @@ export function farosPorTema(est) {
  * @param {{ ic: object|null, estructura?: object|null, respuestas?: object, tests?: object[], dias?: object, ahora?: number }} p
  *   `estructura`: la del examen de la titulación (TITULACIONES[tit].estructura): da nombre y orden a los faros;
  *   `tests`: los exámenes de ESTE banco (examenesDe); `dias`: progress.get().dias.
- * @returns {null | { ideas: object[], faros: object[], total: number, dominadas: number, pct: number,
+ * @returns {null | { ideas: object[], faros: object[], temas: object[], total: number, dominadas: number, pct: number,
  *   examenes: {simulacro: boolean, inedito: boolean}, rangoAhora: string, rescate: boolean, ganadas: string[] }}
+ *   `faros`: los de la carta general (tramos, farosDeTramos); `temas`: uno por tema (farosDeTemas), los del Temario.
  *   null sin conceptos (banco sin etiquetas): entonces no hay travesía.
  */
 export function estadoTravesia({ ic, estructura = null, respuestas = {}, tests = [], dias = {}, ahora = Date.now() }) {
@@ -188,16 +212,17 @@ export function estadoTravesia({ ic, estructura = null, respuestas = {}, tests =
     return { id: i.id, etiqueta: i.etiqueta, bloque: i.bloque, ut: i.ut, estado: estadoIdea(d, i.qs.length), tasa: d?.tasa ?? null, vistas: d?.vistas ?? 0,
       rescatable: i.qs.some((q) => resp[q]?.ok1 === false) };
   });
-  const faros = farosDeTemas(conEstado, estructura);
+  const temas = farosDeTemas(conEstado, estructura);
+  const faros = farosDeTramos(temas, estructura);
   for (const f of faros) for (const i of f.ideas) i.faro = f.id;
   const total = conEstado.length;
   const dominadas = conEstado.filter((i) => i.estado === 'dominado').length;
   const pct = dominadas / total;
   const examenes = resumenExamenes(tests);
   const rescate = conEstado.some((i) => i.estado === 'dominado' && i.rescatable);
-  const est = { ideas: conEstado, faros, total, dominadas, pct, examenes, rescate };
+  const est = { ideas: conEstado, faros, temas, total, dominadas, pct, examenes, rescate };
   est.rangoAhora = rangoPara(pct, examenes);
-  est.ganadas = insigniasGanadas({ faros, dias, examenes, rescate });
+  est.ganadas = insigniasGanadas({ faros: temas, dias, examenes, rescate });
   return est;
 }
 
@@ -303,7 +328,8 @@ export function hayUnaSemana(dias = {}) {
 
 /**
  * Las insignias que dan los datos de hoy (sin la «Guardia de 5 minutos», que no sale de ningún dato: la apunta la
- * pantalla de «5 minutos» al terminar). Una «Tema completo» por faro con TODAS sus ideas dominadas.
+ * pantalla de «5 minutos» al terminar). Una «Tema completo» por tema con TODAS sus ideas dominadas (`faros` = est.temas:
+ * las insignias van por tema, no por tramo).
  */
 export function insigniasGanadas({ faros = [], dias = {}, examenes = {}, rescate = false }) {
   const ids = [];
@@ -316,7 +342,7 @@ export function insigniasGanadas({ faros = [], dias = {}, examenes = {}, rescate
 }
 
 /**
- * El catálogo de insignias de un banco, en el orden de la rejilla: fijas, una por faro (tema) y las de examen.
+ * El catálogo de insignias de un banco, en el orden de la rejilla: fijas, una por tema (`faros` = est.temas) y las de examen.
  * `ganadas` = las guardadas ({ id: ISO }): las «Bloque completo» de la derrota antigua (`bloque:<faro antiguo>`) que el
  * alumno ya tenía se conservan y se enseñan detrás de las de tema; las que no ganó ya no existen (no se pueden ganar).
  */
@@ -341,7 +367,7 @@ export function catalogoInsignias(faros = [], ganadas = {}) {
 /** Lo que falta para una insignia que aún no se tiene, según el estado. */
 export function faltaInsignia(ins, est) {
   if (ins.id.startsWith('tema:')) {
-    const f = est?.faros.find((x) => idInsigniaTema(x) === ins.id);
+    const f = (est?.temas ?? est?.faros ?? []).find((x) => idInsigniaTema(x) === ins.id);
     return f ? `Vas por ${f.dominadas} de ${f.total} ideas.` : ins.falta;
   }
   if (ins.id === 'semana' && est?.semana) return `Esta semana llevas ${est.semana.estudiados} de ${cuenta(DIAS_SEMANA, 'día')}.`;
@@ -427,13 +453,17 @@ export const BANDERA = [290, 44];
 const ANCHO_CARTA = 358;
 
 /**
- * Con cuatro faros (los cuatro temas del PY) repartir los puntos de la carta deja dos faros pegados: van en estos.
+ * Con cuatro faros (los cuatro temas del PY) o cinco (los cinco tramos de la PER) repartir los puntos de la carta deja
+ * faros pegados: van en estos.
  */
-const PUNTOS_CUATRO = [[58, 262], [222, 232], [130, 150], [210, 92]];
+const PUNTOS_FIJOS = {
+  4: [[58, 262], [222, 232], [130, 150], [210, 92]],
+  5: [[58, 262], [170, 238], [282, 196], [100, 124], [208, 90]],
+};
 
 /** Dónde va cada uno de `n` faros (hasta seis): con seis, en los puntos de la carta; con menos, repartidos a lo largo de la derrota. */
 export function posicionesDerrota(n) {
-  if (n === PUNTOS_CUATRO.length) return PUNTOS_CUATRO.map((p) => [...p]);
+  if (PUNTOS_FIJOS[n]) return PUNTOS_FIJOS[n].map((p) => [...p]);
   const ult = PUNTOS_DERROTA.length - 1;
   return Array.from({ length: n }, (_, i) => {
     const t = n === 1 ? ult / 2 : (i * ult) / (n - 1);
@@ -447,7 +477,7 @@ export function posicionesDerrota(n) {
 }
 
 /**
- * Medidas de la carta «densa» (más de seis faros: la PER tiene once temas), en unidades de la carta (358 de ancho; a
+ * Medidas de la carta «densa» (más de seis faros; hoy ninguna titulación: la PER agrupa sus once temas en cinco tramos), en unidades de la carta (358 de ancho; a
  * 360 px de pantalla, una unidad ≈ 0,9 px). Los faros van en filas que se recorren en zigzag, de abajo arriba, y la
  * bandera del examen ocupa el hueco siguiente al último faro.
  *   xs       el centro de cada columna (ningún nombre se sale de la carta a 360 px)
@@ -471,16 +501,67 @@ const DENSA = {
  */
 export function trazadoDerrota(n, { compacta = false } = {}) {
   if (n <= PUNTOS_DERROTA.length) return { densa: false, ancho: ANCHO_CARTA, alto: compacta ? 232 : 320, altoCapas: compacta ? 360 : 320, pos: posicionesDerrota(n), bandera: BANDERA };
-  const m = compacta ? DENSA.compacta : DENSA.grande;
+  const { alto, huecos } = rejilla(n + 1, compacta ? DENSA.compacta : DENSA.grande);
+  return { densa: true, ancho: ANCHO_CARTA, alto, altoCapas: alto, pos: huecos.slice(0, n), bandera: huecos[n] };
+}
+
+/** `k` huecos en filas recorridas en zigzag de abajo arriba, con las medidas `m` (xs, paso, salto, arriba, abajo). */
+function rejilla(k, m) {
   const cols = m.xs.length;
-  const filas = Math.ceil((n + 1) / cols);
+  const filas = Math.ceil(k / cols);
   const alto = m.arriba + (filas - 1) * m.paso + m.abajo;
-  const hueco = (k) => {
-    const fila = Math.floor(k / cols);
-    const col = fila % 2 ? cols - 1 - (k % cols) : k % cols;
+  const huecos = Array.from({ length: k }, (_, i) => {
+    const fila = Math.floor(i / cols);
+    const col = fila % 2 ? cols - 1 - (i % cols) : i % cols;
     return [m.xs[col], alto - m.abajo - fila * m.paso - (col % 2 ? m.salto : 0)];
-  };
-  return { densa: true, ancho: ANCHO_CARTA, alto, altoCapas: alto, pos: Array.from({ length: n }, (_, i) => hueco(i)), bandera: hueco(n) };
+  });
+  return { alto, huecos };
+}
+
+/**
+ * Medidas de la carta de aproximación (el zoom a un faro): una boya por tema del tramo (o por clase del tema), con dos
+ * líneas debajo (el nombre y la cuenta), en una, dos o tres columnas. Más hueco entre filas que la carta densa.
+ */
+const APROX = { paso: 130, salto: 14, arriba: 86, abajo: 132, xs: { 1: [179], 2: [104, 254], 3: [62, 179, 296] } };
+
+/**
+ * El trazado de la carta de aproximación para `n` boyas: dónde va cada una y el alto de la carta (no hay bandera: la
+ * derrota sigue en la carta general).
+ * @returns {{ ancho: number, alto: number, pos: [number, number][] }}
+ */
+export function trazadoAproximacion(n) {
+  const { alto, huecos } = rejilla(n, { ...APROX, xs: APROX.xs[Math.max(1, Math.min(3, n))] });
+  return { ancho: ANCHO_CARTA, alto, pos: huecos };
+}
+
+// --- la carta de aproximación (el zoom a un faro) ---------------------------------------------------------------------------
+
+/** La luz de la boya de una clase según su estado (estadoLeccion de src/course/engine.js) y cómo se dice. */
+export const LUZ_CLASE = { nueva: 'off', empezada: 'parcial', saltada: 'parcial', vista: 'parcial', repasar: 'parcial', dominada: 'on' };
+export const TEXTO_CLASE = { nueva: 'sin empezar', empezada: 'a medias', saltada: 'saltada', vista: 'vista', repasar: 'a repasar', dominada: 'aprendida' };
+
+/**
+ * Las boyas de la carta de aproximación de un faro (lo que se ve al acercarse):
+ *   - un faro con varios temas (un tramo de la PER): una boya por TEMA, con la luz y la cuenta de ese tema, que son las del
+ *     Temario (el mismo objeto de est.temas), y enlace a su tema;
+ *   - un faro de un solo tema (los del PY; Meteorología en la PER): una boya por CLASE del tema, con el estado de la clase
+ *     (sin empezar, a medias, vista, aprendida…: el de estadoLeccion, el mismo que enseña la página del tema) y enlace a
+ *     la clase. No lleva cuenta de ideas: el reparto de ideas por clase usa otro criterio que el de los faros y no
+ *     cuadraría con ellos. Si el tema no tiene clases, su única boya es el tema.
+ * `aqui`: la boya de lo que toca (el tema de la sesión de hoy, o la siguiente clase de la ruta).
+ * @param {object} faro  uno de est.faros
+ * @param {{ clases?: { id: string, titulo: string, estado: string }[], utQueToca?: number|null, claseQueToca?: string|null }} [o]
+ *   `clases`: las del tema del faro (solo hacen falta si tiene un único tema)
+ * @returns {{ nivel: 'temas'|'clases', boyas: { id: string, corto: string, nombre: string, cuenta: string, texto: string, estado: string, ruta: string[]|null, aqui: boolean }[] }}
+ */
+export function boyasDeFaro(faro, { clases = [], utQueToca = null, claseQueToca = null } = {}) {
+  if (faro.temas.length === 1 && clases.length) {
+    return { nivel: 'clases', boyas: clases.map((c, i) => ({ id: c.id, corto: `Clase ${i + 1}`, nombre: c.titulo, cuenta: TEXTO_CLASE[c.estado] ?? TEXTO_CLASE.nueva,
+      texto: TEXTO_CLASE[c.estado] ?? TEXTO_CLASE.nueva, estado: LUZ_CLASE[c.estado] ?? 'off', ruta: ['curso', c.id], aqui: c.id === claseQueToca })) };
+  }
+  return { nivel: 'temas', boyas: faro.temas.map((t) => ({ id: t.id, corto: t.corto, nombre: t.nombre, cuenta: `${t.dominadas}/${t.total}`,
+    texto: `${t.dominadas} de ${cuenta(t.total, 'idea')} dominadas${t.estado === 'on' ? ', luz encendida' : ''}`, estado: t.estado,
+    ruta: t.ut == null ? null : ['temario', String(t.ut)], aqui: t.ut != null && t.ut === utQueToca })) };
 }
 
 /** El faro que se enseña al abrir la pantalla: el más cercano a encenderse; si todos están encendidos o ninguno empezado, el primero. */

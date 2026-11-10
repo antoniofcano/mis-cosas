@@ -1,6 +1,7 @@
 // La Travesía (docs/TRAVESIA.md): faros, rango, semana, insignias y parte de la sesión. Todo puro, con fechas fijas inyectadas
-// (nada lee la hora): «ahora» siempre se pasa. Las reglas que fijan estos tests: hay un faro por tema del temario, el mismo
-// y con las mismas cuentas que el del Temario; el faro se enciende con el 80 % de las ideas dominadas; el rango sale de un PORCENTAJE de las ideas del banco y nunca baja; el descanso no rompe la semana; las
+// (nada lee la hora): «ahora» siempre se pasa. Las reglas que fijan estos tests: los faros de la carta general son tramos
+// que agrupan temas enteros del temario y su cuenta es la suma exacta de las de sus temas, que son las del Temario (en la
+// carta de aproximación, una boya por tema); el faro se enciende con el 80 % de las ideas dominadas; el rango sale de un PORCENTAJE de las ideas del banco y nunca baja; el descanso no rompe la semana; las
 // respuestas a preguntas reservadas no cuentan para nada; y sin etiquetas no hay travesía.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -13,7 +14,8 @@ import { nuevaSesion, sesionDeHoy } from '../src/course/sesion.js';
 import {
   FAROS_ANTIGUOS, RANGOS, FARO_ENCENDIDO, DIAS_SEMANA, estadoTravesia, rangoPara, ideasParaRango, progresoRango, requisitoRango, resumenExamenes, examenesDe,
   semanaDe, hayUnaSemana, insigniasGanadas, catalogoInsignias, faltaInsignia, fusionar, fotoTravesia, parteSesion, paraManana,
-  posicionesDerrota, PUNTOS_DERROTA, BANDERA, trazadoDerrota, faroInicial, ideasDelBanco, luzDeFaro, farosPorTema, farosDeTemas, idFaroTema,
+  posicionesDerrota, PUNTOS_DERROTA, BANDERA, trazadoDerrota, trazadoAproximacion, boyasDeFaro, LUZ_CLASE, TEXTO_CLASE, faroInicial, ideasDelBanco, luzDeFaro,
+  farosPorTema, farosDeTemas, farosDeTramos, idFaroTema,
 } from '../src/course/travesia.js';
 import { conceptosPorTema, temaDeIdea } from '../src/course/listo.js';
 import { TITULACIONES, bloquesEnOrden } from '../src/theory/blocks.js';
@@ -319,7 +321,12 @@ test('catálogo de insignias: las fijas, «Tema completo» (una por faro) y las 
   assert.ok(cat.every((x) => x.nombre && x.texto && x.icono));
   // Con la estructura de la titulación, la insignia lleva el nombre corto del tema.
   const per = estadoTravesia({ ic, estructura: TITULACIONES.per.estructura, respuestas: {}, ahora: AHORA });
-  assert.equal(catalogoInsignias(per.faros).find((x) => x.id === 'tema:5').nombre, 'Tema completo: Balizamiento');
+  assert.equal(catalogoInsignias(per.temas).find((x) => x.id === 'tema:5').nombre, 'Tema completo: Balizamiento');
+  // Las insignias van por tema, no por tramo: completar un tema de un tramo da su insignia aunque el tramo no esté entero.
+  const { ic: ic2, ideas: id2 } = juguete({ nomen: 2, amarre: 2 });
+  const medio = estadoTravesia({ ic: ic2, estructura: TITULACIONES.per.estructura, respuestas: juntar(...id2.nomen.map((i) => dominada(i))), ahora: AHORA });
+  assert.deepEqual(medio.faros.map((f) => [f.id, f.dominadas, f.total, f.completo]), [['nomenclatura', 2, 4, false]]);
+  assert.deepEqual(medio.ganadas, ['tema:1']);
 });
 
 test('migración de las insignias: las «Bloque completo» de los faros antiguos se conservan y conviven con las de tema', () => {
@@ -482,8 +489,9 @@ test('trazado de la carta: hasta seis faros, la de siempre; con más (la PER, on
   assert.ok(trazadoDerrota(11, { compacta: true }).alto < trazadoDerrota(11).alto, 'la de Hoy, más baja');
 });
 
-test('carta a 360 px: con los faros del PY (4) y de la PER (11) nada se pisa ni se sale, ni en la Travesía ni en Hoy', () => {
-  for (const n of [TITULACIONES.py.estructura.bloques.length, TITULACIONES.per.estructura.bloques.length, 7, 8, 9, 10, 12]) {
+test('carta general a 360 px: con los faros del PY (4) y de la PER (5 tramos) nada se pisa ni se sale, ni en la Travesía ni en Hoy', () => {
+  assert.equal(TITULACIONES.per.estructura.tramos.length, 5);
+  for (const n of [TITULACIONES.py.estructura.bloques.length, TITULACIONES.per.estructura.tramos.length, TITULACIONES.per.estructura.bloques.length, 7, 8, 9, 10, 12]) {
     for (const compacta of [false, true]) {
       const { cajas, altoPx } = cajasCarta(n, compacta);
       const donde = `${n} faros${compacta ? ' (Hoy)' : ''}`;
@@ -499,6 +507,58 @@ test('carta a 360 px: con los faros del PY (4) y de la PER (11) nada se pisa ni 
       }
     }
   }
+});
+
+test('carta de aproximación a 360 px: de 1 a 12 boyas (temas de un tramo o clases de un tema) sin pisarse ni salirse', () => {
+  const px = 324 / 358;
+  for (let n = 1; n <= 12; n++) {
+    const t = trazadoAproximacion(n);
+    assert.equal(t.pos.length, n);
+    assert.equal(new Set(t.pos.map((p) => p.join())).size, n);
+    const altoPx = t.alto * px;
+    // La boya (48 px) con el hueco del marcador encima (30 px) y dos líneas debajo: el nombre («Balizamiento», «Clase 12») y
+    // la cuenta («19/21», «sin empezar»), de 15 px cada una.
+    const cajas = t.pos.flatMap(([x0, y0], i) => {
+      const x = Math.min(Math.max(x0 * px, 52), 324 - 52);
+      const y = y0 * px;
+      return [{ i, que: 'boya', x0: x - 24, x1: x + 24, y0: y - 24 - 30, y1: y + 24 }, { i, que: 'rótulo', x0: x - 48, x1: x + 48, y0: y + 26, y1: y + 26 + 32 }];
+    });
+    for (const a of cajas) {
+      assert.ok(a.x0 >= 0 && a.x1 <= 324 && a.y0 >= 4, `${n} boyas: ${a.que} ${a.i + 1} dentro de la carta`);
+      // Debajo queda la costa del sur con la rosa y la cartela (40 px): los rótulos de la fila de abajo no la pisan.
+      assert.ok(a.y1 <= altoPx - 40, `${n} boyas: ${a.que} ${a.i + 1} por encima de la cartela`);
+      for (const b of cajas) if (a.i < b.i) assert.ok(!pisa(a, b), `${n} boyas: ${a.que} ${a.i + 1} pisa ${b.que} ${b.i + 1}`);
+    }
+  }
+  assert.ok(trazadoAproximacion(3).alto < trazadoAproximacion(4).alto, 'una fila más, más alta');
+});
+
+test('boyas de la carta de aproximación: un tramo enseña sus temas (las cuentas del Temario); un faro de un tema, sus clases', () => {
+  const { ic, ideas } = juguete({ nomen: 5, amarre: 5, baliza: 5 });
+  const resp = juntar(...ideas.nomen.map((i) => dominada(i)), dominada(ideas.amarre[0]));
+  const est = estadoTravesia({ ic, estructura: TITULACIONES.per.estructura, respuestas: resp, ahora: AHORA });
+  const [tramo, baliza] = est.faros;
+  assert.deepEqual([tramo.id, tramo.temas.length, baliza.id, baliza.temas.length], ['nomenclatura', 2, 'balizamiento', 1]);
+  // Varios temas: una boya por tema, en el orden del Temario, con su luz y su cuenta; el barco, en el tema que toca.
+  const z = boyasDeFaro(tramo, { utQueToca: 2, clases: [{ id: 'x', titulo: 'X', estado: 'nueva' }] });
+  assert.equal(z.nivel, 'temas');
+  assert.deepEqual(z.boyas.map((b) => [b.corto, b.cuenta, b.estado, b.ruta.join('/'), b.aqui]), [['Nomenclatura', '5/5', 'on', 'temario/1', false], ['Amarre', '1/5', 'parcial', 'temario/2', true]]);
+  assert.equal(z.boyas[0].nombre, 'Nomenclatura náutica');
+  assert.match(z.boyas[0].texto, /^5 de 5 ideas dominadas, luz encendida$/);
+  const temario = farosPorTema(est);
+  z.boyas.forEach((b, k) => { const t = temario.get(tramo.temas[k].ut); assert.equal(b.cuenta, `${t.dominadas}/${t.total}`); assert.equal(b.estado, t.estado); });
+  // Un solo tema: una boya por clase, con el estado de la clase (no hay cuenta de ideas por clase) y enlace a la clase.
+  const clases = [{ id: 'per-5-1', titulo: 'Marcas laterales', estado: 'dominada' }, { id: 'per-5-2', titulo: 'Marcas cardinales', estado: 'empezada' }, { id: 'per-5-3', titulo: 'Otras marcas', estado: 'nueva' }];
+  const c = boyasDeFaro(baliza, { clases, claseQueToca: 'per-5-2' });
+  assert.equal(c.nivel, 'clases');
+  assert.deepEqual(c.boyas.map((b) => [b.corto, b.nombre, b.cuenta, b.estado, b.ruta.join('/'), b.aqui]), [
+    ['Clase 1', 'Marcas laterales', 'aprendida', 'on', 'curso/per-5-1', false], ['Clase 2', 'Marcas cardinales', 'a medias', 'parcial', 'curso/per-5-2', true], ['Clase 3', 'Otras marcas', 'sin empezar', 'off', 'curso/per-5-3', false]]);
+  assert.deepEqual(Object.keys(LUZ_CLASE).sort(), Object.keys(TEXTO_CLASE).sort());
+  assert.deepEqual(Object.keys(LUZ_CLASE).sort(), ['dominada', 'empezada', 'nueva', 'repasar', 'saltada', 'vista'], 'los estados de estadoLeccion');
+  assert.equal(Object.entries(LUZ_CLASE).filter(([, v]) => v === 'on').map(([k]) => k).join(), 'dominada', 'solo una clase aprendida enciende su boya');
+  // Sin clases (o sin curso), la única boya es el tema.
+  const solo = boyasDeFaro(baliza);
+  assert.deepEqual([solo.nivel, solo.boyas.length, solo.boyas[0].cuenta], ['temas', 1, '0/5']);
 });
 
 test('faro inicial: el más cercano a encenderse; si no hay ninguno empezado, el primero', () => {
@@ -573,12 +633,13 @@ test('en todos los bancos etiquetados: un faro por tema con ideas, ninguna idea 
       comprobados += 1;
       const E = TITULACIONES[tit].estructura;
       const est = estadoTravesia({ ic, estructura: E, respuestas: {}, ahora: AHORA });
-      assert.ok(est.faros.length >= 1 && est.faros.length <= E.bloques.length, `${e.id}/${tit}: ${est.faros.length} faros`);
-      assert.ok(!est.faros.some((f) => f.id === 'otras'), `${e.id}/${tit}: hay ideas sin tema del temario (${ideas.filter((i) => !E.bloques.some((b) => b.ut === i.ut)).map((i) => i.id).slice(0, 5)})`);
+      assert.ok(est.temas.length >= 1 && est.temas.length <= E.bloques.length, `${e.id}/${tit}: ${est.temas.length} temas`);
+      assert.ok(est.faros.length >= 1 && est.faros.length <= 6, `${e.id}/${tit}: ${est.faros.length} faros en la carta general (caben en la carta de siempre)`);
+      assert.ok(!est.temas.some((f) => f.id === 'otras') && !est.faros.some((f) => f.id === 'otras'), `${e.id}/${tit}: hay ideas sin tema del temario (${ideas.filter((i) => !E.bloques.some((b) => b.ut === i.ut)).map((i) => i.id).slice(0, 5)})`);
       // En el orden del Temario (el de estudio), con el título del tema y un nombre corto de una palabra para la carta.
       const conIdeas = bloquesEnOrden(E).filter((b) => ideas.some((i) => i.ut === b.ut));
-      assert.deepEqual(est.faros.map((f) => [f.id, f.ut, f.nombre, f.corto]), conIdeas.map((b) => [idFaroTema(b.ut), b.ut, b.titulo, b.corto]));
-      assert.ok(est.faros.every((f) => f.corto && f.corto.length <= 12 && !/\s/.test(f.corto)), `${e.id}/${tit}: nombres cortos`);
+      assert.deepEqual(est.temas.map((f) => [f.id, f.ut, f.nombre, f.corto]), conIdeas.map((b) => [idFaroTema(b.ut), b.ut, b.titulo, b.corto]));
+      assert.ok([...est.temas, ...est.faros].every((f) => f.corto && f.corto.length <= 12 && !/\s/.test(f.corto)), `${e.id}/${tit}: nombres cortos`);
       assert.equal(est.faros.reduce((n, f) => n + f.total, 0), est.total);
       assert.equal(est.total, ideas.length);
       assert.ok(est.faros.every((f) => f.total > 0 && f.estado === 'off'));
@@ -589,7 +650,7 @@ test('en todos los bancos etiquetados: un faro por tema con ideas, ninguna idea 
       assert.ok(lleno.faros.every((f) => f.estado === 'on' && f.completo), `${e.id}/${tit}: todo dominado`);
       assert.equal(lleno.dominadas, lleno.total);
       assert.equal(lleno.rangoAhora, 'timonel', 'sin exámenes aprobados no pasa de Timonel');
-      assert.deepEqual(lleno.ganadas, lleno.faros.map((f) => `tema:${f.ut}`));
+      assert.deepEqual(lleno.ganadas, lleno.temas.map((f) => `tema:${f.ut}`));
     }
   }
   assert.ok(comprobados >= 4, 'hay bancos etiquetados que comprobar');
@@ -602,10 +663,20 @@ test('la travesía no menciona ids de preguntas ni nombres propios: sus textos s
 });
 
 // ---------------------------------------------------------------------------------------------------------------
-// Faros por tema: los de la carta de la derrota y los del Temario son los mismos (farosDeTemas), agrupando las ideas por
-// el tema (ut) de sus preguntas.
+// Los temas de la travesía (las boyas de la carta de aproximación) y los faros del Temario son los mismos (farosDeTemas),
+// agrupando las ideas por el tema (ut) de sus preguntas; los faros de la carta general son la suma de sus temas.
 
-test('PER y PY, en todos los bancos: los faros de la derrota coinciden uno a uno con los del Temario (dominadas, total, estado)', async () => {
+test('la estructura de cada titulación: los tramos de la PER reparten sus once temas sin dejar ni repetir ninguno; el PY va por tema', () => {
+  const per = TITULACIONES.per.estructura;
+  assert.deepEqual(per.tramos.map((t) => [t.id, t.nombre, t.uts]), [
+    ['nomenclatura', 'Nomenclatura y maniobra', [1, 2, 7]], ['seguridad', 'Seguridad y emergencias', [3, 4, 8]], ['balizamiento', 'Balizamiento y RIPA', [5, 6]],
+    ['meteorologia', 'Meteorología', [9]], ['navegacion', 'Navegación y carta', [10, 11]]]);
+  assert.deepEqual(per.tramos.flatMap((t) => t.uts).sort((a, b) => a - b), per.bloques.map((b) => b.ut), 'cada tema, en un tramo y solo en uno');
+  assert.equal(new Set(per.tramos.map((t) => t.id)).size, 5);
+  assert.equal(TITULACIONES.py.estructura.tramos, undefined, 'el PY: un faro por tema');
+});
+
+test('PER y PY, en todos los bancos: faro de tramo = suma de sus temas = Temario, y las boyas son los temas del Temario', async () => {
   const cs = crearConceptos(bancosNode());
   // Un alumno a medias: respuestas repartidas de forma fija (sin azar) para que haya faros encendidos, en curso y apagados.
   const respuestasDe = (ideas, semilla) => {
@@ -619,6 +690,7 @@ test('PER y PY, en todos los bancos: los faros de la derrota coinciden uno a uno
   };
   let comprobados = 0;
   const vistos = new Set();
+  const vistosTramo = new Set();
   for (const e of ejes()) {
     for (const tit of ['per', 'py'].filter((t) => titsDeEje(e.id).includes(t))) {
       const ic = await cs.cargarConceptos(e.id, tit);
@@ -628,7 +700,8 @@ test('PER y PY, en todos los bancos: los faros de la derrota coinciden uno a uno
       for (const semilla of [0, 1, 2]) {
         const respuestas = semilla === 2 ? Object.fromEntries(ideas.filter((i) => i.ut === E.bloques[0].ut).flatMap((i) => i.qs.map((q) => [q, { ok: true, t: T, n: 1, ok1: true }]))) : respuestasDe(ideas, semilla);
         // La carta (Hoy y la Travesía, src/ui/travesia.js) y el Temario (src/ui/views/temario.js) calculan así:
-        const derrota = estadoTravesia({ ic, estructura: E, respuestas, tests: [], dias: {}, ahora: AHORA }).faros;
+        const trav = estadoTravesia({ ic, estructura: E, respuestas, tests: [], dias: {}, ahora: AHORA });
+        const derrota = trav.temas;
         const temario = farosPorTema(estadoTravesia({ ic, estructura: E, respuestas, ahora: AHORA }));
         // Y esto es lo que debe salir, calculado aquí aparte: cada idea, al tema de la mayoría de sus preguntas.
         const est = estadoTravesia({ ic, respuestas, ahora: AHORA });
@@ -653,17 +726,42 @@ test('PER y PY, en todos los bancos: los faros de la derrota coinciden uno a uno
           }
           vistos.add(f.estado);
         });
+        // La carta general: cada faro (tramo) es la suma exacta de sus temas, con el 80 % de siempre; cada tema, en un faro.
+        const tramos = E.tramos ?? bloquesEnOrden(E).map((b) => ({ uts: [b.ut] }));
+        assert.equal(trav.faros.length, tramos.length, `${e.id}/${tit}: ${tit === 'per' ? 'cinco tramos' : 'un faro por tema'}`);
+        if (E.tramos) assert.deepEqual(trav.faros.map((f) => [f.id, f.nombre]), E.tramos.map((t) => [t.id, t.nombre]), 'en el orden de los tramos');
+        trav.faros.forEach((f, k) => {
+          const suyos = [...tramos[k].uts].map((ut) => temario.get(ut));
+          const donde = `${e.id}/${tit} faro ${f.nombre}`;
+          assert.deepEqual([...f.uts].sort((a, b) => a - b), [...tramos[k].uts].sort((a, b) => a - b), `${donde}: sus temas`);
+          assert.equal(f.dominadas, suyos.reduce((n, t) => n + t.dominadas, 0), `${donde}: dominadas = suma de sus temas del Temario`);
+          assert.equal(f.total, suyos.reduce((n, t) => n + t.total, 0), `${donde}: total = suma de sus temas del Temario`);
+          assert.equal(f.pct, f.dominadas / f.total);
+          assert.equal(f.estado, f.pct >= FARO_ENCENDIDO ? 'on' : suyos.some((t) => t.vistas > 0) ? 'parcial' : 'off', `${donde}: estado`);
+          // Las boyas de su carta de aproximación (por temas) son esos temas, con las cifras del Temario.
+          const z = boyasDeFaro(f);
+          assert.equal(z.nivel, 'temas');
+          assert.deepEqual(z.boyas.map((b) => [b.cuenta, b.estado, b.ruta.join('/')]), f.temas.map((t) => { const x = temario.get(t.ut); return [`${x.dominadas}/${x.total}`, x.estado, `temario/${t.ut}`]; }), `${donde}: boyas`);
+          f.temas.forEach((t) => assert.equal(t, farosPorTema(trav).get(t.ut), 'el mismo objeto que da farosPorTema al Temario'));
+          vistosTramo.add(f.estado);
+        });
+        assert.deepEqual(trav.faros.flatMap((f) => f.uts).sort((a, b) => a - b), derrota.map((f) => f.ut).sort((a, b) => a - b), 'cada tema, en un faro y solo en uno');
+        // «Mi progreso» (conceptosPorTema) reparte las mismas ideas: mismos totales por tema.
+        assert.deepEqual(conceptosPorTema(E, ic, respuestas).map((t) => [t.ut, t.total]), [...derrota].sort((a, b) => a.ut - b.ut).map((f) => [f.ut, f.total]), `${e.id}/${tit}: Mi progreso`);
         // Todas las ideas del estudio tienen faro y ninguna cuenta dos veces.
         assert.equal(derrota.reduce((n, f) => n + f.total, 0), ideas.length);
         assert.equal(derrota.reduce((n, f) => n + f.dominadas, 0), est.dominadas, 'las dominadas de los faros son las del rango');
+        assert.equal(trav.faros.reduce((n, f) => n + f.total, 0), ideas.length);
+        assert.equal(trav.faros.reduce((n, f) => n + f.dominadas, 0), est.dominadas);
         comprobados += 1;
       }
       // PER: once temas, once faros; PY: cuatro.
-      assert.equal(estadoTravesia({ ic, estructura: E, respuestas: {}, ahora: AHORA }).faros.length, E.bloques.length, `${e.id}/${tit}: todos los temas tienen ideas`);
+      assert.equal(estadoTravesia({ ic, estructura: E, respuestas: {}, ahora: AHORA }).temas.length, E.bloques.length, `${e.id}/${tit}: todos los temas tienen ideas`);
     }
   }
   assert.ok(comprobados >= 12, 'PER y PY de varios bancos');
-  assert.deepEqual([...vistos].sort(), ['off', 'on', 'parcial'], 'la comparación ha visto faros encendidos, en curso y apagados');
+  assert.deepEqual([...vistos].sort(), ['off', 'on', 'parcial'], 'la comparación ha visto temas encendidos, en curso y apagados');
+  assert.deepEqual([...vistosTramo].sort(), ['off', 'on', 'parcial'], 'y faros de tramo encendidos, en curso y apagados');
 });
 
 test('farosDeTemas: sin estructura, los temas por número; una idea sin tema (o de un tema que no existe) va a «Otras ideas»', () => {
@@ -677,6 +775,13 @@ test('farosDeTemas: sin estructura, los temas por número; una idea sin tema (o 
   assert.equal(con[0].estado, 'parcial');
   assert.equal(con.reduce((n, f) => n + f.total, 0), ideas.length, 'ninguna idea se queda sin faro');
   assert.deepEqual(farosDeTemas([]), []);
+  // Los tramos: agrupan los temas que haya (en el orden del Temario dentro de cada uno); un tema fuera de todo tramo y
+  // «Otras ideas» van solos al final; sin tramos, un faro por tema con las mismas cifras.
+  const ET = { ...E, tramos: [{ id: 'a', nombre: 'Tramo A', corto: 'A', uts: [1, 5] }, { id: 'vacio', nombre: 'Sin ideas', uts: [6] }] };
+  const tr = farosDeTramos(farosDeTemas(ideas, ET), ET);
+  assert.deepEqual(tr.map((f) => [f.id, f.nombre, f.uts, f.total, f.dominadas, f.temas.map((t) => t.id)]), [['a', 'Tramo A', [5, 1], 3, 1, ['t5', 't1']], ['otras', 'Otras ideas', [], 2, 0, ['otras']]]);
+  assert.deepEqual(farosDeTramos(con, E).map((f) => [f.id, f.total, f.dominadas, f.estado, f.temas.length]), con.map((f) => [f.id, f.total, f.dominadas, f.estado, 1]));
+  assert.deepEqual(farosDeTramos([], ET), []);
 });
 
 test('luzDeFaro: el criterio de la carta (80 % dominadas = encendido; alguna vista = en curso; si no, apagado)', () => {
@@ -698,8 +803,8 @@ test('farosPorTema: un faro por tema con el tema de la mayoría de sus preguntas
   const resp = juntar(...ideas.nomen.slice(0, 4).map((i) => dominada(i)), dominada(ideas.baliza[0]));
   const est = estadoTravesia({ ic, respuestas: resp, ahora: AHORA });
   const fs = farosPorTema(est);
-  assert.deepEqual(est.faros.map((f) => f.id), ['t1', 't5'], 'los mismos de la carta');
-  assert.equal(fs.get(5), est.faros[1], 'el mismo objeto: no hay dos cálculos');
+  assert.deepEqual(est.faros.map((f) => [f.id, f.dominadas, f.total]), [['t1', 4, 5], ['t5', 1, 5]], 'sin tramos, los mismos de la carta');
+  assert.equal(fs.get(5), est.temas[1], 'el mismo objeto: no hay dos cálculos');
   assert.deepEqual([...fs.keys()].sort((a, b) => a - b), [1, 5]);
   assert.equal(fs.get(1).estado, 'on');
   assert.equal(fs.get(1).dominadas, 4);

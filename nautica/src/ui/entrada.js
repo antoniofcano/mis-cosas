@@ -29,6 +29,9 @@ export function marcaDerrota(sy, pasos = []) {
   return faroDeParada(sy.est.faros, paradaDeSesion(pasos)?.paso?.ut ?? null);
 }
 
+/** El tema (ut) de lo que toca, o null (repaso de fallos, mezclado…): para la boya «estás aquí» de la carta de aproximación. */
+export const temaQueToca = (pasos = []) => paradaDeSesion(pasos)?.paso?.ut ?? null;
+
 /** Los pasos que tocan ahora: los pendientes de la sesión a medias o, si no hay, los de `comp`. */
 export function pasosQueTocan(guardada, comp) {
   const i = guardada && guardada.estado !== 'hecha' ? indiceActual(guardada) : -1;

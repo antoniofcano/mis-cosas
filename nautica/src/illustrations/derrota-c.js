@@ -56,8 +56,9 @@ function costasDensas(H, compacta) {
 /**
  * El SVG de la carta (decorativo: el nombre accesible lo lleva la carta HTML o su enlace).
  * @param {{ estado: string }[]} faros  en orden de la derrota
- * @param {[number, number][]} pos  posiciones de los faros (posicionesDerrota) y `bandera` la del examen
- * @param {{ compacta?: boolean, rotulo?: { titulo: string, sub?: string } | null, alto?: number | null }} [o]
+ * @param {[number, number][]} pos  posiciones de los faros (posicionesDerrota) y `bandera` la del examen (null en la
+ *   carta de aproximación, que usa este mismo dibujo con una boya por tema o por clase: trazadoAproximacion)
+ * @param {{ compacta?: boolean, rotulo?: { titulo: string, sub?: string, cx?: number } | null, alto?: number | null }} [o]
  *   rotulo: la cartela (solo en grande); alto: el de la carta densa (trazadoDerrota().alto), con `pos` y `bandera` ya en
  *   sus coordenadas; sin él, la carta de siempre.
  */
@@ -84,14 +85,16 @@ export function cartaDerrotaSvg(faros, pos, bandera, { compacta = false, rotulo:
   }
   for (const d of costas) o.push(tierra(d, pt));
   // La derrota: una pata por faro, la última hasta la bandera del examen
-  const puntos = [...pos, bandera];
+  // (en la carta de aproximación no hay bandera: la última boya no lleva pata)
+  const puntos = bandera ? [...pos, bandera] : pos;
   faros.forEach((f, i) => {
     const [a, b] = [puntos[i], puntos[i + 1]];
+    if (!b) return;
     o.push(`<line class="pata ${f.estado}" x1="${a[0]}" y1="${y(a[1])}" x2="${b[0]}" y2="${y(b[1])}" ${PATA[f.estado] ?? PATA.off} stroke-linecap="round" fill="none"/>`);
   });
   if (!compacta) {
     o.push(densa ? rosa(34, H - 24, 11) : rosa(38, 40));
-    if (cart) o.push(cartela(298, densa ? H - 27 : 293, cart.titulo, cart.sub ?? null));
+    if (cart) o.push(cartela(cart.cx ?? 298, densa ? H - 27 : 293, cart.titulo, cart.sub ?? null));
   }
   o.push(marco(W, H), '</svg>');
   return o.join('');
@@ -103,6 +106,7 @@ export function cartaDerrotaSvg(faros, pos, bandera, { compacta = false, rotulo:
  * los dos últimos faros). Al lado que da al centro de la carta. Solo presentación. `pos` y `bandera`, en la carta de 358 × 320.
  */
 export function ladoNombre(pos, i, bandera, { densa = false } = {}) {
+  bandera ??= pos[i];
   if (densa) return ''; // en la carta densa cada faro tiene su hueco: el nombre cabe siempre debajo
   const [x, y] = pos[i];
   const debajo = [...pos, bandera].some((p, j) => j !== i && Math.abs(p[0] - x) < 70 && p[1] - y > 0 && p[1] - y < 90);

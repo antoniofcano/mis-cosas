@@ -1,53 +1,57 @@
-# Faros de la derrota = temas del Temario
+# La derrota: carta general con faros de tramo y zoom a los temas
 
 ## Qué pasaba
 
-Los porcentajes de los faros de la Travesía no coincidían con los del Temario. El criterio era el mismo (`luzDeFaro`,
-ideas dominadas) pero se agrupaba distinto: el Temario, por tema del examen; la Travesía, en seis faros fijos por bloque
-del catálogo.
+1. Los porcentajes de los faros de la Travesía no coincidían con los del Temario: mismo criterio (`luzDeFaro`), distinta
+   agrupación (seis faros fijos por bloque del catálogo frente a un faro por tema).
+2. Primera solución (commit anterior): un faro por tema. Cuadraba, pero con once temas la carta de la PER crecía
+   demasiado (en Hoy, de ≈ 210 a ≈ 300 px).
 
-## Qué se ha hecho
+## Cómo queda (decisión del dueño)
 
-- **Una sola función reparte las ideas en faros**: `farosDeTemas(ideas, estructura)` en `src/course/travesia.js`.
-  `estadoTravesia({ ic, estructura, … }).faros` (carta de Hoy y de la Travesía, parte, insignias) y `farosPorTema(est)`
-  (Temario) devuelven los mismos objetos. Un faro por tema con ideas, en el orden del Temario (`bloquesEnOrden`), con
-  `id` `t<n>`, `ut`, `nombre` (título del tema) y `corto` (rótulo de la carta, nuevo campo en `src/theory/blocks.js`).
-  PER: 11 faros; PY: 4 (en los tres bancos).
-- **Ideas sin tema**: no hay ninguna hoy (toda idea de la travesía tiene preguntas del estudio, así que tiene tema, y
-  todos caen en la estructura). Si apareciera una, va al faro «Otras ideas» (`otras`, al final) para que los faros sumen
-  todas las ideas; el Temario no lo pinta y un test avisa.
-- **La carta con número variable de faros** (`trazadoDerrota`): hasta seis, la carta de siempre (con puntos propios para
-  cuatro, porque repartir los seis puntos dejaba dos faros del PY pegados); con más, la carta «densa» (filas en zigzag, 3
-  columnas en la Travesía y 4 en Hoy, costa al norte y al sur, rosa y cartela sobre la del sur). Estilo C, solo `--lc-*`.
-- **Marcador «estás aquí»**: `faroDeParada(faros, ut)` es ahora directo (el faro del tema que toca). «Siguiente parada»
-  sigue siendo el primer faro sin encender, ahora en el orden del Temario. Los rangos no cambian.
-- **Insignias**: `tema:<n>` («Tema completo: …») en lugar de `bloque:<faro>`. Las `bloque:*` ya ganadas se conservan
-  guardadas y se siguen viendo en la rejilla (detrás de las de tema, con una nota); las no ganadas desaparecen; las de
-  tema salen de los datos con la regla de siempre (100 % de las ideas del tema). La sincronización no se toca: unión por id.
-  Documentado en `docs/TRAVESIA.md` («Migración de las «Bloque completo»»).
-- **Textos**: «bloque» → «tema» en la Travesía, el menú Más y los `aria-label`. El detalle de un faro enlaza a su tema
-  («Ver el tema»).
-- **Docs**: `docs/TRAVESIA.md`, `docs/ENTRADA.md`, `docs/ICONOS.md`, una nota en `docs/SYNC.md` y la línea de `llms.txt`.
-- **Tests**: adaptados `tests/travesia.test.js`, `tests/entrada.test.js`, `tests/hoy-travesia-c.test.js`; nuevos: faros de
-  la derrota = faros del Temario en PER y PY de todos los bancos (contra un cálculo aparte), migración de insignias (con
-  `plegar`), `farosDeTemas`, trazado de la carta y cajas sin solapes a 360 px, SVG de la carta densa.
+- **Carta general**: pocos faros. PER, 5 tramos que agrupan temas enteros (`tramos` en `src/theory/blocks.js`); PY, 4
+  faros, uno por tema. La cuenta de un faro es la suma exacta de las de sus temas y se enciende con el 80 %.
+- **Zoom** (solo en la Travesía): tocar un faro abre su carta de aproximación. Tramo con varios temas → una boya por tema
+  con las cifras del Temario y enlace al tema. Faro de un solo tema (los del PY y Meteorología en la PER) → una boya por
+  clase con el estado de la clase y enlace a la clase. «← Ver toda la derrota» vuelve.
+- **Una sola fuente**: `farosDeTemas` (temas, los del Temario) → `farosDeTramos` (carta general) → `boyasDeFaro` (zoom).
+- **Hoy**: la carta general compacta vuelve a 210 px de alto a 360 px en PER y PY (228 px a 990). Sin zoom en Hoy.
 
-## Comprobado en navegador (Chromium, Playwright)
+## Decisiones
 
-PER y PY (Andalucía) con progreso de prueba inyectado; Travesía, Hoy, Temario e insignias a 360 y 990 px, en claro y
-oscuro, con «reducir movimiento». Las cuentas leídas del DOM coinciden entre la Travesía y el Temario; ningún disco, nombre
-o marcador se pisa ni se sale de la carta; sin errores de consola.
+- **Tramo de un solo tema**: hace zoom a sus clases (no va directo al tema); el detalle de debajo conserva «Ver el tema».
+- **Boyas de clase sin cuenta de ideas**: solo el estado de la clase (`estadoLeccion`). El reparto de ideas por clase de la
+  página del tema usa otro criterio y una idea puede estar en varias clases: no cuadraría con los faros.
+- **Segundo nivel en la PER** (tema → clases): solo donde el tramo es un tema (Meteorología). En los demás, la boya
+  lleva a la página del tema, que ya lista sus clases.
+- **Boyas decorativas**: icono genérico `boya` de la app en tinta, en recuadro redondeado; ni laterales ni cardinales, sin
+  color ni marca de tope con significado. Documentado en `docs/TRAVESIA.md`.
+- **Insignias**: siguen por tema (`tema:<n>`, 100 %); las `bloque:*` antiguas, guardadas. Sin insignia por tramo: los
+  cinco tramos no son los seis faros antiguos y reutilizar sus `bloque:*` no sería honesto.
+- **Marcador**: en la carta general, el faro del tramo del tema que toca; en el zoom, la boya del tema (o la siguiente
+  clase de la ruta). Sobre la bandera va al lado del disco (encima se salía de la carta).
+- **«Mi progreso»** (`conceptosPorTema`): ya solo cuenta ideas con alguna pregunta del estudio; sus totales por tema
+  coinciden con el Temario y la Travesía (test). Sigue usando su propio criterio de «sabida» para el reparto interno.
+- **Ideas sin tema**: no hay ninguna; si la hubiera, faro «Otras ideas» al final.
+- La carta «densa» de `trazadoDerrota` (más de seis faros) se conserva sin uso real, con sus tests.
+
+## Comprobado en navegador (Chromium, Playwright; banco de Andalucía; progreso inyectado)
+
+- Hoy, carta general y zoom de cada faro, PER y PY, 360 y 990 px, claro y oscuro: ningún disco, rótulo ni marcador se pisa
+  ni se sale; sin desborde horizontal.
+- Cifras de las boyas = cifras del Temario (PER: 35/35, 14/17, 0/18 · 10/34, 0/20, 0/20 · 19/21, 35/65 · 7/36, 0/8).
+- Foco: al acercarse va a «Ver toda la derrota»; al volver, al faro. Con teclado funciona. Una boya abre su tema.
+- Con movimiento, la carta lleva la animación `carta-acerca` / `carta-aleja`; con «reducir movimiento», ninguna.
+- Marcador junto a la bandera: comprobado colocándolo a mano en el DOM (no hay forma corta de provocar ese estado).
 
 ## Sin comprobar o pendiente
 
-- No se ha visto en navegador: el marcador en la bandera (todos los faros encendidos) ni en la fila de arriba; el parte de
-  sesión con un faro recién encendido; las animaciones (todas las capturas son con «reducir movimiento»); DGMM y Baleares
-  (solo por tests); anchos intermedios (entre 360 y 990) y móviles reales.
-- Con el marcador en la bandera en la carta de siempre (PY), el icono se sale por arriba: ya pasaba antes y no se ha tocado.
-- En la rejilla de insignias a 360 px, «Nomenclatura» se parte en dos líneas («Nomenclatur/a»): ya pasaba con «Bloque
-  completo: Nomenclatura».
-- La carta de Hoy de la PER mide ≈ 300 px de alto a 360 px (antes ≈ 210): once faros no caben en menos sin quitar los nombres.
-- «Mi progreso» (`conceptosPorTema`) cuenta también las ideas cuyas únicas preguntas están fuera del estudio (entre 2 y 14
-  por banco): sus totales por tema pueden diferir en una o dos ideas de los del Temario y la Travesía. No se ha tocado.
-- `tests/listo.test.js` («repaso mezclado») fallaba ya antes de este cambio por depender de la fecha real; se le ha
-  inyectado `ahora`. No tiene que ver con los faros.
+- El aspecto de la animación del zoom (solo se ha comprobado que se aplica, no se ha visto en movimiento).
+- El estado real «todos los faros encendidos y sin tema que toque» (marcador en la bandera) no se ha provocado.
+- Parte de sesión con un faro de tramo recién encendido: solo por tests.
+- DGMM y Baleares: solo por tests. Anchos intermedios y móviles reales, no.
+- De las capturas se han mirado una docena; el resto, solo por la medición automática de solapes.
+- En una de las pasadas de capturas la consola dio «429 Too Many Requests» al cargar un recurso. El servidor local no
+  devuelve ese código; no se ha identificado el recurso y en otra pasada no salió.
+- En la rejilla de insignias a 360 px «Nomenclatura» se parte en dos líneas (ya pasaba).
+- `tests/listo.test.js` («repaso mezclado») dependía de la fecha real; se le inyectó `ahora` en el commit anterior.

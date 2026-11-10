@@ -24,6 +24,15 @@ export const PER = {
   // Orden en que se recomienda estudiar: el vocabulario primero y después lo que más pesa y más práctica pide
   // (los temas con límite de fallos y la navegación); el resto al final.
   ordenEstudio: [1, 5, 6, 10, 11, 2, 3, 4, 7, 8, 9],
+  // Tramos de la derrota (docs/TRAVESIA.md): los faros de la carta general. Cada uno agrupa temas enteros (todos los temas
+  // están en un tramo y solo en uno); al acercarse a un faro se ven sus temas. Sin `tramos`, hay un faro por tema (el PY).
+  tramos: [
+    { id: 'nomenclatura', nombre: 'Nomenclatura y maniobra', corto: 'Nomenclatura', uts: [1, 2, 7] },
+    { id: 'seguridad', nombre: 'Seguridad y emergencias', corto: 'Seguridad', uts: [3, 4, 8] },
+    { id: 'balizamiento', nombre: 'Balizamiento y RIPA', corto: 'Balizamiento', uts: [5, 6] },
+    { id: 'meteorologia', nombre: 'Meteorología', corto: 'Meteorología', uts: [9] },
+    { id: 'navegacion', nombre: 'Navegación y carta', corto: 'Navegación', uts: [10, 11] },
+  ],
   // Aprobar «con margen» el examen final (F1): lo que hace falta para darse por preparado, no solo apto.
   margen: { minAciertos: 36, maxErrores: { 6: 3, 5: 1, 11: 1 } },
 };

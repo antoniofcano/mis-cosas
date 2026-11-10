@@ -45,13 +45,14 @@ export function siguienteParada(faros = []) {
 }
 
 /**
- * El faro de la siguiente parada: el del tema (ut) de lo que toca (la clase de la sesión); cada faro de la carta es un
- * tema del temario (`faro.ut`). Sin tema (repaso de fallos, mezclado) o si ese tema no tiene faro (no tiene ideas): el
- * primer faro sin encender (siguienteParada), y -1 si están todos encendidos (el marcador va a la bandera del examen).
+ * El faro de la siguiente parada: el del tramo donde está el tema (ut) de lo que toca (la clase de la sesión); cada faro
+ * de la carta agrupa temas del temario (`faro.uts`). Sin tema (repaso de fallos, mezclado) o si ese tema no tiene faro
+ * (no tiene ideas): el primer faro sin encender (siguienteParada), y -1 si están todos encendidos (el marcador va a la
+ * bandera del examen).
  * @returns {number}  índice del faro en `faros`, o -1
  */
 export function faroDeParada(faros = [], ut = null) {
-  const k = ut == null ? -1 : faros.findIndex((f) => f.ut === ut);
+  const k = ut == null ? -1 : faros.findIndex((f) => (f.uts ?? [f.ut]).includes(ut));
   return k >= 0 ? k : siguienteParada(faros).indice;
 }
 
@@ -104,7 +105,7 @@ export function listoCorto(r) {
 
 /**
  * Texto alternativo de la carta de Hoy: dónde estás y cuál es la siguiente parada.
- * «Tu derrota: 2 de 11 faros encendidos. Estás en RIPA, faro 3 de 11; siguiente parada: «Luces…».»
+ * «Tu derrota: 2 de 5 faros encendidos. Estás en Balizamiento, faro 3 de 5; siguiente parada: «Luces…».»
  */
 export function textoCarta({ faros = [], parada = null, nuevo = false, marca = null } = {}) {
   const s = siguienteParada(faros);

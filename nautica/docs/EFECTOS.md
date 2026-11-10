@@ -10,6 +10,7 @@ cuando algo ya ha pasado.
 |---|---|---|---|
 | Aciertas una pregunta (tanda, clase, repaso, ejercicios de tocar, emparejar y cuentas) | Pulso suave en la opción elegida (`rebote`, 320 ms) | «Tic»: seno de 1568 Hz con un armónico tenue, ~0,1 s | Un pulso de 12 ms |
 | Fallas una pregunta | Temblor leve de la elegida (±3 px, 320 ms); la correcta se revela con calma un instante después (`revela`, 450 ms) | Un toque grave (262 Hz), muy bajo y breve. Nada que suene a castigo | Dos pulsos muy suaves (6 ms, pausa, 6 ms) |
+| Tocas un faro de la carta general de la Travesía (o «Ver toda la derrota») | La carta de aproximación se acerca, o la general se aleja, una vez (`carta-acerca`, `carta-aleja`, 450 ms). Con «reducir movimiento», cambio directo | — | — |
 | Un faro pasa a encendido | Destello con halo y la lámpara que se enciende (`faro-enciende`, 450 ms) en el parte de la sesión, en la carta de la Travesía y en el Temario. Después, el halo suave continuo de siempre (solo carta y parte) | Campanilla (dos notas que suben) solo en el parte de la sesión | Patrón corto (18, 90, 18) en el parte |
 | Subes de rango | Su propio momento en el parte: el disco sube y brilla una vez (`rango-sube`, 850 ms) | Campanilla | Patrón corto (18, 90, 18, 90, 30) |
 | Insignia nueva | Entrada suave del disco (`insignia-entra`, 450 ms) en el parte y en la pantalla de insignias | — | — |

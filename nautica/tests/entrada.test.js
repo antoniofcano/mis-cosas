@@ -57,6 +57,11 @@ test('faroDeParada: el faro del tema que toca (cada faro es un tema); sin tema, 
   assert.equal(faroDeParada(faros.map((f) => ({ ...f, estado: 'on' })), null), -1, 'todos encendidos: la bandera');
   assert.equal(faroDeParada(faros.map((f) => ({ ...f, estado: 'on' })), 5), 1, 'con tema, su faro aunque ya esté encendido');
   assert.equal(faroDeParada([...faros, faro('otras', 'off', 'Otras', null)], null), 1, '«Otras ideas» no es el faro de «sin tema»');
+  // Un faro de tramo agrupa temas (`uts`): el marcador va al tramo donde está el tema que toca.
+  const tramos = [{ ...faro('a', 'on', 'A'), uts: [1, 2, 7] }, { ...faro('b', 'off', 'B'), uts: [3, 4, 8] }, { ...faro('c', 'off', 'C'), uts: [5, 6] }];
+  assert.equal(faroDeParada(tramos, 7), 0);
+  assert.equal(faroDeParada(tramos, 6), 2);
+  assert.equal(faroDeParada(tramos, 11), 1, 'tema sin tramo: el primero sin encender');
 });
 
 test('paradaDeSesion: la clase de la sesión (sin el tramo en el nombre); si no hay, el primer paso', () => {

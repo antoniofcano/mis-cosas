@@ -413,3 +413,25 @@ test('salud: sana con código y sincronización reciente; punto en la cabecera t
   assert.equal(avisoCabecera({ codigo: 'X', ultimoExito: ahora - 3600e3 }, ahora), false);
   assert.equal(avisoCabecera({ codigo: null }, ahora), false);
 });
+
+test('en local (localhost) no se sincroniza ni se crea código salvo con un servidor puesto a mano', async () => {
+  const { urlServidor, esLocal, URL_PRODUCCION } = await import('../src/store/sync/config.js');
+  const mem = (o = {}) => ({ getItem: (k) => o[k] ?? null });
+  assert.equal(esLocal({ hostname: 'localhost' }), true);
+  assert.equal(esLocal({ hostname: '127.0.0.1' }), true);
+  assert.equal(esLocal({ hostname: 'antoniofcano.github.io' }), false);
+  assert.equal(urlServidor(mem(), { hostname: 'localhost' }), null);
+  assert.equal(urlServidor(mem({ 'nautica.sync.url': 'http://localhost:8787' }), { hostname: 'localhost' }), 'http://localhost:8787');
+  assert.equal(urlServidor(mem(), { hostname: 'antoniofcano.github.io' }), URL_PRODUCCION);
+  const { crearMotor } = await import('../src/store/sync/motor.js');
+  const { crearRegistro } = await import('../src/store/sync/registro.js');
+  const almacen = {}; const st = { getItem: (k) => almacen[k] ?? null, setItem: (k, v) => { almacen[k] = v; }, removeItem: (k) => { delete almacen[k]; } };
+  const registro = crearRegistro(st);
+  registro.agregar([{ i: 'x1', k: 'r', t: Date.now(), q: 'x', c: 'a', o: true, d: '2026-11-10' }]);
+  let llamadas = 0;
+  const motor = crearMotor({ registro, storage: st, url: () => null, fetch: async () => { llamadas += 1; throw new Error('no'); }, locks: null });
+  const e = await motor.sincronizarYa?.() ?? await motor.sincronizar();
+  assert.equal(llamadas, 0);
+  assert.equal(registro.codigo, null);
+  assert.equal(e?.estado ?? motor.estado().estado, 'sin-servidor');
+});

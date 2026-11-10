@@ -1,0 +1,81 @@
+{
+ "meta": {
+  "descripcion": "Lista del día del examen (#/<tit>/dia-examen): lo que el alumno lleva y comprueba la víspera, por tribunal. Solo entra lo que consta en una fuente del repositorio (las de data/comun/estrategia.json → fuentes, y la ficha del eje); cada elemento dice su fuente. Lo que no se ha podido comprobar para un tribunal va como «pendiente»: se marca como «comprobado en tu convocatoria», nunca como norma. Las cifras y las normas de la estrategia están en estrategia.json; aquí, solo la lista.",
+  "revisado": "2026-11-10"
+ },
+ "grupos": [
+  { "id": "documentos", "titulo": "Documentación", "icono": "lista" },
+  { "id": "material", "titulo": "Material", "icono": "lapiz" },
+  { "id": "calculadora", "titulo": "Calculadora", "icono": "calculadora" },
+  { "id": "horalugar", "titulo": "Hora y lugar", "icono": "lugar" }
+ ],
+ "comun": [
+  { "id": "admitidos", "grupo": "horalugar", "tipo": "consejo", "texto": "Estás en la lista de admitidos y sabes el lugar del examen: lo has mirado en la página de tu convocatoria." }
+ ],
+ "pendienteGenerico": {
+  "documentos": [
+   { "id": "identidad", "tipo": "pendiente", "texto": "Documento de identidad, en físico", "comprobar": "Qué documento piden y cómo (original, no fotocopia) está en tu convocatoria: compruébalo." },
+   { "id": "tasa", "tipo": "pendiente", "texto": "Justificante de pago de la tasa", "comprobar": "Si te lo piden al entrar está en tu convocatoria: compruébalo y llévalo si lo piden." }
+  ],
+  "material": [
+   { "id": "material", "tipo": "pendiente", "texto": "Material de escribir y de dibujo", "comprobar": "Qué material hay que llevar (lápiz, goma, bolígrafo y, para la carta, los instrumentos) está en tu convocatoria: compruébalo." }
+  ],
+  "horalugar": [
+   { "id": "horalugar", "tipo": "pendiente", "texto": "Hora y lugar de tu examen", "comprobar": "Se publican en la convocatoria de tu tribunal: compruébalos." }
+  ]
+ },
+ "tribunales": {
+  "andalucia": {
+   "items": [
+    { "id": "identidad", "grupo": "documentos", "tipo": "norma", "fuente": "boja2025", "ref": "base séptima 2", "texto": "Documento de identidad en físico, el mismo de la inscripción. Con nacionalidad española: DNI, permiso de conducción o pasaporte; no valen fotocopias, fotos ni aplicaciones. Sin acreditarte no entras al aula." },
+    { "id": "tasa", "grupo": "documentos", "tipo": "pendiente", "texto": "Justificante de pago de la tasa", "comprobar": "La convocatoria de Andalucía que figura en la app no dice si lo piden al entrar: compruébalo en tu convocatoria y llévalo si lo piden." },
+    { "id": "lapiz", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "texto": "Lápiz 2 HB" },
+    { "id": "goma", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "texto": "Goma de borrar" },
+    { "id": "boligrafo", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "texto": "Bolígrafo azul o negro" },
+    { "id": "transportador", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "per", "texto": "Transportador de ángulos" },
+    { "id": "compas", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "per", "texto": "Compás" },
+    { "id": "regla", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "per", "texto": "Regla" },
+    { "id": "escuadra", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "per", "texto": "Escuadra y cartabón" },
+    { "id": "transportador", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "py", "texto": "Transportador de ángulos (módulo de navegación)" },
+    { "id": "compas", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "py", "texto": "Compás (módulo de navegación)" },
+    { "id": "regla", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "py", "texto": "Regla (módulo de navegación)" },
+    { "id": "escuadra", "grupo": "material", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 5", "tit": "py", "texto": "Escuadra y cartabón (módulo de navegación)" },
+    { "id": "horalugar", "grupo": "horalugar", "tipo": "norma", "fuente": "boja2025", "ref": "base quinta 2", "texto": "Hora y lugar de tu examen: se publican en la web del Instituto Andaluz del Deporte." }
+   ],
+   "calculadora": { "si": "Calculadora científica no programable, y que sepas usarla", "fuente": "boja2025", "ref": "base quinta 5" },
+   "avisos": [
+    { "fuente": "boja2025", "ref": "base quinta 6", "texto": "La carta del Estrecho te la da el tribunal (un facsímil para cada aspirante): no hace falta que la lleves." },
+    { "fuente": "boja2025", "ref": "base séptima 1", "texto": "Durante el examen no puedes tener el móvil ni otro soporte de información (calculadora programable, PDA o similares)." }
+   ],
+   "nota": "Es la convocatoria de 2025: comprueba la del año de tu examen."
+  },
+  "dgmm": {
+   "items": [
+    { "id": "identidad", "grupo": "documentos", "tipo": "pendiente", "texto": "Documento de identidad, en físico", "comprobar": "La convocatoria de 2026 que figura en la app no detalla qué documento piden al entrar: compruébalo en tu convocatoria." },
+    { "id": "tasa", "grupo": "documentos", "tipo": "norma", "fuente": "boe2026", "ref": "apartado 5", "texto": "Justificante de pago de la tasa: al entrar te pueden pedir que lo enseñes." },
+    { "id": "boligrafo", "grupo": "material", "tipo": "norma", "fuente": "boe2026", "ref": "apartado 14", "texto": "Bolígrafo azul o negro" },
+    { "id": "lapiz", "grupo": "material", "tipo": "norma", "fuente": "boe2026", "ref": "apartado 14", "texto": "Lápiz" },
+    { "id": "dibujo", "grupo": "material", "tipo": "norma", "fuente": "boe2026", "ref": "apartado 14", "texto": "El material de dibujo que necesites para los ejercicios del temario", "ayuda": "La convocatoria no detalla cuál: compruébalo. En la mesa de cartas de la app practicas con transportador, compás y regla." },
+    { "id": "horalugar", "grupo": "horalugar", "tipo": "norma", "fuente": "boe2026", "ref": "apartado 11", "texto": "Fecha, horario y lugar de tu examen: se publican con la lista definitiva de admitidos, en la web del Ministerio." }
+   ],
+   "calculadora": { "si": "Calculadora, que sepas usarla (se permite en el examen de PY)", "ayuda": "La convocatoria de la app no dice qué modelos admiten: compruébalo. Otros tribunales piden científica no programable.", "fuente": "boe2026", "ref": "apartado 14" },
+   "avisos": [
+    { "fuente": "boe2026", "ref": "apartado 14", "texto": "La carta y lo que haga falta del Anuario de Mareas o del Almanaque Náutico te lo dan con el cuadernillo." }
+   ],
+   "nota": "Es la convocatoria de 2026: comprueba la del año de tu examen."
+  },
+  "baleares": {
+   "items": [
+    { "id": "identidad", "grupo": "documentos", "tipo": "pendiente", "texto": "Documento de identidad, en físico", "comprobar": "La convocatoria de Baleares no está revisada en la app: qué documento piden, compruébalo en la que publique el Govern." },
+    { "id": "tasa", "grupo": "documentos", "tipo": "pendiente", "texto": "Justificante de pago de la tasa", "comprobar": "Si lo piden al entrar está en la convocatoria del Govern: compruébalo y llévalo si lo piden." },
+    { "id": "material", "grupo": "material", "tipo": "pendiente", "texto": "Material de escribir y de dibujo", "comprobar": "Qué material hay que llevar (lápiz, goma, bolígrafo y, para la carta, los instrumentos) no está revisado en la app: compruébalo en la convocatoria del Govern." },
+    { "id": "horalugar", "grupo": "horalugar", "tipo": "pendiente", "texto": "Hora y lugar de tu examen", "comprobar": "Se publican en la convocatoria del Govern: compruébalos." }
+   ],
+   "calculadora": { "si": "Calculadora no programable, y que sepas usarla", "fuente": "ficha" },
+   "avisos": [
+    { "fuente": "ficha", "texto": "El extracto del Anuario de Mareas para los cálculos de marea te lo da el tribunal." }
+   ],
+   "nota": "La convocatoria de Baleares no está revisada en la app: material, documentación y horario, en la que publique el Govern."
+  }
+ }
+}

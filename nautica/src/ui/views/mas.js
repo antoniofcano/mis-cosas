@@ -1,4 +1,5 @@
-// #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, titulación, dónde te
+// #/ajustes — Ajustes (tras el engranaje de la cabecera): fecha del examen y minutos al día, tu convocatoria (hora, sede,
+// enlace, lista de admitidos y lista del día del examen: src/ui/convocatoria.js), titulación, dónde te
 // examinas (si hay más de un banco publicado), instalar,
 // voz del profe, sonidos y vibración (docs/EFECTOS.md), la configuración del profesor (usarla o quitarla; enlace al modo profesor),
 // el aviso diario (docs/AVISOS.md), «Mis dispositivos» (el código del alumno, el QR para otro móvil y el estado de la sincronización, docs/SYNC.md) y, plegado en
@@ -24,6 +25,7 @@ import { seccionDispositivos } from '../dispositivos.js';
 import { seccionAvisos } from '../recordatorio.js';
 import { syncSana } from '../sync.js';
 import { seccionCorrecciones } from '../tema-pregunta.js';
+import { seccionConvocatoria, fichaDelEje } from '../convocatoria.js';
 
 export function masView({ progress, tit, params }) {
   const T = TITULACIONES[tit];
@@ -64,7 +66,7 @@ export function masView({ progress, tit, params }) {
   const pintaMinutos = () => { setChildren(minutos, botonesMinutos(progress.settings().minutosDia ?? 20, (m) => { progress.setSetting('minutosDia', m); pintaMinutos(); })); pintaAviso(); };
   pintaMinutos();
   pintaDias();
-  const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); progress.setSetting(`examenOrientativo_${tit}`, false); pintaAviso(); } });
+  const fecha = h('input', { type: 'date', id: 'fecha-examen', value: s[`examen_${tit}`] ?? '', onchange: (ev) => { progress.setSetting(`examen_${tit}`, ev.target.value); progress.setSetting(`examenOrientativo_${tit}`, false); pintaAviso(); convocatoriaEl.refrescar?.(); } });
 
   const copiaHecha = h('p.muted', s.ultimaCopia ? `Última copia: ${fechaLarga(s.ultimaCopia)}.` : '');
 
@@ -106,6 +108,9 @@ export function masView({ progress, tit, params }) {
       : h('p.small', 'Vibración: este aparato no deja vibrar desde el navegador (en iPhone no se puede).'),
     h('div.actions', probar));
 
+  // Tu convocatoria (hora, sede, enlace): al cambiar la fecha del examen se vuelve a leer (una convocatoria nueva la reinicia).
+  const convocatoriaEl = seccionConvocatoria(progress, tit, { ficha: fichaDelEje(progress, tit) });
+
   const el = h('div.mas',
     h('h1', 'Ajustes'),
     h('section', h('h2', 'Tu estudio'),
@@ -118,6 +123,8 @@ export function masView({ progress, tit, params }) {
       avisoPlan,
       h('p', h('a', { href: tlink(tit, ['plan']) }, conIcono('calendario', 'Ver mi plan día a día hasta el examen →'))),
       h('p', h('a', { href: tlink(tit, ['guia']) }, conIcono('brujula', 'Cómo funciona el curso y cómo aprobar →')))),
+    // Tu convocatoria: hora, sede y enlace (opcionales), la lista de admitidos y la lista del día del examen; todo se edita y se borra aquí.
+    convocatoriaEl,
     h('section', h('h2', 'Tamaño de letra'),
       letraEl),
     h('section', h('h2', 'Titulación'),
@@ -169,7 +176,7 @@ export function masView({ progress, tit, params }) {
   // Se espera a que la pantalla esté puesta (la transición la monta un poco después).
   let intentos = 0;
   const lleva = () => {
-    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : campo === 'avisos' ? el.querySelector('#aviso-diario') : campo === 'correcciones' ? el.querySelector('#mis-correcciones') : minutos;
+    const destino = campo === 'fecha' ? fecha : campo === 'profe' ? el.querySelector('#ajuste-profe') : campo === 'dispositivos' ? el.querySelector('#dispositivos') : campo === 'avisos' ? el.querySelector('#aviso-diario') : campo === 'correcciones' ? el.querySelector('#mis-correcciones') : campo === 'convocatoria' ? el.querySelector('#convocatoria') : minutos;
     if (!destino.isConnected) { if (intentos++ < 60) setTimeout(lleva, 30); return; }
     destino.scrollIntoView({ block: 'center' });
     if (campo === 'fecha') { fecha.focus(); try { fecha.showPicker?.(); } catch { /* sin gesto del usuario */ } }

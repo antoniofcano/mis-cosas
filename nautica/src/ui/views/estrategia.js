@@ -144,6 +144,7 @@ export function estrategiaView({ progress, tit }) {
 
     const dia = seccion('dia', 'calendario', 'El día del examen',
       lista(tx.tribunal.dia), lista([tx.calculadora ? { tipo: 'consejo', texto: tx.calculadora } : null, tx.diaExamen]),
+      h('p.no-imprimir.est-enlace-lista', h('a.btn.secondary', { href: tlink(tit, ['dia-examen']) }, conIcono('lista', 'Mi lista del día del examen, con casillas'))),
       !c.calculadora.permitida ? h('p.no-imprimir', h('a', { href: tlink(tit, ['cuentas']) }, 'Las cuentas del patrón →')) : null,
       tx.tribunal.nota ? h('p.est-nota', tx.tribunal.nota) : null);
 
@@ -159,7 +160,8 @@ export function estrategiaView({ progress, tit }) {
       seccion('nosabes', 'pregunta', 'Si no la sabes', lista(tx.noSabes)),
       seccion('repaso', 'repaso', 'Repaso final y hoja de respuestas', lista(tx.repaso)),
       modulos,
-      seccion('antes', 'luna', 'El día antes', lista(tx.diaAntes)),
+      seccion('antes', 'luna', 'El día antes', lista(tx.diaAntes),
+        h('p.no-imprimir.est-enlace-lista', h('a.btn.secondary', { href: tlink(tit, ['vispera']) }, conIcono('luna', 'Repaso exprés de la víspera (15 min)')), ' ', h('a.btn.secondary', { href: tlink(tit, ['dia-examen']) }, conIcono('lista', 'Mi lista del día del examen')))),
       dia,
       pend.length ? seccion('pendiente', 'aviso', 'Pendiente de verificar', h('p.est-sub', 'Esto no está comprobado para tu tribunal y por eso no se afirma arriba. Míralo en su convocatoria.'), h('ul', pend.map((p) => h('li', p)))) : null,
       h('section.est-fuentes', h('h2.mc-clase-tit', 'Fuentes'), h('ul', [...citadas.values()].map((f) => h('li', f.url ? h('a', { href: f.url, target: '_blank', rel: 'noopener' }, f.titulo) : f.titulo))),

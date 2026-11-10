@@ -95,6 +95,7 @@ async function registroSw(nav, ms = 10e3) {
 
 /** POST al servidor con tiempo máximo. Devuelve { ok, status, json } (status 0: sin red). */
 async function post(d, ruta, cuerpo, codigo = null) {
+  if (!d.url) return { ok: false, status: 0, json: null }; // sin servidor (app en local): como sin red
   const f = d.fetch ?? globalThis.fetch?.bind(globalThis);
   const ctl = typeof AbortController === 'function' ? new AbortController() : null;
   const t = setTimeout(() => ctl?.abort(), TIMEOUT_MS);

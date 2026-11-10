@@ -2361,3 +2361,102 @@ a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
 .vuelta-error .ico { color: var(--close); }
 .vuelta-error .btn { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
 .errores-superados .ico { color: var(--ok); }
+
+/* ---- Día del examen y repaso exprés de la víspera (R-44, R-45) ----
+   Lista del día del examen (#/<tit>/dia-examen, src/ui/views/dia-examen.js), repaso exprés (#/<tit>/vispera,
+   src/ui/views/vispera.js), «Tu convocatoria» en Ajustes y las dos tarjetas de Hoy (src/ui/convocatoria.js). Las hojas
+   son estilo C como las chuletas (.mc-* de styles/laminas.css): aquí solo lo propio. Móvil primero (360 px), claro y
+   oscuro por los tokens --lc-*, sin animaciones. Al imprimir, A4 en blanco y negro con las casillas vacías o marcadas. */
+.dx-linea { margin: 0 0 .3rem; font-family: var(--lc-serif); font-size: 1.08rem; font-weight: 700; overflow-wrap: anywhere; }
+.dx-enlace { margin: 0 0 .3rem; overflow-wrap: anywhere; }
+.dx-progreso { margin: .5rem 0 .2rem; padding: .35rem 0; border-bottom: 1px dashed var(--lc-linea-agua); }
+.dx-avance { margin: 0; font-family: var(--lc-mono); font-size: .95rem; font-variant-numeric: tabular-nums; }
+.dx-avance.completa { color: var(--lc-azul-texto); font-weight: 700; }
+.dx-pendientes { margin: .5rem 0; }
+.dx-lista { list-style: none; margin: .2rem 0 .3rem; padding: 0; display: grid; gap: .1rem; }
+.dx-item { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); column-gap: .15rem; align-items: start; padding: .15rem 0; border-bottom: 1px dotted var(--lc-linea-agua); }
+.dx-item input[type="checkbox"] { grid-row: 1 / span 3; width: 1.5rem; height: 1.5rem; margin: .75rem auto 0; accent-color: var(--lc-magenta); }
+.dx-sin { grid-row: 1 / span 3; text-align: center; padding-top: .6rem; color: var(--lc-apagado); }
+.dx-texto { grid-column: 2; min-height: 44px; padding: .6rem 0 0; line-height: 1.4; font-weight: 600; cursor: pointer; overflow-wrap: anywhere; }
+div.dx-texto { cursor: default; font-weight: 400; }
+.dx-item.marcada .dx-texto { color: var(--lc-apagado); }
+.dx-eti { grid-column: 2; justify-self: start; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 0 .35rem; border: 1px solid currentColor; }
+.dx-eti[data-tipo="norma"] { color: var(--lc-azul-texto); }
+.dx-eti[data-tipo="consejo"] { color: var(--lc-magenta); border-style: dashed; }
+.dx-eti[data-tipo="pendiente"] { color: var(--lc-magenta); border-style: double; border-width: 3px; }
+.dx-detalle { grid-column: 2; display: flex; flex-direction: column; gap: .15rem; padding: .2rem 0 .35rem; }
+.dx-comprobar { font-weight: 600; }
+.dx-comprobar .ico { color: var(--lc-magenta); }
+.dx-ayuda, .dx-tuyo { font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); font-size: .95rem; }
+.dx-fuente { font-family: var(--lc-serif); font-style: italic; font-size: .9rem; color: var(--lc-apagado); overflow-wrap: anywhere; }
+.dx-item:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.dx-lista.sin-casillas { list-style: disc; padding-left: 1.1rem; gap: .35rem; }
+.dx-pie { margin: .8rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: .2rem .3rem; }
+.dx-pie button.linklike { min-height: 44px; padding: 0 .3rem; background: none; border: 0; color: var(--lc-azul-texto); text-decoration: underline; width: auto; }
+.est-enlace-lista { margin: .5rem 0 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.est-enlace-lista .btn { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); text-decoration: none; }
+
+.vs-limite { margin: 0 0 .4rem; font-family: var(--lc-serif); font-style: italic; color: var(--lc-apagado); }
+.vs-trampa .mc-rotulo { flex-wrap: wrap; }
+.vs-clase, .vs-cuesta { letter-spacing: .06em; text-transform: none; font-weight: 600; }
+.vs-cuesta { color: var(--lc-magenta); }
+.vs-trampa.tuya { border-left-width: 6px; }
+.vs-trampa p { display: block; margin: 0 0 .3rem; line-height: 1.5; }
+.vs-trampa p:last-child { margin-bottom: 0; }
+.vispera.sin-reglas .vs-regla { display: none; }
+.vs-errores-lista { list-style: none; margin: .2rem 0; padding: 0; display: grid; gap: .5rem; }
+.vs-errores-lista li { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .3rem; padding: .35rem .5rem; border-left: 4px solid var(--lc-linea-agua); line-height: 1.45; }
+.vs-errores-lista li.tuyo { border-left-color: var(--lc-magenta); }
+.vs-si { flex-basis: 100%; font-family: var(--lc-serif); color: var(--lc-apagado); }
+.vs-cierre { margin-top: .9rem; display: grid; gap: .6rem; }
+.vs-calma { margin: 0; font-family: var(--lc-serif); font-size: 1.05rem; line-height: 1.45; }
+.vs-cierre .botones { display: flex; flex-wrap: wrap; gap: .5rem; }
+.vs-cierre .btn, .vs-cierre button.grande { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; min-height: 48px; border-radius: 0; }
+.vs-pie { margin: .8rem 0 0; }
+
+/* «Tu convocatoria» en Ajustes */
+.ajuste-convocatoria .convocatoria-campos { display: grid; gap: .3rem; margin: .4rem 0; max-width: 34rem; }
+.ajuste-convocatoria label.field { grid-template-columns: 1fr; margin: .3rem 0 0; gap: .2rem; }
+.ajuste-convocatoria .field .lbl { font-weight: 600; }
+.ajuste-convocatoria input[type="time"], .ajuste-convocatoria input[type="text"], .ajuste-convocatoria input[type="url"] { min-height: 48px; }
+.ajuste-convocatoria input[type="time"] { max-width: 12rem; }
+.ajuste-convocatoria .convocatoria-fila { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; margin: .5rem 0 0; }
+.ajuste-convocatoria .convocatoria-fila p { margin: 0; flex: 1 1 16rem; }
+.ajuste-convocatoria .convocatoria-fila .btn, .ajuste-convocatoria .convocatoria-fila button, .ajuste-convocatoria .actions button { min-height: 44px; }
+.convocatoria-error { margin: .2rem 0 0; padding: .35rem .6rem; border-left: 4px solid var(--warn); color: var(--warn); font-weight: 600; }
+.convocatoria-estado { min-height: 1.3em; margin: .3rem 0 0; }
+
+/* Hoy: «Tu examen» y el recordatorio de la lista de admitidos (como la cartela de «¿Cómo te fue el examen?») */
+.entrada :is(.examen-cerca, .admitidos-aviso) {
+  background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; padding: .9rem 1rem 1rem;
+  box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); display: flex; flex-direction: column; gap: .5rem; min-width: 0;
+}
+.entrada :is(.examen-cerca, .admitidos-aviso) h2 { margin: 0; font-family: var(--fuente-titulos); font-size: 1.25rem; line-height: 1.25; color: var(--lc-tinta); overflow-wrap: anywhere; }
+.entrada :is(.examen-cerca, .admitidos-aviso) p { margin: 0; overflow-wrap: anywhere; }
+.entrada :is(.examen-cerca, .admitidos-aviso) .entrada-cta-eti { color: var(--lc-magenta); }
+.examen-cerca-linea { font-family: var(--lc-mono); font-size: .95rem; font-variant-numeric: tabular-nums; }
+.entrada :is(.examen-cerca, .admitidos-aviso) a:not(.btn) { color: var(--lc-azul-texto); font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+.examen-cerca-botones { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.entrada :is(.examen-cerca, .admitidos-aviso) :is(.btn, button) { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: .35rem; border-radius: 0; box-shadow: 0 0 0 2px var(--lc-fondo), 0 0 0 3px var(--lc-tinta); }
+.entrada :is(.examen-cerca, .admitidos-aviso) .btn.secondary { background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.entrada :is(.examen-cerca, .admitidos-aviso) :is(a, button):focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.semana-ultimos { margin: 0; display: flex; flex-wrap: wrap; gap: .1rem 1.25rem; }
+.entrada .examen-cerca[data-momento="dia"], .entrada .examen-cerca[data-momento="vispera"] { border-width: 2px; }
+
+@media print {
+  .dia-examen .mc-clase, .vispera .mc-clase { break-inside: avoid; page-break-inside: avoid; }
+  .vispera .mc-trampa, .vispera .mc-regla, .vs-errores-lista li { break-inside: avoid; page-break-inside: avoid; }
+  .dx-item { padding: .4mm 0; grid-template-columns: 8mm minmax(0, 1fr); }
+  .dx-item input[type="checkbox"] { width: 4mm; height: 4mm; margin: 1.2mm auto 0; accent-color: black; }
+  .dx-texto { min-height: 0; padding: .6mm 0 0; font-size: 9.5pt; }
+  .dx-item.marcada .dx-texto { text-decoration: none; color: black; }
+  .dx-eti { border-color: black; color: black !important; font-size: 6.5pt; }
+  .dx-ayuda, .dx-tuyo, .dx-fuente, .dx-detalle { font-size: 7.5pt; color: black; }
+  .dx-fuente a, .dx-enlace a { color: black; text-decoration: none; }
+  .dx-fuente a::after, .dx-enlace a::after { content: " (" attr(href) ")"; font-size: 6.5pt; }
+  .dx-progreso { display: none; }
+  .vs-trampa p { font-size: 9pt; line-height: 1.3; margin-bottom: .8mm; }
+  .vs-limite, .vs-si { font-size: 8pt; color: black; }
+  .vs-cuesta { color: black; }
+  .vs-cierre { display: none; }
+}

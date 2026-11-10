@@ -121,6 +121,8 @@ export function crearMotor({
   async function sincronizarYa() {
     if (temporizador) { reloj.clearTimeout(temporizador); temporizador = null; proximo = null; } // ya va ahora
     diag.ultimoIntento = ahora();
+    // Sin servidor (la app servida en local sin uno puesto a mano): no se sincroniza ni se crea código.
+    if (!base()) { diag.estado = 'sin-servidor'; guardaDiag(); avisa(); return motor.estado(); }
     if (!registro.codigo) {
       if (registro.pendientes() === 0) { diag.estado = 'sin-vincular'; guardaDiag(); avisa(); return motor.estado(); }
       registro.ponerCodigoNuevo(generar()); // primer uso: el código se crea en silencio
@@ -243,7 +245,7 @@ export function crearMotor({
     estado() {
       const pendientes = registro.pendientes();
       let estado = diag.estado;
-      if (!registro.codigo) estado = 'sin-vincular';
+      if (!registro.codigo) estado = base() ? 'sin-vincular' : 'sin-servidor';
       else if (estado === 'sin-vincular') estado = 'pendiente';
       else if (!enLinea()) estado = 'sin-conexion';
       else if (estado === 'al-dia' && pendientes) estado = 'pendiente';

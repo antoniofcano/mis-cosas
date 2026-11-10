@@ -20,7 +20,8 @@
 //
 // 2. Reparto por días (k = días que faltan; hoy es k = dias):
 //      k = 0   el examen: nada que estudiar, un mensaje de ánimo
-//      k = 1   la víspera: NADA NUEVO; un repaso corto (tarjetas o la chuleta) y descanso
+//      k = 1   la víspera: NADA NUEVO; el repaso exprés de 15 minutos (las trampas de los temas con límite de fallos,
+//              src/course/vispera.js, #/<tit>/vispera) o, sin él, un repaso corto (tarjetas o la chuleta); y descanso
 //      k = 2   repaso ligero: tarjetas, la chuleta del tema con límite más flojo y una tanda de carta
 //      k ≥ 3   los días «de trabajo»: ideas flojas (lo que más pesa y más cae, en orden de prioridad), y el simulacro
 //              completo (en el PY, por módulos si el alumno estudia menos minutos al día de lo que dura el examen)
@@ -326,6 +327,7 @@ const TEXTO = {
   'repaso-simulacro': 'Lo que fallaste en el simulacro vuelve con otra pregunta; después, ideas flojas.',
   ligero: 'Un repaso ligero: tarjetas, la chuleta de un tema y unas preguntas de carta para no perder la mano.',
   vispera: 'Hoy, nada nuevo. Un repaso corto de lo que ya sabes y a descansar: dormir bien cuenta tanto como una tanda.',
+  'vispera-expres': 'Hoy, nada nuevo. Una sola lectura tranquila, de unos 15 minutos, con las trampas de tus temas con límite de fallos; prepara tu lista del examen y a descansar: dormir bien cuenta tanto como una tanda.',
   examen: 'Hoy no hay tarea. Lee cada pregunta despacio, deja para el final las que dudes y confía en lo que has preparado. Buena travesía.',
 };
 
@@ -347,9 +349,11 @@ const TEXTO = {
  * @param {object[]} [p.tests]  exámenes hechos de esta titulación y este banco
  * @param {object} [p.hechos]  días hechos (ajuste)
  * @param {boolean} [p.finalSugerido]  el examen final está abierto y toca (estadoFinal().sugerir): el simulacro es él
+ * @param {{ minutos: number }|null} [p.repasoExpres]  con él, el paso de la víspera es el repaso exprés (#/<tit>/vispera, de
+ *   `minutos` minutos); sin él, el repaso corto de siempre (tarjetas o chuleta)
  * @returns {{ dias: object[], simulacro: { hecho: boolean, pendientes: string[] }, porModulos: boolean }}
  */
-export function planSemana({ estructura, dias, hoy, fecha, minutosDia = 20, ideas = [], temas = [], fallosHoy = 0, tarjetasHoy = 0, mazo = null, cartaUt = null, tests = [], hechos = {}, finalSugerido = false }) {
+export function planSemana({ estructura, dias, hoy, fecha, minutosDia = 20, ideas = [], temas = [], fallosHoy = 0, tarjetasHoy = 0, mazo = null, cartaUt = null, tests = [], hechos = {}, finalSugerido = false, repasoExpres = null }) {
   const d = Math.max(0, Math.min(DIAS_MODO, Math.round(dias)));
   const inicio = sumaDiasISO(fecha, -DIAS_MODO);
   const ex = examenesDeLaSemana(tests, { desde: inicio, hasta: hoy });
@@ -450,7 +454,10 @@ export function planSemana({ estructura, dias, hoy, fecha, minutosDia = 20, idea
       titulo = 'Repaso ligero';
       if (x.conRepaso) texto = `${TEXTO.ligero} Antes, los fallos del simulacro.`;
     } else if (x.tipo === 'vispera') {
-      pasos = [pasoTarjetas() ?? pasoChuleta()];
+      if (repasoExpres?.minutos) {
+        pasos = [paso('vispera', 'Repaso exprés de la víspera', 'Las trampas de tus temas con límite de fallos, en una pantalla', repasoExpres.minutos, ['vispera'])];
+        texto = TEXTO['vispera-expres'];
+      } else pasos = [pasoTarjetas() ?? pasoChuleta()];
       titulo = 'Nada nuevo: repaso corto y descanso';
     } else {
       titulo = 'Hoy es el examen';

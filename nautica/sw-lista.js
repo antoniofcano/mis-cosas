@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '1f0a395fdec7';
+self.VERSION = 'd22db0a4bfe9';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -35,8 +35,10 @@ self.APP = [
  "src/course/carta-pasos.js",
  "src/course/chuletario.js",
  "src/course/config-profe.js",
+ "src/course/convocatoria.js",
  "src/course/cronometro.js",
  "src/course/cuentas.js",
+ "src/course/dia-examen.js",
  "src/course/engine.js",
  "src/course/entrada.js",
  "src/course/estrategia.js",
@@ -57,6 +59,7 @@ self.APP = [
  "src/course/simulacro-errores.js",
  "src/course/tarjetas.js",
  "src/course/travesia.js",
+ "src/course/vispera.js",
  "src/exams/diagnostico.js",
  "src/exams/guiado.js",
  "src/exams/kit.js",
@@ -292,6 +295,7 @@ self.APP = [
  "src/ui/compartir.js",
  "src/ui/concepto.js",
  "src/ui/config-profe.js",
+ "src/ui/convocatoria.js",
  "src/ui/copia.js",
  "src/ui/diagnostico.js",
  "src/ui/dispositivos.js",
@@ -338,6 +342,7 @@ self.APP = [
  "src/ui/views/chuleta.js",
  "src/ui/views/cuentas.js",
  "src/ui/views/curso.js",
+ "src/ui/views/dia-examen.js",
  "src/ui/views/estrategia.js",
  "src/ui/views/exams.js",
  "src/ui/views/exercise.js",
@@ -363,6 +368,7 @@ self.APP = [
  "src/ui/views/titulacion.js",
  "src/ui/views/travesia.js",
  "src/ui/views/vincular.js",
+ "src/ui/views/vispera.js",
  "src/ui/voice.js",
  "src/vendor/qrcode-generator.js",
  "styles/app.css",
@@ -373,6 +379,8 @@ self.DATOS = [
  "data/chart-105.json",
  "data/comun/abreviaturas.json",
  "data/comun/chuletario.json",
+ "data/comun/dia-examen.json",
+ "data/comun/errores-frecuentes.json",
  "data/comun/estrategia.json",
  "data/comun/formulas.json",
  "data/comun/mnemotecnias.json",

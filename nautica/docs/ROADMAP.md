@@ -164,5 +164,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
   las divergencias con el curso en `.trabajo-ux/`, sin resolverlas en silencio.
 - **Limpieza de ramas:** las ramas de trabajo ya fusionadas se borran del remoto; se conservan `main`, la rama de
   despliegue y las que se indiquen.
+- **Pruebas sin tocar producción:** la app servida en local no sincroniza con el servidor real (`docs/SYNC.md`); nunca
+  se borran ni se crean datos en la base de producción para probar.
 - **Claves y credenciales de servicios externos:** viven fuera del repositorio y se borran al terminar el trabajo que
   las usa.

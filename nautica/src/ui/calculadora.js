@@ -183,8 +183,10 @@ function crearPanel() {
       const r = el.getBoundingClientRect();
       const w = r.width || 360;
       const alto = r.height || 120;
-      const x = Math.min(Math.max(8, pos?.x ?? innerWidth - w - 24), Math.max(8, innerWidth - w - 8));
-      const y = Math.min(Math.max(8, pos?.y ?? innerHeight - alto - 24), Math.max(8, innerHeight - Math.min(alto, 64) - 8));
+      // Con la carta a pantalla completa, la esquina de abajo a la derecha es la de «Enunciado» y «Salir»: arriba a la izquierda.
+      const completa = document.body.classList.contains('carta-completa');
+      const x = Math.min(Math.max(8, pos?.x ?? (completa ? 8 : innerWidth - w - 24)), Math.max(8, innerWidth - w - 8));
+      const y = Math.min(Math.max(8, pos?.y ?? (completa ? 8 : innerHeight - alto - 24)), Math.max(8, innerHeight - Math.min(alto, 64) - 8));
       el.style.left = `${x}px`;
       el.style.top = `${y}px`;
     } else {

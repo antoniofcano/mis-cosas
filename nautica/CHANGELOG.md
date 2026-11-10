@@ -21,9 +21,20 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
   (Seguridad y Meteorología, 20 preguntas, 45 min) o solo el de navegación (Teoría y Carta, 20 preguntas, 75 min), para
   practicar uno mientras se aprende el otro. Se corrige con 14 aciertos de 20 (la misma proporción que el examen) y los
   límites de fallos de sus temas; es orientativo y no cuenta como simulacro aprobado.
+- **Bloc de notas** en los ejercicios y preguntas de cuentas (mareas, estima, carta, «Haz la cuenta» de las clases y
+  también en el examen): el enunciado a la vista con sus datos para tocarlos, notas propias y la calculadora a mano, con
+  «Apuntar» para llevar su resultado a la nota. Las notas se guardan en el aparato mientras sigues en ese ejercicio.
+- **Carta a pantalla completa:** botón «Ampliar» en cualquier carta. En el móvil la carta pasa de un tercio a casi
+  toda la pantalla, con las herramientas en una fila de iconos y el enunciado a un toque; con el móvil tumbado entra
+  sola en este modo.
+- **«¿No es de este tema?»:** tras responder una pregunta, puedes cambiarla de tema (y de clase) si crees que está
+  mal colocada. Cambia en tu estudio al momento, se sincroniza entre tus dispositivos, se deshace en Ajustes → «Mis
+  correcciones» y puedes enviarnos el aviso para corregirla para todos. No cambia los exámenes ni los simulacros.
 
 ### Correcciones
 
+- PER de Baleares: una pregunta sobre una luz de sectores estaba en RIPA; pasa a Teoría de navegación, donde la
+  puso el tribunal en cuatro de sus cinco apariciones.
 - Podcast, minijuego: cuando una pregunta del episodio está reservada para el examen final, la que la sustituye tiene que
   parecerse también en las opciones. Antes bastaba un enunciado genérico igual y, en el episodio de nieblas, salía una
   pregunta de corrientes.

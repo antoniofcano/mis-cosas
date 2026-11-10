@@ -140,7 +140,7 @@ export function progressView({ progress, tit }) {
     volver('Hoy', tlink(tit)),
     h('h1', 'Mi progreso'),
     temas,
-    seccionErrores(),
+    seccionErrores(T.id),
     examenes,
     h('details.prog-carta', h('summary', conIcono('mapa', 'Ejercicios de carta')),
       rows.length

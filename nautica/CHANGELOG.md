@@ -17,6 +17,26 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 10 de noviembre de 2026, cuarta publicación · versión `f5cafd2feb48`
+
+### Novedades
+
+- **Ensayo general en papel:** el examen (el módulo de navegación del PY, la parte de carta del PER o el examen entero)
+  como el día de verdad, con tu carta de papel, transportador, compás y reloj. La app solo da los enunciados y el reloj
+  del tribunal; al final pasas las respuestas a la hoja y te corrige con las reglas reales. Cuadernillo imprimible para
+  hacerlo sin pantalla. «La semana antes» y la estrategia recomiendan hacer dos.
+- **Tu velocidad en carta:** los simulacros guardan cuánto tardas en cada pregunta, y «Tu estrategia» te enseña tu tiempo
+  por tipo de problema de carta frente al que tienes en el examen, con el consejo de por dónde empezar.
+- **Simulacro de tus errores:** preguntas cuyas opciones falsas son justo los errores que repites; al fallar te dice si
+  has vuelto a caer en el mismo. Sin errores tuyos registrados, con las trampas que más ponen los tribunales. No cuenta
+  como simulacro aprobado.
+- **Lista del día del examen:** qué llevar según tu tribunal y titulación, con casillas para marcar la víspera, separando
+  lo que dice la convocatoria de lo que conviene comprobar.
+- **Tu convocatoria:** en Ajustes, la hora, la sede y el enlace a la convocatoria; Hoy te lo enseña la semana del examen
+  y, desde tres semanas antes, te recuerda comprobar que estás en la lista de admitidos.
+- **Repaso exprés de la víspera:** unos 15 minutos con las trampas más repetidas de tus temas con límite de fallos y tus
+  errores. Es el paso del penúltimo día de «la semana antes».
+
 ## 10 de noviembre de 2026, tercera publicación · versión `e630b7f4c754`
 
 ### Novedades

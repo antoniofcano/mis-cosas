@@ -94,6 +94,20 @@ export function presupuestoTiempo(T, { minTeoria = 1.2, repasoFraccion = 0.1 } =
   });
 }
 
+/**
+ * El tiempo que te deja el examen por pregunta (R-42, «Tu velocidad en carta»): por pregunta de carta y de teoría,
+ * según el presupuesto orientativo (presupuestoTiempo), y la media del examen. En segundos. En el PY, el del módulo
+ * que tiene la carta.
+ */
+export function tiempoDisponible(T, cfg = {}) {
+  const pres = presupuestoTiempo(T, cfg);
+  const conCarta = pres.find((t) => t.filas.some((f) => f.parte === 'carta')) ?? pres[0];
+  const fila = (p) => conCarta.filas.find((f) => f.parte === p);
+  const E = T.estructura;
+  return { cartaS: fila('carta')?.porPregunta != null ? fila('carta').porPregunta * 60 : null, teoriaS: fila('teoria')?.porPregunta != null ? fila('teoria').porPregunta * 60 : null,
+    mediaS: (E.duracionMin / totalPreguntas(E)) * 60, tramo: pres.length > 1 ? conCarta.titulo : null };
+}
+
 /** Una norma lleva su fuente legible: «Convocatoria 2025… (base quinta 5)». */
 function conFuente(item, fuentes) {
   const f = item.fuente ? fuentes?.[item.fuente] : null;

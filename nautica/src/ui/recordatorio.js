@@ -25,7 +25,7 @@ function deps() {
   return {
     url: urlServidor(),
     clave: clavePublicaAvisos(),
-    codigo: () => motor?.asegurarCodigo() ?? null,
+    codigo: () => (urlServidor() ? motor?.asegurarCodigo() ?? null : null),
     sincronizar: () => motor?.sincronizar(),
   };
 }

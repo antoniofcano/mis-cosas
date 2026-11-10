@@ -49,6 +49,10 @@ es el examen», ánimo y ningún botón. Pasada la fecha, el modo se apaga solo 
 fue el examen?» (Aprobé · No aprobé · Aún no lo sé · Ahora no). Si el alumno salió del modo, una línea ofrece volver. Un
 examen a medias va antes: mientras lo haya, Hoy es la de siempre.
 
+## Tu examen cerca (R-44, R-45)
+
+Debajo de la tarjeta principal, `src/ui/convocatoria.js` añade dos cartelas (lógica en `src/course/convocatoria.js`, con `ahora` inyectado y día local): **«Tu examen»** con fecha, hora, sede y enlace a la convocatoria, la semana del examen (7 días o menos, fecha no orientativa), con «Mi lista del día del examen» (principal la víspera y el día) y, la víspera, «Repaso exprés de 15 minutos»; y, de 21 días a la víspera mientras no se marque, **«¿Ya has comprobado que estás en la lista de admitidos y el lugar del examen?»** con el enlace guardado (o la página oficial del tribunal, de la ficha del eje) y «Sí, ya lo he comprobado». En «la semana antes», el paso de la víspera (k = 1) es el repaso exprés (`#/<tit>/vispera`).
+
 ## El marcador «estás aquí»
 
 Cada faro de la carta general agrupa temas del temario (docs/TRAVESIA.md, «Faros»). `faroDeParada(faros, ut)`: el faro

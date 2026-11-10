@@ -3,13 +3,20 @@
 
 export const URL_PRODUCCION = 'https://patron-sync.antoniofcano.workers.dev';
 
-/** URL del servidor de sincronización: la de producción, salvo que el navegador tenga otra puesta para pruebas. */
-export function urlServidor(storage = globalThis.localStorage) {
+/** ¿La app se está sirviendo en local (desarrollo o pruebas automáticas)? */
+export const esLocal = (loc = globalThis.location) => /^(localhost|127\.0\.0\.1|\[::1\])$/.test(loc?.hostname ?? '');
+
+/**
+ * URL del servidor de sincronización: la de producción, salvo que el navegador tenga otra puesta para pruebas. En local
+ * (localhost) devuelve null salvo que se ponga una a mano: las pruebas con progreso inventado no deben dar de alta
+ * alumnos en el servidor real. Con null la app no sincroniza (sigue en local) ni crea código.
+ */
+export function urlServidor(storage = globalThis.localStorage, loc = globalThis.location) {
   try {
     const u = storage?.getItem('nautica.sync.url');
     if (u && /^https?:\/\/[\w.:-]+$/.test(u)) return u;
   } catch { /* sin almacenamiento */ }
-  return URL_PRODUCCION;
+  return esLocal(loc) ? null : URL_PRODUCCION;
 }
 
 /**

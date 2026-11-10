@@ -57,6 +57,9 @@ import { iniciarTemaPregunta } from './tema-pregunta.js';
 import { profeView } from './views/profe.js';
 import { vincularView } from './views/vincular.js';
 import { estrategiaView } from './views/estrategia.js';
+import { diaExamenView } from './views/dia-examen.js';
+import { visperaView } from './views/vispera.js';
+import { ensayoView } from './views/ensayo.js';
 import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
 import { iniciarRecordatorio } from './recordatorio.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
@@ -85,6 +88,9 @@ const TIT_ROUTES = {
   teoria: practiceView, // #/<tit>/teoria/ut/<n> (sin ut redirige al temario)
   test: testView,
   estrategia: estrategiaView, // #/<tit>/estrategia: estrategia de examen (cómo hacerlo); nunca enlazada desde un examen en marcha
+  'dia-examen': diaExamenView, // #/<tit>/dia-examen: la lista del día del examen (casillas, por tribunal); nunca enlazada desde un examen en marcha
+  vispera: visperaView, // #/<tit>/vispera: repaso exprés de la víspera (15 min, las trampas de los temas con límite); paso de la semana antes
+  ensayo: ensayoView, // #/<tit>/ensayo[/cuadernillo]: ensayo general en papel (preparación y cuadernillo imprimible); en marcha, #/<tit>/test/ensayo
   carta: cartaView,
   'carta-pasos': cartaPasosView, // #/<tit>/carta-pasos[/<tipo>]: ejercicios de carta resueltos paso a paso (nunca desde un examen)
   // #/<tit>/examenes[/<lista>]; con un fichero (.json), dirección antigua de un banco
@@ -134,7 +140,8 @@ export function pestanaDe(parts) {
     if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel' || b === 'travesia' || b === 'semana') return 'hoy';
     if (['temario', 'curso', 'teoria', 'idea'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
-    if (b === 'examenes' || b === 'test' || b === 'estrategia') return 'examen';
+    if (b === 'dia-examen' || b === 'vispera') return 'examen'; // la lista del día del examen y el repaso exprés de la víspera
+    if (b === 'examenes' || b === 'test' || b === 'ensayo' || b === 'estrategia') return 'examen';
     return 'mas'; // mas, biblioteca, laminas, carta, podcast, tarjetas, cuentas, plan, mapas, guia
   }
   if (a === 'ej' || a === 'examenes' || a === 'q') return 'temario';
@@ -155,7 +162,7 @@ export function rutaEnTit(parts, id) {
   const b = parts[1];
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
   if (b === 'cuentas') return [id, 'cuentas'];
-  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'chuletas', 'formulas'].includes(b)) return [id, b];
+  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'ensayo', 'chuletas', 'formulas'].includes(b)) return [id, b];
   if (b === 'carta-pasos') return [id, ...parts.slice(1, 3)];
   return [id];
 }

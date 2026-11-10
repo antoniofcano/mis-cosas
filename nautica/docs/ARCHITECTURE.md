@@ -70,6 +70,9 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 | `#/<tit>/laminas`, `#/reglas`, `#/conceptos`, `#/mas`, `#/progreso` | biblioteca, «Más» y mi progreso |
 | `#/calculadora` | `views/calculadora.js`: calculadora científica (lógica en `src/calculadora/motor.js`) |
 | `#/<tit>/estrategia` | `views/estrategia.js`: estrategia de examen (R-31). Lógica pura en `src/course/estrategia.js` (`cifrasExamen`, `presupuestoTiempo`, `textosEstrategia`, `tuEstrategia` con `progress.tests()` y `st.listo`); textos en `data/comun/estrategia.json` (normas con fuente: RD 875/2014 y convocatorias; consejos; pendientes por tribunal). Enlazada desde Examen, la Biblioteca y la pantalla de inicio de un simulacro; nunca con un examen en marcha (`estrategiaPermitida`, `tests/estrategia.test.js`). Imprimible con el patrón de las chuletas (`.mc-*`) |
+| `#/<tit>/dia-examen` | `views/dia-examen.js`: la lista del día del examen (R-44). Lógica pura en `src/course/dia-examen.js` (`listaDiaExamen`: grupos documentación, material, calculadora, hora y lugar por tribunal y titulación; casillas, vigencia y reinicio) sobre `data/comun/dia-examen.json` (cada elemento con su fuente; lo no comprobado, «pendiente de verificar») y las fuentes de `estrategia.json`. La calculadora es casilla solo si `calculadoraPermitida`. Casillas en el ajuste compartido `listadia_<tit>`; la de «admitidos» vive en `convocatoria_<tit>`. Imprimible; nunca con un examen en marcha (`estrategiaPermitida`) |
+| `#/<tit>/vispera` | `views/vispera.js`: repaso exprés de la víspera, 15 min (R-45). `src/course/vispera.js` (`repasoExpres`, `erroresDeLaVispera`): trampas (pasos «ojo» del curso = las de las chuletas) de los temas con límite, por la prioridad de las ideas de su clase (`ideasPriorizadas`), recortadas a 1950 palabras (130 p/min); errores del tribunal (`data/comun/errores-frecuentes.json`, de `tools/errores-frecuentes.mjs`) y del alumno (`store/errores.js`). Paso del día k = 1 de «la semana antes» (`planSemana({ repasoExpres })`). Imprimible; nunca en un examen |
+| `#/<tit>/ensayo[?p=<parte>&s=<semilla>]`, `#/<tit>/ensayo/cuadernillo?p=…&s=…`, `#/<tit>/test/ensayo?p=…&s=…` | Ensayo general en papel (R-41): `views/ensayo.js` (preparación: parte, material del tribunal sacado de `data/comun/estrategia.json` → `tribunales.<eje>.dia` vía `textosEstrategia`, aviso de la carta de papel; y cuadernillo imprimible con la hoja en blanco), `views/theory.js` → `testView` (`tipo: 'ensayo'`, `correrPapel`) y `ui/ensayo.js` (cuadernillo en pantalla, reloj del tribunal y hoja de respuestas). Lógica pura en `src/theory/ensayo.js` (`partesEnsayo`, `estructuraEnsayo`: PY módulo de navegación con su tiempo oficial; PER navegación y carta, temas 10 y 11, con el tiempo orientativo del presupuesto de la estrategia; o el examen completo; `corregirHoja` con `grade`; `cuentaEnsayos`). Sin ninguna ayuda de la práctica (`SIN_AYUDAS`, `tests/ensayo.test.js`) |
 | `#/<tit>/formulas[?t=<tema>]` | `views/formulas.js`: «Fórmulas y tablas en una hoja» (`data/comun/formulas.json`, `src/course/formulas.js`). Por bloques, cada fórmula con su ejemplo resuelto; imprimible. Nunca en un examen (ver «Ayudas del alumno») |
 | `#/<tit>/cuentas[/<id>]` | `views/cuentas.js` y `leccionView`: apéndice «Las cuentas del patrón» (`data/curso/apendice-matematicas.json`, `src/course/apendice.js` y `cuentas.js`). Fuera del curso: no entra en temas, plan ni «¿Estás listo?». Sus enlaces «Repasa: …» salen de `usadoEn` en los datos |
 
@@ -85,6 +88,17 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   `ui/semana.js` (calcula con el resultado de `calcularPlan`, guarda el ajuste compartido `semana_<tit>` y apunta el día
   hecho), la tarjeta de Hoy (`views/hoy.js`), `views/semana.js` (`#/<tit>/semana` y la tanda `#/<tit>/semana/ideas/<n>`) y
   la Travesía («Seguir» arranca la misma sesión, `composicionDeHoy`).
+- **Tu convocatoria** (R-44, `course/convocatoria.js` puro, `ui/convocatoria.js`): hora, sede y enlace opcionales (ajuste compartido `convocatoria_<tit>`, que junto a `listadia_<tit>` se reinicia con la convocatoria siguiente: la fecha cambia cuando la anterior ya pasó), editables y borrables en Ajustes → «Tu convocatoria»; Hoy enseña «Tu examen» la semana del examen (`momentoExamen`) y, de 21 días a la víspera, «¿Ya has comprobado que estás en la lista de admitidos…?» (`recordatorioAdmitidos`; la app no consulta el boletín). El push diario no se toca: su texto es fijo en `sw.js` y no conoce la fecha.
+- **Tu velocidad en carta** (R-42; `course/velocidad.js`, funciones puras; tests `tests/velocidad.test.js`): tipo de
+  problema de cada pregunta (`tipoDePregunta`: el `ejercicio` de su solución, `carta` o `teoria`), acumulador de tiempo con
+  la pestaña visible (el criterio del reloj del examen; en la interfaz, `ui/reloj-visible.js`), `tiemposDelTest` (el campo
+  `tq` del registro del test), `velocidadPorTipo` (media de las 12 más recientes, tendencia y «cabe / justo / te pasas»
+  frente a `tiempoDisponible` de `course/estrategia.js`) y `consejoVelocidad` (por dónde empezar la carta). Se pinta en
+  «Tu estrategia» (`#est-velocidad`) y en el resultado de un simulacro. La práctica se guarda en el aparato
+  (`store/tiempos.js`); dónde va cada cosa y por qué, en [`SYNC.md`](SYNC.md) («Tiempo por pregunta»).
+- **Ensayos en papel en la semana y la estrategia:** `recordatorioEnsayos` (`course/semana.js`) y `cuentaEnsayos`
+  (`theory/ensayo.js`) cuentan los `tests` con `tipo: 'ensayo'` frente a los 2 recomendados; la página de la semana, la
+  estrategia y la pantalla Examen enlazan `#/<tit>/ensayo`.
 - **Rutas existentes en tiempo de ejecución** (`ui/rutas.js`): `app.js` publica las claves de `TIT_ROUTES`
   (`fijarRutasTit`) y una vista enlaza otra sección solo si `hayRuta('<sección>')`. Es el punto de extensión de la
   semana para la página «Estrategia de examen»: al registrar `estrategia` en `TIT_ROUTES`, sus accesos la enlazan solos.
@@ -169,7 +183,35 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   profe (práctica y revisión de un examen terminado) y al final del modo guiado; «Tus errores más repetidos» en Mi progreso.
 - **Errores del alumno** (`store/errores.js`, `localStorage` `nautica.errores.v1`): pasos fallados en el modo guiado y
   errores diagnosticados (también los de los ejercicios generados), una vez por pregunta y día, 400 anotaciones y 180
-  días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia.
+  días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia. Los `sup` (superado) restan uno al
+  error al resumir (ver abajo).
+
+### Simulacro de tus errores (R-43)
+
+- **Índice estático** (`tools/indice-errores.mjs` → `data/ejes/<eje>/<tit>/distractores.json`, en el precaché):
+  `{ id: { letra: error } }` con las opciones erróneas que explica un **único** error típico
+  (`distractoresUnicos()` de `exams/diagnostico.js`, el mismo rigor que el diagnóstico). Solo preguntas del estudio
+  (sin reservadas —cuarentena—, retiradas ni anuladas). Lo carga `cargarDistractores(eje, tit)` de `bancos/index.js`.
+  `tests/simulacro-errores.test.js` comprueba que está al día, que coincide con `diagnosticar()` en vivo en una muestra
+  (una de cada cuatro preguntas con resolución, todas sus opciones) y que no trae ninguna reservada.
+- **Selección** (`course/simulacro-errores.js`, pura): con los errores vivos del alumno (`store/errores.js`) que salen
+  como distractor en su banco; si tiene menos de `MIN_VECES` (2) registrados, si casi no salen en su banco o si no
+  juntan `MINIMO` (5) preguntas, dice por qué y usa los errores que más ponen los tribunales en ese banco (los de más
+  preguntas en el índice). Hasta `MAX_ERRORES` (5) errores; `OBJETIVO` (10) preguntas o las que haya; solo del
+  `banco.estudio` del alumno; primero las no vistas, luego las falladas; una por error y el resto por D'Hondt sobre
+  cuántas veces lo comete; sin repetir. Tiempo: el presupuesto de la estrategia (`presupuestoTiempo`: carta a su ritmo,
+  el resto al ritmo medio de su parte del examen).
+- **En la app:** entrada en Examen (`examenesView`) y en «Tus errores más repetidos» (Mi progreso), `ui/simulacro-errores.js`.
+  Se hace en `testView` (`#/<tit>/test/errores?s=<semilla>`): reloj, modo examen, sin ayudas. El examen a medias guarda
+  `errores: { modo, motivo, min, objetivos, tuyos, errores }` para corregirlo igual. `recordTest` con `tipo: 'errores'`
+  y `apto: null` (no cuenta en «¿Estás listo?», la travesía ni la estrategia). En la corrección, cada fallada dice
+  «Has vuelto a…» (`ERRORES[e].otraVez`) si cayó en uno de sus errores, o el error típico en que cayó, y enlaza
+  `#/q/<id>?guiado=1` («Resolver paso a paso»).
+- **El contador baja:** acertar en este simulacro una pregunta cuyo distractor era tu error apunta un `sup`; al resumir,
+  en orden de tiempo, cada error diagnosticado suma uno y cada `sup` resta uno (nunca por debajo de cero: no da crédito
+  por adelantado). A cero, el error sale como «superado»; si lo vuelves a cometer, vuelve. Caer en él en el simulacro lo
+  apunta como cualquier diagnóstico (una vez por pregunta y día). Solo este simulacro resta: es donde la trampa está
+  puesta a propósito.
 
 ## Añadir preguntas de examen
 

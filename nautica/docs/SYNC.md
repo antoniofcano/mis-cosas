@@ -55,6 +55,27 @@ Al escribir, el almacén aplica la operación sobre el estado ya plegado (no vue
 **No se sincroniza** (se queda en el aparato, en `local` del registro): el examen a medias (`testEnCurso`), los ajustes
 del aparato y la carta escaneada (IndexedDB `user-chart.js`, que nunca sale del aparato por los derechos del IHM).
 
+### Tiempo por pregunta (R-42, «Tu velocidad en carta»)
+
+- **Exámenes** (simulacro, módulo, convocatoria real, examen final): el registro del test (`recordTest`, operación `x`)
+  lleva un campo nuevo y opcional `tq: [[id, segundos, acierto 1|0, tipo], …]` (`tiemposDelTest` en
+  `src/course/velocidad.js`): el tiempo que cada pregunta estuvo en pantalla, contado con el mismo criterio que el reloj
+  del examen (solo con la pestaña visible), con tope de 30 minutos y sin las de menos de 1 s. `tipo` es el `ejercicio`
+  de la solución programada (`src/bancos/soluciones.js`), `carta` o `teoria`. **El servidor no cambia:** el validador
+  desplegado (el de `origin/main`, idéntico al de esta rama) solo exige que `e` sea un objeto y que la operación no pase
+  de `MAX_OP` (64 KiB); un examen de 45 preguntas con ids largos ocupa unos 3,7 KB (`tests/velocidad.test.js`). Un
+  registro antiguo sin `tq` se lee igual (no tiene tiempos). El examen a medias guarda lo que lleva en
+  `testEnCurso.tiempos` (ms por id; del aparato, como todo el examen a medias).
+- **Ensayo en papel** (R-41): también es un `x`, con `tipo: 'ensayo'`, `parte`, `aptoParte` y, si se hizo con el
+  cuadernillo impreso, `impreso: true` (todo dentro de `e`, que el servidor no mira). No lleva `tq`: se resuelve en
+  papel.
+- **Práctica** (preguntas de carta de las tandas y ejercicios de carta): **no se sincroniza**. Las operaciones `r` y `e`
+  tienen sus campos cerrados (el validador rechaza uno nuevo con `campos`) y la colección de `v` es una lista cerrada,
+  así que no hay sitio sin cambiar el servidor. Se guarda en el aparato, como los errores del alumno: `localStorage`
+  `nautica.tiempos.v1` (`src/store/tiempos.js`: `{ t, y tipo, s segundos, o acierto, q }`, 400 anotaciones, 180 días,
+  una vez por pregunta y día). No va al progreso, ni a la sincronización, ni a la copia de seguridad. «Tu velocidad en
+  carta» junta las dos fuentes; en otro aparato solo se ven los tiempos de los exámenes.
+
 ### Correcciones de tema («¿No es de este tema?»)
 
 El alumno puede cambiar el tema (y, si quiere, la clase) en que cuenta una pregunta en su estudio
@@ -87,8 +108,10 @@ El alumno puede cambiar el tema (y, si quiere, la clase) en que cuenta una pregu
 `level`, `toleranceFactor`, `minutosDia`, `diasEstudio`, `eje`, `onboarded`, `segTarjeta` (ritmo de lectura del
 alumno), `configProfe`, `podcasts` y `podcastUltimo` (por dónde va en la radio), y los que empiezan por `examen_`,
 `examenOrientativo_`, `guiaVista_`, `planEsencial_`, `mezclado_`, `reserva_`, `chuletasLeidas_`, `nivelNo_`,
-`semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; `src/course/semana.js`).
+`convocatoria_`, `listadia_` (tu convocatoria y la lista del día del examen), `semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; `src/course/semana.js`).
 Es una clave más de `settings`: el Worker desplegado la acepta sin tocarlo.
+
+También `convocatoria_<tit>` (`{ para, hora, sede, enlace, admitidos }`: hora `HH:MM`, sede texto ≤ 120, enlace http(s) ≤ 300, día en que marcó la lista de admitidos) y `listadia_<tit>` (`{ para, marcadas: [id…] }`: casillas de la lista del día del examen), R-44. `para` es la fecha del examen para la que se guardó: si la fecha cambia cuando esa ya pasó, hora, sede, admitidos y casillas se ignoran (el enlace se conserva); si cambia antes del examen, se conservan. Dos claves y no una para que marcar una casilla en un aparato y editar la hora en otro no se pisen. Comprobado contra `validarOperacion` de `origin/main` (el desplegado): colección `settings` con clave `[\w\-./:]{1,120}` y cualquier valor ≤ 64 KB, aceptadas; sin tocar el Worker.
 
 Del aparato (no viajan): letra, sonidos, vibración, voz (`voz`, `vozAuto`, `vozNombre`, `vozVelocidad`),
 `podcastPreguntas`, avisos descartados (`avisoCopiaHasta`, `avisoInstalarHasta`, `avisoCartaVisto`), `ultimaCopia`,
@@ -140,6 +163,12 @@ solución futura es compactar (sustituir lo ya subido por una base), que aún no
 
 Base: `https://patron-sync.antoniofcano.workers.dev` (`src/store/sync/config.js`; para pruebas,
 `localStorage['nautica.sync.url']` en el propio navegador).
+
+**En local no se sincroniza.** Con la app servida desde `localhost` o `127.0.0.1` (desarrollo y pruebas automáticas con
+Playwright), `urlServidor()` devuelve `null` salvo que se ponga `nautica.sync.url` a mano: el motor no crea código ni
+hace peticiones (estado `sin-servidor`) y el recordatorio no se suscribe. Motivo: las pruebas con progreso inventado
+daban de alta alumnos de prueba en el servidor real (noviembre de 2026). Para probar la sincronización, `wrangler dev`
+y `nautica.sync.url` apuntando a él.
 
 `POST /v1/sync` con `Authorization: Bearer <código normalizado>` y cuerpo `{ v: 1, cursor, ops: [...], crear? }`.
 Inserta las operaciones ignorando duplicados y, en la misma ida y vuelta, devuelve las que el aparato no tiene:

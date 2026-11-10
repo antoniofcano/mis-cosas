@@ -1,0 +1,24 @@
+{
+ "meta": {"descripcion":"Simulacro de tus errores (R-43): pregunta → { opción errónea: error típico que la explica sin duda } (src/exams/diagnostico.js, distractoresUnicos). Solo preguntas del estudio: sin reservadas, retiradas ni anuladas.","generado":"node tools/indice-errores.mjs"},
+ "preguntas": {
+  "dgmm-py-2019-06-32": {"b":"signo-abatimiento"},
+  "dgmm-py-2019-06-34": {"b":"corriente-invertida"},
+  "dgmm-py-2020-12-31": {"b":"signo-dm","c":"signo-ct","d":"signo-abatimiento"},
+  "dgmm-py-2020-12-37": {"b":"corriente-invertida"},
+  "dgmm-py-2021-02-32": {"a":"horas-decimales"},
+  "dgmm-py-2021-02-34": {"c":"signo-ct"},
+  "dgmm-py-2021-02-38": {"a":"signo-ct"},
+  "dgmm-py-2021-02-40": {"d":"corriente-invertida"},
+  "dgmm-py-2021-07-38": {"c":"signo-abatimiento"},
+  "dgmm-py-2021-12-31": {"a":"olvida-desvio"},
+  "dgmm-py-2022-06-37": {"b":"corriente-invertida"},
+  "dgmm-py-2022-06-40": {"b":"variacion-signo"},
+  "dgmm-py-2022-12-38": {"b":"corriente-invertida","c":"sin-corriente"},
+  "dgmm-py-2023-04-31": {"b":"corriente-sumada"},
+  "dgmm-py-2023-04-35": {"c":"signo-ct"},
+  "dgmm-py-2023-04-39": {"c":"signo-abatimiento"},
+  "dgmm-py-2023-11-37": {"b":"sin-corriente","c":"corriente-invertida"},
+  "dgmm-py-2024-04-35": {"c":"signo-abatimiento"},
+  "dgmm-py-2024-04-37": {"c":"sin-corriente"}
+ }
+}

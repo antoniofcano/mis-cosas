@@ -364,7 +364,13 @@ export function crearBancos(leer) {
     return q && SOLUCIONES[q.id] ? ['q', q.id] : null;
   }
 
-  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva, fijarCorreccionesAlumno };
+  /**
+   * Índice del simulacro de tus errores (R-43, tools/indice-errores.mjs): { id: { letra: error } } de un banco; {} si
+   * no lo hay. Trae ids del estudio según la ficha: quien lo use filtra con el estudio del alumno (cargarBanco).
+   */
+  const cargarDistractores = (eje, tit) => memo(`distractores:${eje}:${tit}`, () => leer(`data/ejes/${eje}/${tit}/distractores.json`).then((d) => d?.preguntas ?? {}).catch(() => ({})));
+
+  return { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, titsDe, cargarBanco, cargarDistractores, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva, fijarCorreccionesAlumno };
 }
 
 // ---------------------------------------------------------------------------
@@ -383,4 +389,4 @@ function leerFetch(ruta) {
 export const urlFigura = (q, f) => new URL(`data/ejes/${q.eje}/${f}`, RAIZ).href;
 
 export const bancos = crearBancos(leerFetch);
-export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva, fijarCorreccionesAlumno } = bancos;
+export const { registro, ejesPublicados, ejesParaElegir, resolverEje, cargarFicha, cargarBanco, cargarDistractores, cargarCurso, cargarCursoBase, cursoPorDefecto, cargarMnemotecnias, cargarVocabulario, cargarCatalogoConceptos, pregunta, equivalente, reservadaDe, resolverLegado, rutaResolucion, fijarReservaAlumno, fijarConfigProfe, configActiva, fijarCorreccionesAlumno } = bancos;

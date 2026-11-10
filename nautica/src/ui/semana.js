@@ -11,6 +11,7 @@ import {
   claveSemana, leerAjuste, estadoModo, ideasPriorizadas, temasPriorizados, planSemana, sesionDeSemana, apuntarHecho,
   salirDelModo, volverAlModo, activarManual, responderComoFue, textoTrasExamen, RESPUESTAS_FUE, DIAS_MODO,
 } from '../course/semana.js';
+import { MINUTOS_VISPERA, temasConLimite, clasesConTrampas } from '../course/vispera.js';
 import { cuenta, diaISO, fechaLarga } from '../texto.js';
 
 /** El ajuste del modo, normalizado. */
@@ -44,9 +45,14 @@ export function calcularSemana(progress, tit, d, ahora = Date.now()) {
     estructura: T.estructura, dias: estado.dias, hoy, fecha: estado.fecha, minutosDia: st.dia.objetivo, ideas, temas,
     fallosHoy: st.repaso.hoy, tarjetasHoy: tarjetasPorRepasar(mazos(tit), d.respuestas, hoy).length, mazo: mazoSugerido(tit, d.respuestas),
     cartaUt: T.cartaUt ?? null, tests: d.tests, hechos: ajuste.hechos, finalSugerido: !!(st.final?.desbloqueado && st.final?.sugerir),
+    // La víspera es el repaso exprés (#/<tit>/vispera) si el curso tiene trampas en los temas con límite de fallos.
+    repasoExpres: hayRepasoExpres(T.estructura, d.curso) ? { minutos: MINUTOS_VISPERA } : null,
   });
   return { estado, ajuste, ideas, temas, plan, comp: sesionDeSemana(plan) };
 }
+
+/** ¿Hay trampas que repasar la víspera? (alguna clase de un tema con límite de fallos con un paso «ojo») */
+export const hayRepasoExpres = (estructura, curso) => temasConLimite(estructura).some((b) => clasesConTrampas(curso, b.ut).length > 0);
 
 /** La sesión que arranca «Seguir» en Hoy y en la Travesía: la del plan de la semana si el modo está activo. */
 export function composicionDeHoy(progress, tit, d) {

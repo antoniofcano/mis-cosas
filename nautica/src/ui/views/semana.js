@@ -22,8 +22,10 @@ import { hayRuta } from '../rutas.js';
 import { createRng, randomSeed } from '../../math/rng.js';
 import { cuenta, diaISO, fechaLarga } from '../../texto.js';
 import { sumaDiasISO } from '../../course/calendario.js';
-import { ideasFlojas, tandaDeIdeas, rotuloSemana, lineaFaltan, resumenPlan, DIAS_MODO } from '../../course/semana.js';
+import { ideasFlojas, tandaDeIdeas, rotuloSemana, lineaFaltan, resumenPlan, DIAS_MODO, recordatorioEnsayos } from '../../course/semana.js';
+import { ENSAYOS_RECOMENDADOS } from '../../theory/ensayo.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, activarAMano, tarjetaComoFue } from '../semana.js';
+import { convocatoriaDe, lineaConvocatoria } from '../convocatoria.js';
 
 export function semanaView(o) {
   return o.params.parts[1] === 'ideas' ? ideasView(o) : planSemanaView(o);
@@ -35,6 +37,11 @@ function nombreDia(x, ahora) {
   if (x.hoy) return 'Hoy';
   return fechaLarga(x.fecha, { ahora });
 }
+
+/** Los dos últimos días: acceso a la lista del día del examen y, la víspera, al repaso exprés (R-44, R-45). */
+const enlacesUltimosDias = (tit, k) => (k <= 1 ? h('p.semana-ultimos', { class: 'no-imprimir' },
+  h('a.semana-ver', { href: tlink(tit, ['dia-examen']) }, 'Mi lista del día del examen', h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')),
+  k === 1 ? h('a.semana-ver', { href: tlink(tit, ['vispera']) }, 'Repaso exprés de 15 minutos', h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')) : null) : null);
 
 /** Pasos de un día, en una lista corta. */
 const listaPasos = (pasos) => (pasos.length ? h('ul.semana-pasos', pasos.map((p) => h('li', h('span.semana-paso-tx', h('strong', p.titulo), h('span.muted.small', p.sub)),
@@ -50,7 +57,9 @@ function accesos(tit) {
       fila(tlink(tit, ['examenes']), 'examen', 'Simulacro', T.estructura.modulos ? 'Completo o por módulos, con las reglas reales.' : 'Un examen completo con las reglas reales.'),
       fila(tlink(tit, ['tarjetas']), 'tarjetas', 'Tarjetas de memoria', 'Lo que solo se aprende repitiendo.'),
       // Punto de extensión: la página «Estrategia de examen» se enlaza solo si su ruta existe (src/ui/rutas.js).
-      hayRuta('estrategia') ? fila(tlink(tit, ['estrategia']), 'diana', 'Estrategia de examen', 'Cómo repartir el tiempo y qué hacer con las dudas.') : null),
+      hayRuta('estrategia') ? fila(tlink(tit, ['estrategia']), 'diana', 'Estrategia de examen', 'Cómo repartir el tiempo y qué hacer con las dudas.') : null,
+      hayRuta('dia-examen') ? fila(tlink(tit, ['dia-examen']), 'lista', 'Lista del día del examen', 'Documentación, material y hora y lugar, con casillas para marcar.') : null,
+      hayRuta('vispera') ? fila(tlink(tit, ['vispera']), 'luna', 'Repaso exprés de la víspera', 'Las trampas de tus temas con límite de fallos, en 15 minutos.') : null),
     h('details.mas-chuletas', h('summary', conIcono('chincheta', 'Chuletas de cada tema')),
       h('ul.mas-lista.compacta', bloquesEnOrden(T.estructura).map((b) => h('li', h('a.mas-fila', { href: tlink(tit, ['temario', String(b.ut), 'chuleta']) },
         h('span.mas-fila-ico', icono(b.ico)), h('span.mas-fila-tx', h('strong', b.titulo), b.maxErrores != null ? h('span.muted.small', `Con límite: ${cuenta(b.maxErrores, 'fallo')} como mucho`) : null),
@@ -76,6 +85,15 @@ function seccionFlojas(tit, sem) {
       h('span.muted.small', `Aciertas el ${Math.round(t.tasa * 100)} %${t.conLimite ? ' · tema con límite de fallos' : ''}`))))));
 }
 
+/** Ensayo general en papel (R-41): cuántos llevas de los recomendados y, si aún toca, el enlace para prepararlo. */
+function seccionEnsayos(tit, tests, dias) {
+  const r = recordatorioEnsayos(tests, { dias, recomendados: ENSAYOS_RECOMENDADOS });
+  return h('section.semana-ensayos', { 'aria-labelledby': 'semana-ensayos-t' },
+    h('h2.eti#semana-ensayos-t', 'Ensayo general en papel'),
+    h('p', r.texto),
+    r.proponer ? h('a.btn.secondary', { href: tlink(tit, ['ensayo']) }, conIcono('lapiz', 'Preparar un ensayo en papel')) : null);
+}
+
 function planSemanaView({ progress, tit }) {
   const T = TITULACIONES[tit];
   const cuerpo = h('div.semana-cuerpo', h('p.muted', 'Preparando tu semana…'));
@@ -99,6 +117,7 @@ function planSemanaView({ progress, tit }) {
             : dExamen == null || d.st.orientativa ? h('p', 'No tienes puesta la fecha del examen (o es orientativa). Elige cuántos días quedan o ', h('a', { href: '#/ajustes?campo=fecha' }, 'pon la fecha en Ajustes'), '.') : null,
           estado.salido ? null : activarAMano(progress, tit)),
         seccionFlojas(tit, sem),
+        seccionEnsayos(tit, d.st.datos.tests, dExamen ?? DIAS_MODO),
         accesos(tit));
       summaryText = `VISTA semana ${T.sigla}: modo inactivo${estado.salido ? ' (salido)' : ''}${dExamen != null ? ` · examen en ${cuenta(dExamen, 'día')}` : ' · sin fecha'}${estado.preguntar ? ` · PREGUNTA cómo fue (${estado.preguntar.fecha})` : ''}`;
       return;
@@ -117,22 +136,25 @@ function planSemanaView({ progress, tit }) {
       h('header.semana-cab',
         h('p.semana-eti', rotuloSemana(estado.dias)),
         h('h1', 'La semana antes del examen'),
-        h('p.semana-fecha', `Examen: ${fechaLarga(estado.fecha, { ahora })}${estado.modo === 'manual' ? ' (la elegiste tú)' : ''}. ${lineaFaltan(estado.dias)}.`)),
+        h('p.semana-fecha', `Examen: ${lineaConvocatoria({ fecha: estado.fecha, conv: convocatoriaDe(progress, tit, ahora), ahora })}${estado.modo === 'manual' ? ' (la elegiste tú)' : ''}. ${lineaFaltan(estado.dias)}.`)),
       h('section.semana-hoy', { 'aria-labelledby': 'semana-hoy-t' },
         h('p.semana-eti', hoyDia.tipo === 'examen' ? 'Hoy' : `Hoy · ${cuenta(hoyDia.minutos, 'minuto')}`),
         h('h2#semana-hoy-t', hoyDia.titulo),
         h('p', hoyDia.texto),
         listaPasos(hoyDia.pasos),
-        accion),
+        accion,
+        enlacesUltimosDias(tit, hoyDia.k)),
       plan.dias.length > 1 ? h('section.semana-dias', { 'aria-labelledby': 'semana-dias-t' },
         h('h2.eti#semana-dias-t', 'Los días que quedan'),
         h('ol.semana-lista', plan.dias.slice(1).map((x) => h('li.semana-dia', { class: `tipo-${x.tipo}${x.hecho ? ' hecho' : ''}` },
           h('div.semana-dia-cab', h('span.semana-dia-nombre', nombreDia(x, ahora)), x.minutos ? h('span.semana-min', `${x.minutos}′`) : null,
             x.hecho ? h('span.semana-dia-hecho', icono('ok', 'ico-t'), 'Hecho') : null),
           h('strong.semana-dia-titulo', x.titulo),
-          x.pasos.length ? h('span.muted.small', x.pasos.map((p) => p.titulo).join(' · ')) : h('span.muted.small', x.k === 0 ? 'Sin tarea: solo el examen.' : '')))),
+          x.pasos.length ? h('span.muted.small', x.pasos.map((p) => p.titulo).join(' · ')) : h('span.muted.small', x.k === 0 ? 'Sin tarea: solo el examen.' : ''),
+          enlacesUltimosDias(tit, x.k)))),
         h('p.muted.small', 'Si un día no puedes, no pasa nada: el plan se rehace con los días que quedan.')) : null,
       seccionFlojas(tit, sem),
+      seccionEnsayos(tit, d.st.datos.tests, estado.dias),
       accesos(tit),
       h('p.semana-salir-fila', botonSalir(progress, tit, estado)));
     summaryText = `VISTA semana ${T.sigla}: ${rotuloSemana(estado.dias)} · examen ${estado.fecha} (${estado.modo}) · ${cuenta(hechos, 'día hecho', 'días hechos')}\n` +

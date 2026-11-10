@@ -85,6 +85,8 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | R-38 | Hoja de fórmulas: revisar la redacción didáctica de los ejemplos nuevos (hora, estabilidad, humedad, radar) | Después | Calculados y comprobados por test; las discrepancias entre curso, chuleta y motores quedaron resueltas (H-33) |
 | R-39 | Sincronizar y copiar «Tus errores más repetidos» (hoy solo en el aparato) | Después | Pide un tipo de dato nuevo en el servidor: con la versión 2 |
 | R-40 | Vídeos del PY: contrastar los 8 hechos «por verificar» antes de dibujarlos y sustituir en el podcast las preguntas reservadas que leen sus minijuegos | Después | `docs/VIDEOS-PY.md` |
+| R-46 | Revisar la lista del día del examen y la estrategia con la convocatoria vigente de cada tribunal (Baleares sin leer; Andalucía 2026) y confirmar dónde publica cada uno las listas de admitidos y la sede | Después | Hoy el enlace por defecto es la página oficial del banco |
+| R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
 
 ## Bloqueado por fuente
 
@@ -150,6 +152,12 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
 | H-32 | Simulacro por módulos del PY corregido con el criterio oficial por materias (RD 875/2014) | Noviembre 2026 |
 | H-33 | Discrepancias entre curso, chuleta, hoja de fórmulas y motores resueltas (deriva, Polar, redondeo de la declinación, ΔL, presión, tangente, huso límite) | Noviembre 2026 |
 | H-34 | Todas las chuletas en una hoja, por temas, imprimible (`#/<tit>/chuletas`) | Noviembre 2026 |
+| H-35 | Ensayo general en papel: cuadernillo imprimible, reloj del tribunal, hoja de respuestas y corrección real (R-41) | Noviembre 2026 |
+| H-36 | Tu velocidad en carta: tiempo por pregunta en los exámenes y por tipo de problema en «Tu estrategia» (R-42) | Noviembre 2026 |
+| H-37 | Simulacro de tus errores, con índice de distractores por banco (R-43) | Noviembre 2026 |
+| H-38 | Lista del día del examen por tribunal, tu convocatoria (hora, sede, enlace) y recordatorio de admitidos (R-44) | Noviembre 2026 |
+| H-39 | Repaso exprés de la víspera, paso del penúltimo día de «la semana antes» (R-45) | Noviembre 2026 |
+| H-40 | En local la app no sincroniza con el servidor real (las pruebas daban de alta alumnos de prueba) | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 
@@ -159,5 +167,7 @@ _Última revisión: 12 de octubre de 2026 (estrategia de producto y V2)._
   las divergencias con el curso en `.trabajo-ux/`, sin resolverlas en silencio.
 - **Limpieza de ramas:** las ramas de trabajo ya fusionadas se borran del remoto; se conservan `main`, la rama de
   despliegue y las que se indiquen.
+- **Pruebas sin tocar producción:** la app servida en local no sincroniza con el servidor real (`docs/SYNC.md`); nunca
+  se borran ni se crean datos en la base de producción para probar.
 - **Claves y credenciales de servicios externos:** viven fuera del repositorio y se borran al terminar el trabajo que
   las usa.

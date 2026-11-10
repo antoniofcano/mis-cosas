@@ -162,7 +162,8 @@ export function testDesdeIds(tipo, ids, porId, conv = null) {
   const preguntas = (ids ?? []).map((id) => porId.get(id));
   if (!preguntas.length || preguntas.some((q) => !q)) return null;
   const propia = preguntas.find((q) => q.conv === conv) ?? preguntas[0];
-  return { tipo, titulo: tipo === 'real' ? propia.convocatoria : tipo === 'final' ? 'Examen final' : 'Simulacro de examen', preguntas, faltan: [] };
+  const titulo = tipo === 'real' ? propia.convocatoria : tipo === 'final' ? 'Examen final' : tipo === 'errores' ? 'Simulacro de tus errores' : 'Simulacro de examen';
+  return { tipo, titulo, preguntas, faltan: [] };
 }
 
 /**

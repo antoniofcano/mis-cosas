@@ -33,6 +33,12 @@ export const loadChuletario = () => loadJSON('data/comun/chuletario.json');
 /** Estrategia de examen: textos (normas con su fuente y consejos) por titulación y tribunal. */
 export const loadEstrategia = () => loadJSON('data/comun/estrategia.json');
 
+/** Lista del día del examen por tribunal (data/comun/dia-examen.json; cada elemento con su fuente). */
+export const loadDiaExamen = () => loadJSON('data/comun/dia-examen.json');
+
+/** Errores típicos que más repiten los tribunales por banco (sale de tools/errores-frecuentes.mjs): repaso exprés de la víspera. */
+export const loadErroresFrecuentes = () => loadJSON('data/comun/errores-frecuentes.json');
+
 /** Siglas y abreviaturas con su significado (se explican al tocarlas). */
 export const loadAbreviaturas = () => loadJSON('data/comun/abreviaturas.json');
 

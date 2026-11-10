@@ -61,6 +61,7 @@ export function lineaEstado(e, ver = '?', ahora = Date.now()) {
   const pend = cuenta(e.pendientes, 'pendiente');
   const cuando = e.ultimoExito ? hace(e.ultimoExito, ahora) : 'aún no';
   switch (e.estado) {
+    case 'sin-servidor': return { tipo: 'sin-vincular', texto: `Sin sincronizar: app servida en local, sin servidor de pruebas · ${v}` };
     case 'al-dia': return { tipo: 'ok', texto: `Sincronizado · ${cuando} · ${pend} · ${v}` };
     case 'pendiente': return { tipo: 'pendiente', texto: `Pendiente de sincronizar · ${pend} · última vez: ${cuando} · ${v}` };
     case 'sin-conexion': return { tipo: 'aviso', texto: `Sin conexión: se sincronizará al volver · ${pend} · última vez: ${cuando} · ${v}` };

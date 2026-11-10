@@ -34,41 +34,42 @@ export const PASOS = {
 
 /**
  * Errores típicos. `si`: la frase que sigue a «Es lo que sale si…» (en segunda persona); `nombre`: rótulo corto
- * («Tus errores más repetidos»); `paso`: el tipo de paso donde se comete.
+ * («Tus errores más repetidos»); `paso`: el tipo de paso donde se comete; `otraVez`: lo que sigue a «Has vuelto a…»
+ * (en infinitivo; la corrección del simulacro de tus errores, R-43).
  */
 export const ERRORES = {
-  'signo-ct': { paso: 'ct', nombre: 'Signo de la Ct', si: 'aplicas la Ct con el signo cambiado (la restas en vez de sumarla, o al revés)' },
-  'sin-ct': { paso: 'aguja', nombre: 'Sin corregir la Ct', si: 'no corriges con la Ct: usas el rumbo o la demora de aguja como si fueran verdaderos' },
-  'signo-dm': { paso: 'ct', nombre: 'Signo de la declinación', si: 'tomas la declinación con el signo cambiado (E +, W −)' },
-  'signo-desvio': { paso: 'ct', nombre: 'Signo del desvío', si: 'tomas el desvío con el signo cambiado (E/NE +, W/NW −)' },
-  'olvida-desvio': { paso: 'ct', nombre: 'Olvidar el desvío', si: 'te olvidas del desvío (Ct = dm + Δ)' },
-  'dm-sin-actualizar': { paso: 'declinacion', nombre: 'Declinación sin actualizar', si: 'no actualizas la declinación de la carta al año del enunciado' },
-  'variacion-signo': { paso: 'declinacion', nombre: 'Variación anual al revés', si: 'aplicas la variación anual de la declinación con el signo cambiado' },
-  'banda-marcacion': { paso: 'marcacion', nombre: 'Banda de la marcación', si: 'cambias la banda de la marcación (estribor suma, babor resta)' },
-  'marcacion-como-demora': { paso: 'marcacion', nombre: 'Marcación tomada como demora', si: 'tomas la marcación como si fuera la demora (falta sumarle el rumbo)' },
-  'sentido-recta': { paso: 'linea', nombre: 'Oposición o enfilación al revés', si: 'tomas la oposición o la enfilación en sentido contrario (180° de diferencia)' },
-  'demora-sin-opuesta': { paso: 'situacion', nombre: 'Demora sin la opuesta', si: 'trazas desde el faro la demora sin invertirla (desde el faro va la opuesta, Dv ± 180°)' },
-  'lado-del-faro': { paso: 'situacion', nombre: 'Al otro lado del faro', si: 'te sitúas al otro lado del faro («al S del faro» quiere decir que el faro te queda al N)' },
-  banda: { paso: 'tangente', nombre: 'Tangente por la otra banda', si: 'dejas el faro por la banda contraria al trazar la tangente' },
-  directo: { paso: 'tangente', nombre: 'Rumbo directo al faro', si: 'pones rumbo directo al faro, sin apartarte la distancia de paso' },
-  'signo-abatimiento': { paso: 'abatimiento', nombre: 'Abatimiento al lado contrario', si: 'aplicas el abatimiento hacia el lado contrario (el barco cae a sotavento)' },
-  'sin-abatimiento': { paso: 'abatimiento', nombre: 'Sin abatimiento', si: 'no tienes en cuenta el abatimiento' },
-  'sin-corriente': { paso: 'corriente', nombre: 'Rumbo de superficie por efectivo', si: 'no tienes en cuenta la corriente: confundes el rumbo de superficie con el efectivo' },
-  'corriente-invertida': { paso: 'corriente', nombre: 'Corriente al revés', si: 'aplicas la corriente en sentido contrario (su rumbo dice hacia dónde va el agua)' },
-  'corriente-sumada': { paso: 'corriente', nombre: 'Corriente sumada', si: 'sumas la velocidad de la corriente a la del barco en vez de componer los vectores' },
-  'sin-traslado': { paso: 'traslado', nombre: 'Sin trasladar la primera línea', si: 'cruzas las dos líneas como si fueran simultáneas, sin trasladar la primera lo navegado' },
-  'horas-decimales': { paso: 'tiempo', nombre: 'Minutos y décimas de hora', si: 'confundes minutos y décimas de hora (1 h 30 min son 1,5 h, no 1,30 h)' },
-  'lm-salida': { paso: 'loxodromica', nombre: 'Latitud de salida por la media', si: 'usas la latitud de salida en vez de la latitud media' },
-  'sin-cos-lm': { paso: 'loxodromica', nombre: 'Apartamiento por ΔL', si: 'tomas el apartamiento como diferencia de longitud, sin el cos lm' },
-  'cos-lm-multiplica': { paso: 'loxodromica', nombre: 'cos lm al revés', si: 'multiplicas por el cos lm donde hay que dividir (o al revés)' },
-  'signo-dL': { paso: 'loxodromica', nombre: 'Signo de ΔL', si: 'cambias el signo de la diferencia de longitud (E +, W −)' },
-  'seno-coseno': { paso: 'loxodromica', nombre: 'Seno y coseno cambiados', si: 'cambias seno y coseno (Δl = d · cos R y A = d · sen R)' },
-  'sonda-carta-olvidada': { paso: 'sonda', nombre: 'Sin la sonda de la carta', si: 'no cuentas la sonda de la carta' },
-  'sonda-carta-signo': { paso: 'sonda', nombre: 'Sonda de la carta al revés', si: 'restas la sonda de la carta donde hay que sumarla (o al revés)' },
-  'pleamar-bajamar': { paso: 'marea', nombre: 'Pleamar por bajamar', si: 'cuentas el intervalo desde la pleamar en vez de desde la bajamar' },
-  lineal: { paso: 'marea', nombre: 'Marea en línea recta', si: 'interpolas la marea en línea recta (sube según sen², no a ritmo constante)' },
-  'sin-adelanto': { paso: 'hora-legal', nombre: 'Sin pasar a hora oficial', si: 'no pasas entre la hora UT del Anuario y la hora oficial' },
-  'adelanto-signo': { paso: 'hora-legal', nombre: 'Adelanto al revés', si: 'aplicas el adelanto al revés (de oficial a UT se resta; de UT a oficial, se suma)' },
+  'signo-ct': { paso: 'ct', nombre: 'Signo de la Ct', otraVez: 'aplicar la Ct con el signo cambiado', si: 'aplicas la Ct con el signo cambiado (la restas en vez de sumarla, o al revés)' },
+  'sin-ct': { paso: 'aguja', nombre: 'Sin corregir la Ct', otraVez: 'usar el rumbo o la demora de aguja sin corregirlos con la Ct', si: 'no corriges con la Ct: usas el rumbo o la demora de aguja como si fueran verdaderos' },
+  'signo-dm': { paso: 'ct', nombre: 'Signo de la declinación', otraVez: 'tomar la declinación con el signo cambiado', si: 'tomas la declinación con el signo cambiado (E +, W −)' },
+  'signo-desvio': { paso: 'ct', nombre: 'Signo del desvío', otraVez: 'tomar el desvío con el signo cambiado', si: 'tomas el desvío con el signo cambiado (E/NE +, W/NW −)' },
+  'olvida-desvio': { paso: 'ct', nombre: 'Olvidar el desvío', otraVez: 'olvidarte del desvío al calcular la Ct', si: 'te olvidas del desvío (Ct = dm + Δ)' },
+  'dm-sin-actualizar': { paso: 'declinacion', nombre: 'Declinación sin actualizar', otraVez: 'dejar la declinación de la carta sin actualizar al año', si: 'no actualizas la declinación de la carta al año del enunciado' },
+  'variacion-signo': { paso: 'declinacion', nombre: 'Variación anual al revés', otraVez: 'aplicar la variación anual de la declinación al revés', si: 'aplicas la variación anual de la declinación con el signo cambiado' },
+  'banda-marcacion': { paso: 'marcacion', nombre: 'Banda de la marcación', otraVez: 'cambiar la banda de la marcación', si: 'cambias la banda de la marcación (estribor suma, babor resta)' },
+  'marcacion-como-demora': { paso: 'marcacion', nombre: 'Marcación tomada como demora', otraVez: 'tomar la marcación como si fuera la demora', si: 'tomas la marcación como si fuera la demora (falta sumarle el rumbo)' },
+  'sentido-recta': { paso: 'linea', nombre: 'Oposición o enfilación al revés', otraVez: 'tomar la oposición o la enfilación al revés', si: 'tomas la oposición o la enfilación en sentido contrario (180° de diferencia)' },
+  'demora-sin-opuesta': { paso: 'situacion', nombre: 'Demora sin la opuesta', otraVez: 'trazar desde el faro la demora sin invertirla', si: 'trazas desde el faro la demora sin invertirla (desde el faro va la opuesta, Dv ± 180°)' },
+  'lado-del-faro': { paso: 'situacion', nombre: 'Al otro lado del faro', otraVez: 'situarte al otro lado del faro', si: 'te sitúas al otro lado del faro («al S del faro» quiere decir que el faro te queda al N)' },
+  banda: { paso: 'tangente', nombre: 'Tangente por la otra banda', otraVez: 'dejar el faro por la banda contraria', si: 'dejas el faro por la banda contraria al trazar la tangente' },
+  directo: { paso: 'tangente', nombre: 'Rumbo directo al faro', otraVez: 'poner rumbo directo al faro sin apartarte la distancia de paso', si: 'pones rumbo directo al faro, sin apartarte la distancia de paso' },
+  'signo-abatimiento': { paso: 'abatimiento', nombre: 'Abatimiento al lado contrario', otraVez: 'aplicar el abatimiento hacia el lado contrario', si: 'aplicas el abatimiento hacia el lado contrario (el barco cae a sotavento)' },
+  'sin-abatimiento': { paso: 'abatimiento', nombre: 'Sin abatimiento', otraVez: 'olvidarte del abatimiento', si: 'no tienes en cuenta el abatimiento' },
+  'sin-corriente': { paso: 'corriente', nombre: 'Rumbo de superficie por efectivo', otraVez: 'olvidarte de la corriente', si: 'no tienes en cuenta la corriente: confundes el rumbo de superficie con el efectivo' },
+  'corriente-invertida': { paso: 'corriente', nombre: 'Corriente al revés', otraVez: 'aplicar la corriente en sentido contrario', si: 'aplicas la corriente en sentido contrario (su rumbo dice hacia dónde va el agua)' },
+  'corriente-sumada': { paso: 'corriente', nombre: 'Corriente sumada', otraVez: 'sumar la velocidad de la corriente en vez de componer los vectores', si: 'sumas la velocidad de la corriente a la del barco en vez de componer los vectores' },
+  'sin-traslado': { paso: 'traslado', nombre: 'Sin trasladar la primera línea', otraVez: 'cruzar las dos líneas sin trasladar la primera', si: 'cruzas las dos líneas como si fueran simultáneas, sin trasladar la primera lo navegado' },
+  'horas-decimales': { paso: 'tiempo', nombre: 'Minutos y décimas de hora', otraVez: 'confundir minutos con décimas de hora', si: 'confundes minutos y décimas de hora (1 h 30 min son 1,5 h, no 1,30 h)' },
+  'lm-salida': { paso: 'loxodromica', nombre: 'Latitud de salida por la media', otraVez: 'usar la latitud de salida en vez de la media', si: 'usas la latitud de salida en vez de la latitud media' },
+  'sin-cos-lm': { paso: 'loxodromica', nombre: 'Apartamiento por ΔL', otraVez: 'tomar el apartamiento como diferencia de longitud, sin el cos lm', si: 'tomas el apartamiento como diferencia de longitud, sin el cos lm' },
+  'cos-lm-multiplica': { paso: 'loxodromica', nombre: 'cos lm al revés', otraVez: 'multiplicar por el cos lm donde hay que dividir (o al revés)', si: 'multiplicas por el cos lm donde hay que dividir (o al revés)' },
+  'signo-dL': { paso: 'loxodromica', nombre: 'Signo de ΔL', otraVez: 'cambiar el signo de la diferencia de longitud', si: 'cambias el signo de la diferencia de longitud (E +, W −)' },
+  'seno-coseno': { paso: 'loxodromica', nombre: 'Seno y coseno cambiados', otraVez: 'cambiar seno y coseno', si: 'cambias seno y coseno (Δl = d · cos R y A = d · sen R)' },
+  'sonda-carta-olvidada': { paso: 'sonda', nombre: 'Sin la sonda de la carta', otraVez: 'olvidarte de la sonda de la carta', si: 'no cuentas la sonda de la carta' },
+  'sonda-carta-signo': { paso: 'sonda', nombre: 'Sonda de la carta al revés', otraVez: 'restar la sonda de la carta donde hay que sumarla (o al revés)', si: 'restas la sonda de la carta donde hay que sumarla (o al revés)' },
+  'pleamar-bajamar': { paso: 'marea', nombre: 'Pleamar por bajamar', otraVez: 'contar el intervalo desde la pleamar en vez de desde la bajamar', si: 'cuentas el intervalo desde la pleamar en vez de desde la bajamar' },
+  lineal: { paso: 'marea', nombre: 'Marea en línea recta', otraVez: 'interpolar la marea en línea recta', si: 'interpolas la marea en línea recta (sube según sen², no a ritmo constante)' },
+  'sin-adelanto': { paso: 'hora-legal', nombre: 'Sin pasar a hora oficial', otraVez: 'olvidarte de pasar entre hora UT y hora oficial', si: 'no pasas entre la hora UT del Anuario y la hora oficial' },
+  'adelanto-signo': { paso: 'hora-legal', nombre: 'Adelanto al revés', otraVez: 'aplicar el adelanto al revés', si: 'aplicas el adelanto al revés (de oficial a UT se resta; de UT a oficial, se suma)' },
 };
 
 /**
@@ -103,6 +104,9 @@ export function errorComun(id) {
   const t = ALIAS[id] ?? id;
   return ERRORES[t] ? t : null;
 }
+
+/** «Has vuelto a aplicar la Ct con el signo cambiado.» */
+export const fraseOtraVez = (id) => `Has vuelto a ${ERRORES[id].otraVez}.`;
 
 /** «Es lo que sale si …» de uno o dos errores. */
 export function fraseError(tipos) {

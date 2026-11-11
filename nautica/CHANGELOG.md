@@ -22,6 +22,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
   y la situación; y en el rumbo directo, Δl, ΔL, apartamiento y rumbo. Cada paso enseña lo que traes de los anteriores y
   la fórmula que se plantea, y al contestar, la cuenta línea a línea (también el cruce del meridiano 180°). Antes daba
   hecha la tabla y solo preguntaba la latitud y el resultado.
+- **Paso a paso de las mareas, igual:** duración y amplitud, hora UT, intervalo desde la bajamar, corrección de altura,
+  altura y sonda (o, al revés, la hora para tener una sonda), cada uno con lo que traes, la fórmula y la cuenta.
+- **Un croquis en los pasos que lo piden:** la curva de la marea con tu hora marcada y el dibujo de los tramos de la
+  estima, con la corriente a trazos.
 
 ## 10 de noviembre de 2026, quinta publicación · versión `7f43f6e77be8`
 

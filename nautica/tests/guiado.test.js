@@ -67,8 +67,8 @@ const OPERACIONES = {
   rumboDirecto: { run: (k) => k.rumboDirecto({ lat: 36.1, lon: -6.2 }, { lat: 35.9, lon: -5.9 }), pide: [['minutos'], ['minutos'], ['minutos'], ['bearing', 'distance']] },
   tramoMarea: { run: (k) => k.tramoMarea(TABLA, { desde: 0 }), pide: [['duration', 'meters']] },
   horaUT: { run: (k) => k.horaUT(hrb(9), 2), pide: [['clock']] },
-  sondaA: { run: (k) => k.sondaA(k.tramoMarea(TABLA, { desde: 0 }), hrb(6), 1.2), pide: [['duration', 'meters'], ['meters'], ['meters']] },
-  horaParaSonda: { run: (k) => k.horaParaSonda(k.tramoMarea(TABLA, { desde: 0 }), 3, 1, 2), pide: [['duration', 'meters'], ['meters'], ['clock'], ['clock']] },
+  sondaA: { run: (k) => k.sondaA(k.tramoMarea(TABLA, { desde: 0 }), hrb(6), 1.2), pide: [['duration', 'meters'], ['duration'], ['meters'], ['meters'], ['meters']] },
+  horaParaSonda: { run: (k) => k.horaParaSonda(k.tramoMarea(TABLA, { desde: 0 }), 3, 1, 2), pide: [['duration', 'meters'], ['meters'], ['meters'], ['duration'], ['clock'], ['clock']] },
 };
 
 test('cada operación del kit expone el valor preguntable de sus pasos (o ninguno si es una nota)', () => {

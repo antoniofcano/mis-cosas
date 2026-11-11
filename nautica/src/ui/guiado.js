@@ -74,12 +74,57 @@ export function guiadoPanel(o) {
   // los anteriores, qué fórmula plantea y, una vez contestado, la cuenta línea a línea. Sin la voz del profe: sus
   // consejos son de carta y aquí no hay carta.
   const deHoja = pasos.some((p) => p.lineas);
-  const traigoEl = (p) => (p.traigo?.length ? h('div.guiado-traigo', h('small', 'Traigo de pasos anteriores'), p.traigo.map((x) => h('div', x))) : null);
+  const traigoEl = (p) => (p.traigo?.length ? h('div.guiado-traigo', h('small', 'Traigo (del enunciado y de los pasos anteriores)'), p.traigo.map((x) => h('div', x))) : null);
   const tablaEl = (p, conTotales) => (p.tabla ? h('div.guiado-tabla-caja', h('table.guiado-tabla',
     h('thead', h('tr', p.tabla.cab.map((c) => h('th', { scope: 'col' }, c)))),
     h('tbody', p.tabla.filas.map((f) => h('tr', f.map((c, i) => (i ? h('td', c) : h('th', { scope: 'row' }, c))))),
       conTotales ? h('tr.total', h('th', { scope: 'row' }, 'Suma'), h('td', ''), h('td', ''), h('td', valorCampo(p, 0)), h('td', valorCampo(p, 1))) : null))) : null);
   const valorCampo = (p, j) => { const c = p.pide?.campos?.[j]; return c ? quantity(c.kind).format(c.value) : ''; };
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const sv = (tag, attrs = {}, texto = null) => { const e = document.createElementNS(SVGNS, tag); for (const [k2, v] of Object.entries(attrs)) e.setAttribute(k2, v); if (texto != null) e.textContent = texto; return e; };
+  /** El croquis del paso, como el que se hace a lápiz en la hoja: la curva de la marea o los tramos encadenados. */
+  function croquisEl(p) {
+    const c = p.croquis;
+    if (!c) return null;
+    const svg = sv('svg', { viewBox: '0 0 320 150', role: 'img', class: 'guiado-croquis' });
+    if (c.tipo === 'marea') {
+      svg.setAttribute('aria-label', `Curva de la marea entre las ${c.a.hora} y las ${c.b.hora}`);
+      const x0 = 46; const x1 = 274; const yAlto = 34; const yBajo = 108;
+      const sube = c.b.h > c.a.h;
+      const y = (f) => { const k2 = (1 - Math.cos(Math.PI * f)) / 2; return sube ? yBajo - (yBajo - yAlto) * k2 : yAlto + (yBajo - yAlto) * k2; };
+      const pts = Array.from({ length: 41 }, (_, i) => `${(x0 + (x1 - x0) * (i / 40)).toFixed(1)},${y(i / 40).toFixed(1)}`).join(' ');
+      svg.append(sv('line', { x1: 20, y1: 122, x2: 300, y2: 122, class: 'cq-eje' }), sv('polyline', { points: pts, class: 'cq-tinta' }),
+        sv('circle', { cx: x0, cy: y(0), r: 3.5, class: 'cq-punto' }), sv('circle', { cx: x1, cy: y(1), r: 3.5, class: 'cq-punto' }),
+        sv('text', { x: x0, y: 138, 'text-anchor': 'middle' }, `${c.a.hora} UT`), sv('text', { x: x1, y: 138, 'text-anchor': 'middle' }, `${c.b.hora} UT`),
+        sv('text', { x: x0, y: y(0) + (sube ? 16 : -8), 'text-anchor': 'middle' }, `${sube ? 'BM' : 'PM'} ${String(c.a.h.toFixed(2)).replace('.', ',')} m`),
+        sv('text', { x: x1, y: y(1) + (sube ? -8 : 16), 'text-anchor': 'middle' }, `${sube ? 'PM' : 'BM'} ${String(c.b.h.toFixed(2)).replace('.', ',')} m`));
+      if (c.x != null && c.x >= 0 && c.x <= 1) {
+        const xx = x0 + (x1 - x0) * c.x;
+        svg.append(sv('line', { x1: xx, y1: y(c.x), x2: xx, y2: 122, class: 'cq-raya' }), sv('circle', { cx: xx, cy: y(c.x), r: 4, class: 'cq-marca' }),
+          sv('text', { x: xx, y: 16, 'text-anchor': 'middle', class: 'cq-marca-tx' }, c.hora ?? ''));
+      }
+      return svg;
+    }
+    // Tramos: de la salida a la llegada, cada tramo a continuación del anterior (N arriba); la corriente, a trazos.
+    svg.setAttribute('aria-label', 'Croquis de los tramos, con el norte arriba');
+    let x = 0; let yy = 0; const P = [{ x: 0, y: 0 }];
+    for (const l of c.legs) { x += l.ap; yy -= l.dl; P.push({ x, y: yy }); }
+    const xs = P.map((q2) => q2.x); const ys = P.map((q2) => q2.y);
+    const w = Math.max(1, Math.max(...xs) - Math.min(...xs)); const hh = Math.max(1, Math.max(...ys) - Math.min(...ys));
+    const esc = Math.min(210 / w, 96 / hh);
+    const ox = 160 - ((Math.max(...xs) + Math.min(...xs)) / 2) * esc; const oy = 78 - ((Math.max(...ys) + Math.min(...ys)) / 2) * esc;
+    const T = (q2) => ({ x: ox + q2.x * esc, y: oy + q2.y * esc });
+    svg.append(sv('line', { x1: 22, y1: 40, x2: 22, y2: 14, class: 'cq-eje' }), sv('text', { x: 22, y: 10, 'text-anchor': 'middle' }, 'N'));
+    c.legs.forEach((l, i) => { const a = T(P[i]); const b = T(P[i + 1]); svg.append(sv('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, class: l.corriente ? 'cq-raya' : 'cq-tinta' }),
+      sv('text', { x: (a.x + b.x) / 2 + 6, y: (a.y + b.y) / 2 - 5 }, l.corriente ? 'corr.' : c.legs.length > 1 ? String(i + 1) : '')); });
+    const ini = T(P[0]); const fin = T(P.at(-1));
+    if (c.catetos) svg.append(sv('polyline', { points: `${ini.x},${ini.y} ${ini.x},${fin.y} ${fin.x},${fin.y}`, class: 'cq-raya' }),
+      sv('text', { x: ini.x - 6, y: (ini.y + fin.y) / 2, 'text-anchor': 'end' }, 'Δl'), sv('text', { x: (ini.x + fin.x) / 2, y: fin.y + (fin.y > ini.y ? 14 : -6), 'text-anchor': 'middle' }, 'A'));
+    svg.append(sv('circle', { cx: ini.x, cy: ini.y, r: 3.5, class: 'cq-punto' }), sv('circle', { cx: fin.x, cy: fin.y, r: 4, class: 'cq-marca' }),
+      sv('text', { x: ini.x, y: ini.y + (fin.y > ini.y ? -8 : 16), 'text-anchor': 'middle' }, 'salida'), sv('text', { x: fin.x, y: fin.y + (fin.y > ini.y ? 16 : -10), 'text-anchor': 'middle', class: 'cq-marca-tx' }, 'llegada'));
+    return svg;
+  }
+
   // En negrita, los resultados: la última línea o, si el paso pide dos diferencias (Δl y A), las dos.
   const cuentaEl = (p) => { const n = p.pide?.campos?.length === 2 && p.pide.campos.every((c) => c.kind === 'minutos') && p.lineas.length === 2 ? 2 : 1;
     return h('div.guiado-cuenta', p.lineas.map((l, i) => h('div', { class: i >= p.lineas.length - n ? 'res' : '' }, l))); };
@@ -94,7 +139,7 @@ export function guiadoPanel(o) {
       h('h3.guiado-tit', cab),
       r && r.resultado !== ESTADO.OK && r.resultado !== 'dimelo' ? h('p.guiado-era', `Era ${valorTexto(p.pide)}${r.tuyo ? ` (escribiste ${r.tuyo})` : ''}.`) : null,
       r?.resultado === ESTADO.OK ? h('p.guiado-era', valorTexto(p.pide)) : null,
-      p.lineas ? [traigoEl(p), tablaEl(p, true), cuentaEl(p)] : deHoja ? h('p.guiado-nota', p.text) : explicacion(p.i));
+      p.lineas ? [traigoEl(p), croquisEl(p), tablaEl(p, true), cuentaEl(p)] : deHoja ? h('p.guiado-nota', p.text) : explicacion(p.i));
   }
 
   /** El paso que se pregunta ahora. */
@@ -119,7 +164,7 @@ export function guiadoPanel(o) {
     } }, conIcono('lugar', 'Tomar la situación de la carta')) : null;
     const titulo = h('h3.guiado-tit', { tabindex: '-1' }, `${p.title}`);
     const form = h('form.answers.guiado-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
-      traigoEl(p), tablaEl(p, false),
+      traigoEl(p), croquisEl(p), tablaEl(p, false),
       p.plantea ? h('p.guiado-plantea', h('small', 'Planteo'), p.plantea) : null,
       h('p.guiado-pregunta', p.pide.pregunta),
       entradas.map(({ c, input, fb }) => h('label.field', { for: input.id }, h('span.lbl', `${c.label}${c.medido ? ' (en la carta)' : ''}`), input, fb)),

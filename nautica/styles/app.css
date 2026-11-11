@@ -2618,3 +2618,11 @@ table.ep-hoja-papel th, table.ep-hoja-papel td { padding: .2rem .7rem; border-bo
 .guiado-tabla th:first-child { text-align: left; }
 .guiado-tabla thead th { font-size: .78rem; color: var(--muted); font-weight: 600; }
 .guiado-tabla tr.total td, .guiado-tabla tr.total th { font-weight: 700; border-top: 2px solid var(--text); }
+svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto; margin: .3rem auto; color: var(--text); }
+.guiado-croquis text { font-size: 11px; fill: var(--muted); font-family: var(--fuente-texto); }
+.guiado-croquis .cq-tinta { stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; }
+.guiado-croquis .cq-raya { stroke: var(--muted); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+.guiado-croquis .cq-eje { stroke: var(--muted); stroke-width: 1; fill: none; }
+.guiado-croquis .cq-punto { fill: var(--text); }
+.guiado-croquis .cq-marca { fill: var(--close); }
+.guiado-croquis text.cq-marca-tx { fill: var(--close); font-weight: 700; }

@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 11 de noviembre de 2026 · versión `6a8d8eabafe6`
+
 ### Mejoras
 
 - **Paso a paso de la estima analítica (loxodrómica), como en la hoja del examen:** ahora te pide cada fila de la tabla

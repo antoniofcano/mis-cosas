@@ -88,6 +88,13 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   `ui/semana.js` (calcula con el resultado de `calcularPlan`, guarda el ajuste compartido `semana_<tit>` y apunta el día
   hecho), la tarjeta de Hoy (`views/hoy.js`), `views/semana.js` (`#/<tit>/semana` y la tanda `#/<tit>/semana/ideas/<n>`) y
   la Travesía («Seguir» arranca la misma sesión, `composicionDeHoy`).
+- **Paso a paso «de hoja de examen»** (H-46): un paso del kit puede declarar `traigo` (datos de pasos anteriores),
+  `plantea` (la fórmula, visible antes de contestar), `lineas` (la cuenta, visible al contestar) y `tabla`. `ui/guiado.js`
+  los pinta en lugar de la voz del profe cuando la resolución los trae; hoy, `tramos` y `rumboDirecto` (estima analítica),
+  que preguntan cada fila con la magnitud `minutos` (`analysis/quantities.js`: con signo o con N/S/E/W), y las mareas
+  (`tramoMarea`, `horaUT`, `sondaA`, `horaParaSonda`). `croquis` (`{ tipo: 'marea' | 'tramos', … }`) lo dibuja `croquisEl`,
+  animado con CSS (`.cq-traza`, `.cq-sale`; nada con «reducir movimiento»). `tras: ['traigo', 'croquis']` deja esas partes
+  para después de contestar (en `tramoMarea`, elegir el tramo en la tabla del enunciado es parte del problema).
 - **Antes y después del examen real** (R-48 a R-50; `course/tras-examen.js`, funciones puras; tests
   `tests/tras-examen.test.js`): `fallosPorMateria` (los 3 últimos exámenes con `porTema` completo de cada materia:
   simulacro, real, final, módulo y ensayo; nunca el simulacro de tus errores ni las tandas) con `estadoFrente` (holgado,

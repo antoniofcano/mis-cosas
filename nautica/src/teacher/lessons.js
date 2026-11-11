@@ -236,14 +236,14 @@ export const LESSONS = [
   },
   {
     id: 'marea',
-    match: /marea|sonda|quilla|altura|horas legales|duraci[oó]n|bajamar|^hora( oficial)?$/i,
+    match: /marea|sonda|quilla|altura|horas legales|duraci[oó]n|bajamar|^hora( oficial| ut)?$/i,
     intro: ['Vamos con la marea.', 'Seguimos con la tabla de mareas.', 'Ahora la cuenta de la marea, paso a paso.', 'Otro paso de la marea: despacio, que aquí se cuelan los errores.'],
     tip: 'El anuario da las horas en tiempo universal: súmale el adelanto para tener la hora legal. Y la marea no sube a ritmo constante: sube despacio al principio y al final, y rápido en medio, como dice la regla de los doceavos.',
     trap: 'No interpoles en línea recta: te equivocarás por varios centímetros justo en el tramo central.',
   },
   {
     id: 'analitica',
-    match: /totales|latitud de llegada|longitud|diferencia de longitud|directos/i,
+    match: /totales|latitud de llegada|longitud|diferencia de longitud|directos|apartamiento|sumo la tabla|diferencia de latitud/i,
     intro: ['Estima analítica: aquí no hay carta, todo es cálculo.'],
     tip: 'Diferencia de latitud igual a distancia por coseno del rumbo; apartamiento igual a distancia por seno. Y para pasar el apartamiento a longitud, divide entre el coseno de la latitud media.',
     trap: 'El apartamiento no es la diferencia de longitud. Si olvidas dividir entre el coseno de la latitud media, te quedas corto.',

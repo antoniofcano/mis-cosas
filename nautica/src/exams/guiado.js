@@ -13,7 +13,7 @@ import { quantity } from '../analysis/quantities.js';
 export const ESTADO = { OK: 'ok', CASI: 'casi', MAL: 'mal', VACIO: 'vacio', ILEGIBLE: 'ilegible' };
 
 /** Los pasos de una resolución con su índice y si se preguntan. */
-export const pasosGuiados = (steps) => steps.map((s, i) => ({ i, title: s.title, text: s.text, pide: s.pide ?? null }));
+export const pasosGuiados = (steps) => steps.map((s, i) => ({ i, title: s.title, text: s.text, pide: s.pide ?? null, traigo: s.traigo ?? null, plantea: s.plantea ?? null, lineas: s.lineas ?? null, tabla: s.tabla ?? null, croquis: s.croquis ?? null, tras: s.tras ?? [] }));
 
 /** ¿Tiene la resolución al menos un paso que preguntar? */
 export const tienePasosPreguntables = (steps) => steps.some((s) => s.pide?.campos?.length);

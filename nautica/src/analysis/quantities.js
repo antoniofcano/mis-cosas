@@ -27,6 +27,16 @@ export const QUANTITIES = {
     errorUnit: '°',
     tolerance: 0.5,
   },
+  // Diferencias en minutos con signo (Δl, apartamiento, ΔL de la estima analítica): N y E suman, S y W restan.
+  minutos: {
+    label: 'minutos con signo (N y E +, S y W −)',
+    placeholder: 'p.ej. −68,9 o 68,9 W',
+    parse: (t) => parseAngle(String(t ?? '').replace(/[′’´'`]|millas?|\bM\b/gi, ' ')),
+    format: (v) => `${v < 0 ? '−' : '+'}${Math.abs(v).toFixed(1).replace('.', ',')}′`,
+    error: (a, b) => Math.abs(a - b),
+    errorUnit: '′',
+    tolerance: 0.5,
+  },
   lat: {
     label: 'latitud',
     placeholder: "p.ej. 36 00,5 N",

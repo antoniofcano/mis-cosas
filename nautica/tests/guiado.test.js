@@ -59,16 +59,16 @@ const OPERACIONES = {
   traslado: { run: (k) => k.traslado('punta-cires', 160, 'punta-cires', 225, 70, 4), pide: [null, ['lat', 'lon']] },
   trasladoArco: { run: (k) => k.trasladoArco('punta-cires', 160, 'punta-cires', 5, 70, 4, (c) => c[0]), pide: [null, ['lat', 'lon']] },
   trasladoDosArcos: { run: (k) => k.trasladoDosArcos('punta-cires', 5, 'punta-malabata', 6, 70, 2, (c) => c[0]), pide: [null, ['lat', 'lon']] },
-  tramos: { run: (k) => k.tramos({ lat: 36.1, lon: -6.2333 }, [{ rumbo: 160, millas: 12 }, { rumbo: 100, millas: 10 }]), pide: [null, ['lat'], null, ['lat', 'lon']] },
+  tramos: { run: (k) => k.tramos({ lat: 36.1, lon: -6.2333 }, [{ rumbo: 160, millas: 12 }, { rumbo: 100, millas: 10 }]), pide: [['minutos', 'minutos'], ['minutos', 'minutos'], ['minutos', 'minutos'], ['lat'], ['minutos'], ['lat', 'lon']] },
   corrienteDesconocida: { run: (k) => k.corrienteDesconocida(S0, { lat: 36.02, lon: -5.72 }, 90), pide: [['bearing', 'speed']] },
   rumboConCorriente: { run: (k) => k.rumboConCorriente(S0, 'punta-carnero', 6, 90, 2), pide: [['bearing', 'distance'], ['bearing', 'speed']] },
   rumboConCorrienteRef: { run: (k) => k.rumboConCorriente(S0, 45, 6, 90, 2), pide: [['bearing', 'speed']] },
   porNombre: { run: (k) => k.porNombre(130), pide: [null] },
-  rumboDirecto: { run: (k) => k.rumboDirecto({ lat: 36.1, lon: -6.2 }, { lat: 35.9, lon: -5.9 }), pide: [null, ['bearing', 'distance']] },
+  rumboDirecto: { run: (k) => k.rumboDirecto({ lat: 36.1, lon: -6.2 }, { lat: 35.9, lon: -5.9 }), pide: [['minutos'], ['minutos'], ['minutos'], ['bearing', 'distance']] },
   tramoMarea: { run: (k) => k.tramoMarea(TABLA, { desde: 0 }), pide: [['duration', 'meters']] },
   horaUT: { run: (k) => k.horaUT(hrb(9), 2), pide: [['clock']] },
-  sondaA: { run: (k) => k.sondaA(k.tramoMarea(TABLA, { desde: 0 }), hrb(6), 1.2), pide: [['duration', 'meters'], ['meters'], ['meters']] },
-  horaParaSonda: { run: (k) => k.horaParaSonda(k.tramoMarea(TABLA, { desde: 0 }), 3, 1, 2), pide: [['duration', 'meters'], ['meters'], ['clock'], ['clock']] },
+  sondaA: { run: (k) => k.sondaA(k.tramoMarea(TABLA, { desde: 0 }), hrb(6), 1.2), pide: [['duration', 'meters'], ['duration'], ['meters'], ['meters'], ['meters']] },
+  horaParaSonda: { run: (k) => k.horaParaSonda(k.tramoMarea(TABLA, { desde: 0 }), 3, 1, 2), pide: [['duration', 'meters'], ['meters'], ['meters'], ['duration'], ['clock'], ['clock']] },
 };
 
 test('cada operación del kit expone el valor preguntable de sus pasos (o ninguno si es una nota)', () => {

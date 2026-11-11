@@ -26,6 +26,8 @@ const coma = (x, dec = 2) => x.toFixed(dec).replace('.', ',');
 /** Con signo tipográfico: +12,3 / −4,5. */
 const sg = (x, dec = 1) => `${x < 0 ? '−' : '+'}${coma(Math.abs(x), dec)}`;
 /** Duración en minutos → "4h 30m". */
+/** Sentido de una diferencia con signo: «  → N»; nada si es cero. */
+const hacia = (v, pos, neg) => (Math.abs(v) < 0.05 ? '' : `  → ${v < 0 ? neg : pos}`);
 const hm = (m) => { const r = Math.round(Math.abs(m)); return `${Math.floor(r / 60)}h ${String(r % 60).padStart(2, '0')}m`; };
 
 export function createKit(chart, { error = null } = {}) {
@@ -33,7 +35,9 @@ export function createKit(chart, { error = null } = {}) {
   const items = [];
   const focus = [];
   let n = 0;
-  const step = (title, text, pide) => { steps.push(pide ? { title, text, pide } : { title, text }); n = steps.length; };
+  // `extra` (modo guiado, src/ui/guiado.js): { traigo: string[] (datos de pasos anteriores que usa este), plantea: string
+  // (la fórmula, que se enseña antes de contestar), lineas: string[] (la cuenta, línea a línea), tabla: { cab, filas } }.
+  const step = (title, text, pide, extra) => { steps.push({ title, text, ...(pide ? { pide } : {}), ...(extra ?? {}) }); n = steps.length; };
   /** ¿Se resuelve con este error típico? (`id` = variante exacta o, sin «:», cualquier variante de ese tipo) */
   const E = (id) => error != null && (error === id || (!id.includes(':') && error.split(':')[0] === id));
   /** Lo que pide el paso (modo guiado). */
@@ -409,26 +413,56 @@ export function createKit(chart, { error = null } = {}) {
     /** Estima por varios tramos {rumbo, millas, nombre?} sumando Δl y apartamiento (sin carta si se sale). */
     tramos(from, lista, label = 'Situación de estima') {
       let dl = 0; let ap = 0;
+      const min = (v, lab) => ({ kind: 'minutos', value: v, label: lab });
+      const lt = (p) => fmtPos(p).split('  ')[0];
+      const lg = (p) => fmtPos(p).split('  ')[1];
       const filas = lista.map((t) => {
         const r = t.rumbo * Math.PI / 180;
         const [a, b] = E('seno-coseno') ? [t.millas * Math.sin(r), t.millas * Math.cos(r)] : [t.millas * Math.cos(r), t.millas * Math.sin(r)];
         dl += a; ap += b;
-        return `${t.nombre ?? fmtBearing(t.rumbo)} ${fmtMiles(t.millas, 1)}: Δl ${sg(a)}′, A ${sg(b)}′`;
+        return { nombre: t.nombre ?? fmtBearing(t.rumbo), rumbo: t.rumbo, millas: t.millas, dl: a, ap: b, corriente: /corriente/i.test(t.nombre ?? '') };
       });
-      step('Tramos', `Descomponemos cada tramo en diferencia de latitud (+N) y apartamiento (+E): ${filas.join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`);
+      // Un paso por tramo (la corriente es un tramo más): es la tabla que se hace en el examen, fila a fila.
+      filas.forEach((f, i) => {
+        const R = fmtBearing(f.rumbo); const d = coma(f.millas, 1);
+        step(`${f.corriente ? 'La corriente' : `Tramo ${i + 1}`}: Δl y apartamiento`,
+          `${f.nombre}, ${fmtMiles(f.millas, 1)}: Δl = d · cos R = ${d} × cos ${R} = ${sg(f.dl)}′; A = d · sen R = ${d} × sen ${R} = ${sg(f.ap)}′.`,
+          pide('loxodromica', f.corriente ? '¿Cuánto nos mueve la corriente en latitud (Δl) y en apartamiento (A)?' : `¿Cuánto avanzamos en latitud (Δl) y en apartamiento (A) en el tramo ${i + 1}?`, [min(f.dl, 'Δl (N +, S −)'), min(f.ap, 'A (E +, W −)')]),
+          { traigo: [`${f.corriente ? 'Rc' : 'Rv'} = ${R}${f.corriente ? ` (${f.nombre.replace(/^corriente\s*/i, '')})` : ''}`, `d = ${d} millas`],
+            plantea: `Δl = d · cos R   ·   A = d · sen R${f.corriente ? '   (la corriente es un tramo más: su rumbo y lo que nos arrastra en todo el tiempo)' : ''}`,
+            lineas: [`Δl = ${d} × cos ${R} = ${sg(f.dl)}′${hacia(f.dl, 'N', 'S')}`, `A = ${d} × sen ${R} = ${sg(f.ap)}′${hacia(f.ap, 'E', 'W')}`] });
+      });
+      const tabla = { cab: ['Tramo', 'R', 'd', 'Δl', 'A'], filas: filas.map((f, i) => [f.corriente ? 'Corr.' : String(i + 1), fmtBearing(f.rumbo), coma(f.millas, 1), sg(f.dl), sg(f.ap)]) };
+      // Con un solo tramo no hay nada que sumar.
+      if (filas.length > 1) step('Sumo la tabla', `Sumamos las columnas con su signo (N y E +, S y W −): ${filas.map((f) => `${f.nombre} ${fmtMiles(f.millas, 1)}: Δl ${sg(f.dl)}′, A ${sg(f.ap)}′`).join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`,
+        pide('loxodromica', '¿Cuánto suman la Δl y el apartamiento?', [min(dl, 'Δl total'), min(ap, 'A total')]),
+        { tabla: { ...tabla, suma: true }, croquis: { tipo: 'tramos', legs: filas.map((f) => ({ dl: f.dl, ap: f.ap, corriente: f.corriente })) }, plantea: 'Suma cada columna con su signo: N y E suman, S y W restan.',
+          lineas: [`Δl total = ${filas.map((f) => sg(f.dl)).join(' ')} = ${sg(dl)}′${hacia(dl, 'N', 'S')}`, `A total = ${filas.map((f) => sg(f.ap)).join(' ')} = ${sg(ap)}′${hacia(ap, 'E', 'W')}`] });
       const lat = from.lat + dl / 60;
       const lm = E('lm-salida') ? from.lat : (from.lat + lat) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
       const dL = E('sin-cos-lm') ? ap : E('cos-lm-multiplica') ? ap * cos : ap / cos;
       let p = { lat, lon: from.lon + (E('signo-dL') ? -dL : dL) / 60 };
-      step('Latitud de llegada', `l = ${fmtPos(from).split('  ')[0]} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${fmtPos(p).split('  ')[0]}.`, pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]));
-      step('Diferencia de longitud', `Latitud media ${coma(Math.abs(lm), 1)}°: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${sg(dL)}′.`);
+      step('Latitud de llegada', `l = ${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${lt(p)}.`, pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]),
+        { traigo: [`l salida = ${lt(from)}`, `Δl total = ${sg(dl)}′`], plantea: 'l llegada = l salida + Δl   (los minutos de Δl son minutos de latitud)',
+          lineas: [`${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′`, `l llegada = ${lt(p)}`] });
+      step('Del apartamiento a la diferencia de longitud', `Latitud media ${coma(Math.abs(lm), 1)}°: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(cos, 3)} = ${sg(dL)}′.`,
+        pide('loxodromica', '¿Cuánto vale la diferencia de longitud (ΔL)?', [min(dL, 'ΔL (E +, W −)')]),
+        { traigo: [`A total = ${sg(ap)}′`, `l salida = ${lt(from)}`, `l llegada = ${lt(p)}`], plantea: 'lm = (l salida + l llegada) / 2   ·   ΔL = A / cos lm   (el apartamiento son millas; ΔL, minutos de longitud)',
+          lineas: [`lm = ${coma(Math.abs(lm), 1)}°`, `cos lm = ${coma(cos, 3)}`, `ΔL = ${sg(ap)} / ${coma(cos, 3)} = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
+      const bruta = p.lon;
+      let cruce = '';
+      const lineasL = [`${lg(from)} ${(bruta - from.lon) * (from.lon < 0 ? -1 : 1) < 0 ? '−' : '+'} ${coma(Math.abs(dL), 1)}′`];
       if (Math.abs(p.lon) > 180) {
         const a = Math.abs(p.lon);
         p = { lat: p.lat, lon: norm180(p.lon) };
-        step('Longitud de llegada', `Sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${fmtPos(p).split('  ')[1]}.`);
-      }
-      step(label, `${fmtPos(p)}.`, pide('loxodromica', `¿Cuál es la ${label.toLowerCase()}?`, posCampos(p, false)));
+        cruce = ` La longitud sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${lg(p)}.`;
+        lineasL.push(`= ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}  → ¡pasa de 180°!`, `360° − ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ = ${lg(p)}`);
+      } else lineasL.push(`L llegada = ${lg(p)}`);
+      step(label, `${fmtPos(p)}.${cruce}`, pide('loxodromica', `¿Cuál es la ${label.toLowerCase()}?`, posCampos(p, false)),
+        { traigo: [`l llegada = ${lt(p)}`, `L salida = ${lg(from)}`, `ΔL = ${sg(dL)}′`],
+          plantea: 'L llegada = L salida + ΔL: hacia el E, la longitud E crece y la W disminuye. Si pasa de 180°, resta de 360° y cambia E por W.',
+          lineas: [...lineasL, `${label} = ${fmtPos(p)}`] });
       if (dentro(from) && dentro(p)) items.push({ t: 'pos', at: p, label, style: 'estima', step: n });
       return p;
     },
@@ -487,10 +521,21 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Rumbo directo y distancia entre dos situaciones por latitud media (ΔL por el camino corto, aunque se cruce el meridiano 180°). */
     rumboDirecto(a, b) {
+      const min = (v, lab) => ({ kind: 'minutos', value: v, label: lab });
+      const lt = (p) => fmtPos(p).split('  ')[0];
+      const lg = (p) => fmtPos(p).split('  ')[1];
       const dl = (b.lat - a.lat) * 60;
       const dL = norm180(b.lon - a.lon) * 60 * (E('signo-dL') ? -1 : 1);
       const cruza = Math.abs((b.lon - a.lon) * 60 - dL) > 1e-6;
-      step('Diferencia de latitud y de longitud', `De ${fmtPos(a)} a ${fmtPos(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}; ΔL = ${coma(Math.abs(dL), 1)}′ ${dL < 0 ? 'W' : 'E'}${cruza ? ' (por el camino corto, cruzando el meridiano 180°)' : ''}.`);
+      step('Diferencia de latitud', `De ${lt(a)} a ${lt(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}.`,
+        pide('loxodromica', '¿Cuánto vale la diferencia de latitud (Δl)?', [min(dl, 'Δl (N +, S −)')]),
+        { traigo: [`l salida = ${lt(a)}`, `l llegada = ${lt(b)}`], plantea: 'Δl = l llegada − l salida, en minutos. Si vas hacia el N es +; hacia el S, −. Con distinto hemisferio, se suman.',
+          lineas: [`${lt(b)} − ${lt(a)}`, `Δl = ${sg(dl)}′${hacia(dl, 'N', 'S')}`] });
+      step('Diferencia de longitud', `De ${lg(a)} a ${lg(b)}: ΔL = ${coma(Math.abs(dL), 1)}′ ${dL < 0 ? 'W' : 'E'}${cruza ? ' (por el camino corto, cruzando el meridiano 180°)' : ''}.`,
+        pide('loxodromica', '¿Cuánto vale la diferencia de longitud (ΔL)?', [min(dL, 'ΔL (E +, W −)')]),
+        { traigo: [`L salida = ${lg(a)}`, `L llegada = ${lg(b)}`],
+          plantea: 'ΔL = L llegada − L salida, en minutos, por el camino corto. Si una es E y otra W junto al 180°, suma lo que le falta a cada una hasta 180°.',
+          lineas: cruza ? [`Cruzo el 180°: (180° − ${lg(a).replace(/ [EW]$/, '')}) + (180° − ${lg(b).replace(/ [EW]$/, '')})`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] : [`${lg(b)} − ${lg(a)}`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
       const lm = E('lm-salida') ? a.lat : (a.lat + b.lat) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
       const A = E('sin-cos-lm') ? dL : E('cos-lm-multiplica') ? dL / cos : dL * cos;
@@ -499,8 +544,18 @@ export function createKit(chart, { error = null } = {}) {
       // Seno y coseno cambiados: tg R = Δl / A (el ángulo complementario, en el mismo cuadrante).
       if (E('seno-coseno')) { const c = 90 - ang; r = dl >= 0 ? (A >= 0 ? c : 360 - c) : (A >= 0 ? 180 - c : 180 + c); }
       const d = Math.hypot(A, dl);
-      step('Rumbo y distancia', `Latitud media ${coma(Math.abs(lm), 1)}°: apartamiento A = ΔL · cos lm = ${coma(Math.abs(dL), 1)}′ × ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${coma(Math.abs(A), 1)}′ ${A < 0 ? 'W' : 'E'}. tg R = A / Δl = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} → R = ${dl < 0 ? 'S' : 'N'} ${coma(ang, 1)}° ${A < 0 ? 'W' : 'E'} = ${fmtBearing(r, 1)}. Distancia = √(Δl² + A²) = ${fmtMiles(d)}.`,
-        pide('loxodromica', '¿Cuáles son el rumbo directo y la distancia?', [{ kind: 'bearing', value: r, label: 'Rumbo' }, { kind: 'distance', value: d, label: 'Distancia' }]));
+      step('Apartamiento', `Latitud media ${coma(Math.abs(lm), 1)}°: A = ΔL · cos lm = ${coma(Math.abs(dL), 1)}′ × ${coma(cos, 3)} = ${coma(Math.abs(A), 1)}′ ${A < 0 ? 'W' : 'E'}.`,
+        pide('loxodromica', '¿Cuánto vale el apartamiento (A)?', [min(A, 'A (E +, W −)')]),
+        { traigo: [`ΔL = ${sg(dL)}′`, `l salida = ${lt(a)}`, `l llegada = ${lt(b)}`], plantea: 'lm = (l salida + l llegada) / 2   ·   A = ΔL · cos lm   (aquí se multiplica: de minutos de longitud a millas)',
+          lineas: [`lm = ${coma(Math.abs(lm), 1)}°`, `cos lm = ${coma(cos, 3)}`, `A = ${coma(Math.abs(dL), 1)} × ${coma(cos, 3)} = ${sg(A)}′${hacia(A, 'E', 'W')}`] });
+      const cuad = `${dl < 0 ? 'S' : 'N'} ${coma(ang, 1)}° ${A < 0 ? 'W' : 'E'}`;
+      const aCircular = dl >= 0 ? (A >= 0 ? `${cuad} = ${fmtBearing(r, 1)}` : `360° − ${coma(ang, 1)}° = ${fmtBearing(r, 1)}`) : (A >= 0 ? `180° − ${coma(ang, 1)}° = ${fmtBearing(r, 1)}` : `180° + ${coma(ang, 1)}° = ${fmtBearing(r, 1)}`);
+      step('Rumbo y distancia', `tg R = A / Δl = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} → R = ${cuad} = ${fmtBearing(r, 1)}. Distancia = √(Δl² + A²) = ${fmtMiles(d)}.`,
+        pide('loxodromica', '¿Cuáles son el rumbo directo y la distancia?', [{ kind: 'bearing', value: r, label: 'Rumbo' }, { kind: 'distance', value: d, label: 'Distancia' }]),
+        { traigo: [`Δl = ${sg(dl)}′  (${dl < 0 ? 'S' : 'N'})`, `A = ${sg(A)}′  (${A < 0 ? 'W' : 'E'})`],
+          croquis: { tipo: 'tramos', legs: [{ dl, ap: A }], catetos: true },
+          plantea: 'tg R = A / Δl (sin signos) da el ángulo del cuadrante; pásalo a circular: NE tal cual, SE 180° − R, SW 180° + R, NW 360° − R.   ·   D = √(Δl² + A²)',
+          lineas: [`tg R = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} = ${coma(Math.abs(A) / Math.abs(dl), 3)}`, `R = ${cuad}`, `Rumbo: ${aCircular}`, `D = √(${coma(Math.abs(dl), 1)}² + ${coma(Math.abs(A), 1)}²) = ${fmtMiles(d)}`] });
       return { rumbo: r, dist: d };
     },
 
@@ -511,14 +566,25 @@ export function createKit(chart, { error = null } = {}) {
       const [a, b] = desde != null ? [ext[desde], ext[desde + 1]] : ext.slice(0, -1).map((e, i) => [e, ext[i + 1]]).find(([u, v]) => cual >= u.t && cual <= v.t);
       const bm = a.h < b.h ? a : b; const pm = a.h < b.h ? b : a;
       const D = Math.abs(b.t - a.t); const A = pm.h - bm.h;
+      const nom = (x) => (x === bm ? 'Bajamar' : 'Pleamar');
       step('Duración y amplitud', `Tramo entre la ${a === bm ? 'bajamar' : 'pleamar'} de las ${a.hora} UT (${coma(a.h)} m) y la ${b === bm ? 'bajamar' : 'pleamar'} de las ${b.hora} UT (${coma(b.h)} m): D = ${hm(D)}, A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m.`,
-        pide('marea', '¿Cuánto valen la duración (D) y la amplitud (A) de la marea?', [{ kind: 'duration', value: D / 60, label: 'Duración D' }, { kind: 'meters', value: A, label: 'Amplitud A' }]));
+        pide('marea', '¿Cuánto valen la duración (D) y la amplitud (A) de la marea?', [{ kind: 'duration', value: D / 60, label: 'Duración D' }, { kind: 'meters', value: A, label: 'Amplitud A' }]),
+        // La tabla del Anuario, como la da el enunciado: elegir el tramo es parte del problema. Los dos extremos elegidos
+        // (y el croquis) solo se enseñan después de contestar (`tras`).
+        { tabla: { cab: ['Día', 'Hora UT', 'Altura (m)'], filas: tabla.map((x) => [x.dia != null ? String(x.dia).padStart(2, '0') : '', x.hora, coma(x.altura_m)]), marca: [ext.indexOf(a), ext.indexOf(b)], titulo: 'Tabla de mareas del enunciado (horas en UT)' },
+          tras: ['traigo', 'croquis'],
+          traigo: [`${nom(a)}: ${a.hora} UT, ${coma(a.h)} m`, `${nom(b)}: ${b.hora} UT, ${coma(b.h)} m`],
+          plantea: 'Elige en la tabla la pleamar y la bajamar entre las que cae tu hora (o las que nombra el enunciado): la altura mayor es la pleamar.   ·   D = tiempo entre las dos   ·   A = altura de la pleamar − altura de la bajamar',
+          lineas: [`D = ${b.hora} − ${a.hora} = ${hm(D)}`, `A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m`],
+          croquis: { tipo: 'marea', a: { hora: a.hora, h: a.h }, b: { hora: b.hora, h: b.h } } });
       return { a, b, bm, pm, D, A };
     },
     /** Hora oficial → UT. */
     horaUT(oficial, adelanto) {
       const t = E('sin-adelanto') ? oficial : E('adelanto-signo') ? oficial + adelanto * 60 : oficial - adelanto * 60;
-      step('TU', `Hora oficial ${fmtClock(oficial)} − adelanto ${adelanto} h = ${fmtClock(t)} UT (el Anuario va en UT).`, pide('hora-legal', '¿Qué hora UT es (el Anuario va en UT)?', [{ kind: 'clock', value: t, label: 'Hora UT' }]));
+      step('TU', `Hora oficial ${fmtClock(oficial)} − adelanto ${adelanto} h = ${fmtClock(t)} UT (el Anuario va en UT).`, pide('hora-legal', '¿Qué hora UT es (el Anuario va en UT)?', [{ kind: 'clock', value: t, label: 'Hora UT' }]),
+        { traigo: [`Hora oficial = ${fmtClock(oficial)}`, `Adelanto = ${adelanto} h`], plantea: 'UT = hora oficial − adelanto   (el Anuario de Mareas va en UT)',
+          lineas: [`${fmtClock(oficial)} − ${adelanto} h = ${fmtClock(t)} UT`] });
       return t;
     },
     /** Sonda en la carta + altura de marea a la hora `t` (UT) dentro del tramo. */
@@ -526,16 +592,33 @@ export function createKit(chart, { error = null } = {}) {
       const I = Math.abs(t - (E('pleamar-bajamar') ? tr.pm.t : tr.bm.t));
       const C = E('lineal') ? (tr.A * Math.min(I, tr.D)) / tr.D : correccionTabla(tr.A, I, tr.D);
       const alt = tr.bm.h + C;
-      step('Altura de la marea', `Intervalo desde la bajamar I = ${hm(I)}. C = A · sen²(90° · I / D) = ${coma(tr.A)} × sen²(90° × ${hm(I)} / ${hm(tr.D)}) = ${coma(C)} m. Altura = ${coma(tr.bm.h)} + ${coma(C)} = ${coma(alt)} m.`,
-        pide('marea', '¿Cuál es la altura de la marea a esa hora?', [{ kind: 'meters', value: alt, label: 'Altura' }]));
+      const ang = (90 * I) / tr.D; const s2 = Math.sin(ang * Math.PI / 180) ** 2;
+      const cro = { tipo: 'marea', a: { hora: tr.a.hora, h: tr.a.h }, b: { hora: tr.b.hora, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: fmtClock(t) };
+      step('Intervalo desde la bajamar', `Desde la bajamar de las ${tr.bm.hora} UT hasta las ${fmtClock(t)} UT: I = ${hm(I)}.`,
+        pide('marea', '¿Cuánto tiempo hay entre la bajamar y nuestra hora (el intervalo I)?', [{ kind: 'duration', value: I / 60, label: 'Intervalo I' }]),
+        { traigo: [`Nuestra hora = ${fmtClock(t)} UT`, `Bajamar = ${tr.bm.hora} UT`], plantea: 'I = tiempo entre la bajamar y nuestra hora. Siempre desde la bajamar, esté antes o después.',
+          lineas: [tr.bm.t <= t ? `${fmtClock(t)} − ${tr.bm.hora}` : `${tr.bm.hora} − ${fmtClock(t)}`, `I = ${hm(I)}`], croquis: cro });
+      step('Corrección de altura', `C = A · sen²(90° · I / D) = ${coma(tr.A)} × sen²(90° × ${hm(I)} / ${hm(tr.D)}) = ${coma(C)} m.`,
+        pide('marea', '¿Cuánto ha subido la marea sobre la bajamar (la corrección C)?', [{ kind: 'meters', value: C, label: 'Corrección C' }]),
+        { traigo: [`A = ${coma(tr.A)} m`, `I = ${hm(I)}  (${Math.round(I)} min)`, `D = ${hm(tr.D)}  (${Math.round(tr.D)} min)`],
+          plantea: 'C = A · sen²(90° · I / D), con I y D en minutos (o la tabla del Anuario). La marea no sube a ritmo constante.',
+          lineas: [`90° × ${Math.round(I)} / ${Math.round(tr.D)} = ${coma(ang, 1)}°`, `sen² ${coma(ang, 1)}° = ${coma(s2, 3)}`, `C = ${coma(tr.A)} × ${coma(s2, 3)} = ${coma(C)} m`] });
+      step('Altura de la marea', `Altura = altura de la bajamar + C = ${coma(tr.bm.h)} + ${coma(C)} = ${coma(alt)} m.`,
+        pide('marea', '¿Cuál es la altura de la marea a esa hora?', [{ kind: 'meters', value: alt, label: 'Altura' }]),
+        { traigo: [`Altura de la bajamar = ${coma(tr.bm.h)} m`, `C = ${coma(C)} m`], plantea: 'Altura de la marea = altura de la bajamar + C',
+          lineas: [`${coma(tr.bm.h)} + ${coma(C)} = ${coma(alt)} m`] });
       const s = E('sonda-carta-olvidada') ? alt : E('sonda-carta-signo') ? alt - sondaCarta : sondaCarta + alt;
-      step('Sonda', `Sonda = sonda de la carta + altura de la marea = ${coma(sondaCarta)} + ${coma(alt)} = ${coma(s)} m.`, pide('sonda', '¿Qué sonda hay en ese momento?', [{ kind: 'meters', value: s, label: 'Sonda' }]));
+      step('Sonda', `Sonda = sonda de la carta + altura de la marea = ${coma(sondaCarta)} + ${coma(alt)} = ${coma(s)} m.`, pide('sonda', '¿Qué sonda hay en ese momento?', [{ kind: 'meters', value: s, label: 'Sonda' }]),
+        { traigo: [`Sonda de la carta = ${coma(sondaCarta)} m`, `Altura de la marea = ${coma(alt)} m`], plantea: 'Sonda en el momento = sonda de la carta + altura de la marea',
+          lineas: [`${coma(sondaCarta)} + ${coma(alt)} = ${coma(s)} m`] });
       return s;
     },
     /** Hora (oficial) a la que hay `sonda` metros en un bajo de `sondaCarta`. */
     horaParaSonda(tr, sonda, sondaCarta, adelanto) {
       const alt = E('sonda-carta-olvidada') ? sonda : E('sonda-carta-signo') ? sonda + sondaCarta : sonda - sondaCarta;
-      step('Altura de la marea necesaria', `Altura = sonda deseada − sonda de la carta = ${coma(sonda)} − ${coma(sondaCarta)} = ${coma(alt)} m.`, pide('sonda', '¿Qué altura de marea hace falta?', [{ kind: 'meters', value: alt, label: 'Altura' }]));
+      step('Altura de la marea necesaria', `Altura = sonda deseada − sonda de la carta = ${coma(sonda)} − ${coma(sondaCarta)} = ${coma(alt)} m.`, pide('sonda', '¿Qué altura de marea hace falta?', [{ kind: 'meters', value: alt, label: 'Altura' }]),
+        { traigo: [`Sonda que queremos = ${coma(sonda)} m`, `Sonda de la carta = ${coma(sondaCarta)} m`], plantea: 'Altura de marea necesaria = sonda que queremos − sonda de la carta',
+          lineas: [`${coma(sonda)} − ${coma(sondaCarta)} = ${coma(alt)} m`] });
       const C = alt - tr.bm.h;
       let t = timeForHeight(tr.a, tr.b, alt);
       if (t == null) throw new Error('La marea no alcanza esa altura en el tramo');
@@ -543,10 +626,26 @@ export function createKit(chart, { error = null } = {}) {
       if (E('lineal')) { I = (tr.D * C) / tr.A; t = tr.bm === tr.a ? tr.bm.t + I : tr.bm.t - I; }
       // Contar el intervalo desde la pleamar (hacia la bajamar) en vez de desde la bajamar.
       if (E('pleamar-bajamar')) t = tr.pm === tr.a ? tr.pm.t + I : tr.pm.t - I;
-      step('Intervalo desde la bajamar', `C = ${coma(alt)} − ${coma(tr.bm.h)} = ${coma(C)} m → sen²(90° · I / D) = ${coma(C)} / ${coma(tr.A)} = ${coma(C / tr.A, 3)} → I = ${hm(I)} ${tr.bm === tr.b ? 'antes' : 'después'} de la bajamar → ${fmtClock(t)} UT.`,
-        pide('marea', '¿A qué hora UT hay esa altura?', [{ kind: 'clock', value: t, label: 'Hora UT' }]));
+      const raiz = Math.sqrt(Math.max(0, C / tr.A)); const ang = toDeg(Math.asin(Math.min(1, raiz)));
+      step('Corrección de altura', `C = altura necesaria − altura de la bajamar = ${coma(alt)} − ${coma(tr.bm.h)} = ${coma(C)} m.`,
+        pide('marea', '¿Cuánto tiene que subir la marea sobre la bajamar (la corrección C)?', [{ kind: 'meters', value: C, label: 'Corrección C' }]),
+        { traigo: [`Altura necesaria = ${coma(alt)} m`, `Altura de la bajamar = ${coma(tr.bm.h)} m`], plantea: 'C = altura necesaria − altura de la bajamar',
+          lineas: [`${coma(alt)} − ${coma(tr.bm.h)} = ${coma(C)} m`] });
+      step('Intervalo desde la bajamar', `sen²(90° · I / D) = C / A = ${coma(C)} / ${coma(tr.A)} = ${coma(C / tr.A, 3)} → I = ${hm(I)}.`,
+        pide('marea', '¿Cuánto tiempo desde la bajamar hace falta para esa corrección (el intervalo I)?', [{ kind: 'duration', value: I / 60, label: 'Intervalo I' }]),
+        { traigo: [`C = ${coma(C)} m`, `A = ${coma(tr.A)} m`, `D = ${hm(tr.D)}  (${Math.round(tr.D)} min)`],
+          plantea: 'sen²(90° · I / D) = C / A  →  I = D × arcsen √(C / A) / 90°   (o entrando al revés en la tabla del Anuario)',
+          lineas: [`C / A = ${coma(C)} / ${coma(tr.A)} = ${coma(C / tr.A, 3)}`, `√ = ${coma(raiz, 3)}  →  arcsen = ${coma(ang, 1)}°`, `I = ${Math.round(tr.D)} × ${coma(ang, 1)} / 90 = ${Math.round(I)} min = ${hm(I)}`] });
+      const sube = tr.bm === tr.a;
+      step('Hora UT', `La bajamar es a las ${tr.bm.hora} UT y la marea ${sube ? 'sube' : 'baja'} en este tramo: ${tr.bm.hora} ${sube ? '+' : '−'} ${hm(I)} = ${fmtClock(t)} UT.`,
+        pide('marea', '¿A qué hora UT hay esa altura?', [{ kind: 'clock', value: t, label: 'Hora UT' }]),
+        { traigo: [`Bajamar = ${tr.bm.hora} UT`, `I = ${hm(I)}`, `En este tramo la marea ${sube ? 'sube (bajamar → pleamar)' : 'baja (pleamar → bajamar)'}`],
+          plantea: 'Si la marea sube, hora = bajamar + I. Si baja, hora = bajamar − I (la bajamar está al final del tramo).',
+          lineas: [`${tr.bm.hora} ${sube ? '+' : '−'} ${hm(I)} = ${fmtClock(t)} UT`],
+          croquis: { tipo: 'marea', a: { hora: tr.a.hora, h: tr.a.h }, b: { hora: tr.b.hora, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: '¿hora?' } });
       const of = E('sin-adelanto') ? t : E('adelanto-signo') ? t - adelanto * 60 : t + adelanto * 60;
-      step('Hora oficial', `${fmtClock(t)} UT + adelanto ${adelanto} h = ${fmtClock(of)}.`, pide('hora-legal', '¿Y en hora oficial?', [{ kind: 'clock', value: of, label: 'Hora oficial' }]));
+      step('Hora oficial', `${fmtClock(t)} UT + adelanto ${adelanto} h = ${fmtClock(of)}.`, pide('hora-legal', '¿Y en hora oficial?', [{ kind: 'clock', value: of, label: 'Hora oficial' }]),
+        { traigo: [`Hora UT = ${fmtClock(t)}`, `Adelanto = ${adelanto} h`], plantea: 'Hora oficial = UT + adelanto', lineas: [`${fmtClock(t)} + ${adelanto} h = ${fmtClock(of)}`] });
       return of;
     },
   };

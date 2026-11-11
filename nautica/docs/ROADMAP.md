@@ -88,6 +88,8 @@ _Última revisión: 10 de noviembre de 2026._
 | R-46 | Revisar la lista del día del examen y la estrategia con la convocatoria vigente de cada tribunal (Baleares sin leer; Andalucía 2026) y confirmar dónde publica cada uno las listas de admitidos y la sede | Después | Hoy el enlace por defecto es la página oficial del banco |
 | R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
 | R-51 | Calibrar «¿Estás listo?» y los avisos por materia con las comparaciones predicción–resultado que vayan apuntando los alumnos | Después | Hoy solo en el aparato o la cuenta de cada alumno; juntarlas pide su consentimiento y la versión 2 (complementa R-14) |
+| R-52 | Llevar el paso a paso «de hoja de examen» (traigo, planteo, cuenta y croquis) al resto de tipos: corrección total, corrientes, abatimiento, demoras | Siguiente | Hecho en la estima analítica y las mareas (H-46); los demás siguen con la voz del profe y dan hechos los pasos intermedios |
+| R-53 | Ejercicio generado de estima analítica con corriente, cruce del 180° y hemisferio sur, como pone hoy el tribunal | Siguiente | Hoy genera 2 o 3 tramos sin corriente cerca del Estrecho |
 
 ## Bloqueado por fuente
 
@@ -164,6 +166,7 @@ _Última revisión: 10 de noviembre de 2026._
 | H-43 | Foto de la predicción en la semana del examen y, tras él, el resultado por materia comparado con ella (R-49) | Noviembre 2026 |
 | H-44 | Recuperar un solo módulo del PY: «¿Estás listo?» y la semana del examen del módulo que queda (R-50; BOE-A-2026-510, anexo III C) | Noviembre 2026 |
 | H-45 | Estilos de pantalla del ensayo en papel y de la velocidad en carta, que una llave sin cerrar dejaba solo para imprimir desde #140; prueba que vigila las llaves | Noviembre 2026 |
+| H-46 | Paso a paso «de hoja de examen» en la estima analítica y en las mareas: un paso por tramo y por cuenta intermedia, tabla, croquis, lo que se trae y lo que se plantea (kit: `traigo`, `plantea`, `lineas`, `tabla`, `croquis`; magnitud `minutos`) | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

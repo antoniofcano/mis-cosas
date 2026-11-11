@@ -17,6 +17,22 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 11 de noviembre de 2026 · versión `6a8d8eabafe6`
+
+### Mejoras
+
+- **Paso a paso de la estima analítica (loxodrómica), como en la hoja del examen:** ahora te pide cada fila de la tabla
+  (Δl y apartamiento de cada tramo, con la corriente como un tramo más), la suma, la latitud, la diferencia de longitud
+  y la situación; y en el rumbo directo, Δl, ΔL, apartamiento y rumbo. Cada paso enseña lo que traes de los anteriores y
+  la fórmula que se plantea, y al contestar, la cuenta línea a línea (también el cruce del meridiano 180°). Antes daba
+  hecha la tabla y solo preguntaba la latitud y el resultado.
+- **Paso a paso de las mareas, igual:** duración y amplitud, hora UT, intervalo desde la bajamar, corrección de altura,
+  altura y sonda (o, al revés, la hora para tener una sonda), cada uno con lo que traes, la fórmula y la cuenta.
+- **Un croquis en los pasos que lo piden:** la curva de la marea con tu hora marcada y el dibujo de los tramos de la
+  estima, con la corriente a trazos. Se dibuja solo, trazo a trazo, y se repite al tocarlo.
+- **La tabla de mareas del enunciado, a la vista en su paso:** eliges tú la pleamar y la bajamar, como en el examen; al
+  contestar se marcan las dos filas que tocaban.
+
 ## 10 de noviembre de 2026, quinta publicación · versión `7f43f6e77be8`
 
 ### Novedades

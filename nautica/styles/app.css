@@ -2602,3 +2602,19 @@ table.ep-hoja-papel th, table.ep-hoja-papel td { padding: .2rem .7rem; border-bo
 .fxm-tabla td.fxm-num { font-family: var(--fuente-texto); }
 .res-radio { justify-content: flex-start; text-align: left; font-weight: 400; }
 .res-radio input { width: 22px; height: 22px; flex: none; margin: 0; }
+
+/* Paso a paso «de hoja de examen» (src/ui/guiado.js): lo que traigo, lo que planteo, la tabla de tramos y la cuenta */
+.guiado-traigo { border: 1.5px dashed var(--muted); border-radius: 6px; padding: .35rem .6rem; margin: .35rem 0; background: var(--surface); }
+.guiado-traigo small, .guiado-plantea small { display: block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.guiado-traigo div, .guiado-cuenta div, .guiado-tabla td { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: .95rem; }
+.guiado-plantea { margin: .35rem 0; }
+.guiado-nota { margin: .2rem 0; }
+.guiado-cuenta { margin: .35rem 0; padding: .4rem .6rem; border-left: 3px solid var(--accent); background: var(--surface); display: grid; gap: .15rem; }
+.guiado-cuenta div.res { font-weight: 700; }
+.guiado-tabla-caja { overflow-x: auto; max-width: 100%; margin: .35rem 0; }
+.guiado-tabla { border-collapse: collapse; width: 100%; font-size: .92rem; background: var(--surface); }
+.guiado-tabla th, .guiado-tabla td { border: 1px solid var(--border); padding: .2rem .28rem; text-align: right; white-space: nowrap; }
+.guiado-tabla td { font-size: .84rem; }
+.guiado-tabla th:first-child { text-align: left; }
+.guiado-tabla thead th { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.guiado-tabla tr.total td, .guiado-tabla tr.total th { font-weight: 700; border-top: 2px solid var(--text); }

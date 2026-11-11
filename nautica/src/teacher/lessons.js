@@ -243,7 +243,7 @@ export const LESSONS = [
   },
   {
     id: 'analitica',
-    match: /totales|latitud de llegada|longitud|diferencia de longitud|directos/i,
+    match: /totales|latitud de llegada|longitud|diferencia de longitud|directos|apartamiento|sumo la tabla|diferencia de latitud/i,
     intro: ['Estima analítica: aquí no hay carta, todo es cálculo.'],
     tip: 'Diferencia de latitud igual a distancia por coseno del rumbo; apartamiento igual a distancia por seno. Y para pasar el apartamiento a longitud, divide entre el coseno de la latitud media.',
     trap: 'El apartamiento no es la diferencia de longitud. Si olvidas dividir entre el coseno de la latitud media, te quedas corto.',

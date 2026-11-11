@@ -26,6 +26,8 @@ const coma = (x, dec = 2) => x.toFixed(dec).replace('.', ',');
 /** Con signo tipográfico: +12,3 / −4,5. */
 const sg = (x, dec = 1) => `${x < 0 ? '−' : '+'}${coma(Math.abs(x), dec)}`;
 /** Duración en minutos → "4h 30m". */
+/** Sentido de una diferencia con signo: «  → N»; nada si es cero. */
+const hacia = (v, pos, neg) => (Math.abs(v) < 0.05 ? '' : `  → ${v < 0 ? neg : pos}`);
 const hm = (m) => { const r = Math.round(Math.abs(m)); return `${Math.floor(r / 60)}h ${String(r % 60).padStart(2, '0')}m`; };
 
 export function createKit(chart, { error = null } = {}) {
@@ -33,7 +35,9 @@ export function createKit(chart, { error = null } = {}) {
   const items = [];
   const focus = [];
   let n = 0;
-  const step = (title, text, pide) => { steps.push(pide ? { title, text, pide } : { title, text }); n = steps.length; };
+  // `extra` (modo guiado, src/ui/guiado.js): { traigo: string[] (datos de pasos anteriores que usa este), plantea: string
+  // (la fórmula, que se enseña antes de contestar), lineas: string[] (la cuenta, línea a línea), tabla: { cab, filas } }.
+  const step = (title, text, pide, extra) => { steps.push({ title, text, ...(pide ? { pide } : {}), ...(extra ?? {}) }); n = steps.length; };
   /** ¿Se resuelve con este error típico? (`id` = variante exacta o, sin «:», cualquier variante de ese tipo) */
   const E = (id) => error != null && (error === id || (!id.includes(':') && error.split(':')[0] === id));
   /** Lo que pide el paso (modo guiado). */
@@ -409,26 +413,56 @@ export function createKit(chart, { error = null } = {}) {
     /** Estima por varios tramos {rumbo, millas, nombre?} sumando Δl y apartamiento (sin carta si se sale). */
     tramos(from, lista, label = 'Situación de estima') {
       let dl = 0; let ap = 0;
+      const min = (v, lab) => ({ kind: 'minutos', value: v, label: lab });
+      const lt = (p) => fmtPos(p).split('  ')[0];
+      const lg = (p) => fmtPos(p).split('  ')[1];
       const filas = lista.map((t) => {
         const r = t.rumbo * Math.PI / 180;
         const [a, b] = E('seno-coseno') ? [t.millas * Math.sin(r), t.millas * Math.cos(r)] : [t.millas * Math.cos(r), t.millas * Math.sin(r)];
         dl += a; ap += b;
-        return `${t.nombre ?? fmtBearing(t.rumbo)} ${fmtMiles(t.millas, 1)}: Δl ${sg(a)}′, A ${sg(b)}′`;
+        return { nombre: t.nombre ?? fmtBearing(t.rumbo), rumbo: t.rumbo, millas: t.millas, dl: a, ap: b, corriente: /corriente/i.test(t.nombre ?? '') };
       });
-      step('Tramos', `Descomponemos cada tramo en diferencia de latitud (+N) y apartamiento (+E): ${filas.join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`);
+      // Un paso por tramo (la corriente es un tramo más): es la tabla que se hace en el examen, fila a fila.
+      filas.forEach((f, i) => {
+        const R = fmtBearing(f.rumbo); const d = coma(f.millas, 1);
+        step(`${f.corriente ? 'La corriente' : `Tramo ${i + 1}`}: Δl y apartamiento`,
+          `${f.nombre}, ${fmtMiles(f.millas, 1)}: Δl = d · cos R = ${d} × cos ${R} = ${sg(f.dl)}′; A = d · sen R = ${d} × sen ${R} = ${sg(f.ap)}′.`,
+          pide('loxodromica', f.corriente ? '¿Cuánto nos mueve la corriente en latitud (Δl) y en apartamiento (A)?' : `¿Cuánto avanzamos en latitud (Δl) y en apartamiento (A) en el tramo ${i + 1}?`, [min(f.dl, 'Δl (N +, S −)'), min(f.ap, 'A (E +, W −)')]),
+          { traigo: [`${f.corriente ? 'Rc' : 'Rv'} = ${R}${f.corriente ? ` (${f.nombre.replace(/^corriente\s*/i, '')})` : ''}`, `d = ${d} millas`],
+            plantea: `Δl = d · cos R   ·   A = d · sen R${f.corriente ? '   (la corriente es un tramo más: su rumbo y lo que nos arrastra en todo el tiempo)' : ''}`,
+            lineas: [`Δl = ${d} × cos ${R} = ${sg(f.dl)}′${hacia(f.dl, 'N', 'S')}`, `A = ${d} × sen ${R} = ${sg(f.ap)}′${hacia(f.ap, 'E', 'W')}`] });
+      });
+      const tabla = { cab: ['Tramo', 'R', 'd', 'Δl', 'A'], filas: filas.map((f, i) => [f.corriente ? 'Corr.' : String(i + 1), fmtBearing(f.rumbo), coma(f.millas, 1), sg(f.dl), sg(f.ap)]) };
+      // Con un solo tramo no hay nada que sumar.
+      if (filas.length > 1) step('Sumo la tabla', `Sumamos las columnas con su signo (N y E +, S y W −): ${filas.map((f) => `${f.nombre} ${fmtMiles(f.millas, 1)}: Δl ${sg(f.dl)}′, A ${sg(f.ap)}′`).join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`,
+        pide('loxodromica', '¿Cuánto suman la Δl y el apartamiento?', [min(dl, 'Δl total'), min(ap, 'A total')]),
+        { tabla, plantea: 'Suma cada columna con su signo: N y E suman, S y W restan.',
+          lineas: [`Δl total = ${filas.map((f) => sg(f.dl)).join(' ')} = ${sg(dl)}′${hacia(dl, 'N', 'S')}`, `A total = ${filas.map((f) => sg(f.ap)).join(' ')} = ${sg(ap)}′${hacia(ap, 'E', 'W')}`] });
       const lat = from.lat + dl / 60;
       const lm = E('lm-salida') ? from.lat : (from.lat + lat) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
       const dL = E('sin-cos-lm') ? ap : E('cos-lm-multiplica') ? ap * cos : ap / cos;
       let p = { lat, lon: from.lon + (E('signo-dL') ? -dL : dL) / 60 };
-      step('Latitud de llegada', `l = ${fmtPos(from).split('  ')[0]} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${fmtPos(p).split('  ')[0]}.`, pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]));
-      step('Diferencia de longitud', `Latitud media ${coma(Math.abs(lm), 1)}°: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${sg(dL)}′.`);
+      step('Latitud de llegada', `l = ${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${lt(p)}.`, pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]),
+        { traigo: [`l salida = ${lt(from)}`, `Δl total = ${sg(dl)}′`], plantea: 'l llegada = l salida + Δl   (los minutos de Δl son minutos de latitud)',
+          lineas: [`${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′`, `l llegada = ${lt(p)}`] });
+      step('Del apartamiento a la diferencia de longitud', `Latitud media ${coma(Math.abs(lm), 1)}°: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(cos, 3)} = ${sg(dL)}′.`,
+        pide('loxodromica', '¿Cuánto vale la diferencia de longitud (ΔL)?', [min(dL, 'ΔL (E +, W −)')]),
+        { traigo: [`A total = ${sg(ap)}′`, `l salida = ${lt(from)}`, `l llegada = ${lt(p)}`], plantea: 'lm = (l salida + l llegada) / 2   ·   ΔL = A / cos lm   (el apartamiento son millas; ΔL, minutos de longitud)',
+          lineas: [`lm = ${coma(Math.abs(lm), 1)}°`, `cos lm = ${coma(cos, 3)}`, `ΔL = ${sg(ap)} / ${coma(cos, 3)} = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
+      const bruta = p.lon;
+      let cruce = '';
+      const lineasL = [`${lg(from)} ${(bruta - from.lon) * (from.lon < 0 ? -1 : 1) < 0 ? '−' : '+'} ${coma(Math.abs(dL), 1)}′`];
       if (Math.abs(p.lon) > 180) {
         const a = Math.abs(p.lon);
         p = { lat: p.lat, lon: norm180(p.lon) };
-        step('Longitud de llegada', `Sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${fmtPos(p).split('  ')[1]}.`);
-      }
-      step(label, `${fmtPos(p)}.`, pide('loxodromica', `¿Cuál es la ${label.toLowerCase()}?`, posCampos(p, false)));
+        cruce = ` La longitud sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${lg(p)}.`;
+        lineasL.push(`= ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}  → ¡pasa de 180°!`, `360° − ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ = ${lg(p)}`);
+      } else lineasL.push(`L llegada = ${lg(p)}`);
+      step(label, `${fmtPos(p)}.${cruce}`, pide('loxodromica', `¿Cuál es la ${label.toLowerCase()}?`, posCampos(p, false)),
+        { traigo: [`l llegada = ${lt(p)}`, `L salida = ${lg(from)}`, `ΔL = ${sg(dL)}′`],
+          plantea: 'L llegada = L salida + ΔL: hacia el E, la longitud E crece y la W disminuye. Si pasa de 180°, resta de 360° y cambia E por W.',
+          lineas: [...lineasL, `${label} = ${fmtPos(p)}`] });
       if (dentro(from) && dentro(p)) items.push({ t: 'pos', at: p, label, style: 'estima', step: n });
       return p;
     },
@@ -487,10 +521,21 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Rumbo directo y distancia entre dos situaciones por latitud media (ΔL por el camino corto, aunque se cruce el meridiano 180°). */
     rumboDirecto(a, b) {
+      const min = (v, lab) => ({ kind: 'minutos', value: v, label: lab });
+      const lt = (p) => fmtPos(p).split('  ')[0];
+      const lg = (p) => fmtPos(p).split('  ')[1];
       const dl = (b.lat - a.lat) * 60;
       const dL = norm180(b.lon - a.lon) * 60 * (E('signo-dL') ? -1 : 1);
       const cruza = Math.abs((b.lon - a.lon) * 60 - dL) > 1e-6;
-      step('Diferencia de latitud y de longitud', `De ${fmtPos(a)} a ${fmtPos(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}; ΔL = ${coma(Math.abs(dL), 1)}′ ${dL < 0 ? 'W' : 'E'}${cruza ? ' (por el camino corto, cruzando el meridiano 180°)' : ''}.`);
+      step('Diferencia de latitud', `De ${lt(a)} a ${lt(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}.`,
+        pide('loxodromica', '¿Cuánto vale la diferencia de latitud (Δl)?', [min(dl, 'Δl (N +, S −)')]),
+        { traigo: [`l salida = ${lt(a)}`, `l llegada = ${lt(b)}`], plantea: 'Δl = l llegada − l salida, en minutos. Si vas hacia el N es +; hacia el S, −. Con distinto hemisferio, se suman.',
+          lineas: [`${lt(b)} − ${lt(a)}`, `Δl = ${sg(dl)}′${hacia(dl, 'N', 'S')}`] });
+      step('Diferencia de longitud', `De ${lg(a)} a ${lg(b)}: ΔL = ${coma(Math.abs(dL), 1)}′ ${dL < 0 ? 'W' : 'E'}${cruza ? ' (por el camino corto, cruzando el meridiano 180°)' : ''}.`,
+        pide('loxodromica', '¿Cuánto vale la diferencia de longitud (ΔL)?', [min(dL, 'ΔL (E +, W −)')]),
+        { traigo: [`L salida = ${lg(a)}`, `L llegada = ${lg(b)}`],
+          plantea: 'ΔL = L llegada − L salida, en minutos, por el camino corto. Si una es E y otra W junto al 180°, suma lo que le falta a cada una hasta 180°.',
+          lineas: cruza ? [`Cruzo el 180°: (180° − ${lg(a).replace(/ [EW]$/, '')}) + (180° − ${lg(b).replace(/ [EW]$/, '')})`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] : [`${lg(b)} − ${lg(a)}`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
       const lm = E('lm-salida') ? a.lat : (a.lat + b.lat) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
       const A = E('sin-cos-lm') ? dL : E('cos-lm-multiplica') ? dL / cos : dL * cos;
@@ -499,8 +544,17 @@ export function createKit(chart, { error = null } = {}) {
       // Seno y coseno cambiados: tg R = Δl / A (el ángulo complementario, en el mismo cuadrante).
       if (E('seno-coseno')) { const c = 90 - ang; r = dl >= 0 ? (A >= 0 ? c : 360 - c) : (A >= 0 ? 180 - c : 180 + c); }
       const d = Math.hypot(A, dl);
-      step('Rumbo y distancia', `Latitud media ${coma(Math.abs(lm), 1)}°: apartamiento A = ΔL · cos lm = ${coma(Math.abs(dL), 1)}′ × ${coma(Math.cos(lm * Math.PI / 180), 3)} = ${coma(Math.abs(A), 1)}′ ${A < 0 ? 'W' : 'E'}. tg R = A / Δl = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} → R = ${dl < 0 ? 'S' : 'N'} ${coma(ang, 1)}° ${A < 0 ? 'W' : 'E'} = ${fmtBearing(r, 1)}. Distancia = √(Δl² + A²) = ${fmtMiles(d)}.`,
-        pide('loxodromica', '¿Cuáles son el rumbo directo y la distancia?', [{ kind: 'bearing', value: r, label: 'Rumbo' }, { kind: 'distance', value: d, label: 'Distancia' }]));
+      step('Apartamiento', `Latitud media ${coma(Math.abs(lm), 1)}°: A = ΔL · cos lm = ${coma(Math.abs(dL), 1)}′ × ${coma(cos, 3)} = ${coma(Math.abs(A), 1)}′ ${A < 0 ? 'W' : 'E'}.`,
+        pide('loxodromica', '¿Cuánto vale el apartamiento (A)?', [min(A, 'A (E +, W −)')]),
+        { traigo: [`ΔL = ${sg(dL)}′`, `l salida = ${lt(a)}`, `l llegada = ${lt(b)}`], plantea: 'lm = (l salida + l llegada) / 2   ·   A = ΔL · cos lm   (aquí se multiplica: de minutos de longitud a millas)',
+          lineas: [`lm = ${coma(Math.abs(lm), 1)}°`, `cos lm = ${coma(cos, 3)}`, `A = ${coma(Math.abs(dL), 1)} × ${coma(cos, 3)} = ${sg(A)}′${hacia(A, 'E', 'W')}`] });
+      const cuad = `${dl < 0 ? 'S' : 'N'} ${coma(ang, 1)}° ${A < 0 ? 'W' : 'E'}`;
+      const aCircular = dl >= 0 ? (A >= 0 ? `${cuad} = ${fmtBearing(r, 1)}` : `360° − ${coma(ang, 1)}° = ${fmtBearing(r, 1)}`) : (A >= 0 ? `180° − ${coma(ang, 1)}° = ${fmtBearing(r, 1)}` : `180° + ${coma(ang, 1)}° = ${fmtBearing(r, 1)}`);
+      step('Rumbo y distancia', `tg R = A / Δl = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} → R = ${cuad} = ${fmtBearing(r, 1)}. Distancia = √(Δl² + A²) = ${fmtMiles(d)}.`,
+        pide('loxodromica', '¿Cuáles son el rumbo directo y la distancia?', [{ kind: 'bearing', value: r, label: 'Rumbo' }, { kind: 'distance', value: d, label: 'Distancia' }]),
+        { traigo: [`Δl = ${sg(dl)}′  (${dl < 0 ? 'S' : 'N'})`, `A = ${sg(A)}′  (${A < 0 ? 'W' : 'E'})`],
+          plantea: 'tg R = A / Δl (sin signos) da el ángulo del cuadrante; pásalo a circular: NE tal cual, SE 180° − R, SW 180° + R, NW 360° − R.   ·   D = √(Δl² + A²)',
+          lineas: [`tg R = ${coma(Math.abs(A), 1)} / ${coma(Math.abs(dl), 1)} = ${coma(Math.abs(A) / Math.abs(dl), 3)}`, `R = ${cuad}`, `Rumbo: ${aCircular}`, `D = √(${coma(Math.abs(dl), 1)}² + ${coma(Math.abs(A), 1)}²) = ${fmtMiles(d)}`] });
       return { rumbo: r, dist: d };
     },
 

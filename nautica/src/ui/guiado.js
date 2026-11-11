@@ -70,6 +70,20 @@ export function guiadoPanel(o) {
     return box;
   };
 
+  // Resolución «de hoja de examen» (estima analítica y las que declaren su cuenta en el kit): cada paso dice qué trae de
+  // los anteriores, qué fórmula plantea y, una vez contestado, la cuenta línea a línea. Sin la voz del profe: sus
+  // consejos son de carta y aquí no hay carta.
+  const deHoja = pasos.some((p) => p.lineas);
+  const traigoEl = (p) => (p.traigo?.length ? h('div.guiado-traigo', h('small', 'Traigo de pasos anteriores'), p.traigo.map((x) => h('div', x))) : null);
+  const tablaEl = (p, conTotales) => (p.tabla ? h('div.guiado-tabla-caja', h('table.guiado-tabla',
+    h('thead', h('tr', p.tabla.cab.map((c) => h('th', { scope: 'col' }, c)))),
+    h('tbody', p.tabla.filas.map((f) => h('tr', f.map((c, i) => (i ? h('td', c) : h('th', { scope: 'row' }, c))))),
+      conTotales ? h('tr.total', h('th', { scope: 'row' }, 'Suma'), h('td', ''), h('td', ''), h('td', valorCampo(p, 0)), h('td', valorCampo(p, 1))) : null))) : null);
+  const valorCampo = (p, j) => { const c = p.pide?.campos?.[j]; return c ? quantity(c.kind).format(c.value) : ''; };
+  // En negrita, los resultados: la última línea o, si el paso pide dos diferencias (Δl y A), las dos.
+  const cuentaEl = (p) => { const n = p.pide?.campos?.length === 2 && p.pide.campos.every((c) => c.kind === 'minutos') && p.lineas.length === 2 ? 2 : 1;
+    return h('div.guiado-cuenta', p.lineas.map((l, i) => h('div', { class: i >= p.lineas.length - n ? 'res' : '' }, l))); };
+
   /** Un paso ya resuelto (o una nota): título, resultado y explicación. */
   function pasoHecho(p, r) {
     const cab = r == null ? conIcono('libro', p.title)
@@ -80,7 +94,7 @@ export function guiadoPanel(o) {
       h('h3.guiado-tit', cab),
       r && r.resultado !== ESTADO.OK && r.resultado !== 'dimelo' ? h('p.guiado-era', `Era ${valorTexto(p.pide)}${r.tuyo ? ` (escribiste ${r.tuyo})` : ''}.`) : null,
       r?.resultado === ESTADO.OK ? h('p.guiado-era', valorTexto(p.pide)) : null,
-      explicacion(p.i));
+      p.lineas ? [traigoEl(p), tablaEl(p, true), cuentaEl(p)] : deHoja ? h('p.guiado-nota', p.text) : explicacion(p.i));
   }
 
   /** El paso que se pregunta ahora. */
@@ -105,6 +119,8 @@ export function guiadoPanel(o) {
     } }, conIcono('lugar', 'Tomar la situación de la carta')) : null;
     const titulo = h('h3.guiado-tit', { tabindex: '-1' }, `${p.title}`);
     const form = h('form.answers.guiado-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
+      traigoEl(p), tablaEl(p, false),
+      p.plantea ? h('p.guiado-plantea', h('small', 'Planteo'), p.plantea) : null,
       h('p.guiado-pregunta', p.pide.pregunta),
       entradas.map(({ c, input, fb }) => h('label.field', { for: input.id }, h('span.lbl', `${c.label}${c.medido ? ' (en la carta)' : ''}`), input, fb)),
       tomar, aviso,
@@ -207,7 +223,7 @@ export function guiadoPanel(o) {
     h('div.guiado-cab',
       h('h2', { id: `${uid}-t` }, conIcono('lapiz', 'Resolver paso a paso')),
       o.onCerrar ? h('button.small.secondary', { type: 'button', onclick: o.onCerrar }, conIcono('salir', 'Cerrar')) : null),
-    h('p.small.muted', 'Te pido cada paso y te lo corrijo al momento. «Dímelo» te da el valor sin contar como fallo. Escribe los rumbos como 045, la Ct como 3 W o −3, las coordenadas como 36 05,2 N y las horas como 14:35.'),
+    h('p.small.muted', 'Te pido cada paso y te lo corrijo al momento. «Dímelo» te da el valor sin contar como fallo. Escribe los rumbos como 045, la Ct como 3 W o −3, las coordenadas como 36 05,2 N, las horas como 14:35 y las diferencias en minutos con su signo o su letra (−68,9 o 68,9 W).'),
     progreso, lista, final);
   o.dibujar?.(0);
   avanzar(false);

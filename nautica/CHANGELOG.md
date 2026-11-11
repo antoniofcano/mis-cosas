@@ -15,7 +15,13 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+### Mejoras
+
+- **Paso a paso de la estima analítica (loxodrómica), como en la hoja del examen:** ahora te pide cada fila de la tabla
+  (Δl y apartamiento de cada tramo, con la corriente como un tramo más), la suma, la latitud, la diferencia de longitud
+  y la situación; y en el rumbo directo, Δl, ΔL, apartamiento y rumbo. Cada paso enseña lo que traes de los anteriores y
+  la fórmula que se plantea, y al contestar, la cuenta línea a línea (también el cruce del meridiano 180°). Antes daba
+  hecha la tabla y solo preguntaba la latitud y el resultado.
 
 ## 10 de noviembre de 2026, quinta publicación · versión `7f43f6e77be8`
 

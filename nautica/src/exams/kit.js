@@ -436,7 +436,7 @@ export function createKit(chart, { error = null } = {}) {
       // Con un solo tramo no hay nada que sumar.
       if (filas.length > 1) step('Sumo la tabla', `Sumamos las columnas con su signo (N y E +, S y W −): ${filas.map((f) => `${f.nombre} ${fmtMiles(f.millas, 1)}: Δl ${sg(f.dl)}′, A ${sg(f.ap)}′`).join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`,
         pide('loxodromica', '¿Cuánto suman la Δl y el apartamiento?', [min(dl, 'Δl total'), min(ap, 'A total')]),
-        { tabla, croquis: { tipo: 'tramos', legs: filas.map((f) => ({ dl: f.dl, ap: f.ap, corriente: f.corriente })) }, plantea: 'Suma cada columna con su signo: N y E suman, S y W restan.',
+        { tabla: { ...tabla, suma: true }, croquis: { tipo: 'tramos', legs: filas.map((f) => ({ dl: f.dl, ap: f.ap, corriente: f.corriente })) }, plantea: 'Suma cada columna con su signo: N y E suman, S y W restan.',
           lineas: [`Δl total = ${filas.map((f) => sg(f.dl)).join(' ')} = ${sg(dl)}′${hacia(dl, 'N', 'S')}`, `A total = ${filas.map((f) => sg(f.ap)).join(' ')} = ${sg(ap)}′${hacia(ap, 'E', 'W')}`] });
       const lat = from.lat + dl / 60;
       const lm = E('lm-salida') ? from.lat : (from.lat + lat) / 2;
@@ -569,8 +569,12 @@ export function createKit(chart, { error = null } = {}) {
       const nom = (x) => (x === bm ? 'Bajamar' : 'Pleamar');
       step('Duración y amplitud', `Tramo entre la ${a === bm ? 'bajamar' : 'pleamar'} de las ${a.hora} UT (${coma(a.h)} m) y la ${b === bm ? 'bajamar' : 'pleamar'} de las ${b.hora} UT (${coma(b.h)} m): D = ${hm(D)}, A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m.`,
         pide('marea', '¿Cuánto valen la duración (D) y la amplitud (A) de la marea?', [{ kind: 'duration', value: D / 60, label: 'Duración D' }, { kind: 'meters', value: A, label: 'Amplitud A' }]),
-        { traigo: [`${nom(a)}: ${a.hora} UT, ${coma(a.h)} m`, `${nom(b)}: ${b.hora} UT, ${coma(b.h)} m`],
-          plantea: 'D = tiempo entre los dos extremos   ·   A = altura de la pleamar − altura de la bajamar',
+        // La tabla del Anuario, como la da el enunciado: elegir el tramo es parte del problema. Los dos extremos elegidos
+        // (y el croquis) solo se enseñan después de contestar (`tras`).
+        { tabla: { cab: ['Día', 'Hora UT', 'Altura (m)'], filas: tabla.map((x) => [x.dia != null ? String(x.dia).padStart(2, '0') : '', x.hora, coma(x.altura_m)]), marca: [ext.indexOf(a), ext.indexOf(b)], titulo: 'Tabla de mareas del enunciado (horas en UT)' },
+          tras: ['traigo', 'croquis'],
+          traigo: [`${nom(a)}: ${a.hora} UT, ${coma(a.h)} m`, `${nom(b)}: ${b.hora} UT, ${coma(b.h)} m`],
+          plantea: 'Elige en la tabla la pleamar y la bajamar entre las que cae tu hora (o las que nombra el enunciado): la altura mayor es la pleamar.   ·   D = tiempo entre las dos   ·   A = altura de la pleamar − altura de la bajamar',
           lineas: [`D = ${b.hora} − ${a.hora} = ${hm(D)}`, `A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m`],
           croquis: { tipo: 'marea', a: { hora: a.hora, h: a.h }, b: { hora: b.hora, h: b.h } } });
       return { a, b, bm, pm, D, A };

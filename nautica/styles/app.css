@@ -2626,3 +2626,12 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 .guiado-croquis .cq-punto { fill: var(--text); }
 .guiado-croquis .cq-marca { fill: var(--close); }
 .guiado-croquis text.cq-marca-tx { fill: var(--close); font-weight: 700; }
+/* El croquis se dibuja solo; con «reducir movimiento» aparece ya hecho */
+.guiado-croquis { cursor: pointer; }
+.guiado-croquis .cq-traza { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cq-traza .7s ease forwards; }
+.guiado-croquis .cq-sale { opacity: 0; animation: cq-sale .3s ease forwards; }
+@keyframes cq-traza { to { stroke-dashoffset: 0; } }
+@keyframes cq-sale { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .guiado-croquis .cq-traza { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; } .guiado-croquis .cq-sale { animation: none; opacity: 1; } }
+.guiado-tabla tr.marcada td, .guiado-tabla tr.marcada th { font-weight: 700; background: var(--accent-2); }
+.guiado-tabla-tit { margin: 0 0 .2rem; }

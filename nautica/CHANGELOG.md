@@ -25,7 +25,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 - **Paso a paso de las mareas, igual:** duración y amplitud, hora UT, intervalo desde la bajamar, corrección de altura,
   altura y sonda (o, al revés, la hora para tener una sonda), cada uno con lo que traes, la fórmula y la cuenta.
 - **Un croquis en los pasos que lo piden:** la curva de la marea con tu hora marcada y el dibujo de los tramos de la
-  estima, con la corriente a trazos.
+  estima, con la corriente a trazos. Se dibuja solo, trazo a trazo, y se repite al tocarlo.
+- **La tabla de mareas del enunciado, a la vista en su paso:** eliges tú la pleamar y la bajamar, como en el examen; al
+  contestar se marcan las dos filas que tocaban.
 
 ## 10 de noviembre de 2026, quinta publicación · versión `7f43f6e77be8`
 

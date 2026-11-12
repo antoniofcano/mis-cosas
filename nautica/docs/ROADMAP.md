@@ -168,6 +168,7 @@ _Última revisión: 10 de noviembre de 2026._
 | H-45 | Estilos de pantalla del ensayo en papel y de la velocidad en carta, que una llave sin cerrar dejaba solo para imprimir desde #140; prueba que vigila las llaves | Noviembre 2026 |
 | H-46 | Paso a paso «de hoja de examen» en la estima analítica y en las mareas: un paso por tramo y por cuenta intermedia, tabla, croquis, lo que se trae y lo que se plantea (kit: `traigo`, `plantea`, `lineas`, `tabla`, `croquis`; magnitud `minutos`) | Noviembre 2026 |
 | H-47 | `RAMAS.md` con la dirección completa del repositorio en cada comando (no depende de la carpeta) y las ramas nuevas: 186, 7 a conservar | Noviembre 2026 |
+| H-48 | Limpieza de ramas remotas hecha: 179 borradas, quedan las 7 a conservar; `RAMAS.md` reducido a las que se conservan y a cómo borrar las nuevas | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

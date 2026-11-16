@@ -119,11 +119,11 @@ en la grande, rosa y cartela «DERROTA · PER · 5 faros»), la derrota hecha en
 trazos y la que falta punteada; los faros, encendido con doble filete magenta y la lámpara con luz, en camino a trazos,
 apagado con filete gris (se distinguen por la forma, no solo por el color). Si otro faro queda justo debajo, el nombre va
 al lado (`ladoNombre`). La carta de aproximación de la Travesía (el zoom a un faro) usa el mismo papel con boyas en vez
-de faros, en filas en zigzag, cada una con su nombre y su cuenta debajo, sin solapes a 360 px. Las tarjetas son cartelas de papel con doble filete, los rótulos van en versalitas magenta, los
-títulos en la serifa de la app (Bitter), las cifras en monoespaciada y los botones son de tinta. Dentro de `.entrada` y
-`.travesia-pantalla` los colores de la app se reasignan a los `--lc-*` (bloque «Hoy y la Travesía en estilo C» al final
-de `styles/laminas.css`), así que los avisos, el podcast, la copia y la instalación siguen la misma paleta en claro y en
-oscuro. Tests: `tests/hoy-travesia-c.test.js`.
+de faros, en filas en zigzag, cada una con su nombre y su cuenta debajo, sin solapes a 360 px. Desde R-67 y R-68 (maqueta «Elegida»): las tarjetas son de papel con un filete fino (la de «Siguiente parada», de acento y más gruesa), los rótulos van en versalitas de acento, los
+títulos en la condensada de la app (Barlow Condensed), las cifras en monoespaciada (IBM Plex Mono) y el botón principal, del color de botón del tema. Dentro de `.entrada`,
+`.travesia-pantalla` y `.semana-pantalla` los `--lc-*` de la carta se asignan a los colores de la app (bloque «Hoy y la Travesía en estilo C» al final
+de `styles/laminas.css`), así que la carta, los avisos, el podcast, la copia y la instalación siguen la misma paleta en claro y en
+oscuro. Orden en Hoy: derrota, «Siguiente parada», cómo vas, cuaderno de fallos, foco, convocatoria, y después lo secundario. Tests: `tests/hoy-travesia-c.test.js`.
 
 Botones y enlaces reales de 44 px o más; la carta es un único enlace con texto alternativo útil (los faros, dentro, no son
 interactivos); orden de tabulación: cabecera, carta, «Ver mi derrota», fase, Seguir, pasos, estado, secundario. Claro y

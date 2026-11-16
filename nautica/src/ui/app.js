@@ -60,6 +60,7 @@ import { estrategiaView } from './views/estrategia.js';
 import { diaExamenView } from './views/dia-examen.js';
 import { visperaView } from './views/vispera.js';
 import { ensayoView } from './views/ensayo.js';
+import { oficialView } from './views/oficial.js';
 import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
 import { iniciarRecordatorio } from './recordatorio.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
@@ -91,6 +92,7 @@ const TIT_ROUTES = {
   'dia-examen': diaExamenView, // #/<tit>/dia-examen: la lista del día del examen (casillas, por tribunal); nunca enlazada desde un examen en marcha
   vispera: visperaView, // #/<tit>/vispera: repaso exprés de la víspera (15 min, las trampas de los temas con límite); paso de la semana antes
   ensayo: ensayoView, // #/<tit>/ensayo[/cuadernillo]: ensayo general en papel (preparación y cuadernillo imprimible); en marcha, #/<tit>/test/ensayo
+  oficial: oficialView, // #/<tit>/oficial[/<convocatoria>]: tu examen oficial, apuntado con tu hoja y corregido con la plantilla (R-60)
   carta: cartaView,
   'carta-pasos': cartaPasosView, // #/<tit>/carta-pasos[/<tipo>]: ejercicios de carta resueltos paso a paso (nunca desde un examen)
   // #/<tit>/examenes[/<lista>]; con un fichero (.json), dirección antigua de un banco
@@ -141,7 +143,7 @@ export function pestanaDe(parts) {
     if (['temario', 'curso', 'teoria', 'idea'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
     if (b === 'dia-examen' || b === 'vispera') return 'examen'; // la lista del día del examen y el repaso exprés de la víspera
-    if (b === 'examenes' || b === 'test' || b === 'ensayo' || b === 'estrategia') return 'examen';
+    if (b === 'examenes' || b === 'test' || b === 'ensayo' || b === 'estrategia' || b === 'oficial') return 'examen';
     return 'mas'; // mas, biblioteca, laminas, carta, podcast, tarjetas, cuentas, plan, mapas, guia
   }
   if (a === 'ej' || a === 'examenes' || a === 'q') return 'temario';
@@ -223,6 +225,9 @@ async function main() {
   fijarReservaAlumno({
     leer: (eje, tit) => progress.settings()[`reserva_${eje}_${tit}`] ?? null,
     guardar: (eje, tit, foto) => progress.setSetting(`reserva_${eje}_${tit}`, foto),
+    // Convocatorias que el alumno hizo de verdad y apuntó (#/<tit>/oficial): salen de su examen final. Ajuste aparte
+    // de la foto, porque en la foto gana el primer valor y no se puede cambiar.
+    hechas: (eje, tit) => progress.settings()[`hechas_${eje}_${tit}`] ?? [],
   });
   // Configuración del profesor que el alumno ha importado (Ajustes): se aplica al cargar el curso y las reglas.
   fijarConfigProfe(() => progress.settings().configProfe ?? null);

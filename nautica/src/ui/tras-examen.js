@@ -111,6 +111,7 @@ export function tarjetaResultado(progress, tit, fecha, fue) {
     } },
     h('h2', { id: `res-${tit}-t` }, '¿Cuántas fallaste en cada materia?'),
     h('p.muted.small', 'Con la plantilla de respuestas, cuando salga. Es voluntario: sirve para ver si la app acertó contigo y para afinarla.'),
+    h('p.small', 'Si la convocatoria ya está en la app, ', h('a', { href: tlink(tit, ['oficial']) }, 'pasa tu hoja'), ': Patrón la corrige con la plantilla, rellena esto solo y entrena tus fallos.'),
     h('div.res-materias', sels.map(({ b, s }) => h('div.res-materia', h('label', { for: s.id }, b.titulo), s))),
     radios,
     h('div.semana-fue-botones', h('button', { type: 'submit' }, 'Guardar'), previo ? h('button.linklike', { type: 'button', onclick: pintar }, 'Cancelar') : null));

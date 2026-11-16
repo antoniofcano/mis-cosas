@@ -411,6 +411,11 @@ export function examenesView({ ctx, progress, tit }) {
             h('span.mas-fila-tx', h('strong#ensayo-tarjeta-t', 'Ensayo general en papel'), h('span.muted.small', `Con tu carta, transportador, compás y reloj. ${ce.hechos} de ${ce.recomendados} recomendados.`)),
             h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
       })(),
+      // Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y entrenar sus fallos.
+      h('section.ensayo-tarjeta', { 'aria-labelledby': 'oficial-tarjeta-t' },
+        h('a.mas-fila', { href: tlink(T0.id, ['oficial']) }, h('span.mas-fila-ico', icono('lista')),
+          h('span.mas-fila-tx', h('strong#oficial-tarjeta-t', 'Tu examen oficial'), h('span.muted.small', 'Ya te examinaste: pasa tu hoja, Patrón la corrige con la plantilla y entrena tus fallos.')),
+          h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'))),
       (() => {
         const n = st.repaso.hoy; // del motor (con conceptos, una por idea)
         return h('section.repaso-examen',

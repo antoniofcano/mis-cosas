@@ -190,5 +190,5 @@ test('el examen en marcha no enlaza la estrategia (solo la pantalla de inicio, a
 test('la ruta está registrada y cuenta como pestaña Examen', () => {
   const app = leer('src/ui/app.js');
   assert.match(app, /estrategia: estrategiaView/);
-  assert.match(app, /b === 'estrategia'\) return 'examen'/);
+  assert.match(app, /b === 'estrategia'( \|\| b === '[a-z-]+')*\) return 'examen'/);
 });

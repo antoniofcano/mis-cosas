@@ -33,7 +33,7 @@ _Última revisión: 10 de noviembre de 2026._
 
 | Área | Estado |
 | --- | --- |
-| Bancos y contenido | Andalucía 2016–2026, DGMM y Baleares por eje; conceptos etiquetados; 127 discrepancias documentadas |
+| Bancos y contenido | Andalucía 2016–2026, DGMM y Baleares por eje; conceptos etiquetados; 129 discrepancias documentadas |
 | Curso y ruta | PER y PY enlazados, ruta intercalada con dependencias, test de nivel, plan hasta el examen |
 | Estudio | «Estoy listo» con olvido y margen, repaso con fichas, hoja de corrección plegable, tarjetas de memoria |
 | Entrada | Hoy y Travesía en estilo C (derrota como carta náutica, faros, rangos, insignias) |
@@ -68,7 +68,7 @@ _Última revisión: 10 de noviembre de 2026._
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el audio del PER aún dice el ejemplo antiguo de la tangente (2,5 millas, 14,5°, 019°; el curso usa ya 2,6 millas y 15°), «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
 | ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se partió: las notificaciones (recordatorio diario) están hechas (H-18); la insignia y la pantalla de arranque pasan a R-18 |
 | R-18 | Pulido de PWA: insignia de la app y pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17) |
-| R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
+| R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena. Última: Andalucía 3.ª de 2026 (H-49); la reserva sigue siendo de las 5 más recientes |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
 | R-14 | Calibrar los umbrales de «estoy listo» con datos reales de uso | Después | Hoy son hipótesis razonadas, no medidas; la comparación predicción–resultado tras el examen (H-43) es la primera fuente, ver R-51 |
@@ -169,6 +169,8 @@ _Última revisión: 10 de noviembre de 2026._
 | H-46 | Paso a paso «de hoja de examen» en la estima analítica y en las mareas: un paso por tramo y por cuenta intermedia, tabla, croquis, lo que se trae y lo que se plantea (kit: `traigo`, `plantea`, `lineas`, `tabla`, `croquis`; magnitud `minutos`) | Noviembre 2026 |
 | H-47 | `RAMAS.md` con la dirección completa del repositorio en cada comando (no depende de la carpeta) y las ramas nuevas: 186, 7 a conservar | Noviembre 2026 |
 | H-48 | Limpieza de ramas remotas hecha: 179 borradas, quedan las 7 a conservar; `RAMAS.md` reducido a las que se conservan y a cómo borrar las nuevas | Noviembre 2026 |
+| H-49 | Andalucía, 3.ª convocatoria de 2026 (14 de noviembre): PER y PY en el banco y reservadas para el examen final (sale de la reserva la 1.ª de 2025); los dos cuadernillos del PY venían enlazados con el nombre del otro módulo: corrección en `config.json` (`documentos`) y aviso del adaptador por la portada | Noviembre 2026 |
+| H-50 | Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y que sus fallos entren en el repaso, en «Tus fallos por materia» y en el resultado del examen; la convocatoria hecha sale del examen final del alumno | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

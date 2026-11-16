@@ -23,8 +23,8 @@ const idsPodcast = () => [...new Set(readdirSync(new URL('../data/podcast/', imp
 test('los ejes publicados reservan algo para el examen final (Andalucía y DGMM por convocatorias, Baleares por preguntas)', () => {
   const modos = Object.fromEntries(PUBLICADOS.map((e) => [e, leerJSON(`data/ejes/${e}/eje.json`).reserva]));
   assert.equal(modos.andalucia.modo, 'examen');
-  assert.deepEqual(modos.andalucia.per, ['and-2025-c1', 'and-2025-c2', 'and-2025-c3', 'and-2026-c1', 'and-2026-c2']);
-  assert.deepEqual(modos.andalucia.py, ['and-py-2025-c1', 'and-py-2025-c2', 'and-py-2025-c3', 'and-py-2026-c1', 'and-py-2026-c2']);
+  assert.deepEqual(modos.andalucia.per, ['and-2025-c2', 'and-2025-c3', 'and-2026-c1', 'and-2026-c2', 'and-2026-c3']);
+  assert.deepEqual(modos.andalucia.py, ['and-py-2025-c2', 'and-py-2025-c3', 'and-py-2026-c1', 'and-py-2026-c2', 'and-py-2026-c3']);
   if (modos.dgmm) assert.equal(modos.dgmm.modo, 'examen');
   if (modos.baleares) assert.equal(modos.baleares.modo, 'pregunta');
   for (const [e, r] of Object.entries(modos)) for (const tit of ['per', 'py']) if (leerJSON(`data/ejes/${e}/eje.json`).examen[tit]) assert.ok(r[tit]?.length, `${e} ${tit} sin reserva`);
@@ -124,13 +124,13 @@ test('reparto de la reserva: en modo «examen» una pregunta repetida en una con
 test('examen final de un alumno antiguo de Andalucía: le toca una convocatoria reservada que no ha visto', async () => {
   const banco = await bancosNode().cargarBanco('andalucia', 'per');
   const E = TITULACIONES.per.estructura;
-  // Practicó 2025 (las tres convocatorias, casi enteras) antes de la reserva.
+  // Practicó 2025 (las dos convocatorias reservadas, casi enteras) antes de la reserva: le quedan las tres de 2026.
   const respuestas = {};
   for (const e of banco.reserva.examenes.filter((x) => x.key.startsWith('and-2025'))) for (const id of e.ids.slice(0, 30)) respuestas[id] = { choice: 'a', ok: true };
   const listo = { estado: 'listo', prob: 0.9, temasSinDatos: [] };
   const f = estadoFinal({ estructura: E, reserva: banco.reserva, pool: banco.final, respuestas, tests: [], listo });
   assert.equal(f.desbloqueado, true);
-  assert.equal(f.ineditas, 2);
+  assert.equal(f.ineditas, 3);
   assert.ok(f.siguiente.key.startsWith('and-2026'), f.siguiente.key);
   assert.equal(f.siguiente.yaVistas, 0);
   const t = buildFinal(E, { modo: 'examen', key: f.siguiente.key, examenes: banco.reserva.examenes, porId: banco.porId, pool: banco.final, respuestas, rng: createRng(1) });

@@ -265,6 +265,8 @@ const CIFRAS = {
   'and-py-2025-c3-n12': { t: T, pide: 'ra', ct: -12, salida: { corte: [['punta-gracia', 340], ['punta-paloma', 45]] }, destino: 'barbate-faro' },
   'and-py-2026-c1-n12': { t: T, pide: 'ra', ct: 0, salida: { de: 'punta-paloma', dv: 225, millas: 5 }, pasar: ['cabo-trafalgar', 5, 'estribor'] },
   'and-py-2026-c2-n12': { t: T, pide: 'ra', ct: -10.5, salida: pos(36, 5, 5, 20), pasar: ['punta-almina', 3, 'estribor'] },
+  'and-py-2026-c3-n11': { t: T, pide: 'ra', ct: -7, salida: { de: 'punta-europa', dv: 165, millas: 10 }, destino: 'algeciras-espigon' },
+  'and-py-2026-c3-n15': { t: T, pide: 'ra', ct: 11, salida: pos(35, 44, 6, 11), pasar: ['cabo-espartel', 4, 'estribor'] },
   // Abatimiento: situación al tener un faro por el través, hora a la que se avista un faro
   'and-py-2023-c3-n16': { t: T, pide: 'avistar', salida: { de: 'cabo-roche', dv: 225, millas: 6 }, alcance: ['punta-gracia', 9], hora: 3 },
   'and-py-2024-c1-n13': { t: T, pide: 'situacion', salida: pos(36, 15, 6, 15), traves: ['cabo-trafalgar', 'babor'] },
@@ -282,6 +284,7 @@ const CIFRAS = {
   'and-py-2025-c1-n17': { t: C, pide: 'situacion', salida: pos(36, 5, 6, 10), horas: 2.5 },
   'and-py-2025-c2-n16': { t: C, pide: 'situacion', ra: 119, ct: 11, salida: pos(36, 5, 6, 10), horas: 1.2 },
   'and-py-2026-c2-n14': { t: C, pide: 'situacion', salida: { corte: [['cabo-roche', 90], ['cabo-trafalgar', 119]] }, traves: ['cabo-trafalgar', 'babor'] },
+  'and-py-2026-c3-n12': { t: C, pide: 'situacion', salida: pos(35, 45, 6, 15), horas: 1.5 },
   'and-py-2023-c3-n15': { t: C, pide: 'distancia', salida: { lat: 'punta-paloma', lon: 'punta-gracia' }, horas: 1, a: 'punta-malabata' },
   'and-py-2024-c1-n16': { t: C, pide: 'demora', salida: { lat: 'isla-tarifa', lon: 'punta-paloma' }, horas: 1.5, a: 'cabo-trafalgar' },
   // Corriente desconocida: de la estima a la situación observada
@@ -294,6 +297,7 @@ const CIFRAS = {
   'and-py-2025-c1-n15': { t: C, pide: 'corriente', salida: pos(35, 44.2, 6, 4.7), horas: 1.5, observada: { lat: 'punta-malabata', lon: 'cabo-espartel' } },
   'and-py-2025-c3-n16': { t: C, pide: 'corriente', salida: pos(36, 17, 5, 15), horas: 2, observada: { lat: 'punta-europa', lon: 'punta-almina' } },
   'and-py-2026-c2-n16': { t: C, pide: 'corriente', salida: { de: 'punta-carnero', dv: 160, millas: 6 }, horas: 1.5, observada: { de: 'punta-almina', dv: 3, millas: 5.2 } },
+  'and-py-2026-c3-n14': { t: C, pide: 'corriente', salida: { de: 'cabo-roche', dv: 225, millas: 4 }, horas: 1.5, observada: { corte: [['cabo-roche', 359], ['cabo-trafalgar', 32]] } },
   // Corriente, problema inverso: rumbo a dar (y velocidad, hora de llegada o velocidad efectiva)
   'and-py-2020-c1-n16': { t: C, pide: 'ra', ct: -8, salida: pos(36, 0, 5, 15), destino: 'algeciras-espigon' },
   'and-py-2020-c1-n17': { t: C, pide: 'ra-vb', ct: 0, salida: { lat: 'punta-paloma', lon: 'punta-gracia' }, destino: 'tanger-espigon', horas: 3 },
@@ -317,6 +321,7 @@ const CIFRAS = {
   'and-py-2025-c3-n17': { t: C, pide: 'ra-vb', ct: 5, salida: pos(36, 0, 5, 20), destino: 'algeciras-espigon', horas: 2.5 },
   'and-py-2026-c1-n11': { t: C, pide: 'ra-hrb', ct: -12, salida: pos(36, 0, 5, 10), destino: pos(35, 45.2, 5, 20.2), hora: 10 },
   'and-py-2026-c1-n17': { t: C, pide: 'ra-vb', ct: 7, salida: pos(36, 0, 6, 5), destino: 'tanger-espigon', horas: 2.5 },
+  'and-py-2026-c3-n16': { t: C, pide: 'ra-vb', ct: 7, salida: pos(35, 55, 6, 0), destino: 'barbate-espigon', horas: 2 },
 };
 
 // Con cifras en el enunciado pero sin casar con la plantilla dentro del redondeo: su lámina se queda sin cifras.

@@ -15,7 +15,15 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **Tu examen oficial.** Si ya te has examinado y la convocatoria está en la app, pasa lo que marcaste en tu hoja (en
+  Examen, o desde «¿Cuántas fallaste en cada materia?»). Patrón la corrige con la plantilla oficial, te enseña tus
+  fallos por tipo de problema con su paso a paso, los mete en tu repaso de fallos y apunta tu resultado por materia
+  (y el módulo que te queda, en el PY). Esa convocatoria deja de estar guardada para tu examen final, porque ya la has
+  visto.
+- **Andalucía, 3.ª convocatoria de 2026** (14 de noviembre), en el PER y en el PY. Entra reservada para el examen
+  final; la 1.ª de 2025 pasa a poder estudiarse.
 
 ## 11 de noviembre de 2026 · versión `6a8d8eabafe6`
 

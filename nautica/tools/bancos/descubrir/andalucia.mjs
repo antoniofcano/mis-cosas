@@ -52,8 +52,12 @@ export async function descubrir(config, { avisos, todas = false, leerPagina = de
       if (vistos.has(url)) continue;
       vistos.add(url);
       const nombre = decodeURIComponent(url.split('/').pop());
-      const k = clasificarNombre(nombre);
-      if (!k) continue;
+      const k0 = clasificarNombre(nombre);
+      if (!k0) continue;
+      // Correcciones del nombre publicadas a mano en config.json (convocatorias[].documentos[nombre]: { modelo, motivo }),
+      // p. ej. un cuadernillo enlazado con el nombre del otro módulo.
+      const { motivo, ...cambio } = c.documentos?.[nombre] ?? {};
+      const k = { ...k0, ...cambio };
       const [anio, num] = c.clave.split('-');
       const conv = k.tit === 'py' ? `and-py-${c.clave}` : `and-${c.clave}`;
       const id = [c.clave, k.tit ?? 'comun', k.modelo ?? '', k.rol, k.rol === 'correccion' ? nombre.replace(/\.pdf$/i, '') : ''].filter(Boolean).join('_');

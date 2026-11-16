@@ -10,10 +10,10 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { RAIZ } from '../tools/bancos/leer.mjs';
 import { analizarCuestionario } from '../tools/bancos/lib/cuestionario.mjs';
-import { REGLAS_ANDALUCIA, quitarRotulos, reponerGuiones, separarTabla, leerHojas } from '../tools/bancos/adaptadores/hoja-optica.mjs';
+import { REGLAS_ANDALUCIA, quitarRotulos, reponerGuiones, separarTabla, leerHojas, moduloPortada } from '../tools/bancos/adaptadores/hoja-optica.mjs';
 import { REGLAS_MURCIA, leerCuestionario as leerMurcia, leerSubrayados, mismoInicio, respuestaSubrayado } from '../tools/bancos/adaptadores/subrayado.mjs';
 import * as ocr from '../tools/bancos/adaptadores/ocr.mjs';
-import { clasificarNombre } from '../tools/bancos/descubrir/andalucia.mjs';
+import { clasificarNombre, descubrir as descubrirAndalucia } from '../tools/bancos/descubrir/andalucia.mjs';
 import { documento, leerCSV } from '../tools/bancos/descubrir/murcia.mjs';
 import { esPaginaCaptcha, verificarArchivo } from '../tools/bancos/ejes/murcia/verificar.mjs';
 import { respuestaFuente } from '../tools/bancos/etapas/correcciones.mjs';
@@ -125,6 +125,21 @@ test('subrayado (Murcia): número de pregunta y pies de página', () => {
   const t = ['Unidad teórica 1: Prueba', '1.- Una:', 'a) x', 'b) y', '1/10', 'P.Y. - Tipo 1', 'c) z', 'd) w', 'MÓDULO DE NAVEGACIÓN', '2.', 'Dos:', 'a) 1', 'b) 2', 'c) 3', 'd) 4', 'PY - TIPO 1'].join('\n');
   const ps = analizarCuestionario(t, REGLAS_MURCIA).examenes[0].preguntas;
   assert.deepEqual(ps.map((q) => [q.numero, q.enunciado, q.opciones.d]), [[1, 'Una:', 'w'], [2, 'Dos:', '4']]);
+});
+
+test('descubrir Andalucía: un cuadernillo enlazado con el nombre del otro módulo se corrige en config.json (3.ª de 2026)', async () => {
+  const html = '<main><a href="/f/2026_3-C_PY_modulo_generico.pdf">G</a><a href="/f/2026_3-C_PY_modulo_navegacion.pdf">N</a><a href="/f/2026_3-SOL_PY_modulo_generico.pdf">PG</a></main>';
+  const config = { convocatorias: [{ clave: '2026-c3', pagina: 'p', fecha: '2026-11-14', activa: true, titulaciones: ['py'],
+    documentos: { '2026_3-C_PY_modulo_generico.pdf': { modelo: 'navegacion', motivo: 'x' }, '2026_3-C_PY_modulo_navegacion.pdf': { modelo: 'generico', motivo: 'x' } } }] };
+  const docs = await descubrirAndalucia(config, { leerPagina: () => html });
+  const de = (u) => docs.find((d) => d.url.endsWith(u));
+  assert.equal(de('2026_3-C_PY_modulo_generico.pdf').modelo, 'navegacion');
+  assert.equal(de('2026_3-C_PY_modulo_generico.pdf').id, '2026-c3_py_navegacion_cuestionario');
+  assert.equal(de('2026_3-C_PY_modulo_navegacion.pdf').modelo, 'generico');
+  assert.equal(de('2026_3-SOL_PY_modulo_generico.pdf').modelo, 'generico', 'lo que no se corrige sigue por su nombre');
+  assert.equal(moduloPortada(['PATRÓN DE YATE. MÓDULO NAVEGACIÓN', '3ª Convocatoria']), 'navegacion');
+  assert.equal(moduloPortada(['PATRÓN DE YATE. MÓDULO GENÉRICO']), 'generico');
+  assert.equal(moduloPortada(['PATRÓN DE EMBARCACIONES DE RECREO']), null);
 });
 
 test('descubrir Murcia: inventario CSV → manifiesto (PER y PY, Tipo 1/2, dos días de PER)', () => {

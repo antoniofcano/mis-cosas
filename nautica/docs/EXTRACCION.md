@@ -179,7 +179,7 @@ CY y PER reducido). Murcia no descarga nada (CAPTCHA y licencia): el manifiesto 
 | `salida` | `"data"` o `"cache"`. `informeEnCache`: el informe a la caché. |
 | `publicadas` | `"conservar"`: las publicadas no se reescriben y las idénticas nuevas se unen a ellas (ver «Salidas que se suben»). |
 | `titulaciones` | `{ per: { preguntas: 45, modelos, disposicion }, py: { preguntas: 40, modulos \| modelos, disposicion } }`. |
-| `convocatorias` | `[{ clave, pagina, fecha \| fechas: { per, py }, activa, titulaciones?, adaptador?, titulo?, derivadaDe?, nota? }]`. `activa: false` → solo con `--todas`. |
+| `convocatorias` | `[{ clave, pagina, fecha \| fechas: { per, py }, activa, titulaciones?, adaptador?, titulo?, derivadaDe?, nota?, documentos? }]`. `activa: false` → solo con `--todas`. `documentos`: `{ "<nombre del PDF>": { modelo, motivo } }` corrige lo que se deduce del nombre (3.ª de 2026: los dos cuadernillos del PY enlazados con el nombre del otro módulo). El adaptador `hoja-optica` avisa si la portada del cuadernillo dice otro módulo. |
 | `repetidas` | `{ entreConvocatorias, ordenModelos, permutaciones }`. |
 | `excepciones`, `huecos` | Excepciones documentadas a las puertas de validar (`{ id: motivo }`, `{ "conv · modelo": motivo }`). |
 | `ficha`, `descripcion`, `notasInforme` | Ficha del eje que escribe la etapa escribir, descripción del banco y notas para el informe. |

@@ -272,6 +272,16 @@
    "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-2-2026.html",
    "fecha": "2026-06-13",
    "activa": true
+  },
+  {
+   "clave": "2026-c3",
+   "pagina": "https://www.juntadeandalucia.es/organismos/culturapatrimoniohistoricoydeporte/areas/deporte/formacion-investigacion-innovacion/titulaciones-nauticas/paginas/pruebas-nauticas-cuestionarios-soluciones-3-2026.html",
+   "fecha": "2026-11-14",
+   "activa": true,
+   "documentos": {
+    "2026_3-C_PY_modulo_generico.pdf": { "modelo": "navegacion", "motivo": "El portal enlaza como «Módulo genérico» el cuadernillo cuya portada dice «PATRÓN DE YATE. MÓDULO NAVEGACIÓN» (comprobado el 16 de noviembre de 2026); las plantillas sí van con su nombre." },
+    "2026_3-C_PY_modulo_navegacion.pdf": { "modelo": "generico", "motivo": "El portal enlaza como «Módulo de navegación» el cuadernillo cuya portada dice «PATRÓN DE YATE. MÓDULO GENÉRICO» (comprobado el 16 de noviembre de 2026)." }
+   }
   }
  ],
  "repetidas": {

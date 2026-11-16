@@ -65,24 +65,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast/per-5-0.json#tramos.60.x#and-2025-c1-t14#texto",
-   "id": "and-2025-c1-t14",
-   "episodio": "per-5-0",
-   "fichero": "data/podcast/per-5-0.json",
-   "ruta": "tramos.60.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-5-0.json#tramos.61.p#and-2025-c1-t14#id",
-   "id": "and-2025-c1-t14",
-   "episodio": "per-5-0",
-   "fichero": "data/podcast/per-5-0.json",
-   "ruta": "tramos.61.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/per-5-1.json#tramos.68.x#and-2025-c3-t15#texto",
    "id": "and-2025-c3-t15",
    "episodio": "per-5-1",
@@ -119,92 +101,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast/per-6-0.json#tramos.46.x#and-2025-c1-t22#texto",
-   "id": "and-2025-c1-t22",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast/per-6-0.json",
-   "ruta": "tramos.46.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-6-0.json#tramos.47.p#and-2025-c1-t22#id",
-   "id": "and-2025-c1-t22",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast/per-6-0.json",
-   "ruta": "tramos.47.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-6-0.json#tramos.49.x#and-2025-c1-t18#texto",
-   "id": "and-2025-c1-t18",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast/per-6-0.json",
-   "ruta": "tramos.49.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-6-0.json#tramos.50.p#and-2025-c1-t18#id",
-   "id": "and-2025-c1-t18",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast/per-6-0.json",
-   "ruta": "tramos.50.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-6-0.json#tramos.52.x#and-2025-c1-t27#texto",
-   "id": "and-2025-c1-t27",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast/per-6-0.json",
-   "ruta": "tramos.52.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-6-0.json#tramos.53.p#and-2025-c1-t27#id",
-   "id": "and-2025-c1-t27",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast/per-6-0.json",
-   "ruta": "tramos.53.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-1-2.json#tramos.68.x#and-py-2025-c1-g02#texto",
-   "id": "and-py-2025-c1-g02",
-   "episodio": "py-1-2",
-   "fichero": "data/podcast/py-1-2.json",
-   "ruta": "tramos.68.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-1-2.json#tramos.69.p#and-py-2025-c1-g02#id",
-   "id": "and-py-2025-c1-g02",
-   "episodio": "py-1-2",
-   "fichero": "data/podcast/py-1-2.json",
-   "ruta": "tramos.69.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/py-1-2.json#tramos.72.p#and-py-2025-c3-g05#id",
    "id": "and-py-2025-c3-g05",
    "episodio": "py-1-2",
    "fichero": "data/podcast/py-1-2.json",
    "ruta": "tramos.72.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-1-2.json#tramos.75.p#and-py-2025-c1-g08#id",
-   "id": "and-py-2025-c1-g08",
-   "episodio": "py-1-2",
-   "fichero": "data/podcast/py-1-2.json",
-   "ruta": "tramos.75.p",
    "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -371,24 +272,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast/py-2-0.json#tramos.55.x#and-py-2025-c1-g13#texto",
-   "id": "and-py-2025-c1-g13",
-   "episodio": "py-2-0",
-   "fichero": "data/podcast/py-2-0.json",
-   "ruta": "tramos.55.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-2-0.json#tramos.56.p#and-py-2025-c1-g13#id",
-   "id": "and-py-2025-c1-g13",
-   "episodio": "py-2-0",
-   "fichero": "data/podcast/py-2-0.json",
-   "ruta": "tramos.56.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/py-2-1.json#tramos.56.x#and-py-2025-c2-g18#texto",
    "id": "and-py-2025-c2-g18",
    "episodio": "py-2-1",
@@ -403,24 +286,6 @@
    "episodio": "py-2-1",
    "fichero": "data/podcast/py-2-1.json",
    "ruta": "tramos.57.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-2-1.json#tramos.60.p#and-py-2025-c1-g14#id",
-   "id": "and-py-2025-c1-g14",
-   "episodio": "py-2-1",
-   "fichero": "data/podcast/py-2-1.json",
-   "ruta": "tramos.60.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-2-2.json#tramos.61.p#and-py-2025-c1-g11#id",
-   "id": "and-py-2025-c1-g11",
-   "episodio": "py-2-2",
-   "fichero": "data/podcast/py-2-2.json",
-   "ruta": "tramos.61.p",
    "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -479,15 +344,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast/py-2-6.json#tramos.71.p#and-py-2025-c1-g17#id",
-   "id": "and-py-2025-c1-g17",
-   "episodio": "py-2-6",
-   "fichero": "data/podcast/py-2-6.json",
-   "ruta": "tramos.71.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/py-2-8.json#tramos.60.x#and-py-2026-c1-g15#texto",
    "id": "and-py-2026-c1-g15",
    "episodio": "py-2-8",
@@ -502,33 +358,6 @@
    "episodio": "py-2-8",
    "fichero": "data/podcast/py-2-8.json",
    "ruta": "tramos.61.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-3-1.json#tramos.79.p#and-py-2025-c1-n01#id",
-   "id": "and-py-2025-c1-n01",
-   "episodio": "py-3-1",
-   "fichero": "data/podcast/py-3-1.json",
-   "ruta": "tramos.79.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-3-2.json#tramos.74.x#and-py-2025-c1-n02#texto",
-   "id": "and-py-2025-c1-n02",
-   "episodio": "py-3-2",
-   "fichero": "data/podcast/py-3-2.json",
-   "ruta": "tramos.74.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-3-2.json#tramos.75.p#and-py-2025-c1-n02#id",
-   "id": "and-py-2025-c1-n02",
-   "episodio": "py-3-2",
-   "fichero": "data/podcast/py-3-2.json",
-   "ruta": "tramos.75.p",
    "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -551,15 +380,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast/py-3-5.json#tramos.59.p#and-py-2025-c1-n04#id",
-   "id": "and-py-2025-c1-n04",
-   "episodio": "py-3-5",
-   "fichero": "data/podcast/py-3-5.json",
-   "ruta": "tramos.59.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/py-3-6.json#tramos.63.x#and-py-2026-c1-n06#texto",
    "id": "and-py-2026-c1-n06",
    "episodio": "py-3-6",
@@ -574,15 +394,6 @@
    "episodio": "py-3-6",
    "fichero": "data/podcast/py-3-6.json",
    "ruta": "tramos.64.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-3-6.json#tramos.70.p#and-py-2025-c1-n05#id",
-   "id": "and-py-2025-c1-n05",
-   "episodio": "py-3-6",
-   "fichero": "data/podcast/py-3-6.json",
-   "ruta": "tramos.70.p",
    "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -628,24 +439,6 @@
    "episodio": "py-3-8",
    "fichero": "data/podcast/py-3-8.json",
    "ruta": "tramos.54.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-4-1.json#tramos.55.p#and-py-2025-c1-n11#id",
-   "id": "and-py-2025-c1-n11",
-   "episodio": "py-4-1",
-   "fichero": "data/podcast/py-4-1.json",
-   "ruta": "tramos.55.p",
-   "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/py-4-2.json#tramos.50.p#and-py-2025-c1-n16#id",
-   "id": "and-py-2025-c1-n16",
-   "episodio": "py-4-2",
-   "fichero": "data/podcast/py-4-2.json",
-   "ruta": "tramos.50.p",
    "motivo": "la pausa del minijuego cita la reservada; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -722,15 +515,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast-per.json#temas.5.episodios.0.preguntas.2#and-2025-c1-t14#id",
-   "id": "and-2025-c1-t14",
-   "episodio": "per-5-0",
-   "fichero": "data/podcast-per.json",
-   "ruta": "temas.5.episodios.0.preguntas.2",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast-per.json#temas.5.episodios.1.preguntas.2#and-2025-c3-t15#id",
    "id": "and-2025-c3-t15",
    "episodio": "per-5-1",
@@ -749,56 +533,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast-per.json#temas.6.episodios.0.preguntas.0#and-2025-c1-t22#id",
-   "id": "and-2025-c1-t22",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast-per.json",
-   "ruta": "temas.6.episodios.0.preguntas.0",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-per.json#temas.6.episodios.0.preguntas.1#and-2025-c1-t18#id",
-   "id": "and-2025-c1-t18",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast-per.json",
-   "ruta": "temas.6.episodios.0.preguntas.1",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-per.json#temas.6.episodios.0.preguntas.2#and-2025-c1-t27#id",
-   "id": "and-2025-c1-t27",
-   "episodio": "per-6-0",
-   "fichero": "data/podcast-per.json",
-   "ruta": "temas.6.episodios.0.preguntas.2",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.1.episodios.2.preguntas.0#and-py-2025-c1-g02#id",
-   "id": "and-py-2025-c1-g02",
-   "episodio": "py-1-2",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.1.episodios.2.preguntas.0",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast-py.json#temas.1.episodios.2.preguntas.1#and-py-2025-c3-g05#id",
    "id": "and-py-2025-c3-g05",
    "episodio": "py-1-2",
    "fichero": "data/podcast-py.json",
    "ruta": "temas.1.episodios.2.preguntas.1",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.1.episodios.2.preguntas.2#and-py-2025-c1-g08#id",
-   "id": "and-py-2025-c1-g08",
-   "episodio": "py-1-2",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.1.episodios.2.preguntas.2",
    "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -884,38 +623,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast-py.json#temas.2.episodios.0.preguntas.1#and-py-2025-c1-g13#id",
-   "id": "and-py-2025-c1-g13",
-   "episodio": "py-2-0",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.2.episodios.0.preguntas.1",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast-py.json#temas.2.episodios.1.preguntas.0#and-py-2025-c2-g18#id",
    "id": "and-py-2025-c2-g18",
    "episodio": "py-2-1",
    "fichero": "data/podcast-py.json",
    "ruta": "temas.2.episodios.1.preguntas.0",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.2.episodios.1.preguntas.1#and-py-2025-c1-g14#id",
-   "id": "and-py-2025-c1-g14",
-   "episodio": "py-2-1",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.2.episodios.1.preguntas.1",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.2.episodios.2.preguntas.2#and-py-2025-c1-g11#id",
-   "id": "and-py-2025-c1-g11",
-   "episodio": "py-2-2",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.2.episodios.2.preguntas.2",
    "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -956,38 +668,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast-py.json#temas.2.episodios.6.preguntas.2#and-py-2025-c1-g17#id",
-   "id": "and-py-2025-c1-g17",
-   "episodio": "py-2-6",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.2.episodios.6.preguntas.2",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast-py.json#temas.2.episodios.8.preguntas.0#and-py-2026-c1-g15#id",
    "id": "and-py-2026-c1-g15",
    "episodio": "py-2-8",
    "fichero": "data/podcast-py.json",
    "ruta": "temas.2.episodios.8.preguntas.0",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.3.episodios.1.preguntas.2#and-py-2025-c1-n01#id",
-   "id": "and-py-2025-c1-n01",
-   "episodio": "py-3-1",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.3.episodios.1.preguntas.2",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.3.episodios.2.preguntas.2#and-py-2025-c1-n02#id",
-   "id": "and-py-2025-c1-n02",
-   "episodio": "py-3-2",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.3.episodios.2.preguntas.2",
    "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1001,29 +686,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast-py.json#temas.3.episodios.5.preguntas.2#and-py-2025-c1-n04#id",
-   "id": "and-py-2025-c1-n04",
-   "episodio": "py-3-5",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.3.episodios.5.preguntas.2",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast-py.json#temas.3.episodios.6.preguntas.0#and-py-2026-c1-n06#id",
    "id": "and-py-2026-c1-n06",
    "episodio": "py-3-6",
    "fichero": "data/podcast-py.json",
    "ruta": "temas.3.episodios.6.preguntas.0",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.3.episodios.6.preguntas.2#and-py-2025-c1-n05#id",
-   "id": "and-py-2025-c1-n05",
-   "episodio": "py-3-6",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.3.episodios.6.preguntas.2",
    "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1055,24 +722,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "data/podcast-py.json#temas.4.episodios.1.preguntas.2#and-py-2025-c1-n11#id",
-   "id": "and-py-2025-c1-n11",
-   "episodio": "py-4-1",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.4.episodios.1.preguntas.2",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast-py.json#temas.4.episodios.2.preguntas.1#and-py-2025-c1-n16#id",
-   "id": "and-py-2025-c1-n16",
-   "episodio": "py-4-2",
-   "fichero": "data/podcast-py.json",
-   "ruta": "temas.4.episodios.2.preguntas.1",
-   "motivo": "la ficha del episodio la lista entre las preguntas del minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast-py.json#temas.4.episodios.3.preguntas.0#and-py-2025-c2-n15#id",
    "id": "and-py-2025-c2-n15",
    "episodio": "py-4-3",
@@ -1100,29 +749,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/episodios.json#py.4.preguntas.0#and-py-2025-c1-g02#id",
-   "id": "and-py-2025-c1-g02",
-   "episodio": "py-1-2",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.4.preguntas.0",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/episodios.json#py.4.preguntas.1#and-py-2025-c3-g05#id",
    "id": "and-py-2025-c3-g05",
    "episodio": "py-1-2",
    "fichero": "podcast/episodios.json",
    "ruta": "py.4.preguntas.1",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.4.preguntas.2#and-py-2025-c1-g08#id",
-   "id": "and-py-2025-c1-g08",
-   "episodio": "py-1-2",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.4.preguntas.2",
    "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1208,38 +839,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/episodios.json#py.10.preguntas.1#and-py-2025-c1-g13#id",
-   "id": "and-py-2025-c1-g13",
-   "episodio": "py-2-0",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.10.preguntas.1",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/episodios.json#py.11.preguntas.0#and-py-2025-c2-g18#id",
    "id": "and-py-2025-c2-g18",
    "episodio": "py-2-1",
    "fichero": "podcast/episodios.json",
    "ruta": "py.11.preguntas.0",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.11.preguntas.1#and-py-2025-c1-g14#id",
-   "id": "and-py-2025-c1-g14",
-   "episodio": "py-2-1",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.11.preguntas.1",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.12.preguntas.2#and-py-2025-c1-g11#id",
-   "id": "and-py-2025-c1-g11",
-   "episodio": "py-2-2",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.12.preguntas.2",
    "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1280,38 +884,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/episodios.json#py.16.preguntas.2#and-py-2025-c1-g17#id",
-   "id": "and-py-2025-c1-g17",
-   "episodio": "py-2-6",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.16.preguntas.2",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/episodios.json#py.18.preguntas.0#and-py-2026-c1-g15#id",
    "id": "and-py-2026-c1-g15",
    "episodio": "py-2-8",
    "fichero": "podcast/episodios.json",
    "ruta": "py.18.preguntas.0",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.21.preguntas.2#and-py-2025-c1-n01#id",
-   "id": "and-py-2025-c1-n01",
-   "episodio": "py-3-1",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.21.preguntas.2",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.22.preguntas.2#and-py-2025-c1-n02#id",
-   "id": "and-py-2025-c1-n02",
-   "episodio": "py-3-2",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.22.preguntas.2",
    "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1325,29 +902,11 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/episodios.json#py.25.preguntas.2#and-py-2025-c1-n04#id",
-   "id": "and-py-2025-c1-n04",
-   "episodio": "py-3-5",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.25.preguntas.2",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/episodios.json#py.26.preguntas.0#and-py-2026-c1-n06#id",
    "id": "and-py-2026-c1-n06",
    "episodio": "py-3-6",
    "fichero": "podcast/episodios.json",
    "ruta": "py.26.preguntas.0",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.26.preguntas.2#and-py-2025-c1-n05#id",
-   "id": "and-py-2025-c1-n05",
-   "episodio": "py-3-6",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.26.preguntas.2",
    "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1375,24 +934,6 @@
    "episodio": "py-3-8",
    "fichero": "podcast/episodios.json",
    "ruta": "py.28.preguntas.1",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.31.preguntas.2#and-py-2025-c1-n11#id",
-   "id": "and-py-2025-c1-n11",
-   "episodio": "py-4-1",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.31.preguntas.2",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#py.32.preguntas.1#and-py-2025-c1-n16#id",
-   "id": "and-py-2025-c1-n16",
-   "episodio": "py-4-2",
-   "fichero": "podcast/episodios.json",
-   "ruta": "py.32.preguntas.1",
    "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1469,15 +1010,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/episodios.json#per.22.preguntas.2#and-2025-c1-t14#id",
-   "id": "and-2025-c1-t14",
-   "episodio": "per-5-0",
-   "fichero": "podcast/episodios.json",
-   "ruta": "per.22.preguntas.2",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/episodios.json#per.23.preguntas.2#and-2025-c3-t15#id",
    "id": "and-2025-c3-t15",
    "episodio": "per-5-1",
@@ -1492,33 +1024,6 @@
    "episodio": "per-5-2",
    "fichero": "podcast/episodios.json",
    "ruta": "per.24.preguntas.2",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#per.28.preguntas.0#and-2025-c1-t22#id",
-   "id": "and-2025-c1-t22",
-   "episodio": "per-6-0",
-   "fichero": "podcast/episodios.json",
-   "ruta": "per.28.preguntas.0",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#per.28.preguntas.1#and-2025-c1-t18#id",
-   "id": "and-2025-c1-t18",
-   "episodio": "per-6-0",
-   "fichero": "podcast/episodios.json",
-   "ruta": "per.28.preguntas.1",
-   "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/episodios.json#per.28.preguntas.2#and-2025-c1-t27#id",
-   "id": "and-2025-c1-t27",
-   "episodio": "per-6-0",
-   "fichero": "podcast/episodios.json",
-   "ruta": "per.28.preguntas.2",
    "motivo": "episodios.json la tiene en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1541,15 +1046,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/per/5-0-balizamiento.md#párrafo 65#and-2025-c1-t14#texto",
-   "id": "and-2025-c1-t14",
-   "episodio": "per-5-0",
-   "fichero": "podcast/per/5-0-balizamiento.md",
-   "ruta": "párrafo 65",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/per/5-1-iala-laterales-bifurcaciones.md#párrafo 73#and-2025-c3-t15#texto",
    "id": "and-2025-c3-t15",
    "episodio": "per-5-1",
@@ -1564,42 +1060,6 @@
    "episodio": "per-5-2",
    "fichero": "podcast/per/5-2-las-cardinales.md",
    "ruta": "párrafo 65",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/per/6-0-el-ripa-de-un-vistazo.md#párrafo 51#and-2025-c1-t22#texto",
-   "id": "and-2025-c1-t22",
-   "episodio": "per-6-0",
-   "fichero": "podcast/per/6-0-el-ripa-de-un-vistazo.md",
-   "ruta": "párrafo 51",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/per/6-0-el-ripa-de-un-vistazo.md#párrafo 54#and-2025-c1-t18#texto",
-   "id": "and-2025-c1-t18",
-   "episodio": "per-6-0",
-   "fichero": "podcast/per/6-0-el-ripa-de-un-vistazo.md",
-   "ruta": "párrafo 54",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/per/6-0-el-ripa-de-un-vistazo.md#párrafo 57#and-2025-c1-t27#texto",
-   "id": "and-2025-c1-t27",
-   "episodio": "per-6-0",
-   "fichero": "podcast/per/6-0-el-ripa-de-un-vistazo.md",
-   "ruta": "párrafo 57",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/py/1-2-mover-pesos-sin-volcar.md#párrafo 73#and-py-2025-c1-g02#texto",
-   "id": "and-py-2025-c1-g02",
-   "episodio": "py-1-2",
-   "fichero": "podcast/py/1-2-mover-pesos-sin-volcar.md",
-   "ruta": "párrafo 73",
    "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },
@@ -1685,15 +1145,6 @@
    "estado": "pendiente regenerar audio"
   },
   {
-   "clave": "podcast/py/2-0-el-tiempo-en-la-mar.md#párrafo 60#and-py-2025-c1-g13#texto",
-   "id": "and-py-2025-c1-g13",
-   "episodio": "py-2-0",
-   "fichero": "podcast/py/2-0-el-tiempo-en-la-mar.md",
-   "ruta": "párrafo 60",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "podcast/py/2-1-isobaras-borrascas-anticiclones.md#párrafo 61#and-py-2025-c2-g18#texto",
    "id": "and-py-2025-c2-g18",
    "episodio": "py-2-1",
@@ -1726,15 +1177,6 @@
    "episodio": "py-2-8",
    "fichero": "podcast/py/2-8-corrientes-marinas.md",
    "ruta": "párrafo 65",
-   "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "podcast/py/3-2-la-correccion-total.md#párrafo 79#and-py-2025-c1-n02#texto",
-   "id": "and-py-2025-c1-n02",
-   "episodio": "py-3-2",
-   "fichero": "podcast/py/3-2-la-correccion-total.md",
-   "ruta": "párrafo 79",
    "motivo": "el guion lee su enunciado en el minijuego; cambiarla exige regrabar el episodio",
    "estado": "pendiente regenerar audio"
   },

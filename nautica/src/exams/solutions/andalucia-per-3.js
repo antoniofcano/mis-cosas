@@ -191,4 +191,45 @@ export default {
       return [{ kind: 'bearing', value: k.ra(rv, ct) }];
     },
   },
+  'and-2026-c3-q42': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // El faro de Punta Camarinal es el de Punta de Gracia. En la oposición estamos entre los dos faros.
+      const dv = k.oposicion('punta-gracia', 'punta-malabata');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 180) }];
+    },
+  },
+  'and-2026-c3-q43': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      const s = k.fromMark('cabo-trafalgar', 210, 10, 'Situación 03:30');
+      const dest = k.fromMark('punta-paloma', 180, 5, 'Destino');
+      const { rv, dist } = k.rhumb(s, dest);
+      const ct = k.ct({ dm: -1, desvio: -5 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(3, 30), dist, 8.5) }];
+    },
+  },
+  'and-2026-c3-q44': {
+    ejercicio: 'estima-directa',
+    solve(k) {
+      // Al N verdadero de Punta Alcázar: el faro nos demora 180°; cortamos su meridiano con el arco de 6 M de Cires.
+      const s = k.fixBearingRange('punta-alcazar', 180, 'punta-cires', 6, 0, 'Situación 09:30');
+      const ct = k.ct({ dm: -1, desvio: -2 });
+      const rv = k.rv(265, ct);
+      const d = k.distFor(7, hrb(12) - hrb(9, 30));
+      return latlon(k.run(s, rv, d, 'Situación de estima 12:00'));
+    },
+  },
+  'and-2026-c3-q45': {
+    ejercicio: 'rumbo-distancia',
+    solve(k) {
+      // En la enfilación Carnero–Europa los dos faros quedan al mismo lado: a 3 M de Europa estamos en la prolongación
+      // de la recta Carnero → Europa, más allá de Europa.
+      const dv = k.enfilacion('punta-carnero', 'punta-europa', 60);
+      const s = k.fromMark('punta-europa', dv, 3, 'Situación 08:15');
+      const { rv, dist } = k.rhumb(s, 'punta-almina');
+      const ct = k.ct({ dm: -1, desvio: 3 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }, { kind: 'clock', value: k.eta(hrb(8, 15), dist, 6.5) }];
+    },
+  },
 };

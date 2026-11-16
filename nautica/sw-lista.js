@@ -1,6 +1,7 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '67b743b4bad0';
+self.VERSION = '32f9031c575a';
 self.APP = [
+ "fonts/patron-mono.woff2",
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
  "icons/apple-touch-icon.png",
@@ -349,6 +350,7 @@ self.APP = [
  "src/ui/simulacro-errores.js",
  "src/ui/sync.js",
  "src/ui/tema-pregunta.js",
+ "src/ui/tema.js",
  "src/ui/titulacion.js",
  "src/ui/tras-examen.js",
  "src/ui/travesia.js",

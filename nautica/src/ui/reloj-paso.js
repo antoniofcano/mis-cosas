@@ -78,7 +78,7 @@ export function relojPaso({ tit = null, compacto = false, vivo = () => true, pas
   const cancela = () => { if (timer != null) { clearInterval(timer); timer = null; } };
   function arranca() { cancela(); if (typeof setInterval === 'function') timer = setInterval(tic, 1000); }
 
-  const fija = (ob) => { objetivo = ob; if (ob) { meta.textContent = `objetivo ${mmssCorto(ob.s)}`; el.title = ob.texto; if (!compacto) nota.append(h('p.small.muted', ob.texto)); } pinta(); };
+  const fija = (ob) => { objetivo = ob; if (ob) { meta.textContent = `de ${mmssCorto(ob.s)}`; el.title = ob.texto; if (!compacto) nota.append(h('p.small.muted', ob.texto)); } pinta(); };
   if (fijo) fija(fijo);
   else if (tit) objetivoDeTit(tit).then(fija);
   arranca();

@@ -2329,11 +2329,11 @@ a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
 
 /* ---- Reloj del paso a paso y de las preguntas de carta de la práctica (R-64; src/ui/reloj-paso.js) ---- */
 .reloj-paso { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: .4rem .7rem .5rem; margin: 0 0 .7rem; min-width: 0; }
-.rp-fila { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.rp-fila { display: flex; align-items: center; gap: .5rem; flex-wrap: nowrap; min-width: 0; }
 .rp-ico { display: inline-flex; color: var(--muted); }
 .rp-tiempo { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
-.rp-meta { font-variant-numeric: tabular-nums; }
-.rp-estado { font-weight: 600; margin-left: auto; }
+.rp-meta { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.rp-estado { white-space: nowrap; font-weight: 600; margin-left: auto; }
 .rp-pausa { min-width: 44px; min-height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
 .rp-barra { height: 8px; border-radius: 4px; background: var(--accent-2); overflow: hidden; margin: .3rem 0; }
 .rp-barra-in { display: block; height: 100%; width: 0; background: var(--ok); }
@@ -2347,6 +2347,7 @@ a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
 .rp-nota { margin: .25rem 0 0; }
 .reloj-paso.compacto { padding: .2rem .6rem .3rem; }
 .reloj-paso.compacto .rp-tiempo { font-size: 1.15rem; }
+@media (max-width: 380px) { .rp-ico { display: none; } .rp-fila { gap: .4rem; } }
 
 /* ---- Modo guiado «Paso a paso» y diagnóstico por tipo de error (src/ui/guiado.js, src/ui/diagnostico.js) ---- */
 .guiado-box { margin: 1rem 0; display: grid; gap: 1rem; }

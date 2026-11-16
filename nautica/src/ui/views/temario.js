@@ -145,6 +145,8 @@ export function temaView({ progress, params: route, tit }) {
     // La siguiente clase de la ruta (del motor) y en qué clases se apoya cada una (sus datos `requiere`).
     const siguienteRuta = d.st.ruta.siguiente;
     const apoyos = new Map(clases.map(({ l }) => [l.id, requisitos(l, d.curso)]));
+    // Clases con práctica (sus preguntas de examen): se puede ir directo a ella (#/<tit>/curso/<id>?practica=1).
+    const practicables = new Map(clases.filter(({ l }) => l.practica?.length).map(({ l }) => [l.id, Math.min(10, l.practica.length)]));
     summaryText = `VISTA tema ${T.sigla} ${b.titulo} · examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · fallos pendientes ${e.fallos}\n` +
       clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado}${l.id === siguienteRuta ? ' · SIGUIENTE EN LA RUTA' : ''}${apoyos.get(l.id).length ? ` · se apoya en ${apoyos.get(l.id).map((r) => r.id).join(', ')}` : ''} → #/${tit}/curso/${l.id}`).join('\n');
     // Las ideas de cada clase (con etiquetas): sabidas, flojas y sin ver; las flojas, con su mapa o lámina.
@@ -205,6 +207,8 @@ export function temaView({ progress, params: route, tit }) {
         h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, icono('podcast', '', 'Tiene podcast')),
           h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado])),
         ideas.has(l.id) ? h('span.clase-ideas', { class: ideas.get(l.id).flojas.length ? 'con-flojas' : '' }, lineaIdeasClase(ideas.get(l.id))) : null),
+      // Directo a la prueba de la clase, sin recorrer sus tarjetas.
+      practicables.has(l.id) ? h('a.clase-practica.small', { href: tlink(tit, ['curso', l.id], { practica: '1' }) }, conIcono('pregunta', `${cuenta(practicables.get(l.id), 'pregunta')} de examen`)) : null,
       flojasDe.get(l.id) ?? null)))) : null,
       h('section', h('h2', 'Preguntas de examen'),
         e.hechas ? h('p', `${e.hechas} de ${e.total} hechas`) : null,

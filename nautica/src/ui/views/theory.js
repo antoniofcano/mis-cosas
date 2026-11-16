@@ -464,14 +464,18 @@ export function examenesView({ ctx, progress, tit }) {
  * avisoDe(i, q): un aviso encima de la pregunta i (p. ej. «te la traigo con otra redacción»), o null.
  * alResponder(i, q, ok): se llama tras guardar la respuesta; si devuelve un texto, va al final de la corrección.
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, registrar = null, contador = null, onFin, onSummary = () => {} }) {
+/**
+ * Tanda de preguntas con corrección inmediata. `inicio` ({ i, ok }) retoma una tanda a medias por la pregunta i con ok
+ * aciertos; `alAvanzar(i, ok)` se llama tras cada respuesta con la pregunta por la que habría que seguir.
+ */
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, registrar = null, contador = null, inicio = null, alAvanzar = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   // La lista puede crecer mientras se responde (test de nivel adaptativo: alResponder añade la siguiente).
   const total = () => preguntas.length;
   const cuenta_ = (j) => contador?.(j) ?? { texto: `Pregunta ${j + 1} de ${total()}`, fraccion: j / total() };
-  let i = 0;
+  let i = Math.max(0, Math.min(Number(inicio?.i) || 0, Math.max(0, preguntas.length - 1)));
   const crono = cronometro(); // minutos reales (con tope por pantalla), no estimados
-  let ok = 0;
+  let ok = Math.max(0, Number(inicio?.ok) || 0);
   function show() {
     const q = preguntas[i];
     // Tu velocidad en carta (R-42): el tiempo de cada pregunta de carta, solo con la pestaña visible (en el aparato).
@@ -496,6 +500,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       if (registrar) registrar(q, k, good); else progress.recordExam(q.id, { choice: k, ok: good });
+      alAvanzar?.(i + 1, ok);
       if (reloj && k != null) tiemposAlumno().anota({ y: tipoDe(q), s: reloj.parar(), o: good, q: q.id });
       else reloj?.parar();
       const extra = alResponder?.(i, q, good) ?? null;

@@ -129,6 +129,9 @@ dosis: { t, ok, n, a, de } | null, comp: { prox: 'AAAA-MM-DD'|null, seguidas, hi
   los `MAX_FALLOS` más recientes. No se borran claves (no hay borrado de ajustes en el almacén).
 - **Fechas.** La comprobación es un día local (`prox`); lo que piden los fallos hoy se calcula al leer, con la fecha
   inyectable (`cuadernoDe(settings, ahora)`).
+- **Origen «papel»** (R-58): el primer fallo con nombre de una hoja corregida por pasos (`ev[].o = 'papel'`). `falloValido`
+  no mira los orígenes y una versión anterior de la app enseña el código tal cual: no hace falta tocar el Worker. Lo
+  escrito en la hoja queda solo en el aparato (borrador `nautica.papel.<id>` en `localStorage`), no se sincroniza.
 - Lo que sigue solo en el aparato: «Tus errores más repetidos» (`nautica.errores.v1`, para el «Ojo» del paso a paso y el
   simulacro de tus errores). El cuaderno no lo sustituye: se alimentan a la vez.
 

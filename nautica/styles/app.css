@@ -2794,3 +2794,87 @@ button.dosis-op.elegida-mal { border-color: var(--warn); box-shadow: inset 0 0 0
 .aviso-fallo { padding: .5rem .7rem; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent-2); }
 .comprobar-revisar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }
 .mas section > p > a:only-child { display: inline-flex; align-items: center; min-height: 44px; }
+/* ---- Simulacro con estrategia (R-57) y ensayo general (R-66): el primer minuto, el aviso del plan y el informe ---- */
+.primer-minuto section { margin: 1rem 0; padding: .7rem .85rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); min-width: 0; }
+.primer-minuto section h2, .pm-resultado h2 { margin: 0 0 .4rem; font-size: 1.1rem; display: flex; align-items: center; gap: .4rem; }
+.pm-checks, .pm-tipos, .pm-fases, .pm-reglas, .pm-estimar-lista { list-style: none; margin: .3rem 0; padding: 0; display: grid; gap: .35rem; }
+.pm-checks label.check { align-items: flex-start; padding: .25rem 0; }
+.pm-checks label.check input { margin-top: .15rem; }
+.pm-checks label.check span { line-height: 1.45; min-width: 0; overflow-wrap: anywhere; }
+.pm-tipo { display: grid; gap: .1rem; padding: .4rem .55rem; border-left: 4px solid var(--border); background: var(--panel); border-radius: 6px; }
+.pm-tipo[data-coste="facil"] { border-left-color: var(--ok); }
+.pm-tipo[data-coste="caro"] { border-left-color: var(--warn); border-left-style: double; border-left-width: 6px; }
+.pm-tipo-cab { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .2rem .6rem; }
+.pm-tipo-nombre { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.pm-coste { display: inline-flex; align-items: center; gap: .25rem; font-size: .85rem; font-weight: 600; white-space: nowrap; }
+.pm-coste[data-coste="facil"] { color: var(--ok); }
+.pm-coste[data-coste="caro"] { color: var(--warn); }
+.pm-coste[data-coste="normal"] { color: var(--muted); }
+.pm-fase { display: grid; gap: .1rem; padding: .4rem .55rem; background: var(--panel); border-radius: 6px; }
+.pm-fase-cab { display: flex; justify-content: space-between; gap: .6rem; }
+.pm-min { font-family: var(--fuente-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pm-fase-num { overflow-wrap: anywhere; }
+.pm-justo { display: flex; gap: .45rem; align-items: baseline; padding: .5rem .7rem; border-radius: 8px; background: var(--aviso-bg); color: var(--aviso-texto); border: 1px solid var(--aviso-borde); }
+.pm-justo .ico, .pm-hecha .ico { flex: none; }
+.pm-descartar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: .4rem; color: var(--accent); font-weight: 600; }
+.pm-reglas li { line-height: 1.45; }
+.pm-hecha { display: flex; gap: .45rem; align-items: baseline; padding: .55rem .75rem; border-radius: var(--radius); background: var(--accent-2); }
+/* El aviso del plan durante el examen: una línea discreta bajo la barra, sin animación ni sonido */
+.aviso-plan { display: flex; gap: .4rem; align-items: baseline; margin: 0 0 .6rem; padding: .35rem .6rem; font-size: .9rem; line-height: 1.4; color: var(--text); background: var(--panel); border: 1px dashed var(--borde-fuerte); border-radius: 8px; }
+.aviso-plan[hidden] { display: none; }
+.aviso-plan .ico { flex: none; color: var(--muted); }
+.aviso-plan-tx { min-width: 0; overflow-wrap: anywhere; }
+.aviso-plan-pista summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); font-size: .85rem; }
+.aviso-plan-pista[hidden] { display: none; }
+/* El informe */
+.pm-resultado section { margin: 1rem 0; padding: .7rem .85rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); min-width: 0; }
+.pm-tabla { width: 100%; }
+.pm-tabla th[scope="row"] { text-align: left; font-weight: 600; }
+.pm-tabla { font-size: .95rem; }
+.pm-tabla td, .pm-tabla thead th { white-space: nowrap; }
+.pm-tabla th[scope="row"] { overflow-wrap: break-word; }
+.pm-motivos { margin: .4rem 0; padding-left: 1.1rem; }
+.pm-nota { display: flex; align-items: center; gap: .25rem; font-weight: 400; font-size: .85rem; }
+.pm-nota[data-apto="true"] { color: var(--ok); }
+.pm-nota[data-apto="false"] { color: var(--warn); }
+.pm-tabla caption { caption-side: bottom; text-align: left; padding-top: .3rem; }
+.pm-estimar-lista li { padding: .45rem .6rem; background: var(--panel); border-radius: 6px; overflow-wrap: anywhere; }
+.pm-estimar-lista p { margin: .15rem 0; }
+
+/* ---- «Lo hice en papel»: la hoja corregida por pasos (R-58, src/ui/papel.js) ---- */
+.papel-box { margin: 1rem 0; }
+.papel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .8rem .9rem; min-width: 0; }
+.papel .guiado-cab h2 { margin: 0; font-size: 1.15rem; }
+.papel-margenes { margin: .4rem 0 .8rem; }
+.papel-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.papel-paso { border-left: 4px solid var(--border); padding: .4rem 0 .5rem .7rem; min-width: 0; overflow-wrap: anywhere; }
+.papel-paso.e-ok, .papel-paso.e-arrastrado { border-left-color: var(--ok); }
+.papel-paso.e-casi { border-left-color: var(--close); }
+.papel-paso.e-mal { border-left-color: var(--warn); }
+.papel-paso.e-mal.primero { border-left-width: 6px; background: var(--accent-2); border-radius: 0 var(--radius) var(--radius) 0; padding-right: .6rem; }
+.papel-tit { margin: 0 0 .15rem; font-size: 1rem; display: flex; align-items: baseline; gap: .35rem; }
+.papel-n { display: inline-grid; place-items: center; min-width: 1.6rem; height: 1.6rem; border-radius: 999px; border: 1.5px solid var(--border); font-size: .85rem; font-variant-numeric: tabular-nums; flex: none; }
+.papel-pregunta { margin: 0 0 .4rem; color: var(--muted); }
+.papel-campos { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); }
+.papel-campo { display: grid; gap: .15rem; min-width: 0; }
+.papel-lbl { font-weight: 600; font-size: .92rem; }
+.papel-input { min-height: 48px; font-size: 1.15rem; padding: .45rem .6rem; }
+.papel-margen { line-height: 1.25; }
+.papel-res:empty { display: none; }
+.papel-res { margin-top: .4rem; }
+.papel-res p { margin: .2rem 0; }
+.papel-estado { font-weight: 700; }
+.papel-paso.e-ok .papel-estado .ico, .papel-paso.e-arrastrado .papel-estado .ico { color: var(--ok); }
+.papel-paso.e-mal .papel-estado .ico { color: var(--warn); }
+.papel-paso.e-casi .papel-estado .ico { color: var(--close); }
+.papel-cmp { font-variant-numeric: tabular-nums; }
+.papel-error { margin-top: .3rem; padding: .45rem .6rem; border: 1px solid var(--warn); border-radius: 8px; }
+.papel-veredicto:empty { display: none; }
+.papel-veredicto { margin: .2rem 0 .9rem; padding: .6rem .7rem; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--accent-2); }
+.papel-veredicto:focus { outline: none; }
+.papel-veredicto:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.papel-veredicto p { margin: .25rem 0; }
+.papel-cuaderno a { display: inline-flex; align-items: center; min-height: 44px; }
+.papel .guiado-cab button, .papel-acciones button, .boton-papel { min-height: 44px; }
+.papel-acciones { margin-top: .9rem; }
+.oficial-hoja { display: inline-flex; align-items: center; min-height: 44px; }

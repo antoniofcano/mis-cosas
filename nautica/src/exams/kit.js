@@ -54,7 +54,7 @@ const bandaLineas = (viento, rumbo, banda) => {
 const TRASLADO = 'Demoras no simultáneas: la 1ª línea se traslada paralela a sí misma lo navegado entre las dos observaciones (el mismo rumbo y la misma distancia). La trasladada vale a la hora de la 2ª.';
 const lineasPos = (p) => [`l = ${fmtPos(p).split('  ')[0]}`, `L = ${fmtPos(p).split('  ')[1]}`];
 
-export function createKit(chart, { error = null } = {}) {
+export function createKit(chart, { error = null, fijos = null } = {}) {
   const steps = [];
   const items = [];
   const focus = [];
@@ -70,6 +70,13 @@ export function createKit(chart, { error = null } = {}) {
   };
   /** ¿Se resuelve con este error típico? (`id` = variante exacta o, sin «:», cualquier variante de ese tipo) */
   const E = (id) => { consultados.push(id); return error != null && (error === id || (!id.includes(':') && error.split(':')[0] === id)); };
+  // Hoja en papel (R-58, src/exams/papel.js): `fijos` = { [índice del paso]: [valor del campo 0, del campo 1…] } con lo
+  // que escribió el alumno (null o NaN = no lo dio). La operación usa su valor en lugar del calculado y sigue con él, así
+  // los pasos siguientes salen «con su dato». F(v, j, d): el campo j del paso que se apuntará d pasos después del último.
+  const F = (v, j = 0, d = 0) => { const f = fijos?.[steps.length + d]?.[j]; return Number.isFinite(f) ? f : v; };
+  /** Igual, para una duración que el kit lleva en minutos y el alumno escribe en horas (magnitud `duration`). */
+  const FH = (min, j = 0, d = 0) => { const f = fijos?.[steps.length + d]?.[j]; return Number.isFinite(f) ? f * 60 : min; };
+  const FP = (p, d = 0) => (fijos?.[steps.length + d] ? { ...p, lat: F(p.lat, 0, d), lon: F(p.lon, 1, d) } : p);
   /** Lo que pide el paso (modo guiado). */
   const pide = (paso, pregunta, campos) => ({ paso, pregunta, campos });
   const posCampos = (p, medido = true) => [{ kind: 'lat', value: p.lat, label: 'Latitud', medido }, { kind: 'lon', value: p.lon, label: 'Longitud', medido }];
@@ -107,7 +114,7 @@ export function createKit(chart, { error = null } = {}) {
         if (E('variacion-signo')) exact = base - (varMin / 60) * (anyo - year);
         // Se trabaja con la declinación exacta, al minuto: redondearla al grado (y con Math.round, siempre hacia el E en
         // los valores negativos) movía la Ct medio grado en casos como 3,5° o −2,5°.
-        d = Math.round(exact * 60) / 60;
+        d = F(Math.round(exact * 60) / 60);
         const anos = anyo - year; const cambio = Math.round((d - base) * 60);
         step('Declinación actualizada', `dm ${anyo} = ${fmtSignedNum(base, 2)} + (${anyo - year} años × ${varMin}′) = ${fmtSignedNum(d, 2)}.`,
           pide('declinacion', `¿Cuánto vale la declinación magnética en ${anyo}?`, [{ kind: 'signed', value: d, label: `dm ${anyo}` }]),
@@ -123,6 +130,7 @@ export function createKit(chart, { error = null } = {}) {
       if (E('olvida-desvio')) dz = 0;
       let r = d + dz;
       if (E('signo-ct:valor')) r = -r;
+      r = F(r);
       step('Corrección total', `Ct = dm + Δ = (${fmtSignedNum(d)}) + (${fmtSignedNum(dz)}) = ${fmtSignedNum(r)}.`,
         pide('ct', '¿Cuánto vale la corrección total (Ct)?', [{ kind: 'signed', value: r, label: 'Ct' }]),
         { traigo: [`dm = ${ew(d)}`, desvio == null ? 'Δ = 0° (el enunciado no da desvío)' : `Δ = ${ew(dz)}`],
@@ -133,7 +141,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     rv(ra, ct) {
       const c = E('sin-ct') ? 0 : E('signo-ct:aplicacion') || E('signo-ct:resta-siempre') ? -ct : ct;
-      const r = norm360(ra + c);
+      const r = F(norm360(ra + c));
       step('Rumbo verdadero', `Rv = Ra + Ct = ${fmtBearing(ra)} + (${fmtSignedNum(ct)}) = ${fmtBearing(r)}.`, pide('aguja', '¿Cuál es el rumbo verdadero (Rv)?', [{ kind: 'bearing', value: r, label: 'Rv' }]),
         { traigo: [`Ra = ${fmtBearing(ra)}`, `Ct = ${ew(ct)}`], plantea: 'De aguja a verdadero: Rv = Ra + Ct, con el signo de la Ct (E suma, W resta).',
           lineas: [`Rv = ${fmtBearing(ra)} + (${fmtSignedNum(c)})`, ...vuelta(ra + c, 'Rv')] });
@@ -141,7 +149,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     ra(rv, ct) {
       const c = E('sin-ct') ? 0 : E('signo-ct:aplicacion') || E('signo-ct:suma-siempre') ? -ct : ct;
-      const r = norm360(rv - c);
+      const r = F(norm360(rv - c));
       step('Rumbo de aguja', `Ra = Rv − Ct = ${fmtBearing(rv)} − (${fmtSignedNum(ct)}) = ${fmtBearing(r)}.`, pide('aguja', '¿Cuál es el rumbo de aguja (Ra)?', [{ kind: 'bearing', value: r, label: 'Ra' }]),
         { traigo: [`Rv = ${fmtBearing(rv)}`, `Ct = ${ew(ct)}`], plantea: 'De verdadero a aguja, al revés: Ra = Rv − Ct (una Ct W, negativa, acaba sumando).',
           lineas: [`Ra = ${fmtBearing(rv)} − (${fmtSignedNum(c)})`, ...vuelta(rv - c, 'Ra')] });
@@ -149,7 +157,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     dv(da, ct, id) {
       const c = E('sin-ct') ? 0 : E('signo-ct:aplicacion') || E('signo-ct:resta-siempre') ? -ct : ct;
-      const r = norm360(da + c);
+      const r = F(norm360(da + c));
       step(`Demora verdadera ${nm(id)}`, `Dv = Da + Ct = ${fmtBearing(da)} + (${fmtSignedNum(ct)}) = ${fmtBearing(r)}.`, pide('aguja', `¿Cuál es la demora verdadera de ${nm(id)}?`, [{ kind: 'bearing', value: r, label: 'Dv' }]),
         { traigo: [`Da ${nm(id)} = ${fmtBearing(da)}`, `Ct = ${ew(ct)}`], plantea: 'La demora se corrige igual que el rumbo: Dv = Da + Ct, con el signo de la Ct.',
           lineas: [`Dv = ${fmtBearing(da)} + (${fmtSignedNum(c)})`, ...vuelta(da + c, 'Dv')] });
@@ -158,7 +166,7 @@ export function createKit(chart, { error = null } = {}) {
     /** Marcación con signo (+ estribor, − babor). */
     dvM(rv, m, id) {
       const raw = E('marcacion-como-demora') ? m : E('banda-marcacion') ? rv - m : rv + m;
-      const r = norm360(raw);
+      const r = F(norm360(raw));
       step(`Demora verdadera ${nm(id)}`, `Dv = Rv + M = ${fmtBearing(rv)} + (${fmtSignedNum(m)}) [${m >= 0 ? 'estribor' : 'babor'}] = ${fmtBearing(r)}.`, pide('marcacion', `¿Cuál es la demora verdadera de ${nm(id)}?`, [{ kind: 'bearing', value: r, label: 'Dv' }]),
         { traigo: [`Rv = ${fmtBearing(rv)}`, `Marcación de ${nm(id)} = ${grados(Math.abs(m))} por ${m >= 0 ? 'estribor (+)' : 'babor (−)'}`],
           plantea: 'La marcación se cuenta desde la proa: Dv = Rv + M, con M + por estribor y − por babor (el través es ±90°).',
@@ -169,6 +177,7 @@ export function createKit(chart, { error = null } = {}) {
     ctFrom(dv, da) {
       let r = norm180(dv - da);
       if (E('signo-ct:valor') || E('signo-ct:aplicacion')) r = -r;
+      r = F(r);
       const salto = Math.abs(dv - da) > 180;
       step('Corrección total', `Ct = Dv − Da = ${fmtBearing(dv, 1)} − ${fmtBearing(da)} = ${fmtSignedNum(r, 1)}.`, pide('ct', '¿Cuánto vale la corrección total (Ct)?', [{ kind: 'signed', value: r, label: 'Ct' }]),
         { traigo: [`Dv = ${fmtBearing(dv, 1)} (medida en la carta)`, `Da = ${fmtBearing(da)} (la de la aguja)`],
@@ -181,7 +190,7 @@ export function createKit(chart, { error = null } = {}) {
     // ---- Líneas de posición
     /** Demora verdadera desde el barco hacia el faro `toward` cuando estamos en la oposición `other`–`toward`. */
     oposicion(other, toward) {
-      const dv = norm360(rhumbTo(P(other), P(toward)).bearing + (E('sentido-recta') ? 180 : 0));
+      const dv = F(norm360(rhumbTo(P(other), P(toward)).bearing + (E('sentido-recta') ? 180 : 0)));
       step('Oposición', `En la oposición de ${nm(other)} y ${nm(toward)} estamos entre ambos: la demora a ${nm(toward)} es la de la recta ${nm(other)} → ${nm(toward)}, Dv = ${fmtBearing(dv, 1)}.`,
         pide('linea', `Mide en la carta la demora verdadera de ${nm(toward)} en la oposición.`, [{ kind: 'bearing', value: dv, label: 'Dv', medido: true }]),
         { traigo: [`Faros en oposición: ${nm(other)} y ${nm(toward)}`, `Se pide la demora de ${nm(toward)}`],
@@ -196,6 +205,7 @@ export function createKit(chart, { error = null } = {}) {
       const ab = rhumbTo(P(a), P(b)).bearing;
       let dv = approx == null || angleDist(ab, approx) <= 90 ? ab : norm360(ab + 180);
       if (E('sentido-recta')) dv = norm360(dv + 180);
+      dv = F(dv);
       step('Enfilación', `La enfilación de ${nm(a)} y ${nm(b)} se mide en la carta uniendo ambos faros: Dv = ${fmtBearing(dv, 1)}.`,
         pide('linea', `Mide en la carta la demora verdadera de la enfilación de ${nm(a)} y ${nm(b)}.`, [{ kind: 'bearing', value: dv, label: 'Dv', medido: true }]),
         { traigo: [`Faros enfilados: ${nm(a)} y ${nm(b)}`, ...(approx != null ? [`Demora de aguja de la enfilación ≈ ${fmtBearing(approx)}`] : [])],
@@ -207,8 +217,9 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Situación por dos demoras verdaderas (desde el barco a cada punto). */
     fix2(a, dvA, b, dvB, label = 'Situación') {
-      const p = fixTwoBearings(P(a), dvA, P(b), dvB) ?? lineCut(P(a), dvA, P(b), dvB);
+      let p = fixTwoBearings(P(a), dvA, P(b), dvB) ?? lineCut(P(a), dvA, P(b), dvB);
       if (!p) throw new Error('Sin corte');
+      p = FP(p);
       step(label, `Desde ${nm(a)} trazamos ${fmtBearing(dvA + 180)} y desde ${nm(b)} ${fmtBearing(dvB + 180)}: se cortan en ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Dv ${nm(a)} = ${fmtBearing(dvA)}`, `Dv ${nm(b)} = ${fmtBearing(dvB)}`],
           plantea: 'La demora va del barco al faro: en la carta se traza desde el faro con la opuesta (Dv ± 180°). Donde se cortan las dos líneas, estás tú.',
@@ -220,7 +231,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Situación por demora verdadera y distancia a un punto. */
     fixDist(id, dv, dist, label = 'Situación') {
-      const p = fixBearingDistance(P(id), E('demora-sin-opuesta') ? norm360(dv + 180) : dv, dist);
+      const p = FP(fixBearingDistance(P(id), E('demora-sin-opuesta') ? norm360(dv + 180) : dv, dist));
       step(label, `Desde ${nm(id)} trazamos ${fmtBearing(dv + 180)} y medimos ${fmtMiles(dist)}: ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Dv ${nm(id)} = ${fmtBearing(dv)}`, `Distancia = ${fmtMiles(dist)}`],
           plantea: 'Desde el faro, la opuesta de la demora (Dv ± 180°); sobre ella, la distancia tomada con el compás en la escala de latitudes (1′ = 1 milla).',
@@ -232,8 +243,9 @@ export function createKit(chart, { error = null } = {}) {
     /** Demora a un punto y distancia a otro: `pick` = índice de la solución (0 la más cercana al punto de la demora). */
     fixBearingRange(idB, dv, idR, dist, pick = 0, label = 'Situación') {
       const sols = fixBearingAndRange(P(idB), dv, P(idR), dist);
-      const p = sols[Math.min(pick, sols.length - 1)];
+      let p = sols[Math.min(pick, sols.length - 1)];
       if (!p) throw new Error('Sin corte');
+      p = FP(p);
       step(label, `Línea ${fmtBearing(dv + 180)} desde ${nm(idB)} y arco de ${fmtMiles(dist)} con centro en ${nm(idR)}: ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Dv ${nm(idB)} = ${fmtBearing(dv)}`, `Distancia a ${nm(idR)} = ${fmtMiles(dist)}`],
           plantea: 'Dos líneas de posición: la demora (desde el faro, con la opuesta) y el arco de la distancia con centro en el otro faro. Si se cortan dos veces, la que está en el mar y cuadra con el enunciado.',
@@ -254,7 +266,7 @@ export function createKit(chart, { error = null } = {}) {
       const h = Math.sqrt(Math.max(0, ra * ra - x * x));
       const base = { x: pa.x + (dx * x) / d, y: pa.y + (dy * x) / d };
       const c = [{ x: base.x - (dy * h) / d, y: base.y + (dx * h) / d }, { x: base.x + (dy * h) / d, y: base.y - (dx * h) / d }].map(fromPlane);
-      const p = near ? c.sort((u, v) => rhumbTo(u, near).distance - rhumbTo(v, near).distance)[0] : c[0];
+      const p = FP(near ? c.sort((u, v) => rhumbTo(u, near).distance - rhumbTo(v, near).distance)[0] : c[0]);
       step(label, `Arcos de ${fmtMiles(da)} con centro en ${nm(a)} y de ${fmtMiles(db)} con centro en ${nm(b)}: se cortan en ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Distancia a ${nm(a)} = ${fmtMiles(da)}`, `Distancia a ${nm(b)} = ${fmtMiles(db)}`],
           plantea: 'Cada distancia es un arco con centro en su faro (el compás abierto en la escala de latitudes). Se cortan en dos puntos: el que está en el mar y cerca de la estima.',
@@ -267,7 +279,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** "a d millas al <dir> verdadero del faro X" (dir en grados). */
     fromMark(id, dir, dist, label = 'Situación') {
-      const p = rhumbDestination(P(id), E('lado-del-faro') ? norm360(dir + 180) : dir, dist);
+      const p = FP(rhumbDestination(P(id), E('lado-del-faro') ? norm360(dir + 180) : dir, dist));
       step(label, `A ${fmtMiles(dist)} al ${DIR_NAME[dir] ?? fmtBearing(dir)} verdadero de ${nm(id)}: desde el faro trazamos ${fmtBearing(dir)} y medimos la distancia: ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`${fmtMiles(dist)} al ${deDonde(dir)} verdadero de ${nm(id)}`],
           plantea: '«Al S del faro» es el barco quien está al S: desde el faro se traza ese rumbo (no la opuesta) y se mide la distancia.',
@@ -278,7 +290,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** "al <dirA> verdadero de A y al <dirB> verdadero de B" */
     cardinal2(a, dirA, b, dirB, label = 'Situación') {
-      const p = fixTwoBearings(P(a), norm360(dirA + 180), P(b), norm360(dirB + 180)) ?? lineCut(P(a), norm360(dirA + 180), P(b), norm360(dirB + 180));
+      const p = FP(fixTwoBearings(P(a), norm360(dirA + 180), P(b), norm360(dirB + 180)) ?? lineCut(P(a), norm360(dirA + 180), P(b), norm360(dirB + 180)));
       step(label, `Desde ${nm(a)} trazamos ${fmtBearing(dirA)} (${DIR_NAME[dirA] ?? ''}) y desde ${nm(b)} ${fmtBearing(dirB)} (${DIR_NAME[dirB] ?? ''}): se cortan en ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Al ${deDonde(dirA)} de ${nm(a)}`, `Al ${deDonde(dirB)} de ${nm(b)}`],
           plantea: '«Al N de un faro» es el barco quien está al N: desde cada faro se traza ese rumbo tal cual. Donde se cortan, estás tú.',
@@ -290,7 +302,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Corte de una línea que pasa por `through` con rumbo `dv` y la demora `dvB` a otro punto. */
     lineAndBearing(through, dv, b, dvB, label = 'Situación') {
-      const p = lineCut(P(through), dv, P(b), dvB);
+      const p = FP(lineCut(P(through), dv, P(b), dvB));
       step(label, `Corte de la línea ${fmtBearing(dv)} que pasa por ${nm(through)} con la demora ${fmtBearing(dvB)} de ${nm(b)} (trazada desde el faro como ${fmtBearing(dvB + 180)}): ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Línea por ${nm(through)}: ${fmtBearing(dv)}`, `Dv ${nm(b)} = ${fmtBearing(dvB)}`],
           plantea: 'Dos líneas de posición: la que pasa por el primer punto y la demora del faro, trazada desde él con la opuesta (Dv ± 180°).',
@@ -303,7 +315,7 @@ export function createKit(chart, { error = null } = {}) {
     // ---- Navegación
     /** Estima: desde `from` al Rv `rv` durante `dist` millas. */
     run(from, rv, dist, label = 'Situación de estima') {
-      const p = rhumbDestination(from, rv, dist);
+      const p = FP(rhumbDestination(from, rv, dist));
       step(label, `Desde ${fmtPos(from)} trazamos el Rv ${fmtBearing(rv)} y medimos ${fmtMiles(dist, 2)}: ${fmtPos(p)}.`, pide('estima', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Salida: ${fmtPos(from)}`, `Rv = ${fmtBearing(rv)}`, `d = ${fmtMiles(dist, 2)}`],
           plantea: 'Desde la salida, el Rv con el transportador y, sobre él, la distancia con el compás (escala de latitudes).',
@@ -313,7 +325,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Distancia = V · t, con t en minutos. */
     distFor(v, minutes) {
-      const d = v * horasDe(minutes);
+      const d = F(v * horasDe(minutes));
       step('Distancia navegada', `d = V · t = ${fmtKnots(v)} × ${minutes} min / 60 = ${fmtMiles(d, 2)}.`, pide('tiempo', '¿Cuántas millas se navegan?', [{ kind: 'distance', value: d, label: 'Distancia' }]),
         { traigo: [`V = ${fmtKnots(v)}`, `t = ${minutes} min`], plantea: 'd = V · t, con t en horas: los minutos se dividen entre 60 (1 h 30 min son 1,5 h, no 1,3).',
           lineas: [`t = ${minutes} / 60 = ${coma(horasDe(minutes), 2)} h`, `d = ${coma(v, 1)} × ${coma(horasDe(minutes), 2)} = ${fmtMiles(d)}`] });
@@ -322,6 +334,7 @@ export function createKit(chart, { error = null } = {}) {
     /** Rumbo verdadero y distancia entre dos puntos. */
     rhumb(a, b, label = 'Rumbo y distancia') {
       const r = rhumbTo(P(a), P(b));
+      r.bearing = F(r.bearing, 0); r.distance = F(r.distance, 1);
       step(label, `Uniendo ${typeof a === 'string' ? nm(a) : 'el punto de salida'} con ${typeof b === 'string' ? nm(b) : 'el punto de llegada'}: Rv = ${fmtBearing(r.bearing)}, distancia = ${fmtMiles(r.distance)}.`,
         pide('medida', 'Mide en la carta el rumbo verdadero y la distancia.', [{ kind: 'bearing', value: r.bearing, label: 'Rv', medido: true }, { kind: 'distance', value: r.distance, label: 'Distancia', medido: true }]),
         { traigo: [`Salida: ${typeof a === 'string' ? nm(a) : fmtPos(P(a))}`, `Llegada: ${typeof b === 'string' ? nm(b) : fmtPos(P(b))}`],
@@ -334,6 +347,7 @@ export function createKit(chart, { error = null } = {}) {
     /** Demora verdadera y distancia de un punto a un faro (lo que se mide en la carta). */
     bearingTo(from, id) {
       const r = rhumbTo(P(from), P(id));
+      r.bearing = F(r.bearing, 0); r.distance = F(r.distance, 1);
       step(`Demora y distancia a ${nm(id)}`, `Medimos en la carta desde ${fmtPos(P(from))}: Dv = ${fmtBearing(r.bearing)}, distancia = ${fmtMiles(r.distance)}.`,
         pide('medida', `Mide en la carta la demora verdadera y la distancia a ${nm(id)}.`, [{ kind: 'bearing', value: r.bearing, label: 'Dv', medido: true }, { kind: 'distance', value: r.distance, label: 'Distancia', medido: true }]),
         { traigo: [`Situación: ${fmtPos(P(from))}`, `Faro: ${nm(id)}`],
@@ -348,7 +362,7 @@ export function createKit(chart, { error = null } = {}) {
       const r = rhumbTo(P(from), P(id));
       const alpha = E('directo') ? 0 : toDeg(Math.asin(Math.min(1, d / r.distance)));
       const lado = E('banda') ? (side === 'estribor' ? 'babor' : 'estribor') : side;
-      const rv = norm360(lado === 'estribor' ? r.bearing - alpha : r.bearing + alpha);
+      const rv = F(norm360(lado === 'estribor' ? r.bearing - alpha : r.bearing + alpha));
       step('Rumbo para pasar a distancia', `Con centro en ${nm(id)} trazamos un arco de ${fmtMiles(d)}. Desde la situación (a ${fmtMiles(r.distance)} del faro, demora ${fmtBearing(r.bearing)}) trazamos la tangente dejando el faro por ${side}: ` +
         `ángulo = arcsen(${String(d).replace('.', ',')} / ${r.distance.toFixed(1).replace('.', ',')}) = ${alpha.toFixed(1).replace('.', ',')}°, rumbo a seguir = ${fmtBearing(rv)}.`,
         pide('tangente', `¿Qué rumbo verdadero hay que hacer para pasar a ${fmtMiles(d)} de ${nm(id)}?`, [{ kind: 'bearing', value: rv, label: 'Rv', medido: true }]),
@@ -367,7 +381,7 @@ export function createKit(chart, { error = null } = {}) {
       const hDec = dist / v;
       // Error típico: leer las horas decimales como horas y minutos (1,5 h → 1 h 50 min).
       const mins = E('horas-decimales') ? Math.floor(hDec) * 60 + Math.round((hDec % 1) * 100) : hDec * 60;
-      const t = t0 + mins;
+      const t = F(t0 + mins);
       step('HRB de llegada', `t = d / V = ${fmtMiles(dist)} / ${fmtKnots(v)} = ${Math.round(mins)} min → ${fmtClock(t0)} + ${Math.round(mins)} min = ${fmtClock(t)}.`, pide('tiempo', '¿A qué hora (HRB) se llega?', [{ kind: 'clock', value: t, label: 'HRB' }]),
         { traigo: [`Salida a las ${fmtClock(t0)}`, `d = ${fmtMiles(dist)}`, `V = ${fmtKnots(v)}`], plantea: 't = d / V en horas; los decimales de hora se pasan a minutos (× 60) y se suman a la hora de salida.',
           lineas: [`t = ${coma(dist, 1)} / ${coma(v, 1)} = ${coma(hDec, 2)} h = ${Math.round(mins)} min`, `HRB = ${fmtClock(t0)} + ${hm(mins)} = ${fmtClock(t)}`] });
@@ -375,6 +389,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     distanceBetween(a, b) {
       const r = rhumbTo(P(a), P(b));
+      r.distance = F(r.distance);
       step(`Distancia a ${typeof b === 'string' ? nm(b) : 'el punto'}`, `Medimos con el compás en la escala de latitudes: ${fmtMiles(r.distance)}.`, pide('medida', 'Mide la distancia en la carta (escala de latitudes).', [{ kind: 'distance', value: r.distance, label: 'Distancia', medido: true }]),
         { traigo: [`De ${typeof a === 'string' ? nm(a) : fmtPos(P(a))}`, `a ${typeof b === 'string' ? nm(b) : fmtPos(P(b))}`],
           plantea: 'Abre el compás entre los dos puntos y llévalo a la escala de latitudes, a la altura de los puntos: cada minuto es una milla.',
@@ -390,7 +405,7 @@ export function createKit(chart, { error = null } = {}) {
       const banda = windSide(vientoDe, rv);
       const ab = abatimientoSigned(grados, banda);
       const abA = E('sin-abatimiento') ? 0 : E('signo-abatimiento') ? -ab : ab;
-      const rs = norm360(rv + abA);
+      const rs = F(norm360(rv + abA));
       step('Rumbo de superficie', `El viento del ${DIR_NAME[vientoDe] ?? fmtBearing(vientoDe)} entra por ${banda}: nos abate a ${banda === 'babor' ? 'estribor' : 'babor'}, Ab = ${fmtSignedNum(ab, 0)}. Rs = Rv + Ab = ${fmtBearing(rv)} + (${fmtSignedNum(ab, 0)}) = ${fmtBearing(rs)}.`,
         pide('abatimiento', '¿Cuál es el rumbo de superficie (Rs)?', [{ kind: 'bearing', value: rs, label: 'Rs' }]),
         { traigo: [`Rv = ${fmtBearing(rv)}  (la proa)`, `Viento del ${deDonde(vientoDe)} (sopla desde ${fmtBearing(vientoDe)})`, `Abatimiento = ${String(Math.abs(ab)).replace('.', ',')}°`],
@@ -404,7 +419,7 @@ export function createKit(chart, { error = null } = {}) {
       const banda = windSide(vientoDe, rs);
       const ab = abatimientoSigned(grados, banda);
       const abA = E('sin-abatimiento') ? 0 : E('signo-abatimiento') ? -ab : ab;
-      const rv = norm360(rs - abA);
+      const rv = F(norm360(rs - abA));
       step('Rumbo verdadero a dar', `El viento del ${DIR_NAME[vientoDe] ?? fmtBearing(vientoDe)} entra por ${banda} y nos abatiría ${fmtSignedNum(ab, 0)}: lo compensamos metiendo la proa al viento. Rv = Rs − Ab = ${fmtBearing(rs)} − (${fmtSignedNum(ab, 0)}) = ${fmtBearing(rv)}.`,
         pide('abatimiento', '¿Qué rumbo verdadero (Rv) hay que dar para compensar el abatimiento?', [{ kind: 'bearing', value: rv, label: 'Rv' }]),
         { traigo: [`Rs = ${fmtBearing(rs)}  (el que queremos hacer)`, `Viento del ${deDonde(vientoDe)} (sopla desde ${fmtBearing(vientoDe)})`, `Abatimiento = ${String(Math.abs(ab)).replace('.', ',')}°`],
@@ -418,6 +433,7 @@ export function createKit(chart, { error = null } = {}) {
       let { ref, vef } = effectiveCourse(rs, vb, E('corriente-invertida') ? norm360(rc + 180) : rc, ic);
       if (E('sin-corriente')) { ref = rs; vef = vb; }
       if (E('corriente-sumada')) vef = vb + ic;
+      ref = F(ref, 0); vef = F(vef, 1);
       step('Rumbo y velocidad efectivos', `Triángulo de velocidades: vector barco ${fmtBearing(rs)} y ${fmtKnots(vb)}; a continuación, vector corriente ${fmtBearing(rc)} y ${fmtKnots(ic)}. La resultante es Ref = ${fmtBearing(ref)} y Vef = ${fmtKnots(vef)}.`,
         pide('corriente', '¿Cuáles son el rumbo efectivo (Ref) y la velocidad efectiva (Vef)?', [{ kind: 'bearing', value: ref, label: 'Ref', medido: true }, { kind: 'speed', value: vef, label: 'Vef', medido: true }]),
         { traigo: [`Rs = ${fmtBearing(rs)}, Vb = ${fmtKnots(vb)}`, `Corriente: Rc = ${fmtBearing(rc)} (hacia donde va), Ihc = ${fmtKnots(ic)}`],
@@ -435,7 +451,7 @@ export function createKit(chart, { error = null } = {}) {
     /** Situación de estima con viento y corriente: d = Vef · t sobre el Ref. */
     estimaEfectiva(from, ref, vef, minutes, label = 'Situación de estima') {
       const d = vef * horasDe(minutes);
-      const p = rhumbDestination(from, ref, d);
+      const p = FP(rhumbDestination(from, ref, d));
       step(label, `En ${minutes} min recorremos ${fmtKnots(vef)} × ${coma(minutes / 60)} h = ${fmtMiles(d, 2)} sobre el Ref ${fmtBearing(ref)}: ${fmtPos(p)}.`, pide('estima', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Salida: ${fmtPos(from)}`, `Ref = ${fmtBearing(ref)}, Vef = ${fmtKnots(vef)}`, `t = ${minutes} min`],
           plantea: 'Con corriente, la estima va sobre el efectivo: d = Vef · t (t en horas), trazada desde la salida con el Ref.',
@@ -449,7 +465,8 @@ export function createKit(chart, { error = null } = {}) {
      */
     rumboYVelocidad(from, to, minutes, rc, ic) {
       const r = rhumbTo(P(from), P(to));
-      const vef = r.distance / horasDe(minutes);
+      r.bearing = F(r.bearing, 0);
+      const vef = F(r.distance / horasDe(minutes), 1);
       step('Rumbo y velocidad efectivos', `Uniendo la salida con ${typeof to === 'string' ? nm(to) : 'el destino'}: Ref = ${fmtBearing(r.bearing)}, ${fmtMiles(r.distance)} en ${coma(minutes / 60, 1)} h → Vef = ${fmtKnots(vef)}.`,
         pide('medida', 'Mide el rumbo efectivo (Ref) y calcula la velocidad efectiva (Vef) que hace falta.', [{ kind: 'bearing', value: r.bearing, label: 'Ref', medido: true }, { kind: 'speed', value: vef, label: 'Vef' }]),
         { traigo: [`Salida: ${typeof from === 'string' ? nm(from) : fmtPos(P(from))}`, `Destino: ${typeof to === 'string' ? nm(to) : fmtPos(P(to))}`, `Tiempo para llegar = ${minutes} min`],
@@ -464,6 +481,7 @@ export function createKit(chart, { error = null } = {}) {
       let vb = Math.hypot(e.x - c.x, e.y - c.y);
       if (E('sin-corriente')) { rs = r.bearing; vb = vef; }
       if (E('corriente-sumada')) vb = vef - ic;
+      rs = F(rs, 0); vb = F(vb, 1);
       step('Triángulo de velocidades', `Desde la salida trazamos el vector corriente ${fmtBearing(rc)} y ${fmtKnots(ic)}; uniendo su extremo con el extremo del vector efectivo (${fmtMiles(vef)} en una hora) sale el vector barco: Rs = ${fmtBearing(rs)}, Vb = ${fmtKnots(vb)}.`,
         pide('corriente', '¿Qué rumbo de superficie (Rs) y qué velocidad (Vb) debe llevar el barco?', [{ kind: 'bearing', value: rs, label: 'Rs', medido: true }, { kind: 'speed', value: vb, label: 'Vb', medido: true }]),
         { traigo: [`Ref = ${fmtBearing(r.bearing)}, Vef = ${fmtKnots(vef)}`, `Corriente: Rc = ${fmtBearing(rc)}, Ihc = ${fmtKnots(ic)}`],
@@ -477,8 +495,9 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Corte de nuestro rumbo (desde `from`) con la demora `dv` a un faro: «cuando lo tengamos por el través»… */
     corteRumbo(from, rumbo, id, dv, label = 'Situación') {
-      const p = lineCut(P(from), rumbo, P(id), dv);
+      let p = lineCut(P(from), rumbo, P(id), dv);
       if (!p) throw new Error('Sin corte');
+      p = FP(p);
       step(label, `Desde ${nm(id)} trazamos ${fmtBearing(dv + 180)} y la cortamos con nuestro rumbo ${fmtBearing(rumbo)}: ${fmtPos(p)}.`, pide('situacion', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Nuestro rumbo = ${fmtBearing(rumbo)} desde la salida`, `Dv ${nm(id)} = ${fmtBearing(dv)}`],
           plantea: 'Estás sobre tu rumbo y sobre la demora del faro: desde el faro, la opuesta (Dv ± 180°), y donde corta a tu rumbo.',
@@ -492,8 +511,9 @@ export function createKit(chart, { error = null } = {}) {
     /** Demoras no simultáneas: la 1ª línea se traslada lo navegado (rumbo, millas) y se corta con la 2ª. */
     traslado(a, dvA, b, dvB, rumbo, millas, label = 'Situación') {
       const pA2 = rhumbDestination(P(a), rumbo, E('sin-traslado') ? 0 : millas);
-      const p = lineCut(pA2, dvA, P(b), dvB);
+      let p = lineCut(pA2, dvA, P(b), dvB);
       if (!p) throw new Error('Sin corte');
+      p = FP(p, 1);
       step('Traslado de la 1ª línea', `Desde ${nm(a)} llevamos ${fmtBearing(rumbo)} y ${fmtMiles(millas, 1)}: por ese punto trazamos una paralela a la 1ª demora (${fmtBearing(dvA + 180)}).`, null,
         { traigo: [`1ª demora: Dv ${nm(a)} = ${fmtBearing(dvA)}`, `Navegado entre las dos: ${fmtBearing(rumbo)}, ${fmtMiles(millas, 1)}`],
           plantea: TRASLADO, lineas: [`1ª línea, desde ${nm(a)}: ${fmtBearing(dvA + 180)}`, `Traslado: ${fmtBearing(rumbo)}, ${fmtMiles(millas, 1)}`, `Paralela a ${fmtBearing(dvA + 180)} por el punto trasladado`] });
@@ -516,8 +536,9 @@ export function createKit(chart, { error = null } = {}) {
     trasladoArco(a, dvA, b, dist, rumbo, millas, elegir, label = 'Situación') {
       const A = P(a); const B = P(b);
       const cortes = cortesRectaArco(rhumbDestination(A, rumbo, E('sin-traslado') ? 0 : millas), dvA, B, dist);
-      const p = elegir(cortes);
+      let p = elegir(cortes);
       if (!p) throw new Error('Sin corte');
+      p = FP(p, 1);
       step('Traslado de la 1ª línea', `Desde ${nm(a)} llevamos el rumbo ${fmtBearing(rumbo)} y ${fmtMiles(millas)} navegadas: por ese punto trazamos una paralela a la 1ª demora (${fmtBearing(dvA + 180)} desde el faro).`, null,
         { traigo: [`1ª demora: Dv ${nm(a)} = ${fmtBearing(dvA)}`, `Navegado entre las dos: ${fmtBearing(rumbo)}, ${fmtMiles(millas)}`],
           plantea: TRASLADO, lineas: [`1ª línea, desde ${nm(a)}: ${fmtBearing(dvA + 180)}`, `Traslado: ${fmtBearing(rumbo)}, ${fmtMiles(millas)}`, `Paralela a ${fmtBearing(dvA + 180)} por el punto trasladado`] });
@@ -538,8 +559,9 @@ export function createKit(chart, { error = null } = {}) {
       const A = P(a); const B = P(b);
       const A2 = rhumbDestination(A, rumbo, E('sin-traslado') ? 0 : millas);
       const cortes = cortesDosArcos(A2, da, B, db);
-      const p = elegir(cortes);
+      let p = elegir(cortes);
       if (!p) throw new Error('Sin corte');
+      p = FP(p, 1);
       step('Traslado de la 1ª línea', `La 1ª línea de posición es el arco de ${fmtMiles(da)} con centro en ${nm(a)}. Trasladamos su centro lo navegado entre las dos observaciones, ${fmtBearing(rumbo)} y ${fmtMiles(millas)}: nuevo centro en ${fmtPos(A2)}, y desde él trazamos de nuevo el arco de ${fmtMiles(da)}.`, null,
         { traigo: [`1ª distancia: ${fmtMiles(da)} a ${nm(a)}`, `Navegado entre las dos: ${fmtBearing(rumbo)}, ${fmtMiles(millas)}`],
           plantea: 'Distancias no simultáneas: el centro del 1er arco se traslada lo navegado entre las dos observaciones (mismo rumbo y distancia), y desde el centro nuevo se traza el mismo arco.',
@@ -564,11 +586,12 @@ export function createKit(chart, { error = null } = {}) {
       const filas = lista.map((t) => {
         const r = t.rumbo * Math.PI / 180;
         const [a, b] = E('seno-coseno') ? [t.millas * Math.sin(r), t.millas * Math.cos(r)] : [t.millas * Math.cos(r), t.millas * Math.sin(r)];
-        dl += a; ap += b;
         return { nombre: t.nombre ?? fmtBearing(t.rumbo), rumbo: t.rumbo, millas: t.millas, dl: a, ap: b, corriente: /corriente/i.test(t.nombre ?? '') };
       });
       // Un paso por tramo (la corriente es un tramo más): es la tabla que se hace en el examen, fila a fila.
       filas.forEach((f, i) => {
+        f.dl = F(f.dl, 0); f.ap = F(f.ap, 1);
+        dl += f.dl; ap += f.ap;
         const R = fmtBearing(f.rumbo); const d = coma(f.millas, 1);
         step(`${f.corriente ? 'La corriente' : `Tramo ${i + 1}`}: Δl y apartamiento`,
           `${f.nombre}, ${fmtMiles(f.millas, 1)}: Δl = d · cos R = ${d} × cos ${R} = ${sg(f.dl)}′; A = d · sen R = ${d} × sen ${R} = ${sg(f.ap)}′.`,
@@ -579,14 +602,15 @@ export function createKit(chart, { error = null } = {}) {
       });
       const tabla = { cab: ['Tramo', 'R', 'd', 'Δl', 'A'], filas: filas.map((f, i) => [f.corriente ? 'Corr.' : String(i + 1), fmtBearing(f.rumbo), coma(f.millas, 1), sg(f.dl), sg(f.ap)]) };
       // Con un solo tramo no hay nada que sumar.
+      if (filas.length > 1) { dl = F(dl, 0); ap = F(ap, 1); }
       if (filas.length > 1) step('Sumo la tabla', `Sumamos las columnas con su signo (N y E +, S y W −): ${filas.map((f) => `${f.nombre} ${fmtMiles(f.millas, 1)}: Δl ${sg(f.dl)}′, A ${sg(f.ap)}′`).join('; ')}. Totales: Δl = ${sg(dl)}′, A = ${sg(ap)}′.`,
         pide('loxodromica', '¿Cuánto suman la Δl y el apartamiento?', [min(dl, 'Δl total'), min(ap, 'A total')]),
         { tabla: { ...tabla, suma: true }, croquis: { tipo: 'tramos', legs: filas.map((f) => ({ dl: f.dl, ap: f.ap, corriente: f.corriente })) }, plantea: 'Suma cada columna con su signo: N y E suman, S y W restan.',
           lineas: [`Δl total = ${filas.map((f) => sg(f.dl)).join(' ')} = ${sg(dl)}′${hacia(dl, 'N', 'S')}`, `A total = ${filas.map((f) => sg(f.ap)).join(' ')} = ${sg(ap)}′${hacia(ap, 'E', 'W')}`] });
-      const lat = from.lat + dl / 60;
+      const lat = F(from.lat + dl / 60);
       const lm = E('lm-salida') ? from.lat : (from.lat + lat) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
-      const dL = E('sin-cos-lm') ? ap : E('cos-lm-multiplica') ? ap * cos : ap / cos;
+      const dL = F(E('sin-cos-lm') ? ap : E('cos-lm-multiplica') ? ap * cos : ap / cos, 0, 1);
       let p = { lat, lon: from.lon + (E('signo-dL') ? -dL : dL) / 60 };
       step('Latitud de llegada', `l = ${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${lt(p)}.`, pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]),
         { traigo: [`l salida = ${lt(from)}`, `Δl total = ${sg(dl)}′`], plantea: 'l llegada = l salida + Δl   (los minutos de Δl son minutos de latitud)',
@@ -604,6 +628,7 @@ export function createKit(chart, { error = null } = {}) {
         cruce = ` La longitud sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${lg(p)}.`;
         lineasL.push(`= ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}  → ¡pasa de 180°!`, `360° − ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ = ${lg(p)}`);
       } else lineasL.push(`L llegada = ${lg(p)}`);
+      p = FP(p);
       step(label, `${fmtPos(p)}.${cruce}`, pide('loxodromica', `¿Cuál es la ${label.toLowerCase()}?`, posCampos(p, false)),
         { traigo: [`l llegada = ${lt(p)}`, `L salida = ${lg(from)}`, `ΔL = ${sg(dL)}′`],
           plantea: 'L llegada = L salida + ΔL: hacia el E, la longitud E crece y la W disminuye. Si pasa de 180°, resta de 360° y cambia E por W.',
@@ -616,7 +641,8 @@ export function createKit(chart, { error = null } = {}) {
     corrienteDesconocida(estima, observada, minutes) {
       const r = rhumbTo(estima, observada);
       if (E('corriente-invertida')) r.bearing = norm360(r.bearing + 180);
-      const ic = r.distance / horasDe(minutes);
+      r.bearing = F(r.bearing, 0);
+      const ic = F(r.distance / horasDe(minutes), 1);
       step('Rumbo e intensidad de la corriente', `La corriente es lo que nos ha llevado de la situación de estima a la observada. Uniéndolas: Rc = ${fmtBearing(r.bearing)}, ${fmtMiles(r.distance, 2)} en ${coma(minutes / 60, 2)} h → Ihc = ${fmtKnots(ic)}.`,
         pide('corriente', '¿Cuáles son el rumbo (Rc) y la intensidad horaria (Ihc) de la corriente?', [{ kind: 'bearing', value: r.bearing, label: 'Rc', medido: true }, { kind: 'speed', value: ic, label: 'Ihc', medido: true }]),
         { traigo: [`Estima: ${fmtPos(estima)}`, `Observada: ${fmtPos(observada)}`, `Tiempo navegado = ${minutes} min`],
@@ -633,7 +659,7 @@ export function createKit(chart, { error = null } = {}) {
       let ref = to; let dist = null;
       if (typeof to !== 'number') {
         const r = rhumbTo(P(from), P(to));
-        ref = r.bearing; dist = r.distance;
+        ref = F(r.bearing, 0); dist = F(r.distance, 1);
         step('Rumbo efectivo', `Uniendo la salida con ${typeof to === 'string' ? nm(to) : 'el destino'}: Ref = ${fmtBearing(ref)}, distancia = ${fmtMiles(dist)}.`,
           pide('medida', 'Mide en la carta el rumbo efectivo (Ref) y la distancia.', [{ kind: 'bearing', value: ref, label: 'Ref', medido: true }, { kind: 'distance', value: dist, label: 'Distancia', medido: true }]),
           { traigo: [`Salida: ${typeof from === 'string' ? nm(from) : fmtPos(P(from))}`, `Destino: ${typeof to === 'string' ? nm(to) : fmtPos(P(to))}`],
@@ -646,6 +672,7 @@ export function createKit(chart, { error = null } = {}) {
       if (!sol) throw new Error('El barco no puede vencer la corriente');
       if (E('sin-corriente')) sol = { rs: ref, vef: vb };
       if (E('corriente-sumada')) sol = { ...sol, vef: vb + ic };
+      sol = { ...sol, rs: F(sol.rs, 0), vef: F(sol.vef, 1) };
       step('Triángulo de velocidades', `Desde la salida trazamos el vector corriente ${fmtBearing(rc)} y ${fmtKnots(ic)}. Con centro en su extremo y radio ${fmtKnots(vb)} (lo que anda el barco en una hora) cortamos la línea del Ref ${fmtBearing(ref)}: el vector barco da Rs = ${fmtBearing(sol.rs)}, y la velocidad efectiva es Vef = ${fmtKnots(sol.vef)}.`,
         pide('corriente', '¿Qué rumbo de superficie (Rs) hay que hacer y qué velocidad efectiva (Vef) se obtiene?', [{ kind: 'bearing', value: sol.rs, label: 'Rs', medido: true }, { kind: 'speed', value: sol.vef, label: 'Vef', medido: true }]),
         { traigo: [`Ref = ${fmtBearing(ref)}`, `Vb = ${fmtKnots(vb)}`, `Corriente: Rc = ${fmtBearing(rc)}, Ihc = ${fmtKnots(ic)}`],
@@ -671,6 +698,7 @@ export function createKit(chart, { error = null } = {}) {
     ctPolar(za) {
       let ct = norm180(-za);
       if (E('signo-ct:valor') || E('signo-ct:aplicacion')) ct = -ct;
+      ct = F(ct);
       step('Corrección total', `La Polar marca el norte verdadero (Zv ≈ 000°). Ct = Zv − Za = 000° − ${fmtBearing(za)} = ${fmtSignedNum(ct, 0)}.`, pide('ct', '¿Cuánto vale la corrección total (Ct)?', [{ kind: 'signed', value: ct, label: 'Ct' }]),
         { traigo: [`Za de la Polar = ${fmtBearing(za)}`, 'Zv de la Polar ≈ 000° (está casi en el norte verdadero)'],
           plantea: 'Ct = Zv − Za = 000° − Za. Si la Za pasa de 180°, cuenta 360° − Za: la Ct sale E (+).',
@@ -683,8 +711,8 @@ export function createKit(chart, { error = null } = {}) {
       const min = (v, lab) => ({ kind: 'minutos', value: v, label: lab });
       const lt = (p) => fmtPos(p).split('  ')[0];
       const lg = (p) => fmtPos(p).split('  ')[1];
-      const dl = (b.lat - a.lat) * 60;
-      const dL = norm180(b.lon - a.lon) * 60 * (E('signo-dL') ? -1 : 1);
+      const dl = F((b.lat - a.lat) * 60);
+      const dL = F(norm180(b.lon - a.lon) * 60 * (E('signo-dL') ? -1 : 1), 0, 1);
       const cruza = Math.abs((b.lon - a.lon) * 60 - dL) > 1e-6;
       step('Diferencia de latitud', `De ${lt(a)} a ${lt(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}.`,
         pide('loxodromica', '¿Cuánto vale la diferencia de latitud (Δl)?', [min(dl, 'Δl (N +, S −)')]),
@@ -697,12 +725,13 @@ export function createKit(chart, { error = null } = {}) {
           lineas: cruza ? [`Cruzo el 180°: (180° − ${lg(a).replace(/ [EW]$/, '')}) + (180° − ${lg(b).replace(/ [EW]$/, '')})`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] : [`${lg(b)} − ${lg(a)}`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
       const lm = E('lm-salida') ? a.lat : (a.lat + b.lat) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
-      const A = E('sin-cos-lm') ? dL : E('cos-lm-multiplica') ? dL / cos : dL * cos;
+      const A = F(E('sin-cos-lm') ? dL : E('cos-lm-multiplica') ? dL / cos : dL * cos);
       let r = norm360(toDeg(Math.atan2(A, dl)));
       const ang = toDeg(Math.atan(Math.abs(A) / Math.abs(dl)));
       // Seno y coseno cambiados: tg R = Δl / A (el ángulo complementario, en el mismo cuadrante).
       if (E('seno-coseno')) { const c = 90 - ang; r = dl >= 0 ? (A >= 0 ? c : 360 - c) : (A >= 0 ? 180 - c : 180 + c); }
-      const d = Math.hypot(A, dl);
+      const d = F(Math.hypot(A, dl), 1, 1);
+      r = F(r, 0, 1);
       step('Apartamiento', `Latitud media ${coma(Math.abs(lm), 1)}°: A = ΔL · cos lm = ${coma(Math.abs(dL), 1)}′ × ${coma(cos, 3)} = ${coma(Math.abs(A), 1)}′ ${A < 0 ? 'W' : 'E'}.`,
         pide('loxodromica', '¿Cuánto vale el apartamiento (A)?', [min(A, 'A (E +, W −)')]),
         { traigo: [`ΔL = ${sg(dL)}′`, `l salida = ${lt(a)}`, `l llegada = ${lt(b)}`], plantea: 'lm = (l salida + l llegada) / 2   ·   A = ΔL · cos lm   (aquí se multiplica: de minutos de longitud a millas)',
@@ -731,9 +760,12 @@ export function createKit(chart, { error = null } = {}) {
         // `cuenta`: la hora como se escribe en la cuenta (una del día siguiente, con 24 h sumadas: 00:23 → 24:23).
         ext.push({ t, h: x.altura_m, hora: x.hora, cuenta: t >= 1440 ? `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}` : x.hora });
       }
-      const [a, b] = desde != null ? [ext[desde], ext[desde + 1]] : ext.slice(0, -1).map((e, i) => [e, ext[i + 1]]).find(([u, v]) => cual >= u.t && cual <= v.t);
+      let [a, b] = (desde != null ? [ext[desde], ext[desde + 1]] : ext.slice(0, -1).map((e, i) => [e, ext[i + 1]]).find(([u, v]) => cual >= u.t && cual <= v.t)) ?? [];
+      // Hoja en papel (con datos del alumno): una hora que cae fuera de la tabla se calcula con el tramo más cercano,
+      // como lo haría quien la escribió (23:50 UT con la última bajamar a las 23:25 → el último tramo).
+      if (!a && fijos && desde == null && ext.length > 1) [a, b] = cual < ext[0].t ? [ext[0], ext[1]] : [ext.at(-2), ext.at(-1)];
       const bm = a.h < b.h ? a : b; const pm = a.h < b.h ? b : a;
-      const D = Math.abs(b.t - a.t); const A = pm.h - bm.h;
+      const D = FH(Math.abs(b.t - a.t), 0); const A = F(pm.h - bm.h, 1);
       const nom = (x) => (x === bm ? 'Bajamar' : 'Pleamar');
       step('Duración y amplitud', `Tramo entre la ${a === bm ? 'bajamar' : 'pleamar'} de las ${a.hora} UT (${coma(a.h)} m) y la ${b === bm ? 'bajamar' : 'pleamar'} de las ${b.hora} UT (${coma(b.h)} m): D = ${hm(D)}, A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m.`,
         pide('marea', '¿Cuánto valen la duración (D) y la amplitud (A) de la marea?', [{ kind: 'duration', value: D / 60, label: 'Duración D' }, { kind: 'meters', value: A, label: 'Amplitud A' }]),
@@ -749,7 +781,7 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Hora oficial → UT. */
     horaUT(oficial, adelanto) {
-      const t = E('sin-adelanto') ? oficial : E('adelanto-signo') ? oficial + adelanto * 60 : oficial - adelanto * 60;
+      const t = F(E('sin-adelanto') ? oficial : E('adelanto-signo') ? oficial + adelanto * 60 : oficial - adelanto * 60);
       step('TU', `Hora oficial ${fmtClock(oficial)} − adelanto ${adelanto} h = ${fmtClock(t)} UT (el Anuario va en UT).`, pide('hora-legal', '¿Qué hora UT es (el Anuario va en UT)?', [{ kind: 'clock', value: t, label: 'Hora UT' }]),
         { traigo: [`Hora oficial = ${fmtClock(oficial)}`, `Adelanto = ${adelanto} h`], plantea: 'UT = hora oficial − adelanto   (el Anuario de Mareas va en UT)',
           lineas: [`${fmtClock(oficial)} − ${adelanto} h = ${fmtClock(t)} UT`] });
@@ -757,9 +789,9 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Sonda en la carta + altura de marea a la hora `t` (UT) dentro del tramo. */
     sondaA(tr, t, sondaCarta) {
-      const I = Math.abs(t - (E('pleamar-bajamar') ? tr.pm.t : tr.bm.t));
-      const C = E('lineal') ? (tr.A * Math.min(I, tr.D)) / tr.D : correccionTabla(tr.A, I, tr.D);
-      const alt = tr.bm.h + C;
+      const I = FH(Math.abs(t - (E('pleamar-bajamar') ? tr.pm.t : tr.bm.t)));
+      const C = F(E('lineal') ? (tr.A * Math.min(I, tr.D)) / tr.D : correccionTabla(tr.A, I, tr.D), 0, 1);
+      const alt = F(tr.bm.h + C, 0, 2);
       const ang = (90 * I) / tr.D; const s2 = Math.sin(ang * Math.PI / 180) ** 2;
       const cro = { tipo: 'marea', a: { hora: tr.a.cuenta, h: tr.a.h }, b: { hora: tr.b.cuenta, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: fmtClock(t) };
       step('Intervalo desde la bajamar', `Desde la bajamar de las ${tr.bm.hora} UT hasta las ${fmtClock(t)} UT: I = ${hm(I)}.`,
@@ -775,7 +807,7 @@ export function createKit(chart, { error = null } = {}) {
         pide('marea', '¿Cuál es la altura de la marea a esa hora?', [{ kind: 'meters', value: alt, label: 'Altura' }]),
         { traigo: [`Altura de la bajamar = ${coma(tr.bm.h)} m`, `C = ${coma(C)} m`], plantea: 'Altura de la marea = altura de la bajamar + C',
           lineas: [`${coma(tr.bm.h)} + ${coma(C)} = ${coma(alt)} m`] });
-      const s = E('sonda-carta-olvidada') ? alt : E('sonda-carta-signo') ? alt - sondaCarta : sondaCarta + alt;
+      const s = F(E('sonda-carta-olvidada') ? alt : E('sonda-carta-signo') ? alt - sondaCarta : sondaCarta + alt);
       step('Sonda', `Sonda = sonda de la carta + altura de la marea = ${coma(sondaCarta)} + ${coma(alt)} = ${coma(s)} m.`, pide('sonda', '¿Qué sonda hay en ese momento?', [{ kind: 'meters', value: s, label: 'Sonda' }]),
         { traigo: [`Sonda de la carta = ${coma(sondaCarta)} m`, `Altura de la marea = ${coma(alt)} m`], plantea: 'Sonda en el momento = sonda de la carta + altura de la marea',
           lineas: [`${coma(sondaCarta)} + ${coma(alt)} = ${coma(s)} m`] });
@@ -783,17 +815,24 @@ export function createKit(chart, { error = null } = {}) {
     },
     /** Hora (oficial) a la que hay `sonda` metros en un bajo de `sondaCarta`. */
     horaParaSonda(tr, sonda, sondaCarta, adelanto) {
-      const alt = E('sonda-carta-olvidada') ? sonda : E('sonda-carta-signo') ? sonda + sondaCarta : sonda - sondaCarta;
+      const alt = F(E('sonda-carta-olvidada') ? sonda : E('sonda-carta-signo') ? sonda + sondaCarta : sonda - sondaCarta);
       step('Altura de la marea necesaria', `Altura = sonda deseada − sonda de la carta = ${coma(sonda)} − ${coma(sondaCarta)} = ${coma(alt)} m.`, pide('sonda', '¿Qué altura de marea hace falta?', [{ kind: 'meters', value: alt, label: 'Altura' }]),
         { traigo: [`Sonda que queremos = ${coma(sonda)} m`, `Sonda de la carta = ${coma(sondaCarta)} m`], plantea: 'Altura de marea necesaria = sonda que queremos − sonda de la carta',
           lineas: [`${coma(sonda)} − ${coma(sondaCarta)} = ${coma(alt)} m`] });
-      const C = alt - tr.bm.h;
-      let t = timeForHeight(tr.a, tr.b, alt);
+      const C = F(alt - tr.bm.h, 0, 0);
+      // Con los datos de la tabla, la hora sale de la altura; con D, A o C escritos por el alumno (hoja en papel), de la
+      // misma fórmula con sus números: I = D · arcsen √(C / A) / 90°.
+      const conSusDatos = Math.abs(tr.A - (tr.pm.h - tr.bm.h)) > 1e-9 || Math.abs(tr.D - Math.abs(tr.b.t - tr.a.t)) > 1e-9 || Math.abs(C - (alt - tr.bm.h)) > 1e-9;
+      let t = conSusDatos ? null : timeForHeight(tr.a, tr.b, alt);
+      if (conSusDatos && C >= 0 && C <= tr.A) t = tr.bm.t + (tr.bm === tr.a ? 1 : -1) * (tr.D * toDeg(Math.asin(Math.sqrt(C / tr.A)))) / 90;
       if (t == null) throw new Error('La marea no alcanza esa altura en el tramo');
       let I = Math.abs(t - tr.bm.t);
       if (E('lineal')) { I = (tr.D * C) / tr.A; t = tr.bm === tr.a ? tr.bm.t + I : tr.bm.t - I; }
+      const I0 = I; I = FH(I, 0, 1);
+      if (I !== I0) t = tr.bm === tr.a ? tr.bm.t + I : tr.bm.t - I;
       // Contar el intervalo desde la pleamar (hacia la bajamar) en vez de desde la bajamar.
       if (E('pleamar-bajamar')) t = tr.pm === tr.a ? tr.pm.t + I : tr.pm.t - I;
+      t = F(t, 0, 2);
       const raiz = Math.sqrt(Math.max(0, C / tr.A)); const ang = toDeg(Math.asin(Math.min(1, raiz)));
       step('Corrección de altura', `C = altura necesaria − altura de la bajamar = ${coma(alt)} − ${coma(tr.bm.h)} = ${coma(C)} m.`,
         pide('marea', '¿Cuánto tiene que subir la marea sobre la bajamar (la corrección C)?', [{ kind: 'meters', value: C, label: 'Corrección C' }]),
@@ -811,7 +850,7 @@ export function createKit(chart, { error = null } = {}) {
           plantea: 'Si la marea sube, hora = bajamar + I. Si baja, hora = bajamar − I (la bajamar está al final del tramo).',
           lineas: [`${tr.bm.cuenta} ${sube ? '+' : '−'} ${hm(I)} = ${fmtClock(t)} UT`],
           croquis: { tipo: 'marea', a: { hora: tr.a.cuenta, h: tr.a.h }, b: { hora: tr.b.cuenta, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: '¿hora?' } });
-      const of = E('sin-adelanto') ? t : E('adelanto-signo') ? t - adelanto * 60 : t + adelanto * 60;
+      const of = F(E('sin-adelanto') ? t : E('adelanto-signo') ? t - adelanto * 60 : t + adelanto * 60);
       step('Hora oficial', `${fmtClock(t)} UT + adelanto ${adelanto} h = ${fmtClock(of)}.`, pide('hora-legal', '¿Y en hora oficial?', [{ kind: 'clock', value: of, label: 'Hora oficial' }]),
         { traigo: [`Hora UT = ${fmtClock(t)}`, `Adelanto = ${adelanto} h`], plantea: 'Hora oficial = UT + adelanto', lineas: [`${fmtClock(t)} + ${adelanto} h = ${fmtClock(of)}`] });
       return of;

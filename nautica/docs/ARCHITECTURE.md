@@ -84,6 +84,7 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 | `#/<tit>/dia-examen` | `views/dia-examen.js`: la lista del día del examen (R-44). Lógica pura en `src/course/dia-examen.js` (`listaDiaExamen`: grupos documentación, material, calculadora, hora y lugar por tribunal y titulación; casillas, vigencia y reinicio) sobre `data/comun/dia-examen.json` (cada elemento con su fuente; lo no comprobado, «pendiente de verificar») y las fuentes de `estrategia.json`. La calculadora es casilla solo si `calculadoraPermitida`. Casillas en el ajuste compartido `listadia_<tit>`; la de «admitidos» vive en `convocatoria_<tit>`. Imprimible; nunca con un examen en marcha (`estrategiaPermitida`) |
 | `#/<tit>/vispera` | `views/vispera.js`: repaso exprés de la víspera, 15 min (R-45). `src/course/vispera.js` (`repasoExpres`, `erroresDeLaVispera`): trampas (pasos «ojo» del curso = las de las chuletas) de los temas con límite, por la prioridad de las ideas de su clase (`ideasPriorizadas`), recortadas a 1950 palabras (130 p/min); errores del tribunal (`data/comun/errores-frecuentes.json`, de `tools/errores-frecuentes.mjs`) y del alumno (`store/errores.js`). Paso del día k = 1 de «la semana antes» (`planSemana({ repasoExpres })`). Imprimible; nunca en un examen |
 | `#/<tit>/ensayo[?p=<parte>&s=<semilla>]`, `#/<tit>/ensayo/cuadernillo?p=…&s=…`, `#/<tit>/test/ensayo?p=…&s=…` | Ensayo general en papel (R-41): `views/ensayo.js` (preparación: parte, material del tribunal sacado de `data/comun/estrategia.json` → `tribunales.<eje>.dia` vía `textosEstrategia`, aviso de la carta de papel; y cuadernillo imprimible con la hoja en blanco), `views/theory.js` → `testView` (`tipo: 'ensayo'`, `correrPapel`) y `ui/ensayo.js` (cuadernillo en pantalla, reloj del tribunal y hoja de respuestas). Lógica pura en `src/theory/ensayo.js` (`partesEnsayo`, `estructuraEnsayo`: PY módulo de navegación con su tiempo oficial; PER navegación y carta, temas 10 y 11, con el tiempo orientativo del presupuesto de la estrategia; o el examen completo; `corregirHoja` con `grade`; `cuentaEnsayos`). Sin ninguna ayuda de la práctica (`SIN_AYUDAS`, `tests/ensayo.test.js`) |
+| `#/<tit>/test/general?s=…` | Ensayo general (R-66): `views/theory.js` → `testView` (`tipo: 'general'`), partes de `partesGeneral` (`src/course/plan-examen.js`) con el foco del alumno; ver «Simulacro con estrategia y ensayo general» |
 | `#/<tit>/oficial[/<convocatoria>]` | Tu examen oficial (R-60): `views/oficial.js` (lista de convocatorias recientes con `banco.convocatoriasTodas()`, qué parte, aviso de la reserva, hojas por módulo con `hojaRespuestasEl` de `ui/ensayo.js`, corrección con `corregirHoja` y resultado por tipo de problema). Lógica pura en `src/course/examen-oficial.js` (`convocatoriasApuntables`, `marcarHecha`, `hojasDe`, `resultadoDe`, `fallosAgrupados`). Guarda `recordExam` por pregunta, `recordTest({ tipo: 'real', oficial: true })` y `apuntarResultado` en `semana_<tit>`; marca la convocatoria como hecha en el ajuste compartido `hechas_<eje>_<tit>` (lo lee `reservaEfectiva` de `src/bancos/index.js`). Enlazada desde Examen y desde «¿Cuántas fallaste en cada materia?» |
 | `#/<tit>/fallos[/dosis\|comprobar/<fallo>]` | Tu cuaderno de fallos (R-55, R-56): `views/fallos.js` (lista por estado, dosis de 2 minutos con micro-tarjetas y reloj, comprobación sin pistas). Lógica pura en `src/course/cuaderno.js` y `src/course/dosis.js`; anotar y la tarjeta de Hoy en `ui/cuaderno.js`. Ver «Cuaderno de fallos, dosis y comprobación» |
 | Elección de módulo (Hoy, `ui/foco.js`) | «¿De qué te examinas?» en el PY: ajuste compartido `modulos_<tit>` (`ambos` · id de módulo). `src/course/foco.js` (`focoModulo`, `datosDelModulo`): `estadoAlumno` recorta estructura, curso (con su ruta) y preguntas al módulo, y devuelve `foco`; sin elección, el módulo que queda tras un resultado apuntado (`moduloPendiente`). El plan guardado lleva `foco` y se rehace si cambia |
@@ -144,6 +145,22 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   media del examen si no hubiera carta), los estados siguen la tabla de velocidad (`estadoTiempo`), la pausa es la de
   `relojVisible`. Va en el paso a paso (que al terminar guarda su tiempo en `store/tiempos.js`, clave `guiado:<id>`) y,
   compacto, en las preguntas de carta de las tandas; nunca en exámenes ni simulacros.
+- **Simulacro con estrategia y ensayo general** (R-57, R-66; `course/plan-examen.js` y `course/descarte.js`, puras; tests
+  `tests/plan-examen.test.js` y `tests/descarte.test.js`): `clasificar`/`costeTipo` (cada pregunta con su tipo y su coste
+  para el alumno: con `velocidadPorTipo` y los fallos abiertos de `cuadernoDe`, o el reparto orientativo cuentas/trazado sin
+  datos), `planExamen` (teoría primero, carta fácil después, cara al final; presupuesto por pregunta escalado al tiempo menos
+  el repaso; prescindibles sin pasar de `maxErrores − 1` del tema; hitos), `primerMinuto` (recuento por tipo y qué
+  localizar: mareas, desvíos, declinación, figuras, faros), `avisoPlan` (pregunta que pasa de 1,5 veces su presupuesto o
+  ritmo atrasado) y `hitoActual` (ensayo en papel), `informePlan` (plan frente a lo hecho y dónde estimar) y `cansancio`
+  (primera mitad del tiempo frente a la segunda, por la hora a la que se contestó cada pregunta: `marcas` del examen a
+  medias), `partesGeneral` (PY: genérico y navegación seguidos con su tiempo; con foco, uno; PER: el examen). Las reglas de
+  descarte (`REGLAS_DESCARTE`) solo usan datos del enunciado y de su tabla de mareas; el test las pasa por todo el estudio
+  de PER y PY (nunca reservadas) y exige que jamás descarten la oficial. La interfaz, `ui/plan-examen.js` (`prepararPlan`,
+  `pantallaPrimerMinuto`, `lineaAvisoPlan`, `seccionInformePlan`): `testView` enseña el primer minuto al empezar un
+  simulacro o una convocatoria (no el examen final ni el de tus errores) y guarda el plan compacto en `testEnCurso.plan`;
+  `#/<tit>/test/general?s=…` (`tipo: 'general'`, partes en `partes`/`idsPartes`/`hechas`) se guarda al final como un
+  simulacro (o de módulo) con `general: true`; la preparación del ensayo en papel enseña el primer minuto y `correrEnsayo`
+  recuerda los hitos. Las vistas no calculan (`tests/plan-examen.test.js`); el examen en marcha no enseña descartes.
 - **Ensayos en papel en la semana y la estrategia:** `recordatorioEnsayos` (`course/semana.js`) y `cuentaEnsayos`
   (`theory/ensayo.js`) cuentan los `tests` con `tipo: 'ensayo'` frente a los 2 recomendados; la página de la semana, la
   estrategia y la pantalla Examen enlazan `#/<tit>/ensayo`.
@@ -227,6 +244,19 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
   en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
   que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Hoja en papel corregida por pasos (R-58):** lógica en `exams/papel.js` (`pasosPapel`, `corregirPapel`, `veredicto`,
+  `textoPapel`), interfaz en `ui/papel.js` (`papelPanel`, `papelDisponible`). Se abre en `#/q/<id>?papel=1` («Lo hice en
+  papel»), desde el resultado del ensayo en papel (`testView`, «Corrige tu hoja por pasos») y desde tu examen oficial
+  (fallos de carta); nunca con un examen en marcha. **Errores arrastrados:** `createKit(chart, { fijos })` sustituye en
+  cada operación el valor calculado de un paso por el que escribió el alumno (`fijos[i][campo]`; helpers `F`, `FH` para
+  duraciones y `FP` para situaciones, con desplazamiento cuando una operación apunta varios pasos) y sigue con él; con
+  `fijos`, una hora fuera de la tabla de mareas usa el tramo más cercano. Cada paso escrito se compara con la resolución
+  y con la resolución «con sus datos»: si cuadra con la segunda, está bien hecho (`arrastrado`) y solo cuenta el primer
+  desvío. El error con nombre sale de las variantes de la taxonomía con sus datos anteriores fijados, buscando también
+  en los pasos que no escribió (un solo error = nombre; dos = «puede ser»). Tolerancias de `toleranciaCampo` (las del
+  paso a paso, ×2 lo medido); «casi» hasta el doble, salvo que coincida con un error típico. El primer fallo con nombre
+  va a `store/errores.js` y al cuaderno (`anotarFallo`, origen `papel`). Lo escrito se guarda como borrador en el aparato
+  (`nautica.papel.<id>`). Test `tests/papel.test.js` (barrido sobre las preguntas del estudio de todos los bancos).
 - **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
   `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
   consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.
@@ -247,7 +277,7 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
 - **Fallo** (`course/cuaderno.js`, puro): un error típico de la taxonomía (`exams/taxonomia.js`) en un tipo de problema
   (el `ejercicio` de la solución o el id del ejercicio generado; `carta` si no tiene). Id `<error>.<tipo>`. Guarda las
   veces (`n`), las últimas con fecha y origen (`paso`, `pregunta`, `simulacro`, `examen`, `oficial`, `ejercicio`,
-  `comprobacion`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
+  `comprobacion`, `papel`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
   cuenta una vez: el paso guiado y la opción final de esa pregunta no se duplican.
 - **Estados y calendario:** abierto → (dosis superada, ≥ 4 de 5) comprobación a `DIAS_COMPROBACION` (3) días →
   bien: vigilando, la siguiente a `DIAS_VIGILANDO` (7) → bien otra vez: resuelto. Mal: abierto, dosis primero y la

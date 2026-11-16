@@ -17,6 +17,17 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 16 de noviembre de 2026, sexta publicación · versión `ffd09e8aa632`
+
+**Novedades**
+
+- **El primer minuto.** Antes de que empiece el reloj de un simulacro, una convocatoria o un ensayo en papel, una pantalla para hojear el cuadernillo como en el examen: dónde está la tabla de mareas, qué preguntas traen desvíos o la declinación de la carta, qué faros hay que buscar y qué tipos de problema trae, marcados como fáciles o caros para ti según tus tiempos y tus fallos (si aún no hay datos tuyos, lo que suele costar cada tipo).
+- **Tu reparto del tiempo.** Un plan para ese examen: qué preguntas primero, cuáles al final y cuáles no merecen la pena si vas justo, con los minutos de cada parte y los momentos en que mirar el reloj. Durante el simulacro, si una pregunta se alarga o te quedas atrás, una línea discreta te lo dice; en el ensayo en papel, te recuerda cada hito.
+- **Estimar y descartar.** Cuando no da tiempo, reglas para quitar opciones imposibles con los datos del enunciado: la hora fuera del tramo de marea, una sonda menor que la de bajamar o mayor que la de pleamar, un rumbo que no va hacia donde está el destino, una distancia o una situación imposibles con esa velocidad. Al terminar, el resultado te dice en qué preguntas te habría convenido estimar y qué podías descartar.
+- **Ensayo general.** En Examen, el examen de un tirón con los tiempos del tribunal: en el PY, el módulo genérico y el de navegación seguidos (o solo el que preparas, si lo has elegido); en el PER, el examen entero. Al final, el resultado parte a parte y si acertaste menos o fuiste más lento en la segunda mitad del tiempo.
+- **Lo hice en papel.** En una pregunta de carta, junto a «Resolver paso a paso», tienes «Lo hice en papel»: la resuelves en tu hoja, como en el examen, y luego escribes el resultado de los pasos que tengas (no hace falta escribirlos todos). Te digo en qué paso te desviaste y, si es un error típico, cuál («Has aplicado el adelanto al revés»). Si un paso no coincide con la solución pero está bien hecho con el dato malo que traías de antes, no se te marca: solo cuenta el primer fallo, y ese va a tu cuaderno de fallos. El margen es el del paso a paso, y el doble en lo que se mide en la carta con transportador o compás.
+- Al acabar el **ensayo general en papel**, «Corrige tu hoja por pasos» te lleva a cada problema de carta para corregir lo que escribiste en tu hoja. En **Tu examen oficial**, cada problema de carta fallado también se puede corregir así, si guardaste tu hoja.
+
 ## 16 de noviembre de 2026, quinta publicación · versión `32f9031c575a`
 
 **Novedades**

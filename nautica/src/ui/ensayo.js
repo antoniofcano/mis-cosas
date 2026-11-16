@@ -13,6 +13,7 @@ import { barraActividad, avisoBreve } from './actividad.js';
 import { icono, conIcono } from './iconos.js';
 import { cuenta } from '../texto.js';
 import { letrasDe, leerHoja } from '../theory/ensayo.js';
+import { lineaAvisoPlan, hitoDelPlan } from './plan-examen.js';
 
 const GUARDAR_CADA_MS = 10000;
 
@@ -92,10 +93,12 @@ export function hojaRespuestasEl({ preguntas, hoja, onCambio }) {
  *   consumidoMs, porTiempo
  * @param {number} o.duracionMin
  * @param {object} o.progress
+ * @param {object|null} [o.plan]  el reparto del tiempo (src/course/plan-examen.js): sin tiempo por pregunta, se recuerda
+ *   cada hito al pasarlo, en una línea discreta
  * @param {() => void} o.alSalir  ir a Hoy
  * @param {(r: { hoja, consumidoMs, porTiempo }) => void} o.onCorregir
  */
-export function correrEnsayo({ el, test, estado, duracionMin, progress, alSalir, onCorregir }) {
+export function correrEnsayo({ el, test, estado, duracionMin, progress, plan = null, alSalir, onCorregir }) {
   const n = test.preguntas.length;
   const limite = duracionMin * 60000;
   let fase = estado.fase === 'hoja' ? 'hoja' : 'papel';
@@ -109,6 +112,7 @@ export function correrEnsayo({ el, test, estado, duracionMin, progress, alSalir,
   const reloj = h('span.reloj', { role: 'timer', 'aria-label': 'Tiempo que queda' });
   const barra = barraActividad({ texto: test.titulo, onSalir: salir, derecha: reloj });
   const cuerpo = h('div.ensayo-cuerpo');
+  const aviso = plan && !estado.impreso ? lineaAvisoPlan() : null;
 
   const guardar = () => { if (!terminado) progress.saveTestEnCurso({ ...estado, respuestas: hoja, consumidoMs: estado.impreso ? (estado.consumidoMs ?? null) : Math.round(consumido), fase, porTiempo }); ultimoGuardado = Date.now(); };
   function contar() {
@@ -129,6 +133,7 @@ export function correrEnsayo({ el, test, estado, duracionMin, progress, alSalir,
     else if (enPagina) { dejar(); return; }
     contar();
     pintaReloj();
+    if (aviso && fase === 'papel') aviso.pon(hitoDelPlan(plan, consumido / 1000));
     if (fase === 'papel' && consumido >= limite) { porTiempo = true; aHoja(); return; }
     if (Date.now() - ultimoGuardado >= GUARDAR_CADA_MS) guardar();
   }
@@ -175,6 +180,7 @@ export function correrEnsayo({ el, test, estado, duracionMin, progress, alSalir,
   function aHoja() {
     contar();
     activo = false;
+    aviso?.pon(null);
     fase = 'hoja';
     guardar();
     hojaPantalla();
@@ -207,7 +213,7 @@ export function correrEnsayo({ el, test, estado, duracionMin, progress, alSalir,
         } }, conIcono('ok', 'Corregir la hoja'))));
   }
 
-  setChildren(el, barra, cuerpo);
+  setChildren(el, barra, aviso?.el ?? null, cuerpo);
   if (fase === 'hoja') { limpiar(); hojaPantalla(); } else { papel(); tick(); }
   window.scrollTo(0, 0);
 }

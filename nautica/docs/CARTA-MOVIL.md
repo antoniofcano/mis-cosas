@@ -58,7 +58,12 @@ Orden: estima y loxodrómica, mareas y corrección total primero; la carta gráf
 
 Se apoya en el diagnóstico por tipo de error de las preguntas reales (H-31) y necesita antes el catálogo de fallos (R-55).
 
-### 3. Simulacro con estrategia (R-57)
+### 3. Simulacro con estrategia (R-57) · hecha
+_Hecha en noviembre de 2026 (H-61 y H-62, `docs/ROADMAP.md`): el primer minuto y el reparto del tiempo antes del reloj
+(simulacro, convocatoria y ensayo en papel), el aviso discreto durante el examen, siete reglas de descarte probadas con
+todas las preguntas reales del estudio y el ensayo general de teoría y carta seguidas. Lógica en
+`src/course/plan-examen.js` y `src/course/descarte.js`._
+
 Cose lo que ya existe (ensayo en papel H-35, velocidad en carta H-36, simulacro de tus errores H-37, tras el examen
 H-42 y H-43) y añade:
 - **el primer minuto:** hojear el cuadernillo y localizar tablas y anexos;
@@ -69,8 +74,18 @@ H-42 y H-43) y añade:
 
 ## Huecos que se cubren
 
-- **El paso al papel (R-58):** el alumno resuelve en su hoja, mete el resultado de cada paso y la app le dice en cuál se
+- **El paso al papel (R-58, hecho):** el alumno resuelve en su hoja, mete el resultado de cada paso y la app le dice en cuál se
   desvió. Lo que se hace en papel también llega al cuaderno de fallos.
+  - Se abre con «Lo hice en papel» en la pregunta de carta, desde el resultado del ensayo en papel y desde tu examen
+    oficial; nunca durante un examen. No hace falta meter todos los pasos.
+  - **Errores arrastrados:** la app vuelve a resolver el problema con los números del alumno en lugar de los suyos. Si
+    un paso cuadra con lo que sale de sus datos anteriores, la cuenta está bien hecha y no se marca: solo cuenta el
+    primer fallo, y solo ese va al cuaderno (origen «tu hoja en papel»).
+  - **Con nombre:** si el valor es el que sale con un error típico (13:42 en vez de 09:42), se dice cuál; también si el
+    error está en un paso que no escribió. Si dos errores dan lo mismo, se dicen los dos y no se apunta ninguno.
+  - **Margen:** el del paso a paso (rumbos ±1°, horas ±3 min, alturas ±0,10 m, millas ±0,3); lo que se mide en la carta
+    con transportador o compás, el doble. La parte gráfica se corrige por sus números (rumbo, distancia, situación),
+    no por el trazado.
 - **El catálogo de fallos típicos (R-55):** para cada paso, qué respuesta equivocada corresponde a qué fallo (13:42 en
   vez de 09:42 es «sumaste el adelanto»). Es trabajo de contenido, tipo a tipo, comprobado por test con los mismos motores
   que las resoluciones. Es el cimiento de la función 2.

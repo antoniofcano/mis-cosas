@@ -17,6 +17,12 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 16 de noviembre de 2026, segunda publicación · versión `d7108aa0c424`
+
+**Mejoras**
+
+- **Tu examen oficial** acepta un enlace con la hoja ya rellena: la abres, la revisas y la corriges.
+
 ## 16 de noviembre de 2026 · versión `4b1450d82307`
 
 **Novedades**

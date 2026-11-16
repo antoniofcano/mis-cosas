@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   convocatoriasApuntables, marcarHecha, partesApuntables, estructuraParte, preguntasParte, hojasDe, resultadoDe,
-  fallosAgrupados, oficialApuntado, claveHechas, DIAS_OFICIAL,
+  fallosAgrupados, oficialApuntado, claveHechas, hojaDeEnlace, DIAS_OFICIAL,
 } from '../src/course/examen-oficial.js';
 import { PREFIJOS_COMPARTIDOS, PREFIJOS_PRIMERO } from '../src/store/sync/operaciones.js';
 import { crearBancos } from '../src/bancos/index.js';
@@ -103,4 +103,11 @@ test('una convocatoria reservada que el alumno ya hizo sale de su examen final y
   assert.ok(despues.convocatorias().some((c) => c.key === 'x-2026-11'), 'se puede repetir como examen de convocatoria');
   // La foto de la reserva no se toca (en ella gana el primer valor entre aparatos).
   assert.deepEqual(ajustes.reserva_x_py, foto);
+});
+
+test('hoja en el enlace: una letra por pregunta, «-» en blanco; si no cuadra, nada', () => {
+  assert.deepEqual(hojaDeEnlace('ab-D', 4), { 1: 'a', 2: 'b', 3: null, 4: 'd' });
+  assert.equal(hojaDeEnlace('abc', 4), null);
+  assert.equal(hojaDeEnlace('abce', 4), null);
+  assert.equal(hojaDeEnlace(null, 4), null);
 });

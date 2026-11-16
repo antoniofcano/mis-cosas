@@ -15,7 +15,7 @@ import { hojaRespuestasEl } from '../ensayo.js';
 import { claveSemana, leerAjuste, apuntarResultado, responderComoFue } from '../../course/semana.js';
 import {
   convocatoriasApuntables, marcarHecha, claveHechas, partesApuntables, estructuraParte, preguntasParte, hojasDe, resultadoDe,
-  fallosAgrupados, oficialApuntado,
+  fallosAgrupados, oficialApuntado, hojaDeEnlace,
 } from '../../course/examen-oficial.js';
 import { tipoDePregunta, nombreTipo } from '../../course/velocidad.js';
 import { modoExamen } from '../modo-examen.js';
@@ -80,7 +80,9 @@ export function oficialView({ progress, params: route, tit }) {
   function apuntar(banco, c, conv) {
     const reservada = !(banco.reserva.hechas ?? []).includes(conv) && (banco.reserva.datos ?? []).concat(banco.reserva.convs ?? []).includes(conv);
     const partes = partesApuntables(E);
-    let parte = 'completo';
+    // Con un enlace que trae la hoja (?r=…&p=…), la parte viene dada y la hoja se abre rellena (se revisa antes de corregir).
+    let parte = partes.some((p) => p.id === route.query?.p) ? route.query.p : 'completo';
+    const traeHoja = !!route.query?.r;
     const elegir = partes.length > 1 ? h('fieldset.res-modulos',
       h('legend', '¿De qué te examinaste?'),
       partes.map((p) => h('label.res-radio', h('input', { type: 'radio', name: 'oficial-parte', value: p.id, checked: p.id === parte, onchange: () => { parte = p.id; } }), ` ${p.titulo}`))) : null;
@@ -99,7 +101,8 @@ export function oficialView({ progress, params: route, tit }) {
       h('p.muted', `Examen del ${fechaLarga(c.fecha, { diaSemana: false })}.`),
       elegir,
       reservada ? h('p.aviso-final', 'Esta convocatoria estaba guardada para tu examen final. Como ya la has hecho, sale de él y entra en tu estudio; tu examen final será otra que no hayas visto.') : null,
-      h('p.small', 'Necesitas lo que marcaste en tu hoja. Si lo apuntaste en el cuadernillo, mejor: ten a mano los dos.'),
+      traeHoja ? h('p.small', 'Tu hoja viene ya rellena en el enlace: revísala en la pantalla siguiente antes de corregir.')
+        : h('p.small', 'Necesitas lo que marcaste en tu hoja. Si lo apuntaste en el cuadernillo, mejor: ten a mano los dos.'),
       h('div.botones-columna', h('button.grande', { type: 'button', onclick: empezar }, 'Pasar mi hoja')));
   }
 
@@ -110,9 +113,10 @@ export function oficialView({ progress, params: route, tit }) {
     if (!preguntas.length) { setChildren(el, h('p.warn', 'No se han encontrado las preguntas de esta convocatoria.')); return; }
     const test = { tipo: 'real', titulo: c.titulo, preguntas, faltan: [] };
     // Una hoja por módulo, numerada desde 1, como las del examen; se juntan en una con la posición de cada pregunta.
-    const marcas = {};
+    const marcas = { ...(hojaDeEnlace(route.query?.r, preguntas.length) ?? {}) };
     const hojas = hojasDe(preguntas, E).map((x) => {
-      const hr = hojaRespuestasEl({ preguntas: x.preguntas, hoja: {}, onCambio: (st) => { for (let i = 1; i <= x.preguntas.length; i++) marcas[x.desde + i] = st[i] ?? null; } });
+      const inicial = Object.fromEntries(x.preguntas.map((_, k) => [k + 1, marcas[x.desde + k + 1] ?? null]).filter(([, l]) => l));
+      const hr = hojaRespuestasEl({ preguntas: x.preguntas, hoja: inicial, onCambio: (st) => { for (let i = 1; i <= x.preguntas.length; i++) marcas[x.desde + i] = st[i] ?? null; } });
       return h('section.oficial-hoja', x.titulo ? h('h2', x.titulo) : null, hr.el);
     });
     summaryText = `VISTA tu examen oficial ${T.sigla} · ${c.titulo}: pasando la hoja (${cuenta(preguntas.length, 'pregunta')}; sin corregir todavía)`;

@@ -15,8 +15,15 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+**Novedades**
+
+- **«¿Qué tipo de problema es?» al empezar el paso a paso.** Antes de la primera cuenta eliges el tipo entre cuatro (marea y sonda, situación por dos demoras, corriente: rumbo a dar…). Si te equivocas, te dice por qué es de ese tipo y qué dato del enunciado lo delata. No cuenta como fallo.
+- **Ayuda por escalones en cada paso.** En lugar de darte el valor de golpe: primero una pista (qué buscar), después la fórmula con tus datos y, si aún hace falta, «Dímelo». Usar la ayuda no es fallar, pero queda apuntado («con 2 ayudas»).
+- **Ejemplo resuelto y otro con huecos.** Desde el paso a paso, «Ver un ejemplo resuelto» te enseña otra pregunta real del mismo tipo resuelta entera, con su carta; después, «Ahora tú, con huecos» te da otra con la mitad de los pasos ya hechos para que completes el resto.
+
 **Mejoras**
 
+- **Trázalo en la carta, también con distancias no simultáneas.** Las preguntas de dos distancias (o demora y distancia) tomadas a horas distintas ya se trazan por intención: el primer arco, el traslado con el rumbo y la distancia navegados y el corte con el segundo arco. Si trasladas hacia atrás, no trasladas o te equivocas con la distancia navegada, te lo dice con nombre y te dibuja tu trazo. Ya están todas las preguntas de carta de práctica.
 - **La mesa de cartas, con la cara nueva.** La carta a pantalla completa y la mesa (con «Ampliar» desde una pregunta o desde la carta suelta) estrenan el estilo del resto de la app: esquinas rectas, letras condensadas en las herramientas y los botones, y las lecturas de rumbo, distancia y situación en cifras de ancho fijo, más fáciles de leer de un vistazo. La herramienta que tienes activa se ve por el relleno y por una barra, no solo por el color. Funciona en claro, en oscuro y en automático, y en el móvil estrecho el nombre de cada herramienta ya no se corta. La carta y lo que trazas no cambian; de noche, el transportador se lee mejor sobre el mar oscuro.
 
 ## 16 de noviembre de 2026, séptima publicación · versión `d3c9b2ed3320`

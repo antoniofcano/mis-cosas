@@ -258,6 +258,17 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
   en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
   que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Paso a paso que enseña (R-71):** lógica en `exams/ensena.js` (sin DOM). `preguntaDeTipo(q, tipo)` arma el primer paso
+  «¿Qué tipo de problema es?» con el tipo de `tipoDePregunta` (el `ejercicio` de la solución) y tres de `CONFUNDE_TIPO`,
+  barajados de forma estable; `TIPOS[tipo]` dice cuándo es de ese tipo y con qué expresiones del enunciado se delata
+  (`delator`: la cita; en las demoras no simultáneas, la segunda hora). Fallarlo no va al cuaderno (no hay error de la
+  taxonomía para eso). `escalones(p)` da la ayuda de cada paso: pista (`PISTAS[paso]` y lo que se busca), la fórmula con los
+  datos (`plantea` y `cuentaSinResultado`: las `lineas` del kit cortadas en el primer «=» que da el valor) o la regla
+  (`REGLAS[paso]`) y, al final, «Dímelo»; cada resultado guarda `ayudas` (no cuenta como fallo; `resumenAyudas`).
+  `ejemplosDelTipo` elige dos preguntas reales del mismo tipo y titulación de `banco.practica` (nunca reservadas), estables
+  por el id; `pasosRellenos` marca la primera mitad de los pasos que se preguntan. `guiadoPanel` acepta `modo` (`normal`,
+  `resuelto`, `huecos`; los ejemplos sin reloj ni primer paso) y `ejemplos` (`{ resuelto, huecos }`, que monta
+  `ui/views/exams.js` con su carta). Test `tests/ensena.test.js` (barrido de las preguntas de práctica).
 - **Hoja en papel corregida por pasos (R-58):** lógica en `exams/papel.js` (`pasosPapel`, `corregirPapel`, `veredicto`,
   `textoPapel`), interfaz en `ui/papel.js` (`papelPanel`, `papelDisponible`). Se abre en `#/q/<id>?papel=1` («Lo hice en
   papel»), desde el resultado del ensayo en papel (`testView`, «Corrige tu hoja por pasos») y desde tu examen oficial
@@ -285,8 +296,13 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   traza una elección equivocada (`intento`) y se compara el resultado de las primeras elecciones con la resolución
   (`compararFinal`, encadenado). Los trazos que se pintan son los `items` del kit con rótulo (los arcos lo admiten);
   el intento, con el estilo `intento` (discontinuo). El primer fallo con nombre va a `store/errores.js` y al cuaderno
-  (`anotarFallo`, origen `traza`). Errores del paso `trazado` en `ERRORES_DE_TRAZADO` (sin variante del kit). Test
-  `tests/intencion.test.js` (barrido sobre el banco de práctica).
+  (`anotarFallo`, origen `traza`). Errores del paso `trazado` en `ERRORES_DE_TRAZADO` (sin variante del kit). Las
+  distancias no simultáneas (`trasladoArco`, `trasladoDosArcos`) van en tres trazos: la demora o el primer arco (el kit lo
+  dibuja donde se tomó la distancia), el traslado de la línea o del centro del arco (`trasladar`, `trasladar-arco`: qué se
+  hace con ella —trasladar, al revés (`traslado-al-reves`) o sin trasladar (`sin-traslado`)— y el rumbo y la distancia
+  navegados) y el segundo arco; si un traslado equivocado no corta, el kit deja dibujado lo trasladado antes de romperse y
+  `resolverCon` lo toma igual. Cubre las 1124 preguntas de práctica con algo que trazar. Test `tests/intencion.test.js`
+  (barrido sobre el banco de práctica).
 - **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
   `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
   consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.

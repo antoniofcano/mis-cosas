@@ -23,6 +23,7 @@ import { guiadoPanel, guiadoDisponible } from '../guiado.js';
 import { papelPanel, papelDisponible } from '../papel.js';
 import { intencionPanel, intencionDisponible } from '../intencion.js';
 import { diagnosticoEl, diagnosticoTexto } from '../diagnostico.js';
+import { ejemplosDelTipo } from '../../exams/ensena.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -40,6 +41,24 @@ function runSolution(q, chart) {
     console.error(e);
     return null;
   }
+}
+
+/**
+ * El ejemplo resuelto y el de huecos de una pregunta (R-71): otras dos preguntas reales del mismo tipo, de la práctica del
+ * banco (nunca reservadas), cada una montada con su carta si se dibuja. null si no hay ninguna.
+ */
+function ejemplosDe({ q, sol, banco, chart, factor, glosas }) {
+  if (!sol?.ejercicio) return null;
+  const { resuelto, huecos } = ejemplosDelTipo({ q, tipo: sol.ejercicio, practica: banco.practica, reservadas: banco.reservadas,
+    tipoDe: (x) => solutions[x.id]?.ejercicio ?? null, sirve: (x) => guiadoDisponible(x, solutions[x.id], chart) });
+  if (!resuelto) return null;
+  const montar = (x, modo) => () => {
+    const r = runSolution(x, chart);
+    const w = r?.k.items.length ? chartWidget(chart, { items: r.k.items, focus: r.k.focus, step: 0, height: 240 }) : null;
+    const g = guiadoPanel({ q: x, sol: solutions[x.id], chart, modo, dibujar: (n) => w?.setStep(n), carta: () => w, factor, glosas: { ...glosas, ut: x.ut } });
+    return h('div.guiado-ejemplo-caja', g.el, w ? h('div.guiado-carta', w.el) : null);
+  };
+  return { resuelto: montar(resuelto, 'resuelto'), huecos: huecos ? montar(huecos, 'huecos') : null };
 }
 
 /** Lleva (sin dejar rastro en el historial) a otra dirección y la pinta. */
@@ -106,6 +125,7 @@ export function preguntaView({ ctx, progress, params: route }) {
   const el = h('div.exams', h('p.muted', 'Cargando preguntas…'));
   let summaryText = 'VISTA exámenes (cargando)';
   const qid = route.parts[1];
+  let refrescar = null; // el resumen se rehace al pedirlo (el paso a paso y la carta por intención avanzan sin avisar)
 
   pregunta(qid).then((r) => {
     if (!r) { setChildren(el, h('p', 'Pregunta no encontrada.')); return; }
@@ -160,6 +180,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       if (traza) summaryText += `\n${traza.summary()}`;
       aiPre.textContent = summaryText;
     };
+    refrescar = refresh;
 
     const options = h('div.options', Object.entries(q.opciones ?? {}).map(([k, v]) => h('label.option',
       h('input', { type: 'radio', name: 'opt', value: k, checked: choice === k, onchange: () => { choice = k; refresh(); } }),
@@ -222,7 +243,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       if (ws && currentWorkspace() === ws) ws.close();
       const w = run.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus, step: 0 }) : null;
       guiado = guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar: (n) => w?.setStep(n), carta: () => w, factor: factor(), glosas,
-        onOpcion: alElegir, onCerrar: cerrarGuiado });
+        onOpcion: alElegir, onCerrar: cerrarGuiado, ejemplos: ejemplosDe({ q, sol: run.sol, banco, chart: ctx.chart, factor: factor(), glosas }) });
       setChildren(guiadoBox, guiado.el, w ? h('div.guiado-carta', w.el) : null);
       guiadoBox.hidden = false;
       answerBlock.hidden = true;
@@ -347,5 +368,5 @@ export function preguntaView({ ctx, progress, params: route }) {
     else if (route.query.traza === '1') abrirTraza(false);
   }
 
-  return { el, summary: () => (currentWorkspace() ? currentWorkspace().summary() : summaryText) };
+  return { el, summary: () => { if (currentWorkspace()) return currentWorkspace().summary(); refrescar?.(); return summaryText; } };
 }

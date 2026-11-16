@@ -137,6 +137,12 @@ export const AVISOS = {
     asi: 'Traslada la primera línea paralela a sí misma lo navegado y corta con la segunda.',
     has: 'Has cruzado las dos líneas sin trasladar la primera',
   },
+  'traslado-al-reves': {
+    ojo: 'La primera línea se traslada hacia donde ha ido el barco, no hacia donde venía.',
+    no: 'El traslado lleva el rumbo navegado entre las dos observaciones, tal cual (no el opuesto) y la distancia navegada.',
+    asi: 'Lleva la primera línea (o el centro del primer arco) con el rumbo navegado, hacia delante.',
+    has: 'Has trasladado la primera línea hacia atrás, con el rumbo opuesto',
+  },
   'horas-decimales': {
     ojo: 'Una hora tiene 60 minutos, no 100: 1 h 30 min son 1,5 h, no 1,30 h.',
     no: 'Divide los minutos entre 60 para pasarlos a horas. d = V · t con t en horas.',

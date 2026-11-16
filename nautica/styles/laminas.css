@@ -647,7 +647,8 @@ a.clase .clase-meta :is(.badge, .estado, .chip-estado), a.clase .clase-meta > sp
   .ichart-toolbar .tools button.tool { flex-direction: column; font-size: .74rem; padding: .15rem .05rem; overflow-wrap: anywhere; align-self: stretch; }
 }
 /* Lecturas: rumbo, distancia y situación en mono */
-.ichart .readout, .ichart .protractor-bar { font-family: var(--fuente-mono); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: 0; font-size: .78rem; line-height: 1.4; }
+.ichart .readout { font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: 0; font-size: .85rem; line-height: 1.4; }
+.ichart .protractor-bar { font-family: var(--fuente-mono); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: 0; font-size: .78rem; line-height: 1.4; }
 .ichart .readout:not(.abierta) { max-height: calc(2.8em + .4rem); padding-bottom: 0; overflow: hidden; }
 .ichart .readout { border-top-color: var(--borde-fuerte); color: var(--text); }
 .protractor-bar { border-top-color: var(--borde-fuerte); background: var(--surface); }

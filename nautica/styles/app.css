@@ -2932,3 +2932,40 @@ svg.chart .c-intento { stroke: var(--warn); stroke-width: 2.5; stroke-dasharray:
   .int-carta { position: sticky; top: .5rem; }
 }
 /* ==== fin de Trázalo en la carta ==== */
+
+/* ==== Paso a paso que enseña (R-71): «¿qué tipo es?», ayuda por escalones y ejemplo resuelto con huecos ==== */
+.guiado-tipo-ops { display: grid; gap: .45rem; margin: .4rem 0; }
+button.guiado-tipo-op { display: flex; align-items: center; gap: .4rem; width: 100%; min-height: 48px; padding: .5rem .8rem; text-align: left; background: var(--surface); color: var(--text); border: 2px solid var(--borde-fuerte); border-radius: var(--radius); font-size: 1rem; line-height: 1.25; }
+button.guiado-tipo-op:hover:not(:disabled) { border-color: var(--accent); }
+button.guiado-tipo-op:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button.guiado-tipo-op:disabled { opacity: 1; cursor: default; }
+button.guiado-tipo-op.bien { border-color: var(--ok); font-weight: 700; }
+button.guiado-tipo-op.bien .ico { color: var(--ok); }
+button.guiado-tipo-op.mal { border-style: dashed; border-color: var(--warn); color: var(--muted); }
+button.guiado-tipo-op.mal span:last-child { text-decoration: line-through; text-decoration-thickness: 1px; }
+button.guiado-tipo-op.mal .ico { color: var(--warn); }
+.guiado-tipo-marca { font-weight: 700; }
+.guiado-tipo-fb .actions button { min-height: 44px; }
+.guiado-ayudas:empty { display: none; }
+.guiado-escalon { margin: .4rem 0; padding: .4rem .7rem; border: 1.5px dashed var(--accent); border-radius: var(--radius); background: var(--surface); }
+.guiado-escalon p { margin: .15rem 0; }
+.guiado-escalon-tit { color: var(--text); }
+.guiado-escalon-cuenta { border-left-style: dashed; }
+.guiado-ayuda-btn { min-height: 44px; }
+.guiado-con-ayudas { margin: .1rem 0 .3rem; color: var(--muted); }
+.guiado-con-ayudas .ico { color: var(--close); }
+.guiado-paso.r-relleno { border-left-style: dashed; border-left-color: var(--c-construction); }
+.guiado-relleno { margin: 0 0 .2rem; }
+.guiado-ejemplo-acc { margin: .4rem 0; }
+.guiado-ejemplo-acc button, .guiado-ejemplo .actions button, .guiado-ejemplo .guiado-cab button { min-height: 44px; }
+.guiado-ejemplo:not([hidden]) { display: grid; gap: .6rem; margin: .6rem 0 1rem; padding: .7rem .8rem; border: 2px solid var(--accent); border-radius: var(--radius); background: var(--accent-2); min-width: 0; }
+.guiado-ejemplo:focus { outline: none; }
+.guiado-ejemplo:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.guiado-ejemplo h3 { margin: 0; font-size: 1.05rem; }
+.guiado-ejemplo p { margin: 0; }
+.guiado-ejemplo-caja { display: grid; gap: .6rem; min-width: 0; }
+.guiado-ejemplo .guiado { background: var(--surface); }
+.guiado-ejemplo .guiado-cab h4 { margin: 0; font-size: .95rem; color: var(--muted); }
+.guiado-ejemplo-enunciado { margin: .3rem 0 .5rem; padding: .4rem .6rem; border-left: 3px solid var(--borde-fuerte); }
+.guiado-ejemplo-opcion { font-weight: 600; }
+/* ==== fin del paso a paso que enseña ==== */
